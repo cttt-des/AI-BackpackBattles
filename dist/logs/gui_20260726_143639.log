@@ -1,6 +1,0 @@
-14:36:47 [INFO] 正在查找游戏窗口...
-14:36:47 [INFO] 找到窗口: Backpack Battles (PID=18616, 0x0)
-14:36:47 [INFO] 正在连接进程 PID=18616...
-14:36:47 [WARNING] 枚举模块基址失败: argument 2: TypeError: expected LP_c_void_p instance instead of pointer to c_void_p_Array_1024
-14:36:47 [INFO] [结构] 未校准，启动后将自动标定（一次性）
-14:36:48 [INFO] ✓ 初始化完成
