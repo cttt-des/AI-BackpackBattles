@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Items/Item.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Items/GemSocket.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Items/Exclusive/Boomerang.gd" type="Script" id=3]
+[ext_resource path="res://Items/Exclusive/Sprites/Boomerang.png" type="Texture" id=4]
+
+[sub_resource type="PhysicsMaterial" id=1]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[node name="Boomerang" instance=ExtResource( 1 )]
+physics_material_override = SubResource( 1 )
+script = ExtResource( 3 )
+
+[node name="CollisionMap" parent="." index="0"]
+position = Vector2( -30, -30 )
+tile_data = PoolIntArray( -65536, 3, 0, 65535, 3, 0, 0, 3, 0 )
+
+[node name="Icon" parent="." index="1"]
+position = Vector2( -34, -30 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 4 )
+
+[node name="Sockets" parent="Icon" index="0"]
+scale = Vector2( 2, 2 )
+
+[node name="GemSocket" parent="Icon/Sockets" index="0" instance=ExtResource( 2 )]
+position = Vector2( 44, -39 )
+
+[node name="GemSocket2" parent="Icon/Sockets" index="1" instance=ExtResource( 2 )]
+position = Vector2( -22, 51 )
+
+[node name="ClickArea" parent="." index="2"]
+visible = true
+position = Vector2( 17, -19 )
+
+[node name="CollisionPolygon2D" parent="ClickArea" index="0"]
+visible = false
+position = Vector2( -46, -10 )
+polygon = PoolVector2Array( 0, -80, 80, -80, 80, 0, 80, 80, -80, 80, -80, 0, 0, 0 )
+
+[node name="BottomCenter" parent="." index="3"]
+position = Vector2( -20, 38 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="5"]
+visible = false
+position = Vector2( -3, -33 )
+polygon = PoolVector2Array( 18, -64, 33, -19, 33, 35, 15, 62, -68, 77, -95, 64, -68, 39, -8, 25, 5, -73 )

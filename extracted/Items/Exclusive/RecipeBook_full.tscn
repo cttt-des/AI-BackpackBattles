@@ -1,0 +1,1929 @@
+[gd_scene load_steps=262 format=2]
+
+[ext_resource path="res://Items/Exclusive/RecipeBook_exclusive.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Items/Exclusive/LightFlower.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Items/Exclusive/RainbowGoobertMage.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Items/Exclusive/MagicMirror.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Items/Exclusive/NullBlade.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Items/Exclusive/IceFlower.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Items/Exclusive/CupcakeGoobert.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Items/Exclusive/DeathLotus.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Items/Exclusive/CupcakeStaff.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Items/Exclusive/RainbowGoobertAdventurer.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Items/Exclusive/HeartShield.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Items/Exclusive/BroccoliGoobert.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Items/Exclusive/DragonKnight.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Items/Exclusive/Scissorswords.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Items/Exclusive/Boomerang.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Items/Exclusive/PiggyofRiches.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Items/Exclusive/DevouringSphere.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Items/Exclusive/BigBloodthorne.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Items/Exclusive/MagicCollar.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Items/Exclusive/HyperHedgehog.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Items/Exclusive/HolyCollar.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Items/Exclusive/MoltenGreatsword.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Items/Exclusive/PoisonFrog.tscn" type="PackedScene" id=23]
+[ext_resource path="res://Items/Exclusive/SpikedWall.tscn" type="PackedScene" id=24]
+[ext_resource path="res://Items/Exclusive/FireShelly.tscn" type="PackedScene" id=25]
+[ext_resource path="res://Items/Exclusive/Snowmaster.tscn" type="PackedScene" id=26]
+[ext_resource path="res://Items/Exclusive/Crow.tscn" type="PackedScene" id=27]
+[ext_resource path="res://Items/Exclusive/VampiricCollar.tscn" type="PackedScene" id=28]
+[ext_resource path="res://Items/Exclusive/Daggerang.tscn" type="PackedScene" id=29]
+[ext_resource path="res://Items/Exclusive/JynxStaff.tscn" type="PackedScene" id=30]
+[ext_resource path="res://Items/Exclusive/HeroShield.tscn" type="PackedScene" id=31]
+[ext_resource path="res://Items/Exclusive/EmployeeUniform.tscn" type="PackedScene" id=32]
+[ext_resource path="res://Items/Exclusive/Rope.tscn" type="PackedScene" id=33]
+[ext_resource path="res://Items/Exclusive/PrismaticWand.tscn" type="PackedScene" id=34]
+[ext_resource path="res://Assets/Fonts/LibreBaskerville-Regular.ttf" type="DynamicFontData" id=35]
+[ext_resource path="res://Assets/Fonts/GlassAntiqua-Regular.ttf" type="DynamicFontData" id=36]
+[ext_resource path="res://Items/Exclusive/LongSpear.tscn" type="PackedScene" id=37]
+[ext_resource path="res://Items/Exclusive/Whetstone2.tscn" type="PackedScene" id=38]
+[ext_resource path="res://Items/Exclusive/WarScythe.tscn" type="PackedScene" id=39]
+[ext_resource path="res://Items/Exclusive/FrogPrince.tscn" type="PackedScene" id=40]
+[ext_resource path="res://Items/Exclusive/SteelDragon.tscn" type="PackedScene" id=41]
+[ext_resource path="res://Items/Exclusive/Whetstone3.tscn" type="PackedScene" id=42]
+[ext_resource path="res://Items/Exclusive/Halberd.tscn" type="PackedScene" id=43]
+[ext_resource path="res://Items/Exclusive/ForestDragon.tscn" type="PackedScene" id=44]
+[ext_resource path="res://Items/Exclusive/PineProtector.tscn" type="PackedScene" id=45]
+[ext_resource path="res://Items/Exclusive/OnionCutter.tscn" type="PackedScene" id=46]
+[ext_resource path="res://Items/Exclusive/GoldArmor.tscn" type="PackedScene" id=47]
+[ext_resource path="res://Items/Exclusive/Phoenix2.tscn" type="PackedScene" id=48]
+[ext_resource path="res://Items/Exclusive/MoltenSpear2.tscn" type="PackedScene" id=49]
+[ext_resource path="res://Items/Exclusive/SliceofToast.tscn" type="PackedScene" id=50]
+[ext_resource path="res://Items/Exclusive/ElectricTorch.tscn" type="PackedScene" id=51]
+[ext_resource path="res://Items/Exclusive/MagiteccArmor.tscn" type="PackedScene" id=52]
+[ext_resource path="res://Items/Exclusive/Mananana.tscn" type="PackedScene" id=53]
+[ext_resource path="res://Items/Exclusive/Generator.tscn" type="PackedScene" id=54]
+[ext_resource path="res://Items/Exclusive/MechaBat.tscn" type="PackedScene" id=55]
+[ext_resource path="res://Items/Exclusive/Bazooka.tscn" type="PackedScene" id=56]
+[ext_resource path="res://Items/Exclusive/SpringLoader.tscn" type="PackedScene" id=57]
+[ext_resource path="res://Items/Exclusive/LightningStaff.tscn" type="PackedScene" id=58]
+[ext_resource path="res://Items/Exclusive/ToastGoobert.tscn" type="PackedScene" id=59]
+[ext_resource path="res://Items/Exclusive/Con-Trap-Tron.tscn" type="PackedScene" id=60]
+[ext_resource path="res://Items/Exclusive/ThunderDrake.tscn" type="PackedScene" id=61]
+[ext_resource path="res://Items/Exclusive/PoisonGrenade.tscn" type="PackedScene" id=62]
+[ext_resource path="res://Items/Exclusive/Automanaton.tscn" type="PackedScene" id=63]
+[ext_resource path="res://Items/Exclusive/ThorsHammer.tscn" type="PackedScene" id=64]
+[ext_resource path="res://Items/Exclusive/ArcaneBoots.tscn" type="PackedScene" id=65]
+[ext_resource path="res://Items/Exclusive/Robodog.tscn" type="PackedScene" id=66]
+[ext_resource path="res://Items/Exclusive/CapofBrilliance.tscn" type="PackedScene" id=67]
+[ext_resource path="res://Items/Exclusive/Chainsaw.tscn" type="PackedScene" id=68]
+[ext_resource path="res://Items/Exclusive/RainbowGoobertEngineer.tscn" type="PackedScene" id=69]
+[ext_resource path="res://Items/Exclusive/CupcakeDragon.tscn" type="PackedScene" id=70]
+[ext_resource path="res://Items/Exclusive/Eat-o-matic.tscn" type="PackedScene" id=71]
+[ext_resource path="res://Items/Exclusive/WandofDissonance.tscn" type="PackedScene" id=72]
+[ext_resource path="res://Items/Exclusive/SuperiorRing.tscn" type="PackedScene" id=73]
+[ext_resource path="res://Items/Exclusive/Broccotree.tscn" type="PackedScene" id=74]
+[ext_resource path="res://Items/Exclusive/Pot.tscn" type="PackedScene" id=75]
+[ext_resource path="res://Items/Exclusive/Wrench.tscn" type="PackedScene" id=76]
+
+[sub_resource type="Animation" id=224]
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/RecipeBook/ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("UI/RecipeBook/ColorRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1.86607, 0.535887 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("UI/RecipeBook/Book:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("UI/RecipeBook/Book:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1.93187, 0.5 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 2000, 0 ) ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("UI/RecipeBook")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "closed"
+} ]
+}
+
+[sub_resource type="Animation" id=225]
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/RecipeBook/ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("UI/RecipeBook/ColorRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 0.535887, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("UI/RecipeBook/Book:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("UI/RecipeBook/Book:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 2000, 0 ), Vector2( 0, 0 ) ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("UI/RecipeBook")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "opened"
+} ]
+}
+
+[sub_resource type="Animation" id=226]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/RecipeBook/ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("UI/RecipeBook/ColorRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("UI/RecipeBook/Book:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("UI/RecipeBook/Book:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 2000, 0 ) ]
+}
+
+[sub_resource type="DynamicFont" id=209]
+size = 50
+outline_size = 3
+outline_color = Color( 0.27451, 0.211765, 0.14902, 1 )
+use_filter = true
+extra_spacing_top = -10
+font_data = ExtResource( 36 )
+
+[sub_resource type="PhysicsMaterial" id=30]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=31]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=32]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=33]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=34]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=35]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=36]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=37]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=38]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=39]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=40]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=41]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=42]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=43]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=44]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=45]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=46]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=47]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=48]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=49]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=50]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=51]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=52]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=53]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=54]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=55]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=56]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=57]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=58]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=59]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=60]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=61]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=62]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=63]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=64]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=65]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=66]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=67]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=68]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=69]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=70]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=71]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=72]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=73]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=74]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=75]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=76]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=77]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=78]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=79]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=80]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=81]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=82]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=83]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=84]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=85]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=86]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=87]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=88]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=137]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=138]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=294]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=295]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=296]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=331]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=89]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=90]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=91]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=92]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=93]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=94]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=95]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=96]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=97]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=98]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=99]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=100]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=18]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=19]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=20]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=21]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=22]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=297]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=101]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=102]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=103]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=104]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=105]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=106]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=107]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=108]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=109]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=110]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=111]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=23]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=24]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=4]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=298]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=299]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=112]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=113]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=114]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=115]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=116]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=117]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=118]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=119]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=120]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=121]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=122]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=123]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=25]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=300]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=301]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=302]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=303]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=124]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=125]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=126]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=127]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=128]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=129]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=130]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=131]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=132]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=133]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=134]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=26]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=27]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=304]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=305]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=1]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=2]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=3]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=5]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=6]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=7]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=8]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=9]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=140]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=306]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=307]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=10]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=11]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=12]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=13]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=14]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=15]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=16]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=17]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=28]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=29]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=135]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=136]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=139]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=293]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=308]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=309]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=310]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=311]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=312]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=313]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=314]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=315]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=316]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=317]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=318]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=319]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=320]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=321]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=322]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=323]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=324]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=325]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=326]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=327]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=328]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=329]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=330]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="PhysicsMaterial" id=332]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="DynamicFont" id=292]
+size = 26
+outline_size = 3
+outline_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+use_filter = true
+font_data = ExtResource( 35 )
+
+[node name="RecipeBook" instance=ExtResource( 1 )]
+
+[node name="AnimationPlayer" parent="." index="0"]
+anims/Close = SubResource( 224 )
+anims/Open = SubResource( 225 )
+anims/RESET = SubResource( 226 )
+
+[node name="Label2" parent="Book" index="2"]
+custom_fonts/font = SubResource( 209 )
+
+[node name="Shelf" parent="Book" index="5"]
+position = Vector2( 1614.25, 167 )
+scale = Vector2( 0.654561, 0.727273 )
+
+[node name="Items" parent="Book" index="6"]
+scale = Vector2( 0.65, 0.65 )
+
+[node name="Bloodthorne" parent="Book/Items/Shared" index="0"]
+physics_material_override = SubResource( 30 )
+
+[node name="Blood Goobert" parent="Book/Items/Shared" index="1"]
+position = Vector2( 1612.4, 611.031 )
+physics_material_override = SubResource( 31 )
+
+[node name="Hero Sword" parent="Book/Items/Shared" index="2"]
+position = Vector2( 1438.15, 1100 )
+physics_material_override = SubResource( 32 )
+
+[node name="Light Goobert" parent="Book/Items/Shared" index="3"]
+position = Vector2( 1437.4, 613.531 )
+physics_material_override = SubResource( 33 )
+
+[node name="Steel Goobert" parent="Book/Items/Shared" index="4"]
+position = Vector2( 1266.15, 612.281 )
+physics_material_override = SubResource( 34 )
+
+[node name="Strong Health Potion" parent="Book/Items/Shared" index="5"]
+position = Vector2( 2260, 161.607 )
+physics_material_override = SubResource( 35 )
+
+[node name="Strong Stone Skin Potion" parent="Book/Items/Shared" index="6"]
+position = Vector2( 2479.12, 165.607 )
+physics_material_override = SubResource( 36 )
+
+[node name="Vampiric Gloves" parent="Book/Items/Shared" index="7"]
+physics_material_override = SubResource( 37 )
+
+[node name="Vampiric Armor" parent="Book/Items/Shared" index="8"]
+physics_material_override = SubResource( 38 )
+
+[node name="Spiked Shield" parent="Book/Items/Shared" index="9"]
+position = Vector2( 947.692, 1183.08 )
+physics_material_override = SubResource( 39 )
+
+[node name="Poison Dagger" parent="Book/Items/Shared" index="10"]
+position = Vector2( 649.231, 1256.92 )
+physics_material_override = SubResource( 40 )
+
+[node name="Bloody Dagger" parent="Book/Items/Shared" index="11"]
+physics_material_override = SubResource( 41 )
+
+[node name="Strong Heroic Potion" parent="Book/Items/Shared" index="12"]
+position = Vector2( 2591.65, 169.607 )
+physics_material_override = SubResource( 42 )
+
+[node name="Magic Staff" parent="Book/Items/Shared" index="13"]
+position = Vector2( 947.253, 271.429 )
+physics_material_override = SubResource( 43 )
+
+[node name="Spectral Dagger" parent="Book/Items/Shared" index="14"]
+position = Vector2( 1030.11, 374.286 )
+physics_material_override = SubResource( 44 )
+
+[node name="Manathirst" parent="Book/Items/Shared" index="15"]
+position = Vector2( 1135.83, 295.714 )
+physics_material_override = SubResource( 45 )
+
+[node name="Hero Longsword" parent="Book/Items/Shared" index="16"]
+position = Vector2( 1538.15, 1147 )
+physics_material_override = SubResource( 46 )
+
+[node name="Falcon Blade" parent="Book/Items/Shared" index="17"]
+position = Vector2( 1346.15, 1152 )
+physics_material_override = SubResource( 47 )
+
+[node name="Eggscalibur" parent="Book/Items/Shared" index="18"]
+position = Vector2( 868.901, 714.286 )
+physics_material_override = SubResource( 48 )
+
+[node name="Crossblades" parent="Book/Items/Shared" index="19"]
+position = Vector2( 1439.15, 1316 )
+physics_material_override = SubResource( 49 )
+
+[node name="Claws of Attack" parent="Book/Items/Shared" index="20"]
+position = Vector2( 1110.77, 1355.38 )
+physics_material_override = SubResource( 50 )
+
+[node name="Pandamonium" parent="Book/Items/Shared" index="21"]
+position = Vector2( 624.615, 1480 )
+physics_material_override = SubResource( 51 )
+
+[node name="Shovel" parent="Book/Items/Shared" index="22"]
+position = Vector2( 1874.62, 280 )
+physics_material_override = SubResource( 52 )
+
+[node name="Mana Potion" parent="Book/Items/Shared" index="23"]
+position = Vector2( 2703.02, 163.607 )
+physics_material_override = SubResource( 53 )
+
+[node name="Evil Cap" parent="Book/Items/Shared" index="24"]
+position = Vector2( 260.88, 620 )
+physics_material_override = SubResource( 54 )
+
+[node name="Torch" parent="Book/Items/Shared" index="25"]
+position = Vector2( 2650.44, 494.286 )
+physics_material_override = SubResource( 55 )
+
+[node name="Darksaber" parent="Book/Items/Shared" index="26"]
+position = Vector2( 113.736, 727.143 )
+physics_material_override = SubResource( 56 )
+
+[node name="Magic Torch" parent="Book/Items/Shared" index="27"]
+position = Vector2( 1047.25, 192.857 )
+physics_material_override = SubResource( 57 )
+
+[node name="Platin Customer Card" parent="Book/Items/Shared" index="28"]
+position = Vector2( 2086.15, 656.923 )
+physics_material_override = SubResource( 58 )
+
+[node name="Holy Spear" parent="Book/Items/Shared" index="29"]
+position = Vector2( 698.9, 661.429 )
+physics_material_override = SubResource( 59 )
+
+[node name="Moon Shield" parent="Book/Items/Shared" index="30"]
+position = Vector2( 637.253, 294.286 )
+physics_material_override = SubResource( 60 )
+
+[node name="Corrupted Armor" parent="Book/Items/Shared" index="31"]
+position = Vector2( 262.308, 825.714 )
+physics_material_override = SubResource( 61 )
+
+[node name="Stone Armor" parent="Book/Items/Shared" index="32"]
+position = Vector2( 178.571, 1302.31 )
+physics_material_override = SubResource( 62 )
+
+[node name="Stone Gloves" parent="Book/Items/Shared" index="33"]
+position = Vector2( 168.571, 1479.45 )
+physics_material_override = SubResource( 63 )
+
+[node name="Moon Armor" parent="Book/Items/Shared" index="34"]
+position = Vector2( 808.682, 231.429 )
+physics_material_override = SubResource( 64 )
+
+[node name="Heart of Darkness" parent="Book/Items/Shared" index="35"]
+position = Vector2( 433.737, 658.571 )
+physics_material_override = SubResource( 65 )
+
+[node name="Stone Helm" parent="Book/Items/Shared" index="36"]
+position = Vector2( 321.428, 1260.88 )
+physics_material_override = SubResource( 66 )
+
+[node name="Vampiric Potion" parent="Book/Items/Shared" index="37"]
+position = Vector2( 2368.32, 155.385 )
+physics_material_override = SubResource( 67 )
+
+[node name="Burning Torch" parent="Book/Items/Shared" index="38"]
+position = Vector2( 2759.01, 467.143 )
+physics_material_override = SubResource( 68 )
+
+[node name="Burning Coal" parent="Book/Items/Shared" index="39"]
+position = Vector2( 2649.01, 360 )
+physics_material_override = SubResource( 69 )
+
+[node name="Thornbloom" parent="Book/Items/Shared" index="40"]
+position = Vector2( 970.77, 1398.46 )
+physics_material_override = SubResource( 70 )
+
+[node name="Serpent Staff" parent="Book/Items/Shared" index="41"]
+position = Vector2( 749.231, 1267.69 )
+physics_material_override = SubResource( 71 )
+
+[node name="King Crown" parent="Book/Items/Shared" index="42"]
+position = Vector2( 820.329, 560 )
+physics_material_override = SubResource( 72 )
+
+[node name="King Goobert" parent="Book/Items/Shared" index="43"]
+position = Vector2( 1434.9, 399.781 )
+physics_material_override = SubResource( 73 )
+
+[node name="Prismatic Sword" parent="Book/Items/Shared" index="44"]
+position = Vector2( 1053.19, 837.143 )
+physics_material_override = SubResource( 74 )
+
+[node name="Stone Golem" parent="Book/Items/Shared" index="45"]
+position = Vector2( 342.857, 1445.17 )
+physics_material_override = SubResource( 75 )
+
+[node name="Shell Totem" parent="Book/Items/Shared" index="46"]
+position = Vector2( 931.759, 881.429 )
+physics_material_override = SubResource( 76 )
+
+[node name="Box of Prosperity" parent="Book/Items/Shared" index="47"]
+position = Vector2( 2020, 801.538 )
+physics_material_override = SubResource( 77 )
+
+[node name="Katana" parent="Book/Items/Shared" index="48"]
+position = Vector2( 1766.05, 272.857 )
+physics_material_override = SubResource( 78 )
+
+[node name="Shepherds Crook" parent="Book/Items/Shared" index="49"]
+position = Vector2( 1994.62, 277.143 )
+physics_material_override = SubResource( 79 )
+
+[node name="Stone Shoes" parent="Book/Items/Shared" index="50"]
+position = Vector2( 407.143, 1269.45 )
+physics_material_override = SubResource( 80 )
+
+[node name="Ice Armor" parent="Book/Items/Shared" index="51"]
+position = Vector2( 2344.72, 405.715 )
+physics_material_override = SubResource( 81 )
+
+[node name="Frozen Buckler" parent="Book/Items/Shared" index="52"]
+position = Vector2( 2344.72, 631.429 )
+physics_material_override = SubResource( 82 )
+
+[node name="Frostbite" parent="Book/Items/Shared" index="53"]
+position = Vector2( 2487.58, 478.572 )
+physics_material_override = SubResource( 83 )
+
+[node name="Snow Stick" parent="Book/Items/Shared" index="54"]
+position = Vector2( 2186.15, 497.143 )
+physics_material_override = SubResource( 84 )
+
+[node name="Poison Spear" parent="Book/Items/Shared" index="55"]
+position = Vector2( 555.385, 1253.85 )
+physics_material_override = SubResource( 85 )
+
+[node name="Shelly" parent="Book/Items/Shared" index="56"]
+position = Vector2( 740.329, 917.143 )
+physics_material_override = SubResource( 86 )
+
+[node name="Holdall" parent="Book/Items/Shared" index="57"]
+position = Vector2( 1891.76, 577.143 )
+physics_material_override = SubResource( 87 )
+
+[node name="Winged Boots" parent="Book/Items/Shared" index="58"]
+position = Vector2( 1016.04, 581.428 )
+physics_material_override = SubResource( 88 )
+
+[node name="Sandbag" parent="Book/Items/Shared" index="59"]
+position = Vector2( 1164.62, 921.429 )
+physics_material_override = SubResource( 137 )
+
+[node name="Paradise Birb" parent="Book/Items/Shared" index="60"]
+position = Vector2( 554.615, 945.714 )
+physics_material_override = SubResource( 138 )
+
+[node name="Pine Protector" parent="Book/Items/Shared" index="61" instance=ExtResource( 45 )]
+position = Vector2( 1121.54, 1183.08 )
+physics_material_override = SubResource( 294 )
+
+[node name="Onion Cutter" parent="Book/Items/Shared" index="62" instance=ExtResource( 46 )]
+position = Vector2( 1241.54, 1466.15 )
+physics_material_override = SubResource( 295 )
+
+[node name="Gold Armor" parent="Book/Items/Shared" index="63" instance=ExtResource( 47 )]
+position = Vector2( 1813.85, 823.077 )
+physics_material_override = SubResource( 296 )
+
+[node name="Pot" parent="Book/Items/Shared" index="64" instance=ExtResource( 75 )]
+position = Vector2( 266.154, 1078.46 )
+physics_material_override = SubResource( 331 )
+
+[node name="Critwood Staff" parent="Book/Items/Ranger" index="0"]
+position = Vector2( 1696.92, 1270.77 )
+physics_material_override = SubResource( 89 )
+
+[node name="Lucky Piggy" parent="Book/Items/Ranger" index="1"]
+position = Vector2( 2526.15, 1004.62 )
+physics_material_override = SubResource( 90 )
+
+[node name="Carrot Goobert" parent="Book/Items/Ranger" index="2"]
+position = Vector2( 1352.31, 787.446 )
+physics_material_override = SubResource( 91 )
+
+[node name="Rainbow Goobert Ranger" parent="Book/Items/Ranger" index="3"]
+position = Vector2( 1534.81, 784.946 )
+physics_material_override = SubResource( 92 )
+
+[node name="Thorn Bow" parent="Book/Items/Ranger" index="4"]
+position = Vector2( 1881.54, 1244.23 )
+physics_material_override = SubResource( 93 )
+
+[node name="Lucky Bow" parent="Book/Items/Ranger" index="5"]
+position = Vector2( 2249.73, 1248.11 )
+physics_material_override = SubResource( 94 )
+
+[node name="Poison Bow" parent="Book/Items/Ranger" index="6"]
+position = Vector2( 2069.45, 1348.67 )
+physics_material_override = SubResource( 95 )
+
+[node name="Thorn Shortbow" parent="Book/Items/Ranger" index="7"]
+position = Vector2( 1964.04, 1089.23 )
+physics_material_override = SubResource( 96 )
+
+[node name="Poison Shortbow" parent="Book/Items/Ranger" index="8"]
+position = Vector2( 2062.93, 1093.68 )
+physics_material_override = SubResource( 97 )
+
+[node name="Lucky Shortbow" parent="Book/Items/Ranger" index="9"]
+position = Vector2( 2160.7, 1092.57 )
+physics_material_override = SubResource( 98 )
+
+[node name="Squirrel Archer" parent="Book/Items/Ranger" index="10"]
+position = Vector2( 2572.31, 1350.77 )
+physics_material_override = SubResource( 99 )
+
+[node name="Rat Chef" parent="Book/Items/Ranger" index="11"]
+position = Vector2( 2756.92, 1336.92 )
+physics_material_override = SubResource( 100 )
+
+[node name="Holy Collar" parent="Book/Items/Ranger" index="12" instance=ExtResource( 21 )]
+position = Vector2( 2683.08, 821.538 )
+physics_material_override = SubResource( 18 )
+
+[node name="Magic Collar" parent="Book/Items/Ranger" index="13" instance=ExtResource( 19 )]
+position = Vector2( 2533.85, 820 )
+physics_material_override = SubResource( 19 )
+
+[node name="Vampiric Collar" parent="Book/Items/Ranger" index="14" instance=ExtResource( 28 )]
+position = Vector2( 2381.54, 824.616 )
+physics_material_override = SubResource( 20 )
+
+[node name="Hyper Hedgehog" parent="Book/Items/Ranger" index="15" instance=ExtResource( 20 )]
+position = Vector2( 2436.92, 1335.38 )
+physics_material_override = SubResource( 21 )
+
+[node name="Snowmaster" parent="Book/Items/Ranger" index="16" instance=ExtResource( 26 )]
+position = Vector2( 2378.46, 1026.15 )
+physics_material_override = SubResource( 22 )
+
+[node name="Forest Dragon" parent="Book/Items/Ranger" index="17" instance=ExtResource( 44 )]
+position = Vector2( 2715.38, 1064.62 )
+physics_material_override = SubResource( 297 )
+
+[node name="Reaper" parent="Book/Items" index="2"]
+visible = false
+
+[node name="Shelf2" parent="Book/Items/Reaper" index="0"]
+position = Vector2( 2199.18, 1522.95 )
+
+[node name="Strong Vampiric Potion" parent="Book/Items/Reaper" index="1"]
+position = Vector2( 2014.53, 1432.96 )
+physics_material_override = SubResource( 101 )
+
+[node name="Strong Mana Potion" parent="Book/Items/Reaper" index="2"]
+position = Vector2( 2105.64, 1430.73 )
+physics_material_override = SubResource( 102 )
+
+[node name="Strong Divine Potion" parent="Book/Items/Reaper" index="3"]
+position = Vector2( 2200.09, 1427.4 )
+physics_material_override = SubResource( 103 )
+
+[node name="Staff of Unhealing" parent="Book/Items/Reaper" index="4"]
+position = Vector2( 1713.85, 1273.85 )
+physics_material_override = SubResource( 104 )
+
+[node name="Poison Goobert" parent="Book/Items/Reaper" index="5"]
+position = Vector2( 1352.31, 787.446 )
+physics_material_override = SubResource( 105 )
+
+[node name="Rainbow Goobert" parent="Book/Items/Reaper" index="6"]
+position = Vector2( 1534.81, 784.946 )
+physics_material_override = SubResource( 106 )
+
+[node name="Ruby Chonk" parent="Book/Items/Reaper" index="7"]
+position = Vector2( 2689.46, 938.352 )
+physics_material_override = SubResource( 107 )
+
+[node name="Strong Pestilence Flask" parent="Book/Items/Reaper" index="8"]
+position = Vector2( 2293.57, 1430.59 )
+physics_material_override = SubResource( 108 )
+
+[node name="Strong Demonic Flask" parent="Book/Items/Reaper" index="9"]
+position = Vector2( 2389.82, 1426.15 )
+physics_material_override = SubResource( 109 )
+
+[node name="Ice Dragon" parent="Book/Items/Reaper" index="10"]
+position = Vector2( 2472.31, 936.923 )
+physics_material_override = SubResource( 110 )
+
+[node name="Doom Cap" parent="Book/Items/Reaper" index="11"]
+position = Vector2( 2387.69, 1207.69 )
+physics_material_override = SubResource( 111 )
+
+[node name="Crow" parent="Book/Items/Reaper" index="12" instance=ExtResource( 27 )]
+position = Vector2( 2210.77, 1004.62 )
+physics_material_override = SubResource( 23 )
+
+[node name="Poison Frog" parent="Book/Items/Reaper" index="13" instance=ExtResource( 23 )]
+position = Vector2( 2015.38, 1023.08 )
+physics_material_override = SubResource( 24 )
+
+[node name="Death Lotus" parent="Book/Items/Reaper" index="14" instance=ExtResource( 8 )]
+position = Vector2( 2640, 1203.08 )
+physics_material_override = SubResource( 4 )
+
+[node name="War Scythe" parent="Book/Items/Reaper" index="15" instance=ExtResource( 39 )]
+position = Vector2( 1824.62, 1270.77 )
+physics_material_override = SubResource( 298 )
+
+[node name="Frog Prince" parent="Book/Items/Reaper" index="16" instance=ExtResource( 40 )]
+position = Vector2( 2158.46, 1215.38 )
+physics_material_override = SubResource( 299 )
+
+[node name="Busted Blade" parent="Book/Items/Berserker" index="0"]
+position = Vector2( 2321.54, 1386.15 )
+physics_material_override = SubResource( 112 )
+
+[node name="Chain Whip" parent="Book/Items/Berserker" index="1"]
+position = Vector2( 2466.15, 973.846 )
+physics_material_override = SubResource( 113 )
+
+[node name="Cheese Goobert" parent="Book/Items/Berserker" index="2"]
+position = Vector2( 1352.31, 787.446 )
+physics_material_override = SubResource( 114 )
+
+[node name="Double Axe" parent="Book/Items/Berserker" index="3"]
+position = Vector2( 2218.46, 1087.69 )
+physics_material_override = SubResource( 115 )
+
+[node name="Dragonscale Armor" parent="Book/Items/Berserker" index="4"]
+position = Vector2( 1886.15, 1243.08 )
+physics_material_override = SubResource( 116 )
+
+[node name="Dragonskin Boots" parent="Book/Items/Berserker" index="5"]
+position = Vector2( 1890.77, 1464.62 )
+physics_material_override = SubResource( 117 )
+
+[node name="Dragon Claws" parent="Book/Items/Berserker" index="6"]
+position = Vector2( 1875.38, 1064.62 )
+physics_material_override = SubResource( 118 )
+
+[node name="Rainbow Goobert Berserker" parent="Book/Items/Berserker" index="7"]
+position = Vector2( 1534.81, 784.946 )
+physics_material_override = SubResource( 119 )
+
+[node name="Armored Courage Puppy" parent="Book/Items/Berserker" index="8"]
+position = Vector2( 2635.38, 1366.25 )
+physics_material_override = SubResource( 120 )
+
+[node name="Armored Wisdom Puppy" parent="Book/Items/Berserker" index="9"]
+position = Vector2( 2811.86, 1305.17 )
+physics_material_override = SubResource( 121 )
+
+[node name="Armored Power Puppy" parent="Book/Items/Berserker" index="10"]
+position = Vector2( 2636.8, 1240 )
+physics_material_override = SubResource( 122 )
+
+[node name="Spiked Staff" parent="Book/Items/Berserker" index="11"]
+position = Vector2( 1718.46, 1256.92 )
+physics_material_override = SubResource( 123 )
+
+[node name="Spiked Wall" parent="Book/Items/Berserker" index="12" instance=ExtResource( 24 )]
+position = Vector2( 2727.69, 978.462 )
+physics_material_override = SubResource( 25 )
+
+[node name="Whetstone2" parent="Book/Items/Berserker" index="13" instance=ExtResource( 38 )]
+position = Vector2( 2044.62, 1064.62 )
+physics_material_override = SubResource( 300 )
+
+[node name="Whetstone3" parent="Book/Items/Berserker" index="14" instance=ExtResource( 42 )]
+position = Vector2( 2044.62, 1170.77 )
+physics_material_override = SubResource( 301 )
+
+[node name="Halberd" parent="Book/Items/Berserker" index="15" instance=ExtResource( 43 )]
+position = Vector2( 2044.62, 1393.85 )
+physics_material_override = SubResource( 302 )
+
+[node name="Steel Dragon" parent="Book/Items/Berserker" index="16" instance=ExtResource( 41 )]
+position = Vector2( 2663.08, 780 )
+physics_material_override = SubResource( 303 )
+
+[node name="Flame Whip" parent="Book/Items/Pyromancer" index="0"]
+position = Vector2( 2444.61, 1324.62 )
+physics_material_override = SubResource( 124 )
+
+[node name="Obsidian Dragon" parent="Book/Items/Pyromancer" index="1"]
+position = Vector2( 2687.69, 1306.15 )
+physics_material_override = SubResource( 125 )
+
+[node name="Staff of Fire" parent="Book/Items/Pyromancer" index="2"]
+position = Vector2( 1701.54, 1273.85 )
+physics_material_override = SubResource( 126 )
+
+[node name="Chili Goobert" parent="Book/Items/Pyromancer" index="3"]
+position = Vector2( 1352.31, 787.446 )
+physics_material_override = SubResource( 127 )
+
+[node name="Rainbow Goobert Pyromancer" parent="Book/Items/Pyromancer" index="4"]
+position = Vector2( 1534.81, 784.946 )
+physics_material_override = SubResource( 128 )
+
+[node name="Burning Blade" parent="Book/Items/Pyromancer" index="5"]
+position = Vector2( 2185.38, 990.33 )
+physics_material_override = SubResource( 129 )
+
+[node name="Sun Armor" parent="Book/Items/Pyromancer" index="6"]
+position = Vector2( 1861.54, 1276.92 )
+physics_material_override = SubResource( 130 )
+
+[node name="Sun Shield" parent="Book/Items/Pyromancer" index="7"]
+position = Vector2( 2046.15, 1276.92 )
+physics_material_override = SubResource( 131 )
+
+[node name="Burning Sword" parent="Book/Items/Pyromancer" index="8"]
+position = Vector2( 2075.38, 1020.33 )
+physics_material_override = SubResource( 132 )
+
+[node name="Molten Spear" parent="Book/Items/Pyromancer" index="9"]
+position = Vector2( 2313.95, 1003.19 )
+physics_material_override = SubResource( 133 )
+
+[node name="Molten Dagger" parent="Book/Items/Pyromancer" index="10"]
+position = Vector2( 1978.46, 1018.46 )
+physics_material_override = SubResource( 134 )
+
+[node name="Fire Shelly" parent="Book/Items/Pyromancer" index="11" instance=ExtResource( 25 )]
+position = Vector2( 2240, 1430.77 )
+physics_material_override = SubResource( 26 )
+
+[node name="Molten Greatsword" parent="Book/Items/Pyromancer" index="12" instance=ExtResource( 22 )]
+position = Vector2( 2558.46, 1087.69 )
+physics_material_override = SubResource( 27 )
+
+[node name="Molten Spear2" parent="Book/Items/Pyromancer" index="13" instance=ExtResource( 49 )]
+position = Vector2( 2423.08, 1004.62 )
+physics_material_override = SubResource( 304 )
+
+[node name="Phoenix2" parent="Book/Items/Pyromancer" index="14" instance=ExtResource( 48 )]
+position = Vector2( 2681.54, 749.231 )
+physics_material_override = SubResource( 305 )
+
+[node name="Mage" type="Node2D" parent="Book/Items" index="5"]
+visible = false
+
+[node name="Cupcake Goobert" parent="Book/Items/Mage" index="0" instance=ExtResource( 7 )]
+position = Vector2( 1352.31, 787.446 )
+physics_material_override = SubResource( 1 )
+
+[node name="Rainbow Goobert Mage" parent="Book/Items/Mage" index="1" instance=ExtResource( 3 )]
+position = Vector2( 1534.81, 784.946 )
+physics_material_override = SubResource( 2 )
+
+[node name="Cupcake Staff" parent="Book/Items/Mage" index="2" instance=ExtResource( 9 )]
+position = Vector2( 1701.54, 1261.54 )
+physics_material_override = SubResource( 3 )
+
+[node name="Death Lotus" parent="Book/Items/Mage" index="3" instance=ExtResource( 8 )]
+position = Vector2( 2531.54, 1318.46 )
+physics_material_override = SubResource( 4 )
+
+[node name="Magic Mirror" parent="Book/Items/Mage" index="4" instance=ExtResource( 4 )]
+position = Vector2( 2265.82, 1371.32 )
+physics_material_override = SubResource( 5 )
+
+[node name="Null Blade" parent="Book/Items/Mage" index="5" instance=ExtResource( 5 )]
+position = Vector2( 2501.54, 1071.32 )
+physics_material_override = SubResource( 6 )
+
+[node name="Ice Flower" parent="Book/Items/Mage" index="6" instance=ExtResource( 6 )]
+position = Vector2( 2141.54, 1202.75 )
+physics_material_override = SubResource( 7 )
+
+[node name="Light Flower" parent="Book/Items/Mage" index="7" instance=ExtResource( 2 )]
+position = Vector2( 2267.25, 1058.46 )
+physics_material_override = SubResource( 8 )
+
+[node name="Devouring Sphere" parent="Book/Items/Mage" index="8" instance=ExtResource( 17 )]
+position = Vector2( 2350.11, 1208.46 )
+physics_material_override = SubResource( 9 )
+
+[node name="Prismatic Wand" parent="Book/Items/Mage" index="9" instance=ExtResource( 34 )]
+position = Vector2( 1855.38, 1117.25 )
+physics_material_override = SubResource( 140 )
+
+[node name="Wand of Dissonance" parent="Book/Items/Mage" index="10" instance=ExtResource( 72 )]
+position = Vector2( 1984.62, 1118.46 )
+physics_material_override = SubResource( 306 )
+
+[node name="Cupcake Dragon" parent="Book/Items/Mage" index="11" instance=ExtResource( 70 )]
+position = Vector2( 1913.85, 1375.38 )
+physics_material_override = SubResource( 307 )
+
+[node name="Adventurer" type="Node2D" parent="Book/Items" index="6"]
+visible = false
+
+[node name="Broccoli Goobert" parent="Book/Items/Adventurer" index="0" instance=ExtResource( 12 )]
+position = Vector2( 1352.31, 787.446 )
+physics_material_override = SubResource( 10 )
+
+[node name="Rainbow Goobert Adventurer" parent="Book/Items/Adventurer" index="1" instance=ExtResource( 10 )]
+position = Vector2( 1534.81, 784.946 )
+physics_material_override = SubResource( 11 )
+
+[node name="Boomerang" parent="Book/Items/Adventurer" index="2" instance=ExtResource( 15 )]
+position = Vector2( 2201.54, 1192.31 )
+physics_material_override = SubResource( 12 )
+
+[node name="Scissorswords" parent="Book/Items/Adventurer" index="3" instance=ExtResource( 14 )]
+position = Vector2( 2720, 1321.54 )
+physics_material_override = SubResource( 13 )
+
+[node name="Heart Shield" parent="Book/Items/Adventurer" index="4" instance=ExtResource( 11 )]
+position = Vector2( 2452.31, 1400 )
+physics_material_override = SubResource( 14 )
+
+[node name="Piggy of Riches" parent="Book/Items/Adventurer" index="5" instance=ExtResource( 16 )]
+position = Vector2( 2433.85, 830.769 )
+physics_material_override = SubResource( 15 )
+
+[node name="Dragon Knight" parent="Book/Items/Adventurer" index="6" instance=ExtResource( 13 )]
+position = Vector2( 2218.46, 1416.92 )
+physics_material_override = SubResource( 16 )
+
+[node name="Big Bloodthorne" parent="Book/Items/Adventurer" index="7" instance=ExtResource( 18 )]
+position = Vector2( 2001.54, 1430.77 )
+physics_material_override = SubResource( 17 )
+
+[node name="Daggerang" parent="Book/Items/Adventurer" index="8" instance=ExtResource( 29 )]
+position = Vector2( 2384.62, 1190.77 )
+physics_material_override = SubResource( 28 )
+
+[node name="Jynx Staff" parent="Book/Items/Adventurer" index="9" instance=ExtResource( 30 )]
+position = Vector2( 1701.54, 1273.85 )
+physics_material_override = SubResource( 29 )
+
+[node name="Employee Uniform" parent="Book/Items/Adventurer" index="10" instance=ExtResource( 32 )]
+position = Vector2( 2246.15, 881.539 )
+physics_material_override = SubResource( 135 )
+
+[node name="Hero Shield" parent="Book/Items/Adventurer" index="11" instance=ExtResource( 31 )]
+position = Vector2( 2004.62, 1069.23 )
+physics_material_override = SubResource( 136 )
+
+[node name="Rope" parent="Book/Items/Adventurer" index="12" instance=ExtResource( 33 )]
+position = Vector2( 2560, 1163.08 )
+physics_material_override = SubResource( 139 )
+
+[node name="Long Spear" parent="Book/Items/Adventurer" index="13" instance=ExtResource( 37 )]
+position = Vector2( 1847.69, 1274.29 )
+physics_material_override = SubResource( 293 )
+
+[node name="Broccotree" parent="Book/Items/Adventurer" index="14" instance=ExtResource( 74 )]
+position = Vector2( 2653.85, 955.385 )
+physics_material_override = SubResource( 308 )
+
+[node name="Superior Ring" parent="Book/Items/Adventurer" index="15" instance=ExtResource( 73 )]
+position = Vector2( 2435.38, 941.538 )
+physics_material_override = SubResource( 309 )
+
+[node name="Engineer" type="Node2D" parent="Book/Items" index="7"]
+
+[node name="Cap of Brilliance" parent="Book/Items/Engineer" index="0" instance=ExtResource( 67 )]
+position = Vector2( 2630, 821.538 )
+physics_material_override = SubResource( 310 )
+
+[node name="Bazooka" parent="Book/Items/Engineer" index="1" instance=ExtResource( 56 )]
+position = Vector2( 2469.23, 1443.08 )
+physics_material_override = SubResource( 311 )
+
+[node name="Arcane Boots" parent="Book/Items/Engineer" index="2" instance=ExtResource( 65 )]
+position = Vector2( 2808.46, 1182.75 )
+physics_material_override = SubResource( 312 )
+
+[node name="Automanaton" parent="Book/Items/Engineer" index="3" instance=ExtResource( 63 )]
+position = Vector2( 2668.57, 1048.68 )
+physics_material_override = SubResource( 313 )
+
+[node name="Chainsaw" parent="Book/Items/Engineer" index="4" instance=ExtResource( 68 )]
+position = Vector2( 2272.31, 1481.54 )
+physics_material_override = SubResource( 314 )
+
+[node name="Poison Grenade" parent="Book/Items/Engineer" index="5" instance=ExtResource( 62 )]
+position = Vector2( 2139.45, 1215.93 )
+physics_material_override = SubResource( 315 )
+
+[node name="Slice of Toast" parent="Book/Items/Engineer" index="6" instance=ExtResource( 50 )]
+position = Vector2( 1778.46, 1132.31 )
+physics_material_override = SubResource( 316 )
+
+[node name="Robodog" parent="Book/Items/Engineer" index="7" instance=ExtResource( 66 )]
+position = Vector2( 1864.62, 1493.85 )
+physics_material_override = SubResource( 317 )
+
+[node name="Rainbow Goobert Engineer" parent="Book/Items/Engineer" index="8" instance=ExtResource( 69 )]
+position = Vector2( 1534.81, 784.946 )
+physics_material_override = SubResource( 318 )
+
+[node name="Toast Goobert" parent="Book/Items/Engineer" index="9" instance=ExtResource( 59 )]
+position = Vector2( 1352.31, 787.446 )
+physics_material_override = SubResource( 319 )
+
+[node name="Magitecc Armor" parent="Book/Items/Engineer" index="10" instance=ExtResource( 52 )]
+position = Vector2( 2501.43, 1202.97 )
+physics_material_override = SubResource( 320 )
+
+[node name="Electric Torch" parent="Book/Items/Engineer" index="11" instance=ExtResource( 51 )]
+position = Vector2( 2727.69, 656.923 )
+physics_material_override = SubResource( 321 )
+
+[node name="Thors Hammer" parent="Book/Items/Engineer" index="12" instance=ExtResource( 64 )]
+position = Vector2( 2440, 957.253 )
+physics_material_override = SubResource( 322 )
+
+[node name="Mecha Bat" parent="Book/Items/Engineer" index="13" instance=ExtResource( 55 )]
+position = Vector2( 1869.45, 1023.08 )
+physics_material_override = SubResource( 323 )
+
+[node name="Mananana" parent="Book/Items/Engineer" index="14" instance=ExtResource( 53 )]
+position = Vector2( 2730, 1368.68 )
+physics_material_override = SubResource( 324 )
+
+[node name="Lightning Staff" parent="Book/Items/Engineer" index="15" instance=ExtResource( 58 )]
+position = Vector2( 1672.31, 1328.79 )
+physics_material_override = SubResource( 325 )
+
+[node name="Con-Trap-Tron" parent="Book/Items/Engineer" index="16" instance=ExtResource( 60 )]
+position = Vector2( 2133.85, 1007.69 )
+physics_material_override = SubResource( 326 )
+
+[node name="Generator" parent="Book/Items/Engineer" index="17" instance=ExtResource( 54 )]
+position = Vector2( 2040, 1101.54 )
+physics_material_override = SubResource( 327 )
+
+[node name="Spring Loader" parent="Book/Items/Engineer" index="18" instance=ExtResource( 57 )]
+position = Vector2( 2280.74, 1159.36 )
+physics_material_override = SubResource( 328 )
+
+[node name="Thunder Drake" parent="Book/Items/Engineer" index="19" instance=ExtResource( 61 )]
+position = Vector2( 1900, 1264.62 )
+physics_material_override = SubResource( 329 )
+
+[node name="Eat-o-matic" parent="Book/Items/Engineer" index="20" instance=ExtResource( 71 )]
+position = Vector2( 2087.69, 1416.92 )
+physics_material_override = SubResource( 330 )
+
+[node name="Wrench" parent="Book/Items/Engineer" index="21" instance=ExtResource( 76 )]
+position = Vector2( 1666.15, 1035.38 )
+physics_material_override = SubResource( 332 )
+
+[node name="Classes" parent="Book/ClassDropdown" index="0"]
+margin_right = 310.0
+custom_fonts/font = SubResource( 292 )

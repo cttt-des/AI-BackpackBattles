@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Items/Particles/MusicalNotesCanvasItem.material" type="Material" id=1]
+[ext_resource path="res://Assets/Particles/NotesParticles.png" type="Texture" id=2]
+[ext_resource path="res://Items/Particles/JynxActivationParticles.material" type="Material" id=3]
+[ext_resource path="res://Utility/PooledScene.gd" type="Script" id=4]
+
+[node name="ActivationParticles" type="Particles2D"]
+modulate = Color( 0.105882, 0.109804, 0.235294, 1 )
+material = ExtResource( 1 )
+position = Vector2( 55, -43 )
+z_index = 1
+emitting = false
+amount = 13
+one_shot = true
+explosiveness = 0.64
+local_coords = false
+process_material = ExtResource( 3 )
+texture = ExtResource( 2 )
+script = ExtResource( 4 )

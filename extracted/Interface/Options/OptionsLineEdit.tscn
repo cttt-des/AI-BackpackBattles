@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Interface/Options/OptionsFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Interface/Options/OptionsLineEdit.gd" type="Script" id=2]
+[ext_resource path="res://Utility/LocalizedControl.gd" type="Script" id=3]
+[ext_resource path="res://Interface/EmptyStylebox.tres" type="StyleBox" id=4]
+
+[sub_resource type="StyleBoxFlat" id=1]
+content_margin_left = 8.0
+content_margin_right = 10.0
+content_margin_top = 0.0
+content_margin_bottom = 0.0
+bg_color = Color( 0.607843, 0.462745, 0.317647, 0.933333 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="LineEdit" type="LineEdit"]
+margin_right = 82.0
+margin_bottom = 45.0
+mouse_default_cursor_shape = 2
+custom_colors/selection_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_colors/font_color_selected = Color( 1, 0.890196, 0.0784314, 1 )
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_constants/minimum_spaces = 1
+custom_fonts/font = ExtResource( 1 )
+custom_styles/read_only = ExtResource( 4 )
+custom_styles/focus = ExtResource( 4 )
+custom_styles/normal = SubResource( 1 )
+text = "60"
+align = 2
+max_length = 3
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+deselect_on_focus_loss_enabled = false
+placeholder_text = "0"
+caret_blink = true
+caret_blink_speed = 0.5
+script = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 102.0
+margin_top = 2.0
+margin_right = 363.0
+margin_bottom = 43.0
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "FPS Limit"
+script = ExtResource( 3 )
+
+[node name="ApplyTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="ApplyTimer" to="." method="applySetting"]

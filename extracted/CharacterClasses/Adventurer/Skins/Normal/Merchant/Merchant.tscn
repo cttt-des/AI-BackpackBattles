@@ -1,0 +1,351 @@
+[gd_scene load_steps=39 format=2]
+
+[ext_resource path="res://CharacterClasses/Adventurer/AdventurerSprite.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Shader/HealthPotion.material" type="Material" id=2]
+[ext_resource path="res://CharacterClasses/Adventurer/Skins/Normal/Merchant/Flask3Mask.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Noise/LavaNoise.png" type="Texture" id=4]
+[ext_resource path="res://CharacterClasses/Adventurer/Skins/Normal/Merchant/LeftUpperLeg.png" type="Texture" id=5]
+[ext_resource path="res://CharacterClasses/Adventurer/Skins/Normal/Merchant/ScaleBowl.png" type="Texture" id=6]
+[ext_resource path="res://CharacterClasses/Adventurer/Skins/Normal/Merchant/LeftLowerLeg.png" type="Texture" id=7]
+[ext_resource path="res://CharacterClasses/Adventurer/Skins/Normal/Merchant/ScaleTop.png" type="Texture" id=8]
+[ext_resource path="res://CharacterClasses/Adventurer/Skins/Normal/Merchant/Shoe.png" type="Texture" id=9]
+[ext_resource path="res://CharacterClasses/Adventurer/Skins/Normal/Merchant/ScaleBase.png" type="Texture" id=10]
+[ext_resource path="res://Shader/Booze.gdshader" type="Shader" id=11]
+[ext_resource path="res://Assets/BottleOfBooze.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Shader/PestilenceFlask.Material.tres" type="Material" id=13]
+[ext_resource path="res://CharacterClasses/Adventurer/Skins/Normal/Merchant/RightUpperArm.png" type="Texture" id=14]
+[ext_resource path="res://CharacterClasses/Adventurer/Skins/Normal/Merchant/RightLowerLeg.png" type="Texture" id=15]
+[ext_resource path="res://CharacterClasses/Adventurer/Skins/Normal/Merchant/RightLowerArm.png" type="Texture" id=16]
+[ext_resource path="res://CharacterClasses/Adventurer/Skins/Normal/Merchant/LeftUpperArm.png" type="Texture" id=17]
+[ext_resource path="res://Shader/StoneSkinPotion.material" type="Material" id=18]
+[ext_resource path="res://CharacterClasses/Adventurer/Skins/Normal/Merchant/RightHandFront.png" type="Texture" id=19]
+[ext_resource path="res://CharacterClasses/Adventurer/Skins/Normal/Merchant/LeftLowerArm.png" type="Texture" id=20]
+[ext_resource path="res://CharacterClasses/Adventurer/Skins/Normal/Merchant/Crook.png" type="Texture" id=21]
+[ext_resource path="res://CharacterClasses/Adventurer/Skins/Normal/Merchant/HairBack.png" type="Texture" id=22]
+[ext_resource path="res://CharacterClasses/Adventurer/Skins/Normal/Merchant/Body.png" type="Texture" id=23]
+[ext_resource path="res://CharacterClasses/Adventurer/Skins/Normal/Merchant/RightUpperLeg.png" type="Texture" id=24]
+[ext_resource path="res://CharacterClasses/Adventurer/Skins/Normal/Merchant/Head.png" type="Texture" id=25]
+[ext_resource path="res://CharacterClasses/Adventurer/Skins/Normal/Merchant/Bag.png" type="Texture" id=26]
+[ext_resource path="res://CharacterClasses/Adventurer/Skins/Normal/Merchant/Flask1Mask.png" type="Texture" id=27]
+[ext_resource path="res://CharacterClasses/Adventurer/Skins/Normal/Merchant/Flask2Mask.png" type="Texture" id=28]
+[ext_resource path="res://CharacterClasses/Adventurer/Skins/Normal/Merchant/Flask4Mask.png" type="Texture" id=29]
+
+[sub_resource type="Animation" id=86]
+resource_name = "Idle"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Scale:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.2, 0.7, 1.8 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ 6.3, 0.0, -20.7 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ScaleLeft:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.3, 0.5, 1, 1.8 ),
+"transitions": PoolRealArray( -2, -2, -2, -2 ),
+"update": 0,
+"values": [ 16.1, -4.6, 9.8, -25.8 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ScaleLeft:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.2, 0.7, 1.8 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( -85.1188, 112.441 ), Vector2( -77.288, 120.455 ), Vector2( -48.3276, 144.345 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ScaleRight:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.2, 0.7, 1.8 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( 65.021, 130.037 ), Vector2( 78.4763, 122.011 ), Vector2( 98.2436, 90.0469 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("ScaleRight:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.3, 0.5, 1, 1.8 ),
+"transitions": PoolRealArray( -2, -2, -2, -2 ),
+"update": 0,
+"values": [ 8.8, -7.0, 3.1, -33.1 ]
+}
+
+[sub_resource type="Animation" id=87]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("ScaleLeft:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -49.4306, 147.584 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ScaleRight:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 91.8151, 92.3294 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ScaleLeft:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -22.1 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ScaleRight:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 5.8 ]
+}
+
+[sub_resource type="Curve" id=88]
+max_value = 0.5
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.506173, 0.286364 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=89]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=90]
+offsets = PoolRealArray( 0.320313, 0.363281, 0.448625, 0.632979, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 0.998047, 0.980427, 0.65107, 1, 0.681641, 0.535714, 0.0692291, 0.807843, 0.861328, 0.804144, 0.0908432, 0.878431, 0.744141, 0.556993, 0.029068, 0.788235 )
+
+[sub_resource type="GradientTexture" id=85]
+resource_local_to_scene = true
+gradient = SubResource( 90 )
+width = 200
+
+[sub_resource type="ShaderMaterial" id=91]
+resource_local_to_scene = true
+shader = ExtResource( 11 )
+shader_param/direction = Vector2( -0.2538, 2.3444 )
+shader_param/angle = 1.5708
+shader_param/noiseScale = Vector2( 8, 6 )
+shader_param/foaminess = 0.157
+shader_param/foamOffset = Vector2( 0.0137917, 28.4471 )
+shader_param/levelOffset = 0.117
+shader_param/gradient = SubResource( 85 )
+shader_param/bubbleNoise = ExtResource( 4 )
+
+[sub_resource type="Curve" id=92]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=93]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[node name="Sprite" instance=ExtResource( 1 )]
+script = null
+__meta__ = {
+"_edit_horizontal_guides_": [ 237.0, 233.0, 235.0, 231.0 ]
+}
+
+[node name="LeftUpperLegSprite" parent="Body/LeftUpperLeg" index="0"]
+position = Vector2( -2, 103.218 )
+scale = Vector2( 1, 1 )
+texture = ExtResource( 5 )
+
+[node name="LeftLowerLeg" parent="Body/LeftUpperLeg/LeftLowerLeg" index="0"]
+texture = ExtResource( 7 )
+
+[node name="LeftShoe" parent="Body/LeftUpperLeg/LeftLowerLeg" index="1"]
+position = Vector2( 32.8526, 204.968 )
+rotation = -0.198968
+texture = ExtResource( 9 )
+
+[node name="RightUpperLegSprite" parent="Body/RightUpperLeg" index="0"]
+position = Vector2( -11.7897, 78.5558 )
+texture = ExtResource( 24 )
+
+[node name="RightLowerLegSprite" parent="Body/RightUpperLeg/RightLowerLeg" index="0"]
+texture = ExtResource( 15 )
+
+[node name="RightShoe" parent="Body/RightUpperLeg/RightLowerLeg" index="1"]
+position = Vector2( -46.6067, 215.919 )
+texture = ExtResource( 9 )
+
+[node name="LeftUpperArmSprite" parent="Body/LeftUpperArm" index="0"]
+position = Vector2( 9.29961, 55.7787 )
+texture = ExtResource( 17 )
+
+[node name="Sword" parent="Body/LeftUpperArm/LeftLowerArm/Weapon" index="0"]
+position = Vector2( -0.0243034, 3.41473 )
+texture = ExtResource( 8 )
+
+[node name="Scale" type="Sprite" parent="Body/LeftUpperArm/LeftLowerArm/Weapon" index="1" groups=["Weapon"]]
+position = Vector2( 0.0500336, 47.9775 )
+rotation = 0.0510509
+z_index = 1
+texture = ExtResource( 10 )
+offset = Vector2( 0.19722, 122.156 )
+
+[node name="ScaleLeft" type="Sprite" parent="Body/LeftUpperArm/LeftLowerArm/Weapon" index="2" groups=["Weapon"]]
+position = Vector2( -49.4306, 147.584 )
+rotation = -0.385718
+z_index = 1
+texture = ExtResource( 6 )
+offset = Vector2( -0.013855, 68.705 )
+
+[node name="ScaleRight" type="Sprite" parent="Body/LeftUpperArm/LeftLowerArm/Weapon" index="3" groups=["Weapon"]]
+position = Vector2( 91.8151, 92.3294 )
+rotation = 0.101229
+z_index = 1
+texture = ExtResource( 6 )
+offset = Vector2( -0.013855, 68.705 )
+
+[node name="ScaleIdle" type="AnimationPlayer" parent="Body/LeftUpperArm/LeftLowerArm/Weapon" index="4" groups=["Weapon"]]
+autoplay = "Idle"
+playback_speed = 0.22
+anims/Idle = SubResource( 86 )
+anims/RESET = SubResource( 87 )
+
+[node name="LeftLowerArmSprite" parent="Body/LeftUpperArm/LeftLowerArm" index="1"]
+position = Vector2( 72.3477, -46.3359 )
+texture = ExtResource( 20 )
+
+[node name="RightUpperArmSprite" parent="Body/RightUpperArm" index="0"]
+position = Vector2( -18.462, 45.462 )
+z_index = 1
+texture = ExtResource( 14 )
+
+[node name="RightLowerArmSprite" parent="Body/RightUpperArm/RightLowerArm" index="0"]
+position = Vector2( -62.9294, 11.2838 )
+texture = ExtResource( 16 )
+
+[node name="Weapon2" parent="Body/RightUpperArm/RightLowerArm" index="1"]
+position = Vector2( -187.16, 207.591 )
+scale = Vector2( 0.943347, 0.88776 )
+z_index = 0
+texture = ExtResource( 21 )
+
+[node name="RightHandFront" parent="Body/RightUpperArm/RightLowerArm" index="2"]
+texture = ExtResource( 19 )
+
+[node name="BodySprite" parent="Body" index="4"]
+position = Vector2( -4.16667, 14.5833 )
+texture = ExtResource( 23 )
+
+[node name="HeadSprite" parent="Body/Head" index="0"]
+position = Vector2( -13.5471, -19.4002 )
+z_index = 1
+texture = ExtResource( 25 )
+
+[node name="HairBack" parent="Body/Head" index="1"]
+position = Vector2( 27.186, -3.86452 )
+texture = ExtResource( 22 )
+
+[node name="Straps" parent="Body" index="6"]
+position = Vector2( -16.6667, 95.8333 )
+texture = ExtResource( 26 )
+
+[node name="Potion1" parent="Body/Straps" index="0" groups=["Special"] instance=ExtResource( 12 )]
+modulate = Color( 2, 2, 2, 1 )
+show_behind_parent = true
+material = ExtResource( 13 )
+position = Vector2( -107.77, -28.4467 )
+rotation = 0.0
+scale = Vector2( 0.900901, 0.91 )
+texture = ExtResource( 27 )
+offset = Vector2( 4, -17 )
+friction = 0.99
+backForce = 2.5
+baseFoaminess = 0.0624
+rotationFoam = 0.068
+baseScroll = 0.035
+levelModification = 0.287
+levelCurve = SubResource( 88 )
+
+[node name="Potion2" parent="Body/Straps" index="1" groups=["Special"] instance=ExtResource( 12 )]
+modulate = Color( 2, 2, 2, 1 )
+show_behind_parent = true
+material = ExtResource( 2 )
+position = Vector2( -47.992, -32.3333 )
+rotation = 0.0
+scale = Vector2( 0.941089, 0.962963 )
+texture = ExtResource( 28 )
+friction = 0.99
+baseFoaminess = 0.185
+rotationFoam = 0.118
+baseScroll = 0.02
+levelCurve = SubResource( 89 )
+
+[node name="Potion3" parent="Body/Straps" index="2" groups=["Special"] instance=ExtResource( 12 )]
+modulate = Color( 2, 2, 2, 1 )
+show_behind_parent = true
+material = SubResource( 91 )
+position = Vector2( 42.6667, -21.4167 )
+rotation = 0.0
+texture = ExtResource( 3 )
+friction = 0.99
+backForce = 3.4
+baseFoaminess = 0.157
+maxFoaminess = 1.1
+rotationFoam = 0.076
+baseScroll = 0.015
+levelModification = 0.117
+levelCurve = SubResource( 92 )
+
+[node name="Potion4" parent="Body/Straps" index="3" groups=["Special"] instance=ExtResource( 12 )]
+modulate = Color( 2, 2, 2, 1 )
+show_behind_parent = true
+material = ExtResource( 18 )
+position = Vector2( 102.083, -29.1667 )
+rotation = 0.0
+texture = ExtResource( 29 )
+friction = 0.99
+backForce = 2.7
+baseFoaminess = 0.081
+rotationFoam = 0.038
+baseScroll = 0.043
+levelModification = 0.079
+levelCurve = SubResource( 93 )
+
+[node name="Bag" parent="Body/Straps" index="4"]
+position = Vector2( 31.1688, -70.3456 )
+texture = null

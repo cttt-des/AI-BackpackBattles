@@ -1,0 +1,114 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Items/Item.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Shader/SmoothFadeGradient.tres" type="Texture" id=2]
+[ext_resource path="res://Items/Exclusive/Sprites/SkullBadge.png" type="Texture" id=3]
+[ext_resource path="res://Shader/AdditiveCanvasItemMaterial.tres" type="Material" id=4]
+[ext_resource path="res://Assets/Light/CircleLight.png" type="Texture" id=5]
+[ext_resource path="res://Items/Exclusive/SkullBadge.gd" type="Script" id=6]
+[ext_resource path="res://Utility/AutoHideParticles.gd" type="Script" id=7]
+[ext_resource path="res://Assets/Particles/GlowingDot_small.png" type="Texture" id=8]
+
+[sub_resource type="PhysicsMaterial" id=1]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="Gradient" id=6]
+offsets = PoolRealArray( 0.187135, 0.415205, 1 )
+colors = PoolColorArray( 0.925781, 0.879932, 0.50659, 1, 0.800258, 0.490398, 0.839844, 1, 0.589204, 0.254316, 0.957031, 1 )
+
+[sub_resource type="GradientTexture" id=7]
+gradient = SubResource( 6 )
+width = 50
+
+[sub_resource type="Curve" id=8]
+_data = [ Vector2( 0, 0.355682 ), 0.0, 0.0, 0, 0, Vector2( 0.546392, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.419318 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=9]
+width = 50
+curve = SubResource( 8 )
+
+[sub_resource type="ParticlesMaterial" id=10]
+lifetime_randomness = 0.27
+emission_shape = 1
+emission_sphere_radius = 37.76
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 213.13
+initial_velocity_random = 0.52
+angular_velocity = 267.5
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 720.0
+angle_random = 1.0
+scale = 1.68
+scale_random = 0.68
+scale_curve = SubResource( 9 )
+color_ramp = ExtResource( 2 )
+color_initial_ramp = SubResource( 7 )
+
+[sub_resource type="Animation" id=5]
+resource_name = "Pulse"
+length = 5.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Glow:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.8 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.345098 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="Skull Badge" instance=ExtResource( 1 )]
+physics_material_override = SubResource( 1 )
+script = ExtResource( 6 )
+
+[node name="CollisionMap" parent="." index="0"]
+position = Vector2( 40, 40 )
+tile_data = PoolIntArray( -1, 3, 0 )
+
+[node name="Icon" parent="." index="1"]
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+
+[node name="SpecificDragParticles" type="Particles2D" parent="Icon" index="0"]
+modulate = Color( 2, 2, 2, 1 )
+emitting = false
+amount = 7
+lifetime = 0.56
+local_coords = false
+process_material = SubResource( 10 )
+texture = ExtResource( 8 )
+script = ExtResource( 7 )
+
+[node name="Glow" type="Sprite" parent="Icon" index="1"]
+modulate = Color( 1, 1, 1, 0.957743 )
+self_modulate = Color( 0.694118, 0.305882, 0.972549, 0.835294 )
+material = ExtResource( 4 )
+scale = Vector2( 0.46, 0.5275 )
+texture = ExtResource( 5 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Icon" index="2"]
+autoplay = "Pulse"
+anims/Pulse = SubResource( 5 )
+
+[node name="Sockets" parent="Icon" index="3"]
+scale = Vector2( 2, 2 )
+
+[node name="CollisionPolygon2D" parent="ClickArea" index="0"]
+polygon = PoolVector2Array( -40, -40, 40, -40, 40, 40, -40, 40 )
+
+[node name="BottomCenter" parent="." index="3"]
+position = Vector2( 0, 35 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="7"]
+visible = false
+polygon = PoolVector2Array( -12, -35, 10, -35, 27, -30, 15, 35, -13, 35, -29, 21, -24, -9 )

@@ -1,0 +1,213 @@
+[gd_resource type="RichTextEffect" load_steps=30 format=2]
+
+[ext_resource path="res://Interface/Tooltips/ItemNameEffect.gd" type="Script" id=1]
+
+[sub_resource type="Curve" id=21]
+max_value = 0.7
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.496988, 0.7 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=22]
+offsets = PoolRealArray( 0, 0.334448, 0.494983, 1 )
+colors = PoolColorArray( 1, 0.92549, 0.831373, 1, 0.800781, 0.800781, 0.800781, 1, 1.5, 1.5, 1.5, 1, 1, 0.92549, 0.831373, 1 )
+
+[sub_resource type="Gradient" id=6]
+offsets = PoolRealArray( 0, 0.142395, 0.313916, 0.524272, 0.754045, 1 )
+colors = PoolColorArray( 1, 0.92549, 0.831373, 1, 1.2, 1.2, 0.8, 1, 1.1, 0.8, 0.6, 1, 1.1, 0.7, 0.6, 1, 1.0717, 0.917112, 0.687485, 1, 1, 0.92549, 0.831373, 1 )
+
+[sub_resource type="Gradient" id=10]
+offsets = PoolRealArray( 0, 0.511327, 1 )
+colors = PoolColorArray( 1, 0.92549, 0.831373, 1, 1.7, 1.1, 0.51, 1, 1, 0.92549, 0.831373, 1 )
+
+[sub_resource type="Curve" id=24]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.508772, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=25]
+offsets = PoolRealArray( 0, 0.30916, 0.568702, 1 )
+colors = PoolColorArray( 1, 0.92549, 0.831373, 1, 1.5, 1.5, 1.5, 1, 1.4, 1.4, 0.8, 1, 1, 0.92549, 0.831373, 1 )
+
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0, 0.158879, 0.261682, 0.538941, 0.5919, 0.65109, 0.897196, 0.993769 )
+colors = PoolColorArray( 1, 0.92549, 0.831373, 1, 1, 1, 1, 1, 0.67, 0.93, 1.4, 1, 1.1, 1.1, 1.5, 1, 1.5, 1.5, 1.5, 1, 0.67, 1, 1.3, 1, 0.933594, 0.992218, 1, 1, 1, 0.92549, 0.831373, 1 )
+
+[sub_resource type="Gradient" id=11]
+offsets = PoolRealArray( 0, 0.466019, 1 )
+colors = PoolColorArray( 1, 0.92549, 0.831373, 1, 1.8, 1.8, 1, 1, 1, 0.92549, 0.831373, 1 )
+
+[sub_resource type="Curve" id=14]
+min_value = -1.0
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.0822943, 0.00227273 ), 0.0, 0.0, 0, 0, Vector2( 0.167082, 0.947727 ), 0.0, 0.0, 0, 0, Vector2( 0.234414, 0.965909 ), 0.0, 0.0, 0, 0, Vector2( 0.314214, -0.890909 ), 0.0, 0.0, 0, 0, Vector2( 0.438903, -0.854545 ), 0.0, 0.0, 0, 0, Vector2( 0.541147, -0.0545454 ), 0.0, 0.0, 0, 0, Vector2( 0.598504, -0.0727272 ), 0.0, 0.0, 0, 0, Vector2( 0.723192, -0.0181818 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=15]
+offsets = PoolRealArray( 0, 0.145503, 1 )
+colors = PoolColorArray( 1, 0.92549, 0.831373, 1, 1.7, 1.6, 0.7, 1, 1, 0.92549, 0.831373, 1 )
+
+[sub_resource type="Gradient" id=13]
+offsets = PoolRealArray( 0, 0.12945, 0.488673, 0.857143, 1 )
+colors = PoolColorArray( 1, 0.92549, 0.831373, 1, 1.2, 0.83, 1.2, 1, 0.9, 0.74, 1.5, 1, 0.8, 1.1, 1.1, 1, 1, 0.92549, 0.831373, 1 )
+
+[sub_resource type="Curve" id=18]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.224439, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.501247, 0.127273 ), 0.0, 0.0, 0, 0, Vector2( 0.723192, 0.763636 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=19]
+offsets = PoolRealArray( 0, 0.238095, 0.428571, 1 )
+colors = PoolColorArray( 1, 0.92549, 0.831373, 1, 0.835938, 0.835938, 0.835938, 1, 1, 1, 1, 1, 1, 0.92549, 0.831373, 1 )
+
+[sub_resource type="Gradient" id=12]
+offsets = PoolRealArray( 0, 0.385113, 1 )
+colors = PoolColorArray( 1, 0.92549, 0.831373, 1, 0.9, 1.1, 0.7, 1, 1, 0.92549, 0.831373, 1 )
+
+[sub_resource type="Curve" id=28]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.494737, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=27]
+offsets = PoolRealArray( 0, 0.381679, 1 )
+colors = PoolColorArray( 1, 0.92549, 0.831373, 1, 0.513931, 1, 0.458984, 1, 1, 0.92549, 0.831373, 1 )
+
+[sub_resource type="Curve" id=8]
+min_value = -0.5
+max_value = 0.7
+_data = [ Vector2( 0, -0.5 ), 0.0, 0.0, 0, 0, Vector2( 0.496988, 0.7 ), 0.0, 0.0, 0, 0, Vector2( 1, -0.5 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=7]
+interpolation_mode = 2
+offsets = PoolRealArray( 0, 0.104839, 0.203883, 0.322581, 0.439516, 0.568548, 0.677419, 0.798387, 0.91129, 1 )
+colors = PoolColorArray( 1, 0.937255, 0.486275, 1, 1, 0.713989, 0.484375, 1, 1, 0.491791, 0.466797, 1, 1, 0.5, 0.927735, 1, 0.888382, 0.628906, 1, 1, 0.677734, 0.724312, 1, 1, 0.583984, 0.941497, 1, 1, 0.500805, 0.982422, 0.547838, 1, 0.841217, 1, 0.527344, 1, 1, 0.937255, 0.486275, 1 )
+
+[sub_resource type="Curve" id=3]
+min_value = -1.0
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.186441, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.385593, -0.472727 ), 0.0, 0.0, 0, 0, Vector2( 0.559322, 0.327273 ), 0.0, 0.0, 0, 0, Vector2( 0.79661, -0.327273 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=5]
+offsets = PoolRealArray( 0, 0.216828, 0.352751, 0.546926, 0.686084, 0.883495, 1 )
+colors = PoolColorArray( 1, 0.92549, 0.831373, 1, 1, 0.92549, 0.831373, 1, 1.0918, 0.902089, 1.16978, 0.614426, 1, 0.92549, 0.831373, 0.951677, 1.1, 0.9, 1.2, 0.58, 1, 0.92549, 0.831373, 1, 1, 0.92549, 0.831373, 1 )
+
+[sub_resource type="Curve" id=23]
+min_value = -0.4
+_data = [ Vector2( 0, 0 ), 0.0, -1.51253, 0, 0, Vector2( 0.677193, -0.4 ), 0.0, 0.0, 0, 0, Vector2( 0.726316, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.838596, -0.272727 ), 0.0, 0.0, 0, 0, Vector2( 0.922807, 0.274545 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=20]
+offsets = PoolRealArray( 0, 0.304233, 0.526455, 1 )
+colors = PoolColorArray( 1, 0.92549, 0.831373, 1, 0.904297, 0.904297, 0.904297, 1, 1.1, 1.1, 1.1, 1, 1, 0.92549, 0.831373, 1 )
+
+[sub_resource type="Curve" id=16]
+min_value = -0.1
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.690773, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.830424, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.972568, -0.09 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=17]
+offsets = PoolRealArray( 0, 0.042328, 0.886243, 1 )
+colors = PoolColorArray( 1, 0.92549, 0.831373, 1, 1, 0.92817, 0.837439, 1, 1.3, 1.3, 1.3, 1, 1, 0.92549, 0.831373, 1 )
+
+[sub_resource type="Gradient" id=26]
+offsets = PoolRealArray( 0, 0.221374, 0.454198, 1 )
+colors = PoolColorArray( 1, 0.92549, 0.831373, 1, 1, 1, 1, 1, 0.820312, 0.820312, 0.820312, 1, 1, 0.92549, 0.831373, 1 )
+
+[sub_resource type="Gradient" id=9]
+offsets = PoolRealArray( 0, 0.0744337, 0.36246, 0.682848, 0.938511, 1 )
+colors = PoolColorArray( 1, 0.92549, 0.831373, 1, 1, 0.92549, 0.831373, 1, 1.3, 0.52, 0.54, 1, 3, 0.49, 0.53, 1, 1, 0.92549, 0.831373, 1, 1, 0.92549, 0.831373, 1 )
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.5, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=2]
+interpolation_mode = 2
+offsets = PoolRealArray( 0, 0.235556, 0.493333, 0.764444, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 0.469049, 0.894225, 1, 1, 0.169922, 0.669266, 1, 1, 0.461177, 0.892656, 1, 1, 1, 1, 1, 1 )
+
+[resource]
+resource_name = "Item"
+script = ExtResource( 1 )
+water_curve = SubResource( 1 )
+water_gradient = SubResource( 2 )
+water_cycle = 8.0
+water_offset = 30.0
+water_frequency = 0.05
+water_speed = 1.5
+water_starttimeoffset = 1.0
+shaky_curve = SubResource( 3 )
+shaky_cycle = 3.0
+shaky_speed = 0.7
+shaky_strength = 6.0
+shaky_starttimeoffset = 1.0
+ice_gradient = SubResource( 4 )
+ice_cycle = 1.0
+ice_speed = 0.05
+spooky_gradient = SubResource( 5 )
+spooky_cycle = 1.0
+spooky_speed = 0.1
+fire_gradient = SubResource( 6 )
+fire_cycle = 1.0
+fire_speed = 0.2
+vampiric_gradient = SubResource( 9 )
+vampiric_cycle = 4.0
+vampiric_speed = 0.5
+gold_gradient = SubResource( 10 )
+gold_cycle = 2.0
+gold_speed = 0.2
+light_gradient = SubResource( 11 )
+light_cycle = 2.0
+light_speed = 0.5
+nature_gradient = SubResource( 12 )
+nature_cycle = 2.0
+nature_speed = 0.3
+magic_gradient = SubResource( 13 )
+magic_cycle = 3.0
+magic_speed = 0.1
+steel_gradient = SubResource( 20 )
+steel_cycle = 4.0
+steel_speed = 0.8
+stone_gradient = SubResource( 26 )
+stone_cycle = 4.0
+stone_speed = 0.1
+poison_gradient = SubResource( 27 )
+poison_curve = SubResource( 28 )
+poison_cycle = 3.0
+poison_speed = 0.1
+poison_offset = 2.0
+rainbow_gradient = SubResource( 7 )
+rainbow_cycle = 1.0
+rainbow_color_speed = 0.2
+rainbow_frequency = 0.2
+rainbow_offset = 7.0
+rainbow_curve = SubResource( 8 )
+rainbow_wave_speed = 0.5
+lightning_curve = SubResource( 14 )
+lightning_cycle = 10.0
+lightning_speed = 2.0
+lightning_strength = 3.0
+lightning_starttimeoffset = 1.0
+lightning_gradient = SubResource( 15 )
+lightning_offset = 0.25
+stompy_curve = SubResource( 16 )
+stompy_gradient = SubResource( 17 )
+stompy_cycle = 6.0
+stompy_offset = 15.0
+stompy_frequency = 0.05
+stompy_speed = 2.0
+stompy_starttimeoffset = 1.02
+mercury_curve = SubResource( 18 )
+mercury_gradient = SubResource( 19 )
+mercury_cycle = 2.0
+mercury_offset = 5.0
+mercury_frequency = 0.5
+mercury_speed = 0.1
+mercury_starttimeoffset = 1.0
+dog_curve = SubResource( 21 )
+dog_gradient = SubResource( 22 )
+dog_cycle = 12.0
+dog_strength = 15.0
+dog_speed = 1.3
+dog_starttimeoffset = 1.0
+dog_randomness = 10.0
+spring_curve = SubResource( 23 )
+spring_cycle = 3.0
+spring_strength = 10.0
+spring_speed = 0.3
+spring_starttimeoffset = 0.0
+spring_randomness = 0.052
+hyper_curve = SubResource( 24 )
+hyper_gradient = SubResource( 25 )
+hyper_cycle = 1.5
+hyper_strength = 1.0
+hyper_speed = 2.0
+hyper_starttimeoffset = 1.0
+hyper_randomness = 1.0

@@ -1,0 +1,88 @@
+[gd_resource type="Resource" load_steps=16 format=2]
+
+[ext_resource path="res://CharacterClasses/CharacterClass.gd" type="Script" id=1]
+[ext_resource path="res://CharacterClasses/NotUnlocked/PyromancerNotUnlockedSprite.tscn" type="PackedScene" id=3]
+[ext_resource path="res://CharacterClasses/StartingItem.gd" type="Script" id=6]
+
+[sub_resource type="Resource" id=15]
+script = ExtResource( 6 )
+itemName = "Engineer Box"
+faceDirection = 0
+topLeftCell = Vector2( 3, 2 )
+
+[sub_resource type="Resource" id=17]
+script = ExtResource( 6 )
+itemName = "Leather Bag"
+faceDirection = 0
+topLeftCell = Vector2( 5, 3 )
+
+[sub_resource type="Resource" id=21]
+script = ExtResource( 6 )
+itemName = "Leather Bag"
+faceDirection = 0
+topLeftCell = Vector2( 1, 3 )
+
+[sub_resource type="Resource" id=16]
+script = ExtResource( 6 )
+itemName = "Battery"
+faceDirection = 0
+topLeftCell = Vector2( 3, 3 )
+
+[sub_resource type="Resource" id=22]
+script = ExtResource( 6 )
+itemName = "Resistor"
+faceDirection = 0
+topLeftCell = Vector2( 3, 2 )
+
+[sub_resource type="Resource" id=23]
+script = ExtResource( 6 )
+itemName = "Stone"
+faceDirection = 0
+topLeftCell = Vector2( 4, 3 )
+
+[sub_resource type="Resource" id=18]
+script = ExtResource( 6 )
+itemName = "Engineer Bag 2"
+faceDirection = 0
+topLeftCell = Vector2( 2, 1 )
+
+[sub_resource type="Resource" id=19]
+script = ExtResource( 6 )
+itemName = "Leather Bag"
+faceDirection = 0
+topLeftCell = Vector2( 3, 4 )
+
+[sub_resource type="Resource" id=20]
+script = ExtResource( 6 )
+itemName = "Battery"
+faceDirection = 0
+topLeftCell = Vector2( 3, 2 )
+
+[sub_resource type="Resource" id=24]
+script = ExtResource( 6 )
+itemName = "Cog"
+faceDirection = 0
+topLeftCell = Vector2( 4, 1 )
+
+[sub_resource type="Resource" id=25]
+script = ExtResource( 6 )
+itemName = "Slice of Bread"
+faceDirection = 0
+topLeftCell = Vector2( 4, 3 )
+
+[sub_resource type="Resource" id=9]
+script = ExtResource( 6 )
+itemName = "Random Loadout Bag"
+faceDirection = 0
+topLeftCell = Vector2( 3, 3 )
+
+[resource]
+script = ExtResource( 1 )
+health = 25
+stamina = 5
+gold = 13
+startingItems = [ SubResource( 15 ), SubResource( 17 ), SubResource( 21 ), SubResource( 16 ), SubResource( 22 ), SubResource( 23 ) ]
+startingItems2 = [ SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 24 ), SubResource( 25 ) ]
+startingItems3 = [ SubResource( 9 ) ]
+notUnlockedSprite = ExtResource( 3 )
+color = Color( 0.980392, 0.490196, 0.235294, 1 )

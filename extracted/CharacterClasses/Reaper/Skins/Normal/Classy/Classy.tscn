@@ -1,0 +1,85 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://CharacterClasses/Reaper/ReaperSprite.tscn" type="PackedScene" id=1]
+[ext_resource path="res://CharacterClasses/Reaper/Skins/Normal/Classy/Body.png" type="Texture" id=2]
+[ext_resource path="res://CharacterClasses/Reaper/Skins/Normal/Classy/Head.png" type="Texture" id=3]
+[ext_resource path="res://CharacterClasses/Reaper/Skins/Normal/Classy/LeftUpperArm.png" type="Texture" id=4]
+[ext_resource path="res://CharacterClasses/Reaper/Skins/Normal/Classy/RightShoe.png" type="Texture" id=5]
+[ext_resource path="res://CharacterClasses/Reaper/Skins/Normal/Classy/RightUpperArm.png" type="Texture" id=6]
+[ext_resource path="res://CharacterClasses/Reaper/Skins/Normal/Classy/Scythe.png" type="Texture" id=7]
+[ext_resource path="res://CharacterClasses/Reaper/Skins/Normal/Classy/LeftShoe.png" type="Texture" id=8]
+[ext_resource path="res://CharacterClasses/Reaper/Skins/Normal/Classy/LeftHandFront.png" type="Texture" id=9]
+[ext_resource path="res://CharacterClasses/Reaper/Skins/Normal/Classy/RightLowerArm.png" type="Texture" id=10]
+[ext_resource path="res://CharacterClasses/Reaper/Skins/Normal/Classy/RightHand.png" type="Texture" id=11]
+[ext_resource path="res://CharacterClasses/Reaper/Skins/Normal/Classy/Coffin.png" type="Texture" id=12]
+[ext_resource path="res://CharacterClasses/Reaper/Skins/Normal/Classy/LeftLowerArm.png" type="Texture" id=13]
+[ext_resource path="res://CharacterClasses/Reaper/Skins/Normal/Classy/DressBack.png" type="Texture" id=14]
+
+[node name="Sprite" instance=ExtResource( 1 )]
+script = null
+
+[node name="BodySprite" parent="Body" index="0"]
+position = Vector2( -1.43051e-06, 42.5926 )
+texture = ExtResource( 2 )
+
+[node name="DressBack" type="Sprite" parent="Body/Head" index="0" groups=["Body"]]
+position = Vector2( 70.3704, 414.687 )
+z_index = -2
+texture = ExtResource( 14 )
+
+[node name="HeadSprite" parent="Body/Head" index="1"]
+position = Vector2( 3.8147e-06, -9.25949 )
+texture = ExtResource( 3 )
+
+[node name="LeftCurlSprite" parent="Body/Head/LeftCurl" index="0"]
+visible = false
+
+[node name="RightCurlSprite" parent="Body/Head/RightCurl" index="0"]
+visible = false
+
+[node name="LeftShoe" parent="Body/LeftUpperLeg/LeftLowerLeg" index="1"]
+position = Vector2( 35.5572, 204.757 )
+texture = ExtResource( 8 )
+
+[node name="RightShoe" parent="Body/RightUpperLeg/RightLowerLeg" index="1"]
+position = Vector2( -46.2963, 205.556 )
+texture = ExtResource( 5 )
+
+[node name="LeftUpperArmSprite" parent="Body/LeftUpperArm" index="0"]
+position = Vector2( -1.85186, 5.55556 )
+texture = ExtResource( 4 )
+
+[node name="LeftLowerArmSprite" parent="Body/LeftUpperArm/LeftLowerArm" index="0"]
+position = Vector2( -3.70371, -0.126053 )
+texture = ExtResource( 13 )
+offset = Vector2( 37.037, 44.5701 )
+
+[node name="LeftSleeve" parent="Body/LeftUpperArm/LeftLowerArm" index="1"]
+visible = false
+
+[node name="ScytheSprite" parent="Body/LeftUpperArm/LeftLowerArm/LeftHand/Scythe" index="0"]
+position = Vector2( 92.2218, 22.2222 )
+texture = ExtResource( 7 )
+
+[node name="LeftHandFront" parent="Body/LeftUpperArm/LeftLowerArm/LeftHand" index="2"]
+position = Vector2( 51.8518, 25.9259 )
+texture = ExtResource( 9 )
+
+[node name="RightUpperArmSprite" parent="Body/RightUpperArm" index="0"]
+position = Vector2( 3.5484, 5.33568 )
+texture = ExtResource( 6 )
+
+[node name="RightLowerArmSprite" parent="Body/RightUpperArm/RightLowerArm" index="0"]
+position = Vector2( 9.80656, 7.75593 )
+texture = ExtResource( 10 )
+offset = Vector2( -43.1399, 36.6893 )
+
+[node name="RightSleeve" parent="Body/RightUpperArm/RightLowerArm" index="1"]
+visible = false
+
+[node name="CoffinSprite" parent="Body/RightUpperArm/RightLowerArm/RightHand/Coffin" index="0"]
+texture = ExtResource( 12 )
+
+[node name="RightHand" type="Sprite" parent="Body/RightUpperArm/RightLowerArm/RightHand" index="2"]
+position = Vector2( -14.2675, 22.5708 )
+texture = ExtResource( 11 )

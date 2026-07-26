@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Utility/PooledScene.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Particles/Dust1.png" type="Texture" id=2]
+[ext_resource path="res://Shader/SmoothFadeGradient.tres" type="Texture" id=3]
+
+[sub_resource type="Gradient" id=1]
+colors = PoolColorArray( 0.797203, 0.995247, 1, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+width = 10
+
+[sub_resource type="Curve" id=3]
+max_value = 2.0
+_data = [ Vector2( 0, 0.0999999 ), 0.0, 6.82159, 0, 0, Vector2( 0.331522, 1.32955 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), -2.38042, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+lifetime_randomness = 0.39
+emission_shape = 1
+emission_sphere_radius = 25.3
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+gravity = Vector3( 0, 300, 0 )
+initial_velocity = 200.49
+initial_velocity_random = 0.46
+angular_velocity = 42.01
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+damping = 49.03
+angle = 720.0
+angle_random = 1.0
+scale = 0.09
+scale_random = 0.12
+scale_curve = SubResource( 4 )
+color_ramp = ExtResource( 3 )
+color_initial_ramp = SubResource( 2 )
+
+[node name="SnowParticles" type="Particles2D"]
+modulate = Color( 1.2, 1.2, 1.2, 1 )
+position = Vector2( 1, 32 )
+z_index = 5
+emitting = false
+amount = 30
+lifetime = 1.2
+one_shot = true
+preprocess = 0.2
+explosiveness = 0.91
+process_material = SubResource( 5 )
+texture = ExtResource( 2 )
+script = ExtResource( 1 )

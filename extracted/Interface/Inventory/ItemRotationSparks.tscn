@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Utility/PooledScene.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Particles/GlowingDot.png" type="Texture" id=2]
+
+[sub_resource type="Curve" id=13]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -0.165151, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=14]
+curve = SubResource( 13 )
+
+[sub_resource type="ParticlesMaterial" id=15]
+lifetime_randomness = 0.13
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 298.3
+initial_velocity_random = 0.21
+orbit_velocity = 1.01
+orbit_velocity_random = 0.11
+tangential_accel = 500.0
+tangential_accel_random = 0.59
+angle = 720.0
+angle_random = 1.0
+scale = 1.7
+scale_random = 1.0
+scale_curve = SubResource( 14 )
+
+[node name="Particles2D" type="Particles2D"]
+modulate = Color( 0, 0.576471, 1, 1 )
+self_modulate = Color( 2, 2, 2, 1 )
+z_index = -1
+emitting = false
+amount = 3
+lifetime = 0.4
+one_shot = true
+preprocess = 0.05
+speed_scale = 1.3
+explosiveness = 0.88
+process_material = SubResource( 15 )
+texture = ExtResource( 2 )
+script = ExtResource( 1 )

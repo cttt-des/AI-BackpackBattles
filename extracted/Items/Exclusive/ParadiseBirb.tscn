@@ -1,0 +1,78 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Items/Item.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Items/Exclusive/Sprites/ParadiseBirb.png" type="Texture" id=2]
+[ext_resource path="res://Items/Exclusive/ParadiseBirb.gd" type="Script" id=3]
+[ext_resource path="res://Items/Exclusive/Particles/ParadiseBirbFeatherParticles.material" type="Material" id=4]
+[ext_resource path="res://Assets/Particles/Snowflake1.png" type="Texture" id=5]
+[ext_resource path="res://Utility/AutoHideParticles.gd" type="Script" id=6]
+[ext_resource path="res://Items/Exclusive/Particles/ParadiseBirbActivationParticles.material" type="Material" id=7]
+[ext_resource path="res://Assets/Particles/NotesParticles.png" type="Texture" id=8]
+[ext_resource path="res://Items/Exclusive/Particles/ParadiseBirbFeathers.material" type="Material" id=9]
+[ext_resource path="res://Items/Particles/MusicalNotesCanvasItem.material" type="Material" id=10]
+
+[sub_resource type="PhysicsMaterial" id=1]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[node name="Paradise Birb" instance=ExtResource( 1 )]
+physics_material_override = SubResource( 1 )
+script = ExtResource( 3 )
+
+[node name="CollisionMap" parent="." index="0"]
+position = Vector2( 0, -40 )
+tile_data = PoolIntArray( -262140, 4, 0, -196605, 4, 0, -196604, 4, 0, -131070, 4, 0, -131069, 4, 0, -131068, 4, 0, -65536, 3, 0, -65535, 4, 0, -65534, 4, 0, -65533, 4, 0, -65532, 4, 0, 65535, 3, 0, 0, 3, 0, 2, 4, 0, 3, 4, 0, 4, 4, 0, 131071, 3, 0, 65539, 4, 0, 65540, 4, 0, 131076, 4, 0 )
+
+[node name="Icon" parent="." index="1"]
+scale = Vector2( 0.45, 0.45 )
+texture = ExtResource( 2 )
+
+[node name="Sockets" parent="Icon" index="0"]
+scale = Vector2( 2.22222, 2.22222 )
+
+[node name="SpecificDragParticles" type="Particles2D" parent="Icon" index="1"]
+modulate = Color( 10, 10, 10, 1 )
+material = ExtResource( 9 )
+position = Vector2( -137.778, -160 )
+scale = Vector2( 2, 2 )
+emitting = false
+amount = 17
+lifetime = 1.4
+speed_scale = 0.78
+visibility_rect = Rect2( -1000, -1000, 2000, 2000 )
+local_coords = false
+process_material = ExtResource( 4 )
+texture = ExtResource( 5 )
+script = ExtResource( 6 )
+
+[node name="SpecificDragParticles2" type="Particles2D" parent="Icon" index="2"]
+self_modulate = Color( 2, 2, 2, 0.87 )
+show_behind_parent = true
+material = ExtResource( 10 )
+position = Vector2( 148.889, -164.444 )
+scale = Vector2( 2, 2 )
+emitting = false
+amount = 4
+lifetime = 0.8
+speed_scale = 0.8
+explosiveness = 0.35
+local_coords = false
+process_material = ExtResource( 7 )
+texture = ExtResource( 8 )
+script = ExtResource( 6 )
+
+[node name="ClickArea" parent="." index="2"]
+visible = true
+
+[node name="CollisionPolygon2D" parent="ClickArea" index="0"]
+visible = false
+polygon = PoolVector2Array( 0, -120, 80, -120, 80, 40, 0, 40, 0, 120, -80, 120, -80, -40, 0, -40 )
+
+[node name="BottomCenter" parent="." index="3"]
+position = Vector2( 9, 28 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="5"]
+visible = false
+position = Vector2( 16, -19 )
+polygon = PoolVector2Array( 9, -82, 53, -47, 39, -34, 23, 53, -14, 55, -76, 122, -80, 24, -52, -6, -6, -22, -6, -58 )

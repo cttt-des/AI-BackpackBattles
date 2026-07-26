@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Interface/Tooltips/BuildIntoRecipe.gd" type="Script" id=1]
+[ext_resource path="res://Interface/Tooltips/Equals.png" type="Texture" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "CanCraft"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Equals:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 2, 1.7, 0.18, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Equals:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="Control" type="Control"]
+margin_right = 500.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 550, 100 )
+mouse_filter = 2
+size_flags_horizontal = 3
+script = ExtResource( 1 )
+
+[node name="Equals" type="TextureRect" parent="."]
+anchor_bottom = 1.0
+rect_min_size = Vector2( 30, 20 )
+mouse_filter = 2
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/CanCraft = SubResource( 1 )
+anims/RESET = SubResource( 2 )

@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Utility/PooledScene.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Particles/GlowingDot.png" type="Texture" id=2]
+[ext_resource path="res://Items/Particles/MagicStaffActivationParticles.material" type="Material" id=3]
+
+[node name="ActivationParticles" type="Particles2D"]
+modulate = Color( 2, 2, 2, 1 )
+position = Vector2( 0, -122 )
+emitting = false
+lifetime = 0.61
+one_shot = true
+speed_scale = 1.26
+explosiveness = 1.0
+local_coords = false
+process_material = ExtResource( 3 )
+texture = ExtResource( 2 )
+script = ExtResource( 1 )

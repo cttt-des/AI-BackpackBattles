@@ -1,0 +1,1460 @@
+[gd_scene load_steps=54 format=2]
+
+[ext_resource path="res://Interface/CombatTimer/CombatSpeed_grabber_hovered.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Fonts/GlassAntiqua-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Assets/Fonts/LibreBaskerville-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Assets/Fonts/LibreBaskerville-Bold.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Assets/Fonts/Milonga-Regular.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Interface/WishlistButton.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Interface/RedXButton.png" type="Texture" id=7]
+[ext_resource path="res://Utility/LocalizedControl.gd" type="Script" id=8]
+[ext_resource path="res://Assets/Divider1.png" type="Texture" id=9]
+[ext_resource path="res://Interface/EmptyStylebox.tres" type="StyleBox" id=10]
+[ext_resource path="res://Items/Particles/SubtractiveCanvasItem.material" type="Material" id=11]
+[ext_resource path="res://Interface/VScrollbar_grabber.png" type="Texture" id=12]
+[ext_resource path="res://Interface/DropdownArrow.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Paper1.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Patch3.png" type="Texture" id=15]
+[ext_resource path="res://Interface/VScrollbar.png" type="Texture" id=16]
+[ext_resource path="res://Interface/CombatTimer/CombatSpeed_slider.png" type="Texture" id=17]
+[ext_resource path="res://Interface/CombatTimer/CombatSpeed_slider_filled.png" type="Texture" id=18]
+[ext_resource path="res://Interface/FocusGrabbingControl.gd" type="Script" id=19]
+[ext_resource path="res://Interface/Options/ItemListButton.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Interface/Options/OptionsSlider.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Interface/Options/CheckButton.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Interface/Options/OptionsFont.tres" type="DynamicFont" id=23]
+[ext_resource path="res://Interface/DraggableScrollContainer.gd" type="Script" id=24]
+[ext_resource path="res://Interface/ScrollbarTheme.tres" type="Theme" id=25]
+[ext_resource path="res://Interface/Options/Options.gd" type="Script" id=26]
+[ext_resource path="res://Interface/CombatTimer/CombatSpeed_grabber.png" type="Texture" id=29]
+[ext_resource path="res://Interface/Options/CombatSpeedLabel.gd" type="Script" id=30]
+[ext_resource path="res://Interface/Options/OptionsSheet.png" type="Texture" id=33]
+[ext_resource path="res://Interface/Options/OptionsLineEdit.tscn" type="PackedScene" id=37]
+[ext_resource path="res://Interface/Options/SoundSlider.tscn" type="PackedScene" id=38]
+[ext_resource path="res://Interface/Options/KeyBind.tscn" type="PackedScene" id=39]
+[ext_resource path="res://Interface/Options/ControllerKeyBind.tscn" type="PackedScene" id=40]
+[ext_resource path="res://Interface/Options/SoundCheckButton.tscn" type="PackedScene" id=41]
+
+[sub_resource type="Animation" id=297]
+resource_name = "Close"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1.56917, 2 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sheet:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 2.21914, 0.466516 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 2000, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.4 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "closed"
+} ]
+}
+
+[sub_resource type="Animation" id=298]
+resource_name = "CloseCredits"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Credits:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 2.2974, 0.466516 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -1100 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sheet/CloseButton:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Credits:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=299]
+resource_name = "Open"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 0.68302, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sheet:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 0.466516, 1 ),
+"update": 0,
+"values": [ Vector2( -2000, 0 ), Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Credits:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "opened"
+} ]
+}
+
+[sub_resource type="Animation" id=300]
+resource_name = "OpenCredits"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Credits:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 0.466516, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -1100 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sheet/CloseButton:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Credits:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="DynamicFont" id=209]
+size = 50
+outline_size = 3
+outline_color = Color( 0.27451, 0.211765, 0.14902, 1 )
+use_filter = true
+extra_spacing_top = -10
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=206]
+size = 24
+outline_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+use_filter = true
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=256]
+size = 25
+outline_size = 3
+outline_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+use_filter = true
+font_data = ExtResource( 3 )
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 17 )
+region_rect = Rect2( 0, 0, 585, 50 )
+
+[sub_resource type="StyleBoxTexture" id=2]
+texture = ExtResource( 18 )
+region_rect = Rect2( 0, 0, 585, 50 )
+axis_stretch_horizontal = 1
+
+[sub_resource type="StyleBoxTexture" id=3]
+texture = ExtResource( 18 )
+region_rect = Rect2( 0, 0, 585, 50 )
+axis_stretch_horizontal = 1
+
+[sub_resource type="StyleBoxFlat" id=295]
+content_margin_left = 8.0
+content_margin_right = 10.0
+content_margin_top = 0.0
+content_margin_bottom = 0.0
+bg_color = Color( 0.607843, 0.462745, 0.317647, 0.933333 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="DynamicFont" id=296]
+size = 40
+outline_size = 3
+outline_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+use_filter = true
+extra_spacing_bottom = -14
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=294]
+size = 24
+outline_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+use_filter = true
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=16]
+size = 40
+outline_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+use_mipmaps = true
+use_filter = true
+extra_spacing_top = -10
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxTexture" id=230]
+texture = ExtResource( 12 )
+region_rect = Rect2( -31.4196, 0, 87.0222, 64.1349 )
+margin_left = 7.49648
+margin_right = 22.0208
+margin_top = 15.6563
+margin_bottom = 14.4243
+expand_margin_top = 8.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxTexture" id=231]
+texture = ExtResource( 16 )
+region_rect = Rect2( -18.5532, 0.0862274, 69.5576, 461.484 )
+margin_left = 9.0065
+margin_right = 8.92128
+margin_top = 8.49884
+margin_bottom = 5.31932
+
+[sub_resource type="Theme" id=232]
+VScrollBar/styles/grabber = SubResource( 230 )
+VScrollBar/styles/grabber_highlight = SubResource( 230 )
+VScrollBar/styles/grabber_pressed = SubResource( 230 )
+VScrollBar/styles/scroll = SubResource( 231 )
+
+[sub_resource type="DynamicFont" id=161]
+size = 26
+outline_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=162]
+size = 24
+outline_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+use_filter = true
+font_data = ExtResource( 3 )
+
+[node name="Options" type="Node2D"]
+pause_mode = 2
+z_index = 5
+script = ExtResource( 26 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Close = SubResource( 297 )
+anims/CloseCredits = SubResource( 298 )
+anims/Open = SubResource( 299 )
+anims/OpenCredits = SubResource( 300 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -2299.0
+margin_top = -1730.0
+margin_right = 4329.0
+margin_bottom = 2708.0
+color = Color( 0, 0, 0, 0.47451 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Sheet" type="Node2D" parent="."]
+
+[node name="OptionsSheet" type="Sprite" parent="Sheet"]
+position = Vector2( 962, 534.5 )
+scale = Vector2( 1.05625, 1.075 )
+texture = ExtResource( 14 )
+
+[node name="Divider1" type="Sprite" parent="Sheet"]
+position = Vector2( 968.5, 91.5 )
+scale = Vector2( 1.25681, 0.500001 )
+texture = ExtResource( 9 )
+
+[node name="Header" type="Label" parent="Sheet"]
+margin_left = 857.5
+margin_top = 47.0
+margin_right = 1069.5
+margin_bottom = 89.0
+grow_horizontal = 2
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_colors/font_color_shadow = Color( 0.235294, 0.14902, 0.113725, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 0
+custom_fonts/font = SubResource( 209 )
+text = "Options"
+align = 1
+valign = 1
+script = ExtResource( 8 )
+translationKey = "UI_Options"
+
+[node name="ChibiHint" type="Node2D" parent="Sheet"]
+position = Vector2( 50, 165 )
+
+[node name="Sheet" type="Sprite" parent="Sheet/ChibiHint"]
+position = Vector2( 250.259, 730.066 )
+rotation = 1.5708
+scale = Vector2( 0.210631, 0.476627 )
+texture = ExtResource( 33 )
+
+[node name="Label" type="Label" parent="Sheet/ChibiHint"]
+margin_left = 95.0
+margin_top = 654.0
+margin_right = 410.0
+margin_bottom = 804.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 315, 150 )
+custom_colors/font_color = Color( 0.24, 0.15, 0.11, 1 )
+custom_fonts/font = SubResource( 206 )
+text = "You can switch to Chibi style in the wardrobe!"
+align = 1
+valign = 1
+autowrap = true
+script = ExtResource( 8 )
+translationKey = "HINT_Chibi"
+maxSize = 320.0
+
+[node name="SteamLabel" type="Label" parent="Sheet"]
+visible = false
+margin_left = 243.0
+margin_top = 189.0
+margin_right = 572.0
+margin_bottom = 259.0
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_colors/font_color_shadow = Color( 0.235294, 0.14902, 0.113725, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 0
+custom_fonts/font = SubResource( 256 )
+text = "For language options download from Steam!"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="TitleButton" type="Button" parent="Sheet"]
+margin_left = 1255.0
+margin_top = 959.0
+margin_right = 1547.0
+margin_bottom = 1010.0
+grow_horizontal = 2
+mouse_default_cursor_shape = 2
+custom_colors/font_color_disabled = Color( 1, 0.92549, 0.831373, 1 )
+custom_colors/font_color_focus = Color( 1, 0.890196, 0.215686, 1 )
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_colors/font_color_hover = Color( 1, 0.890196, 0.215686, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.92549, 0.831373, 1 )
+custom_fonts/font = ExtResource( 23 )
+custom_styles/focus = ExtResource( 10 )
+text = "Return to Title"
+flat = true
+script = ExtResource( 19 )
+translationKey = "BUTTON_Title"
+
+[node name="CloseLobbyButton" type="Button" parent="Sheet"]
+margin_left = 1254.0
+margin_top = 953.0
+margin_right = 1548.0
+margin_bottom = 1015.0
+grow_horizontal = 2
+mouse_default_cursor_shape = 2
+custom_colors/font_color_disabled = Color( 1, 0.92549, 0.831373, 1 )
+custom_colors/font_color_focus = Color( 1, 0.890196, 0.215686, 1 )
+custom_colors/font_color = Color( 0.980392, 0.670588, 0.631373, 1 )
+custom_colors/font_color_hover = Color( 1, 0.890196, 0.215686, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.92549, 0.831373, 1 )
+custom_fonts/font = ExtResource( 23 )
+custom_styles/focus = ExtResource( 10 )
+text = "Abandon Lobby"
+icon = ExtResource( 7 )
+flat = true
+script = ExtResource( 19 )
+translationKey = "BUTTON_AbandonLobby"
+
+[node name="CreditsButton" type="Button" parent="Sheet"]
+margin_left = 78.0
+margin_top = 978.0
+margin_right = 212.0
+margin_bottom = 1029.0
+rect_pivot_offset = Vector2( 2065, -721 )
+mouse_default_cursor_shape = 2
+custom_colors/font_color_disabled = Color( 1, 0.92549, 0.831373, 1 )
+custom_colors/font_color_focus = Color( 1, 0.890196, 0.215686, 1 )
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_colors/font_color_hover = Color( 1, 0.890196, 0.215686, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.92549, 0.831373, 1 )
+custom_fonts/font = ExtResource( 23 )
+custom_styles/focus = ExtResource( 10 )
+text = "Credits"
+flat = true
+script = ExtResource( 19 )
+translationKey = "BUTTON_Credits"
+
+[node name="CloseButton" type="Button" parent="Sheet"]
+margin_left = 1668.0
+margin_top = 956.0
+margin_right = 1816.0
+margin_bottom = 1014.0
+grow_horizontal = 0
+mouse_default_cursor_shape = 2
+custom_colors/font_color_disabled = Color( 1, 0.92549, 0.831373, 1 )
+custom_colors/font_color_focus = Color( 1, 0.890196, 0.215686, 1 )
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_colors/font_color_hover = Color( 1, 0.890196, 0.215686, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.92549, 0.831373, 1 )
+custom_fonts/font = ExtResource( 23 )
+custom_styles/focus = ExtResource( 10 )
+text = "Resume"
+flat = true
+script = ExtResource( 19 )
+translationKey = "BUTTON_Resume"
+
+[node name="NinePatchRect6" type="NinePatchRect" parent="Sheet/CloseButton"]
+modulate = Color( 0.0563401, 0.0603966, 0.0644531, 1 )
+material = ExtResource( 11 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 15 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 7
+patch_margin_bottom = 9
+
+[node name="opponent_chibis" parent="Sheet" instance=ExtResource( 22 )]
+margin_left = 57.0
+margin_top = 164.0
+margin_right = 321.0
+margin_bottom = 226.0
+text = "Show Chibis"
+translationKey = "BUTTON_Chibis"
+
+[node name="hide_names" parent="Sheet" instance=ExtResource( 22 )]
+margin_left = 57.0
+margin_top = 243.0
+margin_right = 321.0
+margin_bottom = 305.0
+text = "Hide Names"
+translationKey = "BUTTON_HideNames"
+
+[node name="CombatSpeedLabel" type="Label" parent="Sheet"]
+margin_left = 68.0
+margin_top = 343.0
+margin_right = 417.0
+margin_bottom = 382.0
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_fonts/font = ExtResource( 23 )
+text = "Default Combat Speed"
+script = ExtResource( 8 )
+translationKey = "BUTTON_CombatSpeed"
+
+[node name="CombatSpeedLabel2" type="Label" parent="Sheet"]
+margin_left = 371.0
+margin_top = 387.0
+margin_right = 431.0
+margin_bottom = 426.0
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_fonts/font = ExtResource( 23 )
+text = "x1.0"
+script = ExtResource( 30 )
+
+[node name="combat_speed" parent="Sheet" instance=ExtResource( 21 )]
+margin_left = 68.0
+margin_top = 384.0
+margin_right = 653.0
+margin_bottom = 475.0
+custom_icons/grabber_highlight = ExtResource( 1 )
+custom_icons/grabber = ExtResource( 29 )
+custom_styles/slider = SubResource( 1 )
+custom_styles/grabber_area_highlight = SubResource( 2 )
+custom_styles/grabber_area = SubResource( 3 )
+max_value = 3.0
+value = 1.0
+
+[node name="bgm_muted" parent="Sheet" instance=ExtResource( 41 )]
+margin_left = 597.0
+margin_top = 662.0
+margin_right = 833.0
+margin_bottom = 719.0
+rect_min_size = Vector2( 236, 0 )
+translationKey = "BUTTON_MuteMusic"
+maxSize = 236.0
+
+[node name="bgm_volume" parent="Sheet" instance=ExtResource( 38 )]
+margin_left = 858.0
+margin_top = 667.0
+margin_right = 1443.0
+margin_bottom = 758.0
+custom_styles/slider = SubResource( 1 )
+custom_styles/grabber_area_highlight = SubResource( 2 )
+custom_styles/grabber_area = SubResource( 3 )
+
+[node name="sfx_muted" parent="Sheet" instance=ExtResource( 41 )]
+margin_left = 597.0
+margin_top = 725.0
+margin_right = 833.0
+margin_bottom = 782.0
+rect_min_size = Vector2( 236, 0 )
+text = "SFX"
+translationKey = "BUTTON_MuteSFX"
+maxSize = 236.0
+
+[node name="sfx_volume" parent="Sheet" instance=ExtResource( 38 )]
+margin_left = 858.0
+margin_top = 730.0
+margin_right = 1443.0
+margin_bottom = 821.0
+custom_styles/slider = SubResource( 1 )
+custom_styles/grabber_area_highlight = SubResource( 2 )
+custom_styles/grabber_area = SubResource( 3 )
+
+[node name="voice_muted" parent="Sheet" instance=ExtResource( 41 )]
+margin_left = 597.0
+margin_top = 790.0
+margin_right = 833.0
+margin_bottom = 847.0
+rect_min_size = Vector2( 236, 0 )
+text = "Voice"
+translationKey = "BUTTON_MuteVoice"
+maxSize = 236.0
+
+[node name="voice_volume" parent="Sheet" instance=ExtResource( 38 )]
+margin_left = 858.0
+margin_top = 795.0
+margin_right = 1443.0
+margin_bottom = 886.0
+custom_styles/slider = SubResource( 1 )
+custom_styles/grabber_area_highlight = SubResource( 2 )
+custom_styles/grabber_area = SubResource( 3 )
+
+[node name="software_cursor" parent="Sheet" instance=ExtResource( 22 )]
+margin_left = 593.0
+margin_top = 433.0
+margin_right = 914.0
+margin_bottom = 495.0
+text = "Software Cursor"
+translationKey = "BUTTON_Cursor"
+
+[node name="cursor_size" parent="Sheet" instance=ExtResource( 21 )]
+margin_left = 856.0
+margin_top = 517.0
+margin_right = 1441.0
+margin_bottom = 608.0
+rect_scale = Vector2( 0.37, 0.5 )
+custom_styles/slider = SubResource( 1 )
+custom_styles/grabber_area_highlight = SubResource( 2 )
+custom_styles/grabber_area = SubResource( 3 )
+min_value = 0.25
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="CursorSizeLabel" type="Label" parent="Sheet"]
+margin_left = 602.0
+margin_top = 519.0
+margin_right = 827.0
+margin_bottom = 558.0
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_fonts/font = ExtResource( 23 )
+text = "Cursor Size"
+script = ExtResource( 8 )
+translationKey = "BUTTON_CursorSize"
+
+[node name="CursorSizeLabel2" type="Label" parent="Sheet"]
+margin_left = 1104.0
+margin_top = 518.0
+margin_right = 1164.0
+margin_bottom = 557.0
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_fonts/font = ExtResource( 23 )
+text = "x1.0"
+script = ExtResource( 30 )
+displayFactor = 2.0
+
+[node name="PickOffsetLabel" type="Label" parent="Sheet"]
+visible = false
+margin_left = 602.0
+margin_top = 577.0
+margin_right = 827.0
+margin_bottom = 616.0
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_fonts/font = ExtResource( 23 )
+text = "Picking offset"
+script = ExtResource( 8 )
+translationKey = "BUTTON_PickOffset"
+
+[node name="PickOffsetLabel2" type="Label" parent="Sheet"]
+visible = false
+margin_left = 1104.0
+margin_top = 573.0
+margin_right = 1164.0
+margin_bottom = 612.0
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_fonts/font = ExtResource( 23 )
+text = "x1.0"
+script = ExtResource( 30 )
+
+[node name="pick_offset" parent="Sheet" instance=ExtResource( 21 )]
+visible = false
+margin_left = 859.0
+margin_top = 571.0
+margin_right = 1444.0
+margin_bottom = 662.0
+rect_scale = Vector2( 0.37, 0.5 )
+custom_styles/slider = SubResource( 1 )
+custom_styles/grabber_area_highlight = SubResource( 2 )
+custom_styles/grabber_area = SubResource( 3 )
+value = 1.0
+
+[node name="vsync" parent="Sheet" instance=ExtResource( 22 )]
+margin_left = 593.0
+margin_top = 205.0
+margin_right = 808.0
+margin_bottom = 267.0
+text = "VSync"
+translationKey = "BUTTON_VSync"
+
+[node name="mute_unfocused" parent="Sheet" instance=ExtResource( 22 )]
+margin_left = 594.0
+margin_top = 870.0
+margin_right = 1008.0
+margin_bottom = 932.0
+text = "Mute when unfocused"
+translationKey = "BUTTON_MuteUnfocused"
+
+[node name="reduce_fps_unfocused" parent="Sheet" instance=ExtResource( 22 )]
+margin_left = 593.0
+margin_top = 356.0
+margin_right = 1152.0
+margin_bottom = 418.0
+text = "Save resources when unfocused"
+translationKey = "BUTTON_FPSUnfocused"
+
+[node name="fps_limit" parent="Sheet" instance=ExtResource( 37 )]
+margin_left = 606.0
+margin_top = 293.0
+margin_right = 688.0
+margin_bottom = 338.0
+custom_styles/normal = SubResource( 295 )
+translationKey = "BUTTON_FpsLimit"
+
+[node name="resolution" parent="Sheet" instance=ExtResource( 20 )]
+visible = false
+margin_left = 685.0
+margin_top = 207.0
+margin_right = 894.0
+margin_bottom = 258.0
+text = "Resolution"
+OPTION = "BUTTON_Resolution"
+
+[node name="window_mode" parent="Sheet" groups=["Localized"] instance=ExtResource( 20 )]
+margin_left = 589.0
+margin_top = 137.0
+margin_right = 892.0
+margin_bottom = 188.0
+text = "Window Mode"
+icon = ExtResource( 13 )
+OPTION = "BUTTON_WindowMode"
+translate = true
+warpPointXFactor = 0.1
+
+[node name="BagHotswappingLabel" type="Label" parent="Sheet"]
+margin_left = 116.0
+margin_top = 498.0
+margin_right = 541.0
+margin_bottom = 537.0
+grow_vertical = 2
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_fonts/font = ExtResource( 23 )
+text = "Swap bags only by default"
+valign = 1
+autowrap = true
+script = ExtResource( 8 )
+translationKey = "BUTTON_BagHotswapping"
+
+[node name="bag_hotswapping" parent="Sheet" instance=ExtResource( 22 )]
+margin_left = 55.0
+margin_top = 484.0
+margin_right = 511.0
+margin_bottom = 546.0
+rect_min_size = Vector2( 456, 62 )
+text = ""
+maxSize = 456.0
+
+[node name="StatIconsLabel" type="Label" parent="Sheet"]
+margin_left = 116.0
+margin_top = 642.0
+margin_right = 541.0
+margin_bottom = 681.0
+grow_vertical = 2
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_fonts/font = ExtResource( 23 )
+text = "Character Stat Icons"
+valign = 1
+autowrap = true
+script = ExtResource( 8 )
+translationKey = "BUTTON_StatIcons"
+
+[node name="stat_icons" parent="Sheet" instance=ExtResource( 22 )]
+margin_left = 55.0
+margin_top = 627.0
+margin_right = 392.0
+margin_bottom = 689.0
+text = ""
+
+[node name="BuffLabelsLabel" type="Label" parent="Sheet"]
+margin_left = 116.0
+margin_top = 708.0
+margin_right = 549.0
+margin_bottom = 747.0
+grow_vertical = 2
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_fonts/font = ExtResource( 23 )
+text = "Buff/Debuff Labels"
+valign = 1
+autowrap = true
+script = ExtResource( 8 )
+translationKey = "BUTTON_BuffLabels"
+
+[node name="buff_labels" parent="Sheet" instance=ExtResource( 22 )]
+margin_left = 55.0
+margin_top = 697.0
+margin_right = 534.0
+margin_bottom = 759.0
+text = ""
+
+[node name="TextEffectsLabel" type="Label" parent="Sheet"]
+margin_left = 116.0
+margin_top = 777.0
+margin_right = 549.0
+margin_bottom = 816.0
+grow_vertical = 2
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_fonts/font = ExtResource( 23 )
+text = "Text animation"
+valign = 1
+autowrap = true
+script = ExtResource( 8 )
+translationKey = "BUTTON_TextEffects"
+
+[node name="text_effects" parent="Sheet" instance=ExtResource( 22 )]
+margin_left = 55.0
+margin_top = 766.0
+margin_right = 534.0
+margin_bottom = 828.0
+text = ""
+
+[node name="damage_numbers" parent="Sheet" groups=["Localized"] instance=ExtResource( 20 )]
+margin_left = 53.0
+margin_top = 555.0
+margin_right = 493.0
+margin_bottom = 606.0
+text = "Show Numbers"
+icon = ExtResource( 13 )
+OPTION = "BUTTON_DamageNumbers"
+translate = true
+warpPointXFactor = 0.1
+
+[node name="SteamButton" parent="Sheet" instance=ExtResource( 6 )]
+visible = false
+margin_left = 197.0
+margin_top = 137.0
+margin_right = 531.0
+margin_bottom = 210.0
+custom_fonts/font = SubResource( 296 )
+localize = false
+
+[node name="language" parent="Sheet" instance=ExtResource( 20 )]
+margin_left = 46.0
+margin_top = 83.0
+margin_right = 278.0
+margin_bottom = 134.0
+text = "Language"
+icon = ExtResource( 13 )
+OPTION = "BUTTON_Language"
+warpPointXFactor = 0.1
+
+[node name="LanguageHint" type="Node2D" parent="Sheet"]
+visible = false
+
+[node name="Sheet" type="Sprite" parent="Sheet/LanguageHint"]
+position = Vector2( 283.963, 779.363 )
+rotation = 1.5708
+scale = Vector2( 0.466958, 0.759257 )
+texture = ExtResource( 33 )
+
+[node name="Label" type="Label" parent="Sheet/LanguageHint"]
+margin_left = 46.7236
+margin_top = 632.0
+margin_right = 533.725
+margin_bottom = 922.0
+custom_colors/font_color = Color( 0.24, 0.15, 0.11, 1 )
+custom_fonts/font = SubResource( 294 )
+text = "Due to Backpack Battles being in the demo stage, text changes are frequent, making it difficult to keep up with real-time localization. Full localization will be provided upon full release."
+align = 1
+valign = 1
+autowrap = true
+script = ExtResource( 8 )
+translationKey = "Hint_DemoDisclaimer"
+
+[node name="Keybinds" type="Node2D" parent="Sheet"]
+
+[node name="Divider3" type="Sprite" parent="Sheet/Keybinds"]
+position = Vector2( 1179.21, 560.844 )
+rotation = 1.5708
+scale = Vector2( 3.40572, 0.658705 )
+texture = ExtResource( 9 )
+
+[node name="SectionHeader" type="Label" parent="Sheet/Keybinds"]
+margin_left = 1420.0
+margin_top = 51.0
+margin_right = 1645.0
+margin_bottom = 90.0
+grow_horizontal = 2
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_fonts/font = ExtResource( 23 )
+text = "Input"
+align = 1
+script = ExtResource( 8 )
+translationKey = "UI_Input"
+
+[node name="Divider2" type="Sprite" parent="Sheet/Keybinds"]
+position = Vector2( 1535, 94 )
+scale = Vector2( 1, 0.500001 )
+texture = ExtResource( 9 )
+
+[node name="InputBlocker" type="Control" parent="Sheet/Keybinds"]
+visible = false
+margin_left = 1200.0
+margin_top = 138.0
+margin_right = 1874.0
+margin_bottom = 928.0
+
+[node name="Keyboard" type="Node2D" parent="Sheet/Keybinds"]
+position = Vector2( -16, 0 )
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Sheet/Keybinds/Keyboard"]
+margin_left = 1209.0
+margin_top = 147.0
+margin_right = 1927.0
+margin_bottom = 901.0
+mouse_filter = 1
+theme = ExtResource( 25 )
+script = ExtResource( 24 )
+
+[node name="MarginContainer" type="MarginContainer" parent="Sheet/Keybinds/Keyboard/ScrollContainer"]
+margin_right = 670.0
+margin_bottom = 1094.0
+custom_constants/margin_left = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Sheet/Keybinds/Keyboard/ScrollContainer/MarginContainer"]
+margin_left = 3.0
+margin_right = 670.0
+margin_bottom = 1094.0
+
+[node name="rotate_right_button" parent="Sheet/Keybinds/Keyboard/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 39 )]
+margin_bottom = 50.0
+
+[node name="rotate_left_button" parent="Sheet/Keybinds/Keyboard/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 39 )]
+margin_top = 58.0
+margin_bottom = 108.0
+
+[node name="lock_combining" parent="Sheet/Keybinds/Keyboard/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 39 )]
+margin_top = 116.0
+margin_bottom = 166.0
+
+[node name="reroll" parent="Sheet/Keybinds/Keyboard/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 39 )]
+margin_top = 174.0
+margin_bottom = 224.0
+
+[node name="shift_up" parent="Sheet/Keybinds/Keyboard/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 39 )]
+margin_top = 232.0
+margin_bottom = 282.0
+
+[node name="shift_left" parent="Sheet/Keybinds/Keyboard/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 39 )]
+margin_top = 290.0
+margin_bottom = 340.0
+
+[node name="shift_down" parent="Sheet/Keybinds/Keyboard/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 39 )]
+margin_top = 348.0
+margin_bottom = 398.0
+
+[node name="shift_right" parent="Sheet/Keybinds/Keyboard/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 39 )]
+margin_top = 406.0
+margin_bottom = 456.0
+
+[node name="start_battle" parent="Sheet/Keybinds/Keyboard/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 39 )]
+margin_top = 464.0
+margin_bottom = 514.0
+
+[node name="push_to_storage" parent="Sheet/Keybinds/Keyboard/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 39 )]
+margin_top = 522.0
+margin_bottom = 572.0
+
+[node name="toggle_grid_storage" parent="Sheet/Keybinds/Keyboard/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 39 )]
+margin_top = 580.0
+margin_bottom = 630.0
+
+[node name="edit_all" parent="Sheet/Keybinds/Keyboard/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 39 )]
+margin_top = 638.0
+margin_bottom = 688.0
+
+[node name="edit_bags" parent="Sheet/Keybinds/Keyboard/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 39 )]
+margin_top = 696.0
+margin_bottom = 746.0
+
+[node name="edit_items" parent="Sheet/Keybinds/Keyboard/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 39 )]
+margin_top = 754.0
+margin_bottom = 804.0
+
+[node name="undo" parent="Sheet/Keybinds/Keyboard/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 39 )]
+margin_top = 812.0
+margin_bottom = 862.0
+
+[node name="redo" parent="Sheet/Keybinds/Keyboard/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 39 )]
+margin_top = 870.0
+margin_bottom = 920.0
+
+[node name="show_hints" parent="Sheet/Keybinds/Keyboard/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 39 )]
+margin_top = 928.0
+margin_bottom = 978.0
+
+[node name="push_all_to_storage" parent="Sheet/Keybinds/Keyboard/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 39 )]
+margin_top = 986.0
+margin_bottom = 1036.0
+
+[node name="open_library" parent="Sheet/Keybinds/Keyboard/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 39 )]
+margin_top = 1044.0
+margin_bottom = 1094.0
+
+[node name="Controller" type="Node2D" parent="Sheet/Keybinds"]
+visible = false
+position = Vector2( -16, 0 )
+
+[node name="Control" type="Control" parent="Sheet/Keybinds/Controller"]
+margin_left = 1198.0
+margin_top = 811.0
+margin_right = 1548.0
+margin_bottom = 911.0
+rect_min_size = Vector2( 350, 100 )
+
+[node name="CursorSpeedLabel" type="Label" parent="Sheet/Keybinds/Controller/Control"]
+margin_left = 11.0
+margin_top = 24.0
+margin_right = 236.0
+margin_bottom = 63.0
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_fonts/font = ExtResource( 23 )
+text = "Cursor Speed"
+script = ExtResource( 8 )
+translationKey = "BUTTON_CursorSpeed"
+
+[node name="CursorSpeed" type="Label" parent="Sheet/Keybinds/Controller/Control"]
+margin_left = 253.0
+margin_top = 59.0
+margin_right = 313.0
+margin_bottom = 98.0
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_fonts/font = ExtResource( 23 )
+text = "1.0"
+script = ExtResource( 30 )
+
+[node name="cursor_speed" parent="Sheet/Keybinds/Controller/Control" instance=ExtResource( 21 )]
+margin_left = 5.0
+margin_top = 55.0
+margin_right = 590.0
+margin_bottom = 146.0
+rect_scale = Vector2( 0.4, 0.5 )
+custom_styles/slider = SubResource( 1 )
+custom_styles/grabber_area_highlight = SubResource( 2 )
+custom_styles/grabber_area = SubResource( 3 )
+min_value = 0.5
+value = 1.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Sheet/Keybinds/Controller"]
+margin_left = 1198.0
+margin_top = 112.0
+margin_right = 1931.0
+margin_bottom = 811.0
+mouse_filter = 1
+theme = ExtResource( 25 )
+script = ExtResource( 24 )
+
+[node name="GridContainer" type="GridContainer" parent="Sheet/Keybinds/Controller/ScrollContainer"]
+margin_right = 708.0
+margin_bottom = 991.0
+custom_constants/vseparation = -1
+columns = 2
+
+[node name="grab_item" parent="Sheet/Keybinds/Controller/ScrollContainer/GridContainer" instance=ExtResource( 40 )]
+
+[node name="ui_accept" parent="Sheet/Keybinds/Controller/ScrollContainer/GridContainer" instance=ExtResource( 40 )]
+margin_left = 358.0
+margin_right = 708.0
+addControllerTag = false
+
+[node name="rotate_right_button" parent="Sheet/Keybinds/Controller/ScrollContainer/GridContainer" instance=ExtResource( 40 )]
+margin_top = 99.0
+margin_bottom = 199.0
+
+[node name="rotate_left_button" parent="Sheet/Keybinds/Controller/ScrollContainer/GridContainer" instance=ExtResource( 40 )]
+margin_left = 358.0
+margin_top = 99.0
+margin_right = 708.0
+margin_bottom = 199.0
+
+[node name="lock_combining" parent="Sheet/Keybinds/Controller/ScrollContainer/GridContainer" instance=ExtResource( 40 )]
+margin_top = 198.0
+margin_bottom = 298.0
+
+[node name="reroll" parent="Sheet/Keybinds/Controller/ScrollContainer/GridContainer" instance=ExtResource( 40 )]
+margin_left = 358.0
+margin_top = 198.0
+margin_right = 708.0
+margin_bottom = 298.0
+
+[node name="shift_up" parent="Sheet/Keybinds/Controller/ScrollContainer/GridContainer" instance=ExtResource( 40 )]
+margin_top = 297.0
+margin_bottom = 397.0
+
+[node name="shift_down" parent="Sheet/Keybinds/Controller/ScrollContainer/GridContainer" instance=ExtResource( 40 )]
+margin_left = 358.0
+margin_top = 297.0
+margin_right = 708.0
+margin_bottom = 397.0
+
+[node name="shift_left" parent="Sheet/Keybinds/Controller/ScrollContainer/GridContainer" instance=ExtResource( 40 )]
+margin_top = 396.0
+margin_bottom = 496.0
+
+[node name="shift_right" parent="Sheet/Keybinds/Controller/ScrollContainer/GridContainer" instance=ExtResource( 40 )]
+margin_left = 358.0
+margin_top = 396.0
+margin_right = 708.0
+margin_bottom = 496.0
+
+[node name="push_all_to_storage" parent="Sheet/Keybinds/Controller/ScrollContainer/GridContainer" instance=ExtResource( 40 )]
+margin_top = 495.0
+margin_bottom = 595.0
+
+[node name="start_battle" parent="Sheet/Keybinds/Controller/ScrollContainer/GridContainer" instance=ExtResource( 40 )]
+margin_left = 358.0
+margin_top = 495.0
+margin_right = 708.0
+margin_bottom = 595.0
+
+[node name="undo" parent="Sheet/Keybinds/Controller/ScrollContainer/GridContainer" instance=ExtResource( 40 )]
+margin_top = 594.0
+margin_bottom = 694.0
+
+[node name="redo" parent="Sheet/Keybinds/Controller/ScrollContainer/GridContainer" instance=ExtResource( 40 )]
+margin_left = 358.0
+margin_top = 594.0
+margin_right = 708.0
+margin_bottom = 694.0
+
+[node name="edit_all" parent="Sheet/Keybinds/Controller/ScrollContainer/GridContainer" instance=ExtResource( 40 )]
+margin_top = 693.0
+margin_bottom = 793.0
+
+[node name="edit_bags" parent="Sheet/Keybinds/Controller/ScrollContainer/GridContainer" instance=ExtResource( 40 )]
+margin_left = 358.0
+margin_top = 693.0
+margin_right = 708.0
+margin_bottom = 793.0
+
+[node name="edit_items" parent="Sheet/Keybinds/Controller/ScrollContainer/GridContainer" instance=ExtResource( 40 )]
+margin_top = 792.0
+margin_bottom = 892.0
+
+[node name="show_hints" parent="Sheet/Keybinds/Controller/ScrollContainer/GridContainer" instance=ExtResource( 40 )]
+margin_left = 358.0
+margin_top = 792.0
+margin_right = 708.0
+margin_bottom = 892.0
+
+[node name="open_library" parent="Sheet/Keybinds/Controller/ScrollContainer/GridContainer" instance=ExtResource( 40 )]
+margin_top = 891.0
+margin_bottom = 991.0
+
+[node name="push_to_storage" parent="Sheet/Keybinds/Controller/ScrollContainer/GridContainer" instance=ExtResource( 40 )]
+margin_left = 358.0
+margin_top = 891.0
+margin_right = 708.0
+margin_bottom = 991.0
+
+[node name="Credits" type="Node2D" parent="."]
+visible = false
+position = Vector2( 0, -1100 )
+
+[node name="CreditsSheet" type="Sprite" parent="Credits"]
+position = Vector2( 981, 537.5 )
+scale = Vector2( 1.22508, 1.12166 )
+texture = ExtResource( 33 )
+
+[node name="Label4" type="Label" parent="Credits"]
+margin_left = 882.0
+margin_top = 195.0
+margin_right = 1027.0
+margin_bottom = 227.0
+custom_colors/font_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+custom_colors/font_color_shadow = Color( 0.235294, 0.14902, 0.113725, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 0
+custom_fonts/font = SubResource( 16 )
+text = "Credits"
+align = 1
+valign = 1
+script = ExtResource( 8 )
+translationKey = "BUTTON_Credits"
+
+[node name="Divider2" type="Sprite" parent="Credits"]
+position = Vector2( 957, 239 )
+scale = Vector2( 1, 0.500001 )
+texture = ExtResource( 9 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Credits"]
+margin_left = 741.0
+margin_top = 275.0
+margin_right = 1231.0
+margin_bottom = 782.0
+theme = SubResource( 232 )
+custom_colors/default_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+custom_fonts/bold_font = SubResource( 161 )
+custom_fonts/normal_font = SubResource( 162 )
+bbcode_enabled = true
+bbcode_text = "[center][b]Programming & Design[/b]
+PlayWithFurcifer
+
+[b]Art[/b]
+PlayWithFurcifer
+
+[b]Music[/b]
+Fabian Ruch
+Chris Gruchacz
+alkakrab
+
+[b]Sound Effects[/b]
+zapsplat.com
+
+[b]Publishing Partner - IndieArk[/b]
+Fear Ding
+Amber Xiong
+Fu Xiaochen
+Qin Wen
+Huang Sirong
+StickyZ
+Vincent Yu
+PunkDeer
+Lucinda Pan
+Kevin Ye
+Chun L
+Avdotya Ivanova
+Blair Zhang
+Leo Xu
+
+[b]Localization[/b]
+- Chinese -
+Fu XiaoChen
+
+- Traditional Chinese -
+Alfred Lu
+
+- Japanese -
+Nana Itoh
+Soichiro Arai
+
+- Korean -
+Fissh
+
+- German -
+PlayWithFurcifer
+
+- Latin American Spanish -
+Antonio González Quintas
+David Guillem
+
+- Brazilian Portuguese -
+Mariana Ribeiro
+Wilhem Mauricio
+
+- French -
+Alex Grocaut
+Sarah Chanteau
+
+- Russian -
+Chugaeva AnnA
+Sergey Emelianov
+
+[b]Promotional Art[/b]
+Key Visual by Aki Yehuo
+
+[b]Special Thanks[/b]
+Gnump
+riSygneD
+Deventide
+Toxicity
+
+This game uses [b]Godot Engine[/b], available under the following license:
+
+Copyright (c) 2014-present Godot Engine contributors. Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Godot uses ENet:
+Copyright (c) 2002-2020 Lee Salzman
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Godot uses mbed TLS:
+Copyright The Mbed TLS Contributors
+
+Licensed under the Apache License, Version 2.0 (the \"License\"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License."
+text = "Programming & Design
+PlayWithFurcifer
+
+Art
+PlayWithFurcifer
+
+Music
+Fabian Ruch
+Chris Gruchacz
+alkakrab
+
+Sound Effects
+zapsplat.com
+
+Publishing Partner - IndieArk
+Fear Ding
+Amber Xiong
+Fu Xiaochen
+Qin Wen
+Huang Sirong
+StickyZ
+Vincent Yu
+PunkDeer
+Lucinda Pan
+Kevin Ye
+Chun L
+Avdotya Ivanova
+Blair Zhang
+Leo Xu
+
+Localization
+- Chinese -
+Fu XiaoChen
+
+- Traditional Chinese -
+Alfred Lu
+
+- Japanese -
+Nana Itoh
+Soichiro Arai
+
+- Korean -
+Fissh
+
+- German -
+PlayWithFurcifer
+
+- Latin American Spanish -
+Antonio González Quintas
+David Guillem
+
+- Brazilian Portuguese -
+Mariana Ribeiro
+Wilhem Mauricio
+
+- French -
+Alex Grocaut
+Sarah Chanteau
+
+- Russian -
+Chugaeva AnnA
+Sergey Emelianov
+
+Promotional Art
+Key Visual by Aki Yehuo
+
+Special Thanks
+Gnump
+riSygneD
+Deventide
+Toxicity
+
+This game uses Godot Engine, available under the following license:
+
+Copyright (c) 2014-present Godot Engine contributors. Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Godot uses ENet:
+Copyright (c) 2002-2020 Lee Salzman
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Godot uses mbed TLS:
+Copyright The Mbed TLS Contributors
+
+Licensed under the Apache License, Version 2.0 (the \"License\"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License."
+
+[node name="CloseCreditsButton" type="Button" parent="Credits"]
+margin_left = 837.0
+margin_top = 829.0
+margin_right = 1092.0
+margin_bottom = 887.0
+mouse_default_cursor_shape = 2
+custom_colors/font_color_disabled = Color( 1, 0.92549, 0.831373, 1 )
+custom_colors/font_color_focus = Color( 1, 0.890196, 0.215686, 1 )
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_colors/font_color_hover = Color( 1, 0.890196, 0.215686, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.92549, 0.831373, 1 )
+custom_fonts/font = ExtResource( 23 )
+custom_styles/focus = ExtResource( 10 )
+text = "Close"
+flat = true
+script = ExtResource( 19 )
+translationKey = "BUTTON_Close"
+
+[connection signal="pressed" from="Sheet/TitleButton" to="." method="onTitlePressed"]
+[connection signal="pressed" from="Sheet/CloseLobbyButton" to="." method="onCloseLobbyButtonPressed"]
+[connection signal="pressed" from="Sheet/CreditsButton" to="." method="_on_CreditsButton_pressed"]
+[connection signal="pressed" from="Sheet/CloseButton" to="." method="close"]
+[connection signal="toggled" from="Sheet/opponent_chibis" to="." method="onChibiButtonToggled"]
+[connection signal="value_changed" from="Sheet/combat_speed" to="Sheet/CombatSpeedLabel2" method="updateLabel"]
+[connection signal="value_changed" from="Sheet/cursor_size" to="Sheet/CursorSizeLabel2" method="updateLabel"]
+[connection signal="value_changed" from="Sheet/pick_offset" to="Sheet/PickOffsetLabel2" method="updateLabel"]
+[connection signal="item_selected" from="Sheet/resolution" to="." method="onResolutionSelected"]
+[connection signal="item_selected" from="Sheet/window_mode" to="." method="onWindowModeSelected"]
+[connection signal="item_selected" from="Sheet/damage_numbers" to="." method="onDamageNumberModeSelected"]
+[connection signal="item_selected" from="Sheet/language" to="." method="onLanguageSelected"]
+[connection signal="value_changed" from="Sheet/Keybinds/Controller/Control/cursor_speed" to="Sheet/Keybinds/Controller/Control/CursorSpeed" method="updateLabel"]
+[connection signal="pressed" from="Credits/CloseCreditsButton" to="." method="_on_CloseCreditsButton_pressed"]

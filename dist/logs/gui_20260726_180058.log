@@ -1,0 +1,53 @@
+18:01:06 [INFO] 正在查找游戏窗口...
+18:01:06 [INFO] 找到窗口: Backpack Battles (PID=2912, 0x0)
+18:01:06 [INFO] 正在连接进程 PID=2912...
+18:01:06 [INFO] [结构] 已启用 Godot 直接读取（无需手动校准）
+18:01:07 [INFO] ✓ 初始化完成
+18:01:07 [INFO] 内存数值需要手动校准（单轮自动扫描不可靠）。
+18:01:07 [INFO] 请在「内存校准」面板输入游戏中实际看到的数值进行扫描与缩小。
+18:01:52 [INFO] ==================================================
+18:01:52 [INFO] 背包乱斗 AI 机器人启动（外置模式）
+18:01:52 [INFO] ==================================================
+18:01:52 [INFO] --- 第 2 回合 ---
+18:01:52 [INFO] HP: 4/5 金币: 11
+18:01:52 [INFO] 启发式决策: 4 步 (金币=11, 储存=0)
+18:01:52 [INFO] AI 决策: 4 步操作 — ['buy', 'buy', 'place', 'place']
+18:01:52 [INFO] [购买] 商店槽位 0 → 屏幕坐标 (-32000, -31969)
+18:01:52 [ERROR] 运行错误: PyAutoGUI fail-safe triggered from mouse moving to a corner of the screen. To disable this fail-safe, set pyautogui.FAILSAFE to False. DISABLING FAIL-SAFE IS NOT RECOMMENDED.
+18:01:52 [ERROR] Traceback (most recent call last):
+  File "core\bot.py", line 434, in start
+  File "core\bot.py", line 327, in run_round
+  File "core\bot.py", line 366, in _execute_action
+  File "core\actions.py", line 81, in buy_item
+  File "core\actions.py", line 40, in _click
+  File "core\actions.py", line 36, in _move_to
+  File "pyautogui\__init__.py", line 594, in wrapper
+  File "pyautogui\__init__.py", line 1288, in moveTo
+  File "pyautogui\__init__.py", line 1514, in _mouseMoveDrag
+  File "pyautogui\__init__.py", line 1734, in failSafeCheck
+pyautogui.FailSafeException: PyAutoGUI fail-safe triggered from mouse moving to a corner of the screen. To disable this fail-safe, set pyautogui.FAILSAFE to False. DISABLING FAIL-SAFE IS NOT RECOMMENDED.
+
+18:01:52 [INFO] 机器人已停止
+18:01:58 [INFO] ==================================================
+18:01:58 [INFO] 背包乱斗 AI 机器人启动（外置模式）
+18:01:58 [INFO] ==================================================
+18:01:58 [INFO] --- 第 2 回合 ---
+18:01:58 [INFO] HP: 4/5 金币: 11
+18:01:58 [INFO] 启发式决策: 4 步 (金币=11, 储存=0)
+18:01:58 [INFO] AI 决策: 4 步操作 — ['buy', 'buy', 'place', 'place']
+18:01:58 [INFO] [购买] 商店槽位 0 → 屏幕坐标 (-32000, -31969)
+18:01:58 [ERROR] 运行错误: PyAutoGUI fail-safe triggered from mouse moving to a corner of the screen. To disable this fail-safe, set pyautogui.FAILSAFE to False. DISABLING FAIL-SAFE IS NOT RECOMMENDED.
+18:01:58 [ERROR] Traceback (most recent call last):
+  File "core\bot.py", line 434, in start
+  File "core\bot.py", line 327, in run_round
+  File "core\bot.py", line 366, in _execute_action
+  File "core\actions.py", line 81, in buy_item
+  File "core\actions.py", line 40, in _click
+  File "core\actions.py", line 36, in _move_to
+  File "pyautogui\__init__.py", line 594, in wrapper
+  File "pyautogui\__init__.py", line 1288, in moveTo
+  File "pyautogui\__init__.py", line 1514, in _mouseMoveDrag
+  File "pyautogui\__init__.py", line 1734, in failSafeCheck
+pyautogui.FailSafeException: PyAutoGUI fail-safe triggered from mouse moving to a corner of the screen. To disable this fail-safe, set pyautogui.FAILSAFE to False. DISABLING FAIL-SAFE IS NOT RECOMMENDED.
+
+18:01:58 [INFO] 机器人已停止

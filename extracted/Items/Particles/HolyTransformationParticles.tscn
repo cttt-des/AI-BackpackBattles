@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Utility/PooledScene.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Particles/GlowingDot_small.png" type="Texture" id=2]
+[ext_resource path="res://Items/Particles/HolyTransformationParticles.material" type="Material" id=3]
+
+[node name="HolyParticles" type="Particles2D"]
+modulate = Color( 1.2, 1.2, 1.2, 1 )
+self_modulate = Color( 1.6, 1.50196, 1, 0.937255 )
+z_index = 1
+emitting = false
+amount = 13
+lifetime = 0.5
+one_shot = true
+speed_scale = 1.21
+explosiveness = 0.66
+local_coords = false
+process_material = ExtResource( 3 )
+texture = ExtResource( 2 )
+script = ExtResource( 1 )

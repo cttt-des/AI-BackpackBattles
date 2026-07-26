@@ -1,0 +1,31 @@
+[gd_resource type="ShaderMaterial" load_steps=7 format=2]
+
+[ext_resource path="res://Assets/Noise/RuneNoise.png" type="Texture" id=1]
+[ext_resource path="res://Shader/Laser.shader" type="Shader" id=2]
+[ext_resource path="res://Shader/CatalystBondCurve.tres" type="Curve" id=3]
+
+[sub_resource type="Gradient" id=7]
+offsets = PoolRealArray( 0.414062, 0.46568, 0.523438 )
+colors = PoolColorArray( 0, 1, 0.132813, 0, 0.0644531, 1, 0.375084, 1, 0.703125, 1, 0.798218, 1 )
+
+[sub_resource type="GradientTexture" id=8]
+gradient = SubResource( 7 )
+width = 100
+
+[sub_resource type="CurveTexture" id=10]
+width = 100
+curve = ExtResource( 3 )
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource( 2 )
+shader_param/wobbliness = 0.186
+shader_param/centralityFactor = 3.039
+shader_param/scroll1 = Vector2( 0.044, 0.01 )
+shader_param/scroll2 = Vector2( 0.03, 0 )
+shader_param/yStretch = 0.2617
+shader_param/xStretch = 0.762
+shader_param/gradient = SubResource( 8 )
+shader_param/thicknessCurve = SubResource( 10 )
+shader_param/NOISE_PATTERN = ExtResource( 1 )
+shader_param/NOISE_PATTERN2 = ExtResource( 1 )

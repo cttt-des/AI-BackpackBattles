@@ -1,0 +1,6 @@
+[gd_resource type="PhysicsMaterial" format=2]
+
+[resource]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7

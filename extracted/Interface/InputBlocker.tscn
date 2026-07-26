@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Interface/InputBlocker.gd" type="Script" id=1]
+[ext_resource path="res://Interface/InputEaterRect.gd" type="Script" id=2]
+
+[node name="InputBlocker" type="Node2D"]
+pause_mode = 2
+script = ExtResource( 1 )
+
+[node name="Rect" type="Control" parent="."]
+visible = false
+margin_right = 1920.0
+margin_bottom = 1080.0
+script = ExtResource( 2 )

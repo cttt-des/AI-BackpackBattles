@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Utility/PooledScene.gd" type="Script" id=1]
+[ext_resource path="res://Items/Particles/HungryBladeActivationParticles.material" type="Material" id=2]
+[ext_resource path="res://Assets/Particles/GlowingDot_small.png" type="Texture" id=3]
+
+[node name="ActivationParticles" type="Particles2D"]
+modulate = Color( 3, 3, 4, 1 )
+position = Vector2( 0, 212 )
+z_index = 2
+emitting = false
+amount = 9
+lifetime = 0.7
+one_shot = true
+speed_scale = 0.79
+explosiveness = 1.0
+local_coords = false
+process_material = ExtResource( 2 )
+texture = ExtResource( 3 )
+script = ExtResource( 1 )
