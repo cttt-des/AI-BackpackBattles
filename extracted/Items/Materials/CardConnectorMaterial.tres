@@ -1,0 +1,53 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Noise/SparkleNoise.png" type="Texture" id=1]
+
+[sub_resource type="Shader" id=5]
+code = "shader_type canvas_item;
+
+uniform float wobbliness : hint_range(0, 5) = 0.5;
+
+uniform sampler2D gradient;
+
+uniform sampler2D NOISE_PATTERN;
+uniform sampler2D NOISE_PATTERN2;
+
+uniform vec2 scroll1 = vec2(1 , 0.4);
+uniform vec2 scroll2 = vec2(0.2, 1.2);
+
+uniform float noise1Scale : hint_range(0.0, 10.0) = 1.0;
+uniform float noise2Scale : hint_range(0.0, 10.0) = 1.0;
+
+// MODULATE.a - revealFactor
+// MODULATE.r - high modulate
+// MODULATE.g - time offset
+
+void fragment() {
+	float adjustedTime = TIME * MODULATE.g;
+	float intensity1 = texture(NOISE_PATTERN, UV * noise1Scale + adjustedTime * scroll1).r;
+	float intensity2 = texture(NOISE_PATTERN2, UV * noise2Scale + adjustedTime * scroll2).r;
+	float intensity = (intensity1 * intensity2);
+	float texAlpha = texture(TEXTURE, UV).a;
+	COLOR = texture(gradient, vec2(intensity * texAlpha * wobbliness * MODULATE.a));
+	COLOR.rgb *= MODULATE.r;
+}"
+
+[sub_resource type="Gradient" id=16]
+offsets = PoolRealArray( 0, 0.0362903, 0.173387, 0.883065, 1 )
+colors = PoolColorArray( 0, 0.145098, 0.47451, 0, 0.0493469, 0.310691, 0.902344, 0.780392, 0.259254, 0.43121, 0.550781, 1, 0.688213, 0.891253, 0.970703, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=8]
+gradient = SubResource( 16 )
+width = 100
+
+[resource]
+resource_local_to_scene = true
+shader = SubResource( 5 )
+shader_param/wobbliness = 3.5
+shader_param/scroll1 = Vector2( 0.0033, 0.2253 )
+shader_param/scroll2 = Vector2( -0.0117, 0.3423 )
+shader_param/noise1Scale = 0.505
+shader_param/noise2Scale = 0.733
+shader_param/gradient = SubResource( 8 )
+shader_param/NOISE_PATTERN = ExtResource( 1 )
+shader_param/NOISE_PATTERN2 = ExtResource( 1 )

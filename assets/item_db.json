@@ -1,0 +1,9394 @@
+{
+ "Ace of Spades": {
+  "key": "AceofSpades",
+  "zh": "黑桃A",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "AceofSpades.png"
+ },
+ "Acorn Collar": {
+  "key": "AcornCollar",
+  "zh": "橡子颈圈",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "AcornCollar.png"
+ },
+ "Artifact Stone Cold": {
+  "key": "ArtifactStoneCold",
+  "zh": "遗迹石：寒冷",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "ArtifactStoneCold.png"
+ },
+ "Artifact Stone Heat": {
+  "key": "ArtifactStoneHeat",
+  "zh": "遗迹石：火焰",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "ArtifactStoneHeat.png"
+ },
+ "Bag of Stones": {
+  "key": "BagofStones",
+  "zh": "一袋石头",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "BagofStones.png"
+ },
+ "Banana": {
+  "key": "Banana",
+  "zh": "香蕉",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -63.0,
+    -99.0
+   ],
+   [
+    -63.0,
+    -19.0
+   ],
+   [
+    17.0,
+    -19.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Banana.png"
+ },
+ "Blood Amulet": {
+  "key": "BloodAmulet",
+  "zh": "血色护符",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "BloodAmulet.png"
+ },
+ "Blood Goobert": {
+  "key": "BloodGoobert",
+  "zh": "血之黏黏",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -80.0
+   ],
+   [
+    0.0,
+    -80.0
+   ],
+   [
+    -80.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "BloodGoobert.png"
+ },
+ "Bloodthorne": {
+  "key": "Bloodthorne",
+  "zh": "血棘",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -120.0
+   ],
+   [
+    -40.0,
+    -40.0
+   ],
+   [
+    -40.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Bloodthorne.png"
+ },
+ "Bloody Dagger": {
+  "key": "BloodyDagger",
+  "zh": "吸血匕首",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "BloodyDagger.png"
+ },
+ "Blueberries": {
+  "key": "Blueberries",
+  "zh": "蓝莓",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Blueberries.png"
+ },
+ "Bow and Arrow": {
+  "key": "BowandArrow",
+  "zh": "弓箭",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -120.0
+   ],
+   [
+    -120.0,
+    -40.0
+   ],
+   [
+    -40.0,
+    -40.0
+   ],
+   [
+    40.0,
+    -40.0
+   ],
+   [
+    -40.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "BowandArrow.png"
+ },
+ "Box of Riches": {
+  "key": "BoxofRiches",
+  "zh": "宝石盒",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "BoxofRiches.png"
+ },
+ "Broom": {
+  "key": "Broom",
+  "zh": "扫把",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -160.0
+   ],
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ],
+   [
+    -40.0,
+    80.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Broom.png"
+ },
+ "Burning Torch": {
+  "key": "BurningTorch",
+  "zh": "燃烧火把",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "BurningTorch.png"
+ },
+ "Carrot": {
+  "key": "Carrot",
+  "zh": "萝卜",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Carrot.png"
+ },
+ "Carrot Goobert": {
+  "key": "CarrotGoobert",
+  "zh": "萝卜头黏黏",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -80.0
+   ],
+   [
+    0.0,
+    -80.0
+   ],
+   [
+    -80.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "CarrotGoobert.png"
+ },
+ "Claws of Attack": {
+  "key": "ClawsofAttack",
+  "zh": "攻击之爪",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "ClawsofAttack.png"
+ },
+ "Coins": {
+  "key": "Coins",
+  "zh": "一堆金币",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Coins.png"
+ },
+ "Corrupted Armor": {
+  "key": "CorruptedArmor",
+  "zh": "腐败护甲",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -120.0
+   ],
+   [
+    0.0,
+    -120.0
+   ],
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ],
+   [
+    -80.0,
+    40.0
+   ],
+   [
+    0.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "CorruptedArmor.png"
+ },
+ "Critwood Staff": {
+  "key": "CritwoodStaff",
+  "zh": "暴击法杖",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -160.0
+   ],
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ],
+   [
+    -40.0,
+    80.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "CritwoodStaff.png"
+ },
+ "Crossblades": {
+  "key": "Crossblades",
+  "zh": "十字剑",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -120.0
+   ],
+   [
+    -120.0,
+    -40.0
+   ],
+   [
+    -40.0,
+    -40.0
+   ],
+   [
+    40.0,
+    -40.0
+   ],
+   [
+    -40.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Crossblades.png"
+ },
+ "Crown": {
+  "key": "Crown",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Crown.png"
+ },
+ "Cursed Dagger": {
+  "key": "CursedDagger",
+  "zh": "诅咒匕首",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "CursedDagger.png"
+ },
+ "Cursed Hair Comb": {
+  "key": "CursedHairComb",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "CursedHairComb.png"
+ },
+ "Customer Card": {
+  "key": "CustomerCard",
+  "zh": "会员卡",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "CustomerCard.png"
+ },
+ "Dagger": {
+  "key": "Dagger",
+  "zh": "匕首",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Dagger.png"
+ },
+ "Dancing Dragon": {
+  "key": "DancingDragon",
+  "zh": "舞龙",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -80.0
+   ],
+   [
+    0.0,
+    -80.0
+   ],
+   [
+    80.0,
+    -80.0
+   ],
+   [
+    -160.0,
+    0.0
+   ],
+   [
+    -80.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "DancingDragon.png"
+ },
+ "Darkest Lotus": {
+  "key": "DarkestLotus",
+  "zh": "黑暗莲花",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "DarkestLotus.png"
+ },
+ "Darksaber": {
+  "key": "Darksaber",
+  "zh": "黑暗剑",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -160.0
+   ],
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ],
+   [
+    -40.0,
+    80.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Darksaber.png"
+ },
+ "Death Scythe": {
+  "key": "DeathScythe",
+  "zh": "死神镰刀",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -160.0
+   ],
+   [
+    40.0,
+    -160.0
+   ],
+   [
+    120.0,
+    -160.0
+   ],
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ],
+   [
+    -40.0,
+    80.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "DeathScythe.png"
+ },
+ "Deck of Cards": {
+  "key": "DeckofCards",
+  "zh": "牌堆",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "DeckofCards.png"
+ },
+ "Demonic Flask": {
+  "key": "DemonicFlask",
+  "zh": "恶魔烧瓶",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "DemonicFlask.png"
+ },
+ "Djinn Lamp": {
+  "key": "DjinnLamp",
+  "zh": "阿拉丁神灯",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "DjinnLamp.png"
+ },
+ "Eggscalibur": {
+  "key": "Eggscalibur",
+  "zh": "荷包蛋圣锅",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    40.0,
+    -80.0
+   ],
+   [
+    -120.0,
+    0.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Eggscalibur.png"
+ },
+ "Evil Cap": {
+  "key": "EvilCap",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "EvilCap.png"
+ },
+ "Acorn Ace": {
+  "key": "AcornAce",
+  "zh": "王牌橡子",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "AcornAce.png"
+ },
+ "Amethyst Egg": {
+  "key": "AmethystEgg",
+  "zh": "紫水晶龙蛋",
+  "is_bag": false,
+  "cell_px": [],
+  "slot_px": [],
+  "sprite": "AmethystEgg.png"
+ },
+ "Amethyst Whelp": {
+  "key": "AmethystWhelp",
+  "zh": "紫水晶幼龙",
+  "is_bag": false,
+  "cell_px": [],
+  "slot_px": [],
+  "sprite": "AmethystWhelp.png"
+ },
+ "Amulet Unidentified": {
+  "key": "AmuletofAgility",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "AmuletofAgility.png"
+ },
+ "Amulet of Alchemy": {
+  "key": "AmuletofAlchemy",
+  "zh": "炼金护符",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "AmuletofAlchemy.png"
+ },
+ "Amulet of Darkness": {
+  "key": "AmuletofDarkness",
+  "zh": "黑暗护符",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "AmuletofDarkness.png"
+ },
+ "Amulet of Feasting": {
+  "key": "AmuletofFeasting",
+  "zh": "食物护符",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "AmuletofFeasting.png"
+ },
+ "Amulet of Fortune": {
+  "key": "AmuletofFortune",
+  "zh": "财富护符",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "AmuletofFortune.png"
+ },
+ "Amulet of Life": {
+  "key": "AmuletofLife",
+  "zh": "生命护符",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "AmuletofLife.png"
+ },
+ "Amulet of Light": {
+  "key": "AmuletofLight",
+  "zh": "光明护符",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "AmuletofLight.png"
+ },
+ "Amulet of Steel": {
+  "key": "AmuletofSteel",
+  "zh": "钢之护符",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "AmuletofSteel.png"
+ },
+ "Amulet of the Wild": {
+  "key": "AmuletoftheWild",
+  "zh": "自然护符",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "AmuletoftheWild.png"
+ },
+ "Angel Crystal": {
+  "key": "AngelCrystal",
+  "zh": "水晶之翼",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "AngelCrystal.png"
+ },
+ "Anvil": {
+  "key": "Anvil",
+  "zh": "铁砧",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Anvil.png"
+ },
+ "Arcane Boots": {
+  "key": "ArcaneBoots",
+  "zh": "奥术长靴",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "ArcaneBoots.png"
+ },
+ "Arcane Intellect": {
+  "key": "ArcaneIntellect",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "ArcaneIntellect.png"
+ },
+ "Armored Courage Puppy": {
+  "key": "ArmoredCouragePuppy",
+  "zh": "护甲勇敢狼崽",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "ArmoredCouragePuppy.png"
+ },
+ "Armored Power Puppy": {
+  "key": "ArmoredPowerPuppy",
+  "zh": "护甲全能狼崽",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "ArmoredPowerPuppy.png"
+ },
+ "Armored Wisdom Puppy": {
+  "key": "ArmoredWisdomPuppy",
+  "zh": "护甲睿智狼崽",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "ArmoredWisdomPuppy.png"
+ },
+ "Artifact Stone Death": {
+  "key": "ArtifactStoneDeath",
+  "zh": "遗迹石：死亡",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "ArtifactStoneDeath.png"
+ },
+ "Automanaton": {
+  "key": "Automanaton",
+  "zh": "自动魔像",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -160.0
+   ],
+   [
+    0.0,
+    -160.0
+   ],
+   [
+    -80.0,
+    -80.0
+   ],
+   [
+    0.0,
+    -80.0
+   ],
+   [
+    80.0,
+    -80.0
+   ],
+   [
+    -80.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0
+   ],
+   [
+    -80.0,
+    80.0
+   ],
+   [
+    0.0,
+    80.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Automanaton.png"
+ },
+ "Axe": {
+  "key": "Axe",
+  "zh": "战斧",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -120.0
+   ],
+   [
+    40.0,
+    -120.0
+   ],
+   [
+    -40.0,
+    -40.0
+   ],
+   [
+    -40.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Axe.png"
+ },
+ "Badger Spirit": {
+  "key": "BadgerSpirit",
+  "zh": "幽灵獾",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "BadgerSpirit.png"
+ },
+ "Bag of Giving": {
+  "key": "BagofGiving",
+  "zh": "给予之袋",
+  "is_bag": true,
+  "cell_px": [
+   [
+    -120.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    40.0,
+    -80.0
+   ],
+   [
+    -120.0,
+    0.0
+   ],
+   [
+    -40.0,
+    0.0
+   ],
+   [
+    40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "BagofGiving.png"
+ },
+ "Bagtacular": {
+  "key": "Bagtacular",
+  "zh": "背包盛宴",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Bagtacular.png"
+ },
+ "Battery": {
+  "key": "Battery",
+  "zh": "电池",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Battery.png"
+ },
+ "Bazooka": {
+  "key": "Bazooka",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -120.0,
+    -40.0
+   ],
+   [
+    -40.0,
+    -40.0
+   ],
+   [
+    40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Bazooka.png"
+ },
+ "Berserker Bag": {
+  "key": "BerserkerBag",
+  "zh": "",
+  "is_bag": true,
+  "cell_px": [
+   [
+    -120.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    40.0,
+    -80.0
+   ],
+   [
+    -120.0,
+    0.0
+   ],
+   [
+    -40.0,
+    0.0
+   ],
+   [
+    40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "BerserkerBag.png"
+ },
+ "Bewitchment": {
+  "key": "Bewitchment",
+  "zh": "魅惑",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Bewitchment.png"
+ },
+ "Big Bloodthorne": {
+  "key": "BigBloodthorne",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -217.0
+   ],
+   [
+    0.0,
+    -217.0
+   ],
+   [
+    -80.0,
+    -137.0
+   ],
+   [
+    0.0,
+    -137.0
+   ],
+   [
+    -80.0,
+    -57.0
+   ],
+   [
+    0.0,
+    -57.0
+   ],
+   [
+    -80.0,
+    23.0
+   ],
+   [
+    0.0,
+    23.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "BigBloodthorne.png"
+ },
+ "Bionic Armor": {
+  "key": "BionicArmor",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -120.0
+   ],
+   [
+    0.0,
+    -120.0
+   ],
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ],
+   [
+    -80.0,
+    40.0
+   ],
+   [
+    0.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "BionicArmor.png"
+ },
+ "Bismuth Cube": {
+  "key": "BismuthCube",
+  "zh": "铋立方体",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "BismuthCube.png"
+ },
+ "Blood Manipulation": {
+  "key": "BloodManipulation",
+  "zh": "鲜血支配",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "BloodManipulation.png"
+ },
+ "Bomb": {
+  "key": "Bomb",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [],
+  "slot_px": [],
+  "sprite": "Bomb.png"
+ },
+ "Book of Basics": {
+  "key": "BookofBasics",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "BookofBasics.png"
+ },
+ "Book of Darkness": {
+  "key": "BookofDarkness",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "BookofDarkness.png"
+ },
+ "Book of Ice": {
+  "key": "BookofIceNew",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "BookofIceNew.png"
+ },
+ "Book of Light": {
+  "key": "BookofLight",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "BookofLight.png"
+ },
+ "Book of Nature": {
+  "key": "BookofNature",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "BookofNature.png"
+ },
+ "Boomerang": {
+  "key": "Boomerang",
+  "zh": "回旋镖",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -30.0,
+    -110.0
+   ],
+   [
+    -110.0,
+    -30.0
+   ],
+   [
+    -30.0,
+    -30.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Boomerang.png"
+ },
+ "Bowl of Treats": {
+  "key": "BowlofTreats",
+  "zh": "一碗零食",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "BowlofTreats.png"
+ },
+ "Box of Prosperity": {
+  "key": "BoxofProsperity",
+  "zh": "财富之盒",
+  "is_bag": true,
+  "cell_px": [
+   [
+    -80.0,
+    -80.0
+   ],
+   [
+    0.0,
+    -80.0
+   ],
+   [
+    -80.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "BoxofProsperity.png"
+ },
+ "Brass Knuckles": {
+  "key": "BrassKnuckles",
+  "zh": "铜指虎",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "BrassKnuckles.png"
+ },
+ "Broccoli": {
+  "key": "Broccoli",
+  "zh": "西兰花",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Broccoli.png"
+ },
+ "Broccoli Goobert": {
+  "key": "BroccoliGoobert",
+  "zh": "西兰花黏黏",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -80.0
+   ],
+   [
+    0.0,
+    -80.0
+   ],
+   [
+    -80.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "BroccoliGoobert.png"
+ },
+ "Broccotree": {
+  "key": "Broccotree",
+  "zh": "西兰花树",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -120.0
+   ],
+   [
+    0.0,
+    -120.0
+   ],
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ],
+   [
+    -80.0,
+    40.0
+   ],
+   [
+    0.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Broccotree.png"
+ },
+ "Burning Banner": {
+  "key": "BurningBanner",
+  "zh": "燃烧旗帜",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "BurningBanner.png"
+ },
+ "Burning Blade": {
+  "key": "BurningBlade",
+  "zh": "火焰剑",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -120.0
+   ],
+   [
+    -40.0,
+    -40.0
+   ],
+   [
+    -40.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "BurningBlade.png"
+ },
+ "Burning Spikes": {
+  "key": "BurningSpikes",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "BurningSpikes.png"
+ },
+ "Burning Sword": {
+  "key": "BurningSword",
+  "zh": "火焰短剑",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "BurningSword.png"
+ },
+ "Busted Blade": {
+  "key": "BustedBlade",
+  "zh": "锻造巨剑",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -260.0
+   ],
+   [
+    40.0,
+    -260.0
+   ],
+   [
+    -40.0,
+    -180.0
+   ],
+   [
+    40.0,
+    -180.0
+   ],
+   [
+    -40.0,
+    -100.0
+   ],
+   [
+    40.0,
+    -100.0
+   ],
+   [
+    -40.0,
+    -20.0
+   ],
+   [
+    40.0,
+    -20.0
+   ],
+   [
+    -40.0,
+    60.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "BustedBlade.png"
+ },
+ "Buy the Holy Light": {
+  "key": "BuytheHolyLight",
+  "zh": "神圣特卖",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "BuytheHolyLight.png"
+ },
+ "Cap of Brilliance": {
+  "key": "CapofBrilliance",
+  "zh": "辉光之帽",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "CapofBrilliance.png"
+ },
+ "Cat Spirit": {
+  "key": "CatSpirit",
+  "zh": "幽灵猫",
+  "is_bag": false,
+  "cell_px": [
+   [
+    0.0,
+    -120.0
+   ],
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ],
+   [
+    -80.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "CatSpirit.png"
+ },
+ "Cauldron": {
+  "key": "Cauldron",
+  "zh": "大煮锅",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -80.0
+   ],
+   [
+    0.0,
+    -80.0
+   ],
+   [
+    -80.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Cauldron.png"
+ },
+ "Chain Whip": {
+  "key": "ChainWhip",
+  "zh": "锁链鞭",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -120.0,
+    -120.0
+   ],
+   [
+    -40.0,
+    -120.0
+   ],
+   [
+    -40.0,
+    -40.0
+   ],
+   [
+    -40.0,
+    40.0
+   ],
+   [
+    40.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "ChainWhip.png"
+ },
+ "Chainsaw": {
+  "key": "Chainsaw",
+  "zh": "电锯",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -259.0
+   ],
+   [
+    -40.0,
+    -179.0
+   ],
+   [
+    -40.0,
+    -99.0
+   ],
+   [
+    -40.0,
+    -19.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Chainsaw.png"
+ },
+ "Charge Splitter": {
+  "key": "ChargeSplitter",
+  "zh": "电荷分裂器",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "ChargeSplitter.png"
+ },
+ "Cheese": {
+  "key": "Cheese",
+  "zh": "奶酪",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Cheese.png"
+ },
+ "Cheese Goobert": {
+  "key": "CheeseGoobert",
+  "zh": "奶酪黏黏",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -80.0
+   ],
+   [
+    0.0,
+    -80.0
+   ],
+   [
+    -80.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "CheeseGoobert.png"
+ },
+ "Black Bishop": {
+  "key": "BlackBishop",
+  "zh": "黑色主教",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": null
+ },
+ "Black King": {
+  "key": "BlackKing",
+  "zh": "黑色国王",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": null
+ },
+ "Black Knight": {
+  "key": "BlackKnight",
+  "zh": "黑色骑士",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": null
+ },
+ "Black Pawn": {
+  "key": "BlackPawn",
+  "zh": "黑色士兵",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": null
+ },
+ "Black Queen": {
+  "key": "BlackQueen",
+  "zh": "黑色皇后",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": null
+ },
+ "Black Rook": {
+  "key": "BlackRook",
+  "zh": "黑色城堡",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": null
+ },
+ "White Bishop": {
+  "key": "WhiteBishop",
+  "zh": "白色主教",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": null
+ },
+ "White King": {
+  "key": "WhiteKing",
+  "zh": "白色国王",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": null
+ },
+ "White Knight": {
+  "key": "WhiteKnight",
+  "zh": "白色骑士",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": null
+ },
+ "White Pawn": {
+  "key": "WhitePawn",
+  "zh": "白色士兵",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": null
+ },
+ "White Queen": {
+  "key": "WhiteQueen",
+  "zh": "白色皇后",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": null
+ },
+ "White Rook": {
+  "key": "WhiteRook",
+  "zh": "白色城堡",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": null
+ },
+ "Chess Board": {
+  "key": "ChessBoard",
+  "zh": "棋盘",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "ChessBoard.png"
+ },
+ "Chess Master": {
+  "key": "ChessMaster",
+  "zh": "棋艺大师",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "ChessMaster.png"
+ },
+ "Chili Goobert": {
+  "key": "ChiliGoobert",
+  "zh": "辣椒黏黏",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -80.0
+   ],
+   [
+    0.0,
+    -80.0
+   ],
+   [
+    -80.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "ChiliGoobert.png"
+ },
+ "Chili Pepper": {
+  "key": "ChiliPepper",
+  "zh": "红辣椒",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "ChiliPepper.png"
+ },
+ "Chrome Cube": {
+  "key": "ChromeCube",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "ChromeCube.png"
+ },
+ "Cog": {
+  "key": "Cog",
+  "zh": "齿轮",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Cog.png"
+ },
+ "Cog Badge": {
+  "key": "CogBadge",
+  "zh": "齿轮徽章",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "CogBadge.png"
+ },
+ "Coil": {
+  "key": "Coil",
+  "zh": "线圈",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Coil.png"
+ },
+ "Con-Trap-Tron": {
+  "key": "Con-Trap-Tron",
+  "zh": "陷阱装置",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -100.0
+   ],
+   [
+    40.0,
+    -100.0
+   ],
+   [
+    -40.0,
+    -20.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Con-Trap-Tron.png"
+ },
+ "Courage Puppy": {
+  "key": "CouragePuppy",
+  "zh": "勇敢狼崽",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "CouragePuppy.png"
+ },
+ "Critical Poison": {
+  "key": "CriticalPoison",
+  "zh": "暴击毒药",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "CriticalPoison.png"
+ },
+ "Crow": {
+  "key": "Crow",
+  "zh": "乌鸦",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -9.0,
+    -93.0
+   ],
+   [
+    -89.0,
+    -13.0
+   ],
+   [
+    -9.0,
+    -13.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Crow.png"
+ },
+ "Cthulhu": {
+  "key": "Cthulhu",
+  "zh": "克总之颅",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -120.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    40.0,
+    -80.0
+   ],
+   [
+    -120.0,
+    0.0
+   ],
+   [
+    -40.0,
+    0.0
+   ],
+   [
+    40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Cthulhu.png"
+ },
+ "Cubert": {
+  "key": "Cubert",
+  "zh": "方块黏黏",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -80.0
+   ],
+   [
+    0.0,
+    -80.0
+   ],
+   [
+    -80.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Cubert.png"
+ },
+ "Cupcake": {
+  "key": "Cupcake",
+  "zh": "魔法杯糕",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Cupcake.png"
+ },
+ "Cupcake Dragon": {
+  "key": "CupcakeDragon",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -120.0
+   ],
+   [
+    -120.0,
+    -40.0
+   ],
+   [
+    -40.0,
+    -40.0
+   ],
+   [
+    40.0,
+    -40.0
+   ],
+   [
+    -120.0,
+    40.0
+   ],
+   [
+    -40.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "CupcakeDragon.png"
+ },
+ "Cupcake Goobert": {
+  "key": "CupcakeGoobert",
+  "zh": "魔法杯糕黏黏",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -80.0
+   ],
+   [
+    0.0,
+    -80.0
+   ],
+   [
+    -80.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "CupcakeGoobert.png"
+ },
+ "Cupcake Staff": {
+  "key": "CupcakeStaff",
+  "zh": "杯糕法杖",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -160.0
+   ],
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ],
+   [
+    -40.0,
+    80.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "CupcakeStaff.png"
+ },
+ "Daggerang": {
+  "key": "Daggerang",
+  "zh": "匕首回旋镖",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -30.0,
+    -110.0
+   ],
+   [
+    -110.0,
+    -30.0
+   ],
+   [
+    -30.0,
+    -30.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Daggerang.png"
+ },
+ "Dark Lantern": {
+  "key": "DarkLantern",
+  "zh": "黯淡提灯",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "DarkLantern.png"
+ },
+ "Dark Ritual": {
+  "key": "DarkRitual",
+  "zh": "黑暗仪式",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "DarkRitual.png"
+ },
+ "Death Lotus": {
+  "key": "DeathLotus",
+  "zh": "死亡莲花",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -80.0
+   ],
+   [
+    0.0,
+    -80.0
+   ],
+   [
+    -80.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "DeathLotus.png"
+ },
+ "Deer Totem": {
+  "key": "DeerTotem",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "DeerTotem.png"
+ },
+ "Devouring Sphere": {
+  "key": "DevouringSphere",
+  "zh": "吞噬圆球",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "DevouringSphere.png"
+ },
+ "Dig Deeper": {
+  "key": "DigDeeper",
+  "zh": "挖呀挖",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "DigDeeper.png"
+ },
+ "Divine Potion": {
+  "key": "DivinePotion",
+  "zh": "神圣魔药",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "DivinePotion.png"
+ },
+ "Doom Cap": {
+  "key": "DoomCap",
+  "zh": "致死蘑菇",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -120.0,
+    -79.0
+   ],
+   [
+    -40.0,
+    -79.0
+   ],
+   [
+    40.0,
+    -79.0
+   ],
+   [
+    -40.0,
+    1.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "DoomCap.png"
+ },
+ "Double Axe": {
+  "key": "DoubleAxe",
+  "zh": "双刃斧",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -120.0,
+    -160.0
+   ],
+   [
+    -40.0,
+    -160.0
+   ],
+   [
+    40.0,
+    -160.0
+   ],
+   [
+    -120.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ],
+   [
+    -40.0,
+    80.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "DoubleAxe.png"
+ },
+ "Double Rainbow": {
+  "key": "DoubleRainbow",
+  "zh": "双重彩虹",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "DoubleRainbow.png"
+ },
+ "Draconic Orb": {
+  "key": "DraconicOrb",
+  "zh": "龙铭珠",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "DraconicOrb.png"
+ },
+ "Dragon Claws": {
+  "key": "DragonClaws",
+  "zh": "龙爪",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "DragonClaws.png"
+ },
+ "Dragon Knight": {
+  "key": "DragonKnight",
+  "zh": "黏黏龙骑士",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -120.0
+   ],
+   [
+    0.0,
+    -120.0
+   ],
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ],
+   [
+    -80.0,
+    40.0
+   ],
+   [
+    0.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "DragonKnight.png"
+ },
+ "Dragon Nest": {
+  "key": "DragonNest",
+  "zh": "龙的巢穴",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -80.0
+   ],
+   [
+    0.0,
+    -80.0
+   ],
+   [
+    -80.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "DragonNest.png"
+ },
+ "Dragon Set": {
+  "key": "DragonSet",
+  "zh": "龙骑士",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "DragonSet.png"
+ },
+ "Dragonscale Armor": {
+  "key": "DragonscaleArmor",
+  "zh": "龙鳞护甲",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -120.0
+   ],
+   [
+    0.0,
+    -120.0
+   ],
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ],
+   [
+    -80.0,
+    40.0
+   ],
+   [
+    0.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "DragonscaleArmor.png"
+ },
+ "Dragonskin Boots": {
+  "key": "DragonskinBoots",
+  "zh": "龙鳞靴",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "DragonskinBoots.png"
+ },
+ "Dual Wielding": {
+  "key": "DualWielding",
+  "zh": "双持武器",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "DualWielding.png"
+ },
+ "Eat-o-matic": {
+  "key": "Eat-o-matic",
+  "zh": "自动进食机",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -41.0,
+    -108.0
+   ],
+   [
+    39.0,
+    -108.0
+   ],
+   [
+    -41.0,
+    -28.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Eat-o-matic.png"
+ },
+ "Echoing Battlecry": {
+  "key": "EchoingBattlecry",
+  "zh": "回响战嚎",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "EchoingBattlecry.png"
+ },
+ "Electric Torch": {
+  "key": "ElectricTorch",
+  "zh": "电能火炬",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "ElectricTorch.png"
+ },
+ "Emerald Egg": {
+  "key": "EmeraldEgg",
+  "zh": "翡翠龙蛋",
+  "is_bag": false,
+  "cell_px": [],
+  "slot_px": [],
+  "sprite": "EmeraldEgg.png"
+ },
+ "Emerald Whelp": {
+  "key": "EmeraldWhelp",
+  "zh": "翡翠幼龙",
+  "is_bag": false,
+  "cell_px": [],
+  "slot_px": [],
+  "sprite": "EmeraldWhelp.png"
+ },
+ "Employee Uniform": {
+  "key": "EmployeeUniform",
+  "zh": "工作服",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -120.0
+   ],
+   [
+    0.0,
+    -120.0
+   ],
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ],
+   [
+    -80.0,
+    40.0
+   ],
+   [
+    0.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "EmployeeUniform.png"
+ },
+ "Enchanted Weapons": {
+  "key": "EnchantedWeapons",
+  "zh": "附魔武器",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "EnchantedWeapons.png"
+ },
+ "Energy Conversion": {
+  "key": "EnergyConversion",
+  "zh": "能量转化",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "EnergyConversion.png"
+ },
+ "Engineer Bag 2": {
+  "key": "EngineerBag2",
+  "zh": "",
+  "is_bag": true,
+  "cell_px": [
+   [
+    -80.0,
+    -120.0
+   ],
+   [
+    0.0,
+    -120.0
+   ],
+   [
+    -160.0,
+    -40.0
+   ],
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ],
+   [
+    80.0,
+    -40.0
+   ],
+   [
+    -80.0,
+    40.0
+   ],
+   [
+    0.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "EngineerBag2.png"
+ },
+ "Engineer Box": {
+  "key": "EngineerBox",
+  "zh": "",
+  "is_bag": true,
+  "cell_px": [
+   [
+    -80.0,
+    -120.0
+   ],
+   [
+    0.0,
+    -120.0
+   ],
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ],
+   [
+    -80.0,
+    40.0
+   ],
+   [
+    0.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "EngineerBox.png"
+ },
+ "Everburning": {
+  "key": "Everburning",
+  "zh": "永燃之火",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Everburning.png"
+ },
+ "Evil Hat": {
+  "key": "EvilHat",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -120.0,
+    0.0
+   ],
+   [
+    -40.0,
+    0.0
+   ],
+   [
+    40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "EvilHat.png"
+ },
+ "Extra Angy": {
+  "key": "ExtraAngy",
+  "zh": "愤怒加倍",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "ExtraAngy.png"
+ },
+ "Extra Bags": {
+  "key": "ExtraBags",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "ExtraBags.png"
+ },
+ "False Life": {
+  "key": "FalseLife",
+  "zh": "亡灵庇护",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "FalseLife.png"
+ },
+ "Fedora": {
+  "key": "Fedora",
+  "zh": "软呢帽",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -120.0,
+    0.0
+   ],
+   [
+    -40.0,
+    0.0
+   ],
+   [
+    40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Fedora.png"
+ },
+ "Fire Pit": {
+  "key": "FirePit",
+  "zh": "火坑",
+  "is_bag": true,
+  "cell_px": [
+   [
+    -120.0,
+    -120.0
+   ],
+   [
+    -40.0,
+    -120.0
+   ],
+   [
+    40.0,
+    -120.0
+   ],
+   [
+    -120.0,
+    -40.0
+   ],
+   [
+    -40.0,
+    -40.0
+   ],
+   [
+    40.0,
+    -40.0
+   ],
+   [
+    -120.0,
+    40.0
+   ],
+   [
+    -40.0,
+    40.0
+   ],
+   [
+    40.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "FirePit.png"
+ },
+ "Fire Shelly": {
+  "key": "FireShelly",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "FireShelly.png"
+ },
+ "Flame": {
+  "key": "Flame",
+  "zh": "火焰",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Flame.png"
+ },
+ "Flame Badge": {
+  "key": "FlameBadge",
+  "zh": "火焰徽章",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "FlameBadge.png"
+ },
+ "Flame Whip": {
+  "key": "FlameWhip",
+  "zh": "烈火之鞭",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -200.0,
+    -120.0
+   ],
+   [
+    -120.0,
+    -120.0
+   ],
+   [
+    -40.0,
+    -120.0
+   ],
+   [
+    -40.0,
+    -40.0
+   ],
+   [
+    -40.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "FlameWhip.png"
+ },
+ "Forest Dragon": {
+  "key": "ForestDragon",
+  "zh": "森林巨龙",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -120.0
+   ],
+   [
+    40.0,
+    -120.0
+   ],
+   [
+    -40.0,
+    -40.0
+   ],
+   [
+    40.0,
+    -40.0
+   ],
+   [
+    -120.0,
+    40.0
+   ],
+   [
+    -40.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "ForestDragon.png"
+ },
+ "Forging Hammer": {
+  "key": "ForgingHammer",
+  "zh": "锻造锤",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -34.0,
+    -86.0
+   ],
+   [
+    -34.0,
+    -6.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "ForgingHammer.png"
+ },
+ "Fortunas Kiss": {
+  "key": "FortunasKiss",
+  "zh": "财富之吻",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "FortunasKiss.png"
+ },
+ "Friendly Fire": {
+  "key": "FriendlyFire",
+  "zh": "快乐小火",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "FriendlyFire.png"
+ },
+ "Frog Prince": {
+  "key": "FrogPrince",
+  "zh": "青蛙王子",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -80.0
+   ],
+   [
+    0.0,
+    -80.0
+   ],
+   [
+    -80.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "FrogPrince.png"
+ },
+ "Frostbite": {
+  "key": "Frostbite",
+  "zh": "霜冻之剑",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -120.0
+   ],
+   [
+    -40.0,
+    -40.0
+   ],
+   [
+    -40.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Frostbite.png"
+ },
+ "Frozen Buckler": {
+  "key": "FrozenBuckler",
+  "zh": "冰霜盾牌",
+  "is_bag": false,
+  "cell_px": [],
+  "slot_px": [],
+  "sprite": "FrozenBuckler.png"
+ },
+ "Frozen Flame": {
+  "key": "FrozenFlame",
+  "zh": "永冻之火",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "FrozenFlame.png"
+ },
+ "Full Body Protection": {
+  "key": "FullBodyProtection",
+  "zh": "全身防护",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "FullBodyProtection.png"
+ },
+ "Furcifer Prime": {
+  "key": "FurciferPrime",
+  "zh": "福西法超级会员",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "FurciferPrime.png"
+ },
+ "Generator": {
+  "key": "Generator",
+  "zh": "发电机",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Generator.png"
+ },
+ "Ghost": {
+  "key": "Ghost",
+  "zh": "里面都是鬼故事。",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Ghost.png"
+ },
+ "Gigawatz": {
+  "key": "Gigawatz",
+  "zh": "吉瓦特",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Gigawatz.png"
+ },
+ "Girl Power": {
+  "key": "GirlPower",
+  "zh": "怪力少女",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "GirlPower.png"
+ },
+ "Gold Armor": {
+  "key": "GoldArmor",
+  "zh": "黄金护甲",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -120.0
+   ],
+   [
+    0.0,
+    -120.0
+   ],
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ],
+   [
+    -80.0,
+    40.0
+   ],
+   [
+    0.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "GoldArmor.png"
+ },
+ "Gold Cube": {
+  "key": "GoldCube",
+  "zh": "黄金立方体",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "GoldCube.png"
+ },
+ "Goobling": {
+  "key": "Goobling",
+  "zh": "黏宝宝",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Goobling.png"
+ },
+ "Halberd": {
+  "key": "Halberd",
+  "zh": "长戟",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -160.0
+   ],
+   [
+    40.0,
+    -160.0
+   ],
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ],
+   [
+    -40.0,
+    80.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Halberd.png"
+ },
+ "Hardwood": {
+  "key": "Hardwood",
+  "zh": "硬木",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Hardwood.png"
+ },
+ "Heart Shield": {
+  "key": "HeartShield",
+  "zh": "心形盾牌",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -120.0
+   ],
+   [
+    0.0,
+    -120.0
+   ],
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ],
+   [
+    -80.0,
+    40.0
+   ],
+   [
+    0.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "HeartShield.png"
+ },
+ "Heart of the Cards": {
+  "key": "HeartoftheCards",
+  "zh": "卡牌之心",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "HeartoftheCards.png"
+ },
+ "Heavy Drinking": {
+  "key": "HeavyDrinking",
+  "zh": "开怀畅饮",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "HeavyDrinking.png"
+ },
+ "Hedgehog": {
+  "key": "Hedgehog",
+  "zh": "刺猬",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Hedgehog.png"
+ },
+ "Hero Shield": {
+  "key": "HeroShield",
+  "zh": "英雄盾牌",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -80.0
+   ],
+   [
+    0.0,
+    -80.0
+   ],
+   [
+    -80.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "HeroShield.png"
+ },
+ "Hogus Bogus": {
+  "key": "HogusBogus",
+  "zh": "胡搞魔咒",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "HogusBogus.png"
+ },
+ "Holdall": {
+  "key": "Holdall",
+  "zh": "旅行袋",
+  "is_bag": true,
+  "cell_px": [
+   [
+    -120.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    40.0,
+    -80.0
+   ],
+   [
+    -120.0,
+    0.0
+   ],
+   [
+    -40.0,
+    0.0
+   ],
+   [
+    40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Holdall.png"
+ },
+ "Holy Collar": {
+  "key": "HolyCollar",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "HolyCollar.png"
+ },
+ "Hyper Hedgehog": {
+  "key": "HyperHedgehog",
+  "zh": "超级刺猬",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "HyperHedgehog.png"
+ },
+ "Hypercube": {
+  "key": "Hypercube",
+  "zh": "超立方体",
+  "is_bag": false,
+  "cell_px": [],
+  "slot_px": [],
+  "sprite": "Hypercube.png"
+ },
+ "Ice Armor": {
+  "key": "IceArmor",
+  "zh": "冰霜护甲",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -120.0
+   ],
+   [
+    0.0,
+    -120.0
+   ],
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ],
+   [
+    -80.0,
+    40.0
+   ],
+   [
+    0.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "IceArmor.png"
+ },
+ "Ice Dragon": {
+  "key": "IceDragon",
+  "zh": "冰霜巨龙",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -120.0
+   ],
+   [
+    0.0,
+    -120.0
+   ],
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ],
+   [
+    -80.0,
+    40.0
+   ],
+   [
+    0.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "IceDragon.png"
+ },
+ "Ice Flower": {
+  "key": "IceFlower",
+  "zh": "霜冻花",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "IceFlower.png"
+ },
+ "Inner Power": {
+  "key": "InnerPower",
+  "zh": "内在力量",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "InnerPower.png"
+ },
+ "Investment Opportunity": {
+  "key": "InvestmentOpportunity",
+  "zh": "投资机会",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "InvestmentOpportunity.png"
+ },
+ "Joker": {
+  "key": "Joker",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Joker.png"
+ },
+ "Just Stats": {
+  "key": "JustStats",
+  "zh": "纯粹加成",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "JustStats.png"
+ },
+ "Jynx Staff": {
+  "key": "JynxStaff",
+  "zh": "小鸟法杖",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -200.0
+   ],
+   [
+    -40.0,
+    -120.0
+   ],
+   [
+    -40.0,
+    -40.0
+   ],
+   [
+    -40.0,
+    40.0
+   ],
+   [
+    -40.0,
+    120.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "JynxStaff.png"
+ },
+ "Katana": {
+  "key": "Katana",
+  "zh": "武士刀",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -160.0
+   ],
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ],
+   [
+    -40.0,
+    80.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Katana.png"
+ },
+ "King Crown": {
+  "key": "KingCrown",
+  "zh": "国王王冠",
+  "is_bag": false,
+  "cell_px": [],
+  "slot_px": [],
+  "sprite": "KingCrown.png"
+ },
+ "King Goobert": {
+  "key": "KingGoobert",
+  "zh": "国王黏黏",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -120.0
+   ],
+   [
+    0.0,
+    -120.0
+   ],
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ],
+   [
+    -80.0,
+    40.0
+   ],
+   [
+    0.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "KingGoobert.png"
+ },
+ "King of the Bling": {
+  "key": "KingoftheBling",
+  "zh": "珠宝之王",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "KingoftheBling.png"
+ },
+ "Knife to Meet You": {
+  "key": "KnifetoMeetYou",
+  "zh": "刀刀见血",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "KnifetoMeetYou.png"
+ },
+ "Laboratory": {
+  "key": "Laboratory",
+  "zh": "实验台",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -63.0,
+    -99.0
+   ],
+   [
+    -63.0,
+    -19.0
+   ],
+   [
+    17.0,
+    -19.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Laboratory.png"
+ },
+ "Leaf Badge": {
+  "key": "LeafBadge",
+  "zh": "绿叶徽章",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "LeafBadge.png"
+ },
+ "Leaf Emblem": {
+  "key": "LeafEmblem",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "LeafEmblem.png"
+ },
+ "Level Up": {
+  "key": "LevelUp",
+  "zh": "升级",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "LevelUp.png"
+ },
+ "Light Flower": {
+  "key": "LightFlower",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "LightFlower.png"
+ },
+ "Lightning Potion": {
+  "key": "LightningPotion",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "LightningPotion.png"
+ },
+ "Lightning Staff": {
+  "key": "LightningStaff",
+  "zh": "闪电法杖",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -160.0
+   ],
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ],
+   [
+    -40.0,
+    80.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "LightningStaff.png"
+ },
+ "Little Mimic": {
+  "key": "LittleMimic",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -80.0
+   ],
+   [
+    0.0,
+    -80.0
+   ],
+   [
+    -80.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "LittleMimic.png"
+ },
+ "Long Spear": {
+  "key": "LongSpear",
+  "zh": "超长矛",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -240.0
+   ],
+   [
+    -40.0,
+    -160.0
+   ],
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ],
+   [
+    -40.0,
+    80.0
+   ],
+   [
+    -40.0,
+    160.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "LongSpear.png"
+ },
+ "Lootbox": {
+  "key": "Lootbox",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [],
+  "slot_px": [],
+  "sprite": "Lootbox.png"
+ },
+ "Lucky Cat": {
+  "key": "LuckyCat",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "LuckyCat.png"
+ },
+ "Lucky Shortbow": {
+  "key": "LuckyShortbow",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "LuckyShortbow.png"
+ },
+ "Mage Hat": {
+  "key": "MageHat",
+  "zh": "魔法帽",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -120.0,
+    0.0
+   ],
+   [
+    -40.0,
+    0.0
+   ],
+   [
+    40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "MageHat.png"
+ },
+ "Magic Badge": {
+  "key": "MagicBadge",
+  "zh": "魔法徽章",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "MagicBadge.png"
+ },
+ "Magic Collar": {
+  "key": "MagicCollar",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "MagicCollar.png"
+ },
+ "Magic Mirror": {
+  "key": "MagicMirror",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "MagicMirror.png"
+ },
+ "Magic Ring": {
+  "key": "MagicRing",
+  "zh": "魔法戒指",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "MagicRing.png"
+ },
+ "Magitecc Armor": {
+  "key": "MagiteccArmor",
+  "zh": "魔工护甲",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -120.0
+   ],
+   [
+    0.0,
+    -120.0
+   ],
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ],
+   [
+    -80.0,
+    40.0
+   ],
+   [
+    0.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "MagiteccArmor.png"
+ },
+ "Mana Crystal": {
+  "key": "ManaCrystal",
+  "zh": "法力水晶",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "ManaCrystal.png"
+ },
+ "Mana Mastery": {
+  "key": "ManaMastery",
+  "zh": "魔法大师",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "ManaMastery.png"
+ },
+ "Mananana": {
+  "key": "Mananana",
+  "zh": "法力香蕉",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -63.0,
+    -99.0
+   ],
+   [
+    -63.0,
+    -19.0
+   ],
+   [
+    17.0,
+    -19.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Mananana.png"
+ },
+ "Markswoman": {
+  "key": "Markswoman",
+  "zh": "女射手",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Markswoman.png"
+ },
+ "Mecha Bat": {
+  "key": "MechaBat",
+  "zh": "机械蝙蝠",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "MechaBat.png"
+ },
+ "Mega Clover": {
+  "key": "MegaClover",
+  "zh": "巨大四叶草",
+  "is_bag": false,
+  "cell_px": [],
+  "slot_px": [],
+  "sprite": "MegaClover.png"
+ },
+ "Mercury Elemental": {
+  "key": "MercuryElemental",
+  "zh": "水银元素",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -80.0
+   ],
+   [
+    0.0,
+    -80.0
+   ],
+   [
+    -80.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "MercuryElemental.png"
+ },
+ "Miss Fortune": {
+  "key": "MissFortune",
+  "zh": "命运小姐",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "MissFortune.png"
+ },
+ "Molten Dagger": {
+  "key": "MoltenDagger",
+  "zh": "炽热匕首",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "MoltenDagger.png"
+ },
+ "Molten Greatsword": {
+  "key": "MoltenGreatsword",
+  "zh": "炽热巨剑",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -217.0
+   ],
+   [
+    40.0,
+    -217.0
+   ],
+   [
+    -40.0,
+    -137.0
+   ],
+   [
+    40.0,
+    -137.0
+   ],
+   [
+    -40.0,
+    -57.0
+   ],
+   [
+    40.0,
+    -57.0
+   ],
+   [
+    -40.0,
+    23.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "MoltenGreatsword.png"
+ },
+ "Molten Spear": {
+  "key": "MoltenSpear",
+  "zh": "炽热长矛",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -160.0
+   ],
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ],
+   [
+    -40.0,
+    80.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "MoltenSpear.png"
+ },
+ "Molten Spear2": {
+  "key": "MoltenSpear2",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -160.0
+   ],
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ],
+   [
+    -40.0,
+    80.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "MoltenSpear2.png"
+ },
+ "Moon Armor": {
+  "key": "MoonArmor",
+  "zh": "月光护甲",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -120.0
+   ],
+   [
+    0.0,
+    -120.0
+   ],
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ],
+   [
+    -80.0,
+    40.0
+   ],
+   [
+    0.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "MoonArmor.png"
+ },
+ "More Stats": {
+  "key": "MoreStats",
+  "zh": "更多加成",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "MoreStats.png"
+ },
+ "Mrs Struggles": {
+  "key": "MrsStruggles",
+  "zh": "贴贴女士",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "MrsStruggles.png"
+ },
+ "Mushroom Farm": {
+  "key": "MushroomFarm",
+  "zh": "蘑菇农场",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "MushroomFarm.png"
+ },
+ "No Rush Please": {
+  "key": "NoRushPlease",
+  "zh": "别着急",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "NoRushPlease.png"
+ },
+ "Null Blade": {
+  "key": "NullBlade",
+  "zh": "虚无之刃",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -120.0
+   ],
+   [
+    -40.0,
+    -40.0
+   ],
+   [
+    -40.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "NullBlade.png"
+ },
+ "Obsidian Dragon": {
+  "key": "ObsidianDragon",
+  "zh": "黑晶龙",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -120.0
+   ],
+   [
+    0.0,
+    -120.0
+   ],
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ],
+   [
+    -80.0,
+    40.0
+   ],
+   [
+    0.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "ObsidianDragon.png"
+ },
+ "Oil Lamp": {
+  "key": "OilLamp",
+  "zh": "油灯",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "OilLamp.png"
+ },
+ "Onion Cutter": {
+  "key": "OnionCutter",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "OnionCutter.png"
+ },
+ "Owl Spirit": {
+  "key": "OwlSpirit",
+  "zh": "幽灵猫头鹰",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "OwlSpirit.png"
+ },
+ "Paradise Birb": {
+  "key": "ParadiseBirb",
+  "zh": "极乐小鸟",
+  "is_bag": false,
+  "cell_px": [
+   [
+    0.0,
+    -120.0
+   ],
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ],
+   [
+    -80.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "ParadiseBirb.png"
+ },
+ "Perpetuum Mobile": {
+  "key": "PerpetuumMobile",
+  "zh": "永动机",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "PerpetuumMobile.png"
+ },
+ "Phoenix": {
+  "key": "Phoenix",
+  "zh": "凤凰",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -120.0,
+    -120.0
+   ],
+   [
+    40.0,
+    -120.0
+   ],
+   [
+    -120.0,
+    -40.0
+   ],
+   [
+    -40.0,
+    -40.0
+   ],
+   [
+    40.0,
+    -40.0
+   ],
+   [
+    -40.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Phoenix.png"
+ },
+ "Phoenix2": {
+  "key": "Phoenix2",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -120.0,
+    -120.0
+   ],
+   [
+    -120.0,
+    -40.0
+   ],
+   [
+    -40.0,
+    -40.0
+   ],
+   [
+    40.0,
+    -40.0
+   ],
+   [
+    -40.0,
+    40.0
+   ],
+   [
+    40.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Phoenix2.png"
+ },
+ "Piggy Pinata": {
+  "key": "PiggyPinata",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "PiggyPinata.png"
+ },
+ "Piggy of Riches": {
+  "key": "PiggyofRiches",
+  "zh": "宝石存钱罐",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "PiggyofRiches.png"
+ },
+ "Pine Protector": {
+  "key": "PineProtector",
+  "zh": "松林守护者",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -80.0
+   ],
+   [
+    0.0,
+    -80.0
+   ],
+   [
+    -80.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "PineProtector.png"
+ },
+ "Plastic Cube": {
+  "key": "PlasticCube",
+  "zh": "塑料立方体",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "PlasticCube.png"
+ },
+ "Poison Frog": {
+  "key": "PoisonFrog",
+  "zh": "剧毒蛙",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "PoisonFrog.png"
+ },
+ "Poison Grenade": {
+  "key": "PoisonGrenade",
+  "zh": "毒气手雷",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "PoisonGrenade.png"
+ },
+ "Poison Shortbow": {
+  "key": "PoisonShortbow",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "PoisonShortbow.png"
+ },
+ "Poison Spear": {
+  "key": "PoisonSpear",
+  "zh": "剧毒矛",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -160.0
+   ],
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ],
+   [
+    -40.0,
+    80.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "PoisonSpear.png"
+ },
+ "Pop": {
+  "key": "Pop",
+  "zh": "啵啵",
+  "is_bag": false,
+  "cell_px": [],
+  "slot_px": [],
+  "sprite": "Pop.png"
+ },
+ "Portable Altar": {
+  "key": "PortableAltar",
+  "zh": "",
+  "is_bag": true,
+  "cell_px": [
+   [
+    -80.0,
+    -80.0
+   ],
+   [
+    0.0,
+    -80.0
+   ],
+   [
+    -80.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "PortableAltar.png"
+ },
+ "Pot": {
+  "key": "Pot",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -80.0
+   ],
+   [
+    0.0,
+    -80.0
+   ],
+   [
+    -80.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Pot.png"
+ },
+ "Power Puppy": {
+  "key": "PowerPuppy",
+  "zh": "全能狼崽",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "PowerPuppy.png"
+ },
+ "Power of the Moon": {
+  "key": "PoweroftheMoon",
+  "zh": "月亮之力",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "PoweroftheMoon.png"
+ },
+ "Prismatic Sword": {
+  "key": "PrismaticSword",
+  "zh": "彩虹剑",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -120.0
+   ],
+   [
+    -40.0,
+    -40.0
+   ],
+   [
+    -40.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "PrismaticSword.png"
+ },
+ "Prismatic Wand": {
+  "key": "PrismaticWand",
+  "zh": "彩虹魔棒",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "PrismaticWand.png"
+ },
+ "Puzzle Badge": {
+  "key": "PuzzleBadge",
+  "zh": "拼图徽章",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "PuzzleBadge.png"
+ },
+ "Puzzlebag J": {
+  "key": "PuzzlebagJ",
+  "zh": "",
+  "is_bag": true,
+  "cell_px": [
+   [
+    -112.0,
+    -114.0
+   ],
+   [
+    -112.0,
+    -34.0
+   ],
+   [
+    -32.0,
+    -34.0
+   ],
+   [
+    48.0,
+    -34.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "PuzzlebagJ.png"
+ },
+ "Puzzlebag L": {
+  "key": "PuzzlebagL",
+  "zh": "",
+  "is_bag": true,
+  "cell_px": [
+   [
+    44.0,
+    -118.0
+   ],
+   [
+    -116.0,
+    -38.0
+   ],
+   [
+    -36.0,
+    -38.0
+   ],
+   [
+    44.0,
+    -38.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "PuzzlebagL.png"
+ },
+ "Puzzlebag S": {
+  "key": "PuzzlebagS",
+  "zh": "",
+  "is_bag": true,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    40.0,
+    -80.0
+   ],
+   [
+    -120.0,
+    0.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "PuzzlebagS.png"
+ },
+ "Puzzlebag T": {
+  "key": "PuzzlebagT",
+  "zh": "",
+  "is_bag": true,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -120.0,
+    0.0
+   ],
+   [
+    -40.0,
+    0.0
+   ],
+   [
+    40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "PuzzlebagT.png"
+ },
+ "Puzzlebag Z": {
+  "key": "PuzzlebagZ",
+  "zh": "",
+  "is_bag": true,
+  "cell_px": [
+   [
+    -120.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ],
+   [
+    40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "PuzzlebagZ.png"
+ },
+ "Puzzlebox": {
+  "key": "Puzzlebox",
+  "zh": "拼图背包",
+  "is_bag": true,
+  "cell_px": [
+   [
+    40.0,
+    -160.0
+   ],
+   [
+    -120.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ],
+   [
+    -40.0,
+    80.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Puzzlebox.png"
+ },
+ "Rainbow Badge": {
+  "key": "RainbowBadge",
+  "zh": "彩虹徽章",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "RainbowBadge.png"
+ },
+ "Rainbow Goobert Adventurer": {
+  "key": "RainbowGoobertAdventurer",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -80.0
+   ],
+   [
+    0.0,
+    -80.0
+   ],
+   [
+    -80.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "RainbowGoobertAdventurer.png"
+ },
+ "Rainbow Goobert Berserker": {
+  "key": "RainbowGoobertBerserker",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -80.0
+   ],
+   [
+    0.0,
+    -80.0
+   ],
+   [
+    -80.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "RainbowGoobertBerserker.png"
+ },
+ "Rainbow Goobert Engineer": {
+  "key": "RainbowGoobertEngineer",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -80.0
+   ],
+   [
+    0.0,
+    -80.0
+   ],
+   [
+    -80.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "RainbowGoobertEngineer.png"
+ },
+ "Rainbow Goobert Mage": {
+  "key": "RainbowGoobertMage",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -80.0
+   ],
+   [
+    0.0,
+    -80.0
+   ],
+   [
+    -80.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "RainbowGoobertMage.png"
+ },
+ "Rainbow Goobert Pyromancer": {
+  "key": "RainbowGoobertPyromancer",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -80.0
+   ],
+   [
+    0.0,
+    -80.0
+   ],
+   [
+    -80.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "RainbowGoobertPyromancer.png"
+ },
+ "Rainbow Orb": {
+  "key": "RainbowOrb",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "RainbowOrb.png"
+ },
+ "Rainbow Potion": {
+  "key": "RainbowPotion",
+  "zh": "彩虹魔药",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "RainbowPotion.png"
+ },
+ "Random Loadout Bag": {
+  "key": "RandomLoadoutBag",
+  "zh": "",
+  "is_bag": true,
+  "cell_px": [
+   [
+    -80.0,
+    -80.0
+   ],
+   [
+    0.0,
+    -80.0
+   ],
+   [
+    -80.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "RandomLoadoutBag.png"
+ },
+ "Rat": {
+  "key": "Rat",
+  "zh": "鼠鼠",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Rat.png"
+ },
+ "Rat Chef": {
+  "key": "RatChef",
+  "zh": "鼠大厨",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "RatChef.png"
+ },
+ "Relic Case": {
+  "key": "RelicCase",
+  "zh": "遗物箱",
+  "is_bag": true,
+  "cell_px": [
+   [
+    -40.0,
+    -160.0
+   ],
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ],
+   [
+    -40.0,
+    80.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "RelicCase.png"
+ },
+ "Repeater": {
+  "key": "Repeater",
+  "zh": "重复触发器",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Repeater.png"
+ },
+ "Resistor": {
+  "key": "Resistor",
+  "zh": "电阻",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Resistor.png"
+ },
+ "Reverse": {
+  "key": "Reverse",
+  "zh": "反弹！",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Reverse.png"
+ },
+ "Robodog": {
+  "key": "Robodog",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -120.0,
+    -47.0
+   ],
+   [
+    -40.0,
+    -47.0
+   ],
+   [
+    40.0,
+    -47.0
+   ],
+   [
+    -120.0,
+    33.0
+   ],
+   [
+    40.0,
+    33.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Robodog.png"
+ },
+ "Rope": {
+  "key": "Rope",
+  "zh": "麻绳",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Rope.png"
+ },
+ "Sandbag": {
+  "key": "Sandbag",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Sandbag.png"
+ },
+ "Sapphire Egg": {
+  "key": "SapphireEgg",
+  "zh": "蓝宝石龙蛋",
+  "is_bag": false,
+  "cell_px": [],
+  "slot_px": [],
+  "sprite": "SapphireEgg.png"
+ },
+ "Sapphire Whelp": {
+  "key": "SapphireWhelp",
+  "zh": "蓝宝石幼龙",
+  "is_bag": false,
+  "cell_px": [],
+  "slot_px": [],
+  "sprite": "SapphireWhelp.png"
+ },
+ "Scale": {
+  "key": "Scale",
+  "zh": "天平",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -80.0
+   ],
+   [
+    0.0,
+    -80.0
+   ],
+   [
+    -80.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Scale.png"
+ },
+ "Scholar Bag": {
+  "key": "ScholarBag",
+  "zh": "魔法学院袋",
+  "is_bag": true,
+  "cell_px": [
+   [
+    -120.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    40.0,
+    -80.0
+   ],
+   [
+    -120.0,
+    0.0
+   ],
+   [
+    -40.0,
+    0.0
+   ],
+   [
+    40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "ScholarBag.png"
+ },
+ "Scissorswords": {
+  "key": "Scissorswords",
+  "zh": "剑剪刀",
+  "is_bag": false,
+  "cell_px": [
+   [
+    0.0,
+    -120.0
+   ],
+   [
+    -160.0,
+    -40.0
+   ],
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ],
+   [
+    80.0,
+    -40.0
+   ],
+   [
+    -80.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Scissorswords.png"
+ },
+ "Seal the Deal": {
+  "key": "SealtheDeal",
+  "zh": "一锤定音",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "SealtheDeal.png"
+ },
+ "Serpent Staff": {
+  "key": "SerpentStaff",
+  "zh": "剧毒蛇杖",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -160.0
+   ],
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ],
+   [
+    -40.0,
+    80.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "SerpentStaff.png"
+ },
+ "Sewing Case": {
+  "key": "SewingCase",
+  "zh": "针线包",
+  "is_bag": true,
+  "cell_px": [
+   [
+    -160.0,
+    -80.0
+   ],
+   [
+    -80.0,
+    -80.0
+   ],
+   [
+    0.0,
+    -80.0
+   ],
+   [
+    80.0,
+    -80.0
+   ],
+   [
+    -80.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "SewingCase.png"
+ },
+ "Shaman Mask": {
+  "key": "ShamanMask",
+  "zh": "萨满面具",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "ShamanMask.png"
+ },
+ "Shell Totem": {
+  "key": "ShellTotem",
+  "zh": "贝壳图腾",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "ShellTotem.png"
+ },
+ "Shelly": {
+  "key": "Shelly",
+  "zh": "小蜗",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Shelly.png"
+ },
+ "Shepherds Crook": {
+  "key": "ShepherdsCrook",
+  "zh": "牧羊人的曲柄杖",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -160.0
+   ],
+   [
+    40.0,
+    -160.0
+   ],
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ],
+   [
+    -40.0,
+    80.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "ShepherdsCrook.png"
+ },
+ "Shielded": {
+  "key": "Shielded",
+  "zh": "护盾加强",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Shielded.png"
+ },
+ "Shiny Mantle": {
+  "key": "ShinyMantle",
+  "zh": "辉耀斗篷",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -120.0
+   ],
+   [
+    0.0,
+    -120.0
+   ],
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ],
+   [
+    -80.0,
+    40.0
+   ],
+   [
+    0.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "ShinyMantle.png"
+ },
+ "Shiny Shell": {
+  "key": "ShinyShell",
+  "zh": "闪光蜗牛壳",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "ShinyShell.png"
+ },
+ "Shortbow": {
+  "key": "Shortbow",
+  "zh": "短弓",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Shortbow.png"
+ },
+ "Skull Badge": {
+  "key": "SkullBadge",
+  "zh": "骷髅徽章",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "SkullBadge.png"
+ },
+ "Slice of Bread": {
+  "key": "SliceofBread",
+  "zh": "吐司",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "SliceofBread.png"
+ },
+ "Slice of Toast": {
+  "key": "SliceofToast",
+  "zh": "烤吐司",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "SliceofToast.png"
+ },
+ "Slime Time": {
+  "key": "SlimeTime",
+  "zh": "黏黏派对",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "SlimeTime.png"
+ },
+ "Sloth": {
+  "key": "Sloth",
+  "zh": "树懒",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -80.0
+   ],
+   [
+    0.0,
+    -80.0
+   ],
+   [
+    -80.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Sloth.png"
+ },
+ "Smelly Barrier": {
+  "key": "SmellyBarrier",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "SmellyBarrier.png"
+ },
+ "Smithing For Dummies": {
+  "key": "SmithingForDummies",
+  "zh": "铁匠入门指南",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "SmithingForDummies.png"
+ },
+ "Snake": {
+  "key": "Snake",
+  "zh": "蛇蛇",
+  "is_bag": false,
+  "cell_px": [
+   [
+    0.0,
+    -120.0
+   ],
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ],
+   [
+    -80.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Snake.png"
+ },
+ "Snow Stick": {
+  "key": "SnowStick",
+  "zh": "雪杖",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -160.0
+   ],
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ],
+   [
+    -40.0,
+    80.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "SnowStick.png"
+ },
+ "Snowball": {
+  "key": "Snowball",
+  "zh": "雪球",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Snowball.png"
+ },
+ "Snowcake": {
+  "key": "Snowcake",
+  "zh": "雪人蛋糕",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -80.0
+   ],
+   [
+    0.0,
+    -80.0
+   ],
+   [
+    -80.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Snowcake.png"
+ },
+ "Snowman": {
+  "key": "Snowman",
+  "zh": "摇晃雪人",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Snowman.png"
+ },
+ "Snowmaster": {
+  "key": "Snowmaster",
+  "zh": "大师雪人",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Snowmaster.png"
+ },
+ "Solaris": {
+  "key": "Solaris",
+  "zh": "太阳之力",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Solaris.png"
+ },
+ "Speak with Animals": {
+  "key": "SpeakwithAnimals",
+  "zh": "兽语大师",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "SpeakwithAnimals.png"
+ },
+ "Spell Scroll Dark": {
+  "key": "SpellScrollDark",
+  "zh": "魔法卷轴：黑暗爆发",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "SpellScrollDark.png"
+ },
+ "Spell Scroll Frostbolt": {
+  "key": "SpellScrollFrostbolt",
+  "zh": "魔法卷轴：冰霜箭",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "SpellScrollFrostbolt.png"
+ },
+ "Spell Scroll Ice": {
+  "key": "SpellScrollIce",
+  "zh": "魔法卷轴：冰墙",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "SpellScrollIce.png"
+ },
+ "Spell Scroll Light": {
+  "key": "SpellScrollLight",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "SpellScrollLight.png"
+ },
+ "Spell Scroll Nature": {
+  "key": "SpellScrollNature",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "SpellScrollNature.png"
+ },
+ "Spicy Banana": {
+  "key": "SpicyBanana",
+  "zh": "火辣香蕉",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "SpicyBanana.png"
+ },
+ "Spiked Collar": {
+  "key": "SpikedCollar",
+  "zh": "尖刺项圈",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "SpikedCollar.png"
+ },
+ "Spiked Staff": {
+  "key": "SpikedStaff",
+  "zh": "尖刺法杖",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -160.0
+   ],
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ],
+   [
+    -40.0,
+    80.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "SpikedStaff.png"
+ },
+ "Spiked Wall": {
+  "key": "SpikedWall",
+  "zh": "尖刺墙",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -120.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    40.0,
+    -80.0
+   ],
+   [
+    -120.0,
+    0.0
+   ],
+   [
+    -40.0,
+    0.0
+   ],
+   [
+    40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "SpikedWall.png"
+ },
+ "Spin to Win": {
+  "key": "SpintoWin",
+  "zh": "制胜转盘",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "SpintoWin.png"
+ },
+ "Spirit Bells": {
+  "key": "SpiritBells",
+  "zh": "捕梦网",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "SpiritBells.png"
+ },
+ "Spring Loader": {
+  "key": "SpringLoader",
+  "zh": "弹簧装填器",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -125.0
+   ],
+   [
+    0.0,
+    -125.0
+   ],
+   [
+    -80.0,
+    -45.0
+   ],
+   [
+    0.0,
+    -45.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "SpringLoader.png"
+ },
+ "Squirrel": {
+  "key": "Squirrel",
+  "zh": "松鼠",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -63.0,
+    -99.0
+   ],
+   [
+    -63.0,
+    -19.0
+   ],
+   [
+    17.0,
+    -19.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Squirrel.png"
+ },
+ "Squirrel Archer": {
+  "key": "SquirrelArcher",
+  "zh": "松鼠射手",
+  "is_bag": false,
+  "cell_px": [
+   [
+    17.0,
+    -99.0
+   ],
+   [
+    -63.0,
+    -19.0
+   ],
+   [
+    17.0,
+    -19.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "SquirrelArcher.png"
+ },
+ "Stable Recombobulator": {
+  "key": "StableRecombobulator",
+  "zh": "稳定重组器",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "StableRecombobulator.png"
+ },
+ "Staff of Fire": {
+  "key": "StaffofFire",
+  "zh": "烈火之杖",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -160.0
+   ],
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ],
+   [
+    -40.0,
+    80.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "StaffofFire.png"
+ },
+ "Star of Courage": {
+  "key": "StarofCourage",
+  "zh": "勇气之星",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "StarofCourage.png"
+ },
+ "Steel Dragon": {
+  "key": "SteelDragon",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -120.0,
+    -160.0
+   ],
+   [
+    -120.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    40.0,
+    -80.0
+   ],
+   [
+    -120.0,
+    0.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "SteelDragon.png"
+ },
+ "Stone Armor": {
+  "key": "StoneArmor",
+  "zh": "石制护甲",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -120.0
+   ],
+   [
+    0.0,
+    -120.0
+   ],
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ],
+   [
+    -80.0,
+    40.0
+   ],
+   [
+    0.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "StoneArmor.png"
+ },
+ "Stone Badge": {
+  "key": "StoneBadge",
+  "zh": "石头徽章",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "StoneBadge.png"
+ },
+ "Stone Gloves": {
+  "key": "StoneGloves",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "StoneGloves.png"
+ },
+ "Stone Golem": {
+  "key": "StoneGolem",
+  "zh": "巨石像",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -80.0
+   ],
+   [
+    0.0,
+    -80.0
+   ],
+   [
+    -80.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "StoneGolem.png"
+ },
+ "Stone Shoes": {
+  "key": "StoneShoes",
+  "zh": "石靴",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "StoneShoes.png"
+ },
+ "Stoned": {
+  "key": "Stoned",
+  "zh": "投石手",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Stoned.png"
+ },
+ "Strong Divine Potion": {
+  "key": "StrongDivinePotion",
+  "zh": "强力神圣魔药",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "StrongDivinePotion.png"
+ },
+ "Strong Mana Potion": {
+  "key": "StrongManaPotion",
+  "zh": "强力魔法魔药",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "StrongManaPotion.png"
+ },
+ "Strong Vampiric Potion": {
+  "key": "StrongVampiricPotion",
+  "zh": "强力吸血魔药",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "StrongVampiricPotion.png"
+ },
+ "Sun Armor": {
+  "key": "SunArmor",
+  "zh": "日耀护甲",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -120.0
+   ],
+   [
+    0.0,
+    -120.0
+   ],
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ],
+   [
+    -80.0,
+    40.0
+   ],
+   [
+    0.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "SunArmor.png"
+ },
+ "Sun Shield": {
+  "key": "SunShield",
+  "zh": "日耀盾牌",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -120.0
+   ],
+   [
+    0.0,
+    -120.0
+   ],
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ],
+   [
+    -80.0,
+    40.0
+   ],
+   [
+    0.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "SunShield.png"
+ },
+ "Superior Ring": {
+  "key": "SuperiorRing",
+  "zh": "高级戒指",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "SuperiorRing.png"
+ },
+ "Tesla Coil": {
+  "key": "TeslaCoil",
+  "zh": "特斯拉线圈",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -120.0
+   ],
+   [
+    -40.0,
+    -40.0
+   ],
+   [
+    -40.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "TeslaCoil.png"
+ },
+ "Thorn Elemental": {
+  "key": "ThornElemental",
+  "zh": "荆棘元素",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -80.0
+   ],
+   [
+    0.0,
+    -80.0
+   ],
+   [
+    -80.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "ThornElemental.png"
+ },
+ "Thorn Shortbow": {
+  "key": "ThornShortbow",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "ThornShortbow.png"
+ },
+ "Thornbloom": {
+  "key": "Thornbloom",
+  "zh": "荆棘之花",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -120.0,
+    -120.0
+   ],
+   [
+    -40.0,
+    -120.0
+   ],
+   [
+    -120.0,
+    -40.0
+   ],
+   [
+    -40.0,
+    -40.0
+   ],
+   [
+    -40.0,
+    40.0
+   ],
+   [
+    40.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Thornbloom.png"
+ },
+ "Thornburst": {
+  "key": "Thornburst",
+  "zh": "尖刺爆发",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Thornburst.png"
+ },
+ "Thors Hammer": {
+  "key": "ThorsHammer",
+  "zh": "雷神之锤",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -120.0,
+    -128.0
+   ],
+   [
+    -40.0,
+    -128.0
+   ],
+   [
+    40.0,
+    -128.0
+   ],
+   [
+    -40.0,
+    -48.0
+   ],
+   [
+    -40.0,
+    32.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "ThorsHammer.png"
+ },
+ "Thunder Drake": {
+  "key": "ThunderDrake",
+  "zh": "雷霆飞龙",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -120.0
+   ],
+   [
+    -120.0,
+    -40.0
+   ],
+   [
+    -40.0,
+    -40.0
+   ],
+   [
+    40.0,
+    -40.0
+   ],
+   [
+    -40.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "ThunderDrake.png"
+ },
+ "Time Dilator": {
+  "key": "TimeDilator",
+  "zh": "时间扩大器",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "TimeDilator.png"
+ },
+ "Time Melting": {
+  "key": "TimeMelting",
+  "zh": "时间融化",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "TimeMelting.png"
+ },
+ "Toad": {
+  "key": "Toad",
+  "zh": "蟾蜍",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Toad.png"
+ },
+ "Toast Goobert": {
+  "key": "ToastGoobert",
+  "zh": "吐司黏黏",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -80.0
+   ],
+   [
+    0.0,
+    -80.0
+   ],
+   [
+    -80.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "ToastGoobert.png"
+ },
+ "Toolbox": {
+  "key": "Toolbox",
+  "zh": "",
+  "is_bag": true,
+  "cell_px": [
+   [
+    -120.0,
+    -112.0
+   ],
+   [
+    -40.0,
+    -112.0
+   ],
+   [
+    40.0,
+    -112.0
+   ],
+   [
+    -120.0,
+    -32.0
+   ],
+   [
+    -40.0,
+    -32.0
+   ],
+   [
+    40.0,
+    -32.0
+   ],
+   [
+    -120.0,
+    48.0
+   ],
+   [
+    40.0,
+    48.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Toolbox.png"
+ },
+ "Turtle": {
+  "key": "Turtle",
+  "zh": "乌龟",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Turtle.png"
+ },
+ "Twine": {
+  "key": "Twine",
+  "zh": "细绳",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Twine.png"
+ },
+ "Twine Badge": {
+  "key": "TwineBadge",
+  "zh": "细绳徽章",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "TwineBadge.png"
+ },
+ "Ukulele": {
+  "key": "Ukulele",
+  "zh": "尤克里里",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -120.0
+   ],
+   [
+    -40.0,
+    -40.0
+   ],
+   [
+    -40.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Ukulele.png"
+ },
+ "Ultima": {
+  "key": "Ultima",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Ultima.png"
+ },
+ "Unidentified Skill": {
+  "key": "UnidentifiedSkill",
+  "zh": "未挖掘潜力",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "UnidentifiedSkill.png"
+ },
+ "Uniquely Unique": {
+  "key": "UniquelyUnique",
+  "zh": "万里挑一",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "UniquelyUnique.png"
+ },
+ "Unstable Recombobulator": {
+  "key": "UnstableRecombobulator",
+  "zh": "不稳定重组器",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "UnstableRecombobulator.png"
+ },
+ "Vampiric Collar": {
+  "key": "VampiricCollar",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "VampiricCollar.png"
+ },
+ "Vampiric Potion": {
+  "key": "VampiricPotion",
+  "zh": "吸血魔药",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "VampiricPotion.png"
+ },
+ "Vineweave Basket": {
+  "key": "VineweaveBasket",
+  "zh": "藤条编织篮",
+  "is_bag": true,
+  "cell_px": [
+   [
+    -120.0,
+    -120.0
+   ],
+   [
+    -40.0,
+    -120.0
+   ],
+   [
+    40.0,
+    -120.0
+   ],
+   [
+    -120.0,
+    -40.0
+   ],
+   [
+    -40.0,
+    -40.0
+   ],
+   [
+    40.0,
+    -40.0
+   ],
+   [
+    -120.0,
+    40.0
+   ],
+   [
+    -40.0,
+    40.0
+   ],
+   [
+    40.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "VineweaveBasket.png"
+ },
+ "Wand": {
+  "key": "Wand",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Wand.png"
+ },
+ "Wand of Dissonance": {
+  "key": "WandofDissonance",
+  "zh": "失调魔棒",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "WandofDissonance.png"
+ },
+ "War Scythe": {
+  "key": "WarScythe",
+  "zh": "战镰",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -160.0
+   ],
+   [
+    40.0,
+    -160.0
+   ],
+   [
+    120.0,
+    -160.0
+   ],
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ],
+   [
+    -40.0,
+    80.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "WarScythe.png"
+ },
+ "Water Elemental": {
+  "key": "WaterElemental",
+  "zh": "水元素",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -80.0
+   ],
+   [
+    0.0,
+    -80.0
+   ],
+   [
+    -80.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "WaterElemental.png"
+ },
+ "Whetstone2": {
+  "key": "Whetstone2",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Whetstone2.png"
+ },
+ "Whetstone3": {
+  "key": "Whetstone3",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Whetstone3.png"
+ },
+ "Winged Boots": {
+  "key": "WingedBoots",
+  "zh": "飞鞋",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -89.0,
+    -71.0
+   ],
+   [
+    -9.0,
+    -71.0
+   ],
+   [
+    -9.0,
+    9.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "WingedBoots.png"
+ },
+ "Wisdom Puppy": {
+  "key": "WisdomPuppy",
+  "zh": "睿智狼崽",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "WisdomPuppy.png"
+ },
+ "Wolf Badge": {
+  "key": "WolfBadge",
+  "zh": "狼徽章",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "WolfBadge.png"
+ },
+ "Wolf Emblem": {
+  "key": "WolfEmblem",
+  "zh": "狼印记",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "WolfEmblem.png"
+ },
+ "Wrench": {
+  "key": "Wrench",
+  "zh": "扳手",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Wrench.png"
+ },
+ "Falcon Blade": {
+  "key": "FalconBlade",
+  "zh": "猎鹰战刃",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -120.0
+   ],
+   [
+    -40.0,
+    -40.0
+   ],
+   [
+    -40.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "FalconBlade.png"
+ },
+ "Fancy Fencing Rapier": {
+  "key": "FancyFencingRapier",
+  "zh": "酷炫西洋剑",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -160.0
+   ],
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ],
+   [
+    -40.0,
+    80.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "FancyFencingRapier.png"
+ },
+ "Fanfare": {
+  "key": "Fanfare",
+  "zh": "号角",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -120.0,
+    -40.0
+   ],
+   [
+    -40.0,
+    -40.0
+   ],
+   [
+    40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": null
+ },
+ "Fanny Pack": {
+  "key": "FannyPack",
+  "zh": "腰包",
+  "is_bag": true,
+  "cell_px": [
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "FannyPack.png"
+ },
+ "Flute": {
+  "key": "Flute",
+  "zh": "笛子",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -120.0,
+    -40.0
+   ],
+   [
+    -40.0,
+    -40.0
+   ],
+   [
+    40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Flute.png"
+ },
+ "Fly Agaric": {
+  "key": "FlyAgaric",
+  "zh": "致幻蘑菇",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "FlyAgaric.png"
+ },
+ "Garlic": {
+  "key": "Garlic",
+  "zh": "大蒜",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Garlic.png"
+ },
+ "Gingerbread Man": {
+  "key": "GingerbreadMan",
+  "zh": "姜饼杰瑞",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "GingerbreadMan.png"
+ },
+ "Gloves of Haste": {
+  "key": "GlovesofHaste",
+  "zh": "迅捷手套",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "GlovesofHaste.png"
+ },
+ "Goobert": {
+  "key": "Goobert",
+  "zh": "黏黏",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -80.0
+   ],
+   [
+    0.0,
+    -80.0
+   ],
+   [
+    -80.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Goobert.png"
+ },
+ "Greatsword": {
+  "key": "Greatsword",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -217.0
+   ],
+   [
+    40.0,
+    -217.0
+   ],
+   [
+    -40.0,
+    -137.0
+   ],
+   [
+    40.0,
+    -137.0
+   ],
+   [
+    -40.0,
+    -57.0
+   ],
+   [
+    40.0,
+    -57.0
+   ],
+   [
+    -40.0,
+    23.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Greatsword.png"
+ },
+ "Hammer": {
+  "key": "Hammer",
+  "zh": "锤子",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -120.0,
+    -128.0
+   ],
+   [
+    -40.0,
+    -128.0
+   ],
+   [
+    40.0,
+    -128.0
+   ],
+   [
+    -40.0,
+    -48.0
+   ],
+   [
+    -40.0,
+    32.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Hammer.png"
+ },
+ "Healing Herbs": {
+  "key": "HealingHerbs",
+  "zh": "治疗草药",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "HealingHerbs.png"
+ },
+ "Health Potion": {
+  "key": "HealthPotion",
+  "zh": "生命魔药",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "HealthPotion.png"
+ },
+ "Heart Container": {
+  "key": "HeartContainer",
+  "zh": "心之容器",
+  "is_bag": false,
+  "cell_px": [],
+  "slot_px": [],
+  "sprite": "HeartContainer.png"
+ },
+ "Heart of Darkness": {
+  "key": "HeartofDarkness",
+  "zh": "黑暗心之容器",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -80.0
+   ],
+   [
+    0.0,
+    -80.0
+   ],
+   [
+    -80.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "HeartofDarkness.png"
+ },
+ "Hero Longsword": {
+  "key": "HeroLongsword",
+  "zh": "英雄长剑",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -120.0
+   ],
+   [
+    -40.0,
+    -40.0
+   ],
+   [
+    -40.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "HeroLongsword.png"
+ },
+ "Hero Sword": {
+  "key": "HeroSword",
+  "zh": "勇者之剑",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "HeroSword.png"
+ },
+ "Heroic Potion": {
+  "key": "HeroicPotion",
+  "zh": "英勇魔药",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "HeroicPotion.png"
+ },
+ "Holo Fire Lizard": {
+  "key": "HoloFireLizard",
+  "zh": "大火龙",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "HoloFireLizard.png"
+ },
+ "Holy Armor": {
+  "key": "HolyArmor",
+  "zh": "神圣护甲",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -120.0
+   ],
+   [
+    0.0,
+    -120.0
+   ],
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ],
+   [
+    -80.0,
+    40.0
+   ],
+   [
+    0.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "HolyArmor.png"
+ },
+ "Holy Spear": {
+  "key": "HolySpear",
+  "zh": "神圣长矛",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -160.0
+   ],
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ],
+   [
+    -40.0,
+    80.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "HolySpear.png"
+ },
+ "Hungry Blade": {
+  "key": "HungryBlade",
+  "zh": "饥饿之刃",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -120.0
+   ],
+   [
+    -40.0,
+    -40.0
+   ],
+   [
+    -40.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "HungryBlade.png"
+ },
+ "Jynx torquilla": {
+  "key": "Jynxtorquilla",
+  "zh": "歪脖鸟",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -9.0,
+    -93.0
+   ],
+   [
+    -89.0,
+    -13.0
+   ],
+   [
+    -9.0,
+    -13.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Jynxtorquilla.png"
+ },
+ "Leather Armor": {
+  "key": "LeatherArmor",
+  "zh": "皮制护甲",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -120.0
+   ],
+   [
+    0.0,
+    -120.0
+   ],
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ],
+   [
+    -80.0,
+    40.0
+   ],
+   [
+    0.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "LeatherArmor.png"
+ },
+ "Leather Bag": {
+  "key": "LeatherBag",
+  "zh": "皮包",
+  "is_bag": true,
+  "cell_px": [
+   [
+    -80.0,
+    -80.0
+   ],
+   [
+    0.0,
+    -80.0
+   ],
+   [
+    -80.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "LeatherBag.png"
+ },
+ "Leather Boots": {
+  "key": "LeatherBoots",
+  "zh": "皮质靴",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "LeatherBoots.png"
+ },
+ "Leather Helm": {
+  "key": "LeatherHelm",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "LeatherHelm.png"
+ },
+ "Light Goobert": {
+  "key": "LightGoobert",
+  "zh": "光之黏黏",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -80.0
+   ],
+   [
+    0.0,
+    -80.0
+   ],
+   [
+    -80.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "LightGoobert.png"
+ },
+ "Lightsaber": {
+  "key": "Lightsaber",
+  "zh": "光剑",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -160.0
+   ],
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ],
+   [
+    -40.0,
+    80.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Lightsaber.png"
+ },
+ "Lucky Bow": {
+  "key": "LuckyBow",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -120.0
+   ],
+   [
+    -120.0,
+    -40.0
+   ],
+   [
+    -40.0,
+    -40.0
+   ],
+   [
+    40.0,
+    -40.0
+   ],
+   [
+    -40.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "LuckyBow.png"
+ },
+ "Lucky Clover": {
+  "key": "LuckyClover",
+  "zh": "幸运四叶草",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "LuckyClover.png"
+ },
+ "Lucky Piggy": {
+  "key": "LuckyPiggy",
+  "zh": "幸运存钱罐",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "LuckyPiggy.png"
+ },
+ "Magic Staff": {
+  "key": "MagicStaff",
+  "zh": "法杖",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -160.0
+   ],
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ],
+   [
+    -40.0,
+    80.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "MagicStaff.png"
+ },
+ "Magic Torch": {
+  "key": "MagicTorch",
+  "zh": "魔法火把",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "MagicTorch.png"
+ },
+ "Mana Orb": {
+  "key": "ManaOrb",
+  "zh": "魔法球",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "ManaOrb.png"
+ },
+ "Mana Potion": {
+  "key": "ManaPotion",
+  "zh": "魔法魔药",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "ManaPotion.png"
+ },
+ "Manathirst": {
+  "key": "Manathirst",
+  "zh": "吸魔剑",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -120.0
+   ],
+   [
+    -40.0,
+    -40.0
+   ],
+   [
+    -40.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Manathirst.png"
+ },
+ "Moon Shield": {
+  "key": "MoonShield",
+  "zh": "月光盾",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -120.0
+   ],
+   [
+    0.0,
+    -120.0
+   ],
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ],
+   [
+    -80.0,
+    40.0
+   ],
+   [
+    0.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "MoonShield.png"
+ },
+ "Mr Struggles": {
+  "key": "MrStruggles",
+  "zh": "抱抱先生",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "MrStruggles.png"
+ },
+ "Pan": {
+  "key": "Pan",
+  "zh": "平底锅",
+  "is_bag": false,
+  "cell_px": [
+   [
+    0.0,
+    -80.0
+   ],
+   [
+    -80.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Pan.png"
+ },
+ "Pandamonium": {
+  "key": "Pandamonium",
+  "zh": "腐败熊猫之锅",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -120.0,
+    -40.0
+   ],
+   [
+    -40.0,
+    -40.0
+   ],
+   [
+    40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Pandamonium.png"
+ },
+ "Pestilence Flask": {
+  "key": "PestilenceFlask",
+  "zh": "瘟疫烧瓶",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "PestilenceFlask.png"
+ },
+ "Piercing Arrow": {
+  "key": "PiercingArrow",
+  "zh": "穿甲箭",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "PiercingArrow.png"
+ },
+ "Piggybank": {
+  "key": "Piggybank",
+  "zh": "存钱罐",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Piggybank.png"
+ },
+ "Pineapple": {
+  "key": "Pineapple",
+  "zh": "菠萝",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -120.0
+   ],
+   [
+    -40.0,
+    -40.0
+   ],
+   [
+    -40.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Pineapple.png"
+ },
+ "Platin Customer Card": {
+  "key": "PlatinCustomerCard",
+  "zh": "白金会员卡",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "PlatinCustomerCard.png"
+ },
+ "Pocket Sand": {
+  "key": "PocketSand",
+  "zh": "一口袋沙子",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "PocketSand.png"
+ },
+ "Poison Bow": {
+  "key": "PoisonBow",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -120.0
+   ],
+   [
+    -120.0,
+    -40.0
+   ],
+   [
+    -40.0,
+    -40.0
+   ],
+   [
+    40.0,
+    -40.0
+   ],
+   [
+    -40.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "PoisonBow.png"
+ },
+ "Poison Dagger": {
+  "key": "PoisonDagger",
+  "zh": "剧毒匕首",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "PoisonDagger.png"
+ },
+ "Poison Goobert": {
+  "key": "PoisonGoobert",
+  "zh": "剧毒黏黏",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -80.0
+   ],
+   [
+    0.0,
+    -80.0
+   ],
+   [
+    -80.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "PoisonGoobert.png"
+ },
+ "Poison Ivy": {
+  "key": "PoisonIvy",
+  "zh": "剧毒常春藤",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "PoisonIvy.png"
+ },
+ "Potion Belt": {
+  "key": "PotionBelt",
+  "zh": "魔药腰带",
+  "is_bag": true,
+  "cell_px": [
+   [
+    -40.0,
+    -160.0
+   ],
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ],
+   [
+    -40.0,
+    80.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "PotionBelt.png"
+ },
+ "Present": {
+  "key": "Present",
+  "zh": "圣诞礼物",
+  "is_bag": false,
+  "cell_px": [],
+  "slot_px": [],
+  "sprite": "Present.png"
+ },
+ "Protective Purse": {
+  "key": "ProtectivePurse",
+  "zh": "守护钱包",
+  "is_bag": true,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "ProtectivePurse.png"
+ },
+ "Pumpkin": {
+  "key": "Pumpkin",
+  "zh": "南瓜头",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -80.0
+   ],
+   [
+    0.0,
+    -80.0
+   ],
+   [
+    -80.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Pumpkin.png"
+ },
+ "Rainbow Goobert": {
+  "key": "RainbowGoobert",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -80.0
+   ],
+   [
+    0.0,
+    -80.0
+   ],
+   [
+    -80.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "RainbowGoobert.png"
+ },
+ "Rainbow Goobert Ranger": {
+  "key": "RainbowGoobertRanger",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -80.0
+   ],
+   [
+    0.0,
+    -80.0
+   ],
+   [
+    -80.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "RainbowGoobertRanger.png"
+ },
+ "Ranger Bag": {
+  "key": "RangerBag",
+  "zh": "露营背包",
+  "is_bag": true,
+  "cell_px": [
+   [
+    -80.0,
+    -120.0
+   ],
+   [
+    0.0,
+    -120.0
+   ],
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ],
+   [
+    -80.0,
+    40.0
+   ],
+   [
+    0.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "RangerBag.png"
+ },
+ "Rib Saw Blade": {
+  "key": "RibSawBlade",
+  "zh": "锯刃",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -160.0
+   ],
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ],
+   [
+    -40.0,
+    80.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "RibSawBlade.png"
+ },
+ "Ruby Chonk": {
+  "key": "RubyChonk",
+  "zh": "红宝石巨龙",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -120.0
+   ],
+   [
+    0.0,
+    -120.0
+   ],
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ],
+   [
+    -80.0,
+    40.0
+   ],
+   [
+    0.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "RubyChonk.png"
+ },
+ "Ruby Egg": {
+  "key": "RubyEgg",
+  "zh": "红宝石龙蛋",
+  "is_bag": false,
+  "cell_px": [],
+  "slot_px": [],
+  "sprite": "RubyEgg.png"
+ },
+ "Ruby Whelp": {
+  "key": "RubyWhelp",
+  "zh": "红宝石幼龙",
+  "is_bag": false,
+  "cell_px": [],
+  "slot_px": [],
+  "sprite": "RubyWhelp.png"
+ },
+ "Shield of Valor": {
+  "key": "ShieldofValor",
+  "zh": "勇气盾牌",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -120.0
+   ],
+   [
+    0.0,
+    -120.0
+   ],
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ],
+   [
+    -80.0,
+    40.0
+   ],
+   [
+    0.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "ShieldofValor.png"
+ },
+ "Shovel": {
+  "key": "Shovel",
+  "zh": "铲铲",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -160.0
+   ],
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ],
+   [
+    -40.0,
+    80.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Shovel.png"
+ },
+ "Spear": {
+  "key": "Spear",
+  "zh": "长矛",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -160.0
+   ],
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ],
+   [
+    -40.0,
+    80.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Spear.png"
+ },
+ "Spectral Dagger": {
+  "key": "SpectralDagger",
+  "zh": "幽灵匕首",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "SpectralDagger.png"
+ },
+ "Spiked Shield": {
+  "key": "SpikedShield",
+  "zh": "尖刺盾牌",
+  "is_bag": false,
+  "cell_px": [],
+  "slot_px": [],
+  "sprite": "SpikedShield.png"
+ },
+ "Staff of Unhealing": {
+  "key": "StaffofUnhealing",
+  "zh": "不愈法杖",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -160.0
+   ],
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ],
+   [
+    -40.0,
+    80.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "StaffofUnhealing.png"
+ },
+ "Stamina Sack": {
+  "key": "StaminaSack",
+  "zh": "耐力包",
+  "is_bag": true,
+  "cell_px": [
+   [
+    -41.0,
+    -120.0
+   ],
+   [
+    -41.0,
+    -40.0
+   ],
+   [
+    -41.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "StaminaSack.png"
+ },
+ "Steel Goobert": {
+  "key": "SteelGoobert",
+  "zh": "钢之黏黏",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -80.0
+   ],
+   [
+    0.0,
+    -80.0
+   ],
+   [
+    -80.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "SteelGoobert.png"
+ },
+ "Stone": {
+  "key": "Stone",
+  "zh": "石头",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Stone.png"
+ },
+ "Stone Helm": {
+  "key": "StoneHelm",
+  "zh": "石制头盔",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "StoneHelm.png"
+ },
+ "Stone Skin Potion": {
+  "key": "StoneSkinPotion",
+  "zh": "硬化魔药",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "StoneSkinPotion.png"
+ },
+ "Storage Coffin": {
+  "key": "StorageCoffin",
+  "zh": "储物棺材",
+  "is_bag": true,
+  "cell_px": [
+   [
+    -80.0,
+    -160.0
+   ],
+   [
+    0.0,
+    -160.0
+   ],
+   [
+    -80.0,
+    -80.0
+   ],
+   [
+    0.0,
+    -80.0
+   ],
+   [
+    -80.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0
+   ],
+   [
+    -80.0,
+    80.0
+   ],
+   [
+    0.0,
+    80.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "StorageCoffin.png"
+ },
+ "Strong Demonic Flask": {
+  "key": "StrongDemonicFlask",
+  "zh": "强力恶魔烧瓶",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "StrongDemonicFlask.png"
+ },
+ "Strong Health Potion": {
+  "key": "StrongHealthPotion",
+  "zh": "强力生命魔药",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "StrongHealthPotion.png"
+ },
+ "Strong Heroic Potion": {
+  "key": "StrongHeroicPotion",
+  "zh": "强力英勇魔药",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "StrongHeroicPotion.png"
+ },
+ "Strong Pestilence Flask": {
+  "key": "StrongPestilenceFlask",
+  "zh": "强力瘟疫烧瓶",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "StrongPestilenceFlask.png"
+ },
+ "Strong Stone Skin Potion": {
+  "key": "StrongStoneSkinPotion",
+  "zh": "强力硬化魔药",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "StrongStoneSkinPotion.png"
+ },
+ "The Fool": {
+  "key": "TheFool",
+  "zh": "愚者",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "TheFool.png"
+ },
+ "The Lovers": {
+  "key": "TheLovers",
+  "zh": "恋人",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "TheLovers.png"
+ },
+ "Thorn Bow": {
+  "key": "ThornBow",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -120.0
+   ],
+   [
+    -120.0,
+    -40.0
+   ],
+   [
+    -40.0,
+    -40.0
+   ],
+   [
+    40.0,
+    -40.0
+   ],
+   [
+    -40.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "ThornBow.png"
+ },
+ "Thorn Whip": {
+  "key": "ThornWhip",
+  "zh": "荆棘之鞭",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -120.0,
+    -120.0
+   ],
+   [
+    -40.0,
+    -120.0
+   ],
+   [
+    -40.0,
+    -40.0
+   ],
+   [
+    -40.0,
+    40.0
+   ],
+   [
+    40.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "ThornWhip.png"
+ },
+ "Torch": {
+  "key": "Torch",
+  "zh": "火把",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Torch.png"
+ },
+ "Vampiric Armor": {
+  "key": "VampiricArmor",
+  "zh": "吸血护甲",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -120.0
+   ],
+   [
+    0.0,
+    -120.0
+   ],
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ],
+   [
+    -80.0,
+    40.0
+   ],
+   [
+    0.0,
+    40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "VampiricArmor.png"
+ },
+ "Vampiric Gloves": {
+  "key": "VampiricGloves",
+  "zh": "吸血手套",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -40.0
+   ],
+   [
+    0.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "VampiricGloves.png"
+ },
+ "Vampiric Scythe": {
+  "key": "VampiricScythe",
+  "zh": "",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -160.0
+   ],
+   [
+    40.0,
+    -160.0
+   ],
+   [
+    120.0,
+    -160.0
+   ],
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ],
+   [
+    -40.0,
+    80.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "VampiricScythe.png"
+ },
+ "Villain Sword": {
+  "key": "VillainSword",
+  "zh": "反派之剑",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "VillainSword.png"
+ },
+ "Walrus Tusk": {
+  "key": "WalrusTusk",
+  "zh": "海象尖牙",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "WalrusTusk.png"
+ },
+ "Whetstone": {
+  "key": "Whetstone",
+  "zh": "磨刀石",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Whetstone.png"
+ },
+ "White-Eyes Blue Dragon": {
+  "key": "White-EyesBlueDragon",
+  "zh": "白眼青龙",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "White-EyesBlueDragon.png"
+ },
+ "Wolpertinger": {
+  "key": "Wolpertinger",
+  "zh": "鹿角翼兔",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -80.0,
+    -80.0
+   ],
+   [
+    0.0,
+    -80.0
+   ],
+   [
+    -80.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "Wolpertinger.png"
+ },
+ "Wooden Buckler": {
+  "key": "WoodenBuckler",
+  "zh": "木盾",
+  "is_bag": false,
+  "cell_px": [],
+  "slot_px": [],
+  "sprite": "WoodenBuckler.png"
+ },
+ "Wooden Sword": {
+  "key": "WoodenSword",
+  "zh": "木剑",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -80.0
+   ],
+   [
+    -40.0,
+    0.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "WoodenSword.png"
+ },
+ "Yggdrasil Leaf": {
+  "key": "YggdrasilLeaf",
+  "zh": "世界树树叶",
+  "is_bag": false,
+  "cell_px": [
+   [
+    -40.0,
+    -40.0
+   ]
+  ],
+  "slot_px": [],
+  "sprite": "YggdrasilLeaf.png"
+ }
+}

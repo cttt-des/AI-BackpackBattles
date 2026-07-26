@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Items/Item.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Items/Exclusive/Sprites/Pop.png" type="Texture" id=2]
+[ext_resource path="res://Items/Exclusive/Pop.gd" type="Script" id=3]
+[ext_resource path="res://Items/GemSocket.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Items/Animations/SquishySprite.gd" type="Script" id=5]
+
+[sub_resource type="PhysicsMaterial" id=1]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 77.6466
+
+[node name="Pop" instance=ExtResource( 1 )]
+physics_material_override = SubResource( 1 )
+script = ExtResource( 3 )
+
+[node name="Icon" parent="." index="1"]
+position = Vector2( 0, 3 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+script = ExtResource( 5 )
+friction = 0.8
+accelFactor = 0.1
+
+[node name="Sockets" parent="Icon" index="0"]
+scale = Vector2( 2, 2 )
+
+[node name="GemSocket" parent="Icon/Sockets" index="0" instance=ExtResource( 4 )]
+position = Vector2( -43, -46 )
+
+[node name="GemSocket2" parent="Icon/Sockets" index="1" instance=ExtResource( 4 )]
+position = Vector2( 44, -47 )
+
+[node name="GemSocket3" parent="Icon/Sockets" index="2" instance=ExtResource( 4 )]
+position = Vector2( -43, 41 )
+
+[node name="GemSocket4" parent="Icon/Sockets" index="3" instance=ExtResource( 4 )]
+position = Vector2( 44, 42 )
+
+[node name="BottomCenter" parent="." index="3"]
+position = Vector2( -1, 77 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="7"]
+visible = false
+shape = SubResource( 2 )

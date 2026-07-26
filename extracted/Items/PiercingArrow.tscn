@@ -1,0 +1,73 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Items/Item.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Items/Sprites/PiercingArrow.png" type="Texture" id=2]
+[ext_resource path="res://Items/PiercingArrow.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Particles/LineParticle.png" type="Texture" id=4]
+[ext_resource path="res://Shader/VerySmoothFadeGradient.tres" type="Texture" id=5]
+[ext_resource path="res://Utility/AutoHideParticles.gd" type="Script" id=6]
+
+[sub_resource type="PhysicsMaterial" id=2]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0.0229358, 0.687861, 1 )
+colors = PoolColorArray( 1, 0.944946, 0.839844, 1, 1, 0.335289, 0.169922, 1, 0.832031, 0.151251, 0.108879, 1 )
+
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
+width = 50
+
+[sub_resource type="ParticlesMaterial" id=5]
+emission_shape = 2
+emission_box_extents = Vector3( 80, 30, 1 )
+flag_align_y = true
+flag_disable_z = true
+spread = 3.79
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 118.18
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.13
+scale_random = 0.24
+color_ramp = ExtResource( 5 )
+color_initial_ramp = SubResource( 4 )
+
+[node name="Piercing Arrow" instance=ExtResource( 1 )]
+physics_material_override = SubResource( 2 )
+script = ExtResource( 3 )
+
+[node name="CollisionMap" parent="." index="0"]
+position = Vector2( 0, 40 )
+tile_data = PoolIntArray( -65537, 4, 0, -131072, 6, 0, -2, 6, 0, -1, 3, 0, -65536, 3, 0, -65535, 4, 0, 65535, 4, 0, 0, 6, 0 )
+
+[node name="Icon" parent="." index="1"]
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+
+[node name="SpecificDragParticles" type="Particles2D" parent="Icon" index="0"]
+modulate = Color( 4, 4, 4, 1 )
+position = Vector2( -16, 0 )
+scale = Vector2( 2, 2 )
+emitting = false
+amount = 9
+speed_scale = 2.62
+local_coords = false
+process_material = SubResource( 5 )
+texture = ExtResource( 4 )
+script = ExtResource( 6 )
+
+[node name="Sockets" parent="Icon" index="1"]
+scale = Vector2( 2, 2 )
+
+[node name="CollisionPolygon2D" parent="ClickArea" index="0"]
+polygon = PoolVector2Array( -80, -40, 80, -40, 80, 40, -80, 40 )
+
+[node name="BottomCenter" parent="." index="3"]
+position = Vector2( 0, 30 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="7"]
+visible = false
+polygon = PoolVector2Array( 87, 2, -7, -35, -85, -23, -86, 28, -16, 34 )

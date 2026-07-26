@@ -1,0 +1,29 @@
+[gd_resource type="ShaderMaterial" load_steps=6 format=2]
+
+[ext_resource path="res://Shader/RadialTextureScroll.gdshader" type="Shader" id=1]
+[ext_resource path="res://Assets/Noise/FireNoise.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Noise/Noise2.png" type="Texture" id=3]
+
+[sub_resource type="Gradient" id=21]
+offsets = PoolRealArray( 0, 0.219355, 0.529412, 1 )
+colors = PoolColorArray( 0.0245056, 0.285156, 0.0866138, 0, 0.108808, 0.306641, 0, 1, 0.820068, 0.810021, 0.110517, 1, 1, 0.930097, 0.689453, 1 )
+
+[sub_resource type="GradientTexture" id=22]
+gradient = SubResource( 21 )
+width = 200
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/scroll1 = Vector2( 0.1415, 0 )
+shader_param/scroll2 = Vector2( 0.1467, 0 )
+shader_param/baseIntensity = 0.2
+shader_param/intensityFactor = 2.5
+shader_param/noise1Scale = Vector2( 0.471, 2 )
+shader_param/noise2Scale = Vector2( 0.301, 1 )
+shader_param/blur = 0.0
+shader_param/staticFactor = -0.086
+shader_param/zoomLevel = 1.0
+shader_param/cen = Vector2( 0.5, 0.5 )
+shader_param/tone_mapping = SubResource( 22 )
+shader_param/NOISE_PATTERN = ExtResource( 2 )
+shader_param/NOISE_PATTERN2 = ExtResource( 3 )

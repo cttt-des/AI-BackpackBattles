@@ -1,0 +1,77 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Items/Item.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Items/Exclusive/KingCrown.gd" type="Script" id=2]
+[ext_resource path="res://Items/Exclusive/Sprites/KingCrown.png" type="Texture" id=3]
+[ext_resource path="res://Shader/AdditiveCanvasItemMaterial.tres" type="Material" id=4]
+[ext_resource path="res://Items/GemSocket.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Items/Exclusive/Particles/KingCrownDragParticles.material" type="Material" id=6]
+[ext_resource path="res://Utility/AutoHideParticles.gd" type="Script" id=7]
+[ext_resource path="res://Assets/Particles/GlowingDot_small.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Light/CircleLight.png" type="Texture" id=9]
+[ext_resource path="res://Items/Particles/BookofLightDragParticles.material" type="Material" id=10]
+
+[sub_resource type="PhysicsMaterial" id=1]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[node name="King Crown" instance=ExtResource( 1 )]
+physics_material_override = SubResource( 1 )
+script = ExtResource( 2 )
+
+[node name="Icon" parent="." index="1"]
+scale = Vector2( 0.45, 0.45 )
+texture = ExtResource( 3 )
+
+[node name="SpecificDragParticles" type="Particles2D" parent="Icon" index="0"]
+modulate = Color( 2, 2, 2, 1 )
+position = Vector2( -2, -2 )
+scale = Vector2( 2, 2 )
+emitting = false
+amount = 10
+lifetime = 0.7
+local_coords = false
+process_material = ExtResource( 6 )
+texture = ExtResource( 8 )
+script = ExtResource( 7 )
+
+[node name="CircleLight" type="Sprite" parent="Icon" index="1"]
+modulate = Color( 1, 0.94902, 0.670588, 0.317647 )
+material = ExtResource( 4 )
+position = Vector2( 0, -121.212 )
+scale = Vector2( 0.540404, 0.54798 )
+texture = ExtResource( 9 )
+
+[node name="Sockets" parent="Icon" index="2"]
+scale = Vector2( 2.22222, 2.22222 )
+
+[node name="GemSocket1" parent="Icon/Sockets" index="0" instance=ExtResource( 5 )]
+position = Vector2( 36, 32 )
+
+[node name="GemSocket2" parent="Icon/Sockets" index="1" instance=ExtResource( 5 )]
+position = Vector2( -36, 32 )
+
+[node name="BottomCenter" parent="." index="3"]
+position = Vector2( 0, 74 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="5"]
+visible = false
+polygon = PoolVector2Array( -66, -43, -71, -17, -62, 69, 0, 72, 63, 69, 71, -18, 67, -42, 0, -73 )
+
+[node name="ActivationParticles" type="Particles2D" parent="." index="8"]
+modulate = Color( 1.2, 1.2, 1.2, 1 )
+self_modulate = Color( 1.6, 1.5, 1, 0.82 )
+rotation = 1.5708
+emitting = false
+amount = 12
+lifetime = 0.7
+process_material = ExtResource( 10 )
+texture = ExtResource( 8 )
+script = ExtResource( 7 )
+
+[node name="BuffTimer" type="Timer" parent="." index="9"]
+process_mode = 0
+one_shot = true
+
+[connection signal="timeout" from="BuffTimer" to="." method="buffEnded"]

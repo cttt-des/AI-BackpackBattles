@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>背包乱斗 AI 控制台</title>
+    <link rel="stylesheet" href="/static/css/dashboard.css">
+    <script src="https://cdn.socket.io/4.7.4/socket.io.min.js"></script>
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <header class="top-bar">
+        <div class="logo">🎒 背包乱斗 AI</div>
+        <div class="status-indicator" id="statusIndicator">
+            <span class="dot disconnected"></span>
+            <span id="statusText">未连接</span>
+        </div>
+        <div class="game-info" id="gameInfo">
+            <span class="info-item">⚔ 第 <strong id="roundNum">-</strong> / 18 回合</span>
+            <span class="info-item">❤ <strong id="hpNum">-</strong> / 5</span>
+            <span class="info-item">🪙 <strong id="goldNum">-</strong></span>
+        </div>
+    </header>
+
+    <!-- 主布局 -->
+    <div class="main-container">
+        <!-- 左侧：背包网格 -->
+        <aside class="panel backpack-panel">
+            <h3>📦 背包网格</h3>
+            <div class="grid-container">
+                <table class="backpack-grid" id="backpackGrid">
+                    <!-- JS 动态生成 9x7 网格 -->
+                </table>
+            </div>
+            <div class="panel-stats">
+                <span id="gridStats">物品: 0 | 空格: 63</span>
+            </div>
+        </aside>
+
+        <!-- 中间：控制面板 + 状态 -->
+        <main class="panel center-panel">
+            <!-- 控制按钮 -->
+            <section class="control-buttons">
+                <button class="btn btn-primary" id="btnInit" onclick="initBot()">🔌 初始化</button>
+                <button class="btn btn-success" id="btnStart" onclick="startBot()" disabled>▶ 开始</button>
+                <button class="btn btn-warning" id="btnPause" onclick="pauseBot()" disabled>⏸ 暂停</button>
+                <button class="btn btn-info" id="btnStep" onclick="stepBot()" disabled>⏭ 单步</button>
+                <button class="btn btn-danger" id="btnStop" onclick="stopBot()" disabled>⏹ 停止</button>
+                <button class="btn btn-emergency" id="btnEmergency" onclick="emergencyStop()">⚠ 紧急停止</button>
+            </section>
+
+            <!-- 游戏状态详情 -->
+            <section class="state-detail">
+                <h3>📊 实时状态</h3>
+                <div id="stateDetail">
+                    <p class="placeholder">等待初始化...</p>
+                </div>
+            </section>
+
+            <!-- 储存箱物品 -->
+            <section class="storage-info">
+                <h3>📥 储存箱</h3>
+                <div id="storageItems">
+                    <p class="placeholder">空</p>
+                </div>
+            </section>
+
+            <!-- 记忆地址 -->
+            <section class="memory-info" id="memoryInfo" style="display:none;">
+                <h3>🧠 内存地址</h3>
+                <div id="memoryAddrs"></div>
+            </section>
+        </main>
+
+        <!-- 右侧：日志面板 -->
+        <aside class="panel log-panel">
+            <h3>📜 运行日志</h3>
+            <div class="log-container" id="logContainer">
+                <div class="log-entry info">
+                    <span class="log-time">--:--:--</span>
+                    <span class="log-msg">控制台就绪，请先初始化机器人</span>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <script src="/static/js/dashboard.js"></script>
+</body>
+</html>
