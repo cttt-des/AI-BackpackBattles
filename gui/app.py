@@ -31,6 +31,7 @@
 import os
 import sys
 import math
+import time
 import queue
 import logging
 import threading
@@ -107,6 +108,9 @@ class BackpackAIApp(tk.Tk):
         self.bot_thread: threading.Thread | None = None
         self.ui_queue: queue.Queue = queue.Queue()
         self._initialized = False
+        self._closing = False
+        self._state_thread: threading.Thread | None = None
+        self._heartbeat = time.time()  # 主线程存活心跳（看门狗用）
 
         # 物品资源库（贴图 + 中文名 + 占格形状 + 格子素材）
         self.item_db = ItemDB()
@@ -119,7 +123,8 @@ class BackpackAIApp(tk.Tk):
         self._bind_keys()
 
         self.after(100, self._process_queue)
-        self.after(500, self._refresh_state_loop)
+        self._start_state_poller()
+        self._start_exit_watchdog()
 
         self.protocol("WM_DELETE_WINDOW", self._on_close)
         if _HAS_PIL:
@@ -450,14 +455,7 @@ class BackpackAIApp(tk.Tk):
             if not reg:
                 continue
             cells, x0, y0, bw, bh = reg
-            # 占用格高亮（蓝框）
-            for (r, c) in cells:
-                cx0 = self.GAP + c * (self.CELL + self.GAP)
-                cy0 = self.GAP + r * (self.CELL + self.GAP)
-                self.grid_canvas.create_rectangle(
-                    cx0 + 1, cy0 + 1, cx0 + self.CELL - 1, cy0 + self.CELL - 1,
-                    outline=COLORS["accent"], width=2)
-            # 贴图（旋转 + 对齐网格，严格在格子内）
+            # 贴图（旋转 + 对齐网格，严格在格子内）；不绘制占用格边框高亮
             self._draw_sprite_scaled(it, x0, y0, bw, bh)
             self._draw_name_label(x0, y0, bw, bh, it.get("zh") or it["name"])
 
@@ -583,16 +581,19 @@ class BackpackAIApp(tk.Tk):
 
     # ---------- 储物箱 / 商店（纯文字分区；商店显示价格）----------
     def _build_storage_shop(self, parent):
-        row = tk.Frame(parent, bg=COLORS["bg"])
+        # 专门区域：固定高度 + 强调边框，确保不会被背包/日志挤压到不可见
+        row = tk.Frame(parent, bg=COLORS["bg"], height=200)
         row.pack(fill="x", pady=(0, 6))
+        row.pack_propagate(False)
 
         self.storage_text, self.storage_count = self._make_text_panel(
             row, "储物箱", COLORS["warning"])
         self.shop_text, self.shop_count = self._make_text_panel(
-            row, "商店在售", COLORS["success"], show_price=True)
+            row, "商店在售", COLORS["success"])
 
-    def _make_text_panel(self, parent, title, accent, show_price=False):
-        panel = tk.Frame(parent, bg=COLORS["panel"])
+    def _make_text_panel(self, parent, title, accent):
+        panel = tk.Frame(parent, bg=COLORS["panel"],
+                         highlightbackground=accent, highlightthickness=1)
         panel.pack(side="left", fill="both", expand=True, padx=(0, 6))
         panel.pack_propagate(False)
 
@@ -609,17 +610,16 @@ class BackpackAIApp(tk.Tk):
         txt = tk.Text(wrap, bg=COLORS["bg"], fg=COLORS["text"],
                       font=FONTS["body"], relief="flat", wrap="word",
                       insertbackground=COLORS["bg"], padx=8, pady=6,
-                      state="disabled", height=6)
+                      state="disabled")
         scroll = tk.Scrollbar(wrap, command=txt.yview)
         txt.configure(yscrollcommand=scroll.set)
         scroll.pack(side="right", fill="y")
         txt.pack(side="left", fill="both", expand=True)
         txt.tag_config("bag", foreground=COLORS["accent"])
-        txt.tag_config("price", foreground=COLORS["warning"])
         txt.tag_config("dim", foreground=COLORS["text_dim"])
         return txt, count_var
 
-    def _refresh_text_panel(self, txt, items, count_var, show_price=False):
+    def _refresh_text_panel(self, txt, items, count_var):
         txt.configure(state="normal")
         txt.delete("1.0", "end")
         if not items:
@@ -629,13 +629,10 @@ class BackpackAIApp(tk.Tk):
             return
         for it in items:
             zh = it.get("zh") or it["name"]
-            line = f"{zh} ({it['name']})"
+            line = zh
             if it.get("is_bag"):
                 line += "  [容器]"
-            txt.insert("end", line)
-            if show_price and it.get("price") is not None:
-                txt.insert("end", f"    价格 {it['price']}", "price")
-            txt.insert("end", "\n")
+            txt.insert("end", line + "\n")
         txt.configure(state="disabled")
         count_var.set(str(len(items)))
 
@@ -820,6 +817,7 @@ class BackpackAIApp(tk.Tk):
 
     # ---------- 队列消费 ----------
     def _process_queue(self):
+        self._heartbeat = time.time()  # 主线程存活心跳（看门狗用）
         try:
             while True:
                 kind, a, b = self.ui_queue.get_nowait()
@@ -831,6 +829,8 @@ class BackpackAIApp(tk.Tk):
                     self._on_bot_stopped()
                 elif kind == "auto_cal_rva":
                     self._on_auto_cal_rva(a)
+                elif kind == "state":
+                    self._apply_state(a)
         except queue.Empty:
             pass
         self.after(100, self._process_queue)
@@ -886,50 +886,112 @@ class BackpackAIApp(tk.Tk):
         self._set_status("已停止", COLORS["text_dim"])
         self._set_buttons_state(running=False, initialized=self._initialized)
 
-    # ---------- 状态刷新 ----------
-    def _refresh_state_loop(self):
-        if self.bot and self._initialized:
-            try:
-                state = self.bot.get_state()
-                cal = state.get("calibrated", {})
-                gold = state.get("gold") if cal.get("gold") else "—"
-                hp = state.get("hp") if cal.get("hp") else "—"
-                rnd = state.get("round") if cal.get("round") else "—"
-                self.stat_vars["gold"].set(str(gold))
-                self.stat_vars["hp"].set(
-                    f"{hp}/{state.get('max_hp', 5)}" if hp != "—" else "—/5")
-                self.stat_vars["round"].set(
-                    f"{rnd}/{state.get('max_rounds', 18)}" if rnd != "—" else "—/18")
-                phase = "商店" if state.get("phase") == "shop" else "战斗"
-                live = state.get("live_items")
-                if live is not None:
-                    n_bp = state.get("live_backpack_count", 0)
-                    n_st = state.get("live_storage_count", 0)
-                    self.phase_var.set(f"阶段: {phase}  |  摆盘: {n_bp}  储物箱: {n_st}")
-                    self.bp_count_var.set(f"物品 {n_bp}")
-                    self._draw_backpack(live.get("backpack", []))
-                    self._refresh_text_panel(self.storage_text, live.get("storage", []),
-                                             self.storage_count)
-                    self._refresh_text_panel(self.shop_text, live.get("shop", []),
-                                             self.shop_count, show_price=True)
-            except Exception:
-                pass
-        self.after(600, self._refresh_state_loop)
+    # ---------- 状态刷新（后台线程轮询，避免阻塞主线程导致无法响应关闭）----------
+    def _start_state_poller(self):
+        """启动后台守护线程周期性读取游戏状态并推入 UI 队列。
+
+        关键：get_state() 内部会调用 ReadProcessMemory，可能阻塞；
+        若在主线程上阻塞，窗口事件循环卡死，点击关闭(X)无法触发 _on_close，
+        进程便残留。改到后台线程后，主线程事件循环永远可响应关闭。
+        """
+        if self._state_thread and self._state_thread.is_alive():
+            return
+
+        def _poll():
+            while not self._closing:
+                try:
+                    if self.bot and self._initialized:
+                        state = self.bot.get_state()
+                        self.ui_queue.put(("state", state, None))
+                except Exception:
+                    # 单次读取失败不应终止轮询线程
+                    pass
+                try:
+                    time.sleep(0.5)
+                except Exception:
+                    pass
+
+        self._state_thread = threading.Thread(target=_poll, daemon=True)
+        self._state_thread.start()
+
+    def _start_exit_watchdog(self):
+        """『生命看门狗』守护线程：作为进程退出的终极兜底。
+
+        即便 _on_close 因任何原因未被触发（事件循环卡死、WM_DELETE_WINDOW 未派发
+        等），只要出现以下任一情况就强制 os._exit(0) 终止整个进程，杜绝残留：
+          1) 已请求关闭（_closing 为真）；
+          2) 主窗口已被销毁（winfo_exists() 为假）——无论因何种方式关闭；
+          3) 主线程心跳超时（>8s 未更新）——说明主线程疑似卡死（如绘制/读取异常），
+             此时强制退出，避免进程变成僵尸。
+        看门狗本身不依赖任何 GUI 调用能否成功，异常也照常退出。
+        """
+        def _watch():
+            while True:
+                try:
+                    time.sleep(0.3)
+                except Exception:
+                    pass
+                try:
+                    if self._closing:
+                        os._exit(0)
+                    if not self.winfo_exists():
+                        os._exit(0)
+                    if time.time() - self._heartbeat > 15:
+                        os._exit(0)
+                except Exception:
+                    # 连 winfo_exists 都抛异常（窗口已半销毁）→ 直接退出
+                    try:
+                        os._exit(0)
+                    except Exception:
+                        pass
+        threading.Thread(target=_watch, daemon=True).start()
+
+    def _apply_state(self, state):
+        cal = state.get("calibrated", {})
+        gold = state.get("gold") if cal.get("gold") else "—"
+        hp = state.get("hp") if cal.get("hp") else "—"
+        rnd = state.get("round") if cal.get("round") else "—"
+        self.stat_vars["gold"].set(str(gold))
+        self.stat_vars["hp"].set(
+            f"{hp}/{state.get('max_hp', 5)}" if hp != "—" else "—/5")
+        self.stat_vars["round"].set(
+            f"{rnd}/{state.get('max_rounds', 18)}" if rnd != "—" else "—/18")
+        phase = "商店" if state.get("phase") == "shop" else "战斗"
+        live = state.get("live_items")
+        if live is not None:
+            n_bp = state.get("live_backpack_count", 0)
+            n_st = state.get("live_storage_count", 0)
+            self.phase_var.set(f"阶段: {phase}  |  摆盘: {n_bp}  储物箱: {n_st}")
+            self.bp_count_var.set(f"物品 {n_bp}")
+            bp = live.get("backpack", [])
+            self._draw_backpack(bp)
+            self._refresh_text_panel(self.storage_text, live.get("storage", []),
+                                     self.storage_count)
+            self._refresh_text_panel(self.shop_text, live.get("shop", []),
+                                     self.shop_count)
 
     def _on_close(self):
-        # 0) 强制退出看门狗「最优先」启动：无论后续的 bot.stop() 是否卡死、
-        #    是否抛出任何异常（含非 Exception 的 BaseException），只要 GUI 被关闭，
-        #    这个 daemon 线程都会无条件调用 os._exit(0) 终止整个进程，杜绝残留。
+        # 1) 立刻置关闭标志（生命看门狗会据此在 0.3s 内强制退出）
+        self._closing = True
+        # 2) 看门狗：独立 daemon 线程，短延时后无条件 os._exit(0)。
+        #    即使本函数后续任何步骤卡死/抛错，进程也必然终止。
         def _kill():
+            try:
+                time.sleep(0.25)
+            except Exception:
+                pass
             os._exit(0)
         threading.Thread(target=_kill, daemon=True).start()
-        # 1) 优雅停止机器人（关闭进程句柄、置停止标志）。失败也不影响退出。
-        try:
-            if self.bot:
-                self.bot.stop()
-        except Exception:
-            pass
-        # 2) 正常退出路径
+        # 3) bot.stop() 放到【独立后台线程】，绝不让主线程阻塞
+        #    （避免 CloseHandle / 等待游戏进程 等任何意外卡死主线程，进而卡死看门狗）。
+        def _stop_bot():
+            try:
+                if self.bot:
+                    self.bot.stop()
+            except Exception:
+                pass
+        threading.Thread(target=_stop_bot, daemon=True).start()
+        # 4) 主线程只做轻量退出（不调用任何可能阻塞的操作）
         try:
             self.quit()
         except Exception:
@@ -938,7 +1000,7 @@ class BackpackAIApp(tk.Tk):
             self.destroy()
         except Exception:
             pass
-        # 3) 同步兜底：主线程若顺利走到这里，立刻结束。
+        # 5) 同步兜底：主线程若顺利走到这里，立刻结束。
         os._exit(0)
 
     def _bind_keys(self):

@@ -92,10 +92,6 @@ GODOT_OFFSETS = {
     "member_gold": 72,
     "member_hp": 68,
     "member_round": 65,
-
-    # --- 商店物品价格（默认 -1 = 自动启发式；见 item_reader._read_price）---
-    "member_price": -1,
-    "member_discount": -1,
 }
 
 

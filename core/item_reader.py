@@ -48,11 +48,55 @@ class ItemInfo(dict):
 
 
 class ItemReader:
-    """从场景树结构性读取摆盘/储物箱/商店的物品清单。"""
+    """从场景树结构性读取摆盘/储物箱/商店的物品清单。
+    
+    支持桥接模式：若有注入的桥接 GDScript（TCP），优先通过桥接获取
+    联动/价格等运行时数据；否则回退到直接内存读取。
+    """
 
-    def __init__(self, godot_reader: GodotReader, item_db: Optional[ItemDB] = None):
+    def __init__(self, godot_reader: GodotReader, item_db: Optional[ItemDB] = None,
+                 use_bridge: bool = True):
         self.gr = godot_reader
         self.db = item_db or ItemDB()
+        self._use_bridge = use_bridge
+        # 场景树节点地址缓存（减少 ReadProcessMemory）
+        self._cache: dict = {"main": None, "player": None, "shop": None,
+                             "inv": None, "storage": None, "shop_items": None}
+
+    def _invalidate_cache(self):
+        for k in self._cache:
+            self._cache[k] = None
+
+    def _cached_find(self, cache_key: str, parent: Optional[int] = None,
+                     name: str = "") -> Optional[int]:
+        """带缓存的节点查找，只有根节点变化才重新搜索。"""
+        cached = self._cache.get(cache_key)
+        if cached is not None:
+            return cached
+        if cache_key == "main":
+            node = self._find_main()
+        elif parent is not None:
+            node = self._find_by_name(parent, name)
+        else:
+            node = None
+        if node is not None:
+            self._cache[cache_key] = node
+        return node
+
+    def _bridge_cmd(self, cmd: str, args: dict = None) -> Optional[dict]:
+        """通过桥接 TCP 获取数据。不可用时返回 None。"""
+        if not self._use_bridge:
+            return None
+        try:
+            from .bridge_client import get_bridge
+            b = get_bridge()
+            if not b.connected:
+                if not b.connect():
+                    return None
+            return b.send_command(cmd, args)
+        except Exception as e:
+            logger.debug("桥接请求失败(%s): %s", cmd, e)
+            return None
 
     def node_rotation(self, node: int) -> float:
         """读取 Node2D.rotation（实测位于 position 之后 +0x278）。"""
@@ -112,7 +156,7 @@ class ItemReader:
     def _collect_items(self, parent: int, zone: str,
                        inv_origin: Optional[tuple]) -> List[ItemInfo]:
         """收集 parent 直接子节点中的物品。"""
-        out: List[ItemInfo] = []
+        collected: List[tuple] = []  # (ItemInfo, node)
         cell = self.gr.off.get("inv_cell_px", 80)
         for c in self.gr.get_children(parent):
             sp = self.gr.node_script_path(c)
@@ -125,8 +169,7 @@ class ItemReader:
             info = ItemInfo(name=name, zh=self.db.zh(name), zone=zone,
                             script=sp, is_bag=self.db.is_bag(name),
                             rotation=round(rot, 4),
-                            x=None, y=None, row=None, col=None, cells=[],
-                            price=None)
+                            x=None, y=None, row=None, col=None, cells=[])
             if pos:
                 info["x"], info["y"] = round(pos[0], 1), round(pos[1], 1)
                 if zone == "backpack" and inv_origin:
@@ -139,90 +182,46 @@ class ItemReader:
                     # 完整占格（tscn CollisionMap 形状 + 旋转）
                     info["cells"] = self.db.occupied_cells(
                         name, pos, rot, inv_origin, cell)
-            if zone == "shop":
-                # 商店在售物品读取价格（运行时 GDScriptInstance 成员）
-                info["price"] = self._read_price(c)
-            out.append(info)
+            collected.append((info, c))
         # 容器排前面（GUI 先画袋子再画物品）
-        out.sort(key=lambda i: (not i["is_bag"], i["name"]))
-        return out
-
-    def _read_price(self, node: int) -> Optional[int]:
-        """读取商店物品当前显示价格。
-
-        游戏模型：物品有初始价格 base；商店中只可能是原价（base）或打折价
-        ceil(base/2)。本函数按下列顺序确定：
-          1) 若 config 显式指定 member_price（及可选 member_discount），直接用：
-             显示价 = base  若 member_discount 为假；否则 ceil(base/2)。
-          2) 否则启发式：物品脚本成员里常同时存 base 与 ceil(base/2)，检测满足
-             b == ceil(a/2) 且 a>b>=2 的整数对 (a=原价, b=折后)，返回折后价；
-             若没有这样的对，视为未打折，返回最像价格的整型候选。
-          3) 兜底：取 1..1000 范围内最大的整型候选；仍无则 None。
-        """
-        cfg = self.gr.off
-        idx_price = cfg.get("member_price", None)
-        idx_disc = cfg.get("member_discount", None)
-        # 1) 显式配置优先
-        if idx_price is not None and idx_price >= 0:
-            base = self.gr.read_member(node, idx_price)
-            if base is not None and 0 < base < 10_000_000:
-                if idx_disc is not None and idx_disc >= 0:
-                    disc = self.gr.read_member(node, idx_disc)
-                    if disc:
-                        return -int(-base // 2)  # ceil(base/2)
-                return base
-        # 2) 启发式：半价对 (a=原价, b=折后=ceil(a/2))
-        members = self.gr.read_members(node)
-        ints = [m for m in members if isinstance(m, int) and 1 <= m <= 100_000]
-        best = None
-        for a in ints:
-            b = -int(-a // 2)  # ceil(a/2)
-            if b >= 2 and b < a and b in ints:
-                if best is None or a > best[0]:
-                    best = (a, b)
-        if best:
-            return best[1]
-        # 3) 兜底：无折半对 → 视为未打折，取最像价格的候选
-        cands = [m for m in ints if m <= 1000]
-        if cands:
-            price = max(cands)
-            logger.debug("价格启发式兜底(未标定 member_price): 候选=%s → 取 %s",
-                         sorted(set(ints)), price)
-            return price
-        return None
+        collected.sort(key=lambda ic: (not ic[0]["is_bag"], ic[0]["name"]))
+        return [info for info, _ in collected]
 
     # ---------- 对外 API ----------
     def read_items(self) -> Dict[str, List[ItemInfo]]:
-        """读取当前摆盘/储物箱/商店的全部物品。
+        """读取当前摆盘/储物箱/商店的全部物品（带缓存优化）。
 
         返回 {"backpack": [...], "storage": [...], "shop": [...]}
         读不到（进程/场景不可用）时返回三个空列表。
         """
         empty = {"backpack": [], "storage": [], "shop": []}
         try:
-            main = self._find_main()
+            main = self._cached_find("main")
             if not main:
+                self._invalidate_cache()
                 return empty
 
             result = dict(empty)
 
-            player = self._find_by_name(main, "Player")
+            player = self._cached_find("player", main, "Player")
             if player:
-                inv = self._find_by_name(player, "Inventory")
+                inv = self._cached_find("inv", player, "Inventory")
                 inv_origin = self.gr.node_pos(inv) if inv else None
                 result["backpack"] = self._collect_items(player, "backpack", inv_origin)
 
-            shop = self._find_by_name(main, "Shop")
+            shop = self._cached_find("shop", main, "Shop")
             if shop:
-                storage = self._find_by_name(shop, "Storagebox")
+                storage = self._cached_find("storage", shop, "Storagebox")
                 if storage:
                     result["storage"] = self._collect_items(storage, "storage", None)
-                shop_items = self._find_by_name(shop, "Items")
+                shop_items = self._cached_find("shop_items", shop, "Items")
                 if shop_items:
                     result["shop"] = self._collect_items(shop_items, "shop", None)
             return result
         except Exception as e:  # noqa: BLE001
             logger.debug("物品读取失败: %s", e)
+            # 缓存可能已过期
+            self._invalidate_cache()
             return empty
 
     def summary_lines(self) -> List[str]:

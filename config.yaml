@@ -48,12 +48,7 @@ godot:
   member_gold: 72
   member_hp: 68
   member_round: 65
-  # 商店物品价格读取（默认 -1 = 自动启发式；见 core/item_reader._read_price）
-  # 物品有初始价格；商店只显示原价(member_price) 或 打折 ceil(price/2)（member_discount 为真）。
-  # 留空/负数时：用「原价与折半价同时存在于成员中」的半价对启发式读取。
-  member_price: -1
-  member_discount: -1
-  # 以下为 Godot 3.6 (x64) 类型布局，实测校正（Backpack Battles）
+    
   os_main_loop_off: 0x1D0
   scenetree_root_off: 0x148     # 真 root 视口(name='root'，含18个autoload)；0x230 是 current_scene
   object_script_instance_off: 0x58

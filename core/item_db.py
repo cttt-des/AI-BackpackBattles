@@ -86,6 +86,31 @@ class ItemDB:
         p = self.assets_dir / "sprites" / e["sprite"]
         return p if p.exists() else None
 
+    # ---------- 联动位置（逆向自 tscn Connector 场景相对偏移）----------
+    # 键: 物品原始英文名（clean_name 前的节点名）, 值: (offset_x, offset_y, connector_type)
+    _CONNECTOR_OFFSETS: Dict[str, tuple] = {
+        "Ace of Spades": (-13, -93, "Card"),
+        "Darkest Lotus": (-13, -93, "Card"),
+        "Deck of Cards": (-13, -93, "Card"),
+        "Joker": (-13, -93, "Card"),
+        "Reverse": (-13, -93, "Card"),
+        "Holo Fire Lizard": (-13, -93, "Card"),
+        "The Fool": (-13, -93, "Card"),
+        "The Lovers": (-13, -93, "Card"),
+        "White-Eyes Blue Dragon": (-13, -93, "Card"),
+    }
+
+    def connector_offset(self, name: str) -> Optional[tuple]:
+        """返回 (offset_x, offset_y, connector_type)，无连接器返回 None。"""
+        cleaned = clean_name(name)
+        e = self.entry(cleaned)
+        if e:
+            raw = e.get("key", cleaned)
+            off = self._CONNECTOR_OFFSETS.get(raw)
+            if off:
+                return off
+        return None
+
     # ---------- 背包格子素材（游戏内 res://Items/Tiles/Slot|FilledSlot）----------
     def cell_empty_path(self) -> Optional[Path]:
         if not self.assets_dir:

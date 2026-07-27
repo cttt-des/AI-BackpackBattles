@@ -119,6 +119,20 @@ func _handle_command(msg):
 		"get_children":
 			return {"ok": true, "data": _get_children(args.get("path", ""))}
 		
+		# ─── BPB AI 增强：联动 + 价格读取 ───
+		"get_item_details":
+			return {"ok": true, "data": _get_item_details(args.get("zone", "all"))}
+		"get_shop_offers":
+			return {"ok": true, "data": _get_shop_offers()}
+		"get_backpack_items_full":
+			return {"ok": true, "data": _get_backpack_items_full()}
+		"get_connector_data":
+			return {"ok": true, "data": _get_connector_data(args.get("item_path", ""))}
+		"get_item_price":
+			return {"ok": true, "data": _get_item_price(args.get("item_path", ""))}
+		"get_full_game_state":
+			return {"ok": true, "data": _get_full_game_state()}
+		
 		_:
 			return {"ok": false, "error": "Unknown command: " + cmd}
 
@@ -537,7 +551,223 @@ func _get_children(path):
 		})
 	return {"children": children}
 
-# ─── Utility ───
+# ─── BPB AI Enhanced: Synergy + Price Reading ───
+
+func _get_item_details(zone = "all"):
+	"""读取指定区域物品的所有脚本属性，包括价格、连接器数据等。"""
+	var result = {}
+	var main = get_tree().get_root().get_node_or_null("Main")
+	if not main:
+		return {"error": "Main not found, are you in-game?"}
+	
+	if zone == "all" or zone == "backpack":
+		result["backpack"] = _read_zone_items(main, "Player", "backpack")
+	if zone == "all" or zone == "shop":
+		result["shop"] = _read_zone_items(main, "Shop/Items", "shop")
+	if zone == "all" or zone == "storage":
+		result["storage"] = _read_zone_items(main, "Shop/Storagebox", "storage")
+	
+	return result
+
+func _read_zone_items(main, node_path, zone_name):
+	"""读取指定节点的所有物品子节点及其属性。"""
+	var parent = main.get_node_or_null(node_path)
+	if not parent:
+		return []
+	
+	var items = []
+	for child in parent.get_children():
+		if child.get_script() == null:
+			continue
+		var info = {
+			"name": child.name,
+			"type": child.get_class(),
+			"position": {"x": child.position.x, "y": child.position.y},
+			"rotation": child.rotation if "rotation" in child else 0,
+			"zone": zone_name,
+		}
+		
+		# 读取脚本所有可访问属性
+		var props = _safe_get_all_properties(child)
+		info["properties"] = props
+		
+		# 尝试读取价格（常见属性名）
+		for price_key in ["price", "item_price", "base_price", "gold_cost", "cost", "sell_price"]:
+			if price_key in props:
+				info["price"] = props[price_key]
+				break
+		
+		# 尝试读取联动数据（常见属性名）
+		for conn_key in ["connector", "connector_type", "synergy_type", "ConnectType"]:
+			if conn_key in props:
+				info["connector"] = props[conn_key]
+				break
+		
+		# 尝试读取脚本路径
+		var script = child.get_script()
+		if script:
+			info["script_path"] = script.resource_path
+		
+		items.append(info)
+	
+	return items
+
+func _safe_get_all_properties(node):
+	"""获取节点所有属性，安全处理各种类型。"""
+	var props = {}
+	var list = node.get_property_list()
+	for p in list:
+		var name = p.name
+		if name.begins_with("_") or name in ["script", "resource_local_to_scene"]:
+			continue
+		if name in node and node.get(name) != null:
+			props[name] = _serialize_variant(node.get(name))
+	return props
+
+func _get_shop_offers():
+	"""读取商店所有 ShopOffer 节点的详细数据。"""
+	var result = {}
+	var main = get_tree().get_root().get_node_or_null("Main")
+	if not main:
+		return {"error": "Main not found"}
+	
+	var shop = main.get_node_or_null("Shop")
+	if not shop:
+		return {"error": "Shop not found, are you in shop phase?"}
+	
+	result["shop_properties"] = _get_all_properties(shop)
+	
+	var offers = []
+	for child in shop.get_children():
+		if "ShopOffer" in child.name or child.get_class() == "ShopOffer":
+			var offer_data = {
+				"name": child.name,
+				"visible": child.visible if "visible" in child else false,
+				"properties": _safe_get_all_properties(child),
+			}
+			offers.append(offer_data)
+	result["offers"] = offers
+	
+	# 商店已购物品
+	var items = shop.get_node_or_null("Items")
+	if items:
+		var item_list = []
+		for child in items.get_children():
+			item_list.append({
+				"name": child.name,
+				"position": {"x": child.position.x, "y": child.position.y},
+				"properties": _safe_get_all_properties(child),
+			})
+		result["shop_items"] = item_list
+	
+	return result
+
+func _get_backpack_items_full():
+	"""读取背包所有物品的完整属性（含脚本运行时成员）。"""
+	var main = get_tree().get_root().get_node_or_null("Main")
+	if not main:
+		return {"error": "Main not found"}
+	
+	var player = main.get_node_or_null("Player")
+	if not player:
+		return {"error": "Player not found"}
+	
+	var items = []
+	for child in player.get_children():
+		if child.get_script() == null:
+			continue
+		items.append({
+			"name": child.name,
+			"position": {"x": child.position.x, "y": child.position.y},
+			"rotation": child.rotation if "rotation" in child else 0,
+			"properties": _safe_get_all_properties(child),
+		})
+	
+	return {"items": items}
+
+func _get_connector_data(item_path):
+	"""读取指定物品节点的连接器（联动）数据。
+	
+	参数 item_path: Godot 路径如 "/root/Main/Player/Long Sword"
+	"""
+	var node = _find_node_by_path(item_path)
+	if not node:
+		return {"error": "Node not found: " + item_path}
+	
+	var data = {
+		"name": node.name,
+		"properties": _safe_get_all_properties(node),
+	}
+	
+	# 尝试查找连接器子节点
+	for child in node.get_children():
+		if "connector" in child.name.to_lower() or child.get_class() == "Connector":
+			data["connector_node"] = {
+				"name": child.name,
+				"position": {"x": child.position.x, "y": child.position.y},
+				"visible": child.visible,
+				"scale": {"x": child.scale.x, "y": child.scale.y},
+				"properties": _safe_get_all_properties(child),
+			}
+			# 读取 texture 路径
+			if "texture" in child and child.texture:
+				data["connector_node"]["texture_path"] = child.texture.resource_path
+	
+	return data
+
+func _get_item_price(item_path):
+	"""读取指定物品节点的价格。"""
+	var node = _find_node_by_path(item_path)
+	if not node:
+		return {"error": "Node not found: " + item_path}
+	
+	var props = _safe_get_all_properties(node)
+	var price = null
+	
+	# 遍历所有常见价格属性名
+	for key in ["price", "item_price", "base_price", "gold_cost", "cost",
+				"sell_price", "buy_price", "member_price", "Price", "Cost"]:
+		if key in props:
+			price = props[key]
+			break
+	
+	if price == null:
+		# 兜底：全部整数属性中可能是价格的
+		for k in props:
+			if typeof(props[k]) == TYPE_INT and props[k] > 0 and props[k] < 100000:
+				if price == null or props[k] > price:
+					price = {"candidate": props[k], "key": k}
+	
+	return {
+		"item_path": item_path,
+		"name": node.name,
+		"price": price,
+		"all_properties": props,
+	}
+
+func _get_full_game_state():
+	"""读取完整游戏状态（含联动+价格）。"""
+	var result = {}
+	
+	# 基础游戏状态
+	var game = get_node_or_null("/root/Game")
+	if game:
+		result["game_properties"] = _safe_get_all_properties(game)
+	
+	# 物品细节（三个区域）
+	result["items"] = _get_item_details("all")
+	
+	# 商店报价
+	result["shop"] = _get_shop_offers()
+	
+	# 玩家状态
+	var main = get_tree().get_root().get_node_or_null("Main")
+	if main:
+		var player = main.get_node_or_null("Player")
+		if player:
+			result["player_properties"] = _safe_get_all_properties(player)
+	
+	return result
 
 func _is_visible(node):
 	if node is CanvasItem:

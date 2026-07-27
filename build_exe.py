@@ -69,6 +69,8 @@ def build():
         "--hidden-import", "PIL",
         "--hidden-import", "PIL.ImageTk",
         "--hidden-import", "PIL.Image",
+        # Bridge client (lazy-imported by item_reader.py for TCP bridge data)
+        "--hidden-import", "core.bridge_client",
         "--distpath", str(dist_dir),
         "--workpath", str(work_dir),
         "--specpath", str(work_dir),
