@@ -1,10 +1,10 @@
 """
-Build script: package the dashboard + bot into a single exe.
-Run this after every code change to refresh the exe:
+Build script: package the bridge injector GUI into a single exe.
 
-    python build_exe.py
+Run:
+    python build_bridge_injector.py
 
-Output: dist/BackpackAI.exe
+Output: dist/BackpackAI-BridgeInjector.exe
 """
 
 import os
@@ -16,16 +16,10 @@ from pathlib import Path
 
 PROJECT_DIR = Path(__file__).parent
 PYTHON = sys.executable
-APP_NAME = "BackpackAI"
+APP_NAME = "BackpackAI-BridgeInjector"
 
 
 def _clear_old_exe(dist_dir: Path):
-    """Remove/rename the previous exe so PyInstaller can write a fresh one.
-
-    On some drives the OS recycle-bin trash operation fails, which makes a
-    plain os.remove abort. We first try a direct delete, and if that fails we
-    rename the old exe into an _old_builds folder so the build never blocks.
-    """
     exe_path = dist_dir / f"{APP_NAME}.exe"
     if not exe_path.exists():
         return
@@ -34,7 +28,6 @@ def _clear_old_exe(dist_dir: Path):
         return
     except Exception:
         pass
-    # Fallback: move it aside into an archive folder
     archive = dist_dir / "_old_builds"
     archive.mkdir(parents=True, exist_ok=True)
     try:
@@ -51,30 +44,29 @@ def build():
     dist_dir.mkdir(parents=True, exist_ok=True)
     _clear_old_exe(dist_dir)
 
-    # PyInstaller arguments (native GUI app — no console, no web deps)
+    # Bundle bridge.gd so the injector can find it at runtime
+    bridge_gd = PROJECT_DIR / "bridge" / "bridge.gd"
+    if not bridge_gd.exists():
+        print(f"ERROR: {bridge_gd} not found!")
+        return 1
+
     args = [
         PYTHON, "-m", "PyInstaller",
         "--noconfirm",
         "--clean",
         "--onefile",
-        "--windowed",                     # GUI app: no console window
+        "--windowed",
         "--name", APP_NAME,
-        # Bundle default config next to the app resources
-        "--add-data", str(PROJECT_DIR / "config.yaml") + ";.",
-        # Bundle reverse-extracted game assets (sprites + item_db.json) used by the GUI
-        "--add-data", str(PROJECT_DIR / "assets") + ";assets",
-        # Hidden imports that PyInstaller may miss
-        "--hidden-import", "yaml",
-        "--hidden-import", "tkinter",
-        "--hidden-import", "PIL",
-        "--hidden-import", "PIL.ImageTk",
-        "--hidden-import", "PIL.Image",
-        # Bridge client (lazy-imported by item_reader.py for TCP bridge data)
-        "--hidden-import", "core.bridge_client",
+        # Bundle bridge.gd as a runtime resource (accessed via _MEIPASS)
+        "--add-data", str(bridge_gd) + ";bridge",
+        # Bundle the inject module
+        "--hidden-import", "bridge.inject",
+        # stdlib imports for logging
+        "--hidden-import", "logging",
         "--distpath", str(dist_dir),
         "--workpath", str(work_dir),
         "--specpath", str(work_dir),
-        str(PROJECT_DIR / "launcher.py"),
+        str(PROJECT_DIR / "bridge" / "injector_app.py"),
     ]
 
     print("Running PyInstaller...")
@@ -90,15 +82,11 @@ def build():
         print(f"BUILD FAILED: {exe_path} not found")
         return 1
 
-    # Copy config.yaml next to the exe so users can edit it
-    shutil.copy2(PROJECT_DIR / "config.yaml", dist_dir / "config.yaml")
-
     size_mb = exe_path.stat().st_size / 1024 / 1024
     print()
     print("=" * 50)
     print(f"BUILD OK: {exe_path}")
     print(f"Size: {size_mb:.1f} MB")
-    print(f"Config: {dist_dir / 'config.yaml'} (editable)")
     print("=" * 50)
     return 0
 
