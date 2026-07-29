@@ -55,7 +55,6 @@ def build():
     args = [
         PYTHON, "-m", "PyInstaller",
         "--noconfirm",
-        "--clean",
         "--onefile",
         "--windowed",                     # GUI app: no console window
         "--name", APP_NAME,
@@ -63,6 +62,8 @@ def build():
         "--add-data", str(PROJECT_DIR / "config.yaml") + ";.",
         # Bundle reverse-extracted game assets (sprites + item_db.json) used by the GUI
         "--add-data", str(PROJECT_DIR / "assets") + ";assets",
+        # Bundle item DB used by "导出阵容" to validate item names
+        "--add-data", str(PROJECT_DIR / "assets" / "items_db_sim.json") + ";simulator",
         # Hidden imports that PyInstaller may miss
         "--hidden-import", "yaml",
         "--hidden-import", "tkinter",

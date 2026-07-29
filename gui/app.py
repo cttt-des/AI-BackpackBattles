@@ -30,17 +30,19 @@
 
 import os
 import sys
+import json
 import math
 import time
 import queue
 import logging
 import threading
+from datetime import datetime
 from collections import defaultdict
 from pathlib import Path
 from itertools import product
 
 import tkinter as tk
-from tkinter import ttk, messagebox, font as tkfont
+from tkinter import ttk, messagebox, filedialog, font as tkfont
 
 # 允许以脚本或模块方式运行
 if not getattr(sys, "frozen", False):
@@ -48,7 +50,7 @@ if not getattr(sys, "frozen", False):
 
 from gui.theme import COLORS, CATEGORY_COLORS, FONTS, FONT_FAMILY
 from core.bot import BackpackBot
-from core.paths import get_config_path
+from core.paths import get_config_path, get_base_dir, get_resource_dir
 from core.item_db import ItemDB
 
 logger = logging.getLogger(__name__)
@@ -111,6 +113,7 @@ class BackpackAIApp(tk.Tk):
         self._closing = False
         self._state_thread: threading.Thread | None = None
         self._heartbeat = time.time()  # 主线程存活心跳（看门狗用）
+        self._last_live = None          # 最近一次读取到的物品快照（导出阵容用）
 
         # 物品资源库（贴图 + 中文名 + 占格形状 + 格子素材）
         self.item_db = ItemDB()
@@ -246,7 +249,7 @@ class BackpackAIApp(tk.Tk):
 
         # 按钮 2×3 网格
         btns = tk.Frame(panel, bg=COLORS["panel"])
-        btns.pack(fill="x", padx=10, pady=(4, 12))
+        btns.pack(fill="x", padx=10, pady=(4, 6))
         specs = [
             ("init", "初始化", COLORS["accent"], self._on_init),
             ("start", "开始", COLORS["success"], self._on_start),
@@ -266,6 +269,15 @@ class BackpackAIApp(tk.Tk):
             btns.columnconfigure(c, weight=1)
             btns.rowconfigure(r, weight=1)
             self.buttons[key] = b
+
+        # 导出阵容（整行按钮）：把当前读取到的摆盘保存为模拟器兼容的 JSON
+        export_btn = tk.Button(
+            panel, text="导出阵容 (模拟器 JSON)", font=FONTS["button"], relief="flat",
+            bg=COLORS["panel_light"], fg=COLORS["text"], cursor="hand2",
+            activebackground=COLORS["border"], activeforeground=COLORS["text"],
+            command=self._on_export_lineup, padx=6, pady=8)
+        export_btn.pack(fill="x", padx=13, pady=(0, 12))
+        self.buttons["export"] = export_btn
 
         self._set_buttons_state(running=False, initialized=False)
 
@@ -316,13 +328,13 @@ class BackpackAIApp(tk.Tk):
         渲染顺序即 z 序：
           1) 背包底框（每个格子底色）
           2) 背包(容器)贴图 —— 放在最底层，使其上能叠出它占用的每一个格子
-          3) 格子素材(FilledSlot) —— 渲染在背包之上，便于分辨同一背包的不同格子
+          3) 格子素材(FilledSlot) —— 渲染在容器之上，所有占用格均显示，药水的多层渲染为正常效果
           4) 普通物品（贴图 / 半透明染色） —— 显示在最上层
         """
         self._bp_refs = []
         self.grid_canvas.delete("all")
 
-        # 收集被占用的格子（用于决定用 Slot 还是 FilledSlot）
+        # 收集被占用的格子
         occupied = set()
         for it in items:
             for (r, c) in (it.get("cells") or []):
@@ -336,21 +348,19 @@ class BackpackAIApp(tk.Tk):
         bags = [it for it in items if it.get("is_bag")]
         regulars = [it for it in items if not it.get("is_bag")]
 
-        # 图层 2：背包(容器)贴图 —— 画在格子之下，让格子能叠在它上面
+        # 图层 2：背包(容器)贴图 —— 画在格子之下
         for it in bags:
             self._draw_bag(it, mode)
 
-        # 图层 3：格子素材 —— 渲染在背包之上（仅占用格画 FilledSlot）
+        # 图层 3：格子素材 —— 所有被占用的格子画 FilledSlot（含药水正常多层渲染）
         self._draw_cell_layer(occupied)
 
-        # 图层 4：普通物品 —— 显示在最上层
+        # 图层 4：普通物品
         if mode == "color":
-            self.legend.configure(
-                text="染色模式：背包用贴图、物品用半透明同色+文字（相邻不同色）；格子素材只画占用格")
+            self.legend.configure(text="染色模式：背包用贴图、物品用半透明同色+文字（相邻不同色）")
             self._draw_items_color(regulars)
         else:
-            self.legend.configure(
-                text="贴图模式：游戏内资源渲染（按旋转对齐网格）；蓝框=占用格；格子素材只画占用格")
+            self.legend.configure(text="贴图模式：游戏内资源渲染（按旋转对齐网格）")
             self._draw_items_sprite(regulars)
 
     def _draw_base_layer(self):
@@ -411,21 +421,14 @@ class BackpackAIApp(tk.Tk):
         return cells, x0, y0, bw, bh
 
     def _draw_sprite_scaled(self, it, x0, y0, bw, bh, overflow_px=0):
-        """绘制单个物品的贴图：按内存 rotation 旋转、等比缩放(contain，不变形)、居中。
-
-        旋转约定：item_db.occupied_cells 用游戏(Godot)约定——正角=顺时针(屏幕 y 向下)。
-        已实测 PIL rotate(正角) 为逆时针，故此处取 -degrees(rot) 使其与游戏占格一致。
-        缩放：contain（取小边），保持宽高比不变形；居中放在占用格包围盒里。
-        overflow_px>0 时允许在包围盒基础上向外扩张少量(背包可稍微超出格子，
-        但仍等比不变形)；普通物品 overflow_px=0，严格限制在格子内。
-        """
+        """绘制单个物品的贴图：按内存 rotation 旋转、等比缩放(contain，不变形)、居中。"""
         sp = self.item_db.sprite_path(it["name"])
         if not (sp and sp.exists() and _HAS_PIL):
-            self._draw_fallback_tile(x0, y0, bw, bh, it.get("is_bag"))
+            self._draw_fallback_tile(x0, y0, bw, bh, it.get("is_bag"), name=it.get("zh") or it["name"])
             return
         img = self._load_image(sp)
         if img is None:
-            self._draw_fallback_tile(x0, y0, bw, bh, it.get("is_bag"))
+            self._draw_fallback_tile(x0, y0, bw, bh, it.get("is_bag"), name=it.get("zh") or it["name"])
             return
         rot = it.get("rotation") or 0.0
         if abs(rot) > 1e-4:
@@ -501,10 +504,18 @@ class BackpackAIApp(tk.Tk):
                                          anchor="center")
             ty += line_h
 
-    def _draw_fallback_tile(self, x0, y0, bw, bh, is_bag):
+    def _draw_fallback_tile(self, x0, y0, bw, bh, is_bag, name=""):
+        """无贴图时的后备渲染：彩色填充矩形 + 物品名首字符。"""
         color = CATEGORY_COLORS["bag"] if is_bag else CATEGORY_COLORS["unknown"]
+        # 填充背景
         self.grid_canvas.create_rectangle(x0 + 1, y0 + 1, x0 + bw - 1, y0 + bh - 1,
-                                          fill=color, outline="")
+                                          fill=color, outline=COLORS["grid_border"], width=1)
+        # 显示物品名缩写（中文前2字或英文首字母）
+        if name:
+            short = name[:2] if any('\u4e00' <= c <= '\u9fff' for c in name[:2]) else name[0].upper()
+            cx, cy = x0 + bw // 2, y0 + bh // 2
+            self.grid_canvas.create_text(cx, cy, text=short, fill="#ffffff",
+                                         font=("Segoe UI", max(8, bw // 3), "bold"))
 
     # ---------- 邻接着色（保证相邻物品不同色）----------
     def _assign_colors(self, items):
@@ -684,6 +695,7 @@ class BackpackAIApp(tk.Tk):
 
     # ---------- 控制回调 ----------
     def _on_init(self):
+        # bot 构造放主线程（读取本地 config.yaml，极快），出错可立即弹窗
         if self.bot is None:
             try:
                 self.bot = BackpackBot(get_config_path())
@@ -803,6 +815,119 @@ class BackpackAIApp(tk.Tk):
         self.buttons["pause"].configure(text="暂停")
         self._log("warning", "⚠ 紧急停止已触发")
 
+    # ---------- 导出阵容（模拟器兼容 JSON）----------
+    def _sim_db_names(self):
+        """加载战斗模拟器 items_db.json 的物品/角色名集合（用于导出校验）。
+
+        开发模式: <项目根>/simulator/items_db.json
+        exe 模式: _MEIPASS/simulator/items_db.json（打包时 --add-data 带入）
+        加载失败时返回 (None, None)，导出照常进行、只是跳过校验。
+        """
+        for base in (get_resource_dir(), get_base_dir()):
+            p = base / "assets" / "items_db_sim.json"
+            try:
+                if p.exists():
+                    with open(p, "r", encoding="utf-8") as f:
+                        db = json.load(f)
+                    return set(db.get("items", {})), set(db.get("characters", {}))
+            except Exception:
+                continue
+        return None, None
+
+    def _on_export_lineup(self):
+        """把当前读取到的背包摆盘导出为游戏结构匹配的 v2 阵容 JSON。
+
+        格式（无 level，游戏真实结构）：
+          - character 直接用职业名字符串
+          - 物品用 id/row/col/rotation/quantity
+          - width/height 从 cells 计算，不含 level
+          - container 标志，contents 递归嵌套
+        """
+        live = self._last_live
+        if not live or not live.get("backpack"):
+            messagebox.showwarning(
+                "提示", "当前没有读取到背包物品。\n请先初始化并等待摆盘数据出现后再导出。")
+            return
+
+        known_items, known_chars = self._sim_db_names()
+
+        def item_entry(it):
+            """生成单个物品的 v2 格式条目（匹配游戏真实结构）。"""
+            cells = [(r, c) for (r, c) in (it.get("cells") or [])]
+            if cells:
+                rs = [r for r, _ in cells]
+                cs = [c for _, c in cells]
+                row = min(rs)
+                col = min(cs)
+            else:
+                row = it.get("row", 0) or 0
+                col = it.get("col", 0) or 0
+            name = it.get("name", "")
+            entry = {
+                "id": name,
+                "row": int(row),
+                "col": int(col),
+                "rotation": int(round(it.get("rotation", 0.0) * 180 / 3.14159 / 90) * 90) % 360,
+                "quantity": 1,
+            }
+            entry["container"] = it.get("is_bag", False)
+            if entry["container"]:
+                entry["contents"] = []
+            return entry, name
+
+        items_out = []
+        unknown = []
+        for it in live.get("backpack", []):
+            entry, name = item_entry(it)
+            items_out.append(entry)
+            if known_items is not None and name not in known_items:
+                unknown.append(name)
+
+        character = "Adventurer"
+        if known_chars is not None and character not in known_chars:
+            character = next(iter(known_chars), "Adventurer")
+
+        data = {
+            "version": 2,
+            "meta": {
+                "source": "BackpackAI 实时内存读取",
+                "exported_at": datetime.now().isoformat(),
+                "unknown_items": unknown,
+            },
+            "character": character,
+            "round": state.get("round", 1),
+            "backpack": {
+                "grid": {"rows": 7, "cols": 10},
+                "items": items_out,
+            },
+            "storage": [],
+        }
+
+        default_name = datetime.now().strftime("lineup_%Y%m%d_%H%M%S.json")
+        path = filedialog.asksaveasfilename(
+            title="保存阵容 JSON（战斗模拟器输入格式）",
+            defaultextension=".json",
+            initialfile=default_name,
+            initialdir=str(get_base_dir()),
+            filetypes=[("JSON 文件", "*.json"), ("所有文件", "*.*")],
+        )
+        if not path:
+            return
+        try:
+            with open(path, "w", encoding="utf-8") as f:
+                json.dump(data, f, ensure_ascii=False, indent=2)
+        except Exception as e:  # noqa: BLE001
+            messagebox.showerror("错误", f"保存失败:\n{e}")
+            return
+
+        self._log("success", f"✓ 已导出阵容（{len(items_out)} 件物品）→ {path}")
+        if unknown:
+            self._log("warning",
+                      "⚠ 以下物品暂未收录进模拟器物品库，模拟前需在 items_db.json 中补充: "
+                      + ", ".join(sorted(set(unknown))))
+        self._log("info",
+                  "用法: python -m simulator.simulator 本文件.json 对手阵容.json")
+
     # ---------- 日志 ----------
     def _log(self, level: str, msg: str):
         self.log_text.configure(state="normal")
@@ -817,10 +942,21 @@ class BackpackAIApp(tk.Tk):
 
     # ---------- 队列消费 ----------
     def _process_queue(self):
+        """消费 UI 消息队列。
+
+        关键优化：state 消息只处理最新的一条，丢弃中间的积压。
+        否则重绘太频繁会导致主线程长时间卡在 _draw_backpack 上，UI 失去响应。
+        """
         self._heartbeat = time.time()  # 主线程存活心跳（看门狗用）
+        latest_state = None
         try:
             while True:
                 kind, a, b = self.ui_queue.get_nowait()
+                if kind == "state":
+                    # state 消息：只保留最新的，跳过中间积压
+                    latest_state = (a,)
+                    continue
+                # 非 state 消息立即处理
                 if kind == "log":
                     self._log(a, b)
                 elif kind == "init_done":
@@ -829,10 +965,13 @@ class BackpackAIApp(tk.Tk):
                     self._on_bot_stopped()
                 elif kind == "auto_cal_rva":
                     self._on_auto_cal_rva(a)
-                elif kind == "state":
-                    self._apply_state(a)
         except queue.Empty:
             pass
+
+        # 最后只处理最新的一条 state
+        if latest_state:
+            self._apply_state(latest_state[0])
+
         self.after(100, self._process_queue)
 
     def _on_init_done(self, ok: bool, err: str):
@@ -959,6 +1098,7 @@ class BackpackAIApp(tk.Tk):
         phase = "商店" if state.get("phase") == "shop" else "战斗"
         live = state.get("live_items")
         if live is not None:
+            self._last_live = live
             n_bp = state.get("live_backpack_count", 0)
             n_st = state.get("live_storage_count", 0)
             self.phase_var.set(f"阶段: {phase}  |  摆盘: {n_bp}  储物箱: {n_st}")

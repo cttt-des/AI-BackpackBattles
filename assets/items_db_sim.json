@@ -1,0 +1,5763 @@
+{
+  "_comment": "Auto-generated from assets/item_db.json. All 483 real items.",
+  "items": {
+    "Ace of Spades": {
+      "zh": "黑桃A",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "AceofSpades.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Acorn Collar": {
+      "zh": "橡子颈圈",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "AcornCollar.png",
+      "category": "food",
+      "base": {
+        "defense": 5,
+        "max_hp": 5
+      }
+    },
+    "Artifact Stone Cold": {
+      "zh": "遗迹石：寒冷",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "ArtifactStoneCold.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Artifact Stone Heat": {
+      "zh": "遗迹石：火焰",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "ArtifactStoneHeat.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Bag of Stones": {
+      "zh": "一袋石头",
+      "size": [
+        2,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "BagofStones.png",
+      "category": "bag",
+      "base": {}
+    },
+    "Banana": {
+      "zh": "香蕉",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "Banana.png",
+      "category": "food",
+      "base": {
+        "regen": 8
+      },
+      "damage_type": "melee",
+      "stats": {
+        "passive": {
+          "regen": 3
+        }
+      }
+    },
+    "Blood Amulet": {
+      "zh": "血色护符",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "BloodAmulet.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Blood Goobert": {
+      "zh": "血之黏黏",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "BloodGoobert.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Bloodthorne": {
+      "zh": "血棘",
+      "size": [
+        1,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "Bloodthorne.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Bloody Dagger": {
+      "zh": "吸血匕首",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "BloodyDagger.png",
+      "category": "weapon",
+      "base": {
+        "damage": 5,
+        "attack_speed": 1.0,
+        "crit": 0.1,
+        "lifesteal": 0.15
+      },
+      "damage_type": "melee",
+      "stats": {
+        "damage_min": 3,
+        "damage_max": 6,
+        "cooldown": 1.0,
+        "hit_rate": 0.9,
+        "stamina_cost": 0.8,
+        "passive": {
+          "lifesteal": 0.15
+        }
+      }
+    },
+    "Blueberries": {
+      "zh": "蓝莓",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "Blueberries.png",
+      "category": "utility",
+      "base": {
+        "regen": 5
+      }
+    },
+    "Bow and Arrow": {
+      "zh": "弓箭",
+      "size": [
+        3,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "BowandArrow.png",
+      "category": "weapon",
+      "base": {
+        "damage": 7,
+        "attack_speed": 1.0,
+        "crit": 0.1
+      },
+      "damage_type": "ranged",
+      "stats": {
+        "damage_min": 4,
+        "damage_max": 8,
+        "cooldown": 1.1,
+        "hit_rate": 0.85,
+        "stamina_cost": 1.0
+      }
+    },
+    "Box of Riches": {
+      "zh": "宝石盒",
+      "size": [
+        2,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "BoxofRiches.png",
+      "category": "bag",
+      "base": {}
+    },
+    "Broom": {
+      "zh": "扫把",
+      "size": [
+        1,
+        4
+      ],
+      "is_bag": false,
+      "sprite": "Broom.png",
+      "category": "weapon",
+      "base": {
+        "damage": 3,
+        "attack_speed": 1.3,
+        "crit": 0.05
+      },
+      "damage_type": "melee",
+      "stats": {
+        "damage_min": 2,
+        "damage_max": 4,
+        "cooldown": 1.7,
+        "hit_rate": 0.95,
+        "stamina_cost": 1.2
+      }
+    },
+    "Burning Torch": {
+      "zh": "燃烧火把",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "BurningTorch.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Carrot": {
+      "zh": "萝卜",
+      "size": [
+        2,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "Carrot.png",
+      "category": "food",
+      "base": {
+        "max_hp": 10,
+        "regen": 2
+      },
+      "damage_type": "melee",
+      "stats": {
+        "passive": {
+          "max_hp": 5,
+          "regen": 1
+        }
+      }
+    },
+    "Carrot Goobert": {
+      "zh": "萝卜头黏黏",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "CarrotGoobert.png",
+      "category": "food",
+      "base": {}
+    },
+    "Claws of Attack": {
+      "zh": "攻击之爪",
+      "size": [
+        2,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "ClawsofAttack.png",
+      "category": "weapon",
+      "base": {
+        "damage_pct": 0.15
+      }
+    },
+    "Coins": {
+      "zh": "一堆金币",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "Coins.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Corrupted Armor": {
+      "zh": "腐败护甲",
+      "size": [
+        2,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "CorruptedArmor.png",
+      "category": "armor",
+      "base": {
+        "defense": 28
+      }
+    },
+    "Critwood Staff": {
+      "zh": "暴击法杖",
+      "size": [
+        1,
+        4
+      ],
+      "is_bag": false,
+      "sprite": "CritwoodStaff.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Crossblades": {
+      "zh": "十字剑",
+      "size": [
+        3,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "Crossblades.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Crown": {
+      "zh": "",
+      "size": [
+        2,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "Crown.png",
+      "category": "armor",
+      "base": {}
+    },
+    "Cursed Dagger": {
+      "zh": "诅咒匕首",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "CursedDagger.png",
+      "category": "weapon",
+      "base": {
+        "damage": 6,
+        "attack_speed": 1.2,
+        "crit": 0.2
+      }
+    },
+    "Cursed Hair Comb": {
+      "zh": "",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "CursedHairComb.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Customer Card": {
+      "zh": "会员卡",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "CustomerCard.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Dagger": {
+      "zh": "匕首",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "Dagger.png",
+      "category": "weapon",
+      "base": {
+        "damage": 4,
+        "attack_speed": 1.1,
+        "crit": 0.1
+      },
+      "damage_type": "melee",
+      "stats": {
+        "damage_min": 2,
+        "damage_max": 5,
+        "cooldown": 1.0,
+        "hit_rate": 0.95,
+        "stamina_cost": 0.8
+      }
+    },
+    "Dancing Dragon": {
+      "zh": "舞龙",
+      "size": [
+        4,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "DancingDragon.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Darkest Lotus": {
+      "zh": "黑暗莲花",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "DarkestLotus.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Darksaber": {
+      "zh": "黑暗剑",
+      "size": [
+        1,
+        4
+      ],
+      "is_bag": false,
+      "sprite": "Darksaber.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Death Scythe": {
+      "zh": "死神镰刀",
+      "size": [
+        3,
+        4
+      ],
+      "is_bag": false,
+      "sprite": "DeathScythe.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Deck of Cards": {
+      "zh": "牌堆",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "DeckofCards.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Demonic Flask": {
+      "zh": "恶魔烧瓶",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "DemonicFlask.png",
+      "category": "potion",
+      "base": {
+        "instant_heal": 20,
+        "damage_pct": 0.25
+      }
+    },
+    "Djinn Lamp": {
+      "zh": "阿拉丁神灯",
+      "size": [
+        2,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "DjinnLamp.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Eggscalibur": {
+      "zh": "荷包蛋圣锅",
+      "size": [
+        3,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "Eggscalibur.png",
+      "category": "food",
+      "base": {}
+    },
+    "Evil Cap": {
+      "zh": "",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "EvilCap.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Acorn Ace": {
+      "zh": "王牌橡子",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "AcornAce.png",
+      "category": "food",
+      "base": {}
+    },
+    "Amethyst Egg": {
+      "zh": "紫水晶龙蛋",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "AmethystEgg.png",
+      "category": "food",
+      "base": {}
+    },
+    "Amethyst Whelp": {
+      "zh": "紫水晶幼龙",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "AmethystWhelp.png",
+      "category": "gem",
+      "base": {}
+    },
+    "Amulet Unidentified": {
+      "zh": "",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "AmuletofAgility.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Amulet of Alchemy": {
+      "zh": "炼金护符",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "AmuletofAlchemy.png",
+      "category": "utility",
+      "base": {
+        "attack_speed_pct": 0.15
+      }
+    },
+    "Amulet of Darkness": {
+      "zh": "黑暗护符",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "AmuletofDarkness.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Amulet of Feasting": {
+      "zh": "食物护符",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "AmuletofFeasting.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Amulet of Fortune": {
+      "zh": "财富护符",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "AmuletofFortune.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Amulet of Life": {
+      "zh": "生命护符",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "AmuletofLife.png",
+      "category": "utility",
+      "base": {
+        "max_hp": 25,
+        "regen": 3
+      }
+    },
+    "Amulet of Light": {
+      "zh": "光明护符",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "AmuletofLight.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Amulet of Steel": {
+      "zh": "钢之护符",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "AmuletofSteel.png",
+      "category": "utility",
+      "base": {
+        "defense": 10
+      }
+    },
+    "Amulet of the Wild": {
+      "zh": "自然护符",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "AmuletoftheWild.png",
+      "category": "utility",
+      "base": {
+        "regen": 8,
+        "lifesteal": 0.05
+      }
+    },
+    "Angel Crystal": {
+      "zh": "水晶之翼",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "AngelCrystal.png",
+      "category": "gem",
+      "base": {}
+    },
+    "Anvil": {
+      "zh": "铁砧",
+      "size": [
+        2,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "Anvil.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Arcane Boots": {
+      "zh": "奥术长靴",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "ArcaneBoots.png",
+      "category": "armor",
+      "base": {}
+    },
+    "Arcane Intellect": {
+      "zh": "",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "ArcaneIntellect.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Armored Courage Puppy": {
+      "zh": "护甲勇敢狼崽",
+      "size": [
+        2,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "ArmoredCouragePuppy.png",
+      "category": "armor",
+      "base": {}
+    },
+    "Armored Power Puppy": {
+      "zh": "护甲全能狼崽",
+      "size": [
+        2,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "ArmoredPowerPuppy.png",
+      "category": "armor",
+      "base": {}
+    },
+    "Armored Wisdom Puppy": {
+      "zh": "护甲睿智狼崽",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "ArmoredWisdomPuppy.png",
+      "category": "armor",
+      "base": {}
+    },
+    "Artifact Stone Death": {
+      "zh": "遗迹石：死亡",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "ArtifactStoneDeath.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Automanaton": {
+      "zh": "自动魔像",
+      "size": [
+        3,
+        4
+      ],
+      "is_bag": false,
+      "sprite": "Automanaton.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Axe": {
+      "zh": "战斧",
+      "size": [
+        2,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "Axe.png",
+      "category": "weapon",
+      "base": {
+        "damage": 14,
+        "attack_speed": 0.8,
+        "crit": 0.05
+      }
+    },
+    "Badger Spirit": {
+      "zh": "幽灵獾",
+      "size": [
+        2,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "BadgerSpirit.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Bag of Giving": {
+      "zh": "给予之袋",
+      "size": [
+        3,
+        2
+      ],
+      "is_bag": true,
+      "sprite": "BagofGiving.png",
+      "category": "bag",
+      "base": {
+        "extra_rows": 2,
+        "max_hp": 10
+      }
+    },
+    "Bagtacular": {
+      "zh": "背包盛宴",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "Bagtacular.png",
+      "category": "bag",
+      "base": {}
+    },
+    "Battery": {
+      "zh": "电池",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "Battery.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Bazooka": {
+      "zh": "",
+      "size": [
+        3,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "Bazooka.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Berserker Bag": {
+      "zh": "",
+      "size": [
+        3,
+        2
+      ],
+      "is_bag": true,
+      "sprite": "BerserkerBag.png",
+      "category": "bag",
+      "base": {}
+    },
+    "Bewitchment": {
+      "zh": "魅惑",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "Bewitchment.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Big Bloodthorne": {
+      "zh": "",
+      "size": [
+        2,
+        4
+      ],
+      "is_bag": false,
+      "sprite": "BigBloodthorne.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Bionic Armor": {
+      "zh": "",
+      "size": [
+        2,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "BionicArmor.png",
+      "category": "armor",
+      "base": {}
+    },
+    "Bismuth Cube": {
+      "zh": "铋立方体",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "BismuthCube.png",
+      "category": "gem",
+      "base": {}
+    },
+    "Blood Manipulation": {
+      "zh": "鲜血支配",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "BloodManipulation.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Bomb": {
+      "zh": "",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "Bomb.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Book of Basics": {
+      "zh": "",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "BookofBasics.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Book of Darkness": {
+      "zh": "",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "BookofDarkness.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Book of Ice": {
+      "zh": "",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "BookofIceNew.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Book of Light": {
+      "zh": "",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "BookofLight.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Book of Nature": {
+      "zh": "",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "BookofNature.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Boomerang": {
+      "zh": "回旋镖",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "Boomerang.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Bowl of Treats": {
+      "zh": "一碗零食",
+      "size": [
+        2,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "BowlofTreats.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Box of Prosperity": {
+      "zh": "财富之盒",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": true,
+      "sprite": "BoxofProsperity.png",
+      "category": "bag",
+      "base": {}
+    },
+    "Brass Knuckles": {
+      "zh": "铜指虎",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "BrassKnuckles.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Broccoli": {
+      "zh": "西兰花",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "Broccoli.png",
+      "category": "food",
+      "base": {
+        "regen": 10,
+        "max_hp": 5
+      }
+    },
+    "Broccoli Goobert": {
+      "zh": "西兰花黏黏",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "BroccoliGoobert.png",
+      "category": "food",
+      "base": {}
+    },
+    "Broccotree": {
+      "zh": "西兰花树",
+      "size": [
+        2,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "Broccotree.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Burning Banner": {
+      "zh": "燃烧旗帜",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "BurningBanner.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Burning Blade": {
+      "zh": "火焰剑",
+      "size": [
+        1,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "BurningBlade.png",
+      "category": "weapon",
+      "base": {
+        "damage": 14,
+        "attack_speed": 0.8,
+        "crit": 0.05,
+        "poison": 5
+      }
+    },
+    "Burning Spikes": {
+      "zh": "",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "BurningSpikes.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Burning Sword": {
+      "zh": "火焰短剑",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "BurningSword.png",
+      "category": "weapon",
+      "base": {
+        "damage": 10,
+        "attack_speed": 0.9,
+        "crit": 0.05,
+        "poison": 3
+      },
+      "damage_type": "melee",
+      "stats": {
+        "damage_min": 4,
+        "damage_max": 9,
+        "cooldown": 1.1,
+        "hit_rate": 0.9,
+        "stamina_cost": 1.0,
+        "debuffs_on_hit": {
+          "poison": 1
+        }
+      }
+    },
+    "Busted Blade": {
+      "zh": "锻造巨剑",
+      "size": [
+        2,
+        5
+      ],
+      "is_bag": false,
+      "sprite": "BustedBlade.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Buy the Holy Light": {
+      "zh": "神圣特卖",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "BuytheHolyLight.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Cap of Brilliance": {
+      "zh": "辉光之帽",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "CapofBrilliance.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Cat Spirit": {
+      "zh": "幽灵猫",
+      "size": [
+        2,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "CatSpirit.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Cauldron": {
+      "zh": "大煮锅",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "Cauldron.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Chain Whip": {
+      "zh": "锁链鞭",
+      "size": [
+        3,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "ChainWhip.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Chainsaw": {
+      "zh": "电锯",
+      "size": [
+        1,
+        4
+      ],
+      "is_bag": false,
+      "sprite": "Chainsaw.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Charge Splitter": {
+      "zh": "电荷分裂器",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "ChargeSplitter.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Cheese": {
+      "zh": "奶酪",
+      "size": [
+        2,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "Cheese.png",
+      "category": "food",
+      "base": {
+        "max_hp": 12,
+        "defense": 3
+      },
+      "damage_type": "melee",
+      "stats": {
+        "passive": {
+          "max_hp": 10,
+          "shield": 1
+        }
+      }
+    },
+    "Cheese Goobert": {
+      "zh": "奶酪黏黏",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "CheeseGoobert.png",
+      "category": "food",
+      "base": {}
+    },
+    "Black Bishop": {
+      "zh": "黑色主教",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": null,
+      "category": "utility",
+      "base": {}
+    },
+    "Black King": {
+      "zh": "黑色国王",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": null,
+      "category": "utility",
+      "base": {}
+    },
+    "Black Knight": {
+      "zh": "黑色骑士",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": null,
+      "category": "utility",
+      "base": {}
+    },
+    "Black Pawn": {
+      "zh": "黑色士兵",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": null,
+      "category": "utility",
+      "base": {}
+    },
+    "Black Queen": {
+      "zh": "黑色皇后",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": null,
+      "category": "utility",
+      "base": {}
+    },
+    "Black Rook": {
+      "zh": "黑色城堡",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": null,
+      "category": "utility",
+      "base": {}
+    },
+    "White Bishop": {
+      "zh": "白色主教",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": null,
+      "category": "utility",
+      "base": {}
+    },
+    "White King": {
+      "zh": "白色国王",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": null,
+      "category": "utility",
+      "base": {}
+    },
+    "White Knight": {
+      "zh": "白色骑士",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": null,
+      "category": "utility",
+      "base": {}
+    },
+    "White Pawn": {
+      "zh": "白色士兵",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": null,
+      "category": "utility",
+      "base": {}
+    },
+    "White Queen": {
+      "zh": "白色皇后",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": null,
+      "category": "utility",
+      "base": {}
+    },
+    "White Rook": {
+      "zh": "白色城堡",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": null,
+      "category": "utility",
+      "base": {}
+    },
+    "Chess Board": {
+      "zh": "棋盘",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "ChessBoard.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Chess Master": {
+      "zh": "棋艺大师",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "ChessMaster.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Chili Goobert": {
+      "zh": "辣椒黏黏",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "ChiliGoobert.png",
+      "category": "food",
+      "base": {}
+    },
+    "Chili Pepper": {
+      "zh": "红辣椒",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "ChiliPepper.png",
+      "category": "food",
+      "base": {
+        "damage_pct": 0.2,
+        "defense": -5
+      }
+    },
+    "Chrome Cube": {
+      "zh": "",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "ChromeCube.png",
+      "category": "gem",
+      "base": {}
+    },
+    "Cog": {
+      "zh": "齿轮",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "Cog.png",
+      "category": "utility",
+      "base": {
+        "attack_speed_pct": 0.05
+      }
+    },
+    "Cog Badge": {
+      "zh": "齿轮徽章",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "CogBadge.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Coil": {
+      "zh": "线圈",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "Coil.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Con-Trap-Tron": {
+      "zh": "陷阱装置",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "Con-Trap-Tron.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Courage Puppy": {
+      "zh": "勇敢狼崽",
+      "size": [
+        2,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "CouragePuppy.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Critical Poison": {
+      "zh": "暴击毒药",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "CriticalPoison.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Crow": {
+      "zh": "乌鸦",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "Crow.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Cthulhu": {
+      "zh": "克总之颅",
+      "size": [
+        3,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "Cthulhu.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Cubert": {
+      "zh": "方块黏黏",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "Cubert.png",
+      "category": "gem",
+      "base": {}
+    },
+    "Cupcake": {
+      "zh": "魔法杯糕",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "Cupcake.png",
+      "category": "food",
+      "base": {}
+    },
+    "Cupcake Dragon": {
+      "zh": "",
+      "size": [
+        3,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "CupcakeDragon.png",
+      "category": "food",
+      "base": {}
+    },
+    "Cupcake Goobert": {
+      "zh": "魔法杯糕黏黏",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "CupcakeGoobert.png",
+      "category": "food",
+      "base": {}
+    },
+    "Cupcake Staff": {
+      "zh": "杯糕法杖",
+      "size": [
+        1,
+        4
+      ],
+      "is_bag": false,
+      "sprite": "CupcakeStaff.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Daggerang": {
+      "zh": "匕首回旋镖",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "Daggerang.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Dark Lantern": {
+      "zh": "黯淡提灯",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "DarkLantern.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Dark Ritual": {
+      "zh": "黑暗仪式",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "DarkRitual.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Death Lotus": {
+      "zh": "死亡莲花",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "DeathLotus.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Deer Totem": {
+      "zh": "",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "DeerTotem.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Devouring Sphere": {
+      "zh": "吞噬圆球",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "DevouringSphere.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Dig Deeper": {
+      "zh": "挖呀挖",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "DigDeeper.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Divine Potion": {
+      "zh": "神圣魔药",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "DivinePotion.png",
+      "category": "potion",
+      "base": {
+        "instant_heal": 40,
+        "regen": 10
+      }
+    },
+    "Doom Cap": {
+      "zh": "致死蘑菇",
+      "size": [
+        3,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "DoomCap.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Double Axe": {
+      "zh": "双刃斧",
+      "size": [
+        3,
+        4
+      ],
+      "is_bag": false,
+      "sprite": "DoubleAxe.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Double Rainbow": {
+      "zh": "双重彩虹",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "DoubleRainbow.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Draconic Orb": {
+      "zh": "龙铭珠",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "DraconicOrb.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Dragon Claws": {
+      "zh": "龙爪",
+      "size": [
+        2,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "DragonClaws.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Dragon Knight": {
+      "zh": "黏黏龙骑士",
+      "size": [
+        2,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "DragonKnight.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Dragon Nest": {
+      "zh": "龙的巢穴",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "DragonNest.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Dragon Set": {
+      "zh": "龙骑士",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "DragonSet.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Dragonscale Armor": {
+      "zh": "龙鳞护甲",
+      "size": [
+        2,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "DragonscaleArmor.png",
+      "category": "armor",
+      "base": {
+        "defense": 30
+      }
+    },
+    "Dragonskin Boots": {
+      "zh": "龙鳞靴",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "DragonskinBoots.png",
+      "category": "armor",
+      "base": {}
+    },
+    "Dual Wielding": {
+      "zh": "双持武器",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "DualWielding.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Eat-o-matic": {
+      "zh": "自动进食机",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "Eat-o-matic.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Echoing Battlecry": {
+      "zh": "回响战嚎",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "EchoingBattlecry.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Electric Torch": {
+      "zh": "电能火炬",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "ElectricTorch.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Emerald Egg": {
+      "zh": "翡翠龙蛋",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "EmeraldEgg.png",
+      "category": "food",
+      "base": {}
+    },
+    "Emerald Whelp": {
+      "zh": "翡翠幼龙",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "EmeraldWhelp.png",
+      "category": "gem",
+      "base": {}
+    },
+    "Employee Uniform": {
+      "zh": "工作服",
+      "size": [
+        2,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "EmployeeUniform.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Enchanted Weapons": {
+      "zh": "附魔武器",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "EnchantedWeapons.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Energy Conversion": {
+      "zh": "能量转化",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "EnergyConversion.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Engineer Bag 2": {
+      "zh": "",
+      "size": [
+        4,
+        3
+      ],
+      "is_bag": true,
+      "sprite": "EngineerBag2.png",
+      "category": "bag",
+      "base": {}
+    },
+    "Engineer Box": {
+      "zh": "",
+      "size": [
+        2,
+        3
+      ],
+      "is_bag": true,
+      "sprite": "EngineerBox.png",
+      "category": "bag",
+      "base": {}
+    },
+    "Everburning": {
+      "zh": "永燃之火",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "Everburning.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Evil Hat": {
+      "zh": "",
+      "size": [
+        3,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "EvilHat.png",
+      "category": "armor",
+      "base": {}
+    },
+    "Extra Angy": {
+      "zh": "愤怒加倍",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "ExtraAngy.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Extra Bags": {
+      "zh": "",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "ExtraBags.png",
+      "category": "bag",
+      "base": {}
+    },
+    "False Life": {
+      "zh": "亡灵庇护",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "FalseLife.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Fedora": {
+      "zh": "软呢帽",
+      "size": [
+        3,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "Fedora.png",
+      "category": "armor",
+      "base": {}
+    },
+    "Fire Pit": {
+      "zh": "火坑",
+      "size": [
+        3,
+        3
+      ],
+      "is_bag": true,
+      "sprite": "FirePit.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Fire Shelly": {
+      "zh": "",
+      "size": [
+        2,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "FireShelly.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Flame": {
+      "zh": "火焰",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "Flame.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Flame Badge": {
+      "zh": "火焰徽章",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "FlameBadge.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Flame Whip": {
+      "zh": "烈火之鞭",
+      "size": [
+        3,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "FlameWhip.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Forest Dragon": {
+      "zh": "森林巨龙",
+      "size": [
+        3,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "ForestDragon.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Forging Hammer": {
+      "zh": "锻造锤",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "ForgingHammer.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Fortunas Kiss": {
+      "zh": "财富之吻",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "FortunasKiss.png",
+      "category": "utility",
+      "base": {
+        "crit": 0.05,
+        "crit_damage": 0.5
+      }
+    },
+    "Friendly Fire": {
+      "zh": "快乐小火",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "FriendlyFire.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Frog Prince": {
+      "zh": "青蛙王子",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "FrogPrince.png",
+      "category": "utility",
+      "base": {
+        "regen": 6,
+        "lifesteal": 0.08
+      }
+    },
+    "Frostbite": {
+      "zh": "霜冻之剑",
+      "size": [
+        1,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "Frostbite.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Frozen Buckler": {
+      "zh": "冰霜盾牌",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "FrozenBuckler.png",
+      "category": "armor",
+      "base": {
+        "defense": 10,
+        "freeze": 0.08
+      }
+    },
+    "Frozen Flame": {
+      "zh": "永冻之火",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "FrozenFlame.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Full Body Protection": {
+      "zh": "全身防护",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "FullBodyProtection.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Furcifer Prime": {
+      "zh": "福西法超级会员",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "FurciferPrime.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Generator": {
+      "zh": "发电机",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "Generator.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Ghost": {
+      "zh": "里面都是鬼故事。",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "Ghost.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Gigawatz": {
+      "zh": "吉瓦特",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "Gigawatz.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Girl Power": {
+      "zh": "怪力少女",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "GirlPower.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Gold Armor": {
+      "zh": "黄金护甲",
+      "size": [
+        2,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "GoldArmor.png",
+      "category": "armor",
+      "base": {
+        "defense": 15,
+        "max_hp": 20
+      }
+    },
+    "Gold Cube": {
+      "zh": "黄金立方体",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "GoldCube.png",
+      "category": "gem",
+      "base": {}
+    },
+    "Goobling": {
+      "zh": "黏宝宝",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "Goobling.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Halberd": {
+      "zh": "长戟",
+      "size": [
+        2,
+        4
+      ],
+      "is_bag": false,
+      "sprite": "Halberd.png",
+      "category": "weapon",
+      "base": {
+        "damage": 16,
+        "attack_speed": 0.75,
+        "crit": 0.05
+      }
+    },
+    "Hardwood": {
+      "zh": "硬木",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "Hardwood.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Heart Shield": {
+      "zh": "心形盾牌",
+      "size": [
+        2,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "HeartShield.png",
+      "category": "armor",
+      "base": {
+        "defense": 10,
+        "max_hp": 25
+      }
+    },
+    "Heart of the Cards": {
+      "zh": "卡牌之心",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "HeartoftheCards.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Heavy Drinking": {
+      "zh": "开怀畅饮",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "HeavyDrinking.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Hedgehog": {
+      "zh": "刺猬",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "Hedgehog.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Hero Shield": {
+      "zh": "英雄盾牌",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "HeroShield.png",
+      "category": "armor",
+      "base": {
+        "defense": 15
+      }
+    },
+    "Hogus Bogus": {
+      "zh": "胡搞魔咒",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "HogusBogus.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Holdall": {
+      "zh": "旅行袋",
+      "size": [
+        3,
+        2
+      ],
+      "is_bag": true,
+      "sprite": "Holdall.png",
+      "category": "bag",
+      "base": {
+        "extra_rows": 2
+      }
+    },
+    "Holy Collar": {
+      "zh": "",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "HolyCollar.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Hyper Hedgehog": {
+      "zh": "超级刺猬",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "HyperHedgehog.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Hypercube": {
+      "zh": "超立方体",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "Hypercube.png",
+      "category": "gem",
+      "base": {}
+    },
+    "Ice Armor": {
+      "zh": "冰霜护甲",
+      "size": [
+        2,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "IceArmor.png",
+      "category": "armor",
+      "base": {
+        "defense": 22,
+        "freeze": 0.05
+      }
+    },
+    "Ice Dragon": {
+      "zh": "冰霜巨龙",
+      "size": [
+        2,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "IceDragon.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Ice Flower": {
+      "zh": "霜冻花",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "IceFlower.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Inner Power": {
+      "zh": "内在力量",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "InnerPower.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Investment Opportunity": {
+      "zh": "投资机会",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "InvestmentOpportunity.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Joker": {
+      "zh": "",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "Joker.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Just Stats": {
+      "zh": "纯粹加成",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "JustStats.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Jynx Staff": {
+      "zh": "小鸟法杖",
+      "size": [
+        1,
+        5
+      ],
+      "is_bag": false,
+      "sprite": "JynxStaff.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Katana": {
+      "zh": "武士刀",
+      "size": [
+        1,
+        4
+      ],
+      "is_bag": false,
+      "sprite": "Katana.png",
+      "category": "weapon",
+      "base": {
+        "damage": 10,
+        "attack_speed": 1.05,
+        "crit": 0.15
+      },
+      "damage_type": "melee",
+      "stats": {
+        "damage_min": 5,
+        "damage_max": 10,
+        "cooldown": 1.1,
+        "hit_rate": 0.9,
+        "stamina_cost": 1.0,
+        "crit_chance": 0.15
+      }
+    },
+    "King Crown": {
+      "zh": "国王王冠",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "KingCrown.png",
+      "category": "armor",
+      "base": {}
+    },
+    "King Goobert": {
+      "zh": "国王黏黏",
+      "size": [
+        2,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "KingGoobert.png",
+      "category": "utility",
+      "base": {}
+    },
+    "King of the Bling": {
+      "zh": "珠宝之王",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "KingoftheBling.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Knife to Meet You": {
+      "zh": "刀刀见血",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "KnifetoMeetYou.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Laboratory": {
+      "zh": "实验台",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "Laboratory.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Leaf Badge": {
+      "zh": "绿叶徽章",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "LeafBadge.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Leaf Emblem": {
+      "zh": "",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "LeafEmblem.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Level Up": {
+      "zh": "升级",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "LevelUp.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Light Flower": {
+      "zh": "",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "LightFlower.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Lightning Potion": {
+      "zh": "",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "LightningPotion.png",
+      "category": "potion",
+      "base": {}
+    },
+    "Lightning Staff": {
+      "zh": "闪电法杖",
+      "size": [
+        1,
+        4
+      ],
+      "is_bag": false,
+      "sprite": "LightningStaff.png",
+      "category": "weapon",
+      "base": {
+        "damage": 14,
+        "attack_speed": 0.7,
+        "crit": 0.12
+      }
+    },
+    "Little Mimic": {
+      "zh": "",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "LittleMimic.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Long Spear": {
+      "zh": "超长矛",
+      "size": [
+        1,
+        6
+      ],
+      "is_bag": false,
+      "sprite": "LongSpear.png",
+      "category": "weapon",
+      "base": {
+        "damage": 12,
+        "attack_speed": 0.85,
+        "crit": 0.05
+      }
+    },
+    "Lootbox": {
+      "zh": "",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "Lootbox.png",
+      "category": "bag",
+      "base": {}
+    },
+    "Lucky Cat": {
+      "zh": "",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "LuckyCat.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Lucky Shortbow": {
+      "zh": "",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "LuckyShortbow.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Mage Hat": {
+      "zh": "魔法帽",
+      "size": [
+        3,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "MageHat.png",
+      "category": "armor",
+      "base": {}
+    },
+    "Magic Badge": {
+      "zh": "魔法徽章",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "MagicBadge.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Magic Collar": {
+      "zh": "",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "MagicCollar.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Magic Mirror": {
+      "zh": "",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "MagicMirror.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Magic Ring": {
+      "zh": "魔法戒指",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "MagicRing.png",
+      "category": "utility",
+      "base": {
+        "damage_pct": 0.1,
+        "crit": 0.05
+      }
+    },
+    "Magitecc Armor": {
+      "zh": "魔工护甲",
+      "size": [
+        2,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "MagiteccArmor.png",
+      "category": "armor",
+      "base": {}
+    },
+    "Mana Crystal": {
+      "zh": "法力水晶",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "ManaCrystal.png",
+      "category": "gem",
+      "base": {
+        "boost": {
+          "max_hp": 10
+        }
+      }
+    },
+    "Mana Mastery": {
+      "zh": "魔法大师",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "ManaMastery.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Mananana": {
+      "zh": "法力香蕉",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "Mananana.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Markswoman": {
+      "zh": "女射手",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "Markswoman.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Mecha Bat": {
+      "zh": "机械蝙蝠",
+      "size": [
+        2,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "MechaBat.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Mega Clover": {
+      "zh": "巨大四叶草",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "MegaClover.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Mercury Elemental": {
+      "zh": "水银元素",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "MercuryElemental.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Miss Fortune": {
+      "zh": "命运小姐",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "MissFortune.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Molten Dagger": {
+      "zh": "炽热匕首",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "MoltenDagger.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Molten Greatsword": {
+      "zh": "炽热巨剑",
+      "size": [
+        2,
+        4
+      ],
+      "is_bag": false,
+      "sprite": "MoltenGreatsword.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Molten Spear": {
+      "zh": "炽热长矛",
+      "size": [
+        1,
+        4
+      ],
+      "is_bag": false,
+      "sprite": "MoltenSpear.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Molten Spear2": {
+      "zh": "",
+      "size": [
+        1,
+        4
+      ],
+      "is_bag": false,
+      "sprite": "MoltenSpear2.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Moon Armor": {
+      "zh": "月光护甲",
+      "size": [
+        2,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "MoonArmor.png",
+      "category": "armor",
+      "base": {}
+    },
+    "More Stats": {
+      "zh": "更多加成",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "MoreStats.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Mrs Struggles": {
+      "zh": "贴贴女士",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "MrsStruggles.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Mushroom Farm": {
+      "zh": "蘑菇农场",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "MushroomFarm.png",
+      "category": "food",
+      "base": {}
+    },
+    "No Rush Please": {
+      "zh": "别着急",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "NoRushPlease.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Null Blade": {
+      "zh": "虚无之刃",
+      "size": [
+        1,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "NullBlade.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Obsidian Dragon": {
+      "zh": "黑晶龙",
+      "size": [
+        2,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "ObsidianDragon.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Oil Lamp": {
+      "zh": "油灯",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "OilLamp.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Onion Cutter": {
+      "zh": "",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "OnionCutter.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Owl Spirit": {
+      "zh": "幽灵猫头鹰",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "OwlSpirit.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Paradise Birb": {
+      "zh": "极乐小鸟",
+      "size": [
+        2,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "ParadiseBirb.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Perpetuum Mobile": {
+      "zh": "永动机",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "PerpetuumMobile.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Phoenix": {
+      "zh": "凤凰",
+      "size": [
+        3,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "Phoenix.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Phoenix2": {
+      "zh": "",
+      "size": [
+        3,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "Phoenix2.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Piggy Pinata": {
+      "zh": "",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "PiggyPinata.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Piggy of Riches": {
+      "zh": "宝石存钱罐",
+      "size": [
+        2,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "PiggyofRiches.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Pine Protector": {
+      "zh": "松林守护者",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "PineProtector.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Plastic Cube": {
+      "zh": "塑料立方体",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "PlasticCube.png",
+      "category": "gem",
+      "base": {}
+    },
+    "Poison Frog": {
+      "zh": "剧毒蛙",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "PoisonFrog.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Poison Grenade": {
+      "zh": "毒气手雷",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "PoisonGrenade.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Poison Shortbow": {
+      "zh": "",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "PoisonShortbow.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Poison Spear": {
+      "zh": "剧毒矛",
+      "size": [
+        1,
+        4
+      ],
+      "is_bag": false,
+      "sprite": "PoisonSpear.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Pop": {
+      "zh": "啵啵",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "Pop.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Portable Altar": {
+      "zh": "",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": true,
+      "sprite": "PortableAltar.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Pot": {
+      "zh": "",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "Pot.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Power Puppy": {
+      "zh": "全能狼崽",
+      "size": [
+        2,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "PowerPuppy.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Power of the Moon": {
+      "zh": "月亮之力",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "PoweroftheMoon.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Prismatic Sword": {
+      "zh": "彩虹剑",
+      "size": [
+        1,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "PrismaticSword.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Prismatic Wand": {
+      "zh": "彩虹魔棒",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "PrismaticWand.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Puzzle Badge": {
+      "zh": "拼图徽章",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "PuzzleBadge.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Puzzlebag J": {
+      "zh": "",
+      "size": [
+        3,
+        2
+      ],
+      "is_bag": true,
+      "sprite": "PuzzlebagJ.png",
+      "category": "bag",
+      "base": {}
+    },
+    "Puzzlebag L": {
+      "zh": "",
+      "size": [
+        3,
+        2
+      ],
+      "is_bag": true,
+      "sprite": "PuzzlebagL.png",
+      "category": "bag",
+      "base": {}
+    },
+    "Puzzlebag S": {
+      "zh": "",
+      "size": [
+        3,
+        2
+      ],
+      "is_bag": true,
+      "sprite": "PuzzlebagS.png",
+      "category": "bag",
+      "base": {}
+    },
+    "Puzzlebag T": {
+      "zh": "",
+      "size": [
+        3,
+        2
+      ],
+      "is_bag": true,
+      "sprite": "PuzzlebagT.png",
+      "category": "bag",
+      "base": {}
+    },
+    "Puzzlebag Z": {
+      "zh": "",
+      "size": [
+        3,
+        2
+      ],
+      "is_bag": true,
+      "sprite": "PuzzlebagZ.png",
+      "category": "bag",
+      "base": {}
+    },
+    "Puzzlebox": {
+      "zh": "拼图背包",
+      "size": [
+        3,
+        4
+      ],
+      "is_bag": true,
+      "sprite": "Puzzlebox.png",
+      "category": "bag",
+      "base": {
+        "extra_rows": 2,
+        "crit": 0.05
+      }
+    },
+    "Rainbow Badge": {
+      "zh": "彩虹徽章",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "RainbowBadge.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Rainbow Goobert Adventurer": {
+      "zh": "",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "RainbowGoobertAdventurer.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Rainbow Goobert Berserker": {
+      "zh": "",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "RainbowGoobertBerserker.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Rainbow Goobert Engineer": {
+      "zh": "",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "RainbowGoobertEngineer.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Rainbow Goobert Mage": {
+      "zh": "",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "RainbowGoobertMage.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Rainbow Goobert Pyromancer": {
+      "zh": "",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "RainbowGoobertPyromancer.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Rainbow Orb": {
+      "zh": "",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "RainbowOrb.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Rainbow Potion": {
+      "zh": "彩虹魔药",
+      "size": [
+        2,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "RainbowPotion.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Random Loadout Bag": {
+      "zh": "",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": true,
+      "sprite": "RandomLoadoutBag.png",
+      "category": "bag",
+      "base": {}
+    },
+    "Rat": {
+      "zh": "鼠鼠",
+      "size": [
+        2,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "Rat.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Rat Chef": {
+      "zh": "鼠大厨",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "RatChef.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Relic Case": {
+      "zh": "遗物箱",
+      "size": [
+        1,
+        4
+      ],
+      "is_bag": true,
+      "sprite": "RelicCase.png",
+      "category": "bag",
+      "base": {}
+    },
+    "Repeater": {
+      "zh": "重复触发器",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "Repeater.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Resistor": {
+      "zh": "电阻",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "Resistor.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Reverse": {
+      "zh": "反弹！",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "Reverse.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Robodog": {
+      "zh": "",
+      "size": [
+        3,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "Robodog.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Rope": {
+      "zh": "麻绳",
+      "size": [
+        2,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "Rope.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Sandbag": {
+      "zh": "",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "Sandbag.png",
+      "category": "bag",
+      "base": {}
+    },
+    "Sapphire Egg": {
+      "zh": "蓝宝石龙蛋",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "SapphireEgg.png",
+      "category": "food",
+      "base": {}
+    },
+    "Sapphire Whelp": {
+      "zh": "蓝宝石幼龙",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "SapphireWhelp.png",
+      "category": "gem",
+      "base": {}
+    },
+    "Scale": {
+      "zh": "天平",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "Scale.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Scholar Bag": {
+      "zh": "魔法学院袋",
+      "size": [
+        3,
+        2
+      ],
+      "is_bag": true,
+      "sprite": "ScholarBag.png",
+      "category": "bag",
+      "base": {
+        "extra_rows": 2,
+        "damage_pct": 0.05
+      }
+    },
+    "Scissorswords": {
+      "zh": "剑剪刀",
+      "size": [
+        4,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "Scissorswords.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Seal the Deal": {
+      "zh": "一锤定音",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "SealtheDeal.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Serpent Staff": {
+      "zh": "剧毒蛇杖",
+      "size": [
+        1,
+        4
+      ],
+      "is_bag": false,
+      "sprite": "SerpentStaff.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Sewing Case": {
+      "zh": "针线包",
+      "size": [
+        4,
+        2
+      ],
+      "is_bag": true,
+      "sprite": "SewingCase.png",
+      "category": "bag",
+      "base": {}
+    },
+    "Shaman Mask": {
+      "zh": "萨满面具",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "ShamanMask.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Shell Totem": {
+      "zh": "贝壳图腾",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "ShellTotem.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Shelly": {
+      "zh": "小蜗",
+      "size": [
+        2,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "Shelly.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Shepherds Crook": {
+      "zh": "牧羊人的曲柄杖",
+      "size": [
+        2,
+        4
+      ],
+      "is_bag": false,
+      "sprite": "ShepherdsCrook.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Shielded": {
+      "zh": "护盾加强",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "Shielded.png",
+      "category": "armor",
+      "base": {}
+    },
+    "Shiny Mantle": {
+      "zh": "辉耀斗篷",
+      "size": [
+        2,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "ShinyMantle.png",
+      "category": "armor",
+      "base": {}
+    },
+    "Shiny Shell": {
+      "zh": "闪光蜗牛壳",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "ShinyShell.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Shortbow": {
+      "zh": "短弓",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "Shortbow.png",
+      "category": "weapon",
+      "base": {
+        "damage": 5,
+        "attack_speed": 1.2,
+        "crit": 0.08
+      }
+    },
+    "Skull Badge": {
+      "zh": "骷髅徽章",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "SkullBadge.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Slice of Bread": {
+      "zh": "吐司",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "SliceofBread.png",
+      "category": "food",
+      "base": {}
+    },
+    "Slice of Toast": {
+      "zh": "烤吐司",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "SliceofToast.png",
+      "category": "food",
+      "base": {}
+    },
+    "Slime Time": {
+      "zh": "黏黏派对",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "SlimeTime.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Sloth": {
+      "zh": "树懒",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "Sloth.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Smelly Barrier": {
+      "zh": "",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "SmellyBarrier.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Smithing For Dummies": {
+      "zh": "铁匠入门指南",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "SmithingForDummies.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Snake": {
+      "zh": "蛇蛇",
+      "size": [
+        2,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "Snake.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Snow Stick": {
+      "zh": "雪杖",
+      "size": [
+        1,
+        4
+      ],
+      "is_bag": false,
+      "sprite": "SnowStick.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Snowball": {
+      "zh": "雪球",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "Snowball.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Snowcake": {
+      "zh": "雪人蛋糕",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "Snowcake.png",
+      "category": "food",
+      "base": {}
+    },
+    "Snowman": {
+      "zh": "摇晃雪人",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "Snowman.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Snowmaster": {
+      "zh": "大师雪人",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "Snowmaster.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Solaris": {
+      "zh": "太阳之力",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "Solaris.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Speak with Animals": {
+      "zh": "兽语大师",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "SpeakwithAnimals.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Spell Scroll Dark": {
+      "zh": "魔法卷轴：黑暗爆发",
+      "size": [
+        2,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "SpellScrollDark.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Spell Scroll Frostbolt": {
+      "zh": "魔法卷轴：冰霜箭",
+      "size": [
+        2,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "SpellScrollFrostbolt.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Spell Scroll Ice": {
+      "zh": "魔法卷轴：冰墙",
+      "size": [
+        2,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "SpellScrollIce.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Spell Scroll Light": {
+      "zh": "",
+      "size": [
+        2,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "SpellScrollLight.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Spell Scroll Nature": {
+      "zh": "",
+      "size": [
+        2,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "SpellScrollNature.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Spicy Banana": {
+      "zh": "火辣香蕉",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "SpicyBanana.png",
+      "category": "food",
+      "base": {}
+    },
+    "Spiked Collar": {
+      "zh": "尖刺项圈",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "SpikedCollar.png",
+      "category": "utility",
+      "base": {
+        "spikes": 8,
+        "defense": 3
+      }
+    },
+    "Spiked Staff": {
+      "zh": "尖刺法杖",
+      "size": [
+        1,
+        4
+      ],
+      "is_bag": false,
+      "sprite": "SpikedStaff.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Spiked Wall": {
+      "zh": "尖刺墙",
+      "size": [
+        3,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "SpikedWall.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Spin to Win": {
+      "zh": "制胜转盘",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "SpintoWin.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Spirit Bells": {
+      "zh": "捕梦网",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "SpiritBells.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Spring Loader": {
+      "zh": "弹簧装填器",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "SpringLoader.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Squirrel": {
+      "zh": "松鼠",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "Squirrel.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Squirrel Archer": {
+      "zh": "松鼠射手",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "SquirrelArcher.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Stable Recombobulator": {
+      "zh": "稳定重组器",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "StableRecombobulator.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Staff of Fire": {
+      "zh": "烈火之杖",
+      "size": [
+        1,
+        4
+      ],
+      "is_bag": false,
+      "sprite": "StaffofFire.png",
+      "category": "weapon",
+      "base": {
+        "damage": 12,
+        "attack_speed": 0.75,
+        "crit": 0.1,
+        "poison": 4
+      }
+    },
+    "Star of Courage": {
+      "zh": "勇气之星",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "StarofCourage.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Steel Dragon": {
+      "zh": "",
+      "size": [
+        3,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "SteelDragon.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Stone Armor": {
+      "zh": "石制护甲",
+      "size": [
+        2,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "StoneArmor.png",
+      "category": "armor",
+      "base": {
+        "defense": 25
+      }
+    },
+    "Stone Badge": {
+      "zh": "石头徽章",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "StoneBadge.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Stone Gloves": {
+      "zh": "",
+      "size": [
+        2,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "StoneGloves.png",
+      "category": "armor",
+      "base": {}
+    },
+    "Stone Golem": {
+      "zh": "巨石像",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "StoneGolem.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Stone Shoes": {
+      "zh": "石靴",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "StoneShoes.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Stoned": {
+      "zh": "投石手",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "Stoned.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Strong Divine Potion": {
+      "zh": "强力神圣魔药",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "StrongDivinePotion.png",
+      "category": "potion",
+      "base": {}
+    },
+    "Strong Mana Potion": {
+      "zh": "强力魔法魔药",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "StrongManaPotion.png",
+      "category": "potion",
+      "base": {}
+    },
+    "Strong Vampiric Potion": {
+      "zh": "强力吸血魔药",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "StrongVampiricPotion.png",
+      "category": "potion",
+      "base": {}
+    },
+    "Sun Armor": {
+      "zh": "日耀护甲",
+      "size": [
+        2,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "SunArmor.png",
+      "category": "armor",
+      "base": {}
+    },
+    "Sun Shield": {
+      "zh": "日耀盾牌",
+      "size": [
+        2,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "SunShield.png",
+      "category": "armor",
+      "base": {}
+    },
+    "Superior Ring": {
+      "zh": "高级戒指",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "SuperiorRing.png",
+      "category": "utility",
+      "base": {
+        "damage_pct": 0.15,
+        "crit": 0.08
+      }
+    },
+    "Tesla Coil": {
+      "zh": "特斯拉线圈",
+      "size": [
+        1,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "TeslaCoil.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Thorn Elemental": {
+      "zh": "荆棘元素",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "ThornElemental.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Thorn Shortbow": {
+      "zh": "",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "ThornShortbow.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Thornbloom": {
+      "zh": "荆棘之花",
+      "size": [
+        3,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "Thornbloom.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Thornburst": {
+      "zh": "尖刺爆发",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "Thornburst.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Thors Hammer": {
+      "zh": "雷神之锤",
+      "size": [
+        3,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "ThorsHammer.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Thunder Drake": {
+      "zh": "雷霆飞龙",
+      "size": [
+        3,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "ThunderDrake.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Time Dilator": {
+      "zh": "时间扩大器",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "TimeDilator.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Time Melting": {
+      "zh": "时间融化",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "TimeMelting.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Toad": {
+      "zh": "蟾蜍",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "Toad.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Toast Goobert": {
+      "zh": "吐司黏黏",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "ToastGoobert.png",
+      "category": "food",
+      "base": {}
+    },
+    "Toolbox": {
+      "zh": "",
+      "size": [
+        3,
+        3
+      ],
+      "is_bag": true,
+      "sprite": "Toolbox.png",
+      "category": "bag",
+      "base": {}
+    },
+    "Turtle": {
+      "zh": "乌龟",
+      "size": [
+        2,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "Turtle.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Twine": {
+      "zh": "细绳",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "Twine.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Twine Badge": {
+      "zh": "细绳徽章",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "TwineBadge.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Ukulele": {
+      "zh": "尤克里里",
+      "size": [
+        1,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "Ukulele.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Ultima": {
+      "zh": "",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "Ultima.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Unidentified Skill": {
+      "zh": "未挖掘潜力",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "UnidentifiedSkill.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Uniquely Unique": {
+      "zh": "万里挑一",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "UniquelyUnique.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Unstable Recombobulator": {
+      "zh": "不稳定重组器",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "UnstableRecombobulator.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Vampiric Collar": {
+      "zh": "",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "VampiricCollar.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Vampiric Potion": {
+      "zh": "吸血魔药",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "VampiricPotion.png",
+      "category": "potion",
+      "base": {
+        "instant_heal": 20,
+        "lifesteal": 0.2
+      }
+    },
+    "Vineweave Basket": {
+      "zh": "藤条编织篮",
+      "size": [
+        3,
+        3
+      ],
+      "is_bag": true,
+      "sprite": "VineweaveBasket.png",
+      "category": "bag",
+      "base": {}
+    },
+    "Wand": {
+      "zh": "",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "Wand.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Wand of Dissonance": {
+      "zh": "失调魔棒",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "WandofDissonance.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "War Scythe": {
+      "zh": "战镰",
+      "size": [
+        3,
+        4
+      ],
+      "is_bag": false,
+      "sprite": "WarScythe.png",
+      "category": "weapon",
+      "base": {
+        "damage": 18,
+        "attack_speed": 0.65,
+        "crit": 0.1
+      }
+    },
+    "Water Elemental": {
+      "zh": "水元素",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "WaterElemental.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Whetstone2": {
+      "zh": "",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "Whetstone2.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Whetstone3": {
+      "zh": "",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "Whetstone3.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Winged Boots": {
+      "zh": "飞鞋",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "WingedBoots.png",
+      "category": "armor",
+      "base": {}
+    },
+    "Wisdom Puppy": {
+      "zh": "睿智狼崽",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "WisdomPuppy.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Wolf Badge": {
+      "zh": "狼徽章",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "WolfBadge.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Wolf Emblem": {
+      "zh": "狼印记",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "WolfEmblem.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Wrench": {
+      "zh": "扳手",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "Wrench.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Falcon Blade": {
+      "zh": "猎鹰战刃",
+      "size": [
+        1,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "FalconBlade.png",
+      "category": "weapon",
+      "base": {
+        "damage": 8,
+        "attack_speed": 1.15,
+        "crit": 0.08
+      },
+      "damage_type": "melee",
+      "stats": {
+        "damage_min": 3,
+        "damage_max": 6,
+        "cooldown": 0.9,
+        "hit_rate": 0.9,
+        "stamina_cost": 0.8
+      }
+    },
+    "Fancy Fencing Rapier": {
+      "zh": "酷炫西洋剑",
+      "size": [
+        1,
+        4
+      ],
+      "is_bag": false,
+      "sprite": "FancyFencingRapier.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Fanfare": {
+      "zh": "号角",
+      "size": [
+        3,
+        1
+      ],
+      "is_bag": false,
+      "sprite": null,
+      "category": "utility",
+      "base": {}
+    },
+    "Fanny Pack": {
+      "zh": "腰包",
+      "size": [
+        2,
+        1
+      ],
+      "is_bag": true,
+      "sprite": "FannyPack.png",
+      "category": "bag",
+      "base": {
+        "extra_rows": 1
+      },
+      "damage_type": "melee",
+      "stats": {
+        "max_hp": 5
+      }
+    },
+    "Flute": {
+      "zh": "笛子",
+      "size": [
+        3,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "Flute.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Fly Agaric": {
+      "zh": "致幻蘑菇",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "FlyAgaric.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Garlic": {
+      "zh": "大蒜",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "Garlic.png",
+      "category": "food",
+      "base": {
+        "defense": 8
+      },
+      "damage_type": "melee",
+      "stats": {
+        "passive": {
+          "regen": 2,
+          "spikes": 1
+        }
+      }
+    },
+    "Gingerbread Man": {
+      "zh": "姜饼杰瑞",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "GingerbreadMan.png",
+      "category": "food",
+      "base": {}
+    },
+    "Gloves of Haste": {
+      "zh": "迅捷手套",
+      "size": [
+        2,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "GlovesofHaste.png",
+      "category": "armor",
+      "base": {
+        "attack_speed_pct": 0.2
+      }
+    },
+    "Goobert": {
+      "zh": "黏黏",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "Goobert.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Greatsword": {
+      "zh": "大剑",
+      "size": [
+        2,
+        4
+      ],
+      "is_bag": false,
+      "sprite": "Greatsword.png",
+      "category": "weapon",
+      "base": {
+        "damage": 22,
+        "attack_speed": 0.7,
+        "crit": 0.05
+      },
+      "damage_type": "melee",
+      "stats": {
+        "damage_min": 8,
+        "damage_max": 16,
+        "cooldown": 1.5,
+        "hit_rate": 0.85,
+        "stamina_cost": 1.5
+      }
+    },
+    "Hammer": {
+      "zh": "锤子",
+      "size": [
+        3,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "Hammer.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Healing Herbs": {
+      "zh": "治疗草药",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "HealingHerbs.png",
+      "category": "food",
+      "base": {
+        "regen": 12
+      }
+    },
+    "Health Potion": {
+      "zh": "生命魔药",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "HealthPotion.png",
+      "category": "potion",
+      "base": {
+        "instant_heal": 25
+      },
+      "damage_type": "melee",
+      "stats": {
+        "passive": {
+          "instant_heal": 25
+        }
+      }
+    },
+    "Heart Container": {
+      "zh": "心之容器",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "HeartContainer.png",
+      "category": "utility",
+      "base": {
+        "max_hp": 30
+      }
+    },
+    "Heart of Darkness": {
+      "zh": "黑暗心之容器",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "HeartofDarkness.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Hero Longsword": {
+      "zh": "英雄长剑",
+      "size": [
+        1,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "HeroLongsword.png",
+      "category": "weapon",
+      "base": {
+        "damage": 15,
+        "attack_speed": 0.85,
+        "crit": 0.08
+      }
+    },
+    "Hero Sword": {
+      "zh": "勇者之剑",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "HeroSword.png",
+      "category": "weapon",
+      "base": {
+        "damage": 11,
+        "attack_speed": 0.95,
+        "crit": 0.08
+      },
+      "damage_type": "melee",
+      "stats": {
+        "damage_min": 7,
+        "damage_max": 14,
+        "cooldown": 1.2,
+        "hit_rate": 0.9,
+        "stamina_cost": 1.0
+      }
+    },
+    "Heroic Potion": {
+      "zh": "英勇魔药",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "HeroicPotion.png",
+      "category": "potion",
+      "base": {
+        "instant_heal": 30,
+        "damage_pct": 0.15
+      },
+      "damage_type": "melee",
+      "stats": {
+        "passive": {
+          "instant_heal": 20,
+          "damage_pct": 0.15
+        }
+      }
+    },
+    "Holo Fire Lizard": {
+      "zh": "大火龙",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "HoloFireLizard.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Holy Armor": {
+      "zh": "神圣护甲",
+      "size": [
+        2,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "HolyArmor.png",
+      "category": "armor",
+      "base": {
+        "defense": 18,
+        "regen": 2
+      }
+    },
+    "Holy Spear": {
+      "zh": "神圣长矛",
+      "size": [
+        1,
+        4
+      ],
+      "is_bag": false,
+      "sprite": "HolySpear.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Hungry Blade": {
+      "zh": "饥饿之刃",
+      "size": [
+        1,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "HungryBlade.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Jynx torquilla": {
+      "zh": "歪脖鸟",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "Jynxtorquilla.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Leather Armor": {
+      "zh": "皮制护甲",
+      "size": [
+        2,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "LeatherArmor.png",
+      "category": "armor",
+      "base": {
+        "defense": 10
+      },
+      "damage_type": "melee",
+      "stats": {
+        "passive": {
+          "max_hp": 10
+        }
+      }
+    },
+    "Leather Bag": {
+      "zh": "皮包",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": true,
+      "sprite": "LeatherBag.png",
+      "category": "bag",
+      "base": {
+        "extra_rows": 1
+      }
+    },
+    "Leather Boots": {
+      "zh": "皮质靴",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "LeatherBoots.png",
+      "category": "armor",
+      "base": {
+        "defense": 4,
+        "dodge": 0.05
+      }
+    },
+    "Leather Helm": {
+      "zh": "",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "LeatherHelm.png",
+      "category": "armor",
+      "base": {}
+    },
+    "Light Goobert": {
+      "zh": "光之黏黏",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "LightGoobert.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Lightsaber": {
+      "zh": "光剑",
+      "size": [
+        1,
+        4
+      ],
+      "is_bag": false,
+      "sprite": "Lightsaber.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Lucky Bow": {
+      "zh": "",
+      "size": [
+        3,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "LuckyBow.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Lucky Clover": {
+      "zh": "幸运四叶草",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "LuckyClover.png",
+      "category": "utility",
+      "base": {
+        "crit": 0.1,
+        "crit_damage": 0.2
+      },
+      "damage_type": "melee",
+      "stats": {
+        "passive": {
+          "lucky": 2
+        }
+      }
+    },
+    "Lucky Piggy": {
+      "zh": "幸运存钱罐",
+      "size": [
+        2,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "LuckyPiggy.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Magic Staff": {
+      "zh": "法杖",
+      "size": [
+        1,
+        4
+      ],
+      "is_bag": false,
+      "sprite": "MagicStaff.png",
+      "category": "weapon",
+      "base": {
+        "damage": 8,
+        "attack_speed": 0.8,
+        "crit": 0.15
+      },
+      "damage_type": "ranged",
+      "stats": {
+        "damage_min": 5,
+        "damage_max": 10,
+        "cooldown": 1.3,
+        "hit_rate": 0.85,
+        "stamina_cost": 1.0
+      }
+    },
+    "Magic Torch": {
+      "zh": "魔法火把",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "MagicTorch.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Mana Orb": {
+      "zh": "魔法球",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "ManaOrb.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Mana Potion": {
+      "zh": "魔法魔药",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "ManaPotion.png",
+      "category": "potion",
+      "base": {
+        "instant_heal": 15,
+        "attack_speed_pct": 0.1
+      }
+    },
+    "Manathirst": {
+      "zh": "吸魔剑",
+      "size": [
+        1,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "Manathirst.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Moon Shield": {
+      "zh": "月光盾",
+      "size": [
+        2,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "MoonShield.png",
+      "category": "armor",
+      "base": {
+        "defense": 12,
+        "regen": 3
+      }
+    },
+    "Mr Struggles": {
+      "zh": "抱抱先生",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "MrStruggles.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Pan": {
+      "zh": "平底锅",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "Pan.png",
+      "category": "weapon",
+      "base": {
+        "damage": 7,
+        "attack_speed": 0.85,
+        "crit": 0.05
+      },
+      "damage_type": "melee",
+      "stats": {
+        "damage_min": 4,
+        "damage_max": 8,
+        "cooldown": 1.3,
+        "hit_rate": 0.9,
+        "stamina_cost": 1.0
+      }
+    },
+    "Pandamonium": {
+      "zh": "腐败熊猫之锅",
+      "size": [
+        3,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "Pandamonium.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Pestilence Flask": {
+      "zh": "瘟疫烧瓶",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "PestilenceFlask.png",
+      "category": "potion",
+      "base": {
+        "instant_heal": 10,
+        "poison": 8
+      }
+    },
+    "Piercing Arrow": {
+      "zh": "穿甲箭",
+      "size": [
+        2,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "PiercingArrow.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Piggybank": {
+      "zh": "存钱罐",
+      "size": [
+        2,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "Piggybank.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Pineapple": {
+      "zh": "菠萝",
+      "size": [
+        1,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "Pineapple.png",
+      "category": "food",
+      "base": {
+        "max_hp": 20,
+        "regen": 3
+      }
+    },
+    "Platin Customer Card": {
+      "zh": "白金会员卡",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "PlatinCustomerCard.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Pocket Sand": {
+      "zh": "一口袋沙子",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "PocketSand.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Poison Bow": {
+      "zh": "",
+      "size": [
+        3,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "PoisonBow.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Poison Dagger": {
+      "zh": "剧毒匕首",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "PoisonDagger.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Poison Goobert": {
+      "zh": "剧毒黏黏",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "PoisonGoobert.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Poison Ivy": {
+      "zh": "剧毒常春藤",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "PoisonIvy.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Potion Belt": {
+      "zh": "魔药腰带",
+      "size": [
+        1,
+        4
+      ],
+      "is_bag": true,
+      "sprite": "PotionBelt.png",
+      "category": "potion",
+      "base": {}
+    },
+    "Present": {
+      "zh": "圣诞礼物",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "Present.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Protective Purse": {
+      "zh": "守护钱包",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": true,
+      "sprite": "ProtectivePurse.png",
+      "category": "bag",
+      "base": {}
+    },
+    "Pumpkin": {
+      "zh": "南瓜头",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "Pumpkin.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Rainbow Goobert": {
+      "zh": "",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "RainbowGoobert.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Rainbow Goobert Ranger": {
+      "zh": "",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "RainbowGoobertRanger.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Ranger Bag": {
+      "zh": "露营背包",
+      "size": [
+        2,
+        3
+      ],
+      "is_bag": true,
+      "sprite": "RangerBag.png",
+      "category": "bag",
+      "base": {
+        "extra_rows": 2
+      },
+      "damage_type": "melee",
+      "stats": {
+        "is_bag": true,
+        "passive": {
+          "max_hp": 5
+        }
+      }
+    },
+    "Rib Saw Blade": {
+      "zh": "锯刃",
+      "size": [
+        1,
+        4
+      ],
+      "is_bag": false,
+      "sprite": "RibSawBlade.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Ruby Chonk": {
+      "zh": "红宝石巨龙",
+      "size": [
+        2,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "RubyChonk.png",
+      "category": "gem",
+      "base": {}
+    },
+    "Ruby Egg": {
+      "zh": "红宝石龙蛋",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "RubyEgg.png",
+      "category": "food",
+      "base": {}
+    },
+    "Ruby Whelp": {
+      "zh": "红宝石幼龙",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "RubyWhelp.png",
+      "category": "gem",
+      "base": {}
+    },
+    "Shield of Valor": {
+      "zh": "勇气盾牌",
+      "size": [
+        2,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "ShieldofValor.png",
+      "category": "armor",
+      "base": {
+        "defense": 14,
+        "max_hp": 15
+      }
+    },
+    "Shovel": {
+      "zh": "铲铲",
+      "size": [
+        1,
+        4
+      ],
+      "is_bag": false,
+      "sprite": "Shovel.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Spear": {
+      "zh": "长矛",
+      "size": [
+        1,
+        4
+      ],
+      "is_bag": false,
+      "sprite": "Spear.png",
+      "category": "weapon",
+      "base": {
+        "damage": 10,
+        "attack_speed": 0.9,
+        "crit": 0.05
+      },
+      "damage_type": "melee",
+      "stats": {
+        "damage_min": 5,
+        "damage_max": 10,
+        "cooldown": 1.3,
+        "hit_rate": 0.85,
+        "stamina_cost": 1.2
+      }
+    },
+    "Spectral Dagger": {
+      "zh": "幽灵匕首",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "SpectralDagger.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Spiked Shield": {
+      "zh": "尖刺盾牌",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "SpikedShield.png",
+      "category": "armor",
+      "base": {
+        "defense": 8,
+        "spikes": 5
+      }
+    },
+    "Staff of Unhealing": {
+      "zh": "不愈法杖",
+      "size": [
+        1,
+        4
+      ],
+      "is_bag": false,
+      "sprite": "StaffofUnhealing.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Stamina Sack": {
+      "zh": "耐力包",
+      "size": [
+        1,
+        3
+      ],
+      "is_bag": true,
+      "sprite": "StaminaSack.png",
+      "category": "bag",
+      "base": {
+        "extra_rows": 1,
+        "max_hp": 15
+      }
+    },
+    "Steel Goobert": {
+      "zh": "钢之黏黏",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "SteelGoobert.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Stone": {
+      "zh": "石头",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "Stone.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Stone Helm": {
+      "zh": "石制头盔",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "StoneHelm.png",
+      "category": "armor",
+      "base": {}
+    },
+    "Stone Skin Potion": {
+      "zh": "硬化魔药",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "StoneSkinPotion.png",
+      "category": "potion",
+      "base": {
+        "instant_heal": 10,
+        "defense": 15
+      }
+    },
+    "Storage Coffin": {
+      "zh": "储物棺材",
+      "size": [
+        2,
+        4
+      ],
+      "is_bag": true,
+      "sprite": "StorageCoffin.png",
+      "category": "bag",
+      "base": {}
+    },
+    "Strong Demonic Flask": {
+      "zh": "强力恶魔烧瓶",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "StrongDemonicFlask.png",
+      "category": "potion",
+      "base": {}
+    },
+    "Strong Health Potion": {
+      "zh": "强力生命魔药",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "StrongHealthPotion.png",
+      "category": "potion",
+      "base": {
+        "instant_heal": 45
+      }
+    },
+    "Strong Heroic Potion": {
+      "zh": "强力英勇魔药",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "StrongHeroicPotion.png",
+      "category": "potion",
+      "base": {}
+    },
+    "Strong Pestilence Flask": {
+      "zh": "强力瘟疫烧瓶",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "StrongPestilenceFlask.png",
+      "category": "potion",
+      "base": {}
+    },
+    "Strong Stone Skin Potion": {
+      "zh": "强力硬化魔药",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "StrongStoneSkinPotion.png",
+      "category": "potion",
+      "base": {}
+    },
+    "The Fool": {
+      "zh": "愚者",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "TheFool.png",
+      "category": "utility",
+      "base": {}
+    },
+    "The Lovers": {
+      "zh": "恋人",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "TheLovers.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Thorn Bow": {
+      "zh": "",
+      "size": [
+        3,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "ThornBow.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Thorn Whip": {
+      "zh": "荆棘之鞭",
+      "size": [
+        3,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "ThornWhip.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Torch": {
+      "zh": "火把",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "Torch.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Vampiric Armor": {
+      "zh": "吸血护甲",
+      "size": [
+        2,
+        3
+      ],
+      "is_bag": false,
+      "sprite": "VampiricArmor.png",
+      "category": "armor",
+      "base": {}
+    },
+    "Vampiric Gloves": {
+      "zh": "吸血手套",
+      "size": [
+        2,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "VampiricGloves.png",
+      "category": "armor",
+      "base": {
+        "lifesteal": 0.15
+      }
+    },
+    "Vampiric Scythe": {
+      "zh": "",
+      "size": [
+        3,
+        4
+      ],
+      "is_bag": false,
+      "sprite": "VampiricScythe.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Villain Sword": {
+      "zh": "反派之剑",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "VillainSword.png",
+      "category": "weapon",
+      "base": {}
+    },
+    "Walrus Tusk": {
+      "zh": "海象尖牙",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "WalrusTusk.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Whetstone": {
+      "zh": "磨刀石",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "Whetstone.png",
+      "category": "utility",
+      "base": {}
+    },
+    "White-Eyes Blue Dragon": {
+      "zh": "白眼青龙",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "White-EyesBlueDragon.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Wolpertinger": {
+      "zh": "鹿角翼兔",
+      "size": [
+        2,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "Wolpertinger.png",
+      "category": "utility",
+      "base": {}
+    },
+    "Wooden Buckler": {
+      "zh": "木盾",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "WoodenBuckler.png",
+      "category": "armor",
+      "base": {
+        "defense": 6
+      }
+    },
+    "Wooden Sword": {
+      "zh": "木剑",
+      "size": [
+        1,
+        2
+      ],
+      "is_bag": false,
+      "sprite": "WoodenSword.png",
+      "category": "weapon",
+      "base": {
+        "damage": 6,
+        "attack_speed": 0.95,
+        "crit": 0.03
+      },
+      "damage_type": "melee",
+      "stats": {
+        "damage_min": 1,
+        "damage_max": 3,
+        "cooldown": 1.4,
+        "hit_rate": 0.9,
+        "stamina_cost": 1.0
+      }
+    },
+    "Yggdrasil Leaf": {
+      "zh": "世界树树叶",
+      "size": [
+        1,
+        1
+      ],
+      "is_bag": false,
+      "sprite": "YggdrasilLeaf.png",
+      "category": "utility",
+      "base": {}
+    }
+  },
+  "characters": {
+    "Adventurer": {
+      "max_hp": 100
+    },
+    "Ranger": {
+      "max_hp": 100
+    },
+    "Berserker": {
+      "max_hp": 110
+    },
+    "Mage": {
+      "max_hp": 90
+    },
+    "Pyromancer": {
+      "max_hp": 95
+    },
+    "Reaper": {
+      "max_hp": 100
+    },
+    "Engineer": {
+      "max_hp": 105
+    }
+  }
+}
