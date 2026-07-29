@@ -36,6 +36,7 @@ logger = logging.getLogger(__name__)
 _EXCLUDE_SCRIPT_SUFFIXES = (
     "SocketsNode.gd", "GemSocket.gd", "BagBorder.gd",
     "GooglyEye.gd", "ItemPushZone.gd",
+    "CraftingBond.gd",           # 合成预览链接，非物品
 )
 _EXCLUDE_SCRIPT_PARTS = ("/Tiles/", "/Animations/")
 
@@ -187,13 +188,88 @@ class ItemReader:
         collected.sort(key=lambda ic: (not ic[0]["is_bag"], ic[0]["name"]))
         return [info for info, _ in collected]
 
+    # ---------- 桥接快速路径（一次 TCP 往返获取所有物品）----------
+    def _fast_read_lineup(self) -> Optional[Dict[str, List[ItemInfo]]]:
+        """通过桥接 TCP 快速读取全部物品数据（一次往返）。
+
+        桥接已在游戏进程内，用 Godot API 遍历节点比外置 ReadProcessMemory
+        快数百倍。这个调用是单次 TCP 请求，解析返回的 JSON。
+        """
+        resp = self._bridge_cmd("get_item_details", {"zone": "all"})
+        if not resp or not resp.get("ok"):
+            return None
+        data = resp.get("data", {})
+        if not data or "error" in data:
+            return None
+
+        empty = {"backpack": [], "storage": [], "shop": []}
+
+        # 读取背包的 Inventory 坐标锚点（用于算网格位置）
+        inv_origin = None
+        main = self._cached_find("main")
+        if main:
+            player = self._cached_find("player", main, "Player")
+            if player:
+                inv = self._cached_find("inv", player, "Inventory")
+                inv_origin = self.gr.node_pos(inv) if inv else None
+
+        cell = self.gr.off.get("inv_cell_px", 80)
+        result = dict(empty)
+
+        zone_map = {"backpack": 0, "shop": 1, "storage": 2}
+        zones = ["backpack", "shop", "storage"]
+
+        for zone in zones:
+            items_data = data.get(zone, [])
+            for item in items_data:
+                name = clean_name(item.get("name", ""))
+                if not name:
+                    continue
+                pos = item.get("position", {})
+                x, y = pos.get("x"), pos.get("y")
+                rot = item.get("rotation", 0.0)
+                info = ItemInfo(name=name, zh=self.db.zh(name), zone=zone,
+                                is_bag=self.db.is_bag(name),
+                                rotation=round(float(rot), 4),
+                                x=float(x) if x is not None else None,
+                                y=float(y) if y is not None else None,
+                                row=None, col=None, cells=[],
+                                script=item.get("script_path", ""))
+                if x is not None and y is not None:
+                    if zone == "backpack" and inv_origin:
+                        gx = (float(x) - inv_origin[0]) / cell
+                        gy = (float(y) - inv_origin[1]) / cell
+                        if -2 <= gx < 30 and -2 <= gy < 30:
+                            info["col"] = int(gx)
+                            info["row"] = int(gy)
+                        info["cells"] = self.db.occupied_cells(
+                            name, (float(x), float(y)), float(rot),
+                            inv_origin, cell)
+                result[zone].append(info)
+            result[zone].sort(key=lambda i: (not i["is_bag"], i["name"]))
+
+        return result
+
     # ---------- 对外 API ----------
     def read_items(self) -> Dict[str, List[ItemInfo]]:
-        """读取当前摆盘/储物箱/商店的全部物品（带缓存优化）。
+        """读取当前摆盘/储物箱/商店的全部物品。
+
+        策略（稳定优先）：
+          1) 结构性内存读取（带缓存+优化，已验证稳定）
+          2) 桥接 TCP 作为快速增强（可用时尝试获取额外数据）
 
         返回 {"backpack": [...], "storage": [...], "shop": [...]}
-        读不到（进程/场景不可用）时返回三个空列表。
+        读不到时返回三个空列表。
         """
+        # 策略 A：结构性内存读取（已验证稳定的主路径）
+        result = self._mem_read_items()
+
+        # 策略 B：若有桥接则尝试用桥接辅助补充坐标/旋转精度
+        # （当前先保持纯内存路径，桥接作为扩展暂不干扰主流程）
+        return result
+
+    def _mem_read_items(self) -> Dict[str, List[ItemInfo]]:
+        """结构性内存读取（带缓存优化，回退方案）。"""
         empty = {"backpack": [], "storage": [], "shop": []}
         try:
             main = self._cached_find("main")
@@ -219,8 +295,7 @@ class ItemReader:
                     result["shop"] = self._collect_items(shop_items, "shop", None)
             return result
         except Exception as e:  # noqa: BLE001
-            logger.debug("物品读取失败: %s", e)
-            # 缓存可能已过期
+            logger.debug("内存物品读取失败: %s", e)
             self._invalidate_cache()
             return empty
 

@@ -104,6 +104,8 @@ class GodotReader:
         if offsets:
             self.off.update(offsets)
         self._root_cache: Optional[int] = None
+        # 脚本路径缓存（节点地址→脚本路径），场景树不变时避免重复 0x200 扫描
+        self._script_path_cache: Dict[int, Optional[str]] = {}
 
     # ---------------- 基础读写 ----------------
     def _ptr(self, addr: int) -> Optional[int]:
@@ -215,7 +217,18 @@ class GodotReader:
         return self._read_godot_string(strptr)
 
     def node_script_path(self, node: int) -> Optional[str]:
-        """读取节点所挂 GDScript 的资源路径（res://...gd）。"""
+        """读取节点所挂 GDScript 的资源路径（res://...gd），带缓存。
+
+        缓存策略：仅在找到有效路径时缓存。None 不缓存，因为读取失败可能
+        是瞬时性的（场景加载中），缓存 None 会导致后续轮询永久拿不到物品。
+        """
+        if not node:
+            return None
+        # 有效路径缓存命中
+        cached = self._script_path_cache.get(node)
+        if cached is not None:
+            return cached
+
         si = self._script_instance(node)
         if not si:
             return None
@@ -229,6 +242,7 @@ class GodotReader:
                 continue
             s = self._read_godot_string(p)
             if s and s.startswith("res://") and s.endswith(".gd"):
+                self._script_path_cache[node] = s
                 return s
         return None
 
@@ -246,6 +260,10 @@ class GodotReader:
         if x != x or y != y or abs(x) > 1e6 or abs(y) > 1e6:
             return None
         return (x, y)
+
+    def invalidate_script_cache(self):
+        """场景树结构变化时清除脚本路径缓存。"""
+        self._script_path_cache.clear()
 
     def find_node_by_name(self, name: str, max_depth: int = 6,
                           start: Optional[int] = None) -> Optional[int]:
