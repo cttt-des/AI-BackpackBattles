@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=2]
-
-[ext_resource path="res://Assets/Fanfare.png" type="Texture" id=1]
-
-[node name="Fanfare" type="Sprite"]
-position = Vector2( -27.9391, 153.721 )
-rotation = -0.542797
-texture = ExtResource( 1 )
-offset = Vector2( 204.58, -2.39233 )

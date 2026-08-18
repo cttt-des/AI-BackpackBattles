@@ -43,6 +43,8 @@ config.yaml     — 配置文件
 - AI 默认使用启发式策略（最便宜优先），预留 LLM 接口
 - ★ GUI 改为 tkinter 原生应用（内置无额外依赖），Bot 后台线程 + queue 刷新 UI
 - 打包用 PyInstaller --windowed --onefile；覆盖旧 exe 前先用 PowerShell Stop-Process 杀进程
+- ★ 商店价格与联动功能：经核查逆向文件，关键数据（价格/打折字段、联动形状与匹配规则）位于加密运行期 GDScript 中，静态 tscn 无法提取，因此两项功能已被移除，不实现
+- ★ 2026-07-27 桥接注入方案：通过 PCK 补丁注入 GDScript TCP 桥接（参考 bpb_enhance），在游戏进程内读取价格+联动运行时数据暴露给外部 Python bot。桥接端口 19527。见 `bridge/inject.py` + `core/bridge_client.py`
 
 ## Godot 内存布局（2026-07-26 活体标定，本机 exe 构建有效）
 ```
@@ -61,6 +63,9 @@ Node2D: 局部pos=+0x270(2×f32), 全局origin=+0x260；背包格80px
 格坐标 = floor((物品pos − Player/Inventory pos(50,60)) / 80)
 排除: SocketsNode/GemSocket/BagBorder/GooglyEye/ItemPushZone、/Tiles/、/Animations/
 ```
+
+- ★ 2026-07-29 战斗模拟器（simulator/）已按用户要求删除。保留：「导出阵容」按钮（items_db 路径改为 assets/items_db_sim.json）、游戏机制参考文档（docs/game_mechanics_reference.md）、scrape_items.py
+- ★★ 2026-08-18 **GDEC 脚本全部解密成功**！真实密钥 `8671424952511006d39f4c9e918f821391e2b06a80d946d693fb8757154ce849`（tools/script_key.txt）。exe 中混淆存储，运行时由 GDEC 解密函数重建；通过 hook 该函数入口（RVA 0x1621820）抓 this+0x20 的 Vector<uint8_t> 获得。815 个 .gde 全部解密+反编译成功 → `decompiled_full/`（含 Core/Combat.gd, Character.gd, Buff.gd, Game.gd 等完整战斗逻辑源码）。GDEC = AES-256-ECB 无 IV（[4 GDEC][4 ver][16 md5][8 len][密文]）。工具：C:/tmp/bb/grabkey.c + inject_cap.c；批量解密 tools/decrypt_gde.py --key ... --dir extracted --ext .gdc
 
 ## 使用方式
 ```bash
