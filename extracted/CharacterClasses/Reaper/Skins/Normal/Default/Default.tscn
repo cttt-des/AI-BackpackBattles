@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=2]
-
-[ext_resource path="res://CharacterClasses/Reaper/ReaperSprite.tscn" type="PackedScene" id=1]
-
-[node name="Sprite" instance=ExtResource( 1 )]
-script = null
-
-[node name="LeftShoe" parent="Body/LeftUpperLeg/LeftLowerLeg" index="1"]
-position = Vector2( 37.037, 198.148 )
