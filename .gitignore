@@ -25,7 +25,10 @@ extracted/
 extracted_decrypted/
 extracted_gdc/
 decompiled_gd/
-decompiled_full/
+
+# 反编译最终产物（入库保留）；仅排除 GDRE 中间缓存与导出日志
+decompiled_full/.autoconverted/
+decompiled_full/gdre_export.log
 
 # ============ 逆向工具产物（工具本体保留在 tools/ 本地）============
 tools/gdre/
