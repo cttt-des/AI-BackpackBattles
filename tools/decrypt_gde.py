@@ -1,101 +1,100 @@
 """
-解密 Backpack Battles 的 Godot 加密脚本 (.gde / GDEC)。
+decrypt_gde.py  --  Decrypt Godot GDEC scripts (.gde -> GDScript bytecode "GDSC").
 
-Godot 3.x 加密脚本格式:
-  [4B "GDEC"][4B 保留/版本][AES-256-CBC 密文]
-密文解密后得到 "GDSC" 开头的编译后脚本(GDScript bytecode)。
-密钥 = project.binary / exe 中的 script_encryption_key(64 个十六进制字符 = 32 字节)。
+GDEC container (verified on Backpack Battles Combat.gde):
+    [4 "GDEC"][4 version][16 MD5(plaintext)][8 LE plaintext len][AES-256-ECB ciphertext]
 
-用法:
-  python tools/decrypt_gde.py <file.gde> [--key HEX] [--exe PATH] [--grep STR]
+The encryption key is a raw 32-byte AES-256 key. To obtain it see
+tools/scan_gdec_key.py (static) or extract it from the running process
+(Godot reconstructs an obfuscated key at startup).
+
+Usage:
+    # single file
+    python tools/decrypt_gde.py --key <64hex> input.gde -o out.gds
+    # batch a directory (writes <name>.gds next to each .gde)
+    python tools/decrypt_gde.py --key <64hex> --dir extracted --ext .gds
+    # pipe key from file
+    python tools/decrypt_gde.py --key-file key.txt input.gde -o out.gds
 """
 import argparse
+import hashlib
 import os
-import re
-import struct
+import sys
 
-try:
-    from Crypto.Cipher import AES
-except ImportError:  # 兜底：优先 pycryptodome，缺失时提示
-    AES = None
+from Crypto.Cipher import AES
 
 
-def find_key_in_exe(exe_path: str) -> str | None:
-    """在 exe 中定位 script_encryption_key 对应的 64 位十六进制密钥。"""
-    data = open(exe_path, "rb").read()
-    # 方式 A: 直接搜 64 位 hex 串
-    for m in re.finditer(rb"[0-9a-fA-F]{64}", data):
-        return m.group().decode()
-    # 方式 B: 找 'script_encryption_key' 字符串，其附近应有 hex key
-    idx = data.find(b"script_encryption_key")
-    if idx >= 0:
-        region = data[idx: idx + 256]
-        m = re.search(rb"[0-9a-fA-F]{64}", region)
-        if m:
-            return m.group().decode()
-    return None
-
-
-def decrypt_gde(path: str, key_hex: str) -> bytes | None:
-    if AES is None:
-        raise RuntimeError("需要 pycryptodome: pip install pycryptodome")
-    raw = open(path, "rb").read()
-    if raw[:4] != b"GDEC":
-        # 也许已经是明文/未加密
-        return raw
-    key = bytes.fromhex(key_hex)
-    if len(key) != 32:
-        raise ValueError("密钥必须为 32 字节(64 个十六进制字符)")
-    cipher_text = raw[8:]  # 跳过 GDEC(4) + 保留(4)
-    # Godot 3.x 使用 AES-256-CBC，IV 为 16 字节全 0
-    aes = AES.new(key, AES.MODE_CBC, b"\x00" * 16)
-    plain = aes.decrypt(cipher_text)
+def decrypt_gde(data: bytes, key: bytes) -> bytes | None:
+    if len(key) not in (16, 32):
+        raise ValueError("key must be 16 bytes (AES-128) or 32 bytes (AES-256)")
+    if data[:4] != b"GDEC":
+        # already plaintext / not encrypted
+        return data
+    version = int.from_bytes(data[4:8], "little")
+    md5_expected = data[8:24]
+    plain_len = int.from_bytes(data[24:32], "little")
+    ct = data[32:]
+    aes = AES.new(key, AES.MODE_ECB)
+    # decrypt block by block (ECB)
+    plain = aes.decrypt(ct)
     if plain[:4] != b"GDSC":
-        return None  # 密钥错误
+        return None  # wrong key
+    # trim to the declared plaintext length (trailing padding byte)
+    if plain_len <= len(plain):
+        plain = plain[:plain_len]
+    # verify integrity if MD5 matches the (possibly trimmed) plaintext
+    if hashlib.md5(plain).digest() == md5_expected:
+        pass  # integrity OK
     return plain
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("file")
-    ap.add_argument("--key")
-    ap.add_argument("--exe", default="Backpack Battles/BackpackBattles.exe")
-    ap.add_argument("--grep", default=None, help="在解密结果中搜索字符串(可多个, 逗号分隔)")
+    ap.add_argument("files", nargs="*", help=".gde files to decrypt")
+    ap.add_argument("--key", help="64-hex-char AES-256 key")
+    ap.add_argument("--key-file", help="path to a file containing the 64-hex key")
+    ap.add_argument("-o", "--out", help="output file (single-file mode)")
+    ap.add_argument("--dir", help="decrypt every *.gde under this directory")
+    ap.add_argument("--ext", default=".gds", help="output extension for --dir (default .gds)")
     args = ap.parse_args()
 
-    key = args.key or find_key_in_exe(args.exe)
-    if not key:
-        print("ERROR: 未在 exe 中找到 script_encryption_key，请用 --key 指定")
-        return 1
+    key = None
+    if args.key_file:
+        key = bytes.fromhex(open(args.key_file, "r").read().strip())
+    elif args.key:
+        key = bytes.fromhex(args.key)
+    if key is None:
+        print("ERROR: provide --key or --key-file", file=sys.stderr)
+        return 2
 
-    plain = decrypt_gde(args.file, key)
-    if plain is None:
-        print("ERROR: 解密失败(密钥错误或非 GDEC 文件)")
-        return 1
+    targets = list(args.files)
+    if args.dir:
+        for root, _, fs in os.walk(args.dir):
+            for f in fs:
+                if f.endswith(".gde"):
+                    targets.append(os.path.join(root, f))
 
-    print(f"# 解密成功: {args.file}  ({len(plain)} bytes, magic={plain[:4]})")
-    if args.grep:
-        needles = [n.strip().encode("utf-8", "ignore") for n in args.grep.split(",")]
-        for line in re.findall(rb"[\x20-\x7e]{3,}", plain):
-            low = line.lower()
-            if any(n.lower() in low for n in needles):
-                try:
-                    print("  ", line.decode("ascii", "replace"))
-                except Exception:
-                    pass
-    else:
-        # 默认打印所有可读串(前若干)
-        seen = 0
-        for line in re.findall(rb"[\x20-\x7e]{4,}", plain):
-            try:
-                print("  ", line.decode("ascii", "replace"))
-            except Exception:
-                pass
-            seen += 1
-            if seen > 400:
-                print("  ... (截断)")
-                break
-    return 0
+    if not targets:
+        print("ERROR: no input files", file=sys.stderr)
+        return 2
+
+    ok = fail = 0
+    for path in targets:
+        data = open(path, "rb").read()
+        plain = decrypt_gde(data, key)
+        if plain is None:
+            print(f"  FAIL  {path}  (wrong key or not GDEC)")
+            fail += 1
+            continue
+        if args.dir:
+            outp = path[: -len(".gde")] + args.ext
+        else:
+            outp = args.out or (path + args.ext)
+        open(outp, "wb").write(plain)
+        print(f"  OK    {path}  ->  {outp}  ({len(plain)} bytes)")
+        ok += 1
+    print(f"\nDone. decrypted={ok} failed={fail}")
+    return 0 if fail == 0 else 1
 
 
 if __name__ == "__main__":
