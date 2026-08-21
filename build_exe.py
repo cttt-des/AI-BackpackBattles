@@ -11,12 +11,16 @@ import os
 import shutil
 import subprocess
 import sys
+import tempfile
 import time
 from pathlib import Path
 
 PROJECT_DIR = Path(__file__).parent
 PYTHON = sys.executable
 APP_NAME = "BackpackAI"
+# 工作目录放到系统 Temp：绕过 workbuddy safe-delete shim 在回收站不可用时的
+# 删除失败（base_library.zip 等中间文件清理），与既定打包方案一致。
+WORK_DIR = Path(tempfile.gettempdir()) / "bb_backpackai_build"
 
 
 def _clear_old_exe(dist_dir: Path):
@@ -46,9 +50,10 @@ def _clear_old_exe(dist_dir: Path):
 
 def build():
     dist_dir = PROJECT_DIR / "dist"
-    work_dir = PROJECT_DIR / "build"
+    work_dir = WORK_DIR
 
     dist_dir.mkdir(parents=True, exist_ok=True)
+    work_dir.mkdir(parents=True, exist_ok=True)
     _clear_old_exe(dist_dir)
 
     # PyInstaller arguments (native GUI app — no console, no web deps)

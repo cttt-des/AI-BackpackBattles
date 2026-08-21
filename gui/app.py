@@ -114,6 +114,7 @@ class BackpackAIApp(tk.Tk):
         self._state_thread: threading.Thread | None = None
         self._heartbeat = time.time()  # 主线程存活心跳（看门狗用）
         self._last_live = None          # 最近一次读取到的物品快照（导出阵容用）
+        self._last_round = None         # 最近一次读取到的回合（导出阵容用）
 
         # 物品资源库（贴图 + 中文名 + 占格形状 + 格子素材）
         self.item_db = ItemDB()
@@ -834,14 +835,37 @@ class BackpackAIApp(tk.Tk):
                 continue
         return None, None
 
-    def _on_export_lineup(self):
-        """把当前读取到的背包摆盘导出为游戏结构匹配的 v2 阵容 JSON。
+    def _sim_char_db(self):
+        """加载战斗模拟器 characters.json 的角色库（用于导出 class_modifiers）。
 
-        格式（无 level，游戏真实结构）：
-          - character 直接用职业名字符串
-          - 物品用 id/row/col/rotation/quantity
-          - width/height 从 cells 计算，不含 level
-          - container 标志，contents 递归嵌套
+        开发模式: <项目根>/assets/characters.json
+        exe 模式: _MEIPASS/assets/characters.json（打包时 --add-data 带入）
+        加载失败时返回 None，导出时用默认值兜底。
+        """
+        for base in (get_resource_dir(), get_base_dir()):
+            p = base / "assets" / "characters.json"
+            try:
+                if p.exists():
+                    with open(p, "r", encoding="utf-8") as f:
+                        db = json.load(f)
+                    return db.get("characters", db)
+            except Exception:
+                continue
+        return None
+
+    def _on_export_lineup(self):
+        """把当前读取到的背包摆盘导出为战斗模拟器 v3 阵容 JSON。
+
+        对齐 simulator/lineup.py 的 v3 格式：
+          - version = 3
+          - meta: { name, source, exported_at, unknown_items }
+          - character: 职业名字符串
+          - round: 当前回合
+          - class_modifiers: { health, stamina, stamina_regen, gold }（取自角色库基础值）
+          - health_override: null（交给模拟器按回合成长计算）
+          - backpack: { grid:{rows,cols}, items:[...] }
+          - storage: []
+        物品条目: id/row/col/rotation/quantity/container/contents/gems
         """
         live = self._last_live
         if not live or not live.get("backpack"):
@@ -850,9 +874,10 @@ class BackpackAIApp(tk.Tk):
             return
 
         known_items, known_chars = self._sim_db_names()
+        char_db = self._sim_char_db()
 
         def item_entry(it):
-            """生成单个物品的 v2 格式条目（匹配游戏真实结构）。"""
+            """生成单个物品的 v3 格式条目（递归展开 contents）。"""
             cells = [(r, c) for (r, c) in (it.get("cells") or [])]
             if cells:
                 rs = [r for r, _ in cells]
@@ -869,10 +894,13 @@ class BackpackAIApp(tk.Tk):
                 "col": int(col),
                 "rotation": int(round(it.get("rotation", 0.0) * 180 / 3.14159 / 90) * 90) % 360,
                 "quantity": 1,
+                "container": it.get("is_bag", False),
+                # 袋内物品递归展开（同 schema）；模拟器当前仅用于物品名解析
+                "contents": [item_entry(sub)[0] for sub in (it.get("contents") or [])],
+                # 镶嵌宝石：读取器已从场景树 GemSocket 子树捕获
+                "gems": [{"id": g.get("id")} for g in (it.get("gems") or [])
+                         if g.get("id")],
             }
-            entry["container"] = it.get("is_bag", False)
-            if entry["container"]:
-                entry["contents"] = []
             return entry, name
 
         items_out = []
@@ -887,15 +915,32 @@ class BackpackAIApp(tk.Tk):
         if known_chars is not None and character not in known_chars:
             character = next(iter(known_chars), "Adventurer")
 
+        # class_modifiers：取角色库基础值；缺失则用默认值
+        if char_db and character in char_db:
+            c = char_db[character]
+            class_modifiers = {
+                "health": c.get("health", 25.0),
+                "stamina": c.get("stamina", 5.0),
+                "stamina_regen": c.get("regen", 1.0),
+                "gold": c.get("gold", 13),
+            }
+        else:
+            class_modifiers = {
+                "health": 25.0, "stamina": 5.0, "stamina_regen": 1.0, "gold": 13,
+            }
+
         data = {
-            "version": 2,
+            "version": 3,
             "meta": {
-                "source": "BackpackAI 实时内存读取",
+                "name": "实时导出阵容",
+                "source": "gui_export",
                 "exported_at": datetime.now().isoformat(),
                 "unknown_items": unknown,
             },
             "character": character,
-            "round": state.get("round", 1),
+            "round": self._last_round if self._last_round is not None else 1,
+            "class_modifiers": class_modifiers,
+            "health_override": None,
             "backpack": {
                 "grid": {"rows": 7, "cols": 10},
                 "items": items_out,
@@ -1099,6 +1144,8 @@ class BackpackAIApp(tk.Tk):
         live = state.get("live_items")
         if live is not None:
             self._last_live = live
+            rnd = state.get("round", 1)
+            self._last_round = int(rnd) if rnd is not None else 1
             n_bp = state.get("live_backpack_count", 0)
             n_st = state.get("live_storage_count", 0)
             self.phase_var.set(f"阶段: {phase}  |  摆盘: {n_bp}  储物箱: {n_st}")
