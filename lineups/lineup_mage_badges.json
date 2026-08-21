@@ -1,0 +1,85 @@
+{
+ "version": 3,
+ "meta": {
+  "name": "Mage Badges",
+  "source": "example"
+ },
+ "character": "Pyromancer",
+ "round": 1,
+ "class_modifiers": {
+  "health": 25,
+  "stamina": 5,
+  "stamina_regen": 1.0,
+  "gold": 13
+ },
+ "health_override": null,
+ "backpack": {
+  "grid": {
+   "rows": 7,
+   "cols": 10
+  },
+  "items": [
+   {
+    "id": "Magic Badge",
+    "row": 0,
+    "col": 0,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Flame Badge",
+    "row": 0,
+    "col": 1,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Health Potion",
+    "row": 0,
+    "col": 2,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Health Potion",
+    "row": 0,
+    "col": 3,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Stone",
+    "row": 0,
+    "col": 4,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Banana",
+    "row": 0,
+    "col": 5,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   }
+  ]
+ },
+ "storage": []
+}

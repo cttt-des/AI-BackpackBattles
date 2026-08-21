@@ -1,0 +1,49 @@
+{
+ "version": 3,
+ "meta": {
+  "name": "gem_test",
+  "source": "test"
+ },
+ "character": "Ranger",
+ "round": 3,
+ "class_modifiers": {
+  "health": 40,
+  "stamina": 5,
+  "stamina_regen": 1.0,
+  "gold": 13
+ },
+ "health_override": null,
+ "backpack": {
+  "grid": {
+   "rows": 7,
+   "cols": 10
+  },
+  "items": [
+   {
+    "id": "Cursed Dagger",
+    "row": 0,
+    "col": 0,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": [
+     {
+      "id": "Chipped Ruby"
+     }
+    ]
+   },
+   {
+    "id": "Amulet of the Wild",
+    "row": 2,
+    "col": 0,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   }
+  ]
+ },
+ "storage": []
+}

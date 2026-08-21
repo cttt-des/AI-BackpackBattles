@@ -1,0 +1,26 @@
+{
+  "version": 2,
+  "meta": {
+    "source": "BackpackAI 实时内存读取"
+  },
+  "character": "Adventurer",
+  "round": 1,
+  "backpack": {
+    "grid": {
+      "rows": 7,
+      "cols": 10
+    },
+    "items": [
+      {
+        "id": "Dagger",
+        "row": 0,
+        "col": 0,
+        "rotation": 0,
+        "quantity": 1,
+        "container": false,
+        "contents": []
+      }
+    ]
+  },
+  "storage": []
+}

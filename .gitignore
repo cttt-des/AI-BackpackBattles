@@ -26,9 +26,18 @@ extracted_decrypted/
 extracted_gdc/
 decompiled_gd/
 
-# 反编译最终产物（入库保留）；仅排除 GDRE 中间缓存与导出日志
+# 反编译最终产物（入库保留）；仅排除 GDRE 中间缓存、导出日志与 Godot 自动生成文件
 decompiled_full/.autoconverted/
 decompiled_full/gdre_export.log
+decompiled_full/.godot/
+*.uid
+
+# 模拟器运行输出（可再生成）
+output/
+
+# 备份文件
+*.bak*
+*.bak_*
 
 # ============ 逆向工具产物（工具本体保留在 tools/ 本地）============
 tools/gdre/
