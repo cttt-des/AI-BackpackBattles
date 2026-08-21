@@ -1,0 +1,45 @@
+{
+ "version": 3,
+ "meta": {
+  "name": "potion_link_test",
+  "source": "test"
+ },
+ "character": "Ranger",
+ "round": 3,
+ "class_modifiers": {
+  "health": 40,
+  "stamina": 5,
+  "stamina_regen": 1.0,
+  "gold": 13
+ },
+ "health_override": null,
+ "backpack": {
+  "grid": {
+   "rows": 7,
+   "cols": 10
+  },
+  "items": [
+   {
+    "id": "Health Potion",
+    "row": 1,
+    "col": 1,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Health Potion",
+    "row": 0,
+    "col": 1,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   }
+  ]
+ },
+ "storage": []
+}

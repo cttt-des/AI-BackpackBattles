@@ -1,0 +1,75 @@
+{
+ "version": 3,
+ "meta": {
+  "name": "Cursed Reaper",
+  "source": "example"
+ },
+ "character": "Reaper",
+ "round": 1,
+ "class_modifiers": {
+  "health": 25,
+  "stamina": 5,
+  "stamina_regen": 1.0,
+  "gold": 13
+ },
+ "health_override": null,
+ "backpack": {
+  "grid": {
+   "rows": 7,
+   "cols": 10
+  },
+  "items": [
+   {
+    "id": "Cursed Dagger",
+    "row": 0,
+    "col": 0,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Cursed Dagger",
+    "row": 0,
+    "col": 1,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Vampiric Potion",
+    "row": 0,
+    "col": 2,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Blood Amulet",
+    "row": 0,
+    "col": 3,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Garlic",
+    "row": 0,
+    "col": 4,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   }
+  ]
+ },
+ "storage": []
+}

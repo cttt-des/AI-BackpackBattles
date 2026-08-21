@@ -1,0 +1,42 @@
+{
+  "version": 3,
+  "meta": {
+    "name": "玩家-双匕首",
+    "source": "manual"
+  },
+  "character": "Adventurer",
+  "round": 1,
+  "class_modifiers": {
+    "health": 25,
+    "stamina": 5,
+    "stamina_regen": 1.0,
+    "gold": 13
+  },
+  "health_override": null,
+  "backpack": {
+    "grid": { "rows": 7, "cols": 10 },
+    "items": [
+      {
+        "id": "Dagger",
+        "row": 0,
+        "col": 0,
+        "rotation": 0,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Dagger",
+        "row": 2,
+        "col": 0,
+        "rotation": 0,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": []
+      }
+    ]
+  },
+  "storage": []
+}

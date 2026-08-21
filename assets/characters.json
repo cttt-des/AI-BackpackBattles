@@ -1,0 +1,60 @@
+{
+ "characters": {
+  "Adventurer": {
+   "key": "Adventurer",
+   "health": 25.0,
+   "stamina": 5.0,
+   "regen": 1.0,
+   "gold": 13,
+   "source": "tres"
+  },
+  "Ranger": {
+   "key": "Ranger",
+   "health": 25.0,
+   "stamina": 5.0,
+   "regen": 1.0,
+   "gold": 13,
+   "source": "tres"
+  },
+  "Berserker": {
+   "key": "Berserker",
+   "health": 25.0,
+   "stamina": 5.0,
+   "regen": 1.0,
+   "gold": 13,
+   "source": "tres"
+  },
+  "Pyromancer": {
+   "key": "Pyromancer",
+   "health": 25.0,
+   "stamina": 5.0,
+   "regen": 1.0,
+   "gold": 13,
+   "source": "tres"
+  },
+  "Mage": {
+   "key": "Mage",
+   "health": 25.0,
+   "stamina": 5.0,
+   "regen": 1.0,
+   "gold": 13,
+   "source": "tres"
+  },
+  "Reaper": {
+   "key": "Reaper",
+   "health": 25.0,
+   "stamina": 5.0,
+   "regen": 1.0,
+   "gold": 13,
+   "source": "tres"
+  },
+  "Engineer": {
+   "key": "Engineer",
+   "health": 25.0,
+   "stamina": 5.0,
+   "regen": 1.0,
+   "gold": 13,
+   "source": "tres"
+  }
+ }
+}
