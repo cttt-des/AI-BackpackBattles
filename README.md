@@ -1,6 +1,19 @@
-# Backpack Battles AI (背包乱斗 AI)
+# Backpack Battles AI（背包乱斗 AI）
 
 为游戏《背包乱斗》(Backpack Battles) 打造的外置 AI 机器人 + 战斗模拟器。**不修改任何游戏文件**，通过进程内存读取和鼠标/键盘模拟实现自动游玩，并通过逆向工程还原了完整的战斗模拟系统。
+
+---
+
+## 下载（Releases）
+
+打包好的独立 EXE 在 GitHub Releases 发布，无需 Python 环境即可运行：
+
+| 版本 | 文件 | 说明 |
+|------|------|------|
+| **v0.1.1** | [`BackpackAI_v0.1.1.exe`](https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.1.1/BackpackAI_v0.1.1.exe) | 外挂 AI 主程序（自动游玩 GUI） |
+| **v0.1.1** | [`BackpackSimulator_v0.1.1.exe`](https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.1.1/BackpackSimulator_v0.1.1.exe) | 战斗模拟器（阵容对战 / 蒙特卡洛胜率） |
+
+> 历史版本：[v0.1.0](https://github.com/cttt-des/AI-BackpackBattles/releases/tag/v0.1.0)、[v0.0.1](https://github.com/cttt-des/AI-BackpackBattles/releases/tag/v0.0.1)
 
 ---
 
@@ -8,7 +21,8 @@
 
 - **外置运行** — 无需注入或修改游戏本体，纯外部进程操作
 - **内存读取** — 通过 `ReadProcessMemory` 直接读取游戏进程的金币、HP、回合、物品清单等状态
-- **导出阵容** — 将当前读取到的背包摆盘导出为 JSON 格式，可直接作为模拟器输入
+- **结构性物品读取** — 遍历 Godot 场景树，精确捕获物品位置、旋转、**镶嵌宝石**（GemSocket 子树）与**袋内物品**（contents 递归展开）
+- **导出阵容（v3）** — 将当前读取到的背包摆盘导出为模拟器 v3 阵容 JSON（含 `gems`/`contents`/`class_modifiers`/`round`），可直接喂给模拟器
 - **启发式 AI** — 默认采用启发式策略自动决策（买最便宜的物品、偏好武器、自动卖垃圾等），预留 LLM 接口
 - **原生桌面 GUI** — 基于 tkinter 的深色主题桌面应用（BackpackAI + BackpackSimulator 双程序）
 - **战斗模拟器** — 基于逆向源码 100% 复刻的战斗引擎，输入两个阵容 JSON 输出完整战斗日志 + 蒙特卡洛胜率
@@ -27,7 +41,7 @@ core/                       # 外挂 AI 核心模块
 ├── state_tracker.py        # 状态管理
 ├── ai_interface.py         # AI 决策接口（启发式 + LLM 预留）
 ├── item_db.py              # 物品数据库
-├── item_reader.py          # 结构性物品读取
+├── item_reader.py          # 结构性物品读取（含宝石/袋内物品捕获）
 ├── godot_reader.py         # Godot 引擎对象图遍历
 ├── game_state.py           # 游戏状态模型
 ├── bridge_client.py        # 桥接 TCP 客户端（可选）
@@ -44,7 +58,7 @@ simulator/                  # ★ 战斗模拟器（输入两阵容 JSON → 战
 ├── damage.py               # DamageSource/DamageResult（暴击倍率 2.0）
 ├── rng.py                  # 平衡随机（对齐 BalancedRandom.gd）
 ├── events.py               # 战斗事件日志（对齐 CombatEvent/CombatLog）
-├── lineup.py               # 阵容 JSON 加载/校验
+├── lineup.py               # 阵容 JSON 加载/校验（v3 格式）
 ├── grid.py                 # 背包网格/邻接/宝石（40px 精细 tile → 80px 背包格）
 ├── data.py                 # 物品/角色数据加载
 └── build_data.py           # 从 wiki 数据 + 解包脚本生成 battle_items.json
@@ -136,9 +150,34 @@ python battle_simulator.py
 #   output/*_log.txt       人类可读日志
 ```
 
-### 导出阵容
+### 导出阵容（v3）
 
-在外挂 AI GUI 中点击「导出阵容 (模拟器 JSON)」，将当前读取到的所有物品（摆盘 + 储物箱）保存为 JSON，可直接作为模拟器输入。
+在外挂 AI GUI 中点击「导出阵容 (模拟器 JSON)」，将当前读取到的所有物品（摆盘 + 储物箱）保存为 v3 阵容 JSON。格式对齐 `simulator/lineup.py`：
+
+```jsonc
+{
+  "version": 3,
+  "meta": { "name": "...", "source": "...", "exported_at": "...", "unknown_items": [] },
+  "character": "Reaper",                 // 职业名字符串
+  "round": 12,                           // 当前回合
+  "class_modifiers": {                   // 取自角色库基础值
+    "health": 100, "stamina": 50, "stamina_regen": 5, "gold": 0
+  },
+  "health_override": null,               // 交给模拟器按回合成长计算
+  "backpack": {
+    "grid": { "rows": 8, "cols": 8 },
+    "items": [
+      { "id": "PoisonDagger", "row": 0, "col": 0, "rotation": 0,
+        "quantity": 1, "container": false, "contents": [], "gems": [] }
+    ]
+  },
+  "storage": []
+}
+```
+
+- `gems` — 从场景树 GemSocket 子树捕获的镶嵌宝石（`[{"id": "Ruby"}]`）
+- `contents` — 袋内物品递归展开（同 schema）
+- `rotation` — 角度制（0/90/180/270）
 
 ### 打包为 EXE
 
