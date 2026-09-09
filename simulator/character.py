@@ -136,7 +136,7 @@ class Character:
         self.bonus_fatigue_damage: int = 0
         self.battle_rage_active: bool = False
         self.battle_rage_bonus_dur: float = 0.0      # Character.gd:84 battleRageBonusDur
-        self.battle_rage_end_time: float = 0.0
+        self.battle_rage_remaining: float = 0.0
 
         # ---- 限制/系数 ----
         self.melee_spikes_limit: float = 1.0
@@ -286,7 +286,7 @@ class Character:
         self.bonus_fatigue_damage = 0
         self.battle_rage_active = False
         self.battle_rage_bonus_dur = 0.0   # Character.gd:386 战斗结束重置
-        self.battle_rage_end_time = 0.0
+        self.battle_rage_remaining = 0.0
         self.melee_spikes_limit = 1.0
         self.ranged_spikes_limit = 0.0
         self.effect_spikes_limit = 0.0
@@ -312,7 +312,7 @@ class Character:
         self.tick_timer_remaining = 1.0
 
     def character_tick(self, delta: float):
-        """_physics_process — 眩晕计时 + 无条件体力恢复"""
+        """_physics_process — 眩晕计时 + 无敌计时 + 战怒计时 + 体力恢复"""
         if self.stunned_duration > 0:
             self.stunned_duration -= delta
             if self.stunned_duration <= 0:
@@ -321,11 +321,14 @@ class Character:
             self.invulnerability_remaining -= delta
             if self.invulnerability_remaining <= 0:
                 self.invulnerability_ended()
+        if self.battle_rage_active:
+            self.battle_rage_remaining -= delta
+            if self.battle_rage_remaining <= 0:
+                self.end_battle_rage()
         self.add_stamina(self.get_stamina_regeneration() * delta)
 
     def on_tick(self, now: float):
         """onTick() — 每 1s：偶数 tickCounter 回血 / 奇数 中毒"""
-        self.tick_battle_rage(now)
         if self.tick_counter % 2 == 0:
             regen = self.get_regeneration()
             if regen > 0:
@@ -957,23 +960,21 @@ class Character:
         对齐 Character.gd 1549：fullDur += battleRageBonusDur 只影响仍在怒阶段。
         """
         self.battle_rage_bonus_dur += amount
-        if self.battle_rage_active and self.log is not None:
-            self.battle_rage_end_time += amount
+        if self.battle_rage_active:
+            self.battle_rage_remaining += amount
 
     def start_battle_rage(self, item=None, duration=0.0, trigger_event=None,
                           apply_bonus=True):
         """startBattleRage — Character.gd 1545：开怒 + 发射 battle_rage_started。
 
-        结束时机由战斗时钟推进（on_tick 检查 battle_rage_end_time），
-        到点后 end_battle_rage() 发射 battle_rage_ended。
+        计时用剩余秒数倒计时（character_tick 每帧递减，等价 battleRageTimer）。
         event 带 getParam("duration")（ExtraAngy 等读取战怒时长）。
         """
         full_dur = float(duration or 0.0)
         if apply_bonus:
             full_dur += self.battle_rage_bonus_dur
         self.battle_rage_active = True
-        now = self.log.current_time if self.log is not None else 0.0
-        self.battle_rage_end_time = now + full_dur
+        self.battle_rage_remaining = full_dur
         from types import SimpleNamespace
         event = SimpleNamespace(
             origin=item, duration=full_dur,
@@ -987,12 +988,6 @@ class Character:
             return
         self.battle_rage_active = False
         self.emit_signal('battle_rage_ended', trigger_event)
-
-    def tick_battle_rage(self, now: float):
-        """战斗时钟推进：战怒到期自动结束（等价 battleRageTimer.timeout）"""
-        if self.battle_rage_active and self.log is not None \
-                and now >= self.battle_rage_end_time:
-            self.end_battle_rage()
 
     def count_socketed_gems(self) -> int:
         """countSocketedGems — 统计背包内宝石数"""

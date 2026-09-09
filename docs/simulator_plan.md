@@ -11,10 +11,19 @@
    ```
    输出固定为 `dist/BackpackSimulator.exe`（名称不变、不带版本号）。
    打包后烟测：确认 exe 能启动（GUI 进程出现）再收尾。
-2. **验收三件套**（改动行为/联动/数据后必跑）：
+2. **验收四件套**（改动行为/联动/数据后必跑）：
+   - `python tools/verify_timing.py` —— 冷却/时序不变量 5 用例（含"onready 不得
+     覆盖引擎状态"通用防回归断言），全过才算完成；
    - `python tools/verify_linkage.py` —— 13 个联动对照用例，全过才算完成；
    - `python tools/regression_baseline.py --save` —— 重建基线（56 场 0 异常）；
-   - `python tools/audit_item_effects.py` —— 运行时报错物品数不得回涨（当前 1）。
+   - `python tools/audit_item_effects.py` —— 运行时报错物品数不得回涨（当前 1：
+     Time Dilator 孤立场景误报）。
+   - ⚠️ 历史事故（2026-09-09）：onready typed_defaults
+     （`_item.baseCooldownOverride=0.0` 等）经 `__setattr__` 重定向清零引擎
+     冷却状态，所有物品每帧触发（"冷却只有 0.01s"）。根因之二：以
+     `python simulator/extract_items.py` 直接运行时模块名为 `__main__`，
+     `from .item import Item` 相对导入失败使过滤静默失效（已修，
+     `_import_engine_item` 回退绝对导入）。
 3. **数据再生成**：改 `simulator/extract_items.py` 转译规则后必须重跑
    `python simulator/extract_items.py`（会同时重建 `class_methods` 池）。
    注意该脚本会读写 `assets/battle_items.json`，不要并发运行。
