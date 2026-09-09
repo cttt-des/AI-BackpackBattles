@@ -20,7 +20,70 @@ from typing import Any, Dict, List, Optional, TYPE_CHECKING
 
 from .damage import DamageSource, DamageResult, DS_Type, EFFECT_FLAGS
 from .behavior import BehaviorExecutor, _Noop
+from . import behavior as beh_module
 from .buff import BuffType
+
+import re as _re
+_CAMEL_1 = _re.compile(r'(?<=[a-z0-9])(?=[A-Z])')
+_CAMEL_2 = _re.compile(r'(?<=[A-Z])(?=[A-Z][a-z])')
+
+
+def _camel_to_snake(name: str) -> str:
+    """GDScript camelCase（含 _type 这类带下划线后缀）转 Python snake_case。
+
+    例：getNumAffectedInside_type -> get_num_affected_inside_type
+        baseCooldownOverride     -> base_cooldown_override
+    """
+    s = _CAMEL_2.sub('_', name)
+    s = _CAMEL_1.sub('_', s)
+    return s.lower()
+
+
+# __setattr__ 重定向的白名单：camelCase 写入是有意保留独立属性（或引擎已按
+# 该名字声明成员），不做 snake_case 改写
+_ITEM_ATTR_ALIASES = frozenset({
+    "affectedItems",   # Item.gd 基类数组（引擎读 get_affected_items 快照）
+    "descriptor",      # descriptor property 的种类标识（str），勿与 property 冲突
+})
+
+
+# 触发顺序权威值：源自 Items/*.gd 的 getTriggerPriority()（Partial/Exclusive 覆盖
+# Item.gd 基类默认的 Priority.Normal=0）。数值对齐 Priority 枚举
+#   Low=-1000, Normal=0, High=1000, Highest=10000
+# 原 CSV 的 trigger_priority 缺省为 0（全部同序），会导致排序退化为随机；这里用
+# 源码真实优先级覆盖，使 activateItems 阶段按 getTriggerPriority 降序触发。
+TRIGGER_PRIORITY_OVERRIDES: Dict[str, int] = {
+    "Strong Health Potion": 1001,
+    "Mr Struggles": 1003,
+    "Lucky Piggy": 1005,
+    "Leather Boots": 1002,
+    "Holy Spear": 2,
+    "Heart of Darkness": 1000,
+    "Health Potion": 1000,
+    "Amulet of Fortune": 1005,
+    "Automanaton": 1002,
+    "Arcane Boots": 1002,
+    "Berserker Bag": 1010,
+    "Battery": 1005,
+    "Wolf Badge": 1010,
+    "Winged Boots": 1002,
+    "Time Melting": 1100,
+    "Deer Totem": 10000,
+    "Stone Shoes": 1003,
+    "Dark Lantern": 1000,
+    "Stone Golem": 1001,
+    "Stone Armor": 1003,
+    "Fedora": 1005,
+    "Generator": 1005,
+    "Shelly": 1000,
+    "Fortunas Kiss": 1005,
+    "Hedgehog": 1003,
+    "King Crown": 1,
+    "Just Stats": -1000,
+    "Puzzlebag J": 1100,
+    "More Stats": -1000,
+}
+
 
 # Item.gd Type 枚举（行为脚本 hasType(Type.X) 传 int）
 TYPE_NAMES = {
@@ -61,6 +124,9 @@ class Item:
         self.data = data
         self.character: Optional['Character'] = None
         self.log: Optional['CombatLog'] = None
+        # RNG 源（onready 覆盖后用于恢复：BalancedRng 在模拟器中不可用）
+        self._rng_base = base_rng
+        self._rng_seed = seed
         if base_rng is not None:
             self.damage_range_rng = base_rng
             self.chance_rng = base_rng
@@ -77,6 +143,9 @@ class Item:
         self.block = int(data.get('block', 0))
         self.crit_chance_percent = float(data.get('crit', 0.0))
         self.trigger_priority = int(data.get('trigger_priority', 0))
+        # 用源码 getTriggerPriority() 的权威值覆盖（CSV 缺省为 0 -> 随机顺序）
+        if key in TRIGGER_PRIORITY_OVERRIDES:
+            self.trigger_priority = TRIGGER_PRIORITY_OVERRIDES[key]
         self.category = data.get('category', 'utility')
         self.damage_types = data.get('damage_type', 'effect')
         self.types = list(data.get('types', []))
@@ -104,6 +173,16 @@ class Item:
         self.buff_amplification_chances: Dict[int, float] = {}
         self.param_mult: Dict[str, float] = {}
         self.param_add: Dict[str, float] = {}
+        # 概率加成（Item.gd 484-486）与冷却/触发限流状态
+        self.bonus_chance_percent_additive1: float = 0.0
+        self.bonus_chance_percent_additive2: float = 0.0
+        self._cooldown_deactivated: bool = False
+        self._last_trigger_check_time: float = -1.0
+        self._triggers_this_frame: int = 0
+        # statDisplayOverrides：GDScript 预填全部 Stat 键，缺省读出 null——
+        # 模拟器用缺失返回 None 的字典等价（Greatsword.getStaminaCost 等）
+        from collections import defaultdict
+        self.statDisplayOverrides = defaultdict(lambda: None)
 
         # ---- 冷却运行状态 ----
         self.iteration_cooldown: float = 0.0
@@ -112,6 +191,7 @@ class Item:
         self.last_activation_time: float = 0.0
         self.consumed: bool = False
         self.is_full: bool = True          # Potion.isFull
+        self.dragged: bool = False         # Item.dragged（UI 拖拽态；模拟中恒为 False）
 
         # ---- 行为执行器（extract_items.py 提取的 GDScript 行为） ----
         self._behavior_executor: Optional[BehaviorExecutor] = None
@@ -124,8 +204,21 @@ class Item:
         self.grid_row: int = 0
         self.grid_col: int = 0
         self.grid_rotation: int = 0
+        self._rot_cells40: list = []     # 旋转后未归一化的 40px 占格（锚点系）
         self._affected_cache: Dict[int, list] = {}
         self.affectedItems: list = []   # 行为内缓存的邻接物品（对应 GDScript affectedItems）
+
+        # ---- 联动关系（对齐 Item.gd currentAffectedItems）----
+        #   _affected_items[color]  = 被本物品影响的物品
+        #   _affecting_items[color] = 影响本物品的物品
+        self._affected_items: Dict[int, list] = {}
+        self._affecting_items: Dict[int, list] = {}
+
+        # ---- 动态类型（Item.gd addDynamicType/removeDynamicType 3586）----
+        #   {类型枚举: [来源物品 id]} —— 联动物品可临时给邻居加类型（如 SunArmor 给
+        #   火焰物品加 Holy、CorruptedArmor 给神圣物品加 Dark）
+        self.dynamic_types: Dict[int, list] = {}
+        self.bonus_chance_percent_mult: float = 0.0
 
         # ---- 宝石 ----
         self.is_gem_item: bool = False
@@ -139,6 +232,8 @@ class Item:
         self.has_dealt_damage_effect = False
 
         # ---- 伤害源（对齐 Weapon._ready: DamageSource.new().setItem(self)）----
+        # 先置 None 占位：_make_damage_source -> get_min_damage 会读 self.damage_source
+        object.__setattr__(self, 'damage_source', None)
         self.damage_source = self._make_damage_source()
 
         # ---- 统计 ----
@@ -180,10 +275,257 @@ class Item:
         return 'bag' in self.types or self.category == 'bag'
 
     def has_type(self, t) -> bool:
-        """hasType — 兼容 str 与 Type 枚举 int（对齐 Item.gd Type 枚举）"""
+        """hasType — 兼容 str 与 Type 枚举 int（对齐 Item.gd Type 枚举）
+
+        含联动物品临时赋予的动态类型（addDynamicType，见 Item.gd 3586）：
+        如 SunArmor 给相邻的火焰物品加 Holy、CorruptedArmor 给神圣物品加 Dark。
+        """
         if isinstance(t, int):
+            if self.has_dynamic_type(t):
+                return True
             t = TYPE_NAMES.get(t, '')
+        else:
+            for tid in self.dynamic_types:
+                if TYPE_NAMES.get(tid, '') == t:
+                    return True
         return t in self.types
+
+    # ---------------- 联动判定谓词（供其他物品的 canAffect 调用） ----------------
+    # 默认返回值严格取自 Items/Item.gd 的基类实现。
+    # 注：can_be_empowered / can_activate / give_buff_power / gains_stack /
+    #     modify_param* 在文件后部已有实现（后定义者优先），此处不重复定义，
+    #    需要修正语义时改后部那一份（见文件末尾附近的同名方法）。
+
+    def can_block(self) -> bool:
+        """Item.gd 3645: getBlock() > 0"""
+        return self.get_block() > 0
+
+    def can_modify_chance(self) -> bool:
+        """Item.gd 3865: getBaseChance() > 0"""
+        return self.get_chance() > 0
+
+    def get_price(self):
+        """Item.gd 3937: descriptor.getPrice()"""
+        return self.data.get('price', 0)
+
+    def get_sell_price(self):
+        """Item.gd 3943: descriptor.getSellPrice()"""
+        return self.data.get('price', 0)
+
+    def get_base_sell_price(self):
+        return self.data.get('price', 0)
+
+    def change_heal_amp(self, amount):
+        """Item.gd 4868: modifyParam("heal") + modifyParam("lifesteal")"""
+        self.modify_param("heal", amount)
+        self.modify_param("lifesteal", amount)
+
+    def add_bonus_chance(self, amount):
+        """Item.gd 4013: bonusChancePercent_mult += amount"""
+        self.bonus_chance_percent_mult += float(amount)
+
+    def has_startof_battle(self) -> bool:
+        """Item.gd 3373: has_method("onCombatStart")"""
+        return self.has_behavior('onCombatStart') or bool(self.on_start)
+
+    def can_heal_or_lifesteal(self) -> bool:
+        """Item.gd 5362: descriptor.hasParam("heal") or hasParam("lifesteal")"""
+        np = self.data.get('named_params') or {}
+        return ('heal' in np) or ('lifesteal' in np)
+
+    def gains_buffs(self) -> bool:
+        """Item.gd 5375: descriptor.gainedStacks & Stack.Buff"""
+        return False
+
+    def uses_buffs(self) -> bool:
+        """Item.gd 5378: descriptor.usedStacks & Stack.Buff"""
+        return False
+
+    def inflicts_debuffs(self) -> bool:
+        """Item.gd 5381: descriptor.gainedStacks & Stack.Debuff"""
+        return False
+
+    def reacts_to_charges(self) -> bool:
+        """Item.gd 5148: hasOnChargeReceivedEffect or hasOnChargeLeftEffect —— 电荷系统未建模"""
+        return False
+
+    def is_crafted(self) -> bool:
+        """Item.gd 5719: descriptor.isCraftedItem() —— 无合成数据，默认 False"""
+        return False
+
+    def is_treasure(self) -> bool:
+        """Item.gd 5722: descriptor.randomUniquePool"""
+        return False
+
+    def can_start_new_recipe(self) -> bool:
+        """Item.gd 5840: not isBaseItem() and isAvailableForCrafting()"""
+        return False
+
+    def is_class_item(self, class_index=None) -> bool:
+        """Item.gd 973: descriptor.isClassItem()"""
+        return False
+
+    def charge_left(self) -> int:
+        """电荷系统未建模，恒 0"""
+        return 0
+
+    # ---------------- 视觉/引擎成员占位（避免视觉残留语句中断战斗逻辑） ----------------
+    # 部分物品脚本把战斗逻辑与视觉语句写在同一个方法里（如 onDealtDamage 中先改
+    # sprite 再加成），若视觉属性缺失会抛 AttributeError，导致**后续战斗逻辑不执行**。
+    # 这里为常见的视觉/引擎成员提供安全占位。
+    @property
+    def sprite(self):
+        if not hasattr(self, "_sprite_noop"):
+            from .behavior import _Noop
+            self._sprite_noop = _Noop()
+        return self._sprite_noop
+
+    @property
+    def placed(self) -> bool:
+        """Item.gd `var placed`：是否已摆放在背包网格中（否则在储物箱/商店）。"""
+        return self.grid_inventory is not None and bool(self.occupied_cells)
+
+    @property
+    def owner_type(self) -> int:
+        """Item.gd ownerType：0=PlayerInventory / 1=OpponentInventory / 2=Storage"""
+        return 1 if (self.character is not None and getattr(self.character, "index", 0)) else 0
+
+    ownerType = owner_type
+
+    @property
+    def num_charges(self) -> int:
+        """电荷数（工程师体系）。模拟器中电荷系统未建模，恒 0。"""
+        return 0
+
+    numCharges = num_charges
+
+    # ---------------- 联动派生查询 ----------------
+    def get_items_in_affected_cells(self, color: int = 0):
+        """getItemsInAffectedCells：影响格内的**全部**物品（未经 canAffect 过滤）。"""
+        if self.grid_inventory is None:
+            return []
+        return self.grid_inventory.get_items_in_cells(self._affected_cells_abs(color))
+
+    get_items_in_affected_cells_cached = get_items_in_affected_cells
+
+    def get_affected_gold_value(self, color: int = 0):
+        """getAffectedGoldValue：受影响物品的价格之和（Piggybank/Lucky Cat 等）。"""
+        return sum((it.get_price() or 0) for it in self.get_affected_items(color))
+
+    def __getattr__(self, name: str):
+        """兜底：行为脚本遗留的 camelCase 方法/属性名（如 getAffectedGoldValue、
+        getNumAffectedInside_type、baseCooldownOverride、addSpeed）按 snake_case 解析。
+
+        仅对缺失属性触发；dunder 直接放行以免干扰解释器内部协议。
+        """
+        if name.startswith('__') and name.endswith('__'):
+            raise AttributeError(name)
+        snake = _camel_to_snake(name)
+        if snake != name:
+            try:
+                return getattr(self, snake)
+            except AttributeError:
+                pass
+        raise AttributeError(name)
+
+    def __setattr__(self, name: str, value):
+        """camelCase 属性赋值重定向到 snake_case 成员。
+
+        行为脚本会写 `_item.baseCooldownOverride = x`、`_item.curHitCount = n`
+        等 camelCase 名（GDScript 成员名）。若不做重定向，赋值会创建一个同名的
+        分裂实例属性（Python 对未知属性名默认直接写入 __dict__），后续读取拿到
+        分裂值、而引擎读 snake_case 成员看不到——写入完全丢失。
+        """
+        if not name.startswith('_') and name not in _ITEM_ATTR_ALIASES \
+                and not hasattr(type(self), name):
+            snake = _camel_to_snake(name)
+            if snake != name:
+                # snake 名是引擎已声明的成员（类属性/实例 __dict__/property）才重定向
+                if hasattr(type(self), snake) or snake in getattr(
+                        self, '__dict__', {}):
+                    name = snake
+        object.__setattr__(self, name, value)
+
+    def get_num_affected_inside_type(self, item_type, color: int = 0) -> int:
+        """getNumAffectedInside_type：袋内受影响物品中指定类型的数量。"""
+        try:
+            inside = self.get_affected_items_inside()
+        except Exception:  # noqa: BLE001
+            return 0
+        return sum(1 for it in inside if it.has_type(item_type))
+
+    def get_num_affected_inside(self, color: int = 0) -> int:
+        try:
+            return len(self.get_affected_items_inside())
+        except Exception:  # noqa: BLE001
+            return 0
+
+    def on_affected_item_inside_added(self, other, color: int = 0):
+        """onAffectedItemInsideAdded：物品被放入袋中（Bag.gd 覆写）。"""
+        if self.has_behavior("onAffectedItemInsideAdded"):
+            try:
+                self.call_behavior("onAffectedItemInsideAdded", other)
+            except Exception:  # noqa: BLE001
+                pass
+
+    def on_affected_item_inside_removed(self, other, color: int = 0):
+        if self.has_behavior("onAffectedItemInsideRemoved"):
+            try:
+                self.call_behavior("onAffectedItemInsideRemoved", other)
+            except Exception:  # noqa: BLE001
+                pass
+
+    # ---------------- 战斗向 API 补齐 ----------------
+    def remove_lucky(self, amount=1, trigger_event=None):
+        """removeLucky：移除幸运栈（LOSE lucky）。"""
+        if self.character is not None:
+            return self.character.lose_stacks(BuffType.LUCKY, amount, self, trigger_event)
+        return None
+
+    def remove_most_buffs(self, amount=1, trigger_event=None):
+        """removeMostBuffs：移除大部分增益（源码逐个移除 Buff 集合）。"""
+        if self.character is None:
+            return None
+        for bt in (BuffType.BLOCK, BuffType.LUCKY, BuffType.REGENERATION,
+                   BuffType.VAMPIRISM, BuffType.SPIKES, BuffType.MANA,
+                   BuffType.EMPOWER, BuffType.HEAT):
+            try:
+                self.character.lose_stacks(bt, amount, self, trigger_event)
+            except Exception:  # noqa: BLE001
+                pass
+        return None
+
+    def change_amplification_chance_percent_all_debuffs(self, amount):
+        """changeAmplificiationChancePercent_allDebuffs：对全部减益调整增幅几率。
+
+        与 changeAmplificationChancePercent_allBuffs（增益）对应，减益为
+        Poison / Blind / Cold 三类。
+        """
+        for bt in (BuffType.POISON, BuffType.BLIND, BuffType.COLD):
+            self.change_amplification_chance_percent(bt, amount)
+
+    def has_attack_effect(self) -> bool:
+        return bool(self.data.get('effects')) or bool(self.effect)
+
+    def has_inventory_duration(self) -> bool:
+        """hasInventoryDuration：是否有背包内持续时间（默认为 False）。"""
+        return False
+
+    def get_base_stamina_cost(self) -> float:
+        return float(self.data.get('stamina_cost', 0.0))
+
+    def repeat_combat_start(self):
+        """repeatCombatStart：重复执行 onCombatStart（由引擎在需要时调用）。"""
+        self.combat_start()
+
+    def add_bonus_block(self, amount):
+        """addBonusBlock：累加额外格挡（Garlic 等被联动物品调用）。
+
+        GDScript 侧由物品自己的 addBonusBlock 累加实例变量 extraBlock，
+        在 doCooldownEffect 中 `giveBlock(getBlock() + extraBlock)` 生效；
+        这里作为兜底实现（物品自身有脚本实现时优先走脚本）。
+        """
+        self.extraBlock = (getattr(self, 'extraBlock', 0) or 0) + int(amount)
 
     def has_tag(self, tag) -> bool:
         """hasTag — 对齐 Item.gd Tag 枚举"""
@@ -218,19 +560,23 @@ class Item:
 
     def get_min_damage(self, dam_source=None) -> int:
         v = math.ceil(self.min_dam + self.bonus_min_dam)
+        src = dam_source or self.damage_source
         if self.character is not None:
             if self.is_weapon() and self.can_damage():
                 v += self.character.get_buff_damage_mod()
-            v *= self.get_typed_damage_factor(dam_source or self.damage_source)
+            if src is not None:
+                v *= self.get_typed_damage_factor(src)
         v = round(v * self.bonus_damage_factor)
         return max(v, 0)
 
     def get_max_damage(self, dam_source=None) -> int:
         v = math.ceil(self.max_dam + self.bonus_max_dam)
+        src = dam_source or self.damage_source
         if self.character is not None:
             if self.is_weapon() and self.can_damage():
                 v += self.character.get_buff_damage_mod()
-            v *= self.get_typed_damage_factor(dam_source or self.damage_source)
+            if src is not None:
+                v *= self.get_typed_damage_factor(src)
         v = round(v * self.bonus_damage_factor)
         return max(v, 0)
 
@@ -270,7 +616,8 @@ class Item:
         return self.cd != 0
 
     def is_cooldown_active(self) -> bool:
-        return self.has_cooldown() and self.character is not None
+        return (self.has_cooldown() and self.character is not None
+                and not self._cooldown_deactivated)
 
     def get_cooldown(self) -> float:
         return self.base_cooldown_override
@@ -305,6 +652,143 @@ class Item:
 
     def reset_base_cooldown(self):
         self.base_cooldown_override = self.cd
+
+    # ---- 冷却基值 API（对齐 Item.gd 3754/3757/4429/5307）----
+    def get_base_cooldown(self) -> float:
+        """getBaseCooldown — baseCooldownOverride"""
+        return self.base_cooldown_override
+
+    def get_base_cooldown_index(self, index) -> float:
+        """getBaseCooldownIndex — index 0 取主冷却 cd，其余取 extraCds[index-1]"""
+        if int(index) == 0:
+            return self.cd
+        extra = self.data.get('extra_cds') or []
+        i = int(index) - 1
+        return float(extra[i]) if 0 <= i < len(extra) else self.cd
+
+    def update_base_cooldown(self):
+        """updateBaseCooldown — 保持冷却进度比例，按新基值重算迭代冷却"""
+        if self.iteration_cooldown:
+            progress = self.trigger_time / self.iteration_cooldown
+        else:
+            progress = 1.0
+        self.iteration_cooldown = self.adjust_cooldown()
+        self.trigger_time = progress * self.iteration_cooldown
+
+    def activate_cooldown(self):
+        """activateCooldown — 恢复冷却推进（deactivate 后重新激活，如 Deer Totem 战怒）"""
+        self._cooldown_deactivated = False
+        if self.iteration_cooldown <= 0 or self.trigger_time == float("inf"):
+            self.iteration_cooldown = self.adjust_cooldown()
+            self.trigger_time = self.iteration_cooldown
+
+    def check_trigger_count(self, limit) -> bool:
+        """checkTriggerCount — 同一时刻内限流（Mr Struggles 等）。
+
+        GDScript 用 Util.time 帧时钟；模拟器用战斗日志时钟，同一时刻内
+        第 limit 次之后的触发被拒绝。
+        """
+        now = self.log.current_time if self.log else 0.0
+        if now > getattr(self, '_last_trigger_check_time', -1.0):
+            self._last_trigger_check_time = now
+            self._triggers_this_frame = 1
+        else:
+            self._triggers_this_frame = getattr(self, '_triggers_this_frame', 0) + 1
+            if self._triggers_this_frame > limit:
+                return False
+        return True
+
+    def steal_stack(self, buff_type, amount, trigger_event=None):
+        """stealStack — 从对手夺走 buff 层并给予己方角色"""
+        opp = self.opponent()
+        if opp is None:
+            return None
+        remove_event = opp.lose_stacks(buff_type, amount, item=self,
+                                       trigger_event=trigger_event)
+        return self.give_stacks(self.character, buff_type, amount,
+                                trigger_event=remove_event)
+
+    def check_mana(self, amount) -> bool:
+        """checkMana — 角色当前 mana 是否足够（Crown/Holy Spear/King Goobert 触发门槛）"""
+        return self.character is not None and self.character.get_mana() >= amount
+
+    def use_block(self, amount, trigger_event=None):
+        """Item 级 useBlock（Item.gd 4938：转发给角色；Djinn Lamp 等行为调用）"""
+        if self.character is None:
+            return 0
+        return self.character.use_block(amount, item=self, trigger_event=trigger_event)
+
+    def get_base_chance(self) -> float:
+        """getBaseChance — 未加成的 chance 基值"""
+        return self._parse_chance(self.data.get('csv_chance', '') or '')
+
+    def get_face_direction(self) -> int:
+        return self.face_direction
+
+    def get_param_modified(self, param_name, base_val=None) -> float:
+        """getParamModified — 模拟器 paramMult/paramAdd 按参数名键控（与 get_p_m 一致）"""
+        if base_val is None:
+            base_val = (self.data.get('named_params', {}).get(param_name, 0.0)
+                        if isinstance(param_name, str) else 0.0)
+        mult = self.param_mult.get(param_name, 1.0)
+        add = self.param_add.get(param_name, 0.0)
+        return (base_val + add) * mult
+
+    def reduce_crit_chance_percent(self, amount):
+        """reduceCritChancePercent — Item.gd 3988"""
+        self.crit_chance_percent -= amount
+
+    def can_use_stamina(self) -> bool:
+        """canUseStamina — Item.gd 5359"""
+        return self.get_base_stamina_cost() > 0
+
+    def set_bag_of_stones(self):
+        """setBagOfStones — Bag of Stones 开局给 Stone 填弹（Stone.gd 覆写 9000）"""
+        if self.has_behavior("setBagOfStones"):
+            self.call_behavior("setBagOfStones")
+
+    def add_bonus_chance_additive(self, amount1, amount2=None):
+        """addBonusChance_additive — Item.gd 4018（Shielded 给盾加格挡触发率）"""
+        self.bonus_chance_percent_additive1 += amount1
+        if amount2 is None:
+            self.bonus_chance_percent_additive2 += amount1
+        else:
+            self.bonus_chance_percent_additive2 += amount2
+
+    def change_all_items_crit_rate(self, amount):
+        """changeAllItemsCritRate — Item.gd 5672：全部可强化物品改暴击率（Black Rook）"""
+        for it in self.get_items():
+            if it.can_be_empowered():
+                it.change_crit_chance_percent(amount)
+
+    def count_all_placed_of_type(self, descr) -> int:
+        """countAllPlacedOfType — Item.gd 5783：按种类描述符计数已摆放物品（Dragon Set）"""
+        key = getattr(descr, 'key', None) or getattr(descr, 'name', None)
+        if not key or not isinstance(key, str):
+            return 0
+        return sum(1 for it in self.get_items() if it.key == key)
+
+    def is_neutral(self) -> bool:
+        """isNeutral — ItemDescriptor.classes == StuffedClasses.Neutral(127)。
+
+        classes 位掩码未入库（原版基础物品绝大多数为 Neutral 全职业可用），
+        按数据中 classes 字段缺省即 Neutral 处理。
+        """
+        classes = self.data.get('classes')
+        return classes is None or classes == 127
+
+    def is_a(self, descriptor) -> bool:
+        key = getattr(descriptor, 'key', None) or getattr(descriptor, 'name', None)
+        if isinstance(key, str):
+            return self.key == key
+        return False
+
+    def count_all_in_inventory_of_type(self, item_type) -> int:
+        if isinstance(item_type, str) and not item_type.isdigit():
+            # 描述符形态（ItemBook.getDescriptor 产物）：按物品名计数
+            return sum(1 for it in self.get_all_in_inventory() if it.key == item_type)
+        return len(self.get_all_of_type_in_inventory(item_type))
+
 
     # ================ 战斗生命周期 ================
     def prepare(self):
@@ -359,6 +843,10 @@ class Item:
             gem._gem_combat_end()
         if self.has_behavior("onCombatEnd"):
             self.call_behavior("onCombatEnd")
+        # GDScript 钩子原名（Stone.combatEnd 重置弹药等；Item.gd 基类实现被引擎托管，
+        # 不入 class_methods，因此仅实际定义了 combatEnd 的物品会触发）
+        if self.has_behavior("combatEnd"):
+            self.call_behavior("combatEnd")
 
     # ================ tick 驱动（_physics_process 还原） ================
     def physics_tick(self, delta: float, now: float):
@@ -697,6 +1185,10 @@ class Item:
         """脚本内同级方法互调（GDScript self.method() 语义）。"""
         return self.behavior.execute(self, name, *args)
 
+    def _behavior_super(self, name: str, from_cls, *args):
+        """转译的 `.method()` 超类调用：沿 extends_chain 向上找最近实现。"""
+        return self.behavior.super_execute(self, name, from_cls, *args)
+
     # ---- 信号注册（connectForCombat 还原） ----
     def connect_signal(self, signal: str, cb):
         self._signals.setdefault(signal, []).append(cb)
@@ -721,17 +1213,55 @@ class Item:
                                lambda amount, ev: self.call_behavior(method_name, amount, ev))
 
     def _run_prepare_behaviors(self):
-        """prepare 阶段行为：实例变量默认值 → onready 变量 → onPrepare → prepare（对齐 GDScript 调用链）"""
+        """prepare 阶段行为：实例变量默认值 → onready 变量 → onPrepare → prepare（对齐 GDScript 调用链）
+
+        继承链：基类（Weapon/Shield/...）的实例变量默认值与 onready 先于自身初始化，
+        与 GDScript 节点初始化顺序一致（父类先于子类）。
+        """
         if self._behavior_ready:
             return
         self._behavior_ready = True
         if not self.data.get("behavior"):
             return
-        # 类级 var 默认值（GDScript 节点初始化即生效，Python 需手动补 0）
-        for v in self.data.get("behavior", {}).get("instance_vars", []):
-            if not hasattr(self, v):
-                setattr(self, v, 0)
+        beh = self.behavior
+        # 类级 var 默认值（GDScript 节点初始化即生效，Python 需手动补 0）——基类链先行
+        for cls in [None] + beh.extends_chain:
+            iv = (self.data.get("behavior", {}).get("instance_vars", [])
+                  if cls is None else
+                  (beh_module.CLASS_METHODS.get(cls, {}).get("instance_vars", [])))
+            for v in iv:
+                if not hasattr(self, v):
+                    setattr(self, v, 0)
+        # onready 会重置网格/视觉元数据（Item.gd: occupiedCells=[]、collisionCells=[]）。
+        # GDScript 里 addToInventory / _ready 在节点初始化之后执行，而模拟器先摆盘
+        # 后 prepare——所以【先快照】运行期联动状态，onready 后再恢复：
+        # 重放占位元数据 + 重新登记到背包 + 保留受影响/影响关系与动态类型。
+        snap_affected = {c: list(v) for c, v in self._affected_items.items() if v}
+        snap_affecting = {c: list(v) for c, v in self._affecting_items.items() if v}
+        snap_dynamic = {c: list(v) for c, v in self.dynamic_types.items() if v}
+        # onready 初始化：每个基类的 _onready_init 都要执行（根先子后，对齐
+        # GDScript 基类成员先于子类初始化），再执行自身的
+        for cls in reversed(beh.extends_chain):
+            beh.execute_class(self, cls, "_onready_init")
         self.call_behavior("_onready_init")
+        if self.grid_inventory is not None:
+            self._init_grid_metadata()
+            self.grid_inventory.add_item(self, self.occupied_cells,
+                                         is_bag=self.is_bag())
+        # 恢复 onready 覆盖前的联动登记快照
+        self._affected_items = snap_affected
+        self._affecting_items = snap_affecting
+        self.dynamic_types = snap_dynamic
+        # RNG：onready 的 BalancedRng.new()/BalancedRange.new() 在模拟器中是 _Noop，
+        # 会覆盖构造期的种子化 RNG——恢复引擎种子化实例（对齐原版语义：物品 RNG
+        # 全战斗共享同一随机流）。注意 _Noop 对任何属性访问都返回真值，须按类型判。
+        if type(self.chance_rng).__name__ not in ('Random', 'BalancedRandom'):
+            self.chance_rng = (self._rng_base if self._rng_base is not None
+                               else random.Random(self._rng_seed))
+        if type(self.damage_range_rng).__name__ not in ('Random', 'BalancedRandom'):
+            self.damage_range_rng = (self._rng_base if self._rng_base is not None
+                                     else random.Random(self._rng_seed))
+        self.damage_source = self._make_damage_source()
         self.has_pre_deal_damage_early_effect = self.has_behavior(
             "onPreDealDamage_early")
         self.has_pre_deal_damage_late_effect = self.has_behavior(
@@ -825,13 +1355,15 @@ class Item:
         self.call_behavior("onConsume", trigger_event)
 
     def get_chance(self) -> float:
-        """getChance — CSV chance 列（如 '1:crit'/'70'）取前导数值"""
-        raw = self.data.get('csv_chance', '') or ''
-        return self._parse_chance(raw)
+        """getChance — (基值 + additive1) × (100 + mult)/100，clamp 0~100（对齐 Item.gd 3843）"""
+        base = self._parse_chance(self.data.get('csv_chance', '') or '')
+        return max(0.0, min(100.0, (base + self.bonus_chance_percent_additive1)
+                            * ((100.0 + self.bonus_chance_percent_mult) / 100.0)))
 
     def get_chance2(self) -> float:
-        raw = self.data.get('csv_chance2', '') or ''
-        return self._parse_chance(raw)
+        base = self._parse_chance(self.data.get('csv_chance2', '') or '')
+        return max(0.0, min(100.0, (base + self.bonus_chance_percent_additive2)
+                            * ((100.0 + self.bonus_chance_percent_mult) / 100.0)))
 
     @staticmethod
     def _parse_chance(raw: str) -> float:
@@ -859,10 +1391,21 @@ class Item:
         tscn CollisionMap 是 40px 精细 tile，背包格 80px → 坐标 //2 合并。
         tscn 格 (x,y)：x=横向=背包 col、y=纵向=背包 row。
         """
-        from .grid import rotate_cell, cells_from_grid_data
         self.grid_row = row
         self.grid_col = col
         self.grid_rotation = int(rotation) % 360
+        self._init_grid_metadata()
+        self.grid_inventory = inventory
+        if inventory is not None:
+            inventory.add_item(self, self.occupied_cells, is_bag=self.is_bag())
+
+    def _init_grid_metadata(self):
+        """按当前 (grid_row, grid_col, grid_rotation) 从 tscn 网格数据重算占格。
+
+        onready 重置（Item.gd occupiedCells=[]）后调用可恢复占位元数据。
+        """
+        from .grid import rotate_cell, cells_from_grid_data
+        row, col = self.grid_row, self.grid_col
         base = cells_from_grid_data(self.data.get('grid') or {})
         # 40px 精细 tile：先旋转（锚点系），再归一化
         rotated = [rotate_cell(tuple(c), self.grid_rotation) for c in base]
@@ -877,9 +1420,6 @@ class Item:
         for c in shape40:
             cells[(c[1] // 2, c[0] // 2)] = True     # (y//2, x//2) -> (row, col) 序
         self.occupied_cells = [(r + row, c + col) for (r, c) in cells]
-        self.grid_inventory = inventory
-        if inventory is not None:
-            inventory.add_item(self, self.occupied_cells, is_bag=self.is_bag())
 
     def grid_shape(self) -> list:
         """归一化后的 40px 占格形状（旋转后，左上角 0,0），(x,y) 序"""
@@ -911,31 +1451,55 @@ class Item:
         return sorted(cells)
 
     def _script_affected_cells(self, color: int = 0) -> list:
-        """脚本 getAffectedCellsAfterRotate 的补充格（基于旋转后 40px 占格形状）"""
-        if color != 0:
+        """脚本覆写的影响格：执行转译后的 getAffectedCellsAfterRotate_*（数据驱动）。
+
+        对齐 Item.gd getAffectedCells_noRotate：入参 rotatedCells 为**背包绝对格**
+        （物品旋转后的占格），返回值同坐标系。
+
+        此前这里按 extends 名硬编码了 Potion / BagofStones 两个分支；现改为执行
+        simulator/extract_linkage.py 从源码提取（含 extends 继承）的方法。
+        """
+        method = {0: 'getAffectedCellsAfterRotate_primary',
+                  2: 'getAffectedCellsAfterRotate_secondary'}.get(color)
+        if not method or not self.has_behavior(method):
             return []
-        name = self.data.get('behavior', {}).get('extends', '')
-        shape40 = self.grid_shape()
-        if not shape40:
+        rot40 = getattr(self, '_rotated40', None) or []
+        if not rot40:
+            return []
+        minx, miny = getattr(self, '_min40', (0, 0))
+        # 40px 锚点系 -> 背包绝对格，元素顺序与源码 getCollisionPoints() 一致（不排序）。
+        # 以 Vector2(x=col, y=row) 传入，便于 +Vector2.UP 直接上移一行。
+        rotated_cells = [(self.grid_col + (c[0] - minx) // 2,
+                          self.grid_row + (c[1] - miny) // 2) for c in rot40]
+        try:
+            res = self.call_behavior(method, rotated_cells)
+        except Exception:  # noqa: BLE001
             return []
         out = []
-        if name == 'Potion' or self.data.get('category') == 'potion':
-            # Potion and Rainbow Potion override this anchor by face
-            # direction.  The lineup rotation uses the same quarter-turn
-            # convention as Item.gd's faceDirection.
-            rainbow = name == 'RainbowPotion' or self.key == 'Rainbow Potion'
-            use_second = (self.grid_rotation == (270 if rainbow else 180))
-            anchor = shape40[1] if use_second and len(shape40) > 1 else shape40[0]
-            upy = anchor[1] - 1          # +Vector2.UP（40px）
-            upx = anchor[0]
-            out.append((self.grid_row + upy // 2, self.grid_col + upx // 2))
-        elif name == 'BagofStones':
-            # getCellsInLine(rotatedCells, UP, 1)：占格上方 1 格直线
-            for c in shape40:
-                upy = c[1] - 1
-                cell = (self.grid_row + upy // 2, self.grid_col + c[0] // 2)
-                if cell not in out:
-                    out.append(cell)
+        for c in (res or []):
+            try:
+                x, y = c[0], c[1]
+                out.append((int(y), int(x)))     # Vector2(col,row) -> (row,col)
+            except Exception:  # noqa: BLE001
+                continue
+        return out
+
+    def get_cells_in_line(self, cells, direction, distance=7):
+        """Inventory.gd getCellsInLine(686)：每个 cell 沿 direction 取 1..distance 格。
+
+        排除自身占格与重复项（Bag of Stones 用它取占格上方 1 格作为影响格）。
+        """
+        base = list(cells or [])
+        out = []
+        try:
+            dx, dy = direction[0], direction[1]
+        except Exception:  # noqa: BLE001
+            return out
+        for cell in base:
+            for step in range(1, int(distance) + 1):
+                nb = (cell[0] + dx * step, cell[1] + dy * step)
+                if nb not in base and nb not in out:
+                    out.append(nb)
         return out
 
     def _cache_affected_items(self):
@@ -1036,6 +1600,110 @@ class Item:
                 return False
         return False
 
+    # ================ 物品身份 / 朝向（对齐 Item.gd 成员） ================
+    @property
+    def descriptor(self):
+        """Item.gd 的 descriptor（物品描述符）。
+
+        联动判定用它做「种类」比较（Food.gd: `item.descriptor != descriptor`
+        = 只影响不同种类的食物），因此返回种类标识，使 `!=` 语义等同于"是否同类"。
+        """
+        return self.data.get("key", self.key)
+
+    @property
+    def face_direction(self) -> int:
+        """FaceDirection 枚举：UP=0 / RIGHT=1 / DOWN=2 / LEFT=3。
+
+        原版由物品实际朝向决定；阵容只给 rotation（顺时针角度），
+        按 0°->UP、90°->RIGHT、180°->DOWN、270°->LEFT 换算。
+        """
+        return (int(self.grid_rotation) % 360) // 90
+
+    # GDScript 侧以 camelCase 访问成员（descriptor / faceDirection / bonusDamage …）
+    faceDirection = face_direction
+
+    # ================ 动态类型（Item.gd 3586 addDynamicType） ================
+    # 联动物品可临时给邻居加类型：SunArmor 给火焰物品加 Holy、
+    # CorruptedArmor/Cthulhu 给神圣/食物物品加 Dark。
+    def add_dynamic_type(self, type_id, by_item=None):
+        src = id(by_item) if by_item is not None else id(self)
+        self.dynamic_types.setdefault(type_id, [])
+        if src not in self.dynamic_types[type_id]:
+            self.dynamic_types[type_id].append(src)
+
+    def remove_dynamic_type(self, type_id, by_item=None):
+        src = id(by_item) if by_item is not None else id(self)
+        lst = self.dynamic_types.get(type_id)
+        if not lst:
+            return
+        if src in lst:
+            lst.remove(src)
+        if not lst:
+            self.dynamic_types.pop(type_id, None)
+
+    def has_dynamic_type(self, type_id, from_item=None) -> bool:
+        if type_id not in self.dynamic_types:
+            return False
+        if from_item is None:
+            return True
+        return id(from_item) in self.dynamic_types[type_id]
+
+    # 转译后的行为代码以 GDScript 原名调用（addDynamicType / removeDynamicType …）
+    addDynamicType = add_dynamic_type
+    removeDynamicType = remove_dynamic_type
+    hasDynamicType = has_dynamic_type
+
+    # ================ 联动回调（Item.gd 1517 起） ================
+    def on_affected_item_added(self, other, color: int = 0):
+        """onAffectedItemAdded — 有物品进入本物品影响范围（放置/类型变化时触发）"""
+        self._affected_items.setdefault(color, [])
+        if other not in self._affected_items[color]:
+            self._affected_items[color].append(other)
+        other._affecting_items.setdefault(color, [])
+        if self not in other._affecting_items[color]:
+            other._affecting_items[color].append(self)
+        if self.has_behavior("onAffectedItemAdded"):
+            try:
+                self.call_behavior("onAffectedItemAdded", other, color)
+            except Exception:  # noqa: BLE001
+                pass
+
+    def on_affected_item_removed(self, other, color: int = 0):
+        """onAffectedItemRemoved — 物品离开影响范围"""
+        lst = self._affected_items.get(color)
+        if lst and other in lst:
+            lst.remove(other)
+        olst = other._affecting_items.get(color)
+        if olst and self in olst:
+            olst.remove(self)
+        if self.has_behavior("onAffectedItemRemoved"):
+            try:
+                self.call_behavior("onAffectedItemRemoved", other, color)
+            except Exception:  # noqa: BLE001
+                pass
+
+    def set_state(self, new_state, with_next_event=False, event=None):
+        """Item.gd setState — 状态切换入口（camelCase setState 调用经 __getattr__ 到达）"""
+        self.state_changed(new_state)
+
+    def state_changed(self, new_state):
+        """Item.setState -> onStateChanged（44 个物品覆写）"""
+        if self.has_behavior("onStateChanged"):
+            try:
+                self.call_behavior("onStateChanged", new_state)
+            except Exception:  # noqa: BLE001
+                pass
+
+    def get_related_item_columns(self):
+        """getRelatedItemColumns — 同类目按列联动（护符/Badge 系，17 个物品覆写）"""
+        if self.has_behavior("getRelatedItemColumns"):
+            try:
+                res = self.call_behavior("getRelatedItemColumns")
+                return list(res) if res else []
+            except Exception:  # noqa: BLE001
+                return []
+        return []
+
     def can_apply_effect(self, other) -> bool:
         if self.has_behavior("canApplyEffect"):
             try:
@@ -1064,25 +1732,83 @@ class Item:
         return out
 
     def send_charge(self, dur_per_tile, cells, speed_factor, event=None):
-        """Item.gd sendCharge — 电荷沿 cells（相对格偏移）传播，途经物品 +1 charge 并触发 onChargeReceived。
-        完整电荷动画不建模；核心计数与 onChargeReceived 效果保留。"""
+        """Item.gd sendCharge + ElectricalCharge.onNewCellEntered — 电荷沿 cells 传播。
+
+        对齐源码语义（ElectricalCharge.gd 204-233）：逐格推进时
+          lastChargedItem = curChargedItem; curChargedItem = 该格物品;
+          发射器 onChargeEnteredCell(charge, cellIndex)（电池系据此调
+          changeChargedItemStat 增减途经物品的速度）;
+          若换物：last.chargeLeft / cur.chargeReceived（num_charges±1 +
+          hasOnChargeReceivedEffect 物品触发 onChargeReceived/onChargeLeft）。
+        cellIndex 从 1 开始（第 0 格是发射器自身，不进入循环）。
+        """
         if self.grid_inventory is None:
             return
-        for cell in cells or []:
-            try:
-                dr, dc = cell[0], cell[1]
-                target = self.grid_inventory.get_item_in_cell(
-                    (self.grid_row + dr, self.grid_col + dc))
-            except Exception:
-                continue
-            if target is None or target is self:
-                continue
-            target.num_charges = getattr(target, "num_charges", 0) + 1
-            if target.has_behavior("onChargeReceived"):
+        cells = list(cells or [])
+        from types import SimpleNamespace
+        charge = SimpleNamespace(lastChargedItem=None, curChargedItem=None,
+                                 emitter=self, cells=cells)
+        # GDScript onNewCellEntered(1..size)：cellIndex 1 对应 cells[0]。
+        # 循环到 len(cells)+1（最后一项 cur=None 表示电荷离场，
+        # 让 lastChargedItem 收到 chargeLeft）。
+        for cell_index in range(1, len(cells) + 2):
+            charge.lastChargedItem = charge.curChargedItem
+            i = cell_index - 1
+            if i >= len(cells):
+                cur = None          # 电荷离场（GDScript cellIndex==size → null）
+            else:
                 try:
-                    target.call_behavior("onChargeReceived", self, event)
+                    dr, dc = cells[i][0], cells[i][1]
+                    cur = self.grid_inventory.get_item_in_cell(
+                        (self.grid_row + dr, self.grid_col + dc))
                 except Exception:
-                    pass
+                    cur = None
+            charge.curChargedItem = cur
+            if self.has_behavior("onChargeEnteredCell"):
+                self.call_behavior("onChargeEnteredCell", charge, cell_index)
+            if cur is not charge.lastChargedItem:
+                if charge.lastChargedItem is not None:
+                    charge.lastChargedItem.charge_left(charge)
+                if cur is not None:
+                    cur.charge_received(charge)
+
+    def charge_received(self, charge=None):
+        """Item.gd chargeReceived — 途经电荷 +1 充能并触发 onChargeReceived 效果"""
+        self.num_charges = getattr(self, "num_charges", 0) + 1
+        if self.has_behavior("onChargeReceived"):
+            self.call_behavior("onChargeReceived", charge)
+
+    def charge_left(self, charge=None):
+        """Item.gd chargeLeft — 电荷离开 -1 充能并触发 onChargeLeft 效果"""
+        self.num_charges = max(0, getattr(self, "num_charges", 0) - 1)
+        if self.has_behavior("onChargeLeft"):
+            self.call_behavior("onChargeLeft", charge)
+
+    def change_charged_item_stat(self, charge, cell_index, flat_val, val_per_tile):
+        """Item.gd changeChargedItemStat — 电池系按途经格位增减受充能物品的属性。
+
+        cellIndex 语义：1=第一格（加 flat），之后每进一格追加 valPerTile，
+        换物时对旧物按其已累积值回退。
+        """
+        previous_val = flat_val + (cell_index - 2) * val_per_tile
+        new_val = previous_val + val_per_tile
+        last = getattr(charge, "lastChargedItem", None)
+        cur = getattr(charge, "curChargedItem", None)
+        if last is not None:
+            if cur is None:
+                self._charged_item_stat_change(last, -previous_val)
+            elif cur is last:
+                self._charged_item_stat_change(cur, val_per_tile)
+            else:
+                self._charged_item_stat_change(last, -previous_val)
+                self._charged_item_stat_change(cur, new_val)
+        elif cur is not None:
+            self._charged_item_stat_change(cur, new_val)
+
+    def _charged_item_stat_change(self, target, value):
+        """chargedItemStatChange — 各电池物品的覆写点（Battery→addSpeed 等）"""
+        if self.has_behavior("chargedItemStatChange"):
+            self.call_behavior("chargedItemStatChange", target, value)
 
     def get_items_inside(self, *a, **k):
         return []
@@ -1134,8 +1860,11 @@ class Item:
         return True
 
     def can_be_empowered(self) -> bool:
-        """canBeEmpowered — 可被强化（有魔法/力量相关参数）"""
-        return bool(self.buff_powers.get(BuffType.EMPOWER, 0)) or "empower" in (self.data.get("named_params") or {})
+        """canBeEmpowered — Item.gd 3639: `isWeapon() and canDamage()`。
+
+        联动物品（如 Whetstone）用它筛选可被强化（加伤害）的目标。
+        """
+        return self.is_weapon() and self.can_damage()
 
     def count_socketed_gems(self) -> int:
         """countSocketedGems — 统计宝石数量"""
@@ -1185,11 +1914,16 @@ class Item:
                         self.character.lose_stacks(t, amt, self)
 
     def deactivate_cooldown(self):
+        """deactivateCooldown — 停止冷却推进（Dragon Set 满编时停用等）"""
+        self._cooldown_deactivated = True
         self.iteration_cooldown = 0.0
         self.trigger_time = float("inf")
 
-    def count_items_in_affected_cells_cached(self, color=0) -> int:
-        return len(self.get_affected_items(color))
+    def count_items_in_affected_cells_cached(self, color=0):
+        """countItemsInAffectedCells_cached — GDScript 返回 {物品: 数量} 字典
+        （ThunderDrake 的 lightningMultiplicity[item] 按物品取倍率），非计数。"""
+        from collections import Counter
+        return dict(Counter(self.get_affected_items(color)))
 
     def give_max_stamina_temporary(self, amount, trigger_event=None, filled=True):
         if self.character:
@@ -1772,9 +2506,9 @@ class Item:
     def count_all_in_inventory_of_type(self, item_type) -> int:
         return len(self.get_all_of_type_in_inventory(item_type))
 
-    def add_battle_rage_duration(self, amount):
+    def add_battle_rage_duration(self, amount, trigger_event=None):
         if self.character:
-            self.character.battle_rage_active = True
+            self.character.add_battle_rage_duration(amount, trigger_event)
 
     def give_random_buff(self, num=1, trigger_event=None):
         self.give_random_buffs(num, trigger_event)
@@ -1782,9 +2516,11 @@ class Item:
     def get_rarity(self):
         return self.data.get('rarity', '')
 
-    def start_battle_rage(self, *a, **k):
+    def start_battle_rage(self, duration=0.0, trigger_event=None, apply_bonus=True, *a, **k):
+        """Item 级 startBattleRage（Berserker Bag/Toolbox/Wolf Badge 等行为调用：
+        character().startBattleRage(self, dur, event[, false])，self 参数在转译后略去）"""
         if self.character:
-            self.character.battle_rage_active = True
+            self.character.start_battle_rage(self, duration, trigger_event, apply_bonus)
 
     def get_num_empty_affected_cells(self, *a, **k):
         color = a[0] if a else k.get("color", 0)
@@ -2008,7 +2744,10 @@ class Item:
             self.opponent().cur_health = max(0, self.opponent().cur_health - amount)
             self.character.heal(amount, origin=self.key, trigger_event=trigger_event)
 
-    def emit_charge(self, *a, **k):
+    def emit_charge(self, speed_factor=1.0, *a, **k):
+        """Item 级 emitCharge（跨物品调用入口；电池物品自身有行为覆写）"""
+        if self.has_behavior("emitCharge"):
+            return self.call_behavior("emitCharge", speed_factor)
         return None
 
     def change_poison_crit_chance_percent(self, amount):
@@ -2304,7 +3043,11 @@ class Item:
         return (base + add) * mult
 
     def modify_param(self, param_name: str, amount: float):
-        self.param_mult[param_name] = self.param_mult.get(param_name, 1.0) * amount
+        """Item.gd 3916: Util.dictAdd(paramMult, name, amount, 1.0) —— **累加**（默认倍率 1.0）。
+
+        此前误实现为乘法，会把倍率直接乘成 amount（如 1.0*0.1=0.1），与源码不符。
+        """
+        self.param_mult[param_name] = self.param_mult.get(param_name, 1.0) + float(amount)
 
     def modify_param_add(self, param_name: str, amount: float):
         self.param_add[param_name] = self.param_add.get(param_name, 0.0) + amount
@@ -2319,3 +3062,56 @@ class Item:
 
     def __repr__(self):
         return f"<Item {self.key}>"
+
+
+# ---------------------------------------------------------------------------
+# GDScript 调用名（camelCase）-> 引擎方法（snake_case）别名
+#
+# 转译后的行为代码里，对**其他物品**的调用保留 GDScript 原名（如
+# `item.canActivate()`、`item.addBonusBlock(x)`）；extract_items.METHOD_RENAME
+# 会在重新生成行为库时做重命名，但历史数据与个别未覆盖的名字仍可能以原名出现。
+# 这里统一补别名，保证联动判定不会因为命名风格差异而静默失效。
+# 放在类定义之后，确保引用到的是最终生效（含后部覆盖）的方法。
+# ---------------------------------------------------------------------------
+_GDSCRIPT_ALIASES = {
+    "canActivate": "can_activate",
+    "canBlock": "can_block",
+    "canModifyChance": "can_modify_chance",
+    "canHealOrLifesteal": "can_heal_or_lifesteal",
+    "canStartNewRecipe": "can_start_new_recipe",
+    "canBeEmpowered": "can_be_empowered",
+    "giveBuffPower": "give_buff_power",
+    "gainsBuffs": "gains_buffs",
+    "gainsStack": "gains_stack",
+    "usesBuffs": "uses_buffs",
+    "inflictsDebuffs": "inflicts_debuffs",
+    "addBonusChance": "add_bonus_chance",
+    "addBonusBlock": "add_bonus_block",
+    "changeHealAmp": "change_heal_amp",
+    "changeAmplificiationChancePercent_allDebuffs":
+        "change_amplification_chance_percent_all_debuffs",
+    "hasStartofBattle": "has_startof_battle",
+    "hasAttackEffect": "has_attack_effect",
+    "hasInventoryDuration": "has_inventory_duration",
+    "isCrafted": "is_crafted",
+    "isClassItem": "is_class_item",
+    "isTreasure": "is_treasure",
+    "reactsToCharges": "reacts_to_charges",
+    "chargeLeft": "charge_left",
+    "getPrice": "get_price",
+    "getSellPrice": "get_sell_price",
+    "getBaseStaminaCost": "get_base_stamina_cost",
+    "modifyParam": "modify_param",
+    "modifyParam_add": "modify_param_add",
+    "repeatCombatStart": "repeat_combat_start",
+    "addDynamicType": "add_dynamic_type",
+    "removeDynamicType": "remove_dynamic_type",
+    "hasDynamicType": "has_dynamic_type",
+    "getItemsInAffectedCells": "get_items_in_affected_cells",
+    "getItemsInAffectedCells_cached": "get_items_in_affected_cells",
+}
+
+for _gd, _py in _GDSCRIPT_ALIASES.items():
+    _target = getattr(Item, _py, None)
+    if _target is not None and not hasattr(Item, _gd):
+        setattr(Item, _gd, _target)

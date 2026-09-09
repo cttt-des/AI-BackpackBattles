@@ -119,8 +119,22 @@ class _Util:
         return d
 
     def flip(self):
-        """Util.flip — 硬币判定（Girl Power/Scale 平局时二选一）。固定种子保证可复现。"""
+        """Util.flip — 硬币判定（Girl Power/Scale 平平局时二选一）。固定种子保证可复现。"""
         return _FLIP_RNG.random() < 0.5
+
+
+def _gd_dictionary(*a, **k):
+    """GDScript Dictionary() 构造：无参空字典；可选 (keys, values) 对拷贝。"""
+    if len(a) == 2:
+        return dict(zip(a[0] or [], a[1] or []))
+    return {}
+
+
+def _gd_array(*a):
+    """GDScript Array() 构造：无参空数组；单 PoolArray/iterable 拷贝。"""
+    if len(a) == 1 and hasattr(a[0], '__iter__') and not isinstance(a[0], (str, bytes)):
+        return list(a[0])
+    return []
 
 
 
@@ -225,15 +239,57 @@ class _Game:
         return None
 
     def __getattr__(self, name):
-        # 任何未定义的 Game.<x> 调用都安全降级为无副作用（视觉/引擎内部方法）
-        return _noop_call
+        # 任何未定义的 Game.<x> 调用都安全降级为无副作用（视觉/引擎内部方法）。
+        # 用 _Noop 而非函数：行为里形如 Game.combatLog.snapshotItemTooltipStat(...)
+        # 或 Game.combatSceneNode.advanceTime(...) 的链式调用才能成立，否则
+        # 「函数对象」上取属性会抛 AttributeError。
+        return _Noop()
 
 
 class _Vector2(tuple):
-    """GDScript Vector2 的 Python 等价：可调用构造 + 方向常量（视觉方法用）。"""
+    """GDScript Vector2 的 Python 等价：可调用构造 + 向量运算 + 方向常量。
+
+    必须是真正的向量语义：影响格计算依赖它，例如
+      Potion.getAffectedCellsAfterRotate_primary: `rotatedCells[0] + Vector2.UP`
+      Inventory.getCellsInLine:                  `cell + direction * offset`
+    若沿用 tuple 的 `+`（拼接）会得到 4 元组，导致偏移完全失效。
+    """
 
     def __new__(cls, x=0.0, y=0.0):
         return tuple.__new__(cls, (float(x), float(y)))
+
+    @staticmethod
+    def _coerce(other):
+        if isinstance(other, (tuple, list)) and len(other) >= 2:
+            return float(other[0]), float(other[1])
+        return None
+
+    def __add__(self, other):
+        c = self._coerce(other)
+        return _Vector2(self[0] + c[0], self[1] + c[1]) if c else NotImplemented
+
+    def __radd__(self, other):
+        return self.__add__(other)
+
+    def __sub__(self, other):
+        c = self._coerce(other)
+        return _Vector2(self[0] - c[0], self[1] - c[1]) if c else NotImplemented
+
+    def __rsub__(self, other):
+        c = self._coerce(other)
+        return _Vector2(c[0] - self[0], c[1] - self[1]) if c else NotImplemented
+
+    def __mul__(self, other):
+        if isinstance(other, (int, float)) and not isinstance(other, bool):
+            return _Vector2(self[0] * other, self[1] * other)
+        c = self._coerce(other)
+        return _Vector2(self[0] * c[0], self[1] * c[1]) if c else NotImplemented
+
+    def __rmul__(self, other):
+        return self.__mul__(other)
+
+    def __neg__(self):
+        return _Vector2(-self[0], -self[1])
 
     def rotated(self, angle):
         return self  # 视觉旋转不建模
@@ -252,6 +308,20 @@ _Vector2.UP = _Vector2(0, -1)
 _Vector2.LEFT = _Vector2(-1, 0)
 _Vector2.RIGHT = _Vector2(1, 0)
 _Vector2.ZERO = _Vector2(0, 0)
+
+
+class _ItemBook:
+    """GDScript ItemBook 全局的 Python 等价（战斗内只用 getDescriptor 做种类标识）。
+
+    DragonSet 等物品在 onready 里 `ItemBook.getDescriptor("Dragonscale Armor")`，
+    随后 countAllPlacedOfType(descr) 按种类计数。这里返回带 key 的命名空间，
+    由 Item.count_all_placed_of_type 按 key 匹配背包内物品。
+    """
+    def getDescriptor(self, name):
+        return SimpleNamespace(key=name, name=name)
+
+    def __getattr__(self, name):
+        return _Noop()
 
 
 # 行为函数可访问的全局命名空间（GDScript 全局/枚举的 Python 等价）
@@ -278,7 +348,13 @@ BEHAVIOR_GLOBALS: Dict[str, Any] = {
     "ActivationAni": SimpleNamespace(Throw=0, Melee=1, Ranged=2, Spell=3),
     "Item": object,
     "ObjectPool": _Noop(),
-    "ItemBook": _Noop(),
+    "ItemBook": _ItemBook(),
+    "Stat": SimpleNamespace(
+        Damage=0, Accuracy=1, Chance=2, Chance2=3, CritChance=4, CritSeverity=5,
+        BaseCooldown=6, Cooldown=7, Speed=8, StaminaCost=9, Block=10, MaxHealth=11,
+        Regen=12, Lucky=13, Vampirism=14, Spikes=15, Mana=16, Empower=17, Heat=18,
+        Poison=19, Blind=20, Cold=21, BattleRage=22,
+    ),
     "Sound": _Noop(),
     "EventBus": _Noop(),
     "sprite": None,
@@ -286,6 +362,8 @@ BEHAVIOR_GLOBALS: Dict[str, Any] = {
     "placed": False,
     "me": None,
     "_range_or_value": _range_or_value,
+    "Dictionary": _gd_dictionary,
+    "Array": _gd_array,
     "ceil": __import__("math").ceil,
     "floor": __import__("math").floor,
     "BuffType": __import__("simulator.buff", fromlist=["BuffType"]).BuffType,
@@ -294,43 +372,108 @@ BEHAVIOR_GLOBALS: Dict[str, Any] = {
 }
 
 
+# 严格模式开关：默认 False，保持既有战斗行为（异常静默降级）不变；
+# 审计/验证工具把它置 True 后，行为方法的编译与运行异常会被记录到
+# executor.failures（方法名 -> 错误），从而可被统计与归因，而不是被悄悄吞掉。
+STRICT = False
+
+
+# ---------------------------------------------------------------------------
+# 基类行为池（GDScript 继承链）
+#
+# 游戏源码里物品脚本通过 extends 继承基类脚本（Weapon.gd/Food.gd/Shield.gd/
+# Greatsword.gd ... Item.gd），并覆写/沿用其方法（如 Shield.beforeBlock、
+# Greatsword.onStateChanged）。extract_items.py 把这些基类脚本的转译方法
+# 集中存入 battle_items.json 顶层 "class_methods"（每类一份，避免按物品复制），
+# 并给每个物品的 behavior 写入 "extends_chain"（最近基类在前，"Item" 收尾）。
+# 运行时由 BehaviorExecutor 按链解析：自身 methods -> 最近祖先 -> ... -> Item。
+# ---------------------------------------------------------------------------
+CLASS_METHODS: Dict[str, Dict[str, str]] = {}
+
+
+def set_class_methods(class_methods: Optional[Dict[str, Dict[str, str]]]) -> None:
+    """由数据加载层注入 battle_items.json 的 class_methods（键=脚本类名）。"""
+    global CLASS_METHODS
+    CLASS_METHODS = class_methods or {}
+
+
 class BehaviorExecutor:
     """按需编译并缓存行为函数。"""
 
-    def __init__(self, spec: Optional[Dict[str, Any]] = None):
+    def __init__(self, spec: Optional[Dict[str, Any]] = None, strict: bool = False):
         self.spec: Dict[str, Any] = spec or {}
         self.methods: Dict[str, str] = self.spec.get("methods", {}) or {}
         self.methods_raw: Dict[str, str] = self.spec.get("methods_raw", {}) or {}
+        # 继承链（最近基类在前，"Item" 收尾；与 CLASS_METHODS 配合解析）
+        self.extends_chain: list = list(self.spec.get("extends_chain", []) or [])
         self._cache: Dict[str, Any] = {}
         self._failed: set = set()
+        self.strict: bool = strict
+        # 严格模式下收集 {(cls, 方法名): 错误信息}（供 tools/audit_item_effects.py 等审计）
+        self.failures: Dict[Any, str] = {}
+
+    def _record_failure(self, item, name: str, exc: BaseException, phase: str, cls=None):
+        self._failed.add((cls, name))
+        if self.strict or STRICT:
+            self.failures[(cls, name)] = f"{phase}: {type(exc).__name__}: {exc}"
+        _warn(item, f"behavior {name} {phase}: {exc!r}")
+
+    # ---- 继承链解析 ----
+    def _class_src(self, cls: str, name: str) -> Optional[str]:
+        cm = CLASS_METHODS.get(cls)
+        if not cm:
+            return None
+        return cm.get("methods", {}).get(name)
+
+    def resolve(self, name: str):
+        """GDScript 方法解析：自身 -> 沿 extends_chain 逐级向上。返回 (cls, src)。
+
+        cls 为 None 表示自身 methods 命中。找不到返回 (None, None)。
+        """
+        if name in self.methods:
+            return None, self.methods[name]
+        for cls in self.extends_chain:
+            src = self._class_src(cls, name)
+            if src:
+                return cls, src
+        return None, None
 
     def has(self, name: str) -> bool:
-        return name in self.methods
+        _, src = self.resolve(name)
+        return src is not None
 
     def has_any(self, names) -> bool:
         return any(self.has(n) for n in names)
 
-    def _compile(self, item, name: str):
-        src = self.methods.get(name)
+    def _compile(self, item, name: str, cls=None):
+        cache_key = (cls, name)
+        if cache_key in self._cache:
+            return self._cache[cache_key]
+        if cls is None:
+            src = self.methods.get(name)
+        else:
+            src = self._class_src(cls, name)
         if not src:
             return None
         try:
             ns: Dict[str, Any] = _SafeDict(BEHAVIOR_GLOBALS)
-            exec(compile(src, f"<behavior:{item.key}:{name}>", "exec"), ns)
-            self._cache[name] = ns[name]
+            exec(compile(src, f"<behavior:{cls or item.key}:{name}>", "exec"), ns)
+            self._cache[cache_key] = ns[name]
             return ns[name]
         except Exception as e:
-            self._failed.add(name)
-            _warn(item, f"behavior {name} 编译失败: {e}")
+            self._record_failure(item, name, e, "编译失败", cls)
             return None
 
     def execute(self, item, name: str, *args):
-        """执行行为方法。不存在或失败时返回 None。"""
-        if name not in self.methods or name in self._failed:
+        """执行行为方法（沿继承链解析）。不存在或失败时返回 None。"""
+        cls, src = self.resolve(name)
+        if src is None:
             return None
-        fn = self._cache.get(name)
+        if (cls, name) in self._failed:
+            return None
+        fn = self._cache.get((cls, name))
         if fn is None:
-            fn = self._compile(item, name)
+            fn = self._compile(item, name, cls)
             if fn is None:
                 return None
         try:
@@ -341,19 +484,52 @@ class BehaviorExecutor:
                 try:
                     return fn(item)
                 except Exception as e2:
-                    self._failed.add(name)
-                    _warn(item, f"behavior {name} 执行异常: {e2!r}")
+                    self._record_failure(item, name, e2, "执行异常", cls)
                     return None
-            self._failed.add(name)
-            _warn(item, f"behavior {name} 执行异常: {e!r}")
+            self._record_failure(item, name, e, "执行异常", cls)
             return None
         except Exception as e:
-            self._failed.add(name)
-            _warn(item, f"behavior {name} 执行异常: {e!r}")
+            self._record_failure(item, name, e, "执行异常", cls)
             return None
+
+    def execute_class(self, item, cls: str, name: str, *args):
+        """显式执行指定基类的方法（多级 _onready_init 初始化用）。"""
+        src = self._class_src(cls, name)
+        if not src:
+            return None
+        fn = self._cache.get((cls, name))
+        if fn is None:
+            fn = self._compile(item, name, cls)
+            if fn is None:
+                return None
+        try:
+            return fn(item, *args)
+        except Exception as e:
+            self._record_failure(item, name, e, "执行异常", cls)
+            return None
+
+    def super_classes(self, from_cls) -> list:
+        """GDScript super 语义：from_cls 之上的链段（from_cls=None 表示自身）。"""
+        chain = self.extends_chain
+        if from_cls is None:
+            return chain
+        try:
+            idx = chain.index(from_cls)
+        except ValueError:
+            return chain
+        return chain[idx + 1:]
+
+    def super_execute(self, item, name: str, from_cls, *args):
+        """`.method()` 超类调用：在 from_cls 之上找最近实现并调用。"""
+        for cls in self.super_classes(from_cls):
+            src = self._class_src(cls, name)
+            if src:
+                return self.execute_class(item, cls, name, *args)
+        return None
 
     def call(self, item, name: str, *args):
         return self.execute(item, name, *args)
+
 
 
 def _warn(item, msg: str):

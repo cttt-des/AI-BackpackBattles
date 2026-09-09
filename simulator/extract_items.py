@@ -16,6 +16,7 @@ import os
 import re
 import json
 import sys
+from typing import Optional, Dict, Set
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ITEMS_SRC = os.path.join(ROOT, "decompiled_full", "Items")
@@ -70,6 +71,22 @@ METHOD_RENAME = {
     "getCooldown": "get_cooldown", "getSpeed": "get_speed",
     "isEmpty": "is_empty", "isBag": "is_bag", "isWeapon": "is_weapon",
     "canAffect": "can_affect", "hasType": "has_type", "has_method": "has_method",
+    # ---- 联动判定谓词：canAffect/onAffectedItemAdded 里对**其他物品**的调用 ----
+    # 默认实现见 Items/Item.gd，模拟器侧实现见 simulator/item.py。
+    "canActivate": "can_activate", "canBlock": "can_block",
+    "giveBuffPower": "give_buff_power", "gainsBuffs": "gains_buffs",
+    "usesBuffs": "uses_buffs", "inflictsDebuffs": "inflicts_debuffs",
+    "gainsStack": "gains_stack", "canModifyChance": "can_modify_chance",
+    "addBonusChance": "add_bonus_chance", "changeHealAmp": "change_heal_amp",
+    "isCrafted": "is_crafted", "isClassItem": "is_class_item",
+    "isTreasure": "is_treasure", "hasStartofBattle": "has_startof_battle",
+    "canStartNewRecipe": "can_start_new_recipe",
+    "canHealOrLifesteal": "can_heal_or_lifesteal",
+    "reactsToCharges": "reacts_to_charges", "chargeLeft": "charge_left",
+    "getPrice": "get_price", "getSellPrice": "get_sell_price",
+    "addDynamicType": "add_dynamic_type",
+    "removeDynamicType": "remove_dynamic_type",
+    "hasDynamicType": "has_dynamic_type",
     "getP": "get_p", "socket": "socket",
     "useStamina": "use_stamina", "fillUpStamina": "fill_up_stamina",
     "addStamina": "give_stamina", "drainStamina": "drain_stamina",
@@ -88,8 +105,9 @@ METHOD_RENAME = {
     "onAfterEffectFinished": "visual_activate",
     "onBeforeEffectFinished": "visual_activate",
     "changeVaryingDamage": "add_bonus_damage",
-    "setState": "visual_activate",
-    "onStateChanged": "visual_activate",
+    # setState/onStateChanged 不再映射为视觉：Item.gd 中 setState 会虚派发到
+    # onStateChanged（ThunderDrake 置 active、Greatsword 置 buffed 均为战斗状态），
+    # 调用经 Item.set_state -> state_changed -> 行为链解析。
     "removeVampirism": "remove_vampirism", "loseVampirism": "lose_vampirism",
     "useVampirism": "use_vampirism", "loseSpikes": "lose_spikes", "selfInflictPoison": "self_inflict_poison",
     "selfInflictBlind": "self_inflict_blind",
@@ -360,7 +378,9 @@ VISUAL_PREFIXES = (
     "preload(", "$", "ObjectPool", "Sound.", "EventBus", "animation",
     "connector", "fluid", "Color(", "Vector2(", "Vector3(", "Util.",
     "sprite", "modulate", "particle", "Particles", "drink(", "empty(",
-    "fill(", "setState", "updateConnector", "getStarPosition", "resetGradient",
+    "fill(", "updateConnector", "getStarPosition", "resetGradient",
+    "setTexture", "updateShadowTexture", "updateShadow", "getParam",
+    "chargeCounter",
     "discard", "shopEntered", "makeGrabbable", "makeNonRigidBody", "makeRigidBody",
     "add_child", "remove_child", "set_physics_process", "set_process",
     "showCooldown", "scale =", "rotation =", "clickArea", "shadow",
@@ -397,7 +417,70 @@ GLOBALS = {"Priority", "Game", "EventType", "Affected", "Type", "Item", "Charact
 # 类级声明解析（实例变量名集合）
 VAR_RE = re.compile(r'^(?:onready\s+var|export\s+var|var|const)\s+([A-Za-z_]\w*)\s*(?::\s*([A-Za-z_][\w\.]*)?)?\s*(?:=.*)?$')
 EXTENDS_RE = re.compile(r'^extends\s+(\w+)')
+EXTENDS_PATH_RE = re.compile(r'^extends\s+"res://([^"]+)"')
 FUNC_RE = re.compile(r'^func\s+([A-Za-z_]\w*)\s*\(([^)]*)\)\s*(?:->\s*\w+)?\s*:')
+
+# 引擎托管的生命周期/联动方法：不入 class_methods（避免每个物品“看似覆写”）。
+# 这些方法的 super 调用维持旧语义（整行丢弃 / 表达式 _base_*）。
+ENGINE_LIFECYCLE = {
+    "prepare", "onPrepare", "preCombatStart", "onPreCombatStart",
+    "postCombatStart", "combatStart", "combatEnd", "doCooldownEffect",
+    "trigger", "canAffect", "canAffect_secondary", "canAffect_tertiary",
+    "canAffect_lightning", "affectsEmpty", "isAffectingDistinct",
+}
+
+
+def stem_of(path: str) -> str:
+    return os.path.splitext(os.path.basename(path))[0]
+
+
+def parse_extends_stem(path: str) -> Optional[str]:
+    """解析脚本的 extends 声明，返回基类脚本 stem（兼容 extends X / extends "res://"）。"""
+    try:
+        with open(path, encoding="utf-8", errors="replace") as f:
+            for ln in f:
+                s = ln.strip()
+                m = EXTENDS_PATH_RE.match(s)
+                if m:
+                    return os.path.splitext(os.path.basename(m.group(1)))[0]
+                m = EXTENDS_RE.match(s)
+                if m:
+                    return m.group(1)
+    except OSError:
+        return None
+    return None
+
+
+def resolve_extends_chain(path: str, idx: dict) -> list:
+    """沿 extends 链上溯，返回祖先 stem 列表（最近祖先在前，'Item' 收尾/截断）。
+
+    基类脚本缺失或链指向非物品脚本（Node2D 等）时截断；环防护。
+    """
+    chain: list = []
+    seen = {stem_of(path)}
+    cur = path
+    for _ in range(16):     # 深度防护
+        ext = parse_extends_stem(cur)
+        if not ext or ext in seen:
+            break
+        sp = idx.get(ext.lower().replace(" ", ""))
+        if sp is None:
+            break
+        chain.append(ext)
+        seen.add(ext)
+        if ext == "Item":
+            break
+        cur = sp
+    return chain
+
+
+def _engine_has_method(snake: str) -> bool:
+    """引擎 Item 类是否实现了同名 snake 方法（用于 super 派发目标判定）"""
+    try:
+        from .item import Item as _EngineItem
+        return callable(getattr(_EngineItem, snake, None))
+    except Exception:
+        return False
 
 # GDScript 类型 -> Python 默认值
 TYPE_DEFAULTS = {
@@ -472,6 +555,9 @@ def is_visual_line(line: str) -> bool:
     if re.match(r'^(if|elif|else|for|while|return|match|break|continue|pass|var|func|and|or|not)\b', s):
         # 但 if 行里可能含视觉调用，交给后续；这里不整行剥
         return False
+    # 战斗相关的 Util 调用不剥离（pickRandomElement/dictAdd/flip 是 RNG 语义）
+    if re.search(r'\bUtil\.(pickRandomElement|dictAdd|flip)\b', s):
+        return False
     for p in VISUAL_PREFIXES:
         if p in s:
             return True
@@ -498,12 +584,54 @@ def _indent_level(raw: str, uses_tabs: bool) -> int:
     return ns // 4
 
 
-def transform_body(body_lines, instance_vars, sibling_methods=None):
+def base_item_members() -> set:
+    """Item.gd 的类级成员变量：所有物品都继承，裸引用需补 _item. 前缀。
+
+    例：Food.gd `item.descriptor != descriptor`、Potion.gd
+    `if faceDirection == FaceDirection.DOWN` 中的 descriptor / faceDirection
+    都是 Item 的成员，若不纳入 instance_vars，转译后会在行为全局里取到
+    _Noop，导致联动判定恒假（精度缺陷）。
+    """
+    path = os.path.join(ITEMS_SRC, "Item.gd")
+    try:
+        with open(path, encoding="utf-8", errors="replace") as f:
+            lines = f.read().split("\n")
+    except OSError:
+        return set()
+    vars_, _onready, _typed = collect_instance_vars(lines)
+    return vars_
+
+
+# 模块加载时解析一次（Item.gd 约 5k 行，成本可接受）
+BASE_ITEM_MEMBERS: set = base_item_members()
+
+
+def transform_body(body_lines, instance_vars, sibling_methods=None,
+                   current_cls=None, super_methods=None):
     """把 GDScript 方法体转成 Python 源码字符串。返回 (body_py, local_var_names)。
 
     缩进处理：GDScript 源可能用 tab 或 4 空格缩进，统一按“相对层级”重排为 4 空格，
     避免 tab 被当成 1 字符导致 Python 缩进错位(此前导致大量方法编译失败、落入 methods_raw 被静默跳过)。
+
+    super 调用语义：
+      * `.method()` 若 method 由祖先脚本定义（super_methods）且引擎未实现同名
+        snake 方法 → 派发 `_item._behavior_super('method', '<当前类>')`（继承链虚调用）；
+      * 引擎托管的生命周期（prepare/combatEnd 等，不在 class_methods）维持旧行为：
+        整行 super 丢弃、表达式级改写 _base_*。
     """
+    # 预扫描方法内的 var 声明：局部变量遮蔽类成员，不应被补 _item. 前缀
+    declared = set()
+    for raw in body_lines:
+        m = re.match(r'^var\s+([A-Za-z_]\w*)', raw.strip())
+        if m:
+            declared.add(m.group(1))
+    super_methods = super_methods or set()
+
+    def _super_target(name: str) -> bool:
+        """该方法是否应走继承链 super（祖先定义且引擎未实现同名方法）"""
+        return (name in super_methods
+                and not _engine_has_method(_py_method_name(name)))
+
     out = []
     local_vars = []   # 方法内 var 声明（提升防 UnboundLocalError）
     uses_tabs = any("\t" in raw for raw in body_lines)
@@ -526,9 +654,24 @@ def transform_body(body_lines, instance_vars, sibling_methods=None):
 
         # 整行视觉剥离 / super 调用（若跨多行，续行一并丢弃）
         visual = is_visual_line(line)
-        super_call = bool(re.match(r'^\.[A-Za-z_]\w*\(', line))
-        if visual or super_call:
-            out.append(" " * py_indent + ("pass  # visual" if visual else "pass  # super"))
+        super_head = re.match(r'^\.([A-Za-z_]\w*)\(', line)
+        if super_head and _super_target(super_head.group(1)):
+            # 真正的继承链 super：改写行首后走正常转译管线（参数同样得到处理）。
+            # 注意 `.method()` 整体形式：重写后需吃掉原尾部调用括号避免双调用 ()()
+            rest = line[super_head.end():]
+            if rest.endswith(')') and rest.count('(') == 0:
+                rest = rest[:-1]
+            line = (f"_item._behavior_super('{super_head.group(1)}', "
+                    f"'{current_cls}')({rest}")
+        elif super_head:
+            # 旧行为：引擎托管/未知目标的整行 super 丢弃
+            out.append(" " * py_indent + "pass  # super")
+            bal = line.count("(") - line.count(")")
+            if bal > 0:
+                paren_skip = bal
+            continue
+        elif visual:
+            out.append(" " * py_indent + "pass  # visual")
             bal = line.count("(") - line.count(")")
             if bal > 0:
                 paren_skip = bal
@@ -569,10 +712,21 @@ def transform_body(body_lines, instance_vars, sibling_methods=None):
         line = re.sub(r'\.shuffle\(\)', '', line)   # 洗牌顺序对模拟无影响
         # self. -> _item.
         line = line.replace("self.", "_item.")
-        # 表达式中的超类调用 .method(...)（如 `return x or .canAffect(item)`）-> 调用引擎基类方法 _base_method
+        # 表达式中的超类调用 .method(...)（如 `return x or .canAffect(item)`）
+        # 祖先脚本定义且引擎未实现 → 继承链虚调用；否则保持 _base_* 旧语义。
         # 仅当点号前不是标识符/右括号/点/方括号（避免误伤 obj.method / a.b.method / arr[0].method）
-        line = re.sub(r'(?<![\w.)\]])\.([A-Za-z_]\w*)\(',
-                      lambda m: '_item._base_' + _py_method_name(m.group(1)) + '(', line)
+        def _expr_super_repl(m):
+            nm = m.group(1)
+            if _super_target(nm):
+                return f"_item._behavior_super('{nm}', '{current_cls}')("
+            return '_item._base_' + _py_method_name(nm) + '('
+        line = re.sub(r'(?<![\w.)\]])\.([A-Za-z_]\w*)\(', _expr_super_repl, line)
+        # Inventory 直线取格：Bag of Stones 用 Game.PLAYER.INVENTORY.getCellsInLine
+        # 取占格上方 N 格作为影响格 -> 交由引擎按背包网格计算
+        line = re.sub(r'\bGame\.PLAYER\.INVENTORY\.getCellsInLine\(',
+                      '_item.get_cells_in_line(', line)
+        line = re.sub(r'\bInventory\.getCellsInLine\(',
+                      '_item.get_cells_in_line(', line)
         # character().INVENTORY.getItems() -> character().get_items()
         line = re.sub(r'\.INVENTORY\.', '.', line)
         line = re.sub(r'\binventory\.countSocketedGems\(\)', '_item.character_().count_socketed_gems()', line)
@@ -621,7 +775,9 @@ def transform_body(body_lines, instance_vars, sibling_methods=None):
                     "if", "for", "while", "elif", "return", "def", "and", "or",
                     "not", "else", "match", "with", "in", "is", "type", "enumerate",
                     "sorted", "zip", "map", "filter", "any", "all",
-                    "_range_or_value", "ceil", "floor", "Vector2", "Vector2i"}
+                    "_range_or_value", "ceil", "floor", "Vector2", "Vector2i",
+                    # GDScript 内建类型构造（behavior.py 全局提供 Python 等价）
+                    "Dictionary", "Array", "String", "clamp", "stepify", "sqrt"}
 
         def repl_call(m):
             nm = m.group(1)
@@ -635,8 +791,10 @@ def transform_body(body_lines, instance_vars, sibling_methods=None):
         line = re.sub(r'(?<![\w.])'  # 前面不是字母数字或点
                       r'([A-Za-z_]\w*)\(', repl_call, line)
 
-        # 2) 裸实例变量引用(非调用)：_item.var
+        # 2) 裸实例变量引用(非调用)：_item.var（局部变量声明优先，不加前缀）
         for v in instance_vars:
+            if v in declared:
+                continue
             line = re.sub(r'(?<![\w.])' + re.escape(v) + r'\b(?!\()', '_item.' + v, line)
 
         py_indent = max(0, level - base_level) * 4
@@ -765,149 +923,261 @@ def parse_script(path):
     return extends, instance_vars, onready, typed_defaults, methods
 
 
-def build_behavior(path):
-    extends, instance_vars, onready, typed_defaults, methods = parse_script(path)
-    py_methods = {}
-    raw_methods = {}
-    for name, info in methods.items():
-        # 跳过纯视觉/引擎基类方法（prepare 保留：Dagger 等的信号连接在 prepare 里）
-        if name in ("_ready", "preset", "combatEnd", "shopEntered",
-                    "addToInventory", "removeFromInventory", "onRemoveFromInventory",
-                    "onAddToInventory", "ready_deferred", "initItemLibrary",
-                    "initTitle", "initTooltip", "initBuildViewer", "initGridStorageIcon",
-                    "initInfoPanelIcon", "initBuildViewerIcon", "initRecipeBook",
-                    "onSold", "onBought", "onItemAdded", "onItemRemoved",
-                    "onItemTypeChanged", "onGateItemRoll", "getDescription",
-                    "getTranslatedName", "getName", "getIndex", "getFlavorText",
-                    "getBagEffect", "getModeDescription", "getRelatedItemHeight",
-                    "getGatedDescriptor", "getShopPriority", "getCraftingOffset",
-                    "getAffectedCellsAfterRotate_primary",
-                    "getAffectedCellsAfterRotate_secondary", "getBaseDescription",
-                    "insertParameter", "insertParameters", "getGatedDescriptor",
-                    "cardSecondaryEffectActive", "getTriggerPriority",
-                    "onItemInstantiated", "onItemRoll", "onItemRolled",
-                    "onAddToInventory_deferred", "onRemoveFromInventory_deferred",
-                    "getData", "doRevealEffect",
-                    "onHotSwapHoverWithGemEnd", "onHotSwapHoverStart",
-                    "onHotSwapHoverEnd", "onFusingAsIngredient", "onPlacedByPlayer",
-                    "onRemovedByPlayer", "onItemAddedToSocket", "onItemRemovedFromSocket",
-                    "onSpawned", "onCollected", "onDiscarded", "onPooled",
-                    "onUnpooled", "onPickedUp", "onDropped", "onClicked",
-                    "onHovered", "onUnhovered", "onInfoPanelClicked",
-                    "onSoldToShop", "onBoughtFromShop", "onAddToShop",
-                    "onRemoveFromShop", "onShopRoll", "onShopEntered",
-                    "onRetired", "onReborn", "onLevelUp", "onExperienceGained",
-                    "onFuse", "onUnfuse", "onCraftingPreview", "onItemAddedInside",
-                    "onItemRemovedInside", "onItemTypeAdded", "onItemTypeRemoved",
-                    "getOccupiedCells", "getAffectedCells", "getSocketCells",
-                    "getStarPosition", "onAfterEffectFinished_check",
-                    "getRandomBuffType", "getAvailableBuffs", "onSocketChanged",
-                    "onGemInserted", "onGemRemoved", "onItemInSlotChanged",
-                    "updateConnector", "getSockets", "onBagChanged",
-                    "getDragParticles", "getSpecificDragParticles",
-                    "onItemInstantiated_delayed", "getBuffEffect", "getEffectDescription",
-                    "getTriggerDescription", "onAffectedItemAdded",
-                    "onAffectedItemRemoved", "onRarityChanged",
-                    "onItemAdded_deferred", "onItemRemoved_deferred", "onItemMoved",
-                    "onItemRotated", "onItemFlipped", "onItemDroppedOn",
-                    "onItemPickedUpFrom", "onItemActivated_check", "getActivationParticles",
-                    "getP_check", "getShopDescription", "getItemType", "getItemName",
-                    "getRarity", "getMaterial", "getTypes", "getTags", "getStack",
-                    "getStars", "getValue", "getPrice", "isLocked", "isPooled",
-                    "isItemLibrary", "setLocked", "setPooled", "setFlipped",
-                    "flip", "rotate", "getFaceDirection", "setFaceDirection",
-                    "updateShaderRotation", "getShaderRotation",
-                    "getDimensions", "setDimensions", "getCells", "setCells",
-                    "getAnchor", "setAnchor", "getItemBook", "getDescriptor",
-                    "getItemData", "getModifiers", "setModifiers", "hasModifier",
-                    "addModifier", "removeModifier", "onModifierAdded",
-                    "onModifierRemoved", "getSecondaryEffect", "hasSecondaryEffect",
-                    "getPrimaryEffect", "hasPrimaryEffect", "onItemEvent",
-                    "onGameEvent", "onBuyEvent", "onSellEvent", "onCraftEvent",
-                    "getRelatedItems", "getAdjacentItems", "getItemsInAffectedCells",
-                    "getItemsInAffectedCells_cached", "getAffectedPoints",
-                    "getPointsInAffectedCells", "getAffectedCellsAfterRotate",
-                    "getRelatedItemWidth", "getRelatedItemOffset",
-                    "getFirstAffectedCell", "getNumCellsOf", "canAffect_color",
-                    "getInventory", "getOwner", "setOwner", "getPlayer",
-                    "isPlayer", "getCharacter", "getOpposingItem", "getFacingItem",
-                    "onItemAddedToBackpack", "onItemRemovedFromBackpack",
-                    "onItemAddedToStorageBox", "onItemRemovedFromStorageBox",
-                    "onItemBought", "onItemSold", "onItemCrafted", "onItemFused",
-                    "onItemConsumed", "onItemActivated_global", "onGlobalItemActivated",
-                    "onAnyItemActivated", "onCombatStart_global", "onRoundWon",
-                    "onRoundLost", "onBattleEnd", "onGameEnd", "onMatchStart",
-                    "onShopRefresh", "onPreparationStart", "onPreparationEnd",
-                    "onItemRolledOut", "onItemRolledIn", "onGateOpened",
-                    "onGateClosed", "onNextRound", "onPreviousRound"):
-            continue
-        body_py, local_vars = transform_body(info["body"], instance_vars, set(methods.keys()))
-        body_py = convert_match_blocks(body_py)
-        # 组装函数源码（方法内 var 声明提升，防 Python UnboundLocalError）
-        arglist = "_item" + (", " + info["args"] if info["args"] else "")
-        src = f"def {name}({arglist}):\n"
-        # 方法内 var 提升：参数名除外（去掉类型默认值部分）
-        param_names = {a.split("=")[0].strip() for a in info["args"].split(",") if a.strip()}
-        hoisted = [v for v in dict.fromkeys(local_vars) if v not in param_names]
-        if hoisted:
-            src += "    " + "; ".join(f"{v} = None" for v in hoisted) + "\n"
-        if body_py.strip() == "":
-            src += "    pass\n"
-        else:
-            src += "    " + body_py.replace("\n", "\n    ")
-            if not body_py.strip().endswith((":", "pass")):
-                pass
-        # 编译校验
-        try:
-            compile(src, path + ":" + name, "exec")
-            py_methods[name] = src
-        except Exception as e:
-            raw_methods[name] = "\n".join(info["body"])
-    # onready var 初始化 + 无初始化器变量的类型默认值 并入 _onready_init
-    if onready or typed_defaults:
-        init_src = "def _onready_init(_item):\n"
-        for vname, expr in onready:
-            e = expr
-            # $节点引用 / get_node 等视觉引用 -> None
-            e = re.sub(r'\$[\w/]+', 'None', e)
-            e = re.sub(r'\bget_node\([^)]*\)', 'None', e)
-            e = re.sub(r'\bgetP([1-9]\d*)\(\)',
-                       lambda m: '_item.get_p(%d)' % (int(m.group(1)) - 1), e)
-            e = re.sub(r'\bgetP_m\(', '_item.get_p_m(', e)
-            e = re.sub(r'\bgetChance\(\)', '_item.get_chance()', e)
-            e = re.sub(r'\bgetGemPower\(\)', '_item.get_gem_power()', e)
-            for gname, pyname in METHOD_RENAME.items():
-                if re.match(r'^getP\d+$', gname) or gname == 'getP_m':
-                    continue
-                e = re.sub(r'\b' + re.escape(gname) + r'\(', pyname + '(', e)
-            import builtins as _b
-            _BUILT = set(dir(_b)) | {"len", "int", "float", "min", "max", "abs",
-                                    "round", "str", "range", "print", "bool", "list",
-                                    "dict", "set", "sum", "pow", "if", "for", "while",
-                                    "elif", "return", "def", "and", "or", "not", "else",
-                                    "_range_or_value", "Vector2", "Vector2i"}
+def build_behavior(path, idx=None, ancestor_entries=None):
+    """提取物品脚本行为（公开接口，兼容 tools/regen_behaviors.py / 审计工具）。
 
-            def _rc(m):
-                nm = m.group(1)
-                return m.group(0) if nm in _BUILT else "_item." + m.group(0)
-            e = re.sub(r'(?<![\w.])' + r'([A-Za-z_]\w*)\(', _rc, e)
-            # 每个初始化独立 try/except（视觉引用失败不影响其余）
-            init_src += f"    try:\n        _item.{vname} = {e}\n    except Exception:\n        pass\n"
-        # 无初始化器变量：按声明类型给默认值
-        for vname, default in typed_defaults.items():
-            if vname not in [o[0] for o in onready]:
-                init_src += f"    _item.{vname} = {default}\n"
-        try:
-            compile(init_src, path + ":onready", "exec")
-            py_methods.setdefault("_onready_init", init_src)
-        except Exception:
-            pass
-    return {
+    ancestor_entries: {stem: entry} 共享缓存（祖先 root-first 构建）；传入 None 时
+    内部自建临时缓存。返回 behavior dict（含 extends_chain 供运行时链解析）。
+    """
+    if idx is None:
+        idx = scan_scripts()
+    if ancestor_entries is None:
+        ancestor_entries = {}
+    stem = stem_of(path)
+    chain = resolve_extends_chain(path, idx)
+    return _build_script_entry(path, idx, ancestor_entries, chain=chain, stem=stem)
+
+
+# 物品自身提取的跳过列表（纯视觉/UI/商店方法）。combatEnd 已移出：
+# Stone.combatEnd 战斗结束时重置弹药，属战斗语义。
+ITEM_SKIP_METHODS = frozenset({
+    "_ready", "preset", "shopEntered",
+    "addToInventory", "removeFromInventory", "onRemoveFromInventory",
+    "onAddToInventory", "ready_deferred", "initItemLibrary",
+    "initTitle", "initTooltip", "initBuildViewer", "initGridStorageIcon",
+    "initInfoPanelIcon", "initBuildViewerIcon", "initRecipeBook",
+    "onSold", "onBought", "onItemAdded", "onItemRemoved",
+    "onItemTypeChanged", "onGateItemRoll", "getDescription",
+    "getTranslatedName", "getName", "getIndex", "getFlavorText",
+    "getBagEffect", "getModeDescription", "getRelatedItemHeight",
+    "getGatedDescriptor", "getShopPriority", "getCraftingOffset",
+    # 注：getAffectedCellsAfterRotate_primary/_secondary 原先在此跳过，
+    # 现改为提取（联动需要），由 simulator/extract_linkage.py 负责入库。
+    "getBaseDescription",
+    "insertParameter", "insertParameters",
+    "cardSecondaryEffectActive", "getTriggerPriority",
+    "onItemInstantiated", "onItemRoll", "onItemRolled",
+    "onAddToInventory_deferred", "onRemoveFromInventory_deferred",
+    "getData", "doRevealEffect",
+    "onHotSwapHoverWithGemEnd", "onHotSwapHoverStart",
+    "onHotSwapHoverEnd", "onFusingAsIngredient", "onPlacedByPlayer",
+    "onRemovedByPlayer", "onItemAddedToSocket", "onItemRemovedFromSocket",
+    "onSpawned", "onCollected", "onDiscarded", "onPooled",
+    "onUnpooled", "onPickedUp", "onDropped", "onClicked",
+    "onHovered", "onUnhovered", "onInfoPanelClicked",
+    "onSoldToShop", "onBoughtFromShop", "onAddToShop",
+    "onRemoveFromShop", "onShopRoll", "onShopEntered",
+    "onRetired", "onReborn", "onLevelUp", "onExperienceGained",
+    "onFuse", "onUnfuse", "onCraftingPreview", "onItemAddedInside",
+    "onItemRemovedInside", "onItemTypeAdded", "onItemTypeRemoved",
+    "getOccupiedCells", "getAffectedCells", "getSocketCells",
+    "getStarPosition", "onAfterEffectFinished_check",
+    "getRandomBuffType", "getAvailableBuffs", "onSocketChanged",
+    "onGemInserted", "onGemRemoved", "onItemInSlotChanged",
+    "updateConnector", "getSockets", "onBagChanged",
+    "getDragParticles", "getSpecificDragParticles",
+    "onItemInstantiated_delayed", "getBuffEffect", "getEffectDescription",
+    "getTriggerDescription", "onRarityChanged",
+    "onItemAdded_deferred", "onItemRemoved_deferred", "onItemMoved",
+    "onItemRotated", "onItemFlipped", "onItemDroppedOn",
+    "onItemPickedUpFrom", "onItemActivated_check", "getActivationParticles",
+    "getP_check", "getShopDescription", "getItemType", "getItemName",
+    "getRarity", "getMaterial", "getTypes", "getTags", "getStack",
+    "getStars", "getValue", "getPrice", "isLocked", "isPooled",
+    "isItemLibrary", "setLocked", "setPooled", "setFlipped",
+    "flip", "rotate", "getFaceDirection", "setFaceDirection",
+    "updateShaderRotation", "getShaderRotation",
+    "getDimensions", "setDimensions", "getCells", "setCells",
+    "getAnchor", "setAnchor", "getItemBook", "getDescriptor",
+    "getItemData", "getModifiers", "setModifiers", "hasModifier",
+    "addModifier", "removeModifier", "onModifierAdded",
+    "onModifierRemoved", "getSecondaryEffect", "hasSecondaryEffect",
+    "getPrimaryEffect", "hasPrimaryEffect", "onItemEvent",
+    "onGameEvent", "onBuyEvent", "onSellEvent", "onCraftEvent",
+    "getRelatedItems", "getAdjacentItems", "getItemsInAffectedCells",
+    "getItemsInAffectedCells_cached", "getAffectedPoints",
+    "getPointsInAffectedCells", "getAffectedCellsAfterRotate",
+    "getRelatedItemWidth", "getRelatedItemOffset",
+    "getFirstAffectedCell", "getNumCellsOf", "canAffect_color",
+    "getInventory", "getOwner", "setOwner", "getPlayer",
+    "isPlayer", "getCharacter", "getOpposingItem", "getFacingItem",
+    "onItemAddedToBackpack", "onItemRemovedFromBackpack",
+    "onItemAddedToStorageBox", "onItemRemovedFromStorageBox",
+    "onItemBought", "onItemSold", "onItemCrafted", "onItemFused",
+    "onItemConsumed", "onItemActivated_global", "onGlobalItemActivated",
+    "onAnyItemActivated", "onCombatStart_global", "onRoundWon",
+    "onRoundLost", "onBattleEnd", "onGameEnd", "onMatchStart",
+    "onShopRefresh", "onPreparationStart", "onPreparationEnd",
+    "onItemRolledOut", "onItemRolledIn", "onGateOpened",
+    "onGateClosed", "onNextRound", "onPreviousRound",
+})
+
+
+def _assemble_method_src(name, info, vars_union, sibling_methods,
+                         current_cls, super_methods, path):
+    """单个方法：转译 + 编译校验。返回 (src 或 None, raw 或 None)。"""
+    body_py, local_vars = transform_body(
+        info["body"], vars_union, sibling_methods,
+        current_cls=current_cls, super_methods=super_methods)
+    body_py = convert_match_blocks(body_py)
+    # GDScript 形参若命名为 _item，会与注入的 self 参数 _item 重名
+    # （Python: duplicate argument）-> 重命名。此类形参在源码里多为占位。
+    args_src = info["args"]
+    if args_src:
+        fixed = []
+        for a in args_src.split(","):
+            a = a.strip()
+            if not a:
+                continue
+            nm = a.split("=")[0].strip()
+            if nm == "_item":
+                a = "_item_arg" + a[len(nm):]
+            fixed.append(a)
+        args_src = ", ".join(fixed)
+    arglist = "_item" + (", " + args_src if args_src else "")
+    src = f"def {name}({arglist}):\n"
+    # 方法内 var 提升：参数名除外（去掉类型默认值部分）
+    param_names = {a.split("=")[0].strip() for a in args_src.split(",") if a.strip()}
+    hoisted = [v for v in dict.fromkeys(local_vars) if v not in param_names]
+    if hoisted:
+        src += "    " + "; ".join(f"{v} = None" for v in hoisted) + "\n"
+    if body_py.strip() == "":
+        src += "    pass\n"
+    else:
+        src += "    " + body_py.replace("\n", "\n    ")
+    try:
+        compile(src, path + ":" + name, "exec")
+        return src, None
+    except Exception:
+        return None, "\n".join(info["body"])
+
+
+def _engine_reserved_names() -> Set[str]:
+    """引擎 Item 类的 property/方法名集合（onready 覆盖会破坏引擎状态）"""
+    try:
+        from .item import Item as _EngineItem
+        return {n for n in dir(_EngineItem)
+                if isinstance(getattr(_EngineItem, n, None), property)
+                or callable(getattr(_EngineItem, n, None))}
+    except Exception:  # noqa: BLE001
+        return set()
+
+
+def _build_onready_init(onready, typed_defaults, path):
+    """onready var 初始化 + 类型默认值 -> _onready_init 函数源码（无则 None）"""
+    if not onready and not typed_defaults:
+        return None
+    # 引擎保留名：GDScript 类级无初始化器的 var（如 descriptor/inventory/collisionShape）
+    # 在模拟器引擎中是 property 或运行期状态，写入会破坏引擎。过滤。
+    reserved = _engine_reserved_names()
+    typed_defaults = {k: v for k, v in typed_defaults.items() if k not in reserved}
+    init_src = "def _onready_init(_item):\n"
+    for vname, expr in onready:
+        e = expr
+        # $节点引用 / get_node 等视觉引用 -> None
+        e = re.sub(r'\$[\w/]+', 'None', e)
+        e = re.sub(r'\bget_node\([^)]*\)', 'None', e)
+        # GDScript 字面量 -> Python（此前漏替换，`_item.x = false` 直接 NameError）
+        e = e.replace("!=", "\x00NE\x00")
+        e = re.sub(r'\bnull\b', 'None', e)
+        e = e.replace("true", "True").replace("false", "False")
+        e = e.replace("\x00NE\x00", "!=")
+        e = re.sub(r'\bgetP([1-9]\d*)\(\)',
+                   lambda m: '_item.get_p(%d)' % (int(m.group(1)) - 1), e)
+        e = re.sub(r'\bgetP_m\(', '_item.get_p_m(', e)
+        e = re.sub(r'\bgetChance\(\)', '_item.get_chance()', e)
+        e = re.sub(r'\bgetGemPower\(\)', '_item.get_gem_power()', e)
+        for gname, pyname in METHOD_RENAME.items():
+            if re.match(r'^getP\d+$', gname) or gname == 'getP_m':
+                continue
+            e = re.sub(r'\b' + re.escape(gname) + r'\(', pyname + '(', e)
+        import builtins as _b
+        _BUILT = set(dir(_b)) | {"len", "int", "float", "min", "max", "abs",
+                                "round", "str", "range", "print", "bool", "list",
+                                "dict", "set", "sum", "pow", "if", "for", "while",
+                                "elif", "return", "def", "and", "or", "not", "else",
+                                "_range_or_value", "Vector2", "Vector2i"}
+
+        def _rc(m):
+            nm = m.group(1)
+            return m.group(0) if nm in _BUILT else "_item." + m.group(0)
+        e = re.sub(r'(?<![\w.])' + r'([A-Za-z_]\w*)\(', _rc, e)
+        # 每个初始化独立 try/except（视觉引用失败不影响其余）
+        init_src += f"    try:\n        _item.{vname} = {e}\n    except Exception:\n        pass\n"
+    # 无初始化器变量：按声明类型给默认值
+    onready_names = {o[0] for o in onready}
+    for vname, default in typed_defaults.items():
+        if vname not in onready_names:
+            init_src += f"    _item.{vname} = {default}\n"
+    try:
+        compile(init_src, path + ":onready", "exec")
+        return init_src
+    except Exception:
+        return None
+
+
+def _build_script_entry(path, idx, ancestor_entries, chain=None, stem=None,
+                        skip_list=None):
+    """构建单个脚本（物品或基类）的转译条目。
+
+    - 祖先链脚本递归构建进 ancestor_entries（root-first）
+    - 物品条目：skip_list=ITEM_SKIP_METHODS，输出 extends_chain
+    - 基类条目：skip_list=ITEM_SKIP_METHODS | ENGINE_LIFECYCLE（引擎托管的
+      生命周期/联动方法不入池，避免所有物品“看似覆写”改变引擎派发判定）
+    """
+    if chain is None:
+        chain = resolve_extends_chain(path, idx)
+    if stem is None:
+        stem = stem_of(path)
+    if skip_list is None:
+        skip_list = ITEM_SKIP_METHODS
+
+    # 祖先条目（root-first 构建，供 vars 并集 / super 集合 / class_methods 复用）
+    for cls in reversed(chain):
+        if cls not in ancestor_entries:
+            sp = idx.get(cls.lower().replace(" ", ""))
+            if sp is not None:
+                _build_script_entry(sp, idx, ancestor_entries,
+                                    skip_list=ITEM_SKIP_METHODS | ENGINE_LIFECYCLE)
+
+    extends, instance_vars, onready, typed_defaults, methods = parse_script(path)
+
+    ancestor_vars: Set[str] = set()
+    super_methods: Set[str] = set()
+    for cls in chain:
+        entry = ancestor_entries.get(cls)
+        if entry:
+            ancestor_vars |= set(entry.get("instance_vars", []))
+            super_methods |= set(entry.get("methods", {}).keys())
+
+    vars_union = instance_vars | BASE_ITEM_MEMBERS | ancestor_vars
+    py_methods: Dict[str, str] = {}
+    raw_methods: Dict[str, str] = {}
+    for name, info in methods.items():
+        if name in skip_list:
+            continue
+        src, raw = _assemble_method_src(name, info, vars_union,
+                                        set(methods.keys()), stem,
+                                        super_methods, path)
+        if src is not None:
+            py_methods[name] = src
+        elif raw is not None:
+            raw_methods[name] = raw
+
+    init_src = _build_onready_init(onready, typed_defaults, path)
+    if init_src:
+        py_methods.setdefault("_onready_init", init_src)
+
+    entry = {
         "extends": extends,
         "instance_vars": sorted(instance_vars),
         "methods": py_methods,
         "methods_raw": raw_methods,
     }
+    if skip_list is ITEM_SKIP_METHODS:
+        entry["extends_chain"] = chain
+    ancestor_entries[stem] = entry
+    return entry
 
 
 def scan_scripts():
@@ -963,6 +1233,9 @@ def main():
 
     matched = 0
     skipped_no_script = 0
+    ancestor_entries: Dict[str, dict] = {}   # 所有物品共享（含 class_methods 条目）
+    ancestor_stems: set = set()              # 真正作为祖先被引用的脚本
+    item_paths: list = []
     for key in items:
         scr = items[key].get("script")
         sp = None
@@ -974,17 +1247,26 @@ def main():
         if sp is None:
             skipped_no_script += 1
             continue
+        item_paths.append((key, sp))
         try:
-            beh = build_behavior(sp)
+            beh = build_behavior(sp, idx, ancestor_entries)
         except Exception as e:
             print(f"  [PARSE ERR] {key}: {e}")
             continue
+        ancestor_stems.update(beh.get("extends_chain", []))
         if beh["methods"] or beh["methods_raw"]:
             items[key]["behavior"] = beh
             items[key]["behavior"]["script_file"] = os.path.basename(sp)
             matched += 1
 
+    # 类方法池：仅真正作为祖先被引用的脚本条目（Item.gd / Weapon.gd / Greatsword.gd ...）
+    class_methods = {cls: ancestor_entries[cls] for cls in sorted(ancestor_stems)
+                     if cls in ancestor_entries}
+    db["class_methods"] = class_methods
     print(f"已写入 behavior 的物品: {matched}  无脚本匹配: {skipped_no_script}")
+    print(f"类方法池: {len(class_methods)} 个基类脚本 "
+          f"({', '.join(sorted(class_methods)[:8])}...)")
+
     json.dump(db, open(DB_PATH, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     print("已写出", DB_PATH)
 
