@@ -46,6 +46,23 @@ _ITEM_ATTR_ALIASES = frozenset({
     "descriptor",      # descriptor property 的种类标识（str），勿与 property 冲突
 })
 
+# 引擎管理的实例属性全集（snake_case）：由探针 Item 实例的 __dict__ 生成。
+# onready / instance_vars 默认值循环写入这些名字（camelCase 形式经重定向）
+# 会清零引擎冷却/暴击/联动状态，必须跳过。
+_ENGINE_MANAGED_ATTRS: Optional[frozenset] = None
+
+
+def engine_managed_attrs() -> frozenset:
+    """惰性构建引擎管理属性名集（需待 Item 类定义完成后才能探针实例化）"""
+    global _ENGINE_MANAGED_ATTRS
+    if _ENGINE_MANAGED_ATTRS is None:
+        try:
+            probe = Item("__probe__", {})
+            _ENGINE_MANAGED_ATTRS = frozenset(vars(probe).keys())
+        except Exception:  # noqa: BLE001
+            _ENGINE_MANAGED_ATTRS = frozenset()
+    return _ENGINE_MANAGED_ATTRS
+
 
 # 触发顺序权威值：源自 Items/*.gd 的 getTriggerPriority()（Partial/Exclusive 覆盖
 # Item.gd 基类默认的 Priority.Normal=0）。数值对齐 Priority 枚举
@@ -167,6 +184,7 @@ class Item:
         self.double_activation_chance: float = 0.0
         self.double_attack_effect_chance: float = 0.0
         self.crit_tokens: int = 0
+        self.num_charges: int = 0
         self.crit_severity: float = self.BASE_CRIT_SEVERITY
         self.base_cooldown_override: float = self.cd
         self.buff_powers: Dict[int, float] = {}
@@ -179,10 +197,11 @@ class Item:
         self._cooldown_deactivated: bool = False
         self._last_trigger_check_time: float = -1.0
         self._triggers_this_frame: int = 0
-        # statDisplayOverrides：GDScript 预填全部 Stat 键，缺省读出 null——
-        # 模拟器用缺失返回 None 的字典等价（Greatsword.getStaminaCost 等）
+        # stat_display_overrides（GDScript statDisplayOverrides，camelCase 读写经
+        # __getattr__/__setattr__ 重定向）：GDScript 预填全部 Stat 键，缺省读出
+        # null——模拟器用缺失返回 None 的字典等价（Greatsword.getStaminaCost 等）
         from collections import defaultdict
-        self.statDisplayOverrides = defaultdict(lambda: None)
+        self.stat_display_overrides = defaultdict(lambda: None)
 
         # ---- 冷却运行状态 ----
         self.iteration_cooldown: float = 0.0
@@ -392,12 +411,9 @@ class Item:
 
     ownerType = owner_type
 
-    @property
-    def num_charges(self) -> int:
-        """电荷数（工程师体系）。模拟器中电荷系统未建模，恒 0。"""
-        return 0
-
-    numCharges = num_charges
+    # num_charges：电荷数（工程师体系）。Item.gd 中 numCharges 是可变状态
+    # （chargeReceived += 1 / chargeLeft -= 1），必须可写——曾是只读 property
+    # 导致 Mana Crystal.emitCharge 一发电荷就 AttributeError。
 
     # ---------------- 联动派生查询 ----------------
     def get_items_in_affected_cells(self, color: int = 0):
@@ -1224,12 +1240,17 @@ class Item:
         if not self.data.get("behavior"):
             return
         beh = self.behavior
-        # 类级 var 默认值（GDScript 节点初始化即生效，Python 需手动补 0）——基类链先行
+        # 类级 var 默认值（GDScript 节点初始化即生效，Python 需手动补 0）——基类链先行。
+        # 跳过引擎管理属性（trigger_time/base_cooldown_override/... 的 camelCase 名）：
+        # setattr 经 __setattr__ 重定向会清零引擎状态（历史事故）。
+        # 行为脚本读这些名字时走 __getattr__ → snake → 引擎值，正确。
         for cls in [None] + beh.extends_chain:
             iv = (self.data.get("behavior", {}).get("instance_vars", [])
                   if cls is None else
                   (beh_module.CLASS_METHODS.get(cls, {}).get("instance_vars", [])))
             for v in iv:
+                if _camel_to_snake(v) in engine_managed_attrs():
+                    continue
                 if not hasattr(self, v):
                     setattr(self, v, 0)
         # onready 会重置网格/视觉元数据（Item.gd: occupiedCells=[]、collisionCells=[]）。
@@ -1734,13 +1755,12 @@ class Item:
     def send_charge(self, dur_per_tile, cells, speed_factor, event=None):
         """Item.gd sendCharge + ElectricalCharge.onNewCellEntered — 电荷沿 cells 传播。
 
-        对齐源码语义（ElectricalCharge.gd 204-233）：逐格推进时
-          lastChargedItem = curChargedItem; curChargedItem = 该格物品;
-          发射器 onChargeEnteredCell(charge, cellIndex)（电池系据此调
-          changeChargedItemStat 增减途经物品的速度）;
-          若换物：last.chargeLeft / cur.chargeReceived（num_charges±1 +
-          hasOnChargeReceivedEffect 物品触发 onChargeReceived/onChargeLeft）。
-        cellIndex 从 1 开始（第 0 格是发射器自身，不进入循环）。
+        对齐源码（ElectricalCharge.gd 204-233）：回调 cellIndex = 1..size，
+        且 inventoryCells[cellIndex] 为【直接索引】——cells[0] 是发射器锚点格，
+        永不充能；cellIndex == size 时 curChargedItem = null（电荷离场）。
+        每步：last=cur; cur=该格物品; 发射器 onChargeEnteredCell(charge, cellIndex)
+        （电池系据此 changeChargedItemStat 增减途经物品属性）；换物时
+        last.chargeLeft / cur.chargeReceived。充能加成为途经瞬态（离场回退）。
         """
         if self.grid_inventory is None:
             return
@@ -1748,17 +1768,13 @@ class Item:
         from types import SimpleNamespace
         charge = SimpleNamespace(lastChargedItem=None, curChargedItem=None,
                                  emitter=self, cells=cells)
-        # GDScript onNewCellEntered(1..size)：cellIndex 1 对应 cells[0]。
-        # 循环到 len(cells)+1（最后一项 cur=None 表示电荷离场，
-        # 让 lastChargedItem 收到 chargeLeft）。
-        for cell_index in range(1, len(cells) + 2):
+        for cell_index in range(1, len(cells) + 1):
             charge.lastChargedItem = charge.curChargedItem
-            i = cell_index - 1
-            if i >= len(cells):
-                cur = None          # 电荷离场（GDScript cellIndex==size → null）
+            if cell_index >= len(cells):
+                cur = None          # cellIndex == inventoryCells.size() → 电荷离场
             else:
                 try:
-                    dr, dc = cells[i][0], cells[i][1]
+                    dr, dc = cells[cell_index][0], cells[cell_index][1]
                     cur = self.grid_inventory.get_item_in_cell(
                         (self.grid_row + dr, self.grid_col + dc))
                 except Exception:

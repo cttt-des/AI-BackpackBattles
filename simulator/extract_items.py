@@ -474,12 +474,27 @@ def resolve_extends_chain(path: str, idx: dict) -> list:
     return chain
 
 
+def _import_engine_item():
+    """导入引擎 Item 类。以 `python simulator/extract_items.py` 直接运行时模块名
+    是 __main__，相对导入会失败——回退到绝对导入并补 sys.path。
+    （此失败曾让 _engine_reserved_names 静默返回空集，过滤完全失效。）"""
+    try:
+        from .item import Item as _EI
+        return _EI
+    except ImportError:
+        root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        if root not in sys.path:
+            sys.path.insert(0, root)
+        from simulator.item import Item as _EI
+        return _EI
+
+
 def _engine_has_method(snake: str) -> bool:
     """引擎 Item 类是否实现了同名 snake 方法（用于 super 派发目标判定）"""
     try:
-        from .item import Item as _EngineItem
-        return callable(getattr(_EngineItem, snake, None))
-    except Exception:
+        _EI = _import_engine_item()
+        return callable(getattr(_EI, snake, None))
+    except Exception:  # noqa: BLE001
         return False
 
 # GDScript 类型 -> Python 默认值
@@ -1053,12 +1068,28 @@ def _assemble_method_src(name, info, vars_union, sibling_methods,
 
 
 def _engine_reserved_names() -> Set[str]:
-    """引擎 Item 类的 property/方法名集合（onready 覆盖会破坏引擎状态）"""
+    """引擎 Item 不可被 onready 覆盖的名字集合。
+
+    包含两类：
+    - 类级 property / 方法（写入会报错或破坏派发，如 descriptor）；
+    - 实例属性全集（__init__ 里声明的 trigger_time/iteration_cooldown/
+      base_cooldown_override/crit_severity/...）。GDScript 里这些是 Item.gd 的
+      类级 var，onready typed_defaults 会写 `_item.triggerTime = 0.0`——经
+      __setattr__ 重定向会清零引擎冷却状态（历史事故），必须过滤。
+    """
     try:
-        from .item import Item as _EngineItem
-        return {n for n in dir(_EngineItem)
-                if isinstance(getattr(_EngineItem, n, None), property)
-                or callable(getattr(_EngineItem, n, None))}
+        _EI = _import_engine_item()
+        names = set()
+        for n in dir(_EI):
+            attr = getattr(_EI, n, None)
+            if isinstance(attr, property) or callable(attr):
+                names.add(n)
+        try:
+            probe = _EI("__probe__", {})
+            names.update(vars(probe).keys())
+        except Exception:  # noqa: BLE001
+            pass
+        return names
     except Exception:  # noqa: BLE001
         return set()
 
@@ -1069,10 +1100,14 @@ def _build_onready_init(onready, typed_defaults, path):
         return None
     # 引擎保留名：GDScript 类级无初始化器的 var（如 descriptor/inventory/collisionShape）
     # 在模拟器引擎中是 property 或运行期状态，写入会破坏引擎。过滤。
+    # （键为 GDScript camelCase 名，需转 snake_case 后比对）
     reserved = _engine_reserved_names()
-    typed_defaults = {k: v for k, v in typed_defaults.items() if k not in reserved}
+    typed_defaults = {k: v for k, v in typed_defaults.items()
+                      if _py_method_name(k) not in reserved}
     init_src = "def _onready_init(_item):\n"
     for vname, expr in onready:
+        if _py_method_name(vname) in reserved:
+            continue    # 引擎管理属性（如 speedScale），onready 不得覆盖
         e = expr
         # $节点引用 / get_node 等视觉引用 -> None
         e = re.sub(r'\$[\w/]+', 'None', e)
