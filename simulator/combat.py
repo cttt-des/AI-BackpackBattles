@@ -79,6 +79,13 @@ class CombatEngine:
         self.player.set_items(self.player_items)
         self.opponent.set_items(self.opponent_items)
 
+        # ---- 联动构建（对齐 Item.gd addToInventory：物品放入背包即建立影响关系
+        #      并触发 onAffectedItemAdded，早于 prepare/onPrepare）----
+        for it in self.player_items + self.opponent_items:
+            it.log = self.log
+        self._build_linkage(self.player_items)
+        self._build_linkage(self.opponent_items)
+
         # ---- 疲劳状态（CombatTimer）----
         self.fatigue_started = False
         self.fatigue_counter = 0
@@ -146,6 +153,40 @@ class CombatEngine:
                                  is_bag=bool(e.get('container', False)))
             it.mount_gems(e.get('gems') or [], self.item_db)
         return inv
+
+    def _build_linkage(self, items: List[Item]):
+        """建立背包内的物品联动关系。
+
+        对齐 Items/Item.gd addToInventory(~1340)：cacheAffectedCells() 之后
+        对每个颜色遍历 getAffectedItems(color)，登记并回调
+        onAffectedItemAdded(item, color)。引擎是一次性摆好背包，故等价于
+        「逐个放入」后的最终状态；战斗期缓存仍由 Item.prepare() 负责快照。
+
+        袋内（inside）联动：遍历 getAffectedItemsInside()，回调
+        onAffectedItemInsideAdded(other)。当前袋内容纳（containment）尚未建模
+        （getAffectedItemsInside 返回 []），故为空操作；容纳建模落地后此处自动生效。
+        """
+        for color in (0, 2, 4, 7):
+            for it in items:
+                try:
+                    affected = it.get_affected_items_nocache(color)
+                except Exception:  # noqa: BLE001
+                    continue
+                for other in affected:
+                    if other is None or other is it:
+                        continue
+                    it.on_affected_item_added(other, color)
+
+        # 袋内联动落地下桩（B3：containment 建模后自动激活）
+        for it in items:
+            try:
+                inside = it.get_affected_items_inside()
+            except Exception:  # noqa: BLE001
+                continue
+            for other in inside:
+                if other is None or other is it:
+                    continue
+                it.on_affected_item_inside_added(other)
 
     # ---------------- 战斗主流程 ----------------
     def run(self) -> 'CombatEngine':

@@ -125,13 +125,19 @@ class DamageSource:
         return max(0.0, min(100.0, self.crit_chance_percent))
 
     def rand_damage(self, rng) -> int:
-        """randDamage — 物品源：刷新 min/max 后用物品 damageRangeRng；否则全局 rng"""
+        """randDamage — 物品源：刷新 min/max 后用物品 damageRangeRng；否则全局 rng
+
+        对齐 GDScript randi_range(a, b)：参数必须是整数。伤害边界可能因加成
+        变成 float（如中毒层数带小数），这里统一按 Godot 的 int() 语义取整，
+        并对浮点误差（3.9999997）做就近修正，避免 randint 抛 TypeError。
+        """
         if self.origin is not None and hasattr(self.origin, 'get_min_damage'):
-            md = self.origin.get_min_damage(self)
-            xd = self.origin.get_max_damage(self)
+            md = _to_godot_int(self.origin.get_min_damage(self))
+            xd = _to_godot_int(self.origin.get_max_damage(self))
             self.set_damage(md, xd)
             return self.origin.damage_range_rng.randint(md, xd)
-        return rng.randint(self.min_damage, self.max_damage)
+        return rng.randint(_to_godot_int(self.min_damage),
+                           _to_godot_int(self.max_damage))
 
     def update_item(self, item: 'Item'):
         """updateItem — 攻击前从物品刷新命中率"""
@@ -143,6 +149,18 @@ class DamageSource:
         self.origin = item
         self.set_damage(item.get_modified_effect_damage(damage))
         self.crit_chance_percent = item.get_crit_chance_percent()
+
+
+def _to_godot_int(value) -> int:
+    """按 Godot 的 int() 语义取整（向零截断），并容忍浮点误差。"""
+    try:
+        f = float(value)
+    except (TypeError, ValueError):
+        return 0
+    if f != f or f in (float('inf'), float('-inf')):
+        return 0
+    r = round(f)
+    return int(r) if abs(f - r) < 1e-6 else int(f)
 
 
 class DamageResult:

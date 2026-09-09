@@ -18,6 +18,44 @@ if TYPE_CHECKING:
     from .item import Item
 
 
+import re as _re
+_CAMEL_1 = _re.compile(r'(?<=[a-z0-9])(?=[A-Z])')
+_CAMEL_2 = _re.compile(r'(?<=[A-Z])(?=[A-Z][a-z])')
+
+
+def _camel_to_snake(name: str) -> str:
+    s = _CAMEL_2.sub('_', name)
+    s = _CAMEL_1.sub('_', s)
+    return s.lower()
+
+
+class InventoryList(list):
+    """背包物品列表（list 子类）：保持列表语义，同时提供 GDScript Inventory
+    对象上的方法（行为脚本用驼峰调用，如 getItemsAndGems /
+    changeBuffAmplification_allItems）。"""
+
+    def get_items_and_gems(self):
+        out = list(self)
+        for it in self:
+            out.extend(it.get_gems_no_null())
+        return out
+
+    def change_buff_amplification_all_items(self, event_type, chance):
+        for it in self:
+            it.change_amplification_chance_percent(event_type, chance)
+
+    def __getattr__(self, name: str):
+        if name.startswith('__') and name.endswith('__'):
+            raise AttributeError(name)
+        snake = _camel_to_snake(name)
+        if snake != name:
+            try:
+                return getattr(self, snake)
+            except AttributeError:
+                pass
+        raise AttributeError(name)
+
+
 class _OriginEvent:
     """轻量事件包装：buff 变化信号无 event 时提供 getOrigin()/get_origin()（源物品可空）。
     对齐 CombatEvent.getOrigin() 语义，供 onBuffsChanged 等行为读取来源。"""
@@ -97,6 +135,8 @@ class Character:
         self.crit_tokens: int = 0
         self.bonus_fatigue_damage: int = 0
         self.battle_rage_active: bool = False
+        self.battle_rage_bonus_dur: float = 0.0      # Character.gd:84 battleRageBonusDur
+        self.battle_rage_end_time: float = 0.0
 
         # ---- 限制/系数 ----
         self.melee_spikes_limit: float = 1.0
@@ -122,8 +162,11 @@ class Character:
         self.poison_damage_source = DamageSource().init(self, DS_Type.POISON, 1)
         self.poison_damage_source.flags = CHIP_FLAGS + DS_Flags.CAN_CRIT
 
-        # 物品列表（外部注入）
-        self.inventory_items: list['Item'] = []
+        # 物品列表（外部注入）。InventoryList 是 list 子类，额外提供行为脚本
+        # 调用的方法（getItemsAndGems / changeBuffAmplification_allItems 等）。
+        self.inventory_items = InventoryList()
+        # 按事件类型的防护概率（Scholar Bag 等 changeProtectionChance 写入）
+        self._protection_chances: Dict[int, float] = {}
 
         # ---- 战斗运行期 ----
         self.tick_counter: int = 0
@@ -206,7 +249,7 @@ class Character:
         self.opponent = opp
 
     def set_items(self, items: list['Item']):
-        self.inventory_items = items
+        self.inventory_items = InventoryList(items)
         for it in items:
             it.character = self
 
@@ -241,6 +284,9 @@ class Character:
         self.debuff_reflect_stacks = 0
         self.buff_protect_stacks = 0
         self.bonus_fatigue_damage = 0
+        self.battle_rage_active = False
+        self.battle_rage_bonus_dur = 0.0   # Character.gd:386 战斗结束重置
+        self.battle_rage_end_time = 0.0
         self.melee_spikes_limit = 1.0
         self.ranged_spikes_limit = 0.0
         self.effect_spikes_limit = 0.0
@@ -279,6 +325,7 @@ class Character:
 
     def on_tick(self, now: float):
         """onTick() — 每 1s：偶数 tickCounter 回血 / 奇数 中毒"""
+        self.tick_battle_rage(now)
         if self.tick_counter % 2 == 0:
             regen = self.get_regeneration()
             if regen > 0:
@@ -872,6 +919,26 @@ class Character:
     def change_buff_protection_chance_all(self, amount):
         self.change_buff_protect_stacks(int(round(amount)))
 
+    def change_protection_chance(self, event_type, chance):
+        """changeProtectionChance：按事件类型累计防护概率（Scholar Bag 等写入）。"""
+        self._protection_chances[event_type] = self._protection_chances.get(event_type, 0.0) + chance
+
+    def get_protection_chance(self, event_type) -> float:
+        return self._protection_chances.get(event_type, 0.0)
+
+    def __getattr__(self, name: str):
+        """兜底：行为脚本遗留的 camelCase 方法名（如 changeProtectionChance）按
+        snake_case 解析。仅对缺失属性触发；dunder 直接放行。"""
+        if name.startswith('__') and name.endswith('__'):
+            raise AttributeError(name)
+        snake = _camel_to_snake(name)
+        if snake != name:
+            try:
+                return getattr(self, snake)
+            except AttributeError:
+                pass
+        raise AttributeError(name)
+
     def change_poison_crit_chance_percent(self, amount):
         self.poison_damage_source.crit_chance_percent += amount
 
@@ -884,8 +951,48 @@ class Character:
     def is_battle_raging(self) -> bool:
         return bool(self.battle_rage_active)
 
-    def add_battle_rage_duration(self, amount):
+    def add_battle_rage_duration(self, amount, trigger_event=None):
+        """addBattleRageDuration — 延长当前战怒（Deer Totem/Spiked Collar/Spiked Wall）。
+
+        对齐 Character.gd 1549：fullDur += battleRageBonusDur 只影响仍在怒阶段。
+        """
+        self.battle_rage_bonus_dur += amount
+        if self.battle_rage_active and self.log is not None:
+            self.battle_rage_end_time += amount
+
+    def start_battle_rage(self, item=None, duration=0.0, trigger_event=None,
+                          apply_bonus=True):
+        """startBattleRage — Character.gd 1545：开怒 + 发射 battle_rage_started。
+
+        结束时机由战斗时钟推进（on_tick 检查 battle_rage_end_time），
+        到点后 end_battle_rage() 发射 battle_rage_ended。
+        event 带 getParam("duration")（ExtraAngy 等读取战怒时长）。
+        """
+        full_dur = float(duration or 0.0)
+        if apply_bonus:
+            full_dur += self.battle_rage_bonus_dur
         self.battle_rage_active = True
+        now = self.log.current_time if self.log is not None else 0.0
+        self.battle_rage_end_time = now + full_dur
+        from types import SimpleNamespace
+        event = SimpleNamespace(
+            origin=item, duration=full_dur,
+            getParam=lambda key, default=None: (full_dur if key == "duration" else default),
+        )
+        self.emit_signal('battle_rage_started', event)
+
+    def end_battle_rage(self, trigger_event=None):
+        """endBattleRage — Character.gd 1565：停怒 + 发射 battle_rage_ended"""
+        if not self.battle_rage_active:
+            return
+        self.battle_rage_active = False
+        self.emit_signal('battle_rage_ended', trigger_event)
+
+    def tick_battle_rage(self, now: float):
+        """战斗时钟推进：战怒到期自动结束（等价 battleRageTimer.timeout）"""
+        if self.battle_rage_active and self.log is not None \
+                and now >= self.battle_rage_end_time:
+            self.end_battle_rage()
 
     def count_socketed_gems(self) -> int:
         """countSocketedGems — 统计背包内宝石数"""
@@ -902,9 +1009,6 @@ class Character:
         if buff_type is not None:
             return self.get_stacks(buff_type)
         return sum(self.get_stacks(t) for t in range(BuffType.BLOCK, BuffType.HEAT + 1))
-
-    def start_battle_rage(self, *a, **k):
-        self.battle_rage_active = True
 
     def change_typed_damage_factor(self, damage_type: int, amount: float):
         self.typed_damage_factors[damage_type] = self.typed_damage_factors.get(damage_type, 0.0) + amount

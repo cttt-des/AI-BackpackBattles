@@ -25,6 +25,9 @@ def load_items() -> Dict[str, Dict[str, Any]]:
     """返回 {item_key: item_data}（battle_items.json）"""
     data = _load_json(os.path.join(ASSETS, 'battle_items.json'))
     items = data.get('items', data)
+    # 基类行为池（GDScript 继承链）：注入 behavior 执行器，供 extends_chain 解析
+    from . import behavior as _behavior
+    _behavior.set_class_methods(data.get('class_methods'))
     out = {}
     for k, v in items.items():
         d = dict(v)
