@@ -28,12 +28,22 @@ def load_items() -> Dict[str, Dict[str, Any]]:
     # 基类行为池（GDScript 继承链）：注入 behavior 执行器，供 extends_chain 解析
     from . import behavior as _behavior
     _behavior.set_class_methods(data.get('class_methods'))
+    # 物品名 → Rarity 枚举数值（Item.gd 148：Common=0…Unique=5），
+    # 供 ItemBook.getDescriptor().getRarity 等行为侧查询
+    _behavior.set_rarity_table({
+        k: _RARITY_ENUM.get(v.get('rarity'), 0) for k, v in items.items()
+    })
     out = {}
     for k, v in items.items():
         d = dict(v)
         d.setdefault('key', k)
         out[k] = d
     return out
+
+
+_RARITY_ENUM = {
+    'Common': 0, 'Rare': 1, 'Epic': 2, 'Legendary': 3, 'Godly': 4, 'Unique': 5,
+}
 
 
 def load_characters() -> Dict[str, Dict[str, Any]]:

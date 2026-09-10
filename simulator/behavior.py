@@ -310,6 +310,55 @@ _Vector2.RIGHT = _Vector2(1, 0)
 _Vector2.ZERO = _Vector2(0, 0)
 
 
+class _DescriptorNS:
+    """ItemDescriptor 的行为侧视图。
+
+    按 key 判等/哈希（与 item.py DescriptorView 一致），使
+    `item.descriptor in affectedDescriptors`（Acorn Ace）等字典查找
+    可以跨 getDescriptor 调用命中。
+    """
+    types = None
+
+    def __init__(self, key, name, rarity=0):
+        self.key = key
+        self.name = name
+        self._rarity = rarity
+
+    def __eq__(self, other):
+        other_key = getattr(other, 'key', other)
+        return self.key == other_key
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
+    def __hash__(self):
+        return hash(self.key)
+
+    def __repr__(self):
+        return f"<Descriptor {self.key!r}>"
+
+    def __getattr__(self, name):
+        # 商店/视觉侧未实现的描述符方法 → 安全兜底
+        return _Noop()
+
+    def isMeleeWeapon(self):
+        return False
+
+    def isRangedWeapon(self):
+        return False
+
+    def isWeapon(self):
+        return False
+
+    def isReleased(self):
+        return True
+
+    def getRarity(self):
+        return self._rarity
+
+    get_rarity = getRarity
+
+
 class _ItemBook:
     """GDScript ItemBook 全局的 Python 等价（战斗内只用 getDescriptor 做种类标识）。
 
@@ -318,21 +367,25 @@ class _ItemBook:
     由 Item.count_all_placed_of_type 按 key 匹配背包内物品。
     """
     def getDescriptor(self, name):
-        from types import SimpleNamespace as _NS
-        # 描述符命名空间：支持 isA/isMeleeWeapon/isRangedWeapon 等
-        # 联动判定（Mercury Elemental/Villain Sword 等按类型匹配物品）
-        return _NS(key=name, name=name,
-                   types=None,
-                   isMeleeWeapon=lambda: False,
-                   isRangedWeapon=lambda: False,
-                   isWeapon=lambda: False)
+        # 描述符对象：按 key 判等，支持 isA/isMeleeWeapon 等
+        # 联动判定（Mercury Elemental/Villain Sword 等按类型匹配物品）。
+        # isReleased/getRarity：Speak with Animals 等按稀有度归类宠物
+        # （ItemDescriptor.gd 349/123）；战斗内已放置物品必为已发布内容。
+        return _DescriptorNS(name, name, _RARITY_BY_KEY.get(name, 0))
 
     def __getattr__(self, name):
-        # Shop/GridStorage/ItemLibrary/isReleased/Owner 枚举等商店侧引用 → 安全兜底
+        # spiritCompanionDescriptors/canHaveMoreCompanions 等商店侧引用 → 安全兜底
         return _Noop()
 
-    def __getattr__(self, name):
-        return _Noop()
+
+# 物品 key -> 稀有度数值（Item.gd Rarity 枚举），供 ItemBook.getDescriptor 使用
+_RARITY_BY_KEY: Dict[str, int] = {}
+
+
+def set_rarity_table(table: Dict[str, int]) -> None:
+    """load_items 时注入物品稀有度表（key → Rarity 数值）"""
+    _RARITY_BY_KEY.clear()
+    _RARITY_BY_KEY.update(table)
 
 
 # 行为函数可访问的全局命名空间（GDScript 全局/枚举的 Python 等价）
@@ -354,7 +407,11 @@ BEHAVIOR_GLOBALS: Dict[str, Any] = {
     "DamageSource": __import__("simulator.damage", fromlist=["DamageSource"]).DamageSource,
     "Util": _Util(),
     "ChessPiece": SimpleNamespace(PieceColor=SimpleNamespace(White=0, Black=1)),
-    "Owner": SimpleNamespace(PlayerInventory=0, OpponentInventory=1, Storage=2),
+    # Item.gd 17 enum Owner（真实枚举值，物品按 ownerType == Owner.X 比较）
+    "Owner": SimpleNamespace(
+        Shop=0, PlayerInventory=1, PlayerStorageBox=2, Opponent=3, Title=4,
+        RecipeBook=5, Tooltip=6, Socket=7, ItemLibrary=8, InfoPanelIcon=9,
+        BuildViewer=10, BuildViewerIcon=11, GridStorage=12, Undefined=13),
     "CONNECT_ONESHOT": 0,
     "ActivationAni": SimpleNamespace(Throw=0, Melee=1, Ranged=2, Spell=3),
     "Item": SimpleNamespace(Type=SimpleNamespace(

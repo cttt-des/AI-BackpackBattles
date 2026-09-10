@@ -38,6 +38,14 @@ class DS_Flags:
     CAN_MISS = 16
     CAN_CRIT = 32
     ALL = 63
+    # camelCase 别名——转译代码按源码写 `DamageSource.Flags.CanTriggerItems`
+    CanBeBlocked = 1
+    CanTriggerSpikes = 2
+    CanTriggerVampirism = 4
+    CanTriggerItems = 8
+    CanMiss = 16
+    CanCrit = 32
+    All = 63
 
 
 # 原版 flags 常量
