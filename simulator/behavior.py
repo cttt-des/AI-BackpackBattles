@@ -318,7 +318,18 @@ class _ItemBook:
     由 Item.count_all_placed_of_type 按 key 匹配背包内物品。
     """
     def getDescriptor(self, name):
-        return SimpleNamespace(key=name, name=name)
+        from types import SimpleNamespace as _NS
+        # 描述符命名空间：支持 isA/isMeleeWeapon/isRangedWeapon 等
+        # 联动判定（Mercury Elemental/Villain Sword 等按类型匹配物品）
+        return _NS(key=name, name=name,
+                   types=None,
+                   isMeleeWeapon=lambda: False,
+                   isRangedWeapon=lambda: False,
+                   isWeapon=lambda: False)
+
+    def __getattr__(self, name):
+        # Shop/GridStorage/ItemLibrary/isReleased/Owner 枚举等商店侧引用 → 安全兜底
+        return _Noop()
 
     def __getattr__(self, name):
         return _Noop()
@@ -339,14 +350,23 @@ BEHAVIOR_GLOBALS: Dict[str, Any] = {
     "Tag": _Tag,
     "TriggerType": SimpleNamespace(Every=0, StartOfBattle=1, PlayerLow=2, OppoLow=3),
     "EventType": SimpleNamespace(),
-    "DamageResult": object,
-    "DamageSource": object,
+    "DamageResult": __import__("simulator.damage", fromlist=["DamageResult"]).DamageResult,
+    "DamageSource": __import__("simulator.damage", fromlist=["DamageSource"]).DamageSource,
     "Util": _Util(),
     "ChessPiece": SimpleNamespace(PieceColor=SimpleNamespace(White=0, Black=1)),
     "Owner": SimpleNamespace(PlayerInventory=0, OpponentInventory=1, Storage=2),
     "CONNECT_ONESHOT": 0,
     "ActivationAni": SimpleNamespace(Throw=0, Melee=1, Ranged=2, Spell=3),
-    "Item": object,
+    "Item": SimpleNamespace(Type=SimpleNamespace(
+        Bag=0, Consumable=1, Food=2, Pet=3, Weapon=4, Shield=5, Armor=6,
+        Gloves=7, Shoes=8, Helmet=9, Accessory=10, Potion=11, Card=12, Gem=13,
+        Scroll=14, Book=15, Skill=16, ChessPiece=17, Spell=18, Melee=19,
+        Ranged=20, Effect=21, Holy=22, Magic=23, Vampiric=24, Dark=25,
+        Nature=26, Fire=27, Ice=28, Musical=29, EFFECT=21, HOLY=22,
+    ), Tag=SimpleNamespace(
+        None_=0, Lifesteal=1, Stone=2, Scroll=8, Dragon=16, Staff=32,
+        BattleRage=64, Singular=128, Transient=256, Bow=512,
+    )),  # 行为脚本可能引用 Item.Type.X / Item.Tag.X
     "ObjectPool": _Noop(),
     "ItemBook": _ItemBook(),
     "Stat": SimpleNamespace(
@@ -479,13 +499,20 @@ class BehaviorExecutor:
         try:
             return fn(item, *args)
         except TypeError as e:
-            # 参数个数不匹配（如 GDScript 无参方法被传了 res）-> 降级为无参重试
+            # 参数个数不匹配（GDScript EventBus 回调会多带一个 event 参数）->
+            # 逐级丢弃尾部参数重试（对齐回调按声明形参数量接收的语义）
             if "positional argument" in str(e) and args:
-                try:
-                    return fn(item)
-                except Exception as e2:
-                    self._record_failure(item, name, e2, "执行异常", cls)
-                    return None
+                for n in range(len(args) - 1, 0, -1):
+                    try:
+                        return fn(item, *args[:n])
+                    except TypeError as e2:
+                        last_err = e2
+                        continue
+                    except Exception as e2:
+                        self._record_failure(item, name, e2, "执行异常", cls)
+                        return None
+                self._record_failure(item, name, last_err, "执行异常", cls)
+                return None
             self._record_failure(item, name, e, "执行异常", cls)
             return None
         except Exception as e:

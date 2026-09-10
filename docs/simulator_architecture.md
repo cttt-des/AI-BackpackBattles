@@ -18,7 +18,8 @@
 6. [战斗结果（输出）](#6-战斗结果输出)
 7. [CLI 用法](#7-cli-用法)
 8. [与解包源码的映射](#8-与解包源码的映射)
-9. [已知差距与 TODO](#9-已知差距与-todo)
+9. [物品联动（Affected）机制](#9-物品联动affected机制)
+10. [已知差距与 TODO](#10-已知差距与-todo)
 
 ---
 
@@ -565,14 +566,127 @@ tick:       每 1s：偶数 tick 回血(regen)，奇数 tick 中毒(poison)
 
 ---
 
-## 9. 已知差距与 TODO
+## 9. 物品联动（Affected）机制
+
+> 真值源：`decompiled_full/Items/Item.gd`、`decompiled_full/Core/Inventory.gd` 及各物品脚本。
+> 提取工具：`simulator/extract_linkage.py`；验证工具：`tools/verify_linkage.py`。
+
+### 9.1 概念
+
+物品之间**按背包中的相对位置**相互影响，原版称为 `Affected`（影响格）。
+一个物品拥有若干"影响格"，落在这些格子上的其他物品即为其**受影响物品**，
+由该物品的 `canAffect` 系列方法决定是否真正联动。
+
+### 9.2 四种颜色（Affected 枚举）
+
+| 枚举 | 值 | 判定方法 | 物品库 grid 字段 |
+|---|---|---|---|
+| `Affected.Primary` | 0 | `canAffect` | `affected_cells` |
+| `Affected.Secondary` | 2 | `canAffect_secondary` | `affected_secondary` |
+| `Affected.Tertiary` | 4 | `canAffect_tertiary` | `affected_tertiary` |
+| `Affected.Lightning` | 7 | `canAffect_lightning` | `affected_lightning` |
+
+另有 `canAffect_global`：无视位置的全局联动（如 Lucky Cat 影响全部神级物品）。
+
+### 9.3 影响格的来源
+
+来源一：**tscn 的 Affected tile**（`CollisionMap.tile_data`，由 `simulator/extract_grid.py`
+提取并写入 `grid.affected_*`，坐标是相对物品锚点的 40px 精细格，背包格为 80px，故 `//2` 合并）。
+
+来源二：**脚本覆写** `getAffectedCellsAfterRotate_primary/_secondary`（`Item.gd` 1117）。
+入参 `rotatedCells` 是物品旋转后的**背包绝对格**（Vector2 序为 `x=col, y=row`），
+返回值同坐标系。模拟器由 `Item._script_affected_cells()` 执行转译后的该方法。
+
+> 注意：基类脚本也会覆写这些方法（如 `Potion.gd`、`BagofStones.gd`），
+> 因此提取必须沿 `extends` 链解析 —— 见 9.6。
+
+### 9.4 判定与回调
+
+```
+影响格 → 取格内物品 → canAffect_color(item, color) 过滤 → 受影响物品集合
+```
+
+* 基类默认 `canAffect` 返回 `false`，由各物品脚本覆写。
+  例：`Whetstone.canAffect` = `item.canBeEmpowered()`（武器且能造成伤害）；
+  `Food.canAffect` = `item.hasType(Food) and item.descriptor != descriptor`（不能是同一种食物）。
+* 回调：`onAffectedItemAdded(item, color)` / `onAffectedItemRemoved(item, color)`。
+  典型用途是给邻居**临时加类型**，如 `SunArmor` 给火焰物品加 `Holy`、
+  `CorruptedArmor` 给神圣物品加 `Dark`（引擎侧为 `add_dynamic_type/remove_dynamic_type`）。
+* 标志：`affectsEmpty`、`isAffectingDistinct`（同类物品只算一次）。
+* 行列联动：`getRelatedItemColumns`（护符 / Badge 系）。
+
+### 9.5 时机（对齐 Item.gd）
+
+```
+物品放入背包      -> cacheAffectedCells() -> 逐 color 取 getAffectedItems()
+                  -> 登记并回调 onAffectedItemAdded      # 模拟器：CombatEngine._build_linkage
+其他物品加入/移除 -> onItemAdded/onItemRemoved -> 增量回调
+战斗开始 prepare  -> cacheAffectedItemsForCombat() 快照  # 模拟器：Item.prepare -> _cache_affected_items
+                  -> gems.prepare -> onPrepare
+战斗中             -> getAffectedItems() 只读快照
+战斗结束           -> combatToShop: cachedAffectedItems.clear()
+```
+
+即：**战斗期内联动集合是一次性快照，不随战斗过程变化**。
+
+### 9.6 数据生成（继承链）
+
+`python -m simulator.extract_linkage --apply`（先 `--report` 可只看统计）：
+
+1. 为每个物品定位脚本（`script` 字段 → 名称匹配）；
+2. 沿 `extends` 链向上收集联动方法，**自身覆写优先，否则继承最近祖先**，到 `Item` 为止
+   （`Item.gd` 即引擎 `Item` 类本身，其方法已原生实现，不入库）；
+3. 与已入库的 tscn 影响格合并，写入 `linkage` 元数据；
+4. 只覆盖联动相关方法，其余字段不动（写库前自动 `.bak` 备份）。
+
+```jsonc
+// battle_items.json 物品片段
+"linkage": {
+  "overrides": ["canAffect"],                 // 自身覆写
+  "inherited": ["canAffect<-Food.gd"],        // 继承自哪个基类脚本
+  "colors": {"primary": true, "secondary": false, "tertiary": false, "lightning": false},
+  "script_affected": false,                   // 是否覆写 getAffectedCellsAfterRotate_*
+  "global": false,                            // 是否有 canAffect_global
+  "related_columns": false,                   // 是否有 getRelatedItemColumns
+  "callbacks": []                             // onAffectedItemAdded / Removed
+}
+```
+
+### 9.7 引擎 API（simulator/item.py）
+
+| 源码 | 模拟器 |
+|---|---|
+| `getAffectedItems(color)` | `get_affected_items(color)` |
+| `getAffectedItems_nocache` | `get_affected_items_nocache` |
+| `getNumAffectedItems` | `get_num_affected_items` |
+| `getFirstAffectedItem` | `get_first_affected_item` |
+| `getItemsInAffectedCells` | `get_items_in_affected_cells` |
+| `canAffect_color` | `can_affect(other, color)` |
+| `affectsEmpty` / `isAffectingDistinct` | `affects_empty` / `is_affecting_distinct` |
+| `onAffectedItemAdded/Removed` | `on_affected_item_added/removed` |
+| `onStateChanged` | `state_changed` |
+| `addDynamicType/removeDynamicType` | `add_dynamic_type/remove_dynamic_type` |
+| `getCellsInLine`（Inventory） | `get_cells_in_line` |
+| `getAdjacentItems`（Inventory） | `get_adjacent_items` |
+
+---
+
+## 10. 已知差距与 TODO
 
 1. **物品数值精度**：当前 `battle_items.json` 数值来自 wiki（`items_db_sim.json`），部分物品
    （合成/联动类）数值标注 `TODO`，需从加密 `ItemData_e.csv`（GDEC+sheetKey 混淆）提取后补齐。
-2. **联动/合成物品**：受物品影响格子（affected cells）的联动效果（如笛子加速、链式触发）
-   尚未在 DSL 中完整表达，`affected` 机制为 TODO。
+2. **~~联动/合成物品~~（已完成）**：`Affected` 全链路（tscn 影响格 + 脚本覆写 + 继承链提取 +
+   `canAffect` 过滤 + `onAffectedItemAdded` 回调 + 动态类型）已实现，见第 9 节。
+   剩余：袋内（inside）联动只完成了回调分发，物品在袋中的摆放关系未建模。
 3. **护盾/反伤限制**：`meleeSpikesLimit` 等限制系数已建模，但物品赋予途径待全量枚举。
-4. **宝石系统**：`gems[]` 已入阵容格式，引擎解析为 TODO。
-5. **职业专属机制**：狂战士之怒、工程师电荷、焰术使热量等职业被动为 TODO。
+4. **宝石系统**：`gems[]` 已入阵容格式，引擎可镶嵌与触发，但宝石的联动/加成细节待校验；
+   并且宝石/棋子类物品缺少 tscn 网格数据（`extract_grid.py` 对其不做矩形兜底），
+   无法参与摆盘联动。
+5. **职业专属机制**：狂战士之怒、工程师电荷（`changeChargedItemStat`/`numCharges` 等）、
+   焰术使热量等职业被动仍为 TODO。
 6. **可复现性**：BalancedRng 已实现；物品触发顺序 = shuffle 后按 TriggerPriority 降序，
-   已在引擎还原（seed 固定可复现）。
+   已在引擎还原（seed 固定可复现）。但脚本覆写的 `getTriggerPriority`（29 个物品）
+   尚未提取入库，当前使用 CSV 中的 `trigger_priority`。
+7. **未入库方法**：`tools/audit_item_effects.py` 报告约 404 个源码方法未进 behavior
+   （多为商店/UI/视觉：`onShopEntered`、`onItemRoll`、`getDescription` 等）；
+   已确认其中无战斗逻辑遗漏，但 `getTriggerPriority` 值得后续提取。

@@ -50,6 +50,7 @@
      "bonusDamage"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    _item.damageSource = _item._new_damage_source()\n    _item.ammunition = 1",
      "combatEnd": "def combatEnd(_item):\n    pass  # super\n    _item.ammunition = 1",
      "setBagOfStones": "def setBagOfStones(_item):\n    _item.ammunition = 9000",
      "onPreDealDamage_late": "def onPreDealDamage_late(_item, damageRes=None):\n    \n    _item._behavior_call(\"preHit\", )",
@@ -89,7 +90,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Wooden Sword": {
    "key": "Wooden Sword",
@@ -133,6 +135,7 @@
     "extends": "Item",
     "instance_vars": [],
     "methods": {
+     "_ready": "def _ready(_item):\n    _item.damageSource = _item._new_damage_source()",
      "doCooldownEffect": "def doCooldownEffect(_item):\n    res = None\n    if _item.use_stamina() == Character.StaminaResult.Sufficient:\n        res = _item.deal_damage()\n        _item.visual_activate(res)"
     },
     "methods_raw": {},
@@ -166,7 +169,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Pan": {
    "key": "Pan",
@@ -286,7 +290,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Broom": {
    "key": "Broom",
@@ -339,11 +344,12 @@
     "methods": {
      "onPrepare": "def onPrepare(_item):\n    _item.connect_for_combat(_item.character_(), \"character_attacked\", \"onAttacked\")",
      "onAttacked": "def onAttacked(_item, damageRes=None):\n    if not damageRes.has_hit():\n        _item.add_bonus_damage(_item.bonusDamPerMiss)\n        _item.broomBonusDam += _item.bonusDamPerMiss",
-     "attack": "def attack(_item, event=None):\n    pass  # super\n    if _item.broomBonusDam != 0:\n        _item.reduce_bonus_damage(_item.broomBonusDam, False)\n        _item.broomBonusDam = 0",
      "onDealtDamage": "def onDealtDamage(_item, damageRes=None):\n    particles = None\n    if damageRes.has_hit():\n        if _item.roll_chance():\n            _item.inflict_blind(1, damageRes.event)\n            particles = ObjectPool.particleOneShot(_item.blindParticles, _item.sprite)\n            pass  # visual\n            pass  # visual",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.blindParticles = _item.preload(\"res://Items/Particles/DirtParticles.tscn\")\n    except Exception:\n        pass\n    try:\n        _item.bonusDamPerMiss = int(_item.get_p(0))\n    except Exception:\n        pass\n    try:\n        _item.broomBonusDam = 0\n    except Exception:\n        pass\n    try:\n        _item.onMissReadyTime = 0.0\n    except Exception:\n        pass\n"
     },
-    "methods_raw": {},
+    "methods_raw": {
+     "attack": "\t.attack(event)\n\tif broomBonusDam != 0:\n\t\treduceBonusDamage(broomBonusDam, false)\n\t\tbroomBonusDam = 0"
+    },
     "extends_chain": [
      "Weapon",
      "Item"
@@ -383,7 +389,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Wooden Buckler": {
    "key": "Wooden Buckler",
@@ -599,7 +606,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Garlic": {
    "key": "Garlic",
@@ -712,7 +720,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Healing Herbs": {
    "key": "Healing Herbs",
@@ -1251,7 +1260,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Shiny Shell": {
    "key": "Shiny Shell",
@@ -1345,7 +1355,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Leather Bag": {
    "key": "Leather Bag",
@@ -1503,7 +1514,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Spear": {
    "key": "Spear",
@@ -1625,7 +1637,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Dagger": {
    "key": "Dagger",
@@ -1704,7 +1717,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Spiked Shield": {
    "key": "Spiked Shield",
@@ -2238,7 +2252,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Goobert": {
    "key": "Goobert",
@@ -2568,6 +2583,7 @@
      "revealSound"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    pass  # visual",
      "identifyAmulet": "def identifyAmulet(_item, dropResult=None):\n    amulet = None; pulse = None\n    \n    amulet = ItemBook.generateItem(Util.pickRandomElement(ItemBook.amulets))\n    if _item.wasAddedToInventory(dropResult):\n        _item.character_().get_items().replaceItem(_item, amulet)\n    else:\n        Game.STORAGEBOX.removeItem(_item)\n        _item.collisionShape.disabled = True\n        pass  # visual\n        pass  # visual\n    \n        pass  # visual\n        pass  # visual\n    \n    pass  # visual\n    pulse = ObjectPool.instance(_item.revealPulseScene)\n    pass  # visual\n    pass  # visual\n    pass  # visual\n    pass  # visual\n    Game.saveRunState()\n    _item.finishReplacement()",
      "getRelatedItemColumns": "def getRelatedItemColumns(_item):\n    return 4",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.revealPulseScene = _item.preload(\"res://Items/Animations/RevealPulse.tscn\")\n    except Exception:\n        pass\n    try:\n        _item.revealSound = _item.preload(\"res://Assets/Sound/Reveal.ogg\")\n    except Exception:\n        pass\n"
@@ -2656,6 +2672,7 @@
      "amuletColor"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    pass  # visual",
      "onPrepare": "def onPrepare(_item):\n    _item.character_().add_healing_efficiency(_item.get_p(\"healamp\") / 100.0)",
      "onCombatStart": "def onCombatStart(_item):\n    _item.give_max_health()\n    _item.visual_activate()",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.amuletColor = _item.Color(0.980469, 0.214478, 0.214478)\n    except Exception:\n        pass\n"
@@ -2742,6 +2759,7 @@
      "empowerForBlock"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    pass  # visual",
      "canAffect": "def canAffect(_item, item=None):\n    return item.can_block()",
      "onPrepare": "def onPrepare(_item):\n    _item.blockAcc = 0\n    for item in _range_or_value(_item.get_affected_items()):\n        _item.connect_for_combat(item, \"gave_block\", \"onItemGaveBlock\")",
      "onCombatStart": "def onCombatStart(_item):\n    _item.give_block()\n    _item.visual_activate()",
@@ -2934,6 +2952,7 @@
      "foodSpeed"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    pass  # visual",
      "canAffect": "def canAffect(_item, item=None):\n    return item.has_type(Type.Food)",
      "onPrepare": "def onPrepare(_item):\n    for item in _range_or_value(_item.get_affected_items()):\n        item.add_speed(_item.foodSpeed)",
      "getReplaceDescriptor": "def getReplaceDescriptor(_item, rarity=None):\n    return ItemBook.getFoodOfRarity(rarity)",
@@ -3122,6 +3141,7 @@
      "damageThreshold"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    _item.damageSource = _item._new_damage_source()\n    pass  # visual",
      "canAffect": "def canAffect(_item, item=None):\n    return item.can_activate()",
      "onPrepare": "def onPrepare(_item):\n    _item.damageAcc = 0\n    _item.connect_for_combat(_item.opponent(), \"character_attacked\", \"onOpponentDamaged\")\n    \n    for item in _range_or_value(_item.get_affected_items()):\n        _item.connect_for_combat(item, \"activated\", \"onItemActivated\")",
      "onItemActivated": "def onItemActivated(_item, event=None):\n    dam = None; res = None; particles = None\n    if _item.roll_chance():\n        dam = _item.min_dam\n        res = _item.deal_effect_damage(dam)\n        _item.visual_activate()\n        particles = ObjectPool.particleOneShot(_item.activationParticles, _item)\n        pass  # visual",
@@ -3229,6 +3249,7 @@
      "usedStacks"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    pass  # visual",
      "onPrepare": "def onPrepare(_item):\n    _item.connect_to_character_buffs(\"onBuffChanged\")\n    for buff in _range_or_value(Game.getBuffs()):\n        _item.usedStacks[buff] = 0.0",
      "canAffect": "def canAffect(_item, item=None):\n    return item.has_cooldown()",
      "onCombatStart": "def onCombatStart(_item):\n    pass  # visual\n    for item in _range_or_value(_item.get_affected_items()):\n        item.add_speed(_item.bonusSpeed)\n    _item.visual_activate()",
@@ -3325,6 +3346,7 @@
      "amuletColor"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    pass  # visual",
      "canAffect": "def canAffect(_item, item=None):\n    return item.has_type(Type.Pet)",
      "onPrepare": "def onPrepare(_item):\n    spikesLimit = None\n    spikesLimit = _item.get_p(\"spikedam\") / 100.0\n    _item.character_().change_ranged_spikes_limit(spikesLimit)\n    _item.character_().change_melee_spikes_limit(spikesLimit)",
      "doCooldownEffect": "def doCooldownEffect(_item):\n    _item.add_spikes(_item.get_p(\"spikes\"))\n    for item in _range_or_value(_item.get_affected_items()):\n        item.doCooldownEffect()\n    pass  # visual",
@@ -3365,7 +3387,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Amulet of Alchemy": {
    "key": "Amulet of Alchemy",
@@ -3421,6 +3444,7 @@
      "triggerAnimation"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    pass  # visual",
      "canAffect": "def canAffect(_item, item=None):\n    return item.has_type(Type.Potion)",
      "onPrepare": "def onPrepare(_item):\n    for item in _range_or_value(_item.get_affected_items()):\n        _item.connect_for_combat(item, \"potion_emptied\", \"onPotionEmptied\")",
      "onCombatStart": "def onCombatStart(_item):\n    _item.give_random_buffs(_item.get_p(\"buffs\"))\n    _item.visual_activate()",
@@ -3618,6 +3642,7 @@
      "numBuffs"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    pass  # visual",
      "canAffect": "def canAffect(_item, item=None):\n    return item.can_modify_chance()",
      "onPrepare": "def onPrepare(_item):\n    for item in _range_or_value(_item.get_affected_items()):\n        item.add_bonus_chance(_item.bonusChance)",
      "doCooldownEffect": "def doCooldownEffect(_item):\n    _item.give_most_buffs(_item.numBuffs)\n    pass  # visual",
@@ -3686,7 +3711,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Fanny Pack": {
    "key": "Fanny Pack",
@@ -3874,6 +3900,7 @@
      "spawnPos"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    \n    \n    if Game.curClass == Game.Classes.Ranger:\n        _item.digUpItems[\"Carrot\"] = 2\n        _item.digUpItems[\"Lucky Clover\"] = 2\n    elif Game.curClass == Game.Classes.Reaper:\n        _item.digUpItems[\"Fly Agaric\"] = 2\n    \n    if Game.showExclusiveContent():\n        _item.digUpItems[\"Shiny Shell\"] = 3\n    \n    _item.digUpBag.prepare(_item.digUpItems.values())",
      "onDealtDamage": "def onDealtDamage(_item, damageRes=None):\n    particles = None\n    if damageRes.has_hit():\n        if _item.roll_chance():\n            _item.inflict_blind(1, damageRes.event)\n            particles = ObjectPool.particleOneShot(_item.blindParticles, _item.sprite)\n            pass  # visual\n            pass  # visual"
     },
     "methods_raw": {},
@@ -3916,7 +3943,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Burning Coal": {
    "key": "Burning Coal",
@@ -4010,7 +4038,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Torch": {
    "key": "Torch",
@@ -4094,7 +4123,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Shell Totem": {
    "key": "Shell Totem",
@@ -4213,7 +4243,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Shelly": {
    "key": "Shelly",
@@ -4326,7 +4357,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Shepherds Crook": {
    "key": "Shepherds Crook",
@@ -4543,7 +4575,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Hungry Blade": {
    "key": "Hungry Blade",
@@ -4639,7 +4672,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Leather Boots": {
    "key": "Leather Boots",
@@ -5212,7 +5246,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Mana Orb": {
    "key": "Mana Orb",
@@ -5273,6 +5308,7 @@
      "stackTypes"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    _item.stackTypes = Game.getBuffs()\n    _item.stackTypes.remove(Game.EventType.Mana)",
      "canAffect": "def canAffect(_item, item=None):\n    return item.can_activate()",
      "onPrepare": "def onPrepare(_item):\n    _item.bonusBuffs = 0\n    _item.setState(False)\n    for item in _range_or_value(_item.get_affected_items()):\n        _item.connect_for_combat(item, \"_item.activated\", \"onItemActivated\")\n    _item.connect_for_combat(_item.character_(), \"character_mana_changed\", \"onManaChanged\")",
      "onItemActivated": "def onItemActivated(_item, event=None):\n    if _item.roll_chance():\n        _item.visual_activate()\n        _item.add_mana(_item.mana)",
@@ -5415,7 +5451,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Oil Lamp": {
    "key": "Oil Lamp",
@@ -5515,7 +5552,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Unstable Recombobulator": {
    "key": "Unstable Recombobulator",
@@ -5613,6 +5651,7 @@
      "unstableFilters"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    pass  # visual",
      "canAffect": "def canAffect(_item, item=None):\n    return not item.is_bag() and (item.can_start_new_recipe() or item.bondedBaseItem == _item)",
      "readyToFuse": "def readyToFuse(_item):\n    if _item.stable:\n        return _item.bondedIngredients\n    else:\n        return _item.bondedBaseItem == None",
      "doCooldownEffect": "def doCooldownEffect(_item):\n    _item.give_random_buffs(1)\n    _item.cleanse_random_debuffs(1)\n    _item.visual_activate()",
@@ -5643,7 +5682,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Snowman": {
    "key": "Snowman",
@@ -5691,6 +5731,7 @@
      "snowballDescriptor"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    pass  # visual",
      "replaceWithSnowballs": "def replaceWithSnowballs(_item, dropResult=None):\n    snowball1 = None; snowball2 = None; cells = None; offsets = None; snowball = None; targetPos = None; particles = None; particlePos = None\n    snowball1 = ItemBook.generateItem(_item.snowballDescriptor)\n    snowball2 = ItemBook.generateItem(_item.snowballDescriptor)\n    \n    if _item.wasAddedToInventory(dropResult):\n        cells = _item.occupiedCells.copy()\n        Game.PLAYER.replaceItem(_item, snowball1)\n        cells.remove(snowball1.occupiedCells[0])\n        pass  # visual\n        Game.PLAYER.addItemByTopLeft(snowball2, cells[0])\n    else:\n        Game.STORAGEBOX.removeItem(_item)\n        _item.collisionShape.disabled = True\n        pass  # visual\n        offsets = [Vector2(0, - 20), Vector2(0, 20)]\n        for snowballI in _range_or_value(2):\n            snowball = [snowball1, snowball2][snowballI]\n            pass  # visual\n            targetPos = global_position + offsets[snowballI].rotated(rotation)\n            pass  # visual\n            snowball.addToStorageBox(True, True, True, targetPos)\n    \n    particles = ObjectPool.particleOneShot(_item.snowParticles, _item.get_parent())\n    particlePos = global_position\n    if _item.getFaceDirection() == FaceDirection.DOWN:\n            pass  # visual\n    elif _item.getFaceDirection() == FaceDirection.UP:\n            pass  # visual\n    pass  # visual\n    \n    Game.saveRunState()\n    _item.finishReplacement()",
      "getRecipeDescriptor": "def getRecipeDescriptor(_item):\n    return _item.snowballDescriptor",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.snowballDescriptor = ItemBook.getDescriptor(\"Snowball\")\n    except Exception:\n        pass\n    try:\n        _item.snowParticles = _item.preload(\"res://Items/Exclusive/Particles/SnowParticles.tscn\")\n    except Exception:\n        pass\n"
@@ -6013,7 +6054,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Magic Staff": {
    "key": "Magic Staff",
@@ -6117,7 +6159,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Strong Health Potion": {
    "key": "Strong Health Potion",
@@ -6301,7 +6344,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Claws of Attack": {
    "key": "Claws of Attack",
@@ -6395,7 +6439,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Burning Torch": {
    "key": "Burning Torch",
@@ -6491,7 +6536,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Platin Customer Card": {
    "key": "Platin Customer Card",
@@ -7113,7 +7159,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Holy Armor": {
    "key": "Holy Armor",
@@ -7276,7 +7323,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Shield of Valor": {
    "key": "Shield of Valor",
@@ -7682,7 +7730,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Blood Amulet": {
    "key": "Blood Amulet",
@@ -8025,7 +8074,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Vampiric Potion": {
    "key": "Vampiric Potion",
@@ -8489,7 +8539,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Strong Heroic Potion": {
    "key": "Strong Heroic Potion",
@@ -8783,7 +8834,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Blood Goobert": {
    "key": "Blood Goobert",
@@ -9196,7 +9248,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Manathirst": {
    "key": "Manathirst",
@@ -9307,7 +9360,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Spectral Dagger": {
    "key": "Spectral Dagger",
@@ -9395,7 +9449,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Hero Longsword": {
    "key": "Hero Longsword",
@@ -9518,7 +9573,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Falcon Blade": {
    "key": "Falcon Blade",
@@ -9650,7 +9706,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Pandamonium": {
    "key": "Pandamonium",
@@ -9793,7 +9850,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Evil Cap": {
    "key": "Evil Cap",
@@ -9993,7 +10051,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Strong Mana Potion": {
    "key": "Strong Mana Potion",
@@ -10209,7 +10268,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Stone Helm": {
    "key": "Stone Helm",
@@ -10515,7 +10575,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Stone Shoes": {
    "key": "Stone Shoes",
@@ -10745,7 +10806,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Snow Stick": {
    "key": "Snow Stick",
@@ -10843,7 +10905,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Fanfare": {
    "key": "Fanfare",
@@ -11009,7 +11072,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Lightsaber": {
    "key": "Lightsaber",
@@ -11121,7 +11185,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Protective Purse": {
    "key": "Protective Purse",
@@ -11301,7 +11366,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Djinn Lamp": {
    "key": "Djinn Lamp",
@@ -11411,7 +11477,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Greatsword": {
    "key": "Greatsword",
@@ -11528,7 +11595,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Crown": {
    "key": "Crown",
@@ -11638,7 +11706,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Wolpertinger": {
    "key": "Wolpertinger",
@@ -11771,7 +11840,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Heart Container": {
    "key": "Heart Container",
@@ -11877,7 +11947,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Divine Potion": {
    "key": "Divine Potion",
@@ -12105,7 +12176,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Bloodthorne": {
    "key": "Bloodthorne",
@@ -12202,7 +12274,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Crossblades": {
    "key": "Crossblades",
@@ -12320,7 +12393,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Ruby Whelp": {
    "key": "Ruby Whelp",
@@ -12414,7 +12488,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Vampiric Gloves": {
    "key": "Vampiric Gloves",
@@ -12528,7 +12603,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Darksaber": {
    "key": "Darksaber",
@@ -12628,7 +12704,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Light Goobert": {
    "key": "Light Goobert",
@@ -12915,7 +12992,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Moon Shield": {
    "key": "Moon Shield",
@@ -13229,7 +13307,8 @@
      "onAffectedItemAdded",
      "onAffectedItemRemoved"
     ]
-   }
+   },
+   "extra_cds": []
   },
   "Moon Armor": {
    "key": "Moon Armor",
@@ -13381,7 +13460,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Heart of Darkness": {
    "key": "Heart of Darkness",
@@ -13527,7 +13607,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Thornbloom": {
    "key": "Thornbloom",
@@ -13641,7 +13722,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "King Crown": {
    "key": "King Crown",
@@ -13729,7 +13811,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "King Goobert": {
    "key": "King Goobert",
@@ -14019,7 +14102,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Prismatic Sword": {
    "key": "Prismatic Sword",
@@ -14162,7 +14246,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Katana": {
    "key": "Katana",
@@ -14265,7 +14350,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Winged Boots": {
    "key": "Winged Boots",
@@ -14545,7 +14631,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Random Loadout Bag": {
    "key": "Random Loadout Bag",
@@ -14597,6 +14684,7 @@
      "pool"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    pass  # visual\n    pass  # visual",
      "addBagWherePossible": "def addBagWherePossible(_item, bag=None, startPos=None):\n    inv = None; pos = None\n    bag.ownerType = Owner.PlayerInventory\n    pass  # visual\n    inv = Game.PLAYER.INVENTORY\n    for x in _range_or_value(range(startPos.x, 9)):\n        pos = Vector2(x, startPos.y)\n        inv.orientItem(bag, pos, FaceDirection.UP)\n        if inv.canAddBag(bag):\n            inv.addItemByTopLeft(bag, pos)\n            _item.bagCells.extend(bag.occupiedCells)\n            bag.popIn()\n            return\n    pass  # visual",
      "addItemWherePossible": "def addItemWherePossible(_item, item=None):\n    couldAdd = None\n    item.ownerType = Owner.PlayerInventory\n    pass  # visual\n    couldAdd = Game.PLAYER.addItemWherePossible(item)\n    if couldAdd:\n        item.popIn()\n    else:\n        pass  # visual\n        pass  # visual\n        item.pushToStorage()",
      "shopOpened": "def shopOpened(_item):\n    value = None; loadout = None; mainBag = None; bagBagWeights = None; bag1 = None; bag2 = None; excludeDescriptors = None; includeDescriptors = None; item = None\n    if _item.ownerType != Owner.PlayerInventory:\n        return\n    \n    _item.character_().get_items().removeItem(_item)\n    \n    \n    value = 2\n    \n    loadout = Util.rng.randi_range(0, 1)\n    value += Game.getStartInventoryPrice(Game.curClass, loadout)\n    value += _item.compensationValue[Game.curClass][loadout]\n    \n    mainBag = ItemBook.generateItem(_item.mainBags[Game.curClass][loadout])\n    pass  # visual\n    value -= mainBag.get_price()\n    \n    bagBagWeights = {}\n    for rarity in _range_or_value(Rarity.Godly):\n        for bag in _range_or_value(ItemBook.bagsForRarity[rarity][Game.curClass]):\n            bagBagWeights[bag] = _item.bagRarityWeights[rarity]\n    \n    _item.bagBag.prepare(bagBagWeights.values())\n    bag1 = ItemBook.generateItem(bagBagWeights.keys()[_item.bagBag.roll()])\n    value -= bag1.get_price()\n    pass  # visual\n    \n    if Util.flip(0.7) or len(_item.bagCells) < 10:\n        bag2 = None\n        if len(_item.bagCells) <= 8:\n            bag2 = ItemBook.generateItem(\"Leather Bag\")\n        else:\n            bag2 = ItemBook.generateItem(bagBagWeights.keys()[_item.bagBag.roll()])\n        value -= bag2.get_price()\n        pass  # visual\n    \n    excludeDescriptors = {}\n    for item in _range_or_value(_item.excludeNames):\n        excludeDescriptors[ItemBook.getDescriptor(item)] = True\n    \n    includeDescriptors = {}\n    for gem in _range_or_value(ItemBook.gemsForRarity[Rarity.Common]):\n        includeDescriptors[gem] = True\n    for amulet in _range_or_value(ItemBook.amulets):\n        includeDescriptors[amulet] = True\n    \n    for _item.descriptor in _range_or_value(ItemBook.items.values()):\n        if (_item.descriptor in includeDescriptors or\n            (_item.descriptor.isAvailableFor(Game.curClass) and\n            _item.descriptor.rarity <= Item.Rarity.Godly and\n            not _item.descriptor.isCraftedItem() and\n            not _item.descriptor.isGatedItem() and\n            not _item.descriptor.is_bag() and\n            not _item.descriptor.isTransient() and\n            not _item.descriptor in excludeDescriptors and\n            not (_item.descriptor.is_weapon() and _item.descriptor.rarity >= Item.Rarity.Epic))):\n    \n            _item.pool.addItem(_item.descriptor)\n    _item.pool.pool\n    _item.pool.sortItems()\n    \n    while value > 0:\n        _item.pool.setPrice(value)\n        item = ItemBook.generateItem(_item.pool.getRandomItemTopHeavy(0.9, 0.3))\n        value -= item.get_price()\n        _item._behavior_call(\"addItemWherePossible\", item)\n    \n    \n    \n    pass  # visual\n    Game.saveRunState()\n    Game.saveGame()",
@@ -14808,7 +14896,8 @@
     "global": false,
     "related_columns": true,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Stone Badge": {
    "key": "Stone Badge",
@@ -14895,7 +14984,8 @@
     "global": false,
     "related_columns": true,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Leaf Badge": {
    "key": "Leaf Badge",
@@ -14993,7 +15083,8 @@
     "global": false,
     "related_columns": true,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Skull Badge": {
    "key": "Skull Badge",
@@ -15069,7 +15160,8 @@
     "global": false,
     "related_columns": true,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Wolf Badge": {
    "key": "Wolf Badge",
@@ -15407,7 +15499,8 @@
     "global": false,
     "related_columns": true,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Magic Badge": {
    "key": "Magic Badge",
@@ -15737,7 +15830,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Vampiric Scythe": {
    "key": "Vampiric Scythe",
@@ -15868,7 +15962,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Villain Sword": {
    "key": "Villain Sword",
@@ -16019,7 +16114,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Skull": {
    "key": "Skull",
@@ -16204,7 +16300,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Present": {
    "key": "Present",
@@ -16436,7 +16533,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Pumpkin": {
    "key": "Pumpkin",
@@ -16493,6 +16591,7 @@
      "stunParticles"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    _item.damageSource = _item._new_damage_source()",
      "doCooldownEffect": "def doCooldownEffect(_item):\n    res = None\n    if _item.use_stamina() == Character.StaminaResult.Sufficient:\n        res = _item.deal_damage()\n        _item.visual_activate(res)",
      "onPrepare": "def onPrepare(_item):\n    pass  # visual\n    _item.connect_for_combat(Game.combatTimer, \"fatigue_start\", \"onFatigueStarted\")",
      "onDealtDamage": "def onDealtDamage(_item, damageRes=None):\n    particles = None\n    if damageRes.has_hit() and _item.roll_chance():\n        _item.stun(_item.get_p_m(\"dur_stun\"), damageRes.event)\n        particles = ObjectPool.particleOneShot(_item.stunParticles, _item.sprite)\n        pass  # visual",
@@ -16575,7 +16674,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Dancing Dragon": {
    "key": "Dancing Dragon",
@@ -16737,7 +16837,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Cubert": {
    "key": "Cubert",
@@ -17010,6 +17111,7 @@
      "unstableFilters"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    pass  # visual",
      "canAffect": "def canAffect(_item, item=None):\n    return not item.is_bag() and (item.can_start_new_recipe() or item.bondedBaseItem == _item)",
      "readyToFuse": "def readyToFuse(_item):\n    if _item.stable:\n        return _item.bondedIngredients\n    else:\n        return _item.bondedBaseItem == None",
      "doCooldownEffect": "def doCooldownEffect(_item):\n    _item.give_random_buffs(1)\n    _item.cleanse_random_debuffs(1)\n    _item.visual_activate()",
@@ -17040,7 +17142,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Artifact Stone Death": {
    "key": "Artifact Stone Death",
@@ -17137,7 +17240,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Ghost": {
    "key": "Ghost",
@@ -17230,7 +17334,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Time Dilator": {
    "key": "Time Dilator",
@@ -17318,7 +17423,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Pop": {
    "key": "Pop",
@@ -17411,7 +17517,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Cthulhu": {
    "key": "Cthulhu",
@@ -17574,7 +17681,8 @@
      "onAffectedItemAdded",
      "onAffectedItemRemoved"
     ]
-   }
+   },
+   "extra_cds": []
   },
   "Snowcake": {
    "key": "Snowcake",
@@ -17631,6 +17739,7 @@
      "effectDam"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    _item.damageSource = _item._new_damage_source()",
      "doCooldownEffect": "def doCooldownEffect(_item):\n    dam = None; damageRes = None\n    _item.inflict_cold(_item.cold)\n    if _item.opponent().get_cold() >= _item.coldNeeded:\n        _item.character_().change_effect_damage_factor(_item.effectDam)\n        dam = _item.min_dam\n        damageRes = _item.deal_effect_damage(dam)\n    _item.visual_activate()",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.cold = int(_item.get_p(\"cold\"))\n    except Exception:\n        pass\n    try:\n        _item.coldNeeded = int(_item.get_p(\"coldt\"))\n    except Exception:\n        pass\n    try:\n        _item.effectDam = _item.get_p(\"damfactor\") / 100.0\n    except Exception:\n        pass\n"
     },
@@ -17710,7 +17819,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Little Mimic": {
    "key": "Little Mimic",
@@ -17861,7 +17971,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Bomb": {
    "key": "Bomb",
@@ -17913,6 +18024,7 @@
      "explosionSound"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    _item.damageSource = _item._new_damage_source()",
      "doCooldownEffect": "def doCooldownEffect(_item):\n    removedBuffs = None; numStacks = None; dam = None; damageRes = None\n    if _item.use_stamina() == Character.StaminaResult.Sufficient:\n        pass  # visual\n        removedBuffs = 0\n        for buff in _range_or_value(Game.getBuffs()):\n            numStacks = _item.character_().get_stacks(buff)\n            removedBuffs += numStacks\n            _item.character_().use_stacks(buff, numStacks, _item)\n        pass  # visual\n    \n        _item.opponent().change_damage_resistance( - _item.damFactor * removedBuffs)\n    \n        dam = _item.min_dam\n        damageRes = _item.deal_effect_damage(dam)\n        pass  # visual\n        pass  # visual\n        pass  # visual",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.explosionSound = _item.preload(\"res://Assets/Sound/Explosion1.wav\")\n    except Exception:\n        pass\n    try:\n        _item.activationParticles = None\n    except Exception:\n        pass\n    try:\n        _item.damFactor = _item.get_p(\"dam\")\n    except Exception:\n        pass\n"
     },
@@ -17944,7 +18056,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Repeater": {
    "key": "Repeater",
@@ -18046,7 +18159,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Box of Riches": {
    "key": "Box of Riches",
@@ -18213,7 +18327,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Flawed Ruby": {
    "key": "Flawed Ruby",
@@ -18296,7 +18411,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Regular Ruby": {
    "key": "Regular Ruby",
@@ -18379,7 +18495,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Flawless Ruby": {
    "key": "Flawless Ruby",
@@ -18462,7 +18579,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Perfect Ruby": {
    "key": "Perfect Ruby",
@@ -18545,7 +18663,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Chipped Sapphire": {
    "key": "Chipped Sapphire",
@@ -18634,7 +18753,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Flawed Sapphire": {
    "key": "Flawed Sapphire",
@@ -18717,7 +18837,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Regular Sapphire": {
    "key": "Regular Sapphire",
@@ -18800,7 +18921,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Flawless Sapphire": {
    "key": "Flawless Sapphire",
@@ -18883,7 +19005,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Perfect Sapphire": {
    "key": "Perfect Sapphire",
@@ -18966,7 +19089,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Chipped Emerald": {
    "key": "Chipped Emerald",
@@ -19046,7 +19170,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Flawed Emerald": {
    "key": "Flawed Emerald",
@@ -19126,7 +19251,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Regular Emerald": {
    "key": "Regular Emerald",
@@ -19206,7 +19332,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Flawless Emerald": {
    "key": "Flawless Emerald",
@@ -19286,7 +19413,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Perfect Emerald": {
    "key": "Perfect Emerald",
@@ -19366,7 +19494,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Chipped Topaz": {
    "key": "Chipped Topaz",
@@ -19819,7 +19948,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Flawed Amethyst": {
    "key": "Flawed Amethyst",
@@ -19898,7 +20028,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Regular Amethyst": {
    "key": "Regular Amethyst",
@@ -19977,7 +20108,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Flawless Amethyst": {
    "key": "Flawless Amethyst",
@@ -20056,7 +20188,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Perfect Amethyst": {
    "key": "Perfect Amethyst",
@@ -20135,7 +20268,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Ranger Bag": {
    "key": "Ranger Bag",
@@ -20301,6 +20435,7 @@
      "salesRound2"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    if _item.ownerType == Owner.PlayerInventory:\n        pass  # visual",
      "canApplyEffect": "def canApplyEffect(_item, toItem=None):\n    return toItem.has_type(Type.Nature)",
      "onPrepare": "def onPrepare(_item):\n    healAmp = None\n    healAmp = _item.get_p(\"healamp\")\n    healAmp += _item.get_p(\"ampbonus\") * _item.get_num_affected_inside()\n    _item.character_().add_healing_efficiency(healAmp / 100.0)",
      "onShopOpened": "def onShopOpened(_item):\n    if Game.curRound == _item.salesRound1 or Game.curRound == _item.salesRound2:\n        pass  # visual",
@@ -20566,7 +20701,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Shortbow": {
    "key": "Shortbow",
@@ -20622,7 +20758,8 @@
    },
    "tags": [
     "bow"
-   ]
+   ],
+   "extra_cds": []
   },
   "Acorn Collar": {
    "key": "Acorn Collar",
@@ -20848,7 +20985,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Thorn Shortbow": {
    "key": "Thorn Shortbow",
@@ -20933,7 +21071,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Lucky Shortbow": {
    "key": "Lucky Shortbow",
@@ -21018,7 +21157,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Poison Shortbow": {
    "key": "Poison Shortbow",
@@ -21108,7 +21248,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Lucky Piggy": {
    "key": "Lucky Piggy",
@@ -21463,7 +21604,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Lucky Bow": {
    "key": "Lucky Bow",
@@ -21583,7 +21725,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Poison Bow": {
    "key": "Poison Bow",
@@ -21700,7 +21843,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Critwood Staff": {
    "key": "Critwood Staff",
@@ -21810,7 +21954,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Snowmaster": {
    "key": "Snowmaster",
@@ -21930,7 +22075,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Vampiric Collar": {
    "key": "Vampiric Collar",
@@ -22961,6 +23107,7 @@
      "stackTypes"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    _item.stackTypes = Game.getBuffs()\n    _item.stackTypes.remove(Game.EventType.Lucky)",
      "onPrepare": "def onPrepare(_item):\n    _item.connect_for_combat(_item.character_(), \"character_lucky_changed\", \"onLuckyChanged\")\n    _item.activated = False",
      "onLuckyChanged": "def onLuckyChanged(_item, amount=None, event=None):\n    particles = None\n    if not _item.activated and _item.character_().get_lucky() >= _item.luckNeeded:\n        _item.activated = True\n    \n        _item.give_random_buffs(_item.numBuffs, event, _item.stackTypes)\n        _item.visual_activate()\n        particles = ObjectPool.particleOneShot(_item.megaCloverParticles, _item.get_parent())\n        pass  # visual",
      "onSaleRoll": "def onSaleRoll(_item, _item_arg=None):\n    Game.shopSceneNode.addBonusSalesChance(_item.sales)",
@@ -23124,7 +23271,8 @@
     "global": true,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Rat": {
    "key": "Rat",
@@ -23182,7 +23330,8 @@
      "poison"
     ],
     "methods": {
-     "initRat": "def initRat(_item):\n    _item.damageSource = DamageSource.new().setItem(_item)\n    _item.poison = int(_item.get_p(\"_item.poison\"))\n    _item.blind = int(_item.get_p(\"_item.blind\"))",
+     "_ready": "def _ready(_item):\n    _item._behavior_call(\"initRat\", )",
+     "initRat": "def initRat(_item):\n    _item.damageSource = _item._new_damage_source()\n    _item.poison = int(_item.get_p(\"_item.poison\"))\n    _item.blind = int(_item.get_p(\"_item.blind\"))",
      "doCooldownEffect": "def doCooldownEffect(_item):\n    dam = None; res = None\n    dam = _item.min_dam\n    res = _item.deal_effect_damage(dam)\n    if _item.roll_chance():\n        _item.inflict_poison(_item.poison, res.event)\n    if _item.roll_chance2():\n        _item.inflict_blind(_item.blind, res.event)\n    \n    _item.visual_activate(res)",
      "playPickupSound": "def playPickupSound(_item):\n    pitch = None\n    pitch = Util.rng.randf_range(0.9, 1.1)\n    pass  # visual",
      "playDropSound": "def playDropSound(_item, volume=None):\n    pitch = None\n    volume += _item.impactSoundVolume\n    pitch = Util.rng.randf_range(0.9, 1.1)\n    pass  # visual",
@@ -23246,7 +23395,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Squirrel": {
    "key": "Squirrel",
@@ -23371,7 +23521,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Hedgehog": {
    "key": "Hedgehog",
@@ -23432,6 +23583,7 @@
      "spikes"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    _item.damageSource = _item._new_damage_source()",
      "doCooldownEffect": "def doCooldownEffect(_item):\n    dam = None; res = None\n    dam = _item.min_dam + _item.character_().get_spikes() * _item.damagePerSpike\n    res = _item.deal_effect_damage(dam)\n    _item.visual_activate(res)",
      "onPrepare": "def onPrepare(_item):\n    _item.hasActivated = False\n    _item.connect_for_combat(_item.character_(), \"character_damaged\", \"onDamaged\")",
      "onDamaged": "def onDamaged(_item, _damage=None, event=None):\n    relHealth = None\n    if _item.hasActivated: return\n    \n    relHealth = _item.character_().get_relative_health()\n    if relHealth < _item.healthThreshold:\n        _item.hasActivated = True\n        _item._behavior_call(\"onHPLow\", event)\n    \n    \n        _item.visual_activate()",
@@ -23485,7 +23637,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Squirrel Archer": {
    "key": "Squirrel Archer",
@@ -23536,6 +23689,7 @@
     "extends": null,
     "instance_vars": [],
     "methods": {
+     "_ready": "def _ready(_item):\n    _item.damageSource = _item._new_damage_source()",
      "onPreDealDamage_early": "def onPreDealDamage_early(_item, damageRes=None):\n    if damageRes.has_hit():\n        _item.steal_random_buff(1)",
      "doCooldownEffect": "def doCooldownEffect(_item):\n    res = None\n    if _item.use_stamina() == Character.StaminaResult.Sufficient:\n        res = _item.deal_damage()\n        _item.visual_activate(res)"
     },
@@ -23606,7 +23760,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Rat Chef": {
    "key": "Rat Chef",
@@ -23726,7 +23881,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Hyper Hedgehog": {
    "key": "Hyper Hedgehog",
@@ -23851,7 +24007,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Storage Coffin": {
    "key": "Storage Coffin",
@@ -24064,7 +24221,8 @@
      "onAffectedItemInsideAdded",
      "onAffectedItemInsideRemoved"
     ]
-   }
+   },
+   "extra_cds": []
   },
   "Fly Agaric": {
    "key": "Fly Agaric",
@@ -24186,7 +24344,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Deck of Cards": {
    "key": "Deck of Cards",
@@ -24400,7 +24559,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Ace of Spades": {
    "key": "Ace of Spades",
@@ -24497,7 +24657,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Reverse": {
    "key": "Reverse",
@@ -24592,7 +24753,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "White-Eyes Blue Dragon": {
    "key": "White-Eyes Blue Dragon",
@@ -24690,7 +24852,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "The Fool": {
    "key": "The Fool",
@@ -24784,7 +24947,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Holo Fire Lizard": {
    "key": "Holo Fire Lizard",
@@ -24841,6 +25005,7 @@
      "heat"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    _item.damageSource = _item._new_damage_source()",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.fireParticles = None\n    except Exception:\n        pass\n    try:\n        _item.damFactor = _item.get_p(\"damfactor\") / 100.0\n    except Exception:\n        pass\n    try:\n        _item.heat = int(_item.get_p(1))\n    except Exception:\n        pass\n"
     },
     "methods_raw": {},
@@ -24883,7 +25048,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Joker": {
    "key": "Joker",
@@ -24988,7 +25154,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Darkest Lotus": {
    "key": "Darkest Lotus",
@@ -25084,7 +25251,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Toad": {
    "key": "Toad",
@@ -25215,7 +25383,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Death Scythe": {
    "key": "Death Scythe",
@@ -25350,7 +25519,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Demonic Flask": {
    "key": "Demonic Flask",
@@ -25413,6 +25583,7 @@
      "healthThreshold"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    _item.damageSource = _item._new_damage_source()",
      "canDamage": "def canDamage(_item):\n    return True",
      "onTriggerPotion": "def onTriggerPotion(_item, triggerEvent=None):\n    dam = None\n    dam = _item.opponent().get_debuff_stacks()\n    dam *= _item.get_p(1)\n    dam = ceil(dam)\n    _item.deal_effect_damage(dam, triggerEvent)",
      "onPrepare": "def onPrepare(_item):\n    _item.connect_for_combat(_item.opponent(), \"character_damaged\", \"onDamaged\")",
@@ -25707,7 +25878,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Strong Pestilence Flask": {
    "key": "Strong Pestilence Flask",
@@ -25916,7 +26088,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Doom Cap": {
    "key": "Doom Cap",
@@ -26049,7 +26222,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Crow": {
    "key": "Crow",
@@ -26222,7 +26396,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Poison Frog": {
    "key": "Poison Frog",
@@ -26349,7 +26524,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Rainbow Goobert": {
    "key": "Rainbow Goobert",
@@ -26828,7 +27004,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Cursed Dagger": {
    "key": "Cursed Dagger",
@@ -26940,7 +27117,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Snake": {
    "key": "Snake",
@@ -27070,7 +27248,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Cauldron": {
    "key": "Cauldron",
@@ -27203,7 +27382,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Mrs Struggles": {
    "key": "Mrs Struggles",
@@ -27318,7 +27498,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Miss Fortune": {
    "key": "Miss Fortune",
@@ -27407,7 +27588,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Strong Demonic Flask": {
    "key": "Strong Demonic Flask",
@@ -27892,6 +28074,7 @@
      "valueFactor"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    pass  # visual",
      "canLockBag": "def canLockBag(_item):\n    return True",
      "showBagBorderForItem": "def showBagBorderForItem(_item, item=None):\n    return not item.is_bag()",
      "onCombatStart": "def onCombatStart(_item):\n    _item.add_empower(_item.get_p(\"empower\"))\n    _item.visual_activate()",
@@ -28137,7 +28320,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Draconic Orb": {
    "key": "Draconic Orb",
@@ -28227,7 +28411,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Phoenix": {
    "key": "Phoenix",
@@ -28340,7 +28525,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Burning Sword": {
    "key": "Burning Sword",
@@ -28465,7 +28651,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Burning Blade": {
    "key": "Burning Blade",
@@ -28591,7 +28778,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Sun Armor": {
    "key": "Sun Armor",
@@ -28754,7 +28942,8 @@
      "onAffectedItemAdded",
      "onAffectedItemRemoved"
     ]
-   }
+   },
+   "extra_cds": []
   },
   "Sun Shield": {
    "key": "Sun Shield",
@@ -28816,6 +29005,7 @@
      "damagePerTick"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    _item.damageSource = _item._new_damage_source()\n    _item.damageSource.unsetFlag(DamageSource.Flags.CanCrit)",
      "canAffect": "def canAffect(_item, item=None):\n    return item.can_block()",
      "onPrepare": "def onPrepare(_item):\n    for item in _range_or_value(_item.get_affected_items()):\n        _item.connect_for_combat(item, \"gave_block\", \"onItemGaveBlock\")\n    _item.bonusDamagePerTick = 0",
      "afterBlock": "def afterBlock(_item):\n    _item.drain_stamina(_item.get_p(1), _item.blockedDamageRes.event)\n    _item.visual_activate()",
@@ -29004,7 +29194,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Molten Spear": {
    "key": "Molten Spear",
@@ -29135,7 +29326,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Staff of Fire": {
    "key": "Staff of Fire",
@@ -29193,6 +29385,7 @@
      "numActivations"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    pass  # visual",
      "onPrepare": "def onPrepare(_item):\n    _item.numActivations = 0",
      "onPreDealDamage_early": "def onPreDealDamage_early(_item, damageRes=None):\n    event = None\n    if _item.character_().get_heat() >= _item.heatCost:\n        event = _item.try_use_mana(_item.manaCost)\n        if event != None:\n            _item.use_heat(_item.heatCost, event)\n            _item.add_bonus_damage(_item.damBonus)\n            _item.numActivations += 1\n            pass  # visual\n            pass  # visual",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.activationParticles = None / ActivationParticles\n    except Exception:\n        pass\n    try:\n        _item.manaCost = _item.get_p(0)\n    except Exception:\n        pass\n    try:\n        _item.heatCost = _item.get_p(1)\n    except Exception:\n        pass\n    try:\n        _item.damBonus = _item.get_p(2)\n    except Exception:\n        pass\n    _item.numActivations = 0\n"
@@ -29240,7 +29433,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Flame Whip": {
    "key": "Flame Whip",
@@ -29345,7 +29539,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Chili Goobert": {
    "key": "Chili Goobert",
@@ -29583,7 +29778,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Molten Greatsword": {
    "key": "Molten Greatsword",
@@ -29704,7 +29900,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Fire Shelly": {
    "key": "Fire Shelly",
@@ -29816,7 +30013,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Rainbow Goobert Pyromancer": {
    "key": "Rainbow Goobert Pyromancer",
@@ -30038,6 +30236,7 @@
      "threshold3"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    _item.damageSource = _item._new_damage_source()",
      "canAffect": "def canAffect(_item, item=None):\n    return item.has_type(Type.Fire)",
      "onPrepare": "def onPrepare(_item):\n    _item.add_speed(_item.get_num_affected_type(Type.Fire) * _item.get_p(2) / 100.0)\n    _item.maxHeatReached = 0\n    _item.connect_for_combat(_item.character_(), \"character_heat_changed\", \"onHeatChanged\")",
      "onHeatChanged": "def onHeatChanged(_item, _amount=None, event=None):\n    newMaxHeat = None; dam = None; damageRes = None\n    newMaxHeat = max(_item.maxHeatReached, _item.character_().get_heat())\n    if newMaxHeat >= _item.threshold3 and _item.maxHeatReached < _item.threshold3:\n        _item.maxHeatReached = newMaxHeat\n        dam = _item.min_dam\n        damageRes = _item.deal_effect_damage(dam, event)\n        _item.visual_activate()\n    elif newMaxHeat >= _item.threshold2 and _item.maxHeatReached < _item.threshold2:\n        _item.maxHeatReached = newMaxHeat\n        _item.give_regeneration(_item.get_p(6), event)\n        _item.visual_activate()\n    elif newMaxHeat >= _item.threshold1 and _item.maxHeatReached < _item.threshold1:\n        _item.maxHeatReached = newMaxHeat\n        _item.add_lucky(_item.get_p(4), event)\n        _item.visual_activate()",
@@ -30119,7 +30318,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Burning Banner": {
    "key": "Burning Banner",
@@ -30281,7 +30481,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Dark Lantern": {
    "key": "Dark Lantern",
@@ -30342,6 +30543,7 @@
      "usedSprite"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    \n    _item.damageSource = _item._new_damage_source()",
      "canAffect": "def canAffect(_item, item=None):\n    return item.has_type(Type.Fire)",
      "canAffect_secondary": "def canAffect_secondary(_item, item=None):\n    return item.has_type(Type.Dark)",
      "onPrepare": "def onPrepare(_item):\n    _item.setState(False)\n    _item.connect_for_combat(_item.character_(), \"character_damaged\", \"onDamaged\")\n    _item.connect_for_combat(_item.character_(), \"reincarnated\", \"onReincarnate\")",
@@ -30484,6 +30686,7 @@
      "heatNeeded"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    _item.frozenFlameBag.prepare(_item.gatedItems.values())",
      "canAffect": "def canAffect(_item, item=None):\n    return item.has_type(Type.Ice)",
      "canAffect_secondary": "def canAffect_secondary(_item, item=None):\n    return item.can_damage()",
      "onPrepare": "def onPrepare(_item):\n    _item.heatCounter = 0\n    _item.connect_for_combat(_item.character_(), \"character_heat_changed\", \"onHeatChanged\")\n    \n    _item.affected2Item = _item.get_first_affected_item(Affected.Secondary)\n    if _item.affected2Item:\n        _item.connect_for_combat(_item.opponent(), \"character_cold_changed\", \"onOpponentColdChanged\")",
@@ -30744,6 +30947,7 @@
      "uses"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    _item.damageSource = _item._new_damage_source()",
      "canAffect": "def canAffect(_item, item=None):\n    return item.has_type(Type.Ice) and not item.is_a(_item.descriptor)",
      "onPrepare": "def onPrepare(_item):\n    _item.uses = 0\n    _item.maxUses = int(_item.get_p(0)) + _item.get_num_affected_items()",
      "doCooldownEffect": "def doCooldownEffect(_item):\n    dam = None; damageRes = None\n    if _item.uses < _item.maxUses:\n        _item.uses += 1\n        dam = _item.min_dam\n        damageRes = _item.deal_effect_damage(dam)\n        _item.give_stacks_temporary(_item.opponent(), Game.EventType.Cold,\n            _item.coldAmount, _item.get_p_m(\"dur_cold\"), damageRes.event)\n        if _item.uses == _item.maxUses:\n            pass  # visual\n        else:\n            _item.visual_activate()",
@@ -30808,7 +31012,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Ice Armor": {
    "key": "Ice Armor",
@@ -30908,7 +31113,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Frozen Buckler": {
    "key": "Frozen Buckler",
@@ -31098,7 +31304,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Ice Dragon": {
    "key": "Ice Dragon",
@@ -31214,7 +31421,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Emerald Egg": {
    "key": "Emerald Egg",
@@ -31377,7 +31585,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Sapphire Egg": {
    "key": "Sapphire Egg",
@@ -31514,6 +31723,7 @@
      "stackTypes"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    _item.stackTypes = Game.getBuffs()\n    _item.stackTypes.remove(Game.EventType.Mana)",
      "onCombatStart": "def onCombatStart(_item):\n    _item.add_mana(_item.get_p(0))\n    _item.visual_activate(None, False)",
      "onPreDealDamage_early": "def onPreDealDamage_early(_item, damageRes=None):\n    event = None\n    if damageRes.has_hit():\n        event = _item.try_use_mana(_item.get_p(1))\n        if event:\n            _item.give_block(_item.get_block(), True, event)\n            _item.give_random_buffs(1, event, _item.stackTypes)",
      "_onready_init": "def _onready_init(_item):\n    _item.stackTypes = 0\n"
@@ -31550,7 +31760,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Amethyst Egg": {
    "key": "Amethyst Egg",
@@ -31714,7 +31925,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Berserker Bag": {
    "key": "Berserker Bag",
@@ -31967,7 +32179,8 @@
      "onAffectedItemInsideAdded",
      "onAffectedItemInsideRemoved"
     ]
-   }
+   },
+   "extra_cds": []
   },
   "Forging Hammer": {
    "key": "Forging Hammer",
@@ -32048,7 +32261,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Axe": {
    "key": "Axe",
@@ -32139,7 +32353,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Spiked Collar": {
    "key": "Spiked Collar",
@@ -32334,7 +32549,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Double Axe": {
    "key": "Double Axe",
@@ -32444,7 +32660,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Chain Whip": {
    "key": "Chain Whip",
@@ -32548,7 +32765,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Dragonscale Armor": {
    "key": "Dragonscale Armor",
@@ -32946,7 +33164,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Spiked Staff": {
    "key": "Spiked Staff",
@@ -33049,7 +33268,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Cheese Goobert": {
    "key": "Cheese Goobert",
@@ -33704,7 +33924,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Wolf Emblem": {
    "key": "Wolf Emblem",
@@ -33878,7 +34099,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Shaman Mask": {
    "key": "Shaman Mask",
@@ -33929,6 +34151,7 @@
      "runes"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    if not _item.pooled:\n        _item.runes.append(\"Tiger Rune\")",
      "onCombatStart": "def onCombatStart(_item):\n    _item.add_lucky(_item.character_().count_socketed_gems())",
      "doCooldownEffect": "def doCooldownEffect(_item):\n    event = None\n    if _item.character_().get_lucky() >= _item.luckNeeded:\n        event = _item.use_lucky(_item.luckNeeded)\n        _item.give_random_buffs(_item.get_p(2), event)\n    _item.visual_activate()",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.runes = [\"Badger Rune\", \"Elephant Rune\", \"Hawk Rune\"]\n    except Exception:\n        pass\n    try:\n        _item.luckNeeded = _item.get_p(1)\n    except Exception:\n        pass\n"
@@ -33964,7 +34187,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Brass Knuckles": {
    "key": "Brass Knuckles",
@@ -34079,7 +34303,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Courage Puppy": {
    "key": "Courage Puppy",
@@ -34132,6 +34357,7 @@
     "methods": {
      "playPickupSound": "def playPickupSound(_item):\n    pass  # visual",
      "playDropSound": "def playDropSound(_item, volume=None):\n    volume += _item.impactSoundVolume\n    pass  # visual",
+     "_ready": "def _ready(_item):\n    _item.damageSource = _item._new_damage_source()",
      "canAffect": "def canAffect(_item, item=None):\n    return item.has_type(Type.Pet)",
      "onPreCombatStart": "def onPreCombatStart(_item):\n    _item.add_bonus_damage(_item.get_p(0) * _item.get_num_affected_items())",
      "doCooldownEffect": "def doCooldownEffect(_item):\n    res = None\n    res = _item.deal_damage()\n    _item.visual_activate(res)",
@@ -34196,7 +34422,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Wisdom Puppy": {
    "key": "Wisdom Puppy",
@@ -34312,7 +34539,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Power Puppy": {
    "key": "Power Puppy",
@@ -34431,7 +34659,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Armored Courage Puppy": {
    "key": "Armored Courage Puppy",
@@ -34515,8 +34744,17 @@
     ]
    },
    "behavior": {
-    "methods": {},
-    "methods_raw": {}
+    "extends": null,
+    "instance_vars": [],
+    "methods": {
+     "_ready": "def _ready(_item):\n    _item.damageSource.unsetFlag(DamageSource.Flags.CanTriggerItems)\n    _item.damageSource.unsetFlag(DamageSource.Flags.CanTriggerSpikes)"
+    },
+    "methods_raw": {},
+    "extends_chain": [
+     "CouragePuppy",
+     "Item"
+    ],
+    "script_file": "ArmoredCouragePuppy.gd"
    },
    "linkage": {
     "overrides": [],
@@ -34531,7 +34769,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Armored Wisdom Puppy": {
    "key": "Armored Wisdom Puppy",
@@ -34646,7 +34885,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Armored Power Puppy": {
    "key": "Armored Power Puppy",
@@ -34760,7 +35000,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Badger Rune": {
    "key": "Badger Rune",
@@ -34936,7 +35177,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Hawk Rune": {
    "key": "Hawk Rune",
@@ -35013,7 +35255,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Tiger Rune": {
    "key": "Tiger Rune",
@@ -35150,6 +35393,7 @@
      "skillPool"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    pass  # visual\n    if _item.ownerType == Owner.Shop:\n        pass  # visual",
      "getSkillPool": "def getSkillPool(_item):\n    _item.skillPool = ItemBook.getSkillPool()",
      "identifySkill": "def identifySkill(_item, dropResult=None, skillDescriptor=None):\n    skill = None; pulse = None\n    \n    skill = ItemBook.generateItem(skillDescriptor)\n    if _item.wasAddedToInventory(dropResult):\n        _item.character_().get_items().replaceItem(_item, skill)\n    else:\n        Game.STORAGEBOX.removeItem(_item)\n        _item.collisionShape.disabled = True\n        pass  # visual\n        pass  # visual\n    \n        pass  # visual\n        pass  # visual\n    \n    pass  # visual\n    pulse = ObjectPool.instance(_item.revealPulseScene)\n    pass  # visual\n    pass  # visual\n    pass  # visual\n    Game.saveRunState()\n    \n    skill.onBought()\n    _item.finishReplacement()",
      "getRelatedItemColumns": "def getRelatedItemColumns(_item):\n    return 6",
@@ -35877,7 +36121,8 @@
     "global": true,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Goobling": {
    "key": "Goobling",
@@ -36443,7 +36688,8 @@
     "global": true,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Extra Bags": {
    "key": "Extra Bags",
@@ -36945,7 +37191,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Heavy Drinking": {
    "key": "Heavy Drinking",
@@ -37095,7 +37342,8 @@
     "global": true,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Mana Mastery": {
    "key": "Mana Mastery",
@@ -37242,7 +37490,8 @@
     "global": true,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Power of the Moon": {
    "key": "Power of the Moon",
@@ -37556,7 +37805,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Blood Manipulation": {
    "key": "Blood Manipulation",
@@ -37694,7 +37944,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Echoing Battlecry": {
    "key": "Echoing Battlecry",
@@ -37814,7 +38065,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Enchanted Weapons": {
    "key": "Enchanted Weapons",
@@ -37948,7 +38200,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "No Rush Please": {
    "key": "No Rush Please",
@@ -38175,7 +38428,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "False Life": {
    "key": "False Life",
@@ -38317,7 +38571,8 @@
     "global": true,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Fortunas Kiss": {
    "key": "Fortunas Kiss",
@@ -38371,6 +38626,7 @@
      "stackTypes"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    _item.stackTypes = Game.getBuffs()\n    _item.stackTypes.remove(Game.EventType.Lucky)",
      "canAffect": "def canAffect(_item, item=None):\n    return item.can_modify_chance()",
      "onPrepare": "def onPrepare(_item):\n    for item in _range_or_value(_item.get_affected_items()):\n        item.add_bonus_chance(_item.bonusChance)",
      "doCooldownEffect": "def doCooldownEffect(_item):\n    if _item.character_().get_lucky() >= _item.luckNeeded:\n        _item.give_random_buffs(1, None, _item.stackTypes)\n    else:\n        _item.add_lucky(1)\n    _item.visual_activate()",
@@ -38411,7 +38667,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "More Stats": {
    "key": "More Stats",
@@ -39173,7 +39430,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Markswoman": {
    "key": "Markswoman",
@@ -39362,6 +39620,7 @@
      "staminaReduction"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    pass  # visual\n    _item.affectedDescriptors[_item.critwoodStaffDescriptor] = 4",
      "setData": "def setData(_item, data=None):\n    if data != None:\n        _item.boostedCollars = data",
      "canAffect_global": "def canAffect_global(_item, item=None):\n    return item.descriptor in _item.affectedDescriptors",
      "onPrepare": "def onPrepare(_item):\n    for staff in _range_or_value(_item.get_all_in_inventory_of_type(_item.critwoodStaffDescriptor)):\n        staff.change_stamina_factor(_item.staminaReduction)",
@@ -39784,7 +40043,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Extra Angy": {
    "key": "Extra Angy",
@@ -39869,7 +40129,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Dragon Set": {
    "key": "Dragon Set",
@@ -39968,7 +40229,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Everburning": {
    "key": "Everburning",
@@ -40058,7 +40320,8 @@
     "global": true,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Solaris": {
    "key": "Solaris",
@@ -40554,7 +40817,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Level Up": {
    "key": "Level Up",
@@ -40649,7 +40913,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Dual Wielding": {
    "key": "Dual Wielding",
@@ -40965,7 +41230,8 @@
      "onAffectedItemInsideAdded",
      "onAffectedItemInsideRemoved"
     ]
-   }
+   },
+   "extra_cds": []
   },
   "Chess Board": {
    "key": "Chess Board",
@@ -41066,7 +41332,8 @@
     "global": false,
     "related_columns": true,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "White Pawn": {
    "key": "White Pawn",
@@ -42113,7 +42380,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Book of Basics": {
    "key": "Book of Basics",
@@ -42235,7 +42503,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Cupcake": {
    "key": "Cupcake",
@@ -42339,7 +42608,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Spell Scroll Ice": {
    "key": "Spell Scroll Ice",
@@ -42704,7 +42974,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Spell Scroll Dark": {
    "key": "Spell Scroll Dark",
@@ -42839,7 +43110,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Book of Nature": {
    "key": "Book of Nature",
@@ -42980,7 +43252,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Book of Darkness": {
    "key": "Book of Darkness",
@@ -43121,7 +43394,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Book of Light": {
    "key": "Book of Light",
@@ -43261,7 +43535,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Book of Ice": {
    "key": "Book of Ice",
@@ -43399,7 +43674,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Book of Ice New": {
    "key": "Book of Ice New",
@@ -43537,7 +43813,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Magic Mirror": {
    "key": "Magic Mirror",
@@ -43653,7 +43930,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Ice Flower": {
    "key": "Ice Flower",
@@ -43949,7 +44227,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Death Lotus": {
    "key": "Death Lotus",
@@ -44086,7 +44365,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Null Blade": {
    "key": "Null Blade",
@@ -44154,6 +44434,7 @@
      "speedBonus"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    pass  # visual",
      "onPreDealDamage_early": "def onPreDealDamage_early(_item, damageRes=None):\n    particles = None\n    if damageRes.has_hit():\n        if _item.character_().get_lucky() >= _item.luckNeeded:\n            _item.use_lucky(_item.luckNeeded)\n            damageRes.damage += _item.dam\n            _item.add_bonus_damage(_item.dam)\n            particles = ObjectPool.particleOneShot(_item.activationParticles, _item.sprite)\n            pass  # visual\n            pass  # visual\n    \n        if _item.character_().get_regeneration() >= _item.regenNeeded:\n            _item.use_regeneration(_item.regenNeeded)\n            _item.remove_random_buffs(_item.buffs)\n            if _item.opponent().get_buff_stacks() == 0:\n                _item.add_speed(_item.speedBonus)\n    \n            particles = ObjectPool.particleOneShot(_item.activationParticles, _item.sprite)\n            pass  # visual\n            pass  # visual",
      "drop": "def drop(_item):\n    res = None\n    res = _item._behavior_super('drop', 'NullBlade')()\n    pass  # visual\n    return res",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.activationParticles = _item.preload(\"res://Items/Exclusive/Particles/NullBladeActivationParticles.tscn\")\n    except Exception:\n        pass\n    try:\n        _item.luckNeeded = int(_item.get_p(\"luckt\"))\n    except Exception:\n        pass\n    try:\n        _item.regenNeeded = int(_item.get_p(\"regent\"))\n    except Exception:\n        pass\n    try:\n        _item.dam = int(_item.get_p(\"dam\"))\n    except Exception:\n        pass\n    try:\n        _item.buffs = int(_item.get_p(\"buffs\"))\n    except Exception:\n        pass\n    try:\n        _item.speedBonus = _item.get_p(\"speed\") / 100.0\n    except Exception:\n        pass\n    try:\n        _item.distortion = None / Distortion\n    except Exception:\n        pass\n"
@@ -44196,7 +44477,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Devouring Sphere": {
    "key": "Devouring Sphere",
@@ -44262,6 +44544,7 @@
      "vampirism"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    pass  # visual",
      "onPrepare": "def onPrepare(_item):\n    _item.connect_for_combat(_item.opponent(), \"character_cold_changed\", \"onOpponentColdChanged\")\n    _item.connect_for_combat(_item.opponent(), \"character_blind_changed\", \"onOpponentBlindChanged\")",
      "doCooldownEffect": "def doCooldownEffect(_item):\n    _item.add_vampirism(_item.vampirism)\n    _item.steal_life(_item.dam, _item.get_p_m(\"lifesteal\") / 100.0)\n    _item.visual_activate()",
      "onOpponentColdChanged": "def onOpponentColdChanged(_item, amount=None, event=None):\n    _item.add_speed(amount * _item.coldSpeed)",
@@ -44301,7 +44584,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Cat Spirit": {
    "key": "Cat Spirit",
@@ -44443,7 +44727,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Owl Spirit": {
    "key": "Owl Spirit",
@@ -44561,7 +44846,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Badger Spirit": {
    "key": "Badger Spirit",
@@ -44720,7 +45006,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Prismatic Wand": {
    "key": "Prismatic Wand",
@@ -44821,7 +45108,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Cupcake Goobert": {
    "key": "Cupcake Goobert",
@@ -45199,7 +45487,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Mage Hat": {
    "key": "Mage Hat",
@@ -45922,6 +46211,7 @@
     ],
     "methods": {
      "canAffect": "def canAffect(_item, item=None):\n    return not item.is_bag()",
+     "_ready": "def _ready(_item):\n    pass  # visual",
      "readyToFuse": "def readyToFuse(_item):\n    return _item.bondedIngredients",
      "getCounterValue": "def getCounterValue(_item):\n    gold = None; inv = None\n    gold = 0\n    inv = _item.character_().get_items() if _item.placed else Game.PLAYER.INVENTORY\n    for item in _range_or_value(inv.getItemsAndGems()):\n        if item.isGem():\n            gold += item.get_price()\n    \n    if _item.dragged:\n        for gem in _range_or_value(_item.get_gems_no_null()):\n            gold += gem.get_price()\n    \n    return gold",
      "onPrepare": "def onPrepare(_item):\n    _item.connect_for_combat(_item.character_(), \"character_invulnerable_start\", \"onInvuStarted\")\n    \n    \n    \n    _item.manaNeeded = _item.manaNeeded_base\n    _item.invuProcced = 0\n    _item.gemDurFactor = floor(_item._behavior_call(\"getCounterValue\", ) / _item.get_p(\"gold\"))\n    _item.setState(False)",
@@ -46001,7 +46291,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Spirit Bells": {
    "key": "Spirit Bells",
@@ -46176,7 +46467,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Water Elemental": {
    "key": "Water Elemental",
@@ -46259,6 +46551,7 @@
      "pickupSound"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    if _item.ownerType == Owner.GridStorage:\n        pass  # visual\n    else:\n        pass  # visual",
      "canAffect": "def canAffect(_item, item=None):\n    return item.has_type(Type.Nature)",
      "canAffect_secondary": "def canAffect_secondary(_item, item=None):\n    return item.has_type(Type.Ice)",
      "onPrepare": "def onPrepare(_item):\n    _item.connect_for_combat(_item.character_(), \"character_mana_changed\", \"onManaChanged\")\n    _item.manaUsed = 0\n    _item.add_speed(_item.iceSpeed * _item.get_num_affected_items(Affected.Secondary))\n    _item.activeEffects = 0\n    _item.setState(_item.activeEffects)",
@@ -46397,7 +46690,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Evil Hat": {
    "key": "Evil Hat",
@@ -46566,7 +46860,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Rainbow Potion": {
    "key": "Rainbow Potion",
@@ -47402,7 +47697,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Piggy of Riches": {
    "key": "Piggy of Riches",
@@ -47450,6 +47746,7 @@
     "extends": null,
     "instance_vars": [],
     "methods": {
+     "_ready": "def _ready(_item):\n    _item.numGems = 2",
      "onCombatStart": "def onCombatStart(_item):\n    _item.give_max_health(_item.character_().count_socketed_gems() * _item.get_p_m(\"maxhealth\"))\n    _item.consume()"
     },
     "methods_raw": {},
@@ -47714,7 +48011,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Heart Shield": {
    "key": "Heart Shield",
@@ -48024,7 +48322,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Broccoli": {
    "key": "Broccoli",
@@ -48144,7 +48443,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Lootbox": {
    "key": "Lootbox",
@@ -48200,7 +48500,9 @@
      "itemValue",
      "treasureParticles"
     ],
-    "methods": {},
+    "methods": {
+     "_ready": "def _ready(_item):\n    pass  # visual"
+    },
     "methods_raw": {
      "generateItems": "\tif wasAddedToInventory(dropResult):\n\t\tinventory.removeItem(self)\n\t\tdiscard()\n\telse:\n\t\tGame.STORAGEBOX.removeItem(self)\n\t\tcollisionShape.disabled = true\n\t\tdiscard()\n\t\n\tvar itemI = 0\n\t\n\tvar canGenerateTreasures = ItemBook.getTreasureCapacity() > 0\n\tif canGenerateTreasures and rollShopChance():\n\t\tvar descr = ItemBook.getRandomTreasureDescriptor(itemValue)\n\t\tvar treasure = ItemBook.generateAndStorageItem(descr, global_position, \n\t\t\tglobal_position - Vector2(0, OFFSET))\n\t\titemI += 1\n\t\titemValue -= treasure.getPrice()\n\t\ttreasure.popIn(false, 1.5)\n\t\tUtil.callDelayed(ObjectPool, \"particleOneShot\", 0.15, \n\t\t\t[treasureParticles, get_parent(), global_position])\n\t\n\tvar itemPool = ItemPool.new()\n\tfor descriptor in ItemBook.items.values():\n\t\tif ItemBook.canBeGenerated(descriptor, filters):\n\t\t\titemPool.addItem(descriptor)\n\titemPool.sortItems()\n\t\n\titemPool.setPrice(itemValue)\n\tvar value = itemValue\n\twhile value > 0:\n\t\titemI += 1\n\t\tvar descr = itemPool.getRandomItem()\n\t\tvalue -= descr.getPrice()\n\t\titemPool.setPrice(value)\n\t\tvar item = ItemBook.generateAndStorageItem(descr, global_position, \n\t\t\tglobal_position - Vector2(0, OFFSET * itemI))\n\t\titem.popIn(false, 1.5)\n\t\t\n\t\n\t\n\t\n\tvar particles1 = ObjectPool.particleOneShot(burstParticles1, get_parent(), \n\t\tglobal_position)\n\tvar particles2 = ObjectPool.particleOneShot(burstParticles2, get_parent(), \n\t\tglobal_position)\n\t\n\tSound.playSound(giveSound, - 2)\n\tSound.playSound(chestSound, 2)\n\tGame.saveRunState()\n\tfinishReplacement()"
     },
@@ -48634,7 +48936,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Long Spear": {
    "key": "Long Spear",
@@ -48782,7 +49085,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Daggerang": {
    "key": "Daggerang",
@@ -48873,7 +49177,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Jynx Staff": {
    "key": "Jynx Staff",
@@ -49077,7 +49382,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Fedora": {
    "key": "Fedora",
@@ -49252,7 +49558,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Scale": {
    "key": "Scale",
@@ -49420,7 +49727,8 @@
      "onAffectedItemAdded",
      "onAffectedItemRemoved"
     ]
-   }
+   },
+   "extra_cds": []
   },
   "Mercury Elemental": {
    "key": "Mercury Elemental",
@@ -49481,6 +49789,7 @@
      "staminaUsed"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    if _item.ownerType == Owner.GridStorage:\n        pass  # visual\n    else:\n        pass  # visual",
      "isAffectingDistinct": "def isAffectingDistinct(_item, color=None):\n    return color == Affected.Primary",
      "canAffect": "def canAffect(_item, item=None):\n    return item.descriptor.isMeleeWeapon()",
      "onPrepare": "def onPrepare(_item):\n    _item.connect_for_combat(_item.opponent(), \"character_attacked\", \"onOpponentAttacked\")\n    _item.connect_for_combat(_item.character_(), \"character_used_stamina\", \"onStaminaUsed\")\n    \n    _item.staminaRegen = _item.get_p(\"stamina\") * _item.get_num_distinct_affected_items()\n    _item.staminaUsed = 0",
@@ -49589,7 +49898,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Turtle": {
    "key": "Turtle",
@@ -49707,7 +50017,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Ukulele": {
    "key": "Ukulele",
@@ -49906,7 +50217,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Engineer Box": {
    "key": "Engineer Box",
@@ -50672,7 +50984,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Slice of Bread": {
    "key": "Slice of Bread",
@@ -50776,7 +51089,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Slice of Toast": {
    "key": "Slice of Toast",
@@ -50883,7 +51197,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Toast Goobert": {
    "key": "Toast Goobert",
@@ -51266,7 +51581,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Electric Torch": {
    "key": "Electric Torch",
@@ -51404,7 +51720,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Robodog": {
    "key": "Robodog",
@@ -51467,6 +51784,7 @@
      "spawnPos"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    _item.digUpBag.prepare(_item.digUpItems.values())",
      "onPrepare": "def onPrepare(_item):\n    pass  # visual",
      "onChargeReceived": "def onChargeReceived(_item, _charge=None):\n    _item.reset_base_cooldown()\n    if _item.numCharges == 1:\n        _item.setState(True)",
      "onChargeLeft": "def onChargeLeft(_item, _charge=None):\n    if _item.numCharges == 0:\n        _item.setState(False)",
@@ -51516,7 +51834,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Mecha Bat": {
    "key": "Mecha Bat",
@@ -51641,7 +51960,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Bazooka": {
    "key": "Bazooka",
@@ -51748,7 +52068,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Lightning Staff": {
    "key": "Lightning Staff",
@@ -51895,7 +52216,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Generator": {
    "key": "Generator",
@@ -52014,7 +52336,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Chainsaw": {
    "key": "Chainsaw",
@@ -52125,7 +52448,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Poison Grenade": {
    "key": "Poison Grenade",
@@ -52222,7 +52546,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Con-Trap-Tron": {
    "key": "Con-Trap-Tron",
@@ -52497,7 +52822,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Eat-o-matic": {
    "key": "Eat-o-matic",
@@ -52804,7 +53130,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Tesla Coil": {
    "key": "Tesla Coil",
@@ -52865,6 +53192,7 @@
      "salesChance"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    pass  # visual",
      "canAffect": "def canAffect(_item, item=None):\n    return item.has_cooldown()",
      "onPrepare": "def onPrepare(_item):\n    otherItems = None\n    pass  # visual\n    _item.setState(0)\n    _item.collectCharges = True\n    _item.numCollectedCharges = 0\n    _item.advanceItemCounter = 0\n    _item.itemsToAdvance = _item.get_affected_items().copy()\n    _item.itemsToAdvance\n    \n    otherItems = []\n    for item in _range_or_value(_item.character_().get_items()):\n        if item != _item and not item in _item.itemsToAdvance:\n            if item.has_cooldown():\n                otherItems.append(item)\n    \n    otherItems\n    _item.itemsToAdvance.extend(otherItems)",
      "onChargeReceived": "def onChargeReceived(_item, _charge=None):\n    if _item.collectCharges:\n        _item.numCollectedCharges += 1\n        _item.setState(_item.numCollectedCharges)\n        _item.visual_activate()\n    else:\n        _item._behavior_call(\"advanceItem\", )",
@@ -52945,7 +53273,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Mana Crystal": {
    "key": "Mana Crystal",
@@ -53079,7 +53408,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Bionic Armor": {
    "key": "Bionic Armor",
@@ -53201,7 +53531,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Laboratory": {
    "key": "Laboratory",
@@ -53214,7 +53545,7 @@
    "damage_type": "effect",
    "min_dam": 0,
    "max_dam": 0,
-   "cd": 0.0,
+   "cd": 2.0,
    "accuracy": 100.0,
    "crit": 0.0,
    "stamina_cost": 0.0,
@@ -53255,6 +53586,7 @@
      "typesDict"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    _item.phase = - 1\n    _item._behavior_call(\"switchGradient\", )",
      "onPreCombatStart": "def onPreCombatStart(_item):\n    _item.setState(0)\n    _item.typesDict = _item.count_types(_item.get_affected_items())",
      "trigger": "def trigger(_item):\n    _item.setState(_item.phase + 1)\n    \n    pass  # super",
      "canAffect": "def canAffect(_item, item=None):\n    return (item.has_type(Type.Fire) or\n            item.has_type(Type.Nature) or\n            item.has_type(Type.Holy) or\n            item.has_type(Type.Vampiric) or\n            item.is_class_item(Game.Classes_Full.Engineer))",
@@ -53330,7 +53662,13 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": [
+    4.0,
+    6.0,
+    8.0,
+    12.0
+   ]
   },
   "Hypercube": {
    "key": "Hypercube",
@@ -53374,6 +53712,7 @@
     "extends": "Item",
     "instance_vars": [],
     "methods": {
+     "_ready": "def _ready(_item):\n    pass  # visual",
      "getTextureSize": "def getTextureSize(_item):\n    return _item.sprite.texture.get_size() * Vector2(2, 2) * _item.sprite.global_scale"
     },
     "methods_raw": {
@@ -53567,6 +53906,7 @@
     ],
     "methods": {
      "canAffect": "def canAffect(_item, item=None):\n    return item.has_cooldown()",
+     "_ready": "def _ready(_item):\n    _item._behavior_call(\"onStateChanged\", _item.maxUses)",
      "onPrepare": "def onPrepare(_item):\n    _item.setState(0)\n    _item.buffCounter = 0\n    _item.affectedItem = _item.get_first_affected_item()\n    _item.connect_to_character_buffs(\"onBuffsChanged\")",
      "onBuffsChanged": "def onBuffsChanged(_item, amount=None, event=None):\n    remainingUses = None; numProccs = None\n    remainingUses = _item.maxUses - _item.numActivations\n    if remainingUses == 0: return\n    \n    if amount > 0:\n        numProccs = 0\n        _item.buffCounter += amount\n        while _item.buffCounter > _item.buffsNeeded:\n            numProccs += 1\n            _item.buffCounter -= _item.buffsNeeded\n    \n        numProccs = min(remainingUses, numProccs)\n    \n        if numProccs > 0:\n            if _item.affectedItem != None:\n                if Game.cubeAdvanced.get(_item.affectedItem, _item) == _item:\n                    Game.cubeAdvanced[_item.affectedItem] = _item\n                    _item.affectedItem.advance_cooldown_seconds(_item.cdAdvance * numProccs)\n                else:\n                    _item.affectedItem.advance_cooldown_seconds(_item.cdAdvance * numProccs * _item.penaltyFactor)\n    \n            _item.give_random_buffs(numProccs)\n            _item.setState(_item.numActivations + numProccs)\n            _item.visual_activate()",
      "onStateChanged": "def onStateChanged(_item, _numActivations=None):\n    _item.numActivations = _numActivations\n    pass  # visual",
@@ -53801,7 +54141,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Cap of Brilliance": {
    "key": "Cap of Brilliance",
@@ -54078,7 +54419,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Arcane Boots": {
    "key": "Arcane Boots",
@@ -54286,6 +54628,7 @@
      "stunParticles"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    _item.effectDmgSource = DamageSource.new().init(_item,\n        DamageSource.Type.Effect, _item.effectDmg)",
      "onDealtDamage": "def onDealtDamage(_item, damageRes=None):\n    particles = None; event = None; duration = None\n    if damageRes.has_hit():\n        if _item.roll_chance():\n            _item.stun(_item.get_p_m(\"dur_stun\"), damageRes.event)\n            particles = ObjectPool.particleOneShot(_item.stunParticles, _item.sprite)\n            pass  # visual\n    \n        if _item.character_().get_mana() >= _item.manaNeeded:\n            event = _item.use_mana(_item.manaNeeded, damageRes.event)\n            _item.deal_effect_damage(_item.effectDmg, event, _item.effectDmgSource)\n            duration = _item.get_p_m(\"dur_blind\")\n            _item.give_stacks_temporary(_item.opponent(), Game.EventType.Blind,\n                _item.blind, duration, event)",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.stunParticles = _item.preload(\"res://Items/Particles/StunParticles.tscn\")\n    except Exception:\n        pass\n    try:\n        _item.manaNeeded = int(_item.get_p(\"manat\"))\n    except Exception:\n        pass\n    try:\n        _item.effectDmg = int(_item.get_p(\"dam\"))\n    except Exception:\n        pass\n    try:\n        _item.blind = int(_item.get_p(\"blind\"))\n    except Exception:\n        pass\n    _item.effectDmgSource = 0\n"
     },
@@ -54333,7 +54676,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Automanaton": {
    "key": "Automanaton",
@@ -54411,6 +54755,7 @@
      "stunParticles"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    pass  # visual",
      "canAffect": "def canAffect(_item, item=None):\n    return item.has_cooldown() or item.gains_stack(Stack.Mana)",
      "onPrepare": "def onPrepare(_item):\n    _item._behavior_call(\"updateShaderRotation\", )\n    _item.hasActivated = False\n    _item.connect_for_combat(_item.character_(), \"character_damaged\", \"onDamaged\")",
      "onDealtDamage": "def onDealtDamage(_item, damageRes=None):\n    event = None; duration = None; particles = None\n    if (damageRes.has_hit() and\n        _item.character_().get_mana() >= _item.manaNeeded):\n    \n        event = _item.use_mana(_item.manaNeeded, damageRes.event)\n        duration = _item.get_p_m(\"dur_blind\")\n        _item.give_stacks_temporary(_item.opponent(), Game.EventType.Blind,\n            _item.blind, duration, event)\n    \n        if _item.roll_chance():\n            _item.stun(_item.get_p_m(\"dur_stun\"), event)\n            particles = ObjectPool.particleOneShot(_item.stunParticles, _item.sprite)\n            pass  # visual\n    \n        _item.cleanse_random_debuffs(_item.numDebuffs, event)",
@@ -54515,7 +54860,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Mananana": {
    "key": "Mananana",
@@ -54642,7 +54988,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Gigawatz": {
    "key": "Gigawatz",
@@ -54703,6 +55050,7 @@
      "speedBonus"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    _item.damageSource = _item._new_damage_source()",
      "onPrepare": "def onPrepare(_item):\n    _item.curDamageBonus = 0\n    _item.numSpeedboosts = 0",
      "onChargeReceived": "def onChargeReceived(_item, _charge=None):\n    if _item.numSpeedboosts < _item.maxNumSpeedBoosts:\n        _item.add_speed(_item.speedBonus)\n        _item.numSpeedboosts += 1",
      "doCooldownEffect": "def doCooldownEffect(_item):\n    dam = None; res = None\n    _item.inflict_blind(_item.blind)\n    dam = _item.min_dam + _item.curDamageBonus\n    res = _item.deal_effect_damage(dam)\n    _item.visual_activate()\n    _item.curDamageBonus += _item.damageBonus",
@@ -54735,7 +55083,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Perpetuum Mobile": {
    "key": "Perpetuum Mobile",
@@ -54851,7 +55200,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Critical Poison": {
    "key": "Critical Poison",
@@ -55093,7 +55443,7 @@
    "damage_type": "effect",
    "min_dam": 0,
    "max_dam": 0,
-   "cd": 0.0,
+   "cd": 3.0,
    "accuracy": 100.0,
    "crit": 0.0,
    "stamina_cost": 0.0,
@@ -55174,7 +55524,11 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": [
+    6.0,
+    9.0
+   ]
   },
   "Spin to Win": {
    "key": "Spin to Win",
@@ -55272,7 +55626,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Energy Conversion": {
    "key": "Energy Conversion",
@@ -55333,6 +55688,7 @@
     ],
     "methods": {
      "canAffect": "def canAffect(_item, item=None):\n    return item.has_type(Type.Food)",
+     "_ready": "def _ready(_item):\n    _item.stackTypes = Game.getBuffs()\n    _item.stackTypes.remove(Game.EventType.Heat)",
      "onPrepare": "def onPrepare(_item):\n    _item.add_speed(_item.get_num_affected_items() * _item.speedPerFood)",
      "doCooldownEffect": "def doCooldownEffect(_item):\n    if _item.use_stamina() == Character.StaminaResult.Sufficient:\n        if _item.character_().get_heat() >= _item.heatThreshold:\n            _item.give_random_buffs(_item.numBuffs, None, _item.stackTypes)\n        else:\n            _item.add_heat(_item.heat)\n    \n        _item.visual_activate()",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.heat = int(_item.get_p(\"heat\"))\n    except Exception:\n        pass\n    try:\n        _item.heatThreshold = int(_item.get_p(\"heatt\"))\n    except Exception:\n        pass\n    try:\n        _item.numBuffs = int(_item.get_p(\"buffs\"))\n    except Exception:\n        pass\n    try:\n        _item.speedPerFood = _item.get_p(\"speed\") / 100.0\n    except Exception:\n        pass\n    _item.stackTypes = 0\n"
@@ -55392,7 +55748,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Inner Power": {
    "key": "Inner Power",
@@ -55680,7 +56037,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Chess Master": {
    "key": "Chess Master",
@@ -55815,6 +56173,7 @@
      "salesChance"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    desc = None\n    for pet in _range_or_value(_item.pets):\n        desc = ItemBook.getDescriptor(pet)\n        if desc.isReleased():\n            _item.petDescriptors[desc.get_rarity()].append(desc)",
      "onSaleRoll": "def onSaleRoll(_item, item=None):\n    if item != None and item.has_type(Type.Pet):\n        Game.shopSceneNode.addBonusSalesChance(_item.salesChance)",
      "canAffect": "def canAffect(_item, item=None):\n    return item.has_type(Type.Pet)",
      "doCooldownEffect": "def doCooldownEffect(_item):\n    for item in _range_or_value(_item.get_affected_items()):\n        item.give_double_activation_chance(_item.get_chance())\n    \n    _item.visual_activate()",
@@ -55917,7 +56276,8 @@
     "global": false,
     "related_columns": true,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Seal the Deal": {
    "key": "Seal the Deal",
@@ -56016,7 +56376,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "King of the Bling": {
    "key": "King of the Bling",
@@ -56161,7 +56522,7 @@
    "damage_type": "effect",
    "min_dam": 0,
    "max_dam": 0,
-   "cd": 0.0,
+   "cd": 12.0,
    "accuracy": 100.0,
    "crit": 0.0,
    "stamina_cost": 0.0,
@@ -56292,7 +56653,10 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": [
+    5.0
+   ]
   },
   "Forest Dragon": {
    "key": "Forest Dragon",
@@ -56459,7 +56823,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "War Scythe": {
    "key": "War Scythe",
@@ -56594,7 +56959,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Frog Prince": {
    "key": "Frog Prince",
@@ -56751,7 +57117,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Molten Spear2": {
    "key": "Molten Spear2",
@@ -56892,7 +57259,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Phoenix2": {
    "key": "Phoenix2",
@@ -57052,7 +57420,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Whetstone2": {
    "key": "Whetstone2",
@@ -57433,7 +57802,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Halberd": {
    "key": "Halberd",
@@ -57579,7 +57949,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Magic Ring": {
    "key": "Magic Ring",
@@ -57671,6 +58042,7 @@
      "gainsBuffs": "def gainsBuffs(_item):\n    return _item.gainedStacks & Stack.Buff",
      "inflictsDebuffs": "def inflictsDebuffs(_item):\n    return _item.gainedStacks & Stack.Debuff",
      "getTextEffect": "def getTextEffect(_item):\n    return _item.textEffect",
+     "_ready": "def _ready(_item):\n    if (not _item.stones):\n        for i in _range_or_value(_item.numEffects):\n            pass  # visual\n            pass  # visual\n    \n    if _item.ownerType == Owner.ItemLibrary:\n        pass  # visual\n    else:\n    \n        if not _item.wasJustCrafted:\n            _item._behavior_call(\"randEffects\", )",
      "randEffects": "def randEffects(_item, clearIfOnlyDisplay=None):\n    effect = None\n    _item.effects.clear()\n    \n    for i in _range_or_value(_item.numEffects):\n        effect = RingEffect.new()\n        _item.effects.append(effect)\n        pass  # visual\n        pass  # visual\n    \n    \n    _item._behavior_call(\"sortEffects\", )\n    \n    if clearIfOnlyDisplay and _item._behavior_call(\"isOnlyForDisplay\", ):\n        _item.effects.clear()",
      "getScaledParam": "def getScaledParam(_item, stackName=None, paramScale=None):\n    return round(_item.get_p(stackName) * paramScale)",
      "isOnlyForDisplay": "def isOnlyForDisplay(_item):\n    return (_item.ownerType == Owner.ItemLibrary or\n        _item.ownerType == Owner.InfoPanelIcon or\n        _item.ownerType == Owner.Tooltip or\n        _item.ownerType == Owner.RecipeBook or\n        _item.ownerType == Owner.BuildViewerIcon)",
@@ -57711,7 +58083,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Superior Ring": {
    "key": "Superior Ring",
@@ -57776,7 +58149,8 @@
       -1
      ]
     ]
-   }
+   },
+   "extra_cds": []
   },
   "Broccotree": {
    "key": "Broccotree",
@@ -57933,7 +58307,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Cupcake Dragon": {
    "key": "Cupcake Dragon",
@@ -58097,7 +58472,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Wand of Dissonance": {
    "key": "Wand of Dissonance",
@@ -58159,6 +58535,7 @@
      "healthUsed"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    _item.damageSource = _item._new_damage_source()",
      "doCooldownEffect": "def doCooldownEffect(_item):\n    event = None; dam = None; res = None; maxBuffs = None; buffToGive = None; amount = None\n    if _item.character_().get_current_health() > _item.healthUsed:\n        event = _item.character_().lose_health(_item.healthUsed, _item)\n        dam = _item.min_dam\n        res = _item.deal_effect_damage(dam, event)\n    \n        maxBuffs = _item.get_most_stacks(_item.character_(), _item.availableBuffs.keys())\n        buffToGive = Util.pickRandomElement(maxBuffs)\n        amount = _item.availableBuffs[buffToGive]\n        _item.give_stacks(_item.character_(), buffToGive, amount, event)\n    \n    \n    _item.visual_activate()",
      "canAffect": "def canAffect(_item, item=None):\n    return item.has_type(Type.Dark)",
      "onPrepare": "def onPrepare(_item):\n    bonusEffectDmg = None\n    bonusEffectDmg = 0.0\n    for item in _range_or_value(_item.get_affected_items()):\n        if item.has_type(Type.Spell):\n            bonusEffectDmg += _item.effectDmg * 2.0\n        else:\n            bonusEffectDmg += _item.effectDmg\n    \n    _item.character_().change_effect_damage_factor(bonusEffectDmg)",
@@ -58231,7 +58608,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Amulet of Light": {
    "key": "Amulet of Light",
@@ -58285,6 +58663,7 @@
      "regenOnActivate"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    pass  # visual",
      "canAffect": "def canAffect(_item, item=None):\n    return item.can_activate()",
      "onPrepare": "def onPrepare(_item):\n    _item.connect_for_combat(_item.character_(), \"character_regeneration_changed\", \"onRegenChanged\")\n    \n    for item in _range_or_value(_item.get_affected_items()):\n        _item.connect_for_combat(item, \"activated\", \"onItemActivated\")",
      "onItemActivated": "def onItemActivated(_item, event=None):\n    if event.origin.has_type(Type.Holy):\n        if _item.roll_chance2():\n            _item.give_regeneration(_item.regenOnActivate, event)\n            _item.visual_activate()\n    else:\n        if _item.roll_chance():\n            _item.give_regeneration(_item.regenOnActivate, event)\n            _item.visual_activate()",
@@ -58562,7 +58941,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Pine Protector": {
    "key": "Pine Protector",
@@ -58877,7 +59257,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Pot": {
    "key": "Pot",
@@ -59031,7 +59412,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Cog Badge": {
    "key": "Cog Badge",
@@ -59180,7 +59562,8 @@
     "global": false,
     "related_columns": true,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Furcifer Prime": {
    "key": "Furcifer Prime",
@@ -59234,6 +59617,7 @@
      "salesChance"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    if _item.isOwnable():\n        pass  # visual",
      "setData": "def setData(_item, data=None):\n    _item.active = data",
      "onSwitchToCombat": "def onSwitchToCombat(_item):\n    _item.active = False",
      "onSaleRoll": "def onSaleRoll(_item, _item_arg=None):\n    if _item.active:\n        Game.shopSceneNode.addBonusSalesChance(_item.salesChance)",
@@ -59420,7 +59804,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Thorn Elemental": {
    "key": "Thorn Elemental",
@@ -59538,7 +59923,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   },
   "Lightning Potion": {
    "key": "Lightning Potion",
@@ -59551,7 +59937,7 @@
    "damage_type": "effect",
    "min_dam": 10,
    "max_dam": 10,
-   "cd": 0.0,
+   "cd": 2.0,
    "accuracy": 100.0,
    "crit": 0.0,
    "stamina_cost": 0.0,
@@ -59593,6 +59979,7 @@
      "lightningAni"
     ],
     "methods": {
+     "_ready": "def _ready(_item):\n    _item.damageSource = _item._new_damage_source()",
      "canAffect_secondary": "def canAffect_secondary(_item, item=None):\n    return item.has_type(Type.Holy)",
      "onTriggerPotion": "def onTriggerPotion(_item, triggerEvent=None):\n    dam = None; res = None\n    dam = _item.min_dam\n    res = _item.deal_effect_damage(dam)\n    \n    \n    _item.give_stacks_temporary(_item.opponent(), Game.EventType.Blind,\n        _item.blind, _item.get_p_m(\"dur_blind\"), triggerEvent)\n    \n    _item.heal(_item.get_p_m(\"heal\") * _item.get_num_affected_items(Affected.Secondary))",
      "onPrepare": "def onPrepare(_item):\n    pass  # visual",
@@ -59678,7 +60065,10 @@
      "onAffectedItemAdded",
      "onAffectedItemRemoved"
     ]
-   }
+   },
+   "extra_cds": [
+    7.0
+   ]
   },
   "Sloth": {
    "key": "Sloth",
@@ -59823,7 +60213,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "extra_cds": []
   }
  },
  "class_methods": {
@@ -59988,6 +60379,7 @@
    "methods": {
     "playPickupSound": "def playPickupSound(_item):\n    pass  # visual",
     "playDropSound": "def playDropSound(_item, volume=None):\n    volume += _item.impactSoundVolume\n    pass  # visual",
+    "_ready": "def _ready(_item):\n    _item.damageSource = _item._new_damage_source()",
     "canAffect": "def canAffect(_item, item=None):\n    return item.has_type(Type.Pet)",
     "onPreCombatStart": "def onPreCombatStart(_item):\n    _item.add_bonus_damage(_item.get_p(0) * _item.get_num_affected_items())",
     "doCooldownEffect": "def doCooldownEffect(_item):\n    res = None\n    res = _item.deal_damage()\n    _item.visual_activate(res)",
@@ -60243,6 +60635,7 @@
     "spikes"
    ],
    "methods": {
+    "_ready": "def _ready(_item):\n    _item.damageSource = _item._new_damage_source()",
     "doCooldownEffect": "def doCooldownEffect(_item):\n    dam = None; res = None\n    dam = _item.min_dam + _item.character_().get_spikes() * _item.damagePerSpike\n    res = _item.deal_effect_damage(dam)\n    _item.visual_activate(res)",
     "onPrepare": "def onPrepare(_item):\n    _item.hasActivated = False\n    _item.connect_for_combat(_item.character_(), \"character_damaged\", \"onDamaged\")",
     "onDamaged": "def onDamaged(_item, _damage=None, event=None):\n    relHealth = None\n    if _item.hasActivated: return\n    \n    relHealth = _item.character_().get_relative_health()\n    if relHealth < _item.healthThreshold:\n        _item.hasActivated = True\n        _item._behavior_call(\"onHPLow\", event)\n    \n    \n        _item.visual_activate()",
@@ -60659,7 +61052,6 @@
     "onPostCombatStart": "def onPostCombatStart(_item):\n    pass",
     "repeatCombatStart": "def repeatCombatStart(_item):\n    _item._behavior_call(\"onPreCombatStart\", )\n    _item.me.onCombatStart()\n    _item._behavior_call(\"onPostCombatStart\", )",
     "resetSprite": "def resetSprite(_item):\n    pass  # visual\n    pass  # visual\n    pass  # visual\n    pass  # visual\n    pass  # visual\n    pass  # visual\n    pass  # visual",
-    "onCombatEnd": "def onCombatEnd(_item):\n    pass",
     "combatToShop": "def combatToShop(_item):\n    if _item._behavior_call(\"isOwnedByOpponent\", ):\n        _item._behavior_call(\"disableTooltip\", )\n    else:\n        _item._behavior_call(\"resetSprite\", )\n        _item.cachedAffectedItems.clear()",
     "startFusing_inShop": "def startFusing_inShop(_item):\n    _item._behavior_call(\"startFusing\", _item.PRE_FUSE_DUR_COG)",
     "getCraftingPriority": "def getCraftingPriority(_item):\n    if _item._behavior_call(\"isGem\", ): return CraftingPriority.Gem\n    \n    for bonded in _range_or_value(_item.bondedIngredients):\n        if bonded.isGem():\n            return CraftingPriority.Mixed\n    \n    return CraftingPriority.NonGem",
@@ -61258,7 +61650,8 @@
     "poison"
    ],
    "methods": {
-    "initRat": "def initRat(_item):\n    _item.damageSource = DamageSource.new().setItem(_item)\n    _item.poison = int(_item.get_p(\"_item.poison\"))\n    _item.blind = int(_item.get_p(\"_item.blind\"))",
+    "_ready": "def _ready(_item):\n    _item._behavior_call(\"initRat\", )",
+    "initRat": "def initRat(_item):\n    _item.damageSource = _item._new_damage_source()\n    _item.poison = int(_item.get_p(\"_item.poison\"))\n    _item.blind = int(_item.get_p(\"_item.blind\"))",
     "doCooldownEffect": "def doCooldownEffect(_item):\n    dam = None; res = None\n    dam = _item.min_dam\n    res = _item.deal_effect_damage(dam)\n    if _item.roll_chance():\n        _item.inflict_poison(_item.poison, res.event)\n    if _item.roll_chance2():\n        _item.inflict_blind(_item.blind, res.event)\n    \n    _item.visual_activate(res)",
     "playPickupSound": "def playPickupSound(_item):\n    pitch = None\n    pitch = Util.rng.randf_range(0.9, 1.1)\n    pass  # visual",
     "playDropSound": "def playDropSound(_item, volume=None):\n    pitch = None\n    volume += _item.impactSoundVolume\n    pitch = Util.rng.randf_range(0.9, 1.1)\n    pass  # visual",
@@ -61391,6 +61784,7 @@
     "bonusDamage"
    ],
    "methods": {
+    "_ready": "def _ready(_item):\n    _item.damageSource = _item._new_damage_source()\n    _item.ammunition = 1",
     "combatEnd": "def combatEnd(_item):\n    pass  # super\n    _item.ammunition = 1",
     "setBagOfStones": "def setBagOfStones(_item):\n    _item.ammunition = 9000",
     "onPreDealDamage_late": "def onPreDealDamage_late(_item, damageRes=None):\n    \n    _item._behavior_call(\"preHit\", )",
