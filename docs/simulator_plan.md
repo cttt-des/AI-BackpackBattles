@@ -28,7 +28,19 @@
    `python simulator/extract_items.py`（会同时重建 `class_methods` 池）。
    注意该脚本会读写 `assets/battle_items.json`，不要并发运行。
 
-## 当前状态（2026-09-09）
+## 当前状态（2026-09-09，第二轮大修后）
+
+- **同帧双触发修复**：`Item.attack()` 改为 GDScript 虚派发（继承链 Weapon.attack
+  与引擎模板不再双执行）。
+- **生命周期重构**：`_run_item_ready()`（放置期：默认值+onready+_ready+伤害源/RNG
+  恢复）与 `_run_prepare_behaviors()`（战斗期：缓存+onPrepare+prepare）分离，
+  对齐 GDScript「add_child→_ready→combat prepare」时序；摆盘期 canAffect 不再
+  读到未初始化的 onready 变量。
+- **新工具**：`tools/verify_timing.py`（冷却时序 5 用例）、
+  `tools/audit_item_fidelity.py`（全物品保真度审计：静态期望提取 + 运行时画像
+  + 对照报告，当前 407/518 PASS、行为执行失败 0；剩余 111 项为证据归因/
+  harness 场景限制类差异，见 `output/audit/fidelity_report.json`）。
+- **extra_cds** 入库（Laboratory/Hogus Bogus/Wisp/Lightning Potion 的多段冷却）。
 
 - 行为修复完成：GDScript 继承链（46 个基类脚本入 `class_methods` 池）、
   camelCase 属性重定向、onready 状态保护、约 20 个缺失战斗 API、
