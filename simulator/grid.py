@@ -8,7 +8,10 @@
   * 邻接物品 = 受影响格落点 → filledCells 查物 → canAffect 过滤
 
 旋转：原版 collisionCells 随物品旋转（围绕锚点 (0,0)），再归一化 min 到左上角。
-顺时针 rotation：90°:(x,y)->(y,-x)  180°:(-x,-y)  270°:(-y,x)
+方向对齐 Godot Vector2.rotated（y 轴向下，正角=屏幕顺时针）：
+90°:(x,y)->(-y,x)  180°:(-x,-y)  270°:(x,y)->(y,-x)。
+依据 Item.gd orientItem/addItemByTopLeft/getTopLeftGlobal(correction 表) 推导，
+并经真实游戏历史阵容（47 件含旋转物品）零冲突验证。
 """
 from __future__ import annotations
 
@@ -18,17 +21,17 @@ Cell = Tuple[int, int]
 
 
 def rotate_cell(cell: Cell, rot_deg: int) -> Cell:
-    """围绕锚点 (0,0) 顺时针旋转格子"""
+    """围绕锚点 (0,0) 旋转格子（对齐 Godot rotated()：y 向下，正角顺时针）"""
     x, y = cell
     r = rot_deg % 360
     if r == 0:
         return (x, y)
     if r == 90:
-        return (y, -x)
+        return (-y, x)
     if r == 180:
         return (-x, -y)
     if r == 270:
-        return (-y, x)
+        return (y, -x)
     return (x, y)
 
 

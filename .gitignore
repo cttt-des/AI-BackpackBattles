@@ -55,3 +55,5 @@ StaminaGainCounter.gde.gd
 .idea/
 .DS_Store
 Thumbs.db
+.zcode/
+.codebuddy/
