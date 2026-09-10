@@ -10,10 +10,14 @@
 
 | 版本 | 文件 | 说明 |
 |------|------|------|
+| **v0.2.0** | [`BackpackAI_v0.2.0.exe`](https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.2.0/BackpackAI_v0.2.0.exe) | 外挂 AI 主程序（自动游玩 GUI） |
+| **v0.2.0** | [`BackpackSimulator_v0.2.0.exe`](https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.2.0/BackpackSimulator_v0.2.0.exe) | 战斗模拟器（阵容对战 / 蒙特卡洛胜率 / 物品联动） |
 | **v0.1.1** | [`BackpackAI_v0.1.1.exe`](https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.1.1/BackpackAI_v0.1.1.exe) | 外挂 AI 主程序（自动游玩 GUI） |
 | **v0.1.1** | [`BackpackSimulator_v0.1.1.exe`](https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.1.1/BackpackSimulator_v0.1.1.exe) | 战斗模拟器（阵容对战 / 蒙特卡洛胜率） |
 
-> 历史版本：[v0.1.0](https://github.com/cttt-des/AI-BackpackBattles/releases/tag/v0.1.0)、[v0.0.1](https://github.com/cttt-des/AI-BackpackBattles/releases/tag/v0.0.1)
+> 历史版本：[v0.1.1](https://github.com/cttt-des/AI-BackpackBattles/releases/tag/v0.1.1)、[v0.1.0](https://github.com/cttt-des/AI-BackpackBattles/releases/tag/v0.1.0)、[v0.0.1](https://github.com/cttt-des/AI-BackpackBattles/releases/tag/v0.0.1)
+
+> **v0.2.0 更新要点**：实现物品联动（`Affected` 影响格 + `canAffect` 过滤 + `onAffectedItemAdded` 回调 + 动态类型，全部从解密源码提取，含 `extends` 继承链）；新增三层静态对账 `audit_item_effects.py` 与回归基线 `regression_baseline.py`；修复中毒伤害 randint 崩溃、修正 `modify_param` 累加语义、补齐 30+ 联动判定谓词。详见 [`docs/simulator_architecture.md` 第 9 节](docs/simulator_architecture.md#9-物品联动affected机制)。
 
 ---
 
@@ -26,6 +30,11 @@
 - **启发式 AI** — 默认采用启发式策略自动决策（买最便宜的物品、偏好武器、自动卖垃圾等），预留 LLM 接口
 - **原生桌面 GUI** — 基于 tkinter 的深色主题桌面应用（BackpackAI + BackpackSimulator 双程序）
 - **战斗模拟器** — 基于逆向源码 100% 复刻的战斗引擎，输入两个阵容 JSON 输出完整战斗日志 + 蒙特卡洛胜率
+- **物品联动（Affected）** — 按背包相对位置生效的联动：四色影响格（Primary/Secondary/Tertiary/Lightning）、
+  脚本覆写的 `getAffectedCellsAfterRotate`、`canAffect` 过滤、`onAffectedItemAdded` 回调与动态类型，
+  全部从解密源码提取（含 `extends` 继承链），见 `docs/simulator_architecture.md` 第 9 节
+- **源码级精度对账** — `tools/audit_item_effects.py` 逐物品比对「源码方法 → 转译 Python → 运行时行为」，
+  暴露静默失败；`tools/regression_baseline.py` 提供固定种子回归基线，防精度回退
 - **GDEC 脚本解密** — 已成功解密并反编译全部 815 个游戏加密脚本（`decompiled_full/`），战斗逻辑全源码可读
 - **桥接注入（可选）** — 通过 PCK 补丁注入 GDScript TCP 桥接，可在游戏进程内读取运行时数据（端口 19527）
 - **打包分发** — 支持 PyInstaller 一键打包为独立 EXE
@@ -61,6 +70,7 @@ simulator/                  # ★ 战斗模拟器（输入两阵容 JSON → 战
 ├── lineup.py               # 阵容 JSON 加载/校验（v3 格式）
 ├── grid.py                 # 背包网格/邻接/宝石（40px 精细 tile → 80px 背包格）
 ├── data.py                 # 物品/角色数据加载
+├── extract_linkage.py      # ★ 联动专项提取（四色影响格 + canAffect 系列 + 回调，含 extends 继承链）
 └── build_data.py           # 从 wiki 数据 + 解包脚本生成 battle_items.json
 gui/                        # 外挂 AI 原生桌面 GUI
 ├── app.py                  # 主窗口（状态卡 + 背包 Canvas + 日志 + 控制按钮）
@@ -96,6 +106,9 @@ tools/                      # 逆向分析 & 数据生成工具
 ├── scrape_items.py         # 营地/社区物品数据抓取
 ├── regen_behaviors.py      # 物品行为全量重转译（Items/*.gd → battle_items.json）
 ├── audit_effects.py        # 效果编译级审计
+├── audit_item_effects.py   # ★ 效果三层对账（源码↔转译↔运行时）+ 缺失 API 统计
+├── verify_linkage.py       # ★ 联动对照验证（相邻/不相邻、旋转、邻居类型）
+├── regression_baseline.py  # ★ 固定种子回归基线（--save / --check 防回退）
 ├── verify_cooldowns.py     # 冷却实战校验（274 物品逐一上场验证）
 ├── parse_translations.py   # 游戏翻译文件解析
 ├── fix_zh_names.py         # 中文名修正
@@ -193,9 +206,13 @@ python build_simulator_exe.py    # 模拟器 → dist/BackpackSimulator.exe
 - **冷却系统** — 60Hz tick、物品独立触发、heat/cold 速度修正（274 物品全部实战校验通过）
 - **伤害结算全链** — 命中/闪避/暴击×2.0/抗性/格挡/反伤/吸血/疲劳（14s→17s→每1s递增）
 - **Buff 栈系统** — 抗性/反射/临时栈超时
-- **物品行为 94.2%** — `Items/*.gd` 方法体自动转译为 Python（`behavior.py` 运行时编译执行）
-- **邻接/联动/宝石** — 40px 精细 tile 网格 → 80px 背包格，宝石嵌槽、药水联动、`gainedStacks` 标志
+- **物品行为** — `Items/*.gd` 方法体自动转译为 Python（`behavior.py` 运行时编译执行）；
+  全库 2276 个方法，转译失败仅 3 个（`tools/audit_item_effects.py` 可复现该统计）
+- **邻接/联动/宝石** — 40px 精细 tile 网格 → 80px 背包格；四色影响格 + `canAffect` 过滤 +
+  `onAffectedItemAdded` 回调 + 动态类型均已还原，判定逻辑从源码提取（含 `extends` 继承链）
 - **RNG 语义** — 冷却时长固定 = cd，随机只决定同帧触发先后
+- **回归护栏** — `python tools/regression_baseline.py --check` 比对固定种子的 56 场战斗结果
+  与事件流指纹；`python tools/verify_linkage.py` 校验 8 项联动语义
 
 ## 配置说明
 

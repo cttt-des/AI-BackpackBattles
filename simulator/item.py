@@ -471,8 +471,8 @@ class Item:
 
     @property
     def owner_type(self) -> int:
-        """Item.gd ownerType：0=PlayerInventory / 1=OpponentInventory / 2=Storage"""
-        return 1 if (self.character is not None and getattr(self.character, "index", 0)) else 0
+        """Item.gd ownerType（Owner 枚举真实值）：1=PlayerInventory / 3=Opponent"""
+        return 3 if (self.character is not None and getattr(self.character, "index", 0)) else 1
 
     ownerType = owner_type
 
@@ -1685,7 +1685,11 @@ class Item:
         return self._base_can_affect(other, color)
 
     def _base_can_affect(self, other, color: int = 0) -> bool:
-        """基类默认 canAffect（对应 GDScript 的 .canAffect(item) 超类调用）：相邻即可联动。"""
+        """基类 canAffect 兜底（Item.gd 3527：返回 false）。
+
+        Food/Potion/Bow/Card 等基类实现已入 class_methods 池并沿继承链派发，
+        此处仅作行为缺失（编译失败等）时的兜底。
+        """
         parent = (self.data.get("behavior") or {}).get("extends", "")
         if color == 0 and parent == "Food":
             return (other.has_type("food") and
@@ -1695,7 +1699,7 @@ class Item:
         return False
 
     def _base_can_affect_secondary(self, other, color: int = 0) -> bool:
-        return True
+        return False    # Item.gd canAffect_secondary 基类同样返回 false
 
     def affects_empty(self, color: int = 0) -> bool:
         if self.has_behavior("affectsEmpty"):

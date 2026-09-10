@@ -420,14 +420,19 @@ EXTENDS_RE = re.compile(r'^extends\s+(\w+)')
 EXTENDS_PATH_RE = re.compile(r'^extends\s+"res://([^"]+)"')
 FUNC_RE = re.compile(r'^func\s+([A-Za-z_]\w*)\s*\(([^)]*)\)\s*(?:->\s*\w+)?\s*:')
 
-# 引擎托管的生命周期/联动方法：不入 class_methods（避免每个物品“看似覆写”）。
+# 引擎托管的生命周期方法：不入 class_methods（避免每个物品“看似覆写”）。
 # 这些方法的 super 调用维持旧语义（整行丢弃 / 表达式 _base_*）。
+# 注：canAffect 家族 / affectsEmpty / isAffectingDistinct 已移出——它们必须
+# 进基类池才能让继承链派发生效（Food/Potion/Bow/Card/ForestFriend/Goobert 等
+# 基类定义了 canAffect，而 47 个子物品自身未覆写；曾因排除导致联动失效）。
+AFFECT_FAMILY = {
+    "canAffect", "canAffect_secondary", "canAffect_tertiary",
+    "canAffect_lightning", "affectsEmpty", "isAffectingDistinct",
+}
 ENGINE_LIFECYCLE = {
     "_ready", "prepare", "onPrepare", "preCombatStart", "onPreCombatStart",
     "postCombatStart", "combatStart", "combatEnd", "onCombatEnd",
-    "doCooldownEffect", "trigger", "canAffect", "canAffect_secondary",
-    "canAffect_tertiary", "canAffect_lightning", "affectsEmpty",
-    "isAffectingDistinct",
+    "doCooldownEffect", "trigger",
 }
 
 
@@ -496,8 +501,14 @@ def _engine_has_method(snake: str) -> bool:
     attack 例外：引擎 attack() 是 Weapon.gd attack 的 fallback 仿真，且
     Weapon.attack 已入 class_methods——若视作引擎实现，Broom 等子类的
     `.attack(event)` super 会被整行丢弃（历史上导致 BonusDam 逻辑失效）。
+    canAffect 家族同理：引擎 can_affect 是 Item.gd 基类（返回 false）的仿真，
+    祖先实现已入 class_methods，super 必须走继承链（Whetstone3 的
+    `item.canBlock() or .canAffect(item)` 依赖 Whetstone.canAffect）。
     """
-    if snake == 'attack':
+    if snake == 'attack' or snake in {
+        'can_affect', 'can_affect_secondary', 'can_affect_tertiary',
+        'can_affect_lightning', 'affects_empty', 'is_affecting_distinct',
+    }:
         return False
     try:
         _EI = _import_engine_item()
@@ -578,8 +589,9 @@ def is_visual_line(line: str) -> bool:
     if re.match(r'^(if|elif|else|for|while|return|match|break|continue|pass|var|func|and|or|not)\b', s):
         # 但 if 行里可能含视觉调用，交给后续；这里不整行剥
         return False
-    # 战斗相关的 Util 调用不剥离（pickRandomElement/dictAdd/flip 是 RNG 语义）
-    if re.search(r'\bUtil\.(pickRandomElement|dictAdd|flip)\b', s):
+    # 战斗相关的 Util 调用不剥离（pickRandomElement/dictAdd/flip 是 RNG 语义；
+    # arrayAsIndexDict 构建联动描述符字典——AcornAce.gd:19）
+    if re.search(r'\bUtil\.(pickRandomElement|dictAdd|flip|arrayAsIndexDict)\b', s):
         return False
     for p in VISUAL_PREFIXES:
         if p in s:

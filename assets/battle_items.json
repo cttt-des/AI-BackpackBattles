@@ -22132,7 +22132,7 @@
     ],
     "methods": {
      "canAffect": "def canAffect(_item, item=None):\n    return item.can_damage()",
-     "onPrepare": "def onPrepare(_item):\n    if _item.get_affected_items():\n        _item.connect_for_combat(_item.character_(), \"character_vampirism_changed\", \"onVampirismChanged\")\n        _item.connect_for_combat(_item.opponent(), \"character_attacked\", \"onOpponentAttacked\")\n    \n    pass  # visual",
+     "onPrepare": "def onPrepare(_item):\n    if _item.get_affected_items():\n        _item.connect_for_combat(_item.character_(), \"character_vampirism_changed\", \"onVampirismChanged\")\n        _item.connect_for_combat(_item.opponent(), \"character_attacked\", \"onOpponentAttacked\")\n    \n    _item.affectedItems_dict = Util.arrayAsIndexDict(_item.get_affected_items())",
      "onVampirismChanged": "def onVampirismChanged(_item, amount=None, event=None):\n    for item in _range_or_value(_item.get_affected_items()):\n        item.change_crit_chance_percent(amount * _item.get_chance())",
      "onOpponentAttacked": "def onOpponentAttacked(_item, damageRes=None):\n    lifestealFactor = None; lifesteal = None\n    if (damageRes.getDamage() > 0 and\n        damageRes.damageSource.can_apply_lifesteal() and\n        damageRes.damageSource.origin in _item.affectedItems_dict):\n    \n        lifestealFactor = _item.get_p_m(\"lifesteal\") / 100.0 * _item.character_().get_lucky()\n        if lifestealFactor > 0:\n            lifestealFactor = min(lifestealFactor, _item.maxLifesteal)\n            lifesteal = max(1, damageRes.damage * lifestealFactor)\n            _item.heal(lifesteal, damageRes.event)",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.maxLifesteal = _item.get_p(\"max\") / 100.0\n    except Exception:\n        pass\n    _item.affectedItems_dict = {}\n"
@@ -25327,7 +25327,7 @@
     ],
     "methods": {
      "canAffect": "def canAffect(_item, item=None):\n    return item.gains_buffs() or item.uses_buffs()",
-     "onPrepare": "def onPrepare(_item):\n    pass  # visual\n    _item.connect_to_character_buffs(\"onBuffsChanged\")\n    _item.gainedBuffs = 0\n    _item.usedBuffs = 0",
+     "onPrepare": "def onPrepare(_item):\n    _item.affectedItemsDict = Util.arrayAsIndexDict(_item.get_affected_items())\n    _item.connect_to_character_buffs(\"onBuffsChanged\")\n    _item.gainedBuffs = 0\n    _item.usedBuffs = 0",
      "onGainThresholdReached": "def onGainThresholdReached(_item, ticks=None, event=None):\n    _item.heal(ticks * _item.get_p_m(\"heal\"), event)\n    _item.visual_activate()",
      "onUseThresholdReached": "def onUseThresholdReached(_item, ticks=None, event=None):\n    _item.add_lucky(ticks * _item.luck, event)\n    _item.add_mana(ticks * _item.mana, event)\n    _item.visual_activate()",
      "onBuffsChanged": "def onBuffsChanged(_item, amount=None, event=None):\n    ticks = None\n    if event.get_origin() in _item.affectedItemsDict:\n        if amount > 0:\n            _item.gainedBuffs += amount\n            ticks = _item.gainedBuffs / _item.gainedThreshold\n            if ticks > 0:\n                _item._behavior_call(\"onGainThresholdReached\", ticks, event)\n                _item.gainedBuffs %= _item.gainedThreshold\n        else:\n    \n            _item.usedBuffs += int(abs(amount))\n            ticks = _item.usedBuffs / _item.usedThreshold\n            if ticks > 0:\n                _item._behavior_call(\"onUseThresholdReached\", ticks, event)\n                _item.usedBuffs %= _item.usedThreshold",
@@ -39620,7 +39620,7 @@
      "staminaReduction"
     ],
     "methods": {
-     "_ready": "def _ready(_item):\n    pass  # visual\n    _item.affectedDescriptors[_item.critwoodStaffDescriptor] = 4",
+     "_ready": "def _ready(_item):\n    _item.affectedDescriptors = Util.arrayAsIndexDict(_item.collarDescriptors)\n    _item.affectedDescriptors[_item.critwoodStaffDescriptor] = 4",
      "setData": "def setData(_item, data=None):\n    if data != None:\n        _item.boostedCollars = data",
      "canAffect_global": "def canAffect_global(_item, item=None):\n    return item.descriptor in _item.affectedDescriptors",
      "onPrepare": "def onPrepare(_item):\n    for staff in _range_or_value(_item.get_all_in_inventory_of_type(_item.critwoodStaffDescriptor)):\n        staff.change_stamina_factor(_item.staminaReduction)",
@@ -55358,7 +55358,7 @@
     ],
     "methods": {
      "canAffect": "def canAffect(_item, item=None):\n    return item.gains_stack(Stack.Spikes)",
-     "onPrepare": "def onPrepare(_item):\n    _item.spikesAcc = 0\n    pass  # visual\n    \n    _item.connect_for_combat(_item.character_(), \"character_spikes_changed\", \"onSpikesChanged\")",
+     "onPrepare": "def onPrepare(_item):\n    _item.spikesAcc = 0\n    _item.affectedItemsDict = Util.arrayAsIndexDict(_item.get_affected_items())\n    \n    _item.connect_for_combat(_item.character_(), \"character_spikes_changed\", \"onSpikesChanged\")",
      "onSpikesChanged": "def onSpikesChanged(_item, amount=None, event=None):\n    numProccs = None\n    if amount > 0 and event.origin in _item.affectedItemsDict:\n        _item.spikesAcc += amount\n        numProccs = _item.spikesAcc / _item.spikesNeeded\n        if numProccs > 0:\n            _item.add_heat(_item.heatForSpikes * numProccs)\n            _item.spikesAcc %= _item.spikesNeeded\n            _item.visual_activate()",
      "onCombatStart": "def onCombatStart(_item):\n    _item.add_spikes(_item.spikes)\n    _item.add_heat(_item.heat)\n    _item.visual_activate()",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.spikes = int(_item.get_p(\"spikes\"))\n    except Exception:\n        pass\n    try:\n        _item.heat = int(_item.get_p(\"heat\"))\n    except Exception:\n        pass\n    try:\n        _item.spikesNeeded = int(_item.get_p(\"spikest\"))\n    except Exception:\n        pass\n    try:\n        _item.heatForSpikes = int(_item.get_p(\"heat2\"))\n    except Exception:\n        pass\n    try:\n        _item.spikesAcc = 0\n    except Exception:\n        pass\n    _item.affectedItemsDict = {}\n"
@@ -57574,7 +57574,7 @@
      "blockFactor"
     ],
     "methods": {
-     "canAffect": "def canAffect(_item, item=None):\n    return item.can_block() or _item._base_can_affect(item)",
+     "canAffect": "def canAffect(_item, item=None):\n    return item.can_block() or _item._behavior_super('canAffect', 'Whetstone3')(item)",
      "onPrepare": "def onPrepare(_item):\n    for item in _range_or_value(_item.get_affected_items()):\n        item.give_buff_power(Game.EventType.Block, _item.blockFactor)",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.blockFactor = _item.get_p(\"blockfactor\") / 100.0\n    except Exception:\n        pass\n"
     },
@@ -60271,6 +60271,7 @@
     "light"
    ],
    "methods": {
+    "canAffect": "def canAffect(_item, item=None):\n    return item.is_weapon()",
     "onWeaponAttacked": "def onWeaponAttacked(_item, damageRes=None):\n    pass",
     "_onready_init": "def _onready_init(_item):\n    try:\n        _item.activationParticles = None / ActivationParticles\n    except Exception:\n        pass\n    try:\n        _item.light = None / Light\n    except Exception:\n        pass\n    try:\n        _item.affectedWeapon = None\n    except Exception:\n        pass\n"
    },
@@ -60331,6 +60332,7 @@
     "setFaceUp": "def setFaceUp(_item):\n    if not _item.faceUp:\n        _item.faceUp = True\n        pass  # visual",
     "setFaceDown": "def setFaceDown(_item):\n    if _item.faceUp:\n        _item.faceUp = False\n        pass  # visual",
     "updateTexture": "def updateTexture(_item):\n    if _item.faceUp:\n        if _item.deck and activeFront and _item._behavior_call(\"cardSecondaryEffectActive\", ):\n            pass  # visual\n        else:\n            pass  # visual\n    else:\n        pass  # visual",
+    "canAffect": "def canAffect(_item, item=None):\n    if _item.placed:\n        return (_item.deck and\n            item.has_type(Type.Card) and\n            (item.chainPosition > _item.chainPosition or item.chainPosition == - 1))\n    else:\n        return item.has_type(Type.Card) and not item.deck",
     "getNextCard": "def getNextCard(_item):\n    affected = None\n    \n    \n    affected = _item.getItemsInAffectedCells_cached()\n    if affected and affected[0].has_type(Type.Card):\n        return affected[0]\n    else:\n        return None",
     "startActivation": "def startActivation(_item):\n    if _item.activating or _item.faceUp: return\n    \n    _item.activating = True\n    _item.iterationCooldown = _item.get_cooldown()\n    _item.triggerTime = _item.iterationCooldown\n    _item.activateCooldown()\n    Game.combatLog.snapshotItemTooltipStat(_item, Stat.Cooldown)",
     "onStateChanged": "def onStateChanged(_item, _faceUp=None):\n    if _faceUp:\n    \n        if _item.faceUp:\n            pass  # visual\n        else:\n            pass  # visual\n    else:\n        if _item.faceUp:\n            pass  # visual\n    \n    _item.faceUp = _faceUp",
@@ -60354,6 +60356,8 @@
     "pieceColor"
    ],
    "methods": {
+    "canAffect": "def canAffect(_item, item=None):\n    return item.has_type(Type.ChessPiece) and item.pieceColor != _item.pieceColor",
+    "affectsEmpty": "def affectsEmpty(_item, color=None):\n    return True",
     "setBoard": "def setBoard(_item, _board=None):\n    _item.board = _board\n    if _item.board == None and _item.placed:\n        _item.noBoardMark.appear()\n    else:\n        _item.noBoardMark.disappear()",
     "getMoveCells": "def getMoveCells(_item):\n    return _item.moveCells",
     "getCaptureCells": "def getCaptureCells(_item):\n    return _item.moveCells",
@@ -60485,13 +60489,17 @@
   "Food": {
    "extends": "Item",
    "instance_vars": [],
-   "methods": {},
+   "methods": {
+    "canAffect": "def canAffect(_item, item=None):\n    return item.has_type(Type.Food) and item.descriptor != _item.descriptor"
+   },
    "methods_raw": {}
   },
   "ForestFriend": {
    "extends": "Item",
    "instance_vars": [],
-   "methods": {},
+   "methods": {
+    "canAffect": "def canAffect(_item, item=None):\n    return item.has_type(Type.Pet) or item.has_type(Type.Food)"
+   },
    "methods_raw": {}
   },
   "Gem": {
@@ -61062,6 +61070,12 @@
     "readyToTransform": "def readyToTransform(_item):\n    return False",
     "giveGold": "def giveGold(_item, amount=None):\n    coinParticles = None\n    Game.gainGold(amount)\n    coinParticles = Game.shootGold(global_position, Game.PLAYER.getGoldPos(), _item.get_p(0))\n    pass  # visual\n    _item.visual_activate(None, False)\n    Game.saveRunState()",
     "empowerEnd": "def empowerEnd(_item):\n    pass",
+    "affectsEmpty": "def affectsEmpty(_item, color=None):\n    return False",
+    "canAffect": "def canAffect(_item, item=None):\n    return False",
+    "canAffect_secondary": "def canAffect_secondary(_item, item=None):\n    return False",
+    "canAffect_tertiary": "def canAffect_tertiary(_item, item=None):\n    return False",
+    "canAffect_lightning": "def canAffect_lightning(_item, item=None):\n    return False",
+    "isAffectingDistinct": "def isAffectingDistinct(_item, color=None):\n    return False",
     "getNumDistinctAffectedItems": "def getNumDistinctAffectedItems(_item, color=None):\n    distinctAffectedDescriptors = None\n    distinctAffectedDescriptors = {}\n    for item in _range_or_value(_item._behavior_call(\"getAffectedItems\", color)):\n        distinctAffectedDescriptors[item.descriptor] = True\n    return len(distinctAffectedDescriptors)",
     "getMainType": "def getMainType(_item):\n    return _item.descriptor.types[0]",
     "hasType": "def hasType(_item, type=None):\n    return type in _item.descriptor.types or type in _item.dynamicTypes",
@@ -61592,6 +61606,7 @@
     "triggerSound"
    ],
    "methods": {
+    "canAffect": "def canAffect(_item, item=None):\n    return item.has_type(Type.Potion)",
     "isEmpty": "def isEmpty(_item):\n    return not _item.isFull",
     "fill": "def fill(_item):\n    _item.isFull = True\n    pass  # visual\n    pass  # visual\n    pass  # visual",
     "empty": "def empty(_item):\n    _item.isFull = False\n    pass  # visual\n    pass  # visual\n    pass  # visual\n    pass  # visual",
@@ -61832,7 +61847,7 @@
    ],
    "methods": {
     "canAffect": "def canAffect(_item, item=None):\n    return item.gains_buffs() or item.uses_buffs()",
-    "onPrepare": "def onPrepare(_item):\n    pass  # visual\n    _item.connect_to_character_buffs(\"onBuffsChanged\")\n    _item.gainedBuffs = 0\n    _item.usedBuffs = 0",
+    "onPrepare": "def onPrepare(_item):\n    _item.affectedItemsDict = Util.arrayAsIndexDict(_item.get_affected_items())\n    _item.connect_to_character_buffs(\"onBuffsChanged\")\n    _item.gainedBuffs = 0\n    _item.usedBuffs = 0",
     "onGainThresholdReached": "def onGainThresholdReached(_item, ticks=None, event=None):\n    _item.heal(ticks * _item.get_p_m(\"heal\"), event)\n    _item.visual_activate()",
     "onUseThresholdReached": "def onUseThresholdReached(_item, ticks=None, event=None):\n    _item.add_lucky(ticks * _item.luck, event)\n    _item.add_mana(ticks * _item.mana, event)\n    _item.visual_activate()",
     "onBuffsChanged": "def onBuffsChanged(_item, amount=None, event=None):\n    ticks = None\n    if event.get_origin() in _item.affectedItemsDict:\n        if amount > 0:\n            _item.gainedBuffs += amount\n            ticks = _item.gainedBuffs / _item.gainedThreshold\n            if ticks > 0:\n                _item._behavior_call(\"onGainThresholdReached\", ticks, event)\n                _item.gainedBuffs %= _item.gainedThreshold\n        else:\n    \n            _item.usedBuffs += int(abs(amount))\n            ticks = _item.usedBuffs / _item.usedThreshold\n            if ticks > 0:\n                _item._behavior_call(\"onUseThresholdReached\", ticks, event)\n                _item.usedBuffs %= _item.usedThreshold",
