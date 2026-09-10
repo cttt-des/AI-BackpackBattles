@@ -423,10 +423,11 @@ FUNC_RE = re.compile(r'^func\s+([A-Za-z_]\w*)\s*\(([^)]*)\)\s*(?:->\s*\w+)?\s*:'
 # 引擎托管的生命周期/联动方法：不入 class_methods（避免每个物品“看似覆写”）。
 # 这些方法的 super 调用维持旧语义（整行丢弃 / 表达式 _base_*）。
 ENGINE_LIFECYCLE = {
-    "prepare", "onPrepare", "preCombatStart", "onPreCombatStart",
-    "postCombatStart", "combatStart", "combatEnd", "doCooldownEffect",
-    "trigger", "canAffect", "canAffect_secondary", "canAffect_tertiary",
-    "canAffect_lightning", "affectsEmpty", "isAffectingDistinct",
+    "_ready", "prepare", "onPrepare", "preCombatStart", "onPreCombatStart",
+    "postCombatStart", "combatStart", "combatEnd", "onCombatEnd",
+    "doCooldownEffect", "trigger", "canAffect", "canAffect_secondary",
+    "canAffect_tertiary", "canAffect_lightning", "affectsEmpty",
+    "isAffectingDistinct",
 }
 
 
@@ -490,7 +491,14 @@ def _import_engine_item():
 
 
 def _engine_has_method(snake: str) -> bool:
-    """引擎 Item 类是否实现了同名 snake 方法（用于 super 派发目标判定）"""
+    """引擎 Item 类是否实现了同名 snake 方法（用于 super 派发目标判定）。
+
+    attack 例外：引擎 attack() 是 Weapon.gd attack 的 fallback 仿真，且
+    Weapon.attack 已入 class_methods——若视作引擎实现，Broom 等子类的
+    `.attack(event)` super 会被整行丢弃（历史上导致 BonusDam 逻辑失效）。
+    """
+    if snake == 'attack':
+        return False
     try:
         _EI = _import_engine_item()
         return callable(getattr(_EI, snake, None))
@@ -764,6 +772,9 @@ def transform_body(body_lines, instance_vars, sibling_methods=None,
         line = line.replace("descriptor.chance", "_item.get_chance()")
         # int()/float()/min()/max()/abs()/len()/range()/round()/str() 等保持
 
+        # DamageSource.new().setItem(x) → 引擎构建（Stone/Weapon 的 _ready）
+        line = re.sub(r'DamageSource\.new\(\)\.setItem\([^)]*\)',
+                      '_item._new_damage_source()', line)
         # getP1()..getP10() -> _item.get_p(N-1)  (GDScript getP1 = getP(0))
         line = re.sub(r'\bgetP([1-9]\d*)\(([^)]*)\)',
                       lambda m: '_item.get_p(%d)' % (int(m.group(1)) - 1), line)
@@ -955,8 +966,11 @@ def build_behavior(path, idx=None, ancestor_entries=None):
 
 # 物品自身提取的跳过列表（纯视觉/UI/商店方法）。combatEnd 已移出：
 # Stone.combatEnd 战斗结束时重置弹药，属战斗语义。
+# 注：_ready 不再跳过——部分物品在 _ready 里初始化战斗状态
+# （Stone.gd: ammunition=1、Weapon.gd: damageSource=...），经视觉剥离后可安全转译。
+# 基类池仍跳过（ENGINE_LIFECYCLE）。
 ITEM_SKIP_METHODS = frozenset({
-    "_ready", "preset", "shopEntered",
+    "preset", "shopEntered",
     "addToInventory", "removeFromInventory", "onRemoveFromInventory",
     "onAddToInventory", "ready_deferred", "initItemLibrary",
     "initTitle", "initTooltip", "initBuildViewer", "initGridStorageIcon",

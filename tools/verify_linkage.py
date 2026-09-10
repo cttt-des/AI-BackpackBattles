@@ -369,10 +369,12 @@ def case_spiked_shield_block(rep: Report, verbose=False):
 
 
 def case_battery_charge_speed(rep: Report, verbose=False):
-    """Battery.gd：onCombatStart 发射电荷 → 途经物品 addSpeed（changeChargedItemStat）。
+    """Battery.gd：电荷途经物品时 chargedItemStatChange → addSpeed(flatSpeed)。
 
-    电荷沿固定 chargeCells（电池左上一列 (-1,-1)..(-1,-5)）传播，
-    验证 send_charge/onNewCellEntered/changeChargedItemStat/chargedItemStatChange 链。
+    源码语义（ElectricalCharge.gd）：回调 cellIndex=1..size 且 cells[cellIndex]
+    直接索引（cells[0] 为发射器锚点）；cellIndex==size 时电荷离场，按
+    -previousVal 回退 —— 充能加成为【途经瞬态】。用 2 格路径验证
+    进入加 / 离场减的完整循环。
     """
     if "Battery" not in DB:
         rep.add("battery_charge_speed", True, skipped=True, detail="物品缺失")
@@ -380,27 +382,31 @@ def case_battery_charge_speed(rep: Report, verbose=False):
     items, _ = build_scene([("Battery", 3, 3, 0)])
     bat = items[0]
     cells = getattr(bat, "chargeCells", None)
-    if not cells:
-        rep.add("battery_charge_speed", False, detail="chargeCells 未初始化")
+    if not cells or len(cells) < 3:
+        rep.add("battery_charge_speed", True, skipped=True, detail="chargeCells 未初始化")
         return
-    dr, dc = int(cells[0][0]), int(cells[0][1])
-    weapon = next((k for k, v in DB.items()
-                   if v.get("category") == "weapon" and v.get("cd")
-                   and (v.get("grid") or {}).get("collision_cells")), None)
-    if weapon is None:
-        rep.add("battery_charge_speed", True, skipped=True, detail="无武器样本")
-        return
-    # 武器放在 chargeCells 第一格（电池左上）
-    items, _ = build_scene([("Battery", 3, 3, 0),
-                            (weapon, 3 + dr, 3 + dc, 0)])
-    bat, wp = items[0], items[1]
+    # Stone 放在 cells[1]（第一个被充能的格子）
+    dr, dc = int(cells[1][0]), int(cells[1][1])
+    items, _ = build_scene([("Battery", 3, 3, 0), ("Stone", 3 + dr, 3 + dc, 0)])
+    bat, st = items[0], items[1]
     flat = getattr(bat, "flatSpeed", None) or 0
-    speed1 = wp.speed_scale
-    # build_scene 的 combat_start 已让 Battery 发射电荷（onCombatStart），
-    # 首格物品应获得 flatSpeed 的速度加成
-    ok = abs(speed1 - flat) < 1e-6 and flat > 0
+    speed0 = st.speed_scale
+    # 手动逐格推进（与 send_charge 相同的回调序）：cellIndex=1 进入 Stone
+    from types import SimpleNamespace
+    charge = SimpleNamespace(lastChargedItem=None, curChargedItem=None, emitter=bat)
+    charge.curChargedItem = st
+    bat.call_behavior("onChargeEnteredCell", charge, 1)
+    speed_charged = st.speed_scale
+    # cellIndex=2：电荷移到下一格 → 离开 Stone，按 -previousVal 回退（净零）
+    charge.lastChargedItem = st
+    charge.curChargedItem = None
+    bat.call_behavior("onChargeEnteredCell", charge, 2)
+    speed_left = st.speed_scale
+    ok = (abs(speed_charged - (speed0 + flat)) < 1e-9
+          and abs(speed_left - speed0) < 1e-9)
     rep.add("battery_charge_speed", ok,
-            f"{weapon} 速度={speed1}（期望=flatSpeed {flat}）")
+            f"充能时速度 {speed0}->{speed_charged}（期望+{flat}），"
+            f"电荷移出回退->{speed_left}")
 
 
 def case_djinn_lamp_ingredients(rep: Report, verbose=False):

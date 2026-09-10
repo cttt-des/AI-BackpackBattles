@@ -28,6 +28,13 @@ _CAMEL_1 = _re.compile(r'(?<=[a-z0-9])(?=[A-Z])')
 _CAMEL_2 = _re.compile(r'(?<=[A-Z])(?=[A-Z][a-z])')
 
 
+class _SeededRandom(random.Random):
+    """random.Random + reset()（GDScript BalancedRng.reset() 的等价桩）。"""
+
+    def reset(self, seed=None):
+        self.seed(seed)
+
+
 def _camel_to_snake(name: str) -> str:
     """GDScript camelCase（含 _type 这类带下划线后缀）转 Python snake_case。
 
@@ -62,6 +69,49 @@ def engine_managed_attrs() -> frozenset:
         except Exception:  # noqa: BLE001
             _ENGINE_MANAGED_ATTRS = frozenset()
     return _ENGINE_MANAGED_ATTRS
+
+
+class DescriptorView:
+    """GDScript item.descriptor（ItemDescriptor 实例）的模拟器视图。
+
+    行为脚本通过它做种类比较（`item.descriptor != descriptor`）与类型判定
+    （isMeleeWeapon/isRangedWeapon/isNeutral...）。按 key 判等，与旧字符串
+    语义兼容。
+    """
+
+    def __init__(self, item: 'Item'):
+        self._item = item
+        self.key = item.key
+        self.name = item.key
+
+    def __eq__(self, other):
+        other_key = getattr(other, 'key', other)
+        return self.key == other_key
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
+    def __hash__(self):
+        return hash(self.key)
+
+    def __repr__(self):
+        return f"<Descriptor {self.key!r}>"
+
+    # ---- 类型判定（对齐 ItemDescriptor.gd）----
+    def isWeapon(self) -> bool:
+        return self._item.is_weapon()
+
+    def isMeleeWeapon(self) -> bool:
+        return self._item.is_melee_weapon()
+
+    def isRangedWeapon(self) -> bool:
+        return self._item.is_ranged_weapon()
+
+    def isNeutral(self) -> bool:
+        return self._item.is_neutral()
+
+    def getName(self) -> str:
+        return self.key
 
 
 # 触发顺序权威值：源自 Items/*.gd 的 getTriggerPriority()（Partial/Exclusive 覆盖
@@ -148,8 +198,8 @@ class Item:
             self.damage_range_rng = base_rng
             self.chance_rng = base_rng
         else:
-            self.damage_range_rng = random.Random(seed)
-            self.chance_rng = random.Random(seed)
+            self.damage_range_rng = _SeededRandom(seed)
+            self.chance_rng = _SeededRandom(seed)
 
         # ---- descriptor 数值（对齐 ItemDescriptor 字段）----
         self.min_dam = int(data.get('min_dam', 0))
@@ -215,6 +265,7 @@ class Item:
         # ---- 行为执行器（extract_items.py 提取的 GDScript 行为） ----
         self._behavior_executor: Optional[BehaviorExecutor] = None
         self._behavior_ready: bool = False
+        self._item_ready_done: bool = False
         self._signals: Dict[str, list] = {}
 
         # ---- 背包网格（extract_grid.py + grid.py） ----
@@ -260,6 +311,10 @@ class Item:
                         "misses": 0, "out_of_stamina": 0}
 
     # ================ 伤害源（对齐 DamageSource.setItem） ================
+    def _new_damage_source(self) -> DamageSource:
+        """DamageSource.new().setItem(self) 的转译落点（_ready 行为调用）"""
+        return self._make_damage_source()
+
     def _make_damage_source(self) -> DamageSource:
         ds = DamageSource()
         ds.origin = self
@@ -287,6 +342,16 @@ class Item:
         return self.character.opponent if self.character else None
 
     # ================ 类型 ================
+    def is_melee_weapon(self) -> bool:
+        """isMeleeWeapon — 近战武器（含通过物品名匹配的描述符字符串场景）"""
+        return self.is_weapon() and ('melee' in str(self.damage_types).lower()
+                                     or self.has_type('melee'))
+
+    def is_ranged_weapon(self) -> bool:
+        """isRangedWeapon — 远程武器"""
+        return self.is_weapon() and ('ranged' in str(self.damage_types).lower()
+                                     or self.has_type('ranged'))
+
     def is_weapon(self) -> bool:
         return 'weapon' in self.types or self.category == 'weapon'
 
@@ -441,6 +506,17 @@ class Item:
             try:
                 return getattr(self, snake)
             except AttributeError:
+                pass
+        # 行为链跳板：继承链上的 GDScript 方法可像成员方法一样调用
+        # （如 Gold Cube.onDamaged → advanceAffectedItem()，方法定义在 Cube 基类）
+        beh = self.__dict__.get('_behavior_executor')
+        if beh is not None:
+            try:
+                if beh.resolve(name)[1] is not None:
+                    def _trampoline(*args, **kwargs):
+                        return self.call_behavior(name, *args, **kwargs)
+                    return _trampoline
+            except Exception:  # noqa: BLE001
                 pass
         raise AttributeError(name)
 
@@ -808,18 +884,23 @@ class Item:
 
     # ================ 战斗生命周期 ================
     def prepare(self):
-        """prepare() — 对齐 Item.gd：cacheAffectedItems → 宝石.prepare() → onPrepare 链"""
+        """prepare() — 对齐 Item.gd：onready/行为初始化 → cacheAffectedItems → 宝石 → onPrepare 链
+
+        行为初始化（onready/_ready）先于缓存：canAffect 需要行为侧的描述符
+        变量（如 StoneGolem.bagOfStonesDescriptor），且 GDScript 里这些变量在
+        物品入背包（_ready）时就已就绪。
+        """
         if self.is_gem_item:
             self._prepare_as_gem()
             return
         self.consumed = False
         self.is_full = True
+        self._run_prepare_behaviors()
         self._cache_affected_items()
         for gem in self._gems:
             gem.character = self.character
             gem.log = self.log
             gem.prepare()
-        self._run_prepare_behaviors()
 
     def _pre_combat_start_legacy(self):
         """preCombatStart — 有冷却：iterationCooldown = adjustCooldown(); triggerTime = iterationCooldown"""
@@ -931,6 +1012,7 @@ class Item:
         try:
             if self.use_stamina() == 0:
                 self.attack(now)
+                self.metrics["activations"] += 1
         finally:
             if self.log:
                 self.log.end_activation()
@@ -948,14 +1030,16 @@ class Item:
         return res
 
     def attack(self, now: float = None, trigger_event=None) -> DamageResult:
-        attack_src = self.data.get("behavior", {}).get("methods", {}).get("attack", "")
-        if self.has_behavior("attack") and "deal_damage" in attack_src:
+        """attack — Weapon.attack: dealDamage + activate（GDScript 虚派发）。
+
+        有 attack 行为（自身或继承链，如 Weapon.gd attack / 特殊武器覆写）时
+        只调行为——此前"引擎模板 + 行为"双执行曾导致武器同帧攻击两次。
+        行为译码含 deal_damage 调用与 visual_activate(res)，与源码一致。
+        """
+        if self.has_behavior("attack"):
             return self.call_behavior("attack", trigger_event)
-        """attack — Weapon.attack: dealDamage + activate"""
         res = self.deal_damage(now)
         self.visual_activate(res)
-        if self.has_behavior("attack"):
-            self.call_behavior("attack", trigger_event)
         return res
 
     def deal_damage(self, now: float = None, trigger_event=None) -> DamageResult:
@@ -1228,22 +1312,17 @@ class Item:
             opp.connect_signal("character_debuff_changed",
                                lambda amount, ev: self.call_behavior(method_name, amount, ev))
 
-    def _run_prepare_behaviors(self):
-        """prepare 阶段行为：实例变量默认值 → onready 变量 → onPrepare → prepare（对齐 GDScript 调用链）
+    def _run_item_ready(self):
+        """放置期初始化（≈ GDScript add_child → _ready）：默认值 + onready + _ready。
 
-        继承链：基类（Weapon/Shield/...）的实例变量默认值与 onready 先于自身初始化，
-        与 GDScript 节点初始化顺序一致（父类先于子类）。
+        与战斗 prepare 分离：摆盘期的 canAffect/联动需要这些成员已就绪。
         """
-        if self._behavior_ready:
+        if self._item_ready_done:
             return
-        self._behavior_ready = True
+        self._item_ready_done = True
         if not self.data.get("behavior"):
             return
         beh = self.behavior
-        # 类级 var 默认值（GDScript 节点初始化即生效，Python 需手动补 0）——基类链先行。
-        # 跳过引擎管理属性（trigger_time/base_cooldown_override/... 的 camelCase 名）：
-        # setattr 经 __setattr__ 重定向会清零引擎状态（历史事故）。
-        # 行为脚本读这些名字时走 __getattr__ → snake → 引擎值，正确。
         for cls in [None] + beh.extends_chain:
             iv = (self.data.get("behavior", {}).get("instance_vars", [])
                   if cls is None else
@@ -1253,15 +1332,6 @@ class Item:
                     continue
                 if not hasattr(self, v):
                     setattr(self, v, 0)
-        # onready 会重置网格/视觉元数据（Item.gd: occupiedCells=[]、collisionCells=[]）。
-        # GDScript 里 addToInventory / _ready 在节点初始化之后执行，而模拟器先摆盘
-        # 后 prepare——所以【先快照】运行期联动状态，onready 后再恢复：
-        # 重放占位元数据 + 重新登记到背包 + 保留受影响/影响关系与动态类型。
-        snap_affected = {c: list(v) for c, v in self._affected_items.items() if v}
-        snap_affecting = {c: list(v) for c, v in self._affecting_items.items() if v}
-        snap_dynamic = {c: list(v) for c, v in self.dynamic_types.items() if v}
-        # onready 初始化：每个基类的 _onready_init 都要执行（根先子后，对齐
-        # GDScript 基类成员先于子类初始化），再执行自身的
         for cls in reversed(beh.extends_chain):
             beh.execute_class(self, cls, "_onready_init")
         self.call_behavior("_onready_init")
@@ -1269,20 +1339,34 @@ class Item:
             self._init_grid_metadata()
             self.grid_inventory.add_item(self, self.occupied_cells,
                                          is_bag=self.is_bag())
-        # 恢复 onready 覆盖前的联动登记快照
-        self._affected_items = snap_affected
-        self._affecting_items = snap_affecting
-        self.dynamic_types = snap_dynamic
-        # RNG：onready 的 BalancedRng.new()/BalancedRange.new() 在模拟器中是 _Noop，
-        # 会覆盖构造期的种子化 RNG——恢复引擎种子化实例（对齐原版语义：物品 RNG
-        # 全战斗共享同一随机流）。注意 _Noop 对任何属性访问都返回真值，须按类型判。
-        if type(self.chance_rng).__name__ not in ('Random', 'BalancedRandom'):
+        snap_affected = {c: list(v) for c, v in self._affected_items.items() if v}
+        snap_affecting = {c: list(v) for c, v in self._affecting_items.items() if v}
+        snap_dynamic = {c: list(v) for c, v in self.dynamic_types.items() if v}
+        if type(self.chance_rng).__name__ not in ('Random', '_SeededRandom', 'BalancedRandom'):
             self.chance_rng = (self._rng_base if self._rng_base is not None
                                else random.Random(self._rng_seed))
-        if type(self.damage_range_rng).__name__ not in ('Random', 'BalancedRandom'):
+        if type(self.damage_range_rng).__name__ not in ('Random', '_SeededRandom', 'BalancedRandom'):
             self.damage_range_rng = (self._rng_base if self._rng_base is not None
                                      else random.Random(self._rng_seed))
         self.damage_source = self._make_damage_source()
+        # GDScript _ready：物品入背包时执行（Stone ammunition=1、Weapon damageSource 等）
+        self.call_behavior("_ready")
+        self._affected_items = snap_affected
+        self._affecting_items = snap_affecting
+        self.dynamic_types = snap_dynamic
+
+    def _run_prepare_behaviors(self):
+        """战斗 prepare 阶段行为：ready 初始化 → 缓存 → onPrepare → prepare 行为
+
+        （ready 初始化在 _run_item_ready 中，放置期已执行；本函数幂等。）
+        """
+        self._run_item_ready()
+        if self._behavior_ready:
+            self._cache_affected_items()
+            return
+        self._behavior_ready = True
+        if not self.data.get("behavior"):
+            return
         self.has_pre_deal_damage_early_effect = self.has_behavior(
             "onPreDealDamage_early")
         self.has_pre_deal_damage_late_effect = self.has_behavior(
@@ -1314,7 +1398,7 @@ class Item:
         """Potion.isEmpty — 药水已喝空"""
         return self.consumed or not self.is_full
 
-    def consume_potion(self, trigger_event=None):
+    def consume_potion(self, trigger_event=None, *_ignored):
         """consumePotion — 喝药并触发 onTriggerPotion"""
         if self.is_empty():
             return
@@ -1411,6 +1495,9 @@ class Item:
         """按 lineup (row,col,rotation) 放置。
         tscn CollisionMap 是 40px 精细 tile，背包格 80px → 坐标 //2 合并。
         tscn 格 (x,y)：x=横向=背包 col、y=纵向=背包 row。
+
+        放置即触发行为初始化（≈ GDScript add_child → _ready）：摆盘期的
+        canAffect/联动需要 onready 变量已就绪。
         """
         self.grid_row = row
         self.grid_col = col
@@ -1419,6 +1506,7 @@ class Item:
         self.grid_inventory = inventory
         if inventory is not None:
             inventory.add_item(self, self.occupied_cells, is_bag=self.is_bag())
+        self._run_item_ready()
 
     def _init_grid_metadata(self):
         """按当前 (grid_row, grid_col, grid_rotation) 从 tscn 网格数据重算占格。
@@ -1624,12 +1712,12 @@ class Item:
     # ================ 物品身份 / 朝向（对齐 Item.gd 成员） ================
     @property
     def descriptor(self):
-        """Item.gd 的 descriptor（物品描述符）。
+        """Item.gd 的 descriptor（物品描述符）——DescriptorView 实例。
 
-        联动判定用它做「种类」比较（Food.gd: `item.descriptor != descriptor`
-        = 只影响不同种类的食物），因此返回种类标识，使 `!=` 语义等同于"是否同类"。
+        联动判定用它做「种类」比较（Food.gd: `item.descriptor != descriptor`，
+        按 key 判等）与类型判定（isMeleeWeapon/isNeutral...）。
         """
-        return self.data.get("key", self.key)
+        return DescriptorView(self)
 
     @property
     def face_direction(self) -> int:
@@ -1956,7 +2044,9 @@ class Item:
         """checkBlock — Stoned 保护判定：有格挡时保护生效"""
         return bool(self.character and self.character.get_block() > 0) if self.character else False
 
-    def inflict_fatigue_damage(self, amount, trigger_event=None):
+    def inflict_fatigue_damage(self, amount=None, trigger_event=None):
+        if amount is None:
+            amount = 1
         """inflictFatigueDamage — 给对方疲劳伤害"""
         if self.opponent():
             self.opponent().take_fatigue_damage(int(round(amount)))
@@ -2217,11 +2307,48 @@ class Item:
     def give_block(self, amount=None, temporary=False, trigger_event=None):
         from .buff import BuffType
         if amount is None:
-            amount = self.get_p_m("block", self.get_p_m("Block", 0))
+            # GDScript giveBlock(amount = getBlock())：默认取 CSV block 列
+            amount = self.block
         if temporary:
             return self._give_stacks(self.character, BuffType.BLOCK, amount,
                                      trigger_event, temporary=True)
         return self._give_stacks(self.character, BuffType.BLOCK, amount, trigger_event)
+
+    def give_lucky(self, amount=None, trigger_event=None):
+        from .buff import BuffType
+        if amount is None:
+            amount = self.get_p_m("lucky")
+        return self._give_stacks(self.character, BuffType.LUCKY, amount, trigger_event)
+
+    def give_spikes(self, amount=None, trigger_event=None):
+        from .buff import BuffType
+        if amount is None:
+            amount = self.get_p_m("spikes")
+        return self._give_stacks(self.character, BuffType.SPIKES, amount, trigger_event)
+
+    def give_empower(self, amount=None, trigger_event=None):
+        from .buff import BuffType
+        if amount is None:
+            amount = self.get_p_m("empower")
+        return self._give_stacks(self.character, BuffType.EMPOWER, amount, trigger_event)
+
+    def give_heat(self, amount=None, trigger_event=None):
+        from .buff import BuffType
+        if amount is None:
+            amount = self.get_p_m("heat")
+        return self._give_stacks(self.character, BuffType.HEAT, amount, trigger_event)
+
+    def give_cold(self, amount=None, trigger_event=None):
+        from .buff import BuffType
+        if amount is None:
+            amount = self.get_p_m("cold")
+        return self._give_stacks(self.character, BuffType.COLD, amount, trigger_event)
+
+    def give_mana(self, amount=None, trigger_event=None):
+        from .buff import BuffType
+        if amount is None:
+            amount = self.get_p_m("mana")
+        return self._give_stacks(self.character, BuffType.MANA, amount, trigger_event)
 
     def give_regeneration(self, amount=None, trigger_event=None):
         from .buff import BuffType

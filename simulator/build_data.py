@@ -72,6 +72,20 @@ def _to_float(v, default=0.0):
         return default
 
 
+def _parse_extra_cds(raw):
+    """cd 列逗号分隔多值（"5,2.5" → cd=5, extraCds=[2.5]，ItemBook.gd:826-831）。"""
+    parts = str(raw).split(',')
+    out = []
+    for p in parts[1:]:
+        p = p.strip()
+        if p:
+            try:
+                out.append(float(p))
+            except ValueError:
+                pass
+    return out
+
+
 def _parse_body(func_name: str, script_text: str) -> str:
     """提取 GDScript 函数体（缩进驱动）"""
     m = re.search(r'func\s+' + re.escape(func_name) + r'\s*\([^)]*\)\s*:', script_text)
@@ -343,7 +357,10 @@ def convert_items():
             'damage_type': dmg_type,
             'min_dam': int(_to_float(r.get('minDam', '') or 0)),
             'max_dam': int(_to_float(r.get('maxDam', '') or 0)),
-            'cd': _to_float(r.get('cd', '') or 0),
+            # cd 列可含逗号分隔多值（ItemBook.gd:826-831：cds[0]=cd，其余=extraCds，
+            # 供 getBaseCooldownIndex(1..) 使用，如 Laboratory/Wisp）
+            'cd': _to_float((r.get('cd', '') or '0').split(',')[0]),
+            'extra_cds': _parse_extra_cds(r.get('cd', '') or ''),
             'accuracy': _to_float(r.get('accuracy', '') or 100),
             'crit': crit,
             'stamina_cost': _to_float(r.get('staminaCost', '') or 0),

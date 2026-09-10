@@ -18,6 +18,14 @@ class DS_Type:
     FATIGUE = 99
     SPIKES = 104
     POISON = 108
+    # GDScript 大小写别名
+    Melee = MELEE
+    Ranged = RANGED
+    Effect = EFFECT
+    SelfDamage = SELFDAMAGE
+    Unhealing = UNHEALING
+    Fatigue = FATIGUE
+
 
 
 class DS_Flags:
@@ -43,6 +51,13 @@ CHIP_FLAGS = DS_Flags.CAN_BE_BLOCKED               # 1（spikes/poison 基础）
 
 class DamageSource:
     """伤害源：类型 / flags / 伤害范围 / 命中 / 暴击"""
+
+    Type = DS_Type        # GDScript DamageSource.Type.Ranged 等枚举访问
+    Flags = DS_Flags      # GDScript DamageSource.Flags.CAN_MISS 等
+
+    @classmethod
+    def new(cls, *a, **k):
+        return cls(*a, **k)
 
     def __init__(self):
         self.min_damage: int = 0
@@ -118,6 +133,26 @@ class DamageSource:
     def is_effect_damage(self) -> bool:
         return self.has_type(DS_Type.EFFECT) or self.has_type(DS_Type.UNHEALING)
 
+    # camelCase 别名（行为脚本以 damageRes.isEffectDamage() 访问的是 DamageResult，
+    # 但 DamageSource 侧同样存在该查询，统一提供）
+    def isEffectDamage(self) -> bool:
+        return self.is_effect_damage()
+
+    def canApplyLifesteal(self) -> bool:
+        return self.can_apply_lifesteal()
+
+    def makeSpectral(self):
+        return self.make_spectral()
+
+    def unsetFlag(self, flag):
+        return self.unset_flag(flag)
+
+    def setFlag(self, flag):
+        return self.set_flag(flag)
+
+    def setItem(self, item):
+        return self.set_item(item)
+
     def can_apply_lifesteal(self) -> bool:
         return self.is_attack() or self.has_type(DS_Type.EFFECT)
 
@@ -138,6 +173,13 @@ class DamageSource:
             return self.origin.damage_range_rng.randint(md, xd)
         return rng.randint(_to_godot_int(self.min_damage),
                            _to_godot_int(self.max_damage))
+
+    def set_item(self, item: 'Item') -> 'DamageSource':
+        """setItem — DamageSource.new().setItem(item)（Weapon/Stone 的 _ready）"""
+        built = item._make_damage_source()
+        self.__dict__.update(built.__dict__)
+        self.origin = item
+        return self
 
     def update_item(self, item: 'Item'):
         """updateItem — 攻击前从物品刷新命中率"""
@@ -166,6 +208,8 @@ def _to_godot_int(value) -> int:
 class DamageResult:
     """伤害结算结果（对齐 DamageResult.gd）"""
 
+    Type = DS_Type
+
     def __init__(self, damage_source: Optional[DamageSource] = None):
         self.damage_source: Optional[DamageSource] = damage_source
         self.damage: int = 0
@@ -184,6 +228,21 @@ class DamageResult:
 
     def get_damage(self) -> int:
         return self.damage
+
+    def getAmount(self) -> int:
+        return self.damage
+
+    def hasHit(self) -> bool:
+        return self.has_hit()
+
+    def getDamage(self) -> int:
+        return self.damage
+
+    def willBeLethal(self, character) -> bool:
+        return self.will_be_lethal(character)
+
+    def isMelee(self) -> bool:
+        return self.damage_source.has_type(DS_Type.MELEE) if self.damage_source else False
 
     @property
     def damageSource(self):
