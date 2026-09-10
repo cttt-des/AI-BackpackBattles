@@ -625,6 +625,8 @@ class Character:
 
         if self.log:
             self.log.heal(now, self.name(), amount, overheal, origin)
+            if overheal > 0:
+                self.emit_signal('character_overhealed', overheal, trigger_event)
 
         # 触发器：治疗时检查（character_healed，如 Pestilence Flask 毒反击）
         for it in self.inventory_items:
@@ -691,6 +693,8 @@ class Character:
         if self.cur_stamina >= amount:
             self.cur_stamina = max(self.cur_stamina - amount, 0)
             self.clamp_stamina()
+            # GDScript Character.gd:833 character_used_stamina
+            self.emit_signal('character_used_stamina', amount, None)
             return 0
         else:
             self.clamp_stamina()

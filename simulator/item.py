@@ -1157,13 +1157,16 @@ class Item:
             self.call_behavior("onPreDealDamage_late", res)
 
     def dealt_damage(self, res: DamageResult):
-        """dealtDamage — 每次带 item 的伤害结算后调用（命中计伤害，未命中计 miss）"""
+        """dealtDamage — 每次带 item 的伤害结算后调用（命中计伤害，未命中计 miss）。
+
+        注意：onDealtDamage 行为不在派发——Character.gd 643-646 在 take_damage
+        中按 attackEffectCount 次数派发（此前此处多派发一次导致 Dragon Knight
+        等物品命中治疗双发）。
+        """
         if res.has_hit():
             self.metrics["damage"] += res.damage
         else:
             self.metrics["misses"] += 1
-        if self.has_behavior("onDealtDamage"):
-            self.call_behavior("onDealtDamage", res)
 
     def on_dealt_damage(self, res: DamageResult):
         if self.has_behavior("onDealtDamage"):
@@ -1399,6 +1402,7 @@ class Item:
         return self.consumed or not self.is_full
 
     def consume_potion(self, trigger_event=None, *_ignored):
+        self.emit_signal('potion_emptied', self, trigger_event)
         """consumePotion — 喝药并触发 onTriggerPotion"""
         if self.is_empty():
             return
@@ -2312,7 +2316,11 @@ class Item:
         if temporary:
             return self._give_stacks(self.character, BuffType.BLOCK, amount,
                                      trigger_event, temporary=True)
-        return self._give_stacks(self.character, BuffType.BLOCK, amount, trigger_event)
+        gained = self._give_stacks(self.character, BuffType.BLOCK, amount, trigger_event)
+        # GDScript Item.gd 4920-4925: 给块成功后发 gave_block（Amulet of Steel 联动）
+        if gained:
+            self.emit_signal('gave_block', gained, trigger_event)
+        return gained
 
     def give_lucky(self, amount=None, trigger_event=None):
         from .buff import BuffType
