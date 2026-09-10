@@ -32,7 +32,7 @@
    {
     "id": "Health Potion",
     "row": 0,
-    "col": 1,
+    "col": 0,
     "rotation": 0,
     "quantity": 1,
     "container": false,

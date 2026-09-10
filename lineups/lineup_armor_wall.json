@@ -32,7 +32,7 @@
    {
     "id": "Greatsword",
     "row": 0,
-    "col": 1,
+    "col": 2,
     "rotation": 0,
     "quantity": 1,
     "container": false,
@@ -42,7 +42,7 @@
    {
     "id": "Health Potion",
     "row": 0,
-    "col": 2,
+    "col": 4,
     "rotation": 0,
     "quantity": 1,
     "container": false,
@@ -52,7 +52,7 @@
    {
     "id": "Garlic",
     "row": 0,
-    "col": 3,
+    "col": 5,
     "rotation": 0,
     "quantity": 1,
     "container": false,
@@ -62,7 +62,7 @@
    {
     "id": "Banana",
     "row": 0,
-    "col": 4,
+    "col": 6,
     "rotation": 0,
     "quantity": 1,
     "container": false,

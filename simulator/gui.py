@@ -23,6 +23,7 @@ from tkinter import ttk, scrolledtext, messagebox, filedialog
 
 from . import simulate as sim
 from .data import load_items, load_characters
+from .grid import rotate_and_normalize
 from .lineup import load_lineup, LineupError, resolve_items
 
 
@@ -36,6 +37,47 @@ def _app_dir() -> str:
 
 def _lineups_dir() -> str:
     return os.path.join(_app_dir(), 'lineups')
+
+
+# ---------------- 占格重叠检测 ----------------
+def _overlap_conflicts(path: str) -> List[str]:
+    """开战前占格预检（1 collision tile = 1 背包格，规则对齐 tools/repack_lineups.py）。
+
+    引擎 add_item 无重叠校验（后写覆盖先写），重叠会让物品凭空消失，
+    故开战前拦截。返回问题描述列表；空列表 = 无冲突。
+    """
+    try:
+        data = load_lineup(path)
+    except Exception:
+        return []          # 阵容格式错误由后续 load_lineup 预校验统一报错
+    bp = data.get('backpack', {}) or {}
+    grid_cfg = bp.get('grid') or {'rows': 7, 'cols': 10}
+    rows, cols = int(grid_cfg.get('rows', 7)), int(grid_cfg.get('cols', 10))
+    db = load_items()
+    filled, bags, out = set(), set(), []
+    entries = bp.get('items') or []
+    # 普通物品先摆；包/袋后查（可与 filled 共存——物品可放入包内）
+    ordered = [e for e in entries if not e.get('container')] + \
+              [e for e in entries if e.get('container')]
+    for e in ordered:
+        is_bag = bool(e.get('container'))
+        g = (db.get(e.get('id')) or {}).get('grid') or {}
+        cells = g.get('collision_cells') or [[0, 0]]
+        shape = rotate_and_normalize([tuple(c) for c in cells],
+                                     int(e.get('rotation', 0) or 0) % 360)
+        r0, c0 = int(e.get('row', 0) or 0), int(e.get('col', 0) or 0)
+        abs_ = {(r0 + dy, c0 + dx) for (dx, dy) in shape}
+        oob = any(r < 0 or r >= rows or c < 0 or c >= cols for r, c in abs_)
+        hit = abs_ & (filled | bags) if is_bag else abs_ & filled
+        if oob or hit:
+            desc = f"{e.get('id')} @({r0},{c0})"
+            if oob:
+                desc += ' 越界'
+            if hit:
+                desc += f' 与已占格重叠 {sorted(hit)}'
+            out.append(desc)
+        (bags if is_bag else filled).update(abs_)
+    return out
 
 
 # ---------------- 阵容扫描 ----------------
@@ -198,16 +240,8 @@ class BattleSimulatorGUI:
         return sel[0]
 
     def _on_select(self, changed_lb):
-        # 防止两侧选到同一个文件
-        pi = self._selected_index(self.player_list)
-        oi = self._selected_index(self.opp_list)
-        if pi is not None and oi is not None and pi == oi:
-            other = self.opp_list if changed_lb is self.player_list else self.player_list
-            # 把另一个挪到不同项
-            n = len(self.lineups)
-            if n > 1:
-                other.selection_clear(0, tk.END)
-                other.selection_set((oi + 1) % n)
+        # 允许两侧选择同一阵容（镜像对战）；不做强制挪位
+        pass
 
     def _swap(self):
         pi = self._selected_index(self.player_list)
@@ -232,7 +266,7 @@ class BattleSimulatorGUI:
     def _selected_paths(self) -> Tuple[Optional[str], Optional[str], Optional[str], Optional[str]]:
         pi = self._selected_index(self.player_list)
         oi = self._selected_index(self.opp_list)
-        if pi is None or oi is None or pi == oi:
+        if pi is None or oi is None:
             return None, None, None, None
         pa = self.lineups[pi]['path']
         pb = self.lineups[oi]['path']
@@ -246,7 +280,7 @@ class BattleSimulatorGUI:
             return
         pa, pb, na, nb = self._selected_paths()
         if pa is None:
-            messagebox.showwarning('提示', '请选择两个不同的阵容（玩家与对手）。')
+            messagebox.showwarning('提示', '请选择玩家与对手阵容（可两侧相同进行镜像对战）。')
             return
 
         # 解析 seed / runs
@@ -263,6 +297,17 @@ class BattleSimulatorGUI:
             load_lineup(pa); load_lineup(pb)
         except LineupError as e:
             messagebox.showerror('阵容错误', str(e))
+            return
+
+        # 占格重叠预检（重叠会被后放物品覆盖，导致物品凭空消失）
+        probs = _overlap_conflicts(pa)
+        if pb != pa:
+            probs += _overlap_conflicts(pb)
+        if probs:
+            messagebox.showerror(
+                '占格重叠',
+                '以下物品占格越界或重叠，请先调整阵容（可在物品上重新摆位）：\n'
+                + '\n'.join(probs[:20]))
             return
 
         self.running = True

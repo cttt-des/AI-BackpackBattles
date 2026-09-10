@@ -32,17 +32,7 @@
    {
     "id": "Amulet of the Wild",
     "row": 0,
-    "col": 1,
-    "rotation": 0,
-    "quantity": 1,
-    "container": false,
-    "contents": [],
-    "gems": []
-   },
-   {
-    "id": "Health Potion",
-    "row": 0,
-    "col": 2,
+    "col": 0,
     "rotation": 0,
     "quantity": 1,
     "container": false,
@@ -60,9 +50,19 @@
     "gems": []
    },
    {
-    "id": "Banana",
+    "id": "Health Potion",
     "row": 0,
     "col": 4,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Banana",
+    "row": 0,
+    "col": 5,
     "rotation": 0,
     "quantity": 1,
     "container": false,
