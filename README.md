@@ -1,182 +1,108 @@
 # Backpack Battles AI（背包乱斗 AI）
 
-为游戏《背包乱斗》(Backpack Battles) 打造的外置 AI 机器人 + 战斗模拟器。**不修改任何游戏文件**，通过进程内存读取和鼠标/键盘模拟实现自动游玩，并通过逆向工程还原了完整的战斗模拟系统。
-
----
+为游戏《背包乱斗》(Backpack Battles) 打造的外置 AI 机器人 + 战斗模拟器。**不修改任何游戏文件**：通过进程内存读取与输入模拟实现自动游玩，并通过逆向工程 100% 复刻了战斗模拟系统。
 
 ## 下载（Releases）
 
-打包好的独立 EXE 在 GitHub Releases 发布，无需 Python 环境即可运行：
+打包好的独立 EXE 在 [GitHub Releases](https://github.com/cttt-des/AI-BackpackBattles/releases) 发布，无需 Python 环境：
 
 | 版本 | 文件 | 说明 |
 |------|------|------|
 | **v0.2.0** | [`BackpackAI_v0.2.0.exe`](https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.2.0/BackpackAI_v0.2.0.exe) | 外挂 AI 主程序（自动游玩 GUI） |
 | **v0.2.0** | [`BackpackSimulator_v0.2.0.exe`](https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.2.0/BackpackSimulator_v0.2.0.exe) | 战斗模拟器（阵容对战 / 蒙特卡洛胜率 / 物品联动） |
-| **v0.1.1** | [`BackpackAI_v0.1.1.exe`](https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.1.1/BackpackAI_v0.1.1.exe) | 外挂 AI 主程序（自动游玩 GUI） |
-| **v0.1.1** | [`BackpackSimulator_v0.1.1.exe`](https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.1.1/BackpackSimulator_v0.1.1.exe) | 战斗模拟器（阵容对战 / 蒙特卡洛胜率） |
 
-> 历史版本：[v0.1.1](https://github.com/cttt-des/AI-BackpackBattles/releases/tag/v0.1.1)、[v0.1.0](https://github.com/cttt-des/AI-BackpackBattles/releases/tag/v0.1.0)、[v0.0.1](https://github.com/cttt-des/AI-BackpackBattles/releases/tag/v0.0.1)
+开发版模拟器随每次改动重新打包为 `dist/BackpackSimulator.exe`（不带版本号）。
 
-> **v0.2.0 更新要点**：实现物品联动（`Affected` 影响格 + `canAffect` 过滤 + `onAffectedItemAdded` 回调 + 动态类型，全部从解密源码提取，含 `extends` 继承链）；新增三层静态对账 `audit_item_effects.py` 与回归基线 `regression_baseline.py`；修复中毒伤害 randint 崩溃、修正 `modify_param` 累加语义、补齐 30+ 联动判定谓词。详见 [`docs/simulator_architecture.md` 第 9 节](docs/simulator_architecture.md#9-物品联动affected机制)。
+## 成果总结
 
----
+### ① 逆向基础（GDEC 解密 + 全源码可读）
 
-## 功能特性
+- PCK 解包 → GDEC 脚本批量解密（AES-256-ECB，密钥经运行时 hook 获取）→ **全部 815 个 GDScript 反编译成功**（`decompiled_full/`），战斗逻辑全源码可读
+- 内存布局活体标定：`OS::singleton` RVA 定位 → Godot 对象图遍历，游戏更新可用 `tools/sweep_offsets.py` 自动重扫
 
-- **外置运行** — 无需注入或修改游戏本体，纯外部进程操作
-- **内存读取** — 通过 `ReadProcessMemory` 直接读取游戏进程的金币、HP、回合、物品清单等状态
-- **结构性物品读取** — 遍历 Godot 场景树，精确捕获物品位置、旋转、**镶嵌宝石**（GemSocket 子树）与**袋内物品**（contents 递归展开）
-- **导出阵容（v3）** — 将当前读取到的背包摆盘导出为模拟器 v3 阵容 JSON（含 `gems`/`contents`/`class_modifiers`/`round`），可直接喂给模拟器
-- **启发式 AI** — 默认采用启发式策略自动决策（买最便宜的物品、偏好武器、自动卖垃圾等），预留 LLM 接口
-- **原生桌面 GUI** — 基于 tkinter 的深色主题桌面应用（BackpackAI + BackpackSimulator 双程序）
-- **战斗模拟器** — 基于逆向源码 100% 复刻的战斗引擎，输入两个阵容 JSON 输出完整战斗日志 + 蒙特卡洛胜率
-- **物品联动（Affected）** — 按背包相对位置生效的联动：四色影响格（Primary/Secondary/Tertiary/Lightning）、
-  脚本覆写的 `getAffectedCellsAfterRotate`、`canAffect` 过滤、`onAffectedItemAdded` 回调与动态类型，
-  全部从解密源码提取（含 `extends` 继承链），见 `docs/simulator_architecture.md` 第 9 节
-- **源码级精度对账** — `tools/audit_item_effects.py` 逐物品比对「源码方法 → 转译 Python → 运行时行为」，
-  暴露静默失败；`tools/regression_baseline.py` 提供固定种子回归基线，防精度回退
-- **GDEC 脚本解密** — 已成功解密并反编译全部 815 个游戏加密脚本（`decompiled_full/`），战斗逻辑全源码可读
-- **桥接注入（可选）** — 通过 PCK 补丁注入 GDScript TCP 桥接，可在游戏进程内读取运行时数据（端口 19527）
-- **打包分发** — 支持 PyInstaller 一键打包为独立 EXE
+### ② 外挂 AI（自动游玩）
+
+- 内存读取金币/HP/回合/物品清单；结构性物品读取精确捕获**位置、旋转、镶嵌宝石、袋内物品**
+- 启发式策略自动决策（预留 LLM 接口）；tkinter 深色主题桌面 GUI
+- 一键导出 **v3 阵容 JSON**（含 gems/contents/class_modifiers/round），直接喂给模拟器
+- 桥接注入（可选）：PCK 补丁注入 GDScript TCP 桥接，进程内读取运行时数据
+
+### ③ 战斗模拟器（100% 复刻战斗效果）
+
+- 20+ 模块：60Hz 冷却系统、伤害结算全链（命中/闪避/暴击×2/抗性/格挡/反伤/吸血/疲劳）、Buff 栈、平衡随机 RNG、事件日志
+- 物品行为由 `Items/*.gd` 方法体自动转译为 Python 运行时执行（全库 2276 个方法，转译失败仅 3 个）
+- 物品联动（Affected）完整还原：四色影响格、脚本覆写 `getAffectedCellsAfterRotate`（含 `extends` 继承链）、`canAffect` 过滤、`onAffectedItemAdded` 回调、动态类型
+- 桌面 GUI：阵容选择、**镜像对战**（可用相同阵容对打）、开战前占格重叠预检
+
+### ④ 精度攻坚（历轮大修，全部对齐反编译源码）
+
+- 战斗逻辑大修：attack 虚派发同帧双触发、`onDealtDamage` 双派发、GDScript 生命周期拆分（放置期 ready / 战斗期 prepare）、冷却时序逐帧回归
+- 联动大修：移除坐标 `//2` 坍缩（**1 collision tile = 1 背包格**）、补齐 `activated` 信号链（药水消耗/武器模板/DSL 兜底三条路径）
+- 占格模型对齐 `Inventory.gd`：`filledCells`/`bagCells` 双层——**物品压在背包占格上属合法（放入包内）**；27 个背包类物品按 `category=='bag'` 正确归类
+- 占格旋转修复：90°/270° 方向对齐 Godot `rotated()`（y 向下、正角顺时针，经 `orientItem`/correction 表推导），真实游戏历史阵容重叠误报清零
+
+### ⑤ 验收工具链（防精度回退）
+
+| 工具 | 作用 | 当前状态 |
+|------|------|----------|
+| `tools/verify_linkage.py` | 联动语义固定用例（Twine/Rope/药水信号/动态类型…） | 17/17 通过 |
+| `tools/verify_timing.py` | 冷却/暴击/疲劳逐帧时序回归 | 全部通过 |
+| `tools/audit_item_effects.py` | 源码→转译→运行时三层对账 | runtime_failures = 3（基线，已知数据缺口） |
+| `tools/regression_baseline.py` | 固定种子 56 场战斗指纹比对 | 无差异 |
+| `tools/repack_lineups.py` | 占格形状变更后内置阵容自动重摆 | 18 个阵容预检零冲突 |
 
 ## 项目结构
 
 ```
-core/                       # 外挂 AI 核心模块
-├── bot.py                  # 主机器人循环
-├── memory_reader.py        # 进程内存读取
-├── window_manager.py       # 窗口管理 + 坐标计算
-├── actions.py              # 游戏操作（点击/拖拽/按键）
-├── state_tracker.py        # 状态管理
-├── ai_interface.py         # AI 决策接口（启发式 + LLM 预留）
-├── item_db.py              # 物品数据库
-├── item_reader.py          # 结构性物品读取（含宝石/袋内物品捕获）
-├── godot_reader.py         # Godot 引擎对象图遍历
-├── game_state.py           # 游戏状态模型
-├── bridge_client.py        # 桥接 TCP 客户端（可选）
-└── paths.py                # 路径兼容
-simulator/                  # ★ 战斗模拟器（输入两阵容 JSON → 战斗日志+结果）
+core/                       # 外挂 AI 核心（bot/memory_reader/item_reader/godot_reader/ai_interface 等）
+simulator/                  # ★ 战斗模拟器（combat/item/behavior/effects/grid/lineup/data/gui…）
 ├── simulate.py             # CLI 入口
-├── gui.py                  # 桌面 GUI 入口
-├── combat.py               # 战斗引擎主循环（对齐 Game.gd + CombatTimer.gd）
-├── character.py            # 角色（对齐 Character.gd takeDamage 全流程）
-├── item.py                 # 物品（对齐 Item.gd 冷却/触发/武器模板）
-├── effects.py              # 效果 DSL 执行器
-├── behavior.py             # 物品行为方法运行时编译执行（Items/*.gd 转译）
-├── buff.py                 # Buff 栈系统（对齐 Buff.gd）
-├── damage.py               # DamageSource/DamageResult（暴击倍率 2.0）
-├── rng.py                  # 平衡随机（对齐 BalancedRandom.gd）
-├── events.py               # 战斗事件日志（对齐 CombatEvent/CombatLog）
-├── lineup.py               # 阵容 JSON 加载/校验（v3 格式）
-├── grid.py                 # 背包网格/邻接/宝石（40px 精细 tile → 80px 背包格）
-├── data.py                 # 物品/角色数据加载
-├── extract_linkage.py      # ★ 联动专项提取（四色影响格 + canAffect 系列 + 回调，含 extends 继承链）
-└── build_data.py           # 从 wiki 数据 + 解包脚本生成 battle_items.json
-gui/                        # 外挂 AI 原生桌面 GUI
-├── app.py                  # 主窗口（状态卡 + 背包 Canvas + 日志 + 控制按钮）
-└── theme.py                # 深色主题配色
-bridge/                     # 桥接注入模块（可选）
-├── bridge.gd               # GDScript 桥接脚本
-├── inject.py               # PCK 注入核心
-├── injector_app.py         # 桥接注入器 GUI
-└── __init__.py
-decompiled_full/            # ★ 815 个游戏脚本反编译源码（GDEC 解密成果）
-├── Core/Combat.gd          # 战斗 UI/流程层
-├── Core/Character.gd       # 战斗机制核心（伤害/暴击/抗性/疲劳）
-├── Core/Game.gd            # 主游戏逻辑（138KB）
-├── Items/                  # 全部物品脚本（含 Exclusive/、Gems/）
-└── ...                     # 其余脚本（Interface/Utility/addons 等）
-assets/                     # 数据与素材
-├── sprites/                # 物品贴图（556 个 PNG）
-├── battle_items.json       # 模拟器物品数据库（含行为方法转译）
-├── items_db_sim.json       # 导出阵容用物品校验库
-├── item_db.json            # 游戏提取物品数据库
-├── characters.json         # 角色数据
-├── zh_override.json        # 中文名覆盖表
-└── zh_pairs.json           # 中英翻译对
-examples/                   # 示例阵容 JSON（模拟器输入）
-lineups/                    # 常用阵容 JSON（模拟器 GUI 选择列表）
-output/                     # 模拟器运行输出（战斗日志/结果，可再生成）
-tools/                      # 逆向分析 & 数据生成工具
-├── decrypt_gde.py          # GDEC 脚本批量解密（AES-256-ECB）
-├── dump_decrypted.py       # 解密脚本导出
-├── dump_items.py           # 物品数据 dump
-├── pck_extractor.py        # PCK 解包
-├── sweep_offsets.py        # 版本更新时自动扫描偏移量
-├── scrape_items.py         # 营地/社区物品数据抓取
-├── regen_behaviors.py      # 物品行为全量重转译（Items/*.gd → battle_items.json）
-├── audit_effects.py        # 效果编译级审计
-├── audit_item_effects.py   # ★ 效果三层对账（源码↔转译↔运行时）+ 缺失 API 统计
-├── verify_linkage.py       # ★ 联动对照验证（相邻/不相邻、旋转、邻居类型）
-├── regression_baseline.py  # ★ 固定种子回归基线（--save / --check 防回退）
-├── verify_cooldowns.py     # 冷却实战校验（274 物品逐一上场验证）
-├── parse_translations.py   # 游戏翻译文件解析
-├── fix_zh_names.py         # 中文名修正
-├── aes256.c/.h             # AES 参考实现
-└── script_key.txt          # 解密密钥记录
-dashboard/                  # Web 控制台（旧版，已弃用但保留）
-docs/                       # 文档
-├── game_mechanics_reference.md   # 游戏机制逆向参考
-└── simulator_architecture.md     # 模拟器架构与阵容格式
-config.yaml                 # 配置文件
-launcher.py                 # 外挂 AI 主程序入口
-battle_simulator.py         # 模拟器 GUI 入口
-build_exe.py                # 外挂 AI 打包脚本
-build_simulator_exe.py      # 模拟器打包脚本
+├── extract_linkage.py      # ★ 联动专项提取（四色影响格 + canAffect + 回调，含继承链）
+└── build_data.py           # 从 wiki + 解包脚本生成 battle_items.json
+gui/                        # 外挂 AI 桌面 GUI（主窗口 + 深色主题）
+bridge/                     # 桥接注入（可选）
+decompiled_full/            # ★ 815 个反编译源码（Core/Items/Utility/…）
+assets/                     # 物品贴图、battle_items.json、角色数据、翻译表
+lineups/                    # 内置阵容 JSON；dist/lineups/ 另含游戏历史导出阵容
+examples/                   # 示例阵容
+tools/                      # 逆向工具 + 验收链（见上表）+ 解密/解包/数据抓取
+docs/                       # 游戏机制逆向参考、模拟器架构与阵容格式
+launcher.py                 # 外挂 AI 入口        battle_simulator.py  # 模拟器 GUI 入口
+build_exe.py                # 外挂 AI 打包        build_simulator_exe.py  # 模拟器打包
 ```
 
 ## 快速开始
 
-### 环境要求
-
-- Python 3.13+
-- 游戏《Backpack Battles》已运行（外挂 AI 模式需要）
-
-### 外挂 AI（自动游玩）
+### 外挂 AI
 
 ```bash
-# 安装依赖
 pip install pyautogui pyyaml pillow
-
-# 启动 GUI
-python launcher.py
-
-# 或命令行模式
-python -m core.bot --verbose
+python launcher.py                # GUI（需游戏已运行）
+python -m core.bot --verbose      # 或命令行模式
 ```
 
 ### 战斗模拟器（不依赖游戏运行）
 
 ```bash
-# 单场战斗（固定种子可复现）
+# 单场战斗（固定种子可复现）/ 蒙特卡洛 100 场
 python -m simulator.simulate lineups/lineup_dagger_swarm.json lineups/lineup_greatsword_tank.json --seed 42
+python -m simulator.simulate lineup_A.json lineup_B.json --runs 100
 
-# 蒙特卡洛胜率（100 场）
-python -m simulator.simulate lineups/lineup_dagger_swarm.json lineups/lineup_greatsword_tank.json --runs 100
-
-# 桌面 GUI（从 lineups/ 选择阵容）
+# 桌面 GUI（从 lineups/ 选择阵容，支持同阵容镜像对战）
 python battle_simulator.py
 
-# 输出
-#   output/*_log.json      战斗过程日志（事件流）
-#   output/*_result.json   战斗结果（胜负/血量/统计/HP 曲线）
-#   output/*_log.txt       人类可读日志
+# 输出 output/*_log.json（事件流）、*_result.json（胜负/统计/HP 曲线）、*_log.txt（可读日志）
 ```
 
-### 导出阵容（v3）
-
-在外挂 AI GUI 中点击「导出阵容 (模拟器 JSON)」，将当前读取到的所有物品（摆盘 + 储物箱）保存为 v3 阵容 JSON。格式对齐 `simulator/lineup.py`：
+### v3 阵容格式
 
 ```jsonc
 {
   "version": 3,
-  "meta": { "name": "...", "source": "...", "exported_at": "...", "unknown_items": [] },
-  "character": "Reaper",                 // 职业名字符串
-  "round": 12,                           // 当前回合
-  "class_modifiers": {                   // 取自角色库基础值
-    "health": 100, "stamina": 50, "stamina_regen": 5, "gold": 0
-  },
-  "health_override": null,               // 交给模拟器按回合成长计算
+  "meta": { "name": "...", "source": "...", "unknown_items": [] },
+  "character": "Reaper",
+  "round": 12,
+  "class_modifiers": { "health": 100, "stamina": 50, "stamina_regen": 5 },
   "backpack": {
     "grid": { "rows": 8, "cols": 8 },
     "items": [
@@ -188,73 +114,22 @@ python battle_simulator.py
 }
 ```
 
-- `gems` — 从场景树 GemSocket 子树捕获的镶嵌宝石（`[{"id": "Ruby"}]`）
-- `contents` — 袋内物品递归展开（同 schema）
-- `rotation` — 角度制（0/90/180/270）
+- `gems` — 镶嵌宝石；`contents` — 袋内物品（递归同 schema）；`rotation` — 角度制（0/90/180/270）
+- `(row,col)` 为**旋转后占格左上角**（对齐游戏 `topLeftCell` 存档语义）
 
-### 打包为 EXE
+### 打包
 
 ```bash
 python build_exe.py              # 外挂 AI → dist/BackpackAI.exe
 python build_simulator_exe.py    # 模拟器 → dist/BackpackSimulator.exe
 ```
 
-## 模拟器还原度
-
-模拟器战斗逻辑逐行对齐 `decompiled_full/` 解包源码：
-
-- **冷却系统** — 60Hz tick、物品独立触发、heat/cold 速度修正（274 物品全部实战校验通过）
-- **伤害结算全链** — 命中/闪避/暴击×2.0/抗性/格挡/反伤/吸血/疲劳（14s→17s→每1s递增）
-- **Buff 栈系统** — 抗性/反射/临时栈超时
-- **物品行为** — `Items/*.gd` 方法体自动转译为 Python（`behavior.py` 运行时编译执行）；
-  全库 2276 个方法，转译失败仅 3 个（`tools/audit_item_effects.py` 可复现该统计）
-- **邻接/联动/宝石** — 40px 精细 tile 网格 → 80px 背包格；四色影响格 + `canAffect` 过滤 +
-  `onAffectedItemAdded` 回调 + 动态类型均已还原，判定逻辑从源码提取（含 `extends` 继承链）
-- **RNG 语义** — 冷却时长固定 = cd，随机只决定同帧触发先后
-- **回归护栏** — `python tools/regression_baseline.py --check` 比对固定种子的 56 场战斗结果
-  与事件流指纹；`python tools/verify_linkage.py` 校验 8 项联动语义
-
 ## 配置说明
 
-编辑 `config.yaml` 调整 AI 行为和内存参数：
-
-- **AI 策略**：`heuristic`（启发式）或 `llm`（需配置 API）
-- **购买优先级**：`cheapest_first` / `highest_value` / `balanced`
-- **Godot 内存布局**：已活体标定，通常无需手动调整
-
-## 技术架构
-
-```
-游戏进程 ← 内存读取 + pyautogui 输入 → Python Bot ← queue/线程 → tkinter GUI
-                     ↑
-                 桥接 TCP (端口 19527，可选)
-```
-
-- 游戏引擎：Godot 3.6.0（x86-64，GDEC 加密脚本）
-- 输入模拟：pyautogui（鼠标点击/拖拽/键盘）
-- 内存读取：ctypes + kernel32 ReadProcessMemory
-- GUI 框架：tkinter（深色主题）
-- 脚本解密：AES-256-ECB（GDEC 容器，密钥已通过运行时 hook 获取）
-
-### Godot 内存布局（活体标定）
-
-```
-OS::singleton RVA = 0x1eba290（版本更新会漂移，可自动扫描重定位）
-链路: base+RVA → OS → +0x1d0 main_loop(SceneTree) → +0x148 root Viewport
-Node: parent=+0xf0, children=Vector<Node*>(CowData)@+0x108,
-      name=+0x130→_Data→String@+0x10(UTF-16), script_instance=+0x58
-GDScriptInstance: members Vector<Variant>=+0x20, CowData 元素数在 _ptr-4
-Game = root.children[8]（autoload，BFS 定位更稳）
-成员下标: gold=72, hp=68, round=65
-Node2D: 局部pos=+0x270(2×f32), 全局origin=+0x260；背包格80px
-```
-
-## 待解决问题
-
-- **物品联动的读取和显示** — 联动数据位于加密运行期 GDScript 中，静态提取受限，桥接注入方案可突破（见 `bridge/`）
-- **商店物品的价格无法正确读取** — 价格/打折字段位于运行期数据，需通过桥接在游戏内读取
+编辑 `config.yaml`：AI 策略（`heuristic`/`llm`）、购买优先级、Godot 内存布局（已活体标定，通常无需调整）。
 
 ## 注意事项
 
-- 游戏更新后 `OS::singleton` 偏移可能变化，运行 `tools/sweep_offsets.py` 自动校准
+- 游戏更新后 `OS::singleton` 偏移可能漂移，运行 `tools/sweep_offsets.py` 自动校准
+- 模拟器改动物品行为/占格逻辑后，跑一遍验收链（verify_linkage → verify_timing → audit_item_effects → regression_baseline --check）再打包
 - 本软件仅供学习研究使用，请勿用于违反游戏服务条款的用途
