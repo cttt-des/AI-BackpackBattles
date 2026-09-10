@@ -434,6 +434,110 @@ def case_djinn_lamp_ingredients(rep: Report, verbose=False):
             f"成分给满后 activated={activated}（buff 变化信号链应无异常）")
 
 
+def case_twine_fixed(rep: Report, verbose=False):
+    """Twine.gd 固定坐标 + activated 信号链（占格修复回归）。
+
+    真值（1 collision tile = 1 背包格）：锚点占 1 格；primary=右邻格
+    （canAffect=item.can_activate()）；secondary=左侧 3 格
+    （canAffect_secondary=item.isNeutral()）。onPrepare 对 primary 物品连接
+    "activated" → onTriggerItemActivated：掷骰（baseChance + secondary 数×baseChance2）
+    成功则 give_max_health(maxHealth)。
+    """
+    if "Twine" not in DB:
+        rep.add("twine_fixed", True, skipped=True, detail="物品缺失")
+        return
+    from simulator.behavior import BEHAVIOR_GLOBALS
+    sec_color = BEHAVIOR_GLOBALS["Affected"].Secondary
+
+    probe, _ = build_scene([("Twine", 3, 4, 0)])
+    tw = probe[0]
+    occ = set(tw.occupied_cells)
+    prim = set(tw._affected_cells_abs(0))
+    sec = set(tw._affected_cells_abs(sec_color))
+    rep.add("twine_geometry", occ == {(3, 4)} and prim == {(3, 5)}
+            and sec == {(3, 1), (3, 2), (3, 3)},
+            f"占格={sorted(occ)} primary={sorted(prim)} secondary={sorted(sec)}")
+
+    weapon = "Wooden Sword" if "Wooden Sword" in DB else next(
+        (k for k, v in DB.items() if v.get("category") == "weapon"), None)
+    if weapon is None or "Stone" not in DB:
+        rep.add("twine_linkage_signal", True, skipped=True, detail="无武器/中立物品")
+        return
+    items, _ = build_scene([("Twine", 3, 4, 0), (weapon, 3, 5, 0),
+                            ("Stone", 3, 1, 0), ("Stone", 3, 2, 0), ("Stone", 3, 3, 0)])
+    tw, wp = items[0], items[1]
+    n_prim = len(tw.get_affected_items(0))
+    n_sec = len(tw.get_affected_items(sec_color))
+    # 强制掷骰成功，验证信号 → onTriggerItemActivated → maxHealth 增益
+    tw.roll_chance = lambda total: True
+    tmp0 = tw.character.temporary_max_health
+    mh = getattr(tw, "maxHealth", 0)
+    wp.visual_activate()
+    tmp1 = tw.character.temporary_max_health
+    ok = n_prim == 1 and n_sec == 3 and abs(tmp1 - tmp0 - mh) < 1e-6
+    rep.add("twine_linkage_signal", ok,
+            f"primary计数={n_prim} secondary计数={n_sec} "
+            f"临时maxHealth {tmp0}->{tmp1}（期望+{mh}）")
+
+
+def case_rope_speedup(rep: Report, verbose=False):
+    """Rope.gd：占格=横向 2 格；primary=下方（can_activate 触发源）；
+    secondary=右侧 1 格（has_cooldown 被加速对象）。onPrepare 绑定 speedUpItem，
+    触发源激活 → speedUpItem.add_speed(speedPerTrigger)（ropeSpeedups 累计封顶 maxSpeed）。
+    """
+    if "Rope" not in DB or "Wooden Sword" not in DB or "Stone" not in DB:
+        rep.add("rope_speedup", True, skipped=True, detail="物品缺失")
+        return
+    from simulator.behavior import BEHAVIOR_GLOBALS
+    sec_color = BEHAVIOR_GLOBALS["Affected"].Secondary
+
+    probe, _ = build_scene([("Rope", 3, 3, 0)])
+    rp = probe[0]
+    occ_ok = set(rp.occupied_cells) == {(3, 3), (3, 4)}
+    prim_ok = set(rp._affected_cells_abs(0)) == {(4, 3)}
+    sec_ok = set(rp._affected_cells_abs(sec_color)) == {(3, 5)}
+
+    items, _ = build_scene([("Rope", 3, 3, 0), ("Wooden Sword", 4, 3, 0),
+                            ("Stone", 3, 5, 0)])
+    rp, ws, st = items
+    linked = rp.speedUpItem is st
+    s0 = st.speed_scale
+    per = rp.speedPerTrigger
+    ws.visual_activate()
+    s1 = st.speed_scale
+    ws.visual_activate()
+    s2 = st.speed_scale
+    ok = (occ_ok and prim_ok and sec_ok and linked
+          and abs(s1 - (s0 + per)) < 1e-9 and abs(s2 - (s0 + 2 * per)) < 1e-9)
+    rep.add("rope_speedup", ok,
+            f"占格/影响格={occ_ok and prim_ok and sec_ok} speedUpItem绑定={linked} "
+            f"速度 {s0}->{s1}->{s2}（每次+{per}）")
+
+
+def case_potion_consume_signal(rep: Report, verbose=False):
+    """Health Potion consume_potion 发 "activated"（对齐 Item.gd consume()→activate()）
+    → 邻居 Goobert.onItemActivated 计数。药水信号路径回归。"""
+    if "Goobert" not in DB or "Health Potion" not in DB:
+        rep.add("potion_consume_signal", True, skipped=True, detail="物品缺失")
+        return
+    probe, _ = build_scene([("Goobert", 3, 3, 0)])
+    cells = probe[0]._affected_cells_abs(0)
+    if not cells:
+        rep.add("potion_consume_signal", True, skipped=True, detail="Goobert 无影响格")
+        return
+    tr, tc = cells[0]
+    items, _ = build_scene([("Goobert", 3, 3, 0), ("Health Potion", tr, tc, 0)])
+    gb, po = items[0], items[1]
+    before = getattr(gb, "activations", None)
+    po.consume_potion()
+    after = getattr(gb, "activations", None)
+    consumed = po.is_empty()
+    # 单次激活：计数 +1；若恰达阈值则触发 heal 并归零
+    ok = consumed and before is not None and (after == before + 1 or after == 0)
+    rep.add("potion_consume_signal", ok,
+            f"药水已喝空={consumed} Goobert 计数 {before}->{after}")
+
+
 CASES: List[Callable[[Report, bool], None]] = [
     case_whetstone,
     case_potion_above,
@@ -447,6 +551,9 @@ CASES: List[Callable[[Report, bool], None]] = [
     case_spiked_shield_block,
     case_battery_charge_speed,
     case_djinn_lamp_ingredients,
+    case_twine_fixed,
+    case_rope_speedup,
+    case_potion_consume_signal,
 ]
 
 

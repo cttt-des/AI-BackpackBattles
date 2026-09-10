@@ -103,6 +103,9 @@ class _Util:
     def dictAdd(self, d, k, v, default=0):
         d[k] = d.get(k, default) + v
 
+    def dictSub(self, d, k, v, default=0):
+        d[k] = d.get(k, default) - v
+
     def tra(self, s, *a):
         return s
 
@@ -233,6 +236,11 @@ class _Game:
     CONNECT_ONESHOT = 0
     ActivationAni = SimpleNamespace(Throw=0, Melee=1, Ranged=2, Spell=3)
     time = 0.0
+    # 战斗级状态（对齐 Game.gd:361-362；combatEnd 时 clear，见 Game.gd:2970-2971）。
+    # Rope 加速累计 / Cube 进阶记录必须走真实字典——此前落到 _Noop 兜底导致
+    # speedLeft>0 恒 False、进阶标记永不生效，联动被静默吞掉。
+    ropeSpeedups: dict = {}
+    cubeAdvanced: dict = {}
 
     @staticmethod
     def connect(*a, **k):

@@ -190,6 +190,13 @@ class CombatEngine:
 
     # ---------------- 战斗主流程 ----------------
     def run(self) -> 'CombatEngine':
+        # 对齐 Game.gd combatEnd 的 ropeSpeedups/cubeAdvanced.clear()（Game.gd:2970）：
+        # 战斗级全局状态每场清空，保证场与场之间隔离
+        from .behavior import BEHAVIOR_GLOBALS
+        _game = BEHAVIOR_GLOBALS['Game']
+        _game.ropeSpeedups.clear()
+        _game.cubeAdvanced.clear()
+
         # prepareItems: 双方 prepare + 物品 prepare（含被动叠加）
         self.player.prepare(self.log)
         self.opponent.prepare(self.log)

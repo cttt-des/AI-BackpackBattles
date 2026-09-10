@@ -998,6 +998,9 @@ class Item:
             for eff in effects:
                 if eff and eff.get('type'):
                     executor.execute(eff, now)
+            # DSL 兜底路径无转译行为可调 activate()，此处补发（对齐游戏内
+            # 每次物品激活必经 activate() -> EventBus "activated"）
+            self.visual_activate()
             self.metrics["activations"] += 1
         finally:
             if self.log:
@@ -1012,6 +1015,8 @@ class Item:
         try:
             if self.use_stamina() == 0:
                 self.attack(now)
+                # 对齐 Weapon.gd attack()：dealDamage 后 activate(res) 发 "activated"
+                self.visual_activate()
                 self.metrics["activations"] += 1
         finally:
             if self.log:
@@ -1300,8 +1305,10 @@ class Item:
         for cb in list(self._signals.get(signal, [])):
             try:
                 cb(*args)
-            except Exception:
-                pass
+            except Exception as exc:  # noqa: BLE001
+                # 回调异常不再静默吞掉（此前联动监听者失效无从排查）
+                from .behavior import _warn
+                _warn(self, f"signal {signal!r} callback {getattr(cb, '__name__', cb)!r} error: {exc!r}")
 
     def connect_for_combat(self, target, signal: str, method_name: str, binds=None):
         """connectForCombat — 在目标(角色/物品)上注册信号回调"""
@@ -1406,6 +1413,8 @@ class Item:
         """consumePotion — 喝药并触发 onTriggerPotion"""
         if self.is_empty():
             return
+        # 对齐 Item.gd consume()：activate(damageRes, playCombatAni, true) 发 "activated"
+        self.visual_activate()
         self.consumed = True
         self.is_full = False
         now = getattr(trigger_event, 't', None)
@@ -1497,7 +1506,7 @@ class Item:
     def set_grid_position(self, row: int, col: int, rotation: int = 0,
                           inventory=None, is_bag: bool = False):
         """按 lineup (row,col,rotation) 放置。
-        tscn CollisionMap 是 40px 精细 tile，背包格 80px → 坐标 //2 合并。
+        1 collision tile = 1 背包格（cellSize=80 即 tile 尺寸，无换算）。
         tscn 格 (x,y)：x=横向=背包 col、y=纵向=背包 row。
 
         放置即触发行为初始化（≈ GDScript add_child → _ready）：摆盘期的
@@ -1528,10 +1537,10 @@ class Item:
         self._min40 = (minx, miny)
         shape40 = sorted((c[0] - minx, c[1] - miny) for c in rotated)
         self._shape40 = shape40
-        # 40px 格 -> 80px 背包格：//2 取唯一，再平移到 (row,col)
+        # 1 collision tile = 1 背包格（cellSize=80 即 tile 尺寸），直接平移到 (row,col)
         cells = {}
         for c in shape40:
-            cells[(c[1] // 2, c[0] // 2)] = True     # (y//2, x//2) -> (row, col) 序
+            cells[(c[1], c[0])] = True     # (y, x) -> (row, col) 序
         self.occupied_cells = [(r + row, c + col) for (r, c) in cells]
 
     def grid_shape(self) -> list:
@@ -1544,7 +1553,7 @@ class Item:
         return (cell[1] + row, cell[0] + col)
 
     def _affected_cells_abs(self, color: int = 0) -> list:
-        """受影响格（绝对背包格子）：tscn Affected tile + 脚本补充，旋转 + 40px->80px 合并"""
+        """受影响格（绝对背包格子）：tscn Affected tile + 脚本补充，1 tile = 1 格直接映射"""
         from .grid import rotate_cell
         grid = self.data.get('grid') or {}
         key = {0: 'affected_cells', 2: 'affected_secondary',
@@ -1557,8 +1566,8 @@ class Item:
             rc = rotate_cell(tuple(c), self.grid_rotation)   # 旋转（锚点系 40px）
             offx = rc[0] - minx
             offy = rc[1] - miny
-            # 40px 偏移 //2 -> 80px 格，再平移到 (row,col)
-            cells.add((self.grid_row + offy // 2, self.grid_col + offx // 2))
+            # 1 tile = 1 背包格，直接平移到 (row,col)
+            cells.add((self.grid_row + offy, self.grid_col + offx))
         for c in self._script_affected_cells(color):
             cells.add(c)
         return sorted(cells)
@@ -1580,10 +1589,10 @@ class Item:
         if not rot40:
             return []
         minx, miny = getattr(self, '_min40', (0, 0))
-        # 40px 锚点系 -> 背包绝对格，元素顺序与源码 getCollisionPoints() 一致（不排序）。
+        # 1 tile = 1 背包格：锚点系 -> 背包绝对格，元素顺序与源码 getCollisionPoints() 一致（不排序）。
         # 以 Vector2(x=col, y=row) 传入，便于 +Vector2.UP 直接上移一行。
-        rotated_cells = [(self.grid_col + (c[0] - minx) // 2,
-                          self.grid_row + (c[1] - miny) // 2) for c in rot40]
+        rotated_cells = [(self.grid_col + (c[0] - minx),
+                          self.grid_row + (c[1] - miny)) for c in rot40]
         try:
             res = self.call_behavior(method, rotated_cells)
         except Exception:  # noqa: BLE001
