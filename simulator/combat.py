@@ -24,6 +24,7 @@ from .rng import BalancedRng
 from .character import Character
 from .item import Item
 from .events import CombatLog
+from .data import is_bag_data
 
 # CombatTimer 常量（对齐 Interface/CombatTimer/CombatTimer.gd）
 FATIGUE_TIME = 17.0          # 总战斗时限
@@ -141,7 +142,11 @@ class CombatEngine:
         return items
 
     def _place_items(self, items: List[Item], lineup: Dict) -> 'GridInventory':
-        """把物品摆到背包网格（对齐 lineup row/col/rotation），并挂载宝石"""
+        """把物品摆到背包网格（对齐 lineup row/col/rotation），并挂载宝石
+
+        背包判定以物品库 category=='bag' 为准（is_bag_data），阵容 container
+        标志仅作补充——背包必须占 bags 底层，普通物品才能压其上（放入包内）。
+        """
         from .grid import GridInventory
         bp = lineup.get('backpack', {})
         grid_cfg = bp.get('grid') or {'rows': 7, 'cols': 10}
@@ -150,7 +155,8 @@ class CombatEngine:
             e = getattr(it, '_lineup_entry', None) or {}
             it.set_grid_position(int(e.get('row', 0) or 0), int(e.get('col', 0) or 0),
                                  int(e.get('rotation', 0) or 0), inventory=inv,
-                                 is_bag=bool(e.get('container', False)))
+                                 is_bag=is_bag_data(self.item_db.get(it.key))
+                                 or bool(e.get('container', False)))
             it.mount_gems(e.get('gems') or [], self.item_db)
         return inv
 
