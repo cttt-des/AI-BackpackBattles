@@ -43,8 +43,13 @@ def _lineups_dir() -> str:
 def _overlap_conflicts(path: str) -> List[str]:
     """开战前占格预检（1 collision tile = 1 背包格，规则对齐 tools/repack_lineups.py）。
 
-    引擎 add_item 无重叠校验（后写覆盖先写），重叠会让物品凭空消失，
-    故开战前拦截。返回问题描述列表；空列表 = 无冲突。
+    占格分两层（对齐 Inventory.gd 的 filledCells / bagCells）：
+      * 背包/袋子（container=true）在底层 bagCells；
+      * 普通物品在 filledCells，可以压在包占格上（= 放进包内，
+        对齐 Inventory.gd canAddItem 只查 filledCells、不查 bagCells）。
+    冲突仅两种：物品∩物品、背包∩背包；物品与背包重叠是合法摆放。
+    引擎 add_item 无同层校验（后写覆盖先写），故开战前拦截。
+    返回问题描述列表；空列表 = 无冲突。
     """
     try:
         data = load_lineup(path)
@@ -55,11 +60,7 @@ def _overlap_conflicts(path: str) -> List[str]:
     rows, cols = int(grid_cfg.get('rows', 7)), int(grid_cfg.get('cols', 10))
     db = load_items()
     filled, bags, out = set(), set(), []
-    entries = bp.get('items') or []
-    # 普通物品先摆；包/袋后查（可与 filled 共存——物品可放入包内）
-    ordered = [e for e in entries if not e.get('container')] + \
-              [e for e in entries if e.get('container')]
-    for e in ordered:
+    for e in bp.get('items') or []:
         is_bag = bool(e.get('container'))
         g = (db.get(e.get('id')) or {}).get('grid') or {}
         cells = g.get('collision_cells') or [[0, 0]]
@@ -68,13 +69,14 @@ def _overlap_conflicts(path: str) -> List[str]:
         r0, c0 = int(e.get('row', 0) or 0), int(e.get('col', 0) or 0)
         abs_ = {(r0 + dy, c0 + dx) for (dx, dy) in shape}
         oob = any(r < 0 or r >= rows or c < 0 or c >= cols for r, c in abs_)
-        hit = abs_ & (filled | bags) if is_bag else abs_ & filled
+        # 同层查重：物品只与物品冲突，包只与包冲突（跨层重叠 = 放入包内）
+        hit = abs_ & (bags if is_bag else filled)
         if oob or hit:
             desc = f"{e.get('id')} @({r0},{c0})"
             if oob:
                 desc += ' 越界'
             if hit:
-                desc += f' 与已占格重叠 {sorted(hit)}'
+                desc += f' 与同类占格重叠 {sorted(hit)}'
             out.append(desc)
         (bags if is_bag else filled).update(abs_)
     return out

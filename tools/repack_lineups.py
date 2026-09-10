@@ -5,11 +5,12 @@
 真实占格变大，旧阵容（按 1 格/物品摆盘）必然重叠。本工具对 lineups/*.json
 按原物品顺序 + 旋转做 first-fit 重摆并回写。
 
-占格规则（对齐 simulator/grid.py + combat.py _place_items）：
+占格规则（对齐 Inventory.gd filledCells/bagCells 双层模型）：
   * 普通物品占 filled：形状 = rotate_and_normalize(collision_cells, rotation)
     平移到 (row,col)；不得与其他 filled 相撞
-  * container（包/袋）占 bags：可与 filled 共存（物品可放入包），但 bags
-    之间 / bags 与未放入物品的 filled 原则上不撞——保守处理为不与任何已占格相撞
+  * container（包/袋）占 bags： bags 之间不得相撞；物品压在包占格上是
+    合法摆放（= 放入包内，canAddItem 只查 filledCells 不查 bagCells），
+    故跨层重叠不视为冲突
 
 用法：
   python tools/repack_lineups.py            # 重摆 lineups/ 下全部阵容（就地回写）
@@ -48,19 +49,19 @@ def abs_cells(shape, row: int, col: int):
 
 def first_fit(db, key: str, rotation: int, rows: int, cols: int,
               occupied_filled: set, occupied_bags: set, is_bag: bool):
-    """行优先扫描第一个可容纳位置，返回 (row,col) 或 None"""
+    """行优先扫描第一个可容纳位置，返回 (row,col) 或 None
+
+    同层查重：包只避开包（occupied_bags），物品只避开物品（occupied_filled）；
+    跨层重叠 = 物品放入包内，合法。
+    """
     shape = item_cells(db, key, rotation)
     for r in range(rows):
         for c in range(cols):
             cells = abs_cells(shape, r, c)
             if any(cr < 0 or cr >= rows or cc < 0 or cc >= cols for cr, cc in cells):
                 continue
-            if is_bag:
-                if cells & (occupied_filled | occupied_bags):
-                    continue
-            else:
-                if cells & occupied_filled:
-                    continue
+            if cells & (occupied_bags if is_bag else occupied_filled):
+                continue
             return r, c
     return None
 
@@ -95,7 +96,7 @@ def repack(data: dict, db: dict, check_only: bool = False):
         shape = item_cells(db, e.get('id'), e.get('rotation', 0))
         cells = abs_cells(shape, int(e.get('row', 0)), int(e.get('col', 0)))
         oob = any(cr < 0 or cr >= rows or cc < 0 or cc >= cols for cr, cc in cells)
-        hit = cells & (occupied_filled | occupied_bags)
+        hit = cells & occupied_bags   # 物品压包 = 放入包内，合法；只查包∩包
         if oob or hit:
             conflicts.append({'id': e.get('id'), 'oob': oob, 'hit': sorted(hit)})
         occupied_bags |= cells
@@ -106,6 +107,7 @@ def repack(data: dict, db: dict, check_only: bool = False):
     # 第二遍：冲突阵容整体重摆（保持原顺序，先试原位再 first-fit）
     occupied_filled.clear()
     occupied_bags.clear()
+    conflicts = []   # 第一遍的冲突已进入重摆流程，只保留重摆后仍放不下的
     for e in items:
         is_bag = bool(e.get('container'))
         key = e.get('id')
@@ -122,7 +124,7 @@ def repack(data: dict, db: dict, check_only: bool = False):
             oob = any(cr < 0 or cr >= rows or cc < 0 or cc >= cols for cr, cc in cells)
             if oob:
                 continue
-            if is_bag and cells & (occupied_filled | occupied_bags):
+            if is_bag and cells & occupied_bags:
                 continue
             if not is_bag and cells & occupied_filled:
                 continue
