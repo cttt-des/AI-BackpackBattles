@@ -8,9 +8,10 @@
 占格规则（对齐 Inventory.gd filledCells/bagCells 双层模型）：
   * 普通物品占 filled：形状 = rotate_and_normalize(collision_cells, rotation)
     平移到 (row,col)；不得与其他 filled 相撞
-  * container（包/袋）占 bags： bags 之间不得相撞；物品压在包占格上是
-    合法摆放（= 放入包内，canAddItem 只查 filledCells 不查 bagCells），
-    故跨层重叠不视为冲突
+  * container（包/袋）占 bags：判定以物品库 category=='bag' 为准（阵容
+    container 标志仅作补充，导出端常漏标）；bags 之间不得相撞；物品压在
+    包占格上是合法摆放（= 放入包内，canAddItem 只查 filledCells 不查
+    bagCells），故跨层重叠不视为冲突
 
 用法：
   python tools/repack_lineups.py            # 重摆 lineups/ 下全部阵容（就地回写）
@@ -25,7 +26,7 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from simulator.grid import rotate_and_normalize  # noqa: E402
-from simulator.data import load_items  # noqa: E402
+from simulator.data import load_items, is_bag_data  # noqa: E402
 
 LINEUPS_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
                            'lineups')
@@ -80,7 +81,7 @@ def repack(data: dict, db: dict, check_only: bool = False):
     # 第一遍：按现有坐标检测
     placed = []
     for e in items:
-        if e.get('container'):
+        if is_bag_data(db.get(e.get('id'))) or e.get('container'):
             continue
         shape = item_cells(db, e.get('id'), e.get('rotation', 0))
         cells = abs_cells(shape, int(e.get('row', 0)), int(e.get('col', 0)))
@@ -91,7 +92,7 @@ def repack(data: dict, db: dict, check_only: bool = False):
             conflicts.append({'id': e.get('id'), 'oob': oob, 'hit': sorted(hit)})
         occupied_filled |= cells
     for e in items:
-        if not e.get('container'):
+        if not (is_bag_data(db.get(e.get('id'))) or e.get('container')):
             continue
         shape = item_cells(db, e.get('id'), e.get('rotation', 0))
         cells = abs_cells(shape, int(e.get('row', 0)), int(e.get('col', 0)))
@@ -109,7 +110,7 @@ def repack(data: dict, db: dict, check_only: bool = False):
     occupied_bags.clear()
     conflicts = []   # 第一遍的冲突已进入重摆流程，只保留重摆后仍放不下的
     for e in items:
-        is_bag = bool(e.get('container'))
+        is_bag = is_bag_data(db.get(e.get('id'))) or bool(e.get('container'))
         key = e.get('id')
         rotation = int(e.get('rotation', 0) or 0)
         shape = item_cells(db, key, rotation)

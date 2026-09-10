@@ -22,7 +22,7 @@ import tkinter as tk
 from tkinter import ttk, scrolledtext, messagebox, filedialog
 
 from . import simulate as sim
-from .data import load_items, load_characters
+from .data import load_items, load_characters, is_bag_data
 from .grid import rotate_and_normalize
 from .lineup import load_lineup, LineupError, resolve_items
 
@@ -44,7 +44,8 @@ def _overlap_conflicts(path: str) -> List[str]:
     """开战前占格预检（1 collision tile = 1 背包格，规则对齐 tools/repack_lineups.py）。
 
     占格分两层（对齐 Inventory.gd 的 filledCells / bagCells）：
-      * 背包/袋子（container=true）在底层 bagCells；
+      * 背包/袋子在底层 bagCells（判定来自物品库 category=='bag'，
+        阵容 container 标志仅作补充——导出端常漏标，以库为准）；
       * 普通物品在 filledCells，可以压在包占格上（= 放进包内，
         对齐 Inventory.gd canAddItem 只查 filledCells、不查 bagCells）。
     冲突仅两种：物品∩物品、背包∩背包；物品与背包重叠是合法摆放。
@@ -61,7 +62,7 @@ def _overlap_conflicts(path: str) -> List[str]:
     db = load_items()
     filled, bags, out = set(), set(), []
     for e in bp.get('items') or []:
-        is_bag = bool(e.get('container'))
+        is_bag = is_bag_data(db.get(e.get('id'))) or bool(e.get('container'))
         g = (db.get(e.get('id')) or {}).get('grid') or {}
         cells = g.get('collision_cells') or [[0, 0]]
         shape = rotate_and_normalize([tuple(c) for c in cells],
