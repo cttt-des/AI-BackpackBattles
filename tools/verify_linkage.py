@@ -163,21 +163,61 @@ def case_potion_above(rep: Report, verbose=False):
 
 
 def case_potion_rotation(rep: Report, verbose=False):
-    """旋转后影响格应随锚点变化（Potion: rotation 180 -> FaceDirection.DOWN -> 取 [1]）。"""
+    """Potion.gd getAffectedCellsAfterRotate_primary 旋转几何强断言。
+
+    引擎公式：faceDirection==DOWN(2) 取 rotatedCells[1]+Vector2.UP，否则 [0]+UP
+    （rotatedCells 为物品旋转后占格、保持源码原始顺序）。四个旋转逐一按
+    公式独立重算期望影响格并与模拟器比对。
+    """
     key = "Health Potion" if "Health Potion" in DB else None
     if key is None:
-        rep.add("potion_rotation", True, skipped=True, detail="物品缺失")
+        rep.add("potion_rotation_geometry", True, skipped=True, detail="物品缺失")
         return
-    items0, _ = build_scene([(key, 3, 3, 0)])
-    items180, _ = build_scene([(key, 3, 3, 180)])
-    c0 = items0[0]._affected_cells_abs(0)
-    c180 = items180[0]._affected_cells_abs(0)
-    fd0, fd180 = items0[0].face_direction, items180[0].face_direction
-    # 药水只占 1 个背包格（两个 40px tile 合并），两个锚点映射到同一格，
-    # 故影响格不随旋转改变；此处只校验朝向换算正确且影响格始终存在。
-    ok = bool(c0) and bool(c180) and fd0 == 0 and fd180 == 2
-    rep.add("potion_face_direction", ok,
-            f"faceDirection 0°={fd0} / 180°={fd180}；影响格 0°={c0} 180°={c180}")
+    from simulator.grid import rotate_cell
+    ok_all, msgs = True, []
+    for rot, fd in ((0, 0), (90, 1), (180, 2), (270, 3)):
+        items, _ = build_scene([(key, 3, 3, rot)])
+        it = items[0]
+        got = set(it._affected_cells_abs(0))
+        base = [tuple(c) for c in
+                ((DB[key].get("grid") or {}).get("collision_cells") or [(0, 0)])]
+        rot_raw = [rotate_cell(c, rot) for c in base]      # 保持原始顺序
+        minx = min(c[0] for c in rot_raw)
+        miny = min(c[1] for c in rot_raw)
+        idx = 1 if fd == 2 else 0
+        cx, cy = rot_raw[idx]
+        exp = {(3 + (cy - 1 - miny), 3 + (cx - minx))}     # +Vector2.UP=(0,-1)
+        ok_all = ok_all and (got == exp)
+        msgs.append(f"{rot}°:{sorted(got)}/期望{sorted(exp)}")
+    rep.add("potion_rotation_geometry", ok_all, "；".join(msgs))
+
+
+def case_bagofstones_line_rotation(rep: Report, verbose=False):
+    """BagofStones.gd: getCellsInLine(rotatedCells, UP, 1) 旋转几何强断言。
+
+    引擎公式：影响格 = {每个旋转后占格 + UP} \\ 占格本身（多行形状逐格上移）。
+    """
+    key = "Bag of Stones" if "Bag of Stones" in DB else None
+    if key is None:
+        rep.add("bagofstones_line_rotation", True, skipped=True, detail="物品缺失")
+        return
+    from simulator.grid import rotate_cell
+    ok_all, msgs = True, []
+    for rot in (0, 90, 180, 270):
+        items, _ = build_scene([(key, 3, 3, rot)])
+        it = items[0]
+        got = set(it._affected_cells_abs(0))
+        base = [tuple(c) for c in
+                ((DB[key].get("grid") or {}).get("collision_cells") or [(0, 0)])]
+        rot_raw = [rotate_cell(c, rot) for c in base]
+        minx = min(c[0] for c in rot_raw)
+        miny = min(c[1] for c in rot_raw)
+        self_abs = {(3 + (y - miny), 3 + (x - minx)) for (x, y) in rot_raw}
+        line_abs = {(3 + (y - 1 - miny), 3 + (x - minx)) for (x, y) in rot_raw}
+        exp = line_abs - self_abs
+        ok_all = ok_all and (got == exp)
+        msgs.append(f"{rot}°:{sorted(got)}/期望{sorted(exp)}")
+    rep.add("bagofstones_line_rotation", ok_all, "；".join(msgs))
 
 
 def case_food_same_type(rep: Report, verbose=False):
@@ -542,6 +582,7 @@ CASES: List[Callable[[Report, bool], None]] = [
     case_whetstone,
     case_potion_above,
     case_potion_rotation,
+    case_bagofstones_line_rotation,
     case_food_same_type,
     case_bag_of_stones,
     case_dynamic_type,

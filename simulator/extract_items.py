@@ -561,19 +561,24 @@ def collect_instance_vars(lines):
                 typed_defaults[name] = TYPE_DEFAULTS.get(typ, "0")
                 continue
             expr = eq[1].strip()
-            if expr.startswith(("{", "[")) and not expr.endswith(("}", "]")) and "=" not in expr:
-                # 多行 dict/list 字面量（onready/const/var，如 chargeCells = [Vector2(..), …）→ 收集到括号闭合
-                depth = expr.count("{") + expr.count("[") - expr.count("}") - expr.count("]")
+
+            def _balance(s: str) -> int:
+                return (s.count("{") + s.count("[") + s.count("(")
+                        - s.count("}") - s.count("]") - s.count(")"))
+
+            if expr.startswith(("{", "[", "(")) and _balance(expr) > 0 and "=" not in expr:
+                # 多行 dict/list/tuple 括号字面量（onready/const/var，如
+                # filters = (ItemBook.Filter.Gems\n + …) → 收集到括号闭合
                 parts = [expr]
-                while depth > 0 and i < n:
+                while _balance(" ".join(parts)) > 0 and i < n:
                     cont = lines[i].strip()
                     i += 1
                     parts.append(cont)
-                    depth += cont.count("{") + cont.count("[") - cont.count("}") - cont.count("]")
-                if depth <= 0:
-                    onready.append((name, " ".join(parts)))
+                total = " ".join(parts)
+                if _balance(total) <= 0:
+                    onready.append((name, total))
                 else:
-                    typed_defaults[name] = "{}" if expr.startswith("{") else "[]"
+                    typed_defaults[name] = "{}" if expr.startswith("{") else ("[]" if expr.startswith("[") else "0")
             else:
                 onready.append((name, expr))
     return vars_, onready, typed_defaults
@@ -601,6 +606,19 @@ def is_visual_line(line: str) -> bool:
 
 def rename_method(name: str) -> str:
     return METHOD_RENAME.get(name, name)
+
+
+_SCRIPT_STEMS: Set[str] = set()
+
+
+def _load_script_stems() -> Set[str]:
+    """Items/ 下全部脚本名（去 .gd），供 `is <Script>` 类判等翻译"""
+    if not _SCRIPT_STEMS:
+        for root, _, files in os.walk(ITEMS_SRC):
+            for fn in files:
+                if fn.endswith(".gd"):
+                    _SCRIPT_STEMS.add(fn[:-3])
+    return _SCRIPT_STEMS
 
 
 def transform_expr_token(name: str) -> str:
@@ -728,11 +746,17 @@ def transform_body(body_lines, instance_vars, sibling_methods=None,
             line = f'{mvar.group(1)} = {init}'
         line = re.sub(r'^onready\s+var\s+([A-Za-z_]\w*)\s*(?::\s*[\w\.\[\]]*)?\s*(?:=\s*(.+))?$',
                       lambda m: f'{m.group(1)} = {(m.group(2) or "None").strip()}', line)
-        # .empty() -> 真值（含方法调用形式 X().empty()）
-        line = re.sub(r'not\s+([A-Za-z_]\w*)\.empty\(\)', r'\1', line)
-        line = re.sub(r'([A-Za-z_]\w*)\.empty\(\)', r'(not \1)', line)
-        line = re.sub(r'not\s+(\([^)]*\))\.empty\(\)', r'\1', line)
-        line = re.sub(r'(\([^)]*\))\.empty\(\)', r'(not \1)', line)
+        # .empty() -> 真值。接收者可以是标识符、链式调用 X().y() 或括号表达式 (a or b)。
+        # （旧规则的 \([^)]*\) 会误匹配 `funcName().empty()` 的参数括号对，
+        # 产出 `funcName(not ())` —— Ranger Bag 的 onPrepare 因此失效）
+        _EMPTY_RECV = r'(?:[A-Za-z_]\w*(?:\([^()]*\))*|\([^()]*\))'
+        line = re.sub(r'not\s+(' + _EMPTY_RECV + r')\.empty\(\)', r'\1', line)
+        line = re.sub(r'(' + _EMPTY_RECV + r')\.empty\(\)', r'(not \1)', line)
+        # `item is Dagger`（GDScript 类判等）→ `item.has_script('Dagger')`
+        line = re.sub(r'([A-Za-z_][\w.\'\"]*(?:\([^()]*\))?)\s+is\s+([A-Z][A-Za-z0-9_]*)\b',
+                      lambda m: (f"{m.group(1)}.has_script('{m.group(2)}')"
+                                 if m.group(2) in _load_script_stems() else m.group(0)),
+                      line)
         line = line.replace(".push_back(", ".append(")
         line = line.replace(".erase(", ".remove(")
         line = re.sub(r'([\w.]+)\.size\(\)', r'len(\1)', line)

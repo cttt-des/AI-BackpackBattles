@@ -591,11 +591,17 @@ tick:       每 1s：偶数 tick 回血(regen)，奇数 tick 中毒(poison)
 ### 9.3 影响格的来源
 
 来源一：**tscn 的 Affected tile**（`CollisionMap.tile_data`，由 `simulator/extract_grid.py`
-提取并写入 `grid.affected_*`，坐标是相对物品锚点的 40px 精细格，背包格为 80px，故 `//2` 合并）。
+提取并写入 `grid.affected_*`）。**1 collision tile = 1 背包格**（Item.gd `cellSize=80`
+即 tile 尺寸，坐标直接平移使用；铁证：Leather Armor 2x3=6 tiles、Greatsword 缺角 2x4=7 tiles
+均为游戏真实形状）。占格旋转方向对齐 Godot `Vector2.rotated()`（y 轴向下，正角顺时针），
+经 `orientItem`/`getTopLeftGlobal` correction 表推导并用真实游戏历史阵容验证。
+无网格数据的物品（煤/宝石/符文/棋子）在游戏中均为 1x1，引擎侧兜底 `[(0,0)]`。
 
 来源二：**脚本覆写** `getAffectedCellsAfterRotate_primary/_secondary`（`Item.gd` 1117）。
-入参 `rotatedCells` 是物品旋转后的**背包绝对格**（Vector2 序为 `x=col, y=row`），
-返回值同坐标系。模拟器由 `Item._script_affected_cells()` 执行转译后的该方法。
+入参 `rotatedCells` 是物品旋转后的**背包绝对格**（Vector2 序为 `x=col, y=row`，保持
+源码原始顺序），返回值同坐标系。模拟器由 `Item._script_affected_cells()` 执行转译后的
+该方法；旋转几何由 `tools/verify_linkage.py` 的 `potion_rotation_geometry` /
+`bagofstones_line_rotation` 强断言覆盖。
 
 > 注意：基类脚本也会覆写这些方法（如 `Potion.gd`、`BagofStones.gd`），
 > 因此提取必须沿 `extends` 链解析 —— 见 9.6。
@@ -668,6 +674,13 @@ tick:       每 1s：偶数 tick 回血(regen)，奇数 tick 中毒(poison)
 | `addDynamicType/removeDynamicType` | `add_dynamic_type/remove_dynamic_type` |
 | `getCellsInLine`（Inventory） | `get_cells_in_line` |
 | `getAdjacentItems`（Inventory） | `get_adjacent_items` |
+| `getItemsInside` / `getAffectedItemsInside`（Bag） | `get_items_inside` / `get_affected_items_inside` |
+| `canApplyEffect` / `getNumAffectedInside*`（Bag） | `can_apply_effect` / `get_num_affected_inside*` |
+| `getNumAffected_type` | `get_num_affected_type` |
+| `getTypes` / `getTypeMultiplicity` / `getMainType` | `get_types` / `get_type_multiplicity` / `get_main_type` |
+| `gainsBuffs` / `usesBuffs` / `inflictsDebuffs` | `gains_buffs` / `uses_buffs` / `inflicts_debuffs` |
+| `EventBus.connectEvent/emitEvent`（Utility/EventBus.gd） | `BEHAVIOR_GLOBALS["EventBus"]`（真实派发实现） |
+| `WeightedBag`（Utility/WeightedBag.gd） | `BEHAVIOR_GLOBALS["WeightedBag"]` |
 
 ---
 
@@ -676,12 +689,13 @@ tick:       每 1s：偶数 tick 回血(regen)，奇数 tick 中毒(poison)
 1. **物品数值精度**：当前 `battle_items.json` 数值来自 wiki（`items_db_sim.json`），部分物品
    （合成/联动类）数值标注 `TODO`，需从加密 `ItemData_e.csv`（GDEC+sheetKey 混淆）提取后补齐。
 2. **~~联动/合成物品~~（已完成）**：`Affected` 全链路（tscn 影响格 + 脚本覆写 + 继承链提取 +
-   `canAffect` 过滤 + `onAffectedItemAdded` 回调 + 动态类型）已实现，见第 9 节。
-   剩余：袋内（inside）联动只完成了回调分发，物品在袋中的摆放关系未建模。
+   `canAffect` 过滤 + `onAffectedItemAdded` 回调 + 动态类型 + 袋内 containment）已实现，见第 9 节。
+   **全量逐物品运行时探针**：`python tools/verify_all_linkage.py` 对 518 个物品逐一验证
+   联动路径真实生效（392 过 / 126 显式跳过——118 个无联动机制 + 8 个依赖未入库数据
+   `is_crafted`/`is_class_item`，均附原因，不允许静默跳过）。
 3. **护盾/反伤限制**：`meleeSpikesLimit` 等限制系数已建模，但物品赋予途径待全量枚举。
 4. **宝石系统**：`gems[]` 已入阵容格式，引擎可镶嵌与触发，但宝石的联动/加成细节待校验；
-   并且宝石/棋子类物品缺少 tscn 网格数据（`extract_grid.py` 对其不做矩形兜底），
-   无法参与摆盘联动。
+   宝石/棋子类物品缺少 tscn 网格数据，引擎按游戏中实际形状以 1x1 占格兜底（可参与摆盘联动）。
 5. **职业专属机制**：狂战士之怒、工程师电荷（`changeChargedItemStat`/`numCharges` 等）、
    焰术使热量等职业被动仍为 TODO。
 6. **可复现性**：BalancedRng 已实现；物品触发顺序 = shuffle 后按 TriggerPriority 降序，
