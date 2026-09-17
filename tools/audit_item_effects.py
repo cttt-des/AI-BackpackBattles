@@ -143,6 +143,9 @@ def runtime_probe(key: str, data: dict) -> Dict[str, str]:
         ch.set_opponent(opp)
         opp.set_opponent(ch)
         it.character = ch
+        # 引擎战斗中角色必持有全部物品（Game.prepareItems 前已摆盘）——
+        # inventory.getItems() 类联动（Time Dilator 等）依赖这一点
+        ch.set_items([it])
         it.set_grid_position(0, 0, 0, inventory=GridInventory(7, 10))
         it.prepare()
         it.pre_combat_start()

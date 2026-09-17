@@ -3901,7 +3901,8 @@
     ],
     "methods": {
      "_ready": "def _ready(_item):\n    \n    \n    if Game.curClass == Game.Classes.Ranger:\n        _item.digUpItems[\"Carrot\"] = 2\n        _item.digUpItems[\"Lucky Clover\"] = 2\n    elif Game.curClass == Game.Classes.Reaper:\n        _item.digUpItems[\"Fly Agaric\"] = 2\n    \n    if Game.showExclusiveContent():\n        _item.digUpItems[\"Shiny Shell\"] = 3\n    \n    _item.digUpBag.prepare(_item.digUpItems.values())",
-     "onDealtDamage": "def onDealtDamage(_item, damageRes=None):\n    particles = None\n    if damageRes.has_hit():\n        if _item.roll_chance():\n            _item.inflict_blind(1, damageRes.event)\n            particles = ObjectPool.particleOneShot(_item.blindParticles, _item.sprite)\n            pass  # visual\n            pass  # visual"
+     "onDealtDamage": "def onDealtDamage(_item, damageRes=None):\n    particles = None\n    if damageRes.has_hit():\n        if _item.roll_chance():\n            _item.inflict_blind(1, damageRes.event)\n            particles = ObjectPool.particleOneShot(_item.blindParticles, _item.sprite)\n            pass  # visual\n            pass  # visual",
+     "_onready_init": "def _onready_init(_item):\n    try:\n        _item.blindParticles = _item.preload(\"res://Items/Particles/DirtParticles.tscn\")\n    except Exception:\n        pass\n    try:\n        _item.shovelSound = _item.preload(\"res://Assets/Sound/Shovel.mp3\")\n    except Exception:\n        pass\n    try:\n        _item.filters = (ItemBook.Filter.Gems + ItemBook.Filter.Amulets + ItemBook.Filter.OtherClasses + ItemBook.Filter.Crafted)\n    except Exception:\n        pass\n    try:\n        _item.digParticles = None\n    except Exception:\n        pass\n    try:\n        _item.spawnPos = None\n    except Exception:\n        pass\n    try:\n        _item.digUpBag = WeightedBag.new()\n    except Exception:\n        pass\n    try:\n        _item.digUpItems = { \"Stone\": 4, \"Garlic\": 3, \"Blueberries\": 2, \"Lump of Coal\": 3, \"Pocket Sand\": 3, \"Chipped Ruby\": 1, \"Chipped Sapphire\": 1, \"Chipped Emerald\": 1, \"Chipped Topaz\": 1, \"Chipped Amethyst\": 1, \"Healing Herbs\": 0.5, \"Bag of Stones\": 0.5, \"Walrus Tusk\": 0.2, \"Whetstone\": 0.2, \"Piggybank\": 0.2, \"Pan\": 0.2, \"Customer Card\": 0.2, \"Gloves of Haste\": 0.2, \"Dagger\": 0.2, \"Protective Purse\": 0.1, \"Flawed Ruby\": 0.2, \"Flawed Sapphire\": 0.2, \"Flawed Emerald\": 0.2, \"Flawed Topaz\": 0.2, \"Flawed Amethyst\": 0.2, }\n    except Exception:\n        pass\n"
     },
     "methods_raw": {},
     "extends_chain": [
@@ -5427,7 +5428,7 @@
      "onOpponentDamaged": "def onOpponentDamaged(_item, _healthChange=None, _event=None):\n    if _item.opponent().get_relative_health() < _item.healthThreshold:\n        if not _item.damageBonusApplied:\n            _item.damageBonusApplied = True\n            _item.get_item().add_bonus_damage_factor(_item.damageFactor)\n            pass  # visual\n    elif _item.damageBonusApplied:\n        _item.damageBonusApplied = False\n        _item.get_item().reduce_bonus_damage_factor(_item.damageFactor)\n        pass  # visual",
      "combatEndWeapon": "def combatEndWeapon(_item):\n    pass  # visual",
      "prepareArmor": "def prepareArmor(_item):\n    _item.debuffsInflicted = 0\n    _item.connect_to_opponent_debuffs(\"onOpponentDebuffsChanged\")",
-     "onOpponentDebuffsChanged": "def onOpponentDebuffsChanged(_item, amount=None, event=None):\n    activations = None\n    if amount > 0:\n        if event.get_origin() is Item and event.get_origin().character_() == _item.character_():\n            _item.debuffsInflicted += amount\n            activations = int(_item.debuffsInflicted / _item.debuffsNeeded)\n            _item.debuffsInflicted %= int(_item.debuffsNeeded)\n            if activations > 0:\n                _item.give_block(_item.get_gem_power() * _item.blockGain * activations, True, event)\n                _item.visual_activate()",
+     "onOpponentDebuffsChanged": "def onOpponentDebuffsChanged(_item, amount=None, event=None):\n    activations = None\n    if amount > 0:\n        if event.get_origin().has_script('Item') and event.get_origin().character_() == _item.character_():\n            _item.debuffsInflicted += amount\n            activations = int(_item.debuffsInflicted / _item.debuffsNeeded)\n            _item.debuffsInflicted %= int(_item.debuffsNeeded)\n            if activations > 0:\n                _item.give_block(_item.get_gem_power() * _item.blockGain * activations, True, event)\n                _item.visual_activate()",
      "doCooldownEffect": "def doCooldownEffect(_item):\n    _item.opponent().add_fatigue_damage(1)\n    _item.opponent().take_fatigue_damage(_item)\n    _item.visual_activate()",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.weaponParticles = None\n    except Exception:\n        pass\n    try:\n        _item.gemColor = _item.Color(0.938676, 0.24128, 0.988281)\n    except Exception:\n        pass\n    try:\n        _item.healthThreshold = _item.get_p(0) / 100.0 - 0.0001\n    except Exception:\n        pass\n    try:\n        _item.damageFactor = _item.get_p(1) / 100.0\n    except Exception:\n        pass\n    try:\n        _item.debuffsNeeded = _item.get_p(2)\n    except Exception:\n        pass\n    try:\n        _item.blockGain = _item.get_p(3)\n    except Exception:\n        pass\n    _item.damageBonusApplied = False\n    _item.debuffsInflicted = 0\n"
     },
@@ -5655,7 +5656,8 @@
      "canAffect": "def canAffect(_item, item=None):\n    return not item.is_bag() and (item.can_start_new_recipe() or item.bondedBaseItem == _item)",
      "readyToFuse": "def readyToFuse(_item):\n    if _item.stable:\n        return _item.bondedIngredients\n    else:\n        return _item.bondedBaseItem == None",
      "doCooldownEffect": "def doCooldownEffect(_item):\n    _item.give_random_buffs(1)\n    _item.cleanse_random_debuffs(1)\n    _item.visual_activate()",
-     "getCounterValue": "def getCounterValue(_item):\n    return _item.getAffectedGoldValue()"
+     "getCounterValue": "def getCounterValue(_item):\n    return _item.getAffectedGoldValue()",
+     "_onready_init": "def _onready_init(_item):\n    try:\n        _item.idleAnimation = None / AnimationPlayer\n    except Exception:\n        pass\n    try:\n        _item.unstableFilters = (ItemBook.Filter.Amulets + ItemBook.Filter.Crafted + ItemBook.Filter.Gems)\n    except Exception:\n        pass\n    try:\n        _item.stableFilters = (ItemBook.Filter.Crafted + ItemBook.Filter.Gated + ItemBook.Filter.OtherClasses + ItemBook.Filter.AnyRarity)\n    except Exception:\n        pass\n    try:\n        _item.pool = ItemPool.new()\n    except Exception:\n        pass\n    try:\n        _item.stable = True\n    except Exception:\n        pass\n"
     },
     "methods_raw": {
      "cacheAffectedItemsForCombat": "\t.cacheAffectedItemsForCombat()\n\tvar arr = getItemsInAffectedCells_cached()\n\tcachedAffectedItems[Affected.Primary] = arr",
@@ -6718,7 +6720,7 @@
      "onTriggerPotion": "def onTriggerPotion(_item, event=None):\n    _item.add_mana(_item.get_p(1), event)\n    \n    _item.give_max_health()",
      "onPrepare": "def onPrepare(_item):\n    \n    _item.connect_for_combat(_item.character_(), \"character_mana_changed\", \"onManaChanged\")\n    _item.connect_for_combat(_item.character_(), \"character_damaged\", \"onDamaged\")",
      "onDamaged": "def onDamaged(_item, _healthChange=None, event=None):\n    relHealth = None\n    if _item.is_empty(): return\n    \n    relHealth = _item.character_().get_relative_health()\n    if relHealth < _item.healthThreshold:\n        _item.consume_potion(event)",
-     "onManaChanged": "def onManaChanged(_item, amount=None, event=None):\n    if _item.is_empty(): return\n    \n    if (amount < 0 and\n        event.get_origin() is Item and\n        event.get_origin().character_() == _item.character_()):\n            _item.consume_potion(event)",
+     "onManaChanged": "def onManaChanged(_item, amount=None, event=None):\n    if _item.is_empty(): return\n    \n    if (amount < 0 and\n        event.get_origin().has_script('Item') and\n        event.get_origin().character_() == _item.character_()):\n            _item.consume_potion(event)",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.healthThreshold = _item.get_p(0) / 100.0 - 0.0001\n    except Exception:\n        pass\n"
     },
     "methods_raw": {},
@@ -10109,7 +10111,7 @@
      "onTriggerPotion": "def onTriggerPotion(_item, event=None):\n    _item.add_mana(_item.get_p(1), event)\n    \n    _item.give_max_health()",
      "onPrepare": "def onPrepare(_item):\n    \n    _item.connect_for_combat(_item.character_(), \"character_mana_changed\", \"onManaChanged\")\n    _item.connect_for_combat(_item.character_(), \"character_damaged\", \"onDamaged\")",
      "onDamaged": "def onDamaged(_item, _healthChange=None, event=None):\n    relHealth = None\n    if _item.is_empty(): return\n    \n    relHealth = _item.character_().get_relative_health()\n    if relHealth < _item.healthThreshold:\n        _item.consume_potion(event)",
-     "onManaChanged": "def onManaChanged(_item, amount=None, event=None):\n    if _item.is_empty(): return\n    \n    if (amount < 0 and\n        event.get_origin() is Item and\n        event.get_origin().character_() == _item.character_()):\n            _item.consume_potion(event)",
+     "onManaChanged": "def onManaChanged(_item, amount=None, event=None):\n    if _item.is_empty(): return\n    \n    if (amount < 0 and\n        event.get_origin().has_script('Item') and\n        event.get_origin().character_() == _item.character_()):\n            _item.consume_potion(event)",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.healthThreshold = _item.get_p(0) / 100.0 - 0.0001\n    except Exception:\n        pass\n"
     },
     "methods_raw": {},
@@ -14951,7 +14953,8 @@
      "onAddedToStorageBox": "def onAddedToStorageBox(_item):\n    ItemBook.updateClass(_item)",
      "doCooldownEffect": "def doCooldownEffect(_item):\n    _item.give_block()\n    _item.visual_activate()",
      "getItemsMaxCost": "def getItemsMaxCost(_item, maxCost=None):\n    candidates = None\n    candidates = []\n    for descr in _range_or_value(ItemBook.descriptorList):\n        if (descr.price <= maxCost and\n            ItemBook.canBeGenerated(descr, _item.filters)):\n    \n            candidates.append(descr)\n    \n    return candidates",
-     "getRelatedItemColumns": "def getRelatedItemColumns(_item):\n    return 4"
+     "getRelatedItemColumns": "def getRelatedItemColumns(_item):\n    return 4",
+     "_onready_init": "def _onready_init(_item):\n    try:\n        _item.goldValue = int(_item.get_p(\"goldvalue\"))\n    except Exception:\n        pass\n    try:\n        _item.filters = (ItemBook.Filter.OtherClasses + ItemBook.Filter.Gated + ItemBook.Filter.Crafted + ItemBook.Filter.AnyRarity)\n    except Exception:\n        pass\n"
     },
     "methods_raw": {
      "discard": "\t.discard(discardGems)\n\tItemBook.updateClass(self)"
@@ -15030,7 +15033,7 @@
     "instance_vars": [],
     "methods": {
      "canAffect": "def canAffect(_item, item=None):\n    return item.can_damage()",
-     "onPrepare": "def onPrepare(_item):\n    if not _item.get_affected_items(not ()):\n        _item.connect_for_combat(_item.character_(), \"character_lucky_changed\", \"onLuckyChanged\")",
+     "onPrepare": "def onPrepare(_item):\n    if _item.get_affected_items():\n        _item.connect_for_combat(_item.character_(), \"character_lucky_changed\", \"onLuckyChanged\")",
      "onLuckyChanged": "def onLuckyChanged(_item, amount=None, _event=None):\n    for item in _range_or_value(_item.get_affected_items()):\n        item.change_crit_chance_percent(amount * _item.get_chance())",
      "doCooldownEffect": "def doCooldownEffect(_item):\n    _item.add_lucky(1)\n    _item.visual_activate()",
      "getRelatedItemColumns": "def getRelatedItemColumns(_item):\n    return 3"
@@ -16352,7 +16355,8 @@
      "presentFilters"
     ],
     "methods": {
-     "onCombatStart": "def onCombatStart(_item):\n    _item.give_random_buffs(_item.get_p(0))\n    _item.visual_activate()"
+     "onCombatStart": "def onCombatStart(_item):\n    _item.give_random_buffs(_item.get_p(0))\n    _item.visual_activate()",
+     "_onready_init": "def _onready_init(_item):\n    try:\n        _item.giveSound = _item.preload(\"res://Assets/Sound/Confetti3.ogg\")\n    except Exception:\n        pass\n    try:\n        _item.presentFilters = (ItemBook.Filter.OtherClasses + ItemBook.Filter.Gated + ItemBook.Filter.Crafted + ItemBook.Filter.AnyRarity + ItemBook.Filter.IgnoreWeight)\n    except Exception:\n        pass\n    try:\n        _item.activationParticles = None\n    except Exception:\n        pass\n"
     },
     "methods_raw": {},
     "extends_chain": [
@@ -17115,7 +17119,8 @@
      "canAffect": "def canAffect(_item, item=None):\n    return not item.is_bag() and (item.can_start_new_recipe() or item.bondedBaseItem == _item)",
      "readyToFuse": "def readyToFuse(_item):\n    if _item.stable:\n        return _item.bondedIngredients\n    else:\n        return _item.bondedBaseItem == None",
      "doCooldownEffect": "def doCooldownEffect(_item):\n    _item.give_random_buffs(1)\n    _item.cleanse_random_debuffs(1)\n    _item.visual_activate()",
-     "getCounterValue": "def getCounterValue(_item):\n    return _item.getAffectedGoldValue()"
+     "getCounterValue": "def getCounterValue(_item):\n    return _item.getAffectedGoldValue()",
+     "_onready_init": "def _onready_init(_item):\n    try:\n        _item.idleAnimation = None / AnimationPlayer\n    except Exception:\n        pass\n    try:\n        _item.unstableFilters = (ItemBook.Filter.Amulets + ItemBook.Filter.Crafted + ItemBook.Filter.Gems)\n    except Exception:\n        pass\n    try:\n        _item.stableFilters = (ItemBook.Filter.Crafted + ItemBook.Filter.Gated + ItemBook.Filter.OtherClasses + ItemBook.Filter.AnyRarity)\n    except Exception:\n        pass\n    try:\n        _item.pool = ItemPool.new()\n    except Exception:\n        pass\n    try:\n        _item.stable = True\n    except Exception:\n        pass\n"
     },
     "methods_raw": {
      "cacheAffectedItemsForCombat": "\t.cacheAffectedItemsForCombat()\n\tvar arr = getItemsInAffectedCells_cached()\n\tcachedAffectedItems[Affected.Primary] = arr",
@@ -20315,7 +20320,7 @@
      "itemsInside"
     ],
     "methods": {
-     "onPrepare": "def onPrepare(_item):\n    _item.itemsInside = _item.get_items_inside()\n    if not _item.get_items_inside(not ()):\n        _item.connect_for_combat(_item.character_(), \"character_lucky_changed\", \"onLuckyChanged\")\n    for item in _range_or_value(_item.itemsInside):\n        item.change_crit_chance_percent(_item.get_chance())",
+     "onPrepare": "def onPrepare(_item):\n    _item.itemsInside = _item.get_items_inside()\n    if _item.get_items_inside():\n        _item.connect_for_combat(_item.character_(), \"character_lucky_changed\", \"onLuckyChanged\")\n    for item in _range_or_value(_item.itemsInside):\n        item.change_crit_chance_percent(_item.get_chance())",
      "onLuckyChanged": "def onLuckyChanged(_item, amount=None, event=None):\n    change = None\n    change = amount * _item.get_chance2()\n    for item in _range_or_value(_item.itemsInside):\n        item.change_crit_chance_percent(change)",
      "canApplyEffect": "def canApplyEffect(_item, toItem=None):\n    return toItem.can_damage()",
      "_onready_init": "def _onready_init(_item):\n    _item.itemsInside = 0\n"
@@ -29844,7 +29849,7 @@
     ],
     "methods": {
      "onPreDealDamage_early": "def onPreDealDamage_early(_item, damageRes=None):\n    event = None; particles = None\n    if damageRes.has_hit():\n        if _item.character_().get_heat() >= _item.heatNeeded:\n            event = _item.use_heat(_item.heatNeeded)\n            _item.add_empower(_item.empower, event)\n            particles = ObjectPool.particleOneShot(_item.activationParticles, _item.sprite)",
-     "getTypeMultiplicity": "def getTypeMultiplicity(_item, type=None):\n    if type == Type.Fire:\n        return _item.fireMultiplicity\n    else:\n        return _item._behavior_super('getTypeMultiplicity', 'MoltenGreatsword')(type)",
+     "getTypeMultiplicity": "def getTypeMultiplicity(_item, type=None):\n    if type == Type.Fire:\n        return _item.fireMultiplicity\n    else:\n        return _item._base_get_type_multiplicity(type)",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.activationParticles = _item.preload(\"res://Items/Exclusive/Particles/MoltenGreatswordActivationParticles.tscn\")\n    except Exception:\n        pass\n    try:\n        _item.fireMultiplicity = int(_item.get_p(\"fire\"))\n    except Exception:\n        pass\n    try:\n        _item.heatNeeded = int(_item.get_p(\"heat\"))\n    except Exception:\n        pass\n    try:\n        _item.empower = int(_item.get_p(\"empower\"))\n    except Exception:\n        pass\n"
     },
     "methods_raw": {},
@@ -30825,7 +30830,7 @@
      "gatedItems"
     ],
     "methods": {
-     "canAffect": "def canAffect(_item, item=None):\n    return item is DragonEgg or item.has_tag(Tag.Dragon)",
+     "canAffect": "def canAffect(_item, item=None):\n    return item.has_script('DragonEgg') or item.has_tag(Tag.Dragon)",
      "onPrepare": "def onPrepare(_item):\n    for item in _range_or_value(_item.get_affected_items()):\n        if item.has_tag(Tag.Dragon):\n            _item.connect_for_combat(item, \"attacked\", \"onDragonAttacked\")",
      "onDragonAttacked": "def onDragonAttacked(_item, damageRes=None):\n    _item.heal(_item.get_p_m(\"heal\"), damageRes.event)\n    _item.visual_activate()",
      "onCombatStart": "def onCombatStart(_item):\n    _item.add_lucky(_item.get_p(1))\n    _item.give_regeneration(_item.get_p(2))\n    _item.add_mana(_item.get_p(3))\n    _item.add_heat(_item.get_p(4))\n    _item.visual_activate()",
@@ -32717,7 +32722,7 @@
     ],
     "methods": {
      "onPrepare": "def onPrepare(_item):\n    _item.buffsPurged = 0\n    _item.connect_to_opponent_buffs(\"onOpponentBuffsChanged\")",
-     "onOpponentBuffsChanged": "def onOpponentBuffsChanged(_item, amount=None, event=None):\n    if amount < 0:\n        if event.get_origin() is Item and event.get_origin().character_() == _item.character_():\n            _item.buffsPurged += - amount\n            _item.add_bonus_damage( - amount * _item.get_p(2))",
+     "onOpponentBuffsChanged": "def onOpponentBuffsChanged(_item, amount=None, event=None):\n    if amount < 0:\n        if event.get_origin().has_script('Item') and event.get_origin().character_() == _item.character_():\n            _item.buffsPurged += - amount\n            _item.add_bonus_damage( - amount * _item.get_p(2))",
      "onPreDealDamage_early": "def onPreDealDamage_early(_item, damageRes=None):\n    if damageRes.has_hit():\n        _item.remove_random_buffs(_item.get_p(0))\n        if _item.character_().is_battle_raging():\n            _item.heal()",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.buffsPurged = 0\n    except Exception:\n        pass\n"
     },
@@ -36089,7 +36094,7 @@
     ],
     "methods": {
      "doCooldownEffect": "def doCooldownEffect(_item):\n    for item in _range_or_value(_item.character_().get_items()):\n        if _item._behavior_call(\"canAffect_global\", item):\n            item.onItemActivated(None)\n    _item.visual_activate()",
-     "canAffect_global": "def canAffect_global(_item, item=None):\n    return item is Goobert",
+     "canAffect_global": "def canAffect_global(_item, item=None):\n    return item.has_script('Goobert')",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.gooblingDescriptor = ItemBook.getDescriptor(\"Goobling\")\n    except Exception:\n        pass\n"
     },
     "methods_raw": {},
@@ -36618,8 +36623,8 @@
     ],
     "methods": {
      "setData": "def setData(_item, data=None):\n    if data != None:\n        _item.boosted = data",
-     "canAffect": "def canAffect(_item, item=None):\n    return item is Dagger",
-     "onPrepare": "def onPrepare(_item):\n    for item in _range_or_value(_item.character_().get_items()):\n        if item is Dagger:\n            item.add_speed(_item.daggerSpeed)\n    \n    _item.add_speed(_item.speedPerDagger * _item.get_num_affected_items())",
+     "canAffect": "def canAffect(_item, item=None):\n    return item.has_script('Dagger')",
+     "onPrepare": "def onPrepare(_item):\n    for item in _range_or_value(_item.character_().get_items()):\n        if item.has_script('Dagger'):\n            item.add_speed(_item.daggerSpeed)\n    \n    _item.add_speed(_item.speedPerDagger * _item.get_num_affected_items())",
      "doCooldownEffect": "def doCooldownEffect(_item):\n    for item in _range_or_value(_item.character_().get_items()):\n        if item.can_be_empowered():\n            item.add_bonus_damage_factor(_item.damFactor)\n    pass  # visual",
      "canAffect_global": "def canAffect_global(_item, item=None):\n    return item.can_be_empowered()",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.daggerDescriptor = ItemBook.getDescriptor(\"Dagger\")\n    except Exception:\n        pass\n    try:\n        _item.daggerSpeed = _item.get_p(\"speed\") / 100.0\n    except Exception:\n        pass\n    try:\n        _item.damFactor = _item.get_p(\"dam\") / 100.0\n    except Exception:\n        pass\n    try:\n        _item.speedPerDagger = _item.get_p(\"speed2\") / 100.0\n    except Exception:\n        pass\n    try:\n        _item.boosted = 0\n    except Exception:\n        pass\n"
@@ -41289,7 +41294,7 @@
     ],
     "methods": {
      "getPiecesForColor": "def getPiecesForColor(_item, color=None):\n    if color == ChessPiece.PieceColor.Black:\n        return _item.activeBlackPieces\n    else:\n        return _item.activeWhitePieces",
-     "onPrepare": "def onPrepare(_item):\n    if _item.ownerType == Owner.PlayerInventory and Game.curMode != Game.Mode.History:\n        pass  # visual\n    \n    _item.activeBlackPieces.clear()\n    _item.activeWhitePieces.clear()\n    _item.originCells.clear()\n    _item.turnColor = ChessPiece.PieceColor.White\n    \n    for item in _range_or_value(_item.character_().get_items()):\n        if item is ChessPiece:\n            pass  # visual\n            _item.originCells[item] = item.occupiedCells",
+     "onPrepare": "def onPrepare(_item):\n    if _item.ownerType == Owner.PlayerInventory and Game.curMode != Game.Mode.History:\n        pass  # visual\n    \n    _item.activeBlackPieces.clear()\n    _item.activeWhitePieces.clear()\n    _item.originCells.clear()\n    _item.turnColor = ChessPiece.PieceColor.White\n    \n    for item in _range_or_value(_item.character_().get_items()):\n        if item.has_script('ChessPiece'):\n            pass  # visual\n            _item.originCells[item] = item.occupiedCells",
      "doCooldownEffect": "def doCooldownEffect(_item):\n    activePieces = None; capturingPiece = None; activateEvent = None\n    activePieces = _item._behavior_call(\"getPiecesForColor\", _item.turnColor)\n    activePieces\n    \n    capturingPiece = None\n    if _item.is_type_in_inventory(_item.chessMasterDescr):\n        capturingPiece = _item._behavior_call(\"findBestPieceToCapture\", activePieces)\n    else:\n        capturingPiece = _item._behavior_call(\"findPieceToCapture\", activePieces)\n    \n    if capturingPiece != None:\n        activateEvent = _item.visual_activate()\n        _item._behavior_call(\"capture\", capturingPiece[0], capturingPiece[1], activateEvent)\n    else:\n        _item._behavior_call(\"findSpaceToMove\", activePieces)\n    \n    _item.turnColor = ChessPiece.PieceColor.White - _item.turnColor",
      "findPieceToCapture": "def findPieceToCapture(_item, activePieces=None):\n    captureCells = None; globalCell = None; itemInCell = None\n    for piece in _range_or_value(activePieces):\n        captureCells = piece.getCaptureCells()\n        captureCells\n    \n    \n        for cell in _range_or_value(captureCells):\n            globalCell = piece.occupiedCells[0] + cell\n            itemInCell = _item.character_().get_items().getItemInCell(globalCell)\n            if itemInCell != None:\n    \n                if piece.can_affect(itemInCell):\n    \n                    return [piece, itemInCell]\n    return None",
      "findBestPieceToCapture": "def findBestPieceToCapture(_item, activePieces=None):\n    bestMovePiece = None; bestMoveCapture = None; bestMoveScore = None; captureCells = None; globalCell = None; itemInCell = None; score = None; length = None; dir = None; cellToCheck = None; itemThere = None\n    bestMovePiece = None\n    bestMoveCapture = None\n    bestMoveScore = - 10000\n    \n    for piece in _range_or_value(activePieces):\n    \n        captureCells = piece.getCaptureCells()\n        captureCells\n    \n        for cell in _range_or_value(captureCells):\n            globalCell = piece.occupiedCells[0] + cell\n            itemInCell = _item.character_().get_items().getItemInCell(globalCell)\n            if itemInCell != None and piece.can_affect(itemInCell):\n    \n                score = itemInCell.get_price()\n                if score > bestMoveScore:\n    \n                    if piece.canBeBlocked():\n                        length = max(abs(cell.x), abs(cell.y))\n                        if length > 1:\n                            dir = cell / length\n                            for i in _range_or_value(range(1, length)):\n                                cellToCheck = piece.occupiedCells[0] + i * dir\n    \n                                itemThere = _item.character_().get_items().getItemInCell(cellToCheck)\n                                if itemThere != None and itemThere.has_type(Type.ChessPiece):\n    \n                                    score -= 100\n                                    break\n    \n                    if score > bestMoveScore:\n                        bestMoveScore = score\n                        bestMoveCapture = itemInCell\n                        bestMovePiece = piece\n    \n    if bestMoveCapture != None:\n        return [bestMovePiece, bestMoveCapture]\n    else:\n        return None",
@@ -46759,8 +46764,8 @@
      "canAffect": "def canAffect(_item, item=None):\n    return item.can_damage()",
      "canAffect_secondary": "def canAffect_secondary(_item, item=None):\n    return item.has_type(Type.Dark)",
      "onPrepare": "def onPrepare(_item):\n    unhealing = None\n    unhealing = _item.get_p(\"unhealing\") / 100.0\n    unhealing += _item.get_num_affected_items(Affected.Secondary) * _item.get_p(\"unhealing2\") / 100.0\n    _item.character_().give_unhealing(unhealing)\n    \n    _item.connect_to_character_debuffs(\"onDebuffsChanged\")\n    _item.connect_to_opponent_buffs(\"onOpponentBuffsChanged\")",
-     "onDebuffsChanged": "def onDebuffsChanged(_item, amount=None, event=None):\n    regenToGive = None\n    if (amount > 0 and\n        event.origin is Item and\n        event.origin.character_() == _item.character_()):\n    \n        regenToGive = 0\n        for i in _range_or_value(amount):\n            if _item.roll_chance():\n                regenToGive += _item.regen\n    \n        if regenToGive > 0:\n            _item.give_regeneration(regenToGive, event)",
-     "onOpponentBuffsChanged": "def onOpponentBuffsChanged(_item, amount=None, event=None):\n    if (amount < 0 and\n        event.origin is Item and\n        event.origin.character_() == _item.character_()):\n    \n        for item in _range_or_value(_item.get_affected_items()):\n            item.add_crit_chance_percent(_item.get_chance2() * - amount)",
+     "onDebuffsChanged": "def onDebuffsChanged(_item, amount=None, event=None):\n    regenToGive = None\n    if (amount > 0 and\n        event.origin.has_script('Item') and\n        event.origin.character_() == _item.character_()):\n    \n        regenToGive = 0\n        for i in _range_or_value(amount):\n            if _item.roll_chance():\n                regenToGive += _item.regen\n    \n        if regenToGive > 0:\n            _item.give_regeneration(regenToGive, event)",
+     "onOpponentBuffsChanged": "def onOpponentBuffsChanged(_item, amount=None, event=None):\n    if (amount < 0 and\n        event.origin.has_script('Item') and\n        event.origin.character_() == _item.character_()):\n    \n        for item in _range_or_value(_item.get_affected_items()):\n            item.add_crit_chance_percent(_item.get_chance2() * - amount)",
      "doCooldownEffect": "def doCooldownEffect(_item):\n    _item.give_random_buffs(_item.selfBuffs)\n    _item.give_random_buffs(_item.opponentBuffs, None, Game.getBuffs(), _item.opponent())\n    _item.visual_activate()",
      "playPickupSound": "def playPickupSound(_item):\n    pass  # visual",
      "playDropSound": "def playDropSound(_item, volume=None):\n    volume += _item.impactSoundVolume\n    pass  # visual",
@@ -47086,7 +47091,8 @@
      "canApplyEffect": "def canApplyEffect(_item, toItem=None):\n    return toItem.is_class_item()",
      "onPrepare": "def onPrepare(_item):\n    for item in _range_or_value(_item.get_affected_items_inside()):\n        _item.connect_for_combat(item, \"activated\", \"onItemInsideActivated\")",
      "onItemInsideActivated": "def onItemInsideActivated(_item, event=None):\n    _item.give_max_stamina_temporary(_item.maxStamina, event)\n    _item.visual_activate()",
-     "getRelatedItemColumns": "def getRelatedItemColumns(_item):\n    return 6"
+     "getRelatedItemColumns": "def getRelatedItemColumns(_item):\n    return 6",
+     "_onready_init": "def _onready_init(_item):\n    try:\n        _item.giveSound = _item.preload(\"res://Assets/Sound/Confetti3.ogg\")\n    except Exception:\n        pass\n    try:\n        _item.activationParticles = None\n    except Exception:\n        pass\n    try:\n        _item.maxStamina = _item.get_p(\"stamina\")\n    except Exception:\n        pass\n    try:\n        _item.filters = (ItemBook.Filter.OtherClasses + ItemBook.Filter.Gated + ItemBook.Filter.Crafted)\n    except Exception:\n        pass\n"
     },
     "methods_raw": {},
     "extends_chain": [
@@ -48501,7 +48507,8 @@
      "treasureParticles"
     ],
     "methods": {
-     "_ready": "def _ready(_item):\n    pass  # visual"
+     "_ready": "def _ready(_item):\n    pass  # visual",
+     "_onready_init": "def _onready_init(_item):\n    try:\n        _item.burstParticles1 = _item.preload(\"res://Items/Exclusive/Particles/LootboxActivationParticles.tscn\")\n    except Exception:\n        pass\n    try:\n        _item.burstParticles2 = _item.preload(\"res://Items/Exclusive/Particles/LootboxActivationParticles2.tscn\")\n    except Exception:\n        pass\n    try:\n        _item.treasureParticles = _item.preload(\"res://Items/Exclusive/Particles/LootboxTreasureParticles.tscn\")\n    except Exception:\n        pass\n    try:\n        _item.OFFSET = 50.0\n    except Exception:\n        pass\n    try:\n        _item.giveSound = _item.preload(\"res://Assets/Sound/Confetti3.ogg\")\n    except Exception:\n        pass\n    try:\n        _item.chestSound = _item.preload(\"res://Assets/Sound/ChestOpening1.wav\")\n    except Exception:\n        pass\n    try:\n        _item.itemValue = int(_item.get_p(\"gold\"))\n    except Exception:\n        pass\n    try:\n        _item.filters = (ItemBook.Filter.Gated + ItemBook.Filter.Crafted)\n    except Exception:\n        pass\n"
     },
     "methods_raw": {
      "generateItems": "\tif wasAddedToInventory(dropResult):\n\t\tinventory.removeItem(self)\n\t\tdiscard()\n\telse:\n\t\tGame.STORAGEBOX.removeItem(self)\n\t\tcollisionShape.disabled = true\n\t\tdiscard()\n\t\n\tvar itemI = 0\n\t\n\tvar canGenerateTreasures = ItemBook.getTreasureCapacity() > 0\n\tif canGenerateTreasures and rollShopChance():\n\t\tvar descr = ItemBook.getRandomTreasureDescriptor(itemValue)\n\t\tvar treasure = ItemBook.generateAndStorageItem(descr, global_position, \n\t\t\tglobal_position - Vector2(0, OFFSET))\n\t\titemI += 1\n\t\titemValue -= treasure.getPrice()\n\t\ttreasure.popIn(false, 1.5)\n\t\tUtil.callDelayed(ObjectPool, \"particleOneShot\", 0.15, \n\t\t\t[treasureParticles, get_parent(), global_position])\n\t\n\tvar itemPool = ItemPool.new()\n\tfor descriptor in ItemBook.items.values():\n\t\tif ItemBook.canBeGenerated(descriptor, filters):\n\t\t\titemPool.addItem(descriptor)\n\titemPool.sortItems()\n\t\n\titemPool.setPrice(itemValue)\n\tvar value = itemValue\n\twhile value > 0:\n\t\titemI += 1\n\t\tvar descr = itemPool.getRandomItem()\n\t\tvalue -= descr.getPrice()\n\t\titemPool.setPrice(value)\n\t\tvar item = ItemBook.generateAndStorageItem(descr, global_position, \n\t\t\tglobal_position - Vector2(0, OFFSET * itemI))\n\t\titem.popIn(false, 1.5)\n\t\t\n\t\n\t\n\t\n\tvar particles1 = ObjectPool.particleOneShot(burstParticles1, get_parent(), \n\t\tglobal_position)\n\tvar particles2 = ObjectPool.particleOneShot(burstParticles2, get_parent(), \n\t\tglobal_position)\n\t\n\tSound.playSound(giveSound, - 2)\n\tSound.playSound(chestSound, 2)\n\tGame.saveRunState()\n\tfinishReplacement()"
@@ -51789,7 +51796,8 @@
      "onChargeReceived": "def onChargeReceived(_item, _charge=None):\n    _item.reset_base_cooldown()\n    if _item.numCharges == 1:\n        _item.setState(True)",
      "onChargeLeft": "def onChargeLeft(_item, _charge=None):\n    if _item.numCharges == 0:\n        _item.setState(False)",
      "doCooldownEffect": "def doCooldownEffect(_item):\n    _item.add_lucky(_item.luck)\n    _item.add_heat(_item.heat)\n    if _item.numCharges == 0:\n        _item.set_base_cooldown(_item.baseCooldownOverride + _item.cdIncrease)\n    _item.visual_activate()",
-     "onStateChanged": "def onStateChanged(_item, charged=None):\n    if charged:\n        pass  # visual\n    else:\n        pass  # visual"
+     "onStateChanged": "def onStateChanged(_item, charged=None):\n    if charged:\n        pass  # visual\n    else:\n        pass  # visual",
+     "_onready_init": "def _onready_init(_item):\n    try:\n        _item.filters = (ItemBook.Filter.Gems + ItemBook.Filter.Amulets + ItemBook.Filter.OtherClasses + ItemBook.Filter.Crafted)\n    except Exception:\n        pass\n    try:\n        _item.spawnPos = None\n    except Exception:\n        pass\n    try:\n        _item.digUpBag = WeightedBag.new()\n    except Exception:\n        pass\n    try:\n        _item.digUpItems = { \"Stone\": 4, \"Garlic\": 3, \"Blueberries\": 2, \"Lump of Coal\": 3, \"Pocket Sand\": 3, \"Chipped Ruby\": 1, \"Chipped Sapphire\": 1, \"Chipped Emerald\": 1, \"Chipped Topaz\": 1, \"Chipped Amethyst\": 1, \"Healing Herbs\": 0.5, \"Bag of Stones\": 0.5, \"Walrus Tusk\": 0.2, \"Whetstone\": 0.2, \"Piggybank\": 0.2, \"Pan\": 0.2, \"Customer Card\": 0.2, \"Gloves of Haste\": 0.2, \"Dagger\": 0.2, \"Protective Purse\": 0.1, \"Flawed Ruby\": 0.2, \"Flawed Sapphire\": 0.2, \"Flawed Emerald\": 0.2, \"Flawed Topaz\": 0.2, \"Flawed Amethyst\": 0.2, }\n    except Exception:\n        pass\n    try:\n        _item.luck = int(_item.get_p(\"luck\"))\n    except Exception:\n        pass\n    try:\n        _item.heat = int(_item.get_p(\"heat\"))\n    except Exception:\n        pass\n    try:\n        _item.cdIncrease = _item.get_p(\"cdincrease\")\n    except Exception:\n        pass\n"
     },
     "methods_raw": {},
     "extends_chain": [
@@ -57191,7 +57199,7 @@
      "onPrepare": "def onPrepare(_item):\n    _item.totalBlockRemoval = _item.blockRemoval * (_item.get_num_affected_type(Type.Fire)\n        + _item.get_num_empty_affected_cells())",
      "onPreDealDamage_early": "def onPreDealDamage_early(_item, damageRes=None):\n    if not damageRes.has_hit():\n        if _item.character_().get_heat() >= _item.heatNeeded:\n            _item.add_bonus_damage(_item.missDamage)\n            damageRes.hit = True\n            _item.use_heat(_item.heatNeeded)\n            pass  # visual\n    \n    if damageRes.has_hit():\n        _item.inflict_blind(_item.blind)\n        _item.self_inflict_blind(_item.selfblind)",
      "onPreDealDamage_late": "def onPreDealDamage_late(_item, damageRes=None):\n    _item.remove_block(_item.totalBlockRemoval)",
-     "getTypeMultiplicity": "def getTypeMultiplicity(_item, type=None):\n    if type == Type.Fire:\n        return _item.fireMultiplicity\n    else:\n        return _item._behavior_super('getTypeMultiplicity', 'MoltenSpear2')(type)",
+     "getTypeMultiplicity": "def getTypeMultiplicity(_item, type=None):\n    if type == Type.Fire:\n        return _item.fireMultiplicity\n    else:\n        return _item._base_get_type_multiplicity(type)",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.activationParticles = _item.preload(\"res://Items/Exclusive/Particles/MoltenSpearActivationParticles.tscn\")\n    except Exception:\n        pass\n    try:\n        _item.blockRemoval = _item.get_p(\"blockremoval\")\n    except Exception:\n        pass\n    try:\n        _item.heatNeeded = int(_item.get_p(\"heatt\"))\n    except Exception:\n        pass\n    try:\n        _item.missDamage = int(_item.get_p(\"missdam\"))\n    except Exception:\n        pass\n    try:\n        _item.blind = int(_item.get_p(\"blind\"))\n    except Exception:\n        pass\n    try:\n        _item.selfblind = int(_item.get_p(\"blind_self\"))\n    except Exception:\n        pass\n    try:\n        _item.fireMultiplicity = int(_item.get_p(\"fire\"))\n    except Exception:\n        pass\n    _item.totalBlockRemoval = 0\n"
     },
     "methods_raw": {},
@@ -57317,7 +57325,7 @@
      "fireMultiplicity"
     ],
     "methods": {
-     "getTypeMultiplicity": "def getTypeMultiplicity(_item, type=None):\n    if type == Type.Fire:\n        return _item.fireMultiplicity\n    else:\n        return _item._behavior_super('getTypeMultiplicity', 'Phoenix2')(type)",
+     "getTypeMultiplicity": "def getTypeMultiplicity(_item, type=None):\n    if type == Type.Fire:\n        return _item.fireMultiplicity\n    else:\n        return _item._base_get_type_multiplicity(type)",
      "canAffect": "def canAffect(_item, item=None):\n    return item.has_type(Type.Fire)",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.fireMultiplicity = int(_item.get_p(\"fire\"))\n    except Exception:\n        pass\n"
     },

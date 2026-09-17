@@ -13,6 +13,9 @@ def main():
     items = db.get("items", db)
     idx = E.scan_scripts()
     print("script index:", len(idx))
+    # 共享祖先条目缓存：基类（Item/Weapon/Bag…）条目只解析一次，
+    # 结果与逐物品独立解析完全一致（条目只由脚本本身决定）
+    shared_ancestors = {}
     matched = 0
     skipped = 0
     for key in items:
@@ -27,12 +30,14 @@ def main():
             skipped += 1
             continue
         try:
-            beh = E.build_behavior(sp)
+            beh = E.build_behavior(sp, ancestor_entries=shared_ancestors)
         except Exception as e:
             print("PARSE ERR", key, e)
             continue
         if beh["methods"] or beh["methods_raw"]:
-            items[key]["behavior"] = beh
+            # 浅拷贝：条目可能来自共享缓存（同名脚本的多个品质变体），
+            # script_file 的写入不得影响其他物品
+            items[key]["behavior"] = dict(beh)
             items[key]["behavior"]["script_file"] = os.path.basename(sp)
             matched += 1
     print("matched(wrote behavior):", matched, "skipped(no script):", skipped)

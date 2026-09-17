@@ -9,6 +9,7 @@ from __future__ import annotations
 
 from types import SimpleNamespace
 from typing import Any, Dict, Optional
+import bisect as _bisect
 import random as _random
 
 _FLIP_RNG = _random.Random(12345)
@@ -124,6 +125,43 @@ class _Util:
     def flip(self):
         """Util.flip — 硬币判定（Girl Power/Scale 平平局时二选一）。固定种子保证可复现。"""
         return _FLIP_RNG.random() < 0.5
+
+
+class _WeightedBag:
+    """WeightedBag 还原（Utility/WeightedBag.gd）：权重数组 → 累积和 → roll 出索引。
+
+    Shovel/Robodog 的 digUpBag 等使用；此前行为全局缺此类，实例变量经
+    onready 兜底成 int 0，_ready 里 digUpBag.prepare(...) 直接 AttributeError。
+    随机取 _FLIP_RNG（固定种子，保证可复现）。
+    """
+
+    def __init__(self):
+        self.weightSums: list = []
+        self.acc: float = 0
+
+    @classmethod
+    def new(cls):
+        return cls()
+
+    def prepare(self, weights):
+        self.weightSums = []
+        self.acc = 0
+        for w in (weights or []):
+            self.acc += float(w)
+            self.weightSums.append(self.acc)
+
+    def roll(self):
+        if not self.weightSums:
+            return 0
+        rand = _FLIP_RNG.random() * self.acc      # Util.rng.randf_range(0, acc)
+        index = _bisect.bisect_left(self.weightSums, rand)   # Array.bsearch（lower_bound）
+        if index >= len(self.weightSums):
+            index = len(self.weightSums) - 1
+        return index
+
+    def rollOnce(self, weights):
+        self.prepare(weights)
+        return self.roll()
 
 
 def _gd_dictionary(*a, **k):
@@ -254,6 +292,98 @@ class _Game:
         return _Noop()
 
 
+class _EventBus:
+    """EventBus 还原（Utility/EventBus.gd）：按（源对象, 信号名）定向投递。
+
+    引擎语义：connectEvent(emitter, signalName, receiver, method) 把
+    receiver.method 注册为 emitter 上该信号的回调；emitEvent 同步派发并把
+    event 写入 combatLog；战斗结束 disconnectAll() 清空（模拟器每场重建
+    物品/角色对象，连接随对象销毁，天然等价）。
+    实现上复用对象级 _signals 总线（Item/Character 均已具备 connect_signal /
+    emit_signal），不再维护独立注册表。
+    """
+
+    LoggingMode = SimpleNamespace(None_=0, Instant=1, Delayed=2)
+    loggingMode = 1                      # LoggingMode.Instant
+    signalQueue: list = []
+
+    def setLoggingMode(self, mode):
+        self.loggingMode = mode
+
+    def getLoggingMode(self):
+        return self.loggingMode
+
+    def queueSignal(self, emitter, signal_name, event=None, arguments=None):
+        self.signalQueue.append([emitter, signal_name, event, arguments])
+
+    def flushLoggingQueue(self):
+        self.loggingMode = 1
+        pending, self.signalQueue = self.signalQueue, []
+        for emitter, signal_name, event, arguments in pending:
+            self.emitAndLog(emitter, signal_name, event, arguments)
+
+    def _log_event(self, event):
+        # 引擎 emitAndLog 的 combatLog.logEvent(event)：只落真实 CombatEvent，
+        # 脚本自造的事件对象无类型保证，忽略（不影响派发）
+        if event is None:
+            return
+        try:
+            from .events import CombatEvent
+            if not isinstance(event, CombatEvent):
+                return
+            log = getattr(BEHAVIOR_GLOBALS["Game"], "combatLog", None)
+            if log is not None and hasattr(log, "events"):
+                log.events.append(event)
+        except Exception:  # noqa: BLE001
+            pass
+
+    def emitAndLog(self, emitter, signal_name, event=None, arguments=None):
+        self._log_event(event)
+        if emitter is None or not signal_name:
+            return
+        # 引擎：Game.fightEnded 后停止派发
+        if getattr(BEHAVIOR_GLOBALS["Game"], "fightEnded", False):
+            return
+        emit = getattr(emitter, "emit_signal", None)
+        if callable(emit):
+            emit(signal_name, *(arguments or []))
+
+    def emitEvent(self, emitter, signal_name, event=None, arguments=None):
+        if self.loggingMode == 2:            # LoggingMode.Delayed
+            self.queueSignal(emitter, signal_name, event, arguments)
+            return
+        self.emitAndLog(emitter, signal_name, event, arguments)
+
+    def emitSignal(self, emitter, signal_name, arguments=None):
+        self.emitEvent(emitter, signal_name, None, arguments)
+
+    def logEvent(self, event):
+        self.emitAndLog(None, "", event, [])
+
+    def connectEvent(self, emitter, signal_name, receiver, method):
+        """connectEvent — 在 emitter 上为 receiver.method 注册信号回调"""
+        if emitter is None or receiver is None:
+            return
+        register = getattr(emitter, "connect_signal", None)
+        if not callable(register):
+            return
+
+        def _cb(*args, _recv=receiver, _m=method):
+            call = getattr(_recv, "call_behavior", None)
+            if callable(call):
+                call(_m, *args)
+            else:
+                fn = getattr(_recv, _m, None)
+                if callable(fn):
+                    fn(*args)
+
+        register(signal_name, _cb)
+
+    def disconnectAll(self):
+        # 连接存放在各 emitter 的 _signals 上（随对象销毁），此处仅清队列
+        self.signalQueue.clear()
+
+
 class _Vector2(tuple):
     """GDScript Vector2 的 Python 等价：可调用构造 + 向量运算 + 方向常量。
 
@@ -382,6 +512,20 @@ class _ItemBook:
         return _DescriptorNS(name, name, _RARITY_BY_KEY.get(name, 0))
 
     def __getattr__(self, name):
+        # <x>Descriptor 形态的类级描述符引用（脚本 onready：
+        # `var flyAgaricDescriptor = ItemBook.flyAgaricDescriptor`）——
+        # camelCase 转物品名后走 getDescriptor，按 key 判等参与 is_a 联动判定
+        # （Mushroom Farm/Solaris/Spicy Banana/Power of the Moon/Stone Golem 等）
+        if name.endswith("Descriptor") and len(name) > len("Descriptor"):
+            base = name[:-len("Descriptor")]
+            if base and base[0].islower():
+                import re as _re
+                words = _re.sub(r'([A-Z])', r' \1', base).strip()
+                candidate = words.title()
+                # 物品 key 大小写不敏感匹配（Bag Of Stones → Bag of Stones）
+                for key in _RARITY_BY_KEY:
+                    if key.lower() == candidate.lower():
+                        return self.getDescriptor(key)
         # spiritCompanionDescriptors/canHaveMoreCompanions 等商店侧引用 → 安全兜底
         return _Noop()
 
@@ -421,6 +565,8 @@ BEHAVIOR_GLOBALS: Dict[str, Any] = {
         RecipeBook=5, Tooltip=6, Socket=7, ItemLibrary=8, InfoPanelIcon=9,
         BuildViewer=10, BuildViewerIcon=11, GridStorage=12, Undefined=13),
     "CONNECT_ONESHOT": 0,
+    # Item.gd 149 Rarity 枚举（行为脚本以 getRarity() == Rarity.X 比较）
+    "Rarity": SimpleNamespace(Common=0, Rare=1, Epic=2, Legendary=3, Godly=4, Unique=5),
     "ActivationAni": SimpleNamespace(Throw=0, Melee=1, Ranged=2, Spell=3),
     "Item": SimpleNamespace(Type=SimpleNamespace(
         Bag=0, Consumable=1, Food=2, Pet=3, Weapon=4, Shield=5, Armor=6,
@@ -434,6 +580,8 @@ BEHAVIOR_GLOBALS: Dict[str, Any] = {
     )),  # 行为脚本可能引用 Item.Type.X / Item.Tag.X
     "ObjectPool": _Noop(),
     "ItemBook": _ItemBook(),
+    "WeightedBag": _WeightedBag,
+    "ItemPool": _Noop(),
     "Stat": SimpleNamespace(
         Damage=0, Accuracy=1, Chance=2, Chance2=3, CritChance=4, CritSeverity=5,
         BaseCooldown=6, Cooldown=7, Speed=8, StaminaCost=9, Block=10, MaxHealth=11,
@@ -441,7 +589,7 @@ BEHAVIOR_GLOBALS: Dict[str, Any] = {
         Poison=19, Blind=20, Cold=21, BattleRage=22,
     ),
     "Sound": _Noop(),
-    "EventBus": _Noop(),
+    "EventBus": _EventBus(),
     "sprite": None,
     "descriptor": SimpleNamespace(params=[], chance=0.0, paramBases={}),
     "placed": False,
@@ -493,6 +641,7 @@ class BehaviorExecutor:
         self.extends_chain: list = list(self.spec.get("extends_chain", []) or [])
         self._cache: Dict[str, Any] = {}
         self._failed: set = set()
+        self._warned: set = set()
         self.strict: bool = strict
         # 严格模式下收集 {(cls, 方法名): 错误信息}（供 tools/audit_item_effects.py 等审计）
         self.failures: Dict[Any, str] = {}
@@ -501,7 +650,12 @@ class BehaviorExecutor:
         self._failed.add((cls, name))
         if self.strict or STRICT:
             self.failures[(cls, name)] = f"{phase}: {type(exc).__name__}: {exc}"
-        _warn(item, f"behavior {name} {phase}: {exc!r}")
+        # 告警每次失败只打一条（GDScript 运行期错误不影响后续调用，
+        # 不像编译失败那样永久跳过；重复告警只会刷屏）
+        key = (cls, name, phase)
+        if key not in self._warned:
+            self._warned.add(key)
+            _warn(item, f"behavior {name} {phase}: {exc!r}")
 
     # ---- 继承链解析 ----
     def _class_src(self, cls: str, name: str) -> Optional[str]:
@@ -550,11 +704,13 @@ class BehaviorExecutor:
             return None
 
     def execute(self, item, name: str, *args):
-        """执行行为方法（沿继承链解析）。不存在或失败时返回 None。"""
+        """执行行为方法（沿继承链解析）。不存在或失败时返回 None。
+
+        运行期异常只影响当次调用（对齐 GDScript 脚本错误语义），
+        不像编译失败那样永久跳过该方法。
+        """
         cls, src = self.resolve(name)
         if src is None:
-            return None
-        if (cls, name) in self._failed:
             return None
         fn = self._cache.get((cls, name))
         if fn is None:

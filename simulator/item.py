@@ -216,6 +216,16 @@ class Item:
         self.category = data.get('category', 'utility')
         self.damage_types = data.get('damage_type', 'effect')
         self.types = list(data.get('types', []))
+        # 脚本继承链补类型（对齐引擎描述符类型）：
+        # 棋子脚本（extends ChessPiece）hasType(Type.ChessPiece=17→'chess') 判定
+        # 依赖此类型，数据表中棋子 types 为空（ChessPiece.gd canAffect）
+        chain = ((data.get('behavior') or {}).get('extends_chain') or [])
+        if 'ChessPiece' in chain:
+            for t in ('chess', 'chesspiece'):
+                if t not in self.types:
+                    self.types.append(t)
+        if 'Card' in chain and 'card' not in self.types:
+            self.types.append('card')
         self.effect = data.get('effect', {})
         self.effects = list(data.get('effects', []))
         self.triggers = list(data.get('triggers', []))
@@ -417,36 +427,99 @@ class Item:
         np = self.data.get('named_params') or {}
         return ('heal' in np) or ('lifesteal' in np)
 
+    # Stack 位枚举（Item.gd 96-111）：Buff=2+4+8+16+32+64+128，Debuff=256+512+1024
+    _STACK_BUFF_BITS = (2, 4, 8, 16, 32, 64, 128)
+    _STACK_DEBUFF_BITS = (256, 512, 1024)
+
+    def _behavior_src_all(self) -> str:
+        """自身 + 继承链基类的全部转译方法源码（含未编译的 methods_raw，
+        usesStack 近似判定用，带缓存）"""
+        cached = getattr(self, "_src_all_cache", None)
+        if cached is not None:
+            return cached
+        beh = self.data.get("behavior") or {}
+        parts = list((beh.get("methods") or {}).values())
+        parts.extend((beh.get("methods_raw") or {}).values())
+        from . import behavior as _b
+        for cls in beh.get("extends_chain") or []:
+            cm = _b.CLASS_METHODS.get(cls) or {}
+            parts.extend((cm.get("methods") or {}).values())
+        cached = "\n".join(parts)
+        self._src_all_cache = cached
+        return cached
+
+    def gains_stack(self, stack_enum) -> bool:
+        """gainsStack — 物品是否与指定 Stack（位枚举）交互（canAffect 用）"""
+        from .buff import BuffType
+        mapping = {1: BuffType.BLOCK, 2: BuffType.LUCKY, 4: BuffType.REGENERATION,
+                   8: BuffType.VAMPIRISM, 16: BuffType.SPIKES, 32: BuffType.MANA,
+                   64: BuffType.EMPOWER, 128: BuffType.HEAT, 256: BuffType.POISON,
+                   512: BuffType.BLIND, 1024: BuffType.COLD}
+        bt = mapping.get(int(stack_enum))
+        if bt is None:
+            return False
+        if self.buff_powers.get(bt, 0) > 0:
+            return True
+        name = BuffType.INV.get(bt, '').lower()
+        return name in self.types or name in (self.data.get('named_params') or {})
+
+    def uses_stack(self, stack_enum) -> bool:
+        """usesStack — descriptor.usedStacks 位掩码数据未入库；
+        按行为源码中的 use<Stack> 调用近似（useMana/useRegeneration/…，
+        同时匹配编译后 snake_case 与原始 GDScript camelCase）。
+        入参为 Stack 位枚举（Mana=32/Regeneration=4/Heat=128/Lucky=2/Empower=64）"""
+        tokens = {32: ("use_mana(", "try_use_mana(", "useMana(", "tryUseMana("),
+                  4: ("use_regeneration(", "useRegeneration("),
+                  128: ("use_heat(", "useHeat("),
+                  2: ("use_lucky(", "useLucky("),
+                  64: ("use_empower(", "useEmpower(")}
+        toks = tokens.get(stack_enum)
+        if not toks:
+            return False
+        src = self._behavior_src_all()
+        return any(t in src for t in toks)
+
     def gains_buffs(self) -> bool:
         """Item.gd 5375: descriptor.gainedStacks & Stack.Buff"""
-        return False
+        return any(self.gains_stack(b) for b in self._STACK_BUFF_BITS)
 
     def uses_buffs(self) -> bool:
         """Item.gd 5378: descriptor.usedStacks & Stack.Buff"""
-        return False
+        return any(self.uses_stack(b) for b in self._STACK_BUFF_BITS)
 
     def inflicts_debuffs(self) -> bool:
         """Item.gd 5381: descriptor.gainedStacks & Stack.Debuff"""
-        return False
+        return any(self.gains_stack(b) for b in self._STACK_DEBUFF_BITS)
 
     def reacts_to_charges(self) -> bool:
-        """Item.gd 5148: hasOnChargeReceivedEffect or hasOnChargeLeftEffect —— 电荷系统未建模"""
-        return False
+        """Item.gd 5148: hasOnChargeReceivedEffect or hasOnChargeLeftEffect
+        （是否存在 onChargeReceived/onChargeLeft 行为方法）"""
+        return (self.has_behavior("onChargeReceived")
+                or self.has_behavior("onChargeLeft"))
 
     def is_crafted(self) -> bool:
-        """Item.gd 5719: descriptor.isCraftedItem() —— 无合成数据，默认 False"""
+        """Item.gd 5719: descriptor.isCraftedItem() —— 合成产物数据未入库，默认 False"""
         return False
 
     def is_treasure(self) -> bool:
         """Item.gd 5722: descriptor.randomUniquePool"""
         return False
 
-    def can_start_new_recipe(self) -> bool:
-        """Item.gd 5840: not isBaseItem() and isAvailableForCrafting()"""
+    def is_base_item(self) -> bool:
+        """isBaseItem — 是否为合成基础件（bondedIngredients 非空）；绑定未建模 → False"""
         return False
 
+    def is_available_for_crafting(self) -> bool:
+        """isAvailableForCrafting — 未绑定/未锁定/未融合；战斗内物品恒满足"""
+        return True
+
+    def can_start_new_recipe(self) -> bool:
+        """Item.gd 5840: not isBaseItem() and isAvailableForCrafting()"""
+        return (not self.is_base_item()) and self.is_available_for_crafting()
+
     def is_class_item(self, class_index=None) -> bool:
-        """Item.gd 973: descriptor.isClassItem()"""
+        """Item.gd 973: descriptor.isClassItem() —— classes 位掩码数据未入库
+        （原版基础物品绝大多数为 Neutral），恒 False"""
         return False
 
     def charge_left(self) -> int:
@@ -600,8 +673,12 @@ class Item:
         return bool(self.data.get('effects')) or bool(self.effect)
 
     def has_inventory_duration(self) -> bool:
-        """hasInventoryDuration：是否有背包内持续时间（默认为 False）。"""
-        return False
+        """hasInventoryDuration — descriptor.hasParam("dur")：named_params 含 dur"""
+        return 'dur' in (self.data.get('named_params') or {})
+
+    def has_method(self, method_name) -> bool:
+        """GDScript has_method — 行为方法池中是否存在该方法"""
+        return self.has_behavior(str(method_name))
 
     def get_base_stamina_cost(self) -> float:
         return float(self.data.get('stamina_cost', 0.0))
@@ -1294,8 +1371,14 @@ class Item:
         return self.behavior.execute(self, name, *args)
 
     def _behavior_super(self, name: str, from_cls, *args):
-        """转译的 `.method()` 超类调用：沿 extends_chain 向上找最近实现。"""
-        return self.behavior.super_execute(self, name, from_cls, *args)
+        """转译的 `.method()` 超类调用：沿 extends_chain 向上找最近实现。
+
+        编译形态为 `_behavior_super('method', 'Cls')(args...)`——必须返回
+        可调用对象（此前立即执行并返回结果值，超类收不到实参
+        （item=None），且布尔结果被当函数调用抛 TypeError，
+        异常又被执行器记为永久失败，联动从此静默失效）。
+        """
+        return lambda *a, **k: self.behavior.super_execute(self, name, from_cls, *a, **k)
 
     # ---- 信号注册（connectForCombat 还原） ----
     def connect_signal(self, signal: str, cb):
@@ -1361,6 +1444,14 @@ class Item:
         self.damage_source = self._make_damage_source()
         # GDScript _ready：物品入背包时执行（Stone ammunition=1、Weapon damageSource 等）
         self.call_behavior("_ready")
+        # 基类池跳过 ENGINE_LIFECYCLE（_ready 不入池），其初始化由引擎侧还原：
+        #   ChessPiece._ready 按节点名定色（"White" in name → White=1 否则 Black=0）；
+        #   Card 的 deck——战斗中卡牌在牌座内恒真值（Card.gd canAffect placed 分支依赖）
+        chain = (self.data.get('behavior') or {}).get('extends_chain') or []
+        if 'ChessPiece' in chain:
+            self.pieceColor = 1 if 'White' in self.key else 0
+        if 'Card' in chain:
+            self.deck = True
         self._affected_items = snap_affected
         self._affecting_items = snap_affecting
         self.dynamic_types = snap_dynamic
@@ -1386,6 +1477,9 @@ class Item:
         if hasattr(self, "effectDict") and isinstance(self.effectDict, dict) and not self.effectDict:
             from collections import defaultdict
             self.effectDict = defaultdict(list)
+        # Bag.prepare() 语义：袋内缓存必须先于 onPrepare（袋子的 onPrepare 会遍历
+        # getAffectedItemsInside()；引擎里 Bag.prepare 在 Item.prepare 开头执行）
+        self._cache_inside_items()
         self.call_behavior("onPrepare")
         self.call_behavior("prepare")
 
@@ -1529,6 +1623,10 @@ class Item:
         from .grid import rotate_cell, cells_from_grid_data
         row, col = self.grid_row, self.grid_col
         base = cells_from_grid_data(self.data.get('grid') or {})
+        if not base:
+            # 无网格数据的物品（煤/宝石/符文/棋子等）在游戏中均为 1x1 占格；
+            # 不兜底会导致它们不占格、邻接联动全部失效
+            base = [(0, 0)]
         # 40px 精细 tile：先旋转（锚点系），再归一化
         rotated = [rotate_cell(tuple(c), self.grid_rotation) for c in base]
         minx = min((c[0] for c in rotated), default=0)
@@ -1625,11 +1723,16 @@ class Item:
         return out
 
     def _cache_affected_items(self):
-        """cacheAffectedItemsForCombat — prepare 时缓存邻接"""
+        """cacheAffectedItemsForCombat — prepare 时缓存邻接。
+
+        袋内缓存对齐 Bag.gd prepare()：cachedInsideItems（占格上的物品）
+        + cachedAffectedInsideItems（canApplyEffect 过滤）。
+        """
         self._affected_cache = {0: self._compute_affected(0),
                                 2: self._compute_affected(2),
                                 4: self._compute_affected(4),
                                 7: self._compute_affected(7)}
+        self._cache_inside_items()
 
     def _compute_affected(self, color: int) -> list:
         if self.grid_inventory is None:
@@ -1778,6 +1881,24 @@ class Item:
     addDynamicType = add_dynamic_type
     removeDynamicType = remove_dynamic_type
     hasDynamicType = has_dynamic_type
+
+    def get_types(self) -> list:
+        """getTypes — dynamicTypes.keys() + descriptor.types（Item.gd 3574）"""
+        return list(self.dynamic_types.keys()) + list(self.types)
+
+    def get_type_multiplicity(self, item_type) -> int:
+        """getTypeMultiplicity — hasType?1:0（Item.gd 3583，
+        getNumAffected_type/getNumAffectedInside_type 的计数单位）"""
+        return 1 if self.has_type(item_type) else 0
+
+    def get_main_type(self):
+        """getMainType — descriptor.types[0]（Item.gd 3571）"""
+        return self.types[0] if self.types else None
+
+    # camelCase 别名（转译脚本以原名调用）
+    getTypes = get_types
+    getTypeMultiplicity = get_type_multiplicity
+    getMainType = get_main_type
 
     # ================ 联动回调（Item.gd 1517 起） ================
     def on_affected_item_added(self, other, color: int = 0):
@@ -2054,9 +2175,6 @@ class Item:
         if self.character:
             self.character.spike_damage_source.crit_chance_percent += amount
 
-    def is_a(self, descriptor) -> bool:
-        return False
-
     def check_block(self) -> bool:
         """checkBlock — Stoned 保护判定：有格挡时保护生效"""
         return bool(self.character and self.character.get_block() > 0) if self.character else False
@@ -2076,11 +2194,6 @@ class Item:
 
     def get_relative_health(self) -> float:
         return self.character.get_relative_health() if self.character else 0.0
-
-    def get_block(self) -> int:
-        # Item.gd getBlock() reads this item's descriptor value.  The
-        # character's current block is exposed by Character.get_block().
-        return int(self.block)
 
     def get_items(self):
         return self.character.get_items() if self.character else []
@@ -2601,10 +2714,70 @@ class Item:
             self._give_stacks(self.character, t, n, trigger_event)
 
     def get_affected_items_inside(self, *a):
-        return []
+        """getAffectedItemsInside — 袋内联动物品（对齐 Bag.gd 176：非空缓存优先，
+        否则实时按 canApplyEffect 过滤；未摆盘时 []）"""
+        cached = getattr(self, "_cache_affected_inside_items", None)
+        if cached:
+            return list(cached)
+        out = []
+        for it in self.get_items_inside_real():
+            if self.can_apply_effect(it):
+                out.append(it)
+        return out
 
-    def get_num_affected_type(self, *a, **k):
-        return 0
+    def get_items_inside(self):
+        """getItemsInside — 袋自身占格上的物品（Inventory.getItemsInCells，
+        查 filled 层；prepare 后为缓存，之前实时计算）。"""
+        cached = getattr(self, "_cache_inside_items_raw", None)
+        if cached is not None:
+            return list(cached)
+        return self.get_items_inside_real()
+
+    def get_items_inside_real(self):
+        """getItemsInside 的实时版：袋占格 → filled 层查物"""
+        inv = self.grid_inventory
+        if inv is None or not self.occupied_cells:
+            return []
+        return inv.get_items_in_cells(self.occupied_cells)
+
+    def get_num_affected_inside(self, *a) -> int:
+        """getNumAffectedInside — 袋内联动数（Bag.gd 281）"""
+        return len(self.get_affected_items_inside())
+
+    def get_num_affected_inside_type(self, item_type, *a) -> int:
+        """getNumAffectedInside_type — 按 getTypeMultiplicity 计数（Bag.gd 288）"""
+        return sum(1 for it in self.get_affected_items_inside()
+                   if it.has_type(item_type))
+
+    def get_bag_multiplicity(self, for_item=None, *a) -> int:
+        """getBagMultiplicity — Bag.gd 294 基类恒 1"""
+        return 1
+
+    def _cache_inside_items(self):
+        """Bag.prepare() 前半：缓存袋内物品与 canApplyEffect 过滤结果。
+
+        先置空再实时取（get_items_inside 命中缓存时返回旧值），
+        canApplyEffect 走行为方法（如 BagofGiving 检查物品类型）。
+        """
+        self._cache_inside_items_raw = None
+        self._cache_affected_inside_items = None
+        inside = self.get_items_inside_real()
+        self._cache_inside_items_raw = inside
+        affected = []
+        if getattr(self, "placed", True):
+            for it in inside:
+                if self.can_apply_effect(it):
+                    affected.append(it)
+        self._cache_affected_inside_items = affected
+
+    def can_apply_effect(self, other) -> bool:
+        """Bag.canApplyEffect — 基类 false（Bag.gd 35），由各袋子脚本覆写"""
+        if self.has_behavior("canApplyEffect"):
+            try:
+                return bool(self.call_behavior("canApplyEffect", other))
+            except Exception:  # noqa: BLE001
+                return False
+        return False
 
     def get_all_in_inventory(self, *a, **k):
         return self.get_items()
@@ -2677,8 +2850,34 @@ class Item:
     def give_random_buff(self, num=1, trigger_event=None):
         self.give_random_buffs(num, trigger_event)
 
+    _RARITY_INT = {'Common': 0, 'Rare': 1, 'Epic': 2,
+                   'Legendary': 3, 'Godly': 4, 'Unique': 5}
+
     def get_rarity(self):
-        return self.data.get('rarity', '')
+        """getRarity — Item.gd Rarity 枚举 int（Common=0…Unique=5）。
+        行为脚本以 `get_rarity() == Rarity.Common` 比较，须返回枚举值。"""
+        r = self.data.get('rarity', '')
+        if isinstance(r, str):
+            return self._RARITY_INT.get(r, -1)
+        return r
+
+    def get_block(self) -> int:
+        """Item.gd getBlock() = 描述符 block 参数：先取 CSV block 列，
+        缺省时读 named_params['block']（Shield of Valor 等护盾的格挡值所在）。
+        The character's current block is exposed by Character.get_block()."""
+        if self.block:
+            return int(self.block)
+        return int((self.data.get('named_params') or {}).get('block', 0) or 0)
+
+    def has_script(self, script_name) -> bool:
+        """GDScript `item is <Script>` 的运行时等价：物品脚本/继承链匹配"""
+        beh = self.data.get('behavior') or {}
+        stem = beh.get('script_file', '') or ''
+        if stem.endswith('.gd'):
+            stem = stem[:-3]
+        if stem == script_name or script_name in (beh.get('extends_chain') or []):
+            return True
+        return False
 
     def start_battle_rage(self, duration=0.0, trigger_event=None, apply_bonus=True, *a, **k):
         """Item 级 startBattleRage（Berserker Bag/Toolbox/Wolf Badge 等行为调用：

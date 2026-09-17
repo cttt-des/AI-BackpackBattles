@@ -82,9 +82,11 @@ python build_exe.py           # 打包/更新 exe → dist/BackpackAI.exe
 - ★★★ 2026-08-20 **物品效果运行时 31 告警 → 0**（verify_cooldowns 274/274 ok）。流水线：`tools/regen_behaviors.py`（重转译全部行为）→ `tools/audit_effects.py`（编译级审计）→ `tools/verify_cooldowns.py`（实战级校验：274 有cd物品逐一上场 vs 空手对手，查首触发时间 ±0.03 及运行时异常）。关键架构约定：**脚本内定义的 sibling 方法经 `_item._behavior_call("Name",...)` 派发**（不能 `_item.<name>()`，行为方法不是 Item 的 Python 方法）；METHOD_RENAME 只映射引擎基类方法，sibling 跳过；多行 dict/list 字面量（onready/const）由 collect_instance_vars 按括号闭合收集；`Vector2`→`_Vector2(tuple)` 支持 .DOWN/.rotated()；`for i in X.size()` 需包 `_range_or_value`；`.size()`→`.__len__()`、`.pop_back()`→`.pop()`、`.duplicate()`→`.copy()`、`.append_array()`→`.extend()`；视觉方法（updateShaderRotation 等）进 skip 清单；buff 变化信号 event 为 None 时用 `_OriginEvent(item)` 包装（getOrigin 可用）；send_charge 只做"命中格物品 num_charges+1 + onChargeReceived"，电荷动画不建模。遗留：5 个无脚本物品（Leather Bag/Coins/Shortbow/Goobling/Superior Ring）为基类物品，效果由引擎基类承载（合法）；8 个商店/视觉方法编译失败不影响战斗。
 
 ## GitHub Release 上传约束（重要！）
-- **★ 关键发现（2026-08-25）**：`gh` 的 keyring 凭据在沙箱重置后仍保留！`gh auth status` 显示已登录 cttt-des，token 带 `repo` 权限（gh_tmp/bin/gh.exe 或用托管 Python 重下的 gh 均可）。**无需用户提供 PAT 即可建 Release+传 exe**。
+- **★ 关键发现（2026-08-25）**：`gh` 的 keyring 凭据在沙箱重置后仍保留！`gh auth status` 显示已登录 cttt-des，token 带 `repo` 权限。**无需用户提供 PAT 即可建 Release+传 exe**。
+- **★ gh 调用方式（2026-09-10）**：`gh` 不在系统 PATH；工作区有 `gh.zip`（13MB，已被 .gitignore 忽略）。每次新会话先 `mkdir -p gh_tmp && python -c "import zipfile;zipfile.ZipFile('gh.zip').extractall('gh_tmp')"` 解压出 `gh_tmp/bin/gh.exe` 使用。凭据走 keyring（cttt-des, repo 权限）。
 - **沙箱网络限制**：`github.com` 主站直连偶发不可达（设备流 github.com/login/device 不稳定）；但 `api.github.com`/`uploads.github.com`/`objects.githubusercontent.com` 稳定可达，gh 自身走这些端点可用。
 - **GitHub MCP（连接器）对 Release 是只读**：只有 `get_release_by_tag`/`get_latest_release`/`list_releases`/`get_tag`/`list_tags`，**没有 create_release / upload_release_asset**。无法直接建 Release。
 - **gh CLI 下载**：`curl` 直连 github.com 发布资源常因 SSL/证书失败；改用托管 Python 下载成功：`C:/Users/Windows/.workbuddy/binaries/python/versions/3.13.12/python.exe -c "urllib.request.urlopen(url, context=ssl.create_default_context())"`。
 - **★ Release 上传稳妥流程（避坑）**：`gh release create <tag> --draft`(不带资产) → `gh release upload <tag> --clobber <files>` → `gh release edit <tag> --draft=false` 发布。原因：① `gh release create file#assetName` 的 `#` 重命名有时不生效；② 一次性建+传遇 HTTP 422 `ReleaseAsset.name already exists`（并发竞态）时用分步法+`--clobber` 规避。
-- 已推送标签：v0.0.1、v0.1.0、v0.1.1（v0.1.1 = abc3715 之后，含 README 重写+物品读取增强+打包依赖预检）。
+- 已推送标签：v0.0.1、v0.1.0、v0.1.1、v0.1.2。
+- 2026-09-10 发 v0.1.2（仅模拟器）：`dist/BackpackSimulator.exe` 改名 `BackpackSimulator_v0.1.2.exe`（67MB）上传；README 下载表此前误写 v0.2.0（远程从未发布），已对账为「模拟器 v0.1.2 + AI v0.1.1」。注意：dist 里还有 `BackpackSimulator_v0.2.0.exe`/`BackpackAI_v0.2.0.exe` 等 v0.2.0 构建，但均未作为 Release 发布过。

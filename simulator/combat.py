@@ -127,7 +127,8 @@ class CombatEngine:
                     health += 10
         return {'health': health, 'stamina': float(stamina), 'regen': float(regen)}
 
-    def _make_items(self, entries: List[Dict], rng) -> List[Item]:
+    def _make_items(self, entries: List[Dict], rng, parent_bag=None) -> List[Item]:
+        """按阵容条目建物品；递归 contents（袋内物品，对齐场景树父子结构）"""
         items = []
         for e in entries:
             key = e.get('id')
@@ -138,7 +139,13 @@ class CombatEngine:
             d['gems'] = e.get('gems', [])
             it = Item(key, d, base_rng=rng)
             it._lineup_entry = e          # 同名物品多份时按序对应
+            if parent_bag is not None:
+                it._bag_parent = parent_bag
             items.append(it)
+            contents = e.get('contents') or []
+            if contents:
+                it._contents_items = self._make_items(contents, rng, parent_bag=it)
+                items.extend(it._contents_items)
         return items
 
     def _place_items(self, items: List[Item], lineup: Dict) -> 'GridInventory':
@@ -146,18 +153,53 @@ class CombatEngine:
 
         背包判定以物品库 category=='bag' 为准（is_bag_data），阵容 container
         标志仅作补充——背包必须占 bags 底层，普通物品才能压其上（放入包内）。
+
+        袋内物品（_bag_parent 非空）摆到袋占格上（filled 层，对齐游戏
+        「物品放进包内」：filledCells 与 bagCells 同格并存，Bag.gd
+        getItemsInside 即查袋占格上的 filled 层）。阵容给了 row/col 就用
+        绝对坐标（须落在袋占格内），否则在袋占格内 first-fit。
         """
-        from .grid import GridInventory
+        from .grid import GridInventory, rotate_and_normalize
         bp = lineup.get('backpack', {})
         grid_cfg = bp.get('grid') or {'rows': 7, 'cols': 10}
         inv = GridInventory(int(grid_cfg.get('rows', 7)), int(grid_cfg.get('cols', 10)))
         for it in items:
+            if getattr(it, '_bag_parent', None) is not None:
+                continue          # 袋内物品随后按袋占格摆放
             e = getattr(it, '_lineup_entry', None) or {}
             it.set_grid_position(int(e.get('row', 0) or 0), int(e.get('col', 0) or 0),
                                  int(e.get('rotation', 0) or 0), inventory=inv,
                                  is_bag=is_bag_data(self.item_db.get(it.key))
                                  or bool(e.get('container', False)))
             it.mount_gems(e.get('gems') or [], self.item_db)
+        # 袋内物品：摆到所属袋的占格上
+        for it in items:
+            bag = getattr(it, '_bag_parent', None)
+            if bag is None or not bag.occupied_cells:
+                continue
+            e = getattr(it, '_lineup_entry', None) or {}
+            it.mount_gems(e.get('gems') or [], self.item_db)
+            bag_cells = set(bag.occupied_cells)
+            rot = int(e.get('rotation', 0) or 0)
+            row, col = e.get('row'), e.get('col')
+            if row is not None and col is not None:
+                it.set_grid_position(int(row), int(col), rot, inventory=inv, is_bag=False)
+                if bag_cells.issuperset(it.occupied_cells):
+                    continue
+                inv.remove_item(it, it.occupied_cells, is_bag=False)  # 落在袋外 → first-fit
+            g = ((self.item_db.get(it.key) or {}).get('grid') or {})
+            shape = rotate_and_normalize([tuple(c) for c in (g.get('collision_cells') or [[0, 0]])], rot)
+            placed = False
+            for (r0, c0) in bag.occupied_cells:
+                abs_cells = {(r0 + dy, c0 + dx) for (dx, dy) in shape}
+                if bag_cells.issuperset(abs_cells) and not (abs_cells & inv.filled.keys()):
+                    it.set_grid_position(r0, c0, rot, inventory=inv, is_bag=False)
+                    placed = True
+                    break
+            if not placed:
+                # 兜底：袋占格已被同袋物品占满时仍放入首格（游戏存档数据保证一致）
+                r0, c0 = bag.occupied_cells[0]
+                it.set_grid_position(r0, c0, rot, inventory=inv, is_bag=False)
         return inv
 
     def _build_linkage(self, items: List[Item]):
@@ -168,9 +210,9 @@ class CombatEngine:
         onAffectedItemAdded(item, color)。引擎是一次性摆好背包，故等价于
         「逐个放入」后的最终状态；战斗期缓存仍由 Item.prepare() 负责快照。
 
-        袋内（inside）联动：遍历 getAffectedItemsInside()，回调
-        onAffectedItemInsideAdded(other)。当前袋内容纳（containment）尚未建模
-        （getAffectedItemsInside 返回 []），故为空操作；容纳建模落地后此处自动生效。
+        袋内（inside）联动：遍历 getAffectedItemsInside()（实时路径，摆放已完成），
+        回调 onAffectedItemInsideAdded(other)；袋子的 prepare 会再缓存一次
+        （对齐 Bag.gd prepare），供战斗期 onPrepare 使用。
         """
         for color in (0, 2, 4, 7):
             for it in items:
@@ -202,6 +244,9 @@ class CombatEngine:
         _game = BEHAVIOR_GLOBALS['Game']
         _game.ropeSpeedups.clear()
         _game.cubeAdvanced.clear()
+        # EventBus 派发依赖的战斗上下文（对齐 Game.combatLog / Game.fightEnded）
+        _game.combatLog = self.log
+        _game.fightEnded = False
 
         # prepareItems: 双方 prepare + 物品 prepare（含被动叠加）
         self.player.prepare(self.log)
@@ -329,6 +374,9 @@ class CombatEngine:
         if self.fight_ended:
             return
         self.fight_ended = True
+        # 对齐 Game.fightEnded：EventBus 派发在战斗结束后停止（EventBus.gd:93）
+        from .behavior import BEHAVIOR_GLOBALS
+        BEHAVIOR_GLOBALS['Game'].fightEnded = True
         self.winner = winner
         self.win_reason = reason
         if winner is None:
