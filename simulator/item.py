@@ -2195,6 +2195,20 @@ class Item:
     def get_relative_health(self) -> float:
         return self.character.get_relative_health() if self.character else 0.0
 
+    def get_items_in_cells(self, cells):
+        """Inventory.getItemsInCells — filled 层查物去重"""
+        inv = self.grid_inventory
+        return inv.get_items_in_cells(cells) if inv is not None else []
+
+    def is_cell_empty(self, cell) -> bool:
+        """Inventory.isCellEmpty — filled 层无物品（Inventory.gd 716）"""
+        inv = self.grid_inventory
+        return inv is None or not inv.is_cell_occupied(cell)
+
+    def get_empty_cells(self):
+        """Bag.getEmptyCells — 自身占格中的空格"""
+        return [c for c in (self.occupied_cells or []) if self.is_cell_empty(c)]
+
     def get_items(self):
         return self.character.get_items() if self.character else []
 

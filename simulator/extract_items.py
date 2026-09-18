@@ -789,6 +789,12 @@ def transform_body(body_lines, instance_vars, sibling_methods=None,
         # character().INVENTORY.getItems() -> character().get_items()
         line = re.sub(r'\.INVENTORY\.', '.', line)
         line = re.sub(r'\binventory\.countSocketedGems\(\)', '_item.character_().count_socketed_gems()', line)
+        # Inventory 原生方法（GridInventory 等价实现，经 Item 委托）：
+        # 必须先于下方裸 inventory 兜底规则，否则接收者会被错误改写
+        line = re.sub(r'\binventory\.getItemsInCells\(', '_item.get_items_in_cells(', line)
+        line = re.sub(r'\binventory\.isCellEmpty\(', '_item.is_cell_empty(', line)
+        line = re.sub(r'\binventory\.getEmptyCells\(', '_item.get_empty_cells(', line)
+        line = re.sub(r'\binventory\.getItems\(', '_item.character_().get_items(', line)
         line = re.sub(r'\.getItems\(\)\.countSocketedGems\(\)', '.count_socketed_gems()', line)
         # 裸 self（作参数传，如 useStacks(buff, n, self)）-> _item
         line = re.sub(r'(?<![\w.])self\b(?!\.)', '_item', line)
@@ -1307,6 +1313,19 @@ def match_script_key(key, idx):
               k.lower().replace(" ", ""), k2.lower().replace(" ", "")):
         if c in idx:
             return idx[c]
+    # 变体物品：场景直接挂基类/其他物品脚本（tscn ext_resource 考证），
+    # 无专属 .gd，按名称永远匹配不到 —— 显式别名兜底：
+    #   LeatherBag.tscn → Items/Bag.gd；Shortbow.tscn → Items/Weapon.gd；
+    #   Goobling.tscn → Items/Goobert.gd；SuperiorRing.tscn → Items/Exclusive/MagicRing.gd
+    aliases = {
+        "leatherbag": "bag",
+        "shortbow": "weapon",
+        "goobling": "goobert",
+        "superiorring": "magicring",
+    }
+    norm = key.lower().replace(" ", "").replace("-", "")
+    if norm in aliases and aliases[norm] in idx:
+        return idx[aliases[norm]]
     return None
 
 
