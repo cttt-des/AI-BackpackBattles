@@ -260,39 +260,44 @@ def probe_item(key: str, db, verbose=False) -> dict:
             fails.append(f"{cname}: STRICT 失败 {json.dumps(sf, ensure_ascii=False)[:200]}")
 
     if "inside" in kinds:
-        bag = _mk_item(key, db)
-        bag.set_grid_position(3, 3, 0, inventory=GridInventory(9, 9), is_bag=True)
-        errors_in = {}
-        nb_key = find_inside_neighbor(bag, db, errors_in)
-        if nb_key is None:
-            src_in = methods.get("canApplyEffect", "")
-            gaps = [t for t in ("is_crafted", "is_class_item") if t in src_in]
-            if gaps:
-                skips.append(f"inside: 全库无匹配 —— 数据缺口 {','.join(gaps)} 未入库（恒 False）")
-            else:
-                msg = "inside: 全库无物品通过 canApplyEffect"
-                if errors_in:
-                    top = sorted(errors_in.items(), key=lambda kv: -kv[1])[:3]
-                    msg += " 谓词异常: " + "; ".join(f"{k} x{n}" for k, n in top)
-                fails.append(msg)
+        # canApplyEffect 引擎真值恒 False（如 Leather Bag：普通包无袋内特效，
+        # 场景直接挂 Bag.gd，回调也是基类空实现）→ 无需配对
+        if _trivial_false_can(data, "canApplyEffect"):
+            details.append("inside: canApplyEffect 恒 False（引擎真值），无袋内特效联动")
         else:
-            nb = _mk_item(nb_key, db)
-            nb.set_grid_position(bag.occupied_cells[0][0], bag.occupied_cells[0][1],
-                                 0, inventory=bag.grid_inventory)
-            try:
-                bag.prepare()
-            except Exception as e:  # noqa: BLE001
-                fails.append(f"inside: prepare 异常 {type(e).__name__}: {e}")
-            else:
-                inside_aff = bag.get_affected_items_inside()
-                if nb not in inside_aff:
-                    fails.append(f"inside: 邻居 {nb_key} 未被选中（"
-                                 f"袋内={[i.key for i in bag.get_items_inside()]}）")
+            bag = _mk_item(key, db)
+            bag.set_grid_position(3, 3, 0, inventory=GridInventory(9, 9), is_bag=True)
+            errors_in = {}
+            nb_key = find_inside_neighbor(bag, db, errors_in)
+            if nb_key is None:
+                src_in = methods.get("canApplyEffect", "")
+                gaps = [t for t in ("is_crafted", "is_class_item") if t in src_in]
+                if gaps:
+                    skips.append(f"inside: 全库无匹配 —— 数据缺口 {','.join(gaps)} 未入库（恒 False）")
                 else:
-                    details.append(f"inside: 邻居 {nb_key} 被选中（袋内联动生效）")
-                sf = _strict_failures(bag)
-                if sf:
-                    fails.append(f"inside: STRICT 失败 {json.dumps(sf, ensure_ascii=False)[:200]}")
+                    msg = "inside: 全库无物品通过 canApplyEffect"
+                    if errors_in:
+                        top = sorted(errors_in.items(), key=lambda kv: -kv[1])[:3]
+                        msg += " 谓词异常: " + "; ".join(f"{k} x{n}" for k, n in top)
+                    fails.append(msg)
+            else:
+                nb = _mk_item(nb_key, db)
+                nb.set_grid_position(bag.occupied_cells[0][0], bag.occupied_cells[0][1],
+                                     0, inventory=bag.grid_inventory)
+                try:
+                    bag.prepare()
+                except Exception as e:  # noqa: BLE001
+                    fails.append(f"inside: prepare 异常 {type(e).__name__}: {e}")
+                else:
+                    inside_aff = bag.get_affected_items_inside()
+                    if nb not in inside_aff:
+                        fails.append(f"inside: 邻居 {nb_key} 未被选中（"
+                                     f"袋内={[i.key for i in bag.get_items_inside()]}）")
+                    else:
+                        details.append(f"inside: 邻居 {nb_key} 被选中（袋内联动生效）")
+                    sf = _strict_failures(bag)
+                    if sf:
+                        fails.append(f"inside: STRICT 失败 {json.dumps(sf, ensure_ascii=False)[:200]}")
 
     if "global" in kinds or "lifecycle" in kinds:
         it2 = _mk_item(key, db)

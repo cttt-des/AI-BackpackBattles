@@ -1415,6 +1415,77 @@
       0
      ]
     ]
+   },
+   "behavior": {
+    "extends": "Item",
+    "instance_vars": [
+     "bagTilemap",
+     "bagTilemapPosition",
+     "border",
+     "cachedAffectedInsideItems",
+     "cachedInsideItems"
+    ],
+    "methods": {
+     "_ready": "def _ready(_item):\n    if _item.bagTilemapPosition == None:\n        _item.bagTilemapPosition = _item.bagTilemap.position\n    pass  # visual",
+     "getHoverPriority": "def getHoverPriority(_item):\n    if _item.dragged: return _item.DRAG_PRIORITY\n    else: return - 1",
+     "isBag": "def isBag(_item):\n    return True",
+     "showBagBorderForItem": "def showBagBorderForItem(_item, item=None):\n    return not item.isBag() and _item._behavior_call(\"canApplyEffect\", item)",
+     "canApplyEffect": "def canApplyEffect(_item, _toItem=None):\n    return False",
+     "canBePicked": "def canBePicked(_item):\n    bagPickable = None\n    if _item.placed and CustomRules.getCannotPickBags(): return False\n    \n    bagPickable = _item._behavior_super('canBePicked', 'Bag')()\n    if Game.state == Game.State.Shop:\n        return bagPickable\n    \n    \n    if bagPickable:\n        return (not _item._behavior_call(\"getItemsInside\", ))\n    return False",
+     "canBeLocked": "def canBeLocked(_item):\n    if not _item.canLockBag():\n        return False\n    \n    if not _item.focus:\n        return False\n    \n    if (_item.ownerType == Owner.PlayerInventory or\n        _item.ownerType == Owner.PlayerStorageBox or\n        (_item.ownerType == Owner.Socket and _item.character_() == Game.PLAYER)):\n    \n        if Game.state == Game.State.Combat:\n            return True\n        else:\n            return _item._behavior_super('canBePicked', 'Bag')()\n    \n    else:\n        return False",
+     "getBagLayerPriority": "def getBagLayerPriority(_item):\n    if _item.get_rarity() == Rarity.Unique: return 2\n    if _item._behavior_call(\"hasBagEffect\", ): return 1\n    return 0",
+     "hasBagEffect": "def hasBagEffect(_item):\n    return _item.border != None",
+     "_process": "def _process(_item, delta=None):\n    if _item.dragged:\n        if Game.PLAYER.canAddBag(_item):\n            for cell in _range_or_value(_item.bagTilemap.get_used_cells()):\n                _item.bagTilemap.set_cellv(cell, BagTiles.CanAdd)\n    \n        else:\n            for cell in _range_or_value(_item.bagTilemap.get_used_cells()):\n                _item.bagTilemap.set_cellv(cell, BagTiles.CannotAdd)",
+     "getTopLeftGlobal": "def getTopLeftGlobal(_item):\n    topLeft = None; globalPos = None\n    topLeft = Vector2(INF, INF)\n    \n    for cell in _range_or_value(_item.getExtensionCells()):\n        globalPos = _item.collisionMap.to_global(_item.collisionMap.map_to_world(cell))\n        topLeft.x = min(globalPos.x, topLeft.x)\n        topLeft.y = min(globalPos.y, topLeft.y)\n    return topLeft + _item.correction[_item.getFaceDirection()]",
+     "getBottomRightGlobal": "def getBottomRightGlobal(_item):\n    bottomRight = None; globalPos = None\n    bottomRight = Vector2( - INF, - INF)\n    for cell in _range_or_value(_item.getExtensionCells()):\n        globalPos = _item.collisionMap.to_global(_item.collisionMap.map_to_world(cell))\n        bottomRight.x = max(globalPos.x, bottomRight.x)\n        bottomRight.y = max(globalPos.y, bottomRight.y)\n    return bottomRight + _item.cellSize",
+     "isEmpty": "def isEmpty(_item):\n    return (not _item._behavior_call(\"getItemsInside\", ))",
+     "getItemsInside": "def getItemsInside(_item):\n    if _item.cachedInsideItems: return _item.cachedInsideItems\n    \n    return _item.get_items_in_cells(_item.occupiedCells)",
+     "getEmptyCells": "def getEmptyCells(_item):\n    emptyCells = None\n    emptyCells = []\n    for cell in _range_or_value(_item.occupiedCells):\n        if _item.is_cell_empty(cell):\n            emptyCells.append(cell)\n    return emptyCells",
+     "getEmptyGlobalPositions": "def getEmptyGlobalPositions(_item):\n    positions = None\n    positions = []\n    for cell in _range_or_value(_item._behavior_call(\"getEmptyCells\", )):\n        positions.append(_item.character_().get_items().cellToGlobalPos(cell, True))\n    return positions",
+     "getAffectedItemsInside": "def getAffectedItemsInside(_item):\n    affected = None\n    if not _item.placed: return []\n    \n    if _item.cachedAffectedInsideItems:\n        return _item.cachedAffectedInsideItems\n    \n    affected = []\n    for item in _range_or_value(_item._behavior_call(\"getItemsInside\", )):\n        if _item._behavior_call(\"canApplyEffect\", item):\n            affected.append(item)\n    \n    return affected",
+     "previewCanAffect": "def previewCanAffect(_item):\n    visuals = None; itemDict = None; curAffected = None; visual = None\n    visuals = {}\n    \n    itemDict = None\n    if _item.ownerType == Owner.Opponent:\n        itemDict = ItemBook.opponentItems\n    else:\n        itemDict = ItemBook.ownableItems\n    \n    curAffected = _item._behavior_call(\"getAffectedItemsInside\", )\n    \n    for descr in _range_or_value(itemDict):\n        for item in _range_or_value(itemDict[descr]):\n            if (item != _item and\n                not item.isBag() and\n                ( not item.isGem() or item.socket == None)\n                and _item._behavior_call(\"canApplyEffect\", item)\n                and not item in curAffected):\n    \n                visual = visuals.get(item, None)\n                if visual == None:\n                    pass  # visual\n                    pass  # visual\n    \n                    _item.canAffectVisuals.append(visual)\n                    visuals[item] = visual\n                pass  # visual",
+     "prepare": "def prepare(_item):\n    _item.cachedInsideItems = _item._behavior_call(\"getItemsInside\", )\n    \n    for item in _range_or_value(_item.cachedInsideItems):\n        if _item._behavior_call(\"canApplyEffect\", item):\n            _item.cachedAffectedInsideItems.append(item)\n    \n    pass  # super",
+     "getCraftableNeighbors": "def getCraftableNeighbors(_item):\n    craftableItems = None\n    craftableItems = []\n    for item in _range_or_value(_item._behavior_call(\"getItemsInside\", )):\n        if item.isAvailableForCrafting():\n            craftableItems.append(item)\n    return craftableItems",
+     "onAffectedItemInsideAdded": "def onAffectedItemInsideAdded(_item, _item_arg=None):\n    pass",
+     "onAffectedItemInsideRemoved": "def onAffectedItemInsideRemoved(_item, _item_arg=None):\n    pass",
+     "pushItemsInsideToStorage": "def pushItemsInsideToStorage(_item):\n    for item in _range_or_value(_item._behavior_call(\"getItemsInside\", )):\n        _item.character_().get_items().removeItem(item)\n        item.pushToStorage(Game.STORAGEBOX.center)",
+     "getNumAffectedInside": "def getNumAffectedInside(_item):\n    num = None\n    num = 0\n    for item in _range_or_value(_item._behavior_call(\"getAffectedItemsInside\", )):\n        num += 1\n    return num",
+     "getNumAffectedInside_type": "def getNumAffectedInside_type(_item, type=None):\n    num = None\n    num = 0\n    for item in _range_or_value(_item._behavior_call(\"getAffectedItemsInside\", )):\n        num += item.getTypeMultiplicity(type)\n    return num",
+     "getBagMultiplicity": "def getBagMultiplicity(_item, forItem=None):\n    return 1",
+     "_onready_init": "def _onready_init(_item):\n    try:\n        _item.bagTilemap = None / TileMap\n    except Exception:\n        pass\n    try:\n        _item.bagTilemapPosition = None\n    except Exception:\n        pass\n    try:\n        _item.border = _item.get_node_or_null(\"Icon/Border\")\n    except Exception:\n        pass\n    _item.cachedAffectedInsideItems = []\n    _item.cachedInsideItems = []\n"
+    },
+    "methods_raw": {
+     "resetZ": "\tif (ownerType == Owner.PlayerInventory or \n\t\townerType == Owner.Opponent or \n\t\townerType == Owner.BuildViewer):\n\t\tz_index = - 2\n\t\tbagTilemap.hide()\n\telse:\n\t\t.resetZ()",
+     "reactToDropResult": "\t.reactToDropResult(result)\n\tif result == DropResult.AddedToInventory:\n\t\tz_index = - 2\n\t\n\tfor cell in bagTilemap.get_used_cells():\n\t\tbagTilemap.set_cellv(cell, BagTiles.Default)",
+     "combatToShop": "\tcachedAffectedInsideItems.clear()\n\tcachedInsideItems.clear()\n\t.combatToShop()",
+     "onDraggedWithParentStart": "\t.onDraggedWithParentStart(bag)\n\tz_index = 0",
+     "onDraggedWithParentEnd": "\t.onDraggedWithParentEnd()\n\tif dragged:\n\t\tpass\n\telse:\n\t\tresetZ()",
+     "discard": "\tif pooled:\n\t\tbagTilemap.show()\n\t\n\t.discard(discardGems)"
+    },
+    "extends_chain": [
+     "Item"
+    ],
+    "script_file": "Bag.gd"
+   },
+   "linkage": {
+    "overrides": [
+     "onAffectedItemInsideAdded",
+     "onAffectedItemInsideRemoved"
+    ],
+    "inherited": [],
+    "colors": {
+     "primary": false,
+     "secondary": false,
+     "tertiary": false,
+     "lightning": false
+    },
+    "script_affected": false,
+    "global": false,
+    "related_columns": false,
+    "callbacks": [
+     "onAffectedItemInsideAdded",
+     "onAffectedItemInsideRemoved"
+    ]
    }
   },
   "Hammer": {
@@ -20764,7 +20835,35 @@
    "tags": [
     "bow"
    ],
-   "extra_cds": []
+   "extra_cds": [],
+   "behavior": {
+    "extends": "Item",
+    "instance_vars": [],
+    "methods": {
+     "_ready": "def _ready(_item):\n    _item.damageSource = _item._new_damage_source()",
+     "attack": "def attack(_item, triggerEvent=None):\n    res = None\n    res = _item.deal_damage(triggerEvent)\n    _item.visual_activate(res)",
+     "doCooldownEffect": "def doCooldownEffect(_item):\n    if _item.use_stamina() == Character.StaminaResult.Sufficient:\n        _item._behavior_call(\"attack\", )"
+    },
+    "methods_raw": {},
+    "extends_chain": [
+     "Item"
+    ],
+    "script_file": "Weapon.gd"
+   },
+   "linkage": {
+    "overrides": [],
+    "inherited": [],
+    "colors": {
+     "primary": false,
+     "secondary": false,
+     "tertiary": false,
+     "lightning": false
+    },
+    "script_affected": false,
+    "global": false,
+    "related_columns": false,
+    "callbacks": []
+   }
   },
   "Acorn Collar": {
    "key": "Acorn Collar",
@@ -36190,6 +36289,43 @@
       -1
      ]
     ]
+   },
+   "behavior": {
+    "extends": "Item",
+    "instance_vars": [
+     "activations",
+     "activationsToTrigger",
+     "goobertAnimation"
+    ],
+    "methods": {
+     "logCooldown": "def logCooldown(_item):\n    return True",
+     "canAffect": "def canAffect(_item, item=None):\n    return item.can_activate()",
+     "prepare": "def prepare(_item):\n    _item.activations = 0\n    _item.iterationCooldown = _item.activationsToTrigger\n    _item.triggerTime = _item.iterationCooldown\n    Game.combatLog.snapshotItemTooltipStat(_item, Stat.Cooldown)\n    \n    for item in _range_or_value(_item.get_affected_items()):\n        _item.connect_for_combat(item, \"activated\", \"onItemActivated\")\n    pass  # super",
+     "doCooldownEffect": "def doCooldownEffect(_item):\n    _item.heal()",
+     "onItemActivated": "def onItemActivated(_item, event=None):\n    _item.activations += 1\n    \n    if _item.activations == _item.get_p(0):\n        _item.activations = 0\n        _item._behavior_call(\"doCooldownEffect\", )\n        _item.visual_activate()\n    \n        if _item.doubleActivationChance > 0 and Util.flip(_item.doubleActivationChance):\n            _item._behavior_call(\"doCooldownEffect\", )\n            _item.visual_activate()\n    \n        pass  # visual\n    else:\n        pass  # visual\n    \n    _item.triggerTime = _item.activationsToTrigger - _item.activations\n    Game.combatLog.snapshotItemTooltipStat(_item, Stat.Cooldown, None, False, event)",
+     "_onready_init": "def _onready_init(_item):\n    try:\n        _item.goobertAnimation = None / GoobertAnimation\n    except Exception:\n        pass\n    try:\n        _item.activationsToTrigger = _item.get_p(0)\n    except Exception:\n        pass\n    _item.activations = 0\n"
+    },
+    "methods_raw": {},
+    "extends_chain": [
+     "Item"
+    ],
+    "script_file": "Goobert.gd"
+   },
+   "linkage": {
+    "overrides": [
+     "canAffect"
+    ],
+    "inherited": [],
+    "colors": {
+     "primary": true,
+     "secondary": false,
+     "tertiary": false,
+     "lightning": false
+    },
+    "script_affected": false,
+    "global": false,
+    "related_columns": false,
+    "callbacks": []
    }
   },
   "Smithing For Dummies": {
@@ -41299,7 +41435,7 @@
      "findPieceToCapture": "def findPieceToCapture(_item, activePieces=None):\n    captureCells = None; globalCell = None; itemInCell = None\n    for piece in _range_or_value(activePieces):\n        captureCells = piece.getCaptureCells()\n        captureCells\n    \n    \n        for cell in _range_or_value(captureCells):\n            globalCell = piece.occupiedCells[0] + cell\n            itemInCell = _item.character_().get_items().getItemInCell(globalCell)\n            if itemInCell != None:\n    \n                if piece.can_affect(itemInCell):\n    \n                    return [piece, itemInCell]\n    return None",
      "findBestPieceToCapture": "def findBestPieceToCapture(_item, activePieces=None):\n    bestMovePiece = None; bestMoveCapture = None; bestMoveScore = None; captureCells = None; globalCell = None; itemInCell = None; score = None; length = None; dir = None; cellToCheck = None; itemThere = None\n    bestMovePiece = None\n    bestMoveCapture = None\n    bestMoveScore = - 10000\n    \n    for piece in _range_or_value(activePieces):\n    \n        captureCells = piece.getCaptureCells()\n        captureCells\n    \n        for cell in _range_or_value(captureCells):\n            globalCell = piece.occupiedCells[0] + cell\n            itemInCell = _item.character_().get_items().getItemInCell(globalCell)\n            if itemInCell != None and piece.can_affect(itemInCell):\n    \n                score = itemInCell.get_price()\n                if score > bestMoveScore:\n    \n                    if piece.canBeBlocked():\n                        length = max(abs(cell.x), abs(cell.y))\n                        if length > 1:\n                            dir = cell / length\n                            for i in _range_or_value(range(1, length)):\n                                cellToCheck = piece.occupiedCells[0] + i * dir\n    \n                                itemThere = _item.character_().get_items().getItemInCell(cellToCheck)\n                                if itemThere != None and itemThere.has_type(Type.ChessPiece):\n    \n                                    score -= 100\n                                    break\n    \n                    if score > bestMoveScore:\n                        bestMoveScore = score\n                        bestMoveCapture = itemInCell\n                        bestMovePiece = piece\n    \n    if bestMoveCapture != None:\n        return [bestMovePiece, bestMoveCapture]\n    else:\n        return None",
      "capture": "def capture(_item, capturingPiece=None, eliminatedPiece=None, activateEvent=None):\n    event = None\n    event = capturingPiece.onPieceCaptured(eliminatedPiece, activateEvent)\n    eliminatedPiece.onEliminatedBy(capturingPiece, activateEvent)\n    \n    pass  # visual\n    pass  # visual",
-     "findSpaceToMove": "def findSpaceToMove(_item, activePieces=None):\n    moveCells = None; globalCell = None\n    for piece in _range_or_value(activePieces):\n        moveCells = piece.getMoveCells()\n        moveCells\n    \n    \n        for cell in _range_or_value(moveCells):\n            globalCell = piece.occupiedCells[0] + cell\n            if _item.character_().get_items().isCellEmpty(globalCell):\n    \n                _item._behavior_call(\"movePiece\", piece, globalCell)\n                return",
+     "findSpaceToMove": "def findSpaceToMove(_item, activePieces=None):\n    moveCells = None; globalCell = None\n    for piece in _range_or_value(activePieces):\n        moveCells = piece.getMoveCells()\n        moveCells\n    \n    \n        for cell in _range_or_value(moveCells):\n            globalCell = piece.occupiedCells[0] + cell\n            if _item.is_cell_empty(globalCell):\n    \n                _item._behavior_call(\"movePiece\", piece, globalCell)\n                return",
      "movePiece": "def movePiece(_item, piece=None, toCell=None):\n    piece.onPieceMoved(toCell)",
      "resetPieces": "def resetPieces(_item):\n    \n    for piece in _range_or_value(_item.originCells):\n        _item.character_().get_items().moveItem(piece, _item.originCells[piece])\n        piece.occupiedCells = _item.originCells[piece]\n        pass  # visual",
      "getRelatedItemColumns": "def getRelatedItemColumns(_item):\n    return 4",
@@ -58158,7 +58294,75 @@
      ]
     ]
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "behavior": {
+    "extends": "Item",
+    "instance_vars": [
+     "effectDict",
+     "effects",
+     "gainedStacks",
+     "healthThreshold",
+     "numEffects",
+     "oppoLowTriggered",
+     "opponentHealthThreshold",
+     "playerLowTriggered",
+     "ringTypes",
+     "stackToColor",
+     "stackToTypes",
+     "stones",
+     "symbols",
+     "textEffect",
+     "triggerTypeSymbols"
+    ],
+    "methods": {
+     "hasCooldown": "def hasCooldown(_item):\n    return TriggerType.Every in _item.effectDict",
+     "hasStartofBattle": "def hasStartofBattle(_item):\n    return TriggerType.StartOfBattle in _item.effectDict",
+     "onPrepare": "def onPrepare(_item):\n    _item.playerLowTriggered = False\n    _item.oppoLowTriggered = False\n    \n    if TriggerType.PlayerLow in _item.effectDict:\n        _item.connect_for_combat(_item.character_(), \"character_damaged\", \"onDamaged\")\n    \n    if TriggerType.OppoLow in _item.effectDict:\n        _item.connect_for_combat(_item.opponent(), \"character_damaged\", \"onOppoDamaged\")",
+     "onCombatStart": "def onCombatStart(_item):\n    for effect in _range_or_value(_item.effectDict[TriggerType.StartOfBattle]):\n        _item._behavior_call(\"giveStacksFromEffect\", effect)",
+     "doCooldownEffect": "def doCooldownEffect(_item):\n    for effect in _range_or_value(_item.effectDict[TriggerType.Every]):\n        _item._behavior_call(\"giveStacksFromEffect\", effect)",
+     "onDamaged": "def onDamaged(_item, _healthChange=None, event=None):\n    relHealth = None\n    if _item.playerLowTriggered: return\n    \n    relHealth = _item.character_().get_relative_health()\n    if relHealth < _item.healthThreshold:\n        _item.playerLowTriggered = True\n        for effect in _range_or_value(_item.effectDict[TriggerType.PlayerLow]):\n            _item._behavior_call(\"giveStacksFromEffect\", effect, event)",
+     "onOppoDamaged": "def onOppoDamaged(_item, _healthChange=None, event=None):\n    relHealth = None\n    if _item.oppoLowTriggered: return\n    \n    relHealth = _item.opponent().get_relative_health()\n    if relHealth < _item.opponentHealthThreshold:\n        _item.oppoLowTriggered = True\n        for effect in _range_or_value(_item.effectDict[TriggerType.OppoLow]):\n            _item._behavior_call(\"giveStacksFromEffect\", effect, event)",
+     "giveStacksFromEffect": "def giveStacksFromEffect(_item, effect=None, triggerEvent=None):\n    target = None; stackName = None; paramScale = None\n    target = None\n    if Game.isBuff(effect.stackType):\n        target = _item.character_()\n    else:\n        target = _item.opponent()\n    \n    stackName = Game.eventTypeKeys[effect.stackType].to_lower()\n    paramScale = _item.get_p(str(\"scale\", effect.triggerType + 1))\n    _item.give_stacks(target, effect.stackType,\n        _item._behavior_call(\"getScaledParam\", stackName, paramScale), triggerEvent)\n    \n    _item.visual_activate()",
+     "hasType": "def hasType(_item, type=None):\n    return type in _item.ringTypes or _item._base_has_type(type)",
+     "getNumStaticTypes": "def getNumStaticTypes(_item):\n    return _item._behavior_super('getNumStaticTypes', 'MagicRing')() + len(_item.ringTypes)",
+     "gainsStack": "def gainsStack(_item, stackType=None):\n    return _item.gainedStacks & stackType",
+     "gainsBuffs": "def gainsBuffs(_item):\n    return _item.gainedStacks & Stack.Buff",
+     "inflictsDebuffs": "def inflictsDebuffs(_item):\n    return _item.gainedStacks & Stack.Debuff",
+     "getTextEffect": "def getTextEffect(_item):\n    return _item.textEffect",
+     "_ready": "def _ready(_item):\n    if (not _item.stones):\n        for i in _range_or_value(_item.numEffects):\n            pass  # visual\n            pass  # visual\n    \n    if _item.ownerType == Owner.ItemLibrary:\n        pass  # visual\n    else:\n    \n        if not _item.wasJustCrafted:\n            _item._behavior_call(\"randEffects\", )",
+     "randEffects": "def randEffects(_item, clearIfOnlyDisplay=None):\n    effect = None\n    _item.effects.clear()\n    \n    for i in _range_or_value(_item.numEffects):\n        effect = RingEffect.new()\n        _item.effects.append(effect)\n        pass  # visual\n        pass  # visual\n    \n    \n    _item._behavior_call(\"sortEffects\", )\n    \n    if clearIfOnlyDisplay and _item._behavior_call(\"isOnlyForDisplay\", ):\n        _item.effects.clear()",
+     "getScaledParam": "def getScaledParam(_item, stackName=None, paramScale=None):\n    return round(_item.get_p(stackName) * paramScale)",
+     "isOnlyForDisplay": "def isOnlyForDisplay(_item):\n    return (_item.ownerType == Owner.ItemLibrary or\n        _item.ownerType == Owner.InfoPanelIcon or\n        _item.ownerType == Owner.Tooltip or\n        _item.ownerType == Owner.RecipeBook or\n        _item.ownerType == Owner.BuildViewerIcon)",
+     "copyFrom": "def copyFrom(_item, otherRing=None):\n    _item._behavior_call(\"setData\", otherRing.getData())",
+     "setData": "def setData(_item, _data=None):\n    bitStream = None; effect = None\n    if _data == None:\n        print(\"no ring data\")\n        return\n    \n    _item.effects.clear()\n    bitStream = BitStream.new()\n    bitStream.fromGodotString(_data)\n    for i in _range_or_value(_item.numEffects):\n        effect = RingEffect.new()\n        effect.setFromEncoded(bitStream)\n        _item.effects.append(effect)\n    \n    _item._behavior_call(\"sortEffects\", )",
+     "persistDataInShop": "def persistDataInShop(_item):\n    return True",
+     "getDataPersistent": "def getDataPersistent(_item, bitStream=None):\n    for effect in _range_or_value(_item.effects):\n        effect.pushEncoded(bitStream)",
+     "getDataPersistentBits": "def getDataPersistentBits(_item):\n    return _item.numEffects * (2 + 4)",
+     "onCraftedFrom": "def onCraftedFrom(_item, baseItem=None, ingredients=None):\n    _item.effects.clear()\n    _item.effects.extend(baseItem.effects)\n    _item.effects.extend(ingredients[0].effects)\n    \n    \n    pass  # visual\n    \n    _item._behavior_call(\"sortEffects\", )",
+     "_onready_init": "def _onready_init(_item):\n    try:\n        _item.numEffects = int(_item.get_p(\"effects\"))\n    except Exception:\n        pass\n    try:\n        _item.healthThreshold = _item.get_p(\"healtht\") / 100.0\n    except Exception:\n        pass\n    try:\n        _item.opponentHealthThreshold = _item.get_p(\"healtht_opp\") / 100.0\n    except Exception:\n        pass\n    try:\n        _item.stones = []\n    except Exception:\n        pass\n    try:\n        _item.symbols = []\n    except Exception:\n        pass\n    try:\n        _item.stackToTypes = { Game.EventType.Lucky: Type.Nature, Game.EventType.Spikes: Type.Nature, Game.EventType.Regeneration: Type.Holy, Game.EventType.Heat: Type.Fire, Game.EventType.Vampirism: Type.Vampiric, Game.EventType.Empower: Type.Holy, Game.EventType.Mana: Type.Magic, Game.EventType.Blind: Type.Dark, Game.EventType.Cold: Type.Ice, Game.EventType.Poison: Type.Nature, }\n    except Exception:\n        pass\n    try:\n        _item.stackToColor = { Game.EventType.Lucky: _item.Color(0.329826, 1, 0.263672), Game.EventType.Spikes: _item.Color(0.700867, 1, 0.263672), Game.EventType.Regeneration: _item.Color(1, 0.388672, 0.696724), Game.EventType.Heat: _item.Color(1.1, 0.44, 0.24), Game.EventType.Vampirism: _item.Color(0.900391, 0.04924, 0.04924), Game.EventType.Empower: _item.Color(0.955078, 0.665003, 0.341366), Game.EventType.Mana: _item.Color(0.257812, 0.330292, 1), Game.EventType.Blind: _item.Color(0.569776, 0.196078, 1), Game.EventType.Cold: _item.Color(0.196078, 0.952895, 1), Game.EventType.Poison: _item.Color(0.008865, 0.648438, 0.176254) }\n    except Exception:\n        pass\n    try:\n        _item.triggerTypeSymbols = { TriggerType.StartOfBattle: _item.preload(\"res://Items/Exclusive/Sprites/MagicRing_Symbol2.png\"), TriggerType.Every: _item.preload(\"res://Items/Exclusive/Sprites/MagicRing_Symbol1.png\"), TriggerType.PlayerLow: _item.preload(\"res://Items/Exclusive/Sprites/MagicRing_Symbol3.png\"), TriggerType.OppoLow: _item.preload(\"res://Items/Exclusive/Sprites/MagicRing_Symbol4.png\") }\n    except Exception:\n        pass\n    try:\n        _item.playerLowTriggered = False\n    except Exception:\n        pass\n    try:\n        _item.oppoLowTriggered = False\n    except Exception:\n        pass\n    _item.effectDict = {}\n    _item.gainedStacks = 0\n    _item.ringTypes = []\n    _item.textEffect = 0\n"
+    },
+    "methods_raw": {
+     "sortEffects": "\tgainedStacks = 0\n\teffectDict.clear()\n\tringTypes.clear()\n\t\n\tvar effectI = 0\n\tfor effect in effects:\n\t\tstones[effectI].modulate = stackToColor[effect.stackType]\n\t\tsymbols[effectI].texture = triggerTypeSymbols[effect.triggerType]\n\t\teffectI += 1\n\t\t\n\tif not isOnlyForDisplay():\n\t\ttextEffect = ItemToolTip.TextEffect.None\n\t\t\n\t\tfor effect in effects:\n\t\t\tUtil.dictAppend(effectDict, effect.triggerType, effect)\n\t\t\t\n\t\t\tgainedStacks |= 2 << (effect.stackType - Game.EventType.Lucky)\n\t\t\t\n\t\t\tvar newType = stackToTypes[effect.stackType]\n\t\t\tif not newType in ringTypes:\n\t\t\t\tringTypes.push_back(newType)\n\t\t\t\n\t\t\tif textEffect == ItemToolTip.TextEffect.None and newType in ItemBook.typeToTextEffect:\n\t\t\t\ttextEffect = ItemBook.typeToTextEffect[newType]\n\t\t\n\t\tif inventory != null:\n\t\t\tinventory.onItemTypeChanged(self)\n\telse:\n\t\ttextEffect = ItemToolTip.TextEffect.Gold"
+    },
+    "extends_chain": [
+     "Item"
+    ],
+    "script_file": "MagicRing.gd"
+   },
+   "linkage": {
+    "overrides": [],
+    "inherited": [],
+    "colors": {
+     "primary": false,
+     "secondary": false,
+     "tertiary": false,
+     "lightning": false
+    },
+    "script_affected": false,
+    "global": false,
+    "related_columns": false,
+    "callbacks": []
+   }
   },
   "Broccotree": {
    "key": "Broccotree",

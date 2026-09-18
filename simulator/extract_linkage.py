@@ -75,13 +75,15 @@ COLOR_SPEC = {
 MAX_CHAIN_DEPTH = 8
 
 _BEH_CACHE: Dict[str, Optional[dict]] = {}
+_ANCESTORS: Dict[str, dict] = {}
+_PARSE_CACHE: Dict[str, dict] = {}
 
 
 def behavior_of(path: str) -> Optional[dict]:
     """带缓存地转译一个脚本（build_behavior 对同一基类会被多个物品复用）。"""
     if path not in _BEH_CACHE:
         try:
-            _BEH_CACHE[path] = E.build_behavior(path)
+            _BEH_CACHE[path] = E.build_behavior(path, ancestor_entries=_ANCESTORS)
         except Exception as e:  # noqa: BLE001
             print(f"  [PARSE ERR] {os.path.basename(path)}: {e}")
             _BEH_CACHE[path] = None
@@ -113,10 +115,14 @@ def script_chain(sp: str, idx: Dict[str, str]) -> List[Tuple[str, dict]]:
         if not cur or cur in seen:
             break
         seen.add(cur)
-        try:
-            ext, _iv, _or, _td, methods = E.parse_script(cur)
-        except Exception:  # noqa: BLE001
-            break
+        if cur in _PARSE_CACHE:
+            ext, methods = _PARSE_CACHE[cur]
+        else:
+            try:
+                ext, _iv, _or, _td, methods = E.parse_script(cur)
+            except Exception:  # noqa: BLE001
+                ext, methods = None, {}
+            _PARSE_CACHE[cur] = (ext, methods)
         chain.append((cur, methods))
         if not ext or ext == "Item":
             break
