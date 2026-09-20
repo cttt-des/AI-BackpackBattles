@@ -91,7 +91,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Wooden Sword": {
    "key": "Wooden Sword",
@@ -170,7 +171,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Pan": {
    "key": "Pan",
@@ -291,7 +293,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Broom": {
    "key": "Broom",
@@ -390,7 +393,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Wooden Buckler": {
    "key": "Wooden Buckler",
@@ -470,7 +474,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Banana": {
    "key": "Banana",
@@ -607,7 +612,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Garlic": {
    "key": "Garlic",
@@ -721,7 +727,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Healing Herbs": {
    "key": "Healing Herbs",
@@ -803,7 +810,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Walrus Tusk": {
    "key": "Walrus Tusk",
@@ -889,7 +897,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Piggybank": {
    "key": "Piggybank",
@@ -1008,7 +1017,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Whetstone": {
    "key": "Whetstone",
@@ -1101,7 +1111,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Pocket Sand": {
    "key": "Pocket Sand",
@@ -1184,7 +1195,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Lump of Coal": {
    "key": "Lump of Coal",
@@ -1261,7 +1273,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Shiny Shell": {
    "key": "Shiny Shell",
@@ -1356,7 +1369,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Leather Bag": {
    "key": "Leather Bag",
@@ -1486,7 +1500,8 @@
      "onAffectedItemInsideAdded",
      "onAffectedItemInsideRemoved"
     ]
-   }
+   },
+   "classes": 127
   },
   "Hammer": {
    "key": "Hammer",
@@ -1586,7 +1601,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Spear": {
    "key": "Spear",
@@ -1709,7 +1725,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Dagger": {
    "key": "Dagger",
@@ -1789,7 +1806,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Spiked Shield": {
    "key": "Spiked Shield",
@@ -1882,7 +1900,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Leather Armor": {
    "key": "Leather Armor",
@@ -1986,7 +2005,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Gloves of Haste": {
    "key": "Gloves of Haste",
@@ -2081,7 +2101,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Health Potion": {
    "key": "Health Potion",
@@ -2208,7 +2229,8 @@
      "onAffectedItemAdded",
      "onAffectedItemRemoved"
     ]
-   }
+   },
+   "classes": 127
   },
   "Blueberries": {
    "key": "Blueberries",
@@ -2324,7 +2346,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Goobert": {
    "key": "Goobert",
@@ -2452,7 +2475,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Bag of Stones": {
    "key": "Bag of Stones",
@@ -2534,7 +2558,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Customer Card": {
    "key": "Customer Card",
@@ -2607,7 +2632,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Amulet Unidentified": {
    "key": "Amulet Unidentified",
@@ -2691,7 +2717,8 @@
     "global": false,
     "related_columns": true,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Amulet of Life": {
    "key": "Amulet of Life",
@@ -2775,7 +2802,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Amulet of Steel": {
    "key": "Amulet of Steel",
@@ -2972,7 +3000,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Amulet of Feasting": {
    "key": "Amulet of Feasting",
@@ -3158,7 +3187,8 @@
     "global": false,
     "related_columns": true,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Amulet of Darkness": {
    "key": "Amulet of Darkness",
@@ -3262,7 +3292,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Amulet of Agility": {
    "key": "Amulet of Agility",
@@ -3364,7 +3395,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Amulet of the Wild": {
    "key": "Amulet of the Wild",
@@ -3459,7 +3491,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Amulet of Alchemy": {
    "key": "Amulet of Alchemy",
@@ -3659,7 +3692,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Amulet of Fortune": {
    "key": "Amulet of Fortune",
@@ -3783,7 +3817,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Fanny Pack": {
    "key": "Fanny Pack",
@@ -3867,7 +3902,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Coins": {
    "key": "Coins",
@@ -3917,7 +3953,8 @@
    },
    "tags": [
     "transient"
-   ]
+   ],
+   "classes": 0
   },
   "Shovel": {
    "key": "Shovel",
@@ -4016,7 +4053,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Burning Coal": {
    "key": "Burning Coal",
@@ -4111,7 +4149,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Torch": {
    "key": "Torch",
@@ -4196,7 +4235,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Shell Totem": {
    "key": "Shell Totem",
@@ -4316,7 +4356,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Shelly": {
    "key": "Shelly",
@@ -4430,7 +4471,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Shepherds Crook": {
    "key": "Shepherds Crook",
@@ -4549,7 +4591,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Thorn Whip": {
    "key": "Thorn Whip",
@@ -4648,7 +4691,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Hungry Blade": {
    "key": "Hungry Blade",
@@ -4745,7 +4789,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Leather Boots": {
    "key": "Leather Boots",
@@ -4846,7 +4891,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Leather Helm": {
    "key": "Leather Helm",
@@ -4942,7 +4988,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Pestilence Flask": {
    "key": "Pestilence Flask",
@@ -5065,7 +5112,8 @@
      "onAffectedItemAdded",
      "onAffectedItemRemoved"
     ]
-   }
+   },
+   "classes": 127
   },
   "Stone Skin Potion": {
    "key": "Stone Skin Potion",
@@ -5156,7 +5204,8 @@
      "onAffectedItemAdded",
      "onAffectedItemRemoved"
     ]
-   }
+   },
+   "classes": 127
   },
   "Flute": {
    "key": "Flute",
@@ -5319,7 +5368,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Mana Orb": {
    "key": "Mana Orb",
@@ -5436,7 +5486,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Corrupted Crystal": {
    "key": "Corrupted Crystal",
@@ -5524,7 +5575,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Oil Lamp": {
    "key": "Oil Lamp",
@@ -5625,7 +5677,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Unstable Recombobulator": {
    "key": "Unstable Recombobulator",
@@ -5756,7 +5809,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Snowman": {
    "key": "Snowman",
@@ -5843,7 +5897,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Snowball": {
    "key": "Snowball",
@@ -5928,7 +5983,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Stamina Sack": {
    "key": "Stamina Sack",
@@ -6016,7 +6072,8 @@
      "onAffectedItemInsideAdded",
      "onAffectedItemInsideRemoved"
     ]
-   }
+   },
+   "classes": 127
   },
   "Hero Sword": {
    "key": "Hero Sword",
@@ -6128,7 +6185,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Magic Staff": {
    "key": "Magic Staff",
@@ -6233,7 +6291,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Strong Health Potion": {
    "key": "Strong Health Potion",
@@ -6332,7 +6391,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Poison Dagger": {
    "key": "Poison Dagger",
@@ -6418,7 +6478,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Claws of Attack": {
    "key": "Claws of Attack",
@@ -6513,7 +6574,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Burning Torch": {
    "key": "Burning Torch",
@@ -6610,7 +6672,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Platin Customer Card": {
    "key": "Platin Customer Card",
@@ -6711,7 +6774,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Mana Potion": {
    "key": "Mana Potion",
@@ -6834,7 +6898,8 @@
      "onAffectedItemAdded",
      "onAffectedItemRemoved"
     ]
-   }
+   },
+   "classes": 0
   },
   "Sandbag": {
    "key": "Sandbag",
@@ -6927,7 +6992,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Box of Prosperity": {
    "key": "Box of Prosperity",
@@ -7033,7 +7099,8 @@
      "onAffectedItemInsideAdded",
      "onAffectedItemInsideRemoved"
     ]
-   }
+   },
+   "classes": 0
   },
   "Holdall": {
    "key": "Holdall",
@@ -7134,7 +7201,8 @@
      "onAffectedItemInsideAdded",
      "onAffectedItemInsideRemoved"
     ]
-   }
+   },
+   "classes": 0
   },
   "Rib Saw Blade": {
    "key": "Rib Saw Blade",
@@ -7233,7 +7301,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Holy Armor": {
    "key": "Holy Armor",
@@ -7397,7 +7466,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Shield of Valor": {
    "key": "Shield of Valor",
@@ -7549,7 +7619,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Heroic Potion": {
    "key": "Heroic Potion",
@@ -7671,7 +7742,8 @@
      "onAffectedItemAdded",
      "onAffectedItemRemoved"
     ]
-   }
+   },
+   "classes": 127
   },
   "Pineapple": {
    "key": "Pineapple",
@@ -7804,7 +7876,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Blood Amulet": {
    "key": "Blood Amulet",
@@ -7890,7 +7963,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Ruby Egg": {
    "key": "Ruby Egg",
@@ -7980,7 +8054,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Jynx torquilla": {
    "key": "Jynx torquilla",
@@ -8148,7 +8223,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Vampiric Potion": {
    "key": "Vampiric Potion",
@@ -8255,7 +8331,8 @@
      "onAffectedItemAdded",
      "onAffectedItemRemoved"
     ]
-   }
+   },
+   "classes": 0
   },
   "Lucky Cat": {
    "key": "Lucky Cat",
@@ -8394,7 +8471,8 @@
      "onAffectedItemAdded",
      "onAffectedItemRemoved"
     ]
-   }
+   },
+   "classes": 127
   },
   "Potion Belt": {
    "key": "Potion Belt",
@@ -8490,7 +8568,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Bloody Dagger": {
    "key": "Bloody Dagger",
@@ -8613,7 +8692,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Strong Heroic Potion": {
    "key": "Strong Heroic Potion",
@@ -8705,7 +8785,8 @@
      "onAffectedItemAdded",
      "onAffectedItemRemoved"
     ]
-   }
+   },
+   "classes": 0
   },
   "Strong Stone Skin Potion": {
    "key": "Strong Stone Skin Potion",
@@ -8798,7 +8879,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Vampiric Armor": {
    "key": "Vampiric Armor",
@@ -8908,7 +8990,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Blood Goobert": {
    "key": "Blood Goobert",
@@ -9033,7 +9116,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Steel Goobert": {
    "key": "Steel Goobert",
@@ -9182,7 +9266,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Eggscalibur": {
    "key": "Eggscalibur",
@@ -9322,7 +9407,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Manathirst": {
    "key": "Manathirst",
@@ -9434,7 +9520,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Spectral Dagger": {
    "key": "Spectral Dagger",
@@ -9523,7 +9610,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Hero Longsword": {
    "key": "Hero Longsword",
@@ -9647,7 +9735,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Falcon Blade": {
    "key": "Falcon Blade",
@@ -9780,7 +9869,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Pandamonium": {
    "key": "Pandamonium",
@@ -9924,7 +10014,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Evil Cap": {
    "key": "Evil Cap",
@@ -10022,7 +10113,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Magic Torch": {
    "key": "Magic Torch",
@@ -10125,7 +10217,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Strong Mana Potion": {
    "key": "Strong Mana Potion",
@@ -10225,7 +10318,8 @@
      "onAffectedItemAdded",
      "onAffectedItemRemoved"
     ]
-   }
+   },
+   "classes": 0
   },
   "Stone Armor": {
    "key": "Stone Armor",
@@ -10342,7 +10436,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Stone Helm": {
    "key": "Stone Helm",
@@ -10434,7 +10529,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Stone Gloves": {
    "key": "Stone Gloves",
@@ -10536,7 +10632,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Serpent Staff": {
    "key": "Serpent Staff",
@@ -10649,7 +10746,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Stone Shoes": {
    "key": "Stone Shoes",
@@ -10751,7 +10849,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Poison Spear": {
    "key": "Poison Spear",
@@ -10880,7 +10979,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Snow Stick": {
    "key": "Snow Stick",
@@ -10979,7 +11079,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Fanfare": {
    "key": "Fanfare",
@@ -11146,7 +11247,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Lightsaber": {
    "key": "Lightsaber",
@@ -11259,7 +11361,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Protective Purse": {
    "key": "Protective Purse",
@@ -11339,7 +11442,8 @@
      "onAffectedItemInsideAdded",
      "onAffectedItemInsideRemoved"
     ]
-   }
+   },
+   "classes": 127
   },
   "Fancy Fencing Rapier": {
    "key": "Fancy Fencing Rapier",
@@ -11440,7 +11544,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Djinn Lamp": {
    "key": "Djinn Lamp",
@@ -11551,7 +11656,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Greatsword": {
    "key": "Greatsword",
@@ -11669,7 +11775,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Crown": {
    "key": "Crown",
@@ -11780,7 +11887,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Wolpertinger": {
    "key": "Wolpertinger",
@@ -11914,7 +12022,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Heart Container": {
    "key": "Heart Container",
@@ -12021,7 +12130,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Divine Potion": {
    "key": "Divine Potion",
@@ -12119,7 +12229,8 @@
      "onAffectedItemAdded",
      "onAffectedItemRemoved"
     ]
-   }
+   },
+   "classes": 127
   },
   "Rainbow Orb": {
    "key": "Rainbow Orb",
@@ -12250,7 +12361,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Bloodthorne": {
    "key": "Bloodthorne",
@@ -12348,7 +12460,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Crossblades": {
    "key": "Crossblades",
@@ -12467,7 +12580,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Ruby Whelp": {
    "key": "Ruby Whelp",
@@ -12562,7 +12676,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Vampiric Gloves": {
    "key": "Vampiric Gloves",
@@ -12677,7 +12792,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Darksaber": {
    "key": "Darksaber",
@@ -12778,7 +12894,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Light Goobert": {
    "key": "Light Goobert",
@@ -12914,7 +13031,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Holy Spear": {
    "key": "Holy Spear",
@@ -13066,7 +13184,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Moon Shield": {
    "key": "Moon Shield",
@@ -13221,7 +13340,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Corrupted Armor": {
    "key": "Corrupted Armor",
@@ -13381,7 +13501,8 @@
      "onAffectedItemRemoved"
     ]
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Moon Armor": {
    "key": "Moon Armor",
@@ -13534,7 +13655,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Heart of Darkness": {
    "key": "Heart of Darkness",
@@ -13681,7 +13803,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Thornbloom": {
    "key": "Thornbloom",
@@ -13796,7 +13919,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "King Crown": {
    "key": "King Crown",
@@ -13885,7 +14009,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "King Goobert": {
    "key": "King Goobert",
@@ -14038,7 +14163,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Stone Golem": {
    "key": "Stone Golem",
@@ -14176,7 +14302,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Prismatic Sword": {
    "key": "Prismatic Sword",
@@ -14320,7 +14447,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Katana": {
    "key": "Katana",
@@ -14424,7 +14552,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Winged Boots": {
    "key": "Winged Boots",
@@ -14524,7 +14653,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Paradise Birb": {
    "key": "Paradise Birb",
@@ -14705,7 +14835,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Random Loadout Bag": {
    "key": "Random Loadout Bag",
@@ -14811,7 +14942,8 @@
      "onAffectedItemInsideAdded",
      "onAffectedItemInsideRemoved"
     ]
-   }
+   },
+   "classes": 127
   },
   "Star of Courage": {
    "key": "Star of Courage",
@@ -14893,7 +15025,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Rainbow Badge": {
    "key": "Rainbow Badge",
@@ -14970,7 +15103,8 @@
     "related_columns": true,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Stone Badge": {
    "key": "Stone Badge",
@@ -15059,7 +15193,8 @@
     "related_columns": true,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Leaf Badge": {
    "key": "Leaf Badge",
@@ -15158,7 +15293,8 @@
     "related_columns": true,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Skull Badge": {
    "key": "Skull Badge",
@@ -15235,7 +15371,8 @@
     "related_columns": true,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Wolf Badge": {
    "key": "Wolf Badge",
@@ -15367,7 +15504,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Flame Badge": {
    "key": "Flame Badge",
@@ -15444,7 +15582,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Puzzle Badge": {
    "key": "Puzzle Badge",
@@ -15574,7 +15713,8 @@
     "related_columns": true,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Magic Badge": {
    "key": "Magic Badge",
@@ -15699,7 +15839,8 @@
     "global": false,
     "related_columns": true,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Twine Badge": {
    "key": "Twine Badge",
@@ -15808,7 +15949,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Artifact Stone Cold": {
    "key": "Artifact Stone Cold",
@@ -15905,7 +16047,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Vampiric Scythe": {
    "key": "Vampiric Scythe",
@@ -16037,7 +16180,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Villain Sword": {
    "key": "Villain Sword",
@@ -16189,7 +16333,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Skull": {
    "key": "Skull",
@@ -16272,7 +16417,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Artifact Stone Heat": {
    "key": "Artifact Stone Heat",
@@ -16375,7 +16521,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Present": {
    "key": "Present",
@@ -16457,7 +16604,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Gingerbread Man": {
    "key": "Gingerbread Man",
@@ -16609,7 +16757,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Pumpkin": {
    "key": "Pumpkin",
@@ -16750,7 +16899,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Dancing Dragon": {
    "key": "Dancing Dragon",
@@ -16913,7 +17063,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Cubert": {
    "key": "Cubert",
@@ -17056,7 +17207,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Stable Recombobulator": {
    "key": "Stable Recombobulator",
@@ -17219,7 +17371,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Artifact Stone Death": {
    "key": "Artifact Stone Death",
@@ -17317,7 +17470,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Ghost": {
    "key": "Ghost",
@@ -17411,7 +17565,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Time Dilator": {
    "key": "Time Dilator",
@@ -17500,7 +17655,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Pop": {
    "key": "Pop",
@@ -17594,7 +17750,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Cthulhu": {
    "key": "Cthulhu",
@@ -17758,7 +17915,8 @@
      "onAffectedItemRemoved"
     ]
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Snowcake": {
    "key": "Snowcake",
@@ -17896,7 +18054,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Little Mimic": {
    "key": "Little Mimic",
@@ -18048,7 +18207,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Bomb": {
    "key": "Bomb",
@@ -18133,7 +18293,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Repeater": {
    "key": "Repeater",
@@ -18236,7 +18397,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Box of Riches": {
    "key": "Box of Riches",
@@ -18318,7 +18480,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Chipped Ruby": {
    "key": "Chipped Ruby",
@@ -18404,7 +18567,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Flawed Ruby": {
    "key": "Flawed Ruby",
@@ -18488,7 +18652,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Regular Ruby": {
    "key": "Regular Ruby",
@@ -18572,7 +18737,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Flawless Ruby": {
    "key": "Flawless Ruby",
@@ -18656,7 +18822,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Perfect Ruby": {
    "key": "Perfect Ruby",
@@ -18740,7 +18907,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Chipped Sapphire": {
    "key": "Chipped Sapphire",
@@ -18830,7 +18998,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Flawed Sapphire": {
    "key": "Flawed Sapphire",
@@ -18914,7 +19083,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Regular Sapphire": {
    "key": "Regular Sapphire",
@@ -18998,7 +19168,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Flawless Sapphire": {
    "key": "Flawless Sapphire",
@@ -19082,7 +19253,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Perfect Sapphire": {
    "key": "Perfect Sapphire",
@@ -19166,7 +19338,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Chipped Emerald": {
    "key": "Chipped Emerald",
@@ -19247,7 +19420,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Flawed Emerald": {
    "key": "Flawed Emerald",
@@ -19328,7 +19502,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Regular Emerald": {
    "key": "Regular Emerald",
@@ -19409,7 +19584,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Flawless Emerald": {
    "key": "Flawless Emerald",
@@ -19490,7 +19666,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Perfect Emerald": {
    "key": "Perfect Emerald",
@@ -19571,7 +19748,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Chipped Topaz": {
    "key": "Chipped Topaz",
@@ -19648,7 +19826,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Flawed Topaz": {
    "key": "Flawed Topaz",
@@ -19722,7 +19901,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Regular Topaz": {
    "key": "Regular Topaz",
@@ -19796,7 +19976,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Flawless Topaz": {
    "key": "Flawless Topaz",
@@ -19870,7 +20051,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Perfect Topaz": {
    "key": "Perfect Topaz",
@@ -19944,7 +20126,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Chipped Amethyst": {
    "key": "Chipped Amethyst",
@@ -20025,7 +20208,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Flawed Amethyst": {
    "key": "Flawed Amethyst",
@@ -20105,7 +20289,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Regular Amethyst": {
    "key": "Regular Amethyst",
@@ -20185,7 +20370,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Flawless Amethyst": {
    "key": "Flawless Amethyst",
@@ -20265,7 +20451,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Perfect Amethyst": {
    "key": "Perfect Amethyst",
@@ -20345,7 +20532,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Ranger Bag": {
    "key": "Ranger Bag",
@@ -20450,7 +20638,8 @@
      "onAffectedItemInsideAdded",
      "onAffectedItemInsideRemoved"
     ]
-   }
+   },
+   "classes": 1
   },
   "Vineweave Basket": {
    "key": "Vineweave Basket",
@@ -20584,7 +20773,8 @@
      "onAffectedItemInsideAdded",
      "onAffectedItemInsideRemoved"
     ]
-   }
+   },
+   "classes": 1
   },
   "Lucky Clover": {
    "key": "Lucky Clover",
@@ -20666,7 +20856,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 1
   },
   "Carrot": {
    "key": "Carrot",
@@ -20778,7 +20969,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 1
   },
   "Shortbow": {
    "key": "Shortbow",
@@ -20863,7 +21055,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 1
   },
   "Acorn Collar": {
    "key": "Acorn Collar",
@@ -20976,7 +21169,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 1
   },
   "Bow and Arrow": {
    "key": "Bow and Arrow",
@@ -21090,7 +21284,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 1
   },
   "Thorn Shortbow": {
    "key": "Thorn Shortbow",
@@ -21176,7 +21371,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Lucky Shortbow": {
    "key": "Lucky Shortbow",
@@ -21262,7 +21458,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Poison Shortbow": {
    "key": "Poison Shortbow",
@@ -21353,7 +21550,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Lucky Piggy": {
    "key": "Lucky Piggy",
@@ -21458,7 +21656,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Carrot Goobert": {
    "key": "Carrot Goobert",
@@ -21584,7 +21783,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Thorn Bow": {
    "key": "Thorn Bow",
@@ -21709,7 +21909,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Lucky Bow": {
    "key": "Lucky Bow",
@@ -21830,7 +22031,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Poison Bow": {
    "key": "Poison Bow",
@@ -21948,7 +22150,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Critwood Staff": {
    "key": "Critwood Staff",
@@ -22059,7 +22262,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Snowmaster": {
    "key": "Snowmaster",
@@ -22180,7 +22384,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 1
   },
   "Vampiric Collar": {
    "key": "Vampiric Collar",
@@ -22305,7 +22510,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Magic Collar": {
    "key": "Magic Collar",
@@ -22426,7 +22632,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Holy Collar": {
    "key": "Holy Collar",
@@ -22551,7 +22758,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Rainbow Goobert Ranger": {
    "key": "Rainbow Goobert Ranger",
@@ -22755,7 +22963,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Piercing Arrow": {
    "key": "Piercing Arrow",
@@ -22877,7 +23086,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 1
   },
   "Yggdrasil Leaf": {
    "key": "Yggdrasil Leaf",
@@ -23022,7 +23232,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 1
   },
   "Poison Ivy": {
    "key": "Poison Ivy",
@@ -23149,7 +23360,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 1
   },
   "Mega Clover": {
    "key": "Mega Clover",
@@ -23245,7 +23457,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 1
   },
   "Bowl of Treats": {
    "key": "Bowl of Treats",
@@ -23376,7 +23589,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 1
   },
   "Rat": {
    "key": "Rat",
@@ -23500,7 +23714,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Squirrel": {
    "key": "Squirrel",
@@ -23626,7 +23841,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Hedgehog": {
    "key": "Hedgehog",
@@ -23742,7 +23958,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Squirrel Archer": {
    "key": "Squirrel Archer",
@@ -23865,7 +24082,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Rat Chef": {
    "key": "Rat Chef",
@@ -23986,7 +24204,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Hyper Hedgehog": {
    "key": "Hyper Hedgehog",
@@ -24112,7 +24331,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Storage Coffin": {
    "key": "Storage Coffin",
@@ -24222,7 +24442,8 @@
      "onAffectedItemInsideAdded",
      "onAffectedItemInsideRemoved"
     ]
-   }
+   },
+   "classes": 2
   },
   "Relic Case": {
    "key": "Relic Case",
@@ -24326,7 +24547,8 @@
      "onAffectedItemInsideRemoved"
     ]
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 2
   },
   "Fly Agaric": {
    "key": "Fly Agaric",
@@ -24449,7 +24671,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 2
   },
   "Deck of Cards": {
    "key": "Deck of Cards",
@@ -24559,7 +24782,8 @@
     "global": false,
     "related_columns": true,
     "callbacks": []
-   }
+   },
+   "classes": 2
   },
   "The Lovers": {
    "key": "The Lovers",
@@ -24664,7 +24888,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Ace of Spades": {
    "key": "Ace of Spades",
@@ -24762,7 +24987,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Reverse": {
    "key": "Reverse",
@@ -24858,7 +25084,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "White-Eyes Blue Dragon": {
    "key": "White-Eyes Blue Dragon",
@@ -24957,7 +25184,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "The Fool": {
    "key": "The Fool",
@@ -25052,7 +25280,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Holo Fire Lizard": {
    "key": "Holo Fire Lizard",
@@ -25153,7 +25382,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Joker": {
    "key": "Joker",
@@ -25259,7 +25489,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Darkest Lotus": {
    "key": "Darkest Lotus",
@@ -25356,7 +25587,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Toad": {
    "key": "Toad",
@@ -25488,7 +25720,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 2
   },
   "Death Scythe": {
    "key": "Death Scythe",
@@ -25624,7 +25857,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 2
   },
   "Demonic Flask": {
    "key": "Demonic Flask",
@@ -25734,7 +25968,8 @@
      "onAffectedItemAdded",
      "onAffectedItemRemoved"
     ]
-   }
+   },
+   "classes": 2
   },
   "Poison Goobert": {
    "key": "Poison Goobert",
@@ -25870,7 +26105,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Staff of Unhealing": {
    "key": "Staff of Unhealing",
@@ -25983,7 +26219,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Strong Pestilence Flask": {
    "key": "Strong Pestilence Flask",
@@ -26075,7 +26312,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Ruby Chonk": {
    "key": "Ruby Chonk",
@@ -26193,7 +26431,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Doom Cap": {
    "key": "Doom Cap",
@@ -26327,7 +26566,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Crow": {
    "key": "Crow",
@@ -26501,7 +26741,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Poison Frog": {
    "key": "Poison Frog",
@@ -26629,7 +26870,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Rainbow Goobert": {
    "key": "Rainbow Goobert",
@@ -26833,7 +27075,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Cursed Hair Comb": {
    "key": "Cursed Hair Comb",
@@ -26978,7 +27221,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 2
   },
   "Mr Struggles": {
    "key": "Mr Struggles",
@@ -27109,7 +27353,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 2
   },
   "Cursed Dagger": {
    "key": "Cursed Dagger",
@@ -27222,7 +27467,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 2
   },
   "Snake": {
    "key": "Snake",
@@ -27353,7 +27599,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 2
   },
   "Cauldron": {
    "key": "Cauldron",
@@ -27487,7 +27734,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 2
   },
   "Mrs Struggles": {
    "key": "Mrs Struggles",
@@ -27603,7 +27851,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Miss Fortune": {
    "key": "Miss Fortune",
@@ -27693,7 +27942,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Strong Demonic Flask": {
    "key": "Strong Demonic Flask",
@@ -27819,7 +28069,8 @@
      "onAffectedItemAdded",
      "onAffectedItemRemoved"
     ]
-   }
+   },
+   "classes": 0
   },
   "Strong Vampiric Potion": {
    "key": "Strong Vampiric Potion",
@@ -27920,7 +28171,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Strong Divine Potion": {
    "key": "Strong Divine Potion",
@@ -28008,7 +28260,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Fire Pit": {
    "key": "Fire Pit",
@@ -28126,7 +28379,8 @@
      "onAffectedItemInsideAdded",
      "onAffectedItemInsideRemoved"
     ]
-   }
+   },
+   "classes": 8
   },
   "Portable Altar": {
    "key": "Portable Altar",
@@ -28235,7 +28489,8 @@
      "onAffectedItemInsideAdded",
      "onAffectedItemInsideRemoved"
     ]
-   }
+   },
+   "classes": 8
   },
   "Flame": {
    "key": "Flame",
@@ -28309,7 +28564,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 8
   },
   "Chili Pepper": {
    "key": "Chili Pepper",
@@ -28425,7 +28681,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 8
   },
   "Draconic Orb": {
    "key": "Draconic Orb",
@@ -28516,7 +28773,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 8
   },
   "Phoenix": {
    "key": "Phoenix",
@@ -28630,7 +28888,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 8
   },
   "Burning Sword": {
    "key": "Burning Sword",
@@ -28756,7 +29015,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Burning Blade": {
    "key": "Burning Blade",
@@ -28883,7 +29143,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Sun Armor": {
    "key": "Sun Armor",
@@ -29047,7 +29308,8 @@
      "onAffectedItemRemoved"
     ]
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Sun Shield": {
    "key": "Sun Shield",
@@ -29210,7 +29472,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Molten Dagger": {
    "key": "Molten Dagger",
@@ -29299,7 +29562,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Molten Spear": {
    "key": "Molten Spear",
@@ -29431,7 +29695,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Staff of Fire": {
    "key": "Staff of Fire",
@@ -29538,7 +29803,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Flame Whip": {
    "key": "Flame Whip",
@@ -29644,7 +29910,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Chili Goobert": {
    "key": "Chili Goobert",
@@ -29759,7 +30026,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Obsidian Dragon": {
    "key": "Obsidian Dragon",
@@ -29883,7 +30151,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Molten Greatsword": {
    "key": "Molten Greatsword",
@@ -30005,7 +30274,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Fire Shelly": {
    "key": "Fire Shelly",
@@ -30118,7 +30388,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Rainbow Goobert Pyromancer": {
    "key": "Rainbow Goobert Pyromancer",
@@ -30270,7 +30541,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Friendly Fire": {
    "key": "Friendly Fire",
@@ -30423,7 +30695,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 8
   },
   "Burning Banner": {
    "key": "Burning Banner",
@@ -30586,7 +30859,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 8
   },
   "Dark Lantern": {
    "key": "Dark Lantern",
@@ -30729,7 +31003,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 8
   },
   "Frozen Flame": {
    "key": "Frozen Flame",
@@ -30871,7 +31146,8 @@
     "global": false,
     "related_columns": true,
     "callbacks": []
-   }
+   },
+   "classes": 8
   },
   "Dragon Nest": {
    "key": "Dragon Nest",
@@ -30994,7 +31270,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 8
   },
   "Spell Scroll Frostbolt": {
    "key": "Spell Scroll Frostbolt",
@@ -31117,7 +31394,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Ice Armor": {
    "key": "Ice Armor",
@@ -31218,7 +31496,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Frozen Buckler": {
    "key": "Frozen Buckler",
@@ -31306,7 +31585,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Frostbite": {
    "key": "Frostbite",
@@ -31409,7 +31689,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Ice Dragon": {
    "key": "Ice Dragon",
@@ -31526,7 +31807,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 2
   },
   "Emerald Egg": {
    "key": "Emerald Egg",
@@ -31605,7 +31887,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Emerald Whelp": {
    "key": "Emerald Whelp",
@@ -31690,7 +31973,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Sapphire Egg": {
    "key": "Sapphire Egg",
@@ -31772,7 +32056,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Sapphire Whelp": {
    "key": "Sapphire Whelp",
@@ -31865,7 +32150,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Amethyst Egg": {
    "key": "Amethyst Egg",
@@ -31945,7 +32231,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Amethyst Whelp": {
    "key": "Amethyst Whelp",
@@ -32030,7 +32317,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Berserker Bag": {
    "key": "Berserker Bag",
@@ -32153,7 +32441,8 @@
      "onAffectedItemInsideAdded",
      "onAffectedItemInsideRemoved"
     ]
-   }
+   },
+   "classes": 4
   },
   "Toolbox": {
    "key": "Toolbox",
@@ -32284,7 +32573,8 @@
      "onAffectedItemInsideRemoved"
     ]
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 4
   },
   "Forging Hammer": {
    "key": "Forging Hammer",
@@ -32366,7 +32656,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 4
   },
   "Axe": {
    "key": "Axe",
@@ -32458,7 +32749,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 4
   },
   "Spiked Collar": {
    "key": "Spiked Collar",
@@ -32541,7 +32833,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 4
   },
   "Cheese": {
    "key": "Cheese",
@@ -32654,7 +32947,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 4
   },
   "Double Axe": {
    "key": "Double Axe",
@@ -32765,7 +33059,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Chain Whip": {
    "key": "Chain Whip",
@@ -32870,7 +33165,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Dragonscale Armor": {
    "key": "Dragonscale Armor",
@@ -32969,7 +33265,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Dragon Claws": {
    "key": "Dragon Claws",
@@ -33063,7 +33360,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Dragonskin Boots": {
    "key": "Dragonskin Boots",
@@ -33147,7 +33445,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Busted Blade": {
    "key": "Busted Blade",
@@ -33269,7 +33568,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Spiked Staff": {
    "key": "Spiked Staff",
@@ -33373,7 +33673,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Cheese Goobert": {
    "key": "Cheese Goobert",
@@ -33487,7 +33788,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Spiked Wall": {
    "key": "Spiked Wall",
@@ -33604,7 +33906,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Rainbow Goobert Berserker": {
    "key": "Rainbow Goobert Berserker",
@@ -33756,7 +34059,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Anvil": {
    "key": "Anvil",
@@ -33889,7 +34193,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 4
   },
   "Deer Totem": {
    "key": "Deer Totem",
@@ -34029,7 +34334,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 4
   },
   "Wolf Emblem": {
    "key": "Wolf Emblem",
@@ -34204,7 +34510,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 4
   },
   "Shaman Mask": {
    "key": "Shaman Mask",
@@ -34292,7 +34599,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 4
   },
   "Brass Knuckles": {
    "key": "Brass Knuckles",
@@ -34408,7 +34716,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 4
   },
   "Courage Puppy": {
    "key": "Courage Puppy",
@@ -34527,7 +34836,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Wisdom Puppy": {
    "key": "Wisdom Puppy",
@@ -34644,7 +34954,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Power Puppy": {
    "key": "Power Puppy",
@@ -34764,7 +35075,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Armored Courage Puppy": {
    "key": "Armored Courage Puppy",
@@ -34874,7 +35186,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Armored Wisdom Puppy": {
    "key": "Armored Wisdom Puppy",
@@ -34990,7 +35303,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Armored Power Puppy": {
    "key": "Armored Power Puppy",
@@ -35105,7 +35419,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Badger Rune": {
    "key": "Badger Rune",
@@ -35191,7 +35506,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Elephant Rune": {
    "key": "Elephant Rune",
@@ -35282,7 +35598,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Hawk Rune": {
    "key": "Hawk Rune",
@@ -35360,7 +35677,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Tiger Rune": {
    "key": "Tiger Rune",
@@ -35449,7 +35767,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Unidentified Skill": {
    "key": "Unidentified Skill",
@@ -35532,7 +35851,8 @@
     "global": false,
     "related_columns": true,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Just Stats": {
    "key": "Just Stats",
@@ -35615,7 +35935,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Spicy Banana": {
    "key": "Spicy Banana",
@@ -35749,7 +36070,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Smelly Barrier": {
    "key": "Smelly Barrier",
@@ -35910,7 +36232,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Piggy Pinata": {
    "key": "Piggy Pinata",
@@ -36005,7 +36328,8 @@
     "global": true,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Investment Opportunity": {
    "key": "Investment Opportunity",
@@ -36146,7 +36470,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Slime Time": {
    "key": "Slime Time",
@@ -36226,7 +36551,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Goobling": {
    "key": "Goobling",
@@ -36326,7 +36652,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Smithing For Dummies": {
    "key": "Smithing For Dummies",
@@ -36449,7 +36776,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Uniquely Unique": {
    "key": "Uniquely Unique",
@@ -36615,7 +36943,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Dig Deeper": {
    "key": "Dig Deeper",
@@ -36700,7 +37029,8 @@
     "global": true,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Knife to Meet You": {
    "key": "Knife to Meet You",
@@ -36830,7 +37160,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Extra Bags": {
    "key": "Extra Bags",
@@ -36960,7 +37291,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Shielded": {
    "key": "Shielded",
@@ -37143,7 +37475,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Stoned": {
    "key": "Stoned",
@@ -37241,7 +37574,8 @@
     "global": true,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Thornburst": {
    "key": "Thornburst",
@@ -37333,7 +37667,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Heavy Drinking": {
    "key": "Heavy Drinking",
@@ -37484,7 +37819,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Mana Mastery": {
    "key": "Mana Mastery",
@@ -37632,7 +37968,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Power of the Moon": {
    "key": "Power of the Moon",
@@ -37792,7 +38129,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Girl Power": {
    "key": "Girl Power",
@@ -37947,7 +38285,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Blood Manipulation": {
    "key": "Blood Manipulation",
@@ -38086,7 +38425,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Echoing Battlecry": {
    "key": "Echoing Battlecry",
@@ -38207,7 +38547,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Enchanted Weapons": {
    "key": "Enchanted Weapons",
@@ -38342,7 +38683,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "No Rush Please": {
    "key": "No Rush Please",
@@ -38431,7 +38773,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Double Rainbow": {
    "key": "Double Rainbow",
@@ -38570,7 +38913,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "False Life": {
    "key": "False Life",
@@ -38713,7 +39057,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Fortunas Kiss": {
    "key": "Fortunas Kiss",
@@ -38809,7 +39154,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "More Stats": {
    "key": "More Stats",
@@ -38895,7 +39241,8 @@
     "global": true,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Bagtacular": {
    "key": "Bagtacular",
@@ -38983,7 +39330,8 @@
     "global": true,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Buy the Holy Light": {
    "key": "Buy the Holy Light",
@@ -39142,7 +39490,8 @@
     "global": true,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Hardwood": {
    "key": "Hardwood",
@@ -39296,7 +39645,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Time Melting": {
    "key": "Time Melting",
@@ -39425,7 +39775,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Full Body Protection": {
    "key": "Full Body Protection",
@@ -39572,7 +39923,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Markswoman": {
    "key": "Markswoman",
@@ -39703,7 +40055,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 1
   },
   "Acorn Ace": {
    "key": "Acorn Ace",
@@ -39796,7 +40149,8 @@
     "global": true,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 1
   },
   "Mushroom Farm": {
    "key": "Mushroom Farm",
@@ -39941,7 +40295,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 2
   },
   "Heart of the Cards": {
    "key": "Heart of the Cards",
@@ -40028,7 +40383,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 2
   },
   "Dark Ritual": {
    "key": "Dark Ritual",
@@ -40185,7 +40541,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 2
   },
   "Extra Angy": {
    "key": "Extra Angy",
@@ -40271,7 +40628,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 4
   },
   "Dragon Set": {
    "key": "Dragon Set",
@@ -40371,7 +40729,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 4
   },
   "Everburning": {
    "key": "Everburning",
@@ -40462,7 +40821,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 8
   },
   "Solaris": {
    "key": "Solaris",
@@ -40620,7 +40980,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 8
   },
   "Arcane Intellect": {
    "key": "Arcane Intellect",
@@ -40750,7 +41111,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 16
   },
   "Ultima": {
    "key": "Ultima",
@@ -40959,7 +41321,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 16
   },
   "Level Up": {
    "key": "Level Up",
@@ -41055,7 +41418,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 32
   },
   "Dual Wielding": {
    "key": "Dual Wielding",
@@ -41145,7 +41509,8 @@
     "global": true,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 32
   },
   "Scholar Bag": {
    "key": "Scholar Bag",
@@ -41254,7 +41619,8 @@
      "onAffectedItemInsideAdded",
      "onAffectedItemInsideRemoved"
     ]
-   }
+   },
+   "classes": 16
   },
   "Puzzlebox": {
    "key": "Puzzlebox",
@@ -41372,7 +41738,8 @@
      "onAffectedItemInsideRemoved"
     ]
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 16
   },
   "Chess Board": {
    "key": "Chess Board",
@@ -41474,7 +41841,8 @@
     "related_columns": true,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 16
   },
   "White Pawn": {
    "key": "White Pawn",
@@ -41552,7 +41920,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Black Pawn": {
    "key": "Black Pawn",
@@ -41630,7 +41999,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "White Knight": {
    "key": "White Knight",
@@ -41709,7 +42079,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Black Knight": {
    "key": "Black Knight",
@@ -41788,7 +42159,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "White Bishop": {
    "key": "White Bishop",
@@ -41866,7 +42238,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Black Bishop": {
    "key": "Black Bishop",
@@ -41947,7 +42320,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "White Rook": {
    "key": "White Rook",
@@ -42026,7 +42400,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Black Rook": {
    "key": "Black Rook",
@@ -42108,7 +42483,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "White Queen": {
    "key": "White Queen",
@@ -42188,7 +42564,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Black Queen": {
    "key": "Black Queen",
@@ -42265,7 +42642,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "White King": {
    "key": "White King",
@@ -42344,7 +42722,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Black King": {
    "key": "Black King",
@@ -42423,7 +42802,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Wand": {
    "key": "Wand",
@@ -42522,7 +42902,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 16
   },
   "Book of Basics": {
    "key": "Book of Basics",
@@ -42645,7 +43026,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 16
   },
   "Cupcake": {
    "key": "Cupcake",
@@ -42750,7 +43132,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 16
   },
   "Spell Scroll Ice": {
    "key": "Spell Scroll Ice",
@@ -42874,7 +43257,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 16
   },
   "Spell Scroll Nature": {
    "key": "Spell Scroll Nature",
@@ -42997,7 +43381,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 16
   },
   "Spell Scroll Light": {
    "key": "Spell Scroll Light",
@@ -43116,7 +43501,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 16
   },
   "Spell Scroll Dark": {
    "key": "Spell Scroll Dark",
@@ -43252,7 +43638,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 16
   },
   "Book of Nature": {
    "key": "Book of Nature",
@@ -43394,7 +43781,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 16
   },
   "Book of Darkness": {
    "key": "Book of Darkness",
@@ -43536,7 +43924,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 16
   },
   "Book of Light": {
    "key": "Book of Light",
@@ -43677,7 +44066,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 16
   },
   "Book of Ice": {
    "key": "Book of Ice",
@@ -43816,7 +44206,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 16
   },
   "Book of Ice New": {
    "key": "Book of Ice New",
@@ -43955,7 +44346,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Magic Mirror": {
    "key": "Magic Mirror",
@@ -44072,7 +44464,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 16
   },
   "Ice Flower": {
    "key": "Ice Flower",
@@ -44208,7 +44601,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 16
   },
   "Light Flower": {
    "key": "Light Flower",
@@ -44369,7 +44763,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Death Lotus": {
    "key": "Death Lotus",
@@ -44507,7 +44902,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Null Blade": {
    "key": "Null Blade",
@@ -44619,7 +45015,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Devouring Sphere": {
    "key": "Devouring Sphere",
@@ -44726,7 +45123,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 16
   },
   "Cat Spirit": {
    "key": "Cat Spirit",
@@ -44869,7 +45267,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 16
   },
   "Owl Spirit": {
    "key": "Owl Spirit",
@@ -44988,7 +45387,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 16
   },
   "Badger Spirit": {
    "key": "Badger Spirit",
@@ -45148,7 +45548,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 16
   },
   "Prismatic Wand": {
    "key": "Prismatic Wand",
@@ -45250,7 +45651,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Cupcake Goobert": {
    "key": "Cupcake Goobert",
@@ -45368,7 +45770,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Rainbow Goobert Mage": {
    "key": "Rainbow Goobert Mage",
@@ -45523,7 +45926,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Cupcake Staff": {
    "key": "Cupcake Staff",
@@ -45629,7 +46033,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Mage Hat": {
    "key": "Mage Hat",
@@ -45786,7 +46191,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 16
   },
   "Puzzlebag L": {
    "key": "Puzzlebag L",
@@ -45889,7 +46295,8 @@
      "onAffectedItemInsideAdded",
      "onAffectedItemInsideRemoved"
     ]
-   }
+   },
+   "classes": 0
   },
   "Puzzlebag S": {
    "key": "Puzzlebag S",
@@ -45982,7 +46389,8 @@
      "onAffectedItemInsideAdded",
      "onAffectedItemInsideRemoved"
     ]
-   }
+   },
+   "classes": 0
   },
   "Puzzlebag Z": {
    "key": "Puzzlebag Z",
@@ -46075,7 +46483,8 @@
      "onAffectedItemInsideAdded",
      "onAffectedItemInsideRemoved"
     ]
-   }
+   },
+   "classes": 0
   },
   "Puzzlebag T": {
    "key": "Puzzlebag T",
@@ -46178,7 +46587,8 @@
      "onAffectedItemInsideAdded",
      "onAffectedItemInsideRemoved"
     ]
-   }
+   },
+   "classes": 0
   },
   "Puzzlebag J": {
    "key": "Puzzlebag J",
@@ -46278,7 +46688,8 @@
      "onAffectedItemInsideAdded",
      "onAffectedItemInsideRemoved"
     ]
-   }
+   },
+   "classes": 0
   },
   "Shiny Mantle": {
    "key": "Shiny Mantle",
@@ -46433,7 +46844,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 16
   },
   "Spirit Bells": {
    "key": "Spirit Bells",
@@ -46609,7 +47021,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 16
   },
   "Water Elemental": {
    "key": "Water Elemental",
@@ -46832,7 +47245,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 16
   },
   "Evil Hat": {
    "key": "Evil Hat",
@@ -47002,7 +47416,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 16
   },
   "Rainbow Potion": {
    "key": "Rainbow Potion",
@@ -47169,7 +47584,8 @@
      "onAffectedItemAdded",
      "onAffectedItemRemoved"
     ]
-   }
+   },
+   "classes": 16
   },
   "Bag of Giving": {
    "key": "Bag of Giving",
@@ -47286,7 +47702,8 @@
      "onAffectedItemInsideAdded",
      "onAffectedItemInsideRemoved"
     ]
-   }
+   },
+   "classes": 32
   },
   "Sewing Case": {
    "key": "Sewing Case",
@@ -47394,7 +47811,8 @@
      "onAffectedItemInsideAdded",
      "onAffectedItemInsideRemoved"
     ]
-   }
+   },
+   "classes": 32
   },
   "Twine": {
    "key": "Twine",
@@ -47500,7 +47918,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 32
   },
   "Rope": {
    "key": "Rope",
@@ -47611,7 +48030,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Hero Shield": {
    "key": "Hero Shield",
@@ -47749,7 +48169,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Boomerang": {
    "key": "Boomerang",
@@ -47840,7 +48261,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Piggy of Riches": {
    "key": "Piggy of Riches",
@@ -47923,7 +48345,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Employee Uniform": {
    "key": "Employee Uniform",
@@ -48021,7 +48444,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Big Bloodthorne": {
    "key": "Big Bloodthorne",
@@ -48154,7 +48578,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Heart Shield": {
    "key": "Heart Shield",
@@ -48327,7 +48752,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Dragon Knight": {
    "key": "Dragon Knight",
@@ -48465,7 +48891,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Broccoli": {
    "key": "Broccoli",
@@ -48586,7 +49013,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 32
   },
   "Lootbox": {
    "key": "Lootbox",
@@ -48679,7 +49107,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 32
   },
   "Broccoli Goobert": {
    "key": "Broccoli Goobert",
@@ -48801,7 +49230,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Rainbow Goobert Adventurer": {
    "key": "Rainbow Goobert Adventurer",
@@ -48956,7 +49386,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Scissorswords": {
    "key": "Scissorswords",
@@ -49080,7 +49511,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Long Spear": {
    "key": "Long Spear",
@@ -49229,7 +49661,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Daggerang": {
    "key": "Daggerang",
@@ -49321,7 +49754,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Jynx Staff": {
    "key": "Jynx Staff",
@@ -49526,7 +49960,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Fedora": {
    "key": "Fedora",
@@ -49702,7 +50137,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 32
   },
   "Scale": {
    "key": "Scale",
@@ -49871,7 +50307,8 @@
      "onAffectedItemRemoved"
     ]
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 32
   },
   "Mercury Elemental": {
    "key": "Mercury Elemental",
@@ -50042,7 +50479,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 32
   },
   "Turtle": {
    "key": "Turtle",
@@ -50161,7 +50599,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 32
   },
   "Ukulele": {
    "key": "Ukulele",
@@ -50361,7 +50800,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 32
   },
   "Engineer Box": {
    "key": "Engineer Box",
@@ -50477,7 +50917,8 @@
      "onAffectedItemInsideAdded",
      "onAffectedItemInsideRemoved"
     ]
-   }
+   },
+   "classes": 64
   },
   "Engineer Bag 2": {
    "key": "Engineer Bag 2",
@@ -50587,7 +51028,8 @@
      "onAffectedItemInsideAdded",
      "onAffectedItemInsideRemoved"
     ]
-   }
+   },
+   "classes": 64
   },
   "Battery": {
    "key": "Battery",
@@ -50697,7 +51139,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 64
   },
   "Resistor": {
    "key": "Resistor",
@@ -50781,7 +51224,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 64
   },
   "Cog": {
    "key": "Cog",
@@ -50896,7 +51340,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 64
   },
   "Coil": {
    "key": "Coil",
@@ -50981,7 +51426,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 64
   },
   "Charge Splitter": {
    "key": "Charge Splitter",
@@ -51128,7 +51574,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 64
   },
   "Slice of Bread": {
    "key": "Slice of Bread",
@@ -51233,7 +51680,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 64
   },
   "Slice of Toast": {
    "key": "Slice of Toast",
@@ -51341,7 +51789,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Toast Goobert": {
    "key": "Toast Goobert",
@@ -51462,7 +51911,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Rainbow Goobert Engineer": {
    "key": "Rainbow Goobert Engineer",
@@ -51625,7 +52075,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Wrench": {
    "key": "Wrench",
@@ -51725,7 +52176,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Electric Torch": {
    "key": "Electric Torch",
@@ -51864,7 +52316,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Robodog": {
    "key": "Robodog",
@@ -51979,7 +52432,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Mecha Bat": {
    "key": "Mecha Bat",
@@ -52105,7 +52559,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Bazooka": {
    "key": "Bazooka",
@@ -52213,7 +52668,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Lightning Staff": {
    "key": "Lightning Staff",
@@ -52361,7 +52817,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Generator": {
    "key": "Generator",
@@ -52481,7 +52938,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Chainsaw": {
    "key": "Chainsaw",
@@ -52593,7 +53051,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Poison Grenade": {
    "key": "Poison Grenade",
@@ -52691,7 +53150,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Con-Trap-Tron": {
    "key": "Con-Trap-Tron",
@@ -52844,7 +53304,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Spring Loader": {
    "key": "Spring Loader",
@@ -52967,7 +53428,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Eat-o-matic": {
    "key": "Eat-o-matic",
@@ -53086,7 +53548,8 @@
     "global": true,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Thunder Drake": {
    "key": "Thunder Drake",
@@ -53275,7 +53738,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Tesla Coil": {
    "key": "Tesla Coil",
@@ -53418,7 +53882,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 64
   },
   "Mana Crystal": {
    "key": "Mana Crystal",
@@ -53553,7 +54018,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 64
   },
   "Bionic Armor": {
    "key": "Bionic Armor",
@@ -53676,7 +54142,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 64
   },
   "Laboratory": {
    "key": "Laboratory",
@@ -53812,7 +54279,8 @@
     6.0,
     8.0,
     12.0
-   ]
+   ],
+   "classes": 64
   },
   "Hypercube": {
    "key": "Hypercube",
@@ -53889,7 +54357,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 64
   },
   "Gold Cube": {
    "key": "Gold Cube",
@@ -53989,7 +54458,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Bismuth Cube": {
    "key": "Bismuth Cube",
@@ -54092,7 +54562,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Chrome Cube": {
    "key": "Chrome Cube",
@@ -54191,7 +54662,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Plastic Cube": {
    "key": "Plastic Cube",
@@ -54286,7 +54758,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Cap of Brilliance": {
    "key": "Cap of Brilliance",
@@ -54403,7 +54876,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Magitecc Armor": {
    "key": "Magitecc Armor",
@@ -54564,7 +55038,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Arcane Boots": {
    "key": "Arcane Boots",
@@ -54709,7 +55184,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Thors Hammer": {
    "key": "Thors Hammer",
@@ -54821,7 +55297,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Automanaton": {
    "key": "Automanaton",
@@ -55005,7 +55482,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Mananana": {
    "key": "Mananana",
@@ -55133,7 +55611,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Gigawatz": {
    "key": "Gigawatz",
@@ -55228,7 +55707,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 64
   },
   "Perpetuum Mobile": {
    "key": "Perpetuum Mobile",
@@ -55345,7 +55825,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 64
   },
   "Critical Poison": {
    "key": "Critical Poison",
@@ -55440,7 +55921,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 3
   },
   "Burning Spikes": {
    "key": "Burning Spikes",
@@ -55574,7 +56056,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 12
   },
   "Hogus Bogus": {
    "key": "Hogus Bogus",
@@ -55672,7 +56155,8 @@
    "extra_cds": [
     6.0,
     9.0
-   ]
+   ],
+   "classes": 48
   },
   "Spin to Win": {
    "key": "Spin to Win",
@@ -55771,7 +56255,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 96
   },
   "Energy Conversion": {
    "key": "Energy Conversion",
@@ -55893,7 +56378,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 72
   },
   "Inner Power": {
    "key": "Inner Power",
@@ -56046,7 +56532,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 5
   },
   "Bewitchment": {
    "key": "Bewitchment",
@@ -56182,7 +56669,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 18
   },
   "Chess Master": {
    "key": "Chess Master",
@@ -56265,7 +56753,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 16
   },
   "Speak with Animals": {
    "key": "Speak with Animals",
@@ -56421,7 +56910,8 @@
     "related_columns": true,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Seal the Deal": {
    "key": "Seal the Deal",
@@ -56521,7 +57011,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "King of the Bling": {
    "key": "King of the Bling",
@@ -56653,7 +57144,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Wisp": {
    "key": "Wisp",
@@ -56800,7 +57292,8 @@
    },
    "extra_cds": [
     5.0
-   ]
+   ],
+   "classes": 1
   },
   "Forest Dragon": {
    "key": "Forest Dragon",
@@ -56968,7 +57461,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "War Scythe": {
    "key": "War Scythe",
@@ -57104,7 +57598,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Frog Prince": {
    "key": "Frog Prince",
@@ -57262,7 +57757,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Molten Spear2": {
    "key": "Molten Spear2",
@@ -57404,7 +57900,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Phoenix2": {
    "key": "Phoenix2",
@@ -57565,7 +58062,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Whetstone2": {
    "key": "Whetstone2",
@@ -57666,7 +58164,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Whetstone3": {
    "key": "Whetstone3",
@@ -57786,7 +58285,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Steel Dragon": {
    "key": "Steel Dragon",
@@ -57947,7 +58447,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Halberd": {
    "key": "Halberd",
@@ -58094,7 +58595,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Magic Ring": {
    "key": "Magic Ring",
@@ -58228,7 +58730,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 32
   },
   "Superior Ring": {
    "key": "Superior Ring",
@@ -58362,7 +58865,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Broccotree": {
    "key": "Broccotree",
@@ -58520,7 +59024,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Cupcake Dragon": {
    "key": "Cupcake Dragon",
@@ -58685,7 +59190,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Wand of Dissonance": {
    "key": "Wand of Dissonance",
@@ -58821,7 +59327,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Amulet of Light": {
    "key": "Amulet of Light",
@@ -58993,7 +59500,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Gold Armor": {
    "key": "Gold Armor",
@@ -59154,7 +59662,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Pine Protector": {
    "key": "Pine Protector",
@@ -59335,7 +59844,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 0
   },
   "Onion Cutter": {
    "key": "Onion Cutter",
@@ -59470,7 +59980,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Pot": {
    "key": "Pot",
@@ -59625,7 +60136,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 0
   },
   "Cog Badge": {
    "key": "Cog Badge",
@@ -59775,7 +60287,8 @@
     "related_columns": true,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Furcifer Prime": {
    "key": "Furcifer Prime",
@@ -59864,7 +60377,8 @@
     "global": false,
     "related_columns": false,
     "callbacks": []
-   }
+   },
+   "classes": 127
   },
   "Angel Crystal": {
    "key": "Angel Crystal",
@@ -60017,7 +60531,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Thorn Elemental": {
    "key": "Thorn Elemental",
@@ -60136,7 +60651,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   },
   "Lightning Potion": {
    "key": "Lightning Potion",
@@ -60280,7 +60796,8 @@
    },
    "extra_cds": [
     7.0
-   ]
+   ],
+   "classes": 127
   },
   "Sloth": {
    "key": "Sloth",
@@ -60426,7 +60943,8 @@
     "related_columns": false,
     "callbacks": []
    },
-   "extra_cds": []
+   "extra_cds": [],
+   "classes": 127
   }
  },
  "class_methods": {

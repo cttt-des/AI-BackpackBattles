@@ -854,18 +854,17 @@ class BackpackAIApp(tk.Tk):
         return None
 
     def _on_export_lineup(self):
-        """把当前读取到的背包摆盘导出为战斗模拟器 v3 阵容 JSON。
+        """把当前读取到的背包摆盘导出为战斗模拟器 v4 阵容 JSON（简洁平铺格式）。
 
-        对齐 simulator/lineup.py 的 v3 格式：
-          - version = 3
-          - meta: { name, source, exported_at, unknown_items }
+        对齐 simulator/lineup.py 的 v4 格式：
+          - version = 4
+          - name: 阵容名（meta 拍平）
           - character: 职业名字符串
           - round: 当前回合
-          - class_modifiers: { health, stamina, stamina_regen, gold }（取自角色库基础值）
-          - health_override: null（交给模拟器按回合成长计算）
-          - backpack: { grid:{rows,cols}, items:[...] }
-          - storage: []
-        物品条目: id/row/col/rotation/quantity/container/contents/gems
+          - grid: [rows, cols]
+          - items: 平铺数组；物品与承载背包的关系用 `in`（袋子的数组下标）显式表达；
+            条目字段 id / at:[row,col] / r:旋转 / in / gems（宝石 id 字符串数组）
+          - storage / unknown_items 可选
         """
         live = self._last_live
         if not live or not live.get("backpack"):
@@ -874,79 +873,56 @@ class BackpackAIApp(tk.Tk):
             return
 
         known_items, known_chars = self._sim_db_names()
-        char_db = self._sim_char_db()
 
-        def item_entry(it):
-            """生成单个物品的 v3 格式条目（递归展开 contents）。"""
+        items_out = []
+        unknown = []
+
+        def item_entry(it, bag_index=None):
+            """生成单个物品的 v4 平铺条目；袋内物品带 `in` 指向承载袋下标。"""
             cells = [(r, c) for (r, c) in (it.get("cells") or [])]
             if cells:
-                rs = [r for r, _ in cells]
-                cs = [c for _, c in cells]
-                row = min(rs)
-                col = min(cs)
+                row = min(r for r, _ in cells)
+                col = min(c for _, c in cells)
             else:
                 row = it.get("row", 0) or 0
                 col = it.get("col", 0) or 0
             name = it.get("name", "")
             entry = {
                 "id": name,
-                "row": int(row),
-                "col": int(col),
-                "rotation": int(round(it.get("rotation", 0.0) * 180 / 3.14159 / 90) * 90) % 360,
-                "quantity": 1,
-                "container": it.get("is_bag", False),
-                # 袋内物品递归展开（同 schema）；模拟器当前仅用于物品名解析
-                "contents": [item_entry(sub)[0] for sub in (it.get("contents") or [])],
-                # 镶嵌宝石：读取器已从场景树 GemSocket 子树捕获
-                "gems": [{"id": g.get("id")} for g in (it.get("gems") or [])
-                         if g.get("id")],
+                "at": [int(row), int(col)],
+                "r": int(round(it.get("rotation", 0.0) * 180 / 3.14159 / 90) * 90) % 360,
             }
-            return entry, name
-
-        items_out = []
-        unknown = []
-        for it in live.get("backpack", []):
-            entry, name = item_entry(it)
+            if bag_index is not None:
+                entry["in"] = bag_index
+            gems = [g.get("id") for g in (it.get("gems") or []) if g.get("id")]
+            if gems:
+                entry["gems"] = gems
             items_out.append(entry)
             if known_items is not None and name not in known_items:
                 unknown.append(name)
+            # 袋内物品递归：其 `in` 指向刚登记的袋子下标
+            sub_index = len(items_out) - 1
+            for sub in (it.get("contents") or []):
+                item_entry(sub, bag_index=sub_index)
+
+        for it in live.get("backpack", []):
+            item_entry(it)
 
         character = "Adventurer"
         if known_chars is not None and character not in known_chars:
             character = next(iter(known_chars), "Adventurer")
 
-        # class_modifiers：取角色库基础值；缺失则用默认值
-        if char_db and character in char_db:
-            c = char_db[character]
-            class_modifiers = {
-                "health": c.get("health", 25.0),
-                "stamina": c.get("stamina", 5.0),
-                "stamina_regen": c.get("regen", 1.0),
-                "gold": c.get("gold", 13),
-            }
-        else:
-            class_modifiers = {
-                "health": 25.0, "stamina": 5.0, "stamina_regen": 1.0, "gold": 13,
-            }
-
         data = {
-            "version": 3,
-            "meta": {
-                "name": "实时导出阵容",
-                "source": "gui_export",
-                "exported_at": datetime.now().isoformat(),
-                "unknown_items": unknown,
-            },
+            "version": 4,
+            "name": "实时导出阵容",
             "character": character,
             "round": self._last_round if self._last_round is not None else 1,
-            "class_modifiers": class_modifiers,
-            "health_override": None,
-            "backpack": {
-                "grid": {"rows": 7, "cols": 10},
-                "items": items_out,
-            },
+            "grid": [7, 10],
+            "items": items_out,
             "storage": [],
         }
+        if unknown:
+            data["unknown_items"] = sorted(set(unknown))
 
         default_name = datetime.now().strftime("lineup_%Y%m%d_%H%M%S.json")
         path = filedialog.asksaveasfilename(

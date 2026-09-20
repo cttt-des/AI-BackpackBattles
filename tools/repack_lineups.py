@@ -27,6 +27,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from simulator.grid import rotate_and_normalize  # noqa: E402
 from simulator.data import load_items, is_bag_data  # noqa: E402
+from simulator import lineup as lineup_mod  # noqa: E402
 
 LINEUPS_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
                            'lineups')
@@ -153,14 +154,18 @@ def main():
     for name in names:
         path = os.path.join(LINEUPS_DIR, name)
         with open(path, encoding='utf-8') as f:
-            data = json.load(f)
+            raw = json.load(f)
+        # v4 平铺阵容：读入规范化为内部形状，重摆后转回 v4 写回
+        is_v4 = isinstance(raw, dict) and int(raw.get('version') or 0) >= 4
+        data = lineup_mod._normalize_v4(raw, path) if is_v4 else raw
         moved, conflicts = repack(data, db, check_only=check_only)
         if conflicts:
             print(f'{name}: {len(conflicts)} 处冲突/越界: '
                   + '; '.join(str(c) for c in conflicts[:5]))
         if moved and not check_only:
+            out = lineup_mod.to_v4(data) if is_v4 else data
             with open(path, 'w', encoding='utf-8', newline='\n') as f:
-                json.dump(data, f, ensure_ascii=False, indent=1)
+                json.dump(out, f, ensure_ascii=False, indent=1)
                 f.write('\n')
         print(f'{name}: {"检测" if check_only else "重摆"}完成, 移动 {moved} 件')
         total_moved += moved
