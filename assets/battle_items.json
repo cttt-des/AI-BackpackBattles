@@ -2563,7 +2563,7 @@
   },
   "Customer Card": {
    "key": "Customer Card",
-   "zh": "顾客卡",
+   "zh": "会员卡",
    "size": [
     1,
     1
@@ -3005,7 +3005,7 @@
   },
   "Amulet of Feasting": {
    "key": "Amulet of Feasting",
-   "zh": "盛宴护符",
+   "zh": "食物护符",
    "size": [
     1,
     1
@@ -3958,7 +3958,7 @@
   },
   "Shovel": {
    "key": "Shovel",
-   "zh": "铁锹",
+   "zh": "铲铲",
    "size": [
     1,
     1
@@ -4361,7 +4361,7 @@
   },
   "Shelly": {
    "key": "Shelly",
-   "zh": "贝壳",
+   "zh": "小蜗",
    "size": [
     1,
     1
@@ -4476,7 +4476,10 @@
   },
   "Shepherds Crook": {
    "key": "Shepherds Crook",
-   "zh": "牧羊人的曲柄杖",
+   "zh": [
+    "Shepherd’s Crook",
+    "牧羊人的曲柄杖"
+   ],
    "size": [
     1,
     1
@@ -5117,7 +5120,7 @@
   },
   "Stone Skin Potion": {
    "key": "Stone Skin Potion",
-   "zh": "石肤药水",
+   "zh": "硬化魔药",
    "size": [
     1,
     1
@@ -6190,7 +6193,7 @@
   },
   "Magic Staff": {
    "key": "Magic Staff",
-   "zh": "魔法法杖",
+   "zh": "法杖",
    "size": [
     1,
     1
@@ -6997,7 +7000,7 @@
   },
   "Box of Prosperity": {
    "key": "Box of Prosperity",
-   "zh": "繁荣之箱",
+   "zh": "财富之盒",
    "size": [
     1,
     1
@@ -7104,7 +7107,7 @@
   },
   "Holdall": {
    "key": "Holdall",
-   "zh": "大旅行包",
+   "zh": "旅行袋",
    "size": [
     1,
     1
@@ -7471,7 +7474,7 @@
   },
   "Shield of Valor": {
    "key": "Shield of Valor",
-   "zh": "勇气之盾",
+   "zh": "勇气盾牌",
    "size": [
     1,
     1
@@ -8059,7 +8062,7 @@
   },
   "Jynx torquilla": {
    "key": "Jynx torquilla",
-   "zh": "鹃头蜂虎",
+   "zh": "歪脖鸟",
    "size": [
     1,
     1
@@ -8790,7 +8793,7 @@
   },
   "Strong Stone Skin Potion": {
    "key": "Strong Stone Skin Potion",
-   "zh": "强力石肤药水",
+   "zh": "强力硬化魔药",
    "size": [
     1,
     1
@@ -9271,7 +9274,7 @@
   },
   "Eggscalibur": {
    "key": "Eggscalibur",
-   "zh": "蛋神剑",
+   "zh": "荷包蛋圣锅",
    "size": [
     1,
     1
@@ -9412,7 +9415,7 @@
   },
   "Manathirst": {
    "key": "Manathirst",
-   "zh": "嗜蓝之刃",
+   "zh": "吸魔剑",
    "size": [
     1,
     1
@@ -9525,7 +9528,7 @@
   },
   "Spectral Dagger": {
    "key": "Spectral Dagger",
-   "zh": "幽魂匕首",
+   "zh": "幽灵匕首",
    "size": [
     1,
     1
@@ -9874,7 +9877,7 @@
   },
   "Pandamonium": {
    "key": "Pandamonium",
-   "zh": "熊猫闹剧",
+   "zh": "腐败熊猫之锅",
    "size": [
     1,
     1
@@ -11366,7 +11369,7 @@
   },
   "Protective Purse": {
    "key": "Protective Purse",
-   "zh": "防护钱包",
+   "zh": "守护钱包",
    "size": [
     1,
     1
@@ -11447,7 +11450,7 @@
   },
   "Fancy Fencing Rapier": {
    "key": "Fancy Fencing Rapier",
-   "zh": "花式击剑细剑",
+   "zh": "酷炫西洋剑",
    "size": [
     1,
     1
@@ -11549,7 +11552,7 @@
   },
   "Djinn Lamp": {
    "key": "Djinn Lamp",
-   "zh": "神灯",
+   "zh": "阿拉丁神灯",
    "size": [
     1,
     1
@@ -12797,7 +12800,7 @@
   },
   "Darksaber": {
    "key": "Darksaber",
-   "zh": "黑暗之剑",
+   "zh": "黑暗剑",
    "size": [
     1,
     1
@@ -13660,7 +13663,7 @@
   },
   "Heart of Darkness": {
    "key": "Heart of Darkness",
-   "zh": "黑暗之心",
+   "zh": "黑暗心之容器",
    "size": [
     1,
     1
@@ -13808,7 +13811,7 @@
   },
   "Thornbloom": {
    "key": "Thornbloom",
-   "zh": "荆棘花剑",
+   "zh": "荆棘之花",
    "size": [
     1,
     1
@@ -14307,7 +14310,7 @@
   },
   "Prismatic Sword": {
    "key": "Prismatic Sword",
-   "zh": "棱彩之剑",
+   "zh": "彩虹剑",
    "size": [
     1,
     1
@@ -14557,7 +14560,7 @@
   },
   "Winged Boots": {
    "key": "Winged Boots",
-   "zh": "翼靴",
+   "zh": "飞鞋",
    "size": [
     1,
     1
@@ -14658,7 +14661,7 @@
   },
   "Paradise Birb": {
    "key": "Paradise Birb",
-   "zh": "天堂小鸟",
+   "zh": "极乐小鸟",
    "size": [
     1,
     1
@@ -15844,7 +15847,7 @@
   },
   "Twine Badge": {
    "key": "Twine Badge",
-   "zh": "麻绳徽章",
+   "zh": "细绳徽章",
    "size": [
     1,
     1
@@ -15954,7 +15957,10 @@
   },
   "Artifact Stone Cold": {
    "key": "Artifact Stone Cold",
-   "zh": "寒冰神器石",
+   "zh": [
+    "Artifact Stone: Cold",
+    "遗迹石：寒冷"
+   ],
    "size": [
     1,
     1
@@ -16422,7 +16428,10 @@
   },
   "Artifact Stone Heat": {
    "key": "Artifact Stone Heat",
-   "zh": "烈焰神器石",
+   "zh": [
+    "Artifact Stone: Heat",
+    "遗迹石：火焰"
+   ],
    "size": [
     1,
     1
@@ -16762,7 +16771,7 @@
   },
   "Pumpkin": {
    "key": "Pumpkin",
-   "zh": "南瓜",
+   "zh": "南瓜头",
    "size": [
     1,
     1
@@ -17068,7 +17077,7 @@
   },
   "Cubert": {
    "key": "Cubert",
-   "zh": "方块仔",
+   "zh": "方块黏黏",
    "size": [
     1,
     1
@@ -17376,7 +17385,10 @@
   },
   "Artifact Stone Death": {
    "key": "Artifact Stone Death",
-   "zh": "死亡神器石",
+   "zh": [
+    "Artifact Stone: Death",
+    "遗迹石：死亡"
+   ],
    "size": [
     1,
     1
@@ -17570,7 +17582,7 @@
   },
   "Time Dilator": {
    "key": "Time Dilator",
-   "zh": "时间膨胀器",
+   "zh": "时间扩大器",
    "size": [
     1,
     1
@@ -17660,7 +17672,7 @@
   },
   "Pop": {
    "key": "Pop",
-   "zh": "爆米花",
+   "zh": "啵啵",
    "size": [
     1,
     1
@@ -17755,7 +17767,7 @@
   },
   "Cthulhu": {
    "key": "Cthulhu",
-   "zh": "克苏鲁",
+   "zh": "克总之颅",
    "size": [
     1,
     1
@@ -17920,7 +17932,7 @@
   },
   "Snowcake": {
    "key": "Snowcake",
-   "zh": "雪饼",
+   "zh": "雪人蛋糕",
    "size": [
     1,
     1
@@ -18298,7 +18310,7 @@
   },
   "Repeater": {
    "key": "Repeater",
-   "zh": "连发弩",
+   "zh": "重复触发器",
    "size": [
     1,
     1
@@ -18402,7 +18414,7 @@
   },
   "Box of Riches": {
    "key": "Box of Riches",
-   "zh": "宝藏箱",
+   "zh": "宝石盒",
    "size": [
     1,
     1
@@ -18485,7 +18497,7 @@
   },
   "Chipped Ruby": {
    "key": "Chipped Ruby",
-   "zh": "劣质红宝石",
+   "zh": "红宝石碎片",
    "size": [
     1,
     1
@@ -18572,7 +18584,7 @@
   },
   "Flawed Ruby": {
    "key": "Flawed Ruby",
-   "zh": "红宝石碎片",
+   "zh": "劣质红宝石",
    "size": [
     1,
     1
@@ -18912,7 +18924,7 @@
   },
   "Chipped Sapphire": {
    "key": "Chipped Sapphire",
-   "zh": "劣质蓝宝石",
+   "zh": "蓝宝石碎片",
    "size": [
     1,
     1
@@ -19003,7 +19015,7 @@
   },
   "Flawed Sapphire": {
    "key": "Flawed Sapphire",
-   "zh": "蓝宝石碎片",
+   "zh": "劣质蓝宝石",
    "size": [
     1,
     1
@@ -19343,7 +19355,7 @@
   },
   "Chipped Emerald": {
    "key": "Chipped Emerald",
-   "zh": "劣质翡翠",
+   "zh": "翡翠碎片",
    "size": [
     1,
     1
@@ -19425,7 +19437,7 @@
   },
   "Flawed Emerald": {
    "key": "Flawed Emerald",
-   "zh": "翡翠碎片",
+   "zh": "劣质翡翠",
    "size": [
     1,
     1
@@ -19753,7 +19765,7 @@
   },
   "Chipped Topaz": {
    "key": "Chipped Topaz",
-   "zh": "劣质黄宝石",
+   "zh": "黄宝石碎片",
    "size": [
     1,
     1
@@ -19831,7 +19843,7 @@
   },
   "Flawed Topaz": {
    "key": "Flawed Topaz",
-   "zh": "黄宝石碎片",
+   "zh": "劣质黄宝石",
    "size": [
     1,
     1
@@ -20131,7 +20143,7 @@
   },
   "Chipped Amethyst": {
    "key": "Chipped Amethyst",
-   "zh": "劣质紫水晶",
+   "zh": "紫水晶碎片",
    "size": [
     1,
     1
@@ -20213,7 +20225,7 @@
   },
   "Flawed Amethyst": {
    "key": "Flawed Amethyst",
-   "zh": "紫水晶碎片",
+   "zh": "劣质紫水晶",
    "size": [
     1,
     1
@@ -20537,7 +20549,7 @@
   },
   "Ranger Bag": {
    "key": "Ranger Bag",
-   "zh": "游侠背包",
+   "zh": "露营背包",
    "size": [
     1,
     1
@@ -21661,7 +21673,7 @@
   },
   "Carrot Goobert": {
    "key": "Carrot Goobert",
-   "zh": "胡萝卜黏黏",
+   "zh": "萝卜头黏黏",
    "size": [
     1,
     1
@@ -22155,7 +22167,7 @@
   },
   "Critwood Staff": {
    "key": "Critwood Staff",
-   "zh": "暴击木杖",
+   "zh": "暴击法杖",
    "size": [
     1,
     1
@@ -22267,7 +22279,7 @@
   },
   "Snowmaster": {
    "key": "Snowmaster",
-   "zh": "雪之大师",
+   "zh": "大师雪人",
    "size": [
     1,
     1
@@ -22968,7 +22980,7 @@
   },
   "Piercing Arrow": {
    "key": "Piercing Arrow",
-   "zh": "贯穿箭",
+   "zh": "穿甲箭",
    "size": [
     1,
     1
@@ -23091,7 +23103,7 @@
   },
   "Yggdrasil Leaf": {
    "key": "Yggdrasil Leaf",
-   "zh": "世界树之叶",
+   "zh": "世界树树叶",
    "size": [
     1,
     1
@@ -24087,7 +24099,7 @@
   },
   "Rat Chef": {
    "key": "Rat Chef",
-   "zh": "老鼠厨师",
+   "zh": "鼠大厨",
    "size": [
     1,
     1
@@ -24552,7 +24564,7 @@
   },
   "Fly Agaric": {
    "key": "Fly Agaric",
-   "zh": "毒蝇伞",
+   "zh": "致幻蘑菇",
    "size": [
     1,
     1
@@ -25089,7 +25101,7 @@
   },
   "White-Eyes Blue Dragon": {
    "key": "White-Eyes Blue Dragon",
-   "zh": "青眼白龙",
+   "zh": "白眼青龙",
    "size": [
     1,
     1
@@ -25285,7 +25297,7 @@
   },
   "Holo Fire Lizard": {
    "key": "Holo Fire Lizard",
-   "zh": "全息火焰蜥蜴",
+   "zh": "大火龙",
    "size": [
     1,
     1
@@ -25494,7 +25506,7 @@
   },
   "Darkest Lotus": {
    "key": "Darkest Lotus",
-   "zh": "至暗之莲",
+   "zh": "黑暗莲花",
    "size": [
     1,
     1
@@ -26110,7 +26122,7 @@
   },
   "Staff of Unhealing": {
    "key": "Staff of Unhealing",
-   "zh": "不可治愈之杖",
+   "zh": "不愈法杖",
    "size": [
     1,
     1
@@ -26317,7 +26329,7 @@
   },
   "Ruby Chonk": {
    "key": "Ruby Chonk",
-   "zh": "红宝石胖龙",
+   "zh": "红宝石巨龙",
    "size": [
     1,
     1
@@ -26436,7 +26448,7 @@
   },
   "Doom Cap": {
    "key": "Doom Cap",
-   "zh": "厄运菇",
+   "zh": "致死蘑菇",
    "size": [
     1,
     1
@@ -26746,7 +26758,7 @@
   },
   "Poison Frog": {
    "key": "Poison Frog",
-   "zh": "剧毒青蛙",
+   "zh": "剧毒蛙",
    "size": [
     1,
     1
@@ -27226,7 +27238,10 @@
   },
   "Mr Struggles": {
    "key": "Mr Struggles",
-   "zh": "挣扎先生",
+   "zh": [
+    "Mr. Struggles",
+    "抱抱先生"
+   ],
    "size": [
     1,
     1
@@ -27739,7 +27754,10 @@
   },
   "Mrs Struggles": {
    "key": "Mrs Struggles",
-   "zh": "挣扎女士",
+   "zh": [
+    "Mrs. Struggles",
+    "贴贴女士"
+   ],
    "size": [
     1,
     1
@@ -27856,7 +27874,7 @@
   },
   "Miss Fortune": {
    "key": "Miss Fortune",
-   "zh": "噩运小姐",
+   "zh": "命运小姐",
    "size": [
     1,
     1
@@ -28686,7 +28704,7 @@
   },
   "Draconic Orb": {
    "key": "Draconic Orb",
-   "zh": "龙之宝珠",
+   "zh": "龙铭珠",
    "size": [
     1,
     1
@@ -28893,7 +28911,7 @@
   },
   "Burning Sword": {
    "key": "Burning Sword",
-   "zh": "燃烧之剑",
+   "zh": "火焰短剑",
    "size": [
     1,
     1
@@ -29020,7 +29038,7 @@
   },
   "Burning Blade": {
    "key": "Burning Blade",
-   "zh": "燃烧之刃",
+   "zh": "火焰剑",
    "size": [
     1,
     1
@@ -29148,7 +29166,7 @@
   },
   "Sun Armor": {
    "key": "Sun Armor",
-   "zh": "太阳护甲",
+   "zh": "日耀护甲",
    "size": [
     1,
     1
@@ -29313,7 +29331,7 @@
   },
   "Sun Shield": {
    "key": "Sun Shield",
-   "zh": "太阳之盾",
+   "zh": "日耀盾牌",
    "size": [
     1,
     1
@@ -29477,7 +29495,7 @@
   },
   "Molten Dagger": {
    "key": "Molten Dagger",
-   "zh": "熔岩匕首",
+   "zh": "炽热匕首",
    "size": [
     1,
     1
@@ -29567,7 +29585,7 @@
   },
   "Molten Spear": {
    "key": "Molten Spear",
-   "zh": "熔化长矛",
+   "zh": "炽热长矛",
    "size": [
     1,
     1
@@ -29808,7 +29826,7 @@
   },
   "Flame Whip": {
    "key": "Flame Whip",
-   "zh": "火焰鞭",
+   "zh": "烈火之鞭",
    "size": [
     1,
     1
@@ -30031,7 +30049,7 @@
   },
   "Obsidian Dragon": {
    "key": "Obsidian Dragon",
-   "zh": "黑曜石龙",
+   "zh": "黑晶龙",
    "size": [
     1,
     1
@@ -30156,7 +30174,7 @@
   },
   "Molten Greatsword": {
    "key": "Molten Greatsword",
-   "zh": "熔岩巨剑",
+   "zh": "炽热巨剑",
    "size": [
     1,
     1
@@ -30546,7 +30564,7 @@
   },
   "Friendly Fire": {
    "key": "Friendly Fire",
-   "zh": "友军之火",
+   "zh": "快乐小火",
    "size": [
     1,
     1
@@ -30864,7 +30882,7 @@
   },
   "Dark Lantern": {
    "key": "Dark Lantern",
-   "zh": "黑暗提灯",
+   "zh": "黯淡提灯",
    "size": [
     1,
     1
@@ -31008,7 +31026,7 @@
   },
   "Frozen Flame": {
    "key": "Frozen Flame",
-   "zh": "冻结之焰",
+   "zh": "永冻之火",
    "size": [
     1,
     1
@@ -31275,7 +31293,10 @@
   },
   "Spell Scroll Frostbolt": {
    "key": "Spell Scroll Frostbolt",
-   "zh": "寒冰箭卷轴",
+   "zh": [
+    "Spell Scroll: Frostbolt",
+    "魔法卷轴：冰霜箭"
+   ],
    "size": [
     1,
     1
@@ -31399,7 +31420,7 @@
   },
   "Ice Armor": {
    "key": "Ice Armor",
-   "zh": "寒冰护甲",
+   "zh": "冰霜护甲",
    "size": [
     1,
     1
@@ -31501,7 +31522,7 @@
   },
   "Frozen Buckler": {
    "key": "Frozen Buckler",
-   "zh": "冰冻圆盾",
+   "zh": "冰霜盾牌",
    "size": [
     1,
     1
@@ -31590,7 +31611,7 @@
   },
   "Frostbite": {
    "key": "Frostbite",
-   "zh": "冻伤",
+   "zh": "霜冻之剑",
    "size": [
     1,
     1
@@ -32661,7 +32682,7 @@
   },
   "Axe": {
    "key": "Axe",
-   "zh": "斧头",
+   "zh": "战斧",
    "size": [
     1,
     1
@@ -33365,7 +33386,7 @@
   },
   "Dragonskin Boots": {
    "key": "Dragonskin Boots",
-   "zh": "龙皮靴",
+   "zh": "龙鳞靴",
    "size": [
     1,
     1
@@ -33450,7 +33471,7 @@
   },
   "Busted Blade": {
    "key": "Busted Blade",
-   "zh": "破损之刃",
+   "zh": "锻造巨剑",
    "size": [
     1,
     1
@@ -34339,7 +34360,7 @@
   },
   "Wolf Emblem": {
    "key": "Wolf Emblem",
-   "zh": "狼徽记",
+   "zh": "狼印记",
    "size": [
     1,
     1
@@ -34721,7 +34742,7 @@
   },
   "Courage Puppy": {
    "key": "Courage Puppy",
-   "zh": "勇气狼崽",
+   "zh": "勇敢狼崽",
    "size": [
     1,
     1
@@ -34841,7 +34862,7 @@
   },
   "Wisdom Puppy": {
    "key": "Wisdom Puppy",
-   "zh": "智慧狼崽",
+   "zh": "睿智狼崽",
    "size": [
     1,
     1
@@ -34959,7 +34980,7 @@
   },
   "Power Puppy": {
    "key": "Power Puppy",
-   "zh": "力量狼崽",
+   "zh": "全能狼崽",
    "size": [
     1,
     1
@@ -35080,7 +35101,7 @@
   },
   "Armored Courage Puppy": {
    "key": "Armored Courage Puppy",
-   "zh": "装甲勇气狼崽",
+   "zh": "护甲勇敢狼崽",
    "size": [
     1,
     1
@@ -35191,7 +35212,7 @@
   },
   "Armored Wisdom Puppy": {
    "key": "Armored Wisdom Puppy",
-   "zh": "装甲智慧狼崽",
+   "zh": "护甲睿智狼崽",
    "size": [
     1,
     1
@@ -35308,7 +35329,7 @@
   },
   "Armored Power Puppy": {
    "key": "Armored Power Puppy",
-   "zh": "装甲力量狼崽",
+   "zh": "护甲全能狼崽",
    "size": [
     1,
     1
@@ -35511,7 +35532,7 @@
   },
   "Elephant Rune": {
    "key": "Elephant Rune",
-   "zh": "象符文",
+   "zh": "大象符文",
    "size": [
     1,
     1
@@ -35682,7 +35703,7 @@
   },
   "Tiger Rune": {
    "key": "Tiger Rune",
-   "zh": "猛虎符文",
+   "zh": "老虎符文",
    "size": [
     1,
     1
@@ -35772,7 +35793,7 @@
   },
   "Unidentified Skill": {
    "key": "Unidentified Skill",
-   "zh": "未鉴定技能",
+   "zh": "未挖掘潜力",
    "size": [
     1,
     1
@@ -35856,7 +35877,7 @@
   },
   "Just Stats": {
    "key": "Just Stats",
-   "zh": "面板加成",
+   "zh": "纯粹加成",
    "size": [
     1,
     1
@@ -35940,7 +35961,7 @@
   },
   "Spicy Banana": {
    "key": "Spicy Banana",
-   "zh": "辣香蕉",
+   "zh": "火辣香蕉",
    "size": [
     1,
     1
@@ -36657,7 +36678,7 @@
   },
   "Smithing For Dummies": {
    "key": "Smithing For Dummies",
-   "zh": "锻造入门",
+   "zh": "铁匠入门指南",
    "size": [
     1,
     1
@@ -36781,7 +36802,7 @@
   },
   "Uniquely Unique": {
    "key": "Uniquely Unique",
-   "zh": "独一无二",
+   "zh": "万里挑一",
    "size": [
     1,
     1
@@ -36948,7 +36969,7 @@
   },
   "Dig Deeper": {
    "key": "Dig Deeper",
-   "zh": "深挖",
+   "zh": "挖呀挖",
    "size": [
     1,
     1
@@ -37034,7 +37055,7 @@
   },
   "Knife to Meet You": {
    "key": "Knife to Meet You",
-   "zh": "刀光剑影",
+   "zh": "刀刀见血",
    "size": [
     1,
     1
@@ -37296,7 +37317,7 @@
   },
   "Shielded": {
    "key": "Shielded",
-   "zh": "持盾",
+   "zh": "护盾加强",
    "size": [
     1,
     1
@@ -37579,7 +37600,7 @@
   },
   "Thornburst": {
    "key": "Thornburst",
-   "zh": "荆棘爆发",
+   "zh": "尖刺爆发",
    "size": [
     1,
     1
@@ -37672,7 +37693,7 @@
   },
   "Heavy Drinking": {
    "key": "Heavy Drinking",
-   "zh": "痛饮",
+   "zh": "开怀畅饮",
    "size": [
     1,
     1
@@ -37824,7 +37845,7 @@
   },
   "Mana Mastery": {
    "key": "Mana Mastery",
-   "zh": "法力精通",
+   "zh": "魔法大师",
    "size": [
     1,
     1
@@ -38134,7 +38155,7 @@
   },
   "Girl Power": {
    "key": "Girl Power",
-   "zh": "女孩力量",
+   "zh": "怪力少女",
    "size": [
     1,
     1
@@ -38688,7 +38709,7 @@
   },
   "No Rush Please": {
    "key": "No Rush Please",
-   "zh": "别急",
+   "zh": "别着急",
    "size": [
     1,
     1
@@ -38918,7 +38939,7 @@
   },
   "False Life": {
    "key": "False Life",
-   "zh": "虚假生命",
+   "zh": "亡灵庇护",
    "size": [
     1,
     1
@@ -39062,7 +39083,10 @@
   },
   "Fortunas Kiss": {
    "key": "Fortunas Kiss",
-   "zh": "命运之吻",
+   "zh": [
+    "Fortuna’s Kiss",
+    "财富之吻"
+   ],
    "size": [
     1,
     1
@@ -39335,7 +39359,7 @@
   },
   "Buy the Holy Light": {
    "key": "Buy the Holy Light",
-   "zh": "购买圣光",
+   "zh": "神圣特卖",
    "size": [
     1,
     1
@@ -40300,7 +40324,7 @@
   },
   "Heart of the Cards": {
    "key": "Heart of the Cards",
-   "zh": "卡组之心",
+   "zh": "卡牌之心",
    "size": [
     1,
     1
@@ -40546,7 +40570,7 @@
   },
   "Extra Angy": {
    "key": "Extra Angy",
-   "zh": "怒上加怒",
+   "zh": "愤怒加倍",
    "size": [
     1,
     1
@@ -40633,7 +40657,7 @@
   },
   "Dragon Set": {
    "key": "Dragon Set",
-   "zh": "巨龙套装",
+   "zh": "龙骑士",
    "size": [
     1,
     1
@@ -40734,7 +40758,7 @@
   },
   "Everburning": {
    "key": "Everburning",
-   "zh": "永恒燃烧",
+   "zh": "永燃之火",
    "size": [
     1,
     1
@@ -41423,7 +41447,7 @@
   },
   "Dual Wielding": {
    "key": "Dual Wielding",
-   "zh": "双持",
+   "zh": "双持武器",
    "size": [
     1,
     1
@@ -41514,7 +41538,7 @@
   },
   "Scholar Bag": {
    "key": "Scholar Bag",
-   "zh": "学者背包",
+   "zh": "魔法学院袋",
    "size": [
     1,
     1
@@ -41624,7 +41648,7 @@
   },
   "Puzzlebox": {
    "key": "Puzzlebox",
-   "zh": "谜题盒",
+   "zh": "拼图背包",
    "size": [
     1,
     1
@@ -41846,7 +41870,7 @@
   },
   "White Pawn": {
    "key": "White Pawn",
-   "zh": "白兵",
+   "zh": "白色士兵",
    "size": [
     1,
     1
@@ -41925,7 +41949,7 @@
   },
   "Black Pawn": {
    "key": "Black Pawn",
-   "zh": "黑兵",
+   "zh": "黑色士兵",
    "size": [
     1,
     1
@@ -42004,7 +42028,7 @@
   },
   "White Knight": {
    "key": "White Knight",
-   "zh": "白马",
+   "zh": "白色骑士",
    "size": [
     1,
     1
@@ -42084,7 +42108,7 @@
   },
   "Black Knight": {
    "key": "Black Knight",
-   "zh": "黑马",
+   "zh": "黑色骑士",
    "size": [
     1,
     1
@@ -42164,7 +42188,7 @@
   },
   "White Bishop": {
    "key": "White Bishop",
-   "zh": "白象",
+   "zh": "白色主教",
    "size": [
     1,
     1
@@ -42243,7 +42267,7 @@
   },
   "Black Bishop": {
    "key": "Black Bishop",
-   "zh": "黑象",
+   "zh": "黑色主教",
    "size": [
     1,
     1
@@ -42325,7 +42349,7 @@
   },
   "White Rook": {
    "key": "White Rook",
-   "zh": "白车",
+   "zh": "白色城堡",
    "size": [
     1,
     1
@@ -42405,7 +42429,7 @@
   },
   "Black Rook": {
    "key": "Black Rook",
-   "zh": "黑车",
+   "zh": "黑色城堡",
    "size": [
     1,
     1
@@ -42488,7 +42512,7 @@
   },
   "White Queen": {
    "key": "White Queen",
-   "zh": "白后",
+   "zh": "白色皇后",
    "size": [
     1,
     1
@@ -42569,7 +42593,7 @@
   },
   "Black Queen": {
    "key": "Black Queen",
-   "zh": "黑后",
+   "zh": "黑色皇后",
    "size": [
     1,
     1
@@ -42647,7 +42671,7 @@
   },
   "White King": {
    "key": "White King",
-   "zh": "白王",
+   "zh": "白色国王",
    "size": [
     1,
     1
@@ -42727,7 +42751,7 @@
   },
   "Black King": {
    "key": "Black King",
-   "zh": "黑王",
+   "zh": "黑色国王",
    "size": [
     1,
     1
@@ -43031,7 +43055,7 @@
   },
   "Cupcake": {
    "key": "Cupcake",
-   "zh": "纸杯蛋糕",
+   "zh": "魔法杯糕",
    "size": [
     1,
     1
@@ -43137,7 +43161,7 @@
   },
   "Spell Scroll Ice": {
    "key": "Spell Scroll Ice",
-   "zh": "冰霜卷轴",
+   "zh": "魔法卷轴：冰墙",
    "size": [
     1,
     1
@@ -43262,7 +43286,7 @@
   },
   "Spell Scroll Nature": {
    "key": "Spell Scroll Nature",
-   "zh": "自然卷轴",
+   "zh": "魔法卷轴：重生",
    "size": [
     1,
     1
@@ -43386,7 +43410,7 @@
   },
   "Spell Scroll Light": {
    "key": "Spell Scroll Light",
-   "zh": "光之卷轴",
+   "zh": "魔法卷轴：净化祝福",
    "size": [
     1,
     1
@@ -43506,7 +43530,7 @@
   },
   "Spell Scroll Dark": {
    "key": "Spell Scroll Dark",
-   "zh": "暗之卷轴",
+   "zh": "魔法卷轴：黑暗爆发",
    "size": [
     1,
     1
@@ -44469,7 +44493,7 @@
   },
   "Ice Flower": {
    "key": "Ice Flower",
-   "zh": "冰花",
+   "zh": "霜冻花",
    "size": [
     1,
     1
@@ -45020,7 +45044,7 @@
   },
   "Devouring Sphere": {
    "key": "Devouring Sphere",
-   "zh": "吞噬之球",
+   "zh": "吞噬圆球",
    "size": [
     1,
     1
@@ -45553,7 +45577,7 @@
   },
   "Prismatic Wand": {
    "key": "Prismatic Wand",
-   "zh": "棱彩魔杖",
+   "zh": "彩虹魔棒",
    "size": [
     1,
     1
@@ -45656,7 +45680,7 @@
   },
   "Cupcake Goobert": {
    "key": "Cupcake Goobert",
-   "zh": "纸杯蛋糕黏黏",
+   "zh": "魔法杯糕黏黏",
    "size": [
     1,
     1
@@ -46038,7 +46062,7 @@
   },
   "Mage Hat": {
    "key": "Mage Hat",
-   "zh": "法师帽",
+   "zh": "魔法帽",
    "size": [
     1,
     1
@@ -46693,7 +46717,7 @@
   },
   "Shiny Mantle": {
    "key": "Shiny Mantle",
-   "zh": "闪亮披风",
+   "zh": "辉耀斗篷",
    "size": [
     1,
     1
@@ -46849,7 +46873,7 @@
   },
   "Spirit Bells": {
    "key": "Spirit Bells",
-   "zh": "灵魂铃铛",
+   "zh": "捕梦网",
    "size": [
     1,
     1
@@ -47816,7 +47840,7 @@
   },
   "Twine": {
    "key": "Twine",
-   "zh": "麻绳",
+   "zh": "细绳",
    "size": [
     1,
     1
@@ -47923,7 +47947,7 @@
   },
   "Rope": {
    "key": "Rope",
-   "zh": "绳索",
+   "zh": "麻绳",
    "size": [
     1,
     1
@@ -48266,7 +48290,7 @@
   },
   "Piggy of Riches": {
    "key": "Piggy of Riches",
-   "zh": "财富存钱罐",
+   "zh": "宝石存钱罐",
    "size": [
     1,
     1
@@ -48350,7 +48374,7 @@
   },
   "Employee Uniform": {
    "key": "Employee Uniform",
-   "zh": "员工制服",
+   "zh": "工作服",
    "size": [
     1,
     1
@@ -48757,7 +48781,7 @@
   },
   "Dragon Knight": {
    "key": "Dragon Knight",
-   "zh": "龙骑士",
+   "zh": "黏黏龙骑士",
    "size": [
     1,
     1
@@ -49391,7 +49415,7 @@
   },
   "Scissorswords": {
    "key": "Scissorswords",
-   "zh": "剪刀剑",
+   "zh": "剑剪刀",
    "size": [
     1,
     1
@@ -49759,7 +49783,7 @@
   },
   "Jynx Staff": {
    "key": "Jynx Staff",
-   "zh": "厄运法杖",
+   "zh": "小鸟法杖",
    "size": [
     1,
     1
@@ -51144,7 +51168,7 @@
   },
   "Resistor": {
    "key": "Resistor",
-   "zh": "电阻器",
+   "zh": "电阻",
    "size": [
     1,
     1
@@ -51579,7 +51603,7 @@
   },
   "Slice of Bread": {
    "key": "Slice of Bread",
-   "zh": "面包片",
+   "zh": "吐司",
    "size": [
     1,
     1
@@ -51685,7 +51709,7 @@
   },
   "Slice of Toast": {
    "key": "Slice of Toast",
-   "zh": "吐司片",
+   "zh": "烤吐司",
    "size": [
     1,
     1
@@ -52181,7 +52205,7 @@
   },
   "Electric Torch": {
    "key": "Electric Torch",
-   "zh": "电击火把",
+   "zh": "电能火炬",
    "size": [
     1,
     1
@@ -53056,7 +53080,7 @@
   },
   "Poison Grenade": {
    "key": "Poison Grenade",
-   "zh": "剧毒手雷",
+   "zh": "毒气手雷",
    "size": [
     1,
     1
@@ -53155,7 +53179,7 @@
   },
   "Con-Trap-Tron": {
    "key": "Con-Trap-Tron",
-   "zh": "陷阱机器人",
+   "zh": "陷阱装置",
    "size": [
     1,
     1
@@ -53553,7 +53577,7 @@
   },
   "Thunder Drake": {
    "key": "Thunder Drake",
-   "zh": "雷龙",
+   "zh": "雷霆飞龙",
    "size": [
     1,
     1
@@ -54147,7 +54171,7 @@
   },
   "Laboratory": {
    "key": "Laboratory",
-   "zh": "实验室",
+   "zh": "实验台",
    "size": [
     1,
     1
@@ -54881,7 +54905,7 @@
   },
   "Magitecc Armor": {
    "key": "Magitecc Armor",
-   "zh": "魔法科技护甲",
+   "zh": "魔工护甲",
    "size": [
     1,
     1
@@ -55043,7 +55067,7 @@
   },
   "Arcane Boots": {
    "key": "Arcane Boots",
-   "zh": "奥术之靴",
+   "zh": "奥术长靴",
    "size": [
     1,
     1
@@ -55189,7 +55213,10 @@
   },
   "Thors Hammer": {
    "key": "Thors Hammer",
-   "zh": "雷神之锤",
+   "zh": [
+    "Thor’s Hammer",
+    "雷神之锤"
+   ],
    "size": [
     1,
     1
@@ -55302,7 +55329,7 @@
   },
   "Automanaton": {
    "key": "Automanaton",
-   "zh": "自动傀儡",
+   "zh": "自动魔像",
    "size": [
     1,
     1
@@ -55487,7 +55514,7 @@
   },
   "Mananana": {
    "key": "Mananana",
-   "zh": "魔力香蕉",
+   "zh": "法力香蕉",
    "size": [
     1,
     1
@@ -55616,7 +55643,7 @@
   },
   "Gigawatz": {
    "key": "Gigawatz",
-   "zh": "吉瓦兹",
+   "zh": "吉瓦特",
    "size": [
     1,
     1
@@ -55830,7 +55857,7 @@
   },
   "Critical Poison": {
    "key": "Critical Poison",
-   "zh": "暴击剧毒",
+   "zh": "暴击毒药",
    "size": [
     1,
     1
@@ -56061,7 +56088,7 @@
   },
   "Hogus Bogus": {
    "key": "Hogus Bogus",
-   "zh": "霍格斯博格斯",
+   "zh": "胡搞魔咒",
    "size": [
     1,
     1
@@ -56160,7 +56187,7 @@
   },
   "Spin to Win": {
    "key": "Spin to Win",
-   "zh": "旋转取胜",
+   "zh": "制胜转盘",
    "size": [
     1,
     1
@@ -56260,7 +56287,7 @@
   },
   "Energy Conversion": {
    "key": "Energy Conversion",
-   "zh": "能量转换",
+   "zh": "能量转化",
    "size": [
     1,
     1
@@ -56674,7 +56701,7 @@
   },
   "Chess Master": {
    "key": "Chess Master",
-   "zh": "棋圣",
+   "zh": "棋艺大师",
    "size": [
     1,
     1
@@ -56758,7 +56785,7 @@
   },
   "Speak with Animals": {
    "key": "Speak with Animals",
-   "zh": "与兽交谈",
+   "zh": "兽语大师",
    "size": [
     1,
     1
@@ -57016,7 +57043,7 @@
   },
   "King of the Bling": {
    "key": "King of the Bling",
-   "zh": "闪耀之王",
+   "zh": "珠宝之王",
    "size": [
     1,
     1
@@ -57905,7 +57932,7 @@
   },
   "Phoenix2": {
    "key": "Phoenix2",
-   "zh": "凤凰II",
+   "zh": "怒火凤凰",
    "size": [
     1,
     1
@@ -59195,7 +59222,7 @@
   },
   "Wand of Dissonance": {
    "key": "Wand of Dissonance",
-   "zh": "失调魔杖",
+   "zh": "失调魔棒",
    "size": [
     1,
     1
@@ -59667,7 +59694,7 @@
   },
   "Pine Protector": {
    "key": "Pine Protector",
-   "zh": "松树守卫",
+   "zh": "松林守护者",
    "size": [
     1,
     1
@@ -60382,7 +60409,7 @@
   },
   "Angel Crystal": {
    "key": "Angel Crystal",
-   "zh": "天使水晶",
+   "zh": "水晶之翼",
    "size": [
     1,
     1
