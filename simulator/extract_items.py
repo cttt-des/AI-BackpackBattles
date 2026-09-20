@@ -590,13 +590,19 @@ def is_visual_line(line: str) -> bool:
         return False
     if s.startswith("#"):
         return True
+    # 脚本级 Timer 的 start/stop 是真实战斗机制（MultiTimer 限时 buff 的
+    # 超时撤销窗口），不算视觉——由管线尾部的 start_timer/stop_timer 改写
+    if re.search(r'\b\w*[Tt]imer\.(start|stop)\(', s):
+        return False
     # 控制流/结构行不算视觉
     if re.match(r'^(if|elif|else|for|while|return|match|break|continue|pass|var|func|and|or|not)\b', s):
         # 但 if 行里可能含视觉调用，交给后续；这里不整行剥
         return False
     # 战斗相关的 Util 调用不剥离（pickRandomElement/dictAdd/flip 是 RNG 语义；
-    # arrayAsIndexDict 构建联动描述符字典——AcornAce.gd:19）
-    if re.search(r'\bUtil\.(pickRandomElement|dictAdd|flip|arrayAsIndexDict)\b', s):
+    # dictSub/dictAppend/dictErase 是联动记账（Rope 超时回退/动态类型增删）；
+    # changeTimer 是限时 buff 时长延长；arrayAsIndexDict 构建联动描述符字典）
+    if re.search(r'\bUtil\.(pickRandomElement|dictAdd|dictSub|dictAppend|dictErase|flip|'
+                 r'flipWeighted|roll|changeTimer|arrayAsIndexDict|filterNull)\b', s):
         return False
     for p in VISUAL_PREFIXES:
         if p in s:
@@ -864,6 +870,19 @@ def transform_body(body_lines, instance_vars, sibling_methods=None,
             if v in declared:
                 continue
             line = re.sub(r'(?<![\w.])' + re.escape(v) + r'\b(?!\()', '_item.' + v, line)
+
+        # 3) 脚本级 Timer 改写（置于最后：此时接收者已是 _item.speedTimer 形态，
+        #    生成 `'speedTimer'` 字面量不会再被前缀规则污染）：
+        #      _item.speedTimer.start(dur) -> _item.start_timer('speedTimer', dur
+        #      _item.speedTimer.stop()     -> _item.stop_timer('speedTimer')
+        #    超时回调由 tscn [connection] 声明，运行时经 behavior.timer_connections 绑定
+        line = re.sub(r'\b(?:_item\.)?(\w*[Tt]imer)\.start\(',
+                      lambda m: f"_item.start_timer('{m.group(1)}', ", line)
+        line = re.sub(r'\b(?:_item\.)?(\w*[Tt]imer)\.stop\(\)',
+                      lambda m: f"_item.stop_timer('{m.group(1)}')", line)
+        # Util.changeTimer(timerNode, dur)（延长限时 buff：start(dur + 剩余)）
+        line = re.sub(r'\b(?:_item\.)?Util\.changeTimer\((\w*[Tt]imer),\s*',
+                      lambda m: f"_item.change_timer('{m.group(1)}', ", line)
 
         py_indent = max(0, level - base_level) * 4
         out.append(" " * py_indent + line)
@@ -1267,6 +1286,9 @@ def _build_script_entry(path, idx, ancestor_entries, chain=None, stem=None,
     }
     if skip_list is ITEM_SKIP_METHODS:
         entry["extends_chain"] = chain
+    conns = tscn_timer_connections(path)
+    if conns:
+        entry["timer_connections"] = conns
     ancestor_entries[stem] = entry
     return entry
 
@@ -1284,6 +1306,31 @@ def scan_scripts():
             norm = fn[:-3].lower().replace(" ", "")
             idx.setdefault(norm, os.path.join(root, fn))
     return idx
+
+
+def tscn_timer_connections(script_path: str) -> Dict[str, str]:
+    """从脚本同名 .tscn 的 [connection] 提取 Timer 超时回调绑定。
+
+    引擎里脚本级 Timer（MultiTimer/Timer 节点）的 timeout/multi_timeout 信号
+    连接声明在场景文件里，如：
+      [connection signal="multi_timeout" from="SpeedTimer" to="." method="onSpeedTimeout"]
+    返回 {变量名小写: 回调方法名}（脚本 onready 变量 speedTimer 与节点
+    SpeedTimer 大小写不同，按小写对齐）。
+    """
+    stem = os.path.splitext(os.path.basename(script_path))[0]
+    tscn = os.path.join(os.path.dirname(script_path), stem + ".tscn")
+    if not os.path.exists(tscn):
+        return {}
+    out: Dict[str, str] = {}
+    try:
+        with open(tscn, encoding="utf-8", errors="replace") as f:
+            txt = f.read()
+    except OSError:
+        return out
+    for m in re.finditer(r'\[connection signal="(\w*[Tt]imeout\w*)" from="(\w+)"\s+to="."\s+method="(\w+)"', txt):
+        signal, node, method = m.group(1), m.group(2), m.group(3)
+        out[node.lower()] = method
+    return out
 
 
 def match_script_key(key, idx):

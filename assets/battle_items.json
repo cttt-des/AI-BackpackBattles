@@ -3354,16 +3354,19 @@
      "_ready": "def _ready(_item):\n    pass  # visual",
      "onPrepare": "def onPrepare(_item):\n    _item.connect_to_character_buffs(\"onBuffChanged\")\n    for buff in _range_or_value(Game.getBuffs()):\n        _item.usedStacks[buff] = 0.0",
      "canAffect": "def canAffect(_item, item=None):\n    return item.has_cooldown()",
-     "onCombatStart": "def onCombatStart(_item):\n    pass  # visual\n    for item in _range_or_value(_item.get_affected_items()):\n        item.add_speed(_item.bonusSpeed)\n    _item.visual_activate()",
+     "onCombatStart": "def onCombatStart(_item):\n    _item.start_timer('buffTimer', _item.get_p_m(\"dur\"))\n    for item in _range_or_value(_item.get_affected_items()):\n        item.add_speed(_item.bonusSpeed)\n    _item.visual_activate()",
      "onBuffTimeout": "def onBuffTimeout(_item):\n    for item in _range_or_value(_item.get_affected_items()):\n        item.reduce_speed(_item.bonusSpeed)",
      "onBuffChanged": "def onBuffChanged(_item, amount=None, event=None):\n    used = None; buffType = None; toRefund = None\n    if amount < 0 and event.getParam(\"used\", False):\n        used = - amount\n        buffType = event.getType()\n        _item.usedStacks[buffType] += used * _item.refund\n        toRefund = int(round(_item.usedStacks[buffType]))\n    \n        if toRefund > 0:\n            _item.usedStacks[buffType] -= toRefund\n            _item.give_stacks(_item.character_(), buffType, toRefund, event)\n            _item.visual_activate()",
-     "onCombatEnd": "def onCombatEnd(_item):\n    pass  # visual",
+     "onCombatEnd": "def onCombatEnd(_item):\n    _item.stop_timer('buffTimer')",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.amuletColor = _item.Color(0.639216, 0.635294, 0.215686)\n    except Exception:\n        pass\n    try:\n        _item.bonusSpeed = _item.get_p(\"speed\") / 100.0\n    except Exception:\n        pass\n    try:\n        _item.buffTimer = None\n    except Exception:\n        pass\n    try:\n        _item.refund = _item.get_p(\"refund\") / 100.0\n    except Exception:\n        pass\n    _item.usedStacks = {}\n"
     },
     "methods_raw": {},
     "extends_chain": [
      "Item"
     ],
+    "timer_connections": {
+     "bufftimer": "onBuffTimeout"
+    },
     "script_file": "AmuletofAgility.gd"
    },
    "grid": {
@@ -3552,15 +3555,18 @@
      "canAffect": "def canAffect(_item, item=None):\n    return item.has_type(Type.Potion)",
      "onPrepare": "def onPrepare(_item):\n    for item in _range_or_value(_item.get_affected_items()):\n        _item.connect_for_combat(item, \"potion_emptied\", \"onPotionEmptied\")",
      "onCombatStart": "def onCombatStart(_item):\n    _item.give_random_buffs(_item.get_p(\"buffs\"))\n    _item.visual_activate()",
-     "onPotionEmptied": "def onPotionEmptied(_item, potion=None):\n    ani = None\n    if _item.roll_chance():\n        _item.potionsToTrigger.append(potion)\n        pass  # visual\n        ani = ObjectPool.instance(_item.triggerAnimation)\n        pass  # visual\n        pass  # visual\n        pass  # visual",
+     "onPotionEmptied": "def onPotionEmptied(_item, potion=None):\n    ani = None\n    if _item.roll_chance():\n        _item.potionsToTrigger.append(potion)\n        _item.start_timer('potionTriggerTimer', _item.delay)\n        ani = ObjectPool.instance(_item.triggerAnimation)\n        pass  # visual\n        pass  # visual\n        pass  # visual",
      "triggerNextPotion": "def triggerNextPotion(_item):\n    potion = None\n    potion = _item.potionsToTrigger.pop_front()\n    potion.trigger_potion()\n    potion.visual_activate()\n    _item.visual_activate()",
-     "onCombatEnd": "def onCombatEnd(_item):\n    pass  # visual\n    _item.potionsToTrigger.clear()",
+     "onCombatEnd": "def onCombatEnd(_item):\n    _item.stop_timer('potionTriggerTimer')\n    _item.potionsToTrigger.clear()",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.amuletColor = _item.Color(0.266667, 0.309804, 0.960784)\n    except Exception:\n        pass\n    try:\n        _item.triggerAnimation = _item.preload(\"res://Items/Exclusive/Animations/AmuletOfAlchemyAni.tscn\")\n    except Exception:\n        pass\n    try:\n        _item.potionTriggerTimer = None\n    except Exception:\n        pass\n    try:\n        _item.delay = _item.get_p(\"delay\")\n    except Exception:\n        pass\n    try:\n        _item.potionsToTrigger = []\n    except Exception:\n        pass\n"
     },
     "methods_raw": {},
     "extends_chain": [
      "Item"
     ],
+    "timer_connections": {
+     "potiontriggertimer": "triggerNextPotion"
+    },
     "script_file": "AmuletofAlchemy.gd"
    },
    "grid": {
@@ -3757,6 +3763,9 @@
     "extends_chain": [
      "Item"
     ],
+    "timer_connections": {
+     "potiontriggertimer": "triggerNextPotion"
+    },
     "script_file": "AmuletofFortune.gd"
    },
    "grid": {
@@ -4952,11 +4961,11 @@
     "methods": {
      "getStunProtectChance": "def getStunProtectChance(_item):\n    return _item.get_chance()",
      "onPrepare": "def onPrepare(_item):\n    _item.character_().change_crit_resistance(_item.get_chance())\n    _item.character_().change_stun_resistance(_item._behavior_call(\"getStunProtectChance\", ))",
-     "onPreCombatStart": "def onPreCombatStart(_item):\n    \n    _item.character_().change_damage_resistance(_item.damReduction)\n    _item.buffsActive += 1\n    _item.setState(_item.buffsActive)\n    pass  # visual",
+     "onPreCombatStart": "def onPreCombatStart(_item):\n    \n    _item.character_().change_damage_resistance(_item.damReduction)\n    _item.buffsActive += 1\n    _item.setState(_item.buffsActive)\n    _item.start_timer('buffTimer', _item._behavior_call(\"getBuffDur\", ))",
      "getBuffDur": "def getBuffDur(_item):\n    return _item.get_p_m(\"dur\")",
      "onCombatStart": "def onCombatStart(_item):\n    _item.visual_activate()",
      "buffEnded": "def buffEnded(_item):\n    _item.character_().change_damage_resistance( - _item.damReduction)\n    _item.buffsActive -= 1\n    _item.setState(_item.buffsActive)",
-     "onCombatEnd": "def onCombatEnd(_item):\n    pass  # visual",
+     "onCombatEnd": "def onCombatEnd(_item):\n    _item.stop_timer('buffTimer')",
      "onStateChanged": "def onStateChanged(_item, _buffsActive=None):\n    if _buffsActive > 0:\n        pass  # visual\n    else:\n        pass  # visual",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.buffTimer = None\n    except Exception:\n        pass\n    try:\n        _item.activationParticles = None\n    except Exception:\n        pass\n    try:\n        _item.damReduction = _item.get_p(0)\n    except Exception:\n        pass\n    try:\n        _item.buffsActive = 0\n    except Exception:\n        pass\n"
     },
@@ -4964,6 +4973,9 @@
     "extends_chain": [
      "Item"
     ],
+    "timer_connections": {
+     "bufftimer": "buffEnded"
+    },
     "script_file": "LeatherHelm.gd"
    },
    "grid": {
@@ -6968,6 +6980,9 @@
      "LeatherHelm",
      "Item"
     ],
+    "timer_connections": {
+     "bufftimer": "buffEnded"
+    },
     "script_file": "Sandbag.gd"
    },
    "grid": {
@@ -10079,9 +10094,9 @@
     "methods": {
      "onPrepare": "def onPrepare(_item):\n    _item.opponent().reduce_healing_efficiency(_item.get_p(2) / 100.0)\n    _item.nullifyApplied = False",
      "onPreCombatStart": "def onPreCombatStart(_item):\n    _item.character_().change_damage_resistance(_item.damReduction)",
-     "onCombatStart": "def onCombatStart(_item):\n    if not _item.nullifyApplied:\n        _item.nullifyApplied = True\n        _item.opponent().change_buff_nullify_chances(_item.get_chance())\n    \n    pass  # visual\n    _item.buffsActive += 1\n    _item.setState(_item.buffsActive)\n    _item.visual_activate()",
+     "onCombatStart": "def onCombatStart(_item):\n    if not _item.nullifyApplied:\n        _item.nullifyApplied = True\n        _item.opponent().change_buff_nullify_chances(_item.get_chance())\n    \n    _item.start_timer('buffTimer', _item.get_p_m(\"dur\"))\n    _item.buffsActive += 1\n    _item.setState(_item.buffsActive)\n    _item.visual_activate()",
      "buffEnded": "def buffEnded(_item):\n    _item.character_().change_damage_resistance( - _item.damReduction)\n    _item.buffsActive -= 1\n    _item.setState(_item.buffsActive)",
-     "onCombatEnd": "def onCombatEnd(_item):\n    pass  # visual",
+     "onCombatEnd": "def onCombatEnd(_item):\n    _item.stop_timer('buffTimer')",
      "onStateChanged": "def onStateChanged(_item, _buffsActive=None):\n    if _buffsActive > 0:\n        pass  # visual\n    else:\n        pass  # visual",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.buffTimer = None\n    except Exception:\n        pass\n    try:\n        _item.activationParticles = None\n    except Exception:\n        pass\n    try:\n        _item.damReduction = _item.get_p(0)\n    except Exception:\n        pass\n    try:\n        _item.buffsActive = 0\n    except Exception:\n        pass\n    _item.nullifyApplied = False\n"
     },
@@ -10089,6 +10104,9 @@
     "extends_chain": [
      "Item"
     ],
+    "timer_connections": {
+     "bufftimer": "buffEnded"
+    },
     "script_file": "EvilCap.gd"
    },
    "grid": {
@@ -10505,6 +10523,9 @@
      "LeatherHelm",
      "Item"
     ],
+    "timer_connections": {
+     "bufftimer": "buffEnded"
+    },
     "script_file": "StoneHelm.gd"
    },
    "grid": {
@@ -10815,9 +10836,9 @@
     ],
     "methods": {
      "onPrepare": "def onPrepare(_item):\n    _item.setState(False)\n    _item.hasActivated = False\n    _item.connect_for_combat(_item.character_(), \"character_damaged\", \"onDamaged\")",
-     "onDamaged": "def onDamaged(_item, _damage=None, event=None):\n    relHealth = None\n    if _item.hasActivated: return\n    \n    relHealth = _item.character_().get_relative_health()\n    if relHealth < _item.healthThreshold:\n        _item.hasActivated = True\n        _item.add_lucky(_item.get_p(1), event)\n        _item.add_empower(_item.get_p(2), event)\n        _item.give_block(_item.get_block(), True, event)\n        pass  # visual\n        _item.setState(True)\n        _item.opponent().change_typed_damage_factor(DamageSource.Type.Ranged, - _item.damReduction)\n        _item.opponent().change_effect_damage_factor( - _item.damReduction)\n        _item.consume()",
+     "onDamaged": "def onDamaged(_item, _damage=None, event=None):\n    relHealth = None\n    if _item.hasActivated: return\n    \n    relHealth = _item.character_().get_relative_health()\n    if relHealth < _item.healthThreshold:\n        _item.hasActivated = True\n        _item.add_lucky(_item.get_p(1), event)\n        _item.add_empower(_item.get_p(2), event)\n        _item.give_block(_item.get_block(), True, event)\n        _item.start_timer('buffTimer', _item.get_p_m(\"dur\"))\n        _item.setState(True)\n        _item.opponent().change_typed_damage_factor(DamageSource.Type.Ranged, - _item.damReduction)\n        _item.opponent().change_effect_damage_factor( - _item.damReduction)\n        _item.consume()",
      "onBuffTimeout": "def onBuffTimeout(_item):\n    _item.opponent().change_typed_damage_factor(DamageSource.Type.Ranged, _item.damReduction)\n    _item.opponent().change_effect_damage_factor(_item.damReduction)\n    _item.setState(False)",
-     "onCombatEnd": "def onCombatEnd(_item):\n    pass  # visual",
+     "onCombatEnd": "def onCombatEnd(_item):\n    _item.stop_timer('buffTimer')",
      "onStateChanged": "def onStateChanged(_item, damResActive=None):\n    if damResActive:\n        pass  # visual\n    else:\n        pass  # visual",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.luck = _item.get_p(\"luck\")\n    except Exception:\n        pass\n    try:\n        _item.empower = _item.get_p(\"empower\")\n    except Exception:\n        pass\n    try:\n        _item.damReduction = _item.get_p(\"damreduction\") / 100.0\n    except Exception:\n        pass\n    try:\n        _item.healthThreshold = _item.get_p(0) / 100.0 - 0.0001\n    except Exception:\n        pass\n    try:\n        _item.buffTimer = None\n    except Exception:\n        pass\n    try:\n        _item.activationParticles = None\n    except Exception:\n        pass\n    _item.hasActivated = False\n"
     },
@@ -10825,6 +10846,9 @@
     "extends_chain": [
      "Item"
     ],
+    "timer_connections": {
+     "bufftimer": "onBuffTimeout"
+    },
     "script_file": "StoneShoes.gd"
    },
    "grid": {
@@ -11315,9 +11339,9 @@
     "methods": {
      "onPrepare": "def onPrepare(_item):\n    _item.setState(False)\n    _item.connect_for_combat(_item.character_(), \"blinding_light_ended\", \"onBlindingLightEnded\")\n    _item.connect_for_combat(_item.opponent(), \"character_blind_changed\", \"onOpponentBlindChanged\")\n    _item.connect_for_combat(_item.character_(), \"character_regeneration_changed\", \"onRegenChanged\")",
      "inflict": "def inflict(_item, duration=None, event=None):\n    _item.give_stacks_temporary(_item.opponent(), Game.EventType.Blind,\n            _item.blind, duration, event)",
-     "onRegenChanged": "def onRegenChanged(_item, amount=None, triggerEvent=None):\n    event = None; duration = None\n    if amount < 0: return\n    \n    if not _item.character_().blindingLightActive and _item.character_().get_regeneration() >= _item.regenNeeded:\n    \n        _item.setState(True, True)\n        _item.character_().startBlindingLight()\n        event = _item.use_regeneration(_item.regenNeeded, triggerEvent)\n        duration = _item.get_p_m(\"dur_blind\")\n        _item._behavior_call(\"inflict\", duration, event)\n        pass  # visual\n    \n        _item.visual_activate(None, False)\n        pass  # visual",
+     "onRegenChanged": "def onRegenChanged(_item, amount=None, triggerEvent=None):\n    event = None; duration = None\n    if amount < 0: return\n    \n    if not _item.character_().blindingLightActive and _item.character_().get_regeneration() >= _item.regenNeeded:\n    \n        _item.setState(True, True)\n        _item.character_().startBlindingLight()\n        event = _item.use_regeneration(_item.regenNeeded, triggerEvent)\n        duration = _item.get_p_m(\"dur_blind\")\n        _item._behavior_call(\"inflict\", duration, event)\n        pass  # visual\n    \n        _item.visual_activate(None, False)\n        _item.start_timer('blindingLightTimer', duration)",
      "onOpponentBlindChanged": "def onOpponentBlindChanged(_item, amount=None, event=None):\n    _item.add_bonus_damage(_item.damPerBlind * amount)",
-     "onCombatEnd": "def onCombatEnd(_item):\n    pass  # visual",
+     "onCombatEnd": "def onCombatEnd(_item):\n    _item.stop_timer('blindingLightTimer')",
      "onBlindingLightTimeout": "def onBlindingLightTimeout(_item):\n    _item.setState(False)\n    \n    \n    pass  # visual",
      "onBlindingLightEnded": "def onBlindingLightEnded(_item, event=None):\n    _item._behavior_call(\"onRegenChanged\", 0, event)",
      "onStateChanged": "def onStateChanged(_item, active=None):\n    if active:\n        pass  # visual\n    else:\n        pass  # visual",
@@ -11328,6 +11352,9 @@
      "Weapon",
      "Item"
     ],
+    "timer_connections": {
+     "blindinglighttimer": "onBlindingLightTimeout"
+    },
     "script_file": "Lightsaber.gd"
    },
    "grid": {
@@ -11851,10 +11878,10 @@
     "methods": {
      "onPrepare": "def onPrepare(_item):\n    _item.setState(CrownState.Inactive)\n    _item.connect_for_combat(_item.character_(), \"character_mana_changed\", \"checkTrigger\")\n    _item.connect_for_combat(_item.character_(), \"character_invulnerable_end\", \"onInvuEnded\")",
      "onInvuEnded": "def onInvuEnded(_item, triggerEvent=None):\n    _item._behavior_call(\"checkTrigger\", 0, triggerEvent)",
-     "checkTrigger": "def checkTrigger(_item, _amount=None, triggerEvent=None):\n    invuDur = None; event = None\n    if (_item.crownState == CrownState.Inactive and\n        _item.character_().is_vulnerable() and\n        _item.checkMana(_item.manaCost)):\n    \n        _item.setState(CrownState.Active, True)\n        invuDur = _item.get_p_m(\"dur_invu\")\n        event = _item.character_().make_invulnerable(invuDur, _item, triggerEvent)\n        pass  # visual\n        _item.use_mana(_item.manaCost, event)\n        pass  # visual\n        _item.visual_activate()",
+     "checkTrigger": "def checkTrigger(_item, _amount=None, triggerEvent=None):\n    invuDur = None; event = None\n    if (_item.crownState == CrownState.Inactive and\n        _item.character_().is_vulnerable() and\n        _item.checkMana(_item.manaCost)):\n    \n        _item.setState(CrownState.Active, True)\n        invuDur = _item.get_p_m(\"dur_invu\")\n        event = _item.character_().make_invulnerable(invuDur, _item, triggerEvent)\n        _item.start_timer('buffTimer', invuDur)\n        _item.use_mana(_item.manaCost, event)\n        pass  # visual\n        _item.visual_activate()",
      "buffEnded": "def buffEnded(_item):\n    _item.setState(CrownState.Used, True)",
      "doCooldownEffect": "def doCooldownEffect(_item):\n    _item.cleanse_blind(1)\n    _item.heal()\n    _item.visual_activate()",
-     "onCombatEnd": "def onCombatEnd(_item):\n    pass  # visual",
+     "onCombatEnd": "def onCombatEnd(_item):\n    _item.stop_timer('buffTimer')",
      "onStateChanged": "def onStateChanged(_item, _crownState=None):\n    if _crownState == CrownState.Inactive:\n        pass  # visual\n        pass  # visual\n        pass  # visual\n    \n    elif _crownState == CrownState.Active:\n        pass  # visual\n        pass  # visual\n        pass  # visual\n    \n    else:\n        pass  # visual\n        pass  # visual\n    \n    _item.crownState = _crownState",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.activationPulse = _item.preload(\"res://Items/Animations/BookOfLightActivationPulse.tscn\")\n    except Exception:\n        pass\n    try:\n        _item.activationParticles = None\n    except Exception:\n        pass\n    try:\n        _item.buffTimer = None\n    except Exception:\n        pass\n    try:\n        _item.manaCost = _item.get_p(\"mana\")\n    except Exception:\n        pass\n    try:\n        _item.light = None / CircleLight\n    except Exception:\n        pass\n    _item.crownState = 0\n"
     },
@@ -11862,6 +11889,9 @@
     "extends_chain": [
      "Item"
     ],
+    "timer_connections": {
+     "bufftimer": "buffEnded"
+    },
     "script_file": "Crown.gd"
    },
    "grid": {
@@ -12861,6 +12891,9 @@
      "Weapon",
      "Item"
     ],
+    "timer_connections": {
+     "blindtimer": "removeBlind"
+    },
     "script_file": "Darksaber.gd"
    },
    "grid": {
@@ -12968,8 +13001,8 @@
     ],
     "methods": {
      "onPrepare": "def onPrepare(_item):\n    _item.setState(False)",
-     "doCooldownEffect": "def doCooldownEffect(_item):\n    duration = None\n    _item.setState(True, True)\n    _item.heal()\n    duration = _item.get_p_m(\"dur_blind\")\n    _item.give_stacks_temporary(_item.opponent(), Game.EventType.Blind,\n        _item.blindAmount, duration)\n    pass  # visual\n    pass  # visual\n    pass  # visual",
-     "onCombatEnd": "def onCombatEnd(_item):\n    pass  # visual",
+     "doCooldownEffect": "def doCooldownEffect(_item):\n    duration = None\n    _item.setState(True, True)\n    _item.heal()\n    duration = _item.get_p_m(\"dur_blind\")\n    _item.give_stacks_temporary(_item.opponent(), Game.EventType.Blind,\n        _item.blindAmount, duration)\n    _item.stop_timer('particleTimer')\n    _item.start_timer('particleTimer', duration)\n    pass  # visual",
+     "onCombatEnd": "def onCombatEnd(_item):\n    _item.stop_timer('particleTimer')",
      "onParticleTimeout": "def onParticleTimeout(_item):\n    _item.setState(False)",
      "onStateChanged": "def onStateChanged(_item, active=None):\n    if active:\n        pass  # visual\n    else:\n        pass  # visual",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.activationPulse = _item.preload(\"res://Items/Animations/SmallBlindPulse.tscn\")\n    except Exception:\n        pass\n    try:\n        _item.particleTimer = None\n    except Exception:\n        pass\n    try:\n        _item.activationParticles = None\n    except Exception:\n        pass\n    try:\n        _item.blindAmount = _item.get_p(2)\n    except Exception:\n        pass\n"
@@ -12979,6 +13012,9 @@
      "Goobert",
      "Item"
     ],
+    "timer_connections": {
+     "particletimer": "onParticleTimeout"
+    },
     "script_file": "LightGoobert.gd"
    },
    "grid": {
@@ -13107,9 +13143,9 @@
      "onPrepare": "def onPrepare(_item):\n    numSlots = None\n    numSlots = _item.get_num_empty_affected_cells() + _item.get_num_affected_items()\n    _item.blockRemoval = _item.blockRemovalPerSlot * numSlots\n    _item.cleanses = numSlots\n    \n    _item.setState(SpearState.Inactive)\n    _item.connect_for_combat(_item.character_(), \"character_mana_changed\", \"checkTrigger\")\n    _item.connect_for_combat(_item.character_(), \"character_invulnerable_end\", \"onInvuEnded\")",
      "onPreDealDamage_late": "def onPreDealDamage_late(_item, damageRes=None):\n    if damageRes.has_hit():\n        _item.remove_block(_item.blockRemoval)\n        _item.cleanse_random_debuffs(_item.cleanses)",
      "onInvuEnded": "def onInvuEnded(_item, triggerEvent=None):\n    _item._behavior_call(\"checkTrigger\", 0, triggerEvent)",
-     "checkTrigger": "def checkTrigger(_item, _amount=None, triggerEvent=None):\n    invuDur = None\n    if (_item.spearState == SpearState.Inactive and\n        _item.character_().is_vulnerable() and\n        _item.checkMana(_item.manaCost)):\n    \n        _item.setState(SpearState.Active, True)\n        invuDur = _item.get_p_m(\"dur_invu\")\n        _item.character_().make_invulnerable(invuDur, _item, triggerEvent)\n        pass  # visual\n        _item.use_mana(_item.manaCost, triggerEvent)\n        _item.add_speed(_item.buffedSpeed / 100.0)\n        pass  # visual",
+     "checkTrigger": "def checkTrigger(_item, _amount=None, triggerEvent=None):\n    invuDur = None\n    if (_item.spearState == SpearState.Inactive and\n        _item.character_().is_vulnerable() and\n        _item.checkMana(_item.manaCost)):\n    \n        _item.setState(SpearState.Active, True)\n        invuDur = _item.get_p_m(\"dur_invu\")\n        _item.character_().make_invulnerable(invuDur, _item, triggerEvent)\n        _item.start_timer('buffTimer', invuDur)\n        _item.use_mana(_item.manaCost, triggerEvent)\n        _item.add_speed(_item.buffedSpeed / 100.0)\n        pass  # visual",
      "buffEnded": "def buffEnded(_item):\n    _item.setState(SpearState.Used, True)\n    _item.reduce_speed(_item.buffedSpeed / 100.0)",
-     "onCombatEnd": "def onCombatEnd(_item):\n    pass  # visual",
+     "onCombatEnd": "def onCombatEnd(_item):\n    _item.stop_timer('buffTimer')",
      "onStateChanged": "def onStateChanged(_item, _spearState=None):\n    if _spearState == SpearState.Inactive:\n        pass  # visual\n        pass  # visual\n        pass  # visual\n    \n    elif _spearState == SpearState.Active:\n        pass  # visual\n        pass  # visual\n        pass  # visual\n    \n    else:\n        pass  # visual\n        pass  # visual\n    \n    _item.spearState = _spearState",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.activationPulse = _item.preload(\"res://Items/Animations/BookOfLightActivationPulse.tscn\")\n    except Exception:\n        pass\n    try:\n        _item.activationParticles = None\n    except Exception:\n        pass\n    try:\n        _item.buffTimer = None\n    except Exception:\n        pass\n    try:\n        _item.blockRemovalPerSlot = _item.get_p(0)\n    except Exception:\n        pass\n    try:\n        _item.buffedSpeed = _item.get_p(2)\n    except Exception:\n        pass\n    try:\n        _item.manaCost = _item.get_p(1)\n    except Exception:\n        pass\n    try:\n        _item.light = None / CircleLight\n    except Exception:\n        pass\n    _item.blockRemoval = 0\n    _item.cleanses = 0\n    _item.spearState = 0\n"
     },
@@ -13118,6 +13154,9 @@
      "Weapon",
      "Item"
     ],
+    "timer_connections": {
+     "bufftimer": "buffEnded"
+    },
     "script_file": "HolySpear.gd"
    },
    "grid": {
@@ -13987,6 +14026,9 @@
      "Crown",
      "Item"
     ],
+    "timer_connections": {
+     "bufftimer": "buffEnded"
+    },
     "script_file": "KingCrown.gd"
    },
    "grid": {
@@ -14084,9 +14126,9 @@
     ],
     "methods": {
      "prepare": "def prepare(_item):\n    gemPower = None\n    gemPower = _item.get_p(\"gempower\") / 100.0\n    for gem in _range_or_value(_item.get_gems_no_null()):\n        gem.changeGemPower(gemPower)\n    \n    _item.invuCharges = _item.get_p(\"charges\")\n    _item.setState(CrownState.Inactive)\n    pass  # super",
-     "doCooldownEffect": "def doCooldownEffect(_item):\n    invuDur = None; event = None\n    _item.character_().change_buff_protect_stacks(_item.protectedBuffs)\n    _item.heal()\n    if _item.invuCharges > 0 and _item.character_().is_vulnerable() and _item.checkMana(_item.manaCost):\n        _item.invuCharges -= 1\n        _item.setState(CrownState.Active, True)\n        invuDur = _item.get_p_m(\"dur_invu\")\n        event = _item.character_().make_invulnerable(invuDur, _item)\n        pass  # visual\n        _item.use_mana(_item.manaCost, event)\n        pass  # visual",
+     "doCooldownEffect": "def doCooldownEffect(_item):\n    invuDur = None; event = None\n    _item.character_().change_buff_protect_stacks(_item.protectedBuffs)\n    _item.heal()\n    if _item.invuCharges > 0 and _item.character_().is_vulnerable() and _item.checkMana(_item.manaCost):\n        _item.invuCharges -= 1\n        _item.setState(CrownState.Active, True)\n        invuDur = _item.get_p_m(\"dur_invu\")\n        event = _item.character_().make_invulnerable(invuDur, _item)\n        _item.start_timer('buffTimer', invuDur)\n        _item.use_mana(_item.manaCost, event)\n        pass  # visual",
      "buffEnded": "def buffEnded(_item):\n    if _item.invuCharges > 0:\n        _item.setState(CrownState.Inactive, True)\n    else:\n        _item.setState(CrownState.Used, True)",
-     "onCombatEnd": "def onCombatEnd(_item):\n    pass  # visual",
+     "onCombatEnd": "def onCombatEnd(_item):\n    _item.stop_timer('buffTimer')",
      "onStateChanged": "def onStateChanged(_item, _crownState=None):\n    if _crownState == CrownState.Inactive:\n        pass  # visual\n        pass  # visual\n        pass  # visual\n    \n    elif _crownState == CrownState.Active:\n        pass  # visual\n        pass  # visual\n        pass  # visual\n    \n    else:\n        pass  # visual\n        pass  # visual",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.activationPulse = _item.preload(\"res://Items/Animations/BookOfLightActivationPulse.tscn\")\n    except Exception:\n        pass\n    try:\n        _item.protectedBuffs = _item.get_p(\"buffs\")\n    except Exception:\n        pass\n    try:\n        _item.manaCost = _item.get_p(\"mana\")\n    except Exception:\n        pass\n    try:\n        _item.activationParticles = None\n    except Exception:\n        pass\n    try:\n        _item.buffTimer = None\n    except Exception:\n        pass\n    try:\n        _item.light = None / CircleLight\n    except Exception:\n        pass\n    _item.invuCharges = 0\n"
     },
@@ -14095,6 +14137,9 @@
      "Goobert",
      "Item"
     ],
+    "timer_connections": {
+     "bufftimer": "buffEnded"
+    },
     "script_file": "KingGoobert.gd"
    },
    "grid": {
@@ -21729,8 +21774,8 @@
     ],
     "methods": {
      "onPrepare": "def onPrepare(_item):\n    _item.setState(False)\n    pass  # visual",
-     "doCooldownEffect": "def doCooldownEffect(_item):\n    duration = None\n    _item.setState(True, True)\n    _item.cleanse_random_debuffs(_item.get_p(1))\n    duration = _item.get_p_m(\"dur\")\n    _item.give_stacks_temporary(_item.character_(), Game.EventType.Empower,\n        _item.empower, duration)\n    pass  # visual\n    pass  # visual",
-     "onCombatEnd": "def onCombatEnd(_item):\n    pass  # visual",
+     "doCooldownEffect": "def doCooldownEffect(_item):\n    duration = None\n    _item.setState(True, True)\n    _item.cleanse_random_debuffs(_item.get_p(1))\n    duration = _item.get_p_m(\"dur\")\n    _item.give_stacks_temporary(_item.character_(), Game.EventType.Empower,\n        _item.empower, duration)\n    _item.stop_timer('particleTimer')\n    _item.start_timer('particleTimer', duration)",
+     "onCombatEnd": "def onCombatEnd(_item):\n    _item.stop_timer('particleTimer')",
      "onParticleTimeout": "def onParticleTimeout(_item):\n    _item.setState(False)",
      "onStateChanged": "def onStateChanged(_item, active=None):\n    if active:\n        pass  # visual\n    else:\n        pass  # visual",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.empower = _item.get_p(2)\n    except Exception:\n        pass\n    try:\n        _item.particleTimer = None\n    except Exception:\n        pass\n    try:\n        _item.activationParticles = None\n    except Exception:\n        pass\n"
@@ -21740,6 +21785,9 @@
      "Goobert",
      "Item"
     ],
+    "timer_connections": {
+     "particletimer": "onParticleTimeout"
+    },
     "script_file": "CarrotGoobert.gd"
    },
    "grid": {
@@ -22224,9 +22272,9 @@
     ],
     "methods": {
      "onPrepare": "def onPrepare(_item):\n    _item.setState(False)",
-     "onPreDealDamage_early": "def onPreDealDamage_early(_item, damageRes=None):\n    critBuffDur = None\n    if _item.character_().get_mana() >= _item.manaCost:\n        if not _item.buffActive:\n            _item.setState(True, True)\n            for item in _range_or_value(_item.character_().get_items()):\n                item.add_crit_chance_percent(100)\n    \n        _item.use_mana(_item.manaCost)\n        damageRes.damage += _item.tempDamBonus\n        critBuffDur = _item.get_p_m(\"dur\")\n        pass  # visual\n        pass  # visual",
+     "onPreDealDamage_early": "def onPreDealDamage_early(_item, damageRes=None):\n    critBuffDur = None\n    if _item.character_().get_mana() >= _item.manaCost:\n        if not _item.buffActive:\n            _item.setState(True, True)\n            for item in _range_or_value(_item.character_().get_items()):\n                item.add_crit_chance_percent(100)\n    \n        _item.use_mana(_item.manaCost)\n        damageRes.damage += _item.tempDamBonus\n        critBuffDur = _item.get_p_m(\"dur\")\n        Util.changeTimer(_item.critTimer, critBuffDur)\n        pass  # visual",
      "buffEnded": "def buffEnded(_item):\n    for item in _range_or_value(_item.character_().get_items()):\n        item.reduceCritChancePercent(100)\n    _item.setState(False)",
-     "onCombatEnd": "def onCombatEnd(_item):\n    pass  # visual",
+     "onCombatEnd": "def onCombatEnd(_item):\n    _item.stop_timer('critTimer')",
      "onStateChanged": "def onStateChanged(_item, active=None):\n    if active:\n        pass  # visual\n    else:\n        pass  # visual\n    \n    _item.buffActive = active",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.activationPulse = _item.preload(\"res://Items/Animations/CritPulse.tscn\")\n    except Exception:\n        pass\n    try:\n        _item.activationParticles = None\n    except Exception:\n        pass\n    try:\n        _item.critTimer = None\n    except Exception:\n        pass\n    try:\n        _item.manaCost = _item.get_p(0)\n    except Exception:\n        pass\n    try:\n        _item.tempDamBonus = _item.get_p(1)\n    except Exception:\n        pass\n    try:\n        _item.buffActive = False\n    except Exception:\n        pass\n"
     },
@@ -22235,6 +22283,9 @@
      "Weapon",
      "Item"
     ],
+    "timer_connections": {
+     "critbufftimer": "buffEnded"
+    },
     "script_file": "CritwoodStaff.gd"
    },
    "grid": {
@@ -26182,9 +26233,9 @@
     ],
     "methods": {
      "onPrepare": "def onPrepare(_item):\n    _item.setState(False)",
-     "doCooldownEffect": "def doCooldownEffect(_item):\n    healAmount = None; event = None\n    if _item.use_stamina() == Character.StaminaResult.Sufficient:\n        healAmount = _item.get_p_m(\"heal\")\n        if _item.character_().get_mana() >= _item.manaCost:\n            if not _item.buffActive:\n                _item.setState(True, True)\n                _item.character_().give_unhealing(1.0)\n            pass  # visual\n            event = _item.use_mana(_item.manaCost)\n            pass  # visual\n            _item.heal(healAmount, event)\n        else:\n            _item.heal(healAmount)\n    \n        _item.visual_activate()",
+     "doCooldownEffect": "def doCooldownEffect(_item):\n    healAmount = None; event = None\n    if _item.use_stamina() == Character.StaminaResult.Sufficient:\n        healAmount = _item.get_p_m(\"heal\")\n        if _item.character_().get_mana() >= _item.manaCost:\n            if not _item.buffActive:\n                _item.setState(True, True)\n                _item.character_().give_unhealing(1.0)\n            _item.start_timer('unhealingTimer', _item.get_p_m(\"dur_unhealing\"))\n            event = _item.use_mana(_item.manaCost)\n            pass  # visual\n            _item.heal(healAmount, event)\n        else:\n            _item.heal(healAmount)\n    \n        _item.visual_activate()",
      "buffEnded": "def buffEnded(_item):\n    _item.character_().reduce_unhealing(1.0)\n    _item.setState(False)",
-     "onCombatEnd": "def onCombatEnd(_item):\n    pass  # visual",
+     "onCombatEnd": "def onCombatEnd(_item):\n    _item.stop_timer('unhealingTimer')",
      "onStateChanged": "def onStateChanged(_item, active=None):\n    if active:\n        pass  # visual\n    else:\n        pass  # visual\n    \n    _item.buffActive = active",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.activationPulse = _item.preload(\"res://Items/Animations/UnhealingActivationPulse.tscn\")\n    except Exception:\n        pass\n    try:\n        _item.activationParticles = None\n    except Exception:\n        pass\n    try:\n        _item.unhealingTimer = None\n    except Exception:\n        pass\n    try:\n        _item.manaCost = _item.get_p(1)\n    except Exception:\n        pass\n    try:\n        _item.buffActive = False\n    except Exception:\n        pass\n"
     },
@@ -26192,6 +26243,9 @@
     "extends_chain": [
      "Item"
     ],
+    "timer_connections": {
+     "unhealingtimer": "buffEnded"
+    },
     "script_file": "StaffofUnhealing.gd"
    },
    "grid": {
@@ -26286,7 +26340,7 @@
     ],
     "methods": {
      "poisonTimerTimeout": "def poisonTimerTimeout(_item):\n    _item.inflict_poison(_item.get_p(3))",
-     "onCombatEnd": "def onCombatEnd(_item):\n    pass  # visual",
+     "onCombatEnd": "def onCombatEnd(_item):\n    _item.stop_timer('poisonTimer')",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.poisonTimer = None\n    except Exception:\n        pass\n"
     },
     "methods_raw": {
@@ -26297,6 +26351,9 @@
      "Potion",
      "Item"
     ],
+    "timer_connections": {
+     "poisontimer": "poisonTimerTimeout"
+    },
     "script_file": "StrongPestilenceFlask.gd"
    },
    "grid": {
@@ -27315,11 +27372,11 @@
     "methods": {
      "canAffect": "def canAffect(_item, item=None):\n    return item.has_cooldown()",
      "onPrepare": "def onPrepare(_item):\n    for debuff in _range_or_value(Game.getDebuffs()):\n        _item.connect_for_combat(_item.character_(), _item.character_().buffs[debuff].signalName,\n        \"onDebuffed\")\n    \n    \n    _item.hasActivated = False\n    _item.setState(False)\n    _item.connect_for_combat(_item.character_(), \"character_damaged\", \"onDamaged\")",
-     "onDamaged": "def onDamaged(_item, _damage=None, event=None):\n    relHealth = None\n    if _item.hasActivated: return\n    \n    relHealth = _item.character_().get_relative_health()\n    if relHealth < _item.healthThreshold:\n        _item.hasActivated = True\n        _item.setState(True)\n        for item in _range_or_value(_item.get_affected_items()):\n            item.add_speed(_item.bonusSpeed)\n        pass  # visual\n        pass  # visual\n        pass  # visual",
+     "onDamaged": "def onDamaged(_item, _damage=None, event=None):\n    relHealth = None\n    if _item.hasActivated: return\n    \n    relHealth = _item.character_().get_relative_health()\n    if relHealth < _item.healthThreshold:\n        _item.hasActivated = True\n        _item.setState(True)\n        for item in _range_or_value(_item.get_affected_items()):\n            item.add_speed(_item.bonusSpeed)\n        _item.start_timer('speedbuffTimer', _item.get_p_m(\"dur_speed\"))\n        pass  # visual\n        pass  # visual",
      "onSpeedbuffTimeout": "def onSpeedbuffTimeout(_item):\n    _item.setState(False)\n    for item in _range_or_value(_item.get_affected_items()):\n        item.reduce_speed(_item.bonusSpeed)",
      "onDebuffed": "def onDebuffed(_item, amount=None, event=None):\n    debuffType = None; dur = None\n    if _item.checkTriggerCount(10):\n        if _item.roll_chance():\n            debuffType = event.type\n            dur = event.getParam(\"duration\", - 1)\n            _item.give_stacks_temporary(_item.opponent(), debuffType, amount, dur, event)",
      "doCooldownEffect": "def doCooldownEffect(_item):\n    _item.inflict_fatigue_damage(_item.fatigueDam)\n    pass  # visual\n    _item.visual_activate()",
-     "onCombatEnd": "def onCombatEnd(_item):\n    pass  # visual",
+     "onCombatEnd": "def onCombatEnd(_item):\n    _item.stop_timer('speedbuffTimer')",
      "rollShopChance": "def rollShopChance(_item, shopChance=None):\n    if Game.showExclusiveContent():\n        return _item._behavior_super('rollShopChance', 'MrStruggles')(shopChance)\n    else:\n        return False",
      "onStateChanged": "def onStateChanged(_item, speedBuffActive=None):\n    if speedBuffActive:\n        pass  # visual\n        pass  # visual\n    else:\n        pass  # visual\n        pass  # visual",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.plushies = [\"Mrs Struggles\", \"Miss Fortune\"]\n    except Exception:\n        pass\n    try:\n        _item.speedbuffTimer = None\n    except Exception:\n        pass\n    try:\n        _item.activationParticles = None\n    except Exception:\n        pass\n    try:\n        _item.healthThreshold = _item.get_p(1) / 100.0 - 0.0001\n    except Exception:\n        pass\n    try:\n        _item.bonusSpeed = _item.get_p(2) / 100.0\n    except Exception:\n        pass\n    try:\n        _item.fatigueDam = int(_item.get_p(0))\n    except Exception:\n        pass\n    try:\n        _item.speedBuffParticles1 = None / ActivationParticles1\n    except Exception:\n        pass\n    try:\n        _item.speedBuffParticles2 = None / ActivationParticles2\n    except Exception:\n        pass\n    _item.hasActivated = False\n"
@@ -27328,6 +27385,9 @@
     "extends_chain": [
      "Item"
     ],
+    "timer_connections": {
+     "speedbufftimer": "onSpeedbuffTimeout"
+    },
     "script_file": "MrStruggles.gd"
    },
    "grid": {
@@ -28038,13 +28098,13 @@
     ],
     "methods": {
      "canDamage": "def canDamage(_item):\n    return True",
-     "onTriggerPotion": "def onTriggerPotion(_item, triggerEvent=None):\n    dam = None\n    _item.opponent().reduce_healing_efficiency(_item.healingDebuff)\n    dam = _item.opponent().get_debuff_stacks() * _item.damPerDebuff\n    dam = ceil(dam)\n    _item.steal_life(dam, _item.get_p_m(\"lifesteal\") / 100.0, triggerEvent)\n    pass  # visual",
+     "onTriggerPotion": "def onTriggerPotion(_item, triggerEvent=None):\n    dam = None\n    _item.opponent().reduce_healing_efficiency(_item.healingDebuff)\n    dam = _item.opponent().get_debuff_stacks() * _item.damPerDebuff\n    dam = ceil(dam)\n    _item.steal_life(dam, _item.get_p_m(\"lifesteal\") / 100.0, triggerEvent)\n    _item.start_timer('healingReductionTimer', _item.get_p_m(\"dur\"))",
      "onPrepare": "def onPrepare(_item):\n    _item.connect_for_combat(_item.character_(), \"character_damaged\", \"onPlayerDamaged\")\n    _item.connect_for_combat(_item.opponent(), \"character_damaged\", \"onOpponentDamaged\")",
      "onPlayerDamaged": "def onPlayerDamaged(_item, healthChange=None, event=None):\n    if _item.is_empty(): return\n    if _item.character_().get_relative_health() < _item.playerHealthThreshold:\n        _item._behavior_call(\"drinkStrongDemonicFlask\", event)",
      "onOpponentDamaged": "def onOpponentDamaged(_item, healthChange=None, event=None):\n    if _item.is_empty(): return\n    if _item.opponent().get_relative_health() < _item.opponentHealthThreshold:\n        _item._behavior_call(\"drinkStrongDemonicFlask\", event)",
      "drinkStrongDemonicFlask": "def drinkStrongDemonicFlask(_item, event=None):\n    affected = None\n    \n    pass  # visual\n    \n    _item.trigger_potion(event)\n    \n    affected = _item.get_affected_items()\n    if affected:\n        affected[0].trigger_potion(event)\n        affected[0].visual_activate()\n    \n    _item.visual_activate()",
      "healingReductionTimeout": "def healingReductionTimeout(_item):\n    _item.opponent().add_healing_efficiency(_item.healingDebuff)",
-     "onCombatEnd": "def onCombatEnd(_item):\n    pass  # visual",
+     "onCombatEnd": "def onCombatEnd(_item):\n    _item.stop_timer('healingReductionTimer')",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.healingReductionTimer = None\n    except Exception:\n        pass\n    try:\n        _item.healingDebuff = _item.get_p(2) / 100.0\n    except Exception:\n        pass\n    try:\n        _item.damPerDebuff = _item.get_p(\"dam\")\n    except Exception:\n        pass\n    try:\n        _item.playerHealthThreshold = _item.get_p(\"ownhpt\") / 100.0 - 0.0001\n    except Exception:\n        pass\n    try:\n        _item.opponentHealthThreshold = _item.get_p(\"opphpt\") / 100.0 - 0.0001\n    except Exception:\n        pass\n"
     },
     "methods_raw": {},
@@ -28052,6 +28112,9 @@
      "Potion",
      "Item"
     ],
+    "timer_connections": {
+     "healingreductiontimer": "healingReductionTimeout"
+    },
     "script_file": "StrongDemonicFlask.gd"
    },
    "grid": {
@@ -28148,10 +28211,10 @@
      "lifestealTimer"
     ],
     "methods": {
-     "onTriggerPotion": "def onTriggerPotion(_item, triggerEvent=None):\n    amount = None\n    \n    amount = _item.get_p_m(\"lifesteal\") / 100.0\n    _item.curLifesteal += amount\n    _item.lifestealGiven.append(amount)\n    pass  # visual\n    _item.add_vampirism(_item.get_p(1), triggerEvent)",
+     "onTriggerPotion": "def onTriggerPotion(_item, triggerEvent=None):\n    amount = None\n    \n    amount = _item.get_p_m(\"lifesteal\") / 100.0\n    _item.curLifesteal += amount\n    _item.lifestealGiven.append(amount)\n    _item.start_timer('lifestealTimer', _item.get_p_m(\"dur\"))\n    _item.add_vampirism(_item.get_p(1), triggerEvent)",
      "onOpponentDamaged": "def onOpponentDamaged(_item, damageRes=None):\n    if _item.curLifesteal > 0:\n        if damageRes.has_hit() and damageRes.damageSource.can_apply_lifesteal():\n            _item.heal(ceil(damageRes.damage * _item.curLifesteal), damageRes.event)",
      "onLifestealTimeout": "def onLifestealTimeout(_item):\n    _item.curLifesteal -= _item.lifestealGiven.pop_front()",
-     "onCombatEnd": "def onCombatEnd(_item):\n    pass  # visual",
+     "onCombatEnd": "def onCombatEnd(_item):\n    _item.stop_timer('lifestealTimer')",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.lifestealTimer = None\n    except Exception:\n        pass\n    try:\n        _item.lifestealPerTrigger = _item.get_p(2) / 100.0\n    except Exception:\n        pass\n    _item.curLifesteal = 0.0\n    _item.lifestealGiven = []\n"
     },
     "methods_raw": {
@@ -28162,6 +28225,9 @@
      "Potion",
      "Item"
     ],
+    "timer_connections": {
+     "lifestealtimer": "onLifestealTimeout"
+    },
     "script_file": "StrongVampiricPotion.gd"
    },
    "grid": {
@@ -30943,11 +31009,11 @@
      "canAffect": "def canAffect(_item, item=None):\n    return item.has_type(Type.Fire)",
      "canAffect_secondary": "def canAffect_secondary(_item, item=None):\n    return item.has_type(Type.Dark)",
      "onPrepare": "def onPrepare(_item):\n    _item.setState(False)\n    _item.connect_for_combat(_item.character_(), \"character_damaged\", \"onDamaged\")\n    _item.connect_for_combat(_item.character_(), \"reincarnated\", \"onReincarnate\")",
-     "onDamaged": "def onDamaged(_item, _damage=None, event=None):\n    duration = None; healAmount = None; event2 = None\n    if _item.deathPrevented:\n        return\n    \n    if _item.character_().get_current_health() <= 0:\n        _item.setState(True)\n        duration = _item.get_p_m(\"dur_invu\")\n        pass  # visual\n        _item.character_().make_invulnerable(duration, _item, event)\n        healAmount = round(_item.get_p(1) / 100.0 * _item.character_().get_max_health())\n        event2 = _item.character_().reincarnate(healAmount, False, _item, event)\n    \n        _item.visual_activate()\n        pass  # visual",
+     "onDamaged": "def onDamaged(_item, _damage=None, event=None):\n    duration = None; healAmount = None; event2 = None\n    if _item.deathPrevented:\n        return\n    \n    if _item.character_().get_current_health() <= 0:\n        _item.setState(True)\n        duration = _item.get_p_m(\"dur_invu\")\n        _item.start_timer('invuTimer', duration)\n        _item.character_().make_invulnerable(duration, _item, event)\n        healAmount = round(_item.get_p(1) / 100.0 * _item.character_().get_max_health())\n        event2 = _item.character_().reincarnate(healAmount, False, _item, event)\n    \n        _item.visual_activate()\n        pass  # visual",
      "onCombatStart": "def onCombatStart(_item):\n    _item.character_().lose_health(_item.get_p(0) / 100.0 * _item.character_().get_max_health(), _item)\n    \n    \n    _item.visual_activate()",
      "onReincarnate": "def onReincarnate(_item, event=None):\n    dam = None; damageRes = None; numDebuffs = None\n    dam = _item.getMinDamage() * _item.get_num_affected_type(Type.Fire)\n    if dam > 0:\n        damageRes = _item.deal_effect_damage(dam, event)\n    \n    numDebuffs = _item.get_p(4) * _item.get_num_affected_items(Affected.Secondary)\n    _item.inflict_random_debuffs(numDebuffs, event)",
      "invuEnded": "def invuEnded(_item):\n    pass",
-     "onCombatEnd": "def onCombatEnd(_item):\n    pass  # visual",
+     "onCombatEnd": "def onCombatEnd(_item):\n    _item.stop_timer('invuTimer')",
      "onStateChanged": "def onStateChanged(_item, _deathPrevented=None):\n    _item.deathPrevented = _deathPrevented\n    if _item.deathPrevented:\n        pass  # visual\n        pass  # visual\n    else:\n        pass  # visual\n        pass  # visual",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.resurrectionPulse = _item.preload(\"res://Items/Animations/DarkResurectionPulse.tscn\")\n    except Exception:\n        pass\n    try:\n        _item.usedSprite = _item.preload(\"res://Items/Exclusive/Sprites/DarkLantern_used.png\")\n    except Exception:\n        pass\n    try:\n        _item.normalSprite = sprite.texture\n    except Exception:\n        pass\n    try:\n        _item.invuTimer = None\n    except Exception:\n        pass\n    try:\n        _item.lanternLight = None / Light\n    except Exception:\n        pass\n    try:\n        _item.deathPrevented = False\n    except Exception:\n        pass\n"
     },
@@ -30955,6 +31021,9 @@
     "extends_chain": [
      "Item"
     ],
+    "timer_connections": {
+     "invutimer": "invuEnded"
+    },
     "script_file": "DarkLantern.gd"
    },
    "grid": {
@@ -33655,6 +33724,9 @@
      "Weapon",
      "Item"
     ],
+    "timer_connections": {
+     "critbufftimer": "buffEnded"
+    },
     "script_file": "SpikedStaff.gd"
    },
    "grid": {
@@ -35590,9 +35662,9 @@
      "prepareWeapon": "def prepareWeapon(_item):\n    _item.connect_for_combat(_item.get_item(), \"attacked\", \"onAttack\")",
      "onAttack": "def onAttack(_item, damageRes=None):\n    particles = None\n    if damageRes.has_hit() and _item.roll_chance():\n        if Util.time >= _item.stunReadyTime:\n            pass  # visual\n            _item.stun(_item.get_p_m(\"dur_stun\"), damageRes.event)\n            particles = ObjectPool.particleOneShot(_item.stunParticles, _item.sprite)\n            pass  # visual\n            _item.visual_activate()",
      "prepareArmor": "def prepareArmor(_item):\n    _item.debuffResistChance = _item.get_gem_power() * _item.get_chance2()\n    _item.character_().change_debuff_resist_chances(_item.debuffResistChance)",
-     "combatStartArmor": "def combatStartArmor(_item):\n    pass  # visual",
+     "combatStartArmor": "def combatStartArmor(_item):\n    _item.start_timer('debuffResistTimer', _item.get_p_m(\"dur_resist\"))",
      "removeDebuffResistance": "def removeDebuffResistance(_item):\n    _item.character_().change_debuff_resist_chances( - _item.debuffResistChance)",
-     "combatEndArmor": "def combatEndArmor(_item):\n    pass  # visual",
+     "combatEndArmor": "def combatEndArmor(_item):\n    _item.stop_timer('debuffResistTimer')",
      "hasCooldown": "def hasCooldown(_item):\n    return False",
      "combatStartInventory": "def combatStartInventory(_item):\n    _item.give_max_health()\n    _item.consume()",
      "hasInventoryDuration": "def hasInventoryDuration(_item):\n    return False",
@@ -35603,6 +35675,9 @@
      "Gem",
      "Item"
     ],
+    "timer_connections": {
+     "debuffresisttimer": "removeDebuffResistance"
+    },
     "script_file": "ElephantRune.gd"
    },
    "linkage": {
@@ -38771,6 +38846,9 @@
      "LeatherHelm",
      "Item"
     ],
+    "timer_connections": {
+     "bufftimer": "buffEnded"
+    },
     "script_file": "NoRushPlease.gd"
    },
    "grid": {
@@ -42397,7 +42475,7 @@
     ],
     "methods": {
      "doCapturingEffect": "def doCapturingEffect(_item, _eliminatedPiece=None):\n    return _item.give_block()",
-     "doEliminatedEffect": "def doEliminatedEffect(_item, _capturingPiece=None):\n    _item.character_().change_damage_resistance(_item.damReduction)\n    pass  # visual",
+     "doEliminatedEffect": "def doEliminatedEffect(_item, _capturingPiece=None):\n    _item.character_().change_damage_resistance(_item.damReduction)\n    _item.start_timer('buffTimer', _item.get_p_m(\"dur\"))",
      "buffEnded": "def buffEnded(_item):\n    _item.character_().change_damage_resistance( - _item.damReduction)",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.buffTimer = None\n    except Exception:\n        pass\n    try:\n        _item.damReduction = _item.get_p(\"dam\")\n    except Exception:\n        pass\n"
     },
@@ -42406,6 +42484,9 @@
      "ChessPiece",
      "Item"
     ],
+    "timer_connections": {
+     "bufftimer": "buffEnded"
+    },
     "script_file": "WhiteRook.gd"
    },
    "linkage": {
@@ -42480,7 +42561,7 @@
     ],
     "methods": {
      "doCapturingEffect": "def doCapturingEffect(_item, _eliminatedPiece=None):\n    return _item.add_spikes(_item.spikes)",
-     "doEliminatedEffect": "def doEliminatedEffect(_item, _capturingPiece=None):\n    _item.changeAllItemsCritRate(_item.crit)\n    pass  # visual",
+     "doEliminatedEffect": "def doEliminatedEffect(_item, _capturingPiece=None):\n    _item.changeAllItemsCritRate(_item.crit)\n    _item.start_timer('buffTimer', _item.get_p_m(\"dur\"))",
      "buffEnded": "def buffEnded(_item):\n    _item.changeAllItemsCritRate( - _item.crit)",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.buffTimer = None\n    except Exception:\n        pass\n    try:\n        _item.spikes = int(_item.get_p(\"spikes\"))\n    except Exception:\n        pass\n    try:\n        _item.crit = _item.get_p(\"crit\")\n    except Exception:\n        pass\n"
     },
@@ -42489,6 +42570,9 @@
      "ChessPiece",
      "Item"
     ],
+    "timer_connections": {
+     "bufftimer": "buffEnded"
+    },
     "script_file": "BlackRook.gd"
    },
    "linkage": {
@@ -46791,11 +46875,11 @@
      "readyToFuse": "def readyToFuse(_item):\n    return _item.bondedIngredients",
      "getCounterValue": "def getCounterValue(_item):\n    gold = None; inv = None\n    gold = 0\n    inv = _item.character_().get_items() if _item.placed else Game.PLAYER.INVENTORY\n    for item in _range_or_value(inv.getItemsAndGems()):\n        if item.isGem():\n            gold += item.get_price()\n    \n    if _item.dragged:\n        for gem in _range_or_value(_item.get_gems_no_null()):\n            gold += gem.get_price()\n    \n    return gold",
      "onPrepare": "def onPrepare(_item):\n    _item.connect_for_combat(_item.character_(), \"character_invulnerable_start\", \"onInvuStarted\")\n    \n    \n    \n    _item.manaNeeded = _item.manaNeeded_base\n    _item.invuProcced = 0\n    _item.gemDurFactor = floor(_item._behavior_call(\"getCounterValue\", ) / _item.get_p(\"gold\"))\n    _item.setState(False)",
-     "doCooldownEffect": "def doCooldownEffect(_item):\n    invuDur = None; event = None\n    if _item.character_().is_vulnerable() and _item.character_().get_mana() >= _item.manaNeeded:\n        _item.setState(True)\n        _item.invuProcced += 1\n        invuDur = _item.get_p_m(\"dur_base\") + _item.get_p_m(\"dur_bonus\") * _item.gemDurFactor\n        pass  # visual\n        event = _item.character_().make_invulnerable(invuDur, _item)\n        _item.use_mana(_item.manaNeeded, event)\n        _item.manaNeeded += _item.manaCostIncrease\n        pass  # visual\n    \n        if _item.invuProcced == _item.maxUses:\n            pass  # visual\n            return\n    \n    _item.visual_activate()",
+     "doCooldownEffect": "def doCooldownEffect(_item):\n    invuDur = None; event = None\n    if _item.character_().is_vulnerable() and _item.character_().get_mana() >= _item.manaNeeded:\n        _item.setState(True)\n        _item.invuProcced += 1\n        invuDur = _item.get_p_m(\"dur_base\") + _item.get_p_m(\"dur_bonus\") * _item.gemDurFactor\n        _item.start_timer('buffTimer', invuDur)\n        event = _item.character_().make_invulnerable(invuDur, _item)\n        _item.use_mana(_item.manaNeeded, event)\n        _item.manaNeeded += _item.manaCostIncrease\n        pass  # visual\n    \n        if _item.invuProcced == _item.maxUses:\n            pass  # visual\n            return\n    \n    _item.visual_activate()",
      "onInvuStarted": "def onInvuStarted(_item, event=None):\n    _item.inflict_blind(_item.blind, event)",
      "onStateChanged": "def onStateChanged(_item, invuActive=None):\n    if invuActive:\n        pass  # visual\n    else:\n        pass  # visual",
      "buffEnded": "def buffEnded(_item):\n    _item.setState(False)",
-     "onCombatEnd": "def onCombatEnd(_item):\n    pass  # visual",
+     "onCombatEnd": "def onCombatEnd(_item):\n    _item.stop_timer('buffTimer')",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.activationPulse = _item.preload(\"res://Items/Animations/BookOfLightActivationPulse.tscn\")\n    except Exception:\n        pass\n    try:\n        _item.activationParticles = None\n    except Exception:\n        pass\n    try:\n        _item.buffTimer = None\n    except Exception:\n        pass\n    try:\n        _item.blind = int(_item.get_p(\"blind\"))\n    except Exception:\n        pass\n    try:\n        _item.manaNeeded_base = int(_item.get_p(\"manat\"))\n    except Exception:\n        pass\n    try:\n        _item.manaCostIncrease = int(_item.get_p(\"mana\"))\n    except Exception:\n        pass\n    try:\n        _item.maxUses = int(_item.get_p(\"max\"))\n    except Exception:\n        pass\n    _item.invuProcced = 0\n    _item.gemDurFactor = 0.0\n    _item.manaNeeded = 0\n"
     },
     "methods_raw": {
@@ -46804,6 +46888,9 @@
     "extends_chain": [
      "Item"
     ],
+    "timer_connections": {
+     "bufftimer": "buffEnded"
+    },
     "script_file": "ShinyMantle.gd"
    },
    "grid": {
@@ -46940,6 +47027,9 @@
      "LeatherHelm",
      "Item"
     ],
+    "timer_connections": {
+     "bufftimer": "buffEnded"
+    },
     "script_file": "SpiritBells.gd"
    },
    "grid": {
@@ -48003,15 +48093,18 @@
      "canAffect": "def canAffect(_item, item=None):\n    return item.can_activate()",
      "canAffect_secondary": "def canAffect_secondary(_item, item=None):\n    return item.has_cooldown()",
      "onPrepare": "def onPrepare(_item):\n    for item in _range_or_value(_item.get_affected_items(Affected.Secondary)):\n        _item.speedUpItem = item\n    \n    if _item.speedUpItem != None:\n        for triggerItem in _range_or_value(_item.get_affected_items()):\n            _item.connect_for_combat(triggerItem, \"activated\", \"onTriggerItemActivated\")",
-     "onTriggerItemActivated": "def onTriggerItemActivated(_item, event=None):\n    curSpeed = None; speedLeft = None\n    curSpeed = Game.ropeSpeedups.get(_item.speedUpItem, 0.0)\n    speedLeft = _item.maxSpeed - curSpeed\n    if speedLeft > 0:\n        _item.speedUpItem.add_speed(min(speedLeft, _item.speedPerTrigger))\n    \n    Util.dictAdd(Game.ropeSpeedups, _item.speedUpItem, _item.speedPerTrigger)\n    pass  # visual\n    _item.visual_activate()",
-     "onSpeedTimeout": "def onSpeedTimeout(_item):\n    curSpeed = None; speedLeft = None\n    pass  # visual\n    curSpeed = Game.ropeSpeedups.get(_item.speedUpItem, 0.0)\n    speedLeft = _item.maxSpeed - curSpeed\n    if speedLeft > 0:\n        _item.speedUpItem.reduce_speed(min(speedLeft, _item.speedPerTrigger))",
-     "onCombatEnd": "def onCombatEnd(_item):\n    pass  # visual\n    _item.speedUpItem = None",
+     "onTriggerItemActivated": "def onTriggerItemActivated(_item, event=None):\n    curSpeed = None; speedLeft = None\n    curSpeed = Game.ropeSpeedups.get(_item.speedUpItem, 0.0)\n    speedLeft = _item.maxSpeed - curSpeed\n    if speedLeft > 0:\n        _item.speedUpItem.add_speed(min(speedLeft, _item.speedPerTrigger))\n    \n    Util.dictAdd(Game.ropeSpeedups, _item.speedUpItem, _item.speedPerTrigger)\n    _item.start_timer('speedTimer', _item.get_p_m(\"dur\"))\n    _item.visual_activate()",
+     "onSpeedTimeout": "def onSpeedTimeout(_item):\n    curSpeed = None; speedLeft = None\n    Util.dictSub(Game.ropeSpeedups, _item.speedUpItem, _item.speedPerTrigger)\n    curSpeed = Game.ropeSpeedups.get(_item.speedUpItem, 0.0)\n    speedLeft = _item.maxSpeed - curSpeed\n    if speedLeft > 0:\n        _item.speedUpItem.reduce_speed(min(speedLeft, _item.speedPerTrigger))",
+     "onCombatEnd": "def onCombatEnd(_item):\n    _item.stop_timer('speedTimer')\n    _item.speedUpItem = None",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.speedTimer = None\n    except Exception:\n        pass\n    try:\n        _item.speedPerTrigger = _item.get_p(\"speed\") / 100.0\n    except Exception:\n        pass\n    try:\n        _item.maxSpeed = _item.get_p(\"max\") / 100.0\n    except Exception:\n        pass\n    try:\n        _item.speedUpItem = None\n    except Exception:\n        pass\n"
     },
     "methods_raw": {},
     "extends_chain": [
      "Item"
     ],
+    "timer_connections": {
+     "speedtimer": "onSpeedTimeout"
+    },
     "script_file": "Rope.gd"
    },
    "grid": {
@@ -49491,6 +49584,9 @@
      "Weapon",
      "Item"
     ],
+    "timer_connections": {
+     "blindinglighttimer": "onBlindingLightTimeout"
+    },
     "script_file": "Scissorswords.gd"
    },
    "grid": {
@@ -50575,6 +50671,9 @@
      "LeatherHelm",
      "Item"
     ],
+    "timer_connections": {
+     "bufftimer": "buffEnded"
+    },
     "script_file": "Turtle.gd"
    },
    "grid": {
@@ -50880,10 +50979,10 @@
      "queuedEmitters"
     ],
     "methods": {
-     "onCombatEnd": "def onCombatEnd(_item):\n    pass  # visual\n    _item.queuedEmitters.clear()",
+     "onCombatEnd": "def onCombatEnd(_item):\n    _item.stop_timer('chargeTimer')\n    _item.queuedEmitters.clear()",
      "canApplyEffect": "def canApplyEffect(_item, toItem=None):\n    return toItem.has_method(\"emitCharge\")",
      "onPrepare": "def onPrepare(_item):\n    for item in _range_or_value(_item.get_affected_items_inside()):\n        pass  # visual",
-     "onItemInsideEmittedCharge": "def onItemInsideEmittedCharge(_item, item=None):\n    _item.queuedEmitters.append(item)\n    pass  # visual",
+     "onItemInsideEmittedCharge": "def onItemInsideEmittedCharge(_item, item=None):\n    _item.queuedEmitters.append(item)\n    _item.start_timer('chargeTimer', _item.delay)",
      "onChargeTimerTimeout": "def onChargeTimerTimeout(_item):\n    emitter = None\n    emitter = _item.queuedEmitters.pop_front()\n    emitter.emit_charge(_item.chargeSpeed)",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.chargeTimer = None\n    except Exception:\n        pass\n    try:\n        _item.delay = _item.get_p(\"delay\")\n    except Exception:\n        pass\n    try:\n        _item.chargeSpeed = _item.get_p(\"speed\") / 100.0\n    except Exception:\n        pass\n    try:\n        _item.queuedEmitters = []\n    except Exception:\n        pass\n"
     },
@@ -50892,6 +50991,9 @@
      "Bag",
      "Item"
     ],
+    "timer_connections": {
+     "chargetimer": "onChargeTimerTimeout"
+    },
     "script_file": "EngineerBox.gd"
    },
    "grid": {
@@ -51225,6 +51327,9 @@
     "extends_chain": [
      "Item"
     ],
+    "timer_connections": {
+     "bufftimer": "buffEnded"
+    },
     "script_file": "Resistor.gd"
    },
    "grid": {
@@ -53639,10 +53744,10 @@
     "methods": {
      "canAffect_lightning": "def canAffect_lightning(_item, item=None):\n    return item.has_cooldown() or item.reacts_to_charges()",
      "onPrepare": "def onPrepare(_item):\n    _item.setState(False)\n    _item.curHitCount = 0\n    _item.lightningMultiplicity = _item.count_items_in_affected_cells_cached(Affected.Lightning)",
-     "onDealtDamage": "def onDealtDamage(_item, damageRes=None):\n    if damageRes.has_hit():\n        _item.curHitCount += 1\n    \n        if _item.curHitCount == _item.numHits:\n    \n    \n            if _item.active:\n                for item in _range_or_value(_item.get_affected_items(Affected.Lightning)):\n                    item.charge_left(_item)\n                    _item._behavior_call(\"zapItem\", item)\n            else:\n                _item.setState(True)\n                for item in _range_or_value(_item.get_affected_items(Affected.Lightning)):\n                    item.add_speed(_item.buffSpeed * _item.lightningMultiplicity[item])\n                    _item._behavior_call(\"zapItem\", item)\n    \n            pass  # visual\n            pass  # visual\n            _item.curHitCount = 0\n            pass  # visual",
+     "onDealtDamage": "def onDealtDamage(_item, damageRes=None):\n    if damageRes.has_hit():\n        _item.curHitCount += 1\n    \n        if _item.curHitCount == _item.numHits:\n    \n    \n            if _item.active:\n                for item in _range_or_value(_item.get_affected_items(Affected.Lightning)):\n                    item.charge_left(_item)\n                    _item._behavior_call(\"zapItem\", item)\n            else:\n                _item.setState(True)\n                for item in _range_or_value(_item.get_affected_items(Affected.Lightning)):\n                    item.add_speed(_item.buffSpeed * _item.lightningMultiplicity[item])\n                    _item._behavior_call(\"zapItem\", item)\n    \n            _item.stop_timer('buffTimer')\n            _item.start_timer('buffTimer', _item.get_p_m(\"dur\"))\n            _item.curHitCount = 0\n            pass  # visual",
      "zapItem": "def zapItem(_item, item=None):\n    zap = None; targetPos = None\n    item.charge_received(_item)\n    if item.hasOnChargeReceivedEffect:\n        zap = ObjectPool.instance(Util.zapScene)\n        pass  # visual\n        targetPos = item.getGlobalCenter()\n        pass  # visual",
      "onBuffEnded": "def onBuffEnded(_item):\n    _item.setState(False)\n    \n    for item in _range_or_value(_item.get_affected_items(Affected.Lightning)):\n        item.reduce_speed(_item.buffSpeed * _item.lightningMultiplicity[item])\n        item.charge_left(_item)",
-     "onCombatEnd": "def onCombatEnd(_item):\n    pass  # visual",
+     "onCombatEnd": "def onCombatEnd(_item):\n    _item.stop_timer('buffTimer')",
      "onStateChanged": "def onStateChanged(_item, chargeActive=None):\n    _item.active = chargeActive\n    if chargeActive:\n        pass  # visual\n    else:\n        pass  # visual",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.activationSound = _item.preload(\"res://Assets/Sound/Electricity2.wav\")\n    except Exception:\n        pass\n    try:\n        _item.numHits = int(_item.get_p(\"hits\"))\n    except Exception:\n        pass\n    try:\n        _item.buffSpeed = _item.get_p(\"speed\") / 100.0\n    except Exception:\n        pass\n    try:\n        _item.buffTimer = None\n    except Exception:\n        pass\n    try:\n        _item.buffParticles = None / ActivationParticles\n    except Exception:\n        pass\n    _item.active = False\n    _item.curHitCount = 0\n    _item.lightningMultiplicity = {}\n"
     },
@@ -53651,6 +53756,9 @@
      "Weapon",
      "Item"
     ],
+    "timer_connections": {
+     "bufftimer": "onBuffEnded"
+    },
     "script_file": "ThunderDrake.gd"
    },
    "grid": {
@@ -54849,6 +54957,9 @@
      "LeatherHelm",
      "Item"
     ],
+    "timer_connections": {
+     "bufftimer": "buffEnded"
+    },
     "script_file": "CapofBrilliance.gd"
    },
    "grid": {
@@ -55132,15 +55243,18 @@
     "methods": {
      "canAffect": "def canAffect(_item, item=None):\n    return item.has_cooldown()",
      "onPrepare": "def onPrepare(_item):\n    _item.hasActivated = False\n    _item.connect_for_combat(_item.character_(), \"character_damaged\", \"onDamaged\")",
-     "onDamaged": "def onDamaged(_item, _damage=None, event=None):\n    relHealth = None; event2 = None\n    if _item.hasActivated: return\n    \n    relHealth = _item.character_().get_relative_health()\n    if relHealth < _item.healthThreshold:\n        if _item.character_().get_mana() >= _item.manaNeeded:\n            _item.hasActivated = True\n            event2 = _item.use_mana(_item.manaNeeded)\n            _item.add_lucky(_item.luck, event2)\n            _item.add_empower(_item.empower, event2)\n            _item.give_block(_item.get_block(), True, event2)\n    \n            for item in _range_or_value(_item.get_affected_items()):\n                item.add_speed(_item.bonusSpeed)\n    \n            pass  # visual\n    \n            _item.consume()",
+     "onDamaged": "def onDamaged(_item, _damage=None, event=None):\n    relHealth = None; event2 = None\n    if _item.hasActivated: return\n    \n    relHealth = _item.character_().get_relative_health()\n    if relHealth < _item.healthThreshold:\n        if _item.character_().get_mana() >= _item.manaNeeded:\n            _item.hasActivated = True\n            event2 = _item.use_mana(_item.manaNeeded)\n            _item.add_lucky(_item.luck, event2)\n            _item.add_empower(_item.empower, event2)\n            _item.give_block(_item.get_block(), True, event2)\n    \n            for item in _range_or_value(_item.get_affected_items()):\n                item.add_speed(_item.bonusSpeed)\n    \n            _item.start_timer('speedTimer', _item.get_p_m(\"dur_speed\"))\n    \n            _item.consume()",
      "onSpeedTimerTimeout": "def onSpeedTimerTimeout(_item):\n    for item in _range_or_value(_item.get_affected_items()):\n        item.reduce_speed(_item.bonusSpeed)",
-     "onCombatEnd": "def onCombatEnd(_item):\n    pass  # visual",
+     "onCombatEnd": "def onCombatEnd(_item):\n    _item.stop_timer('speedTimer')",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.speedTimer = None\n    except Exception:\n        pass\n    try:\n        _item.healthThreshold = _item.get_p(\"healtht\") / 100.0 - 0.0001\n    except Exception:\n        pass\n    try:\n        _item.manaNeeded = int(_item.get_p(\"manat\"))\n    except Exception:\n        pass\n    try:\n        _item.luck = int(_item.get_p(\"luck\"))\n    except Exception:\n        pass\n    try:\n        _item.empower = int(_item.get_p(\"empower\"))\n    except Exception:\n        pass\n    try:\n        _item.bonusSpeed = _item.get_p(\"speed\") / 100.0\n    except Exception:\n        pass\n    _item.hasActivated = False\n"
     },
     "methods_raw": {},
     "extends_chain": [
      "Item"
     ],
+    "timer_connections": {
+     "speedtimer": "onSpeedTimerTimeout"
+    },
     "script_file": "ArcaneBoots.gd"
    },
    "grid": {
@@ -55407,9 +55521,9 @@
      "canAffect": "def canAffect(_item, item=None):\n    return item.has_cooldown() or item.gains_stack(Stack.Mana)",
      "onPrepare": "def onPrepare(_item):\n    _item._behavior_call(\"updateShaderRotation\", )\n    _item.hasActivated = False\n    _item.connect_for_combat(_item.character_(), \"character_damaged\", \"onDamaged\")",
      "onDealtDamage": "def onDealtDamage(_item, damageRes=None):\n    event = None; duration = None; particles = None\n    if (damageRes.has_hit() and\n        _item.character_().get_mana() >= _item.manaNeeded):\n    \n        event = _item.use_mana(_item.manaNeeded, damageRes.event)\n        duration = _item.get_p_m(\"dur_blind\")\n        _item.give_stacks_temporary(_item.opponent(), Game.EventType.Blind,\n            _item.blind, duration, event)\n    \n        if _item.roll_chance():\n            _item.stun(_item.get_p_m(\"dur_stun\"), event)\n            particles = ObjectPool.particleOneShot(_item.stunParticles, _item.sprite)\n            pass  # visual\n    \n        _item.cleanse_random_debuffs(_item.numDebuffs, event)",
-     "onDamaged": "def onDamaged(_item, _damage=None, event=None):\n    relHealth = None\n    if _item.hasActivated: return\n    \n    relHealth = _item.character_().get_relative_health()\n    if relHealth < _item.healthThreshold:\n        _item.hasActivated = True\n    \n        for item in _range_or_value(_item.get_affected_items()):\n            item.add_speed(_item.bonusSpeed)\n            item.change_amplification_chance_percent(Game.EventType.Mana, _item.get_chance2())\n    \n        pass  # visual\n        _item.character_().change_damage_resistance(_item.damReduction)\n    \n        _item.give_block(_item.get_block(), True, event)",
+     "onDamaged": "def onDamaged(_item, _damage=None, event=None):\n    relHealth = None\n    if _item.hasActivated: return\n    \n    relHealth = _item.character_().get_relative_health()\n    if relHealth < _item.healthThreshold:\n        _item.hasActivated = True\n    \n        for item in _range_or_value(_item.get_affected_items()):\n            item.add_speed(_item.bonusSpeed)\n            item.change_amplification_chance_percent(Game.EventType.Mana, _item.get_chance2())\n    \n        _item.start_timer('dmgReductionTimer', _item.get_p_m(\"dur_dmgreduction\"))\n        _item.character_().change_damage_resistance(_item.damReduction)\n    \n        _item.give_block(_item.get_block(), True, event)",
      "onDmgReductionTimerTimeout": "def onDmgReductionTimerTimeout(_item):\n    _item.character_().change_damage_resistance( - _item.damReduction)",
-     "onCombatEnd": "def onCombatEnd(_item):\n    pass  # visual",
+     "onCombatEnd": "def onCombatEnd(_item):\n    _item.stop_timer('dmgReductionTimer')",
      "showCooldown": "def showCooldown(_item, progress=None):\n    \n    pass  # visual\n    pass  # visual\n    for _item.sprite in _range_or_value(_item.spritesWithShadows):\n        pass  # visual",
      "clearSpriteMaterial": "def clearSpriteMaterial(_item):\n    pass",
      "giveProgressMaterial": "def giveProgressMaterial(_item):\n    pass",
@@ -55421,6 +55535,9 @@
      "Weapon",
      "Item"
     ],
+    "timer_connections": {
+     "dmgreductiontimer": "onDmgReductionTimerTimeout"
+    },
     "script_file": "Automanaton.gd"
    },
    "grid": {
@@ -57701,9 +57818,9 @@
     ],
     "methods": {
      "onGainThresholdReached": "def onGainThresholdReached(_item, ticks=None, event=None):\n    _item.cleanse_blind(_item.blind, event)\n    _item.heal(ticks * _item.get_p_m(\"heal\"), event)\n    _item.visual_activate()",
-     "onUseThresholdReached": "def onUseThresholdReached(_item, ticks=None, event=None):\n    invuDur = None\n    if _item.frogState == FrogState.Inactive:\n        _item.setState(FrogState.Active, True)\n        _item.add_lucky(_item.luck, event)\n        _item.add_mana(_item.mana, event)\n        invuDur = _item.get_p_m(\"dur_1\")\n        _item.character_().make_invulnerable(invuDur, _item, event)\n        pass  # visual\n        pass  # visual\n        _item.visual_activate()",
+     "onUseThresholdReached": "def onUseThresholdReached(_item, ticks=None, event=None):\n    invuDur = None\n    if _item.frogState == FrogState.Inactive:\n        _item.setState(FrogState.Active, True)\n        _item.add_lucky(_item.luck, event)\n        _item.add_mana(_item.mana, event)\n        invuDur = _item.get_p_m(\"dur_1\")\n        _item.character_().make_invulnerable(invuDur, _item, event)\n        _item.start_timer('buffTimer', invuDur)\n        pass  # visual\n        _item.visual_activate()",
      "buffEnded": "def buffEnded(_item):\n    _item.setState(FrogState.Used, True)",
-     "onCombatEnd": "def onCombatEnd(_item):\n    pass  # visual",
+     "onCombatEnd": "def onCombatEnd(_item):\n    _item.stop_timer('buffTimer')",
      "onStateChanged": "def onStateChanged(_item, _frogState=None):\n    if _frogState == FrogState.Inactive:\n        pass  # visual\n        pass  # visual\n        pass  # visual\n    \n    elif _frogState == FrogState.Active:\n        pass  # visual\n        pass  # visual\n        pass  # visual\n    \n    else:\n        pass  # visual\n        pass  # visual\n    \n    _item.frogState = _frogState",
      "_onready_init": "def _onready_init(_item):\n    try:\n        _item.activationPulse = _item.preload(\"res://Items/Animations/BookOfLightActivationPulse.tscn\")\n    except Exception:\n        pass\n    try:\n        _item.activationParticles = None\n    except Exception:\n        pass\n    try:\n        _item.buffTimer = None\n    except Exception:\n        pass\n    try:\n        _item.light = None / CircleLight\n    except Exception:\n        pass\n    try:\n        _item.blind = int(_item.get_p(\"blind\"))\n    except Exception:\n        pass\n    _item.frogState = 0\n"
     },
@@ -57714,6 +57831,9 @@
      "Toad",
      "Item"
     ],
+    "timer_connections": {
+     "bufftimer": "buffEnded"
+    },
     "script_file": "FrogPrince.gd"
    },
    "grid": {
@@ -59420,6 +59540,9 @@
     "extends_chain": [
      "Item"
     ],
+    "timer_connections": {
+     "bufftimer": "onBuffTimeout"
+    },
     "script_file": "AmuletofLight.gd"
    },
    "grid": {
@@ -59935,6 +60058,9 @@
      "Weapon",
      "Item"
     ],
+    "timer_connections": {
+     "speedtimer": "onSpeedTimerTimeout"
+    },
     "script_file": "OnionCutter.gd"
    },
    "grid": {
@@ -60478,6 +60604,9 @@
     "extends_chain": [
      "Item"
     ],
+    "timer_connections": {
+     "speedtimer": "onSpeedTimerTimeout"
+    },
     "script_file": "AngelCrystal.gd"
    },
    "grid": {

@@ -305,6 +305,7 @@ class Item:
         self._socket_item: Optional['Item'] = None   # 宝石的宿主物品
         self._gems: List['Item'] = []                # 宿主的宝石列表
         self.gem_power: float = 1.0
+        self._timers: Dict[str, Dict] = {}           # MultiTimer 仿真（name -> 状态）
 
         # ---- 效果钩子标志 ----
         self.has_pre_deal_damage_early_effect = False
@@ -1040,10 +1041,13 @@ class Item:
         # 不入 class_methods，因此仅实际定义了 combatEnd 的物品会触发）
         if self.has_behavior("combatEnd"):
             self.call_behavior("combatEnd")
+        # 引擎战斗结束 Timer 随场景失效（Game.gd disconnectAll 同层清理）
+        self._timers = {}
 
     # ================ tick 驱动（_physics_process 还原） ================
     def physics_tick(self, delta: float, now: float):
-        """每物理帧：冷却推进"""
+        """每物理帧：冷却推进 + 计时器（MultiTimer）驱动"""
+        self._tick_timers(delta, now)
         if not self.has_cooldown():
             return
         ch = self.character
@@ -1052,6 +1056,73 @@ class Item:
         self.trigger_time -= delta * self.get_speed()
         if self.trigger_time <= 0:
             self.trigger(now)
+
+    # ---- Timer 仿真（Utility/MultiTimer.gd 语义） ----
+    # 引擎里脚本级 Timer（speedTimer/buffTimer…）的 timeout 信号连接声明在
+    # tscn [connection] 中，由 extract 落入 behavior.timer_connections；
+    # start 在已运行时把**绝对到期时刻**（Util.time + time）排队而非覆盖
+    # （MultiTimer.start 39），超时逐个回退。
+    def _timer_now(self) -> float:
+        return self.log.current_time if self.log else 0.0
+
+    def start_timer(self, name: str, duration: float):
+        t = self._timers.setdefault(name, {'left': None, 'queue': [], 'method': None})
+        if t['method'] is None:
+            conns = (self.data.get('behavior') or {}).get('timer_connections') or {}
+            t['method'] = conns.get(name.lower())
+        due = self._timer_now() + float(duration)
+        if t['left'] is None:
+            t['left'] = float(duration)
+        else:
+            t['queue'].append(due)
+        return None
+
+    def stop_timer(self, name: str):
+        self._timers.pop(name, None)
+        return None
+
+    def change_timer(self, name: str, t: float):
+        """Util.changeTimer(timer, t)（Util.gd 1591：start(t + timeLeft)）——
+        在当前剩余时间上再延长 t（MultiTimer 语义下进入排队）"""
+        tm = self._timers.get(name)
+        extra = float(t)
+        if tm is None or tm['left'] is None:
+            return self.start_timer(name, extra)
+        self._timers.setdefault(name, tm)['queue'].append(self._timer_now() + extra + tm['left'])
+        return None
+
+    def _tick_timers(self, delta: float, now: float):
+        """MultiTimer.onTimeout 语义：到点触发回调；随后若队列非空，取队头
+        到期时刻算 dif = due - now，dif>0.05 以 dif 重启，否则立即串行再触发。"""
+        for name in list(self._timers.keys()):
+            t = self._timers.get(name)
+            if not t or t['left'] is None:
+                continue
+            t['left'] -= delta
+            if t['left'] > 0:
+                continue
+            # 到点（回调内可能 start/stop 同名 timer，每轮重取状态）
+            while True:
+                t = self._timers.get(name)
+                if not t:
+                    break
+                self._fire_timer(t)
+                t = self._timers.get(name)
+                if not t:
+                    break
+                if t['queue']:
+                    dif = t['queue'].pop(0) - now
+                    if dif > 0.05:
+                        t['left'] = dif
+                        break
+                    continue          # 引擎：dif<=0.05 立即再触发
+                self._timers.pop(name, None)
+                break
+
+    def _fire_timer(self, t: Dict):
+        method = t.get('method')
+        if method:
+            self.call_behavior(method)
 
     def trigger(self, now: float):
         """trigger — 冷却归零触发（对齐 Item.gd）"""
