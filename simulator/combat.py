@@ -114,7 +114,7 @@ class CombatEngine:
         if override is not None:
             health = float(override)
         else:
-            rnd = int(lineup.get('round', 1))
+            rnd = int(lineup.get('round') or 1)
             health = float(base_health)
             for i in range(2, rnd + 1):
                 if i >= 15:

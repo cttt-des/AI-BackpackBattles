@@ -518,9 +518,30 @@ class Item:
         return (not self.is_base_item()) and self.is_available_for_crafting()
 
     def is_class_item(self, class_index=None) -> bool:
-        """Item.gd 973: descriptor.isClassItem() —— classes 位掩码数据未入库
-        （原版基础物品绝大多数为 Neutral），恒 False"""
-        return False
+        """Item.gd 973 + ItemDescriptor.gd 163：
+        isClassItem() = classes 非 None(0) 且非 Neutral(127)；
+        isClassItem(classIndex) = 上述且 isAvailableFor(classIndex)
+        = classes & (1 << classIndex)（Classes_Full 枚举序）。
+        classes 位掩码由 tools/enrich_classes.py 从 ItemData_e.csv shop 列提取。"""
+        classes = self.data.get('classes')
+        if not classes:                              # None/0 = None 类（非商店）
+            return False
+        if classes == 127:                           # Neutral
+            return False
+        if class_index is None:
+            return True
+        return bool(classes & (1 << int(class_index)))
+
+    def is_neutral(self) -> bool:
+        """ItemDescriptor.gd 160: classes == StuffedClasses.Neutral(127)"""
+        return self.data.get('classes') == 127
+
+    def is_available_for(self, class_index) -> bool:
+        """ItemDescriptor.gd 153: isAvailableFor(classId) = classes & (1 << classId)"""
+        classes = self.data.get('classes')
+        if not classes:
+            return False
+        return bool(classes & (1 << int(class_index)))
 
     def charge_left(self) -> int:
         """电荷系统未建模，恒 0"""
@@ -940,11 +961,9 @@ class Item:
     def is_neutral(self) -> bool:
         """isNeutral — ItemDescriptor.classes == StuffedClasses.Neutral(127)。
 
-        classes 位掩码未入库（原版基础物品绝大多数为 Neutral 全职业可用），
-        按数据中 classes 字段缺省即 Neutral 处理。
-        """
-        classes = self.data.get('classes')
-        return classes is None or classes == 127
+        classes 位掩码由 tools/enrich_classes.py 从 ItemData_e.csv shop 列提取
+        （518/518 全覆盖）；无字段视为非 Neutral（未入库 = None 类）。"""
+        return self.data.get('classes') == 127
 
     def is_a(self, descriptor) -> bool:
         key = getattr(descriptor, 'key', None) or getattr(descriptor, 'name', None)

@@ -38,7 +38,31 @@
 
 > 由 GUI「导出阵容」生成，或手工编写。**一场战斗需要两个阵容文件**（玩家 + 对手）。
 
-### 2.1 完整示例
+### 2.1 v4 格式（推荐，简洁平铺）
+
+```json
+{
+  "version": 4,
+  "name": "玩家阵容-示例",
+  "character": "Ranger",
+  "round": 5,
+  "grid": [7, 10],
+  "items": [
+    { "id": "Wooden Sword", "at": [2, 3], "r": 0 },
+    { "id": "Leather Bag", "at": [0, 0], "r": 0 },
+    { "id": "Dagger", "at": [0, 0], "r": 0, "in": 1, "gems": ["Chipped Ruby"] }
+  ],
+  "storage": []
+}
+```
+
+* `in` = 承载袋在 `items` 数组中的下标（省略 = 袋外松放）——物品与背包的承载关系
+  显式化，模拟器据此建立袋内联动（Bag.gd getItemsInside 语义）
+* `at` = [row, col]（旋转后占格左上角，对齐游戏 topLeftCell 存档语义）
+* `r` = 旋转角度（0/90/180/270，默认 0）；`gems` = 宝石 id 字符串数组
+* `name` = meta 拍平；`class_modifiers`/`health_override` 可选（语义同 v3）
+
+### 2.2 v3 格式（仍完全兼容）
 
 ```json
 {
@@ -89,11 +113,11 @@
 }
 ```
 
-### 2.2 字段说明
+### 2.3 v3 字段说明
 
 | 字段 | 类型 | 必填 | 说明 |
 |---|---|---|---|
-| `version` | int | ✓ | 固定 `3` |
+| `version` | int | ✓ | 固定 `3`（v4 见 2.1；load 时统一规范化为内部表示） |
 | `meta.name` | str | | 阵容名（日志展示用） |
 | `meta.source` | str | | `gui_export` / `manual` |
 | `character` | str | ✓ | 职业 key（见 `assets/characters.json`） |
@@ -114,7 +138,7 @@
 | `backpack.items[].gems` | array | | 镶嵌宝石（`["Ruby", "Sapphire"]`） |
 | `storage` | array | | 储物箱物品（战斗不参与，预留） |
 
-### 2.3 回合 HP 成长（对齐 Game.getMaxHealthInRound）
+### 2.4 回合 HP 成长（对齐 Game.getMaxHealthInRound）
 
 ```
 基础 HP = class_modifiers.health（默认 25）

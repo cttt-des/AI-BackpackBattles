@@ -17,8 +17,11 @@
 
 ### ① 逆向基础（GDEC 解密 + 全源码可读）
 
-- PCK 解包 → GDEC 脚本批量解密（AES-256-ECB，密钥经运行时 hook 获取）→ **全部 815 个 GDScript 反编译成功**（`decompiled_full/`），战斗逻辑全源码可读
-- 内存布局活体标定：`OS::singleton` RVA 定位 → Godot 对象图遍历，游戏更新可用 `tools/sweep_offsets.py` 自动重扫
+- **2026-09-18 全量重逆向**：以官方原版 `BackpackBattles.pck.bak`（clean v1.1.7）为真值重新解包——**9377/9377 个文件全部提取，MD5 逐条目校验零缺失**（旧轮仅 2852 个，缺 6530 个编译资源）
+- **820 个 GDEC 加密脚本全部解密**（AES-256-ECB，脚本密钥经游戏进程 hook 动态确认：`8671424952511006d39f4c9e918f821391e2b06a80d946d693fb8757154ce849`，GDSC 魔数 + 全文件 MD5 双重验证）+ `ItemData_e.csv` 解密（CSV 密钥 = 0..31 字节流第 5/12 字节 patch 为 0xC6/0xC3，解密 518 物品行 MD5 吻合）
+- **820/820 脚本反编译 + 3817 个资源全部转换成功、零失败**（`decompiled_full/`：.gd/.tscn/材质/翻译/着色器全文本可读）
+- 重要更正：旧轮 `decompiled_full` 是从被第三方 Mod（bpb_enhance v1.1.8）污染的游戏包反编译的（33 个文件含 Mod 注入代码：FREE ADD、normalizeSymmetricItems、Mod 服务器 URL 等）；本轮全部替换为**干净的官方 v1.1.7 源码**，`audit_item_effects` runtime_failures 由 3 降为 **0**
+- 内存布局活体标定：`OS::singleton` RVA 定位 → Godot 对象图遍历；密钥动态确认工具链：`tools/inject_gdec_hook.py`（注入 `gdec_hook.dll` → x64 绝对跳转 hook 至 RVA 0x1621820 → 启动解密风暴期间 50+ 次捕获 r8 参数候选 → 离线 GDSC+MD5 验证），密钥仅在启动加载脚本瞬间驻留内存（约 29ms 注入窗口内捕获）
 
 ### ② 外挂 AI（自动游玩）
 
@@ -45,9 +48,9 @@
 
 | 工具 | 作用 | 当前状态 |
 |------|------|----------|
-| `tools/verify_linkage.py` | 联动语义固定用例（Twine/Rope/药水信号/动态类型…） | 17/17 通过 |
+| `tools/verify_linkage.py` | 联动语义固定用例（Twine/Rope/药水信号/动态类型…） | 18/18 通过 |
 | `tools/verify_timing.py` | 冷却/暴击/疲劳逐帧时序回归 | 全部通过 |
-| `tools/audit_item_effects.py` | 源码→转译→运行时三层对账 | runtime_failures = 3（基线，已知数据缺口） |
+| `tools/audit_item_effects.py` | 源码→转译→运行时三层对账 | runtime_failures = 0（干净官方源码） |
 | `tools/regression_baseline.py` | 固定种子 56 场战斗指纹比对 | 无差异 |
 | `tools/repack_lineups.py` | 占格形状变更后内置阵容自动重摆 | 18 个阵容预检零冲突 |
 
@@ -61,7 +64,8 @@ simulator/                  # ★ 战斗模拟器（combat/item/behavior/effects
 └── build_data.py           # 从 wiki + 解包脚本生成 battle_items.json
 gui/                        # 外挂 AI 桌面 GUI（主窗口 + 深色主题）
 bridge/                     # 桥接注入（可选）
-decompiled_full/            # ★ 815 个反编译源码（Core/Items/Utility/…）
+decompiled_full/            # ★ 820 个反编译源码 + 全量恢复的场景/资源（clean v1.1.7）
+extracted/                  # ★ 原版 pck 全量原始提取（9377 文件，MD5 校验零缺失）
 assets/                     # 物品贴图、battle_items.json、角色数据、翻译表
 lineups/                    # 内置阵容 JSON；dist/lineups/ 另含游戏历史导出阵容
 examples/                   # 示例阵容
@@ -94,9 +98,25 @@ python battle_simulator.py
 # 输出 output/*_log.json（事件流）、*_result.json（胜负/统计/HP 曲线）、*_log.txt（可读日志）
 ```
 
-### v3 阵容格式
+### 阵容格式（v4 推荐，v3 兼容）
 
 ```jsonc
+// v4：平铺简洁；`in` 指向承载袋的数组下标（袋内联动显式化）
+{
+  "version": 4,
+  "name": "我的阵容",
+  "character": "Ranger",
+  "round": 12,
+  "grid": [8, 10],
+  "items": [
+    { "id": "Leather Bag", "at": [3, 3], "r": 0 },
+    { "id": "Bow and Arrow", "at": [3, 3], "r": 0, "in": 0, "gems": ["Chipped Ruby"] }
+  ]
+}
+```
+
+```jsonc
+// v3（仍完全兼容）：嵌套 contents
 {
   "version": 3,
   "meta": { "name": "...", "source": "...", "unknown_items": [] },

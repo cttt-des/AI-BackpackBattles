@@ -91,6 +91,9 @@ def find_neighbor(it: Item, color: int, db, errors: dict | None = None) -> str |
     for key in db:
         if key == it.key:
             continue
+        if (db[key].get('category') == 'bag' or 'bag' in (db[key].get('types') or [])):
+            continue   # 引擎真值：袋子占 bagCells，getAffectedItems 只查 filled 层，
+                       # 袋子永远不会成为受影响者（Item.gd isItemAffected 排除 isBag）
         try:
             cand = _mk_item(key, db)
             _light_ready(key, db[key], cand)
@@ -114,6 +117,8 @@ def find_inside_neighbor(bag: Item, db, errors: dict | None = None) -> str | Non
     for key in db:
         if key == bag.key:
             continue
+        if (db[key].get('category') == 'bag' or 'bag' in (db[key].get('types') or [])):
+            continue   # 袋中袋在背包格内不可摆放（canAddBag 查 bagCells）
         try:
             cand = _mk_item(key, db)
             _light_ready(key, db[key], cand)
