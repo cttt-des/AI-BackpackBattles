@@ -387,7 +387,6 @@ class CombatEngine:
         self.player.take_fatigue_damage(p_dmg, now)
         self.fatigue_interval = FATIGUE_TICK_FAST
         self.log.fatigue_damage(now, self.fatigue_counter, p_dmg, o_dmg)
-
     # ---------------- 结束 ----------------
     def _end_fight(self, winner: Optional[Character], reason: str):
         if self.fight_ended:

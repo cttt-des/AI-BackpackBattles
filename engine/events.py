@@ -76,8 +76,10 @@ class CombatLog:
     def fatigue_start(self, t: float):
         return self._emit("fatigue_start")
 
-    def fatigue_damage(self, t, actor, amount, origin=None):
-        return self._emit("fatigue_damage", actor=actor, params={"amount": amount})
+    def fatigue_damage(self, t, counter, p_amount, o_amount):
+        return self._emit("fatigue_damage", params={"counter": counter,
+                                                    "amount": p_amount,
+                                                    "o_amount": o_amount})
 
     # ---------------- 物品激活 ----------------
     def item_activate(self, t, actor, origin, params=None, parent=None):
@@ -189,20 +191,10 @@ class CombatLog:
                 for ev in self.events]
 
     def to_text(self, lang=None):
-        """简要可读战报（惰性渲染：仅在需要人类可读输出时调用）"""
-        lines = []
-        for ev in self.events:
-            actor = str(ev.actor) if ev.actor is not None else "-"
-            line = f"[{ev.t:7.2f}] {actor:10s} {ev.type}"
-            if ev.target is not None:
-                line += f" -> {ev.target}"
-            if ev.params:
-                line += f"  {ev.params}"
-            lines.append(line)
-        if self.warnings:
-            lines.append("")
-            lines.extend(f"WARN: {w}" for w in self.warnings)
-        return "\n".join(lines)
+        """按游戏 CombatLog 格式渲染（复刻 CombatEvent.asText()：
+        深度缩进 + LOG 模板 + 官方中文物品名；详见 engine/log_text.py）"""
+        from .log_text import render_log
+        return render_log(self.events, lang or "zh")
 
     def __getattr__(self, name):
         if name.startswith("_"):
