@@ -1,0 +1,381 @@
+{
+  "version": 3,
+  "meta": {
+    "name": "实时导出阵容",
+    "source": "gui_export",
+    "exported_at": "2026-08-22T11:24:59.534213",
+    "unknown_items": []
+  },
+  "character": "Adventurer",
+  "round": 9,
+  "class_modifiers": {
+    "health": 25.0,
+    "stamina": 5.0,
+    "stamina_regen": 1.0,
+    "gold": 13
+  },
+  "health_override": null,
+  "backpack": {
+    "grid": {
+      "rows": 7,
+      "cols": 10
+    },
+    "items": [
+      {
+        "id": "Engineer Box",
+        "row": 4,
+        "col": 1,
+        "rotation": 90,
+        "quantity": 1,
+        "container": true,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Fanny Pack",
+        "row": 2,
+        "col": 6,
+        "rotation": 0,
+        "quantity": 1,
+        "container": true,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Fanny Pack",
+        "row": 3,
+        "col": 6,
+        "rotation": 0,
+        "quantity": 1,
+        "container": true,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Fanny Pack",
+        "row": 2,
+        "col": 5,
+        "rotation": 90,
+        "quantity": 1,
+        "container": true,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Fanny Pack",
+        "row": 2,
+        "col": 4,
+        "rotation": 90,
+        "quantity": 1,
+        "container": true,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Leather Bag",
+        "row": 0,
+        "col": 6,
+        "rotation": 0,
+        "quantity": 1,
+        "container": true,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Leather Bag",
+        "row": 0,
+        "col": 4,
+        "rotation": 0,
+        "quantity": 1,
+        "container": true,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Leather Bag",
+        "row": 4,
+        "col": 4,
+        "rotation": 0,
+        "quantity": 1,
+        "container": true,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Leather Bag",
+        "row": 4,
+        "col": 6,
+        "rotation": 0,
+        "quantity": 1,
+        "container": true,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Leather Bag",
+        "row": 2,
+        "col": 2,
+        "rotation": 0,
+        "quantity": 1,
+        "container": true,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Leather Bag",
+        "row": 2,
+        "col": 0,
+        "rotation": 0,
+        "quantity": 1,
+        "container": true,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Potion Belt",
+        "row": 1,
+        "col": 0,
+        "rotation": 270,
+        "quantity": 1,
+        "container": true,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Banana",
+        "row": 0,
+        "col": 6,
+        "rotation": 180,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Banana",
+        "row": 3,
+        "col": 6,
+        "rotation": 0,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Battery",
+        "row": 5,
+        "col": 1,
+        "rotation": 90,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Battery",
+        "row": 5,
+        "col": 2,
+        "rotation": 90,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Blueberries",
+        "row": 2,
+        "col": 7,
+        "rotation": 0,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Blueberries",
+        "row": 4,
+        "col": 5,
+        "rotation": 0,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Blueberries",
+        "row": 4,
+        "col": 4,
+        "rotation": 0,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Blueberries",
+        "row": 4,
+        "col": 3,
+        "rotation": 0,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Coil",
+        "row": 5,
+        "col": 5,
+        "rotation": 0,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Customer Card",
+        "row": 0,
+        "col": 4,
+        "rotation": 0,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Eggscalibur",
+        "row": 2,
+        "col": 4,
+        "rotation": 0,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": [
+          {
+            "id": "Corrupted Crystal"
+          }
+        ]
+      },
+      {
+        "id": "Energy Conversion",
+        "row": 3,
+        "col": 7,
+        "rotation": 90,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Garlic",
+        "row": 0,
+        "col": 5,
+        "rotation": 0,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Garlic",
+        "row": 1,
+        "col": 4,
+        "rotation": 0,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Mana Crystal",
+        "row": 3,
+        "col": 3,
+        "rotation": 0,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Mana Orb",
+        "row": 1,
+        "col": 6,
+        "rotation": 0,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Piggybank",
+        "row": 5,
+        "col": 6,
+        "rotation": 180,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Piggybank",
+        "row": 4,
+        "col": 1,
+        "rotation": 180,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Piggybank",
+        "row": 2,
+        "col": 2,
+        "rotation": 0,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Piggybank",
+        "row": 3,
+        "col": 1,
+        "rotation": 0,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Resistor",
+        "row": 5,
+        "col": 3,
+        "rotation": 0,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Resistor",
+        "row": 5,
+        "col": 4,
+        "rotation": 0,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Stone Skin Potion",
+        "row": 1,
+        "col": 2,
+        "rotation": 270,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": []
+      }
+    ]
+  },
+  "storage": []
+}

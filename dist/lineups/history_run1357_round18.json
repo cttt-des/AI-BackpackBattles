@@ -1,0 +1,516 @@
+{
+  "version": 3,
+  "meta": {
+    "name": "历史记录 Run 1357 Round 18",
+    "source": "game_history",
+    "run_id": 1357,
+    "history_version": "1.1.8"
+  },
+  "character": "Adventurer",
+  "round": 18,
+  "class_modifiers": {
+    "stamina": 7
+  },
+  "health_override": 350,
+  "backpack": {
+    "grid": {
+      "rows": 10,
+      "cols": 10
+    },
+    "items": [
+      {
+        "id": "Potion Belt",
+        "row": 0,
+        "col": 8,
+        "rotation": 0,
+        "quantity": 1,
+        "container": true,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Dragon Knight",
+        "row": 2,
+        "col": 3,
+        "rotation": 180,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": [
+          {
+            "id": "Chipped Topaz"
+          },
+          null
+        ]
+      },
+      {
+        "id": "Twine",
+        "row": 2,
+        "col": 2,
+        "rotation": 0,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Twine",
+        "row": 3,
+        "col": 2,
+        "rotation": 0,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Light Goobert",
+        "row": 0,
+        "col": 4,
+        "rotation": 90,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Pumpkin",
+        "row": 3,
+        "col": 7,
+        "rotation": 0,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": [
+          {
+            "id": "Flawed Topaz"
+          },
+          {
+            "id": "Regular Topaz"
+          }
+        ]
+      },
+      {
+        "id": "Twine",
+        "row": 3,
+        "col": 5,
+        "rotation": 270,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Twine",
+        "row": 2,
+        "col": 5,
+        "rotation": 180,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Fedora",
+        "row": 4,
+        "col": 6,
+        "rotation": 90,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Evil Cap",
+        "row": 2,
+        "col": 6,
+        "rotation": 0,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": [
+          {
+            "id": "Chipped Ruby"
+          }
+        ]
+      },
+      {
+        "id": "Falcon Blade",
+        "row": 6,
+        "col": 3,
+        "rotation": 90,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Oil Lamp",
+        "row": 5,
+        "col": 3,
+        "rotation": 90,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Poison Goobert",
+        "row": 0,
+        "col": 2,
+        "rotation": 90,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Jynx torquilla",
+        "row": 3,
+        "col": 0,
+        "rotation": 0,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Goobling",
+        "row": 4,
+        "col": 5,
+        "rotation": 180,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Obsidian Dragon",
+        "row": 5,
+        "col": 0,
+        "rotation": 270,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Amulet of Life",
+        "row": 2,
+        "col": 1,
+        "rotation": 0,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Evil Cap",
+        "row": 2,
+        "col": 0,
+        "rotation": 0,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": [
+          {
+            "id": "Corrupted Crystal"
+          }
+        ]
+      },
+      {
+        "id": "Badger Spirit",
+        "row": 1,
+        "col": 0,
+        "rotation": 0,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Mana Orb",
+        "row": 4,
+        "col": 2,
+        "rotation": 270,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Magic Ring",
+        "row": 0,
+        "col": 6,
+        "rotation": 0,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": [],
+        "persistent_data": "Sv"
+      },
+      {
+        "id": "Sloth",
+        "row": 0,
+        "col": 7,
+        "rotation": 180,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Speak with Animals",
+        "row": 5,
+        "col": 5,
+        "rotation": 270,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Sewing Case",
+        "row": 3,
+        "col": 2,
+        "rotation": 90,
+        "quantity": 1,
+        "container": true,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Fanny Pack",
+        "row": 4,
+        "col": 4,
+        "rotation": 90,
+        "quantity": 1,
+        "container": true,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Fanny Pack",
+        "row": 3,
+        "col": 4,
+        "rotation": 180,
+        "quantity": 1,
+        "container": true,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Fanny Pack",
+        "row": 2,
+        "col": 4,
+        "rotation": 180,
+        "quantity": 1,
+        "container": true,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Fanny Pack",
+        "row": 2,
+        "col": 2,
+        "rotation": 0,
+        "quantity": 1,
+        "container": true,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Fanny Pack",
+        "row": 0,
+        "col": 6,
+        "rotation": 180,
+        "quantity": 1,
+        "container": true,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Leather Bag",
+        "row": 0,
+        "col": 0,
+        "rotation": 0,
+        "quantity": 1,
+        "container": true,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Leather Bag",
+        "row": 0,
+        "col": 2,
+        "rotation": 0,
+        "quantity": 1,
+        "container": true,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Leather Bag",
+        "row": 0,
+        "col": 4,
+        "rotation": 0,
+        "quantity": 1,
+        "container": true,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Leather Bag",
+        "row": 1,
+        "col": 6,
+        "rotation": 0,
+        "quantity": 1,
+        "container": true,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Leather Bag",
+        "row": 3,
+        "col": 6,
+        "rotation": 0,
+        "quantity": 1,
+        "container": true,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Leather Bag",
+        "row": 5,
+        "col": 5,
+        "rotation": 0,
+        "quantity": 1,
+        "container": true,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Protective Purse",
+        "row": 4,
+        "col": 5,
+        "rotation": 0,
+        "quantity": 1,
+        "container": true,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Protective Purse",
+        "row": 6,
+        "col": 4,
+        "rotation": 0,
+        "quantity": 1,
+        "container": true,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Protective Purse",
+        "row": 3,
+        "col": 2,
+        "rotation": 0,
+        "quantity": 1,
+        "container": true,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Potion Belt",
+        "row": 2,
+        "col": 0,
+        "rotation": 0,
+        "quantity": 1,
+        "container": true,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Stamina Sack",
+        "row": 6,
+        "col": 0,
+        "rotation": 90,
+        "quantity": 1,
+        "container": true,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Stamina Sack",
+        "row": 3,
+        "col": 1,
+        "rotation": 0,
+        "quantity": 1,
+        "container": true,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Protective Purse",
+        "row": 2,
+        "col": 1,
+        "rotation": 0,
+        "quantity": 1,
+        "container": true,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Leather Bag",
+        "row": 5,
+        "col": 7,
+        "rotation": 0,
+        "quantity": 1,
+        "container": true,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Protective Purse",
+        "row": 4,
+        "col": 8,
+        "rotation": 0,
+        "quantity": 1,
+        "container": true,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Regular Amethyst",
+        "row": 2,
+        "col": 8,
+        "rotation": 0,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": []
+      },
+      {
+        "id": "Magic Ring",
+        "row": 1,
+        "col": 6,
+        "rotation": 0,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": [],
+        "persistent_data": "TW"
+      },
+      {
+        "id": "Time Melting",
+        "row": 2,
+        "col": 7,
+        "rotation": 90,
+        "quantity": 1,
+        "container": false,
+        "contents": [],
+        "gems": []
+      }
+    ]
+  },
+  "storage": []
+}
