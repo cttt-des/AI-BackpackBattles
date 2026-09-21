@@ -624,7 +624,8 @@ class Character:
         self.stats["healing_done"] += amount
 
         if self.log:
-            self.log.heal(now, self.name(), amount, overheal, origin)
+            self.log.heal(now, self.name(), amount, origin=origin,
+                          overheal=overheal)
             if overheal > 0:
                 self.emit_signal('character_overhealed', overheal, trigger_event)
 
@@ -729,8 +730,8 @@ class Character:
                                 amount, permanent, duration, None, resisted,
                                 reflected, protected, buff_type)
         else:
-            self.log.stack_lose(now, target_name, target_name, origin, name,
-                                amount, buff_type=buff_type)
+            self.log.stack_lose(now, target_name, name, amount,
+                                origin=origin, buff_type=buff_type)
 
     def get_stacks(self, buff_type: int) -> int:
         return self.buffs[buff_type].get_stacks()
@@ -1131,8 +1132,9 @@ class Character:
         self.stunned_duration = max(self.stunned_duration, duration)
         if self.log:
             self.log.stun(getattr(trigger_event, 't', self.log.current_time),
+                          self.name(),
                           self.opponent.name() if self.opponent else None,
-                          self.name(), duration, item.key if item else None)
+                          duration, item.key if item else None)
         self.emit_signal('character_stunned', trigger_event)
         return True
 
