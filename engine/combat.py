@@ -301,6 +301,9 @@ class CombatEngine:
         self.combat_time = self.tick_counter * DELTA
         now = self.combat_time
         self.log.current_time = now
+        # Util.time 物理时钟：visual_activate 同帧限流（Item.gd 4697-4702）等
+        # 依赖它判"同一帧"——不推进则限流计数永不重置，第 5 次激活起信号全被吞
+        self.ctx.time = now
 
         # 1. 物品冷却（每物品独立 _physics_process）
         for it in self.ordered_items:
