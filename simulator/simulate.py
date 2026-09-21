@@ -20,9 +20,56 @@ import sys
 import time
 from typing import Dict, List, Optional
 
-from .combat import CombatEngine
 from .data import load_items, load_characters
 from .lineup import load_lineup, LineupError, resolve_items
+
+# 战斗内核：默认新引擎 engine/（fail-fast + 惰性日志）；--engine simulator
+# 可回退旧内核（回归对照用）。两引擎 CombatEngine 构造/run/summary/result_json 面一致。
+ENGINES = ("engine", "simulator")
+DEFAULT_ENGINE = "engine"
+
+
+def _get_combat_engine(name: str = DEFAULT_ENGINE):
+    if name == "engine":
+        from engine.combat import CombatEngine
+        from engine.data import load_items as _li, load_characters as _lc
+        return CombatEngine, _li, _lc
+    from .combat import CombatEngine
+    return CombatEngine, load_items, load_characters
+
+
+def _log_events(eng) -> List[dict]:
+    """统一两内核事件视图（新内核惰性 record 列表无 to_dict）"""
+    log = eng.log
+    events = getattr(log, "events", None)
+    if isinstance(events, list) and events and hasattr(events[0], "type"):
+        # 新内核：dataclass record 列表
+        return [{"t": ev.t, "type": ev.type, "actor": ev.actor, "target": ev.target,
+                 "params": dict(getattr(ev, "params", {}) or {})}
+                for ev in events]
+    data = log.to_dict() if hasattr(log, "to_dict") else None
+    if data is None:
+        return []
+    return data if isinstance(data, list) else data.get("events", [])
+
+
+def _log_text(eng, lang: Optional[str]) -> str:
+    """人类可读战报：旧内核文本渲染；新内核由事件流生成简要战报"""
+    log = eng.log
+    events = getattr(log, "events", None)
+    is_lazy = isinstance(events, list) and (not events or hasattr(events[0], "type"))
+    if not is_lazy and hasattr(log, "to_text"):
+        return log.to_text(lang or "en")
+    lines = []
+    for ev in (events or []):
+        actor = str(getattr(ev, 'actor', None) or '-')
+        tgt = getattr(ev, 'target', None)
+        lines.append(f"[{getattr(ev, 't', 0):7.2f}] {actor:8s} {getattr(ev, 'type', '?')}"
+                     + (f" -> {tgt}" if tgt else ""))
+    if getattr(log, "warnings", None):
+        lines.append("")
+        lines.extend(f"WARN: {w}" for w in log.warnings)
+    return "\n".join(lines)
 
 
 def _out_basename(player_path: str, opponent_path: str) -> str:
@@ -32,7 +79,9 @@ def _out_basename(player_path: str, opponent_path: str) -> str:
 
 
 def simulate_once(player_path: str, opponent_path: str, item_db, character_db,
-                  seed: Optional[int], max_time: float = 90.0) -> CombatEngine:
+                  seed: Optional[int], max_time: float = 90.0,
+                  engine: str = DEFAULT_ENGINE) -> "CombatEngine":
+    CombatEngine = _get_combat_engine(engine)[0]
     player = load_lineup(player_path)
     opponent = load_lineup(opponent_path)
     eng = CombatEngine(player, opponent, item_db, character_db,
@@ -41,7 +90,7 @@ def simulate_once(player_path: str, opponent_path: str, item_db, character_db,
     return eng
 
 
-def save_outputs(eng: CombatEngine, player_path: str, opponent_path: str,
+def save_outputs(eng: "CombatEngine", player_path: str, opponent_path: str,
                  outdir: str, seed: Optional[int], lang: Optional[str] = None):
     os.makedirs(outdir, exist_ok=True)
     base = _out_basename(player_path, opponent_path)
@@ -69,7 +118,7 @@ def save_outputs(eng: CombatEngine, player_path: str, opponent_path: str,
                          "stamina": eng.opponent.get_max_stamina(),
                          "items": [it.key for it in eng.opponent_items]},
         },
-        "events": eng.log.to_dict(),
+        "events": _log_events(eng),
     }
     with open(log_json_path, 'w', encoding='utf-8') as f:
         json.dump(log_data, f, ensure_ascii=False, indent=2)
@@ -80,7 +129,7 @@ def save_outputs(eng: CombatEngine, player_path: str, opponent_path: str,
         json.dump(result, f, ensure_ascii=False, indent=2)
 
     # 人类可读日志
-    txt = eng.log.to_text(lang)
+    txt = _log_text(eng, lang)
     with open(log_txt_path, 'w', encoding='utf-8') as f:
         f.write(txt + "\n")
 
@@ -95,9 +144,12 @@ def main(argv: Optional[List[str]] = None) -> int:
     ap.add_argument('--outdir', default='output', help='输出目录（默认 output/）')
     ap.add_argument('--runs', type=int, default=1, help='模拟场数（>1 为蒙特卡洛，只输出统计）')
     ap.add_argument('--max-time', type=float, default=90.0, help='最大战斗时长（秒）')
+    ap.add_argument('--engine', choices=ENGINES, default=DEFAULT_ENGINE,
+                    help='战斗内核：engine=新（默认），simulator=旧（回归对照）')
     ap.add_argument('--verbose', action='store_true', help='打印详细结果')
     args = ap.parse_args(argv)
 
+    _, load_items, load_characters = _get_combat_engine(args.engine)
     item_db = load_items()
     character_db = load_characters()
 
@@ -121,9 +173,8 @@ def main(argv: Optional[List[str]] = None) -> int:
     last_eng = None
     for run in range(args.runs):
         seed = args.seed + run if args.seed is not None else None
-        eng = CombatEngine(player_lineup, opponent_lineup, item_db, character_db,
-                           seed=seed, max_time=args.max_time)
-        eng.run()
+        eng = simulate_once(args.player, args.opponent, item_db, character_db,
+                            seed, args.max_time, engine=args.engine)
         last_eng = eng
         if eng.player_wins():
             wins += 1
@@ -150,7 +201,7 @@ def main(argv: Optional[List[str]] = None) -> int:
             print(f"📄 人类可读日志: {txt_path}")
             if args.verbose:
                 print(f"\n--- 战斗过程 ---")
-                print(eng.log.to_text())
+                print(_log_text(eng, None))
 
     if args.runs > 1:
         print(f"\n=== {args.runs} 场统计 ===")
