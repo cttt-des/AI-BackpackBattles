@@ -39,37 +39,17 @@ def _get_combat_engine(name: str = DEFAULT_ENGINE):
 
 
 def _log_events(eng) -> List[dict]:
-    """统一两内核事件视图（新内核惰性 record 列表无 to_dict）"""
-    log = eng.log
-    events = getattr(log, "events", None)
-    if isinstance(events, list) and events and hasattr(events[0], "type"):
-        # 新内核：dataclass record 列表
-        return [{"t": ev.t, "type": ev.type, "actor": ev.actor, "target": ev.target,
-                 "params": dict(getattr(ev, "params", {}) or {})}
-                for ev in events]
-    data = log.to_dict() if hasattr(log, "to_dict") else None
+    """统一两内核事件视图（两引擎 log 均实现 to_dict）"""
+    data = eng.log.to_dict()
     if data is None:
         return []
     return data if isinstance(data, list) else data.get("events", [])
 
 
 def _log_text(eng, lang: Optional[str]) -> str:
-    """人类可读战报：旧内核文本渲染；新内核由事件流生成简要战报"""
-    log = eng.log
-    events = getattr(log, "events", None)
-    is_lazy = isinstance(events, list) and (not events or hasattr(events[0], "type"))
-    if not is_lazy and hasattr(log, "to_text"):
-        return log.to_text(lang or "en")
-    lines = []
-    for ev in (events or []):
-        actor = str(getattr(ev, 'actor', None) or '-')
-        tgt = getattr(ev, 'target', None)
-        lines.append(f"[{getattr(ev, 't', 0):7.2f}] {actor:8s} {getattr(ev, 'type', '?')}"
-                     + (f" -> {tgt}" if tgt else ""))
-    if getattr(log, "warnings", None):
-        lines.append("")
-        lines.extend(f"WARN: {w}" for w in log.warnings)
-    return "\n".join(lines)
+    """人类可读战报（两引擎 log 均实现 to_text）"""
+    txt = eng.log.to_text(lang or "en")
+    return txt if txt is not None else ""
 
 
 def _out_basename(player_path: str, opponent_path: str) -> str:

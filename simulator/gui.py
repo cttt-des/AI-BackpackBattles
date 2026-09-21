@@ -343,7 +343,7 @@ class BattleSimulatorGUI:
                 if eng.player_wins():
                     wins += 1
                 if runs == 1:
-                    self._append_log(eng.log.to_text(lang))
+                    self._append_log(sim._log_text(eng, lang))
                     self.root.after(0, self._show_result, eng, None)
                 else:
                     self.root.after(0, self._append_progress, run + 1, runs,

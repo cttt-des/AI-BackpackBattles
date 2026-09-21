@@ -180,9 +180,35 @@ class CombatLog:
     def addMetric(self, *a, **k):
         self.stubs.hit("combatLog_metric.addMetric")
 
+    # ---------------- 输出面（对齐旧 CombatLog.to_dict/to_text 消费方） ----------------
+    def to_dict(self):
+        """事件列表（dict 视图）。GUI/工具直接消费返回值——不可返回 None。"""
+        return [{"t": ev.t, "type": ev.type, "actor": ev.actor,
+                 "target": ev.target,
+                 "params": dict(ev.params or {})}
+                for ev in self.events]
+
+    def to_text(self, lang=None):
+        """简要可读战报（惰性渲染：仅在需要人类可读输出时调用）"""
+        lines = []
+        for ev in self.events:
+            actor = str(ev.actor) if ev.actor is not None else "-"
+            line = f"[{ev.t:7.2f}] {actor:10s} {ev.type}"
+            if ev.target is not None:
+                line += f" -> {ev.target}"
+            if ev.params:
+                line += f"  {ev.params}"
+            lines.append(line)
+        if self.warnings:
+            lines.append("")
+            lines.extend(f"WARN: {w}" for w in self.warnings)
+        return "\n".join(lines)
+
     def __getattr__(self, name):
         if name.startswith("_"):
             raise AttributeError(name)
         # 未在类上显式实现的日志方法：登记可见的桩（而非静默 _Noop 或报错）
+        # 注意：仅限「调用即丢弃」语义的快照/度量方法；有返回值消费方
+        # （to_text/to_dict 类）必须在类上真实实现
         self.stubs.hit(f"combatLog.{name}")
         return lambda *a, **k: None
