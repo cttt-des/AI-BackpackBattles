@@ -1,2 +1,4 @@
+# 脚本密钥（.gde / GDEC 容器）— AES-256-ECB
+# 2026-09-18 全量重逆向：对 BackpackBattles.pck.bak（官方 v1.1.7）820 个 .gde
+# 全部解密成功（GDSC 魔数 + 内嵌 MD5 全部校验通过）。
 8671424952511006d39f4c9e918f821391e2b06a80d946d693fb8757154ce849
-# 脚本密钥（.gde 加密）— AES-256-ECB
