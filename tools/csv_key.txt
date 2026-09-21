@@ -1,3 +1,6 @@
+# CSV 密钥（Sheets/CSV/ItemData_e.csv）— AES-256-ECB，GDEC 容器同脚本
+# 密钥 = 0x00..0x1F 基础上，0 起算第 5 字节改 0xC6、第 12 字节改 0xC3
+# （即 1 起算第 6、13 字节）。出货 csv 是旧版工具用此密钥加密；
+# 当前反编译源码 Sheets/ItemBook.gd 的 sheetKey 仅为朴素的 0..31。
+# 2026-09-18 验证：解密 80801 字节明文，MD5 与 GDEC 头完全一致（518 物品行）。
 0001020304c6060708090a0bc30d0e0f101112131415161718191a1b1c1d1e1f
-# CSV 密钥（Sheets/CSV/ItemData_e.csv 等）— AES-256-ECB
-# 真实运行时密钥（与反编译的 00..1f 不同：第 5、13 字节为 0xc6/0xc3）
