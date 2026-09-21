@@ -99,6 +99,9 @@ func updateText():
 	if "bbcode_text" in self and get("bbcode_enabled"):
 		var newText = Util.tra(translationKey)
 		
+		if newText == "" and get("bbcode_text") != "":
+			return
+		
 		if removeBreaks:
 			newText = newText.replace("\n", "")
 		if capslock:
@@ -115,6 +118,9 @@ func updateText():
 	elif "text" in self:
 		
 		var newText = Util.tra(translationKey)
+		
+		if newText == "" and get("text") != "":
+			return
 		
 		if removeBreaks:
 			newText = newText.replace("\n", "")

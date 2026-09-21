@@ -11,9 +11,13 @@ var suffixes: = {
 	CustomRules.Rules.BonusTreasures: "%"
 }
 onready var cannotPickBagsCheckbox = $CannotPickBags / Checkbox
+onready var teamSwitchModeCheckbox = $TeamSwitchMode / Checkbox
 
 func _ready():
 	for entry in get_children():
+		
+		if not entry.name in CustomRules.Rules:
+			continue
 		var rule: int = CustomRules.Rules[entry.name]
 		for child in entry.get_children():
 			if child.name == "Value":
@@ -26,11 +30,23 @@ func _ready():
 				slider.step = CustomRules.STEP[rule]
 				slider.connect("value_changed", self, "onValueChanged", [rule])
 	
-	cannotPickBagsCheckbox.connect("toggled", self, "onCannotPickBagsToggled")
-	cannotPickBagsCheckbox.set_pressed_no_signal(CustomRules.getCannotPickBags())
+	
+	
+	
+	
+	teamSwitchModeCheckbox.connect("toggled", self, "onTeamSwitchModeToggled")
+	teamSwitchModeCheckbox.set_pressed_no_signal(CustomRules.isTeamSwitchMode())
+	
+	
+	
 
 func onCannotPickBagsToggled(state):
 	CustomRules.setCannotPickBags(state)
+	emit_signal("rules_changed")
+
+func onTeamSwitchModeToggled(state):
+	print("[CustomRulesInput] onTeamSwitchModeToggled state=", state)
+	CustomRules.setTeamSwitchMode(CustomRules.TeamSwitchModeState.On if state else CustomRules.TeamSwitchModeState.Off)
 	emit_signal("rules_changed")
 
 func onOpen():
@@ -38,6 +54,9 @@ func onOpen():
 		sliders[rule].set_value_no_signal(CustomRules.getRuleValue(rule))
 	for rule in labels:
 		updateLabel(rule)
+	
+	
+	teamSwitchModeCheckbox.set_pressed_no_signal(CustomRules.isTeamSwitchMode())
 
 func updateLabel(rule: int):
 	var valStr: String

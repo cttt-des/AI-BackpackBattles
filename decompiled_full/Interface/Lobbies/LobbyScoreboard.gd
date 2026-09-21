@@ -1,5 +1,7 @@
 extends ResizableControl
 
+signal ob_entry_pressed(steamId)
+
 const memberLine = preload("res://Interface/Lobbies/LobbyScoreboardEntry.tscn")
 onready var memberContainer = $ScrollContainer / VBoxContainer
 onready var scrollContainer = $ScrollContainer
@@ -42,6 +44,7 @@ func addMember(steamId):
 	memberContainer.add_child(line)
 	memberEntries[steamId] = line
 	line.setPlayerId(steamId)
+	line.connect("ob_entry_pressed", self, "onObEntryPressed")
 
 func removeMember(steamId):
 	var entry = memberEntries[steamId]
@@ -84,3 +87,6 @@ func onScrollbarVisibilityChanged():
 
 func canDrag():
 	return .canDrag() and not scrollContainer.scrollbarHovered
+
+func onObEntryPressed(steamId):
+	emit_signal("ob_entry_pressed", steamId)

@@ -1,0 +1,79 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Items/Item.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Items/Crossblades.gd" type="Script" id=2]
+[ext_resource path="res://Items/Sprites/Crossblades.png" type="Texture" id=3]
+[ext_resource path="res://Items/GemSocket.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Particles/GlowingDot_small.png" type="Texture" id=5]
+[ext_resource path="res://Utility/AutoHideParticles.gd" type="Script" id=6]
+[ext_resource path="res://Items/Particles/CrossbladesDragParticles.material" type="Material" id=7]
+
+[sub_resource type="PhysicsMaterial" id=1]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="Shader" id=10]
+code = "shader_type canvas_item;
+
+uniform float progress : hint_range(-1, 2) = 0.5;
+uniform vec2 direction = vec2(0, 1);
+
+void fragment() {
+	COLOR = texture(TEXTURE, UV);
+	COLOR.rgb *= 1.0 + 0.5 * smoothstep(progress - 0.05, progress + 0.05, dot(UV, direction));
+}"
+
+[sub_resource type="ShaderMaterial" id=11]
+resource_local_to_scene = true
+shader = SubResource( 10 )
+shader_param/progress = 0.245
+shader_param/direction = Vector2( -1, 0 )
+
+[node name="Crossblades" instance=ExtResource( 1 )]
+physics_material_override = SubResource( 1 )
+script = ExtResource( 2 )
+
+[node name="CollisionMap" parent="." index="0"]
+position = Vector2( 40, -40 )
+tile_data = PoolIntArray( -65537, 4, 0, -1, 3, 0, 65534, 3, 0, 65535, 3, 0, 0, 3, 0, 1, 6, 0, 131071, 3, 0 )
+
+[node name="Icon" parent="." index="1"]
+material = SubResource( 11 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+
+[node name="SpecificDragParticles" type="Particles2D" parent="Icon" index="0"]
+self_modulate = Color( 3, 3, 3, 0.82 )
+position = Vector2( -240, -238 )
+scale = Vector2( 25, 25 )
+emitting = false
+amount = 20
+lifetime = 0.7
+local_coords = false
+process_material = ExtResource( 7 )
+texture = ExtResource( 5 )
+script = ExtResource( 6 )
+
+[node name="Sockets" parent="Icon" index="1"]
+scale = Vector2( 2, 2 )
+
+[node name="GemSocket" parent="Icon/Sockets" index="0" instance=ExtResource( 4 )]
+position = Vector2( 1, -76 )
+
+[node name="GemSocket2" parent="Icon/Sockets" index="1" instance=ExtResource( 4 )]
+position = Vector2( 79, -1 )
+
+[node name="GemSocket3" parent="Icon/Sockets" index="2" instance=ExtResource( 4 )]
+position = Vector2( 1, 0 )
+
+[node name="CollisionPolygon2D" parent="ClickArea" index="0"]
+polygon = PoolVector2Array( -40, -120, 40, -120, 40, -40, 120, -40, 120, 40, 40, 40, 40, 128, -40, 128, -40, 40, -120, 40, -120, -40, -40, -40 )
+
+[node name="BottomCenter" parent="." index="3"]
+position = Vector2( 1, 120 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="5"]
+visible = false
+position = Vector2( 0, -5 )
+polygon = PoolVector2Array( 11, -117, -7, -117, -21, -44, -123.3, -3.1, -122.4, 12.2, -44, 51, -9, 125, 12.6, 124.7, 66, 19, 127, 10, 126, -2, 26, -13 )

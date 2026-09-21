@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Interface/EmptyStylebox.tres" type="StyleBox" id=1]
+[ext_resource path="res://Assets/Fonts/Milonga-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Interface/WishlistButton.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=3]
+size = 40
+outline_size = 3
+outline_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+use_filter = true
+extra_spacing_bottom = -14
+font_data = ExtResource( 2 )
+
+[node name="WishlistButton" type="Button"]
+margin_left = -149.0
+margin_top = -56.0
+margin_right = 149.0
+margin_bottom = 65.0
+rect_min_size = Vector2( 298, 0 )
+mouse_default_cursor_shape = 2
+custom_colors/font_color_disabled = Color( 1, 0.92549, 0.831373, 1 )
+custom_colors/font_color_focus = Color( 1, 0.890196, 0.215686, 1 )
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_colors/font_color_hover = Color( 1, 0.890196, 0.215686, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.92549, 0.831373, 1 )
+custom_fonts/font = SubResource( 3 )
+custom_styles/focus = ExtResource( 1 )
+flat = true
+script = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = -1.0
+margin_top = 1.0
+margin_right = 304.0
+margin_bottom = 99.0
+rect_min_size = Vector2( 305, 0 )
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_colors/font_color_shadow = Color( 0.235294, 0.14902, 0.113725, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 3
+custom_fonts/font = SubResource( 3 )
+text = "Wishlist the full version!"
+align = 1
+valign = 1
+autowrap = true
+
+[connection signal="mouse_entered" from="." to="." method="onHover"]
+[connection signal="mouse_exited" from="." to="." method="onHoverEnd"]

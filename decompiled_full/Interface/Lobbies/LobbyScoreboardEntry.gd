@@ -89,5 +89,11 @@ func onRoundDataReceived(roundNum):
 	if roundNum == Game.curRound:
 		statusIcon.texture = checkmark
 
+signal ob_entry_pressed(steamId)
+
+func onObButtonPressed():
+	if memberData != null and memberData.fightsFinished > 0:
+		emit_signal("ob_entry_pressed", steamId)
+
 func onKickButtonPressed():
 	RunDatabase.lobbies.kickMember(steamId)

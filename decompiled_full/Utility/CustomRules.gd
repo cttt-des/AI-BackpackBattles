@@ -19,13 +19,19 @@ enum Rules{
 	SalesChance = 5, 
 	TradeChance = 6, 
 	CannotPickBags = 7, 
-	SwitchMode = 8
+	SwitchMode = 8, 
+	TeamSwitchMode = 9
 }
 
 enum SwitchModeState{
 	Off = 0, 
 	Unranked = 1, 
 	Ranked = 2
+}
+
+enum TeamSwitchModeState{
+	Off = 0, 
+	On = 1
 }
 
 const DEFAULTS = {
@@ -37,7 +43,8 @@ const DEFAULTS = {
 	Rules.SalesChance: 0, 
 	Rules.TradeChance: 0, 
 	Rules.CannotPickBags: false, 
-	Rules.SwitchMode: SwitchModeState.Off
+	Rules.SwitchMode: SwitchModeState.Off, 
+	Rules.TeamSwitchMode: TeamSwitchModeState.Off
 }
 
 const MIN = {
@@ -47,7 +54,8 @@ const MIN = {
 	Rules.TreasureLimit: - 1, 
 	Rules.SalesChance: - 10, 
 	Rules.TradeChance: 0, 
-	Rules.SwitchMode: SwitchModeState.Off
+	Rules.SwitchMode: SwitchModeState.Off, 
+	Rules.TeamSwitchMode: TeamSwitchModeState.Off
 }
 
 const MAX = {
@@ -57,7 +65,8 @@ const MAX = {
 	Rules.TreasureLimit: 10, 
 	Rules.SalesChance: 100, 
 	Rules.TradeChance: 100, 
-	Rules.SwitchMode: SwitchModeState.Ranked
+	Rules.SwitchMode: SwitchModeState.Ranked, 
+	Rules.TeamSwitchMode: TeamSwitchModeState.On
 }
 
 const STEP = {
@@ -67,10 +76,12 @@ const STEP = {
 	Rules.TreasureLimit: 1, 
 	Rules.SalesChance: 5, 
 	Rules.TradeChance: 5, 
-	Rules.SwitchMode: 1
+	Rules.SwitchMode: 1, 
+	Rules.TeamSwitchMode: 1
 }
 
 var customRulesActive: = false
+var sandboxMode: bool = false
 
 var values: Dictionary
 
@@ -129,7 +140,7 @@ func serialize() -> String:
 	bitStream.push(getCannotPickBags(), 2)
 	
 	pushRule(Rules.SwitchMode, bitStream)
-	
+	pushRule(Rules.TeamSwitchMode, bitStream)
 	
 	return bitStream.toGodotString()
 
@@ -150,10 +161,19 @@ func fromString(serialized: String):
 	pullRule(Rules.SwitchMode, bitStream)
 	
 	
+	var teamSwitchVal = pullRule_noSet(Rules.TeamSwitchMode, bitStream)
+	if teamSwitchVal >= 0:
+		values[Rules.TeamSwitchMode] = teamSwitchVal
+	else:
+		values[Rules.TeamSwitchMode] = DEFAULTS[Rules.TeamSwitchMode]
+	
 	customRulesActive = true
 
 
 func isSwitchModeNoLoad(serialized: String) -> int:
+	if serialized == "":
+		return SwitchModeState.Off
+
 	var bitStream = BitStream.new()
 	bitStream.fromGodotString(serialized)
 	
@@ -165,12 +185,32 @@ func isSwitchModeNoLoad(serialized: String) -> int:
 	return pullRule_noSet(Rules.SwitchMode, bitStream)
 
 
+func isTeamSwitchModeNoLoad(serialized: String) -> int:
+	if serialized == "":
+		return TeamSwitchModeState.Off
+
+	var bitStream = BitStream.new()
+	bitStream.fromGodotString(serialized)
+	
+	bitStream.pull(Game.Leagues.size())
+	for rule in range(Rules.BonusGold, Rules.TradeChance + 1):
+		pullRule_noSet(rule, bitStream)
+	bitStream.pull(2)
+	
+	pullRule_noSet(Rules.SwitchMode, bitStream)
+	var val = pullRule_noSet(Rules.TeamSwitchMode, bitStream)
+	if val < 0:
+		return TeamSwitchModeState.Off
+	return val
+
+
 
 func reset():
 	Util.eprint("Resetting custom rules")
 	for rule in Rules.values():
 		values[rule] = DEFAULTS[rule]
 	customRulesActive = false
+	sandboxMode = false
 
 
 func setLeagueToMatch(league):
@@ -197,6 +237,27 @@ func isSwitchMode() -> bool:
 
 func isRankedSwitchMode() -> bool:
 	return values[Rules.SwitchMode] == SwitchModeState.Ranked
+
+func setTeamSwitchMode(state: int):
+	print("[CustomRules] setTeamSwitchMode called, state=", state, " prev=", values.get(Rules.TeamSwitchMode, "N/A"))
+	values[Rules.TeamSwitchMode] = state
+	customRulesActive = true
+
+func getTeamSwitchMode() -> int:
+	return getRuleValue(Rules.TeamSwitchMode)
+
+func isTeamSwitchMode() -> bool:
+	var val = values.get(Rules.TeamSwitchMode, DEFAULTS[Rules.TeamSwitchMode])
+	var result = val == TeamSwitchModeState.On
+	print("[CustomRules] isTeamSwitchMode() -> ", result, " (val=", val, ")")
+	return result
+
+func setSandboxMode(enabled: bool):
+	sandboxMode = enabled
+	customRulesActive = true
+
+func isSandboxMode() -> bool:
+	return sandboxMode
 
 
 

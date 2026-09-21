@@ -1,0 +1,78 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://CharacterClasses/Reaper/ReaperChibiSprite.tscn" type="PackedScene" id=1]
+[ext_resource path="res://CharacterClasses/Reaper/Skins/Chibi/Classy/LeftLowerArm.png" type="Texture" id=2]
+[ext_resource path="res://CharacterClasses/Reaper/Skins/Chibi/Classy/LeftUpperArm.png" type="Texture" id=3]
+[ext_resource path="res://CharacterClasses/Reaper/Skins/Chibi/Classy/RightLowerArm.png" type="Texture" id=4]
+[ext_resource path="res://CharacterClasses/Reaper/Skins/Chibi/Classy/LeftUpperLeg.png" type="Texture" id=5]
+[ext_resource path="res://CharacterClasses/Reaper/Skins/Chibi/Classy/Head.png" type="Texture" id=6]
+[ext_resource path="res://CharacterClasses/Reaper/Skins/Chibi/Classy/RightUpperArm.png" type="Texture" id=7]
+[ext_resource path="res://CharacterClasses/Reaper/Skins/Chibi/Classy/RightUpperLeg.png" type="Texture" id=8]
+[ext_resource path="res://CharacterClasses/Reaper/Skins/Chibi/Classy/RightShoe.png" type="Texture" id=9]
+[ext_resource path="res://CharacterClasses/Reaper/Skins/Chibi/Classy/LeftShoe.png" type="Texture" id=10]
+[ext_resource path="res://CharacterClasses/Reaper/Skins/Chibi/Classy/Body.png" type="Texture" id=11]
+[ext_resource path="res://CharacterClasses/Reaper/Skins/Chibi/Classy/Bag.png" type="Texture" id=12]
+[ext_resource path="res://Items/Sprites/VampiricScythe.png" type="Texture" id=13]
+
+[node name="Sprite" instance=ExtResource( 1 )]
+script = null
+
+[node name="Shadow" parent="." index="0"]
+position = Vector2( -5.0032, 197.822 )
+
+[node name="BodySprite" parent="Body" index="0"]
+position = Vector2( 11.3302, -1.96419 )
+texture = ExtResource( 11 )
+
+[node name="LeftUpperArmSprite" parent="Body/LeftUpperArm" index="0"]
+texture = ExtResource( 3 )
+
+[node name="LeftLowerArmSprite" parent="Body/LeftUpperArm/LeftLowerArm" index="0"]
+texture = ExtResource( 2 )
+
+[node name="HeadSprite" parent="Body/Head" index="0"]
+position = Vector2( -3.98533, -88.9789 )
+texture = ExtResource( 6 )
+
+[node name="RightCurlSprite" parent="Body/Head/RightCurl" index="0"]
+visible = false
+
+[node name="LeftCurl" parent="Body/Head/LeftCurl" index="0"]
+visible = false
+
+[node name="LeftUpperLegSprite" parent="Body/LeftUpperLeg" index="0"]
+texture = ExtResource( 5 )
+
+[node name="LeftBoot" parent="Body/LeftUpperLeg/LeftLowerLeg" index="1"]
+position = Vector2( 26.8722, 157.749 )
+rotation = -0.284489
+texture = ExtResource( 10 )
+
+[node name="RightUpperLegSprite" parent="Body/RightUpperLeg" index="0"]
+position = Vector2( 52.6112, 101.145 )
+rotation = 0.113446
+texture = ExtResource( 8 )
+
+[node name="RightBoot" parent="Body/RightUpperLeg/RightLowerLeg" index="1"]
+position = Vector2( 11.8941, 167.055 )
+rotation = -1.26711
+texture = ExtResource( 9 )
+
+[node name="Bag" type="Sprite" parent="Body/Bag" index="0" groups=["Special"]]
+position = Vector2( -27.3712, 108.031 )
+texture = ExtResource( 12 )
+
+[node name="Scythe" parent="Body" index="6"]
+position = Vector2( 122.555, 66.3645 )
+
+[node name="ScytheSprite" parent="Body/Scythe" index="0"]
+position = Vector2( 121.437, -33.5275 )
+texture = ExtResource( 13 )
+
+[node name="RightUpperArmSprite" parent="Body/RightUpperArm" index="0"]
+position = Vector2( 54.8984, 0.389845 )
+scale = Vector2( 1.02452, 1 )
+texture = ExtResource( 7 )
+
+[node name="RightLowerArmSprite" parent="Body/RightUpperArm/RightLowerArm" index="0"]
+texture = ExtResource( 4 )

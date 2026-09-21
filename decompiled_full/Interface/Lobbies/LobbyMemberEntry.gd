@@ -1,6 +1,7 @@
 extends Control
 
 var nameLabel
+var teamLabel
 var classIcon
 var kickButton
 
@@ -11,9 +12,11 @@ var isHost: bool
 
 func init():
 	classIcon = $HboxContainer / ClassIcon
+	teamLabel = $HboxContainer / TeamLabel
 	nameLabel = $HboxContainer / Name
 	kickButton = $HboxContainer / KickButton
 	Util.addFallbackFonts(nameLabel.get("custom_fonts/font"))
+	Util.addFallbackFonts(teamLabel.get("custom_fonts/font"))
 
 func setSteamId(_steamId: int):
 	init()
@@ -27,6 +30,8 @@ func setSteamId(_steamId: int):
 
 func updatePlayer():
 	nameLabel.text = memberData.playerName
+	var team = memberData.getTeamName()
+	teamLabel.text = team if team != "" else ""
 	if memberData.loadout == Game.Loadout.RandomCharacter:
 		classIcon.texture = Game.randomClassIcon
 	else:

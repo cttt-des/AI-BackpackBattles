@@ -136,7 +136,7 @@ func addRoundEntry():
 	dict["result"] = Game.roundResults[Game.curRound - 2]
 	dict["tries"] = Game.getTries()
 	dict["health"] = Game.PLAYER.getBaseMaxHealth()
-	dict["stamina"] = Game.PLAYER.getBaseMaxStamina()
+	dict["stamina"] = Game.PLAYER.getMaxBaseStamina()
 	dict["buildInfo"] = RunDatabase.getRoundData(Game.curRound - 2)
 	dict["runID"] = Game.getRunState()["id"]
 	db.insert_row("roundData", dict)
@@ -145,6 +145,16 @@ func addRoundEntry():
 
 func addRunResult():
 	pass
+
+func deleteRunHistory(runID: int) -> bool:
+	if runID < 0:
+		return false
+
+	db.query("delete from roundData where runID=" + str(runID))
+	db.query("delete from runData where runID=" + str(runID))
+	db.query("select runID from runData where runID=" + str(runID) + " limit 1")
+
+	return db.query_result.empty()
 
 func readRunHistory() -> Dictionary:
 	
@@ -232,7 +242,6 @@ func cleanup():
 	
 	if Game.getNumStartedRuns() % 1000 == 0:
 		db.query("vacuum")
-
 
 
 

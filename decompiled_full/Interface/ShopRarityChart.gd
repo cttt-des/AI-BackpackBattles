@@ -25,7 +25,7 @@ func reset():
 		bar.rect_min_size.y = 0
 
 func onShopOpened():
-	var odds = Game.shopSceneNode.getRarityOddsForCurRound()
+	var odds = Game.shopSceneNode.getDisplayRarityOdds()
 	var normalizedOdds = odds.duplicate()
 	var maxOdd = odds.max()
 	for i in normalizedOdds.size():

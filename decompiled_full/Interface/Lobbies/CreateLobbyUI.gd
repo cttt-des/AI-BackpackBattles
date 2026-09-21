@@ -5,6 +5,7 @@ signal close
 const confirmationParticles = preload("res://Interface/Lobbies/UIConfirmationParticles.tscn")
 const buttonGroup = preload("res://Interface/Lobbies/MatchmakingButtonGroup.tres")
 const successSound = preload("res://Assets/Sound/Chime2.mp3")
+const teamSwitchValidationPopupScene = preload("res://Interface/Lobbies/TeamSwitchValidationPopup.tscn")
 
 var isOpen = false
 
@@ -33,6 +34,8 @@ onready var matchmakingModes = $MatchmakingTooltip / Modes
 var matchmakingButtons: Array
 
 onready var prioritizeHostButton = $MatchmakingTooltip / PrioritizeHost / Button
+
+var teamSwitchValidationPopup = null
 
 func _ready():
 	for button in matchmakingModes.get_children():
@@ -122,6 +125,32 @@ func onCopyButtonPressed():
 func onStartGamePressed():
 	Game.onClickButton()
 	
+	if CustomRules.isTeamSwitchMode():
+		var result = LOBBIES.calculateTeams()
+		var lines = []
+		
+		
+		for teamName in result.teams:
+			var members = result.teams[teamName]
+			lines.append(teamName + " 队队员：")
+			for steamId in members:
+				lines.append("  - " + LOBBIES.memberData[steamId].playerName)
+		
+		
+		if result.unassigned.size() > 0:
+			lines.append("无组队：")
+			for steamId in result.unassigned:
+				lines.append("  - " + LOBBIES.memberData[steamId].playerName)
+		
+		if LOBBIES.isSingleTeamMatchPoolResult(result):
+			lines.append("将使用个人职业段位匹配池，对内继续交换背包")
+
+		showTeamSwitchValidationPopup(lines)
+		return
+	
+	actuallyStartGame()
+
+func actuallyStartGame():
 	startGameButton.hide()
 	cancelButton.disable()
 	speedSlider.editable = false
@@ -134,6 +163,29 @@ func onStartGamePressed():
 	InputBlocker.disableAllControls(InputBlocker.Source.Lobby, self)
 	InputBlocker.disableAllControls(InputBlocker.Source.Lobby, Game.titleScreen)
 	InputBlocker.enableControls(InputBlocker.Source.Lobby, Game.titleScreen.classAndLoadoutNode)
+
+func showTeamSwitchValidationPopup(issues: Array):
+	if teamSwitchValidationPopup != null:
+		teamSwitchValidationPopup.queue_free()
+	
+	teamSwitchValidationPopup = teamSwitchValidationPopupScene.instance()
+	add_child(teamSwitchValidationPopup)
+	teamSwitchValidationPopup.preset()
+	teamSwitchValidationPopup.setContent(issues)
+	teamSwitchValidationPopup.showPopup()
+	teamSwitchValidationPopup.connect("force_start", self, "onTeamSwitchForceStart")
+	teamSwitchValidationPopup.connect("cancel", self, "onTeamSwitchCancel")
+	teamSwitchValidationPopup.connect("tree_exited", self, "onTeamSwitchPopupClosed")
+
+func onTeamSwitchForceStart():
+	actuallyStartGame()
+
+func onTeamSwitchCancel():
+	startGameButton.show()
+	cancelButton.enable()
+
+func onTeamSwitchPopupClosed():
+	teamSwitchValidationPopup = null
 
 func onCountdownEnded():
 	InputBlocker.restoreAllControls(InputBlocker.Source.Lobby)
@@ -169,6 +221,7 @@ func hideCustomRules():
 	customRulesTooltip.hide()
 
 func onCustomRulesChanged():
+	print("[CreateLobbyUI] onCustomRulesChanged, areCustomRulesChanged=", CustomRules.areCustomRulesChanged(), " isTeamSwitchMode=", CustomRules.isTeamSwitchMode())
 	customRulesTimer.start(0.5)
 	if CustomRules.areCustomRulesChanged():
 		customRulesIcon.texture = CustomRules.activeIcon
@@ -176,6 +229,7 @@ func onCustomRulesChanged():
 		customRulesIcon.texture = CustomRules.defaultIcon
 
 func applyCustomRules():
+	print("[CreateLobbyUI] applyCustomRules called, areCustomRulesChanged=", CustomRules.areCustomRulesChanged(), " serialize=", CustomRules.serialize())
 	if CustomRules.areCustomRulesChanged():
 		LOBBIES.setCustomRules_Host(CustomRules.serialize())
 	else:

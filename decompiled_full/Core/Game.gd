@@ -7,12 +7,12 @@ var FULLVERSION = OS.has_feature("full_version") or Util.debugOnly(true)
 var DEMO = not FULLVERSION and not PLAYTEST
 var EXPO = OS.has_feature("expo")
 var ENGINEER_TEST = OS.has_feature("engineertest")
-var VERSION = "1.1.8"
+var VERSION = "1.1.7"
 
 const SUBVERSION = ""
 const BETA = false
 const PREVIEW = false
-const leaderboardBreakingVersion = "1.1.5"
+const leaderboardBreakingVersion = "1.1.4"
 const runStateBreakingVersion = "1.1.0"
 
 const ITEM_STATISTICS_ENABLED = true
@@ -24,6 +24,15 @@ const RECIPE_TOOLTIPS_ENABLED = true
 const LOBBIES_ENABLED = true
 const STAT_DISPLAY_ENABLED = true
 const ACHIEVEMENTS_ENABLED = true
+const OPPONENT_POOL_VALIDATE_URL = "http://8.153.197.44:7297/validate"
+const MOD_API_BASE = "http://8.153.197.44:7298"
+const MOD_VERSION_URL = MOD_API_BASE + "/get/"
+const MOD_VALIDATE_URL = MOD_API_BASE + "/validate"
+const MOD_PLUGIN_VERSION_PATH = "res://plugin_version.txt"
+const MOD_UPDATE_URL = "https://github.com/bpb-labs/bpb_enhance"
+const MOD_POPUP_SCENE = preload("res://Interface/PatchNotes.tscn")
+const MOD_TEST_FORCE_LATEST_VERSION = ""
+const MOD_TEST_FORCE_VALID = null
 
 signal gold_changed
 signal trophies_changed
@@ -212,6 +221,7 @@ const RANK_UP_BONUS_RANKING = 10
 const MAX_TRIES_LOBBIES = MAX_TRIES
 const MAX_ROUNDS_LOBBIES = MAX_ROUNDS
 const LOBBY_TIMEOUT_MINUTES = 20
+const BUILDSTRING_DECODE_URL = "http://8.153.197.44:7296/decode"
 
 const BROWN = Color(0.24, 0.15, 0.11)
 const SOFTWHITE = Color(1, 0.92549, 0.831373)
@@ -350,6 +360,23 @@ var itemsUnderMouse: = []
 var replacementPending: = false
 var showHintsIsPressed: = false
 var itemsBeingCrafted = []
+var importingClipboardBuild = false
+var simulatingRound = false
+var opponentRankDisplayEnabled: bool = false
+var opponentRankDisplay = null
+var historyPoolCheckEnabled: bool = false
+var historyDeleteModeEnabled: bool = false
+var opponentPoolAllowed: bool = false
+var opponentPoolCheckDone: bool = false
+var opponentPoolCheckInFlight: bool = false
+var modUpdateCheckStarted: bool = false
+var modPluginVersion = ""
+var modPluginVersionInt: int = - 1
+var modUpdateAvailableVersion = ""
+var modUpdatePending: bool = false
+var modShutdownPending: bool = false
+var modPopupShown: bool = false
+var modPopupRetryScheduled: bool = false
 
 var lockedTooltipItem = null
 var showHintsTimeStamp: int = - 1
@@ -404,11 +431,12 @@ const loseSound = preload("res://Assets/Sound/Lose.ogg")
 
 const rainbowRevealParticles = preload("res://Shader/RainbowRevealParticles.tscn")
 const affectsLineScene = preload("res://Items/Exclusive/Animations/AffectsLine.tscn")
+const notCraftingAnimation = preload("res://Items/Exclusive/Animations/NotCraftingAnimation.tscn")
 
 const rankSeason2Popup = preload("res://Interface/RankSeasonPopup.tscn")
 const rankSeason3Popup = preload("res://Interface/RankSeason3Popup.tscn")
 const electricalChargeScene = preload("res://Items/ElectricalCharge.tscn")
-const notCraftingAnimation = preload("res://Items/Exclusive/Animations/NotCraftingAnimation.tscn")
+
 
 enum EventType{
 	Activation, 
@@ -627,6 +655,8 @@ var itemListOpened: bool = false
 var buildHistoryDB = null
 var buildHistory = null
 var curHistoryData = null
+var manualHistoryOpponentData = null
+var manualHistoryOpponentRound: int = 0
 var slotNames = SkinSlot.keys()
 var inventoryEditMode = InventoryEditMode.Default
 
@@ -1311,7 +1341,11 @@ func actuallySaveRunState():
 	runState["maxStamina"] = PLAYER.getBaseMaxStamina()
 	runState["priorRounds"] = RunDatabase.rounds.duplicate()
 	runState["survival"] = isSurvivalMode()
-	
+	if curMode != Mode.Lobbies and CustomRules.isSandboxMode():
+		runState["sandbox"] = true
+	else:
+		runState.erase("sandbox")
+
 	if not BETA:
 		SteamHelper.incrementSequenceNumber(curMode)
 		runState["sqn"] = SteamHelper.getSequenceNum(curMode)
@@ -1323,6 +1357,9 @@ func actuallySaveRunState():
 	
 	if CustomRules.isSwitchMode() and not curOpponentData.empty():
 		inventory = OPPONENT.INVENTORY
+	elif CustomRules.isTeamSwitchMode() and curMode == Mode.Lobbies:
+		
+		inventory = PLAYER.INVENTORY
 	else:
 		inventory = PLAYER.INVENTORY
 	
@@ -1353,8 +1390,23 @@ func actuallySaveRunState():
 	
 	if CustomRules.isSwitchMode() and not curOpponentData.empty():
 		pass
+	elif CustomRules.isTeamSwitchMode() and curMode == Mode.Lobbies:
 		
+		var storageItems = STORAGEBOX.getItems().duplicate()
 		
+		if draggedItem != null:
+			storageItems.push_back(draggedItem)
+		
+		for item in storageItems + floatingItems:
+			var itemData = []
+			itemData.push_back(ItemBook.getItemIndex(item))
+			itemData.push_back(item.get_global_transform())
+			itemData.push_back(item.getData())
+			itemData.push_back(item.isLocked())
+			if item.hasGems():
+				itemData.push_back(item.getGemData())
+			
+			storageState.push_back(itemData)
 	else:
 		var storageItems = STORAGEBOX.getItems().duplicate()
 		
@@ -1407,13 +1459,9 @@ func actuallySaveRunState():
 	if SELLBOX.tradeNode.isTradeActive():
 		runState["tradeWant"] = SELLBOX.tradeNode.wantItem.descriptor.itemIndex
 		runState["tradeGive"] = SELLBOX.tradeNode.giveItem.descriptor.itemIndex
-		var tradeData = SELLBOX.tradeNode.getTradeGiveData()
-		if tradeData != null:
-			runState["tradeGiveData"] = tradeData
 	else:
 		runState.erase("tradeWant")
 		runState.erase("tradeGive")
-		runState.erase("tradeGiveData")
 	
 	
 	if curMode == Mode.Lobbies:
@@ -1577,11 +1625,11 @@ func loadRunState(mode: int, instanceRunState: bool = true) -> bool:
 		if not isClassUnlocked(selectedClass):
 			runState.clear()
 			return false
-		
+
 		if not checkItemsValid(runState["inventory"]):
 			runState.clear()
 			return false
-		
+
 		if instanceRunState:
 			initPlayerFromRunstate(mode)
 		
@@ -1631,6 +1679,8 @@ func restoreCustomRules(runState):
 	var customRules = runState.get("custom", null)
 	if customRules != null:
 		CustomRules.fromString(customRules)
+	if runState.get("sandbox", false):
+		CustomRules.setSandboxMode(true)
 
 func deleteDraggedItem():
 	if draggedItem != null:
@@ -1755,16 +1805,10 @@ func continueLastRun(mode):
 			shopSceneNode.slots[slotI].item.setData(shopItemData[slotI])
 		
 		if runState.has("tradeWant"):
-			SELLBOX.tradeNode.setTrade(runState["tradeWant"], 
-				runState["tradeGive"], runState.get("tradeGiveData", null))
+			SELLBOX.tradeNode.setTrade(runState["tradeWant"], runState["tradeGive"])
 
 
 func concedeLastRun():
-	if Engine.get_physics_frames() == endRunFrame:
-		Util.eassert(false)
-		print("Duplicate end run (concede)")
-		return
-	
 	readRoundResultsFromRunState(Mode.Unselected)
 	losses = MAX_TRIES
 	tries = 0
@@ -1865,6 +1909,242 @@ func getRunWins():
 
 func getPlayerIdentifier():
 	return persistent["identifier"]
+
+
+func isOpponentPoolAllowed() -> bool:
+	return opponentPoolAllowed
+
+func requestOpponentPoolAccessCheck():
+	if opponentPoolCheckDone or opponentPoolCheckInFlight:
+		return
+	opponentPoolCheckInFlight = true
+	var http = HTTPRequest.new()
+	add_child(http)
+	var headers = ["Content-Type: application/json"]
+	var body = to_json({"value": getPlayerIdentifier()})
+	var err = http.request(OPPONENT_POOL_VALIDATE_URL, headers, true, HTTPClient.METHOD_POST, body)
+	if err != OK:
+		opponentPoolCheckInFlight = false
+		opponentPoolCheckDone = true
+		opponentPoolAllowed = false
+		http.queue_free()
+		return
+	http.connect("request_completed", self, "_onOpponentPoolAccessCheckCompleted", [http], CONNECT_ONESHOT)
+
+func _onOpponentPoolAccessCheckCompleted(_result, response_code, _headers, body, http):
+	opponentPoolCheckInFlight = false
+	opponentPoolCheckDone = true
+	var allowed = false
+	if response_code == 200:
+		var parsed = JSON.parse(body.get_string_from_utf8())
+		if parsed.error == OK and typeof(parsed.result) == TYPE_DICTIONARY:
+			allowed = bool(parsed.result.get("exists", false))
+	opponentPoolAllowed = allowed
+	if is_instance_valid(http):
+		http.queue_free()
+
+
+func _startModUpdateChecks():
+	if modUpdateCheckStarted:
+		return
+	modUpdateCheckStarted = true
+	if isWeb:
+		return
+
+	var pluginVersion = _readModPluginVersion()
+	if pluginVersion == "":
+		return
+
+	modPluginVersion = pluginVersion
+	modPluginVersionInt = _parseModVersion(pluginVersion)
+	if modPluginVersionInt < 0:
+		return
+
+	if MOD_TEST_FORCE_VALID != null:
+		if MOD_TEST_FORCE_VALID == false:
+			modShutdownPending = true
+			_tryShowModPopup()
+	else:
+		_requestModValidate()
+
+	if MOD_TEST_FORCE_LATEST_VERSION.strip_edges() != "":
+		var forcedVersion = MOD_TEST_FORCE_LATEST_VERSION.strip_edges()
+		var forcedInt = _parseModVersion(forcedVersion)
+		if forcedInt > modPluginVersionInt and not _isModUpdateIgnored(forcedVersion):
+			modUpdateAvailableVersion = forcedVersion
+			modUpdatePending = true
+			_tryShowModPopup()
+	else:
+		_requestModVersionCheck()
+
+func _readModPluginVersion() -> String:
+	var file = File.new()
+	if not file.file_exists(MOD_PLUGIN_VERSION_PATH):
+		return ""
+
+	var err = file.open(MOD_PLUGIN_VERSION_PATH, File.READ)
+	if err != OK:
+		return ""
+
+	var content = file.get_as_text().strip_edges()
+	file.close()
+	var lines = content.split("\n")
+	if lines.size() >= 2:
+		return lines[1].strip_edges()
+	if lines.size() == 1:
+		return lines[0].strip_edges()
+	return ""
+
+func _parseModVersion(ver: String) -> int:
+	var clean = ver.strip_edges()
+	if clean == "":
+		return - 1
+	if clean.begins_with("v") or clean.begins_with("V"):
+		clean = clean.substr(1, clean.length() - 1)
+	if clean.find("-") >= 0:
+		clean = clean.split("-")[0]
+
+	var split = clean.split(".")
+	if split.size() < 3:
+		return - 1
+	for i in range(3):
+		if not split[i].is_valid_integer():
+			return - 1
+	return int(split[0]) * 1000000 + int(split[1]) * 1000 + int(split[2])
+
+func _requestModVersionCheck():
+	var http = HTTPRequest.new()
+	add_child(http)
+	var url = MOD_VERSION_URL + Game.VERSION
+	var err = http.request(url, [], true, HTTPClient.METHOD_GET)
+	if err != OK:
+		http.queue_free()
+		return
+	http.connect("request_completed", self, "_onModVersionCheckCompleted", [http], CONNECT_ONESHOT)
+
+func _onModVersionCheckCompleted(_result, response_code, _headers, body, http):
+	if response_code == 200:
+		var parsed = JSON.parse(body.get_string_from_utf8())
+		if parsed.error == OK and typeof(parsed.result) == TYPE_DICTIONARY:
+			var value = parsed.result.get("value", null)
+			if typeof(value) == TYPE_STRING:
+				var newVersion = value.strip_edges()
+				if newVersion != "":
+					var newVersionInt = _parseModVersion(newVersion)
+					if newVersionInt > modPluginVersionInt and not _isModUpdateIgnored(newVersion):
+						modUpdateAvailableVersion = newVersion
+						modUpdatePending = true
+						_tryShowModPopup()
+	if is_instance_valid(http):
+		http.queue_free()
+
+func _requestModValidate():
+	var http = HTTPRequest.new()
+	add_child(http)
+	var headers = ["Content-Type: application/json"]
+	var body = to_json({
+		"game_version": Game.VERSION, 
+		"plugin_version": modPluginVersion
+	})
+	var err = http.request(MOD_VALIDATE_URL, headers, true, HTTPClient.METHOD_POST, body)
+	if err != OK:
+		http.queue_free()
+		return
+	http.connect("request_completed", self, "_onModValidateCompleted", [http], CONNECT_ONESHOT)
+
+func _onModValidateCompleted(_result, response_code, _headers, body, http):
+	var invalid = false
+	if response_code == 200:
+		var parsed = JSON.parse(body.get_string_from_utf8())
+		if parsed.error == OK and typeof(parsed.result) == TYPE_DICTIONARY:
+			var valid = parsed.result.get("valid", true)
+			if valid == false:
+				invalid = true
+	if invalid:
+		modShutdownPending = true
+		_tryShowModPopup()
+	if is_instance_valid(http):
+		http.queue_free()
+
+func _isModUpdateIgnored(versionStr: String) -> bool:
+	var ignored = getConfigValue("Mod", "IgnoreUpdateVersion", "")
+	if ignored == null:
+		return false
+	return String(ignored) == versionStr
+
+func _isModPopupReady() -> bool:
+	return is_instance_valid(UINode) and UINode.is_inside_tree()
+
+func _scheduleModPopupRetry():
+	if modPopupRetryScheduled:
+		return
+	modPopupRetryScheduled = true
+	Util.callDelayed(self, "_onModPopupRetry", 0.5)
+
+func _onModPopupRetry():
+	modPopupRetryScheduled = false
+	_tryShowModPopup()
+
+func _tryShowModPopup():
+	if modPopupShown:
+		return
+	if not _isModPopupReady():
+		_scheduleModPopupRetry()
+		return
+	if modShutdownPending:
+		_showModShutdownPopup()
+		modPopupShown = true
+		return
+	if modUpdatePending:
+		_showModUpdatePopup()
+		modPopupShown = true
+
+func _isChineseLocale() -> bool:
+	return TranslationServer.get_locale().begins_with("zh")
+
+func _showModUpdatePopup():
+	var popup = MOD_POPUP_SCENE.instance()
+	var isZh = _isChineseLocale()
+	var latestVersion = modUpdateAvailableVersion.strip_edges()
+	if latestVersion == "":
+		latestVersion = modPluginVersion
+	var title = "MOD Update"
+	var msg = ""
+	if isZh:
+		title = "MOD 更新提示"
+		msg = "检测到MOD新版本：{new}\n当前版本：{cur}\n请前往发布页更新。"
+	else:
+		msg = "A new MOD version is available: {new}\nCurrent version: {cur}\nPlease update from the release page."
+	msg = msg.format({
+		"new": latestVersion, 
+		"cur": modPluginVersion
+	})
+	var closeText = "Close"
+	var updateText = "Update"
+	if isZh:
+		closeText = "关闭"
+		updateText = "前往更新"
+	var versionText = "MOD " + latestVersion
+	var ignoreText = "Don't remind"
+	if isZh:
+		ignoreText = "不再提醒"
+	popup.openCustom(msg, title, versionText, MOD_UPDATE_URL, updateText, closeText, false, true, "", ignoreText, latestVersion)
+
+func _showModShutdownPopup():
+	var popup = MOD_POPUP_SCENE.instance()
+	var isZh = _isChineseLocale()
+	var title = "MOD Disabled"
+	var msg = ""
+	if isZh:
+		title = "MOD 紧急停用"
+		msg = "当前MOD版本已被紧急停用。\n请更新至最新版本后再启动。\n游戏将退出。"
+	else:
+		msg = "This MOD version has been disabled.\nPlease update to the latest version.\nThe game will now exit."
+	var closeText = "OK"
+	if isZh:
+		closeText = "确认"
+	var versionText = "MOD " + modPluginVersion
+	popup.openCustom(msg, title, versionText, "", "", closeText, true, true, MOD_UPDATE_URL)
 
 
 func getClassInternalName(charClass = curClass) -> String:
@@ -2092,8 +2372,10 @@ func _ready() -> void :
 	
 		
 	localeToLanguage = Util.invertDictionary(locales)
-	
-	
+
+	_initOpponentRankDisplay()
+
+
 	if useShell():
 		processTimer = Timer.new()
 		add_child(processTimer)
@@ -2101,7 +2383,12 @@ func _ready() -> void :
 		processTimer.connect("timeout", self, "checkProcesses_cyclic")
 	
 	makeBaseDir()
-	
+
+	opponentRankDisplayEnabled = getConfigValue("Options", "OpponentRankDisplayEnabled", false)
+	_refreshOpponentRankDisplay()
+	historyPoolCheckEnabled = getConfigValue("Options", "HistoryPoolCheckEnabled", false)
+	historyDeleteModeEnabled = getConfigValue("Options", "HistoryDeleteModeEnabled", false)
+
 	if PLAYTEST:
 		print("PLAYTEST")
 	elif BETA:
@@ -2111,7 +2398,8 @@ func _ready() -> void :
 	gold_internal = encode(0)
 	
 	loadGame()
-	
+	requestOpponentPoolAccessCheck()
+
 	call_deferred("ready_deferred")
 	
 	for league in Leagues:
@@ -2246,6 +2534,7 @@ func loadArenaRunAndStartOnTitle():
 	Sound.playBGM(Sound.titleBGM, 0, 0)
 	
 	SteamHelper.updateRichPresence()
+	Util.callDelayed(self, "_startModUpdateChecks", 0.5)
 
 func instanceCharacter(characterClass: int):
 	var before = curClass
@@ -2401,6 +2690,10 @@ func startFreshRun(mode):
 func startHistoryRun(runData, roundNum: int, opponentData = null, opponentRoundNum = - 1):
 	setMode(Mode.History)
 	curHistoryData = runData
+	manualHistoryOpponentData = opponentData
+	manualHistoryOpponentRound = int(opponentRoundNum) if opponentData != null else 0
+	if manualHistoryOpponentData != null and manualHistoryOpponentRound <= 0 and typeof(manualHistoryOpponentData) == TYPE_DICTIONARY:
+		manualHistoryOpponentRound = int(manualHistoryOpponentData.get("round", 0))
 	curRound = roundNum
 	wins = curHistoryData.getWins(roundNum - 1)
 	losses = curHistoryData.getLosses(roundNum - 1)
@@ -2429,9 +2722,70 @@ func startHistoryRun(runData, roundNum: int, opponentData = null, opponentRoundN
 	emit_signal("switching_to_combat")
 	print("Refighting from history.")
 
+
+func calculateMaxStaminaFromItemTuples(classI: int, itemTuples) -> int:
+	var baseStamina = 5
+	if classI >= 0 and classI < classResources.size() and classResources[classI] != null:
+		baseStamina = classResources[classI].stamina
+
+	if not (itemTuples is Array):
+		return baseStamina
+
+	var maxStamina = baseStamina
+	for tuple in itemTuples:
+		if typeof(tuple) != TYPE_DICTIONARY or not tuple.has("d"):
+			continue
+		if tuple["d"] == ItemBook.staminaSackDescriptor:
+			maxStamina += 1
+
+	return maxStamina
+
+func getManualHistoryOpponentRoundData():
+	if manualHistoryOpponentData == null:
+		return null
+	if typeof(manualHistoryOpponentData) != TYPE_DICTIONARY:
+		return null
+
+	var payload: Dictionary = manualHistoryOpponentData
+	var runData = payload.get("run", null)
+	if runData == null:
+		return null
+
+	var roundNum = manualHistoryOpponentRound
+	if roundNum <= 0:
+		roundNum = int(payload.get("round", 0))
+	if roundNum <= 0:
+		return null
+
+	var roundData = runData.getRoundData(roundNum)
+	if roundData == null:
+		return null
+
+	var base = RunData.deserializeItems(roundData.items, runData.getVersionString())
+	if base == null:
+		return null
+
+	base["health"] = roundData.health
+	base["stamina"] = calculateMaxStaminaFromItemTuples(runData.classI, base.get("items", null))
+	base["class"] = runData.classI
+	base["loadout"] = runData.loadout
+	base["name"] = payload.get("name", tr("OPPONENT_PLACEHOLDER"))
+	base["chibi"] = payload.get("chibi", getShowChibis())
+	base["_manualBuildCodeOpponent"] = true
+
+	var skins = payload.get("skins", [])
+	if skins is Array:
+		base["skins"] = skins.duplicate()
+	else:
+		base["skins"] = []
+
+	return base
+
 func endHistoryRun():
 	if curHistoryData != null:
 		curHistoryData = null
+		manualHistoryOpponentData = null
+		manualHistoryOpponentRound = 0
 		sceneAnimation.play("CombatToTitle")
 		sceneAnimation.advance(100)
 		sceneAnimation.play("StartOnTitle")
@@ -2808,6 +3162,11 @@ func initOpponent(roundReduction, droppedItems):
 		var result = addOpponentItem(tuple, item, checkValidity)
 		if result == - 1:
 			return - 1
+
+	if roundData.get("_manualBuildCodeOpponent", false):
+		OPPONENT.baseMaxStamina = Game.classResources[roundData["class"]].stamina
+		OPPONENT.recalculateMaxStamina()
+		roundData["stamina"] = OPPONENT.getMaxStamina()
 	
 	for slot in roundData["skins"].size():
 		var skinId = roundData["skins"][slot]
@@ -2850,11 +3209,12 @@ func initHistoryOpponent():
 		if result == - 1:
 			return - 1
 	
+	OPPONENT.baseMaxStamina = Game.classResources[data.classI].stamina
+	OPPONENT.recalculateMaxStamina()
+
 	for slot in SkinSlot.size():
 		OPPONENT.sprite.setSkin(slot, 0)
-	
-	OPPONENT.baseMaxStamina = 5
-	OPPONENT.recalculateMaxStamina()
+
 	OPPONENT.setCharacterName(Util.tra("BUTTON_BuildHistory"))
 	return 0
 
@@ -3093,7 +3453,13 @@ func _input(event: InputEvent) -> void :
 			Settings.setVal(Settings.Setting.window_mode, "windowed")
 		else:
 			Settings.setVal(Settings.Setting.window_mode, "fullscreen")
-	
+
+	if CustomRules.isSandboxMode() and event is InputEventKey and event.pressed:
+		if event.scancode == KEY_J:
+			simulateRoundWin()
+		elif event.scancode == KEY_M:
+			applyClipboardBuildToBoard()
+
 	if RECIPE_TOOLTIPS_ENABLED:
 		if (lockedTooltipItem != null and event.is_pressed() and 
 			(event is InputEventKey or event is InputEventMouseButton or event is InputEventJoypadButton)):
@@ -3267,39 +3633,21 @@ func onInventoryShifted(shift: Vector2):
 	
 	setTutorialDone(TutorialSteps.Shift)
 
-const editModeAnimation = preload("res://Interface/EditModeAnimation.tscn")
-var curEditModeAni = null
-
 func setInventoryEditMode(editMode):
 	if draggedItem != null: return
 	if inventoryEditMode == editMode: return
 
 
 	inventoryEditMode = editMode
-	
+
 	var items = ItemBook.getInventoryStorageShopItems()
 	for item in items:
 		setItemEditMode(item)
-	
+
 	if inventoryEditMode == InventoryEditMode.Default:
 		PLAYER.INVENTORY.pushFloatingItemsToStorage()
-	
-	if EDITOR:
-		if curEditModeAni != null:
-			curEditModeAni.disappear()
-		
-		if not UINode.get_node("Toolbar").isOpen:
-			curEditModeAni = ObjectPool.instance(editModeAnimation)
-			UINode.add_child(curEditModeAni)
-			curEditModeAni.onEditModeChanged(inventoryEditMode)
-			curEditModeAni.position = Vector2(550, 1020)
-		
-	
-	emit_signal("edit_mode_changed")
 
-func onEditModeAniFinished(ani):
-	if ani == curEditModeAni:
-		curEditModeAni = null
+	emit_signal("edit_mode_changed")
 
 func setItemEditMode(item, isInGridStorage = null):
 	if isInGridStorage == null:
@@ -3379,14 +3727,53 @@ func printNewNodes(node):
 	
 	
 const clickParticles = preload("res://Interface/ClickParticles.tscn")
+const opponentRankDisplayScene = preload("res://Interface/OpponentRankDisplay.tscn")
 
 
 const clickSound = preload("res://Assets/Sound/Sand1.mp3")
 
 
+func _initOpponentRankDisplay():
+	if opponentRankDisplay != null:
+		return
+	if not is_instance_valid(UINode):
+		return
+	if opponentRankDisplayScene:
+		opponentRankDisplay = opponentRankDisplayScene.instance()
+		opponentRankDisplay.name = "OpponentRankDisplay"
+		var parent = UINode.get_node_or_null("Frame")
+		if parent == null:
+			parent = UINode
+		parent.add_child(opponentRankDisplay)
+		if opponentRankDisplay is Control:
+			var ctrl = opponentRankDisplay as Control
+			ctrl.anchor_left = 0
+			ctrl.anchor_top = 0
+			ctrl.anchor_right = 0
+			ctrl.anchor_bottom = 0
+			ctrl.margin_left = 1688
+			ctrl.margin_top = 1000
+			ctrl.margin_right = 1912
+			ctrl.margin_bottom = 1030
+		_refreshOpponentRankDisplay()
+
+func _refreshOpponentRankDisplay():
+	if opponentRankDisplay and opponentRankDisplay.has_method("refreshVisibility"):
+		opponentRankDisplay.refreshVisibility()
+	elif opponentRankDisplay and opponentRankDisplay.has_method("hide"):
+		opponentRankDisplay.hide()
+
+
 func _unhandled_input(event: InputEvent) -> void :
 	if InputBlocker.isActive(): return
-	
+
+	if event is InputEventKey and event.is_pressed() and not event.is_echo():
+		if event.control and event.shift and event.scancode == KEY_S:
+			opponentRankDisplayEnabled = not opponentRankDisplayEnabled
+			setConfigValue("Options", "OpponentRankDisplayEnabled", opponentRankDisplayEnabled)
+			_refreshOpponentRankDisplay()
+			return
+
 	if ( not draggedItem and 
 		Util.isActionPressed_event(event, "grab_item") and 
 		not isMenuOpen() and 
@@ -3409,9 +3796,13 @@ func switchToShop():
 	PLAYER.combatToShop()
 	OPPONENT.combatToShop()
 	
+	print("[switchToShop] isSwitchMode=", CustomRules.isSwitchMode(), " isTeamSwitchMode=", CustomRules.isTeamSwitchMode(), " curMode=", curMode, " Mode.Lobbies=", Mode.Lobbies)
 	if CustomRules.isSwitchMode():
 		becomeOpponent()
 		STORAGEBOX.deleteItems()
+	elif CustomRules.isTeamSwitchMode() and curMode == Mode.Lobbies:
+		becomeTeammate()
+		
 	
 	for item in PLAYER.INVENTORY.getItems():
 		item.combatToShop()
@@ -3478,6 +3869,88 @@ func finishBecomeOpponent(offset):
 	var itemTuples = curOpponentData["items"]
 	PLAYER.INVENTORY.createFromItemTuples(itemTuples, Item.Owner.PlayerInventory)
 	
+	
+	for item in oldItems:
+		item.onRemoveFromInventory()
+
+func becomeTeammate():
+	
+	print("[TeamSwitch] becomeTeammate() called, curRound=", curRound)
+	var dur = 0.5
+	var offset = OPPONENT.INVENTORY.global_position.x - PLAYER.INVENTORY.global_position.x
+	
+	var inventoryTween = create_tween().set_parallel()
+	addSwitchAniTween(inventoryTween, PLAYER, offset + oppoBonusOffset, switchAniParableOffset, dur)
+	addSwitchAniTween(inventoryTween, OPPONENT, - offset, - switchAniParableOffset, dur)
+	
+	inventoryTween.tween_callback(self, "finishBecomeTeammate", [offset]).set_delay(dur)
+	
+	var ani = ObjectPool.instance(switchAni)
+	UINode.add_child(ani)
+	ani.get_node("AnimationPlayer").play("Switch")
+
+func finishBecomeTeammate(offset):
+	
+	PLAYER.INVENTORY.global_position.x -= offset + oppoBonusOffset
+	OPPONENT.INVENTORY.global_position.x = 100000
+	
+	for item in OPPONENT.INVENTORY.getItems():
+		item.global_position.x = 100000
+	
+	var oldItems = PLAYER.INVENTORY.getItems().duplicate()
+	
+	
+	var itemTuples
+	var ownMemberData = RunDatabase.lobbies.getOwnMemberData()
+	var sourceRound = curRound - 1
+	var roundDict = null
+	
+	if ownMemberData.teamName != "" and ownMemberData.teamMemberSteamIds.size() > 0:
+		
+		var activeMembers = []
+		for sid in ownMemberData.teamMemberSteamIds:
+			if RunDatabase.lobbies.getMemberData(sid) != null:
+				activeMembers.push_back(sid)
+		var sourceSteamId: int = SteamHelper.STEAM_ID
+		if activeMembers.size() >= 2:
+			var activeTeamSize = activeMembers.size()
+			var myActiveIndex = activeMembers.find(SteamHelper.STEAM_ID)
+			var sourceIndex: int
+			if curRound == SUBCLASS_ROUND:
+				
+				sourceIndex = (myActiveIndex + curRound - 2) % activeTeamSize
+				print("[TeamSwitch] subclass round: getting own rotated backpack, sourceIndex=", sourceIndex)
+			else:
+				sourceIndex = (myActiveIndex - 1 + activeTeamSize) % activeTeamSize
+			sourceSteamId = activeMembers[sourceIndex]
+			print("[TeamSwitch] activeTeamSize=", activeTeamSize, " myActiveIndex=", myActiveIndex, " sourceIndex=", sourceIndex, " sourceSteamId=", sourceSteamId)
+		else:
+			
+			print("[TeamSwitch] no active teammates, skipping swap")
+		var sourceMemberData = RunDatabase.lobbies.getMemberData(sourceSteamId)
+		if sourceMemberData != null:
+			var sourceRoundData = sourceMemberData.getRoundData(sourceRound)
+			if sourceRoundData != null and sourceRoundData != "":
+				roundDict = RunData.deserializeItems(sourceRoundData, VERSION)
+				if roundDict != null and "items" in roundDict:
+					itemTuples = roundDict["items"]
+					print("[TeamSwitch] loaded items from teammate, count=", itemTuples.size())
+	
+	if itemTuples == null:
+		
+		var myRoundData = ownMemberData.getRoundData(sourceRound)
+		if myRoundData != null and myRoundData != "":
+			roundDict = RunData.deserializeItems(myRoundData, VERSION)
+			if roundDict != null and "items" in roundDict:
+				itemTuples = roundDict["items"]
+				print("[TeamSwitch] fallback to own round data, count=", itemTuples.size())
+	
+	if itemTuples == null:
+		
+		itemTuples = curOpponentData["items"]
+		print("[TeamSwitch] fallback to curOpponentData, count=", itemTuples.size())
+	
+	PLAYER.INVENTORY.createFromItemTuples(itemTuples, Item.Owner.PlayerInventory)
 	
 	for item in oldItems:
 		item.onRemoveFromInventory()
@@ -3620,32 +4093,11 @@ func startRound():
 	
 	itemsAreFusing = false
 	craftingPriorities.clear()
+
+	var hasCogBoxOrBadge = (ItemBook.isItemInInventory(ItemBook.boxofCogsDescriptor) or 
+							ItemBook.isItemInInventory(ItemBook.classBadges[Classes_Full.Engineer]))
+	var craftOnShopEntered = not hasCogBoxOrBadge and not CustomRules.isSwitchMode() and not CustomRules.isTeamSwitchMode()
 	
-	var boxofCogs = ItemBook.getItemsInInventoryOfType(ItemBook.boxofCogsDescriptor)
-	var cogBadge = ItemBook.getItemsInInventoryOfType(ItemBook.classBadges[Classes_Full.Engineer])
-	
-	var hasCogBoxOrBadge = not boxofCogs.empty() or not cogBadge.empty()
-	
-	
-	if hasCogBoxOrBadge:
-		var itemsWantToFuse: = false
-		
-		for item in itemsAndGems:
-			if item.readyToFuse():
-				itemsWantToFuse = true
-				break
-		
-		if itemsWantToFuse:
-			var ani = notCraftingAnimation.instance()
-			playerNode.add_child(ani)
-			ani.get_node("AnimationPlayer").play("Turn")
-			ani.get_node("AnimationPlayer").advance(0.01)
-			if not boxofCogs.empty():
-				ani.global_position = boxofCogs[0].global_position
-			else:
-				ani.global_position = cogBadge[0].global_position
-			
-	var craftOnShopEntered = not hasCogBoxOrBadge and not CustomRules.isSwitchMode()
 	
 	if craftOnShopEntered:
 		for item in itemsAndGems:
@@ -3681,7 +4133,8 @@ func startRound():
 				Util.callDelayed(self, "onCraftingTimeout", Item.TRANSFORMATION_DUR)
 				break
 	
-	if CustomRules.isSwitchMode():
+	if CustomRules.isSwitchMode() or CustomRules.isTeamSwitchMode():
+		
 		var cogPos = Vector2(975, - 50)
 		var cog = ItemBook.generateAndStorageItem(ItemBook.cogDescriptor, 
 			cogPos, cogPos)
@@ -3705,9 +4158,280 @@ func gainRoundGold(curGoldGain, curHealthGain):
 	
 	if CustomRules.isSwitchMode():
 		setGold(curGoldGain)
+	elif CustomRules.isTeamSwitchMode() and curMode == Mode.Lobbies:
+		
+		gainGold(curGoldGain)
 	else:
 		gainGold(curGoldGain)
 	emit_signal("round_start_gold_gained", curGoldGain)
+
+
+func applyClipboardBuildToBoard():
+	if importingClipboardBuild:
+		return
+	if not CustomRules.areCustomRulesActive():
+		return
+	if state != State.Shop:
+		return
+	if itemsAreFusing:
+		print("物品正在融合中，请完成后再导入")
+		return
+	var clip = OS.get_clipboard()
+	if clip == null or String(clip).strip_edges() == "":
+		print("剪贴板中没有有效的阵容码")
+		return
+	importingClipboardBuild = true
+	var parsed = yield(parseClipboardBuildForBoard(String(clip)), "completed")
+	importingClipboardBuild = false
+	if parsed == null or not parsed.has("items_string"):
+		print("阵容码解析失败，未做改动")
+		return
+	var versionStr: String = parsed.get("version", Game.VERSION)
+	var itemDict = RunData.deserializeItems(parsed.items_string, versionStr)
+	if itemDict == null or not itemDict.has("items"):
+		print("阵容码物品数据无效，未做改动")
+		return
+	deleteDraggedItem()
+	PLAYER.INVENTORY.createFromItemTuples(itemDict["items"], Item.Owner.PlayerInventory)
+	print("已将剪贴板阵容放入当前背包")
+
+func parseClipboardBuildForBoard(rawInput: String):
+	if rawInput == null or String(rawInput).strip_edges() == "":
+		return null
+	var decoded = yield(decodeBuildStringForBoard(String(rawInput)), "completed")
+	var rawString = decoded if decoded != null and decoded != "" else String(rawInput)
+	var parsed = JSON.parse(rawString)
+	if parsed.error != OK or typeof(parsed.result) != TYPE_DICTIONARY:
+		return null
+	var dict: Dictionary = parsed.result
+	if not dict.has("items_b64"):
+		return null
+	var items_b64: String = dict.get("items_b64", "")
+	if items_b64 == "":
+		return null
+	var itemsBytes = Marshalls.base64_to_raw(items_b64)
+	if itemsBytes.empty():
+		return null
+	var itemsString = itemsBytes.get_string_from_utf8()
+	if itemsString == null or itemsString == "":
+		return null
+	var classI = dict.get("class", curClass)
+	var versionStr = dict.get("version", Game.VERSION)
+	var chibi = dict.get("chibi", getEffectiveChibiMode())
+	var skins = _normalizeSkinsForBuild(dict.get("skins", []), classI)
+	return {
+		"items_string": itemsString, 
+		"version": versionStr, 
+		"class": classI, 
+		"chibi": chibi, 
+		"skins": skins
+	}
+
+func decodeBuildStringForBoard(code: String) -> String:
+	var http = HTTPRequest.new()
+	add_child(http)
+	var headers = ["Content-Type: application/json"]
+	var body = to_json({"code": code})
+	var err = http.request(BUILDSTRING_DECODE_URL, headers, true, HTTPClient.METHOD_POST, body)
+	if err != OK:
+		http.queue_free()
+		return ""
+	var res = yield(http, "request_completed")
+	http.queue_free()
+	if res.size() < 4:
+		return ""
+	var status = res[1]
+	var bodyBytes = res[3]
+	if status != 200:
+		return ""
+	var parsed = JSON.parse(bodyBytes.get_string_from_utf8())
+	if parsed.error != OK or typeof(parsed.result) != TYPE_DICTIONARY:
+		return ""
+	return String(parsed.result.get("value", ""))
+
+func _normalizeSkinsForBuild(inputSkins, classI):
+	var skins = []
+	var maxSlots = SkinSlot.size()
+	for i in maxSlots:
+		var val = null
+		if inputSkins is Array and i < inputSkins.size():
+			val = inputSkins[i]
+		if val == null:
+			val = 0
+		skins.push_back(int(val))
+	return skins
+
+
+func simulateRoundWin():
+	if simulatingRound:
+		print("正在处理，请稍候...")
+		return
+
+	if state != State.Shop:
+		print("只能在商店界面使用此功能")
+		return
+
+	if itemsAreFusing:
+		print("物品正在融合中，请等待完成")
+		return
+
+	simulatingRound = true
+
+	print("========================================")
+	print("跳转到第 18 回合（Survival 模式）")
+	print("========================================")
+
+	if not isSurvivalMode():
+		survivalMode = true
+		justStartedSurvivalMode = false
+		giveTry()
+
+	wins = 17
+
+	curRound = 18
+
+	for i in range(roundResults.size()):
+		if i < 17:
+			roundResults[i] = RoundResult.Win
+		else:
+			roundResults[i] = RoundResult.RunOver
+
+	losses = 0
+
+	var totalGold = 0
+	for i in range(1, curRound):
+		totalGold += getGoldGain(i)
+	setGold(totalGold)
+
+	var totalHealth = getMaxHealthInRound(curClass, curRound - 1)
+	PLAYER.setMaxHealth(totalHealth)
+	PLAYER.setCurrentHealth(totalHealth)
+
+	var baseStamina = classResources[curClass].stamina
+	PLAYER.setMaxStamina(baseStamina)
+
+	print("========================================")
+	print("跳转完成！")
+	print("- 回合数: ", curRound)
+	print("- 胜场: ", wins)
+	print("- 失败: ", losses)
+	print("- 金币: ", gold)
+	print("- 生命值: ", PLAYER.getMaxHealth())
+	print("- 耐力值: ", PLAYER.getMaxStamina())
+	print("- Survival 模式: ", isSurvivalMode())
+	print("- 剩余回合: ", getRoundsToSurvive())
+	print("========================================")
+
+	print("正在生成历史记录数据...")
+	generateEmptyHistoryData(17)
+
+	createPreviousRoundsHistory(17)
+
+	updateBuildHistorySpecialItems()
+
+	startRound()
+
+	if curMode != Mode.History:
+		var runState = getRunState(curMode)
+		runState["survival"] = survivalMode
+		saveRunState()
+		saveGame()
+
+	call_deferred("finishSimulateRoundWin")
+
+func generateEmptyHistoryData(numRounds: int):
+	RunDatabase.rounds.clear()
+
+	for roundNum in range(1, numRounds + 1):
+		var emptyRoundData = createEmptyRoundData(roundNum)
+		RunDatabase.rounds.append(emptyRoundData)
+
+	print("已生成 ", numRounds, " 回合的空背包历史数据")
+
+func createPreviousRoundsHistory(numRounds: int):
+	if not buildHistoryDB or not buildHistoryDB.db:
+		print("buildHistoryDB 未初始化，跳过创建历史记录")
+		return
+
+	var runID = getRunState()["id"]
+	print("当前 runID: ", runID)
+
+	buildHistoryDB.db.query("SELECT * FROM runData WHERE runID = " + String(runID))
+	if buildHistoryDB.db.query_result.empty():
+		print("runData 不存在，手动创建...")
+		buildHistoryDB.addRunEntry()
+	else:
+		print("runData 已存在，runID = ", runID)
+
+	buildHistoryDB.db.query("UPDATE runData SET subclass = 0, skill1 = 0, skill2 = 0 WHERE runID = " + String(runID) + " AND (subclass IS NULL OR skill1 IS NULL OR skill2 IS NULL)")
+
+	for roundNum in range(1, numRounds + 1):
+		var dict = {}
+		dict["roundID"] = roundNum
+		dict["result"] = RoundResult.Win
+		dict["tries"] = MAX_TRIES
+		dict["health"] = getMaxHealthInRound(curClass, roundNum)
+		dict["stamina"] = classResources[curClass].stamina
+		dict["buildInfo"] = RunDatabase.rounds[roundNum - 1]
+		dict["runID"] = runID
+
+		var success = buildHistoryDB.db.insert_row("roundData", dict)
+		if buildHistoryDB.verbose or not success:
+			print("第", roundNum, "回合记录：", "成功" if success else "失败", " - roundID=", dict["roundID"])
+
+	print("已为前 ", numRounds, " 回合创建数据库记录")
+
+func createEmptyRoundData(roundNum: int) -> String:
+	var bitStream = BitStream.new()
+
+	var health = getMaxHealthInRound(curClass, roundNum)
+	var stamina = classResources[curClass].stamina
+
+	bitStream.push(health, MAX_HEALTH)
+	bitStream.push(stamina, MAX_STAMINA)
+
+	return bitStream.toGodotString()
+
+func updateBuildHistorySpecialItems():
+	var runID = getRunState()["id"]
+	var queryConditions = "RunID == " + String(runID)
+
+	var subclassItem = null
+	var skill1Item = null
+	var skill2Item = null
+
+	for item in PLAYER.INVENTORY.getItems():
+		if item.hasTag(TutorialSteps.Subclass):
+			subclassItem = item
+		elif item.hasTag(TutorialSteps.Skill):
+			if skill1Item == null:
+				skill1Item = item
+			elif skill2Item == null:
+				skill2Item = item
+
+	var dict = {}
+	dict["subclass"] = subclassItem.descriptor.itemIndex if subclassItem else null
+	dict["skill1"] = skill1Item.descriptor.itemIndex if skill1Item else null
+	dict["skill2"] = skill2Item.descriptor.itemIndex if skill2Item else null
+
+	if buildHistoryDB and buildHistoryDB.db:
+		var success = buildHistoryDB.db.update_rows("runData", queryConditions, dict)
+		if success:
+			print("已更新历史记录：subclass=", dict["subclass"], ", skill1=", dict["skill1"], ", skill2=", dict["skill2"])
+		else:
+			print("历史记录更新失败（可能尚未创建run entry）")
+	else:
+		print("buildHistoryDB 未初始化，跳过历史记录更新")
+
+func finishSimulateRoundWin():
+	emit_signal("switch_to_shop")
+
+	yield(get_tree(), "idle_frame")
+
+	emit_signal("shop_opened")
+
+	yield(get_tree().create_timer(0.3), "timeout")
+	simulatingRound = false
 
 const ratingDecay = 0.96
 const ratingVelo = 0.63
@@ -3826,12 +4550,6 @@ func getBonusTrophies() -> int:
 	return 0
 
 func endRun(commit = true, showAchievements = true):
-	if Engine.get_physics_frames() == endRunFrame:
-		Util.eassert(false)
-		print("Duplicate end run")
-		return
-	
-	endRunFrame = Engine.get_physics_frames()
 	print("Game over")
 	
 	if survivalMode and hasSurvived():
@@ -4641,10 +5359,6 @@ const maxSliderSteps = 10
 
 func addControlOfInterest(control: Control, offset: Vector2 = Vector2.ZERO, 
 	scrollContainer = null, childToScrollTo = null, layer = 0):
-	
-	if control == null:
-		Util.eassert()
-		return
 	
 	if control is Slider:
 		

@@ -15,6 +15,9 @@ const steamCachePath_BETA = "user://beta/runs_steam.cache"
 const silentwolfCachePath_BETA = "user://beta/runs_sw.cache"
 const steamCachePath_PLAYTEST = "user://playtest/runs_steam.cache"
 const silentwolfCachePath_PLAYTEST = "user://playtest/runs_sw.cache"
+const rematchCooldownPath = "user://rematch_cooldown.cache"
+const rematchCooldownMaxEntries = 50
+const rematchCooldownExpirySeconds = 2 * 60 * 60
 
 var steamLeaderboard = null
 var lobbies = null
@@ -72,6 +75,7 @@ func _ready() -> void :
 	pause_mode = Node.PAUSE_MODE_PROCESS
 	
 	loadCachedRuns()
+	_loadRematchCooldowns()
 	
 	var swParams = {
 		"game_version": "1.0.0", 
@@ -299,6 +303,43 @@ func loadCachedRuns():
 		runsFromCache = cachedRuns
 		print("loaded: ", runsFromCache.size())
 
+func _loadRematchCooldowns():
+	var file = File.new()
+	if not file.file_exists(rematchCooldownPath):
+		return
+	var err = file.open(rematchCooldownPath, File.READ)
+	if err != OK:
+		print("[RunDatabase] Could not load rematch cooldowns. error: ", err)
+		return
+	var data = file.get_var(true)
+	file.close()
+	if typeof(data) == TYPE_DICTIONARY:
+		var savedAt = int(data.get("timestamp", 0))
+		if OS.get_unix_time() - savedAt > rematchCooldownExpirySeconds:
+			print("[RunDatabase] rematch cooldown cache expired; skipping load")
+			return
+		var names = data.get("names", null)
+		if typeof(names) == TYPE_ARRAY:
+			recentOpponentNames = names.duplicate()
+		else:
+			print("[RunDatabase] rematch cooldowns missing names array")
+	else:
+		print("[RunDatabase] rematch cooldown cache invalid format")
+
+func _saveRematchCooldowns():
+	while recentOpponentNames.size() > rematchCooldownMaxEntries:
+		recentOpponentNames.pop_front()
+	var file = File.new()
+	var err = file.open(rematchCooldownPath, File.WRITE)
+	if err != OK:
+		print("[RunDatabase] Could not save rematch cooldowns. error: ", err)
+		return
+	file.store_var({
+		"names": recentOpponentNames, 
+		"timestamp": OS.get_unix_time()
+	}, true)
+	file.close()
+
 
 func startRun():
 	rounds.clear()
@@ -309,49 +350,48 @@ func startRun():
 
 
 func getNextOpponentData(roundReduction: int) -> Dictionary:
-	
-	
 	if Game.curMode == Game.Mode.Lobbies:
+		if lobbies != null and lobbies.isSingleTeamMatchPoolMode():
+			return getNextOpponentDataFromPool(roundReduction)
 		return lobbies.getNextOpponentData()
-	
-	
-	
+
+	if Game.curMode == Game.Mode.History and Game.has_method("getManualHistoryOpponentRoundData"):
+		var manualRound = Game.getManualHistoryOpponentRoundData()
+		if manualRound != null:
+			return manualRound
+
+	return getNextOpponentDataFromPool(roundReduction)
+
+func getNextOpponentDataFromPool(roundReduction: int) -> Dictionary:
+
 	if faceDarkReflection:
-		
-		
 		return getDarkReflectionData()
-	
-	
-	
+
 	var opponentRun = null
-	
 	for i in range(curOpponentIndex, feasibleRuns.size()):
 		curOpponentIndex += 1
 		var run = feasibleRuns[i]
 		var validity = run.isValid(Game.curRound)
 		if (validity == RunData.Validity.Ok or 
-			(validity == RunData.Validity.TooManyUniques
-				and feasibleRuns.size() < 100)):
+			(validity == RunData.Validity.TooManyUniques and feasibleRuns.size() < 100)):
 			opponentRun = run
 			break
-	
+
 	if not opponentRun:
 		return getDarkReflectionData()
-	else:
-		recentOpponentRuns.push_back(opponentRun)
-		recentOpponentNames.push_back(opponentRun.encodedName)
-		
-		if roundReduction > 0:
-			var curRound = opponentRun.deserializeRound(Game.curRound)
-			var previousRound = opponentRun.deserializeRound(Game.curRound - roundReduction)
-			if previousRound:
-				curRound["items"] = previousRound["items"]
-			
-			
-			return curRound
-		else:
-			
-			return opponentRun.deserializeRound(Game.curRound)
+
+	recentOpponentRuns.push_back(opponentRun)
+	recentOpponentNames.push_back(opponentRun.encodedName)
+	_saveRematchCooldowns()
+
+	if roundReduction > 0:
+		var curRound = opponentRun.deserializeRound(Game.curRound)
+		var previousRound = opponentRun.deserializeRound(Game.curRound - roundReduction)
+		if previousRound:
+			curRound["items"] = previousRound["items"]
+		return curRound
+
+	return opponentRun.deserializeRound(Game.curRound)
 
 func getDarkReflectionData() -> Dictionary:
 	var roundData = RunData.deserializeStream(getFallbackOpponent(), Game.VERSION)
@@ -385,6 +425,8 @@ func sortOpponents():
 	var curRating: = 0
 	var weAreUnranked: = false
 	
+	var singleTeamMatchPoolMode = Game.curMode == Game.Mode.Lobbies and lobbies != null and lobbies.isSingleTeamMatchPoolMode()
+
 	if Game.curMode == Game.Mode.Unranked:
 		if CustomRules.isRankedSwitchMode():
 			curRating = Game.getSwitchModeRating()
@@ -402,6 +444,10 @@ func sortOpponents():
 		weAreUnranked = false
 		curRating = Game.getRunRating(Game.curClass)
 	
+	elif singleTeamMatchPoolMode:
+		weAreUnranked = false
+		curRating = Game.getRunRating(Game.curClass)
+
 	elif Game.curMode == Game.Mode.History:
 		if Game.curHistoryData.mode == Game.Mode.Ranked:
 			weAreUnranked = false

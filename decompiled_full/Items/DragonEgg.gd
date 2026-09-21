@@ -44,7 +44,8 @@ func canHatch():
 func shopEntered(craft: bool):
 	.shopEntered(craft)
 	
-	if CustomRules.isSwitchMode():
+	
+	if CustomRules.isSwitchMode() or CustomRules.isTeamSwitchMode():
 		showCooldownSmooth(1.0, false)
 		startHatching()
 		return

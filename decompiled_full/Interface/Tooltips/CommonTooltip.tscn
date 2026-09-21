@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Interface/Tooltips/ItemTooltip.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Interface/Tooltips/TooltipBase_Common.png" type="Texture" id=2]
+[ext_resource path="res://Interface/Tooltips/Divider1_Common.png" type="Texture" id=3]
+[ext_resource path="res://Interface/Tooltips/Divider2_Common.png" type="Texture" id=5]
+
+[node name="Tooltip" instance=ExtResource( 1 )]
+margin_right = 609.0
+margin_bottom = 302.0
+texture = ExtResource( 2 )
+patch_margin_left = 27
+patch_margin_top = 85
+patch_margin_right = 40
+patch_margin_bottom = 98
+Y_BORDER = 135
+
+[node name="VBoxContainer" parent="." index="0"]
+margin_top = 60.0
+margin_bottom = 227.0
+
+[node name="Divider1" parent="VBoxContainer" index="3"]
+texture = ExtResource( 5 )
+
+[node name="Divider2" parent="VBoxContainer" index="4"]
+texture = ExtResource( 3 )
+
+[node name="Spacer" parent="VBoxContainer/HBoxContainer" index="0"]
+margin_right = 86.0
+
+[node name="Rarity" parent="VBoxContainer/HBoxContainer" index="1"]
+margin_left = 81.0
+margin_right = 204.0
+text = "Common"
+
+[node name="Spacer2" parent="VBoxContainer/HBoxContainer" index="2"]
+margin_left = 199.0
+margin_right = 286.0
+
+[node name="HBoxContainer" parent="VBoxContainer/HBoxContainer" index="3"]
+margin_left = 281.0
+margin_right = 388.0
+
+[node name="Spacer3" parent="VBoxContainer/HBoxContainer" index="4"]
+margin_left = 383.0

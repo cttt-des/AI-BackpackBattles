@@ -1,0 +1,153 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://Items/Item.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Items/HeartContainer.gd" type="Script" id=2]
+[ext_resource path="res://Items/Sprites/HeartContainer.png" type="Texture" id=3]
+[ext_resource path="res://Items/Sprites/HeartContainer_fill.png" type="Texture" id=4]
+[ext_resource path="res://Items/GemSocket.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Shader/VerySmoothFadeGradient.tres" type="Texture" id=6]
+[ext_resource path="res://Utility/AutoHideParticles.gd" type="Script" id=7]
+[ext_resource path="res://Assets/Particles/GlowingDot_small.png" type="Texture" id=8]
+
+[sub_resource type="PhysicsMaterial" id=1]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="Curve" id=14]
+max_value = 1024.0
+_data = [ Vector2( 0, 480.582 ), 0.0, 0.0, 0, 0, Vector2( 0.196262, 98.9091 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=13]
+width = 100
+curve = SubResource( 14 )
+
+[sub_resource type="ParticlesMaterial" id=15]
+emission_shape = 1
+emission_sphere_radius = 64.4
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+angular_velocity = 267.5
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+radial_accel_curve = SubResource( 13 )
+angle = 720.0
+angle_random = 1.0
+scale = 1.68
+scale_random = 0.41
+color_ramp = ExtResource( 6 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "Appear"
+length = 0.5
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("HeartContainerFill:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.18, 0.5 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.854902 ), Color( 1, 1, 1, 0.447059 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Disappear"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("HeartContainerFill:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.447059 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Idle"
+length = 1.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("HeartContainerFill:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.447059 ), Color( 1, 1, 1, 0.294118 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "RESET"
+length = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("HeartContainerFill:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="Heart Container" instance=ExtResource( 1 )]
+physics_material_override = SubResource( 1 )
+script = ExtResource( 2 )
+
+[node name="Icon" parent="." index="1"]
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+
+[node name="SpecificDragParticles" type="Particles2D" parent="Icon" index="0"]
+modulate = Color( 1.2, 1.2, 1.2, 1 )
+self_modulate = Color( 1.6, 1.5, 1, 0.82 )
+position = Vector2( -2, -2 )
+scale = Vector2( 2, 2 )
+emitting = false
+amount = 10
+lifetime = 0.7
+local_coords = false
+process_material = SubResource( 15 )
+texture = ExtResource( 8 )
+script = ExtResource( 7 )
+
+[node name="Sockets" parent="Icon" index="1"]
+scale = Vector2( 2, 2 )
+
+[node name="GemSocket" parent="Icon/Sockets" index="0" instance=ExtResource( 5 )]
+position = Vector2( 0, 15 )
+
+[node name="HeartContainerFill" type="Sprite" parent="Icon" index="2"]
+modulate = Color( 1, 1, 1, 0 )
+self_modulate = Color( 3, 2, 2, 1 )
+show_behind_parent = true
+position = Vector2( 0, -2 )
+texture = ExtResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Icon" index="3"]
+anims/Appear = SubResource( 2 )
+anims/Disappear = SubResource( 3 )
+anims/Idle = SubResource( 4 )
+anims/RESET = SubResource( 5 )
+
+[node name="BottomCenter" parent="." index="3"]
+position = Vector2( 0, 74 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="5"]
+visible = false
+polygon = PoolVector2Array( -47, -74, -66, -55, -71, -17, -48, 32, 0, 72, 47, 32, 72, -20, 66, -56, 44, -74, 21, -69, 5, -52, -6, -52, -24, -69 )

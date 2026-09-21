@@ -313,7 +313,7 @@ func updateTooltip(init: bool = false):
 		
 		addProperty(item.Stat.StaminaCost, Util.tra("TOOLTIP_StaminaCost"), 
 			String(stepify(staminaCost, 0.01)), item.isStaminaModified(), 
-			String(stepify(staminaPS, 0.1)), item.isStaminaPerSecondModified())
+			String(stepify(staminaPS, 0.01)), item.isStaminaPerSecondModified())
 
 	var baseAccuracy = item.getBaseAccuracy()
 	if baseAccuracy != 0:

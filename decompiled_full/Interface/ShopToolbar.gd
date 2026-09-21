@@ -18,7 +18,7 @@ var nodesToHide: Array
 
 onready var buttons = [
 	$UndoButton, $RedoButton, $PushToStorageButton, 
-	$ToolbarButton, $GridStorageButton, 
+	$NormalizeOrientationButton, $ToolbarButton, $GridStorageButton, 
 	$EditModeButtons / Default, $EditModeButtons / BagLayer, $EditModeButtons / ItemLayer]
 onready var tutorialAni = $AnimationPlayer
 
@@ -30,6 +30,8 @@ func _ready():
 	$UndoButton.connect("pressed", self, "onUndoPressed")
 	$RedoButton.connect("pressed", self, "onRedoPressed")
 	$PushToStorageButton.connect("pressed", self, "onPushToStoragePressed")
+	$PushToStorageButton.connect("gui_input", self, "onPushToStorageGuiInput")
+	$NormalizeOrientationButton.connect("pressed", self, "onNormalizeOrientationPressed")
 	$GridStorageButton.connect("toggled", self, "onGridStoragePressed")
 	Game.gridStorage.connect("toggled", self, "onGridStorageToggled")
 	Game.undoStack.connect("state_added", self, "checkUndoRedo")
@@ -143,10 +145,39 @@ func onPushToStoragePressed():
 		ObjectPool.particleOneShot(windParticles, get_parent())
 		particleReadyTime = Util.time + 0.2
 
+func onPushToStorageGuiInput(event):
+	if Util.isRightClickReleaseEvent(event):
+		if _tryNormalizeOrientationFromPushButton():
+			$PushToStorageButton.accept_event()
+
+func onNormalizeOrientationPressed():
+	_tryNormalizeOrientationFromPushButton()
+
 func _unhandled_input(event):
 	if not isInteractable(): return
 	if Util.isActionPressed_event(event, "push_all_to_storage"):
 		onPushToStoragePressed()
+		return
+	
+	if Util.isRightClickReleaseEvent(event):
+		if _isMouseOverPushToStorageButton() and _tryNormalizeOrientationFromPushButton():
+			get_tree().set_input_as_handled()
+
+func _isMouseOverPushToStorageButton() -> bool:
+	if not is_instance_valid($PushToStorageButton):
+		return false
+	if not $PushToStorageButton.visible:
+		return false
+	return $PushToStorageButton.get_global_rect().has_point(get_viewport().get_mouse_position())
+
+func _tryNormalizeOrientationFromPushButton() -> bool:
+	if not isInteractable():
+		return false
+	Game.cancelSwitch()
+	if Game.PLAYER and Game.PLAYER.INVENTORY:
+		Game.PLAYER.INVENTORY.normalizeSymmetricItems()
+		return true
+	return false
 
 func checkUndoRedo():
 	$UndoButton.disabled = not Game.undoStack.canUndo()

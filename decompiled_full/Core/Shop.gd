@@ -141,6 +141,7 @@ func enteringShop():
 		rerollsThisRound = 0
 	
 	ItemBook.countItems()
+	ItemBook.updateClass()
 	
 
 
@@ -429,6 +430,73 @@ func getNonReservedSlotIndices():
 			nonReservedSlots.push_back(i)
 	
 	return nonReservedSlots
+
+func getDisplayRarityOdds() -> Array:
+	var baseOdds = getRarityOddsForCurRound()
+	var cards = ItemBook.countItemsInInventoryOfType(ItemBook.customerCardDescriptor)
+	var nonReservedSlots = getNonReservedSlotIndices().size()
+	if cards <= 0 or nonReservedSlots <= 0:
+		return baseOdds
+
+	var expectedOdds = []
+	expectedOdds.resize(baseOdds.size())
+	for i in expectedOdds.size():
+		expectedOdds[i] = 0.0
+
+	var pmf = getBinomialPmf(cards, 1.0 / nonReservedSlots)
+	for k in pmf.size():
+		var shifted = shiftRarityOdds(baseOdds, k)
+		for i in shifted.size():
+			expectedOdds[i] += pmf[k] * shifted[i]
+
+	var sumOdds = 0.0
+	for val in expectedOdds:
+		sumOdds += val
+	if sumOdds > 0.0:
+		for i in expectedOdds.size():
+			expectedOdds[i] /= sumOdds
+
+	return expectedOdds
+
+func shiftRarityOdds(baseOdds: Array, shift: int) -> Array:
+	var shifted = []
+	shifted.resize(baseOdds.size())
+	for i in shifted.size():
+		shifted[i] = 0.0
+
+	for rarity in baseOdds.size():
+		var toIndex = min(baseOdds.size() - 1, rarity + shift)
+		shifted[toIndex] += baseOdds[rarity]
+	return shifted
+
+func getBinomialPmf(numTrials: int, successProb: float) -> Array:
+	var pmf = []
+	pmf.resize(numTrials + 1)
+	if successProb <= 0.0:
+		pmf[0] = 1.0
+		return pmf
+
+	if successProb >= 1.0:
+		for k in pmf.size():
+			pmf[k] = 0.0
+		pmf[numTrials] = 1.0
+		return pmf
+
+	var failProb = 1.0 - successProb
+	var prob = pow(failProb, numTrials)
+	pmf[0] = prob
+	for k in range(1, numTrials + 1):
+		prob *= (numTrials - k + 1) / float(k)
+		prob *= successProb / failProb
+		pmf[k] = prob
+
+	var sumProb = 0.0
+	for val in pmf:
+		sumProb += val
+	if sumProb > 0.0:
+		for i in pmf.size():
+			pmf[i] /= sumProb
+	return pmf
 	
 func getHighRollBuckets():
 	var highRollBuckets = [0, 0, 0, 0, 0]
