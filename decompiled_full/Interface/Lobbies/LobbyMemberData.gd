@@ -21,6 +21,11 @@ var roundData: Array
 var fightsFinished: int
 var curRanking: int
 
+var teamName: String = ""
+var teammateSteamId: int = 0
+var teamMemberSteamIds: Array = []
+var teamIndex: int = - 1
+
 func _init(_steamId: int, _ugcId: int):
 	steamId = _steamId
 	ugcId = _ugcId
@@ -34,14 +39,27 @@ func _init(_steamId: int, _ugcId: int):
 
 func setData(_playerName: String, _class: int, _loadout: int, 
 	_chibi: bool, _skins: Array):
-	
+
 	playerName = _playerName
 	characterClass = _class
 	loadout = _loadout
 	chibi = _chibi
 	skins = _skins
-	
+
 	emit_signal("data_changed")
+
+func setTeam(_teamName: String, _teammateSteamId: int, _teamMembers: Array = [], _teamIndex: int = - 1):
+	teamName = _teamName
+	teammateSteamId = _teammateSteamId
+	teamMemberSteamIds = _teamMembers
+	teamIndex = _teamIndex
+	emit_signal("data_changed")
+
+func getTeamName() -> String:
+	return teamName
+
+func getTeammateSteamId() -> int:
+	return teammateSteamId
 
 func isSelf() -> bool:
 		return SteamHelper.STEAM_ID == steamId

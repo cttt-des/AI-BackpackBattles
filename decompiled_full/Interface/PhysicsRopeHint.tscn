@@ -1,0 +1,99 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Shader/TextDissolveMaterial.tres" type="Material" id=1]
+[ext_resource path="res://Assets/Fonts/LibreBaskerville-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Assets/Fonts/LibreBaskerville-Bold.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Utility/LocalizedControl.gd" type="Script" id=4]
+[ext_resource path="res://Utility/PooledScene.gd" type="Script" id=5]
+
+[sub_resource type="DynamicFont" id=391]
+size = 26
+outline_size = 3
+outline_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+use_filter = true
+extra_spacing_top = -5
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=392]
+size = 26
+outline_size = 3
+outline_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+use_filter = true
+extra_spacing_top = -5
+font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=393]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("PhysicsRopeHint:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=394]
+resource_name = "ShowHint"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("PhysicsRopeHint:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 4.6, 5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "returnToObjectPool"
+} ]
+}
+
+[node name="PhysicsRopeHint" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="PhysicsRopeHint" type="RichTextLabel" parent="."]
+material = ExtResource( 1 )
+margin_left = 756.0
+margin_top = 197.0
+margin_right = 1197.0
+margin_bottom = 290.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_clip_content = false
+custom_colors/default_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_colors/font_color_shadow = Color( 0.235294, 0.14902, 0.113725, 1 )
+custom_fonts/bold_font = SubResource( 391 )
+custom_fonts/normal_font = SubResource( 392 )
+bbcode_enabled = true
+bbcode_text = "[wave amp=50 freq=4][center]Noodle Rope activated! 
+[b]Right click[/b] the rope to toggle. "
+text = "Noodle Rope activated! 
+Right click the rope to toggle. "
+fit_content_height = true
+scroll_active = false
+script = ExtResource( 4 )
+translationKey = "HINT_PhysicsRope"
+prefix = "[wave amp=50 freq=4][center]"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 393 )
+anims/ShowHint = SubResource( 394 )

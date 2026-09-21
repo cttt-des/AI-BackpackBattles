@@ -1,0 +1,105 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/Fonts/Milonga-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Interface/NotEnoughGoldLabel.gd" type="Script" id=2]
+[ext_resource path="res://Utility/LocalizedControl.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 40
+outline_size = 4
+outline_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Show"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.106973, 0.848839, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.116276, 0.265111, 0.402317, 0.560489, 0.697695, 0.841862 ),
+"transitions": PoolRealArray( -2, -2, -2, -2, -2, -2 ),
+"update": 0,
+"values": [ 0.0, 5.0, -5.0, 5.0, -5.0, 0.0 ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "returnToObjectPool"
+} ]
+}
+
+[node name="NotEnoughTrophies" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = -268.0
+margin_top = -27.0
+margin_right = 257.0
+margin_bottom = 28.0
+rect_clip_content = false
+mouse_filter = 2
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[img=0,40]res://Assets/Trophy.png[/img] Need more trophies! [img=0,40]res://Assets/Trophy.png[/img]"
+text = " Need more trophies! "
+scroll_active = false
+script = ExtResource( 3 )
+translationKey = "LABEL_NotEnoughTrophies"
+prefix = "[center][img=0,40]res://Assets/Trophy.png[/img]"
+suffix = "[img=0,40]res://Assets/Trophy.png[/img]"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 2 )
+anims/Show = SubResource( 3 )

@@ -1,0 +1,81 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Interface/RopeSegment.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Interface/RerollRopeTag.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Interface/PhysicsRope.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Shop/RopeTexture.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Shop/RopeEnd.png" type="Texture" id=6]
+
+[sub_resource type="RectangleShape2D" id=357]
+
+[sub_resource type="CircleShape2D" id=358]
+radius = 39.4462
+
+[node name="PhysicsRope" type="Node2D" groups=["PullButton"]]
+position = Vector2( 1257, -283 )
+z_index = 3
+script = ExtResource( 4 )
+
+[node name="RopeHolder" type="StaticBody2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RopeHolder"]
+shape = SubResource( 357 )
+
+[node name="Line2D" type="Line2D" parent="."]
+modulate = Color( 1.1, 1.1, 1.1, 1 )
+points = PoolVector2Array( 0, -8, -1, 310 )
+width = 18.0
+default_color = Color( 1, 1, 1, 1 )
+texture = ExtResource( 5 )
+texture_mode = 1
+sharp_limit = 20.0
+
+[node name="End" parent="." instance=ExtResource( 2 )]
+position = Vector2( 16, 427 )
+ending = true
+
+[node name="Start" parent="End" index="0"]
+position = Vector2( 0, -42 )
+
+[node name="CollisionShape2D" parent="End" index="2"]
+shape = SubResource( 358 )
+
+[node name="End" parent="End" index="3"]
+position = Vector2( 0, 35 )
+
+[node name="ClickArea" parent="End" index="4"]
+margin_left = -42.0
+margin_top = -46.0
+margin_right = 44.0
+margin_bottom = 41.0
+
+[node name="RopeEnd" type="Sprite" parent="End"]
+modulate = Color( 1.1, 1.1, 1.1, 1 )
+position = Vector2( 1, -2 )
+texture = ExtResource( 6 )
+
+[node name="Tag" parent="." instance=ExtResource( 3 )]
+position = Vector2( -6, 225 )
+
+[node name="Tag" parent="Tag" index="0"]
+position = Vector2( 48.5, 0.5 )
+
+[node name="Label" parent="Tag" index="1"]
+margin_left = -4.5
+margin_top = -34.5
+margin_right = 104.5
+margin_bottom = 8.5
+
+[node name="Cost" parent="Tag" index="2"]
+margin_left = 7.5
+margin_top = -1.5
+margin_right = 59.5
+margin_bottom = 35.5
+
+[node name="GoldCoin2" parent="Tag" index="3"]
+position = Vector2( 62.5, 13.5 )
+
+[editable path="End"]
+[editable path="Tag"]

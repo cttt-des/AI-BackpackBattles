@@ -3,43 +3,64 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# ============ ¹¹½¨²úÎï ============
+# ============ æ„å»ºäº§ç‰© ============
 build/
 build_gui/
 *.spec
 dist/
 
-# ============ ÈÕÖ¾ÓëÁÙÊ±ÎÄ¼ş ============
+# ============ æ—¥å¿—ä¸ä¸´æ—¶æ–‡ä»¶ ============
 logs/
 tmp_assets/
 screenshots/
 gh.zip
 gh_tmp/
 
-# ============ ÓÎÏ·±¾ÌåÓë×ÊÔ´°ü ============
+# ============ æ¸¸æˆæœ¬ä½“ä¸èµ„æºåŒ… ============
 Backpack Battles/
 *.pck
 
-# ============ ÌáÈ¡/½âÃÜ/·´±àÒëµÄÓÎÏ·ÄÚÈİ£¨±¾µØ±£Áô£¬²»Èë¿â£©============
+# ============ æå–/è§£å¯†/åç¼–è¯‘çš„æ¸¸æˆå†…å®¹ï¼ˆæœ¬åœ°ä¿ç•™ï¼Œä¸å…¥åº“ï¼‰============
 extracted/
 extracted_decrypted/
 extracted_gdc/
 decompiled_gd/
 
-# ·´±àÒë×îÖÕ²úÎï£¨Èë¿â±£Áô£©£»½öÅÅ³ı GDRE ÖĞ¼ä»º´æ¡¢µ¼³öÈÕÖ¾Óë Godot ×Ô¶¯Éú³ÉÎÄ¼ş
+# åç¼–è¯‘æœ€ç»ˆäº§ç‰©ï¼ˆå…¥åº“ä¿ç•™æºç ç±»æ–‡æœ¬ï¼‰ï¼›æ’é™¤äºŒè¿›åˆ¶/æ´¾ç”Ÿèµ„æºã€GDRE ä¸­é—´ç¼“å­˜ã€å¯¼å‡ºæ—¥å¿—ä¸ Godot è‡ªåŠ¨ç”Ÿæˆæ–‡ä»¶
 decompiled_full/.autoconverted/
 decompiled_full/gdre_export.log
 decompiled_full/.godot/
 *.uid
+decompiled_full/**/*.png
+decompiled_full/**/*.jpg
+decompiled_full/**/*.webp
+decompiled_full/**/*.stex
+decompiled_full/**/*.oggstr
+decompiled_full/**/*.ogg
+decompiled_full/**/*.sample
+decompiled_full/**/*.wav
+decompiled_full/**/*.mp3str
+decompiled_full/**/*.mp3
+decompiled_full/**/*.ttf
+decompiled_full/**/*.otf
+decompiled_full/**/*.ico
+decompiled_full/**/*.dll
+decompiled_full/**/*.translation
+decompiled_full/**/*.image
+decompiled_full/**/*.res
+decompiled_full/**/*.import
+decompiled_full/**/*.md5
+decompiled_full/**/*.gde
+decompiled_full/**/*.gdc
 
-# Ä£ÄâÆ÷ÔËĞĞÊä³ö£¨¿ÉÔÙÉú³É£©
+# æ¨¡æ‹Ÿå™¨è¿è¡Œè¾“å‡ºï¼ˆå¯å†ç”Ÿæˆï¼‰
 output/
 
-# ±¸·İÎÄ¼ş
+# å¤‡ä»½æ–‡ä»¶
 *.bak*
 *.bak_*
 
-# ============ ÄæÏò¹¤¾ß²úÎï£¨¹¤¾ß±¾Ìå±£ÁôÔÚ tools/ ±¾µØ£©============
+# ============ é€†å‘å·¥å…·äº§ç‰©ï¼ˆå·¥å…·æœ¬ä½“ä¿ç•™åœ¨ tools/ æœ¬åœ°ï¼‰============
 tools/gdre/
 tools/*.exe
 tools/_*
@@ -47,13 +68,15 @@ tools/candidates_*.txt
 tools/Combat.gde
 tools/__pycache__/
 
-# ¸ùÄ¿Â¼¹ÂÁ¢µÄ·´±àÒë²âÊÔÊä³ö
+# æ ¹ç›®å½•å­¤ç«‹çš„åç¼–è¯‘æµ‹è¯•è¾“å‡º
 StaminaGainCounter.gde.gd
 
-# ============ IDE ÓëÏµÍ³ÎÄ¼ş ============
+# ============ IDE ä¸ç³»ç»Ÿæ–‡ä»¶ ============
 .vscode/
 .idea/
 .DS_Store
 Thumbs.db
 .zcode/
 .codebuddy/
+
+# ç¼‚æ ¬ç·«é£ï¿½/å®¸ãƒ¥å¿éˆï¿½é¦æ‰®æ´°è¤°ï¿½

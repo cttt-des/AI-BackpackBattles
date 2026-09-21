@@ -9,6 +9,7 @@ const tooltipLabelScene = preload("res://Interface/TooltipLabel.tscn")
 export var playClickSound = true
 export var releaseFocus = true
 export var tooltipKey: String
+export var tooltipText: String = ""
 export var tooltipOffset: Vector2
 export (NodePath) var showOnHover = null
 export var showTooltipWhenDisabled: = false
@@ -34,7 +35,7 @@ func _ready() -> void :
 	call_deferred("ready_deferred")
 	
 func ready_deferred():
-	if tooltipKey != "" or showOnHover != null:
+	if tooltipKey != "" or tooltipText != "" or showOnHover != null:
 		add_to_group("ButtonWithTooltip")
 
 func onHover():
@@ -44,10 +45,15 @@ func onHover():
 			Util.grabFocus(self)
 			Game.onHoverInteractable(self)
 			
-			if tooltipKey != "":
+			if tooltipKey != "" or tooltipText != "":
 				tooltipLabel = ObjectPool.instance(tooltipLabelScene)
 				Game.tooltipsNode.add_child(tooltipLabel)
-				tooltipLabel.init(tooltipKey, self, tooltipOffset)
+				if tooltipText != "":
+					tooltipLabel.translationKey = ""
+					tooltipLabel.text = tooltipText
+					tooltipLabel.call_deferred("positionLabel", self, tooltipOffset)
+				else:
+					tooltipLabel.init(tooltipKey, self, tooltipOffset)
 			
 			if hoverReactionNode != null:
 				hoverReactionNode.show()

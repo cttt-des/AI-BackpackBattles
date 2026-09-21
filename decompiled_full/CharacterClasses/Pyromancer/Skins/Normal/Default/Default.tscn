@@ -1,0 +1,67 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://CharacterClasses/Pyromancer/PyromancerSprite.tscn" type="PackedScene" id=1]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Idle"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body/DressBack:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.98 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 0.952 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Body/DressFront:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.16 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 0.95 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body/DressBack:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Body/DressFront:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[node name="Sprite" instance=ExtResource( 1 )]
+script = null
+
+[node name="DressIdle" type="AnimationPlayer" parent="." index="5" groups=["Body"]]
+playback_speed = 0.4
+anims/Idle = SubResource( 1 )
+anims/RESET = SubResource( 2 )

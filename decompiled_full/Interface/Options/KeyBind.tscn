@@ -1,0 +1,163 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Utility/LocalizedControl.gd" type="Script" id=1]
+[ext_resource path="res://Interface/EmptyStylebox.tres" type="StyleBox" id=2]
+[ext_resource path="res://Interface/Options/OptionsFont.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Assets/Fonts/LibreBaskerville-Regular.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Interface/Options/KeyBind.gd" type="Script" id=5]
+[ext_resource path="res://Interface/Options/ResetButton.png" type="Texture" id=6]
+[ext_resource path="res://Interface/Options/ResetButton_hovered.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Divider1.png" type="Texture" id=8]
+
+[sub_resource type="DynamicFont" id=6]
+size = 23
+outline_size = 3
+outline_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+use_filter = true
+extra_spacing_top = -4
+extra_spacing_bottom = -7
+font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+content_margin_left = 6.0
+content_margin_right = 6.0
+bg_color = Color( 0.239216, 0.14902, 0.109804, 0.211765 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 0.823529, 0.137255, 1 )
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id=4]
+content_margin_left = 6.0
+content_margin_right = 6.0
+bg_color = Color( 0.239216, 0.14902, 0.109804, 0.211765 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 1, 0.823529, 0.137255, 1 )
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id=5]
+content_margin_left = 6.0
+content_margin_right = 6.0
+bg_color = Color( 0.298039, 0.239216, 0.203922, 0.596078 )
+border_color = Color( 1, 0.823529, 0.137255, 1 )
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id=2]
+content_margin_left = 6.0
+content_margin_right = 6.0
+bg_color = Color( 0.239216, 0.14902, 0.109804, 0.211765 )
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="Control" type="Control"]
+margin_right = 667.0
+margin_bottom = 51.0
+rect_min_size = Vector2( 667, 50 )
+script = ExtResource( 5 )
+
+[node name="Divider1" type="Sprite" parent="."]
+visible = false
+position = Vector2( 313.25, 54.5 )
+scale = Vector2( 2.4572, 0.5 )
+texture = ExtResource( 8 )
+
+[node name="Label" type="Label" parent="."]
+margin_top = 3.0
+margin_right = 275.0
+margin_bottom = 43.0
+grow_vertical = 2
+rect_min_size = Vector2( 275, 40 )
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "Push all items to"
+valign = 1
+autowrap = true
+script = ExtResource( 1 )
+maxSize = 275.0
+maxSizeY = 60.0
+removeBreaks = true
+
+[node name="Key1" type="Button" parent="."]
+margin_left = 283.0
+margin_right = 443.0
+margin_bottom = 49.0
+grow_vertical = 2
+rect_min_size = Vector2( 160, 49 )
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+custom_colors/font_color_disabled = Color( 0.822266, 0.707739, 0.56049, 1 )
+custom_colors/font_color_focus = Color( 1, 0.92549, 0.831373, 1 )
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_colors/font_color_hover = Color( 1, 0.862745, 0.192157, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.862745, 0.192157, 1 )
+custom_fonts/font = ExtResource( 3 )
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/focus = ExtResource( 2 )
+custom_styles/disabled = SubResource( 5 )
+custom_styles/normal = SubResource( 2 )
+text = "RMB"
+align = 0
+script = ExtResource( 1 )
+maxSize = 160.0
+
+[node name="Key2" type="Button" parent="."]
+margin_left = 454.0
+margin_right = 614.0
+margin_bottom = 49.0
+grow_vertical = 2
+rect_min_size = Vector2( 160, 50 )
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+custom_colors/font_color_disabled = Color( 0.822266, 0.707739, 0.56049, 1 )
+custom_colors/font_color_focus = Color( 1, 0.92549, 0.831373, 1 )
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_colors/font_color_hover = Color( 1, 0.862745, 0.192157, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.862745, 0.192157, 1 )
+custom_fonts/font = ExtResource( 3 )
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/focus = ExtResource( 2 )
+custom_styles/disabled = SubResource( 5 )
+custom_styles/normal = SubResource( 2 )
+align = 0
+script = ExtResource( 1 )
+maxSize = 160.0
+
+[node name="Default" type="TextureButton" parent="."]
+margin_left = 618.0
+margin_top = 4.0
+margin_right = 664.0
+margin_bottom = 44.0
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 6 )
+texture_hover = ExtResource( 7 )
+expand = true
+stretch_mode = 5
+
+[connection signal="mouse_entered" from="." to="." method="onHover"]
+[connection signal="mouse_exited" from="." to="." method="onHoverEnd"]
+[connection signal="mouse_entered" from="Key1" to="." method="onHoverKey1"]
+[connection signal="mouse_exited" from="Key1" to="." method="onHoverKey1End"]
+[connection signal="pressed" from="Key1" to="." method="key1Pressed"]
+[connection signal="mouse_entered" from="Key2" to="." method="onHoverKey2"]
+[connection signal="mouse_exited" from="Key2" to="." method="onHoverKey2End"]
+[connection signal="pressed" from="Key2" to="." method="key2Pressed"]
+[connection signal="pressed" from="Default" to="." method="defaultPressed"]

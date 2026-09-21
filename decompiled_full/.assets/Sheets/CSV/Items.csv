@@ -1,0 +1,1005 @@
+﻿key,en,de,zh_Hans_CN,ja,ko,zh_Hant_TW,fr,ru,pt_BR,es
+<!MissingKey:0:Perfect Topaz>,Perfect Topaz,Perfekter Topas,完美黄宝石,完璧なトパーズ,완벽한 토파즈,完美黃寶石,Topaze parfaite,Полированный топаз,Topázio Perfeito,Topacio perfecto
+<!MissingKey:1:$h[Playing cards] are offered in the shop. $t[Start of battle:] Gain $p1 $lucky. Start revealing the $affected $h[Playing card].>,$h[Playing cards] are offered in the shop. $t[Start of battle:] Gain $p1 $lucky. Start revealing the $affected $h[Playing card].,"$h[Spielkarten] werden im Laden angeboten. $t[Kampfbeginn:] Erhalte $p1 $lucky. Beginne, die $affected $h[Spielkarte] aufzudecken.",$h[卡牌]将会在商店售出。$t[战斗开始时：]获得$p1点$lucky幸运。并开始翻开$affected的$h[卡牌]。,$h[ゲームカード]がショップで売られるようになる $t[バトル開始時：]$p1 $lucky を獲得する。$affectedにある$h[ゲームカード]をめくり始める,$h[플레잉 카드]가 상점에 등장합니다. $t[전투 시작 시:] $lucky을 $p1 획득합니다. $affected에 위치한 $h[플레잉 카드]를 공개합니다.,$h[卡牌]將會在商店售出。$t[戰鬥開始時：]獲得$p1點$lucky。開始翻開$affected的$h[卡牌]。,Des $h[Cartes à jouer] sont disponibles dans la boutique. $t[Au début du combat :] gagnez $p1 $lucky. Commencez à découvrir la $h[Carte à jouer] $affected.,$h[Карты] различных типов будут продаваться в магазине. $t[Начало боя:] добавляет $p1 $lucky. Раскроет $affected $h[карту].,$h[Cartas] são disponibilizadas na loja. $t[Início da batalha:] Ganhe $p1 $lucky. Começa a revelar a $h[Carta] $affected.,Las $h[Cartas de juego] se venden en la tienda. $t[Al comienzo de la batalla:] Obtiene $p1 $lucky. Empieza por revelar la $affected $h[Carta de juego].
+<!MissingKey:2:$t[Out of stamina:] Consume this and regenerate $p1 stamina and gain $p2 $empower.>,$t[Out of stamina:] Consume this and regenerate $p1 stamina and gain $p2 $empower.,$t[Keine Ausdauer mehr:] Trinke aus und regeneriere $p1 Ausdauer und erhalte $p2 $empower.,$t[当耐力耗尽时：]消耗此魔药，恢复$p1点耐力并获得$p2层$empower。,$t[スタミナ不足時：]このアイテムを消費して、スタミナを$p1回復し、$p2 $empower を獲得する,"$t[스태미나 부족 시:] 포션을 소모해 스태미나를 $p1 회복하고, $empower를 $p2 획득합니다.",$t[當耐力耗盡時：]消耗此魔藥，恢復$p1點耐力並獲得$p2層$empower。,$t[Endurance épuisée :] consommez ceci et régénérez $p1 d'endurance et gagnez $p2 $empower.,"$t[Нет энергии:] расходуется, чтобы восстановить $p1 ед. энергии и добавить $p2 $empower.",$t[Sem vigor:] Consuma isto e restaura $p1 de vigor e ganhe $p2 $empower.,"$t[Sin resistencia:] Consume esto y regenera $p1 de resistencia, y obtiene $p2 $empower."
+<!MissingKey:3:Yggdrasil Leaf>,Yggdrasil Leaf,Yggdrasilblatt,世界树树叶,ユグドラシルの葉,위그드라실 잎,世界樹樹葉,Feuille d'Yggdrasil,Лист Иггдрасиля,Folha da Yggdrasil,Hoja de Yggdrasil
+<!MissingKey:4:$t[Opponent drops below $p1%:] Consume this and deal \~$p2 $effect-damage for each debuff of your opponent.>,$t[Opponent drops below $p1%:] Consume this and deal \~$p2 $effect-damage for each debuff of your opponent.,$t[Leben des Gegners fällt unter $p1%:] Trinke aus und verursache \~$p2 $effect-Schaden pro Debuff deines Gegners.,$t[当你对手的生命值降低到$p1%时：]消耗此魔药，对手每有一层减益效果，对其造成额外$p2点$effect伤害。,$t[相手の体力が$p1%未満に低下時：]このアイテムを消費して、相手のデバフ1スタックにつき$p2 $effect ダメージを与える,"$t[상대의 체력이 $p1% 아래로 떨어질 시:] 포션을 소모해, 상대에게 부여된 디버프마다 $effect 피해를 $p2 가합니다.",$t[當對手生命值降至$p1%時：]對手每有一層減益效果，對其造成額外$p2點傷害。,$t[PV de l'adversaire inférieurs à $p1% :] consommez ceci et infligez $p2 de dégâts $effect pour chaque malus de votre adversaire.,"$t[При здоровье противника ниже $p1%:] расходуется, чтобы нанести $p2 ед. $effect-урона за каждый негативный эффект на противнике.",$t[Oponente cai abaixo de $p1%:] Consome isto e causa $p2 de dano de $effect por cada debuff do oponente.,$t[Si la salud del rival cae por debajo del $p1 %:] Consume la poción e inflige $p2 de daño de $effect por cada desventaja del rival.
+<!MissingKey:5:$t[Every $cds:] Heal for $p1 and \~regenerate $h[1] stamina.>,$t[Every $cds:] Heal for $p1 and \~regenerate $h[1] stamina.,$t[Alle $cds:] Heile um $p1 und regeneriere $h[1] Ausdauer.,$t[每$cds：]恢复$p1点生命和$h[1]点耐力。,$t[$cd秒毎：]体力を$p1回復し、スタミナを$h[1]回復する,"$t[$cd초마다:] 체력을 $p1, 스태미나를 $h[1] 회복합니다.",$t[每$cd秒：]恢復$p1點生命和$h[1]點耐力。,$t[Toutes les $cd s :] guérissez de $p1 et régénérez $h[1] d'endurance.,$t[Раз в $cd сек.:] исцеляет на $p1 ед. и восстанавливает $h[1] ед. энергии.,$t[A cada $cd s:] Restaura $p1 de vida e $h[1] de vigor.,$t[Cada $cd s:] Recupera $p1 PS y $h[1] de resistencia.
+<!MissingKey:6:Ruby Egg>,Ruby Egg,Rubinei,红宝石龙蛋,ルビーエッグ,루비 알,紅寶石龍蛋,Œuf rubis,Рубиновое яйцо,Ovo de Rubi,Huevo rubí
+<!MissingKey:7:$t[Start of battle:] Gain $p1 $heat. $t[On hit:] $chance% chance to gain \~$p2 damage. >,$t[Start of battle:] Gain $p1 $heat. $t[On hit:] $chance% chance to gain \~$p2 damage. ,"$t[Kampfbeginn:] Erhalte $p1 $heat. $t[Bei Treffer:] $chance% Chance, Schaden um $p2 zu erhöhen. ",$t[战斗开始时：]获得$p1层$heat。$t[击中对手时：]有$chance%的几率获得$p2点伤害加成。,$t[バトル開始時：]$p1 $heat を獲得する $t[ヒット時：]$chance%の確率でダメージ値が$p2増える,$t[전투 시작 시:] $heat를 $p1 획득합니다. $t[적중 시:] $chance%의 확률로 가하는 피해가 $p2 증가합니다.,$t[戰鬥開始時：]獲得$p1層$heat。$t[命中對手時：]有$chance%的機率獲得$p2點傷害加成。,$t[Au début du combat :] gagnez $p1 $heat. $t[Par coup :] $chance % de chance de gagner $p2 de dégâts.,$t[Начало боя:] добавляет $p1 $heat. $t[При попадании:] шанс $chance% повысить урон на $p2 ед.,$t[Início da batalha:] Ganhe $p1 $heat. $t[Ao acertar:] $chance% de chance de ganhar $p2 de dano.,$t[Al comienzo de la batalla:] Obtiene $p1 $heat. $t[Al golpear:] $chance % de probabilidad de ganar $p2 de daño.
+<!MissingKey:8:Add $h[8] backpack slots. $t[Item inside activates:] $chance% chance to inflict $h[1] $poison.>,Add $h[8] backpack slots. $t[Item inside activates:] $chance% chance to inflict $h[1] $poison.,"Fügt $h[8] Rucksackplätze hinzu. 
+ Wenn ein enthaltener Gegenstand aktiviert, verursachst du mit $chance% Chance $h[1] $poison.",增加$h[8]格背包槽位。$t[棺材内物品激活时：]将有$chance%的几率施加$h[1]层$poison。,バックパックのスロットを$h[8]追加する $t[中にあるアイテム発動時：]$chance%の確率で$h[1] $poison を付与する,배낭 슬롯을 $h[8]개 추가합니다. $t[내부에 위치한 아이템 발동 시:] $chance% 확률로 $poison을 $h[1] 부여합니다.,增加$h[8]格背包欄位。$t[棺材內物品發動時：]有$chance%的機率施加$h[1]層$poison。,Ajoutez $h[8] emplacements de sac à dos. $t[En activant les objets à l'intérieur :] $chance % de chance d'infliger $h[1] $poison.,Добавляет $h[8] слотов к рюкзаку. $t[Срабатывание предметов внутри:] шанс $chance% наложить $h[1] $poison.,Adiciona $h[8] espaços à mochila. $t[Ativação de item dentro dele:] $chance% de chance de infligir $h[1] $poison.,Añade $h[8] espacios a la mochila. $t[Al activarse el objeto dentro:] $chance % de probabilidad de infligir $h[1] $poison.
+<!MissingKey:9:Ranger Bag>,Ranger Bag,Waldläufertasche,露营背包,レンジャーのカバン,레인저 가방,露營背包,Sac de rôdeur,Сумка лучника,Mochila de Arqueiro,Bolsa de explorador
+<!MissingKey:10:Tim>,Tim,Tim,骷髅蒂姆,ティム,팀,骷髏蒂姆,Tim,Джон,Tim,Tim
+<!MissingKey:11:Strong Health Potion>,Strong Health Potion,Starker Heiltrank,强力生命魔药,ハイヘルスポーション,강력한 체력 포션,強效生命魔藥,Potion de PV forte,Усиленное зелье здоровья,Poção de Vida Potente,Poción curativa potente
+<!MissingKey:12:Pumpkin>,Pumpkin,Kürbis,南瓜头,パンプキン,호박,南瓜頭,Citrouille,Тыква,Abóbora,Calabaza
+<!MissingKey:13:Artifact Stone: Heat>,Artifact Stone: Heat,Artefaktstein: Hitze,遗迹石：火焰,古代の石：フレイム,아티팩트석: 열기,神器石：火焰,Pierre d'artefact : Chaleur,Артефакт: Жар,Pedra de Artefato: Calor,Piedra artefacto: Calor
+<!MissingKey:14:Add $h[4] backpack slots.>,Add $h[4] backpack slots.,Fügt $h[4] Rucksackplätze hinzu.,增加$h[4]格背包槽位。,バックパックのスロットを$h[4]追加する,배낭 슬롯을 $h[4]개 추가합니다.,增加$h[4]格背包欄位。,Ajoutez $h[4] emplacements de sac à dos.,Добавляет $h[4] слота к рюкзаку.,Adiciona $h[4] espaços à mochila.,Añade $h[4] espacios a la mochila.
+<!MissingKey:15:$t[Every $cds:] Inflict $fatigue[Fatigue] damage. $t[On debuffed:] $chance% chance to inflict the same debuff. $t[Health drops below $p2%:] $affected Items trigger $p3% faster for $p4s (once).>,$t[Every $cds:] Inflict $fatigue[Fatigue] damage. $t[On debuffed:] $chance% chance to inflict the same debuff. $t[Health drops below $p2%:] $affected Items trigger $p3% faster for $p4s (once).,"$t[Alle $cds:] Verursache $fatigue[Erschöpfungsschaden]. $t[Bei Debuff:] $chance% Chance, den selben Debuff zu verursachen. $t[Leben fällt unter $p2%:] $affected Gegenstände aktivieren $p3% schneller für $p4s.",$t[每$cds：]向对手造成$fatigue[疲惫]伤害。$t[获得减益效果时：]有$chance%的几率向对手施加同样的效果。$t[生命值低于$p2%时：]$affected的物品$p4s内触发快$p3%。（单次触发）,$t[$cd秒毎：]$fatigue[疲労]ダメージを与える $t[被デバフ時：]$chance%の確率で相手にも同じデバフを付与する $t[体力が$p2%未満に低下時：]$p4秒間、$affectedにあるアイテムの使用速度が$p3%上がる（1回のみ）,$t[$cd초마다:] $fatigue[피로] 피해를 부여합니다. $t[디버프 획득 시:] $chance%의 확률로 동일한 디버프를 부여합니다. $t[체력이 $p2% 아래로 떨어질 시:] $p4초 동안 $affected에 위치한 아이템이 $p3% 빠르게 발동합니다 (한 번).,$t[每$cd秒：]向對手造成$fatigue點[疲勞]傷害。$t[獲得減益效果時：]有$chance%的機率向對手施加同樣的效果。$t[生命值低於$p2%時：]$affected的物品$p4秒內觸發速度加快$p3%。（單次觸發）,$t[Toutes les $cd s :] infligez des dégâts de $fatigue[Fatigue]. $t[En recevant un malus :] $chance % de chance d'infliger le même malus. $t[PV inférieurs à $p2 % :] les objets $affected se déclenchent $p3 % plus vite pendant $p4 s (une fois).,$t[Раз в $cd сек.:] наносит урон от $fatigue[истощения]. $t[Негативные эффекты на герое:] $chance% шанс наложить на противника такой же негативный эффект. $t[При здоровье героя ниже $p2%:] $affected предметы срабатывают на $p3% чаще в течение $p4 сек. (один раз).,$t[A cada $cd s:] Inflige dano de $fatigue[Cansaço]. $t[Ao sofrer debuff:] $chance% de chance de infligir o mesmo debuff. $t[Vida abaixo de $p2%:] Os itens $affected ativam-se $p3% mais rápido por $p4 s (uma vez).,$t[Cada $cd s] Inflige daño por $fatigue[Fatiga]. $t[Si se tiene desventajas:] $chance % de probabilidad de infligir la misma desventaja. $t[Si los PS caen por debajo del $p2%:] Los $affected objetos se activan un $p3 % más rápido durante $p4 s (una vez).
+<!MissingKey:16:Piggybank>,Piggybank,Sparschwein,存钱罐,ブタちゃん貯金箱,돼지저금통,存錢罐,Tirelire cochon,Копилка,Cofrinho,Hucha
+<!MissingKey:17:Potion Belt>,Potion Belt,Trankgürtel,魔药腰带,ポーションベルト,포션 벨트,魔藥腰帶,Ceinture de potions,Сумка для зелий,Cinto de Poções,Cinturón de pociones
+<!MissingKey:18:Add $h[3] backpack slots. >,"Add $h[3] backpack slots. 
+
+ Gain $h[1] maximum stamina.","Fügt $h[3] Rucksackplätze hinzu. 
+ Ausdauermaximum +$h[1].","增加$h[3]格背包槽位。
+
+最大耐力值增加$h[1]点。","バックパックのスロットを$h[3]追加する
+
+スタミナ最大値が$h[1]増える","배낭 슬롯을 $h[3]개 추가합니다.
+
+최대 스태미나가 $h[1] 상승합니다.","增加$h[3]格背包欄位。
+最大耐力值增加$h[1]點。","Ajoutez $h[3] emplacements de sac à dos. 
+
+ Gagnez $h[1] d'endurance max.","Добавляет $h[3] слота к рюкзаку. 
+
+ Повышает максимальную энергию на $h[1] ед.","Adiciona $h[3] espaços à mochila. 
+
+ Ganha $h[1] de vigor máximo.","Añade $h[3] espacios a la mochila. 
+
+ Obtiene $h[1] de resistencia máx."
+<!MissingKey:19:Moon Shield>,Moon Shield,Mondschild,月光盾,月の盾,달의 방패,月光盾,Bouclier de lune,Лунный щит,Escudo Lunar,Escudo lunar
+<!MissingKey:20:$t[Shop entered:] Gain $p1 $gold. $t[Start of battle:] Gain $p2 maximum health for each $affected $h[Start of battle] item.>,$t[Shop entered:] Gain $p1 $gold. $t[Start of battle:] Gain $p2 maximum health for each $affected $h[Start of battle] item.,$t[Laden betreten:] Erhalte $p1 $gold. $t[Kampfbeginn:] Erhalte $p2 Maximalleben für jeden $affected $h[Kampfbeginn]-Gegenstand.,$t[进入商店时：]获得$p1枚$gold。$t[战斗开始时：]每个$affected的带$h[“战斗开始时”]触发效果物品提供$p2点最大生命值。,$t[ショップ入店時：]$p1 $gold を獲得する $t[バトル開始時：] $affectedにある$h[バトル開始時]アイテム1個につき体力最大値が$p2増える,"$t[상점 진입 시:] $gold를 $p1 획득합니다. $t[전투 시작 시:] $affected에 위치한 $h[전투 시작 시] 아이템마다, 최대 체력을 $p2 획득합니다.",$t[進入商店時：]獲得$p1枚$gold。$t[戰鬥開始時：]每個$affected的$h[戰鬥開始時]觸發效果物品提供$p2點最大生命值。,$t[En entrant dans la boutique :] gagnez $p1 $gold. $t[Au début du combat :] gagnez $p2 des PV max pour tous les objets $affected de $h[Début du combat].,$t[Переход в магазин:] добавляет $p1 $gold. $t[Начало боя:] добавляет $p2 ед. максимального здоровья за каждый $affected предмет типа $h[Начало боя].,$t[Ao entrar na loja:] Ganhe $p1 $gold. $t[Início da batalha:] Ganhe $p2 de vida máxima por cada item de $h[Início da batalha] $affected.,$t[Al entrar en la tienda:] Obtiene $p1 $gold. $t[Al comienzo de la batalla:] Obtiene $p2 de PS máx. por cada objeto $h[Al comienzo de la batalla] $affected.
+<!MissingKey:21:$t[Start of battle:] Inflict $p1 $blind.>,$t[Start of battle:] Inflict $p1 $blind.,$t[Kampfbeginn:] Verursache $p1 $blind.,$t[战斗开始时：]施加$p1层$blind。,$t[バトル開始時：]$p1 $blind を付与する,$t[전투 시작 시:] $blind을 $p1 부여합니다.,$t[戰鬥開始時：]施加$p1層$blind。,$t[Au début du combat :] infligez $p1 $blind.,$t[Начало боя:] добавляет $p1 $blind.,$t[Início da batalha:] Inflige $p1 $blind.,$t[Al comienzo de la batalla:] Inflige $p1 $blind.
+<!MissingKey:22:Cap of Discomfort>,Cap of Discomfort,Kappe des Unbehagens,腐败头盔,苦痛のヘルム,고통의 모자,腐敗頭盔,Capuchon de nuisance,Проклятый шлем,Elmo do Desconforto,Gorra de la incomodidad
+<!MissingKey:23:Health Potion>,Health Potion,Heiltrank,生命魔药,ヘルスポーション,체력 포션,生命魔藥,Potion de PV,Зелье здоровья,Poção de Vida,Poción curativa
+<!MissingKey:24:Customer Card>,Customer Card,Kundenkarte,会员卡,ショップ会員カード,회원 카드,會員卡,Carte de fidélité,VIP-карта,Cartão de Cliente,Carnet de socio
+<!MissingKey:25:$t[Every $cds:] Gain $h[1] $spikes and heal for $p1.>,$t[Every $cds:] Gain $h[1] $spikes and heal for $p1.,$t[Alle $cds:] Erhalte $h[1] $spikes und heile um $p1.,$t[每$cds：]获得$h[1]层$spikes并恢复$p1点生命值。,$t[$cd秒毎：]$h[1] $spikes を獲得し、体力を$p1回復する,"$t[$cd초마다:] $spikes를 $h[1] 획득하고, 체력을 $p1 회복합니다.",$t[每$cd秒：]獲得$h[1]層$spikes並恢復$p1點生命值。,$t[Toutes les $cd s :] gagnez $h[1] $spikes guérissez de $p1.,$t[Раз в $cd сек.:] добавляет $h[1] $spikes и восстанавливает $p1 ед. здоровья.,$t[A cada $cd s:] Ganhe $h[1] $spikes e restaura $p1 de vida.,$t[Cada $cd s:] Obtiene $h[1] $spikes y recupera $p1 PS.
+<!MissingKey:26:$t[On hit:] Use $p1 $lucky to gain $p2 damage. $t[On miss:] Gain $p3 $lucky.>,$t[On hit:] Use $p1 $lucky to gain $p2 damage. $t[On miss:] Gain $p3 $lucky.,"$t[Bei Treffer:] Nutze $p1 $lucky, um Schaden um $p2 zu erhöhen. $t[Bei Verfehlen:] Erhalte $p3 $lucky.",$t[击中对手时：]消耗$p1点$lucky获得$p2点伤害加成。$t[未命中：]获得$p3点$lucky。,$t[ヒット時：]$p1 $lucky を消費して、ダメージ値が$p2増える $t[ミス時：]$p3 $lucky を獲得する,$t[적중 시:] $lucky을 $p1 사용해 가하는 피해가 $p2 증가합니다. $t[빗나갈 시:] $lucky을 $p3 획득합니다.,$t[命中時：]消耗$p1點$lucky獲得$p2點傷害加成。$t[未命中：]獲得$p3點$lucky。,$t[Par coup :] utilisez $p1 $lucky pour gagner $p2 de dégâts. $t[En manquant :] gagnez $p3 $lucky.,"$t[При попадании:] использует $p1 $lucky, чтобы добавить $p2 ед. урона. $t[При промахе:] добавляет $p3 $lucky.",$t[Ao acertar:] Gasta $p1 $lucky para ganhar $p2 de dano. $t[Ao errar:] Ganhe $p3 $lucky.,$t[Al golpear:] Usa $p1 $lucky para infligir $p2 más de daño. $t[Al fallar:] Obtiene $p3 $lucky.
+<!MissingKey:27:Holy Armor>,Holy Armor,Heilige Rüstung,神圣护甲,聖なる鎧,신성한 갑옷,神聖護甲,Armure sainte,Святой доспех,Armadura Sagrada,Armadura sagrada
+<!MissingKey:28:Can only be thrown once per battle. $t[On hit:] Gain $p1 $heat. $t[$p2 $heat reached:] $affected $h[Weapons] gain $p3 damage.>,Can only be thrown once per battle. $t[On hit:] Gain $p1 $heat. $t[$p2 $heat reached:] $affected $h[Weapons] gain $p3 damage.,Kann einmal pro Kampf geworfen werden. $t[Bei Treffer:] Erhalte $p1 $heat. $t[$p2 $heat erreicht:] $affected $h[Waffen] verursachen +$p3 Schaden.,每场战斗只能投掷一次。$t[击中对手时：]获得$p1层$heat。$t[达到$p2层$heat：]$affected的$h[武器]获得+$p3点伤害加成。,1回のバトルで1度だけ投げられる $t[ヒット時：]$p1 $heat を獲得する $t[$p2 $heat 到達時：]$affectedにある$h[武器]のダメージ値が$p3増える,전투당 한 번 던질 수 있습니다. $t[적중 시:] $heat를 $p1 부여합니다. $t[$heat가 $p2에 도달 시:] $affected에 위치한 $h[무기]가 가하는 피해가 $p3 증가합니다.,每場戰鬥只能投擲一次。$t[命中時：]獲得$p1層$heat。$t[達到$p2層$heat：]$affected的$h[武器]獲得+$p3點傷害加成。,Ne peut être lancée qu'une seule fois par combat. $t[Par coup :] gagnez $p1 $heat. $t[En atteignant $p2 $heat :] les $h[Armes] $affected gagnent +$p3 de dégâts.,Можно бросить только один раз за бой. $t[При попадании:] добавляет $p1 $heat. $t[При получении $p2 $heat:] $affected $h[оружие] получает +$p3 ед. урона.,Pode ser jogada apenas uma vez por batalha. $t[Ao acertar:] Ganhe $p1 $heat. $t[$p2 $heat alcançados:] as $h[Armas] $affected ganham +$p3 de dano.,Se puede lanzar una vez por batalla. $t[Al golpear:] Obtiene $p1 $heat. $t[Al alcanzar $p2 $heat:] Las $affected $h[Armas] causan $p3 más de daño.
+<!MissingKey:29:Goobert>,Goobert,Schlotzbert,黏黏,スラバート,슬돌이,黏呼呼,Viskeu,Слаймер,Gosberto,Viscosino
+<!MissingKey:30:Eggscalibur>,Eggscalibur,Prachtvoller Bräter,荷包蛋圣锅,エッグスカリバー,에그스칼리버,荷包蛋聖鍋,Poêlecalibur,Жарь-скалибур,Excalideira,Excalihuevo
+<!MissingKey:31:$c[Weapon sockets:] $m[On hit:] $chance% chance to deal \~+$p1 damage. $c[Armor & other sockets:] $m[Start of battle:] Gain $block $bl. >,"$c[Weapon sockets:] $m[On hit:] $chance% chance to deal \~+$p1 damage. $c[Armor & other sockets:] $m[Start of battle:] Gain $block $bl. 
+ Resist $h[1] debuff. $c[Backpack:] $m[After $cds:] Gain a random buff, inflict a random debuff.","$c[Waffensockel:] $m[Bei Treffer:] $chance% Chance +$p1 Schaden zu verursachen. $c[Rüstung & andere Sockel:] $m[Kampfbeginn:] Erhalte $block $bl. 
+ Verhindere $h[1] Debuff. $c[Rucksack:] $m[Nach $cds:] Erhalte einen Buff, verursache einen Debuff.","$c[放入武器槽：] $m[击中对手时：]有$chance%的几率造成+$p1点额外伤害。$c[放入护甲或其他槽：] $m[战斗开始时：]获得$block点$bl。
+还会抵挡$h[1]层减益效果。$c[放入背包：] $m[在$cds后：]获得一个随机增益效果，向对手施加一个随机减益效果。","$c[武器に装着：]$m[ヒット時：]$chance%の確率で与ダメージ +$p1 $c[非武器に装着：] $m[バトル開始時：]$block $bl を獲得する
+$h[1]デバフを無効化する $c[バックパックに配置：] $m[$cd秒後：]1バフを獲得し、1デバフを付与する","$c[무기 소켓:] $m[적중 시:] $chance%의 확률로 피해량이 $p1 증가합니다. $c[방어구 및 기타 소켓:] $m[전투 시작 시:] $bl를 $block 획득합니다.
+디버프에 $h[1]번 저항합니다. $c[배낭:] $m[$cd초 후:] 무작위 버프를 획득하고, 무작위 디버프를 부여합니다.","$c[放入武器槽：]$m[命中對手時：]有$chance%的機率造成+$p1點額外傷害。$c[放入護甲或其他槽位：]$m[戰鬥開始時：]獲得$block點$bl。
+還會抵擋$h[1]層減益效果。$c[放入背包：]$m[在$cd秒後：]獲得一個隨機增益效果，向對手施加一個隨機減益效果。","$c[Emplacements d'armes :] $m[Par coup :] $chance % de chance d'infliger +$p1 de dégâts. $c[Armure et autres emplacements :] $m[Au début du combat :] gagnez $block $bl. 
+ Résistez à $h[1] malus. $c[Sac à dos :] $m[Après $cd s :] gagnez un bonus aléatoire, infligez un malus aléatoire.","$c[В слоте оружия:] $m[При попадании:] шанс $chance% нанести +$p1 ед. урона. $c[В слоте брони/в другом слоте:] $m[Начало боя:] добавляет $block $bl. 
+ Игнорирует $h[1] негативный эффект. $c[В рюкзаке:] $m[Через $cd сек.:] добавляет герою случайное усиление и накладывает случайный негативный эффект на противника.","$c[Engastes de armas:] $m[Ao acertar:] $chance% de chance de causar +$p1 de dano. $c[Demais engastes:] $m[Início da batalha:] Ganhe $block $bl. 
+ Resiste a $h[1] debuff. $c[Mochila:] $m[Após $cd s:] Ganhe um buff aleatório e inflige um debuff aleatório.","$c[Ranuras de arma:] $m[Al golpear:] $chance % de probabilidad de infligir +$p1 de daño. $c[Ranuras de armadura y otras:] $m[Al comienzo de la batalla:] Obtiene $block $bl. 
+ Resiste $h[1] desventaja. $c[Mochila:] $m[Tras $cd s:] Obtiene una ventaja al azar, inflige una desventaja al azar."
+<!MissingKey:32:Fanny Pack>,Fanny Pack,Bauchtasche,腰包,ウエストポーチ,허리 가방,腰包,Besace,Поясная сумка,Pochete,Riñonera
+<!MissingKey:33:Blood Harvester>,Blood Harvester,Bluternter,血腥镰刀,血の大鎌,피의 수확자,血腥鐮刀,Faux de sang,Кровопийца,Gadanha de Sangue,Cosechador sangriento
+<!MissingKey:34:Perfect Amethyst>,Perfect Amethyst,Perfekter Amethyst,完美紫水晶,完璧なアメシスト,완벽한 자수정,完美紫水晶,Améthyste parfaite,Полированный аметист,Ametista Perfeita,Amatista perfecta
+<!MissingKey:35:$t[On hit:] Inflict $p1 $poison. $t[On stun:] Triggers extra attack. >,$t[On hit:] Inflict $p1 $poison. $t[On stun:] Triggers extra attack. ,$t[Bei Treffer:] Verursache $p1 $poison. $t[Gegner benommen:] Löse einen zusätzlichen Angriff aus.,$t[击中对手时：]施加$p1层$poison。$t[眩晕对手：]触发额外攻击。,$t[ヒット時：]$p1 $poison を付与する $t[スタン時：]追加攻撃を行う,$t[적중 시:] $poison을 $p1 부여합니다. $t[기절 시:] 추가 공격을 가합니다.,$t[命中時：]施加$p1層$poison。$t[暈眩對手時：]觸發額外攻擊。,$t[Par coup :] infligez $p1 $poison. $t[Par étourdissement :] déclenche une attaque supplémentaire.,$t[При попадании:] накладывает $p1 $poison. $t[При оглушении:] наносит дополнительную атаку.,$t[Ao acertar:] Inflige $p1 $poison. $t[Ao atordoar:] ativa um ataque adicional.,$t[Al golpear:] Inflige $p1 $poison. $t[Al aturdir:] Activa un ataque adicional.
+<!MissingKey:36:$t[Every $cds:] Cleanse $h[1] debuff. If you have at least $p2 $lucky: $chance% chance to gain $h[1] $empower.>,$t[Every $cds:] Cleanse $h[1] debuff. If you have at least $p2 $lucky: $chance% chance to gain $h[1] $empower.,$t[Alle $cds:] Entferne $h[1] Debuff. Wenn du mindestens $p2 $lucky hast: $chance% Chance $h[1] $empower zu erhalten.,$t[每$cds：]随机净化$h[1]个减益效果。如果你有$p2点以上$lucky，将有$chance%的几率获得$h[1]层$empower。,$t[$cd秒毎：]$h[1]デバフを解除する。$p2 $lucky 以上ある場合：$chance%の確率で$h[1] $empower を獲得する,"$t[$cd초마다:] 디버프를 $h[1]개 정화합니다. $p2 이상의 $lucky을 보유 시, $chance% 확률로 $empower를 $h[1] 획득합니다.",$t[每$cd秒：]隨機淨化$h[1]個減益效果。如果你有$p2點以上$lucky，有$chance%的機率獲得$h[1]層$empower。,$t[Toutes les $cd s :] purgez $h[1] malus aléatoire. Si vous avez au moins $p2 $lucky : $chance % de chance de gagner $h[1] $empower.,$t[Раз в $cd сек.:] снимает с героя $h[1] негативный эффект. Если у героя не менее $p2 $lucky: $chance% шанс получить $h[1] $empower.,$t[A cada $cd s:] Purifica $h[1] debuff. Se você tiver ao menos $p2 $lucky: $chance% de chance de ganhar $h[1] $empower.,$t[Cada $cd s:] Elimina $h[1] desventaja. Si se tiene al menos $p2 $lucky: $chance % de probabilidad de obtener $h[1] $empower.
+<!MissingKey:37:Critwood Staff>,Critwood Staff,Kritholzstab,暴击法杖,クリティカルの杖,치명의 지팡이,暴擊法杖,Bâton critique,Посох природы,Cajado de Criteiro,Bastón del bosque
+<!MissingKey:38:Wooden Buckler>,Wooden Buckler,Holzschild,木盾,木の盾,나무 버클러,木盾,Bouclier de bois,Деревянный щит,Broquel de Madeira,Escudo de madera
+<!MissingKey:39:$t[Start of battle:] Gain $p1 $lucky.>,$t[Start of battle:] Gain $p1 $lucky.,$t[Kampfbeginn:] Erhalte $p1 $lucky.,$t[战斗开始时：]获得$p1点$lucky。,$t[バトル開始時：]$p1 $lucky を獲得する,$t[전투 시작 시:] $lucky을 $p1 획득합니다.,$t[戰鬥開始時：]獲得$p1點$lucky。,$t[Au début du combat :] gagnez $p1 $lucky.,$t[Начало боя:] добавляет $p1 $lucky.,$t[Início da batalha:] Ganhe $p1 $lucky.,$t[Al comienzo de la batalla:] Obtiene $p1 $lucky.
+<!MissingKey:40:Deck of Cards>,Deck of Cards,Kartendeck,牌堆,カードデッキ,카드 덱,牌堆,Jeu de cartes,Колода карт,Baralho de Cartas,Mazo de cartas
+"<!MissingKey:41:$t[Every $cds:] Gain $p1 $regen. $t[Use $p2 $regen:] Gain $p3 maximum health, $p4 $empower and your healing is increased by $p5% (once).>","$t[Every $cds:] Gain $p1 $regen. $t[Use $p2 $regen:] Gain $p3 maximum health, $p4 $empower and your healing is increased by $p5% (once).","$t[Alle $cds:] Erhalte $p1 $regen. $t[Nutze $p2 $regen:] Erhalte $p3 Maximalleben, $p4 $empower und deine Heilung ist um $p5% erhöht (einmalig).",$t[每$cds：]获得$p1层$regen。$t[消耗$p2层$regen：]获得$p3点最大生命值，$p4层$empower，且生命恢复效果增加$p5%（单次触发）。,$t[$cd秒毎：]$p1 $regen を獲得する $t[$p2 $regen 消費：]体力最大値が$p3増え、$p4 $empower を獲得し、自分の回復量 +$p5%（1回のみ）,"$t[$cd초마다:] $regen을 $p1 획득합니다. $t[$regen을 $p2 사용:] 최대 체력을 $p3, $empower를 $p4 획득하고, 회복량이 $p5% 증가합니다 (한 번).",$t[每$cd秒：]獲得$p1層$regen。$t[消耗$p2層$regen：]獲得$p3點最大生命值，$p4層$empower，且生命恢復效果增加$p5%（單次觸發）。,"$t[Toutes les $cd s :] gagnez $p1 $regen. $t[Utilisez $p2 $regen :] gagnez $p3 des PV max, $p4 $empower et votre guérison augmente de $p5 % (une fois).","$t[Раз в $cd сек.:] добавляет $p1 $regen. $t[Использует $p2 $regen:] добавляет $p3 ед. максимального здоровья и $p4 $empower, а эффективность исцеления героя повышается на $p5% (один раз за бой).","$t[A cada $cd s:] Ganhe $p1 $regen. $t[Gasto de $p2 $regen:] Ganhe $p3 de vida máxima, $p4 $empower e aumenta a sua cura em $p5% (uma vez).","$t[Cada $cd s:] Obtiene $p1 $regen. $t[Al usar $p2 $regen:] Obtiene $p3 PS máx., $p4 $empower y la curación aumenta en un $p5 % (una vez)."
+<!MissingKey:42:$affected items gain $chance% critical hit chance for each $lucky.>,$affected items gain $chance% critical hit chance for each $lucky.,$affected Gegenstände erhalten $chance% kritische Trefferchance pro $lucky.,每有一点$lucky，$affected的物品暴击几率增加$chance%。,$affectedにあるアイテムは $lucky 1スタックにつきクリティカル率 +$chance%,$affected에 위치한 아이템은 $lucky마다 $chance%의 치명타 확률을 획득합니다.,每有一點$lucky，$affected的物品暴擊機率增加$chance%。,Les objets $affected gagnent $chance % de chance de coup critique pour chaque $lucky.,$affected предметы получают $chance% шанса критического урона за каждый $lucky.,Os itens $affected ganham $chance% de chance de acerto crítico por cada $lucky.,Los $affected objetos obtienen un $chance % de probabilidad de golpe crítico por cada $lucky.
+<!MissingKey:43:Holy Spear>,Holy Spear,Heiliger Speer,神圣长矛,ホーリースピア,신성한 창,神聖長矛,Lance sainte,Священное копье,Lança Sagrada,Lanza sagrada
+,,,,,,,,,,
+<!MissingKey:45:Vampiric Gloves>,Vampiric Gloves,Vampirische Handschuhe,吸血手套,吸血のグローブ,흡혈의 장갑,吸血手套,Gants vampiriques,Вампирические перчатки,Luvas Vampíricas,Guantes vampíricos
+<!MissingKey:46:$t[On hit:] $chance% chance to $stun[stun] your opponent for $p1s.>,$t[On hit:] $chance% chance to $stun[stun] your opponent for $p1s.,$t[Bei Treffer:] $chance% Chance $p1s lang $stun[Benommenheit] auszulösen.,$t[击中对手时：]有$chance%的几率$stun[眩晕]对手$p1s。,$t[ヒット時：]$chance%の確率で相手を$p1秒間$stun[スタン]させる,$t[적중 시:] $chance%의 확률로 상대를 $p1초 동안 $stun[기절]시킵니다.,$t[命中時：]有$chance%的機率$stun[暈眩]對手$p1秒。,$t[Par coup :] $chance % de chance d'$stun[étourdir] votre adversaire pendant $p1 s.,$t[При попадании:] $chance% шанс $stun[оглушить] противника на $p1 сек.,$t[Ao acertar:] $chance% de chance de $stun[atordoar] o oponente por $p1 s.,$t[Al golpear:] $chance % de probabilidad de $stun[aturdir] al rival durante $p1 s.
+<!MissingKey:47:Mana Potion>,Mana Potion,Manatrank,魔法魔药,マナポーション,마나 포션,魔法魔藥,Potion de mana,Зелье маны,Poção de Mana,Poción de maná
+<!MissingKey:48:$t[On hit:] Gain $p1 $vampirism (up to $p2). Heal $p3 per $affected $vampiric-item. $t[On stun:] Triggers extra attack.>,$t[On hit:] Gain $p1 $vampirism (up to $p2). Heal $p3 per $affected $vampiric-item. $t[On stun:] Triggers extra attack.,$t[Bei Treffer:] Erhalte $p1 $vampirism (maximal $p2). Heile $p3 pro $affected $vampiric-Gegenstand. $t[Gegner benommen:] Löse einen zusätzlichen Angriff aus.,$t[击中对手时：]获得$p1层$vampirism（每场战斗最高$p2层）。每有一个$affected的$vampiric物品，恢复$p3点生命值。$t[眩晕对手：]触发额外攻击。,$t[ヒット時：]$p1 $vampirism を獲得する（最大$p2まで）$affectedにある $vampiric アイテム1個につき体力を$p3回復する $t[スタン時：]追加攻撃を行う,$t[적중 시:] $vampirism을 $p1 획득합니다 (최대 $p2). $affected에 위치한 $vampiric 아이템마다 체력을 $p3 회복합니다. $t[기절 시:] 추가 공격을 가합니다.,$t[命中時：]獲得$p1層$vampirism（每場戰鬥最高$p2層）。每有一個$affected的$h[吸血]物品，恢復$p3點生命值。$t[暈眩對手時：]觸發額外攻擊。,$t[Par coup :] gagnez $p1 $vampirism (jusqu'à $p2). Guérissez de $p3 par objet $affected $vampiric. $t[Par étourdissement :] déclenche une attaque supplémentaire.,$t[При попадании:] добавляет $p1 $vampirism (макс. до $p2). Восстанавливает $p3 ед. жизни за каждый $affected $vampiric предмет. $t[При оглушении:] наносит дополнительную атаку.,$t[Ao acertar:] Ganha $p1 $vampirism (até $p2). Restaura $p3 de vida por item-$vampiric $affected. $t[Ao atordoar:] ativa um ataque adicional.,$t[Al golpear:] Obtiene $p1 $vampirism (máximo: $p2). Recupera $p3 PS por cada $affected objeto-$vampiric. $t[Al aturdir:] Activa un ataque adicional.
+<!MissingKey:49:$t[Out of stamina:] Consume this and regenerate $p1 stamina and gain $p2 $empower.>,$t[Out of stamina:] Consume this and regenerate $p1 stamina and gain $p2 $empower.,$t[Keine Ausdauer mehr:] Trinke aus und regeneriere $p1 Ausdauer und erhalte $p2 $empower.,$t[当耐力耗尽时：]消耗此魔药恢复$p1点耐力并获得$p2层$empower。,$t[スタミナ不足時：]このアイテムを消費して、スタミナを$p1回復し、$p2 $empower を獲得する,"$t[스태미나 부족 시:] 포션을 소모해 스태미나를 $p1 회복하고, $empower를 $p2 획득합니다.",$t[當耐力耗盡時：]消耗此魔藥恢復$p1點耐力並獲得$p2層$empower。,$t[Endurance épuisée :] consommez ceci et régénérez $p1 d'endurance et gagnez $p2 $empower.,"$t[Нет энергии:] расходуется, чтобы восстановить $p1 ед. энергии и добавить $p2 $empower.",$t[Sem vigor:] Consuma isto e restaura $p1 de vigor e ganhe $p2 $empower.,"$t[Sin resistencia:] Consume esto y regenera $p1 de resistencia, y obtiene $p2 $empower."
+<!MissingKey:50:Falcon Blade>,Falcon Blade,Falkenklinge,猎鹰战刃,ハヤブサのつるぎ,팔콘 블레이드,獵鷹戰刃,Lame de faucon,Клинок сокола,Lâmina do Falcão,Espada halcón
+"<!MissingKey:51:$t[After $cds:] Gain $p1 $vampirism, $affected items trigger $p2% faster.>","$t[After $cds:] Gain $p1 $vampirism, $affected items trigger $p2% faster.","$t[Nach $cds:] Erhalte $p1 $vampirism, $affected Gegenstände aktivieren $p2% schneller.",$t[$cds后：]获得$p1层$vampirism且$affected的物品触发快$p2%。,$t[$cd秒後：]$p1 $vampirism を獲得する。$affectedにあるアイテムの使用速度が$p2%上がる,"$t[$cd초 후:] $vampirism를 $p1 획득하고, $affected에 위치한 아이템이 $p2% 빠르게 발동합니다.",$t[$cd秒後：]獲得$p1層$vampirism且$affected的物品觸發速度加快$p2%。,"$t[Après $cd s :] gagnez $p1 $vampirism, les objets $affected se déclenchent $p2 % plus vite.","$t[Через $cd сек.:] добавляют $p1 $vampirism, $affected предметы срабатывают на $p2% чаще.","$t[Após $cd  s:] Ganhe $p1 $vampirism, e os itens $affected ativam-se $p2% mais rápido.","$t[Tras $cd s:] Obtiene $p1 $vampirism, los $affected objetos se activan un $p2 % más rápido."
+<!MissingKey:52:$t[$p1 $bl reached:] Consume this and convert $p2 health to $block $bl and gain \~$p3 $spikes for $p4s.>,$t[$p1 $bl reached:] Consume this and convert $p2 health to $block $bl and gain \~$p3 $spikes for $p4s.,$t[$p1 $bl erreicht:] Trinke aus und wandle $p2 Leben in $block $bl um. Erhalte $p3 $spikes für $p4s.,$t[当你至少有$p1点$bl时：]消耗此魔药，转换$p2生命值为$block点$bl，并在$p4s内获得$p3点$spikes。,$t[$p1 $bl 到達時：]このアイテムを消費して、$p2体力を$block $bl に変換する。さらに$p4秒間、$p3 $spikes を獲得する,"$t[$bl이 $p1에 도달 시:] 포션을 소모해 $p2 체력을 $block $bl로 변환하고, $p4초 동안 $spikes를 $p3 획득합니다.",$t[當你至少有$p1點$bl時：]消耗此魔藥，轉換$p2生命值為$block點$bl，並在$p4秒內獲得$p3點$spikes。,$t[En atteignant $p1 $bl :] consommez ceci et convertissez $p2 PV en $block $bl et gagnez $p3 $spikes pendant $p4 s.,"$t[При $p1 $bl:] расходуется, чтобы превратить $p2 ед. здоровья в $block $bl и добавить герою $p3 $spikes на $p4 сек.",$t[Ao alcançar $p1 $bl:] Consome isto e converte $p2 de vida em $block $bl e ganha $p3 $spikes por $p4 s.,"$t[Al alcanzar $p1 $bl:] Consume la poción y transforma $p2 PS en $block $bl, y obtiene $p3 $spikes durante $p4 s."
+<!MissingKey:53:$t[Shop entered:] Gain $p1 $gold. $t[Start of battle:] Gain $p2 $lucky. >,"$t[Shop entered:] Gain $p1 $gold. $t[Start of battle:] Gain $p2 $lucky. 
+
+ Chance-based effects of the $affected items are $p3% more likely to trigger.","$t[Laden betreten:] Erhalte $p1 $gold. $t[Kampfbeginn:] Erhalte $p2 $lucky. 
+ Zufallseffekte von $affected Gegenständen sind $p3% wahrscheinlicher.","$t[进入商店：]获得$p1枚$gold。$t[战斗开始时：]获得$p2点$lucky。
+
+ $affected物品的几率触发类效果提高$p3%的触发几率。","$t[ショップ入店時：]$p1 $gold を獲得する $t[バトル開始時：]$p2 $lucky を獲得する 
+
+$affectedにあるアイテムの確率に基づく効果の発動確率が$p3%上がる","$t[상점 진입 시:] $gold를 $p1 획득합니다. $t[전투 시작 시:] $lucky을 $p2 획득합니다.
+
+$affected에 위치한 확률 기반 효과를 지닌 아이템의 발동 확률이 $p3% 증가합니다.","$t[進入商店：]獲得$p1枚$gold。$t[戰鬥開始時：]獲得$p2點$lucky。
+ $affected物品的機率觸發類效果增加$p3%的觸發機率。","$t[En entrant dans la boutique :] gagnez $p1 $gold. $t[Au début du combat :] gagnez $p2 $lucky. 
+
+ Les effets de type chance des objets $affected ont $p3 % de chances supplémentaires de se déclencher.","$t[Переход в магазин:] добавляет $p1 $gold. $t[Начало боя:] добавляет $p2 $lucky. 
+
+ Вероятность срабатывания $affected предметов с шансом активации эффекта повышается на $p3%.","$t[Ao entrar na loja:] Ganha $p1 $gold. $t[Início da batalha:] Ganha $p2 $lucky. 
+
+ Os efeitos baseados em chance dos itens $affected têm $p3% mais chance de se ativarem.","$t[Al entrar en la tienda:] Obtiene $p1 $gold. $t[Al comienzo de la batalla:] Obtiene $p2 $lucky. 
+
+ Los efectos de azar de los objetos $affected tienen un $p3 % más de probabilidades de activarse."
+<!MissingKey:54:$t[On hit:] Destroy $p1 $bl for each free \~$affected slot.>,$t[On hit:] Destroy $p1 $bl for each free \~$affected slot.,$t[Bei Treffer:] Zerstöre $p1 $bl pro freiem $affected Feld.,$t[击中对手时：]前方每有一个空的$affected槽位，摧毁$p1点$bl。,$t[ヒット時：]$affectedにある空きスロット1個につき$p1 $bl を破壊する,"$t[적중 시:] 전방에 위치한 빈 $affected 슬롯 하나마다, $bl를 $p1 파괴합니다.",$t[命中時：]前方每有一個空的$affected欄位，摧毀$p1點$bl。,$t[Par coup :] détruisez $p1 $bl pour chaque emplacement libre $affected en face.,$t[При попадании:] разрушает $p1 $bl за каждый пустой $affected слот перед копьем.,$t[Ao acertar:] Destrói $p1 $bl por cada espaço vago $affected à frente deste.,$t[Al golpear:] Destruye $p1 $bl por cada espacio $affected libre delante.
+<!MissingKey:55:Stone>,Stone,Stein,石头,石,돌멩이,石頭,Pierre,Камень,Pedra,Piedra
+<!MissingKey:56:Darkest Lotus>,Darkest Lotus,Dunkelster Lotus,黑暗莲花,ダーク・ロータス,칠흑의 연꽃,黑暗蓮花,Lotus sombrobscur,«Черный лотос»,Lótus Negro,Loto de la oscuridad
+<!MissingKey:57:$t[Start of battle:] Reduce damage taken by $p1% for $p2s. $t[Opponent gains buff:] $chance% chance to nullify it. >,"$t[Start of battle:] Reduce damage taken by $p1% for $p2s. $t[Opponent gains buff:] $chance% chance to nullify it. 
+
+ Your opponent's healing is reduced by $p3%. ","$t[Kampfbeginn:] Eingehender Schaden ist für $p2s um $p1% reduziert. $t[Gegner erhält Buff:] $chance% Chance, den Buff zu neutralisieren. 
+
+ Gegnerische Heileffekte sind um $p3% reduziert. ","$t[战斗开始时：]$p2s内受到的伤害减少$p1%。$t[对手获得增益效果时：]有$chance%的几率使增益无效。
+
+对手的生命恢复效果减弱$p3%。","$t[バトル開始時：]$p2秒間、受けるダメージが$p1%減る $t[相手のバフ獲得時：] $chance%の確率でその獲得を阻害する 
+
+相手の回復量 -$p3%","$t[전투 시작 시:] $p2초 동안 받는 피해가 $p1% 감소합니다. $t[상대가 버프 획득 시:] $chance%의 확률로 무효화시킵니다.
+
+상대의 치유량이 $p3% 감소합니다.","$t[戰鬥開始時：]$p2秒內受到的傷害減少$p1%。$t[對手獲得增益效果時：]有$chance%的機率使增益無效。
+對手的生命恢復效果減弱$p3%。","$t[Au début du combat :] dégâts d'attaque subis réduits de $p1 % pendant $p2 s. $t[L'adversaire gagne un bonus :] $chance % de chance de l'annuler. 
+
+ La guérison de votre adversaire diminue de $p3 %.","$t[Начало боя:] снижает весь получаемый урон на $p1% на $p2 сек. $t[Когда противник получает усиление:] шанс $chance% отменить этот эффект. 
+
+ Исцеление противника снижается на $p3%.","$t[Início da batalha:] Diminui o dano sofrido em $p1% por $p2 s. $t[Oponente ganha buff:] $chance% de chance de anulá-lo. 
+
+ A cura do seu oponente diminui em $p3%.","$t[Al comienzo de la batalla:] Reduce el daño recibido en un $p1 % durante $p2 s. $t[Al ganar ventaja el rival:] $chance % de probabilidad de anularla. 
+
+ La curación del rival se reduce un $p3 %."
+<!MissingKey:58:Ruby Chonk>,Ruby Chonk,Rubinplautze,红宝石巨龙,ルビーの火トカゲ,루비 통통이,紅寶石巨龍,Dracaurubis,Рубиновый дракон,Dragão de Rubi,Cachorrazo rubí
+<!MissingKey:59:Lightsaber>,Lightsaber,Lichtschwert,光剑,ライトセイバー,라이트세이버,光劍,Sabre de lumière,Меч света,Sabre de Luz,Espada láser
+<!MissingKey:60:Leather Boots>,Leather Boots,Lederstiefel,皮质靴,革のブーツ,가죽 부츠,皮質靴,Bottes de cuir,Кожаные сапоги,Botas de Couro,Botas de cuero
+<!MissingKey:61:$t[Start of battle:] $affected $h[Weapons] gain \~ $p1 damage.>,$t[Start of battle:] $affected $h[Weapons] gain \~ $p1 damage.,$t[Kampfbeginn:] $affected $h[Waffen] erhalten +$p1 Schaden.,$t[战斗开始时：]$affected的$h[武器]攻击力+$p1。,$t[バトル開始時：]$affectedにある$h[武器]のダメージ値が$p1増える,$t[전투 시작 시:] $affected에 위치한 $h[무기]가 가하는 피해가 $p1 증가합니다.,$t[戰鬥開始時：]$affected的$h[武器]攻擊力+$p1點。,$t[Au début du combat :] les $h[Armes] $affected gagnent $p1 de dégâts.,$t[Начало боя:] $affected $h[оружие] получает +$p1 ед. урона.,$t[Início da batalha:] As $h[Armas] $affected ganham $p1 de dano.,$t[Al comienzo de la batalla:] Las $affected $h[Armas] ganan $p1 de daño.
+<!MissingKey:62:Shield of Valor>,Shield of Valor,Schild der Ehre,勇气盾牌,勇気の盾,용기의 방패,勇氣盾牌,Bouclier de bravoure,Щит доблести,Escudo do Heroísmo,Escudo de valor
+<!MissingKey:63:Regular Topaz>,Regular Topaz,Regulärer Topas,普通黄宝石,普通のトパーズ,평범한 토파즈,普通黃寶石,Topaze ordinaire,Топаз,Topázio Comum,Topacio normal
+<!MissingKey:64:Chipped Topaz>,Chipped Topaz,Lädierter Topas,黄宝石碎片,欠けたトパーズ,깨진 토파즈,黃寶石碎片,Topaze fragmentée,Осколок топаза,Topázio Lascado,Topacio roto
+<!MissingKey:65:$t[On hit:] Destroy $p1 $bl and cleanse \~$h[1] debuff for each $affected free slot or \~$holy-item. $t[Use $p2 $mana:] Become invulnerable and attack $p3% faster for $p4s (once).>,$t[On hit:] Destroy $p1 $bl and cleanse \~$h[1] debuff for each $affected free slot or \~$holy-item. $t[Use $p2 $mana:] Become invulnerable and attack $p3% faster for $p4s (once).,$t[Bei Treffer:] Entferne $p1 $bl und \~$h[1] Debuff für jedes $affected freie Feld oder $holy-Gegenstand. $t[Nutze $p2 $mana:] Werde für $p4s unverwundbar und attackiere $p3% schneller (einmalig).,$t[击中对手时：]前方每有一个$affected的空槽位或者$holy物品，将摧毁对手$p1点$bl并净化自身$h[1]层减益效果。$t[消耗$p2点$mana：]$p4s内无敌、攻击速度快$p3%（单次触发）。,$t[ヒット時：]$affectedにある空きスロットまたは $holy アイテム1個につき$p1 $bl を破壊し、$h[1]デバフを解除する $t[$p2 $mana 消費：]$p4秒間無敵状態になり、使用速度が$p3%上がる（1回のみ）,"$t[적중 시:] 전방에 위치한 빈 $affected 슬롯이나 $holy 아이템 하나마다, $bl를 $p1 파괴하고 디버프를 $h[1]개 정화합니다. $t[$mana를 $p2 사용:] $p4초 동안 무적 상태가 되며, $p3% 빠르게 공격합니다 (한 번).",$t[命中對手時：]前方每有一個$affected的空欄位或者$h[神聖]物品，將摧毀對手$p1點$bl並淨化自身$h[1]層減益效果。$t[消耗$p2點$mana：]$p4秒內無敵、攻擊速度快$p3%（單次觸發）。,$t[Par coup :] détruisez $p1 $bl et purgez $h[1] malus pour chaque emplacement libre $affected ou objet $holy en face. $t[Utilisez $p2 $mana :] devenez invulnérable et attaquez $p3 % plus vite pendant $p4 s (une fois).,$t[При попадании:] разбивает $p1 $bl и снимает $h[1] негативный эффект за каждый пустой $affected слот или $holy предмет перед копьем. $t[Использует $p2 $mana:] герой становится неуязвимым и атакует на $p3% быстрее в течение $p4 сек. (один раз за бой).,$t[Ao acertar:] Destrói $p1 $bl e purifica $h[1] debuff por cada espaço vago $affected ou item-$holy na frente dele. $t[Gasta $p2 $mana:] Fica invulnerável e ataca $p3% mais rápido por $p4 s (uma vez).,$t[Al golpear:] Destruye $p1 $bl y elimina $h[1] desventaja por cada $affected espacio libre u objeto $holy delante. $t[Al usar $p2 $mana:] Se vuelve invulnerable y ataca un $p3 % más rápido durante $p4 s (una vez).
+<!MissingKey:66:Fly Agaric>,Fly Agaric,Fliegenpilz,致幻蘑菇,ベニテングダケ,광대버섯,致幻蘑菇,Amanite tue-mouches,Мухомор,Agárico Voador,Amanita muscaria
+"<!MissingKey:67:$t[Health drops below $p1%:] Consume this and heal for $p2, gain $p4 $regen and cleanse $p3 $poison.>","$t[Health drops below $p1%:] Consume this and heal for $p2, gain $p4 $regen and cleanse $p3 $poison.","$t[Leben fällt unter $p1%:] Trinke aus und heile $p2, erhalte $p4 $regen und entferne $p3 $poison.",$t[当你的生命值低于$p1%时：]消耗此魔药，恢复$p2点生命值并获得$p4层$regen，净化$p3层$poison。,$t[体力が$p1%未満に低下時：]このアイテムを消費して、体力を$p2回復し、$p4 $regen を獲得し、$p3 $poison を解除する,"$t[체력이 $p1% 아래로 떨어질 시:] 포션을 소모해 체력을 $p2 회복하고, $regen을 $p4 획득하고, $poison을 $p3 정화합니다.",$t[當你的生命值低於$p1%時：]消耗此魔藥，恢復$p2點生命值並獲得$p4層$regen，淨化$p3層$poison。,"$t[PV inférieurs à $p1 % :] consommez ceci et guérissez de $p2, gagnez $p4 $regen et purgez $p3 $poison.","$t[При здоровье ниже $p1%:] расходуется, чтобы восстановить $p2 ед. здоровья, добавить $p4 $regen и снять $p3 $poison.","$t[Vida abaixo de $p1%:] Consuma isto e restaura $p2 de vida, ganhe $p4 $regen e purifica $p3 $poison.","$t[Si los PS caen por debajo del $p1 %] Consume esto para recuperar $p2 PS, obtener $p4 $regen y eliminar $p3 $poison."
+<!MissingKey:68:$affected $h[Stones] above can be thrown repeatedly.>,$affected $h[Stones] above can be thrown repeatedly.,$affected $h[Steine] können wiederholt geworfen werden.,上方$affected的$h[石头]可以反复投掷。,上の$affectedにある$h[石]を繰り返し投げられるようにする,$affected에 위치한 $h[돌]은 계속해서 던질 수 있게 됩니다.,上方$affected的$h[石頭]可以反覆投擲。,Les $h[Pierres] $affected ci-dessus peuvent être lancées à plusieurs reprises.,$affected $h[камни] над мешком могут быть брошены повторно.,Estas $h[Pedras] $affected podem ser jogadas várias vezes.,Las $affected $h[Piedras] de arriba se pueden lanzar continuamente.
+<!MissingKey:69:$t[For every $p1 damage $affected $h[Weapon] deals:] Inflict $h[+1] $poison on the next attack. >,"$t[For every $p1 damage $affected $h[Weapon] deals:] Inflict $h[+1] $poison on the next attack. 
+
+ Deals +$p2 damage per $poison of your opponent.","$t[Für alle $p1 Schaden, die die $affected $h[Waffe] verursacht:] Verursache $h[+1] $poison beim nächsten Angriff. 
+
+ Verursacht +$p2 Schaden pro $poison auf deinem Gegner.","$t[$affected的$h[武器]每造成$p1点伤害：]颠茄剧毒弓的下一次攻击向对手施加$h[+1]层$poison。
+
+对手身上每有一层$poison，则颠茄剧毒弓造成的伤害+$p2。","$t[$affectedにある$h[武器]で$p1ダメージ与える毎：] 次の攻撃で付与する $poison $h[+1] 
+
+ 相手の $poison 1スタックにつき与ダメージ +$p2","$t[$affected에 위치한 $h[무기가] 피해를 $p1 가할 시:] 다음 공격이 $poison을 $h[1] 추가로 부여합니다.
+
+상대에게 부여된 $poison마다 가하는 피해가 $p2 증가합니다.","$t[$affected的$h[武器]每造成$p1點傷害：]顛茄劇毒弓的下一次攻擊施加$h[+1]層$poison。
+對手身上每有一層$poison，則顛茄劇毒弓造成的傷害+$p2點。","$t[Tous les $p1 dégâts d'$h[Arme] $affected infligés :] infligez $h[+1] $poison lors de la prochaine attaque. 
+
+ Inflige +$p2 de dégâts par $poison de votre adversaire.","$t[За каждые $p1 ед. урона, нанесенного $affected $h[оружием]:] следующая атака наложит на противника $h[+1] $poison. 
+
+ Наносит +$p2 урона за каждый эффект $poison на противнике.","$t[A cada $p1 de dano causado pela $h[Arma] $affected:] Inflige $h[+1] $poison no próximo ataque. 
+
+ Causa +$p2 de dano por $poison do seu oponente.","$t[Por cada $p1 de daño que inflija el $affected $h[Arma]:] El siguiente ataque con Beso de belladona inflige $h[+1] $poison. 
+
+ Inflige $p2 más de daño por cada $poison del rival."
+<!MissingKey:70:$t[$p1 $affected item activations:] Heal for $p2.>,$t[$p1 $affected item activations:] Heal for $p2.,$t[$p1 $affected Gegenstand-Aktivierungen:] Heile für $p2.,$t[$affected的物品激活达到$p1次：]恢复$p2点生命值。,$t[$affectedにあるアイテム$p1回発動時：]体力を$p2回復する,$t[$affected에 위치한 아이템이 $p1회 발동 시:] 체력을 $p2 회복합니다.,$t[$affected的物品啟動達到$p1次：]恢復$p2點生命值。,$t[En activant l'objet $affected $p1 fois :] guérissez de $p2.,$t[При срабатывании $p1 $affected предметов:] восстанавливает $p2 ед. здоровья.,$t[$p1 ativações de item $affected:] Restaura $p2 de vida.,$t[Al activar $p1 $affected objetos:] Recupera $p2 PS.
+<!MissingKey:71:Torch>,Torch,Fackel,火把,たいまつ,횃불,火把,Torche,Факел,Tocha,Antorcha
+"<!MissingKey:72:$t[Health drops below $p1%:] \~Gain $p2 $lucky, $p3 $empower, and $block $bl (once).>","$t[Health drops below $p1%:] \~Gain $p2 $lucky, $p3 $empower, and $block $bl (once).","$t[Leben fällt unter $p1%:] Erhalte $p2 $lucky, $p3 $empower und $block $bl (einmalig).",$t[当你的生命值低于$p1%时：]获得$p2点$lucky和$block点$bl，还有$p3层$empower (单次触发)。,$t[体力が$p1%未満に低下時：]$p2 $lucky 、$p3 $empower 、$block $bl を獲得する（1回のみ）,"$t[체력이 $p1% 아래로 떨어질 시:] $lucky을 $p2, $empower를 $p3, $bl를 $block 획득합니다 (한 번).",$t[當你的生命值低於$p1%時：]獲得$p2點$lucky和$block點$bl，還有$p3層$empower（單次觸發）。,"$t[PV inférieurs à $p1 % :] gagnez $p2 $lucky, $p3 $empower, et $block $bl (une fois).","$t[При здоровье ниже $p1%:] добавляет $p2 $lucky, $p3 $empower и $block $bl (один раз за бой).","$t[Vida abaixo de $p1%:] Ganhe $p2 $lucky, $p3 $empower e $block $bl (uma vez).","$t[Si los PS caen por debajo del $p1 %:] Obtiene $p2 $lucky, $p3 $empower y $block $bl (una vez)."
+<!MissingKey:73:Flawed Emerald>,Flawed Emerald,Fehlerhafter Smaragd,劣质翡翠,傷物のエメラルド,금이 간 에메랄드,劣質綠寶石,Émeraude médiocre,Колотый изумруд,Esmeralda Polida,Esmeralda imperfecta
+<!MissingKey:74:$red[$affected $melee-$h[Weapons] deal -$p1 damage.] >,"$red[$affected $melee-$h[Weapons] deal -$p1 damage.] 
+
+ Deals +$p2 damage per $affected $melee-$h[Weapon].","$affected $melee-$h[Waffen] verursachen -$p1 Schaden. 
+
+ Verursacht +$p2 Schaden pro \~$affected $melee-$h[Waffe].","$red[$affected的$melee $h[武器]伤害-$p1点]。
+
+但是每有一个$affected的$melee $h[武器]，此武器本身的伤害+$p2点。","$red[$affectedにある $melee $h[武器]の与ダメージ -$p1] 
+
+$affectedにある $melee $h[武器]1個につき与ダメージ +$p2",$red[$affected에 위치한 $melee $h[무기]의 피해량이 $p1 감소합니다.] $affected에 위치한 $melee $h[무기]마다 피해량이 $p2 증가합니다.,$affected的$h[近戰武器]傷害-$p1點。但是每有一個$affected的$h[近戰武器]，此武器本身的傷害+$p2點。,"$redLes $h[Armes] $melee $affected infligent -$p1 de dégâts. 
+
+ Inflige +$p2 de dégâts par $h[Arme] $melee $affected.","$red [$affected $melee $h[оружие] наносит -$p1 ед. урона.] 
+
+ Наносит +$p2 ед. урона за каждое $affected $melee $h[оружие].","$red[$h[Armas]-$melee $affected infligem -$p1 de dano.] 
+
+ Causa +$p2 de dano por $h[Arma]-$melee $affected.","$red[Las $affected $h[Armas] $melee infligen $p1 menos de daño.] 
+
+ Inflige $p2 más de daño por cada $affected $h[Arma] $melee."
+<!MissingKey:75:Mr. Struggles>,Mr. Struggles,Weichbert Seelenpein,抱抱先生,ミスター・ストラグルズ,버둥 씨,抱抱先生,M Rixe,Мистер Обнимашка,Sr. Descontente,Sr. Penurias
+<!MissingKey:76:Regular Emerald>,Regular Emerald,Regulärer Smaragd,普通翡翠,普通のエメラルド,평범한 에메랄드,普通綠寶石,Émeraude ordinaire,Изумруд,Esmeralda Comum,Esmeralda normal
+<!MissingKey:77:$t[Start of battle:] Gain $p1 $lucky. $t[$affected $h[Weapon] crits:] Attack twice on the next attack.>,$t[Start of battle:] Gain $p1 $lucky. $t[$affected $h[Weapon] crits:] Attack twice on the next attack.,$t[Kampfbeginn:] Erhalte $p1 $lucky. $t[$affected $h[Waffe] trifft kritisch:] Führe den nächsten Angriff doppelt aus.,$t[战斗开始时：]获得$p1点$lucky。$t[$affected的$h[武器]暴击时：]天命弓下次攻击计算两次。,$t[バトル開始時：] $p1 $lucky を獲得する $t[$affectedにある$h[武器]のクリティカル時：]次の攻撃が2回攻撃になる,$t[전투 시작 시:] $lucky을 $p1 획득합니다. $t[$affected에 위치한 $h[무기] 치명타 시:] 다음에 두 번 공격합니다.,$t[戰鬥開始時：]獲得$p1點$lucky。$t[$affected的$h[武器]暴擊時：]天命弓下次攻擊計算兩次。,$t[Au début du combat :] gagnez $p1 $lucky. $t[Par coup critique de l'$affected $h[Arme] :] attaquez deux fois lors de la prochaine attaque.,$t[Начало боя:] добавляет $p1 $lucky. $t[При критическом уроне $affected $h[оружия]:] следующая атака нанесет урон дважды.,$t[Início da batalha:] Ganha $p1 $lucky. $t[Críticos de $h[Arma] $affected:] Ataca duas vezes da próxima vez.,$t[Al comienzo de la batalla:] Obtiene $p1 $lucky. $t[Al infligir crítico con un $affected $h[Arma]:] El siguiente ataque golpea dos veces.
+<!MissingKey:78:Can only be thrown once per battle. $t[On hit:] Inflict $p1 $cold. $t[$affected $h[Weapon] hits:] Inflict $p2 $cold.>,Can only be thrown once per battle. $t[On hit:] Inflict $p1 $cold. $t[$affected $h[Weapon] hits:] Inflict $p2 $cold.,Kann einmal pro Kampf geworfen werden. $t[Bei Treffer:] Verursache $p1 $cold. $t[$affected $h[Waffe] trifft:] Verursache $p2 $cold.,每场战斗只能投掷一次。$t[击中对手时：]施加$p1层$cold。$t[$affected的$h[武器]击中对手：]施加$p2层$cold。,1回のバトルで1度だけ投げられる $t[ヒット時：]$p1 $cold を付与する $t[$affectedにある$h[武器]の攻撃ヒット時：]$p2 $cold を付与する,전투당 한 번 던질 수 있습니다. $t[적중 시:] $cold를 $p1 부여합니다. $t[$affected에 위치한 $h[무기] 적중 시:] $cold를 $p2 부여합니다.,每場戰鬥只能投擲一次。$t[命中時：]施加$p1層$cold。$t[$affected的$h[武器]命中時：]施加$p2層$cold。,Ne peut être lancée qu'une seule fois par combat. $t[Par coup :] infligez $p1 $cold. $t[Par coup de l'$h[Arme] $affected :] infligez $p2 $cold.,Можно бросить только один раз за бой. $t[При попадании:] накладывает $p1 $cold. $t[При попадании $affected $h[оружием]:] накладывает $p2 $cold.,Pode ser jogada apenas uma vez por batalha. $t[Ao acertar:] Inflige $p1 $cold. $t[Acertos de $h[Arma] $affected:] Inflige $p2 $cold.,Se puede lanzar una vez por batalla. $t[Al golpear:] Inflige $p1 $cold. $t[Al golpear el $affected $h[Arma]:] Inflige $p2 $cold.
+<!MissingKey:79:$t[On reveal:] >,"$t[On reveal:] 
+ Increase $effect-damage by $p_damfactor%. 
+ Deal $dam $effect-damage + $p1 for each card before. 
+ Gain $p2 $heat.","$t[Beim Aufdecken:] 
+ Du verursachst +$p_damfactor% $effect-Schaden. 
+ Verursache $dam + $p1 $effect-Schaden für jede vorhergehende Karte. 
+ Erhalte $p2 $heat.","$t[翻开时：] 
+ 增加$p_damfactor%的$effect伤害。 
+造成$dam点$effect伤害，之前的每张卡牌提供$p1点伤害。 
+获得$p2层$heat。","$t[めくる時：]
+与える $effect ダメージ +$p_damfactor% 
+ $dam $effect ダメージを与える（前にめくったカード1枚につき +$p1ダメージ） 
+$p2 $heat を獲得する","$t[공개 시:]
+가하는 $effect 피해가 $p_damfactor%증가합니다.
+$effect 피해를 $dam 가하며 이전에 있었던 카드마다 피해를 $p1 추가로 획득합니다.
+$heat를 $p2 부여합니다.","$t[翻開時：] 
+ 增加$p_damfactor%的$effect傷害。 
+造成$dam點$effect傷害，先前的每張卡牌提供$p1點傷害。 
+獲得$p2層$heat。","$t[Par tirage :] 
+ augmentez les dégâts $effect à hauteur de $p_damfactor %. 
+ Infligez $dam de dégâts $effect + $p1 pour chaque carte avant. 
+ Gagnez $p2 $heat.","$t[При раскрытии:] 
+ Повышает $effect-урон на $p_damfactor%. 
+ Наносит $dam $effect-урона + $p1 за каждую предшествующую карту. 
+ Добавляет $p2 $heat.","$t[Ao revelar:] 
+ Aumenta o dano de $effect em $p_damfactor%. 
+ Causa $dam de dano de $effect + $p1 por cada carta anterior. 
+ Ganha $p2 $heat.","$t[Al revelarse:] 
+ Aumenta el daño de $effect un $p_damfactor %. 
+ Inflige $dam de daño de $effect +$p1 de daño por cada carta anterior. 
+ Obtiene $p2 $heat."
+<!MissingKey:80:Ace of Spades>,Ace of Spades,Pik Ass,黑桃A,スペードのエース,스페이드 에이스,黑桃A,As de pique,«Пиковый туз»,Ás de Espadas,As de espadas
+<!MissingKey:81:Rainbow Goobert Megasludge Alphapuddle>,Rainbow Goobert Megasludge Alphapuddle,Regenbogen- Schlotzbert Alphapampe,彩虹究极布丁黏黏,レインボー・スラバート・マッド・アルファ,레인보우 슬돌이 메가 알파,彩虹究極布丁黏呼呼,Viskeu arc-en-ciel alphaflaque mégadoueux,Радужный супер-желейный ультра-Слаймер,Gosberto Arco-Íris Alfatina Megalenga,Viscosino arcoíris requetechupi
+<!MissingKey:82:Lucky Clover>,Lucky Clover,Glücksklee,幸运四叶草,幸運のクローバー,행운의 클로버,四葉幸運草,Trèfle porte-bonheur,Клевер удачи,Trevo da Sorte,Trébol de la suerte
+<!MissingKey:83:Add $h[2] backpack slots. >,"Add $h[2] backpack slots. 
+
+ Items inside trigger $p1% faster.","Fügt $h[2] Rucksackplätze hinzu. 
+
+ Enthaltene Gegenstände aktivieren $p1% schneller.","增加$h[2]格背包槽位。
+
+包内的物品触发快$p1%。","バックパックのスロットを$h[2]追加する
+
+中にあるアイテムの使用速度が$p1%上がる","배낭 슬롯을 $h[2]개 추가합니다.
+
+내부에 위치한 아이템이 $p1% 빠르게 발동합니다.","增加$h[2]格背包欄位。
+背包內的物品觸發速度加快$p1%。","Ajoutez $h[2] emplacements de sac à dos. 
+
+ Les objets à l'intérieur se déclenchent $p1 % plus vite.","Добавляет $h[2] слота к рюкзаку. 
+
+ Предметы в этой сумке будут срабатывать на $p1% чаще.","Adiciona $h[2] espaços à mochila. 
+
+ Itens dentro ativam $p1% mais rápido.","Añade $h[2] espacios a la mochila. 
+
+ Los objetos en su interior se activan un $p1 % más rápido."
+<!MissingKey:84:You have +$chance% chance to resist debuffs for each $affected $nature-item. $t[$spikes gained:] Inflict $p4 $poison. $t[Opponent reaches $p1 $poison:] They take +$p2% damage.>,You have +$chance% chance to resist debuffs for each $affected $nature-item. $t[$spikes gained:] Inflict $p4 $poison. $t[Opponent reaches $p1 $poison:] They take +$p2% damage.,"$chance% Chance, Debuffs zu vermeiden für jeden $affected $nature-Gegenstand. $t[$spikes erzeugt:] Verursache $p4 $poison. $t[Gegner erreicht $p1 $poison:] Er erhält +$p2% Schaden.",每有一个$affected的$nature物品，就会获得$chance%的几率抵抗减益效果。$t[获得$spikes时：]向对手施加$p4层$poison。$t[对手拥有至少$p1层$poison时：]受到的伤害+$p2%。,$affectedにある $nature アイテム1個につきデバフ無効化確率 +$chance% $t[$spikes 獲得毎：]$p4 $poison を付与する $t[相手が$p1 $poison 到達時：]相手の受けるダメージ +$p2%,$affected에 위치한 $nature 아이템마다 $chance%의 확률로 디버프에 저항합니다. $t[$spikes 획득 시:] $poison을 $p4 부여합니다. $t[상대의 $poison이 $p1에 도달 시:] 상대가 피해를 $p2% 추가로 입습니다.,每有一個$affected的$h[自然]物品，就會獲得$chance%的機率抵抗減益效果。$t[獲得$spikes時：]向對手施加$p4層$poison。$t[對手擁有至少$p1層$poison時：]受到的傷害+$p2%。,Vous avez +$chance % de chance de résister aux malus pour chaque objet $nature $affected. $t[En gagnant $spikes :] infligez $p4 $poison. $t[L'adversaire atteignant $p1 $poison :] l'adversaire subit +$p2 % de dégâts.,За каждый $affected $nature предмет герой получает шанс +$chance% игнорировать негативные эффекты. $t[При получении $spikes:] накладывает на противника $p4 $poison. $t[У противника не менее $p1 $poison:] противник получает +$p2% урона.,Você tem +$chance% de chance de resistir a debuffs por cada item-$nature $affected. $t[$spikes ganho:] Inflige $p4 $poison. $t[Oponente alcança $p1 $poison:] Eles sofrem +$p2% de dano.,Se tiene un $chance % de probabilidad de resistir desventajas por cada objeto $nature $affected. $t[Al ganar $spikes:] Inflige $p4 $poison. $t[Si el rival alcanza $p1 $poison:] Recibe un $p2 % más de daño.
+<!MissingKey:85:Death Scythe>,Death Scythe,Todessense,死神镰刀,死神の鎌,사신의 낫,死神鐮刀,Faux de faucheuse,Коса смерти,Gadanha da Morte,Guadaña
+"<!MissingKey:86:$t[On attack:] Use $p1 $mana to deal +$p2 damage and for the next $p3s, all your attacks are critical.>","$t[On attack:] Use $p1 $mana to deal +$p2 damage and for the next $p3s, all your attacks are critical.","$t[Bei Angriff:] Nutze $p1 $mana, um +$p2 Schaden zu verursachen; für die nächsten $p3s sind alle dein Angriffe kritisch.",$t[攻击时：]消耗$p1点$mana造成$p2点额外伤害。接下来$p3s内所有攻击都将是暴击。,$t[攻撃時：]$p1 $mana を消費して、与ダメージ +$p2、$p3秒間の全攻撃をクリティカルにする,"$t[공격 시:] $mana를 $p1 사용해 피해량이 $p2 증가하며, 다음 $p3초 동안 모든 공격이 치명타가 됩니다.",$t[攻擊時：]接下來$p3秒內，消耗$p1點$mana造成$p2點額外傷害。所有攻擊都將是暴擊。,"$t[Par attaque :] utilisez $p1 $mana pour infliger +$p2 de dégâts et pendant les $p3 s suivantes, toutes vos attaques sont critiques.","$t[При атаке:] использует $p1 $mana, чтобы нанести +$p2 ед. урона. Любые атаки в течение $p3 сек. будут критическими.","$t[Ao atacar:] Gasta $p1 $mana para causar +$p2 de dano, e nos $p3 s seguintes todos os seus ataques serão críticos.","$t[Al atacar:] Usa $p1 $mana para infligir +$p2 de daño y durante los siguientes $p3 s, todos los ataques son críticos."
+<!MissingKey:87:Hero Longsword>,Hero Longsword,Heldenlangschwert,英雄长剑,英雄のロングソード,영웅의 롱소드,英雄長劍,Épée longue de héros,Меч героя,Espada Longa do Herói,Mandoble de héroe
+<!MissingKey:88:Impractically Large Greatsword>,Impractically Large Greatsword,Übergroßes Großschwert,笨重巨剑,"あまりにも大きすぎる
+グレートソード",터무니없이 큰 대검,笨重巨劍,Épée longue démesurée,Неприлично огромный меч,Montante Inconvenientemente Grande,Espadón inconmensurable
+<!MissingKey:89:Artifact Stone: Cold>,Artifact Stone: Cold,Artefaktstein: Kälte,遗迹石：寒冷,古代の石：フリーズ,아티팩트석: 한기,神器石：寒冷,Pierre d'artefact : Froideur,Артефакт: Холод,Pedra de Artefato: Frio,Piedra artefacto: Frío
+<!MissingKey:90:Nocturnal Lock Lifter>,Nocturnal Lock Lifter,Blutrünstige Bürste,吸血鬼梳子,夜闇のヘアコーム,악몽의 머리빗,吸血鬼梳子,Croche-serrure nocturne,Ночная шпилька,Pente Vampírico,Peineta noctámbula
+<!MissingKey:91:$t[On hit:] Gain $h[1] $heat. When you have at least $p1 $heat: $chance% chance to $stun[stun] your opponent for $p2s.>,$t[On hit:] Gain $h[1] $heat. When you have at least $p1 $heat: $chance% chance to $stun[stun] your opponent for $p2s.,"$t[Bei Treffer:] Erhalte $h[1] $heat. Bei mindestens $p1 $heat: $chance% Chance, $p2s $stun[Benommenheit] auszulösen.",$t[击中对手时：]获得$h[1]层$heat。当你拥有$p1层$heat时，将有$chance%的几率$stun[眩晕]对手$p2s。,$t[ヒット時：]$h[1] $heat を獲得する。$p1 $heat以上ある場合：$chance%の確率で相手を$p2秒間$stun[スタン]させる,$t[적중 시:] $heat를 $h[1] 획득합니다. $p1 이상의 $heat를 보유 시: $chance%의 확률로 상대를 $p2초 동안 $stun[기절]시킵니다.,$t[命中時：]獲得$h[1]層$heat。當你擁有$p1層$heat時，有$chance%的機率$stun[暈眩]對手$p2秒。,$t[Par coup :] gagnez $h[1] $heat. Lorsque vous avez au moins $p1 $heat : $chance % de chance d'$stun[étourdir] votre adversaire pendant $p2 s.,$t[При попадании:] добавляет $h[1] $heat. Когда наберется $p1 $heat: шанс $chance% $stun[оглушить] противника на $p2 сек.,$t[Ao acertar:] Ganha $h[1] $heat. Se você tiver ao menos $p1 $heat: $chance% de chance de $stun[atordoar] o oponente por $p2 s.,"$t[Al golpear:] Obtiene $h[1] $heat. Cuando se tiene al menos $p1 $heat, $chance % de probabilidad de $stun[aturdir] al rival durante $p2 s."
+<!MissingKey:92:Spear>,Spear,Speer,长矛,スピア,창,長矛,Lance,Копье,Lança,Lanza
+<!MissingKey:93:Healing Herbs>,Healing Herbs,Heilkräuter,治疗草药,癒やしのハーブ,치유 허브,治療草藥,Herbes médicinales,Целебные травы,Ervas Curativas,Hierbas medicinales
+<!MissingKey:94:You have a $chance% chance to resist debuffs for each $lucky. $t[Start of battle:] Gain $p2 $heat and $p3 $lucky for each $affected $magic-item. >,"You have a $chance% chance to resist debuffs for each $lucky. $t[Start of battle:] Gain $p2 $heat and $p3 $lucky for each $affected $magic-item. 
+
+ Deals +$p1 damage per $heat. ","Du hast $chance% Chance pro $lucky, einem Debuff zu widerstehen. $t[Kampfbeginn:] Erhalte $p2 $heat und $p3 $lucky für jeden $affected $magic-Gegenstand.  
+
+ Verursacht +$p1 Schaden pro $heat.","每层$heat将获得+$p1点伤害加成。
+
+每有一点$lucky将获得$chance%的几率抵挡减益效果。$t[战斗开始时：]每个$affected的$magic物品将获得$p2层$heat和$p3点$lucky。","$heat 1スタックにつき与ダメージ +$p1 
+
+ $lucky 1スタックにつきデバフ無効化確率 +$chance% $t[バトル開始時：]$affectedにある $magic アイテム1個につき$p2 $heat と$p3 $lucky を獲得する","$heat마다 가하는 피해가 $p1 증가합니다.
+
+보유한 $lucky마다, $chance%의 확률로 디버프에 저항합니다. $t[전투 시작 시:] $affected에 위치한 $magic 아이템마다 $heat를 $p2, $lucky을 $p3 획득합니다.","每層$heat將獲得+$p1點傷害加成。
+每點$lucky將獲得$chance%的機率抵擋減益效果。$t[戰鬥開始時：]每個$affected的$h[魔法]物品將獲得$p2層$heat和$p3點$lucky。","Inflige +$p1 de dégâts par $heat. 
+
+ Vous avez $chance % de chance de résister aux malus pour chaque $lucky. $t[Au début du combat :] gagnez $p2 $heat et $p3 $lucky pour chaque objet $magic $affected.","Каждый эффект $heat повышает урон на $p1 ед. 
+
+ Каждый эффект $lucky повышает шанс игнорировать негативные эффекты на $chance%. $t[Начало боя:] за каждый $affected $magic предмет добавляет $p2 $heat и $p3 $lucky.","Causa +$p1 de dano por $heat. 
+
+ Você tem uma chance de $chance% de resistir a debuffs por cada $lucky. $t[Início da batalha:] Ganha $p2 $heat e $p3 $lucky por cada item-$magic $affected.","Inflige +$p1 de daño por cada $heat. 
+
+ $chance % de probabilidad de resistir desventajas por cada $lucky. $t[Al comienzo de la batalla:] Obtiene $p2 $heat y $p3 $lucky por cada objeto $magic $affected."
+<!MissingKey:95:$t[Every $cds:] Gain $block $bl. $chance% chance to remove $p1 $vampirism from your opponent.>,$t[Every $cds:] Gain $block $bl. $chance% chance to remove $p1 $vampirism from your opponent.,"$t[Alle $cds:] Erhalte $block $bl, $chance% Chance, $p1 $vampirism von deinem Gegner zu entfernen.",$t[每$cds：]获得$block点$bl并有$chance%的几率移除对手$p1层$vampirism效果。,$t[$cd秒毎：]$block $bl を獲得する。$chance%の確率で相手から$p1 $vampirism を除去する,$t[$cd초마다:] $bl를 $block 획득합니다. $chance%의 확률로 상대의 $vampirism을 $p1 제거합니다.,$t[每$cd秒：]獲得$block點$bl並有$chance%的機率移除對手$p1層$vampirism效果。,$t[Toutes les $cd s :] gagnez $block $bl. $chance % de chance de retirer $p1 $vampirism de votre adversaire.,$t[Раз в $cd сек.:] добавляет $block $bl. Шанс $chance% снять $p1 $vampirism с противника.,$t[A cada $cd s:] Ganhe $block $bl. $chance% de chance de remover $p1 $vampirism do oponente.,$t[Cada $cd s:] Obtiene $block $bl $chance % de probabilidad de eliminar $p1 $vampirism del rival.
+<!MissingKey:96:Poison Ivy>,Poison Ivy,Giftefeu,剧毒常春藤,ドクウルシ,독담초,劇毒常春藤,Lierre vénéneux,Ядовитый плющ,Hera Venenosa,Hiedra venenosa
+<!MissingKey:97:The Lovers>,The Lovers,Die Liebenden,恋人,恋人のカード,연인,戀人,Les Amants,«Влюбленные»,Os Enamorados,Los Amantes
+<!MissingKey:98:$t[Start of battle:] The $affected $h[Weapon] gains $p1 damage. The $affected2 item triggers $p2% faster. $t[On hit:] Gain $p3 damage and attack $p4% faster.>,$t[Start of battle:] The $affected $h[Weapon] gains $p1 damage. The $affected2 item triggers $p2% faster. $t[On hit:] Gain $p3 damage and attack $p4% faster.,"$t[Kampfbeginn:] Die $affected $h[Waffe] verursacht +$p1 Schaden. 
+ Der $affected2 Gegenstand aktiviert $p2% schneller. $t[Bei Treffer:] Erhalte +$p3 Schaden und greife $p4% schneller an.",$t[战斗开始时：]$affected的$h[武器]造成的伤害+$p1。$affected2的物品触发快$p2%。$t[击中对手时：]获得伤害+$p3与触发快$p4%加成。,$t[バトル開始時：]$affectedにある$h[武器]のダメージ値が$p1増える。 $affected2にあるアイテムの使用速度が$p2%上がる $t[ヒット時：]ダメージ値が$p3増え、使用速度が$p4%上がる,$t[전투 시작 시:] $affected에 위치한 $h[무기]가 가하는 피해가 $p1 증가합니다. $affected2에 위치한 아이템이 $p2% 빠르게 발동합니다. $t[적중 시:] 가하는 피해가 $p3 증가하고 $p4% 빠르게 발동합니다.,$t[戰鬥開始時：]$affected的$h[武器]造成的傷害+$p1。$affected2的物品觸發速度加快$p2%。$t[命中時：]獲得傷害+$p3點與觸發速度加快$p4%的加成。,$t[Au début du combat :] l'$h[Arme] $affected gagne $p1 de dégâts. L'objet $affected2 se déclenche $p2 % plus vite. $t[Par coup :] gagne +$p3 de dégâts et se déclenche $p4 % plus vite.,$t[Начало боя:] $affected $h[оружие] наносит +$p1 ед. урона. $affected2 предметы срабатывают на $p2 % чаще. $t[При попадании:] наносит +$p3 ед. урона и срабатывает на $p4% чаще.,$t[Início da batalha:] A $h[Arma] $affected ganha +$p1 de dano. O item $affected2 ativa-se $p2% mais rápido. $t[Ao acertar:] Ganhe +$p3 de dano e ativa-se $p4% mais rápido.,$t[Al comienzo de la batalla:] El $affected $h[Arma] gana $p1 de daño. El $affected2 objeto se activa un $p2 % más rápido. $t[Al golpear:] Consigue +$p3 de daño y se activa un $p4 % más rápido.
+"<!MissingKey:99:$c[Weapon sockets:] $m[On hit:] $chance2% chance to steal a random buff. $c[Armor & other sockets:] $chance% chance to resist debuffs or critical hits. $c[Backpack:] $m[Opponent drops below $p1%:] Heal for $p2, gain $p3 $empower. >","$c[Weapon sockets:] $m[On hit:] $chance2% chance to steal a random buff. $c[Armor & other sockets:] $chance% chance to resist debuffs or critical hits. $c[Backpack:] $m[Opponent drops below $p1%:] Heal for $p2, gain $p3 $empower. ","$c[Waffensockel:] $m[Bei Treffer:] $chance2% Chance, einen Buff zu stehlen. $c[Rüstung & andere Sockel:] $chance% Chance, einen Debuff oder kritischen Treffer zu vermeiden. $c[Rucksack:] $m[Gegner fällt unter $p1% Leben:] Heile $p2 und erhalte $p3 $empower.",$c[放入武器槽：]$m[击中对手时：]有$chance2%的几率偷取一个随机增益效果。$c[放入护甲或其他槽：] 有$chance%的几率抵御暴击或减益效果。$c[放入背包：] $m[对手生命值低于$p1%时：]恢复$p2点生命值，获得$p3层$empower。,$c[武器に装着：]$m[ヒット時：]$chance2%の確率で1バフを奪う $c[非武器に装着：]$chance%の確率でデバフを無効化、クリティカルを防止する $c[バックパックに配置：]$m[相手の体力が$p1%未満に低下時：]体力を$p2回復し、$p3 $empower を獲得する,"$c[무기 소켓:] $m[적중 시:] $chance2%의 확률로 무작위 버프를 빼앗습니다. $c[방어구 및 기타 소켓:] $chance%의 확률로 디버프나 치명타에 저항합니다. $c[배낭:] $m[상대의 체력이 $p1%보다 낮을 시:] 체력을 $p2 회복하고, $empower를 $p3 획득합니다.",$c[放入武器槽：]$m[擊中對手時：]有$chance2%的幾率偷取一個隨機增益效果。 $c[放入護甲或其他槽：] 有$chance%的幾率抵禦爆擊或減益效果。 $c[放入背包：] $m[對手生命值低於$p1%時：]恢復$p2點生命值，獲得$p3層$empower。,"$c[Emplacements d'armes :] $m[Par coup :] $chance2 % de chance de voler un bonus aléatoire. $c[Armure et autres emplacements :] $chance % de chance de résister aux malus ou coups critiques. $c[Sac à dos :] $m[PV de l'adversaire inférieurs à $p1 % :] guérissez de $p2, gagnez $p3 $empower.",$c[В слоте оружия:] $m[При попадании:] шанс $chance2% украсть у противника случайное усиление. $c[В слоте брони/в другом слоте:] Шанс $chance% игнорировать негативные эффекты или критический удар. $c[В рюкзаке:] $m[Если у противника менее $p1% здоровья:] восстанавливает герою $p2 ед. здоровья и добавляет $p3 $empower.,$c[Engastes de armas:] $m[Ao acertar:] $chance2% de chance de roubar um buff aleatório. $c[Demais engastes:] $chance% de chance de resistir a debuffs ou acertos críticos. $c[Mochila:] $m[Vida do oponente abaixo de $p1%:] Restaura $p2 de vida e ganhe $p3 $empower.,"$c[Ranuras de arma:] $m[Al golpear:] $chance2 % de probabilidad de robar una ventaja al azar. $c[Ranuras de armadura y otras:] $chance % de probabilidad de resistir desventajas o golpes críticos. $c[Mochila:] $m[Si la salud del rival cae por debajo del $p1 %:] Recupera $p2 PS, obtiene $p3 $empower."
+<!MissingKey:100:$t[On reveal:] >,"$t[On reveal:] 
+ Deal $p1 $effect-damage with $p_lifesteal% lifesteal. 
+ If the number of cards before is even, gain $p2 $regen and your healing is increased by $p_healamp%.","$t[Beim Aufdecken:] Verursache $p1 Schaden mit $p_lifesteal% Lebensraub. Wenn die Zahl der vorhergehenden Karten gerade ist, erhalte $p2 $regen und deine Heilungen sind um $p_healamp% verstärkt.","$t[翻开时：] 
+造成带有$p_lifesteal%生命偷取效果的$p1点$effect伤害。
+如果之前翻开的卡牌数量是偶数，获得$p2层$regen且你的生命恢复效果加强 $p_healamp%。","$t[めくる時：]
+体力吸収率$p_lifesteal%の$p1 $effect ダメージを与える 
+前にめくったカードの枚数が偶数なら、$p2 $regen を獲得し、自分の回復量 +$p_healamp%","$t[공개 시:]
+$p_lifesteal%의 생명력을 흡수하는 $effect 피해를 $p1 가합니다.
+이전에 있었던 카드의 수가 짝수라면, $regen을 $p2 획득하고 회복량이 $p_healamp% 증가합니다.","$t[翻開時：] 
+造成帶有$p_lifesteal%生命偷取效果的$p1點$effect傷害。 
+如果之前翻開的卡牌數量是偶數，獲得$p2層$regen且你的生命恢復效果加強 $p_healamp%。","$t[Par tirage :] 
+ infligez $effect de dégâts $p1 avec $p_lifesteal % de vol de vie. 
+ Si le nombre de cartes avant est pair, gagnez $p2 $regen et votre guérison augmente de $p_healamp %.","$t[При раскрытии:] 
+ Наносит $p1 $effect-урона и крадет $p_lifesteal% здоровья противника. 
+ Если количество предшествующих карт четное, добавляет $p2 $regen и повышает эффекты восстановления здоровья на $p_healamp%.","$t[Ao revelar:] 
+ Causa $p1 de dano de $effect com $p_lifesteal% de roubo de vida. 
+ Se a quantidade de cartas antes for par, ganha $p2 $regen e sua cura é aumentada em $p_healamp%.","$t[Al revelarse:] 
+ Inflige $p1 de daño de $effect con un $p_lifesteal % de drenaje vital. 
+ Si el número de cartas anterior es par, obtiene $p2 $regen y tu recuperación se incrementa un $p_healamp %."
+<!MissingKey:101:Chipped Ruby>,Chipped Ruby,Lädierter Rubin,红宝石碎片,欠けたルビー,깨진 루비,紅寶石碎片,Rubis fragmenté,Осколок рубина,Rubi Lascado,Rubí roto
+<!MissingKey:102:Bow and Arrow>,Bow and Arrow,Pfeil und Bogen,弓箭,弓矢,활과 화살,弓箭,Arc et flèche,Лук и стрелы,Arco e Flecha,Arco y flecha
+<!MissingKey:103:$t[Start of battle:] $affected items trigger $p1% faster. >,"$t[Start of battle:] $affected items trigger $p1% faster. 
+
+ Attacks $h[twice]. ","$t[Kampfbeginn:] $affected Gegenstände aktivieren $p1% schneller. 
+
+ Attackiert $h[doppelt].","$t[战斗开始时：] $affected的物品触发快$p1%。
+
+攻击$h[两次]。","$t[バトル開始時：]$affectedにあるアイテムの使用速度が$p1%上がる 
+
+1度に$h[2回]攻撃する","$t[전투 시작 시:] $affected에 위치한 아이템이 $p1% 빠르게 발동합니다.
+
+$h[두 번] 공격합니다.",攻擊$h[兩次]。$t[戰鬥開始時：]$affected的物品觸發速度加快$p1%。,"$t[Au début du combat :] les objets $affected se déclenchent $p1 % plus vite. 
+
+ Attaque $h[deux fois].","$t[Начало боя:] $affected предметы срабатывают на $p1% чаще. 
+
+ Атакует $h[дважды].","$t[Início da batalha:] Os itens $affected se ativam $p1% mais rápido. 
+
+ Ataca $h[duas vezes].","$t[Al comienzo de la batalla:] Los objetos $affected se activan un $p1 % más rápido. 
+
+ Ataca $h[dos veces]."
+<!MissingKey:104:Blueberries>,Blueberries,Blaubeeren,蓝莓,ブルーベリー,블루베리,藍莓,Myrtilles,Черника,Mirtilos,Arándanos
+<!MissingKey:105:Manathirst>,Manathirst,Manadurst,吸魔剑,マナ喰らいの剣,마나갈증,吸魔劍,Lame manaffamée,Меч маны,Tomamana,Devoramaná
+<!MissingKey:106:$t[Start of battle:] Reduce damage taken by $p1% for $p2s. >,"$t[Start of battle:] Reduce damage taken by $p1% for $p2s. 
+
+ $chance% chance to resist critical hits. 
+ $chance% chance to resist stuns. ","$t[Kampfbeginn:] Eingehender Schaden ist für $p2s um $p1% reduziert. 
+
+ $chance% Chance, kritischen Schaden zu vermeiden. 
+ $chance% Chance, Benommenheit zu vermeiden.","$t[战斗开始时：]$p2s内受到的伤害减少$p1%。
+
+有$chance%的几率抵抗暴击。
+还有$chance%的几率抵抗眩晕。","$t[バトル開始時：] $p2秒間、受けるダメージが$p1%減る
+
+ $chance%の確率でクリティカルを防止する 
+ $chance%の確率でスタンを防止する","$t[전투 시작 시:] $p2초 동안 받는 피해가 $p1% 감소합니다.
+$chance%의 확률로 치명타에 저항합니다.
+$chance%의 확률로 기절에 저항합니다.","$t[戰鬥開始時：]$p2秒內受到的傷害減少$p1%。
+有$chance%的機率抵抗暴擊。
+還有$chance%的機率抵抗暈眩。","$t[Au début du combat :] dégâts d'attaque subis réduits de $p1 % pendant $p2 s. 
+
+ $chance % de chance de résister aux coups critiques. 
+ $chance % de chance de résister aux étourdissements.","$t[Начало боя:] снижает получаемый урон на $p1% на $p2 сек. 
+
+ Шанс $chance% уклониться от критического удара. 
+ $chance% шанс игнорировать оглушение.","$t[Início da batalha:] Diminui o dano sofrido em $p1% por $p2 s. 
+
+ $chance% de chance de resistir a acertos críticos. 
+ $chance% de chance de resistir a atordoamentos.","$t[Al comienzo de la batalla:] Reduce el daño recibido en un $p1 % durante $p2 s. 
+
+ $chance % de probabilidad de resistir golpes críticos. 
+ $chance % de probabilidad de resistir aturdimiento."
+<!MissingKey:107:Bunch of Coins>,Bunch of Coins,Münzenhäufchen,一堆金币,コインの山,코인 더미,一堆金幣,Poignée de pièces,Горсть монет,Punhado de Moedas,Montón de monedas
+<!MissingKey:108:$t[On attack:] Use $p1 $mana to ignore $bl and deal +$p2 damage. $t[On stun:] Triggers extra attack.>,$t[On attack:] Use $p1 $mana to ignore $bl and deal +$p2 damage. $t[On stun:] Triggers extra attack.,"$t[Bei Angriff:] Nutze $p1 $mana, um die Lebenspunkte direkt anzugreifen und +$p2 Schaden zu verursachen. $t[Gegner benommen:] Löse einen zusätzlichen Angriff aus.",$t[攻击时：]消耗$p1点$mana无视$bl直接攻击对手，造成+$p2点伤害。$t[眩晕对手：]触发一次额外攻击。,$t[攻撃時：]$p1 $mana を消費して、$bl を無視し、与ダメージ +$p2 $t[スタン時：]追加攻撃を行う,$t[공격 시:] $mana를 $p1 사용해 $bl를 무시하고 피해량이 $p2 증가합니다. $t[기절 시:] 추가 공격을 가합니다.,$t[攻擊時：]消耗$p1點$mana直接攻擊對手，造成+$p2點傷害。$t[暈眩對手時：]觸發一次額外攻擊。,$t[Par attaque :] utilisez $p1 $mana pour ignorer $bl et infliger +$p2 de dégâts. $t[Par étourdissement :] déclenche une attaque supplémentaire.,"$t[При атаке:] использует $p1 $mana, чтобы проигнорировать $bl противника и нанести +$p2 ед. урона. $t[При оглушении:] наносит дополнительную атаку.",$t[Ao atacar:] Gasta $p1 $mana para ignorar $bl e causar +$p2 de dano. $t[Ao atordoar:] Ativa um ataque adicional.,$t[Al atacar:] Usa $p1 $mana para ignorar $bl e inflige $p2 más de daño. $t[Al aturdir:] Activa un ataque adicional.
+<!MissingKey:109:White-Eyes Blue Dragon>,White-Eyes Blue Dragon,Weißäugiger Blauer Drache,白眼青龙,白眼の青龍,하얀 눈의 청룡,白眼青龍,Dragon bleu aux yeux blancs,«Снежный дракон»,Dragão Azul dos Olhos Brancos,Dragón de ojos azules
+<!MissingKey:110:$t[Every $cds:] Gain $p1 $mana. If you have at least $p2 $mana: Gain $p3 $lucky instead.>,$t[Every $cds:] Gain $p1 $mana. If you have at least $p2 $mana: Gain $p3 $lucky instead.,"$t[Alle $cds:] Erhalte $p1 $mana. Wenn du \~$p2 $mana hast, erhalte stattdessen $p3 $lucky.",$t[每$cds：]获得$p1点$mana。如果你至少有$p2点$mana，则改为获得$p3点$lucky。,$t[$cd秒毎：]$p1 $mana を獲得する。$p2 $mana 以上ある場合、代わりに$p3 $lucky を獲得する,"$t[$cd초마다:] $mana를 $p1 획득합니다. $p2 이상의 $mana를 보유 시, 그 대신 $lucky을 $p3 획득합니다.",$t[每$cd秒：]獲得$p1點$mana。如果你至少有$p2點$mana，則改為獲得$p3點$lucky。,$t[Toutes les $cd s :] gagnez $p1 $mana. Si vous avez au moins $p2 $mana : gagnez $p3 $lucky à la place.,$t[Раз в $cd сек.:] добавляет $p1 $mana. Если уже есть не менее $p2 $mana: добавляет $p3 $lucky вместо маны.,"$t[A cada $cd s:] Ganhe $p1 $mana, ou $p3 $lucky se você tiver ao menos $p2 $mana.",$t[Cada $cd s] Obtiene $p1 $mana. Al tener al menos $p2 $mana: Obtiene $p3 $lucky en su lugar.
+<!MissingKey:111:Perfect Sapphire>,Perfect Sapphire,Perfekter Saphir,完美蓝宝石,完璧なサファイア,완벽한 사파이어,完美藍寶石,Saphir parfait,Полированный сапфир,Safira Perfeita,Zafiro perfecto
+<!MissingKey:112:$c[Weapon sockets:] $m[Opponent below $p1% health:] Deal +$p2% damage. $c[Armor & other sockets:] $m[$p3 debuffs inflicted:] Gain $p4 $bl. $c[Backpack:] $m[Every $cds:] Inflict $fatigue[Fatigue] damage.>,$c[Weapon sockets:] $m[Opponent below $p1% health:] Deal +$p2% damage. $c[Armor & other sockets:] $m[$p3 debuffs inflicted:] Gain $p4 $bl. $c[Backpack:] $m[Every $cds:] Inflict $fatigue[Fatigue] damage.,$c[Waffensockel:] $m[Gegner unter $p1% Leben:] Verursache +$p2% Schaden. $c[Rüstung & andere Sockel:] $m[$p3 Debuffs verursacht:] Erhalte $p4 $bl. $c[Rucksack:] $m[Alle $cds:] Verursache $fatigue[Erschöpfungsschaden].,$c[放入武器槽：] $m[对手生命值低于$p1%时：] 伤害+$p2%。 $c[放入护甲或其他槽：] $m[每施加$p3次减益效果：]获得$p4层$bl。$c[放入背包：] $m[每$cds：]造成$fatigue[疲惫]伤害。,$c[武器に装着：] $m[相手の体力が$p1%未満の時：]与ダメージ +$p2% $c[非武器に装着：] $m[$p3デバフ付与する毎：]$p4 $bl を獲得する $c[バックパックに配置：]$m[$cd秒毎：] $fatigue[疲労]ダメージを与える,$c[무기 소켓:] $m[상대의 체력이 $p1%보다 낮을 시:] 가하는 피해가 $p2% 증가합니다. $c[방어구 및 기타 소켓:] $m[디버프를 $p3번 부여 시:] $bl를 $p4 획득합니다. $c[배낭:] $m[$cd초마다:] $fatigue[피로] 피해를 부여합니다.,$c[放入武器槽：]$m[對手生命值低於$p1%時：]傷害+$p2%。 $c[放入護甲或其他槽位：]$m[每施加$p3次減益效果：]獲得$p4層$bl。$c[放入背包：]$m[每$cd秒：]造成$fatigue點[疲勞]傷害。,$c[Emplacements d'armes :] $m[PV de l'adversaire inférieurs à $p1 % :] infligez +$p2 % de dégâts. $c[Armure et autres emplacements :] $m[$p3 malus infligés :] gagnez $p4 $bl. $c[Sac à dos :] $m[Toutes les $cd s :] infligez des dégâts de $fatigue[Fatigue].,$c[В слоте оружия:] $m[Если у противника менее $p1% здоровья:] наносит +$p2% урона. $c[В слоте брони/в другом слоте:] $m[Если наложено не менее $p3 негативных эффектов:] добавляет $p4 $bl. $c[В рюкзаке:] $m[Раз в $cd сек.:] наносит урон от $fatigue[истощения].,$c[Engastes de armas:] $m[Vida do oponente abaixo de $p1%:] Causa +$p2% de dano. $c[Demais engastes:] $m[$p3 debuffs infligidas:] Ganhe $p4 $bl. $c[Mochila:] $m[A cada $cd  s:] Inflige dano de $fatigue[Cansaço].,$c[Ranuras de arma:] $m[Si el rival está por debajo del $p1 % de salud:] Inflige $p2 % más de daño. $c[Ranuras de armadura y otras:] $m[Al infligir $p3 desventajas:] Obtiene $p4 $bl. $c[Mochila:] $m[Cada $cd s:] Inflige daño por $fatigue[Fatiga].
+<!MissingKey:113:Regular Ruby>,Regular Ruby,Regulärer Rubin,普通红宝石,普通のルビー,평범한 루비,普通紅寶石,Rubis ordinaire,Рубин,Rubi Comum,Rubí normal
+"<!MissingKey:114:$t[Every $cds:] Gain $h[1] $lucky $m[or] $h[1] $spikes $m[or] $h[1] $mana, depending on what you have the least of. $t[Use] $p1 $bl, $p1 $lucky, $p1 $spikes, $p1 $mana $m[and] $p2 $m[health:] Give the $affected $h[Weapon] +$p3 damage (once). >","$t[Every $cds:] Gain $h[1] $lucky $m[or] $h[1] $spikes $m[or] $h[1] $mana, depending on what you have the least of. $t[Use] $p1 $bl, $p1 $lucky, $p1 $spikes, $p1 $mana $m[and] $p2 $m[health:] Give the $affected $h[Weapon] +$p3 damage (once). ","$t[Alle $cds:] Erhalte $h[1] $lucky $m[oder] $h[1] $spikes $m[oder] $h[1] $mana, je nachdem, wovon du am wenigsten hast. $t[Nutze] $p1 $bl, $p1 $lucky, $p1 $spikes, $p1 $mana und $p2 Leben$m[:] Gibt der $affected $h[Waffe] +$p3 Schaden (einmalig).",$t[每$cds：]根据你现有最少的项，获得$h[1]点$lucky $m[或] $h[1]层$spikes $m[或] $h[1]点$mana。$t[消耗] $p1点$bl，$p1点$lucky，$p1层$spikes，$p1点$mana和$p2点生命值$m[：]使$affected的$h[武器] +$p3点伤害（单次触发）。,$t[$cd秒毎：]$h[1] $lucky $m[または]$h[1] $spikes $m[または]$h[1] $mana のうち最も少ないものを獲得する。$t[]$p1 $bl と$p1 $lucky と$p1 $spikes と$p1 $mana と$p2$m[体力を消費：]$affectedにある$h[武器]のダメージ値が$p3増える（1回のみ）,"$t[$cd초마다:] $h[1] $lucky $m[혹은] $h[1] $spikes $m[혹은] $h[1] $mana 중, 가장 적게 지닌 것을 획득합니다. $t[$bl를 $p1, $lucky을 $p1, $spikes를 $p1, $mana를 $p1, 체력을 $p2 사용 시:] $affected에 위치한 $h[무기]가 가하는 피해가 $p3 증가합니다 (한 번).",$t[每$cd秒：]根據你現有最少的屬性數值，獲得$h[1]點$lucky，$m[或]$h[1]層$spikes，$m[或]$h[1]點$mana。$t[消耗]$p1點$bl、$p1點$lucky、$p1層$spikes、$p1點$mana和$p2點生命值$m[：]使$affected的$h[武器]+$p3點傷害（單次觸發）。,"$t[Toutes les $cd s :] gagnez $h[1] $lucky $m[ou] $h[1] $spikes $m[ou] $h[1] $mana, en fonction de ce que vous avez le moins. $t[Utilisez] $p1 $bl, $p1 $lucky, $p1 $spikes, $p1 $mana et $p2 de PV$m[ :] donne à l'$h[Arme] $affected +$p3 de dégâts (une fois).","$t[Раз в $cd сек.:] добавляет $h[1] $lucky $m[или] $h[1] $spikes $m[или] $h[1] $mana, в зависимости от того, какого эффекта в данный момент меньше. $t[Использует] $p1 $bl, $p1 $lucky, $p1 $spikes, $p1 $mana и $p2 ед. здоровья$m[:] добавляет $affected $h[оружию] +$p3 ед. урона (один раз за бой).","$t[A cada $cd s:] Ganhe $h[1] $lucky $m[ou] $h[1] $spikes $m[ou] $h[1] $mana, dependendo do que você menos tiver. $t[Gasto de] $p1 $bl, $p1 $lucky, $p1 $spikes, $p1 $mana e $p2 de vida$m[:] Dá à $h[Arma] $affected +$p3 de dano (uma vez).","$t[Cada $cd s:] Obtiene $h[1] $lucky $m[o] $h[1] $spikes $m[o] $h[1] $mana, según lo que tengas en menor cantidad. $t[Al usar] $p1 $bl, $p1 $lucky, $p1 $spikes, $p1 $mana y $p2 PS$m[:] Otorga al $affected $h[Arma] +$p3 de daño (una vez)."
+<!MissingKey:115:Steel Goobert>,Steel Goobert,Stahlschlotzbert,钢之黏黏,スチール・スラバート,강철 슬돌이,鋼鐵黏呼呼,Viskeu d'acier,Стальной Слаймер,Gosberto de Aço,Viscosino de acero
+<!MissingKey:116:$t[$p1 $affected item activations:] Heal for $p2 and inflict $p3 $blind for $p4s.>,$t[$p1 $affected item activations:] Heal for $p2 and inflict $p3 $blind for $p4s.,$t[$p1 $affected Gegenstand-Aktivierungen:] Heile $p2 und verursache $p3 $blind für $p4s.,$t[$affected的物品激活达到$p1次：]恢复$p2点生命值。向对手施加$p3层$blind，持续$p4s。,$t[$affectedにあるアイテム$p1回発動時：]体力を$p2回復し、$p4秒間$p3 $blind を付与する,"$t[$affected에 위치한 아이템이 $p1회 발동 시:] 체력을 $p2 회복하고, $p4초 동안 $blind을 $p3 부여합니다.",$t[$affected的物品啟動達到$p1次：]恢復$p2點生命值。對對手施加$p3層$blind，持續$p4s。,$t[En activant l'objet $affected $p1 fois :] guérissez de $p2 et infligez $p3 $blind pendant $p4 s.,$t[При срабатывании $p1 $affected предметов:] восстанавливает $p2 ед. здоровья и накладывает на противника $p3 $blind на $p4 сек.,$t[$p1 ativações de item $affected:] Restaura $p2 de vida e inflige $p3 $blind por $p4 s.,$t[Al activar $p1 $affected objetos:] Recupera $p2 PS e inflige $p3 $blind durante $p4 s.
+<!MissingKey:117:Can only be thrown once per battle. $t[On hit:] Destroy $p1 $bl.>,Can only be thrown once per battle. $t[On hit:] Destroy $p1 $bl.,Kann einmal pro Kampf geworfen werden. $t[Bei Treffer:] Zerstöre $p1 $bl.,每场战斗只能投掷一次。$t[击中对手时：]摧毁$p1点$bl。,1回のバトルで1度だけ投げられる $t[ヒット時：]$p1 $bl を破壊する。,전투당 한 번 던질 수 있습니다. $t[적중 시:] $bl를 $p1 파괴합니다.,每場戰鬥只能投擲一次。$t[命中時：]摧毀$p1點$bl。,Ne peut être lancée qu'une seule fois par combat. $t[Par coup :] détruisez $p1 $bl.,Можно бросить только один раз за бой. $t[При попадании:] уничтожает $p1 $bl.,Pode ser jogada apenas uma vez por batalha. $t[Ao acertar:] Destrói $p1 $bl.,Se puede lanzar una vez por batalla. $t[Al golpear:] Destruye $p1 $bl.
+<!MissingKey:118:Acorn Collar>,Acorn Collar,Eichenanhänger,橡子颈圈,ドングリの首飾り,도토리 목걸이,橡實頸圈,Collier critique,Ошейник с желудем,Gargantilha de Bolota,Collar de bellota
+<!MissingKey:119:$c[Weapon sockets:] Attacks $p1% faster. $c[Armor & other sockets:] $chance% chance to resist stuns. >,"$c[Weapon sockets:] Attacks $p1% faster. $c[Armor & other sockets:] $chance% chance to resist stuns. 
+ $chance2% chance to resist critical hits. $c[Backpack:] Base stamina regeneration +$p2%. ","$c[Waffensockel:] Angriffsgeschwindigkeit +$p1%. $c[Rüstung & andere Sockel:] $chance% Chance, Benommenheit zu vermeiden. 
+ $chance2% Chance, kritischen Schaden zu vermeiden. $c[Rucksack:] Basis-Ausdauerregeneration +$p2%.",$c[放入武器槽：]武器攻击触发快$p1%。$c[放入护甲或其他槽：]有$chance%的几率抵挡眩晕，还有$chance2%的几率抵挡暴击。$c[放入背包：]增加$p2%基础耐力值恢复。,"$c[武器に装着：]使用速度が$p1%上がる $c[非武器に装着：] $chance2%の確率でクリティカルを防止する
+$chance%の確率でスタンを防止する $c[バックパックに配置：]基礎スタミナ回復量 +$p2%",$c[무기 소켓:] $p1% 빠르게 공격합니다. $c[방어구 및 기타 소켓:] $chance%의 확률로 기절에 저항합니다. $chance2%의 확률로 치명타에 저항합니다. $c[배낭:] 기본 스태미나 재생량이 $p2% 증가합니다.,$c[放入武器槽：]武器攻擊觸發速度加快$p1%。$c[放入護甲或其他槽位：]有$chance%的機率抵擋暈眩，還有$chance2%的機率抵擋暴擊。$c[放入背包：]增加$p2%基礎耐力值恢復。,"$c[Emplacements d'armes :] attaquez $p1 % plus vite. $c[Armure et autres emplacements :] $chance % de chance de résister aux étourdissements. 
+ $chance2 % de chance de résister aux coups critiques. $c[Sac à dos :] régénération d'endurance de base $p2 %.","$c[В слоте оружия:] Атакует на $p1% быстрее. $c[В слоте брони/в другом слоте:] Шанс $chance% игнорировать оглушение. 
+ Шанс $chance2% уклониться от критического удара. $c[В рюкзаке:] Базовая скорость восстановления энергии +$p2%.","$c[Engastes de armas:] Ataca $p1% mais rápido. $c[Demais engastes:] $chance% de chance de resistir a atordoamentos. 
+ $chance2% de chance de resistir a acertos críticos. $c[Mochila:] Regeneração básica de vigor +$p2%.","$c[Ranuras de arma:] Ataca un $p1 % más rápido. $c[Ranuras de armadura y otras:] $chance % de probabilidad de resistir aturdimiento. 
+ $chance2 % de probabilidad de resistir golpes críticos. $c[Mochila:] Aumenta la regeneración de resistencia básica un $p2 %."
+<!MissingKey:120:$t[Every $cds:] Cleanse $h[1] $blind and heal \~for $p3. $t[Use $p1 $mana:] Become invulnerable for $p2s (once).>,$t[Every $cds:] Cleanse $h[1] $blind and heal \~for $p3. $t[Use $p1 $mana:] Become invulnerable for $p2s (once).,$t[Alle $cds:] Entferne $h[1] $blind und heile um $p3. $t[Nutze $p1 $mana:] Werde für $p2s unverwundbar (einmalig).,$t[每$cds:]净化$h[1]层$blind并恢复$p3点生命值。$t[消耗$p1点$mana：]变为无敌，持续$p2s （单次触发）。,$t[$cd秒毎：] $h[1] $blind を解除し、体力を$p3回復する $t[$p1 $mana 消費：]$p2秒間無敵状態になる（1回のみ）,"$t[$cd초마다:] $blind을 $h[1] 정화하고, 체력을 $p3 회복합니다. $t[$mana를 $p1 사용:] $p2초 동안 무적 상태가 됩니다 (한 번).",$t[每$cd秒：]淨化$h[1]層$blind並恢復$p3點生命值。$t[消耗$p1點$mana：]變為無敵，持續$p2秒（單次觸發）。,$t[Toutes les $cd s :] purgez $h[1] $blind et guérissez de $p3. $t[Utilisez $p1 $mana :] devenez invulnérable pendant $p2 s (une fois).,$t[Раз в $cd сек.:] снимает $h[1] $blind и восстанавливает $p3 ед. здоровья. $t[Затратив $p1 $mana:] активирует неуязвимость на $p2 сек. (один раз за бой).,$t[A cada $cd s:] Purifica $h[1] $blind e restaura $p3 de vida. $t[Gasto de $p1 $mana:] Ganhe invulnerabilidade por $p2 s (uma vez).,$t[Cada $cd s:] Elimina $h[1] $blind y recupera $p3 PS. $t[Al usar $p1 $mana:] Se vuelve invulnerable durante $p2 s (una vez).
+<!MissingKey:121:$t[On hit:] Gain $h[1] $spikes. >,"$t[On hit:] Gain $h[1] $spikes. 
+
+ Deals +$p1 damage per $spikes. ","$t[Bei Treffer:] Erhalte $h[1] $spikes. 
+
+ Verursacht +$p1 Schaden pro $spikes.","$t[击中对手时：]获得$h[1]层$spikes。
+
+每层$spikes造成+$p1额外伤害。","$t[ヒット時：]$h[1] $spikes を獲得する
+
+$spikes 1スタックにつき与ダメージ +$p1","$t[적중 시:] $spikes를 $h[1] 획득합니다.
+
+$spikes마다 가하는 피해가 $p1 증가합니다.","$t[命中對手時：]獲得$h[1]層$spikes。
+每層$spikes造成+$p1點額外傷害。","$t[Par coup :] gagnez $h[1] $spikes. 
+
+ Inflige +$p1 de dégâts par $spikes.","$t[При попадании:] добавляет $h[1] $spikes. 
+
+ Наносит +$p1 ед. урона за каждый $spikes.","$t[Ao acertar:] Ganha $h[1] $spikes. 
+
+ Causa +$p1 de dano por $spikes.","$t[Al golpear:] Obtiene $h[1] $spikes. 
+
+ Inflige $p1 más de daño por cada $spikes."
+<!MissingKey:122:Blood Goobert>,Blood Goobert,Vampirischer Schlotzbert,血之黏黏,ブラッディ・スラバート,피의 슬돌이,紅血黏呼呼,Viskeu de sang,Кровавый Слаймер,Gosberto de Sangue,Viscosino sangriento
+<!MissingKey:123:$t[On hit:] $chance% chance to stun for $p1s. $t[$fatigue[Fatigue] starts:] Gain $p2 $heat.>,$t[On hit:] $chance% chance to stun for $p1s. $t[$fatigue[Fatigue] starts:] Gain $p2 $heat.,"$t[Bei Treffer:] $chance% Chance, für $p1s Benommenheit zu verursachen. $t[$fatigue[Erschöpfung] setzt ein:] Erhalte $p2 $heat.",$t[击中对手时：]有$chance%的几率眩晕对手$p1s。$t[开始疲惫时：]获得 $p2层$heat。,$t[ヒット時：]$chance%の確率で相手を$p1秒間スタンさせる $t[$fatigue[疲労]開始時：]$p2 $heat を獲得する,$t[적중 시:] $chance%의 확률로 $p1초 동안 기절시킵니다. $t[피로 시작 시:] $heat를 $p2 획득합니다.,$t[命中對手時：]有$chance%的機率暈眩對手$p1秒。$t[開始疲勞時：]獲得$p2層$heat。,$t[Par coup :] $chance % de chance d'étourdir pendant $p1 s. $t[Lorsque la fatigue commence :] gagnez $p2 $heat.,$t[При попадании:] шанс $chance% оглушить противника на $p1 сек. $t[При истощении:] добавляет $p2 $heat.,$t[Ao acertar:] $chance% de chance de atordoar por $p1  s. $t[Início de Cansaço:] Ganhe $p2 $heat.,$t[Al golpear:] $chance % de probabilidad de aturdir durante $p1 s. $t[Al empezar la Fatiga:] Obtiene $p2 $heat.
+<!MissingKey:124:Pocket Sand>,Pocket Sand,Taschensand,一口袋沙子,ひとつかみの砂,모래 한 줌,揚起塵土,Sable de poche,Горсть песка,Punhado de Areia,Arena de bolsillo
+<!MissingKey:125:Box of Riches>,Box of Riches,Schatzschatulle,宝石盒,富の宝箱,부의 상자,寶石盒,Boîte à trésors,Шкатулка богатств,Porta-Joias,Caja de riquezas
+"<!MissingKey:126:$t[Opponent heals:] Consume this and inflict $p1 $poison and $red[$p2 $poison to yourself]. After $p3s, inflict another $p4 $poison.>","$t[Opponent heals:] Consume this and inflict $p1 $poison and $red[$p2 $poison to yourself]. After $p3s, inflict another $p4 $poison.",$t[Gegner heilt:] Trinke aus und verursache ihm $p1 $poison und dir $p2 $poison. Verursache weitere $p4 $poison nach $p3s.,$t[对手恢复生命值时：]消耗此魔药并向对手施加$p1层$poison并$red[对自己施加$p2层$poison]，经过$p3s后，再向对手施加另外$p4层$poison。,$t[相手の回復時：]このアイテムを消費して、相手に$p1 $poison を付与し、$red[自分に$p2 $poison を付与する]。$p3秒後、さらに$p4 $poison を付与する,"$t[상대가 체력을 회복 시:] 포션을 소모해 상대에게 $poison를 $p1, $red[자신에게 $poison를 $p2] 부여합니다. $p3초 후, 추가로 $poison를 $p4 부여합니다.",$t[對手恢復生命值時：]消耗此魔藥並向對手施加$p1層$poison，對自己施加$p2層$poison。經過$p3秒後，再向對手施加另外$p4層$poison。,"$t[L'adversaire guérit :] consommez ceci et infligez $p1 $poison et $red[$p2 $poison à vous-même]. Après $p3 s, infligez $p4 $poison supplémentaires.",$t[Когда противник восстанавливает здоровье:] расходуется и накладывает на противника $p1 $poison и $red[$p2 $poison на самого героя]. Через $p3 сек. накладывает еще $p4 $poison.,"$t[Oponente recupera vida:] Consome isto e inflige $p1 $poison e $red[$p2 $poison a você mesmo]. Após $p3 s, inflige mais $p4 $poison.","$t[Al recuperar salud el rival:] Consume la poción e inflige $p1 $poison y $red[$p2 $poison para uno mismo]. Tras $p3 s, inflige $p4 $poison otra vez."
+<!MissingKey:127:Villain Sword>,Villain Sword,Schurkischer Schlitzer,反派之剑,悪党の剣,악당의 검,反派之劍,Épée de méchant,Меч злодея,Espada do Vilão,Espada maligna
+<!MissingKey:128:Mana Orb>,Mana Orb,Manamurmel,魔法球,マナオーブ,마나 오브,魔法球,Orbe de mana,Шар маны,Orbe de Mana,Orbe de maná
+<!MissingKey:129:Demonic Flask>,Demonic Flask,Teufelsflasche,恶魔烧瓶,悪鬼のフラスコ,악마의 플라스크,惡魔燒瓶,Flasque démoniaque,Демоническое зелье,Frasco Demoníaco,Poción demoníaca
+<!MissingKey:130:$t[On reveal:] >,"$t[On reveal:] 
+ For each card before, gain $p1 $mana and remove $p2 random buffs from your opponent.",$t[Beim Aufdecken:] Erhalte $p1 $mana und entferne $p2 zufällige Buffs vom Gegner für jede vorhergehende Karte.,"$t[翻开时：] 
+之前的每张卡牌提供$p1点$mana，并且移除对手$p2层增益效果。","$t[めくる時：]
+前にめくったカード1枚につき、$p1 $mana を獲得し、相手から$p2バフを除去する","$t[공개 시:]
+이전에 있었던 카드마다 $mana를 $p1 생성하며, 상대의 무작위 버프를 $p2개 제거합니다.",$t[翻開時：]之前的每張卡牌提供$p1點$mana，並且移除對手$p2層增益效果。,"$t[Par tirage :] 
+ pour chaque carte avant, gagnez $p1 $mana et retirez $p2 bonus aléatoires à votre adversaire.","$t[При раскрытии:] 
+ За каждую предшествующую карту добавляет $p1 $mana и снимает до $p2 случайных усилений с противника.","$t[Ao revelar:] 
+ Para cada carta anterior, ganha $p1 $mana e remove $p2 buffs aleatórios do oponente.","$t[Al revelarse:] 
+ Por cada carta anterior, gana $p1 $mana y elimina $p2 ventajas al azar del rival."
+<!MissingKey:131:Hero Sword>,Hero Sword,Heldenklinge,勇者之剑,英雄の剣,영웅의 검,勇者之劍,Épée de héros,Клинок героя,Espada do Herói,Espada de héroe
+<!MissingKey:132:Lump of Coal>,Lump of Coal,Kohlestück,一坨煤炭,石炭のかたまり,석탄 덩어리,一坨煤炭,Morceau de charbon,Уголек,Pedaço de Carvão,Trozo de carbón
+<!MissingKey:133:Flawed Sapphire>,Flawed Sapphire,Fehlerhafter Saphir,劣质蓝宝石,傷物のサファイア,금이 간 사파이어,劣質藍寶石,Saphir médiocre,Колотый сапфир,Safira Polida,Zafiro imperfecto
+<!MissingKey:134:Burning Torch>,Burning Torch,Brennende Fackel,燃烧火把,燃えるたいまつ,불타는 횃불,燃燒火把,Torche brûlante,Горящий факел,Tocha Incendiada,Antorcha ardiente
+<!MissingKey:135:Stone Helm>,Stone Helm,Steinhelm,石制头盔,石のヘルム,석재 투구,石製頭盔,Casque de pierre,Каменный шлем,Elmo de Pedra,Casco de piedra
+<!MissingKey:136:$t[Start of battle:] Convert $p1 health into $block $bl and gain $p2 $vampirism. $t[Every $cds:] Convert $p3 health into \~$p4 $bl.>,$t[Start of battle:] Convert $p1 health into $block $bl and gain $p2 $vampirism. $t[Every $cds:] Convert $p3 health into \~$p4 $bl.,$t[Kampfbeginn:] Wandle $p1 Leben in $block $bl um und erhalte $p2 $vampirism. $t[Alle $cds:] Wandle $p3 Leben in $p4 $bl um.,$t[战斗开始：]转换$p1点生命值为$block $bl并获得$p2层$vampirism。$t[每$cds：]转换$p3点生命值为$p4点$bl。,$t[バトル開始時：]$p1体力を$block $bl に変換する。$p2 $vampirism を獲得する $t[$cd秒毎：]$p3体力を$p4 $bl に変換する,"$t[전투 시작 시:] $p1 체력을 $block $bl로 변환하고, $vampirism을 $p2 획득합니다. $t[$cd초마다:] $p3 체력을 $p4 $bl로 변환합니다.",$t[戰鬥開始：]轉換$p1點生命值為$block點$bl並獲得$p2層$vampirism。$t[每$cd秒：]轉換$p3點生命值為$p4點$bl。,$t[Au début du combat :] convertissez $p1 de PV en $block $bl et gagnez $p2 $vampirism. $t[Toutes les $cd s :] convertissez $p3 de PV en $p4 $bl.,$t[Начало боя:] превращает $p1 ед. здоровья в $block $bl и добавляет $p2 $vampirism. $t[Раз в $cd сек.:] превращает $p3 ед. здоровья в $p4 $bl.,$t[Início da batalha:] Converte $p1 de vida em $block $bl e ganhe $p2 $vampirism. $t[A cada $cd  s:] Converte $p3 de vida em $p4 $bl.,$t[Al comienzo de la batalla:] Convierte $p1 PS en $block $bl y obtiene $p2 $vampirism. $t[Cada $cd s:] Convierte $p3 PS en $p4 $bl.
+<!MissingKey:137:$t[Start of battle:] $affected $h[Weapons] gain \~$p1 damage.>,$t[Start of battle:] $affected $h[Weapons] gain \~$p1 damage.,$t[Kampfbeginn:] $affected $h[Waffen] erhalten +$p1 Schaden.,$t[战斗开始时：]$affected的$h[武器]获得$p1伤害加成。,$t[バトル開始時：]$affectedにある$h[武器]のダメージ値が$p1増える,$t[전투 시작 시:] $affected에 위치한 $h[무기]가 가하는 피해가 $p1 증가합니다.,$t[戰鬥開始時：]$affected的$h[武器]獲得$p1點傷害加成。,$t[Au début du combat :] les $h[Armes] $affected gagnent $p1 de dégâts.,$t[Начало боя:] $affected $h[оружие] получает +$p1 ед. урона.,$t[Início da batalha:] As $h[Armas] $affected ganham $p1 de dano.,$t[Al comienzo de la batalla:] Las $affected $h[Armas] ganan $p1 de daño.
+<!MissingKey:138:Stamina Sack>,Stamina Sack,Turnbeutel,耐力包,スタミナバッグ,스태미나 자루,耐力包,Sac d'endurance,Мешок энергии,Saco de Vigor,Zurrón de resistencia
+<!MissingKey:139:$t[On hit:] Gain $p_mana $mana. $t[$p1 $mana gained:] Deal $p2 $effect-damage with $p_lifesteal% lifesteal. Deal $h[+1] for each $vampirism.>,$t[On hit:] Gain $p_mana $mana. $t[$p1 $mana gained:] Deal $p2 $effect-damage with $p_lifesteal% lifesteal. Deal $h[+1] for each $vampirism.,$t[Bei Treffer:] Erhalte $p_mana $mana. $t[$p1 $mana erhalten:] Verursache $p2 $effect-Schaden mit $p_lifesteal% Lebensraub. Verursache $h[+1] pro $vampirism.,$t[击中对手时：]获得$p_mana点$mana。$t[每获得$p1点$mana：]造成带有$p_lifesteal%生命偷取效果的$p2点$effect伤害。每层$vampirism提供$h[1]点额外伤害。,$t[ヒット時：]$p_mana $mana を獲得する $t[$p1 $mana 獲得毎：]体力吸収率$p_lifesteal%の$p2 $effect ダメージを与える（$vampirism 1スタックにつき $h[+1]ダメージ）,$t[적중 시:] $mana를 $p_mana 획득합니다. $t[$mana를 $p1 획득 시:] $p_lifesteal%의 생명력을 흡수하는 $effect 피해를 $p2 가합니다. $vampirism마다 피해량이 $h[1] 증가합니다.,$t[命中時：]獲得$p_mana點$mana。$t[獲得$p1點$mana後：]竊取$p2點生命值，每層$vampirism獲得額外$h[1]點傷害。,$t[Par coup :] gagnez $p_mana $mana. $t[En gagnant $p1 $mana :] infligez $p2 de dégâts $effect avec $p_lifesteal % de vol de vie. Infligez $h[+1] pour chaque $vampirism.,$t[При попадании:] добавляет $p_mana $mana. $t[Когда есть $p1 $mana:] наносит $p2 $effect-урона и крадет $p_lifesteal% здоровья противника. Эффект усиливается на $h[1] за каждый эффект $vampirism.,$t[Ao acertar:] Ganha $p_mana $mana. $t[$p1 $mana ganho:] Causa $p2 de dano de $effect com $p_lifesteal% de roubo de vida.Causa $h[+1] por cada $vampirism.,$t[Al golpear:] Obtiene $p_mana $mana. $t[Al ganar $p1 $mana:] Inflige $p2 de daño de $effect con un $p_lifesteal % de drenaje vital. Inflige $h[+1] por cada $vampirism.
+<!MissingKey:140:$t[$affected item activates:] $chance% chance to \~gain $p1 $mana. $t[Use $p2 $mana:] Gain $p3 random other buffs (once).>,$t[$affected item activates:] $chance% chance to \~gain $p1 $mana. $t[Use $p2 $mana:] Gain $p3 random other buffs (once).,"$t[$affected Gegenstand aktiviert:] $chance% Chance, $p1 $mana zu erzeugen. $t[Nutze $p2 $mana:] Erhalte $p3 zufällige andere Buffs (einmalig).",$t[$affected的物品激活时：]将有$chance%的几率获得$p1点$mana。$t[消耗$p2点$mana：]随机获得$p3层其他增益效果（单次触发）。,$t[$affectedにあるアイテム発動時：]$chance%の確率で$p1 $mana を獲得する $t[$p2 $mana 消費：] $mana 以外の$p3バフを獲得する（1回のみ）,$t[$affected에 위치한 아이템 발동 시:] $chance%의 확률로 $mana를 $p1 획득합니다. $t[$mana를 $p2 사용:] 다른 무작위 버프를 $p3개 획득합니다 (한 번).,$t[$affected物品發動時：]有$chance%的機率獲得$p1點$mana。$t[消耗$p2點$mana：]隨機獲得$p3層其他增益效果（單次觸發）。,$t[En activant l'objet $affected :] $chance % de chance de gagner $p1 $mana. $t[Utilisez $p2 $mana :] gagnez $p3 autres bonus aléatoires (une fois).,$t[При срабатывании $affected предмета:] шанс $chance% добавить $p1 $mana. $t[Использует $p2 $mana:] добавляет $p3 других случайных усилений (один раз за бой).,$t[Ativação de item $affected:] $chance% de chance de ganhar $p1 $mana. $t[Gasto de $p2 $mana:] Ganhe mais $p3 buffs aleatórios (uma vez).,$t[Si se activa el $affected objeto:] $chance % de probabilidad de obtener $p1 $mana. $t[Al usar $p2 $mana:] Obtiene otras $p3 ventajas al azar (una vez).
+"<!MissingKey:141:$t[$p1 $affected item activations:] Heal for $p2, gain $block $bl and $p3 $vampirism, inflict $p4 $blind and \~$p4 $poison, and $affected $h[Weapons] gain $p5 damage.>","$t[$p1 $affected item activations:] Heal for $p2, gain $block $bl and $p3 $vampirism, inflict $p4 $blind and \~$p4 $poison, and $affected $h[Weapons] gain $p5 damage.","$t[$p1 $affected Gegenstand-Aktivierungen:] Heile $p2, erhalte $block $bl und $p3 $vampirism, verursache $p4 $blind $p4 $poison und $affected $h[Waffen] verursachen +$p5 Schaden.",$t[$affected的物品激活达到$p1次：]恢复$p2点生命值，获得$block点$bl和$p3层$vampirism，施加$p4层$blind和$p4层$poison，$affected的$h[武器]+$p5伤害。,$t[$affectedにあるアイテム$p1回発動時：]体力を$p2回復し、$block $bl と$p3 $vampirism を獲得し、$p4 $blind と$p4 $poison を付与する。さらに$affectedにある$h[武器]のダメージ値が$p5増える,"$t[$affected에 위치한 아이템이 $p1회 발동 시:] 체력을 $p2 회복하고, $bl를 $block, $vampirism을 $p3 획득하고, $blind을 $p4, $poison을 $p4 부여하고, $affected에 위치한 $h[무기]가 가하는 피해가 $p5 증가합니다.",$t[$affected的物品啟動達到$p1次：]恢復$p2點生命值，獲得$block點$bl和$p3層$vampirism，施加$p4層$blind和$p4層$poison，$affected的$h[武器]+$p5傷害。,"$t[En activant l'objet $affected $p1 fois :] guérissez de $p2, gagnez $block $bl et $p3 $vampirism, infligez $p4 $blind et $p4 $poison, et donnez aux $h[Armes] $affected +$p5 de dégâts.","$t[При срабатывании $p1 $affected предметов:] восстанавливает $p2 ед. здоровья, добавляет $block $bl и $p3 $vampirism. Также накладывает $p4 $blind, $p4 $poison и добавляет $affected $h [оружию] +$p5 ед. урона.","$t[$p1 ativações de item $affected:] Restaura $p2 de vida, ganhe $block $bl e $p3 $vampirism, inflige $p4 $blind e $p4 $poison dá +$p5 de dano às $h[Armas] $affected.","$t[Al activar $p1 $affected objetos:] Recupera $p2 PS, obtiene $block $bl y $p3 $vampirism, inflige $p4 $blind y $p4 $poison, y las $affected $h[Armas] ganan +$p5 de daño."
+<!MissingKey:142:Heroic Potion>,Heroic Potion,Heldentrunk,英勇魔药,ヒーローポーション,영웅의 포션,英勇魔藥,Potion héroïque,Героическое зелье,Poção Heroica,Poción heroica
+<!MissingKey:143:Hungry Blade>,Hungry Blade,Hungernde Klinge,饥饿之刃,飢えたる剣,굶주린 칼날,飢餓之刃,Lame affamée,Клинок жажды,Lâmina Esfomeada,Espada famélica
+<!MissingKey:144:Add $h[4] backpack slots. $t[First $h[Potion] inside consumed:] \~Gain a random buff. $t[$h[4] $h[Potions] inside consumed:] \~Cleanse $p1 debuffs.>,Add $h[4] backpack slots. $t[First $h[Potion] inside consumed:] \~Gain a random buff. $t[$h[4] $h[Potions] inside consumed:] \~Cleanse $p1 debuffs.,Fügt $h[4] Rucksackplätze hinzu. $t[Erster $h[Trank] ausgetrunken:] Erhalte einen zufälligen Buff. $t[$h[4] $h[Tränke] ausgetrunken:] Entferne $p1 Debuffs.,增加$h[4]格背包槽位。$t[当背包内第一瓶魔药被消耗：]获得一个随机增益效果。$t[当背包内$h[4]瓶$h[魔药]被消耗时：]净化$p1层减益效果。,バックパックのスロットを$h[4]追加する $t[中にある$h[ポーション]初消費時：] 1バフを獲得する $t[中にある$h[ポーション]$h[4]個消費時：] $p1デバフを解除する,배낭 슬롯을 $h[4]개 추가합니다. $t[내부에 위치한 $h[포션] 처음 소모 시:] 무작위 버프를 획득합니다. $t[내부에 위치한 $h[포션] $h[4]개 소모 시:] 디버프를 $p1개 정화합니다.,增加$h[4]格背包欄位。$t[首次消耗背包內魔藥時：]獲得一個隨機增益效果。$t[消耗背包內$h[4]瓶$h[魔藥]時：]淨化$p1層減益效果。,Ajoutez $h[4] emplacements de sac à dos. $t[En consommant la première potion à l'intérieur :] gagnez un bonus aléatoire. $t[En consommant $h[4] $h[Potions] à l'intérieur :] purgez $p1 malus.,Добавляет $h[4] слота к рюкзаку. $t[Первая активация в сумке:] добавляет случайное усиление. $t[После срабатывания $h[4] $h[зелий] в сумке:] снимает негативные эффекты: $p1.,Adiciona $h[4] espaços à mochila $t[Primeiro consumo de item dentro dele:] Ganhe um buff aleatório. $t[Consumo de $h[4] $h[Poções] dentro dele:] Purifica $p1 debuffs.,Añade $h[4] espacios a la mochila. $t[Al consumir el primer objeto:] Obtiene una ventaja al azar. $t[Al consumir $h[4] $h[Pociones]:] Elimina $p1 desventajas.
+<!MissingKey:145:Flawless Emerald>,Flawless Emerald,Makelloser Smaragd,优质翡翠,無傷のエメラルド,티 없는 에메랄드,優質綠寶石,Émeraude idéale,Безупречный изумруд,Esmeralda Impecável,Esmeralda inmaculada
+CARD_COUNT,(Number of cards before: $num),(Vorhergehende Karten: $num),（之前翻开的卡牌数：$num）,（前にめくったカードの枚数：$num）,(이전에 있었던 카드 수: $num),（之前翻開的卡牌數：$num）,(Nombre de cartes avant : $num.),(Кол-во предшествующих карт в цепочке: $num),(Cartas antes: $num),(Número de cartas anterior: $num)
+<!MissingKey:147:Broom>,Broom,Besen,扫把,ホウキ,빗자루,掃把,Balais,Метла,Vassoura,Escoba
+<!MissingKey:148:Gloves of Haste>,Gloves of Haste,Hasthandschuhe,迅捷手套,迅速のグローブ,가속의 장갑,迅捷手套,Gants de vitesse,Перчатки скорости,Luvas da Celeridade,Guantes del apremio
+<!MissingKey:149:$t[Start of battle:] Reduce damage taken by $p1% for $p2s and gain $block $bl. >,"$t[Start of battle:] Reduce damage taken by $p1% for $p2s and gain $block $bl. 
+
+ $chance% chance to resist critical hits. 
+ $chance2% chance to resist stuns. ","$t[Kampfbeginn:] Eingehender Schaden ist für $p2s um $p1% reduziert. Erhalte $block $bl. 
+
+ $chance% Chance, kritischen Schaden zu vermeiden. 
+ $chance2% Chance, Benommenheit zu vermeiden.","$t[战斗开始时：]$p2s秒内减少$p1%受到的伤害，并获得$block点$bl。
+
+有$chance%的几率抵抗暴击。
+还有$chance2%的几率抵抗眩晕。","$t[バトル開始時：]$p2秒間受けるダメージを$p1%減らし、$block $bl を獲得する 
+
+ $chance%の確率でクリティカルを防止する 
+ $chance2%の確率でスタンを防止する","$t[전투 시작 시:] $p2초 동안 받는 피해가 $p1% 감소하고, $bl를 $block 획득합니다.
+
+$chance%의 확률로 치명타에 저항합니다.
+$chance2%의 확률로 기절에 저항합니다.","$t[戰鬥開始時：]$p2秒秒內減少$p1%受到的傷害，並獲得$block點$bl。
+有$chance%的機率抵抗暴擊。
+還有$chance2%的機率抵抗暈眩。","$t[Au début du combat :] dégâts d'attaque subis réduits de $p1 % pendant $p2 s et gagnez $block $bl. 
+
+ $chance % de chance de résister aux coups critiques. 
+ $chance2 % de chance de résister aux étourdissements.","$t[Начало боя:] снижает весь получаемый урон на $p1% на $p2 сек. и добавляет $block $bl. 
+
+ Шанс $chance% уклониться от критического удара. 
+ Шанс $chance2% игнорировать оглушение.","$t[Início da batalha:] Diminui o dano sofrido em $p1% por $p2 s e ganha $block $bl. 
+
+ $chance% de chance de resistir a acertos críticos. 
+ $chance2% de chance de resistir a atordoamentos.","$t[Al comienzo de la batalla:] Reduce el daño recibido en un $p1 % durante $p2 s y obtiene $block $bl. 
+
+ $chance % de probabilidad de resistir golpes críticos. 
+ $chance2 % de probabilidad de resistir aturdimiento."
+<!MissingKey:150:$t[Start of battle:] Gain $p1 $mana and $p2 $regen for each $affected $nature-item. $t[$p3 $mana used:] Heal for $p4 and cleanse \~$p5 debuffs.>,$t[Start of battle:] Gain $p1 $mana and $p2 $regen for each $affected $nature-item. $t[$p3 $mana used:] Heal for $p4 and cleanse \~$p5 debuffs.,$t[Kampfbeginn:] Erhalte $p1 $mana und $p2 $regen pro $affected $nature-Gegenstand. $t[$p3 $mana genutzt:] Heile um $p4 und entferne $p5 Debuffs.,$t[战斗开始时：]每有一个$affected的$nature物品，获得 $p1点$mana和$p2层$regen。$t[每次消耗$p3 点$mana：]获得$p4点生命并净化$p5种随机减益效果。,$t[バトル開始時：]$affectedにある $nature アイテム1個につき$p1 $mana と$p2 $regen を獲得する $t[$p3 $mana 消費毎：]体力を$p4回復し、$p5デバフを解除する,"$t[전투 시작 시:] $affected에 위치한 $nature 아이템마다, $mana를 $p1, $regen을 $p2 획득합니다. $t[$mana $p3 사용 시:] 체력을 $p4 회복하고 디버프를 $p5개 정화합니다.",$t[戰鬥開始時：]每有一個$affected的$h[自然]物品，獲得$p1點$mana和$p2層$regen。$t[每次消耗$p3點$mana：]獲得$p4點生命值並淨化$p5種隨機減益效果。,$t[Au début du combat :] gagnez $p1 $mana et $p2 $regen pour chaque objet $nature $affected. $t[En utilisant $p3 $mana :] guérissez de $p4 et purgez $p5 malus.,$t[Начало боя:] добавляет $p1 $mana и $p2 $regen за каждый $affected $nature предмет. $t[При использовании $p3 $mana:] восстанавливает $p4 ед. здоровья и снимает до $p5 негативных эффектов.,$t[Início da batalha:] Ganha $p1 $mana e $p2 $regen por cada item-$nature $affected. $t[$p3 $mana gasto:] Restaura $p4 de vida e purifica $p5 debuffs.,$t[Al comienzo de la batalla:] Obtiene $p1 $mana y $p2 $regen por cada $affected objeto $nature. $t[Al usar $p3 $mana:] Recupera $p4 PS y elimina $p5 desventajas.
+<!MissingKey:151:Rainbow Goobert Omegaooze Primeslime>,Rainbow Goobert Omegaooze Primeslime,Regenbogen- Schlotzbert Megaschleim,彩虹超级至尊黏黏,レインボー・スラバート・プライム・オメガ,레인보우 슬돌이 오메가 프라임,超級至尊史萊姆彩虹黏呼呼,Viskeu arc-en-ciel primo-gluant omégasqueux,Радужный высший мега-Слаймер,Gosberto Arco-Íris Primejoso Omegajento,Viscosino arcoíris multicolor megamolón
+<!MissingKey:152:$t[$p1 $affected item activations:] Cleanse \~$p2 debuffs and gain $p3 $empower for $p4s.>,$t[$p1 $affected item activations:] Cleanse \~$p2 debuffs and gain $p3 $empower for $p4s.,$t[$p1 $affected Gegenstand-Aktivierungen:] Entferne $p2 Debuffs und erhalte $p3 $empower für $p4s.,$t[$affected的物品激活达到$p1次：]净化$p2层随机减益效果。获得$p3层$empower，持续$p4s。,$t[$affectedにあるアイテム$p1回発動時：]$p2デバフを解除し、$p4秒間$p3 $empower を獲得する,"$t[$affected에 위치한 아이템이 $p1회 발동 시:] 디버프 $p2개를 정화하고, $p4초 동안 $empower를 $p3 부여합니다.",$t[$affected的物品啟動達到$p1次：]淨化$p2層隨機減益效果。獲得$p3層$empower，持續$p4s。,$t[En activant l'objet $affected $p1 fois :] purgez $p2 malus et gagnez $p3 $empower pendant $p4 s.,$t[При срабатывании $p1 $affected предметов:] снимает с героя до $p2 негативных эффектов и добавляет $p3 $empower на $p4 сек.,$t[$p1 ativações de item $affected:] Purifica $p2 debuffs aleatórios e ganha $p3 $empower por $p4 s.,$t[Al activar $p1 $affected objetos:] Elimina $p2 desventajas y obtiene $p3 $empower durante $p4 s.
+<!MissingKey:153:Heart of Darkness>,Heart of Darkness,Herz der Finsternis,黑暗心之容器,暗黒のハート,어둠의 심장,黑暗心之容器,Cœur des ténèbres,Сердце тьмы,Coração da Escuridão,Corazón de oscuridad
+<!MissingKey:154:Chipped Emerald>,Chipped Emerald,Lädierter Smaragd,翡翠碎片,欠けたエメラルド,깨진 에메랄드,綠寶石碎片,Émeraude fragmentée,Осколок изумруда,Esmeralda Lascada,Esmeralda rota
+<!MissingKey:155:Jynx torquilla>,Jynx torquilla,Wendehals,歪脖鸟,幸運泥棒のアリスイ,개미잡이,歪脖鳥,Torcol fourmilier,Вертишейка,Torcicolo,Torcecuello
+<!MissingKey:156:$c[Weapon sockets:] Gain $p1% lifesteal. $c[Armor & other sockets:] Your healing is increased by $p2%. $c[Backpack:] $m[After $cds:] Deal $p3 $effect-damage with $p_lifesteal_factor% lifesteal.>,$c[Weapon sockets:] Gain $p1% lifesteal. $c[Armor & other sockets:] Your healing is increased by $p2%. $c[Backpack:] $m[After $cds:] Deal $p3 $effect-damage with $p_lifesteal_factor% lifesteal.,$c[Waffensockel:] Erhalte $p1% Lebensraub. $c[Rüstung & andere Sockel:] Deine Heileffekte sind $p2% effektiver. $c[Rucksack:] $m[Nach $cds:] Verursache $p3 $effect-Schaden mit $p_lifesteal_factor% Lebensraub.,$c[放入武器槽：] $m[击中对手：]偷取造成伤害量的$p1%为生命值。$c[放入护甲或其他槽：]生命恢复效果加强$p2%。$c[放入背包：] $m[$cds后：]造成带有$p_lifesteal_factor%生命偷取效果的$p3点$effect伤害。,$c[武器に装着：]体力吸収率 +$p1% $c[非武器に装着：]自分の回復量 +$p2% $c[バックパックに配置：] $m[$cd秒後：]体力吸収率$p_lifesteal_factor%の$p3 $effect ダメージを与える,$c[무기 소켓:] $p1%의 생명력 흡수를 획득합니다. $c[방어구 및 기타 소켓:] 회복량이 $p2% 증가합니다. $c[배낭:] $m[$cd초 후:] $p_lifesteal_factor%의 생명력을 흡수하는 $effect 피해를 $p3 가합니다.,$c[放入武器槽：]$m[命中時：]竊取造成傷害量的$p1%為生命值。$c[放入護甲或其他槽位：]生命恢復效果加強$p2%。$c[放入背包：]$m[$cd秒後：]竊取$p3點生命值。,$c[Emplacements d'armes :] gagnez $p1 % de vol de vie. $c[Armure et autres emplacements :] votre guérison augmente de $p2 %. $c[Sac à dos :] $m[Après $cd s :] infligez $p3 de dégâts $effect avec $p_lifesteal_factor % de vol de vie.,$c[В слоте оружия:] добавляет $p1% кражи жизни. $c[В слоте брони/в другом слоте:] Эффекты исцеления усиливаются на $p2%. $c[В рюкзаке:] $m[Через $cd сек.:] наносит $p3 $effect-урона и крадет $p_lifesteal_factor% здоровья противника.,$c[Engastes de armas:] Ganha $p1% de roubo de vida. $c[Demais engastes:] Aumenta a sua cura em $p2%. $c[Mochila:] $m[Após $cd s:] Causa $p3 de dano de $effect com $p_lifesteal_factor% de roubo de vida.,$c[Ranuras de arma:] Obtiene un $p1 % de drenaje vital. $c[Ranuras de armadura y otras:] La curación aumenta en un $p2 %. $c[Mochila:] $m[Tras $cd s:] Inflige un $p3 de daño de $effect con $p_lifesteal_factor% de drenaje vital.
+<!MissingKey:157:Flawed Amethyst>,Flawed Amethyst,Fehlerhafter Amethyst,劣质紫水晶,傷物のアメシスト,금이 간 자수정,劣質紫水晶,Améthyste médiocre,Колотый аметист,Ametista Polida,Amatista imperfecta
+<!MissingKey:158:Strong Pestilence Flask>,Strong Pestilence Flask,Starke Pestflasche,强力瘟疫烧瓶,強疫毒のフラスコ,강력한 역병 플라스크,強效瘟疫燒瓶,Flasque de pestilence forte,Усиленное зелье чумы,Frasco Pestilento Potente,Poción tóxica potente
+<!MissingKey:159:Gingerbread Jerry>,Gingerbread Jerry,Pfefferkuchen-Peter,姜饼杰瑞,ジンジャーブレッド・ジェリー,진저브레드 제리,薑餅傑瑞,Bonhomme de pain d'épices,Имбирный Джерри,Biscoito de Gengibre,Jerónimo Jengibre
+<!MissingKey:160:Fancy Fencing Rapier>,Fancy Fencing Rapier,Famoser Fechter,酷炫西洋剑,優美なるレイピア,화려한 펜싱 레이피어,酷炫西洋劍,Rapière d'escrime chic,Изящная рапира,Rapieira Refinada,Estoque elegante
+<!MissingKey:161:Burning Coal>,Burning Coal,Brennende Kohle,燃烧煤炭,燃える石炭,불타는 석탄,燃燒煤炭,Charbon brûlant,Горящий уголь,Carvão Incendiado,Carbón ardiente
+<!MissingKey:162:Cursed Dagger>,Cursed Dagger,Verwunschener Dolch,诅咒匕首,呪われしダガー,저주받은 단검,詛咒匕首,Dague ensorcelée,Проклятый кинжал,Adaga Amaldiçoada,Daga maldita
+<!MissingKey:163:$affected $holy-items gain $dark. >,"$affected $holy-items gain $dark. 
+
+ $chance% chance for each $affected $dark-item to protect debuffs on your opponent from being cleansed. $t[Start of battle:] Gain $block $bl. $t[Every $cds:] Cleanse $p1 debuffs and inflict them on your opponent.","$affected $holy-Gegenstände erhalten $dark. 
+
+ $chance% Chance für jeden \~$affected $dark-Gegenstand, Debuffs auf deinem Gegner vor dem Entfernen zu schützen. $t[Kampfbeginn:] Erhalte $block $bl. $t[Alle $cds:] Entferne $p1 Debuffs und verursache sie bei deinem Gegner.","$affected的$holy物品获得$dark属性。
+
+每有一个$affected的$dark物品，将提供$chance%的几率阻止对手净化减益效果。$t[战斗开始时：]获得$block点$bl。$t[每$cds：]净化$p1层减益效果并将其施加到对手身上。","$affectedにある $holy アイテムが $dark を得る
+
+$affectedにある $dark アイテム1個につき$chance%の確率で、相手のデバフ解除効果を阻害する $t[バトル開始時：]$block $bl を獲得する $t[$cd秒毎：]$p1デバフを解除し、そのデバフを相手に付与する","$affected에 위치한 $holy 아이템이 $dark 아이템으로도 취급됩니다.
+
+$affected에 위치한 $dark 아이템마다 $chance%의 확률로 상대에게 부여된 디버프가 정화되는 것을 막습니다. $t[전투 시작 시:] $bl을 $block 획득합니다. $t[$cd초마다:] 디버프를 $p1개 정화하고, 이를 상대에게 부여합니다.","$affected的$h[神聖]物品也視作$h[黑暗]物品。
+每有一個$h[黑暗]物品，將提供$chance%的機率阻止對手淨化減益效果。$t[戰鬥開始時：]獲得$block點$bl。$t[每$cd秒：]淨化$p1層減益效果並將其施加到對手身上。","Les objets $holy $affected gagnent $dark. 
+
+ $chance % de chance pour chaque objet $dark $affected d'empêcher les malus de votre adversaire d'être purgés. $t[Au début du combat :] gagnez $block $bl. $t[Toutes les $cd s :] purgez $p1 malus et infligez-les à votre adversaire.","$affected $holy предметы получают доп. тип: $dark. 
+
+ Каждый $affected $dark предмет снижает шанс снятия негативных эффектов с противника на $chance%. $t[Начало боя:] добавляет $block $bl. $t[Раз в $cd сек.:] снимает до $p1 негативных эффектов с героя и накладывает их на противника.","Itens-$holy $affected ganham $dark. 
+
+ $chance% de chance para cada item-$dark $affected proteger debuffs do seu oponente de serem purificados. $t[Início da batalha:] Ganha $block $bl. $t[A cada $cd s:] Purifica $p1 debuffs e as inflige ao seu oponente.","Los objetos $affected $holy obtienen $dark. 
+
+ $chance % de probabilidad por cada objeto $affected $dark para evitar que el rival elimine sus desventajas. $t[Al comienzo de la batalla:] Obtiene $block $bl. $t[Cada $cd s:] Elimina $p1 desventajas y las inflige al rival."
+<!MissingKey:164:$t[Opponent heals:] Consume this and inflict $p1 $poison and $red[$p2 $poison to yourself].>,$t[Opponent heals:] Consume this and inflict $p1 $poison and $red[$p2 $poison to yourself].,$t[Gegner heilt:] Trinke aus und verursache $p1 $poison und dir $p2 $poison.,$t[当你的对手恢复生命值时：]消耗此魔药，向对手施加$p1层$poison的同时，$red[对自己也施加$p2层$poison]。,$t[相手の回復時：]このアイテムを消費して、相手に$p1 $poison を付与し、$red[自分に$p2 $poison を付与する],"$t[상대가 체력을 회복 시:] 포션을 소모해 상대에게 $poison를 $p1, $red[자신에게 $poison를 $p2] 부여합니다.",$t[當你的對手恢復生命值時：]消耗此魔藥，向對手施加$p1層$poison的同時，對自己也施加$p2層$poison。,$t[L'adversaire guérit :] consommez ceci et infligez $p1 $poison et $red[$p2 $poison à vous-même].,"$t[Когда противник восстанавливает здоровье:] расходуется, чтобы наложить на противника $p1 $poison и $red[$p2 $poison на самого героя].",$t[Oponente recupera vida:] Consome isto e inflige $p1 $poison e $red[$p2 $poison a você mesmo].,$t[Al recuperar salud el rival:] Consume la poción e inflige $p1 $poison y $red[$p2 $poison para uno mismo].
+<!MissingKey:165:Bloodthorne>,Bloodthorne,Blutdorn,血棘,ブラッドソーン,피의 가시,血棘,Épines de sang,Кровавый шип,Espinheiro de Sangue,Espinafilo
+<!MissingKey:166:$c[Weapon sockets:] $m[On hit:] $chance% chance to deal \~+$p1 damage and gain $p2 $heat. $c[Armor & other sockets:] $m[Start of battle:] Gain $block $bl. >,"$c[Weapon sockets:] $m[On hit:] $chance% chance to deal \~+$p1 damage and gain $p2 $heat. $c[Armor & other sockets:] $m[Start of battle:] Gain $block $bl. 
+ Resist $p3 $cold. $c[Backpack:] $m[After $cds:] Gain $p4 $heat, cleanse \~$p5 debuffs.","$c[Waffensockel:] $m[Bei Treffer:] $chance% Chance, +$p1 Schaden zu verursachen und $p2 $heat zu erhalten. $c[Rüstung & andere Sockel:] $m[Kampfbeginn:] Erhalte $block $bl. 
+ Verhindere $p3 $cold. $c[Rucksack:] $m[Nach $cds:] Erhalte $p4 $heat, entferne $p5 Debuffs.","$c[放入武器槽：] $m[击中对手时：]有$chance%的几率造成+$p1点伤害并获得$p2层$heat。$c[放入护甲或其他槽：] $m[战斗开始时：]获得$block层$bl。
+抵抗$p3层$cold。$c[放入背包：] $m[在$cds后：]获得$p4层$heat，净化$p5层减益效果。","$c[武器に装着：]$m[ヒット時：]$chance%の確率で与ダメージ +$p1、$p2 $heat を獲得する $c[非武器に装着：] $m[バトル開始時：]$block $bl を獲得する 
+$p3 $cold を無効化する $c[バックパックに配置：]$m[$cd秒後：]$p4 $heat を獲得し、$p5デバフを解除する","$c[무기 소켓:] $m[적중 시:] $chance%의 확률로 피해량이 $p1 증가하고, $heat를 $p2 획득합니다. $c[방어구 및 기타 소켓:] $m[전투 시작 시:] $bl를 $block 획득합니다.
+$cold에 $p3번 저항합니다. $c[배낭:] $m[$cd초 후:] $heat를 $p4 획득하고, 디버프를 $p5개 정화합니다.","$c[放入武器槽：]$m[命中對手時：]有$chance%的機率造成+$p1點傷害並獲得$p2層$heat。$c[放入護甲或其他槽位：]$m[戰鬥開始時：]獲得$block層$bl。
+抵抗$p3層$cold。$c[放入背包：]$m[在$cd秒後：]獲得$p4層$heat，淨化$p5層減益效果。","$c[Emplacements d'armes :] $m[Par coup :] $chance % de chance d'infliger +$p1 de dégâts et de gagner $p2 $heat. $c[Armure et autres emplacements :] $m[Au début du combat :] gagnez $block $bl. 
+ Résistez à $p3 $cold. $c[Sac à dos :] $m[Après $cd s :] gagnez $p4 $heat, purgez $p5 malus.","$c[В слоте оружия:] $m[При попадании:] шанс $chance% нанести +$p1 ед. урона и получить $p2 $heat. $c[В слоте брони/в другом слоте:] $m[Начало боя:] добавляет $block $bl. 
+ Игнорирует $p3 $cold. $c[В рюкзаке:] $m[Через $cd сек.:] добавляет $p4 $heat и снимает до $p5 негативных эффектов.","$c[Engastes de armas:] $m[Ao acertar:] $chance% de chance de causar +$p1 de dano e ganhe $p2 $heat. $c[Demais engastes:] $m[Início da batalha:] Ganhe $block $bl. 
+ Resiste a $p3 $cold. $c[Mochila:] $m[Após $cd s:] Ganhe $p4 $heat e purifica $p5 debuffs.","$c[Ranuras de arma:] $m[Al golpear:] $chance % de probabilidad de infligir +$p1 de daño y obtiene $p2 $heat. $c[Ranuras de armadura y otras:] $m[Al comienzo de la batalla:] Obtiene $block $bl. 
+ Resiste $p3 $cold. $c[Mochila:] $m[Tras $cd s:] Obtiene $p4 $heat, elimina $p5 desventajas."
+<!MissingKey:167:$t[Start of battle:] Gain $p1 $heat. $reflect[Reflect] $p2 debuffs.>,$t[Start of battle:] Gain $p1 $heat. $reflect[Reflect] $p2 debuffs.,$t[Kampfbeginn:] Erhalte $p1 $heat. $reflect[Reflektiere] $p2 Debuffs.,$t[战斗开始：]获得$p1层$heat。$reflect[反弹] $p2层减益效果。,$t[バトル開始時：]$p1 $heat を獲得し、$p2デバフを$reflect[反射]する,$t[전투 시작 시:] $heat를 $p1 획득합니다. 디버프를 $p2개 $reflect[반사]합니다.,$t[戰鬥開始：]獲得$p1層$heat。$reflect[反彈]$p2層減益效果。,$t[Au début du combat :] gagnez $p1 $heat. $reflect[Renvoyez] $p2 malus.,$t[Начало боя:] добавляет $p1 $heat. $reflect[Отражает] до $p2 негативных эффектов.,$t[Início da batalha:] Ganhe $p1 $heat. $reflect[Reflete] $p2 debuffs.,$t[Al comienzo de la batalla:] Obtiene $p1 $heat. $reflect[Devuelve] $p2 desventajas.
+"<!MissingKey:168:$t[Every $cds:] Heal for $p1. Use $p2 $mana: For $p4s, deal $p_unhealing% of your healing as \~$effect-damage.>","$t[Every $cds:] Heal for $p1. Use $p2 $mana: For $p4s, deal $p_unhealing% of your healing as \~$effect-damage.",$t[Alle $cds:] Heile um $p1. Nutze $p2 $mana: \~Für $p4s verursache $p_unhealing% deiner Heilungen an $effect-Schaden.,$t[每$cds：]恢复$p1生命值。消耗$p2点$mana：$p4s内，向对手造成你治疗量$p_unhealing%的$effect伤害。,$t[$cd秒毎：]体力を$p1回復する。$p2 $mana 消費して、$p4秒間回復量の$p_unhealing%分の $effect ダメージを与える,"$t[$cd초마다:] 체력을 $p1 회복합니다. $mana를 $p2 사용: $p4초 동안, 회복량의 $p_unhealing%만큼 상대에게 $effect 피해를 가합니다.",$t[每$cds：]恢復$p1生命值。消耗$p2點$mana：$p4s內，向對手造成你治療量$p_unhealing%的$effect傷害。,"$t[Toutes les $cd s :] guérissez de $p1. Utilisez $p2 $mana : Pendant $p4 s, infligez $p_unhealing % de votre guérison en tant que dégâts $effect.",$t[Раз в $cd сек.:] Восстанавливает $p1 ед. здоровья. Использует $p2 $mana: в течение $p4 сек. наносит $effect-урон в размере $p_unhealing% от восстановленного героем здоровья.,"$t[A cada $cd s:] Restaura $p1 de vida. Gasta $p2 $mana: Por $p4 s, causa dano de $effect igual a $p_unhealing% da sua cura.","$t[Cada $cd s:] Recupera $p1 PS. Usa $p2 $mana: Durante $p4 s, inflige un $p_unhealing % de la curación como daño de $effect."
+<!MissingKey:169:Perfect Ruby>,Perfect Ruby,Perfekter Rubin,完美红宝石,完璧なルビー,완벽한 루비,完美紅寶石,Rubis parfait,Полированный рубин,Rubi Perfeito,Rubí perfecto
+<!MissingKey:170:Ruby Whelp>,Ruby Whelp,Rubindrachi,红宝石幼龙,ルビーの幼竜,루비 새끼용,紅寶石幼龍,Dragonneau rubis,Рубиновый дракончик,Dragãozinho de Rubi,Cachorro rubí
+<!MissingKey:171:$t[On attack:] Use $p2 $mana to inflict $p3 $blind. >,"$t[On attack:] Use $p2 $mana to inflict $p3 $blind. 
+
+ Deals +$p1 damage for each debuff of your opponent.","$t[Bei Angriff:] Nutze $p2 $mana, um $p3 $blind zu verursachen. 
+
+ Verursacht +$p1 Schaden pro Debuff deines Gegners.","$t[攻击时：]消耗$p2点$mana来施加$p3层$blind。
+
+你的对手每有一层减益效果，造成的伤害+$p1点。",相手のデバフ1スタックにつき与ダメージ +$p1 $t[攻撃時：]$p2 $mana を消費して、$p3 $blind を付与する,상대에게 부여된 디버프마다 가하는 피해가 $p1 증가합니다. $t[공격 시:] $mana를 $p2 사용해 $blind을 $p3 부여합니다.,你的對手每有一層減益效果，造成額外+$p1點傷害。$t[攻擊時：]消耗$p2點$mana施加$p3層$blind。,Inflige +$p1 de dégâts pour chaque malus de votre adversaire. $t[Par attaque :] utilisez $p2 $mana pour infliger $p3 $blind.,Наносит +$p1 ед. урона за каждый негативный эффект на противнике. $t[При атаке:] использует $p2 $mana наложить $p3 $blind.,Causa +$p1 de dano por cada debuff do oponente. $t[Ao atacar:] gasta $p2 $mana para infligir $p3 $blind.,Inflige $p1 más de daño por cada desventaja del rival. $t[Al atacar:] Usa $p2 $mana para infligir $p3 $blind.
+<!MissingKey:172:$t[Every $p3 hits:] Gain $h[1] $empower. >,"$t[Every $p3 hits:] Gain $h[1] $empower. 
+
+ Attacks $p1% faster for every $spikes.","$t[Alle $p3 Treffer:] Erhalte $h[1] $empower. 
+
+ Greift $p1% schneller an pro $spikes.","$t[每命中$p3次时：]获得$h[1]层$empower。
+
+每有一层$spikes，此武器攻击触发快$p1%。","$t[$p3回ヒット毎：]$h[1] $empower を獲得する
+
+$spikes 1スタックにつき使用速度が$p1%上がる","$t[$p3번 적중할 때마다:] $empower를 $h[1] 획득합니다.
+
+보유한 $spikes마다 $p1% 빠르게 공격합니다.","$t[每命中$p3次時：]獲得$h[1]層$empower。
+
+每有一層$spikes，此武器攻擊觸發速度加快$p1%。","$t[Tous les $p3 coups :] gagnez $h[1] $empower. 
+
+ Attaque $p1 % plus vite pour chaque $spikes.","$t[После каждого $p3-го попадания:] добавляет $h[1] $empower. 
+
+ Атакует на $p1% быстрее за каждый имеющийся эффект $spikes.","$t[A cada $p3 acertos:] Ganha $h[1] $empower. 
+
+ Ataca $p1% mais rápido para cada $spikes.","$t[Cada $p3 golpes:] Obtiene $h[1] $empower. 
+
+ Ataca un $p1 % más rápido por cada $spikes."
+<!MissingKey:173:$t[On stun:] Triggers extra attack. $t[On hit:] Inflict $p1 random debuffs. >,"$t[On stun:] Triggers extra attack. $t[On hit:] Inflict $p1 random debuffs. 
+
+ This and $affected items have +$p2% accuracy and +$chance% critical hit chance per debuff of your opponent. ","$t[Bei Benommenheit:] Löse einen weiteren Angriff aus. $t[Bei Treffer:] Verursache $p1 Debuffs. 
+
+ Diese Waffe und $affected Gegenstände haben +$p2% Genauigkeit und +$chance% kritische Trefferchance pro Debuff deines Gegners. ","$t[眩晕对手：]触发额外攻击。$t[击中对手时：]向对手施加$p1层随机减益效果。
+
+对手每有一层减益效果，此物品和$affected的$h[物品]获得+$p2%准确加成和+$chance%暴击加成。","$t[スタン時：]追加攻撃を行う $t[ヒット時：]$p1デバフを付与する 
+
+このアイテムと$affectedにある$h[アイテム]は、相手のデバフ1スタックにつき命中率 +$p2%、クリティカル率 +$chance%","$t[기절 시:] 추가 공격을 가합니다. $t[적중 시:] 무작위 디버프를 $p1개 부여합니다.
+
+이 아이템과 $affected에 위치한 $h[아이템]은, 상대에게 부여된 디버프마다 $p2%의 추가 명중률과 $chance%의 추가 치명타 확률을 지닙니다.","$t[暈眩對手時：]觸發額外攻擊。$t[命中時：]向對手施加$p1層隨機減益效果。
+對手每有一層減益效果，此物品和$affected的$h[物品]獲得+$p2%命中率加成和+$chance%暴擊加成。","$t[Par étourdissement :] déclenchez une attaque supplémentaire. $t[Par coup :] infligez $p1 malus aléatoires. 
+
+ Ceci et les $h[Objets] $affected ont +$p2 % de précision et +$chance % de chance de coup critique par malus de votre adversaire.","$t[При оглушении:] наносит дополнительную атаку. $t[При попадании:] накладывает на противника случайные негативные эффекты (до $p1). 
+
+ За каждый негативный эффект на противнике, этот предмет и $affected $h[предметы] получают +$p2% точности и +$chance% шанса нанести критический удар.","$t[Ao atordoar:] Ativa um ataque adicional. $t[Ao acertar:] Inflige $p1 debuffs aleatórios. 
+
+ Este e os $h[itens] $affected têm +$p2% de precisão e +$chance% de chance de acerto crítico por debuff do seu oponente.","$t[Al aturdir:] Activa un ataque adicional. $t[Al golpear:] Inflige $p1 desventajas al azar. 
+
+ Este y otros $affected $h[objetos] ganan +$p2 % de precisión y $chance % de probabilidad de golpe crítico por cada desventaja del rival."
+<!MissingKey:174:They don't do anything. But you can sell them for profit!>,They don't do anything. But you can sell them for profit!,"Sie tun nichts, aber du kannst sie verkaufen. Profit!",就是一堆金币，除了卖掉没有其他作用！,何の効果も持たないが、売ることでゴールドが手に入る！,아무 기능도 없습니다. 하지만 비싸게 팔 수 있죠!,就是一堆金幣，除了賣掉沒有其他作用！,Elles ne servent à rien. Mais vous pouvez les vendre pour en tirer profit !,"От них нет никакого эффекта, но зато их можно выгодно продать!","Elas não fazem nada, mas você pode vendê-las!","No sirven para nada, ¡pero las puedes vender para sacar tajada!"
+<!MissingKey:175:Deals +$p1 damage for each $affected $Food[Food].>,Deals +$p1 damage for each $affected $Food[Food].,Verursacht +$p1 Schaden pro \~ $affected $Food[Essen].,每有一个$affected的$Food[食物]，造成的伤害+$p1。,$affectedにある$Food[食べ物]1個につき与ダメージ +$p1,$affected에 위치한 $Food[음식]마다 가하는 피해가 $p1 증가합니다.,每有一個$affected的$Food[食物]，造成的傷害+$p1點。,Inflige +$p1 de dégâts pour chaque $Food[Nourriture] $affected.,Наносит +$p1 урона за каждый $affected предмет типа $Food[еда].,Causa +$p1 de dano por cada $Food[Alimento] $affected.,Inflige $p1 más de daño por cada $Food[Comida] $affected.
+<!MissingKey:176:Regular Amethyst>,Regular Amethyst,Regulärer Amethyst,普通紫水晶,普通のアメシスト,평범한 자수정,普通紫水晶,Améthyste ordinaire,Аметист,Ametista Comum,Amatista normal
+<!MissingKey:177:Walrus Tusk>,Walrus Tusk,Stoßzahn,海象尖牙,セイウチの牙,바다코끼리 엄니,海象尖牙,Défense de morse,Моржовый бивень,Dente de Morsa,Colmillo de morsa
+<!MissingKey:178:$t[Start of battle:] $affected $h[Weapons] gain \~$p1 damage.>,$t[Start of battle:] $affected $h[Weapons] gain \~$p1 damage.,$affected $h[Waffen] erhalten $p1 Schaden.,$t[战斗开始时：]$affected的$h[武器]获得$p1伤害加成。,$t[バトル開始時：]$affectedにある$h[武器]のダメージ値が$p1増える,$t[전투 시작 시:] $affected에 위치한 $h[무기]가 가하는 피해가 $p1 증가합니다.,$t[戰鬥開始時：]$affected的$h[武器]獲得$p1點傷害加成。,$t[Au début du combat :] les $h[Armes] $affected gagnent $p1 de dégâts.,$t[Начало боя:] $affected $h[оружие] получает +$p1 ед. урона.,$t[Início da batalha:] as $h[Armas] $affected ganham $p1 de dano.,$t[Al comienzo de la batalla:] Las $affected $h[Armas] ganan $p1 de daño.
+<!MissingKey:179:Flute>,Flute,Flöte,笛子,フルート,플루트,笛子,Flûte,Флейта,Flauta,Flauta
+<!MissingKey:180:Staff of Unhealing>,Staff of Unhealing,Stab der Unheilung,不愈法杖,癒さずの杖,불치의 지팡이,不治法杖,Bâton de contre-guérison,Посох анти-лечения,Cajado da Descura,Bastón anticurativo
+<!MissingKey:181:Shovel>,Shovel,Schaufel,铲铲,シャベル,삽,鏟鏟,Pelle,Лопата,Pá,Pala
+<!MissingKey:182:$t[Every $cds:] Randomly gain $block $bl \~$m[or] $p1 stamina $m[or] $p2 $lucky. >,"$t[Every $cds:] Randomly gain $block $bl \~$m[or] $p1 stamina $m[or] $p2 $lucky. 
+
+ Triggers $p3% faster for each $affected item.","$t[Alle $cds:] Erhalte zufällig $block $bl $m[oder] $p1 Ausdauer $m[oder] $p2 $lucky. 
+
+ Aktiviert $p3% schneller pro $affected Gegenstand.","$t[每$cds：]随机获得$block $bl $m[或] $p1点耐力$m[或] $p2 $lucky。
+
+每有一个$affected的物品，笛子效果触发快$p3%。","$t[$cd秒毎：]$block $bl $m[または]$p1スタミナ$m[または]$p2 $lucky のうちいずれかをランダムに獲得する
+
+$affectedにあるアイテム1個につき使用速度が$p3%上がる","$t[$cd초마다:] $bl $block $m[혹은] 스태미나 $p1 $m[혹은] $lucky $p2 중 하나를 무작위로 획득합니다.
+
+$affected에 위치한 아이템마다 $p3% 빠르게 발동합니다.","$t[每$cd秒：]隨機獲得$block點$bl，$m[或]$p1點耐力，$m[或]$p2點$lucky。
+
+每有一個$affected的物品，笛子效果觸發快$p3%。","$t[Toutes les $cd s :] gagnez aléatoirement $block $bl $m[ou] $p1 d'endurance $m[ou] $p2 $lucky. 
+
+ Se déclenche $p3 % plus vite pour chaque objet $affected.","$t[Раз в $cd сек.:] Случайным образом добавляет $block $bl $m[или] $p1 ед. энергии $m[или] $p2 $lucky. 
+
+ Срабатывает на $p3% чаще за каждый $affected предмет.","$t[A cada $cd  s:] Ganhe aleatoriamente $block $bl $m[ou] $p1 de vigor $m[ou] $p2 $lucky. 
+
+ Ativa-se $p3% mais rápido por cada item $affected.","$t[Cada $cd s:] Obtiene al azar $block $bl $m[o] $p1 resistencia $m[o] $p2 $lucky. 
+
+ Se activa un $p3 % más rápido por cada $affected objeto."
+<!MissingKey:183:Gains $chance% critical hit chance + $chance2% for each $lucky ($bag).>,Gains $chance% critical hit chance + $chance2% for each $lucky ($bag).,Erhält $chance% kritische Trefferchance + $chance2% pro $lucky ($bag).,获得$chance%暴击加成，并且每点$lucky将获得$chance2%的暴击加成($bag)。,クリティカル率 +$chance%、$lucky 1スタックにつき +$chance2%（$bag）,$chance% + $lucky마다 추가로 $chance2%의 치명타 확률을 획득합니다 ($bag).,獲得$chance%暴擊加成，每點$lucky再獲得$chance2%的暴擊加成（$bag）。,Gagne $chance % de chance de coup critique + $chance2 % pour chaque $lucky ($bag).,Шанс критического урона повышается на $chance% и дополнительно на $chance2% за каждый эффект $lucky ($bag).,Ganha $chance% de chance de acerto crítico + $chance2% por cada $lucky ($bag).,Obtiene $chance % más de probabilidad de golpe crítico + $chance2 % por cada $lucky ($bag).
+<!MissingKey:184:$t[On hit:] Remove $p_dam damage gained in battle from all opponent $h[Weapons] and gain $p_bonusdam damage. >,$t[On hit:] Remove $p_dam damage gained in battle from all opponent $h[Weapons] and gain $p_bonusdam damage. ,$t[Bei Treffer:] Entferne $p_dam Extraschaden von allen gegnerischen $h[Waffen] und verursache +$p_bonusdam Schaden.,$t[击中对手时：]移除对手所有$h[武器]在战斗中获得的伤害加成$p_dam点，锯刃获得$p_bonusdam点伤害。,$t[ヒット時：]相手の全$h[武器]から、バトル中に増えたダメージ値$p_damを取り除き、ダメージ値が$p_bonusdam増える,$t[적중 시:] 상대의 모든 $h[무기]가 이번 전투 동안 획득한 추가 피해를 $p_dam 제거하고 가하는 피해가 $p_bonusdam 증가합니다.,$t[命中時：]移除對手$p1層$spikes和$p2層$regen。,$t[Par coup :] retirez $p_dam de dégâts gagnés au combat à toutes les $h[Armes] et gagnez $p_bonusdam de dégâts.,$t[При попадании:] снимает накопленный в бою $p_dam урон со всего $h[оружия] противника и добавляет герою $p_bonusdam ед. урона.,$t[Ao acertar:] Remove $p_dam dano ganho na batalha de todas as $h[Armas] do oponente e ganha $p_bonusdam de dano.,$t[Al golpear:] Elimina $p_dam de daño obtenido en combate de todas las $h[Armas] del rival y obtiene $p_bonusdam de daño.
+<!MissingKey:185:Ripsaw Blade>,Ripsaw Blade,Sägeschwert,锯刃,ノコ刃の剣,톱날 대검,鋸刃,Lame de scie crantée,Меч-пила,Lâmina de Serrote,Espada desgarradora
+<!MissingKey:186:$t[On hit:] Use $p1 $regen to gain $p2 $vampirism and \~$p3 $spikes. >,"$t[On hit:] Use $p1 $regen to gain $p2 $vampirism and \~$p3 $spikes. 
+
+ Deals $h[+1] damage per $spikes and $vampirism.","$t[Bei Treffer:] Nutze $p1 $regen, um $p2 $vampirism und $p3 $spikes zu erhalten. 
+
+ Verursacht $h[+1] Schaden pro $spikes und $vampirism.","$t[击中对手时：]消耗$p1层$regen以获得$p2层$vampirism和$p3层$spikes。
+
+每有一层$spikes或$vampirism，伤害+$h[1]。","$t[ヒット時：]$p1 $regen を消費して、$p2 $vampirism と$p3 $spikes を獲得する
+
+ $spikes と $vampirism 1スタックにつき与ダメージ $h[+1]","$t[적중 시:] $regen을 $p1 사용해 $vampirism을 $p2, $spikes를 $p3 획득합니다.
+
+$spikes와 $vampirism마다 가하는 피해가 $h[1] 증가합니다.","$t[命中時：]消耗$p1層$regen獲得$p2層$vampirism和$p3層$spikes。
+ 每有一層$spikes或$vampirism，傷害$h[+1]點。","$t[Par coup :] utilisez $p1 $regen pour gagner $p2 $vampirism et $p3 $spikes. 
+
+ Infligez $h[+1] de dégâts par $spikes et $vampirism.","$t[При попадании:] использует $p1 $regen, чтобы добавить $p2 $vampirism и $p3 $spikes. 
+
+ Наносит $h[+1] ед. урона за каждый эффект $spikes и $vampirism.","$t[Ao acertar:] Usa $p1 $regen para ganhar $p2 $vampirism e $p3 $spikes. 
+
+ Causa $h[+1] de dano por $spikes e $vampirism.","$t[Al golpear:] Usa $p1 $regen para obtener $p2 $vampirism y $p3 $spikes. 
+
+ Inflige $h[+1] de daño por cada $spikes y $vampirism."
+<!MissingKey:187:Perfect Emerald>,Perfect Emerald,Perfekter Smaragd,完美翡翠,完璧なエメラルド,완벽한 에메랄드,完美綠寶石,Émeraude parfaite,Полированный изумруд,Esmeralda Perfeita,Esmeralda perfecta
+<!MissingKey:188:Blood Amulet>,Blood Amulet,Blutamulett,血色护符,血のアミュレット,피의 아뮬렛,血色護符,Amulette de sang,Амулет крови,Amuleto de Sangue,Amuleto de sangre
+CARD_HINT,(Place in a card chain with a Deck of Cards to enable!),"(Platziere Karten in einer Kette, die mit einem Kartendeck beginnt!)",（放置卡堆来激活卡链！）,（カードデッキとつなげないと効果は発動しない！）,(카드 덱과 카드가 연결되게 배치해야 효과가 발동합니다!),（放置卡牌堆可發動卡牌連鎖！）,(Placez dans une chaîne de cartes avec un jeu de cartes pour l'activer !),(Для активации поместите в цепочку колоды карт!),(Coloque em uma sequência de cartas com um Baralho de Cartas para habilitar!),(¡Colócalo en una cadena de cartas con un mazo de cartas para activarlo!)
+<!MissingKey:190:Magic Torch>,Magic Torch,Zauberfackel,魔法火把,魔法のたいまつ,마법 횃불,魔法火把,Torche magique,Волшебный факел,Tocha Mágica,Antorcha mágica
+<!MissingKey:191:Add $h[1] backpack slot. $t[Start of battle:] Gain $block $bl.>,Add $h[1] backpack slot. $t[Start of battle:] Gain $block $bl.,Fügt $h[1] Rucksackplatz hinzu. $t[Kampfbeginn:] Erhalte $block $bl.,$t[战斗开始：]获得$block $bl。,バックパックのスロットを$h[1]追加する $t[バトル開始時：]$block $bl を獲得する,배낭 슬롯을 $h[1]개 추가합니다. $t[전투 시작 시:] $bl를 $block 획득합니다.,$t[戰鬥開始：]獲得$block點$bl。,Ajoutez $h[1] emplacement de sac à dos. $t[Au début du combat :] gagnez $block $bl.,Добавляет $h[1] слот к рюкзаку. $t[Начало боя:] добавляет $block $bl.,Adiciona $h[1] espaço à mochila. $t[Início da batalha:] Ganhe $block $bl.,Añade $h[1] espacio a la mochila. $t[Al comienzo de la batalla:] Obtiene $block $bl.
+<!MissingKey:192:$h[Gemstones] are offered in the shop. $t[Shop entered:] Generate a chipped $h[Gemstone].>,$h[Gemstones] are offered in the shop. $t[Shop entered:] Generate a chipped $h[Gemstone].,$h[Edelsteine] werden im Laden angeboten. $t[Laden betreten:] Erzeugt einen lädierten $h[Edelstein].,商店会出售更多的$h[宝石]。$t[进入商店：]生成一个$h[宝石]碎片。,$h[宝石]がショップで売られるようになる $t[ショップ入店時：]欠けた$h[宝石]1個を生成する,$h[보석]이 상점에 등장합니다. $t[상점 진입 시:] 깨진 $h[보석]을 생성합니다.,"$t[進入商店：]生成一個$h[寶石]碎片。
+商店會出售$h[寶石]。",Des $h[Pierres précieuses] sont disponibles dans la boutique. $t[En entrant dans la boutique :] générez une $h[Pierre précieuse] fragmentée.,$h[Самоцветы] будут доступны к покупке в магазине. $t[Переход в магазин:] создает случайный осколок $h[самоцвета].,$h[Gemas] são disponibilizadas na loja. $t[Ao entrar na loja:] Gera uma $h[Gema] lascada.,Las $h[gemas] se venden en la tienda. $t[Al entrar en la tienda:] Genera una $h[gema] rota.
+<!MissingKey:193:$t[Use $p1 $regen:] Inflict $p3 $blind for $p4s (unstackable). >,"$t[Use $p1 $regen:] Inflict $p3 $blind for $p4s (unstackable). 
+
+ Deals +$p2 damage for each $blind of your opponent.","$t[Nutze $p1 $regen:] Verursache $p3 $blind für $p4s (nicht stapelbar). 
+
+ Verursacht +$p2 Schaden pro $blind deines Gegners.","$t[消耗$p1层$regen：]施加$p3层$blind，持续$p4s（无法叠加）。 
+
+你的对手每有一层$blind，对其造成额外$p2点伤害。","$t[$p1 $regen 消費：]$p4秒間、$p3 $blind を付与する（重複不可）
+
+相手の $blind 1スタックにつき与ダメージ +$p2","$t[$regen을 $p1 사용:] $p4초 동안 $blind을 $p3 부여합니다 (중첩 불가).
+
+상대에게 부여된 $blind마다 가하는 피해가 $p2 증가합니다.","$t[消耗$p1層$regen：]施加$p3層$blind，持續$p4秒（無法疊加）。
+你的對手每有一層$blind，對其造成額外$p2點傷害。","$t[Utilisez $p1 $regen :] infligez $p3 $blind pendant $p4 s (non cumulable). 
+
+ Infligez +$p2 de dégâts pour chaque $blind de votre adversaire.","$t[Использует $p1 $regen:] накладывает $p3 $blind на $p4 сек. (эффект не суммируется). 
+
+ Наносит +$p2 ед. урона за каждый эффект $blind на противнике.","$t[Usa $p1 $regen:] Inflige $p3 $blind por $p4 s (não acumulável). 
+
+ Causa +$p2 de dano por cada $blind do seu oponente.","$t[Al usar $p1 $regen:] Inflige $p3 $blind durante $p4 s (no se puede acumular). 
+
+ Inflige $p2 más de daño por cada $blind del rival."
+<!MissingKey:194:Poison Dagger>,Poison Dagger,Giftdolch,剧毒匕首,ポイズンダガー,독 단검,劇毒匕首,Dague empoisonnée,Ядовитый кинжал,Adaga Venenosa,Daga venenosa
+<!MissingKey:195:$t[Start of battle:] Gain $p3 $vampirism. $t[$p1 $affected item activations:] \~Deal $p2 $effect-damage with $p_lifesteal% lifesteal. Deal $h[+1] for each $vampirism.>,$t[Start of battle:] Gain $p3 $vampirism. $t[$p1 $affected item activations:] \~Deal $p2 $effect-damage with $p_lifesteal% lifesteal. Deal $h[+1] for each $vampirism.,$t[Kampfbeginn:] Erhalte $p3 $vampirism. $t[$p1 $affected Gegenstand-Aktivierungen:] Verursache $p2 $effect-Schaden mit $p_lifesteal% Lebensraub. Verursache $h[+1] pro $vampirism.,$t[战斗开始：]获得$p3层$vampirism。$t[$affected的物品激活达到$p1次：]造成带有$p_lifesteal%生命偷取效果的$p2点$effect伤害。每有一层$vampirism多造成$h[1]点$effect伤害。,$t[バトル開始時：]$p3 $vampirism を獲得する $t[$affectedにあるアイテム$p1回発動時：]体力吸収率$p_lifesteal%の$p2 $effect ダメージを与える（$vampirism 1スタックにつき $h[+1]ダメージ）,$t[전투 시작 시:] $vampirism을 $p3 획득합니다. $t[$affected에 위치한 아이템이 $p1회 발동 시:] $p_lifesteal%의 생명력을 흡수하는 $effect 피해를 $p2 가합니다. $vampirism마다 피해량이 $h[1] 증가합니다.,$t[戰鬥開始：]獲得$p3層$vampirism。$t[$affected的物品啟動達到$p1次：]竊取$p2點生命，每有一層$vampirism獲得$h[1]點額外生命值。,$t[Au début du combat :] gagnez $p3 $vampirism. $t[En activant l'objet $affected $p1 fois :] infligez $p2 de dégâts $effect avec $p_lifesteal % de vol de vie. Infligez $h[+1] pour chaque $vampirism.,$t[Начало боя:] добавляет $p3 $vampirism. $t[При срабатывании $p1 $affected предметов:] наносит $p2 $effect-урона и крадет $p_lifesteal% здоровья противника. Наносит $h[+1] ед. урона за каждый эффект $vampirism.,$t[Início da batalha:] Ganha $p3 $vampirism. $t[$p1 ativações de item $affected:] Causa $p2 de dano de $effect com $p_lifesteal% de roubo de vida. Causa $h[+1] para cada $vampirism.,$t[Al comienzo de la batalla:] Obtiene $p3 $vampirism. $t[Al activar $p1 $affected objetos:] Inflige $p2 de daño de $effect con un $p_lifesteal % de drenaje vital. Inflige $h[+1] por cada $vampirism.
+<!MissingKey:196:Banana>,Banana,Banane,香蕉,バナナ,바나나,香蕉,Banane,Банан,Banana,Plátano
+<!MissingKey:197:Carrot>,Carrot,Karotte,萝卜,ニンジン,당근,蘿蔔,Carotte,Морковь,Cenoura,Zanahoria
+<!MissingKey:198:Djinn Lamp>,Djinn Lamp,Wunderlampe,阿拉丁神灯,魔神のランプ,요술 램프,阿拉丁神燈,Lampe à génie,Волшебная лампа,Lâmpada Mágica,Lámpara mágica
+<!MissingKey:199:Glowing Crown>,Glowing Crown,Leuchtende Krone,辉耀王冠,輝ける王冠,빛나는 왕관,輝耀王冠,Couronne étincelante,Сияющая корона,Coroa Iluminada,Corona brillante
+<!MissingKey:200:Protective Purse>,Protective Purse,Schützende Schatulle,守护钱包,守護のハンドバッグ,보호의 주머니,守護錢包,Sac à main protecteur,Сумка защиты,Bolsa Protetora,Bolsa protectora
+<!MissingKey:201:$t[$affected $h[Weapon] hits:] Gain +$p1 damage (up to $p2).>,$t[$affected $h[Weapon] hits:] Gain +$p1 damage (up to $p2).,$t[$affected $h[Waffe] trifft:] Erhalte +$p1 Schaden (bis zu $p2).,$t[$affected的$h[武器]击中对手时：]弓箭获得+$p1伤害加成（最高获得 $p2）。,$t[$affectedにある$h[武器]のヒット時：]ダメージ値が$p1増える（最大$p2まで）,$t[$affected에 위치한 $h[무기] 적중 시:] 가하는 피해가 $p1 증가합니다 (최대 $p2).,$t[$affected的$h[武器]命中對手時：]弓箭的獲得+$p1點傷害加成（最高獲得$p2點）。,$t[Par coup de l'$h[Arme] $affected :] gagnez +$p1 de dégâts (jusqu'à $p2).,$t[При попадании $affected $h[оружием]:] повышает урон на $p1 ед. (макс.: $p2).,$t[Acertos de $h[Arma] $affected:] Ganha +$p1 de dano (até $p2).,$t[Al golpear con un $affected $h[Arma]:] Obtiene +$p1 de daño (máximo: $p2).
+"<!MissingKey:202:$t[Every $cds:] Steal $p_buffsteal buffs, \~prioritizing $regen. >","$t[Every $cds:] Steal $p_buffsteal buffs, \~prioritizing $regen. 
+
+ Triggers $p_darkspeed% faster for each \~$affected $dark-item. $t[Use $p_regent $regen:] Gain $p_maxhealth maximum health, $p_empower $empower and your opponent's healing is reduced by $p_healreduction% (once).","$t[Alle $cds:] Stehle $p_buffsteal Buffs, \~bevorzugt $regen. 
+
+ Aktiviert $p_darkspeed% schneller pro \~$affected $dark-Gegenstand. $t[Nutze $p_regent $regen:] Erhalte $p_maxhealth Maximalleben, $p_empower $empower und gegnerische Heilung ist um $p_healreduction% reduziert (einmalig).","$t[每$cds：]偷取$p_buffsteal层增益效果，优先偷取$regen。
+
+每有一个$affected的$dark物品，效果触发快$p_darkspeed%。$t[消耗$p_regent层$regen：]获得$p_maxhealth点最大生命值，还有$p_empower层$empower，并且你的对手生命恢复效果减低$p_healreduction%（单次触发）。","$t[$cd秒毎：] $regen を優先して$p_buffstealバフを奪う 
+
+ $affectedにある $dark アイテム1個につき使用速度が$p_darkspeed%上がる $t[$p_regent $regen 消費：]体力最大値が$p_maxhealth増え、$p_empower $empower を獲得し、相手の回復量 -$p_healreduction%（1回のみ）","$t[$cd초마다:] 버프를 $p_buffsteal개 빼앗으며, $regen을 우선적으로 빼앗습니다.
+
+$affected에 위치한 $dark 아이템마다 $p_darkspeed% 빠르게 발동합니다. $t[$regen을 $p_regent 사용:] 최대 체력을 $p_maxhealth, $empower를 $p_empower 획득하고, 상대의 치유량이 $p_healreduction% 감소합니다 (한 번).","$t[每$cd秒：]竊取$p_buffsteal層增益效果，優先竊取$regen。
+每有一個$affected的$h[黑暗]物品，效果觸發速度加快$p_darkspeed%。$t[消耗$p_regent層$regen：]獲得$p_maxhealth點最大生命值，還有$p_empower層$empower，並且你的對手生命恢復效果減低$p_healreduction%（單次觸發）。","$t[Toutes les $cd s :] volez $p_buffsteal bonus, en privilégiant $regen. 
+
+ Se déclenche $p_darkspeed % plus vite pour chaque objet $dark $affected $t[Utilisez $p_regent $regen :] gagnez $p_maxhealth des PV max, $p_empower $empower et la guérison de votre adversaire diminue de $p_healreduction % (une fois).","$t[Раз в $cd сек.:] крадет до $p_buffsteal усилений, в первую очередь $regen. 
+
+ Срабатывает на $p_darkspeed% чаще за каждый $affected $dark предмет. $t[Использует $p_regent $regen:] добавляет $p_maxhealth ед. максимального здоровья, $p_empower $empower, а эффективность исцеления противника снижается на $p_healreduction% (один раз за бой).","$t[A cada $cd s:] Rouba $p_buffsteal buffs, de preferência $regen. 
+
+ Ativa $p_darkspeed% mais rápido por cada item-$dark $affected. $t[Gasta $p_regent $regen:] Ganha $p_maxhealth de vida máxima e $p_empower $empower e diminui a cura do seu oponente em $p_healreduction% (uma vez).","$t[Cada $cd s:] Roba $p_buffsteal ventajas; se prioriza $regen. 
+
+ Se activa un $p_darkspeed % más rápido por cada objeto $dark $affected. $t[Al usar $p_regent $regen:] Obtiene $p_maxhealth PS máx., $p_empower $empower y la curación del rival se reduce en un $p_healreduction % (una vez)."
+<!MissingKey:203:$t[Start of battle:] Gain $p1 $vampirism and \~$p2 maximum health.>,$t[Start of battle:] Gain $p1 $vampirism and \~$p2 maximum health.,$t[Kampfbeginn:] Erhalte $p1 $vampirism und $p2 Maximalleben.,$t[战斗开始：]获得$p1层$vampirism，$p2最大生命值。,$t[バトル開始時：]$p1 $vampirism を獲得し、体力最大値が$p2増える,"$t[전투 시작 시:] $vampirism을 $p1, 최대 체력을 $p2 획득합니다.",$t[戰鬥開始：]獲得$p1層$vampirism和$p2點最大生命值。,$t[Au début du combat :] gagnez $p1 $vampirism et $p2 des PV max.,$t[Начало боя:] добавляет $p1 $vampirism и $p2 ед. максимального здоровья.,$t[Início da batalha:] Ganhe $p1 $vampirism e $p2 de vida máxima.,$t[Al comienzo de la batalla:] Obtiene $p1 $vampirism y $p2 PS máx.
+<!MissingKey:204:$t[Start of battle:] Gain $block $bl. Gain \~$p1 $regen for each $affected $holy-item. $t[Every $cds:] Cleanse $p2 $poison.>,$t[Start of battle:] Gain $block $bl. Gain \~$p1 $regen for each $affected $holy-item. $t[Every $cds:] Cleanse $p2 $poison.,$t[Kampfbeginn:] Erhalte $block $bl. Erhalte $p1 $regen für jeden $affected $holy-Gegenstand. $t[Alle $cds:] Entferne $p2 $poison.,$t[战斗开始：]获得$block点$bl。每有一个$affected的$holy物品获得$p1层$regen。$t[每$cds：]净化$p2层$poison。,$t[バトル開始時：]$block $bl を獲得する。$affectedにある $holy アイテム1個につき$p1 $regen を獲得する $t[$cd秒毎：]$p2 $poison を解除する,$t[전투 시작 시:] $bl를 $block 획득합니다. $affected에 위치한 $holy 아이템마다 $regen을 $p1 획득합니다. $t[$cd초마다:] $poison을 $p2 정화합니다.,$t[戰鬥開始：]獲得$block點$bl。每有一個$affected的$h[神聖]物品，獲得$p1層$regen。$t[每$cd秒：]淨化$p2層$poison。,$t[Au début du combat :] gagnez $block $bl. Gagnez $p1 $regen pour chaque objet $affected $holy. $t[Toutes les $cd s :] purgez $p2 $poison.,$t[Начало боя:] добавляет $block $bl. Добавляет $p1 $regen за каждый $affected $holy предмет. $t[Раз в $cd сек.:] снимает $p2 $poison.,$t[Início da batalha:] Ganha $block $bl. Ganha $p1 $regen por cada item-$holy $affected. $t[A cada $cd s:] purifica $p2 $poison.,$t[Al comienzo de la batalla:] Obtiene $block $bl. Obtiene $p1 $regen por cada objeto $holy $affected. $t[Cada $cd s:] Elimina $p2 $poison.
+<!MissingKey:205:$t[Health drops below $p1%:] \~ Consume this and heal for $p2 and cleanse $p3 $poison.>,$t[Health drops below $p1%:] \~ Consume this and heal for $p2 and cleanse $p3 $poison.,$t[Leben fällt unter $p1%:] \~ Trinke aus und heile $p2 und entferne $p3 $poison.,$t[当你的生命值低于$p1%时：]消耗此魔药，恢复$p2点生命值并净化$p3层$poison。,$t[体力が$p1%未満に低下時：]このアイテムを消費して、体力を$p2回復し、$p3 $poison を解除する,"$t[체력이 $p1% 아래로 떨어질 시:] 포션을 소모해 체력을 $p2 회복하고, $poison을 $p3 정화합니다.",$t[當你的生命值低於$p1%時：]消耗此魔藥，恢復$p2點生命值並淨化$p3層$poison。,$t[PV inférieurs à $p1 % :] consommez ceci et guérissez de $p2 et purgez $p3 $poison.,"$t[При здоровье ниже $p1%:] расходуется, чтобы восстановить $p2 ед. здоровья и снять $p3 $poison.","$t[Vida abaixo de $p1%:] Consuma isto, restaura $p2 de vida e purifica $p3 $poison.",$t[Si los PS caen por debajo del $p1 %] Consume esto para recuperar $p2 PS y eliminar $p3 $poison.
+<!MissingKey:206:Whetstone>,Whetstone,Wetzstein,磨刀石,砥石,숫돌,磨刀石,Pierre à aiguiser,Точильный камень,Pedra de Amolar,Piedra de afilar
+<!MissingKey:207:$t[$p1 $affected item activations:] Heal for $p_heal and inflict $p3 $poison.>,$t[$p1 $affected item activations:] Heal for $p_heal and inflict $p3 $poison.,$t[$p1 $affected Gegenstand-Aktivierungen:] Heile $p_heal und verursache $p3 $poison.,$t[$affected的物品激活达到$p1次：]恢复$p_heal点生命值并施加给对手$p3层$poison。,$t[$affectedにあるアイテム$p1回発動時：]体力を$p2回復し、$p3 $poison を付与する,$t[$affected에 위치한 아이템이 $p1회 발동 시:] 체력을 $p_heal 회복하고 $poison을 $p3 부여합니다.,$t[$affected的物品啟動達到$p1次：]恢復$p_heal點生命值並施加給對手$p3層$poison。,$t[En activant l'objet $affected $p1 fois :] guérissez de $p_heal et infligez $p3 $poison.,$t[При срабатывании $p1 $affected предметов:] восстанавливает $p_heal ед. здоровья и накладывает на противника $p3 $poison.,$t[$p1 ativações do item $affected:] Restaura $p_heal de vida e inflige $p3 $poison.,$t[Al activar $p1 $affected objetos:] Recupera $p_heal PS e inflige $p3 $poison.
+<!MissingKey:208:Fanfare>,Fanfare,Fanfare,号角,ラッパ,나팔,號角,Buisine,Дудка,Trombeta,Trompeta
+<!MissingKey:209:Increase base stamina regeneration by $p1% for each buff you have. $t[Every $cds:] Gain $p2 of the buff you have least of. >,"Increase base stamina regeneration by $p1% for each buff you have. $t[Every $cds:] Gain $p2 of the buff you have least of. 
+
+ Triggers $p3% faster for each $affected $h[Pet].","Erhöht Ausdauer-[b][/b]Basis-[b][/b]Regeneration um $p1% für jeden deiner Buffs. $t[Alle $cds:] Erhalte $p2 Buffs von der Art von der du am wenigsten hast. 
+
+ Aktiviert $p3% schneller für jeden $affected $h[Gefährten].","每有一层增益效果，耐力基础恢复增加$p1%。 $t[每$cds：]获得$p2层你现有层数最少的增益效果。
+
+每有一个$affected的$h[宠物]，效果触发快$p3%。","自分のバフ1スタックにつき基礎スタミナ回復量 +$p1% $t[$cd秒毎：]最も少ないバフを$p2獲得する 
+
+$affectedにある$h[ペット]1体につき使用速度が$p3%上がる","보유한 버프마다 스태미나 재생량이 $p1% 증가합니다. $t[$cd초마다:] 보유한 버프 중 가장 적은 버프를 $p2 획득합니다.
+
+$affected에 위치한 $h[펫]마다 $p3% 빠르게 발동합니다.","每有一層增益效果，耐力恢復增加$p1%。 $t[每$cd秒：]獲得$p2層你現有層數最少的增益效果。
+每有一個$affected的$h[寵物]，效果觸發速度加快$p3%。","Augmente la régénération d'endurance de base de $p1 % pour chaque bonus que vous avez. $t[Toutes les $cd s :] gagnez $p2 du bonus que vous avez le moins. 
+
+ Se déclenche $p3 % plus vite pour chaque $h[Familier] $affected.","Повышает базовое восстановление энергии на $p1% за каждое усиление на герое. $t[Раз в $cd сек.:] добавляет +$p2 к усилению, которого у героя меньше всего. 
+
+ Срабатывает на $p3% чаще за каждый $affected предмет типа $h[питомец].","Aumenta a regeneração básica de vigor em $p1% por cada buff que você tiver. $t[A cada $cd s:] Ganha $p2 do buff que você menos tiver. 
+
+ Ativa $p3% mais rápido por cada $h[Animal] $affected.","Aumenta la regeneración de resistencia básica en un $p1 % por cada ventaja que se tenga. $t[Cada $cd s:] Obtiene $p2 de la ventaja que menos se tenga. 
+
+ Se activa un $p3 % más rápido por cada $affected $h[Mascota]."
+<!MissingKey:210:$t[Start of battle:] Gain $p1 $regen.>,$t[Start of battle:] Gain $p1 $regen.,$t[Kampfbeginn:] Erhalte $p1 $regen.,$t[战斗开始时：]获得$p1层$regen。,$t[バトル開始時：]$p1 $regen を獲得する,$t[전투 시작 시:] $regen을 $p1 획득합니다.,$t[戰鬥開始時：]獲得$p1層$regen。,$t[Au début du combat :] gagnez $p1 $regen.,$t[Начало боя:] добавляет $p1 $regen.,$t[Início da batalha:] Ganhe $p1 $regen.,$t[Al comienzo de la batalla:] Obtiene $p1 $regen.
+<!MissingKey:211:The Fool>,The Fool,Der Narr,愚者,愚者のカード,바보,愚者,Le Fou,«Дурак»,O Louco,El Loco
+<!MissingKey:212:$t[Opponent misses attack:] Gain \~+$p1 damage for the next attack. $t[On hit:] $chance% chance to inflict $h[1] $blind.>,$t[Opponent misses attack:] Gain \~+$p1 damage for the next attack. $t[On hit:] $chance% chance to inflict $h[1] $blind.,$t[Gegner verfehlt:] Nächster Angriff +$p1 verursacht Schaden. $t[Bei Treffer:] $chance% Chance $h[1] $blind zu verursachen.,$t[对手攻击落空：]下一次攻击获得+$p1点伤害加成。$t[击中对手时：]将有$chance%的几率施加$h[1]层$blind。,$t[相手の攻撃ミス時：]次回攻撃時のダメージ値が$p1増える $t[ヒット時：]$chance%の確率で$h[1] $blind を付与する,$t[상대의 공격이 빗나갈 시:] 다음 공격이 가하는 피해가 $p1 증가합니다. $t[적중 시:] $chance%의 확률로 $blind을 $h[1] 부여합니다.,$t[對手攻擊落空：]下一次攻擊獲得+$p1點傷害加成。$t[命中時：]有$chance%的機率施加$h[1]層$blind。,$t[L'adversaire manque son attaque :] gagnez +$p1 de dégâts pour la prochaine attaque. $t[Par coup :] $chance % de chance d'infliger $h[1] $blind.,$t[При промахе противника:] добавляет +$p1 ед. урона к следующей атаке. $t[При попадании:] $chance% шанс наложить $h[1] $blind.,$t[Oponente erra ataque:] Ganhe +$p1 de dano para o próximo ataque. $t[Ao acertar:] $chance% de chance de infligir $h[1] $blind.,$t[El rival falla el ataque:] El siguiente ataque hace +$p1 de daño. $t[Al golpear:] $chance % de probabilidad de infligir $h[1] $blind.
+<!MissingKey:213:$t[Start of battle:] Gain $p1 $spikes.>,$t[Start of battle:] Gain $p1 $spikes.,$t[Kampfbeginn:] Erhalte $p1 $spikes.,$t[战斗开始时：]获得$p1层$spikes。,$t[バトル開始時：]$p1 $spikes を獲得する,$t[전투 시작 시:] $spikes를 $p1 획득합니다.,$t[戰鬥開始時：]獲得$p1層$spikes。,$t[Au début du combat :] gagnez $p1 $spikes.,$t[Начало боя:] добавляет $p1 $spikes.,$t[Início da batalha:] Ganhe $p1 $spikes.,$t[Al comienzo de la batalla:] Obtiene $p1 $spikes.
+<!MissingKey:214:Holo Fire Lizard>,Holo Fire Lizard,Glitzernde Feuerechse,大火龙,炎トカゲのホロカード,불 도마뱀 반짝이 카드,大火龍,Dracauflamme,«Огненный ящер»,Dragãozão de Fogo,Lagarto ígneo brillante
+<!MissingKey:215:Bloody Dagger>,Bloody Dagger,Blutdolch,吸血匕首,ブラッディダガー,피의 단검,吸血匕首,Dague ensanglantée,Кровавый кинжал,Adaga Ensanguentada,Daga sangrienta
+<!MissingKey:216:Regular Sapphire>,Regular Sapphire,Regulärer Saphir,普通蓝宝石,普通のサファイア,평범한 사파이어,普通藍寶石,Saphir ordinaire,Сапфир,Safira Comum,Zafiro normal
+<!MissingKey:217:Add $h[6] backpack slots. >,"Add $h[6] backpack slots. 
+
+ Items inside gain $chance% critical hit chance + $chance2% for each $lucky.","Fügt $h[6] Rucksackplätze hinzu. 
+
+ Enthaltene Gegenstände erhalten $chance% kritische Trefferchance + $chance2% pro $lucky.","增加$h[6]格背包槽位。
+
+包内物品获得$chance%暴击几率加成，每有一点$lucky，包内物品还会获得$chance2%暴击加成。 ","バックパックのスロットを$h[6]追加する 
+
+中にあるアイテムのクリティカル率 +$chance%、 $lucky 1スタックにつきクリティカル率 +$chance2%","배낭 슬롯을 $h[6]개 추가합니다.
+
+내부에 위치한 아이템은 $chance% + $lucky마다 추가로 $chance2%의 치명타 확률을 획득합니다.","增加$h[6]格背包欄位。
+背包內物品獲得$chance%暴擊機率加成，每有一點$lucky[幸運]，背包內物品還會獲得$chance2%暴擊加成。","Ajoutez $h[6] emplacements de sac à dos. 
+
+ Les objets à l'intérieur gagnent $chance % de chance de coup critique + $chance2 % pour chaque $lucky.","Добавляет $h[6] слотов к рюкзаку. 
+
+ Шанс критического урона предметов в этой сумке повышается на $chance% и дополнительно на $chance2% за каждый $lucky.","Adiciona $h[6] espaços à mochila. 
+
+ Os itens dentro ganham $chance% de chance de acerto crítico + $chance2% por cada $lucky.","Añade $h[6] espacios a la mochila. 
+
+ Los objetos dentro obtienen $chance % más de probabilidad de golpe crítico + $chance2 % por cada $lucky."
+"<!MissingKey:218:$t[Start of battle:] Gain $p1 maximum health. $t[Every $cds:] Use $p2 $lucky, $p3 $heat and $p4 $mana: Gain $p5 $empower, $p6 $regen and $p7 maximum health.>","$t[Start of battle:] Gain $p1 maximum health. $t[Every $cds:] Use $p2 $lucky, $p3 $heat and $p4 $mana: Gain $p5 $empower, $p6 $regen and $p7 maximum health.","$t[Kampfbeginn:] Erhalte $p1 Maximalleben. $t[Alle $cds:] Nutze $p2 $lucky, $p3 $heat und $p4 $mana: Erhalte $p5 $empower, $p6 $regen und $p7 Maximalleben.","$t[战斗开始时：]获得$p1最大生命值。$t[每$cds：]消耗$p2点$lucky，$p3层$heat还有$p4点$mana，获得$p5层$empower, $p6层$regen还有$p7点最大生命值。",$t[バトル開始時：]体力最大値が$p1増える $t[$cd秒毎：] $p2 $lucky と$p3 $heat と$p4 $mana を消費して、$p5 $empower と$p6 $regen を獲得し、体力最大値が$p7増える,"$t[전투 시작 시:] 최대 체력을 $p1 획득합니다. $t[$cd초마다:] $lucky을 $p2, $heat를 $p3, $mana를 $p4 사용해: $empower를 $p5, $regen을 $p6, 최대 체력을 $p7 획득합니다.","$t[戰鬥開始時：]獲得$p1最大生命值。$t[每$cd秒：]消耗$p2點$lucky，$p3層$heat還有$p4點$mana，獲得$p5層$empower, $p6層$regen還有$p7點最大生命值。","$t[Au début du combat :] gagnez $p1 des PV max. $t[Toutes les $cd s :] utilisez $p2 $lucky, $p3 $heat et $p4 $mana : gagnez $p5 $empower, $p6 $regen et $p7 des PV max.","$t[Начало боя:] повышает максимальное здоровье на $p1 ед. $t[Раз в $cd сек.:] использует $p2 $lucky, $p3 $heat и $p4 $mana: добавляет $p5 $empower, $p6 $regen и $p7 ед. максимального здоровья.","$t[Início da batalha:] Ganhe $p1 de vida máxima. $t[A cada $cd  s:] Gasta $p2 $lucky, $p3 $heat e $p4 $mana para ganhar $p5 $empower, $p6 $regen e $p7 de vida máxima.","$t[Al comienzo de la batalla:] Consigue $p1 PS máx. $t[Cada $cd s:] Usa $p2 $lucky, $p3 $heat y $p4 $mana: Consigue $p5 $empower, $p6 $regen y $p7 PS máx."
+<!MissingKey:219:Triggers $p1% faster ($bag).>,Triggers $p1% faster ($bag).,Aktiviert $p1% schneller ($bag).,效果触发快$p1%($bag)。,使用速度が$p1%上がる（$bag）,$p1% 빠르게 발동합니다 ($bag).,效果觸發速度加快$p1%（$bag）。,Se déclenche $p1 % plus vite ($bag).,Срабатывает на $p1% чаще ($bag).,Ativa-se $p1% mais rápido ($bag).,Se activa un $p1 % más rápido ($bag).
+<!MissingKey:220:Dancing Dragon>,Dancing Dragon,Tanzender Drache,舞龙,ダンシング・ドラゴン,춤추는 용,舞龍,Dragon dansant,Танцующий дракон,Dragão Dançante,Dragón danzante
+<!MissingKey:221:$t[On hit:] $chance% chance to gain \~$p1 damage.>,$t[On hit:] $chance% chance to gain \~$p1 damage.,"$t[Bei Angriff:] $chance% Chance, Schaden um $p1 zu erhöhen.",$t[击中对手时：]有$chance%的几率获得$p1伤害加成。,$t[ヒット時：]$chance%の確率でダメージ値が$p1増える,$t[적중 시:] $chance%의 확률로 가하는 피해가 $p1 증가합니다.,$t[命中對手時：]有$chance%的機率獲得$p1點的傷害加成。,$t[Par coup :] $chance % de chance de gagner $p1 de dégâts.,$t[При попадании:] шанс $chance% повысить урон на $p1 ед.,$t[Ao acertar:] $chance% de chance de ganhar $p1 de dano.,$t[Al golpear:] $chance % de probabilidad de ganar $p1 de daño.
+<!MissingKey:222:$affected items give +$p3% $bl. $t[On attacked ($melee):] $chance% chance to prevent $p1 damage and remove \~$p2 stamina from your opponent.>,$affected items give +$p3% $bl. $t[On attacked ($melee):] $chance% chance to prevent $p1 damage and remove \~$p2 stamina from your opponent.,"$affected Gegenstände erzeugen +$p3% $bl. $t[Bei $melee-Angriff:] $chance% Chance, \~$p1 Schaden zu vermeiden und \~$p2 Ausdauer vom Gegner zu entfernen.",$affected的物品生成$p3%点额外$bl。$t[受到攻击（$melee）：]将有$chance%的几率抵挡$p1点伤害并移除对手$p2点耐力。,$affectedにあるアイテムの $bl +$p3% $t[被攻撃時（$melee）：]$chance%の確率で$p1ダメージを防ぎ、相手から$p2スタミナを除去する,"$affected에 위치한 아이템이 $bl를 $p3% 추가로 제공합니다. $t[공격 받을 시 ($melee):] $chance%의 확률로 피해를 $p1 막고, 상대의 스태미나를 $p2 제거합니다.","$t[受到攻擊（近戰）：]有$chance%的機率抵擋$p1點傷害並移除對手$p2點耐力。
+$affected的物品生成額外$p3%點$bl。",Les objets $affected donnent +$p3 % $bl. $t[En recevant une attaque ($melee) :] $chance % de chance d'empêcher $p1 de dégâts et de retirer $p2 d'endurance à l'adversaire.,$affected предметы повышают $bl на $p3%. $t[При входящей атаке ($melee):] шанс $chance% заблокировать $p1 ед. урона и отнять у противника $p2 ед. энергии.,Os itens $affected dão +$p3% $bl. $t[Ao sofrer ataque ($melee):] $chance% de chance de prevenir $p1 de dano e remover $p2 de vigor do oponente.,Los objetos $affected dan un $p3 % más \~de $bl. $t[Al recibir un ataque ($melee):] $chance % de probabilidad de evitar $p1 de daño y quitarle $p2 de resistencia al rival.
+<!MissingKey:223:$t[$affected $h[Food] activates:] Inflict $p1 $poison. >,"$t[$affected $h[Food] activates:] Inflict $p1 $poison. 
+
+ $poison on your opponent has $chance% critical hit chance per $affected $h[Food].","$t[$affected $h[Essen] aktiviert:] Verursache $p1 $poison. 
+
+ $poison auf deinem Gegner hat $chance% kritische Trefferchance pro \~$affected $h[Essen]. ","$t[$affected的$h[食物]激活时：]向对手施加$p1层$poison。
+
+对手身上有$poison时，每个$affected的$h[食物]暴击几率+$chance%。","$t[$affectedにある$h[食べ物]発動時：]$p1 $poison を付与する
+
+$affectedにある$h[食べ物]1個につき相手の $poison のクリティカル率 +$chance%","$t[$affected에 위치한 $h[음식] 발동 시:] $poison을 $p1 부여합니다.
+
+상대에게 부여되는 $poison은 $affected에 위치한 $h[음식]마다 $chance%의 치명타 확률을 획득합니다.","$t[$affected的$h[食物]發動時：]向對手施加$p1層$poison。
+
+對手身上有$poison時，每有一個$affected的$h[食物]暴擊機率+$chance%。","$t[En activant la $h[Nourriture] $affected :] infligez $p1 $poison. 
+
+ $poison votre adversaire a $chance % chance de coup critique par $h[Nourriture] $affected.","$t[При срабатывании $affected предмета типа $h[еда]:] накладывает на противника $p1 $poison. 
+
+Наложенный эффект $poison повышает шанс нанести критический удар на $chance% за каждый $affected предмет типа $h[еда].","$t[$affected $h[Alimento ativa:]] Inflige $p1 $poison. 
+
+ $poison em seu oponente tem $chance% de chance de acerto crítico por $affected $h[Alimento].","$t[Al activar $affected $h[comida]:] Inflige $p1 $poison. 
+
+ $poison en tu rival tiene un $chance % de probabilidad de golpe crítico por $affected $h[comida]."
+<!MissingKey:224:Pandamonium>,Pandamonium,Pfandemie,腐败熊猫之锅,パンダモニウム,판다모니움,腐敗熊貓之鍋,Pandapoêle,Панда-мониум,Pandemônia,Sartén satánica
+<!MissingKey:225:$t[On reveal:] >,"$t[On reveal:] 
+ Cards are revealed $p_revealspeed% faster. 
+ If this is the first card in the chain: Gain $p_empower $empower.",$t[Beim Aufdecken:] Karten werden $p_revealspeed% schneller aufgedeckt. Wenn dies die erste Karte in der Kette ist: Erhalte $p_empower $empower.,"$t[翻开时：]
+之后的卡牌翻开速度变快$p_revealspeed%。
+如果此卡处于卡链的第一张：获得$p_empower层$empower。","$t[めくる時：]
+カードをめくる速度が$p_revealspeed%上がる。
+バトルで初めてめくったのがこのカードの場合、$p_empower $empower を獲得する","$t[공개 시:]
+카드가 $p_revealspeed% 빠르게 공개됩니다.
+연결된 카드 중 이 카드가 가장 첫 카드일 시: $empower를 $p_empower 획득합니다.",$t[翻開時：]後續卡牌翻開速度變快$p_revealspeed%。如果此卡處於卡牌連鎖的第一張：獲得$p_empower層$empower。,"$t[Par tirage :] 
+ cartes sont découvertes $p_revealspeed % plus vite. 
+ S'il s'agit de la première carte de la chaîne : gagnez $p_empower $empower.","$t[При раскрытии:] 
+ Карты раскрываются на $p_revealspeed% быстрее. 
+ Если эта карта первая в цепочке: добавляет $p_empower $empower.","$t[Ao revelar:] 
+ Cartas são reveladas $p_revealspeed% mais rápido. 
+ Se esta for a primeira carta na sequência, ganha $p_empower $empower.","$t[Al revelarse:] 
+ Las cartas se revelan un $p_revealspeed % más rápido. 
+ Si esta es la primera carta de la cadena: Obtiene $p_empower $empower."
+<!MissingKey:226:Hammer>,Hammer,Hammer,锤子,ハンマー,망치,錘子,Marteau,Молоток,Martelo,Martillo
+<!MissingKey:227:$t[$mana used or health drops below $p1%:] Consume this and gain $p2 $mana and \~$p3 maximum health.>,$t[$mana used or health drops below $p1%:] Consume this and gain $p2 $mana and \~$p3 maximum health.,$t[$mana verbraucht oder Leben fällt unter $p1%:] Trinke aus und erhalte $p2 $mana und $p3 Maximalleben.,$t[消耗$mana或生命值下降到$p1%时：]消耗此魔药并且获得$p2点$mana和$p3点最大生命值。,$t[$mana 消費時または体力が$p1%未満に低下時：]このアイテムを消費して、$p2 $mana を獲得し、体力最大値が$p3増える ,"$t[$mana 사용 시, 혹은 체력이 $p1% 아래로 떨어질 시:] 포션을 소모해 $mana를 $p2, 최대 체력을 $p3 획득합니다.",$t[消耗$mana或生命值降低至$p1%時：]消耗此魔藥並且獲得$p2點$mana和$p3點最大生命值。,$t[$mana utilisé ou PV inférieurs à $p1 % :] consommez ceci et gagnez $p2 $mana et $p3 des PV max.,"$t[Если $mana закончилась или здоровье опустилось ниже $p1%:] расходуется, чтобы добавить $p2 $mana и $p3 ед. максимального здоровья.",$t[$mana gasta ou vida abaixo de $p1%:] Consuma isto e ganhe $p2 $mana e $p3 de vida máxima.,$t[$mana o PS por debajo del $p1 %:] Consume esto y gana $p2 $mana y $p3 PS máx.
+<!MissingKey:228:$t[Start of battle:] Gain $p1 $spikes. $t[$affected $h[Weapon] hits:] Use $h[1] $spikes to deal \~+$p2 damage on the next attack.>,$t[Start of battle:] Gain $p1 $spikes. $t[$affected $h[Weapon] hits:] Use $h[1] $spikes to deal \~+$p2 damage on the next attack.,$t[Kampfbeginn:] Erhalte $p1 $spikes. $t[$affected $h[Waffe] trifft:] Nutze $h[1] $spikes um beim nächsten Angriff +$p2 Schaden zu verursachen.,$t[战斗开始时：]获得$p1层$spikes。$t[$affected的$h[武器]击中对手时：]消耗$h[1]层$spikes，尖牙弓下次攻击造成的伤害+$p2。,$t[バトル開始時：] $p1 $spikes を獲得する $t[$affectedにある$h[武器]のヒット時：] $h[1] $spikes を消費して、次の攻撃の与ダメージ +$p2,"$t[전투 시작 시:] $spikes를 $p1 획득합니다. $t[$affected에 위치한 $h[무기] 적중 시:] $spikes를 $h[1] 사용해, 다음에 가하는 피해가 $p2 증가합니다.",$t[戰鬥開始時：]獲得$p1層$spikes。$t[$affected的$h[武器]命中對手時：]消耗$h[1]層$spikes：尖牙弓下次攻擊造成的傷害+$p2點。,$t[Au début du combat :] gagnez $p1 $spikes. $t[Par coup de l'$h[Arme] $affected :] utilisez $h[1] $spikes pour infliger +$p2 de dégâts lors de la prochaine attaque.,"$t[Начало боя:] добавляет $p1 $spikes. $t[При попадании $affected $h[оружия]:] использует $h[1] $spikes, чтобы со следующей атакой нанести +$p2 ед. урона.",$t[Início da batalha:] Ganha $p1 $spikes. $t[Acertos de $h[Arma] $affected:] gasta $h[1] $spikes para causar +$p2 de dano no próximo ataque.,$t[Al comienzo de la batalla:] Obtiene $p1 $spikes. $t[Al golpear con un $affected $h[Arma]:] Usa $h[1] $spikes para infligir +$p2 de daño.
+"<!MissingKey:229:$t[$p1 $affected item activations:] Heal for $p2, gain $block $bl, $p3 $vampirism and $p4 $empower, inflict \~$p5 $blind, and $affected $h[Weapons] gain \~$p6 damage.>","$t[$p1 $affected item activations:] Heal for $p2, gain $block $bl, $p3 $vampirism and $p4 $empower, inflict \~$p5 $blind, and $affected $h[Weapons] gain \~$p6 damage.","$t[$p1 $affected Gegenstand-Aktivierungen:] Heile $p2, erhalte $block $bl, $p3 $vampirism und $p4 $empower, verursache $p5 $blind, und $affected $h[Weapons] verursachen +$p6 Schaden.",$t[$affected的物品激活达到$p1次：]恢复$p2点血量，获得$block点$bl，还有$p3层$vampirism和$p4层$empower，并施加$p5层$blind。并给予$affected的$h[武器] +$p6点伤害。,$t[$affectedにあるアイテム$p1回発動時：]体力を$p2回復し、$block $bl と$p3 $vampirism と$p4 $empower を獲得し、$p5 $blind を付与する。さらに$affectedにある$h[武器]のダメージ値が$p6増える,"$t[$affected에 위치한 아이템이 $p1회 발동 시:] 체력을 $p2 회복하고, $vampirism을 $p3, $empower를 $p4 획득하고, $blind을 $p5 부여하고, $affected에 위치한 $h[무기]가 가하는 피해가 $p6 증가합니다.",$t[$p1個$affected的物品發動：]恢復$p2點生命值，獲得$block點$bl，還有$p3層$vampirism和$p4層$empower，並施加$p5層$blind。並給予$affected的$h[武器]+$p6點傷害。,"$t[En activant l'objet $affected $p1 fois :] guérissez de $p2, gagnez $block $bl, $p3 $vampirism et $p4 $empower, infligez $p5 $blind, et donnez aux $h[Armes] $affected +$p6 de dégâts.","$t[При срабатывании $p1 $affected предметов:] восстанавливает $p2 ед. здоровья, добавляет $block $bl, $p3 $vampirism и $p4 $empower. Также накладывает $p5 $blind и добавляет $affected $h [оружию] +$p6 ед. урона.","$t[$p1 ativações de item $affected:] Restaura $p2 de vida, ganhe $block $bl, $p3 $vampirism e $p4 $empower, inflige $p5 $blind e dá +$p6 de dano às $h[Armas] $affected.","$t[Al activar $p1 $affected objetos:] Recupera $p2 PS, obtiene $block $bl, $p3 $vampirism y $p4 $empower, inflige $p5 $blind, y las $affected $h[Armas] ganan +$p6 de daño."
+<!MissingKey:230:$affected $h[Weapons] deal +$p1% critical damage. They remove $p2 $bl on crit. $t[$affected2 Item activates:] $chance% chance to gain $h[1] $lucky.>,$affected $h[Weapons] deal +$p1% critical damage. They remove $p2 $bl on crit. $t[$affected2 Item activates:] $chance% chance to gain $h[1] $lucky.,"$affected $h[Waffen] verursachen +$p1% kritischen Schaden. Entferne $p2 $bl bei kritischen Treffer. $t[$affected2 Gegenstände aktivieren:] $chance% Chance, $h[1] $lucky zu erhalten.",$affected的$h[武器]暴击伤害+$p1%，并在暴击时移除对手$p2点$bl。$t[当$affected2的物品激活时：]有$chance%的几率获得$h[1]点$lucky。,$affectedにある $h[武器]のクリティカルダメージ +$p1%。$affectedにある武器のクリティカル時、$p2 $bl を破壊する $t[$affected2アイテム発動時：]$chance%の確率で$h[1] $lucky を獲得する,$affected에 위치한 $h[무기]가 가하는 치명타 피해가 $p1% 증가합니다. 치명타 발동 시 상대의 $bl를 $p2 제거합니다. $t[$affected2에 위치한 아이템 발동 시:] $chance%의 확률로 $lucky을 $h[1] 획득합니다.,$affected的$h[武器]暴擊傷害+$p1%，並在暴擊時移除對手$p2點$bl。$t[當$affected2的物品發動時：]有$chance%的機率獲得$h[1]點$lucky。,Les $h[Armes] $affected infligent +$p1 % de dégâts critiques. Elles retirent $p2 $bl par coup critique. $t[En activant un objet $affected2 :] $chance % de chance de gagner $h[1] $lucky.,$affected $h[оружие] наносит +$p1% критического урона и снимает $p2 $bl при нанесении критического урона. $t[При срабатывании $affected2 предмета:] $chance% шанс получить $h[1] $lucky.,As $h[Armas] $affected causam +$p1 de dano crítico. Elas diminuem $p2 $bl ao realizar um acerto crítico. $t[Ativação de item $affected2:] $chance% de chance de dar $h[1] $lucky.,Las $affected $h[Armas] infligen +$p1 % de daño crítico. Eliminan $p2 $bl al infligir un crítico. $t[Al activarse un objeto $affected2:] $chance % de probabilidad de obtener $h[1] $lucky.
+<!MissingKey:231:Pan>,Pan,Pfanne,平底锅,フライパン,프라이팬,平底鍋,Poêle,Сковорода,Frigideira,Sartén
+<!MissingKey:232:Claws of Attack>,Claws of Attack,Klauen des Vielfraß,攻击之爪,アタッククロー,맹공의 발톱,攻擊之爪,Griffes d'attaque,Когти атаки,Garras do Ataque,Garras de ataque
+<!MissingKey:233:$t[While you have at least $p1 $empower:] Decrease stamina usage to $p2 and cooldown to $p3s.>,$t[While you have at least $p1 $empower:] Decrease stamina usage to $p2 and cooldown to $p3s.,$t[Während du mindestens $p1 $empower hast:] Reduziere Ausdauerverbrauch auf $p2 und Abklingzeit auf $p3s.,$t[当你至少有$p1层$empower：]耐力消耗减小到$p2，冷却缩短到$p3s。,$t[$p1 $empower 以上ある間：]スタミナ消費値が$p2に、クールダウンが$p3秒に減る,"$t[$p1 이상의 $empower를 보유 시:] 스태미나 소모량이 $p2(으)로 감소하고, 재사용 대기 시간이 $p3초가 됩니다.",當你至少有$p1層$empower時，耐力消耗降低至$p2，冷卻縮短到$p3秒。,$t[Tant que vous avez au moins $p1 $empower :] réduisez l'utilisation d'endurance de $p2 et le temps de recharge de $p3 s.,$t[Если у героя не менее $p1 $empower:] снижает затраты энергии до $p2 и перезарядку до $p3 сек.,$t[Enquanto você tiver ao menos $p1 $empower:] Diminui o gasto de vigor para $p2 e a recarga para $p3 s.,$t[Mientras tengas al menos $p1 $empower:] Disminuye el uso de resistencia a $p2 y la recarga a $p3 s.
+<!MissingKey:234:$t[Start of battle:] $affected items trigger $p1% faster.>,$t[Start of battle:] $affected items trigger $p1% faster.,$t[Kampfbeginn:] $affected Gegenstände aktivieren $p1% schneller.,$t[战斗开始时：]$affected的物品触发快$p1%。,$t[バトル開始時：]$affectedにあるアイテムの使用速度が$p1%上がる,$t[전투 시작 시:] $affected에 위치한 아이템이 $p1% 빠르게 발동합니다.,$t[戰鬥開始時：]$affected的物品觸發速度加快$p1%。,$t[Au début du combat :] les objets $affected se déclenchent $p1 % plus vite.,$t[Начало боя:] $affected предметы срабатывают на $p1% чаще.,$t[Início da batalha:] Os itens $affected ativam-se $p1% mais rápido.,$t[Al comienzo de la batalla:] Los $affected objetos se activan un $p1 % más rápido.
+<!MissingKey:235:$t[Shop entered:] Dig up a random item. $t[On hit:] $chance% chance to inflict $p1 $blind.>,$t[Shop entered:] Dig up a random item. $t[On hit:] $chance% chance to inflict $p1 $blind.,"$t[Laden betreten:] Grabe einen zufälligen Gegenstand aus. $t[Bei Treffer:] $chance% Chance, $p1 $blind zu verursachen. ",$t[进入商店：]随机挖出一件物品。$t[击中对手时：]有$chance%的几率施加$p1层$blind。,$t[ショップ入店時：]アイテムを1個ランダムに掘り出す $t[ヒット時：] $chance%の確率で$p1 $blind を付与する,$t[상점 진입 시:] 무작위 아이템 하나를 발굴합니다. $t[적중 시:] $chance%의 확률로 $blind을 $p1 부여합니다.,$m[命中時：]有$chance%的機率施加$p1層$blind。$t[進入商店：]隨機挖出一件物品。,$t[En entrant dans la boutique :] dénichez un objet aléatoire. $t[Par coup :] $chance % de chance d'infliger $p1 $blind.,$t[Переход в магазин:] выкапывает случайный предмет. $t[При попадании:] шанс $chance% наложить на противника $p1 $blind.,$t[Ao entrar na loja:] Desenterra um item aleatório. $t[Ao acertar:] $chance% de chance de infligir $p1 $blind.,$t[Al entrar en la tienda:] Excava un objeto al azar. $t[Al golpear:] $chance % de probabilidad de infligir $p1 $blind.
+<!MissingKey:236:Flawless Ruby>,Flawless Ruby,Makelloser Rubin,优质红宝石,無傷のルビー,티 없는 루비,優質紅寶石,Rubis idéal,Безупречный рубин,Rubi Impecável,Rubí inmaculado
+<!MissingKey:237:Present>,Present,Geschenk,圣诞礼物,プレゼント,선물상자,聖誕禮物,Cadeau,Подарок,Presente,Regalo
+<!MissingKey:238:$t[Start of battle:] Gain $p1 $vampirism. >,"$t[Start of battle:] Gain $p1 $vampirism. 
+
+ $affected $h[Weapons] steal $p2% life + $p5% per \~$affected2 $vampiric-item. 
+
+ Your healing is increased by $p3%. ","$t[Kampfbeginn:] Erhalte $p1 $vampirism. 
+
+ $affected $h[Waffen] rauben $p2% Leben + $p5% pro $affected2 $vampiric-Gegenstand. 
+
+ Heileffekte sind $p3% effektiver. ","$t[战斗开始时：]获得$p1层$vampirism。
+
+ $affected的$h[武器]将会偷取$p2%生命值（每有一个$affected2的$vampiric物品，效果增加$p5%）。
+
+生命恢复效果增强$p3%。","$t[バトル開始時：]$p1 $vampirism を獲得する 
+
+$affectedにある$h[武器]の体力吸収率 +$p2%、$affected2にある $vampiric アイテム1個につき +$p5% 
+
+自分の回復量 +$p3%","$t[전투 시작 시:] $vampirism을 $p1 획득합니다.
+$affected에 위치한 $h[무기]가 체력을 $p2% 빼앗습니다 ($affected2에 위치한 $vampiric 아이템마다 $p5% 증가).
+
+회복량이 $p3% 증가합니다.","$t[戰鬥開始時：]獲得$p1層$vampirism。
+$affected的$h[武器]將會偷取$p2%生命值（每有一個$affected2的$h[吸血]物品，效果增加$p5%）。
+生命恢復效果增強$p3%。","$t[Au début du combat :] gagnez $p1 $vampirism. 
+
+ Les $h[Armes] $affected volent $p2 % de vie + $p5 % par objet $vampiric $affected2). 
+
+ Votre guérison augmente de $p3 %.","$t[Начало боя:] добавляет $p1 $vampirism. 
+
+ $affected $h[оружие] крадет $p2% жизни +$p5% за каждый $affected2 $vampiric предмет). 
+
+ Исцеление усиливается на $p3%.","$t[Início da batalha:] Ganha $p1 $vampirism. 
+
+ $h[Armas] $affected roubam $p2% de vida + $p5% para cada item-$vampiric $affected2. 
+
+ Sua cura aumenta em $p3%.","$t[Al comienzo de la batalla:] Obtiene $p1 $vampirism. 
+
+ Las $affected $h[Armas] roban un $p2 % de salud (aumenta en un $p5 % por cada $affected2 objetos $vampiric). 
+
+ La curación aumenta en un $p3 %."
+<!MissingKey:239:Leather Bag>,Leather Bag,Lederbeutel,皮包,革のカバン,가죽 가방,皮包,Sac de cuir,Кожаная сумка,Bolsa de Couro,Bolsa de cuero
+<!MissingKey:240:Pestilence Flask>,Pestilence Flask,Pestflasche,瘟疫烧瓶,疫毒のフラスコ,역병 플라스크,瘟疫燒瓶,Flasque de pestilence,Зелье чумы,Frasco Pestilento,Poción tóxica
+<!MissingKey:241:Belladonna's Whisper>,Belladonna's Whisper,Belladonnas Flüstern,颠茄剧毒弓,ささやきベラドンナの毒弓,벨라돈나의 속삭임,顛茄劇毒弓,Murmure de Belladonna,Шепот Белладонны,Sussurro de Beladona,Beso de belladona
+<!MissingKey:242:Light Goobert>,Light Goobert,Schlotzbert des Lichts,光之黏黏,ライト・スラバート,빛의 슬돌이,光明黏呼呼,Viskeu de lumière,Световой Слаймер,Gosberto da Luz,Viscosino de luz
+<!MissingKey:243:Bag of Stones>,Bag of Stones,Sack voll Steine,一袋石头,石入り袋,돌이 든 자루,一袋石頭,Sac de pierres,Мешок с камнями,Saco de Pedras,Bolsa con piedras
+<!MissingKey:244:Flawless Topaz>,Flawless Topaz,Makelloser Topas,优质黄宝石,無傷のトパーズ,티 없는 토파즈,優質黃寶石,Topaze idéale,Безупречный топаз,Topázio Impecável,Topacio inmaculado
+<!MissingKey:245:Spiked Shield>,Spiked Shield,Dornenschild,尖刺盾牌,トゲの盾,가시 방패,尖刺盾牌,Bouclier à pointes,Шипастый щит,Escudo de Espinhos,Escudo de pinchos
+<!MissingKey:246:Fortuna's Grace>,Fortuna's Grace,Fortunas Gnade,天命弓,フォルトゥナの加護弓,포르투나의 은혜,天命弓,Grâce de Fortuna,Длань удачи,Bênção de Fortuna,Gracia de la Fortuna
+<!MissingKey:247:Chipped Sapphire>,Chipped Sapphire,Lädierter Saphir,蓝宝石碎片,欠けたサファイア,깨진 사파이어,藍寶石碎片,Saphir fragmenté,Осколок сапфира,Safira Lascada,Zafiro roto
+<!MissingKey:248:Poison Goobert>,Poison Goobert,Giftiger Schlotzbert,剧毒黏黏,ポイズン・スラバート,맹독 슬돌이,劇毒黏呼呼,Viskeu poison,Ядовитый Слаймер,Gosberto Venenoso,Viscosino venenoso
+<!MissingKey:249:Corrupted Crystal>,Corrupted Crystal,Unheilvoller Kristall,腐败水晶,堕落のクリスタル,타락한 크리스탈,腐敗水晶,Cristal corrompu,Проклятый кристалл,Cristal Corrompido,Cristal corrupto
+<!MissingKey:250:$t[Every $cds:] Randomly gain $p1 $empower $m[or] gain $p2 $mana and remove $p3 $mana from opponent $m[or] remove $p4 stamina from opponent. >,"$t[Every $cds:] Randomly gain $p1 $empower $m[or] gain $p2 $mana and remove $p3 $mana from opponent $m[or] remove $p4 stamina from opponent. 
+
+ Triggers $p5% faster for each $affected item.","$t[Alle $cds:] Erhalte zufällig $p1 $empower $m[oder] erhalte $p2 $mana und entferne $p3 $mana $m[oder] entferne $p4 Ausdauer vom Gegner. 
+
+ Aktiviert $p5% schneller für jeden $affected Gegenstand.","$t[每$cds：]随机获得$p1层$empower，$m[或者]获得$p2点$mana并移除对手$p3点$mana，$m[或者]移除对手$p4点耐力。
+
+每有一个$affected的物品，号角效果触发快$p5%。","$t[$cd秒毎：]$p1 $empower を獲得する、$m[または]$p2 $manaを獲得した上で相手から$p3 $mana を除去する、$m[または]相手からスタミナを$p4除去する、のいずれかの効果をランダムで発揮する 
+
+$affectedにあるアイテム1個につき使用速度が$p5%上がる","$t[$cd초마다:] 무작위로 $empower를 $p1 획득하거나, $m[혹은] $mana를 $p2 획득하고 상대의 $mana를 $p3 제거하거나, $m[혹은] 상대의 스태미나를 $p4 제거합니다.
+
+$affected에 위치한 아이템마다 $p5% 빠르게 발동합니다.","$t[每$cd秒：]隨機獲得$p1層$empower，$m[或]獲得$p2點$mana並移除對手$p3點$mana，$m[或]移除對手$p4點耐力。
+每有一個$affected的物品，號角效果觸發快$p5%。","$t[Toutes les $cd s :] gagnez aléatoirement $p1 $empower $m[ou] gagnez $p2 $mana et retirez $p3 $mana à l'adversaire $m[ou] retirez $p4 d'endurance à l'adversaire. 
+
+ Se déclenche $p5 % plus vite pour chaque objet $affected.","$t[Раз в $cd сек.:] случайным образом добавляет $p1 $empower $m[или] добавляет $p2 $mana и снимает с противника $p3 $mana $m[или] отнимает у противника $p4 ед. энергии. 
+
+ Срабатывает на $p5% чаще за каждый $affected предмет.","$t[A cada $cd s:] Ganha aleatoriamente $p1 $empower $m[ou] $p2 $mana e remove $p3 $mana do oponente $m[ou] remove $p4 de vigor do oponente. 
+
+ Ativa $p5% mais rápido por cada item $affected.","$t[Cada $cd s:] Obtiene al azar $p1 $empower $m[o] consigue $p2 $mana y elimina $p3 $mana del rival $m[o] elimina $p4 de resistencia del rival. 
+
+ Se activa un $p5 % más rápido por cada $affected objeto."
+<!MissingKey:251:Platinum Customer Card>,Platinum Customer Card,Platin-Kundenkarte,白金会员卡,プラチナ会員カード,플래티넘 회원 카드,白金會員卡,Carte de fidélité de platine,Платиновая VIP-карта,Cartão de Cliente Platina,Carnet de socio platino
+<!MissingKey:252:Piercing Arrow>,Piercing Arrow,Bohrpfeil,穿甲箭,つらぬきの矢,꿰뚫는 화살,穿甲箭,Flèche perforante,Пронзающая стрела,Flecha Perfurante,Flecha penetrante
+<!MissingKey:253:Has $chance% chance to inflict $h[1] $poison on activate ($bag).>,Has $chance% chance to inflict $h[1] $poison on activate ($bag).,"Hat $chance% Chance, bei Aktivierung $h[1] $poison zu verursachen ($bag).",在激活时有$chance%的几率施加$h[1] $poison[中毒]效果。,発動時、$chance%の確率で$h[1] $poison を付与する（$bag）,발동 시 $chance%의 확률로 $poison을 $h[1] 부여합니다 ($bag).,在發動時有$chance%的機率施加$h[1]層$poison[中毒]效果。,A $chance % de chance d'infliger $h[1] $poison par activation ($bag).,При срабатывании предмета есть $chance% шанс наложить $h[1] $poison ($bag).,$chance% de chance de infligir $h[1] $poison ao ativar ($bag).,Tiene un $chance % de probabilidad de infligir $h[1] $poison al activarse ($bag).
+<!MissingKey:254:$affected Items give $h[+100%] $vampirism. >,"$affected Items give $h[+100%] $vampirism. 
+
+ Attacks $p1% faster for every $vampirism.","$affected Gegenstände erzeugen $h[+100%] $vampirism. 
+
+ Attackiert $p1% schneller pro $vampirism.","$affected的物品给予$h[+100%] $vampirism。
+
+每有一层$vampirism攻击触发快$p1%。","$affectedにあるアイテムの $vampirism $h[+100%] 
+
+$vampirism 1スタックにつき使用速度が$p1%上がる","$affected에 위치한 아이템이 $vampirism을 $h[100%] 추가로 부여합니다.
+
+$vampirism마다 $p1% 빠르게 공격합니다.","$affected的物品給予$h[+100%]$vampirism。
+每有一層$vampirism攻擊觸發速度加快$p1%。","Les objets $affected donnent $h[+100 %] de $vampirism. 
+
+ Attaque $p1 % plus vite pour chaque $vampirism.","$affected предметы добавляют $h[+100%] $vampirism. 
+
+ Атакует на $p1% быстрее за каждый эффект $vampirism.","Os itens $affected dão $h[+100%] $vampirism. 
+
+ Ataca $p1% mais rápido por cada $vampirism.","Los $affected objetos te dan $h[+100 %] $vampirism. 
+
+ Ataca $p1 % más rápido por cada $vampirism."
+<!MissingKey:255:$t[On stun:] Triggers extra attack.>,$t[On stun:] Triggers extra attack.,$t[Gegner benommen:] Löse einen zusätzlichen Angriff aus.,$t[眩晕对手：]触发额外攻击。,$t[スタン時：]追加攻撃を行う,$t[기절 시:] 추가 공격을 가합니다.,$t[暈眩對手時：]觸發額外攻擊。,$t[Par étourdissement :] déclenche une attaque supplémentaire.,$t[При оглушении:] наносит дополнительную атаку.,$t[Ao atordoar:] Ativa um ataque adicional.,$t[Al aturdir:] Activa un ataque adicional.
+<!MissingKey:256:$t[$p1 $bl reached:] Consume this and convert $p2 health to $block $bl.>,$t[$p1 $bl reached:] Consume this and convert $p2 health to $block $bl.,$t[$p1 $bl erreicht:] Trinke aus und wandle $p2 Leben in $block $bl um.,$t[当你至少有$p1点$bl时：]消耗此魔药，转换$p2点生命值为$block点$bl。,$t[$p1 $bl 到達時：]このアイテムを消費して、$p2体力を$block $bl に変換する,$t[$bl이 $p1에 도달 시:] 포션을 소모해 $p2 체력을 $bl $block로 변환합니다.,$t[當你至少有$p1點$bl：]消耗此魔藥，轉換$p2點生命值為$block點$bl。,$t[En atteignant $p1 $bl :] consommez ceci et convertissez $p2 PV en $bl $block.,"$t[При $p1 $bl:] расходуется, чтобы превратить $p2 ед. здоровья в $block $bl.",$t[Ao alcançar $p1 $bl:] Consome isto e converte $p2 de vida em $block $bl.,$t[Al alcanzar $p1 $bl:] Consume la poción y transforma $p2 PS en $block $bl.
+<!MissingKey:257:Lucky Piggy>,Lucky Piggy,Glücksschweinchen,幸运存钱罐,幸運のブタちゃん,행운의 돼지저금통,幸運存錢罐,Tirelire porte-bonheur,Копилка удачи,Cofrinho da Sorte,Cerdito de la suerte
+"<!MissingKey:258:$c[Weapon sockets:] $m[On hit:] $chance% chance to ignore $bl, gain $p1 $mana and inflict $p4 $cold. $c[Armor & other sockets:] $m[$p2 $mana gained:] Gain $p3 $bl. $c[Backpack:] $m[After $cds:] Inflict $p5 $cold.>","$c[Weapon sockets:] $m[On hit:] $chance% chance to ignore $bl, gain $p1 $mana and inflict $p4 $cold. $c[Armor & other sockets:] $m[$p2 $mana gained:] Gain $p3 $bl. $c[Backpack:] $m[After $cds:] Inflict $p5 $cold.","$c[Waffensockel:] $m[Bei Treffer:] $chance% Chance, Leben direkt anzugreifen, $p1 $mana zu erhalten und $p4 $cold zu verursachen. $c[Rüstung & andere Sockel:] $m[$p2 $mana erzeugt:] Erhalte $p3 $bl. $c[Rucksack:] $m[Nach $cds:] Verursache $p5 $cold.",$c[放入武器槽：] $m[击中对手：]将有$chance%的几率无视$bl直接攻击，并获得$p1点$mana还会向对手施加$p4层$cold。$c[放入护甲或其他槽：] $m[每获得$p2点$mana：]将获得$p3点$bl。$c[放入背包：] $m[$cds后：]向对手施加$p5层$cold。,$c[武器に装着：]$m[ヒット時：]$chance%の確率で $bl を無視し、$p1 $mana を獲得し、$p4 $cold を付与する $c[非武器に装着：] $m[$p2 $mana 獲得毎：]$p3 $bl を獲得する $c[バックパックに配置：]$m[$cd秒後：]$p5 $cold を付与する,"$c[무기 소켓:] $m[적중 시:] $chance%의 확률로 $bl를 무시하고, $mana를 $p1 획득하고, $cold를 $p4 부여합니다. $c[방어구 및 기타 소켓:] $m[$mana를 $p2 획득 시:] $bl를 $p3 획득합니다. $c[배낭:] $m[$cd초 후:] $cold를 $p5 부여합니다.",$c[放入武器槽：]$m[命中時：]有$chance%的機率直接消耗對手生命值，並獲得$p1點$mana還會施加$p4層$cold。$c[放入護甲或其他槽位：]$m[每獲取$p2點$mana：]將獲得$p3點$bl。$c[放入背包：]$m[$cd秒後：]施加$p5層$cold。,"$c[Emplacements d'armes :] $m[Par coup :] $chance % de chance d'ignorer $bl, gagnez $p1 $mana et infligez $p4 $cold. $c[Armure et autres emplacements :] $m[En gagnant $p2 $mana :] gagnez $p3 $bl. $c[Sac à dos :] $m[Après $cd s :] infligez $p5 $cold.","$c[В слоте оружия:] $m[При попадании:] шанс $chance% проигнорировать $bl, получить $p1 $mana и наложить на противника $p4 $cold. $c[В слоте брони/в другом слоте:] $m[При получении $p2 $mana:] добавляет $p3 $bl. $c[В рюкзаке:] $m[Через $cd сек.:] накладывает $p5 $cold.","$c[Engastes de armas:] $m[Ao acertar:] $chance% de chance de ignorar $bl, ganha $p1 $mana e inflige $p4 $cold. $c[Demais engastes:] $m[$p2 $mana ganho:] Ganha $p3 $bl. $c[Mochila:] $m[Após $cd s:] Inflige $p5 $cold.","$c[Ranuras de arma:] $m[Al golpear:] $chance % de probabilidad de ignorar $bl, obtiene $p1 $mana e inflige $p4 $cold. $c[Ranuras de armadura y otras:] $m[Al ganar $p2 $mana:] Obtiene $p3 $bl. $c[Mochila:] $m[Tras $cd s:] Inflige $p5 $cold."
+<!MissingKey:259:Flawless Amethyst>,Flawless Amethyst,Makelloser Amethyst,优质紫水晶,無傷のアメシスト,티 없는 자수정,優質紫水晶,Améthyste idéale,Безупречный аметист,Ametista Impecável,Amatista inmaculada
+<!MissingKey:260:$t[Every $cds:] $affected items trigger $p1% faster (up to $p2 times). Remove $p3 $lucky from your opponent.>,$t[Every $cds:] $affected items trigger $p1% faster (up to $p2 times). Remove $p3 $lucky from your opponent.,$t[Alle $cds:] $affected Gegenstände aktivieren $p1% schneller (bis zu $p2 mal). Entferne $p3 $lucky deines Gegners.,$t[每$cds：]$affected的物品触发快$p1%（最多$p2次）。移除对手$p3点$lucky。,$t[$cd秒毎：]$affectedにあるアイテムの使用速度が$p1%上がる（最大$p2回まで）。相手から$p3 $lucky を除去する,$t[$cd초마다:] $affected에 위치한 아이템이 $p1% 빠르게 발동합니다 (최대 $p2번). 상대의 $lucky을 $p3 제거합니다.,$t[每$cds：]$affected的物品觸發快$p1%（最多$p2次）。移除對手$p3點$lucky。,$t[Toutes les $cd s :] les objets $affected se déclenchent $p1 % plus vite (jusqu'à $p2 fois). Retirez $p3 $lucky à votre adversaire.,$t[Раз в $cd сек.:] $affected предметы срабатывают на $p1% чаще (не более $p2 раз). Снимает с противника $p3 $lucky.,$t[A cada $cd s:] os itens $affected ativam $p1% mais rápido (até $p2 vezes). Remove $p3 $lucky do oponente.,$t[Cada $cd s:] Los $affected objetos se activan un $p1 % más rápido (máximo: $p2 veces). Elimina $p3 $lucky del rival.
+<!MissingKey:261:$affected items give +$p3% $bl. $t[$affected items gained $p4 $bl:] Gain $h[1] $mana. $t[On attacked ($melee/$ranged):] $chance% chance to prevent $p1 damage and remove \~$p2 stamina from your opponent.>,$affected items give +$p3% $bl. $t[$affected items gained $p4 $bl:] Gain $h[1] $mana. $t[On attacked ($melee/$ranged):] $chance% chance to prevent $p1 damage and remove \~$p2 stamina from your opponent.,"$affected Gegenstände erzeugen +$p3% $bl. Pro $p4 $bl die sie erzeugen, erhältst du $h[1] $mana. $t[Bei Angriff ($melee/$ranged):] $chance% Chance, \~$p1 Schaden zu vermeiden und \~$p2 Ausdauer vom Gegner zu entfernen.",$affected的物品得到$p3%的$bl加成。$t[$affected的物品每得到$p4点$bl：]将获得$h[1]点$mana。$t[被攻击时（$melee/$ranged）：]有$chance%的几率抵挡$p1点伤害并移除对手$p2点耐力。,$affectedにあるアイテムの $bl +$p3% $t[$affectedにあるアイテムが$p4 $bl 獲得毎：]$h[1] $mana を獲得する $t[被攻撃時（$melee/$ranged）：]$chance%の確率で$p1ダメージを防ぎ、相手から$p2スタミナを除去する,"$affected에 위치한 아이템이 $bl를 $p3% 추가로 제공합니다. $t[$affected에 위치한 아이템이 $bl를 $p4 획득 시:] $mana를 $h[1] 획득합니다. $t[공격 받을 시 ($melee/$ranged):] $chance%의 확률로 피해를 $p1 막고, 상대의 스태미나를 $p2 제거합니다.",$affected的物品得到$p3%的$bl加成。$t[$affected的物品每得到$p4點$bl：]將獲得$h[1]點$mana。$t[被攻擊時（$melee/$ranged）：]有$chance%的幾率抵擋$p1點傷害並移除對手$p2點耐力。,Les objets $affected donnent +$p3 % de $bl. $t[Tous les $p4 $bl objets $affected gagnés :] gagnez $h[1] $mana. $t[En recevant une attaque ($melee/$ranged) :] $chance % de chance d'empêcher $p1 dégâts et de retirer $p2 d'endurance à l'adversaire.,$bl от $affected предметов +$p3%. $t[$affected предметы получают $p4 $bl:] добавляет $h[1] $mana. $t[При входящей атаке ($melee/$ranged):] шанс $chance% игнорировать $p1 ед. урона и отнять $p2 ед. энергии у противника.,Itens $affected dão +$p3% $bl. $t[Itens $affected ganharam $p4 $bl:] Ganha $h[1] $mana. $t[Ao sofrer ataque ($melee/$ranged):] $chance% de chance de prevenir $p1 de dano e remover $p2 de vigor do oponente.,Los objetos $affected dan +$p3 % más de $bl. $t[Objetos $affected ganados $p4 $bl] Obtiene $h[1] $mana. $t[Al recibir un ataque ($melee/$ranged):] $chance % de probabilidad de evitar $p1 de daño y eliminar $p2 de resistencia del rival.
+<!MissingKey:262:$c[Weapon sockets:] $m[On hit:] $chance% chance to remove a random buff from your opponent. $c[Armor & other sockets:] Reduce opponent’s healing by $p1%. $c[Backpack:] $m[Every $cds:] Cleanse $h[1] debuff. >,$c[Weapon sockets:] $m[On hit:] $chance% chance to remove a random buff from your opponent. $c[Armor & other sockets:] Reduce opponent’s healing by $p1%. $c[Backpack:] $m[Every $cds:] Cleanse $h[1] debuff. ,"$c[Waffensockel:] $m[Bei Treffer:] $chance% Chance, einen Buff vom Gegner zu entfernen. $c[Rüstung & andere Sockel:] Gegnerische Heilung ist um $p1% reduziert. $c[Rucksack:] $m[Alle $cds:] Entferne $h[1] Debuff. ",$c[放入武器槽：] $m[击中对手：]将有$chance%的几率移除对手的一个随机增益效果。$c[放入护甲或其他槽：] 对手的生命值恢复效果降低$p1%。$c[放入背包：] $m[每$cds：]净化自身$h[1]个随机减益效果。,$c[武器に装着：]$m[ヒット時：]$chance%の確率で相手から1バフを除去する $c[非武器に装着：]相手の回復量 -$p1% $c[バックパックに配置：]$m[$cd秒毎：]$h[1]デバフを解除する,$c[무기 소켓:] $m[적중 시:] $chance%의 확률로 상대의 무작위 버프를 제거합니다. $c[방어구 및 기타 소켓:] 상대의 회복량이 $p1% 감소합니다. $c[배낭:] $m[$cd초마다:] 디버프를 $h[1]개 정화합니다.,$c[放入武器槽：]$m[命中時：]有$chance%的機率移除對手的一個隨機增益效果。$c[放入護甲或其他槽位：]對手的生命值恢復效果降低$p1%。$c[放入背包：]$m[每$cd秒：]淨化自身一個隨機減益效果。,$c[Emplacements d'armes :] $m[Par coup :] $chance % de chance de retirer un bonus aléatoire à votre adversaire. $c[Armure et autres emplacements :] réduisez la guérison de votre adversaire de $p1 %. $c[Sac à dos :] $m[Toutes les $cd s :] purgez $h[1] malus aléatoire.,$c[В слоте оружия:] $m[При попадании:] шанс $chance% снять случайное усиление с противника. $c[В слоте брони/в другом слоте:] Эффекты восстановления здоровья противника снижаются на $p1%. $c[В рюкзаке:] $m[Раз в $cd сек.:] снимает с героя $h[1] негативный эффект.,$c[Engastes de armas:] $m[Ao acertar:] $chance% de chance de remover um buff aleatório do oponente. $c[Demais engastes:] Diminui a cura do oponente em $p1%. $c[Mochila:] $m[A cada $cd s:] Purifica $h[1] debuff aleatório.,$c[Ranuras de arma:] $m[Al golpear:] $chance % de probabilidad de eliminar una ventaja al azar del rival. $c[Ranuras de armadura y otras:] Reduce la curación del rival un $p1 %. $c[Mochila:] $m[Cada $cd s:] Elimina $h[1] desventaja.
+<!MissingKey:263:$t[On attacked ($melee):] $chance% chance to prevent $p1 damage and remove \~ $p2 stamina from opponent.>,$t[On attacked ($melee):] $chance% chance to prevent $p1 damage and remove \~ $p2 stamina from opponent.,"$t[Bei $melee-Angriff:] $chance% Chance, \~ $p1 Schaden zu vermeiden und \~ $p2 Ausdauer vom Gegner zu entfernen. ",$t[受到攻击 （$melee）：]将有$chance%的几率抵挡$p1点伤害并移除对手$p2点耐力。,$t[被攻撃時（$melee）：]$chance%の確率で$p1ダメージを防ぎ、相手から$p2スタミナを除去する,"$t[공격 받을 시 ($melee):] $chance%의 확률로 피해를 $p1 막고, 상대의 스태미나를 $p2 제거합니다.",$t[受到攻擊（近戰）：]有$chance%的機率抵擋$p1點傷害並移除對手$p2點耐力。,$t[En recevant une attaque ($melee) :] $chance % de chance d'empêcher $p1 dégâts et de retirer $p2 d'endurance à l'adversaire.,$t[При входящей атаке ($melee):] шанс $chance% заблокировать $p1 ед. урона и отнять у противника $p2 ед. энергии.,$t[Ao sofrer ataque ($melee):] $chance% de chance de prevenir $p1 de dano e remover $p2 de vigor do oponente.,$t[Al recibir un ataque ($melee):] $chance % de probabilidad de evitar $p1 de daño y quitarle $p2 de resistencia al rival.
+<!MissingKey:264:Strong Heroic Potion>,Strong Heroic Potion,Starker Heldentrunk,强力英勇魔药,ハイヒーローポーション,강력한 영웅의 포션,強效英勇魔藥,Potion héroïque forte,Усиленное героическое зелье,Poção Heroica Potente,Poción heroica potente
+<!MissingKey:265:$t[On hit:] Use $p1 $mana: This and \~$affected $h[Weapons] gain $p2 damage.>,$t[On hit:] Use $p1 $mana: This and \~$affected $h[Weapons] gain $p2 damage.,$t[Bei Treffer:] Nutze $p1 $mana: Dieser Gegenstand und $affected $h[Waffen] verursachen +$p2 Schaden.,击中对手时：消耗$p1点$mana，此物品和$affected的$h[武器]获得$p2点伤害加成。,$t[ヒット時：]$p1 $mana を消費して、この武器と$affectedにある$h[武器]のダメージ値が$p2増える,$t[적중 시:] $mana를 $p1 사용: 이 아이템과 $affected에 위치한 $h[무기]가 가하는 피해가 $p2 증가합니다.,命中對手時：消耗$p1點$mana，此物品和$affected的$h[武器]獲得$p2點傷害加成。,$t[Par coup :] utilisez $p1 $mana : ceci et les $h[Armes] $affected gagnent $p2 de dégâts.,$t[При попадании:] использует $p1 $mana: сам факел и $affected $h[оружие] получают +$p2 ед. урона.,$t[Ao acertar:] Gasta $p1 $mana: Este item e as $h[Armas] $affected ganhem $p2 de dano.,$t[Al golpear:] Usa $p1 $mana: Esta y otras $affected $h[Armas] causan $p2 más de daño.
+<!MissingKey:266:Vampiric Armor>,Vampiric Armor,Vampirischer Panzer,吸血护甲,吸血鬼の鎧,흡혈의 갑옷,吸血護甲,Armure vampirique,Вампирический доспех,Armadura Vampírica,Armadura vampírica
+<!MissingKey:267:Strong Stone Skin Potion>,Strong Stone Skin Potion,Starker Steinhauttrank,强力硬化魔药,極硬肌のポーション,강력한 돌 피부 포션,強效硬化魔藥,Potion de peau de pierre forte,Усиленное зелье каменной кожи,Poção Casca-Grossa Potente,Poción fortapétrea potente
+<!MissingKey:268:$t[Start of battle:] Gain $p1 $vampirism. $t[On hit:] Use $p2 $regen to gain $p3 $vampirism. >,"$t[Start of battle:] Gain $p1 $vampirism. $t[On hit:] Use $p2 $regen to gain $p3 $vampirism. 
+
+ Deals $h[+1] maximum damage per $vampirism.","$t[Kampfbeginn:] Erhalte $p1 $vampirism. $t[Bei Treffer:] Nutze $p2 $regen, um $p3 $vampirism zu erhalten. Erhält $h[1] Maximalschaden pro $vampirism. ","$t[战斗开始时：]获得$p1层$vampirism。$t[击中对手时：]消耗$p2层$regen以获得$p3层$vampirism。
+
+每有一层$vampirism，最大伤害增加$h[1]。","$t[バトル開始時：]$p1 $vampirism を獲得する $t[ヒット時：]$p2 $regen を消費して、$p3 $vampirism を獲得する 
+
+ $vampirism 1スタックにつき最大ダメージ $h[+1]","$t[전투 시작 시:] $vampirism을 $p1 획득합니다. $t[적중 시:] $regen을 $p2 사용해 $vampirism을 $p3 획득합니다.
+
+$vampirism마다 최대 피해가 $h[1]씩 증가합니다.",$t[戰鬥開始時：]獲得$p1層$vampirism。$t[命中時：]消耗$p2層$regen以獲得$p3層$vampirism。每有一層$vampirism，最大傷害增加$h[1]點。,"$t[Au début du combat :] gagnez $p1 $vampirism. $t[Par coup :] utilisez $p2 $regen pour gagner $p3 $vampirism. 
+
+ Les dégâts max augmentent de $h[1] par $vampirism.","$t[Начало боя:] добавляет $p1 $vampirism. $t[При попадании:] использует $p2 $regen и добавляет $p3 $vampirism. 
+
+ Максимальный урон $h[+1] за каждый эффект $vampirism.","$t[Início da batalha:] Ganha $p1 $vampirism. $t[Ao acertar:] Usa $p2 $regen para ganhar $p3 $vampirism. 
+
+ Causa $h[+1] de dano máximo por $vampirism.","$t[Al comienzo de la batalla:] Obtiene $p1 $vampirism. $t[Al golpear:] Usa $p2 $regen para obtener $p3 $vampirism. 
+
+ El daño máx. aumenta en $h[1] por cada $vampirism."
+<!MissingKey:269:Dagger>,Dagger,Dolch,匕首,ダガー,단검,匕首,Dague,Кинжал,Adaga,Daga
+<!MissingKey:270:$t[Start of battle:] Gain $p3 $heat. $reflect[Reflect] $p1 debuffs. >,"$t[Start of battle:] Gain $p3 $heat. $reflect[Reflect] $p1 debuffs. 
+
+ Hatches after $p2 rounds in your backpack.","$t[Kampfbeginn:] Erhalte $p3 $heat. $reflect[Reflektiere] $p1 Debuffs. 
+
+ Schlüpft nach $p2 Runden in deinem Rucksack.","$t[战斗开始：]获得$p3层$heat。$reflect[反弹] $p1层减益效果。 
+
+在你的背包存放$p2回合后孵化。","$t[バトル開始時：]$p3 $heat を獲得し、$p1デバフを$reflect[反射]する
+
+バックパックに入れておくと$p2ラウンド後にふ化する","$t[전투 시작 시:] $heat를 $p3 획득합니다. 디버프를 $p1개 $reflect[반사]합니다.
+
+배낭 안에서 $p2 라운드 경과 시 부화합니다.","$t[戰鬥開始：]獲得$p3層$heat。$reflect[反彈]$p1层減益效果。
+在你的背包存放$p2回合後孵化。","$t[Au début du combat :] gagnez $p3 $heat. $reflect[Renvoyez] $p1 malus. 
+
+ Éclot après $p2 tours dans votre sac à dos.","$t[Начало боя:] добавляет $p3 $heat. $reflect[Отражает] до $p1 негативных эффектов. 
+
+ Вылупляется после $p2 раундов в рюкзаке.","$t[Início da batalha:] Ganha $p3 $heat. $reflect[Reflete] $p1 debuffs. 
+
+ Choca-se após $p2 rodadas na sua mochila.","$t[Al comienzo de la batalla:] Obtiene $p3 $heat. $reflect[Devuelve] $p1 desventajas. 
+
+ Eclosiona tras $p2 rondas en la mochila."
+<!MissingKey:271:Storage Coffin>,Storage Coffin,Reisesarg,储物棺材,棺型バッグ,보관용 관,儲物棺材,Cercueil de réserve,Гроб-чемодан,Caixão de Armazenamento,Ataúd de almacenamiento
+"<!MissingKey:272:$t[Opponent drops below $p1% or you drop below $p5%:] \~Consume this and deal \~$p2 $effect-damage for each debuff of your opponent with $p_lifesteal% lifesteal. \~For $p4s, reduce opponent's healing by $p3%. >","$t[Opponent drops below $p1% or you drop below $p5%:] \~Consume this and deal \~$p2 $effect-damage for each debuff of your opponent with $p_lifesteal% lifesteal. \~For $p4s, reduce opponent's healing by $p3%. ","$t[Leben des Gegners fällt unter $p1% oder dein Leben fällt unter $p5%:] Trinke aus und verursache \~$p2 $effect-Schaden pro Debuff deines Gegners mit $p_lifesteal% Lebensraub, und reduziere gegnerische Heileffekte um $p3% für $p4s.",$t[当你对手的生命值降低到$p1%或你的生命值降低到$p5%时：]消耗此魔药，根据对手身上减益效果层数，每层造成带有$p_lifesteal%生命偷取效果的$p2点$effect伤害。在$p4s内，对手生命值恢复效果降低$p3%。,$t[相手の体力が$p1%未満に低下時または自分の体力が$p5%未満に低下時：]このアイテムを消費して、相手のデバフ1スタックにつき体力吸収率$p_lifesteal%の$p2 $effect ダメージを与える。さらに$p4秒間、相手の回復量 -$p3%,"$t[상대의 체력이 $p1% 아래로 떨어지거나 내 체력이 $p5% 아래로 떨어질 시:] 포션을 소모해, 상대에게 부여된 디버프마다 $p_lifesteal%의 생명력을 흡수하는 $effect 피해를 $p2 가합니다. $p4초 동안 상대의 치유량이 $p3% 감소합니다.",$t[當你對手的生命值降低到$p1%或你的生命值降低到$p5%時：]消耗此魔藥，根據對手身上減益效果層數，每層造成帶有$p_lifesteal%生命偷取效果的$p2點$effect傷害。在$p4s內，對手生命值恢復效果降低$p3%。,"$t[PV de l'adversaire inférieurs à $p1% ou vos PV inférieurs à $p5 % :] consommez ceci et infligez $p2 de dégâts $effect pour chaque malus de votre adversaire avec $p_lifesteal % de vol de vie. Pendant $p4 s, réduisez la guérison de l'adversaire de $p3 %.",$t[Когда здоровье героя ниже $p5% или здоровье противника ниже $p1%:] расходуется и наносит противнику $p2 ед. $effect-урона и крадет $p_lifesteal% здоровья за каждый негативный эффект на нем. Снижает эффективность исцеления противника на $p3% на $p4 сек.,"$t[Oponente cai abaixo de $p1% ou você cai abaixo de $p5%:] Consome isto e causa $p2 de dano de $effect por cada debuff do seu oponente com $p_lifesteal% de roubo de vida. Por $p4 s, diminui a cura do oponente em $p3%.","$t[Si la salud del rival cae por debajo del $p1 % o si la propia cae por debajo del $p5 %]: Consume la poción e inflige $p2 de daño de $effect por cada desventaja del rival con un $p_lifesteal % de drenaje vital. Durante $p4 s, reduce la curación del rival en un $p3 %."
+<!MissingKey:273:Leather Armor>,Leather Armor,Lederrüstung,皮制护甲,革の鎧,가죽 갑옷,皮製護甲,Armure de cuir,Кожаный доспех,Armadura de Couro,Armadura de cuero
+<!MissingKey:274:Crossblades>,Crossblades,Kreuzklingen,十字剑,クロスブレード,크로스블레이드,十字劍,Lames croisées,Скрещенные клинки,Crucilâminas,Espadas cruzadas
+<!MissingKey:275:Magic Staff>,Magic Staff,Zauberstab,法杖,魔法の杖,마법 지팡이,法杖,Bâton magique,Волшебный посох,Cajado Mágico,Bastón mágico
+<!MissingKey:276:Flawed Ruby>,Flawed Ruby,Fehlerhafter Rubin,劣质红宝石,傷物のルビー,금이 간 루비,劣質紅寶石,Rubis médiocre,Колотый рубин,Rubi Polido,Rubí imperfecto
+<!MissingKey:277:Thorn Whip>,Thorn Whip,Dornenpeitsche,荆棘之鞭,イバラのムチ,가시 채찍,荊棘之鞭,Fouet à épines,Терновый хлыст,Chicote de Espinhos,Látigo espinoso
+<!MissingKey:278:Pineapple>,Pineapple,Ananas,菠萝,パイナップル,파인애플,鳳梨,Ananas,Ананас,Abacaxi,Piña
+<!MissingKey:279:Wolpertinger>,Wolpertinger,Wolpertinger,鹿角翼兔,ヴォルパーティンガー,볼퍼팅어,鹿角翼兔,Chimère de Bavière,Вольпертингер,Wolpertinger,Wolpertinger
+<!MissingKey:280:Flawed Topaz>,Flawed Topaz,Fehlerhafter Topas,劣质黄宝石,傷物のトパーズ,금이 간 토파즈,劣質黃寶石,Topaze médiocre,Колотый топаз,Topázio Polido,Topacio imperfecto
+<!MissingKey:281:$t[Every $cds:] Inflict $p1 $poison.>,$t[Every $cds:] Inflict $p1 $poison.,$t[Alle $cds:] Verursache $p1 $poison.,$t[每$cds:] 施加$p1层$poison。,$t[$cd秒毎：]$p1 $poison を付与する,$t[$cd초마다:] $poison을 $p1 부여합니다.,$t[每$cd秒：]施加$p1層$poison。,$t[Toutes les $cd s :] infligez $p1 $poison.,$t[Раз в $cd сек.:] накладывает $p1 $poison.,$t[A cada $cd s:] Inflige $p1 $poison.,$t[Cada $cd s] Inflige $p1 $poison.
+<!MissingKey:282:$t[On reveal:] >,"$t[On reveal:] 
+ You take -$p_damfactor% $effect-damage. 
+ Gain $block $bl + $p1 $bl for each card before. 
+ Inflict $p2 $cold.","$t[Beim Aufdecken:] 
+ Du erhältst -$p_damfactor% $effect-Schaden. 
+ Erhalte $block $bl + $p1 $bl für jede vorhergehende Karte. 
+ Verursache $p2 $cold.","$t[翻开时：]你承受的$effect伤害-$p_damfactor%。
+获得$block点$bl。之前的每张卡牌提供$p1点$bl。
+施加$p2层$cold。","$t[めくる時：]
+受ける $effect ダメージ -$p_damfactor% 
+$block $bl を獲得する（前にめくったカード1枚につき +$p1 $bl） 
+$p2 $cold を付与する","$t[공개 시:]
+받는 $effect 피해가 $p_damfactor% 감소합니다.
+$bl를 $block 획득하며 이전에 있었던 카드마다 $bl를 $p1 추가로 획득합니다.
+$cold를 $p2 부여합니다.","$t[翻開時：]你承受的$effect傷害-$p_damfactor%。 
+獲得$block點數$bl。之前的每張卡牌提供$p1點$bl。 
+施加$p2層$cold。","$t[Par tirage :] 
+ vous subissez $p_damfactor % de dégâts $effect. 
+ Gagnez $block $bl + $p1 $bl pour chaque carte avant. 
+ Infligez $p2 $cold.","$t[При раскрытии:] 
+ $effect-урон по герою снижается на $p_damfactor% 
+ Добавляет $block $bl + $p1 $bl за каждую предшествующую карту. 
+ Накладывает $p2 $cold.","$t[Ao revelar:] 
+ Você recebe -$p_damfactor% de dano de $effect. 
+ Ganha $block $bl + $p1 $bl por cada carta anterior. 
+ Inflige $p2 $cold.","$t[Al revelarse:] 
+ Recibe -$p_damfactor % de daño de $effect. 
+ Obtiene $block $bl + $p1 $bl por cada carta anterior. 
+ Inflige $p2 $cold."
+<!MissingKey:283:Spectral Dagger>,Spectral Dagger,Spektraldolch,幽灵匕首,ゴーストダガー,영혼의 단검,幽靈匕首,Dague spectrale,Призрачный кинжал,Adaga Espectral,Daga espectral
+<!MissingKey:284:$t[On attack:] Use $p1 $mana to deal \~+$p2 damage and gain $p3 damage.>,$t[On attack:] Use $p1 $mana to deal \~+$p2 damage and gain $p3 damage.,"$t[Bei Angriff:] Nutze $p1 $mana, um $p2 zusätzlichen Schaden zu verursachen, und erhöhe den Schaden um $p3.",$t[攻击时：]消耗$p1点$mana造成$p2点额外伤害。并增加$p3点伤害，直到战斗结束。,$t[攻撃時：]$p1 $mana を消費して、与ダメージ +$p2、ダメージ値が$p3増える,"$t[공격 시:] $mana를 $p1 사용해 피해량이 $p2 증가하며, 가하는 피해가 $p3 증가합니다.",$t[攻擊時：]消耗$p1點$mana造成$p2點額外傷害，並使其傷害增加$p3點，直到戰鬥結束。,$t[Par attaque :] utilisez $p1 $mana pour infliger +$p2 de dégâts et gagner $p3 de dégâts.,"$t[При атаке:] использует $p1 $mana, чтобы нанести +$p2 ед. урона. Добавляет $p3 ед. урона.",$t[Ao atacar:] Gasta $p1 $mana para causar +$p2 de dano e ganhar $p3 de dano.,$t[Al atacar:] Usa $p1 $mana para infligir +$p2 de daño y obtener $p3 de daño.
+<!MissingKey:285:Chipped Amethyst>,Chipped Amethyst,Lädierter Amethyst,紫水晶碎片,欠けたアメシスト,깨진 자수정,紫水晶碎片,Améthyste fragmentée,Осколок аметиста,Ametista Lascada,Amatista rota
+<!MissingKey:286:Flawless Sapphire>,Flawless Sapphire,Makelloser Saphir,优质蓝宝石,無傷のサファイア,티 없는 사파이어,優質藍寶石,Saphir idéal,Безупречный сапфир,Safira Impecável,Zafiro inmaculado
+<!MissingKey:287:Cap of Resilience>,Cap of Resilience,Lederne Schutzkappe,坚韧头盔,不屈のヘルム,불굴의 모자,堅韌頭盔,Capuchon de résilience,Шлем стойкости,Elmo da Resiliência,Gorra de la resiliencia
+<!MissingKey:288:$c[Weapon sockets:] $m[On hit:] $chance% chance to inflict $p1 $poison. $c[Armor & other sockets:] $p2% chance to resist $poison. $c[Backpack:] $m[After $cds:] Gain $p3 $regen.>,$c[Weapon sockets:] $m[On hit:] $chance% chance to inflict $p1 $poison. $c[Armor & other sockets:] $p2% chance to resist $poison. $c[Backpack:] $m[After $cds:] Gain $p3 $regen.,"$c[Waffensockel:] $m[Bei Treffer:] $chance% Chance, $p1 $poison zu verursachen. $c[Rüstung & andere Sockel:] $p2% Chance, $poison zu vermeiden. $c[Rucksack:] $m[Nach $cds:] Erhalte $p3 $regen.",$c[放入武器槽：] $m[击中对手：]将有$chance%的几率向对手施加$p1层$poison。$c[放入护甲或其他槽：]将有$p2%的几率抵挡$poison。$c[放入背包：] $m[$cds后：]获得$p3层$regen。,$c[武器に装着：]$m[ヒット時：]$chance%の確率で$p1 $poison を付与する $c[非武器に装着：]$p2%の確率で $poison を無効化する $c[バックパックに配置：]$m[$cd秒後：]$p3 $regen を獲得する,$c[무기 소켓:] $m[적중 시:] $chance%의 확률로 $poison을 $p1 부여합니다. $c[방어구 및 기타 소켓:] $p2%의 확률로 $poison에 저항합니다. $c[배낭:] $m[$cd초 후:] $regen을 $p3 획득합니다.,$c[放入武器槽：]$m[命中時：]有$chance%的機率向對手施加$p1層$poison。$c[放入護甲或其他槽位：]將有$p2%的機率抵擋$poison。$c[放入背包：]$m[$cd秒後：]獲得$p3層$regen。,$c[Emplacements d'armes :] $m[Par coup :] $chance % de chance d'infliger $p1 $poison. $c[Armure et autres emplacements :] $p2 % de chance de résister à $poison. $c[Sac à dos :] $m[Après $cd s :] gagnez $p3 $regen.,$c[В слоте оружия:] $m[При попадании:] шанс $chance% наложить $p1 $poison. $c[В слоте брони/в другом слоте:] Шанс $p2% игнорировать $poison. $c[В рюкзаке:] $m[Через $cd сек.:] добавляет $p3 $regen.,$c[Engastes de armas:] $m[Ao acertar:] $chance% de chance de infligir $p1 $poison. $c[Demais engastes:] $p2% de chance de resistir a $poison. $c[Mochila:] $m[Após $cd s:] Ganhe $p3 $regen.,$c[Ranuras de arma:] $m[Al golpear:] $chance % de probabilidad de infligir $p1 $poison. $c[Ranuras de armadura y otras:] $p2 % de probabilidad de resistir $poison. $c[Mochila:] $m[Tras $cd s:] Obtiene $p3 $regen.
+<!MissingKey:289:Carrot Goobert>,Carrot Goobert,Karottenschlotzbert,萝卜头黏黏,ニンジン・スラバート,당근 슬돌이,蘿蔔頭黏呼呼,Viskeu carotte,Морковный Слаймер,Gosberto de Cenoura,Viscosino zanahorio
+<!MissingKey:290:$t[$p1 $affected item activations:] $affected2 $h[Weapons] gain +$p2 damage. Gain $block $bl.>,$t[$p1 $affected item activations:] $affected2 $h[Weapons] gain +$p2 damage. Gain $block $bl.,"$t[$p1 $affected Gegenstand-Aktivierungen:] $affected2 $h[Waffen] verursachen +$p2 Schaden, erhalte $block $bl.",$t[$affected的物品激活达到$p1次：]$affected2的$h[武器]+$p2伤害并获得$block点$bl。,$t[$affectedにあるアイテム$p1回発動時：]$affected2にある$h[武器]のダメージ値が$p2増え、$block $bl を獲得する,$t[$affected에 위치한 아이템이 $p1회 발동 시:] $affected2에 위치한 $h[무기]가 가하는 피해가 $p2 증가합니다. $bl를 $block 획득합니다.,$t[$affected的物品啟動達到$p1次：]$affected2的$h[武器]+$p2點傷害並獲得$block點$bl。,$t[En activant l'objet $affected $p1 fois :] les $h[Armes] $affected2 gagnent +$p2 de dégâts. Gagnez $block $bl.,$t[При срабатывании $p1 $affected предметов:] $affected2 $h[оружие] получает +$p2 ед. урона. Добавляет $block $bl.,$t[$p1 ativações de item $affected:] as $h[Armas] $affected2 ganham +$p2 de dano. Ganhe $block $bl.,$t[Al activar $p1 $affected objetos:] $affected2 $h[Armas] causan $p2 más de daño. Obtiene $block $bl.
+"<!MissingKey:291:$t[On attacked ($melee):] $chance% chance to prevent $p1 damage, remove \~$p2 stamina from opponent, and gain $p3 $spikes (up to $p4).>","$t[On attacked ($melee):] $chance% chance to prevent $p1 damage, remove \~$p2 stamina from opponent, and gain $p3 $spikes (up to $p4).","$t[Bei $melee-Angriff:] $chance% Chance, $p1 Schaden zu vermeiden, $p2 Ausdauer vom Gegner zu entfernen und $p3 $spikes zu erhalten (bis zu $p4). ",$t[被攻击时（$melee）：]有$chance%的几率抵挡$p1点伤害，移除对手$p2点耐力值，并获得$p3层$spikes（最高$p4层）。,$t[被攻撃時（$melee）：]$chance%の確率で$p1ダメージを防ぎ、相手から$p2スタミナを除去し、$p3 $spikes を獲得する（最大$p4まで）,"$t[공격 받을 시 ($melee):] $chance%의 확률로 피해를 $p1 막고, 상대의 스태미나를 $p2 제거한 뒤, $spikes를 $p3 획득합니다 (최대 $p4).",$t[被攻擊時（近戰）：]有$chance%的機率抵擋$p1點傷害，移除對手$p2點耐力值，並獲得$p3層$spikes（最高$p4層）。,"$t[En recevant une attaque ($melee) :] $chance % de chance d'empêcher $p1 dégâts, de retirer $p2 d'endurance à l'adversaire et de gagner $p3 $spikes (jusqu'à $p4).","$t[При входящей атаке ($melee):] шанс $chance% заблокировать $p1 ед. урона, отнять у противника $p2 ед. энергии и получить $p3 $spikes (макс.: $p4).","$t[Ao sofrer ataque ($melee):] $chance% de chance de prevenir $p1 de dano, remover $p2 de vigor do oponente e ganhar $p3 $spikes (até $p4).","$t[Al recibir un ataque ($melee):] $chance % de probabilidad de evitar $p1 de daño, elimina $p2 de resistencia al rival y obtiene $p3 $spikes (máximo: $p4)."
+<!MissingKey:292:$t[On reveal:] >,"$t[On reveal:] 
+ Your next hit is critical. 
+ If the number of cards before is odd, gain $p2 $lucky and $p3 $spikes.","$t[Beim Aufdecken:] Dein nächster Treffer ist kritisch. 
+ Wenn die Zahl der vorhergehenden Karten ungerade ist, erhalte $p2 $lucky und $p3 $spikes.","$t[翻开时：] 
+你的下一次攻击为暴击。
+如果之前翻开的卡牌数量是奇数，获得$p2点$lucky和$p3层$spikes。","$t[めくる時：]
+次のヒットがクリティカルになる 
+前にめくったカードの枚数が奇数なら、$p2 $lucky と$p3 $spikes を獲得する","$t[공개 시:]
+다음 공격이 치명타가 됩니다.
+이전에 있었던 카드의 수가 홀수라면, $lucky을 $p2, $spikes를 $p3 획득합니다.","$t[翻開時：]你的下一次攻擊為暴擊。
+如果之前翻開的卡牌數量是奇數，獲得$p2點$lucky和$p3層$spikes。","$t[Par tirage :] 
+ votre prochain coup est critique. 
+ Si le nombre de cartes avant est impair, gagnez $p2 $lucky et $p3 $spikes.","$t[При раскрытии:] 
+ следующий удар будет критическим. 
+ Если количество предшествующих карт нечетное, добавляет $p2 $lucky и $p3 $spikes.","$t[Ao revelar:] 
+ Seu próximo acerto será crítico. 
+ Se a quantidade de cartas anteriores for ímpar, ganha $p2 $lucky e $p3 $spikes.","$t[Al revelarse:] 
+ El siguiente golpe es crítico. 
+ Si el número de cartas anterior es impar, obtiene $p2 $lucky y $p3 $spikes."
+<!MissingKey:293:Garlic>,Garlic,Knoblauch,大蒜,ニンニク,마늘,大蒜,Ail,Чеснок,Alho,Ajo
+<!MissingKey:294:Darksaber>,Darksaber,Dunkelschwert,黑暗剑,ダークセイバー,다크세이버,黑暗劍,Sabre sombre,Меч тьмы,Sabre Sombrio,Espada oscura
+<!MissingKey:295:Stone Skin Potion>,Stone Skin Potion,Steinhauttrank,硬化魔药,硬肌のポーション,돌 피부 포션,硬化魔藥,Potion de peau de pierre,Зелье каменной кожи,Poção Casca-Grossa,Poción fortapétrea
+<!MissingKey:296:Corrupted Armor>,Corrupted Armor,Verdorbene Rüstung,腐败护甲,堕落せし鎧,타락한 갑옷,腐敗護甲,Armure corrompue,Проклятая броня,Armadura Corrompida,Armadura corrupta
+<!MissingKey:297:$affected items inflict $h[+100%] $poison. $t[Opponent reaches $p1 $poison:] Gain $chance% critical hit chance.>,$affected items inflict $h[+100%] $poison. $t[Opponent reaches $p1 $poison:] Gain $chance% critical hit chance.,$affected Gegenstände verursachen $h[+100%] $poison. $t[Gegner erreicht $p1 $poison:] Erhält $chance% kritische Trefferchance.,$affected的物品造成$h[+100%] $poison。$t[对手身上的$poison达到$p1层时：]获得$chance%暴击率加成。,$affectedにあるアイテムで付与する $poison $h[+100%] $t[相手が$p1 $poison 到達時：]クリティカル率 +$chance%,$affected에 위치한 아이템이 부여하는 $poison이 $h[100%] 증가합니다. $t[상대의 $poison이 $p1에 도달 시:] $chance%의 치명타 확률을 획득합니다.,$affected的物品施加$h[+100%]的$poison。$t[對手身上的$poison達到$p1層時：]獲得$chance%暴擊率加成。,Les objets $affected infligent $h[+100 %] $poison. $t[L'adversaire atteignant $p1 $poison :] gagnez $chance % de chance de coup critique.,$affected предметы накладывают $h[+100%] $poison. $t[Если у противника более $p1 $poison:] повышает шанс критического урона на $chance%.,Os itens $affected infligem $h[+100%] de $poison. $t[Oponente alcança $p1 $poison:] Ganha $chance% de chance de acerto crítico.,Los $affected objetos infligen $h[+100 %] $poison. $t[Al alcanzar el rival $p1 $poison:] Obtiene $chance % de probabilidad de golpe crítico.
+<!MissingKey:298:Tusk Piercer>,Tusk Piercer,Stoßzahnbohrer,尖牙弓,つらぬきキバの弓矢,상아 관통활,尖牙弓,Perforateur en défense,Разящий клык,Arco Longo de Dente,Perforacolmillos
+<!MissingKey:299:Heart Container>,Heart Container,Herzcontainer,心之容器,ハートの容器,생명의 그릇,心之容器,Coffret cœur,Капсула сердца,Porta-Coração,Contenedor de corazón
+<!MissingKey:300:$t[On attack:] Use $p2 $mana: Trigger all \~$affected $Food[Food]. >,"$t[On attack:] Use $p2 $mana: Trigger all \~$affected $Food[Food]. 
+
+ Deals +$p1 damage for each $affected $Food[Food]. ",Verursacht +$p1 Schaden pro $affected $Food[Essen]. $t[Angriff:] Nutze $p2 $mana: Aktiviere jedes $affected $Food[Essen].,"$t[攻击时：]消耗$p2点$mana，激活所有$affected的$Food[食物]类装备。
+
+每有一个$affected的$Food[食物]类装备，此武器伤害+$p1。","$t[攻撃時：]$p2 $mana を消費して、$affectedにあるすべての$Food[食べ物]を発動する
+
+$affectedにある$Food[食べ物]1個につき与ダメージ +$p1","$t[공격 시:] $mana를 $p2 사용: $affected에 위치한 모든 $Food[음식]을 발동합니다.
+
+$affected에 위치한 $Food[음식]마다 가하는 피해가 $p1 증가합니다.","$t[攻擊時：]消耗$p2點$mana，啟動所有$affected的$Food[食物]類裝備。 
+
+每有一個$affected的$Food[食物]類裝備，此武器傷害+$p1。","$t[Par attaque :] utilisez $p2 $mana : déclenche toute la $affected $Food[Nourriture]. 
+
+ Inflige +$p1 de dégâts pour chaque $affected [Nourriture] $Food.","$t[При атаке:] использует $p2 $mana: активирует все $affected предметы типа $Food[еда]. 
+
+ Наносит +$p1 урона за каждый $affected предмет типа $Food[еда].","$t[Ao atacar:] Gasta $p2 $mana: Ativa todos os $Food[Alimentos] $affected. 
+
+ Causa +$p1 de dano por cada $Food[Alimento] $affected.","$t[Al atacar:] Usa $p2 $mana: Activa toda la $affected $Food[comida]. 
+
+ Inflige +$p1 de daño por cada $affected $Food[comida]."
+<!MissingKey:301:Strong Demonic Flask>,Strong Demonic Flask,Starke Teufelsflasche,强力恶魔烧瓶,凶悪鬼のフラスコ,강력한 악마의 플라스크,強效惡魔燒瓶,Flasque démoniaque forte,Усиленное демоническое зелье,Frasco Demoníaco Potente,Poción demoníaca potente
+<!MissingKey:302:$t[Start of battle:] Gain $block $bl. \~Resist $p1 debuffs.>,$t[Start of battle:] Gain $block $bl. \~Resist $p1 debuffs.,$t[Kampfbeginn:] Erhalte $block $bl. \~Vermeide $p1 Debuffs.,$t[战斗开始时：]获得$block点$bl，抵抗$p1层减益效果。,$t[バトル開始時：]$block $bl を獲得する。$p1デバフを無効化する,$t[전투 시작 시:] $bl을 $block 획득합니다. 디버프에 $p1번 저항합니다.,"$t[戰鬥開始時：]獲得$block點$bl，
+抵抗$p1層減益效果。",$t[Au début du combat :] gagnez $block $bl. Résistez à $p1 malus.,$t[Начало боя:] добавляет $block $bl. Игнорирует негативные эффекты: $p1.,$t[Início da batalha:] Ganhe $block $bl. Resiste a $p1 debuffs.,$t[Al comienzo de la batalla:] Obtiene $block $bl. Resiste $p1 desventajas.
+<!MissingKey:303:Wooden Sword>,Wooden Sword,Holzschwert,木剑,木の剣,나무 검,木劍,Épée de bois,Деревянный клинок,Espada de Madeira,Espada de madera

@@ -17,7 +17,7 @@ func onShopEntered():
 	if not chessboards.empty():
 		var weights = [0, 0, 0, 0, 0, 0]
 		var roundsPassed = Game.curRound - Game.SKILL_ROUND1
-		weights[0] = 2
+		weights[0] = 3
 		weights[1] = (roundsPassed - firstKnightRound) * 2 if roundsPassed > firstKnightRound else 0
 		weights[2] = weights[1]
 		weights[3] = (roundsPassed - firstRookRound) * 2 if roundsPassed > firstRookRound else 0

@@ -116,6 +116,7 @@ enum MatchMaking{
 
 const scoreboardScene = preload("res://Interface/Lobbies/LobbyScoreboard.tscn")
 const scoreboardButtonScene = preload("res://Interface/Lobbies/ScoreboardButton.tscn")
+const obBuildViewerScene = preload("res://Interface/Lobbies/LobbyObBuildViewer.tscn")
 const lobbyTimerScene = preload("res://Interface/Lobbies/LobbyTimer.tscn")
 const roundDurationCurve = preload("res://Interface/Lobbies/RoundDuration.tres")
 const COMBAT_TIME: = 20.0
@@ -178,6 +179,7 @@ var lobbyTimer = null
 var scoreboardButton = null
 var scoreboardNode = null
 var scoreboard = null
+var obBuildViewer = null
 
 
 
@@ -314,8 +316,9 @@ func setReady():
 	checkAllReady()
 
 func prepareCombat():
-	
-	
+	closeObBuildViewer()
+
+
 	var curRoundMetadata = RunDatabase.serializeCurrentRound()
 	if isActiveMember():
 		getOwnMemberData().setReady(false)
@@ -976,6 +979,13 @@ func startCountdown():
 
 func onStartCountdown():
 	gameHasStarted = true
+	if CustomRules.isTeamSwitchMode():
+		print("[Lobbies] onStartCountdown: TeamSwitchMode active, calculating teams...")
+		var teamResult = calculateTeams()
+		var ownData = getOwnMemberData()
+		print("[Lobbies] onStartCountdown: my teammateId=", ownData.teammateSteamId)
+		if isSingleTeamMatchPoolResult(teamResult):
+			print("[TeamSwitch] single team detected; using ranked match pool opponents")
 	ensureTimer()
 	emit_signal("start_countdown")
 
@@ -992,14 +1002,40 @@ func ensureScoreboard():
 		
 		
 		scoreboardButton = scoreboardNode.get_node("LobbyButton")
-		
+		scoreboard.connect("ob_entry_pressed", self, "openObBuildViewer")
+	
 
 func deleteScoreboard():
+	closeObBuildViewer()
 	scoreboardNode.queue_free()
 	scoreboard.queue_free()
 	scoreboardNode = null
 	scoreboard = null
 	scoreboardButton = null
+
+func openObBuildViewer(steamId):
+	if onResultsScreen: return
+	if obBuildViewer != null:
+		obBuildViewer.setSpecificBuild(steamId, findLastVisibleRound(steamId))
+		return
+	obBuildViewer = obBuildViewerScene.instance()
+	scoreboardNode.add_child(obBuildViewer)
+	obBuildViewer.setSpecificBuild(steamId, findLastVisibleRound(steamId))
+
+func closeObBuildViewer():
+	if obBuildViewer != null:
+		obBuildViewer.close()
+		obBuildViewer = null
+
+func onObBuildViewerClosed():
+	obBuildViewer = null
+
+func findLastVisibleRound(steamId) -> int:
+	var memberData = getMemberData(steamId)
+	for roundI in range(Game.MAX_ROUNDS_LOBBIES - 1, - 1, - 1):
+		if memberData.getResultOfRound(roundI + 1) != Game.RoundResult.RunOver:
+			return roundI
+	return 0
 
 func ensureTimer():
 	if lobbyTimer == null:
@@ -1404,20 +1440,94 @@ var rematchPenalty_Strongest = [0.8, 0.4, 0.2, 0]
 var hostRematch = [0, 0, 0, 0, 0.2, 0.4, 0.6, 0.8, 1]
 
 
+func calculateTeams() -> Dictionary:
+	
+	var teams = {}
+	var unassigned = []
+	
+	
+	for steamId in memberList:
+		if not steamId in memberData:
+			continue
+		var name = memberData[steamId].playerName
+		var split = name.split("-", false, 1)
+		if split.size() == 2:
+			var teamName = split[0]
+			if not teamName in teams:
+				teams[teamName] = []
+			teams[teamName].push_back(steamId)
+		else:
+			unassigned.push_back(steamId)
+	
+	
+	for teamName in teams:
+		var members = teams[teamName]
+		var teamSize = members.size()
+		for i in teamSize:
+			var steamId = members[i]
+			
+			var prevIndex = (i - 1 + teamSize) % teamSize
+			var prevSteamId = members[prevIndex]
+			memberData[steamId].setTeam(teamName, prevSteamId, members.duplicate(), i)
+	
+	
+	for steamId in unassigned:
+		if steamId in memberData:
+			memberData[steamId].setTeam("", 0, [], - 1)
+	
+	return {"teams": teams, "unassigned": unassigned}
+
+func isSingleTeamMatchPoolResult(teamResult: Dictionary) -> bool:
+	if not CustomRules.isTeamSwitchMode():
+		return false
+	var teams: Dictionary = teamResult.get("teams", {})
+	var unassigned: Array = teamResult.get("unassigned", [])
+	if unassigned.size() > 0:
+		return false
+	if teams.size() != 1:
+		return false
+	var teamName = teams.keys()[0]
+	return teamName != "" and teams[teamName].size() >= 2
+
+func isSingleTeamMatchPoolMode() -> bool:
+	if not CustomRules.isTeamSwitchMode():
+		return false
+	return isSingleTeamMatchPoolResult(calculateTeams())
+
 func pickOpponent() -> LobbyMemberData:
 	if getNumMembers() == 1:
 		return null
 	
 	var possibleOpponents = []
+	
+	
+	var ownTeamName = ""
+	if CustomRules.isTeamSwitchMode():
+		var ownData = getOwnMemberData()
+		ownTeamName = ownData.getTeamName()
+		print("[TeamSwitch] pickOpponent: ownTeamName=", ownTeamName)
+	
 	for steamId in memberData:
 		if steamId != SteamHelper.STEAM_ID:
-			var roundData = memberData[steamId].getRoundData(Game.curRound)
+			var member = memberData[steamId]
+			
+			
+			if CustomRules.isTeamSwitchMode():
+				var memberTeam = member.getTeamName()
+				if memberTeam == "" or memberTeam == ownTeamName:
+					print("[TeamSwitch] pickOpponent: skip ", member.playerName, " team=", memberTeam)
+					continue
+			
+			var roundData = member.getRoundData(Game.curRound)
 			if roundData != null:
-				possibleOpponents.push_back(memberData[steamId])
+				possibleOpponents.push_back(member)
 	
 	if possibleOpponents.empty():
 		Util.eprint("ERR: No opponents")
 		return null
+	
+	if CustomRules.isTeamSwitchMode() and matchMaking == MatchMaking.Random:
+		return Util.pickRandomElement(possibleOpponents)
 	
 	if getNumMembers() == 2:
 		return possibleOpponents[0]

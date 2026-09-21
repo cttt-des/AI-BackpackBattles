@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Items/Item.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Items/Sprites/SpikedShield.png" type="Texture" id=2]
+[ext_resource path="res://Items/SpikedShield.gd" type="Script" id=3]
+[ext_resource path="res://Items/GemSocket.tscn" type="PackedScene" id=4]
+
+[sub_resource type="PhysicsMaterial" id=2]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="Shader" id=10]
+code = "shader_type canvas_item;
+
+uniform float progress : hint_range(-1, 2) = 0.5;
+uniform vec2 direction = vec2(0, 1);
+
+void fragment() {
+	COLOR = texture(TEXTURE, UV);
+	COLOR.rgb *= 1.0 + 0.5 * smoothstep(progress - 0.05, progress + 0.05, dot(UV, direction));
+}"
+
+[sub_resource type="ShaderMaterial" id=11]
+resource_local_to_scene = true
+shader = SubResource( 10 )
+shader_param/progress = 0.245
+shader_param/direction = Vector2( -1, 0 )
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 71.0282
+
+[node name="Spiked Shield" instance=ExtResource( 1 )]
+physics_material_override = SubResource( 2 )
+script = ExtResource( 3 )
+
+[node name="Icon" parent="." index="1"]
+material = SubResource( 11 )
+position = Vector2( -1, 0 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+
+[node name="Sockets" parent="Icon" index="0"]
+scale = Vector2( 2, 2 )
+
+[node name="GemSocket" parent="Icon/Sockets" index="0" instance=ExtResource( 4 )]
+position = Vector2( 1, 0 )
+
+[node name="BottomCenter" parent="." index="3"]
+position = Vector2( 0, 72 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="5"]
+visible = false
+shape = SubResource( 1 )
+
+[node name="Lock" parent="." index="7"]
+modulate = Color( 1, 1, 1, 1 )
+position = Vector2( 0, -34 )
+scale = Vector2( 0.3, 0.3 )

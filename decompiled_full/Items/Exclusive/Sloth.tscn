@@ -1,0 +1,108 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Items/Item.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Items/Exclusive/Sloth.gd" type="Script" id=2]
+[ext_resource path="res://Items/Exclusive/Sprites/Sloth.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Particles/GlowingDot.png" type="Texture" id=4]
+[ext_resource path="res://Items/Animations/SquishySprite.gd" type="Script" id=5]
+[ext_resource path="res://Utility/AutoHideParticles.gd" type="Script" id=6]
+[ext_resource path="res://Assets/Light/StarLight.png" type="Texture" id=7]
+[ext_resource path="res://Items/Particles/MrStrugglesActivationParticles.material" type="Material" id=8]
+[ext_resource path="res://Assets/Noise/FireNoise.png" type="Texture" id=9]
+[ext_resource path="res://Shader/DistortedParticles.gdshader" type="Shader" id=10]
+[ext_resource path="res://Items/Exclusive/Particles/SlothDragParticles.material" type="Material" id=11]
+[ext_resource path="res://Assets/Particles/GlowingLeaf.png" type="Texture" id=12]
+
+[sub_resource type="PhysicsMaterial" id=1]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 10 )
+shader_param/scale = 0.399
+shader_param/speed = 0.064
+shader_param/strength = 0.182
+shader_param/distortDir = Vector2( 1, 1 )
+shader_param/distortionTexture = ExtResource( 9 )
+
+[node name="Sloth" instance=ExtResource( 1 )]
+physics_material_override = SubResource( 1 )
+script = ExtResource( 2 )
+
+[node name="CollisionMap" parent="." index="0"]
+tile_data = PoolIntArray( -65537, 4, 0, -131072, 4, 0, -2, 4, 0, -1, 3, 0, -65536, 3, 0, -65535, 4, 0, 65534, 4, 0, 65535, 3, 0, 0, 3, 0, 1, 4, 0 )
+
+[node name="Icon" parent="." index="1"]
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+script = ExtResource( 5 )
+speed = 2.0
+friction = 0.8
+maxScale = 0.35
+
+[node name="Sockets" parent="Icon" index="0"]
+scale = Vector2( 2, 2 )
+
+[node name="Light1" type="Sprite" parent="Icon" index="1"]
+visible = false
+modulate = Color( 5, 5, 5, 1 )
+self_modulate = Color( 1, 0.203922, 0.352941, 1 )
+position = Vector2( 34, -88 )
+scale = Vector2( 0.209, 0.207 )
+texture = ExtResource( 7 )
+
+[node name="Light2" type="Sprite" parent="Icon" index="2"]
+visible = false
+modulate = Color( 5, 5, 5, 1 )
+self_modulate = Color( 1, 0.203922, 0.352941, 1 )
+position = Vector2( -30, -88 )
+scale = Vector2( 0.209, 0.207 )
+texture = ExtResource( 7 )
+
+[node name="Particles1" type="Particles2D" parent="Icon" index="3"]
+modulate = Color( 3, 3, 3, 0.53 )
+self_modulate = Color( 1, 0.360784, 0.466667, 1 )
+position = Vector2( 32, -84 )
+rotation = -1.56207
+emitting = false
+amount = 11
+lifetime = 0.5
+speed_scale = 1.5
+process_material = ExtResource( 8 )
+texture = ExtResource( 4 )
+script = ExtResource( 6 )
+
+[node name="Particles2" type="Particles2D" parent="Icon" index="4"]
+modulate = Color( 3, 3, 3, 0.53 )
+self_modulate = Color( 1, 0.360784, 0.466667, 1 )
+position = Vector2( -30, -84 )
+rotation = -1.56207
+emitting = false
+amount = 11
+lifetime = 0.5
+speed_scale = 1.5
+process_material = ExtResource( 8 )
+texture = ExtResource( 4 )
+script = ExtResource( 6 )
+
+[node name="SpecificDragParticles" type="Particles2D" parent="Icon" index="5"]
+modulate = Color( 3, 3, 3, 0.29 )
+show_behind_parent = true
+material = SubResource( 2 )
+position = Vector2( 0, -30 )
+emitting = false
+amount = 13
+lifetime = 0.68
+speed_scale = 0.11
+randomness = 0.46
+process_material = ExtResource( 11 )
+texture = ExtResource( 12 )
+script = ExtResource( 6 )
+
+[node name="BottomCenter" parent="." index="3"]
+position = Vector2( 0, 68 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="5"]
+visible = false
+polygon = PoolVector2Array( -36, -38, -29, -22, -43, 1, -54, -45, -64, -46, -75, -3, -61, 29, -66, 62, -49, 73, -14.7645, 73.646, 12, 67, 58, 70, 67, 60, 61, 32, 75, -8, 64, -47, 53, -46, 42, 2, 27, -20, 36, -39, 25, -68, -2, -74, -27, -66 )

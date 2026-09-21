@@ -1,6 +1,8 @@
 extends Control
 
 const customRulesScript = preload("res://Utility/CustomRules.gd")
+const OpponentPoolAdapter = preload("res://Interface/BuildHistory/OpponentPoolAdapter.gd")
+const RoundResultButtonScript = preload("res://Interface/BuildHistory/RoundResultButton.gd")
 const positiveColor = Color(0.590118, 1, 0.566406)
 const negativeColor = Color(1, 0.564706, 0.564706)
 
@@ -28,10 +30,15 @@ var skill1Node
 var skill2Node
 var startingBagNode
 var roundButtons: Array
-var data: BuildHistoryData
+var data = null
 var selected: bool = false
 var hovered: bool = false
 var placeholder
+var entryIndex: int = - 1
+var baseVersionVisible: bool = true
+var baseVersionText: String = ""
+
+const POOL_CHECK_LIMIT: = 5
 
 func preset():
 	unselectedBackground = $Unselected
@@ -65,14 +72,70 @@ func preset():
 func _ready():
 	placeholder = get_parent()
 
-func setHistoryData(_data: BuildHistoryData):
+func setHistoryData(_data, _entryIndex: int = - 1):
 	data = _data
+	entryIndex = _entryIndex
+
+	if data is OpponentPoolAdapter:
+		var adapter = data as OpponentPoolAdapter
+		versionLabel.show()
+		var validity = adapter.getOverallValidity()
+		if validity == RunData.Validity.Invalid:
+			versionLabel.text = "INVALID"
+			versionLabel.modulate = Color(1.0, 0.3, 0.3)
+		else:
+			versionLabel.text = "OK"
+			versionLabel.modulate = Color(0.4, 1.0, 0.4)
+
+		baseVersionVisible = true
+		baseVersionText = versionLabel.text
+
+		dateLabel.translationKey = ""
+		dateLabel.text = adapter.getPlayerName()
+
+		classIcon.texture = Game.classIcons[adapter.getCharacterClass()]
+		randomClassIcon.visible = (adapter.getLoadout() == Game.Loadout.RandomCharacter)
+
+		customRulesIcon.hide()
+		lobbyIcon.hide()
+		unrankedNode.hide()
+
+		winsLabel.text = String(adapter.getWins())
+		roundsLabel.text = String(adapter.getRounds())
+		triesLabel.show()
+		heart.show()
+		triesLabel.text = String(adapter.getTries())
+
+		rankedNode.show()
+		var leagueExactAdapter = Game.getLeague_exact(adapter.getRating())
+		var leagueAdapter = clamp(int(leagueExactAdapter), 0, Game.Leagues.Grandma)
+		leagueEmblem.setLeague(leagueAdapter)
+		rankingLabel.text = String(int(100 * fmod(leagueExactAdapter, 1.0)))
+		rankingDifLabel.hide()
+
+		for roundI in roundButtons.size():
+			var roundNum = roundI + 1
+			var resAdapter = Game.RoundResult.RunOver
+			var roundHistoryAdapter = adapter.getRoundData(roundNum)
+			if roundHistoryAdapter != null:
+				resAdapter = roundHistoryAdapter.result
+				var roundValidityAdapter = _mapRunValidityToButton(adapter.getRoundValidity(roundNum))
+				roundButtons[roundI].setResult(resAdapter, roundValidityAdapter)
+			else:
+				roundButtons[roundI].setResult(resAdapter)
+
+		instanceSpecialItems()
+		Util.updateLocaleInSubtree(self)
+		return
 	
 	if data.version == Game.versionToInt():
 		versionLabel.hide()
 	else:
 		versionLabel.show()
 		versionLabel.text = data.getVersionString()
+
+	baseVersionVisible = versionLabel.visible
+	baseVersionText = versionLabel.text
 	
 	var timeDif = data.getTimeDif()
 	if timeDif.days >= 2:
@@ -173,18 +236,26 @@ func setHistoryData(_data: BuildHistoryData):
 		if roundHistory != null:
 			res = roundHistory.result
 		roundButtons[roundI].setResult(res)
+
+	_applyPoolCheck()
 	
 	instanceSpecialItems()
 	
 	Util.updateLocaleInSubtree(self)
 
 func onRoundButtonPressed(roundI):
+	if data is OpponentPoolAdapter:
+		Game.buildHistory.updateBuild(roundI, placeholder)
+		return
 	if Input.is_action_just_released("right_click"):
 		Game.buildHistory.setOpponentMark(roundI, self)
 	else:
 		Game.buildHistory.updateBuild(roundI, placeholder)
 
 func onEntryPressed():
+	if data is OpponentPoolAdapter:
+		Game.buildHistory.updateBuild(data.getRounds(), placeholder)
+		return
 	if Input.is_action_just_released("right_click"):
 		Game.buildHistory.setOpponentMark(data.getRounds(), self)
 	else:
@@ -204,6 +275,27 @@ func unselect():
 		onHovered()
 
 func instanceSpecialItems():
+	if data is OpponentPoolAdapter:
+		var adapter = data as OpponentPoolAdapter
+
+		var startingBagIdx = adapter.getStartingBagIndex()
+		if startingBagIdx != null:
+			initItem(startingBagIdx, startingBagNode, Vector2(60, 50))
+
+		var subclassIdx = adapter.getSubclassIndex()
+		if subclassIdx != null:
+			initItem(subclassIdx, subclassNode)
+
+		var skill1Idx = adapter.getSkill1Index()
+		if skill1Idx != null:
+			initItem(skill1Idx, skill1Node)
+
+		var skill2Idx = adapter.getSkill2Index()
+		if skill2Idx != null:
+			initItem(skill2Idx, skill2Node)
+
+		return
+
 	if data.subclassIndex != null:
 		initItem(data.subclassIndex, subclassNode)
 	if data.skill1Index != null:
@@ -249,6 +341,89 @@ func onItemHovered(item):
 
 func onItemHoverEnd(item):
 	item.hoverEnd()
+
+func refreshPoolCheck():
+	_applyPoolCheck()
+
+func _applyPoolCheck():
+	if data == null:
+		return
+	if data is OpponentPoolAdapter:
+		return
+	if Game.historyPoolCheckEnabled and entryIndex >= 0 and entryIndex < POOL_CHECK_LIMIT:
+		var poolRun = findHistoryInPool(data)
+		if poolRun != null:
+			var poolAdapter = OpponentPoolAdapter.new(poolRun, 0)
+			var validity = poolAdapter.getOverallValidity()
+			versionLabel.show()
+			if validity == RunData.Validity.Invalid:
+				versionLabel.text = "INVALID"
+				versionLabel.modulate = Color(1.0, 0.3, 0.3)
+			else:
+				versionLabel.text = "OK"
+				versionLabel.modulate = Color(0.4, 1.0, 0.4)
+			_clearRoundValidityMarks()
+			return
+	_restoreVersionLabelState()
+	_clearRoundValidityMarks()
+
+func _mapRunValidityToButton(runValidity: int) -> int:
+	match runValidity:
+		RunData.Validity.Questionable:
+			return RoundResultButtonScript.Validity.Questionable
+		RunData.Validity.Invalid:
+			return RoundResultButtonScript.Validity.Invalid
+		RunData.Validity.TooManyUniques:
+			return RoundResultButtonScript.Validity.TooManyUniques
+		_:
+			return RoundResultButtonScript.Validity.Ok
+
+func _applyRoundValidityFromAdapter(poolAdapter: OpponentPoolAdapter):
+	if poolAdapter == null:
+		return
+	for roundI in roundButtons.size():
+		var roundNum = roundI + 1
+		var roundHistory = data.getRoundData(roundNum)
+		if roundHistory == null:
+			continue
+		if roundNum > poolAdapter.getRounds():
+			roundButtons[roundI].setValidity(RoundResultButtonScript.Validity.None)
+			continue
+		var runValidity = poolAdapter.getRoundValidity(roundNum)
+		roundButtons[roundI].setValidity(_mapRunValidityToButton(runValidity))
+
+func _clearRoundValidityMarks():
+	for roundI in roundButtons.size():
+		var roundNum = roundI + 1
+		var roundHistory = data.getRoundData(roundNum)
+		if roundHistory != null:
+			roundButtons[roundI].setValidity(RoundResultButtonScript.Validity.None)
+
+func _restoreVersionLabelState():
+	versionLabel.modulate = Color.white
+	if baseVersionVisible:
+		versionLabel.show()
+		versionLabel.text = baseVersionText
+	else:
+		versionLabel.hide()
+
+func findHistoryInPool(historyData: BuildHistoryData):
+	var myPlayerId = Game.getPlayerIdentifier()
+	var historyRounds = historyData.getRounds()
+	if historyRounds <= 0:
+		return null
+
+	var historyFingerprint = historyData.getRoundData(historyRounds).items
+
+	for run in RunDatabase.getParsedRuns():
+		if run.playerId != myPlayerId:
+			continue
+		if run.getNumRounds() != historyRounds:
+			continue
+		if run.rounds[historyRounds - 1] == historyFingerprint:
+			return run
+
+	return null
 	
 
 
@@ -261,6 +436,10 @@ func returnToObjectPool():
 	unselect()
 	hovered = false
 	clearItems()
+	entryIndex = - 1
+	baseVersionVisible = true
+	baseVersionText = ""
+	versionLabel.modulate = Color.white
 	ObjectPool.returnInstance(self)
 
 

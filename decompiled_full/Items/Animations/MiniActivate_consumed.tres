@@ -1,0 +1,17 @@
+[gd_resource type="Animation" format=2]
+
+[resource]
+resource_name = "MiniActivate_consumed"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Icon:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0952383, 0.283598 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 2, 2, 2, 1 ), Color( 0.701961, 0.701961, 0.701961, 1 ) ]
+}

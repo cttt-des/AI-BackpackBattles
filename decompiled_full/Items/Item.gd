@@ -51,11 +51,11 @@ enum Type{
 	Skill, 
 	ChessPiece, 
 	Spell, 
-	
+
 	Melee, 
 	Ranged, 
 	Effect, 
-	
+
 	Holy, 
 	Magic, 
 	Vampiric, 
@@ -284,7 +284,7 @@ static func getNumStackChangeTypes():
 
 
 
-		
+
 var statDisplayOverrides = []
 
 const rarityColors = [
@@ -509,58 +509,58 @@ func preset():
 
 func _ready() -> void :
 	if not pooled:
-		
-		
+
+
 		if not descriptor:
 			descriptor = ItemBook.getDescriptor(name)
 			ownerType = Owner.RecipeBook
-	
+
 	if sprite.get_script() != null:
 		if sprite is SquishySprite:
 			hasSquishySprite = not pooled or ownerType == Owner.Title
 		sprite.init()
-	
+
 	if not initialized:
 		collisionMap.hide()
-		
-		
+
+
 		if Game.EDITOR:
 			assert (collisionMap.get_used_cells_by_id(Tiles.AffectedDynamic).empty())
 			assert (collisionMap.get_used_cells_by_id(Tiles.AffectedSecondaryDynamic).empty())
-		
+
 		clickArea.show()
-		
+
 		spriteScale = sprite.scale
 		sprite.offset = sprite.position / sprite.scale
 		sprite.position = Vector2.ZERO
 		$Icon / Sockets.position = sprite.offset
-		
+
 		for root in [self, sprite]:
 			for child in root.get_children():
 				if child.name.begins_with("SpecificDragParticles"):
 					specificDragParticles.push_back(child)
-		
+
 		for node in sprite.get_children():
 			if node is Particles2D or node is Sprite:
 				node.position += sprite.offset
-			
+
 		initSockets()
-		
+
 		empowerEnd()
 		baseCooldownOverride = descriptor.cd
 		progressMaterial = itemMaterial.duplicate()
 		initSpriteMaterial()
 		clearSpriteMaterial()
-		
+
 		spritesWithShadows.push_back(sprite)
 		for node in Util.getAllChildren(sprite):
 			if node.is_in_group("hasShadow"):
 				spritesWithShadows.push_back(node)
-		
+
 		for node in spritesWithShadows:
 			var shadow = shadowScene.instance()
 			shadows.push_back(shadow)
-			
+
 			add_child(shadow)
 			shadow.texture = node.texture
 			shadow.modulate = Color(0, 0, 0, 0.5)
@@ -570,43 +570,43 @@ func _ready() -> void :
 			shadow.global_rotation = sprite.global_rotation
 			shadowOffset = getShadowOffset()
 			shadow.global_position = sprite.global_position + shadowOffset
-		
+
 		collisionShape = get_node_or_null("CollisionShape2D")
 		if collisionShape == null:
 			collisionShape = get_node("CollisionPolygon2D")
-		
-		
-	
-	
-		
+
+
+
+
+
 		dragParticles.modulate = Game.rarityColors[getRarity()].lightened(0.3)
-		
+
 		for buff in Game.getStacks():
 			buffPowers[buff] = 1.0
 			buffAmplificationChances[buff] = 0.0
-		
+
 		cacheCollisionCells()
-		
+
 		affectedExtensionCells = collisionMap.get_used_cells_by_id(Tiles.AffectedExtension)
 		for cell in affectedExtensionCells:
 			collisionMap.set_cellv(cell, - 1)
-		
+
 		statDisplayOverrides.resize(Stat.size())
 		statDisplayOverrides.fill(null)
-		
+
 		itemMetrics.resize(getNumItemMetrics())
 		itemMetrics.fill(0)
-		
+
 		initPhysicsMaterial()
-		
+
 		for color in Affected.values():
 			currentAffectedItems[color] = {}
-		
+
 		initialized = true
-	
-	
-	
-	
+
+
+
+
 	set_physics_process(false)
 	makeNonRigidBody()
 	showCooldown(0.0)
@@ -615,35 +615,35 @@ func _ready() -> void :
 	rotation = 0
 	clickArea.connect("mouse_entered", self, "mouseEntered")
 	clickArea.connect("mouse_exited", self, "mouseExited")
-	
+
 	if isOwnable():
 		ItemBook.onOwnableItemAdded(self)
 		Game.setItemEditMode(self)
 	elif isOwnedByOpponent():
 		ItemBook.onOpponentItemAdded(self)
 		set_process_input(false)
-	
+
 	call_deferred("ready_deferred")
 
 func ready_deferred():
-	
+
 	if not is_inside_tree():
 		return
-	
+
 	resetZ()
 	averagedPosition = global_position
-	
+
 	if ownerType == Owner.Shop:
 		makeGrabbable(true)
-	
+
 	if isOwnable() and has_method("onItemInstantiated"):
 		ItemBook.connect("item_instantiated_deferred", self, "onItemInstantiated")
-	
+
 	if not pooled:
 		insideRotationNode = Node2D.new()
 		insideRotationNode.name = "InsideRotation"
 		add_child(insideRotationNode)
-	
+
 
 func initPhysicsMaterial():
 	baseFriction = 0.5
@@ -696,8 +696,8 @@ func initPhysicsMaterial():
 			mass = baseMass * 2.5
 			baseBounce = 0.3
 			baseFriction = 0.8
-			
-			
+
+
 	totalWeight = 0.3 + mass * sqrt(getNumCells()) * 0.2
 
 func isA(_descriptor) -> bool:
@@ -726,8 +726,8 @@ static func getMultiMetricIndex(stackChangeType: int, metric: int) -> int:
 func cacheCollisionCells():
 	collisionCells = collisionMap.get_used_cells_by_id(Tiles.Collision)
 	extensionCells = collisionMap.get_used_cells_by_id(Tiles.Extension)
-	
-	
+
+
 
 func initRecipeBook():
 	disablePicking()
@@ -736,7 +736,7 @@ func initRecipeBook():
 	collisionShape.disabled = true
 	set_collision_layer(0)
 	set_collision_mask(0)
-	
+
 
 func initItemLibrary():
 	disablePicking()
@@ -748,7 +748,7 @@ func initItemLibrary():
 	set_collision_mask(0)
 	set_process(false)
 	call_deferred("enableFocus")
-	
+
 	set_process_input(true)
 
 func setSpotlight(_spotlight):
@@ -794,8 +794,8 @@ func initBuildViewer():
 	set_collision_mask(0)
 	for shadow in shadows:
 		shadow.show()
-	
-	
+
+
 	set_process_input(false)
 
 func initBuildViewerIcon():
@@ -858,17 +858,17 @@ func getDescription(wrapInColor = true) -> String:
 			descr = requiredStr + descr
 		else:
 			descr = str(requiredStr, "\n\n", descr)
-	
+
 	return insertParameters(descr, wrapInColor)
 
 func insertParameters(descr, wrapInColor = true):
 	if getBaseMinDamage() > 0 and wrapInColor:
 		descr = descr.replace("$dam", Util.wrapInColor_fixed(str(descriptor.minDam), Util.paramColor))
-	
+
 	for i in descriptor.extraCds.size() + 1:
 		descr = insertParameter(descr, str("cd", i + 1), getModifiedCooldownIndex(i), 
 			isCooldownModified(), true, wrapInColor)
-			
+
 	descr = insertParameter(descr, "cd", getModifiedCooldown(), isCooldownModified(), true, wrapInColor)
 	descr = insertParameter(descr, "chance2", getChance2(), isChance2Modified(), true, wrapInColor)
 	descr = insertParameter(descr, "chance", getChance(), isChance1Modified(), true, wrapInColor)
@@ -878,11 +878,11 @@ func insertParameters(descr, wrapInColor = true):
 		descr = insertParameter(descr, "p" + String(i + 1), getP(i), StatModified.No, true, wrapInColor)
 	for paramName in descriptor.sortedParamNames:
 		descr = insertParameter(descr, "p_" + paramName, getP(paramName), StatModified.No, true, wrapInColor)
-	
+
 	if wrapInColor:
 		descr = descr.replace("$block", Util.wrapInColor_fixed(String(getBlock()), Util.paramColor))
-	
-	
+
+
 	return descr
 
 func insertParameter(descr, paramName, value, modified = StatModified.No, checkZero = true, wrapInColor = true):
@@ -893,7 +893,7 @@ func insertParameter(descr, paramName, value, modified = StatModified.No, checkZ
 		if startPos != - 1:
 			var refEndPos = Util.findHighlightEnd(descr, startPos + 1)
 			var unit = descr.substr(startPos + replacedString.length(), refEndPos - (startPos + 1) - paramName.length())
-			
+
 			var replacement = String(value) + unit
 			if startPos > 0:
 				if descr[startPos - 1] == "+":
@@ -902,12 +902,12 @@ func insertParameter(descr, paramName, value, modified = StatModified.No, checkZ
 				elif descr[startPos - 1] == "-":
 					replacedString = "-" + replacedString
 					replacement = "-" + replacement
-			
+
 			if wrapInColor:
 				replacement = Util.wrapInColor_fixed(replacement, Util.statColors[modified])
-			
+
 			descr = descr.replace(replacedString + unit, replacement)
-			
+
 	return descr
 
 
@@ -921,7 +921,7 @@ func getModeDescription(text: String, colors: Array, center: bool = true, wrapIn
 		var replacement: String
 		if i != 0 and center:
 			replacement = "\n"
-		
+
 		replacement += Util.substr(text, refStartPos, refEndPos - 1)
 		if wrapInColor:
 			replacement = Util.wrapInColor(replacement, colors[i])
@@ -930,7 +930,7 @@ func getModeDescription(text: String, colors: Array, center: bool = true, wrapIn
 
 		text = Util.replaceSubstr(text, dollarPos, refEndPos, replacement)
 		charIndex = refEndPos
-	
+
 	return text
 
 func getBagEffect(number):
@@ -939,7 +939,7 @@ func getBagEffect(number):
 	else:
 		var descr = Util.tra(getName() + "_BAGEFFECT")
 		if descr != "":
-			
+
 			descr = insertParameter(descr, "p1", getP(0) * number)
 			descr = insertParameter(descr, "p2", getP(1) * number)
 			descr = insertParameter(descr, "chance", getChance() * number)
@@ -1003,7 +1003,7 @@ func disableTooltip():
 		tooltip = null
 
 func disableFocus():
-	
+
 	focusEnabled = false
 	if focus:
 		loseFocus()
@@ -1042,7 +1042,7 @@ func getGlobalPointsForCells(cells):
 	for cell in cells:
 		points.push_back(collisionMap.to_global(collisionMap.map_to_world(cell))
 			+ halfCellSize.rotated(global_rotation))
-	
+
 	return points
 
 func getGlobalPointsForCells_noRotate(cells):
@@ -1062,7 +1062,7 @@ func getNumOccupiedCells():
 
 func getNumBagCells():
 	return extensionCells.size()
-	
+
 func getCollisionCells():
 	return collisionCells
 
@@ -1074,29 +1074,29 @@ func getNormalizedCollisionCells() -> Array:
 		cells = getExtensionCells().duplicate()
 	else:
 		cells = getCollisionCells().duplicate()
-	
-	
+
+
 	var minimum = Vector2(100, 100)
 	for cell in cells:
-		
+
 		if cell.y <= minimum.y:
 			if cell.y < minimum.y:
 				minimum.x = cell.x
 			else:
-				
+
 				minimum.x = min(cell.x, minimum.x)
 			minimum.y = cell.y
-	
+
 	for i in cells.size():
 		cells[i] = cells[i] - minimum
-	
-	
+
+
 	var cellOffset = collisionMap.map_to_world(minimum) + collisionMap.position + Vector2(40, 40)
-	
-	
-	
+
+
+
 	return [cells, cellOffset]
-	
+
 
 func getCollisionPoints():
 	return getGlobalPointsForCells(getCollisionCells())
@@ -1127,7 +1127,7 @@ func getAffectedCellsAfterRotate_primary(_rotatedCells):
 
 func getAffectedCellsAfterRotate_secondary(_rotatedCells):
 	return []
-	
+
 
 func getAffectedCells_noRotate(color = Affected.Primary):
 	var globalCollisionPoints = getCollisionPoints()
@@ -1165,7 +1165,7 @@ func getAffectedItems(color = Affected.Primary) -> Array:
 
 
 		return cachedAffectedItems[color]
-	
+
 	var items = []
 	for item in getItemsInAffectedCells_cached(color):
 		if canAffect_color(item, color):
@@ -1182,14 +1182,14 @@ func getAffectedItems_nocache(color = Affected.Primary) -> Array:
 func isItemAffected(item, color = Affected.Primary) -> bool:
 	if item.isBag() or not canAffect_color(item, color):
 		return false
-	
+
 	var affectedTiles = getAffectedCellsInInventory_cached(color)
-	
+
 	for cell in item.occupiedCells:
 		if cell in affectedTiles:
 			return true
 	return false
-			
+
 func getNumEmptyAffectedCells(color = Affected.Primary) -> int:
 	return inventory.getEmptyCellsInCells(getAffectedCellsInInventory(color))
 
@@ -1214,7 +1214,7 @@ func getExtensionCells():
 func getExtensionPoints():
 	return getGlobalPointsForCells(getExtensionCells())
 
-	
+
 const correction = [
 	Vector2.ZERO, 
 	Vector2( - cellSize.x, 0), 
@@ -1262,22 +1262,22 @@ func getBottomCenter() -> Vector2:
 
 
 
-	
+
 func previewCells():
 	if not isBag():
 		collisionMap.show()
-	
-	
-	
+
+
+
 	var globalCollisionPoints = getCollisionPoints()
 	var rotatedCells = getCellsForGlobalPositions(globalCollisionPoints)
 	for color in [Affected.Primary, Affected.Secondary]:
 		var nonMappedCells = getAffectedCellsAfterRotate(rotatedCells, color)
-		
+
 		if not nonMappedCells.empty():
 			for cell in collisionMap.get_used_cells_by_id(Tiles.AffectedDynamic + color):
 				collisionMap.set_cellv(cell, - 1)
-			
+
 			for cell in nonMappedCells:
 				collisionMap.set_cellv(cell, Tiles.AffectedDynamic + color)
 
@@ -1315,9 +1315,9 @@ static func wasHotSwap(dropRes):
 	return dropRes == DropResult.Hotswap or dropRes == DropResult.SocketHotswap
 
 func addToInventory(_inventory, _occupiedCells: Array, _placedByPlayer: bool):
-	
-	
-	
+
+
+
 	placedByPlayer = _placedByPlayer
 	placed = true
 	inventory = _inventory
@@ -1327,28 +1327,28 @@ func addToInventory(_inventory, _occupiedCells: Array, _placedByPlayer: bool):
 			ownerType = Owner.PlayerInventory
 		elif inventory == Game.OPPONENT.INVENTORY:
 			ownerType = Owner.Opponent
-	
+
 	inventory.connect("item_added", self, "onItemAdded")
 	inventory.connect("item_removed", self, "onItemRemoved")
 	inventory.connect("item_type_changed", self, "onItemTypeChanged")
-	
+
 	if ownerType != Owner.BuildViewer:
 		CraftingManager.itemAdded(self)
 		for gem in getGemsNoNull():
 			CraftingManager.itemAdded(gem)
-	
+
 	cacheAffectedCells()
-	
-	
+
+
 	for color in Affected.values():
 		for item in getAffectedItems(color):
 			currentAffectedItems[color][item] = true
 			onAffectedItemAdded(item, color)
-	
+
 	makeGrabbable(false)
-	
+
 	onAddToInventory()
-	
+
 	if ownerType == Owner.PlayerInventory:
 		if has_method("getGatedDescriptor"):
 			Game.shopSceneNode.connect("gate_item_roll", self, "onGateItemRoll")
@@ -1357,7 +1357,7 @@ func addToInventory(_inventory, _occupiedCells: Array, _placedByPlayer: bool):
 		Util.connectIfExists(ItemBook, "item_rolled", self, "onItemRolled")
 		Util.connectIfExists(ItemBook, "items_counted", self, "onItemsCounted")
 		Util.connectIfExists(Game.SELLBOX, "calc_trade_chance", self, "onCalcTradeChance")
-	
+
 	emit_signal("added_to_inventory")
 
 func onGateItemRoll():
@@ -1370,26 +1370,26 @@ func cacheAffectedCells():
 
 func removeFromInventory():
 	if not placed: return
-	
+
 	placed = false
 
 	CraftingManager.itemRemoved(self)
 	for gem in getGemsNoNull():
 		CraftingManager.itemRemoved(gem)
-	
-	
+
+
 	inventory.disconnect("item_added", self, "onItemAdded")
 	inventory.disconnect("item_removed", self, "onItemRemoved")
 	inventory.disconnect("item_type_changed", self, "onItemTypeChanged")
-	
+
 	for color in Affected.values():
 		for item in currentAffectedItems[color]:
 			onAffectedItemRemoved(item, color)
 
 	cleanCachedAffectedItems()
-	
+
 	onRemoveFromInventory()
-	
+
 	Util.tryDisconnect(Game.shopSceneNode, "gate_item_roll", self, "onGateItemRoll")
 	Util.tryDisconnect(Game.shopSceneNode, "roll_sale", self, "onSaleRoll")
 	Util.tryDisconnect(ItemBook, "pre_item_roll", self, "onItemRoll")
@@ -1399,18 +1399,18 @@ func removeFromInventory():
 
 func cleanCachedAffectedItems():
 	affectedCellsCache.clear()
-	
-	
+
+
 	for color in Affected.values():
 		currentAffectedItems[color].clear()
-	
+
 	Util.eassert(cachedAffectedItems.empty())
 
 func playAffectedPlacedAnimation(newItemIsAffected: Dictionary):
 	var sum = 0
 	for color in newItemIsAffected:
 		sum += int(newItemIsAffected[color])
-	
+
 	if sum > 1:
 		animation.play("AffectedPlaced")
 	elif newItemIsAffected[Affected.Primary]:
@@ -1421,23 +1421,23 @@ func playAffectedPlacedAnimation(newItemIsAffected: Dictionary):
 		animation.play("AffectedPlaced_Tertiary")
 	elif newItemIsAffected[Affected.Lightning]:
 		animation.play("AffectedPlaced_Lightning")
-	
+
 
 
 
 func onItemAdded(item):
-	
-	
-	
-	
+
+
+
+
 	var newItemIsAffected = {}
 	for color in Affected.values():
 		newItemIsAffected[color] = ( not item in currentAffectedItems[color] and 
 									isItemAffected(item, color))
-	
+
 	if item.placedByPlayer:
 		playAffectedPlacedAnimation(newItemIsAffected)
-	
+
 	for color in Affected.values():
 		if newItemIsAffected[color]:
 			currentAffectedItems[color][item] = true
@@ -1449,26 +1449,26 @@ func onItemRemoved(item):
 	for color in Affected.values():
 		currentAffectedItems[color].erase(item)
 		if canAffectDraggedItem(item, color):
-			
+
 			onAffectedItemRemoved(item, color)
 
-	
+
 
 func onItemTypeChanged(item):
 
 
-	
+
 	var canAddAgain = reactToItemTypeChange(item)
-	
+
 	if not canAddAgain:
 		return
-	
+
 	var addedToAffected = {}
 	for color in Affected.values():
 		addedToAffected[color] = false
-	
+
 		if item in currentAffectedItems[color]:
-			
+
 			if not canAffect_color(item, color):
 				currentAffectedItems[color].erase(item)
 				onAffectedItemRemoved(item, color)
@@ -1476,7 +1476,7 @@ func onItemTypeChanged(item):
 			currentAffectedItems[color][item] = true
 			onAffectedItemAdded(item, color)
 			addedToAffected[color] = true
-	
+
 	if item.placedByPlayer:
 		playAffectedPlacedAnimation(addedToAffected)
 
@@ -1485,9 +1485,9 @@ func getAffectedCellsInInventory_cached(color):
 
 func canAffectDraggedItem(item, color):
 	if canAffect_color(item, color):
-		
+
 		var affectedCells = getAffectedCellsInInventory_cached(color)
-		
+
 		for cell in affectedCells:
 			if item.dragged:
 				if inventory.isHovered(cell):
@@ -1515,11 +1515,11 @@ func onAddToInventory():
 	pass
 
 func onAffectedItemAdded(item, color: int):
-	
+
 	pass
 
 func onAffectedItemRemoved(item, color: int):
-	
+
 	pass
 
 
@@ -1541,16 +1541,16 @@ var canAffectVisuals = []
 
 func previewCanAffect():
 	var visuals: = {}
-	
+
 	var itemDict
 	if ownerType == Owner.Opponent:
 		itemDict = ItemBook.opponentItems
 	else:
 		itemDict = ItemBook.ownableItems
-	
+
 	for color in Affected.values():
 		var curAffected = getAffectedItems(color)
-		
+
 		for descr in itemDict:
 			for item in itemDict[descr]:
 				if (item != self and 
@@ -1558,12 +1558,12 @@ func previewCanAffect():
 					( not item.isGem() or item.socket == null)
 					and canAffect_color(item, color)
 					and not item in curAffected):
-					
+
 					var visual = visuals.get(item, null)
 					if visual == null:
 						visual = ObjectPool.instance(canAffectVisual)
 						item.add_child(visual)
-						
+
 						canAffectVisuals.push_back(visual)
 						visuals[item] = visual
 					visual.setColorActive(color)
@@ -1587,7 +1587,7 @@ func pushToStorage(targetPos = Game.STORAGEBOX.center):
 
 func addToStorageBox(addImpulse = true, tweenBouncyness: bool = true, 
 	checkCollisions = true, targetPos = global_position, speed = 1.0, secondCheck = false):
-	
+
 	ownerType = Owner.PlayerStorageBox
 	Game.STORAGEBOX.addItem(self)
 	occupiedCells.clear()
@@ -1595,30 +1595,30 @@ func addToStorageBox(addImpulse = true, tweenBouncyness: bool = true,
 	for particles in specificDragParticles:
 		if particles is Particles2D:
 			particles.set_visibility_rect(Rect2( - 2000, - 2000, 4000, 4000))
-	
+
 	Util.killTween(rotationTween)
 	rotation += sprite.rotation
 	sprite.rotation = 0
-	
 
 
-	
+
+
 	if not tweenBouncyness:
 		physics_material_override.bounce = 0.0
 		physics_material_override.friction = 1.0
-	
+
 	if checkCollisions:
-		
+
 		moveToFreeSpaceInStorage(targetPos, addImpulse, speed, secondCheck, tweenBouncyness)
 	else:
 		if mode != RigidBody2D.MODE_RIGID:
 			makeRigidBody()
-	
+
 	makeGrabbable(true)
-	
+
 	Util.connectIfExists(Game.shopSceneNode, "roll_sale", self, "onSaleRoll_storage")
 	Util.connectIfExists(Game.shopSceneNode, "gate_item_roll", self, "onGateItemRoll_storage")
-	
+
 	onAddedToStorageBox()
 
 func removeFromStorage():
@@ -1639,11 +1639,11 @@ func isInGridStorage() -> bool:
 
 func getGridStorageProxy():
 	if not dragged and isInGridStorage():
-		
+
 		var proxy = Game.gridStorage.getProxy(self)
 		if proxy != null:
 			return proxy
-	
+
 	return self
 
 func onAddedToGridStorage():
@@ -1661,14 +1661,14 @@ func onRemovedFromGridStorage():
 
 func makeGrabbable(extended: bool):
 	set_collision_layer_bit(3, extended)
-	
+
 
 func moveToFreeSpaceInStorage(targetPos = global_position, 
 	addImpulse = false, speed = 1.0, secondCheck = false, 
 	tweenBouncyness: bool = true):
-	
+
 	resetSprite()
-	
+
 	targetPos = Util.clampToRect(targetPos, Game.STORAGEBOX.getStorageRect())
 	var freePos = findFreeSpace(targetPos)
 	var dif = freePos - global_position
@@ -1681,19 +1681,19 @@ func moveToFreeSpaceInStorage(targetPos = global_position,
 		movebackTween.tween_property(self, "global_position", freePos, dur)
 		movebackTween.tween_callback(self, "makeRigidBody")
 		movebackTween.tween_callback(self, "resetZ")
-		
-		
-		
+
+
+
 		if isGem():
 			set_deferred("z_index", 34)
 		elif isBag():
 			set_deferred("z_index", 32)
 		else:
 			set_deferred("z_index", 33)
-		
+
 		if addImpulse:
 			movebackTween.tween_callback(self, "dropImpulse", [dif, tweenBouncyness])
-		
+
 		if secondCheck:
 			movebackTween.tween_callback(self, "moveToFreeSpaceInStorage", 
 				[targetPos, addImpulse, speed, false])
@@ -1713,7 +1713,7 @@ func checkIfOutofStorageBounds():
 
 func checkIfOutofStorageBounds2():
 	Util.callNextFrame(self, "checkIfOutofStorageBounds3")
-	
+
 func checkIfOutofStorageBounds3():
 	if ownerType == Owner.PlayerStorageBox:
 		Game.STORAGEBOX.checkIfItemIsInStorageArea(self)
@@ -1724,15 +1724,15 @@ func findFreeSpace(startPos: Vector2) -> Vector2:
 	var spaceState = get_world_2d().get_direct_space_state()
 	var query: Physics2DShapeQueryParameters = Physics2DShapeQueryParameters.new()
 	var shape
-	
+
 	if collisionShape is CollisionShape2D:
 		shape = collisionShape.shape
 	else:
-		
-		
+
+
 		shape = ConvexPolygonShape2D.new()
 		shape.points = collisionShape.polygon
-	
+
 	query.set_shape(shape)
 	query.collide_with_bodies = true
 	if ownerType == Owner.Title:
@@ -1747,21 +1747,21 @@ func findFreeSpace(startPos: Vector2) -> Vector2:
 	var initialCollisions = spaceState.collide_shape(query, 1)
 	if initialCollisions.empty():
 		return freePos
-	
+
 	var tries = 0
-	
+
 	for offset in [20, 40, 70, 100, 150, 200, 250, 300, 400, 500, 600]:
 		for angle in range(angleStep, 360 + angleStep, angleStep):
 			freePos = startPos + (Vector2.UP * offset).rotated(deg2rad(angle))
 			query.transform.origin = freePos
 			var collisions = spaceState.collide_shape(query, 1)
-			
+
 			tries += 1
 			if collisions.empty():
-				
+
 				return freePos
-	
-	
+
+
 	return freePos
 
 func unclip():
@@ -1785,67 +1785,67 @@ const moveRotationSpeed = 60.0
 
 
 func _process(delta: float) -> void :
-	
-	
-	
+
+
+
 	if Game.state != Game.State.Combat and animation.current_animation == "":
 		sprite.modulate = Color.white
-	
+
 	if focus and Game.tooltipsEnabled():
 		if placed:
 			inventory.previewAffectedCells(self)
-		
-		
+
+
 		else:
 			if affectedCellsActive:
 				Game.PLAYER.INVENTORY.previewAffectedCells(self)
-	
+
 	if dragged:
 		var pos = global_position
 		global_position = Util.getMousePosInWindow()
 		global_position.y -= Settings.getVal(Settings.Setting.pick_offset) * Settings.PICK_OFFSET
-		
+
 		var dif = global_position - pos
 		var speed = dif.length() / delta
 		var direction = dif.normalized()
 		momentumStrength = lerp(momentumStrength, speed / 60, 20 * delta)
-		
+
 		momentumStrength = min(momentumStrength, 150.0)
 		momentum = direction * momentumStrength
-		
+
 		if momentumStrength > Util.rng.randf_range(5, 15):
 			dragParticles.activate()
 		else:
 			dragParticles.deactivate()
-		
+
 		Sound.itemMovePlayer.volume_db = linear2db(clamp((momentumStrength - 20) / 100.0, 0, 1) * (0.5 + 0.1 * getNumCells()))
-		
+
 		if draggedInsideItems.empty():
 			var mainDif
 			if abs(dif.x) > abs(dif.y):
 				mainDif = dif.length() * sign(dif.x)
 			else:
 				mainDif = - dif.length() * sign(dif.y)
-			
+
 			rotationMomentum += mainDif * moveRotationMouseFactor
-			
+
 			rotationMomentum -= bonusRotation * backforce * delta
-			
+
 			rotationMomentum *= max(0, 1 - (fric * delta))
-			
+
 			bonusRotation += rotationMomentum * moveRotationSpeed * delta
 			bonusRotation = clamp(bonusRotation, - maxAngle, maxAngle)
-			
+
 			sprite.rotation_degrees = bonusRotation
-			
-			
-		
-		
+
+
+
+
 		if Util.isActionJustPressed("rotate_right_button"):
 			rotateRight()
 		elif Util.isActionJustPressed("rotate_left_button"):
 			rotateLeft()
-		
+
 		if Util.time >= mouseWheelRotationReadyTime:
 			if Util.isActionJustPressed("rotate_right", false):
 				rotateRight()
@@ -1853,9 +1853,9 @@ func _process(delta: float) -> void :
 			elif Util.isActionJustPressed("rotate_left", false):
 				rotateLeft()
 				mouseWheelRotationReadyTime = Util.time + 0.1
-		
+
 		previewCellCollision()
-	
+
 	elif placed and Game.state != Game.State.Combat and not Game.SELECTING:
 		var focusItem = Game.getFocusItem()
 		if (focusItem != null and 
@@ -1866,12 +1866,12 @@ func _process(delta: float) -> void :
 			var affectedSecondary = canAffectDraggedItem(focusItem, Affected.Secondary)
 			var affectedTertiary = canAffectDraggedItem(focusItem, Affected.Tertiary)
 			var affectedLightning = canAffectDraggedItem(focusItem, Affected.Lightning)
-			
+
 			var sum = int(affectedPrimary) + int(affectedSecondary) + int(affectedTertiary)
 			if sum > 1:
 				sprite.modulate = Color(1.3, 1.3, 1.3, 1)
 			elif affectedPrimary:
-				
+
 				sprite.modulate = Color(1.3, 1.3, 0.8, 1)
 			elif affectedSecondary:
 				sprite.modulate = Color(1.0, 1.3, 0.9, 1)
@@ -1879,41 +1879,41 @@ func _process(delta: float) -> void :
 				sprite.modulate = Color(1.3, 0.9, 1.3, 1)
 			elif affectedLightning:
 				sprite.modulate = Color(1.35, 1.25, 1.0, 1)
-				
+
 	updateShadow()
 	if lock.visible:
 		lock.global_rotation = 0
-		
+
 	if mode == RigidBody2D.MODE_RIGID and visible:
 		averagedPosition = lerp(averagedPosition, global_position, 1.5 * delta)
 		var posDif = (averagedPosition - global_position).length()
-		
-		
+
+
 		var curVelocity = get_linear_velocity()
 		var acceleration = (lastVelocity - curVelocity).length()
-		
+
 		if posDif > 30 and acceleration > 50:
-			
+
 			if Util.time >= impactSoundReadyTime:
 				playDropSound(Util.rng.randf_range( - 15, - 10))
 				impactSoundReadyTime = Util.time + 0.5
-			
+
 			var particles = ObjectPool.particleOneShot(dustParticles, get_parent().get_parent())
 			if acceleration > 200:
 				particles.amount = 12
 			else:
 				particles.amount = 6
-			
+
 			particles.z_index = get_parent().z_index - 1
-			
+
 			var dir = lastVelocity.normalized()
 			particles.process_material.direction = Vector3(dir.x, dir.y, 0)
 			particles.process_material.initial_velocity = lastVelocity.length() * 0.4 + 120.0
 			particles.global_position = lastCollisionPos
-			
-			
-			
-			
+
+
+
+
 			if (is_instance_valid(lastCollider) and not Util.isItem(lastCollider) and 
 				lastCollisionPos.y > 770):
 				var impulse = acceleration * totalWeight
@@ -1921,9 +1921,9 @@ func _process(delta: float) -> void :
 					Game.STORAGEBOX.shake(lastCollisionPos, true)
 				elif impulse > 800:
 					Game.STORAGEBOX.shake(lastCollisionPos, false)
-			
+
 			particles.scale = Vector2(0.3, 0.3) * sqrt(getNumCells()) + Vector2(0.1, 0.1)
-			
+
 		lastVelocity = curVelocity
 
 
@@ -1935,8 +1935,8 @@ func _integrate_forces(state: Physics2DDirectBodyState) -> void :
 		lastCollider = null
 
 func updateShadow():
-	
-	
+
+
 	for i in shadows.size():
 		var shadow = shadows[i]
 		var node = spritesWithShadows[i]
@@ -1979,12 +1979,12 @@ func rotateLeft():
 	spawnRotationSparks(false)
 	Game.onItemRotated()
 
-	
+
 
 func spawnRotationSparks(rotateRight):
 	var rotationSparks = createParticles(rotationSparksScene)
 	rotationSparks.modulate = Game.rarityColors[getRarity()].lightened(0.2)
-	
+
 	if rotateRight:
 		rotationSparks.scale.x = - abs(rotationSparks.scale.x)
 	else:
@@ -1997,19 +1997,18 @@ func setFaceDirection(_faceDirection):
 func rotateTo(targetRotation, duration = 0.15):
 	rotationTween = Util.refreshTween(rotationTween)
 	rotationTween.set_process_mode(Tween.TWEEN_PROCESS_IDLE)
-	
-	
-	
-	
+
+
+
+
 	var curRotation = sprite.global_rotation
 	global_rotation = targetRotation
 	faceDirection = getGlobalFaceDirection()
 	sprite.global_rotation = curRotation
 	updateInsideRotationNode()
-	
+
 	rotationTween.tween_method(self, "lerpAngle_local", 0.0, 1.0, duration, 
 		[sprite.rotation, 0.0])
-	
 
 
 
@@ -2017,21 +2016,22 @@ func rotateTo(targetRotation, duration = 0.15):
 
 
 
-	
+
+
 	updateShaderRotation()
 	updateShadow()
-	
-	
-	
+
+
+
 	if isMovingBack():
 		rotationTween.tween_callback(self, "reparentItemsInside")
 	else:
 		rotationTween.tween_callback(self, "correctInsideItemFacedirection")
-	
+
 	call_deferred("rotateToDeferred", targetRotation)
 
 func rotateToDeferred(targetRotation):
-	
+
 	setRotation(targetRotation)
 
 func rotationFromFaceDirection(_faceDirection):
@@ -2041,7 +2041,7 @@ func getGlobalFaceDirection():
 	return (int((2 * global_rotation) / PI + 2.25 * PI) + 5) % 4
 
 func setFaceDirectionInstant(_faceDirection):
-	
+
 	Util.finishTween(rotationTween)
 	faceDirection = _faceDirection
 	rotation = rotationFromFaceDirection(faceDirection)
@@ -2056,7 +2056,7 @@ func getFaceDirection():
 func highlight():
 	sprite.position = Vector2.ZERO
 	animation.play("Highlight")
-	
+
 func unhighlight():
 	resetSprite()
 
@@ -2081,32 +2081,32 @@ func canGainFocus():
 
 func gainFocus():
 	if not canGainFocus(): return
-	
-	
+
+
 	if (ownerType == Owner.PlayerInventory or 
 		ownerType == Owner.Socket or 
 		ownerType == Owner.Opponent):
 		Game.combatLog.highlightItem(self, false)
-	
-	
+
+
 	focus = true
 	respondToHover()
 
 func respondToHover():
 	if hoverResponseEnabled and Game.hoverResponseEnabled():
 		if ( not isBag() or ownerType == Owner.Shop) and Engine.time_scale > 0:
-			
+
 			var particles = createParticles(hoverSparksScene, Vector2(0.7, 0.7))
 			particles.modulate = Game.rarityColors[getRarity()].lightened(0.2)
-			
+
 			Sound.playSound_process(hoverSound, 0, Util.rng.randf_range(0.9, 1.2))
-			
+
 			if dragParticlesEnabled:
 				activateDragParticles()
-		
+
 		setBright()
 		previewFusions()
-		
+
 		if isOwnable() or isOwnedByOpponent():
 			if has_method("canAffect_global"):
 				var inv = inventory if inventory != null else Game.PLAYER.INVENTORY
@@ -2115,71 +2115,71 @@ func respondToHover():
 						var visual = ObjectPool.instance(globalAffectVisual)
 						globalAffectVisuals.push_back(visual)
 						item.add_child(visual)
-	
+
 	if not Game.tooltipsEnabled():
 		return
-	
+
 	if ownerType == Owner.Shop:
 		if not dragged:
 			previewCells()
 		z_index = max(z_index, 2)
 		for shadow in shadows:
 			shadow.z_index = - 2
-	
+
 	elif ownerType == Owner.RecipeBook or ownerType == Owner.ItemLibrary:
 		z_index = max(z_index, 2)
 		previewCells()
-	
+
 	if ownerType == Owner.ItemLibrary:
 		showSockets()
-	
+
 	if tooltipEnabled:
 		if not tooltip and not dragged:
 			if ownerType == Owner.RecipeBook:
 				tooltipMargin.x = 60
-			
+
 			var texSize = Util.absv((sprite.global_scale * sprite.texture.get_size()).rotated(rotation))
 			var tooltipPos = global_position - texSize * 0.5 - tooltipMargin * 0.5
 			var toolsize = tooltipMargin
-			
+
 			var ownerType_ = getEffectiveOwnerType()
 			var inventory_ = getInventory()
-			
+
 			match ownerType_:
 				Owner.Shop:
 					tooltipPos.x = 550
-				
+
 				Owner.PlayerInventory:
 					tooltipPos.x = inventory_.getRightBorder() + 30
-				
+
 				Owner.PlayerStorageBox:
 					tooltipPos.x = 1800
-				
+
 				Owner.GridStorage:
 					tooltipPos.x = 1800
-				
+
 				Owner.Opponent:
 					tooltipPos.x = inventory_.getLeftBorder() - 700
-				
+
 				Owner.RecipeBook:
 					toolsize += texSize
-				
+
 				Owner.ItemLibrary:
 					tooltipPos.x = 1950
-					
-					
-				
+
+
+
 				Owner.BuildViewer:
 					var leftBorder = inventory_.getLeftBorder()
 					if leftBorder > 800:
 						tooltipPos.x = leftBorder - 700
 					else:
 						tooltipPos.x = 450
-				
+
 				Owner.BuildViewerIcon:
 					tooltipPos.x -= 50
 					toolsize.x += 100
-				
+
 				Owner.Tooltip:
 					if owningBuildIntoRecipesTooltip != null:
 						match Game.lockedTooltipItem.getEffectiveOwnerType():
@@ -2194,10 +2194,10 @@ func respondToHover():
 					else:
 						tooltipPos.x -= 50
 						toolsize.x += 150
-				
+
 			if ownerType != Owner.RecipeBook:
-				
-				
+
+
 				tooltip = ObjectPool.instance(tooltipScenes[getRarity()])
 			else:
 				tooltip = recipeTooltip.instance()
@@ -2205,15 +2205,15 @@ func respondToHover():
 			Game.tooltipsNode.add_child(tooltip)
 			tooltip.setItem(self)
 			tooltip.forceUpdatePosition(tooltipPos, toolsize)
-			
+
 			if Game.showHintsIsPressed:
 				if isOwnable() or isOwnedByOpponent():
 					previewCanAffect()
 				Game.clearAffectedLines()
-				
+
 				if (Game.RECIPE_TOOLTIPS_ENABLED and 
 					canShowBuildIntoRecipesTooltip()):
-					
+
 					showBuildIntoRecipesTooltip()
 
 const buildIntoRecipesTooltipScene = preload("res://Interface/Tooltips/BuildIntoRecipesTooltip.tscn")
@@ -2229,9 +2229,9 @@ var ownerTypesWithBuildTooltip = {
 
 func canShowBuildIntoRecipesTooltip() -> bool:
 	if dragged: return false
-	
+
 	var effectiveOwner = getEffectiveOwnerType()
-	
+
 	if ownerType == Owner.Tooltip and owningBuildIntoRecipesTooltip != null:
 		if not canShowSubBuildIntoRecipesTooltip():
 			return false
@@ -2239,14 +2239,14 @@ func canShowBuildIntoRecipesTooltip() -> bool:
 			ownerType == Owner.ItemLibrary or 
 			effectiveOwner in ownerTypesWithBuildTooltip):
 		return false
-	
+
 	var descr = getRecipeDescriptor()
 	if descr.getNumRecipes() > 0:
 		return true
-	
+
 	if getRelatedItems().size() > 0:
 		return true
-		
+
 	return false
 
 func canShowSubBuildIntoRecipesTooltip():
@@ -2257,57 +2257,57 @@ func canShowSubBuildIntoRecipesTooltip():
 
 func showBuildIntoRecipesTooltip():
 	if buildIntoRecipesTooltip != null: return
-	
+
 	var descr = getRecipeDescriptor()
 	if (descr.getNumRecipes() > 0 or 
 		getRelatedItems().size() > 0):
-		
+
 		buildIntoRecipesTooltip = buildIntoRecipesTooltipScene.instance()
-		
+
 		if ownerType == Owner.Tooltip:
 			Game.tooltipsNode.add_child(buildIntoRecipesTooltip)
 		else:
 			Game.recipeTooltipsNode.add_child(buildIntoRecipesTooltip)
-		
+
 		var ownerType_ = getEffectiveOwnerType()
 		var inventory_ = getInventory()
-		
+
 		var tooltipPos = Vector2(0, 0)
-		
+
 		match ownerType_:
 			Owner.Shop:
 				tooltipPos.x = 180
 				buildIntoRecipesTooltip.growToRight = false
-			
+
 			Owner.PlayerInventory:
 				tooltipPos.x = inventory_.getRightBorder() + 680
 				buildIntoRecipesTooltip.growToRight = true
-			
+
 			Owner.PlayerStorageBox:
 				tooltipPos.x = 260
 				buildIntoRecipesTooltip.growToRight = false
-			
+
 			Owner.ItemLibrary:
-				
+
 				if position.x < 900:
 					tooltipPos.x = 870
 					buildIntoRecipesTooltip.growToRight = false
 				else:
 					tooltipPos.x = 0
 					buildIntoRecipesTooltip.growToRight = true
-				
+
 			Owner.Opponent:
 				tooltipPos.x = inventory_.getLeftBorder() - 1080
 				buildIntoRecipesTooltip.growToRight = false
-			
+
 			Owner.BuildViewer:
 				tooltipPos.x = inventory_.getLeftBorder() - 1080
 				buildIntoRecipesTooltip.growToRight = false
-			
+
 			Owner.GridStorage:
 				tooltipPos.x = 260
 				buildIntoRecipesTooltip.growToRight = false
-			
+
 			Owner.Tooltip:
 				match Game.lockedTooltipItem.getEffectiveOwnerType():
 					Owner.Shop:
@@ -2323,30 +2323,30 @@ func showBuildIntoRecipesTooltip():
 					Owner.PlayerStorageBox:
 						tooltipPos.x = 1250
 						buildIntoRecipesTooltip.growToRight = true
-		
+
 		buildIntoRecipesTooltip.rect_position = tooltipPos
 		buildIntoRecipesTooltip.setItem(self, ownerType_ == Owner.Tooltip)
-		
-		
+
+
 		var recipeTop = buildIntoRecipesTooltip.rect_position.y
-		
+
 		var recipeCenter = recipeTop + 0.5 * buildIntoRecipesTooltip.rect_size.y
 		var tooltipCenter = tooltip.rect_position.y + 0.5 * tooltip.rect_size.y
-		
+
 		var targetTop
 		if spotlight:
 			targetTop = Game.itemLibrary.SPOTLIGHT_POS.y - 0.5 * buildIntoRecipesTooltip.rect_size.y
 		else:
 			targetTop = recipeTop + tooltipCenter - recipeCenter
-		
+
 		targetTop = max(0, targetTop)
-		
+
 		var bottom = targetTop + buildIntoRecipesTooltip.rect_size.y
 		if bottom > 1100:
 			targetTop -= bottom - 1100
-		
+
 		buildIntoRecipesTooltip.rect_position.y = targetTop
-		
+
 		Game.setTutorialDone(Game.TutorialSteps.ShowRecipes)
 
 func getRelatedItems() -> Array:
@@ -2369,41 +2369,41 @@ func hideBuildIntoRecipesTooltip():
 
 func loseFocus():
 	if dragged: return
-	
+
 	if not focus: return
-	
-	
-	
+
+
+
 	respondToHoverEnd()
 	focus = false
 
 func respondToHoverEnd():
 	collisionMap.hide()
 	if tooltipEnabled:
-		
+
 		resetBright()
 		if Game.showHintsIsPressed:
 			Game.showAffectedLines()
 		if Game.lockedTooltipItem != self:
 			clearTooltip()
-	
+
 	CraftingManager.hideFusionPreviews(isMovingBack())
 	Game.combatLog.unhighlightItem(false)
-	
+
 	if dragParticlesEnabled:
 		deactivateDragParticles()
-	
+
 	for visual in globalAffectVisuals:
 		ObjectPool.returnInstance(visual)
 	globalAffectVisuals.clear()
-	
+
 	if ownerType == Owner.Shop:
 		resetZ()
 		for shadow in shadows:
 			shadow.z_index = - 1
 	elif ownerType == Owner.RecipeBook or ownerType == Owner.ItemLibrary:
 		resetZ()
-	
+
 	if ownerType == Owner.ItemLibrary:
 		hideSockets()
 
@@ -2430,7 +2430,7 @@ func clearTooltip():
 	if tooltip != null:
 		tooltip.discard()
 		tooltip = null
-	
+
 	hideBuildIntoRecipesTooltip()
 	clearCanAffectVisuals()
 
@@ -2438,7 +2438,7 @@ func mouseEntered():
 	Game.onItemUnderMouse(self)
 	if Game.itemsUnderMouse.size() > 10:
 		Util.eprint("items under mouse: ", Game.itemsUnderMouse)
-	
+
 	hover()
 
 const hoverableWhenMenuOpen = {
@@ -2449,34 +2449,34 @@ const hoverableWhenMenuOpen = {
 }
 
 func hover():
-	
+
 	if hovered:
-		
+
 		return
 
 	if not tooltipEnabled: return
 	if InputBlocker.isActive(): return
-	
-	
+
+
 	if Game.lockedTooltipItem != null:
 		if Game.lockedTooltipItem.buildIntoRecipesTooltip != owningBuildIntoRecipesTooltip:
 			return
 		if Game.lockedTooltipItem.isA(descriptor):
 			return
-	
+
 	if spotlight: return
-	
+
 	if (Game.state == Game.State.Shop and 
 		Game.isMenuOpen() and 
 		not ownerType in hoverableWhenMenuOpen):
 		return
-	
+
 	hovered = true
-	
+
 	Game.itemHovered(self)
 	if Game.hasHoverFocus(self):
 		gainFocus()
-	
+
 	emit_signal("hovered")
 
 func mouseExited():
@@ -2488,13 +2488,13 @@ func hoverEnd():
 	if not tooltipEnabled: return
 	if spotlight: return
 	if self == Game.lockedTooltipItem: return
-	
-	
+
+
 	hovered = false
 	loseFocus()
-	
+
 	Game.itemHoverEnd(self)
-	
+
 	emit_signal("unhovered")
 
 func isHovered():
@@ -2512,70 +2512,70 @@ func setSpriteScale(newScale: Vector2):
 	sprite.scale = newScale
 
 func resetZ():
-	
+
 	z_index = 1
 
 func pickup(pickupType = PickupType.Grabbed):
-	
+
 	pickupFrame = Util.frameCounter
 	resetSprite()
-	
+
 	if ownerType == Owner.Shop:
 		Util.reparent(self, Game.playerNode)
 		collisionMap.hide()
-	
+
 	elif ownerType == Owner.PlayerStorageBox:
 		Util.reparent(self, Game.playerNode)
-		
+
 		if isInGridStorage():
 			setFaceDirectionInstant(FaceDirection.UP)
 		else:
 			setFaceDirection(FaceDirection.UP)
 		onStorageLeft()
-	
+
 	elif inventory != null and ownerType == Owner.PlayerInventory:
 		pickupTopLeftCell = getTopLeftCell()
 		pickupFaceDirection = getFaceDirection()
-		
+
 		inventory.removeItem(self)
 		setBright()
 		if pickupType == PickupType.MultiSelect:
 			draggedInsideItems = inventory.getMultiSelectItems()
 			for item in draggedInsideItems:
 				if item.draggingParent:
-					
+
 					item.draggingParent.finishMoveback()
-					
-				
+
+
 				item.onDraggedWithParentStart(self)
-				
+
 				inventory.removeItem(item)
 				Util.reparent(item, insideRotationNode)
 				item.resetBright()
-		
-		
+
+
 		elif isBag():
 			var hotswapBagWithDraggedItems = not Settings.getVal(Settings.Setting.bag_hotswapping)
 			if Game.hotswapBehaviorModified:
 				hotswapBagWithDraggedItems = not hotswapBagWithDraggedItems
-			
+
 			if (Game.inventoryEditMode == Game.InventoryEditMode.Default and 
 				(pickupType == PickupType.Grabbed or hotswapBagWithDraggedItems)):
 				if draggingParent == null:
 					draggedInsideItems = me.getItemsInside()
 					for item in draggedInsideItems:
 						if item.draggingParent:
-							
+
 							item.draggingParent.finishMoveback()
-							
-							
+
+
 						item.onDraggedWithParentStart(self)
-						
+
 						inventory.removeItem(item)
 						Util.reparent(item, insideRotationNode)
-				
-				
-	
+
+
+
 	Game.itemPickedUp(self)
 	dragged = true
 	clearTooltip()
@@ -2583,7 +2583,7 @@ func pickup(pickupType = PickupType.Grabbed):
 	playPickupSound()
 	Sound.itemMovePlayer.play()
 	Sound.itemMovePlayer.pitch_scale = 1.3 - 0.1 * getNumCells()
-	
+
 	for shadow in shadows:
 		shadow.z_index = - 1
 	Util.killTween(shadowTween)
@@ -2593,17 +2593,17 @@ func pickup(pickupType = PickupType.Grabbed):
 		shadowTween.tween_property(sprite, getScaleProp(), spriteScale * 1.1, 0.1)
 
 	z_index = 20
-	
+
 	if not isMovingBack():
 		pickupPosition = global_position
 		pickupRotation = fmod(global_rotation + 2 * PI, 2 * PI)
 	else:
 		killMovebackTween()
-	
+
 	previewFusions()
-	
+
 	InputBlocker.disableAllControls(InputBlocker.Source.ItemDragging, Game.mainNode)
-	
+
 	emit_signal("picked_up")
 
 func onDraggedWithParentStart(parentItem):
@@ -2614,7 +2614,7 @@ func finishMoveback():
 	if isMovingBack():
 		movebackTween.custom_step(10)
 		call_deferred("resetZ")
-	
+
 	Util.finishTween(rotationTween)
 
 
@@ -2628,7 +2628,7 @@ func reactToDropResult(result):
 	if result == DropResult.Failed:
 		dragged = true
 		return
-	
+
 	dragged = false
 	dropFrame = Util.frameCounter
 	Util.killTween(shadowTween)
@@ -2637,27 +2637,27 @@ func reactToDropResult(result):
 	shadowTween.tween_property(sprite, getScaleProp(), spriteScale, 0.1)
 	for shadow in shadows:
 		shadowTween.tween_property(shadow, "scale", spriteScale, 0.1)
-	
+
 	Game.itemDropped(self, result)
-	
+
 	loseFocus()
 	Game.recalcHoverPriority()
-	
-	
-	
+
+
+
 	playDropSound()
 	Sound.itemMovePlayer.stop()
-	
+
 	sprite.rotation = 0
 	bonusRotation = 0
 	rotationMomentum = 0
-	
+
 	createParticles(dropParticlesScene, Vector2(0.6, 0.6))
 	dragParticles.deactivate()
-	
+
 	if result != DropResult.Hotswap:
 		InputBlocker.restoreAllControls(InputBlocker.Source.ItemDragging)
-		
+
 	emit_signal("dropped", result)
 
 
@@ -2666,7 +2666,7 @@ func drop() -> int:
 	var result = 0
 	dragged = false
 	resetSprite()
-	
+
 	if Game.STORAGEBOX.isHovered():
 		lastCollisionPos = global_position
 		addToStorageBox()
@@ -2674,7 +2674,7 @@ func drop() -> int:
 		if not draggedInsideItems.empty():
 			Game.STORAGEBOX.pushItemsToStorage(draggedInsideItems)
 			clearDraggedInsideItems()
-		
+
 	elif Game.SELLBOX.isHovered():
 		sold = true
 		result = DropResult.Sold
@@ -2693,42 +2693,42 @@ func drop() -> int:
 			Game.STORAGEBOX.pushItemsToStorage(draggedInsideItems)
 			clearDraggedInsideItems()
 	else:
-		
-		
-		
+
+
+
 		finishInsideItemsRotation()
-		
+
 		result = Game.PLAYER.INVENTORY.tryAddItem(self)
 		if wasAddedToInventory(result):
 			dropIntoInventory(result == DropResult.Hotswap)
 		else:
-			
-			
+
+
 			if (ownerType == Owner.PlayerInventory and 
 				isBag() and 
 				not inventory.allCellsPotentialSpace(occupiedCells)):
-				
+
 				pushDraggedItemsToStorage()
 				pushToStorage()
 				return DropResult.AddedToStorageBox
-			
-			
+
+
 			var dif = (pickupPosition - global_position)
 			var movebackDur = clamp(dif.length() / 1000, 0.1, 0.5)
-			
-			
+
+
 			killMovebackTween()
-			
+
 			var curPosition = global_position
 			var insidePositions = []
 			for item in draggedInsideItems:
 				insidePositions.push_back(item.global_position)
-			
+
 			if Game.state == Game.State.Shop and ownerType == Owner.PlayerInventory:
-				
+
 				if not draggedInsideItems.empty():
-					
-					
+
+
 					for itemI in draggedInsideItems.size():
 						var item = draggedInsideItems[itemI]
 						Util.reparent(item, Game.playerNode)
@@ -2736,27 +2736,27 @@ func drop() -> int:
 
 
 
-							
+
 						if not wasAddedToInventory(insideRes):
 							item.global_position = insidePositions[itemI]
 							item.pushToStorage()
-						
+
 					correctInsideItemFacedirection()
 					clearDraggedInsideItems()
-					
+
 
 
 
 
 					pickup(PickupType.Hotswap)
-					
+
 					return DropResult.Failed
 				else:
 					pushToStorage()
 					return DropResult.AddedToStorageBox
-			
+
 			ownerType = previousOwnerType
-			
+
 			if ownerType == Owner.Socket:
 				returnToSocket(movebackDur)
 			else:
@@ -2766,20 +2766,20 @@ func drop() -> int:
 
 				global_position = pickupPosition
 				rotateTo(pickupRotation, movebackDur)
-			
+
 				if ownerType == Owner.PlayerInventory:
 					result = inventory.tryAddItem(self)
-					
+
 					if not wasAddedToInventory(result):
 						global_position = curPosition
-						
-	
-	
-	
-							
+
+
+
+
+
 						pushToStorage()
 						return DropResult.AddedToStorageBox
-					
+
 					if not draggedInsideItems.empty():
 						for itemI in draggedInsideItems.size():
 							var item = draggedInsideItems[itemI]
@@ -2787,29 +2787,29 @@ func drop() -> int:
 							if not wasAddedToInventory(insideRes):
 								item.global_position = insidePositions[itemI]
 								item.pushToStorage()
-								
-				
+
+
 				global_position = curPosition
 				movebackTween.tween_property(self, "global_position", pickupPosition, 
 					movebackDur).set_ease(Tween.EASE_IN)
-				
+
 				if ownerType == Owner.PlayerStorageBox:
 					Game.STORAGEBOX.addItem(self)
 					Util.reparent(self, Game.STORAGEBOX)
-					
+
 					movebackTween.tween_callback(self, "moveToFreeSpaceInStorage", [])
 					movebackTween.tween_callback(self, "apply_impulse", [
 						Vector2(0, - 3), dif * 1.0, 
 					])
-				
+
 				if ownerType == Owner.Shop:
 					Util.reparent(self, Game.shopItemYSort)
-				
-				
+
+
 				set_deferred("z_index", 32)
 				movebackTween.tween_callback(self, "resetZ")
 				movebackTween.tween_callback(self, "showClickArea")
-	
+
 	sameOrientationAsPickup = true
 	if previousOwnerType != ownerType:
 		sameOrientationAsPickup = false
@@ -2818,8 +2818,8 @@ func drop() -> int:
 			sameOrientationAsPickup = false
 		if getTopLeftCell() != pickupTopLeftCell:
 			sameOrientationAsPickup = false
-	
-	
+
+
 	return result
 
 func showClickArea():
@@ -2827,48 +2827,48 @@ func showClickArea():
 
 func cancelDrag():
 	var movebackDur = 0.2
-	
-	
-	
+
+
+
 	match ownerType:
 		Owner.PlayerInventory:
 			var insideStartPositions = {}
 			for item in draggedInsideItems:
 				insideStartPositions[item] = item.global_position
-			
+
 			finishInsideItemsRotation()
 			var curTransform: Transform2D = get_global_transform()
 			inventory.orientItem(self, pickupTopLeftCell, pickupFaceDirection)
 			if inventory.canAddItemOrBag(self):
 				inventory.addItemByTopLeft(self, pickupTopLeftCell)
-				
+
 				dropIntoInventory(false)
-				
+
 				set_global_transform(curTransform)
 				moveTo(global_position, pickupPosition, movebackDur)
 				rotateTo(pickupRotation, movebackDur)
-				
+
 				for item in insideStartPositions:
 					item.moveTo(insideStartPositions[item], item.global_position, movebackDur)
-				
+
 				reactToDropResult(DropResult.AddedToInventory)
 			else:
-				
+
 				set_global_transform(curTransform)
 				pushDraggedItemsToStorage()
 				addToStorageBox(false, false, true)
 				reactToDropResult(DropResult.AddedToStorageBox)
-			
+
 		Owner.PlayerStorageBox:
 			addToStorageBox(false, false, true)
 			reactToDropResult(DropResult.AddedToStorageBox)
-		
+
 		Owner.Shop:
 			moveTo(global_position, pickupPosition, movebackDur)
 			rotateTo(pickupRotation, movebackDur)
 			Util.reparent(self, Game.shopItemYSort)
 			reactToDropResult(DropResult.OutsideInventory)
-		
+
 		Owner.Socket:
 			if self.movebackSocket != null:
 				if self.movebackSocket.isEmpty():
@@ -2877,7 +2877,7 @@ func cancelDrag():
 				else:
 					addToStorageBox(false, false, true)
 					reactToDropResult(DropResult.AddedToStorageBox)
-		
+
 func hasSameOrientationAsPickup() -> bool:
 	return sameOrientationAsPickup
 
@@ -2909,29 +2909,29 @@ func setSpriteGlobalPos(pos):
 func dropIntoInventory(hotswap):
 	resetZ()
 	var hotswapped = hotswap
-	
+
 	for item in draggedInsideItems:
 		if inventory.canAddItemOrBag(item):
-			
+
 			Util.reparent(item, Game.playerNode)
 			correctInsideItemFacedirection()
 			var res = inventory.tryAddItem(item)
-			
+
 		else:
-			
+
 			if not hotswapped:
 				Util.reparent(item, Game.playerNode)
-				
+
 				item.pickup(PickupType.Hotswap)
 				hotswapped = true
 			else:
 				item.pushToStorage()
 	clearDraggedInsideItems()
-	
+
 	if hotswapped:
 		resetBright()
-	
-	
+
+
 	for color in Affected.values():
 		var affectedPoints = inventory.getAffectedPoints(self, color)
 		for point in affectedPoints:
@@ -2966,7 +2966,7 @@ func reparentItemsInside():
 func correctInsideItemFacedirection():
 	for item in draggedInsideItems:
 		item.faceDirection = item.getGlobalFaceDirection()
-		
+
 		item.updateShaderRotation()
 
 
@@ -3071,16 +3071,16 @@ func getTouchedBagsCounted():
 		var bagCounter = Dictionary()
 		for bag in touchedBags:
 			var found = false
-			
-			
+
+
 			for countedBag in bagCounter:
 				if countedBag.descriptor == bag.descriptor:
 					bagCounter[countedBag] += bag.getBagMultiplicity(self)
 					found = true
-			
+
 			if not found:
 				bagCounter[bag] = bag.getBagMultiplicity(self)
-		
+
 		return bagCounter
 
 const defaultSounds = [
@@ -3170,7 +3170,7 @@ func playPickupSound():
 func playDropSound(volume = 0):
 	volume += impactSoundVolume
 	var pitch = Util.rng.randf_range(0.9, 1.1)
-	
+
 	match descriptor.material:
 		Mat.Default:
 			Sound.playSound(defaultSounds[0], volume, pitch)
@@ -3237,7 +3237,24 @@ func _input(event: InputEvent) -> void :
 	if InputBlocker.isActive(): return
 	if event is InputEventMouseMotion or event is InputEventJoypadMotion: return
 	if event.is_echo(): return
-	
+
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_RIGHT and event.pressed:
+			var allowFreeAdd = Game.getConfigValue("Options", "EnableItemLibraryFreeAdd", false)
+			if not allowFreeAdd and CustomRules.isSandboxMode():
+				allowFreeAdd = true
+			if allowFreeAdd:
+				if ownerType == Owner.ItemLibrary and focus:
+					if Game.itemLibrary != null and Game.itemLibrary.isOpen:
+						var newItem = descriptor.instantiate()
+						Game.playerNode.add_child(newItem)
+						var dropPos = Game.STORAGEBOX.center + Vector2(0, - 400)
+						newItem.global_position = dropPos
+						newItem.pushToStorage()
+						print("FREE ADD: Added ", descriptor.identifier, " to storage box")
+						get_tree().set_input_as_handled()
+						return
+
 	if (event.is_action_pressed("options") and 
 		dragged and 
 		Game.state == Game.State.Shop):
@@ -3245,7 +3262,7 @@ func _input(event: InputEvent) -> void :
 		Game.cancelSwitch()
 		get_tree().set_input_as_handled()
 		return
-	
+
 	if Util.isActionPressed_event(event, "push_to_storage"):
 		if canBeDropped() and isBag():
 			Game.hotswapBehaviorModified = true
@@ -3255,67 +3272,67 @@ func _input(event: InputEvent) -> void :
 			Game.cancelSwitch()
 			get_tree().set_input_as_handled()
 			return
-			
+
 	var isTouchEvent = event is InputEventScreenTouch
-	
-	
+
+
 	if (Util.isAction_event(event, "grab_item") or 
 		isTouchEvent):
-		
+
 		if event.is_pressed():
 			if canBePicked():
 				if (Game.state == Game.State.Shop and 
 					Util.isActionPressed("push_to_storage")):
 						if ownerType == Owner.PlayerInventory:
-							
+
 							if Game.inventoryEditMode == Game.InventoryEditMode.Default:
 								pushItemsInsideToStorage()
 							inventory.removeItem(self)
 							pushToStorage(Game.STORAGEBOX.center)
 							reactToDropResult(DropResult.AddedToStorageBox)
-							
+
 						elif ownerType == Owner.Shop:
-							
+
 							Util.reparent(self, Game.playerNode)
 							collisionMap.hide()
 							pushToStorage(Game.STORAGEBOX.center)
 							reactToDropResult(DropResult.AddedToStorageBox)
 						elif ownerType == Owner.Socket:
-							
+
 							pushToStorage(Game.STORAGEBOX.center)
 							reactToDropResult(DropResult.AddedToStorageBox)
-						
+
 						Game.cancelSwitch()
 						get_tree().set_input_as_handled()
 						Game.setTutorialDone(Game.TutorialSteps.SendToStorage)
 
 				else:
-					
+
 					if isTouchEvent:
 						Game.draggingFinger = event.index
 					pickup()
-			
+
 			elif hovered and not pickingEnabled and ownerType == Owner.Shop:
 				if Util.time >= notEnoughGoldLabelReadyTime:
 					Game.shopSceneNode.notEnoughGold(global_position)
 					notEnoughGoldLabelReadyTime = Util.time + 1
 					get_tree().set_input_as_handled()
-			
+
 			elif focus and ownerType == Owner.ItemLibrary:
 				if Game.lockedTooltipItem == null:
 					Game.itemLibrary.setSpotlightItem(self)
-				
-			
+
+
 			elif focus and ownerType == Owner.InfoPanelIcon:
 				emit_signal("info_panel_clicked")
-			
+
 		elif canBeDropped():
 			if not isTouchEvent or Game.draggingFinger == event.index:
-				
+
 				var result = drop()
 				reactToDropResult(result)
-				
-			
+
+
 	elif Util.isActionPressed_event(event, "lock_combining"):
 		if canBeLocked():
 			if locked:
@@ -3326,14 +3343,14 @@ func _input(event: InputEvent) -> void :
 				Game.onItemLocked()
 				Game.cancelSwitch()
 			get_tree().set_input_as_handled()
-	
+
 	if (dragged and 
 		isTouchEvent and 
 		event.pressed and 
 		Game.draggingFinger != event.index and 
 		Game.draggingFinger != - 1):
-			
-			
+
+
 			rotateRight()
 
 func cacheAffectedItemsForCombat():
@@ -3343,14 +3360,14 @@ func cacheAffectedItemsForCombat():
 
 func prepare():
 	cacheAffectedItemsForCombat()
-	
+
 	disablePicking()
 	chanceRng.reset()
 	damageRangeRng.reset()
 	for gem in getGemsNoNull():
 		gem.prepare()
 	onPrepare()
-	
+
 
 func onPrepare():
 	pass
@@ -3358,13 +3375,13 @@ func onPrepare():
 func preCombatStart():
 	for gem in getGemsNoNull():
 		gem.preCombatStart()
-	
+
 	if hasCooldown():
 		iterationCooldown = adjustCooldown()
 		triggerTime = iterationCooldown
 		activateCooldown()
 		Game.combatLog.snapshotItemTooltipStat(self, Stat.Cooldown)
-	
+
 	onPreCombatStart()
 
 func onPreCombatStart():
@@ -3375,10 +3392,10 @@ func hasStartofBattle() -> bool:
 
 func combatStart():
 	updateShaderRotation()
-	
+
 	for gem in getGemsNoNull():
 		gem.combatStart()
-	
+
 	if hasStartofBattle():
 		me.onCombatStart()
 
@@ -3412,7 +3429,7 @@ func resetSprite():
 	sprite.scale = spriteScale
 
 func combatEnd():
-	
+
 	set_physics_process(false)
 	disconnectCombat()
 	for gem in getGemsNoNull():
@@ -3440,7 +3457,7 @@ func shopEntered(craft: bool):
 	for buff in buffPowers:
 		buffPowers[buff] = 1.0
 		buffAmplificationChances[buff] = 0.0
-	
+
 	critChancePercent = 0.0
 	critTokens = 0
 	critSeverity = BASE_CRIT_SEVERITY
@@ -3457,15 +3474,15 @@ func shopEntered(craft: bool):
 	itemMetrics.fill(0)
 	consumed = false
 	showCooldownSmooth(0)
-	
-	
+
+
 	enablePicking()
 	for gem in getGemsNoNull():
 		gem.shopEntered(craft)
-	
+
 	if craft:
 		addToCraftingQueue()
-	
+
 	onShopEntered()
 
 func onShopEntered():
@@ -3476,13 +3493,13 @@ func startFusing_inShop():
 
 func getCraftingPriority() -> int:
 	if isGem(): return CraftingPriority.Gem
-	
+
 	for bonded in bondedIngredients:
 		if bonded.isGem():
 			return CraftingPriority.Mixed
-	
+
 	return CraftingPriority.NonGem
-	
+
 func addToCraftingQueue():
 	if readyToFuse():
 		Game.craftingPriorities[self] = getCraftingPriority()
@@ -3586,18 +3603,18 @@ func getTypeMultiplicity(type: int) -> int:
 func addDynamicType(type: int, byItem: Item):
 	if not type in descriptor.types:
 		Util.dictAppend(dynamicTypes, type, byItem.get_instance_id())
-		
+
 		if dynamicTypes[type].size() == 1:
 			if placed:
 				inventory.onItemTypeChanged(self)
 			if type in typeTransformationParticles:
 				ObjectPool.particleOneShot(typeTransformationParticles[type], self)
-			
+
 
 func removeDynamicType(type: int, byItem: Item):
 	if hasDynamicType(type, byItem):
 		Util.dictErase(dynamicTypes, type, byItem.get_instance_id())
-		
+
 		if not type in dynamicTypes:
 			if placed:
 				inventory.onItemTypeChanged(self)
@@ -3606,7 +3623,7 @@ func hasDynamicType(type: int, fromItem: Item):
 	if type in dynamicTypes:
 		if fromItem.get_instance_id() in dynamicTypes[type]:
 			return true
-	
+
 	return false
 
 func clearDynamicTypes():
@@ -3649,44 +3666,44 @@ func getTypedDamageFactor(damSource) -> float:
 	var typedDmgFactor = 1.0
 	for type in damSource.types:
 		typedDmgFactor += character().typedDamageFactors[type]
-		
-		
-		
-		
+
+
+
+
 	return typedDmgFactor
 
 
 func getMinDamage(damSource = damageSource) -> int:
 	var override = statDisplayOverrides[Stat.MinDamage]
 	if override: return override
-	
+
 	var minDam = ceil(descriptor.minDam + bonusMinDam)
 	if hasCharacter():
 		if canBeEmpowered():
 			minDam = minDam + character().getBuffDamageMod()
-		
+
 		minDam *= getTypedDamageFactor(damSource)
-	
+
 	minDam = round(minDam * bonusDamageFactor)
 	minDam = max(minDam, 0)
-	
+
 	return minDam
 
 
 func getMaxDamage(damSource = damageSource) -> int:
 	var override = statDisplayOverrides[Stat.MaxDamage]
 	if override: return override
-	
+
 	var maxDam = ceil(descriptor.maxDam + bonusMaxDam)
 	if hasCharacter():
 		if canBeEmpowered():
 			maxDam = maxDam + character().getBuffDamageMod()
-		
+
 		maxDam *= getTypedDamageFactor(damSource)
-	
+
 	maxDam = round(maxDam * bonusDamageFactor)
 	maxDam = max(maxDam, 0)
-	
+
 	return maxDam
 
 func getAverageDamage() -> float:
@@ -3720,12 +3737,12 @@ func isDPSModified() -> int:
 	var baseDPS = getBaseAverageDamage() / getCooldown()
 	var modifiedDPS = getAverageDamage() / getModifiedCooldown()
 	return isStatModified(modifiedDPS - baseDPS)
-	
+
 
 func getSpeed() -> float:
 	var override = statDisplayOverrides[Stat.Speed]
 	if override: return override
-	
+
 	if hasCharacter():
 		var speed_ = speed() + getStackSpeedMods()
 		var modifiedSpeed: float
@@ -3733,7 +3750,7 @@ func getSpeed() -> float:
 			modifiedSpeed = 1.0 + speed_
 		else:
 			modifiedSpeed = 1.0 / (1.0 - speed_)
-		
+
 		modifiedSpeed = clamp(modifiedSpeed, 0.1, 10.0)
 		return modifiedSpeed
 	else:
@@ -3765,7 +3782,7 @@ func getBaseCooldownIndex(index: int) -> float:
 func getCooldown() -> float:
 	var override = statDisplayOverrides[Stat.BaseCooldown]
 	if override: return override
-	
+
 	return baseCooldownOverride
 
 
@@ -3776,7 +3793,7 @@ func isCooldownModified() -> int:
 	var baseCd = getBaseCooldown()
 	var curCd = getModifiedCooldown()
 	return isStatModified(baseCd - curCd)
-	
+
 
 func getModifiedCooldown() -> float:
 	return getCooldown() / getSpeed()
@@ -3791,7 +3808,7 @@ func adjustCooldown():
 		adjustedCooldown *= Util.rng.randf_range(0.975, 1.05)
 	else:
 		adjustedCooldown *= Util.rng.randf_range(0.95, 1.05)
-	
+
 	return adjustedCooldown
 
 func getBaseAccuracy() -> float:
@@ -3800,7 +3817,7 @@ func getBaseAccuracy() -> float:
 func getAccuracy() -> float:
 	var override = statDisplayOverrides[Stat.Accuracy]
 	if override: return override
-	
+
 	var acc = getBaseAccuracy()
 	acc += bonusAccuracy
 	if hasCharacter():
@@ -3827,8 +3844,8 @@ func getDisplayCritChance() -> String:
 
 	else:
 		return String(stepify(c, 0.1))
-	
-	
+
+
 func getBaseChance() -> float:
 	return descriptor.chance
 
@@ -3850,13 +3867,13 @@ func applyBonusChance(toChance, index) -> float:
 func getChance() -> float:
 	var override = statDisplayOverrides[Stat.Chance]
 	if override: return override
-	
+
 	return clamp(applyBonusChance(getBaseChance(), 1), 0, 100)
 
 func getChance2() -> float:
 	var override = statDisplayOverrides[Stat.Chance2]
 	if override: return override
-	
+
 	return clamp(applyBonusChance(getBaseChance2(), 2), 0, 100)
 
 func getShopChance() -> float:
@@ -3909,7 +3926,7 @@ func getP_m(paramName: String) -> float:
 func getParamModified(paramName: String, baseVal) -> float:
 	var baseParam = descriptor.paramBases[paramName]
 	return (baseVal + paramAdd.get(baseParam, 0)) * paramMult.get(baseParam, 1.0)
-	
+
 
 
 
@@ -3958,7 +3975,7 @@ func getBaseStaminaCost() -> float:
 func getStaminaCost() -> float:
 	var override = statDisplayOverrides[Stat.StaminaCost]
 	if override: return override
-	
+
 	return getBaseStaminaCost() * staminaFactor
 
 func isStaminaModified() -> int:
@@ -3978,7 +3995,7 @@ func isStaminaPerSecondModified() -> int:
 func getCritChancePercent() -> float:
 	var override = statDisplayOverrides[Stat.CritChance]
 	if override != null: return override
-	
+
 	return clamp(critChancePercent, 0, 100)
 
 func addCritChancePercent(amount):
@@ -4017,14 +4034,14 @@ func addBonusChance(amount):
 
 func addBonusChance_additive(amount1, amount2 = null):
 	bonusChancePercent_additive1 += amount1
-	
+
 	if amount2 == null:
 		bonusChancePercent_additive2 += amount1
 	else:
 		bonusChancePercent_additive2 += amount2
-	
+
 	Game.combatLog.snapshotItemTooltipStat(self, Stat.Chance)
-	
+
 	if amount2 != 0:
 		Game.combatLog.snapshotItemTooltipStat(self, Stat.Chance2)
 
@@ -4041,7 +4058,7 @@ func addBonusDamage(damage, removable: bool = true):
 			removableDam += damage
 		Game.combatLog.snapshotItemTooltipStat(self, Stat.MinDamage)
 		Game.combatLog.snapshotItemTooltipStat(self, Stat.MaxDamage)
-		
+
 		if removable:
 			spawnLabel(Game.EventType.DamageBuff, damage)
 
@@ -4063,7 +4080,7 @@ func reduceBonusDamage(damage, showLabel: bool = true, removable: bool = true):
 		removableDam -= damage
 	Game.combatLog.snapshotItemTooltipStat(self, Stat.MinDamage)
 	Game.combatLog.snapshotItemTooltipStat(self, Stat.MaxDamage)
-	
+
 	if showLabel:
 		spawnLabel(Game.EventType.DamageBuff, - damage)
 
@@ -4075,7 +4092,7 @@ func purgeDamage(damage):
 		bonusMaxDam -= purgable
 		Game.combatLog.snapshotItemTooltipStat(self, Stat.MinDamage)
 		Game.combatLog.snapshotItemTooltipStat(self, Stat.MaxDamage)
-		
+
 		spawnLabel(Game.EventType.DamageBuff, - purgable)
 
 func reduceMinDamage(damage):
@@ -4095,7 +4112,7 @@ func reduceBonusDamageFactor(factor):
 	bonusDamageFactor -= factor
 	Game.combatLog.snapshotItemTooltipStat(self, Stat.MinDamage)
 	Game.combatLog.snapshotItemTooltipStat(self, Stat.MaxDamage)
-	
+
 
 func changeStaminaFactor(amount):
 	staminaFactor += amount / 100.0
@@ -4131,8 +4148,8 @@ func hasAttackEffect() -> bool:
 
 func preDealDamage_early(damageRes):
 	EventBus.emitSignal(self, "pre_deal_damage_early", [damageRes])
-	
-	
+
+
 
 
 
@@ -4143,7 +4160,7 @@ func preDealDamage_early(damageRes):
 
 func preDealDamage_late(damageRes):
 	EventBus.emitSignal(self, "pre_deal_damage_late", [damageRes])
-	
+
 
 
 
@@ -4205,7 +4222,7 @@ func useStamina(amount = getStaminaCost()):
 		EventBus.emitSignal(self, "used_stamina", [amount])
 		staminaChanged(amount, StackChangeType.Used_Player, true)
 	return res
-	
+
 func drainStamina(amount, triggerEvent = null):
 	return opponent().drainStamina(amount, self, triggerEvent)
 
@@ -4250,7 +4267,7 @@ func discard(discardGems = true):
 	if discardGems:
 		for gem in getGemsNoNull():
 			gem.discard()
-	
+
 	if hovered:
 		hoverEnd()
 	clearTooltip()
@@ -4259,44 +4276,44 @@ func discard(discardGems = true):
 	disableFocus()
 	Game.onItemUnderMouseExited(self)
 	Util.disconnectAll(self)
-	
+
 	if isOwnable():
 		ItemBook.onOwnableItemRemoved(self)
-	
+
 	if pooled:
 		clearDynamicTypes()
 		Util.killTween(shadowTween)
 		resetSprite()
-		
+
 		if placed:
 			cleanCachedAffectedItems()
 			placed = false
-		
+
 		ObjectPool.returnInstance(self, descriptor.scene)
 	else:
-		
+
 		clickArea.hide()
 		queue_free()
-		
+
 
 func popIn(withParticles: bool = true, speed = 1.0, jump = false):
 	shadowTween = Util.refreshTween(shadowTween)
 	setSpriteScale(Vector2.ZERO)
 	updateShadow()
-	
+
 	var scaledUp = spriteScale * 1.1
 	var totalScaleDur = 0.5 / speed
 	var scaleDur1 = 0.3 / speed
-	
+
 	shadowTween.set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	shadowTween.set_parallel()
-	
+
 	shadowTween.tween_property(sprite, getScaleProp(), scaledUp, 
 		scaleDur1).set_ease(Tween.EASE_IN_OUT)
 	shadowTween.tween_property(sprite, getScaleProp(), spriteScale, 
 		totalScaleDur - scaleDur1).from(scaledUp).set_ease(
 			Tween.EASE_IN_OUT).set_delay(scaleDur1)
-	
+
 	if jump:
 		var yPos = sprite.position.y
 		var yOffset = Util.rng.randf_range( - 90.0, - 40.0)
@@ -4308,9 +4325,9 @@ func popIn(withParticles: bool = true, speed = 1.0, jump = false):
 		shadowTween.tween_property(sprite, "position:y", yPos, 
 			totalJumpDur - jumpDur1).set_ease(Tween.EASE_IN).from(yOffset).set_delay(jumpDur1)
 
-	
-	
-	
+
+
+
 	if withParticles:
 		var particles = createParticles(sparksScene, Vector2(0.9, 0.9))
 		particles.modulate = Game.rarityColors[getRarity()]
@@ -4359,14 +4376,14 @@ func makeRigidBody():
 		set_collision_mask_bit(0, true)
 
 func dropImpulse(direction = null, tweenBouncyness: bool = true):
-	
+
 	if tweenBouncyness:
 		var bouncynessTween = create_tween().set_parallel()
 		bouncynessTween.tween_property(physics_material_override, 
 			"bounce", 0.0, frictionTime).from(baseBounce)
 		bouncynessTween.tween_property(physics_material_override, 
 			"friction", 1.0, frictionTime).from(baseFriction)
-	
+
 	var impulseOffset = Vector2(Util.rng.randf_range( - offset, offset), 
 								Util.rng.randf_range( - offset, offset))
 	if direction == null:
@@ -4374,10 +4391,10 @@ func dropImpulse(direction = null, tweenBouncyness: bool = true):
 					Util.rng.randf_range( - impulse, impulse), 
 					Util.rng.randf_range( - impulse, impulse))
 					+ momentum * momentumFactor)
-	
-	
+
+
 	var impulse2: Vector2 = direction * (0.5 + 0.5 * mass)
-	
+
 	apply_impulse(impulseOffset, impulse2)
 
 func makeNonRigidBody():
@@ -4389,7 +4406,7 @@ func makeNonRigidBody():
 
 func rollChance(chance = getBaseChance()) -> bool:
 	return chanceRng.rollPercent(applyBonusChance(chance, 1))
-	
+
 func rollChance2() -> bool:
 	return chanceRng.rollPercent(applyBonusChance(descriptor.chance2, 2))
 
@@ -4409,9 +4426,9 @@ func checkTriggerCount(limit: int) -> bool:
 func trigger():
 	iterationCooldown = adjustCooldown()
 	triggerTime += iterationCooldown
-	
+
 	doCooldownEffect()
-	
+
 	if doubleActivationChance > 0 and Util.flip(doubleActivationChance):
 		doCooldownEffect()
 
@@ -4468,26 +4485,26 @@ func reconstructCooldown(encodedCd, timeSinceEntry):
 
 func advanceCooldownPercent(amount):
 	if not isCooldownActive(): return
-	
+
 	var reduction = amount / 100.0 * iterationCooldown
 	triggerTime -= reduction
-	
+
 	while triggerTime <= 0:
 		trigger()
 		if not isCooldownActive(): return
-	
+
 	Util.spawnLabelOnItem(Game.EventType.CooldownAdvance, self, reduction)
 	Game.combatLog.snapshotItemTooltipStat(self, Stat.Cooldown)
 
 func advanceCooldownSeconds(amount):
 	if not isCooldownActive(): return
-	
+
 	triggerTime -= amount * getSpeed()
-	
+
 	while triggerTime <= 0:
 		trigger()
 		if not isCooldownActive(): return
-	
+
 	Util.spawnLabelOnItem(Game.EventType.CooldownAdvance, self, amount)
 	Game.combatLog.snapshotItemTooltipStat(self, Stat.Cooldown)
 
@@ -4507,12 +4524,12 @@ func playActivationAnimation_Scale(maxScale: float):
 func playActivationAnimation_Jump(height, maxScale: float = 1.0):
 	shadowTween = Util.refreshTween(shadowTween)
 	shadowTween.set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
-	
+
 	var startPos = sprite.global_position.y
 	shadowTween.tween_property(sprite, getScaleProp(), spriteScale * maxScale, 0.1).set_ease(Tween.EASE_IN_OUT)
 	shadowTween.parallel().tween_property(sprite, "global_position:y", 
 		startPos - height, 0.1).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
-	
+
 	shadowTween.tween_property(sprite, getScaleProp(), spriteScale, 0.2).set_ease(Tween.EASE_IN_OUT)
 	shadowTween.parallel().tween_property(sprite, "global_position:y", 
 		startPos, 0.2).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD).set_delay(0.05)
@@ -4521,7 +4538,7 @@ func playActivationAnimation_JumpSquash(height, intensity = 0.2):
 	shadowTween = Util.refreshTween(shadowTween)
 	shadowTween.set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	var startPos = sprite.global_position.y
-	
+
 	var longScale = 1.0 + intensity
 	var shortScale = 1.0 / longScale
 	var scaling: Vector2
@@ -4529,71 +4546,71 @@ func playActivationAnimation_JumpSquash(height, intensity = 0.2):
 		scaling = Vector2(shortScale, longScale)
 	else:
 		scaling = Vector2(longScale, shortScale)
-	
+
 	shadowTween.tween_property(sprite, getScaleProp(), spriteScale * scaling, 0.1).set_ease(Tween.EASE_IN_OUT)
 	shadowTween.parallel().tween_property(sprite, "global_position:y", 
 		startPos - height, 0.1).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
-	
+
 	shadowTween.tween_property(sprite, getScaleProp(), spriteScale, 0.2).set_ease(Tween.EASE_IN_OUT).set_delay(0.05)
 	shadowTween.parallel().tween_property(sprite, "global_position:y", 
 		startPos, 0.2).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
 
 func playActivationAnimation(aniType = descriptor.activationAni, 
 	consume: bool = false):
-	
+
 	resetSprite()
-	
+
 	if aniType == ActivationAni.Jump:
 		animation.play("Activate")
 		playActivationAnimation_Jump(40)
-	
+
 	elif aniType == ActivationAni.SquishyJump:
 		animation.play("Activate")
 		playActivationAnimation_JumpSquash(40, 0.1)
-	
+
 	elif aniType == ActivationAni.VerySquishyJump:
 		animation.play("Activate")
 		playActivationAnimation_JumpSquash(40, 0.2)
-	
+
 	elif aniType == ActivationAni.Slash:
 		animation.play("Activate_Slash")
-	
+
 	elif aniType == ActivationAni.Stab:
 		animation.play("Activate_Stab")
-	
+
 	elif aniType == ActivationAni.ReverseStab:
 		animation.play("Activate_Reverse_Stab")
-	
+
 	elif aniType == ActivationAni.Bonk:
 		animation.play("Activate_Bonk")
-	
+
 	elif aniType == ActivationAni.ReverseBonk:
 		animation.play("Activate_ReverseBonk")
-	
+
 	elif aniType == ActivationAni.Sweep:
 		animation.play("Activate_Sweep")
-	
+
 	elif aniType == ActivationAni.Block:
 		animation.play("Activate")
 		playActivationAnimation_Jump(30, 1.3)
 		shadowTween.set_speed_scale(1.2)
-	
+
 	elif aniType == ActivationAni.Chop:
 		animation.play("Activate_Chop")
-	
+
 	elif aniType == ActivationAni.Wave:
 		animation.play("Activate_Wave")
-	
+
 	elif aniType == ActivationAni.Throw:
 		animation.play("Activate_Throw")
-	
+
 	elif aniType == ActivationAni.Scale:
 		animation.play("Activate")
 		playActivationAnimation_Scale(1.5)
-	
+
 	elif aniType == ActivationAni.Squish:
 		animation.play("Activate")
-		
+
 		if hasSquishySprite:
 			sprite.addMomentum(0.1)
 		else:
@@ -4610,10 +4627,10 @@ func playActivationAnimation(aniType = descriptor.activationAni,
 				0.13).set_ease(Tween.EASE_IN_OUT)
 			shadowTween.tween_property(sprite, "scale", 
 				spriteScale, 0.1).set_ease(Tween.EASE_IN_OUT)
-	
+
 	elif aniType == ActivationAni.Potion:
 		animation.play("Activate_Potion")
-	
+
 	elif aniType == ActivationAni.Hiss:
 		animation.play("Activate_Snake")
 		shadowTween = Util.refreshTween(shadowTween)
@@ -4627,20 +4644,20 @@ func playActivationAnimation(aniType = descriptor.activationAni,
 		shadowTween.tween_property(sprite, "scale", 
 			spriteScale, 
 			0.14).set_ease(Tween.EASE_IN_OUT)
-	
+
 	elif aniType == ActivationAni.Spin:
 		animation.play("Activate_Spin")
-	
+
 	elif aniType == ActivationAni.Tackle:
 		animation.play("Activate_Tackle")
-	
+
 	elif aniType == ActivationAni.DoubleSlash:
 		animation.play("Activate_DoubleSlash")
-	
+
 	elif aniType == ActivationAni.Struggle:
 		animation.play("Activate_Struggle")
 		playActivationAnimation_Jump(30)
-	
+
 	elif aniType == ActivationAni.Shoot:
 		animation.play("Activate_Shoot")
 		shadowTween = Util.refreshTween(shadowTween)
@@ -4656,10 +4673,10 @@ func playActivationAnimation(aniType = descriptor.activationAni,
 			0.05).set_ease(Tween.EASE_IN_OUT)
 		shadowTween.tween_property(sprite, "scale", 
 			spriteScale, 0.1).set_ease(Tween.EASE_IN_OUT)
-	
+
 	elif aniType == ActivationAni.Flash:
 		animation.play("Activate")
-	
+
 	if consume:
 		animation.queue("Consume")
 
@@ -4668,25 +4685,25 @@ func playActivationSound():
 
 func activate(damageRes = null, playCombatAni = true, consume = false, 
 	animationOverride = descriptor.activationAni):
-	
+
 	if dragged: return
 	if Util.isTweenRunning(movebackTween): return
-	
 
 
 
 
-	
+
+
 	if Util.time > lastActivationTime:
 		activationsThisFrame = 1
 		lastActivationTime = Util.time
 	else:
 		activationsThisFrame += 1
 		if activationsThisFrame > 3: return
-	
-	
+
+
 	var event = null
-	
+
 	if not Game.fightEnded:
 		if not isBag():
 			event = Game.combatLog.createEvent_Activation(self)
@@ -4695,25 +4712,25 @@ func activate(damageRes = null, playCombatAni = true, consume = false,
 		if hasCooldown():
 			Game.combatLog.snapshotItemTooltipStat(self, Stat.Cooldown, null, 
 				false, event)
-	
+
 	if not isBag():
 		z_index = 3
 		Util.callDelayed(self, "resetZ", 0.4)
-	
+
 	if animationOverride != null:
 		playActivationAnimation(animationOverride, consume)
 	playActivationSound()
-	
+
 	if playCombatAni:
 		if damageRes and not damageRes.hasHit():
 			playAnimation(false)
 		else:
 			playAnimation()
-		
-	
+
+
 	if damageRes:
 		character().playActivateAnimation()
-	
+
 
 
 
@@ -4721,14 +4738,14 @@ func activate(damageRes = null, playCombatAni = true, consume = false,
 
 
 func activateFromEvent(event):
-	
+
 	if event.type == Game.EventType.Activation:
 		if not isBag():
 			z_index = 2
 			Util.callDelayed(self, "resetZ", 0.5)
 		playActivationAnimation()
 		playActivationSound()
-	
+
 	elif Game.isStack(event.type):
 		var appliedToOpponent = (event.target != character().playerId)
 		var amount = event.getAmount()
@@ -4742,43 +4759,43 @@ func activateFromEvent(event):
 			Util.spawnReflectLabel(event.type, target.randBuffLabelPos(), amount)
 		else:
 			Util.spawnBuffLabel_item(event.type, self, amount, appliedToOpponent)
-	
+
 	elif event.type == Game.EventType.DealDamage:
 		character().playAttackAnimation()
 		var damage = event.getParam("damage", 0)
 		opponent().spawnLabel(event.type, damage, self)
 		opponent().damageAnimation.play("Hit")
 		playAnimation()
-	
+
 	elif event.type == Game.EventType.CriticalDamage:
 		character().playAttackAnimation()
 		var damage = event.getParam("damage", 0)
 		opponent().spawnLabel(event.type, damage, self)
 		opponent().damageAnimation.play("Hit")
 		playAnimation()
-	
+
 	elif event.type == Game.EventType.MissedAttack:
 		character().playAttackAnimation()
 		opponent().spawnLabel(event.type, 0, self)
 		playAnimation(false)
-	
+
 	elif event.type == Game.EventType.OutofStamina:
 		playOutOfStaminaAnimation()
-	
+
 	elif event.type == Game.EventType.Health:
 		var healAmount = event.getAmount()
 		character().spawnLabel(event.type, healAmount, self, character().randHealNumberPos())
-	
+
 	elif event.type == Game.EventType.LoseHealth:
 		var lostHealth = - event.getAmount()
 		character().spawnLabel(event.type, lostHealth, self)
-	
+
 	elif (event.type in [Game.EventType.Stamina, 
 		Game.EventType.TemporaryMaxStamina]):
-		
+
 		var amount = event.getParam("stamina", 0)
 		spawnLabel_other(event.type, amount)
-	
+
 	elif event.type == Game.EventType.TemporaryMaxHealth:
 		var amount = event.getAmount()
 		spawnLabel_other(event.type, amount)
@@ -4898,21 +4915,21 @@ func stackChanged(stackType: int, amount: int, onPlayer: bool, used: bool = fals
 			changeType = StackChangeType.Used_Player
 		else:
 			changeType = StackChangeType.Removed_Player
-	
+
 	if not onPlayer:
 		changeType += 1
-	
+
 	var index = getStackMetricIndex(changeType, stackType)
 	var playerId = 0 if onPlayer else 1
 	addMetric(index, abs(amount), playerId, true)
-	
-	
-	
+
+
+
 
 
 func staminaChanged(amount: float, changeType: int, withNextEvent: bool = false):
 	var index = getMultiMetricIndex(changeType, Game.ItemMetrics.Stamina)
-	
+
 	addMetric(index, amount, character().playerId, withNextEvent)
 
 
@@ -4947,7 +4964,7 @@ func giveStacksTemporary(target, type: int, amount, duration, triggerEvent = nul
 	if amount > 0:
 		return target.gainStacksTemporary(type, round(amount * buffPowers[type]), duration, self, triggerEvent)
 	return null
-	
+
 func onTemporaryStacksTimeout(buffType):
 	pass
 
@@ -4994,7 +5011,7 @@ func cleansePoison(amount: int, triggerEvent = null) -> int:
 	var curPoison = character().getPoison()
 	if curPoison == 0:
 		return 0
-	
+
 	amount = min(curPoison, amount)
 	character().losePoison(amount, self, triggerEvent)
 	return amount
@@ -5009,7 +5026,7 @@ func cleanseBlind(amount: int, triggerEvent = null) -> int:
 	var curBlind = character().getBlind()
 	if curBlind == 0:
 		return 0
-	
+
 	amount = min(curBlind, amount)
 	character().loseBlind(amount, self, triggerEvent)
 	return amount
@@ -5081,11 +5098,11 @@ func cleanseCold(amount: int, triggerEvent = null) -> int:
 	var curCold = character().getCold()
 	if curCold == 0:
 		return 0
-	
+
 	amount = min(curCold, amount)
 	character().loseCold(amount, self, triggerEvent)
 	return amount
-	
+
 
 func giveHeat(amount, triggerEvent = null):
 	giveStacks(character(), Game.EventType.Heat, amount, triggerEvent)
@@ -5106,7 +5123,7 @@ func healthToBlock(health: float, block, triggerEvent = null):
 	var clampedHealth = min(health, character().getCurrentHealth() - 1)
 	if clampedHealth > 0:
 		character().loseHealth(clampedHealth, self, triggerEvent)
-		
+
 		block = ceil((clampedHealth / health) * block)
 		giveBlock(block, true, triggerEvent)
 
@@ -5149,10 +5166,10 @@ func reactsToCharges() -> bool:
 	return hasOnChargeReceivedEffect or hasOnChargeLeftEffect
 
 func changeChargedItemStat(charge, cellIndex, flatVal, valPerTile):
-	
+
 	var previousVal = flatVal + (cellIndex - 2) * valPerTile
 	var newVal = previousVal + valPerTile
-	
+
 	if charge.lastChargedItem != null:
 		if charge.curChargedItem == null:
 			me.chargedItemStatChange(charge.lastChargedItem, - previousVal)
@@ -5161,14 +5178,14 @@ func changeChargedItemStat(charge, cellIndex, flatVal, valPerTile):
 		else:
 			me.chargedItemStatChange(charge.lastChargedItem, - previousVal)
 			me.chargedItemStatChange(charge.curChargedItem, newVal)
-	
+
 	elif charge.curChargedItem != null:
 		me.chargedItemStatChange(charge.curChargedItem, newVal)
 
 
 func clearSpriteMaterial():
 	sprite.set_material(null)
-	
+
 func giveProgressMaterial():
 	sprite.set_material(progressMaterial)
 
@@ -5178,18 +5195,18 @@ func getSizeInCells() -> Vector2:
 	var cells = getCollisionCells()
 	if cells.empty():
 		return Vector2.ZERO
-	
+
 	for cell in cells:
 		if cell.x < topLeft.x:
 			topLeft.x = cell.x
 		if cell.y < topLeft.y:
 			topLeft.y = cell.y
-		
+
 		if cell.x > bottomRight.x:
 			bottomRight.x = cell.x
 		if cell.y > bottomRight.y:
 			bottomRight.y = cell.y
-	
+
 	return bottomRight - topLeft + Vector2(1, 1)
 
 func getTextureSize() -> Vector2:
@@ -5233,7 +5250,7 @@ func initSpriteMaterial():
 		progressMaterial.set_shader_param("atlasTranslation", atlasTranslation / atlasSize)
 		progressMaterial.set_shader_param("atlasScaling", subTexSize / atlasSize)
 	else:
-		
+
 		progressMaterial.set_shader_param("atlasTranslation", Vector2.ZERO)
 		progressMaterial.set_shader_param("atlasScaling", Vector2.ONE)
 
@@ -5248,12 +5265,12 @@ func updateShaderRotation():
 		if size.x > 0 and size.y > 0:
 			var scaling = Vector2(1.0, 0.8).rotated( - global_rotation)
 			sprite.material.set_shader_param("scale", size * scaling)
-			
+
 			var rotatedSize = size.rotated( - global_rotation)
-			
-			
-			
-			
+
+
+
+
 			var thickness = 0.1 / abs(rotatedSize.y)
 			sprite.material.set_shader_param("thickness", thickness)
 
@@ -5265,8 +5282,8 @@ func allowCancelShaderTween():
 	canCancelShaderTween = true
 
 func rotateProgress(progress: float):
-	
-	
+
+
 	match faceDirection:
 		FaceDirection.UP:
 			progress = 1.0 - progress
@@ -5281,10 +5298,10 @@ func rotateProgress(progress: float):
 func showCooldownSmooth(progress: float, fill: bool = false):
 	if not canCancelShaderTween:
 		return
-	
+
 	Util.killTween(shaderTween)
 	shaderTween = create_tween()
-	
+
 	if fill:
 		canCancelShaderTween = false
 		shaderTween.tween_method(self, "showCooldown", nonRotatedProgress, 1.0, 0.1)
@@ -5327,23 +5344,23 @@ const MISS_OFFSET = 100.0
 func createAnimation():
 	var ani = ObjectPool.instance(descriptor.animationScene)
 	Game.combatAnimationsNode.add_child(ani)
-	
+
 	if ownerType != Owner.Opponent:
 		ani.scale.x = 1
 	else:
 		ani.scale.x = - 1
-		
+
 	if ani.showOnSelf:
 		ani.position = character().position
 		ani.scale.x *= - 1
 	else:
 		ani.position = opponent().position
-	
+
 	return ani
 
 func playAnimation(hit: bool = true):
 	if not descriptor.animationScene: return
-	
+
 	var ani = createAnimation()
 	ani.intialize(hit)
 
@@ -5408,22 +5425,22 @@ func pickRandomStacks(stackTypes, numStacks, target, priorityStack = null):
 		var numTargetStacks = target.getStacks(stackType)
 		if numTargetStacks > 0:
 			stacks[stackType] = numTargetStacks
-	
+
 	var pickedStacks = Dictionary()
-	
+
 	if priorityStack != null:
 		var pickedPriorityStacks = min(numStacks, stacks.get(priorityStack, 0))
 		if pickedPriorityStacks > 0:
 			pickedStacks[priorityStack] = pickedPriorityStacks
 			numStacks -= pickedPriorityStacks
 			Util.dictSub(stacks, priorityStack, pickedPriorityStacks)
-	
+
 	for i in numStacks:
 		if not stacks.empty():
 			var stackType = Util.pickRandomElement(stacks.keys())
 			Util.dictAdd(pickedStacks, stackType, 1)
 			Util.dictSub(stacks, stackType, 1)
-	
+
 	return pickedStacks
 
 
@@ -5432,12 +5449,12 @@ func pickRandomStacksToGive(stackTypes, numStacks):
 	for i in numStacks:
 		var stackType = Util.pickRandomElement(stackTypes)
 		Util.dictAdd(pickedStacks, stackType, 1)
-		
+
 	return pickedStacks
 
 func giveRandomBuffs(numBuffs: int, triggerEvent = null, availableBuffs = Game.getBuffs(), 
 	target = character()):
-		
+
 	var pickedBuffs = pickRandomStacksToGive(availableBuffs, numBuffs)
 	EventBus.setLoggingMode(EventBus.LoggingMode.Delayed)
 	for buff in pickedBuffs:
@@ -5453,7 +5470,7 @@ func useRandomBuffs(numBuffs, triggerEvent = null, availableBuffs = Game.getBuff
 	var pickedBuffs = pickRandomStacks(availableBuffs, numBuffs, character())
 	if pickedBuffs.empty():
 		return null
-	
+
 	var events = []
 	EventBus.setLoggingMode(EventBus.LoggingMode.Delayed)
 	for buff in pickedBuffs:
@@ -5464,15 +5481,15 @@ func useRandomBuffs(numBuffs, triggerEvent = null, availableBuffs = Game.getBuff
 
 func inflictRandomDebuffs(numDebuffs, triggerEvent = null, availableDebuffs = Game.getDebuffs()):
 	var pickedDebuffs = pickRandomStacksToGive(availableDebuffs, numDebuffs)
-	
+
 	EventBus.setLoggingMode(EventBus.LoggingMode.Delayed)
 	for debuff in pickedDebuffs:
 		giveStacks(opponent(), debuff, pickedDebuffs[debuff], triggerEvent)
-		
-		
-		
+
+
+
 	EventBus.flushLoggingQueue()
-	
+
 
 func removeRandomBuffs(numBuffs, triggerEvent = null):
 	var removedStacks = pickRandomStacks(Game.getBuffs(), numBuffs, opponent())
@@ -5483,41 +5500,41 @@ func removeRandomBuffs(numBuffs, triggerEvent = null):
 
 func stealRandomBuff(numBuffs, triggerEvent = null, 
 	possibleBuffs = Game.getBuffs(), priorityBuff = null):
-	
-	
+
+
 	var removedStacks = pickRandomStacks(possibleBuffs, numBuffs, opponent(), priorityBuff)
 	EventBus.setLoggingMode(EventBus.LoggingMode.Delayed)
 	for buff in removedStacks:
 		opponent().loseStacks(buff, removedStacks[buff], self, triggerEvent)
-		
-		
-		
+
+
+
 		giveStacks(character(), buff, removedStacks[buff], triggerEvent)
 	EventBus.flushLoggingQueue()
-	
+
 
 func cleanseRandomDebuffs(numDebuffs, triggerEvent = null):
 	var cleansedDebuffs = pickRandomStacks(Game.getDebuffs(), numDebuffs, character())
-	
-	
+
+
 	EventBus.setLoggingMode(EventBus.LoggingMode.Delayed)
 	for debuff in cleansedDebuffs:
 		character().loseStacks(debuff, cleansedDebuffs[debuff], self, triggerEvent)
-		
-		
-		
+
+
+
 	EventBus.flushLoggingQueue()
-	
-	
+
+
 
 func getLeastStacks(numStacks, target, availableStacks):
 	var priorStacks: = {}
 	for stackType in availableStacks:
 		priorStacks[stackType] = target.getStacks(stackType)
-	
+
 	var pickedStacks: = {}
-	
-	
+
+
 	while numStacks > 0:
 		var leastStacksCount: int = 10000
 		var leastStacks = []
@@ -5532,14 +5549,14 @@ func getLeastStacks(numStacks, target, availableStacks):
 		Util.dictAdd(pickedStacks, stackToGive, 1)
 		Util.dictAdd(priorStacks, stackToGive, 1)
 		numStacks -= 1
-	
+
 	return pickedStacks
 
 func giveLeastBuffs(numBuffs, target = character(), triggerEvent = null, 
 	availableBuffs = Game.getBuffs()):
-	
+
 	var pickedStacks = getLeastStacks(numBuffs, target, availableBuffs)
-	
+
 	for buffType in pickedStacks:
 		giveStacks(target, buffType, pickedStacks[buffType], triggerEvent)
 
@@ -5557,7 +5574,7 @@ func getMostStacks(target, availableStacks):
 			maxBuffs.clear()
 			maxBuffs.push_back(buff)
 			maxStacks = buffs[buff]
-	
+
 	return maxBuffs
 
 func giveMostBuffs(numBuffs, triggerEvent = null, availableBuffs = Game.getBuffs()):
@@ -5568,20 +5585,20 @@ func giveMostBuffs(numBuffs, triggerEvent = null, availableBuffs = Game.getBuffs
 
 func removeMostBuffs(numBuffs, triggerEvent = null, use: bool = false, availableBuffs = Game.getBuffs()):
 	var target
-	
+
 	var buffs = Dictionary()
 	if use:
 		target = character()
 	else:
 		target = opponent()
-	
+
 	var maxBuffs = getMostStacks(target, availableBuffs)
 	var buffToRemove = Util.pickRandomElement(maxBuffs)
-	
+
 	var toRemove = min(numBuffs, target.getStacks(buffToRemove))
 	if toRemove == 0:
 		return null
-	
+
 	var event
 	if use:
 		event = character().useStacks(buffToRemove, toRemove, self, triggerEvent)
@@ -5592,53 +5609,53 @@ func removeMostBuffs(numBuffs, triggerEvent = null, use: bool = false, available
 
 func getStackFraction(target, fraction: float, 
 	limit: int, availableStacks):
-	
+
 	var sum: = 0.0
 	var stacksUnlimited: = {}
-	
+
 	for buff in availableStacks:
 		var prior = target.getStacks(buff)
-		
+
 		var withBonus = prior * fraction
 		stacksUnlimited[buff] = withBonus
 		sum += withBonus
-	
+
 	var sumRounded = round(sum)
 	if sumRounded == 0: return null
-	
+
 	var totalToGive: float = min(limit, sumRounded)
 	var limitFactor = totalToGive / sumRounded
-	
+
 	var buffsToGive: = {}
 	var overflow: = {}
 	var totalGiven: = 0
-	
+
 	for buff in stacksUnlimited:
 		var limited = stacksUnlimited[buff] * limitFactor
 		var guaranteed = int(limited)
 		buffsToGive[buff] = guaranteed
 		overflow[buff] = limited - guaranteed
 		totalGiven += guaranteed
-		
-	
+
+
 	var overflowBuffs: = totalToGive - totalGiven
 	var sortedOverflow: Array = Util.sortDict(overflow, true)
-	
+
 	for buff in sortedOverflow:
 		if overflowBuffs == 0:
 			break
-		
+
 		buffsToGive[buff] += 1
 		overflowBuffs -= 1
-	
+
 	return buffsToGive
 
 func multiplyBuffsLimit(bonus: float, limit: int, 
 	availableBuffs = Game.getBuffs()):
-	
+
 	var buffsToGive = getStackFraction(character(), bonus, limit, availableBuffs)
 	if buffsToGive == null: return
-	
+
 	EventBus.setLoggingMode(EventBus.LoggingMode.Delayed)
 	for buff in buffsToGive:
 		giveStacks(character(), buff, buffsToGive[buff])
@@ -5646,10 +5663,10 @@ func multiplyBuffsLimit(bonus: float, limit: int,
 
 func removeBuffsFraction(fraction: float, limit: int, 
 	triggerEvent = null, availableBuffs = Game.getBuffs()):
-	
+
 	var buffsToRemove = getStackFraction(opponent(), fraction, limit, availableBuffs)
 	if buffsToRemove == null: return
-	
+
 	EventBus.setLoggingMode(EventBus.LoggingMode.Delayed)
 	for buff in buffsToRemove:
 		opponent().loseStacks(buff, buffsToRemove[buff], self, triggerEvent)
@@ -5657,10 +5674,10 @@ func removeBuffsFraction(fraction: float, limit: int,
 
 func stealBuffsFraction(fraction: float, limit: int, 
 	triggerEvent = null, availableBuffs = Game.getBuffs()):
-	
+
 	var buffsToSteal = getStackFraction(opponent(), fraction, limit, availableBuffs)
 	if buffsToSteal == null: return
-	
+
 	EventBus.setLoggingMode(EventBus.LoggingMode.Delayed)
 	for buff in buffsToSteal:
 		stealStack(buff, buffsToSteal[buff], triggerEvent)
@@ -5693,7 +5710,7 @@ func placeGeneratedItem(item, candidateCells):
 	for cell in candidateCells:
 		if inventory.isCellEmpty(cell):
 			inventory.orientAndAddItem(item, cell, FaceDirection.UP)
-			
+
 			foundSpace = true
 			item.moveTo(global_position, item.global_position, 0.2)
 			item.locked = true
@@ -5702,7 +5719,7 @@ func placeGeneratedItem(item, candidateCells):
 			else:
 				item.call_deferred("unlockCombining", false)
 			break
-	
+
 	if not foundSpace:
 		Game.playerNode.add_child(item)
 		item.global_position = global_position
@@ -5724,22 +5741,20 @@ func isTreasure() -> bool:
 
 func shift(direction: Vector2):
 	if isBag():
-		
 		if Game.inventoryEditMode != Game.InventoryEditMode.Default:
 			CraftingManager.itemShifted(self)
-			
-		
+
 		if Game.inventoryEditMode == Game.InventoryEditMode.ItemLayer:
 			return
 	else:
 		if Game.inventoryEditMode == Game.InventoryEditMode.BagLayer:
 			return
-	
+
 	finishMoveback()
 	resetSprite()
-	
+
 	var pixelShift = direction * inventory.cellSize
-	
+
 	if dragged:
 		pickupPosition += pixelShift
 	else:
@@ -5747,9 +5762,9 @@ func shift(direction: Vector2):
 
 	for i in occupiedCells.size():
 		occupiedCells[i] = occupiedCells[i] + direction
-	
+
 	cacheAffectedCells()
-	
+
 	for gem in getGemsNoNull():
 		gem.shift(direction)
 
@@ -5807,32 +5822,32 @@ func getNeighborItemsAndGems():
 
 func getCraftableNeighbors():
 	var craftableNeighbors = []
-	
+
 	for neighbor in getNeighborItemsAndGems():
 		if neighbor.isAvailableForCrafting():
 			craftableNeighbors.push_back(neighbor)
-		
+
 	for bag in getTouchedBags():
 		if bag.isAvailableForCrafting():
 			craftableNeighbors.push_back(bag)
-	
+
 	return craftableNeighbors
 
 
 func getBusyNeighbors():
 	var busyNeighbors = []
-	
+
 	for neighbor in getNeighborItemsAndGems():
 		if neighbor.isBusy():
 			busyNeighbors.push_back(neighbor)
-		
+
 	for bag in getTouchedBags():
 		if bag.isBusy():
 			busyNeighbors.push_back(bag)
-	
+
 	return busyNeighbors
-	
-	
+
+
 
 func canCombine() -> bool:
 	return placed
@@ -5850,10 +5865,10 @@ func isBusy() -> bool:
 func getRecipes(checkClassAvailability = true):
 	var recipes = []
 	for recipe in descriptor.recipes:
-		
+
 		recipes.push_back(recipe)
 	return recipes
-	
+
 
 func isBaseItem():
 	return not bondedIngredients.empty()
@@ -5870,19 +5885,19 @@ func removeBondedBaseItem():
 	setBoundAsIngredient(false)
 
 func removeBondedIngredient(item):
-	
+
 	breakBondVisual(item)
 	bondedIngredients.erase(item)
-	
-	
+
+
 	if fusing:
 		return
-	
+
 	showProgressLabel()
-	
+
 	if bondedIngredients.empty():
 		curRecipe = null
-		
+
 	else:
 		updateBondVisuals()
 
@@ -5893,11 +5908,11 @@ func removeAllIngredients():
 	for visual in bondVisuals:
 		visual.breakBond()
 	bondVisuals.clear()
-	
+
 	showProgressLabel()
 	curRecipe = null
-	
-	
+
+
 
 
 
@@ -5913,7 +5928,7 @@ func considerAsBond(neighbor):
 	if curRecipe:
 		if isRecipeFinished():
 			return null
-		
+
 		if curRecipe.checkNeighbor(bondedIngredients, neighbor):
 			var progressBefore = curRecipe.getProgress(bondedIngredients)
 			var progressWithNeighbor = (bondedIngredients.size() + 1) / float(curRecipe.getNumIngredients())
@@ -5927,9 +5942,9 @@ func considerAsBond(neighbor):
 				if s > bestScore:
 					bestScore = s
 					recipe = r
-		
+
 		score = bestScore
-	
+
 	if recipe:
 		return [recipe, score]
 	else:
@@ -5937,16 +5952,16 @@ func considerAsBond(neighbor):
 
 func addBondedIngredient(forRecipe, neighbor):
 	if curRecipe:
-		
+
 		pass
 	else:
 		curRecipe = forRecipe
-	
+
 	bondedIngredients.push_back(neighbor)
 	createBondVisual(neighbor)
 	updateBondVisuals()
 	playBondAnimation()
-	
+
 	if neighbor.placedByPlayer or placedByPlayer:
 		showProgressLabel()
 
@@ -5957,7 +5972,7 @@ func addToBaseItem(baseItem):
 
 func playBondAnimation():
 	animation.advance(10)
-	
+
 	var catalyst: = false
 	if bondedBaseItem != null:
 		if bondedBaseItem.curRecipe != null:
@@ -5965,7 +5980,7 @@ func playBondAnimation():
 	else:
 		if curRecipe != null:
 			catalyst = curRecipe.isCatalystRecipe()
-	
+
 	if catalyst:
 		animation.play("CatalystBondCreated")
 	else:
@@ -5978,7 +5993,7 @@ func playBondFailedAnimation():
 func isCatalystBond(bondedItem) -> bool:
 	if curRecipe == null:
 		return false
-	
+
 	return curRecipe.isNeighborCatalyst(bondedItem)
 
 func isLocked() -> bool:
@@ -5991,18 +6006,18 @@ func canBeLocked() -> bool:
 	if (ownerType == Owner.PlayerInventory or 
 		ownerType == Owner.PlayerStorageBox or 
 		(ownerType == Owner.Socket and character() == Game.PLAYER)):
-		
+
 		if Game.state == Game.State.Combat:
 			return focus
 		else:
 			return canBePicked()
-		
+
 	return false
 
 func setLocked(_locked, showLabel = true):
-	
+
 	if locked == _locked: return
-	
+
 	if _locked:
 		lockCombining(showLabel)
 	else:
@@ -6010,7 +6025,7 @@ func setLocked(_locked, showLabel = true):
 	lockAnimation.advance(1)
 
 func unlockCombining(playAni: bool = true):
-	
+
 	locked = false
 	if playAni:
 		lockAnimation.play("Unlock")
@@ -6018,12 +6033,12 @@ func unlockCombining(playAni: bool = true):
 		CraftingManager.itemAdded(self)
 	previewFusions()
 	Sound.playSound(unlockSound, 0, Util.rng.randf_range(0.95, 1.05))
-	
-	
-	
+
+
+
 func lockCombining(showLabel = true):
-	
-	
+
+
 	locked = true
 	lockAnimation.play("Lock")
 	if canCombine():
@@ -6040,7 +6055,7 @@ func showLockLabel():
 		label.lock()
 	else:
 		label.unlock()
-		
+
 	label.global_position = Util.clampToScreen(global_position
 		+ label.label.rect_position) - label.label.rect_position
 
@@ -6078,18 +6093,18 @@ func previewFusions():
 func previewRecipeIngredients():
 	var ingredients = Dictionary()
 	var nonDescriptorIngredients = Array()
-	
+
 	for recipe in getRecipes(false):
 		for ingredient in recipe.ingredients:
 			if Util.isItemDescriptor(ingredient):
 				ingredients[ingredient] = true
 			else:
 				nonDescriptorIngredients.push_back(ingredient)
-		
+
 	if ingredients.empty() and nonDescriptorIngredients.empty(): return
-	
+
 	var candidateItems = ItemBook.getInventoryStorageShopItems()
-	
+
 	for candidate in candidateItems:
 		if candidate != self and (candidate.descriptor in ingredients
 				or typeInIngredients(candidate, nonDescriptorIngredients)):
@@ -6109,30 +6124,30 @@ func previewFusionToItem(hoveredIngredient):
 				break
 
 func hasShopItemCraftCandidates() -> bool:
-	
+
 	var candidates: Array = ItemBook.getInventoryStorageShopItems()
-	
+
 	var ingredients = Dictionary()
 	var nonDescriptorIngredients = Array()
-	
+
 	for recipe in getRecipes(false):
 		for ingredient in recipe.ingredients:
 			if Util.isItemDescriptor(ingredient):
 				ingredients[ingredient] = true
 			else:
 				nonDescriptorIngredients.push_back(ingredient)
-		
+
 	if not ingredients.empty() or not nonDescriptorIngredients.empty():
 		for candidate in candidates:
 			if candidate != self and (candidate.descriptor in ingredients
 					or typeInIngredients(candidate, nonDescriptorIngredients)):
 				return true
-	
-	
+
+
 	for item in candidates:
 		if item != self and item.isBaseItemForShopItem(self):
 			return true
-	
+
 	return false
 
 func isBaseItemForShopItem(item) -> bool:
@@ -6156,13 +6171,13 @@ func getFusionItemName() -> String:
 
 func showProgressLabel():
 	if not curRecipe: return
-	
+
 	var curNum = bondedIngredients.size() + 1
 	if curNum == 1:
 		if craftingLabel:
 			craftingLabel.fade()
 		return
-	
+
 	var outOf = curRecipe.getNumIngredients() + 1
 	var fusionName = getFusionItemName()
 	var counter = curRecipe.getCurIngredientsCounter(bondedIngredients)
@@ -6176,19 +6191,19 @@ func showProgressLabel():
 
 
 
-	
+
 	if craftingLabel:
 		craftingLabel.updateProgress(fusionName, curNum, outOf, 
 			counter)
 	else:
 		craftingLabel = ObjectPool.instance(craftingLabelScene)
-		
+
 		craftingLabel.connect("returned_to_pool", self, 
 			"onCraftingLabelReturned", [], CONNECT_ONESHOT)
 		Game.labelsNode.add_child(craftingLabel)
 		craftingLabel.showProgress(fusionName, curNum, outOf, 
 			counter)
-	
+
 	var topLeftLimit = Vector2(30, 25)
 	var itemTopY = getTopLeftGlobal().y - global_position.y
 	var counterOffset = counter.size() * 40
@@ -6196,7 +6211,7 @@ func showProgressLabel():
 	labelTopLeft.x = max(labelTopLeft.x, topLeftLimit.x)
 	labelTopLeft.y = max(labelTopLeft.y, topLeftLimit.y)
 	craftingLabel.global_position = labelTopLeft - craftingLabel.label.rect_position
-	
+
 	if curNum == outOf:
 		Game.onCraftingReady(self)
 		if Util.time >= craftingAniReadyTime:
@@ -6209,7 +6224,7 @@ func showProgressLabel():
 			else:
 				ani = ObjectPool.instance(craftingReadyAnimation)
 				pitch -= 0.05
-				
+
 			Game.UINode.add_child(ani)
 			ani.global_position = global_position
 			var scaling = 0.2 + (0.4 * sqrt(getNumOccupiedCells()))
@@ -6228,15 +6243,15 @@ func createBondVisual(bondNeighbor):
 		visual = ObjectPool.instance(catalystBondScene)
 	else:
 		visual = ObjectPool.instance(craftingBondScene)
-	
+
 	if isGem() and self.socket:
 		self.socket.getItem().get_parent().add_child(visual)
 	else:
 		get_parent().add_child(visual)
-	
+
 	visual.create(self, bondNeighbor)
 	bondVisuals.push_back(visual)
-	
+
 
 func updateBondVisuals():
 	for visual in bondVisuals:
@@ -6265,8 +6280,8 @@ var fuseTween = null
 var fusingBonds: Array
 
 func fuse():
-	
-	
+
+
 
 	var catalystBonds: Array
 	var nonCatalystBonds: Array
@@ -6275,38 +6290,38 @@ func fuse():
 		nonCatalystBonds = curRecipe.getNonCatalystBonds(bondedIngredients)
 	else:
 		nonCatalystBonds = bondedIngredients
-	
+
 	for visual in bondVisuals:
 		visual.breakBond()
 	bondVisuals.clear()
-	
+
 	Sound.playSound(fuseSound1, 4)
-	
+
 	var fusedRarity: int
 	if curRecipe != null:
 		fusedRarity = curRecipe.fusedItem.rarity
 		Util.callDelayed(self, "createCraftedShockwave", 0.8, [curRecipe.fusedItem])
 	else:
 		fusedRarity = getRarity()
-	
+
 	fuseTween = Util.refreshTween(fuseTween)
 	fuseTween.set_parallel(true)
 	var mat = fuseMaterial.duplicate()
 	var catalystMat = null
-	
+
 	if not catalystBonds.empty():
 		catalystMat = fuseMaterial.duplicate()
-	
+
 	for neighbor in bondedIngredients:
 		neighbor.fusing = true
 		neighbor.onFusingAsIngredient()
-	
+
 	for neighbor in nonCatalystBonds:
 		neighbor.sprite.set_material(mat)
-	
+
 	for neighbor in catalystBonds:
 		neighbor.sprite.set_material(catalystMat)
-	
+
 	var GROW_DUR = 0.17
 	var SHRINK_DUR = 0.25
 	var GROW_FACTOR = 1.1
@@ -6317,43 +6332,43 @@ func fuse():
 		fuseTween.tween_property(sprite, getScaleProp(), 
 			spriteScale, SHRINK_DUR).from(spriteScale * GROW_FACTOR).set_delay(timeUsed + GROW_DUR)
 		timeUsed += GROW_DUR + SHRINK_DUR
-		
+
 		GROW_FACTOR += 0.2
-	
+
 	var maxScale = Vector2(1.2, 1.2)
 	var scaleDur = 0.7
-	
+
 	for neighbor in nonCatalystBonds:
 		neighbor.z_index += 1
 		fuseTween.tween_property(neighbor, "global_position", global_position, FUSE_DUR).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 		fuseTween.tween_property(neighbor, "scale", maxScale, scaleDur)
 		fuseTween.tween_property(neighbor, "scale", Vector2(0.7, 0.7), FUSE_DUR - scaleDur).from(maxScale).set_delay(scaleDur)
-	
 
 
 
 
 
 
-	
+
+
 	for neighbor in catalystBonds:
 		fuseTween.tween_callback(neighbor, "onFusingAsCatalystFinished").set_delay(FUSE_DUR)
-		
+
 	sprite.set_material(mat)
-	
+
 	fuseTween.tween_property(mat, "shader_param/flashState", 1.0, FUSE_DUR).from(0.0)
 	var flashColor = rarityColors[fusedRarity].lightened(0.4) * 4
 	fuseTween.tween_property(mat, "shader_param/flashColor", flashColor, FUSE_DUR).from(Color(1, 1, 1, 1))
-	
-	
+
+
 	if catalystMat != null:
 		var undoFlashDur = 0.1
 		fuseTween.tween_property(catalystMat, "shader_param/flashState", 1.0, FUSE_DUR - undoFlashDur).from(0.0)
 		fuseTween.tween_property(catalystMat, "shader_param/flashState", 0.0, undoFlashDur).from(1.0).set_delay(FUSE_DUR - undoFlashDur)
 		fuseTween.tween_property(catalystMat, "shader_param/flashColor", flashColor, FUSE_DUR).from(Color(1, 1, 1, 1))
-	
+
 	var particleNode = get_parent()
-	
+
 	var particleColor = rarityColors[fusedRarity].lightened(0.3) * 2.5
 	fuseParticles1 = ObjectPool.instance(fuseParticlesScene1)
 	particleNode.add_child(fuseParticles1)
@@ -6363,36 +6378,36 @@ func fuse():
 	fuseParticles1.scale = Vector2.ONE
 	fuseParticles1.speed_scale = 1.0
 	fuseParticles1.restart()
-	
+
 	fuseTween.tween_property(fuseParticles1, "speed_scale", 2.2, FUSE_DUR).from(1.0)
 	fuseTween.tween_property(fuseParticles1, "scale", Vector2(0.3, 0.3), FUSE_DUR - 0.2).set_delay(0.2)
 	fuseTween.tween_property(fuseParticles1, "modulate:a", 0.0, 0.2).set_delay(FUSE_DUR - 0.2)
-	
+
 	fuseParticles2 = ObjectPool.instance(fuseParticlesScene2)
 	particleNode.add_child(fuseParticles2)
-	
+
 	if curRecipe == null:
 		fuseParticles2.amount = 45
 	else:
 		fuseParticles2.amount = 35 + 5 * Game.itemLibrary.getInstance(curRecipe.fusedItem).getNumOccupiedCells()
-		
+
 	fuseParticles2.global_position = global_position
 	fuseParticles2.self_modulate = particleColor
-	
+
 	fusingBonds = bondedIngredients.duplicate()
-	
-	
-	
-	
+
+
+
+
 	if placed:
 		for neighbor in nonCatalystBonds:
 			if neighbor.placed:
 				inventory.clearItemCells(neighbor)
-	
-	
+
+
 	if isGem():
 		z_index += 3
-	
+
 	bondedIngredients.clear()
 
 func onFusingAsIngredient():
@@ -6414,35 +6429,35 @@ func createCraftedShockwave(fusedItem):
 func finishFusing():
 	Util.finishTween(fuseTween)
 	Sound.playSound(fuseSound3, 6)
-	
+
 	fuseParticles1.emitting = false
 	Util.callDelayed(fuseParticles1, "returnToObjectPool", 2.0)
 	fuseParticles1 = null
-	
+
 	fuseParticles2.restart()
 	Util.callDelayed(fuseParticles2, "returnToObjectPool", 7.0)
 	fuseParticles2 = null
-	
-	
+
+
 	var validBonds = []
 	for bond in fusingBonds:
 		if is_instance_valid(bond):
 			validBonds.push_back(bond)
-	
+
 	fusingBonds.clear()
-	
-	
-	
+
+
+
 	var nonCatalystBonds: Array
 	if curRecipe != null:
 		nonCatalystBonds = curRecipe.getNonCatalystBonds(validBonds)
 	else:
 		nonCatalystBonds = validBonds
-	
+
 	if curRecipe != null:
-		
+
 		curRecipe.fuse(self, validBonds)
-		
+
 	else:
 		onFusingFinished(validBonds)
 
@@ -6460,7 +6475,7 @@ func onFusingFinished(validBonds):
 		item.pushGemsToStorage()
 		item.inventory.removeItem(item)
 		item.discard()
-	
+
 	fusing = false
 	clearSpriteMaterial()
 	enablePicking()
@@ -6496,11 +6511,11 @@ func countTypes(ofItems: Array) -> Dictionary:
 	var typesDict = {}
 	for type in Type:
 		typesDict[Type[type]] = 0
-	
+
 	for item in ofItems:
 		for type in item.getTypes():
 			typesDict[type] += 1
-	
+
 	return typesDict
 
 func insertCounter(text: String, keyword: String, amount: int) -> String:
@@ -6521,19 +6536,19 @@ func getShopPriority() -> int:
 func findBondsWithAffectedItems():
 	if ownerType != Owner.PlayerInventory:
 		return
-	
+
 	if locked or not placed:
 		for bonded in bondedIngredients:
 			bonded.removeBondedBaseItem()
 		removeAllIngredients()
 		return
-	
+
 	if isBoundAsIngredient() or fusing:
 		return
-	
+
 	for item in getAffectedItems():
 		if item.canStartNewRecipe():
-			
+
 			bondedIngredients.push_back(item)
 			createBondVisual(item)
 			updateBondVisuals()
@@ -6544,15 +6559,15 @@ class SignalConnection:
 	var signalName
 	var receiver
 	var methodName
-	
+
 	func _init(_emitter, _signalName, _receiver, _methodName, binds = []):
 		emitter = _emitter
 		signalName = _signalName
 		receiver = _receiver
 		methodName = _methodName
-		
+
 		emitter.connect(signalName, receiver, methodName, binds)
-	
+
 	func destroy():
 		Util.tryDisconnect(emitter, signalName, receiver, methodName)
-		
+

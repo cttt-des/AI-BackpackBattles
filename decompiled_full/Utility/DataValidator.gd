@@ -1,5 +1,5 @@
 extends Object
-var items = "98d4080e5c1beddfd95159f841f8efb7"
+var items = "7c33b14a09cc8b29035745977456c008"
 var ranger = ""
 var reaper = ""
 var berserker = ""

@@ -498,6 +498,7 @@ func randomItemOfRarity(rarity, excluded: Array,
 	var possibleItems = curShopItems[rarity].duplicate()
 	
 	possibleItems = Util.subtractArr(possibleItems, excluded)
+	possibleItems = filterTeamSwitchShopBannedDescriptors(possibleItems)
 	
 	var uniqueDescriptors = []
 	
@@ -518,9 +519,10 @@ func randomItemOfRarity(rarity, excluded: Array,
 					uniqueDescriptors.append_array(spiritCompanionDescriptors)
 		
 		possibleItems = Util.subtractArr(possibleItems, uniqueDescriptors)
+		possibleItems = filterTeamSwitchShopBannedDescriptors(possibleItems)
 	
 	if possibleItems.empty():
-		possibleItems = excluded
+		possibleItems = filterTeamSwitchShopBannedDescriptors(excluded)
 	
 	var weights = Array()
 	for item in possibleItems:
@@ -807,7 +809,6 @@ func _ready() -> void :
 		
 		var loadItem = item.isReleased()
 		
-		
 
 
 
@@ -1056,7 +1057,6 @@ func _ready() -> void :
 	nonGeneratableSkills[justStatsDescriptor] = true
 	nonGeneratableSkills[moreStatsDescriptor] = true
 	nonGeneratableSkills[unidentifiedSkillDescriptor] = true
-	
 	digDeeperDescriptor = getDescriptor("Dig Deeper")
 	puzzleboxDescriptor = getDescriptor("Puzzlebox")
 	puzzleBadgeDescriptor = getDescriptor("Puzzle Badge")
@@ -1163,8 +1163,6 @@ func _ready() -> void :
 	Recipe.new().init(vampiricCollar, [holyArmor], [true], holyCollar)
 	
 	for descriptor in descriptorList:
-		if descriptor.scene == null: continue
-		
 		if descriptor.rarity == Item.Rarity.Common:
 			prepareInstance(descriptor, 3)
 		elif descriptor.rarity < Item.Rarity.Unique:
@@ -1253,9 +1251,7 @@ var itemPoolingIndex: = 0
 
 func _process(delta):
 	if itemPoolingIndex < descriptorList.size() - 1:
-		var scene = descriptorList[itemPoolingIndex].scene
-		if scene != null:
-			ObjectPool.prepare(scene, 2)
+		ObjectPool.prepare(descriptorList[itemPoolingIndex].scene, 2)
 		itemPoolingIndex += 1
 	
 	if (Game.state == Game.State.Shop or 
@@ -1626,6 +1622,24 @@ func canHaveMoreCompanions() -> bool:
 				return false
 	return true
 
+func isTeamSwitchShopBannedDescriptor(descriptor: ItemDescriptor) -> bool:
+	return isTeamSwitchShopBannedDescriptorForState(descriptor, CustomRules.isTeamSwitchMode())
+
+func isTeamSwitchShopBannedDescriptorForState(
+	descriptor: ItemDescriptor, teamSwitchActive: bool) -> bool:
+	return teamSwitchActive and descriptor == stableRecombobulatorDescriptor
+
+func filterTeamSwitchShopBannedDescriptors(descriptors: Array) -> Array:
+	var teamSwitchActive = CustomRules.isTeamSwitchMode()
+	if not teamSwitchActive:
+		return descriptors
+
+	var filtered = []
+	for descriptor in descriptors:
+		if not isTeamSwitchShopBannedDescriptorForState(descriptor, teamSwitchActive):
+			filtered.push_back(descriptor)
+	return filtered
+
 func isRing(item) -> bool:
 	return item.isA(magicRingDescriptor) or item.isA(superiorRingDescriptor)
 
@@ -1705,10 +1719,14 @@ func updateClass(triggeringItem = null):
 	for rarity in Item.Rarity:
 		curShopItems.push_back([])
 
+	var teamSwitchActive = CustomRules.isTeamSwitchMode()
 	for itemName in items:
 		var descriptor = items[itemName]
 		if descriptor.isShopItem():
 			if isAvailableForClasses(descriptor):
+				
+				if isTeamSwitchShopBannedDescriptorForState(descriptor, teamSwitchActive):
+					continue
 				curShopItems[descriptor.rarity].push_back(descriptor)
 
 func isAvailableForClasses(descriptor: ItemDescriptor):

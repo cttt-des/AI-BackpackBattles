@@ -775,11 +775,9 @@ func getBagsInCells(cells):
 
 
 func deleteItems():
-	var itemList = items.duplicate()
-	items.clear()
-	
-	for item in itemList:
+	for item in items:
 		item.discard()
+	items.clear()
 	
 	for cell in filledCells:
 		tilemap.set_cellv(cell, Tile.Empty)
@@ -980,6 +978,248 @@ func startMultiSelect(mainItem: Item, selected: Array):
 	multiSelectMainItem = mainItem
 	multiSelectSubItems = selected
 	multiSelectMainItem.pickup(Item.PickupType.MultiSelect)
+
+func normalizeSymmetricItems():
+	var changed = false
+	for item in getItemsAndGems():
+		if item.ownerType != Item.Owner.PlayerInventory and item.ownerType != Item.Owner.Socket:
+			continue
+
+		if item.isGem():
+			if item.ownerType == Item.Owner.Socket:
+				var parentRot = 0.0
+				if item.get_parent():
+					parentRot = item.get_parent().global_rotation
+				var needsChange = item.getFaceDirection() != Item.FaceDirection.UP or abs(item.global_rotation) > 0.0001
+				if needsChange:
+					item.setFaceDirectionInstant(Item.FaceDirection.UP)
+					item.rotation = - parentRot
+					item.cacheAffectedCells()
+					changed = true
+			else:
+				if item.getFaceDirection() != Item.FaceDirection.UP:
+					item.setFaceDirectionInstant(Item.FaceDirection.UP)
+					item.cacheAffectedCells()
+					changed = true
+			continue
+
+		if isCarrot(item) or isScissorswords(item):
+			if not item.placed: continue
+			var dir = item.getFaceDirection()
+			var targetCarrotDir = Item.FaceDirection.UP
+			if dir % 2 != 0:
+				targetCarrotDir = Item.FaceDirection.LEFT
+			if targetCarrotDir != dir:
+				orientItem(item, item.getTopLeftCell(), targetCarrotDir)
+				item.cacheAffectedCells()
+				changed = true
+			continue
+
+		if isPotionNonRainbow(item) or isFlaskNonRainbow(item):
+			if not item.placed: continue
+			var targetDir = getCanonicalPotionDirection(item)
+			if targetDir == null: continue
+			if targetDir != item.getFaceDirection():
+				orientItem(item, item.getTopLeftCell(), targetDir)
+				item.cacheAffectedCells()
+				changed = true
+			continue
+
+		if isBagofStones(item):
+			if not item.placed: continue
+			var targetDir = getCanonicalBagofStonesDirection(item)
+			if targetDir == null: continue
+			if targetDir != item.getFaceDirection():
+				orientItem(item, item.getTopLeftCell(), targetDir)
+				item.cacheAffectedCells()
+				changed = true
+			continue
+
+		if not item.placed: continue
+		if hasCustomRotateLogic(item): continue
+		if hasDirectionalAffected(item): continue
+
+		var targetDir = getCanonicalItemDirection(item)
+		if targetDir == null: continue
+		if targetDir != item.getFaceDirection():
+			orientItem(item, item.getTopLeftCell(), targetDir)
+			item.cacheAffectedCells()
+			changed = true
+
+	if changed:
+		recalculateTilemap()
+
+func getCanonicalItemDirection(item: Item):
+	var anchor = item.getTopLeftCell()
+	var combined = getCombinedCells(item, anchor)
+	var occRel = []
+	for cell in item.occupiedCells:
+		occRel.push_back(cell - anchor)
+	if combined.empty() or occRel.empty(): return null
+
+	var base = normalizeCells(combined)
+	var rot90 = normalizeCells(rotateCells90(combined))
+	var rot180 = normalizeCells(rotateCells90(rot90))
+
+	var baseOcc = normalizeCells(occRel)
+	var rot90Occ = normalizeCells(rotateCells90(occRel))
+	var rot180Occ = normalizeCells(rotateCells90(rot90Occ))
+
+	var sym90 = (rot90 == base) and (rot90Occ == baseOcc)
+	var sym180 = (rot180 == base) and (rot180Occ == baseOcc)
+
+	if sym90:
+		return Item.FaceDirection.UP
+	elif sym180:
+		var candidates = [
+			item.getFaceDirection(), 
+			(item.getFaceDirection() + 2) % 4
+		]
+		var best = candidates[0]
+		var bestSteps = 5
+		for dir in candidates:
+			var steps = (dir - Item.FaceDirection.UP + 4) % 4
+			if steps < bestSteps:
+				bestSteps = steps
+				best = dir
+		return best
+
+	return null
+
+func getCanonicalPotionDirection(item: Item):
+	var anchor = item.getTopLeftCell()
+	var combined = getCombinedCells(item, anchor)
+	if combined.empty(): return null
+
+	var base = normalizeCells(combined)
+	var rot180 = normalizeCells(rotateCells90(rotateCells90(combined)))
+	if rot180 != base:
+		return null
+
+	var candidates = [
+		item.getFaceDirection(), 
+		(item.getFaceDirection() + 2) % 4
+	]
+	var best = candidates[0]
+	var bestSteps = 5
+	for dir in candidates:
+		var steps = (dir - Item.FaceDirection.UP + 4) % 4
+		if steps < bestSteps:
+			bestSteps = steps
+			best = dir
+	return best
+
+func getCanonicalBagofStonesDirection(item: Item):
+	var dir = item.getFaceDirection()
+	if dir % 2 == 0:
+		return Item.FaceDirection.UP
+	return Item.FaceDirection.RIGHT
+
+func normalizeCells(cells: Array) -> Array:
+	if cells.empty():
+		return []
+	var minx = INF
+	var miny = INF
+	for cell in cells:
+		minx = min(minx, cell.x)
+		miny = min(miny, cell.y)
+
+	var norm = []
+	for cell in cells:
+		norm.push_back(Vector2(cell.x - minx, cell.y - miny))
+
+	norm.sort_custom(CellSorter, "sort")
+	return norm
+
+func rotateCells90(cells: Array) -> Array:
+	var rotated = []
+	for cell in cells:
+		rotated.push_back(Vector2( - cell.y, cell.x))
+	return rotated
+
+func getCombinedCells(item: Item, anchor: Vector2) -> Array:
+	var combined = []
+	for cell in item.occupiedCells:
+		combined.push_back(cell - anchor)
+
+	for color in Item.Affected.values():
+		for cell in item.getAffectedCellsInInventory(color):
+			combined.push_back(cell - anchor)
+
+	combined = Util.filterDuplicates(combined)
+	return combined
+
+func hasCustomRotateLogic(item: Item) -> bool:
+	if not item.get_script():
+		return false
+	var path = item.get_script().resource_path
+	return path.ends_with("RainbowPotion.gd") or path.ends_with("CursedDagger.gd") or path.ends_with("Anvil.gd") or path.ends_with("CatSpirit.gd")
+
+func isPotionNonRainbow(item: Item) -> bool:
+	if not item.get_script():
+		return false
+	var path = item.get_script().resource_path
+	return path.ends_with("Potion.gd") and not path.ends_with("RainbowPotion.gd")
+
+func isFlaskNonRainbow(item: Item) -> bool:
+	if not item.get_script():
+		return false
+	var path = item.get_script().resource_path
+	return path.ends_with("Flask.gd")
+
+func isBagofStones(item: Item) -> bool:
+	if not item.get_script():
+		return false
+	var path = item.get_script().resource_path
+	return path.ends_with("BagofStones.gd")
+
+func isCarrot(item: Item) -> bool:
+	if not item.get_script():
+		return false
+	return item.get_script().resource_path.ends_with("Carrot.gd")
+
+func isScissorswords(item: Item) -> bool:
+	if not item.get_script():
+		return false
+	return item.get_script().resource_path.ends_with("Scissorswords.gd")
+
+func hasDirectionalAffected(item: Item) -> bool:
+	if not item.occupiedCells:
+		return false
+
+	var minx = INF
+	var maxx = - INF
+	var miny = INF
+	var maxy = - INF
+	for cell in item.occupiedCells:
+		minx = min(minx, cell.x)
+		maxx = max(maxx, cell.x)
+		miny = min(miny, cell.y)
+		maxy = max(maxy, cell.y)
+
+	for color in Item.Affected.values():
+		var aff = item.getAffectedCellsInInventory(color)
+		if aff.empty():
+			continue
+
+		var allAbove = true
+		var allBelow = true
+		var allLeft = true
+		var allRight = true
+		for cell in aff:
+			if cell.y >= miny:
+				allAbove = false
+			if cell.y <= maxy:
+				allBelow = false
+			if cell.x >= minx:
+				allLeft = false
+			if cell.x <= maxx:
+				allRight = false
+
+		if allAbove or allBelow or allLeft or allRight:
+			return true
+
+	return false
 
 func getMultiSelectItems():
 	if multiSelectMainItem.isBag():

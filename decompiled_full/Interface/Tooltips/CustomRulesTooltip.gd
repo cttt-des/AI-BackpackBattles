@@ -11,7 +11,8 @@ onready var entries = {
 	CustomRules.Rules.TreasureLimit: $VBoxContainer / TreasureLimit, 
 	CustomRules.Rules.CannotPickBags: $VBoxContainer / CannotPickBags, 
 	CustomRules.Rules.LeagueToMatch: get_node_or_null("VBoxContainer/League"), 
-	CustomRules.Rules.SwitchMode: get_node_or_null("VBoxContainer/SwitchMode")
+	CustomRules.Rules.SwitchMode: get_node_or_null("VBoxContainer/SwitchMode"), 
+	CustomRules.Rules.TeamSwitchMode: get_node_or_null("VBoxContainer/TeamSwitchMode")
 }
 
 onready var bonusGoldLabel = $VBoxContainer / Gold / Value
@@ -21,6 +22,7 @@ onready var saleChanceLabel = $VBoxContainer / Sales / Value
 onready var tradeChanceLabel = $VBoxContainer / Trade / Value
 onready var healthMultiplierLabel = $VBoxContainer / Health / Value
 onready var cannotPickBagsCheckbox = $VBoxContainer / CannotPickBags / Checkbox
+onready var teamSwitchModeCheckbox = $VBoxContainer / TeamSwitchMode / Checkbox
 
 onready var leagueToMatchNode = get_node_or_null("VBoxContainer/League")
 onready var leagueToMatchRect = get_node_or_null("VBoxContainer/League/TextureRect")
@@ -45,6 +47,7 @@ func updateRules(_customRules = CustomRules):
 	tradeChanceLabel.text = Util.addPlus(_customRules.getRuleValue(CustomRules.Rules.TradeChance)) + "%"
 	healthMultiplierLabel.text = str(_customRules.getHealthMultiplier()) + "%"
 	cannotPickBagsCheckbox.set_pressed_no_signal(_customRules.getCannotPickBags())
+	teamSwitchModeCheckbox.set_pressed_no_signal(_customRules.isTeamSwitchMode())
 	
 	if not lobbyMode:
 		var leagueToMatch = _customRules.getLeagueToMatch()
