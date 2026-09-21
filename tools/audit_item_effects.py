@@ -40,13 +40,12 @@ for _stream in (sys.stdout, sys.stderr):
     except Exception:  # noqa: BLE001
         pass
 
-import simulator.behavior as B                    # noqa: E402
-from simulator import extract_items as E           # noqa: E402
-from simulator.behavior import BEHAVIOR_GLOBALS    # noqa: E402
-from simulator.character import Character          # noqa: E402
-from simulator.data import load_items              # noqa: E402
-from simulator.grid import GridInventory           # noqa: E402
-from simulator.item import Item                    # noqa: E402
+import engine.behavior as B                        # noqa: E402
+from simulator import extract_items as E           # noqa: E402（源码索引/方法池同源）
+from engine.character import Character             # noqa: E402
+from engine.data import load_items                 # noqa: E402
+from engine.grid import GridInventory              # noqa: E402
+from engine.item import Item                       # noqa: E402
 
 OUT_DIR = os.path.join(ROOT, "output", "audit")
 
@@ -137,11 +136,19 @@ def _load_class_methods() -> Dict[str, dict]:
 def runtime_probe(key: str, data: dict) -> Dict[str, str]:
     """执行一遍物品生命周期，返回 {方法名: 错误信息}。"""
     try:
+        from engine.context import BattleContext
         it = Item(key, dict(data))
         ch = Character(0, "P", 9999, 99.0, 9.0)
         opp = Character(1, "O", 9999, 99.0, 9.0)
         ch.set_opponent(opp)
         opp.set_opponent(ch)
+        # ctx 必须先于 set_grid_position（入背包 ready 依赖 ctx.game/combatLog）
+        ctx = BattleContext(0)
+        it.ctx = ctx
+        ch.ctx = ctx
+        opp.ctx = ctx
+        ctx.game.PLAYER = ch
+        ctx.game.OPPONENT = opp
         it.character = ch
         # 引擎战斗中角色必持有全部物品（Game.prepareItems 前已摆盘）——
         # inventory.getItems() 类联动（Time Dilator 等）依赖这一点
@@ -190,8 +197,8 @@ def missing_api_scan(items: Dict[str, dict]):
         except Exception:  # noqa: BLE001
             continue
         for name in set(re.findall(r'_item\.(\w+)\s*\(', src)):
-            if name in BEHAVIOR_GLOBALS:
-                continue
+            # 新内核：命名空间常量以 _const_* 模块级形式注入，不会出现在
+            # _item.xxx() 调用面上；无需旧 BEHAVIOR_GLOBALS 豁免清单
             if not hasattr(probe, name):
                 miss_self[name] += 1
         for name in set(re.findall(r'(?<![\w._])item\.(\w+)\s*\(', src)):
@@ -206,7 +213,7 @@ def main(argv=None) -> int:
     ap.add_argument("--json", default=os.path.join(OUT_DIR, "effects_report.json"))
     args = ap.parse_args(argv)
 
-    B.STRICT = True          # 让行为执行异常可被统计
+    # 新内核行为执行 fail-fast + failures 记录（无需旧 STRICT 开关）
     items = load_items()
     idx = E.scan_scripts()
     print(f"物品: {len(items)}   脚本索引: {len(idx)}")

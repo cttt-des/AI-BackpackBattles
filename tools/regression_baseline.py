@@ -40,9 +40,21 @@ for _stream in (sys.stdout, sys.stderr):
     except Exception:  # noqa: BLE001
         pass
 
-from simulator.combat import CombatEngine          # noqa: E402
-from simulator.data import load_items, load_characters   # noqa: E402
-from simulator.lineup import load_lineup           # noqa: E402
+ENGINES = ("simulator", "engine")   # simulator=旧内核（回归基线）, engine=新内核
+DEFAULT_ENGINE = "simulator"
+
+
+def _load_engine(name: str):
+    """按名加载战斗内核（延迟导入，避免单进程双引擎常驻）"""
+    if name == "engine":
+        from engine.combat import CombatEngine      # noqa: E402
+        from engine.data import load_items, load_characters   # noqa: E402
+    else:
+        from simulator.combat import CombatEngine   # noqa: E402
+        from simulator.data import load_items, load_characters  # noqa: E402
+    from simulator.lineup import load_lineup        # noqa: E402（阵容格式两引擎共用）
+    return CombatEngine, load_items, load_characters, load_lineup
+
 
 LINEUPS_DIR = os.path.join(ROOT, "lineups")
 OUT_DIR = os.path.join(ROOT, "output", "baseline")
@@ -54,24 +66,43 @@ def list_lineups() -> List[str]:
     return sorted(glob.glob(os.path.join(LINEUPS_DIR, "*.json")))
 
 
-def run_pair(a: str, b: str, item_db, char_db, seed: int) -> Dict[str, Any]:
+def _events_list(log, engine: str) -> List[Dict[str, Any]]:
+    """统一两内核的事件视图（新内核为惰性 record 列表，无 to_dict）"""
+    if engine == "engine":
+        return [{"t": ev.t, "type": ev.type, "actor": ev.actor,
+                 "target": ev.target} for ev in log.events]
+    events = log.to_dict()
+    return events if isinstance(events, list) else events.get("events", [])
+
+
+def run_pair(a: str, b: str, item_db, char_db, seed: int,
+             engine: str = DEFAULT_ENGINE) -> Dict[str, Any]:
     """跑一场固定种子战斗，返回可比对的结果摘要。"""
+    CombatEngine, _, _, load_lineup = _load_engine(engine)
     la = load_lineup(a)
     lb = load_lineup(b)
     eng = CombatEngine(la, lb, item_db, char_db, seed=seed)
     eng.run()
 
     s = eng.summary()
-    txt = eng.log.to_text("en")
-    events = eng.log.to_dict()
+    events = _events_list(eng.log, engine)
+    # 旧内核指纹字段为 origin（保持历史基线兼容）；新内核用 target（Event.origin
+    # 是物品对象引用，不进指纹）
+    fld = "origin" if engine == DEFAULT_ENGINE else "target"
     events_sig = "|".join(
-        f"{e.get('t')},{e.get('type')},{e.get('actor')},{e.get('origin')}"
-        for e in (events if isinstance(events, list) else events.get("events", []))
+        f"{e.get('t')},{e.get('type')},{e.get('actor')},{e.get(fld)}"
+        for e in events
     )
+    if engine == "engine":
+        # 新内核惰性日志：无文本渲染，文本指纹以警告流代替（进程级改动同样敏感）
+        txt = "|".join(getattr(eng.log, "warnings", []))
+    else:
+        txt = eng.log.to_text("en")
     return {
         "player": os.path.basename(a),
         "opponent": os.path.basename(b),
         "seed": seed,
+        "engine": engine,
         "winner": "player" if eng.player_wins() else "opponent",
         "reason": s.get("reason"),
         "time": round(float(s.get("time", 0.0)), 3),
@@ -91,7 +122,9 @@ def run_pair(a: str, b: str, item_db, char_db, seed: int) -> Dict[str, Any]:
     }
 
 
-def collect(seed: int = SEED, verbose: bool = True) -> Dict[str, Any]:
+def collect(seed: int = SEED, verbose: bool = True,
+            engine: str = DEFAULT_ENGINE) -> Dict[str, Any]:
+    _, load_items, load_characters, _ = _load_engine(engine)
     item_db = load_items()
     char_db = load_characters()
     files = list_lineups()
@@ -107,7 +140,7 @@ def collect(seed: int = SEED, verbose: bool = True) -> Dict[str, Any]:
                 continue
             a, b = files[i], files[j]
             try:
-                r = run_pair(a, b, item_db, char_db, seed)
+                r = run_pair(a, b, item_db, char_db, seed, engine=engine)
             except Exception as e:  # noqa: BLE001
                 r = {"player": os.path.basename(a), "opponent": os.path.basename(b),
                      "seed": seed, "error": f"{type(e).__name__}: {e}"}
@@ -118,6 +151,7 @@ def collect(seed: int = SEED, verbose: bool = True) -> Dict[str, Any]:
 
     return {
         "version": BASE_VERSION,
+        "engine": engine,
         "generated_at": datetime.now().isoformat(timespec="seconds"),
         "seed": seed,
         "lineups": [os.path.basename(f) for f in files],
@@ -126,15 +160,19 @@ def collect(seed: int = SEED, verbose: bool = True) -> Dict[str, Any]:
     }
 
 
-def baseline_path(tag: str) -> str:
-    return os.path.join(OUT_DIR, f"baseline_{tag}.json")
+def baseline_path(tag: str, engine: str = DEFAULT_ENGINE) -> str:
+    if engine == DEFAULT_ENGINE:
+        legacy = os.path.join(OUT_DIR, f"baseline_{tag}.json")
+        if os.path.exists(legacy):
+            return legacy          # 兼容历史旧内核基线文件名
+    return os.path.join(OUT_DIR, f"baseline_{tag}__{engine}.json")
 
 
-def save(tag: str, seed: int) -> int:
+def save(tag: str, seed: int, engine: str = DEFAULT_ENGINE) -> int:
     os.makedirs(OUT_DIR, exist_ok=True)
-    print(f"采集基线（seed={seed}）...")
-    data = collect(seed=seed)
-    path = baseline_path(tag)
+    print(f"采集基线（seed={seed}, engine={engine}）...")
+    data = collect(seed=seed, engine=engine)
+    path = baseline_path(tag, engine)
     json.dump(data, open(path, "w", encoding="utf-8"),
               ensure_ascii=False, indent=1)
     ok = sum(1 for r in data["results"] if "error" not in r)
@@ -144,14 +182,14 @@ def save(tag: str, seed: int) -> int:
     return 0
 
 
-def check(tag: str, seed: int) -> int:
-    path = baseline_path(tag)
+def check(tag: str, seed: int, engine: str = DEFAULT_ENGINE) -> int:
+    path = baseline_path(tag, engine)
     if not os.path.exists(path):
         print(f"基线不存在: {path}")
         return 2
     base = json.load(open(path, encoding="utf-8"))
     print(f"比对基线: {path}（生成于 {base.get('generated_at')}）")
-    cur = collect(seed=seed, verbose=False)
+    cur = collect(seed=seed, verbose=False, engine=engine)
 
     def key(r):
         return (r["player"], r["opponent"])
@@ -206,6 +244,8 @@ def main(argv=None) -> int:
     ap.add_argument("--list", action="store_true", help="列出已有基线")
     ap.add_argument("--tag", default="latest", help="基线标签（默认 latest）")
     ap.add_argument("--seed", type=int, default=SEED, help=f"随机种子（默认 {SEED}）")
+    ap.add_argument("--engine", choices=ENGINES, default=DEFAULT_ENGINE,
+                    help="战斗内核：simulator=旧（默认/回归基线），engine=新")
     args = ap.parse_args(argv)
 
     if args.list:
@@ -224,9 +264,9 @@ def main(argv=None) -> int:
         return 0
 
     if args.check:
-        return check(args.tag, args.seed)
+        return check(args.tag, args.seed, args.engine)
     if args.save:
-        return save(args.tag, args.seed)
+        return save(args.tag, args.seed, args.engine)
 
     ap.print_help()
     return 0

@@ -54,6 +54,12 @@ def build():
         "--name", APP_NAME,
         # 打包物品/角色数据（data.py 冻结态从 sys._MEIPASS/assets 读取）
         "--add-data", str(PROJECT_DIR / "assets") + ";assets",
+        # v2 引擎（engine/）在 simulate._get_combat_engine 内延迟导入，显式声明
+        "--hidden-import", "engine",
+        "--hidden-import", "engine.combat",
+        "--hidden-import", "engine.data",
+        "--hidden-import", "engine.gen.behaviors",
+        "--collect-submodules", "engine",
         "--hidden-import", "tkinter",
         "--hidden-import", "tkinter.ttk",
         "--hidden-import", "tkinter.scrolledtext",

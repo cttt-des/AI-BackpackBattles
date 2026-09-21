@@ -37,9 +37,9 @@ for _stream in (sys.stdout, sys.stderr):
     except Exception:  # noqa: BLE001
         pass
 
-from simulator.grid import GridInventory          # noqa: E402
-from simulator.item import Item                   # noqa: E402
-from simulator.character import Character         # noqa: E402
+from engine.grid import GridInventory             # noqa: E402
+from engine.item import Item                      # noqa: E402
+from engine.character import Character            # noqa: E402
 from simulator.data import load_items             # noqa: E402
 
 DB: Dict[str, Any] = {}
@@ -60,12 +60,17 @@ def build_scene(placements):
     opp = Character(1, "O", 9999, 99, 9.0)
     ch.set_opponent(opp)
     opp.set_opponent(ch)
+    from engine.context import BattleContext
+    ctx = BattleContext(42)
+    ch.ctx = ctx
+    opp.ctx = ctx
     for key, row, col, rot in placements:
         data = DB.get(key)
         if data is None:
             raise KeyError(key)
         it = Item(key, dict(data))
         it.character = ch
+        it.ctx = ctx
         it.set_grid_position(row, col, rot, inventory=inv)
         items.append(it)
 

@@ -32,10 +32,12 @@
 
 ### ③ 战斗模拟器（100% 复刻战斗效果）
 
-- 20+ 模块：60Hz 冷却系统、伤害结算全链（命中/闪避/暴击×2/抗性/格挡/反伤/吸血/疲劳）、Buff 栈、平衡随机 RNG、事件日志
-- 物品行为由 `Items/*.gd` 方法体自动转译为 Python 运行时执行（全库 2276 个方法，转译失败仅 3 个）
-- 物品联动（Affected）完整还原：四色影响格、脚本覆写 `getAffectedCellsAfterRotate`（含 `extends` 继承链）、`canAffect` 过滤、`onAffectedItemAdded` 回调、动态类型
+- **v2 引擎已上线（`engine/`）**：编译期代码生成（3174 个转译函数常驻 import）+ fail-fast（静默失效归零）+ 无进程级单例（可 deepcopy/多进程，RL 铺路）。详见 [docs/engine_v2.md](docs/engine_v2.md)
+- 60Hz 冷却系统（±5% 抖动）、伤害结算全链（命中/闪避/暴击×2/抗性/格挡/反伤/吸血/疲劳）、Buff 栈、平衡随机 RNG、惰性事件日志
+- 物品行为由 `Items/*.gd` 方法体 AST 级转译为 Python 模块执行
+- 物品联动（Affected）完整还原：四色影响格（归一化基准对齐 CollisionMap）、脚本覆写 `getAffectedCellsAfterRotate`（含 `extends` 继承链）、`canAffect` 过滤、`onAffectedItemAdded` 回调、动态类型；**信号级联动验收**（断言回调真实执行次数）
 - 桌面 GUI：阵容选择、**镜像对战**（可用相同阵容对打）、开战前占格重叠预检
+- 旧内核 `simulator/` 冻结保留可回退（`--engine simulator`）
 
 ### ④ 精度攻坚（历轮大修，全部对齐反编译源码）
 
@@ -48,18 +50,20 @@
 
 | 工具 | 作用 | 当前状态 |
 |------|------|----------|
-| `tools/verify_linkage.py` | 联动语义固定用例（Twine/Rope/药水信号/动态类型…） | 18/18 通过 |
+| `tools/verify_linkage.py` | 联动语义固定用例（Twine/Rope/药水信号/动态类型/Goobert 全族…），已切 v2 引擎 | 18/18 通过 + Goobert 族 12/12 |
 | `tools/verify_timing.py` | 冷却/暴击/疲劳逐帧时序回归 | 全部通过 |
-| `tools/audit_item_effects.py` | 源码→转译→运行时三层对账 | runtime_failures = 0（干净官方源码） |
-| `tools/regression_baseline.py` | 固定种子 56 场战斗指纹比对 | 无差异 |
+| `tools/audit_item_effects.py` | 源码→转译→运行时三层对账（v2 引擎） | 518 物品运行时 0 失败 |
+| `tools/regression_baseline.py` | 固定种子 56 场战斗指纹比对（双内核，`--engine`） | 旧内核无差异 / 新内核 56 场 0 异常 |
+| `tools/compare_engines.py` | 旧 vs 新内核同种子对照归因 | 56 场差异 100% 归因（未归因 0） |
 | `tools/repack_lineups.py` | 占格形状变更后内置阵容自动重摆 | 18 个阵容预检零冲突 |
 
 ## 项目结构
 
 ```
 core/                       # 外挂 AI 核心（bot/memory_reader/item_reader/godot_reader/ai_interface 等）
-simulator/                  # ★ 战斗模拟器（combat/item/behavior/effects/grid/lineup/data/gui…）
-├── simulate.py             # CLI 入口
+engine/                     # ★ v2 战斗内核（gen/ 转译行为 + behavior/item/character/combat/context…）
+├── simulate: python -m simulator.simulate（--engine engine 默认 / simulator 回退）
+simulator/                  # 旧战斗内核（冻结保留，回归对照基线）+ CLI/GUI 入口
 ├── extract_linkage.py      # ★ 联动专项提取（四色影响格 + canAffect + 回调，含继承链）
 └── build_data.py           # 从 wiki + 解包脚本生成 battle_items.json
 gui/                        # 外挂 AI 桌面 GUI（主窗口 + 深色主题）
@@ -70,7 +74,7 @@ assets/                     # 物品贴图、battle_items.json、角色数据、
 lineups/                    # 内置阵容 JSON；dist/lineups/ 另含游戏历史导出阵容
 examples/                   # 示例阵容
 tools/                      # 逆向工具 + 验收链（见上表）+ 解密/解包/数据抓取
-docs/                       # 游戏机制逆向参考、模拟器架构与阵容格式
+docs/                       # 游戏机制逆向参考、模拟器架构（engine_v2.md）、阵容格式
 launcher.py                 # 外挂 AI 入口        battle_simulator.py  # 模拟器 GUI 入口
 build_exe.py                # 外挂 AI 打包        build_simulator_exe.py  # 模拟器打包
 ```

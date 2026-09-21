@@ -60,14 +60,14 @@ def parse_tscn_grid(path: str):
             txt = f.read()
     except OSError:
         return None
-    m = re.search(r'tile_data = PoolIntArray\((.*?)\)', txt, re.S)
+    m = re.search(r'tile_data = PoolIntArray\(([^)]+)\)', txt)
     if not m:
         return None
     nums = [int(t) for t in re.findall(r'-?\d+', m.group(1))]
     tiles = {}
-    for i in range(0, len(nums) - 2, 3):
-        cell = decode_tile(nums[i])
-        tid = nums[i + 1]
+    for i in range(2, len(nums), 3):
+        cell = decode_tile(nums[i - 2])
+        tid = nums[i - 1]
         tiles.setdefault(tid, set()).add(cell)
     return tiles
 
