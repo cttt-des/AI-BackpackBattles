@@ -90,3 +90,23 @@ python build_exe.py           # 打包/更新 exe → dist/BackpackAI.exe
 - **★ Release 上传稳妥流程（避坑）**：`gh release create <tag> --draft`(不带资产) → `gh release upload <tag> --clobber <files>` → `gh release edit <tag> --draft=false` 发布。原因：① `gh release create file#assetName` 的 `#` 重命名有时不生效；② 一次性建+传遇 HTTP 422 `ReleaseAsset.name already exists`（并发竞态）时用分步法+`--clobber` 规避。
 - 已推送标签：v0.0.1、v0.1.0、v0.1.1、v0.1.2。
 - 2026-09-10 发 v0.1.2（仅模拟器）：`dist/BackpackSimulator.exe` 改名 `BackpackSimulator_v0.1.2.exe`（67MB）上传；README 下载表此前误写 v0.2.0（远程从未发布），已对账为「模拟器 v0.1.2 + AI v0.1.1」。注意：dist 里还有 `BackpackSimulator_v0.2.0.exe`/`BackpackAI_v0.2.0.exe` 等 v0.2.0 构建，但均未作为 Release 发布过。
+
+- ★★★ 2026-09-22 **gd_core 无头解耦内核落地**（用户要求：精简 gd 战斗逻辑提速、逻辑 1:1 不变）。
+  形态=不依赖场景树的纯逻辑内核（全部 `extends Reference`），范围=核心循环优先。
+  `gd_core/` 14 脚本 4834 行：`CoreConst/CoreRng/CoreEvent/CoreEventBus/CoreCombatLog/CoreItemData/
+  CoreDamageSource/CoreDamageResult/CoreBuff/CoreItem/CoreCharacter/CoreContext/CoreHooks/CoreCombat`。
+  ① 单例→`ctx` 注入；② 表现副作用→`CoreHooks` 37 个空实现（★**全部在函数尾部，不参与任何判定条件**，这是保真论证前提）；
+  ③ 循环依赖→枚举集中 `CoreConst` + 鸭子类型。
+  **验收一键流水线 `python tools/run_gd_core.py [--bench]`**（4 闸门：audit / 依赖环 / ParseAll / Smoke → 全通过，SMOKE: PASS）。
+  测试工程 `gd_core_test/`（`gd_core` 目录联接指回 `../gd_core`）；宿主 `output/godot36/Godot_v3.6-stable_win64.exe`。
+  忠实性文档 `docs/gd_core_truth.md`。
+  ★ **冷却语义三方分歧（勿混用）**：`engine/` 与 `gd_core/` 照搬原版 `cd×randf_range(0.95,1.05)`（对手低段 0.975~1.05）；
+  `simulator/` 按用户确认的体感返回固定 `cd`。
+  ★ **未完成**：覆盖度 396/998=39.7%（DamageSource/DamageResult/Buff/Event/Bus/Rng 已达 100%），
+  **判定路径缺口 211 项**（Item 176 + Character 35）＝物品行为 API 面（heal/stealLife/sendCharge/buff 施加/cleanse/canBlock/…）
+  + 网格邻接宝石联动 + 体力生命上限细化。→ 缺这些，518 物品行为接上 `_behavior` 缝也跑不起来；
+  补齐后才能跑 `verify_cooldowns` 等价校验与双引擎对照。**在此之前不得宣称 gd_core 等价原版战斗系统。**
+  ★ GDScript 3.x 坑位：`log`/`seed` 是内置函数（不能作成员名/形参）；class_name 互相引用含自引用报 cyclic dependency；
+  `round()/ceil()` 返 float 不能直接 return 给 `-> int`；无头跑须 `--script` + `extends SceneTree`+`_init`；
+  Godot 每脚本只报首个 parse error（用逐文件 load 批量暴露）；控制台中文按 CP936 输出。
+  ★ **并行 Edit 同一文件会丢改动**，改同文件必须串行；沙箱内 `rm -rf <dir>` 触发 SIGTERM，删目录需逐个 `rm -f`。

@@ -1,0 +1,102 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Reference",
+"class": "CoreBuff",
+"language": "GDScript",
+"path": "res://gd_core/CoreBuff.gd"
+}, {
+"base": "Reference",
+"class": "CoreCharacter",
+"language": "GDScript",
+"path": "res://gd_core/CoreCharacter.gd"
+}, {
+"base": "Reference",
+"class": "CoreCombat",
+"language": "GDScript",
+"path": "res://gd_core/CoreCombat.gd"
+}, {
+"base": "Reference",
+"class": "CoreCombatLog",
+"language": "GDScript",
+"path": "res://gd_core/CoreCombatLog.gd"
+}, {
+"base": "Reference",
+"class": "CoreConst",
+"language": "GDScript",
+"path": "res://gd_core/CoreConst.gd"
+}, {
+"base": "Reference",
+"class": "CoreContext",
+"language": "GDScript",
+"path": "res://gd_core/CoreContext.gd"
+}, {
+"base": "Reference",
+"class": "CoreDamageResult",
+"language": "GDScript",
+"path": "res://gd_core/CoreDamageResult.gd"
+}, {
+"base": "Reference",
+"class": "CoreDamageSource",
+"language": "GDScript",
+"path": "res://gd_core/CoreDamageSource.gd"
+}, {
+"base": "Reference",
+"class": "CoreEvent",
+"language": "GDScript",
+"path": "res://gd_core/CoreEvent.gd"
+}, {
+"base": "Reference",
+"class": "CoreEventBus",
+"language": "GDScript",
+"path": "res://gd_core/CoreEventBus.gd"
+}, {
+"base": "Reference",
+"class": "CoreHooks",
+"language": "GDScript",
+"path": "res://gd_core/CoreHooks.gd"
+}, {
+"base": "Reference",
+"class": "CoreItem",
+"language": "GDScript",
+"path": "res://gd_core/CoreItem.gd"
+}, {
+"base": "Reference",
+"class": "CoreItemData",
+"language": "GDScript",
+"path": "res://gd_core/CoreItemData.gd"
+}, {
+"base": "Reference",
+"class": "CoreRng",
+"language": "GDScript",
+"path": "res://gd_core/CoreRng.gd"
+} ]
+_global_script_class_icons={
+"CoreBuff": "",
+"CoreCharacter": "",
+"CoreCombat": "",
+"CoreCombatLog": "",
+"CoreConst": "",
+"CoreContext": "",
+"CoreDamageResult": "",
+"CoreDamageSource": "",
+"CoreEvent": "",
+"CoreEventBus": "",
+"CoreHooks": "",
+"CoreItem": "",
+"CoreItemData": "",
+"CoreRng": ""
+}
+
+[application]
+
+config/name="gd_core smoke"
+run/main_scene="res://Smoke.tscn"
