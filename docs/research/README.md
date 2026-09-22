@@ -12,6 +12,7 @@
 | [03 训练管线](03_training_pipeline_survey.md) | 冷启动、BC→RL 切换、league、评估、防崩 | **远期素材**（SL/BC-RL 阶段设计时启用）；其中"特权 teacher 造数据"与专家轨迹质量相关 |
 | [04 同类游戏 AI 与经典系统](04_game_ai_prior_art_survey.md) | 同类项目群像、引擎-策略-对手解耦、部署、经典系统部件 | **部分直接**：服务协议解耦模式（opponent 注入）、部署通道、引擎验收文化；训练部分为远期 |
 | [05 知识注入](05_knowledge_injection_survey.md) | KG 构建闭环、嵌入选型、子策略、迁移、搜索混合 | **KG data 层已落地**（`assets/kg/`）；嵌入/子策略为远期；搜索混合对启发式搜索阶段直接可用（solver 摆位、rollout 评估） |
+| [06 仿真内核速度分析](06_simulator_speed_analysis.md) | 每帧语义工作量（源自反编译源码）、热点 profile、提速路线 L1~L4、分阶段需求对照 | **直接回答"C++/Rust 要不要重写"**：L1 Python 优化（2~5×，零风险）→ L2 多进程（×16）→ L3 C++ codegen 后端（20~50×，轨迹量产阶段评估）；Rust 手写移植不推荐 |
 
 ## 素材地图：当前设计问题 → 去哪个报告找约束
 
