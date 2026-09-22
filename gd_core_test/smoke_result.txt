@@ -1,0 +1,16 @@
+
+=== gd_core smoke test ===
+
+[1] 基础对拼：玩家 2 武器(5dmg/1.0cd) HP100  vs  对手 1 武器 HP20
+    fight_ended=True  result=0  用时=1.95s  events=9  首击=0.983s
+    HP  player=95.0  opponent=0.0
+
+[2] 疲劳契约：双方空手 HP30，靠疲劳收场
+    fight_ended=True  result=0  用时=24.02s  fatigue_counter=8
+    HP  player=1.0  opponent=0.0
+
+[3] 确定性：同种子 + 独立上下文，两次对战逐位一致
+    run A = 0|7.9667|6.0|0.0|0
+    run B = 0|7.9667|6.0|0.0|0
+
+SMOKE: PASS

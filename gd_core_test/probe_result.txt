@@ -1,0 +1,7 @@
+=== PROBE: 触发时刻取证 ===
+  frame=151  combat_time_before=0.0000  after=0.0000  trigTime 1.0000 -> 1.0445  oppHP=20.0
+  frame=214  combat_time_before=1.0333  after=1.0500  trigTime 0.0111 -> 1.0357  oppHP=15.0
+  frame=277  combat_time_before=2.0833  after=2.1000  trigTime 0.0023 -> 0.9593  oppHP=10.0
+  frame=335  combat_time_before=3.0500  after=3.0667  trigTime 0.0093 -> 0.9920  oppHP=5.0
+  frame=395  combat_time_before=4.0500  after=4.0667  trigTime 0.0087 -> 0.9906  oppHP=0.0
+  结束: combat_time=4.0667  oppHP=0.0  playerHP=100.0
