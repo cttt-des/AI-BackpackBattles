@@ -165,7 +165,10 @@ def main() -> int:
         onready = [l for l in t.split("\n") if l.startswith("onready var ")]
         assign = "\n".join("\t" + l.replace("onready var ", "", 1) for l in onready)
         method = ("\n# 真值机补丁：autoload _ready 先于主场景，onready 落空；Main 入树后延迟重取（幂等）\n"
-                  "func truth_late_init() -> void:\n" + assign + "\n")
+                  "func truth_late_init() -> void:\n"
+                  "\t# 确定性：ready_deferred 的初始物品/loadout 抽取须在播种后消费 RNG\n"
+                  "\tUtil.rng.seed = TRUTH_SEED\n"
+                  "\tseed(TRUTH_SEED)\n" + assign + "\n")
         game_gd.write_text(t.rstrip("\n") + "\n" + method, encoding="utf-8")
         print(f"  truth_late_init 追加（{len(onready)} 变量）")
 
