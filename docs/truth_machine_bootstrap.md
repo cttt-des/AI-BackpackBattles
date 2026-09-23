@@ -18,34 +18,53 @@
    GDRE 只放了 .import/.translation，游戏代码直接读 raw CSV；补齐后 gate 物品
    （Box of Riches / Customer Card 等）加载成功。
 
-## 当前状态（drive4 探针实测）
+## 当前状态（2026-09-22 深夜，第 2 轮迭代后）
 
-- ✅ 全部解析级错误清零（820 脚本可加载）；Main.tscn 实例化、30+ 帧稳定；
-  Game autoload 存活，`VERSION=1.1.7`，`CustomRules.reset()` 执行。
-- ✅ `game.initPlayer()` + `startFreshRun(0)` 不再中途崩溃（persistent 默认值补齐）。
-- ❌ 未到商店：`state=0`（Title）、PLAYER/OPPONENT 未创建、gold=0、shopSceneNode=Nil。
-- ❌ 残留错误三层：
-  1. `ItemBook.gd:1257 Game.buildHistory.isOpen`——buildHistory 节点是运行时动态实例化
-     （Main.tscn 里只有 BuildHistoryPlaceholder），headless 下未实例化 → ItemBook._process 每帧报错（无害但吵）。
-  2. ItemBook `items` 字典缺一批名字（Amulet 系等）——多表合入顺序/重复加载问题，
-     待查 `ItemBook._ready` 的 sheet 加载链（注意 ItemData_e.csv 已是解密明文，
-     但 `Table.gd` 的 sheetKey 是朴素 0..31，与出货 CSV 的 patch 密钥 0xC6/0xC3 不一致——
-     见 reverse_engineering_2026-09.md，需确认代码路径是否对已解密文件二次解密）。
-  3. startRun → `RunDatabase.sendRunRequest()` 依赖 SilentWolf 网络 → 离线挂起，
-     `titleToShop` 未触发。**这是下一刀的位置**。
+**已验证可用的零件**（探针 drive11/14 实测）：
+- 28 个 onready UI 引用 `truth_late_init()` 手动重取全部成功（动画表齐全：TitleToShop 等 7 个）。
+- `instanceCharacter(0)` 手动调用 → PLAYER 创建成功；`titleToShop()` → 动画实际播放（playing=True，进度推进）。
+- `initPlayer()` 的 persistent 默认值就位（selectedClass=0 等）。
 
-## 下一步（按序）
+**已打补丁（运行副本 Game.gd 等，累计 5 处）**：
+1. `Stub/Steam.gd` 离线桩 + autoload 首行注册（签名按调用点校验：steamInit→Dictionary、downloadLeaderboardEntries 4 参、uploadLeaderboardScore 4 参、getQueryUGCMetadata 带默认参、setLobbyMemberData→bool）。
+2. 补 6 个 raw CSV（.assets → Sheets/CSV/）。
+3. Game.gd 两处 lobbies 空值守卫（2830 行 startRun、isInLobby 函数）。
+4. Game.gd 追加 `truth_late_init()`（30 个 onready 重取，幂等）+ `_ready` 顶部 `call_deferred`。
+5. `_ready` 内 `initPlayer()` 提前 + `const TRUTH_HEADLESS = true` + ready_deferred 跳过 MaterialCompiler 等待。
 
-1. **RunDatabase 离线化**：照抄游戏自带兜底——`startRun/sendRunRequest` 短路到
-   `getFallbackOpponent()`（DarkReflection=玩家自身镜像），或注入指定对手
-   （`RunDatabase.gd` 有 `getManualHistoryOpponentRoundData` 2743 / `startHistoryRun` 2690 可参考）；
-   同时在 Game.gd 运行副本加 `truth_setup(seed, player_items, opponent_items)` 方法：
-   固定 `Util.rng.seed`+全局 `seed()` → initPlayer → instanceCharacter → 直接摆物品进 PLAYER.INVENTORY
-   （绕过商店 UI）→ startRound 或直接 finishSwitchingToCombat。
-2. **战斗事件落盘**：CombatLog 增量轮询（bridge v2 的 tap 思路，直接 GDScript 实现：
-   autoload 每帧 dump `Game.combatLog.events` 增量 → 写 `user://truth_events.jsonl`）。
-3. 验证一场自动化战斗：事件流非空、含攻击/伤害事件、时长合理（15-40s）。
-4. 打通后与 `tools/dump_engine_fight.py`（被测侧）对接 diff。
+**根因链（已定位，未完全打通）**：
+`ready_deferred()`（Game.gd:2456，原版解决 autoload 时序的官方入口）推进到
+`loadRunState(Mode.Unranked)` → RunDatabase/SilentWolf **HTTP 阻塞**（进程 943MB 挂起、
+无输出）。original 启动链 = 标题 UI → startFreshRun → 动画回调 → switchToShop，
+全链路对 UI/网络的重依赖不适合 headless 复刻。
+
+## 下一步：专用 headless 驱动场景（不再复刻启动链）
+
+新建 `Stub/TruthDrive.gd`（SceneTree 脚本，--script 入口），**绕过标题/商店/网络，
+直接组装战斗**（全部使用游戏自身类，战斗代码 100% 原版）：
+
+```
+1. seed_rng: Util.rng.seed=S; seed(S)           # 确定性
+2. truth_late_init(); initPlayer()
+3. Game.instanceCharacter(class)                  # PLAYER（已验证可用）
+4. Game.initStartInventory(loadout)               # 起始物品
+5. 对手：Game.instanceOpponent? 或直接 Game.OPPONENT = opponentScene.instance()
+   + 从 lineup JSON 用 ItemBook.instantiateItem(name) 摆进双方 INVENTORY
+   （摆位用 INVENTORY.tryAddItem/addItemByTopLeft，宝石用 setGem）
+6. Game.call("finishSwitchingToCombat") 或 prepareItems→activateItems 序列
+   （对照 Game.gd:2928-3032 的 finishSwitchingToCombat 复刻最小等价调用）
+7. 战斗事件落盘：逐帧 diff Game.combatLog.events 增量 → user://truth_events.jsonl
+   （另起一个 autoload 或在 TruthDrive 的 _process 里做）
+8. fightEnded 后：result_json（双方血量/时长/胜负）写 user://truth_result.json → quit()
+```
+
+关键引用：finishSwitchingToCombat `Game.gd:2928-3032`（保存 run/instance 对手/
+ItemSort 触发序/prepareItems/activateItems/COMBAT_DELAY 2.5s）；
+摆物品参考 `Inventory.gd:408-637`（tryAddItem/addItemByTopLeft/addItemCells）；
+ lineup 格式见 repo-review/lineups/*.json（v3/v4 schema）。
+
+验证标准：truth_events.jsonl 非空、含 Attack/Damage 事件、时长 15-40s；
+同种子两场事件流逐字节一致（阶段 0 游戏自洽性）。
 
 ## 运行方式
 
