@@ -15,6 +15,10 @@ const HOST = "127.0.0.1"
 var server: TCP_Server
 var clients: Array = []
 var scan_cache: Dictionary = {}
+# 一致性验证：战斗事件 tapped 状态
+var _tap_enabled: bool = false
+var _tap_buffer: Array = []
+var _tap_seen: int = 0
 
 func _ready():
 	server = TCP_Server.new()
@@ -31,6 +35,8 @@ func _process(_delta):
 		clients.append(client)
 		print("[Bridge] Client connected: %s" % str(client.get_connected_address()))
 		_send_json(client, {"type": "hello", "msg": "Backpack Battles Bridge v1.0"})
+
+	_poll_combat_tap()
 
 	for i in range(clients.size() - 1, -1, -1):
 		var client = clients[i]
@@ -132,6 +138,18 @@ func _handle_command(msg):
 			return {"ok": true, "data": _get_item_price(args.get("item_path", ""))}
 		"get_full_game_state":
 			return {"ok": true, "data": _get_full_game_state()}
+
+		# ─── 一致性验证（engine/ ↔ 原版游戏对账用，见 docs/consistency_verification.md）───
+		"seed_rng":
+			return {"ok": true, "data": _seed_rng(args.get("seed", 0))}
+		"tap_combat":
+			return {"ok": true, "data": _tap_combat(args.get("enable", true))}
+		"get_tapped_events":
+			return {"ok": true, "data": _get_tapped_events(args.get("clear", true))}
+		"snapshot_run":
+			return {"ok": true, "data": _snapshot_run()}
+		"get_fight_result":
+			return {"ok": true, "data": _get_fight_result()}
 		
 		_:
 			return {"ok": false, "error": "Unknown command: " + cmd}
@@ -768,6 +786,106 @@ func _get_full_game_state():
 			result["player_properties"] = _safe_get_all_properties(player)
 	
 	return result
+
+# ─── 一致性验证命令实现（docs/consistency_verification.md）───
+
+func _seed_rng(s: int) -> Dictionary:
+	# Util.rng 承载 BalancedRng/物品 chanceRng 等全部战斗判定随机性；
+	# 全局 seed() 覆盖 Array.shuffle/pick_random/randf 等内建随机。
+	var util = get_node_or_null("/root/Util")
+	if util and "rng" in util:
+		util.rng.seed = s
+	seed(s)
+	return {"seeded": s}
+
+func _tap_combat(enable: bool) -> Dictionary:
+	_tap_enabled = enable
+	if enable:
+		_tap_buffer = []
+		_tap_seen = _combat_log_len()
+	return {"tapping": _tap_enabled, "baseline": _tap_seen}
+
+func _combat_log_len() -> int:
+	var game = get_node_or_null("/root/Game")
+	if game and "combatLog" in game and game.combatLog:
+		var events = game.combatLog.get("events")
+		if events != null:
+			return events.size()
+	return 0
+
+func _poll_combat_tap() -> void:
+	if not _tap_enabled:
+		return
+	var game = get_node_or_null("/root/Game")
+	if not game or not ("combatLog" in game) or not game.combatLog:
+		return
+	var events = game.combatLog.get("events")
+	if events == null:
+		return
+	while _tap_seen < events.size():
+		_tap_buffer.append(_serialize_variant(events[_tap_seen]))
+		_tap_seen += 1
+
+func _get_tapped_events(clear: bool) -> Dictionary:
+	var out = {"count": _tap_buffer.size(), "events": _tap_buffer}
+	if clear:
+		_tap_buffer = []
+	return out
+
+func _snapshot_run() -> Dictionary:
+	var result = {
+		"game": null, "player_items": null, "opponent_items": null,
+		"shop": null, "combat_time": null,
+	}
+	var game = get_node_or_null("/root/Game")
+	if game:
+		result["game"] = {
+			"cur_round": game.get("cur_round"),
+			"gold": game.get("gold"),
+			"max_rounds": game.get("MAX_ROUNDS"),
+			"fight_ended": game.get("fightEnded"),
+			"state": game.get("state"),
+		}
+		# 双方角色状态
+		for side in ["PLAYER", "OPPONENT"]:
+			var ch = game.get(side)
+			if ch:
+				result[side] = _safe_get_all_properties(ch)
+	result["player_items"] = _get_backpack_items_full()
+	var main = get_tree().get_root().get_node_or_null("Main")
+	if main:
+		var ob = main.get_node_or_null("Opponent")
+		if ob:
+			var opp_items = []
+			for child in ob.get_children():
+				if child.get_script() == null:
+					continue
+				opp_items.append({
+					"name": child.name,
+					"position": {"x": child.position.x, "y": child.position.y},
+					"rotation": child.rotation if "rotation" in child else 0,
+					"properties": _safe_get_all_properties(child),
+				})
+			result["opponent_items"] = {"items": opp_items}
+	result["shop"] = _get_shop_offers()
+	var timer = main.get_node_or_null("Combat/CombatTimer") if main else null
+	if timer:
+		result["combat_time"] = timer.get("combatTime")
+	return result
+
+func _get_fight_result() -> Dictionary:
+	var game = get_node_or_null("/root/Game")
+	if not game:
+		return {"error": "Game not found"}
+	var out = {"fight_ended": game.get("fightEnded")}
+	for side in ["PLAYER", "OPPONENT"]:
+		var ch = game.get(side)
+		if ch:
+			out[side] = {
+				"cur_health": ch.get("curHealth"),
+				"is_dead": ch.get("isDead"),
+			}
+	return out
 
 func _is_visible(node):
 	if node is CanvasItem:
