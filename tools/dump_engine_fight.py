@@ -29,6 +29,18 @@ from simulator.simulate import simulate_once, load_lineup, _log_events, _log_tex
 from simulator.data import load_items, load_characters
 
 
+def _lineup_items(path: str) -> list:
+    """lineup v3 items → 契约 meta 的 p_items/o_items（name/row/col/rotation/gems）。"""
+    with open(path, encoding="utf-8") as f:
+        data = json.load(f)
+    out = []
+    for it in data.get("backpack", {}).get("items", []):
+        out.append({"name": it.get("id") or it.get("name"),
+                    "row": it.get("row", 0), "col": it.get("col", 0),
+                    "rotation": it.get("rotation", 0), "gems": it.get("gems", []) or []})
+    return out
+
+
 def run_once(player_path, opponent_path, item_db, character_db, seed, max_time=90.0):
     eng = simulate_once(player_path, opponent_path, item_db, character_db,
                         seed=seed, max_time=max_time, engine="engine")
@@ -41,8 +53,10 @@ def main() -> int:
     ap.add_argument("opponent")
     ap.add_argument("--seed", type=int, required=True)
     ap.add_argument("--runs", type=int, default=1, help=">1 为统计模式（蒙特卡洛）")
+    ap.add_argument("--character", default="Adventurer", help="双方职业（对齐真值用）")
+    ap.add_argument("--round", type=int, default=1, help="回合数（影响疲劳/成长）")
     ap.add_argument("--max-time", type=float, default=90.0)
-    ap.add_argument("-o", "--out", default=None, help="输出 JSON 路径（默认 stdout）")
+    ap.add_argument("-o", "--out", default=None, help="输出 JSONL 路径（默认 stdout）")
     args = ap.parse_args()
 
     item_db, character_db = load_items(), load_characters()
@@ -70,21 +84,27 @@ def main() -> int:
         eng = run_once(args.player, args.opponent, item_db, character_db,
                        seed=args.seed, max_time=args.max_time)
         events = _log_events(eng)
-        text = _log_text(eng, "zh")
         r = eng.result_json() if hasattr(eng, "result_json") else {}
-        out = {
-            "engine": "engine", "seed": args.seed,
-            "player": Path(args.player).stem, "opponent": Path(args.opponent).stem,
-            "result": r,
-            "event_count": len(events),
-            "events": events,
-            "text": text,
+        meta_r = r.get("meta", {})
+        # 契约 meta（docs/consistency_interface.md §2）：与真值 JSONL 对齐
+        meta = {
+            "schema_version": 1, "engine": "engine",
+            "fight_seed": args.seed, "round": args.round,
+            "character": args.character,
+            "p_items": _lineup_items(args.player),
+            "o_items": _lineup_items(args.opponent),
+            "result": {
+                "winner": meta_r.get("winner"),
+                "fight_time": meta_r.get("fight_time"),
+                "p_hp": r.get("player", {}).get("hp"),
+                "o_hp": r.get("opponent", {}).get("hp"),
+            },
         }
-
-    payload = json.dumps(out, ensure_ascii=False, indent=1)
+        payload = "\n".join([json.dumps(meta, ensure_ascii=False)] +
+                            [json.dumps(e, ensure_ascii=False) for e in events])
     if args.out:
         Path(args.out).write_text(payload, encoding="utf-8")
-        print(f"已写出 {args.out}（事件 {out.get('event_count', '-')} 条）", file=sys.stderr)
+        print(f"已写出 {args.out}", file=sys.stderr)
     else:
         print(payload)
     return 0

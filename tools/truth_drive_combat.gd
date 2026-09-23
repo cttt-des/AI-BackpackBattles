@@ -82,8 +82,11 @@ func _init():
     var clog = game.get("combatLog")
     var seen = 0
     var lines = []
-    var meta = {"fight_seed": 777, "round": game.get("curRound"),
-                "p_items": spec, "o_items": spec}
+    var to_meta = []
+    for e in spec:
+        to_meta.append({"name": e[0], "row": e[1], "col": e[2], "rotation": 0, "gems": []})
+    var meta = {"schema_version": 1, "fight_seed": 777, "round": game.get("curRound"),
+                "character": "Ranger", "p_items": to_meta, "o_items": to_meta}
     lines.append(to_json(meta))
     for i in range(4000):
         yield(self, "idle_frame")
@@ -94,12 +97,14 @@ func _init():
                 seen += 1
         if game.get("fightEnded"):
             break
+    var pl = game.get("PLAYER"); var op2 = game.get("OPPONENT")
+    lines.append(to_json({"_result": {"p_hp": pl.get("curHealth"), "o_hp": op2.get("curHealth"),
+                                      "fight_ended": game.get("fightEnded")}}))
     var f = File.new()
     f.open("user://truth_fight.jsonl", File.WRITE)
     for l in lines:
         f.store_line(l)
     f.close()
-    var pl = game.get("PLAYER"); var op2 = game.get("OPPONENT")
-    print("CB9: ended=", game.get("fightEnded"), " events=", lines.size() - 1,
+    print("CB9: ended=", game.get("fightEnded"), " events=", lines.size() - 2,
           " p_hp=", pl.get("curHealth"), " o_hp=", op2.get("curHealth"))
     quit(0)
