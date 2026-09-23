@@ -38,33 +38,30 @@
 无输出）。original 启动链 = 标题 UI → startFreshRun → 动画回调 → switchToShop，
 全链路对 UI/网络的重依赖不适合 headless 复刻。
 
-## 下一步：专用 headless 驱动场景（不再复刻启动链）
+## 当前状态（2026-09-23，第 3 轮：商店已跑通）
 
-新建 `Stub/TruthDrive.gd`（SceneTree 脚本，--script 入口），**绕过标题/商店/网络，
-直接组装战斗**（全部使用游戏自身类，战斗代码 100% 原版）：
+**✅ 商店域验证通过**：headless 驱动 `state=Shop gold=13`（金币表对账✓），池预热后
+`reroll` 真实出货 5 槽（Pocket Sand/Stone/Banana/Shortbow/Broom，round1 全 Common
+符合 rarityOdds 表；首店空池系 ItemBook 实例池 2/帧 预热需 ~260 帧）。
 
-```
-1. seed_rng: Util.rng.seed=S; seed(S)           # 确定性
-2. truth_late_init(); initPlayer()
-3. Game.instanceCharacter(class)                  # PLAYER（已验证可用）
-4. Game.initStartInventory(loadout)               # 起始物品
-5. 对手：Game.instanceOpponent? 或直接 Game.OPPONENT = opponentScene.instance()
-   + 从 lineup JSON 用 ItemBook.instantiateItem(name) 摆进双方 INVENTORY
-   （摆位用 INVENTORY.tryAddItem/addItemByTopLeft，宝石用 setGem）
-6. Game.call("finishSwitchingToCombat") 或 prepareItems→activateItems 序列
-   （对照 Game.gd:2928-3032 的 finishSwitchingToCombat 复刻最小等价调用）
-7. 战斗事件落盘：逐帧 diff Game.combatLog.events 增量 → user://truth_events.jsonl
-   （另起一个 autoload 或在 TruthDrive 的 _process 里做）
-8. fightEnded 后：result_json（双方血量/时长/胜负）写 user://truth_result.json → quit()
-```
+**关键资产**：`tools/apply_truth_patches.py`——对干净解压副本一键应用全部补丁（幂等）。
+**教训**：`Game.EDITOR=true`（便携编辑器必然）时 `validateResources()` 会**重写工程文件**
+（ItemData_e.csv 曾被清空为 32B 空 GDEC、DataValidator.gd 被覆盖）——已用
+`TRUTH_HEADLESS` 门控写保护；不要改 EDITOR=false（会触发启动即退出，原因未查）。
 
-关键引用：finishSwitchingToCombat `Game.gd:2928-3032`（保存 run/instance 对手/
-ItemSort 触发序/prepareItems/activateItems/COMBAT_DELAY 2.5s）；
-摆物品参考 `Inventory.gd:408-637`（tryAddItem/addItemByTopLeft/addItemCells）；
- lineup 格式见 repo-review/lineups/*.json（v3/v4 schema）。
+**待查问题**：
+- ShopOffer.price 读取值异常（-1366…垃圾值）——price 可能由 calcPrice 在 buy 时才计算；
+  池验证不受影响，购物验证前需对齐读取路径。
+- 部分物品 scene 缺失（BookofIce 等 `instance in base null`）——GDRE 场景缺口。
+- ItemBook `items` 字典缺 Amulet 系等名字——多表合入问题（明文加载补丁后大部分已恢复）。
 
-验证标准：truth_events.jsonl 非空、含 Attack/Damage 事件、时长 15-40s；
-同种子两场事件流逐字节一致（阶段 0 游戏自洽性）。
+## 下一步（按序）
+
+1. **战斗链路**：摆物品（INVENTORY.tryAddItem）→ finishSwitchingToCombat（Game.gd:2928）
+   → combatLog 增量落盘 user://truth_events.jsonl → fightEnded 写 truth_result.json。
+2. **价格对齐**：ShopOffer.calcPrice 真实读取路径（ShopOffer.gd:223-244）。
+3. **同种子两场事件流逐字节一致**（阶段 0 游戏自洽性）。
+4. 与 tools/dump_engine_fight.py 对接 diff。
 
 ## 运行方式
 
