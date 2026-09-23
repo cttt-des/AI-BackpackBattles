@@ -1,80 +1,75 @@
 # 真值机引导状态（godot_project 运行副本）
 
-> 目标：把 clean v1.1.7 逆向工程跑成 **headless 真值机**（固定种子 + 战斗事件落盘），
+> 目标：把 clean v1.1.7 逆向工程跑成 **headless 真值机**（确定性战斗 + 结构化事件落盘），
 > 作为 `engine/` 一致性验证的裁判（docs/consistency_verification.md）。
 > 运行副本在仓库外：`C:\Users\slic\Documents\bpb\godot_project\decompiled_full\`（不入库）；
-> Godot 3.6.2 便携版：`C:\Users\slic\Documents\bpb\Godot_v3.6.2-stable_win64.exe`；
-> 完整资源包：`C:\Users\slic\Documents\bpb\decompiled_full.7z`（467M，含 .stex/.ogg/.import/.png 全量）。
-> 最后更新：2026-09-22（引导中，未达可自动开战）。
+> Godot 3.6.2：`C:\Users\slic\Documents\bpb\Godot_v3.6.2-stable_win64.exe`；
+> 完整资源包：`C:\Users\slic\Documents\bpb\decompiled_full.7z`（467M）。
+> 补丁一键重放：`python tools/apply_truth_patches.py <godot_project>\decompiled_full`
+> 最后更新：2026-09-23（第 4 轮：战斗确定性打通 ✅）
 
-## 已完成的补丁（全部只在运行副本，真值参考树未动）
+## 当前状态
 
-1. **`Stub/Steam.gd` + autoload 注册**（project.godot [autoload] 首行 `Steam="*res://Stub/Steam.gd"`）：
-   GodotSteam 原生库不在 pck 内，打离线桩。~40 个方法按"无 Steam"语义返回
-   （`steamInit → {"status":0}`、`isSubscribed→false`、`loggedOn→false`、`getServerRealTime→OS.get_unix_time()`），
-   15 个信号声明。关键签名（被调点校验）：`steamInit(1 bool)`、`downloadLeaderboardEntries(4 args)`、
-   `uploadLeaderboardScore(4 args)`、`getQueryUGCMetadata(默认参数)`、`setLobbyMemberData→bool`。
-2. **补齐 6 个原始 CSV**（`cp .assets/Sheets/CSV/{Items,Full,ExclusiveItems,Flavor,Keywords,Interface}.csv → Sheets/CSV/`）：
-   GDRE 只放了 .import/.translation，游戏代码直接读 raw CSV；补齐后 gate 物品
-   （Box of Riches / Customer Card 等）加载成功。
+| 域 | 状态 | 验证 |
+|---|---|---|
+| 引导（820 脚本解析/主场景/autoload 时序） | ✅ | Main.tscn 30+ 帧稳定，VERSION 1.1.7 |
+| 商店域（金币表/抽池/reroll 阶梯价） | ✅ | state=Shop gold=13（对账 goldGain）；reroll 出 5 槽真实物品 |
+| 战斗域（自动开战/事件流） | ✅ | DarkReflection 对手自动创建；combatLog 结构化 JSONL |
+| **战斗确定性** | ✅ | 注入阵容+fight_seed 隔离，两遍 13 事件逐字节一致 |
 
-## 当前状态（2026-09-22 深夜，第 2 轮迭代后）
+## 确定性协议（真值键）
 
-**已验证可用的零件**（探针 drive11/14 实测）：
-- 28 个 onready UI 引用 `truth_late_init()` 手动重取全部成功（动画表齐全：TitleToShop 等 7 个）。
-- `instanceCharacter(0)` 手动调用 → PLAYER 创建成功；`titleToShop()` → 动画实际播放（playing=True，进度推进）。
-- `initPlayer()` 的 persistent 默认值就位（selectedClass=0 等）。
+**`(player_items, opponent_items, fight_seed, round)`** —— engine/ 对账以同键复放
+（engine 战斗 RNG 从 fight_seed 初始化）。
 
-**已打补丁（运行副本 Game.gd 等，累计 5 处）**：
-1. `Stub/Steam.gd` 离线桩 + autoload 首行注册（签名按调用点校验：steamInit→Dictionary、downloadLeaderboardEntries 4 参、uploadLeaderboardScore 4 参、getQueryUGCMetadata 带默认参、setLobbyMemberData→bool）。
-2. 补 6 个 raw CSV（.assets → Sheets/CSV/）。
-3. Game.gd 两处 lobbies 空值守卫（2830 行 startRun、isInLobby 函数）。
-4. Game.gd 追加 `truth_late_init()`（30 个 onready 重取，幂等）+ `_ready` 顶部 `call_deferred`。
-5. `_ready` 内 `initPlayer()` 提前 + `const TRUTH_HEADLESS = true` + ready_deferred 跳过 MaterialCompiler 等待。
+驱动流程（`tools/truth_drive_combat.gd`）：
+```
+boot → truth_late_init（内含 TRUTH_SEED 播种，必须在 ready_deferred 初始物品抽取之前）
+→ initPlayer → startFreshRun → 池预热 300 帧
+→ fight_seed 隔离（Util.rng.seed=777; seed(777)）
+→ finishSwitchingToCombat（跳过转场动画）
+→ COMBAT_DELAY(2.5s≈150帧) 内注入双方固定阵容
+   （INVENTORY.tryAddItem + ItemBook.instantiateItem， wipe 原有物品）
+→ 逐帧 dump combatLog.events 增量 → user://truth_S42.jsonl → fightEnded 退出
+```
 
-**根因链（已定位，未完全打通）**：
-`ready_deferred()`（Game.gd:2456，原版解决 autoload 时序的官方入口）推进到
-`loadRunState(Mode.Unranked)` → RunDatabase/SilentWolf **HTTP 阻塞**（进程 943MB 挂起、
-无输出）。original 启动链 = 标题 UI → startFreshRun → 动画回调 → switchToShop，
-全链路对 UI/网络的重依赖不适合 headless 复刻。
+## 已定位的方差源（绕过而非修复，低优）
 
-## 当前状态（2026-09-23，第 3 轮：商店已跑通）
+1. **DarkReflection 对手构建有未播种方差**——对手物品集每轮不同（非确定性镜像），
+   来源待查（可疑：serializeRound 含储物箱/Util.clockTime 浮点分支/物品统计数组）。
+   → 绕过：注入固定对手阵容（真值机本来就需要指定阵容）。
+2. **商店阶段帧级消费差**——ItemBook 每帧 `prepareItemInstances` 的 RNG 消费 ×
+   转场动画落帧方差（墙钟定时器 vs 帧率），商店序列不可复现。
+   → 缓解：Engine.target_fps=60 + 固定帧 reroll；彻底解决需另开一期。
+3. 播种时机敏感性：初始 loadout 抽取在 ready_deferred（frame~1），
+   播种必须在此之前（truth_late_init 在 _ready 队列首位）。
 
-**✅ 商店域验证通过**：headless 驱动 `state=Shop gold=13`（金币表对账✓），池预热后
-`reroll` 真实出货 5 槽（Pocket Sand/Stone/Banana/Shortbow/Broom，round1 全 Common
-符合 rarityOdds 表；首店空池系 ItemBook 实例池 2/帧 预热需 ~260 帧）。
+## 补丁清单（tools/apply_truth_patches.py，幂等）
 
-**关键资产**：`tools/apply_truth_patches.py`——对干净解压副本一键应用全部补丁（幂等）。
-**教训**：`Game.EDITOR=true`（便携编辑器必然）时 `validateResources()` 会**重写工程文件**
-（ItemData_e.csv 曾被清空为 32B 空 GDEC、DataValidator.gd 被覆盖）——已用
-`TRUTH_HEADLESS` 门控写保护；不要改 EDITOR=false（会触发启动即退出，原因未查）。
-
-**待查问题**：
-- ShopOffer.price 读取值异常（-1366…垃圾值）——price 可能由 calcPrice 在 buy 时才计算；
-  池验证不受影响，购物验证前需对齐读取路径。
-- 部分物品 scene 缺失（BookofIce 等 `instance in base null`）——GDRE 场景缺口。
-- ItemBook `items` 字典缺 Amulet 系等名字——多表合入问题（明文加载补丁后大部分已恢复）。
-
-## 下一步（按序）
-
-1. **战斗链路**：摆物品（INVENTORY.tryAddItem）→ finishSwitchingToCombat（Game.gd:2928）
-   → combatLog 增量落盘 user://truth_events.jsonl → fightEnded 写 truth_result.json。
-2. **价格对齐**：ShopOffer.calcPrice 真实读取路径（ShopOffer.gd:223-244）。
-3. **同种子两场事件流逐字节一致**（阶段 0 游戏自洽性）。
-4. 与 tools/dump_engine_fight.py 对接 diff。
+1. `Stub/Steam.gd` 离线桩（~40 方法/15 信号，签名按调用点校验）+ autoload 首行注册；
+2. `Core/Game.gd`：TRUTH_HEADLESS/TRUTH_SEED const、lobbies 空值守卫×2、
+   `_ready` 顶部 call_deferred(truth_late_init)、initPlayer 提前、
+   MaterialCompiler 等待门控、loadRunState×2 门控、27 个 onready 空安全化、
+   truth_late_init 追加（30 变量重取 + 播种 + target_fps=60）；
+3. `Sheets/ItemBook.gd`：ItemData_e.csv 明文加载（7z 内已是解密明文）、
+   validateResources 写保护（EDITOR=true 时会重写工程文件——曾清空 ItemData_e.csv、
+   覆盖 DataValidator.gd，**不要改 EDITOR=false，会启动即退出**）；
+4. 从 .assets 补 6 个 raw CSV。
 
 ## 运行方式
 
 ```bash
-# 冒烟（Main 场景实例化 + 30 帧）
 "/c/Users/slic/Documents/bpb/Godot_v3.6.2-stable_win64.exe" --no-window \
   --script <探针.gd> --path "C:\Users\slic\Documents\bpb\godot_project\decompiled_full"
-# 已知噪音错误可忽略：Unreleased.*.translation 缺失（9 个语言文件 GDRE 未转出）、
-# ItemBook buildHistory.isOpen、部分 UI 脚本空指针（DamageMeter 等）
 ```
+- user:// 输出在 `%APPDATA%\Godot\app_userdata\Backpack Battles\`。
+- GDScript 注意：`log` 是保留字；属性 camelCase（curRound）；--path 与脚本都要绝对路径。
+- 已知噪音错误（可忽略）：Unreleased 翻译缺失、ItemBook buildHistory.isOpen、
+  部分 UI 空指针（RarityHint/RerollRope/fastButton）、个别物品 scene 缺失（BookofIce）。
 
-## 探针模板
+## 下一步（按序）
 
-`extends SceneTree` 的 `_init()` 里：`load("res://Core/Main.tscn").instance()` →
-`add_child` → `yield(self,"idle_frame")` 泵帧 → 调 Game 方法 → `quit(0)`。
-注意属性是 camelCase（`curRound`/`curClass`），`--path` 与脚本路径都要绝对路径。
+1. **engine/ 对账首战**：tools/dump_engine_fight.py 以同阵容 + fight_seed 跑 engine/ →
+   与 truth JSONL diff → per-item 偏差榜（consistency_verification.md 阶段 2）。
+2. **探针参数化**：阵容从 lineups/*.json（v3/v4 schema）读入，支持任意双方阵容。
+3. 价格对齐（ShopOffer.calcPrice 读取路径）；商店确定性另开一期。
