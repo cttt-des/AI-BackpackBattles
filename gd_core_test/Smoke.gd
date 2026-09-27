@@ -86,6 +86,8 @@ func _init() -> void:
 	print("SMOKE: test2 done")
 	test_determinism()
 	print("SMOKE: test3 done")
+	test_timer_contract()
+	print("SMOKE: test4 done")
 	
 	say("")
 	if failures.empty():
@@ -249,3 +251,112 @@ func _snapshot(combat) -> String:
 		combat.result, combat.combat_time, 
 		combat.player.curHealth, combat.opponent.curHealth, 
 		combat.fatigue_counter]
+
+
+# ─────────────────────────── 4. 计时器契约 ───────────────────────────
+# 动机：原版这三个计时器是 Character.tscn 里的 Godot Timer 节点，由信号连接驱动：
+#   InvulnerabilityTimer.timeout → invulnerabilityEnded()
+#   BattleRageTimer.timeout      → endBattleRage()
+#   AutoRageTimer.timeout        → startAutoRage()
+# 内核把它们改成物理帧步进。一旦步进漏写（曾如此：_invul_left 只写不推进，
+# 无敌永不结束）战斗结果会静默跑偏，故必须锁住「超时点触发 + 延长语义」。
+
+func test_timer_contract() -> void:
+	say("")
+	say("[4] 计时器契约：无敌 / 战怒 / 自动战怒（Godot Timer → 物理帧步进）")
+	
+	var ctx = CoreContext.new(777, null)
+	var p = new_character(ctx, CoreCharacter.ID.PLAYER, 100, 50.0, 20.0)
+	var o = new_character(ctx, CoreCharacter.ID.OPPONENT, 100, 50.0, 20.0)
+	var combat = CoreCombat.new(ctx)
+	combat.setup(p, o)
+	combat.prepareItems([])
+	combat.activateItems([])
+	
+	# ① 无敌按时结束（对齐 invulnerabilityTimer.start(invuDur) → timeout）
+	p.makeInvulnerable(0.5, null)
+	check(p.invulnerable, "makeInvulnerable 后应处于无敌")
+	_tick(p, 0.4)
+	check(p.invulnerable, "0.4s 时仍应无敌（0.5s 未到）")
+	_tick(p, 0.2)
+	check(not p.invulnerable, "0.6s 后无敌应结束")
+	
+	# ② 已无敌时再触发 = 延长而非覆盖（对齐 Util.changeTimer：start(t + timeLeft)）
+	p.makeInvulnerable(0.5, null)
+	_tick(p, 0.3)
+	p.makeInvulnerable(0.5, null)
+	check(p.invulnerable, "延长后应仍无敌")
+	_tick(p, 0.6)
+	check(p.invulnerable, "0.3+0.5 延长后 0.9s 时仍应无敌（总 1.0s）")
+	_tick(p, 0.2)
+	check(not p.invulnerable, "超过总时长后无敌应结束")
+	
+	# ③ 战怒按时结束（对齐 battleRageTimer.start(fullDur) → timeout）
+	check(not p.isBattleRaging(), "初始不应处于战怒")
+	p.startBattleRage(null, 0.5)
+	check(p.isBattleRaging(), "startBattleRage 后应处于战怒")
+	_tick(p, 0.4)
+	check(p.isBattleRaging(), "0.4s 时仍在战怒")
+	_tick(p, 0.2)
+	check(not p.isBattleRaging(), "0.6s 后战怒应结束")
+	
+	# ④ applyBonus：默认吃到 battleRageBonusDur，传 false 时不吃
+	p.battleRageBonusDur = 0.5
+	p.startBattleRage(null, 0.2)
+	check_near(p._rage_left, 0.7, 1e-6, "applyBonus 默认 true 应叠加 battleRageBonusDur")
+	_tick(p, 1.0)
+	p.startBattleRage(null, 0.2, null, false)
+	check_near(p._rage_left, 0.2, 1e-6, "applyBonus=false 不应叠加")
+	_tick(p, 0.3)
+	
+	# ⑤ 已战怒时再触发 = 延长
+	p.battleRageBonusDur = 0.0
+	p.startBattleRage(null, 1.0)
+	_tick(p, 0.4)
+	p.startBattleRage(null, 1.0, null, false)
+	check_near(p._rage_left, 1.6, 0.02, "已战怒时再触发应为延长（1.0-0.4+1.0）")
+	
+	test_auto_rage()
+
+
+# ⑥ 自动战怒全链：prepare 选品 → combatStart 起 AUTO_RAGE_DELAY → 超时自动开大
+func test_auto_rage() -> void:
+	var ctx = CoreContext.new(31337, null)
+	var p = new_character(ctx, CoreCharacter.ID.PLAYER, 100, 50.0, 20.0)
+	var o = new_character(ctx, CoreCharacter.ID.OPPONENT, 100, 50.0, 20.0)
+	
+	# hasBattleRageEffect=true 的物品（对齐 ItemBook.gd:1401 由描述 "$rage[" 推出的标记）
+	var data = {
+		"name": "AngryRock",
+		"cd": 1.0,
+		"accuracy": 100.0,
+		"types": [CoreConst.Type.Accessory],
+		"hasBattleRageEffect": true,
+	}
+	var item = CoreItem.new(ctx, CoreItemData.new().fromDict(data), p)
+	item.occupiedCells = [Vector2(0, 0)]
+	item.collisionCells = [Vector2(0, 0)]
+	p.inventory.addItem(item, item.occupiedCells)
+	check(item.isBattleRageItem(), "isBattleRageItem 应读 descriptor.hasBattleRageEffect")
+	
+	var combat = CoreCombat.new(ctx)
+	combat.setup(p, o)
+	combat.prepareItems([])      # → p.prepare()：挑 autoRageItem
+	check(p.autoRageItem == item, "prepare 应把该物品选为 autoRageItem")
+	
+	combat.activateItems([])     # → p.combatStart()：起 AutoRageTimer
+	check(not p.isBattleRaging(), "自动战怒延迟期间不应已处于战怒")
+	_tick(p, CoreCharacter.AUTO_RAGE_DELAY - 0.5)
+	check(not p.isBattleRaging(), "AUTO_RAGE_DELAY 未到不应开大")
+	_tick(p, 1.0)
+	check(p.isBattleRaging(), "AUTO_RAGE_DELAY 到点应自动开大")
+	_tick(p, CoreCharacter.AUTO_RAGE_DUR + 0.5)
+	check(not p.isBattleRaging(), "AUTO_RAGE_DUR 到点应结束")
+	say("    AUTO_RAGE_DELAY=%.1fs  AUTO_RAGE_DUR=%.1fs" 
+		% [CoreCharacter.AUTO_RAGE_DELAY, CoreCharacter.AUTO_RAGE_DUR])
+
+
+func _tick(c, seconds: float) -> void:
+	var n = int(round(seconds / STEP))
+	for i in n:
+		c.physicsTick(STEP)

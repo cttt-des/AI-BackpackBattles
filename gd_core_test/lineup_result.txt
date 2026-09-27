@@ -1,0 +1,77 @@
+
+=== gd_core 真实阵容端到端验证 ===
+
+[1] 夹具自检：枚举已按 CoreConst 转成 int、几何已转成绝对格
+    物品 16 / 阵容 8 / 摆盘件数 37 ✓（枚举 int 化 ✓、无重叠 ✓、不越界 ✓）
+
+[2] 装配自检：物品脚本 / 网格 / 描述符 / 入包四条路径逐件走通
+    玩家 5 件 / 对手 5 件装配成功 ✓（placed ✓ / ownerType ✓ / 描述符身份 ✓）
+
+[3] 全对局矩阵：8 套阵容的两两对战（含每件物品确实参与）
+    已完成 56 局
+      armor_wall vs cursed_reaper：win=O t=22.20 php=0 ohp=40 act=36 dmg=37/205.0 heal=20/49.0 gem=0/0.0 fat=8 stun=0
+      armor_wall vs dagger_swarm：win=P t=27.02 php=25 ohp=0 act=51 dmg=43/199.0 heal=11/52.0 gem=0/0.0 fat=13 stun=0
+      armor_wall vs gem_test：win=P t=27.02 php=10 ohp=0 act=30 dmg=43/242.0 heal=15/41.0 gem=9/9.0 fat=13 stun=0
+      armor_wall vs greatsword_tank：win=O t=28.02 php=0 ohp=19 act=34 dmg=29/259.0 heal=7/44.0 gem=0/0.0 fat=14 stun=0
+      armor_wall vs mage_badges：win=P t=26.02 php=25 ohp=0 act=28 dmg=21/112.0 heal=12/64.0 gem=0/0.0 fat=12 stun=0
+      armor_wall vs poison_bow：win=P t=27.02 php=8 ohp=0 act=35 dmg=31/222.0 heal=12/64.0 gem=0/0.0 fat=13 stun=0
+      armor_wall vs potion_link_test：win=P t=29.02 php=25 ohp=0 act=22 dmg=26/194.0 heal=8/56.0 gem=0/0.0 fat=15 stun=0
+      cursed_reaper vs armor_wall：win=P t=23.02 php=34 ohp=0 act=39 dmg=40/210.0 heal=21/52.0 gem=0/0.0 fat=9 stun=0
+      cursed_reaper vs dagger_swarm：win=P t=8.58 php=45 ohp=0 act=18 dmg=13/62.0 heal=9/45.0 gem=0/0.0 fat=1 stun=0
+      cursed_reaper vs gem_test：win=P t=11.30 php=43 ohp=0 act=14 dmg=24/103.0 heal=10/36.0 gem=2/2.0 fat=1 stun=0
+      cursed_reaper vs greatsword_tank：win=O t=5.03 php=0 ohp=25 act=8 dmg=6/65.0 heal=2/4.0 gem=0/0.0 fat=1 stun=0
+      cursed_reaper vs mage_badges：win=P t=12.00 php=45 ohp=0 act=19 dmg=13/59.0 heal=12/48.0 gem=0/0.0 fat=1 stun=0
+      cursed_reaper vs poison_bow：win=P t=11.18 php=32 ohp=0 act=18 dmg=17/103.0 heal=12/74.0 gem=0/0.0 fat=1 stun=0
+      cursed_reaper vs potion_link_test：win=P t=19.68 php=45 ohp=0 act=20 dmg=25/115.0 heal=17/64.0 gem=0/0.0 fat=5 stun=0
+      dagger_swarm vs armor_wall：win=O t=27.02 php=0 ohp=25 act=51 dmg=43/205.0 heal=11/52.0 gem=0/0.0 fat=13 stun=0
+      dagger_swarm vs cursed_reaper：win=O t=8.38 php=0 ohp=41 act=18 dmg=14/69.0 heal=8/49.0 gem=0/0.0 fat=1 stun=0
+      dagger_swarm vs gem_test：win=O t=14.20 php=0 ohp=31 act=21 dmg=26/90.0 heal=8/25.0 gem=5/5.0 fat=2 stun=0
+      dagger_swarm vs greatsword_tank：win=O t=15.10 php=0 ohp=25 act=26 dmg=16/95.0 heal=4/24.0 gem=0/0.0 fat=2 stun=0
+      dagger_swarm vs mage_badges：win=P t=20.98 php=25 ohp=0 act=35 dmg=27/83.0 heal=10/56.0 gem=0/0.0 fat=6 stun=0
+      dagger_swarm vs poison_bow：win=O t=9.10 php=0 ohp=21 act=15 dmg=12/69.0 heal=4/32.0 gem=0/0.0 fat=1 stun=0
+      dagger_swarm vs potion_link_test：win=P t=24.02 php=19 ohp=0 act=31 dmg=34/133.0 heal=8/64.0 gem=0/0.0 fat=10 stun=0
+      gem_test vs armor_wall：win=O t=27.02 php=0 ohp=14 act=30 dmg=43/236.0 heal=15/41.0 gem=9/9.0 fat=13 stun=0
+      gem_test vs cursed_reaper：win=O t=10.00 php=0 ohp=45 act=14 dmg=18/89.0 heal=9/36.0 gem=2/2.0 fat=1 stun=0
+      gem_test vs dagger_swarm：win=P t=14.18 php=31 ohp=0 act=21 dmg=26/89.0 heal=7/24.0 gem=4/4.0 fat=2 stun=0
+      gem_test vs greatsword_tank：win=O t=15.13 php=0 ohp=25 act=14 dmg=15/143.0 heal=5/5.0 gem=5/5.0 fat=2 stun=0
+      gem_test vs mage_badges：win=P t=21.02 php=46 ohp=0 act=17 dmg=24/85.0 heal=13/47.0 gem=7/7.0 fat=7 stun=0
+      gem_test vs poison_bow：win=O t=15.60 php=0 ohp=14 act=16 dmg=22/112.0 heal=10/41.0 gem=5/5.0 fat=2 stun=0
+      gem_test vs potion_link_test：win=P t=24.02 php=26 ohp=0 act=11 dmg=31/135.0 heal=11/44.0 gem=8/8.0 fat=10 stun=0
+      greatsword_tank vs armor_wall：win=P t=25.02 php=25 ohp=0 act=32 dmg=23/230.0 heal=6/32.0 gem=0/0.0 fat=11 stun=0
+      greatsword_tank vs cursed_reaper：win=O t=16.38 php=0 ohp=45 act=26 dmg=23/146.0 heal=13/60.0 gem=0/0.0 fat=2 stun=0
+      greatsword_tank vs dagger_swarm：win=P t=10.17 php=25 ohp=0 act=17 dmg=10/68.0 heal=3/20.0 gem=0/0.0 fat=1 stun=0
+      greatsword_tank vs gem_test：win=P t=15.22 php=25 ohp=0 act=14 dmg=14/136.0 heal=5/5.0 gem=5/5.0 fat=2 stun=0
+      greatsword_tank vs mage_badges：win=P t=20.35 php=25 ohp=0 act=19 dmg=14/119.0 heal=6/40.0 gem=0/0.0 fat=6 stun=0
+      greatsword_tank vs poison_bow：win=P t=19.90 php=20 ohp=0 act=23 dmg=19/175.0 heal=6/48.0 gem=0/0.0 fat=5 stun=0
+      greatsword_tank vs potion_link_test：win=P t=18.02 php=25 ohp=0 act=11 dmg=8/99.0 heal=3/36.0 gem=0/0.0 fat=4 stun=0
+      mage_badges vs armor_wall：win=O t=26.02 php=0 ohp=25 act=28 dmg=21/113.0 heal=12/64.0 gem=0/0.0 fat=12 stun=0
+      mage_badges vs cursed_reaper：win=O t=13.83 php=0 ohp=45 act=19 dmg=13/68.0 heal=13/50.0 gem=0/0.0 fat=1 stun=0
+      mage_badges vs dagger_swarm：win=O t=21.08 php=0 ohp=25 act=33 dmg=27/85.0 heal=10/56.0 gem=0/0.0 fat=7 stun=0
+      mage_badges vs gem_test：win=O t=22.00 php=0 ohp=46 act=17 dmg=23/81.0 heal=13/47.0 gem=7/7.0 fat=7 stun=0
+      mage_badges vs greatsword_tank：win=O t=20.05 php=0 ohp=25 act=18 dmg=14/115.0 heal=6/40.0 gem=0/0.0 fat=6 stun=0
+      mage_badges vs poison_bow：win=O t=17.68 php=0 ohp=24 act=18 dmg=9/66.0 heal=9/52.0 gem=0/0.0 fat=3 stun=0
+      mage_badges vs potion_link_test：win=O t=26.02 php=0 ohp=39 act=12 dmg=21/112.0 heal=10/80.0 gem=0/0.0 fat=12 stun=0
+      poison_bow vs armor_wall：win=O t=27.02 php=0 ohp=14 act=37 dmg=31/235.0 heal=13/76.0 gem=0/0.0 fat=13 stun=0
+      poison_bow vs cursed_reaper：win=O t=5.73 php=0 ohp=45 act=11 dmg=8/72.0 heal=8/57.0 gem=0/0.0 fat=1 stun=0
+      poison_bow vs dagger_swarm：win=P t=9.05 php=22 ohp=0 act=15 dmg=12/67.0 heal=4/32.0 gem=0/0.0 fat=1 stun=0
+      poison_bow vs gem_test：win=P t=15.40 php=18 ohp=0 act=16 dmg=20/108.0 heal=10/41.0 gem=5/5.0 fat=2 stun=0
+      poison_bow vs greatsword_tank：win=P t=22.02 php=1 ohp=0 act=26 dmg=25/168.0 heal=7/52.0 gem=0/0.0 fat=8 stun=0
+      poison_bow vs mage_badges：win=P t=15.30 php=25 ohp=0 act=16 dmg=6/65.0 heal=8/48.0 gem=0/0.0 fat=2 stun=0
+      poison_bow vs potion_link_test：win=P t=23.68 php=13 ohp=0 act=15 dmg=22/129.0 heal=8/64.0 gem=0/0.0 fat=9 stun=0
+      potion_link_test vs armor_wall：win=O t=29.02 php=0 ohp=25 act=22 dmg=26/194.0 heal=8/56.0 gem=0/0.0 fat=15 stun=0
+      potion_link_test vs cursed_reaper：win=O t=19.02 php=0 ohp=45 act=19 dmg=25/104.0 heal=15/60.0 gem=0/0.0 fat=5 stun=0
+      potion_link_test vs dagger_swarm：win=O t=24.02 php=0 ohp=19 act=31 dmg=34/134.0 heal=8/64.0 gem=0/0.0 fat=10 stun=0
+      potion_link_test vs gem_test：win=O t=24.78 php=0 ohp=26 act=11 dmg=31/139.0 heal=11/44.0 gem=8/8.0 fat=10 stun=0
+      potion_link_test vs greatsword_tank：win=O t=19.73 php=0 ohp=25 act=11 dmg=11/110.0 heal=3/36.0 gem=0/0.0 fat=5 stun=0
+      potion_link_test vs mage_badges：win=P t=26.02 php=38 ohp=0 act=12 dmg=21/113.0 heal=10/80.0 gem=0/0.0 fat=12 stun=0
+      potion_link_test vs poison_bow：win=O t=23.82 php=0 ohp=13 act=15 dmg=22/133.0 heal=8/64.0 gem=0/0.0 fat=9 stun=0
+
+[4] 确定性：同种子重跑，赢家/血量/时长/事件计数须逐位一致
+    复跑 8 组 ✓
+
+[5] 宝石实效 A/B：同种子含宝石 / 去宝石，宝石必须真的产生治疗
+    含宝石：win=P t=10.98 php=34 ohp=0 act=18 dmg=21/82.0 heal=7/24.0 gem=4/4.0 fat=1 stun=0
+    去宝石：win=P t=14.88 php=30 ohp=0 act=22 dmg=26/85.0 heal=3/20.0 gem=0/0.0 fat=2 stun=0
+    宝石治疗 4 次 / 合计 4.0 HP；对照局 0 次 ✓（治疗总数 7 > 3）
+
+LINEUP: PASS

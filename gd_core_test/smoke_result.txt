@@ -13,4 +13,7 @@
     run A = 0|7.9667|6.0|0.0|0
     run B = 0|7.9667|6.0|0.0|0
 
+[4] 计时器契约：无敌 / 战怒 / 自动战怒（Godot Timer → 物理帧步进）
+    AUTO_RAGE_DELAY=5.0s  AUTO_RAGE_DUR=4.0s
+
 SMOKE: PASS
