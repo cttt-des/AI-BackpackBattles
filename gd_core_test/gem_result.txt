@@ -1,0 +1,19 @@
+
+=== gd_core 宝石 / Socket 门面契约测试 ===
+
+[1] Socket 折叠等价性：插座身份 == 宿主物品（GemSocket.gd 的全部访问面）
+    socket == host ✓ / getItem 一族 5 条与宿主一致 ✓ / 计数族 ✓
+
+[2] getGemMode 四分支 + hasCooldown 口径（Gem.gd:78-88 / 274-278）
+    Weapon(武器) / Armor(非武器) / Inventory(已放置) / Inactive(未放置) ✓；hasCooldown 仅在 Inventory 侧为真 ✓
+
+[3] Weapon 模式：宿主 attacked 命中 → heal(ceil(伤害 × lifesteal_weapon%))
+    +7（100 × 7%）/ +4（57 × 7% 向上取整）/ 未命中 0 ✓；miniActivate 与治疗一一对应 ✓
+
+[4] Armor 模式：prepareArmor → 角色治疗效率 +gemPower × P2%（Ruby.gd:18）
+    治疗效率 1 → 1.1 ✓；Armor 分支未订阅 attacked ✓
+
+[5] Inventory 模式：走宝石自身冷却，doCooldownEffect = stealLife(P3, factor)
+    Inventory 模式：冷却 [5.10, 5.20]s 启动 ✓ / 自行触发 → 对手 200→196、自身 100→106 ✓
+
+GEM: PASS

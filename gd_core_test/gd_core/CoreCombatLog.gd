@@ -136,13 +136,13 @@ func createEvent_Stack(type: int, item, amount: int,
 	if type == CoreConst.EventType.Empower:
 		for i in _ctx.getCharacterFromId(playerId).items:
 			if i.isWeapon() and i.canBeEmpowered():
-				_ctx.hooks.snapshotItemTooltipStat(i, CoreItem.Stat.MinDamage)
-				_ctx.hooks.snapshotItemTooltipStat(i, CoreItem.Stat.MaxDamage)
+				_ctx.hooks.snapshotItemTooltipStat(i, CoreConst.ItemStat.MinDamage)
+				_ctx.hooks.snapshotItemTooltipStat(i, CoreConst.ItemStat.MaxDamage)
 	
 	if type == CoreConst.EventType.Heat or type == CoreConst.EventType.Cold:
 		for i in _ctx.getCharacterFromId(playerId).items:
 			if i.hasCooldown():
-				_ctx.hooks.snapshotItemTooltipStat(i, CoreItem.Stat.Cooldown)
+				_ctx.hooks.snapshotItemTooltipStat(i, CoreConst.ItemStat.Cooldown)
 	
 	return event
 
@@ -329,8 +329,10 @@ func snapshotGlobalStat(stat: int, newValue):
 	_ctx.hooks.snapshotGlobalStat(stat, newValue)
 
 
-func snapshotCharacterStat(character, statType):
-	_ctx.hooks.snapshotCharacterStat(character, statType)
+# 对齐 CombatLog.gd:517-518（签名必须 4 参：物品行为与 CoreCharacter 都会带
+# withNextEvent / event 调用，例如 startBattleRage 里的 snapshotCharacterStat(self, Stat.BattleRage, false, event)）
+func snapshotCharacterStat(character, statType, withNextEvent: bool = false, event = null):
+	_ctx.hooks.snapshotCharacterStat(character, statType, withNextEvent, event)
 
 
 func snapshotStack(character, type):

@@ -106,6 +106,108 @@ enum StaminaResult{
 }
 
 
+# ── 对齐 Items/Item.gd:241-252（Item.Stat） ──
+# ★ 为什么放在这里：CoreCharacter 的快照出口需要用 Item.Stat 作下标
+#   （Character.gd:1509-1517 的 snapshotItemTooltipStat(item, Item.Stat.MinDamage)）。
+#   若 CoreCharacter 直接写 `CoreItem.Stat`，就会形成 CoreItem ↔ CoreCharacter 的
+#   class_name 循环依赖。收拢到零依赖的 CoreConst 后取值与原版逐项相同。
+#   原 CoreItem.Stat 已改为引用本枚举，全仓库只此一处定义。
+enum ItemStat{
+	MinDamage, 
+	MaxDamage, 
+	StaminaCost, 
+	Speed, 
+	BaseCooldown, 
+	Accuracy, 
+	CritChance, 
+	Chance, 
+	Chance2, 
+	Cooldown
+}
+
+
+# ── 对齐 Items/Item.gd:148-155（Item.Rarity） ──
+enum Rarity{
+	Common = 0, 
+	Rare = 1, 
+	Epic = 2, 
+	Legendary = 3, 
+	Godly = 4, 
+	Unique = 5
+}
+
+
+# ── 对齐 Items/ItemDescriptor.gd:4-15（ItemDescriptor.StuffedClasses） ──
+# 收拢到 CoreConst 的理由同上：CoreItemData / CoreItem 都要用它，
+# 放在任一方都会引入 CoreItemData ↔ CoreItem 的 class_name 互相引用。
+enum StuffedClasses{
+	Undefined = - 1, 
+	None = 0, 
+	Ranger = 1, 
+	Reaper = 2, 
+	Berserker = 4, 
+	Pyromancer = 8, 
+	Mage = 16, 
+	Adventurer = 32, 
+	Engineer = 64, 
+	Neutral = 127
+}
+
+
+# ── 对齐 Items/Item.gd:23-38（Item.Owner） ──
+# 内核里物品只可能属于玩家的背包/储物箱或对手，故 ownerType 由 Character 推出
+# （见 CoreCombat.prepareItems）。判定读取点 isOwnable / isOwnedByOpponent
+# 的取值域与原版一致。
+enum Owner{
+	Shop, 
+	PlayerInventory, 
+	PlayerStorageBox, 
+	Opponent, 
+	Title, 
+	RecipeBook, 
+	Tooltip, 
+	Socket, 
+	ItemLibrary, 
+	InfoPanelIcon, 
+	BuildViewer, 
+	BuildViewerIcon, 
+	GridStorage, 
+	Undefined
+}
+
+
+# ── 对齐 Core/Game.gd:148-154（Game.Mode） ──
+# 消费方：ChessBoard.onPrepare 的 `Game.curMode != Game.Mode.History`。
+# 无头内核不模拟局外流程，ctx.cur_mode 默认 Ranked（≠ History）。
+enum GameMode{
+	Ranked = 0, 
+	Unranked = 1, 
+	Lobbies = 2, 
+	Unselected = 3, 
+	History = 4
+}
+
+
+# ── 对齐 Items/Item.gd:118-124（Item.Affected） ──
+# 联动颜色：主/次/三级 + 闪电。物品行为的 canAffect_color / getAffectedItems 以它取色。
+enum Affected{
+	Primary, 
+	Secondary, 
+	Tertiary, 
+	Lightning
+}
+
+
+# 真值化（GDScript 3.x 没有 bool() 构造函数，那是 4.x 才有的内置转换）。
+# 语义 = GDScript 自身的条件真值：null/false/0/0.0/""/空容器 → false，其余 → true。
+# ★ 放在零依赖的 CoreConst 上，是为了让 CoreUtil 与 CoreItemData 都能用它而**不互相引用**
+#   （两者互相引用会构成 class_name 依赖环，Godot 3 会拒绝加载）。
+static func truth(v) -> bool:
+	if v:
+		return true
+	return false
+
+
 # 对齐 Game.gd:5643-5644
 static func getStacks() -> Array:
 	return [EventType.Block] + getBuffs() + getDebuffs()
@@ -202,6 +304,39 @@ enum StatModified{
 	No = 0, 
 	Positive = 1, 
 	Negative = 2
+}
+
+
+# ── 对齐 Item.gd:157-162 FaceDirection ──
+# ★ 战斗判定输入：放置期由 Inventory.orientItem → setFaceDirectionInstant 写入，
+#   战斗期**只读**（rotateLeft/rotateRight 只由玩家按键触发，战斗中不可用）。
+#   SpintoWin.doCooldownEffect/gainsStack 按方向分流给 heat/lucky/regen/mana；
+#   LongSpear/RainbowPotion 也按方向分流。故内核必须持有该字段。
+enum FaceDirection{
+	UP = 0, 
+	RIGHT = 1, 
+	DOWN = 2, 
+	LEFT = 3
+}
+
+
+# ── 对齐 Game.gd:131-146（职业） ──
+# 消费方：Character.setClass/setClassResource（职业资源决定 maxHealth / baseMaxStamina）。
+enum Classes{
+	Ranger = 0, 
+	Reaper = 1, 
+	Berserker = 2, 
+	Pyromancer = 3
+}
+
+enum Classes_Full{
+	Ranger = 0, 
+	Reaper = 1, 
+	Berserker = 2, 
+	Pyromancer = 3, 
+	Mage = 4, 
+	Adventurer = 5, 
+	Engineer = 6
 }
 
 

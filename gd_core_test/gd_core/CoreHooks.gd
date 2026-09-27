@@ -26,6 +26,11 @@ func showCooldown(item, progress: float) -> void :
 	pass
 
 
+# 对齐 Item.gd:5298-5320（tween 着色器进度条）；判定侧只关心「效果是否结束」。
+func showCooldownSmooth(item, progress: float, fill: bool = false) -> void :
+	pass
+
+
 func resetZ(item) -> void :
 	pass
 
@@ -82,19 +87,67 @@ func playActivateAnimation(character) -> void :
 	pass
 
 
+# 对齐 Item.gd:1409-1419（新物品被纳入受影响集时的提示动画）
+func playAffectedPlacedAnimation(item, newItemIsAffected: Dictionary) -> void :
+	pass
+
+
+# ── 角色状态表现 ──
+
+# 对齐 Character.gd:1002-1011（胜负粒子 + 动画）
+func playWinLoseAnimation(character, isWin: bool) -> void :
+	pass
+
+
+# 对齐 Character.gd:198-215 的表现部分（nameBanner 贴图 / setSprite 换精灵）
+func onClassChanged(character, classResource) -> void :
+	pass
+
+
+# 对齐 Character.gd:1574-1583（战怒粒子/光环动画/职业战怒吼声）
+func playBattleRageAnimation(character, rageStart: bool) -> void :
+	pass
+
+
+# 对齐 Character.gd:1058-1064（无敌泡泡动画/可见性）
+func playInvulnerableAnimation(character, invu: bool) -> void :
+	pass
+
+
+# ── 物品朝向／放置预览（内核只保留字段语义，表现交给宿主）──
+# 旋转后重绘（对齐 Item.gd:1963-1996 的尾部表现：粒子/音效/Game.onItemRotated）
+func onItemRotated(item) -> void :
+	pass
+
+
+# 对齐 Item.gd:1857-1875 区间的预览格冲突着色
+func previewCellCollision(item) -> void :
+	pass
+
+
+# 对齐 Item.gd:2124-2131 的预览格着色
+func previewCells(item) -> void :
+	pass
+
+
+# 对齐 Item.gd:2211 的预览受影响提示
+func previewCanAffect(item) -> void :
+	pass
+
+
 func spawnLabel_character(character, type, damage, item = null) -> void :
 	pass
 
 
-func spawnReflectLabel(type, pos, reflected) -> void :
+func spawnReflectLabel(type, reflected) -> void :
 	pass
 
 
-func spawnResistedLabel(type, pos, resisted) -> void :
+func spawnResistedLabel(type, resisted) -> void :
 	pass
 
 
-func spawnProtectedLabel(type, pos, protected) -> void :
+func spawnProtectedLabel(type, protected) -> void :
 	pass
 
 
@@ -126,6 +179,25 @@ func onHealthChangedUI(character) -> void :
 	pass
 
 
+func onMaxStaminaChangedUI(character) -> void :
+	pass
+
+
+# 对齐 Util.spawnLabelOnItem(type, item, amount)（Util.gd 中的物品飘字）
+func spawnLabelOnItem(type, item, amount) -> void :
+	pass
+
+
+# 对齐 Inventory.onItemTypeChanged（动态类型增删后的背包刷新）
+func onItemTypeChanged(item) -> void :
+	pass
+
+
+# 对齐 ElectricalCharge 动画（Item.sendCharge 的电荷传播表现）
+func sendCharge(item, cells, duration, event) -> void :
+	pass
+
+
 func applyImpulse(item, offset, impulse) -> void :
 	pass
 
@@ -148,7 +220,7 @@ func snapshotItemMetric(item, metricIndex: int, playerId = null, withNextEvent =
 	pass
 
 
-func snapshotCharacterStat(character, statType) -> void :
+func snapshotCharacterStat(character, statType, withNextEvent: bool = false, event = null) -> void :
 	pass
 
 

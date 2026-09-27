@@ -56,6 +56,8 @@ BATTLE_KEYS = (
     # 网格邻接 / 宝石 / 联动（阶段2）
     "affected", "neighbor", "collision", "gem", "socket", "canaffect",
     "extension", "cell", "rotate", "orientation",
+    # 朝向（SpintoWin.doCooldownEffect / LongSpear / RainbowPotion 按 faceDirection 分流效果）
+    "facedirection",
 )
 
 # 非判定路径关键词：不收录属「解耦剥离」，是本次精简的目的

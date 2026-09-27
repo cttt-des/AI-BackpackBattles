@@ -5,10 +5,34 @@
 ; Format:
 ;   [section] ; section goes between []
 ;   param=value ; assign values to parameters
+;
+; ★ 本文件的 _global_script_classes 由 tools/gen_test_project.py 自动生成，
+;   请勿手工维护 —— 漏注册 class_name 会报
+;   `The identifier "CoreXxx" isn't declared in the current scope.`
 
 config_version=4
 
 _global_script_classes=[ {
+"base": "Item",
+"class": "Bag",
+"language": "GDScript",
+"path": "res://gd_core_items/Bag.gd"
+}, {
+"base": "Weapon",
+"class": "Bow",
+"language": "GDScript",
+"path": "res://gd_core_items/Bow.gd"
+}, {
+"base": "Item",
+"class": "Card",
+"language": "GDScript",
+"path": "res://gd_core_items/Card.gd"
+}, {
+"base": "Item",
+"class": "ChessPiece",
+"language": "GDScript",
+"path": "res://gd_core_items/Exclusive/Chess/ChessPiece.gd"
+}, {
 "base": "Reference",
 "class": "CoreBuff",
 "language": "GDScript",
@@ -60,6 +84,11 @@ _global_script_classes=[ {
 "path": "res://gd_core/CoreEventBus.gd"
 }, {
 "base": "Reference",
+"class": "CoreGrid",
+"language": "GDScript",
+"path": "res://gd_core/CoreGrid.gd"
+}, {
+"base": "Reference",
 "class": "CoreHooks",
 "language": "GDScript",
 "path": "res://gd_core/CoreHooks.gd"
@@ -70,6 +99,11 @@ _global_script_classes=[ {
 "path": "res://gd_core/CoreItem.gd"
 }, {
 "base": "Reference",
+"class": "CoreItemBook",
+"language": "GDScript",
+"path": "res://gd_core/CoreItemBook.gd"
+}, {
+"base": "Reference",
 "class": "CoreItemData",
 "language": "GDScript",
 "path": "res://gd_core/CoreItemData.gd"
@@ -78,8 +112,87 @@ _global_script_classes=[ {
 "class": "CoreRng",
 "language": "GDScript",
 "path": "res://gd_core/CoreRng.gd"
+}, {
+"base": "Reference",
+"class": "CoreTimer",
+"language": "GDScript",
+"path": "res://gd_core/CoreTimer.gd"
+}, {
+"base": "Reference",
+"class": "CoreUtil",
+"language": "GDScript",
+"path": "res://gd_core/CoreUtil.gd"
+}, {
+"base": "Item",
+"class": "Cube",
+"language": "GDScript",
+"path": "res://gd_core_items/Exclusive/Cube.gd"
+}, {
+"base": "Weapon",
+"class": "Dagger",
+"language": "GDScript",
+"path": "res://gd_core_items/Dagger.gd"
+}, {
+"base": "Item",
+"class": "DragonEgg",
+"language": "GDScript",
+"path": "res://gd_core_items/DragonEgg.gd"
+}, {
+"base": "Item",
+"class": "Food",
+"language": "GDScript",
+"path": "res://gd_core_items/Food.gd"
+}, {
+"base": "Item",
+"class": "Gem",
+"language": "GDScript",
+"path": "res://gd_core_items/Gems/Gem.gd"
+}, {
+"base": "Item",
+"class": "Goobert",
+"language": "GDScript",
+"path": "res://gd_core_items/Goobert.gd"
+}, {
+"base": "Reference",
+"class": "Item",
+"language": "GDScript",
+"path": "res://gd_core_items/Item.gd"
+}, {
+"base": "Reference",
+"class": "LineupFixture",
+"language": "GDScript",
+"path": "res://LineupFixture.gd"
+}, {
+"base": "Item",
+"class": "Potion",
+"language": "GDScript",
+"path": "res://gd_core_items/Potion.gd"
+}, {
+"base": "Item",
+"class": "RangerCollar",
+"language": "GDScript",
+"path": "res://gd_core_items/RangerCollar.gd"
+}, {
+"base": "Item",
+"class": "Shield",
+"language": "GDScript",
+"path": "res://gd_core_items/Shield.gd"
+}, {
+"base": "Item",
+"class": "SpiritCompanion",
+"language": "GDScript",
+"path": "res://gd_core_items/Exclusive/SpiritCompanion.gd"
+}, {
+"base": "Item",
+"class": "Weapon",
+"language": "GDScript",
+"path": "res://gd_core_items/Weapon.gd"
 } ]
 _global_script_class_icons={
+"Bag": "",
+"Bow": "",
+"Card": "",
+"ChessPiece": "",
 "CoreBuff": "",
 "CoreCharacter": "",
 "CoreCombat": "",
@@ -90,10 +203,27 @@ _global_script_class_icons={
 "CoreDamageSource": "",
 "CoreEvent": "",
 "CoreEventBus": "",
+"CoreGrid": "",
 "CoreHooks": "",
 "CoreItem": "",
+"CoreItemBook": "",
 "CoreItemData": "",
-"CoreRng": ""
+"CoreRng": "",
+"CoreTimer": "",
+"CoreUtil": "",
+"Cube": "",
+"Dagger": "",
+"DragonEgg": "",
+"Food": "",
+"Gem": "",
+"Goobert": "",
+"Item": "",
+"LineupFixture": "",
+"Potion": "",
+"RangerCollar": "",
+"Shield": "",
+"SpiritCompanion": "",
+"Weapon": ""
 }
 
 [application]

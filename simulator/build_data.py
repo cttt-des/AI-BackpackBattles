@@ -12,15 +12,22 @@
 效果 DSL 仍从 decompiled_full/Items/*.gd 解析:
   doCooldownEffect / onTriggerPotion / onCombatStart（新增）
 """
-import csv
 import json
 import os
 import re
+import sys
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ASSETS = os.path.join(BASE, 'assets')
 DECOMP = os.path.join(BASE, 'decompiled_full', 'Items')
-CSV_PATH = os.path.join(BASE, 'extracted', 'Sheets', 'CSV', 'ItemData_e.csv')
+
+# 物品表（GDEC 加密）的读取与 p1..p10 列对齐统一走 tools/item_sheet.py ——
+# 见该模块 docstring：`params` 必须是定长 10 的列对齐数组，跳过空列会让
+# getP1()..getP10() 整体错位（Carrot/Dark Lantern 等有空列的物品首当其冲）。
+sys.path.insert(0, os.path.join(BASE, 'tools'))
+import item_sheet  # noqa: E402
+
+CSV_PATH = item_sheet.CSV_PATH
 
 # ---------------- 脚本效果解析 ----------------
 _OPT_ARGS = r'[^)]*\)'
@@ -303,13 +310,9 @@ def _find_script(name: str) -> str:
 
 
 def convert_items():
-    rows = {}
-    if os.path.exists(CSV_PATH):
-        with open(CSV_PATH, encoding='utf-8') as f:
-            for r in csv.DictReader(f):
-                rows[r['name']] = r
-    else:
-        raise FileNotFoundError(f"未找到解密 CSV: {CSV_PATH}")
+    # ★ 走 item_sheet 而非直接 open()：表是 GDEC 加密的，按 utf-8 直接读会
+    #   静默读到乱码（解析出 0 物品），是最难查的一类失败。
+    rows = item_sheet.load_rows()
 
     out = {}
     for name, r in rows.items():
@@ -320,19 +323,11 @@ def convert_items():
             with open(sp, encoding='utf-8', errors='replace') as f:
                 script_text = f.read()
 
-        # p1..p10 参数
-        params = []
-        named_params = {}
-        for i in range(1, 11):
-            v = (r.get(f'p{i}') or '').strip()
-            if not v:
-                continue
-            if ':' in v:
-                val, nm = v.split(':', 1)
-                named_params[nm.strip()] = _to_float(val)
-                params.append(_to_float(val))
-            else:
-                params.append(_to_float(v))
+        # p1..p10 参数 —— **按列对齐**（ItemBook.gd:855-875）
+        # 原版对每一列都 push_back（空列 push 0），故 params 恒长 10 且
+        # params[i] == 第 (i+1) 列；跳过空列会让 getP1()..getP10() 整体错位。
+        params = item_sheet.aligned_params(r)
+        named_params = item_sheet.named_params(r)
 
         crit = _parse_crit(r.get('chance', '')) or _parse_crit(r.get('chance2', ''))
 

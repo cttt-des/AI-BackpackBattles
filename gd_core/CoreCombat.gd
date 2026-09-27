@@ -103,6 +103,11 @@ func setup(_player, _opponent) -> void :
 	opponent = _opponent
 	ctx.player = _player
 	ctx.opponent = _opponent
+	# 对齐 Game.combatTimer 的身份：物品脚本用
+	# `connectForCombat(Game.combatTimer, "fatigue_start", ...)` 订阅疲劳信号，
+	# 而信号正是由本对象用 self 发出的（EventBus 按 emitter.get_instance_id() 配对），
+	# 故这里必须把 self 暴露成 ctx.combat。
+	ctx.combat = self
 	player.setOpponent(opponent)
 	opponent.setOpponent(player)
 	# 对齐 Game.gd:2549 / 2986：双方 character_died 都连到 endCombat
@@ -151,21 +156,46 @@ func startBattle(player_items: Array, opponent_items: Array) -> void :
 	_activate_countdown = CoreContext.COMBAT_DELAY
 
 
-# 对齐 Game.gd:3257-3262
+# 对齐 Game.gd:3257-3262。原版在**商店/摆放阶段**就把物品放进 INVENTORY 了
+# （Inventory.addItem → Item.addToInventory），到战斗开始时 Game.gd:3023 只是
+#   call_deferred("prepareItems", 双方物品) → PLAYER.prepare / OPPONENT.prepare / 逐件 prepare。
+# 本方法因此遵循两条不变式：
+#   ① **不清空**背包——清空会连放置期已经建好的格子映射与受影响集一起抹掉；
+#   ② **不重复登记**已 placed 的物品——重放 addItem 会二次 push 进 items 并重复触发
+#      onItemAdded/onAffectedItemAdded，使受影响集里出现同一物品的两份。
+# 需要「一场干净的新战斗」时由装配层显式调 resetInventories()。
 func prepareItems(items: Array) -> void :
-	# 装配层接缝：原版由 addToInventory(Item.gd:1322) 在物品放入背包时置 placed = true。
-	# 无头内核不含背包网格，开战前统一声明「已放置于所属角色背包」，
-	# 使 isPlaced() / hasCharacter() 与实战一致（getSpeed、getMinDamage 等依赖它）。
+	for character in [player, opponent]:
+		if character.inventory == null:
+			character.inventory = CoreGrid.new(character)
+	
 	for item in items:
-		item.placed = true
 		if item.ctx == null:
 			item.ctx = ctx
+		if item.placed:
+			continue          # 已在放置期登记过（Inventory.addItem 的等价路径）
+		var ch = item.character()
+		if ch != null and ch.inventory == null:
+			ch.inventory = CoreGrid.new(ch)
+		var grid = ch.inventory if ch != null else player.inventory
+		grid.addItem(item, item.occupiedCells)
 	
 	player.prepare()
 	opponent.prepare()
 	
 	for item in items:
 		item.prepare()
+
+
+# 装配层用具：显式把双方背包恢复为空场（物品需各自重新登记）。
+# 原版没有对应方法——原版一场战斗结束后玩家重新摆放，背包由商店/背包 UI 重建。
+func resetInventories() -> void :
+	for character in [player, opponent]:
+		if character.inventory != null:
+			character.inventory.cleanUp()
+		for item in character.items:
+			item.placed = false
+			item.consumed = false
 
 
 # 对齐 Game.gd:3264-3280
@@ -217,6 +247,7 @@ func physicsTick(delta: float) -> void :
 		_activate_countdown -= delta
 		if _activate_countdown <= 0.0:
 			activateItems(ordered_items)
+		ctx.flushDeferred()
 		return
 	
 	# 1. combatTimer._physics_process: combatTime += delta
@@ -256,6 +287,9 @@ func physicsTick(delta: float) -> void :
 	# 帧末 flush（对齐 call_deferred）
 	if _pending_deferred:
 		_flushDeferred()
+	
+	# 帧末 flush 延迟调用队列（Character.changeBaseMaxStamina 等）
+	ctx.flushDeferred()
 
 
 func run() -> void :
@@ -396,6 +430,20 @@ func combatEndDeferred() -> void :
 	# 对齐 Game.gd:3327-3328
 	for item in ordered_items:
 		item.combatEnd()
+
+	# ★ 对齐 Game.gd:3330-3332 —— 战斗收尾必须清空的**跨回合残留状态**。
+	#   此前内核在 item.combatEnd() 之后直接结束，漏了这三行，构成一类**静默跨回合
+	#   漂移**（单场测试全绿，连打多场才现形）：
+	#   · ropeSpeedups / cubeAdvanced 不清 → 第二场里 Rope 读到的「已加速量」是上一场
+	#     的残值，直接顶穿 maxSpeed 上限；方块读到的「已推进过」也是上一场的物品，
+	#     而物品实例已换，penaltyFactor 判定随之走偏。
+	#   · sandbagActive 不清 → 若上一场在沙袋 buff 生效中途结束（buffEnded 未被调用，
+	#     Sandbag.gd:25 的置 false 就没机会执行），下一场 Sandbag.onPreCombatStart 会
+	#     走 `elif buffsActive > 0` 分支而**不再施加** changeDamageResistance(damReduction)。
+	#   原版靠这里兜底，故必须同位置同序补齐。
+	ctx.rope_speedups.clear()
+	ctx.cube_advanced.clear()
+	ctx.sandbag_active = false
 
 
 func playerWins() -> bool:

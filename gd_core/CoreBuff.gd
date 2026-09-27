@@ -12,6 +12,11 @@
 #   · `counter` —— 原为 HUD 节点（BuffCounter），全部调用改走 ctx.hooks.activateBuffCounter
 #   · `Util.spawnReflectLabel / spawnResistedLabel / spawnProtectedLabel / spawnBuffLabel_item`
 #     → ctx.hooks 同名方法
+#     ★ 这三个标签钩子**去掉了 `pos` 形参**（原版由 `character.randBuffLabelPos()` 供值）。
+#       那个表达式不是纯取值：它内部抽两次 `Util.rng.randf_range`，而结果只喂给一个
+#       表现为空实现的钩子 —— 于是「一次纯表现抽样」被夹带进判定路径，会平移后续所有
+#       随机判定。内核的不变式是「写入 rng 的调用点都参与判定」，故整体删除该实参
+#       （与文件头 CoreCharacter「伤害数字坐标整体删除（纯表现）」同一政策）。
 #   · `Game.combatLog.createEvent_*` → ctx.combat_log（事件对象结构不变）
 #   · `timer = Timer.new(); character.add_child(timer)` → 内核内计时器 `_timer_left`
 #
@@ -151,7 +156,7 @@ func gainTemporary(amount: int, duration: float, item = null,
 				
 				if reflected > 0:
 					amount -= reflected
-					ctx.hooks.spawnReflectLabel(type, character.randBuffLabelPos(), reflected)
+					ctx.hooks.spawnReflectLabel(type, reflected)
 			
 			var ownStacksUsed = min(left, resistStacks)
 			resisted += ownStacksUsed
@@ -165,7 +170,7 @@ func gainTemporary(amount: int, duration: float, item = null,
 		
 		if resisted > 0:
 			amount -= resisted
-			ctx.hooks.spawnResistedLabel(type, character.randBuffLabelPos(), resisted)
+			ctx.hooks.spawnResistedLabel(type, resisted)
 			var resistedEvent = ctx.combat_log.createEvent_StackResistOrNullify(type, 
 						item, resisted, character.playerId, triggerEvent, reflect)
 			ctx.bus.logEvent(resistedEvent)
@@ -258,7 +263,7 @@ func loseStacks(amount: int, item = null, triggerEvent = null, used = false):
 			character.buffProtectStacks -= protectedByStacks
 		
 		if protected > 0:
-			ctx.hooks.spawnProtectedLabel(type, character.randBuffLabelPos(), protected)
+			ctx.hooks.spawnProtectedLabel(type, protected)
 			var protectedEvent = ctx.combat_log.createEvent_StackProtect(type, 
 				item, protected, character.playerId, triggerEvent)
 			ctx.bus.logEvent(protectedEvent)

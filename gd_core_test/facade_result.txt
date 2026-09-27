@@ -1,0 +1,25 @@
+
+=== gd_core 单例门面契约测试 ===
+
+[1] 描述符身份：同一标识符 → 同一实例（Item.isA 依赖引用相等）
+    DESCRIPTOR_IDS 覆盖 7 项 ✓ / getDescriptor 幂等 ✓ / register 覆盖 ✓ / isA 语义 ✓ / hasParam 基名索引 ✓
+
+[2] 库存类型查询：本方只算 PlayerInventory + Socket，对手侧不过滤
+    本方 2/1 ✓ / 未放置 0 ✓ / 对手 1 ✓ / 两侧隔离 ✓
+
+[3] Item 包装层：包装方法须与 ItemBook 查询同结果，对手物品自动走 _opponent
+    包装层结果一致 ✓ / Socket 计入 ✓ / placed 语义 ✓ / 对手分支 ✓
+
+[4] Game 状态量：sandbagActive / curMode / curRound 的取值域
+    sandbagActive ✓ / curMode=Ranked(≠History) ✓ / curRound=0 ✓
+
+[5] combatTimer 身份：ctx.combat 必须就是发疲劳信号的那个 CoreCombat
+    ctx.combat == CoreCombat 实例 ✓ / 真实疲劳路径命中 ✓ / emitter 精确配对 ✓
+
+[6] 真实物品脚本：原版转译产物的判定须按门面数据分流
+    KingoftheBling.canAffect 按描述符分流 ✓
+    Everburning.onPrepare 数到 2 个 Flame ✓
+    沙袋闸门 + 复位 ✓
+    LevelUp 速度加成 = (5-2)×0.1 = 0.3 → getSpeed 1.3 ✓
+
+FACADE: PASS

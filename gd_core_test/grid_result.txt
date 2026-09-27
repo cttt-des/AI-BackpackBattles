@@ -1,0 +1,22 @@
+
+=== gd_core grid smoke test ===
+
+[1] 受影响格判定链：命中格 → canAffect 闸门 → 快照 → 取首项
+    A 受影响格缓存 = 3（期望 3 格）
+    落在受影响格的物品 = [SwordA, SwordB, StoneA]（期望 SwordA/SwordB/StoneA）
+    受影响物品（过 canAffect）= [SwordA, SwordB]（期望 SwordA/SwordB）
+    numAffectedItems=2  numAffected_type(Weapon)=2  numAffectedCells=3
+    调换加入次序后 getFirstAffectedItem = SwordB（期望 SwordB）
+
+[2] 邻接：四邻域去重 + 排除自身占格 + 袋格查询
+    A 的邻格 = [(-3, 0), (-2, -1), (-2, 1), (0, 0), (-1, -1), (-1, 1)]（6 格）
+    邻接物品 = [SwordA, SwordC]（期望 SwordA/SwordC）
+
+[3] 确定性：同装配次序 + 同种子 → 结果逐位一致
+    run A = 2|2|3|SwordA
+    run B = 2|2|3|SwordA
+
+[4] 朝向：放置写入 faceDirection → 行为读到同值（方向即战斗效果）
+    四方向分流结果 = [Heat, Lucky, Regeneration, Mana]（期望 4 个互不相同）
+
+GRID: PASS

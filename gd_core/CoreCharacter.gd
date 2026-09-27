@@ -85,6 +85,7 @@ var temporaryMaxStamina: float = 0.0
 var baseStaminaRegen: float = 1.0
 var staminaRegen: float = 0.0
 var allowStaminaOverflow := false
+var staminaUpdateQueued := false   # 对齐 Character.gd:971
 
 var statsDisplay: Array = []      # 仅统计出口
 
@@ -129,6 +130,19 @@ var critResistanceRng
 var stunResistanceRng
 
 var items: Array = []             # 该角色的参战物品（替代 INVENTORY.getItems()）
+var inventory                     # CoreGrid（替代 Character.INVENTORY）
+# ★ 原版 `Character.INVENTORY`（Character.gd:49 声明、:145 由 inventoryScene 实例化）
+#   这个**大写**名字被物品行为直接引用，共 5 处，全在判定路径上：
+#     BagofStones.gd:13  ctx.player.INVENTORY.getCellsInLine(...)   ← 受影响格覆写
+#     ShinyMantle.gd:25  inventory if placed else ctx.player.INVENTORY
+#     TimeDilator.gd:8   ctx.player.INVENTORY.getItems() + ctx.opponent.INVENTORY.getItems()
+#     RibSawBlade.gd:8   opponent().INVENTORY.getItems()
+#     Bag.gd:55          ctx.player.INVENTORY.canAddBag(self)       ← 只在 _process（拖拽态）里，
+#                                                                     无头内核不调用 _process，故
+#                                                                     CoreGrid 不提供 canAddBag
+#   故内核必须暴露同名属性（与 inventory 同一对象），否则上述物品一上场即
+#   `Invalid get index 'INVENTORY'`。由 _init 与 inventory 同步赋值。
+var INVENTORY
 
 # 战斗事件信号（对齐 Character.tscn 的 connect）
 var character_died_handlers: Array = []
@@ -137,10 +151,25 @@ var character_died_handlers: Array = []
 var poisonDamageSource          # CoreDamageSource，types=[Poison]
 var spikeDamageSource           # CoreDamageSource，types=[Spikes]
 
+# 职业（对齐 Character.gd:51 / 53）
+# ★ 战斗相关：setClassResource 用职业资源设 maxHealth / baseMaxStamina / maxStamina。
+#   默认 Ranger=0（对齐 Character.gd:51 `var characterClass = Game.Classes.Ranger`）。
+var characterClass: int = CoreConst.Classes.Ranger
+var chibi := false
+
 # 无敌计时（对齐 invulnerabilityTimer，物理帧步进）
 var invulnerabilityItem = null
 var _invul_left: float = 0.0
 var _invul_active := false
+
+# 战怒计时（对齐 Character.tscn 的 BattleRageTimer / AutoRageTimer，均为 one_shot）
+#   BattleRageTimer.timeout → endBattleRage()
+#   AutoRageTimer.timeout   → startAutoRage()
+var autoRageItem = null           # 对齐 Character.gd:110（prepare 时从未带 BattleRage 标签的物品里随机选一个）
+var _rage_left: float = 0.0
+var _rage_active := false
+var _autoRage_left: float = 0.0
+var _autoRage_active := false
 
 
 func _init(_ctx, _playerId: int) -> void :
@@ -150,6 +179,30 @@ func _init(_ctx, _playerId: int) -> void :
 	critRng = ctx.rng.BalancedRng.new(ctx.rng)
 	critResistanceRng = ctx.rng.BalancedRng.new(ctx.rng)
 	stunResistanceRng = ctx.rng.BalancedRng.new(ctx.rng)
+	
+	# 背包在角色构造时即存在（对齐原版 Character 场景里的 INVENTORY 节点，
+	# 它在战斗开始前就参与物品放置，而非战斗期才创建）
+	inventory = CoreGrid.new(self)
+	INVENTORY = inventory
+	
+	# 对齐 Character.gd:158-162（原版写在 _ready 里，与 INVENTORY 同批）。
+	# ★ 这两个是**角色自带**的伤害源（不是 Game 级的 stealLife/unhealing/fatigue）：
+	#     spikeDamageSource  → applySpikes（:524）尖刺反弹
+	#     poisonDamageSource → tickBuffEffects（:348）中毒跳伤
+	#   漏建的直接后果：`spikeDamageSource.setDamage(...)` 报
+	#   `Nonexistent function 'setDamage' in base 'Nil'`，且尖刺与中毒两条伤害整条失效
+	#   —— 静默少打伤害，闸门 8 首轮抓出 32 次该报错。
+	#   `_rng` 对应原版 `Util.rng`（DamageSource.gd:171 掷 min~max 伤害）。
+	spikeDamageSource = CoreDamageSource.new()
+	spikeDamageSource._rng = ctx.rng
+	spikeDamageSource.init(self, CoreDamageSource.Type.Spikes, 1)
+	spikeDamageSource.flags = (CoreDamageSource.chipDamageFlags
+		+ CoreDamageSource.Flags.CanCrit)
+	poisonDamageSource = CoreDamageSource.new()
+	poisonDamageSource._rng = ctx.rng
+	poisonDamageSource.init(self, CoreDamageSource.Type.Poison, 1)
+	poisonDamageSource.flags = (CoreDamageSource.chipDamageFlags
+		+ CoreDamageSource.Flags.CanCrit)
 	
 	for stackType in CoreConst.getStacks():
 		var buff = CoreBuff.new()
@@ -205,18 +258,50 @@ func prepare() -> void :
 		else:
 			accuracyRng.setBias(0.2)
 			critRng.setBias(0.2)
+	
+	# 自动战怒选品（对齐 Character.gd:312-326）：背包里有带 BattleRage 标签的物品时不启用
+	# 自动战怒；否则从**含宝石**的物品里随机挑一个 isBattleRageItem() 的。
+	# ★ 原版用 Array.pick_random()（Godot 全局 RNG），内核改用注入 rng 以保证同种子可复现。
+	autoRageItem = null
+	var hasBattleRageStarter = false
+	for item in inventory.getItems():
+		if item.hasTag(CoreConst.Tag.BattleRage):
+			hasBattleRageStarter = true
+			break
+	
+	if not hasBattleRageStarter:
+		var battleRageItems = []
+		for item in inventory.getItemsAndGems():
+			if item.isBattleRageItem():
+				battleRageItems.push_back(item)
+		
+		if not battleRageItems.empty():
+			autoRageItem = ctx.rng.pickRandomElement(battleRageItems)
 
 
+# 对齐 Character.gd:328-337
 func combatStart() -> void :
 	stunnedDuration = 0.0
 	tickCounter = 0
+	
+	if autoRageItem != null:
+		_autoRage_left = AUTO_RAGE_DELAY
+		_autoRage_active = true
 
 
+# 对齐 Character.gd:339-349（三个一次性计时器全部 stop）
 func combatEnd() -> void :
 	attackMovingForward_reset()
 	
 	for buffType in buffs:
 		buffs[buffType].combatEnd()
+	
+	_rage_left = 0.0
+	_rage_active = false
+	_autoRage_left = 0.0
+	_autoRage_active = false
+	_invul_left = 0.0
+	_invul_active = false
 
 
 # 原版是动画 tween 复位；无头下只需清标志
@@ -826,10 +911,174 @@ func endBlindingLight(event = null) -> void :
 	ctx.bus.emitSignal(self, "blinding_light_ended", [event])
 
 
-func startBattleRage(item = null) -> void :
-	# 完整战怒（5s/4s 自动开大、BattleRage 标签优先）依赖物品行为判定，
-	# 随 Items/*.gd 接入时补齐；此处保留入口与事件形状。
-	pass
+# 对齐 Character.gd:1556-1571。★ 签名必须与原版逐字一致——物品行为直接这样调：
+#   BerserkerBag.gd:21 / WolfBadge.gd:27  character().startBattleRage(self, getP_m("dur_rage"), event)
+#   ExtraAngy.gd:28                       character().startBattleRage(self, dur, null, false)
+#   Toolbox.gd:35                         character().startBattleRage(self, getP_m("dur_rage"))
+func startBattleRage(item, duration, triggerEvent = null, applyBonus = true):
+	var fullDur = duration
+	if applyBonus:
+		fullDur += battleRageBonusDur
+	_setRageTimer(fullDur)
+	
+	var event = ctx.combat_log.createEvent_BattleRageStart(item, fullDur, triggerEvent)
+	ctx.bus.emitEvent(self, "battle_rage_started", event, [event])
+	ctx.combat_log.snapshotCharacterStat(self, Stat.BattleRage, false, event)
+	ctx.hooks.playBattleRageAnimation(self, true)
+	return event
+
+
+# 对齐 Character.gd:1567-1572（原版由 Character.tscn 的
+#   [connection signal="timeout" from="BattleRageTimer" to="." method="endBattleRage"]
+# 驱动；内核改为物理帧步进，超时点在本类 physicsTick 里触发同一方法。）
+func endBattleRage():
+	_rage_left = 0.0
+	_rage_active = false
+	var event = ctx.combat_log.createEvent_BattleRageEnd(playerId)
+	ctx.bus.emitEvent(self, "battle_rage_ended", event, [event])
+	ctx.combat_log.snapshotCharacterStat(self, Stat.BattleRage, false, event)
+	ctx.hooks.playBattleRageAnimation(self, false)
+
+
+# 对齐 Character.gd:192-196
+func getClass() -> int:
+	return characterClass
+
+
+# 对齐 Character.gd:195-196。★ 原版反编译文本写作 `func isChibi() -> int:`，但函数体
+# 返回的是 bool 字段 chibi —— 该 `-> int` 是反编译器补出来的标注（原版源码不可能编译
+# 通过一个返回 bool 的 -> int 函数），故内核去掉返回类型标注，只保留取值语义。
+func isChibi():
+	return chibi
+
+
+# 对齐 Character.gd:198-209。表现部分（nameBanner 贴图 / setSprite / class_changed 信号）
+# 走 hooks 与 ctx.bus；对对手分支原版只调 setSprite（同样走 hooks）——内核两者等价。
+func setClass(_class: int, _chibi: bool, classResource = null):
+	characterClass = _class
+	chibi = _chibi
+	if classResource == null:
+		classResource = ctx.class_resources.get(_class, null) if ctx.class_resources else null
+	if classResource != null and playerId == ID.PLAYER:
+		setClassResource(classResource)
+	ctx.hooks.onClassChanged(self, classResource)
+	ctx.bus.emitSignal(self, "class_changed", [])
+
+
+# 对齐 Character.gd:211-215。setSprite 是表现 → 剥离。职业资源的字段读取用 .get(key)，
+# 同时兼容 Resource（Object.get）与 Dictionary（Dictionary.get）。
+func setClassResource(classResource):
+	if classResource == null:
+		return
+	setMaxHealth(classResource.get("health"))
+	baseMaxStamina = classResource.get("stamina")
+	setMaxStamina(baseMaxStamina)
+	ctx.hooks.onClassChanged(self, classResource)
+
+
+# 对齐 Character.gd:1002-1004 / 1006-1011（胜负表现：粒子 + 动画）
+func lose():
+	ctx.hooks.playWinLoseAnimation(self, false)
+
+
+func win():
+	ctx.hooks.playWinLoseAnimation(self, true)
+
+
+# 对齐 Character.gd:1609-1622（唯一写入口是战斗日志回放的 setStat；
+# 各分支的表现调用统一走 hooks）
+func setStat(stat, value):
+	match stat:
+		Stat.Health:
+			setCurrentHealth(value)
+		Stat.MaxHealth:
+			setTemporaryMaxHealth(value)
+		Stat.Stamina:
+			setCurrentStamina(value)
+		Stat.MaxStamina:
+			setTemporaryMaxStamina(value - maxStamina)
+		Stat.Stunned:
+			ctx.hooks.playStunAnimation(self, value)
+		Stat.Invulnerable:
+			ctx.hooks.playInvulnerableAnimation(self, value)
+		Stat.BattleRage:
+			ctx.hooks.playBattleRageAnimation(self, value)
+
+
+# 对齐 Character.gd:1650-1690（逐分支逐字对应；StaminaRegen/HealEfficiency/
+# Unhealing/MaxHealthGain 都是「显示用百分比」，原版就带 *100/(x-1) 换算，照抄）
+func getStat(stat):
+	match stat:
+		Stat.StaminaRegen:
+			return (getStaminaRegeneration() - 1) * 100.0
+		Stat.Health:
+			return getCurrentHealth()
+		Stat.MaxHealth:
+			return getTemporaryMaxHealth()
+		Stat.Stamina:
+			return getCurrentStamina()
+		Stat.MaxStamina:
+			return getMaxStamina()
+		Stat.Stunned:
+			return stunnedDuration
+		Stat.Invulnerable:
+			return invulnerable
+		Stat.BattleRage:
+			return isBattleRaging()
+		Stat.ReflectStacks:
+			return debuffReflectStacks
+		Stat.DebuffResistStacks:
+			return debuffResistStacks
+		Stat.CritStacks:
+			return getCritTokens()
+		Stat.DodgeStacks:
+			return dodgeStacks
+		Stat.CritResistStacks:
+			return critResistStacks
+		Stat.CritResistance:
+			return critResistance
+		Stat.StunResistance:
+			return stunResistance
+		Stat.HealEfficiency:
+			return (getHealingEfficiency() - 1) * 100
+		Stat.DamageResistance:
+			return damageResistance
+		Stat.MeleeDmgFactor:
+			return typedDamageFactors[CoreDamageSource.Type.Melee] * 100
+		Stat.RangedDmgFactor:
+			return typedDamageFactors[CoreDamageSource.Type.Ranged] * 100
+		Stat.EffectDmgFactor:
+			return typedDamageFactors[CoreDamageSource.Type.Effect] * 100
+		Stat.Unhealing:
+			return getUnhealing() * 100
+		Stat.MaxHealthGain:
+			return (temporaryMaxHealthGain - 1.0) * 100
+	return null
+
+
+# 对齐 Character.gd:1552-1553（battleRageTimer 一次性计时器是否在跑）
+func isBattleRaging() -> bool:
+	return _rage_active
+
+
+# 对齐 Character.gd:1588-1589（AutoRageTimer.timeout → startAutoRage）
+func startAutoRage():
+	# 原版 startAutoRage 不传 applyBonus → 走默认 true（吃到 battleRageBonusDur）
+	startBattleRage(autoRageItem, AUTO_RAGE_DUR)
+
+
+# 对齐 Character.gd:1574-1579（表现：粒子/动画/音效）
+func playBattleRageAnimation(rageStart):
+	ctx.hooks.playBattleRageAnimation(self, rageStart)
+
+
+# Util.changeTimer 语义：start(t + timeLeft) —— 在**剩余时间**基础上延长。
+func _setRageTimer(t: float) -> void :
+	if _rage_active:
+		_rage_left = t + _rage_left
+	else:
+		_rage_left = t
+		_rage_active = true
 
 
 # ── 无敌（对齐 Character.gd:1037-1062，Timer 改为物理帧步进） ──
@@ -837,12 +1086,15 @@ func startBattleRage(item = null) -> void :
 func makeInvulnerable(invuDur, item, triggerEvent = null):
 	invulnerabilityItem = item
 	
+	# 对齐 Character.gd:1038-1044：首次 start(invuDur)；已无敌时 Util.changeTimer
+	# （= start(t + timeLeft)，在**剩余时间**上加）→ 所以是延长而非覆盖。
 	if not invulnerable:
 		_invul_left = invuDur
 		_invul_active = true
 		invulnerable = true
+		ctx.hooks.playInvulnerableAnimation(self, true)
 	else:
-		_invul_left = invuDur
+		_invul_left = invuDur + _invul_left
 	
 	var event = ctx.combat_log.createEvent_InvulnerableStart(item, invuDur, playerId, triggerEvent)
 	ctx.bus.emitEvent(self, "character_invulnerable_start", event, [event])
@@ -854,11 +1106,13 @@ func makeVulnerable(item, triggerEvent = null) -> void :
 	pass
 
 
+# 对齐 Character.gd:1051-1056（原版由 InvulnerabilityTimer.timeout 驱动）
 func invulnerabilityEnded() -> void :
 	invulnerable = false
 	var event = ctx.combat_log.createEvent_InvulnerableEnd(invulnerabilityItem, playerId)
 	ctx.bus.emitEvent(self, "character_invulnerable_end", event, [event])
 	ctx.combat_log.snapshotCharacterStat(self, Stat.Invulnerable)
+	ctx.hooks.playInvulnerableAnimation(self, false)
 
 
 func setInvulnerable(active: bool, item = null) -> void :
@@ -1116,9 +1370,271 @@ func getBuffAccuracyMod():
 	return (getLucky() - getBlind()) * 5
 
 
+# ─────────────────────────── 体力（源码补全，对齐 Character.gd:928-992, 1100-1121） ───────────────────────────
+# 面向物品行为 API 面：Items/*.gd 通过 character().<这些> 读写体力。
+
+# 对齐 Character.gd:935-938
+func getBaseMaxStamina() -> float:
+	return baseMaxStamina
+
+
+# 对齐 Character.gd:939-941
+func getMaxBaseStamina() -> float:
+	return maxStamina
+
+
+# 对齐 Character.gd:928-930
+func getCurrentStamina() -> float:
+	return curStamina
+
+
+# 对齐 Character.gd:931-934
+func setCurrentStamina(stamina: float):
+	curStamina = stamina
+
+
+# 对齐 Character.gd:942-944
+func getMissingStamina() -> float:
+	return getMaxStamina() - getCurrentStamina()
+
+
+# 对齐 Character.gd:945-947
+func isFullStamina() -> bool:
+	return getMissingStamina() <= 0
+
+
+# 对齐 Character.gd:948-952（emit_signal("max_stamina_changed_ui") → 钩子）
+func setMaxStamina(_maxStamina):
+	maxStamina = _maxStamina
+	curStamina = maxStamina
+	ctx.hooks.onMaxStaminaChangedUI(self)
+
+
+# 对齐 Character.gd:953-957
+func giveMaxStamina(amount):
+	maxStamina += amount
+	curStamina += amount
+	ctx.hooks.onMaxStaminaChangedUI(self)
+
+
+# 对齐 Character.gd:958-962
+func reduceMaxStamina(amount):
+	maxStamina = max(1, maxStamina - amount)
+	curStamina = min(maxStamina, curStamina)
+	ctx.hooks.onMaxStaminaChangedUI(self)
+
+
+# 对齐 Character.gd:979-992（label 走钩子；filled 语义逐字保留）
+func gainMaxStaminaTemporary(amount, item, triggerEvent, filled: bool = true):
+	if amount != 0:
+		temporaryMaxStamina += amount
+		if filled and amount > 0:
+			curStamina += amount
+		if item != null:
+			var event = ctx.combat_log.createEvent_TemporaryMaxStamina(item, amount, triggerEvent)
+			ctx.bus.logEvent(event)
+			if filled:
+				item.staminaChanged(amount, CoreConst.StackChangeType.Added_Player)
+			ctx.hooks.spawnLabelOnItem(CoreConst.EventType.TemporaryMaxStamina, item, amount)
+		ctx.hooks.onMaxStaminaChangedUI(self)
+
+
+# 对齐 Character.gd:1100-1102
+func getStaminaRegeneration():
+	return staminaRegen
+
+
+# 对齐 Character.gd:1103-1106
+func giveStaminaRegeneration(amount):
+	staminaRegen += amount
+	ctx.combat_log.snapshotCharacterStat(self, Stat.StaminaRegen)
+
+
+# 对齐 Character.gd:1107-1121（INVENTORY.getItems() → 本内核的 items）
+func getTotalStaminaUsage():
+	var totalStaminaUse = 0.0
+	for item in items:
+		var staminaUse = item.getStaminaCost()
+		if item.getCooldown() > 0:
+			staminaUse /= item.getCooldown()
+		totalStaminaUse += staminaUse
+	return totalStaminaUse
+
+
+# 对齐 Character.gd:963-969（call_deferred → ctx.defer，帧末 flush）
+func changeBaseMaxStamina():
+	if playerId == ID.PLAYER and not staminaUpdateQueued:
+		staminaUpdateQueued = true
+		ctx.defer(self, "recalculateMaxStamina")
+
+
+# 对齐 Character.gd:970-978
+# staminaSackDescriptor = getDescriptor("Stamina Sack")（ItemBook.gd:1003），
+# 内核以 descriptor.name 等值比较替代描述符对象同一性比较（取值域相同）。
+func recalculateMaxStamina():
+	staminaUpdateQueued = false
+	maxStamina = getBaseMaxStamina()
+	for item in items:
+		if item.descriptor.name == "Stamina Sack":
+			maxStamina += 1
+	curStamina = maxStamina
+	ctx.hooks.onMaxStaminaChangedUI(self)
+
+
+# ─────────────────────────── 生命上限修正（源码补全，对齐 Character.gd:903-927） ───────────────────────────
+
+# 对齐 Character.gd:907-909
+func getTemporaryMaxHealth():
+	return temporaryMaxHealth
+
+
+# 对齐 Character.gd:910-913
+func setTemporaryMaxHealth(tempHealth):
+	temporaryMaxHealth = tempHealth
+	ctx.hooks.onHealthChangedUI(self)
+
+
+# 对齐 Character.gd:923-927
+func reduceMaxHealth(amount):
+	maxHealth = max(1, maxHealth - amount)
+	curHealth = min(maxHealth, curHealth)
+	ctx.hooks.onHealthChangedUI(self)
+
+
+# 对齐 Character.gd:903-906
+func changeMaxHealthGain(amount):
+	temporaryMaxHealthGain += amount
+	ctx.combat_log.snapshotCharacterStat(self, Stat.MaxHealthGain)
+
+
+# ─────────────────────────── 伤害修正量（源码补全，对齐 Character.gd:1369-1517） ───────────────────────────
+
+# 对齐 Character.gd:1379-1381
+func changeDamageReduction(amount: int):
+	damageReduction += amount
+
+
+# 对齐 Character.gd:1369-1378
+func changeDamageResistance(amount: float, item = null, duration = null, 
+	triggerEvent = null):
+	
+	damageResistance += amount
+	ctx.combat_log.snapshotCharacterStat(self, Stat.DamageResistance)
+	if item != null:
+		var event = ctx.combat_log.createEvent_DamChange(item, - amount, 
+			true, duration, null, triggerEvent)
+		ctx.bus.logEvent(event)
+
+
+# 对齐 Character.gd:1494-1508（INVENTORY.getItems() → items）
+func changeTypedDamageFactor(damageType: int, amount):
+	typedDamageFactors[damageType] += amount
+	for item in items:
+		if item.damageSource != null and item.damageSource.hasType(damageType):
+			ctx.combat_log.snapshotItemTooltipStat(item, CoreConst.ItemStat.MinDamage)
+			ctx.combat_log.snapshotItemTooltipStat(item, CoreConst.ItemStat.MaxDamage)
+	
+	match damageType:
+		CoreDamageSource.Type.Melee:
+			ctx.combat_log.snapshotCharacterStat(self, Stat.MeleeDmgFactor)
+		CoreDamageSource.Type.Ranged:
+			ctx.combat_log.snapshotCharacterStat(self, Stat.RangedDmgFactor)
+		CoreDamageSource.Type.Effect:
+			ctx.combat_log.snapshotCharacterStat(self, Stat.EffectDmgFactor)
+
+
+# 对齐 Character.gd:1509-1517
+func changeEffectDamageFactor(amount):
+	typedDamageFactors[CoreDamageSource.Type.Effect] += amount
+	typedDamageFactors[CoreDamageSource.Type.Unhealing] += amount
+	for item in items:
+		if item.damageSource != null and item.damageSource.hasType(CoreDamageSource.Type.Effect):
+			ctx.combat_log.snapshotItemTooltipStat(item, CoreConst.ItemStat.MinDamage)
+			ctx.combat_log.snapshotItemTooltipStat(item, CoreConst.ItemStat.MaxDamage)
+	ctx.combat_log.snapshotCharacterStat(self, Stat.EffectDmgFactor)
+
+
+# 对齐 Character.gd:1490-1493
+func changeEmpowerDamage(amount):
+	empowerDamage += amount
+
+
+# ─────────────────────────── 暴击 / 保护 / 抵消（源码补全，对齐 Character.gd:1175-1456） ───────────────────────────
+
+# 对齐 Character.gd:1231-1233
+func changePoisonCritChancePercent(amount):
+	poisonDamageSource.addCritChancePercent(amount)
+
+
+# 对齐 Character.gd:1234-1236
+func changeSpikesCritChancePercent(amount):
+	spikeDamageSource.addCritChancePercent(amount)
+
+
+# 对齐 Character.gd:1439-1442
+func useCritToken():
+	critTokens -= 1
+	ctx.combat_log.snapshotCharacterStat(self, Stat.CritStacks)
+
+
+# 对齐 Character.gd:1282-1286
+func useMana(amount: int, item = null, triggerEvent = null):
+	var event = useStacks(CoreConst.EventType.Mana, amount, item, triggerEvent)
+	
+	return event
+
+
+# 对齐 Character.gd:1450-1452
+func changeProtectionChance(buffType, chance):
+	buffs[buffType].changeCleanseProtectionChance(chance)
+
+
+# 对齐 Character.gd:1453-1456
+func changeBuffProtectionChance(chance):
+	for buff in CoreConst.getBuffs():
+		buffs[buff].changeCleanseProtectionChance(chance)
+
+
+# 对齐 Character.gd:1446-1449
+func changeDebuffProtectionChance(chance):
+	for debuff in CoreConst.getDebuffs():
+		buffs[debuff].changeCleanseProtectionChance(chance)
+
+
+# 对齐 Character.gd:1175-1178
+func changeBuffNullifyChances(chance):
+	for buff in CoreConst.getBuffs():
+		changeResistChance(buff, chance)
+
+
+# 对齐 Character.gd:1179-1182（与上者成对的减益版本；原版以此形状存在）
+func changeDebuffNullifyChances(chance):
+	for debuff in CoreConst.getDebuffs():
+		changeResistChance(debuff, chance)
+
+
+# ─────────────────────────── 战怒 / 无敌查询（源码补全） ───────────────────────────
+
+# 对齐 Character.gd:1585-1587
+func addBattleRageDuration(dur):
+	battleRageBonusDur += dur
+
+
+# 对齐 Character.gd:655-664
+func isVulnerable():
+	return not invulnerable
+
+
 # ─────────────────────────── 每帧驱动 ───────────────────────────
 
-# 对齐 Character.gd:1029-1035：眩晕倒计时递减 + 体力再生
+# 对齐 Character.gd:1029-1035（眩晕倒计时递减 + 体力再生）。
+# 追加三个一次性计时器的物理帧步进：原版由 Character.tscn 里的 Godot Timer 节点驱动
+# （InvulnerabilityTimer / BattleRageTimer / AutoRageTimer，均 one_shot=true）：
+#   InvulnerabilityTimer.timeout → invulnerabilityEnded()
+#   BattleRageTimer.timeout      → endBattleRage()
+#   AutoRageTimer.timeout        → startAutoRage()
+# 内核无 Timer 节点，改为在 60Hz 固定步长里递减，超时点触发**同一个方法**，
+# 因此事件与状态迁移次序与原版一致（唯一差别是计时精度来自定步长，见 gd_core_truth 第 6 节）。
 func physicsTick(delta: float) -> void :
 	if isStunned():
 		stunnedDuration -= delta
@@ -1127,6 +1643,25 @@ func physicsTick(delta: float) -> void :
 			endStun()
 	
 	addStamina(staminaRegen * delta)
+	
+	if _invul_active:
+		_invul_left -= delta
+		if _invul_left <= 0.0:
+			_invul_left = 0.0
+			_invul_active = false
+			invulnerabilityEnded()
+	
+	if _rage_active:
+		_rage_left -= delta
+		if _rage_left <= 0.0:
+			endBattleRage()
+	
+	if _autoRage_active:
+		_autoRage_left -= delta
+		if _autoRage_left <= 0.0:
+			_autoRage_left = 0.0
+			_autoRage_active = false
+			startAutoRage()
 
 
 # Buff 临时栈超时（对齐 Godot Timer 的物理步进）
