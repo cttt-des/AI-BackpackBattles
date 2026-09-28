@@ -11,6 +11,8 @@
 > 2026-09-27 修订：§5 新增陷阱 5（Socket 折叠与访问面枚举）、§6 新增 19（原版死代码照搬）、
 > §7 闸门扩至十道（新增 `GemFacade`）、§8 **判定路径缺口归零**、
 > `lineup_gem_test` 解锁（SKIP 理由经实证为陈旧）
+> 2026-09-28 修订：§6 新增 21（`stun()` 信号派发缺失——本轮唯一实锤联动断点，
+> 已修复并端到端验证）、§6 新增 22（zh 渲染层「以显示」机翻兜底——显示层偏离，不改判定）
 
 ---
 
@@ -450,6 +452,28 @@ Godot 3.x 里 `class_name` 脚本互相引用（含自引用）会报
     即便推进，也发生在**战斗之外**，且被 ① 抹除。
     登记方式：`tools/verify_cooldowns_gd.py` 的 `TENSIONS` 每条运行都会打印这段，
     不隐藏、不静默消除。
+
+21. **★ `stun()` 漏发 `character_stunned` 信号（本轮联动排查唯一实锤断点，已修复）。**
+    原版 `Character.gd:1075-1082` 的 `stun()` 非抵挡分支：
+    `EventBus.emitEvent(self, "character_stunned", event, [event])` —— emitEvent 语义是
+    **记日志 + 定向派发**（先 `logEvent(event)` 再查连接表回调）。内核首版误写成
+    `ctx.bus.logEvent(event)`（只记不派发）→ 订阅方 `Dagger.onStun`（眩晕补刀，全库
+    唯一订阅者，静态对账 40 种信号 × 503 份脚本得出）**静默失效**：眩晕照常发生、
+    日志照常出 Stun 行、零报错——「零报错 ≠ 生效」的又一实证。
+    **修复**：`gd_core/CoreCharacter.gd` 与 `gd_core_py/gd_core/CoreCharacter.py`（手工同步）
+    的 `stun()` 非抵挡分支改回 `ctx.bus.emitEvent(self, "character_stunned", event, [event])`。
+    **验证**：Hammer+Dagger 同侧端到端——眩晕 3 次、`onStun` 触发 3 次（此前 0 次）。
+    **系统性对账**（本轮新增方法）：全库静态扫描「订阅信号 → 原版发射点 → 内核发射点」
+    三方对账 + 动态全家桶连接表审计 + 282 件联动物品逐件「affected 格摆邻居 ×
+    预期信号 ⇒ 连接存在」批量验证，除上述 1 处外**零断点**；转写函数完整性
+    （原版 gd → 直挂 gd → Python py 两段函数集合对账）517 份零缺失。
+
+22. **zh 渲染层：LOG_Activation 机翻「{origin}以显示。」→ 可读兜底「{origin}已激活。」**
+    官方 zh 文本为机翻瑕疵（en = "{origin} activated."）。显示层兜底与 §6 疲劳行
+    （`FatigueDamage` 官方无键）同等待遇：**不影响判定路径，只影响 `engine/log_text.py`
+    的中文渲染**，en 渲染与 JSON 事件流保持原样。同批排查结论：zh 物品名表对
+    runtime 全部 517 件物品零缺失；「激活行无伴随效果行」（如石制护甲
+    `doCooldownEffect` 去除对手不存在的尖刺/充能）为原版同款行为，不是缺陷。
 
 ---
 
