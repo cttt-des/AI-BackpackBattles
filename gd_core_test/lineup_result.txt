@@ -65,6 +65,7 @@
       potion_link_test vs greatsword_tank：win=O t=19.73 php=0 ohp=25 act=11 dmg=11/110.0 heal=3/36.0 gem=0/0.0 fat=5 stun=0
       potion_link_test vs mage_badges：win=P t=26.02 php=38 ohp=0 act=12 dmg=21/113.0 heal=10/80.0 gem=0/0.0 fat=12 stun=0
       potion_link_test vs poison_bow：win=O t=23.82 php=0 ohp=13 act=15 dmg=22/133.0 heal=8/64.0 gem=0/0.0 fat=9 stun=0
+    事件轨迹：56 局 / 4053 条事件 → gd_core_test/event_trace.txt
 
 [4] 确定性：同种子重跑，赢家/血量/时长/事件计数须逐位一致
     复跑 8 组 ✓

@@ -5,7 +5,7 @@ func onDropped(dropRes):
 		dropRes == DropResult.AddedToStorageBox):
 		
 		prepareReplacement()
-		call_deferred("identifyAmulet", dropRes)
+		ctx.defer(self, "identifyAmulet", [dropRes])
 
 
 func identifyAmulet(dropResult):

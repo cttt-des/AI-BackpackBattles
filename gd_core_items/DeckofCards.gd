@@ -72,7 +72,7 @@ func onCombatStart():
 		cardActivations = 0
 		if not cards.empty():
 			
-			cards[0].call_deferred("startActivation")
+			ctx.defer(cards[0], "startActivation", [])
 	activate()
 
 

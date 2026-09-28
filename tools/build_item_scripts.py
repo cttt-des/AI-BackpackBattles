@@ -1418,7 +1418,134 @@ def map_itembook(line: str) -> str:
     return line
 
 
+# ── R9：`call_deferred` → 内核帧末队列 ──
+#
+# 原版 `Object.call_deferred(method, args…)`（Godot 3）与内核 `ctx.defer` 语义对齐：
+# 都「排到帧末执行」（见 CoreCombat.gd 头部注释：按原版 call_deferred 语义延到
+# 帧末 flush）。故这是**映射**而非剥离，控制流零改动。
+#
+# ★ 不映射的后果很隐蔽：GDScript 侧由 Godot 原生提供实现，**看起来完全正常**；
+#   Python 侧没有这个名字 → `NameError: name 'call_deferred' is not defined`。
+#   实测 10 处，其中 2 处（AcornAce / BuytheHolyLight 的 onAddToInventory）在物品
+#   装进背包的当帧就抛。
+_CALL_DEFERRED_RE = re.compile(
+    r"(?<![\w.])"
+    r"(?:(?P<target>[A-Za-z_]\w*(?:\[[^\]]*\])?(?:\.[A-Za-z_]\w*)*)\s*\.\s*)?"
+    r"call_deferred\s*\(")
+
+
+def map_call_deferred(line: str) -> str:
+    """`call_deferred("m", a)` → `ctx.defer(self, "m", [a])`；`x.call_deferred("m")` 的
+    target 从 `self` 换成 `x`。"""
+    out = line
+    while True:
+        m = _CALL_DEFERRED_RE.search(out)
+        if not m:
+            break
+        op = out.index("(", m.end() - 1)
+        cl = match_paren(out, op)
+        if cl < 0:
+            break
+        args = [a.strip() for a in split_top_commas(out[op + 1:cl])]
+        target = m.group("target") or "self"
+        name = args[0] if args and args[0] else '""'
+        rest = [a for a in args[1:] if a]
+        rep = 'ctx.defer(%s, %s, [%s])' % (target, name, ", ".join(rest))
+        out = out[:m.start()] + rep + out[cl + 1:]
+    return out
+
+
+# ── R8：变量名遮蔽继承链方法 ──
+#
+# GDScript 里**成员变量与方法分属两张表**：子类 `var speed` 与基类 `func speed()`
+# 可以共存 —— `self.speed` 取变量、`self.speed()` 调方法（`GDScriptInstance` 的
+# `get` 走 members 表、`call` 走 member_functions 表）。
+# Python 只有一张表：`self.speed = None` 直接**遮蔽**类方法 `speed`，之后内核
+# `CoreItem.getSpeed()` 里的 `self.speed()` 抛
+# `TypeError: 'float' object is not callable`。
+#
+# ★ 判据是**继承链**（含内核 CoreItem 的方法面），不是「名字看起来像」。
+#   实测 4 件：ChessMaster / GirlPower / PerpetuumMobile / Sloth，变量都是 `speed`。
+#   它们没有外部读取者，改的是纯本地名字，不触碰任何跨脚本约定。
+#
+# ★ 为什么不改 `_rt` 让属性不遮蔽方法：`self.x` 与 `self.x()` 在运行期本就无法
+#   区分（同名但语义不同），要区分就得把所有方法调用改走显式派发，侵入面远大于
+#   改一个纯本地变量名。
+#
+# ★ 为什么不改内核方法名：`speed()` / `getSpeed()` 是原版 `Item.gd` 的名字，
+#   内核逐行对齐它们，改名会破坏「与本函数逐行一致」的可核性。
+SHADOW_SUFFIX = "_v"
+
+# 字符串 / 注释的区间（改名时跳过）
+_STR_SPAN_RE = re.compile(
+    r'"(?:[^"\\]|\\.)*"' + r"|'(?:[^'\\]|\\.)*'" + r"|#[^\n]*")
+
+
+def _top_var_names(body: str) -> set:
+    """本文件顶层声明的变量名（含 `onready var`，它转译后会变成顶层 `var`）。"""
+    out = set(re.findall(r"^(?:onready\s+)?var\s+([A-Za-z_]\w*)", body, re.M))
+    out |= set(re.findall(r"^\s*onready\s+var\s+([A-Za-z_]\w*)", body, re.M))
+    return out
+
+
+def chain_func_names(scr: dict) -> dict:
+    """逐脚本算出「继承链上全部 func 名」，走到内核边界时并入 CoreItem 的方法面。"""
+    cache = {}
+
+    def resolve(decl):
+        decl = (decl or "").strip().strip('"')
+        if decl.startswith("res://Items/"):
+            return decl[len("res://Items/"):]
+        if decl.startswith("res://"):
+            return ""                       # 已指向内核侧，交给 core 并集
+        return decl if decl.endswith(".gd") else decl + ".gd"
+
+    core = script_names(os.path.join(ROOT, "gd_core", "CoreItem.gd"))["func"]
+
+    def walk(rel):
+        if rel in cache:
+            return cache[rel]
+        cache[rel] = set()                  # 环保护（先占位再回填）
+        body = scr.get(rel, "")
+        out = set(re.findall(r"^\s*(?:static\s+)?func\s+([A-Za-z_]\w*)",
+                             body, re.M))
+        if rel == ITEM_BASE:
+            out |= core
+        base = resolve(extends_of(body))
+        if base and base in scr:
+            out |= walk(base)
+        elif base or rel == ITEM_BASE:
+            out |= core                     # 走到内核边界
+        cache[rel] = out
+        return out
+
+    for rel in scr:
+        walk(rel)
+    return cache
+
+
+def rename_var(text: str, old: str, new: str) -> str:
+    """把**代码段**里的变量 `old` 改名为 `new`。
+
+    只改「变量引用」：后跟 `(` 的 `old(` 是方法调用，必须原样留着
+    （实测这 4 件物品里没有同名方法调用，但规则要经得起将来）。
+    字符串与注释内的不动（`getP("speed")` 的 key 不能改）。
+    """
+    spans = [(m.start(), m.end()) for m in _STR_SPAN_RE.finditer(text)]
+    pat = re.compile(r"(?<![\w])" + re.escape(old) + r"(?![\w(])")
+
+    def rep(m):
+        s = m.start()
+        for a, b in spans:
+            if a <= s < b:
+                return m.group(0)
+        return new
+
+    return pat.sub(rep, text)
+
+
 def map_symbols(line: str) -> str:
+    line = map_call_deferred(line)
     for k, v in PRE_MAP.items():
         line = re.sub(r"(?<![\w.])" + re.escape(k) + r"\b", v, line)
     for k, v in GAME_STATIC_MAP.items():
@@ -1827,8 +1954,18 @@ def main() -> int:
     shell_dropped = collections.Counter()   # R3b 丢弃的壳成员 → 次数
     shim_dropped = ([], [])                 # 适配层被内核覆盖丢弃的 (函数, 声明)
 
+    # R8：撞名变量消歧表（必须先于一切转译 —— 后续所有处理都读改过名的 body）
+    _chain = chain_func_names(scr)
+    shadow_map = {rel: (_top_var_names(body) & _chain.get(rel, set()))
+                  for rel, body in scr.items()}
+    shadow_map = {r: s for r, s in shadow_map.items() if s}
+    shadow_renamed = []
+
     for rel in work:
         body = scr[rel]
+        for _n in sorted(shadow_map.get(rel, ())):
+            body = rename_var(body, _n, _n + SHADOW_SUFFIX)
+            shadow_renamed.append((rel, _n))
         inner, body = extract_inner_classes(body)
         funcs, _top_end, _lines = split_functions(body)
         decls = collect_top_decls(body)

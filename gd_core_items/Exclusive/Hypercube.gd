@@ -5,7 +5,7 @@ func onDropped(dropRes):
 		dropRes == DropResult.AddedToStorageBox):
 		
 		prepareReplacement()
-		call_deferred("replaceWithCubes", dropRes)
+		ctx.defer(self, "replaceWithCubes", [dropRes])
 
 
 func replaceWithCubes(dropResult):

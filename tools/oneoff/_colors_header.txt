@@ -1,0 +1,16 @@
+# -*- coding: utf-8 -*-
+"""_colors.py — Godot 3.6-stable 的具名色表（手写文件，不被 tools/gd_to_py.py 覆盖）。
+
+来源：`core/color_names.inc @ 3.6-stable` 的 `Color::hex(0xRRGGBBAA)` 表，
+由 output/fetch_color_table.py 自动抽取。**不凭记忆写** —— 146 条 X11 色名手抄
+极易串值，而串值不会报错，只会让颜色悄悄变错、且很难回查。
+通道值按 `Color::hex` 的除法复算并**按 float32 舍入**（引擎里是 `p_r / 255.0f`）。
+
+用途：GDScript 写 `Color.white` 这类静态具名颜色。本项目实测只用到 `white`
+（gd_core_items/Item.gd:352 `var defaultColor = Color.white`），但整表一并生成，
+免得下次换个色名再炸一轮。
+★ 注意 `Color("transparent")`（具名查表 → (1,1,1,0)）与 GDScript 里的
+  `Color.transparent` 不是一回事：核对 color.h @ 3.6-stable，**并无**该静态常量
+  （只有具名表里那一条），故本表不做特殊化，也不需要。
+"""
+

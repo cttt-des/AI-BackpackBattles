@@ -298,6 +298,16 @@ func canActivate() -> bool:
 # ─────────────────────── 冷却（对齐 3742-3812, 4438-4451） ───────────────────────
 
 func getSpeed() -> float:
+	# ★ 对齐 Item.gd:3743-3744 的覆盖短路。此前本函数漏了这两行，属**遗漏**而非
+	#   有意剥离 —— 同族分支（MinDamage/MaxDamage/Accuracy/Chance/StaminaCost/
+	#   BaseCooldown）在内核里都保留了。唯一写入方是 CombatLog.gd:612 的
+	#   日志回放路径（`item.setStat(stat, statLogger.getItemStatAt(...))`），
+	#   战斗中 statDisplayOverrides 恒为 null，故补回是零行为变化；
+	#   但缺了它，「内核与本函数逐行一致」这句话就不成立。
+	#   由 tools/verify_cooldowns_gd.py 的 A 段守住（该段逐行对照）。
+	var override = statDisplayOverrides[CoreConst.ItemStat.Speed]
+	if override: return override
+	
 	if hasCharacter():
 		var speed_ = speed() + getStackSpeedMods()
 		var modifiedSpeed: float

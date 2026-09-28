@@ -50,7 +50,7 @@ func startHatching():
 
 
 func hatch():
-	call_deferred("hatch_deferred")
+	ctx.defer(self, "hatch_deferred", [])
 
 
 func hatch_deferred():

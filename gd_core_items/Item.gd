@@ -1089,7 +1089,7 @@ func startFusing(delay = PRE_FUSE_DUR):
 		disablePicking()
 		for bonded in bondedIngredients:
 			if curRecipe == null or not curRecipe.isNeighborCatalyst(bonded):
-				bonded.call_deferred("disablePicking")
+				ctx.defer(bonded, "disablePicking", [])
 				bonded.willBeConsumed = true
 
 

@@ -4,7 +4,7 @@ var staminaUsed: = 0.0
 var stamina
 var buffRefund
 var staminaRefund
-var speed
+var speed_v
 
 func canAffect(item):
 	return item.isClassItem(CoreConst.Classes_Full.Engineer)
@@ -18,7 +18,7 @@ func onPrepare():
 	connectForCombat(character(), "character_used_stamina", "onStaminaUsed")
 	staminaUsed = 0
 	
-	addSpeed(speed * getNumAffectedItems())
+	addSpeed(speed_v * getNumAffectedItems())
 
 
 func onCombatStart():
@@ -56,4 +56,4 @@ func _readyInit():
 	stamina = getP("stamina")
 	buffRefund = getP("refund_buffs") / 100.0
 	staminaRefund = getP("refund_stamina") / 100.0
-	speed = getP("speed") / 100.0
+	speed_v = getP("speed") / 100.0
