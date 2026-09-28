@@ -46,7 +46,7 @@ def _is_debuff(t: int) -> bool:
 #   LOG_CriticalResisted/LOG_TemporaryMaxHealth 均不存在，Util.tra 缺键返回 ""）
 #   → 原版 UI 这些行显示为空文本；此处保留可读兜底并在分支处登记。
 TEMPLATES = {
-    "Activation":        ("{origin} activated.", "{origin}以显示。"),   # zh 官方原文（机翻瑕疵照搬）
+    "Activation":        ("{origin} activated.", "{origin}已激活。"),   # zh 官方为「{origin}以显示。」（机翻瑕疵）→ 可读兜底，已登记
     "DealDamage":        ("Dealt {damage} damage ({origin}).", "造成{damage}点伤害（{origin}）。"),
     "CriticalDamage":    ("Dealt {damage} critical damage ({origin}).", "造成{damage}点暴击伤害（{origin}）。"),
     "MissedAttack":      ("Missed an attack ({origin}).", "攻击落空（{origin}）。"),

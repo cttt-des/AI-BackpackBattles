@@ -777,7 +777,10 @@ func stun(duration, item = null, triggerEvent = null) -> void :
 	else:
 		stunnedDuration = max(stunnedDuration, duration)
 		var event = ctx.combat_log.createEvent_Stun(item, duration, playerId, triggerEvent)
-		ctx.bus.logEvent(event)
+		# 对齐原版 Character.gd:1080：emitEvent = 记日志 + 定向派发，
+		# 订阅方 Dagger.onStun 等靠它触发；此前误写成 logEvent（只记不派发）
+		# → 眩晕触发型物品全部静默失效。
+		ctx.bus.emitEvent(self, "character_stunned", event, [event])
 		ctx.hooks.playStunAnimation(self, duration)
 
 
