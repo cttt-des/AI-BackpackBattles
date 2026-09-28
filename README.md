@@ -24,7 +24,7 @@
 
 | 版本 | 文件 | 说明 |
 |------|------|------|
-| **v0.1.2** | [`BackpackSimulator_v0.1.2.exe`](https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.1.2/BackpackSimulator_v0.1.2.exe) | 战斗模拟器（阵容对战 / 蒙特卡洛胜率 / 物品联动） |
+| **v0.3.0** | [`BackpackSimulator_v0.3.0.exe`](https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.3.0/BackpackSimulator_v0.3.0.exe) | 战斗模拟器（阵容对战 / 蒙特卡洛胜率 / 物品联动） |
 | **v0.1.1** | [`BackpackAI_v0.1.1.exe`](https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.1.1/BackpackAI_v0.1.1.exe) | 外挂 AI 主程序（自动游玩 GUI） |
 
 开发版模拟器随每次改动重新打包为 `dist/BackpackSimulator.exe`（不带版本号）。
