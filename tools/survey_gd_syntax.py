@@ -180,12 +180,17 @@ CLAIMS = [
     # ★ 取 head["static"]：正则交替 `[A-Za-z_]\w*|static\s+func` 里前者先生效，
     #   故 `static func` 一律归入 "static" 桶（两者合计 38）。
     ("static / static func 行数",    lambda s: s["head"]["static"], 38),
-    ("String 格式化 % 行数",          lambda s: s["expr"]["% 字符串格式化"], 1),
+    # ★ 曾为 1（`"_stacks_changed_%d" % stackType`）；2026-09-28 该行改为
+    #   EventType 反查拼接（修 Buff 信号名断裂）→ 全库归 0
+    ("String 格式化 % 行数",          lambda s: s["expr"]["% 字符串格式化"], 0),
     ("is 类型检查 行数",              lambda s: s["expr"]["is 类型检查"], 24),
-    (".new( 行数",                   lambda s: s["expr"][".new("], 54),
+    # ★ 54→55 / 62→64 / 55→56：SALVAGE_FUNCS 点名抢救（MagicRing.sortEffects/
+    #   randEffects 等）给产物新增了真实代码行 —— RingEffect.new()、
+    #   ringTypes/effects.push_back、stones.empty() 等回归产物。
+    (".new( 行数",                   lambda s: s["expr"][".new("], 55),
     (".size() 调用次数",             lambda s: s["calls"]["size"], 63),
-    (".push_back() 调用次数",        lambda s: s["calls"]["push_back"], 62),
-    (".empty() 调用次数",            lambda s: s["calls"]["empty"], 55),
+    (".push_back() 调用次数",        lambda s: s["calls"]["push_back"], 64),
+    (".empty() 调用次数",            lambda s: s["calls"]["empty"], 56),
     ("Vector2 出现次数",             lambda s: s["occ"]["Vector2"], 198),
     ("Color 出现次数",               lambda s: s["occ"]["Color"], 51),
     ("Vector3 出现次数",             lambda s: s["occ"]["Vector3"], 0),

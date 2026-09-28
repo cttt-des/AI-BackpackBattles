@@ -17,12 +17,15 @@ gd_core_py/。转写是机械的（不做任何逻辑改写），保真的判据
   · yield / preload / setget / ** 幂 / @装饰器        —— 代码内 **0 处**
     （`onready` 9 处、`add_child` 2 处只是**注释**里的提及，代码内也是 0）
   · 场景树（$路径 / get_node / add_child）            —— 代码内 **0 处**
-  · String 格式化 `%`                                —— **1 处**
-    （`CoreCharacter.gd:209` 的 `"_stacks_changed_%d" % stackType`）
+  · String 格式化 `%`                                —— **0 处**
+    （唯一一处 `"_stacks_changed_%d" % x` 已于 2026-09-28 改为 EventType
+     反查拼接修 Buff 信号名断裂，见 gd_core/CoreCharacter.gd）
   · match 20 行、enum 55 行、signal 9 行、内嵌 class 8 行、static 38 行
-  · is 类型检查 24 行、`.new(` 54 行
-  · 内建容器方法（调用次数）：size 63 / push_back 62 / empty 55 / clear 44 /
-    erase 26 / values 11 / duplicate 8（同类合计 394 次）
+  · is 类型检查 24 行、`.new(` 55 行
+  · 内建容器方法（调用次数）：size 63 / push_back 64 / empty 56 / clear 44 /
+    erase 26 / values 11 / duplicate 8
+    （★ 55/64/56 为 SALVAGE_FUNCS 点名抢救 MagicRing 等后新口径，
+     断言见 tools/survey_gd_syntax.py CLAIMS）
   · Vector2 **138 行 / 198 次**（含 INF、算符、.x/.y）；Vector3 **0 次**
 其余行与 Python 同形（if/for/while/return/缩进/注释）。
 

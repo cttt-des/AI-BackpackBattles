@@ -123,7 +123,31 @@ class Exclusive__MagicRing(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def sortEffects(self):
-		pass
+		self.gainedStacks = 0
+		self.effectDict.clear()
+		self.ringTypes.clear()
+
+		effectI = 0
+		for effect in _iter(self.effects):
+			effectI += 1
+
+		if not self.isOnlyForDisplay():
+
+			for effect in _iter(self.effects):
+				self.ctx.util.dictAppend(self.effectDict, effect.triggerType, effect)
+
+				self.gainedStacks |= 2 << (effect.stackType - _R.C("CoreConst").EventType.Lucky)
+
+				newType = self.stackToTypes[effect.stackType]
+				if not newType in self.ringTypes:
+					self.ringTypes.append(newType)
+
+
+			if self.inventory != None:
+				self.inventory.onItemTypeChanged(self)
+		else:
+			pass
+
 
 	def getTypes(self):
 		return super().getTypes() + self.ringTypes
@@ -154,7 +178,21 @@ class Exclusive__MagicRing(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def randEffects(self, clearIfOnlyDisplay=True):
-		pass
+		self.effects.clear()
+
+		for i in _iter(self.numEffects):
+			effect = RingEffect()
+			self.effects.append(effect)
+			effect.triggerType = self.ctx.rng.randi_range(0, 3)
+			effect.stackType = self.ctx.rng.randi_range(_R.C("CoreConst").EventType.Lucky, 
+				_R.C("CoreConst").EventType.Cold)
+
+
+		self.sortEffects()
+
+		if clearIfOnlyDisplay and self.isOnlyForDisplay():
+			self.effects.clear()
+
 
 	def getScaledParam(self, stackName, paramScale):
 		return round(self.getP(stackName) * paramScale)
@@ -232,6 +270,17 @@ class Exclusive__MagicRing(_R.C("res://gd_core_items/Item.gd")):
 		self.opponentHealthThreshold = _div(self.getP('healtht_opp'), 100.0)
 		self.stones = []
 		self.symbols = []
+		if (not self.stones):
+			for i in _iter(self.numEffects):
+				pass
+
+		if self.ownerType == _R.C("CoreConst").Owner.ItemLibrary:
+			pass
+		else:
+
+			if not self.wasJustCrafted:
+				self.randEffects()
+
 
 Exclusive__MagicRing.RingEffect = RingEffect
 

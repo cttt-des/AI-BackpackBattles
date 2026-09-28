@@ -183,17 +183,10 @@ class BattleSimulatorGUI:
         ttk.Button(ctrl, text='开始战斗', command=self._start_battle).pack(side=tk.LEFT, padx=(14, 0))
         ttk.Button(ctrl, text='保存日志', command=self._save_logs).pack(side=tk.LEFT, padx=4)
 
-        # 战斗内核：默认自研 engine/；gd_core = 原版逻辑 1:1 移植内核
-        ttk.Label(ctrl, text='内核:').pack(side=tk.LEFT, padx=(14, 0))
-        self.engine_var = tk.StringVar(value='自研（engine）')
-        self.engine_choices = {
-            '自研（engine）': 'engine',
-            '原版移植（gd_core）': 'gd_core',
-            '旧内核（simulator）': 'simulator',
-        }
-        ttk.Combobox(ctrl, textvariable=self.engine_var, width=16,
-                     values=list(self.engine_choices.keys()),
-                     state='readonly').pack(side=tk.LEFT, padx=4)
+        # 战斗内核（唯一）：gd_core = 原版逻辑 1:1 移植内核；旧内核已下线，
+        # 不再提供选择框。engine_var/choices 保留固定值以免下游引用断裂。
+        self.engine_var = tk.StringVar(value='原版移植（gd_core）')
+        self.engine_choices = {'原版移植（gd_core）': 'gd_core'}
 
         # 日志语言（复刻原版：默认英文）
         ttk.Label(ctrl, text='语言:').pack(side=tk.LEFT, padx=(14, 0))
@@ -332,7 +325,7 @@ class BattleSimulatorGUI:
         self.log_box.configure(state=tk.DISABLED)
         lang = self.lang_choices.get(self.lang_var.get(), 'en')
         self.current_lang = lang
-        engine = self.engine_choices.get(self.engine_var.get(), 'engine')
+        engine = self.engine_choices.get(self.engine_var.get(), 'gd_core')
         self.current_engine = engine
         self._log(f'⚔ {na}（玩家）vs {nb}（对手）\n')
         self._log(f'种子={seed if seed is not None else "随机"}  场数={runs}  '
@@ -344,7 +337,7 @@ class BattleSimulatorGUI:
                              daemon=True)
         t.start()
 
-    def _run_battle(self, pa, pb, seed, runs, na, nb, lang, engine='engine'):
+    def _run_battle(self, pa, pb, seed, runs, na, nb, lang, engine='gd_core'):
         try:
             player = load_lineup(pa)
             opponent = load_lineup(pb)

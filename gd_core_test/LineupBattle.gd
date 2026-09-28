@@ -461,13 +461,15 @@ func test_fixture_shape() -> void:
 	check(bad.empty(), "类型/标签未转成 int：" + str(bad))
 
 	# 占格：必须落在背包内（7 行 × 10 列）、不得重复
+	# ★ 坐标系 Vector2(x=col, y=row)：x 上限 10（列），y 上限 7（行）
+	#   （2026-09-28 occupied 坐标修复后与 run_gd_py.py 同步）
 	for name in LineupFixture.LINEUPS.keys():
 		var lu: Dictionary = LineupFixture.LINEUPS[name]
 		var seen := {}
 		var out_of_bounds := 0
 		for e in lu["items"]:
 			for c in e["occupied"]:
-				if int(c[0]) < 0 or int(c[0]) >= 7 or int(c[1]) < 0 or int(c[1]) >= 10:
+				if int(c[0]) < 0 or int(c[0]) >= 10 or int(c[1]) < 0 or int(c[1]) >= 7:
 					out_of_bounds += 1
 				var k = str(c[0]) + "," + str(c[1])
 				if seen.has(k):

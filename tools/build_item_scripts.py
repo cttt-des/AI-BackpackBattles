@@ -1596,6 +1596,108 @@ def stub_body(header: str) -> str:
     return pad + "return null"
 
 
+# ═════════ 抢救机制（2026-09-28 联动修复）═════════
+#
+# 整函数剥离有两类**误伤**：函数体「视觉 + 判定」混排时（如 MagicRing.sortEffects
+# 的 stones/symbols 贴图染色 + effectDict 构建），按节点模态/残留符号把**整个函数**
+# 剥成空桩，会把判定逻辑一起清零 —— MagicRing 由此整件死掉（effectDict 恒空，
+# onCombatStart/doCooldownEffect 空转，0 次激活）。
+#
+# SALVAGE_FUNCS 是**点名名单**：这些函数不做整函数剥离，改走行级抢救 ——
+#   ① map_symbols 先行（Util.rng→ctx.rng 等映射后的口径才准）；
+#   ② 逐行 classify_line：pure（纯视觉）丢、mixed（模态进条件/返回值）丢；
+#   ③ 残留符号 / 壳成员 / 本函数内先前被丢局部名的悬空引用 → 连带丢；
+#   ④ ensure_blocks_nonempty 补空块；整体再过一遍残留+模态终检，不过回退空桩。
+#
+# ★ 名单是**审计驱动**的（tools/audit_stripped_funcs.py，带正对照）：
+#   只有「被剥前含判定语句、且判定路径在战斗里可达」的函数才进名单。
+#   不做全局开放 —— 行级丢弃可能漏掉跨语句的数据流依赖，点名 + 闸门兜底。
+SALVAGE_FUNCS = {
+    ("MagicRing.gd", "sortEffects"),
+    ("MagicRing.gd", "randEffects"),
+    ("ManaOrb.gd", "onManaChanged"),
+    ("AmuletofDarkness.gd", "onItemActivated"),
+    ("ChessPiece.gd", "onEliminatedBy"),
+}
+
+# 抢救时的**额外节点模态**：非 onready、但在 `_ready` 里从场景节点取值的成员
+# （`stones.push_back(sprite.get_node("Stone1"))`）。内核里它们恒为空容器，
+# 任何解引用都会崩 → 视觉行必须丢。
+SALVAGE_EXTRA_MODALS = {
+    "MagicRing.gd": {"stones", "symbols", "triggerTypeSymbols"},
+}
+
+# `_ready` 合并（R3）里启用「行级残留符号丢弃」的文件：只有它们带
+# 「if ownerType == ItemLibrary: Game.itemLibrary.connect(...) else: randEffects()」
+# 这类「残留符号与判定同语句」的形态。内核里 ownerType 恒非 ItemLibrary
+# （装配只设 PlayerInventory / Opponent），丢弃 connect 行为后 else 支即
+# 原版战斗语义。
+SALVAGE_READY_FILES = {"MagicRing.gd"}
+
+
+def salvage_body(rel: str, keep_header: str, blines: list, in_file: set,
+                 inner_names: set = ()):
+    """行级抢救（语句分组判定）。成功返回函数全文（头+体），失败返回 None。
+
+    语句级而非逐行：多行语句（折行写参数）整条判定，否则首行被丢、
+    续行成孤儿（randEffects 的 `randi_range(Lucky, \n Cold)` 实测过）。
+    """
+    extra = SALVAGE_EXTRA_MODALS.get(os.path.basename(rel))
+    allowed = in_file | set(inner_names)
+    dropped_local = set()
+    out = []
+    for kind, raw, rewritten in classify_statements(blines, extra):
+        mapped = [map_symbols(x) for x in raw]
+        text = strip_str_comments("\n".join(mapped))
+        s = text.strip()
+        if not s:
+            out.extend(mapped)
+            continue
+        mvar = re.match(r"^\s*(?:var\s+)?([A-Za-z_]\w*)\s*:?=", s)
+        first = re.match(r"^\s*(?:var\s+)?([A-Za-z_]\w*)", s)
+        if kind == "pure":
+            if first:
+                dropped_local.add(first.group(1))
+            continue
+        names = set(re.findall(r"(?<![\w.])([A-Za-z_]\w*)", s))
+        drop = (names & dropped_local or kind == "mixed"
+                or residual_symbols(text, allowed)
+                or touches_shell_member(text))
+        if drop:
+            if mvar:
+                dropped_local.add(mvar.group(1))
+            continue
+        if kind == "keep":
+            out.extend(map_symbols(x) for x in rewritten)
+        else:
+            out.extend(mapped)
+    if not any(l.strip() for l in out):
+        return None
+    body = ensure_blocks_nonempty([keep_header] + out)[1:]
+    text = "\n".join([keep_header] + body)
+    if (residual_symbols(strip_str_comments(text), allowed)
+            or touches_shell_member(text)
+            or has_node_modal(strip_str_comments(text), extra)):
+        return None
+    return text
+
+
+def salvage_ready_lines(rel: str, lines: list, in_file: set):
+    """R3 合并中的行级残留符号丢弃（只对 SALVAGE_READY_FILES 生效）。
+
+    输入是**已映射**的语句行；逐行丢「引用残留符号」的行，
+    其余原样保留（含块头），空块由 ensure_blocks_nonempty 兜底。
+    返回 None = 全丢。
+    """
+    out = []
+    for line in lines:
+        code = strip_str_comments(line)
+        if code.strip() and residual_symbols(code, in_file):
+            continue
+        out.append(line)
+    return out if any(l.strip() for l in out) else None
+
+
 # 父类调用：GDScript 用**行首点号**调父实现（原版 `Bag.gd:79` 的
 # `.addToInventory(_inventory, _occupiedCells, _placedByPlayer)`）。
 PARENT_CALL_RE = re.compile(r"^\s*\.\s*[A-Za-z_]\w*\s*\(")
@@ -2089,6 +2191,14 @@ def main() -> int:
             kinds = [s[0] for s in stmts]
             if "mixed" in kinds:
                 keep_header = clean_header_defaults(map_symbols(header), in_file, type_scope)
+                # ── 抢救：点名函数不整函数剥离，走行级视觉/残留丢弃 ──
+                if (os.path.basename(rel), name) in SALVAGE_FUNCS:
+                    sal = salvage_body(rel, keep_header, blines, in_file,
+                                       {n for n, _ in inner})
+                    if sal is not None:
+                        new_funcs.append([sal, name])
+                        stats["func_salvaged"] += 1
+                        continue
                 new_funcs.append(["%s\n%s" % (keep_header,
                                               stripped_body(keep_header, blines)), name])
                 bad = stmts[kinds.index("mixed")][1]
@@ -2127,6 +2237,15 @@ def main() -> int:
                           and "ctx." in func_text)
             if res or static_ctx or dangling:
                 keep_header = clean_header_defaults(map_symbols(header), in_file, type_scope)
+                # ── 抢救：点名函数不整函数剥离，走行级视觉/残留丢弃 ──
+                sal = None
+                if not static_ctx and (os.path.basename(rel), name) in SALVAGE_FUNCS:
+                    sal = salvage_body(rel, keep_header, blines, in_file,
+                                       {n for n, _ in inner})
+                if sal is not None:
+                    new_funcs.append([sal, name])
+                    stats["func_salvaged"] += 1
+                    continue
                 new_funcs.append(["%s\n%s" % (keep_header,
                                               stripped_body(keep_header, blines)), name])
                 if static_ctx:
@@ -2182,6 +2301,14 @@ def main() -> int:
                     continue
                 src = rewritten if kind == "keep" else raw
                 ready_kept.extend(map_symbols(x) for x in src)
+            # ── 抢救（SALVAGE_READY_FILES）：行级丢弃引用残留符号的行。
+            #    Game.connect 连的是场外流程信号（内核永不派发），丢行后
+            #    空的 if 分支由 ensure_blocks_nonempty 补 pass，
+            #    else 分支（`if not wasJustCrafted: randEffects()`）得以保留。
+            if os.path.basename(rel) in SALVAGE_READY_FILES and ready_kept:
+                pruned = salvage_ready_lines(rel, ready_kept, in_file)
+                if pruned is not None:
+                    ready_kept = pruned
             # 用「伪头部」给 ensure_blocks_nonempty 提供缩进上下文，
             # 使被掏空的子块（`if not pooled:` 下面全被剥掉）补上 `pass`。
             ready_kept = ensure_blocks_nonempty(
@@ -2257,6 +2384,7 @@ def main() -> int:
     rep.append("函数保留 %d" % stats["func_kept"])
     rep.append("  整函数剥离 —— 节点模态 %d、残留符号 %d" %
                (stats["func_stripped_modal"], stats["func_stripped_residual"]))
+    rep.append("  行级抢救（SALVAGE_FUNCS 点名）%d 个" % stats["func_salvaged"])
     rep.append("视觉行删除 %d、视觉调用剥成 null %d" %
                (stats["line_dropped"], stats["line_rewritten"]))
     rep.append("onready：表达式求值保留 %d、视觉节点引用删除 %d" %

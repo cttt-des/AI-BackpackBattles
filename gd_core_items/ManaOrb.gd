@@ -26,7 +26,13 @@ func onItemActivated(event):
 
 
 func onManaChanged(amount, triggerEvent):
-	pass
+	if not activated and amount > 0 and character().getMana() >= manaNeeded:
+		setState(true)
+		var event = useMana(manaNeeded, triggerEvent)
+		giveRandomBuffs(buffs + bonusBuffs, event, stackTypes)
+		activate()
+		
+
 
 func onShopEntered():
 	onStateChanged(false)

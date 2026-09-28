@@ -542,10 +542,11 @@ KITEMS = os.path.join(ROOT, "gd_core_items")
 # 必须命中本台账：给出**机制**，并且工具会去物品脚本里核实该机制确实存在
 # （双向核验：台账项没出现 = 陈旧；出现但脚本里查无此机制 = 台账在掩盖）。
 D2_ALLOW = [
-    ("Dragon Knight", r"advanceCooldownPercent",
-     "onItemActivated → advanceCooldownPercent(cdAdvance)：由物品效果按百分比推进自身冷却，"
-     "推进量 reduction = amount/100 × iterationCooldown，触发发生在**这一路**而不是"
-     "δ×getSpeed 那一步，故帧边界上反算不出单步公式。该路径本身在 A 段逐行对照过。"),
+    # ★ 2026-09-28 移除 ("Dragon Knight", advanceCooldownPercent)：
+    #   其触发前提是邻居物品激活（onItemActivated），occupied 坐标修复后
+    #   单件上场场景邻居关系变正确 → 无激活邻居 → 该路径不再出现。
+    #   机制本身在 A 段逐行对照覆盖（advanceCooldownPercent/advanceCooldownSeconds
+    #   27 对函数），D1 帧恒等式持续成立。
     ("Robodog", r"setBaseCooldown|updateBaseCooldown",
      "doCooldownEffect → setBaseCooldown(baseCooldownOverride + cdIncrease) → updateBaseCooldown："
      "同一帧里先走 trigger()（+iterationCooldown）再走比例缩放（×新ic/旧ic），"

@@ -288,7 +288,11 @@ def placement_of(key: str, entry: dict, row: int, col: int, rot: int) -> dict:
     minx = min(c[0] for c in rotated)
     miny = min(c[1] for c in rotated)
 
-    occupied = sorted({(c[1] - miny + row, c[0] - minx + col) for c in rotated})
+    # ★ occupied 与 collision/affected 必须同一坐标系（Vector2(x=col, y=row)）。
+    #   此前 (c[1]..row, c[0]..col) 行列互换 → filledCells 键与 affected 查询格
+    #   错位，1×1 物品邻接联动（getAffectedItems）恒空且零报错（两侧同源偏差，
+    #   双引擎逐事件对照抓不到——两侧用同一套装配）。
+    occupied = sorted({(c[0] - minx + col, c[1] - miny + row) for c in rotated})
     collision = [(c[0] - minx + col, c[1] - miny + row) for c in rotated]
 
     affected = {}

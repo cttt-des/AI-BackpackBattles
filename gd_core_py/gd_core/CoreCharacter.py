@@ -201,7 +201,21 @@ class CoreCharacter(GodotObject):
 
 		for stackType in _iter(_R.C("CoreConst").getStacks()):
 			buff = _R.C("CoreBuff")()
-			buff.init(stackType, self, _gd_fmt('_stacks_changed_%d', stackType))
+			# 对齐原版 Character.gd:168 + Game.gd:512（eventTypeKeys =
+			# invertDictionary(EventType)）：Buff 栈变化信号名 =
+			# "character_" + 类型名.to_lower() + "_changed"。
+			# ★ 物品脚本（ManaOrb/Crown/DjinnLamp/Pop/WaterElemental/Sapphire/
+			#   HolySpear 等）订阅 "character_mana_changed" 等名字 —— 此前内核写
+			#   "_stacks_changed_%d" 无任何订阅者，全部 character_*_changed 订阅
+			#   静默失效（联动不触发的根因之二；CoreConst 未内建 eventTypeKeys，
+			#   故就地线性反查，仅初始化一次）
+			_stack_type_name = "unknown"
+			for _k in _iter(_R.C("CoreConst").EventType):
+				if _R.C("CoreConst").EventType[_k] == stackType:
+					_stack_type_name = _k
+					break
+			buff.init(stackType, self,
+				"character_" + _stack_type_name.lower() + "_changed")
 			self.buffs[stackType] = buff
 
 		self.curHealth = self.maxHealth
