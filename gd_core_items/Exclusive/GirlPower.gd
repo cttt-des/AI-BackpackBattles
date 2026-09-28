@@ -1,7 +1,7 @@
 extends Item
 var empower
 var regen
-var speed
+var speed_v
 
 func isAffectingDistinct(color = CoreConst.Affected.Primary) -> bool:
 	return color == CoreConst.Affected.Primary
@@ -12,7 +12,7 @@ func canAffect(item):
 
 
 func onPrepare():
-	addSpeed(speed * getNumDistinctAffectedItems())
+	addSpeed(speed_v * getNumDistinctAffectedItems())
 
 
 func doCooldownEffect():
@@ -39,4 +39,4 @@ func _readyInit():
 	._readyInit()
 	empower = int(getP("empower"))
 	regen = int(getP("regen"))
-	speed = int(getP("speed")) / 100.0
+	speed_v = int(getP("speed")) / 100.0

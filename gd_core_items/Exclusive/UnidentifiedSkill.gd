@@ -10,7 +10,7 @@ func onDropped(dropRes):
 		
 		prepareReplacement()
 		var skill = skillPool.pick_random()
-		call_deferred("identifySkill", dropRes, skill)
+		ctx.defer(self, "identifySkill", [dropRes, skill])
 
 
 func identifySkill(dropResult, skillDescriptor):
@@ -45,5 +45,5 @@ func _readyInit():
 	._readyInit()
 	connect("dropped", self, "onDropped")
 	if ownerType == CoreConst.Owner.Shop:
-		call_deferred("getSkillPool")
+		ctx.defer(self, "getSkillPool", [])
 

@@ -7,7 +7,7 @@ func onDropped(dropRes):
 		dropRes == DropResult.AddedToStorageBox):
 		
 		prepareReplacement()
-		call_deferred("generateItems", dropRes)
+		ctx.defer(self, "generateItems", [dropRes])
 
 
 func generateItems(dropResult):

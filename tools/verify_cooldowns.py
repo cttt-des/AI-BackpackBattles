@@ -1,6 +1,12 @@
 # -*- coding: utf-8 -*-
 """全物品冷却验证 v2：固定冷却 + 速度修正对齐。
 
+★★ 本工具的对象是 **`simulator/` 那份手写引擎**，不是 `gd_core` 内核。
+    `gd_core` 的冷却等价校验在 `tools/verify_cooldowns_gd.py`（流水线闸门 16）——
+    两者同名不同物，**勿混用**：本工具所处的 `simulator/` 返回**固定 cd**，
+    而 `gd_core/` 与 `engine/` 照搬原版 `cd × randf_range(0.95, 1.05)`。
+    冷却语义三方分歧的完整说明见 docs/gd_core_truth.md 与 memory/MEMORY.md。
+
 验证方法（每物品单独上场 vs 空手对手）：
 1. 用 Item 状态链计算期望首触发 = pre_combat_start 的 trigger_time / combat_start 后的 get_speed()
    （对齐 Item.gd：preCombatStart 设 triggerTime=cd，combatStart 的 onCombatStart 可能加 heat/cold

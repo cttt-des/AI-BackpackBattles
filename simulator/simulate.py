@@ -23,9 +23,16 @@ from typing import Dict, List, Optional
 from .data import load_items, load_characters
 from .lineup import load_lineup, LineupError, resolve_items
 
-# 战斗内核：默认新引擎 engine/（fail-fast + 惰性日志）；--engine simulator
-# 可回退旧内核（回归对照用）。两引擎 CombatEngine 构造/run/summary/result_json 面一致。
-ENGINES = ("engine", "simulator")
+# 战斗内核：
+#   engine    = 新引擎 engine/（fail-fast + 惰性日志），默认
+#   simulator = 旧内核（回归对照用），--engine simulator 回退
+#   gd_core   = 原版战斗逻辑 1:1 移植内核 gd_core_py（由原版 .gde 逆向 →
+#               gd_core/ 无头内核 → tools/gd_to_py.py 机械转写而成）。
+#               已用 gd_core_test/lineup_result.txt 的 56 局 Godot 基准逐字符校验
+#               （tools/check_gd_core_engine.py）。物品数据来自自带的
+#               assets/gd_core_runtime.json，item_db/character_db 不参与。
+# 三者的 CombatEngine 构造 / run / summary / result_json / log 面一致。
+ENGINES = ("engine", "simulator", "gd_core")
 DEFAULT_ENGINE = "engine"
 
 
@@ -34,6 +41,9 @@ def _get_combat_engine(name: str = DEFAULT_ENGINE):
         from engine.combat import CombatEngine
         from engine.data import load_items as _li, load_characters as _lc
         return CombatEngine, _li, _lc
+    if name == "gd_core":
+        from .gd_core_engine import GDCoreEngine
+        return GDCoreEngine, load_items, load_characters
     from .combat import CombatEngine
     return CombatEngine, load_items, load_characters
 
@@ -125,7 +135,8 @@ def main(argv: Optional[List[str]] = None) -> int:
     ap.add_argument('--runs', type=int, default=1, help='模拟场数（>1 为蒙特卡洛，只输出统计）')
     ap.add_argument('--max-time', type=float, default=90.0, help='最大战斗时长（秒）')
     ap.add_argument('--engine', choices=ENGINES, default=DEFAULT_ENGINE,
-                    help='战斗内核：engine=新（默认），simulator=旧（回归对照）')
+                    help='战斗内核：engine=自研新（默认），simulator=自研旧（回归对照），'
+                         'gd_core=原版逻辑 1:1 移植内核（56 局 Godot 基准已逐字符校验）')
     ap.add_argument('--verbose', action='store_true', help='打印详细结果')
     args = ap.parse_args(argv)
 

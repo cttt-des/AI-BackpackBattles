@@ -1,6 +1,6 @@
 extends Item
 var awakenNow: = false
-var speed
+var speed_v
 var buffs
 var buffsAmulet
 var light1
@@ -15,7 +15,7 @@ func canAffect(item):
 func onPrepare():
 	setState(false)
 	for item in getAffectedItems():
-		item.reduceSpeed(speed)
+		item.reduceSpeed(speed_v)
 
 
 func onCombatStart():
@@ -64,6 +64,6 @@ func getDescription(wrapInColor = true):
 
 func _readyInit():
 	._readyInit()
-	speed = getP("speed") / 100.0
+	speed_v = getP("speed") / 100.0
 	buffs = int(getP("buffs"))
 	buffsAmulet = int(getP("buffs_amulet"))

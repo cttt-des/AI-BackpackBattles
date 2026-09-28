@@ -32,14 +32,14 @@ func onItemInstantiated(item):
 
 
 func onAddToInventory():
-	call_deferred("onAddToInventory_deferred")
+	ctx.defer(self, "onAddToInventory_deferred", [])
 
 
 func onAddToInventory_deferred():
 	pass
 
 func onRemoveFromInventory():
-	call_deferred("onRemoveFromInventory_deferred")
+	ctx.defer(self, "onRemoveFromInventory_deferred", [])
 
 
 func onRemoveFromInventory_deferred():

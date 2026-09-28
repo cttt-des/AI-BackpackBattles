@@ -75,6 +75,99 @@ class HookProbe extends CoreHooks:
 	func playStunAnimation(_character, _duration) -> void :
 		stuns += 1
 
+	# ═══════════ 事件流 canonical 序列化（须与 tools/run_gd_py.py 逐字同构） ═══════════
+	#
+	# 用途：Task #9「双引擎逐事件对照」。两侧都只有一个事件汇点 ——
+	# `CoreCombatLog.logEvent(event)` → `_ctx.hooks.logEvent(event)`。把每次调用压成
+	# 一行稳定文本，两侧逐行比对，就能把「56 局摘要一致」升级成「每一次攻击 / 伤害 /
+	# 治疗 / 层数 / 眩晕都一致」。
+	#
+	# ★ 为什么这比摘要强：两句不同的战斗可以有完全相同的
+	#   win/t/php/ohp/act/dmg/heal/gem/fat/stun 摘要（某次伤害被挪后一拍、某个层数
+	#   施加到了另一件物品）。摘要看不见，事件流看得见。
+	# ★ 序列化器在两侧各写一遍（共享不了两种语言）。代价是可能出现「假不一致」
+	#   —— 那会当场暴露、人工归因即可；真正的风险是「假一致」，故格式里塞进足够
+	#   多字段：事件号 / 类型 / 父链深度 / 起源身份 / 目标 / 全部参数键值。
+	# ★ 分隔符选择：**字段**分隔符是 `|`，故 origin / params 值的**内部**绝不能用 `|`。
+	#   早先写成 `it:<名字>|<ownerType>|<格>`，结果一行被拆成 8 段、解析直接失败
+	#   （而且失败得很安静：整批差异都被归成「格式不可解析」）。键内一律用 `~`。
+	#   `gem(<宿主>~<插槽号>)` 同理。
+
+	var event_lines = null     # null = 不记；数组 = 记 canonical 行
+
+	# 占格坐标规范串：按 (x,y) 升序，`x,y` 以 `;` 相连；无格记 `-`
+	func _ecells(item) -> String:
+		var cells := []
+		for c in item.occupiedCells:
+			cells.push_back([int(c.x), int(c.y)])
+		# 手写插入排序（x 再 y）：避免 sort_custom 需要传入比较器对象
+		for i in range(1, cells.size()):
+			var cur = cells[i]
+			var j := i - 1
+			while j >= 0 and (cells[j][0] > cur[0]
+					or (cells[j][0] == cur[0] and cells[j][1] > cur[1])):
+				cells[j + 1] = cells[j]
+				j -= 1
+			cells[j + 1] = cur
+		var parts := PoolStringArray()
+		for c in cells:
+			parts.push_back("%d,%d" % [c[0], c[1]])
+		if parts.size() == 0:
+			return "-"
+		return parts.join(";")
+
+	# 把 origin / params 值压成稳定短串
+	# ★ 宝石的特殊处理：`setGem` 把插座身份折叠成宿主物品本身
+	#   （`gem.socket = self`、`host.gems[socketId] = gem`），宝石自己
+	#   `occupiedCells` 被清空 → 单靠名字+格无法区分同名的两颗宝石。
+	#   故宝石记成 `gem(<宿主身份>#<插槽号>)`，宿主身份递归复用同一函数。
+	#   `socket` 只声明在 Gems/Gem.gd:4，非宝石 `get("socket")` 返回 null。
+	func _ekey(o) -> String:
+		if o == null:
+			return "-"
+		if o is bool:
+			return "T" if o else "F"
+		if o is int:
+			return "i%d" % o
+		if o is float:
+			return "%.6f" % o
+		var sock = o.get("socket")
+		if sock != null:
+			var sid := -1
+			var gs = sock.get("gems")
+			if gs != null:
+				for i in range(gs.size()):
+					if gs[i] == o:
+						sid = i
+						break
+			return "gem(%s~%d)" % [_ekey(sock), sid]
+		if o is CoreItem:
+			return "it:%s~%d~%s" % [o.getName(), o.ownerType, _ecells(o)]
+		# 预料外的类型：有名字就带名字，否则只记 `?`。
+		# ★ 实测（56 局全部事件）origin 只有 int 与物品两类、params 只有 int/float/bool
+		#   三类，走不到这里；留着是为了「出现新类型时不要静默变成同一串」。
+		if o.has_method("getName"):
+			return "ob:%s" % o.getName()
+		return "?"
+
+	# 单条事件 → 一行文本：`id|type|depth|origin|target|params`
+	func _eline(event) -> String:
+		var keys: Array = event.params.keys()
+		keys.sort()
+		var parts := PoolStringArray()
+		for k in keys:
+			parts.push_back("%s=%s" % [k, _ekey(event.params[k])])
+		return "%d|%d|%d|%s|%s|%s" % [event.id, event.getType(), event.getDepth(),
+				_ekey(event.getOrigin()), _ekey(event.target), parts.join(",")]
+
+	# 事件流记录（51 个钩子里的第 51 个）
+	# ★ 这是逐事件对照的取样点：原版的**每一个**战斗事件（攻击 / 伤害 / 治疗 /
+	#   层数增减 / 眩晕 / 激活 / 疲劳 …）都经这里过一遍，故这一处就覆盖了整条
+	#   判定路径的输出面。
+	func logEvent(event) -> void :
+		if event_lines != null:
+			event_lines.push_back(_eline(event))
+
 
 # 运行参数
 const BASE_SEED := 20260923
@@ -292,8 +385,12 @@ func build_side(ctx, chr, lu: Dictionary, owner_type: int, with_gems := true) ->
 # 新建一局：返回 {ctx, p, o, combat, probe, p_items, o_items, time}
 # `with_gems=false` 用于宝石实效的 A/B 对照（同种子、同摆盘，只去掉宝石）。
 func new_battle(seed_value: int, p_name: String, o_name: String,
-		with_gems := true) -> Dictionary:
+		with_gems := true, trace := false) -> Dictionary:
+	# ★ trace 只打开 `event_lines` 记录，**不换 probe 类** —— 走的是与生产完全同一
+	#   条装配路径，这样事件流取证才代表真正被验收的那个装配。
 	var probe = HookProbe.new()
+	if trace:
+		probe.event_lines = []
 	var ctx = CoreContext.new(seed_value, probe)
 	var pla: Dictionary = LineupFixture.LINEUPS[p_name]
 	var opp: Dictionary = LineupFixture.LINEUPS[o_name]
@@ -430,13 +527,18 @@ func test_all_pairs() -> void:
 	var zero_act := []
 	var timeouts := []
 	var no_damage := []
+	var trace := []
 	for a in names:
 		for b in names:
 			if a == b:
 				continue          # 自己打自己在对决矩阵里无信息量
 			var seed_value = BASE_SEED + PAIR_STRIDE * names.find(a) + names.find(b)
-			var w = new_battle(seed_value, a, b)
+			# ★ 开 trace：同一条生产装配路径，只多一次 push_back。
+			#   事件流是 Task #9 逐事件对照的取样面（见 tools/compare_events.py）。
+			var w = new_battle(seed_value, a, b, true, true)
 			run_battle(w["ctx"], w["combat"])
+			trace.push_back("## %s|%s|%d" % [a, b, seed_value])
+			trace.append_array(w["probe"].event_lines)
 			var probe = w["probe"]
 			var row = "%s vs %s：%s" % [a.replace("lineup_", ""), b.replace("lineup_", ""),
 									   outcome(w)]
@@ -461,6 +563,21 @@ func test_all_pairs() -> void:
 		% [zero_act.size(), str(zero_act.slice(0, 3))])
 	check(no_damage.empty(), "有 %d 局没有任何伤害事件：%s"
 		% [no_damage.size(), str(no_damage.slice(0, 3))])
+
+	# ── 落事件轨迹（Task #9 逐事件对照的输入） ──
+	# ★ 空轨迹必须是失败：若 logEvent 因任何原因没被调用（钩子没接上），文件会
+	#   「生成成功且为空」，逐行对照就成了「0 = 0 通过」——典型的空断言。
+	var n_ev := 0
+	for ln in trace:
+		if not ln.begins_with("##"):
+			n_ev += 1
+	check(n_ev > 0, "事件轨迹为空 —— logEvent 没被接上，逐事件对照会退化成空断言")
+	var fh = File.new()
+	if fh.open("res://event_trace.txt", File.WRITE) == OK:
+		fh.store_string(PoolStringArray(trace).join("\n") + "\n")
+		fh.close()
+	say("    事件轨迹：%d 局 / %d 条事件 → gd_core_test/event_trace.txt"
+		% [_rows.size(), n_ev])
 
 
 # ─────────────────────── 4. 确定性 ───────────────────────

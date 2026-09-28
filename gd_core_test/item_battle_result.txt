@@ -5,5 +5,6 @@
     已跑 517 场；本次结束方式全为自然收场 / 时限内 ✓
     触发合计 7108 次；触发最多 Time Dilator（47 次）；0 次触发 0 件（信息项，非失败）
     回调实现数 212 处（每处都须被内核派发判定看见）
+    冷却遥测：303 件带冷却物品逐帧轮询完毕 → res://cooldown_battle_result.txt（判据在 tools/verify_cooldowns_gd.py 的 B 段）
 
 ITEMBATTLE: PASS
