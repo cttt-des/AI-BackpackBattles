@@ -16,7 +16,11 @@ func onPrepare():
 
 
 func onItemActivated(event):
-	pass
+	if rollChance():
+		var dam = descriptor.minDam
+		var res = dealEffectDamage(dam)
+		activate()
+
 
 func onOpponentDamaged(damageRes: CoreDamageResult):
 	if damageRes.hasHit() and damageRes.damageSource.isEffectDamage():

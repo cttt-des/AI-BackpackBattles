@@ -269,7 +269,26 @@ class _LogMixin:
                 return str(origin.descriptor.identifier)
             except Exception:  # noqa: BLE001 —— 只为日志，不因取名失败而中断
                 return str(origin.getName())
-        return None
+        # 数字 origin = DamageSource.Type（原版 CombatEvent.asText：
+        # `origin is Item` 为假时走 Game.typeToKeyword(origin)）。
+        # typeToKeyword 1:1：特例 Block→"bl"、Regeneration→"regen"，
+        # 其余 eventTypeKeys[_type].to_lower()（此处经 ET_NAME 反查现算，
+        # 不写死数字——见 decompiled_full/Core/Game.gd:5663）。
+        # 实际出现的值：Fatigue=99（takeFatigueDamage → fatigueDamageSource）。
+        try:
+            num = int(origin)
+        except (TypeError, ValueError):
+            return None
+        # ★ 用 kernel()["ET_NAME"]（单例现算），不要读 _LogMixin._ET_NAME ——
+        #   那是基类空 dict；真实的 {值: 名} 表注入在动态派生的探针类上。
+        name = kernel()["ET_NAME"].get(num)
+        if not name:
+            return None
+        if num == k["CoreConst"].EventType.get("Block"):
+            return "bl"
+        if num == k["CoreConst"].EventType.get("Regeneration"):
+            return "regen"
+        return name.lower()
 
     def _actor_of(self, event):
         """actor = 事件来源物品的所属角色；无物品来源时回落 getMainActor()。"""
@@ -505,7 +524,12 @@ def _place_of(data: dict, key: str, row: int, col: int, rot: int) -> dict:
     collision = [[c[0] + col, c[1] + row] for c in anchor]
     affected = {int(color): [[c[0] + col, c[1] + row] for c in cells]
                 for color, cells in r["affected"].items()}
-    occupied = sorted({(c[1] + row, c[0] + col) for c in anchor})
+    # ★ occupied 必须与 collision/affected 同一坐标系（Vector2(x=col, y=row)，
+    #   见 tools/gen_gd_core_data.py 文件头）。此前写成 (c[1]+row, c[0]+col)
+    #   （行、列互换）→ filledCells 的键与 affected 查询格错位，1×1 物品
+    #   的邻接联动（getAffectedItems）恒空且零报错——Magic Ring/Mana Orb/
+    #   Amulet of Darkness 等受影响格联动全部静默失效。
+    occupied = sorted({(c[0] + col, c[1] + row) for c in anchor})
     return {"occupied": occupied, "collision": collision, "affected": affected,
             "script": ent["script"], "sockets": int(ent["sockets"]),
             "descr": ent["descr"]}

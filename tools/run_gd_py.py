@@ -536,7 +536,8 @@ def test_fixture_shape():
         oob = 0
         for e in lu["items"]:
             for c in e["occupied"]:
-                if int(c[0]) < 0 or int(c[0]) >= 7 or int(c[1]) < 0 or int(c[1]) >= 10:
+                # ★ 坐标系 Vector2(x=col, y=row)：x 上限 10（列），y 上限 7（行）
+                if int(c[0]) < 0 or int(c[0]) >= 10 or int(c[1]) < 0 or int(c[1]) >= 7:
                     oob += 1
                 key = (int(c[0]), int(c[1]))
                 if key in seen:

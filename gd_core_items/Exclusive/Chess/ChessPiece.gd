@@ -68,7 +68,9 @@ func doCapturingEffect(eliminatedPiece):
 
 
 func onEliminatedBy(capturingPiece, activateEvent):
-	pass
+	setState(true, false, activateEvent)
+	doEliminatedEffect(capturingPiece)
+
 
 func doEliminatedEffect(capturingPiece):
 	pass

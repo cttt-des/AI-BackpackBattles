@@ -89,6 +89,11 @@ def build():
         "--hidden-import", "engine.data",
         "--hidden-import", "engine.gen.behaviors",
         "--collect-submodules", "engine",
+        # ★ simulator.damage 经 behavior.py 的 __import__(字符串) 动态导入，
+        #   静态分析抓不到；旧内核 simulator.combat 下线后引用链不再拉入它
+        #   （2026-09-28 selftest 实测 ModuleNotFoundError）
+        "--hidden-import", "simulator.damage",
+        "--collect-submodules", "simulator",
         # gd_core 内核（原版战斗逻辑 1:1 移植版）同样是延迟导入：
         # simulate._get_combat_engine('gd_core') → simulator.gd_core_engine → gd_core_py.*
         # （gd_core_engine.kernel() 里逐个 import，_bootstrap.load_all() 再补 521 个模块，

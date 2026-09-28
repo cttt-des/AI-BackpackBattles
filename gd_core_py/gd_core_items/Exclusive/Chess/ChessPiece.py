@@ -83,7 +83,9 @@ class ChessPiece(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def onEliminatedBy(self, capturingPiece, activateEvent):
-		pass
+		self.setState(True, False, activateEvent)
+		self.doEliminatedEffect(capturingPiece)
+
 
 	def doEliminatedEffect(self, capturingPiece):
 		pass

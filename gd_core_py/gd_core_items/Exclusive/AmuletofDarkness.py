@@ -32,7 +32,11 @@ class Exclusive__AmuletofDarkness(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def onItemActivated(self, event):
-		pass
+		if self.rollChance():
+			dam = self.descriptor.minDam
+			res = self.dealEffectDamage(dam)
+			self.activate()
+
 
 	def onOpponentDamaged(self, damageRes):
 		if damageRes.hasHit() and damageRes.damageSource.isEffectDamage():

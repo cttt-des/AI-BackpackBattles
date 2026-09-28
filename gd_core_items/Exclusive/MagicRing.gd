@@ -108,7 +108,31 @@ func giveStacksFromEffect(effect, triggerEvent = null):
 
 
 func sortEffects():
-	pass
+	gainedStacks = 0
+	effectDict.clear()
+	ringTypes.clear()
+	
+	var effectI = 0
+	for effect in effects:
+		effectI += 1
+		
+	if not isOnlyForDisplay():
+		
+		for effect in effects:
+			ctx.util.dictAppend(effectDict, effect.triggerType, effect)
+			
+			gainedStacks |= 2 << (effect.stackType - CoreConst.EventType.Lucky)
+			
+			var newType = stackToTypes[effect.stackType]
+			if not newType in ringTypes:
+				ringTypes.push_back(newType)
+			
+		
+		if inventory != null:
+			inventory.onItemTypeChanged(self)
+	else:
+		pass
+
 
 func getTypes() -> Array:
 	return .getTypes() + ringTypes
@@ -139,7 +163,21 @@ func getTextEffect() -> int:
 
 
 func randEffects(clearIfOnlyDisplay = true):
-	pass
+	effects.clear()
+	
+	for i in numEffects:
+		var effect = RingEffect.new()
+		effects.push_back(effect)
+		effect.triggerType = ctx.rng.randi_range(0, 3)
+		effect.stackType = ctx.rng.randi_range(CoreConst.EventType.Lucky, 
+			CoreConst.EventType.Cold)
+		
+	
+	sortEffects()
+	
+	if clearIfOnlyDisplay and isOnlyForDisplay():
+		effects.clear()
+
 
 func getScaledParam(stackName: String, paramScale: float) -> float:
 	return round(getP(stackName) * paramScale)
@@ -217,6 +255,17 @@ func _readyInit():
 	opponentHealthThreshold = getP("healtht_opp") / 100.0
 	stones = []
 	symbols = []
+	if stones.empty():
+		for i in numEffects:
+			pass
+	
+	if ownerType == CoreConst.Owner.ItemLibrary:
+		pass
+	else:
+		
+		if not wasJustCrafted:
+			randEffects()
+
 
 class RingEffect:
 	var triggerType: int

@@ -40,9 +40,13 @@ def _is_debuff(t: int) -> bool:
     return 108 <= t <= 110
 
 
-# 原版 LOG 模板（en / zh），键 = CombatEvent.asText() 的 LOG 变体族
+# 原版 LOG 模板（en / zh），键 = CombatEvent.asText() 的 LOG 变体族。
+# ★ 官方真值见 output/trtmp/dump_out.txt（Godot 无头经 TranslationServer 提取）。
+#   官方缺键（LOG_Health/LOG_LoseHealth/LOG_FatigueDamage/LOG_FatigueStart/
+#   LOG_CriticalResisted/LOG_TemporaryMaxHealth 均不存在，Util.tra 缺键返回 ""）
+#   → 原版 UI 这些行显示为空文本；此处保留可读兜底并在分支处登记。
 TEMPLATES = {
-    "Activation":        ("{origin} activated.", "{origin} 激活。"),
+    "Activation":        ("{origin} activated.", "{origin}以显示。"),   # zh 官方原文（机翻瑕疵照搬）
     "DealDamage":        ("Dealt {damage} damage ({origin}).", "造成{damage}点伤害（{origin}）。"),
     "CriticalDamage":    ("Dealt {damage} critical damage ({origin}).", "造成{damage}点暴击伤害（{origin}）。"),
     "MissedAttack":      ("Missed an attack ({origin}).", "攻击落空（{origin}）。"),
@@ -56,7 +60,11 @@ TEMPLATES = {
     "InvulnerableStart": ("Gained invulnerability for {duration}s ({origin}).", "获得了{duration}s内无敌（{origin}）。"),
     "InvulnerableEnd":   ("Invulnerability ended ({origin}).", "无敌结束（{origin}）。"),
     "DamageBuff":        ("{item} gained +{damage} damage ({origin}).", "{item}获得了+{damage}点伤害（{origin}）。"),
-    "Reincarnate":       ("Reincarnated with {health} health ({origin}).", "以{health}生命值复活（{origin}）。"),
+    "DamIncrease":       ("Damage dealt increased by {amount} ({origin}).", "造成的伤害增加{amount}（{origin}）。"),
+    "DamIncrease_TEMP":  ("Damage dealt increased by {amount} for {duration}s ({origin}).", "造成的伤害增加{amount}持续{duration}s（{origin}）。"),
+    "DamReduction":      ("Damage taken reduced by {amount} ({origin}).", "受到的伤害减少{amount}（{origin}）。"),
+    "DamReduction_TEMP": ("Damage taken reduced by {amount} for {duration}s ({origin}).", "受到的伤害减少{amount}，持续{duration}s（{origin}）。"),
+    "Reincarnate":       ("Reincarnated with {health} health ({origin}).", "以{health}生命值复活({origin})。"),  # zh 半角括号 = 官方原文
     "BattleRageStart":   ("Entered Battle Rage for {duration}s ({origin}).", "进入狂战士之怒 {duration}s（{origin}）。"),
     "BattleRageEnd":     ("Battle Rage ended.", "狂战士之怒结束。"),
     "FatigueStart":      ("Fatigue sets in...", "开始感觉疲惫……"),
@@ -64,6 +72,7 @@ TEMPLATES = {
     "Win":               ("Round won!", "回合胜利！"),
     "Loss":              ("Round lost.", "回合失败。"),
     "CritResisted":      ("Crit Resisted", "暴击抵挡"),
+    "TemporaryMaxStamina": ("Gained {stamina} maximum stamina ({origin}).", "获得{stamina}点最大耐力（{origin}）。"),
     # —— 增减益变体（buff 用 {buff}，debuff 用 {debuff}）——
     "GAIN_BUFF": ("Gained {amount} {buff} ({origin}).", "获得{amount}层 {buff}（{origin}）。"),
     "GAIN_BUFF_TEMP": ("Gained {amount} {buff} for {duration}s ({origin}).", "获得了{amount} {buff}，持续{duration}秒 ({origin})。"),
@@ -86,6 +95,19 @@ TEMPLATES = {
 
 # 原版无对应日志行的事件（保留在 JSON，文本抑制）
 _SUPPRESSED = {"combat_start", "stun_end", "death", "tick", "spikes", "vampirism", "block_break"}
+
+# 数字 origin（DamageSource.Type）经 typeToKeyword 化后的中文兜底名。
+# ★ 官方翻译表无 fatigue_NAME 等键（Util.tra 缺键返回 ""）→ 原版 UI 里
+#   fatigue/unhealing 显示为空括号、spikes/poison/bl/regen 显示图标。
+#   纯文本渲染取可读名（buff 名复用 BUFF_DISPLAY），属已登记的显示层兜底。
+KEYWORD_ZH = {
+    "fatigue": "疲惫",
+    "unhealing": "无法回复",
+    "spikes": "尖刺",
+    "poison": "中毒",
+    "bl": "护盾",
+    "regen": "恢复",
+}
 
 
 def _fmt_duration(d) -> str:
@@ -182,9 +204,13 @@ def _render_event(e, lang: str) -> Optional[str]:
     origin = getattr(e, "origin", None) or ""
     if not isinstance(origin, str):
         origin = getattr(origin, "key", "")
-    # 物品名国际化：优先游戏官方中文名
+    # 疲劳特判用翻译前的原始 keyword（zh 分支会把它翻成「疲劳」）
+    raw_origin = origin
+    # 物品名国际化：优先游戏官方中文名；数字 origin 的 keyword（fatigue 等）
+    # 官方无 _NAME 键 → 落 KEYWORD_ZH 兜底
     if lang == "zh" and origin:
-        origin = zh_name(origin)
+        translated = zh_name(origin)
+        origin = translated if translated != origin else KEYWORD_ZH.get(origin, origin)
     if lang == "zh" and p.get("buff"):
         p = dict(p)
         for k in ("buff", "debuff", "item_name"):
@@ -201,6 +227,11 @@ def _render_event(e, lang: str) -> Optional[str]:
         return _t("Activation", {"origin": origin}, lang)
 
     if etype in ("attack", "critical"):
+        # 疲劳伤害：内核发 DealDamage、origin 为 DamageSource.Type.Fatigue
+        #（桥层已 keyword 化为 "fatigue"）。原版 UI 该行 tra("fatigue_NAME")
+        # 缺键显示空括号；此处按 wiki 口径渲染为专用疲惫行（已登记偏离）。
+        if raw_origin == "fatigue":
+            return _t("FatigueDamage", {"counter": p.get("damage", 0)}, lang)
         if etype == "critical" or p.get("crit") or p.get("critical"):
             return _t("CriticalDamage", {"damage": p.get("damage", 0), "origin": origin}, lang)
         if p.get("missed") or not p.get("hit", True):
@@ -220,7 +251,10 @@ def _render_event(e, lang: str) -> Optional[str]:
         return _t("LoseHealth", {"amount": p.get("amount", 0), "origin": origin}, lang)
 
     if etype == "spike_damage":
-        return _t("DealDamage", {"damage": p.get("amount", 0), "origin": origin or "spikes"}, lang)
+        sp = origin or "spikes"
+        if lang == "zh" and sp == "spikes":
+            sp = KEYWORD_ZH["spikes"]
+        return _t("DealDamage", {"damage": p.get("amount", 0), "origin": sp}, lang)
 
     if etype == "fatigue_damage":
         return _t("FatigueDamage", {"counter": p.get("amount", p.get("counter", 0))}, lang)
@@ -229,10 +263,14 @@ def _render_event(e, lang: str) -> Optional[str]:
         return _t("FatigueStart", {}, lang)
 
     if etype == "stamina_gain":
-        return _t("Stamina", {"stamina": p.get("amount", 0), "origin": origin}, lang)
+        # 参数名：内核（原版 CombatLog.createEvent_Stamina）用 "stamina"；
+        # 旧自研引擎用 "amount" → 兼容两者
+        return _t("Stamina", {"stamina": p.get("stamina", p.get("amount", 0)),
+                              "origin": origin}, lang)
 
     if etype in ("stamina_drain", "stamina_use"):
-        return _t("DrainStamina", {"stamina": p.get("amount", 0), "origin": origin}, lang)
+        return _t("DrainStamina", {"stamina": p.get("stamina", p.get("amount", 0)),
+                                   "origin": origin}, lang)
 
     if etype == "out_of_stamina":
         return _t("OutofStamina", {"origin": origin}, lang)
@@ -255,7 +293,43 @@ def _render_event(e, lang: str) -> Optional[str]:
         return _t("InvulnerableEnd", {"origin": origin}, lang)
 
     if etype == "reincarnate":
-        return _t("Reincarnate", {"health": p.get("amount", 0), "origin": origin}, lang)
+        # 参数名：原版 createEvent_Reincarnate 用 "health"
+        return _t("Reincarnate", {"health": p.get("health", p.get("amount", 0)),
+                                  "origin": origin}, lang)
+
+    if etype == "damage_buff":
+        # 原版 createEvent_DamageBuff：params {item: buffedItem 名, damage}
+        return _t("DamageBuff", {"item": p.get("item", ""),
+                                 "damage": p.get("damage", 0), "origin": origin}, lang)
+
+    if etype in ("dam_increase", "dam_reduction"):
+        # 原版 createEvent_DamChange：params {amount, isPercent, duration?, type?}
+        fp = {"amount": p.get("amount", 0), "origin": origin}
+        if p.get("isPercent"):
+            fp["amount"] = str(fp["amount"]) + "%"
+        if p.get("duration") is not None:
+            fp["duration"] = _fmt_duration(p.get("duration"))
+        key = "DamIncrease" if etype == "dam_increase" else "DamReduction"
+        if p.get("duration") is not None:
+            key += "_TEMP"
+        return _t(key, fp, lang)
+
+    if etype == "temporary_max_stamina":
+        # 原版 createEvent_TemporaryMaxStamina：params {stamina}
+        return _t("TemporaryMaxStamina",
+                  {"stamina": p.get("stamina", p.get("amount", 0)), "origin": origin}, lang)
+
+    if etype == "temporary_max_health":
+        # 官方无 LOG_TemporaryMaxHealth 键（tra 缺键返回空）→ 原版无此行，
+        # 事件保留在 JSON（suppress 语义同 _SUPPRESSED）
+        return None
+
+    if etype == "battle_rage_start":
+        return _t("BattleRageStart", {"duration": _fmt_duration(p.get("duration")),
+                                      "origin": origin}, lang)
+
+    if etype == "battle_rage_end":
+        return _t("BattleRageEnd", {}, lang)
 
     if etype in ("stack_gain", "stack_lose", "stack_timeout"):
         bt = getattr(e, "buff_type", None)

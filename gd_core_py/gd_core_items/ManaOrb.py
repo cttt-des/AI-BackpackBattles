@@ -42,7 +42,13 @@ class ManaOrb(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def onManaChanged(self, amount, triggerEvent):
-		pass
+		if not self.activated and amount > 0 and self.character().getMana() >= self.manaNeeded:
+			self.setState(True)
+			event = self.useMana(self.manaNeeded, triggerEvent)
+			self.giveRandomBuffs(self.buffs + self.bonusBuffs, event, self.stackTypes)
+			self.activate()
+
+
 
 	def onShopEntered(self):
 		self.onStateChanged(False)
