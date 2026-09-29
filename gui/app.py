@@ -1028,18 +1028,44 @@ class BackpackAIApp(tk.Tk):
         dlg = tk.Toplevel(self)
         dlg.title("从历史记录导出阵容")
         dlg.configure(bg=COLORS["bg"])
-        dlg.geometry("640x460")
+        dlg.geometry("900x680")
+        dlg.minsize(760, 560)
         dlg.transient(self)
 
+        def _listbox_with_scroll(parent, height=14):
+            """带竖向滚动条的 Listbox 容器。"""
+            box = tk.Frame(parent, bg=COLORS["bg"])
+            box.pack(fill="both", expand=True)
+            lb = tk.Listbox(box, font=FONTS["small"], height=height,
+                            bg=COLORS["panel_light"], fg=COLORS["text"],
+                            selectbackground=COLORS["accent"],
+                            exportselection=False)
+            sb = tk.Scrollbar(box, orient="vertical", command=lb.yview,
+                              troughcolor=COLORS["panel"], bg=COLORS["panel"])
+            lb.configure(yscrollcommand=sb.set)
+            lb.pack(side="left", fill="both", expand=True)
+            sb.pack(side="right", fill="y")
+            return lb
+
         tk.Label(dlg, text="选择 Run（对局）", font=FONTS["small"],
-                 bg=COLORS["bg"], fg=COLORS["text"]).pack(anchor="w", padx=10, pady=(8, 2))
-        run_lb = tk.Listbox(dlg, font=FONTS["small"], height=8)
-        run_lb.pack(fill="x", padx=10)
+                 bg=COLORS["bg"], fg=COLORS["text"]).pack(anchor="w", padx=10,
+                                                          pady=(8, 2))
+        run_lb = _listbox_with_scroll(dlg, height=14)
 
         tk.Label(dlg, text="选择回合（每回合结束时的摆盘）", font=FONTS["small"],
-                 bg=COLORS["bg"], fg=COLORS["text"]).pack(anchor="w", padx=10, pady=(8, 2))
-        round_lb = tk.Listbox(dlg, font=FONTS["small"], height=8)
-        round_lb.pack(fill="x", padx=10)
+                 bg=COLORS["bg"], fg=COLORS["text"]).pack(anchor="w", padx=10,
+                                                          pady=(8, 2))
+        round_lb = _listbox_with_scroll(dlg, height=14)
+
+        # 阵容名称（可自定义；默认名随所选 Run/回合联动）
+        tk.Label(dlg, text="阵容名称", font=FONTS["small"],
+                 bg=COLORS["bg"], fg=COLORS["text"]).pack(anchor="w", padx=10,
+                                                          pady=(8, 2))
+        name_var = tk.StringVar(value="")
+        name_entry = tk.Entry(dlg, textvariable=name_var, font=FONTS["small"],
+                              bg=COLORS["panel_light"], fg=COLORS["text"],
+                              insertbackground=COLORS["text"], relief="flat")
+        name_entry.pack(fill="x", padx=10)
 
         rounds_cache: list = []
 
@@ -1057,9 +1083,28 @@ class BackpackAIApp(tk.Tk):
                 return
             for r in rounds_cache:
                 res = {0: "胜", 1: "败", 2: "平"}.get(r["result"], f"r{r['result']}")
+                # roundID 即游戏回合号（1..18，BuildHistoryDB addRoundEntry）
                 round_lb.insert(
-                    "end", f"第 {r['round_id'] + 1} 回合  [{res}]  "
+                    "end", f"第 {r['round_id']} 回合  [{res}]  "
                            f"血量 {r['health']}  体力 {r['stamina']}")
+            if rounds_cache:
+                _sync_default_name()
+
+        def _sync_default_name(*_a):
+            sel_r = run_lb.curselection()
+            sel_rd = round_lb.curselection()
+            # 只在用户未手动改名时联动默认名（记录是否编辑过）
+            if getattr(name_entry, "_user_edited", False):
+                return
+            if sel_r and sel_rd:
+                run = runs[sel_r[0]]
+                rd = rounds_cache[sel_rd[0]]
+                name_var.set(f"历史 Run{run['run_id']} 第{rd['round_id']}回合")
+
+        def _mark_edited(_ev=None):
+            name_entry._user_edited = True
+
+        name_entry.bind("<KeyRelease>", _mark_edited)
 
         def do_export():
             sel_r = run_lb.curselection()
@@ -1069,7 +1114,9 @@ class BackpackAIApp(tk.Tk):
                 return
             run = runs[sel_r[0]]
             rd = rounds_cache[sel_rd[0]]
-            default_name = (f"history_run{run['run_id']}_round{rd['round_id'] + 1}.json")
+            lineup_name = name_var.get().strip() or \
+                f"历史 Run{run['run_id']} 第{rd['round_id']}回合"
+            default_name = lineup_name + ".json"
             path = filedialog.asksaveasfilename(
                 title="保存历史阵容 JSON", defaultextension=".json",
                 initialfile=default_name,
@@ -1079,29 +1126,33 @@ class BackpackAIApp(tk.Tk):
                 return
             try:
                 data = bh.export_round(run["run_id"], rd["round_id"], path,
-                                       db_path=db_path)
+                                       db_path=db_path, name=lineup_name)
             except Exception as e:  # noqa: BLE001
                 messagebox.showerror("错误", f"导出失败:\n{e}", parent=dlg)
                 return
             self._log("success",
-                      f"✓ 已导出历史阵容（Run{run['run_id']} 第{rd['round_id'] + 1}回合，"
-                      f"{len(data['items'])} 件物品）→ {path}")
+                      f"✓ 已导出历史阵容「{lineup_name}」（Run{run['run_id']} "
+                      f"第{rd['round_id']}回合，{len(data['items'])} 件物品）→ {path}")
             self._log("info", "用法: python -m simulator.simulate 本文件.json 对手阵容.json")
             dlg.destroy()
 
         run_lb.bind("<<ListboxSelect>>", load_rounds)
+        round_lb.bind("<<ListboxSelect>>", _sync_default_name)
         for run in runs:
             run_lb.insert("end", f"Run {run['run_id']}  [{run['character']}]  "
                                  f"{run['num_rounds']} 回合  "
                                  f"{datetime.fromtimestamp(run['time']).strftime('%m-%d %H:%M')}")
+
+        # 底部确认区（固定可见）
         btns = tk.Frame(dlg, bg=COLORS["bg"])
-        btns.pack(fill="x", padx=10, pady=10)
-        tk.Button(btns, text="导出所选回合", font=FONTS["button"], relief="flat",
+        btns.pack(fill="x", padx=10, pady=(4, 10), side="bottom")
+        tk.Button(btns, text="确 认 导 出", font=FONTS["button"], relief="flat",
                   bg=COLORS["accent"], fg="#ffffff", command=do_export,
-                  padx=10, pady=6).pack(side="left")
+                  padx=18, pady=8, cursor="hand2").pack(side="right")
         tk.Button(btns, text="关闭", font=FONTS["button"], relief="flat",
                   bg=COLORS["panel_light"], fg=COLORS["text"],
-                  command=dlg.destroy, padx=10, pady=6).pack(side="right")
+                  command=dlg.destroy, padx=14, pady=8,
+                  cursor="hand2").pack(side="right", padx=(0, 8))
 
     # ---------- 日志 ----------
     def _log(self, level: str, msg: str):
