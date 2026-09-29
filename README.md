@@ -25,6 +25,7 @@
 | 版本 | 文件 | 说明 |
 |------|------|------|
 | **v0.3.0** | [`BackpackSimulator_v0.3.0.exe`](https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.3.0/BackpackSimulator_v0.3.0.exe) | 战斗模拟器（阵容对战 / 蒙特卡洛胜率 / 物品联动） |
+| **v0.1.0** | [`BackpackCombatLog_v0.1.0.exe`](https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.1.0/BackpackCombatLog_v0.1.0.exe) | 战斗日志导出器（游戏内真实战斗 → 游戏同格式战报 + 原始事件 JSON） |
 | **v0.1.1** | [`BackpackAI_v0.1.1.exe`](https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.1.1/BackpackAI_v0.1.1.exe) | 外挂 AI 主程序（自动游玩 GUI） |
 
 开发版模拟器随每次改动重新打包为 `dist/BackpackSimulator.exe`（不带版本号）。
@@ -84,7 +85,9 @@ examples/                   # 示例阵容
 tools/                      # 逆向工具 + 验收链（见上表）+ 解密/解包/数据抓取
 docs/                       # 游戏机制逆向参考、模拟器架构（engine_v2.md）、阵容格式
 launcher.py                 # 外挂 AI 入口        battle_simulator.py  # 模拟器 GUI 入口
+combatlog_exporter.py       # 战斗日志导出器 GUI（游戏内存只读 → 战报/事件 JSON）
 build_exe.py                # 外挂 AI 打包        build_simulator_exe.py  # 模拟器打包
+build_combatlog_exporter_exe.py  # 战斗日志导出器打包
 ```
 
 ## 快速开始
@@ -108,6 +111,22 @@ python -m simulator.simulate lineup_A.json lineup_B.json --runs 100
 python battle_simulator.py
 
 # 输出 output/*_log.json（事件流）、*_result.json（胜负/统计/HP 曲线）、*_log.txt（游戏格式战报）
+```
+
+### 战斗日志导出（游戏内真实战斗）
+
+游戏本身**不把战斗日志落盘**——`CombatLog.gd` 把整场事件存在内存数组
+`events: Array[CombatEvent]` 里，UI 关闭后事件仍完整保留。本工具在游戏
+运行期间对该数组做**只读结构性读取**（Game 单例 → 按脚本路径锚定
+CombatLog 节点 → 解析魔改 Godot 构建的 Variant/Array/Dictionary/对象槽
+内存布局），战斗结束（`loggingFinished`）后自动导出：
+
+```bash
+python combatlog_exporter.py   # 需游戏已开启；输出 output/combat_logs/
+#   *.zh.txt / *.en.txt —— 按 CombatEvent.asText() 复刻的游戏格式战报（中/英）
+#   *.json             —— 原始事件流（id/时间戳/类型/origin/params）
+# 布局标定探针（进一场战斗后运行）：
+python tools/probe_combatlog.py
 ```
 
 ### 阵容格式（v4 推荐，v3 兼容）

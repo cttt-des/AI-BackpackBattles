@@ -41,6 +41,8 @@ class ItemDB:
         self.assets_dir = Path(assets_dir) if assets_dir else self._locate_assets()
         self.db: Dict[str, dict] = {}
         self._by_key: Dict[str, dict] = {}
+        # 官方中文名补充表（游戏内置翻译提取，见 tools/gen_zh_supplement.py）
+        self.zh_supplement: Dict[str, str] = {}
         if self.assets_dir:
             f = self.assets_dir / "item_db.json"
             if f.exists():
@@ -49,6 +51,15 @@ class ItemDB:
                     self._by_key = {v.get("key", k): v for k, v in self.db.items()}
                 except Exception:
                     self.db = {}
+            s = self.assets_dir / "item_zh_official.json"
+            if s.exists():
+                try:
+                    data = json.loads(s.read_text(encoding="utf-8"))
+                    # 新结构 {names, desc_name_zh, desc_name_en, keywords}
+                    self.zh_supplement = data.get("names", data) \
+                        if isinstance(data, dict) and "names" in data else data
+                except Exception:
+                    self.zh_supplement = {}
 
     @staticmethod
     def _locate_assets() -> Optional[Path]:
@@ -67,9 +78,14 @@ class ItemDB:
         return e
 
     def zh(self, name: str) -> str:
-        """中文名；没有翻译时回退英文名。"""
+        """中文名；item_db 缺失时查官方补充表，仍无则回退英文名。"""
         e = self.entry(name)
-        return (e.get("zh") or clean_name(name)) if e else clean_name(name)
+        if e and e.get("zh"):
+            return e["zh"]
+        key = clean_name(name)
+        if key in self.zh_supplement:
+            return self.zh_supplement[key]
+        return key
 
     def label(self, name: str) -> str:
         """GUI 标签：中文（无翻译时英文）。"""
