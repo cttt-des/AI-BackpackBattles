@@ -24,6 +24,7 @@ import json
 import math
 import os
 import sqlite3
+import time
 from typing import Any, Dict, List, Optional
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -189,6 +190,9 @@ def live_item_index_map(gr, mem_reader) -> Optional[Dict[str, Any]]:
         name = desc_name(o)
         if name:
             index_to_name[k] = name
+        if k % 64 == 63:
+            # 周期性让出 GIL：后台刷新时避免饿死 Tk 主线程
+            time.sleep(0.002)
 
     num_sockets = {}
     if num_sockets_arr:

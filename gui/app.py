@@ -998,18 +998,6 @@ class BackpackAIApp(tk.Tk):
         """
         from core import build_history as bh
 
-        # 活体刷新映射（游戏连接时索引表与游戏版本严格一致）
-        if self.bot is not None and self.bot.godot_reader is not None \
-                and self.bot.godot_reader.is_ready() and self.bot.memory_reader:
-            try:
-                m = bh.live_item_index_map(self.bot.godot_reader,
-                                           self.bot.memory_reader)
-                if m:
-                    self._log("info",
-                              f"已刷新物品索引映射（{len(m['index_to_name'])} 项，live）")
-            except Exception as e:  # noqa: BLE001
-                self._log("warning", f"活体索引刷新失败（将用缓存映射）: {e}")
-
         db_path = bh.find_history_db()
         if not db_path:
             messagebox.showwarning(
@@ -1047,15 +1035,27 @@ class BackpackAIApp(tk.Tk):
             sb.pack(side="right", fill="y")
             return lb
 
+        # pack 顺序关键：底部固定区（确认按钮）必须先 pack(side=bottom)，
+        # 否则两个 expand 列表会占满剩余空间把按钮挤出窗口外
+        btns = tk.Frame(dlg, bg=COLORS["bg"])
+        btns.pack(fill="x", side="bottom", padx=10, pady=(4, 10))
+        tk.Button(btns, text="确 认 导 出", font=FONTS["button"], relief="flat",
+                  bg=COLORS["accent"], fg="#ffffff", cursor="hand2",
+                  padx=18, pady=8, command=lambda: do_export()).pack(side="right")
+        tk.Button(btns, text="关 闭", font=FONTS["button"], relief="flat",
+                  bg=COLORS["panel_light"], fg=COLORS["text"], cursor="hand2",
+                  padx=14, pady=8, command=dlg.destroy).pack(side="right",
+                                                             padx=(0, 8))
+
         tk.Label(dlg, text="选择 Run（对局）", font=FONTS["small"],
                  bg=COLORS["bg"], fg=COLORS["text"]).pack(anchor="w", padx=10,
                                                           pady=(8, 2))
-        run_lb = _listbox_with_scroll(dlg, height=14)
+        run_lb = _listbox_with_scroll(dlg, height=12)
 
         tk.Label(dlg, text="选择回合（每回合结束时的摆盘）", font=FONTS["small"],
                  bg=COLORS["bg"], fg=COLORS["text"]).pack(anchor="w", padx=10,
                                                           pady=(8, 2))
-        round_lb = _listbox_with_scroll(dlg, height=14)
+        round_lb = _listbox_with_scroll(dlg, height=10)
 
         # 阵容名称（可自定义；默认名随所选 Run/回合联动）
         tk.Label(dlg, text="阵容名称", font=FONTS["small"],
@@ -1143,17 +1143,6 @@ class BackpackAIApp(tk.Tk):
                                  f"{run['num_rounds']} 回合  "
                                  f"{datetime.fromtimestamp(run['time']).strftime('%m-%d %H:%M')}")
 
-        # 底部确认区（固定可见）
-        btns = tk.Frame(dlg, bg=COLORS["bg"])
-        btns.pack(fill="x", padx=10, pady=(4, 10), side="bottom")
-        tk.Button(btns, text="确 认 导 出", font=FONTS["button"], relief="flat",
-                  bg=COLORS["accent"], fg="#ffffff", command=do_export,
-                  padx=18, pady=8, cursor="hand2").pack(side="right")
-        tk.Button(btns, text="关闭", font=FONTS["button"], relief="flat",
-                  bg=COLORS["panel_light"], fg=COLORS["text"],
-                  command=dlg.destroy, padx=14, pady=8,
-                  cursor="hand2").pack(side="right", padx=(0, 8))
-
     # ---------- 日志 ----------
     def _log(self, level: str, msg: str):
         self.log_text.configure(state="normal")
@@ -1200,10 +1189,32 @@ class BackpackAIApp(tk.Tk):
 
         self.after(100, self._process_queue)
 
+    def _start_index_map_refresh(self):
+        """后台刷新历史解码用的物品索引映射（读运行中 ItemBook，一次性）。
+
+        全量读约需十几秒且属 ctypes 密集循环，必须放后台线程——
+        在主线程跑会饿死 UI 并触发生命看门狗。"""
+        if not (self.bot and self.bot.godot_reader
+                and self.bot.godot_reader.is_ready() and self.bot.memory_reader):
+            return
+
+        def _refresh():
+            try:
+                from core import build_history as bh
+                m = bh.live_item_index_map(self.bot.godot_reader,
+                                           self.bot.memory_reader)
+                if m:
+                    self._log("info",
+                              f"✓ 物品索引映射已刷新（{len(m['index_to_name'])} 项）")
+            except Exception as e:  # noqa: BLE001
+                self._log("warning", f"物品索引映射刷新失败: {e}")
+        threading.Thread(target=_refresh, daemon=True).start()
+
     def _on_init_done(self, ok: bool, err: str):
         if ok:
             self._initialized = True
             self._log("success", "✓ 初始化完成，可以开始")
+            self._start_index_map_refresh()
             if self.bot and self.bot.godot_reader and self.bot.godot_reader.is_ready():
                 self._set_status("已就绪", COLORS["success"])
                 self._log("success", "✓ 结构性读取已启用：金币/血量/回合自动读取")
