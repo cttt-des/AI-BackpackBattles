@@ -26,6 +26,8 @@ decompiled_full.7z
 
 # ============ 提取/解密/反编译的游戏内容（本地保留，不入库）============
 extracted/
+extracted_running/
+extracted_v117/
 extracted_decrypted/
 extracted_gdc/
 decompiled_gd/
