@@ -92,7 +92,13 @@ GODOT_OFFSETS = {
     "member_gold": 72,
     "member_hp": 68,
     "member_round": 65,
+    # 2026-09-29 活体标定（curClass=2/Berserker，PID 16892）：
+    #   Game.gd 成员声明序（var 序，0 起）：curRound=65 / gold=72 / curClass=83
+    "member_cur_class": 83,
 }
+
+# Game.Classes 枚举（Game.gd:131）：职业下标 → 名称
+GAME_CLASSES = {0: "Ranger", 1: "Reaper", 2: "Berserker", 3: "Pyromancer"}
 
 
 class GodotReader:
@@ -379,6 +385,16 @@ class GodotReader:
             "hp": self.read_member(node, self.off["member_hp"]),
             "round": self.read_member(node, self.off["member_round"]),
         }
+
+    def read_character(self) -> Optional[str]:
+        """读取当前职业名（Game.curClass → Classes 枚举名）。未标定/异常返回 None。"""
+        node = self.get_game_node()
+        if not node:
+            return None
+        idx = self.read_member(node, self.off.get("member_cur_class", -1))
+        if idx is None:
+            return None
+        return GAME_CLASSES.get(idx)
 
     def is_ready(self) -> bool:
         return self.os_singleton_addr() is not None

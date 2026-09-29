@@ -254,6 +254,15 @@ class BackpackBot:
             if stats.get("round") is not None:
                 self.tracker.current_round = stats["round"]
 
+    def read_character(self):
+        """读取当前职业名（Game.curClass）；未连接/未标定返回 None。"""
+        if self.godot_reader and self.godot_reader.is_ready():
+            try:
+                return self.godot_reader.read_character()
+            except Exception:  # noqa: BLE001
+                return None
+        return None
+
     def get_state(self) -> dict:
         """获取完整游戏状态"""
         self.update_state()
