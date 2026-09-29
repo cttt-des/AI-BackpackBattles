@@ -52,6 +52,7 @@ from gui.theme import COLORS, CATEGORY_COLORS, FONTS, FONT_FAMILY
 from core.bot import BackpackBot
 from core.paths import get_config_path, get_base_dir, get_resource_dir
 from core.item_db import ItemDB
+from core.window_manager import WindowManager
 
 logger = logging.getLogger(__name__)
 
@@ -132,9 +133,33 @@ class BackpackAIApp(tk.Tk):
 
         self.protocol("WM_DELETE_WINDOW", self._on_close)
         if _HAS_PIL:
-            self._log("info", "欢迎使用背包乱斗 AI 控制台。请先启动游戏，再点击「初始化」。")
+            self._log("info", "欢迎使用背包乱斗 AI 控制台。检测到游戏窗口后将自动连接（也可手动点击「初始化」）。")
         else:
             self._log("warning", "未检测到 PIL，贴图将退化为色块显示（请安装 Pillow 后重试）。")
+
+        # 自动连接：启动后后台轮询，检测到游戏窗口即自动初始化
+        self._auto_connect_attempts = 0
+        self.after(600, self._auto_connect_tick)
+
+    # ---------- 自动连接 ----------
+    def _auto_connect_tick(self):
+        """未连接状态下轮询游戏窗口，出现即自动初始化（无需手动点初始化）。"""
+        if self._closing or self._initialized or (self.bot and self.bot.memory_reader):
+            return
+        self._auto_connect_attempts += 1
+        # 轻量预检：窗口未出现则不创建 bot（避免无谓的句柄开销）
+        try:
+            w = self.bot.window_mgr.find_game_window() if self.bot \
+                else WindowManager().find_game_window()
+        except Exception:  # noqa: BLE001
+            w = None
+        if w is None:
+            if self._auto_connect_attempts in (1, 3, 10):
+                self._log("info", "自动连接：未检测到游戏窗口，持续等待中...")
+            self.after(2500, self._auto_connect_tick)
+            return
+        self._log("info", f"自动连接：检测到游戏窗口 (PID={w.pid})，正在初始化...")
+        self._on_init()
 
     # ---------- 样式 ----------
     def _setup_style(self):
@@ -277,8 +302,17 @@ class BackpackAIApp(tk.Tk):
             bg=COLORS["panel_light"], fg=COLORS["text"], cursor="hand2",
             activebackground=COLORS["border"], activeforeground=COLORS["text"],
             command=self._on_export_lineup, padx=6, pady=8)
-        export_btn.pack(fill="x", padx=13, pady=(0, 12))
+        export_btn.pack(fill="x", padx=13, pady=(0, 8))
         self.buttons["export"] = export_btn
+
+        # 历史记录导出：从游戏 history.db（BuildHistoryDB）导出任一回合摆盘
+        history_btn = tk.Button(
+            panel, text="从历史记录导出阵容", font=FONTS["button"], relief="flat",
+            bg=COLORS["panel_light"], fg=COLORS["text"], cursor="hand2",
+            activebackground=COLORS["border"], activeforeground=COLORS["text"],
+            command=self._on_export_history, padx=6, pady=8)
+        history_btn.pack(fill="x", padx=13, pady=(0, 12))
+        self.buttons["history"] = history_btn
 
         self._set_buttons_state(running=False, initialized=False)
 
@@ -909,15 +943,20 @@ class BackpackAIApp(tk.Tk):
             item_entry(it)
 
         character = "Adventurer"
+        # 优先读取游戏内真实职业（Game.curClass → Classes 枚举名）
+        if self.bot is not None:
+            ch = self.bot.read_character()
+            if ch:
+                character = ch
         if known_chars is not None and character not in known_chars:
-            character = next(iter(known_chars), "Adventurer")
+            character = next(iter(known_chars), character)
 
         data = {
             "version": 4,
             "name": "实时导出阵容",
             "character": character,
             "round": self._last_round if self._last_round is not None else 1,
-            "grid": [7, 10],
+            "grid": [10, 10],
             "items": items_out,
             "storage": [],
         }
@@ -941,13 +980,128 @@ class BackpackAIApp(tk.Tk):
             messagebox.showerror("错误", f"保存失败:\n{e}")
             return
 
-        self._log("success", f"✓ 已导出阵容（{len(items_out)} 件物品）→ {path}")
+        self._log("success", f"✓ 已导出阵容（{len(items_out)} 件物品，职业 {character}）→ {path}")
         if unknown:
             self._log("warning",
                       "⚠ 以下物品暂未收录进模拟器物品库，模拟前需在 items_db.json 中补充: "
                       + ", ".join(sorted(set(unknown))))
         self._log("info",
-                  "用法: python -m simulator.simulator 本文件.json 对手阵容.json")
+                  "用法: python -m simulator.simulate 本文件.json 对手阵容.json")
+
+    # ---------- 历史记录导出 ----------
+    def _on_export_history(self):
+        """从游戏 history.db 导出历史回合摆盘为 v4 阵容 JSON。
+
+        BuildHistoryDB（SQLite）里每回合的 buildInfo 位流按
+        RunData.deserializeStream 解码；物品索引映射优先用活体 ItemBook
+        （见 core/build_history.live_item_index_map）。
+        """
+        from core import build_history as bh
+
+        # 活体刷新映射（游戏连接时索引表与游戏版本严格一致）
+        if self.bot is not None and self.bot.godot_reader is not None \
+                and self.bot.godot_reader.is_ready() and self.bot.memory_reader:
+            try:
+                m = bh.live_item_index_map(self.bot.godot_reader,
+                                           self.bot.memory_reader)
+                if m:
+                    self._log("info",
+                              f"已刷新物品索引映射（{len(m['index_to_name'])} 项，live）")
+            except Exception as e:  # noqa: BLE001
+                self._log("warning", f"活体索引刷新失败（将用缓存映射）: {e}")
+
+        db_path = bh.find_history_db()
+        if not db_path:
+            messagebox.showwarning(
+                "提示", "未找到 history.db。\n请先在游戏里至少完成一个回合（历史记录才有数据）。")
+            return
+
+        try:
+            runs = bh.list_runs(db_path)
+        except Exception as e:  # noqa: BLE001
+            messagebox.showerror("错误", f"读取历史数据库失败:\n{e}")
+            return
+        if not runs:
+            messagebox.showwarning("提示", "历史数据库为空。")
+            return
+
+        dlg = tk.Toplevel(self)
+        dlg.title("从历史记录导出阵容")
+        dlg.configure(bg=COLORS["bg"])
+        dlg.geometry("640x460")
+        dlg.transient(self)
+
+        tk.Label(dlg, text="选择 Run（对局）", font=FONTS["small"],
+                 bg=COLORS["bg"], fg=COLORS["text"]).pack(anchor="w", padx=10, pady=(8, 2))
+        run_lb = tk.Listbox(dlg, font=FONTS["small"], height=8)
+        run_lb.pack(fill="x", padx=10)
+
+        tk.Label(dlg, text="选择回合（每回合结束时的摆盘）", font=FONTS["small"],
+                 bg=COLORS["bg"], fg=COLORS["text"]).pack(anchor="w", padx=10, pady=(8, 2))
+        round_lb = tk.Listbox(dlg, font=FONTS["small"], height=8)
+        round_lb.pack(fill="x", padx=10)
+
+        rounds_cache: list = []
+
+        def load_rounds(_ev=None):
+            sel = run_lb.curselection()
+            if not sel:
+                return
+            run = runs[sel[0]]
+            round_lb.delete(0, "end")
+            rounds_cache.clear()
+            try:
+                rounds_cache.extend(bh.list_rounds(db_path, run["run_id"]))
+            except Exception as e:  # noqa: BLE001
+                self._log("error", f"读取回合失败: {e}")
+                return
+            for r in rounds_cache:
+                res = {0: "胜", 1: "败", 2: "平"}.get(r["result"], f"r{r['result']}")
+                round_lb.insert(
+                    "end", f"第 {r['round_id'] + 1} 回合  [{res}]  "
+                           f"血量 {r['health']}  体力 {r['stamina']}")
+
+        def do_export():
+            sel_r = run_lb.curselection()
+            sel_rd = round_lb.curselection()
+            if not sel_r or not sel_rd:
+                messagebox.showinfo("提示", "请先选择 Run 与回合。", parent=dlg)
+                return
+            run = runs[sel_r[0]]
+            rd = rounds_cache[sel_rd[0]]
+            default_name = (f"history_run{run['run_id']}_round{rd['round_id'] + 1}.json")
+            path = filedialog.asksaveasfilename(
+                title="保存历史阵容 JSON", defaultextension=".json",
+                initialfile=default_name,
+                initialdir=str(get_base_dir()),
+                filetypes=[("JSON 文件", "*.json")], parent=dlg)
+            if not path:
+                return
+            try:
+                data = bh.export_round(run["run_id"], rd["round_id"], path,
+                                       db_path=db_path)
+            except Exception as e:  # noqa: BLE001
+                messagebox.showerror("错误", f"导出失败:\n{e}", parent=dlg)
+                return
+            self._log("success",
+                      f"✓ 已导出历史阵容（Run{run['run_id']} 第{rd['round_id'] + 1}回合，"
+                      f"{len(data['items'])} 件物品）→ {path}")
+            self._log("info", "用法: python -m simulator.simulate 本文件.json 对手阵容.json")
+            dlg.destroy()
+
+        run_lb.bind("<<ListboxSelect>>", load_rounds)
+        for run in runs:
+            run_lb.insert("end", f"Run {run['run_id']}  [{run['character']}]  "
+                                 f"{run['num_rounds']} 回合  "
+                                 f"{datetime.fromtimestamp(run['time']).strftime('%m-%d %H:%M')}")
+        btns = tk.Frame(dlg, bg=COLORS["bg"])
+        btns.pack(fill="x", padx=10, pady=10)
+        tk.Button(btns, text="导出所选回合", font=FONTS["button"], relief="flat",
+                  bg=COLORS["accent"], fg="#ffffff", command=do_export,
+                  padx=10, pady=6).pack(side="left")
+        tk.Button(btns, text="关闭", font=FONTS["button"], relief="flat",
+                  bg=COLORS["panel_light"], fg=COLORS["text"],
+                  command=dlg.destroy, padx=10, pady=6).pack(side="right")
 
     # ---------- 日志 ----------
     def _log(self, level: str, msg: str):
@@ -1015,6 +1169,8 @@ class BackpackAIApp(tk.Tk):
                 self._log("error", err)
             self._log("error", "初始化失败：请确认游戏已启动，并以管理员权限运行本程序")
             self._set_buttons_state(running=False, initialized=False)
+            # 自动连接模式下稍后重试（游戏中途启动/权限就绪后可自愈）
+            self.after(5000, self._auto_connect_tick)
 
     # ---------- 自动标定（仅定位 OS 结构，无需手动填金币等值）----------
     def _start_auto_calibration(self):
