@@ -362,7 +362,8 @@ def list_rounds(db_path: Optional[str] = None, run_id: int = 0) -> List[Dict[str
 
 
 def export_round(run_id: int, round_id: int, out_path: str,
-                 db_path: Optional[str] = None) -> Dict[str, Any]:
+                 db_path: Optional[str] = None,
+                 name: Optional[str] = None) -> Dict[str, Any]:
     """导出指定 run 的指定回合为 v4 阵容 JSON；返回写入的数据。"""
     db = db_path or find_history_db()
     if not db or not os.path.exists(db):
@@ -389,9 +390,9 @@ def export_round(run_id: int, round_id: int, out_path: str,
     character = CLASSES.get(run[0], "Adventurer")
     data: Dict[str, Any] = {
         "version": 4,
-        "name": f"历史 Run{run_id} 第{round_id}回合",
+        "name": name or f"历史 Run{run_id} 第{round_id}回合",
         "character": character,
-        "round": int(round_id) + 1,
+        "round": int(round_id),
         "class_modifiers": {
             "health": row[1],
             "stamina": row[2],
@@ -400,7 +401,7 @@ def export_round(run_id: int, round_id: int, out_path: str,
         "items": decoded["items"],
         "storage": [],
         "meta": {
-            "name": f"历史 Run{run_id} 第{round_id}回合",
+            "name": name or f"历史 Run{run_id} 第{round_id}回合",
             "source": "game_history",
             "run_id": run_id,
             "round_id": round_id,
