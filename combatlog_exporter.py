@@ -12,6 +12,7 @@
 from __future__ import annotations
 
 import json
+import logging
 import os
 import sys
 import threading
@@ -20,10 +21,13 @@ from datetime import datetime
 from pathlib import Path
 from tkinter import ttk
 
+logger = logging.getLogger("combatlog_exporter")
+
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from core.combatlog_reader import CombatLogReader  # noqa: E402
 from core.combatlog_text import render_log  # noqa: E402
+from core.item_reader import ItemReader  # noqa: E402
 from core.paths import get_base_dir, get_config_path  # noqa: E402
 
 POLL_MS = 800
@@ -54,7 +58,69 @@ class Exporter:
         self.skipped_base: set = set()
         self.pending: Optional[dict] = None   # 已捕获待用户选择的战斗
         self._prev_fp: tuple = ()
+        self._ireader: ItemReader | None = None
         self.auto_export = False              # True=不询问直接写盘
+
+    def _lineup_reader(self) -> ItemReader:
+        if self._ireader is None:
+            self._ireader = ItemReader(self.reader.gr,
+                                       item_db=self.reader.item_db,
+                                       use_bridge=False)
+        return self._ireader
+
+    @staticmethod
+    def _v4_lineup(items: list, character: str, round_num, side: str) -> dict:
+        """ItemInfo 列表 → 模拟器 v4 阵容（平铺 + in/gems，对齐 GUI 导出）。"""
+        out: list = []
+
+        def entry(it, bag_index=None):
+            cells = it.get("cells") or []
+            if cells:
+                row = min(r for r, _ in cells)
+                col = min(c for _, c in cells)
+            else:
+                row, col = it.get("row") or 0, it.get("col") or 0
+            e = {"id": it["name"], "at": [int(row), int(col)],
+                 "r": int(round(it.get("rotation", 0.0) * 180 / 3.14159 / 90) * 90) % 360}
+            if bag_index is not None:
+                e["in"] = bag_index
+            gems = [g["id"] for g in (it.get("gems") or []) if g.get("id")]
+            if gems:
+                e["gems"] = gems
+            out.append(e)
+            sub = len(out) - 1
+            for c in (it.get("contents") or []):
+                entry(c, bag_index=sub)
+
+        for it in items:
+            entry(it)
+        return {"version": 4, "name": f"战斗实录 · {side}", "character": character,
+                "round": round_num if round_num is not None else 1,
+                "grid": [10, 10], "items": out, "storage": []}
+
+    def _export_lineups(self, base: Path, round_num) -> str:
+        """导出双方阵容到日志同目录（.Player.json / .Opponent.json）。
+
+        返回 "both" / "player" / "none"（对手侧物品可能已被场景清理）。"""
+        try:
+            lineups = self._lineup_reader().read_fight_lineups()
+        except Exception as e:  # noqa: BLE001
+            logger.warning("阵容读取失败: %s", e)
+            return "none"
+        pchar = self.reader.read_class() or "Adventurer"
+        ochar = self.reader.read_opponent_class() or "Adventurer"
+        wrote = "none"
+        for side, key, char in (("Player", "player", pchar),
+                                ("Opponent", "opponent", ochar)):
+            infos = lineups.get(key) or []
+            if not infos:
+                continue
+            data = self._v4_lineup(infos, char, round_num, side)
+            (base.parent / (base.name + f".{side}.json")).write_text(
+                json.dumps(data, ensure_ascii=False, indent=2),
+                encoding="utf-8")
+            wrote = side if wrote == "none" else "both"
+        return wrote
 
     def _fingerprint(self, events: list) -> tuple:
         if not events:
@@ -68,7 +134,10 @@ class Exporter:
         result = {111: "Win", 112: "Loss"}.get(last.get("type"), "Partial")
         ts = datetime.now().strftime("%Y%m%d_%H%M%S")
         rnd = f"R{round_num}" if round_num is not None else "R?"
-        base = OUT_DIR / f"CombatLog_{ts}_{rnd}_{result}"
+        # 每次导出单独一个子文件夹，文件集中存放
+        sub = OUT_DIR / f"CombatLog_{ts}_{rnd}_{result}"
+        sub.mkdir(parents=True, exist_ok=True)
+        base = sub / f"CombatLog_{ts}_{rnd}_{result}"
         meta = {
             "exported_at": datetime.now().isoformat(timespec="seconds"),
             "game_pid": self.reader.pid,
@@ -78,6 +147,7 @@ class Exporter:
             "format": "Backpack Battles CombatLog (memory dump, "
                       "rendered per CombatEvent.asText)",
         }
+        meta["lineups"] = self._export_lineups(base, round_num)
         path = base.parent / (base.name + ".json")
         path.write_text(json.dumps({"meta": meta, "events": events},
                                    ensure_ascii=False, indent=1),
@@ -194,8 +264,8 @@ class Exporter:
             return out
         # 置入待选择（新一轮战斗结束会覆盖未作答的旧待选）
         out["last_id"] = events[-1].get("id")
-        self.pending = {"fp": fp, "fp_base": fp_base,
-                        "events": events, "round": out["round"]}
+        self.pending = {"fp": fp, "fp_base": fp_base, "events": events,
+                        "round": out["round"]}
         out["count"] = len(events)
         out["status"] = "pending_choice"
         return out

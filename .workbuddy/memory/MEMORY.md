@@ -16,10 +16,12 @@
 - `simulator/`：`simulate.py`（ENGINES=("gd_core",) 唯一内核，2026-09-28 收敛）/ `gd_core_engine.py`（事件桥 `_LogMixin`）/ `gui.py`（无内核下拉框）；`engine/log_text.py` = 共享渲染层（gd_core 也走它）；`engine/`、`simulator/combat.py` 旧内核文件保留但已下线
 - `tools/build_item_scripts.py`：SALVAGE_FUNCS 点名抢救机制（整函数剥离误伤 → 语句级抢救；2026-09-28 救回 MagicRing.sortEffects/randEffects、ManaOrb.onManaChanged、AmuletofDarkness.onItemActivated、ChessPiece.onEliminatededBy）
 
-## ★ 2026-09-28 三大修复（本轮）
+## ★ 2026-09-28 修复台账
 1. **坐标系互换（联动失效根因之一）**：`gd_core_engine._place_of` 与 `tools/gen_lineup_fixture.placement_of` 的 `occupied` 曾是 (row,col) 而 collision/affected 是 (x=col,y=row) → filledCells 键与 affected 查询格错位 → 1×1 物品 `getAffectedItems()` 恒空且零报错。已修（occupied 改 (x+col,y+row)）；`run_gd_py.py` 越界断言同步（x<10,y<7）。**两侧同源偏差，逐事件对照抓不到**
 2. **Buff 信号名断裂（根因之二）**：`gd_core/CoreCharacter.gd` 把 Buff signalName 写成 `_stacks_changed_%d`（无订阅者）而物品脚本订阅原版名 `character_mana_changed` 等 → ManaOrb/Crown/Sapphire 等 ≥7 件静默失效。已修（就地反查 EventType 拼原版名）
-3. **日志格式**：桥层 `_origin_key` 数字 origin 按 typeToKeyword keyword 化（fatigue 等，用 `kernel()["ET_NAME"]` ★不是 `_LogMixin._ET_NAME`——那是基类空 dict）；`log_text.py` 修 stamina 参数名（兼容 stamina/amount）、补 damage_buff/dam_increase/dam_reduction/temporary_max_stamina/battle_rage 分支、疲劳渲染 "Fatigue Damage: N"（官方 LOG_Health/LoseHealth/FatigueDamage/CriticalResisted/TemporaryMaxHealth 键**不存在**且 Util.tra 缺键返回空 → 原版这些行显示空文本，我们保留可读兜底已登记；官方 LOG_Activation zh = "{origin}以显示。"机翻照搬）
+3. **日志格式**：桥层 `_origin_key` 数字 origin 按 typeToKeyword keyword 化（fatigue 等，用 `kernel()["ET_NAME"]` ★不是 `_LogMixin._ET_NAME`——那是基类空 dict）；`log_text.py` 修 stamina 参数名（兼容 stamina/amount）、补 damage_buff/dam_increase/dam_reduction/temporary_max_stamina/battle_rage 分支、疲劳渲染 "Fatigue Damage: N"（官方 LOG_Health/LoseHealth/FatigueDamage/CriticalResisted/TemporaryMaxHealth 键**不存在**且 Util.tra 缺键返回空 → 原版这些行显示空文本，我们保留可读兜底已登记）
+4. **stun 漏发信号（联动排查唯一实锤断点，已修 d3aff49）**：`CoreCharacter.stun()` 非抵挡分支曾 `ctx.bus.logEvent(event)`，应为 `ctx.bus.emitEvent(self,"character_stunned",event,[event])`（原版 Character.gd:1080）→ Dagger.onStun 静默失效。三副本同步（gd_core/gd_core_py/gd_core_test）
+5. **zh 激活行可读兜底**：官方 LOG_Activation zh「{origin}以显示。」是机翻瑕疵 → log_text.py 渲染改「{origin}已激活。」（truth §6.22；判定不变）。联动系统性排查结论：**282 件联动物品信号订阅零断点**（verify_linkage_subs.py）；转写函数完整性 517 份零缺失（verify_transpile_funcs.py）；黑暗护符=上方扇形、魔法球=四角对角 = 原版机制非 bug
 
 ## ★ 铁律（多轮踩坑换来）
 - **「零报错 ≠ 生效」**：信号/折叠没接上会安静跑完整场零报错 → 联动要靠激活计数取证

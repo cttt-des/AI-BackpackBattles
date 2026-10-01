@@ -8,8 +8,6 @@ build/
 build_gui/
 *.spec
 dist/*
-# 阵容 JSON 入库（含游戏历史导出存档——已知联动问题的复现材料，见 README）
-!dist/lineups/
 
 # ============ 日志与临时文件 ============
 logs/
@@ -84,5 +82,6 @@ StaminaGainCounter.gde.gd
 Thumbs.db
 .zcode/
 .codebuddy/
+.workbuddy/
 
 # 缂栬緫鍣�/宸ュ叿鏈�鍦扮洰褰�
