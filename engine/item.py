@@ -570,10 +570,11 @@ class Item:
     # 这里为常见的视觉/引擎成员提供安全占位。
     @property
     def sprite(self):
-        if not hasattr(self, "_sprite_noop"):
-            from .behavior import _Noop
-            self._sprite_noop = _Noop()
-        return self._sprite_noop
+        """sprite 节点引用（$Icon 等）：登记视觉桩（链式安全，支持
+        `.offset` 一元运算等），行为代码 `-_item.sprite.offset * ...` 不再炸。"""
+        from .stubs import _LEGACY_STUBS
+        _LEGACY_STUBS.hit("item_visual.sprite")
+        return _LEGACY_STUBS.make_noop("item_visual.sprite")
 
     @property
     def placed(self) -> bool:
@@ -1463,6 +1464,7 @@ class Item:
         self.opponent().stun(duration, self, trigger_event)
 
     def drain_stamina(self, amount, trigger_event=None):
+        # Item.drainStamina（Item.gd:4226）：对手掉体力，self 记账物品
         return self.opponent().drain_stamina(amount, self, trigger_event)
 
     # ================ 行为执行器（extract_items.py GDScript 行为） ================
@@ -1599,6 +1601,15 @@ class Item:
         self._cache_inside_items()
         self.call_behavior("onPrepare")
         self.call_behavior("prepare")
+        # Shield.prepare 的信号连接（Shield.gd:6-10）——`prepare` 在转译期被
+        # ENGINE_LIFECYCLE 跳过，盾牌格挡链（beforeBlock 减伤 + afterBlock
+        # 回调）依赖这两条连接，缺失则 MoonShield/SpikedShield 等全部沉默
+        if self.category == 'shield' or self.has_behavior('preTakeDamage'):
+            if self.character is not None:
+                self.connect_for_combat(self.character, 'pre_take_damage',
+                                        'preTakeDamage')
+                self.connect_for_combat(self.character, 'character_attacked',
+                                        'onCharacterAttacked')
 
     # ================ 行为脚本调用的 API（对齐 Item.gd） ================
     def visual_activate(self, *args, **kwargs):
@@ -2068,6 +2079,13 @@ class Item:
 
     def set_state(self, new_state, with_next_event=False, event=None):
         """Item.gd setState — 状态切换入口（camelCase setState 调用经 __getattr__ 到达）"""
+        # Potion.gd onStateChanged(_isFull)：setState(false)=drink（药水空）、
+        # setState(true)=fill。缺失此同步会让 is_empty() 恒 False，药水
+        # （Pestilence Flask 等）被对手每次治疗无限重触发
+        if new_state is False:
+            self.is_full = False
+        elif new_state is True:
+            self.is_full = True
         self.state_changed(new_state)
 
     def state_changed(self, new_state):

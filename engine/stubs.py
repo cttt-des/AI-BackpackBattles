@@ -56,6 +56,27 @@ class StubRegistry:
             __sub__ = __rsub__ = __isub__ = _op
             __mul__ = __rmul__ = __imul__ = _op
             __truediv__ = __rtruediv__ = __itruediv__ = _op
+            # 一元运算（-sprite.offset 等）：返回桩保持链式自洽
+            def __neg__(self):
+                return self._op()
+
+            def __pos__(self):
+                return self._op()
+
+            def __abs__(self):
+                return self._op()
+
+            def __round__(self, n=None):
+                return self._op()
+
+            def __float__(self):
+                return 0.0
+
+            def __int__(self):
+                return 0
+
+            def __index__(self):
+                return 0
 
             def __eq__(self, other):
                 # current_animation != '' 等比较：桩与任意值不等（ falsy 分支）

@@ -129,6 +129,7 @@ class UtilFacade:
 
     def __init__(self, ctx: "BattleContext"):
         self._ctx = ctx
+        self._stub_reg = StubRegistry()
 
     # ---- 随机（走 battle rng，确定性） ----
     def flip(self, chance: float = 0.5):
@@ -147,6 +148,11 @@ class UtilFacade:
     @property
     def time(self):
         return self._ctx.time             # Util.time 物理时间累加器（Util.gd:141-146）
+
+    def __getattr__(self, name):
+        # 其余 Util 成员（zapScene 等场景/视觉引用）：no-op 桩，链式安全
+        self._stub_reg.hit(f"util.{name}")
+        return self._stub_reg.make_noop(f"util.{name}")
 
     # ---- 字典/数组助手（纯函数） ----
     @staticmethod
