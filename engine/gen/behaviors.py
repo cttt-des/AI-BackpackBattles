@@ -1256,7 +1256,7 @@ def f_Pestilence_Flask__onOpponentHeal(_item, _amount=None, event=None):
     affected = None
     if _item.is_empty():
         return
-    pass
+    _item.drink()
     _item.trigger_potion(event)
     affected = _item.get_affected_items()
     if affected:
@@ -6053,7 +6053,7 @@ def f_Demonic_Flask__onDamaged(_item, healthChange=None, event=None):
     if _item.is_empty():
         return
     if _item.opponent().get_relative_health() < _item.healthThreshold:
-        pass
+        _item.drink()
         _item.trigger_potion(event)
         affected = _item.get_affected_items()
         if affected:
@@ -6589,7 +6589,7 @@ def f_Strong_Demonic_Flask__onOpponentDamaged(_item, healthChange=None, event=No
         _item._behavior_call('drinkStrongDemonicFlask', event)
 def f_Strong_Demonic_Flask__drinkStrongDemonicFlask(_item, event=None):
     affected = None
-    pass
+    _item.drink()
     _item.trigger_potion(event)
     affected = _item.get_affected_items()
     if affected:
