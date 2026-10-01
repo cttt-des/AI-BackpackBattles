@@ -333,6 +333,14 @@ class _LogMixin:
         if etype is None:
             return None          # 原版日志里没有这一行
 
+        # 栈增益的「对自身施加」变体（原版 asText：getMainActor() == target
+        # → GAIN_DEBUFF_SELF）：施加方与受方同侧即为 self（如剧毒矛自毒）。
+        if etype == "stack_gain" and 100 <= et <= 110:
+            tgt = self._side(event.target)
+            if actor is not None and tgt == actor:
+                params = dict(params)
+                params["actor_is_target"] = True
+
         okey = self._origin_key(event.origin)
         self.events.append(_EventOut(
             t=float(event.timestamp or 0.0),

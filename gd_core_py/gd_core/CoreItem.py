@@ -688,6 +688,13 @@ class CoreItem(GodotObject):
 		# ★ 必须放在冷却门之前：计时器承载 buff 时长（buffEnded 会撤掉 buff 效果），
 		#   冷却未激活不代表计时器停摆。
 		self._tickTimers(delta)
+		# ★ 镶嵌宝石的计时器由宿主代为推进：原版宝石是 socket→item 的场景树子节点，
+		#   其 XxxTimer 由引擎物理帧推进（如 ElephantRune 的 DebuffResistTimer 承载
+		#   dur_resist 后移除全减伤抗性）；内核里宝石不在 combat.ordered_items
+		#   （那里只有摆上格子的物品），若不在此推进，宝石计时器永不触发。
+		for gem in _iter(self.gems):
+			if gem != None:
+				gem._tickTimers(delta)
 		if not self._cooldown_active:
 			return
 		if not self.character().isStunned():

@@ -60,6 +60,9 @@ DESC_NAME = 6
 EV_ID, EV_TS, EV_PARENT, EV_ORIGIN, EV_TYPE, EV_TARGET, EV_PARAMS = 0, 1, 2, 3, 4, 6, 7
 # Game 单例成员下标（活体标定）
 GAME_MEMBER_ROUND = 65
+GAME_MEMBER_CURCLASS = 83        # Game.Classes: Ranger0/Reaper1/Berserker2/Pyromancer3
+GAME_MEMBER_CUR_OPPONENT = 145   # curOpponentData 字典（含对手 classI 等）
+CLASSES = {0: "Ranger", 1: "Reaper", 2: "Berserker", 3: "Pyromancer"}
 
 EVENT_TYPES = {
     0: "Activation", 1: "DealDamage", 2: "CriticalDamage", 3: "MissedAttack",
@@ -492,6 +495,35 @@ class CombatLogReader:
             return None
         try:
             return self.gr.read_member(self._game_node, GAME_MEMBER_ROUND)
+        except Exception:  # noqa: BLE001
+            return None
+
+    def read_class(self) -> Optional[str]:
+        """玩家职业名（Game.curClass）。"""
+        if not self._game_node:
+            return None
+        try:
+            v = self.gr.read_member(self._game_node, GAME_MEMBER_CURCLASS)
+            return CLASSES.get(v, "Adventurer")
+        except Exception:  # noqa: BLE001
+            return None
+
+    def read_opponent_class(self) -> Optional[str]:
+        """对手职业名（curOpponentData["classI"]）。"""
+        if not self._game_node:
+            return None
+        try:
+            ma = self._members_addr(self._game_node)
+            if not ma:
+                return None
+            vs = self.gr.off["variant_size"]
+            va = ma + GAME_MEMBER_CUR_OPPONENT * vs
+            if self._vtype(va) != 18:
+                return None
+            for k, v in self._dict_items(va, max_items=64):
+                if k == "classI" and isinstance(v, int):
+                    return CLASSES.get(v, "Adventurer")
+            return None
         except Exception:  # noqa: BLE001
             return None
 

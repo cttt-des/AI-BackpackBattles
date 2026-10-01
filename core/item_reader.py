@@ -423,3 +423,28 @@ class ItemReader:
         for it in data["shop"]:
             lines.append(f"[商店] {it['zh']}({it['name']})")
         return lines
+
+    # ---------------- 战斗双方阵容读取（战斗日志导出用） ----------------
+    def read_fight_lineups(self) -> Dict[str, List[ItemInfo]]:
+        """读取战斗双方的背包物品（战斗结束瞬间双方 INVENTORY 均在场景中）。
+
+        玩家侧沿用 backpack 读取路径；对手侧在 Main 下找 Opponent 节点，
+        同样用 _collect_items 递归（含镶嵌宝石与袋内物品）。
+        返回 {"player": [...], "opponent": [...]}。
+        """
+        out: Dict[str, List[ItemInfo]] = {"player": [], "opponent": []}
+        main = self._cached_find("main")
+        if not main:
+            self._invalidate_cache()
+            return out
+        player = self._cached_find("player", main, "Player")
+        if player:
+            inv = self._find_by_name(player, "Inventory")
+            origin = self.gr.node_pos(inv) if inv else None
+            out["player"] = self._collect_items(player, "backpack", origin)
+        opp = self._find_by_name(main, "Opponent", max_depth=3)
+        if opp:
+            inv = self._find_by_name(opp, "Inventory")
+            origin = self.gr.node_pos(inv) if inv else None
+            out["opponent"] = self._collect_items(opp, "backpack", origin)
+        return out
