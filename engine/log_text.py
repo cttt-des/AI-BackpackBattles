@@ -80,7 +80,7 @@ TEMPLATES = {
     "GAIN_DEBUFF_SELF": ("Self-inflicted {amount} {debuff} ({origin}).", "对自身施加{amount}层 {debuff}（{origin}）。"),
     "GAIN_DEBUFF_TEMP": ("Inflicted {amount} {debuff} for {duration}s ({origin}).", "施加了{amount} {debuff}，持续{duration}秒 ({origin})。"),
     "GAIN_DEBUFF_SELF_TEMP": ("Self-inflicted {amount} {debuff} for {duration}s ({origin}).", "对自己施加了{amount} {debuff}，持续{duration}秒 ({origin})。"),
-    "LOSE_BUFF": ("Lost {amount} {buff} ({origin}).", "失去{amount}层 {buff}（{origin}）。"),
+    "LOSE_BUFF": ("Lost {amount} {buff} ({origin}).", "移除{amount}层 {buff}（{origin}）。"),
     "LOSE_DEBUFF": ("Cleansed {amount} {debuff} ({origin}).", "净化{amount}层 {debuff}（{origin}）。"),
     "USE_BUFF": ("Used {amount} {buff} ({origin}).", "消耗{amount} {buff} （{origin}）。"),
     "BUFF_TIMEOUT": ("{amount} {buff} timed out ({origin}).", "{amount} {buff}持续时间结束({origin})。"),
@@ -169,8 +169,12 @@ def _side_of(actor) -> Optional[str]:
 
 
 def render_log(events: List[Any], lang: str = "zh",
-               dual: bool = True) -> str:
-    """把引擎事件流渲染为游戏格式文本。"""
+               dual: bool = True, show_activations: bool = False) -> str:
+    """把引擎事件流渲染为游戏格式文本。
+
+    show_activations=False（默认）与游戏一致：原版 UI 的 activationsState
+    默认为 Hide，激活行不显示（core/combatlog_text.py 同口径）。
+    """
     if lang == "zh":
         side_tag = {"P": "[玩家] ", "O": "[对手] "}
     else:
@@ -185,7 +189,7 @@ def render_log(events: List[Any], lang: str = "zh",
         eid = getattr(e, "id", None)
         if eid is not None:
             sides[eid] = side
-        text = _render_event(e, lang)
+        text = _render_event(e, lang, show_activations)
         if not text:
             continue
         tag = side_tag[side] if (dual and side) else ""
@@ -198,12 +202,18 @@ def render_log(events: List[Any], lang: str = "zh",
     return "\n".join(lines)
 
 
-def _render_event(e, lang: str) -> Optional[str]:
+def _render_event(e, lang: str, show_activations: bool = False) -> Optional[str]:
     etype = getattr(e, "type", "")
     p = getattr(e, "params", {}) or {}
     origin = getattr(e, "origin", None) or ""
     if not isinstance(origin, str):
         origin = getattr(origin, "key", "")
+    # 数值口径：内核参数可能带 .0 浮点尾巴，游戏日志为整数 → 整值化
+    p = dict(p)
+    for k in ("damage", "amount", "stamina", "counter"):
+        v = p.get(k)
+        if isinstance(v, float) and v.is_integer():
+            p[k] = int(v)
     # 疲劳特判用翻译前的原始 keyword（zh 分支会把它翻成「疲劳」）
     raw_origin = origin
     # 物品名国际化：优先游戏官方中文名；数字 origin 的 keyword（fatigue 等）
@@ -211,11 +221,12 @@ def _render_event(e, lang: str) -> Optional[str]:
     if lang == "zh" and origin:
         translated = zh_name(origin)
         origin = translated if translated != origin else KEYWORD_ZH.get(origin, origin)
-    if lang == "zh" and p.get("buff"):
-        p = dict(p)
-        for k in ("buff", "debuff", "item_name"):
-            if p.get(k):
-                p[k] = zh_name(p[k])
+    if lang == "zh":
+        if p.get("buff") or p.get("item") or p.get("item_name"):
+            p = dict(p)
+            for k in ("buff", "debuff", "item_name", "item"):
+                if p.get(k):
+                    p[k] = zh_name(p[k])
 
     if etype in _SUPPRESSED:
         return None
@@ -224,6 +235,8 @@ def _render_event(e, lang: str) -> Optional[str]:
         return _t("Win" if p.get("winner") == "player" else "Loss", {}, lang)
 
     if etype == "item_activate":
+        if not show_activations:
+            return None  # 原版默认隐藏激活行（activationsState=Hide）
         return _t("Activation", {"origin": origin}, lang)
 
     if etype in ("attack", "critical"):
