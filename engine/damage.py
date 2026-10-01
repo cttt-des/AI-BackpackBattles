@@ -276,6 +276,14 @@ class DamageResult:
         """applyDamageReduction — 格挡扣减（累加，后续在 takeDamage 里减）"""
         self.damage_reduction += amount
 
+    # GDScript 原名别名（Shield.beforeBlock 转译直调 applyDamageReduction）
+    def applyDamageReduction(self, amount: int, item: Optional['Item'] = None):
+        # applyDamageReduction 原体：格挡扣减累加（takeDamage 里统一减）
+        self.damage_reduction += amount
+
+    def addDamageReduction(self, amount: int):
+        self.damage_reduction += amount
+
     # ---------------- 触发判定 ----------------
     def _can_trigger_items(self) -> bool:
         return bool(self.damage_source.flags & DS_Flags.CAN_TRIGGER_ITEMS)

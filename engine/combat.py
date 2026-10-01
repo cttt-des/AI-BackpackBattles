@@ -79,11 +79,12 @@ class CombatEngine:
                                              self.player_rng)
         self.opponent_items = self._make_items(opponent_lineup.get('backpack', {}).get('items', []),
                                                self.opponent_rng)
-        self.player_inventory = self._place_items(self.player_items, player_lineup)
-        self.opponent_inventory = self._place_items(self.opponent_items, opponent_lineup)
-        # ctx 已在日志创建时建立；注入全部参战物品
+        # ctx 注入必须先于摆盘（物品入背包触发 _ready，Mana Orb 等的 _ready
+        # 读 ctx.game —— 晚注入会永久丢失这些物品的初始化）
         for _it in self.player_items + self.opponent_items:
             _it.ctx = self.ctx
+        self.player_inventory = self._place_items(self.player_items, player_lineup)
+        self.opponent_inventory = self._place_items(self.opponent_items, opponent_lineup)
 
         self.player.set_items(self.player_items)
         self.opponent.set_items(self.opponent_items)
@@ -386,10 +387,12 @@ class CombatEngine:
         # 双方独立伤害 = counter + 各自 bonusFatigueDamage
         p_dmg = max(0, self.fatigue_counter + self.player.get_bonus_fatigue_damage())
         o_dmg = max(0, self.fatigue_counter + self.opponent.get_bonus_fatigue_damage())
+        # 疲劳伤害经 take_fatigue_damage → take_damage(origin_label="fatigue")
+        # 发 DealDamage（真值日志形态；counter 计数走 fatigue_start 之外的
+        # 战报文本由 DealDamage 行呈现）
         self.opponent.take_fatigue_damage(o_dmg, now)
         self.player.take_fatigue_damage(p_dmg, now)
         self.fatigue_interval = FATIGUE_TICK_FAST
-        self.log.fatigue_damage(now, self.fatigue_counter, p_dmg, o_dmg)
     # ---------------- 结束 ----------------
     def _end_fight(self, winner: Optional[Character], reason: str):
         if self.fight_ended:

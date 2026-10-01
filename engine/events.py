@@ -106,6 +106,10 @@ class CombatLog:
         return self._emit("lose_health", actor=actor,
                           params={"amount": amount}, parent=parent)
 
+    def temporary_max_health(self, t, amount, origin=None):
+        return self._emit("temporary_max_health",
+                          params={"amount": amount}, origin=origin)
+
     def death(self, t, actor):
         return self._emit("death", actor=actor)
 
@@ -165,9 +169,9 @@ class CombatLog:
     def stun_end(self, t, actor):
         return self._emit("stun_end", actor=actor)
 
-    def invulnerable_start(self, t, actor, duration):
+    def invulnerable_start(self, t, actor, duration, origin=None):
         return self._emit("invulnerable_start", actor=actor,
-                          params={"duration": duration})
+                          params={"duration": duration}, origin=origin)
 
     def invulnerable_end(self, t, actor):
         return self._emit("invulnerable_end", actor=actor)
@@ -185,10 +189,16 @@ class CombatLog:
     # ---------------- 输出面（对齐旧 CombatLog.to_dict/to_text 消费方） ----------------
     def to_dict(self):
         """事件列表（dict 视图）。GUI/工具直接消费返回值——不可返回 None。"""
-        return [{"t": ev.t, "type": ev.type, "actor": ev.actor,
-                 "target": ev.target,
-                 "params": dict(ev.params or {})}
-                for ev in self.events]
+        out = []
+        for ev in self.events:
+            origin = getattr(ev, "origin", None)
+            origin_name = None
+            if origin:
+                origin_name = getattr(origin, "key", None) or str(origin)
+            out.append({"t": ev.t, "type": ev.type, "actor": ev.actor,
+                        "target": ev.target, "origin": origin_name,
+                        "params": dict(ev.params or {})})
+        return out
 
     def to_text(self, lang=None):
         """按游戏 CombatLog 格式渲染（复刻 CombatEvent.asText()：

@@ -372,8 +372,6 @@ class Character:
             if poison > 0:
                 self.poison_damage_source.set_damage(poison)
                 res = self.take_damage(self.poison_damage_source, origin_label="poison")
-                if self.log and res.damage > 0:
-                    self.log.lose_health(now, self.name(), res.damage, origin="Poison")
         self.tick_counter += 1
 
     def end_stun(self):
@@ -519,9 +517,9 @@ class Character:
                     block_absorbed = res.damage
                     self.lose_block(res.damage, trigger_event=trigger_event)
                     res.health_damage = 0
-                # 攻击方 afterBlock 回调（破盾/吸收后）
-                if item is not None and block_absorbed > 0:
-                    item.after_block(res)
+                # afterBlock 属受击方盾牌（Shield.gd onCharacterAttacked 链，
+                # 经 pre_take_damage/character_attacked 信号连接触发）；
+                # 攻击方物品无此回调（原误调已移除）
 
             self.cur_health -= res.health_damage
             self.stats["damage_taken"] += res.health_damage
@@ -540,9 +538,16 @@ class Character:
                     self.log.attack(now, actor_name, target_name, item.key,
                                     res.damage, res.health_damage, hit=True,
                                     critical=False, block_absorbed=block_absorbed)
-            elif self.log:
-                # 非物品伤害（毒/疲劳/反伤/不治）
-                pass
+            elif self.log and origin_label:
+                # 非物品伤害（毒/疲劳/反伤/不愈）：游戏里同为 DealDamage 事件
+                # （origin = DamageSource.Type 关键字，CombatEvent.asText 按
+                # typeToKeyword 渲染）——真值日志 Fatigue/Spikes/Poison 伤害
+                # 全部以 DealDamage 形态出现
+                label = origin_label.capitalize()
+                self.log.attack(now, actor_name, target_name, label,
+                                res.damage, res.health_damage, hit=True,
+                                critical=res.was_critical_hit(),
+                                block_absorbed=block_absorbed)
 
         else:
             if self.log and item is not None:
@@ -593,9 +598,7 @@ class Character:
                 self.spike_damage_source.set_damage(spike_dam)
                 self.opponent.take_damage(self.spike_damage_source, origin_label="spikes")
                 self.stats["spikes_dealt"] += spike_dam
-                if self.log:
-                    self.log.spike_damage(self.log.current_time, self.name(),
-                                          self.opponent.name(), spike_dam)
+                # 尖刺伤害经 take_damage(origin_label="spikes") 发 DealDamage
 
     def apply_vampirism(self, damage_res: DamageResult):
         """applyVampirism — 攻击吸血（对齐 Character.gd）"""
@@ -644,8 +647,6 @@ class Character:
                 us.flags = UNHEALING_FLAGS
                 us.set_damage(unhealing)
                 self.opponent.take_damage(us, origin_label="unhealing")
-                if self.log:
-                    self.log.unhealing(now, self.name(), self.opponent.name(), unhealing)
         return overheal
 
     def heal_to_full(self):
@@ -707,7 +708,7 @@ class Character:
         if self.log:
             self.log.stamina_drain(getattr(trigger_event, 't', self.log.current_time),
                                    self.opponent.name() if self.opponent else None,
-                                   self.name(), drained, item.key if item else None)
+                                   self.name(), drained)
         return drained
 
     def gain_max_stamina_temporary(self, amount, filled=True):
@@ -771,6 +772,19 @@ class Character:
                             item.key if item else None, permanent=False,
                             duration=duration, reflected=reflect,
                             resisted=buff.last_resisted)
+        if gained > 0:
+            # Buff.gd:190 gainTemporary 统一发 character_<name>_changed
+            # （permanent/temporary 无区别；Lightsaber 的 blind 监听依赖此信号）
+            if not is_buff(buff_type):
+                self._emit_debuff_changed(buff_type, gained, trigger_event, item)
+            elif buff_type == BuffType.BLOCK:
+                self.emit_signal('character_block_changed', self.get_block(),
+                                 trigger_event or _OriginEvent(item))
+            else:
+                from .buff import BuffType as _BT
+                name = _BT.INV.get(buff_type, '').lower()
+                self.emit_signal(f'character_{name}_changed', gained,
+                                 trigger_event or _OriginEvent(item))
         return gained
 
     def lose_stacks(self, buff_type: int, amount: int, item=None, trigger_event=None,
@@ -1170,6 +1184,14 @@ class Character:
         if amount != 0:
             self.temporary_max_health += amount
             self.cur_health += amount
+            if self.log:
+                # CombatLog.gd createEvent_TemporaryMaxHealth（无 target，
+                # origin 为物品；战斗日志归类 TemporaryMaxHealth）
+                now = getattr(trigger_event, 't', None)
+                if now is None:
+                    now = self.log.current_time
+                self.log.temporary_max_health(now, amount,
+                                              item.key if item else None)
 
     def apply_temporary_max_health_gain(self, amount) -> int:
         return int(round(amount * self.temporary_max_health_gain))
