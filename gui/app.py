@@ -311,8 +311,18 @@ class BackpackAIApp(tk.Tk):
             bg=COLORS["panel_light"], fg=COLORS["text"], cursor="hand2",
             activebackground=COLORS["border"], activeforeground=COLORS["text"],
             command=self._on_export_history, padx=6, pady=8)
-        history_btn.pack(fill="x", padx=13, pady=(0, 12))
+        history_btn.pack(fill="x", padx=13, pady=(0, 8))
         self.buttons["history"] = history_btn
+
+        # 导出游戏历史界面当前选中的那一场对局的那一回合
+        cur_sel_btn = tk.Button(
+            panel, text="导出当前查看的回合阵容", font=FONTS["button"],
+            relief="flat", bg=COLORS["panel_light"], fg=COLORS["text"],
+            cursor="hand2", activebackground=COLORS["border"],
+            activeforeground=COLORS["text"],
+            command=self._on_export_current_selection, padx=6, pady=8)
+        cur_sel_btn.pack(fill="x", padx=13, pady=(0, 12))
+        self.buttons["cur_selection"] = cur_sel_btn
 
         self._set_buttons_state(running=False, initialized=False)
 
@@ -681,6 +691,105 @@ class BackpackAIApp(tk.Tk):
             txt.insert("end", line + "\n")
         txt.configure(state="disabled")
         count_var.set(str(len(items)))
+
+    # ---------- 导出游戏当前查看的回合阵容 ----------
+    def _on_export_current_selection(self):
+        """导出游戏历史记录界面当前选中的那场对局的那一回合。
+
+        活体读取 BuildHistory 节点的 curRunId/curRoundNum（标定下标见
+        core/build_history.py），再经 history.db 的 buildInfo 位流解码导出
+        （与「从历史记录导出阵容」同一数据源，无需扫描 UI 摆盘）。
+        """
+        from core import build_history as bh
+
+        if not (self.bot and self.bot.godot_reader
+                and self.bot.godot_reader.is_ready() and self.bot.memory_reader):
+            messagebox.showinfo("提示", "请先连接游戏（启动程序后自动连接）。")
+            return
+        try:
+            sel = bh.read_live_selection(self.bot.godot_reader)
+        except Exception as e:  # noqa: BLE001
+            sel = None
+            self._log("warning", f"读取游戏选中状态失败: {e}")
+        if not sel:
+            messagebox.showinfo(
+                "提示",
+                "未读到选中状态。\n请在游戏里打开历史记录界面（Build History）"
+                "并点选一场对局与回合，再点本按钮。")
+            return
+
+        run_id, round_id = sel["run_id"], sel["round_id"]
+
+        dlg = tk.Toplevel(self)
+        dlg.title("导出当前查看的回合阵容")
+        dlg.configure(bg=COLORS["bg"])
+        dlg.geometry("460x220")
+        dlg.resizable(False, False)
+        dlg.transient(self)
+
+        info = (f"游戏当前选中：Run {run_id} · 第 {round_id} 回合")
+        tk.Label(dlg, text=info, font=FONTS["subtitle"],
+                 bg=COLORS["bg"], fg=COLORS["text"]).pack(anchor="w", padx=14,
+                                                          pady=(14, 4))
+
+        round_info = ""
+        try:
+            rounds = bh.list_rounds(bh.find_history_db(), run_id)
+            for r in rounds:
+                if r["round_id"] == round_id:
+                    res = {0: "胜", 1: "败", 2: "平"}.get(r["result"],
+                                                         f"r{r['result']}")
+                    round_info = (f"[{res}]  血量 {r['health']}  "
+                                  f"体力 {r['stamina']}")
+                    break
+        except Exception:  # noqa: BLE001
+            pass
+        if round_info:
+            tk.Label(dlg, text=round_info, font=FONTS["small"],
+                     bg=COLORS["bg"], fg=COLORS["text"]).pack(anchor="w",
+                                                              padx=14)
+
+        tk.Label(dlg, text="阵容名称", font=FONTS["small"],
+                 bg=COLORS["bg"], fg=COLORS["text"]).pack(anchor="w", padx=14,
+                                                          pady=(10, 2))
+        name_var = tk.StringVar(value=f"历史 Run{run_id} 第{round_id}回合")
+        tk.Entry(dlg, textvariable=name_var, font=FONTS["small"],
+                 bg=COLORS["panel_light"], fg=COLORS["text"],
+                 insertbackground=COLORS["text"], relief="flat").pack(
+            fill="x", padx=14)
+
+        def do_export():
+            lineup_name = name_var.get().strip() or                 f"历史 Run{run_id} 第{round_id}回合"
+            path = filedialog.asksaveasfilename(
+                title="保存当前查看回合的阵容 JSON", defaultextension=".json",
+                initialfile=lineup_name + ".json",
+                initialdir=str(get_base_dir()),
+                filetypes=[("JSON 文件", "*.json")], parent=dlg)
+            if not path:
+                return
+            try:
+                data = bh.export_round(run_id, round_id, path,
+                                       name=lineup_name)
+            except Exception as e:  # noqa: BLE001
+                messagebox.showerror("错误", f"导出失败:\n{e}", parent=dlg)
+                return
+            self._log("success",
+                      f"✓ 已导出当前查看回合「{lineup_name}」"
+                      f"（Run{run_id} 第{round_id}回合，"
+                      f"{len(data['items'])} 件物品）→ {path}")
+            self._log("info",
+                      "用法: python -m simulator.simulate 本文件.json 对手阵容.json")
+            dlg.destroy()
+
+        btns = tk.Frame(dlg, bg=COLORS["bg"])
+        btns.pack(fill="x", side="bottom", padx=14, pady=12)
+        tk.Button(btns, text="确 认 导 出", font=FONTS["button"], relief="flat",
+                  bg=COLORS["accent"], fg="#ffffff", cursor="hand2",
+                  command=do_export, padx=16, pady=8).pack(side="right")
+        tk.Button(btns, text="关 闭", font=FONTS["button"], relief="flat",
+                  bg=COLORS["panel_light"], fg=COLORS["text"], cursor="hand2",
+                  command=dlg.destroy, padx=12, pady=8).pack(side="right",
+                                                             padx=(0, 8))
 
     # ---------- 日志 ----------
     def _build_log(self, parent):

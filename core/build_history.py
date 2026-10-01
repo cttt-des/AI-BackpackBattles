@@ -416,3 +416,66 @@ def export_round(run_id: int, round_id: int, out_path: str,
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
     return data
+
+
+# ---------------- 活体：游戏历史界面当前选中的 Run/回合 ----------------
+# BuildHistory.gd 成员下标（2026-09-30 活体标定，PID 6192，历史界面开启中）：
+#   [34]=curRoundNum(9)  [36]=curRunId(1556，与 history.db runID 集合命中)
+#   声明序：32 个 onready + isOpen(32)/entries(33)/curRoundNum(34)/
+#   curData(35)/curRunId(36)
+BH_SCRIPT_PATH = "res://Interface/BuildHistory/BuildHistory.gd"
+BH_MEMBER_ROUND = 34
+BH_MEMBER_RUN = 36
+
+
+def read_live_selection(gr) -> Optional[Dict[str, int]]:
+    """读取游戏中历史记录界面当前选中的 run/回合。
+
+    找到 BuildHistory 节点（按脚本路径）后读 members[BH_MEMBER_ROUND]/
+    [BH_MEMBER_RUN]。历史界面未打开（isOpen=False）或未找到节点返回 None。
+    """
+    root = gr.get_root()
+    if not root:
+        return None
+    target = None
+    queue = [root]
+    seen = set()
+    while queue and target is None:
+        n = queue.pop(0)
+        if n in seen or not n or n < 0x10000:
+            continue
+        seen.add(n)
+        try:
+            sp = gr.node_script_path(n)
+        except Exception:
+            sp = None
+        if sp and sp == BH_SCRIPT_PATH:
+            target = n
+            break
+        try:
+            kids = gr.get_children(n)
+        except Exception:
+            kids = []
+        if len(queue) < 8000:
+            queue.extend(kids)
+    if not target:
+        return None
+    si = gr._ptr(target + gr.off["object_script_instance_off"])
+    if not si:
+        return None
+    mptr = gr._ptr(si + gr.off["gdscript_members_off"])
+    if not mptr:
+        return None
+    vs = gr.off["variant_size"]
+
+    def member_int(idx):
+        va = mptr + idx * vs
+        if gr._read_int(va, 4) != 2:
+            return None
+        return gr._read_int(va + 8, 8)
+
+    run_id = member_int(BH_MEMBER_RUN)
+    round_id = member_int(BH_MEMBER_ROUND)
+    if not run_id or not round_id:
+        return None
+    return {"run_id": int(run_id), "round_id": int(round_id)}
