@@ -55,7 +55,7 @@ def rotate_and_normalize(cells, rot_deg: int) -> List[Cell]:
 class GridInventory:
     """背包网格：cell -> item（对齐 Inventory.filledCells / bagCells）"""
 
-    def __init__(self, rows: int = 7, cols: int = 10):
+    def __init__(self, rows: int = 7, cols: int = 9):
         self.rows = rows
         self.cols = cols
         self.filled: Dict[Cell, object] = {}

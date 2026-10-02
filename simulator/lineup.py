@@ -33,7 +33,7 @@ v1/v2/v3 原样通过 —— 引擎与工具链只面对内部形状。
   "round": 5,
   "class_modifiers": {"health": 25, "stamina": 5, "stamina_regen": 1.0, "gold": 13},
   "health_override": null,
-  "backpack": {"grid": {"rows": 7, "cols": 10}, "items": [...]},
+  "backpack": {"grid": {"rows": 7, "cols": 9}, "items": [...]},
   "storage": []
 }
 """
@@ -135,7 +135,7 @@ def to_v4(data: Dict[str, Any]) -> Dict[str, Any]:
             walk(e.get('contents') or [], len(flat) - 1)
 
     bp = data.get('backpack') or {}
-    grid = bp.get('grid') or {'rows': 7, 'cols': 10}
+    grid = bp.get('grid') or {'rows': 7, 'cols': 9}
     walk(bp.get('items') or [], None)
     out: Dict[str, Any] = {
         'version': 4,
@@ -146,7 +146,7 @@ def to_v4(data: Dict[str, Any]) -> Dict[str, Any]:
     }
     if data.get('round') is not None:
         out['round'] = data['round']
-    out['grid'] = [int(grid.get('rows', 7)), int(grid.get('cols', 10))]
+    out['grid'] = [int(grid.get('rows', 7)), int(grid.get('cols', 9))]
     out['items'] = flat
     for k in ('class_modifiers', 'health_override', 'storage'):
         if data.get(k) is not None:
@@ -211,7 +211,7 @@ def make_lineup(character: str = "Adventurer", items: Optional[List[Dict]] = Non
         "class_modifiers": class_modifiers or {},
         "health_override": health_override,
         "backpack": {
-            "grid": {"rows": 7, "cols": 10},
+            "grid": {"rows": 7, "cols": 9},
             "items": items or [],
         },
         "storage": [],

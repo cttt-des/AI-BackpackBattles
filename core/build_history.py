@@ -34,7 +34,9 @@ CLASSES = {0: "Ranger", 1: "Reaper", 2: "Berserker", 3: "Pyromancer"}
 FACE_TO_ROT = {0: 0, 1: 90, 2: 180, 3: 270}
 MAX_HEALTH = 999
 MAX_STAMINA = 999
-INV_MAX = 10
+INV_MAX = 10        # 位流编码范围（Inventory.MAX_SIZE=10，pull(10)=4bit）
+GRID_ROWS, GRID_COLS = 7, 9   # 背包真实尺寸（Inventory.gd inventorySize=Vector2(9,7)；
+                              # 314k 件历史解码物品 99.994% 在 0..6/0..8）
 MAGIC_RING = "Magic Ring"
 MAGIC_RING_PD_BITS = 12        # numEffects=2 × (2+4)（MagicRing.gd:291）
 
@@ -401,7 +403,7 @@ def export_round(run_id: int, round_id: int, out_path: str,
             "health": row[1],
             "stamina": row[2],
         },
-        "grid": [INV_MAX, INV_MAX],
+        "grid": [GRID_ROWS, GRID_COLS],
         "items": decoded["items"],
         "storage": [],
         "meta": {
