@@ -83,7 +83,7 @@
   },
   "health_override": null,
   "backpack": {
-    "grid": { "rows": 7, "cols": 10 },
+    "grid": { "rows": 7, "cols": 9 },
     "items": [
       {
         "id": "WoodenSword",

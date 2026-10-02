@@ -57,8 +57,8 @@ def _overlap_conflicts(path: str) -> List[str]:
     except Exception:
         return []          # 阵容格式错误由后续 load_lineup 预校验统一报错
     bp = data.get('backpack', {}) or {}
-    grid_cfg = bp.get('grid') or {'rows': 7, 'cols': 10}
-    rows, cols = int(grid_cfg.get('rows', 7)), int(grid_cfg.get('cols', 10))
+    grid_cfg = bp.get('grid') or {'rows': 7, 'cols': 9}
+    rows, cols = int(grid_cfg.get('rows', 7)), int(grid_cfg.get('cols', 9))
     db = load_items()
     filled, bags, out = set(), set(), []
     for e in bp.get('items') or []:

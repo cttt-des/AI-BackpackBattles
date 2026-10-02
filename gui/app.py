@@ -1065,7 +1065,7 @@ class BackpackAIApp(tk.Tk):
             "name": "实时导出阵容",
             "character": character,
             "round": self._last_round if self._last_round is not None else 1,
-            "grid": [10, 10],
+            "grid": [7, 9],   # 背包 7 行 × 9 列（Inventory.gd inventorySize）
             "items": items_out,
             "storage": [],
         }

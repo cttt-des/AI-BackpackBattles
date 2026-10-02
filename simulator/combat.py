@@ -161,8 +161,8 @@ class CombatEngine:
         """
         from .grid import GridInventory, rotate_and_normalize
         bp = lineup.get('backpack', {})
-        grid_cfg = bp.get('grid') or {'rows': 7, 'cols': 10}
-        inv = GridInventory(int(grid_cfg.get('rows', 7)), int(grid_cfg.get('cols', 10)))
+        grid_cfg = bp.get('grid') or {'rows': 7, 'cols': 9}
+        inv = GridInventory(int(grid_cfg.get('rows', 7)), int(grid_cfg.get('cols', 9)))
         for it in items:
             if getattr(it, '_bag_parent', None) is not None:
                 continue          # 袋内物品随后按袋占格摆放

@@ -136,7 +136,7 @@ python battle_simulator.py
   "name": "我的阵容",
   "character": "Ranger",
   "round": 12,
-  "grid": [10, 10],
+  "grid": [7, 9],
   "items": [
     { "id": "Leather Bag", "at": [3, 3], "r": 0 },
     { "id": "Bow and Arrow", "at": [3, 3], "r": 0, "in": 0, "gems": ["Chipped Ruby"] }
