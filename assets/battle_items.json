@@ -101,7 +101,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Wooden Sword": {
    "key": "Wooden Sword",
@@ -192,7 +196,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Pan": {
    "key": "Pan",
@@ -323,7 +331,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Broom": {
    "key": "Broom",
@@ -432,7 +444,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Wooden Buckler": {
    "key": "Wooden Buckler",
@@ -521,7 +537,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Banana": {
    "key": "Banana",
@@ -668,7 +688,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Garlic": {
    "key": "Garlic",
@@ -792,7 +816,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Healing Herbs": {
    "key": "Healing Herbs",
@@ -884,7 +912,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Walrus Tusk": {
    "key": "Walrus Tusk",
@@ -980,7 +1012,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Piggybank": {
    "key": "Piggybank",
@@ -1108,7 +1144,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Whetstone": {
    "key": "Whetstone",
@@ -1211,7 +1251,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Pocket Sand": {
    "key": "Pocket Sand",
@@ -1304,7 +1348,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Lump of Coal": {
    "key": "Lump of Coal",
@@ -1391,7 +1439,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": true,
+   "has_animation_scene": false
   },
   "Shiny Shell": {
    "key": "Shiny Shell",
@@ -1495,7 +1547,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Leather Bag": {
    "key": "Leather Bag",
@@ -1637,7 +1693,11 @@
      "onAffectedItemInsideRemoved"
     ]
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Hammer": {
    "key": "Hammer",
@@ -1747,7 +1807,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Spear": {
    "key": "Spear",
@@ -1880,7 +1944,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Dagger": {
    "key": "Dagger",
@@ -1972,7 +2040,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Spiked Shield": {
    "key": "Spiked Shield",
@@ -2072,7 +2144,22 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Wooden Buckler",
+     "i": [
+      "Walrus Tusk"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Leather Armor": {
    "key": "Leather Armor",
@@ -2186,7 +2273,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Gloves of Haste": {
    "key": "Gloves of Haste",
@@ -2291,7 +2382,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Health Potion": {
    "key": "Health Potion",
@@ -2426,7 +2521,11 @@
      "onAffectedItemRemoved"
     ]
    },
-   "classes": 127
+   "classes": 127,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": true,
+   "gem_roll": false
   },
   "Blueberries": {
    "key": "Blueberries",
@@ -2550,7 +2649,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Goobert": {
    "key": "Goobert",
@@ -2687,7 +2790,22 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "originating_recipes": [
+    {
+     "b": "Goobling",
+     "i": [
+      "Goobling"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Bag of Stones": {
    "key": "Bag of Stones",
@@ -2781,7 +2899,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Customer Card": {
    "key": "Customer Card",
@@ -2866,7 +2988,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Amulet Unidentified": {
    "key": "Amulet Unidentified",
@@ -2962,7 +3088,11 @@
     "related_columns": true,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Amulet of Life": {
    "key": "Amulet of Life",
@@ -3055,7 +3185,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Amulet of Steel": {
    "key": "Amulet of Steel",
@@ -3261,7 +3395,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Amulet of Feasting": {
    "key": "Amulet of Feasting",
@@ -3457,7 +3595,11 @@
     "related_columns": true,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Amulet of Darkness": {
    "key": "Amulet of Darkness",
@@ -3571,7 +3713,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Amulet of Agility": {
    "key": "Amulet of Agility",
@@ -3684,7 +3830,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Amulet of the Wild": {
    "key": "Amulet of the Wild",
@@ -3788,7 +3938,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Amulet of Alchemy": {
    "key": "Amulet of Alchemy",
@@ -4000,7 +4154,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Amulet of Fortune": {
    "key": "Amulet of Fortune",
@@ -4136,7 +4294,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Fanny Pack": {
    "key": "Fanny Pack",
@@ -4230,7 +4392,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Coins": {
    "key": "Coins",
@@ -4292,7 +4458,11 @@
    "tags": [
     "transient"
    ],
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Shovel": {
    "key": "Shovel",
@@ -4401,7 +4571,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Broom",
+     "i": [
+      "Pan"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Burning Coal": {
    "key": "Burning Coal",
@@ -4502,7 +4687,15 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": true,
+   "flicker_min_dist": 0.1,
+   "flicker_max_dist": 3.0,
+   "flicker_min_speed": 0.3,
+   "flicker_max_speed": 1.0,
+   "connector_ready_roll": false,
+   "gem_roll": true,
+   "has_animation_scene": false
   },
   "Torch": {
    "key": "Torch",
@@ -4597,7 +4790,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Wooden Sword",
+     "i": [
+      "Lump of Coal"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Shell Totem": {
    "key": "Shell Totem",
@@ -4725,7 +4933,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Wooden Sword",
+     "i": [
+      "Shiny Shell"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Shelly": {
    "key": "Shelly",
@@ -4847,7 +5070,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Shiny Shell",
+     "i": [
+      "Health Potion"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Shepherds Crook": {
    "key": "Shepherds Crook",
@@ -4979,7 +5217,22 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Broom",
+     "i": [
+      "Whetstone"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Thorn Whip": {
    "key": "Thorn Whip",
@@ -5088,7 +5341,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Hungry Blade": {
    "key": "Hungry Blade",
@@ -5193,7 +5450,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Leather Boots": {
    "key": "Leather Boots",
@@ -5302,7 +5563,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Leather Helm": {
    "key": "Leather Helm",
@@ -5410,7 +5675,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Pestilence Flask": {
    "key": "Pestilence Flask",
@@ -5542,7 +5811,11 @@
      "onAffectedItemRemoved"
     ]
    },
-   "classes": 127
+   "classes": 127,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": true,
+   "gem_roll": false
   },
   "Stone Skin Potion": {
    "key": "Stone Skin Potion",
@@ -5642,7 +5915,11 @@
      "onAffectedItemRemoved"
     ]
    },
-   "classes": 127
+   "classes": 127,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": true,
+   "gem_roll": false
   },
   "Flute": {
    "key": "Flute",
@@ -5813,7 +6090,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Mana Orb": {
    "key": "Mana Orb",
@@ -5938,7 +6219,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Corrupted Crystal": {
    "key": "Corrupted Crystal",
@@ -6033,7 +6318,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": true,
+   "has_animation_scene": false
   },
   "Oil Lamp": {
    "key": "Oil Lamp",
@@ -6142,7 +6431,15 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": true,
+   "flicker_min_dist": 0.1,
+   "flicker_max_dist": 3.0,
+   "flicker_min_speed": 0.3,
+   "flicker_max_speed": 1.0,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Unstable Recombobulator": {
    "key": "Unstable Recombobulator",
@@ -6283,7 +6580,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Snowman": {
    "key": "Snowman",
@@ -6382,7 +6683,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Snowball": {
    "key": "Snowball",
@@ -6476,7 +6781,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Stamina Sack": {
    "key": "Stamina Sack",
@@ -6576,7 +6885,11 @@
      "onAffectedItemInsideRemoved"
     ]
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Hero Sword": {
    "key": "Hero Sword",
@@ -6698,7 +7011,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Wooden Sword",
+     "i": [
+      "Whetstone"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Magic Staff": {
    "key": "Magic Staff",
@@ -6811,7 +7139,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Broom",
+     "i": [
+      "Mana Orb"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Strong Health Potion": {
    "key": "Strong Health Potion",
@@ -6917,7 +7260,31 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Health Potion",
+     "i": [
+      "Healing Herbs"
+     ],
+     "c": [
+      false
+     ]
+    },
+    {
+     "b": "Health Potion",
+     "i": [
+      "Cauldron"
+     ],
+     "c": [
+      true
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": true,
+   "gem_roll": false
   },
   "Poison Dagger": {
    "key": "Poison Dagger",
@@ -7013,7 +7380,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Dagger",
+     "i": [
+      "Pestilence Flask"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Claws of Attack": {
    "key": "Claws of Attack",
@@ -7116,7 +7498,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Gloves of Haste",
+     "i": [
+      "Walrus Tusk"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Burning Torch": {
    "key": "Burning Torch",
@@ -7222,7 +7619,15 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "has_animation_scene": true,
+   "flicker_animation": true,
+   "flicker_min_dist": 0.1,
+   "flicker_max_dist": 3.0,
+   "flicker_min_speed": 0.3,
+   "flicker_max_speed": 1.0,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Platin Customer Card": {
    "key": "Platin Customer Card",
@@ -7332,7 +7737,22 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Customer Card",
+     "i": [
+      "Customer Card"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Mana Potion": {
    "key": "Mana Potion",
@@ -7463,7 +7883,22 @@
      "onAffectedItemRemoved"
     ]
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Health Potion",
+     "i": [
+      "Blueberries"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": true,
+   "gem_roll": false
   },
   "Sandbag": {
    "key": "Sandbag",
@@ -7567,7 +8002,22 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Bag of Stones",
+     "i": [
+      "Pocket Sand"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Box of Prosperity": {
    "key": "Box of Prosperity",
@@ -7683,7 +8133,11 @@
      "onAffectedItemInsideRemoved"
     ]
    },
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Holdall": {
    "key": "Holdall",
@@ -7796,7 +8250,11 @@
      "onAffectedItemInsideRemoved"
     ]
    },
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Rib Saw Blade": {
    "key": "Rib Saw Blade",
@@ -7904,7 +8362,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Holy Armor": {
    "key": "Holy Armor",
@@ -8077,7 +8539,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Shield of Valor": {
    "key": "Shield of Valor",
@@ -8237,7 +8703,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Heroic Potion": {
    "key": "Heroic Potion",
@@ -8367,7 +8837,11 @@
      "onAffectedItemRemoved"
     ]
    },
-   "classes": 127
+   "classes": 127,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": true,
+   "gem_roll": false
   },
   "Pineapple": {
    "key": "Pineapple",
@@ -8510,7 +8984,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Blood Amulet": {
    "key": "Blood Amulet",
@@ -8605,7 +9083,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Ruby Egg": {
    "key": "Ruby Egg",
@@ -8703,7 +9185,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Jynx torquilla": {
    "key": "Jynx torquilla",
@@ -8879,7 +9365,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Vampiric Potion": {
    "key": "Vampiric Potion",
@@ -8993,7 +9483,11 @@
      "onAffectedItemRemoved"
     ]
    },
-   "classes": 0
+   "classes": 0,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": true,
+   "gem_roll": false
   },
   "Lucky Cat": {
    "key": "Lucky Cat",
@@ -9139,7 +9633,11 @@
      "onAffectedItemRemoved"
     ]
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Potion Belt": {
    "key": "Potion Belt",
@@ -9245,7 +9743,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Bloody Dagger": {
    "key": "Bloody Dagger",
@@ -9376,7 +9878,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Dagger",
+     "i": [
+      "Blood Amulet"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Strong Heroic Potion": {
    "key": "Strong Heroic Potion",
@@ -9476,7 +9993,31 @@
      "onAffectedItemRemoved"
     ]
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Heroic Potion",
+     "i": [
+      "Banana"
+     ],
+     "c": [
+      false
+     ]
+    },
+    {
+     "b": "Heroic Potion",
+     "i": [
+      "Cauldron"
+     ],
+     "c": [
+      true
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": true,
+   "gem_roll": false
   },
   "Strong Stone Skin Potion": {
    "key": "Strong Stone Skin Potion",
@@ -9576,7 +10117,33 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Stone Skin Potion",
+     "i": [
+      "Stone",
+      "Stone"
+     ],
+     "c": [
+      false,
+      false
+     ]
+    },
+    {
+     "b": "Stone Skin Potion",
+     "i": [
+      "Cauldron"
+     ],
+     "c": [
+      true
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": true,
+   "gem_roll": false
   },
   "Vampiric Armor": {
    "key": "Vampiric Armor",
@@ -9693,7 +10260,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Leather Armor",
+     "i": [
+      "Blood Amulet"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Blood Goobert": {
    "key": "Blood Goobert",
@@ -9825,7 +10407,22 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Goobert",
+     "i": [
+      "Blood Amulet"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Steel Goobert": {
    "key": "Steel Goobert",
@@ -9965,7 +10562,22 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Goobert",
+     "i": [
+      "Hero Sword"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Eggscalibur": {
    "key": "Eggscalibur",
@@ -10114,7 +10726,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Pan",
+     "i": [
+      "Heroic Potion"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Manathirst": {
    "key": "Manathirst",
@@ -10233,7 +10860,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Hungry Blade",
+     "i": [
+      "Mana Orb"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Spectral Dagger": {
    "key": "Spectral Dagger",
@@ -10331,7 +10973,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Hero Longsword": {
    "key": "Hero Longsword",
@@ -10465,7 +11111,24 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Hero Sword",
+     "i": [
+      "Whetstone",
+      "Whetstone"
+     ],
+     "c": [
+      false,
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Falcon Blade": {
    "key": "Falcon Blade",
@@ -10608,7 +11271,24 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Hero Sword",
+     "i": [
+      "Gloves of Haste",
+      "Gloves of Haste"
+     ],
+     "c": [
+      false,
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Pandamonium": {
    "key": "Pandamonium",
@@ -10762,7 +11442,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Pan",
+     "i": [
+      "Corrupted Crystal"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Evil Cap": {
    "key": "Evil Cap",
@@ -10871,7 +11566,22 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Leather Helm",
+     "i": [
+      "Corrupted Crystal"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Magic Torch": {
    "key": "Magic Torch",
@@ -10982,7 +11692,35 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Torch",
+     "i": [
+      "Mana Potion"
+     ],
+     "c": [
+      false
+     ]
+    },
+    {
+     "b": "Burning Torch",
+     "i": [
+      "Mana Potion"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": true,
+   "flicker_min_dist": 0.1,
+   "flicker_max_dist": 3.0,
+   "flicker_min_speed": 0.3,
+   "flicker_max_speed": 1.0,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Strong Mana Potion": {
    "key": "Strong Mana Potion",
@@ -11090,7 +11828,22 @@
      "onAffectedItemRemoved"
     ]
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Mana Potion",
+     "i": [
+      "Cauldron"
+     ],
+     "c": [
+      true
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": true,
+   "gem_roll": false
   },
   "Stone Armor": {
    "key": "Stone Armor",
@@ -11213,7 +11966,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Leather Armor",
+     "i": [
+      "Stone Skin Potion"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Stone Helm": {
    "key": "Stone Helm",
@@ -11317,7 +12085,22 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Leather Helm",
+     "i": [
+      "Stone Skin Potion"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Stone Gloves": {
    "key": "Stone Gloves",
@@ -11428,7 +12211,22 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Gloves of Haste",
+     "i": [
+      "Stone Skin Potion"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Serpent Staff": {
    "key": "Serpent Staff",
@@ -11547,7 +12345,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Magic Staff",
+     "i": [
+      "Pestilence Flask"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Stone Shoes": {
    "key": "Stone Shoes",
@@ -11658,7 +12471,22 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Leather Boots",
+     "i": [
+      "Stone Skin Potion"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Poison Spear": {
    "key": "Poison Spear",
@@ -11795,7 +12623,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Spear",
+     "i": [
+      "Pestilence Flask"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Snow Stick": {
    "key": "Snow Stick",
@@ -11903,7 +12746,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Broom",
+     "i": [
+      "Snowball"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Fanfare": {
    "key": "Fanfare",
@@ -12076,7 +12934,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Lightsaber": {
    "key": "Lightsaber",
@@ -12199,7 +13061,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Protective Purse": {
    "key": "Protective Purse",
@@ -12291,7 +13157,11 @@
      "onAffectedItemInsideRemoved"
     ]
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Fancy Fencing Rapier": {
    "key": "Fancy Fencing Rapier",
@@ -12400,7 +13270,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Djinn Lamp": {
    "key": "Djinn Lamp",
@@ -12519,7 +13393,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Greatsword": {
    "key": "Greatsword",
@@ -12645,7 +13523,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Crown": {
    "key": "Crown",
@@ -12767,7 +13649,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Wolpertinger": {
    "key": "Wolpertinger",
@@ -12909,7 +13795,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Heart Container": {
    "key": "Heart Container",
@@ -13022,7 +13912,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Divine Potion": {
    "key": "Divine Potion",
@@ -13129,7 +14023,11 @@
      "onAffectedItemRemoved"
     ]
    },
-   "classes": 127
+   "classes": 127,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": true,
+   "gem_roll": false
   },
   "Rainbow Orb": {
    "key": "Rainbow Orb",
@@ -13266,7 +14164,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Bloodthorne": {
    "key": "Bloodthorne",
@@ -13372,7 +14274,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Hungry Blade",
+     "i": [
+      "Thorn Whip"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Crossblades": {
    "key": "Crossblades",
@@ -13498,7 +14415,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Hero Longsword",
+     "i": [
+      "Falcon Blade"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Ruby Whelp": {
    "key": "Ruby Whelp",
@@ -13602,7 +14534,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Vampiric Gloves": {
    "key": "Vampiric Gloves",
@@ -13726,7 +14662,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Gloves of Haste",
+     "i": [
+      "Blood Amulet"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Darksaber": {
    "key": "Darksaber",
@@ -13838,7 +14789,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Lightsaber",
+     "i": [
+      "Corrupted Crystal"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Light Goobert": {
    "key": "Light Goobert",
@@ -13984,7 +14950,22 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Goobert",
+     "i": [
+      "Lightsaber"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Holy Spear": {
    "key": "Holy Spear",
@@ -14146,7 +15127,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Spear",
+     "i": [
+      "Crown"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Moon Shield": {
    "key": "Moon Shield",
@@ -14308,7 +15304,22 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Shield of Valor",
+     "i": [
+      "Mana Orb"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Corrupted Armor": {
    "key": "Corrupted Armor",
@@ -14478,7 +15489,22 @@
     ]
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Holy Armor",
+     "i": [
+      "Corrupted Crystal"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Moon Armor": {
    "key": "Moon Armor",
@@ -14639,7 +15665,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Holy Armor",
+     "i": [
+      "Mana Orb"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Heart of Darkness": {
    "key": "Heart of Darkness",
@@ -14791,7 +15832,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Heart Container",
+     "i": [
+      "Corrupted Crystal"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Thornbloom": {
    "key": "Thornbloom",
@@ -14913,7 +15969,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Thorn Whip",
+     "i": [
+      "Heroic Potion"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "King Crown": {
    "key": "King Crown",
@@ -15012,7 +16083,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Crown",
+     "i": [
+      "Box of Riches"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "King Goobert": {
    "key": "King Goobert",
@@ -15172,7 +16258,22 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Goobert",
+     "i": [
+      "King Crown"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Stone Golem": {
    "key": "Stone Golem",
@@ -15316,7 +16417,28 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Heart Container",
+     "i": [
+      "Stone",
+      "Stone",
+      "Stone",
+      "Stone"
+     ],
+     "c": [
+      false,
+      false,
+      false,
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Prismatic Sword": {
    "key": "Prismatic Sword",
@@ -15467,7 +16589,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Wooden Sword",
+     "i": [
+      "Rainbow Orb"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Katana": {
    "key": "Katana",
@@ -15578,7 +16715,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Rib Saw Blade",
+     "i": [
+      "Whetstone"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Winged Boots": {
    "key": "Winged Boots",
@@ -15685,7 +16837,22 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Leather Boots",
+     "i": [
+      "Divine Potion"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Paradise Birb": {
    "key": "Paradise Birb",
@@ -15874,7 +17041,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Jynx torquilla",
+     "i": [
+      "Rainbow Orb"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Random Loadout Bag": {
    "key": "Random Loadout Bag",
@@ -15992,7 +17174,11 @@
      "onAffectedItemInsideRemoved"
     ]
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Star of Courage": {
    "key": "Star of Courage",
@@ -16083,7 +17269,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Rainbow Badge": {
    "key": "Rainbow Badge",
@@ -16172,7 +17362,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Stone Badge": {
    "key": "Stone Badge",
@@ -16271,7 +17465,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Leaf Badge": {
    "key": "Leaf Badge",
@@ -16382,7 +17580,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Skull Badge": {
    "key": "Skull Badge",
@@ -16471,7 +17673,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Wolf Badge": {
    "key": "Wolf Badge",
@@ -16610,7 +17816,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Flame Badge": {
    "key": "Flame Badge",
@@ -16697,7 +17907,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Puzzle Badge": {
    "key": "Puzzle Badge",
@@ -16836,7 +18050,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Magic Badge": {
    "key": "Magic Badge",
@@ -16971,7 +18189,11 @@
     "related_columns": true,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Twine Badge": {
    "key": "Twine Badge",
@@ -17090,7 +18312,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Artifact Stone Cold": {
    "key": "Artifact Stone Cold",
@@ -17199,7 +18425,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Vampiric Scythe": {
    "key": "Vampiric Scythe",
@@ -17340,7 +18570,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Villain Sword": {
    "key": "Villain Sword",
@@ -17501,7 +18735,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Skull": {
    "key": "Skull",
@@ -17592,7 +18830,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": true,
+   "has_animation_scene": false
   },
   "Artifact Stone Heat": {
    "key": "Artifact Stone Heat",
@@ -17706,7 +18948,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Present": {
    "key": "Present",
@@ -17797,7 +19043,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Gingerbread Man": {
    "key": "Gingerbread Man",
@@ -17953,7 +19203,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Pumpkin": {
    "key": "Pumpkin",
@@ -18103,7 +19357,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Dancing Dragon": {
    "key": "Dancing Dragon",
@@ -18274,7 +19532,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Cubert": {
    "key": "Cubert",
@@ -18425,7 +19687,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Stable Recombobulator": {
    "key": "Stable Recombobulator",
@@ -18598,7 +19864,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Artifact Stone Death": {
    "key": "Artifact Stone Death",
@@ -18711,7 +19981,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Ghost": {
    "key": "Ghost",
@@ -18814,7 +20088,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Time Dilator": {
    "key": "Time Dilator",
@@ -18912,7 +20190,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Pop": {
    "key": "Pop",
@@ -19015,7 +20297,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Cthulhu": {
    "key": "Cthulhu",
@@ -19187,7 +20473,11 @@
     ]
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Snowcake": {
    "key": "Snowcake",
@@ -19333,7 +20623,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Little Mimic": {
    "key": "Little Mimic",
@@ -19494,7 +20788,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Bomb": {
    "key": "Bomb",
@@ -19589,7 +20887,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Repeater": {
    "key": "Repeater",
@@ -19704,7 +21006,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Box of Riches": {
    "key": "Box of Riches",
@@ -19796,7 +21102,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Chipped Ruby": {
    "key": "Chipped Ruby",
@@ -19889,7 +21199,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": true,
+   "has_animation_scene": false
   },
   "Flawed Ruby": {
    "key": "Flawed Ruby",
@@ -19980,7 +21294,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Chipped Ruby",
+     "i": [
+      "Chipped Ruby"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": true,
+   "has_animation_scene": false
   },
   "Regular Ruby": {
    "key": "Regular Ruby",
@@ -20071,7 +21400,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Flawed Ruby",
+     "i": [
+      "Flawed Ruby"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": true,
+   "has_animation_scene": false
   },
   "Flawless Ruby": {
    "key": "Flawless Ruby",
@@ -20162,7 +21506,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Regular Ruby",
+     "i": [
+      "Regular Ruby"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": true,
+   "has_animation_scene": false
   },
   "Perfect Ruby": {
    "key": "Perfect Ruby",
@@ -20253,7 +21612,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Flawless Ruby",
+     "i": [
+      "Flawless Ruby"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": true,
+   "has_animation_scene": false
   },
   "Chipped Sapphire": {
    "key": "Chipped Sapphire",
@@ -20349,7 +21723,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": true,
+   "has_animation_scene": false
   },
   "Flawed Sapphire": {
    "key": "Flawed Sapphire",
@@ -20439,7 +21817,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Chipped Sapphire",
+     "i": [
+      "Chipped Sapphire"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": true,
+   "has_animation_scene": false
   },
   "Regular Sapphire": {
    "key": "Regular Sapphire",
@@ -20529,7 +21922,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Flawed Sapphire",
+     "i": [
+      "Flawed Sapphire"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": true,
+   "has_animation_scene": false
   },
   "Flawless Sapphire": {
    "key": "Flawless Sapphire",
@@ -20619,7 +22027,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Regular Sapphire",
+     "i": [
+      "Regular Sapphire"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": true,
+   "has_animation_scene": false
   },
   "Perfect Sapphire": {
    "key": "Perfect Sapphire",
@@ -20709,7 +22132,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Flawless Sapphire",
+     "i": [
+      "Flawless Sapphire"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": true,
+   "has_animation_scene": false
   },
   "Chipped Emerald": {
    "key": "Chipped Emerald",
@@ -20798,7 +22236,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": true,
+   "has_animation_scene": false
   },
   "Flawed Emerald": {
    "key": "Flawed Emerald",
@@ -20887,7 +22329,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Chipped Emerald",
+     "i": [
+      "Chipped Emerald"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": true,
+   "has_animation_scene": false
   },
   "Regular Emerald": {
    "key": "Regular Emerald",
@@ -20976,7 +22433,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Flawed Emerald",
+     "i": [
+      "Flawed Emerald"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": true,
+   "has_animation_scene": false
   },
   "Flawless Emerald": {
    "key": "Flawless Emerald",
@@ -21065,7 +22537,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Regular Emerald",
+     "i": [
+      "Regular Emerald"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": true,
+   "has_animation_scene": false
   },
   "Perfect Emerald": {
    "key": "Perfect Emerald",
@@ -21154,7 +22641,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Flawless Emerald",
+     "i": [
+      "Flawless Emerald"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": true,
+   "has_animation_scene": false
   },
   "Chipped Topaz": {
    "key": "Chipped Topaz",
@@ -21240,7 +22742,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": true,
+   "has_animation_scene": false
   },
   "Flawed Topaz": {
    "key": "Flawed Topaz",
@@ -21323,7 +22829,22 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Chipped Topaz",
+     "i": [
+      "Chipped Topaz"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": true,
+   "has_animation_scene": false
   },
   "Regular Topaz": {
    "key": "Regular Topaz",
@@ -21406,7 +22927,22 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Flawed Topaz",
+     "i": [
+      "Flawed Topaz"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": true,
+   "has_animation_scene": false
   },
   "Flawless Topaz": {
    "key": "Flawless Topaz",
@@ -21489,7 +23025,22 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Regular Topaz",
+     "i": [
+      "Regular Topaz"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": true,
+   "has_animation_scene": false
   },
   "Perfect Topaz": {
    "key": "Perfect Topaz",
@@ -21572,7 +23123,22 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Flawless Topaz",
+     "i": [
+      "Flawless Topaz"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": true,
+   "has_animation_scene": false
   },
   "Chipped Amethyst": {
    "key": "Chipped Amethyst",
@@ -21662,7 +23228,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": true,
+   "has_animation_scene": false
   },
   "Flawed Amethyst": {
    "key": "Flawed Amethyst",
@@ -21751,7 +23321,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Chipped Amethyst",
+     "i": [
+      "Chipped Amethyst"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": true,
+   "has_animation_scene": false
   },
   "Regular Amethyst": {
    "key": "Regular Amethyst",
@@ -21840,7 +23425,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Flawed Amethyst",
+     "i": [
+      "Flawed Amethyst"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": true,
+   "has_animation_scene": false
   },
   "Flawless Amethyst": {
    "key": "Flawless Amethyst",
@@ -21929,7 +23529,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Regular Amethyst",
+     "i": [
+      "Regular Amethyst"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": true,
+   "has_animation_scene": false
   },
   "Perfect Amethyst": {
    "key": "Perfect Amethyst",
@@ -22018,7 +23633,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Flawless Amethyst",
+     "i": [
+      "Flawless Amethyst"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": true,
+   "has_animation_scene": false
   },
   "Ranger Bag": {
    "key": "Ranger Bag",
@@ -22135,7 +23765,11 @@
      "onAffectedItemInsideRemoved"
     ]
    },
-   "classes": 1
+   "classes": 1,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Vineweave Basket": {
    "key": "Vineweave Basket",
@@ -22275,7 +23909,11 @@
      "onAffectedItemInsideRemoved"
     ]
    },
-   "classes": 1
+   "classes": 1,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Lucky Clover": {
    "key": "Lucky Clover",
@@ -22367,7 +24005,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 1
+   "classes": 1,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Carrot": {
    "key": "Carrot",
@@ -22489,7 +24131,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 1
+   "classes": 1,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Shortbow": {
    "key": "Shortbow",
@@ -22584,7 +24230,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 1
+   "classes": 1,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Acorn Collar": {
    "key": "Acorn Collar",
@@ -22709,7 +24359,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 1
+   "classes": 1,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Bow and Arrow": {
    "key": "Bow and Arrow",
@@ -22832,7 +24486,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 1
+   "classes": 1,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Thorn Shortbow": {
    "key": "Thorn Shortbow",
@@ -22930,7 +24588,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Shortbow",
+     "i": [
+      "Walrus Tusk"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Lucky Shortbow": {
    "key": "Lucky Shortbow",
@@ -23028,7 +24701,24 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Shortbow",
+     "i": [
+      "Lucky Clover",
+      "Lucky Clover"
+     ],
+     "c": [
+      false,
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Poison Shortbow": {
    "key": "Poison Shortbow",
@@ -23129,7 +24819,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Shortbow",
+     "i": [
+      "Pestilence Flask"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Lucky Piggy": {
    "key": "Lucky Piggy",
@@ -23242,7 +24947,24 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Piggybank",
+     "i": [
+      "Lucky Clover",
+      "Lucky Clover"
+     ],
+     "c": [
+      false,
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Carrot Goobert": {
    "key": "Carrot Goobert",
@@ -23378,7 +25100,24 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Goobert",
+     "i": [
+      "Carrot",
+      "Carrot"
+     ],
+     "c": [
+      false,
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Thorn Bow": {
    "key": "Thorn Bow",
@@ -23512,7 +25251,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Bow and Arrow",
+     "i": [
+      "Walrus Tusk"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Lucky Bow": {
    "key": "Lucky Bow",
@@ -23643,7 +25397,24 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Bow and Arrow",
+     "i": [
+      "Lucky Clover",
+      "Lucky Clover"
+     ],
+     "c": [
+      false,
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Poison Bow": {
    "key": "Poison Bow",
@@ -23770,7 +25541,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Bow and Arrow",
+     "i": [
+      "Pestilence Flask"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Critwood Staff": {
    "key": "Critwood Staff",
@@ -23892,7 +25678,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Magic Staff",
+     "i": [
+      "Acorn Collar"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Snowmaster": {
    "key": "Snowmaster",
@@ -24020,7 +25821,24 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 1
+   "classes": 1,
+   "originating_recipes": [
+    {
+     "b": "Carrot",
+     "i": [
+      "Snowball",
+      "Lump of Coal"
+     ],
+     "c": [
+      false,
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Vampiric Collar": {
    "key": "Vampiric Collar",
@@ -24154,7 +25972,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Magic Collar": {
    "key": "Magic Collar",
@@ -24285,7 +26107,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Holy Collar": {
    "key": "Holy Collar",
@@ -24419,7 +26245,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Rainbow Goobert Ranger": {
    "key": "Rainbow Goobert Ranger",
@@ -24628,7 +26458,26 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Carrot Goobert",
+     "i": [
+      "Light Goobert",
+      "Steel Goobert",
+      "Blood Goobert"
+     ],
+     "c": [
+      false,
+      false,
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Piercing Arrow": {
    "key": "Piercing Arrow",
@@ -24759,7 +26608,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 1
+   "classes": 1,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Yggdrasil Leaf": {
    "key": "Yggdrasil Leaf",
@@ -24910,7 +26763,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 1
+   "classes": 1,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Poison Ivy": {
    "key": "Poison Ivy",
@@ -25045,7 +26902,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 1
+   "classes": 1,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Mega Clover": {
    "key": "Mega Clover",
@@ -25148,7 +27009,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 1
+   "classes": 1,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Bowl of Treats": {
    "key": "Bowl of Treats",
@@ -25287,7 +27152,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 1
+   "classes": 1,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Rat": {
    "key": "Rat",
@@ -25419,7 +27288,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Squirrel": {
    "key": "Squirrel",
@@ -25554,7 +27427,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Hedgehog": {
    "key": "Hedgehog",
@@ -25677,7 +27554,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Squirrel Archer": {
    "key": "Squirrel Archer",
@@ -25810,7 +27691,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Squirrel",
+     "i": [
+      "Shortbow"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Rat Chef": {
    "key": "Rat Chef",
@@ -25939,7 +27835,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Rat",
+     "i": [
+      "Healing Herbs"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Hyper Hedgehog": {
    "key": "Hyper Hedgehog",
@@ -26070,7 +27981,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Hedgehog",
+     "i": [
+      "Heroic Potion"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Storage Coffin": {
    "key": "Storage Coffin",
@@ -26192,7 +28118,11 @@
      "onAffectedItemInsideRemoved"
     ]
    },
-   "classes": 2
+   "classes": 2,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Relic Case": {
    "key": "Relic Case",
@@ -26305,7 +28235,11 @@
     ]
    },
    "extra_cds": [],
-   "classes": 2
+   "classes": 2,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Fly Agaric": {
    "key": "Fly Agaric",
@@ -26438,7 +28372,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 2
+   "classes": 2,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Deck of Cards": {
    "key": "Deck of Cards",
@@ -26558,7 +28496,11 @@
     "related_columns": true,
     "callbacks": []
    },
-   "classes": 2
+   "classes": 2,
+   "flicker_animation": false,
+   "connector_ready_roll": true,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "The Lovers": {
    "key": "The Lovers",
@@ -26670,7 +28612,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Ace of Spades": {
    "key": "Ace of Spades",
@@ -26776,7 +28722,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": true,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Reverse": {
    "key": "Reverse",
@@ -26881,7 +28831,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": true,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "White-Eyes Blue Dragon": {
    "key": "White-Eyes Blue Dragon",
@@ -26988,7 +28942,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "The Fool": {
    "key": "The Fool",
@@ -27092,7 +29050,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": true,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Holo Fire Lizard": {
    "key": "Holo Fire Lizard",
@@ -27201,7 +29163,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": true,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Joker": {
    "key": "Joker",
@@ -27315,7 +29281,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": true,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Darkest Lotus": {
    "key": "Darkest Lotus",
@@ -27421,7 +29391,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": true,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Toad": {
    "key": "Toad",
@@ -27557,7 +29531,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 2
+   "classes": 2,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Death Scythe": {
    "key": "Death Scythe",
@@ -27703,7 +29681,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 2
+   "classes": 2,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Demonic Flask": {
    "key": "Demonic Flask",
@@ -27822,7 +29804,11 @@
      "onAffectedItemRemoved"
     ]
    },
-   "classes": 2
+   "classes": 2,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": true,
+   "gem_roll": false
   },
   "Poison Goobert": {
    "key": "Poison Goobert",
@@ -27966,7 +29952,24 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Goobert",
+     "i": [
+      "Fly Agaric",
+      "Fly Agaric"
+     ],
+     "c": [
+      false,
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Staff of Unhealing": {
    "key": "Staff of Unhealing",
@@ -28088,7 +30091,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Magic Staff",
+     "i": [
+      "Demonic Flask"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Strong Pestilence Flask": {
    "key": "Strong Pestilence Flask",
@@ -28190,7 +30208,31 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Pestilence Flask",
+     "i": [
+      "Fly Agaric"
+     ],
+     "c": [
+      false
+     ]
+    },
+    {
+     "b": "Pestilence Flask",
+     "i": [
+      "Cauldron"
+     ],
+     "c": [
+      true
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": true,
+   "gem_roll": false
   },
   "Ruby Chonk": {
    "key": "Ruby Chonk",
@@ -28317,7 +30359,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Ruby Whelp",
+     "i": [
+      "Holo Fire Lizard"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Doom Cap": {
    "key": "Doom Cap",
@@ -28460,7 +30517,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Fly Agaric",
+     "i": [
+      "Demonic Flask"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Crow": {
    "key": "Crow",
@@ -28642,7 +30714,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Jynx torquilla",
+     "i": [
+      "Demonic Flask"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Poison Frog": {
    "key": "Poison Frog",
@@ -28774,7 +30861,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Toad",
+     "i": [
+      "Fly Agaric"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Rainbow Goobert": {
    "key": "Rainbow Goobert",
@@ -28984,7 +31086,26 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Poison Goobert",
+     "i": [
+      "Light Goobert",
+      "Steel Goobert",
+      "Blood Goobert"
+     ],
+     "c": [
+      false,
+      false,
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Cursed Hair Comb": {
    "key": "Cursed Hair Comb",
@@ -29136,7 +31257,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 2
+   "classes": 2,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Mr Struggles": {
    "key": "Mr Struggles",
@@ -29280,7 +31405,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 2
+   "classes": 2,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Cursed Dagger": {
    "key": "Cursed Dagger",
@@ -29402,7 +31531,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 2
+   "classes": 2,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Snake": {
    "key": "Snake",
@@ -29541,7 +31674,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 2
+   "classes": 2,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Cauldron": {
    "key": "Cauldron",
@@ -29682,7 +31819,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 2
+   "classes": 2,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Mrs Struggles": {
    "key": "Mrs Struggles",
@@ -29811,7 +31952,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Miss Fortune": {
    "key": "Miss Fortune",
@@ -29910,7 +32055,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Strong Demonic Flask": {
    "key": "Strong Demonic Flask",
@@ -30044,7 +32193,31 @@
      "onAffectedItemRemoved"
     ]
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Demonic Flask",
+     "i": [
+      "Corrupted Crystal"
+     ],
+     "c": [
+      false
+     ]
+    },
+    {
+     "b": "Demonic Flask",
+     "i": [
+      "Cauldron"
+     ],
+     "c": [
+      true
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": true,
+   "gem_roll": false
   },
   "Strong Vampiric Potion": {
    "key": "Strong Vampiric Potion",
@@ -30155,7 +32328,22 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Vampiric Potion",
+     "i": [
+      "Cauldron"
+     ],
+     "c": [
+      true
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": true,
+   "gem_roll": false
   },
   "Strong Divine Potion": {
    "key": "Strong Divine Potion",
@@ -30251,7 +32439,22 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Divine Potion",
+     "i": [
+      "Cauldron"
+     ],
+     "c": [
+      true
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": true,
+   "gem_roll": false
   },
   "Fire Pit": {
    "key": "Fire Pit",
@@ -30379,7 +32582,11 @@
      "onAffectedItemInsideRemoved"
     ]
    },
-   "classes": 8
+   "classes": 8,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Portable Altar": {
    "key": "Portable Altar",
@@ -30498,7 +32705,11 @@
      "onAffectedItemInsideRemoved"
     ]
    },
-   "classes": 8
+   "classes": 8,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Flame": {
    "key": "Flame",
@@ -30584,7 +32795,15 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 8
+   "classes": 8,
+   "flicker_animation": true,
+   "flicker_min_dist": 4.0,
+   "flicker_max_dist": 16.0,
+   "flicker_min_speed": 0.3,
+   "flicker_max_speed": 0.8,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Chili Pepper": {
    "key": "Chili Pepper",
@@ -30708,7 +32927,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 8
+   "classes": 8,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Draconic Orb": {
    "key": "Draconic Orb",
@@ -30806,7 +33029,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 8
+   "classes": 8,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Phoenix": {
    "key": "Phoenix",
@@ -30929,7 +33156,15 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 8
+   "classes": 8,
+   "has_animation_scene": true,
+   "flicker_animation": true,
+   "flicker_min_dist": 0.1,
+   "flicker_max_dist": 3.0,
+   "flicker_min_speed": 0.3,
+   "flicker_max_speed": 1.0,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Burning Sword": {
    "key": "Burning Sword",
@@ -31063,7 +33298,28 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Hero Sword",
+     "i": [
+      "Flame",
+      "Flame"
+     ],
+     "c": [
+      false,
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": true,
+   "flicker_min_dist": 0.1,
+   "flicker_max_dist": 3.0,
+   "flicker_min_speed": 0.3,
+   "flicker_max_speed": 0.8,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Burning Blade": {
    "key": "Burning Blade",
@@ -31198,7 +33454,39 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Hero Longsword",
+     "i": [
+      "Flame",
+      "Flame"
+     ],
+     "c": [
+      false,
+      false
+     ]
+    },
+    {
+     "b": "Burning Sword",
+     "i": [
+      "Whetstone",
+      "Whetstone"
+     ],
+     "c": [
+      false,
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": true,
+   "flicker_min_dist": 0.1,
+   "flicker_max_dist": 3.0,
+   "flicker_min_speed": 0.3,
+   "flicker_max_speed": 1.0,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Sun Armor": {
    "key": "Sun Armor",
@@ -31369,7 +33657,24 @@
     ]
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Holy Armor",
+     "i": [
+      "Flame",
+      "Flame"
+     ],
+     "c": [
+      false,
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Sun Shield": {
    "key": "Sun Shield",
@@ -31539,7 +33844,24 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Shield of Valor",
+     "i": [
+      "Flame",
+      "Flame"
+     ],
+     "c": [
+      false,
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Molten Dagger": {
    "key": "Molten Dagger",
@@ -31637,7 +33959,24 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Dagger",
+     "i": [
+      "Flame",
+      "Flame"
+     ],
+     "c": [
+      false,
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Molten Spear": {
    "key": "Molten Spear",
@@ -31777,7 +34116,24 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Spear",
+     "i": [
+      "Flame",
+      "Flame"
+     ],
+     "c": [
+      false,
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Staff of Fire": {
    "key": "Staff of Fire",
@@ -31892,7 +34248,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Magic Staff",
+     "i": [
+      "Draconic Orb"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Flame Whip": {
    "key": "Flame Whip",
@@ -32006,7 +34377,24 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Thorn Whip",
+     "i": [
+      "Flame",
+      "Flame"
+     ],
+     "c": [
+      false,
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Chili Goobert": {
    "key": "Chili Goobert",
@@ -32129,7 +34517,22 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Goobert",
+     "i": [
+      "Chili Pepper"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Obsidian Dragon": {
    "key": "Obsidian Dragon",
@@ -32262,7 +34665,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Ruby Whelp",
+     "i": [
+      "Draconic Orb"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Molten Greatsword": {
    "key": "Molten Greatsword",
@@ -32389,7 +34807,28 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Greatsword",
+     "i": [
+      "Flame",
+      "Flame",
+      "Flame",
+      "Flame"
+     ],
+     "c": [
+      false,
+      false,
+      false,
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Fire Shelly": {
    "key": "Fire Shelly",
@@ -32509,7 +34948,24 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Shelly",
+     "i": [
+      "Flame",
+      "Flame"
+     ],
+     "c": [
+      false,
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Rainbow Goobert Pyromancer": {
    "key": "Rainbow Goobert Pyromancer",
@@ -32666,7 +35122,26 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Chili Goobert",
+     "i": [
+      "Light Goobert",
+      "Steel Goobert",
+      "Blood Goobert"
+     ],
+     "c": [
+      false,
+      false,
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Friendly Fire": {
    "key": "Friendly Fire",
@@ -32822,7 +35297,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 8
+   "classes": 8,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Burning Banner": {
    "key": "Burning Banner",
@@ -32993,7 +35472,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 8
+   "classes": 8,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Dark Lantern": {
    "key": "Dark Lantern",
@@ -33146,7 +35629,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 8
+   "classes": 8,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Frozen Flame": {
    "key": "Frozen Flame",
@@ -33296,7 +35783,11 @@
     "related_columns": true,
     "callbacks": []
    },
-   "classes": 8
+   "classes": 8,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Dragon Nest": {
    "key": "Dragon Nest",
@@ -33425,7 +35916,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 8
+   "classes": 8,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Spell Scroll Frostbolt": {
    "key": "Spell Scroll Frostbolt",
@@ -33559,7 +36054,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Ice Armor": {
    "key": "Ice Armor",
@@ -33667,7 +36166,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Leather Armor",
+     "i": [
+      "Snowball"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Frozen Buckler": {
    "key": "Frozen Buckler",
@@ -33762,7 +36276,22 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Wooden Buckler",
+     "i": [
+      "Snowball"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Frostbite": {
    "key": "Frostbite",
@@ -33872,7 +36401,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Hungry Blade",
+     "i": [
+      "Snowball"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Ice Dragon": {
    "key": "Ice Dragon",
@@ -33997,7 +36541,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 2
+   "classes": 2,
+   "originating_recipes": [
+    {
+     "b": "Ruby Whelp",
+     "i": [
+      "White-Eyes Blue Dragon"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Emerald Egg": {
    "key": "Emerald Egg",
@@ -34085,7 +36644,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Emerald Whelp": {
    "key": "Emerald Whelp",
@@ -34179,7 +36742,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Sapphire Egg": {
    "key": "Sapphire Egg",
@@ -34270,7 +36837,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Sapphire Whelp": {
    "key": "Sapphire Whelp",
@@ -34372,7 +36943,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Amethyst Egg": {
    "key": "Amethyst Egg",
@@ -34461,7 +37036,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Amethyst Whelp": {
    "key": "Amethyst Whelp",
@@ -34556,7 +37135,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Berserker Bag": {
    "key": "Berserker Bag",
@@ -34686,7 +37269,11 @@
      "onAffectedItemInsideRemoved"
     ]
    },
-   "classes": 4
+   "classes": 4,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Toolbox": {
    "key": "Toolbox",
@@ -34824,7 +37411,11 @@
     ]
    },
    "extra_cds": [],
-   "classes": 4
+   "classes": 4,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Forging Hammer": {
    "key": "Forging Hammer",
@@ -34916,7 +37507,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 4
+   "classes": 4,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Axe": {
    "key": "Axe",
@@ -35018,7 +37613,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 4
+   "classes": 4,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Spiked Collar": {
    "key": "Spiked Collar",
@@ -35110,7 +37709,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 4
+   "classes": 4,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Cheese": {
    "key": "Cheese",
@@ -35232,7 +37835,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 4
+   "classes": 4,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Double Axe": {
    "key": "Double Axe",
@@ -35352,7 +37959,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Axe",
+     "i": [
+      "Axe"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Chain Whip": {
    "key": "Chain Whip",
@@ -35465,7 +38087,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Dragonscale Armor": {
    "key": "Dragonscale Armor",
@@ -35574,7 +38200,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Dragon Claws": {
    "key": "Dragon Claws",
@@ -35678,7 +38308,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Dragonskin Boots": {
    "key": "Dragonskin Boots",
@@ -35771,7 +38405,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Busted Blade": {
    "key": "Busted Blade",
@@ -35901,7 +38539,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Spiked Staff": {
    "key": "Spiked Staff",
@@ -36016,7 +38658,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Magic Staff",
+     "i": [
+      "Spiked Collar"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Cheese Goobert": {
    "key": "Cheese Goobert",
@@ -36138,7 +38795,22 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Goobert",
+     "i": [
+      "Cheese"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Spiked Wall": {
    "key": "Spiked Wall",
@@ -36259,7 +38931,22 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Spiked Shield",
+     "i": [
+      "Spiked Collar"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Rainbow Goobert Berserker": {
    "key": "Rainbow Goobert Berserker",
@@ -36416,7 +39103,26 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Cheese Goobert",
+     "i": [
+      "Light Goobert",
+      "Steel Goobert",
+      "Blood Goobert"
+     ],
+     "c": [
+      false,
+      false,
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Anvil": {
    "key": "Anvil",
@@ -36558,7 +39264,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 4
+   "classes": 4,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Deer Totem": {
    "key": "Deer Totem",
@@ -36705,7 +39415,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 4
+   "classes": 4,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Wolf Emblem": {
    "key": "Wolf Emblem",
@@ -36889,7 +39603,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 4
+   "classes": 4,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Shaman Mask": {
    "key": "Shaman Mask",
@@ -36985,7 +39703,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 4
+   "classes": 4,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Brass Knuckles": {
    "key": "Brass Knuckles",
@@ -37109,7 +39831,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 4
+   "classes": 4,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Courage Puppy": {
    "key": "Courage Puppy",
@@ -37238,7 +39964,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Wisdom Puppy": {
    "key": "Wisdom Puppy",
@@ -37364,7 +40094,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Power Puppy": {
    "key": "Power Puppy",
@@ -37491,7 +40225,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Armored Courage Puppy": {
    "key": "Armored Courage Puppy",
@@ -37611,7 +40349,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Armored Wisdom Puppy": {
    "key": "Armored Wisdom Puppy",
@@ -37735,7 +40477,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Armored Power Puppy": {
    "key": "Armored Power Puppy",
@@ -37856,7 +40602,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Badger Rune": {
    "key": "Badger Rune",
@@ -37950,7 +40700,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": true,
+   "has_animation_scene": false
   },
   "Elephant Rune": {
    "key": "Elephant Rune",
@@ -38052,7 +40806,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": true,
+   "has_animation_scene": false
   },
   "Hawk Rune": {
    "key": "Hawk Rune",
@@ -38139,7 +40897,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": true,
+   "has_animation_scene": false
   },
   "Tiger Rune": {
    "key": "Tiger Rune",
@@ -38235,7 +40997,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": true,
+   "has_animation_scene": false
   },
   "Unidentified Skill": {
    "key": "Unidentified Skill",
@@ -38330,7 +41096,11 @@
     "related_columns": true,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Just Stats": {
    "key": "Just Stats",
@@ -38422,7 +41192,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Spicy Banana": {
    "key": "Spicy Banana",
@@ -38564,7 +41338,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Smelly Barrier": {
    "key": "Smelly Barrier",
@@ -38733,7 +41511,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Piggy Pinata": {
    "key": "Piggy Pinata",
@@ -38840,7 +41622,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Investment Opportunity": {
    "key": "Investment Opportunity",
@@ -38990,7 +41776,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Slime Time": {
    "key": "Slime Time",
@@ -39082,7 +41872,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Goobling": {
    "key": "Goobling",
@@ -39191,7 +41985,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Smithing For Dummies": {
    "key": "Smithing For Dummies",
@@ -39323,7 +42121,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Uniquely Unique": {
    "key": "Uniquely Unique",
@@ -39496,7 +42298,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Dig Deeper": {
    "key": "Dig Deeper",
@@ -39591,7 +42397,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Knife to Meet You": {
    "key": "Knife to Meet You",
@@ -39729,7 +42539,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Extra Bags": {
    "key": "Extra Bags",
@@ -39867,7 +42681,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Shielded": {
    "key": "Shielded",
@@ -40059,7 +42877,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Stoned": {
    "key": "Stoned",
@@ -40166,7 +42988,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Thornburst": {
    "key": "Thornburst",
@@ -40265,7 +43091,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Heavy Drinking": {
    "key": "Heavy Drinking",
@@ -40426,7 +43256,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Mana Mastery": {
    "key": "Mana Mastery",
@@ -40582,7 +43416,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Power of the Moon": {
    "key": "Power of the Moon",
@@ -40750,7 +43588,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Girl Power": {
    "key": "Girl Power",
@@ -40913,7 +43755,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Blood Manipulation": {
    "key": "Blood Manipulation",
@@ -41060,7 +43906,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Echoing Battlecry": {
    "key": "Echoing Battlecry",
@@ -41191,7 +44041,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Enchanted Weapons": {
    "key": "Enchanted Weapons",
@@ -41336,7 +44190,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "No Rush Please": {
    "key": "No Rush Please",
@@ -41436,7 +44294,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Double Rainbow": {
    "key": "Double Rainbow",
@@ -41585,7 +44447,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "False Life": {
    "key": "False Life",
@@ -41736,7 +44602,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Fortunas Kiss": {
    "key": "Fortunas Kiss",
@@ -41844,7 +44714,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "More Stats": {
    "key": "More Stats",
@@ -41939,7 +44813,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Bagtacular": {
    "key": "Bagtacular",
@@ -42034,7 +44912,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Buy the Holy Light": {
    "key": "Buy the Holy Light",
@@ -42202,7 +45084,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Hardwood": {
    "key": "Hardwood",
@@ -42366,7 +45252,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Time Melting": {
    "key": "Time Melting",
@@ -42504,7 +45394,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Full Body Protection": {
    "key": "Full Body Protection",
@@ -42660,7 +45554,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Markswoman": {
    "key": "Markswoman",
@@ -42799,7 +45697,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 1
+   "classes": 1,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Acorn Ace": {
    "key": "Acorn Ace",
@@ -42901,7 +45803,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 1
+   "classes": 1,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Mushroom Farm": {
    "key": "Mushroom Farm",
@@ -43055,7 +45961,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 2
+   "classes": 2,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Heart of the Cards": {
    "key": "Heart of the Cards",
@@ -43150,7 +46060,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 2
+   "classes": 2,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Dark Ritual": {
    "key": "Dark Ritual",
@@ -43315,7 +46229,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 2
+   "classes": 2,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Extra Angy": {
    "key": "Extra Angy",
@@ -43411,7 +46329,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 4
+   "classes": 4,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Dragon Set": {
    "key": "Dragon Set",
@@ -43519,7 +46441,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 4
+   "classes": 4,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Everburning": {
    "key": "Everburning",
@@ -43619,7 +46545,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 8
+   "classes": 8,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Solaris": {
    "key": "Solaris",
@@ -43787,7 +46717,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 8
+   "classes": 8,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Arcane Intellect": {
    "key": "Arcane Intellect",
@@ -43926,7 +46860,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 16
+   "classes": 16,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Ultima": {
    "key": "Ultima",
@@ -44141,7 +47079,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 16
+   "classes": 16,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Level Up": {
    "key": "Level Up",
@@ -44242,7 +47184,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 32
+   "classes": 32,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Dual Wielding": {
    "key": "Dual Wielding",
@@ -44341,7 +47287,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 32
+   "classes": 32,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Scholar Bag": {
    "key": "Scholar Bag",
@@ -44460,7 +47410,11 @@
      "onAffectedItemInsideRemoved"
     ]
    },
-   "classes": 16
+   "classes": 16,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Puzzlebox": {
    "key": "Puzzlebox",
@@ -44587,7 +47541,11 @@
     ]
    },
    "extra_cds": [],
-   "classes": 16
+   "classes": 16,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Chess Board": {
    "key": "Chess Board",
@@ -44699,7 +47657,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 16
+   "classes": 16,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "White Pawn": {
    "key": "White Pawn",
@@ -44786,7 +47748,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Black Pawn": {
    "key": "Black Pawn",
@@ -44873,7 +47839,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "White Knight": {
    "key": "White Knight",
@@ -44961,7 +47931,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Black Knight": {
    "key": "Black Knight",
@@ -45049,7 +48023,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "White Bishop": {
    "key": "White Bishop",
@@ -45136,7 +48114,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Black Bishop": {
    "key": "Black Bishop",
@@ -45225,7 +48207,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "White Rook": {
    "key": "White Rook",
@@ -45316,7 +48302,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Black Rook": {
    "key": "Black Rook",
@@ -45409,7 +48399,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "White Queen": {
    "key": "White Queen",
@@ -45497,7 +48491,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Black Queen": {
    "key": "Black Queen",
@@ -45583,7 +48581,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "White King": {
    "key": "White King",
@@ -45671,7 +48673,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Black King": {
    "key": "Black King",
@@ -45759,7 +48765,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Wand": {
    "key": "Wand",
@@ -45864,7 +48874,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 16
+   "classes": 16,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Book of Basics": {
    "key": "Book of Basics",
@@ -45995,7 +49009,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 16
+   "classes": 16,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Cupcake": {
    "key": "Cupcake",
@@ -46109,7 +49127,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 16
+   "classes": 16,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Spell Scroll Ice": {
    "key": "Spell Scroll Ice",
@@ -46242,7 +49264,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 16
+   "classes": 16,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Spell Scroll Nature": {
    "key": "Spell Scroll Nature",
@@ -46373,7 +49399,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 16
+   "classes": 16,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Spell Scroll Light": {
    "key": "Spell Scroll Light",
@@ -46501,7 +49531,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 16
+   "classes": 16,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Spell Scroll Dark": {
    "key": "Spell Scroll Dark",
@@ -46645,7 +49679,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 16
+   "classes": 16,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Book of Nature": {
    "key": "Book of Nature",
@@ -46794,7 +49832,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 16
+   "classes": 16,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Book of Darkness": {
    "key": "Book of Darkness",
@@ -46943,7 +49985,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 16
+   "classes": 16,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Book of Light": {
    "key": "Book of Light",
@@ -47091,7 +50137,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 16
+   "classes": 16,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Book of Ice": {
    "key": "Book of Ice",
@@ -47238,7 +50288,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 16
+   "classes": 16,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Book of Ice New": {
    "key": "Book of Ice New",
@@ -47385,7 +50439,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Magic Mirror": {
    "key": "Magic Mirror",
@@ -47511,7 +50569,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 16
+   "classes": 16,
+   "originating_recipes": [
+    {
+     "b": "Spell Scroll Ice",
+     "i": [
+      "Spell Scroll Light"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Ice Flower": {
    "key": "Ice Flower",
@@ -47655,7 +50728,22 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 16
+   "classes": 16,
+   "originating_recipes": [
+    {
+     "b": "Spell Scroll Nature",
+     "i": [
+      "Spell Scroll Ice"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Light Flower": {
    "key": "Light Flower",
@@ -47823,7 +50911,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Spell Scroll Nature",
+     "i": [
+      "Spell Scroll Light"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Death Lotus": {
    "key": "Death Lotus",
@@ -47967,7 +51070,33 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Darkest Lotus",
+     "i": [
+      "Blueberries",
+      "Blueberries"
+     ],
+     "c": [
+      false,
+      false
+     ]
+    },
+    {
+     "b": "Spell Scroll Nature",
+     "i": [
+      "Spell Scroll Dark"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Null Blade": {
    "key": "Null Blade",
@@ -48085,7 +51214,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Spell Scroll Light",
+     "i": [
+      "Spell Scroll Dark"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Devouring Sphere": {
    "key": "Devouring Sphere",
@@ -48198,7 +51342,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 16
+   "classes": 16,
+   "originating_recipes": [
+    {
+     "b": "Spell Scroll Dark",
+     "i": [
+      "Spell Scroll Ice"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Cat Spirit": {
    "key": "Cat Spirit",
@@ -48349,7 +51508,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 16
+   "classes": 16,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Owl Spirit": {
    "key": "Owl Spirit",
@@ -48476,7 +51639,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 16
+   "classes": 16,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Badger Spirit": {
    "key": "Badger Spirit",
@@ -48642,7 +51809,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 16
+   "classes": 16,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Prismatic Wand": {
    "key": "Prismatic Wand",
@@ -48750,7 +51921,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Wand",
+     "i": [
+      "Rainbow Orb"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Cupcake Goobert": {
    "key": "Cupcake Goobert",
@@ -48876,7 +52062,22 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Goobert",
+     "i": [
+      "Cupcake"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Rainbow Goobert Mage": {
    "key": "Rainbow Goobert Mage",
@@ -49036,7 +52237,26 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Cupcake Goobert",
+     "i": [
+      "Light Goobert",
+      "Steel Goobert",
+      "Blood Goobert"
+     ],
+     "c": [
+      false,
+      false,
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Cupcake Staff": {
    "key": "Cupcake Staff",
@@ -49150,7 +52370,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Magic Staff",
+     "i": [
+      "Cupcake"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Mage Hat": {
    "key": "Mage Hat",
@@ -49316,7 +52551,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 16
+   "classes": 16,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Puzzlebag L": {
    "key": "Puzzlebag L",
@@ -49428,7 +52667,11 @@
      "onAffectedItemInsideRemoved"
     ]
    },
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Puzzlebag S": {
    "key": "Puzzlebag S",
@@ -49533,7 +52776,11 @@
      "onAffectedItemInsideRemoved"
     ]
    },
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Puzzlebag Z": {
    "key": "Puzzlebag Z",
@@ -49638,7 +52885,11 @@
      "onAffectedItemInsideRemoved"
     ]
    },
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Puzzlebag T": {
    "key": "Puzzlebag T",
@@ -49751,7 +53002,11 @@
      "onAffectedItemInsideRemoved"
     ]
    },
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Puzzlebag J": {
    "key": "Puzzlebag J",
@@ -49861,7 +53116,11 @@
      "onAffectedItemInsideRemoved"
     ]
    },
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Shiny Mantle": {
    "key": "Shiny Mantle",
@@ -50023,7 +53282,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 16
+   "classes": 16,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Spirit Bells": {
    "key": "Spirit Bells",
@@ -50209,7 +53472,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 16
+   "classes": 16,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Water Elemental": {
    "key": "Water Elemental",
@@ -50434,7 +53701,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 16
+   "classes": 16,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Evil Hat": {
    "key": "Evil Hat",
@@ -50610,7 +53881,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 16
+   "classes": 16,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Rainbow Potion": {
    "key": "Rainbow Potion",
@@ -50783,7 +54058,11 @@
      "onAffectedItemRemoved"
     ]
    },
-   "classes": 16
+   "classes": 16,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": true,
+   "gem_roll": false
   },
   "Bag of Giving": {
    "key": "Bag of Giving",
@@ -50909,7 +54188,11 @@
      "onAffectedItemInsideRemoved"
     ]
    },
-   "classes": 32
+   "classes": 32,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Sewing Case": {
    "key": "Sewing Case",
@@ -51027,7 +54310,11 @@
      "onAffectedItemInsideRemoved"
     ]
    },
-   "classes": 32
+   "classes": 32,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Twine": {
    "key": "Twine",
@@ -51143,7 +54430,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 32
+   "classes": 32,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Rope": {
    "key": "Rope",
@@ -51265,7 +54556,22 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Twine",
+     "i": [
+      "Twine"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Hero Shield": {
    "key": "Hero Shield",
@@ -51410,7 +54716,24 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Twine",
+     "i": [
+      "Wooden Buckler",
+      "Whetstone"
+     ],
+     "c": [
+      false,
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Boomerang": {
    "key": "Boomerang",
@@ -51511,7 +54834,24 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Twine",
+     "i": [
+      "Wooden Sword",
+      "Banana"
+     ],
+     "c": [
+      false,
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Piggy of Riches": {
    "key": "Piggy of Riches",
@@ -51604,7 +54944,24 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Twine",
+     "i": [
+      "Piggybank",
+      "Box of Riches"
+     ],
+     "c": [
+      false,
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Employee Uniform": {
    "key": "Employee Uniform",
@@ -51712,7 +55069,24 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Twine",
+     "i": [
+      "Leather Armor",
+      "Customer Card"
+     ],
+     "c": [
+      false,
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Big Bloodthorne": {
    "key": "Big Bloodthorne",
@@ -51849,7 +55223,24 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Twine",
+     "i": [
+      "Greatsword",
+      "Bloodthorne"
+     ],
+     "c": [
+      false,
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Heart Shield": {
    "key": "Heart Shield",
@@ -52025,7 +55416,24 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Twine",
+     "i": [
+      "Shield of Valor",
+      "Heart Container"
+     ],
+     "c": [
+      false,
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Dragon Knight": {
    "key": "Dragon Knight",
@@ -52170,7 +55578,24 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Twine",
+     "i": [
+      "Goobert",
+      "Ruby Whelp"
+     ],
+     "c": [
+      false,
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Broccoli": {
    "key": "Broccoli",
@@ -52299,7 +55724,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 32
+   "classes": 32,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Lootbox": {
    "key": "Lootbox",
@@ -52402,7 +55831,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 32
+   "classes": 32,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Broccoli Goobert": {
    "key": "Broccoli Goobert",
@@ -52531,7 +55964,22 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Goobert",
+     "i": [
+      "Broccoli"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Rainbow Goobert Adventurer": {
    "key": "Rainbow Goobert Adventurer",
@@ -52691,7 +56139,26 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Broccoli Goobert",
+     "i": [
+      "Light Goobert",
+      "Steel Goobert",
+      "Blood Goobert"
+     ],
+     "c": [
+      false,
+      false,
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Scissorswords": {
    "key": "Scissorswords",
@@ -52821,7 +56288,24 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Twine",
+     "i": [
+      "Lightsaber",
+      "Fancy Fencing Rapier"
+     ],
+     "c": [
+      false,
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Long Spear": {
    "key": "Long Spear",
@@ -52979,7 +56463,24 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Twine",
+     "i": [
+      "Spear",
+      "Spear"
+     ],
+     "c": [
+      false,
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Daggerang": {
    "key": "Daggerang",
@@ -53081,7 +56582,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Boomerang",
+     "i": [
+      "Dagger"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Jynx Staff": {
    "key": "Jynx Staff",
@@ -53292,7 +56808,24 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Twine",
+     "i": [
+      "Magic Staff",
+      "Jynx torquilla"
+     ],
+     "c": [
+      false,
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Fedora": {
    "key": "Fedora",
@@ -53472,7 +57005,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 32
+   "classes": 32,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Scale": {
    "key": "Scale",
@@ -53647,7 +57184,11 @@
     ]
    },
    "extra_cds": [],
-   "classes": 32
+   "classes": 32,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Mercury Elemental": {
    "key": "Mercury Elemental",
@@ -53825,7 +57366,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 32
+   "classes": 32,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Turtle": {
    "key": "Turtle",
@@ -53954,7 +57499,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 32
+   "classes": 32,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Ukulele": {
    "key": "Ukulele",
@@ -54159,7 +57708,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 32
+   "classes": 32,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Engineer Box": {
    "key": "Engineer Box",
@@ -54287,7 +57840,11 @@
      "onAffectedItemInsideRemoved"
     ]
    },
-   "classes": 64
+   "classes": 64,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Engineer Bag 2": {
    "key": "Engineer Bag 2",
@@ -54409,7 +57966,11 @@
      "onAffectedItemInsideRemoved"
     ]
    },
-   "classes": 64
+   "classes": 64,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Battery": {
    "key": "Battery",
@@ -54527,7 +58088,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 64
+   "classes": 64,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Resistor": {
    "key": "Resistor",
@@ -54623,7 +58188,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 64
+   "classes": 64,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Cog": {
    "key": "Cog",
@@ -54750,7 +58319,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 64
+   "classes": 64,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Coil": {
    "key": "Coil",
@@ -54844,7 +58417,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 64
+   "classes": 64,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Charge Splitter": {
    "key": "Charge Splitter",
@@ -54999,7 +58576,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 64
+   "classes": 64,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Slice of Bread": {
    "key": "Slice of Bread",
@@ -55113,7 +58694,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 64
+   "classes": 64,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Slice of Toast": {
    "key": "Slice of Toast",
@@ -55229,7 +58814,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Toast Goobert": {
    "key": "Toast Goobert",
@@ -55357,7 +58946,22 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Goobert",
+     "i": [
+      "Slice of Toast"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Rainbow Goobert Engineer": {
    "key": "Rainbow Goobert Engineer",
@@ -55524,7 +59128,26 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Toast Goobert",
+     "i": [
+      "Light Goobert",
+      "Steel Goobert",
+      "Blood Goobert"
+     ],
+     "c": [
+      false,
+      false,
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Wrench": {
    "key": "Wrench",
@@ -55634,7 +59257,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Hero Sword",
+     "i": [
+      "Cog"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Electric Torch": {
    "key": "Electric Torch",
@@ -55781,7 +59419,31 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Torch",
+     "i": [
+      "Coil"
+     ],
+     "c": [
+      false
+     ]
+    },
+    {
+     "b": "Burning Torch",
+     "i": [
+      "Coil"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Robodog": {
    "key": "Robodog",
@@ -55903,7 +59565,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Shovel",
+     "i": [
+      "Resistor"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Mecha Bat": {
    "key": "Mecha Bat",
@@ -56035,7 +59712,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Blood Amulet",
+     "i": [
+      "Cog"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Bazooka": {
    "key": "Bazooka",
@@ -56148,7 +59840,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Fanfare",
+     "i": [
+      "Charge Splitter"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Lightning Staff": {
    "key": "Lightning Staff",
@@ -56301,7 +60008,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Magic Staff",
+     "i": [
+      "Battery"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Generator": {
    "key": "Generator",
@@ -56429,7 +60151,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Pan",
+     "i": [
+      "Battery"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Chainsaw": {
    "key": "Chainsaw",
@@ -56550,7 +60287,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Rib Saw Blade",
+     "i": [
+      "Coil"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Poison Grenade": {
    "key": "Poison Grenade",
@@ -56655,7 +60407,24 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Resistor",
+     "i": [
+      "Stone",
+      "Pestilence Flask"
+     ],
+     "c": [
+      false,
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Con-Trap-Tron": {
    "key": "Con-Trap-Tron",
@@ -56814,7 +60583,22 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Health Potion",
+     "i": [
+      "Charge Splitter"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Spring Loader": {
    "key": "Spring Loader",
@@ -56945,7 +60729,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Wooden Buckler",
+     "i": [
+      "Coil"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Eat-o-matic": {
    "key": "Eat-o-matic",
@@ -57072,7 +60871,22 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Gloves of Haste",
+     "i": [
+      "Resistor"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Thunder Drake": {
    "key": "Thunder Drake",
@@ -57272,7 +61086,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Ruby Whelp",
+     "i": [
+      "Battery"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Tesla Coil": {
    "key": "Tesla Coil",
@@ -57423,7 +61252,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 64
+   "classes": 64,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Mana Crystal": {
    "key": "Mana Crystal",
@@ -57566,7 +61399,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 64
+   "classes": 64,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Bionic Armor": {
    "key": "Bionic Armor",
@@ -57693,7 +61530,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 64
+   "classes": 64,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Laboratory": {
    "key": "Laboratory",
@@ -57841,7 +61682,11 @@
     8.0,
     12.0
    ],
-   "classes": 64
+   "classes": 64,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Hypercube": {
    "key": "Hypercube",
@@ -57930,7 +61775,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 64
+   "classes": 64,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Gold Cube": {
    "key": "Gold Cube",
@@ -58036,7 +61885,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Bismuth Cube": {
    "key": "Bismuth Cube",
@@ -58146,7 +61999,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Chrome Cube": {
    "key": "Chrome Cube",
@@ -58252,7 +62109,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Plastic Cube": {
    "key": "Plastic Cube",
@@ -58355,7 +62216,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Cap of Brilliance": {
    "key": "Cap of Brilliance",
@@ -58483,7 +62348,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Magitecc Armor": {
    "key": "Magitecc Armor",
@@ -58650,7 +62519,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Arcane Boots": {
    "key": "Arcane Boots",
@@ -58803,7 +62676,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Thors Hammer": {
    "key": "Thors Hammer",
@@ -58924,7 +62801,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Automanaton": {
    "key": "Automanaton",
@@ -59113,7 +62994,26 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Magitecc Armor",
+     "i": [
+      "Cap of Brilliance",
+      "Arcane Boots",
+      "Thors Hammer"
+     ],
+     "c": [
+      false,
+      false,
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Mananana": {
    "key": "Mananana",
@@ -59249,7 +63149,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Gigawatz": {
    "key": "Gigawatz",
@@ -59351,7 +63255,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 64
+   "classes": 64,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Perpetuum Mobile": {
    "key": "Perpetuum Mobile",
@@ -59475,7 +63383,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 64
+   "classes": 64,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Critical Poison": {
    "key": "Critical Poison",
@@ -59579,7 +63491,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 3
+   "classes": 3,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Burning Spikes": {
    "key": "Burning Spikes",
@@ -59720,7 +63636,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 12
+   "classes": 12,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Hogus Bogus": {
    "key": "Hogus Bogus",
@@ -59824,7 +63744,11 @@
     6.0,
     9.0
    ],
-   "classes": 48
+   "classes": 48,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Spin to Win": {
    "key": "Spin to Win",
@@ -59930,7 +63854,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 96
+   "classes": 96,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Energy Conversion": {
    "key": "Energy Conversion",
@@ -60059,7 +63987,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 72
+   "classes": 72,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Inner Power": {
    "key": "Inner Power",
@@ -60217,7 +64149,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 5
+   "classes": 5,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Bewitchment": {
    "key": "Bewitchment",
@@ -60359,7 +64295,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 18
+   "classes": 18,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Chess Master": {
    "key": "Chess Master",
@@ -60452,7 +64392,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 16
+   "classes": 16,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Speak with Animals": {
    "key": "Speak with Animals",
@@ -60618,7 +64562,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Seal the Deal": {
    "key": "Seal the Deal",
@@ -60722,7 +64670,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "King of the Bling": {
    "key": "King of the Bling",
@@ -60864,7 +64816,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Wisp": {
    "key": "Wisp",
@@ -61016,7 +64972,11 @@
    "extra_cds": [
     5.0
    ],
-   "classes": 1
+   "classes": 1,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": true,
+   "has_animation_scene": false
   },
   "Forest Dragon": {
    "key": "Forest Dragon",
@@ -61191,7 +65151,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Ruby Whelp",
+     "i": [
+      "Wisp"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "War Scythe": {
    "key": "War Scythe",
@@ -61336,7 +65311,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Death Scythe",
+     "i": [
+      "Whetstone"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Frog Prince": {
    "key": "Frog Prince",
@@ -61499,7 +65489,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Toad",
+     "i": [
+      "Crown"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Molten Spear2": {
    "key": "Molten Spear2",
@@ -61646,7 +65651,28 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Molten Spear",
+     "i": [
+      "Flame",
+      "Flame",
+      "Flame",
+      "Flame"
+     ],
+     "c": [
+      false,
+      false,
+      false,
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Phoenix2": {
    "key": "Phoenix2",
@@ -61815,7 +65841,32 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Phoenix",
+     "i": [
+      "Flame",
+      "Flame",
+      "Flame",
+      "Flame"
+     ],
+     "c": [
+      false,
+      false,
+      false,
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": true,
+   "flicker_min_dist": 0.1,
+   "flicker_max_dist": 3.0,
+   "flicker_min_speed": 0.3,
+   "flicker_max_speed": 1.0,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Whetstone2": {
    "key": "Whetstone2",
@@ -61926,7 +65977,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Whetstone3": {
    "key": "Whetstone3",
@@ -62055,7 +66110,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Steel Dragon": {
    "key": "Steel Dragon",
@@ -62224,7 +66283,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Ruby Whelp",
+     "i": [
+      "Whetstone3"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Halberd": {
    "key": "Halberd",
@@ -62379,7 +66453,24 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Axe",
+     "i": [
+      "Whetstone3",
+      "Spear"
+     ],
+     "c": [
+      false,
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Magic Ring": {
    "key": "Magic Ring",
@@ -62516,7 +66607,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 32
+   "classes": 32,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Superior Ring": {
    "key": "Superior Ring",
@@ -62653,7 +66748,22 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Magic Ring",
+     "i": [
+      "Magic Ring"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Broccotree": {
    "key": "Broccotree",
@@ -62818,7 +66928,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Broccoli",
+     "i": [
+      "Heroic Potion"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Cupcake Dragon": {
    "key": "Cupcake Dragon",
@@ -62991,7 +67116,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Ruby Whelp",
+     "i": [
+      "Cupcake"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Wand of Dissonance": {
    "key": "Wand of Dissonance",
@@ -63133,7 +67273,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Wand",
+     "i": [
+      "Book of Darkness"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Amulet of Light": {
    "key": "Amulet of Light",
@@ -63317,7 +67472,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Gold Armor": {
    "key": "Gold Armor",
@@ -63484,7 +67643,31 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Holy Armor",
+     "i": [
+      "Coins"
+     ],
+     "c": [
+      false
+     ]
+    },
+    {
+     "b": "Holy Armor",
+     "i": [
+      "Lucky Cat"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Pine Protector": {
    "key": "Pine Protector",
@@ -63669,7 +67852,22 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Spiked Shield",
+     "i": [
+      "Pineapple"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Onion Cutter": {
    "key": "Onion Cutter",
@@ -63816,7 +68014,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Hero Sword",
+     "i": [
+      "Garlic"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false
   },
   "Pot": {
    "key": "Pot",
@@ -63977,7 +68190,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0
+   "classes": 0,
+   "originating_recipes": [
+    {
+     "b": "Pan",
+     "i": [
+      "Wooden Buckler"
+     ],
+     "c": [
+      false
+     ]
+    }
+   ],
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Cog Badge": {
    "key": "Cog Badge",
@@ -64135,7 +68363,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Furcifer Prime": {
    "key": "Furcifer Prime",
@@ -64233,7 +68465,11 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Angel Crystal": {
    "key": "Angel Crystal",
@@ -64395,7 +68631,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Thorn Elemental": {
    "key": "Thorn Elemental",
@@ -64523,7 +68763,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   },
   "Lightning Potion": {
    "key": "Lightning Potion",
@@ -64675,7 +68919,11 @@
    "extra_cds": [
     7.0
    ],
-   "classes": 127
+   "classes": 127,
+   "has_animation_scene": true,
+   "flicker_animation": false,
+   "connector_ready_roll": true,
+   "gem_roll": false
   },
   "Sloth": {
    "key": "Sloth",
@@ -64825,7 +69073,11 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 127
+   "classes": 127,
+   "flicker_animation": false,
+   "connector_ready_roll": false,
+   "gem_roll": false,
+   "has_animation_scene": false
   }
  },
  "class_methods": {

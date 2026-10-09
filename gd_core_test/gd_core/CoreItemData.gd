@@ -62,6 +62,37 @@ var gateItem = null
 # 数据现状：battle_items.json 未导出配方图，默认空 ⇒ isCraftedItem() 恒假。
 # ★ 这是**已知缺口**而非「判定为假」：真要接合成品判定，需装配层补该字段。
 var originatingRecipes: Array = []
+# 对齐 ItemDescriptor.animationScene（ItemBook.gd:788-802 按文件存在性装载）。
+# 消费方：Item.playAnimation 的闸（Item.gd:5345-5346）——有动画场景的物品每次
+# activate() 经 ItemAnimation.intialize 消耗 4 抽 Util.rng（战斗链中途的真实消耗）。
+var animationScene := false
+
+# ── FlickerAnimation 子节点（阶段2 装配期对齐，docs/alignment_fix_workflow.md §2）──
+# 物品场景内挂了 Items/Animations/FlickerAnimation.gd 的 AnimationPlayer 子节点
+# （1.1.8 运行版反编译树实测共 9 个场景：BurningTorch/BurningBlade/BurningSword/
+#  Flame/OilLamp/Phoenix/Phoenix2/BurningCoal(宝石)/MagicTorch）。该脚本：
+#   · _ready → onAnimationEnded(ani)（FlickerAnimation.gd:13-15）→
+#     Util.callDelayed(self, "playAni", Util.rng.randf_range(minDist, maxDist))
+#     ——实参求值在物品入树（_ready）时**立即消耗链 2 步**（装配期）；
+#   · playAni（:17-19）→ playback_speed = Util.rng.randf_range(minSpeed, maxSpeed)
+#     ——战斗期到点再消耗 2 步（经 ctx.callDelayed 定时触发）。
+# 边界值来自各 .tscn 节点的导出属性覆盖（FlickerAnimation.gd:3-7 默认
+# minDist=0.1/maxDist=3.0/minSpeed=0.3/maxSpeed=1.0；实测仅 Flame 覆盖
+# minDist=4.0/maxDist=16.0/maxSpeed=0.8、BurningSword 覆盖 maxSpeed=0.8，
+# 其余全默认）。
+var flickerAni := false
+var flickerMinDist := 0.1
+var flickerMaxDist := 3.0
+var flickerMinSpeed := 0.3
+var flickerMaxSpeed := 1.0
+# 连接器 _ready 抽（PotionConnector/CardConnector._ready 的
+# modulate.g = Util.rng.randf_range(0.9,1.1)，各脚本 :11/:12）——+2 步。
+# 数据侧 = types 含 potion 的物品（Potion._ready 动态挂连接器，Potion.gd:22-28）
+# 与场景内嵌 CardConnector.tscn 的 7 件卡牌物品。
+var connectorReadyRoll := false
+# 宝石 _ready 抽（Gem._ready → gemAnimation.advance(
+# Util.rng.randf_range(0,10))，Items/Gems/Gem.gd:24）——+2 步。types 含 gem。
+var gemRoll := false
 
 # 对齐 ItemDescriptor.gd:17-21、:82、:349-355
 #   isReleased() 的三分支：Demo → 恒真；Full/Unreleased → 问构建特性标志。
@@ -290,6 +321,16 @@ func fromDict(d: Dictionary):
 	# ItemBook 表格列名的 snake 形态，装配层从任一来源填都行。
 	o.gateItem = d.get("gateItem", d.get("gate_item", null))
 	o.originatingRecipes = d.get("originatingRecipes", d.get("originating_recipes", []))
+	o.animationScene = CoreConst.truth(d.get("animationScene", false))
+	# FlickerAnimation 子节点（见字段处注释；键缺省 = 场景无该子节点，零消耗）
+	o.flickerAni = CoreConst.truth(d.get("flickerAni", d.get("flicker_animation", false)))
+	o.flickerMinDist = float(d.get("flickerMinDist", d.get("flicker_min_dist", 0.1)))
+	o.flickerMaxDist = float(d.get("flickerMaxDist", d.get("flicker_max_dist", 3.0)))
+	o.flickerMinSpeed = float(d.get("flickerMinSpeed", d.get("flicker_min_speed", 0.3)))
+	o.flickerMaxSpeed = float(d.get("flickerMaxSpeed", d.get("flicker_max_speed", 1.0)))
+	o.connectorReadyRoll = CoreConst.truth(d.get("connectorReadyRoll",
+			d.get("connector_ready_roll", false)))
+	o.gemRoll = CoreConst.truth(d.get("gemRoll", d.get("gem_roll", false)))
 	o.releaseState = int(d.get("releaseState", d.get("release_state", ReleaseState.Full)))
 	o.params = d.get("params", [])
 	# 具名参数：camel（内核/测试）与 snake（battle_items.json 的原始键）都接受。

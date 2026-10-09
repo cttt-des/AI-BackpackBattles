@@ -176,11 +176,24 @@ def kernel() -> dict:
 # ═══════════════════════════ 事件桥 ═══════════════════════════
 
 class _OriginRef:
-    """日志渲染只读 `.key`（`engine/log_text.py::_render_event`）。非物品实例。"""
-    __slots__ = ("key",)
+    """日志渲染只读 `.key`（`engine/log_text.py::_render_event`）。非物品实例。
 
-    def __init__(self, key: str):
+    ★ gem_host/gem_slot（受控神谕对齐路径附加字段，docs/oracle_workflow.md Phase 3）：
+      origin 为镶嵌宝石时记录宿主物品标识与槽位号，供工具层把内核事件序列化成
+      神谕 events.json 的 `{"kind":"gem","host":…,"socket_index":…}` 形状
+      （oracle_fight.gd::_jsonable 同构）。渲染层只读 `.key`（宝石自身标识），
+      故对 `engine/log_text.py` 的输出零影响。普通物品/数字 origin 两字段恒 None。
+    ★ damage_source（对齐路径附加字段）：origin 为数字伤害源（DamageSource.Type，
+      经 typeToKeyword 化的 keyword）时置 True——神谕 dump 里这类 origin 是裸数字，
+      物品/宝石是 dict，工具层据此还原形状。"""
+    __slots__ = ("key", "gem_host", "gem_slot", "damage_source")
+
+    def __init__(self, key: str, gem_host: Optional[str] = None,
+                 gem_slot: Optional[int] = None, damage_source: bool = False):
         self.key = key
+        self.gem_host = gem_host
+        self.gem_slot = gem_slot
+        self.damage_source = damage_source
 
     def __repr__(self):
         return "<%s>" % self.key
@@ -266,9 +279,32 @@ class _LogMixin:
         k = kernel()
         if isinstance(origin, k["CoreItem"]):
             try:
-                return str(origin.descriptor.identifier)
+                ident = str(origin.descriptor.identifier)
             except Exception:  # noqa: BLE001 —— 只为日志，不因取名失败而中断
                 return str(origin.getName())
+            # 宝石 origin：附宿主/槽位（_OriginRef 新字段；渲染仍只读 .key）
+            try:
+                is_gem = bool(origin.isGem())
+            except Exception:  # noqa: BLE001
+                is_gem = False
+            if is_gem:
+                host = getattr(origin, "socket", None)
+                host_key = None
+                slot = None
+                if host is not None:
+                    try:
+                        host_key = str(host.descriptor.identifier)
+                    except Exception:  # noqa: BLE001
+                        host_key = None
+                    try:
+                        for i, g in enumerate(list(host.gems)):
+                            if g is origin:
+                                slot = i
+                                break
+                    except Exception:  # noqa: BLE001
+                        slot = None
+                return _OriginRef(ident, host_key, slot)
+            return _OriginRef(ident)
         # 数字 origin = DamageSource.Type（原版 CombatEvent.asText：
         # `origin is Item` 为假时走 Game.typeToKeyword(origin)）。
         # typeToKeyword 1:1：特例 Block→"bl"、Regeneration→"regen"，
@@ -285,10 +321,10 @@ class _LogMixin:
         if not name:
             return None
         if num == k["CoreConst"].EventType.get("Block"):
-            return "bl"
+            return _OriginRef("bl", damage_source=True)
         if num == k["CoreConst"].EventType.get("Regeneration"):
-            return "regen"
-        return name.lower()
+            return _OriginRef("regen", damage_source=True)
+        return _OriginRef(name.lower(), damage_source=True)
 
     def _actor_of(self, event):
         """actor = 事件来源物品的所属角色；无物品来源时回落 getMainActor()。"""
@@ -342,12 +378,18 @@ class _LogMixin:
                 params["actor_is_target"] = True
 
         okey = self._origin_key(event.origin)
+        if okey is None:
+            oref = None
+        elif isinstance(okey, _OriginRef):
+            oref = okey
+        else:
+            oref = _OriginRef(okey)
         self.events.append(_EventOut(
             t=float(event.timestamp or 0.0),
             etype=etype,
             actor=actor,
             target=self._side(event.target),
-            origin=_OriginRef(okey) if okey else None,
+            origin=oref,
             params={str(kk): _json_safe(vv) for kk, vv in params.items()},
             parent=(getattr(event.parentEvent, "id", None)
                     if event.parentEvent is not None else None),
@@ -558,7 +600,13 @@ class GDCoreEngine:
                  character_db: Optional[Dict[str, Dict]] = None,
                  seed: Optional[int] = None,
                  max_time: float = 90.0,
-                 probe_bases=()):
+                 probe_bases=(),
+                 below_master: bool = False,
+                 p_activation_order: Optional[List[int]] = None,
+                 o_activation_order: Optional[List[int]] = None,
+                 reseed_after_player_character: bool = False,
+                 post_seed_draws: int = 0,
+                 rng_state: Optional[int] = None):
         # ★ seed 的语义：内核的随机源是 `CoreRng(seed)`，**不是** Python 的
         #   `random.Random(None)` —— 后者不给种子会按 OS 熵随机化，前者拿到 None
         #   会被折成 0。若这里直接把 None 传下去，「不指定种子跑 100 场」会变成
@@ -593,8 +641,31 @@ class GDCoreEngine:
         ctx = k["CoreContext"](int(seed), self.hooks)
         self.ctx = ctx
         self.hooks.ctx = ctx
-        p = self._make_character(ctx, k["CoreCharacter"].ID.PLAYER, ps, cls_p)
-        o = self._make_character(ctx, k["CoreCharacter"].ID.OPPONENT, os_, cls_o)
+        # 对齐 Game.isBelowLeague(Master)（Character.gd:304 / Item.gd:3791 消费）。
+        # 受控神谕（1.1.8 全量工程 + 全新 persistent → 各职业 rating=0 → Bronze）
+        # 实测走 below_master=true 分支：对手冷却 randf_range(0.975,1.05)、
+        # 双方 accuracy/crit 平衡器 ±0.2 偏置（见 output/oracle/fights/*/rng_log.txt
+        # 的 `randf_range 0.975 1.05` 记录）。默认 False = 既有行为不变；
+        # 神谕对齐驱动（tools/verify_oracle.py）显式传 True。
+        ctx.below_master = bool(below_master)
+        p = self._make_character(ctx, k["CoreCharacter"].ID.PLAYER, ps, cls_p,
+                                 player_lineup.get("base_max_stamina"))
+        # ★ 神谕装配期链约定（docs/oracle_workflow.md Phase 3；与
+        #   gd_core_test/OracleAlignBattle.gd 同步）：神谕复用 PLAYER（角色构造
+        #   消耗在本场播种前，被 seed 抹除），随后任何物品实例创建之前
+        #   Util.rng.seed = S（oracle_fight.gd:554），对手角色在播种后实例化。
+        #   reseed_after_player_character=True 时照此重播种；
+        #   post_seed_draws 兜底补装配期的额外链消耗——阶段2 已把装配期消耗面
+        #   逻辑一致地还原进内核（Item 场景双绑定 4 步/实例 + FlickerAnimation
+        #   入树 2 步，见 CoreItem.setup/_readyInit），神谕对齐路径恒传 0；
+        #   旧的校准常数 14（ORACLE_SCENE_DRAWS）已删——它是单场误标定
+        #   （917 场实测装配差 0..444 步，非常数）。两者默认关闭 = 既有行为。
+        if reseed_after_player_character:
+            ctx.rng.rng.seed = int(self._seed)
+            for _ in range(int(post_seed_draws)):
+                ctx.rng.rng.randi()
+        o = self._make_character(ctx, k["CoreCharacter"].ID.OPPONENT, os_, cls_o,
+                                 opponent_lineup.get("base_max_stamina"))
         self._p, self._o = p, o
 
         # 局外回合数：LevelUp.onPrepare 读 ctx.cur_round（对齐原版 Game.curRound）
@@ -613,7 +684,35 @@ class GDCoreEngine:
                                          owner.PlayerInventory)
         self._o_items = self._build_side(ctx, o, opponent_lineup, owner.Opponent)
         # 物品要在 combat.setup() 之后装；startBattle 再兜住双方
-        combat.startBattle(self._p_items, self._o_items)
+        # ★ 激活顺序直通（受控神谕对齐路径）：原版开战前的 shuffle 走引擎全局链
+        #   （docs/rng_truth.md §1.4-2），内核 ctx.rng.shuffle 是自研替身。对齐时
+        #   宿主把「真 Godot 全局链 seed(S) → shuffle×2 → sort_TriggerPriority」
+        #   算出的终序（下标表，指向各侧装配序数组）传进来，startBattle 以
+        #   preordered=True 直通——不 shuffle、不排序、不消耗 ctx.rng。
+        #   默认 None = 既有行为（内核内部 shuffle，56 局基准不变）。
+        # ★ 阶段1 神谕 rng state 注入（docs/alignment_fix_workflow.md §2 阶段1）：
+        #   神谕在「战斗装配完成后、开战序列（prepareItems/activateItems）与首次
+        #   tick 之前」导出 Util.rng.state（oracle_fight.gd rng_state.txt）。此处
+        #   在同样语义的边界——装配（双方角色+物品实例）完成、startBattle 的
+        #   prepareItems/activateItems 与逐 tick 判定链之前——把该 state 原样灌进
+        #   内核随机源（CoreContext.set_state → PCG state 直写，不前进不重播，
+        #   docs/rng_truth.md §2.3），绕开装配期消耗差异，隔离战斗期判定链。
+        #   机制前提：两侧都在 prepareItems 同点把全部 BalancedRng 重置归零
+        #   （原版 Item.gd:3345-3351 / Character.gd:294-317；内核 CoreItem.gd:531 /
+        #   CoreCharacter.gd:259），故链 state 唯一决定后续每次掷点。
+        #   GDScript 落盘的是有符号 64 位视角的 u64，set_state 内部按 MASK64 归一。
+        if rng_state is not None:
+            ctx.set_state(int(rng_state))
+        if p_activation_order is not None or o_activation_order is not None:
+            if (p_activation_order is None or o_activation_order is None
+                    or sorted(p_activation_order) != list(range(len(self._p_items)))
+                    or sorted(o_activation_order) != list(range(len(self._o_items)))):
+                raise ValueError("激活顺序下标表必须两侧同时给出且为满排列")
+            combat.startBattle([self._p_items[i] for i in p_activation_order],
+                               [self._o_items[i] for i in o_activation_order],
+                               True)
+        else:
+            combat.startBattle(self._p_items, self._o_items)
 
         # 对外视图
         self.player = _CharacterView(p, self._lineup_name(player_lineup),
@@ -636,7 +735,7 @@ class GDCoreEngine:
         return (str((lineup.get("meta") or {}).get("name") or "")
                 or str(lineup.get("character") or "") or "未命名")
 
-    def _make_character(self, ctx, pid, stats, cls_id):
+    def _make_character(self, ctx, pid, stats, cls_id, base_stamina=None):
         k = self._K
         c = k["CoreCharacter"](ctx, pid)
         c.characterClass = int(cls_id)
@@ -644,6 +743,13 @@ class GDCoreEngine:
         c.setCurrentHealth(int(stats["health"]))
         c.maxStamina = float(stats["stamina"])
         c.baseMaxStamina = float(stats["stamina"])
+        # ★ base_max_stamina（受控神谕对齐路径附加键）：原版 maxStamina 与
+        #   baseMaxStamina 是两个字段——神谕对手侧 initHistoryOpponent 显式
+        #   baseMaxStamina=5 + recalculateMaxStamina（=5+Stamina Sack 数，可以
+        #   大于 base），战斗内再触发 recalculate 时按 base 重算。此处允许阵容
+        #   显式区分两者（默认仍 = stamina，既有行为不变）。
+        if base_stamina is not None:
+            c.baseMaxStamina = float(base_stamina)
         c.baseStaminaRegen = float(stats["regen"])
         c.staminaRegen = float(stats["regen"])
         c.fillUpStamina()
@@ -664,6 +770,24 @@ class GDCoreEngine:
                 "chance": d["chance"], "chance2": d["chance2"],
                 "types": d["types"], "tags": d["tags"], "params": d["params"],
                 "namedParams": d["namedParams"],
+                # 配方图（tools/enrich_recipes.py）：战斗语义只消费非空性
+                #（isCraftedItem → Cog/Anvil 的 canAffect）
+                "originatingRecipes": d.get("originatingRecipes", []),
+                # 攻击动画场景（tools/enrich_animation_scene.py）：playAnimation 的闸
+                "animationScene": bool(d.get("animationScene", False)),
+                # FlickerAnimation 子节点（tools/enrich_flicker_animation.py，阶段2
+                # 装配期对齐）：_ready 消耗 randf_range(minDist,maxDist) 2 步 +
+                # 战斗期 playAni 消耗 randf_range(minSpeed,maxSpeed) 2 步
+                #（Items/Animations/FlickerAnimation.gd:13-19；消费点见
+                #  gd_core/CoreItem.gd 的 _readyInit / flickerPlayAni）
+                "flickerAni": bool(d.get("flickerAni", False)),
+                "flickerMinDist": float(d.get("flickerMinDist", 0.1)),
+                "flickerMaxDist": float(d.get("flickerMaxDist", 3.0)),
+                "flickerMinSpeed": float(d.get("flickerMinSpeed", 0.3)),
+                "flickerMaxSpeed": float(d.get("flickerMaxSpeed", 1.0)),
+                # 连接器/宝石 _ready 抽（同阶段2 装配期对齐，消费点 CoreItem._readyInit）
+                "connectorReadyRoll": bool(d.get("connectorReadyRoll", False)),
+                "gemRoll": bool(d.get("gemRoll", False)),
             })
             _DESCR_CACHE[key] = made
         return ctx.item_book.register(made)
@@ -693,6 +817,12 @@ class GDCoreEngine:
                              pl["collision"], pl["affected"])
         it.occupiedCells = [vec(int(c[0]), int(c[1])) for c in pl["occupied"]]
         it.ownerType = owner_type
+        # ★ 朝向（战斗判定输入，CoreConst.FaceDirection 0..3 = 顺时针 1/4 圈）：
+        #   阵容条目的 rotation 是度数。此前内核恒 UP——电荷路径
+        #   （Battery.chargeCells 等**本地格**常量，经 Item.getGlobalPointsForCells
+        #   的节点旋转变换映射进背包）与 SpintoWin/LongSpear/RainbowPotion 的
+        #   朝向分流全部按 0° 计算（受控神谕对齐路径 run1160_r18 实证）。
+        it.faceDirection = (int(rot) // 90) % 4
         # 原版次序：物品入场景树时 _ready 先跑，随后 Inventory.addItem 才调 addToInventory
         if ready:
             it._readyInit()

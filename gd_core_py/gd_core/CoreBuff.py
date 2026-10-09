@@ -183,6 +183,17 @@ class CoreBuff(GodotObject):
 
 					if reflected > 0:
 						amount -= reflected
+						# ★ 表现层链消耗（Buff.gd:140 → Util.gd:952-959）：
+						#   Util.spawnReflectLabel(event.type, target.randBuffLabelPos(),
+						#   reflected) —— pos 是**调用点实参**（randBuffLabelPos =
+						#   Character.gd:688-691 的 (-60,60)+(-40,40) 2 抽，必求值），
+						#   spawnReflectLabel 内部再 randBuffLabelDir 1 抽。run570_r18
+						#   逐抽对位实证（Snowball 反射 Cold：神谕在 roll×2 后恰有
+						#   (-60,60)/(-40,40)/(-75,-120) 三行）——阶段1「只补 dir」的
+						#   结论系 golden model ±1ULP 噪声期的误读，此处更正。
+						target = self.character.opponent
+						target.randBuffLabelPos()
+						target.randBuffLabelDir()
 						self.ctx.hooks.spawnReflectLabel(self.type, reflected)
 
 				ownStacksUsed = min(left, self.resistStacks)
@@ -197,6 +208,13 @@ class CoreBuff(GodotObject):
 
 			if resisted > 0:
 				amount -= resisted
+				# ★ 表现层链消耗（Buff.gd:125-128 → Util.gd:934-941）：
+				#   Util.spawnResistedLabel(type, character.randBuffLabelPos(), resisted)
+				#   —— pos 是调用点实参（2 抽）+ spawnResistedLabel 内部 dir（1 抽）。
+				#   阶段1 曾按 run1160_r18 语料误读为「只补 dir」；reflect 分支的
+				#   run570_r18 对位（2026-10-08）证明 pos 照常求值，三分支统一更正。
+				self.character.randBuffLabelPos()
+				self.character.randBuffLabelDir()
 				self.ctx.hooks.spawnResistedLabel(self.type, resisted)
 				resistedEvent = self.ctx.combat_log.createEvent_StackResistOrNullify(self.type,
 							item, resisted, self.character.playerId, triggerEvent, reflect)
@@ -243,6 +261,11 @@ class CoreBuff(GodotObject):
 							reflect)
 
 					appliedToOpponent = (self.character != item.character())
+					# ★ 表现层链消耗还原（Buff.gd:194 → Util.gd:975-983 spawnBuffLabel_item
+					#   → Item.gd:6485-6494 getNextFreeLabelPosition）：物品身上的 buff
+					#   浮动标签在事件 emit 之前取位，恒消耗 Util.randInBox 2 抽
+					#   （槽位复用 (10,10) / 兜底 (30,30)；buff_labels 设置神谕语料为开）。
+					item.getNextFreeLabelPosition()
 					self.ctx.hooks.spawnBuffLabel_item(self.type, item, amount, appliedToOpponent)
 
 					self.ctx.bus.emitEvent(self.character, self.signalName, event, [event.getAmount(), event])
@@ -291,6 +314,11 @@ class CoreBuff(GodotObject):
 				self.character.buffProtectStacks -= protectedByStacks
 
 			if protected > 0:
+				# ★ 表现层链消耗（Buff.gd:236-237 → Util.gd:944-951）：同 resisted/
+				#   reflect 三分支统一——pos 实参 2 抽 + spawnProtectedLabel 内部
+				#   randBuffLabelDir 1 抽。
+				self.character.randBuffLabelPos()
+				self.character.randBuffLabelDir()
 				self.ctx.hooks.spawnProtectedLabel(self.type, protected)
 				protectedEvent = self.ctx.combat_log.createEvent_StackProtect(self.type,
 					item, protected, self.character.playerId, triggerEvent)
@@ -354,6 +382,10 @@ class CoreBuff(GodotObject):
 				self.ctx.bus.emitEvent(self.character, self.signalName, event, [event.getAmount(), event])
 
 				appliedToOpponent = (self.character != item.character())
+				# ★ 表现层链消耗还原（Buff.gd:317 → Util.gd:975-983 → Item.gd:6485-6494）：
+				#   与 gainStacks 同面，但原版顺序是 **先 emit 事件后取位**（标签在
+				#   事件之后）——顺序即链位，必须保持。
+				item.getNextFreeLabelPosition()
 				self.ctx.hooks.spawnBuffLabel_item(self.type, item, - change, appliedToOpponent)
 
 				return event

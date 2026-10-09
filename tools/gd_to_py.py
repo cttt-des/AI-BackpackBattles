@@ -781,6 +781,9 @@ class Rewriter:
                     else "self.connect(")
         for pat, rep_, tag in (
             (r"\bOS\.has_feature\s*\(", "OS_has_feature(", "OS.has_feature→垫片"),
+            # ★ OS.get_environment(x) → _os_environ_get(x)（_rt 垫片，包
+            #   os.environ.get(x, "")；2026-10-08 CoreRng._stacktrace 首个用例）。
+            (r"\bOS\.get_environment\s*\(", "_os_environ_get(", "OS.get_environment→垫片"),
             (r"\bEngine\.time_scale\b", "1.0", "Engine.time_scale→1.0"),
             # ★ `load(...)` 的判定**不能依赖后面的引号**：mask_strings() 在进入
             #   改写前已把字符串字面量换成占位符，`(?=\")` 于是恒不成立 ——

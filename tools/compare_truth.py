@@ -1,6 +1,12 @@
 # -*- coding: utf-8 -*-
 """compare_truth.py — 真值战斗日志 ↔ 模拟器对照基准
 
+★ 注意：本工具驱动的是**旧引擎** `engine.combat.CombatEngine`（见 main()），
+不 import gd_core_py——它测不到 gd_core 内核（2026-10-03 实测方向命中 15/25
+组，仅作旧引擎参照）。gd_core 内核（GDCoreEngine）的真值对照见
+ai/compare_gd_truth.py（含同 seed 复现性修复的行为变化说明，
+ai/kernel_fix_behavior_change.md）。
+
 对 dist/output/combat_logs/ 下每组真值（3 日志 + 2 阵容）：
   1. 用真值双方阵容喂模拟器（engine 内核）跑 N 个种子
   2. 汇总：胜负命中率、战斗时长中位数 vs 真值、事件类型分布比

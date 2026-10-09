@@ -2,18 +2,25 @@
 === gd_core smoke test ===
 
 [1] 基础对拼：玩家 2 武器(5dmg/1.0cd) HP100  vs  对手 1 武器 HP20
-    fight_ended=True  result=0  用时=1.95s  events=9  首击=0.983s
-    HP  player=95.0  opponent=0.0
+    fight_ended=True  result=0  用时=2.05s  events=11  首击=0.967s
+    HP  player=90.0  opponent=0.0
 
 [2] 疲劳契约：双方空手 HP30，靠疲劳收场
     fight_ended=True  result=0  用时=24.02s  fatigue_counter=8
     HP  player=1.0  opponent=0.0
 
 [3] 确定性：同种子 + 独立上下文，两次对战逐位一致
-    run A = 0|7.9667|6.0|0.0|0
-    run B = 0|7.9667|6.0|0.0|0
+    run A = 1|8.0333|0.0|3.0|0
+    run B = 1|8.0333|0.0|3.0|0
 
 [4] 计时器契约：无敌 / 战怒 / 自动战怒（Godot Timer → 物理帧步进）
     AUTO_RAGE_DELAY=5.0s  AUTO_RAGE_DUR=4.0s
 
-SMOKE: PASS
+SMOKE: FAIL  0.6s 后无敌应结束
+SMOKE: FAIL  超过总时长后无敌应结束
+SMOKE: FAIL  0.6s 后战怒应结束
+SMOKE: FAIL  applyBonus 默认 true 应叠加 battleRageBonusDur（实际 1.2，期望 0.7 ±0.000001）
+SMOKE: FAIL  applyBonus=false 不应叠加（实际 1.4，期望 0.2 ±0.000001）
+SMOKE: FAIL  已战怒时再触发应为延长（1.0-0.4+1.0）（实际 3.4，期望 1.6 ±0.02）
+SMOKE: FAIL  AUTO_RAGE_DELAY 到点应自动开大
+SMOKE: FAIL (7 项)

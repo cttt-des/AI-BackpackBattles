@@ -91,7 +91,18 @@ class CoreEventBus(GodotObject):
 
 	def emitAndLog(self, emitter, signalName, event, arguments):
 		if event != None:
-			self._ctx.hooks.logEvent(event)
+			# ★ 对齐 oracle/Core/CombatLog.gd:266-267 logEvent 的闸：
+			#   `if Game.fightEnded and not afterFightAllowed: return` —— 判胜后事件
+			#   不再记录（run1029_r2 语料实证：终局尖刺反伤事件被该闸吞掉，事件流
+			#   以 Win/Loss 结尾）。afterFightAllowed 的唯一使用点是 logWin/logLoss
+			#   （CombatLog.gd:883/888），内核由宿主 OracleAlignBattle 合成终局事件，
+			#   不走本总线，故此处一律按闸处理。
+			if not self._ctx.fight_ended:
+				# ★ 逐抽对位标记（ORACLE_ALIGN_TRACE=1 时启用）：事件类型写进
+				#   rng_trace，与神谕 rng_log 的 EVENT 行同构，不消耗链。
+				if self._ctx.rng.oracle_trace:
+					self._ctx.rng.trace_event(event.type)
+				self._ctx.hooks.logEvent(event)
 
 		if emitter == None or not signalName in self.signalIDs:
 			return

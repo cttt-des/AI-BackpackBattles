@@ -1,0 +1,5 @@
+=== TruthBattle：真值阵容复现（seed=42，truth_20261001_220653_R19_player vs truth_20261001_220653_R19_opponent） ===
+result: win=O t=15.03 ticks=1053 fight_ended=True timed_out=False
+hp: P=0/380  O=870/380
+probe: act=595 dmg=176/1742.0 heal=206/901.0 gem=0/0.0 fat=2 stun=1 events=1691
+trace: 1691 条事件 → gd_core_test/truth_trace.txt

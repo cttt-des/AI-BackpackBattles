@@ -1,0 +1,544 @@
+{
+ "version": 3,
+ "meta": {
+  "name": "truth_20261001_220653_R19_player",
+  "source": "combatlog:CombatLog_20261001_220653_R19_Win.Player.json"
+ },
+ "character": "Berserker",
+ "round": 19,
+ "class_modifiers": {},
+ "health_override": null,
+ "backpack": {
+  "grid": {
+   "rows": 7,
+   "cols": 9
+  },
+  "items": [
+   {
+    "id": "Berserker Bag",
+    "row": 2,
+    "col": 0,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Fanny Pack",
+    "row": 2,
+    "col": 7,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Fanny Pack",
+    "row": 0,
+    "col": 3,
+    "rotation": 270,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Fanny Pack",
+    "row": 4,
+    "col": 4,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Fanny Pack",
+    "row": 4,
+    "col": 2,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Fanny Pack",
+    "row": 1,
+    "col": 1,
+    "rotation": 180,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Fanny Pack",
+    "row": 2,
+    "col": 4,
+    "rotation": 90,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Fanny Pack",
+    "row": 2,
+    "col": 3,
+    "rotation": 270,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Fanny Pack",
+    "row": 0,
+    "col": 0,
+    "rotation": 270,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Fanny Pack",
+    "row": 0,
+    "col": 1,
+    "rotation": 180,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Leather Bag",
+    "row": 3,
+    "col": 7,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Leather Bag",
+    "row": 5,
+    "col": 7,
+    "rotation": 90,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Leather Bag",
+    "row": 0,
+    "col": 4,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Leather Bag",
+    "row": 4,
+    "col": 0,
+    "rotation": 90,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Leather Bag",
+    "row": 2,
+    "col": 5,
+    "rotation": 180,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Potion Belt",
+    "row": 6,
+    "col": 2,
+    "rotation": 90,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Potion Belt",
+    "row": 5,
+    "col": 2,
+    "rotation": 90,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Protective Purse",
+    "row": 6,
+    "col": 0,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Protective Purse",
+    "row": 6,
+    "col": 1,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Stamina Sack",
+    "row": 0,
+    "col": 6,
+    "rotation": 90,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Stamina Sack",
+    "row": 1,
+    "col": 6,
+    "rotation": 90,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Stamina Sack",
+    "row": 4,
+    "col": 6,
+    "rotation": 180,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Amulet Unidentified",
+    "row": 4,
+    "col": 3,
+    "rotation": 90,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Amulet of Steel",
+    "row": 3,
+    "col": 1,
+    "rotation": 90,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Blueberries",
+    "row": 1,
+    "col": 3,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Blueberries",
+    "row": 1,
+    "col": 5,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Cheese",
+    "row": 0,
+    "col": 2,
+    "rotation": 180,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Cheese Goobert",
+    "row": 2,
+    "col": 5,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Claws of Attack",
+    "row": 1,
+    "col": 7,
+    "rotation": 90,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Crown",
+    "row": 3,
+    "col": 7,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Djinn Lamp",
+    "row": 0,
+    "col": 4,
+    "rotation": 90,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Djinn Lamp",
+    "row": 3,
+    "col": 2,
+    "rotation": 270,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Djinn Lamp",
+    "row": 3,
+    "col": 4,
+    "rotation": 270,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Evil Cap",
+    "row": 6,
+    "col": 0,
+    "rotation": 90,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Falcon Blade",
+    "row": 2,
+    "col": 2,
+    "rotation": 90,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": [
+     {
+      "id": "Badger Rune"
+     },
+     {
+      "id": "Hawk Rune"
+     }
+    ]
+   },
+   {
+    "id": "False Life",
+    "row": 3,
+    "col": 0,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Gold Armor",
+    "row": 0,
+    "col": 0,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": [
+     {
+      "id": "Elephant Rune"
+     },
+     {
+      "id": "Hawk Rune"
+     }
+    ]
+   },
+   {
+    "id": "Heart of Darkness",
+    "row": 4,
+    "col": 5,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Mana Orb",
+    "row": 3,
+    "col": 3,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Poison Dagger",
+    "row": 1,
+    "col": 8,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Seal the Deal",
+    "row": 1,
+    "col": 2,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Shaman Mask",
+    "row": 0,
+    "col": 6,
+    "rotation": 180,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Stone Helm",
+    "row": 4,
+    "col": 0,
+    "rotation": 90,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Stone Helm",
+    "row": 5,
+    "col": 0,
+    "rotation": 90,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Tiger Rune",
+    "row": 6,
+    "col": 3,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Tiger Rune",
+    "row": 5,
+    "col": 3,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Tiger Rune",
+    "row": 5,
+    "col": 4,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Tiger Rune",
+    "row": 6,
+    "col": 4,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Tiger Rune",
+    "row": 6,
+    "col": 2,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Tiger Rune",
+    "row": 5,
+    "col": 2,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Wolpertinger",
+    "row": 4,
+    "col": 7,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   }
+  ]
+ },
+ "storage": []
+}

@@ -50,6 +50,10 @@ var character_                  # CoreCharacter（原 `character()`，注意 `ch
 var inventory                   # 本期置 null；仅用于 placed 语义
 var placed := false
 var name: String = ""
+# 场景数据字段：各物品 .tscn 里 CollisionMap 节点的 position（像素）。
+# 内核无场景树，作为数据字段由物品脚本写入（消费点 = sendCharge 的电荷格映射，
+# 见 _chargeInventoryCells；基类 Item.tscn 无 position 覆写 = Vector2.ZERO）。
+var collisionMapPosition := Vector2.ZERO
 
 # 伤害与速度修正（对齐 Item.gd:474-495）
 var speedScale: float = 0.0
@@ -188,8 +192,23 @@ func setup(_ctx, _descriptor: CoreItemData, _character = null):
 	descriptor = _descriptor
 	character_ = _character
 	name = _descriptor.name
+	# ★ 双重 BalancedRng 初始化（阶段2 装配期对齐，docs/alignment_fix_workflow.md §2）
+	# 原版每个战斗物品/宝石都是「基场景实例 + 覆盖脚本再绑定」的产物：
+	#   *.tscn: [node name="…" instance=ExtResource(1)]  ← Item.tscn / Gem.tscn（根脚本
+	#          Item.gd:472 / Gem 链的 chanceRng = BalancedRng.new()）
+	#           script = ExtResource(2)                   ← 物品自己的脚本（同样继承 Item）
+	# Godot 3.x 场景实例化先按基脚本创建脚本实例——成员初始化器跑一遍
+	#（BalancedRng.new() 内含 Util.rng.randf_range(0.2,-0.2)，消耗链 2 步，
+	#  Utility/BalancedRandom.gd:4）；随后应用 script 覆盖重新创建脚本实例，
+	#  继承链成员初始化器**再跑一遍**（第二个 chanceRng 生效，第一个被丢弃）。
+	# 神谕侧实测（本会话 oracle/oracle_stage_probe.gd + output/_probe_assembly_steps.py）：
+	#   ItemScript.new()=2 步、Items/Item.tscn.instance()=2 步、
+	#   Items/Exclusive/PortableAltar.tscn.instance()=4 步——差值即覆盖重绑定；
+	#   全量 917 场装配步数与「4/实例 + 2/Flicker 项 + 8/对手角色」模型零残差。
+	# 故内核物品构造消耗 = 2×BalancedRng.new = 4 步/实例（宝石同，Gem 场景同构）。
 	chanceRng = ctx.rng.BalancedRng.new(ctx.rng)
 	damageRangeRng = ctx.rng.BalancedRange.new(ctx.rng)
+	chanceRng = ctx.rng.BalancedRng.new(ctx.rng)   # 覆盖脚本重绑定：成员初始化器重跑
 	baseCooldownOverride = _descriptor.cd
 	for buff in CoreConst.getStacks():
 		buffPowers[buff] = 1.0
@@ -397,12 +416,16 @@ func getCooldownEncoded():
 
 func adjustCooldown():
 	var adjustedCooldown = getCooldown()
-	if character_ != null and character_.playerId == CoreConst.CharID.OPPONENT and \
-		(ctx.below_master or ctx.lobbies_mode):
+	# ★ 对齐 Item.gd:3789-3794：分支判 **ownerType == Owner.Opponent**——不是宿主
+	#   角色的 playerId。插座宝石的 ownerType = Owner.Socket（Item.gd:3041
+	#   setGem），挂在对手物品上也不进 0.975 分支；此前按宿主判，对手插座宝石
+	#   被误入 0.975（run570_r18 开战段 3 个链位实证：神谕 0.95 vs 内核 0.975，
+	#   返回值差 ⇒ triggerTime 差 ⇒ 1-tick 触发漂移）。
+	if ownerType == CoreConst.Owner.Opponent and (ctx.below_master or ctx.lobbies_mode):
 		adjustedCooldown *= ctx.rng.randf_range(0.975, 1.05)
 	else:
 		adjustedCooldown *= ctx.rng.randf_range(0.95, 1.05)
-	
+
 	return adjustedCooldown
 
 
@@ -640,17 +663,12 @@ func resetCombatState():
 # ─────────────────────── 每物理帧（对齐 Item.gd:4453-4458） ───────────────────────
 
 func physicsTick(delta: float) -> void :
-	# 计时器推进（对齐物品 tscn 里 XxxTimer 的 TIMER_PROCESS_PHYSICS）。
-	# ★ 必须放在冷却门之前：计时器承载 buff 时长（buffEnded 会撤掉 buff 效果），
-	#   冷却未激活不代表计时器停摆。
-	_tickTimers(delta)
-	# ★ 镶嵌宝石的计时器由宿主代为推进：原版宝石是 socket→item 的场景树子节点，
-	#   其 XxxTimer 由引擎物理帧推进（如 ElephantRune 的 DebuffResistTimer 承载
-	#   dur_resist 后移除全减伤抗性）；内核里宝石不在 combat.ordered_items
-	#   （那里只有摆上格子的物品），若不在此推进，宝石计时器永不触发。
-	for gem in gems:
-		if gem != null:
-			gem._tickTimers(delta)
+	# ★ 本方法=原版 Item._physics_process 的判定面（冷却推进/触发）。物品计时器
+	#   （tscn 里 XxxTimer 子节点，TIMER_PROCESS_PHYSICS）由引擎在**物品冷却之后
+	#   统一**的 Timer 物理步进里推进（oracle_fight.gd tick_battle 步骤⑥⑦
+	#   drive_timers——registry=场景树次序），不在每个物品的冷却循环里——
+	#   内核由 CoreCombat.physicsTick 步骤⑦逐角色调 tickTimersPass（run1122_r11
+	#   逐抽对位实证：同 tick 内先抽完全部冷却触发，再依 registry 次序发计时器）。
 	if not _cooldown_active:
 		return
 	if not character().isStunned():
@@ -694,11 +712,48 @@ func _tickTimers(delta: float) -> void :
 		t.tick(delta)
 
 
+# ★ Timer 物理步进通行（oracle tick_battle 步骤⑥⑦ drive_timers(true)）：
+#   物品自身计时器先于其镶嵌宝石计时器（场景树 DFS：宝石是 socket 子节点）。
+#   由 CoreCombat.physicsTick 步骤⑦按 INVENTORY 装配序逐物品调用。
+func tickTimersPass(delta: float) -> void :
+	_tickTimers(delta)
+	for gem in gems:
+		if gem != null:
+			gem._tickTimers(delta)
+
+
 # 装配期一次性初始化（对齐 Node 的 `_ready` + `onready var` 求值时机）。
 # 原版时机：物品入树后，onready 变量先赋值、随后调用 _ready()。
 # 内核时机：装配层在「ctx / descriptor / inventory 都就位」之后调用一次。
 # 子类覆写时开头写 `.()` 先跑父类（等价于原版 _ready 的隐式父类优先）。
 func _readyInit() -> void :
+	# ★ FlickerAnimation 子节点的 _ready 消耗（阶段2 装配期对齐）。
+	# 原版 FlickerAnimation.gd:13-15（子节点 _ready 先于根 _ready，等价于在此处最先执行）：
+	#   _ready → onAnimationEnded(ani) → Util.callDelayed(self, "playAni",
+	#           Util.rng.randf_range(minDist, maxDist))
+	# randf_range 是 callDelayed 的**实参**，在物品入树时立即求值 ⇒ 装配期链 2 步；
+	# 到点后的 playAni 抽 speed 由 flickerPlayAni() 承接（见下）。
+	# 神谕实测（本会话 oracle/oracle_stage_probe.gd，run1029_r2）：Flame 在 add_child
+	# 段恰好多 2 步，其余物品为 0——与该子节点的有无一一对应。
+	if descriptor.flickerAni:
+		var flicker_delay = ctx.rng.randf_range(descriptor.flickerMinDist,
+				descriptor.flickerMaxDist)
+		ctx.callDelayed(self, "flickerPlayAni", flicker_delay)
+
+	# ★ 连接器 _ready 抽（阶段2）：Potion._ready 动态挂 PotionConnector
+	#（Potion.gd:22-28）/场景内嵌 CardConnector——两者 _ready 均为
+	# modulate.g = Util.rng.randf_range(0.9, 1.1)
+	#（Items/Animations/PotionConnector.gd:12、CardConnector.gd:11）⇒ +2 步。
+	if descriptor.connectorReadyRoll:
+		ctx.rng.randf_range(0.9, 1.1)
+
+	# ★ 宝石 _ready 抽（阶段2）：Gem._ready →
+	# gemAnimation.advance(Util.rng.randf_range(0, 10))（Items/Gems/Gem.gd:24）
+	# ⇒ +2 步。宝石场景（Items/Gems/*.tscn 同为「基场景+覆盖脚本」双绑定），
+	# 构造期 4 步由 setup() 的双重 BalancedRng 覆盖，此处补 _ready 面。
+	if descriptor.gemRoll:
+		ctx.rng.randf_range(0, 10)
+
 	# 对齐 Item.gd:500-504 的 `onready var hasXxxEffect: = has_method("...")`。
 	# ★ 必须在这里求值而不是在 setup() 里：原版 onready 在**脚本绑定之后**才跑，
 	#   此时 has_method 已经能看到子类脚本定义的回调；`_readyInit()` 是内核里
@@ -717,6 +772,17 @@ func _readyInit() -> void :
 	# 但调用点**照原版保留**：这样「物品准备好」这个生命周期点与源码逐条对得上，
 	# 将来若折叠被拆开（例如某行为脚本开始用 `socket.getGem()`），这里有落点。
 	initSockets()
+
+
+# FlickerAnimation.playAni（Items/Animations/FlickerAnimation.gd:17-19）：
+#   playback_speed = Util.rng.randf_range(minSpeed, maxSpeed); play(ani)
+# 到点消耗链 2 步（定时回调，由 ctx._flushTimed 派发；时序对齐 oracle_fight.gd
+# tick 步骤⑧ SceneTreeTimer——见 CoreCombat.physicsTick 的帧末 flush）。
+# ★ 神谕约定（oracle_fight.gd 阻塞 tick 循环）：AnimationPlayer 无帧不推进，
+#   animation_finished 永不发出 → onAnimationEnded 不会重排下一轮——playAni
+#   每场至多一次（判胜前），与神谕 drive_delayed 的一次性派发逐位一致。
+func flickerPlayAni() -> void :
+	ctx.rng.randf_range(descriptor.flickerMinSpeed, descriptor.flickerMaxSpeed)
 
 
 # ─────────────────────── 触发（对齐 4416-4451） ───────────────────────
@@ -767,26 +833,31 @@ func onAfterEffectFinished(_consume = true):
 
 func advanceCooldownPercent(amount):
 	if not isCooldownActive(): return
-	
+
 	var reduction = amount / 100.0 * iterationCooldown
 	triggerTime -= reduction
-	
+
 	while triggerTime <= 0:
 		trigger()
 		if not isCooldownActive(): return
-	
+
+	# ★ 表现层链消耗还原（Item.gd:4480 → Util.gd:940-952 → Item.gd:6485-6494）：
+	#   CooldownAdvance 物品标签取位，randInBox 2 抽（早退分支不消耗）。
+	getNextFreeLabelPosition()
 	ctx.combat_log.snapshotItemTooltipStat(self, CoreConst.ItemStat.Cooldown)
 
 
 func advanceCooldownSeconds(amount):
 	if not isCooldownActive(): return
-	
+
 	triggerTime -= amount * getSpeed()
-	
+
 	while triggerTime <= 0:
 		trigger()
 		if not isCooldownActive(): return
-	
+
+	# ★ 表现层链消耗还原（Item.gd:4492 → Util.gd:940-952 → Item.gd:6485-6494）
+	getNextFreeLabelPosition()
 	ctx.combat_log.snapshotItemTooltipStat(self, CoreConst.ItemStat.Cooldown)
 
 
@@ -814,8 +885,33 @@ func activate(damageRes = null, playCombatAni = true, consume = false,
 	
 	if animationOverride != null:
 		ctx.hooks.playActivationAnimation(self, animationOverride, consume)
+	# ★ 表现层链消耗还原（战斗判定链中途的真实 Util.rng 消耗，事件流不可见但
+	#   决定后续每次掷点——docs/alignment_fix_workflow.md §1 表）：
+	#   ① activate() → playActivationSound() → playDropSound(-6) 的落物音高
+	#     （Item.gd:4667-4668 → :3171-3173，randf_range(0.9,1.1)，每次激活 1 抽）；
+	#   ② playCombatAni → playAnimation()（Item.gd:5345-5349）：descriptor 有攻击
+	#     动画场景时 ItemAnimation.intialize 消耗 4 抽（randomizePosition 3 抽
+	#     Items/Animations/ItemAnimation.gd:26-28 + playback_speed 1 抽 :34；
+	#     export 默认 (30,100)/5.0/0.8/1.2——各 Animation.tscn 可覆写，但
+	#     randf_range 恒等 2 步 PCG（docs/rng_truth.md §2.3），链位只看抽数）；
+	#   ③ damageRes 非空时 playActivateAnimation（Character.gd:464-481，见该函数）。
+	ctx.rng.randf_range(0.9, 1.1)
+	if descriptor.animationScene:
+		# ★ ANIM 标记（不消耗链，与神谕 oracle/Items/Item.gd playAnimation 的
+		#   同名标记行同构）：跨引擎 4 抽块归属定位用。
+		if ctx.rng.oracle_trace:
+			ctx.rng.oracle_trace_log.push_back([ctx.rng.oracle_trace_log.size(),
+					"ANIM", String(descriptor.identifier), "True", "hit=True", ""])
+		ctx.rng.randf_range(-30.0, 30.0)
+		ctx.rng.randf_range(-100.0, 100.0)
+		ctx.rng.randf_range(-5.0, 5.0)
+		ctx.rng.randf_range(0.8, 1.2)
+	if damageRes != null:
+		var ch = character()
+		if ch != null:
+			ch.playActivateAnimation()
 	ctx.hooks.playActivationSound(self)
-	
+
 	return event
 
 
@@ -903,23 +999,38 @@ func getModifiedEffectDamage(baseDamage):
 	return modifiedDamage
 
 
+# 对齐 Item.gd:4036-4048：damage≠0 时快照 Min/Max；removable 时追加
+# DamageBuff 物品标签（Item.spawnLabel → Util.spawnLabelOnItem →
+# getNextFreeLabelPosition = randInBox 2 抽，无事件）。run1122_r11 逐抽对位
+# 实证：Magic Staff 每次攻击的 onPreDealDamage_early → addBonusDamage(+3)
+# 在神谕消耗一对 randInBox(-10,10) 而内核 0 抽（链位漂移主缺口之一）。
 func addBonusDamage(damage, removable: bool = true):
-	if removable:
-		removableDam += damage
-	bonusMinDam += damage
-	bonusMaxDam += damage
+	if damage != 0:
+		bonusMinDam += damage
+		bonusMaxDam += damage
+		if removable:
+			removableDam += damage
+		ctx.combat_log.snapshotItemTooltipStat(self, CoreConst.ItemStat.MinDamage)
+		ctx.combat_log.snapshotItemTooltipStat(self, CoreConst.ItemStat.MaxDamage)
+		if removable:
+			spawnLabel(CoreConst.EventType.DamageBuff, damage)
 
 
+# 对齐 Item.gd:4049-4050：= addBonusDamage(damage, false)（快照照走、无标签）
 func changeVaryingDamage(damage):
-	removableDam += damage
+	addBonusDamage(damage, false)
 
 
+# 对齐 Item.gd:4051-4054
 func addMinDamage(damage):
 	bonusMinDam += damage
+	ctx.combat_log.snapshotItemTooltipStat(self, CoreConst.ItemStat.MinDamage)
 
 
+# 对齐 Item.gd:4055-4058
 func addMaxDamage(damage):
 	bonusMaxDam += damage
+	ctx.combat_log.snapshotItemTooltipStat(self, CoreConst.ItemStat.MaxDamage)
 
 
 func getRemovableDamage() -> float:
@@ -1734,6 +1845,11 @@ func getRelativeHealth():
 
 # 对齐 Item.gd:4882-4884
 func giveBuffPower(buffType, power):
+	# ★ 诊断标记（不消耗链）：buffPower 授予面追踪
+	if ctx.rng.oracle_trace:
+		ctx.rng.oracle_trace_log.push_back([ctx.rng.oracle_trace_log.size(),
+				"BFP", String(descriptor.identifier), str(buffType), str(power),
+				""])
 	buffPowers[buffType] += power
 
 
@@ -1835,6 +1951,12 @@ func giveMaxHealth(amount = null, triggerEvent = null):
 	if amount > 0:
 		addMetric(CoreConst.ItemMetrics.MaxHealth, amount, null, true)
 		character().changeMaxHealthTemporary(amount, self, triggerEvent)
+		# ★ 表现层链消耗还原（Item.gd:4224 spawnLabel → Item.gd:4788-4791
+		#   Item.spawnLabel → Util.spawnLabelOnItem → :6485-6494）：
+		#   这里的 spawnLabel 解析在 **Item** 上（Piggybank 等 extends Item），
+		#   = 物品身上的浮动标签 randInBox 2 抽，**没有** randDmgNumberPos/Dir
+		#   （阶段1 曾误按 Character.spawnLabel 还原出 3 抽，run1122_r11 逐抽
+		#   对位证伪：神谕在 TMH 事件后恰 2 行 randInBox(-10,10)）。
 		spawnLabel(CoreConst.EventType.TemporaryMaxHealth, amount)
 
 
@@ -1849,10 +1971,114 @@ func inflictFatigueDamage(fatigueIncrease = 1):
 	opponent().takeFatigueDamage(self)
 
 
-# 对齐 Item.gd:5147-5154（电荷传播的视觉与音效走钩子；numCharges 记账保留）
+# 电荷体：ElectricalCharge 的战斗语义面（Items/ElectricalCharge.gd:32-34 的
+# lastChargedItem/curChargedItem；受控神谕只发生同步入格，见 sendCharge 注释）
+class CoreElectricalCharge:
+	var lastChargedItem = null
+	var curChargedItem = null
+
+
+# 对齐 Item.gd:5147-5156 + Items/ElectricalCharge.gd:97-215 的战斗语义面。
+# 原版在此发射一枚**真实电荷体**：ElectricalCharge.start 的 i==0 分支
+# （ElectricalCharge.gd:146-149）立即同步调用 onNewCellEntered(1)——受格物品
+# chargeReceived/chargeLeft（Resistor 的 heat、Charge Splitter 的接力都在这）
+# + 发射物自身 onChargeEnteredCell 的速度类 buff（Battery/ChargeSplitter）。
+# 后续 cell（2..size-1）的入格由 SceneTreeTween 延时 callback 驱动；受控神谕
+# 的阻塞 tick 循环不处理 tween（oracle_fight.gd 手动驱动面只有 Timer/
+# SceneTreeTimer，见其 harness_notes [M1]/[M2]），多 cell 入格从不发生——
+# run1160_r18 语料实证：全 stream 除 t=0 同步入格连锁外无任何电荷入格事件
+# （19 个 heat 里 12 个 t=0，其余全部来自 Bazooka 等重发射，0 个落在
+# durPerCell 的整数倍时刻）。内核与神谕同约定：只复刻同步段。
 func sendCharge(durPerTile: float, cells: Array, speedFactor: float, event):
 	var chargeDuration = durPerTile * (cells.size() - 1)
+	# ElectricalCharge.start（:141-142）：inventoryCells =
+	# inventory.getCellsForGlobalPositions(getGlobalPointsForCells(cells))
+	# （Item.gd:1040-1047 全局中心 = O + R(cellSize*(x+.5, y+.5))；
+	#   Inventory.gd:377-381 反变换回格）——两步互逆后在格空间折叠为
+	#   inventory_cell = getTopLeftCell() + rotate(faceDirection×90°, cell)。
+	#   顺时针约定同 simulator/grid.py::rotate_cell（Godot y-down）。
+	#   送电荷的 7 件物品（Battery/ChargeSplitter/CogBadge/ConTrapTron/
+	#   Generator/LightningStaff/ManaCrystal）全部 1×1，无 fixture 归一化位移项。
+	var inv_cells := _chargeInventoryCells(cells)
+	_chargeEnterCell(CoreElectricalCharge.new(), 1, inv_cells)
+	# charge.logEvent → CombatLog.logElectricalCharge（CombatLog.gd:1212-1223）：
+	# 表现记录 + 成就计数，不进 events、不消耗 rng
 	ctx.hooks.sendCharge(self, cells, chargeDuration / speedFactor, event)
+	# Item.gd:5155 Sound.playSound(chargeSound, Util.rng.randf_range(-12,-5),
+	# Util.randPitch(0.3))——GDScript 实参求值即消耗：randf_range=2 步
+	# （Util.gd:1007-1008；docs/rng_truth.md §2.3）+ randPitch(0.3)
+	# =randf_range(0.7,1.3)=2 步（Util.gd:682-683）。Sound.playSound 本体无 rng
+	# （oracle/Utility/Sound.gd:174-184）。此前内核漏掉这 4 步/次消耗——
+	# 电荷阵（Battery 阵）从开战批量起整条链错位（run1160_r18 首分歧根因之一）。
+	ctx.rng.randf_range(-12, -5)
+	ctx.rng.randf_range(0.7, 1.3)
+
+
+# ElectricalCharge.start 的 cell→inventory 格映射（格空间折叠，见 sendCharge 注释）。
+# ★ 像素级还原（Item.gd:1040-1047 → Inventory.gd:377-381 两步互逆）：
+#   point(相对物品左上角) = R_fd( 80*cell + collisionMapPosition + (40,40) )
+#   inventory_cell = top_left + floor(point / 80)
+#   其中 collisionMapPosition = 各物品 .tscn 里 CollisionMap 节点的 position
+#   （基类 Item.tscn 无 position 覆写 = (0,0)；Battery/ChargeSplitter/CogBadge
+#   =(40,40)、Generator=(40,0)、LightningStaff=(-40,0)、ManaCrystal=(-40,-40)、
+#   Con-Trap-Tron=(40,-20)，由各物品脚本 _readyInit 写入）。floor 语义 =
+#   TileMap.world_to_map（负坐标向 -∞ 取整，Con-Trap-Tron 的半格偏移在旋转后
+#   正确落格的关键）。
+func _chargeInventoryCells(cells: Array) -> Array:
+	var top_left := getTopLeftCell()
+	var inv = inventory if inventory != null else getOwnOrPlayerInventory()
+	var out := []
+	for c in cells:
+		var px: Vector2 = Vector2(80, 80) * c + collisionMapPosition + Vector2(40, 40)
+		px = _rotVecQuarterTurns(px, faceDirection)
+		# ★ push_back 的实参必须与调用同行：gd_to_py 的方法调用改写器按行解析
+		#   实参，跨行续行的 push_back 会原样漏到 Python 侧（'list' has no
+		#   attribute 'push_back'，2026-10-08 重转后 164 场实证）。
+		var hit_cells: Array = inv.getCellsForGlobalPositions(
+				[top_left + Vector2(floor(px.x / 80.0), floor(px.y / 80.0))])
+		out.push_back(hit_cells[0])
+	return out
+
+
+# 向量按 90° 顺时针步进旋转 n 次（Godot rotated() 语义，y-down；
+# 同 simulator/grid.py::rotate_cell 的角度约定，n = faceDirection）
+func _rotVecQuarterTurns(v: Vector2, n: int) -> Vector2:
+	n = n % 4
+	if n < 0:
+		n += 4
+	if n == 1:
+		return Vector2(- v.y, v.x)
+	elif n == 2:
+		return Vector2(- v.x, - v.y)
+	elif n == 3:
+		return Vector2(v.y, - v.x)
+	return v
+
+
+# 对齐 ElectricalCharge.onNewCellEntered（ElectricalCharge.gd:170-206）
+func _chargeEnterCell(charge, cell_index: int, inv_cells: Array) -> void :
+	charge.lastChargedItem = charge.curChargedItem
+	if cell_index == inv_cells.size():
+		charge.curChargedItem = null
+	else:
+		var inv = inventory if inventory != null else getOwnOrPlayerInventory()
+		charge.curChargedItem = inv.getItemInCell(inv_cells[cell_index])
+	# emitterItem.onChargeEnteredCell(charge, cellIndex)：原版基类**不声明**此方法
+	#（只有 7 件送电荷物品各自定义，动态调用永远命中），内核基类同样不声明——
+	# GDScript 对 self 静态调用未声明方法会解析报错，故走 has_method + call 动态派发
+	#（对齐 Item.gd:503 has_method("onChargeReceived") 的既有模式）。
+	if has_method("onChargeEnteredCell"):
+		call("onChargeEnteredCell", charge, cell_index)
+	if charge.curChargedItem != charge.lastChargedItem:
+		if charge.lastChargedItem != null:
+			charge.lastChargedItem.chargeLeft(charge)
+		if charge.curChargedItem != null:
+			charge.curChargedItem.chargeReceived(charge)
+			# 命中带 onChargeReceivedEffect 的物品时原版放一个 Zap 电弧
+			#（ElectricalCharge.gd:195-201 → Items/Animations/Zap.gd:32 的
+			# randf_range(4.0,4.02)，1 抽/次——纯表现，但真实消耗链）
+			if charge.curChargedItem.hasOnChargeReceivedEffect:
+				ctx.rng.randf_range(4.0, 4.02)
 
 
 # 对齐 Item.gd:5155-5159
@@ -2414,12 +2640,34 @@ func connectToOpponentBuffs(methodName):
 # 这些方法在原版里是「物品自身」的视觉出口，物品行为脚本会调用它们；
 # 内核把实现整体转给 ctx.hooks（原版对应 Util.spawnLabelOnItem / Settings 开关）。
 
-# 对齐 Item.gd:4804-4809（Settings 的 damage_numbers 开关一并剥离）
+# ★ 表现层链消耗还原（Item.gd:448 buffLabelPositionTimestamps + :6483-6494
+#   getNextFreeLabelPosition）：物品身上浮动标签的位置从 5 个槽位里取——
+#   有空槽（上次占用 ≥0.5s 前）→ randInBox(10,10) 2 抽并占槽；全忙 →
+#   兜底 randInBox(30,30) 2 抽。槽位时间戳初始全 0（Util.time ≥ 0 恒真），
+#   开战后前 5 次走槽位分支。坐标本身无判定意义，链消耗面必须逐位一致。
+var buffLabelPositionTimestamps := [0.0, 0.0, 0.0, 0.0, 0.0]
+
+func getNextFreeLabelPosition() -> void :
+	for i in buffLabelPositionTimestamps.size():
+		if ctx.time >= buffLabelPositionTimestamps[i]:
+			buffLabelPositionTimestamps[i] = ctx.time + 0.5
+			ctx.rng.randf_range( - 10.0, 10.0)
+			ctx.rng.randf_range( - 10.0, 10.0)
+			return
+	ctx.rng.randf_range( - 30.0, 30.0)
+	ctx.rng.randf_range( - 30.0, 30.0)
+
+
+# 对齐 Item.gd:4804-4809（Settings 的 damage_numbers 开关：神谕语料为开，
+# 标签恒画——链消耗必须发生；开关剥离但消耗保留）
 func spawnLabel(type, amount):
+	getNextFreeLabelPosition()
 	ctx.hooks.spawnLabelOnItem(type, self, amount)
 
 
-# 对齐 Item.gd:4810-4814（Settings 的 buff_labels 开关一并剥离）
+# 对齐 Item.gd:4810-4814（Settings 的 buff_labels 开关：同上，语料为开）。
+# 注意：原版 live 战斗路径不调用本方法（唯一调用点 activateFromEvent 是
+# CombatLog 回放查看器路径），内核保留同形空转，消耗由调用面决定。
 func spawnLabel_other(type, amount):
 	ctx.hooks.spawnLabelOnItem(type, self, amount)
 

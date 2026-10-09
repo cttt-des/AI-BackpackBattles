@@ -30,7 +30,9 @@ class BalancedRng(GodotObject):
 	def _init(self, _rng_ref=None, startBias=0.0):
 		self._rng = _rng_ref
 		if self._rng != None:
-			self.expectedWins = self._rng.rng.randf_range(0.2, - 0.2)
+			# 走 CoreRng.randf_range 追踪包装（神谕 BalancedRandom.gd:4 =
+			# Util.rng_trace_range(0.2, -0.2)，同值同链位，仅补 trace 可见性）
+			self.expectedWins = self._rng.randf_range(0.2, - 0.2)
 		else:
 			self.expectedWins = 0.0
 		self.expectedWins += startBias
@@ -164,6 +166,9 @@ class CoreRng(GodotObject):
 	def _init_fields(self):
 		super()._init_fields()
 		self.rng = None
+		self.oracle_trace = False
+		self.oracle_trace_log = []
+		self._stacktrace = False      # ORACLE_ALIGN_STACKTRACE=1：逐抽附调用栈签名（诊断用）
 
 	# =============================================================================
 	# CoreRng.gd — 无头战斗内核：随机数层
@@ -189,16 +194,33 @@ class CoreRng(GodotObject):
 			self.rng.randomize()
 		else:
 			self.rng.seed = _seed
+		self._stacktrace = _os_environ_get("ORACLE_ALIGN_STACKTRACE") != ""
+
+
+	# ── state 直注入（确定性重放用） ──
+	# 语义对齐 Godot 3.6 RandomNumberGenerator.state setter（源码存档
+	# output/godot_src/random_pcg.h:79 `RandomPCG::set_state`）：
+	#   `pcg.state = p_state` —— 直接赋值 PCG 状态，不前进、不重播，
+	#   下一次 rand() 即从该状态出发。
+	# ★ 与 `seed` setter 不同：seed 走 pcg32_srandom_r（先清零、推进两次、
+	#   再加 initstate），且会改写 current_seed；state 只改 pcg 内部状态字。
+	#   两者不可混为一谈 —— 重放「中途续跑」必须用 state 而非 seed。
+	def set_state(self, state):
+		self.rng.state = state
 
 
 	# ────────────────────────── Util.gd:1007-1033 逐字对齐 ──────────────────────────
 
 	def roll(self, maximum=100.0):
-		return self.rng.randf_range(0, maximum)
+		# 走追踪版 randf_range（等价原版 Util.roll = rng.randf_range(0, maximum)）
+		return self.randf_range(0, maximum)
 
 
 	def flip(self, chance=0.5):
-		return self.rng.randf() <= chance
+		r = self.rng.randf()
+		if self.oracle_trace:
+			self._trace("randf", 0, 0, r)
+		return r <= chance
 
 
 	def flipPercent(self, chance):
@@ -226,16 +248,51 @@ class CoreRng(GodotObject):
 
 	# ────────────────────────── 直调转发（对应原版 Util.rng.xxx 调用点） ──────────────────────────
 
-	def randf_range(self, from_, to):
-		return self.rng.randf_range(from_, to)
+	# ── 逐抽诊断追踪（受控神谕对齐用；默认关，由宿主经 ctx.rng.oracle_trace 开启）──
+	# 格式与神谕 rng_log.txt 逐列同构：[序号, "randf_range"/"randi_range"/"randf"/"randi",
+	# from, to, 返回值]（oracle/Utility/Util.gd:757-781 的 trace 面同款）。
 
 
-	def randi_range(self, from_, to):
-		return self.rng.randi_range(from_, to)
+	def _trace(self, kind, from_, to, r):
+		row = [len(self.oracle_trace_log), kind, from_, to, r]
+		if self._stacktrace:
+			frames = []
+			st = get_stack()
+			if st != None:
+				# [0]=_trace [1]=包装器；自 [2] 起是真实调用方，取 3 层足定位
+				for i in _iter(_gd_range(2, min(5, len(st)))):
+					frames.append("%s:%d:%s" % [String(st[i]["source"]).get_file(),
+							int(st[i]["line"]), String(st[i]["function"])])
+			row.append(_join(PoolStringArray(frames), "<-"))
+		self.oracle_trace_log.append(row)
 
 
+	# ★ 事件标记（不消耗链）：CoreCombatLog.logEvent 在逐抽追踪开启时把事件类型
+	#   写进 trace，与神谕 rng_log 的 EVENT 行同构，供逐抽↔逐事件精确对位。
+	def trace_event(self, type):
+		self.oracle_trace_log.append([len(self.oracle_trace_log), "EVENT", str(type), "", ""])
+
+
+	def randf_range(self, from_, to, tag="randf_range"):
+		r = self.rng.randf_range(from_, to)
+		if self.oracle_trace:
+			self._trace(tag, from_, to, r)
+		return r
+
+
+	def randi_range(self, from_, to, tag="randi_range"):
+		r = self.rng.randi_range(from_, to)
+		if self.oracle_trace:
+			self._trace(tag, from_, to, r)
+		return r
+
+
+	# 对齐 Util.pickRandomElement（Util.gd:452-453 = array[rng.randi_range(0, size-1)]；
+	# 神谕插桩 oracle/Utility/Util.gd:457 走 rng_trace_irange(…, "pickRandomElement")）。
+	# ★ 此前走裸 rng.randi_range——链消耗正确但不进 oracle_trace，逐抽对位时呈现
+	#   为「神谕多一抽」的假分歧（run1122_r11 逐抽对位 326 行后首见）。
 	def pickRandomElement(self, array):
-		return array[self.rng.randi_range(0, len(array) - 1)]
+		return array[self.randi_range(0, len(array) - 1, "pickRandomElement")]
 
 
 	# 洗牌（对齐 Godot 3 `Array.shuffle()` 的交换模式：i 与 [i, n) 内随机位置交换）
@@ -246,7 +303,10 @@ class CoreRng(GodotObject):
 		if n < 2:
 			return array
 		for i in _iter(_gd_range(n - 1)):
-			j = _mod(int(abs(self.rng.randi())), n - i)
+			r = self.rng.randi()
+			if self.oracle_trace:
+				self._trace("randi", 0, 0, r)
+			j = _mod(int(abs(r)), n - i)
 			tmp = array[i]
 			array[i] = array[i + j]
 			array[i + j] = tmp

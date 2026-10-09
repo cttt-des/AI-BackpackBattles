@@ -142,7 +142,7 @@ class CoreCombat(GodotObject):
 
 	# ─────────────────────────── 开战（对齐 Game.gd:3002-3032） ───────────────────────────
 
-	def startBattle(self, player_items, opponent_items):
+	def startBattle(self, player_items, opponent_items, preordered=False):
 		self.ctx.fight_ended = False
 		self.fight_ended = False
 		self.result = -1
@@ -161,15 +161,25 @@ class CoreCombat(GodotObject):
 
 		# 对齐 Game.gd:3011-3020：各自 duplicate() → shuffle() → 按 TriggerPriority 降序
 		# （Godot 的 sort_custom 非稳定排序，并列优先级次序由洗牌决定）
-		p_items = _dup(player_items)
-		self.ctx.rng.shuffle(p_items)
-		_sort_custom(p_items, CoreItemSort(), "sort_TriggerPriority")
+		# ★ preordered=true（受控神谕对齐路径，docs/oracle_workflow.md Phase 3）：
+		#   原版的 shuffle 消费引擎全局链（docs/rng_truth.md §1.4-2，Util.rng 不动），
+		#   内核的 ctx.rng.shuffle 是自研替身——照跑会把 ctx.rng 链位吃偏，与神谕
+		#   从第一个 roll 起就分叉。对齐时由宿主（gd_core_test/OracleAlignBattle.gd）
+		#   在真 Godot 全局链上复刻 seed(S) → shuffle×2 → sort_TriggerPriority，
+		#   再把终序喂进来直通：不 shuffle、不排序、不消耗链。
+		#   默认 false = 既有行为（LineupBattle 56 局基准与 gd_core_py 转写版不变）。
+		if preordered:
+			self.ordered_items = player_items + opponent_items
+		else:
+			p_items = _dup(player_items)
+			self.ctx.rng.shuffle(p_items)
+			_sort_custom(p_items, CoreItemSort(), "sort_TriggerPriority")
 
-		o_items = _dup(opponent_items)
-		self.ctx.rng.shuffle(o_items)
-		_sort_custom(o_items, CoreItemSort(), "sort_TriggerPriority")
+			o_items = _dup(opponent_items)
+			self.ctx.rng.shuffle(o_items)
+			_sort_custom(o_items, CoreItemSort(), "sort_TriggerPriority")
 
-		self.ordered_items = p_items + o_items
+			self.ordered_items = p_items + o_items
 
 		# 对齐 Game.gd:3023：`call_deferred("prepareItems", ...)`
 		# （deferred 在本帧末执行，仍在 2.5s 延迟之前，故此处同步调用等价）
@@ -235,9 +245,8 @@ class CoreCombat(GodotObject):
 		self.player.combatStart()
 		self.opponent.combatStart()
 
-		# Character.combatStart 里的 tickTimer.start()（wait_time 1s，循环）
-		self._tick_timer_left = 1.0
-		self._tick_timer_active = True
+		# （TickTimer 已归角色：Character.combatStart 各自 start(wait 1.0)，
+		#   registry 次序=场景树次序，由 physicsTick 步骤⑦逐角色驱动）
 
 		for item in _iter(items):
 			item.preCombatStart()
@@ -273,34 +282,53 @@ class CoreCombat(GodotObject):
 			self.ctx.flushDeferred()
 			return
 
-		# 1. combatTimer._physics_process: combatTime += delta
-		self.combat_time += delta
-
-		# 2. Util 全局物理时钟（跨场不清零，见文件头说明）
+		# ① Util 全局物理时钟（oracle tick_battle 步骤①最先：clockTime/time/frameCounter）
 		self.ctx.advancePhysicsFrame(delta)
 
-		# 3. 物品冷却推进（Items/Item.gd:4453-4458 的 _physics_process）
-		for item in _iter(self.ordered_items):
+		# ② 对手角色 _physics_process（Character.gd:1029-1034 眩晕倒计时+体力再生）——
+		#    场景树次序：Main/Combat/Opponent 先于 Main/Player（oracle_fight.gd tick_battle
+		#    步骤②③⑤ 的次序实证），先于其物品冷却推进
+		self.opponent.physicsTickCharacter(delta)
+
+		# ③ 对手物品 _physics_process（Items/Item.gd:4453-4458，遍历=INVENTORY 装配序）
+		for item in _iter(self.opponent.inventory.getItems()):
 			item.physicsTick(delta)
 
-		# 4. 角色物理帧（体力再生 + 眩晕倒计时）
-		for character in _iter([self.player, self.opponent]):
-			character.physicsTick(delta)
+		# ④ CombatTimer._physics_process: combatTime += delta（事件时间戳源，
+		#    oracle tick_battle 步骤④：夹在双方物品推进之间）
+		self.combat_time += delta
+		self.ctx.combat_time = self.combat_time
 
-		# 5. 角色 onTick（Character.tscn 的 TickTimer：wait_time 1s、循环）
-		if self._tick_timer_active:
-			self._tick_timer_left -= delta
-			if self._tick_timer_left <= 0.0:
-				for character in _iter([self.player, self.opponent]):
-					character.onTick()
-				self._tick_timer_left += 1.0
+		# ⑤ 玩家角色 _physics_process
+		self.player.physicsTickCharacter(delta)
 
-		# 6. Buff 临时栈超时（原版为每个 Buff 的 Godot Timer）
-		for character in _iter([self.player, self.opponent]):
+		# ⑥ 玩家物品 _physics_process（INVENTORY 装配序）
+		for item in _iter(self.player.inventory.getItems()):
+			item.physicsTick(delta)
+
+		# ⑦ 物理型 Timer（oracle tick_battle 步骤⑥⑦ drive_timers(true)，registry=场景树
+		#    次序）：逐角色 [TickTimer(onTick) → BattleRageTimer → InvulnerabilityTimer →
+		#    AutoRageTimer → Buff 临时栈计时器 → 物品计时器]，对手整块先于玩家整块。
+		#    此前内核把 onTick/tickBuffs 拆成两个双侧循环且玩家在先、把物品计时器混在
+		#    物品冷却循环里——链位全错（run1122_r11 逐抽对位实证：同 tick 双方都触发时
+		#    神谕先抽对手的 adjustCooldown）。
+		for character in _iter([self.opponent, self.player]):
+			character.tickPhysicsTimers(delta)
 			character.tickBuffs(delta)
+			for item in _iter(character.inventory.getItems()):
+				item.tickTimersPass(delta)
 
-		# 7. 疲劳（CombatTimer）
+		# ⑧ 空闲型 Timer（drive_timers(false)）：疲劳 FatigueStartTimer/FatigueTickTimer
+		#    （CombatTimer.gd，TIMER_PROCESS_IDLE=引擎默认）——在全部物理型 Timer 之后
 		self._fatigueTick()
+
+		# ⑨ SceneTreeTimer（ctx.callDelayed 系：FlickerAnimation.playAni、龙蛋孵化、
+		#    RandomLoadoutBag 揭示…）——对齐 oracle_fight.gd tick_battle 步骤⑧：
+		#    物品/角色/Timer 全部推进完之后**最后**派发（阶段2 对齐，原内联在
+		#    advancePhysicsFrame=步骤② 会抢在物品判定链之前）；
+		#    判胜后不再补发（oracle_fight.gd drive_delayed 的 fightEnded continue 语义）。
+		if not self.ctx.fight_ended:
+			self.ctx._flushTimed()
 
 		# 8. 无头保护：超时按原版 forceLoseCombat 语义（超时判负）
 		if not self.fight_ended and self.combat_time > self.max_time:
@@ -407,8 +435,16 @@ class CoreCombat(GodotObject):
 		# 对齐 Game.gd:3290-3291：`OPPONENT.curHealth <= 0` → 玩家胜（双方同帧死亦为玩家胜）
 		if self.opponent.curHealth <= 0:
 			self.result = self.RoundResult.Win
+			# ★ 表现层链消耗还原（Game.gd endCombat：PLAYER.playSound(
+			#   classResources[curClass].getWinRoundSound(), 4, 1.0, true)）：
+			#   胜负音效 = Util.pickRandomElement(PLAYER 职业 winRoundSounds)——1 抽；
+			#   链位在 death() 伤害链中途、applySpikes 之前（run1029_r2 逐抽对位实证：
+			#   胜利前的最后一次伤害事件后恰 1 行 pickRandomElement(0, WinRound-1)）。
+			self.ctx.rng.randi_range(0, self.player.classRoundSoundCount(True) - 1)
 		else:
 			self.result = self.RoundResult.Loss
+			# ★ 对齐同函数 Loss 分支 getLoseRoundSound（同样是 PLAYER 职业音效，1 抽）
+			self.ctx.rng.randi_range(0, self.player.classRoundSoundCount(False) - 1)
 
 		self._pending_deferred = True
 
@@ -437,6 +473,8 @@ class CoreCombat(GodotObject):
 		self.ctx.bus.disconnectAll()
 		self.player.combatEnd()
 		self.opponent.combatEnd()
+		self._tick_timer_active = False
+		self._tick_timer_left = 0.0
 		self._tick_timer_active = False
 		self._tick_timer_left = 0.0
 		self.ctx.hooks.playFatigueAnimation("Hide")     # CombatTimer.gd:103/107

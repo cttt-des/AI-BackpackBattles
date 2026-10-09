@@ -131,6 +131,11 @@ class HookProbe extends CoreHooks:
 			return "i%d" % o
 		if o is float:
 			return "%.6f" % o
+		# ★ String 没有 .get()：真值实录的事件参数里出现过字符串，落到下面的
+		#   o.get("socket") 会直接 `Nonexistent function 'get' in base 'String'`。
+		#   先接住并带内容入串，避免不同字符串静默折叠成同一 token。
+		if o is String:
+			return "s:%s" % o
 		var sock = o.get("socket")
 		if sock != null:
 			var sid := -1
@@ -181,7 +186,18 @@ const TIME_LIMIT := 180.0        # 对齐 CoreCombat.max_time
 #   其余 `socket.onPickupGem()` / `socket.gem = null` 之类全在拖拽/丢弃路径上。
 #   装配链走 `CoreItem.setGem`（＝原版 setGem + addToSocket 的战斗相关三条），
 #   `setGemData` 是**存档序列化**、`initSockets` 是**后置条件恒真的回指**，两者本就不参与战斗。
-const SKIPPED := {}
+# ★ 真值实录阵容（tools/gen_fixture_from_lineup.py 生成）不进本闸门矩阵：
+#   ① 真值平铺导出允许根物品坐标压叠（袋内物品与袋同格，见
+#      tools/gen_fixture_from_lineup.py:14-15 的转换规则），过不了 [1] 的
+#      摆盘重叠自检——那是对 8 套手工阵容的几何防线；
+#   ② 它们的专属闸门是 TruthBattle.gd（单场、种子 42、带时间戳轨迹）。
+#   排除后本闸门回到原有 8 套阵容 → 56 局回归，且种子编号
+#   （BASE_SEED + PAIR_STRIDE × names.find）不受影响：truth_* 按字典序
+#   排在全部 lineup_* 之后，剔除它们不改变前 8 个名字的下标。
+const SKIPPED := {
+	"truth_20261001_220653_R19_player": true,
+	"truth_20261001_220653_R19_opponent": true,
+}
 
 var failures: Array = []
 var _report: Array = []
@@ -445,8 +461,13 @@ func test_fixture_shape() -> void:
 
 	check(LineupFixture.ITEMS.size() >= 16,
 		"夹具物品数异常：%d" % LineupFixture.ITEMS.size())
-	check(LineupFixture.LINEUPS.size() == 8,
-		"夹具阵容数应为 8，实为 %d" % LineupFixture.LINEUPS.size())
+	# 夹具总数 = 8 套手工阵容（本闸门矩阵）+ 真值实录阵容（TruthBattle 管辖，
+	# 见 SKIPPED 处注释）。真值阵容会随实录批次增减，故总数只设下限；
+	# 本闸门矩阵的阵容数必须恰好是 8。
+	check(LineupFixture.LINEUPS.size() >= 8,
+		"夹具阵容总数异常（应 ≥ 8）：实为 %d" % LineupFixture.LINEUPS.size())
+	check(live_lineups().size() == 8,
+		"本闸门矩阵阵容数应为 8，实为 %d" % live_lineups().size())
 
 	# types/tags 必须是 int（内核 hasType/hasTag 读的是 CoreConst 枚举）
 	var bad := []
@@ -471,6 +492,10 @@ func test_fixture_shape() -> void:
 			for c in e["occupied"]:
 				if int(c[0]) < 0 or int(c[0]) >= 10 or int(c[1]) < 0 or int(c[1]) >= 7:
 					out_of_bounds += 1
+				# 真值阵容（SKIPPED）允许袋内物品与袋同格（SKIPPED 处注释），
+				# 越界照查、重叠豁免。
+				if SKIPPED.has(name):
+					continue
 				var k = str(c[0]) + "," + str(c[1])
 				if seen.has(k):
 					check(false, "阵容 %s 摆盘重叠于格 %s" % [name, k])

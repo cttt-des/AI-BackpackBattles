@@ -161,6 +161,13 @@ class CoreContext(GodotObject):
 		self.event_type_keys = _R.C("CoreUtil").invertDictionary(_R.C("CoreConst").EventType)
 
 
+	# ── RNG state 直注入（转发 CoreRng.set_state） ──
+	# 用途：确定性重放把 Godot 实测的 64 位 PCG state 原样灌进内核，从中途续跑。
+	# 语义见 CoreRng.set_state 处注释（对齐 random_pcg.h:79：直接赋值，不前进不重播）。
+	def set_state(self, state):
+		self.rng.set_state(state)
+
+
 	def _newDamageSource(self, origin, type, flags):
 		src = _R.C("CoreDamageSource")()
 		src._rng = self.rng
@@ -178,13 +185,16 @@ class CoreContext(GodotObject):
 
 
 	# ── 物理帧推进（对齐 Util.gd:148-152） ──
+	# ★ _flushTimed 不再在此处派发（阶段2 对齐）：原版 SceneTreeTimer（Util.callDelayed 系）
+	#   在 oracle_fight.gd 手动 tick 里是**步骤⑧**——物品/角色/Timer 全部推进完之后
+	#   最后派发；此前的内联 flush 等于步骤②，与物品同帧的消耗会抢在物品判定链之前。
+	#   派发点移至 CoreCombat.physicsTick 帧末（fightEnded 闸语义同 drive_delayed）。
 	def advancePhysicsFrame(self, delta=GD_DEFAULT):
 		if delta is GD_DEFAULT:
 			delta = self.PHYSICS_DELTA
 		self.frame_counter += 1
 		self.time += delta
 		self.combat_time += delta
-		self._flushTimed()
 
 
 	# ── 按时延迟调用（对齐 Util.callDelayed 的 `get_tree().create_timer(delay)`） ──

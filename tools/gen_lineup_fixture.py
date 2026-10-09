@@ -262,6 +262,28 @@ def compile_descriptor(key: str, entry: dict) -> dict:
         "tags": tags,
         "params": params,
         "namedParams": entry.get("named_params") or {},
+        # 配方图（tools/enrich_recipes.py 写入 battle_items.json）：注册到本物品的
+        # 合成配方列表。战斗语义只消费**非空性**（Item.isCrafted → Cog/Anvil 的
+        # canAffect，Item.gd:5720-5721；CoreItemData.isCraftedItem 同判）。
+        "originatingRecipes": entry.get("originating_recipes") or [],
+        # 攻击动画场景有无（tools/enrich_animation_scene.py）：playAnimation 的闸
+        #（Item.gd:5345-5346）——有则每次 activate() 经 ItemAnimation.intialize
+        # 消耗 4 抽（战斗判定链中途的真实消耗面）
+        "animationScene": bool(entry.get("has_animation_scene", False)),
+        # FlickerAnimation 子节点（tools/enrich_flicker_animation.py，阶段2 装配期
+        # 对齐）：入树即消耗 randf_range(minDist,maxDist) 2 抽 + 战斗期到点
+        # playAni 消耗 randf_range(minSpeed,maxSpeed) 2 抽
+        #（Items/Animations/FlickerAnimation.gd:13-19）
+        "flickerAni": bool(entry.get("flicker_animation", False)),
+        "flickerMinDist": float(entry.get("flicker_min_dist", 0.1)),
+        "flickerMaxDist": float(entry.get("flicker_max_dist", 3.0)),
+        "flickerMinSpeed": float(entry.get("flicker_min_speed", 0.3)),
+        "flickerMaxSpeed": float(entry.get("flicker_max_speed", 1.0)),
+        # 连接器 / 宝石的 _ready 抽（tools/enrich_flicker_animation.py）：randf_range
+        # (0.9,1.1)（PotionConnector/CardConnector._ready）与 randf_range(0,10)
+        # （Gem._ready → gemAnimation.advance）
+        "connectorReadyRoll": bool(entry.get("connector_ready_roll", False)),
+        "gemRoll": bool(entry.get("gem_roll", False)),
         "sockets": socket_count_for(key, (entry.get("behavior") or {}).get("script_file")),
     }
 

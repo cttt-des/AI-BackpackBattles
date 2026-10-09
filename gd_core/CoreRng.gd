@@ -25,16 +25,33 @@ func _init(_seed: int = 0) -> void :
 		rng.randomize()
 	else:
 		rng.seed = _seed
+	_stacktrace = OS.get_environment("ORACLE_ALIGN_STACKTRACE") != ""
+
+
+# ── state 直注入（确定性重放用） ──
+# 语义对齐 Godot 3.6 RandomNumberGenerator.state setter（源码存档
+# output/godot_src/random_pcg.h:79 `RandomPCG::set_state`）：
+#   `pcg.state = p_state` —— 直接赋值 PCG 状态，不前进、不重播，
+#   下一次 rand() 即从该状态出发。
+# ★ 与 `seed` setter 不同：seed 走 pcg32_srandom_r（先清零、推进两次、
+#   再加 initstate），且会改写 current_seed；state 只改 pcg 内部状态字。
+#   两者不可混为一谈 —— 重放「中途续跑」必须用 state 而非 seed。
+func set_state(state: int) -> void :
+	rng.state = state
 
 
 # ────────────────────────── Util.gd:1007-1033 逐字对齐 ──────────────────────────
 
 func roll(maximum: float = 100.0) -> float:
-	return rng.randf_range(0, maximum)
+	# 走追踪版 randf_range（等价原版 Util.roll = rng.randf_range(0, maximum)）
+	return randf_range(0, maximum)
 
 
 func flip(chance: float = 0.5) -> bool:
-	return rng.randf() <= chance
+	var r = rng.randf()
+	if oracle_trace:
+		_trace("randf", 0, 0, r)
+	return r <= chance
 
 
 func flipPercent(chance: float) -> bool:
@@ -62,16 +79,54 @@ func flipWeighted(weights: Array) -> int:
 
 # ────────────────────────── 直调转发（对应原版 Util.rng.xxx 调用点） ──────────────────────────
 
-func randf_range(from: float, to: float) -> float:
-	return rng.randf_range(from, to)
+# ── 逐抽诊断追踪（受控神谕对齐用；默认关，由宿主经 ctx.rng.oracle_trace 开启）──
+# 格式与神谕 rng_log.txt 逐列同构：[序号, "randf_range"/"randi_range"/"randf"/"randi",
+# from, to, 返回值]（oracle/Utility/Util.gd:757-781 的 trace 面同款）。
+var oracle_trace := false
+var oracle_trace_log: Array = []
+
+var _stacktrace := false      # ORACLE_ALIGN_STACKTRACE=1：逐抽附调用栈签名（诊断用）
+
+func _trace(kind: String, from, to, r) -> void :
+	var row = [oracle_trace_log.size(), kind, from, to, r]
+	if _stacktrace:
+		var frames := []
+		var st = get_stack()
+		if st != null:
+			# [0]=_trace [1]=包装器；自 [2] 起是真实调用方，取 3 层足定位
+			for i in range(2, min(5, st.size())):
+				frames.append("%s:%d:%s" % [String(st[i]["source"]).get_file(),
+						int(st[i]["line"]), String(st[i]["function"])])
+		row.append(PoolStringArray(frames).join("<-"))
+	oracle_trace_log.push_back(row)
 
 
-func randi_range(from: int, to: int) -> int:
-	return rng.randi_range(from, to)
+# ★ 事件标记（不消耗链）：CoreCombatLog.logEvent 在逐抽追踪开启时把事件类型
+#   写进 trace，与神谕 rng_log 的 EVENT 行同构，供逐抽↔逐事件精确对位。
+func trace_event(type: int) -> void :
+	oracle_trace_log.push_back([oracle_trace_log.size(), "EVENT", str(type), "", ""])
 
 
+func randf_range(from: float, to: float, tag: String = "randf_range") -> float:
+	var r = rng.randf_range(from, to)
+	if oracle_trace:
+		_trace(tag, from, to, r)
+	return r
+
+
+func randi_range(from: int, to: int, tag: String = "randi_range") -> int:
+	var r = rng.randi_range(from, to)
+	if oracle_trace:
+		_trace(tag, from, to, r)
+	return r
+
+
+# 对齐 Util.pickRandomElement（Util.gd:452-453 = array[rng.randi_range(0, size-1)]；
+# 神谕插桩 oracle/Utility/Util.gd:457 走 rng_trace_irange(…, "pickRandomElement")）。
+# ★ 此前走裸 rng.randi_range——链消耗正确但不进 oracle_trace，逐抽对位时呈现
+#   为「神谕多一抽」的假分歧（run1122_r11 逐抽对位 326 行后首见）。
 func pickRandomElement(array: Array):
-	return array[rng.randi_range(0, array.size() - 1)]
+	return array[randi_range(0, array.size() - 1, "pickRandomElement")]
 
 
 # 洗牌（对齐 Godot 3 `Array.shuffle()` 的交换模式：i 与 [i, n) 内随机位置交换）
@@ -82,7 +137,10 @@ func shuffle(array: Array) -> Array:
 	if n < 2:
 		return array
 	for i in range(n - 1):
-		var j: int = int(abs(rng.randi())) % (n - i)
+		var r = rng.randi()
+		if oracle_trace:
+			_trace("randi", 0, 0, r)
+		var j: int = int(abs(r)) % (n - i)
 		var tmp = array[i]
 		array[i] = array[i + j]
 		array[i + j] = tmp
@@ -112,7 +170,9 @@ class BalancedRng extends Reference:
 	func _init(_rng_ref = null, startBias: float = 0.0) -> void :
 		_rng = _rng_ref
 		if _rng != null:
-			expectedWins = _rng.rng.randf_range(0.2, - 0.2)
+			# 走 CoreRng.randf_range 追踪包装（神谕 BalancedRandom.gd:4 =
+			# Util.rng_trace_range(0.2, -0.2)，同值同链位，仅补 trace 可见性）
+			expectedWins = _rng.randf_range(0.2, - 0.2)
 		else:
 			expectedWins = 0.0
 		expectedWins += startBias

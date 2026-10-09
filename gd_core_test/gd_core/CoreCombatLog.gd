@@ -62,26 +62,27 @@ func createEvent_Attack(damageRes, triggerEvent = null):
 		else:
 			event = createEvent(triggerEvent, origin, CoreConst.EventType.DealDamage)
 		event.setParam("damage", damageRes.damage)
-		
+
 		var attackedCharacter
 		if damageRes.damageSource.hasType(CoreDamageSource.Type.SelfDamage):
 			attackedCharacter = character
 		else:
 			attackedCharacter = character.opponent
-		
-		event.setTarget(attackedCharacter.playerId)
+
+		# ★ 对齐 CombatLog.gd:653-678：原版攻击事件**不 setTarget**（target 恒
+		#   null；setTarget 只出现在 createEvent_Damage/OutOfStamina 等事件，
+		#   CombatLog.gd:695+）。此前内核多设 target —— 神谕语料实证：攻击事件
+		#   target=None（run572/573 首分歧即此，Death Scythe 首攻）。
 		_ctx.hooks.snapshotCharacterStat(attackedCharacter, CoreCharacter.Stat.Health)
 		_ctx.hooks.snapshotStack(attackedCharacter, CoreConst.EventType.Block)
-		_ctx.hooks.snapshotDamageDealt(character.playerId, 
+		_ctx.hooks.snapshotDamageDealt(character.playerId,
 			damageRes.damageSource.types[0], damageRes.damage)
 		_ctx.hooks.updateDamageMeter(character.playerId, event)
 	else:
+		# 对齐 CombatLog.gd:675-676：落空分支只有 createEvent 一句——无 damage
+		# 参数、无 target、无快照（神谕语料 MissedAttack 事件 params={} target=null）。
 		event = createEvent(triggerEvent, origin, CoreConst.EventType.MissedAttack)
-		event.setParam("damage", damageRes.damage)
-		event.setTarget(character.opponent.playerId)
-		_ctx.hooks.snapshotCharacterStat(character.opponent, CoreCharacter.Stat.Health)
-		_ctx.hooks.snapshotStack(character.opponent, CoreConst.EventType.Block)
-	
+
 	return event
 
 
