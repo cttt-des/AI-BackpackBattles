@@ -69,14 +69,15 @@ __all__ = [
     "floor", "ceil", "round", "clamp", "stepify", "fmod", "posmod", "snapped",
     "sqrt", "pow", "sign", "lerp", "inverse_lerp", "smoothstep", "move_toward",
     "wrapf", "wrapi", "deg2rad", "rad2deg", "is_instance_valid",
-    "OS_has_feature", "randomize", "_gd_str", "_strv", "_gd_range", "_gd_fmt",
+    "OS_has_feature", "_os_environ_get", "randomize", "_gd_str", "_strv",
+    "_gd_range", "_gd_fmt",
     "String", "Dictionary",
     # GDScript 全局函数与常量（转写产物按字面名字引用，见函数定义处的说明）
     "typeof", "tr", "TYPE_VECTOR2",
     # ── ② 容器/语义垫片 ──
     "_div", "_mod", "_iter", "_dup", "_erase", "_pop_at", "_find", "_resize",
     "_sort_custom", "_shuffle", "_get_slice", "_invert", "_hash", "_join",
-    "_load", "_gid", "_fill", "_pick_random", "_substr",
+    "_load", "_gid", "_fill", "_pick_random", "_substr", "_bind_battle",
     # ── ③ 对象模型 ──
     "GodotObject", "Reference", "Object", "Node", "Node2D", "Resource",
     "Signal", "FuncRef", "EnumDict", "Vector2", "Vector3", "Color",
@@ -396,6 +397,16 @@ def OS_has_feature(_feature):
     return False
 
 
+def _os_environ_get(name):
+    """GDScript `OS.get_environment(name)` → 环境变量值或空串（语义逐字对齐）。
+
+    ★ 由 tools/gd_to_py.py 的 `OS.get_environment→垫片` 规则改写（2026-10-08，
+      CoreRng._stacktrace 首个用例）；未设置时返回 ""，与 Godot 一致。
+    """
+    import os as _os
+    return _os.environ.get(name, "")
+
+
 def randomize():
     """全局内建 `randomize()` —— **裸调用 0 处**，保持 no-op。
 
@@ -599,7 +610,9 @@ def _shuffle(arr):
 
     ★ 与 `CoreRng.shuffle`（成员实现，走 ctx 的 rng）是两条独立随机流：
       物品脚本里的裸 `arr.shuffle()` 走这一条，`ctx.rng.shuffle(arr)` 走那一条。
-      这里维护一个与 Godot 同初始种子的全局实例，用于位对齐。
+    ★ 随机源见 `_math_rng()`：有战斗绑定时（`_bind_battle`，由 CoreContext._init
+      注入实例 seed）走**实例级** Math 流；无绑定时回落到进程级全局实例
+      （与 Godot 同 DEFAULT_SEED 起步，保留给无 ctx 的裸构造路径）。
     """
     rng = _math_rng()
     for i in range(len(arr) - 1, 0, -1):
@@ -609,9 +622,23 @@ def _shuffle(arr):
 
 
 _MATH_RNG = []
+# 「当前战斗实例」的 Math 流（[0] 是 RandomNumberGenerator；空 = 无绑定 → 回落全局）。
+# ★ 修复说明：此处与 `_GID_CUR` 原本是两个**进程级**全局 —— 全局 Math 流局间
+#   不重置、gid 台账跨局只增不减，导致同 (阵容, seed) 的结局随进程历史漂移
+#   （实测同 seed 连跑 6 次 → [1,1,0,1,1,1]，先用异阵容热身再跑又变成
+#   [1,0,0,1,0,0]）。现改为实例级：由 `_bind_battle` 随 ctx 注入实例 seed，
+#   全局 `_MATH_RNG` 仅作为无 ctx 路径的回落，语义与修复前一致。
+#   ★ 行为不保持：本修复只消除进程历史漂移，**不保持**参战路径（绑定路径）
+#     的结局——Math 流起点由恒 DEFAULT_SEED 变为本局 seed、gid 序列由跨局
+#     累积变为逐局从 1 起步，同 (阵容, seed) 的结局修复前后可翻转（实测
+#     25 个可测局中 2 局）。修复前后的引擎数字不可比，详见
+#     ai/kernel_fix_behavior_change.md。
+_MATH_BIND = []
 
 
 def _math_rng():
+    if _MATH_BIND:
+        return _MATH_BIND[0]
     if not _MATH_RNG:
         # ★ 必须是 `RandomNumberGenerator` 而不是裸 `PCG32`：
         #   `Array.shuffle()` 要的是 `Math::rand()` → `randi()`，而 PCG32 只暴露
@@ -670,6 +697,12 @@ def _load(path):
 _GID_MAP = {}
 _GID_NEXT = [1]
 _GID_KEEP = []
+# 「当前战斗实例」的 id 台账（[0] = (map, next, keep) 三元组；空 = 无绑定 → 回落
+# 上面三个进程级全局）。★ 修复说明：台账原先是进程级单调计数，跨局只增不减、
+# _GID_KEEP 无界滞留历史局对象；现随 `_bind_battle` 每局换新台账 —— 同
+# (阵容, seed) 的 gid 序列逐局一致（计数都从 1 按同一装配序起步），历史局对象
+# 随其引擎一起释放，无界滞留一并消除。全局三件套仅保留给无 ctx 的裸构造路径。
+_GID_CUR = []
 
 
 def _gid(obj):
@@ -678,16 +711,50 @@ def _gid(obj):
     Godot 用它做「实例身份集合」：`CoreEventBus` 的 emissionID 高位、
     `CoreItem.dynamicTypes` 的元素、以及 `rope_speedups` / `cube_advanced`
     这类**以物品实例为键**的字典。故必须稳定唯一，且不能随 GC 复用
-    （_GID_KEEP 持强引用，避免 CPython 复用 id()）。
+    （台账的 keep 持强引用，避免 CPython 复用 id()）。
+    ★ 台账取用：有战斗绑定时用本局专属台账（`_bind_battle`），否则回落
+      进程级全局台账（`_GID_MAP` 等，行为与修复前一致）。
     """
+    if _GID_CUR:
+        m, nxt, keep = _GID_CUR[0]
+    else:
+        m, nxt, keep = _GID_MAP, _GID_NEXT, _GID_KEEP
     k = id(obj)
-    g = _GID_MAP.get(k)
+    g = m.get(k)
     if g is None:
-        g = _GID_NEXT[0]
-        _GID_NEXT[0] += 1
-        _GID_MAP[k] = g
-        _GID_KEEP.append(obj)
+        g = nxt[0]
+        nxt[0] += 1
+        m[k] = g
+        keep.append(obj)
     return g
+
+
+def _bind_battle(seed):
+    """把「当前战斗实例」的两处进程级全局态绑定为**实例级**（复现性根治）。
+
+    由 `CoreContext._init` 在战斗装配最早期调用（此时本局尚未有任何对象
+    查询过 gid、尚未消耗过 Math 流，二者都从全新初值起步）。绑定两件事：
+      · 全局 Math 流（物品脚本裸 `arr.shuffle()` / `Array.pick_random()`）→
+        以**实例 seed** 起步的独立 RandomNumberGenerator。修复前它是一条
+        DEFAULT_SEED 起步、局间不重置的进程级流，同 (阵容, seed) 的结局随
+        进程历史漂移（实测见 `_MATH_BIND` 处注释）。
+      · `get_instance_id()` 台账 → 本局专属（计数从 1 重新起步）。
+    未绑定（无 ctx 的裸构造 / 工具脚本）时，`_math_rng` / `_gid` 回落到原
+    进程级全局对象，行为与修复前完全一致。
+    ★ 行为不保持：绑定路径（真实战斗）的**结局**与修复前不同——同
+      (阵容, seed) 可翻转（实测 25 个可测局中 2 局，修复前后引擎数字不可
+      比）；本修复保证的只是同进程内同 (阵容, seed) 不再随历史漂移。
+      详见 ai/kernel_fix_behavior_change.md。
+    ★ 语义边界：绑定按「最近创建的 ctx」生效 —— 同一进程**同时**持有多场
+      战斗并交错 run 时，后者共用最后绑定者的 Math 流与台账（修复前本就是
+      单条全局流互相污染，此处不劣化；「构造完立即 run」的逐局用法——
+      eval / gen_dataset / 对照工具的全部路径——不受影响）。
+    """
+    _MATH_BIND.clear()
+    _MATH_BIND.append(RandomNumberGenerator(int(seed)))
+    _GID_CUR.clear()
+    _GID_CUR.append(({}, [1], []))
+    return None
 
 
 # ═══════════════════════════ ③ Godot 对象模型 ═══════════════════════════

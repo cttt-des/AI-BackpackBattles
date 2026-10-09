@@ -138,7 +138,6 @@ class Item(_R.C("res://gd_core/CoreItem.gd")):
 		self.lastCollisionPos = Vector2.ZERO
 		self.lastCollider = None
 		self.impactSoundReadyTime = 0.0
-		self.buffLabelPositionTimestamps = [0.0, 0.0, 0.0, 0.0, 0.0]
 		self.globalAffectVisuals = []
 		self.bondedBaseItem = None
 		self.bondedIngredients = []
@@ -1558,9 +1557,6 @@ class Item(_R.C("res://gd_core/CoreItem.gd")):
 
 	def playCraftedAnimation(self, originPosition):
 		pass
-
-	def getNextFreeLabelPosition(self):
-		return Vector2.ZERO
 
 	def onRestoreSnapshot(self):
 		self.finishMoveback()

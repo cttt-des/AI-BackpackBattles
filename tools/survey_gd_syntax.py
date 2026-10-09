@@ -176,22 +176,32 @@ CLAIMS = [
     ("match 行首出现行数",            lambda s: s["head"]["match"], 20),
     ("enum 行首出现行数",             lambda s: s["head"]["enum"], 55),
     ("signal 行首出现行数",           lambda s: s["head"]["signal"], 9),
-    ("class（内嵌）行首行数",          lambda s: s["head"]["class"], 8),
+    # 8→9：2026-10-07 电荷机制还原给 CoreItem.gd 新增内嵌类
+    #   CoreElectricalCharge（Item.sendCharge 的战斗语义面，Item.gd:5147-5156）。
+    ("class（内嵌）行首行数",          lambda s: s["head"]["class"], 9),
     # ★ 取 head["static"]：正则交替 `[A-Za-z_]\w*|static\s+func` 里前者先生效，
     #   故 `static func` 一律归入 "static" 桶（两者合计 38）。
     ("static / static func 行数",    lambda s: s["head"]["static"], 38),
     # ★ 曾为 1（`"_stacks_changed_%d" % stackType`）；2026-09-28 该行改为
     #   EventType 反查拼接（修 Buff 信号名断裂）→ 全库归 0
-    ("String 格式化 % 行数",          lambda s: s["expr"]["% 字符串格式化"], 0),
-    ("is 类型检查 行数",              lambda s: s["expr"]["is 类型检查"], 24),
+    # 0→3：CoreRng._oracle_stack_frames 栈签名 1 处 + 电荷路径 sendCharge 诊断
+    #   格式化 2 处（gd_core/CoreItem.gd，2026-10-07/08）。
+    ("String 格式化 % 行数",          lambda s: s["expr"]["% 字符串格式化"], 3),
+    # 24→25：电荷体 last/curChargedItem 的身份检查（CoreItem.gd 电荷入格）。
+    ("is 类型检查 行数",              lambda s: s["expr"]["is 类型检查"], 25),
     # ★ 54→55 / 62→64 / 55→56：SALVAGE_FUNCS 点名抢救（MagicRing.sortEffects/
     #   randEffects 等）给产物新增了真实代码行 —— RingEffect.new()、
     #   ringTypes/effects.push_back、stones.empty() 等回归产物。
-    (".new( 行数",                   lambda s: s["expr"][".new("], 55),
-    (".size() 调用次数",             lambda s: s["calls"]["size"], 63),
-    (".push_back() 调用次数",        lambda s: s["calls"]["push_back"], 64),
+    # 55→57：电荷体构造 + 装配层（净增 2；sendCharge 重写抵消了部分旧行）。
+    (".new( 行数",                   lambda s: s["expr"][".new("], 57),
+    # 63→68：电荷入格循环/栈签名 min(5, st.size()) 等净增 5。
+    (".size() 调用次数",             lambda s: s["calls"]["size"], 68),
+    # 64→67：电荷链路 trace 数组净增 3。
+    (".push_back() 调用次数",        lambda s: s["calls"]["push_back"], 67),
     (".empty() 调用次数",            lambda s: s["calls"]["empty"], 56),
-    ("Vector2 出现次数",             lambda s: s["occ"]["Vector2"], 198),
+    # 198→206：sendCharge 的格映射（getTopLeftCell + rotate(fd×90°) + CollisionMap
+    #   偏移，Item.gd:1040-1047→Inventory.gd:377-381 两步互逆）净增 8。
+    ("Vector2 出现次数",             lambda s: s["occ"]["Vector2"], 206),
     ("Color 出现次数",               lambda s: s["occ"]["Color"], 51),
     ("Vector3 出现次数",             lambda s: s["occ"]["Vector3"], 0),
     ("** 幂 行数",                   lambda s: s["ops"]["** 幂"], 0),

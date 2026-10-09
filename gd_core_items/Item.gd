@@ -321,7 +321,6 @@ var lastVelocity: = Vector2.ZERO
 var lastCollisionPos: = Vector2.ZERO
 var lastCollider = null
 var impactSoundReadyTime = 0.0
-var buffLabelPositionTimestamps = [0.0, 0.0, 0.0, 0.0, 0.0]
 var globalAffectVisuals: = []
 var bondedBaseItem = null
 var bondedIngredients = []
@@ -1677,9 +1676,6 @@ func getCraftingOffset(_forDirection):
 
 func playCraftedAnimation(originPosition: Vector2):
 	pass
-
-func getNextFreeLabelPosition() -> Vector2:
-	return Vector2.ZERO
 
 func onRestoreSnapshot():
 	finishMoveback()

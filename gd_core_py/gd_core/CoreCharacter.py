@@ -87,6 +87,11 @@ class CoreCharacter(GodotObject):
 		self._rage_active = False
 		self._autoRage_left = 0.0
 		self._autoRage_active = False
+		self.attack_moving_forward = False
+		self.attack_sound_ready_time = - 1.0
+		self._tick_timer_left = 0.0
+		self._tick_timer_active = False
+		self.damage_anim_is_poison = False
 
 	# =============================================================================
 	# CoreCharacter.gd — 无头战斗内核：角色（伤害链 / 体力 / 栈宿主）
@@ -297,6 +302,12 @@ class CoreCharacter(GodotObject):
 			self._autoRage_left = self.AUTO_RAGE_DELAY
 			self._autoRage_active = True
 
+		# ★ TickTimer 归角色（Character.tscn:1632，wait 1.0 循环，TIMER_PROCESS_PHYSICS）：
+		#   每角色一个，registry 次序=场景树次序（对手先于玩家）——由
+		#   CoreCombat.physicsTick 步骤⑦逐角色驱动。
+		self._tick_timer_left = 1.0
+		self._tick_timer_active = True
+
 
 	# 对齐 Character.gd:339-349（三个一次性计时器全部 stop）
 	def combatEnd(self):
@@ -382,7 +393,113 @@ class CoreCharacter(GodotObject):
 
 	# ─────────────────────────── 伤害主链（对齐 482-653） ───────────────────────────
 
+	# ── 表现层链状态（战斗判定链中途的真实 Util.rng 消耗面，Character.gd:445-481）──
+	# ★ 受控神谕在阻塞 tick 循环里 tween 从不推进 → attackMovingBack 的 tween 回调
+	#   永不触发 → attackMovingForward 一旦置真便**闩死**（原版真机 ~0.3s 后复位；
+	#   run1160_r18 rng_log 实证：(100,160)×90 恒出现而挥击音 pickRandomElement
+	#   的 randi_range(0,2) 只在链首出现过一次，此后消失——闩死语义）。两侧模拟器同约定。
+	# 对齐 Character.gd:108 attackSoundReadyTime（0.1s 职业攻击音时闸；-1.0 = 神谕
+	# 约定下角色首战必过闸的等价初始化，见 playAttackAnimation 注释③）
+	# TickTimer（Character.tscn:1632，wait 1.0 循环、物理步进）——每角色独立
+	# damageAnimation.current_animation 的「Poison」闸（Character.gd:616-627）：冻结
+	# 循环里动画不前进，play("Poison") 后 current 恒为 "Poison" 直到下一次非毒分支
+	# 的 stop+play；闸只判 "!= Poison"，用布尔等价建模。
+
+
+	# 对齐 Character.gd:445-462 playAttackAnimation。每次 dealDamage 调用：
+	#   ① 默认实参 distance = randf_range(100,160)（GDScript 默认实参**先于**早退
+	#     判定求值，Character.gd:445）——2 抽，恒消耗；
+	#   ② 未闩死时：两段动画时长 randf_range(0.9,1.1)×2（:451-452）+ 攻击挥击音
+	#     pickRandomElement(attackSounds)=randi_range(0,2)（:459，attackSounds 恒
+	#     3 元素，Character.gd:437-441）+ 音高 randf_range(0.8,1.2)（:459）；
+	#   ③ 职业攻击音（:460-462）：0.1s 时闸（Util.clockTime > attackSoundReadyTime），
+	#     通过时 getAttackSound()=Util.pickRandomElement(职业 attackSounds)——1 抽
+	#     （run1029_r2 语料逐抽对位实证：Pyromancer 攻击多一行 pickRandomElement(0,4)）。
+	#     职业音效数按 1.1.8 Assets/Sound/<Class>/Attack* 实数（去 .import）。
+	#     神谕约定下角色首战必过闸（clockTime 跨场累计 > 0.1 ≥ fresh readyTime），
+	#     内核 ready_time 初始化 -1.0 等价复刻（ctx.time 从 0 起跑）。
+	def playAttackAnimation(self):
+		self.ctx.rng.randf_range(100.0, 160.0)
+		if self.attack_moving_forward:
+			return
+		self.ctx.rng.randf_range(0.9, 1.1)
+		self.ctx.rng.randf_range(0.9, 1.1)
+		self.ctx.rng.randi_range(0, 2)
+		self.ctx.rng.randf_range(0.8, 1.2)
+		if self.ctx.time > self.attack_sound_ready_time:
+			self.ctx.rng.randi_range(0, self.classAttackSoundCount() - 1)
+			self.attack_sound_ready_time = self.ctx.time + 0.1
+		self.attack_moving_forward = True
+
+
+	# 职业音效文件数（1.1.8 Assets/Sound/<Class>/ 实测，去 .import）：
+	# Attack* / WinRound* / LoseRound*。备用锁定职业一并收录，缺类 fail-fast。
+	CLASS_SOUND_COUNTS = {
+		_R.C("CoreConst").Classes.Ranger: { "attack": 3, "win": 6, "lose": 6 },
+		_R.C("CoreConst").Classes.Reaper: { "attack": 3, "win": 2, "lose": 4 },
+		_R.C("CoreConst").Classes.Berserker: { "attack": 3, "win": 4, "lose": 6 },
+		_R.C("CoreConst").Classes.Pyromancer: { "attack": 5, "win": 4, "lose": 4 },
+		_R.C("CoreConst").Classes_Full.Mage: { "attack": 3, "win": 6, "lose": 5 },
+		_R.C("CoreConst").Classes_Full.Adventurer: { "attack": 4, "win": 7, "lose": 6 },
+		_R.C("CoreConst").Classes_Full.Engineer: { "attack": 6, "win": 5, "lose": 8 },
+	}
+
+	def classAttackSoundCount(self):
+		if not (self.characterClass in self.CLASS_SOUND_COUNTS):
+			assert (False, _gd_fmt('未知职业音效表：%s', str(self.characterClass)))
+		return self.CLASS_SOUND_COUNTS[self.characterClass]["attack"]
+
+
+	# 对齐 Game.endCombat 的胜负音效抽取（getWinRoundSound/getLoseRoundSound =
+	# Util.pickRandomElement(职业 winRoundSounds/loseRoundSounds)，1 抽）
+	def classRoundSoundCount(self, win):
+		if not (self.characterClass in self.CLASS_SOUND_COUNTS):
+			assert (False, _gd_fmt('未知职业音效表：%s', str(self.characterClass)))
+		return self.CLASS_SOUND_COUNTS[self.characterClass]["win" if win else "lose"]
+
+
+	# 对齐 Character.gd:464-481 playActivateAnimation（无默认实参抽取）
+	def playActivateAnimation(self):
+		if self.attack_moving_forward:
+			return
+		self.ctx.rng.randf_range(0.9, 1.1)
+		self.ctx.rng.randf_range(0.9, 1.1)
+		self.attack_moving_forward = True
+
+
+	# 对齐 Character.gd:688-691 randBuffLabelPos（标签位置抖动：2 抽）
+	def randBuffLabelPos(self):
+		self.ctx.rng.randf_range(-60.0, 60.0)
+		self.ctx.rng.randf_range(-40.0, 40.0)
+
+
+	# 对齐 Utility/Util.gd:868-869 randBuffLabelDir（1 抽）
+	def randBuffLabelDir(self):
+		self.ctx.rng.randf_range(-75.0, -120.0)
+
+
+	# 对齐 Character.gd:665-668 randDmgNumberPos（伤害数字位置：2 抽，
+	# DMG_NUM_OFFSET=(50,70)）
+	def randDmgNumberPos(self):
+		self.ctx.rng.randf_range(-50.0, 50.0)
+		self.ctx.rng.randf_range(-70.0, 70.0)
+
+
+	# 对齐 Character.gd:679-685 randDmgNumberDir（伤害数字方向：1 抽，
+	# deg2rad(-21)..deg2rad(-3)）
+	def randDmgNumberDir(self):
+		self.ctx.rng.randf_range(-0.3665191429188092, -0.05235987755982988)
+
+
+	# 对齐 Character.gd:670-673 randHealNumberPos（治疗数字位置：2 抽，
+	# 偏移同 DMG_NUM_OFFSET）
+	def randHealNumberPos(self):
+		self.ctx.rng.randf_range(-50.0, 50.0)
+		self.ctx.rng.randf_range(-70.0, 70.0)
+
+
 	def dealDamage(self, damageSource, triggerEvent=None):
+		self.playAttackAnimation()
 		res = self.opponent.takeDamage(damageSource, triggerEvent)
 		self.applyVampirism(res)
 		return res
@@ -420,6 +537,14 @@ class CoreCharacter(GodotObject):
 		else:
 			damageRes.hit = True
 
+		# ★ 表现层链消耗还原（Character.gd:524-525）：伤害飘字的位置与方向
+		#   randDmgNumberPos（DMG_NUM_OFFSET=(50,70)→2 抽）+ randDmgNumberDir
+		#   （deg2rad(-21)..deg2rad(-3)→1 抽）——命中/落空都消耗（原版在 hit 分支
+		#   之前无条件求值）。
+		self.ctx.rng.randf_range(-50.0, 50.0)
+		self.ctx.rng.randf_range(-70.0, 70.0)
+		self.ctx.rng.randf_range(-0.3665191429188092, -0.05235987755982988)
+
 		if item != None and damageSource.isAttack():
 			item.preDealDamage_early(damageRes)
 			if item.hasPreDealDamageEarlyEffect:
@@ -449,6 +574,11 @@ class CoreCharacter(GodotObject):
 
 				if critical:
 					if self.critResisted():
+						# 原版 Util.spawnBuffLabel(CriticalResisted, randBuffLabelPos())
+						#（Character.gd:571）：位置实参求值 2 抽 + spawnBuffLabel 内
+						# randBuffLabelDir 1 抽（Util.gd:909-914）
+						self.randBuffLabelPos()
+						self.randBuffLabelDir()
 						self.ctx.hooks.spawnBuffLabel(_R.C("CoreConst").EventType.CriticalResisted, None)
 					else:
 						damageRes.makeCritical()
@@ -499,8 +629,13 @@ class CoreCharacter(GodotObject):
 			else:
 				self.spawnLabel_native(_R.C("CoreConst").EventType.DealDamage, damageRes.damage, item)
 
-			# 原版此处写入 damageAnimation 播放速度与片段（纯表现）→ 已剥离
-			self.ctx.hooks.damageAnimation(self, "Fatigue" if damageSource.hasType(_R.C("CoreDamageSource").Type.Fatigue) else "Hit")
+			# ★ 表现层链消耗还原（Character.gd:616-627）：受击动画播放速度
+			#   randf_range(0.9,1.1)——**1 次调用 = 2 步链**（run1029_r2 语料逐抽对位：
+			#   每 takeDamage 恰 1 行 (0.9,1.1)）；「Poison」闸（:616）见 damage_anim_is_poison。
+			if not self.damage_anim_is_poison:
+				self.ctx.rng.randf_range(0.9, 1.1)
+				self.damage_anim_is_poison = False
+				self.ctx.hooks.damageAnimation(self, "Fatigue" if damageSource.hasType(_R.C("CoreDamageSource").Type.Fatigue) else "Hit")
 		else:
 			self.spawnLabel_native(_R.C("CoreConst").EventType.MissedAttack, 0, item)
 
@@ -533,6 +668,12 @@ class CoreCharacter(GodotObject):
 
 
 	def spawnLabel_native(self, type, damage, item=None):
+		# ★ 表现层链消耗还原（Character.gd:693-711 → Item.gd:4788-4791 → :6485-6494）：
+		#   物品身上的浮动标签位置 getNextFreeLabelPosition 恒消耗 Util.randInBox
+		#   2 抽（槽位复用 randInBox(10,10) / 兜底 randInBox(30,30)，抽数相同）。
+		if item != None:
+			self.ctx.rng.randf_range(-10.0, 10.0)
+			self.ctx.rng.randf_range(-10.0, 10.0)
 		self.ctx.hooks.spawnLabel_character(self, type, damage, item)
 
 
@@ -580,6 +721,18 @@ class CoreCharacter(GodotObject):
 		self.curHealth = min(self.curHealth, self.getMaxHealth())
 
 		self.ctx.hooks.onHealthChangedUI(self)
+		# ★ 表现层链消耗还原（Character.gd:749）：治疗数字的位置与方向——
+		#   spawnLabel(Health, amount, origin, randHealNumberPos()) 的实参求值
+		#   randHealNumberPos 2 抽 + direction 默认实参 randDmgNumberDir 1 抽
+		#   （默认实参即便调用点未显式给出也必求值）；origin 为 **Item 实例** 时
+		#   物品身上的浮动标签再消耗 randInBox 2 抽（Character.gd:707
+		#   `if item != null and item is Item`——再生等枚举 origin 不取物品标签，
+		#   run1122_r11 逐抽对位实证）。
+		self.randHealNumberPos()
+		self.randDmgNumberDir()
+		if origin != None and isinstance(origin, _R.C("CoreItem")):
+			self.ctx.rng.randf_range(-10.0, 10.0)
+			self.ctx.rng.randf_range(-10.0, 10.0)
 		self.ctx.hooks.spawnLabel_character(self, _R.C("CoreConst").EventType.Health, amount, origin)
 
 		event = self.ctx.combat_log.createEvent_Heal(amount, self.playerId, origin, triggerEvent)
@@ -701,6 +854,10 @@ class CoreCharacter(GodotObject):
 			event = self.ctx.combat_log.createEvent_Stamina(amount, item, self.playerId, triggerEvent)
 			self.ctx.bus.logEvent(event)
 			item.staminaChanged(amount, _R.C("CoreConst").StackChangeType.Added_Player)
+			# ★ 表现层链消耗还原（Character.gd:805 → Util.gd:940-952 spawnLabelOnItem
+			#   → Item.gd:6485-6494 getNextFreeLabelPosition）：体力物品标签取位，
+			#   Util.spawnLabelOnItem 无设置闸，item 非空即消耗 randInBox 2 抽。
+			item.getNextFreeLabelPosition()
 
 
 	def addStamina(self, amount):
@@ -762,6 +919,12 @@ class CoreCharacter(GodotObject):
 
 	def stun(self, duration, item=None, triggerEvent=None):
 		if self.stunResisted():
+			# ★ 表现层链消耗（Character.gd:1074 → Util.gd:909-914）：
+			#   Util.spawnBuffLabel(StunResisted, randBuffLabelPos(), duration) 的
+			#   pos 实参（randBuffLabelPos 2 抽）+ spawnBuffLabel 内部
+			#   randBuffLabelDir（1 抽）——与 Buff 三分支/critResisted 同族。
+			self.randBuffLabelPos()
+			self.randBuffLabelDir()
 			self.ctx.hooks.spawnBuffLabel(_R.C("CoreConst").EventType.StunResisted, None)
 			event = self.ctx.combat_log.createEvent_StunResist(item, self.playerId, triggerEvent)
 			self.ctx.bus.logEvent(event)
@@ -772,6 +935,12 @@ class CoreCharacter(GodotObject):
 			# 订阅方 Dagger.onStun 等靠它触发；此前误写成 logEvent（只记不派发）
 			# → 眩晕触发型物品全部静默失效。
 			self.ctx.bus.emitEvent(self, "character_stunned", event, [event])
+			# ★ 表现层链消耗（Character.gd:1091-1096 playStunAnimation）：duration>0
+			#   时 Util.spawnBuffLabel(Stun, randBuffLabelPos(), duration) = pos 2 抽
+			#   + 内部 randBuffLabelDir 1 抽；endStun 的 duration=0 分支无消耗。
+			if duration > 0:
+				self.randBuffLabelPos()
+				self.randBuffLabelDir()
 			self.ctx.hooks.playStunAnimation(self, duration)
 
 
@@ -1246,7 +1415,12 @@ class CoreCharacter(GodotObject):
 
 
 	def gainPoison(self, amount, item=None, triggerEvent=None):
-		return self.gainStacks(_R.C("CoreConst").EventType.Poison, amount, item, triggerEvent)
+		# 原版 gainPoison 附带受击动画切「Poison」片段（Character.gd:1222-1226）——
+		# 冻结循环里 current 恒停在 Poison，闸住后续 takeDamage 的 playback_speed 抽取
+		event = self.gainStacks(_R.C("CoreConst").EventType.Poison, amount, item, triggerEvent)
+		if amount > 0:
+			self.damage_anim_is_poison = True
+		return event
 
 
 	def losePoison(self, amount, item=None, triggerEvent=None):
@@ -1439,6 +1613,9 @@ class CoreCharacter(GodotObject):
 				self.ctx.bus.logEvent(event)
 				if filled:
 					item.staminaChanged(amount, _R.C("CoreConst").StackChangeType.Added_Player)
+				# ★ 表现层链消耗还原（Character.gd:989 → Util.gd:940-952 → Item.gd:6485-6494）：
+				#   临时体力上限物品标签取位，randInBox 2 抽。
+				item.getNextFreeLabelPosition()
 				self.ctx.hooks.spawnLabelOnItem(_R.C("CoreConst").EventType.TemporaryMaxStamina, item, amount)
 			self.ctx.hooks.onMaxStaminaChangedUI(self)
 
@@ -1637,7 +1814,10 @@ class CoreCharacter(GodotObject):
 	#   AutoRageTimer.timeout        → startAutoRage()
 	# 内核无 Timer 节点，改为在 60Hz 固定步长里递减，超时点触发**同一个方法**，
 	# 因此事件与状态迁移次序与原版一致（唯一差别是计时精度来自定步长，见 gd_core_truth 第 6 节）。
-	def physicsTick(self, delta):
+	# ★ 角色 _physics_process（Character.gd:1029-1034：眩晕倒计时 + 体力再生）——
+	#   每帧在**物品冷却推进之前**执行（oracle tick_battle 步骤②⑤：对手角色先于其
+	#   物品、玩家角色先于其物品）；与物理型 Timer（tickPhysicsTimers）严格分离。
+	def physicsTickCharacter(self, delta):
 		if self.isStunned():
 			self.stunnedDuration -= delta
 			if self.stunnedDuration <= 0.0:
@@ -1646,17 +1826,30 @@ class CoreCharacter(GodotObject):
 
 		self.addStamina(self.staminaRegen * delta)
 
+
+	# ★ 物理型 Timer 块（oracle tick_battle 步骤⑦ drive_timers(true)，registry 次序
+	#   = Character.tscn 节点序：TickTimer(:1632) → BattleRageTimer(:1635) →
+	#   InvulnerabilityTimer(:1639) → AutoRageTimer(:1643)），由 CoreCombat 在双方
+	#   物品冷却推进之后逐角色驱动（对手整块先于玩家整块）。
+	def tickPhysicsTimers(self, delta):
+		if self._tick_timer_active:
+			self._tick_timer_left -= delta
+			if self._tick_timer_left <= 0.0:
+				self.onTick()
+				self._tick_timer_left += 1.0
+
+		# registry 次序：BattleRageTimer 先于 InvulnerabilityTimer（tscn :1635/:1639）
+		if self._rage_active:
+			self._rage_left -= delta
+			if self._rage_left <= 0.0:
+				self.endBattleRage()
+
 		if self._invul_active:
 			self._invul_left -= delta
 			if self._invul_left <= 0.0:
 				self._invul_left = 0.0
 				self._invul_active = False
 				self.invulnerabilityEnded()
-
-		if self._rage_active:
-			self._rage_left -= delta
-			if self._rage_left <= 0.0:
-				self.endBattleRage()
 
 		if self._autoRage_active:
 			self._autoRage_left -= delta

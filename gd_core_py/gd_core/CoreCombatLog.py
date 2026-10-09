@@ -84,18 +84,19 @@ class CoreCombatLog(GodotObject):
 			else:
 				attackedCharacter = character.opponent
 
-			event.setTarget(attackedCharacter.playerId)
+			# ★ 对齐 CombatLog.gd:653-678：原版攻击事件**不 setTarget**（target 恒
+			#   null；setTarget 只出现在 createEvent_Damage/OutOfStamina 等事件，
+			#   CombatLog.gd:695+）。此前内核多设 target —— 神谕语料实证：攻击事件
+			#   target=None（run572/573 首分歧即此，Death Scythe 首攻）。
 			self._ctx.hooks.snapshotCharacterStat(attackedCharacter, _R.C("CoreCharacter").Stat.Health)
 			self._ctx.hooks.snapshotStack(attackedCharacter, _R.C("CoreConst").EventType.Block)
-			self._ctx.hooks.snapshotDamageDealt(character.playerId, 
+			self._ctx.hooks.snapshotDamageDealt(character.playerId,
 				damageRes.damageSource.types[0], damageRes.damage)
 			self._ctx.hooks.updateDamageMeter(character.playerId, event)
 		else:
+			# 对齐 CombatLog.gd:675-676：落空分支只有 createEvent 一句——无 damage
+			# 参数、无 target、无快照（神谕语料 MissedAttack 事件 params={} target=null）。
 			event = self.createEvent(triggerEvent, origin, _R.C("CoreConst").EventType.MissedAttack)
-			event.setParam("damage", damageRes.damage)
-			event.setTarget(character.opponent.playerId)
-			self._ctx.hooks.snapshotCharacterStat(character.opponent, _R.C("CoreCharacter").Stat.Health)
-			self._ctx.hooks.snapshotStack(character.opponent, _R.C("CoreConst").EventType.Block)
 
 		return event
 

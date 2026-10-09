@@ -47,6 +47,34 @@ def reg(name, cls):
     return cls
 
 
+_LAZY_IMPORTING = set()
+
+
+def _lazy_import(name):
+    """未登记名 → 按资源路径/class_name 惰性导入对应生成模块后重查。
+
+    ★ 2026-10-08：转写器会把「成员初始化器里的字典字面量」提升到类体
+      （如 CoreCharacter 的 classResources 以 `_R.C("CoreConst").Classes.Ranger`
+      为键）——这类引用在**导入期**求值，先于 extends 拓扑序里排在后面的
+      CoreConst 注册，导致 AttributeError 级联。与其维护脆弱的排序，不如
+      在 C() 未命中时按名找模块导入一次（幂等、防递归）。"""
+    stem = str(name).rsplit("/", 1)[-1]
+    if stem.endswith(".gd"):
+        stem = stem[:-3]
+    modname = "gd_core_py.gd_core." + stem
+    if modname in _LAZY_IMPORTING:
+        return None
+    _LAZY_IMPORTING.add(modname)
+    try:
+        import importlib
+        mod = importlib.import_module(modname)
+        return _REG.get(name)
+    except Exception:  # noqa: BLE001 —— 找不到模块/循环导入时回落占位类
+        return None
+    finally:
+        _LAZY_IMPORTING.discard(modname)
+
+
 def C(name):
     """按 res_path / class_name / stem 取类对象。
 
@@ -54,6 +82,9 @@ def C(name):
     每条都是 dict 查找 + 一次函数调用。
     """
     cls = _REG.get(name)
+    if cls is not None:
+        return cls
+    cls = _lazy_import(name)
     if cls is not None:
         return cls
     return _placeholder(name)

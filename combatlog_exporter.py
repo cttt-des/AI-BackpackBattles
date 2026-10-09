@@ -16,6 +16,7 @@ import logging
 import os
 import sys
 import threading
+import time
 import tkinter as tk
 from datetime import datetime
 from pathlib import Path
@@ -31,9 +32,14 @@ from core.item_reader import ItemReader  # noqa: E402
 from core.paths import get_base_dir, get_config_path  # noqa: E402
 
 POLL_MS = 800
+# 战斗进行中的密集轮询间隔（docs/rng_truth.md §4.2：首个 Util.rng 消差点在
+# finishSwitchingToCombat 后约一帧，检测到战斗后必须 100ms 级采样）
+RNG_POLL_MS = 100
 WIN_LOSS = (111, 112)
 # 冻结成 exe 时指向 exe 所在目录（onefile 的 __file__ 在临时解压目录里）
 OUT_DIR = get_base_dir() / "output" / "combat_logs"
+# 确定性重放输入包（rng_state.txt + 双方阵容 + 事件流）
+REPLAY_DIR = get_base_dir() / "output" / "replay"
 
 
 def load_godot_offsets() -> dict:
@@ -60,6 +66,12 @@ class Exporter:
         self._prev_fp: tuple = ()
         self._ireader: ItemReader | None = None
         self.auto_export = False              # True=不询问直接写盘
+        # --- Util.rng 采样（docs/rng_truth.md §5）---
+        self._fight_active = False            # 上轮 poll 判定的战斗窗口状态
+        self.rng_samples: list = []           # 本次战斗窗口采样 [(t, state, seed)]
+        self.rng_pre_sample: Optional[tuple] = None  # 战斗前最后采样（窗口首候选）
+        self.rng_first_is_pre = False         # 窗口首样本是否来自战斗前
+        self.last_rng: Optional[tuple] = None  # 最近一次采样（诊断显示用）
 
     def _lineup_reader(self) -> ItemReader:
         if self._ireader is None:
@@ -148,6 +160,7 @@ class Exporter:
                       "rendered per CombatEvent.asText)",
         }
         meta["lineups"] = self._export_lineups(base, round_num)
+        meta["rng"] = self._rng_meta()
         path = base.parent / (base.name + ".json")
         path.write_text(json.dumps({"meta": meta, "events": events},
                                    ensure_ascii=False, indent=1),
@@ -162,7 +175,77 @@ class Exporter:
             (base.parent / (base.name + suffix)).write_text(
                 header + text + "\n", encoding="utf-8")
         self.exported.add(self._fingerprint(events))
+        # 确定性重放输入包：output/replay/<时间戳>/（与战斗日志同一时间戳）
+        try:
+            self._write_replay(ts, events, round_num, result)
+        except Exception as e:  # noqa: BLE001
+            logger.warning("replay 落盘失败（战斗日志已正常导出）: %s", e)
         return base
+
+    # ---------------- 重放输入包（output/replay/<时间戳>/）----------------
+    def _rng_meta(self) -> dict:
+        """本次战斗窗口的 rng 捕获摘要（进战斗日志 meta）。"""
+        if not self.rng_samples:
+            return {"captured": False}
+        t0, s0, seed0 = self.rng_samples[0]
+        return {"captured": True, "earliest_state": s0, "earliest_seed": seed0,
+                "earliest_t": t0, "earliest_source":
+                    "pre_battle" if self.rng_first_is_pre else "in_battle",
+                "samples": len(self.rng_samples)}
+
+    def _rng_state_text(self, round_num, lineups: str) -> str:
+        """rng_state.txt 内容：earliest_state 是重放唯一所需（§5）。"""
+        lines = [
+            "# Util.rng 捕获（docs/rng_truth.md §5 定位；重放所需 = earliest_state）",
+            f"captured_at={datetime.now().isoformat(timespec='seconds')}",
+            f"game_pid={self.reader.pid}",
+            f"round={round_num}",
+            f"lineups={lineups}",
+        ]
+        if not self.rng_samples:
+            lines.append(
+                "earliest_state=NONE  # 战斗窗口内无有效采样"
+                "（导出器未随游戏启动 / 读取失败——见 docs/capture_protocol.md）")
+        else:
+            t0, s0, seed0 = self.rng_samples[0]
+            tl, sl, _seedl = self.rng_samples[-1]
+            lines += [
+                f"earliest_state={s0}",
+                f"earliest_seed={seed0}",
+                f"earliest_t={t0}",
+                "earliest_source=" +
+                    ("pre_battle" if self.rng_first_is_pre else "in_battle"),
+                f"latest_state={sl}",
+                f"latest_t={tl}",
+                f"samples={len(self.rng_samples)}",
+                "",
+                "# 采样序列 (t=Unix秒, state, seed)",
+            ]
+            for t, s, seed in self.rng_samples:
+                lines.append(f"t={t}\tstate={s}\tseed={seed}")
+        return "\n".join(lines) + "\n"
+
+    def _write_replay(self, ts: str, events: list, round_num, result: str) -> Path:
+        """确定性重放输入包：rng_state.txt + 双方阵容 + 原始事件流。
+
+        全部用「现有能力拼装」：阵容走 _export_lineups（ItemReader 结构读），
+        事件流走 read_events 已解析的 JSON（combat_logs 同款）。
+        """
+        rnd = f"R{round_num}" if round_num is not None else "R?"
+        sub = REPLAY_DIR / f"replay_{ts}_{rnd}_{result}"
+        sub.mkdir(parents=True, exist_ok=True)
+        base = sub / sub.name
+        lineups = self._export_lineups(base, round_num)
+        (sub / f"{sub.name}.events.json").write_text(json.dumps(
+            {"meta": {"exported_at": datetime.now().isoformat(timespec="seconds"),
+                      "game_pid": self.reader.pid, "round": round_num,
+                      "event_count": len(events), "result": result,
+                      "lineups": lineups, "rng": self._rng_meta()},
+             "events": events},
+            ensure_ascii=False, indent=1), encoding="utf-8")
+        (sub / "rng_state.txt").write_text(
+            self._rng_state_text(round_num, lineups), encoding="utf-8")
+        return sub
 
     def export_now(self) -> tuple:
         """手动导出当前日志（战斗未结束也可导出部分）。返回 (路径, 错误)。"""
@@ -180,15 +263,68 @@ class Exporter:
         except Exception as e:  # noqa: BLE001
             return None, f"写入失败: {e}"
 
+    # ---------------- Util.rng 采样（docs/rng_truth.md §4.2 / §5）----------------
+    def _sample_rng(self) -> Optional[tuple]:
+        """采样 Util.rng 一次 → (t, state, seed)；失败静默返回 None。
+
+        只读，不重试不阻塞——战斗窗口内由 GUI 以 RNG_POLL_MS 密集补采。"""
+        try:
+            gr = self.reader.gr
+            if not gr:
+                return None
+            d = gr.read_rng_state()
+            if not d:
+                return None
+            return (round(time.time(), 3), d["state"], d["seed"])
+        except Exception as e:  # noqa: BLE001
+            logger.debug("rng 采样失败: %s", e)
+            return None
+
+    def _rng_track(self, out: dict) -> None:
+        """按 poll 状态维护战斗窗口采样。
+
+        窗口外：每轮更新「战斗前最后采样」（窗口首候选——此时消费尚未开始，
+        是重放所需最早 state 的最优估计，docs/rng_truth.md §4.2）；
+        窗口内（in_fight / ended_no_result）：采样追加进 rng_samples。
+        """
+        if not out.get("connected") or out.get("error"):
+            if out.get("status") == "waiting_game":
+                # 游戏断开/重启：清空窗口与战斗前采样（rng 对象随进程换址）
+                self.rng_samples = []
+                self.rng_pre_sample = None
+                self._fight_active = False
+            return
+        active = out.get("status") in ("in_fight", "ended_no_result")
+        if active and not self._fight_active:
+            self.rng_samples = []
+            self.rng_first_is_pre = False
+            if self.rng_pre_sample:
+                self.rng_samples.append(self.rng_pre_sample)
+                self.rng_first_is_pre = True
+        self._fight_active = active
+        s = self._sample_rng()
+        if not s:
+            return
+        self.last_rng = s
+        if active:
+            self.rng_samples.append(s)
+        else:
+            self.rng_pre_sample = s
+
     def poll_and_autoexport(self) -> dict:
-        """轮询一次；战斗结束后捕获完整事件，按 auto_export 决定直接写盘
-        还是置入 pending 等待用户选择。
+        """轮询一次（战斗日志 + Util.rng 采样）。
 
         返回状态 dict: {status, connected, round, count, finished,
                        last_type, last_id, exported_path, note, error}
         状态: waiting_game / error / no_fight / in_fight /
               pending_choice(待选择) / skipped / exported / exported_done
         """
+        out = self._poll_and_autoexport_impl()
+        self._rng_track(out)
+        return out
+
+    def _poll_and_autoexport_impl(self) -> dict:
+        """战斗日志轮询本体（rng 采样见 _rng_track）。"""
         st = self.reader.poll()
         out = {
             "connected": bool(st.get("connected")),
@@ -407,7 +543,10 @@ class App(tk.Tk):
             except Exception as e:  # noqa: BLE001
                 st = {"status": "error", "error": str(e)}
             self._apply_state(st)
-        self.after(POLL_MS, self._tick)
+        # 战斗进行中切换到 100ms 级密集轮询（rng 采样窗口，§4.2）；
+        # 其余时段维持 800ms 常规轮询
+        self.after(RNG_POLL_MS if getattr(exp, "_fight_active", False)
+                   else POLL_MS, self._tick)
 
     def _apply_state(self, st: dict):
         s = st.get("status")
@@ -420,7 +559,10 @@ class App(tk.Tk):
             self._set_status(f"已连接 (PID {self.exporter.reader.pid}) · "
                              f"{rtxt} · 等待战斗…", self.MUT)
         elif s == "in_fight":
-            self._set_status(f"战斗进行中 {rtxt} · 已记录 {st['count']} 条事件",
+            exp = self.exporter
+            rng_n = len(exp.rng_samples) if exp else 0
+            self._set_status(f"战斗进行中 {rtxt} · 已记录 {st['count']} 条事件 "
+                             f"· rng采样 {rng_n}（{RNG_POLL_MS}ms 密集轮询中）",
                              self.OK)
         elif s == "ended_no_result":
             self._set_status(f"战斗结束 {rtxt} · {st['count']} 条（等待胜负判定）",

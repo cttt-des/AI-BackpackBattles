@@ -1,0 +1,1691 @@
+0.000|1|0|0|it:Falcon Blade~1~2,2;3,2;4,2|-|
+0.000|2|105|0|it:Mana Orb~1~3,3|i0|amount=i1,reflected=F,used=F
+0.000|3|100|0|it:Gold Armor~1~0,0;0,1;0,2;1,0;1,1;1,2|i0|amount=i120,reflected=F,used=F
+0.000|4|106|1|it:Amulet of Steel~1~1,3|i0|amount=i5,reflected=F,used=F
+0.000|5|0|0|it:Amulet of Steel~1~1,3|-|
+0.000|6|0|0|it:Gold Armor~1~0,0;0,1;0,2;1,0;1,1;1,2|-|
+0.000|7|100|0|it:Protective Purse~1~0,6|i0|amount=i15,reflected=F,used=F
+0.000|8|100|0|it:Amulet of Steel~1~1,3|i0|amount=i30,reflected=F,used=F
+0.000|9|0|0|it:Amulet of Steel~1~1,3|-|
+0.000|10|101|0|it:Shaman Mask~1~6,0;6,1|i0|amount=i5,reflected=F,used=F
+0.000|11|100|0|it:Stone Helm~1~0,5;1,5|i0|amount=i35,reflected=F,used=F
+0.000|12|0|0|it:Stone Helm~1~0,5;1,5|-|
+0.000|13|100|0|it:Protective Purse~1~1,6|i0|amount=i15,reflected=F,used=F
+0.000|14|0|0|it:Evil Cap~1~0,6;1,6|-|
+0.000|15|100|0|it:Stone Helm~1~0,4;1,4|i0|amount=i35,reflected=F,used=F
+0.000|16|106|1|it:Amulet of Steel~1~1,3|i0|amount=i1,reflected=F,used=F
+0.000|17|0|0|it:Amulet of Steel~1~1,3|-|
+0.000|18|0|0|it:Stone Helm~1~0,4;1,4|-|
+0.000|19|101|0|it:Fedora~3~6,3;6,4;6,5;7,4|i1|amount=i2,reflected=F,used=F
+0.000|20|0|0|it:Fedora~3~6,3;6,4;6,5;7,4|-|
+0.000|21|100|0|it:Protective Purse~3~0,4|i1|amount=i15,reflected=F,used=F
+0.000|22|100|0|it:Protective Purse~3~4,2|i1|amount=i15,reflected=F,used=F
+0.000|23|107|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i1,reflected=F,resisted=T,used=F
+0.000|24|107|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i4,reflected=F,used=F
+0.000|25|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+0.000|26|19|1|it:Twine~3~5,2|-|amount=2.000000
+0.000|27|0|0|it:Twine~3~5,2|-|
+0.000|28|19|1|it:Twine~3~5,3|-|amount=2.000000
+0.000|29|0|0|it:Twine~3~5,3|-|
+0.000|30|19|1|it:Twine~3~2,3|-|amount=2.000000
+0.000|31|0|0|it:Twine~3~2,3|-|
+0.000|32|101|1|it:Holy Collar~3~1,4|i1|amount=i1,reflected=F,used=F
+0.000|33|102|1|it:Holy Collar~3~1,4|i1|amount=i1,reflected=F,used=F
+0.000|34|0|0|it:Falcon Blade~3~4,6;5,6;6,6|-|
+0.000|35|100|0|it:Protective Purse~3~8,0|i1|amount=i15,reflected=F,used=F
+0.000|36|0|0|it:Piggybank~3~0,3;0,4|-|
+0.000|37|100|0|it:Protective Purse~3~0,3|i1|amount=i15,reflected=F,used=F
+0.000|38|107|0|it:Oil Lamp~3~2,4;2,5|i1|amount=i2,reflected=F,used=F
+0.000|39|0|0|it:Oil Lamp~3~2,4;2,5|-|
+0.000|40|0|0|it:Piggybank~3~8,2;8,3|-|
+0.000|41|100|0|it:Protective Purse~3~0,2|i1|amount=i15,reflected=F,used=F
+0.000|42|100|0|it:Protective Purse~3~8,1|i1|amount=i15,reflected=F,used=F
+0.600|43|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i2
+0.600|44|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i6
+0.600|45|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+0.600|46|19|1|it:Twine~3~2,2|-|amount=2.000000
+0.600|47|0|0|it:Twine~3~2,2|-|
+0.600|48|19|1|it:Twine~3~5,2|-|amount=2.000000
+0.600|49|0|0|it:Twine~3~5,2|-|
+0.600|50|19|1|it:Twine~3~5,3|-|amount=2.000000
+0.600|51|0|0|it:Twine~3~5,3|-|
+0.600|52|19|1|it:Twine~3~2,3|-|amount=2.000000
+0.600|53|0|0|it:Twine~3~2,3|-|
+1.000|54|12|0|i102|i1|amount=i1
+1.017|55|104|0|it:Djinn Lamp~1~4,3;4,4|i0|amount=i1,reflected=F,used=F
+1.017|56|0|0|it:Djinn Lamp~1~4,3;4,4|-|
+1.017|57|105|0|it:Mana Orb~1~3,3|i0|amount=i1,reflected=F,used=F
+1.050|58|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i3
+1.050|59|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i6
+1.050|60|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+1.050|61|19|1|it:Twine~3~2,2|-|amount=2.000000
+1.050|62|0|0|it:Twine~3~2,2|-|
+1.100|63|104|0|it:Djinn Lamp~1~2,3;2,4|i0|amount=i2,reflected=F,used=F
+1.100|64|0|0|it:Djinn Lamp~1~2,3;2,4|-|
+1.150|65|110|0|it:Snowmaster~3~6,0;6,1|i0|amount=i1,reflected=F,used=F
+1.150|66|0|0|it:Snowmaster~3~6,0;6,1|-|
+1.150|67|105|0|it:Mana Orb~3~7,2|i1|amount=i1,reflected=F,used=F
+1.183|68|105|0|it:Djinn Lamp~1~4,0;4,1|i0|amount=i1,reflected=F,used=F
+1.183|69|0|0|it:Djinn Lamp~1~4,0;4,1|-|
+1.250|70|110|0|it:Gold Armor~1~0,0;0,1;0,2;1,0;1,1;1,2|i0|amount=i-1,reflected=F,used=F
+1.250|71|100|0|it:Gold Armor~1~0,0;0,1;0,2;1,0;1,1;1,2|i0|amount=i25,reflected=F,used=F
+1.250|72|106|1|it:Amulet of Steel~1~1,3|i0|amount=i2,reflected=F,used=F
+1.250|73|0|0|it:Amulet of Steel~1~1,3|-|
+1.250|74|0|0|it:Gold Armor~1~0,0;0,1;0,2;1,0;1,1;1,2|-|
+1.500|75|1|0|it:Falcon Blade~3~4,6;5,6;6,6|i0|damage=i1
+1.500|76|1|1|i104|i0|damage=i1
+1.500|77|0|0|it:Falcon Blade~3~4,6;5,6;6,6|-|
+1.500|78|1|0|it:Falcon Blade~3~4,6;5,6;6,6|i0|damage=i1
+1.500|79|1|1|i104|i0|damage=i1
+1.500|80|0|0|it:Falcon Blade~3~4,6;5,6;6,6|-|
+1.900|81|101|0|it:Fedora~3~6,3;6,4;6,5;7,4|i1|amount=i-1,reflected=F,used=T
+1.900|82|105|1|it:Fedora~3~6,3;6,4;6,5;7,4|i0|amount=i-2,reflected=F,used=F
+1.900|83|105|1|it:Fedora~3~6,3;6,4;6,5;7,4|i1|amount=i2,reflected=F,used=F
+1.900|84|0|0|it:Fedora~3~6,3;6,4;6,5;7,4|-|
+1.900|85|105|0|it:Mana Orb~3~7,2|i1|amount=i1,reflected=F,used=F
+1.900|86|12|0|it:Goobling~3~6,2|i1|amount=i3
+1.900|87|0|0|it:Goobling~3~6,2|-|
+1.917|88|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i1
+1.917|89|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i6
+1.917|90|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+1.917|91|19|1|it:Twine~3~2,2|-|amount=2.000000
+1.917|92|0|0|it:Twine~3~2,2|-|
+1.917|93|19|1|it:Twine~3~5,2|-|amount=2.000000
+1.917|94|0|0|it:Twine~3~5,2|-|
+1.917|95|12|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i11
+1.917|96|107|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i1,reflected=F,resisted=T,used=F
+1.917|97|107|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i1,reflected=F,used=F
+1.917|98|0|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|-|
+1.917|99|19|1|it:Twine~3~2,3|-|amount=2.000000
+1.917|100|0|0|it:Twine~3~2,3|-|
+1.917|101|12|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i1|amount=i18
+1.917|102|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i6,reflected=F,resisted=T,used=F
+1.917|103|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i1,duration=3.000000,reflected=F,used=F
+1.917|104|0|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|-|
+1.983|105|0|0|it:Speak with Animals~3~5,5|-|
+2.017|106|105|0|it:Djinn Lamp~1~4,3;4,4|i0|amount=i1,reflected=F,used=F
+2.017|107|0|0|it:Djinn Lamp~1~4,3;4,4|-|
+2.017|108|105|0|it:Mana Orb~1~3,3|i0|amount=i1,reflected=F,used=F
+2.117|109|105|0|it:Blueberries~1~3,1|i0|amount=i2,reflected=F,used=F
+2.117|110|0|0|it:Blueberries~1~3,1|-|
+2.167|111|19|0|it:Cheese~1~2,0;3,0|-|amount=12.000000
+2.167|112|105|0|it:Cheese~1~2,0;3,0|i0|amount=i1,reflected=F,used=F
+2.167|113|0|0|it:Cheese~1~2,0;3,0|-|
+2.200|114|104|0|it:Djinn Lamp~1~2,3;2,4|i0|amount=i1,reflected=F,used=F
+2.200|115|0|0|it:Djinn Lamp~1~2,3;2,4|-|
+2.217|116|1|0|it:Claws of Attack~1~7,1;7,2|i1|damage=i13
+2.217|117|0|0|it:Claws of Attack~1~7,1;7,2|-|
+2.250|118|1|0|it:Falcon Blade~1~2,2;3,2;4,2|i1|damage=i13
+2.250|119|0|0|it:Falcon Blade~1~2,2;3,2;4,2|-|
+2.250|120|19|0|it:Cheese Goobert~1~5,2;5,3;6,2;6,3|-|amount=26.000000
+2.250|121|106|0|it:Cheese Goobert~1~5,2;5,3;6,2;6,3|i0|amount=i1,reflected=F,used=F
+2.250|122|104|0|it:Cheese Goobert~1~5,2;5,3;6,2;6,3|i0|amount=i2,reflected=F,used=F
+2.250|123|0|0|it:Cheese Goobert~1~5,2;5,3;6,2;6,3|-|
+2.250|124|1|0|it:Falcon Blade~1~2,2;3,2;4,2|i1|damage=i13
+2.250|125|0|0|it:Falcon Blade~1~2,2;3,2;4,2|-|
+2.250|126|105|0|it:Mana Orb~1~3,3|i0|amount=i2,reflected=F,used=F
+2.317|127|101|0|it:Djinn Lamp~1~4,0;4,1|i0|amount=i1,reflected=F,used=F
+2.317|128|0|0|it:Djinn Lamp~1~4,0;4,1|-|
+2.350|129|109|0|it:Crown~1~7,3;8,3|i0|amount=i-1,reflected=F,used=F
+2.350|130|12|0|it:Crown~1~7,3;8,3|i0|amount=i5
+2.350|131|19|1|it:False Life~1~0,3|-|amount=6.000000
+2.350|132|0|0|it:Crown~1~7,3;8,3|-|
+2.367|133|110|0|it:Snowmaster~3~6,0;6,1|i0|amount=i1,reflected=F,used=F
+2.367|134|0|0|it:Snowmaster~3~6,0;6,1|-|
+2.450|135|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i2
+2.450|136|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i6
+2.450|137|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+2.450|138|19|1|it:Twine~3~2,2|-|amount=2.000000
+2.450|139|0|0|it:Twine~3~2,2|-|
+2.483|140|1|0|it:Rat~3~8,0;8,1|i0|damage=i1
+2.483|141|108|1|it:Rat~3~8,0;8,1|i0|amount=i1,reflected=F,used=F
+2.483|142|0|0|it:Rat~3~8,0;8,1|-|
+2.483|143|105|0|it:Mana Orb~3~7,2|i1|amount=i1,reflected=F,used=F
+2.567|144|108|0|it:Gold Armor~1~0,0;0,1;0,2;1,0;1,1;1,2|i0|amount=i-1,reflected=F,used=F
+2.567|145|110|0|it:Gold Armor~1~0,0;0,1;0,2;1,0;1,1;1,2|i0|amount=i-1,reflected=F,used=F
+2.567|146|100|0|it:Gold Armor~1~0,0;0,1;0,2;1,0;1,1;1,2|i0|amount=i25,reflected=F,used=F
+2.567|147|106|1|it:Amulet of Steel~1~1,3|i0|amount=i2,reflected=F,used=F
+2.567|148|0|0|it:Amulet of Steel~1~1,3|-|
+2.567|149|0|0|it:Gold Armor~1~0,0;0,1;0,2;1,0;1,1;1,2|-|
+2.683|150|108|0|it:Poison Dagger~1~8,1;8,2|i0|amount=i1,reflected=T,resisted=T,used=F
+2.683|151|108|0|it:Poison Dagger~1~8,1;8,2|i0|amount=i1,reflected=T,used=F
+2.683|152|1|0|it:Poison Dagger~1~8,1;8,2|i1|damage=i17
+2.683|153|0|0|it:Poison Dagger~1~8,1;8,2|-|
+2.767|154|0|0|it:Oil Lamp~3~2,4;2,5|-|
+2.983|155|104|0|it:Djinn Lamp~1~4,3;4,4|i0|amount=i1,reflected=F,used=F
+2.983|156|0|0|it:Djinn Lamp~1~4,3;4,4|-|
+2.983|157|105|0|it:Blueberries~3~5,4|i1|amount=i1,reflected=F,used=F
+2.983|158|0|0|it:Blueberries~3~5,4|-|
+3.000|159|12|0|i102|i1|amount=i1
+3.017|160|1|0|it:Falcon Blade~3~4,6;5,6;6,6|i0|damage=i1
+3.017|161|1|1|i104|i0|damage=i1
+3.017|162|0|0|it:Falcon Blade~3~4,6;5,6;6,6|-|
+3.017|163|1|0|it:Falcon Blade~3~4,6;5,6;6,6|i0|damage=i1
+3.017|164|1|1|i104|i0|damage=i1
+3.017|165|0|0|it:Falcon Blade~3~4,6;5,6;6,6|-|
+3.250|166|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i3
+3.250|167|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i6
+3.250|168|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+3.250|169|19|1|it:Twine~3~2,2|-|amount=2.000000
+3.250|170|0|0|it:Twine~3~2,2|-|
+3.250|171|19|1|it:Twine~3~5,2|-|amount=2.000000
+3.250|172|0|0|it:Twine~3~5,2|-|
+3.250|173|19|1|it:Twine~3~5,3|-|amount=2.000000
+3.250|174|0|0|it:Twine~3~5,3|-|
+3.283|175|101|0|it:Djinn Lamp~1~2,3;2,4|i0|amount=i2,reflected=F,used=F
+3.283|176|100|1|it:Djinn Lamp~1~4,0;4,1|i0|amount=i-7,reflected=F,used=T
+3.283|177|104|1|it:Djinn Lamp~1~4,0;4,1|i0|amount=i-7,reflected=F,used=T
+3.283|178|105|1|it:Djinn Lamp~1~4,0;4,1|i0|amount=i-7,reflected=F,used=T
+3.283|179|101|1|it:Djinn Lamp~1~4,0;4,1|i0|amount=i-7,reflected=F,used=T
+3.283|180|5|1|it:Djinn Lamp~1~4,0;4,1|i0|amount=i-27
+3.283|181|16|1|it:Djinn Lamp~1~4,0;4,1|i0|damage=27.000000,item=s:Falcon Blade
+3.283|182|0|0|it:Djinn Lamp~1~4,0;4,1|-|
+3.283|183|0|0|it:Djinn Lamp~1~2,3;2,4|-|
+3.383|184|0|0|it:Seal the Deal~1~2,1|-|
+3.383|185|105|0|it:Blueberries~1~5,1|i0|amount=i2,reflected=F,used=F
+3.383|186|0|0|it:Blueberries~1~5,1|-|
+3.400|187|1|0|it:Pumpkin~3~7,5;7,6;8,5;8,6|i0|damage=i2
+3.400|188|0|0|it:Pumpkin~3~7,5;7,6;8,5;8,6|-|
+3.400|189|101|0|it:Toad~3~8,4|i1|amount=i1,reflected=F,used=F
+3.400|190|105|0|it:Toad~3~8,4|i1|amount=i1,reflected=F,used=F
+3.400|191|0|0|it:Toad~3~8,4|-|
+3.417|192|104|0|it:Djinn Lamp~1~4,0;4,1|i0|amount=i1,reflected=F,used=F
+3.417|193|0|0|it:Djinn Lamp~1~4,0;4,1|-|
+3.467|194|110|0|it:Snowmaster~3~6,0;6,1|i0|amount=i1,reflected=F,used=F
+3.467|195|0|0|it:Snowmaster~3~6,0;6,1|-|
+3.467|196|19|0|it:Cheese~3~0,1;1,1|-|amount=10.000000
+3.467|197|104|0|it:Cheese~3~0,1;1,1|i1|amount=i1,reflected=F,used=F
+3.467|198|0|0|it:Cheese~3~0,1;1,1|-|
+3.650|199|102|0|it:Heart of Darkness~1~5,4;5,5;6,4;6,5|i1|amount=i-1,reflected=F,used=F
+3.650|200|102|0|it:Heart of Darkness~1~5,4;5,5;6,4;6,5|i0|amount=i2,reflected=F,used=F
+3.650|201|105|0|it:Heart of Darkness~1~5,4;5,5;6,4;6,5|i1|amount=i-1,reflected=F,used=F
+3.650|202|105|0|it:Heart of Darkness~1~5,4;5,5;6,4;6,5|i0|amount=i1,reflected=F,used=F
+3.650|203|0|0|it:Heart of Darkness~1~5,4;5,5;6,4;6,5|-|
+3.683|204|0|0|it:Shaman Mask~1~6,0;6,1|-|
+3.733|205|101|0|it:Fedora~3~6,3;6,4;6,5;7,4|i1|amount=i-1,reflected=F,used=T
+3.733|206|105|1|it:Fedora~3~6,3;6,4;6,5;7,4|i0|amount=i-1,reflected=F,used=F
+3.733|207|105|1|it:Fedora~3~6,3;6,4;6,5;7,4|i1|amount=i1,reflected=F,resisted=T,used=F
+3.733|208|106|1|it:Fedora~3~6,3;6,4;6,5;7,4|i0|amount=i-1,reflected=F,used=F
+3.733|209|106|1|it:Fedora~3~6,3;6,4;6,5;7,4|i1|amount=i1,reflected=F,used=F
+3.733|210|0|0|it:Fedora~3~6,3;6,4;6,5;7,4|-|
+3.733|211|105|0|it:Mana Orb~3~7,2|i1|amount=i1,reflected=F,used=F
+3.733|212|12|0|it:Goobling~3~6,2|i1|amount=i3
+3.733|213|0|0|it:Goobling~3~6,2|-|
+3.750|214|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i2
+3.750|215|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i6
+3.750|216|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+3.750|217|19|1|it:Twine~3~2,2|-|amount=2.000000
+3.750|218|0|0|it:Twine~3~2,2|-|
+3.750|219|19|1|it:Twine~3~5,2|-|amount=2.000000
+3.750|220|0|0|it:Twine~3~5,2|-|
+3.750|221|19|1|it:Twine~3~2,3|-|amount=2.000000
+3.750|222|0|0|it:Twine~3~2,3|-|
+3.750|223|12|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i11
+3.750|224|107|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i2,reflected=F,used=F
+3.750|225|0|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|-|
+3.850|226|110|0|it:Gold Armor~1~0,0;0,1;0,2;1,0;1,1;1,2|i0|amount=i-1,reflected=F,used=F
+3.850|227|108|0|it:Gold Armor~1~0,0;0,1;0,2;1,0;1,1;1,2|i0|amount=i-1,reflected=F,used=F
+3.850|228|100|0|it:Gold Armor~1~0,0;0,1;0,2;1,0;1,1;1,2|i0|amount=i25,reflected=F,used=F
+3.850|229|0|0|it:Gold Armor~1~0,0;0,1;0,2;1,0;1,1;1,2|-|
+3.983|230|104|0|it:Djinn Lamp~1~4,3;4,4|i0|amount=i2,reflected=F,used=F
+3.983|231|0|0|it:Djinn Lamp~1~4,3;4,4|-|
+3.983|232|105|0|it:Mana Orb~1~3,3|i0|amount=i2,reflected=F,used=F
+3.983|233|0|0|it:Speak with Animals~3~5,5|-|
+4.217|234|1|0|it:Claws of Attack~1~7,1;7,2|i1|damage=i15
+4.217|235|1|1|i104|i1|damage=i0
+4.217|236|0|0|it:Claws of Attack~1~7,1;7,2|-|
+4.217|237|19|0|it:Cheese Goobert~1~5,2;5,3;6,2;6,3|-|amount=26.000000
+4.217|238|102|0|it:Cheese Goobert~1~5,2;5,3;6,2;6,3|i0|amount=i1,reflected=F,used=F
+4.217|239|105|0|it:Cheese Goobert~1~5,2;5,3;6,2;6,3|i0|amount=i2,reflected=F,used=F
+4.217|240|0|0|it:Cheese Goobert~1~5,2;5,3;6,2;6,3|-|
+4.233|241|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i3
+4.233|242|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i6
+4.233|243|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+4.233|244|19|1|it:Twine~3~5,2|-|amount=2.000000
+4.233|245|0|0|it:Twine~3~5,2|-|
+4.233|246|19|1|it:Twine~3~5,3|-|amount=2.000000
+4.233|247|0|0|it:Twine~3~5,3|-|
+4.233|248|19|1|it:Twine~3~2,3|-|amount=2.000000
+4.233|249|0|0|it:Twine~3~2,3|-|
+4.233|250|12|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i1|amount=i18
+4.233|251|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i2,reflected=F,resisted=T,used=F
+4.233|252|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i5,duration=3.000000,reflected=F,used=F
+4.233|253|0|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|-|
+4.300|254|105|0|it:Blueberries~1~3,1|i0|amount=i1,reflected=F,used=F
+4.300|255|0|0|it:Blueberries~1~3,1|-|
+4.367|256|19|0|it:Cheese~1~2,0;3,0|-|amount=12.000000
+4.367|257|107|0|it:Cheese~1~2,0;3,0|i0|amount=i1,reflected=F,used=F
+4.367|258|0|0|it:Cheese~1~2,0;3,0|-|
+4.417|259|101|0|it:Djinn Lamp~1~2,3;2,4|i0|amount=i1,reflected=F,used=F
+4.417|260|0|0|it:Djinn Lamp~1~2,3;2,4|-|
+4.450|261|3|0|it:Falcon Blade~1~2,2;3,2;4,2|i1|damage=i0
+4.450|262|0|0|it:Falcon Blade~1~2,2;3,2;4,2|-|
+4.450|263|105|0|it:Mana Orb~1~3,3|i0|amount=i2,reflected=F,used=F
+4.450|264|7|1|it:Crown~1~7,3;8,3|i0|duration=2.000000
+4.450|265|105|2|it:Crown~1~7,3;8,3|i0|amount=i-10,reflected=F,used=T
+4.450|266|0|0|it:Crown~1~7,3;8,3|-|
+4.450|267|1|0|it:Falcon Blade~1~2,2;3,2;4,2|i1|damage=i42
+4.450|268|1|1|i104|i1|damage=i0
+4.450|269|0|0|it:Falcon Blade~1~2,2;3,2;4,2|-|
+4.517|270|1|0|it:Falcon Blade~3~4,6;5,6;6,6|i0|damage=i0
+4.517|271|0|0|it:Falcon Blade~3~4,6;5,6;6,6|-|
+4.517|272|1|0|it:Falcon Blade~3~4,6;5,6;6,6|i0|damage=i0
+4.517|273|0|0|it:Falcon Blade~3~4,6;5,6;6,6|-|
+4.550|274|105|0|it:Djinn Lamp~1~4,0;4,1|i0|amount=i2,reflected=F,used=F
+4.550|275|0|0|it:Djinn Lamp~1~4,0;4,1|-|
+4.600|276|110|0|it:Snowmaster~3~6,0;6,1|i0|amount=i1,reflected=F,used=F
+4.600|277|0|0|it:Snowmaster~3~6,0;6,1|-|
+4.600|278|105|0|it:Mana Orb~3~7,2|i1|amount=i1,reflected=F,used=F
+4.600|279|105|0|it:Badger Spirit~3~1,5;1,6|i1|amount=i-1,reflected=F,used=T
+4.600|280|19|1|it:Badger Spirit~3~1,5;1,6|-|amount=22.000000
+4.600|281|0|0|it:Badger Spirit~3~1,5;1,6|-|
+4.600|282|101|1|it:Holy Collar~3~1,4|i1|amount=i1,reflected=F,used=F
+4.600|283|102|1|it:Holy Collar~3~1,4|i1|amount=i1,reflected=F,used=F
+4.700|284|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i0
+4.700|285|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i6
+4.700|286|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+4.700|287|19|1|it:Twine~3~5,2|-|amount=2.000000
+4.700|288|0|0|it:Twine~3~5,2|-|
+4.700|289|19|1|it:Twine~3~5,3|-|amount=2.000000
+4.700|290|0|0|it:Twine~3~5,3|-|
+4.700|291|19|1|it:Twine~3~2,3|-|amount=2.000000
+4.700|292|0|0|it:Twine~3~2,3|-|
+4.700|293|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i0
+4.700|294|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i6
+4.700|295|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+4.783|296|109|0|it:Crown~1~7,3;8,3|i0|amount=i-1,reflected=F,used=F
+4.783|297|12|0|it:Crown~1~7,3;8,3|i0|amount=i5
+4.783|298|0|0|it:Crown~1~7,3;8,3|-|
+4.950|299|1|0|it:Rat~3~8,0;8,1|i0|damage=i0
+4.950|300|108|1|it:Rat~3~8,0;8,1|i0|amount=i1,reflected=F,used=F
+4.950|301|0|0|it:Rat~3~8,0;8,1|-|
+4.983|302|105|0|it:Djinn Lamp~1~4,3;4,4|i0|amount=i2,reflected=F,used=F
+4.983|303|0|0|it:Djinn Lamp~1~4,3;4,4|-|
+4.983|304|19|0|it:Cheese Goobert~1~5,2;5,3;6,2;6,3|-|amount=26.000000
+4.983|305|103|0|it:Cheese Goobert~1~5,2;5,3;6,2;6,3|i0|amount=i2,reflected=F,used=F
+4.983|306|105|0|it:Cheese Goobert~1~5,2;5,3;6,2;6,3|i0|amount=i2,reflected=F,used=F
+4.983|307|0|0|it:Cheese Goobert~1~5,2;5,3;6,2;6,3|-|
+4.983|308|105|0|it:Mana Orb~1~3,3|i0|amount=i1,reflected=F,used=F
+5.000|309|12|0|i102|i0|amount=i3
+5.000|310|12|0|i102|i1|amount=i1
+5.100|311|109|0|it:Gold Armor~1~0,0;0,1;0,2;1,0;1,1;1,2|i0|amount=i-4,reflected=F,used=F
+5.100|312|108|0|it:Gold Armor~1~0,0;0,1;0,2;1,0;1,1;1,2|i0|amount=i-1,reflected=F,used=F
+5.100|313|0|0|it:Gold Armor~1~0,0;0,1;0,2;1,0;1,1;1,2|-|
+5.167|314|107|0|it:Wolpertinger~1~7,4;7,5;8,4;8,5|i0|amount=i4,reflected=F,used=F
+5.167|315|103|0|it:Wolpertinger~1~7,4;7,5;8,4;8,5|i0|amount=i2,reflected=F,used=F
+5.167|316|0|0|it:Wolpertinger~1~7,4;7,5;8,4;8,5|-|
+5.183|317|2|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i0
+5.183|318|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i6
+5.183|319|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+5.183|320|19|1|it:Twine~3~2,2|-|amount=2.000000
+5.183|321|0|0|it:Twine~3~2,2|-|
+5.183|322|19|1|it:Twine~3~5,2|-|amount=2.000000
+5.183|323|0|0|it:Twine~3~5,2|-|
+5.183|324|19|1|it:Twine~3~5,3|-|amount=2.000000
+5.183|325|0|0|it:Twine~3~5,3|-|
+5.183|326|12|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i11
+5.183|327|107|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i2,reflected=F,used=F
+5.183|328|0|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|-|
+5.183|329|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i0
+5.183|330|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i6
+5.183|331|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+5.183|332|19|1|it:Twine~3~5,2|-|amount=2.000000
+5.183|333|0|0|it:Twine~3~5,2|-|
+5.183|334|19|1|it:Twine~3~5,3|-|amount=2.000000
+5.183|335|0|0|it:Twine~3~5,3|-|
+5.183|336|19|1|it:Twine~3~2,3|-|amount=2.000000
+5.183|337|0|0|it:Twine~3~2,3|-|
+5.267|338|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i0
+5.267|339|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i6
+5.267|340|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+5.267|341|19|1|it:Twine~3~2,3|-|amount=2.000000
+5.267|342|0|0|it:Twine~3~2,3|-|
+5.283|343|108|0|it:Poison Dagger~1~8,1;8,2|i0|amount=i2,reflected=T,used=F
+5.283|344|1|0|it:Poison Dagger~1~8,1;8,2|i1|damage=i17
+5.283|345|1|1|i104|i1|damage=i0
+5.283|346|12|1|i103|i0|amount=i4
+5.283|347|0|0|it:Poison Dagger~1~8,1;8,2|-|
+5.367|348|0|0|it:Oil Lamp~3~2,4;2,5|-|
+5.467|349|101|0|it:Djinn Lamp~1~2,3;2,4|i0|amount=i2,reflected=F,used=F
+5.467|350|0|0|it:Djinn Lamp~1~2,3;2,4|-|
+5.467|351|101|0|it:Fedora~3~6,3;6,4;6,5;7,4|i1|amount=i-1,reflected=F,used=T
+5.467|352|102|1|it:Fedora~3~6,3;6,4;6,5;7,4|i0|amount=i-2,reflected=F,used=F
+5.467|353|102|1|it:Fedora~3~6,3;6,4;6,5;7,4|i1|amount=i2,reflected=F,used=F
+5.467|354|0|0|it:Fedora~3~6,3;6,4;6,5;7,4|-|
+5.467|355|105|0|it:Mana Orb~3~7,2|i1|amount=i1,reflected=F,used=F
+5.700|356|104|0|it:Djinn Lamp~1~4,0;4,1|i0|amount=i1,reflected=F,used=F
+5.700|357|0|0|it:Djinn Lamp~1~4,0;4,1|-|
+5.717|358|110|0|it:Snowmaster~3~6,0;6,1|i0|amount=i1,reflected=F,used=F
+5.717|359|0|0|it:Snowmaster~3~6,0;6,1|-|
+5.717|360|105|0|it:Mana Orb~3~7,2|i1|amount=i1,reflected=F,used=F
+5.717|361|12|0|it:Goobling~3~6,2|i1|amount=i3
+5.717|362|0|0|it:Goobling~3~6,2|-|
+5.717|363|110|0|it:Snowmaster~3~6,0;6,1|i0|amount=i1,reflected=F,used=F
+5.717|364|0|0|it:Snowmaster~3~6,0;6,1|-|
+5.800|365|0|0|it:Speak with Animals~3~5,5|-|
+5.867|366|105|0|it:Blueberries~3~5,4|i1|amount=i1,reflected=F,used=F
+5.867|367|0|0|it:Blueberries~3~5,4|-|
+5.900|368|104|0|it:Djinn Lamp~1~4,3;4,4|i0|amount=i1,reflected=F,used=F
+5.900|369|0|0|it:Djinn Lamp~1~4,3;4,4|-|
+5.900|370|105|0|it:Mana Orb~1~3,3|i0|amount=i2,reflected=F,used=F
+5.983|371|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i0
+5.983|372|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i6
+5.983|373|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+5.983|374|19|1|it:Twine~3~2,2|-|amount=2.000000
+5.983|375|0|0|it:Twine~3~2,2|-|
+5.983|376|12|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i1|amount=i18
+5.983|377|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i2,reflected=F,resisted=T,used=F
+5.983|378|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i5,duration=3.000000,reflected=F,used=F
+5.983|379|0|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|-|
+5.983|380|19|1|it:Twine~3~5,2|-|amount=2.000000
+5.983|381|0|0|it:Twine~3~5,2|-|
+5.983|382|19|1|it:Twine~3~5,3|-|amount=2.000000
+5.983|383|0|0|it:Twine~3~5,3|-|
+5.983|384|19|1|it:Twine~3~2,3|-|amount=2.000000
+5.983|385|0|0|it:Twine~3~2,3|-|
+5.983|386|101|1|it:Holy Collar~3~1,4|i1|amount=i1,reflected=F,used=F
+5.983|387|102|1|it:Holy Collar~3~1,4|i1|amount=i1,reflected=F,resisted=T,used=F
+5.983|388|12|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i11
+5.983|389|107|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i1,reflected=F,resisted=T,used=F
+5.983|390|107|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i1,reflected=F,used=F
+5.983|391|0|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|-|
+5.983|392|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i0
+5.983|393|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i6
+5.983|394|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+5.983|395|19|1|it:Twine~3~5,2|-|amount=2.000000
+5.983|396|0|0|it:Twine~3~5,2|-|
+5.983|397|19|1|it:Twine~3~5,3|-|amount=2.000000
+5.983|398|0|0|it:Twine~3~5,3|-|
+5.983|399|19|1|it:Twine~3~2,3|-|amount=2.000000
+5.983|400|0|0|it:Twine~3~2,3|-|
+5.983|401|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i0
+5.983|402|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i6
+5.983|403|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+5.983|404|19|1|it:Twine~3~2,2|-|amount=2.000000
+5.983|405|0|0|it:Twine~3~2,2|-|
+5.983|406|19|1|it:Twine~3~5,2|-|amount=2.000000
+5.983|407|0|0|it:Twine~3~5,2|-|
+5.983|408|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i0
+5.983|409|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i6
+5.983|410|1|0|it:Falcon Blade~3~4,6;5,6;6,6|i0|damage=i0
+5.983|411|0|0|it:Falcon Blade~3~4,6;5,6;6,6|-|
+5.983|412|1|0|it:Falcon Blade~3~4,6;5,6;6,6|i0|damage=i0
+5.983|413|0|0|it:Falcon Blade~3~4,6;5,6;6,6|-|
+6.000|414|101|0|it:Rainbow Badge~3~2,6|i1|amount=i1,reflected=F,used=F
+6.000|415|102|0|it:Rainbow Badge~3~2,6|i1|amount=i1,reflected=F,used=F
+6.000|416|103|0|it:Rainbow Badge~3~2,6|i1|amount=i1,reflected=F,used=F
+6.000|417|104|0|it:Rainbow Badge~3~2,6|i1|amount=i1,reflected=F,used=F
+6.000|418|105|0|it:Rainbow Badge~3~2,6|i1|amount=i1,reflected=F,used=F
+6.000|419|106|0|it:Rainbow Badge~3~2,6|i1|amount=i1,reflected=F,used=F
+6.000|420|107|0|it:Rainbow Badge~3~2,6|i1|amount=i1,reflected=F,used=F
+6.000|421|0|0|it:Rainbow Badge~3~2,6|-|
+6.000|422|1|0|i108|i1|damage=i0
+6.083|423|1|0|it:Claws of Attack~1~7,1;7,2|i1|damage=i14
+6.083|424|1|1|i104|i1|damage=i0
+6.083|425|12|1|i103|i0|amount=i4
+6.083|426|0|0|it:Claws of Attack~1~7,1;7,2|-|
+6.383|427|109|0|it:Gold Armor~1~0,0;0,1;0,2;1,0;1,1;1,2|i0|amount=i-3,reflected=F,used=F
+6.383|428|110|0|it:Gold Armor~1~0,0;0,1;0,2;1,0;1,1;1,2|i0|amount=i-1,reflected=F,used=F
+6.383|429|108|0|it:Gold Armor~1~0,0;0,1;0,2;1,0;1,1;1,2|i0|amount=i-1,reflected=F,used=F
+6.383|430|0|0|it:Gold Armor~1~0,0;0,1;0,2;1,0;1,1;1,2|-|
+6.450|431|8|0|it:Crown~1~7,3;8,3|i0|
+6.467|432|2|0|it:Falcon Blade~1~2,2;3,2;4,2|i1|damage=i90
+6.467|433|1|1|i104|i1|damage=i2
+6.467|434|12|1|i103|i0|amount=i4
+6.467|435|0|0|it:Falcon Blade~1~2,2;3,2;4,2|-|
+6.467|436|1|0|it:Falcon Blade~1~2,2;3,2;4,2|i1|damage=i41
+6.467|437|1|1|i104|i1|damage=i2
+6.467|438|12|1|i103|i0|amount=i4
+6.467|439|0|0|it:Falcon Blade~1~2,2;3,2;4,2|-|
+6.467|440|105|0|it:Mana Orb~1~3,3|i0|amount=i1,reflected=F,used=F
+6.500|441|101|0|it:Blueberries~1~3,1|i0|amount=i2,reflected=F,used=F
+6.500|442|0|0|it:Blueberries~1~3,1|-|
+6.517|443|19|0|it:Cheese~3~0,1;1,1|-|amount=10.000000
+6.517|444|102|0|it:Cheese~3~0,1;1,1|i1|amount=i1,reflected=F,resisted=T,used=F
+6.517|445|0|0|it:Cheese~3~0,1;1,1|-|
+6.533|446|104|0|it:Djinn Lamp~1~2,3;2,4|i0|amount=i2,reflected=F,used=F
+6.533|447|0|0|it:Djinn Lamp~1~2,3;2,4|-|
+6.533|448|105|0|it:Mana Orb~1~3,3|i0|amount=i1,reflected=F,used=F
+6.550|449|101|0|it:Toad~3~8,4|i1|amount=i1,reflected=F,used=F
+6.550|450|105|0|it:Toad~3~8,4|i1|amount=i1,reflected=F,used=F
+6.550|451|0|0|it:Toad~3~8,4|-|
+6.567|452|1|0|it:Pumpkin~3~7,5;7,6;8,5;8,6|i0|damage=i14
+6.567|453|0|0|it:Pumpkin~3~7,5;7,6;8,5;8,6|-|
+6.567|454|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i14
+6.567|455|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i6
+6.567|456|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+6.567|457|19|1|it:Twine~3~2,2|-|amount=2.000000
+6.567|458|0|0|it:Twine~3~2,2|-|
+6.567|459|19|1|it:Twine~3~5,2|-|amount=2.000000
+6.567|460|0|0|it:Twine~3~5,2|-|
+6.567|461|19|1|it:Twine~3~5,3|-|amount=2.000000
+6.567|462|0|0|it:Twine~3~5,3|-|
+6.567|463|12|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i11
+6.567|464|107|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i2,reflected=F,used=F
+6.567|465|0|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|-|
+6.633|466|19|0|it:Cheese~1~2,0;3,0|-|amount=12.000000
+6.633|467|101|0|it:Cheese~1~2,0;3,0|i0|amount=i2,reflected=F,used=F
+6.633|468|100|1|it:Djinn Lamp~1~2,3;2,4|i0|amount=i-7,reflected=F,used=T
+6.633|469|104|1|it:Djinn Lamp~1~2,3;2,4|i0|amount=i-7,reflected=F,used=T
+6.633|470|105|1|it:Djinn Lamp~1~2,3;2,4|i0|amount=i-7,reflected=F,used=T
+6.633|471|101|1|it:Djinn Lamp~1~2,3;2,4|i0|amount=i-7,reflected=F,used=T
+6.633|472|5|1|it:Djinn Lamp~1~2,3;2,4|i0|amount=i-27
+6.633|473|16|1|it:Djinn Lamp~1~2,3;2,4|i0|damage=27.000000,item=s:Falcon Blade
+6.633|474|0|0|it:Djinn Lamp~1~2,3;2,4|-|
+6.633|475|0|0|it:Cheese~1~2,0;3,0|-|
+6.717|476|110|0|it:Snowmaster~3~6,0;6,1|i0|amount=i1,reflected=F,used=F
+6.717|477|0|0|it:Snowmaster~3~6,0;6,1|-|
+6.717|478|110|0|it:Snowmaster~3~6,0;6,1|i0|amount=i1,reflected=F,used=F
+6.717|479|0|0|it:Snowmaster~3~6,0;6,1|-|
+6.717|480|12|0|it:Goobling~3~6,2|i1|amount=i3
+6.717|481|0|0|it:Goobling~3~6,2|-|
+6.717|482|12|0|it:Goobling~3~6,2|i1|amount=i3
+6.717|483|0|0|it:Goobling~3~6,2|-|
+6.817|484|105|0|it:Seal the Deal~1~2,1|i0|amount=i-2,reflected=F,used=T
+6.817|485|106|1|it:Seal the Deal~1~2,1|i0|amount=i3,reflected=F,used=F
+6.817|486|0|0|it:Seal the Deal~1~2,1|-|
+6.833|487|104|0|it:Djinn Lamp~1~4,0;4,1|i0|amount=i2,reflected=F,used=F
+6.833|488|0|0|it:Djinn Lamp~1~4,0;4,1|-|
+6.850|489|105|0|it:Blueberries~1~5,1|i0|amount=i1,reflected=F,used=F
+6.850|490|0|0|it:Blueberries~1~5,1|-|
+6.867|491|101|0|it:Djinn Lamp~1~4,3;4,4|i0|amount=i2,reflected=F,used=F
+6.867|492|0|0|it:Djinn Lamp~1~4,3;4,4|-|
+6.867|493|19|0|it:Cheese Goobert~1~5,2;5,3;6,2;6,3|-|amount=26.000000
+6.867|494|106|0|it:Cheese Goobert~1~5,2;5,3;6,2;6,3|i0|amount=i1,reflected=F,used=F
+6.867|495|102|0|it:Cheese Goobert~1~5,2;5,3;6,2;6,3|i0|amount=i1,reflected=F,used=F
+6.867|496|0|0|it:Cheese Goobert~1~5,2;5,3;6,2;6,3|-|
+6.867|497|105|0|it:Mana Orb~1~3,3|i0|amount=i2,reflected=F,used=F
+7.000|498|12|0|i102|i0|amount=i2
+7.000|499|12|0|i102|i1|amount=i3
+7.033|500|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i14
+7.033|501|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i6
+7.033|502|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+7.033|503|19|1|it:Twine~3~2,2|-|amount=2.000000
+7.033|504|0|0|it:Twine~3~2,2|-|
+7.033|505|12|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i1|amount=i18
+7.033|506|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i4,reflected=F,resisted=T,used=F
+7.033|507|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i3,duration=3.000000,reflected=F,used=F
+7.033|508|0|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|-|
+7.033|509|19|1|it:Twine~3~5,2|-|amount=2.000000
+7.033|510|0|0|it:Twine~3~5,2|-|
+7.033|511|19|1|it:Twine~3~5,3|-|amount=2.000000
+7.033|512|0|0|it:Twine~3~5,3|-|
+7.033|513|19|1|it:Twine~3~2,3|-|amount=2.000000
+7.033|514|0|0|it:Twine~3~2,3|-|
+7.050|515|109|0|it:Crown~1~7,3;8,3|i0|amount=i-1,reflected=F,used=F
+7.050|516|12|0|it:Crown~1~7,3;8,3|i0|amount=i5
+7.050|517|0|0|it:Crown~1~7,3;8,3|-|
+7.183|518|12|0|it:False Life~1~0,3|i0|amount=i10
+7.183|519|0|0|it:False Life~1~0,3|-|
+7.200|520|102|0|it:Heart of Darkness~1~5,4;5,5;6,4;6,5|i1|amount=i-2,reflected=F,used=F
+7.200|521|102|0|it:Heart of Darkness~1~5,4;5,5;6,4;6,5|i0|amount=i3,reflected=F,used=F
+7.200|522|0|0|it:Heart of Darkness~1~5,4;5,5;6,4;6,5|-|
+7.200|523|101|0|it:Shaman Mask~1~6,0;6,1|i0|amount=i-2,reflected=F,used=T
+7.200|524|102|1|it:Shaman Mask~1~6,0;6,1|i0|amount=i2,reflected=F,used=F
+7.200|528|102|2|it:Heart of Darkness~1~5,4;5,5;6,4;6,5|i0|amount=i-7,reflected=F,used=T
+7.200|529|19|2|it:Heart of Darkness~1~5,4;5,5;6,4;6,5|-|amount=120.000000
+7.200|530|106|2|it:Heart of Darkness~1~5,4;5,5;6,4;6,5|i0|amount=i8,reflected=F,used=F
+7.200|525|103|1|it:Shaman Mask~1~6,0;6,1|i0|amount=i1,reflected=F,used=F
+7.200|526|105|1|it:Shaman Mask~1~6,0;6,1|i0|amount=i1,reflected=F,used=F
+7.200|527|101|1|it:Shaman Mask~1~6,0;6,1|i0|amount=i4,reflected=F,used=F
+7.200|531|0|0|it:Shaman Mask~1~6,0;6,1|-|
+7.200|532|101|0|it:Fedora~3~6,3;6,4;6,5;7,4|i1|amount=i-1,reflected=F,used=T
+7.200|533|104|1|it:Fedora~3~6,3;6,4;6,5;7,4|i0|amount=i-2,reflected=F,used=F
+7.200|534|104|1|it:Fedora~3~6,3;6,4;6,5;7,4|i1|amount=i2,reflected=F,used=F
+7.200|535|0|0|it:Fedora~3~6,3;6,4;6,5;7,4|-|
+7.200|536|105|0|it:Mana Orb~3~7,2|i1|amount=i1,reflected=F,used=F
+7.283|537|1|0|it:Falcon Blade~3~4,6;5,6;6,6|i0|damage=i7
+7.283|538|12|1|i103|i1|amount=i0
+7.283|539|0|0|it:Falcon Blade~3~4,6;5,6;6,6|-|
+7.283|540|1|0|it:Falcon Blade~3~4,6;5,6;6,6|i0|damage=i6
+7.283|541|12|1|i103|i1|amount=i0
+7.283|542|0|0|it:Falcon Blade~3~4,6;5,6;6,6|-|
+7.383|543|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i9
+7.383|544|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+7.383|545|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+7.383|546|19|1|it:Twine~3~5,2|-|amount=2.000000
+7.383|547|0|0|it:Twine~3~5,2|-|
+7.383|548|19|1|it:Twine~3~2,3|-|amount=2.000000
+7.383|549|0|0|it:Twine~3~2,3|-|
+7.400|550|1|0|it:Rat~3~8,0;8,1|i0|damage=i5
+7.400|551|108|1|it:Rat~3~8,0;8,1|i0|amount=i1,reflected=F,used=F
+7.400|552|0|0|it:Rat~3~8,0;8,1|-|
+7.400|553|1|0|it:Rat~3~8,0;8,1|i0|damage=i5
+7.400|554|108|1|it:Rat~3~8,0;8,1|i0|amount=i1,reflected=F,used=F
+7.400|555|0|0|it:Rat~3~8,0;8,1|-|
+7.400|556|105|0|it:Mana Orb~3~7,2|i1|amount=i1,reflected=F,used=F
+7.550|557|104|0|it:Djinn Lamp~1~2,3;2,4|i0|amount=i2,reflected=F,used=F
+7.550|558|0|0|it:Djinn Lamp~1~2,3;2,4|-|
+7.550|559|0|0|it:Speak with Animals~3~5,5|-|
+7.700|560|108|0|it:Gold Armor~1~0,0;0,1;0,2;1,0;1,1;1,2|i0|amount=i-3,reflected=F,used=F
+7.700|561|110|0|it:Gold Armor~1~0,0;0,1;0,2;1,0;1,1;1,2|i0|amount=i-2,reflected=F,used=F
+7.700|562|0|0|it:Gold Armor~1~0,0;0,1;0,2;1,0;1,1;1,2|-|
+7.733|563|110|0|it:Snowmaster~3~6,0;6,1|i0|amount=i1,reflected=F,used=F
+7.733|564|0|0|it:Snowmaster~3~6,0;6,1|-|
+7.733|565|110|0|it:Snowmaster~3~6,0;6,1|i0|amount=i1,reflected=F,used=F
+7.733|566|0|0|it:Snowmaster~3~6,0;6,1|-|
+7.733|567|105|0|it:Mana Orb~3~7,2|i1|amount=i1,reflected=F,resisted=T,used=F
+7.733|568|12|0|it:Goobling~3~6,2|i1|amount=i1
+7.733|569|0|0|it:Goobling~3~6,2|-|
+7.733|570|12|0|it:Goobling~3~6,2|i1|amount=i1
+7.733|571|0|0|it:Goobling~3~6,2|-|
+7.867|572|108|0|it:Poison Dagger~1~8,1;8,2|i1|amount=i2,reflected=F,used=F
+7.867|573|1|0|it:Poison Dagger~1~8,1;8,2|i1|damage=i28
+7.867|574|1|1|i104|i1|damage=i4
+7.867|575|12|1|i103|i0|amount=i5
+7.867|576|0|0|it:Poison Dagger~1~8,1;8,2|-|
+7.883|577|104|0|it:Djinn Lamp~1~4,3;4,4|i0|amount=i1,reflected=F,used=F
+7.883|578|0|0|it:Djinn Lamp~1~4,3;4,4|-|
+7.900|579|0|0|it:Oil Lamp~3~2,4;2,5|-|
+7.900|580|101|1|it:Holy Collar~3~1,4|i1|amount=i1,reflected=F,used=F
+7.900|581|102|1|it:Holy Collar~3~1,4|i1|amount=i1,reflected=F,used=F
+7.917|582|104|0|it:Djinn Lamp~1~4,0;4,1|i0|amount=i2,reflected=F,used=F
+7.917|583|0|0|it:Djinn Lamp~1~4,0;4,1|-|
+7.983|584|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i14
+7.983|585|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+7.983|586|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+7.983|587|19|1|it:Twine~3~2,2|-|amount=2.000000
+7.983|588|0|0|it:Twine~3~2,2|-|
+7.983|589|19|1|it:Twine~3~5,2|-|amount=2.000000
+7.983|590|0|0|it:Twine~3~5,2|-|
+7.983|591|19|1|it:Twine~3~5,3|-|amount=2.000000
+7.983|592|0|0|it:Twine~3~5,3|-|
+7.983|593|12|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i5
+7.983|594|107|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i2,reflected=F,used=F
+7.983|595|0|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|-|
+7.983|596|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i13
+7.983|597|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+7.983|598|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+7.983|599|19|1|it:Twine~3~2,2|-|amount=2.000000
+7.983|600|0|0|it:Twine~3~2,2|-|
+7.983|601|19|1|it:Twine~3~2,3|-|amount=2.000000
+7.983|602|0|0|it:Twine~3~2,3|-|
+7.983|603|12|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i1|amount=i7
+7.983|604|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i1,reflected=F,resisted=T,used=F
+7.983|605|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i6,duration=3.000000,reflected=F,used=F
+7.983|606|0|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|-|
+7.983|607|12|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i1|amount=i7
+7.983|608|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i3,reflected=F,resisted=T,used=F
+7.983|609|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i4,duration=3.000000,reflected=F,used=F
+7.983|610|0|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|-|
+8.000|611|1|0|i108|i0|damage=i2
+8.033|612|106|0|it:Claws of Attack~1~7,1;7,2|i0|amount=i2,reflected=F,used=F
+8.033|613|1|0|it:Claws of Attack~1~7,1;7,2|i1|damage=i28
+8.033|614|1|1|i104|i1|damage=i4
+8.033|615|12|1|i103|i0|amount=i5
+8.033|616|0|0|it:Claws of Attack~1~7,1;7,2|-|
+8.183|617|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i10
+8.183|618|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+8.183|619|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+8.183|620|19|1|it:Twine~3~2,2|-|amount=2.000000
+8.183|621|0|0|it:Twine~3~2,2|-|
+8.183|622|19|1|it:Twine~3~5,2|-|amount=2.000000
+8.183|623|0|0|it:Twine~3~5,2|-|
+8.183|624|19|1|it:Twine~3~5,3|-|amount=2.000000
+8.183|625|0|0|it:Twine~3~5,3|-|
+8.183|626|19|1|it:Twine~3~2,3|-|amount=2.000000
+8.183|627|0|0|it:Twine~3~2,3|-|
+8.300|628|1|0|it:Falcon Blade~1~2,2;3,2;4,2|i1|damage=i83
+8.300|629|1|1|i104|i1|damage=i4
+8.300|630|12|1|i103|i0|amount=i5
+8.300|631|19|2|it:False Life~1~0,3|-|amount=2.000000
+8.300|632|0|0|it:Falcon Blade~1~2,2;3,2;4,2|-|
+8.300|633|105|0|it:Mana Orb~1~3,3|i0|amount=i2,reflected=F,used=F
+8.300|634|1|0|it:Falcon Blade~1~2,2;3,2;4,2|i1|damage=i82
+8.300|635|12|1|it:Badger Spirit~3~1,5;1,6|i1|amount=i32
+8.300|636|1|1|i104|i1|damage=i4
+8.300|637|12|1|i103|i0|amount=i5
+8.300|638|19|2|it:False Life~1~0,3|-|amount=6.000000
+8.300|639|0|0|it:Falcon Blade~1~2,2;3,2;4,2|-|
+8.300|640|19|0|it:Cheese Goobert~1~5,2;5,3;6,2;6,3|-|amount=26.000000
+8.300|641|103|0|it:Cheese Goobert~1~5,2;5,3;6,2;6,3|i0|amount=i2,reflected=F,used=F
+8.300|642|107|0|it:Cheese Goobert~1~5,2;5,3;6,2;6,3|i0|amount=i2,reflected=F,used=F
+8.300|643|0|0|it:Cheese Goobert~1~5,2;5,3;6,2;6,3|-|
+8.517|644|2|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i24
+8.517|645|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+8.517|646|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+8.517|647|19|1|it:Twine~3~5,2|-|amount=2.000000
+8.517|648|0|0|it:Twine~3~5,2|-|
+8.517|649|19|1|it:Twine~3~5,3|-|amount=2.000000
+8.517|650|0|0|it:Twine~3~5,3|-|
+8.517|651|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i14
+8.517|652|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+8.517|653|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+8.517|654|19|1|it:Twine~3~2,3|-|amount=2.000000
+8.517|655|0|0|it:Twine~3~2,3|-|
+8.517|656|12|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i5
+8.517|657|107|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i1,reflected=F,resisted=T,used=F
+8.517|658|107|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i1,reflected=F,used=F
+8.517|659|0|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|-|
+8.517|660|12|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i5
+8.517|661|107|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i2,reflected=F,used=F
+8.517|662|0|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|-|
+8.583|663|105|0|it:Blueberries~1~3,1|i0|amount=i1,reflected=F,used=F
+8.583|664|0|0|it:Blueberries~1~3,1|-|
+8.583|665|2|0|it:Falcon Blade~3~4,6;5,6;6,6|i0|damage=i14
+8.583|666|1|1|i104|i0|damage=i5
+8.583|667|12|1|i103|i1|amount=i0
+8.583|668|0|0|it:Falcon Blade~3~4,6;5,6;6,6|-|
+8.583|669|1|0|it:Falcon Blade~3~4,6;5,6;6,6|i0|damage=i7
+8.583|670|1|1|i104|i0|damage=i5
+8.583|671|12|1|i103|i1|amount=i0
+8.583|672|0|0|it:Falcon Blade~3~4,6;5,6;6,6|-|
+8.583|673|101|0|it:Blueberries~3~5,4|i1|amount=i1,reflected=F,used=F
+8.583|674|0|0|it:Blueberries~3~5,4|-|
+8.583|675|105|0|it:Badger Spirit~3~1,5;1,6|i1|amount=i-1,reflected=F,used=T
+8.583|676|19|1|it:Badger Spirit~3~1,5;1,6|-|amount=22.000000
+8.583|677|0|0|it:Badger Spirit~3~1,5;1,6|-|
+8.633|678|104|0|it:Djinn Lamp~1~2,3;2,4|i0|amount=i2,reflected=F,used=F
+8.633|679|0|0|it:Djinn Lamp~1~2,3;2,4|-|
+8.683|680|110|0|it:Snowmaster~3~6,0;6,1|i0|amount=i1,reflected=F,used=F
+8.683|681|108|0|it:Snowmaster~3~6,0;6,1|i1|amount=i-2,reflected=F,used=F
+8.683|682|0|0|it:Snowmaster~3~6,0;6,1|-|
+8.683|683|110|0|it:Snowmaster~3~6,0;6,1|i0|amount=i1,reflected=F,used=F
+8.683|684|0|0|it:Snowmaster~3~6,0;6,1|-|
+8.683|685|105|0|it:Mana Orb~3~7,2|i1|amount=i1,reflected=F,used=F
+8.750|686|101|0|it:Fedora~3~6,3;6,4;6,5;7,4|i1|amount=i-1,reflected=F,used=T
+8.750|687|106|1|it:Fedora~3~6,3;6,4;6,5;7,4|i0|amount=i-1,reflected=F,used=F
+8.750|688|106|1|it:Fedora~3~6,3;6,4;6,5;7,4|i1|amount=i1,reflected=F,used=F
+8.750|689|105|1|it:Fedora~3~6,3;6,4;6,5;7,4|i0|amount=i-1,reflected=F,used=F
+8.750|690|105|1|it:Fedora~3~6,3;6,4;6,5;7,4|i1|amount=i1,reflected=F,used=F
+8.750|691|0|0|it:Fedora~3~6,3;6,4;6,5;7,4|-|
+8.750|692|105|0|it:Mana Orb~3~7,2|i1|amount=i1,reflected=F,used=F
+8.750|693|12|0|it:Goobling~3~6,2|i1|amount=i1
+8.750|694|0|0|it:Goobling~3~6,2|-|
+8.833|695|101|0|it:Djinn Lamp~1~4,3;4,4|i0|amount=i2,reflected=F,used=F
+8.833|696|100|1|it:Djinn Lamp~1~4,3;4,4|i0|amount=i-7,reflected=F,used=T
+8.833|697|104|1|it:Djinn Lamp~1~4,3;4,4|i0|amount=i-7,reflected=F,used=T
+8.833|698|105|1|it:Djinn Lamp~1~4,3;4,4|i0|amount=i-7,reflected=F,used=T
+8.833|699|101|1|it:Djinn Lamp~1~4,3;4,4|i0|amount=i-7,reflected=F,used=T
+8.833|700|5|1|it:Djinn Lamp~1~4,3;4,4|i0|amount=i-27
+8.833|701|16|1|it:Djinn Lamp~1~4,3;4,4|i0|damage=27.000000,item=s:Falcon Blade
+8.833|702|0|0|it:Djinn Lamp~1~4,3;4,4|-|
+8.833|703|105|0|it:Mana Orb~1~3,3|i0|amount=i2,reflected=F,used=F
+8.833|704|0|0|it:Djinn Lamp~1~4,3;4,4|-|
+8.833|705|105|0|it:Mana Orb~1~3,3|i0|amount=i2,reflected=F,used=F
+8.917|706|19|0|it:Cheese~1~2,0;3,0|-|amount=12.000000
+8.917|707|105|0|it:Cheese~1~2,0;3,0|i0|amount=i2,reflected=F,used=F
+8.917|708|0|0|it:Cheese~1~2,0;3,0|-|
+8.933|709|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i11
+8.933|710|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+8.933|711|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+8.933|712|19|1|it:Twine~3~2,2|-|amount=2.000000
+8.933|713|0|0|it:Twine~3~2,2|-|
+8.933|714|12|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i1|amount=i7
+8.933|715|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i3,reflected=F,resisted=T,used=F
+8.933|716|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i4,duration=3.000000,reflected=F,used=F
+8.933|717|0|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|-|
+8.933|718|12|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i1|amount=i7
+8.933|719|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i2,reflected=F,resisted=T,used=F
+8.933|720|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i5,duration=3.000000,reflected=F,used=F
+8.933|721|0|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|-|
+8.933|722|19|1|it:Twine~3~5,2|-|amount=2.000000
+8.933|723|0|0|it:Twine~3~5,2|-|
+8.933|724|19|1|it:Twine~3~5,3|-|amount=2.000000
+8.933|725|0|0|it:Twine~3~5,3|-|
+8.983|726|104|0|it:Djinn Lamp~1~4,0;4,1|i0|amount=i1,reflected=F,used=F
+8.983|727|0|0|it:Djinn Lamp~1~4,0;4,1|-|
+8.983|728|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i-2,reflected=F,timeout=T,used=F
+9.000|729|110|0|it:Gold Armor~1~0,0;0,1;0,2;1,0;1,1;1,2|i0|amount=i-4,reflected=F,used=F
+9.000|730|109|0|it:Gold Armor~1~0,0;0,1;0,2;1,0;1,1;1,2|i0|amount=i-1,reflected=F,used=F
+9.000|731|0|0|it:Gold Armor~1~0,0;0,1;0,2;1,0;1,1;1,2|-|
+9.000|732|12|0|i102|i1|amount=i1
+9.233|733|0|0|it:Speak with Animals~3~5,5|-|
+9.283|734|101|0|it:Toad~3~8,4|i1|amount=i1,reflected=F,used=F
+9.283|735|105|0|it:Toad~3~8,4|i1|amount=i1,reflected=F,used=F
+9.283|736|0|0|it:Toad~3~8,4|-|
+9.300|737|19|0|it:Cheese~3~0,1;1,1|-|amount=10.000000
+9.300|738|105|0|it:Cheese~3~0,1;1,1|i1|amount=i1,reflected=F,used=F
+9.300|739|0|0|it:Cheese~3~0,1;1,1|-|
+9.333|740|109|0|it:Crown~1~7,3;8,3|i0|amount=i-1,reflected=F,used=F
+9.333|741|12|0|it:Crown~1~7,3;8,3|i0|amount=i5
+9.333|742|0|0|it:Crown~1~7,3;8,3|-|
+9.367|743|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i13
+9.367|744|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+9.367|745|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+9.367|746|19|1|it:Twine~3~5,2|-|amount=2.000000
+9.367|747|0|0|it:Twine~3~5,2|-|
+9.367|748|19|1|it:Twine~3~5,3|-|amount=2.000000
+9.367|749|0|0|it:Twine~3~5,3|-|
+9.367|750|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i14
+9.367|751|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+9.367|752|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+9.367|753|19|1|it:Twine~3~2,2|-|amount=2.000000
+9.367|754|0|0|it:Twine~3~2,2|-|
+9.367|755|19|1|it:Twine~3~5,2|-|amount=2.000000
+9.367|756|0|0|it:Twine~3~5,2|-|
+9.367|757|19|1|it:Twine~3~2,3|-|amount=2.000000
+9.367|758|0|0|it:Twine~3~2,3|-|
+9.367|759|12|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i5
+9.367|760|107|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i2,reflected=F,used=F
+9.367|761|0|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|-|
+9.367|762|12|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i5
+9.367|763|107|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i2,reflected=F,used=F
+9.367|764|0|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|-|
+9.517|765|1|0|it:Rat~3~8,0;8,1|i0|damage=i5
+9.517|766|108|1|it:Rat~3~8,0;8,1|i0|amount=i1,reflected=F,used=F
+9.517|767|0|0|it:Rat~3~8,0;8,1|-|
+9.517|768|1|0|it:Rat~3~8,0;8,1|i0|damage=i5
+9.517|769|0|0|it:Rat~3~8,0;8,1|-|
+9.517|770|105|0|it:Mana Orb~3~7,2|i1|amount=i1,reflected=F,used=F
+9.533|771|1|0|it:Pumpkin~3~7,5;7,6;8,5;8,6|i0|damage=i14
+9.533|772|10|1|it:Pumpkin~3~7,5;7,6;8,5;8,6|i0|
+9.533|773|0|0|it:Pumpkin~3~7,5;7,6;8,5;8,6|-|
+9.567|774|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i16
+9.567|775|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+9.567|776|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+9.567|777|19|1|it:Twine~3~2,2|-|amount=2.000000
+9.567|778|0|0|it:Twine~3~2,2|-|
+9.567|779|19|1|it:Twine~3~2,3|-|amount=2.000000
+9.567|780|0|0|it:Twine~3~2,3|-|
+9.567|781|12|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i1|amount=i7
+9.567|782|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i2,reflected=F,resisted=T,used=F
+9.567|783|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i5,duration=3.000000,reflected=F,used=F
+9.567|784|0|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|-|
+9.567|785|12|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i1|amount=i7
+9.567|786|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i3,reflected=F,resisted=T,used=F
+9.567|787|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i4,duration=3.000000,reflected=F,used=F
+9.567|788|0|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|-|
+9.567|789|101|1|it:Holy Collar~3~1,4|i1|amount=i1,reflected=F,used=F
+9.567|790|102|1|it:Holy Collar~3~1,4|i1|amount=i1,reflected=F,used=F
+9.567|791|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i11
+9.567|792|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+9.567|793|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+9.567|794|19|1|it:Twine~3~2,2|-|amount=2.000000
+9.567|795|0|0|it:Twine~3~2,2|-|
+9.567|796|19|1|it:Twine~3~5,2|-|amount=2.000000
+9.567|797|0|0|it:Twine~3~5,2|-|
+9.567|798|19|1|it:Twine~3~5,3|-|amount=2.000000
+9.567|799|0|0|it:Twine~3~5,3|-|
+9.600|800|110|0|it:Snowmaster~3~6,0;6,1|i0|amount=i1,reflected=F,used=F
+9.600|801|0|0|it:Snowmaster~3~6,0;6,1|-|
+9.600|802|105|0|it:Mana Orb~3~7,2|i1|amount=i1,reflected=F,resisted=T,used=F
+9.600|803|110|0|it:Snowmaster~3~6,0;6,1|i0|amount=i1,reflected=F,used=F
+9.600|804|0|0|it:Snowmaster~3~6,0;6,1|-|
+9.700|805|101|0|it:Djinn Lamp~1~2,3;2,4|i0|amount=i2,reflected=F,used=F
+9.700|806|0|0|it:Djinn Lamp~1~2,3;2,4|-|
+9.750|807|104|0|it:Djinn Lamp~1~4,3;4,4|i0|amount=i2,reflected=F,used=F
+9.750|808|0|0|it:Djinn Lamp~1~4,3;4,4|-|
+9.750|809|105|0|it:Mana Orb~1~3,3|i0|amount=i2,reflected=F,used=F
+9.750|810|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i16
+9.750|811|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+9.750|812|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+9.750|813|19|1|it:Twine~3~2,3|-|amount=2.000000
+9.750|814|0|0|it:Twine~3~2,3|-|
+9.750|815|1|0|it:Falcon Blade~3~4,6;5,6;6,6|i0|damage=i8
+9.750|816|1|1|i104|i0|damage=i3
+9.750|817|12|1|i103|i1|amount=i0
+9.750|818|0|0|it:Falcon Blade~3~4,6;5,6;6,6|-|
+9.750|819|1|0|it:Falcon Blade~3~4,6;5,6;6,6|i0|damage=i8
+9.750|820|1|1|i104|i0|damage=i3
+9.750|821|12|1|i103|i1|amount=i0
+9.750|822|0|0|it:Falcon Blade~3~4,6;5,6;6,6|-|
+9.933|823|3|0|it:Claws of Attack~1~7,1;7,2|i1|damage=i0
+9.933|824|0|0|it:Claws of Attack~1~7,1;7,2|-|
+9.933|825|19|0|it:Cheese Goobert~1~5,2;5,3;6,2;6,3|-|amount=26.000000
+9.933|826|107|0|it:Cheese Goobert~1~5,2;5,3;6,2;6,3|i0|amount=i2,reflected=F,used=F
+9.933|827|102|0|it:Cheese Goobert~1~5,2;5,3;6,2;6,3|i0|amount=i1,reflected=F,used=F
+9.933|828|0|0|it:Cheese Goobert~1~5,2;5,3;6,2;6,3|-|
+9.967|829|102|0|it:Wolpertinger~1~7,4;7,5;8,4;8,5|i0|amount=i2,reflected=F,used=F
+9.967|830|101|0|it:Wolpertinger~1~7,4;7,5;8,4;8,5|i0|amount=i2,reflected=F,used=F
+9.967|831|0|0|it:Wolpertinger~1~7,4;7,5;8,4;8,5|-|
+10.000|832|1|0|i108|i1|damage=i1
+10.017|833|104|0|it:Djinn Lamp~1~4,0;4,1|i0|amount=i1,reflected=F,used=F
+10.017|834|0|0|it:Djinn Lamp~1~4,0;4,1|-|
+10.033|835|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i-2,reflected=F,timeout=T,used=F
+10.050|836|3|0|it:Falcon Blade~1~2,2;3,2;4,2|i1|damage=i0
+10.050|837|0|0|it:Falcon Blade~1~2,2;3,2;4,2|-|
+10.050|838|3|0|it:Falcon Blade~1~2,2;3,2;4,2|i1|damage=i0
+10.050|839|0|0|it:Falcon Blade~1~2,2;3,2;4,2|-|
+10.050|840|105|0|it:Mana Orb~1~3,3|i0|amount=i2,reflected=F,used=F
+10.050|841|101|0|it:Blueberries~1~5,1|i0|amount=i2,reflected=F,used=F
+10.050|842|0|0|it:Blueberries~1~5,1|-|
+10.100|843|102|0|it:Seal the Deal~1~2,1|i0|amount=i-2,reflected=F,used=T
+10.100|844|103|1|it:Seal the Deal~1~2,1|i0|amount=i5,reflected=F,used=F
+10.100|845|101|0|it:Seal the Deal~1~2,1|i0|amount=i-2,reflected=F,used=T
+10.100|846|104|1|it:Seal the Deal~1~2,1|i0|amount=i5,reflected=F,used=F
+10.100|847|105|0|it:Seal the Deal~1~2,1|i0|amount=i-2,reflected=F,used=T
+10.100|848|106|1|it:Seal the Deal~1~2,1|i0|amount=i4,reflected=F,used=F
+10.100|849|0|0|it:Seal the Deal~1~2,1|-|
+10.200|850|110|0|it:Gold Armor~1~0,0;0,1;0,2;1,0;1,1;1,2|i0|amount=i-3,reflected=F,used=F
+10.200|851|108|0|it:Gold Armor~1~0,0;0,1;0,2;1,0;1,1;1,2|i0|amount=i-1,reflected=F,used=F
+10.200|852|109|0|it:Gold Armor~1~0,0;0,1;0,2;1,0;1,1;1,2|i0|amount=i-1,reflected=F,used=F
+10.200|853|0|0|it:Gold Armor~1~0,0;0,1;0,2;1,0;1,1;1,2|-|
+10.200|854|101|0|it:Fedora~3~6,3;6,4;6,5;7,4|i1|amount=i-1,reflected=F,used=T
+10.200|855|104|1|it:Fedora~3~6,3;6,4;6,5;7,4|i0|amount=i-1,reflected=F,used=F
+10.200|856|104|1|it:Fedora~3~6,3;6,4;6,5;7,4|i1|amount=i1,reflected=F,used=F
+10.200|857|105|1|it:Fedora~3~6,3;6,4;6,5;7,4|i0|amount=i-1,reflected=F,used=F
+10.200|858|105|1|it:Fedora~3~6,3;6,4;6,5;7,4|i1|amount=i1,reflected=F,resisted=T,used=F
+10.200|859|0|0|it:Fedora~3~6,3;6,4;6,5;7,4|-|
+10.200|860|12|0|it:Goobling~3~6,2|i1|amount=i1
+10.200|861|0|0|it:Goobling~3~6,2|-|
+10.233|862|0|0|it:Oil Lamp~3~2,4;2,5|-|
+10.317|863|3|0|it:Poison Dagger~1~8,1;8,2|i1|damage=i0
+10.317|864|0|0|it:Poison Dagger~1~8,1;8,2|-|
+10.400|865|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i16
+10.400|866|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+10.400|867|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+10.400|868|19|1|it:Twine~3~2,2|-|amount=2.000000
+10.400|869|0|0|it:Twine~3~2,2|-|
+10.400|870|19|1|it:Twine~3~5,2|-|amount=2.000000
+10.400|871|0|0|it:Twine~3~5,2|-|
+10.400|872|12|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i5
+10.400|873|107|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i2,reflected=F,used=F
+10.400|874|0|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|-|
+10.400|875|12|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i5
+10.400|876|107|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i1,reflected=F,resisted=T,used=F
+10.400|877|107|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i1,reflected=F,used=F
+10.400|878|0|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|-|
+10.483|879|110|0|it:Snowmaster~3~6,0;6,1|i0|amount=i1,reflected=F,used=F
+10.483|880|0|0|it:Snowmaster~3~6,0;6,1|-|
+10.483|881|105|0|it:Mana Orb~3~7,2|i1|amount=i1,reflected=F,used=F
+10.483|882|110|0|it:Snowmaster~3~6,0;6,1|i0|amount=i1,reflected=F,used=F
+10.483|883|0|0|it:Snowmaster~3~6,0;6,1|-|
+10.483|884|105|0|it:Mana Orb~3~7,2|i1|amount=i1,reflected=F,used=F
+10.533|885|102|0|it:Heart of Darkness~1~5,4;5,5;6,4;6,5|i1|amount=i-2,reflected=F,used=F
+10.533|886|102|0|it:Heart of Darkness~1~5,4;5,5;6,4;6,5|i0|amount=i4,reflected=F,used=F
+10.533|887|0|0|it:Heart of Darkness~1~5,4;5,5;6,4;6,5|-|
+10.583|888|105|0|it:Blueberries~1~3,1|i0|amount=i2,reflected=F,used=F
+10.583|889|0|0|it:Blueberries~1~3,1|-|
+10.650|890|101|0|it:Djinn Lamp~1~4,3;4,4|i0|amount=i1,reflected=F,used=F
+10.650|891|0|0|it:Djinn Lamp~1~4,3;4,4|-|
+10.683|892|12|0|it:Shelly~3~7,0;7,1|i1|amount=i12
+10.683|893|0|0|it:Shelly~3~7,0;7,1|-|
+10.683|894|12|0|it:Shelly~3~7,0;7,1|i1|amount=i12
+10.683|895|0|0|it:Shelly~3~7,0;7,1|-|
+10.733|896|101|0|it:Shaman Mask~1~6,0;6,1|i0|amount=i-2,reflected=F,used=T
+10.733|897|103|1|it:Shaman Mask~1~6,0;6,1|i0|amount=i2,reflected=F,used=F
+10.733|898|106|1|it:Shaman Mask~1~6,0;6,1|i0|amount=i4,reflected=F,used=F
+10.733|899|105|1|it:Shaman Mask~1~6,0;6,1|i0|amount=i2,reflected=F,used=F
+10.733|900|107|1|it:Shaman Mask~1~6,0;6,1|i0|amount=i2,reflected=F,used=F
+10.733|901|0|0|it:Shaman Mask~1~6,0;6,1|-|
+10.733|902|101|0|it:Djinn Lamp~1~2,3;2,4|i0|amount=i2,reflected=F,used=F
+10.733|903|0|0|it:Djinn Lamp~1~2,3;2,4|-|
+10.733|904|105|0|it:Mana Orb~1~3,3|i0|amount=i1,reflected=F,used=F
+10.867|905|1|0|it:Falcon Blade~3~4,6;5,6;6,6|i0|damage=i7
+10.867|906|1|1|i104|i0|damage=i7
+10.867|907|12|1|i103|i1|amount=i0
+10.867|908|0|0|it:Falcon Blade~3~4,6;5,6;6,6|-|
+10.867|909|1|0|it:Falcon Blade~3~4,6;5,6;6,6|i0|damage=i8
+10.867|910|1|1|i104|i0|damage=i8
+10.867|911|12|1|i103|i1|amount=i0
+10.867|912|0|0|it:Falcon Blade~3~4,6;5,6;6,6|-|
+10.883|913|101|0|it:Blueberries~3~5,4|i1|amount=i1,reflected=F,resisted=T,used=F
+10.883|914|0|0|it:Blueberries~3~5,4|-|
+10.883|915|0|0|it:Speak with Animals~3~5,5|-|
+10.933|916|2|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i24
+10.933|917|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+10.933|918|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+10.933|919|19|1|it:Twine~3~2,2|-|amount=2.000000
+10.933|920|0|0|it:Twine~3~2,2|-|
+10.933|921|12|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i1|amount=i7
+10.933|922|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i3,reflected=F,resisted=T,used=F
+10.933|923|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i4,duration=3.000000,reflected=F,used=F
+10.933|924|0|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|-|
+10.933|925|12|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i1|amount=i7
+10.933|926|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i2,reflected=F,resisted=T,used=F
+10.933|927|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i5,duration=3.000000,reflected=F,used=F
+10.933|928|0|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|-|
+10.933|929|19|1|it:Twine~3~5,2|-|amount=2.000000
+10.933|930|0|0|it:Twine~3~5,2|-|
+10.933|931|19|1|it:Twine~3~5,3|-|amount=2.000000
+10.933|932|0|0|it:Twine~3~5,3|-|
+10.933|933|19|1|it:Twine~3~2,3|-|amount=2.000000
+10.933|934|0|0|it:Twine~3~2,3|-|
+10.933|935|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i16
+10.933|936|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+10.933|937|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+10.933|938|19|1|it:Twine~3~2,3|-|amount=2.000000
+10.933|939|0|0|it:Twine~3~2,3|-|
+10.983|940|19|0|it:Cheese~1~2,0;3,0|-|amount=12.000000
+10.983|941|101|0|it:Cheese~1~2,0;3,0|i0|amount=i2,reflected=F,used=F
+10.983|942|0|0|it:Cheese~1~2,0;3,0|-|
+10.983|943|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i-6,reflected=F,timeout=T,used=F
+10.983|944|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i-4,reflected=F,timeout=T,used=F
+11.000|945|12|0|i102|i0|amount=i5
+11.000|946|12|0|i102|i1|amount=i1
+11.067|947|101|0|it:Djinn Lamp~1~4,0;4,1|i0|amount=i1,reflected=F,used=F
+11.067|948|0|0|it:Djinn Lamp~1~4,0;4,1|-|
+11.117|949|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i15
+11.117|950|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+11.117|951|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+11.117|952|19|1|it:Twine~3~2,2|-|amount=2.000000
+11.117|953|0|0|it:Twine~3~2,2|-|
+11.117|954|19|1|it:Twine~3~5,2|-|amount=2.000000
+11.117|955|0|0|it:Twine~3~5,2|-|
+11.117|956|19|1|it:Twine~3~5,3|-|amount=2.000000
+11.117|957|0|0|it:Twine~3~5,3|-|
+11.117|958|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i14
+11.117|959|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+11.117|960|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+11.117|961|19|1|it:Twine~3~5,2|-|amount=2.000000
+11.117|962|0|0|it:Twine~3~5,2|-|
+11.117|963|19|1|it:Twine~3~5,3|-|amount=2.000000
+11.117|964|0|0|it:Twine~3~5,3|-|
+11.117|965|12|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i5
+11.117|966|107|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i2,reflected=F,used=F
+11.117|967|0|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|-|
+11.117|968|12|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i5
+11.117|969|107|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i2,reflected=F,used=F
+11.117|970|0|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|-|
+11.117|971|19|1|it:Twine~3~2,3|-|amount=2.000000
+11.117|972|0|0|it:Twine~3~2,3|-|
+11.117|973|12|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i1|amount=i7
+11.117|974|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i3,reflected=F,resisted=T,used=F
+11.117|975|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i4,duration=3.000000,reflected=F,used=F
+11.117|976|0|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|-|
+11.117|977|12|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i1|amount=i7
+11.117|978|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i2,reflected=F,resisted=T,used=F
+11.117|979|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i5,duration=3.000000,reflected=F,used=F
+11.117|980|0|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|-|
+11.200|981|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i13
+11.200|982|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+11.200|983|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+11.200|984|19|1|it:Twine~3~2,2|-|amount=2.000000
+11.200|985|0|0|it:Twine~3~2,2|-|
+11.200|986|19|1|it:Twine~3~2,3|-|amount=2.000000
+11.200|987|0|0|it:Twine~3~2,3|-|
+11.200|988|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i15
+11.200|989|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+11.200|990|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+11.200|991|19|1|it:Twine~3~5,2|-|amount=2.000000
+11.200|992|0|0|it:Twine~3~5,2|-|
+11.333|993|110|0|it:Snowmaster~3~6,0;6,1|i0|amount=i1,reflected=F,used=F
+11.333|994|0|0|it:Snowmaster~3~6,0;6,1|-|
+11.333|995|12|0|it:Goobling~3~6,2|i1|amount=i1
+11.333|996|0|0|it:Goobling~3~6,2|-|
+11.333|997|12|0|it:Goobling~3~6,2|i1|amount=i1
+11.333|998|0|0|it:Goobling~3~6,2|-|
+11.350|999|3|0|it:Claws of Attack~1~7,1;7,2|i1|damage=i0
+11.350|1000|0|0|it:Claws of Attack~1~7,1;7,2|-|
+11.400|1001|110|0|it:Gold Armor~1~0,0;0,1;0,2;1,0;1,1;1,2|i0|amount=i-4,reflected=F,used=F
+11.400|1002|109|0|it:Gold Armor~1~0,0;0,1;0,2;1,0;1,1;1,2|i0|amount=i-1,reflected=F,used=F
+11.400|1003|0|0|it:Gold Armor~1~0,0;0,1;0,2;1,0;1,1;1,2|-|
+11.450|1004|109|0|it:Crown~1~7,3;8,3|i0|amount=i-1,reflected=F,used=F
+11.450|1005|12|0|it:Crown~1~7,3;8,3|i0|amount=i5
+11.450|1006|0|0|it:Crown~1~7,3;8,3|-|
+11.450|1007|19|0|it:Cheese Goobert~1~5,2;5,3;6,2;6,3|-|amount=26.000000
+11.450|1008|106|0|it:Cheese Goobert~1~5,2;5,3;6,2;6,3|i0|amount=i2,reflected=F,used=F
+11.450|1009|105|0|it:Cheese Goobert~1~5,2;5,3;6,2;6,3|i0|amount=i2,reflected=F,used=F
+11.450|1010|0|0|it:Cheese Goobert~1~5,2;5,3;6,2;6,3|-|
+11.533|1011|1|0|it:Rat~3~8,0;8,1|i0|damage=i5
+11.533|1012|108|1|it:Rat~3~8,0;8,1|i0|amount=i1,reflected=F,used=F
+11.533|1013|0|0|it:Rat~3~8,0;8,1|-|
+11.533|1014|105|0|it:Mana Orb~3~7,2|i1|amount=i1,reflected=F,used=F
+11.533|1015|1|0|it:Rat~3~8,0;8,1|i0|damage=i5
+11.533|1016|108|1|it:Rat~3~8,0;8,1|i0|amount=i1,reflected=F,used=F
+11.533|1017|0|0|it:Rat~3~8,0;8,1|-|
+11.583|1018|3|0|it:Falcon Blade~1~2,2;3,2;4,2|i1|damage=i0
+11.583|1019|0|0|it:Falcon Blade~1~2,2;3,2;4,2|-|
+11.583|1020|3|0|it:Falcon Blade~1~2,2;3,2;4,2|i1|damage=i0
+11.583|1021|0|0|it:Falcon Blade~1~2,2;3,2;4,2|-|
+11.600|1022|104|0|it:Djinn Lamp~1~4,3;4,4|i0|amount=i1,reflected=F,used=F
+11.600|1023|0|0|it:Djinn Lamp~1~4,3;4,4|-|
+11.600|1024|105|0|it:Mana Orb~1~3,3|i0|amount=i2,reflected=F,used=F
+11.617|1025|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i13
+11.617|1026|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+11.617|1027|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+11.617|1028|19|1|it:Twine~3~5,2|-|amount=2.000000
+11.617|1029|0|0|it:Twine~3~5,2|-|
+11.617|1030|19|1|it:Twine~3~5,3|-|amount=2.000000
+11.617|1031|0|0|it:Twine~3~5,3|-|
+11.617|1032|19|1|it:Twine~3~2,3|-|amount=2.000000
+11.617|1033|0|0|it:Twine~3~2,3|-|
+11.617|1034|101|1|it:Holy Collar~3~1,4|i1|amount=i1,reflected=F,resisted=T,used=F
+11.617|1035|102|1|it:Holy Collar~3~1,4|i1|amount=i1,reflected=F,used=F
+11.617|1036|12|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i5
+11.617|1037|107|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i2,reflected=F,used=F
+11.617|1038|0|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|-|
+11.617|1039|12|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i5
+11.617|1040|107|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i2,reflected=F,used=F
+11.617|1041|0|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|-|
+11.617|1042|2|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i34
+11.617|1043|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+11.617|1044|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+11.617|1045|19|1|it:Twine~3~2,2|-|amount=2.000000
+11.617|1046|0|0|it:Twine~3~2,2|-|
+11.617|1047|12|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i1|amount=i7
+11.617|1048|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i2,reflected=F,resisted=T,used=F
+11.617|1049|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i5,duration=3.000000,reflected=F,used=F
+11.617|1050|0|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|-|
+11.617|1051|12|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i1|amount=i7
+11.617|1052|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i2,reflected=F,resisted=T,used=F
+11.617|1053|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i5,duration=3.000000,reflected=F,used=F
+11.617|1054|0|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|-|
+11.617|1055|19|1|it:Twine~3~5,2|-|amount=2.000000
+11.617|1056|0|0|it:Twine~3~5,2|-|
+11.617|1057|19|1|it:Twine~3~5,3|-|amount=2.000000
+11.617|1058|0|0|it:Twine~3~5,3|-|
+11.650|1059|101|0|it:Djinn Lamp~1~2,3;2,4|i0|amount=i2,reflected=F,used=F
+11.650|1060|0|0|it:Djinn Lamp~1~2,3;2,4|-|
+11.650|1061|105|0|it:Mana Orb~1~3,3|i0|amount=i2,reflected=F,used=F
+11.650|1062|101|0|it:Fedora~3~6,3;6,4;6,5;7,4|i1|amount=i-1,reflected=F,used=T
+11.650|1063|102|1|it:Fedora~3~6,3;6,4;6,5;7,4|i0|amount=i-1,reflected=F,used=F
+11.650|1064|102|1|it:Fedora~3~6,3;6,4;6,5;7,4|i1|amount=i1,reflected=F,resisted=T,used=F
+11.650|1065|107|1|it:Fedora~3~6,3;6,4;6,5;7,4|i0|amount=i-1,reflected=F,used=F
+11.650|1066|107|1|it:Fedora~3~6,3;6,4;6,5;7,4|i1|amount=i1,reflected=F,used=F
+11.650|1067|0|0|it:Fedora~3~6,3;6,4;6,5;7,4|-|
+11.650|1068|105|0|it:Mana Orb~3~7,2|i1|amount=i1,reflected=F,resisted=T,used=F
+11.683|1069|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i14
+11.683|1070|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+11.683|1071|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+11.683|1072|19|1|it:Twine~3~5,2|-|amount=2.000000
+11.683|1073|0|0|it:Twine~3~5,2|-|
+11.683|1074|19|1|it:Twine~3~5,3|-|amount=2.000000
+11.683|1075|0|0|it:Twine~3~5,3|-|
+11.683|1076|19|1|it:Twine~3~2,3|-|amount=2.000000
+11.683|1077|0|0|it:Twine~3~2,3|-|
+11.683|1078|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i16
+11.683|1079|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+11.683|1080|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+11.683|1081|19|1|it:Twine~3~2,2|-|amount=2.000000
+11.683|1082|0|0|it:Twine~3~2,2|-|
+11.683|1083|19|1|it:Twine~3~5,2|-|amount=2.000000
+11.683|1084|0|0|it:Twine~3~5,2|-|
+11.683|1085|19|1|it:Twine~3~5,3|-|amount=2.000000
+11.683|1086|0|0|it:Twine~3~5,3|-|
+11.683|1087|19|1|it:Twine~3~2,3|-|amount=2.000000
+11.683|1088|0|0|it:Twine~3~2,3|-|
+11.683|1089|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i15
+11.683|1090|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+11.683|1091|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+11.683|1092|19|1|it:Twine~3~2,2|-|amount=2.000000
+11.683|1093|0|0|it:Twine~3~2,2|-|
+11.683|1094|12|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i1|amount=i7
+11.683|1095|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i2,reflected=F,resisted=T,used=F
+11.683|1096|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i5,duration=3.000000,reflected=F,used=F
+11.683|1097|0|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|-|
+11.683|1098|12|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i1|amount=i7
+11.683|1099|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i6,reflected=F,resisted=T,used=F
+11.683|1100|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i1,duration=3.000000,reflected=F,used=F
+11.683|1101|0|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|-|
+11.683|1102|19|1|it:Twine~3~5,2|-|amount=2.000000
+11.683|1103|0|0|it:Twine~3~5,2|-|
+11.683|1104|12|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i5
+11.683|1105|107|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i2,reflected=F,used=F
+11.683|1106|0|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|-|
+11.683|1107|2|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i28
+11.683|1108|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+11.683|1109|101|1|it:Holy Collar~3~1,4|i1|amount=i1,reflected=F,used=F
+11.683|1110|102|1|it:Holy Collar~3~1,4|i1|amount=i1,reflected=F,used=F
+11.700|1111|19|0|it:Cheese~3~0,1;1,1|-|amount=10.000000
+11.700|1112|103|0|it:Cheese~3~0,1;1,1|i1|amount=i1,reflected=F,used=F
+11.700|1113|0|0|it:Cheese~3~0,1;1,1|-|
+11.800|1114|101|0|it:Toad~3~8,4|i1|amount=i1,reflected=F,used=F
+11.800|1115|105|0|it:Toad~3~8,4|i1|amount=i1,reflected=F,used=F
+11.800|1116|0|0|it:Toad~3~8,4|-|
+11.817|1117|105|0|it:Badger Spirit~3~1,5;1,6|i1|amount=i-1,reflected=F,used=T
+11.817|1118|19|1|it:Badger Spirit~3~1,5;1,6|-|amount=22.000000
+11.817|1119|0|0|it:Badger Spirit~3~1,5;1,6|-|
+11.883|1120|1|0|it:Falcon Blade~3~4,6;5,6;6,6|i0|damage=i7
+11.883|1121|1|1|i104|i0|damage=i7
+11.883|1122|12|1|i103|i1|amount=i1
+11.883|1123|0|0|it:Falcon Blade~3~4,6;5,6;6,6|-|
+11.883|1124|1|0|it:Falcon Blade~3~4,6;5,6;6,6|i0|damage=i8
+11.883|1125|1|1|i104|i0|damage=i8
+11.883|1126|12|1|i103|i1|amount=i1
+11.883|1127|0|0|it:Falcon Blade~3~4,6;5,6;6,6|-|
+11.933|1128|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i-2,reflected=F,timeout=T,used=F
+11.933|1129|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i-5,reflected=F,timeout=T,used=F
+12.000|1130|1|0|i108|i1|damage=i2
+12.083|1131|104|0|it:Djinn Lamp~1~4,0;4,1|i0|amount=i2,reflected=F,used=F
+12.083|1132|0|0|it:Djinn Lamp~1~4,0;4,1|-|
+12.083|1133|110|0|it:Snowmaster~3~6,0;6,1|i0|amount=i1,reflected=F,used=F
+12.083|1134|0|0|it:Snowmaster~3~6,0;6,1|-|
+12.167|1135|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i13
+12.167|1136|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+12.167|1137|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+12.167|1138|19|1|it:Twine~3~2,2|-|amount=2.000000
+12.167|1139|0|0|it:Twine~3~2,2|-|
+12.167|1140|19|1|it:Twine~3~5,2|-|amount=2.000000
+12.167|1141|0|0|it:Twine~3~5,2|-|
+12.167|1142|19|1|it:Twine~3~5,3|-|amount=2.000000
+12.167|1143|0|0|it:Twine~3~5,3|-|
+12.167|1144|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i12
+12.167|1145|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+12.167|1146|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+12.167|1147|19|1|it:Twine~3~2,3|-|amount=2.000000
+12.167|1148|0|0|it:Twine~3~2,3|-|
+12.183|1149|1|0|it:Pumpkin~3~7,5;7,6;8,5;8,6|i0|damage=i13
+12.183|1150|9|1|it:Pumpkin~3~7,5;7,6;8,5;8,6|i0|duration=0.500000
+12.183|1151|0|0|it:Pumpkin~3~7,5;7,6;8,5;8,6|-|
+12.233|1152|0|0|it:Oil Lamp~3~2,4;2,5|-|
+12.333|1153|0|0|it:Speak with Animals~3~5,5|-|
+12.450|1154|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i16
+12.450|1155|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+12.450|1156|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+12.450|1157|19|1|it:Twine~3~2,2|-|amount=2.000000
+12.450|1158|0|0|it:Twine~3~2,2|-|
+12.450|1159|19|1|it:Twine~3~5,2|-|amount=2.000000
+12.450|1160|0|0|it:Twine~3~5,2|-|
+12.450|1161|19|1|it:Twine~3~5,3|-|amount=2.000000
+12.450|1162|0|0|it:Twine~3~5,3|-|
+12.450|1163|12|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i5
+12.450|1164|107|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i2,reflected=F,used=F
+12.450|1165|0|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|-|
+12.450|1166|12|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i5
+12.450|1167|107|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i2,reflected=F,used=F
+12.450|1168|0|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|-|
+12.450|1169|19|1|it:Twine~3~2,3|-|amount=2.000000
+12.450|1170|0|0|it:Twine~3~2,3|-|
+12.450|1171|12|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i1|amount=i7
+12.450|1172|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i2,reflected=F,resisted=T,used=F
+12.450|1173|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i5,duration=3.000000,reflected=F,used=F
+12.450|1174|0|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|-|
+12.450|1175|12|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i1|amount=i7
+12.450|1176|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i6,reflected=F,resisted=T,used=F
+12.450|1177|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i1,duration=3.000000,reflected=F,used=F
+12.450|1178|0|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|-|
+12.450|1179|101|1|it:Holy Collar~3~1,4|i1|amount=i1,reflected=F,used=F
+12.450|1180|102|1|it:Holy Collar~3~1,4|i1|amount=i1,reflected=F,used=F
+12.450|1181|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i18
+12.450|1182|21|1|it:Berserker Bag~1~0,2;0,3;1,2;1,3;2,2;2,3|-|duration=5.000000
+12.450|1183|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+12.450|1184|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+12.450|1185|19|1|it:Twine~3~2,2|-|amount=2.000000
+12.450|1186|0|0|it:Twine~3~2,2|-|
+12.450|1187|19|1|it:Twine~3~5,2|-|amount=2.000000
+12.450|1188|0|0|it:Twine~3~5,2|-|
+12.450|1189|19|1|it:Twine~3~5,3|-|amount=2.000000
+12.450|1190|0|0|it:Twine~3~5,3|-|
+12.450|1191|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i10
+12.450|1192|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+12.450|1193|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+12.450|1194|19|1|it:Twine~3~5,2|-|amount=2.000000
+12.450|1195|0|0|it:Twine~3~5,2|-|
+12.450|1196|19|1|it:Twine~3~5,3|-|amount=2.000000
+12.450|1197|0|0|it:Twine~3~5,3|-|
+12.450|1198|19|1|it:Twine~3~2,3|-|amount=2.000000
+12.450|1199|0|0|it:Twine~3~2,3|-|
+12.450|1200|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i14
+12.450|1201|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+12.450|1202|19|1|it:Twine~3~2,3|-|amount=2.000000
+12.450|1203|0|0|it:Twine~3~2,3|-|
+12.567|1204|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i-4,reflected=F,timeout=T,used=F
+12.567|1205|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i-4,reflected=F,timeout=T,used=F
+12.683|1206|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i13
+12.683|1207|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+12.683|1208|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+12.683|1209|19|1|it:Twine~3~2,2|-|amount=2.000000
+12.683|1210|0|0|it:Twine~3~2,2|-|
+12.683|1211|12|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i1|amount=i7
+12.683|1212|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i1,reflected=F,resisted=T,used=F
+12.683|1213|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i6,duration=3.000000,reflected=F,used=F
+12.683|1214|0|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|-|
+12.683|1215|19|1|it:Twine~3~5,2|-|amount=2.000000
+12.683|1216|0|0|it:Twine~3~5,2|-|
+12.683|1217|12|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i5
+12.683|1218|107|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i1,reflected=F,resisted=T,used=F
+12.683|1219|107|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i1,reflected=F,used=F
+12.683|1220|0|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|-|
+12.683|1221|12|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i5
+12.683|1222|107|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i2,reflected=F,used=F
+12.683|1223|0|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|-|
+12.683|1224|19|1|it:Twine~3~2,3|-|amount=2.000000
+12.683|1225|0|0|it:Twine~3~2,3|-|
+12.683|1226|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i11
+12.683|1227|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+12.683|1228|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+12.783|1229|1|0|it:Falcon Blade~3~4,6;5,6;6,6|i0|damage=i5
+12.783|1230|1|1|i104|i0|damage=i5
+12.783|1231|12|1|i103|i1|amount=i1
+12.783|1232|0|0|it:Falcon Blade~3~4,6;5,6;6,6|-|
+12.783|1233|1|0|it:Falcon Blade~3~4,6;5,6;6,6|i0|damage=i6
+12.783|1234|1|1|i104|i0|damage=i6
+12.783|1235|12|1|i103|i1|amount=i1
+12.783|1236|0|0|it:Falcon Blade~3~4,6;5,6;6,6|-|
+12.833|1237|110|0|it:Snowmaster~3~6,0;6,1|i0|amount=i1,reflected=F,used=F
+12.833|1238|0|0|it:Snowmaster~3~6,0;6,1|-|
+12.833|1239|12|0|it:Goobling~3~6,2|i1|amount=i1
+12.833|1240|0|0|it:Goobling~3~6,2|-|
+12.833|1241|12|0|it:Goobling~3~6,2|i1|amount=i1
+12.833|1242|0|0|it:Goobling~3~6,2|-|
+12.833|1243|110|0|it:Snowmaster~3~6,0;6,1|i0|amount=i1,reflected=F,used=F
+12.833|1244|0|0|it:Snowmaster~3~6,0;6,1|-|
+12.833|1245|105|0|it:Mana Orb~3~7,2|i1|amount=i1,reflected=F,used=F
+12.867|1246|101|0|it:Blueberries~3~5,4|i1|amount=i1,reflected=F,used=F
+12.867|1247|0|0|it:Blueberries~3~5,4|-|
+12.933|1248|101|0|it:Fedora~3~6,3;6,4;6,5;7,4|i1|amount=i-1,reflected=F,used=T
+12.933|1249|105|1|it:Fedora~3~6,3;6,4;6,5;7,4|i0|amount=i-1,reflected=F,used=F
+12.933|1250|105|1|it:Fedora~3~6,3;6,4;6,5;7,4|i1|amount=i1,reflected=F,used=F
+12.933|1251|107|1|it:Fedora~3~6,3;6,4;6,5;7,4|i0|amount=i-1,reflected=F,used=F
+12.933|1252|107|1|it:Fedora~3~6,3;6,4;6,5;7,4|i1|amount=i1,reflected=F,used=F
+12.933|1253|0|0|it:Fedora~3~6,3;6,4;6,5;7,4|-|
+12.983|1254|109|0|it:Gold Armor~1~0,0;0,1;0,2;1,0;1,1;1,2|i0|amount=i-1,reflected=F,used=F
+12.983|1255|108|0|it:Gold Armor~1~0,0;0,1;0,2;1,0;1,1;1,2|i0|amount=i-2,reflected=F,used=F
+12.983|1256|110|0|it:Gold Armor~1~0,0;0,1;0,2;1,0;1,1;1,2|i0|amount=i-2,reflected=F,used=F
+12.983|1257|0|0|it:Gold Armor~1~0,0;0,1;0,2;1,0;1,1;1,2|-|
+13.000|1258|101|0|it:Djinn Lamp~1~2,3;2,4|i0|amount=i1,reflected=F,used=F
+13.000|1259|0|0|it:Djinn Lamp~1~2,3;2,4|-|
+13.000|1260|105|0|it:Mana Orb~1~3,3|i0|amount=i1,reflected=F,used=F
+13.000|1261|12|0|i102|i0|amount=i4
+13.000|1262|12|0|i102|i1|amount=i1
+13.033|1263|104|0|it:Djinn Lamp~1~4,3;4,4|i0|amount=i1,reflected=F,used=F
+13.033|1264|0|0|it:Djinn Lamp~1~4,3;4,4|-|
+13.033|1265|105|0|it:Mana Orb~1~3,3|i0|amount=i2,reflected=F,used=F
+13.033|1266|3|0|it:Poison Dagger~1~8,1;8,2|i1|damage=i0
+13.033|1267|0|0|it:Poison Dagger~1~8,1;8,2|-|
+13.050|1268|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i12
+13.050|1269|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+13.050|1270|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+13.050|1271|19|1|it:Twine~3~2,2|-|amount=2.000000
+13.050|1272|0|0|it:Twine~3~2,2|-|
+13.050|1273|19|1|it:Twine~3~5,2|-|amount=2.000000
+13.050|1274|0|0|it:Twine~3~5,2|-|
+13.050|1275|19|1|it:Twine~3~5,3|-|amount=2.000000
+13.050|1276|0|0|it:Twine~3~5,3|-|
+13.050|1277|2|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i20
+13.050|1278|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+13.050|1279|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+13.050|1280|19|1|it:Twine~3~5,2|-|amount=2.000000
+13.050|1281|0|0|it:Twine~3~5,2|-|
+13.050|1282|19|1|it:Twine~3~5,3|-|amount=2.000000
+13.050|1283|0|0|it:Twine~3~5,3|-|
+13.050|1284|12|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i5
+13.050|1285|107|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i2,reflected=F,used=F
+13.050|1286|0|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|-|
+13.067|1287|101|0|it:Blueberries~1~3,1|i0|amount=i2,reflected=F,used=F
+13.067|1288|0|0|it:Blueberries~1~3,1|-|
+13.100|1289|3|0|it:Claws of Attack~1~7,1;7,2|i1|damage=i0
+13.100|1290|0|0|it:Claws of Attack~1~7,1;7,2|-|
+13.100|1291|19|0|it:Cheese Goobert~1~5,2;5,3;6,2;6,3|-|amount=26.000000
+13.100|1292|104|0|it:Cheese Goobert~1~5,2;5,3;6,2;6,3|i0|amount=i2,reflected=F,used=F
+13.100|1293|107|0|it:Cheese Goobert~1~5,2;5,3;6,2;6,3|i0|amount=i1,reflected=F,used=F
+13.100|1294|0|0|it:Cheese Goobert~1~5,2;5,3;6,2;6,3|-|
+13.217|1295|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i12
+13.217|1296|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+13.217|1297|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+13.217|1298|19|1|it:Twine~3~2,2|-|amount=2.000000
+13.217|1299|0|0|it:Twine~3~2,2|-|
+13.217|1300|19|1|it:Twine~3~2,3|-|amount=2.000000
+13.217|1301|0|0|it:Twine~3~2,3|-|
+13.217|1302|101|1|it:Holy Collar~3~1,4|i1|amount=i1,reflected=F,resisted=T,used=F
+13.217|1303|102|1|it:Holy Collar~3~1,4|i1|amount=i1,reflected=F,used=F
+13.217|1304|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i12
+13.217|1305|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+13.217|1306|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+13.217|1307|19|1|it:Twine~3~5,2|-|amount=2.000000
+13.217|1308|0|0|it:Twine~3~5,2|-|
+13.217|1309|19|1|it:Twine~3~5,3|-|amount=2.000000
+13.217|1310|0|0|it:Twine~3~5,3|-|
+13.217|1311|19|1|it:Twine~3~2,3|-|amount=2.000000
+13.217|1312|0|0|it:Twine~3~2,3|-|
+13.217|1313|12|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i1|amount=i7
+13.217|1314|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i3,reflected=F,resisted=T,used=F
+13.217|1315|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i4,duration=3.000000,reflected=F,used=F
+13.217|1316|0|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|-|
+13.217|1317|12|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i1|amount=i7
+13.217|1318|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i1,reflected=F,resisted=T,used=F
+13.217|1319|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i6,duration=3.000000,reflected=F,used=F
+13.217|1320|0|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|-|
+13.250|1321|1|0|it:Rat~3~8,0;8,1|i0|damage=i4
+13.250|1322|108|1|it:Rat~3~8,0;8,1|i0|amount=i1,reflected=F,used=F
+13.250|1323|0|0|it:Rat~3~8,0;8,1|-|
+13.367|1324|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i11
+13.367|1325|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+13.367|1326|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+13.367|1327|19|1|it:Twine~3~2,2|-|amount=2.000000
+13.367|1328|0|0|it:Twine~3~2,2|-|
+13.367|1329|19|1|it:Twine~3~5,2|-|amount=2.000000
+13.367|1330|0|0|it:Twine~3~5,2|-|
+13.367|1331|19|1|it:Twine~3~2,3|-|amount=2.000000
+13.367|1332|0|0|it:Twine~3~2,3|-|
+13.367|1333|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i10
+13.367|1334|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+13.367|1335|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+13.367|1336|19|1|it:Twine~3~2,2|-|amount=2.000000
+13.367|1337|0|0|it:Twine~3~2,2|-|
+13.367|1338|12|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i5
+13.367|1339|107|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i2,reflected=F,used=F
+13.367|1340|0|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|-|
+13.367|1341|12|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i5
+13.367|1342|107|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i2,reflected=F,used=F
+13.367|1343|0|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|-|
+13.400|1344|3|0|it:Falcon Blade~1~2,2;3,2;4,2|i1|damage=i0
+13.400|1345|0|0|it:Falcon Blade~1~2,2;3,2;4,2|-|
+13.400|1346|105|0|it:Mana Orb~1~3,3|i0|amount=i2,reflected=F,used=F
+13.400|1347|3|0|it:Falcon Blade~1~2,2;3,2;4,2|i1|damage=i0
+13.400|1348|0|0|it:Falcon Blade~1~2,2;3,2;4,2|-|
+13.483|1349|101|0|it:Blueberries~1~5,1|i0|amount=i2,reflected=F,used=F
+13.483|1350|0|0|it:Blueberries~1~5,1|-|
+13.483|1351|110|0|it:Snowmaster~3~6,0;6,1|i0|amount=i1,reflected=F,used=F
+13.483|1352|0|0|it:Snowmaster~3~6,0;6,1|-|
+13.483|1353|105|0|it:Mana Orb~3~7,2|i1|amount=i1,reflected=F,used=F
+13.483|1354|12|0|it:Goobling~3~6,2|i1|amount=i1
+13.483|1355|0|0|it:Goobling~3~6,2|-|
+13.483|1356|12|0|it:Goobling~3~6,2|i1|amount=i1
+13.483|1357|0|0|it:Goobling~3~6,2|-|
+13.483|1358|110|0|it:Snowmaster~3~6,0;6,1|i0|amount=i1,reflected=F,used=F
+13.483|1359|0|0|it:Snowmaster~3~6,0;6,1|-|
+13.517|1360|12|0|it:False Life~1~0,3|i0|amount=i10
+13.517|1361|0|0|it:False Life~1~0,3|-|
+13.550|1362|19|0|it:Cheese~1~2,0;3,0|-|amount=12.000000
+13.550|1363|107|0|it:Cheese~1~2,0;3,0|i0|amount=i2,reflected=F,used=F
+13.550|1364|0|0|it:Cheese~1~2,0;3,0|-|
+13.567|1365|0|0|it:Speak with Animals~3~5,5|-|
+13.600|1366|104|0|it:Djinn Lamp~1~4,0;4,1|i0|amount=i2,reflected=F,used=F
+13.600|1367|0|0|it:Djinn Lamp~1~4,0;4,1|-|
+13.633|1368|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i13
+13.633|1369|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+13.633|1370|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+13.633|1371|19|1|it:Twine~3~2,2|-|amount=2.000000
+13.633|1372|0|0|it:Twine~3~2,2|-|
+13.633|1373|12|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i1|amount=i7
+13.633|1374|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i1,reflected=F,resisted=T,used=F
+13.633|1375|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i6,duration=3.000000,reflected=F,used=F
+13.633|1376|0|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|-|
+13.633|1377|12|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i1|amount=i7
+13.633|1378|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i4,reflected=F,resisted=T,used=F
+13.633|1379|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i3,duration=3.000000,reflected=F,used=F
+13.633|1380|0|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|-|
+13.633|1381|19|1|it:Twine~3~5,2|-|amount=2.000000
+13.633|1382|0|0|it:Twine~3~5,2|-|
+13.633|1383|19|1|it:Twine~3~5,3|-|amount=2.000000
+13.633|1384|0|0|it:Twine~3~5,3|-|
+13.633|1385|19|1|it:Twine~3~2,3|-|amount=2.000000
+13.633|1386|0|0|it:Twine~3~2,3|-|
+13.633|1387|101|1|it:Holy Collar~3~1,4|i1|amount=i1,reflected=F,used=F
+13.633|1388|102|1|it:Holy Collar~3~1,4|i1|amount=i1,reflected=F,used=F
+13.633|1389|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i14
+13.633|1390|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+13.633|1391|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+13.633|1392|19|1|it:Twine~3~5,2|-|amount=2.000000
+13.633|1393|0|0|it:Twine~3~5,2|-|
+13.633|1394|19|1|it:Twine~3~2,3|-|amount=2.000000
+13.633|1395|0|0|it:Twine~3~2,3|-|
+13.667|1396|1|0|it:Falcon Blade~3~4,6;5,6;6,6|i0|damage=i5
+13.667|1397|1|1|i104|i0|damage=i5
+13.667|1398|12|1|i103|i1|amount=i1
+13.667|1399|0|0|it:Falcon Blade~3~4,6;5,6;6,6|-|
+13.667|1400|1|0|it:Falcon Blade~3~4,6;5,6;6,6|i0|damage=i6
+13.667|1401|1|1|i104|i0|damage=i6
+13.667|1402|12|1|i103|i1|amount=i1
+13.667|1403|0|0|it:Falcon Blade~3~4,6;5,6;6,6|-|
+13.667|1404|19|0|it:Cheese~3~0,1;1,1|-|amount=10.000000
+13.667|1405|103|0|it:Cheese~3~0,1;1,1|i1|amount=i1,reflected=F,used=F
+13.667|1406|0|0|it:Cheese~3~0,1;1,1|-|
+13.700|1407|2|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i26
+13.700|1408|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+13.700|1409|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+13.700|1410|19|1|it:Twine~3~2,2|-|amount=2.000000
+13.700|1411|0|0|it:Twine~3~2,2|-|
+13.700|1412|19|1|it:Twine~3~5,2|-|amount=2.000000
+13.700|1413|0|0|it:Twine~3~5,2|-|
+13.700|1414|19|1|it:Twine~3~5,3|-|amount=2.000000
+13.700|1415|0|0|it:Twine~3~5,3|-|
+13.700|1416|12|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i5
+13.700|1417|107|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i2,reflected=F,used=F
+13.700|1418|0|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|-|
+13.700|1419|12|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i5
+13.700|1420|107|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i2,reflected=F,used=F
+13.700|1421|0|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|-|
+13.700|1422|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i11
+13.700|1423|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+13.700|1424|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+13.700|1425|19|1|it:Twine~3~2,2|-|amount=2.000000
+13.700|1426|0|0|it:Twine~3~2,2|-|
+13.700|1427|12|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i1|amount=i7
+13.700|1428|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i2,reflected=F,resisted=T,used=F
+13.700|1429|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i5,duration=3.000000,reflected=F,used=F
+13.700|1430|0|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|-|
+13.700|1431|12|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i1|amount=i7
+13.700|1432|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i3,reflected=F,resisted=T,used=F
+13.700|1433|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i4,duration=3.000000,reflected=F,used=F
+13.700|1434|0|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|-|
+13.750|1435|101|0|it:Toad~3~8,4|i1|amount=i1,reflected=F,resisted=T,used=F
+13.750|1436|105|0|it:Toad~3~8,4|i1|amount=i1,reflected=F,used=F
+13.750|1437|0|0|it:Toad~3~8,4|-|
+13.800|1438|101|0|it:Djinn Lamp~1~2,3;2,4|i0|amount=i1,reflected=F,used=F
+13.800|1439|0|0|it:Djinn Lamp~1~2,3;2,4|-|
+13.817|1440|102|0|it:Seal the Deal~1~2,1|i0|amount=i-2,reflected=F,used=T
+13.817|1441|103|1|it:Seal the Deal~1~2,1|i0|amount=i3,reflected=F,used=F
+13.817|1442|101|0|it:Seal the Deal~1~2,1|i0|amount=i-2,reflected=F,used=T
+13.817|1443|104|1|it:Seal the Deal~1~2,1|i0|amount=i4,reflected=F,used=F
+13.817|1444|105|0|it:Seal the Deal~1~2,1|i0|amount=i-2,reflected=F,used=T
+13.817|1445|106|1|it:Seal the Deal~1~2,1|i0|amount=i4,reflected=F,used=F
+13.817|1446|0|0|it:Seal the Deal~1~2,1|-|
+13.850|1447|0|0|it:Oil Lamp~3~2,4;2,5|-|
+13.933|1448|101|0|it:Djinn Lamp~1~4,3;4,4|i0|amount=i2,reflected=F,used=F
+13.933|1449|0|0|it:Djinn Lamp~1~4,3;4,4|-|
+13.933|1450|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i-4,reflected=F,timeout=T,used=F
+13.933|1451|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i-5,reflected=F,timeout=T,used=F
+13.950|1452|2|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i23
+13.950|1453|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+13.950|1454|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+13.950|1455|19|1|it:Twine~3~2,2|-|amount=2.000000
+13.950|1456|0|0|it:Twine~3~2,2|-|
+13.950|1457|19|1|it:Twine~3~5,2|-|amount=2.000000
+13.950|1458|0|0|it:Twine~3~5,2|-|
+13.950|1459|19|1|it:Twine~3~5,3|-|amount=2.000000
+13.950|1460|0|0|it:Twine~3~5,3|-|
+13.950|1461|19|1|it:Twine~3~2,3|-|amount=2.000000
+13.950|1462|0|0|it:Twine~3~2,3|-|
+13.950|1463|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i11
+13.950|1464|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+13.950|1465|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+13.950|1466|19|1|it:Twine~3~5,2|-|amount=2.000000
+13.950|1467|0|0|it:Twine~3~5,2|-|
+13.950|1468|19|1|it:Twine~3~5,3|-|amount=2.000000
+13.950|1469|0|0|it:Twine~3~5,3|-|
+13.950|1470|19|1|it:Twine~3~2,3|-|amount=2.000000
+13.950|1471|0|0|it:Twine~3~2,3|-|
+13.950|1472|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i14
+13.950|1473|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+13.950|1474|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+13.950|1475|19|1|it:Twine~3~5,2|-|amount=2.000000
+13.950|1476|0|0|it:Twine~3~5,2|-|
+13.950|1477|19|1|it:Twine~3~5,3|-|amount=2.000000
+13.950|1478|0|0|it:Twine~3~5,3|-|
+13.950|1479|19|1|it:Twine~3~2,3|-|amount=2.000000
+13.950|1480|0|0|it:Twine~3~2,3|-|
+13.950|1481|12|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i1|amount=i7
+13.950|1482|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i1,reflected=F,resisted=T,used=F
+13.950|1483|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i6,duration=3.000000,reflected=F,used=F
+13.950|1484|0|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|-|
+13.950|1485|12|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i1|amount=i7
+13.950|1486|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i1,reflected=F,resisted=T,used=F
+13.950|1487|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i6,duration=3.000000,reflected=F,used=F
+13.950|1488|0|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|-|
+13.950|1489|12|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i5
+13.950|1490|107|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i2,reflected=F,used=F
+13.950|1491|0|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|-|
+13.950|1492|12|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i5
+13.950|1493|107|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i1,reflected=F,resisted=T,used=F
+13.950|1494|107|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i1,reflected=F,used=F
+13.950|1495|0|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|-|
+13.950|1496|2|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i27
+13.950|1497|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+13.983|1498|109|0|it:Crown~1~7,3;8,3|i0|amount=i-1,reflected=F,used=F
+13.983|1499|12|0|it:Crown~1~7,3;8,3|i0|amount=i5
+13.983|1500|0|0|it:Crown~1~7,3;8,3|-|
+14.000|1501|108|0|it:Gold Armor~1~0,0;0,1;0,2;1,0;1,1;1,2|i0|amount=i-1,reflected=F,used=F
+14.000|1502|109|0|it:Gold Armor~1~0,0;0,1;0,2;1,0;1,1;1,2|i0|amount=i-2,reflected=F,used=F
+14.000|1503|110|0|it:Gold Armor~1~0,0;0,1;0,2;1,0;1,1;1,2|i0|amount=i-2,reflected=F,used=F
+14.000|1504|0|0|it:Gold Armor~1~0,0;0,1;0,2;1,0;1,1;1,2|-|
+14.083|1505|3|0|it:Claws of Attack~1~7,1;7,2|i1|damage=i0
+14.083|1506|0|0|it:Claws of Attack~1~7,1;7,2|-|
+14.083|1507|19|0|it:Cheese Goobert~1~5,2;5,3;6,2;6,3|-|amount=26.000000
+14.083|1508|107|0|it:Cheese Goobert~1~5,2;5,3;6,2;6,3|i0|amount=i1,reflected=F,used=F
+14.083|1509|104|0|it:Cheese Goobert~1~5,2;5,3;6,2;6,3|i0|amount=i1,reflected=F,used=F
+14.083|1510|0|0|it:Cheese Goobert~1~5,2;5,3;6,2;6,3|-|
+14.083|1511|101|0|it:Fedora~3~6,3;6,4;6,5;7,4|i1|amount=i-1,reflected=F,used=T
+14.083|1512|105|1|it:Fedora~3~6,3;6,4;6,5;7,4|i0|amount=i-1,reflected=F,used=F
+14.083|1513|105|1|it:Fedora~3~6,3;6,4;6,5;7,4|i1|amount=i1,reflected=F,used=F
+14.083|1514|106|1|it:Fedora~3~6,3;6,4;6,5;7,4|i0|amount=i-1,reflected=F,used=F
+14.083|1515|106|1|it:Fedora~3~6,3;6,4;6,5;7,4|i1|amount=i1,reflected=F,used=F
+14.083|1516|0|0|it:Fedora~3~6,3;6,4;6,5;7,4|-|
+14.083|1517|105|0|it:Mana Orb~3~7,2|i1|amount=i1,reflected=F,used=F
+14.083|1518|110|0|it:Snowmaster~3~6,0;6,1|i0|amount=i1,reflected=F,used=F
+14.083|1519|0|0|it:Snowmaster~3~6,0;6,1|-|
+14.083|1520|12|0|it:Goobling~3~6,2|i1|amount=i1
+14.083|1521|0|0|it:Goobling~3~6,2|-|
+14.083|1522|12|0|it:Goobling~3~6,2|i1|amount=i1
+14.083|1523|0|0|it:Goobling~3~6,2|-|
+14.083|1524|110|0|it:Snowmaster~3~6,0;6,1|i0|amount=i1,reflected=F,used=F
+14.083|1525|0|0|it:Snowmaster~3~6,0;6,1|-|
+14.083|1526|105|0|it:Mana Orb~3~7,2|i1|amount=i1,reflected=F,used=F
+14.117|1527|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i-2,reflected=F,timeout=T,used=F
+14.117|1528|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i-5,reflected=F,timeout=T,used=F
+14.233|1529|1|0|it:Pumpkin~3~7,5;7,6;8,5;8,6|i0|damage=i9
+14.233|1530|10|1|it:Pumpkin~3~7,5;7,6;8,5;8,6|i0|
+14.233|1531|0|0|it:Pumpkin~3~7,5;7,6;8,5;8,6|-|
+14.267|1532|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i14
+14.267|1533|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+14.267|1534|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+14.267|1535|2|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i23
+14.267|1536|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+14.267|1537|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+14.267|1538|19|1|it:Twine~3~2,2|-|amount=2.000000
+14.267|1539|0|0|it:Twine~3~2,2|-|
+14.267|1540|19|1|it:Twine~3~5,2|-|amount=2.000000
+14.267|1541|0|0|it:Twine~3~5,2|-|
+14.267|1542|19|1|it:Twine~3~2,3|-|amount=2.000000
+14.267|1543|0|0|it:Twine~3~2,3|-|
+14.267|1544|101|1|it:Holy Collar~3~1,4|i1|amount=i1,reflected=F,used=F
+14.267|1545|102|1|it:Holy Collar~3~1,4|i1|amount=i1,reflected=F,used=F
+14.300|1546|102|0|it:Heart of Darkness~1~5,4;5,5;6,4;6,5|i1|amount=i-2,reflected=F,used=F
+14.300|1547|102|0|it:Heart of Darkness~1~5,4;5,5;6,4;6,5|i0|amount=i3,reflected=F,used=F
+14.300|1548|0|0|it:Heart of Darkness~1~5,4;5,5;6,4;6,5|-|
+14.450|1549|1|0|it:Falcon Blade~3~4,6;5,6;6,6|i0|damage=i10
+14.450|1550|1|1|i104|i0|damage=i10
+14.450|1551|12|1|i103|i1|amount=i1
+14.450|1552|0|0|it:Falcon Blade~3~4,6;5,6;6,6|-|
+14.450|1553|1|0|it:Falcon Blade~3~4,6;5,6;6,6|i0|damage=i10
+14.450|1554|1|1|i104|i0|damage=i10
+14.450|1555|12|1|i103|i1|amount=i1
+14.450|1556|0|0|it:Falcon Blade~3~4,6;5,6;6,6|-|
+14.483|1557|105|0|it:Badger Spirit~3~1,5;1,6|i1|amount=i-1,reflected=F,used=T
+14.483|1558|19|1|it:Badger Spirit~3~1,5;1,6|-|amount=22.000000
+14.483|1559|0|0|it:Badger Spirit~3~1,5;1,6|-|
+14.517|1560|101|0|it:Shaman Mask~1~6,0;6,1|i0|amount=i-2,reflected=F,used=T
+14.517|1561|102|1|it:Shaman Mask~1~6,0;6,1|i0|amount=i2,reflected=F,used=F
+14.517|1562|105|1|it:Shaman Mask~1~6,0;6,1|i0|amount=i4,reflected=F,used=F
+14.517|1563|104|1|it:Shaman Mask~1~6,0;6,1|i0|amount=i2,reflected=F,used=F
+14.517|1564|107|1|it:Shaman Mask~1~6,0;6,1|i0|amount=i1,reflected=F,used=F
+14.517|1565|0|0|it:Shaman Mask~1~6,0;6,1|-|
+14.583|1566|101|0|it:Djinn Lamp~1~2,3;2,4|i0|amount=i1,reflected=F,used=F
+14.583|1567|0|0|it:Djinn Lamp~1~2,3;2,4|-|
+14.583|1568|105|0|it:Mana Orb~1~3,3|i0|amount=i1,reflected=F,used=F
+14.583|1569|101|0|it:Blueberries~3~5,4|i1|amount=i1,reflected=F,used=F
+14.583|1570|0|0|it:Blueberries~3~5,4|-|
+14.600|1571|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i15
+14.600|1572|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+14.600|1573|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+14.600|1574|19|1|it:Twine~3~5,2|-|amount=2.000000
+14.600|1575|0|0|it:Twine~3~5,2|-|
+14.600|1576|19|1|it:Twine~3~5,3|-|amount=2.000000
+14.600|1577|0|0|it:Twine~3~5,3|-|
+14.600|1578|19|1|it:Twine~3~2,3|-|amount=2.000000
+14.600|1579|0|0|it:Twine~3~2,3|-|
+14.600|1580|12|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i5
+14.600|1581|107|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i2,reflected=F,used=F
+14.600|1582|0|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|-|
+14.600|1583|12|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i5
+14.600|1584|107|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i2,reflected=F,used=F
+14.600|1585|0|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|-|
+14.600|1586|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i11
+14.600|1587|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+14.600|1588|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+14.600|1589|19|1|it:Twine~3~2,2|-|amount=2.000000
+14.600|1590|0|0|it:Twine~3~2,2|-|
+14.600|1591|12|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i1|amount=i7
+14.600|1592|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i4,reflected=F,resisted=T,used=F
+14.600|1593|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i3,duration=3.000000,reflected=F,used=F
+14.600|1594|0|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|-|
+14.600|1595|12|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i1|amount=i7
+14.600|1596|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i4,reflected=F,resisted=T,used=F
+14.600|1597|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i3,duration=3.000000,reflected=F,used=F
+14.600|1598|0|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|-|
+14.600|1599|19|1|it:Twine~3~5,2|-|amount=2.000000
+14.600|1600|0|0|it:Twine~3~5,2|-|
+14.600|1601|19|1|it:Twine~3~5,3|-|amount=2.000000
+14.600|1602|0|0|it:Twine~3~5,3|-|
+14.617|1603|3|0|it:Falcon Blade~1~2,2;3,2;4,2|i1|damage=i0
+14.617|1604|0|0|it:Falcon Blade~1~2,2;3,2;4,2|-|
+14.617|1605|3|0|it:Falcon Blade~1~2,2;3,2;4,2|i1|damage=i0
+14.617|1606|0|0|it:Falcon Blade~1~2,2;3,2;4,2|-|
+14.617|1607|105|0|it:Mana Orb~1~3,3|i0|amount=i2,reflected=F,used=F
+14.617|1608|101|0|it:Djinn Lamp~1~4,0;4,1|i0|amount=i2,reflected=F,used=F
+14.617|1609|0|0|it:Djinn Lamp~1~4,0;4,1|-|
+14.617|1610|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i-5,reflected=F,timeout=T,used=F
+14.617|1611|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i-5,reflected=F,timeout=T,used=F
+14.650|1612|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i12
+14.650|1613|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+14.650|1614|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+14.650|1615|19|1|it:Twine~3~2,2|-|amount=2.000000
+14.650|1616|0|0|it:Twine~3~2,2|-|
+14.650|1617|19|1|it:Twine~3~2,3|-|amount=2.000000
+14.650|1618|0|0|it:Twine~3~2,3|-|
+14.650|1619|101|1|it:Holy Collar~3~1,4|i1|amount=i1,reflected=F,used=F
+14.650|1620|102|1|it:Holy Collar~3~1,4|i1|amount=i1,reflected=F,used=F
+14.650|1621|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i15
+14.650|1622|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+14.650|1623|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+14.650|1624|19|1|it:Twine~3~5,2|-|amount=2.000000
+14.650|1625|0|0|it:Twine~3~5,2|-|
+14.650|1626|19|1|it:Twine~3~2,3|-|amount=2.000000
+14.650|1627|0|0|it:Twine~3~2,3|-|
+14.683|1628|110|0|it:Snowmaster~3~6,0;6,1|i0|amount=i1,reflected=F,used=F
+14.683|1629|0|0|it:Snowmaster~3~6,0;6,1|-|
+14.683|1630|105|0|it:Mana Orb~3~7,2|i1|amount=i1,reflected=F,used=F
+14.683|1631|110|0|it:Snowmaster~3~6,0;6,1|i0|amount=i1,reflected=F,used=F
+14.683|1632|0|0|it:Snowmaster~3~6,0;6,1|-|
+14.683|1633|12|0|it:Goobling~3~6,2|i1|amount=i1
+14.683|1634|0|0|it:Goobling~3~6,2|-|
+14.683|1635|12|0|it:Goobling~3~6,2|i1|amount=i1
+14.683|1636|0|0|it:Goobling~3~6,2|-|
+14.683|1637|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i-5,reflected=F,timeout=T,used=F
+14.683|1638|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i-1,reflected=F,timeout=T,used=F
+14.700|1639|1|0|it:Rat~3~8,0;8,1|i0|damage=i4
+14.700|1640|108|1|it:Rat~3~8,0;8,1|i0|amount=i1,reflected=F,used=F
+14.700|1641|0|0|it:Rat~3~8,0;8,1|-|
+14.700|1642|1|0|it:Rat~3~8,0;8,1|i0|damage=i4
+14.700|1643|108|1|it:Rat~3~8,0;8,1|i0|amount=i1,reflected=F,used=F
+14.700|1644|0|0|it:Rat~3~8,0;8,1|-|
+14.733|1645|0|0|it:Speak with Animals~3~5,5|-|
+14.767|1646|101|0|it:Djinn Lamp~1~4,3;4,4|i0|amount=i1,reflected=F,used=F
+14.767|1647|0|0|it:Djinn Lamp~1~4,3;4,4|-|
+14.867|1648|102|0|it:Wolpertinger~1~7,4;7,5;8,4;8,5|i0|amount=i5,reflected=F,used=F
+14.867|1649|0|0|it:Wolpertinger~1~7,4;7,5;8,4;8,5|-|
+14.900|1650|3|0|it:Claws of Attack~1~7,1;7,2|i1|damage=i0
+14.900|1651|0|0|it:Claws of Attack~1~7,1;7,2|-|
+14.900|1652|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i11
+14.900|1653|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+14.900|1654|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+14.900|1655|19|1|it:Twine~3~2,2|-|amount=2.000000
+14.900|1656|0|0|it:Twine~3~2,2|-|
+14.900|1657|12|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i1|amount=i7
+14.900|1658|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i3,reflected=F,resisted=T,used=F
+14.900|1659|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i4,duration=3.000000,reflected=F,used=F
+14.900|1660|0|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|-|
+14.900|1661|12|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i1|amount=i7
+14.900|1662|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i2,reflected=F,resisted=T,used=F
+14.900|1663|109|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|i0|amount=i5,duration=3.000000,reflected=F,used=F
+14.900|1664|0|0|it:Light Goobert~3~2,0;2,1;3,0;3,1|-|
+14.900|1665|12|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i5
+14.900|1666|107|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i2,reflected=F,used=F
+14.900|1667|0|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|-|
+14.900|1668|12|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i5
+14.900|1669|107|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|i1|amount=i2,reflected=F,used=F
+14.900|1670|0|0|it:Chili Goobert~3~4,0;4,1;5,0;5,1|-|
+14.900|1671|1|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i15
+14.900|1672|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2
+14.900|1673|0|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|-|
+14.900|1674|19|1|it:Twine~3~2,2|-|amount=2.000000
+14.900|1675|0|0|it:Twine~3~2,2|-|
+14.900|1676|19|1|it:Twine~3~5,2|-|amount=2.000000
+14.900|1677|0|0|it:Twine~3~5,2|-|
+14.900|1678|19|1|it:Twine~3~5,3|-|amount=2.000000
+14.900|1679|0|0|it:Twine~3~5,3|-|
+14.900|1680|19|1|it:Twine~3~2,3|-|amount=2.000000
+14.900|1681|0|0|it:Twine~3~2,3|-|
+14.933|1682|101|0|it:Blueberries~1~3,1|i0|amount=i2,reflected=F,used=F
+14.933|1683|0|0|it:Blueberries~1~3,1|-|
+14.983|1684|110|0|it:Gold Armor~1~0,0;0,1;0,2;1,0;1,1;1,2|i0|amount=i-2,reflected=F,used=F
+14.983|1685|109|0|it:Gold Armor~1~0,0;0,1;0,2;1,0;1,1;1,2|i0|amount=i-1,reflected=F,used=F
+14.983|1686|108|0|it:Gold Armor~1~0,0;0,1;0,2;1,0;1,1;1,2|i0|amount=i-2,reflected=F,used=F
+14.983|1687|0|0|it:Gold Armor~1~0,0;0,1;0,2;1,0;1,1;1,2|-|
+15.000|1688|12|0|i102|i0|amount=i12
+15.000|1689|12|0|i102|i1|amount=i2
+15.033|1690|2|0|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i0|damage=i27
+15.033|1691|12|1|it:Dragon Knight~3~3,2;3,3;3,4;4,2;4,3;4,4|i1|amount=i2

@@ -301,6 +301,12 @@ func combatStart() -> void :
 	if autoRageItem != null:
 		_autoRage_left = AUTO_RAGE_DELAY
 		_autoRage_active = true
+	
+	# ★ TickTimer 归角色（Character.tscn:1632，wait 1.0 循环，TIMER_PROCESS_PHYSICS）：
+	#   每角色一个，registry 次序=场景树次序（对手先于玩家）——由
+	#   CoreCombat.physicsTick 步骤⑦逐角色驱动。
+	_tick_timer_left = 1.0
+	_tick_timer_active = true
 
 
 # 对齐 Character.gd:339-349（三个一次性计时器全部 stop）
@@ -387,7 +393,118 @@ func onTick() -> void :
 
 # ─────────────────────────── 伤害主链（对齐 482-653） ───────────────────────────
 
+# ── 表现层链状态（战斗判定链中途的真实 Util.rng 消耗面，Character.gd:445-481）──
+# ★ 受控神谕在阻塞 tick 循环里 tween 从不推进 → attackMovingBack 的 tween 回调
+#   永不触发 → attackMovingForward 一旦置真便**闩死**（原版真机 ~0.3s 后复位；
+#   run1160_r18 rng_log 实证：(100,160)×90 恒出现而挥击音 pickRandomElement
+#   的 randi_range(0,2) 只在链首出现过一次，此后消失——闩死语义）。两侧模拟器同约定。
+var attack_moving_forward := false
+# 对齐 Character.gd:108 attackSoundReadyTime（0.1s 职业攻击音时闸；-1.0 = 神谕
+# 约定下角色首战必过闸的等价初始化，见 playAttackAnimation 注释③）
+var attack_sound_ready_time := - 1.0
+# TickTimer（Character.tscn:1632，wait 1.0 循环、物理步进）——每角色独立
+var _tick_timer_left := 0.0
+var _tick_timer_active := false
+# damageAnimation.current_animation 的「Poison」闸（Character.gd:616-627）：冻结
+# 循环里动画不前进，play("Poison") 后 current 恒为 "Poison" 直到下一次非毒分支
+# 的 stop+play；闸只判 "!= Poison"，用布尔等价建模。
+var damage_anim_is_poison := false
+
+
+# 对齐 Character.gd:445-462 playAttackAnimation。每次 dealDamage 调用：
+#   ① 默认实参 distance = randf_range(100,160)（GDScript 默认实参**先于**早退
+#     判定求值，Character.gd:445）——2 抽，恒消耗；
+#   ② 未闩死时：两段动画时长 randf_range(0.9,1.1)×2（:451-452）+ 攻击挥击音
+#     pickRandomElement(attackSounds)=randi_range(0,2)（:459，attackSounds 恒
+#     3 元素，Character.gd:437-441）+ 音高 randf_range(0.8,1.2)（:459）；
+#   ③ 职业攻击音（:460-462）：0.1s 时闸（Util.clockTime > attackSoundReadyTime），
+#     通过时 getAttackSound()=Util.pickRandomElement(职业 attackSounds)——1 抽
+#     （run1029_r2 语料逐抽对位实证：Pyromancer 攻击多一行 pickRandomElement(0,4)）。
+#     职业音效数按 1.1.8 Assets/Sound/<Class>/Attack* 实数（去 .import）。
+#     神谕约定下角色首战必过闸（clockTime 跨场累计 > 0.1 ≥ fresh readyTime），
+#     内核 ready_time 初始化 -1.0 等价复刻（ctx.time 从 0 起跑）。
+func playAttackAnimation() -> void :
+	ctx.rng.randf_range(100.0, 160.0)
+	if attack_moving_forward:
+		return
+	ctx.rng.randf_range(0.9, 1.1)
+	ctx.rng.randf_range(0.9, 1.1)
+	ctx.rng.randi_range(0, 2)
+	ctx.rng.randf_range(0.8, 1.2)
+	if ctx.time > attack_sound_ready_time:
+		ctx.rng.randi_range(0, classAttackSoundCount() - 1)
+		attack_sound_ready_time = ctx.time + 0.1
+	attack_moving_forward = true
+
+
+# 职业音效文件数（1.1.8 Assets/Sound/<Class>/ 实测，去 .import）：
+# Attack* / WinRound* / LoseRound*。备用锁定职业一并收录，缺类 fail-fast。
+const CLASS_SOUND_COUNTS := {
+	CoreConst.Classes.Ranger: { "attack": 3, "win": 6, "lose": 6 },
+	CoreConst.Classes.Reaper: { "attack": 3, "win": 2, "lose": 4 },
+	CoreConst.Classes.Berserker: { "attack": 3, "win": 4, "lose": 6 },
+	CoreConst.Classes.Pyromancer: { "attack": 5, "win": 4, "lose": 4 },
+	CoreConst.Classes_Full.Mage: { "attack": 3, "win": 6, "lose": 5 },
+	CoreConst.Classes_Full.Adventurer: { "attack": 4, "win": 7, "lose": 6 },
+	CoreConst.Classes_Full.Engineer: { "attack": 6, "win": 5, "lose": 8 },
+}
+
+func classAttackSoundCount() -> int :
+	if not CLASS_SOUND_COUNTS.has(characterClass):
+		assert(false, "未知职业音效表：%s" % str(characterClass))
+	return CLASS_SOUND_COUNTS[characterClass]["attack"]
+
+
+# 对齐 Game.endCombat 的胜负音效抽取（getWinRoundSound/getLoseRoundSound = 
+# Util.pickRandomElement(职业 winRoundSounds/loseRoundSounds)，1 抽）
+func classRoundSoundCount(win: bool) -> int :
+	if not CLASS_SOUND_COUNTS.has(characterClass):
+		assert(false, "未知职业音效表：%s" % str(characterClass))
+	return CLASS_SOUND_COUNTS[characterClass]["win" if win else "lose"]
+
+
+# 对齐 Character.gd:464-481 playActivateAnimation（无默认实参抽取）
+func playActivateAnimation() -> void :
+	if attack_moving_forward:
+		return
+	ctx.rng.randf_range(0.9, 1.1)
+	ctx.rng.randf_range(0.9, 1.1)
+	attack_moving_forward = true
+
+
+# 对齐 Character.gd:688-691 randBuffLabelPos（标签位置抖动：2 抽）
+func randBuffLabelPos() -> void :
+	ctx.rng.randf_range(-60.0, 60.0)
+	ctx.rng.randf_range(-40.0, 40.0)
+
+
+# 对齐 Utility/Util.gd:868-869 randBuffLabelDir（1 抽）
+func randBuffLabelDir() -> void :
+	ctx.rng.randf_range(-75.0, -120.0)
+
+
+# 对齐 Character.gd:665-668 randDmgNumberPos（伤害数字位置：2 抽，
+# DMG_NUM_OFFSET=(50,70)）
+func randDmgNumberPos() -> void :
+	ctx.rng.randf_range(-50.0, 50.0)
+	ctx.rng.randf_range(-70.0, 70.0)
+
+
+# 对齐 Character.gd:679-685 randDmgNumberDir（伤害数字方向：1 抽，
+# deg2rad(-21)..deg2rad(-3)）
+func randDmgNumberDir() -> void :
+	ctx.rng.randf_range(-0.3665191429188092, -0.05235987755982988)
+
+
+# 对齐 Character.gd:670-673 randHealNumberPos（治疗数字位置：2 抽，
+# 偏移同 DMG_NUM_OFFSET）
+func randHealNumberPos() -> void :
+	ctx.rng.randf_range(-50.0, 50.0)
+	ctx.rng.randf_range(-70.0, 70.0)
+
+
 func dealDamage(damageSource: CoreDamageSource, triggerEvent = null) -> CoreDamageResult:
+	playAttackAnimation()
 	var res = opponent.takeDamage(damageSource, triggerEvent)
 	applyVampirism(res)
 	return res
@@ -424,6 +541,14 @@ func takeDamage(damageSource: CoreDamageSource, triggerEvent = null) -> CoreDama
 			damageRes.hit = false
 	else:
 		damageRes.hit = true
+
+	# ★ 表现层链消耗还原（Character.gd:524-525）：伤害飘字的位置与方向
+	#   randDmgNumberPos（DMG_NUM_OFFSET=(50,70)→2 抽）+ randDmgNumberDir
+	#   （deg2rad(-21)..deg2rad(-3)→1 抽）——命中/落空都消耗（原版在 hit 分支
+	#   之前无条件求值）。
+	ctx.rng.randf_range(-50.0, 50.0)
+	ctx.rng.randf_range(-70.0, 70.0)
+	ctx.rng.randf_range(-0.3665191429188092, -0.05235987755982988)
 	
 	if item != null and damageSource.isAttack():
 		item.preDealDamage_early(damageRes)
@@ -451,9 +576,14 @@ func takeDamage(damageSource: CoreDamageSource, triggerEvent = null) -> CoreDama
 			if not damageRes.critical and opponent.getCritTokens() > 0:
 				opponent.useCritToken()
 				critical = true
-			
+
 			if critical:
 				if critResisted():
+					# 原版 Util.spawnBuffLabel(CriticalResisted, randBuffLabelPos())
+					#（Character.gd:571）：位置实参求值 2 抽 + spawnBuffLabel 内
+					# randBuffLabelDir 1 抽（Util.gd:909-914）
+					randBuffLabelPos()
+					randBuffLabelDir()
 					ctx.hooks.spawnBuffLabel(CoreConst.EventType.CriticalResisted, null)
 				else:
 					damageRes.makeCritical()
@@ -492,7 +622,7 @@ func takeDamage(damageSource: CoreDamageSource, triggerEvent = null) -> CoreDama
 				damageRes.healthDamage = 0
 		
 		curHealth -= damageRes.healthDamage
-		
+
 		if damageRes.wasCriticalHit():
 			spawnLabel_native(CoreConst.EventType.CriticalDamage, damageRes.damage, item)
 		elif damageSource.hasType(CoreDamageSource.Type.Fatigue):
@@ -503,9 +633,14 @@ func takeDamage(damageSource: CoreDamageSource, triggerEvent = null) -> CoreDama
 			spawnLabel_native(CoreConst.EventType.Spikes, damageRes.damage, item)
 		else:
 			spawnLabel_native(CoreConst.EventType.DealDamage, damageRes.damage, item)
-		
-		# 原版此处写入 damageAnimation 播放速度与片段（纯表现）→ 已剥离
-		ctx.hooks.damageAnimation(self, "Fatigue" if damageSource.hasType(CoreDamageSource.Type.Fatigue) else "Hit")
+
+		# ★ 表现层链消耗还原（Character.gd:616-627）：受击动画播放速度
+		#   randf_range(0.9,1.1)——**1 次调用 = 2 步链**（run1029_r2 语料逐抽对位：
+		#   每 takeDamage 恰 1 行 (0.9,1.1)）；「Poison」闸（:616）见 damage_anim_is_poison。
+		if not damage_anim_is_poison:
+			ctx.rng.randf_range(0.9, 1.1)
+			damage_anim_is_poison = false
+			ctx.hooks.damageAnimation(self, "Fatigue" if damageSource.hasType(CoreDamageSource.Type.Fatigue) else "Hit")
 	else:
 		spawnLabel_native(CoreConst.EventType.MissedAttack, 0, item)
 	
@@ -538,6 +673,12 @@ func takeDamage(damageSource: CoreDamageSource, triggerEvent = null) -> CoreDama
 
 
 func spawnLabel_native(type: int, damage: int, item = null) -> void :
+	# ★ 表现层链消耗还原（Character.gd:693-711 → Item.gd:4788-4791 → :6485-6494）：
+	#   物品身上的浮动标签位置 getNextFreeLabelPosition 恒消耗 Util.randInBox
+	#   2 抽（槽位复用 randInBox(10,10) / 兜底 randInBox(30,30)，抽数相同）。
+	if item != null:
+		ctx.rng.randf_range(-10.0, 10.0)
+		ctx.rng.randf_range(-10.0, 10.0)
 	ctx.hooks.spawnLabel_character(self, type, damage, item)
 
 
@@ -583,8 +724,20 @@ func heal(amount, origin = null, triggerEvent = null) -> void :
 	var overheal = max(0, amount - missingHealth)
 	curHealth += amount
 	curHealth = min(curHealth, getMaxHealth())
-	
+
 	ctx.hooks.onHealthChangedUI(self)
+	# ★ 表现层链消耗还原（Character.gd:749）：治疗数字的位置与方向——
+	#   spawnLabel(Health, amount, origin, randHealNumberPos()) 的实参求值
+	#   randHealNumberPos 2 抽 + direction 默认实参 randDmgNumberDir 1 抽
+	#   （默认实参即便调用点未显式给出也必求值）；origin 为 **Item 实例** 时
+	#   物品身上的浮动标签再消耗 randInBox 2 抽（Character.gd:707
+	#   `if item != null and item is Item`——再生等枚举 origin 不取物品标签，
+	#   run1122_r11 逐抽对位实证）。
+	randHealNumberPos()
+	randDmgNumberDir()
+	if origin != null and origin is CoreItem:
+		ctx.rng.randf_range(-10.0, 10.0)
+		ctx.rng.randf_range(-10.0, 10.0)
 	ctx.hooks.spawnLabel_character(self, CoreConst.EventType.Health, amount, origin)
 	
 	var event = ctx.combat_log.createEvent_Heal(amount, playerId, origin, triggerEvent)
@@ -706,6 +859,10 @@ func gainStamina(amount, item = null, triggerEvent = null) -> void :
 		var event = ctx.combat_log.createEvent_Stamina(amount, item, playerId, triggerEvent)
 		ctx.bus.logEvent(event)
 		item.staminaChanged(amount, CoreConst.StackChangeType.Added_Player)
+		# ★ 表现层链消耗还原（Character.gd:805 → Util.gd:940-952 spawnLabelOnItem
+		#   → Item.gd:6485-6494 getNextFreeLabelPosition）：体力物品标签取位，
+		#   Util.spawnLabelOnItem 无设置闸，item 非空即消耗 randInBox 2 抽。
+		item.getNextFreeLabelPosition()
 
 
 func addStamina(amount) -> void :
@@ -771,6 +928,12 @@ func death() -> void :
 
 func stun(duration, item = null, triggerEvent = null) -> void :
 	if stunResisted():
+		# ★ 表现层链消耗（Character.gd:1074 → Util.gd:909-914）：
+		#   Util.spawnBuffLabel(StunResisted, randBuffLabelPos(), duration) 的
+		#   pos 实参（randBuffLabelPos 2 抽）+ spawnBuffLabel 内部
+		#   randBuffLabelDir（1 抽）——与 Buff 三分支/critResisted 同族。
+		randBuffLabelPos()
+		randBuffLabelDir()
 		ctx.hooks.spawnBuffLabel(CoreConst.EventType.StunResisted, null)
 		var event = ctx.combat_log.createEvent_StunResist(item, playerId, triggerEvent)
 		ctx.bus.logEvent(event)
@@ -781,6 +944,12 @@ func stun(duration, item = null, triggerEvent = null) -> void :
 		# 订阅方 Dagger.onStun 等靠它触发；此前误写成 logEvent（只记不派发）
 		# → 眩晕触发型物品全部静默失效。
 		ctx.bus.emitEvent(self, "character_stunned", event, [event])
+		# ★ 表现层链消耗（Character.gd:1091-1096 playStunAnimation）：duration>0
+		#   时 Util.spawnBuffLabel(Stun, randBuffLabelPos(), duration) = pos 2 抽
+		#   + 内部 randBuffLabelDir 1 抽；endStun 的 duration=0 分支无消耗。
+		if duration > 0:
+			randBuffLabelPos()
+			randBuffLabelDir()
 		ctx.hooks.playStunAnimation(self, duration)
 
 
@@ -1259,7 +1428,12 @@ func setPoison(amount: int) -> void :
 
 
 func gainPoison(amount: int, item = null, triggerEvent = null):
-	return gainStacks(CoreConst.EventType.Poison, amount, item, triggerEvent)
+	# 原版 gainPoison 附带受击动画切「Poison」片段（Character.gd:1222-1226）——
+	# 冻结循环里 current 恒停在 Poison，闸住后续 takeDamage 的 playback_speed 抽取
+	var event = gainStacks(CoreConst.EventType.Poison, amount, item, triggerEvent)
+	if amount > 0:
+		damage_anim_is_poison = true
+	return event
 
 
 func losePoison(amount, item = null, triggerEvent = null):
@@ -1452,6 +1626,9 @@ func gainMaxStaminaTemporary(amount, item, triggerEvent, filled: bool = true):
 			ctx.bus.logEvent(event)
 			if filled:
 				item.staminaChanged(amount, CoreConst.StackChangeType.Added_Player)
+			# ★ 表现层链消耗还原（Character.gd:989 → Util.gd:940-952 → Item.gd:6485-6494）：
+			#   临时体力上限物品标签取位，randInBox 2 抽。
+			item.getNextFreeLabelPosition()
 			ctx.hooks.spawnLabelOnItem(CoreConst.EventType.TemporaryMaxStamina, item, amount)
 		ctx.hooks.onMaxStaminaChangedUI(self)
 
@@ -1652,7 +1829,10 @@ func isVulnerable():
 #   AutoRageTimer.timeout        → startAutoRage()
 # 内核无 Timer 节点，改为在 60Hz 固定步长里递减，超时点触发**同一个方法**，
 # 因此事件与状态迁移次序与原版一致（唯一差别是计时精度来自定步长，见 gd_core_truth 第 6 节）。
-func physicsTick(delta: float) -> void :
+# ★ 角色 _physics_process（Character.gd:1029-1034：眩晕倒计时 + 体力再生）——
+#   每帧在**物品冷却推进之前**执行（oracle tick_battle 步骤②⑤：对手角色先于其
+#   物品、玩家角色先于其物品）；与物理型 Timer（tickPhysicsTimers）严格分离。
+func physicsTickCharacter(delta: float) -> void :
 	if isStunned():
 		stunnedDuration -= delta
 		if stunnedDuration <= 0.0:
@@ -1660,6 +1840,24 @@ func physicsTick(delta: float) -> void :
 			endStun()
 	
 	addStamina(staminaRegen * delta)
+
+
+# ★ 物理型 Timer 块（oracle tick_battle 步骤⑦ drive_timers(true)，registry 次序
+#   = Character.tscn 节点序：TickTimer(:1632) → BattleRageTimer(:1635) →
+#   InvulnerabilityTimer(:1639) → AutoRageTimer(:1643)），由 CoreCombat 在双方
+#   物品冷却推进之后逐角色驱动（对手整块先于玩家整块）。
+func tickPhysicsTimers(delta: float) -> void :
+	if _tick_timer_active:
+		_tick_timer_left -= delta
+		if _tick_timer_left <= 0.0:
+			onTick()
+			_tick_timer_left += 1.0
+	
+	# registry 次序：BattleRageTimer 先于 InvulnerabilityTimer（tscn :1635/:1639）
+	if _rage_active:
+		_rage_left -= delta
+		if _rage_left <= 0.0:
+			endBattleRage()
 	
 	if _invul_active:
 		_invul_left -= delta
@@ -1667,11 +1865,6 @@ func physicsTick(delta: float) -> void :
 			_invul_left = 0.0
 			_invul_active = false
 			invulnerabilityEnded()
-	
-	if _rage_active:
-		_rage_left -= delta
-		if _rage_left <= 0.0:
-			endBattleRage()
 	
 	if _autoRage_active:
 		_autoRage_left -= delta

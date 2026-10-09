@@ -156,6 +156,17 @@ func gainTemporary(amount: int, duration: float, item = null,
 				
 				if reflected > 0:
 					amount -= reflected
+					# ★ 表现层链消耗（Buff.gd:140 → Util.gd:952-959）：
+					#   Util.spawnReflectLabel(event.type, target.randBuffLabelPos(),
+					#   reflected) —— pos 是**调用点实参**（randBuffLabelPos =
+					#   Character.gd:688-691 的 (-60,60)+(-40,40) 2 抽，必求值），
+					#   spawnReflectLabel 内部再 randBuffLabelDir 1 抽。run570_r18
+					#   逐抽对位实证（Snowball 反射 Cold：神谕在 roll×2 后恰有
+					#   (-60,60)/(-40,40)/(-75,-120) 三行）——阶段1「只补 dir」的
+					#   结论系 golden model ±1ULP 噪声期的误读，此处更正。
+					var target = character.opponent
+					target.randBuffLabelPos()
+					target.randBuffLabelDir()
 					ctx.hooks.spawnReflectLabel(type, reflected)
 			
 			var ownStacksUsed = min(left, resistStacks)
@@ -170,8 +181,15 @@ func gainTemporary(amount: int, duration: float, item = null,
 		
 		if resisted > 0:
 			amount -= resisted
+			# ★ 表现层链消耗（Buff.gd:125-128 → Util.gd:934-941）：
+			#   Util.spawnResistedLabel(type, character.randBuffLabelPos(), resisted)
+			#   —— pos 是调用点实参（2 抽）+ spawnResistedLabel 内部 dir（1 抽）。
+			#   阶段1 曾按 run1160_r18 语料误读为「只补 dir」；reflect 分支的
+			#   run570_r18 对位（2026-10-08）证明 pos 照常求值，三分支统一更正。
+			character.randBuffLabelPos()
+			character.randBuffLabelDir()
 			ctx.hooks.spawnResistedLabel(type, resisted)
-			var resistedEvent = ctx.combat_log.createEvent_StackResistOrNullify(type, 
+			var resistedEvent = ctx.combat_log.createEvent_StackResistOrNullify(type,
 						item, resisted, character.playerId, triggerEvent, reflect)
 			ctx.bus.logEvent(resistedEvent)
 		
@@ -213,10 +231,15 @@ func gainTemporary(amount: int, duration: float, item = null,
 					event = ctx.combat_log.createEvent_StackTemporary(type, 
 						item, amount, duration, character.playerId, triggerEvent, 
 						reflect)
-				
+
 				var appliedToOpponent = (character != item.character())
+				# ★ 表现层链消耗还原（Buff.gd:194 → Util.gd:975-983 spawnBuffLabel_item
+				#   → Item.gd:6485-6494 getNextFreeLabelPosition）：物品身上的 buff
+				#   浮动标签在事件 emit 之前取位，恒消耗 Util.randInBox 2 抽
+				#   （槽位复用 (10,10) / 兜底 (30,30)；buff_labels 设置神谕语料为开）。
+				item.getNextFreeLabelPosition()
 				ctx.hooks.spawnBuffLabel_item(type, item, amount, appliedToOpponent)
-				
+
 				ctx.bus.emitEvent(character, signalName, event, [event.getAmount(), event])
 		
 		if reflected > 0:
@@ -263,8 +286,13 @@ func loseStacks(amount: int, item = null, triggerEvent = null, used = false):
 			character.buffProtectStacks -= protectedByStacks
 		
 		if protected > 0:
+			# ★ 表现层链消耗（Buff.gd:236-237 → Util.gd:944-951）：同 resisted/
+			#   reflect 三分支统一——pos 实参 2 抽 + spawnProtectedLabel 内部
+			#   randBuffLabelDir 1 抽。
+			character.randBuffLabelPos()
+			character.randBuffLabelDir()
 			ctx.hooks.spawnProtectedLabel(type, protected)
-			var protectedEvent = ctx.combat_log.createEvent_StackProtect(type, 
+			var protectedEvent = ctx.combat_log.createEvent_StackProtect(type,
 				item, protected, character.playerId, triggerEvent)
 			ctx.bus.logEvent(protectedEvent)
 	
@@ -327,8 +355,12 @@ func changeCurrentLogShowLabel(isTimeout: bool, amount: int,
 			ctx.bus.emitEvent(character, signalName, event, [event.getAmount(), event])
 			
 			var appliedToOpponent = (character != item.character())
+			# ★ 表现层链消耗还原（Buff.gd:317 → Util.gd:975-983 → Item.gd:6485-6494）：
+			#   与 gainStacks 同面，但原版顺序是 **先 emit 事件后取位**（标签在
+			#   事件之后）——顺序即链位，必须保持。
+			item.getNextFreeLabelPosition()
 			ctx.hooks.spawnBuffLabel_item(type, item, - change, appliedToOpponent)
-			
+
 			return event
 	
 	return null

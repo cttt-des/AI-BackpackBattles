@@ -3,6 +3,15 @@ var runes = ["Badger Rune", "Elephant Rune", "Hawk Rune"]
 var luckNeeded: int
 
 func onCombatStart():
+	# ★ 诊断标记（不消耗链）：幸运计数的逐物品宝石明细
+	if ctx.rng.oracle_trace:
+		var detail := []
+		for it in inventory.items:
+			detail.append(String(it.descriptor.identifier) + "=" +
+					str(it.getGemsNoNull().size()))
+		ctx.rng.oracle_trace_log.push_back([ctx.rng.oracle_trace_log.size(),
+				"GEMS", str(inventory.countSocketedGems()),
+				PoolStringArray(detail).join(","), "", ""])
 	giveLucky(inventory.countSocketedGems())
 
 

@@ -85,3 +85,21 @@ Thumbs.db
 .workbuddy/
 
 # 缂栬緫鍣�/宸ュ叿鏈�鍦扮洰褰�
+nul
+nul
+*.err.log
+*.log
+output/
+ai/
+nul
+oracle_chunk_*.log
+oracle_dbg*.json
+oracle_det*_events.json
+oracle_det_r1.json
+data/
+oracle/
+oracle_chunk_driver.py
+oracle_dbg*.json
+oracle_det*.json
+tmp_err.txt
+transfer.txt
