@@ -1,0 +1,13 @@
+[remap]
+
+importer="image"
+type="Image"
+path="res://.import/Cursor_interactable.png-f785931430db6eac575f8f000bd17986.image"
+
+[deps]
+
+source_file="res://Assets/Cursor/Cursor_interactable.png"
+dest_files=[ "res://.import/Cursor_interactable.png-f785931430db6eac575f8f000bd17986.image" ]
+
+[params]
+

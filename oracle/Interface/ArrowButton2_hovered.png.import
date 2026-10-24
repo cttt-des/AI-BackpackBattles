@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/ArrowButton2_hovered.png-14db7ee04ff5b87e0841eaaf98f516c1.res"
+group_file="res://Atlases/Shop_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Interface/ArrowButton2_hovered.png"
+dest_files=[ "res://.import/ArrowButton2_hovered.png-14db7ee04ff5b87e0841eaaf98f516c1.res" ]
+
+[params]
+
+atlas_file="res://Atlases/Shop_atlas.png"
+import_mode=0
+crop_to_region=false
+trim_alpha_border_from_region=false

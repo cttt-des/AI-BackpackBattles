@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/Star.png-27fa546ccf544cd1f377d67c4f24f02a.res"
+group_file="res://Atlases/Combat_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Assets/Background/Star.png"
+dest_files=[ "res://.import/Star.png-27fa546ccf544cd1f377d67c4f24f02a.res" ]
+
+[params]
+
+atlas_file="res://Atlases/Combat_atlas.png"
+import_mode=0
+crop_to_region=true
+trim_alpha_border_from_region=true

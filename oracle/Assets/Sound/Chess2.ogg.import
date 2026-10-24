@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Chess2.ogg-8799fc0f4fa575f2f25e5f9e7f70f388.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/Chess2.ogg"
+dest_files=[ "res://.import/Chess2.ogg-8799fc0f4fa575f2f25e5f9e7f70f388.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

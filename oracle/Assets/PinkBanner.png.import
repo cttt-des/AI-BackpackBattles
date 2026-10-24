@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/PinkBanner.png-c438e7fbb06a46d9ae6bfb4658b00b49.res"
+group_file="res://Atlases/Combat_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Assets/PinkBanner.png"
+dest_files=[ "res://.import/PinkBanner.png-c438e7fbb06a46d9ae6bfb4658b00b49.res" ]
+
+[params]
+
+atlas_file="res://Atlases/Combat_atlas.png"
+import_mode=0
+crop_to_region=true
+trim_alpha_border_from_region=true

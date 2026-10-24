@@ -1,0 +1,229 @@
+[gd_scene load_steps=32 format=2]
+
+[ext_resource path="res://CharacterClasses/Mage/MageSprite.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Light/CircleLight.png" type="Texture" id=2]
+[ext_resource path="res://CharacterClasses/Mage/Skins/Normal/Shiny/RightHandFront.png" type="Texture" id=3]
+[ext_resource path="res://CharacterClasses/Mage/Skins/Normal/Shiny/LeftLowerArm.png" type="Texture" id=4]
+[ext_resource path="res://CharacterClasses/Mage/Skins/Normal/Shiny/LeftShoe.png" type="Texture" id=5]
+[ext_resource path="res://CharacterClasses/Mage/Skins/Normal/Shiny/Head.png" type="Texture" id=6]
+[ext_resource path="res://Items/Exclusive/Particles/RainbowOrbLight.material" type="Material" id=7]
+[ext_resource path="res://CharacterClasses/Mage/Skins/Normal/Shiny/RightShoe.png" type="Texture" id=8]
+[ext_resource path="res://CharacterClasses/Mage/Skins/Normal/Shiny/Body.png" type="Texture" id=9]
+[ext_resource path="res://CharacterClasses/Mage/Skins/Normal/Shiny/Book.png" type="Texture" id=10]
+[ext_resource path="res://CharacterClasses/Mage/Skins/Normal/Shiny/LeftHandFront.png" type="Texture" id=11]
+[ext_resource path="res://CharacterClasses/Mage/Skins/Normal/Shiny/LeftPigtailBack.png" type="Texture" id=12]
+[ext_resource path="res://CharacterClasses/Mage/Skins/Normal/Sapphire/DressBack.png" type="Texture" id=13]
+[ext_resource path="res://CharacterClasses/Mage/Skins/Normal/Shiny/RightLowerArm.png" type="Texture" id=14]
+[ext_resource path="res://CharacterClasses/Mage/Skins/Normal/Shiny/LeftUpperArm.png" type="Texture" id=15]
+[ext_resource path="res://CharacterClasses/Mage/Skins/Normal/Shiny/RightPigtailBack.png" type="Texture" id=16]
+[ext_resource path="res://CharacterClasses/Mage/Skins/Normal/Shiny/LeftPigtailFront.png" type="Texture" id=17]
+[ext_resource path="res://CharacterClasses/Mage/Skins/Normal/Shiny/RightPigtailFront.png" type="Texture" id=18]
+[ext_resource path="res://CharacterClasses/Mage/Skins/Normal/Shiny/RightUpperArm.png" type="Texture" id=19]
+[ext_resource path="res://CharacterClasses/Mage/Skins/Normal/Shiny/Staff.png" type="Texture" id=20]
+[ext_resource path="res://CharacterClasses/Mage/Skins/Normal/Shiny/RightLowerLeg.png" type="Texture" id=21]
+[ext_resource path="res://CharacterClasses/Mage/Skins/Normal/Shiny/LeftLowerLeg.png" type="Texture" id=22]
+[ext_resource path="res://CharacterClasses/Mage/Skins/Normal/Shiny/LeftEarRing.png" type="Texture" id=23]
+[ext_resource path="res://CharacterClasses/Mage/Skins/Normal/Shiny/LeftUpperLeg.png" type="Texture" id=24]
+[ext_resource path="res://CharacterClasses/Mage/Skins/Normal/Shiny/RightEarRing.png" type="Texture" id=25]
+[ext_resource path="res://CharacterClasses/Mage/Skins/Normal/Shiny/RightUpperLeg.png" type="Texture" id=26]
+
+[sub_resource type="Shader" id=13]
+code = "shader_type canvas_item;
+//render_mode blend_add;
+
+uniform sampler2D gradient;
+uniform float frequency : hint_range(-30,30) = 0.5;
+uniform float phaseShift : hint_range(-30, 30) = 10.0;
+
+void fragment() {
+	float gradientShiftPos = sin(distance(UV, vec2(0.5)) * phaseShift + frequency * TIME) * 0.5 + 0.5;
+	vec4 gradientColor = texture(gradient, vec2(gradientShiftPos, 0));
+	vec4 textureSample = texture(TEXTURE, UV);
+	COLOR.rgb = gradientColor.rgb * textureSample.r;
+	COLOR.a = textureSample.a;
+}"
+
+[sub_resource type="Gradient" id=14]
+offsets = PoolRealArray( 0, 0.339768, 0.637066, 1 )
+colors = PoolColorArray( 1, 0.709804, 0.270588, 1, 1, 0.609375, 0, 0.172549, 1, 0.914703, 0.328125, 1, 1, 0.709804, 0.270588, 1 )
+
+[sub_resource type="GradientTexture" id=15]
+gradient = SubResource( 14 )
+width = 50
+
+[sub_resource type="ShaderMaterial" id=16]
+shader = SubResource( 13 )
+shader_param/frequency = -0.54
+shader_param/phaseShift = 6.452
+shader_param/gradient = SubResource( 15 )
+
+[sub_resource type="Animation" id=1]
+resource_name = "Idle"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("LeftEarRing:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ -2.0, 4.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("RightEarRing:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2, 1.19588 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ -3.0, 6.0 ]
+}
+
+[node name="Sprite" instance=ExtResource( 1 )]
+script = null
+
+[node name="DressBack" parent="Body" index="0"]
+visible = false
+position = Vector2( -12, 226 )
+texture = ExtResource( 13 )
+
+[node name="LeftUpperLegSprite" parent="Body/LeftUpperLeg" index="0"]
+position = Vector2( 61.6923, 109.231 )
+texture = ExtResource( 24 )
+
+[node name="LeftLowerLeg" parent="Body/LeftUpperLeg/LeftLowerLeg" index="0"]
+texture = ExtResource( 22 )
+
+[node name="LeftShoe" parent="Body/LeftUpperLeg/LeftLowerLeg" index="1"]
+position = Vector2( 6.76921, 142.766 )
+scale = Vector2( 0.828571, 0.8287 )
+texture = ExtResource( 5 )
+
+[node name="RightUpperLegSprite" parent="Body/RightUpperLeg" index="0"]
+position = Vector2( -29, 124.385 )
+texture = ExtResource( 26 )
+
+[node name="RightLowerLegSprite" parent="Body/RightUpperLeg/RightLowerLeg" index="0"]
+texture = ExtResource( 21 )
+
+[node name="RightShoe" parent="Body/RightUpperLeg/RightLowerLeg" index="1"]
+position = Vector2( -32, 156.693 )
+scale = Vector2( 0.888889, 0.847059 )
+texture = ExtResource( 8 )
+
+[node name="LeftUpperArmSprite" parent="Body/LeftUpperArm" index="0"]
+position = Vector2( 31.0769, 42.538 )
+scale = Vector2( 1, 0.928572 )
+texture = ExtResource( 15 )
+
+[node name="Book" parent="Body/LeftUpperArm/LeftLowerArm" index="0"]
+position = Vector2( 100.923, -131.029 )
+scale = Vector2( 0.989878, 0.989878 )
+texture = ExtResource( 10 )
+
+[node name="Light" type="Sprite" parent="Body/LeftUpperArm/LeftLowerArm/Book" index="0" groups=["Special"]]
+modulate = Color( 4, 4, 4, 0.145098 )
+material = SubResource( 16 )
+position = Vector2( -51.677, 1.89381 )
+scale = Vector2( 0.471155, 0.547278 )
+texture = ExtResource( 2 )
+
+[node name="Ornaments" parent="Body/LeftUpperArm/LeftLowerArm/Book" index="1"]
+visible = false
+
+[node name="LeftLowerArmSprite" parent="Body/LeftUpperArm/LeftLowerArm" index="1"]
+position = Vector2( 65.1974, -44.3655 )
+scale = Vector2( 0.933, 0.933 )
+z_index = 0
+texture = ExtResource( 4 )
+
+[node name="LeftHandFront" type="Sprite" parent="Body/LeftUpperArm/LeftLowerArm" index="2" groups=["Body"]]
+position = Vector2( 111.769, -67.154 )
+scale = Vector2( 0.933, 0.933 )
+z_index = 1
+texture = ExtResource( 11 )
+
+[node name="BodySprite" parent="Body" index="4"]
+position = Vector2( -14, 8 )
+scale = Vector2( 0.965, 0.965 )
+texture = ExtResource( 9 )
+
+[node name="RightUpperArmSprite" parent="Body/RightUpperArm" index="0"]
+position = Vector2( -9.3847, 65.8575 )
+scale = Vector2( 0.974697, 0.939694 )
+texture = ExtResource( 19 )
+
+[node name="RightLowerArmSprite" parent="Body/RightUpperArm/RightLowerArm" index="0"]
+position = Vector2( -54.5386, 45.223 )
+scale = Vector2( 0.9, 0.874242 )
+texture = ExtResource( 14 )
+
+[node name="Staff" parent="Body/RightUpperArm/RightLowerArm/Weapon" index="0"]
+position = Vector2( -10.4, 69.308 )
+rotation = -0.1309
+scale = Vector2( 0.894, 0.894 )
+texture = ExtResource( 20 )
+
+[node name="Light" type="Sprite" parent="Body/RightUpperArm/RightLowerArm/Weapon" index="1" groups=["Weapon"]]
+modulate = Color( 4, 4, 4, 0.08 )
+material = ExtResource( 7 )
+position = Vector2( -39.0006, -180.692 )
+rotation = -0.247837
+scale = Vector2( 0.686215, 0.686215 )
+texture = ExtResource( 2 )
+
+[node name="RightHandFront" parent="Body/RightUpperArm/RightLowerArm" index="2"]
+position = Vector2( -119.539, 56.923 )
+scale = Vector2( 0.906, 0.88 )
+texture = ExtResource( 3 )
+
+[node name="HeadSprite" parent="Body/Head" index="0"]
+position = Vector2( 15.7896, -31.174 )
+texture = ExtResource( 6 )
+
+[node name="HairBack" parent="Body/Head" index="1"]
+position = Vector2( -57.166, 55.0611 )
+texture = null
+
+[node name="RightPigtailBack" type="Sprite" parent="Body/Head" index="2" groups=["Head"]]
+position = Vector2( -65.5871, -193.36 )
+z_index = -1
+texture = ExtResource( 16 )
+offset = Vector2( -27.3684, 105.263 )
+
+[node name="LeftPigtailBack" type="Sprite" parent="Body/Head" index="3" groups=["Head"]]
+position = Vector2( 27.0446, -216.518 )
+z_index = -1
+texture = ExtResource( 12 )
+offset = Vector2( 27.3684, 96.8421 )
+
+[node name="RightPigtailFront" type="Sprite" parent="Body/Head" index="4" groups=["Head"]]
+position = Vector2( -46.6397, 38.219 )
+texture = ExtResource( 18 )
+
+[node name="LeftPigtailFront" type="Sprite" parent="Body/Head" index="5" groups=["Head"]]
+position = Vector2( 69.1498, 63.4821 )
+texture = ExtResource( 17 )
+
+[node name="LeftEarRing" type="Sprite" parent="Body/Head" index="6" groups=["Head"]]
+position = Vector2( 66.1754, -62.1411 )
+rotation = 0.0130282
+scale = Vector2( 0.921148, 0.921148 )
+texture = ExtResource( 23 )
+offset = Vector2( -4.21052, 31.5789 )
+
+[node name="RightEarRing" type="Sprite" parent="Body/Head" index="7" groups=["Head"]]
+position = Vector2( -65.5871, -62.8337 )
+rotation = 0.00568267
+texture = ExtResource( 25 )
+offset = Vector2( 4.21053, 31.5789 )
+
+[node name="HeadIdle" type="AnimationPlayer" parent="Body/Head" index="8" groups=["Head"]]
+anims/Idle = SubResource( 1 )

@@ -1,0 +1,16 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+
+[deps]
+
+files=[ "res://Sheets/CSV/Interface.en.translation", "res://Sheets/CSV/Interface.de.translation", "res://Sheets/CSV/Interface.zh_Hans_CN.translation", "res://Sheets/CSV/Interface.ja.translation", "res://Sheets/CSV/Interface.ko.translation", "res://Sheets/CSV/Interface.zh_Hant_TW.translation", "res://Sheets/CSV/Interface.fr.translation", "res://Sheets/CSV/Interface.ru.translation", "res://Sheets/CSV/Interface.pt_BR.translation", "res://Sheets/CSV/Interface.es.translation", "res://Sheets/CSV/Interface.da.translation" ]
+
+source_file="res://Sheets/CSV/Interface.csv"
+dest_files=[ "res://Sheets/CSV/Interface.en.translation", "res://Sheets/CSV/Interface.de.translation", "res://Sheets/CSV/Interface.zh_Hans_CN.translation", "res://Sheets/CSV/Interface.ja.translation", "res://Sheets/CSV/Interface.ko.translation", "res://Sheets/CSV/Interface.zh_Hant_TW.translation", "res://Sheets/CSV/Interface.fr.translation", "res://Sheets/CSV/Interface.ru.translation", "res://Sheets/CSV/Interface.pt_BR.translation", "res://Sheets/CSV/Interface.es.translation", "res://Sheets/CSV/Interface.da.translation" ]
+
+[params]
+
+compress=true
+delimiter=0

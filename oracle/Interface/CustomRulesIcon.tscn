@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Interface/Lobbies/CustomIcon.png" type="Texture" id=1]
+[ext_resource path="res://Interface/CustomRulesIcon.gd" type="Script" id=2]
+[ext_resource path="res://Interface/Lobbies/CustomIcon_hovered.png" type="Texture" id=3]
+
+[node name="CustomRulesIcon" type="TextureButton"]
+margin_right = 33.0
+margin_bottom = 33.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 1 )
+texture_hover = ExtResource( 3 )
+expand = true
+stretch_mode = 5
+script = ExtResource( 2 )
+playClickSound = false

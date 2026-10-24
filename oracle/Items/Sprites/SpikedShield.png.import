@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/SpikedShield.png-99285f35231e408c5f361fdbf7a93c4a.res"
+group_file="res://Atlases/Items_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Items/Sprites/SpikedShield.png"
+dest_files=[ "res://.import/SpikedShield.png-99285f35231e408c5f361fdbf7a93c4a.res" ]
+
+[params]
+
+atlas_file="res://Atlases/Items_atlas.png"
+import_mode=0
+crop_to_region=true
+trim_alpha_border_from_region=false

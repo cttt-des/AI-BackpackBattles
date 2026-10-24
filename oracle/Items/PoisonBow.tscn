@@ -1,0 +1,103 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Utility/AutoHideParticles.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Light/CircleLight.png" type="Texture" id=2]
+[ext_resource path="res://Items/GemSocket.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Items/Item.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Items/PoisonBow.gd" type="Script" id=5]
+[ext_resource path="res://Items/Particles/PoisonBowActivationParticles.material" type="Material" id=6]
+[ext_resource path="res://Items/Particles/PoisonDaggerDragParticles.tres" type="Material" id=7]
+[ext_resource path="res://Assets/Particles/PoisonParticle.png" type="Texture" id=8]
+[ext_resource path="res://Items/Sprites/PoisonBow.png" type="Texture" id=9]
+
+[sub_resource type="PhysicsMaterial" id=1]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="Shader" id=10]
+code = "shader_type canvas_item;
+
+uniform float progress : hint_range(-1, 2) = 0.5;
+uniform vec2 direction = vec2(0, 1);
+
+void fragment() {
+	COLOR = texture(TEXTURE, UV);
+	COLOR.rgb *= 1.0 + 0.5 * smoothstep(progress - 0.05, progress + 0.05, dot(UV, direction));
+}"
+
+[sub_resource type="ShaderMaterial" id=11]
+resource_local_to_scene = true
+shader = SubResource( 10 )
+shader_param/progress = 0.245
+shader_param/direction = Vector2( -1, 0 )
+
+[sub_resource type="CanvasItemMaterial" id=12]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 3
+particles_anim_loop = false
+
+[node name="Poison Bow" instance=ExtResource( 4 )]
+physics_material_override = SubResource( 1 )
+script = ExtResource( 5 )
+
+[node name="CollisionMap" parent="." index="0"]
+position = Vector2( 40, -40 )
+tile_data = PoolIntArray( -1, 3, 0, 65534, 3, 0, 65535, 3, 0, 0, 3, 0, 1, 4, 0, 131071, 3, 0 )
+
+[node name="Icon" parent="." index="1"]
+material = SubResource( 11 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 9 )
+
+[node name="Sockets" parent="Icon" index="0"]
+scale = Vector2( 2, 2 )
+
+[node name="GemSocket" parent="Icon/Sockets" index="0" instance=ExtResource( 3 )]
+position = Vector2( 80, 0 )
+
+[node name="ActivationParticles" type="Particles2D" parent="Icon" index="1"]
+modulate = Color( 0.964706, 1.18824, 1.03137, 1 )
+material = SubResource( 12 )
+position = Vector2( 166, 2 )
+z_index = -1
+emitting = false
+amount = 6
+lifetime = 0.8
+explosiveness = 0.16
+process_material = ExtResource( 6 )
+texture = ExtResource( 8 )
+script = ExtResource( 1 )
+
+[node name="Light" type="Sprite" parent="Icon" index="2"]
+visible = false
+modulate = Color( 5, 5, 5, 0.07 )
+self_modulate = Color( 0.823529, 1, 0.580392, 1 )
+position = Vector2( 164, 8 )
+scale = Vector2( 0.4675, 0.4675 )
+texture = ExtResource( 2 )
+
+[node name="SpecificDragParticles" type="Particles2D" parent="Icon" index="3"]
+material = SubResource( 12 )
+position = Vector2( 166, 2 )
+z_index = -1
+emitting = false
+amount = 6
+lifetime = 2.5
+explosiveness = 0.16
+local_coords = false
+process_material = ExtResource( 7 )
+texture = ExtResource( 8 )
+script = ExtResource( 1 )
+
+[node name="CollisionPolygon2D" parent="ClickArea" index="0"]
+polygon = PoolVector2Array( -40, -120, 40, -120, 40, -40, 120, -40, 120, 40, 40, 40, 40, 128, -40, 128, -40, 40, -120, 40, -120, -40, -40, -40 )
+
+[node name="BottomCenter" parent="." index="3"]
+position = Vector2( 0, 77 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="5"]
+visible = false
+position = Vector2( 0, -5 )
+polygon = PoolVector2Array( 31, -61, -21, -115, -37, -95, -38, -14, -113, -8, -115, 22, -39, 29, -35, 99, -18, 122, 32, 83, 49, 27, 115, 18, 114, -1, 49, -11 )

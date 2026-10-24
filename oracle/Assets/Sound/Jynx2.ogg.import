@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Jynx2.ogg-c50003609c3046a6e72c0440160d9946.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/Jynx2.ogg"
+dest_files=[ "res://.import/Jynx2.ogg-c50003609c3046a6e72c0440160d9946.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

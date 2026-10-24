@@ -1,0 +1,16 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+
+[deps]
+
+files=[ "res://Sheets/CSV/Full.en.translation", "res://Sheets/CSV/Full.de.translation", "res://Sheets/CSV/Full.zh_Hans_CN.translation", "res://Sheets/CSV/Full.ja.translation", "res://Sheets/CSV/Full.ko.translation", "res://Sheets/CSV/Full.zh_Hant_TW.translation", "res://Sheets/CSV/Full.fr.translation", "res://Sheets/CSV/Full.ru.translation", "res://Sheets/CSV/Full.pt_BR.translation", "res://Sheets/CSV/Full.es.translation", "res://Sheets/CSV/Full.da.translation" ]
+
+source_file="res://Sheets/CSV/Full.csv"
+dest_files=[ "res://Sheets/CSV/Full.en.translation", "res://Sheets/CSV/Full.de.translation", "res://Sheets/CSV/Full.zh_Hans_CN.translation", "res://Sheets/CSV/Full.ja.translation", "res://Sheets/CSV/Full.ko.translation", "res://Sheets/CSV/Full.zh_Hant_TW.translation", "res://Sheets/CSV/Full.fr.translation", "res://Sheets/CSV/Full.ru.translation", "res://Sheets/CSV/Full.pt_BR.translation", "res://Sheets/CSV/Full.es.translation", "res://Sheets/CSV/Full.da.translation" ]
+
+[params]
+
+compress=true
+delimiter=0

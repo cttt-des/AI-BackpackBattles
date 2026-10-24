@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Valhallas Spa and Rubber Ducks - Loop.ogg-c6b6cb852b4a81d4129c25d09e056827.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/BGM/Valhallas Spa and Rubber Ducks - Loop.ogg"
+dest_files=[ "res://.import/Valhallas Spa and Rubber Ducks - Loop.ogg-c6b6cb852b4a81d4129c25d09e056827.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

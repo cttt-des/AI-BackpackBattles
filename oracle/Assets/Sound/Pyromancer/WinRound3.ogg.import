@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/WinRound3.ogg-def2e54d3f2a9d52d60d54c38aeee632.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/Pyromancer/WinRound3.ogg"
+dest_files=[ "res://.import/WinRound3.ogg-def2e54d3f2a9d52d60d54c38aeee632.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

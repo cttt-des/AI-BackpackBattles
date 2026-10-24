@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Song_of_Heroes.ogg-33813e9d4f9366e24be8ef203b29501f.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/BGM/Song_of_Heroes.ogg"
+dest_files=[ "res://.import/Song_of_Heroes.ogg-33813e9d4f9366e24be8ef203b29501f.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

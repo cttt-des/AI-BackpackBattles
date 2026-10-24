@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/Vampirism.png-529de01d1a88968caf9dfb6971fac2af.res"
+group_file="res://Atlases/Combat_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Assets/Buffs/Vampirism.png"
+dest_files=[ "res://.import/Vampirism.png-529de01d1a88968caf9dfb6971fac2af.res" ]
+
+[params]
+
+atlas_file="res://Atlases/Combat_atlas.png"
+import_mode=0
+crop_to_region=true
+trim_alpha_border_from_region=true

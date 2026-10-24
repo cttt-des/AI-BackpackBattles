@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Who Brought Bananas To A Sword Fight - Loop.ogg-9e85d07f59b2d1279db4638c70bfd258.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/BGM/Who Brought Bananas To A Sword Fight - Loop.ogg"
+dest_files=[ "res://.import/Who Brought Bananas To A Sword Fight - Loop.ogg-9e85d07f59b2d1279db4638c70bfd258.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

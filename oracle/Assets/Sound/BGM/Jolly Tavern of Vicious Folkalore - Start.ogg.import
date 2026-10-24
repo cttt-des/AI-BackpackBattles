@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Jolly Tavern of Vicious Folkalore - Start.ogg-305fefda0551969eb3f9f88d9fa4dcfe.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/BGM/Jolly Tavern of Vicious Folkalore - Start.ogg"
+dest_files=[ "res://.import/Jolly Tavern of Vicious Folkalore - Start.ogg-305fefda0551969eb3f9f88d9fa4dcfe.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

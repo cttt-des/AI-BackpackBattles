@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/Lamp.png-db5f7516966e74b4ff3430462b3d2189.res"
+group_file="res://Atlases/Shop_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Assets/Decoration/Lamp.png"
+dest_files=[ "res://.import/Lamp.png-db5f7516966e74b4ff3430462b3d2189.res" ]
+
+[params]
+
+atlas_file="res://Atlases/Shop_atlas.png"
+import_mode=0
+crop_to_region=true
+trim_alpha_border_from_region=true

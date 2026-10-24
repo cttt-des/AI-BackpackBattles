@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/House.png-5dc1382334a12b1e90215472c596c69b.res"
+group_file="res://Atlases/Combat_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Assets/Background/House.png"
+dest_files=[ "res://.import/House.png-5dc1382334a12b1e90215472c596c69b.res" ]
+
+[params]
+
+atlas_file="res://Atlases/Combat_atlas.png"
+import_mode=0
+crop_to_region=true
+trim_alpha_border_from_region=false

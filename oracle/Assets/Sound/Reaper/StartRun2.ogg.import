@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/StartRun2.ogg-79869970e8ea6d72a6b2543d709b5be9.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/Reaper/StartRun2.ogg"
+dest_files=[ "res://.import/StartRun2.ogg-79869970e8ea6d72a6b2543d709b5be9.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

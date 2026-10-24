@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Buy5.ogg-b14fbadfa6669584cc7043200406366b.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/Ranger/Buy5.ogg"
+dest_files=[ "res://.import/Buy5.ogg-b14fbadfa6669584cc7043200406366b.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

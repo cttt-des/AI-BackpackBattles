@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Ceramic1.mp3-2c9a57ae8a4da6978e736bb65719345e.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sound/Ceramic1.mp3"
+dest_files=[ "res://.import/Ceramic1.mp3-2c9a57ae8a4da6978e736bb65719345e.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

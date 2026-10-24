@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Medieval Vol. 2 6.mp3-24b83cc8633c59653ab707472a13e617.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sound/BGM/Medieval Vol. 2 6.mp3"
+dest_files=[ "res://.import/Medieval Vol. 2 6.mp3-24b83cc8633c59653ab707472a13e617.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

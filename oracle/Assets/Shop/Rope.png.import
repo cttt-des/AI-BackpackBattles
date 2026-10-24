@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/Rope.png-c3882eaefe0d71a6d8bd75da1aac293d.res"
+group_file="res://Atlases/Shop_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Assets/Shop/Rope.png"
+dest_files=[ "res://.import/Rope.png-c3882eaefe0d71a6d8bd75da1aac293d.res" ]
+
+[params]
+
+atlas_file="res://Atlases/Shop_atlas.png"
+import_mode=0
+crop_to_region=false
+trim_alpha_border_from_region=false

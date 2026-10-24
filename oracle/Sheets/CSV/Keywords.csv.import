@@ -1,0 +1,16 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+
+[deps]
+
+files=[ "res://Sheets/CSV/Keywords.en.translation", "res://Sheets/CSV/Keywords.de.translation", "res://Sheets/CSV/Keywords.zh_Hans_CN.translation", "res://Sheets/CSV/Keywords.ja.translation", "res://Sheets/CSV/Keywords.ko.translation", "res://Sheets/CSV/Keywords.zh_Hant_TW.translation", "res://Sheets/CSV/Keywords.fr.translation", "res://Sheets/CSV/Keywords.ru.translation", "res://Sheets/CSV/Keywords.pt_BR.translation", "res://Sheets/CSV/Keywords.es.translation", "res://Sheets/CSV/Keywords.da.translation" ]
+
+source_file="res://Sheets/CSV/Keywords.csv"
+dest_files=[ "res://Sheets/CSV/Keywords.en.translation", "res://Sheets/CSV/Keywords.de.translation", "res://Sheets/CSV/Keywords.zh_Hans_CN.translation", "res://Sheets/CSV/Keywords.ja.translation", "res://Sheets/CSV/Keywords.ko.translation", "res://Sheets/CSV/Keywords.zh_Hant_TW.translation", "res://Sheets/CSV/Keywords.fr.translation", "res://Sheets/CSV/Keywords.ru.translation", "res://Sheets/CSV/Keywords.pt_BR.translation", "res://Sheets/CSV/Keywords.es.translation", "res://Sheets/CSV/Keywords.da.translation" ]
+
+[params]
+
+compress=true
+delimiter=0

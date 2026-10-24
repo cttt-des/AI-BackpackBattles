@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/RangerBag.png-fff7cc5b4e38d0515db574bf83f6bf46.res"
+group_file="res://Atlases/Items_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Items/Sprites/RangerBag.png"
+dest_files=[ "res://.import/RangerBag.png-fff7cc5b4e38d0515db574bf83f6bf46.res" ]
+
+[params]
+
+atlas_file="res://Atlases/Items_atlas.png"
+import_mode=0
+crop_to_region=true
+trim_alpha_border_from_region=false

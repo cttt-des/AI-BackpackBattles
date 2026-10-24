@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Meow_excited.ogg-65363f414606fbf964dc4d5ca30e321f.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/Furcifer/Meow_excited.ogg"
+dest_files=[ "res://.import/Meow_excited.ogg-65363f414606fbf964dc4d5ca30e321f.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

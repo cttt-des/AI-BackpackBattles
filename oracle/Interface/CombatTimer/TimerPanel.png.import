@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/TimerPanel.png-33e8952a7e339ce6364ca523f99ebefc.res"
+group_file="res://Atlases/Combat_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Interface/CombatTimer/TimerPanel.png"
+dest_files=[ "res://.import/TimerPanel.png-33e8952a7e339ce6364ca523f99ebefc.res" ]
+
+[params]
+
+atlas_file="res://Atlases/Combat_atlas.png"
+import_mode=0
+crop_to_region=false
+trim_alpha_border_from_region=false

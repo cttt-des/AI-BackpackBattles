@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Treasure.mp3-9befb7b944ab2a836ef451d5a0a7c8b8.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sound/Treasure.mp3"
+dest_files=[ "res://.import/Treasure.mp3-9befb7b944ab2a836ef451d5a0a7c8b8.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

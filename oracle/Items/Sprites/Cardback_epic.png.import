@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/Cardback_epic.png-bc60ea100df701527e32e4cfb9bcfc9e.res"
+group_file="res://Atlases/Items_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Items/Sprites/Cardback_epic.png"
+dest_files=[ "res://.import/Cardback_epic.png-bc60ea100df701527e32e4cfb9bcfc9e.res" ]
+
+[params]
+
+atlas_file="res://Atlases/Items_atlas.png"
+import_mode=0
+crop_to_region=true
+trim_alpha_border_from_region=false

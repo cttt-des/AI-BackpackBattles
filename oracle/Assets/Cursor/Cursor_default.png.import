@@ -1,0 +1,13 @@
+[remap]
+
+importer="image"
+type="Image"
+path="res://.import/Cursor_default.png-78b292c6f04b80bfa020d7dcc2547695.image"
+
+[deps]
+
+source_file="res://Assets/Cursor/Cursor_default.png"
+dest_files=[ "res://.import/Cursor_default.png-78b292c6f04b80bfa020d7dcc2547695.image" ]
+
+[params]
+

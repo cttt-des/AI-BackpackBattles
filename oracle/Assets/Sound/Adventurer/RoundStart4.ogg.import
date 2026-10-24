@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/RoundStart4.ogg-5428c2e5f0ac7427b592f6a093f12dc0.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/Adventurer/RoundStart4.ogg"
+dest_files=[ "res://.import/RoundStart4.ogg-5428c2e5f0ac7427b592f6a093f12dc0.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

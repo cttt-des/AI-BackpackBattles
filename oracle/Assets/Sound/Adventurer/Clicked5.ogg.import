@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Clicked5.ogg-8e603eab2e29f1f2dafb50029c4e569a.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/Adventurer/Clicked5.ogg"
+dest_files=[ "res://.import/Clicked5.ogg-8e603eab2e29f1f2dafb50029c4e569a.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

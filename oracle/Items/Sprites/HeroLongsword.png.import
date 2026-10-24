@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/HeroLongsword.png-5d4515ad2f5f4c20e5c9a727584538a7.res"
+group_file="res://Atlases/Items_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Items/Sprites/HeroLongsword.png"
+dest_files=[ "res://.import/HeroLongsword.png-5d4515ad2f5f4c20e5c9a727584538a7.res" ]
+
+[params]
+
+atlas_file="res://Atlases/Items_atlas.png"
+import_mode=0
+crop_to_region=true
+trim_alpha_border_from_region=false

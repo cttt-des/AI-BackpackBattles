@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/WinRound3.ogg-41138e2b342699e9ac832096d3cf6523.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/Mage/WinRound3.ogg"
+dest_files=[ "res://.import/WinRound3.ogg-41138e2b342699e9ac832096d3cf6523.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

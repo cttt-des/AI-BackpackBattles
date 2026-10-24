@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/StartRun4.ogg-4a4b9b932366f6dafbe77d88eab99a72.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/Engineer/StartRun4.ogg"
+dest_files=[ "res://.import/StartRun4.ogg-4a4b9b932366f6dafbe77d88eab99a72.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

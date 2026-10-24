@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/FalconBlade.png-04f7e7f76adaeafd9c9046b03bfc58b5.res"
+group_file="res://Atlases/Items_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Items/Sprites/FalconBlade.png"
+dest_files=[ "res://.import/FalconBlade.png-04f7e7f76adaeafd9c9046b03bfc58b5.res" ]
+
+[params]
+
+atlas_file="res://Atlases/Items_atlas.png"
+import_mode=0
+crop_to_region=true
+trim_alpha_border_from_region=false

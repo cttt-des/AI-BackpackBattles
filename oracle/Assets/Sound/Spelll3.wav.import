@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Spelll3.wav-c4d9a05eccdb5a7e6f4e6d8fdac755d3.sample"
+
+[deps]
+
+source_file="res://Assets/Sound/Spelll3.wav"
+dest_files=[ "res://.import/Spelll3.wav-c4d9a05eccdb5a7e6f4e6d8fdac755d3.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

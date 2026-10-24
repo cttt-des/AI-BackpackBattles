@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Interface/Options/OptionsSlider.tscn" type="PackedScene" id=1]
+
+[node name="Slider" instance=ExtResource( 1 )]
+max_value = 1.0
+step = 0.01

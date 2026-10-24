@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/WinRound1.ogg-e3d455bf1c68ca095adcb3b58edc6949.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/Reaper/WinRound1.ogg"
+dest_files=[ "res://.import/WinRound1.ogg-e3d455bf1c68ca095adcb3b58edc6949.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

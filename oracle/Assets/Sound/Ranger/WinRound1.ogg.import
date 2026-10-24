@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/WinRound1.ogg-7e728aa7fc6bac12b69460d8264932da.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/Ranger/WinRound1.ogg"
+dest_files=[ "res://.import/WinRound1.ogg-7e728aa7fc6bac12b69460d8264932da.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

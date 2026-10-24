@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Badger1.ogg-4af3857adf25b44e71a3f4254999d862.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/Badger1.ogg"
+dest_files=[ "res://.import/Badger1.ogg-4af3857adf25b44e71a3f4254999d862.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

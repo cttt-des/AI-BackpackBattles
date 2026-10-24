@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/CombatSpeed_grabber_hovered.png-8e1cf18d8ebc13183f4c323dba646369.res"
+group_file="res://Atlases/Combat_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Interface/CombatTimer/CombatSpeed_grabber_hovered.png"
+dest_files=[ "res://.import/CombatSpeed_grabber_hovered.png-8e1cf18d8ebc13183f4c323dba646369.res" ]
+
+[params]
+
+atlas_file="res://Atlases/Combat_atlas.png"
+import_mode=0
+crop_to_region=true
+trim_alpha_border_from_region=true

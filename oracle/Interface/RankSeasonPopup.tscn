@@ -1,0 +1,291 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://Interface/FocusGrabbingControl.gd" type="Script" id=1]
+[ext_resource path="res://Interface/Options/OptionsSheet.png" type="Texture" id=2]
+[ext_resource path="res://Interface/RankSeasonPopup.gd" type="Script" id=3]
+[ext_resource path="res://Interface/SeasonClassRank.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Fonts/LibreBaskerville-Regular.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Assets/Fonts/LibreBaskerville-Bold.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://Utility/LocalizedControl.gd" type="Script" id=7]
+[ext_resource path="res://Interface/EmptyStylebox.tres" type="StyleBox" id=8]
+[ext_resource path="res://Interface/Options/OptionsFont.tres" type="DynamicFont" id=9]
+[ext_resource path="res://Assets/Trophy.png" type="Texture" id=10]
+
+[sub_resource type="Animation" id=4]
+resource_name = "Close"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Node2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 2, 0.5 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -1000 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ColorRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( -2, 2 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "onClosed"
+} ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Open"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Node2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -1000 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ColorRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 2, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Node2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ColorRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="DynamicFont" id=1]
+size = 29
+outline_size = 3
+outline_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+use_filter = true
+extra_spacing_char = 1
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 33
+outline_size = 4
+outline_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+use_filter = true
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 29
+outline_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+use_filter = true
+font_data = ExtResource( 5 )
+
+[node name="RankSeasonPopup" type="Node2D"]
+pause_mode = 2
+script = ExtResource( 3 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_right = 1914.0
+margin_bottom = 1057.0
+color = Color( 0, 0, 0, 0.47451 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Close = SubResource( 4 )
+anims/Open = SubResource( 5 )
+anims/RESET = SubResource( 6 )
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Sheet" type="NinePatchRect" parent="Node2D"]
+margin_left = 556.0
+margin_top = 184.0
+margin_right = 1363.0
+margin_bottom = 846.0
+texture = ExtResource( 2 )
+patch_margin_left = 89
+patch_margin_top = 80
+patch_margin_right = 118
+patch_margin_bottom = 109
+
+[node name="CloseButton" type="Button" parent="Node2D"]
+margin_left = 898.0
+margin_top = 741.0
+margin_right = 1024.0
+margin_bottom = 787.0
+grow_horizontal = 2
+mouse_default_cursor_shape = 2
+custom_colors/font_color_disabled = Color( 1, 0.92549, 0.831373, 1 )
+custom_colors/font_color_focus = Color( 1, 0.890196, 0.215686, 1 )
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_colors/font_color_hover = Color( 1, 0.890196, 0.215686, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.92549, 0.831373, 1 )
+custom_fonts/font = ExtResource( 9 )
+custom_styles/focus = ExtResource( 8 )
+text = "Close"
+flat = true
+script = ExtResource( 1 )
+translationKey = "BUTTON_Close"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Node2D"]
+margin_left = 618.0
+margin_top = 263.0
+margin_right = 1295.0
+margin_bottom = 347.0
+rect_clip_content = false
+custom_colors/default_color = Color( 1, 0.890196, 0.219608, 1 )
+custom_colors/font_color_shadow = Color( 0.235294, 0.14902, 0.113725, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 3
+custom_fonts/bold_font = SubResource( 1 )
+custom_fonts/normal_font = SubResource( 2 )
+bbcode_enabled = true
+bbcode_text = "[center]A new ranking season has started!"
+text = "A new ranking season has started!"
+fit_content_height = true
+scroll_active = false
+script = ExtResource( 7 )
+translationKey = "UI_RankSeason1"
+prefix = "[center]"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Node2D"]
+margin_left = 607.0
+margin_top = 334.0
+margin_right = 1284.0
+margin_bottom = 373.0
+rect_clip_content = false
+custom_colors/default_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+custom_colors/font_color_shadow = Color( 0.235294, 0.14902, 0.113725, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 0
+custom_fonts/bold_font = SubResource( 1 )
+custom_fonts/normal_font = SubResource( 3 )
+bbcode_enabled = true
+bbcode_text = "[center]Your ranking last season: "
+text = "Your ranking last season: "
+fit_content_height = true
+scroll_active = false
+script = ExtResource( 7 )
+translationKey = "UI_RankSeason2"
+prefix = "[center]"
+
+[node name="TrophyLabel" type="RichTextLabel" parent="Node2D"]
+margin_left = 646.0
+margin_top = 573.0
+margin_right = 1246.0
+margin_bottom = 612.0
+rect_clip_content = false
+custom_colors/default_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+custom_colors/font_color_shadow = Color( 0.235294, 0.14902, 0.113725, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 0
+custom_fonts/bold_font = SubResource( 1 )
+custom_fonts/normal_font = SubResource( 3 )
+bbcode_enabled = true
+bbcode_text = "[center]You earned [b]10[/b] bonus trophies! "
+text = "You earned 10 bonus trophies! "
+fit_content_height = true
+scroll_active = false
+script = ExtResource( 7 )
+translationKey = "UI_RankSeason3"
+prefix = "[center]"
+
+[node name="EarlyAccessLabel" type="RichTextLabel" parent="Node2D"]
+margin_left = 651.0
+margin_top = 634.0
+margin_right = 1257.0
+margin_bottom = 673.0
+rect_clip_content = false
+custom_colors/default_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+custom_colors/font_color_shadow = Color( 0.235294, 0.14902, 0.113725, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 0
+custom_fonts/bold_font = SubResource( 1 )
+custom_fonts/normal_font = SubResource( 3 )
+bbcode_enabled = true
+bbcode_text = "[center]Thanks for playing the Early Access! "
+text = "Thanks for playing the Early Access! "
+fit_content_height = true
+scroll_active = false
+script = ExtResource( 7 )
+translationKey = "UI_RankSeason4"
+prefix = "[center]"
+
+[node name="Classes" type="Node2D" parent="Node2D"]
+
+[node name="Ranger" parent="Node2D/Classes" instance=ExtResource( 4 )]
+position = Vector2( 713, 389 )
+
+[node name="Reaper" parent="Node2D/Classes" instance=ExtResource( 4 )]
+position = Vector2( 870, 389 )
+
+[node name="Pyromancer" parent="Node2D/Classes" instance=ExtResource( 4 )]
+position = Vector2( 1024, 389 )
+
+[node name="Berserker" parent="Node2D/Classes" instance=ExtResource( 4 )]
+position = Vector2( 1182, 389 )
+
+[node name="Trophy" type="Sprite" parent="Node2D"]
+position = Vector2( 1308, 631 )
+rotation = 0.165806
+scale = Vector2( 0.842592, 0.842592 )
+texture = ExtResource( 10 )
+
+[node name="Trophy2" type="Sprite" parent="Node2D"]
+position = Vector2( 590, 635 )
+rotation = -0.21293
+scale = Vector2( 0.842592, 0.842592 )
+texture = ExtResource( 10 )
+
+[connection signal="pressed" from="Node2D/CloseButton" to="." method="close"]

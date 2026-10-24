@@ -1,0 +1,432 @@
+[gd_scene load_steps=35 format=2]
+
+[ext_resource path="res://Interface/Lobbies/StartTimer.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Interface/Options/OptionsFont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Assets/Fonts/LibreBaskerville-Bold.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Utility/LocalizedControl.gd" type="Script" id=4]
+[ext_resource path="res://Interface/EmptyStylebox.tres" type="StyleBox" id=5]
+[ext_resource path="res://Interface/Lobbies/LobbyIcon_Member.png" type="Texture" id=6]
+[ext_resource path="res://Interface/Lobbies/JoinLobbyUI.gd" type="Script" id=7]
+[ext_resource path="res://Interface/CompositeButton.gd" type="Script" id=8]
+[ext_resource path="res://Interface/Lobbies/ButtonStyleBox_hovered.tres" type="StyleBox" id=9]
+[ext_resource path="res://Interface/Lobbies/ButtonStyleBox_normal.tres" type="StyleBox" id=10]
+[ext_resource path="res://Interface/Lobbies/ButtonStyleBox_pressed.tres" type="StyleBox" id=11]
+[ext_resource path="res://Interface/Lobbies/ButtonStyleBox_disabled.tres" type="StyleBox" id=12]
+[ext_resource path="res://Items/Particles/SubtractiveCanvasItem.material" type="Material" id=13]
+[ext_resource path="res://Assets/Patch3.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Divider1.png" type="Texture" id=15]
+[ext_resource path="res://Interface/Lobbies/LobbyMemberList.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Interface/Lobbies/MemberCounter.gd" type="Script" id=17]
+[ext_resource path="res://Assets/Fonts/Milonga-Regular.ttf" type="DynamicFontData" id=18]
+[ext_resource path="res://Interface/RedXButton.png" type="Texture" id=19]
+[ext_resource path="res://Interface/RedXButton_hovered.png" type="Texture" id=20]
+[ext_resource path="res://Assets/Fonts/LibreBaskerville-Regular.ttf" type="DynamicFontData" id=21]
+[ext_resource path="res://Interface/CustomRulesIcon.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Utility/TooltipArea.tscn" type="PackedScene" id=23]
+[ext_resource path="res://Interface/Lobbies/CrownIcon.png" type="Texture" id=24]
+[ext_resource path="res://Interface/Lobbies/LobbySpeed.tscn" type="PackedScene" id=25]
+[ext_resource path="res://Interface/FocusGrabbingControl.gd" type="Script" id=26]
+
+[sub_resource type="DynamicFont" id=6]
+size = 36
+outline_size = 4
+outline_color = Color( 0.24, 0.15, 0.11, 1 )
+use_filter = true
+font_data = ExtResource( 18 )
+
+[sub_resource type="DynamicFont" id=16]
+size = 26
+outline_size = 3
+outline_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+use_filter = true
+font_data = ExtResource( 21 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+content_margin_left = 12.0
+content_margin_right = 10.0
+content_margin_top = 0.0
+content_margin_bottom = 0.0
+bg_color = Color( 0.376471, 0.227451, 0.160784, 0.305882 )
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.235294, 0.14902, 0.113725, 0.819608 )
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="DynamicFont" id=14]
+size = 26
+outline_size = 3
+outline_color = Color( 0.24, 0.15, 0.11, 1 )
+use_filter = true
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=347]
+size = 22
+outline_size = 3
+outline_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+font_data = ExtResource( 21 )
+
+[sub_resource type="DynamicFont" id=17]
+size = 22
+outline_size = 3
+outline_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+font_data = ExtResource( 21 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 26
+outline_size = 3
+outline_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+use_filter = true
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=15]
+size = 26
+outline_size = 3
+outline_color = Color( 0.24, 0.15, 0.11, 1 )
+use_filter = true
+font_data = ExtResource( 3 )
+
+[node name="JoinLobbyUI" type="Node2D"]
+pause_mode = 2
+script = ExtResource( 7 )
+
+[node name="Header" type="RichTextLabel" parent="."]
+margin_left = 970.0
+margin_top = 46.0
+margin_right = 1300.0
+margin_bottom = 98.0
+grow_horizontal = 2
+rect_min_size = Vector2( 311, 0 )
+rect_clip_content = false
+custom_colors/default_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_colors/font_color_shadow = Color( 0.235294, 0.14902, 0.113725, 1 )
+custom_constants/shadow_offset_x = 3
+custom_constants/shadow_offset_y = 4
+custom_fonts/normal_font = SubResource( 6 )
+bbcode_enabled = true
+bbcode_text = "[center]Join a Lobby"
+text = "Join a Lobby"
+fit_content_height = true
+scroll_active = false
+script = ExtResource( 4 )
+translationKey = "BUTTON_JoinLobby"
+prefix = "[center]"
+maxSize = 311.0
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="."]
+modulate = Color( 0.0941176, 0.101961, 0.109804, 1 )
+material = ExtResource( 13 )
+margin_left = 670.0
+margin_top = 122.0
+margin_right = 953.0
+margin_bottom = 181.0
+texture = ExtResource( 14 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 7
+patch_margin_bottom = 9
+
+[node name="Searchbar" type="LineEdit" parent="."]
+margin_left = 671.0
+margin_top = 124.0
+margin_right = 952.0
+margin_bottom = 179.0
+mouse_default_cursor_shape = 2
+custom_colors/selection_color = Color( 1, 0.890196, 0.215686, 1 )
+custom_colors/cursor_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_colors/clear_button_color_pressed = Color( 1, 0.890196, 0, 1 )
+custom_colors/font_color_selected = Color( 1, 0.890196, 0.0784314, 1 )
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_colors/clear_button_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_colors/font_color_uneditable = Color( 0.644531, 0.612624, 0.565224, 1 )
+custom_constants/minimum_spaces = 1
+custom_fonts/font = SubResource( 16 )
+custom_styles/read_only = SubResource( 3 )
+custom_styles/focus = ExtResource( 5 )
+custom_styles/normal = SubResource( 3 )
+max_length = 6
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+clear_button_enabled = true
+middle_mouse_paste_enabled = false
+deselect_on_focus_loss_enabled = false
+placeholder_text = "Enter lobby code..."
+placeholder_alpha = 0.858
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="ApplyTimer" type="Timer" parent="Searchbar"]
+one_shot = true
+
+[node name="JoinButton" type="Button" parent="."]
+margin_left = 962.0
+margin_top = 126.0
+margin_right = 1176.0
+margin_bottom = 178.0
+rect_min_size = Vector2( 214, 0 )
+mouse_default_cursor_shape = 2
+custom_colors/font_color_disabled = Color( 1, 0.92549, 0.831373, 1 )
+custom_colors/font_color_focus = Color( 1, 0.890196, 0.215686, 1 )
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_colors/font_color_hover = Color( 1, 0.890196, 0.215686, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.92549, 0.831373, 1 )
+custom_fonts/font = SubResource( 14 )
+custom_styles/hover = ExtResource( 9 )
+custom_styles/pressed = ExtResource( 11 )
+custom_styles/focus = ExtResource( 5 )
+custom_styles/disabled = ExtResource( 12 )
+custom_styles/normal = ExtResource( 10 )
+text = "Join Lobby"
+script = ExtResource( 26 )
+translationKey = "BUTTON_Join"
+maxSize = 214.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+modulate = Color( 0.0941176, 0.101961, 0.109804, 1 )
+material = ExtResource( 13 )
+margin_left = 672.344
+margin_top = 203.0
+margin_right = 1171.34
+margin_bottom = 248.0
+texture = ExtResource( 14 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 7
+patch_margin_bottom = 9
+
+[node name="StatusLabel" type="Label" parent="."]
+margin_left = 689.0
+margin_top = 211.0
+margin_right = 1156.0
+margin_bottom = 257.0
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_fonts/font = SubResource( 14 )
+text = "Connecting..."
+align = 1
+script = ExtResource( 4 )
+
+[node name="LobbyInfo" type="Node2D" parent="."]
+
+[node name="NinePatchRect3" type="NinePatchRect" parent="LobbyInfo"]
+modulate = Color( 0.0941176, 0.101961, 0.109804, 1 )
+material = ExtResource( 13 )
+margin_left = 676.0
+margin_top = 321.0
+margin_right = 1172.0
+margin_bottom = 593.0
+texture = ExtResource( 14 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 7
+patch_margin_bottom = 9
+
+[node name="SettingsLabel" type="Label" parent="LobbyInfo"]
+margin_left = 675.344
+margin_top = 273.0
+margin_right = 982.344
+margin_bottom = 307.0
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "Settings"
+valign = 1
+script = ExtResource( 4 )
+translationKey = "UI_LobbySettings"
+
+[node name="Divider1" type="Sprite" parent="LobbyInfo"]
+position = Vector2( 917.672, 311 )
+scale = Vector2( 1.94297, 0.924999 )
+texture = ExtResource( 15 )
+
+[node name="RoundSpeed" type="Label" parent="LobbyInfo"]
+visible = false
+margin_left = 672.344
+margin_top = 331.0
+margin_right = 896.344
+margin_bottom = 372.0
+grow_horizontal = 0
+rect_min_size = Vector2( 224, 0 )
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "Round speed"
+align = 2
+script = ExtResource( 4 )
+translationKey = "UI_RoundSpeed"
+maxSize = 224.0
+
+[node name="Speed" type="Label" parent="LobbyInfo"]
+visible = false
+margin_left = 930.344
+margin_top = 332.0
+margin_right = 1004.34
+margin_bottom = 366.0
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "3"
+align = 1
+script = ExtResource( 4 )
+
+[node name="Matching" type="Label" parent="LobbyInfo"]
+margin_left = 675.0
+margin_top = 394.0
+margin_right = 899.0
+margin_bottom = 435.0
+grow_horizontal = 0
+rect_min_size = Vector2( 224, 0 )
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_fonts/font = SubResource( 347 )
+text = "Matching"
+align = 2
+valign = 1
+script = ExtResource( 4 )
+translationKey = "UI_Matchmaking"
+maxSize = 224.0
+
+[node name="Matchmaking" type="Label" parent="LobbyInfo"]
+margin_left = 936.656
+margin_top = 395.0
+margin_right = 1149.66
+margin_bottom = 436.0
+rect_min_size = Vector2( 213, 0 )
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_fonts/font = SubResource( 17 )
+text = "Round Robin"
+valign = 1
+script = ExtResource( 4 )
+maxSize = 213.0
+
+[node name="TooltipArea" parent="LobbyInfo" instance=ExtResource( 23 )]
+margin_left = 684.656
+margin_top = 395.0
+margin_right = 1106.66
+margin_bottom = 434.0
+highlightingNodes = [ NodePath("../Matching"), NodePath("../Matchmaking") ]
+
+[node name="PrioritizeHost" type="Node2D" parent="LobbyInfo"]
+
+[node name="CrownIcon" type="Sprite" parent="LobbyInfo/PrioritizeHost"]
+position = Vector2( 1141.66, 412 )
+scale = Vector2( 0.471429, 0.471429 )
+texture = ExtResource( 24 )
+
+[node name="TooltipArea" parent="LobbyInfo/PrioritizeHost" instance=ExtResource( 23 )]
+margin_left = 1114.66
+margin_top = 395.0
+margin_right = 1168.66
+margin_bottom = 434.0
+keyword = "MATCHING_PrioritizeHost"
+highlightingNodes = [ NodePath("../CrownIcon") ]
+
+[node name="Label2" type="Label" parent="LobbyInfo"]
+margin_left = 1207.68
+margin_top = 123.0
+margin_right = 1514.68
+margin_bottom = 157.0
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "Joined Members"
+valign = 1
+script = ExtResource( 4 )
+translationKey = "UI_JoinedMembers"
+
+[node name="MemberCounter" type="Label" parent="LobbyInfo"]
+margin_left = 1479.0
+margin_top = 125.0
+margin_right = 1591.0
+margin_bottom = 159.0
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "6/10"
+align = 1
+script = ExtResource( 17 )
+
+[node name="Divider2" type="Sprite" parent="LobbyInfo"]
+position = Vector2( 1391.34, 163.5 )
+scale = Vector2( 1.47349, 0.7 )
+texture = ExtResource( 15 )
+
+[node name="NinePatchRect4" type="NinePatchRect" parent="LobbyInfo"]
+modulate = Color( 0.0941176, 0.101961, 0.109804, 1 )
+material = ExtResource( 13 )
+margin_left = 1203.0
+margin_top = 176.0
+margin_right = 1571.0
+margin_bottom = 595.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 14 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 7
+patch_margin_bottom = 9
+
+[node name="MemberList" parent="LobbyInfo" instance=ExtResource( 16 )]
+margin_left = 1211.0
+margin_top = 185.0
+margin_right = 1546.0
+margin_bottom = 584.0
+
+[node name="CustomRulesIcon" parent="LobbyInfo" instance=ExtResource( 22 )]
+margin_left = 885.0
+margin_top = 438.0
+margin_right = 972.0
+margin_bottom = 525.0
+lobbyMode = true
+
+[node name="LobbySpeed" parent="LobbyInfo" instance=ExtResource( 25 )]
+position = Vector2( 691, 334 )
+
+[node name="StartTimer" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1126, 629 )
+
+[node name="LobbyIconMember" type="Sprite" parent="."]
+position = Vector2( 941.625, 68.375 )
+scale = Vector2( 0.418333, 0.418333 )
+texture = ExtResource( 6 )
+
+[node name="CancelButton" type="Button" parent="."]
+margin_left = 1328.0
+margin_top = 631.0
+margin_right = 1608.0
+margin_bottom = 677.0
+mouse_default_cursor_shape = 2
+custom_colors/font_color_disabled = Color( 1, 0.92549, 0.831373, 1 )
+custom_colors/font_color_focus = Color( 1, 0.890196, 0.215686, 1 )
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_colors/font_color_hover = Color( 1, 0.890196, 0.215686, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.92549, 0.831373, 1 )
+custom_fonts/font = SubResource( 15 )
+custom_styles/focus = ExtResource( 5 )
+flat = true
+align = 0
+icon_align = 1
+script = ExtResource( 8 )
+labelPath = NodePath("../CancelLabel")
+iconPath = NodePath("../CancelIcon")
+iconHovered = ExtResource( 20 )
+
+[node name="CancelLabel" type="Label" parent="."]
+margin_left = 1388.0
+margin_top = 636.0
+margin_right = 1598.0
+margin_bottom = 670.0
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "Cancel"
+script = ExtResource( 4 )
+translationKey = "BUTTON_Cancel"
+maxSize = 210.0
+
+[node name="CancelIcon" type="Sprite" parent="."]
+position = Vector2( 1361, 653 )
+texture = ExtResource( 19 )
+
+[connection signal="gui_input" from="Searchbar" to="." method="onSearchbarInput"]
+[connection signal="text_changed" from="Searchbar" to="." method="onSearchbarTextChanged"]
+[connection signal="text_entered" from="Searchbar" to="." method="onSearchbarTextEnter"]
+[connection signal="pressed" from="JoinButton" to="." method="onJoinPressed"]
+[connection signal="pressed" from="CancelButton" to="." method="cancel"]

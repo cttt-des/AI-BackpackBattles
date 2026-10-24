@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Interface/Tooltips/ItemTooltip.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Interface/Tooltips/TooltipBase_Epic.png" type="Texture" id=2]
+[ext_resource path="res://Interface/Tooltips/Divider1_Epic.png" type="Texture" id=4]
+[ext_resource path="res://Interface/Tooltips/Divider2_Epic.png" type="Texture" id=5]
+
+[node name="Tooltip" instance=ExtResource( 1 )]
+margin_left = -16.0
+margin_top = -72.0
+margin_right = 572.0
+margin_bottom = 275.0
+texture = ExtResource( 2 )
+patch_margin_left = 32
+patch_margin_top = 161
+patch_margin_right = 41
+patch_margin_bottom = 105
+Y_BORDER = 185
+
+[node name="VBoxContainer" parent="." index="0"]
+margin_left = 53.0
+margin_top = 126.0
+margin_right = 523.0
+margin_bottom = 293.0
+
+[node name="Divider1" parent="VBoxContainer" index="3"]
+margin_right = 471.0
+texture = ExtResource( 5 )
+
+[node name="Divider2" parent="VBoxContainer" index="4"]
+margin_bottom = 126.0
+texture = ExtResource( 4 )
+
+[node name="HBoxContainer" parent="VBoxContainer" index="5"]
+margin_top = 135.0
+margin_bottom = 167.0
+
+[node name="Spacer" parent="VBoxContainer/HBoxContainer" index="0"]
+margin_right = 108.0
+
+[node name="Rarity" parent="VBoxContainer/HBoxContainer" index="1"]
+margin_left = 103.0
+margin_right = 160.0
+text = "Epic"
+
+[node name="Spacer2" parent="VBoxContainer/HBoxContainer" index="2"]
+margin_left = 155.0
+margin_right = 264.0
+
+[node name="HBoxContainer" parent="VBoxContainer/HBoxContainer" index="3"]
+margin_left = 259.0
+margin_right = 366.0
+
+[node name="Spacer3" parent="VBoxContainer/HBoxContainer" index="4"]
+margin_left = 361.0

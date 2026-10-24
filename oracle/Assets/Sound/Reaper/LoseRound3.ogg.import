@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/LoseRound3.ogg-85c1f8a9ddebc8661cb9c0aa83f278b9.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/Reaper/LoseRound3.ogg"
+dest_files=[ "res://.import/LoseRound3.ogg-85c1f8a9ddebc8661cb9c0aa83f278b9.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

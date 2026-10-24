@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Damage1.ogg-e2157951d21a4374b5e043997e8f4e49.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/Adventurer/Damage1.ogg"
+dest_files=[ "res://.import/Damage1.ogg-e2157951d21a4374b5e043997e8f4e49.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/StrongHeroicPotion_overlay.png-a28c363f818c78647696f50ab4f0b64b.res"
+group_file="res://Atlases/Items_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Items/Sprites/StrongHeroicPotion_overlay.png"
+dest_files=[ "res://.import/StrongHeroicPotion_overlay.png-a28c363f818c78647696f50ab4f0b64b.res" ]
+
+[params]
+
+atlas_file="res://Atlases/Items_atlas.png"
+import_mode=0
+crop_to_region=true
+trim_alpha_border_from_region=false

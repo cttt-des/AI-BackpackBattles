@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/LoseRound5.ogg-d30cc34a7932a6658f7c725f41ea9ede.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/Berserker/LoseRound5.ogg"
+dest_files=[ "res://.import/LoseRound5.ogg-d30cc34a7932a6658f7c725f41ea9ede.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/Piggybank.png-92256e1eb7698ee63ce5664c67a9be36.res"
+group_file="res://Atlases/Items_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Items/Sprites/Piggybank.png"
+dest_files=[ "res://.import/Piggybank.png-92256e1eb7698ee63ce5664c67a9be36.res" ]
+
+[params]
+
+atlas_file="res://Atlases/Items_atlas.png"
+import_mode=0
+crop_to_region=true
+trim_alpha_border_from_region=false

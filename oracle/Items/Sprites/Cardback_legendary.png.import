@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/Cardback_legendary.png-f82653585986152cfde52f5274bc91ab.res"
+group_file="res://Atlases/Items_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Items/Sprites/Cardback_legendary.png"
+dest_files=[ "res://.import/Cardback_legendary.png-f82653585986152cfde52f5274bc91ab.res" ]
+
+[params]
+
+atlas_file="res://Atlases/Items_atlas.png"
+import_mode=0
+crop_to_region=true
+trim_alpha_border_from_region=false

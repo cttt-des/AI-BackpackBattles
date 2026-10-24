@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Throwaway.mp3-f043f1732c70e5f34fd3611009201f4f.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sound/Throwaway.mp3"
+dest_files=[ "res://.import/Throwaway.mp3-f043f1732c70e5f34fd3611009201f4f.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

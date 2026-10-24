@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/PriceStrikethrough2.png-23699a846d19a2643fd511fb6e2460bc.res"
+group_file="res://Atlases/Shop_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Assets/Shop/PriceStrikethrough2.png"
+dest_files=[ "res://.import/PriceStrikethrough2.png-23699a846d19a2643fd511fb6e2460bc.res" ]
+
+[params]
+
+atlas_file="res://Atlases/Shop_atlas.png"
+import_mode=0
+crop_to_region=true
+trim_alpha_border_from_region=true

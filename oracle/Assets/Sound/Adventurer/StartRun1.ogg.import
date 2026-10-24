@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/StartRun1.ogg-25003cf8659d8c3026cf821f316593fb.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/Adventurer/StartRun1.ogg"
+dest_files=[ "res://.import/StartRun1.ogg-25003cf8659d8c3026cf821f316593fb.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

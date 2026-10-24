@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/Speechbubble4.png-7221ab3890a5d0624f9b1bbf7be074d8.res"
+group_file="res://Atlases/Shop_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Assets/Shop/Shopkeeper/Speechbubble4.png"
+dest_files=[ "res://.import/Speechbubble4.png-7221ab3890a5d0624f9b1bbf7be074d8.res" ]
+
+[params]
+
+atlas_file="res://Atlases/Shop_atlas.png"
+import_mode=0
+crop_to_region=true
+trim_alpha_border_from_region=false

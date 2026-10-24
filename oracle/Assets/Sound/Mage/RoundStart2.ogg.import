@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/RoundStart2.ogg-ade7fcc579286ffce673ad3d6fa43e39.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/Mage/RoundStart2.ogg"
+dest_files=[ "res://.import/RoundStart2.ogg-ade7fcc579286ffce673ad3d6fa43e39.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

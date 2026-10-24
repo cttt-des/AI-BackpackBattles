@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/RoundStart5.ogg-757a3442240b302c2f56364e0d116695.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/Pyromancer/RoundStart5.ogg"
+dest_files=[ "res://.import/RoundStart5.ogg-757a3442240b302c2f56364e0d116695.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

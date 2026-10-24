@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/LoseRound3.ogg-493b982f6ca1c05962a40d1e4b8c3ebb.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/Adventurer/LoseRound3.ogg"
+dest_files=[ "res://.import/LoseRound3.ogg-493b982f6ca1c05962a40d1e4b8c3ebb.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

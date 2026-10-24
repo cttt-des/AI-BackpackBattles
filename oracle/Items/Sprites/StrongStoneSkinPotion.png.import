@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/StrongStoneSkinPotion.png-0d52ced38ccc2e3fde13ff360db1b3ae.res"
+group_file="res://Atlases/Items_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Items/Sprites/StrongStoneSkinPotion.png"
+dest_files=[ "res://.import/StrongStoneSkinPotion.png-0d52ced38ccc2e3fde13ff360db1b3ae.res" ]
+
+[params]
+
+atlas_file="res://Atlases/Items_atlas.png"
+import_mode=0
+crop_to_region=true
+trim_alpha_border_from_region=false

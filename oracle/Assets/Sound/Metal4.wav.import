@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Metal4.wav-6c8cc4dfc0a520267d8488f3774cca00.sample"
+
+[deps]
+
+source_file="res://Assets/Sound/Metal4.wav"
+dest_files=[ "res://.import/Metal4.wav-6c8cc4dfc0a520267d8488f3774cca00.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

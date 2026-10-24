@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/Lucky.png-dced232a16b17e07a292203522e5d07e.res"
+group_file="res://Atlases/Combat_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Assets/Buffs/Lucky.png"
+dest_files=[ "res://.import/Lucky.png-dced232a16b17e07a292203522e5d07e.res" ]
+
+[params]
+
+atlas_file="res://Atlases/Combat_atlas.png"
+import_mode=0
+crop_to_region=true
+trim_alpha_border_from_region=true

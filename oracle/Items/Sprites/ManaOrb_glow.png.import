@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/ManaOrb_glow.png-43d377cc0a6ee747b99cce3770b9fa2d.res"
+group_file="res://Atlases/Items_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Items/Sprites/ManaOrb_glow.png"
+dest_files=[ "res://.import/ManaOrb_glow.png-43d377cc0a6ee747b99cce3770b9fa2d.res" ]
+
+[params]
+
+atlas_file="res://Atlases/Items_atlas.png"
+import_mode=0
+crop_to_region=true
+trim_alpha_border_from_region=false

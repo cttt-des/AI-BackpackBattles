@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/Hill1.png-36a25f7f31528748f5b9dd3930b4abdb.res"
+group_file="res://Atlases/Combat_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Assets/Background/Hill1.png"
+dest_files=[ "res://.import/Hill1.png-36a25f7f31528748f5b9dd3930b4abdb.res" ]
+
+[params]
+
+atlas_file="res://Atlases/Combat_atlas.png"
+import_mode=0
+crop_to_region=true
+trim_alpha_border_from_region=false

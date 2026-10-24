@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/RankUp2.ogg-e980cb5c6431e16649d4ecfa92126f0d.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/RankUp2.ogg"
+dest_files=[ "res://.import/RankUp2.ogg-e980cb5c6431e16649d4ecfa92126f0d.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

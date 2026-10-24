@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/Storagebox.png-f5961549a6cdfb4fe03eba821c1aad3d.res"
+group_file="res://Atlases/Shop_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Assets/Shop/Storagebox.png"
+dest_files=[ "res://.import/Storagebox.png-f5961549a6cdfb4fe03eba821c1aad3d.res" ]
+
+[params]
+
+atlas_file="res://Atlases/Shop_atlas.png"
+import_mode=0
+crop_to_region=true
+trim_alpha_border_from_region=false
