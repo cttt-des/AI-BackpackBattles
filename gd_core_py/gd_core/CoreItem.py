@@ -964,6 +964,11 @@ class CoreItem(GodotObject):
 		#   ③ damageRes 非空时 playActivateAnimation（Character.gd:464-481，见该函数）。
 		self.ctx.rng.randf_range(0.9, 1.1)
 		if self.descriptor.animationScene:
+			# ★ ANIM 标记（不消耗链，与神谕 oracle/Items/Item.gd playAnimation 的
+			#   同名标记行同构）：跨引擎 4 抽块归属定位用。
+			if self.ctx.rng.oracle_trace:
+				self.ctx.rng.oracle_trace_log.push_back([len(self.ctx.rng.oracle_trace_log),
+						"ANIM", String(self.descriptor.identifier), "True", "hit=True", ""])
 			self.ctx.rng.randf_range(-30.0, 30.0)
 			self.ctx.rng.randf_range(-100.0, 100.0)
 			self.ctx.rng.randf_range(-5.0, 5.0)
@@ -1921,6 +1926,11 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:4882-4884
 	def giveBuffPower(self, buffType, power):
+		# ★ 诊断标记（不消耗链）：buffPower 授予面追踪
+		if self.ctx.rng.oracle_trace:
+			self.ctx.rng.oracle_trace_log.push_back([len(self.ctx.rng.oracle_trace_log),
+					"BFP", String(self.descriptor.identifier), str(buffType), str(power),
+					""])
 		self.buffPowers[buffType] += power
 
 

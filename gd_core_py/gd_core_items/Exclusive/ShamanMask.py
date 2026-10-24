@@ -19,6 +19,15 @@ class Exclusive__ShamanMask(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def onCombatStart(self):
+		# ★ 诊断标记（不消耗链）：幸运计数的逐物品宝石明细
+		if self.ctx.rng.oracle_trace:
+			detail = []
+			for it in _iter(self.inventory.items):
+				detail.append(String(it.descriptor.identifier) + "=" +
+						str(len(it.getGemsNoNull())))
+			self.ctx.rng.oracle_trace_log.push_back([len(self.ctx.rng.oracle_trace_log),
+					"GEMS", str(self.inventory.countSocketedGems()),
+					_join(PoolStringArray(detail), ","), "", ""])
 		self.giveLucky(self.inventory.countSocketedGems())
 
 
