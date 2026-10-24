@@ -1,0 +1,516 @@
+[gd_scene load_steps=38 format=2]
+
+[ext_resource path="res://Assets/Fonts/LibreBaskerville-Bold.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Assets/Shop/Sign1.png" type="Texture" id=2]
+[ext_resource path="res://Interface/Lobbies/LobbyTimer.gd" type="Script" id=3]
+[ext_resource path="res://Interface/DamageMeter/Plot/Symbol_Circle.png" type="Texture" id=4]
+[ext_resource path="res://Interface/Lobbies/LobbyCombatTimer.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Fonts/GlassAntiqua-Regular.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://Utility/LocalizedControl.gd" type="Script" id=7]
+[ext_resource path="res://Interface/FocusGrabbingTextureButton.gd" type="Script" id=8]
+[ext_resource path="res://Interface/Checkmark.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Shop/Sign1_hovered.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Particles/GlowingDot.png" type="Texture" id=11]
+[ext_resource path="res://Shader/SmoothFadeGradient.tres" type="Texture" id=12]
+[ext_resource path="res://Interface/NonLocalizedControl.gd" type="Script" id=13]
+[ext_resource path="res://Utility/AutoHideParticles.gd" type="Script" id=14]
+[ext_resource path="res://Assets/Fonts/LibreBaskerville-Regular.ttf" type="DynamicFontData" id=15]
+[ext_resource path="res://Assets/Fonts/Localized/NotoSansTC-Regular.ttf" type="DynamicFontData" id=16]
+[ext_resource path="res://Interface/Lobbies/LobbyTimerFont_normal.tres" type="DynamicFont" id=17]
+[ext_resource path="res://Assets/Noise/SparkleNoise.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Shop/Sign1_progress.png" type="Texture" id=19]
+
+[sub_resource type="DynamicFont" id=6]
+size = 38
+outline_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+use_mipmaps = true
+use_filter = true
+extra_spacing_top = -10
+font_data = ExtResource( 6 )
+
+[sub_resource type="ParticlesMaterial" id=7]
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 180.0
+gravity = Vector3( 0, 98, 0 )
+initial_velocity = 517.11
+initial_velocity_random = 0.26
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+damping = 100.0
+scale = 1.22
+scale_random = 0.54
+color_ramp = ExtResource( 12 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 22
+outline_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+use_filter = true
+extra_spacing_bottom = -8
+font_data = ExtResource( 15 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "HideTimer"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Combat:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1.93187, 0.517632 ),
+"update": 0,
+"values": [ Vector2( 1676, 32 ), Vector2( 1676, -150 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Combat:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Combat:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1676, -150 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Combat:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "ShowTimer"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Combat:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 0.517632, 1 ),
+"update": 0,
+"values": [ Vector2( 1676, -150 ), Vector2( 1676, 32 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Combat:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="DynamicFont" id=2]
+size = 40
+outline_size = 4
+outline_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 40
+font_data = ExtResource( 16 )
+
+[sub_resource type="Shader" id=16]
+code = "shader_type canvas_item;
+
+uniform sampler2D tone_mapping;
+
+uniform sampler2D NOISE_PATTERN;
+uniform sampler2D NOISE_PATTERN2;
+uniform vec2 scroll1 = vec2(1 , 0.4);
+uniform vec2 scroll2 = vec2(0.2, 1.2);
+
+uniform float baseIntensity : hint_range(-1.0,0.5) = 0.1;
+uniform float intensityFactor : hint_range(0.0,5.0) = 1.5;
+
+uniform vec2 noise1Scale = vec2(1,1);
+uniform vec2 noise2Scale = vec2(1,1);
+uniform float blur : hint_range(0.0, 7.0) = 3.0;
+
+uniform float staticFactor : hint_range(-1,1) = 0.5;
+
+uniform float zoomLevel : hint_range(0.0, 10.0) = 1.;
+uniform vec2 cen = vec2(0.5);
+
+vec2 polar_coordinates(vec2 uv, vec2 center, float zoom, float repeat)
+{
+	vec2 dir = uv - center;
+	float radius = length(dir) * 2.0;
+	float angle = atan(dir.y, dir.x) * 1.0/(3.1416 * 2.0);
+	return mod(vec2(radius * zoom, angle * repeat), 1.0);
+}
+
+void fragment() {
+	vec2 polar_uv = polar_coordinates(UV.xy, cen, zoomLevel, 1.0);
+
+	vec4 texVal = textureLod(TEXTURE, UV, blur);
+	float texAlpha = texVal.a;
+	
+	float intensity1 = textureLod(NOISE_PATTERN, polar_uv * noise1Scale + TIME * scroll1, 0.0).r;
+	float intensity2 = textureLod(NOISE_PATTERN2, polar_uv * noise2Scale + TIME * scroll2, 0.0).r;
+	float intensity= ((intensity1 * intensity2) + baseIntensity+ texVal.r * staticFactor) * intensityFactor * texAlpha;
+	
+	COLOR = textureLod(tone_mapping, vec2(intensity), 0.0);
+}"
+
+[sub_resource type="Gradient" id=18]
+offsets = PoolRealArray( 0, 0.193548, 1 )
+colors = PoolColorArray( 1, 0.87451, 0.568627, 0, 1, 0.80989, 0.242188, 0.311258, 1, 0.989223, 0.804688, 1 )
+
+[sub_resource type="GradientTexture" id=19]
+gradient = SubResource( 18 )
+width = 200
+
+[sub_resource type="ShaderMaterial" id=20]
+resource_local_to_scene = true
+shader = SubResource( 16 )
+shader_param/scroll1 = Vector2( -0.152, -0.031 )
+shader_param/scroll2 = Vector2( -0.243, 0.086 )
+shader_param/baseIntensity = 0.332
+shader_param/intensityFactor = 1.168
+shader_param/noise1Scale = Vector2( 1.134, 1 )
+shader_param/noise2Scale = Vector2( 0.938, 2 )
+shader_param/blur = 0.0
+shader_param/staticFactor = -0.8
+shader_param/zoomLevel = 1.0
+shader_param/cen = Vector2( 0.5, 0.5 )
+shader_param/tone_mapping = SubResource( 19 )
+shader_param/NOISE_PATTERN = ExtResource( 18 )
+shader_param/NOISE_PATTERN2 = ExtResource( 18 )
+
+[sub_resource type="Gradient" id=10]
+offsets = PoolRealArray( 0.356275, 0.497976, 0.647773 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture2D" id=11]
+gradient = SubResource( 10 )
+width = 200
+height = 200
+fill = 1
+fill_from = Vector2( 0.504167, 0.508333 )
+
+[sub_resource type="Animation" id=12]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Shockwave:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "Tick"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Shockwave:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.525787, 0.835696 ),
+"transitions": PoolRealArray( 0.420448, 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 12, 12 ), Vector2( 0.5, 0.5 ), Vector2( 2.5, 2.5 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Shockwave:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.35876, 0.8 ),
+"transitions": PoolRealArray( 3.13834, 0.5, 3.13834 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Shockwave:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Shockwave:material:shader_param/staticFactor")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.319915, 0.84135 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -0.8, 0.015, -1.0 ]
+}
+
+[sub_resource type="Shader" id=390]
+code = "shader_type canvas_item;
+
+uniform float revealState : hint_range(-1,1) = 0.5;
+
+void fragment() {
+	vec2 difToCenter = vec2(0.5,0.5) - UV;
+	float relativeAngle = (-atan(-difToCenter.x, -difToCenter.y)) / 6.28 + 0.5;
+	COLOR = texture(TEXTURE, UV);
+	//COLOR.rgb *= 1.0 + 10.0 * (1.0- smoothstep(relativeAngle-0.1,relativeAngle+0.15, revealState));
+	COLOR.a *= step(relativeAngle, revealState);
+}"
+
+[sub_resource type="ShaderMaterial" id=391]
+shader = SubResource( 390 )
+shader_param/revealState = -1.0
+
+[node name="LobbyTimer" type="Node2D"]
+pause_mode = 2
+script = ExtResource( 3 )
+
+[node name="Sign1" type="Sprite" parent="."]
+visible = false
+position = Vector2( 972, 113 )
+scale = Vector2( 0.679577, 0.679577 )
+texture = ExtResource( 2 )
+
+[node name="ReadyButton" type="TextureButton" parent="."]
+margin_left = 824.0
+margin_top = 17.0
+margin_right = 1119.0
+margin_bottom = 210.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 10 )
+texture_hover = ExtResource( 10 )
+expand = true
+script = ExtResource( 8 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 848.0
+margin_top = 79.0
+margin_right = 1062.0
+margin_bottom = 155.0
+custom_colors/font_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+custom_fonts/font = ExtResource( 17 )
+text = ":"
+align = 1
+
+[node name="Minutes" type="Label" parent="."]
+margin_left = 857.0
+margin_top = 79.0
+margin_right = 943.0
+margin_bottom = 155.0
+custom_colors/font_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+custom_fonts/font = ExtResource( 17 )
+text = "0"
+align = 2
+
+[node name="Seconds" type="Label" parent="."]
+margin_left = 966.0
+margin_top = 79.0
+margin_right = 1062.0
+margin_bottom = 155.0
+custom_colors/font_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+custom_fonts/font = ExtResource( 17 )
+text = "54"
+
+[node name="Waiting" type="Label" parent="."]
+visible = false
+margin_left = 865.0
+margin_top = 84.0
+margin_right = 1075.0
+margin_bottom = 155.0
+grow_vertical = 2
+rect_min_size = Vector2( 201, 71 )
+rect_pivot_offset = Vector2( 100, 29 )
+custom_colors/font_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+custom_colors/font_color_shadow = Color( 0.235294, 0.14902, 0.113725, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 0
+custom_fonts/font = SubResource( 6 )
+text = "Looking for
+opponent..."
+align = 1
+valign = 1
+autowrap = true
+script = ExtResource( 7 )
+translationKey = "UI_Matching"
+maxSize = 210.0
+maxSizeY = 71.0
+
+[node name="Checkmark" type="Sprite" parent="."]
+visible = false
+position = Vector2( 973, 170 )
+scale = Vector2( 0.675, 0.675 )
+texture = ExtResource( 9 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+visible = false
+modulate = Color( 1.8, 1.6, 1, 1 )
+position = Vector2( 973, 115 )
+emitting = false
+amount = 40
+lifetime = 0.5
+one_shot = true
+preprocess = 0.2
+explosiveness = 0.82
+process_material = SubResource( 7 )
+texture = ExtResource( 11 )
+script = ExtResource( 14 )
+
+[node name="ReadyCounter" type="Label" parent="."]
+visible = false
+margin_left = 925.0
+margin_top = 203.0
+margin_right = 1019.0
+margin_bottom = 226.0
+grow_horizontal = 0
+grow_vertical = 2
+custom_colors/font_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+custom_colors/font_color_shadow = Color( 0.235294, 0.14902, 0.113725, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 0
+custom_fonts/font = SubResource( 8 )
+text = "1/20"
+align = 1
+script = ExtResource( 13 )
+
+[node name="Combat" type="Node2D" parent="."]
+position = Vector2( 1676, -150 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Combat"]
+root_node = NodePath("../..")
+anims/HideTimer = SubResource( 3 )
+anims/RESET = SubResource( 4 )
+anims/ShowTimer = SubResource( 5 )
+
+[node name="LobbyCombatTimer" type="Sprite" parent="Combat"]
+position = Vector2( -324.649, 39.5 )
+scale = Vector2( 0.951389, 0.951389 )
+texture = ExtResource( 5 )
+
+[node name="SymbolCircle" type="Sprite" parent="Combat"]
+visible = false
+position = Vector2( 2, 23 )
+scale = Vector2( 2.43333, 2.43333 )
+texture = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="Combat"]
+margin_left = -351.5
+margin_top = -12.0
+margin_right = -322.5
+margin_bottom = 38.0
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_fonts/font = SubResource( 2 )
+text = ":"
+align = 1
+
+[node name="Minutes" type="Label" parent="Combat"]
+margin_left = -433.5
+margin_top = -6.99999
+margin_right = -347.5
+margin_bottom = 69.0
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "0"
+align = 2
+
+[node name="Seconds" type="Label" parent="Combat"]
+margin_left = -324.5
+margin_top = -6.99999
+margin_right = -228.5
+margin_bottom = 69.0
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "54"
+
+[node name="Debug1" type="Label" parent="."]
+visible = false
+margin_left = 784.0
+margin_top = 229.0
+margin_right = 1167.0
+margin_bottom = 288.0
+custom_fonts/font = SubResource( 9 )
+text = "a"
+
+[node name="Debug2" type="Label" parent="."]
+visible = false
+margin_left = 784.0
+margin_top = 296.0
+margin_right = 1167.0
+margin_bottom = 355.0
+custom_fonts/font = SubResource( 9 )
+text = "b"
+
+[node name="Debug3" type="Label" parent="."]
+visible = false
+margin_left = 784.0
+margin_top = 358.0
+margin_right = 1167.0
+margin_bottom = 417.0
+custom_fonts/font = SubResource( 9 )
+text = "c"
+
+[node name="Shockwave" type="Sprite" parent="."]
+visible = false
+self_modulate = Color( 3, 3, 3, 0.59 )
+material = SubResource( 20 )
+position = Vector2( 971, 112 )
+scale = Vector2( 12, 12 )
+texture = SubResource( 11 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Shockwave"]
+root_node = NodePath("../..")
+anims/RESET = SubResource( 12 )
+anims/Tick = SubResource( 13 )
+
+[node name="Progress" type="Sprite" parent="."]
+visible = false
+modulate = Color( 1.00686, 0.949591, 0.114539, 1 )
+material = SubResource( 391 )
+position = Vector2( 972, 113 )
+scale = Vector2( 0.68046, 0.672535 )
+texture = ExtResource( 19 )
+
+[connection signal="pressed" from="ReadyButton" to="." method="onReadyPressed"]

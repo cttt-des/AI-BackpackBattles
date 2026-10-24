@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/This counts as a Victory - Start.ogg-3dabe7da48a91371c27e3372783b6bd3.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/BGM/This counts as a Victory - Start.ogg"
+dest_files=[ "res://.import/This counts as a Victory - Start.ogg-3dabe7da48a91371c27e3372783b6bd3.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

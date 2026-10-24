@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Ukulele2.ogg-e4c1e3387e920a1fe80cb6a871b78735.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/Ukulele2.ogg"
+dest_files=[ "res://.import/Ukulele2.ogg-e4c1e3387e920a1fe80cb6a871b78735.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

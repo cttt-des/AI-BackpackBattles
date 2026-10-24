@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Buy2.ogg-9e4a8e3bf2da09756adfb8d0a6f521dc.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/Reaper/Buy2.ogg"
+dest_files=[ "res://.import/Buy2.ogg-9e4a8e3bf2da09756adfb8d0a6f521dc.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/VampireSword_glow.png-5f9d408d0a355990bdf3f60c400e7f0d.res"
+group_file="res://Atlases/Items_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Items/Sprites/VampireSword_glow.png"
+dest_files=[ "res://.import/VampireSword_glow.png-5f9d408d0a355990bdf3f60c400e7f0d.res" ]
+
+[params]
+
+atlas_file="res://Atlases/Items_atlas.png"
+import_mode=0
+crop_to_region=true
+trim_alpha_border_from_region=false

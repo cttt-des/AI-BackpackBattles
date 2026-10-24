@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/Bottom_back.png-d05787e84bccc607648eac27db1debfb.res"
+group_file="res://Atlases/Shop_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Assets/Chestnut/Bottom_back.png"
+dest_files=[ "res://.import/Bottom_back.png-d05787e84bccc607648eac27db1debfb.res" ]
+
+[params]
+
+atlas_file="res://Atlases/Shop_atlas.png"
+import_mode=0
+crop_to_region=false
+trim_alpha_border_from_region=false

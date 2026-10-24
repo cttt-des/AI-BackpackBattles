@@ -1,0 +1,509 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://Items/Materials/White-EyesBlueDragon.material" type="Material" id=1]
+[ext_resource path="res://Items/Animations/ItemAnimation.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Particles/Snowflake1.png" type="Texture" id=3]
+[ext_resource path="res://Items/Exclusive/Sprites/IceDragon.png" type="Texture" id=4]
+
+[sub_resource type="Animation" id=2]
+resource_name = "DeathScythe"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0986604, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 3.605, 3.73213, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 4, 2, 2, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1.27456, 1 ),
+"update": 0,
+"values": [ Vector2( -114, -258 ), Vector2( 151, 267 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1.27456, 1 ),
+"update": 0,
+"values": [ -48.6, 156.3 ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "returnToObjectPool"
+} ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "HungryBlade"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0986604, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 3.605, 3.73213, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 4, 2, 2, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1.27456, 1 ),
+"update": 0,
+"values": [ Vector2( -114, -258 ), Vector2( 151, 267 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1.27456, 1 ),
+"update": 0,
+"values": [ -25.0, 130.3 ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "returnToObjectPool"
+} ]
+}
+
+[sub_resource type="Animation" id=25]
+resource_name = "IceDragon"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0986604, 0.3, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 3.605, 3.605, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1.5, 1.5, 1.5, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.133627 ),
+"transitions": PoolRealArray( 1.27456, -2 ),
+"update": 0,
+"values": [ Vector2( -114, -200 ), Vector2( -114, -200 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.135979 ),
+"transitions": PoolRealArray( 1.27456, 1 ),
+"update": 0,
+"values": [ 0.0, 30.0 ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.8 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "returnToObjectPool"
+} ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("Particles2D")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.135979 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "restart"
+} ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Particles2D:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.135979 ),
+"transitions": PoolRealArray( 1.31951 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=29]
+resource_name = "IceDragonMiss"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.226935, 0.3, 0.386532, 0.5 ),
+"transitions": PoolRealArray( 1, 3.605, 3.73213, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 0.780392, 0.780392, 0.780392, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.00288591, 0.242476, 0.5 ),
+"transitions": PoolRealArray( 1.27456, 1.27456, 1 ),
+"update": 0,
+"values": [ Vector2( -200, -258 ), Vector2( -200, -258 ), Vector2( -318, -327 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.197114 ),
+"transitions": PoolRealArray( 1.27456, 1 ),
+"update": 0,
+"values": [ 0.0, 16.8 ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "returnToObjectPool"
+} ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "RubyWhelp"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0986604, 0.3, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 3.605, 3.605, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1.5, 1.5, 1.5, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.133627 ),
+"transitions": PoolRealArray( 1.27456, -2 ),
+"update": 0,
+"values": [ Vector2( -114, -258 ), Vector2( -114, -258 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.135979 ),
+"transitions": PoolRealArray( 1.27456, 1 ),
+"update": 0,
+"values": [ 0.0, 30.0 ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.8 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "returnToObjectPool"
+} ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("Particles2D")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.135979 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "restart"
+} ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Particles2D:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.135979 ),
+"transitions": PoolRealArray( 1.31951 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "RubyWhelpMiss"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.226935, 0.3, 0.386532, 0.5 ),
+"transitions": PoolRealArray( 1, 3.605, 3.73213, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 0.780392, 0.780392, 0.780392, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.00288591, 0.242476, 0.5 ),
+"transitions": PoolRealArray( 1.27456, 1.27456, 1 ),
+"update": 0,
+"values": [ Vector2( -200, -258 ), Vector2( -200, -258 ), Vector2( -318, -327 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.197114 ),
+"transitions": PoolRealArray( 1.27456, 1 ),
+"update": 0,
+"values": [ 15.3, 63.8 ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "returnToObjectPool"
+} ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "RubyWhelpTackle"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0986604, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 3.605, 3.73213, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 4, 2, 2, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.197648, 0.334168, 0.497177 ),
+"transitions": PoolRealArray( 1.27456, -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( -114, -258 ), Vector2( -114, -258 ), Vector2( 16, -183 ), Vector2( -114, -258 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1.27456, 1 ),
+"update": 0,
+"values": [ 0.0, 30.0 ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "returnToObjectPool"
+} ]
+}
+
+[sub_resource type="Gradient" id=26]
+offsets = PoolRealArray( 0, 0.0927152, 0.891192, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0.474452, 1, 1, 1, 0.247059 )
+
+[sub_resource type="GradientTexture" id=27]
+gradient = SubResource( 26 )
+width = 50
+
+[sub_resource type="Curve" id=23]
+max_value = 2.0
+_data = [ Vector2( 0, 0.831818 ), 0.0, 0.0, 0, 0, Vector2( 1, 2 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=24]
+width = 200
+curve = SubResource( 23 )
+
+[sub_resource type="ParticlesMaterial" id=28]
+emission_shape = 1
+emission_sphere_radius = 8.38
+flag_disable_z = true
+spread = 20.25
+gravity = Vector3( 0, 98, 0 )
+initial_velocity = 257.26
+initial_velocity_random = 0.38
+angular_velocity = 205.71
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 720.0
+angle_random = 1.0
+scale = 0.21
+scale_random = 0.44
+scale_curve = SubResource( 24 )
+color_ramp = SubResource( 27 )
+anim_offset = 1.0
+anim_offset_random = 1.0
+
+[node name="Node2D" instance=ExtResource( 2 )]
+aniName = "IceDragon"
+
+[node name="AnimationPlayer" parent="." index="0"]
+anims/DeathScythe = SubResource( 2 )
+anims/HungryBlade = SubResource( 1 )
+anims/IceDragon = SubResource( 25 )
+anims/IceDragonMiss = SubResource( 29 )
+anims/RubyWhelp = SubResource( 3 )
+anims/RubyWhelpMiss = SubResource( 4 )
+anims/RubyWhelpTackle = SubResource( 7 )
+
+[node name="Sprite" parent="." index="1"]
+modulate = Color( 1, 1, 1, 0 )
+texture = ExtResource( 4 )
+offset = Vector2( -6, -2 )
+flip_h = true
+
+[node name="FoxArcher" parent="." index="2"]
+visible = true
+
+[node name="Particles2D" type="Particles2D" parent="." index="3"]
+modulate = Color( 1.2, 1.2, 1.2, 1 )
+material = ExtResource( 1 )
+position = Vector2( -95, -219 )
+rotation = 0.605629
+scale = Vector2( 1.5, 1.4 )
+emitting = false
+amount = 7
+lifetime = 0.74
+one_shot = true
+speed_scale = 1.19
+explosiveness = 0.58
+process_material = SubResource( 28 )
+texture = ExtResource( 3 )

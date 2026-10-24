@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/StartRun2.ogg-ae82084dc06f595caed16708406b1460.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/Ranger/StartRun2.ogg"
+dest_files=[ "res://.import/StartRun2.ogg-ae82084dc06f595caed16708406b1460.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

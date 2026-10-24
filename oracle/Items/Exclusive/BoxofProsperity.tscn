@@ -1,0 +1,230 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://Items/Item.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Items/Exclusive/Sprites/BoxofProsperity.png" type="Texture" id=2]
+[ext_resource path="res://Items/Exclusive/BoxofProsperity.gd" type="Script" id=3]
+[ext_resource path="res://Items/Tiles/PotentialSpace.png" type="Texture" id=4]
+[ext_resource path="res://Items/Tiles/CantAdd.png" type="Texture" id=5]
+[ext_resource path="res://Items/Tiles/CanAdd.png" type="Texture" id=6]
+[ext_resource path="res://Items/Tiles/Collision.png" type="Texture" id=7]
+[ext_resource path="res://Items/Tiles/Slot.png" type="Texture" id=8]
+[ext_resource path="res://Items/Tiles/FilledSlot.png" type="Texture" id=9]
+[ext_resource path="res://Items/Tiles/Hover.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Particles/GlowingDot_small.png" type="Texture" id=11]
+[ext_resource path="res://Utility/AutoHideParticles.gd" type="Script" id=12]
+[ext_resource path="res://Items/Exclusive/Borders/Box_Border.png" type="Texture" id=13]
+[ext_resource path="res://Items/Tiles/BagBorder.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Items/Exclusive/Particles/BoxofProsperityActiveParticles.material" type="Material" id=15]
+
+[sub_resource type="PhysicsMaterial" id=2]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="Shader" id=10]
+code = "shader_type canvas_item;
+
+uniform float progress : hint_range(-1, 2) = 0.5;
+uniform vec2 direction = vec2(0, 1);
+
+void fragment() {
+	COLOR = texture(TEXTURE, UV);
+	COLOR.rgb *= 1.0 + 0.5 * smoothstep(progress - 0.05, progress + 0.05, dot(UV, direction));
+}"
+
+[sub_resource type="ShaderMaterial" id=11]
+resource_local_to_scene = true
+shader = SubResource( 10 )
+shader_param/progress = 0.245
+shader_param/direction = Vector2( -1, 0 )
+
+[sub_resource type="TileSet" id=3]
+1/name = "Slot.png 1"
+1/texture = ExtResource( 8 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 0, 0, 80, 80 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape_one_way = false
+1/shape_one_way_margin = 0.0
+1/shapes = [  ]
+1/z_index = 0
+2/name = "FilledSlot.png 2"
+2/texture = ExtResource( 9 )
+2/tex_offset = Vector2( 0, 0 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 0, 0, 80, 80 )
+2/tile_mode = 0
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape_one_way = false
+2/shape_one_way_margin = 0.0
+2/shapes = [  ]
+2/z_index = 0
+3/name = "Hover.png 3"
+3/texture = ExtResource( 10 )
+3/tex_offset = Vector2( 0, 0 )
+3/modulate = Color( 1, 1, 1, 1 )
+3/region = Rect2( 0, 0, 80, 80 )
+3/tile_mode = 0
+3/occluder_offset = Vector2( 0, 0 )
+3/navigation_offset = Vector2( 0, 0 )
+3/shape_offset = Vector2( 0, 0 )
+3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+3/shape_one_way = false
+3/shape_one_way_margin = 0.0
+3/shapes = [  ]
+3/z_index = 0
+4/name = "Collision.png 4"
+4/texture = ExtResource( 7 )
+4/tex_offset = Vector2( 0, 0 )
+4/modulate = Color( 1, 1, 1, 1 )
+4/region = Rect2( 0, 0, 80, 80 )
+4/tile_mode = 0
+4/occluder_offset = Vector2( 0, 0 )
+4/navigation_offset = Vector2( 0, 0 )
+4/shape_offset = Vector2( 0, 0 )
+4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+4/shape_one_way = false
+4/shape_one_way_margin = 0.0
+4/shapes = [  ]
+4/z_index = 0
+5/name = "CantAdd.png 5"
+5/texture = ExtResource( 5 )
+5/tex_offset = Vector2( 0, 0 )
+5/modulate = Color( 1, 1, 1, 1 )
+5/region = Rect2( 0, 0, 80, 80 )
+5/tile_mode = 0
+5/occluder_offset = Vector2( 0, 0 )
+5/navigation_offset = Vector2( 0, 0 )
+5/shape_offset = Vector2( 0, 0 )
+5/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+5/shape_one_way = false
+5/shape_one_way_margin = 0.0
+5/shapes = [  ]
+5/z_index = 0
+6/name = "CanAdd.png 6"
+6/texture = ExtResource( 6 )
+6/tex_offset = Vector2( 0, 0 )
+6/modulate = Color( 1, 1, 1, 1 )
+6/region = Rect2( 0, 0, 80, 80 )
+6/tile_mode = 0
+6/occluder_offset = Vector2( 0, 0 )
+6/navigation_offset = Vector2( 0, 0 )
+6/shape_offset = Vector2( 0, 0 )
+6/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+6/shape_one_way = false
+6/shape_one_way_margin = 0.0
+6/shapes = [  ]
+6/z_index = 0
+7/name = "PotentialSpace.png 7"
+7/texture = ExtResource( 4 )
+7/tex_offset = Vector2( 0, 0 )
+7/modulate = Color( 1, 1, 1, 1 )
+7/region = Rect2( 0, 0, 80, 80 )
+7/tile_mode = 0
+7/occluder_offset = Vector2( 0, 0 )
+7/navigation_offset = Vector2( 0, 0 )
+7/shape_offset = Vector2( 0, 0 )
+7/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+7/shape_one_way = false
+7/shape_one_way_margin = 0.0
+7/shapes = [  ]
+7/z_index = 0
+
+[sub_resource type="Curve" id=15]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.517857, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.620536, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=14]
+curve = SubResource( 15 )
+
+[sub_resource type="ParticlesMaterial" id=16]
+lifetime_randomness = 0.42
+emission_shape = 2
+emission_box_extents = Vector3( 17, 17, 1 )
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 346.86
+initial_velocity_random = 0.48
+angular_velocity = 348.39
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 720.0
+angle_random = 1.0
+scale = 3.27
+scale_random = 0.16
+scale_curve = SubResource( 14 )
+hue_variation = 0.1
+hue_variation_random = 0.99
+
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 83.5, 84 )
+
+[node name="Box of Prosperity" instance=ExtResource( 1 )]
+physics_material_override = SubResource( 2 )
+script = ExtResource( 3 )
+
+[node name="CollisionMap" parent="." index="0"]
+tile_data = PoolIntArray( -1, 2, 0, -65536, 2, 0, 65535, 2, 0, 0, 2, 0 )
+
+[node name="Icon" parent="." index="1"]
+material = SubResource( 11 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+
+[node name="TileMap" type="TileMap" parent="Icon" index="0"]
+modulate = Color( 1, 1, 1, 0.501961 )
+scale = Vector2( 2, 2 )
+tile_set = SubResource( 3 )
+cell_size = Vector2( 80, 80 )
+format = 1
+tile_data = PoolIntArray( -1, 2, 0, -65536, 2, 0, 65535, 2, 0, 0, 2, 0 )
+
+[node name="Sockets" parent="Icon" index="1"]
+scale = Vector2( 2, 2 )
+
+[node name="ActiveParticles" type="Particles2D" parent="Icon" index="2"]
+modulate = Color( 2, 2, 2, 0.48 )
+self_modulate = Color( 0.870588, 0.772549, 0.431373, 1 )
+emitting = false
+lifetime = 1.22
+process_material = ExtResource( 15 )
+texture = ExtResource( 11 )
+script = ExtResource( 12 )
+
+[node name="ActivationParticles" type="Particles2D" parent="Icon" index="3"]
+modulate = Color( 2, 2, 2, 0.690196 )
+self_modulate = Color( 0.870588, 0.772549, 0.431373, 1 )
+z_index = 6
+emitting = false
+amount = 30
+lifetime = 1.22
+one_shot = true
+speed_scale = 1.65
+explosiveness = 1.0
+process_material = SubResource( 16 )
+texture = ExtResource( 11 )
+script = ExtResource( 12 )
+
+[node name="Border" parent="Icon" index="4" instance=ExtResource( 14 )]
+modulate = Color( 0.537255, 0.741176, 0.972549, 1 )
+texture = ExtResource( 13 )
+
+[node name="CollisionPolygon2D" parent="ClickArea" index="0"]
+polygon = PoolVector2Array( -88, -88, 96, -88, 96, 88, -88, 88 )
+
+[node name="BottomCenter" parent="." index="3"]
+position = Vector2( 0, 89 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="5"]
+visible = false
+position = Vector2( 0.5, 1 )
+shape = SubResource( 12 )

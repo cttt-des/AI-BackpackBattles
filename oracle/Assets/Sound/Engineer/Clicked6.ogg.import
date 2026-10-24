@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Clicked6.ogg-f1fd4d8f35c5193240f69422bad65cdc.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/Engineer/Clicked6.ogg"
+dest_files=[ "res://.import/Clicked6.ogg-f1fd4d8f35c5193240f69422bad65cdc.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

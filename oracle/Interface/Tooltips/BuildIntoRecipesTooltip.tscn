@@ -1,0 +1,194 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Interface/Tooltips/BuildIntoRecipesTooltip.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Fonts/Milonga-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Utility/LocalizedControl.gd" type="Script" id=3]
+[ext_resource path="res://Interface/Tooltips/RecipeTooltip.png" type="Texture" id=4]
+[ext_resource path="res://Interface/KeyLock.png" type="Texture" id=5]
+[ext_resource path="res://Utility/DefaultRichTextLabel.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Assets/Fonts/LibreBaskerville-Bold.ttf" type="DynamicFontData" id=7]
+
+[sub_resource type="DynamicFont" id=2]
+size = 40
+outline_size = 2
+outline_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 20
+outline_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+use_filter = true
+extra_spacing_top = 10
+font_data = ExtResource( 7 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "Lock"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.40075 ),
+"transitions": PoolRealArray( 0.554785, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Lock:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Lock:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 0.659754, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Lock:rect_scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 0.63728, 1 ),
+"update": 0,
+"values": [ Vector2( 5, 5 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Lock:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Lock:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Lock:rect_scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[node name="Tooltip" type="NinePatchRect" groups=["Tooltip"]]
+pause_mode = 2
+margin_right = 650.0
+margin_bottom = 273.0
+texture = ExtResource( 4 )
+patch_margin_left = 55
+patch_margin_top = 136
+patch_margin_right = 57
+patch_margin_bottom = 137
+axis_stretch_vertical = 1
+script = ExtResource( 1 )
+Y_BORDER = 130
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 54.0
+margin_top = 48.0
+margin_right = 593.0
+margin_bottom = 113.0
+mouse_filter = 2
+custom_constants/separation = 0
+
+[node name="Header" type="Label" parent="VBoxContainer"]
+margin_right = 539.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 0, 55 )
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_colors/font_color_shadow = Color( 0.235294, 0.14902, 0.113725, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 2 )
+text = "Recipes"
+align = 1
+autowrap = true
+script = ExtResource( 3 )
+
+[node name="LockHint" parent="." instance=ExtResource( 6 )]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 54.0
+margin_top = -96.0
+margin_right = -59.0
+margin_bottom = -58.0
+custom_colors/default_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+custom_fonts/normal_font = SubResource( 3 )
+bbcode_text = "[center]Double-tap[i] [img=0x28]res://addons/controller_icons/assets/ps5/r2.png[/img][/i] to lock."
+text = "Double-tap  to lock."
+script = ExtResource( 3 )
+translationKey = "UI_LockTooltip"
+prefix = "[center]"
+
+[node name="Lock" type="TextureRect" parent="LockHint"]
+visible = false
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -19.0
+margin_bottom = 18.0
+rect_pivot_offset = Vector2( 269, 16 )
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LockHint"]
+anims/Lock = SubResource( 4 )
+anims/RESET = SubResource( 5 )

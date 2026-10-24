@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Birb1.ogg-839e9ec19e3c6d053076c23dcf40fe68.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/Birb1.ogg"
+dest_files=[ "res://.import/Birb1.ogg-839e9ec19e3c6d053076c23dcf40fe68.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

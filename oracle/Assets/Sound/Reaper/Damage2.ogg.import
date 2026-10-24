@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Damage2.ogg-76ea60342422b2d71348503cf09a54f0.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/Reaper/Damage2.ogg"
+dest_files=[ "res://.import/Damage2.ogg-76ea60342422b2d71348503cf09a54f0.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

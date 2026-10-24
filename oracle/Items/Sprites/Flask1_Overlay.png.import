@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/Flask1_Overlay.png-f8034d76d2adeba51f89daee95821734.res"
+group_file="res://Atlases/Items_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Items/Sprites/Flask1_Overlay.png"
+dest_files=[ "res://.import/Flask1_Overlay.png-f8034d76d2adeba51f89daee95821734.res" ]
+
+[params]
+
+atlas_file="res://Atlases/Items_atlas.png"
+import_mode=0
+crop_to_region=true
+trim_alpha_border_from_region=false

@@ -1,0 +1,68 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Utility/PooledScene.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Particles/GlowingDot_small.png" type="Texture" id=2]
+[ext_resource path="res://Items/Materials/DistortedLeafs.material" type="Material" id=3]
+
+[sub_resource type="Gradient" id=19]
+offsets = PoolRealArray( 0, 0.882175, 1 )
+colors = PoolColorArray( 0.0731812, 0.851562, 0.349871, 1, 0.633193, 0.941253, 0.742698, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=32]
+gradient = SubResource( 19 )
+width = 100
+
+[sub_resource type="Gradient" id=38]
+offsets = PoolRealArray( 0, 0.104348, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 0.0745098, 0.533333, 0, 0.494118 )
+
+[sub_resource type="GradientTexture" id=39]
+gradient = SubResource( 38 )
+width = 50
+
+[sub_resource type="Curve" id=40]
+_data = [ Vector2( 0, 0.906818 ), 0.0, 0.0, 0, 0, Vector2( 0.217514, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.811364 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=41]
+width = 32
+curve = SubResource( 40 )
+
+[sub_resource type="ParticlesMaterial" id=37]
+lifetime_randomness = 0.26
+emission_shape = 1
+emission_sphere_radius = 18.62
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 22.01
+gravity = Vector3( 0, 300, 0 )
+initial_velocity = 500.31
+initial_velocity_random = 0.39
+angular_velocity = 313.04
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 720.0
+angle_random = 1.0
+scale = 2.35
+scale_random = 0.96
+scale_curve = SubResource( 41 )
+color_ramp = SubResource( 39 )
+color_initial_ramp = SubResource( 32 )
+anim_offset_random = 0.495
+
+[node name="UniqueParticles2" type="Particles2D"]
+modulate = Color( 4, 4, 4, 0.78 )
+material = ExtResource( 3 )
+position = Vector2( 0, 10 )
+rotation = -0.216421
+z_index = 10
+emitting = false
+amount = 30
+lifetime = 10.0
+one_shot = true
+speed_scale = 2.0
+explosiveness = 0.93
+local_coords = false
+process_material = SubResource( 37 )
+texture = ExtResource( 2 )
+script = ExtResource( 1 )

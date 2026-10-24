@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Interface/CombatLog/CombatLogLine.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Fonts/LibreBaskerville-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Assets/Fonts/LibreBaskerville-Bold.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Interface/CombatLog/LogLinePlayerStylebox_connected.tres" type="StyleBox" id=4]
+[ext_resource path="res://Interface/Tooltips/ImageFont.tres" type="BitmapFont" id=5]
+
+[sub_resource type="DynamicFont" id=206]
+size = 20
+outline_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+use_filter = true
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=235]
+size = 20
+outline_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+use_filter = true
+extra_spacing_bottom = -2
+font_data = ExtResource( 2 )
+
+[node name="LogLine" type="RichTextLabel"]
+margin_right = 340.0
+margin_bottom = 52.0
+rect_clip_content = false
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+custom_fonts/italics_font = ExtResource( 5 )
+custom_fonts/bold_font = SubResource( 206 )
+custom_fonts/normal_font = SubResource( 235 )
+custom_styles/normal = ExtResource( 4 )
+bbcode_enabled = true
+bbcode_text = "[right][b]X.XX	[/b] [color=#ffe337]1[/color] Log line missing"
+text = "X.XX	 1 Log line missing"
+fit_content_height = true
+scroll_active = false
+script = ExtResource( 1 )
+
+[connection signal="mouse_entered" from="." to="." method="onHovered"]
+[connection signal="mouse_exited" from="." to="." method="onHoverEnd"]

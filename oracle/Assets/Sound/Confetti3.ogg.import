@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Confetti3.ogg-1f911103017264af2c03d1cce2168199.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/Confetti3.ogg"
+dest_files=[ "res://.import/Confetti3.ogg-1f911103017264af2c03d1cce2168199.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,94 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://CharacterClasses/Ranger/RangerSprite.tscn" type="PackedScene" id=1]
+[ext_resource path="res://CharacterClasses/Ranger/Skins/Normal/Christmas/LeftLowerArm.png" type="Texture" id=2]
+[ext_resource path="res://CharacterClasses/Ranger/Skins/Normal/Christmas/LeftUpperLeg.png" type="Texture" id=3]
+[ext_resource path="res://CharacterClasses/Ranger/Skins/Normal/Christmas/LeftHandFront.png" type="Texture" id=4]
+[ext_resource path="res://CharacterClasses/Ranger/Skins/Normal/Christmas/RightLowerArm.png" type="Texture" id=5]
+[ext_resource path="res://CharacterClasses/Ranger/Skins/Normal/Christmas/LeftLowerLeg.png" type="Texture" id=6]
+[ext_resource path="res://CharacterClasses/Ranger/Skins/Normal/Christmas/RightUpperArm.png" type="Texture" id=7]
+[ext_resource path="res://CharacterClasses/Ranger/Skins/Normal/Christmas/LeftUpperArm.png" type="Texture" id=8]
+[ext_resource path="res://CharacterClasses/Ranger/Skins/Normal/Christmas/LeftBoot.png" type="Texture" id=9]
+[ext_resource path="res://CharacterClasses/Ranger/Skins/Normal/Christmas/Strap.png" type="Texture" id=10]
+[ext_resource path="res://CharacterClasses/Ranger/Skins/Normal/Christmas/Head.png" type="Texture" id=11]
+[ext_resource path="res://CharacterClasses/Ranger/Skins/Normal/Christmas/RightLowerLeg.png" type="Texture" id=12]
+[ext_resource path="res://CharacterClasses/Ranger/Skins/Normal/Christmas/RightUpperLeg.png" type="Texture" id=13]
+[ext_resource path="res://CharacterClasses/Ranger/Skins/Normal/Christmas/RightBoot.png" type="Texture" id=14]
+[ext_resource path="res://CharacterClasses/Ranger/Skins/Normal/Christmas/Arrow.png" type="Texture" id=15]
+[ext_resource path="res://CharacterClasses/Ranger/Skins/Normal/Christmas/Body.png" type="Texture" id=16]
+[ext_resource path="res://CharacterClasses/Ranger/Skins/Normal/Christmas/Bag.png" type="Texture" id=17]
+[ext_resource path="res://CharacterClasses/Ranger/Skins/Normal/Christmas/LeftSleeve.png" type="Texture" id=18]
+[ext_resource path="res://CharacterClasses/Ranger/Skins/Normal/Christmas/Bow.png" type="Texture" id=19]
+
+[node name="Sprite" instance=ExtResource( 1 )]
+script = null
+
+[node name="BodySprite" parent="Body" index="0"]
+texture = ExtResource( 16 )
+
+[node name="BackpackSprite" parent="Body/Backpack" index="0"]
+position = Vector2( 74, -10 )
+texture = ExtResource( 17 )
+offset = Vector2( -82, 110 )
+
+[node name="RightUpperArmSprite" parent="Body/RightUpperArm" index="0"]
+position = Vector2( -53.0577, 25.9231 )
+scale = Vector2( 0.927262, 1 )
+texture = ExtResource( 7 )
+
+[node name="RightStrap" parent="Body/RightUpperArm" index="1"]
+position = Vector2( 64, 60 )
+texture = ExtResource( 10 )
+
+[node name="RightLowerArmSprite" parent="Body/RightUpperArm/RightLowerArm" index="0"]
+position = Vector2( 15.8299, 2 )
+scale = Vector2( 0.930111, 1 )
+texture = ExtResource( 5 )
+
+[node name="HeadSprite" parent="Body/Head" index="0"]
+position = Vector2( -10, -8 )
+texture = ExtResource( 11 )
+
+[node name="LeftUpperArmSprite" parent="Body/LeftUpperArm" index="0"]
+texture = ExtResource( 8 )
+
+[node name="LeftSleeve" parent="Body/LeftUpperArm" index="1"]
+texture = ExtResource( 18 )
+
+[node name="LeftLowerArmSprite" parent="Body/LeftUpperArm/LeftLowerArm" index="0"]
+texture = ExtResource( 2 )
+
+[node name="Bow" parent="Body/LeftUpperArm/LeftLowerArm" index="1"]
+texture = ExtResource( 19 )
+
+[node name="LeftLowerHandFront" parent="Body/LeftUpperArm/LeftLowerArm" index="2"]
+position = Vector2( 128, -48 )
+texture = ExtResource( 4 )
+
+[node name="String1" parent="Body/LeftUpperArm" index="3"]
+width = 7.0
+default_color = Color( 1, 0.901961, 0.258824, 1 )
+
+[node name="LeftUpperLegSprite" parent="Body/LeftUpperLeg" index="0"]
+texture = ExtResource( 3 )
+
+[node name="LeftLowerLeg" parent="Body/LeftUpperLeg/LeftLowerLeg" index="0"]
+texture = ExtResource( 6 )
+
+[node name="LeftBoot" parent="Body/LeftUpperLeg/LeftLowerLeg" index="1"]
+texture = ExtResource( 9 )
+
+[node name="RightUpperLegSprite" parent="Body/RightUpperLeg" index="0"]
+texture = ExtResource( 13 )
+
+[node name="RightLowerLegSprite" parent="Body/RightUpperLeg/RightLowerLeg" index="0"]
+texture = ExtResource( 12 )
+
+[node name="RightBoot" parent="Body/RightUpperLeg/RightLowerLeg" index="1"]
+texture = ExtResource( 14 )
+
+[node name="ArrowSprite" parent="Body/Arrow" index="0"]
+texture = ExtResource( 15 )
+
+[node name="LeftStrap" parent="Body" index="8"]
+visible = false

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Buy5.ogg-91d217b37cf4a2da1c63c030e6057c63.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/Mage/Buy5.ogg"
+dest_files=[ "res://.import/Buy5.ogg-91d217b37cf4a2da1c63c030e6057c63.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

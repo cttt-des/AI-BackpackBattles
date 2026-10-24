@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/TheLovers.png-8fac497cbaaa52fe72fb54de4dbf65a7.res"
+group_file="res://Atlases/Items_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Items/Sprites/TheLovers.png"
+dest_files=[ "res://.import/TheLovers.png-8fac497cbaaa52fe72fb54de4dbf65a7.res" ]
+
+[params]
+
+atlas_file="res://Atlases/Items_atlas.png"
+import_mode=0
+crop_to_region=true
+trim_alpha_border_from_region=false

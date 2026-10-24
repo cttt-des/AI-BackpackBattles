@@ -1,0 +1,536 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://Interface/FocusGrabbingControl.gd" type="Script" id=1]
+[ext_resource path="res://Interface/VScrollbar.png" type="Texture" id=2]
+[ext_resource path="res://Interface/VScrollbar_grabber.png" type="Texture" id=3]
+[ext_resource path="res://Interface/Options/OptionsSheet.png" type="Texture" id=4]
+[ext_resource path="res://Utility/DraggableRichTextLabel.gd" type="Script" id=5]
+[ext_resource path="res://Interface/PatchNotes.gd" type="Script" id=6]
+[ext_resource path="res://Assets/Fonts/LibreBaskerville-Regular.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://Assets/Fonts/LibreBaskerville-Bold.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://Assets/Fonts/GlassAntiqua-Regular.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://Assets/Divider1.png" type="Texture" id=10]
+[ext_resource path="res://Utility/LocalizedControl.gd" type="Script" id=11]
+[ext_resource path="res://Interface/EmptyStylebox.tres" type="StyleBox" id=12]
+[ext_resource path="res://Interface/Options/OptionsFont.tres" type="DynamicFont" id=13]
+
+[sub_resource type="Animation" id=199]
+resource_name = "Close"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 1.56917, 2 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 2.21914, 0.466516 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -2500 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ColorRect:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.8 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "onCloseFinished"
+} ]
+}
+
+[sub_resource type="Animation" id=200]
+resource_name = "Open"
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 2, 1.56917 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 0.466516, 2.21914 ),
+"update": 0,
+"values": [ Vector2( 0, 2500 ), Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ColorRect:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=201]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("../ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="DynamicFont" id=16]
+size = 38
+outline_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+use_mipmaps = true
+use_filter = true
+extra_spacing_top = -10
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=241]
+size = 18
+outline_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+use_filter = true
+font_data = ExtResource( 7 )
+
+[sub_resource type="StyleBoxTexture" id=230]
+texture = ExtResource( 3 )
+region_rect = Rect2( -31.4196, 0, 87.0222, 64.1349 )
+margin_left = 7.49648
+margin_right = 22.0208
+margin_top = 15.6563
+margin_bottom = 14.4243
+expand_margin_top = 8.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxTexture" id=231]
+texture = ExtResource( 2 )
+region_rect = Rect2( -18.5532, 0.0862274, 69.5576, 461.484 )
+margin_left = 9.0065
+margin_right = 8.92128
+margin_top = 8.49884
+margin_bottom = 5.31932
+
+[sub_resource type="Theme" id=232]
+VScrollBar/styles/grabber = SubResource( 230 )
+VScrollBar/styles/grabber_highlight = SubResource( 230 )
+VScrollBar/styles/grabber_pressed = SubResource( 230 )
+VScrollBar/styles/scroll = SubResource( 231 )
+
+[sub_resource type="DynamicFont" id=161]
+size = 28
+outline_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+use_filter = true
+extra_spacing_bottom = 3
+extra_spacing_char = 1
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=297]
+size = 24
+outline_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+use_filter = true
+extra_spacing_bottom = 8
+font_data = ExtResource( 7 )
+
+[node name="PatchNotes" type="Node2D"]
+pause_mode = 2
+visible = false
+position = Vector2( 0, 2500 )
+z_index = 20
+script = ExtResource( 6 )
+chinese = "[center][b]大家好！
+我们带来了一件来自《橡木塔 》的联动道具：时间吊坠！
+当然，对方游戏也加入了一批《背包乱斗》相关游戏物品。
+
+此外，我们还做了一些平衡性调整。
+玩得开心，我们很快再见！ :)
+
+- Doro 和 Mario
+[/b][/center]
+
+o 全新宝藏物品：时间吊坠
+
+[b]平衡性调整[/b]
+[center][b]通用[/b][/center]
+o 沸腾大锅：狂热 / 恢复 6 -> 8
+o 神圣长矛：伤害 -2
+o 腐败熊猫之锅：中毒暴击几率 4% -> 5%
+
+[center][b]火焰魔导士[/b][/center]
+o 日耀盾牌：抵挡伤害 18 -> 20
+
+[center][b]狂战士[/b][/center]
+o 狼印记：冷却时间 2.3s -> 2.5s
+
+[center][b]魔法师[/b][/center]
+o 纸杯蛋糕飞龙：食物加成 15% -> 20%
+
+[center][b]冒险家[/b][/center]
+o 心形盾牌：抵挡伤害 18 -> 20
+
+[center][b]工程师[/b][/center]
+o 电能火炬：致盲持续时间 7s -> 8s
+o 影响平衡性的 bug 修复：塑料立方体现在会根据当前冷却时间的 75% 推进冷却进度，而非根据基础冷却时间计算。这意味着它对已大幅加速的物品效果会变弱。"
+japanese = "[center][b]皆さんこんにちは！ 
+『Oaken Tower』からコラボアイテム「時のペンダント」が登場します！
+それと同時に、コラボ先でもBPBのアイテムがいくつか追加されます。 
+
+また、いくつかバランス調整も行います。
+楽しんで！近いうちにまたお会いしましょう :)
+
+- ドロ＆マリオより
+[/b][/center]
+
+o 新掘出物アイテム：時のペンダント
+
+[b]バランス調整[/b]
+[center][b]共通[/b][/center]
+o 煮え立つ鍋：ヒート/リジェネ 6 ▷ 8
+o ホーリースピア：ダメージ -2
+o パンダモニウム：毒クリティカル率 4% ▷ 5%
+
+[center][b]パイロマンサー[/b][/center]
+o 太陽の盾：ダメージ軽減 18 ▷ 20
+
+[center][b]バーサーカー[/b][/center]
+o 狼の紋章：クールダウン 2.3秒 ▷ 2.5秒
+
+[center][b]メイジ[/b][/center]
+o カップドレイク：食べ物ボーナス 15% ▷ 20%
+
+[center][b]アドベンチャラー[/b][/center]
+o ハートの盾：ダメージ軽減 18 ▷ 20
+
+[center][b]エンジニア[/b][/center]
+o 電動たいまつ：目くらまし持続時間 7秒 ▷ 8秒
+o バランスに関わるバグ修正：プラスチックキューブが、元々のクールダウン時間ではなく、現在のクールダウン時間の75%分だけクールダウンを進めるように変更。これにより、加速アイテムの影響が大幅に減少します。"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = -2299.0
+margin_top = -3000.0
+margin_right = 4329.0
+margin_bottom = 5000.0
+color = Color( 0, 0, 0, 0.47451 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Close = SubResource( 199 )
+anims/Open = SubResource( 200 )
+anims/RESET = SubResource( 201 )
+
+[node name="Sheet" type="Sprite" parent="."]
+position = Vector2( 978, 541.822 )
+rotation = 1.5708
+scale = Vector2( 1.39533, 1.5662 )
+texture = ExtResource( 4 )
+
+[node name="Label4" type="Label" parent="."]
+margin_left = 792.0
+margin_top = 178.0
+margin_right = 1138.0
+margin_bottom = 210.0
+custom_colors/font_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+custom_colors/font_color_shadow = Color( 0.235294, 0.14902, 0.113725, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 0
+custom_fonts/font = SubResource( 16 )
+text = "~ Patch Notes ~"
+align = 1
+valign = 1
+
+[node name="Label5" type="Label" parent="."]
+modulate = Color( 1, 1, 1, 0.458824 )
+margin_left = 602.0
+margin_top = 871.0
+margin_right = 1375.0
+margin_bottom = 911.0
+grow_horizontal = 2
+rect_pivot_offset = Vector2( 389, 20 )
+custom_colors/font_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+custom_colors/font_color_shadow = Color( 0.235294, 0.14902, 0.113725, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 0
+custom_fonts/font = SubResource( 241 )
+text = "Click version to reopen."
+align = 1
+valign = 1
+script = ExtResource( 11 )
+translationKey = "HINT_PatchNotes"
+
+[node name="Version" type="Label" parent="." groups=["NotLocalized"]]
+margin_left = 870.5
+margin_top = 222.0
+margin_right = 1060.5
+margin_bottom = 254.0
+custom_colors/font_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+custom_colors/font_color_shadow = Color( 0.235294, 0.14902, 0.113725, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 0
+custom_fonts/font = SubResource( 16 )
+text = "Version 1.0.0"
+align = 1
+valign = 1
+
+[node name="Divider2" type="Sprite" parent="."]
+position = Vector2( 973.5, 259 )
+scale = Vector2( 1, 0.500001 )
+texture = ExtResource( 10 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 502.0
+margin_top = 326.0
+margin_right = 1495.0
+margin_bottom = 753.0
+rect_clip_content = false
+theme = SubResource( 232 )
+custom_colors/default_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+custom_fonts/bold_font = SubResource( 161 )
+custom_fonts/normal_font = SubResource( 297 )
+custom_styles/focus = ExtResource( 12 )
+bbcode_enabled = true
+bbcode_text = "[center][b]Hi everyone, 
+we are back with a crossover item from 
+Oaken Tower, the Time Pendant!
+
+At the same time, they added a whole selection 
+of BPB items into their game. 
+
+Also, we have some balance adjustments.
+Have fun and see y’all soon! :)
+
+- Doro and Mario
+
+1.1.9b
+Bug fix / additional balance changes:[/b]
+Hi everyone, again!
+So it turns out only the labels for relative cooldown advances were 
+broken, while the mechanic was already working correctly.
+We now fixed the labels and rolled the cooldown changes back.
+Instead, here are 2 other nerfs to address Holy Spear/Cubes. 
+We will monitor how they pan out and readjust if necessary :)
+[/center]
+o Chromium Cube: Cooldown advance 2s -> 1.5s 
+o Bismuth Cube: Cooldown advance 0.3s -> 0.2s
+
+[center][b]1.1.9[/b][/center]
+o NEW TREASURE ITEM: Time Pendant
+
+[b]Balancing[/b]
+[center][b]Neutral[/b][/center]
+o Boiling Pot: Heat/ Regeneration 6 -> 8
+o Holy Spear: Damage -2
+o Pandamonium: Poison crit chance 4% -> 5%
+
+[center][b]Pyromancer[/b][/center]
+o Sun Shield: Damage blocked 18 -> 20
+
+[center][b]Berserker[/b][/center]
+o Wolf Emblem: Cooldown 2.3s -> 2.5s
+
+[center][b]Mage[/b][/center]
+o Cupdrake: Food bonus 15% -> 20%
+
+[center][b]Adventurer[/b][/center]
+o Heart Shield: Damage blocked 18 -> 20
+
+[center][b]Engineer[/b][/center]
+o Electric Torch: Blind duration 7s -> 8s
+o Balance-relevant bug fix: Plastic cube now advances the cooldown 
+   by 75% of the current value, rather than the base value. 
+   This means less effect on heavily sped up items.
+"
+text = "Hi everyone, 
+we are back with a crossover item from 
+Oaken Tower, the Time Pendant!
+
+At the same time, they added a whole selection 
+of BPB items into their game. 
+
+Also, we have some balance adjustments.
+Have fun and see y’all soon! :)
+
+- Doro and Mario
+
+1.1.9b
+Bug fix / additional balance changes:
+Hi everyone, again!
+So it turns out only the labels for relative cooldown advances were 
+broken, while the mechanic was already working correctly.
+We now fixed the labels and rolled the cooldown changes back.
+Instead, here are 2 other nerfs to address Holy Spear/Cubes. 
+We will monitor how they pan out and readjust if necessary :)
+
+o Chromium Cube: Cooldown advance 2s -> 1.5s 
+o Bismuth Cube: Cooldown advance 0.3s -> 0.2s
+
+1.1.9
+o NEW TREASURE ITEM: Time Pendant
+
+Balancing
+Neutral
+o Boiling Pot: Heat/ Regeneration 6 -> 8
+o Holy Spear: Damage -2
+o Pandamonium: Poison crit chance 4% -> 5%
+
+Pyromancer
+o Sun Shield: Damage blocked 18 -> 20
+
+Berserker
+o Wolf Emblem: Cooldown 2.3s -> 2.5s
+
+Mage
+o Cupdrake: Food bonus 15% -> 20%
+
+Adventurer
+o Heart Shield: Damage blocked 18 -> 20
+
+Engineer
+o Electric Torch: Blind duration 7s -> 8s
+o Balance-relevant bug fix: Plastic cube now advances the cooldown 
+   by 75% of the current value, rather than the base value. 
+   This means less effect on heavily sped up items.
+"
+script = ExtResource( 5 )
+
+[node name="CloseButton" type="Button" parent="."]
+margin_left = 917.0
+margin_top = 811.0
+margin_right = 1057.0
+margin_bottom = 869.0
+mouse_default_cursor_shape = 2
+custom_colors/font_color_disabled = Color( 1, 0.92549, 0.831373, 1 )
+custom_colors/font_color_focus = Color( 1, 0.890196, 0.215686, 1 )
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_colors/font_color_hover = Color( 1, 0.890196, 0.215686, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.92549, 0.831373, 1 )
+custom_fonts/font = ExtResource( 13 )
+custom_styles/focus = ExtResource( 12 )
+text = "Close"
+flat = true
+script = ExtResource( 1 )
+translationKey = "BUTTON_Close"
+
+[node name="UpdateButton" type="Button" parent="."]
+visible = false
+margin_left = 747.0
+margin_top = 811.0
+margin_right = 887.0
+margin_bottom = 869.0
+mouse_default_cursor_shape = 2
+custom_colors/font_color_disabled = Color( 1, 0.92549, 0.831373, 1 )
+custom_colors/font_color_focus = Color( 1, 0.890196, 0.215686, 1 )
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_colors/font_color_hover = Color( 1, 0.890196, 0.215686, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.92549, 0.831373, 1 )
+custom_fonts/font = ExtResource( 13 )
+custom_styles/focus = ExtResource( 12 )
+text = "Update"
+flat = true
+script = ExtResource( 1 )
+translationKey = ""
+
+[node name="IgnoreButton" type="Button" parent="."]
+visible = false
+margin_left = 1087.0
+margin_top = 811.0
+margin_right = 1227.0
+margin_bottom = 869.0
+mouse_default_cursor_shape = 2
+custom_colors/font_color_disabled = Color( 1, 0.92549, 0.831373, 1 )
+custom_colors/font_color_focus = Color( 1, 0.890196, 0.215686, 1 )
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_colors/font_color_hover = Color( 1, 0.890196, 0.215686, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.92549, 0.831373, 1 )
+custom_fonts/font = ExtResource( 13 )
+custom_styles/focus = ExtResource( 12 )
+text = "Don't remind"
+flat = true
+script = ExtResource( 1 )
+translationKey = ""
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="animationFinished"]
+[connection signal="pressed" from="CloseButton" to="." method="onClosePressed"]
+[connection signal="pressed" from="UpdateButton" to="." method="onUpdatePressed"]
+[connection signal="pressed" from="IgnoreButton" to="." method="onIgnorePressed"]

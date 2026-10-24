@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/Vase.png-0f1cd869ae9bf01d95d3ba9a0c15c817.res"
+group_file="res://Atlases/Shop_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Assets/Decoration/Vase.png"
+dest_files=[ "res://.import/Vase.png-0f1cd869ae9bf01d95d3ba9a0c15c817.res" ]
+
+[params]
+
+atlas_file="res://Atlases/Shop_atlas.png"
+import_mode=0
+crop_to_region=true
+trim_alpha_border_from_region=true

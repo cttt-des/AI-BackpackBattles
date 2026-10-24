@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/AmuletGlow.png-9766399df13d23d6e2341b14005fa7e0.res"
+group_file="res://Atlases/Items_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Items/Sprites/AmuletGlow.png"
+dest_files=[ "res://.import/AmuletGlow.png-9766399df13d23d6e2341b14005fa7e0.res" ]
+
+[params]
+
+atlas_file="res://Atlases/Items_atlas.png"
+import_mode=0
+crop_to_region=true
+trim_alpha_border_from_region=false

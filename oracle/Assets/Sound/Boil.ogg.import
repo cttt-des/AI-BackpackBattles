@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Boil.ogg-01abdcaf0c11de2d74e95355eb780841.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/Boil.ogg"
+dest_files=[ "res://.import/Boil.ogg-01abdcaf0c11de2d74e95355eb780841.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

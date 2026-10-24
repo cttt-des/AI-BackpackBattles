@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Attack2.ogg-2fefd439550c1490a6a1d34d16ae7bee.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/Adventurer/Attack2.ogg"
+dest_files=[ "res://.import/Attack2.ogg-2fefd439550c1490a6a1d34d16ae7bee.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

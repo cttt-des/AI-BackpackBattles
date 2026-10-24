@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Meow_single1.ogg-fbde5b6183ef4d2b8d1eb1b88b167216.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/Furcifer/Meow_single1.ogg"
+dest_files=[ "res://.import/Meow_single1.ogg-fbde5b6183ef4d2b8d1eb1b88b167216.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

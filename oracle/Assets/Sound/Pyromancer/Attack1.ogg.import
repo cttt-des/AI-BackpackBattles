@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Attack1.ogg-28fcaccd75fcbd0b87d3263250c01d9f.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/Pyromancer/Attack1.ogg"
+dest_files=[ "res://.import/Attack1.ogg-28fcaccd75fcbd0b87d3263250c01d9f.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

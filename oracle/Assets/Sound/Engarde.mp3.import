@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Engarde.mp3-8e27a0b765a1a564ebe8ba14c1395cec.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sound/Engarde.mp3"
+dest_files=[ "res://.import/Engarde.mp3-8e27a0b765a1a564ebe8ba14c1395cec.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

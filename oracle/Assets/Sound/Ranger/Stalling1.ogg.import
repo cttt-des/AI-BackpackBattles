@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Stalling1.ogg-bab03d0af6def0a8be8291c345143158.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/Ranger/Stalling1.ogg"
+dest_files=[ "res://.import/Stalling1.ogg-bab03d0af6def0a8be8291c345143158.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

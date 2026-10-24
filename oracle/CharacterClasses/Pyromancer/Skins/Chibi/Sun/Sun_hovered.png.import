@@ -1,0 +1,35 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/Sun_hovered.png-10ca8d5e8484f1ff73f8e0e5cd095f6a.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://CharacterClasses/Pyromancer/Skins/Chibi/Sun/Sun_hovered.png"
+dest_files=[ "res://.import/Sun_hovered.png-10ca8d5e8484f1ff73f8e0e5cd095f6a.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=true
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+process/normal_map_invert_y=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0

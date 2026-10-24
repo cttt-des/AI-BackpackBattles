@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Fanfare_sadtoot.ogg-7e617a7e9b8f8001b4b030e75d3211e2.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/Fanfare_sadtoot.ogg"
+dest_files=[ "res://.import/Fanfare_sadtoot.ogg-7e617a7e9b8f8001b4b030e75d3211e2.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

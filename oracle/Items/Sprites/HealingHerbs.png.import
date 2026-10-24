@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/HealingHerbs.png-d662b561d0596943889817be9df24b4e.res"
+group_file="res://Atlases/Items_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Items/Sprites/HealingHerbs.png"
+dest_files=[ "res://.import/HealingHerbs.png-d662b561d0596943889817be9df24b4e.res" ]
+
+[params]
+
+atlas_file="res://Atlases/Items_atlas.png"
+import_mode=0
+crop_to_region=true
+trim_alpha_border_from_region=false

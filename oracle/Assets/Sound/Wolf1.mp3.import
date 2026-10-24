@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Wolf1.mp3-8c946744065c09df70c4e74c3ad36ed1.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sound/Wolf1.mp3"
+dest_files=[ "res://.import/Wolf1.mp3-8c946744065c09df70c4e74c3ad36ed1.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

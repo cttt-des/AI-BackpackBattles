@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/StaminaSack.png-5a3179cd5c32e9b5e6743769cd06b2bd.res"
+group_file="res://Atlases/Items_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Items/Sprites/StaminaSack.png"
+dest_files=[ "res://.import/StaminaSack.png-5a3179cd5c32e9b5e6743769cd06b2bd.res" ]
+
+[params]
+
+atlas_file="res://Atlases/Items_atlas.png"
+import_mode=0
+crop_to_region=true
+trim_alpha_border_from_region=false

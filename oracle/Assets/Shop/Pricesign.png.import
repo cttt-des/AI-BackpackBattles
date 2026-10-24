@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/Pricesign.png-73f265edf8a8a5258ea1f46f8fc83c78.res"
+group_file="res://Atlases/Shop_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Assets/Shop/Pricesign.png"
+dest_files=[ "res://.import/Pricesign.png-73f265edf8a8a5258ea1f46f8fc83c78.res" ]
+
+[params]
+
+atlas_file="res://Atlases/Shop_atlas.png"
+import_mode=0
+crop_to_region=true
+trim_alpha_border_from_region=true

@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/CombatSpeed_paused_hovered.png-9e1b0a1e4688dc4bd315c3c1d45bf934.res"
+group_file="res://Atlases/Combat_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Interface/CombatTimer/CombatSpeed_paused_hovered.png"
+dest_files=[ "res://.import/CombatSpeed_paused_hovered.png-9e1b0a1e4688dc4bd315c3c1d45bf934.res" ]
+
+[params]
+
+atlas_file="res://Atlases/Combat_atlas.png"
+import_mode=0
+crop_to_region=true
+trim_alpha_border_from_region=true

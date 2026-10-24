@@ -1,0 +1,16 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+
+[deps]
+
+files=[ "res://Sheets/CSV/Dialog.en.translation", "res://Sheets/CSV/Dialog.de.translation", "res://Sheets/CSV/Dialog.zh_Hans_CN.translation", "res://Sheets/CSV/Dialog.ja.translation", "res://Sheets/CSV/Dialog.ko.translation", "res://Sheets/CSV/Dialog.zh_Hant_TW.translation", "res://Sheets/CSV/Dialog.fr.translation", "res://Sheets/CSV/Dialog.ru.translation", "res://Sheets/CSV/Dialog.pt_BR.translation", "res://Sheets/CSV/Dialog.es.translation", "res://Sheets/CSV/Dialog.da.translation" ]
+
+source_file="res://Sheets/CSV/Dialog.csv"
+dest_files=[ "res://Sheets/CSV/Dialog.en.translation", "res://Sheets/CSV/Dialog.de.translation", "res://Sheets/CSV/Dialog.zh_Hans_CN.translation", "res://Sheets/CSV/Dialog.ja.translation", "res://Sheets/CSV/Dialog.ko.translation", "res://Sheets/CSV/Dialog.zh_Hant_TW.translation", "res://Sheets/CSV/Dialog.fr.translation", "res://Sheets/CSV/Dialog.ru.translation", "res://Sheets/CSV/Dialog.pt_BR.translation", "res://Sheets/CSV/Dialog.es.translation", "res://Sheets/CSV/Dialog.da.translation" ]
+
+[params]
+
+compress=true
+delimiter=0

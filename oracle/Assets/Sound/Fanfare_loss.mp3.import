@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Fanfare_loss.mp3-bcd0acdfcfb4983f3ff93a1a4d824a82.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sound/Fanfare_loss.mp3"
+dest_files=[ "res://.import/Fanfare_loss.mp3-bcd0acdfcfb4983f3ff93a1a4d824a82.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

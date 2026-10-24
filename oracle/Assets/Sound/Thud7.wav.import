@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Thud7.wav-58e2c6151a37884052c0a5edd29d2427.sample"
+
+[deps]
+
+source_file="res://Assets/Sound/Thud7.wav"
+dest_files=[ "res://.import/Thud7.wav-58e2c6151a37884052c0a5edd29d2427.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

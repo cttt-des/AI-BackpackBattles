@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Attack3.ogg-a14df2e90568a85eae1189380528ab7a.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/Berserker/Attack3.ogg"
+dest_files=[ "res://.import/Attack3.ogg-a14df2e90568a85eae1189380528ab7a.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

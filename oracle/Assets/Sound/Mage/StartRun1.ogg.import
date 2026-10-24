@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/StartRun1.ogg-279b37ccc1de7d97399a4dc21c60dbe8.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/Mage/StartRun1.ogg"
+dest_files=[ "res://.import/StartRun1.ogg-279b37ccc1de7d97399a4dc21c60dbe8.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

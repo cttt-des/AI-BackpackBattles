@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Clicked4.ogg-2a9bcb453323edea685aa8310e8e5473.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/Reaper/Clicked4.ogg"
+dest_files=[ "res://.import/Clicked4.ogg-2a9bcb453323edea685aa8310e8e5473.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Interface/Tooltips/ItemTooltip.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Interface/Tooltips/TooltipBase_Godly.png" type="Texture" id=2]
+[ext_resource path="res://Interface/Tooltips/Divider1_Godly.png" type="Texture" id=4]
+[ext_resource path="res://Interface/Tooltips/Divider2_Godly.png" type="Texture" id=5]
+
+[node name="Tooltip" instance=ExtResource( 1 )]
+margin_left = -40.0
+margin_top = -96.0
+margin_right = 569.0
+margin_bottom = 251.0
+texture = ExtResource( 2 )
+patch_margin_left = 0
+patch_margin_top = 183
+patch_margin_right = 0
+patch_margin_bottom = 153
+Y_BORDER = 180
+
+[node name="VBoxContainer" parent="." index="0"]
+margin_left = 59.0
+margin_top = 115.0
+margin_right = 529.0
+margin_bottom = 282.0
+
+[node name="Divider1" parent="VBoxContainer" index="3"]
+margin_right = 432.0
+texture = ExtResource( 5 )
+
+[node name="Divider2" parent="VBoxContainer" index="4"]
+texture = ExtResource( 4 )
+
+[node name="Spacer" parent="VBoxContainer/HBoxContainer" index="0"]
+margin_right = 101.0
+
+[node name="Rarity" parent="VBoxContainer/HBoxContainer" index="1"]
+margin_left = 96.0
+margin_right = 175.0
+text = "Godly"
+
+[node name="Spacer2" parent="VBoxContainer/HBoxContainer" index="2"]
+margin_left = 170.0
+margin_right = 271.0
+
+[node name="HBoxContainer" parent="VBoxContainer/HBoxContainer" index="3"]
+margin_left = 266.0
+margin_right = 373.0
+
+[node name="Spacer3" parent="VBoxContainer/HBoxContainer" index="4"]
+margin_left = 368.0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/RoundStart4.ogg-7ec9e5b03107de893bd733fc197ae1f2.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/Berserker/RoundStart4.ogg"
+dest_files=[ "res://.import/RoundStart4.ogg-7ec9e5b03107de893bd733fc197ae1f2.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Hat1.ogg-5d8db0baeed96dff1924afd3b9d90b8c.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/Hat1.ogg"
+dest_files=[ "res://.import/Hat1.ogg-5d8db0baeed96dff1924afd3b9d90b8c.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

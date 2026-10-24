@@ -1,0 +1,81 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://CharacterClasses/Berserker/BerserkerSprite.tscn" type="PackedScene" id=1]
+[ext_resource path="res://CharacterClasses/Berserker/Skins/Normal/Punk/Head.png" type="Texture" id=2]
+[ext_resource path="res://CharacterClasses/Berserker/Skins/Normal/Punk/LeftLowerLeg.png" type="Texture" id=3]
+[ext_resource path="res://CharacterClasses/Berserker/Skins/Normal/Punk/Axe.png" type="Texture" id=4]
+[ext_resource path="res://CharacterClasses/Berserker/Skins/Normal/Punk/LeftLowerArm.png" type="Texture" id=5]
+[ext_resource path="res://CharacterClasses/Berserker/Skins/Normal/Punk/RightLowerArm.png" type="Texture" id=6]
+[ext_resource path="res://CharacterClasses/Berserker/Skins/Normal/Punk/LeftShoe.png" type="Texture" id=7]
+[ext_resource path="res://CharacterClasses/Berserker/Skins/Normal/Punk/Bag.png" type="Texture" id=8]
+[ext_resource path="res://CharacterClasses/Berserker/Skins/Normal/Punk/LeftUpperLeg.png" type="Texture" id=9]
+[ext_resource path="res://CharacterClasses/Berserker/Skins/Normal/Punk/Body.png" type="Texture" id=10]
+[ext_resource path="res://CharacterClasses/Berserker/Skins/Normal/Punk/Jacket.png" type="Texture" id=11]
+[ext_resource path="res://CharacterClasses/Berserker/Skins/Normal/Punk/RightShoe.png" type="Texture" id=12]
+[ext_resource path="res://CharacterClasses/Berserker/Skins/Normal/Punk/RightUpperArm.png" type="Texture" id=13]
+[ext_resource path="res://CharacterClasses/Berserker/Skins/Normal/Punk/RightUpperLeg.png" type="Texture" id=14]
+[ext_resource path="res://CharacterClasses/Berserker/Skins/Normal/Punk/RightLowerLeg.png" type="Texture" id=15]
+
+[node name="Sprite" instance=ExtResource( 1 )]
+script = null
+
+[node name="LeftLowerArm" parent="Body/LeftArm/LeftLowerArm" index="0"]
+position = Vector2( 51.111, 42.2216 )
+texture = ExtResource( 5 )
+
+[node name="SwordSprite" parent="Body/LeftArm/LeftLowerArm/Sword" index="0"]
+position = Vector2( 47.6303, -98.2048 )
+texture = ExtResource( 4 )
+
+[node name="LeftHandFront" parent="Body/LeftArm/LeftLowerArm" index="2"]
+position = Vector2( 111.833, 72.9445 )
+
+[node name="Jacket" type="Sprite" parent="Body/LeftArm" index="2" groups=["Body"]]
+position = Vector2( -22.2222, 108.888 )
+texture = ExtResource( 11 )
+
+[node name="LeftUpperLeg" parent="Body/LeftLeg" index="0"]
+position = Vector2( 26.6667, 102.222 )
+texture = ExtResource( 9 )
+
+[node name="LeftLowerLeg" parent="Body/LeftLeg/LeftLowerLeg" index="0"]
+position = Vector2( 28.8889, 140 )
+texture = ExtResource( 3 )
+
+[node name="LeftShoe" parent="Body/LeftLeg/LeftLowerLeg" index="1"]
+position = Vector2( 27.9999, 185.945 )
+texture = ExtResource( 7 )
+
+[node name="BodySprite" parent="Body" index="2"]
+position = Vector2( -4.44444, -77.7778 )
+texture = ExtResource( 10 )
+
+[node name="HeadSprite" parent="Body/Head" index="0"]
+position = Vector2( 17.7778, -88.8889 )
+texture = ExtResource( 2 )
+
+[node name="RightUpperLeg" parent="Body/RightLeg" index="0"]
+position = Vector2( -68.2223, 124.389 )
+z_index = -1
+texture = ExtResource( 14 )
+
+[node name="RightLowerLeg" parent="Body/RightLeg/RightLowerLeg" index="0"]
+position = Vector2( -45.5, 128.834 )
+rotation = 0.0279253
+texture = ExtResource( 15 )
+
+[node name="RightShoe" parent="Body/RightLeg/RightLowerLeg" index="1"]
+position = Vector2( -65.1112, 177.833 )
+texture = ExtResource( 12 )
+
+[node name="BagSprite" parent="Body/Bag" index="0"]
+scale = Vector2( 0.95, 0.95 )
+texture = ExtResource( 8 )
+
+[node name="RightUpperArm" parent="Body/RightArm" index="0"]
+position = Vector2( -17.778, 124.445 )
+texture = ExtResource( 13 )
+
+[node name="RightLowerArm" parent="Body/RightArm/RightLowerArm" index="0"]
+position = Vector2( 1.75216, 91.3796 )
+texture = ExtResource( 6 )

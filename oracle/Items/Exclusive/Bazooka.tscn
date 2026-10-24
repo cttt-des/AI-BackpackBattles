@@ -1,0 +1,145 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://Items/Item.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Items/Exclusive/Sprites/Bazooka.png" type="Texture" id=2]
+[ext_resource path="res://Items/Exclusive/Bazooka.gd" type="Script" id=3]
+[ext_resource path="res://Shader/VerySmoothFadeGradient.tres" type="Texture" id=4]
+[ext_resource path="res://Shader/DissolveParticle.gdshader" type="Shader" id=5]
+[ext_resource path="res://Utility/AutoHideParticles.gd" type="Script" id=6]
+[ext_resource path="res://Items/GemSocket.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assets/Particles/FireParticle2.png" type="Texture" id=8]
+[ext_resource path="res://Items/Exclusive/Particles/RobodogSmokeDragParticles.material" type="Material" id=9]
+[ext_resource path="res://Assets/Background/SmokeParticle1.png" type="Texture" id=10]
+
+
+[sub_resource type="PhysicsMaterial" id=1]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="Shader" id=10]
+code = "shader_type canvas_item;
+
+uniform float progress : hint_range(-1, 2) = 0.5;
+uniform vec2 direction = vec2(0, 1);
+
+void fragment() {
+	COLOR = texture(TEXTURE, UV);
+	COLOR.rgb *= 1.0 + 0.5 * smoothstep(progress - 0.05, progress + 0.05, dot(UV, direction));
+}"
+
+[sub_resource type="ShaderMaterial" id=11]
+resource_local_to_scene = true
+shader = SubResource( 10 )
+shader_param/progress = 0.245
+shader_param/direction = Vector2( -1, 0 )
+
+[sub_resource type="Gradient" id=436]
+offsets = PoolRealArray( 0, 0.996047 )
+colors = PoolColorArray( 0.246094, 0.19733, 0.173515, 1, 0.351562, 0.281659, 0.243759, 1 )
+
+[sub_resource type="GradientTexture" id=437]
+gradient = SubResource( 436 )
+width = 30
+
+[sub_resource type="Curve" id=439]
+_data = [ Vector2( 0, 0.372727 ), 0.0, 1.28656, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=435]
+width = 50
+curve = SubResource( 439 )
+
+[sub_resource type="ParticlesMaterial" id=440]
+flag_disable_z = true
+direction = Vector3( -1, 0, 0 )
+spread = 21.08
+gravity = Vector3( 0, -300, 0 )
+initial_velocity = 416.58
+initial_velocity_random = 0.67
+angular_velocity = 102.58
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+damping = 52.02
+angle = 720.0
+angle_random = 1.0
+scale = 1.23
+scale_random = 0.72
+scale_curve = SubResource( 435 )
+color_ramp = ExtResource( 4 )
+color_initial_ramp = SubResource( 437 )
+
+[sub_resource type="Gradient" id=441]
+offsets = PoolRealArray( 0.013834, 0.0355731, 0.0928854, 0.211462, 0.401186, 0.438735 )
+colors = PoolColorArray( 0.378906, 0.0266418, 0, 0, 0.439453, 0.14028, 0.0712395, 1, 0.90625, 0.272168, 0.102661, 1, 1, 0.754387, 0.138672, 1, 1, 0.998451, 0.603516, 1, 1, 0.999403, 0.847071, 1 )
+
+[sub_resource type="GradientTexture" id=46]
+gradient = SubResource( 441 )
+width = 100
+
+[sub_resource type="ShaderMaterial" id=442]
+shader = ExtResource( 5 )
+shader_param/numFrames = 1.0
+shader_param/spriteSheet = ExtResource( 8 )
+shader_param/tonemapping = SubResource( 46 )
+
+[node name="Bazooka" instance=ExtResource( 1 )]
+physics_material_override = SubResource( 1 )
+script = ExtResource( 3 )
+
+[node name="CollisionMap" parent="." index="0"]
+position = Vector2( 40, 40 )
+tile_data = PoolIntArray( -2, 3, 0, -1, 3, 0, -65536, 3, 0 )
+
+[node name="Icon" parent="." index="1"]
+material = SubResource( 11 )
+position = Vector2( 0, -0.13 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+
+[node name="SpecificDragParticles2" type="Particles2D" parent="Icon" index="0"]
+show_behind_parent = true
+position = Vector2( -236, 8.26001 )
+emitting = false
+amount = 5
+lifetime = 0.88
+speed_scale = 0.67
+randomness = 0.74
+local_coords = false
+process_material = SubResource( 440 )
+texture = ExtResource( 10 )
+script = ExtResource( 6 )
+
+[node name="SpecificDragParticles1" type="Particles2D" parent="Icon" index="1"]
+modulate = Color( 1.2, 1.2, 1.2, 1 )
+show_behind_parent = true
+material = SubResource( 442 )
+position = Vector2( -232, 8.26001 )
+rotation = -1.5708
+scale = Vector2( 0.4, 0.6 )
+emitting = false
+amount = 6
+lifetime = 0.27
+speed_scale = 0.36
+process_material = ExtResource( 9 )
+texture = ExtResource( 8 )
+script = ExtResource( 6 )
+
+[node name="Sockets" parent="Icon" index="2"]
+scale = Vector2( 2, 2 )
+
+[node name="GemSocket" parent="Icon/Sockets" index="0" instance=ExtResource( 7 )]
+position = Vector2( 97, -2 )
+
+[node name="GemSocket2" parent="Icon/Sockets" index="1" instance=ExtResource( 7 )]
+position = Vector2( -89, 4 )
+
+[node name="CollisionPolygon2D" parent="ClickArea" index="0"]
+polygon = PoolVector2Array( -120, -40, 120, -40, 120, 40, -120, 40 )
+
+[node name="BottomCenter" parent="." index="3"]
+position = Vector2( 0, 36 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="7"]
+visible = false
+polygon = PoolVector2Array( -117, -43, -114, -22, -123, 7, -117, 16, -46, 20, -36, 35, -3, 42, 112, 24, 120, 0, 115, -27, 52, -40, -11, -28, -42, -42 )

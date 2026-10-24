@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Clicked1.ogg-cffe0f5f1e01915ab43f60f8d0b33c8e.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/Pyromancer/Clicked1.ogg"
+dest_files=[ "res://.import/Clicked1.ogg-cffe0f5f1e01915ab43f60f8d0b33c8e.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

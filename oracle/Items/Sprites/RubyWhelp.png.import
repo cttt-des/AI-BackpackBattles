@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/RubyWhelp.png-f970a9c11c3a9fb88c2e38b201295981.res"
+group_file="res://Atlases/Items_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Items/Sprites/RubyWhelp.png"
+dest_files=[ "res://.import/RubyWhelp.png-f970a9c11c3a9fb88c2e38b201295981.res" ]
+
+[params]
+
+atlas_file="res://Atlases/Items_atlas.png"
+import_mode=0
+crop_to_region=true
+trim_alpha_border_from_region=false

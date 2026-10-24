@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/Shopkeeper_Arm.png-7e6b5d98687b5462c6452a3ede3398b2.res"
+group_file="res://Atlases/Shop_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Assets/Shop/Shopkeeper/Shopkeeper_Arm.png"
+dest_files=[ "res://.import/Shopkeeper_Arm.png-7e6b5d98687b5462c6452a3ede3398b2.res" ]
+
+[params]
+
+atlas_file="res://Atlases/Shop_atlas.png"
+import_mode=0
+crop_to_region=true
+trim_alpha_border_from_region=false

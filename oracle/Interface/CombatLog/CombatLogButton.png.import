@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/CombatLogButton.png-5fd7c2289235b8cea4112daa436798c5.res"
+group_file="res://Atlases/Combat_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Interface/CombatLog/CombatLogButton.png"
+dest_files=[ "res://.import/CombatLogButton.png-5fd7c2289235b8cea4112daa436798c5.res" ]
+
+[params]
+
+atlas_file="res://Atlases/Combat_atlas.png"
+import_mode=0
+crop_to_region=false
+trim_alpha_border_from_region=false

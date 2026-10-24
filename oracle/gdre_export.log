@@ -1,0 +1,70 @@
+GDRE Tools v2.7.4
+Windows 10.0.19045, headless
+Opening file: D:/Steam/steamapps/common/Backpack Battles/BackpackBattles.pck
+Multiple passing candidates for bytecode version 13:
+3.5.0-stable (a7aad78), 3.2.0-stable (5565f55)
+Choosing only one that matches engine version: 3.5.0-stable (a7aad78).
+Loaded 3822 imported files
+Detected Engine Version: 3.6.0
+Detected Bytecode Revision: 3.5.0-stable (a7aad78)
+Successfully loaded PCK!
+Version: 3.6.0
+Verified 9397 files, no errors detected!
+Extracted 9397 files, no errors detected!
+Recreating plugin configs...
+ERROR: File does not exist: res://Character.gd (remapped to res://Character.gd)
+   at: FakeGDScript::_reload_from_file (modules\gdsdecomp\compat\fake_gdscript.cpp:49)
+ERROR: Error loading script: res://Character.gd
+   at: ResourceFormatGDScriptLoader::custom_load (modules\gdsdecomp\compat\script_loader.cpp:73)
+Loading resource strings, this may take a while!!
+Resource strings loaded!
+WARNING: No userdata to run Numeric suffixes (keys only) with!
+   at: KeyWorker::run_stage (modules\gdsdecomp\exporters\translation_exporter.cpp:1154)
+Saved project config.
+
+
+********************************EXPORT REPORT********************************
+
+Totals:                                 
+Decompiled scripts:                     821
+Scripts not decompiled:                 0
+Imported resources for export session:  3822
+Successfully converted:                 3822
+Lossy:                                  1
+Rewrote metadata:                       10
+Non-importable conversions:             0
+Not converted:                          0
+Failed conversions:                     0
+-------------
+
+
+
+
+---------------------------------IMPORTANT NOTES----------------------------------
+
+
+Translation Export Incomplete:
+Could not recover 10/86 keys for res://Sheets/CSV/Dialog.csv
+Could not recover 4/371 keys for res://Sheets/CSV/ExclusiveItems.csv
+Could not recover 328/328 keys for res://Sheets/CSV/Flavor.csv
+Too inaccurate, saved Flavor.csv to res://.assets/Sheets/CSV/Flavor.csv
+Could not recover 452/741 keys for res://Sheets/CSV/Full.csv
+Too inaccurate, saved Full.csv to res://.assets/Sheets/CSV/Full.csv
+Could not recover 109/417 keys for res://Sheets/CSV/Interface.csv
+Too inaccurate, saved Interface.csv to res://.assets/Sheets/CSV/Interface.csv
+Could not recover 301/303 keys for res://Sheets/CSV/Items.csv
+Too inaccurate, saved Items.csv to res://.assets/Sheets/CSV/Items.csv
+Could not recover 53/112 keys for res://Sheets/CSV/Keywords.csv
+Too inaccurate, saved Keywords.csv to res://.assets/Sheets/CSV/Keywords.csv
+
+
+
+
+------------------------------------------------------------------------------------
+
+Use Godot editor version 3.6.0 (Steam edition) to edit the project.
+GodotSteam can be found here: https://codeberg.org/GodotSteam/GodotSteam/releases 
+
+*******************************************************************************
+
+Recovery finished in 01m02s

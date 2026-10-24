@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/ReservedTag_front.png-284e4d249bbe8a76c33de61238a00c23.res"
+group_file="res://Atlases/Shop_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Assets/Shop/ReservedTag_front.png"
+dest_files=[ "res://.import/ReservedTag_front.png-284e4d249bbe8a76c33de61238a00c23.res" ]
+
+[params]
+
+atlas_file="res://Atlases/Shop_atlas.png"
+import_mode=0
+crop_to_region=true
+trim_alpha_border_from_region=true

@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/HoloFireLizard.png-6b9cf243388b7c82e4ac1fe7ad0569dd.res"
+group_file="res://Atlases/Items_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Items/Sprites/HoloFireLizard.png"
+dest_files=[ "res://.import/HoloFireLizard.png-6b9cf243388b7c82e4ac1fe7ad0569dd.res" ]
+
+[params]
+
+atlas_file="res://Atlases/Items_atlas.png"
+import_mode=0
+crop_to_region=true
+trim_alpha_border_from_region=false

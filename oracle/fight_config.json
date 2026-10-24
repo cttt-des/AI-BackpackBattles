@@ -1,0 +1,7 @@
+{
+  "seed": 20261005,
+  "run_id": 1226,
+  "round_id": 3,
+  "out": "output/oracle/run",
+  "_comment": "双方装配：player=(run_id,round_id)；opponent=(opp_run_id/opp_round_id)，缺省镜像同回合（对齐原版 BuildHistory 标记对手语义的最小确定性配置）。run 1226 为 1.1.9 版写入，物品索引与神谕 ItemBook 一致"
+}

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Owl1.ogg-ceff838d941abf9eeca75bfaf02480bf.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/Owl1.ogg"
+dest_files=[ "res://.import/Owl1.ogg-ceff838d941abf9eeca75bfaf02480bf.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

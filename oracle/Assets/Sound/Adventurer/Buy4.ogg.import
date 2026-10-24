@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Buy4.ogg-c943afcf1fc275eab35ae30b73035a79.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/Adventurer/Buy4.ogg"
+dest_files=[ "res://.import/Buy4.ogg-c943afcf1fc275eab35ae30b73035a79.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

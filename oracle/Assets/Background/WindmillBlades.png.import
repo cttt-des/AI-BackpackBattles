@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/WindmillBlades.png-f7d95e464077d4ebf8e05278de9cb23e.res"
+group_file="res://Atlases/Combat_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Assets/Background/WindmillBlades.png"
+dest_files=[ "res://.import/WindmillBlades.png-f7d95e464077d4ebf8e05278de9cb23e.res" ]
+
+[params]
+
+atlas_file="res://Atlases/Combat_atlas.png"
+import_mode=0
+crop_to_region=true
+trim_alpha_border_from_region=false

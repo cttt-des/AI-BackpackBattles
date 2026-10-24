@@ -1,0 +1,91 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Items/Item.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Items/Exclusive/EnergyConversion.gd" type="Script" id=2]
+[ext_resource path="res://Items/Exclusive/Sprites/EnergyConverter.png" type="Texture" id=3]
+[ext_resource path="res://Shader/DissolveParticle.gdshader" type="Shader" id=4]
+[ext_resource path="res://Assets/Particles/FireParticle2.png" type="Texture" id=5]
+[ext_resource path="res://Utility/AutoHideParticles.gd" type="Script" id=6]
+[ext_resource path="res://Items/Animations/SkillLight.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Items/Exclusive/Particles/RobodogSmokeDragParticles.material" type="Material" id=8]
+
+
+[sub_resource type="PhysicsMaterial" id=1]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="Shader" id=10]
+code = "shader_type canvas_item;
+
+uniform float progress : hint_range(-1, 2) = 0.5;
+uniform vec2 direction = vec2(0, 1);
+
+void fragment() {
+	COLOR = texture(TEXTURE, UV);
+	COLOR.rgb *= 1.0 + 0.5 * smoothstep(progress - 0.05, progress + 0.05, dot(UV, direction));
+}"
+
+[sub_resource type="ShaderMaterial" id=11]
+resource_local_to_scene = true
+shader = SubResource( 10 )
+shader_param/progress = 0.245
+shader_param/direction = Vector2( -1, 0 )
+
+[sub_resource type="Gradient" id=47]
+offsets = PoolRealArray( 0.013834, 0.0355731, 0.0928854, 0.211462, 0.401186, 0.438735 )
+colors = PoolColorArray( 0.378906, 0.0266418, 0, 0, 0.439453, 0.14028, 0.0712395, 1, 0.90625, 0.272168, 0.102661, 1, 1, 0.754387, 0.138672, 1, 1, 0.998451, 0.603516, 1, 1, 0.999403, 0.847071, 1 )
+
+[sub_resource type="GradientTexture" id=46]
+gradient = SubResource( 47 )
+width = 100
+
+[sub_resource type="ShaderMaterial" id=48]
+shader = ExtResource( 4 )
+shader_param/numFrames = 1.0
+shader_param/spriteSheet = ExtResource( 5 )
+shader_param/tonemapping = SubResource( 46 )
+
+[node name="Energy Conversion" instance=ExtResource( 1 )]
+physics_material_override = SubResource( 1 )
+script = ExtResource( 2 )
+
+[node name="CollisionMap" parent="." index="0"]
+position = Vector2( 40, 40 )
+tile_data = PoolIntArray( -4, 4, 0, -3, 4, 0, -2, 4, 0, -1, 3, 0, -65536, 4, 0, -65535, 4, 0, -65534, 4, 0 )
+
+[node name="Icon" parent="." index="1"]
+material = SubResource( 11 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+
+[node name="Sockets" parent="Icon" index="0"]
+scale = Vector2( 2, 2 )
+
+[node name="SkillLight" parent="Icon" index="1" instance=ExtResource( 7 )]
+modulate = Color( 0.886275, 0.882353, 0.784314, 1 )
+
+[node name="SpecificDragParticles1" type="Particles2D" parent="Icon" index="2"]
+modulate = Color( 1.2, 1.2, 1.2, 1 )
+show_behind_parent = true
+material = SubResource( 48 )
+position = Vector2( -46, 4.26 )
+rotation = -1.47131
+scale = Vector2( 0.551, 0.786 )
+emitting = false
+amount = 6
+lifetime = 0.27
+speed_scale = 0.36
+process_material = ExtResource( 8 )
+texture = ExtResource( 5 )
+script = ExtResource( 6 )
+
+[node name="CollisionPolygon2D" parent="ClickArea" index="0"]
+polygon = PoolVector2Array( -40, -40, 40, -40, 40, 40, -40, 40 )
+
+[node name="BottomCenter" parent="." index="3"]
+position = Vector2( 1, 33 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="7"]
+visible = false
+polygon = PoolVector2Array( -38, -28, -28, 31, 1, 36, 32, 31, 34, -29, -1, -36 )

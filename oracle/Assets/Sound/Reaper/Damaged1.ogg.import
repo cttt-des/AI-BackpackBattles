@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Damaged1.ogg-b57a2bd23cf940267a4d0fd7bec749c5.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/Reaper/Damaged1.ogg"
+dest_files=[ "res://.import/Damaged1.ogg-b57a2bd23cf940267a4d0fd7bec749c5.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

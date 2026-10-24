@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/AceofSpades.png-6633a4c05ecb0023fe4218b082be379a.res"
+group_file="res://Atlases/Items_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Items/Sprites/AceofSpades.png"
+dest_files=[ "res://.import/AceofSpades.png-6633a4c05ecb0023fe4218b082be379a.res" ]
+
+[params]
+
+atlas_file="res://Atlases/Items_atlas.png"
+import_mode=0
+crop_to_region=true
+trim_alpha_border_from_region=false

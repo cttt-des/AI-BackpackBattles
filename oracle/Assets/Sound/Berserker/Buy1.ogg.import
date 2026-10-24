@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Buy1.ogg-943b0b3a0266853f140b8ed817f9bb04.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/Berserker/Buy1.ogg"
+dest_files=[ "res://.import/Buy1.ogg-943b0b3a0266853f140b8ed817f9bb04.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

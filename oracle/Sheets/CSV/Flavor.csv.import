@@ -1,0 +1,16 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+
+[deps]
+
+files=[ "res://Sheets/CSV/Flavor.en.translation", "res://Sheets/CSV/Flavor.de.translation", "res://Sheets/CSV/Flavor.zh_Hans_CN.translation", "res://Sheets/CSV/Flavor.ja.translation", "res://Sheets/CSV/Flavor.ko.translation", "res://Sheets/CSV/Flavor.zh_Hant_TW.translation", "res://Sheets/CSV/Flavor.fr.translation", "res://Sheets/CSV/Flavor.ru.translation", "res://Sheets/CSV/Flavor.pt_BR.translation", "res://Sheets/CSV/Flavor.es.translation", "res://Sheets/CSV/Flavor.da.translation" ]
+
+source_file="res://Sheets/CSV/Flavor.csv"
+dest_files=[ "res://Sheets/CSV/Flavor.en.translation", "res://Sheets/CSV/Flavor.de.translation", "res://Sheets/CSV/Flavor.zh_Hans_CN.translation", "res://Sheets/CSV/Flavor.ja.translation", "res://Sheets/CSV/Flavor.ko.translation", "res://Sheets/CSV/Flavor.zh_Hant_TW.translation", "res://Sheets/CSV/Flavor.fr.translation", "res://Sheets/CSV/Flavor.ru.translation", "res://Sheets/CSV/Flavor.pt_BR.translation", "res://Sheets/CSV/Flavor.es.translation", "res://Sheets/CSV/Flavor.da.translation" ]
+
+[params]
+
+compress=true
+delimiter=0

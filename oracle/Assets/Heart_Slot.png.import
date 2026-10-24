@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/Heart_Slot.png-1ad761c60edee187551c9879b04a45c8.res"
+group_file="res://Atlases/Combat_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Assets/Heart_Slot.png"
+dest_files=[ "res://.import/Heart_Slot.png-1ad761c60edee187551c9879b04a45c8.res" ]
+
+[params]
+
+atlas_file="res://Atlases/Combat_atlas.png"
+import_mode=0
+crop_to_region=true
+trim_alpha_border_from_region=true

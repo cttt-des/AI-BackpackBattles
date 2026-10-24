@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Interface/Combat/StatIcons/Unhealing.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Fonts/LibreBaskerville-Bold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Interface/Combat/CharacterStatIcon.gd" type="Script" id=3]
+[ext_resource path="res://Utility/TooltipArea.gd" type="Script" id=4]
+[ext_resource path="res://Interface/NonLocalized_KeepFont.gd" type="Script" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 20
+outline_size = 3
+outline_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+use_filter = true
+font_data = ExtResource( 2 )
+
+[node name="Stat" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = -27.5
+margin_top = -27.5
+margin_right = 27.5
+margin_bottom = 27.5
+rect_min_size = Vector2( 55, 55 )
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 6
+script = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = -11.0
+margin_top = 6.0
+margin_right = 49.0
+margin_bottom = 32.0
+custom_colors/font_color_shadow = Color( 0.235294, 0.14902, 0.113725, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 1
+custom_fonts/font = SubResource( 1 )
+text = "20%"
+align = 1
+script = ExtResource( 5 )

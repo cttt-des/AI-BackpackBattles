@@ -1,0 +1,257 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://CharacterClasses/Engineer/EngineerChibiSprite.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Light/CircleLight.png" type="Texture" id=2]
+[ext_resource path="res://CharacterClasses/Engineer/Skins/Normal/Default/LeftArmStrap.png" type="Texture" id=3]
+[ext_resource path="res://CharacterClasses/Engineer/Skins/Normal/Default/RightArmStrap.png" type="Texture" id=4]
+[ext_resource path="res://CharacterClasses/Engineer/Skins/Normal/Default/FlaskClip.png" type="Texture" id=5]
+[ext_resource path="res://CharacterClasses/Engineer/Skins/Normal/Default/Cog.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Noise/SlimeNoise.png" type="Texture" id=7]
+[ext_resource path="res://CharacterClasses/Engineer/Skins/Normal/Default/Flask.png" type="Texture" id=8]
+[ext_resource path="res://CharacterClasses/Engineer/Skins/Normal/Default/Hairback.png" type="Texture" id=9]
+
+[sub_resource type="Animation" id=9]
+resource_name = "Idle"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Skeleton2/Bone2D/Bone2D/Bone2D/Bone2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Vector2( -28, 224 ), Vector2( -62.5029, 213.961 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Skeleton2/Bone2D/Bone2D/Bone2D/Bone2D:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ 101.3, 112.2 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Skeleton2/Bone2D/Bone2D/Bone2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Vector2( 12, 184 ), Vector2( 4, 172 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Skeleton2/Bone2D/Bone2D/Bone2D:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ 0.0, -4.6 ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "Idle2"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Polygon2:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=11]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Skeleton2/Bone2D/Bone2D/Bone2D/Bone2D:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 105.4 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Skeleton2/Bone2D/Bone2D/Bone2D/Bone2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -10, 190 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Skeleton2/Bone2D/Bone2D/Bone2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 4, 172 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Skeleton2/Bone2D/Bone2D/Bone2D:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -4.6 ]
+}
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform sampler2D noise;
+uniform sampler2D strengthCurve;
+
+void fragment() {
+	float noiseVal = texture(noise, UV + vec2(0, TIME * 0.1)).r;
+	vec2 distortedUV = UV + vec2(0, noiseVal) * 0.1 * texture(strengthCurve, vec2(UV.y)).r;
+	vec4 tex = texture(TEXTURE, distortedUV);
+	COLOR = tex;
+	
+}"
+
+[sub_resource type="Curve" id=6]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.370536, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.477679, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.879464, 0.709091 ), -0.794679, -0.794679, 0, 0, Vector2( 0.973214, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 6 )
+
+[sub_resource type="ShaderMaterial" id=7]
+shader = SubResource( 1 )
+shader_param/noise = ExtResource( 7 )
+shader_param/strengthCurve = SubResource( 5 )
+
+[sub_resource type="Animation" id=8]
+resource_name = "Idle"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Cog:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
+}
+
+[node name="Sprite" instance=ExtResource( 1 )]
+script = null
+
+[node name="LeftArmStrap" type="Sprite" parent="Body/LeftArm" index="2" groups=["Special"]]
+position = Vector2( 29.7778, 49.1111 )
+texture = ExtResource( 3 )
+
+[node name="RightLowerArm" parent="Body/RightArm" index="1"]
+position = Vector2( -43.7778, 112 )
+
+[node name="RightArmStrap" type="Sprite" parent="Body/RightArm" index="2"]
+position = Vector2( -32.2222, 62.8889 )
+rotation = -0.272271
+texture = ExtResource( 4 )
+
+[node name="Skeleton2" type="Skeleton2D" parent="Body/Head/HairBack" index="0" groups=["Head"]]
+position = Vector2( 5.28952, 6.03223 )
+
+[node name="Bone2D" type="Bone2D" parent="Body/Head/HairBack/Skeleton2" index="0" groups=["Head"]]
+position = Vector2( -22.1474, -22.317 )
+rest = Transform2D( 1, 0, 0, 1, -22.1474, -22.317 )
+
+[node name="Bone2D" type="Bone2D" parent="Body/Head/HairBack/Skeleton2/Bone2D" index="0" groups=["Head"]]
+position = Vector2( -96, 50 )
+rest = Transform2D( 1, 0, 0, 1, -96, 50 )
+
+[node name="Bone2D" type="Bone2D" parent="Body/Head/HairBack/Skeleton2/Bone2D/Bone2D" index="0" groups=["Head"]]
+position = Vector2( 4, 172 )
+rotation = -0.0802851
+rest = Transform2D( 1, 0, 0, 1, 12, 184 )
+
+[node name="Bone2D" type="Bone2D" parent="Body/Head/HairBack/Skeleton2/Bone2D/Bone2D/Bone2D" index="0" groups=["Head"]]
+position = Vector2( -10, 190 )
+rotation = 1.83958
+rest = Transform2D( -0.195946, 0.980615, -0.980615, -0.195946, -28, 224 )
+
+[node name="Polygon" type="Polygon2D" parent="Body/Head/HairBack" index="1" groups=["Head"]]
+position = Vector2( -274.687, -71.8054 )
+scale = Vector2( 1.504, 1.504 )
+texture = ExtResource( 9 )
+skeleton = NodePath("../Skeleton2")
+polygon = PoolVector2Array( 212.098, 53.2258, 204.033, 18.5484, 186.291, -4.03226, 161.291, -2.41936, 153.227, 23.3871, 97.5815, 42.7419, 66.9362, 68.5484, 26.6137, 129.032, 17.7427, 179.839, 20.8499, 226.033, 25.8072, 272.581, 16.1299, 318.548, -11.2895, 387.903, 1.61371, 462.903, 68.5074, 533.333, 74.2862, 500.476, 126.667, 434.762, 123.334, 377.143, 142.858, 289.639, 129.048, 199.524, 117.62, 137.143, 138.096, 89.524, 162.858, 72.3811 )
+uv = PoolVector2Array( 212.098, 53.2258, 204.033, 18.5484, 186.291, -4.03226, 161.291, -2.41936, 153.227, 23.3871, 97.5815, 42.7419, 66.9362, 68.5484, 26.6137, 129.032, 17.7427, 179.839, 20.8499, 226.033, 25.8072, 272.581, 16.1299, 318.548, -11.2895, 387.903, 1.61371, 462.903, 68.5074, 533.333, 74.2862, 500.476, 126.667, 434.762, 123.334, 377.143, 142.858, 289.639, 129.048, 199.524, 117.62, 137.143, 138.096, 89.524, 162.858, 72.3811 )
+polygons = [ PoolIntArray( 3, 2, 1, 0, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4 ) ]
+bones = [ "Bone2D", PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1 ), "Bone2D/Bone2D", PoolRealArray( 0.5, 0.5, 0.5, 0.5, 0.5, 1, 1, 1, 1, 1, 0.5, 0, 0, 0, 0, 0, 0, 0, 0.5, 1, 1, 1, 0.5 ), "Bone2D/Bone2D/Bone2D", PoolRealArray( 0, 0, 0, 0, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 1, 1, 0.5, 0.5, 1, 1, 0.5, 0.5, 0.5, 0.5, 0 ), "Bone2D/Bone2D/Bone2D/Bone2D", PoolRealArray( 0, 0, 0, 0, 0, 0, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 1, 1, 1, 0.5, 0.5, 0.5, 0.5, 0.5, 0 ) ]
+
+[node name="HairIdle" type="AnimationPlayer" parent="Body/Head/HairBack" index="2" groups=["Head"]]
+playback_speed = 0.2
+anims/Idle = SubResource( 9 )
+anims/Idle2 = SubResource( 10 )
+anims/RESET = SubResource( 11 )
+
+[node name="Flask" type="Sprite" parent="Body/Bag" index="1" groups=["Special"]]
+material = SubResource( 7 )
+position = Vector2( -179.828, 56.7926 )
+scale = Vector2( 1.15, 1.15 )
+texture = ExtResource( 8 )
+
+[node name="FlaskClip" type="Sprite" parent="Body/Bag" index="2" groups=["Special"]]
+position = Vector2( -163.828, 86.7926 )
+scale = Vector2( 1.15, 1.15 )
+texture = ExtResource( 5 )
+
+[node name="Node2D" type="Node2D" parent="Body/Bag" index="3" groups=["Special"]]
+position = Vector2( -149.778, 191.268 )
+scale = Vector2( 0.696, 1 )
+
+[node name="Cog" type="Sprite" parent="Body/Bag/Node2D" index="0" groups=["Special"]]
+texture = ExtResource( 6 )
+
+[node name="CogIdle" type="AnimationPlayer" parent="Body/Bag/Node2D" index="1" groups=["Special"]]
+autoplay = "Idle"
+playback_speed = 0.05
+anims/Idle = SubResource( 8 )
+
+[node name="CircleLight" type="Sprite" parent="Body/Bag" index="4" groups=["Special"]]
+modulate = Color( 1.5, 1.10281, 0.26, 1 )
+self_modulate = Color( 2, 2, 2, 0.121569 )
+position = Vector2( -117.778, -94.7324 )
+rotation = 0.226247
+scale = Vector2( 0.202542, 0.197035 )
+texture = ExtResource( 2 )

@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/Top_teeth.png-edc38d92f103defd56175c830235aa47.res"
+group_file="res://Atlases/Shop_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Assets/Chestnut/Top_teeth.png"
+dest_files=[ "res://.import/Top_teeth.png-edc38d92f103defd56175c830235aa47.res" ]
+
+[params]
+
+atlas_file="res://Atlases/Shop_atlas.png"
+import_mode=0
+crop_to_region=false
+trim_alpha_border_from_region=false

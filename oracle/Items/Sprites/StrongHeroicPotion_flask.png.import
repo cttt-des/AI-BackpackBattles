@@ -1,0 +1,19 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/StrongHeroicPotion_flask.png-95c200d1afd6d7caf73d514524efa7f8.res"
+group_file="res://Atlases/Items_atlas.png"
+valid=true
+[deps]
+
+
+source_file="res://Items/Sprites/StrongHeroicPotion_flask.png"
+dest_files=[ "res://.import/StrongHeroicPotion_flask.png-95c200d1afd6d7caf73d514524efa7f8.res" ]
+
+[params]
+
+atlas_file="res://Atlases/Items_atlas.png"
+import_mode=0
+crop_to_region=true
+trim_alpha_border_from_region=false

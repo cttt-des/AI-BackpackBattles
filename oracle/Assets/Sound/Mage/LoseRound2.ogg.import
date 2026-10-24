@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/LoseRound2.ogg-6d0ef3bb7c4db5fd6a594d2d8e8f286f.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound/Mage/LoseRound2.ogg"
+dest_files=[ "res://.import/LoseRound2.ogg-6d0ef3bb7c4db5fd6a594d2d8e8f286f.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

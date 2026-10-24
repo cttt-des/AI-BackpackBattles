@@ -1,0 +1,98 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Items/Item.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Items/CritwoodStaff.gd" type="Script" id=2]
+[ext_resource path="res://Items/Sprites/CritwoodStaff.png" type="Texture" id=3]
+[ext_resource path="res://Items/Particles/CritwoodStaffDragParticles.tres" type="Material" id=4]
+[ext_resource path="res://Assets/Particles/GlowingDot.png" type="Texture" id=5]
+[ext_resource path="res://Items/GemSocket.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Items/Particles/CritwoodStaffActivationParticles.tres" type="Material" id=7]
+[ext_resource path="res://Utility/AutoHideParticles.gd" type="Script" id=8]
+
+[sub_resource type="PhysicsMaterial" id=1]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="Shader" id=10]
+code = "shader_type canvas_item;
+
+uniform float progress : hint_range(-1, 2) = 0.5;
+uniform vec2 direction = vec2(0, 1);
+
+void fragment() {
+	COLOR = texture(TEXTURE, UV);
+	COLOR.rgb *= 1.0 + 0.5 * smoothstep(progress - 0.05, progress + 0.05, dot(UV, direction));
+}"
+
+[sub_resource type="ShaderMaterial" id=11]
+resource_local_to_scene = true
+shader = SubResource( 10 )
+shader_param/progress = 0.245
+shader_param/direction = Vector2( -1, 0 )
+
+[node name="Critwood Staff" instance=ExtResource( 1 )]
+physics_material_override = SubResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_horizontal_guides_": [  ],
+"_edit_vertical_guides_": [  ]
+}
+
+[node name="CollisionMap" parent="." index="0"]
+position = Vector2( -40, 0 )
+tile_data = PoolIntArray( -131072, 3, 0, -65536, 3, 0, 0, 3, 0, 65536, 3, 0 )
+
+[node name="Icon" parent="." index="1"]
+material = SubResource( 11 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+
+[node name="SpecificDragParticles" type="Particles2D" parent="Icon" index="0"]
+modulate = Color( 1.5, 1.5, 1.5, 1 )
+show_behind_parent = true
+position = Vector2( -2, -204 )
+scale = Vector2( 2, 2 )
+emitting = false
+amount = 10
+local_coords = false
+process_material = ExtResource( 4 )
+texture = ExtResource( 5 )
+script = ExtResource( 8 )
+
+[node name="Sockets" parent="Icon" index="1"]
+scale = Vector2( 2, 2 )
+
+[node name="GemSocket" parent="Icon/Sockets" index="0" instance=ExtResource( 6 )]
+position = Vector2( 0, -106 )
+
+[node name="PulsePosition" type="Position2D" parent="Icon" index="2"]
+position = Vector2( 0, -210 )
+
+[node name="CollisionPolygon2D" parent="ClickArea" index="0"]
+polygon = PoolVector2Array( -40, -160, 40, -160, 40, 160, -40, 160 )
+
+[node name="BottomCenter" parent="." index="3"]
+position = Vector2( 0, 70 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="5"]
+visible = false
+position = Vector2( -2, 0 )
+polygon = PoolVector2Array( -19, 158, 24, 118, 39, -132, 1, -156, -37, -123 )
+
+[node name="CritBuffTimer" type="Timer" parent="." index="7"]
+process_mode = 0
+one_shot = true
+
+[node name="ActivationParticles" type="Particles2D" parent="." index="8"]
+modulate = Color( 3, 3, 3, 1 )
+position = Vector2( 0, 6 )
+emitting = false
+amount = 20
+speed_scale = 1.5
+local_coords = false
+process_material = ExtResource( 7 )
+texture = ExtResource( 5 )
+script = ExtResource( 8 )
+
+[connection signal="timeout" from="CritBuffTimer" to="." method="buffEnded"]
