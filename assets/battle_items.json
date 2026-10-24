@@ -2144,7 +2144,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Wooden Buckler",
@@ -3185,7 +3185,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 127,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
@@ -3395,7 +3395,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 127,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
@@ -3595,7 +3595,7 @@
     "related_columns": true,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 127,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
@@ -3713,7 +3713,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 127,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
@@ -3830,7 +3830,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 127,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
@@ -3938,7 +3938,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
@@ -4154,7 +4154,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 127,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
@@ -4294,7 +4294,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
@@ -4571,7 +4571,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Broom",
@@ -4790,7 +4790,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Wooden Sword",
@@ -4933,7 +4933,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Wooden Sword",
@@ -5070,7 +5070,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Shiny Shell",
@@ -5217,7 +5217,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Broom",
@@ -6781,7 +6781,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 127,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
@@ -7011,7 +7011,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Wooden Sword",
@@ -7139,7 +7139,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Broom",
@@ -7260,7 +7260,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Health Potion",
@@ -7380,7 +7380,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Dagger",
@@ -7498,7 +7498,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Gloves of Haste",
@@ -7737,7 +7737,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Customer Card",
@@ -7883,7 +7883,7 @@
      "onAffectedItemRemoved"
     ]
    },
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Health Potion",
@@ -8002,7 +8002,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Bag of Stones",
@@ -9878,7 +9878,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Dagger",
@@ -9993,7 +9993,7 @@
      "onAffectedItemRemoved"
     ]
    },
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Heroic Potion",
@@ -10117,7 +10117,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Stone Skin Potion",
@@ -10260,7 +10260,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Leather Armor",
@@ -10407,7 +10407,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Goobert",
@@ -10562,7 +10562,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Goobert",
@@ -10726,7 +10726,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Pan",
@@ -10860,7 +10860,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Hungry Blade",
@@ -10973,7 +10973,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
@@ -11111,7 +11111,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Hero Sword",
@@ -11271,7 +11271,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Hero Sword",
@@ -11442,7 +11442,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Pan",
@@ -11566,7 +11566,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Leather Helm",
@@ -11692,7 +11692,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Torch",
@@ -11828,7 +11828,7 @@
      "onAffectedItemRemoved"
     ]
    },
-   "classes": 0,
+   "classes": 2,
    "originating_recipes": [
     {
      "b": "Mana Potion",
@@ -11966,7 +11966,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Leather Armor",
@@ -12085,7 +12085,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Leather Helm",
@@ -12211,7 +12211,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Gloves of Haste",
@@ -12345,7 +12345,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Magic Staff",
@@ -12471,7 +12471,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Leather Boots",
@@ -12623,7 +12623,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Spear",
@@ -12746,7 +12746,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Broom",
@@ -14274,7 +14274,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Hungry Blade",
@@ -14415,7 +14415,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Hero Longsword",
@@ -14534,7 +14534,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
@@ -14662,7 +14662,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Gloves of Haste",
@@ -14789,7 +14789,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Lightsaber",
@@ -14950,7 +14950,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Goobert",
@@ -15127,7 +15127,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Spear",
@@ -15304,7 +15304,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Shield of Valor",
@@ -15489,7 +15489,7 @@
     ]
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Holy Armor",
@@ -15665,7 +15665,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Holy Armor",
@@ -15832,7 +15832,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Heart Container",
@@ -15969,7 +15969,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Thorn Whip",
@@ -16083,7 +16083,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Crown",
@@ -16258,7 +16258,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Goobert",
@@ -16417,7 +16417,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Heart Container",
@@ -16589,7 +16589,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Wooden Sword",
@@ -16715,7 +16715,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Rib Saw Blade",
@@ -16837,7 +16837,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Leather Boots",
@@ -17041,7 +17041,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Jynx torquilla",
@@ -21199,7 +21199,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": true,
@@ -21294,7 +21294,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Chipped Ruby",
@@ -21400,7 +21400,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Flawed Ruby",
@@ -21506,7 +21506,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Regular Ruby",
@@ -21612,7 +21612,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Flawless Ruby",
@@ -21723,7 +21723,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": true,
@@ -21817,7 +21817,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Chipped Sapphire",
@@ -21922,7 +21922,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Flawed Sapphire",
@@ -22027,7 +22027,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Regular Sapphire",
@@ -22132,7 +22132,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Flawless Sapphire",
@@ -22236,7 +22236,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": true,
@@ -22329,7 +22329,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Chipped Emerald",
@@ -22433,7 +22433,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Flawed Emerald",
@@ -22537,7 +22537,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Regular Emerald",
@@ -22641,7 +22641,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Flawless Emerald",
@@ -22742,7 +22742,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 127,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": true,
@@ -22829,7 +22829,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Chipped Topaz",
@@ -22927,7 +22927,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Flawed Topaz",
@@ -23025,7 +23025,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Regular Topaz",
@@ -23123,7 +23123,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Flawless Topaz",
@@ -23228,7 +23228,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": true,
@@ -23321,7 +23321,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Chipped Amethyst",
@@ -23425,7 +23425,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Flawed Amethyst",
@@ -23529,7 +23529,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Regular Amethyst",
@@ -23633,7 +23633,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Flawless Amethyst",
@@ -24588,7 +24588,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 1,
    "originating_recipes": [
     {
      "b": "Shortbow",
@@ -24701,7 +24701,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 1,
    "originating_recipes": [
     {
      "b": "Shortbow",
@@ -24819,7 +24819,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 1,
    "originating_recipes": [
     {
      "b": "Shortbow",
@@ -24947,7 +24947,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 1,
    "originating_recipes": [
     {
      "b": "Piggybank",
@@ -25100,7 +25100,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 1,
    "originating_recipes": [
     {
      "b": "Goobert",
@@ -25251,7 +25251,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 1,
    "originating_recipes": [
     {
      "b": "Bow and Arrow",
@@ -25397,7 +25397,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 1,
    "originating_recipes": [
     {
      "b": "Bow and Arrow",
@@ -25541,7 +25541,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 1,
    "originating_recipes": [
     {
      "b": "Bow and Arrow",
@@ -25678,7 +25678,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 1,
    "originating_recipes": [
     {
      "b": "Magic Staff",
@@ -26458,7 +26458,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 1,
    "originating_recipes": [
     {
      "b": "Carrot Goobert",
@@ -27288,7 +27288,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 1,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
@@ -27427,7 +27427,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 1,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
@@ -27554,7 +27554,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 1,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
@@ -27691,7 +27691,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 1,
    "originating_recipes": [
     {
      "b": "Squirrel",
@@ -27835,7 +27835,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 1,
    "originating_recipes": [
     {
      "b": "Rat",
@@ -27981,7 +27981,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 1,
    "originating_recipes": [
     {
      "b": "Hedgehog",
@@ -28612,7 +28612,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 2,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
@@ -28722,7 +28722,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 2,
    "flicker_animation": false,
    "connector_ready_roll": true,
    "gem_roll": false,
@@ -28831,7 +28831,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 2,
    "flicker_animation": false,
    "connector_ready_roll": true,
    "gem_roll": false,
@@ -28942,7 +28942,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 2,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
@@ -29050,7 +29050,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 2,
    "flicker_animation": false,
    "connector_ready_roll": true,
    "gem_roll": false,
@@ -29163,7 +29163,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 2,
    "flicker_animation": false,
    "connector_ready_roll": true,
    "gem_roll": false,
@@ -29281,7 +29281,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 2,
    "flicker_animation": false,
    "connector_ready_roll": true,
    "gem_roll": false,
@@ -29391,7 +29391,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 2,
    "flicker_animation": false,
    "connector_ready_roll": true,
    "gem_roll": false,
@@ -29952,7 +29952,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 2,
    "originating_recipes": [
     {
      "b": "Goobert",
@@ -30091,7 +30091,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 2,
    "originating_recipes": [
     {
      "b": "Magic Staff",
@@ -30208,7 +30208,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 2,
    "originating_recipes": [
     {
      "b": "Pestilence Flask",
@@ -30359,7 +30359,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 2,
    "originating_recipes": [
     {
      "b": "Ruby Whelp",
@@ -30517,7 +30517,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 2,
    "originating_recipes": [
     {
      "b": "Fly Agaric",
@@ -30714,7 +30714,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 2,
    "originating_recipes": [
     {
      "b": "Jynx torquilla",
@@ -30861,7 +30861,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 2,
    "originating_recipes": [
     {
      "b": "Toad",
@@ -31086,7 +31086,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 2,
    "originating_recipes": [
     {
      "b": "Poison Goobert",
@@ -31952,7 +31952,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 2,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
@@ -32055,7 +32055,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 2,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
@@ -32193,7 +32193,7 @@
      "onAffectedItemRemoved"
     ]
    },
-   "classes": 0,
+   "classes": 2,
    "originating_recipes": [
     {
      "b": "Demonic Flask",
@@ -32439,7 +32439,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 2,
    "originating_recipes": [
     {
      "b": "Divine Potion",
@@ -33298,7 +33298,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 8,
    "originating_recipes": [
     {
      "b": "Hero Sword",
@@ -33454,7 +33454,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 8,
    "originating_recipes": [
     {
      "b": "Hero Longsword",
@@ -33657,7 +33657,7 @@
     ]
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 8,
    "originating_recipes": [
     {
      "b": "Holy Armor",
@@ -33844,7 +33844,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 8,
    "originating_recipes": [
     {
      "b": "Shield of Valor",
@@ -33959,7 +33959,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 8,
    "originating_recipes": [
     {
      "b": "Dagger",
@@ -34116,7 +34116,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 8,
    "originating_recipes": [
     {
      "b": "Spear",
@@ -34248,7 +34248,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 8,
    "originating_recipes": [
     {
      "b": "Magic Staff",
@@ -34377,7 +34377,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 8,
    "originating_recipes": [
     {
      "b": "Thorn Whip",
@@ -34517,7 +34517,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 8,
    "originating_recipes": [
     {
      "b": "Goobert",
@@ -34665,7 +34665,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 8,
    "originating_recipes": [
     {
      "b": "Ruby Whelp",
@@ -34807,7 +34807,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 8,
    "originating_recipes": [
     {
      "b": "Greatsword",
@@ -34948,7 +34948,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 8,
    "originating_recipes": [
     {
      "b": "Shelly",
@@ -35122,7 +35122,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 8,
    "originating_recipes": [
     {
      "b": "Chili Goobert",
@@ -36054,7 +36054,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 8,
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
@@ -36166,7 +36166,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Leather Armor",
@@ -36276,7 +36276,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Wooden Buckler",
@@ -36401,7 +36401,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Hungry Blade",
@@ -36644,7 +36644,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 8,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
@@ -36742,7 +36742,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 8,
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
@@ -36837,7 +36837,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 8,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
@@ -36943,7 +36943,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 8,
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
@@ -37036,7 +37036,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 8,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
@@ -37135,7 +37135,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 8,
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
@@ -37959,7 +37959,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 4,
    "originating_recipes": [
     {
      "b": "Axe",
@@ -38658,7 +38658,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 4,
    "originating_recipes": [
     {
      "b": "Magic Staff",
@@ -38795,7 +38795,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 4,
    "originating_recipes": [
     {
      "b": "Goobert",
@@ -38931,7 +38931,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 4,
    "originating_recipes": [
     {
      "b": "Spiked Shield",
@@ -39103,7 +39103,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 4,
    "originating_recipes": [
     {
      "b": "Cheese Goobert",
@@ -39964,7 +39964,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 4,
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
@@ -40094,7 +40094,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 4,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
@@ -40225,7 +40225,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 4,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
@@ -40700,7 +40700,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 4,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": true,
@@ -40806,7 +40806,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 4,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": true,
@@ -40897,7 +40897,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 4,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": true,
@@ -40997,7 +40997,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 4,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": true,
@@ -41985,7 +41985,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 127,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
@@ -47748,7 +47748,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 16,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
@@ -47839,7 +47839,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 16,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
@@ -47931,7 +47931,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 16,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
@@ -48023,7 +48023,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 16,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
@@ -48114,7 +48114,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 16,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
@@ -48207,7 +48207,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 16,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
@@ -48302,7 +48302,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 16,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
@@ -48399,7 +48399,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 16,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
@@ -48491,7 +48491,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 16,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
@@ -48581,7 +48581,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 16,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
@@ -48673,7 +48673,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 16,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
@@ -48765,7 +48765,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 16,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
@@ -50911,7 +50911,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 16,
    "originating_recipes": [
     {
      "b": "Spell Scroll Nature",
@@ -51070,7 +51070,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 18,
    "originating_recipes": [
     {
      "b": "Darkest Lotus",
@@ -51214,7 +51214,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 16,
    "originating_recipes": [
     {
      "b": "Spell Scroll Light",
@@ -51921,7 +51921,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 16,
    "originating_recipes": [
     {
      "b": "Wand",
@@ -52062,7 +52062,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 16,
    "originating_recipes": [
     {
      "b": "Goobert",
@@ -52237,7 +52237,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 16,
    "originating_recipes": [
     {
      "b": "Cupcake Goobert",
@@ -52370,7 +52370,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 16,
    "originating_recipes": [
     {
      "b": "Magic Staff",
@@ -52667,7 +52667,7 @@
      "onAffectedItemInsideRemoved"
     ]
    },
-   "classes": 0,
+   "classes": 16,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
@@ -52776,7 +52776,7 @@
      "onAffectedItemInsideRemoved"
     ]
    },
-   "classes": 0,
+   "classes": 16,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
@@ -52885,7 +52885,7 @@
      "onAffectedItemInsideRemoved"
     ]
    },
-   "classes": 0,
+   "classes": 16,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
@@ -53002,7 +53002,7 @@
      "onAffectedItemInsideRemoved"
     ]
    },
-   "classes": 0,
+   "classes": 16,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
@@ -53116,7 +53116,7 @@
      "onAffectedItemInsideRemoved"
     ]
    },
-   "classes": 0,
+   "classes": 16,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
@@ -54556,7 +54556,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 32,
    "originating_recipes": [
     {
      "b": "Twine",
@@ -54716,7 +54716,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 32,
    "originating_recipes": [
     {
      "b": "Twine",
@@ -54834,7 +54834,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 32,
    "originating_recipes": [
     {
      "b": "Twine",
@@ -54944,7 +54944,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 32,
    "originating_recipes": [
     {
      "b": "Twine",
@@ -55069,7 +55069,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 32,
    "originating_recipes": [
     {
      "b": "Twine",
@@ -55223,7 +55223,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 32,
    "originating_recipes": [
     {
      "b": "Twine",
@@ -55416,7 +55416,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 32,
    "originating_recipes": [
     {
      "b": "Twine",
@@ -55578,7 +55578,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 32,
    "originating_recipes": [
     {
      "b": "Twine",
@@ -55964,7 +55964,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 32,
    "originating_recipes": [
     {
      "b": "Goobert",
@@ -56139,7 +56139,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 32,
    "originating_recipes": [
     {
      "b": "Broccoli Goobert",
@@ -56288,7 +56288,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 32,
    "originating_recipes": [
     {
      "b": "Twine",
@@ -56463,7 +56463,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 32,
    "originating_recipes": [
     {
      "b": "Twine",
@@ -56582,7 +56582,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 32,
    "originating_recipes": [
     {
      "b": "Boomerang",
@@ -56808,7 +56808,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 32,
    "originating_recipes": [
     {
      "b": "Twine",
@@ -59257,7 +59257,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 64,
    "originating_recipes": [
     {
      "b": "Hero Sword",
@@ -59419,7 +59419,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 64,
    "originating_recipes": [
     {
      "b": "Torch",
@@ -59565,7 +59565,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 64,
    "originating_recipes": [
     {
      "b": "Shovel",
@@ -59712,7 +59712,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 64,
    "originating_recipes": [
     {
      "b": "Blood Amulet",
@@ -59840,7 +59840,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 64,
    "originating_recipes": [
     {
      "b": "Fanfare",
@@ -60008,7 +60008,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 64,
    "originating_recipes": [
     {
      "b": "Magic Staff",
@@ -60151,7 +60151,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 64,
    "originating_recipes": [
     {
      "b": "Pan",
@@ -60287,7 +60287,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 64,
    "originating_recipes": [
     {
      "b": "Rib Saw Blade",
@@ -60407,7 +60407,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 64,
    "originating_recipes": [
     {
      "b": "Resistor",
@@ -60583,7 +60583,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 64,
    "originating_recipes": [
     {
      "b": "Health Potion",
@@ -60729,7 +60729,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 64,
    "originating_recipes": [
     {
      "b": "Wooden Buckler",
@@ -60871,7 +60871,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 64,
    "originating_recipes": [
     {
      "b": "Gloves of Haste",
@@ -61086,7 +61086,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 64,
    "originating_recipes": [
     {
      "b": "Ruby Whelp",
@@ -61885,7 +61885,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 64,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
@@ -61999,7 +61999,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 64,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
@@ -62109,7 +62109,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 64,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
@@ -62216,7 +62216,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 64,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
@@ -65151,7 +65151,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 1,
    "originating_recipes": [
     {
      "b": "Ruby Whelp",
@@ -65311,7 +65311,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 2,
    "originating_recipes": [
     {
      "b": "Death Scythe",
@@ -65489,7 +65489,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 2,
    "originating_recipes": [
     {
      "b": "Toad",
@@ -65651,7 +65651,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 8,
    "originating_recipes": [
     {
      "b": "Molten Spear",
@@ -65841,7 +65841,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 8,
    "originating_recipes": [
     {
      "b": "Phoenix",
@@ -66748,7 +66748,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 32,
    "originating_recipes": [
     {
      "b": "Magic Ring",
@@ -66928,7 +66928,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 32,
    "originating_recipes": [
     {
      "b": "Broccoli",
@@ -67116,7 +67116,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 16,
    "originating_recipes": [
     {
      "b": "Ruby Whelp",
@@ -67273,7 +67273,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 16,
    "originating_recipes": [
     {
      "b": "Wand",
@@ -67472,7 +67472,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 127,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
@@ -67643,7 +67643,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Holy Armor",
@@ -67852,7 +67852,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Spiked Shield",
@@ -68014,7 +68014,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Hero Sword",
@@ -68190,7 +68190,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "originating_recipes": [
     {
      "b": "Pan",
