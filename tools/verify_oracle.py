@@ -209,7 +209,10 @@ def run_godot(case_ids: Optional[List[str]] = None,
             print("[godot] 全部 %d 场已完成" % total)
             return 0
         env = dict(os.environ)
-        env["APPDATA"] = os.environ.get("ORACLE_ALIGN_APPDATA") or os.path.join(ROOT, "output", "_recovery", "appdata")  # 沙箱写限：强制重定向（ORACLE_ALIGN_APPDATA 可覆盖）
+        # 沙箱写限：强制重定向 + 按 PID 隔离（多 Godot 并行时共享 user:// 日志
+        # 目录会互相撞句柄 → 引擎弹 openmem/err=5 模态框风暴；每进程独立目录根治）
+        env["APPDATA"] = os.environ.get("ORACLE_ALIGN_APPDATA") or os.path.join(
+            ROOT, "output", "_recovery", "appdata_p", str(os.getpid()))
         env["ORACLE_ALIGN_OUT"] = GD_OUT
         if chunk > 0:
             env["ORACLE_ALIGN_CHUNK"] = str(chunk)
