@@ -26,6 +26,7 @@ class CoreContext(GodotObject):
 		self.frame_counter = 0         # 对齐 Util.frameCounter
 		self.combat_time = 0.0         # 对齐 CombatTimer.combatTime（供事件时间戳）
 		self.below_master = False      # 对齐 Game.isBelowLeague(Game.Leagues.Master)
+		self.label_rng_enabled = True
 		self.lobbies_mode = False      # 对齐 Game.curMode == Game.Mode.Lobbies
 		self.combat = None
 		self.item_book = None
