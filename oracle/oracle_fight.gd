@@ -740,11 +740,11 @@ func run_case(c: Dictionary, warmup := false) -> Dictionary :
 			say("    [lockup] tick %d 单 tick 墙钟 %.1fs——tick 内失控循环，止损判停"
 					% [ticks, (t_now - tick_t0) / 1000000.0])
 			break
-		if t_now - case_t0 > 1_200_000_000:
+		if t_now - case_t0 > 60_000_000:
 			stop_reason = "墙钟闸 60s"
 			say("    [watchdog] 墙钟超 60s，提前判停（原版无此上限，纯兜底防消息队列溢出 dump）")
 			break
-		if G.combatLog.events.size() > 200000:
+		if G.combatLog.events.size() > 25000:
 			stop_reason = "事件闸 25000"
 			say("    [watchdog] 事件数超 25000，提前判停（防消息队列溢出 dump，纯兜底）")
 			break
