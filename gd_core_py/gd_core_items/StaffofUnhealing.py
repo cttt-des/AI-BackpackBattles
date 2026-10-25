@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class StaffofUnhealing(_R.C("res://gd_core_items/Item.gd")):
+class StaffofUnhealing_2(_R.C("res://gd_core_items/Item.gd")):
 
 	resource_path = "res://gd_core_items/StaffofUnhealing.gd"
 
@@ -67,5 +67,5 @@ class StaffofUnhealing(_R.C("res://gd_core_items/Item.gd")):
 		self.manaCost = self.getP2()
 
 
-_R.reg("res://gd_core_items/StaffofUnhealing.gd", StaffofUnhealing)
-_R.reg("StaffofUnhealing", StaffofUnhealing)
+_R.reg("res://gd_core_items/StaffofUnhealing.gd", StaffofUnhealing_2)
+_R.reg("StaffofUnhealing", StaffofUnhealing_2)

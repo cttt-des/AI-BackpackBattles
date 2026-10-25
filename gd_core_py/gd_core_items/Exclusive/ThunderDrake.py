@@ -15,13 +15,19 @@ class Exclusive__ThunderDrake(_R.C("res://gd_core_items/Weapon.gd")):
 	def _init_fields(self):
 		super()._init_fields()
 		self.active = False
-		self.curHitCount = 0
+		self._curHitCount = 0
 		self.lightningMultiplicity = {}
 		self.numHits = None
 		self.buffSpeed = None
 		self.buffTimer = None
 		self.buffParticles = None
 
+	@property
+	def curHitCount(self):
+		return self._curHitCount
+	@curHitCount.setter
+	def curHitCount(self, v):
+		self._curHitCount = int(v)
 
 	def canAffect_lightning(self, item):
 		return item.hasCooldown() or item.reactsToCharges()

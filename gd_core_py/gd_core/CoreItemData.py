@@ -20,11 +20,11 @@ class CoreItemData(GodotObject):
 		super()._init_fields()
 		self.name = ""
 		self.identifier = ""     # 对齐 ItemDescriptor.identifier（getName 返回它）
-		self.itemIndex = 0          # 对齐 ItemDescriptor.itemIndex（getIndex 返回它）
-		self.minDam = 0
-		self.maxDam = 0
+		self._itemIndex = 0          # 对齐 ItemDescriptor.itemIndex（getIndex 返回它）
+		self._minDam = 0
+		self._maxDam = 0
 		self.staminaCost = 0.0    # 对齐 ItemDescriptor.gd:55
-		self.block = 0              # 对齐 ItemDescriptor.block（Item.getBlock 读取）
+		self._block = 0              # 对齐 ItemDescriptor.block（Item.getBlock 读取）
 		self.cd = 0.0
 		self.extraCds = []
 		self.accuracy = 100.0
@@ -33,11 +33,11 @@ class CoreItemData(GodotObject):
 		self.chance2 = 0.0
 		self.shopChance = 0.0
 		self.types = []
-		self.tags = 0
-		self.physics = 0
-		self.rarity = 0
-		self.price = 0              # 对齐 ItemDescriptor.price（getPrice 返回它）
-		self.classes = 0            # 对齐 ItemDescriptor.classes（StuffedClasses 位标志）
+		self._tags = 0
+		self._physics = 0
+		self._rarity = 0
+		self._price = 0              # 对齐 ItemDescriptor.price（getPrice 返回它）
+		self._classes = 0            # 对齐 ItemDescriptor.classes（StuffedClasses 位标志）
 		self.randomUniquePool = False   # 对齐 ItemDescriptor.randomUniquePool（isTreasure 读取）
 		self.hasBattleRageEffect = False
 		self.gatedItems = []
@@ -52,7 +52,7 @@ class CoreItemData(GodotObject):
 		self.flickerMaxSpeed = 1.0
 		self.connectorReadyRoll = False
 		self.gemRoll = False
-		self.releaseState = self.ReleaseState.Full
+		self._releaseState = self.ReleaseState.Full
 		self._editor = OS_has_feature("editor")
 		self._playtest = OS_has_feature("playtest")
 		self._full_version = OS_has_feature("full_version")
@@ -62,11 +62,89 @@ class CoreItemData(GodotObject):
 		self.sortedParamNames = []
 		self.paramBases = {}
 		self.paramBases_inverted = {}
-		self.gainedStacks = 0
-		self.removedStacks = 0
-		self.usedStacks = 0
+		self._gainedStacks = 0
+		self._removedStacks = 0
+		self._usedStacks = 0
 		self.activationAni = None
 
+	@property
+	def itemIndex(self):
+		return self._itemIndex
+	@itemIndex.setter
+	def itemIndex(self, v):
+		self._itemIndex = int(v)
+	@property
+	def minDam(self):
+		return self._minDam
+	@minDam.setter
+	def minDam(self, v):
+		self._minDam = int(v)
+	@property
+	def maxDam(self):
+		return self._maxDam
+	@maxDam.setter
+	def maxDam(self, v):
+		self._maxDam = int(v)
+	@property
+	def block(self):
+		return self._block
+	@block.setter
+	def block(self, v):
+		self._block = int(v)
+	@property
+	def tags(self):
+		return self._tags
+	@tags.setter
+	def tags(self, v):
+		self._tags = int(v)
+	@property
+	def physics(self):
+		return self._physics
+	@physics.setter
+	def physics(self, v):
+		self._physics = int(v)
+	@property
+	def rarity(self):
+		return self._rarity
+	@rarity.setter
+	def rarity(self, v):
+		self._rarity = int(v)
+	@property
+	def price(self):
+		return self._price
+	@price.setter
+	def price(self, v):
+		self._price = int(v)
+	@property
+	def classes(self):
+		return self._classes
+	@classes.setter
+	def classes(self, v):
+		self._classes = int(v)
+	@property
+	def releaseState(self):
+		return self._releaseState
+	@releaseState.setter
+	def releaseState(self, v):
+		self._releaseState = int(v)
+	@property
+	def gainedStacks(self):
+		return self._gainedStacks
+	@gainedStacks.setter
+	def gainedStacks(self, v):
+		self._gainedStacks = int(v)
+	@property
+	def removedStacks(self):
+		return self._removedStacks
+	@removedStacks.setter
+	def removedStacks(self, v):
+		self._removedStacks = int(v)
+	@property
+	def usedStacks(self):
+		return self._usedStacks
+	@usedStacks.setter
+	def usedStacks(self, v):
+		self._usedStacks = int(v)
 	# =============================================================================
 	# CoreItemData.gd — 无头战斗内核：物品静态数据（ItemDescriptor 的无头子集）
 	# =============================================================================

@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class RainbowGoobertRanger(_R.C("res://gd_core_items/Goobert.gd")):
+class RainbowGoobertRanger_2(_R.C("res://gd_core_items/Goobert.gd")):
 
 	resource_path = "res://gd_core_items/RainbowGoobertRanger.gd"
 
@@ -29,5 +29,5 @@ class RainbowGoobertRanger(_R.C("res://gd_core_items/Goobert.gd")):
 		pass
 
 
-_R.reg("res://gd_core_items/RainbowGoobertRanger.gd", RainbowGoobertRanger)
-_R.reg("RainbowGoobertRanger", RainbowGoobertRanger)
+_R.reg("res://gd_core_items/RainbowGoobertRanger.gd", RainbowGoobertRanger_2)
+_R.reg("RainbowGoobertRanger", RainbowGoobertRanger_2)

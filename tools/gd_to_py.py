@@ -1342,18 +1342,61 @@ def render_func(sig, hit, stat):
     return "def %s(%s):" % (name, ", ".join(allargs)), deferred
 
 
+def top_level_infer_eq(s: str) -> int:
+    """返回 s 中顶层 `:=` 的下标（GDScript 推断类型默认值声明），找不到 -1。
+
+    top_level_eq 有意排除 `:=`（语句侧 `var x := 1` 由 DECL_RE 处理，不能当
+    赋值改写）；但参数面 `resync := true` 是默认值声明（CoreBuff.gd:425
+    `_startTimer(duration: float, resync := true)`），不还原会生成无默认值形参
+    `def _startTimer(self, duration, resync)`，单参调用点直接 TypeError
+    （run634 py 腿缺产物：CoreBuff._startTimer() missing 'resync'）。
+    """
+    depth, quote = 0, None
+    i, n = 0, len(s)
+    while i < n:
+        c = s[i]
+        if quote:
+            if c == "\\":
+                i += 2
+                continue
+            if c == quote:
+                quote = None
+            i += 1
+            continue
+        if c in "\"'":
+            quote = c
+        elif c in "([{":
+            depth += 1
+        elif c in ")]}":
+            depth -= 1
+        elif c == ":" and depth == 0 and i + 1 < n and s[i + 1] == "=":
+            return i
+        i += 1
+    return -1
+
+
 def render_arg(a, hit, stat):
     """返回 (参数声明文本, 延迟求值项或 None)。
 
     延迟求值项 = (参数名, 原始默认值表达式)，由发射方在函数体首行还原成
     `if <名> is GD_DEFAULT: <名> = <表达式>`；表达式在那里才走 Rewriter，
     因此可以正确解析 self 成员引用。
+    ★ `:=` 推断默认值（如 `resync := true`）由 top_level_infer_eq 还原为
+      Python `resync=True`（top_level_eq 有意排除 `:=`，见其 docstring）。
     """
     a = a.strip()
     if not a:
         return "", None
     eq = top_level_eq(a)
-    lhs, rhs = (a[:eq], a[eq + 1:]) if eq >= 0 else (a, None)
+    if eq >= 0:
+        lhs, rhs = a[:eq], a[eq + 1:]
+    else:
+        eq2 = top_level_infer_eq(a)
+        if eq2 >= 0:
+            hit["`:=` 推断默认值还原"] += 1
+            lhs, rhs = a[:eq2], a[eq2 + 2:]
+        else:
+            lhs, rhs = a, None
     nm = lhs.split(":", 1)[0].strip()
     for gd, py in PY_KEYWORD_RENAMES:
         if nm == gd:
@@ -1419,6 +1462,18 @@ class Emitter:
         ind = "\t" * (gd_indent + py_off)
         out.append(ind + "def _init_fields(self):")
         out.append(ind + "\tsuper()._init_fields()")
+        # ★ 显式 `: int` 字段 → py 侧 int 强制属性（round16）：
+        #   GDScript 对 int 型字段赋 float 静默截断；py 无类型会把字段
+        #   污染成 float，下游 `/` 整除语义漂移（实证
+        #   CoreDamageResult.damage：gd int 6/4=1 vs py float 6.0/4=1.5→round→2，
+        #   run575_r18 SS 毒叠漂移）。发射存储字段 self._<name> +
+        #   <name> property（setter int() 截断）。
+        typed_int = []
+        for name, decl in fields:
+            m2 = DECL_RE.match(decl)
+            rest2 = (m2.group(4).strip() if m2 else "")
+            if rest2.startswith(":") and rest2[1:].split("=")[0].split("#")[0].strip() == "int":
+                typed_int.append(name)
         for name, decl in fields:
             m = DECL_RE.match(decl)
             rest = (m.group(4).strip() if m else "")
@@ -1447,9 +1502,17 @@ class Emitter:
                         self.hit["带类型无初值→类型零值"] += 1
                     elif tname:
                         self.stat["未知类型零值"].append("%s: %s" % (name, tname))
-            out.extend(self._stmt("self.%s = %s" % (name, val),
+            store = ("_" + name) if name in typed_int else name
+            out.extend(self._stmt("self.%s = %s" % (store, val),
                                   gd_indent + py_off + 1, rw, {name}, True))
         out.append("")
+        for name in typed_int:
+            out.append(ind + "@property")
+            out.append(ind + "def %s(self):" % name)
+            out.append(ind + "\treturn self._%s" % name)
+            out.append(ind + "@%s.setter" % name)
+            out.append(ind + "def %s(self, v):" % name)
+            out.append(ind + "\tself._%s = int(v)" % name)
 
     def class_body(self, lines, i0, i1, gd_indent, py_off, members, methods, out):
         """发射一个类体。
@@ -1776,6 +1839,23 @@ def transform_file(f, by_name, by_path, stat, hit, class_names):
         out.append("")
 
     text = "\n".join(out) + "\n\n"
+    # ★ push_back 兜底（round16）：调用改写器按行解析实参，跨行续行的
+    #   .push_back( 会原样漏到 Python 侧（CoreItem.py 3 处 trace 块实证）。
+    #   GDScript push_back 仅 Array 所有 → py list.append 恒等价，全量重写安全。
+    n_pb = text.count(".push_back(")
+    if n_pb:
+        text = text.replace(".push_back(", ".append(")
+        hit[".push_back→append(兜底)"] = \
+            hit.get(".push_back→append(兜底)", 0) + n_pb
+    # PoolRealArray f32 舍入模板（op11）：gd 侧无 f32 cast，用 PoolRealArray
+    # 单元素写读实现；py 侧 rt.f32（struct round-trip）等价。三行模板整体替换，
+    # 防全量重转写冲掉手改（SSD 19 场 PoolRealArray NameError 实证）。
+    _T2 = chr(9) + chr(9)
+    _pa_tpl = _T2 + "pa = PoolRealArray()" + chr(10) + _T2 + "pa.append(x)" + chr(10) + _T2 + "return pa[0]"
+    n_f32 = text.count(_pa_tpl)
+    if n_f32:
+        text = text.replace(_pa_tpl, _T2 + "return f32(x)")
+        hit["PoolRealArray→rt.f32"] = hit.get("PoolRealArray→rt.f32", 0) + n_f32
     text += '_R.reg("%s", %s)\n' % (f.res_path, f.py_class)
     if f.class_name:
         text += '_R.reg("%s", %s)\n' % (f.class_name, f.py_class)

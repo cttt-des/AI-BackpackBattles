@@ -113,11 +113,6 @@ def generate(apply: bool = True, item_api: Set[str] = None) -> dict:
                  "animation", "ActivationAni"):
         const_names_discard = None
     stub_names = {
-        # Godot 节点属性/全局（视觉或引擎内部；物品战斗语义不依赖）
-        "global_position", "global_rotation", "rotation", "scale", "visible",
-        "mass", "mode", "physics_material_override", "NOTIFICATION_PREDELETE",
-        "TYPE_VECTOR2", "stepify", "sqrt", "clamp",
-        "collarDescriptors", "activeFront", "whelpName", "shadowOffset_dropped",
         "ObjectPool", "Sound", "ItemPool", "AnimationPlayer", "Settings",
         "CustomRules", "InputBlocker", "TileMap", "RigidBody2D", "AtlasTexture",
         "ConvexPolygonShape2D", "Physics2DShapeQueryParameters", "Particles2D",
@@ -217,14 +212,14 @@ def generate(apply: bool = True, item_api: Set[str] = None) -> dict:
 
     header = '''# -*- coding: utf-8 -*-
 # 自动生成：engine/codegen.py（勿手改）。行为方法 = 旧转译管线的编译期产物。
-from ..namespaces import stub_enum
-from ..runtime_consts import build_constants
+from ..namespaces import make_constant_table, stub_enum
+from ..stubs import StubRegistry
 
-_CONSTS = build_constants()
+_stub_registry = StubRegistry()
 _stub_memo: dict = {}
 
 def _make_const(name):
-    return _CONSTS[name]
+    return make_constant_table(_stub_memo)[name]
 
 def _make_stub(name):
     return stub_enum(name, _stub_memo)   # 命名空间桩：属性自洽并登记

@@ -15,9 +15,15 @@ class Exclusive__Hardwood(_R.C("res://gd_core_items/Item.gd")):
 	def _init_fields(self):
 		super()._init_fields()
 		self.hasCommonMeleeWeapon = False
-		self.numCommons = 0
+		self._numCommons = 0
 		self.commonDam = None
 
+	@property
+	def numCommons(self):
+		return self._numCommons
+	@numCommons.setter
+	def numCommons(self, v):
+		self._numCommons = int(v)
 
 	def canAffect(self, item):
 		return item.getRarity() == _R.C("CoreConst").Rarity.Common

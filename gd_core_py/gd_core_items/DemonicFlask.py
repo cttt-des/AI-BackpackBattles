@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class DemonicFlask(_R.C("res://gd_core_items/Potion.gd")):
+class DemonicFlask_2(_R.C("res://gd_core_items/Potion.gd")):
 
 	resource_path = "res://gd_core_items/DemonicFlask.gd"
 
@@ -57,5 +57,5 @@ class DemonicFlask(_R.C("res://gd_core_items/Potion.gd")):
 
 
 
-_R.reg("res://gd_core_items/DemonicFlask.gd", DemonicFlask)
-_R.reg("DemonicFlask", DemonicFlask)
+_R.reg("res://gd_core_items/DemonicFlask.gd", DemonicFlask_2)
+_R.reg("DemonicFlask", DemonicFlask_2)

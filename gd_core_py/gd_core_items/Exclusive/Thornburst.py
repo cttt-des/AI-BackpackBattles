@@ -14,11 +14,17 @@ class Exclusive__Thornburst(_R.C("res://gd_core_items/Item.gd")):
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.activationsLeft = 0
+		self._activationsLeft = 0
 		self.spikes = None
 		self.uses = None
 		self.spikeSpeed = None
 
+	@property
+	def activationsLeft(self):
+		return self._activationsLeft
+	@activationsLeft.setter
+	def activationsLeft(self, v):
+		self._activationsLeft = int(v)
 
 	def onPrepare(self):
 		self.activationsLeft = self.uses

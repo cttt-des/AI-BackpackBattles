@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class AceofSpades(_R.C("res://gd_core_items/Card.gd")):
+class AceofSpades_2(_R.C("res://gd_core_items/Card.gd")):
 
 	resource_path = "res://gd_core_items/AceofSpades.gd"
 
@@ -38,5 +38,5 @@ class AceofSpades(_R.C("res://gd_core_items/Card.gd")):
 		self.spikes = int(self.getP("spikes"))
 
 
-_R.reg("res://gd_core_items/AceofSpades.gd", AceofSpades)
-_R.reg("AceofSpades", AceofSpades)
+_R.reg("res://gd_core_items/AceofSpades.gd", AceofSpades_2)
+_R.reg("AceofSpades", AceofSpades_2)

@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class PoisonIvy(_R.C("res://gd_core_items/Item.gd")):
+class PoisonIvy_2(_R.C("res://gd_core_items/Item.gd")):
 
 	resource_path = "res://gd_core_items/PoisonIvy.gd"
 
@@ -16,8 +16,14 @@ class PoisonIvy(_R.C("res://gd_core_items/Item.gd")):
 		super()._init_fields()
 		self.damageIncreaseActive = False
 		self.activationParticles = None
-		self.poisonPerSpike = 0
+		self._poisonPerSpike = 0
 
+	@property
+	def poisonPerSpike(self):
+		return self._poisonPerSpike
+	@poisonPerSpike.setter
+	def poisonPerSpike(self, v):
+		self._poisonPerSpike = int(v)
 
 	def canAffect(self, item):
 		return item.hasType(_R.C("CoreConst").Type.Nature)
@@ -67,5 +73,5 @@ class PoisonIvy(_R.C("res://gd_core_items/Item.gd")):
 		self.poisonPerSpike = self.getP4()
 
 
-_R.reg("res://gd_core_items/PoisonIvy.gd", PoisonIvy)
-_R.reg("PoisonIvy", PoisonIvy)
+_R.reg("res://gd_core_items/PoisonIvy.gd", PoisonIvy_2)
+_R.reg("PoisonIvy", PoisonIvy_2)

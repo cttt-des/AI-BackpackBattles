@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class Fanfare(_R.C("res://gd_core_items/Item.gd")):
+class Fanfare_2(_R.C("res://gd_core_items/Item.gd")):
 
 	resource_path = "res://gd_core_items/Fanfare.gd"
 
@@ -61,5 +61,5 @@ class Fanfare(_R.C("res://gd_core_items/Item.gd")):
 		pass
 
 
-_R.reg("res://gd_core_items/Fanfare.gd", Fanfare)
-_R.reg("Fanfare", Fanfare)
+_R.reg("res://gd_core_items/Fanfare.gd", Fanfare_2)
+_R.reg("Fanfare", Fanfare_2)

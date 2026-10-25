@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class StrongDemonicFlask(_R.C("res://gd_core_items/Potion.gd")):
+class StrongDemonicFlask_2(_R.C("res://gd_core_items/Potion.gd")):
 
 	resource_path = "res://gd_core_items/StrongDemonicFlask.gd"
 
@@ -82,5 +82,5 @@ class StrongDemonicFlask(_R.C("res://gd_core_items/Potion.gd")):
 		self.opponentHealthThreshold = _div(self.getP('opphpt'), 100.0) - 0.0001
 
 
-_R.reg("res://gd_core_items/StrongDemonicFlask.gd", StrongDemonicFlask)
-_R.reg("StrongDemonicFlask", StrongDemonicFlask)
+_R.reg("res://gd_core_items/StrongDemonicFlask.gd", StrongDemonicFlask_2)
+_R.reg("StrongDemonicFlask", StrongDemonicFlask_2)

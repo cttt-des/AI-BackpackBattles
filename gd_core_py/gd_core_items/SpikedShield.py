@@ -8,16 +8,22 @@ from .. import _registry as _R
 
 
 
-class SpikedShield(_R.C("res://gd_core_items/Shield.gd")):
+class SpikedShield_2(_R.C("res://gd_core_items/Shield.gd")):
 
 	resource_path = "res://gd_core_items/SpikedShield.gd"
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.spikesGiven = 0
+		self._spikesGiven = 0
 		self.spikes = None
 		self.maxSpikes = None
 
+	@property
+	def spikesGiven(self):
+		return self._spikesGiven
+	@spikesGiven.setter
+	def spikesGiven(self, v):
+		self._spikesGiven = int(v)
 
 	def onPrepare(self):
 		self.spikesGiven = 0
@@ -42,5 +48,5 @@ class SpikedShield(_R.C("res://gd_core_items/Shield.gd")):
 		self.maxSpikes = int(self.getP("maxspikes"))
 
 
-_R.reg("res://gd_core_items/SpikedShield.gd", SpikedShield)
-_R.reg("SpikedShield", SpikedShield)
+_R.reg("res://gd_core_items/SpikedShield.gd", SpikedShield_2)
+_R.reg("SpikedShield", SpikedShield_2)

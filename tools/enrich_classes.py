@@ -62,6 +62,68 @@ def shop_to_classes(shop: str):
     return total
 
 
+def apply_recipe_inheritance(items: dict) -> int:
+    """ItemBook.calcClassAvailability（ItemBook.gd:1282-1297）+
+    ItemDescriptor.calcClassAvailability（ItemDescriptor.gd:175-198）的还原。
+
+    * gateItem 分支：classes==None(0) 且有 gateItem → classes = gateItem.classes
+      （95 件，如 Amulet 系 ← Amulet Unidentified）。
+    * 配方分支：originatingRecipes 非空 → 对每条配方
+      recipeClasses = Neutral(127) 后逐成分 &= ingredient.classes，
+      再 classes |= recipeClasses——成分表为空或成分全中性时恒吃满 127。
+
+    实证（run634_r18 [TWINE] 标记）：Evil Cap shop="no" 解析期 classes=0，
+    但它是 Leather Helm 配方 Corrupted Crystal>Evil Cap 的产物 → 运行期
+    classes=127、isNeutral()=true；内核按 0 判非中性 → Twine totalChance
+    40 vs 神谕 80（sec=1 vs 3），run634 首分歧直接来源。
+
+    不动点迭代（合成深度序的等价：浅层先收敛，深层随之），≤16 轮。
+    """
+    gate = {}
+    with open(CSV_PATH, encoding="utf-8-sig") as f:
+        for r in csv.DictReader(f):
+            g = (r.get("gateItem") or "").strip()
+            if g:
+                gate[r["name"]] = g
+
+    classes = {k: int(v.get("classes") or 0) for k, v in items.items()}
+    recipes = {}
+    for k, v in items.items():
+        for rec in v.get("originating_recipes") or []:
+            recipes.setdefault(k, []).append([rec["b"]] + list(rec["i"]))
+
+    changed_total = 0
+    for _round in range(16):
+        changed = False
+        for k in items:
+            cur = classes.get(k, 0)
+            g = gate.get(k)
+            if g and g in classes and cur == 0:
+                cur = classes[g]
+            if k in recipes:
+                acc = 0
+                for ings in recipes[k]:
+                    rc = STUFFED["Neutral"]
+                    for ing in ings:
+                        rc &= classes.get(ing, 0)
+                    acc |= rc
+                cur |= acc
+            if cur != classes.get(k, 0):
+                classes[k] = cur
+                changed = True
+        if not changed:
+            break
+    diff = 0
+    for k, v in items.items():
+        want = classes.get(k, 0)
+        if int(v.get("classes") or 0) != want:
+            v["classes"] = want
+            diff += 1
+    changed_total = diff
+    print(f"配方类继承/gate 覆写：变更 {changed_total} 件")
+    return changed_total
+
+
 def main():
     check_only = "--check" in sys.argv
     rows = {}
@@ -91,6 +153,9 @@ def main():
             changed += 1
             v["classes"] = cls
     print(f"覆盖 {covered} / 缺失 {missing} / 本次变更 {changed}")
+
+    # round3 追加：配方类继承 + gateItem 覆写（ItemDescriptor.calcClassAvailability）
+    apply_recipe_inheritance(items)
 
     if check_only:
         return

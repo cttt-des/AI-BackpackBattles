@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class VampiricArmor(_R.C("res://gd_core_items/Item.gd")):
+class VampiricArmor_2(_R.C("res://gd_core_items/Item.gd")):
 
 	resource_path = "res://gd_core_items/VampiricArmor.gd"
 
@@ -28,5 +28,5 @@ class VampiricArmor(_R.C("res://gd_core_items/Item.gd")):
 		pass
 
 
-_R.reg("res://gd_core_items/VampiricArmor.gd", VampiricArmor)
-_R.reg("VampiricArmor", VampiricArmor)
+_R.reg("res://gd_core_items/VampiricArmor.gd", VampiricArmor_2)
+_R.reg("VampiricArmor", VampiricArmor_2)

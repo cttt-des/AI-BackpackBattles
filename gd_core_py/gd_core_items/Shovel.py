@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class Shovel(_R.C("res://gd_core_items/Weapon.gd")):
+class Shovel_2(_R.C("res://gd_core_items/Weapon.gd")):
 
 	resource_path = "res://gd_core_items/Shovel.gd"
 
@@ -32,5 +32,5 @@ class Shovel(_R.C("res://gd_core_items/Weapon.gd")):
 		pass
 
 
-_R.reg("res://gd_core_items/Shovel.gd", Shovel)
-_R.reg("Shovel", Shovel)
+_R.reg("res://gd_core_items/Shovel.gd", Shovel_2)
+_R.reg("Shovel", Shovel_2)

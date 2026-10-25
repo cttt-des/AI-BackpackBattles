@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class HungryBlade(_R.C("res://gd_core_items/Weapon.gd")):
+class HungryBlade_2(_R.C("res://gd_core_items/Weapon.gd")):
 
 	resource_path = "res://gd_core_items/HungryBlade.gd"
 
@@ -47,5 +47,5 @@ class HungryBlade(_R.C("res://gd_core_items/Weapon.gd")):
 		self.vampirismForRegen = int(self.getP3())
 
 
-_R.reg("res://gd_core_items/HungryBlade.gd", HungryBlade)
-_R.reg("HungryBlade", HungryBlade)
+_R.reg("res://gd_core_items/HungryBlade.gd", HungryBlade_2)
+_R.reg("HungryBlade", HungryBlade_2)

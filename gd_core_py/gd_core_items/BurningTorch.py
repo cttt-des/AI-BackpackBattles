@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class BurningTorch(_R.C("res://gd_core_items/Weapon.gd")):
+class BurningTorch_2(_R.C("res://gd_core_items/Weapon.gd")):
 
 	resource_path = "res://gd_core_items/BurningTorch.gd"
 
@@ -31,5 +31,5 @@ class BurningTorch(_R.C("res://gd_core_items/Weapon.gd")):
 		self.permDamBonus = self.getP2()
 
 
-_R.reg("res://gd_core_items/BurningTorch.gd", BurningTorch)
-_R.reg("BurningTorch", BurningTorch)
+_R.reg("res://gd_core_items/BurningTorch.gd", BurningTorch_2)
+_R.reg("BurningTorch", BurningTorch_2)

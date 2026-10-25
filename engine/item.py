@@ -570,11 +570,10 @@ class Item:
     # 这里为常见的视觉/引擎成员提供安全占位。
     @property
     def sprite(self):
-        """sprite 节点引用（$Icon 等）：登记视觉桩（链式安全，支持
-        `.offset` 一元运算等），行为代码 `-_item.sprite.offset * ...` 不再炸。"""
-        from .stubs import _LEGACY_STUBS
-        _LEGACY_STUBS.hit("item_visual.sprite")
-        return _LEGACY_STUBS.make_noop("item_visual.sprite")
+        if not hasattr(self, "_sprite_noop"):
+            from .behavior import _Noop
+            self._sprite_noop = _Noop()
+        return self._sprite_noop
 
     @property
     def placed(self) -> bool:
@@ -2079,13 +2078,6 @@ class Item:
 
     def set_state(self, new_state, with_next_event=False, event=None):
         """Item.gd setState — 状态切换入口（camelCase setState 调用经 __getattr__ 到达）"""
-        # Potion.gd onStateChanged(_isFull)：setState(false)=drink（药水空）、
-        # setState(true)=fill。缺失此同步会让 is_empty() 恒 False，药水
-        # （Pestilence Flask 等）被对手每次治疗无限重触发
-        if new_state is False:
-            self.is_full = False
-        elif new_state is True:
-            self.is_full = True
         self.state_changed(new_state)
 
     def state_changed(self, new_state):

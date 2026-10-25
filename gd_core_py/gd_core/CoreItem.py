@@ -71,7 +71,7 @@ class CoreItem(GodotObject):
 		self.bonusDamageFactor = 1.0
 		self.staminaFactor = 1.0
 		self.critChancePercent = 0.0
-		self.critTokens = 0
+		self._critTokens = 0
 		self.critSeverity = self.BASE_CRIT_SEVERITY
 		self.bonusChancePercent_mult = 0.0
 		self.bonusChancePercent_additive1 = 0.0
@@ -84,15 +84,15 @@ class CoreItem(GodotObject):
 		self.doubleAttackEffectChance = 0.0
 		self.paramMult = {}
 		self.paramAdd = {}
-		self.numCharges = 0
+		self._numCharges = 0
 		self.baseCooldownOverride = 0.0
 		self.chanceRng = None
 		self.damageRangeRng = None
 		self.statDisplayOverrides = []
 		self.lastActivationTime = 0.0
-		self.activationsThisFrame = 0
+		self._activationsThisFrame = 0
 		self.lastTriggerTime = 0.0
-		self.triggersThisFrame = 0
+		self._triggersThisFrame = 0
 		self.triggerTime = 0.0
 		self.iterationCooldown = 0.0
 		self.itemMetrics = []
@@ -102,7 +102,7 @@ class CoreItem(GodotObject):
 		self._cooldown_active = False
 		self.dynamicTypes = {}       # 动态类型记账（addDynamicType/removeDynamicType）
 		self.combatConnections = []       # connectForCombat_signal 建立的战斗连接
-		self.ownerType = _R.C("CoreConst").Owner.Undefined   # 由装配层按所属角色写入
+		self._ownerType = _R.C("CoreConst").Owner.Undefined   # 由装配层按所属角色写入
 		self.placedByPlayer = False            # 对齐 Item.gd:386 附近（addToInventory 写入）
 		self.dragged = False                   # 对齐 Item.gd:390（拖拽态；战斗路径恒 false）
 		self.occupiedCells = []           # 该物品占用的库存格（装配层写入）
@@ -122,9 +122,45 @@ class CoreItem(GodotObject):
 		self.timers = []
 		self.buffLabelPositionTimestamps = [0.0, 0.0, 0.0, 0.0, 0.0]
 		self.replacementPending = False
-		self.faceDirection = _R.C("CoreConst").FaceDirection.UP
+		self._faceDirection = _R.C("CoreConst").FaceDirection.UP
 		self.rotation = 0.0
 
+	@property
+	def critTokens(self):
+		return self._critTokens
+	@critTokens.setter
+	def critTokens(self, v):
+		self._critTokens = int(v)
+	@property
+	def numCharges(self):
+		return self._numCharges
+	@numCharges.setter
+	def numCharges(self, v):
+		self._numCharges = int(v)
+	@property
+	def activationsThisFrame(self):
+		return self._activationsThisFrame
+	@activationsThisFrame.setter
+	def activationsThisFrame(self, v):
+		self._activationsThisFrame = int(v)
+	@property
+	def triggersThisFrame(self):
+		return self._triggersThisFrame
+	@triggersThisFrame.setter
+	def triggersThisFrame(self, v):
+		self._triggersThisFrame = int(v)
+	@property
+	def ownerType(self):
+		return self._ownerType
+	@ownerType.setter
+	def ownerType(self, v):
+		self._ownerType = int(v)
+	@property
+	def faceDirection(self):
+		return self._faceDirection
+	@faceDirection.setter
+	def faceDirection(self, v):
+		self._faceDirection = int(v)
 	# =============================================================================
 	# CoreItem.gd — 无头战斗内核：物品（战斗部分）
 	# =============================================================================
@@ -967,7 +1003,7 @@ class CoreItem(GodotObject):
 			# ★ ANIM 标记（不消耗链，与神谕 oracle/Items/Item.gd playAnimation 的
 			#   同名标记行同构）：跨引擎 4 抽块归属定位用。
 			if self.ctx.rng.oracle_trace:
-				self.ctx.rng.oracle_trace_log.push_back([len(self.ctx.rng.oracle_trace_log),
+				self.ctx.rng.oracle_trace_log.append([len(self.ctx.rng.oracle_trace_log),
 						"ANIM", String(self.descriptor.identifier), "True", "hit=True", ""])
 			self.ctx.rng.randf_range(-30.0, 30.0)
 			self.ctx.rng.randf_range(-100.0, 100.0)
@@ -1928,7 +1964,7 @@ class CoreItem(GodotObject):
 	def giveBuffPower(self, buffType, power):
 		# ★ 诊断标记（不消耗链）：buffPower 授予面追踪
 		if self.ctx.rng.oracle_trace:
-			self.ctx.rng.oracle_trace_log.push_back([len(self.ctx.rng.oracle_trace_log),
+			self.ctx.rng.oracle_trace_log.append([len(self.ctx.rng.oracle_trace_log),
 					"BFP", String(self.descriptor.identifier), str(buffType), str(power),
 					""])
 		self.buffPowers[buffType] += power

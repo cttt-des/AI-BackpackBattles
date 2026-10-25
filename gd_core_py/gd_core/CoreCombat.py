@@ -35,7 +35,7 @@ class CoreCombat(GodotObject):
 		self.player = None
 		self.opponent = None
 		self.ordered_items = []
-		self.result = -1
+		self._result = -1
 		self.fight_ended = False
 		self.combat_time = 0.0
 		self.fatigue_counter = 0
@@ -52,6 +52,12 @@ class CoreCombat(GodotObject):
 		self.timed_out = False
 		self._pending_deferred = False
 
+	@property
+	def result(self):
+		return self._result
+	@result.setter
+	def result(self, v):
+		self._result = int(v)
 	# =============================================================================
 	# CoreCombat.gd — 无头战斗内核：战斗驱动（主循环 / 时钟 / 疲劳 / 判胜 / 收尾）
 	# =============================================================================

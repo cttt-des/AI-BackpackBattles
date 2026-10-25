@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class TheLovers(_R.C("res://gd_core_items/Card.gd")):
+class TheLovers_2(_R.C("res://gd_core_items/Card.gd")):
 
 	resource_path = "res://gd_core_items/TheLovers.gd"
 
@@ -42,5 +42,5 @@ class TheLovers(_R.C("res://gd_core_items/Card.gd")):
 		self.regen = int(self.getP("regen"))
 
 
-_R.reg("res://gd_core_items/TheLovers.gd", TheLovers)
-_R.reg("TheLovers", TheLovers)
+_R.reg("res://gd_core_items/TheLovers.gd", TheLovers_2)
+_R.reg("TheLovers", TheLovers_2)

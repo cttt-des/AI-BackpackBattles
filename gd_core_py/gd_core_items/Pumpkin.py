@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class Pumpkin(_R.C("res://gd_core_items/Food.gd")):
+class Pumpkin_2(_R.C("res://gd_core_items/Food.gd")):
 
 	resource_path = "res://gd_core_items/Pumpkin.gd"
 
@@ -49,5 +49,5 @@ class Pumpkin(_R.C("res://gd_core_items/Food.gd")):
 
 
 
-_R.reg("res://gd_core_items/Pumpkin.gd", Pumpkin)
-_R.reg("Pumpkin", Pumpkin)
+_R.reg("res://gd_core_items/Pumpkin.gd", Pumpkin_2)
+_R.reg("Pumpkin", Pumpkin_2)

@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class FannyPack(_R.C("res://gd_core_items/Bag.gd")):
+class FannyPack_2(_R.C("res://gd_core_items/Bag.gd")):
 
 	resource_path = "res://gd_core_items/FannyPack.gd"
 
@@ -40,5 +40,5 @@ class FannyPack(_R.C("res://gd_core_items/Bag.gd")):
 		self.speedBonus = _div(self.getP1(), 100)
 
 
-_R.reg("res://gd_core_items/FannyPack.gd", FannyPack)
-_R.reg("FannyPack", FannyPack)
+_R.reg("res://gd_core_items/FannyPack.gd", FannyPack_2)
+_R.reg("FannyPack", FannyPack_2)

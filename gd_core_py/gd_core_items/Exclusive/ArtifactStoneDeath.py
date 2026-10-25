@@ -14,9 +14,15 @@ class Exclusive__ArtifactStoneDeath(_R.C("res://gd_core_items/Stone.gd")):
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.lastFatigueDam = 0
+		self._lastFatigueDam = 0
 		self.activationParticles = None
 
+	@property
+	def lastFatigueDam(self):
+		return self._lastFatigueDam
+	@lastFatigueDam.setter
+	def lastFatigueDam(self, v):
+		self._lastFatigueDam = int(v)
 
 	def onPrepare(self):
 		self.lastFatigueDam = 0

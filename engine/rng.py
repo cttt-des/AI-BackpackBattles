@@ -86,16 +86,3 @@ class BalancedRange:
             rng_val += bonus
         self.acc += dif
         return rng_val
-
-
-def flip(rng: random.Random, chance: float = 0.5) -> bool:
-    """Util.flip（Util.gd）：randf() <= chance"""
-    return rng.random() <= chance
-
-
-def roll(rng: random.Random, maximum: float = 100.0) -> float:
-    return rng.uniform(0.0, maximum)
-
-
-def flip_percent(rng: random.Random, chance: float) -> bool:
-    return rng.uniform(0.0, 100.0) <= chance

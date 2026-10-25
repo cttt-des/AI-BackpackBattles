@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class Hammer(_R.C("res://gd_core_items/Weapon.gd")):
+class Hammer_2(_R.C("res://gd_core_items/Weapon.gd")):
 
 	resource_path = "res://gd_core_items/Hammer.gd"
 
@@ -27,5 +27,5 @@ class Hammer(_R.C("res://gd_core_items/Weapon.gd")):
 		pass
 
 
-_R.reg("res://gd_core_items/Hammer.gd", Hammer)
-_R.reg("Hammer", Hammer)
+_R.reg("res://gd_core_items/Hammer.gd", Hammer_2)
+_R.reg("Hammer", Hammer_2)

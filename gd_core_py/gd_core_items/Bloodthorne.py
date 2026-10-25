@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class Bloodthorne(_R.C("res://gd_core_items/Weapon.gd")):
+class Bloodthorne_2(_R.C("res://gd_core_items/Weapon.gd")):
 
 	resource_path = "res://gd_core_items/Bloodthorne.gd"
 
@@ -47,5 +47,5 @@ class Bloodthorne(_R.C("res://gd_core_items/Weapon.gd")):
 		self.spikes = int(self.getP3())
 
 
-_R.reg("res://gd_core_items/Bloodthorne.gd", Bloodthorne)
-_R.reg("Bloodthorne", Bloodthorne)
+_R.reg("res://gd_core_items/Bloodthorne.gd", Bloodthorne_2)
+_R.reg("Bloodthorne", Bloodthorne_2)

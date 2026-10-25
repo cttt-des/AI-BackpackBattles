@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class RubyWhelp(_R.C("res://gd_core_items/Weapon.gd")):
+class RubyWhelp_2(_R.C("res://gd_core_items/Weapon.gd")):
 
 	resource_path = "res://gd_core_items/RubyWhelp.gd"
 
@@ -26,5 +26,5 @@ class RubyWhelp(_R.C("res://gd_core_items/Weapon.gd")):
 		pass
 
 
-_R.reg("res://gd_core_items/RubyWhelp.gd", RubyWhelp)
-_R.reg("RubyWhelp", RubyWhelp)
+_R.reg("res://gd_core_items/RubyWhelp.gd", RubyWhelp_2)
+_R.reg("RubyWhelp", RubyWhelp_2)

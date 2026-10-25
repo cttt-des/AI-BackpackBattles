@@ -14,9 +14,21 @@ class Exclusive__Rat(_R.C("res://gd_core_items/Exclusive/ForestFriend.gd")):
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.poison = 0
-		self.blind = 0
+		self._poison = 0
+		self._blind = 0
 
+	@property
+	def poison(self):
+		return self._poison
+	@poison.setter
+	def poison(self, v):
+		self._poison = int(v)
+	@property
+	def blind(self):
+		return self._blind
+	@blind.setter
+	def blind(self, v):
+		self._blind = int(v)
 
 	def initRat(self):
 		self.damageSource = _R.C("CoreDamageSource")().setItem(self)

@@ -8,14 +8,20 @@ from .. import _registry as _R
 
 
 
-class BloodyDagger(_R.C("res://gd_core_items/Dagger.gd")):
+class BloodyDagger_2(_R.C("res://gd_core_items/Dagger.gd")):
 
 	resource_path = "res://gd_core_items/BloodyDagger.gd"
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.vampirismStacks = 0
+		self._vampirismStacks = 0
 
+	@property
+	def vampirismStacks(self):
+		return self._vampirismStacks
+	@vampirismStacks.setter
+	def vampirismStacks(self, v):
+		self._vampirismStacks = int(v)
 
 	def canAffect(self, item):
 		return item.hasType(_R.C("CoreConst").Type.Vampiric)
@@ -40,5 +46,5 @@ class BloodyDagger(_R.C("res://gd_core_items/Dagger.gd")):
 		pass
 
 
-_R.reg("res://gd_core_items/BloodyDagger.gd", BloodyDagger)
-_R.reg("BloodyDagger", BloodyDagger)
+_R.reg("res://gd_core_items/BloodyDagger.gd", BloodyDagger_2)
+_R.reg("BloodyDagger", BloodyDagger_2)

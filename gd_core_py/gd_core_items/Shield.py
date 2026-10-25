@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class Shield(_R.C("res://gd_core_items/Item.gd")):
+class Shield_2(_R.C("res://gd_core_items/Item.gd")):
 
 	resource_path = "res://gd_core_items/Shield.gd"
 
@@ -58,6 +58,6 @@ class Shield(_R.C("res://gd_core_items/Item.gd")):
 		pass
 
 
-_R.reg("res://gd_core_items/Shield.gd", Shield)
-_R.reg("Shield", Shield)
-_R.reg("Shield", Shield)
+_R.reg("res://gd_core_items/Shield.gd", Shield_2)
+_R.reg("Shield", Shield_2)
+_R.reg("Shield", Shield_2)

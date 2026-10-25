@@ -15,9 +15,15 @@ class Exclusive__BadgerRune(_R.C("res://gd_core_items/Gems/Gem.gd")):
 	def _init_fields(self):
 		super()._init_fields()
 		self.attackSpeedBonus = None
-		self.damageReduction = 0
+		self._damageReduction = 0
 		self.staminaReduction = None
 
+	@property
+	def damageReduction(self):
+		return self._damageReduction
+	@damageReduction.setter
+	def damageReduction(self, v):
+		self._damageReduction = int(v)
 	gemColor = Color(0.845703, 0.420593, 0.062767)
 
 	def isBattleRageItem(self):

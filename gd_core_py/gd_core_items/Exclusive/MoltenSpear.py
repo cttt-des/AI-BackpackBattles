@@ -14,11 +14,17 @@ class Exclusive__MoltenSpear(_R.C("res://gd_core_items/Weapon.gd")):
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.totalBlockRemoval = 0
+		self._totalBlockRemoval = 0
 		self.blockRemoval = None
 		self.missDamage = None
 		self.heatNeeded = None
 
+	@property
+	def totalBlockRemoval(self):
+		return self._totalBlockRemoval
+	@totalBlockRemoval.setter
+	def totalBlockRemoval(self, v):
+		self._totalBlockRemoval = int(v)
 
 	def affectsEmpty(self, color):
 		return True

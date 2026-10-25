@@ -18,13 +18,19 @@ class Exclusive__KingGoobert(_R.C("res://gd_core_items/Goobert.gd")):
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.invuCharges = 0
+		self._invuCharges = 0
 		self.protectedBuffs = None
 		self.manaCost = None
 		self.activationParticles = None
 		self.buffTimer = None
 		self.light = None
 
+	@property
+	def invuCharges(self):
+		return self._invuCharges
+	@invuCharges.setter
+	def invuCharges(self, v):
+		self._invuCharges = int(v)
 
 	def prepare(self):
 		gemPower = _div(self.getP('gempower'), 100.0)

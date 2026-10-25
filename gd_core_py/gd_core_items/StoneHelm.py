@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class StoneHelm(_R.C("res://gd_core_items/LeatherHelm.gd")):
+class StoneHelm_2(_R.C("res://gd_core_items/LeatherHelm.gd")):
 
 	resource_path = "res://gd_core_items/StoneHelm.gd"
 
@@ -26,5 +26,5 @@ class StoneHelm(_R.C("res://gd_core_items/LeatherHelm.gd")):
 		pass
 
 
-_R.reg("res://gd_core_items/StoneHelm.gd", StoneHelm)
-_R.reg("StoneHelm", StoneHelm)
+_R.reg("res://gd_core_items/StoneHelm.gd", StoneHelm_2)
+_R.reg("StoneHelm", StoneHelm_2)

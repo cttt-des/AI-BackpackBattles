@@ -15,10 +15,16 @@ class Exclusive__SpellScrollIce(_R.C("res://gd_core_items/Item.gd")):
 	def _init_fields(self):
 		super()._init_fields()
 		self.activated = False
-		self.coldInflicted = 0
+		self._coldInflicted = 0
 		self.cold = None
 		self.maxCold = None
 
+	@property
+	def coldInflicted(self):
+		return self._coldInflicted
+	@coldInflicted.setter
+	def coldInflicted(self, v):
+		self._coldInflicted = int(v)
 
 	def canAffect(self, item):
 		return item.hasType(_R.C("CoreConst").Type.Shield) or (item.hasType(_R.C("CoreConst").Type.Armor) and item.canActivate())

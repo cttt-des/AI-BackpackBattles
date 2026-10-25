@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class GlovesofHaste(_R.C("res://gd_core_items/Item.gd")):
+class GlovesofHaste_2(_R.C("res://gd_core_items/Item.gd")):
 
 	resource_path = "res://gd_core_items/GlovesofHaste.gd"
 
@@ -31,5 +31,5 @@ class GlovesofHaste(_R.C("res://gd_core_items/Item.gd")):
 		self.bonusSpeed = _div(self.getP1(), 100)
 
 
-_R.reg("res://gd_core_items/GlovesofHaste.gd", GlovesofHaste)
-_R.reg("GlovesofHaste", GlovesofHaste)
+_R.reg("res://gd_core_items/GlovesofHaste.gd", GlovesofHaste_2)
+_R.reg("GlovesofHaste", GlovesofHaste_2)

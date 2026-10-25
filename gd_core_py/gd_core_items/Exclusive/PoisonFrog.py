@@ -15,13 +15,37 @@ class Exclusive__PoisonFrog(_R.C("res://gd_core_items/Item.gd")):
 	def _init_fields(self):
 		super()._init_fields()
 		self.affectedItemsDict = {}
-		self.gainedBuffs = 0
-		self.usedBuffs = 0
-		self.gainedThreshold = 0
-		self.usedThreshold = 0
+		self._gainedBuffs = 0
+		self._usedBuffs = 0
+		self._gainedThreshold = 0
+		self._usedThreshold = 0
 		self.poison = None
 		self.mana = None
 
+	@property
+	def gainedBuffs(self):
+		return self._gainedBuffs
+	@gainedBuffs.setter
+	def gainedBuffs(self, v):
+		self._gainedBuffs = int(v)
+	@property
+	def usedBuffs(self):
+		return self._usedBuffs
+	@usedBuffs.setter
+	def usedBuffs(self, v):
+		self._usedBuffs = int(v)
+	@property
+	def gainedThreshold(self):
+		return self._gainedThreshold
+	@gainedThreshold.setter
+	def gainedThreshold(self, v):
+		self._gainedThreshold = int(v)
+	@property
+	def usedThreshold(self):
+		return self._usedThreshold
+	@usedThreshold.setter
+	def usedThreshold(self, v):
+		self._usedThreshold = int(v)
 
 	def canAffect(self, item):
 		return item.gainsBuffs() or item.usesBuffs()

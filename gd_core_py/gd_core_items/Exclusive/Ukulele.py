@@ -15,7 +15,7 @@ class Exclusive__Ukulele(_R.C("res://gd_core_items/Item.gd")):
 	def _init_fields(self):
 		super()._init_fields()
 		self.nonMusicalItems = []
-		self.activateIndex = 0
+		self._activateIndex = 0
 		self.options = []
 		self.speedPerItem = None
 		self.cdAdvance = None
@@ -23,6 +23,12 @@ class Exclusive__Ukulele(_R.C("res://gd_core_items/Item.gd")):
 		self.buffs = None
 		self.cold = None
 
+	@property
+	def activateIndex(self):
+		return self._activateIndex
+	@activateIndex.setter
+	def activateIndex(self, v):
+		self._activateIndex = int(v)
 
 	def canAffect(self, item):
 		return True

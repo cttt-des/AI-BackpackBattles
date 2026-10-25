@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class CritwoodStaff(_R.C("res://gd_core_items/Weapon.gd")):
+class CritwoodStaff_2(_R.C("res://gd_core_items/Weapon.gd")):
 
 	resource_path = "res://gd_core_items/CritwoodStaff.gd"
 
@@ -67,5 +67,5 @@ class CritwoodStaff(_R.C("res://gd_core_items/Weapon.gd")):
 		self.tempDamBonus = self.getP2()
 
 
-_R.reg("res://gd_core_items/CritwoodStaff.gd", CritwoodStaff)
-_R.reg("CritwoodStaff", CritwoodStaff)
+_R.reg("res://gd_core_items/CritwoodStaff.gd", CritwoodStaff_2)
+_R.reg("CritwoodStaff", CritwoodStaff_2)

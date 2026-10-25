@@ -43,11 +43,9 @@ from simulator.events import CombatLog            # noqa: E402
 from simulator.data import load_items             # noqa: E402
 from simulator import extract_items as E          # noqa: E402
 from simulator import behavior as B               # noqa: E402  (动态读 CLASS_METHODS)
-from simulator.behavior import BEHAVIOR_GLOBALS as BEHAVIOR_GLOBALS_REF  # noqa: E402
 from simulator.buff import BuffType               # noqa: E402
 from simulator.buff import BuffType               # noqa: E402
 
-DB = {}
 DELTA = 1.0 / 60.0
 SIM_SECONDS = 25.0
 
@@ -107,12 +105,6 @@ EFFECT_PATTERNS = [
     (r'_item\.give_double_activation_chance\(', 'double_activation'),
     (r'_item\.change_heal_amp\(|_item\.add_healing_efficiency\(', 'heal_amp'),
     (r'_item\.start_battle_rage\(|_item\.add_battle_rage_duration\(', 'battle_rage'),
-    (r'_item\.give_random_buffs\(|_item\.give_random_buff\(|_item\.give_random_buff\(', 'random_buffs'),
-    (r'_item\.give_all_buffs\(', 'random_buffs'),
-    (r'_item\.give_most_buffs\(|_item\.give_least_buffs\(', 'random_buffs'),
-    (r'_item\.inflict_random_debuffs\(', 'random_debuffs'),
-    (r'_item\.give_mana_capped\(', 'mana'),
-    (r'_item\.cleanse_random_debuffs\(', 'cleanse'),
     (r'_item\.duplicate_item\(', 'duplicate'),
 ]
 # 门槛/联动（不作为运行时证据要求，只作为上下文标注）
@@ -153,21 +145,12 @@ METHOD_CONTEXT = {
     'onBuffEnded': 'buff_end',
     'onDamaged': 'damaged',
     'onHealed': 'healed',
-    'onManaChanged': 'mana_changed',
-    'onAttacked': 'on_hit',
-    'onItemGaveBlock': 'linkage',
-    'onEmpowerChanged': 'state',
-    'onRegenChanged': 'state',
-    'onBattleRageStarted': 'battle_rage_ctx',
-    'onBattleRageEnded': 'battle_rage_ctx',
-    'onOpponentDamaged': 'on_hit',
 }
 CONTEXT_LABEL = {
     'cooldown': '冷却触发', 'battle_start': '战斗开始', 'on_hit': '命中时',
     'charge': '充能', 'activated_link': '邻格激活', 'linkage': '影响格联动',
     'state': '状态切换', 'battle_end': '战斗结束', 'buff_end': '增益结束',
-    'damaged': '自身受伤', 'healed': '自身被治疗', 'mana_changed': 'mana变化',
-    'battle_rage_ctx': '战怒切换',
+    'damaged': '自身受伤', 'healed': '自身被治疗',
 }
 
 
@@ -218,8 +201,8 @@ def run_profile(key: str, data: dict) -> dict:
     """solo harness：物品 + 木桩对手 + 脚本刺激。返回运行时证据。"""
     log = CombatLog()
     inv = GridInventory(7, 10)
-    ch = Character(0, "P", 9999, 9999, 5.0, log=log)
-    opp = Character(1, "O", 9999999, 9999, 5.0, log=log)
+    ch = Character(0, "P", 9999, 99, 5.0, log=log)
+    opp = Character(1, "O", 999999, 99, 5.0, log=log)
     ch.set_opponent(opp)
     opp.set_opponent(ch)
     ch.log = log
@@ -280,9 +263,8 @@ def run_profile(key: str, data: dict) -> dict:
     _orig_sg = log.stack_gain
 
     def sg_cap(t, *a, **kw):
-        # stack_gain(t, actor, target, origin, buff, amount, ...) —— t 吃掉首个参数后
-        origin = a[2] if len(a) > 2 else kw.get('origin')
-        buff = a[3] if len(a) > 3 else kw.get('buff')
+        origin = a[3] if len(a) > 3 else kw.get('origin')
+        buff = a[4] if len(a) > 4 else kw.get('buff')
         if origin is not it.key:
             return None                      # 过滤刺激/噪声事件
         actor = a[0] if a else kw.get('actor')
@@ -295,8 +277,8 @@ def run_profile(key: str, data: dict) -> dict:
     _orig_sl = log.stack_lose
 
     def sl_cap(t, *a, **kw):
-        origin = a[2] if len(a) > 2 else kw.get('origin')
-        buff = a[3] if len(a) > 3 else kw.get('buff')
+        origin = a[3] if len(a) > 3 else kw.get('origin')
+        buff = a[4] if len(a) > 4 else kw.get('buff')
         if origin is not it.key:
             return None
         actor = a[0] if a else kw.get('actor')
@@ -306,22 +288,10 @@ def run_profile(key: str, data: dict) -> dict:
         return _orig_sl(t, *a, **kw)
     log.stack_lose = sl_cap
 
-    _orig_stam = log.stamina_gain
-
-    def stam_cap(t, *a, **kw):
-        origin = a[2] if len(a) > 2 else kw.get('origin')
-        if origin is not it.key:
-            return None
-        seen[('stamina_gain',)] += 1
-        return _orig_stam(t, *a, **kw)
-    log.stamina_gain = stam_cap
-
-    # 生命周期（伴侣先 prepare：canAffect 联动会读伴侣的成员，
-    # 对齐真实引擎「全部物品先 prepare 再建联动」的顺序）
+    # 生命周期
+    it.prepare()
     if companion is not None:
         companion.prepare()
-    it.prepare()
-    ch.set_items([x for x in (it, companion) if x is not None])
     it.pre_combat_start()
     if companion is not None:
         companion.pre_combat_start()
@@ -344,29 +314,6 @@ def run_profile(key: str, data: dict) -> dict:
             return seq[0] if seq else None
     it.chance_rng = AlwaysYes()
 
-    # 命中恒成功（Stone accuracy=70 会 legitimately miss，审计关注效果链而非命中）
-    ch.accuracy_rng = type('AlwaysHitRng', (), {
-        'roll_percent': staticmethod(lambda v: True),
-        'roll': staticmethod(lambda v: True),
-        'reset': staticmethod(lambda: None),
-    })()
-
-    # pickRandomElement 轮转选择（AlwaysYes 恒取首元素会让 Flute 的
-    # options 轮换永远轮不到 lucky）
-    Util_obj = BEHAVIOR_GLOBALS_REF['Util']
-    _orig_pick = Util_obj.pickRandomElement
-    _pick_seq = {'n': 0, 'last': {}}
-
-    def lru_pick(lst, _orig=_orig_pick):
-        """最久未用值优先：保证各选项都会被轮询到（Flute options 等）"""
-        if not lst:
-            return None
-        best = min(lst, key=lambda v: _pick_seq['last'].get(v, -1))
-        _pick_seq['n'] += 1
-        _pick_seq['last'][best] = _pick_seq['n']
-        return best
-    Util_obj.pickRandomElement = lru_pick
-
     # 木桩对手给点 buff/mana 供偷取/消耗类效果
     opp.gain_block(5)
     opp.gain_stacks(BuffType.MANA, 5)
@@ -374,23 +321,14 @@ def run_profile(key: str, data: dict) -> dict:
     ch.gain_block(3)
 
     # 时间推进 + 每秒刺激
-    stimuli = ['damaged', 'healed', 'mana', 'stamina', 'damaged_big',
-               'mana', 'healed', 'mana']
+    stimuli = ['damaged', 'healed', 'mana', 'stamina', 'damaged_big']
     t = 0.0
     ch.use_stamina(80)                      # 耐力降到低位，供恢复/消耗类效果显影
-    ch.gain_stacks(BuffType.LUCKY, 3)       # 幸运供 use_lucky/幸运消耗类显影
     for sec in range(int(SIM_SECONDS)):
         t = (sec + 1) * 1.0
         log.current_time = t
-        # 健康高低交替：低血量供阈值触发（药水/Leather Boots），
-        # 高血量供"健康时"分支（Shell Totem giveEmpower）
-        if sec % 4 == 3:
-            ch.cur_health = ch.get_max_health() * 0.8
-        else:
-            ch.cur_health = ch.get_max_health() * 0.25
-        # 给物主挂减益（cleanse 族效果显影；不用 cold——cold 会拖慢冷却）
-        ch.gain_stacks(BuffType.POISON, 2)
-        ch.gain_stacks(BuffType.BLIND, 1)
+        # 低血量（阈值触发类药水：Health drops below p1%）
+        ch.cur_health = ch.get_max_health() * 0.25
         kind = stimuli[sec % len(stimuli)]
         from simulator.damage import DamageSource, DS_Type
         if kind == 'damaged':
@@ -407,18 +345,15 @@ def run_profile(key: str, data: dict) -> dict:
         elif kind == 'healed':
             ch.heal(6, origin='stimulus')
         elif kind == 'mana':
-            ch.gain_stacks(BuffType.MANA, 4)
+            ch.gain_stacks(BuffType.MANA, 2)
         elif kind == 'stamina':
             ch.use_stamina(2)
         # 物理帧推进 1s（60 tick），物品冷却/计时
-        actors = [it] + ([companion] if companion is not None else [])
         if it.character is not None and not it.character.is_dead:
             for _ in range(60):
                 t += DELTA
                 log.current_time = t
-                for actor in actors:
-                    if not actor.consumed:
-                        actor.physics_tick(DELTA, t)
+                it.physics_tick(DELTA, t)
                 ch.character_tick(DELTA)
                 for b in ch.buffs.values():
                     b.process_timeouts(t, log, ch.name())
@@ -437,7 +372,6 @@ def run_profile(key: str, data: dict) -> dict:
         'own_vamp': ch.get_vampirism(), 'own_mana': ch.get_mana(),
         'own_heat': ch.get_heat() if hasattr(ch, 'get_heat') else 0,
     }
-    Util_obj.pickRandomElement = _orig_pick
     failures = dict(it._behavior_executor.failures) if it._behavior_executor else {}
     return {
         'seen': seen, 'damage_amounts': damage_amounts,
@@ -494,16 +428,8 @@ def evidence_for(cat: str, prof: dict) -> bool:
         'invulnerable': True,
         'dodge': True, 'counter': True, 'lifesteal': True,
         'battle_rage': True, 'duplicate': True,
-        'random_buffs': any(k[0] == 'stack_gain' and k[-1] == 'owner' for k in seen),
-        'random_debuffs': any(k[0] == 'stack_gain' and k[-1] == 'opponent' for k in seen),
     }
     return bool(table.get(cat, True))
-
-
-# 已知良性失败：商店阶段机制，战斗保真不受影响
-BENIGN_FAILURES = {
-    ("Shovel", "_ready"): "digUpBag 商店挖掘机制（非战斗）",
-}
 
 
 def audit_item(key: str, data: dict) -> dict:
@@ -511,24 +437,14 @@ def audit_item(key: str, data: dict) -> dict:
     prof = run_profile(key, data)
     issues = []
     # 行为执行失败（最高优先级问题）
-    real_failures = {}
-    for m, msg in prof['failures'].items():
-        mname = m[-1] if isinstance(m, tuple) else str(m)
-        if BENIGN_FAILURES.get((key, mname)) is None:
-            real_failures[m] = msg
-    if real_failures:
-        issues.append(f"行为执行失败: {list(real_failures.values())[:2]}")
+    if prof['failures']:
+        issues.append(f"行为执行失败: {list(prof['failures'].values())[:2]}")
     # 冷却物品必须有激活
     has_cooldown_ctx = 'cooldown' in exp
     if data.get('cd') and prof['activations'] == 0 and has_cooldown_ctx is False:
         issues.append(f"有 cd={data.get('cd')} 但零激活且无 doCooldownEffect 行为（模板未命中？）")
     # 期望效果必须有运行时证据
-    # （linkage/activated/mana_changed/battle_rage 语境需要多物品/特定信号场景，
-    #   harness 无法真实搭建 → 归 STATIC-ONLY，由 verify_linkage 覆盖）
-    static_only_ctx = {'linkage', 'activated_link', 'mana_changed', 'battle_rage_ctx'}
     for ctx, info in exp.items():
-        if ctx in static_only_ctx:
-            continue
         for cat in sorted(info['effects']):
             if not evidence_for(cat, prof):
                 issues.append(f"[{CONTEXT_LABEL.get(ctx, ctx)}] 期望效果 '{cat}' 无运行时证据")
@@ -536,16 +452,12 @@ def audit_item(key: str, data: dict) -> dict:
     expected_cats = set()
     for info in exp.values():
         expected_cats |= info['effects']
-    # 随机增益/减益类物品可给出任意类别，不参与反向比对
-    has_random = 'random_buffs' in expected_cats or 'random_debuffs' in expected_cats
     for k, n in prof['seen'].items():
         if k[0] == 'stack_gain' and n > 0:
             cat = k[1]
             if cat not in expected_cats and cat in (
                     'block', 'lucky', 'regeneration', 'vampirism', 'spikes',
                     'mana', 'empower', 'heat', 'poison', 'blind', 'cold'):
-                if has_random:
-                    continue    # 随机族效果的合法产物
                 issues.append(f"运行时出现未声明的增益 '{cat}' ×{n}（疑似重复/多余效果）")
     if prof['damage_amounts'] and 'damage' not in expected_cats \
             and 'effect_damage' not in expected_cats and 'lifesteal_damage' not in expected_cats:
@@ -554,8 +466,8 @@ def audit_item(key: str, data: dict) -> dict:
     # （消耗型物品提前退场后不再触发，跳过该检查）
     cd = data.get('cd') or 0
     if cd and has_cooldown_ctx and not prof['consumed']:
-        expect_n = max(1, int(SIM_SECONDS / cd))
-        if prof['activations'] < expect_n - 2:   # 调度容差 2 次
+        expect_n = max(1, int(SIM_SECONDS / cd) - 1)
+        if prof['activations'] < expect_n:
             issues.append(f"激活次数 {prof['activations']} < 预期 ≈{expect_n}（cd={cd}，窗口 {SIM_SECONDS}s）")
         if prof['activations'] > expect_n + 3:
             issues.append(f"激活次数 {prof['activations']} > 预期 ≈{expect_n}（疑似连发）")

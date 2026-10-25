@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class CarrotGoobert(_R.C("res://gd_core_items/Goobert.gd")):
+class CarrotGoobert_2(_R.C("res://gd_core_items/Goobert.gd")):
 
 	resource_path = "res://gd_core_items/CarrotGoobert.gd"
 
@@ -57,5 +57,5 @@ class CarrotGoobert(_R.C("res://gd_core_items/Goobert.gd")):
 		self.particleTimer = self.newItemTimer("ParticleTimer", "onParticleTimeout", False)
 
 
-_R.reg("res://gd_core_items/CarrotGoobert.gd", CarrotGoobert)
-_R.reg("CarrotGoobert", CarrotGoobert)
+_R.reg("res://gd_core_items/CarrotGoobert.gd", CarrotGoobert_2)
+_R.reg("CarrotGoobert", CarrotGoobert_2)

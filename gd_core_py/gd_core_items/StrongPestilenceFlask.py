@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class StrongPestilenceFlask(_R.C("res://gd_core_items/PestilenceFlask.gd")):
+class StrongPestilenceFlask_2(_R.C("res://gd_core_items/PestilenceFlask.gd")):
 
 	resource_path = "res://gd_core_items/StrongPestilenceFlask.gd"
 
@@ -34,5 +34,5 @@ class StrongPestilenceFlask(_R.C("res://gd_core_items/PestilenceFlask.gd")):
 		self.poisonTimer = self.newItemTimer("PoisonTimer", "poisonTimerTimeout", True)
 
 
-_R.reg("res://gd_core_items/StrongPestilenceFlask.gd", StrongPestilenceFlask)
-_R.reg("StrongPestilenceFlask", StrongPestilenceFlask)
+_R.reg("res://gd_core_items/StrongPestilenceFlask.gd", StrongPestilenceFlask_2)
+_R.reg("StrongPestilenceFlask", StrongPestilenceFlask_2)

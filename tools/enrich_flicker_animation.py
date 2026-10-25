@@ -14,16 +14,6 @@ battle_items.json（阶段2 装配期对齐，docs/alignment_fix_workflow.md §2
   flicker_animation                bool（场景有 FlickerAnimation 子节点）
   flicker_min_dist / flicker_max_dist    float（默认 0.1 / 3.0，FlickerAnimation.gd:4-5）
   flicker_min_speed / flicker_max_speed  float（默认 0.3 / 1.0，:6-7）
-  connector_ready_roll             bool（_ready 抽 randf_range(0.9,1.1)：types 含
-                                   potion 的物品经 Potion._ready 动态挂
-                                   PotionConnector（Potion.gd:22-28）；场景内嵌
-                                   CardConnector.tscn 的卡牌物品（Ace of Spades/
-                                   Darkest Lotus/Deck of Cards/Joker/Reverse/
-                                   Holo Fire Lizard/The Fool）——两者 _ready 均
-                                   modulate.g = randf_range(0.9,1.1)，各 +2 步）
-  gem_roll                         bool（types 含 gem：Gem._ready →
-                                   gemAnimation.advance(randf_range(0,10))，
-                                   Gem.gd:24，+2 步）
 边界值按各 .tscn 节点导出属性覆盖解析（实测仅 Flame 与 BurningSword 覆盖）。
 
 用法：
@@ -103,22 +93,6 @@ def flicker_of(key: str):
     return None
 
 
-# 场景内嵌 CardConnector.tscn 的物品（Items/**.tscn 逐文件 grep，本会话枚举）
-CARD_CONNECTOR_SCENES = {
-    "Ace of Spades", "Darkest Lotus", "Deck of Cards", "Joker", "Reverse",
-    "Holo Fire Lizard", "The Fool",
-}
-
-
-def extra_ready_flags(key: str, entry: dict) -> dict:
-    types = set(entry.get("types") or [])
-    return {
-        "connector_ready_roll": bool(types & {"potion"})
-        or key in CARD_CONNECTOR_SCENES,
-        "gem_roll": "gem" in types,
-    }
-
-
 def main() -> int:
     check_only = "--check" in sys.argv
     db = json.load(io.open(DB_PATH, encoding="utf-8"))
@@ -133,7 +107,6 @@ def main() -> int:
             want = {"flicker_animation": True,
                     "flicker_min_dist": d0, "flicker_max_dist": d1,
                     "flicker_min_speed": s0, "flicker_max_speed": s1}
-        want.update(extra_ready_flags(key, entry))
         if want["flicker_animation"]:
             n_flicker += 1
         cur = {k: entry.get(k) for k in want}

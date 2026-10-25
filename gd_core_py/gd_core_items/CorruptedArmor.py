@@ -8,14 +8,20 @@ from .. import _registry as _R
 
 
 
-class CorruptedArmor(_R.C("res://gd_core_items/Item.gd")):
+class CorruptedArmor_2(_R.C("res://gd_core_items/Item.gd")):
 
 	resource_path = "res://gd_core_items/CorruptedArmor.gd"
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.movedDebuffs = 0
+		self._movedDebuffs = 0
 
+	@property
+	def movedDebuffs(self):
+		return self._movedDebuffs
+	@movedDebuffs.setter
+	def movedDebuffs(self, v):
+		self._movedDebuffs = int(v)
 
 	def canAffect(self, item):
 		return item.hasType(_R.C("CoreConst").Type.Dark) or item.hasType(_R.C("CoreConst").Type.Holy)
@@ -64,5 +70,5 @@ class CorruptedArmor(_R.C("res://gd_core_items/Item.gd")):
 		self.movedDebuffs = self.getP1()
 
 
-_R.reg("res://gd_core_items/CorruptedArmor.gd", CorruptedArmor)
-_R.reg("CorruptedArmor", CorruptedArmor)
+_R.reg("res://gd_core_items/CorruptedArmor.gd", CorruptedArmor_2)
+_R.reg("CorruptedArmor", CorruptedArmor_2)

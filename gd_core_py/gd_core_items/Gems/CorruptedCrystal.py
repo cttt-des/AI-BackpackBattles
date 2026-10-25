@@ -15,13 +15,19 @@ class Gems__CorruptedCrystal(_R.C("res://gd_core_items/Gems/Gem.gd")):
 	def _init_fields(self):
 		super()._init_fields()
 		self.damageBonusApplied = False
-		self.debuffsInflicted = 0
+		self._debuffsInflicted = 0
 		self.weaponParticles = None
 		self.healthThreshold = None
 		self.damageFactor = None
 		self.debuffsNeeded = None
 		self.blockGain = None
 
+	@property
+	def debuffsInflicted(self):
+		return self._debuffsInflicted
+	@debuffsInflicted.setter
+	def debuffsInflicted(self, v):
+		self._debuffsInflicted = int(v)
 	gemColor = Color(0.938676, 0.24128, 0.988281)
 
 	def prepareWeapon(self):

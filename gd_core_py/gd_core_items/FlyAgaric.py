@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class FlyAgaric(_R.C("res://gd_core_items/Food.gd")):
+class FlyAgaric_2(_R.C("res://gd_core_items/Food.gd")):
 
 	resource_path = "res://gd_core_items/FlyAgaric.gd"
 
@@ -22,5 +22,5 @@ class FlyAgaric(_R.C("res://gd_core_items/Food.gd")):
 		pass
 
 
-_R.reg("res://gd_core_items/FlyAgaric.gd", FlyAgaric)
-_R.reg("FlyAgaric", FlyAgaric)
+_R.reg("res://gd_core_items/FlyAgaric.gd", FlyAgaric_2)
+_R.reg("FlyAgaric", FlyAgaric_2)

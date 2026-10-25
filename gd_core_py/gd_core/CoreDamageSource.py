@@ -20,8 +20,8 @@ class CoreDamageSource(GodotObject):
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.minDamage = 0
-		self.maxDamage = 0
+		self._minDamage = 0
+		self._maxDamage = 0
 		self.types = []
 		self.accuracy = 100
 		self.critChancePercent = 0
@@ -29,6 +29,18 @@ class CoreDamageSource(GodotObject):
 		self.flags = self.Flags.All
 		self._rng = None
 
+	@property
+	def minDamage(self):
+		return self._minDamage
+	@minDamage.setter
+	def minDamage(self, v):
+		self._minDamage = int(v)
+	@property
+	def maxDamage(self):
+		return self._maxDamage
+	@maxDamage.setter
+	def maxDamage(self, v):
+		self._maxDamage = int(v)
 	# =============================================================================
 	# CoreDamageSource.gd — 无头战斗内核：伤害源
 	# =============================================================================

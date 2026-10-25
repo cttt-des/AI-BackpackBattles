@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class FancyFencingRapier(_R.C("res://gd_core_items/Weapon.gd")):
+class FancyFencingRapier_2(_R.C("res://gd_core_items/Weapon.gd")):
 
 	resource_path = "res://gd_core_items/FancyFencingRapier.gd"
 
@@ -35,5 +35,5 @@ class FancyFencingRapier(_R.C("res://gd_core_items/Weapon.gd")):
 		self.luck = int(self.getP("luck"))
 
 
-_R.reg("res://gd_core_items/FancyFencingRapier.gd", FancyFencingRapier)
-_R.reg("FancyFencingRapier", FancyFencingRapier)
+_R.reg("res://gd_core_items/FancyFencingRapier.gd", FancyFencingRapier_2)
+_R.reg("FancyFencingRapier", FancyFencingRapier_2)

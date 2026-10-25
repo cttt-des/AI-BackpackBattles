@@ -11,10 +11,16 @@ from .. import _registry as _R
 class TemporaryStacks(GodotObject):
 	def _init_fields(self):
 		super()._init_fields()
-		self.amount = 0
+		self._amount = 0
 		self.timeout = 0.0
 		self.item = None
 
+	@property
+	def amount(self):
+		return self._amount
+	@amount.setter
+	def amount(self, v):
+		self._amount = int(v)
 
 	def _init(self, _amount, _timeout, _item=None):
 		self.amount = _amount
@@ -28,23 +34,59 @@ class CoreBuff(GodotObject):
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.type = 0
+		self._type = 0
 		self.isBuff = False
 		self.character = None
-		self.current = 0
-		self.permanentStacks = 0
+		self._current = 0
+		self._permanentStacks = 0
 		self.resistChancePercent = 0.0
-		self.resistStacks = 0
+		self._resistStacks = 0
 		self.reflectChancePercent = 0.0
 		self.cleanseProtectionChancePercent = 0.0
 		self.signalName = ""
 		self.temporaryStacks = []
-		self.nextTemporaryTimeout = 0
-		self.MAX_STACKS = 0
+		self._nextTemporaryTimeout = 0
+		self._MAX_STACKS = 0
 		self._timer_left = 0.0
 		self._timer_active = False
 		self.ctx = None
 
+	@property
+	def type(self):
+		return self._type
+	@type.setter
+	def type(self, v):
+		self._type = int(v)
+	@property
+	def current(self):
+		return self._current
+	@current.setter
+	def current(self, v):
+		self._current = int(v)
+	@property
+	def permanentStacks(self):
+		return self._permanentStacks
+	@permanentStacks.setter
+	def permanentStacks(self, v):
+		self._permanentStacks = int(v)
+	@property
+	def resistStacks(self):
+		return self._resistStacks
+	@resistStacks.setter
+	def resistStacks(self, v):
+		self._resistStacks = int(v)
+	@property
+	def nextTemporaryTimeout(self):
+		return self._nextTemporaryTimeout
+	@nextTemporaryTimeout.setter
+	def nextTemporaryTimeout(self, v):
+		self._nextTemporaryTimeout = int(v)
+	@property
+	def MAX_STACKS(self):
+		return self._MAX_STACKS
+	@MAX_STACKS.setter
+	def MAX_STACKS(self, v):
+		self._MAX_STACKS = int(v)
 	# =============================================================================
 	# CoreBuff.gd — 无头战斗内核：栈（buff/debuff）语义
 	# =============================================================================

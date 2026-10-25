@@ -14,11 +14,17 @@ class Exclusive__Halberd(_R.C("res://gd_core_items/Weapon.gd")):
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.totalBlockRemoval = 0
+		self._totalBlockRemoval = 0
 		self.dam = None
 		self.blockRemoval = None
 		self.blockFactor = None
 
+	@property
+	def totalBlockRemoval(self):
+		return self._totalBlockRemoval
+	@totalBlockRemoval.setter
+	def totalBlockRemoval(self, v):
+		self._totalBlockRemoval = int(v)
 
 	def canBlock(self):
 		return True

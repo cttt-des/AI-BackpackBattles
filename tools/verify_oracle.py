@@ -34,6 +34,10 @@ verify_oracle.py — 受控神谕三方逐行对齐（docs/oracle_workflow.md Ph
   python -X utf8 tools/verify_oracle.py                # 全量
   python -X utf8 tools/verify_oracle.py --compare-only # 只重跑比对（复用已有重放产物）
   python -X utf8 tools/verify_oracle.py --skip-py      # 只补 gd_core 侧
+  python -X utf8 tools/verify_oracle.py --cases run570_r18,run579_r18 --force
+      # 定向：只跑指定场；--force 先删两侧重放产物强制重模拟
+      #（幂等跳过会把改动前的陈旧结果当新结果——改码后必须 --force；
+      #  注意 --cases 会把夹具收缩为指定场，全量里程碑照常不带 --cases 重跑）
 输出：
   output/oracle/alignment.json {aligned, total, perCase, localization, fixPlan}
   output/oracle/align/render/<case>.{oracle,gdcore,py}.logtext（主判据留档）
@@ -62,6 +66,48 @@ LINEUP_OUT = os.path.join(ALIGN_DIR, "lineups")
 CASES_JSON = os.path.join(ROOT, "gd_core_test", "oracle_align_cases.json")
 ALIGNMENT_JSON = os.path.join(ROOT, "output", "oracle", "alignment.json")
 GODOT = os.path.join(ROOT, "output", "godot36", "Godot_v3.6-stable_win64.exe")
+
+# ── ★ np21-① 宿主补偿键控表（py 腿镜像；真源 = gd_core_test/OracleAlignBattle.gd
+#    文件头三表 + :481-514 注入段，逐点同步；机理与 canonical 推导证据见该处注释
+#    与 output/oracle/wf_notes/np18_fix.md §3、np20 台账 round2）──
+#    隔离开关：环境变量 ORACLE_ALIGN_NO_PERM_HARVEST / ORACLE_ALIGN_NO_WARM_LATCH
+#    置任意非空值即关对应补偿（与 gd 宿主同名同义，单笔隔离用）。
+PY_PERM_STACK_HARVEST = {"run702_r18": True, "run1022_r18": True}
+# ★ np22（与 gd 宿主 PERM_STACK_HARVEST/OVERRIDE np22 增行镜像；值=gd 收割
+#   管线全长对拍定谳的净真值向量，np21-①「py 只灌净真值表、不复刻收割管线」
+#   体例）：1371=gd 暖场自然终局收割原值；1444=收割之上 Cold(110) 覆写 1
+#   （exec2 终局残差 ≥1，见 gd 侧表注）。
+PY_PERM_STACK_OVERRIDE = {"run702_r18": {109: 1}, "run1022_r18": {109: 6},
+                          "run1371_r18": {101: 1, 102: 41, 104: 2, 105: 326,
+                                          106: 2, 107: 86, 110: 2},
+                          "run1444_r18": {100: 129, 102: 4, 103: 10, 106: 83,
+                                          107: 4, 110: 1}}
+# ★ np22 重录后摘除 696/1371 两键（新语料=ORACLE_NOLIMIT 全长重录干净形状，
+#   无闩残留；真源=gd 宿主 WARM_LATCH_PLAYERS 同步）。906/1125/1409 保留。
+PY_WARM_LATCH_PLAYERS = {
+    "run906_r18": True, "run1125_r18": True, "run1409_r18": True,
+}
+# ★ np21-R5 双执行拓扑键控表（py 腿镜像，真源 = gd_core_test/OracleAlignBattle.gd
+#   R5_DUAL_EXEC 表，机理/证据链/值不敏感论证见该处注释）：键控场先跑同 case
+#   同 seed 的干净暖场（截于事件闸 T_w 不清理），回灌三面残留——①暖场玩家
+#   permanentStacks；②bus 存活连接嫁接（陈旧先于新鲜，陈旧物品 ctx/character_/
+#   抽源改指正式侧）；③fatigueCounter（值不敏感，仅经 hasFatigueStarted 面观测）。
+#   隔离开关 ORACLE_ALIGN_NO_R5_DUAL_EXEC（置非空值关闭，与 gd 宿主同名同义）。
+#   run1409_r18 标定见 gd 宿主 R5_DUAL_EXEC 表注（T_w=事件闸 25000、θ=N/A、
+#   AoL 全双/AoA 分路径双发/Egg 对称双笔=合法机制勿注入 + stale_used_stacks
+#   封闭推导覆盖 {105: -0.375}——推导链见该表注）。
+PY_R5_DUAL_EXEC = {"run1125_r18": {"warm_event_gate": 25000},
+                   "run1409_r18": {"warm_event_gate": 25000,
+                                   "stale_used_stacks": {"Amulet of Agility": {105: -0.375}}},
+                   "run906_r18": {"warm_event_gate": 25000,
+                                  "stale_used_stacks": {"Amulet of Agility": {105: 0.125}}}}
+# ★ np22 重录场正式腿事件闸对位抬闸（真源 = gd_core_test/OracleAlignBattle.gd
+#   NP22_REC_EV_GATE 表）：三场新语料以 ORACLE_NOLIMIT=1（事件闸 200000）
+#   全长录制，py 正式腿同闸对位（引擎 formal_ev_gate 参数），否则 M12=25000
+#   截断 → 伪长度分歧。其余 911 场缺省 25000 零变化。
+PY_NP22_REC_EV_GATE = {"run696_r18": 200000, "run1371_r18": 200000,
+                       "run1444_r18": 200000}
+
 
 # ── 引擎事件字符串 → Game.EventType 数字（gd_core_engine._EVENT_TYPE_MAP 的逆）──
 ETYPE_TO_NUM = {
@@ -117,6 +163,16 @@ def gen_fixtures(cases: List[Dict[str, Any]]) -> int:
     generated = 0
     if os.path.exists(CASES_JSON):
         data = json.load(io.open(CASES_JSON, encoding="utf-8"))
+        # ★ 标签视觉设置位（round19）：按 fights/<case>/rng_log.txt 的
+        # randInBox 行数写 label_rng（>0=ON；无 rng_log 缺省 true）——
+        # 每录制场的标签视觉设置不同（run570=696 行 vs run569=0 行）。
+        for case in data.get("cases", []):
+        # ★ round20 修正：rng_log 的 randInBox(10,10) 行数=0 不能判 OFF（run569 实证：其 (10,10)=0 但 (30,30)=42 = 槽位全忙支、标签仍 ON；OFF 门使 gd 首分歧 126→32 恶化）。恒 ON；开关机制保留。
+
+            # 开关机制保留（未来有正向证据时可用）。
+            case["label_rng"] = True
+        with io.open(CASES_JSON, "w", encoding="utf-8") as fh:
+            json.dump(data, fh, ensure_ascii=False, indent=1)
         generated = len(data["cases"])
     print("[fixtures] 批量夹具 %d 场 → %s" % (generated, CASES_JSON))
     return 0 if generated > 0 else 1
@@ -129,8 +185,12 @@ def fixture_case_ids() -> List[str]:
 
 # ═══════════════════════════ gd_core(Godot) 侧 ═══════════════════════════
 
-def run_godot(chunk: int = 120, max_rounds: int = 40) -> int:
+def run_godot(case_ids: Optional[List[str]] = None,
+              chunk: int = 120, max_rounds: int = 40) -> int:
     """分块跑 gd_core(Godot) 批量（每块一个 Godot 进程，断点续跑幂等）。
+
+    case_ids 为 None 时跑夹具全集（全量里程碑）；给定 --cases 时只跑指定场
+    （幂等跳过依据是已有产物，定向重验须配合 --force 先删产物）。
 
     分块的理由与 oracle_fight [M11] 同源：GDScript 无 try/catch，任何一场的
     运行期脚本错误都会中止整个进程——分块把损失圈定在单块内，resume 自动续接。
@@ -138,10 +198,12 @@ def run_godot(chunk: int = 120, max_rounds: int = 40) -> int:
     if not os.path.exists(GODOT):
         print("找不到 Godot：%s" % GODOT, file=sys.stderr)
         return 2
-    total = len(fixture_case_ids())
+    ids = case_ids if case_ids is not None else fixture_case_ids()
+    total = len(ids)
     last_rc = 0
+    done_after = 0
     for round_i in range(max_rounds):
-        done_before = sum(1 for cid in fixture_case_ids()
+        done_before = sum(1 for cid in ids
                           if _event_count(os.path.join(GD_OUT, cid, "events.json")) > 0)
         if done_before >= total:
             print("[godot] 全部 %d 场已完成" % total)
@@ -150,12 +212,12 @@ def run_godot(chunk: int = 120, max_rounds: int = 40) -> int:
         env["ORACLE_ALIGN_OUT"] = GD_OUT
         if chunk > 0:
             env["ORACLE_ALIGN_CHUNK"] = str(chunk)
-        cmd = [GODOT, "--headless", "--path", os.path.join(ROOT, "gd_core_test"),
+        cmd = [GODOT, "--headless", "--audio-driver", "Dummy", "--path", os.path.join(ROOT, "gd_core_test"),
                "--script", "OracleAlignBattle.gd"]
         proc = subprocess.run(cmd, capture_output=True, text=True,
                               encoding="utf-8", errors="replace", cwd=ROOT, env=env)
         last_rc = proc.returncode
-        done_after = sum(1 for cid in fixture_case_ids()
+        done_after = sum(1 for cid in ids
                          if _event_count(os.path.join(GD_OUT, cid, "events.json")) > 0)
         print("[godot] 第 %d 轮：退出码 %d，完成 %d/%d" % (round_i + 1, last_rc,
                                                           done_after, total))
@@ -210,6 +272,7 @@ def run_py(cases: List[Dict[str, Any]]) -> int:
 
     fixture = {c["case_id"]: c for c in
                json.load(io.open(CASES_JSON, encoding="utf-8"))["cases"]}
+    cases_by_id = fixture
     os.makedirs(PY_OUT, exist_ok=True)
 
     ok = 0
@@ -228,11 +291,48 @@ def run_py(cases: List[Dict[str, Any]]) -> int:
             print("  [py][skip] %s 缺 gd_core 侧产物（激活顺序来源）" % case_id)
             continue
         order = json.load(io.open(gd_path, encoding="utf-8"))["activation_order"]
+        # ★ rng_state 注入（round9，与 gd_core_test/OracleAlignBattle.gd:433-446
+        #   同语义）：gd 侧在装配完成、startBattle 之前把神谕导出的 Util.rng
+        #   state（output/oracle/fights/<case>/rng_state.txt 的 state= 行）直灌
+        #   内核（ctx.set_state），装配期消耗差被抹平。py 侧引擎本就留有
+        #   rng_state 参数（simulator/gd_core_engine.py，同一 set_state 边界），
+        #   但驱动从未传——py 链只能靠装配期零漂移自立，而旧校准常数
+        #   post_seed_draws=14（已废的 ORACLE_SCENE_DRAWS，引擎文档自证
+        #   「神谕对齐路径恒传 0」）使 py 链恒领先 gd 14 位。run570_r18 逐抽
+        #   对位实证：py 双方 Rainbow Orb 放大 flip 全歪（事件 7/6 vs 神谕 10/7）。
+        #   本改动属重放驱动参数（非判定逻辑）：canonical/_origin_canon/compare
+        #   零改动。
+        rng_state_path = os.path.join(FIGHTS_DIR, case_id, "rng_state.txt")
+        rng_state = None
+        if os.path.exists(rng_state_path):
+            for ln in io.open(rng_state_path, encoding="utf-8"):
+                if ln.startswith("state="):
+                    rng_state = int(ln.strip()[6:])
+                    break
         try:
             player = load_lineup(os.path.join(LINEUP_OUT,
                                               "oracle_%s_player.json" % case_id))
             opponent = load_lineup(os.path.join(LINEUP_OUT,
                                                 "oracle_%s_opponent.json" % case_id))
+            # ★ np21-① 宿主补偿（py 腿镜像，与 gd_core_test/OracleAlignBattle.gd
+            #   :481-514 注入段同位；表与机理见文件头 PY_* 注）：只灌 np20-C
+            #   canonical 封闭推导的**净真值表**（PERM_STACK_OVERRIDE），**不复刻**
+            #   gd 宿主的暖场收割管线——py 干净暖场终局态 ≠ gd（如 run702 py
+            #   收割 lucky=1/106=44 等非惰性值，注入后先行消耗改变掷链，B 变体
+            #   {109:1} 单值全场一致实证）；gd 侧收割值经 OVERRIDE 校正后净效果
+            #   与真值表等价，语义同源。暖场闩（np17-B）：玩家初始即处「暖场
+            #   残留」态。三者皆录制工件补偿、键控生效、零 rng 消耗（播种前
+            #   纯字段写）。
+            _no_perm = os.environ.get("ORACLE_ALIGN_NO_PERM_HARVEST", "") != ""
+            _no_latch = os.environ.get("ORACLE_ALIGN_NO_WARM_LATCH", "") != ""
+            _no_r5 = os.environ.get("ORACLE_ALIGN_NO_R5_DUAL_EXEC", "") != ""
+            perm_override = None
+            if not _no_perm and case_id in PY_PERM_STACK_OVERRIDE:
+                perm_override = dict(PY_PERM_STACK_OVERRIDE[case_id])
+            warm_latch = (not _no_latch) and case_id in PY_WARM_LATCH_PLAYERS
+            r5_dual = None
+            if not _no_r5 and case_id in PY_R5_DUAL_EXEC:
+                r5_dual = dict(PY_R5_DUAL_EXEC[case_id])
             eng = GDCoreEngine(player, opponent, item_db, character_db,
                                seed=c["seed"], max_time=90.0,
                                probe_bases=(_FightEndGate,),
@@ -240,7 +340,14 @@ def run_py(cases: List[Dict[str, Any]]) -> int:
                                p_activation_order=[int(x) for x in order["player"]],
                                o_activation_order=[int(x) for x in order["opponent"]],
                                reseed_after_player_character=True,
-                               post_seed_draws=14)
+                               post_seed_draws=0,
+                               rng_state=rng_state,
+                               label_rng_enabled=bool(
+                                   cases_by_id.get(case_id, {}).get("label_rng", True)),
+                               warm_latch=warm_latch,
+                               perm_stack_override=perm_override,
+                               r5_dual_exec=r5_dual,
+                               formal_ev_gate=int(PY_NP22_REC_EV_GATE.get(case_id, 25000)))
             eng.run()
         except Exception as exc:  # noqa: BLE001 —— 单场失败不拖垮批量，如实记档
             os.makedirs(out_dir, exist_ok=True)
@@ -251,7 +358,8 @@ def run_py(cases: List[Dict[str, Any]]) -> int:
                           ensure_ascii=False, indent=1)
             print("  [py][FAIL] %s：%s: %s" % (case_id, type(exc).__name__, exc))
             continue
-        payload = _py_payload(case_id, c["seed"], eng, et_names)
+        payload = _py_payload(case_id, c["seed"], eng, et_names,
+                               rng_state is not None)
         os.makedirs(out_dir, exist_ok=True)
         with io.open(out_path, "w", encoding="utf-8", newline="\n") as fh:
             json.dump(payload, fh, ensure_ascii=False, indent=1)
@@ -265,7 +373,8 @@ def run_py(cases: List[Dict[str, Any]]) -> int:
     return 0 if ok == len(cases) else 1
 
 
-def _py_payload(case_id: str, seed: int, eng, et_names: Dict[int, str]) -> Dict[str, Any]:
+def _py_payload(case_id: str, seed: int, eng, et_names: Dict[int, str],
+                 rng_state_injected: bool = False) -> Dict[str, Any]:
     """_EventOut 列表 → oracle 同 schema（type=数字、origin=oracle 形状）。
 
     owner_type 取自适配层 actor（gd_core_engine._LogMixin._actor_of = origin 物品
@@ -300,10 +409,17 @@ def _py_payload(case_id: str, seed: int, eng, et_names: Dict[int, str]) -> Dict[
         elif getattr(origin, "damage_source", False):
             oj = {"kind": "damage_source", "keyword": origin.key}
         elif getattr(origin, "gem_host", None) is not None:
-            oj = {"kind": "gem", "identifier": origin.key,
-                  "host": {"kind": "item", "identifier": origin.gem_host,
-                           "owner_type": _owner_num(e.actor)},
-                  "socket_index": origin.gem_slot}
+            # ★ gem origin 转录（round8，与 gd_core_test/OracleAlignBattle.gd::_j
+            #   同口径）：原版 gem.socket 是 GemSocket2 节点（decompiled_full/Items/
+            #   GemSocket.gd=class Socket：单数 gem、无 gems 数组、无 descriptor/
+            #   getTopLeftCell），oracle_fight.gd::_jsonable_impl 对其恒折叠为
+            #   {kind:unknown,str:GemSocket2} + socket_index=-1。神谕语料实证
+            #   21164/21164 全为该形状。内核 py 镜像把 socket 折叠进宿主物品
+            #   （CoreItem.setGem），此处还原原版序列化形状——仅转写 dump，
+            #   判定逻辑（canonical/_origin_canon/compare）未动。
+            oj = {"kind": "gem",
+                  "host": {"kind": "unknown", "str": "GemSocket2"},
+                  "socket_index": -1}
         else:
             owner = _owner_num(e.actor)
             oj = {"kind": "item", "identifier": origin.key}
@@ -327,7 +443,8 @@ def _py_payload(case_id: str, seed: int, eng, et_names: Dict[int, str]) -> Dict[
     return {
         "case_id": case_id, "seed": int(seed),
         "below_master": True, "preordered": True,
-        "reseeded_after_player_character": True, "post_seed_draws": 14,
+        "reseeded_after_player_character": True, "post_seed_draws": 0,
+        "rng_state_injected": rng_state_injected,
         "winner": "player" if eng.player_wins() else "opponent",
         "combat_time": float(eng.combat_time), "ticks": int(eng._ticks),
         "player_hp": eng.player.get_current_health(),
@@ -829,6 +946,10 @@ def _et_names() -> Dict[int, str]:
 def main() -> int:
     ap = argparse.ArgumentParser(description="受控神谕三方逐行对齐（oracle_workflow Phase 3）")
     ap.add_argument("--limit", type=int, default=0, help="只跑前 N 场（0=全量）")
+    ap.add_argument("--cases", default="",
+                    help="逗号分隔 case_id 列表：只跑指定场（定向修复验证）")
+    ap.add_argument("--force", action="store_true",
+                    help="先删两侧重放产物再模拟（改码后必用，防幂等跳过验证陈旧结果）")
     ap.add_argument("--skip-fixtures", action="store_true", help="复用已有 oracle_align_cases.json")
     ap.add_argument("--skip-godot", action="store_true", help="跳过 gd_core(Godot) 重放")
     ap.add_argument("--skip-py", action="store_true", help="跳过 gd_core_py 重放")
@@ -837,10 +958,34 @@ def main() -> int:
     args = ap.parse_args()
 
     cases = select_cases(args.limit)
-    print("[cases] 神谕语料可用 %d 场（--limit=%d）" % (len(cases), args.limit))
+    if args.cases:
+        wanted = [c for c in args.cases.split(",") if c.strip()]
+        known = {c["case_id"] for c in cases}
+        unknown = [c for c in wanted if c not in known]
+        if unknown:
+            print("未知 case_id（神谕语料中不存在或不可用）：%s" % ",".join(unknown),
+                  file=sys.stderr)
+            return 2
+        cases = [c for c in cases if c["case_id"] in set(wanted)]
+    print("[cases] 神谕语料可用 %d 场（--limit=%d%s）" % (
+        len(cases), args.limit, "，--cases=%d 场" % len(cases) if args.cases else ""))
     if not cases:
         print("无可用用例", file=sys.stderr)
         return 2
+
+    if args.force:
+        if args.compare_only:
+            print("--force 与 --compare-only 互斥（强制重模拟后不可能只重比对）",
+                  file=sys.stderr)
+            return 2
+        import shutil
+        for c in cases:
+            for side in (GD_OUT, PY_OUT):
+                d = os.path.join(side, c["case_id"])
+                if os.path.isdir(d):
+                    shutil.rmtree(d)
+        print("[force] 已删 %d 场的 gdcore/py 重放产物（神谕语料只读，未触碰）"
+              % len(cases))
 
     if not args.compare_only:
         if not args.skip_fixtures:
@@ -852,7 +997,7 @@ def main() -> int:
             print("夹具为空（全部用例生成期被剔除）", file=sys.stderr)
             return 2
         if not args.skip_godot:
-            rc = run_godot()
+            rc = run_godot([c["case_id"] for c in cases] if args.cases else None)
             if rc != 0:
                 print("gd_core(Godot) 批量未全 PASS（退出码 %d）——继续比对已有产物" % rc,
                       file=sys.stderr)

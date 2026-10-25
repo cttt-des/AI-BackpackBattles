@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class Broom(_R.C("res://gd_core_items/Weapon.gd")):
+class Broom_2(_R.C("res://gd_core_items/Weapon.gd")):
 
 	resource_path = "res://gd_core_items/Broom.gd"
 
@@ -54,5 +54,5 @@ class Broom(_R.C("res://gd_core_items/Weapon.gd")):
 		self.bonusDamPerMiss = int(self.getP1())
 
 
-_R.reg("res://gd_core_items/Broom.gd", Broom)
-_R.reg("Broom", Broom)
+_R.reg("res://gd_core_items/Broom.gd", Broom_2)
+_R.reg("Broom", Broom_2)

@@ -8,15 +8,21 @@ from .. import _registry as _R
 
 
 
-class ThornBow(_R.C("res://gd_core_items/Bow.gd")):
+class ThornBow_2(_R.C("res://gd_core_items/Bow.gd")):
 
 	resource_path = "res://gd_core_items/ThornBow.gd"
 
 	def _init_fields(self):
 		super()._init_fields()
 		self.bonusCounter = 0
-		self.tempBonusDam = 0
+		self._tempBonusDam = 0
 
+	@property
+	def tempBonusDam(self):
+		return self._tempBonusDam
+	@tempBonusDam.setter
+	def tempBonusDam(self, v):
+		self._tempBonusDam = int(v)
 
 	def hasAttackEffect(self):
 		return True
@@ -69,5 +75,5 @@ class ThornBow(_R.C("res://gd_core_items/Bow.gd")):
 		self.tempBonusDam = self.getP2()
 
 
-_R.reg("res://gd_core_items/ThornBow.gd", ThornBow)
-_R.reg("ThornBow", ThornBow)
+_R.reg("res://gd_core_items/ThornBow.gd", ThornBow_2)
+_R.reg("ThornBow", ThornBow_2)

@@ -57,8 +57,8 @@ def _overlap_conflicts(path: str) -> List[str]:
     except Exception:
         return []          # 阵容格式错误由后续 load_lineup 预校验统一报错
     bp = data.get('backpack', {}) or {}
-    grid_cfg = bp.get('grid') or {'rows': 7, 'cols': 9}
-    rows, cols = int(grid_cfg.get('rows', 7)), int(grid_cfg.get('cols', 9))
+    grid_cfg = bp.get('grid') or {'rows': 7, 'cols': 10}
+    rows, cols = int(grid_cfg.get('rows', 7)), int(grid_cfg.get('cols', 10))
     db = load_items()
     filled, bags, out = set(), set(), []
     for e in bp.get('items') or []:
@@ -182,11 +182,6 @@ class BattleSimulatorGUI:
         ttk.Entry(ctrl, textvariable=self.runs_var, width=8).pack(side=tk.LEFT, padx=4)
         ttk.Button(ctrl, text='开始战斗', command=self._start_battle).pack(side=tk.LEFT, padx=(14, 0))
         ttk.Button(ctrl, text='保存日志', command=self._save_logs).pack(side=tk.LEFT, padx=4)
-
-        # 战斗内核（唯一）：gd_core = 原版逻辑 1:1 移植内核；旧内核已下线，
-        # 不再提供选择框。engine_var/choices 保留固定值以免下游引用断裂。
-        self.engine_var = tk.StringVar(value='原版移植（gd_core）')
-        self.engine_choices = {'原版移植（gd_core）': 'gd_core'}
 
         # 日志语言（复刻原版：默认英文）
         ttk.Label(ctrl, text='语言:').pack(side=tk.LEFT, padx=(14, 0))
@@ -325,19 +320,16 @@ class BattleSimulatorGUI:
         self.log_box.configure(state=tk.DISABLED)
         lang = self.lang_choices.get(self.lang_var.get(), 'en')
         self.current_lang = lang
-        engine = self.engine_choices.get(self.engine_var.get(), 'gd_core')
-        self.current_engine = engine
         self._log(f'⚔ {na}（玩家）vs {nb}（对手）\n')
         self._log(f'种子={seed if seed is not None else "随机"}  场数={runs}  '
-                  f'内核={self.engine_var.get()}  语言={self.lang_var.get()}\n')
+                  f'语言={self.lang_var.get()}\n')
         self._log('—' * 30 + '\n')
 
-        t = threading.Thread(target=self._run_battle,
-                             args=(pa, pb, seed, runs, na, nb, lang, engine),
+        t = threading.Thread(target=self._run_battle, args=(pa, pb, seed, runs, na, nb, lang),
                              daemon=True)
         t.start()
 
-    def _run_battle(self, pa, pb, seed, runs, na, nb, lang, engine='gd_core'):
+    def _run_battle(self, pa, pb, seed, runs, na, nb, lang):
         try:
             player = load_lineup(pa)
             opponent = load_lineup(pb)
@@ -346,8 +338,7 @@ class BattleSimulatorGUI:
             start = time.time()
             for run in range(runs):
                 s = seed + run if seed is not None else None
-                eng = sim.simulate_once(pa, pb, self.item_db, self.char_db, s,
-                                        engine=engine)
+                eng = sim.simulate_once(pa, pb, self.item_db, self.char_db, s)
                 last_eng = eng
                 if eng.player_wins():
                     wins += 1

@@ -8,15 +8,21 @@ from .. import _registry as _R
 
 
 
-class Wolpertinger(_R.C("res://gd_core_items/Item.gd")):
+class Wolpertinger_2(_R.C("res://gd_core_items/Item.gd")):
 
 	resource_path = "res://gd_core_items/Wolpertinger.gd"
 
 	def _init_fields(self):
 		super()._init_fields()
 		self.staminaRegenPerBuff = None
-		self.numBuffs = 0
+		self._numBuffs = 0
 
+	@property
+	def numBuffs(self):
+		return self._numBuffs
+	@numBuffs.setter
+	def numBuffs(self, v):
+		self._numBuffs = int(v)
 
 	def canAffect(self, item):
 		return item.hasType(_R.C("CoreConst").Type.Pet)
@@ -43,5 +49,5 @@ class Wolpertinger(_R.C("res://gd_core_items/Item.gd")):
 		self.numBuffs = self.getP2()
 
 
-_R.reg("res://gd_core_items/Wolpertinger.gd", Wolpertinger)
-_R.reg("Wolpertinger", Wolpertinger)
+_R.reg("res://gd_core_items/Wolpertinger.gd", Wolpertinger_2)
+_R.reg("Wolpertinger", Wolpertinger_2)

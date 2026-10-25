@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class Flute(_R.C("res://gd_core_items/Item.gd")):
+class Flute_2(_R.C("res://gd_core_items/Item.gd")):
 
 	resource_path = "res://gd_core_items/Flute.gd"
 
@@ -45,5 +45,5 @@ class Flute(_R.C("res://gd_core_items/Item.gd")):
 		pass
 
 
-_R.reg("res://gd_core_items/Flute.gd", Flute)
-_R.reg("Flute", Flute)
+_R.reg("res://gd_core_items/Flute.gd", Flute_2)
+_R.reg("Flute", Flute_2)

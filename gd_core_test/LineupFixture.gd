@@ -45,7 +45,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"sockets": 1
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Amulet Unidentified": {
 		"name": "Amulet Unidentified",
@@ -76,7 +77,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"sockets": 1
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Amulet of Steel": {
 		"name": "Amulet of Steel",
@@ -90,7 +92,7 @@ const ITEMS := {
 		"block": 30,
 		"price": 6,
 		"rarity": 1,
-		"classes": 0,
+		"classes": 127,
 		"canActivate": true,
 		"chance": 0.0,
 		"chance2": 0.0,
@@ -110,7 +112,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"sockets": 1
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Badger Rune": {
 		"name": "Badger Rune",
@@ -124,7 +127,7 @@ const ITEMS := {
 		"block": 0,
 		"price": 4,
 		"rarity": 3,
-		"classes": 0,
+		"classes": 4,
 		"canActivate": true,
 		"chance": 0.0,
 		"chance2": 0.0,
@@ -145,7 +148,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": true,
-		"sockets": 1
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Badger Spirit": {
 		"name": "Badger Spirit",
@@ -182,7 +186,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"sockets": 1
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Berserker Bag": {
 		"name": "Berserker Bag",
@@ -218,7 +223,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"sockets": 1
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Blueberries": {
 		"name": "Blueberries",
@@ -253,6 +259,7 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
+		"randomUniquePool": false,
 		"sockets": 0
 	},
 	"Cheese": {
@@ -286,7 +293,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"sockets": 1
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Cheese Goobert": {
 		"name": "Cheese Goobert",
@@ -300,7 +308,7 @@ const ITEMS := {
 		"block": 0,
 		"price": 14,
 		"rarity": 4,
-		"classes": 0,
+		"classes": 4,
 		"canActivate": true,
 		"chance": 0.0,
 		"chance2": 0.0,
@@ -324,7 +332,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"sockets": 1
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Chili Goobert": {
 		"name": "Chili Goobert",
@@ -338,7 +347,7 @@ const ITEMS := {
 		"block": 0,
 		"price": 11,
 		"rarity": 2,
-		"classes": 0,
+		"classes": 8,
 		"canActivate": true,
 		"chance": 0.0,
 		"chance2": 0.0,
@@ -363,7 +372,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"sockets": 1
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Claws of Attack": {
 		"name": "Claws of Attack",
@@ -377,7 +387,7 @@ const ITEMS := {
 		"block": 0,
 		"price": 8,
 		"rarity": 2,
-		"classes": 0,
+		"classes": 127,
 		"canActivate": true,
 		"chance": 0.0,
 		"chance2": 0.0,
@@ -402,7 +412,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"sockets": 2
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Corrupted Crystal": {
 		"name": "Corrupted Crystal",
@@ -433,7 +444,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": true,
-		"sockets": 1
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Crown": {
 		"name": "Crown",
@@ -468,7 +480,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"sockets": 2
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Customer Card": {
 		"name": "Customer Card",
@@ -499,7 +512,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"sockets": 1
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Djinn Lamp": {
 		"name": "Djinn Lamp",
@@ -530,7 +544,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"sockets": 1
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Dragon Knight": {
 		"name": "Dragon Knight",
@@ -544,7 +559,7 @@ const ITEMS := {
 		"block": 0,
 		"price": 18,
 		"rarity": 4,
-		"classes": 0,
+		"classes": 32,
 		"canActivate": true,
 		"chance": 0.0,
 		"chance2": 0.0,
@@ -570,7 +585,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"sockets": 3
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Dual Wielding": {
 		"name": "Dual Wielding",
@@ -604,7 +620,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"sockets": 1
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Elephant Rune": {
 		"name": "Elephant Rune",
@@ -618,7 +635,7 @@ const ITEMS := {
 		"block": 0,
 		"price": 4,
 		"rarity": 3,
-		"classes": 0,
+		"classes": 4,
 		"canActivate": true,
 		"chance": 25.0,
 		"chance2": 40.0,
@@ -639,7 +656,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": true,
-		"sockets": 1
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Evil Cap": {
 		"name": "Evil Cap",
@@ -653,7 +671,7 @@ const ITEMS := {
 		"block": 0,
 		"price": 14,
 		"rarity": 3,
-		"classes": 0,
+		"classes": 127,
 		"canActivate": true,
 		"chance": 15.0,
 		"chance2": 0.0,
@@ -678,7 +696,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"sockets": 2
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Falcon Blade": {
 		"name": "Falcon Blade",
@@ -692,7 +711,7 @@ const ITEMS := {
 		"block": 0,
 		"price": 15,
 		"rarity": 3,
-		"classes": 0,
+		"classes": 127,
 		"canActivate": true,
 		"chance": 0.0,
 		"chance2": 0.0,
@@ -715,7 +734,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"sockets": 3
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"False Life": {
 		"name": "False Life",
@@ -750,7 +770,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"sockets": 1
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Fanny Pack": {
 		"name": "Fanny Pack",
@@ -781,7 +802,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"sockets": 1
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Fedora": {
 		"name": "Fedora",
@@ -820,7 +842,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"sockets": 1
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Gold Armor": {
 		"name": "Gold Armor",
@@ -834,7 +857,7 @@ const ITEMS := {
 		"block": 120,
 		"price": 22,
 		"rarity": 4,
-		"classes": 0,
+		"classes": 127,
 		"canActivate": true,
 		"chance": 0.0,
 		"chance2": 0.0,
@@ -865,7 +888,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"sockets": 4
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Goobling": {
 		"name": "Goobling",
@@ -879,7 +903,7 @@ const ITEMS := {
 		"block": 0,
 		"price": 2,
 		"rarity": 0,
-		"classes": 0,
+		"classes": 127,
 		"canActivate": true,
 		"chance": 0.0,
 		"chance2": 0.0,
@@ -899,7 +923,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"sockets": 1
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Hawk Rune": {
 		"name": "Hawk Rune",
@@ -913,7 +938,7 @@ const ITEMS := {
 		"block": 0,
 		"price": 4,
 		"rarity": 3,
-		"classes": 0,
+		"classes": 4,
 		"canActivate": true,
 		"chance": 40.0,
 		"chance2": 0.0,
@@ -933,7 +958,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": true,
-		"sockets": 1
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Heart of Darkness": {
 		"name": "Heart of Darkness",
@@ -947,7 +973,7 @@ const ITEMS := {
 		"block": 0,
 		"price": 18,
 		"rarity": 4,
-		"classes": 0,
+		"classes": 127,
 		"canActivate": true,
 		"chance": 0.0,
 		"chance2": 0.0,
@@ -975,7 +1001,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"sockets": 2
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Holy Collar": {
 		"name": "Holy Collar",
@@ -1009,7 +1036,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"sockets": 1
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Leather Bag": {
 		"name": "Leather Bag",
@@ -1040,7 +1068,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"sockets": 1
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Light Goobert": {
 		"name": "Light Goobert",
@@ -1054,7 +1083,7 @@ const ITEMS := {
 		"block": 0,
 		"price": 15,
 		"rarity": 4,
-		"classes": 0,
+		"classes": 127,
 		"canActivate": true,
 		"chance": 0.0,
 		"chance2": 0.0,
@@ -1080,7 +1109,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"sockets": 1
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Lucky Cat": {
 		"name": "Lucky Cat",
@@ -1116,7 +1146,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"sockets": 1
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Mana Orb": {
 		"name": "Mana Orb",
@@ -1150,7 +1181,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"sockets": 1
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Oil Lamp": {
 		"name": "Oil Lamp",
@@ -1185,7 +1217,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"sockets": 1
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Piggybank": {
 		"name": "Piggybank",
@@ -1218,7 +1251,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"sockets": 1
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Poison Dagger": {
 		"name": "Poison Dagger",
@@ -1232,7 +1266,7 @@ const ITEMS := {
 		"block": 0,
 		"price": 11,
 		"rarity": 2,
-		"classes": 0,
+		"classes": 127,
 		"canActivate": true,
 		"chance": 0.0,
 		"chance2": 0.0,
@@ -1253,7 +1287,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"sockets": 2
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Potion Belt": {
 		"name": "Potion Belt",
@@ -1286,7 +1321,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"sockets": 1
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Protective Purse": {
 		"name": "Protective Purse",
@@ -1317,7 +1353,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"sockets": 1
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Pumpkin": {
 		"name": "Pumpkin",
@@ -1351,7 +1388,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"sockets": 3
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Rainbow Badge": {
 		"name": "Rainbow Badge",
@@ -1382,7 +1420,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"sockets": 1
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Rat": {
 		"name": "Rat",
@@ -1396,7 +1435,7 @@ const ITEMS := {
 		"block": 0,
 		"price": 4,
 		"rarity": 0,
-		"classes": 0,
+		"classes": 1,
 		"canActivate": true,
 		"chance": 75.0,
 		"chance2": 10.0,
@@ -1417,7 +1456,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"sockets": 1
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Rope": {
 		"name": "Rope",
@@ -1431,7 +1471,7 @@ const ITEMS := {
 		"block": 0,
 		"price": 4,
 		"rarity": 1,
-		"classes": 0,
+		"classes": 32,
 		"canActivate": false,
 		"chance": 0.0,
 		"chance2": 0.0,
@@ -1456,7 +1496,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"sockets": 1
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Seal the Deal": {
 		"name": "Seal the Deal",
@@ -1495,7 +1536,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"sockets": 1
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Sewing Case": {
 		"name": "Sewing Case",
@@ -1528,7 +1570,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"sockets": 1
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Shaman Mask": {
 		"name": "Shaman Mask",
@@ -1559,7 +1602,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"sockets": 1
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Shelly": {
 		"name": "Shelly",
@@ -1573,7 +1617,7 @@ const ITEMS := {
 		"block": 0,
 		"price": 6,
 		"rarity": 1,
-		"classes": 0,
+		"classes": 127,
 		"canActivate": true,
 		"chance": 25.0,
 		"chance2": 0.0,
@@ -1598,7 +1642,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"sockets": 1
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Snowmaster": {
 		"name": "Snowmaster",
@@ -1638,7 +1683,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"sockets": 1
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Speak with Animals": {
 		"name": "Speak with Animals",
@@ -1671,7 +1717,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"sockets": 1
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Stamina Sack": {
 		"name": "Stamina Sack",
@@ -1702,7 +1749,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"sockets": 1
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Stone Helm": {
 		"name": "Stone Helm",
@@ -1716,7 +1764,7 @@ const ITEMS := {
 		"block": 35,
 		"price": 13,
 		"rarity": 3,
-		"classes": 0,
+		"classes": 127,
 		"canActivate": true,
 		"chance": 30.0,
 		"chance2": 40.0,
@@ -1740,7 +1788,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"sockets": 2
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Tiger Rune": {
 		"name": "Tiger Rune",
@@ -1754,7 +1803,7 @@ const ITEMS := {
 		"block": 0,
 		"price": 4,
 		"rarity": 3,
-		"classes": 0,
+		"classes": 4,
 		"canActivate": false,
 		"chance": 11.0,
 		"chance2": 0.0,
@@ -1776,7 +1825,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": true,
-		"sockets": 1
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Toad": {
 		"name": "Toad",
@@ -1815,7 +1865,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"sockets": 1
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Twine": {
 		"name": "Twine",
@@ -1848,7 +1899,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"sockets": 1
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 	"Wolpertinger": {
 		"name": "Wolpertinger",
@@ -1879,7 +1931,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"sockets": 1
+		"randomUniquePool": false,
+		"sockets": 0
 	},
 }
 

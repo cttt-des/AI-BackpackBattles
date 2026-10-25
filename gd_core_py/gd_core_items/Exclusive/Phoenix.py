@@ -17,9 +17,21 @@ class Exclusive__Phoenix(_R.C("res://gd_core_items/Weapon.gd")):
 		self.ashSprite = None
 		self.deathPrevented = False
 		self.normalSprite = None
-		self.selfDam = 0
-		self.reincarnateHealth = 0
+		self._selfDam = 0
+		self._reincarnateHealth = 0
 
+	@property
+	def selfDam(self):
+		return self._selfDam
+	@selfDam.setter
+	def selfDam(self, v):
+		self._selfDam = int(v)
+	@property
+	def reincarnateHealth(self):
+		return self._reincarnateHealth
+	@reincarnateHealth.setter
+	def reincarnateHealth(self, v):
+		self._reincarnateHealth = int(v)
 
 	def onPrepare(self):
 		self.setState(False)

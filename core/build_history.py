@@ -24,7 +24,6 @@ import json
 import math
 import os
 import sqlite3
-import time
 from typing import Any, Dict, List, Optional
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -34,9 +33,7 @@ CLASSES = {0: "Ranger", 1: "Reaper", 2: "Berserker", 3: "Pyromancer"}
 FACE_TO_ROT = {0: 0, 1: 90, 2: 180, 3: 270}
 MAX_HEALTH = 999
 MAX_STAMINA = 999
-INV_MAX = 10        # 位流编码范围（Inventory.MAX_SIZE=10，pull(10)=4bit）
-GRID_ROWS, GRID_COLS = 7, 9   # 背包真实尺寸（Inventory.gd inventorySize=Vector2(9,7)；
-                              # 314k 件历史解码物品 99.994% 在 0..6/0..8）
+INV_MAX = 10
 MAGIC_RING = "Magic Ring"
 MAGIC_RING_PD_BITS = 12        # numEffects=2 × (2+4)（MagicRing.gd:291）
 
@@ -192,9 +189,6 @@ def live_item_index_map(gr, mem_reader) -> Optional[Dict[str, Any]]:
         name = desc_name(o)
         if name:
             index_to_name[k] = name
-        if k % 64 == 63:
-            # 周期性让出 GIL：后台刷新时避免饿死 Tk 主线程
-            time.sleep(0.002)
 
     num_sockets = {}
     if num_sockets_arr:
@@ -368,8 +362,7 @@ def list_rounds(db_path: Optional[str] = None, run_id: int = 0) -> List[Dict[str
 
 
 def export_round(run_id: int, round_id: int, out_path: str,
-                 db_path: Optional[str] = None,
-                 name: Optional[str] = None) -> Dict[str, Any]:
+                 db_path: Optional[str] = None) -> Dict[str, Any]:
     """导出指定 run 的指定回合为 v4 阵容 JSON；返回写入的数据。"""
     db = db_path or find_history_db()
     if not db or not os.path.exists(db):
@@ -396,18 +389,18 @@ def export_round(run_id: int, round_id: int, out_path: str,
     character = CLASSES.get(run[0], "Adventurer")
     data: Dict[str, Any] = {
         "version": 4,
-        "name": name or f"历史 Run{run_id} 第{round_id}回合",
+        "name": f"历史 Run{run_id} 第{round_id}回合",
         "character": character,
-        "round": int(round_id),
+        "round": int(round_id) + 1,
         "class_modifiers": {
             "health": row[1],
             "stamina": row[2],
         },
-        "grid": [GRID_ROWS, GRID_COLS],
+        "grid": [INV_MAX, INV_MAX],
         "items": decoded["items"],
         "storage": [],
         "meta": {
-            "name": name or f"历史 Run{run_id} 第{round_id}回合",
+            "name": f"历史 Run{run_id} 第{round_id}回合",
             "source": "game_history",
             "run_id": run_id,
             "round_id": round_id,
@@ -418,66 +411,3 @@ def export_round(run_id: int, round_id: int, out_path: str,
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
     return data
-
-
-# ---------------- 活体：游戏历史界面当前选中的 Run/回合 ----------------
-# BuildHistory.gd 成员下标（2026-09-30 活体标定，PID 6192，历史界面开启中）：
-#   [34]=curRoundNum(9)  [36]=curRunId(1556，与 history.db runID 集合命中)
-#   声明序：32 个 onready + isOpen(32)/entries(33)/curRoundNum(34)/
-#   curData(35)/curRunId(36)
-BH_SCRIPT_PATH = "res://Interface/BuildHistory/BuildHistory.gd"
-BH_MEMBER_ROUND = 34
-BH_MEMBER_RUN = 36
-
-
-def read_live_selection(gr) -> Optional[Dict[str, int]]:
-    """读取游戏中历史记录界面当前选中的 run/回合。
-
-    找到 BuildHistory 节点（按脚本路径）后读 members[BH_MEMBER_ROUND]/
-    [BH_MEMBER_RUN]。历史界面未打开（isOpen=False）或未找到节点返回 None。
-    """
-    root = gr.get_root()
-    if not root:
-        return None
-    target = None
-    queue = [root]
-    seen = set()
-    while queue and target is None:
-        n = queue.pop(0)
-        if n in seen or not n or n < 0x10000:
-            continue
-        seen.add(n)
-        try:
-            sp = gr.node_script_path(n)
-        except Exception:
-            sp = None
-        if sp and sp == BH_SCRIPT_PATH:
-            target = n
-            break
-        try:
-            kids = gr.get_children(n)
-        except Exception:
-            kids = []
-        if len(queue) < 8000:
-            queue.extend(kids)
-    if not target:
-        return None
-    si = gr._ptr(target + gr.off["object_script_instance_off"])
-    if not si:
-        return None
-    mptr = gr._ptr(si + gr.off["gdscript_members_off"])
-    if not mptr:
-        return None
-    vs = gr.off["variant_size"]
-
-    def member_int(idx):
-        va = mptr + idx * vs
-        if gr._read_int(va, 4) != 2:
-            return None
-        return gr._read_int(va + 8, 8)
-
-    run_id = member_int(BH_MEMBER_RUN)
-    round_id = member_int(BH_MEMBER_ROUND)
-    if not run_id or not round_id:
-        return None
-    return {"run_id": int(run_id), "round_id": int(round_id)}

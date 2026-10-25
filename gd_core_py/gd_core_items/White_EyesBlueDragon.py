@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class White_EyesBlueDragon(_R.C("res://gd_core_items/Card.gd")):
+class White_EyesBlueDragon_2(_R.C("res://gd_core_items/Card.gd")):
 
 	resource_path = "res://gd_core_items/White-EyesBlueDragon.gd"
 
@@ -29,5 +29,5 @@ class White_EyesBlueDragon(_R.C("res://gd_core_items/Card.gd")):
 		self.damReduction = _div(self.getP('damfactor'), 100.0)
 
 
-_R.reg("res://gd_core_items/White-EyesBlueDragon.gd", White_EyesBlueDragon)
-_R.reg("White-EyesBlueDragon", White_EyesBlueDragon)
+_R.reg("res://gd_core_items/White-EyesBlueDragon.gd", White_EyesBlueDragon_2)
+_R.reg("White-EyesBlueDragon", White_EyesBlueDragon_2)

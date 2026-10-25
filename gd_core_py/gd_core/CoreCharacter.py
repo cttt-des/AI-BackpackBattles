@@ -23,7 +23,7 @@ class CoreCharacter(GodotObject):
 	def _init_fields(self):
 		super()._init_fields()
 		self.ctx = None
-		self.playerId = 0
+		self._playerId = 0
 		self.opponent = None
 		self.isDead = False
 		self.buffs = {}
@@ -41,20 +41,20 @@ class CoreCharacter(GodotObject):
 		self.staminaUpdateQueued = False   # 对齐 Character.gd:971
 		self.statsDisplay = []      # 仅统计出口
 		self.damageResistance = 0.0
-		self.damageReduction = 0
+		self._damageReduction = 0
 		self.invulnerable = False
-		self.dodgeStacks = 0
+		self._dodgeStacks = 0
 		self.critResistance = 0.0
-		self.critResistStacks = 0
-		self.critTokens = 0
+		self._critResistStacks = 0
+		self._critTokens = 0
 		self.stunResistance = 0.0
 		self.unhealingAmount = 0.0
 		self.healingEfficiency = 1.0
 		self.critTokensUsed = 0
-		self.debuffResistStacks = 0
-		self.debuffReflectStacks = 0
-		self.buffProtectStacks = 0
-		self.bonusFatigueDamage = 0
+		self._debuffResistStacks = 0
+		self._debuffReflectStacks = 0
+		self._buffProtectStacks = 0
+		self._bonusFatigueDamage = 0
 		self.empowerDamage = 1.0
 		self.blindingLightActive = False
 		self.stunnedDuration = 0.0
@@ -77,7 +77,7 @@ class CoreCharacter(GodotObject):
 		self.character_died_handlers = []
 		self.poisonDamageSource = None
 		self.spikeDamageSource = None
-		self.characterClass = _R.C("CoreConst").Classes.Ranger
+		self._characterClass = _R.C("CoreConst").Classes.Ranger
 		self.chibi = False
 		self.invulnerabilityItem = None
 		self._invul_left = 0.0
@@ -93,6 +93,66 @@ class CoreCharacter(GodotObject):
 		self._tick_timer_active = False
 		self.damage_anim_is_poison = False
 
+	@property
+	def playerId(self):
+		return self._playerId
+	@playerId.setter
+	def playerId(self, v):
+		self._playerId = int(v)
+	@property
+	def damageReduction(self):
+		return self._damageReduction
+	@damageReduction.setter
+	def damageReduction(self, v):
+		self._damageReduction = int(v)
+	@property
+	def dodgeStacks(self):
+		return self._dodgeStacks
+	@dodgeStacks.setter
+	def dodgeStacks(self, v):
+		self._dodgeStacks = int(v)
+	@property
+	def critResistStacks(self):
+		return self._critResistStacks
+	@critResistStacks.setter
+	def critResistStacks(self, v):
+		self._critResistStacks = int(v)
+	@property
+	def critTokens(self):
+		return self._critTokens
+	@critTokens.setter
+	def critTokens(self, v):
+		self._critTokens = int(v)
+	@property
+	def debuffResistStacks(self):
+		return self._debuffResistStacks
+	@debuffResistStacks.setter
+	def debuffResistStacks(self, v):
+		self._debuffResistStacks = int(v)
+	@property
+	def debuffReflectStacks(self):
+		return self._debuffReflectStacks
+	@debuffReflectStacks.setter
+	def debuffReflectStacks(self, v):
+		self._debuffReflectStacks = int(v)
+	@property
+	def buffProtectStacks(self):
+		return self._buffProtectStacks
+	@buffProtectStacks.setter
+	def buffProtectStacks(self, v):
+		self._buffProtectStacks = int(v)
+	@property
+	def bonusFatigueDamage(self):
+		return self._bonusFatigueDamage
+	@bonusFatigueDamage.setter
+	def bonusFatigueDamage(self, v):
+		self._bonusFatigueDamage = int(v)
+	@property
+	def characterClass(self):
+		return self._characterClass
+	@characterClass.setter
+	def characterClass(self, v):
+		self._characterClass = int(v)
 	# =============================================================================
 	# CoreCharacter.gd — 无头战斗内核：角色（伤害链 / 体力 / 栈宿主）
 	# =============================================================================

@@ -363,7 +363,7 @@ class CaptureDriver:
         else:
             cx, cy = x + w / 2.0, y + h / 2.0
         self._window()
-        self._force_foreground()
+        self.wm.bring_to_foreground()
         time.sleep(0.15)
         sx, sy = self.viewport_to_screen(cx, cy)
         logger.info("点击 %s: rect=(%.1f,%.1f)+(%.1f×%.1f) rot=%.0f° "
@@ -466,7 +466,7 @@ class CaptureDriver:
             raise CaptureError("runStarted=true——红线禁止操作")
         gx, gy = origin[0] + cx, origin[1] + cy
         self._window()
-        self._force_foreground()
+        self.wm.bring_to_foreground()
         time.sleep(0.15)
         sx, sy = self.viewport_to_screen(gx, gy)
         import pyautogui
@@ -512,7 +512,7 @@ class CaptureDriver:
                     if sgy <= gcy <= sgy + sh:
                         break
             self._window()
-            self._force_foreground()
+            self.wm.bring_to_foreground()
             time.sleep(0.1)
             mx, my = self.viewport_to_screen(sgx + sw / 2.0, sgy + sh / 2.0)
             prow = self.gr.read_control_rect(rows[0]["placeholder"]) if rows \
@@ -629,7 +629,7 @@ class CaptureDriver:
                     break
             # 目标行不可见/未实例化：按行全局 y 决定滚动方向
             self._window()
-            self._force_foreground()
+            self.wm.bring_to_foreground()
             time.sleep(0.1)
             mx, my = self.viewport_to_screen(sgx + sw / 2.0, sgy + sh / 2.0)
             prow = self.gr.read_control_rect(rows[nxt]["placeholder"])
@@ -772,7 +772,7 @@ class CaptureDriver:
         """画布坐标直接映射并点击（跳过点击等非 Control 锚点用）。"""
         import pyautogui
         self._window()
-        self._force_foreground()
+        self.wm.bring_to_foreground()
         time.sleep(0.15)
         sx, sy = self.viewport_to_screen(x, y)
         logger.info("点击 %s: 画布(%.0f,%.0f) → 屏幕(%d,%d)",

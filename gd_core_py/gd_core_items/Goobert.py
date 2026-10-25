@@ -8,16 +8,22 @@ from .. import _registry as _R
 
 
 
-class Goobert(_R.C("res://gd_core_items/Item.gd")):
+class Goobert_2(_R.C("res://gd_core_items/Item.gd")):
 
 	resource_path = "res://gd_core_items/Goobert.gd"
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.activations = 0
+		self._activations = 0
 		self.goobertAnimation = None
 		self.activationsToTrigger = None
 
+	@property
+	def activations(self):
+		return self._activations
+	@activations.setter
+	def activations(self, v):
+		self._activations = int(v)
 
 	def logCooldown(self):
 		return True
@@ -76,6 +82,6 @@ class Goobert(_R.C("res://gd_core_items/Item.gd")):
 		self.activationsToTrigger = self.getP1()
 
 
-_R.reg("res://gd_core_items/Goobert.gd", Goobert)
-_R.reg("Goobert", Goobert)
-_R.reg("Goobert", Goobert)
+_R.reg("res://gd_core_items/Goobert.gd", Goobert_2)
+_R.reg("Goobert", Goobert_2)
+_R.reg("Goobert", Goobert_2)

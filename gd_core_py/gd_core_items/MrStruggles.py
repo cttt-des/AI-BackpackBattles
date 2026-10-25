@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class MrStruggles(_R.C("res://gd_core_items/Item.gd")):
+class MrStruggles_2(_R.C("res://gd_core_items/Item.gd")):
 
 	resource_path = "res://gd_core_items/MrStruggles.gd"
 
@@ -116,5 +116,5 @@ class MrStruggles(_R.C("res://gd_core_items/Item.gd")):
 		self.fatigueDam = int(self.getP1())
 
 
-_R.reg("res://gd_core_items/MrStruggles.gd", MrStruggles)
-_R.reg("MrStruggles", MrStruggles)
+_R.reg("res://gd_core_items/MrStruggles.gd", MrStruggles_2)
+_R.reg("MrStruggles", MrStruggles_2)

@@ -14,10 +14,28 @@ class Exclusive__CriticalPoison(_R.C("res://gd_core_items/Item.gd")):
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.damageAcc = 0
-		self.damagePerPoison = 0
-		self.poison = 0
+		self._damageAcc = 0
+		self._damagePerPoison = 0
+		self._poison = 0
 
+	@property
+	def damageAcc(self):
+		return self._damageAcc
+	@damageAcc.setter
+	def damageAcc(self, v):
+		self._damageAcc = int(v)
+	@property
+	def damagePerPoison(self):
+		return self._damagePerPoison
+	@damagePerPoison.setter
+	def damagePerPoison(self, v):
+		self._damagePerPoison = int(v)
+	@property
+	def poison(self):
+		return self._poison
+	@poison.setter
+	def poison(self, v):
+		self._poison = int(v)
 
 	def canAffect(self, item):
 		return item.canBeEmpowered()

@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class WoodenBuckler(_R.C("res://gd_core_items/Shield.gd")):
+class WoodenBuckler_2(_R.C("res://gd_core_items/Shield.gd")):
 
 	resource_path = "res://gd_core_items/WoodenBuckler.gd"
 
@@ -22,5 +22,5 @@ class WoodenBuckler(_R.C("res://gd_core_items/Shield.gd")):
 		pass
 
 
-_R.reg("res://gd_core_items/WoodenBuckler.gd", WoodenBuckler)
-_R.reg("WoodenBuckler", WoodenBuckler)
+_R.reg("res://gd_core_items/WoodenBuckler.gd", WoodenBuckler_2)
+_R.reg("WoodenBuckler", WoodenBuckler_2)

@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class YggdrasilLeaf(_R.C("res://gd_core_items/Item.gd")):
+class YggdrasilLeaf_2(_R.C("res://gd_core_items/Item.gd")):
 
 	resource_path = "res://gd_core_items/YggdrasilLeaf.gd"
 
@@ -49,5 +49,5 @@ class YggdrasilLeaf(_R.C("res://gd_core_items/Item.gd")):
 		self.manaNeeded = int(self.getP3())
 
 
-_R.reg("res://gd_core_items/YggdrasilLeaf.gd", YggdrasilLeaf)
-_R.reg("YggdrasilLeaf", YggdrasilLeaf)
+_R.reg("res://gd_core_items/YggdrasilLeaf.gd", YggdrasilLeaf_2)
+_R.reg("YggdrasilLeaf", YggdrasilLeaf_2)

@@ -8,15 +8,27 @@ from .. import _registry as _R
 
 
 
-class MagicTorch(_R.C("res://gd_core_items/Weapon.gd")):
+class MagicTorch_2(_R.C("res://gd_core_items/Weapon.gd")):
 
 	resource_path = "res://gd_core_items/MagicTorch.gd"
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.manaNeeded = 0
-		self.damBonus = 0
+		self._manaNeeded = 0
+		self._damBonus = 0
 
+	@property
+	def manaNeeded(self):
+		return self._manaNeeded
+	@manaNeeded.setter
+	def manaNeeded(self, v):
+		self._manaNeeded = int(v)
+	@property
+	def damBonus(self):
+		return self._damBonus
+	@damBonus.setter
+	def damBonus(self, v):
+		self._damBonus = int(v)
 
 	def canAffect(self, item):
 		return item.canBeEmpowered()
@@ -37,5 +49,5 @@ class MagicTorch(_R.C("res://gd_core_items/Weapon.gd")):
 		self.damBonus = self.getP2()
 
 
-_R.reg("res://gd_core_items/MagicTorch.gd", MagicTorch)
-_R.reg("MagicTorch", MagicTorch)
+_R.reg("res://gd_core_items/MagicTorch.gd", MagicTorch_2)
+_R.reg("MagicTorch", MagicTorch_2)

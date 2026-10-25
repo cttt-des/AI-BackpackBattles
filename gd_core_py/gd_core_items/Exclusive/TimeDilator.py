@@ -14,10 +14,16 @@ class Exclusive__TimeDilator(_R.C("res://gd_core_items/Item.gd")):
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.tickI = 0
+		self._tickI = 0
 		self.slow = None
 		self.speedUp = None
 
+	@property
+	def tickI(self):
+		return self._tickI
+	@tickI.setter
+	def tickI(self, v):
+		self._tickI = int(v)
 
 	def onPrepare(self):
 		self.tickI = 0

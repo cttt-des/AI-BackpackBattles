@@ -16,13 +16,31 @@ class CoreDamageResult(GodotObject):
 		super()._init_fields()
 		self.event = None
 		self.damageSource = None
-		self.damage = 0
-		self.healthDamage = 0
+		self._damage = 0
+		self._healthDamage = 0
 		self.hit = False
 		self.critical = False
-		self.damageReduction = 0
+		self._damageReduction = 0
 		self._ctx = None
 
+	@property
+	def damage(self):
+		return self._damage
+	@damage.setter
+	def damage(self, v):
+		self._damage = int(v)
+	@property
+	def healthDamage(self):
+		return self._healthDamage
+	@healthDamage.setter
+	def healthDamage(self, v):
+		self._healthDamage = int(v)
+	@property
+	def damageReduction(self):
+		return self._damageReduction
+	@damageReduction.setter
+	def damageReduction(self, v):
+		self._damageReduction = int(v)
 	# =============================================================================
 	# CoreDamageResult.gd — 无头战斗内核：伤害结算载体
 	# =============================================================================

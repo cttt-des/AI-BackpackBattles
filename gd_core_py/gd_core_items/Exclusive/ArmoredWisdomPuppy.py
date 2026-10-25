@@ -15,8 +15,14 @@ class Exclusive__ArmoredWisdomPuppy(_R.C("res://gd_core_items/Exclusive/WisdomPu
 	def _init_fields(self):
 		super()._init_fields()
 		self.bonusBlock = 0
-		self.cold = 0
+		self._cold = 0
 
+	@property
+	def cold(self):
+		return self._cold
+	@cold.setter
+	def cold(self, v):
+		self._cold = int(v)
 
 	def onPrepare(self):
 		super().onPrepare()

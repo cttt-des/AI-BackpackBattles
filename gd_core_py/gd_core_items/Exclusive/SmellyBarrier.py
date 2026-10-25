@@ -14,13 +14,19 @@ class Exclusive__SmellyBarrier(_R.C("res://gd_core_items/Item.gd")):
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.blockAcc = 0
+		self._blockAcc = 0
 		self.boostedGarlic = 0
 		self.garlicDescriptor = None
 		self.garlicBlockBonus = None
 		self.blockForPoison = None
 		self.poisonForBlock = None
 
+	@property
+	def blockAcc(self):
+		return self._blockAcc
+	@blockAcc.setter
+	def blockAcc(self, v):
+		self._blockAcc = int(v)
 
 	def canAffect(self, item):
 		return item.isA(self.garlicDescriptor) or item.canBlock()

@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class HolySpear(_R.C("res://gd_core_items/Weapon.gd")):
+class HolySpear_2(_R.C("res://gd_core_items/Weapon.gd")):
 
 	resource_path = "res://gd_core_items/HolySpear.gd"
 
@@ -18,16 +18,46 @@ class HolySpear(_R.C("res://gd_core_items/Weapon.gd")):
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.blockRemoval = 0
-		self.cleanses = 0
-		self.spearState = 0
+		self._blockRemoval = 0
+		self._cleanses = 0
+		self._spearState = 0
 		self.activationParticles = None
 		self.buffTimer = None
-		self.blockRemovalPerSlot = 0
+		self._blockRemovalPerSlot = 0
 		self.buffedSpeed = None
-		self.manaCost = 0
+		self._manaCost = 0
 		self.light = None
 
+	@property
+	def blockRemoval(self):
+		return self._blockRemoval
+	@blockRemoval.setter
+	def blockRemoval(self, v):
+		self._blockRemoval = int(v)
+	@property
+	def cleanses(self):
+		return self._cleanses
+	@cleanses.setter
+	def cleanses(self, v):
+		self._cleanses = int(v)
+	@property
+	def spearState(self):
+		return self._spearState
+	@spearState.setter
+	def spearState(self, v):
+		self._spearState = int(v)
+	@property
+	def blockRemovalPerSlot(self):
+		return self._blockRemovalPerSlot
+	@blockRemovalPerSlot.setter
+	def blockRemovalPerSlot(self, v):
+		self._blockRemovalPerSlot = int(v)
+	@property
+	def manaCost(self):
+		return self._manaCost
+	@manaCost.setter
+	def manaCost(self, v):
+		self._manaCost = int(v)
 
 	def affectsEmpty(self, color):
 		return True
@@ -108,5 +138,5 @@ class HolySpear(_R.C("res://gd_core_items/Weapon.gd")):
 		self.manaCost = self.getP2()
 
 
-_R.reg("res://gd_core_items/HolySpear.gd", HolySpear)
-_R.reg("HolySpear", HolySpear)
+_R.reg("res://gd_core_items/HolySpear.gd", HolySpear_2)
+_R.reg("HolySpear", HolySpear_2)

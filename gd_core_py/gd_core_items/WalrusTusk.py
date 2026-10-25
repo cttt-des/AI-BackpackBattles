@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class WalrusTusk(_R.C("res://gd_core_items/Item.gd")):
+class WalrusTusk_2(_R.C("res://gd_core_items/Item.gd")):
 
 	resource_path = "res://gd_core_items/WalrusTusk.gd"
 
@@ -22,5 +22,5 @@ class WalrusTusk(_R.C("res://gd_core_items/Item.gd")):
 		pass
 
 
-_R.reg("res://gd_core_items/WalrusTusk.gd", WalrusTusk)
-_R.reg("WalrusTusk", WalrusTusk)
+_R.reg("res://gd_core_items/WalrusTusk.gd", WalrusTusk_2)
+_R.reg("WalrusTusk", WalrusTusk_2)

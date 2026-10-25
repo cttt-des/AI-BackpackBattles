@@ -11,9 +11,21 @@ from ... import _registry as _R
 class RingEffect(GodotObject):
 	def _init_fields(self):
 		super()._init_fields()
-		self.triggerType = 0
-		self.stackType = 0
+		self._triggerType = 0
+		self._stackType = 0
 
+	@property
+	def triggerType(self):
+		return self._triggerType
+	@triggerType.setter
+	def triggerType(self, v):
+		self._triggerType = int(v)
+	@property
+	def stackType(self):
+		return self._stackType
+	@stackType.setter
+	def stackType(self, v):
+		self._stackType = int(v)
 
 	def pushEncoded(self, bitStream):
 		normalizedStack = self.stackType - _R.C("CoreConst").EventType.Lucky
@@ -43,17 +55,29 @@ class Exclusive__MagicRing(_R.C("res://gd_core_items/Item.gd")):
 		self.stackToColor = { _R.C("CoreConst").EventType.Lucky: Color(0.329826, 1, 0.263672), _R.C("CoreConst").EventType.Spikes: Color(0.700867, 1, 0.263672), _R.C("CoreConst").EventType.Regeneration: Color(1, 0.388672, 0.696724), _R.C("CoreConst").EventType.Heat: Color(1.1, 0.44, 0.24), _R.C("CoreConst").EventType.Vampirism: Color(0.900391, 0.04924, 0.04924), _R.C("CoreConst").EventType.Empower: Color(0.955078, 0.665003, 0.341366), _R.C("CoreConst").EventType.Mana: Color(0.257812, 0.330292, 1), _R.C("CoreConst").EventType.Blind: Color(0.569776, 0.196078, 1), _R.C("CoreConst").EventType.Cold: Color(0.196078, 0.952895, 1), _R.C("CoreConst").EventType.Poison: Color(0.008865, 0.648438, 0.176254) }
 		self.effects = []
 		self.effectDict = {}
-		self.gainedStacks = 0
+		self._gainedStacks = 0
 		self.playerLowTriggered = False
 		self.oppoLowTriggered = False
 		self.ringTypes = []
-		self.textEffect = 0
+		self._textEffect = 0
 		self.numEffects = None
 		self.healthThreshold = None
 		self.opponentHealthThreshold = None
 		self.stones = None
 		self.symbols = None
 
+	@property
+	def gainedStacks(self):
+		return self._gainedStacks
+	@gainedStacks.setter
+	def gainedStacks(self, v):
+		self._gainedStacks = int(v)
+	@property
+	def textEffect(self):
+		return self._textEffect
+	@textEffect.setter
+	def textEffect(self, v):
+		self._textEffect = int(v)
 
 	def hasCooldown(self):
 		return self.TriggerType.Every in self.effectDict

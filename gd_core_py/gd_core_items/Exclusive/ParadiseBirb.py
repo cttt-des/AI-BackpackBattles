@@ -14,11 +14,17 @@ class Exclusive__ParadiseBirb(_R.C("res://gd_core_items/Item.gd")):
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.numActivations = 0
+		self._numActivations = 0
 		self.speedBonus = None
 		self.maxActivations = None
 		self.bonusHeal = None
 
+	@property
+	def numActivations(self):
+		return self._numActivations
+	@numActivations.setter
+	def numActivations(self, v):
+		self._numActivations = int(v)
 
 	def canAffect(self, item):
 		return (item.hasCooldown() or item.gainsBuffs() or item.canHealOrLifesteal())

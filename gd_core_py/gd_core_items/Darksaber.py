@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class Darksaber(_R.C("res://gd_core_items/Weapon.gd")):
+class Darksaber_2(_R.C("res://gd_core_items/Weapon.gd")):
 
 	resource_path = "res://gd_core_items/Darksaber.gd"
 
@@ -35,5 +35,5 @@ class Darksaber(_R.C("res://gd_core_items/Weapon.gd")):
 		self.damPerDebuff = self.getP1()
 
 
-_R.reg("res://gd_core_items/Darksaber.gd", Darksaber)
-_R.reg("Darksaber", Darksaber)
+_R.reg("res://gd_core_items/Darksaber.gd", Darksaber_2)
+_R.reg("Darksaber", Darksaber_2)

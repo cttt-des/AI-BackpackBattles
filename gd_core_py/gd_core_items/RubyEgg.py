@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class RubyEgg(_R.C("res://gd_core_items/DragonEgg.gd")):
+class RubyEgg_2(_R.C("res://gd_core_items/DragonEgg.gd")):
 
 	resource_path = "res://gd_core_items/RubyEgg.gd"
 
@@ -39,5 +39,5 @@ class RubyEgg(_R.C("res://gd_core_items/DragonEgg.gd")):
 		self.heat = int(self.getP3())
 
 
-_R.reg("res://gd_core_items/RubyEgg.gd", RubyEgg)
-_R.reg("RubyEgg", RubyEgg)
+_R.reg("res://gd_core_items/RubyEgg.gd", RubyEgg_2)
+_R.reg("RubyEgg", RubyEgg_2)

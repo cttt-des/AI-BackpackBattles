@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class BurningCoal(_R.C("res://gd_core_items/Gems/Gem.gd")):
+class BurningCoal_2(_R.C("res://gd_core_items/Gems/Gem.gd")):
 
 	resource_path = "res://gd_core_items/BurningCoal.gd"
 
@@ -52,5 +52,5 @@ class BurningCoal(_R.C("res://gd_core_items/Gems/Gem.gd")):
 		pass
 
 
-_R.reg("res://gd_core_items/BurningCoal.gd", BurningCoal)
-_R.reg("BurningCoal", BurningCoal)
+_R.reg("res://gd_core_items/BurningCoal.gd", BurningCoal_2)
+_R.reg("BurningCoal", BurningCoal_2)

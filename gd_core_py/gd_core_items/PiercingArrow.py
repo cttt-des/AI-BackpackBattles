@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class PiercingArrow(_R.C("res://gd_core_items/Item.gd")):
+class PiercingArrow_2(_R.C("res://gd_core_items/Item.gd")):
 
 	resource_path = "res://gd_core_items/PiercingArrow.gd"
 
@@ -52,5 +52,5 @@ class PiercingArrow(_R.C("res://gd_core_items/Item.gd")):
 		self.blockRemoval = int(self.getP2())
 
 
-_R.reg("res://gd_core_items/PiercingArrow.gd", PiercingArrow)
-_R.reg("PiercingArrow", PiercingArrow)
+_R.reg("res://gd_core_items/PiercingArrow.gd", PiercingArrow_2)
+_R.reg("PiercingArrow", PiercingArrow_2)

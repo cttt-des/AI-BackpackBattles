@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class ManaOrb(_R.C("res://gd_core_items/Item.gd")):
+class ManaOrb_2(_R.C("res://gd_core_items/Item.gd")):
 
 	resource_path = "res://gd_core_items/ManaOrb.gd"
 
@@ -16,12 +16,24 @@ class ManaOrb(_R.C("res://gd_core_items/Item.gd")):
 		super()._init_fields()
 		self.stackTypes = []
 		self.activated = False
-		self.bonusBuffs = 0
+		self._bonusBuffs = 0
 		self.mana = None
-		self.manaNeeded = 0
+		self._manaNeeded = 0
 		self.buffs = None
 		self.light = None
 
+	@property
+	def bonusBuffs(self):
+		return self._bonusBuffs
+	@bonusBuffs.setter
+	def bonusBuffs(self, v):
+		self._bonusBuffs = int(v)
+	@property
+	def manaNeeded(self):
+		return self._manaNeeded
+	@manaNeeded.setter
+	def manaNeeded(self, v):
+		self._manaNeeded = int(v)
 
 	def canAffect(self, item):
 		return item.canActivate()
@@ -71,5 +83,5 @@ class ManaOrb(_R.C("res://gd_core_items/Item.gd")):
 
 
 
-_R.reg("res://gd_core_items/ManaOrb.gd", ManaOrb)
-_R.reg("ManaOrb", ManaOrb)
+_R.reg("res://gd_core_items/ManaOrb.gd", ManaOrb_2)
+_R.reg("ManaOrb", ManaOrb_2)

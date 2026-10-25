@@ -8,16 +8,22 @@ from .. import _registry as _R
 
 
 
-class Jynxtorquilla(_R.C("res://gd_core_items/Item.gd")):
+class Jynxtorquilla_2(_R.C("res://gd_core_items/Item.gd")):
 
 	resource_path = "res://gd_core_items/Jynxtorquilla.gd"
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.numActivations = 0
+		self._numActivations = 0
 		self.speedBonus = None
 		self.maxActivations = None
 
+	@property
+	def numActivations(self):
+		return self._numActivations
+	@numActivations.setter
+	def numActivations(self, v):
+		self._numActivations = int(v)
 
 	def canAffect(self, item):
 		return item.hasCooldown()
@@ -46,5 +52,5 @@ class Jynxtorquilla(_R.C("res://gd_core_items/Item.gd")):
 		self.maxActivations = int(self.getP("max"))
 
 
-_R.reg("res://gd_core_items/Jynxtorquilla.gd", Jynxtorquilla)
-_R.reg("Jynxtorquilla", Jynxtorquilla)
+_R.reg("res://gd_core_items/Jynxtorquilla.gd", Jynxtorquilla_2)
+_R.reg("Jynxtorquilla", Jynxtorquilla_2)

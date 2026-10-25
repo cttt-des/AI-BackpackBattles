@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class ArtifactStoneHeat(_R.C("res://gd_core_items/Stone.gd")):
+class ArtifactStoneHeat_2(_R.C("res://gd_core_items/Stone.gd")):
 
 	resource_path = "res://gd_core_items/ArtifactStoneHeat.gd"
 
@@ -47,5 +47,5 @@ class ArtifactStoneHeat(_R.C("res://gd_core_items/Stone.gd")):
 		pass
 
 
-_R.reg("res://gd_core_items/ArtifactStoneHeat.gd", ArtifactStoneHeat)
-_R.reg("ArtifactStoneHeat", ArtifactStoneHeat)
+_R.reg("res://gd_core_items/ArtifactStoneHeat.gd", ArtifactStoneHeat_2)
+_R.reg("ArtifactStoneHeat", ArtifactStoneHeat_2)

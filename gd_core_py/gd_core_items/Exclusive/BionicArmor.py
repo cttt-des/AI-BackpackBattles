@@ -14,7 +14,7 @@ class Exclusive__BionicArmor(_R.C("res://gd_core_items/Item.gd")):
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.blockHealthAcc = 0
+		self._blockHealthAcc = 0
 		self.staminaRegenMalus = None
 		self.healthThreshold = None
 		self.maxStamina = None
@@ -23,6 +23,12 @@ class Exclusive__BionicArmor(_R.C("res://gd_core_items/Item.gd")):
 		self.empower = None
 		self.block2 = None
 
+	@property
+	def blockHealthAcc(self):
+		return self._blockHealthAcc
+	@blockHealthAcc.setter
+	def blockHealthAcc(self, v):
+		self._blockHealthAcc = int(v)
 
 	def onPrepare(self):
 		self.blockHealthAcc = 0

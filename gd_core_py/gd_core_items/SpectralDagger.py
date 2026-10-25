@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class SpectralDagger(_R.C("res://gd_core_items/Dagger.gd")):
+class SpectralDagger_2(_R.C("res://gd_core_items/Dagger.gd")):
 
 	resource_path = "res://gd_core_items/SpectralDagger.gd"
 
@@ -25,5 +25,5 @@ class SpectralDagger(_R.C("res://gd_core_items/Dagger.gd")):
 		pass
 
 
-_R.reg("res://gd_core_items/SpectralDagger.gd", SpectralDagger)
-_R.reg("SpectralDagger", SpectralDagger)
+_R.reg("res://gd_core_items/SpectralDagger.gd", SpectralDagger_2)
+_R.reg("SpectralDagger", SpectralDagger_2)

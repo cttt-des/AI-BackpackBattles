@@ -21,13 +21,19 @@ class Exclusive__Eat_o_matic(_R.C("res://gd_core_items/Item.gd")):
 		self.affectedFood = None
 		self.otherFood = []
 		self.armTween = None
-		self.armState = 0
+		self._armState = 0
 		self.foodSpeed = None
 		self.chargedSpeed = None
 		self.otherSpeed = None
 		self.arm = None
 		self.armAnimation = None
 
+	@property
+	def armState(self):
+		return self._armState
+	@armState.setter
+	def armState(self, v):
+		self._armState = int(v)
 	SLOW_SPEED = 0.2
 	FAST_SPEED = 1.0
 

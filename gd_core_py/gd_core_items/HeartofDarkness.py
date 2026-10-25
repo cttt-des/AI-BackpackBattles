@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class HeartofDarkness(_R.C("res://gd_core_items/Item.gd")):
+class HeartofDarkness_2(_R.C("res://gd_core_items/Item.gd")):
 
 	resource_path = "res://gd_core_items/HeartofDarkness.gd"
 
@@ -68,5 +68,5 @@ class HeartofDarkness(_R.C("res://gd_core_items/Item.gd")):
 		self.numStealedBuffs = int(self.getP("buffsteal"))
 
 
-_R.reg("res://gd_core_items/HeartofDarkness.gd", HeartofDarkness)
-_R.reg("HeartofDarkness", HeartofDarkness)
+_R.reg("res://gd_core_items/HeartofDarkness.gd", HeartofDarkness_2)
+_R.reg("HeartofDarkness", HeartofDarkness_2)

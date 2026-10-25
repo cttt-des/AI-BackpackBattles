@@ -8,15 +8,21 @@ from .. import _registry as _R
 
 
 
-class Spear(_R.C("res://gd_core_items/Weapon.gd")):
+class Spear_2(_R.C("res://gd_core_items/Weapon.gd")):
 
 	resource_path = "res://gd_core_items/Spear.gd"
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.totalBlockRemoval = 0
+		self._totalBlockRemoval = 0
 		self.blockRemoval = None
 
+	@property
+	def totalBlockRemoval(self):
+		return self._totalBlockRemoval
+	@totalBlockRemoval.setter
+	def totalBlockRemoval(self, v):
+		self._totalBlockRemoval = int(v)
 
 	def affectsEmpty(self, color):
 		return True
@@ -39,5 +45,5 @@ class Spear(_R.C("res://gd_core_items/Weapon.gd")):
 		self.blockRemoval = self.getP("blockremoval")
 
 
-_R.reg("res://gd_core_items/Spear.gd", Spear)
-_R.reg("Spear", Spear)
+_R.reg("res://gd_core_items/Spear.gd", Spear_2)
+_R.reg("Spear", Spear_2)

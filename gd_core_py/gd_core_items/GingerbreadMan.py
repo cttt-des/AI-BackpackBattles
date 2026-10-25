@@ -8,16 +8,34 @@ from .. import _registry as _R
 
 
 
-class GingerbreadMan(_R.C("res://gd_core_items/Food.gd")):
+class GingerbreadMan_2(_R.C("res://gd_core_items/Food.gd")):
 
 	resource_path = "res://gd_core_items/GingerbreadMan.gd"
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.luckNeeded = 0
-		self.heatNeeded = 0
-		self.manaNeeded = 0
+		self._luckNeeded = 0
+		self._heatNeeded = 0
+		self._manaNeeded = 0
 
+	@property
+	def luckNeeded(self):
+		return self._luckNeeded
+	@luckNeeded.setter
+	def luckNeeded(self, v):
+		self._luckNeeded = int(v)
+	@property
+	def heatNeeded(self):
+		return self._heatNeeded
+	@heatNeeded.setter
+	def heatNeeded(self, v):
+		self._heatNeeded = int(v)
+	@property
+	def manaNeeded(self):
+		return self._manaNeeded
+	@manaNeeded.setter
+	def manaNeeded(self, v):
+		self._manaNeeded = int(v)
 
 	def onCombatStart(self):
 		self.giveMaxHealth()
@@ -48,5 +66,5 @@ class GingerbreadMan(_R.C("res://gd_core_items/Food.gd")):
 		self.manaNeeded = self.getP4()
 
 
-_R.reg("res://gd_core_items/GingerbreadMan.gd", GingerbreadMan)
-_R.reg("GingerbreadMan", GingerbreadMan)
+_R.reg("res://gd_core_items/GingerbreadMan.gd", GingerbreadMan_2)
+_R.reg("GingerbreadMan", GingerbreadMan_2)

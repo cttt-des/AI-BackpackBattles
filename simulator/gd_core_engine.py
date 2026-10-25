@@ -606,7 +606,54 @@ class GDCoreEngine:
                  o_activation_order: Optional[List[int]] = None,
                  reseed_after_player_character: bool = False,
                  post_seed_draws: int = 0,
-                 rng_state: Optional[int] = None):
+                 rng_state: Optional[int] = None,
+                 label_rng_enabled: Optional[bool] = None,
+                 warm_latch: bool = False,
+                 perm_stack_override: Optional[Dict[int, int]] = None,
+                 r5_dual_exec: Optional[Dict[str, int]] = None,
+                 _r5_warm: bool = False,
+                 _r5_warm_gate: int = 25000,
+                 formal_ev_gate: int = 25000):
+        # ★ np21-R5 双执行拓扑（py 腿镜像，真源 = gd_core_test/OracleAlignBattle.gd
+        #   R5_DUAL_EXEC 表 + 注入段，逐点同步；机理与语料证据链见该处注释）：
+        #   r5_dual_exec={"warm_event_gate": 25000} 时，正式装配前先用同 case
+        #   同 seed 构造并跑完一个**干净第 1 次执行**（暖场）——独立 ctx、无
+        #   rng_state 注入、无任何宿主补偿、截于事件闸不清理——随后按录制进程
+        #   的残留拓扑回灌正式场：
+        #     ① permanentStacks（teardown 的 cleanse 不清永久栈，np18-C 语义）；
+        #     ② EventBus 存活连接嫁接（发射体=暖场玩家 && 接收体=玩家侧物品，
+        #       暖场时序挂正式 bus、陈旧先于新鲜；接收体 ctx/character_ 与
+        #       damageSource/chanceRng/damageRangeRng 抽源改指正式侧）；
+        #     ③ fatigueCounter 第四残留（CombatTimer 跨执行共享节点，只在
+        #       combatEnd 复位；暖场>17s 已疲劳且截断不复位 ⇒ 正式场
+        #       hasFatigueStarted 自 t=0 即真；值不敏感——t=14 startFatigue
+        #       照常复位 0）。
+        #   _r5_warm/_r5_warm_gate 为内部递归参数（暖场实例专用），外部不传。
+        self._r5_journal: List[tuple] = []
+        self._r5_fatigue = 0
+        self._r5_warm_pkg = None
+        if r5_dual_exec and not _r5_warm:
+            warm = GDCoreEngine(
+                player_lineup, opponent_lineup, item_db, character_db,
+                seed=seed, max_time=max_time, probe_bases=probe_bases,
+                below_master=below_master,
+                p_activation_order=p_activation_order,
+                o_activation_order=o_activation_order,
+                reseed_after_player_character=reseed_after_player_character,
+                post_seed_draws=post_seed_draws,
+                label_rng_enabled=label_rng_enabled,
+                _r5_warm=True,
+                _r5_warm_gate=int(r5_dual_exec.get("warm_event_gate", 25000)))
+            warm.run()
+            self._r5_warm_pkg = warm
+        self._r5_warm_flag = _r5_warm
+        self._r5_warm_gate = int(_r5_warm_gate)
+        # ★ np22 重录场正式腿事件闸对位（真源 = gd_core_test/OracleAlignBattle.gd
+        #   NP22_REC_EV_GATE 表 + tools/verify_oracle.py PY_NP22_REC_EV_GATE）：
+        #   三场新语料以 ORACLE_NOLIMIT=1（事件闸 200000）全长录制，正式腿
+        #   必须同闸对位，否则在 M12=25000 截断 → 伪长度分歧。其余场缺省
+        #   25000 零变化。
+        self._formal_ev_gate = int(formal_ev_gate)
         # ★ seed 的语义：内核的随机源是 `CoreRng(seed)`，**不是** Python 的
         #   `random.Random(None)` —— 后者不给种子会按 OS 熵随机化，前者拿到 None
         #   会被折成 0。若这里直接把 None 传下去，「不指定种子跑 100 场」会变成
@@ -639,6 +686,12 @@ class GDCoreEngine:
         self.hooks = probe_cls()
         self.log = self.hooks                     # 事件视图即日志视图
         ctx = k["CoreContext"](int(seed), self.hooks)
+        # np21-R5：暖场实例打开连接台账（键控默认关，正式/非键控路径零扰动）
+        if _r5_warm:
+            ctx.bus.connect_journal_enabled = True
+        # ★ 标签视觉抽开关（round19，与 gd 侧 OracleAlignBattle 同步）
+        if label_rng_enabled is not None:
+            ctx.label_rng_enabled = bool(label_rng_enabled)
         self.ctx = ctx
         self.hooks.ctx = ctx
         # 对齐 Game.isBelowLeague(Master)（Character.gd:304 / Item.gd:3791 消费）。
@@ -650,6 +703,29 @@ class GDCoreEngine:
         ctx.below_master = bool(below_master)
         p = self._make_character(ctx, k["CoreCharacter"].ID.PLAYER, ps, cls_p,
                                  player_lineup.get("base_max_stamina"))
+        # ★ np21-R5 残留①（permanentStacks 收割灌入，gd 宿主 [r5-warm] 块同位）：
+        #   暖场玩家终局永久栈（teardown 的 cleanse 不清）——纯字段写、零 rng。
+        if self._r5_warm_pkg is not None:
+            _wp = self._r5_warm_pkg._p
+            for _bt, _wbuf in _wp.buffs.items():
+                if _bt in p.buffs:
+                    p.buffs[_bt].permanentStacks = int(_wbuf.permanentStacks)
+        # ★ np21-① 宿主补偿镜像（与 gd_core_test/OracleAlignBattle.gd:497-514 逐点同步）：
+        #   录制工件受控补偿，非内核语义——仅神谕对齐驱动按键控表传入，默认关闭
+        #   （既有路径 python -m simulator.simulate / 56 局基准零变化）。
+        #   注入点 = 玩家角色构造后、播种（reseed）前：纯字段写、零 rng 消耗
+        #   （gd 侧同位，角色构造链消耗随后被 seed 抹除）。
+        #   · perm_stack_override（np18-C 收割注入 + np20-C canonical 校正的净面）：
+        #     跨执行 permanentStacks 残留（oracle Buff.reset 不清 permanentStacks，
+        #     语料=录制管线第 3 次执行，携带前执行永久栈）；
+        #   · warm_latch（np17-B）：暖场 watchdog 截断不走 endCombat ⇒ PLAYER
+        #     attack_moving_forward 暖场置真后永不复位 ⇒ 正式场首次武器攻跳本体 5 抽。
+        if perm_stack_override:
+            for _bt, _stk in perm_stack_override.items():
+                if _bt in p.buffs:
+                    p.buffs[_bt].permanentStacks = int(_stk)
+        if warm_latch:
+            p.attack_moving_forward = True
         # ★ 神谕装配期链约定（docs/oracle_workflow.md Phase 3；与
         #   gd_core_test/OracleAlignBattle.gd 同步）：神谕复用 PLAYER（角色构造
         #   消耗在本场播种前，被 seed 抹除），随后任何物品实例创建之前
@@ -664,9 +740,6 @@ class GDCoreEngine:
             ctx.rng.rng.seed = int(self._seed)
             for _ in range(int(post_seed_draws)):
                 ctx.rng.rng.randi()
-        o = self._make_character(ctx, k["CoreCharacter"].ID.OPPONENT, os_, cls_o,
-                                 opponent_lineup.get("base_max_stamina"))
-        self._p, self._o = p, o
 
         # 局外回合数：LevelUp.onPrepare 读 ctx.cur_round（对齐原版 Game.curRound）
         try:
@@ -676,14 +749,70 @@ class GDCoreEngine:
 
         combat = k["CoreCombat"](ctx)
         combat.max_time = self.max_time
-        combat.setup(p, o)
-        self.combat = combat
+        # ★ 阶段3 装配次序（r17 批2 通道 A，与 gd_core_test/OracleAlignBattle.gd
+        #   同步落地）：神谕播种后的装配次序 =
+        #   「玩家物品 → 对手角色 4 抽 BalancedRng（Character.gd:94-97）→ 对手物品」
+        #   （oracle_fight.gd:567-597 实证；run818_r5 raw 级对位定谳——神谕
+        #   rng_log_first.txt raw16/19/22/39 == gd 平移前同构位的 +4）。此前两侧
+        #   都把对手角色的 4 抽（_make_character→CoreCharacter.__init__ 的
+        #   4×BalancedRng）插在玩家物品之前，玩家侧每笔装配抽取（ctor+ready）
+        #   整体 +4 插位 → 窗口内 ctor/ready 抽互换 raw → BalancedRng
+        #   expectedWins ctor 值差 → 战斗期值差族（run628_r14 idx37 O8/G11 纯
+        #   值差、run818_r5 idx70 dmg 16vs17）。r14「ready 抽未内联」误诊纠正：
+        #   两侧逐物品本就是 [2 ctor][ready] 紧邻结构，唯对手角色块错位——
+        #   CoreItem._readyInit 段零改动。
+        #   op6 不变量保持：ctx.player/ctx.combat 仍在玩家物品装配之前绑定
+        #   （BagofStones.gd:13 装配期读 ctx.player.INVENTORY）；全工程装配期钩子
+        #   （_readyInit/onAddToInventory/onItemAdded/getAffectedCellsAfterRotate*）
+        #   零处读 ctx.opponent/ctx.combat（r17 批2 全量扫描），
+        #   CoreItem.addToInventory 的 ownerType 判定对 ctx.opponent 判空。
+        #   门控 = reseed_after_player_character（仅 tools/verify_oracle.py:281 的
+        #   神谕对齐路径传 True）：既有路径（python -m simulator.simulate / 56 局
+        #   基准）的装配序列保持逐字节不变。
+        if reseed_after_player_character:
+            ctx.player = p
+            ctx.combat = combat
+        else:
+            o = self._make_character(ctx, k["CoreCharacter"].ID.OPPONENT, os_, cls_o,
+                                     opponent_lineup.get("base_max_stamina"))
+            self._p, self._o = p, o
+            combat.setup(p, o)
+            self.combat = combat
+
+        # ★ 描述符预注册（2026-10-10 round 修复：isA 身份链占位符缺口，与
+        #   gd_core_test/OracleAlignBattle.gd 同步）：CoreItemBook.getDescriptor
+        #   对未注册名惰性造「零值占位实例」，_descriptor 的 register 随后用
+        #   真实数据**换掉**表项——早于真实注册拿到占位引用的物品（Buy the
+        #   Holy Light._readyInit 的 getDescriptor("Oil Lamp")，装配序在灯之前
+        #   的场次）此后 isA 恒 false（引用相等），canAffect 全局灯面静默失效
+        #   （run634_r18 玩家灯缺 +0.40 speed → 冷却恒慢 → 事件链漂移）。
+        #   真游戏全物品共享同一份 .tres 资源，不存在「先占位后换实例」。
+        #   放置任何物品（含宝石）前先把本场两侧全部真实描述符注册进
+        #   item_book，占位窗口归零。纯数据面操作，零 rng 消耗。
+        for _pre_lu in (player_lineup, opponent_lineup):
+            for _pre_e in ((_pre_lu.get("backpack") or {}).get("items") or []):
+                _pre_k = _pre_e.get("id") or _pre_e.get("key")
+                if _pre_k:
+                    self._descriptor(ctx, _pre_k)
+                for _pre_g in (_pre_e.get("gems") or []):
+                    _pre_gk = _key_of(_pre_g)
+                    if _pre_gk:
+                        self._descriptor(ctx, _pre_gk)
 
         owner = k["CoreConst"].Owner
         self._p_items = self._build_side(ctx, p, player_lineup,
                                          owner.PlayerInventory)
+        if reseed_after_player_character:
+            # 对手角色 4 抽落神谕位：玩家物品之后、对手物品之前；
+            # combat.setup 在此补完整接线（ctx.player/ctx.combat 重赋值幂等）
+            o = self._make_character(ctx, k["CoreCharacter"].ID.OPPONENT, os_, cls_o,
+                                     opponent_lineup.get("base_max_stamina"))
+            self._p, self._o = p, o
+            combat.setup(p, o)
+            self.combat = combat
         self._o_items = self._build_side(ctx, o, opponent_lineup, owner.Opponent)
-        # 物品要在 combat.setup() 之后装；startBattle 再兜住双方
+        # 物品要在 combat.setup() 之后装（既有路径由上方 else 分支保证；
+        # 神谕路径 ctx.player/ctx.combat 先绑定，op6 语义不变）；startBattle 再兜住双方
         # ★ 激活顺序直通（受控神谕对齐路径）：原版开战前的 shuffle 走引擎全局链
         #   （docs/rng_truth.md §1.4-2），内核 ctx.rng.shuffle 是自研替身。对齐时
         #   宿主把「真 Godot 全局链 seed(S) → shuffle×2 → sort_TriggerPriority」
@@ -703,6 +832,52 @@ class GDCoreEngine:
         #   GDScript 落盘的是有符号 64 位视角的 u64，set_state 内部按 MASK64 归一。
         if rng_state is not None:
             ctx.set_state(int(rng_state))
+        # ★ np21-R5 残留②（连接泄漏嫁接，gd 宿主 [r5-graft] 块同位）：把暖场
+        #   bus 台账中「发射体=暖场玩家 && 接收体=玩家侧物品」的连接按暖场时序
+        #   挂上正式 bus（发射体映射为正式玩家——oracle 里 PLAYER 节点跨执行
+        #   复用）；此刻正式侧 onPrepare 连接尚未建立（startBattle→prepareItems
+        #   才连）⇒ 追加即天然「陈旧先于新鲜」。陈旧接收体 ctx/character_ 改指
+        #   正式侧；damageSource/chanceRng/damageRangeRng 抽源改指正式 ctx.rng
+        #   （oracle：进程级共享 Util.rng ⇒ 陈旧处理器消耗正式链 rng）。
+        #   BalancedRng 平衡态保留暖场值（正式 prepareItems 重置只遍历正式清单）。
+        #   暖场自然终局时 oracle combatEndDeferred→disconnectAll 已清连接 ⇒ 不嫁接。
+        if self._r5_warm_pkg is not None and not self._r5_warm_pkg.fight_ended:
+            _wpk = self._r5_warm_pkg
+            _wp, _wctx = _wpk._p, _wpk.ctx
+            _owner_pv = int(k["CoreConst"].Owner.PlayerInventory)
+            _stale = {}
+            for entry in list(getattr(_wctx.bus, "connect_journal", [])):
+                if entry[0] is not _wp or entry[2] is None:
+                    continue
+                if int(entry[2].ownerType) != _owner_pv:
+                    continue
+                ctx.bus.connectEvent(p, entry[1], entry[2], entry[3])
+                _stale[id(entry[2])] = entry[2]
+            for _rcv in _stale.values():
+                _rcv.ctx = ctx
+                _rcv.character_ = p
+                if getattr(_rcv, "damageSource", None) is not None:
+                    _rcv.damageSource._rng = ctx.rng
+                if getattr(_rcv, "chanceRng", None) is not None:
+                    _rcv.chanceRng._rng = ctx.rng
+                if getattr(_rcv, "damageRangeRng", None) is not None:
+                    _rcv.damageRangeRng._rng = ctx.rng
+            # np21-R5 stale_used_stacks 键控覆盖（gd 宿主同位；封闭推导见
+            # gd_core_test/OracleAlignBattle.gd R5_DUAL_EXEC 表注）——gd 干净
+            # 暖场收官值 ≠ 语料录制批（旧树）收官值时按推导真值覆盖。
+            _ov = (r5_dual_exec or {}).get("stale_used_stacks") or {}
+            if _ov:
+                for _rcv in _stale.values():
+                    _id_ = str(getattr(getattr(_rcv, "descriptor", None), "identifier", ""))
+                    if _id_ not in _ov:
+                        continue
+                    for _bt, _v in _ov[_id_].items():
+                        if getattr(_rcv, "usedStacks", None) is not None and int(_bt) in _rcv.usedStacks:
+                            _rcv.usedStacks[int(_bt)] = float(_v)
+            # np21-R5 残留③（fatigueCounter，只在截断路径存活；值不敏感——
+            # t=14 startFatigue 照常复位 0，仅经 hasFatigueStarted 面可观测）
+            if _wctx.combat is not None:
+                self._r5_fatigue = int(_wctx.combat.fatigue_counter)
         if p_activation_order is not None or o_activation_order is not None:
             if (p_activation_order is None or o_activation_order is None
                     or sorted(p_activation_order) != list(range(len(self._p_items)))
@@ -713,6 +888,13 @@ class GDCoreEngine:
                                True)
         else:
             combat.startBattle(self._p_items, self._o_items)
+
+        # ★ np21-R5 残留③注入（fatigueCounter，gd 宿主 startBattle 后同位）：
+        #   startBattle 已清 counter、其后 activateItems 只清 flag 不清 counter，
+        #   故注入后仅经 hasFatigueStarted()（=counter>0）面可观测；t=14
+        #   startFatigue 照常复位。纯字段写，零 rng 消耗。
+        if self._r5_fatigue > 0:
+            combat.fatigue_counter = self._r5_fatigue
 
         # 对外视图
         self.player = _CharacterView(p, self._lineup_name(player_lineup),
@@ -788,6 +970,18 @@ class GDCoreEngine:
                 # 连接器/宝石 _ready 抽（同阶段2 装配期对齐，消费点 CoreItem._readyInit）
                 "connectorReadyRoll": bool(d.get("connectorReadyRoll", False)),
                 "gemRoll": bool(d.get("gemRoll", False)),
+                # 随机 unique 池（tools/enrich_unique_pool.py）：isTreasure() 的唯一
+                # 依据（Item.gd:5723-5724 ← ItemBook.gd:899-901）——Fedora 计 treasure
+                "randomUniquePool": bool(d.get("randomUniquePool", False)),
+                # gained/removed/usedStacks（round10；与 gd_core/CoreItemData.
+                # fromDict:347-349 同名直传——Toad/PoisonFrog 阈值网络判定面）
+                "gainedStacks": int(d.get("gainedStacks", 0)),
+                "removedStacks": int(d.get("removedStacks", 0)),
+                "usedStacks": int(d.get("usedStacks", 0)),
+                # 战怒描述符（oracle rage_dump_tmp.gd）：isBattleRageItem 判定面
+                "hasBattleRageEffect": bool(d.get("hasBattleRageEffect", False)),
+                # 场景绑定深度（tools/enrich_scene_depth.py）：setup() chanceRng 次数
+                "sceneDepth": int(d.get("sceneDepth", 2)),
             })
             _DESCR_CACHE[key] = made
         return ctx.item_book.register(made)
@@ -842,6 +1036,12 @@ class GDCoreEngine:
                                  int(e.get("col") or 0),
                                  int(e.get("rotation") or 0), owner_type)
                 chr_.inventory.addItem(it, it.occupiedCells)
+                # ★ r34 crafted 效果真值覆写（对齐重放元组覆写点）：_ready_init 的
+                #   roll 照常消耗链位（与神谕重放同序），随后用史真值覆写（零 rng）。
+                #   仅 MagicRing 族有此方法；effects 缺省/None 跳过。
+                effs = e.get("effects")
+                if effs and hasattr(it, "setCraftedEffects"):
+                    it.setCraftedEffects(effs)
                 # 宝石在宿主入包之后才 setGem
                 for gi, g in enumerate(e.get("gems") or []):
                     gkey = _key_of(g)
@@ -857,9 +1057,18 @@ class GDCoreEngine:
     def run(self):
         d = self._K["CoreContext"].PHYSICS_DELTA
         ticks = 0
+        # oracle M12 事件数闸对位（oracle_fight.gd:742-744：events>25000
+        # 提前判停、status=timeout、已产生事件照常 dump、winner 不判胜）。
+        # gd 宿主（OracleAlignBattle.gd）已补同款；py 引擎此前缺 →
+        # length 簇 py 侧跑到自然终局，事件数/战报长度与 oracle 分歧。
+        # np21-R5：暖场实例用表内 T_w 闸（=暖场截断点）；np22 重录三场正式腿
+        # 用 formal_ev_gate 对位抬闸（录制工件对位）；其余场维持 M12 常数 25000。
+        _gate = self._r5_warm_gate if self._r5_warm_flag else self._formal_ev_gate
         while not self.combat.fight_ended and ticks < MAX_TICKS:
             self.combat.physicsTick(d)
             ticks += 1
+            if len(self.log.events) > _gate:
+                break
         self._ticks = ticks
         self.fight_ended = bool(self.combat.fight_ended)
         self.combat_time = float(self.combat.combat_time)

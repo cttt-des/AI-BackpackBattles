@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class ClawsofAttack(_R.C("res://gd_core_items/Weapon.gd")):
+class ClawsofAttack_2(_R.C("res://gd_core_items/Weapon.gd")):
 
 	resource_path = "res://gd_core_items/ClawsofAttack.gd"
 
@@ -49,5 +49,5 @@ class ClawsofAttack(_R.C("res://gd_core_items/Weapon.gd")):
 		self.numHits = int(self.getP3())
 
 
-_R.reg("res://gd_core_items/ClawsofAttack.gd", ClawsofAttack)
-_R.reg("ClawsofAttack", ClawsofAttack)
+_R.reg("res://gd_core_items/ClawsofAttack.gd", ClawsofAttack_2)
+_R.reg("ClawsofAttack", ClawsofAttack_2)
