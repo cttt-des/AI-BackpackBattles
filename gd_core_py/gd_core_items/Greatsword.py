@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class Greatsword(_R.C("res://gd_core_items/Weapon.gd")):
+class Greatsword_2(_R.C("res://gd_core_items/Weapon.gd")):
 
 	resource_path = "res://gd_core_items/Greatsword.gd"
 
@@ -73,5 +73,5 @@ class Greatsword(_R.C("res://gd_core_items/Weapon.gd")):
 		self.buffedCooldown = self.getP3()
 
 
-_R.reg("res://gd_core_items/Greatsword.gd", Greatsword)
-_R.reg("Greatsword", Greatsword)
+_R.reg("res://gd_core_items/Greatsword.gd", Greatsword_2)
+_R.reg("Greatsword", Greatsword_2)

@@ -8,13 +8,13 @@ from .. import _registry as _R
 
 
 
-class Manathirst(_R.C("res://gd_core_items/Weapon.gd")):
+class Manathirst_2(_R.C("res://gd_core_items/Weapon.gd")):
 
 	resource_path = "res://gd_core_items/Manathirst.gd"
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.manaGained = 0
+		self._manaGained = 0
 		self.fillingTween = None
 		self.filling = None
 		self.fillingGlow = None
@@ -24,6 +24,12 @@ class Manathirst(_R.C("res://gd_core_items/Weapon.gd")):
 		self.dam = None
 		self.mana = None
 
+	@property
+	def manaGained(self):
+		return self._manaGained
+	@manaGained.setter
+	def manaGained(self, v):
+		self._manaGained = int(v)
 
 	def onPrepare(self):
 		self.manaGained = 0
@@ -61,5 +67,5 @@ class Manathirst(_R.C("res://gd_core_items/Weapon.gd")):
 		self.mana = int(self.getP("mana"))
 
 
-_R.reg("res://gd_core_items/Manathirst.gd", Manathirst)
-_R.reg("Manathirst", Manathirst)
+_R.reg("res://gd_core_items/Manathirst.gd", Manathirst_2)
+_R.reg("Manathirst", Manathirst_2)

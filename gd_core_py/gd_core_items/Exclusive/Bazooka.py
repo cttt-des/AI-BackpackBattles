@@ -14,13 +14,19 @@ class Exclusive__Bazooka(_R.C("res://gd_core_items/Weapon.gd")):
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.activationsLeft = 0
+		self._activationsLeft = 0
 		self.stunResistActive = False
 		self.heatNeeded = None
 		self.luck = None
 		self.luckNeeded = None
 		self.uses = None
 
+	@property
+	def activationsLeft(self):
+		return self._activationsLeft
+	@activationsLeft.setter
+	def activationsLeft(self, v):
+		self._activationsLeft = int(v)
 
 	def onPrepare(self):
 		self.activationsLeft = self.uses

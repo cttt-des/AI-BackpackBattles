@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class StrongHealthPotion(_R.C("res://gd_core_items/HealthPotion.gd")):
+class StrongHealthPotion_2(_R.C("res://gd_core_items/HealthPotion.gd")):
 
 	resource_path = "res://gd_core_items/StrongHealthPotion.gd"
 
@@ -26,5 +26,5 @@ class StrongHealthPotion(_R.C("res://gd_core_items/HealthPotion.gd")):
 		pass
 
 
-_R.reg("res://gd_core_items/StrongHealthPotion.gd", StrongHealthPotion)
-_R.reg("StrongHealthPotion", StrongHealthPotion)
+_R.reg("res://gd_core_items/StrongHealthPotion.gd", StrongHealthPotion_2)
+_R.reg("StrongHealthPotion", StrongHealthPotion_2)

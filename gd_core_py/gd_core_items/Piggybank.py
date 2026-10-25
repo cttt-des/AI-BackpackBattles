@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class Piggybank(_R.C("res://gd_core_items/Item.gd")):
+class Piggybank_2(_R.C("res://gd_core_items/Item.gd")):
 
 	resource_path = "res://gd_core_items/Piggybank.gd"
 
@@ -83,5 +83,5 @@ class Piggybank(_R.C("res://gd_core_items/Item.gd")):
 		self.thorsHammerDescriptor = self.ctx.item_book.getDescriptor("Thors Hammer")
 
 
-_R.reg("res://gd_core_items/Piggybank.gd", Piggybank)
-_R.reg("Piggybank", Piggybank)
+_R.reg("res://gd_core_items/Piggybank.gd", Piggybank_2)
+_R.reg("Piggybank", Piggybank_2)

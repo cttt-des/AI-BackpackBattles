@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class RubyChonk(_R.C("res://gd_core_items/Weapon.gd")):
+class RubyChonk_2(_R.C("res://gd_core_items/Weapon.gd")):
 
 	resource_path = "res://gd_core_items/RubyChonk.gd"
 
@@ -87,5 +87,5 @@ class RubyChonk(_R.C("res://gd_core_items/Weapon.gd")):
 		self.heatThreshold = int(self.getP1())
 
 
-_R.reg("res://gd_core_items/RubyChonk.gd", RubyChonk)
-_R.reg("RubyChonk", RubyChonk)
+_R.reg("res://gd_core_items/RubyChonk.gd", RubyChonk_2)
+_R.reg("RubyChonk", RubyChonk_2)

@@ -18,13 +18,25 @@ class ChessPiece(_R.C("res://gd_core_items/Item.gd")):
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.pieceColor = 0
+		self._pieceColor = 0
 		self.moveCells = []
 		self.captured = False
-		self.numCaptures = 0
+		self._numCaptures = 0
 		self.board = None
 		self.noBoardMark = None
 
+	@property
+	def pieceColor(self):
+		return self._pieceColor
+	@pieceColor.setter
+	def pieceColor(self, v):
+		self._pieceColor = int(v)
+	@property
+	def numCaptures(self):
+		return self._numCaptures
+	@numCaptures.setter
+	def numCaptures(self, v):
+		self._numCaptures = int(v)
 
 	def canAffect(self, item):
 		return item.hasType(_R.C("CoreConst").Type.ChessPiece) and item.pieceColor != self.pieceColor

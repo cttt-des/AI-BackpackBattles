@@ -8,16 +8,34 @@ from .. import _registry as _R
 
 
 
-class BowandArrow(_R.C("res://gd_core_items/Bow.gd")):
+class BowandArrow_2(_R.C("res://gd_core_items/Bow.gd")):
 
 	resource_path = "res://gd_core_items/BowandArrow.gd"
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.bonusDmg = 0
-		self.bonusDmgPerHit = 0
-		self.maxDmg = 0
+		self._bonusDmg = 0
+		self._bonusDmgPerHit = 0
+		self._maxDmg = 0
 
+	@property
+	def bonusDmg(self):
+		return self._bonusDmg
+	@bonusDmg.setter
+	def bonusDmg(self, v):
+		self._bonusDmg = int(v)
+	@property
+	def bonusDmgPerHit(self):
+		return self._bonusDmgPerHit
+	@bonusDmgPerHit.setter
+	def bonusDmgPerHit(self, v):
+		self._bonusDmgPerHit = int(v)
+	@property
+	def maxDmg(self):
+		return self._maxDmg
+	@maxDmg.setter
+	def maxDmg(self, v):
+		self._maxDmg = int(v)
 
 	def hasAttackEffect(self):
 		return True
@@ -58,5 +76,5 @@ class BowandArrow(_R.C("res://gd_core_items/Bow.gd")):
 		self.maxDmg = self.getP2()
 
 
-_R.reg("res://gd_core_items/BowandArrow.gd", BowandArrow)
-_R.reg("BowandArrow", BowandArrow)
+_R.reg("res://gd_core_items/BowandArrow.gd", BowandArrow_2)
+_R.reg("BowandArrow", BowandArrow_2)

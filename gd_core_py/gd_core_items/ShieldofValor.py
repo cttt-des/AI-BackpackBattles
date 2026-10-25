@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class ShieldofValor(_R.C("res://gd_core_items/Shield.gd")):
+class ShieldofValor_2(_R.C("res://gd_core_items/Shield.gd")):
 
 	resource_path = "res://gd_core_items/ShieldofValor.gd"
 
@@ -36,5 +36,5 @@ class ShieldofValor(_R.C("res://gd_core_items/Shield.gd")):
 		self.blockFactor = _div(self.getP3(), 100.0)
 
 
-_R.reg("res://gd_core_items/ShieldofValor.gd", ShieldofValor)
-_R.reg("ShieldofValor", ShieldofValor)
+_R.reg("res://gd_core_items/ShieldofValor.gd", ShieldofValor_2)
+_R.reg("ShieldofValor", ShieldofValor_2)

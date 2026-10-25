@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class Crown(_R.C("res://gd_core_items/Item.gd")):
+class Crown_2(_R.C("res://gd_core_items/Item.gd")):
 
 	resource_path = "res://gd_core_items/Crown.gd"
 
@@ -18,12 +18,18 @@ class Crown(_R.C("res://gd_core_items/Item.gd")):
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.crownState = 0
+		self._crownState = 0
 		self.activationParticles = None
 		self.buffTimer = None
 		self.manaCost = None
 		self.light = None
 
+	@property
+	def crownState(self):
+		return self._crownState
+	@crownState.setter
+	def crownState(self, v):
+		self._crownState = int(v)
 
 	def onPrepare(self):
 		self.setState(self.CrownState.Inactive)
@@ -84,5 +90,5 @@ class Crown(_R.C("res://gd_core_items/Item.gd")):
 		self.manaCost = self.getP("mana")
 
 
-_R.reg("res://gd_core_items/Crown.gd", Crown)
-_R.reg("Crown", Crown)
+_R.reg("res://gd_core_items/Crown.gd", Crown_2)
+_R.reg("Crown", Crown_2)

@@ -14,7 +14,7 @@ class Exclusive__WaterElemental(_R.C("res://gd_core_items/Weapon.gd")):
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.manaUsed = 0
+		self._manaUsed = 0
 		self.activeEffects = 0
 		self.coldParticles = None
 		self.distortion = None
@@ -27,6 +27,12 @@ class Exclusive__WaterElemental(_R.C("res://gd_core_items/Weapon.gd")):
 		self.manaNeeded2 = None
 		self.manaNeeded3 = None
 
+	@property
+	def manaUsed(self):
+		return self._manaUsed
+	@manaUsed.setter
+	def manaUsed(self, v):
+		self._manaUsed = int(v)
 
 	def canAffect(self, item):
 		return item.hasType(_R.C("CoreConst").Type.Nature)

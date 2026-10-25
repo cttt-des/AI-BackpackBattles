@@ -79,12 +79,11 @@ class CombatEngine:
                                              self.player_rng)
         self.opponent_items = self._make_items(opponent_lineup.get('backpack', {}).get('items', []),
                                                self.opponent_rng)
-        # ctx 注入必须先于摆盘（物品入背包触发 _ready，Mana Orb 等的 _ready
-        # 读 ctx.game —— 晚注入会永久丢失这些物品的初始化）
-        for _it in self.player_items + self.opponent_items:
-            _it.ctx = self.ctx
         self.player_inventory = self._place_items(self.player_items, player_lineup)
         self.opponent_inventory = self._place_items(self.opponent_items, opponent_lineup)
+        # ctx 已在日志创建时建立；注入全部参战物品
+        for _it in self.player_items + self.opponent_items:
+            _it.ctx = self.ctx
 
         self.player.set_items(self.player_items)
         self.opponent.set_items(self.opponent_items)
@@ -173,8 +172,8 @@ class CombatEngine:
         """
         from .grid import GridInventory, rotate_and_normalize
         bp = lineup.get('backpack', {})
-        grid_cfg = bp.get('grid') or {'rows': 7, 'cols': 9}
-        inv = GridInventory(int(grid_cfg.get('rows', 7)), int(grid_cfg.get('cols', 9)))
+        grid_cfg = bp.get('grid') or {'rows': 7, 'cols': 10}
+        inv = GridInventory(int(grid_cfg.get('rows', 7)), int(grid_cfg.get('cols', 10)))
         for it in items:
             if getattr(it, '_bag_parent', None) is not None:
                 continue          # 袋内物品随后按袋占格摆放

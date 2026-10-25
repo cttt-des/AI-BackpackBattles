@@ -8,16 +8,22 @@ from .. import _registry as _R
 
 
 
-class DeathScythe(_R.C("res://gd_core_items/Weapon.gd")):
+class DeathScythe_2(_R.C("res://gd_core_items/Weapon.gd")):
 
 	resource_path = "res://gd_core_items/DeathScythe.gd"
 
 	def _init_fields(self):
 		super()._init_fields()
 		self.critBonusActive = False
-		self.poisonThreshold = 0
+		self._poisonThreshold = 0
 		self.activationParticles = None
 
+	@property
+	def poisonThreshold(self):
+		return self._poisonThreshold
+	@poisonThreshold.setter
+	def poisonThreshold(self, v):
+		self._poisonThreshold = int(v)
 
 	def canAffect(self, item):
 		return item.gainsStack(_R.C("CoreConst").Stack.Poison)
@@ -54,5 +60,5 @@ class DeathScythe(_R.C("res://gd_core_items/Weapon.gd")):
 		self.poisonThreshold = self.getP1()
 
 
-_R.reg("res://gd_core_items/DeathScythe.gd", DeathScythe)
-_R.reg("DeathScythe", DeathScythe)
+_R.reg("res://gd_core_items/DeathScythe.gd", DeathScythe_2)
+_R.reg("DeathScythe", DeathScythe_2)

@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class RangerCollar(_R.C("res://gd_core_items/Item.gd")):
+class RangerCollar_2(_R.C("res://gd_core_items/Item.gd")):
 
 	resource_path = "res://gd_core_items/RangerCollar.gd"
 
@@ -32,6 +32,6 @@ class RangerCollar(_R.C("res://gd_core_items/Item.gd")):
 		self.acornAceDescriptor = self.ctx.item_book.getDescriptor("Acorn Ace")
 
 
-_R.reg("res://gd_core_items/RangerCollar.gd", RangerCollar)
-_R.reg("RangerCollar", RangerCollar)
-_R.reg("RangerCollar", RangerCollar)
+_R.reg("res://gd_core_items/RangerCollar.gd", RangerCollar_2)
+_R.reg("RangerCollar", RangerCollar_2)
+_R.reg("RangerCollar", RangerCollar_2)

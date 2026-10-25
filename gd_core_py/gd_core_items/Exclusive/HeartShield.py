@@ -15,7 +15,7 @@ class Exclusive__HeartShield(_R.C("res://gd_core_items/Shield.gd")):
 	def _init_fields(self):
 		super()._init_fields()
 		self.activated = False
-		self.regenGiven = 0
+		self._regenGiven = 0
 		self.fillAnimation = None
 		self.healamp = None
 		self.blockFactor = None
@@ -23,6 +23,12 @@ class Exclusive__HeartShield(_R.C("res://gd_core_items/Shield.gd")):
 		self.regenOnBlock = None
 		self.regenMax = None
 
+	@property
+	def regenGiven(self):
+		return self._regenGiven
+	@regenGiven.setter
+	def regenGiven(self, v):
+		self._regenGiven = int(v)
 
 	def canAffect(self, item):
 		return (item.canBlock() or 

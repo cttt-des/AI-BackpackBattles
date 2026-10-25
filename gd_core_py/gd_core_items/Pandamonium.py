@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class Pandamonium(_R.C("res://gd_core_items/Weapon.gd")):
+class Pandamonium_2(_R.C("res://gd_core_items/Weapon.gd")):
 
 	resource_path = "res://gd_core_items/Pandamonium.gd"
 
@@ -44,5 +44,5 @@ class Pandamonium(_R.C("res://gd_core_items/Weapon.gd")):
 		pass
 
 
-_R.reg("res://gd_core_items/Pandamonium.gd", Pandamonium)
-_R.reg("Pandamonium", Pandamonium)
+_R.reg("res://gd_core_items/Pandamonium.gd", Pandamonium_2)
+_R.reg("Pandamonium", Pandamonium_2)

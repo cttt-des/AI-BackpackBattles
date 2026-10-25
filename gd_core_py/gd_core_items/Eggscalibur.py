@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class Eggscalibur(_R.C("res://gd_core_items/Pan.gd")):
+class Eggscalibur_2(_R.C("res://gd_core_items/Pan.gd")):
 
 	resource_path = "res://gd_core_items/Eggscalibur.gd"
 
@@ -27,5 +27,5 @@ class Eggscalibur(_R.C("res://gd_core_items/Pan.gd")):
 		pass
 
 
-_R.reg("res://gd_core_items/Eggscalibur.gd", Eggscalibur)
-_R.reg("Eggscalibur", Eggscalibur)
+_R.reg("res://gd_core_items/Eggscalibur.gd", Eggscalibur_2)
+_R.reg("Eggscalibur", Eggscalibur_2)

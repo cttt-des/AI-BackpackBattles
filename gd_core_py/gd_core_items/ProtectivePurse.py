@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class ProtectivePurse(_R.C("res://gd_core_items/Bag.gd")):
+class ProtectivePurse_2(_R.C("res://gd_core_items/Bag.gd")):
 
 	resource_path = "res://gd_core_items/ProtectivePurse.gd"
 
@@ -26,5 +26,5 @@ class ProtectivePurse(_R.C("res://gd_core_items/Bag.gd")):
 		pass
 
 
-_R.reg("res://gd_core_items/ProtectivePurse.gd", ProtectivePurse)
-_R.reg("ProtectivePurse", ProtectivePurse)
+_R.reg("res://gd_core_items/ProtectivePurse.gd", ProtectivePurse_2)
+_R.reg("ProtectivePurse", ProtectivePurse_2)

@@ -8,15 +8,27 @@ from .. import _registry as _R
 
 
 
-class Stone(_R.C("res://gd_core_items/Item.gd")):
+class Stone_2(_R.C("res://gd_core_items/Item.gd")):
 
 	resource_path = "res://gd_core_items/Stone.gd"
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.ammunition = 0
-		self.bonusDamage = 0
+		self._ammunition = 0
+		self._bonusDamage = 0
 
+	@property
+	def ammunition(self):
+		return self._ammunition
+	@ammunition.setter
+	def ammunition(self, v):
+		self._ammunition = int(v)
+	@property
+	def bonusDamage(self):
+		return self._bonusDamage
+	@bonusDamage.setter
+	def bonusDamage(self, v):
+		self._bonusDamage = int(v)
 
 	def combatEnd(self):
 		super().combatEnd()
@@ -66,5 +78,5 @@ class Stone(_R.C("res://gd_core_items/Item.gd")):
 
 
 
-_R.reg("res://gd_core_items/Stone.gd", Stone)
-_R.reg("Stone", Stone)
+_R.reg("res://gd_core_items/Stone.gd", Stone_2)
+_R.reg("Stone", Stone_2)

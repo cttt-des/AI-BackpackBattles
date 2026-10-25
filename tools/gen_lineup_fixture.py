@@ -284,6 +284,10 @@ def compile_descriptor(key: str, entry: dict) -> dict:
         # （Gem._ready → gemAnimation.advance）
         "connectorReadyRoll": bool(entry.get("connector_ready_roll", False)),
         "gemRoll": bool(entry.get("gem_roll", False)),
+        # 随机 unique 池标记（tools/enrich_unique_pool.py）：isTreasure() 的唯一
+        # 依据（Item.gd:5723-5724 ← ItemBook.gd:899-901 shop=="unique"）——
+        # Fedora 等按 treasure 计数（run634_r18 实证幸运 7 vs 1）
+        "randomUniquePool": bool(entry.get("random_unique_pool", False)),
         "sockets": socket_count_for(key, (entry.get("behavior") or {}).get("script_file")),
     }
 

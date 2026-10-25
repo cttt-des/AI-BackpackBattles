@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class RangerBag(_R.C("res://gd_core_items/Bag.gd")):
+class RangerBag_2(_R.C("res://gd_core_items/Bag.gd")):
 
 	resource_path = "res://gd_core_items/RangerBag.gd"
 
@@ -39,5 +39,5 @@ class RangerBag(_R.C("res://gd_core_items/Bag.gd")):
 		pass
 
 
-_R.reg("res://gd_core_items/RangerBag.gd", RangerBag)
-_R.reg("RangerBag", RangerBag)
+_R.reg("res://gd_core_items/RangerBag.gd", RangerBag_2)
+_R.reg("RangerBag", RangerBag_2)

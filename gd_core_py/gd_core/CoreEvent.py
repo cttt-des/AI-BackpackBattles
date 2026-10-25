@@ -18,7 +18,7 @@ class CoreEvent(GodotObject):
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.id = 0
+		self._id = 0
 		self.timestamp = None
 		self.parentEvent = None
 		self.origin = None
@@ -27,6 +27,12 @@ class CoreEvent(GodotObject):
 		self.params = {}
 		self.formatParams = {}
 
+	@property
+	def id(self):
+		return self._id
+	@id.setter
+	def id(self, v):
+		self._id = int(v)
 	# =============================================================================
 	# CoreEvent.gd — 无头战斗内核：战斗事件
 	# =============================================================================

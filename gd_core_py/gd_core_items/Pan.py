@@ -8,14 +8,20 @@ from .. import _registry as _R
 
 
 
-class Pan(_R.C("res://gd_core_items/Weapon.gd")):
+class Pan_2(_R.C("res://gd_core_items/Weapon.gd")):
 
 	resource_path = "res://gd_core_items/Pan.gd"
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.bonusDamage = 0
+		self._bonusDamage = 0
 
+	@property
+	def bonusDamage(self):
+		return self._bonusDamage
+	@bonusDamage.setter
+	def bonusDamage(self, v):
+		self._bonusDamage = int(v)
 
 	def canAffect(self, item):
 		return item.hasType(_R.C("CoreConst").Type.Food)
@@ -29,5 +35,5 @@ class Pan(_R.C("res://gd_core_items/Weapon.gd")):
 		pass
 
 
-_R.reg("res://gd_core_items/Pan.gd", Pan)
-_R.reg("Pan", Pan)
+_R.reg("res://gd_core_items/Pan.gd", Pan_2)
+_R.reg("Pan", Pan_2)

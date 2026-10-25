@@ -14,12 +14,42 @@ class Exclusive__FriendlyFire(_R.C("res://gd_core_items/Item.gd")):
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.maxHeatReached = 0
-		self.manaNeeded = 0
-		self.threshold1 = 0
-		self.threshold2 = 0
-		self.threshold3 = 0
+		self._maxHeatReached = 0
+		self._manaNeeded = 0
+		self._threshold1 = 0
+		self._threshold2 = 0
+		self._threshold3 = 0
 
+	@property
+	def maxHeatReached(self):
+		return self._maxHeatReached
+	@maxHeatReached.setter
+	def maxHeatReached(self, v):
+		self._maxHeatReached = int(v)
+	@property
+	def manaNeeded(self):
+		return self._manaNeeded
+	@manaNeeded.setter
+	def manaNeeded(self, v):
+		self._manaNeeded = int(v)
+	@property
+	def threshold1(self):
+		return self._threshold1
+	@threshold1.setter
+	def threshold1(self, v):
+		self._threshold1 = int(v)
+	@property
+	def threshold2(self):
+		return self._threshold2
+	@threshold2.setter
+	def threshold2(self, v):
+		self._threshold2 = int(v)
+	@property
+	def threshold3(self):
+		return self._threshold3
+	@threshold3.setter
+	def threshold3(self, v):
+		self._threshold3 = int(v)
 
 	def canAffect(self, item):
 		return item.hasType(_R.C("CoreConst").Type.Fire)

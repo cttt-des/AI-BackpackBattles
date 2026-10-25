@@ -14,13 +14,19 @@ class Exclusive__RainbowPotion(_R.C("res://gd_core_items/Potion.gd")):
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.usedBuffs = 0
+		self._usedBuffs = 0
 		self.buffsNeeded = None
 		self.numPotions = None
 		self.buffsPerStaff = None
 		self.manaPerBook = None
 		self.staminaPerBook = None
 
+	@property
+	def usedBuffs(self):
+		return self._usedBuffs
+	@usedBuffs.setter
+	def usedBuffs(self, v):
+		self._usedBuffs = int(v)
 
 	def canAffect_global(self, item):
 		return item.hasType(_R.C("CoreConst").Type.Potion) and item != self

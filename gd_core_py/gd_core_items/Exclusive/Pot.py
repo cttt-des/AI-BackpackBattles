@@ -14,11 +14,17 @@ class Exclusive__Pot(_R.C("res://gd_core_items/Item.gd")):
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.numFood = 0
+		self._numFood = 0
 		self.foodPotionSpeed = None
 		self.heat = None
 		self.regen = None
 
+	@property
+	def numFood(self):
+		return self._numFood
+	@numFood.setter
+	def numFood(self, v):
+		self._numFood = int(v)
 
 	def canAffect(self, item):
 		return item.hasType(_R.C("CoreConst").Type.Potion)

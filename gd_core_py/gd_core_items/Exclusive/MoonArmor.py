@@ -14,9 +14,21 @@ class Exclusive__MoonArmor(_R.C("res://gd_core_items/Item.gd")):
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.mana = 0
-		self.reflect = 0
+		self._mana = 0
+		self._reflect = 0
 
+	@property
+	def mana(self):
+		return self._mana
+	@mana.setter
+	def mana(self, v):
+		self._mana = int(v)
+	@property
+	def reflect(self):
+		return self._reflect
+	@reflect.setter
+	def reflect(self, v):
+		self._reflect = int(v)
 
 	def canAffect(self, item):
 		return item.hasType(_R.C("CoreConst").Type.Magic)

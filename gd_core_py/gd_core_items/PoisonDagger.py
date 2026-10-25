@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class PoisonDagger(_R.C("res://gd_core_items/Dagger.gd")):
+class PoisonDagger_2(_R.C("res://gd_core_items/Dagger.gd")):
 
 	resource_path = "res://gd_core_items/PoisonDagger.gd"
 
@@ -26,5 +26,5 @@ class PoisonDagger(_R.C("res://gd_core_items/Dagger.gd")):
 		self.poison = int(self.getP1())
 
 
-_R.reg("res://gd_core_items/PoisonDagger.gd", PoisonDagger)
-_R.reg("PoisonDagger", PoisonDagger)
+_R.reg("res://gd_core_items/PoisonDagger.gd", PoisonDagger_2)
+_R.reg("PoisonDagger", PoisonDagger_2)

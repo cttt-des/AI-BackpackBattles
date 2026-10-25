@@ -14,10 +14,22 @@ class Exclusive__Thornbloom(_R.C("res://gd_core_items/Weapon.gd")):
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.spikes = 0
-		self.empower = 0
+		self._spikes = 0
+		self._empower = 0
 		self.damPerSpike = None
 
+	@property
+	def spikes(self):
+		return self._spikes
+	@spikes.setter
+	def spikes(self, v):
+		self._spikes = int(v)
+	@property
+	def empower(self):
+		return self._empower
+	@empower.setter
+	def empower(self, v):
+		self._empower = int(v)
 
 	def onPrepare(self):
 		self.connectForCombat(self.character(), "character_empower_changed", "onEmpowerChanged")

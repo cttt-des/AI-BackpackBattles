@@ -10,6 +10,138 @@ def load_all():
     """导入全部 gd 模块。返回导入失败清单（空 = 全部成功）。"""
     failed = []
     try:
+        import gd_core_py.gd_core.CoreItem  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/CoreItem.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core_items.Item  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core_items/Item.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core_items.Card  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core_items/Card.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.AceofSpades  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/AceofSpades.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core_items.RangerCollar  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core_items/RangerCollar.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.AcornCollar  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/AcornCollar.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core_items.Stone  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core_items/Stone.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.ArtifactStoneCold  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/ArtifactStoneCold.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.ArtifactStoneHeat  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/ArtifactStoneHeat.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.Bag  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/Bag.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.BagofStones  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/BagofStones.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core_items.Food  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core_items/Food.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.Banana  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/Banana.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.BloodAmulet  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/BloodAmulet.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core_items.Goobert  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core_items/Goobert.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.BloodGoobert  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/BloodGoobert.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core_items.Weapon  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core_items/Weapon.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.Bloodthorne  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/Bloodthorne.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core_items.Dagger  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core_items/Dagger.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.BloodyDagger  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/BloodyDagger.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.Blueberries  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/Blueberries.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.Bow  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/Bow.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core_items.Bow  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core_items/Bow.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.BowandArrow  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/BowandArrow.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.BoxofRiches  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/BoxofRiches.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.Broom  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/Broom.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core_items.Gems.Gem  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core_items/Gems/Gem.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.BurningCoal  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/BurningCoal.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.BurningTorch  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/BurningTorch.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.Card  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/Card.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.Carrot  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/Carrot.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.CarrotGoobert  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/CarrotGoobert.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.ClawsofAttack  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/ClawsofAttack.gd', repr(exc)))
+    try:
         import gd_core_py.gd_core.CoreBuff  # noqa: F401
     except Exception as exc:  # noqa: BLE001
         failed.append(('gd_core/CoreBuff.gd', repr(exc)))
@@ -58,10 +190,6 @@ def load_all():
     except Exception as exc:  # noqa: BLE001
         failed.append(('gd_core/CoreHooks.gd', repr(exc)))
     try:
-        import gd_core_py.gd_core.CoreItem  # noqa: F401
-    except Exception as exc:  # noqa: BLE001
-        failed.append(('gd_core/CoreItem.gd', repr(exc)))
-    try:
         import gd_core_py.gd_core.CoreItemBook  # noqa: F401
     except Exception as exc:  # noqa: BLE001
         failed.append(('gd_core/CoreItemBook.gd', repr(exc)))
@@ -82,29 +210,525 @@ def load_all():
     except Exception as exc:  # noqa: BLE001
         failed.append(('gd_core/CoreUtil.gd', repr(exc)))
     try:
-        import gd_core_py.gd_core_items.Item  # noqa: F401
+        import gd_core_py.gd_core.CorruptedArmor  # noqa: F401
     except Exception as exc:  # noqa: BLE001
-        failed.append(('gd_core_items/Item.gd', repr(exc)))
+        failed.append(('gd_core/CorruptedArmor.gd', repr(exc)))
     try:
-        import gd_core_py.gd_core_items.Card  # noqa: F401
+        import gd_core_py.gd_core.CritwoodStaff  # noqa: F401
     except Exception as exc:  # noqa: BLE001
-        failed.append(('gd_core_items/Card.gd', repr(exc)))
+        failed.append(('gd_core/CritwoodStaff.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.Crossblades  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/Crossblades.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.Crown  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/Crown.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.CursedDagger  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/CursedDagger.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.CursedHairComb  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/CursedHairComb.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.CustomerCard  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/CustomerCard.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.Dagger  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/Dagger.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.DancingDragon  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/DancingDragon.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.DarkestLotus  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/DarkestLotus.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.Darksaber  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/Darksaber.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.DeathScythe  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/DeathScythe.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.DeckofCards  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/DeckofCards.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core_items.Potion  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core_items/Potion.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.DemonicFlask  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/DemonicFlask.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.DjinnLamp  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/DjinnLamp.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.DragonEgg  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/DragonEgg.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core_items.Pan  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core_items/Pan.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.Eggscalibur  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/Eggscalibur.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.EvilCap  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/EvilCap.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.FalconBlade  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/FalconBlade.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.FancyFencingRapier  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/FancyFencingRapier.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.Fanfare  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/Fanfare.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core_items.Bag  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core_items/Bag.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.FannyPack  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/FannyPack.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.Flute  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/Flute.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.FlyAgaric  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/FlyAgaric.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.Food  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/Food.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.Garlic  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/Garlic.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.GingerbreadMan  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/GingerbreadMan.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.GlovesofHaste  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/GlovesofHaste.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.Goobert  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/Goobert.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.Greatsword  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/Greatsword.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.Hammer  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/Hammer.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.HealingHerbs  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/HealingHerbs.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.HealthPotion  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/HealthPotion.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.HeartContainer  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/HeartContainer.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.HeartofDarkness  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/HeartofDarkness.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.HeroLongsword  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/HeroLongsword.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.HeroSword  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/HeroSword.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.HeroicPotion  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/HeroicPotion.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.HoloFireLizard  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/HoloFireLizard.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.HolyArmor  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/HolyArmor.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.HolySpear  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/HolySpear.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.HungryBlade  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/HungryBlade.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.Item  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/Item.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.Jynxtorquilla  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/Jynxtorquilla.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.LeatherArmor  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/LeatherArmor.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.LeatherBoots  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/LeatherBoots.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.LeatherHelm  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/LeatherHelm.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.LightGoobert  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/LightGoobert.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.Lightsaber  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/Lightsaber.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.LuckyBow  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/LuckyBow.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.LuckyClover  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/LuckyClover.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core_items.Piggybank  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core_items/Piggybank.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.LuckyPiggy  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/LuckyPiggy.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.MagicStaff  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/MagicStaff.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.MagicTorch  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/MagicTorch.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.ManaOrb  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/ManaOrb.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.ManaPotion  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/ManaPotion.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.Manathirst  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/Manathirst.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core_items.Shield  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core_items/Shield.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.MoonShield  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/MoonShield.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.MrStruggles  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/MrStruggles.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.Pan  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/Pan.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.Pandamonium  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/Pandamonium.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.PestilenceFlask  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/PestilenceFlask.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.PiercingArrow  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/PiercingArrow.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.Piggybank  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/Piggybank.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.Pineapple  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/Pineapple.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.PlatinCustomerCard  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/PlatinCustomerCard.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.PocketSand  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/PocketSand.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.PoisonBow  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/PoisonBow.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.PoisonDagger  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/PoisonDagger.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.PoisonGoobert  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/PoisonGoobert.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.PoisonIvy  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/PoisonIvy.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.Potion  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/Potion.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.PotionBelt  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/PotionBelt.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.Present  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/Present.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.ProtectivePurse  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/ProtectivePurse.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.Pumpkin  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/Pumpkin.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.RainbowGoobert  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/RainbowGoobert.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.RainbowGoobertRanger  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/RainbowGoobertRanger.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.RangerBag  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/RangerBag.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.RangerCollar  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/RangerCollar.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.RibSawBlade  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/RibSawBlade.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.RubyChonk  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/RubyChonk.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core_items.DragonEgg  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core_items/DragonEgg.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.RubyEgg  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/RubyEgg.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.RubyWhelp  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/RubyWhelp.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.Shield  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/Shield.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.ShieldofValor  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/ShieldofValor.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.Shovel  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/Shovel.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.Spear  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/Spear.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.SpectralDagger  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/SpectralDagger.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.SpikedShield  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/SpikedShield.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.StaffofUnhealing  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/StaffofUnhealing.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.StaminaSack  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/StaminaSack.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.SteelGoobert  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/SteelGoobert.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.Stone  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/Stone.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core_items.LeatherHelm  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core_items/LeatherHelm.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.StoneHelm  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/StoneHelm.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.StoneSkinPotion  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/StoneSkinPotion.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.StorageCoffin  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/StorageCoffin.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.StrongDemonicFlask  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/StrongDemonicFlask.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core_items.HealthPotion  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core_items/HealthPotion.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.StrongHealthPotion  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/StrongHealthPotion.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core_items.PestilenceFlask  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core_items/PestilenceFlask.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.StrongPestilenceFlask  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/StrongPestilenceFlask.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core_items.StoneSkinPotion  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core_items/StoneSkinPotion.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.StrongStoneSkinPotion  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/StrongStoneSkinPotion.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.TheFool  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/TheFool.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.TheLovers  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/TheLovers.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.ThornBow  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/ThornBow.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.ThornWhip  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/ThornWhip.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.Torch  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/Torch.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.VampiricArmor  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/VampiricArmor.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.VampiricGloves  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/VampiricGloves.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.VampiricScythe  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/VampiricScythe.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.VillainSword  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/VillainSword.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.WalrusTusk  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/WalrusTusk.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.Weapon  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/Weapon.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.Whetstone  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/Whetstone.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.White_EyesBlueDragon  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/White-EyesBlueDragon.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.Wolpertinger  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/Wolpertinger.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.WoodenBuckler  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/WoodenBuckler.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.WoodenSword  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/WoodenSword.gd', repr(exc)))
+    try:
+        import gd_core_py.gd_core.YggdrasilLeaf  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core/YggdrasilLeaf.gd', repr(exc)))
     try:
         import gd_core_py.gd_core_items.AceofSpades  # noqa: F401
     except Exception as exc:  # noqa: BLE001
         failed.append(('gd_core_items/AceofSpades.gd', repr(exc)))
     try:
-        import gd_core_py.gd_core_items.RangerCollar  # noqa: F401
-    except Exception as exc:  # noqa: BLE001
-        failed.append(('gd_core_items/RangerCollar.gd', repr(exc)))
-    try:
         import gd_core_py.gd_core_items.AcornCollar  # noqa: F401
     except Exception as exc:  # noqa: BLE001
         failed.append(('gd_core_items/AcornCollar.gd', repr(exc)))
-    try:
-        import gd_core_py.gd_core_items.Stone  # noqa: F401
-    except Exception as exc:  # noqa: BLE001
-        failed.append(('gd_core_items/Stone.gd', repr(exc)))
     try:
         import gd_core_py.gd_core_items.ArtifactStoneCold  # noqa: F401
     except Exception as exc:  # noqa: BLE001
@@ -114,17 +738,9 @@ def load_all():
     except Exception as exc:  # noqa: BLE001
         failed.append(('gd_core_items/ArtifactStoneHeat.gd', repr(exc)))
     try:
-        import gd_core_py.gd_core_items.Bag  # noqa: F401
-    except Exception as exc:  # noqa: BLE001
-        failed.append(('gd_core_items/Bag.gd', repr(exc)))
-    try:
         import gd_core_py.gd_core_items.BagofStones  # noqa: F401
     except Exception as exc:  # noqa: BLE001
         failed.append(('gd_core_items/BagofStones.gd', repr(exc)))
-    try:
-        import gd_core_py.gd_core_items.Food  # noqa: F401
-    except Exception as exc:  # noqa: BLE001
-        failed.append(('gd_core_items/Food.gd', repr(exc)))
     try:
         import gd_core_py.gd_core_items.Banana  # noqa: F401
     except Exception as exc:  # noqa: BLE001
@@ -134,25 +750,13 @@ def load_all():
     except Exception as exc:  # noqa: BLE001
         failed.append(('gd_core_items/BloodAmulet.gd', repr(exc)))
     try:
-        import gd_core_py.gd_core_items.Goobert  # noqa: F401
-    except Exception as exc:  # noqa: BLE001
-        failed.append(('gd_core_items/Goobert.gd', repr(exc)))
-    try:
         import gd_core_py.gd_core_items.BloodGoobert  # noqa: F401
     except Exception as exc:  # noqa: BLE001
         failed.append(('gd_core_items/BloodGoobert.gd', repr(exc)))
     try:
-        import gd_core_py.gd_core_items.Weapon  # noqa: F401
-    except Exception as exc:  # noqa: BLE001
-        failed.append(('gd_core_items/Weapon.gd', repr(exc)))
-    try:
         import gd_core_py.gd_core_items.Bloodthorne  # noqa: F401
     except Exception as exc:  # noqa: BLE001
         failed.append(('gd_core_items/Bloodthorne.gd', repr(exc)))
-    try:
-        import gd_core_py.gd_core_items.Dagger  # noqa: F401
-    except Exception as exc:  # noqa: BLE001
-        failed.append(('gd_core_items/Dagger.gd', repr(exc)))
     try:
         import gd_core_py.gd_core_items.BloodyDagger  # noqa: F401
     except Exception as exc:  # noqa: BLE001
@@ -161,10 +765,6 @@ def load_all():
         import gd_core_py.gd_core_items.Blueberries  # noqa: F401
     except Exception as exc:  # noqa: BLE001
         failed.append(('gd_core_items/Blueberries.gd', repr(exc)))
-    try:
-        import gd_core_py.gd_core_items.Bow  # noqa: F401
-    except Exception as exc:  # noqa: BLE001
-        failed.append(('gd_core_items/Bow.gd', repr(exc)))
     try:
         import gd_core_py.gd_core_items.BowandArrow  # noqa: F401
     except Exception as exc:  # noqa: BLE001
@@ -177,10 +777,6 @@ def load_all():
         import gd_core_py.gd_core_items.Broom  # noqa: F401
     except Exception as exc:  # noqa: BLE001
         failed.append(('gd_core_items/Broom.gd', repr(exc)))
-    try:
-        import gd_core_py.gd_core_items.Gems.Gem  # noqa: F401
-    except Exception as exc:  # noqa: BLE001
-        failed.append(('gd_core_items/Gems/Gem.gd', repr(exc)))
     try:
         import gd_core_py.gd_core_items.BurningCoal  # noqa: F401
     except Exception as exc:  # noqa: BLE001
@@ -250,10 +846,6 @@ def load_all():
     except Exception as exc:  # noqa: BLE001
         failed.append(('gd_core_items/DeckofCards.gd', repr(exc)))
     try:
-        import gd_core_py.gd_core_items.Potion  # noqa: F401
-    except Exception as exc:  # noqa: BLE001
-        failed.append(('gd_core_items/Potion.gd', repr(exc)))
-    try:
         import gd_core_py.gd_core_items.DemonicFlask  # noqa: F401
     except Exception as exc:  # noqa: BLE001
         failed.append(('gd_core_items/DemonicFlask.gd', repr(exc)))
@@ -261,14 +853,6 @@ def load_all():
         import gd_core_py.gd_core_items.DjinnLamp  # noqa: F401
     except Exception as exc:  # noqa: BLE001
         failed.append(('gd_core_items/DjinnLamp.gd', repr(exc)))
-    try:
-        import gd_core_py.gd_core_items.DragonEgg  # noqa: F401
-    except Exception as exc:  # noqa: BLE001
-        failed.append(('gd_core_items/DragonEgg.gd', repr(exc)))
-    try:
-        import gd_core_py.gd_core_items.Pan  # noqa: F401
-    except Exception as exc:  # noqa: BLE001
-        failed.append(('gd_core_items/Pan.gd', repr(exc)))
     try:
         import gd_core_py.gd_core_items.Eggscalibur  # noqa: F401
     except Exception as exc:  # noqa: BLE001
@@ -326,10 +910,6 @@ def load_all():
     except Exception as exc:  # noqa: BLE001
         failed.append(('gd_core_items/HealingHerbs.gd', repr(exc)))
     try:
-        import gd_core_py.gd_core_items.HealthPotion  # noqa: F401
-    except Exception as exc:  # noqa: BLE001
-        failed.append(('gd_core_items/HealthPotion.gd', repr(exc)))
-    try:
         import gd_core_py.gd_core_items.HeartContainer  # noqa: F401
     except Exception as exc:  # noqa: BLE001
         failed.append(('gd_core_items/HeartContainer.gd', repr(exc)))
@@ -378,10 +958,6 @@ def load_all():
     except Exception as exc:  # noqa: BLE001
         failed.append(('gd_core_items/LeatherBoots.gd', repr(exc)))
     try:
-        import gd_core_py.gd_core_items.LeatherHelm  # noqa: F401
-    except Exception as exc:  # noqa: BLE001
-        failed.append(('gd_core_items/LeatherHelm.gd', repr(exc)))
-    try:
         import gd_core_py.gd_core_items.LightGoobert  # noqa: F401
     except Exception as exc:  # noqa: BLE001
         failed.append(('gd_core_items/LightGoobert.gd', repr(exc)))
@@ -397,10 +973,6 @@ def load_all():
         import gd_core_py.gd_core_items.LuckyClover  # noqa: F401
     except Exception as exc:  # noqa: BLE001
         failed.append(('gd_core_items/LuckyClover.gd', repr(exc)))
-    try:
-        import gd_core_py.gd_core_items.Piggybank  # noqa: F401
-    except Exception as exc:  # noqa: BLE001
-        failed.append(('gd_core_items/Piggybank.gd', repr(exc)))
     try:
         import gd_core_py.gd_core_items.LuckyPiggy  # noqa: F401
     except Exception as exc:  # noqa: BLE001
@@ -426,10 +998,6 @@ def load_all():
     except Exception as exc:  # noqa: BLE001
         failed.append(('gd_core_items/Manathirst.gd', repr(exc)))
     try:
-        import gd_core_py.gd_core_items.Shield  # noqa: F401
-    except Exception as exc:  # noqa: BLE001
-        failed.append(('gd_core_items/Shield.gd', repr(exc)))
-    try:
         import gd_core_py.gd_core_items.MoonShield  # noqa: F401
     except Exception as exc:  # noqa: BLE001
         failed.append(('gd_core_items/MoonShield.gd', repr(exc)))
@@ -441,10 +1009,6 @@ def load_all():
         import gd_core_py.gd_core_items.Pandamonium  # noqa: F401
     except Exception as exc:  # noqa: BLE001
         failed.append(('gd_core_items/Pandamonium.gd', repr(exc)))
-    try:
-        import gd_core_py.gd_core_items.PestilenceFlask  # noqa: F401
-    except Exception as exc:  # noqa: BLE001
-        failed.append(('gd_core_items/PestilenceFlask.gd', repr(exc)))
     try:
         import gd_core_py.gd_core_items.PiercingArrow  # noqa: F401
     except Exception as exc:  # noqa: BLE001
@@ -557,10 +1121,6 @@ def load_all():
         import gd_core_py.gd_core_items.StoneHelm  # noqa: F401
     except Exception as exc:  # noqa: BLE001
         failed.append(('gd_core_items/StoneHelm.gd', repr(exc)))
-    try:
-        import gd_core_py.gd_core_items.StoneSkinPotion  # noqa: F401
-    except Exception as exc:  # noqa: BLE001
-        failed.append(('gd_core_items/StoneSkinPotion.gd', repr(exc)))
     try:
         import gd_core_py.gd_core_items.StorageCoffin  # noqa: F401
     except Exception as exc:  # noqa: BLE001

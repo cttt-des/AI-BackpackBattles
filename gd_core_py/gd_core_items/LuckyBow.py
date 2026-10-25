@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class LuckyBow(_R.C("res://gd_core_items/Bow.gd")):
+class LuckyBow_2(_R.C("res://gd_core_items/Bow.gd")):
 
 	resource_path = "res://gd_core_items/LuckyBow.gd"
 
@@ -58,5 +58,5 @@ class LuckyBow(_R.C("res://gd_core_items/Bow.gd")):
 		pass
 
 
-_R.reg("res://gd_core_items/LuckyBow.gd", LuckyBow)
-_R.reg("LuckyBow", LuckyBow)
+_R.reg("res://gd_core_items/LuckyBow.gd", LuckyBow_2)
+_R.reg("LuckyBow", LuckyBow_2)

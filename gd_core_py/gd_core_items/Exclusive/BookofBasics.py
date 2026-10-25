@@ -14,10 +14,16 @@ class Exclusive__BookofBasics(_R.C("res://gd_core_items/Item.gd")):
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.bonusHealthFactor = 0
+		self._bonusHealthFactor = 0
 		self.salesChance = None
 		self.manaNeeded = None
 
+	@property
+	def bonusHealthFactor(self):
+		return self._bonusHealthFactor
+	@bonusHealthFactor.setter
+	def bonusHealthFactor(self, v):
+		self._bonusHealthFactor = int(v)
 
 	def canAffect(self, item):
 		return item.hasType(_R.C("CoreConst").Type.Spell)

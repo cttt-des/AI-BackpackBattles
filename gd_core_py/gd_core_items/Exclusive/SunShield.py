@@ -14,12 +14,36 @@ class Exclusive__SunShield(_R.C("res://gd_core_items/Shield.gd")):
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.blockAcc = 0
-		self.bonusDamagePerTick = 0
-		self.damagePerTick = 0
-		self.blockPerTick = 0
+		self._blockAcc = 0
+		self._bonusDamagePerTick = 0
+		self._damagePerTick = 0
+		self._blockPerTick = 0
 		self.activationParticles = None
 
+	@property
+	def blockAcc(self):
+		return self._blockAcc
+	@blockAcc.setter
+	def blockAcc(self, v):
+		self._blockAcc = int(v)
+	@property
+	def bonusDamagePerTick(self):
+		return self._bonusDamagePerTick
+	@bonusDamagePerTick.setter
+	def bonusDamagePerTick(self, v):
+		self._bonusDamagePerTick = int(v)
+	@property
+	def damagePerTick(self):
+		return self._damagePerTick
+	@damagePerTick.setter
+	def damagePerTick(self, v):
+		self._damagePerTick = int(v)
+	@property
+	def blockPerTick(self):
+		return self._blockPerTick
+	@blockPerTick.setter
+	def blockPerTick(self, v):
+		self._blockPerTick = int(v)
 
 	def canAffect(self, item):
 		return item.canBlock()

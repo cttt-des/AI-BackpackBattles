@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class AcornCollar(_R.C("res://gd_core_items/RangerCollar.gd")):
+class AcornCollar_2(_R.C("res://gd_core_items/RangerCollar.gd")):
 
 	resource_path = "res://gd_core_items/AcornCollar.gd"
 
@@ -31,5 +31,5 @@ class AcornCollar(_R.C("res://gd_core_items/RangerCollar.gd")):
 		pass
 
 
-_R.reg("res://gd_core_items/AcornCollar.gd", AcornCollar)
-_R.reg("AcornCollar", AcornCollar)
+_R.reg("res://gd_core_items/AcornCollar.gd", AcornCollar_2)
+_R.reg("AcornCollar", AcornCollar_2)

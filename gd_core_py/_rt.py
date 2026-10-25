@@ -68,7 +68,7 @@ __all__ = [
     "PI", "TAU", "INF", "NAN", "f32",
     "floor", "ceil", "round", "clamp", "stepify", "fmod", "posmod", "snapped",
     "sqrt", "pow", "sign", "lerp", "inverse_lerp", "smoothstep", "move_toward",
-    "wrapf", "wrapi", "deg2rad", "rad2deg", "is_instance_valid",
+    "wrapf", "wrapi", "deg2rad", "rad2deg", "is_equal_approx", "is_instance_valid",
     "OS_has_feature", "_os_environ_get", "randomize", "_gd_str", "_strv",
     "_gd_range", "_gd_fmt",
     "String", "Dictionary",
@@ -208,6 +208,16 @@ def deg2rad(d):
 
 def rad2deg(r):
     return r * 180.0 / PI
+
+
+def is_equal_approx(a, b):
+    # Godot 3.6 core/math/math_defs.h 同名内建（CMP_EPSILON=1e-5，相对容差取
+    # max(|a|,|b|)）：计时器「同 dur 续跑」判定（CoreBuff/CoreTimer/
+    # CoreCharacter 计时模型）依赖它。2026-10-10 批量重转写后垫片缺失，
+    # py 侧 NameError，此处补入（a2-visual 轮代补，语义按 Godot 3.6）。
+    if a == b:
+        return True
+    return abs(a - b) <= 0.00001 * max(abs(a), abs(b))
 
 
 def is_instance_valid(obj):

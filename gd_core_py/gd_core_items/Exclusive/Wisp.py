@@ -14,13 +14,19 @@ class Exclusive__Wisp(_R.C("res://gd_core_items/Gems/Gem.gd")):
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.damageAcc = 0
+		self._damageAcc = 0
 		self.luck = None
 		self.regen = None
 		self.natureSpeed = None
 		self.damageForSpikes = None
 		self.spikes = None
 
+	@property
+	def damageAcc(self):
+		return self._damageAcc
+	@damageAcc.setter
+	def damageAcc(self, v):
+		self._damageAcc = int(v)
 	gemColor = Color(0.783203, 0.972054, 1)
 
 	def hasCooldown(self):

@@ -15,8 +15,8 @@ class Exclusive__Toad(_R.C("res://gd_core_items/Item.gd")):
 	def _init_fields(self):
 		super()._init_fields()
 		self.affectedItemsDict = {}
-		self.gainedBuffs = 0
-		self.usedBuffs = 0
+		self._gainedBuffs = 0
+		self._usedBuffs = 0
 		self.gainedThreshold = None
 		self.usedThreshold = None
 		self.luck = None
@@ -24,6 +24,18 @@ class Exclusive__Toad(_R.C("res://gd_core_items/Item.gd")):
 		self.luck2 = None
 		self.mana2 = None
 
+	@property
+	def gainedBuffs(self):
+		return self._gainedBuffs
+	@gainedBuffs.setter
+	def gainedBuffs(self, v):
+		self._gainedBuffs = int(v)
+	@property
+	def usedBuffs(self):
+		return self._usedBuffs
+	@usedBuffs.setter
+	def usedBuffs(self, v):
+		self._usedBuffs = int(v)
 
 	def canAffect(self, item):
 		return item.gainsBuffs() or item.usesBuffs()

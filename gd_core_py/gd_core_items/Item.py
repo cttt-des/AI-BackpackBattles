@@ -29,7 +29,7 @@ class SignalConnection(GodotObject):
 		pass
 
 
-class Item(_R.C("res://gd_core/CoreItem.gd")):
+class Item_2(_R.C("res://gd_core/CoreItem.gd")):
 
 	resource_path = "res://gd_core_items/Item.gd"
 
@@ -104,7 +104,7 @@ class Item(_R.C("res://gd_core/CoreItem.gd")):
 		self.pickupPosition = Vector2()
 		self.pickupRotation = 0.0
 		self.pickupTopLeftCell = Vector2()
-		self.pickupFaceDirection = 0
+		self._pickupFaceDirection = 0
 		self.sameOrientationAsPickup = False
 		self.movebackTween = None
 		self.rotationTween = None
@@ -123,8 +123,8 @@ class Item(_R.C("res://gd_core/CoreItem.gd")):
 		self.spritesWithShadows = []
 		self.shadowOffset = self.shadowOffset_dropped
 		self.shadowTween = None
-		self.dropFrame = 0
-		self.pickupFrame = 0
+		self._dropFrame = 0
+		self._pickupFrame = 0
 		self.mouseWheelRotationReadyTime = 0.0
 		self.notEnoughGoldLabelReadyTime = 0.0
 		self.averagedPosition = Vector2()
@@ -177,6 +177,24 @@ class Item(_R.C("res://gd_core/CoreItem.gd")):
 		self.baseBounce = 0.0
 		self.baseFriction = 0.0
 
+	@property
+	def pickupFaceDirection(self):
+		return self._pickupFaceDirection
+	@pickupFaceDirection.setter
+	def pickupFaceDirection(self, v):
+		self._pickupFaceDirection = int(v)
+	@property
+	def dropFrame(self):
+		return self._dropFrame
+	@dropFrame.setter
+	def dropFrame(self, v):
+		self._dropFrame = int(v)
+	@property
+	def pickupFrame(self):
+		return self._pickupFrame
+	@pickupFrame.setter
+	def pickupFrame(self, v):
+		self._pickupFrame = int(v)
 	# =============================================================================
 	# Item.gd — 物品基类适配层（**自动生成，勿手改**）
 	# 生成器：tools/build_item_scripts.py
@@ -479,21 +497,21 @@ class Item(_R.C("res://gd_core/CoreItem.gd")):
 
 	@staticmethod
 	def wasAddedToInventory(dropRes):
-		return dropRes == Item.DropResult.AddedToInventory or dropRes == Item.DropResult.Hotswap
+		return dropRes == Item_2.DropResult.AddedToInventory or dropRes == Item_2.DropResult.Hotswap
 
 
 
 	@staticmethod
 	def wasBought(dropRes):
-		return (Item.wasAddedToInventory(dropRes) or 
-				dropRes == Item.DropResult.AddedToStorageBox or 
-				dropRes == Item.DropResult.Socketed or 
-				dropRes == Item.DropResult.SocketHotswap)
+		return (Item_2.wasAddedToInventory(dropRes) or 
+				dropRes == Item_2.DropResult.AddedToStorageBox or 
+				dropRes == Item_2.DropResult.Socketed or 
+				dropRes == Item_2.DropResult.SocketHotswap)
 
 
 	@staticmethod
 	def wasHotSwap(dropRes):
-		return dropRes == Item.DropResult.Hotswap or dropRes == Item.DropResult.SocketHotswap
+		return dropRes == Item_2.DropResult.Hotswap or dropRes == Item_2.DropResult.SocketHotswap
 
 
 	def removeFromInventory(self):
@@ -1568,9 +1586,9 @@ class Item(_R.C("res://gd_core/CoreItem.gd")):
 
 
 
-Item.SignalConnection = SignalConnection
+Item_2.SignalConnection = SignalConnection
 
 
-_R.reg("res://gd_core_items/Item.gd", Item)
-_R.reg("Item", Item)
-_R.reg("Item", Item)
+_R.reg("res://gd_core_items/Item.gd", Item_2)
+_R.reg("Item", Item_2)
+_R.reg("Item", Item_2)

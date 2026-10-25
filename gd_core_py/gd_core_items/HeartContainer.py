@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class HeartContainer(_R.C("res://gd_core_items/Item.gd")):
+class HeartContainer_2(_R.C("res://gd_core_items/Item.gd")):
 
 	resource_path = "res://gd_core_items/HeartContainer.gd"
 
@@ -57,5 +57,5 @@ class HeartContainer(_R.C("res://gd_core_items/Item.gd")):
 		self.regenNeeded = int(self.getP2())
 
 
-_R.reg("res://gd_core_items/HeartContainer.gd", HeartContainer)
-_R.reg("HeartContainer", HeartContainer)
+_R.reg("res://gd_core_items/HeartContainer.gd", HeartContainer_2)
+_R.reg("HeartContainer", HeartContainer_2)

@@ -14,9 +14,21 @@ class Exclusive__SunArmor(_R.C("res://gd_core_items/Item.gd")):
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.heatNeeded = 0
-		self.debuffsCleansed = 0
+		self._heatNeeded = 0
+		self._debuffsCleansed = 0
 
+	@property
+	def heatNeeded(self):
+		return self._heatNeeded
+	@heatNeeded.setter
+	def heatNeeded(self, v):
+		self._heatNeeded = int(v)
+	@property
+	def debuffsCleansed(self):
+		return self._debuffsCleansed
+	@debuffsCleansed.setter
+	def debuffsCleansed(self, v):
+		self._debuffsCleansed = int(v)
 
 	def canAffect(self, item):
 		return item.hasType(_R.C("CoreConst").Type.Fire) or item.hasType(_R.C("CoreConst").Type.Holy)

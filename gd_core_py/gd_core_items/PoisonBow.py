@@ -8,15 +8,27 @@ from .. import _registry as _R
 
 
 
-class PoisonBow(_R.C("res://gd_core_items/Bow.gd")):
+class PoisonBow_2(_R.C("res://gd_core_items/Bow.gd")):
 
 	resource_path = "res://gd_core_items/PoisonBow.gd"
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.damageAcc = 0
-		self.damagePerPoison = 0
+		self._damageAcc = 0
+		self._damagePerPoison = 0
 
+	@property
+	def damageAcc(self):
+		return self._damageAcc
+	@damageAcc.setter
+	def damageAcc(self, v):
+		self._damageAcc = int(v)
+	@property
+	def damagePerPoison(self):
+		return self._damagePerPoison
+	@damagePerPoison.setter
+	def damagePerPoison(self, v):
+		self._damagePerPoison = int(v)
 
 	def hasAttackEffect(self):
 		return True
@@ -68,5 +80,5 @@ class PoisonBow(_R.C("res://gd_core_items/Bow.gd")):
 		self.damagePerPoison = self.getP1()
 
 
-_R.reg("res://gd_core_items/PoisonBow.gd", PoisonBow)
-_R.reg("PoisonBow", PoisonBow)
+_R.reg("res://gd_core_items/PoisonBow.gd", PoisonBow_2)
+_R.reg("PoisonBow", PoisonBow_2)

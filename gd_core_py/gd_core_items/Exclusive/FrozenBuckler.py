@@ -14,8 +14,14 @@ class Exclusive__FrozenBuckler(_R.C("res://gd_core_items/Shield.gd")):
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.coldInflicted = 0
+		self._coldInflicted = 0
 
+	@property
+	def coldInflicted(self):
+		return self._coldInflicted
+	@coldInflicted.setter
+	def coldInflicted(self, v):
+		self._coldInflicted = int(v)
 
 	def onPrepare(self):
 		self.coldInflicted = 0

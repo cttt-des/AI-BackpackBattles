@@ -14,8 +14,14 @@ class Exclusive__DivinePotion(_R.C("res://gd_core_items/Potion.gd")):
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.debuffsNeeded = 0
+		self._debuffsNeeded = 0
 
+	@property
+	def debuffsNeeded(self):
+		return self._debuffsNeeded
+	@debuffsNeeded.setter
+	def debuffsNeeded(self, v):
+		self._debuffsNeeded = int(v)
 
 	def onPrepare(self):
 		self.connectToCharacterDebuffs("debuffsChanged")

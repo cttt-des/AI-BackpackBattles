@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class LeatherBoots(_R.C("res://gd_core_items/Item.gd")):
+class LeatherBoots_2(_R.C("res://gd_core_items/Item.gd")):
 
 	resource_path = "res://gd_core_items/LeatherBoots.gd"
 
@@ -44,5 +44,5 @@ class LeatherBoots(_R.C("res://gd_core_items/Item.gd")):
 		self.healthThreshold = _div(self.getP1(), 100.0) - 0.0001
 
 
-_R.reg("res://gd_core_items/LeatherBoots.gd", LeatherBoots)
-_R.reg("LeatherBoots", LeatherBoots)
+_R.reg("res://gd_core_items/LeatherBoots.gd", LeatherBoots_2)
+_R.reg("LeatherBoots", LeatherBoots_2)

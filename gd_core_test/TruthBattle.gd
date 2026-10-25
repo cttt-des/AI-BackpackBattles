@@ -19,7 +19,7 @@
 # =============================================================================
 extends SceneTree
 
-const SEED := 42
+const SEED := 7
 const P_NAME := "truth_20261001_220653_R19_player"
 const O_NAME := "truth_20261001_220653_R19_opponent"
 const MAX_TICKS := 20000          # 20000/60 ≈ 333s > CoreCombat.max_time(180s)

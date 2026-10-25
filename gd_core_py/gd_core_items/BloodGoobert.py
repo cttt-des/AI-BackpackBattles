@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class BloodGoobert(_R.C("res://gd_core_items/Goobert.gd")):
+class BloodGoobert_2(_R.C("res://gd_core_items/Goobert.gd")):
 
 	resource_path = "res://gd_core_items/BloodGoobert.gd"
 
@@ -32,5 +32,5 @@ class BloodGoobert(_R.C("res://gd_core_items/Goobert.gd")):
 		self.vampirism = int(self.getP("vampirism"))
 
 
-_R.reg("res://gd_core_items/BloodGoobert.gd", BloodGoobert)
-_R.reg("BloodGoobert", BloodGoobert)
+_R.reg("res://gd_core_items/BloodGoobert.gd", BloodGoobert_2)
+_R.reg("BloodGoobert", BloodGoobert_2)

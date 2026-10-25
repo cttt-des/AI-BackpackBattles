@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class DragonEgg(_R.C("res://gd_core_items/Item.gd")):
+class DragonEgg_2(_R.C("res://gd_core_items/Item.gd")):
 
 	resource_path = "res://gd_core_items/DragonEgg.gd"
 
@@ -78,6 +78,6 @@ class DragonEgg(_R.C("res://gd_core_items/Item.gd")):
 
 
 
-_R.reg("res://gd_core_items/DragonEgg.gd", DragonEgg)
-_R.reg("DragonEgg", DragonEgg)
-_R.reg("DragonEgg", DragonEgg)
+_R.reg("res://gd_core_items/DragonEgg.gd", DragonEgg_2)
+_R.reg("DragonEgg", DragonEgg_2)
+_R.reg("DragonEgg", DragonEgg_2)

@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class MagicStaff(_R.C("res://gd_core_items/Weapon.gd")):
+class MagicStaff_2(_R.C("res://gd_core_items/Weapon.gd")):
 
 	resource_path = "res://gd_core_items/MagicStaff.gd"
 
@@ -32,5 +32,5 @@ class MagicStaff(_R.C("res://gd_core_items/Weapon.gd")):
 		self.permDamBonus = self.getP3()
 
 
-_R.reg("res://gd_core_items/MagicStaff.gd", MagicStaff)
-_R.reg("MagicStaff", MagicStaff)
+_R.reg("res://gd_core_items/MagicStaff.gd", MagicStaff_2)
+_R.reg("MagicStaff", MagicStaff_2)

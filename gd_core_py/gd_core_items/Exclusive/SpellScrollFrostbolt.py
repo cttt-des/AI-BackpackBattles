@@ -14,10 +14,22 @@ class Exclusive__SpellScrollFrostbolt(_R.C("res://gd_core_items/Item.gd")):
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.maxUses = 0
-		self.uses = 0
+		self._maxUses = 0
+		self._uses = 0
 		self.coldAmount = None
 
+	@property
+	def maxUses(self):
+		return self._maxUses
+	@maxUses.setter
+	def maxUses(self, v):
+		self._maxUses = int(v)
+	@property
+	def uses(self):
+		return self._uses
+	@uses.setter
+	def uses(self, v):
+		self._uses = int(v)
 
 	def canAffect(self, item):
 		return item.hasType(_R.C("CoreConst").Type.Ice) and not item.isA(self.descriptor)

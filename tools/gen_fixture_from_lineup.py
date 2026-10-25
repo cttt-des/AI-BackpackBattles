@@ -38,17 +38,20 @@ gen_fixture_from_lineup.py — 真值实录阵容 → lineups/*.json 夹具
        描述符/脚本路径不复制——GDScript 侧运行时读 item_battle_fixture.json）。
 
   战斗起始体力约定（对齐原版装配路径，证据见各字段注释）：
-    * 玩家：setMaxStamina(roundData.stamina)（Game.gd 1.1.8 @2402-2427），
-      baseMaxStamina 保持角色默认 5 → battle-start stamina = lineups.json
-      的 base_max_stamina（=5），base 同值。
+    * 玩家：setMaxStamina(roundData.stamina)（oracle_fight.gd:608，setMaxStamina
+      同设 cur，Character.gd:951-956）→ battle-start = 语料史真值
+      oracle/data/history.db roundData.stamina（明文列，实测分布 5..10；
+      r33 定谳——「恒 base」与「恒 base+袋」均被 813/910 同画像异值证伪），
+      baseMaxStamina 保持角色默认 5。
     * 对手：initHistoryOpponent 显式 baseMaxStamina=5 + recalculateMaxStamina
-      （=5 + Stamina Sack 件数）→ battle-start stamina = 5 + 袋鼠数，base=5。
+      （=5 + Stamina Sack 件数）→ battle-start stamina = 5 + 袋数，base=5。
 """
 from __future__ import annotations
 
 import io
 import json
 import os
+import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -168,15 +171,65 @@ def _oracle_side_entries(lu_side: dict, db: dict, warnings: list) -> list:
             "col": int(it["top_left"]["x"]),
             "rotation": (int(it.get("face_direction", 0) or 0) * 90) % 360,
             "gems": gems,
+            # r34 crafted 效果真值（lineups.json snapshot 3）：MagicRing 族实例
+            # 的 effects（[{triggerType,stackType},...]）。重放里实例先 roll 后被
+            # 史真值覆写——模拟器侧必须同序：先照常 roll（链位一致），再用本值
+            # 覆写（零 rng 消耗）。无效果字段→None（不注入）。
+            "effects": ([
+                {"triggerType": int(e["triggerType"]), "stackType": int(e["stackType"])}
+                for e in (it.get("effects") or [])
+            ] if it.get("effects") else None),
         })
     return entries
 
 
-def _battle_start_stamina(lu_side: dict, entries: list, is_player: bool):
+_HISTORY_DB = os.path.join(ROOT, "oracle", "data", "history.db")
+_round_stamina_cache = {}
+
+
+def _history_round_stamina(run_id: int, round_id: int):
+    """语料 run 史的玩家回合开局 stamina 真值（oracle/data/history.db 明文列）。
+
+    oracle_fight.gd:608 G.PLAYER.setMaxStamina(p_round.stamina)——玩家战斗
+    开局 max=cur=史记录值，实测分布 5..10（run910_r5=6、run813_r12=5，
+    两者阵容画像同含 1 袋：证伪「恒 base」与「恒 base+袋」两个模型）。
+    缺库/缺行返回 None（调用方退回 base）。"""
+    key = (run_id, round_id)
+    if key not in _round_stamina_cache:
+        val = None
+        try:
+            import sqlite3
+            con = sqlite3.connect("file:%s?mode=ro" % _HISTORY_DB.replace("\\", "/"), uri=True)
+            try:
+                row = con.execute(
+                    "SELECT stamina FROM roundData WHERE runID=? AND roundID=?",
+                    (run_id, round_id)).fetchone()
+                if row is not None:
+                    val = float(row[0])
+            finally:
+                con.close()
+        except Exception:
+            val = None
+        _round_stamina_cache[key] = val
+    return _round_stamina_cache[key]
+
+
+def _battle_start_stamina(lu_side: dict, entries: list, is_player: bool,
+                          run_id: int = None, round_id: int = None):
     """→ (battle_start_stamina, base_stamina)。依据见文件头「战斗起始体力约定」。"""
     base = float(lu_side.get("base_max_stamina", 5.0))
     if is_player:
+        # r33 真值注入：battle-start = 语料史 roundData.stamina（setMaxStamina
+        # 同设 cur，Character.gd:951-956）。缺真值退回 base（旧口径）。
+        if run_id is not None and round_id is not None:
+            v = _history_round_stamina(run_id, round_id)
+            if v is not None:
+                return v, base
         return base, base
+    # r32 最终模型（RECALC-O-TAIL 双场+run862 OPP 战斗实测）：oracle
+    # OPPONENT 战斗 max=base+袋（initHistoryOpponent 尾部显式 recalc 数
+    # INVENTORY 袋，run592 OPP max=7 sacks=2 / run813 OPP max=7 sacks=2 /
+    # run862 OPP 8.6167 完整攻击链=max≥7）。
     sacks = sum(1 for e in entries if e["key"] == STAMINA_SACK_ID)
     return OPP_BASE_STAMINA + sacks, OPP_BASE_STAMINA
 
@@ -201,6 +254,8 @@ def _v3_lineup(case_id: str, side: str, lu_side: dict, entries: list,
                      "items": [{"id": e["key"], "row": e["row"], "col": e["col"],
                                 "rotation": e["rotation"], "quantity": 1,
                                 "container": False, "contents": [],
+                                # r34：crafted 效果真值（None 时不落键，py 侧同判）
+                                "effects": e["effects"],
                                 "gems": [{"id": g} for g in e["gems"] if g]}
                                for e in entries]},
         "storage": [],
@@ -209,6 +264,14 @@ def _v3_lineup(case_id: str, side: str, lu_side: dict, entries: list,
 
 def oracle_mode(case_dirs: list, lineup_out: str, batch_out: str) -> int:
     from gen_lineup_fixture import placement_of, script_path  # noqa: E402
+
+    # r40 OSError[Errno 22] 修复：外部运行器传参可能带尾随 \r/空格（CRLF 切分
+    # 或转义被吃），Windows io.open 对含控制字符的路径恰抛
+    # [Errno 22] Invalid argument（np10_data 实证复现）。入口剥不可见尾字符，
+    # clean 路径行为不变。
+    lineup_out = lineup_out.strip()
+    if batch_out:
+        batch_out = batch_out.strip()
 
     db = json.load(io.open(DB_PATH, encoding="utf-8"))["items"]
     # Godot 侧描述符表（item_battle_fixture.json，517 件可装配物品）——用例引用的
@@ -249,7 +312,12 @@ def oracle_mode(case_dirs: list, lineup_out: str, batch_out: str) -> int:
                 failed.append((case_id, str(exc)))
                 bad = True
                 break
-            stamina, base_stamina = _battle_start_stamina(lu[side], entries, is_player)
+            run_id = None
+            m = re.match(r"run(\d+)_r\d+$", case_id)
+            if m:
+                run_id = int(m.group(1))
+            stamina, base_stamina = _battle_start_stamina(
+                lu[side], entries, is_player, run_id, round_id)
             sides[side] = _v3_lineup(case_id, side, lu[side], entries,
                                      stamina, base_stamina, round_id)
             # Godot 侧条目：几何展开成绝对格（Vector2(x=col,y=row) 约定 →
@@ -281,6 +349,8 @@ def oracle_mode(case_dirs: list, lineup_out: str, batch_out: str) -> int:
                     # getGlobalPointsForCells），内核装配层用它换算 faceDirection
                     "rotation": e["rotation"],
                     "gems": gems_gd,
+                    # r34：crafted 效果真值（None=不注入，键仍保留便于宿主判空）
+                    "effects": e["effects"],
                 })
             batch_sides[side] = {
                 "class": int(lu[side]["class"]),

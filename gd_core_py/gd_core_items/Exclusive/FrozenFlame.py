@@ -15,12 +15,30 @@ class Exclusive__FrozenFlame(_R.C("res://gd_core_items/Item.gd")):
 	def _init_fields(self):
 		super()._init_fields()
 		self.affected2Item = None
-		self.heatCounter = 0
+		self._heatCounter = 0
 		self.gatedItems = { "Spell Scroll Frostbolt": 2, "Book of Ice": 2, "Frostbite": 1, "Frozen Buckler": 1, "Ice Armor": 1, "Ice Dragon": 1, "Spell Scroll Ice": 1, "Magic Mirror": 1, "Ice Flower": 1, "Devouring Sphere": 1, "Snowmaster": 1 }
-		self.heatNeeded = 0
-		self.coldPerHeat = 0
+		self._heatNeeded = 0
+		self._coldPerHeat = 0
 		self.critSeverityPerCold = None
 
+	@property
+	def heatCounter(self):
+		return self._heatCounter
+	@heatCounter.setter
+	def heatCounter(self, v):
+		self._heatCounter = int(v)
+	@property
+	def heatNeeded(self):
+		return self._heatNeeded
+	@heatNeeded.setter
+	def heatNeeded(self, v):
+		self._heatNeeded = int(v)
+	@property
+	def coldPerHeat(self):
+		return self._coldPerHeat
+	@coldPerHeat.setter
+	def coldPerHeat(self, v):
+		self._coldPerHeat = int(v)
 
 	def canAffect(self, item):
 		return item.hasType(_R.C("CoreConst").Type.Ice)

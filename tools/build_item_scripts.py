@@ -2008,6 +2008,366 @@ def build_item_resolver(scr: dict):
     return is_item, out_parent
 
 
+# ── a1 声音面：Util.randPitch 实参求值消耗还原 ──────────────────────────────
+# 反编译里 `Sound.playSound*(..., Util.randPitch(k))` 整句按纯视觉剥离，但
+# GDScript 实参求值即消耗 rng（Utility/Util.gd:682-683 randPitch =
+# randf_range(1-v, 1+v)）。生成物若不补等量消耗，含对应物品的战斗从该点起
+# 整条随机链错位（补法模板 = gd_core/CoreCharacter.gd makeInvulnerable 首次支
+# 的 invu randPitch，round22 实证；数值无谓，消耗链只看抽量）。
+# 规则：
+#   * 每处 Util.randPitch( → 1 条 ctx.rng.randf_range(0.9, 1.1)，按反编译语句
+#     在函数体内的位次原位还原（保留与后续语句的先后序，如
+#     Chess/ChessPiece.gd:74 抽音在 doCapturingEffect 之前）；
+#   * 同行的 Array.pick_random() 走引擎全局链（docs/rng_truth.md §1.4-2，与
+#     Util.rng 独立）→ 不折算 ctx.rng 抽量，只在注释里注明；
+#   * 反编译函数在生成物中不存在（整函数剥离为桩/删除）→ 内核不可达，不补；
+#   * 基类适配层 Item.gd 不进本 pass：其 sendCharge 的 randPitch 消耗已在内核
+#     gd_core/CoreItem.gd sendCharge 手补，基类拾取/落物音消耗由 activate() 的
+#     playActivationSound→playDropSound(-6) 代表性消耗覆盖（CoreItem.gd ①）。
+RANDPITCH_RE = re.compile(r"\bUtil\.randPitch\s*\(")
+RANDPITCH_STATS = {"files": 0, "sites": 0, "draws": 0}
+
+
+def _top_func_spans(lines):
+    """顶层 func span [(name, start, end)]；end 含函数体最后一行下标。"""
+    spans = []
+    cur = None
+    for i, ln in enumerate(lines):
+        m = re.match(r"^func\s+([A-Za-z_]\w*)\s*\(", ln)
+        if m:
+            if cur is not None:
+                spans.append(cur)
+            cur = [m.group(1), i, i]
+        elif cur is not None:
+            if ln.strip() and ln[:1] not in ("\t", " "):
+                spans.append(cur)
+                cur = None
+            else:
+                cur[2] = i
+    if cur is not None:
+        spans.append(cur)
+    return [(n, a, b) for n, a, b in spans]
+
+
+def _top_stmt_lines(body_lines):
+    """顶层语句（单 tab 起始、非空非注释行）在 body 内的下标列表。"""
+    out = []
+    for k, ln in enumerate(body_lines):
+        if ln.startswith("\t") and not ln.startswith("\t\t"):
+            s = ln.strip()
+            if s and not s.startswith("#"):
+                out.append(k)
+    return out
+
+
+def restore_randpitch_draws(rel, text):
+    """按反编译位次把被剥离的 randPitch 实参求值还原为 ctx.rng 消耗语句。"""
+    src_path = os.path.join(SRC, rel.replace("/", os.sep))
+    if not os.path.exists(src_path):
+        return text
+    src_lines = io.open(src_path, encoding="utf-8",
+                        errors="replace").read().split("\n")
+    plan = {}
+    for name, a, b in _top_func_spans(src_lines):
+        body = src_lines[a + 1:b + 1]
+        groups = group_statements(body)
+        sites = []
+        gi = 0  # 只给「真语句」编号（空行/注释行不算语句，避免生成侧位次漂移）
+        for (i, j) in groups:
+            head = body[i]
+            if not (head.startswith("\t") and not head.startswith("\t\t")):
+                continue
+            if not head.strip() or head.strip().startswith("#"):
+                continue
+            chunk = "\n".join(body[i:j + 1])
+            n = len(RANDPITCH_RE.findall(chunk))
+            if n:
+                # a 为 0 基 func 行 → 反编译 1 基行号 = a + 2 + i
+                sites.append((gi, n, a + 2 + i, head.strip()))
+            gi += 1
+        if sites:
+            plan[name] = sites
+    if not plan:
+        return text
+
+    out = text.split("\n")
+    spans = dict((name, (s, e)) for name, s, e in _top_func_spans(out))
+    touched = False
+    # 按生成文件中函数出现位置从后往前处理：靠前函数的插入不使靠后 span 失效
+    for name in sorted(plan, key=lambda n: -spans[n][0] if n in spans else 0):
+        sites = plan[name]
+        span = spans.get(name)
+        if span is None:
+            continue  # 内核无此函数 → 不可达
+        s, e = span
+        stmts = _top_stmt_lines(out[s + 1:e + 1])
+        for gi, n, dline, head in reversed(sites):
+            comment = ("\t# decomp Items/" + rel + ":" + str(dline) + " "
+                       + head[:70] + "——GDScript 实参求值即消耗：randPitch 1 抽")
+            block = [comment]
+            if "pick_random" in head:
+                # r1_0 全局链台账轮：同行 pick_random（ChessPiece.gd:74
+                # captureSounds×3）在 randPitch 实参求值**之前**消耗引擎全局链
+                # 1 抽（GDScript 实参从左到右求值：pick_random 先、randPitch 后）。
+                # a1 声音面此前只还原 Util.rng 抽、pick_random 明注不计——原版每
+                # 次棋子捕获多 1 抽全局链而 gd 侧零消耗，棋盘洗牌链位恒落后
+                # （run645_r11 idx7）。改道 ctx.rng.pickRandomEngine 入台账：
+                # preordered 开账后与原版同链位；未开账=直通 Array.pick_random，
+                # 行为不变。数值无消费方（音效入虚空），仅抽量入链（3 元占位数组
+                # 与原版 captureSounds 等长，pick_random 恒 1 抽与长度无关）。
+                block.append("\t# 同行 pick_random 走引擎全局链（docs/rng_truth.md "
+                             "§1.4-2）：1 抽，r1_0 台账轮起改道入账")
+                block.append('\tctx.rng.pickRandomEngine([null, null, null], "%s:%d")'
+                             % (rel, dline))
+            block += ["\tctx.rng.randf_range(0.9, 1.1)"] * n
+            if gi < len(stmts):
+                at = s + 1 + stmts[gi]
+            else:
+                at = e + 1
+            out[at:at] = block
+            e += len(block)
+            spans[name] = (s, e)
+            touched = True
+            RANDPITCH_STATS["sites"] += 1
+            RANDPITCH_STATS["draws"] += n
+    if touched:
+        RANDPITCH_STATS["files"] += 1
+        text = "\n".join(out)
+    return text
+
+
+# ── r2_1 pass：FalconBlade doCooldownEffect 尾部 randomizePosition 3 抽还原 ──
+# 根因（run631_r9/701_r11/722_r7 神谕 rng_log 逐抽对位 + 台账 2026-10-10 第 24 轮
+# run634 同根实证）：decompiled_full/Items/FalconBlade.gd:24-25 doCooldownEffect
+# 尾部 `var ani = createAnimation()` + `ani.randomizePosition()` 被当纯视觉剥掉，
+# 但 Items/Animations/ItemAnimation.gd:26-28 randomizePosition 恒消耗全局链
+# 3 抽（export 默认 positionRandom=(30,100)、angleRandom=5.0 →
+# randf_range(-30,30)/(-100,100)/(-5,5)；FalconBlade 直调 randomizePosition
+# 不经 intialize，故无 playback_speed 第 4 抽）。缺位使每次 FB doCooldownEffect
+# 后两侧调用点错位——伤害 roll / Shield 格挡 roll 漂移（run631 idx78
+# oracle 0 vs gd 8 即此）。手补在 stage0 再生成时会被清（A2 互清事故两轮实证），
+# 故以生成器 pass 固化；幂等：检测到还原块（任一抽行）即跳过，手补/再生不双插。
+FALCONBLADE_RANDOMIZE_DRAWS = [
+    "\t\tctx.rng.randf_range( - 30.0, 30.0)",
+    "\t\tctx.rng.randf_range( - 100.0, 100.0)",
+    "\t\tctx.rng.randf_range( - 5.0, 5.0)",
+]
+FALCONBLADE_RANDOMIZE_STATS = {"injected": 0, "skipped_present": 0}
+
+_FALCONBLADE_JUDGE_ANCHOR = (
+    "\t\tif hits == 2:\n"
+    "\t\t\tpass\n"
+    "\t\telif hits == 1:\n"
+    "\t\t\tpass\n"
+    "\t\telse:\n"
+    "\t\t\tpass\n"
+)
+
+
+def restore_falconblade_randomize_draws(rel, text):
+    """FalconBlade.gd 双击判定块后补 randomizePosition 3 抽（幂等）。"""
+    if rel != "FalconBlade.gd":
+        return text
+    if "ctx.rng.randf_range( - 30.0, 30.0)" in text:
+        FALCONBLADE_RANDOMIZE_STATS["skipped_present"] += 1
+        return text
+    at = text.find(_FALCONBLADE_JUDGE_ANCHOR)
+    if at < 0:
+        return text  # 生成面形变 → 不插（宁可缺失也不错位）
+    end = at + len(_FALCONBLADE_JUDGE_ANCHOR)
+    comment = (
+        "\n"
+        "\t\t# ★ RNG 链消耗还原（r2_1）：decomp Items/FalconBlade.gd:24-25 "
+        "createAnimation()+ani.randomizePosition() ——\n"
+        "\t\t#   ItemAnimation.gd:26-28 恒抽 3 次（(30,100)/5.0 export 默认；"
+        "直调不经 intialize 无 playback_speed）。\n"
+        "\t\t#   run631_r9/701_r11/722_r7 逐抽对位实证 + 台账第 24 轮 run634 同根。"
+    )
+    block = comment + "\n" + "\n".join(FALCONBLADE_RANDOMIZE_DRAWS) + "\n"
+    FALCONBLADE_RANDOMIZE_STATS["injected"] += 1
+    return text[:end] + block + text[end:]
+
+
+# ── fam_r1 棋族面 pass：ChessPiece.moveCells 的绝对格→局部格换算 ──
+# 根因（run645_r11 逐层实证，output/oracle/probe/fam_r1/）：
+#   原版 decompiled_full/Items/Exclusive/Chess/ChessPiece.gd:46-51 prepare() 把
+#   affectedTileCells 当**局部格**（cell.rotated(rotation) 后由
+#   ChessBoard.findPieceToCapture:103-104 用 occupiedCells[0]+cell 还原全局）；
+#   内核装配口径 affectedTileCells = **绝对格**（placement_of 已烘焙锚点平移+
+#   朝向旋转；消费面 getAffectedCellsInInventory → getCellsForGlobalPositions
+#   直接按全局格取，gd_core/CoreItem.gd:2940-2943）。棋子是唯一把 tilemap 格当
+#   局部格消费的脚本 → moveCells 变绝对格，capture 查询格整体平移 →
+#   canAffect 恒 false → 棋盘整场静默（68 场 Activation 首分歧簇）。
+#   修法 = prepare() 里把绝对格换算回局部格（绝对 − 占位左上），旋转已在
+#   装配侧烘焙、不再 .rotated（内核 rotation 恒 0）。幂等替换，仅此一文件。
+CHESS_MOVECELLS_OLD = (
+    "\tmoveCells.clear()\n"
+    "\tfor cell in getAffectedCells_tilemap():\n"
+    "\t\tmoveCells.push_back(cell.rotated(rotation).round())")
+CHESS_MOVECELLS_NEW = (
+    "\tmoveCells.clear()\n"
+    "\tfor cell in getAffectedCells_tilemap():\n"
+    "\t\t# fam_r1 棋族面：decomp Items/Exclusive/Chess/ChessPiece.gd:50-51 按"
+    "局部格消费（cell.rotated(rotation) 后 ChessBoard.gd:104 occupied[0]+cell"
+    " 还原全局）；内核 affectedTileCells 为绝对格（装配已烘焙旋转）→ 换算回局部\n"
+    "\t\tmoveCells.push_back((cell - occupiedCells[0]).round())")
+CHESS_MOVECELLS_STATS = {"files": 0, "sites": 0}
+
+
+def adapt_chess_movecells(rel, text):
+    """棋子 prepare 的 moveCells 局部格换算（内核绝对格装配口径适配）。"""
+    if rel != "Exclusive/Chess/ChessPiece.gd":
+        return text
+    if CHESS_MOVECELLS_OLD in text:
+        text = text.replace(CHESS_MOVECELLS_OLD, CHESS_MOVECELLS_NEW, 1)
+        CHESS_MOVECELLS_STATS["files"] += 1
+        CHESS_MOVECELLS_STATS["sites"] += 1
+    return text
+
+
+# ── r4_2 棋族面 pass：ChessPiece.repositionPiece / onStateChanged 判定支还原 ──
+# 根因（run645_r11 idx15 逐层实证，output/_round_patches/r4_2/）：
+#   原版 decompiled_full/Items/Exclusive/Chess/ChessPiece.gd:93-97
+#   repositionPiece 第三行是**判定面** inventory.moveItem(self,[toCell])
+#   （Inventory.gd:640-647 = clearItemCells+addItemCells+occupiedCells 赋值，
+#   零信号零 rng；:94 moveTo / :97 movebackTween 与 z_index 为表现面）
+#   ——捕获 onPieceCaptured:73 setState(targetCell) 与移动 onPieceMoved:53
+#   setState(targetCell) 两路都经 onStateChanged:104-107 的 Vector2 分支调
+#   repositionPiece(targetCell)。转译期该函数被整函数按视觉剥离（moveTo/tween
+#   连坐），onStateChanged 分支里的调用连带被剥 → 捕获者不占被吃格、移动
+#   不落格 → 全部棋子 occupiedCells 冻结在装配位 → ChessBoard.findPieceToCapture
+#   的查询格恒错 → 捕获恒空转 findSpaceToMove（r4_2 修前台账 :164 行实证）→
+#   神谕「棋盘 Activation+捕获链事件」整簇缺失（5 场簇 idx 15/16/23/48/42
+#   同签名，type=0 origin=Chess Board）。
+#   修法 = 内核 CoreGrid.moveItem（gd_core/CoreGrid.gd，格映射判定面）+ 本
+#   pass 还原判定支（两处幂等替换，仅此一文件）。miss 计数≠0 说明生成面
+#   形态变了、本 pass 不再命中 → 报告行可见，防静默失效。
+CHESS_REPOSITION_OLD_REPOSITION = (
+    "func repositionPiece(toCell):\n\tpass\n")
+CHESS_REPOSITION_NEW_REPOSITION = (
+    "func repositionPiece(toCell):\n"
+    "\t# r4_2 棋族面：decomp Items/Exclusive/Chess/ChessPiece.gd:93-97 ——\n"
+    "\t# z_index/moveTo/movebackTween 为表现面剥离；判定面 inventory.moveItem\n"
+    "\t# （Inventory.gd:640-647，捕获者占被吃格）保留 → 内核 CoreGrid.moveItem\n"
+    "\tinventory.moveItem(self, [toCell])\n")
+CHESS_REPOSITION_OLD_STATE = (
+    "\tif typeof(state) == TYPE_VECTOR2:\n\t\tvar targetCell = state\n\t\t\n\telse:\n")
+CHESS_REPOSITION_NEW_STATE = (
+    "\tif typeof(state) == TYPE_VECTOR2:\n\t\tvar targetCell = state\n"
+    "\t\trepositionPiece(targetCell)\n\telse:\n")
+CHESS_REPOSITION_STATS = {"files": 0, "sites": 0, "miss": 0}
+
+
+def adapt_chess_reposition(rel, text):
+    """棋子 repositionPiece/onStateChanged 的 moveItem 判定支还原（r4_2）。"""
+    if rel != "Exclusive/Chess/ChessPiece.gd":
+        return text
+    touched = False
+    if CHESS_REPOSITION_OLD_REPOSITION in text:
+        text = text.replace(CHESS_REPOSITION_OLD_REPOSITION,
+                            CHESS_REPOSITION_NEW_REPOSITION, 1)
+        CHESS_REPOSITION_STATS["sites"] += 1
+        touched = True
+    if CHESS_REPOSITION_OLD_STATE in text:
+        text = text.replace(CHESS_REPOSITION_OLD_STATE,
+                            CHESS_REPOSITION_NEW_STATE, 1)
+        CHESS_REPOSITION_STATS["sites"] += 1
+        touched = True
+    if touched:
+        CHESS_REPOSITION_STATS["files"] += 1
+    elif CHESS_REPOSITION_NEW_REPOSITION not in text:
+        # 生成面形态变化：既无旧形态也非已注入 → 计 miss（报告行可见）
+        CHESS_REPOSITION_STATS["miss"] += 1
+    return text
+
+
+# ── r1_0 全局链台账 pass：物品脚本裸 Array.shuffle()/pick_random() 改道经 CoreRng 台账 ──
+# 根因（run645_r11 idx7 逐层定位，output/_round_patches/r1_0/）：
+#   原版 ChessBoard.gd:80/100/121/164（连同其余物品脚本的裸 shuffle/pick_random，
+#   合计 12 处 shuffle + 1 处 pick_random）消费 Godot **引擎全局链**
+#   （Array.shuffle → Math::rand，docs/rng_truth.md §1.4-1/§1.4-2，与 Util.rng
+#   相互独立）。受控神谕对齐路径只复刻了开局的两次 shuffle
+#   （OracleAlignBattle.gd::activation_order ↔ oracle_fight.gd:645/648），战斗期
+#   t>0 的全局链消耗两侧同源对齐缺位：gd_core_items 的裸 Array.shuffle 走真
+#   引擎链，但 ChessPiece.gd:74 的 captureSounds.pick_random()（音效面，randpitch
+#   pass 只还原了同行 randPitch 的 Util.rng 抽、pick_random 明注不计）在内核侧
+#   零消耗——原版每捕获一枚棋子多 1 抽全局链，gd 侧链位恒落后，棋盘
+#   「捕获哪枚棋子/是否捕获」抉择分歧（run645_r11 idx7：gd 对手板 t56 多出
+#   白兵 +2 恢复事件）。修法 = 裸 shuffle/pick_random 改道
+#   CoreRng.shuffleEngine/pickRandomEngine（preordered 开账后与引擎链同链位
+#   逐位等价、未开账直通 Array 方法零回归；台账登记进 oracle_trace_log，
+#   kind=Gshuffle/Gpick）+ CoreCombat.startBattle(preordered) 开账
+#   globalChainOpen（重播开局 shuffle×2 消耗）。tag = decomp 源文件:行号。
+_GLOBAL_CHAIN_SHUFFLE_RE = re.compile(
+    r"^(\t+)([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)*)\.shuffle\(\)\s*$")
+_GLOBAL_CHAIN_PICK_RE = re.compile(
+    r"^(\t+)(var\s+[A-Za-z_]\w*\s*=\s*)?"
+    r"([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)*)\.pick_random\(\)\s*$")
+GLOBAL_CHAIN_STATS = {"files": 0, "shuffle": 0, "pick_random": 0}
+
+
+def _decomp_global_chain_lines(rel):
+    """decomp 源文件里 Array.shuffle()/pick_random() 的 1 基行号（出现序）。
+
+    与生成序逐位配对的前提：含调用点的函数在生成面全部存活（现存 12+1 处
+    调用点逐一核对过：ChessBoard×4 / Eggscalibur / CupcakeDragon /
+    EchoingBattlecry / RainbowPotion / TeslaCoil×2 / Ukulele /
+    UnidentifiedSkill 全在保留函数内）。计数对不上时（未来某函数被剥离）
+    tag 退化为出现序号，不改行为。
+    """
+    src_path = os.path.join(SRC, rel.replace("/", os.sep))
+    shuf, pick = [], []
+    if not os.path.exists(src_path):
+        return shuf, pick
+    with io.open(src_path, encoding="utf-8", errors="replace") as fh:
+        for i, ln in enumerate(fh, 1):
+            code = re.sub(r"#[^\n]*", "", ln)
+            if ".shuffle()" in code:
+                shuf.append(i)
+            if ".pick_random()" in code:
+                pick.append(i)
+    return shuf, pick
+
+
+def adapt_global_chain_ledger(rel, text):
+    """裸 Array.shuffle()/pick_random() → ctx.rng.shuffleEngine/pickRandomEngine。"""
+    shuf_lines, pick_lines = _decomp_global_chain_lines(rel)
+    shuf_seen = [0]
+    pick_seen = [0]
+
+    def _tag(lines, seen, kind):
+        k = seen[0]
+        seen[0] += 1
+        if k < len(lines):
+            return "%s:%d" % (rel, lines[k])
+        return "%s:#%s%d" % (rel, kind, k + 1)
+
+    out = []
+    touched = False
+    for ln in text.split("\n"):
+        m = _GLOBAL_CHAIN_SHUFFLE_RE.match(ln)
+        if m:
+            ind, recv = m.group(1), m.group(2)
+            out.append('%sctx.rng.shuffleEngine(%s, "%s")'
+                       % (ind, recv, _tag(shuf_lines, shuf_seen, "s")))
+            GLOBAL_CHAIN_STATS["shuffle"] += 1
+            touched = True
+            continue
+        m = _GLOBAL_CHAIN_PICK_RE.match(ln)
+        if m:
+            ind, assign, recv = m.group(1), m.group(2) or "", m.group(3)
+            out.append('%s%sctx.rng.pickRandomEngine(%s, "%s")'
+                       % (ind, assign, recv, _tag(pick_lines, pick_seen, "p")))
+            GLOBAL_CHAIN_STATS["pick_random"] += 1
+            touched = True
+            continue
+        out.append(ln)
+    if touched:
+        GLOBAL_CHAIN_STATS["files"] += 1
+        text = "\n".join(out)
+    return text
+
+
 def main() -> int:
     dry = "--dry-run" in sys.argv
     scr = collect()
@@ -2369,6 +2729,12 @@ def main() -> int:
     # ── 输出 ──
     if not dry:
         for rel, text in outputs.items():
+            if rel != ITEM_BASE:
+                text = restore_randpitch_draws(rel, text)
+                text = restore_falconblade_randomize_draws(rel, text)
+                text = adapt_chess_movecells(rel, text)
+                text = adapt_chess_reposition(rel, text)
+                text = adapt_global_chain_ledger(rel, text)
             path = os.path.join(OUT, rel.replace("/", os.sep))
             os.makedirs(os.path.dirname(path), exist_ok=True)
             with io.open(path, "w", encoding="utf-8", newline="\n") as fh:
@@ -2385,6 +2751,23 @@ def main() -> int:
     rep.append("  整函数剥离 —— 节点模态 %d、残留符号 %d" %
                (stats["func_stripped_modal"], stats["func_stripped_residual"]))
     rep.append("  行级抢救（SALVAGE_FUNCS 点名）%d 个" % stats["func_salvaged"])
+    rep.append("  randPitch 消耗还原（a1 声音面）——文件 %d、调用点 %d、还原 %d 抽"
+               % (RANDPITCH_STATS["files"], RANDPITCH_STATS["sites"],
+                  RANDPITCH_STATS["draws"]))
+    rep.append("  FalconBlade randomizePosition 3 抽还原（r2_1）——注入 %d、"
+               "已在位跳过 %d"
+               % (FALCONBLADE_RANDOMIZE_STATS["injected"],
+                  FALCONBLADE_RANDOMIZE_STATS["skipped_present"]))
+    rep.append("  棋子 moveCells 局部格换算（fam_r1 棋族面）——文件 %d、点 %d"
+               % (CHESS_MOVECELLS_STATS["files"], CHESS_MOVECELLS_STATS["sites"]))
+    rep.append("  棋子 repositionPiece 判定支还原（r4_2 棋族面）——文件 %d、点 %d、"
+               "miss %d"
+               % (CHESS_REPOSITION_STATS["files"], CHESS_REPOSITION_STATS["sites"],
+                  CHESS_REPOSITION_STATS["miss"]))
+    rep.append("  全局链台账改道（r1_0 棋局 shuffle 面）——文件 %d、shuffle %d、"
+               "pick_random %d"
+               % (GLOBAL_CHAIN_STATS["files"], GLOBAL_CHAIN_STATS["shuffle"],
+                  GLOBAL_CHAIN_STATS["pick_random"]))
     rep.append("视觉行删除 %d、视觉调用剥成 null %d" %
                (stats["line_dropped"], stats["line_rewritten"]))
     rep.append("onready：表达式求值保留 %d、视觉节点引用删除 %d" %

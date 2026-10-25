@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class StrongStoneSkinPotion(_R.C("res://gd_core_items/StoneSkinPotion.gd")):
+class StrongStoneSkinPotion_2(_R.C("res://gd_core_items/StoneSkinPotion.gd")):
 
 	resource_path = "res://gd_core_items/StrongStoneSkinPotion.gd"
 
@@ -27,5 +27,5 @@ class StrongStoneSkinPotion(_R.C("res://gd_core_items/StoneSkinPotion.gd")):
 		self.spikes = int(self.getP("spikes"))
 
 
-_R.reg("res://gd_core_items/StrongStoneSkinPotion.gd", StrongStoneSkinPotion)
-_R.reg("StrongStoneSkinPotion", StrongStoneSkinPotion)
+_R.reg("res://gd_core_items/StrongStoneSkinPotion.gd", StrongStoneSkinPotion_2)
+_R.reg("StrongStoneSkinPotion", StrongStoneSkinPotion_2)

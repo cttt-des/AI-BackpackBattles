@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class RibSawBlade(_R.C("res://gd_core_items/Weapon.gd")):
+class RibSawBlade_2(_R.C("res://gd_core_items/Weapon.gd")):
 
 	resource_path = "res://gd_core_items/RibSawBlade.gd"
 
@@ -38,5 +38,5 @@ class RibSawBlade(_R.C("res://gd_core_items/Weapon.gd")):
 		self.bonusDam = self.getP("bonusdam")
 
 
-_R.reg("res://gd_core_items/RibSawBlade.gd", RibSawBlade)
-_R.reg("RibSawBlade", RibSawBlade)
+_R.reg("res://gd_core_items/RibSawBlade.gd", RibSawBlade_2)
+_R.reg("RibSawBlade", RibSawBlade_2)

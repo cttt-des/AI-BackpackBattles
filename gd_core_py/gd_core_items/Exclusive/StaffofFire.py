@@ -14,12 +14,36 @@ class Exclusive__StaffofFire(_R.C("res://gd_core_items/Weapon.gd")):
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.numActivations = 0
+		self._numActivations = 0
 		self.activationParticles = None
-		self.manaCost = 0
-		self.heatCost = 0
-		self.damBonus = 0
+		self._manaCost = 0
+		self._heatCost = 0
+		self._damBonus = 0
 
+	@property
+	def numActivations(self):
+		return self._numActivations
+	@numActivations.setter
+	def numActivations(self, v):
+		self._numActivations = int(v)
+	@property
+	def manaCost(self):
+		return self._manaCost
+	@manaCost.setter
+	def manaCost(self, v):
+		self._manaCost = int(v)
+	@property
+	def heatCost(self):
+		return self._heatCost
+	@heatCost.setter
+	def heatCost(self, v):
+		self._heatCost = int(v)
+	@property
+	def damBonus(self):
+		return self._damBonus
+	@damBonus.setter
+	def damBonus(self, v):
+		self._damBonus = int(v)
 
 	def onPrepare(self):
 		self.numActivations = 0

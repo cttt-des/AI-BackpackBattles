@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class Lightsaber(_R.C("res://gd_core_items/Weapon.gd")):
+class Lightsaber_2(_R.C("res://gd_core_items/Weapon.gd")):
 
 	resource_path = "res://gd_core_items/Lightsaber.gd"
 
@@ -87,5 +87,5 @@ class Lightsaber(_R.C("res://gd_core_items/Weapon.gd")):
 		self.damPerBlind = self.getP("dam_blind")
 
 
-_R.reg("res://gd_core_items/Lightsaber.gd", Lightsaber)
-_R.reg("Lightsaber", Lightsaber)
+_R.reg("res://gd_core_items/Lightsaber.gd", Lightsaber_2)
+_R.reg("Lightsaber", Lightsaber_2)

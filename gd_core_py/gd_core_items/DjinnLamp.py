@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class DjinnLamp(_R.C("res://gd_core_items/Item.gd")):
+class DjinnLamp_2(_R.C("res://gd_core_items/Item.gd")):
 
 	resource_path = "res://gd_core_items/DjinnLamp.gd"
 
@@ -99,5 +99,5 @@ class DjinnLamp(_R.C("res://gd_core_items/Item.gd")):
 		self.healthNeeded = self.getP2()
 
 
-_R.reg("res://gd_core_items/DjinnLamp.gd", DjinnLamp)
-_R.reg("DjinnLamp", DjinnLamp)
+_R.reg("res://gd_core_items/DjinnLamp.gd", DjinnLamp_2)
+_R.reg("DjinnLamp", DjinnLamp_2)

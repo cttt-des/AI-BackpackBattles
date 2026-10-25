@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class PlatinCustomerCard(_R.C("res://gd_core_items/Item.gd")):
+class PlatinCustomerCard_2(_R.C("res://gd_core_items/Item.gd")):
 
 	resource_path = "res://gd_core_items/PlatinCustomerCard.gd"
 
@@ -35,5 +35,5 @@ class PlatinCustomerCard(_R.C("res://gd_core_items/Item.gd")):
 		pass
 
 
-_R.reg("res://gd_core_items/PlatinCustomerCard.gd", PlatinCustomerCard)
-_R.reg("PlatinCustomerCard", PlatinCustomerCard)
+_R.reg("res://gd_core_items/PlatinCustomerCard.gd", PlatinCustomerCard_2)
+_R.reg("PlatinCustomerCard", PlatinCustomerCard_2)

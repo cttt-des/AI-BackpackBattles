@@ -14,10 +14,16 @@ class Exclusive__HogusBogus(_R.C("res://gd_core_items/Item.gd")):
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.phase = 0
+		self._phase = 0
 		self.maxStaminaUsed = None
 		self.buffsPerStamina = None
 
+	@property
+	def phase(self):
+		return self._phase
+	@phase.setter
+	def phase(self, v):
+		self._phase = int(v)
 
 	def onPrepare(self):
 		self.phase = 0

@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class DancingDragon(_R.C("res://gd_core_items/Weapon.gd")):
+class DancingDragon_2(_R.C("res://gd_core_items/Weapon.gd")):
 
 	resource_path = "res://gd_core_items/DancingDragon.gd"
 
@@ -41,5 +41,5 @@ class DancingDragon(_R.C("res://gd_core_items/Weapon.gd")):
 		pass
 
 
-_R.reg("res://gd_core_items/DancingDragon.gd", DancingDragon)
-_R.reg("DancingDragon", DancingDragon)
+_R.reg("res://gd_core_items/DancingDragon.gd", DancingDragon_2)
+_R.reg("DancingDragon", DancingDragon_2)

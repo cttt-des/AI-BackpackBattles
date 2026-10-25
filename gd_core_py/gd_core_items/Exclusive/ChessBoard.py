@@ -17,12 +17,18 @@ class Exclusive__ChessBoard(_R.C("res://gd_core_items/Item.gd")):
 		self.activeBlackPieces = []
 		self.activeWhitePieces = []
 		self.originCells = {}
-		self.turnColor = 0
+		self._turnColor = 0
 		self.goldCost = None
 		self.blackPieces = None
 		self.whitePieces = None
 		self.chessMasterDescr = None
 
+	@property
+	def turnColor(self):
+		return self._turnColor
+	@turnColor.setter
+	def turnColor(self, v):
+		self._turnColor = int(v)
 
 	def onBought(self):
 		pass

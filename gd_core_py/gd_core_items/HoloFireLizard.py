@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class HoloFireLizard(_R.C("res://gd_core_items/Card.gd")):
+class HoloFireLizard_2(_R.C("res://gd_core_items/Card.gd")):
 
 	resource_path = "res://gd_core_items/HoloFireLizard.gd"
 
@@ -35,5 +35,5 @@ class HoloFireLizard(_R.C("res://gd_core_items/Card.gd")):
 
 
 
-_R.reg("res://gd_core_items/HoloFireLizard.gd", HoloFireLizard)
-_R.reg("HoloFireLizard", HoloFireLizard)
+_R.reg("res://gd_core_items/HoloFireLizard.gd", HoloFireLizard_2)
+_R.reg("HoloFireLizard", HoloFireLizard_2)

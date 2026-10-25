@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class WoodenSword(_R.C("res://gd_core_items/Item.gd")):
+class WoodenSword_2(_R.C("res://gd_core_items/Item.gd")):
 
 	resource_path = "res://gd_core_items/WoodenSword.gd"
 
@@ -24,5 +24,5 @@ class WoodenSword(_R.C("res://gd_core_items/Item.gd")):
 
 
 
-_R.reg("res://gd_core_items/WoodenSword.gd", WoodenSword)
-_R.reg("WoodenSword", WoodenSword)
+_R.reg("res://gd_core_items/WoodenSword.gd", WoodenSword_2)
+_R.reg("WoodenSword", WoodenSword_2)

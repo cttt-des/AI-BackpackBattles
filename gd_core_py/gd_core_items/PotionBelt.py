@@ -8,15 +8,21 @@ from .. import _registry as _R
 
 
 
-class PotionBelt(_R.C("res://gd_core_items/Bag.gd")):
+class PotionBelt_2(_R.C("res://gd_core_items/Bag.gd")):
 
 	resource_path = "res://gd_core_items/PotionBelt.gd"
 
 	def _init_fields(self):
 		super()._init_fields()
 		self.affectedPotions = []
-		self.numConsumed = 0
+		self._numConsumed = 0
 
+	@property
+	def numConsumed(self):
+		return self._numConsumed
+	@numConsumed.setter
+	def numConsumed(self, v):
+		self._numConsumed = int(v)
 
 	def onPrepare(self):
 		self.numConsumed = 0
@@ -68,5 +74,5 @@ class PotionBelt(_R.C("res://gd_core_items/Bag.gd")):
 		pass
 
 
-_R.reg("res://gd_core_items/PotionBelt.gd", PotionBelt)
-_R.reg("PotionBelt", PotionBelt)
+_R.reg("res://gd_core_items/PotionBelt.gd", PotionBelt_2)
+_R.reg("PotionBelt", PotionBelt_2)

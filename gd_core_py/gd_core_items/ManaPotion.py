@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class ManaPotion(_R.C("res://gd_core_items/Potion.gd")):
+class ManaPotion_2(_R.C("res://gd_core_items/Potion.gd")):
 
 	resource_path = "res://gd_core_items/ManaPotion.gd"
 
@@ -52,5 +52,5 @@ class ManaPotion(_R.C("res://gd_core_items/Potion.gd")):
 		self.healthThreshold = _div(self.getP1(), 100.0) - 0.0001
 
 
-_R.reg("res://gd_core_items/ManaPotion.gd", ManaPotion)
-_R.reg("ManaPotion", ManaPotion)
+_R.reg("res://gd_core_items/ManaPotion.gd", ManaPotion_2)
+_R.reg("ManaPotion", ManaPotion_2)

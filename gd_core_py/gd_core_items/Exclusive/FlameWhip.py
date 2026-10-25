@@ -14,10 +14,22 @@ class Exclusive__FlameWhip(_R.C("res://gd_core_items/Weapon.gd")):
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.spikesNeeded = 0
-		self.heatGain = 0
+		self._spikesNeeded = 0
+		self._heatGain = 0
 		self.bonusDamage = 0.0
 
+	@property
+	def spikesNeeded(self):
+		return self._spikesNeeded
+	@spikesNeeded.setter
+	def spikesNeeded(self, v):
+		self._spikesNeeded = int(v)
+	@property
+	def heatGain(self):
+		return self._heatGain
+	@heatGain.setter
+	def heatGain(self, v):
+		self._heatGain = int(v)
 
 	def onPreDealDamage_early(self, damageRes):
 		if damageRes.hasHit():

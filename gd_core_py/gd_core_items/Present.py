@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class Present(_R.C("res://gd_core_items/Item.gd")):
+class Present_2(_R.C("res://gd_core_items/Item.gd")):
 
 	resource_path = "res://gd_core_items/Present.gd"
 
@@ -44,5 +44,5 @@ class Present(_R.C("res://gd_core_items/Item.gd")):
 		pass
 
 
-_R.reg("res://gd_core_items/Present.gd", Present)
-_R.reg("Present", Present)
+_R.reg("res://gd_core_items/Present.gd", Present_2)
+_R.reg("Present", Present_2)

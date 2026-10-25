@@ -186,6 +186,8 @@ CLAIMS = [
     #   EventType 反查拼接（修 Buff 信号名断裂）→ 全库归 0
     # 0→3：CoreRng._oracle_stack_frames 栈签名 1 处 + 电荷路径 sendCharge 诊断
     #   格式化 2 处（gd_core/CoreItem.gd，2026-10-07/08）。
+    # 3→4→3：round6 为 [DD] 诊断 print 计 1（CoreCombatLog.gd），round7 该 print
+    #   移除（其使命完成且对非神谕 descriptor 不安全）→ 回落 3。
     ("String 格式化 % 行数",          lambda s: s["expr"]["% 字符串格式化"], 3),
     # 24→25：电荷体 last/curChargedItem 的身份检查（CoreItem.gd 电荷入格）。
     ("is 类型检查 行数",              lambda s: s["expr"]["is 类型检查"], 25),
@@ -193,11 +195,13 @@ CLAIMS = [
     #   randEffects 等）给产物新增了真实代码行 —— RingEffect.new()、
     #   ringTypes/effects.push_back、stones.empty() 等回归产物。
     # 55→57：电荷体构造 + 装配层（净增 2；sendCharge 重写抵消了部分旧行）。
-    (".new( 行数",                   lambda s: s["expr"][".new("], 57),
+    # 57→56：CoreItem.setup 的双重 chanceRng 改场景深度循环（净 -1 处 .new(）。
+    (".new( 行数",                   lambda s: s["expr"][".new("], 56),
     # 63→68：电荷入格循环/栈签名 min(5, st.size()) 等净增 5。
-    (".size() 调用次数",             lambda s: s["calls"]["size"], 68),
-    # 64→67：电荷链路 trace 数组净增 3。
-    (".push_back() 调用次数",        lambda s: s["calls"]["push_back"], 67),
+    # 68→71：CoreItem.setup 场景深度 for 循环（range(_bindings) 判定 + 缩进展开）。
+    (".size() 调用次数",             lambda s: s["calls"]["size"], 71),
+    # 64→67：电荷链路 trace 数组净增 3。67→70：activate playCombatAni 闸注释块。
+    (".push_back() 调用次数",        lambda s: s["calls"]["push_back"], 70),
     (".empty() 调用次数",            lambda s: s["calls"]["empty"], 56),
     # 198→206：sendCharge 的格映射（getTopLeftCell + rotate(fd×90°) + CollisionMap
     #   偏移，Item.gd:1040-1047→Inventory.gd:377-381 两步互逆）净增 8。

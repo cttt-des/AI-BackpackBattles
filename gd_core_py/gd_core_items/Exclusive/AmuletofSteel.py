@@ -14,10 +14,16 @@ class Exclusive__AmuletofSteel(_R.C("res://gd_core_items/Item.gd")):
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.blockAcc = 0
+		self._blockAcc = 0
 		self.blockForEmpower = None
 		self.empowerForBlock = None
 
+	@property
+	def blockAcc(self):
+		return self._blockAcc
+	@blockAcc.setter
+	def blockAcc(self, v):
+		self._blockAcc = int(v)
 	amuletColor = Color(0.34902, 0.415686, 0.45098)
 
 	def canAffect(self, item):

@@ -14,13 +14,19 @@ class Exclusive__JynxStaff(_R.C("res://gd_core_items/Weapon.gd")):
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.numActivations = 0
+		self._numActivations = 0
 		self.manaCost = None
 		self.permDamBonus = None
 		self.speedBonus = None
 		self.maxActivations = None
 		self.luckRemoval = None
 
+	@property
+	def numActivations(self):
+		return self._numActivations
+	@numActivations.setter
+	def numActivations(self, v):
+		self._numActivations = int(v)
 
 	def canAffect(self, item):
 		return item.hasCooldown()

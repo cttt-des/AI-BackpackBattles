@@ -14,9 +14,15 @@ class Exclusive__AmuletofDarkness(_R.C("res://gd_core_items/Item.gd")):
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.damageAcc = 0
+		self._damageAcc = 0
 		self.damageThreshold = None
 
+	@property
+	def damageAcc(self):
+		return self._damageAcc
+	@damageAcc.setter
+	def damageAcc(self, v):
+		self._damageAcc = int(v)
 	amuletColor = Color(0.580392, 0.266667, 0.960784)
 
 	def canAffect(self, item):

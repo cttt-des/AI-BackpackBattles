@@ -70,9 +70,16 @@ def compute_originating(known_items: set) -> dict:
             if not recipe_str or ">" not in recipe_str:
                 continue
             formula = recipe_str.split(">")
-            names = [x.strip() for x in formula[0].split("+") if x.strip()]
-            catalysts = [x.endswith("*") for x in formula[0].split("+")
-                         if x.strip()]
+            # ★ 催化剂 `*` 后缀必须剥掉再查发布集（对齐 decomp Recipe.gd:19-25
+            #   fromString：`ingredientNames[i] = name.trim_suffix("*")`）。此前
+            #   names 保留 `*`（如 "Forging Hammer*"）→ not in known_items →
+            #   整条配方被丢 → 28 件合成品（Armored Wisdom Puppy / Whetstone2/
+            #   3 / Dragonscale Armor…）originatingRecipes 恒空 → isCraftedItem()
+            #   恒假 → Cog numAffected 1v2、开战 block 7v14、胜负翻转
+            #   （run683_r9 idx0 定谳，alignment.json 实跑）。
+            raw_parts = [x.strip() for x in formula[0].split("+") if x.strip()]
+            catalysts = [x.endswith("*") for x in raw_parts]
+            names = [x[:-1] if x.endswith("*") else x for x in raw_parts]
             fused = formula[1].strip()
             # Recipe.init 丢弃规则：具名成分/产物不在已发布物品集 → 整条不注册
             ok = fused in known_items

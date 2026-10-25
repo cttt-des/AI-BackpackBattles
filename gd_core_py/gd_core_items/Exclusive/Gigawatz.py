@@ -14,13 +14,25 @@ class Exclusive__Gigawatz(_R.C("res://gd_core_items/Item.gd")):
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.numSpeedboosts = 0
-		self.curDamageBonus = 0
+		self._numSpeedboosts = 0
+		self._curDamageBonus = 0
 		self.maxNumSpeedBoosts = None
 		self.speedBonus = None
 		self.damageBonus = None
 		self.blind = None
 
+	@property
+	def numSpeedboosts(self):
+		return self._numSpeedboosts
+	@numSpeedboosts.setter
+	def numSpeedboosts(self, v):
+		self._numSpeedboosts = int(v)
+	@property
+	def curDamageBonus(self):
+		return self._curDamageBonus
+	@curDamageBonus.setter
+	def curDamageBonus(self, v):
+		self._curDamageBonus = int(v)
 
 	def onPrepare(self):
 		self.curDamageBonus = 0

@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class ThornWhip(_R.C("res://gd_core_items/Weapon.gd")):
+class ThornWhip_2(_R.C("res://gd_core_items/Weapon.gd")):
 
 	resource_path = "res://gd_core_items/ThornWhip.gd"
 
@@ -30,5 +30,5 @@ class ThornWhip(_R.C("res://gd_core_items/Weapon.gd")):
 		pass
 
 
-_R.reg("res://gd_core_items/ThornWhip.gd", ThornWhip)
-_R.reg("ThornWhip", ThornWhip)
+_R.reg("res://gd_core_items/ThornWhip.gd", ThornWhip_2)
+_R.reg("ThornWhip", ThornWhip_2)

@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class StaminaSack(_R.C("res://gd_core_items/Bag.gd")):
+class StaminaSack_2(_R.C("res://gd_core_items/Bag.gd")):
 
 	resource_path = "res://gd_core_items/StaminaSack.gd"
 
@@ -35,5 +35,5 @@ class StaminaSack(_R.C("res://gd_core_items/Bag.gd")):
 		pass
 
 
-_R.reg("res://gd_core_items/StaminaSack.gd", StaminaSack)
-_R.reg("StaminaSack", StaminaSack)
+_R.reg("res://gd_core_items/StaminaSack.gd", StaminaSack_2)
+_R.reg("StaminaSack", StaminaSack_2)

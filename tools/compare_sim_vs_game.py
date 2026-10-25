@@ -34,18 +34,10 @@ STACK_ZH = {100: "护盾", 101: "幸运", 102: "恢复", 103: "吸血", 104: "�
             110: "冰冷"}
 
 
-_KIND_NORM = {
-    "InvulnerableStart": "invulnerable_start",
-    "InvulnerableEnd": "invulnerable_end",
-    "OutofStamina": "out_of_stamina",
-    "BattleRageStart": "battle_rage_start",
-    "BattleRageEnd": "battle_rage_end",
-}
-
-
 def norm_kind(e) -> str:
     """把两边的 kind 归一成一个短标签。"""
-    return _KIND_NORM.get(e["kind"], e["kind"])
+    t = e["kind"]
+    return t
 
 
 def load_game_events(path: str):
@@ -54,7 +46,7 @@ def load_game_events(path: str):
     for ev in d["events"]:
         tn = ev.get("type_name", "")
         side = ev.get("side", "")
-        origin = (ev.get("origin") or {}).get("name") or (ev.get("origin") or {}).get("zh")
+        origin = (ev.get("origin") or {}).get("zh") or (ev.get("origin") or {}).get("name")
         params = ev.get("params") or {}
         t = float(ev.get("t", 0.0))
         if tn == "Activation":
@@ -78,7 +70,7 @@ def load_game_events(path: str):
         else:
             kind, amt = tn, None
         out.append({"t": t, "side": "P" if side == "P" else "O",
-                    "kind": _KIND_NORM.get(kind, kind), "origin": _norm_origin(origin), "amount": amt})
+                    "kind": kind, "origin": origin, "amount": amt})
     return out
 
 
@@ -88,10 +80,13 @@ def load_sim_events(player_path, opponent_path, seed):
     o = load_lineup(opponent_path)
     eng = GDCoreEngine(p, o, item_db, char_db, seed=seed, max_time=90.0)
     eng.run()
+    from engine.i18n import t as _t  # noqa: F401  (确保渲染可用)
+    from engine.log_text import render_log
     out = []
     for e in eng.log.events:
         etype = e.type
-        origin_zh = e.origin.key if e.origin is not None else None
+        origin = e.origin.key if e.origin is not None else None
+        origin_zh = _zh_name(origin)
         t = float(e.t)
         if etype.startswith("stack_"):
             zh = STACK_ZH.get(e.buff_type, str(e.buff_type))
@@ -114,7 +109,7 @@ def load_sim_events(player_path, opponent_path, seed):
         else:
             kind, amt = etype, None
         out.append({"t": t, "side": "P" if e.actor == "player" else "O",
-                    "kind": _KIND_NORM.get(kind, kind), "origin": _norm_origin(origin_zh), "amount": amt})
+                    "kind": kind, "origin": origin_zh, "amount": amt})
     return out, eng
 
 
@@ -125,10 +120,9 @@ def _zh_name(key):
     return zh_name(key)
 
 
-# 两侧叫法归一（渲染口径差异，非行为差异）：非物品伤害来源
+# 两侧叫法归一（渲染口径差异，非行为差异）
 _ALIAS = {
-    "spikes": "Spikes", "bl": "Block", "regen": "Regeneration",
-    "vampirism": "Vampirism", "poison": "Poison", "poison_tick": "Poison",
+    "反伤": "尖刺", "中毒": "中毒",
 }
 
 
@@ -169,14 +163,10 @@ def main():
     ap.add_argument("opponent")
     ap.add_argument("gamelog")
     ap.add_argument("--seed", type=int, default=1)
-    ap.add_argument("--tmax", type=float, default=None, help="截断时间窗")
     args = ap.parse_args()
 
     game = load_game_events(args.gamelog)
     sim, eng = load_sim_events(args.player, args.opponent, args.seed)
-    if args.tmax:
-        game = [e for e in game if e["t"] <= args.tmax]
-        sim = [e for e in sim if e["t"] <= args.tmax]
 
     print("=== 总览 ===")
     print("游戏: %d 事件, 战斗时长 %.2fs" % (len(game), max(e["t"] for e in game)))

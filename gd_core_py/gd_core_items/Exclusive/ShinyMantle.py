@@ -14,7 +14,7 @@ class Exclusive__ShinyMantle(_R.C("res://gd_core_items/Item.gd")):
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.invuProcced = 0
+		self._invuProcced = 0
 		self.gemDurFactor = 0.0
 		self.manaNeeded = None
 		self.activationParticles = None
@@ -24,6 +24,12 @@ class Exclusive__ShinyMantle(_R.C("res://gd_core_items/Item.gd")):
 		self.manaCostIncrease = None
 		self.maxUses = None
 
+	@property
+	def invuProcced(self):
+		return self._invuProcced
+	@invuProcced.setter
+	def invuProcced(self, v):
+		self._invuProcced = int(v)
 
 	def canAffect(self, item):
 		return not item.isBag()

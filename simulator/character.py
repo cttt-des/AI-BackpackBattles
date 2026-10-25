@@ -57,14 +57,13 @@ class InventoryList(list):
 
 
 class _OriginEvent:
-    """轻量事件包装：buff 变化信号无 event 时提供访问器
-    （get_origin/getAmount/getType/getParam——Mr Struggles 等行为读取）。"""
+    """轻量事件包装：buff 变化信号无 event 时提供 getOrigin()/get_origin()（源物品可空）。
+    对齐 CombatEvent.getOrigin() 语义，供 onBuffsChanged 等行为读取来源。"""
 
-    def __init__(self, origin=None, amount=None, type=None, duration=None):
+    __slots__ = ("_origin",)
+
+    def __init__(self, origin=None):
         self._origin = origin
-        self.amount = amount
-        self.type = type
-        self.duration = duration
 
     def get_origin(self):
         return self._origin
@@ -72,40 +71,9 @@ class _OriginEvent:
     def getOrigin(self):
         return self._origin
 
-    def getAmount(self):
-        return self.amount
-
-    def getType(self):
-        return self.type
-
-    def getParam(self, key, default=None):
-        if key == 'duration':
-            return self.duration if self.duration is not None else default
-        return default
-
-    def getOrigin(self):
-        return self._origin
-
     def __getattr__(self, name):
         return None
     from .events import CombatLog
-
-
-class IntEvent(int):
-    """GDScript loseStacks/useStacks 等返回的 CombatEvent 的 int 兼容等价。
-
-    行为脚本会写 `var event = character().loseStacks(...)` 然后
-    `event.getAmount()`；int 子类保持算术/真值语义并补访问器。
-    """
-
-    def getAmount(self) -> int:
-        return int(self)
-
-    def getOrigin(self):
-        return None
-
-    def getType(self):
-        return None
 
 
 class Character:
@@ -168,7 +136,7 @@ class Character:
         self.bonus_fatigue_damage: int = 0
         self.battle_rage_active: bool = False
         self.battle_rage_bonus_dur: float = 0.0      # Character.gd:84 battleRageBonusDur
-        self.battle_rage_remaining: float = 0.0
+        self.battle_rage_end_time: float = 0.0
 
         # ---- 限制/系数 ----
         self.melee_spikes_limit: float = 1.0
@@ -239,10 +207,9 @@ class Character:
         raise AttributeError(name)
 
     def _emit_debuff_changed(self, buff_type: int, amount: int, event, item=None):
-        """减益栈变化：发通用 + 分类型信号（事件携带 type/duration，Mr Struggles 等）"""
-        if event is None or not hasattr(event, 'getType'):
-            ev = _OriginEvent(item, amount=amount, type=buff_type)
-            event = ev
+        """减益栈变化：发通用 + 分类型信号"""
+        if event is None:
+            event = _OriginEvent(item)
         self.emit_signal("character_debuff_changed", amount, event)
         from .buff import BuffType
         name = BuffType.INV.get(buff_type, str(buff_type)).lower()
@@ -319,7 +286,7 @@ class Character:
         self.bonus_fatigue_damage = 0
         self.battle_rage_active = False
         self.battle_rage_bonus_dur = 0.0   # Character.gd:386 战斗结束重置
-        self.battle_rage_remaining = 0.0
+        self.battle_rage_end_time = 0.0
         self.melee_spikes_limit = 1.0
         self.ranged_spikes_limit = 0.0
         self.effect_spikes_limit = 0.0
@@ -362,6 +329,7 @@ class Character:
 
     def on_tick(self, now: float):
         """onTick() — 每 1s：偶数 tickCounter 回血 / 奇数 中毒"""
+        self.tick_battle_rage(now)
         if self.tick_counter % 2 == 0:
             regen = self.get_regeneration()
             if regen > 0:
@@ -559,14 +527,13 @@ class Character:
                     item.on_dealt_damage(res)
 
         # ---- 触发器：受击时检查本角色药水（character_damaged） ----
-        self.emit_signal('character_attacked', res)  # res 自带 hasHit/getDamage 等访问器
+        self.emit_signal('character_attacked', res)
         for it in self.inventory_items:
             it.check_triggers('character_damaged', now, amount=res.health_damage)
             if self.opponent is not None and self.opponent.is_dead:
                 break
-        # 信号（connectForCombat 注册的回调）；事件包装出 getAmount 等访问器
-        _ev = trigger_event if hasattr(trigger_event, 'getAmount') else _OriginEvent(res.health_damage)
-        self.emit_signal('character_damaged', res.health_damage, _ev)
+        # 信号（connectForCombat 注册的回调）
+        self.emit_signal('character_damaged', res.health_damage, trigger_event)
         if self.opponent is not None and self.opponent.is_dead:
             self.opponent.emit_signal('character_has_died', trigger_event)
 
@@ -625,8 +592,6 @@ class Character:
 
         if self.log:
             self.log.heal(now, self.name(), amount, overheal, origin)
-            if overheal > 0:
-                self.emit_signal('character_overhealed', overheal, trigger_event)
 
         # 触发器：治疗时检查（character_healed，如 Pestilence Flask 毒反击）
         for it in self.inventory_items:
@@ -688,13 +653,10 @@ class Character:
                 it.check_triggers('character_pre_use_stamina', now, amount=amount)
                 if self.opponent is not None and self.opponent.is_dead:
                     break
-        self.emit_signal('character_pre_use_stamina', amount,
-                         _OriginEvent(amount=amount, origin=None))
+        self.emit_signal('character_pre_use_stamina', amount, None)
         if self.cur_stamina >= amount:
             self.cur_stamina = max(self.cur_stamina - amount, 0)
             self.clamp_stamina()
-            # GDScript Character.gd:833 character_used_stamina
-            self.emit_signal('character_used_stamina', amount, None)
             return 0
         else:
             self.clamp_stamina()
@@ -791,10 +753,10 @@ class Character:
                 name = _BT.INV.get(buff_type, '').lower()
                 self.emit_signal(f'character_{name}_changed', -lost,
                                  trigger_event or _OriginEvent(item))
-        return IntEvent(lost)
+        return lost
 
     def use_stacks(self, buff_type: int, amount: int, item=None, trigger_event=None) -> int:
-        return IntEvent(self.lose_stacks(buff_type, amount, item, trigger_event, used=True))
+        return self.lose_stacks(buff_type, amount, item, trigger_event, used=True)
 
     def set_stacks_logged(self, buff_type: int, amount: int, item=None, trigger_event=None):
         cur = self.get_stacks(buff_type)

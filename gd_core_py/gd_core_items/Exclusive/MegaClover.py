@@ -17,9 +17,21 @@ class Exclusive__MegaClover(_R.C("res://gd_core_items/Item.gd")):
 		self.stackTypes = None
 		self.activated = False
 		self.sales = None
-		self.luckNeeded = 0
-		self.numBuffs = 0
+		self._luckNeeded = 0
+		self._numBuffs = 0
 
+	@property
+	def luckNeeded(self):
+		return self._luckNeeded
+	@luckNeeded.setter
+	def luckNeeded(self, v):
+		self._luckNeeded = int(v)
+	@property
+	def numBuffs(self):
+		return self._numBuffs
+	@numBuffs.setter
+	def numBuffs(self, v):
+		self._numBuffs = int(v)
 
 	def onShopEntered(self):
 		pass

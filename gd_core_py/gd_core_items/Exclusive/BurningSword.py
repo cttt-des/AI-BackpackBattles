@@ -16,9 +16,21 @@ class Exclusive__BurningSword(_R.C("res://gd_core_items/Weapon.gd")):
 		super()._init_fields()
 		self.heatCounter = 0
 		self.particleReadyTime = 0.0
-		self.heatOnHit = 0
-		self.heatNeeded = 0
+		self._heatOnHit = 0
+		self._heatNeeded = 0
 
+	@property
+	def heatOnHit(self):
+		return self._heatOnHit
+	@heatOnHit.setter
+	def heatOnHit(self, v):
+		self._heatOnHit = int(v)
+	@property
+	def heatNeeded(self):
+		return self._heatNeeded
+	@heatNeeded.setter
+	def heatNeeded(self, v):
+		self._heatNeeded = int(v)
 
 	def canAffect(self, item):
 		return item.canBeEmpowered()

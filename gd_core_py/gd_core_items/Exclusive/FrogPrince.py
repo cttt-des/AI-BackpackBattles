@@ -18,12 +18,18 @@ class Exclusive__FrogPrince(_R.C("res://gd_core_items/Exclusive/Toad.gd")):
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.frogState = 0
+		self._frogState = 0
 		self.activationParticles = None
 		self.buffTimer = None
 		self.light = None
 		self.blind = None
 
+	@property
+	def frogState(self):
+		return self._frogState
+	@frogState.setter
+	def frogState(self, v):
+		self._frogState = int(v)
 
 	def onGainThresholdReached(self, ticks, event):
 		self.cleanseBlind(self.blind, event)

@@ -708,7 +708,7 @@ class Character:
         if self.log:
             self.log.stamina_drain(getattr(trigger_event, 't', self.log.current_time),
                                    self.opponent.name() if self.opponent else None,
-                                   self.name(), drained)
+                                   self.name(), drained, item.key if item else None)
         return drained
 
     def gain_max_stamina_temporary(self, amount, filled=True):

@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class PocketSand(_R.C("res://gd_core_items/Item.gd")):
+class PocketSand_2(_R.C("res://gd_core_items/Item.gd")):
 
 	resource_path = "res://gd_core_items/PocketSand.gd"
 
@@ -22,5 +22,5 @@ class PocketSand(_R.C("res://gd_core_items/Item.gd")):
 		pass
 
 
-_R.reg("res://gd_core_items/PocketSand.gd", PocketSand)
-_R.reg("PocketSand", PocketSand)
+_R.reg("res://gd_core_items/PocketSand.gd", PocketSand_2)
+_R.reg("PocketSand", PocketSand_2)

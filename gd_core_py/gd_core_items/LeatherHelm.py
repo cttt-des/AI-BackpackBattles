@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class LeatherHelm(_R.C("res://gd_core_items/Item.gd")):
+class LeatherHelm_2(_R.C("res://gd_core_items/Item.gd")):
 
 	resource_path = "res://gd_core_items/LeatherHelm.gd"
 
@@ -83,5 +83,5 @@ class LeatherHelm(_R.C("res://gd_core_items/Item.gd")):
 		self.damReduction = self.getP1()
 
 
-_R.reg("res://gd_core_items/LeatherHelm.gd", LeatherHelm)
-_R.reg("LeatherHelm", LeatherHelm)
+_R.reg("res://gd_core_items/LeatherHelm.gd", LeatherHelm_2)
+_R.reg("LeatherHelm", LeatherHelm_2)

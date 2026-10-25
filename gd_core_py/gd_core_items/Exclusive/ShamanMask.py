@@ -15,8 +15,14 @@ class Exclusive__ShamanMask(_R.C("res://gd_core_items/Item.gd")):
 	def _init_fields(self):
 		super()._init_fields()
 		self.runes = ["Badger Rune", "Elephant Rune", "Hawk Rune"]
-		self.luckNeeded = 0
+		self._luckNeeded = 0
 
+	@property
+	def luckNeeded(self):
+		return self._luckNeeded
+	@luckNeeded.setter
+	def luckNeeded(self, v):
+		self._luckNeeded = int(v)
 
 	def onCombatStart(self):
 		# ★ 诊断标记（不消耗链）：幸运计数的逐物品宝石明细
@@ -25,7 +31,7 @@ class Exclusive__ShamanMask(_R.C("res://gd_core_items/Item.gd")):
 			for it in _iter(self.inventory.items):
 				detail.append(String(it.descriptor.identifier) + "=" +
 						str(len(it.getGemsNoNull())))
-			self.ctx.rng.oracle_trace_log.push_back([len(self.ctx.rng.oracle_trace_log),
+			self.ctx.rng.oracle_trace_log.append([len(self.ctx.rng.oracle_trace_log),
 					"GEMS", str(self.inventory.countSocketedGems()),
 					_join(PoolStringArray(detail), ","), "", ""])
 		self.giveLucky(self.inventory.countSocketedGems())

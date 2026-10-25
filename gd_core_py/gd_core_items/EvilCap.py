@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class EvilCap(_R.C("res://gd_core_items/Item.gd")):
+class EvilCap_2(_R.C("res://gd_core_items/Item.gd")):
 
 	resource_path = "res://gd_core_items/EvilCap.gd"
 
@@ -68,5 +68,5 @@ class EvilCap(_R.C("res://gd_core_items/Item.gd")):
 		self.damReduction = self.getP1()
 
 
-_R.reg("res://gd_core_items/EvilCap.gd", EvilCap)
-_R.reg("EvilCap", EvilCap)
+_R.reg("res://gd_core_items/EvilCap.gd", EvilCap_2)
+_R.reg("EvilCap", EvilCap_2)

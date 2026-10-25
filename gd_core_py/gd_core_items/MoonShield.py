@@ -8,15 +8,27 @@ from .. import _registry as _R
 
 
 
-class MoonShield(_R.C("res://gd_core_items/Shield.gd")):
+class MoonShield_2(_R.C("res://gd_core_items/Shield.gd")):
 
 	resource_path = "res://gd_core_items/MoonShield.gd"
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.blockAcc = 0
-		self.blockForMana = 0
+		self._blockAcc = 0
+		self._blockForMana = 0
 
+	@property
+	def blockAcc(self):
+		return self._blockAcc
+	@blockAcc.setter
+	def blockAcc(self, v):
+		self._blockAcc = int(v)
+	@property
+	def blockForMana(self):
+		return self._blockForMana
+	@blockForMana.setter
+	def blockForMana(self, v):
+		self._blockForMana = int(v)
 
 	def canAffect(self, item):
 		return item.canBlock()
@@ -52,5 +64,5 @@ class MoonShield(_R.C("res://gd_core_items/Shield.gd")):
 		self.blockForMana = self.getP4()
 
 
-_R.reg("res://gd_core_items/MoonShield.gd", MoonShield)
-_R.reg("MoonShield", MoonShield)
+_R.reg("res://gd_core_items/MoonShield.gd", MoonShield_2)
+_R.reg("MoonShield", MoonShield_2)

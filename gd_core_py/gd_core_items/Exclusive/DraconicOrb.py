@@ -16,10 +16,28 @@ class Exclusive__DraconicOrb(_R.C("res://gd_core_items/Item.gd")):
 		super()._init_fields()
 		self.counter = 0
 		self.activationParticles = None
-		self.heatThreshold = 0
-		self.spikeRemoval = 0
-		self.heatPerSpike = 0
+		self._heatThreshold = 0
+		self._spikeRemoval = 0
+		self._heatPerSpike = 0
 
+	@property
+	def heatThreshold(self):
+		return self._heatThreshold
+	@heatThreshold.setter
+	def heatThreshold(self, v):
+		self._heatThreshold = int(v)
+	@property
+	def spikeRemoval(self):
+		return self._spikeRemoval
+	@spikeRemoval.setter
+	def spikeRemoval(self, v):
+		self._spikeRemoval = int(v)
+	@property
+	def heatPerSpike(self):
+		return self._heatPerSpike
+	@heatPerSpike.setter
+	def heatPerSpike(self, v):
+		self._heatPerSpike = int(v)
 
 	def onPrepare(self):
 		self.counter = 0

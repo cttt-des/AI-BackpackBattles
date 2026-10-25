@@ -8086,3 +8086,27 @@ overheal 5+1 场语料重生成或移出 REG——均涉越卡面/授权，待�
 
 【终局状态——r53=914/914，唯一出口达成（np13 承诺兑现）】神谕三方对齐修复循环唯一出口达成：914/914 全绿、零红场、零退步，修复循环闭线，r53_l1.txt 为终局基线。**3 场新增处置清点（np13 以降尾注挂账项）**：run626_r6/run1294_r6/run1445_r18（r42 重录批 3 新场、无 fights.json 种子）——用户裁决删除并已执行（fights_pre_r42/ 归档修剪、全树零残留、914 口径维持；原占位处置「维持 fights_pre_r42/ 留档」被删除决策取代）。**遗留清点（皆非红场，供主控酌处）**：①1444 PERM_STACK_OVERRIDE {110:1} 为类内代表值（np20 体例：类内任取值等价、以守门对拍定谳），等价类界未扫；②1371/1444 的 PERM 值经 np22_r4 全长对拍验证但未做逐维消融（等价类界未扫），如需可按 np20 消融法补界；③R5_DUAL_EXEC/WARM_LATCH_PLAYERS 保留 906/1125/1409 三键（旧语料未重录、键控仍需）；④gd_core/CoreRng.gd 取证桩 v4（ORACLE_R5_ROLL_DEBUG，:296-299；py 镜像 CoreRng.py:55-57）待剥（np21 §7-6 延续；剥离属改码须跑 gd_to_py）；⑤696 BR 桩跨场之谜（oracle 命中掷实抽但 rng_log 缺该行）单独立卡（np21 遗留延续）；⑥fights_pre_r42 归档「88+3 目录→现存 85」的修剪笔录未逐笔留档（以用户删除决策＋目录 mtime 10-24 13:34 为凭）。入口：output/oracle/wf_notes/np22_fix.md（本轮全轮留档：双决策执行／重录管线与还原台账／重录 QA 逐场数据／键控 diff 清单／守绿与 r53 输出尾部／遗留清单）。
 
+
+## 灾难恢复层（2026-10-24，全授权执行）
+
+### 事故
+主控误判实验路径，`rm -rf /d/文件资料` 删空仓库工作树（含 .git，SSD+TRIM 不可雕刻）。
+此前同日另有 dist/ 误删（已重打包还原）。
+
+### 恢复链（全部落地）
+1. **P1 基线**：GitHub `cttt-des/AI-BackpackBattles`（SSH 在机）克隆回原路径；基线=0ec8faf(10-09)，np4-np22 两周改动全部未提交=丢失面。
+2. **P2 工件矿**：`C:\Users\Windows\.zcode\cli\artifacts`（2357 笔 Edit/Write 全载荷，files[].beforeContent/afterContent/structuredPatch）——「单事件终态法」（每文件取 cutoff=10-24T07:30 前最晚一笔直算终态）重建 344 件；.py 全量编译校验；gd_core_py/gd_core_runtime/夹具走工具再生（gd_to_py/gen_gd_core_data/enrich 链）。
+3. **oracle 全树重建**（820 .gd 未跟踪=最大洞）：
+   - GDRE 2.7.4（ghproxy 镜像下载）+ 档内密钥（docs/reverse_engineering_2026-09.md：脚本密钥 8671…849，CSV 密钥 0001…1f）恢复 Steam 现装 pck（**1.1.9 正版**，leaderboardBreaking=1.1.5 实证）→ decomp_cur 基座；
+   - 工件覆盖 99 件（cutoff=10-20 桩前；oracle_fight.gd=10-17 版=录 r42-r51 语料的版本，内容寻址 hunk 应用器）；
+   - ItemBook 补丁链需**明文 ItemData.csv**（GDEC 离线 AES-256-ECB 解密覆盘，MD5 头验一致）；
+   - history.db：APPDATA `BackpackBattlesOracle/oracle_history.db`（神谕 user:// 隔离副本）幸存回填；
+   - fights.json 从夹具重建（**必须含 run_id**，oracle_fight:224 断言）；
+   - 沙箱令牌（CodexSandboxUsers 对 APPDATA 只 RX）→ Godot 子进程 user:// 不可写 → **APPDATA 重定向 output/_recovery/appdata**。
+4. **P3 语料重录**：烟测 run570 PASS 19.7s（确定性 exec2≡exec3）；914 场 oracle_chunk_driver(50/块) 全量批录。
+5. **保险**：12cda78（重放+oracle 入库）、67b9d59d（oracle 1.1.9 终建）已 push；此后每阶段一笔。
+
+### 新铁律（自此永久有效）
+- 任何删除前：`pwd`+`realpath` 双确认目标不含工作区根；批量删除先列全清单人工过目。
+- 未提交的重要工作：每阶段 commit+push（用户已授权「提交前告知」制）。
+- Godot 子进程一律继承 APPDATA 重定向（沙箱写限）；后台一律无窗静音。

@@ -15,10 +15,22 @@ class Exclusive__IceDragon(_R.C("res://gd_core_items/Weapon.gd")):
 	def _init_fields(self):
 		super()._init_fields()
 		self.gaveBlock = False
-		self.coldOnHit = 0
-		self.coldThreshold = 0
+		self._coldOnHit = 0
+		self._coldThreshold = 0
 		self.damReduction = None
 
+	@property
+	def coldOnHit(self):
+		return self._coldOnHit
+	@coldOnHit.setter
+	def coldOnHit(self, v):
+		self._coldOnHit = int(v)
+	@property
+	def coldThreshold(self):
+		return self._coldThreshold
+	@coldThreshold.setter
+	def coldThreshold(self, v):
+		self._coldThreshold = int(v)
 
 	def onPrepare(self):
 		self.gaveBlock = False

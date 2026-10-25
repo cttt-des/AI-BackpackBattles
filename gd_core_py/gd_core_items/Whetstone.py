@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class Whetstone(_R.C("res://gd_core_items/Item.gd")):
+class Whetstone_2(_R.C("res://gd_core_items/Item.gd")):
 
 	resource_path = "res://gd_core_items/Whetstone.gd"
 
@@ -32,5 +32,5 @@ class Whetstone(_R.C("res://gd_core_items/Item.gd")):
 		self.dam = self.getP("dam")
 
 
-_R.reg("res://gd_core_items/Whetstone.gd", Whetstone)
-_R.reg("Whetstone", Whetstone)
+_R.reg("res://gd_core_items/Whetstone.gd", Whetstone_2)
+_R.reg("Whetstone", Whetstone_2)

@@ -8,7 +8,7 @@ from .. import _registry as _R
 
 
 
-class LightGoobert(_R.C("res://gd_core_items/Goobert.gd")):
+class LightGoobert_2(_R.C("res://gd_core_items/Goobert.gd")):
 
 	resource_path = "res://gd_core_items/LightGoobert.gd"
 
@@ -58,5 +58,5 @@ class LightGoobert(_R.C("res://gd_core_items/Goobert.gd")):
 		self.blindAmount = self.getP3()
 
 
-_R.reg("res://gd_core_items/LightGoobert.gd", LightGoobert)
-_R.reg("LightGoobert", LightGoobert)
+_R.reg("res://gd_core_items/LightGoobert.gd", LightGoobert_2)
+_R.reg("LightGoobert", LightGoobert_2)

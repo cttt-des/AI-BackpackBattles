@@ -14,8 +14,14 @@ class Exclusive__PoisonShortbow(_R.C("res://gd_core_items/Weapon.gd")):
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.poison = 0
+		self._poison = 0
 
+	@property
+	def poison(self):
+		return self._poison
+	@poison.setter
+	def poison(self, v):
+		self._poison = int(v)
 
 	def onPreDealDamage_early(self, damageRes):
 		if damageRes.hasHit() and self.rollChance():

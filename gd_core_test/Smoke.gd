@@ -282,13 +282,17 @@ func test_timer_contract() -> void:
 	check(not p.invulnerable, "0.6s 后无敌应结束")
 	
 	# ② 已无敌时再触发 = 延长而非覆盖（对齐 Util.changeTimer：start(t + timeLeft)）
-	p.makeInvulnerable(0.5, null)
+	#   ★ a3-timer：首响改异 dur（0.6）——round25 残留语义下（oracle drive_timers
+	#   :880-884 stopped 支 e[1] 不清），① 自然到期后再同 dur 重 start 走「下帧
+	#   即到期」支（probe/r6_634t 实测），那不是延长语义本身；延长只成立于
+	#   timer running（left>0）时。步幅相应 +0.1s 对齐「总 1.0s」意图。
+	p.makeInvulnerable(0.6, null)
 	_tick(p, 0.3)
 	p.makeInvulnerable(0.5, null)
 	check(p.invulnerable, "延长后应仍无敌")
-	_tick(p, 0.6)
-	check(p.invulnerable, "0.3+0.5 延长后 0.9s 时仍应无敌（总 1.0s）")
-	_tick(p, 0.2)
+	_tick(p, 0.7)
+	check(p.invulnerable, "0.3+0.5 延长后 1.0s 时仍应无敌（总 1.0s+）")
+	_tick(p, 0.3)
 	check(not p.invulnerable, "超过总时长后无敌应结束")
 	
 	# ③ 战怒按时结束（对齐 battleRageTimer.start(fullDur) → timeout）
@@ -309,12 +313,21 @@ func test_timer_contract() -> void:
 	check_near(p._rage_left, 0.2, 1e-6, "applyBonus=false 不应叠加")
 	_tick(p, 0.3)
 	
-	# ⑤ 已战怒时再触发 = 延长
+	# ⑤ 已战怒时再触发：
+	#   ★ a3-timer：原版 startBattleRage 是**绝对** start(fullDur)（Character.gd:1562
+	#   `battleRageTimer.start(fullDur)`），非 Util.changeTimer（oracle 全文对
+	#   battleRageTimer 无 changeTimer 调用点）——旧「1.0-0.4+1.0 延长」期望是误读。
+	#   同 dur 再触发 eng==e[1]（oracle_fight.gd drive_timers:885-889）→ 注册表无
+	#   事件 → 扣减支继续 = 原到期继续；异 dur 才重同步 + 覆盖（当帧不扣）。
 	p.battleRageBonusDur = 0.0
 	p.startBattleRage(null, 1.0)
 	_tick(p, 0.4)
 	p.startBattleRage(null, 1.0, null, false)
-	check_near(p._rage_left, 1.6, 0.02, "已战怒时再触发应为延长（1.0-0.4+1.0）")
+	check_near(p._rage_left, 0.6167, 0.02, "同 dur 再触发应继续原到期（1.0-0.4≈0.617）")
+	p.startBattleRage(null, 2.0, null, false)
+	check_near(p._rage_left, 2.0, 1e-6, "异 dur 再触发应覆盖剩余时间")
+	_tick(p, 1.0 / 60.0)
+	check_near(p._rage_left, 2.0, 1e-6, "重同步帧不扣（当帧不扣，下一 tick 首扣）")
 	
 	test_auto_rage()
 
@@ -357,6 +370,9 @@ func test_auto_rage() -> void:
 
 
 func _tick(c, seconds: float) -> void:
+	# 计时器契约的驱动面 = 现内核的角色物理 Timer 块（原 physicsTick 的
+	# 无敌/战怒/自动战怒倒计时段重构后改名 tickPhysicsTimers，
+	# CoreCharacter.gd:1849；调用面见 CoreCombat.physicsTick step⑦）。
 	var n = int(round(seconds / STEP))
 	for i in n:
-		c.physicsTick(STEP)
+		c.tickPhysicsTimers(STEP)
