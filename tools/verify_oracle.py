@@ -209,6 +209,7 @@ def run_godot(case_ids: Optional[List[str]] = None,
             print("[godot] 全部 %d 场已完成" % total)
             return 0
         env = dict(os.environ)
+        env["APPDATA"] = os.environ.get("ORACLE_ALIGN_APPDATA") or os.path.join(ROOT, "output", "_recovery", "appdata")  # 沙箱写限：强制重定向（ORACLE_ALIGN_APPDATA 可覆盖）
         env["ORACLE_ALIGN_OUT"] = GD_OUT
         if chunk > 0:
             env["ORACLE_ALIGN_CHUNK"] = str(chunk)

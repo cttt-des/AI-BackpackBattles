@@ -50,6 +50,7 @@ var frame_counter := 0         # 对齐 Util.frameCounter
 var combat_time := 0.0         # 对齐 CombatTimer.combatTime（供事件时间戳）
 
 var below_master := false      # 对齐 Game.isBelowLeague(Game.Leagues.Master)
+var label_rng_enabled := true
 var lobbies_mode := false      # 对齐 Game.curMode == Game.Mode.Lobbies
 
 # ── 单例门面（原版 autoload → 显式对象，随 ctx 走） ──

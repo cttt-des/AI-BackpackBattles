@@ -86,3 +86,6 @@ Thumbs.db
 .codebuddy/
 
 # 缂栬緫鍣�/宸ュ叿鏈�鍦扮洰褰�
+# np23: gd_core_test/gd_core_items 原为 symlink（Windows 检出成伪文件致 gd 腿挂死）
+# 改为真实目录+同步，不入库（内容与主树 gd_core_items 同源）
+gd_core_test/gd_core_items/
