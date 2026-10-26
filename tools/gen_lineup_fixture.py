@@ -63,7 +63,13 @@ NUM_PARAMS = 10
 # 只要物品本身放得进 7×10（游戏前提），就绝不会越界 —— 故无需逐件挑锚点。
 ANCHOR = (0, 0)
 ITEMS_DIR = os.path.join(ROOT, "gd_core_items")
-EXTRACTED_ITEMS = os.path.join(ROOT, "extracted", "Items")
+# ★ np23 data_r1：tscn socket 源由 extracted/Items（目录已不存在，扫描恒空 →
+#   重生成会把 item_battle_fixture.json 的 sockets 全抹成 0，1acd76cc 曾以
+#   "基线版 494 sockets 回置"手工补救）切到录制侧工程 oracle/Items（只读）。
+#   已对账：①与该 494 件基线逐件全等（0 mismatch）；②较基线多出的 12 件为
+#   黑白棋子（各 +1 socket），oracle/Items 自身 tscn 即带 GemSocket（录制真值，
+#   基线缺口而非新源多算）。
+EXTRACTED_ITEMS = os.path.join(ROOT, "oracle", "Items")
 
 sys.path.insert(0, ROOT)
 from simulator.grid import rotate_cell  # noqa: E402  （已验证的旋转实现，避免二次实现）
@@ -125,14 +131,13 @@ def scan_socket_counts() -> dict:
     socket 数建等长数组，`setGem(i, gem)` 的下标检查才有意义。
     """
     out = {}
-    for sub in ("", "Exclusive", "Gems"):
-        for p in glob.glob(os.path.join(EXTRACTED_ITEMS, sub, "*.tscn")):
-            txt = io.open(p, encoding="utf-8", errors="replace").read()
-            n = len(re.findall(r'\[node name="[^"]*Socket[^"]*"', txt))
-            if not n:
-                continue
-            key = os.path.splitext(os.path.basename(p))[0].lower().replace(" ", "").replace("_", "")
-            out[key] = n
+    for p in glob.glob(os.path.join(EXTRACTED_ITEMS, "**", "*.tscn"), recursive=True):
+        txt = io.open(p, encoding="utf-8", errors="replace").read()
+        n = len(re.findall(r'\[node name="[^"]*Socket[^"]*"', txt))
+        if not n:
+            continue
+        key = os.path.splitext(os.path.basename(p))[0].lower().replace(" ", "").replace("_", "")
+        out[key] = n
     return out
 
 
@@ -262,6 +267,29 @@ def compile_descriptor(key: str, entry: dict) -> dict:
         "tags": tags,
         "params": params,
         "namedParams": entry.get("named_params") or {},
+        # gained/removed/usedStacks（ItemBook.gd:877-879 table.getFlags；battle_items
+        # 侧由 tools/enrich_stack_flags.py 写入 gained_stacks 等三键）。消费面：
+        # CoreItemData.fromDict:345-347 同名直传 → CoreItem.gainsBuffs/usesBuffs/
+        # inflictsDebuffs → Toad/PoisonFrog 等反应型 canAffect 阈值网络；两侧装载点
+        # gd_core_test/OracleAlignBattle.gd descriptor_of 与 simulator/gd_core_engine
+        # _descriptor 均已按同名键接收，此处是数据链的发射缺口。
+        "gainedStacks": int(entry.get("gained_stacks") or 0),
+        "removedStacks": int(entry.get("removed_stacks") or 0),
+        "usedStacks": int(entry.get("used_stacks") or 0),
+        # 战怒描述符（tools/enrich_battle_rage.py，ItemBook.gd:1401 由描述文本
+        # "$rage[" 推出）。消费面 CoreItemData.fromDict:317 → CoreItem.gd:281-283
+        # isBattleRageItem（Character.prepare 自动战怒挑选）。
+        "hasBattleRageEffect": bool(entry.get("has_battle_rage_effect", False)),
+        # 动画播放速域（tools/enrich_anim_speed.py，<名>Animation.tscn 覆写；
+        # 实测覆写面仅 Onion Cutter 0.7/1.05，其余走 0.8/1.2 默认）。当前内核
+        # 尚无消费点（descriptor_of/_descriptor 透传后备接），发射属 kernel 泳道
+        # 落 randf_range(minSpeed,maxSpeed) 抽值域对齐时的前置数据。
+        "animSpeedMin": float(entry.get("anim_speed_min", 0.8)),
+        "animSpeedMax": float(entry.get("anim_speed_max", 1.2)),
+        # 场景绑定深度（tools/enrich_scene_depth.py，tscn 实例链层数 = setup 期
+        # chanceRng 构造次数；34 件三层：宝石五阶/Lump of Coal 系/Skull/四符文/
+        # Wisp）。同上：当前无内核消费点，发射为前置数据（默认 2）。
+        "sceneDepth": int(entry.get("scene_depth", 2)),
         # 配方图（tools/enrich_recipes.py 写入 battle_items.json）：注册到本物品的
         # 合成配方列表。战斗语义只消费**非空性**（Item.isCrafted → Cog/Anvil 的
         # canAffect，Item.gd:5720-5721；CoreItemData.isCraftedItem 同判）。

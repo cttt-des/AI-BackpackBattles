@@ -975,9 +975,10 @@ func hideSockets():
 func playPickupSound():
 	pass
 
-func playDropSound(volume = 0):
-	pass
-
+# ★ playDropSound 已回归内核权威（kernel_r2c）：CoreItem 现定义带音高抽的
+# 基类实现（activate() 虚分发），此处剥离版曾遮蔽之使全物品音高抽消失
+# （589/577/583/571 开战段全面错位）。生成器对同名函数按“内核版本权威”丢弃，
+# 与重生成结果一致。
 func canBeSold() -> bool:
 	return (ownerType == CoreConst.Owner.PlayerInventory or 
 		ownerType == CoreConst.Owner.PlayerStorageBox or 

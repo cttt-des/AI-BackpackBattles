@@ -1,5 +1,5 @@
 """
-物品读取器 —— 结构性读取当前摆盘（背包网格）与储物箱内的物品
+物品读取器 —— 结构性读取当前摆盘（背包网格）与储物箱/商店内的物品
 
 场景树布局（2026-07-26 活体实测，Backpack Battles / Godot 3.6 x64）
 ------------------------------------------------------------------
@@ -10,7 +10,9 @@ root(Viewport)
      │   ├─ <物品名> (Node2D)      ← 摆盘物品，脚本 res://Items/<Item>.gd
      │   └─ ...
      └─ Shop
-         ├─ Items/<物品名>         ← 商店在售物品
+         ├─ ShopOffer1..5          ← 商店槽位（脚本 res://Interface/ShopOffer.gd，
+         │                            持有 item/价格/打折/购买状态）
+         ├─ Items/<物品名>         ← 商店在售物品（Game.shopItemYSort 指向此处）
          └─ Storagebox/<物品名>    ← 储物箱物品（有旋转，local≠global）
 
 判定规则
@@ -20,6 +22,24 @@ root(Viewport)
 * 物品名 = 节点名（游戏用显示名命名节点，如 "Gloves of Haste"）。
 * 网格坐标 = (物品局部 pos - Inventory 局部 pos) / 80，四舍五入。
   物品 pos 是其锚点（通常在物品左上格中心附近），列/行取 floor。
+
+商店价格（2026-10-25 依据解包源码 ShopOffer.gd/Shop.gd/Game.gd）
+----------------------------------------------------------------
+* 价格存于 ShopOffer 槽位脚本成员（不是物品脚本上）：
+    item=1 price=2 free=3 onSale=4 bought=6 reserved=7
+    normalPrice=8 salePrice=9 saleMode=10   （var 声明序，0 起）
+* 价格在内存中经 Game.encode(g)=(g+(g<<32))^randnum 编码（Game.gd:4784），
+  randnum 是 Game._ready 生成的 64 位密钥（成员 113）。
+  解码时游戏自身校验 low32(e^r)==high32(e^r)，复刻于
+  godot_reader.decode_game_price；randnum 的定位自带双重校验
+  （签名一致 + gold_internal 解码须等于明文 gold），见 read_randnum。
+* 有效成交价 = onSale ? salePrice : normalPrice（成员 price 由
+  AnimationPlayer 方法轨道异步写回 updatePrice，存在滞后窗口，不直接采信）；
+  free 槽位（SaleMode.Free）成交价为 0。
+* 打折价 = ceil(原价×0.5)（ItemDescriptor.getSalePrice），打折与否由
+  rollSale 掷签决定，直接读 onSale 标志即可，无需猜测。
+* 任一环节校验失败（成员序漂移/randnum 不可确证）→ 商店物品照常列出，
+  仅不附价格字段：宁可缺值，绝不给出错值。
 """
 from __future__ import annotations
 
@@ -27,7 +47,7 @@ import logging
 import struct
 from typing import Dict, List, Optional
 
-from .godot_reader import GodotReader
+from .godot_reader import GodotReader, decode_game_price
 from .item_db import ItemDB, clean_name
 
 logger = logging.getLogger(__name__)
@@ -288,7 +308,8 @@ class ItemReader:
 
     def _collect_items(self, parent, zone: str, inv_origin,
                        depth: int = 0, parent_info: Optional[ItemInfo] = None,
-                       in_sockets: bool = False, _visited=None) -> List[ItemInfo]:
+                       in_sockets: bool = False, _visited=None,
+                       offers: Optional[Dict[int, dict]] = None) -> List[ItemInfo]:
         """递归收集 parent 子树中的物品，并捕获**镶嵌宝石**与**袋内物品**。
 
         场景树结构（基于 Items/Item.gd 反编译源码，非臆测）：
@@ -328,6 +349,9 @@ class ItemReader:
                     parent_info["gems"].append({"id": info["name"]})
                     continue
                 if parent_info is None:
+                    if offers is not None and c in offers:
+                        # 商店槽位报价：并上价格/打折/购买状态（槽位 item 指针对号）
+                        self._merge_offer(info, offers[c])
                     collected.append(info)          # 顶层物品（含散落宝石）
                 elif parent_info.get("is_bag"):
                     parent_info["contents"].append(info)   # 袋内物品
@@ -355,6 +379,141 @@ class ItemReader:
         if parent_info is None:
             collected.sort(key=lambda i: (not i["is_bag"], i["name"]))
         return collected
+
+    # ---------- 商店报价（ShopOffer 槽位，价格/打折/购买状态）----------
+    # ShopOffer.gd 成员序的运行时结构签名（0..10，解包源码声明序）。
+    # 类型为 Godot Variant 枚举：0=NIL 1=BOOL 2=INT 17=OBJECT。
+    # normalPrice/salePrice 无初始值故可为 NIL；其余按声明默认值判定。
+    _OFFER_TYPE_SIGNATURE = (
+        {2},          # 0  index
+        {17, 0},      # 1  item（对象；reset 后为 NIL）
+        {2},          # 2  price
+        {1}, {1}, {1}, {1}, {1},   # 3..7 free/onSale/wasOnSale/bought/reserved
+        {2, 0},       # 8  normalPrice
+        {2, 0},       # 9  salePrice
+        {2},          # 10 saleMode
+    )
+    _SALE_MODES = {0: "roll", 1: "sale", 2: "no_sale", 3: "free"}
+
+    def _read_shop_offers(self, shop_node: int) -> List[dict]:
+        """读取 Shop 节点下全部 ShopOffer 槽位的报价信息。
+
+        成员序经结构签名逐槽校验（防版本差异导致错位读数）；randnum 经
+        read_randnum 双重校验（价格签名 + gold_internal↔gold 交叉验证）。
+        任一槽签名不符则跳过该槽；randnum 不可确证则全部槽只给标志不给价格。
+        """
+        want_sp = self.gr.off.get("shopoffer_script_path",
+                                  "res://Interface/ShopOffer.gd")
+        raw_offers: List[dict] = []
+        for c in self.gr.get_children(shop_node):
+            sp = self.gr.node_script_path(c)
+            if sp != want_sp:
+                continue
+            variants = self.gr.read_variants(c)
+            if len(variants) <= self.gr.off.get("shopoffer_sale_mode", 10):
+                continue
+            if not self._offer_signature_ok(variants):
+                logger.debug("ShopOffer 成员序签名不符（node=%#x），跳过", c)
+                continue
+
+            def member(i):
+                return variants[i][1]
+
+            item_addr = member(self.gr.off.get("shopoffer_item", 1))
+            offer = {
+                "node_addr": c,
+                "item_addr": item_addr if isinstance(item_addr, int) else None,
+                "slot": member(0),
+                "price_raw": member(self.gr.off.get("shopoffer_price", 2)),
+                "free": bool(member(self.gr.off.get("shopoffer_free", 3))),
+                "on_sale": bool(member(self.gr.off.get("shopoffer_onsale", 4))),
+                "bought": bool(member(self.gr.off.get("shopoffer_bought", 6))),
+                "reserved": bool(member(self.gr.off.get("shopoffer_reserved", 7))),
+                "normal_raw": member(self.gr.off.get("shopoffer_normal_price", 8)),
+                "sale_raw": member(self.gr.off.get("shopoffer_sale_price", 9)),
+            }
+            sm = member(self.gr.off.get("shopoffer_sale_mode", 10))
+            offer["sale_mode"] = self._SALE_MODES.get(sm, str(sm))
+            raw_offers.append(offer)
+
+        if not raw_offers:
+            return []
+
+        # randnum 校验样本：槽位上全部非 NIL 的编码价格。
+        # 有样本 → 签名+金币双重校验；无样本（刚开店/全免费）→ 仅金币校验。
+        # 样本校验失败时本轮不给价格（可能是撕裂读，宁缺勿错）。
+        samples = []
+        for o in raw_offers:
+            for key in ("normal_raw", "sale_raw"):
+                if isinstance(o[key], int):
+                    samples.append(o[key])
+        randnum = self.gr.read_randnum(samples)
+        if randnum is None:
+            logger.debug("randnum 不可确证 → 本轮商店价格省略")
+
+        for o in raw_offers:
+            o["normal_price"] = self._decode_price(o["normal_raw"], randnum)
+            o["sale_price"] = self._decode_price(o["sale_raw"], randnum)
+            if o["free"]:
+                o["price"] = 0
+            elif o["on_sale"]:
+                o["price"] = o["sale_price"]
+            else:
+                o["price"] = o["normal_price"]
+        return raw_offers
+
+    def _decode_price(self, encoded, randnum) -> Optional[int]:
+        """解码单个价格。randnum 缺失/校验失败一律返回 None（不猜值）。"""
+        if not isinstance(encoded, int) or randnum is None:
+            return None
+        return decode_game_price(encoded, randnum)
+
+    def _offer_signature_ok(self, variants: List[tuple]) -> bool:
+        """校验 ShopOffer 成员序与解包源码声明序一致（类型层面）。"""
+        for i, want in enumerate(self._OFFER_TYPE_SIGNATURE):
+            t = variants[i][0]
+            if t not in want:
+                return False
+        return True
+
+    def read_shop_offers(self) -> List[dict]:
+        """对外 API：读取商店槽位报价（含物品名/价格/打折/购买状态）。
+
+        返回按槽位号排序的 dict 列表：
+          slot, name, zh, price(成交价，可能 None), normal_price, sale_price,
+          on_sale, free, bought, reserved, sale_mode
+        仅供 AI 决策/CLI 使用；GUI 的 read_items 路径会把价格并进商店物品。
+        """
+        out: List[dict] = []
+        main = self._cached_find("main")
+        shop = self._cached_find("shop", main, "Shop") if main else None
+        if not shop:
+            return out
+        for o in self._read_shop_offers(shop):
+            name = None
+            if o.get("item_addr"):
+                raw = self.gr.node_name(o["item_addr"])
+                name = clean_name(raw) if raw else None
+            rec = {k: o.get(k) for k in (
+                "slot", "price", "normal_price", "sale_price", "on_sale",
+                "free", "bought", "reserved", "sale_mode")}
+            rec["name"] = name
+            rec["zh"] = self.db.zh(name) if name else None
+            out.append(rec)
+        out.sort(key=lambda r: (r["slot"] is None, r["slot"]))
+        return out
+
+    @staticmethod
+    def _merge_offer(info: ItemInfo, offer: dict):
+        """把槽位报价字段并入商店物品的 ItemInfo（缺值保持 None）。"""
+        info["price"] = offer.get("price")
+        info["normal_price"] = offer.get("normal_price")
+        info["sale_price"] = offer.get("sale_price")
+        info["on_sale"] = bool(offer.get("on_sale"))
+        info["free"] = bool(offer.get("free"))
+        info["bought"] = bool(offer.get("bought"))
+        info["reserved"] = bool(offer.get("reserved"))
+        info["slot"] = offer.get("slot")
 
     # ---------- 对外 API ----------
     def read_items(self) -> Dict[str, List[ItemInfo]]:
@@ -398,7 +557,11 @@ class ItemReader:
                     result["storage"] = self._collect_items(storage, "storage", None)
                 shop_items = self._cached_find("shop_items", shop, "Items")
                 if shop_items:
-                    result["shop"] = self._collect_items(shop_items, "shop", None)
+                    offers = self._read_shop_offers(shop)
+                    offers_by_addr = {o["item_addr"]: o
+                                      for o in offers if o.get("item_addr")}
+                    result["shop"] = self._collect_items(
+                        shop_items, "shop", None, offers=offers_by_addr)
             return result
         except Exception as e:  # noqa: BLE001
             logger.debug("内存物品读取失败: %s", e)
@@ -421,7 +584,20 @@ class ItemReader:
         for it in data["storage"]:
             lines.append(f"[储物箱] {it['zh']}({it['name']})")
         for it in data["shop"]:
-            lines.append(f"[商店] {it['zh']}({it['name']})")
+            line = f"[商店] {it['zh']}({it['name']})"
+            if it.get("free"):
+                line += " 免费"
+            elif it.get("price") is not None:
+                if it.get("on_sale"):
+                    line += (f" {it['price']}金"
+                             f"（原价{it['normal_price']}·打折）")
+                else:
+                    line += f" {it['price']}金"
+            if it.get("bought"):
+                line += " [已购买]"
+            elif it.get("reserved"):
+                line += " [已预订]"
+            lines.append(line)
         return lines
 
     # ---------------- 战斗双方阵容读取（战斗日志导出用） ----------------

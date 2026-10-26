@@ -56,7 +56,10 @@ import sys
 from datetime import datetime
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CSV_PATH = os.path.join(ROOT, "decompiled_full", "Sheets", "CSV", "ItemData_e.csv")
+# ★ np23 data_r3：对账源切 oracle 语料版（1.1.9 录制真值）。受影响 3 件的
+#   p1..p10 列在两 CSV 间逐格全等（53 行版本差不含它们），切源不改值，
+#   只统一战斗数据链 provenance（与 enrich_stack_flags/enrich_unique_pool 同口径）。
+CSV_PATH = os.path.join(ROOT, "oracle", "Sheets", "CSV", "ItemData.csv")
 DB_PATH = os.path.join(ROOT, "assets", "battle_items.json")
 
 PARAM_COLS = ["p%d" % i for i in range(1, 11)]
@@ -86,7 +89,7 @@ def main():
     with open(CSV_PATH, encoding="utf-8-sig") as f:
         for r in csv.DictReader(f):
             rows[r["name"]] = r
-    print("ItemData_e.csv: %d 行" % len(rows))
+    print("oracle ItemData.csv: %d 行" % len(rows))
 
     db = json.load(open(DB_PATH, encoding="utf-8"))
     items = db.get("items", db)

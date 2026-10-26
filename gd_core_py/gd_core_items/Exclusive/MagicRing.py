@@ -222,6 +222,25 @@ class Exclusive__MagicRing(_R.C("res://gd_core_items/Item.gd")):
 		return round(self.getP(stackName) * paramScale)
 
 
+	# ★ np24 harness：crafted 效果真值注入（r34 的幽灵调用落地）——宿主
+	#   （OracleAlignBattle.gd place_one / py 引擎 _build_side）在 _readyInit 的
+	#   randEffects() 链位消耗之后调本方法，用 lineups.json 快照 3 的史真值
+	#   （[{triggerType,stackType},...]）覆写随机效果。录制侧同语义：史流
+	#   deserializeItems→setData 把真值写回（wasJustCrafted=false 时 randEffects
+	#   照常消耗链位，随后被真值覆写）——重放必须同构：先 roll 后覆写，链位/效果
+	#   双对齐。此前全树（oracle/decompiled/gd/py）皆无此方法，宿主
+	#   has_method/hasattr 守卫恒假 ⇒ 两腿戒指效果恒为随机 roll（run695_r18
+	#   Superior Ring idx18：gd/py (104,5) vs 语料真值 (105,6) 实证）。
+	def setCraftedEffects(self, crafted):
+		self.effects.clear()
+		for e in _iter(crafted):
+			effect = RingEffect()
+			effect.triggerType = int(e["triggerType"])
+			effect.stackType = int(e["stackType"])
+			self.effects.append(effect)
+		self.sortEffects()
+
+
 	def isOnlyForDisplay(self):
 		return (self.ownerType == _R.C("CoreConst").Owner.ItemLibrary or 
 			self.ownerType == _R.C("CoreConst").Owner.InfoPanelIcon or 

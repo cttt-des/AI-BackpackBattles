@@ -105,7 +105,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "removed_stacks": 1
   },
   "Wooden Sword": {
    "key": "Wooden Sword",
@@ -448,7 +449,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 512
   },
   "Wooden Buckler": {
    "key": "Wooden Buckler",
@@ -820,7 +822,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "removed_stacks": 8
   },
   "Healing Herbs": {
    "key": "Healing Herbs",
@@ -916,7 +919,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 4
   },
   "Walrus Tusk": {
    "key": "Walrus Tusk",
@@ -1016,7 +1020,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 16
   },
   "Piggybank": {
    "key": "Piggybank",
@@ -1352,7 +1357,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 512
   },
   "Lump of Coal": {
    "key": "Lump of Coal",
@@ -1443,7 +1449,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": true,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 2046,
+   "scene_depth": 3
   },
   "Shiny Shell": {
    "key": "Shiny Shell",
@@ -1948,7 +1956,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "removed_stacks": 1
   },
   "Dagger": {
    "key": "Dagger",
@@ -2159,7 +2168,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 16
   },
   "Leather Armor": {
    "key": "Leather Armor",
@@ -2525,7 +2535,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": true,
-   "gem_roll": false
+   "gem_roll": false,
+   "removed_stacks": 256
   },
   "Blueberries": {
    "key": "Blueberries",
@@ -2653,7 +2664,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 34
   },
   "Goobert": {
    "key": "Goobert",
@@ -3399,7 +3411,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 64
   },
   "Amulet of Feasting": {
    "key": "Amulet of Feasting",
@@ -3717,7 +3730,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 1792
   },
   "Amulet of Agility": {
    "key": "Amulet of Agility",
@@ -3834,7 +3848,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 254
   },
   "Amulet of the Wild": {
    "key": "Amulet of the Wild",
@@ -3942,7 +3957,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 16
   },
   "Amulet of Alchemy": {
    "key": "Amulet of Alchemy",
@@ -4158,7 +4174,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 254
   },
   "Amulet of Fortune": {
    "key": "Amulet of Fortune",
@@ -4298,7 +4315,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 254
   },
   "Fanny Pack": {
    "key": "Fanny Pack",
@@ -4586,7 +4604,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 512
   },
   "Burning Coal": {
    "key": "Burning Coal",
@@ -4695,7 +4714,9 @@
    "flicker_max_speed": 1.0,
    "connector_ready_roll": false,
    "gem_roll": true,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 128,
+   "scene_depth": 3
   },
   "Torch": {
    "key": "Torch",
@@ -4948,7 +4969,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 64
   },
   "Shelly": {
    "key": "Shelly",
@@ -5345,7 +5367,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 16
   },
   "Hungry Blade": {
    "key": "Hungry Blade",
@@ -5454,7 +5477,9 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 8,
+   "used_stacks": 4
   },
   "Leather Boots": {
    "key": "Leather Boots",
@@ -5567,7 +5592,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 66
   },
   "Leather Helm": {
    "key": "Leather Helm",
@@ -5815,7 +5841,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": true,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 256
   },
   "Stone Skin Potion": {
    "key": "Stone Skin Potion",
@@ -6094,7 +6121,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 2
   },
   "Mana Orb": {
    "key": "Mana Orb",
@@ -6223,7 +6251,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 254,
+   "used_stacks": 32
   },
   "Corrupted Crystal": {
    "key": "Corrupted Crystal",
@@ -6322,7 +6352,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": true,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "scene_depth": 3
   },
   "Oil Lamp": {
    "key": "Oil Lamp",
@@ -6439,7 +6470,8 @@
    "flicker_max_speed": 1.0,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 128
   },
   "Unstable Recombobulator": {
    "key": "Unstable Recombobulator",
@@ -6584,7 +6616,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 254,
+   "removed_stacks": 1792
   },
   "Snowman": {
    "key": "Snowman",
@@ -6785,7 +6819,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 1024
   },
   "Stamina Sack": {
    "key": "Stamina Sack",
@@ -7154,7 +7189,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "used_stacks": 32
   },
   "Strong Health Potion": {
    "key": "Strong Health Potion",
@@ -7284,7 +7320,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": true,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 4
   },
   "Poison Dagger": {
    "key": "Poison Dagger",
@@ -7395,7 +7432,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 256
   },
   "Claws of Attack": {
    "key": "Claws of Attack",
@@ -7513,7 +7551,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 64
   },
   "Burning Torch": {
    "key": "Burning Torch",
@@ -7627,7 +7666,8 @@
    "flicker_min_speed": 0.3,
    "flicker_max_speed": 1.0,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 128
   },
   "Platin Customer Card": {
    "key": "Platin Customer Card",
@@ -7898,7 +7938,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": true,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 32
   },
   "Sandbag": {
    "key": "Sandbag",
@@ -8017,7 +8058,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 512
   },
   "Box of Prosperity": {
    "key": "Box of Prosperity",
@@ -8543,7 +8585,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 4,
+   "removed_stacks": 256
   },
   "Shield of Valor": {
    "key": "Shield of Valor",
@@ -8841,7 +8885,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": true,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 64
   },
   "Pineapple": {
    "key": "Pineapple",
@@ -8988,7 +9033,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 16
   },
   "Blood Amulet": {
    "key": "Blood Amulet",
@@ -9087,7 +9133,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 8
   },
   "Ruby Egg": {
    "key": "Ruby Egg",
@@ -9189,7 +9236,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 128
   },
   "Jynx torquilla": {
    "key": "Jynx torquilla",
@@ -9369,7 +9417,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "removed_stacks": 2
   },
   "Vampiric Potion": {
    "key": "Vampiric Potion",
@@ -9487,7 +9536,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": true,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 8
   },
   "Lucky Cat": {
    "key": "Lucky Cat",
@@ -9747,7 +9797,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 254,
+   "removed_stacks": 1792
   },
   "Bloody Dagger": {
    "key": "Bloody Dagger",
@@ -9893,7 +9945,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 8
   },
   "Strong Heroic Potion": {
    "key": "Strong Heroic Potion",
@@ -10017,7 +10070,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": true,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 64
   },
   "Strong Stone Skin Potion": {
    "key": "Strong Stone Skin Potion",
@@ -10143,7 +10197,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": true,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 16
   },
   "Vampiric Armor": {
    "key": "Vampiric Armor",
@@ -10275,7 +10330,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 8
   },
   "Blood Goobert": {
    "key": "Blood Goobert",
@@ -10422,7 +10478,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 8
   },
   "Steel Goobert": {
    "key": "Steel Goobert",
@@ -10741,7 +10798,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "used_stacks": 32
   },
   "Manathirst": {
    "key": "Manathirst",
@@ -10875,7 +10933,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 32
   },
   "Spectral Dagger": {
    "key": "Spectral Dagger",
@@ -10977,7 +11036,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "used_stacks": 32
   },
   "Hero Longsword": {
    "key": "Hero Longsword",
@@ -11332,7 +11392,7 @@
    "triggers": [],
    "on_start": null,
    "passive": null,
-   "csv_chance": "4:crit",
+   "csv_chance": "5:crit",
    "csv_chance2": "",
    "text_effect": "",
    "source": "csv",
@@ -11457,7 +11517,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 256
   },
   "Evil Cap": {
    "key": "Evil Cap",
@@ -11720,7 +11781,8 @@
    "flicker_min_speed": 0.3,
    "flicker_max_speed": 1.0,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "used_stacks": 32
   },
   "Strong Mana Potion": {
    "key": "Strong Mana Potion",
@@ -11843,7 +11905,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": true,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 32
   },
   "Stone Armor": {
    "key": "Stone Armor",
@@ -11981,7 +12044,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "removed_stacks": 16
   },
   "Stone Helm": {
    "key": "Stone Helm",
@@ -12360,7 +12424,9 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 256,
+   "used_stacks": 32
   },
   "Stone Shoes": {
    "key": "Stone Shoes",
@@ -12486,7 +12552,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 66
   },
   "Poison Spear": {
    "key": "Poison Spear",
@@ -12638,7 +12705,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 256
   },
   "Snow Stick": {
    "key": "Snow Stick",
@@ -12761,7 +12829,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 1024
   },
   "Fanfare": {
    "key": "Fanfare",
@@ -12938,7 +13007,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 96,
+   "removed_stacks": 32
   },
   "Lightsaber": {
    "key": "Lightsaber",
@@ -13065,7 +13136,9 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 512,
+   "used_stacks": 20
   },
   "Protective Purse": {
    "key": "Protective Purse",
@@ -13274,7 +13347,9 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 2,
+   "used_stacks": 2
   },
   "Djinn Lamp": {
    "key": "Djinn Lamp",
@@ -13397,7 +13472,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 50,
+   "used_stacks": 51
   },
   "Greatsword": {
    "key": "Greatsword",
@@ -13653,7 +13730,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "removed_stacks": 512,
+   "used_stacks": 32
   },
   "Wolpertinger": {
    "key": "Wolpertinger",
@@ -13799,7 +13878,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 254
   },
   "Heart Container": {
    "key": "Heart Container",
@@ -13916,7 +13996,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 68,
+   "used_stacks": 4
   },
   "Divine Potion": {
    "key": "Divine Potion",
@@ -14027,7 +14109,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": true,
-   "gem_roll": false
+   "gem_roll": false,
+   "removed_stacks": 1792
   },
   "Rainbow Orb": {
    "key": "Rainbow Orb",
@@ -14168,7 +14251,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 2046
   },
   "Bloodthorne": {
    "key": "Bloodthorne",
@@ -14289,7 +14373,9 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 24,
+   "used_stacks": 4
   },
   "Crossblades": {
    "key": "Crossblades",
@@ -14538,7 +14624,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 128
   },
   "Vampiric Gloves": {
    "key": "Vampiric Gloves",
@@ -14677,7 +14764,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 8
   },
   "Darksaber": {
    "key": "Darksaber",
@@ -14804,7 +14892,9 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 512,
+   "used_stacks": 32
   },
   "Light Goobert": {
    "key": "Light Goobert",
@@ -14965,7 +15055,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 512
   },
   "Holy Spear": {
    "key": "Holy Spear",
@@ -14976,8 +15067,8 @@
    ],
    "category": "weapon",
    "damage_type": "melee",
-   "min_dam": 10,
-   "max_dam": 15,
+   "min_dam": 8,
+   "max_dam": 13,
    "cd": 1.8,
    "accuracy": 200.0,
    "crit": 0.0,
@@ -15142,7 +15233,9 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "removed_stacks": 1793,
+   "used_stacks": 32
   },
   "Moon Shield": {
    "key": "Moon Shield",
@@ -15319,7 +15412,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 32
   },
   "Corrupted Armor": {
    "key": "Corrupted Armor",
@@ -15504,7 +15598,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 1792
   },
   "Moon Armor": {
    "key": "Moon Armor",
@@ -15680,7 +15775,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 32
   },
   "Heart of Darkness": {
    "key": "Heart of Darkness",
@@ -15847,7 +15943,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 254,
+   "used_stacks": 4
   },
   "Thornbloom": {
    "key": "Thornbloom",
@@ -15984,7 +16082,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 80
   },
   "King Crown": {
    "key": "King Crown",
@@ -16098,7 +16197,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "used_stacks": 32
   },
   "King Goobert": {
    "key": "King Goobert",
@@ -16273,7 +16373,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "used_stacks": 32
   },
   "Stone Golem": {
    "key": "Stone Golem",
@@ -16438,7 +16539,9 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 64,
+   "used_stacks": 4
   },
   "Prismatic Sword": {
    "key": "Prismatic Sword",
@@ -16604,7 +16707,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 1792
   },
   "Katana": {
    "key": "Katana",
@@ -16617,7 +16721,7 @@
    "damage_type": "melee",
    "min_dam": 8,
    "max_dam": 10,
-   "cd": 1.7,
+   "cd": 1.5,
    "accuracy": 90.0,
    "crit": 0.0,
    "stamina_cost": 1.3,
@@ -16730,7 +16834,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "removed_stacks": 254
   },
   "Winged Boots": {
    "key": "Winged Boots",
@@ -16852,7 +16957,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 64,
+   "removed_stacks": 1792
   },
   "Paradise Birb": {
    "key": "Paradise Birb",
@@ -17366,7 +17473,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 254,
+   "random_unique_pool": true
   },
   "Stone Badge": {
    "key": "Stone Badge",
@@ -17469,7 +17578,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "random_unique_pool": true
   },
   "Leaf Badge": {
    "key": "Leaf Badge",
@@ -17584,7 +17694,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 2,
+   "random_unique_pool": true
   },
   "Skull Badge": {
    "key": "Skull Badge",
@@ -17677,7 +17789,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 1792,
+   "random_unique_pool": true
   },
   "Wolf Badge": {
    "key": "Wolf Badge",
@@ -17701,7 +17815,7 @@
    "can_activate": true,
    "params": [
     50.0,
-    5.0,
+    5.5,
     35.0,
     25.0,
     0.0,
@@ -17713,7 +17827,7 @@
    ],
    "named_params": {
     "healtht": 50.0,
-    "dur": 5.0,
+    "dur": 5.5,
     "ragespeed": 35.0,
     "ragedamreduction": 25.0
    },
@@ -17820,7 +17934,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "random_unique_pool": true,
+   "has_battle_rage_effect": true
   },
   "Flame Badge": {
    "key": "Flame Badge",
@@ -17911,7 +18027,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 128,
+   "random_unique_pool": true
   },
   "Puzzle Badge": {
    "key": "Puzzle Badge",
@@ -18054,7 +18172,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "random_unique_pool": true
   },
   "Magic Badge": {
    "key": "Magic Badge",
@@ -18193,7 +18312,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 32,
+   "random_unique_pool": true
   },
   "Twine Badge": {
    "key": "Twine Badge",
@@ -18316,7 +18437,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "random_unique_pool": true
   },
   "Artifact Stone Cold": {
    "key": "Artifact Stone Cold",
@@ -18429,7 +18551,9 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 1024,
+   "random_unique_pool": true
   },
   "Vampiric Scythe": {
    "key": "Vampiric Scythe",
@@ -18574,7 +18698,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "random_unique_pool": true
   },
   "Villain Sword": {
    "key": "Villain Sword",
@@ -18739,7 +18864,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "random_unique_pool": true
   },
   "Skull": {
    "key": "Skull",
@@ -18834,7 +18960,10 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": true,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 64,
+   "random_unique_pool": true,
+   "scene_depth": 3
   },
   "Artifact Stone Heat": {
    "key": "Artifact Stone Heat",
@@ -18952,7 +19081,9 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 128,
+   "random_unique_pool": true
   },
   "Present": {
    "key": "Present",
@@ -19047,7 +19178,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 254,
+   "random_unique_pool": true
   },
   "Gingerbread Man": {
    "key": "Gingerbread Man",
@@ -19207,7 +19340,10 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 68,
+   "used_stacks": 162,
+   "random_unique_pool": true
   },
   "Pumpkin": {
    "key": "Pumpkin",
@@ -19361,7 +19497,9 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 128,
+   "random_unique_pool": true
   },
   "Dancing Dragon": {
    "key": "Dancing Dragon",
@@ -19536,7 +19674,9 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 130,
+   "random_unique_pool": true
   },
   "Cubert": {
    "key": "Cubert",
@@ -19691,7 +19831,10 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 68,
+   "used_stacks": 4,
+   "random_unique_pool": true
   },
   "Stable Recombobulator": {
    "key": "Stable Recombobulator",
@@ -19868,7 +20011,10 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 254,
+   "removed_stacks": 1792,
+   "random_unique_pool": true
   },
   "Artifact Stone Death": {
    "key": "Artifact Stone Death",
@@ -19985,7 +20131,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "random_unique_pool": true
   },
   "Ghost": {
    "key": "Ghost",
@@ -20092,7 +20239,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "used_stacks": 254,
+   "random_unique_pool": true
   },
   "Time Dilator": {
    "key": "Time Dilator",
@@ -20194,7 +20343,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "random_unique_pool": true
   },
   "Pop": {
    "key": "Pop",
@@ -20301,7 +20451,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "random_unique_pool": true
   },
   "Cthulhu": {
    "key": "Cthulhu",
@@ -20477,7 +20628,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "random_unique_pool": true
   },
   "Snowcake": {
    "key": "Snowcake",
@@ -20627,7 +20779,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 1024,
+   "random_unique_pool": true
   },
   "Little Mimic": {
    "key": "Little Mimic",
@@ -20792,7 +20946,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 254,
+   "random_unique_pool": true
   },
   "Bomb": {
    "key": "Bomb",
@@ -20891,7 +21047,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "used_stacks": 254,
+   "random_unique_pool": true
   },
   "Repeater": {
    "key": "Repeater",
@@ -21010,7 +21168,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "random_unique_pool": true
   },
   "Box of Riches": {
    "key": "Box of Riches",
@@ -21203,7 +21362,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": true,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "scene_depth": 3
   },
   "Flawed Ruby": {
    "key": "Flawed Ruby",
@@ -21309,7 +21469,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": true,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "scene_depth": 3
   },
   "Regular Ruby": {
    "key": "Regular Ruby",
@@ -21415,7 +21576,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": true,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "scene_depth": 3
   },
   "Flawless Ruby": {
    "key": "Flawless Ruby",
@@ -21521,7 +21683,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": true,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "scene_depth": 3
   },
   "Perfect Ruby": {
    "key": "Perfect Ruby",
@@ -21627,7 +21790,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": true,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "scene_depth": 3
   },
   "Chipped Sapphire": {
    "key": "Chipped Sapphire",
@@ -21727,7 +21891,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": true,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 1024,
+   "scene_depth": 3
   },
   "Flawed Sapphire": {
    "key": "Flawed Sapphire",
@@ -21832,7 +21998,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": true,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 1024,
+   "scene_depth": 3
   },
   "Regular Sapphire": {
    "key": "Regular Sapphire",
@@ -21937,7 +22105,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": true,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 1024,
+   "scene_depth": 3
   },
   "Flawless Sapphire": {
    "key": "Flawless Sapphire",
@@ -22042,7 +22212,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": true,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 1024,
+   "scene_depth": 3
   },
   "Perfect Sapphire": {
    "key": "Perfect Sapphire",
@@ -22147,7 +22319,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": true,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 1024,
+   "scene_depth": 3
   },
   "Chipped Emerald": {
    "key": "Chipped Emerald",
@@ -22240,7 +22414,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": true,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 4,
+   "scene_depth": 3
   },
   "Flawed Emerald": {
    "key": "Flawed Emerald",
@@ -22344,7 +22520,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": true,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 4,
+   "scene_depth": 3
   },
   "Regular Emerald": {
    "key": "Regular Emerald",
@@ -22448,7 +22626,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": true,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 4,
+   "scene_depth": 3
   },
   "Flawless Emerald": {
    "key": "Flawless Emerald",
@@ -22552,7 +22732,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": true,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 4,
+   "scene_depth": 3
   },
   "Perfect Emerald": {
    "key": "Perfect Emerald",
@@ -22656,7 +22838,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": true,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 4,
+   "scene_depth": 3
   },
   "Chipped Topaz": {
    "key": "Chipped Topaz",
@@ -22746,7 +22930,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": true,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "scene_depth": 3
   },
   "Flawed Topaz": {
    "key": "Flawed Topaz",
@@ -22844,7 +23029,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": true,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "scene_depth": 3
   },
   "Regular Topaz": {
    "key": "Regular Topaz",
@@ -22942,7 +23128,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": true,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "scene_depth": 3
   },
   "Flawless Topaz": {
    "key": "Flawless Topaz",
@@ -23040,7 +23227,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": true,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "scene_depth": 3
   },
   "Perfect Topaz": {
    "key": "Perfect Topaz",
@@ -23138,7 +23326,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": true,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "scene_depth": 3
   },
   "Chipped Amethyst": {
    "key": "Chipped Amethyst",
@@ -23232,7 +23421,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": true,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "removed_stacks": 1792,
+   "scene_depth": 3
   },
   "Flawed Amethyst": {
    "key": "Flawed Amethyst",
@@ -23336,7 +23527,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": true,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "removed_stacks": 1792,
+   "scene_depth": 3
   },
   "Regular Amethyst": {
    "key": "Regular Amethyst",
@@ -23440,7 +23633,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": true,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "removed_stacks": 1792,
+   "scene_depth": 3
   },
   "Flawless Amethyst": {
    "key": "Flawless Amethyst",
@@ -23544,7 +23739,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": true,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "removed_stacks": 1792,
+   "scene_depth": 3
   },
   "Perfect Amethyst": {
    "key": "Perfect Amethyst",
@@ -23648,7 +23845,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": true,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "removed_stacks": 1792,
+   "scene_depth": 3
   },
   "Ranger Bag": {
    "key": "Ranger Bag",
@@ -24009,7 +24208,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 2
   },
   "Carrot": {
    "key": "Carrot",
@@ -24135,7 +24335,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 64,
+   "removed_stacks": 1792
   },
   "Shortbow": {
    "key": "Shortbow",
@@ -24603,7 +24805,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 16
   },
   "Lucky Shortbow": {
    "key": "Lucky Shortbow",
@@ -24647,7 +24850,7 @@
    "triggers": [],
    "on_start": null,
    "passive": null,
-   "csv_chance": "85:luck",
+   "csv_chance": "90:luck",
    "csv_chance2": "",
    "text_effect": "",
    "source": "csv",
@@ -24718,7 +24921,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 2
   },
   "Poison Shortbow": {
    "key": "Poison Shortbow",
@@ -24834,7 +25038,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 1792
   },
   "Lucky Piggy": {
    "key": "Lucky Piggy",
@@ -24964,7 +25169,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 2
   },
   "Carrot Goobert": {
    "key": "Carrot Goobert",
@@ -25117,7 +25323,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 64,
+   "removed_stacks": 1792
   },
   "Thorn Bow": {
    "key": "Thorn Bow",
@@ -25266,7 +25474,9 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 16,
+   "used_stacks": 16
   },
   "Lucky Bow": {
    "key": "Lucky Bow",
@@ -25414,7 +25624,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 2
   },
   "Poison Bow": {
    "key": "Poison Bow",
@@ -25556,7 +25767,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 256
   },
   "Critwood Staff": {
    "key": "Critwood Staff",
@@ -25581,7 +25793,7 @@
    "params": [
     3.0,
     7.0,
-    1.5,
+    1.6,
     0.0,
     0.0,
     0.0,
@@ -25592,7 +25804,7 @@
    ],
    "named_params": {
     "mana": 3.0,
-    "dur": 1.5
+    "dur": 1.6
    },
    "types": [
     "weapon",
@@ -25693,7 +25905,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "used_stacks": 32
   },
   "Snowmaster": {
    "key": "Snowmaster",
@@ -25838,7 +26051,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 1088,
+   "removed_stacks": 1792
   },
   "Vampiric Collar": {
    "key": "Vampiric Collar",
@@ -26111,7 +26326,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 32
   },
   "Holy Collar": {
    "key": "Holy Collar",
@@ -26249,7 +26465,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 6
   },
   "Rainbow Goobert Ranger": {
    "key": "Rainbow Goobert Ranger",
@@ -26477,7 +26694,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 584
   },
   "Piercing Arrow": {
    "key": "Piercing Arrow",
@@ -26612,7 +26830,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 2
   },
   "Yggdrasil Leaf": {
    "key": "Yggdrasil Leaf",
@@ -26638,7 +26857,7 @@
     2.0,
     1.0,
     5.0,
-    18.0,
+    20.0,
     2.0,
     0.0,
     0.0,
@@ -26650,7 +26869,7 @@
     "mana": 2.0,
     "regen": 1.0,
     "manat": 5.0,
-    "heal": 18.0,
+    "heal": 20.0,
     "cleanse": 2.0
    },
    "types": [
@@ -26767,7 +26986,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 36,
+   "removed_stacks": 1792
   },
   "Poison Ivy": {
    "key": "Poison Ivy",
@@ -26906,7 +27127,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 256
   },
   "Mega Clover": {
    "key": "Mega Clover",
@@ -27013,7 +27235,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 252
   },
   "Bowl of Treats": {
    "key": "Bowl of Treats",
@@ -27156,7 +27379,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 254
   },
   "Rat": {
    "key": "Rat",
@@ -27292,7 +27516,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 256
   },
   "Squirrel": {
    "key": "Squirrel",
@@ -27431,7 +27656,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 254
   },
   "Hedgehog": {
    "key": "Hedgehog",
@@ -27558,7 +27784,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 16
   },
   "Squirrel Archer": {
    "key": "Squirrel Archer",
@@ -27706,7 +27933,9 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 254,
+   "removed_stacks": 254
   },
   "Rat Chef": {
    "key": "Rat Chef",
@@ -27850,7 +28079,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 68
   },
   "Hyper Hedgehog": {
    "key": "Hyper Hedgehog",
@@ -27996,7 +28226,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 80
   },
   "Storage Coffin": {
    "key": "Storage Coffin",
@@ -28122,7 +28353,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 256
   },
   "Relic Case": {
    "key": "Relic Case",
@@ -28135,7 +28367,7 @@
    "damage_type": "effect",
    "min_dam": 0,
    "max_dam": 0,
-   "cd": 2.3,
+   "cd": 2.2,
    "accuracy": 100.0,
    "crit": 0.0,
    "stamina_cost": 0.0,
@@ -28376,7 +28608,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 256
   },
   "Deck of Cards": {
    "key": "Deck of Cards",
@@ -28500,7 +28733,8 @@
    "flicker_animation": false,
    "connector_ready_roll": true,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 2
   },
   "The Lovers": {
    "key": "The Lovers",
@@ -28616,7 +28850,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 4
   },
   "Ace of Spades": {
    "key": "Ace of Spades",
@@ -28726,7 +28961,8 @@
    "flicker_animation": false,
    "connector_ready_roll": true,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 18
   },
   "Reverse": {
    "key": "Reverse",
@@ -28835,7 +29071,8 @@
    "flicker_animation": false,
    "connector_ready_roll": true,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 254
   },
   "White-Eyes Blue Dragon": {
    "key": "White-Eyes Blue Dragon",
@@ -28946,7 +29183,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 1024
   },
   "The Fool": {
    "key": "The Fool",
@@ -29054,7 +29292,8 @@
    "flicker_animation": false,
    "connector_ready_roll": true,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 64
   },
   "Holo Fire Lizard": {
    "key": "Holo Fire Lizard",
@@ -29167,7 +29406,8 @@
    "flicker_animation": false,
    "connector_ready_roll": true,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 128
   },
   "Joker": {
    "key": "Joker",
@@ -29285,7 +29525,8 @@
    "flicker_animation": false,
    "connector_ready_roll": true,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 254
   },
   "Darkest Lotus": {
    "key": "Darkest Lotus",
@@ -29395,7 +29636,9 @@
    "flicker_animation": false,
    "connector_ready_roll": true,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 32,
+   "removed_stacks": 254
   },
   "Toad": {
    "key": "Toad",
@@ -29535,7 +29778,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 34
   },
   "Death Scythe": {
    "key": "Death Scythe",
@@ -29969,7 +30213,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 256
   },
   "Staff of Unhealing": {
    "key": "Staff of Unhealing",
@@ -30106,7 +30351,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "used_stacks": 32
   },
   "Strong Pestilence Flask": {
    "key": "Strong Pestilence Flask",
@@ -30232,7 +30478,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": true,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 256
   },
   "Ruby Chonk": {
    "key": "Ruby Chonk",
@@ -30374,7 +30621,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 128
   },
   "Doom Cap": {
    "key": "Doom Cap",
@@ -30532,7 +30780,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 256
   },
   "Crow": {
    "key": "Crow",
@@ -30729,7 +30978,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 2,
+   "removed_stacks": 2
   },
   "Poison Frog": {
    "key": "Poison Frog",
@@ -30876,7 +31127,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 288
   },
   "Rainbow Goobert": {
    "key": "Rainbow Goobert",
@@ -31105,7 +31357,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 776
   },
   "Cursed Hair Comb": {
    "key": "Cursed Hair Comb",
@@ -31261,7 +31514,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 8
   },
   "Mr Struggles": {
    "key": "Mr Struggles",
@@ -31409,7 +31663,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 1792
   },
   "Cursed Dagger": {
    "key": "Cursed Dagger",
@@ -31535,7 +31790,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 1792
   },
   "Snake": {
    "key": "Snake",
@@ -31560,7 +31816,7 @@
    "params": [
     4.0,
     2.0,
-    40.0,
+    38.0,
     0.0,
     0.0,
     0.0,
@@ -31572,7 +31828,7 @@
    "named_params": {
     "luck": 4.0,
     "poison": 2.0,
-    "maxhealth": 40.0
+    "maxhealth": 38.0
    },
    "types": [
     "nature",
@@ -31678,7 +31934,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 258
   },
   "Cauldron": {
    "key": "Cauldron",
@@ -31823,7 +32080,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 160
   },
   "Mrs Struggles": {
    "key": "Mrs Struggles",
@@ -31956,7 +32214,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "removed_stacks": 254
   },
   "Miss Fortune": {
    "key": "Miss Fortune",
@@ -32059,7 +32318,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 254,
+   "used_stacks": 2
   },
   "Strong Demonic Flask": {
    "key": "Strong Demonic Flask",
@@ -32343,7 +32604,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": true,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 8
   },
   "Strong Divine Potion": {
    "key": "Strong Divine Potion",
@@ -32454,7 +32716,9 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": true,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 254,
+   "removed_stacks": 1792
   },
   "Fire Pit": {
    "key": "Fire Pit",
@@ -32803,7 +33067,8 @@
    "flicker_max_speed": 0.8,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 128
   },
   "Chili Pepper": {
    "key": "Chili Pepper",
@@ -32931,7 +33196,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 128,
+   "removed_stacks": 1792
   },
   "Draconic Orb": {
    "key": "Draconic Orb",
@@ -33033,7 +33300,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 128,
+   "removed_stacks": 16
   },
   "Phoenix": {
    "key": "Phoenix",
@@ -33164,7 +33433,8 @@
    "flicker_min_speed": 0.3,
    "flicker_max_speed": 1.0,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "used_stacks": 128
   },
   "Burning Sword": {
    "key": "Burning Sword",
@@ -33319,7 +33589,8 @@
    "flicker_min_speed": 0.3,
    "flicker_max_speed": 0.8,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 128
   },
   "Burning Blade": {
    "key": "Burning Blade",
@@ -33486,7 +33757,8 @@
    "flicker_min_speed": 0.3,
    "flicker_max_speed": 1.0,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 128
   },
   "Sun Armor": {
    "key": "Sun Armor",
@@ -33674,7 +33946,10 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 128,
+   "removed_stacks": 1792,
+   "used_stacks": 128
   },
   "Sun Shield": {
    "key": "Sun Shield",
@@ -33697,7 +33972,7 @@
    "material": "Metal",
    "can_activate": true,
    "params": [
-    18.0,
+    20.0,
     0.7,
     12.0,
     4.0,
@@ -33709,7 +33984,7 @@
     0.0
    ],
    "named_params": {
-    "damblock": 18.0,
+    "damblock": 20.0,
     "stamina": 0.7,
     "blockt": 12.0,
     "dam": 4.0
@@ -33976,7 +34251,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "used_stacks": 128
   },
   "Molten Spear": {
    "key": "Molten Spear",
@@ -34133,7 +34409,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "used_stacks": 128
   },
   "Staff of Fire": {
    "key": "Staff of Fire",
@@ -34144,8 +34421,8 @@
    ],
    "category": "weapon",
    "damage_type": "ranged",
-   "min_dam": 10,
-   "max_dam": 12,
+   "min_dam": 12,
+   "max_dam": 14,
    "cd": 1.8,
    "accuracy": 90.0,
    "crit": 0.0,
@@ -34263,7 +34540,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "used_stacks": 160
   },
   "Flame Whip": {
    "key": "Flame Whip",
@@ -34394,7 +34672,9 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 128,
+   "used_stacks": 16
   },
   "Chili Goobert": {
    "key": "Chili Goobert",
@@ -34532,7 +34812,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 128,
+   "removed_stacks": 1792
   },
   "Obsidian Dragon": {
    "key": "Obsidian Dragon",
@@ -34828,7 +35110,9 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 64,
+   "used_stacks": 128
   },
   "Fire Shelly": {
    "key": "Fire Shelly",
@@ -34965,7 +35249,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 128,
+   "removed_stacks": 1792
   },
   "Rainbow Goobert Pyromancer": {
    "key": "Rainbow Goobert Pyromancer",
@@ -35141,7 +35427,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 648
   },
   "Friendly Fire": {
    "key": "Friendly Fire",
@@ -35301,7 +35588,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 134,
+   "used_stacks": 32
   },
   "Burning Banner": {
    "key": "Burning Banner",
@@ -35476,7 +35765,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 516,
+   "removed_stacks": 254
   },
   "Dark Lantern": {
    "key": "Dark Lantern",
@@ -35633,7 +35924,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 1792
   },
   "Frozen Flame": {
    "key": "Frozen Flame",
@@ -35787,7 +36079,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 1024
   },
   "Dragon Nest": {
    "key": "Dragon Nest",
@@ -35920,7 +36213,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 166
   },
   "Spell Scroll Frostbolt": {
    "key": "Spell Scroll Frostbolt",
@@ -36058,7 +36352,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 1024
   },
   "Ice Armor": {
    "key": "Ice Armor",
@@ -36181,7 +36476,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 1024,
+   "used_stacks": 128
   },
   "Frozen Buckler": {
    "key": "Frozen Buckler",
@@ -36291,7 +36588,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 1024
   },
   "Frostbite": {
    "key": "Frostbite",
@@ -36416,7 +36714,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 1032
   },
   "Ice Dragon": {
    "key": "Ice Dragon",
@@ -36556,7 +36855,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 1024
   },
   "Emerald Egg": {
    "key": "Emerald Egg",
@@ -36648,7 +36948,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 2
   },
   "Emerald Whelp": {
    "key": "Emerald Whelp",
@@ -36746,7 +37047,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 258
   },
   "Sapphire Egg": {
    "key": "Sapphire Egg",
@@ -36841,7 +37143,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 32
   },
   "Sapphire Whelp": {
    "key": "Sapphire Whelp",
@@ -36947,7 +37250,9 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 254,
+   "used_stacks": 32
   },
   "Amethyst Egg": {
    "key": "Amethyst Egg",
@@ -37040,7 +37345,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 1792
   },
   "Amethyst Whelp": {
    "key": "Amethyst Whelp",
@@ -37139,7 +37445,9 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 1792,
+   "removed_stacks": 254
   },
   "Berserker Bag": {
    "key": "Berserker Bag",
@@ -37163,7 +37471,7 @@
    "can_activate": true,
    "params": [
     50.0,
-    5.0,
+    5.5,
     35.0,
     25.0,
     0.0,
@@ -37175,7 +37483,7 @@
    ],
    "named_params": {
     "healtht": 50.0,
-    "dur_rage": 5.0,
+    "dur_rage": 5.5,
     "speed_rage": 35.0,
     "damresistance": 25.0
    },
@@ -37273,7 +37581,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "has_battle_rage_effect": true
   },
   "Toolbox": {
    "key": "Toolbox",
@@ -37415,7 +37724,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "has_battle_rage_effect": true
   },
   "Forging Hammer": {
    "key": "Forging Hammer",
@@ -37713,7 +38023,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 16,
+   "has_battle_rage_effect": true
   },
   "Cheese": {
    "key": "Cheese",
@@ -37839,7 +38151,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 254
   },
   "Double Axe": {
    "key": "Double Axe",
@@ -37974,7 +38287,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "has_battle_rage_effect": true
   },
   "Chain Whip": {
    "key": "Chain Whip",
@@ -37998,7 +38312,7 @@
    "can_activate": true,
    "params": [
     2.0,
-    15.0,
+    17.0,
     1.0,
     0.0,
     0.0,
@@ -38010,7 +38324,7 @@
    ],
    "named_params": {
     "purge": 2.0,
-    "heal": 15.0,
+    "heal": 17.0,
     "bonusdam": 1.0
    },
    "types": [
@@ -38091,7 +38405,9 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "removed_stacks": 254,
+   "has_battle_rage_effect": true
   },
   "Dragonscale Armor": {
    "key": "Dragonscale Armor",
@@ -38108,7 +38424,7 @@
    "accuracy": 100.0,
    "crit": 0.0,
    "stamina_cost": 0.0,
-   "block": 45,
+   "block": 55,
    "price": 7,
    "rarity": "Epic",
    "material": "Leather",
@@ -38204,7 +38520,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "has_battle_rage_effect": true
   },
   "Dragon Claws": {
    "key": "Dragon Claws",
@@ -38312,7 +38629,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "has_battle_rage_effect": true
   },
   "Dragonskin Boots": {
    "key": "Dragonskin Boots",
@@ -38329,7 +38647,7 @@
    "accuracy": 100.0,
    "crit": 0.0,
    "stamina_cost": 0.0,
-   "block": 20,
+   "block": 25,
    "price": 6,
    "rarity": "Epic",
    "material": "Leather",
@@ -38409,7 +38727,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 64,
+   "has_battle_rage_effect": true
   },
   "Busted Blade": {
    "key": "Busted Blade",
@@ -38433,7 +38753,7 @@
    "can_activate": true,
    "params": [
     5.0,
-    3.0,
+    2.5,
     2.5,
     0.0,
     0.0,
@@ -38445,7 +38765,7 @@
    ],
    "named_params": {
     "empowerdam": 5.0,
-    "buffedstam": 3.0,
+    "buffedstam": 2.5,
     "buffedcd": 2.5
    },
    "types": [
@@ -38543,7 +38863,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "has_battle_rage_effect": true
   },
   "Spiked Staff": {
    "key": "Spiked Staff",
@@ -38673,7 +38994,10 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 80,
+   "used_stacks": 32,
+   "has_battle_rage_effect": true
   },
   "Cheese Goobert": {
    "key": "Cheese Goobert",
@@ -38810,7 +39134,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 254
   },
   "Spiked Wall": {
    "key": "Spiked Wall",
@@ -38946,7 +39271,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 16
   },
   "Rainbow Goobert Berserker": {
    "key": "Rainbow Goobert Berserker",
@@ -39122,7 +39448,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 254
   },
   "Anvil": {
    "key": "Anvil",
@@ -39294,7 +39621,7 @@
     15.0,
     0.8,
     8.0,
-    3.0,
+    4.0,
     0.0,
     0.0,
     0.0,
@@ -39306,7 +39633,7 @@
     "damreduction": 15.0,
     "dur_rage": 0.8,
     "heal": 8.0,
-    "mana": 3.0
+    "mana": 4.0
    },
    "types": [
     "nature",
@@ -39419,7 +39746,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 32,
+   "has_battle_rage_effect": true
   },
   "Wolf Emblem": {
    "key": "Wolf Emblem",
@@ -39432,7 +39761,7 @@
    "damage_type": "effect",
    "min_dam": 0,
    "max_dam": 0,
-   "cd": 2.3,
+   "cd": 2.5,
    "accuracy": 100.0,
    "crit": 10.0,
    "stamina_cost": 0.0,
@@ -39607,7 +39936,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 64
   },
   "Shaman Mask": {
    "key": "Shaman Mask",
@@ -39707,7 +40037,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 254,
+   "used_stacks": 2
   },
   "Brass Knuckles": {
    "key": "Brass Knuckles",
@@ -39835,7 +40167,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "has_battle_rage_effect": true
   },
   "Courage Puppy": {
    "key": "Courage Puppy",
@@ -40098,7 +40431,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "removed_stacks": 1024
   },
   "Power Puppy": {
    "key": "Power Puppy",
@@ -40229,7 +40563,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 70
   },
   "Armored Courage Puppy": {
    "key": "Armored Courage Puppy",
@@ -40481,7 +40816,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "removed_stacks": 1024
   },
   "Armored Power Puppy": {
    "key": "Armored Power Puppy",
@@ -40606,7 +40942,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 70
   },
   "Badger Rune": {
    "key": "Badger Rune",
@@ -40704,7 +41041,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": true,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "has_battle_rage_effect": true,
+   "scene_depth": 3
   },
   "Elephant Rune": {
    "key": "Elephant Rune",
@@ -40810,7 +41149,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": true,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "scene_depth": 3
   },
   "Hawk Rune": {
    "key": "Hawk Rune",
@@ -40901,7 +41241,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": true,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 512,
+   "scene_depth": 3
   },
   "Tiger Rune": {
    "key": "Tiger Rune",
@@ -41001,7 +41343,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": true,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "scene_depth": 3
   },
   "Unidentified Skill": {
    "key": "Unidentified Skill",
@@ -41243,7 +41586,7 @@
    "triggers": [],
    "on_start": null,
    "passive": null,
-   "csv_chance": "65:heat",
+   "csv_chance": "75:heat",
    "csv_chance2": "",
    "text_effect": "",
    "source": "csv",
@@ -41342,7 +41685,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 128
   },
   "Smelly Barrier": {
    "key": "Smelly Barrier",
@@ -41515,7 +41859,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 256
   },
   "Piggy Pinata": {
    "key": "Piggy Pinata",
@@ -42013,7 +42358,7 @@
    "can_activate": false,
    "params": [
     1.0,
-    35.0,
+    40.0,
     0.0,
     0.0,
     0.0,
@@ -42025,7 +42370,7 @@
    ],
    "named_params": {
     "dam": 1.0,
-    "stamina": 35.0
+    "stamina": 40.0
    },
    "types": [
     "skill"
@@ -42149,7 +42494,7 @@
    "can_activate": false,
    "params": [
     20.0,
-    10.0,
+    12.0,
     65.0,
     2.0,
     0.0,
@@ -42161,7 +42506,7 @@
    ],
    "named_params": {
     "speed": 20.0,
-    "speed2": 10.0,
+    "speed2": 12.0,
     "uniques": 65.0,
     "uniquest": 2.0
    },
@@ -42401,7 +42746,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 512
   },
   "Knife to Meet You": {
    "key": "Knife to Meet You",
@@ -42426,7 +42772,7 @@
    "params": [
     40.0,
     50.0,
-    60.0,
+    75.0,
     0.0,
     0.0,
     0.0,
@@ -42438,7 +42784,7 @@
    "named_params": {
     "speed": 40.0,
     "dam": 50.0,
-    "speed2": 60.0
+    "speed2": 75.0
    },
    "types": [
     "skill"
@@ -43095,7 +43441,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 16
   },
   "Heavy Drinking": {
    "key": "Heavy Drinking",
@@ -43420,7 +43767,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 32
   },
   "Power of the Moon": {
    "key": "Power of the Moon",
@@ -43592,7 +43940,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 512
   },
   "Girl Power": {
    "key": "Girl Power",
@@ -43759,7 +44108,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 68
   },
   "Blood Manipulation": {
    "key": "Blood Manipulation",
@@ -43910,7 +44260,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 8
   },
   "Echoing Battlecry": {
    "key": "Echoing Battlecry",
@@ -44194,7 +44545,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 254
   },
   "No Rush Please": {
    "key": "No Rush Please",
@@ -44298,7 +44650,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 1024
   },
   "Double Rainbow": {
    "key": "Double Rainbow",
@@ -44451,7 +44804,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 254
   },
   "False Life": {
    "key": "False Life",
@@ -44718,7 +45072,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 254
   },
   "More Stats": {
    "key": "More Stats",
@@ -45280,7 +45635,7 @@
    "can_activate": true,
    "params": [
     5.0,
-    60.0,
+    55.0,
     0.0,
     0.0,
     0.0,
@@ -45292,7 +45647,7 @@
    ],
    "named_params": {
     "heat": 5.0,
-    "bonusdur": 60.0
+    "bonusdur": 55.0
    },
    "types": [
     "skill"
@@ -45398,7 +45753,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 128
   },
   "Full Body Protection": {
    "key": "Full Body Protection",
@@ -46064,7 +46420,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 36
   },
   "Dark Ritual": {
    "key": "Dark Ritual",
@@ -46233,7 +46590,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 1800
   },
   "Extra Angy": {
    "key": "Extra Angy",
@@ -46246,7 +46604,7 @@
    "damage_type": "effect",
    "min_dam": 0,
    "max_dam": 0,
-   "cd": 1.0,
+   "cd": 0.5,
    "accuracy": 100.0,
    "crit": 0.0,
    "stamina_cost": 0.0,
@@ -46333,7 +46691,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "has_battle_rage_effect": true
   },
   "Dragon Set": {
    "key": "Dragon Set",
@@ -46445,7 +46804,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 128,
+   "has_battle_rage_effect": true
   },
   "Everburning": {
    "key": "Everburning",
@@ -46549,7 +46910,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 128
   },
   "Solaris": {
    "key": "Solaris",
@@ -46721,7 +47083,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 128
   },
   "Arcane Intellect": {
    "key": "Arcane Intellect",
@@ -47083,7 +47446,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 1278,
+   "removed_stacks": 254
   },
   "Level Up": {
    "key": "Level Up",
@@ -47096,7 +47461,7 @@
    "damage_type": "effect",
    "min_dam": 0,
    "max_dam": 0,
-   "cd": 5.0,
+   "cd": 5.3,
    "accuracy": 100.0,
    "crit": 0.0,
    "stamina_cost": 0.0,
@@ -47188,7 +47553,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 34
   },
   "Dual Wielding": {
    "key": "Dual Wielding",
@@ -47335,7 +47701,7 @@
    "triggers": [],
    "on_start": null,
    "passive": null,
-   "csv_chance": "30",
+   "csv_chance": "40:manadup",
    "csv_chance2": "50",
    "text_effect": "",
    "source": "csv",
@@ -47414,7 +47780,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 32
   },
   "Puzzlebox": {
    "key": "Puzzlebox",
@@ -47752,7 +48119,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 6
   },
   "Black Pawn": {
    "key": "Black Pawn",
@@ -47843,7 +48211,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 288
   },
   "White Knight": {
    "key": "White Knight",
@@ -48027,7 +48396,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 8
   },
   "White Bishop": {
    "key": "White Bishop",
@@ -48118,7 +48488,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "removed_stacks": 1792
   },
   "Black Bishop": {
    "key": "Black Bishop",
@@ -48211,7 +48582,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 1792
   },
   "White Rook": {
    "key": "White Rook",
@@ -48403,7 +48775,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 16
   },
   "White Queen": {
    "key": "White Queen",
@@ -48495,7 +48868,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 128
   },
   "Black Queen": {
    "key": "Black Queen",
@@ -48585,7 +48959,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 254,
+   "removed_stacks": 254
   },
   "White King": {
    "key": "White King",
@@ -48677,7 +49053,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 254
   },
   "Black King": {
    "key": "Black King",
@@ -48769,7 +49146,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "removed_stacks": 254
   },
   "Wand": {
    "key": "Wand",
@@ -48878,7 +49256,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 102,
+   "used_stacks": 38
   },
   "Book of Basics": {
    "key": "Book of Basics",
@@ -49013,7 +49393,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "used_stacks": 32
   },
   "Cupcake": {
    "key": "Cupcake",
@@ -49131,7 +49512,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 254
   },
   "Spell Scroll Ice": {
    "key": "Spell Scroll Ice",
@@ -49268,7 +49650,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 1024
   },
   "Spell Scroll Nature": {
    "key": "Spell Scroll Nature",
@@ -49403,7 +49786,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "used_stacks": 32
   },
   "Spell Scroll Light": {
    "key": "Spell Scroll Light",
@@ -49535,7 +49919,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "removed_stacks": 1792
   },
   "Spell Scroll Dark": {
    "key": "Spell Scroll Dark",
@@ -49683,7 +50068,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 512
   },
   "Book of Nature": {
    "key": "Book of Nature",
@@ -49836,7 +50222,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 18,
+   "used_stacks": 4
   },
   "Book of Darkness": {
    "key": "Book of Darkness",
@@ -49989,7 +50377,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 544
   },
   "Book of Light": {
    "key": "Book of Light",
@@ -50141,7 +50530,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 4,
+   "used_stacks": 32
   },
   "Book of Ice": {
    "key": "Book of Ice",
@@ -50292,7 +50683,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 1024,
+   "used_stacks": 32
   },
   "Book of Ice New": {
    "key": "Book of Ice New",
@@ -50443,7 +50836,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 1024,
+   "used_stacks": 32
   },
   "Magic Mirror": {
    "key": "Magic Mirror",
@@ -50584,7 +50979,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 254
   },
   "Ice Flower": {
    "key": "Ice Flower",
@@ -50743,7 +51139,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 1056,
+   "used_stacks": 32
   },
   "Light Flower": {
    "key": "Light Flower",
@@ -50926,7 +51324,10 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 6,
+   "removed_stacks": 1792,
+   "used_stacks": 32
   },
   "Death Lotus": {
    "key": "Death Lotus",
@@ -51096,7 +51497,10 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 32,
+   "removed_stacks": 254,
+   "used_stacks": 2
   },
   "Null Blade": {
    "key": "Null Blade",
@@ -51229,7 +51633,9 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "removed_stacks": 254,
+   "used_stacks": 6
   },
   "Devouring Sphere": {
    "key": "Devouring Sphere",
@@ -51357,7 +51763,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 8
   },
   "Cat Spirit": {
    "key": "Cat Spirit",
@@ -51370,7 +51777,7 @@
    "damage_type": "effect",
    "min_dam": 0,
    "max_dam": 0,
-   "cd": 2.4,
+   "cd": 2.1,
    "accuracy": 100.0,
    "crit": 25.0,
    "stamina_cost": 0.0,
@@ -51512,7 +51919,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 66,
+   "used_stacks": 32
   },
   "Owl Spirit": {
    "key": "Owl Spirit",
@@ -51643,7 +52052,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 32,
+   "used_stacks": 32
   },
   "Badger Spirit": {
    "key": "Badger Spirit",
@@ -51813,7 +52224,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "used_stacks": 32
   },
   "Prismatic Wand": {
    "key": "Prismatic Wand",
@@ -51936,7 +52348,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 254,
+   "used_stacks": 38
   },
   "Cupcake Goobert": {
    "key": "Cupcake Goobert",
@@ -52077,7 +52491,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 254
   },
   "Rainbow Goobert Mage": {
    "key": "Rainbow Goobert Mage",
@@ -52256,7 +52671,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 766
   },
   "Cupcake Staff": {
    "key": "Cupcake Staff",
@@ -52385,7 +52801,9 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 254,
+   "used_stacks": 32
   },
   "Mage Hat": {
    "key": "Mage Hat",
@@ -52555,7 +52973,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 32
   },
   "Puzzlebag L": {
    "key": "Puzzlebag L",
@@ -53006,7 +53425,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 254
   },
   "Puzzlebag J": {
    "key": "Puzzlebag J",
@@ -53286,7 +53706,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 512,
+   "used_stacks": 32
   },
   "Spirit Bells": {
    "key": "Spirit Bells",
@@ -53476,7 +53898,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 254
   },
   "Water Elemental": {
    "key": "Water Elemental",
@@ -53705,7 +54128,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 1056
   },
   "Evil Hat": {
    "key": "Evil Hat",
@@ -53885,7 +54309,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 254
   },
   "Rainbow Potion": {
    "key": "Rainbow Potion",
@@ -53910,7 +54335,7 @@
    "params": [
     1.0,
     1.0,
-    6.0,
+    7.0,
     20.0,
     2.0,
     0.0,
@@ -53922,7 +54347,7 @@
    "named_params": {
     "mana": 1.0,
     "stamina": 1.0,
-    "buffs": 6.0,
+    "buffs": 7.0,
     "buffst": 20.0,
     "potions": 2.0
    },
@@ -54062,7 +54487,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": true,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 254
   },
   "Bag of Giving": {
    "key": "Bag of Giving",
@@ -54086,7 +54512,7 @@
    "can_activate": true,
    "params": [
     0.1,
-    1.32,
+    1.3,
     0.0,
     0.0,
     0.0,
@@ -54098,7 +54524,7 @@
    ],
    "named_params": {
     "stamina": 0.1,
-    "value": 1.32
+    "value": 1.3
    },
    "types": [
     "bag"
@@ -54749,7 +55175,7 @@
    "cd": 2.0,
    "accuracy": 90.0,
    "crit": 0.0,
-   "stamina_cost": 1.5,
+   "stamina_cost": 1.7,
    "block": 0,
    "price": 8,
    "rarity": "Rare",
@@ -54851,7 +55277,9 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 254,
+   "removed_stacks": 254
   },
   "Piggy of Riches": {
    "key": "Piggy of Riches",
@@ -54874,7 +55302,7 @@
    "material": "Metal",
    "can_activate": true,
    "params": [
-    4.0,
+    3.0,
     0.0,
     0.0,
     0.0,
@@ -54886,7 +55314,7 @@
     0.0
    ],
    "named_params": {
-    "maxhealth": 4.0
+    "maxhealth": 3.0
    },
    "types": [
     "accessory"
@@ -55240,7 +55668,9 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 24,
+   "used_stacks": 4
   },
   "Heart Shield": {
    "key": "Heart Shield",
@@ -55263,7 +55693,7 @@
    "material": "Metal",
    "can_activate": true,
    "params": [
-    17.0,
+    20.0,
     0.7,
     30.0,
     30.0,
@@ -55275,7 +55705,7 @@
     0.0
    ],
    "named_params": {
-    "damblock": 17.0,
+    "damblock": 20.0,
     "stamina": 0.7,
     "block": 30.0,
     "healamp": 30.0,
@@ -55433,7 +55863,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 4,
+   "used_stacks": 4
   },
   "Dragon Knight": {
    "key": "Dragon Knight",
@@ -55458,7 +55890,7 @@
    "params": [
     5.0,
     4.0,
-    8.0,
+    7.0,
     15.0,
     0.0,
     0.0,
@@ -55470,7 +55902,7 @@
    "named_params": {
     "heat": 5.0,
     "reflect": 4.0,
-    "heal": 8.0,
+    "heal": 7.0,
     "advance": 15.0
    },
    "types": [
@@ -55595,7 +56027,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 128
   },
   "Broccoli": {
    "key": "Broccoli",
@@ -55728,7 +56161,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 6
   },
   "Lootbox": {
    "key": "Lootbox",
@@ -55979,7 +56413,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 6
   },
   "Rainbow Goobert Adventurer": {
    "key": "Rainbow Goobert Adventurer",
@@ -56158,7 +56593,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 524
   },
   "Scissorswords": {
    "key": "Scissorswords",
@@ -56169,8 +56605,8 @@
    ],
    "category": "weapon",
    "damage_type": "melee",
-   "min_dam": 14,
-   "max_dam": 20,
+   "min_dam": 16,
+   "max_dam": 22,
    "cd": 1.4,
    "accuracy": 100.0,
    "crit": 0.0,
@@ -56305,7 +56741,9 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 518,
+   "used_stacks": 6
   },
   "Long Spear": {
    "key": "Long Spear",
@@ -56317,7 +56755,7 @@
    "category": "weapon",
    "damage_type": "melee",
    "min_dam": 6,
-   "max_dam": 12,
+   "max_dam": 16,
    "cd": 1.5,
    "accuracy": 85.0,
    "crit": 0.0,
@@ -56480,7 +56918,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "removed_stacks": 1
   },
   "Daggerang": {
    "key": "Daggerang",
@@ -56597,7 +57036,9 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 254,
+   "removed_stacks": 254
   },
   "Jynx Staff": {
    "key": "Jynx Staff",
@@ -56825,7 +57266,9 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "removed_stacks": 2,
+   "used_stacks": 32
   },
   "Fedora": {
    "key": "Fedora",
@@ -56838,7 +57281,7 @@
    "damage_type": "effect",
    "min_dam": 0,
    "max_dam": 0,
-   "cd": 2.8,
+   "cd": 3.2,
    "accuracy": 100.0,
    "crit": 0.0,
    "stamina_cost": 0.0,
@@ -56854,7 +57297,7 @@
     3.0,
     1.0,
     2.0,
-    25.0,
+    20.0,
     0.0,
     0.0,
     0.0
@@ -56866,7 +57309,7 @@
     "luck2": 3.0,
     "luckt": 1.0,
     "buffs": 2.0,
-    "chance": 25.0
+    "chance": 20.0
    },
    "types": [
     "helmet"
@@ -57009,7 +57452,10 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 254,
+   "removed_stacks": 254,
+   "used_stacks": 2
   },
   "Scale": {
    "key": "Scale",
@@ -57188,7 +57634,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 36
   },
   "Mercury Elemental": {
    "key": "Mercury Elemental",
@@ -57201,7 +57648,7 @@
    "damage_type": "effect",
    "min_dam": 0,
    "max_dam": 0,
-   "cd": 5.0,
+   "cd": 4.5,
    "accuracy": 100.0,
    "crit": 0.0,
    "stamina_cost": 0.0,
@@ -57370,7 +57817,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 256
   },
   "Turtle": {
    "key": "Turtle",
@@ -57712,7 +58160,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 1278
   },
   "Engineer Box": {
    "key": "Engineer Box",
@@ -58192,7 +58641,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 128
   },
   "Cog": {
    "key": "Cog",
@@ -58421,7 +58871,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 254,
+   "removed_stacks": 254
   },
   "Charge Splitter": {
    "key": "Charge Splitter",
@@ -58580,7 +59032,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 2,
+   "used_stacks": 128
   },
   "Slice of Bread": {
    "key": "Slice of Bread",
@@ -58818,7 +59272,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 4
   },
   "Toast Goobert": {
    "key": "Toast Goobert",
@@ -58843,7 +59298,7 @@
    "params": [
     6.0,
     2.5,
-    1.5,
+    1.7,
     3.0,
     0.0,
     0.0,
@@ -58855,7 +59310,7 @@
    "named_params": {
     "activations": 6.0,
     "staminat": 2.5,
-    "stamina": 1.5,
+    "stamina": 1.7,
     "regen": 3.0
    },
    "types": [
@@ -58961,7 +59416,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 4
   },
   "Rainbow Goobert Engineer": {
    "key": "Rainbow Goobert Engineer",
@@ -59147,7 +59603,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 524
   },
   "Wrench": {
    "key": "Wrench",
@@ -59296,8 +59753,8 @@
    "can_activate": true,
    "params": [
     8.0,
-    7.0,
-    40.0,
+    8.0,
+    45.0,
     0.0,
     0.0,
     0.0,
@@ -59308,8 +59765,8 @@
    ],
    "named_params": {
     "blind": 8.0,
-    "dur_blind": 7.0,
-    "speed": 40.0
+    "dur_blind": 8.0,
+    "speed": 45.0
    },
    "types": [
     "accessory"
@@ -59443,7 +59900,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 512
   },
   "Robodog": {
    "key": "Robodog",
@@ -59580,7 +60038,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 130
   },
   "Mecha Bat": {
    "key": "Mecha Bat",
@@ -59727,7 +60186,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 8,
+   "used_stacks": 2
   },
   "Bazooka": {
    "key": "Bazooka",
@@ -59855,7 +60316,9 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 2,
+   "used_stacks": 128
   },
   "Lightning Staff": {
    "key": "Lightning Staff",
@@ -60023,7 +60486,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "used_stacks": 32
   },
   "Generator": {
    "key": "Generator",
@@ -60302,7 +60766,9 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 254,
+   "removed_stacks": 254
   },
   "Poison Grenade": {
    "key": "Poison Grenade",
@@ -60327,7 +60793,7 @@
    "params": [
     20.0,
     12.0,
-    1.0,
+    1.5,
     5.0,
     0.0,
     0.0,
@@ -60339,7 +60805,7 @@
    "named_params": {
     "poison": 20.0,
     "poison2": 12.0,
-    "cdadvance": 1.0,
+    "cdadvance": 1.5,
     "luckt": 5.0
    },
    "types": [
@@ -60424,7 +60890,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 256
   },
   "Con-Trap-Tron": {
    "key": "Con-Trap-Tron",
@@ -60611,7 +61078,7 @@
    "damage_type": "effect",
    "min_dam": 0,
    "max_dam": 0,
-   "cd": 7.5,
+   "cd": 7.2,
    "accuracy": 100.0,
    "crit": 0.0,
    "stamina_cost": 0.0,
@@ -61114,7 +61581,7 @@
    "damage_type": "effect",
    "min_dam": 0,
    "max_dam": 0,
-   "cd": 5.5,
+   "cd": 5.0,
    "accuracy": 100.0,
    "crit": 0.0,
    "stamina_cost": 0.0,
@@ -61403,7 +61870,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 32
   },
   "Bionic Armor": {
    "key": "Bionic Armor",
@@ -61534,7 +62002,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 64
   },
   "Laboratory": {
    "key": "Laboratory",
@@ -61686,7 +62155,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 220,
+   "used_stacks": 158
   },
   "Hypercube": {
    "key": "Hypercube",
@@ -61913,7 +62384,7 @@
    "can_activate": true,
    "params": [
     7.0,
-    0.3,
+    0.2,
     10.0,
     0.0,
     80.0,
@@ -61925,7 +62396,7 @@
    ],
    "named_params": {
     "buffs": 7.0,
-    "cdadvance": 0.3,
+    "cdadvance": 0.2,
     "max": 10.0,
     "penalty": 80.0
    },
@@ -62003,7 +62474,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 254
   },
   "Chrome Cube": {
    "key": "Chrome Cube",
@@ -62027,7 +62499,7 @@
    "can_activate": true,
    "params": [
     50.0,
-    2.0,
+    1.5,
     35.0,
     0.0,
     80.0,
@@ -62039,7 +62511,7 @@
    ],
    "named_params": {
     "healtht": 50.0,
-    "cdadvance": 2.0,
+    "cdadvance": 1.5,
     "healreduction": 35.0,
     "penalty": 80.0
    },
@@ -62220,7 +62692,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 16
   },
   "Cap of Brilliance": {
    "key": "Cap of Brilliance",
@@ -62352,7 +62825,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 32
   },
   "Magitecc Armor": {
    "key": "Magitecc Armor",
@@ -62523,7 +62997,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "removed_stacks": 1792,
+   "used_stacks": 32
   },
   "Arcane Boots": {
    "key": "Arcane Boots",
@@ -62680,7 +63156,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 66,
+   "used_stacks": 32
   },
   "Thors Hammer": {
    "key": "Thors Hammer",
@@ -62805,7 +63283,9 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 512,
+   "used_stacks": 32
   },
   "Automanaton": {
    "key": "Automanaton",
@@ -63013,7 +63493,10 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 512,
+   "removed_stacks": 1792,
+   "used_stacks": 32
   },
   "Mananana": {
    "key": "Mananana",
@@ -63153,7 +63636,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "used_stacks": 32
   },
   "Gigawatz": {
    "key": "Gigawatz",
@@ -63259,7 +63743,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 512
   },
   "Perpetuum Mobile": {
    "key": "Perpetuum Mobile",
@@ -63387,7 +63872,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 254
   },
   "Critical Poison": {
    "key": "Critical Poison",
@@ -63495,7 +63981,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 256
   },
   "Burning Spikes": {
    "key": "Burning Spikes",
@@ -63640,7 +64127,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 144
   },
   "Hogus Bogus": {
    "key": "Hogus Bogus",
@@ -63663,10 +64151,10 @@
    "material": "Paper",
    "can_activate": true,
    "params": [
-    8.0,
+    6.0,
     3.0,
     1.0,
-    0.5,
+    0.8,
     40.0,
     0.0,
     0.0,
@@ -63675,10 +64163,10 @@
     0.0
    ],
    "named_params": {
-    "stamina": 8.0,
+    "stamina": 6.0,
     "buffs": 3.0,
     "dur_stun": 1.0,
-    "dur_self_stun": 0.5,
+    "dur_self_stun": 0.8,
     "heal": 40.0
    },
    "types": [
@@ -63748,7 +64236,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 254
   },
   "Spin to Win": {
    "key": "Spin to Win",
@@ -63858,7 +64347,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 166
   },
   "Energy Conversion": {
    "key": "Energy Conversion",
@@ -63871,7 +64361,7 @@
    "damage_type": "effect",
    "min_dam": 0,
    "max_dam": 0,
-   "cd": 4.5,
+   "cd": 4.7,
    "accuracy": 100.0,
    "crit": 0.0,
    "stamina_cost": 0.7,
@@ -63991,7 +64481,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 254
   },
   "Inner Power": {
    "key": "Inner Power",
@@ -64153,7 +64644,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 66
   },
   "Bewitchment": {
    "key": "Bewitchment",
@@ -64166,7 +64658,7 @@
    "damage_type": "effect",
    "min_dam": 0,
    "max_dam": 0,
-   "cd": 3.0,
+   "cd": 2.5,
    "accuracy": 100.0,
    "crit": 0.0,
    "stamina_cost": 0.0,
@@ -64299,7 +64791,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 1792,
+   "used_stacks": 32
   },
   "Chess Master": {
    "key": "Chess Master",
@@ -64674,7 +65168,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 88,
+   "used_stacks": 38
   },
   "King of the Bling": {
    "key": "King of the Bling",
@@ -64847,7 +65343,7 @@
     10.0,
     10.0,
     35.0,
-    30.0,
+    32.0,
     1.0,
     0.0,
     0.0,
@@ -64859,7 +65355,7 @@
     "regen": 10.0,
     "speed": 10.0,
     "maxhealth": 35.0,
-    "dam": 30.0,
+    "dam": 32.0,
     "spikes": 1.0
    },
    "types": [
@@ -64976,7 +65472,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": true,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 6,
+   "scene_depth": 3
   },
   "Forest Dragon": {
    "key": "Forest Dragon",
@@ -65001,7 +65499,7 @@
    "params": [
     1.0,
     1.0,
-    0.8,
+    0.7,
     10.0,
     0.0,
     0.0,
@@ -65013,7 +65511,7 @@
    "named_params": {
     "regen": 1.0,
     "luck": 1.0,
-    "dam": 0.8,
+    "dam": 0.7,
     "speed": 10.0
    },
    "types": [
@@ -65166,7 +65664,8 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 6
   },
   "War Scythe": {
    "key": "War Scythe",
@@ -65504,7 +66003,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 34,
+   "removed_stacks": 512
   },
   "Molten Spear2": {
    "key": "Molten Spear2",
@@ -65672,7 +66173,9 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 512,
+   "used_stacks": 128
   },
   "Phoenix2": {
    "key": "Phoenix2",
@@ -65866,7 +66369,8 @@
    "flicker_min_speed": 0.3,
    "flicker_max_speed": 1.0,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "used_stacks": 128
   },
   "Whetstone2": {
    "key": "Whetstone2",
@@ -66505,13 +67009,22 @@
     0.0
    ],
    "named_params": {
-    "poison,3:cold,2:blind": 4.0,
-    "lucky,3:regeneration,3:spikes": 3.0,
-    "mana,3:heat": 4.0,
-    "vampirism,2:empower": 3.0,
+    "poison": 4.0,
+    "cold": 3.0,
+    "blind": 2.0,
+    "lucky": 3.0,
+    "regeneration": 3.0,
+    "spikes": 3.0,
+    "mana": 4.0,
+    "heat": 3.0,
+    "vampirism": 3.0,
+    "empower": 2.0,
     "healtht": 50.0,
     "healtht_opp": 70.0,
-    "scale1,0.75:scale2,1.5:scale3,1.5:scale4": 1.0,
+    "scale1": 1.0,
+    "scale2": 0.75,
+    "scale3": 1.5,
+    "scale4": 1.5,
     "effects": 2.0
    },
    "types": [
@@ -66646,13 +67159,22 @@
     0.0
    ],
    "named_params": {
-    "poison,3:cold,2:blind": 4.0,
-    "lucky,3:regeneration,3:spikes": 3.0,
-    "mana,3:heat": 4.0,
-    "vampirism,2:empower": 3.0,
+    "poison": 4.0,
+    "cold": 3.0,
+    "blind": 2.0,
+    "lucky": 3.0,
+    "regeneration": 3.0,
+    "spikes": 3.0,
+    "mana": 4.0,
+    "heat": 3.0,
+    "vampirism": 3.0,
+    "empower": 2.0,
     "healtht": 50.0,
     "healtht_opp": 70.0,
-    "scale1,0.75:scale2,2.5:scale3,2.5:scale4": 1.5,
+    "scale1": 1.5,
+    "scale2": 0.75,
+    "scale3": 2.5,
+    "scale4": 2.5,
     "effects": 3.0
    },
    "types": [
@@ -66943,7 +67465,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 6
   },
   "Cupcake Dragon": {
    "key": "Cupcake Dragon",
@@ -66968,7 +67491,7 @@
    "params": [
     2.0,
     2.0,
-    15.0,
+    20.0,
     0.0,
     0.0,
     0.0,
@@ -66980,7 +67503,7 @@
    "named_params": {
     "remove": 2.0,
     "gain": 2.0,
-    "speed": 15.0
+    "speed": 20.0
    },
    "types": [
     "weapon",
@@ -67131,7 +67654,9 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 254,
+   "removed_stacks": 254
   },
   "Wand of Dissonance": {
    "key": "Wand of Dissonance",
@@ -67288,7 +67813,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 38
   },
   "Amulet of Light": {
    "key": "Amulet of Light",
@@ -67476,7 +68002,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 4
   },
   "Gold Armor": {
    "key": "Gold Armor",
@@ -67667,7 +68194,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 4,
+   "removed_stacks": 1792
   },
   "Pine Protector": {
    "key": "Pine Protector",
@@ -67705,7 +68234,8 @@
     "damblock": 10.0,
     "stamina": 0.3,
     "spikes": 1.0,
-    "maxspikes,1:maxspikes_food": 5.0,
+    "maxspikes": 5.0,
+    "maxspikes_food": 1.0,
     "damblock2": 1.0,
     "maxblock": 10.0,
     "heal": 8.0
@@ -67867,7 +68397,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 16
   },
   "Onion Cutter": {
    "key": "Onion Cutter",
@@ -67891,7 +68422,7 @@
    "can_activate": true,
    "params": [
     2.0,
-    12.0,
+    15.0,
     0.0,
     0.0,
     0.0,
@@ -67903,7 +68434,7 @@
    ],
    "named_params": {
     "dam": 2.0,
-    "speed": 12.0
+    "speed": 15.0
    },
    "types": [
     "weapon",
@@ -68029,7 +68560,9 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "anim_speed_min": 0.7,
+   "anim_speed_max": 1.05
   },
   "Pot": {
    "key": "Pot",
@@ -68053,9 +68586,9 @@
    "can_activate": true,
    "params": [
     10.0,
-    2.0,
-    6.0,
-    6.0,
+    3.0,
+    8.0,
+    8.0,
     50.0,
     0.0,
     0.0,
@@ -68065,9 +68598,9 @@
    ],
    "named_params": {
     "heal": 10.0,
-    "heal_food": 2.0,
-    "heat": 6.0,
-    "regen": 6.0,
+    "heal_food": 3.0,
+    "heat": 8.0,
+    "regen": 8.0,
     "speed": 50.0
    },
    "types": [
@@ -68205,7 +68738,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 132
   },
   "Cog Badge": {
    "key": "Cog Badge",
@@ -68367,7 +68901,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "random_unique_pool": true
   },
   "Furcifer Prime": {
    "key": "Furcifer Prime",
@@ -68469,7 +69004,8 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "random_unique_pool": true
   },
   "Angel Crystal": {
    "key": "Angel Crystal",
@@ -68635,7 +69171,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 68,
+   "random_unique_pool": true
   },
   "Thorn Elemental": {
    "key": "Thorn Elemental",
@@ -68767,7 +69305,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 16,
+   "random_unique_pool": true
   },
   "Lightning Potion": {
    "key": "Lightning Potion",
@@ -68923,7 +69463,9 @@
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": true,
-   "gem_roll": false
+   "gem_roll": false,
+   "gained_stacks": 512,
+   "random_unique_pool": true
   },
   "Sloth": {
    "key": "Sloth",
@@ -69077,7 +69619,9 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "gained_stacks": 254,
+   "random_unique_pool": true
   }
  },
  "class_methods": {

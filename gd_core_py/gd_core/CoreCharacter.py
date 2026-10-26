@@ -91,7 +91,7 @@ class CoreCharacter(GodotObject):
 		self.attack_sound_ready_time = - 1.0
 		self._tick_timer_left = 0.0
 		self._tick_timer_active = False
-		self.damage_anim_is_poison = False
+		self.damage_anim_current = ""
 
 	@property
 	def playerId(self):
@@ -464,6 +464,12 @@ class CoreCharacter(GodotObject):
 	# damageAnimation.current_animation 的「Poison」闸（Character.gd:616-627）：冻结
 	# 循环里动画不前进，play("Poison") 后 current 恒为 "Poison" 直到下一次非毒分支
 	# 的 stop+play；闸只判 "!= Poison"，用布尔等价建模。
+	# ★ np24：受击动画状态镜像——oracle 的闸=damageAnimation.current_animation
+	#   （Character.gd:617 `!= "Poison"`，运行时动画名、播完仍保持），布尔闩非等价
+	#   （oracle 的 Block/Fatigue/Hit 播放会清除 Poison 态、后续毒 tick 照常抽取；
+	#   布尔闩则把后续毒 tick 全部闸死 ⇒ gd 多抽/少抽。镜像=字符串状态，写入点
+	#   与 oracle 播放点一一对应：takeDamage 门=Block/Fatigue/Hit、gainPoison=Poison；
+	#   Win/Lose/LevelUp（:1010/:1014/:1030）在单场战斗内不发生，不镜像）。
 
 
 	# 对齐 Character.gd:445-462 playAttackAnimation。每次 dealDamage 调用：
@@ -692,9 +698,16 @@ class CoreCharacter(GodotObject):
 			# ★ 表现层链消耗还原（Character.gd:616-627）：受击动画播放速度
 			#   randf_range(0.9,1.1)——**1 次调用 = 2 步链**（run1029_r2 语料逐抽对位：
 			#   每 takeDamage 恰 1 行 (0.9,1.1)）；「Poison」闸（:616）见 damage_anim_is_poison。
-			if not self.damage_anim_is_poison:
+			if self.damage_anim_current != "Poison":
+				# ★ np24：镜像 oracle Character.gd:618-626 的动画分支（stop+play 改写
+				#   当前动画名），playback_speed 抽取照旧。
+				if damageRes.healthDamage == 0:
+					self.damage_anim_current = "Block"
+				elif damageSource.hasType(_R.C("CoreDamageSource").Type.Fatigue):
+					self.damage_anim_current = "Fatigue"
+				else:
+					self.damage_anim_current = "Hit"
 				self.ctx.rng.randf_range(0.9, 1.1)
-				self.damage_anim_is_poison = False
 				self.ctx.hooks.damageAnimation(self, "Fatigue" if damageSource.hasType(_R.C("CoreDamageSource").Type.Fatigue) else "Hit")
 		else:
 			self.spawnLabel_native(_R.C("CoreConst").EventType.MissedAttack, 0, item)
@@ -1328,6 +1341,12 @@ class CoreCharacter(GodotObject):
 			self._invul_active = True
 			self.invulnerable = True
 			self.ctx.hooks.playInvulnerableAnimation(self, True)
+			# ★ np24：无敌音高抽补还原（oracle Character.gd:1050 `Sound.playSound(
+			#   invuSound, 4, Util.randPitch(0.1))`——randPitch(0.1)=rng_trace_range(
+			#   0.9,1.1,"randPitch")，**记帐**抽；tag 同构保证逐抽对位）。此前 gd 漏抽
+			#   ⇒ 每次 makeInvulnerable 首分支链位 -1（run576_r14 King Goobert 无敌
+			#   首分支实证：oracle 探针 O536 randPitch(0.9,1.1)=>1.073782 缺失）。
+			self.ctx.rng.randf_range(0.9, 1.1, "randPitch")
 		else:
 			self._invul_left = invuDur + self._invul_left
 
@@ -1479,7 +1498,10 @@ class CoreCharacter(GodotObject):
 		# 冻结循环里 current 恒停在 Poison，闸住后续 takeDamage 的 playback_speed 抽取
 		event = self.gainStacks(_R.C("CoreConst").EventType.Poison, amount, item, triggerEvent)
 		if amount > 0:
-			self.damage_anim_is_poison = True
+			# ★ np24：镜像 oracle Character.gd:1233-1234（stop+play("Poison") 改写
+			#   当前动画名，闸住后续 takeDamage 的 playback_speed 抽取直至下个
+			#   非 Poison 动画）。
+			self.damage_anim_current = "Poison"
 		return event
 
 

@@ -30,6 +30,11 @@ class Exclusive__EngineerBox(_R.C("res://gd_core_items/Bag.gd")):
 
 
 	def onPrepare(self):
+		# ★ np24：录制镜像（gd_core/CoreContext.gd eb_relay_mirrored）——录制侧 EB
+		#   ChargeTimer 首弹后队列不推进（探针实证 fire=1 次/侧、ts=0），接力重发射
+		#   =0；gd 侧 CoreTimer 级联=接力活跃（sendCharge +10）。镜像=连接环不建。
+		if self.ctx != None and self.ctx.eb_relay_mirrored:
+			return
 		for item in _iter(self.getAffectedItemsInside()):
 			self.ctx.bus.connectEvent(item, "charge_emitted", self, "onItemInsideEmittedCharge")
 

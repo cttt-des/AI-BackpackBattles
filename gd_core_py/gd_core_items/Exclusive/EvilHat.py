@@ -71,6 +71,10 @@ class Exclusive__EvilHat(_R.C("res://gd_core_items/Item.gd")):
 
 	def playDropSound(self, volume=0):
 		volume += self.impactSoundVolume
+		# ★ kernel_r2c 移植补抽：原版此行含 Util.randPitch(0.1)（=randf_range(0.9, 1.1)，
+		#   Util.gd:685-686），转译期随音效行被剥——链消耗丢失（activate() 虚分发
+		#   后此覆写生效，抽面必须与原版一致）。
+		self.ctx.rng.randf_range(0.9, 1.1)
 
 	def _readyInit(self):
 		super()._readyInit()

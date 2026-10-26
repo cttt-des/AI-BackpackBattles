@@ -176,7 +176,14 @@ func otherCharacter(character):
 func advancePhysicsFrame(delta: float = PHYSICS_DELTA) -> void :
 	frame_counter += 1
 	time += delta
-	combat_time += delta
+	# ★ kernel_r1：combat_time **不得**在此推进——原版 combatTime 只在
+	#   CombatTimer._physics_process（Util 时钟=步骤① 之后的步骤④）前进；
+	#   此前这里与 CoreCombat.physicsTick 步骤④ 双重推进，使 ctx.combat_time
+	#   在步骤③（对手物品）期间恒领先本地 combat_time 一个 dt——对手侧事件
+	#   时间戳整体 +1 tick（run577_r7 EVDBG 实证：create id=16 t=1.0833 而同刻
+	#   CoreCombat.combat_time=1.0667；神谕语料 idx15=1.0667。唯一读点=
+	#   CoreCombatLog.getTimeStamp=事件时间戳源，语义=CombatTimer）。
+	combat_time = combat_time
 
 
 # ── 按时延迟调用（对齐 Util.callDelayed 的 `get_tree().create_timer(delay)`） ──
@@ -191,20 +198,29 @@ var _timed: Array = []
 func callDelayed(obj, methodName: String, delay: float, binds: Array = []) -> void :
 	if obj == null:
 		return
-	_timed.push_back([obj, methodName, time + delay, binds])
+	# ★ kernel_r6：条目 [obj, method, **剩余秒**, binds]——oracle Util.callDelayed
+	#   登记 SceneTreeTimer、由 drive_delayed 每 tick `e[1] -= dt` 递减驱动
+	#   （oracle_fight.gd:939-953），到期即派发。此前存绝对到期时刻 + time>=due
+	#   判定，使 tick 内注册的延迟比 oracle 晚 1 tick 到期（注册 tick 不递减）。
+	_timed.push_back([obj, methodName, delay, binds])
 
 
 func _flushTimed() -> void :
+	# ★ kernel_r6：递减驱动语义（对齐 oracle_fight.gd drive_delayed：全部条目
+	#   -= dt，>0 保留，<=0 派发；派发处理基于快照，处理期间新登记不递减）。
+	#   帧末战斗已结束：到期条目按 oracle `if G.fightEnded: continue` 丢弃。
 	if _timed.empty():
 		return
 	var due: Array = []
 	var keep: Array = []
 	for call in _timed:
-		if call[2] <= time:
-			due.push_back(call)
-		else:
+		call[2] = call[2] - PHYSICS_DELTA
+		if call[2] > 0.0:
 			keep.push_back(call)
+		elif not fight_ended:
+			due.push_back(call)
 	if due.empty():
+		_timed = keep
 		return
 	_timed = keep
 	for call in due:
@@ -221,7 +237,26 @@ func hasDeferred() -> bool:
 
 
 # 帧末 flush。执行期间新入队的调用留到下一帧（与 SceneTree 语义一致）。
+# ★ np24 harness：deferred_flush_enabled=false 时本函数直接返回——对位神谕
+#   录制 harness 的 [M11] 语义（oracle_fight.gd:236-239）：阻塞 tick 循环无帧，
+#   MessageQueue（call_deferred）在整场战斗内**从不冲刷**（跨场累积至配额退出
+#   才帧末清）。实证：run574_r7 Deck of Cards 的 cards[0].call_deferred(
+#   "startActivation")（oracle/Items/DeckofCards.gd:76）在语料中从未执行
+#   ⇒ 全语料零卡链 reveal；gd 内核每 tick flush ⇒ 独有 Lovers reveal（t=1.55
+#   damage 5）= 574 首分歧 idx45。由神谕对齐宿主置 false；其余用途
+#   （LineupBattle 等）默认 true 不变。
+var deferred_flush_enabled := true
+# ★ np24：EngineerBox 接力死亡镜像——录制侧 EB 的 ChargeTimer（delay=5，MultiTimer
+#   one_shot）仅首弹 1 次（探针 [FTDBG]/[MTDBG] 实证 t=5.033 fire ×2 侧、ts=0、
+#   队列 1 emit/侧），后续 queue 推进从不发生 ⇒ EB 接力重发射=0；gd 侧 CoreTimer
+#   级联递归弹光队列 ⇒ sendCharge +10（26 v 36）⇒ 主链 +20 位移 ⇒ 下游全链错位
+#   （1160@3/582@42 stun roll 位差）。神谕对齐宿主置 true 镜像（EB onPrepare
+#   连接环=空转）；其余用途默认 false 不变。
+var eb_relay_mirrored := false
+
 func flushDeferred() -> void :
+	if not deferred_flush_enabled:
+		return
 	if _deferred.empty():
 		return
 	var batch = _deferred

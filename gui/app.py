@@ -673,9 +673,11 @@ class BackpackAIApp(tk.Tk):
         txt.pack(side="left", fill="both", expand=True)
         txt.tag_config("bag", foreground=COLORS["accent"])
         txt.tag_config("dim", foreground=COLORS["text_dim"])
+        txt.tag_config("price", foreground=COLORS["warning"])
+        txt.tag_config("sale", foreground=COLORS["danger"])
         return txt, count_var
 
-    def _refresh_text_panel(self, txt, items, count_var):
+    def _refresh_text_panel(self, txt, items, count_var, show_price=False):
         txt.configure(state="normal")
         txt.delete("1.0", "end")
         if not items:
@@ -688,9 +690,26 @@ class BackpackAIApp(tk.Tk):
             line = zh
             if it.get("is_bag"):
                 line += "  [容器]"
-            txt.insert("end", line + "\n")
+            txt.insert("end", line)
+            if show_price:
+                self._insert_price_fragment(txt, it)
+            txt.insert("end", "\n")
         txt.configure(state="disabled")
         count_var.set(str(len(items)))
+
+    @staticmethod
+    def _insert_price_fragment(txt, it):
+        """商店物品行的价格片段：成交价金色，打折信息红色，状态灰。"""
+        if it.get("bought"):
+            txt.insert("end", "  已购买", "dim")
+        elif it.get("free"):
+            txt.insert("end", "  免费", "price")
+        elif it.get("price") is not None:
+            txt.insert("end", f"  {it['price']}金", "price")
+            if it.get("on_sale"):
+                txt.insert("end", f" (原价{it['normal_price']}·打折)", "sale")
+        if it.get("reserved") and not it.get("bought"):
+            txt.insert("end", "  [已预订]", "dim")
 
     # ---------- 导出游戏当前查看的回合阵容 ----------
     def _on_export_current_selection(self):
@@ -1451,14 +1470,16 @@ class BackpackAIApp(tk.Tk):
             self._last_round = int(rnd) if rnd is not None else 1
             n_bp = state.get("live_backpack_count", 0)
             n_st = state.get("live_storage_count", 0)
-            self.phase_var.set(f"阶段: {phase}  |  摆盘: {n_bp}  储物箱: {n_st}")
+            n_shop = state.get("live_shop_count", 0)
+            self.phase_var.set(
+                f"阶段: {phase}  |  摆盘: {n_bp}  储物箱: {n_st}  商店: {n_shop}")
             self.bp_count_var.set(f"物品 {n_bp}")
             bp = live.get("backpack", [])
             self._draw_backpack(bp)
             self._refresh_text_panel(self.storage_text, live.get("storage", []),
                                      self.storage_count)
             self._refresh_text_panel(self.shop_text, live.get("shop", []),
-                                     self.shop_count)
+                                     self.shop_count, show_price=True)
 
     def _on_close(self):
         # 1) 立刻置关闭标志（生命看门狗会据此在 0.3s 内强制退出）

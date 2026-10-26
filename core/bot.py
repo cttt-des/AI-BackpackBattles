@@ -282,13 +282,14 @@ class BackpackBot:
                 "round": self.memory_state.round_addr is not None or struct_ok,
             }
             state["structural"] = struct_ok
-        # 结构性物品读取：当前摆盘 / 储物箱 / 商店在售
+        # 结构性物品读取：当前摆盘 / 储物箱 / 商店在售（含价格）
         if self.item_reader:
             try:
                 items = self.item_reader.read_items()
                 state["live_items"] = items
                 state["live_backpack_count"] = len(items["backpack"])
                 state["live_storage_count"] = len(items["storage"])
+                state["live_shop_count"] = len(items["shop"])
             except Exception:  # noqa: BLE001
                 state["live_items"] = {"backpack": [], "storage": [], "shop": []}
         return state

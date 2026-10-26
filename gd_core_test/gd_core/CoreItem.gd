@@ -738,7 +738,11 @@ func _readyInit() -> void :
 	if descriptor.flickerAni:
 		var flicker_delay = ctx.rng.randf_range(descriptor.flickerMinDist,
 				descriptor.flickerMaxDist)
-		ctx.callDelayed(self, "flickerPlayAni", flicker_delay)
+		# ★ kernel_r6：注册保留（oracle FlickerAnimation.gd:9-11 onAnimationEnded
+		#   确有 callDelayed 注册且 drive_delayed 确会驱动），但 playAni 的速度抽
+		#   在 oracle = Util.rng.randf_range **裸调**（FlickerAnimation.gd:16，
+		#   与 ItemAnimation 同款）⇒ rng_log 零痕迹 ⇒ flickerPlayAni 改走
+		#   ctx.rng.rng 裸抽（见该函数）。
 
 	# ★ 连接器 _ready 抽（阶段2）：Potion._ready 动态挂 PotionConnector
 	#（Potion.gd:22-28）/场景内嵌 CardConnector——两者 _ready 均为
@@ -782,7 +786,9 @@ func _readyInit() -> void :
 #   animation_finished 永不发出 → onAnimationEnded 不会重排下一轮——playAni
 #   每场至多一次（判胜前），与神谕 drive_delayed 的一次性派发逐位一致。
 func flickerPlayAni() -> void :
-	ctx.rng.randf_range(descriptor.flickerMinSpeed, descriptor.flickerMaxSpeed)
+	# ★ kernel_r6：oracle FlickerAnimation.gd:16 playAni = Util.rng.randf_range
+	#   裸调（rng_log 零痕迹，与 np24 ItemAnimation 同款）⇒ 裸抽不进 trace。
+	ctx.rng.rng.randf_range(descriptor.flickerMinSpeed, descriptor.flickerMaxSpeed)
 
 
 # ─────────────────────── 触发（对齐 4416-4451） ───────────────────────
@@ -861,6 +867,18 @@ func advanceCooldownSeconds(amount):
 	ctx.combat_log.snapshotItemTooltipStat(self, CoreConst.ItemStat.Cooldown)
 
 
+# 对齐 Item.gd:4667-4668 playActivationSound → :3171-3173 playDropSound（虚链）：
+# 判定面只有音高抽（纯音效播放走钩子）。物品脚本覆写 playDropSound 时由脚本
+# 版本接管（PowerPuppy 族=不抽、Rat 等=自带抽面）——kernel_r2c，见 activate() 注。
+func playActivationSound() -> void :
+	playDropSound(-6)
+
+
+# 对齐 Item.gd:3171-3173 playDropSound 基类判定面（音高抽）
+func playDropSound(volume = 0) -> void :
+	ctx.rng.randf_range(0.9, 1.1)
+
+
 # ─────────────────────── 激活（对齐 4686-4737） ───────────────────────
 
 func activate(damageRes = null, playCombatAni = true, consume = false, 
@@ -889,23 +907,45 @@ func activate(damageRes = null, playCombatAni = true, consume = false,
 	#   决定后续每次掷点——docs/alignment_fix_workflow.md §1 表）：
 	#   ① activate() → playActivationSound() → playDropSound(-6) 的落物音高
 	#     （Item.gd:4667-4668 → :3171-3173，randf_range(0.9,1.1)，每次激活 1 抽）；
+	#     ★ ★ ★ kernel_r2c：该抽在原版走**虚函数分发**——21 个物品脚本覆写
+	#     playDropSound（PowerPuppy 族覆写后不抽、Rat/ParadiseBirb 自带抽面，
+	#     两侧覆写集逐一相同，grep 实证）。此前内核此处无条件抽，对覆写面多/错
+	#     消耗（run571_r18 gd-extra g256 实证：APP 激活事件后 gd 多一行 (0.9,1.1)
+	#     而神谕无 → APP pickRandomElement 拿错 u → 首 proc Lucky(101) v 神谕
+	#     Empower(106)，事件 idx48）。改为直接虚调 playDropSound(-6)（该名在
+	#     生成基类 gd_core_items/Item.gd 中不存在，分发直达本基类或脚本覆写；
+	#     不能经 playActivationSound()——生成基类含同名空壳会遮蔽基类实现，
+	#     首轮实装 589 退回 @7 即此）。基类=音高抽（非覆写物品不变）。
 	#   ② playCombatAni → playAnimation()（Item.gd:5345-5349）：descriptor 有攻击
 	#     动画场景时 ItemAnimation.intialize 消耗 4 抽（randomizePosition 3 抽
 	#     Items/Animations/ItemAnimation.gd:26-28 + playback_speed 1 抽 :34；
 	#     export 默认 (30,100)/5.0/0.8/1.2——各 Animation.tscn 可覆写，但
 	#     randf_range 恒等 2 步 PCG（docs/rng_truth.md §2.3），链位只看抽数）；
+	#     ★ ★ kernel_r1：原版此处有 **playCombatAni 闸**（Item.gd:4704-4708
+	#     `if playCombatAni: playAnimation(...)`，miss 分支 damageRes!=null 且
+	#     未命中 → playAnimation(false)，抽数同 4 步不变）。此前内核只判
+	#     animationScene、丢了 playCombatAni——activate(null, **false**) 的调用面
+	#     （SteelDragon/Whetstone3 等开战 onCombatStart，Item.gd 同构脚本）被多灌
+	#     4 抽 ItemAnimation 块：run589_r18 神谕逐抽实证（probe 重放 events 逐字节
+	#     同语料）：Steel Dragon 开战激活神谕 ANIM 块缺席（rng_log row587 首现，
+	#     t≈40s 战中期），内核开战即抽 → 链位 +4 → Gold Armor 再生放大掷
+	#     roll(0,100) 拿错 u（9.66≤27 命中 vs 神谕全 miss）→ amount 4 v 3（@7）。
+	#     ★ ★ ★ np24 harness 定谳（run574_r7 探针 rng_log + 注入实验）：神谕侧这
+	#     4 抽走 **ItemAnimation.gd 直连 Util.rng**（:25-27/:34 裸 randf_range，
+	#     不经 rng_trace 包装）⇒ rng_log **零痕迹**（三场探针全量扫 (-100,100)
+	#     = 0 行并非「块未消耗」）。链位实证：gd 在 pitch 抽后注入 4 笔裸抽
+	#     （ORACLE_INJECT_AT=295 N=4），下一 (0.95,1.05) 抽值 0.980002→0.971783
+	#     **精确命中神谕**。故本块必须**无日志消耗**（ctx.rng.rng 裸调）——
+	#     有日志版会让 rng_trace 多 4 行，呈现为「内核多 4 抽」的伪分歧；无消耗
+	#     版（harness animationScene=false 覆写，已撤）则链位缺 4 抽。ANIM 标记
+	#     行一并移除（神谕无 ORACLE_STACKTRACE 时无此行，保持日志逐行对位）。
 	#   ③ damageRes 非空时 playActivateAnimation（Character.gd:464-481，见该函数）。
-	ctx.rng.randf_range(0.9, 1.1)
-	if descriptor.animationScene:
-		# ★ ANIM 标记（不消耗链，与神谕 oracle/Items/Item.gd playAnimation 的
-		#   同名标记行同构）：跨引擎 4 抽块归属定位用。
-		if ctx.rng.oracle_trace:
-			ctx.rng.oracle_trace_log.push_back([ctx.rng.oracle_trace_log.size(),
-					"ANIM", String(descriptor.identifier), "True", "hit=True", ""])
-		ctx.rng.randf_range(-30.0, 30.0)
-		ctx.rng.randf_range(-100.0, 100.0)
-		ctx.rng.randf_range(-5.0, 5.0)
-		ctx.rng.randf_range(0.8, 1.2)
+	playDropSound(-6)
+	if playCombatAni and descriptor.animationScene:
+		ctx.rng.rng.randf_range(-30.0, 30.0)
+		ctx.rng.rng.randf_range(-100.0, 100.0)
+		ctx.rng.rng.randf_range(-5.0, 5.0)
+		ctx.rng.rng.randf_range(0.8, 1.2)
 	if damageRes != null:
 		var ch = character()
 		if ch != null:
@@ -1845,11 +1885,6 @@ func getRelativeHealth():
 
 # 对齐 Item.gd:4882-4884
 func giveBuffPower(buffType, power):
-	# ★ 诊断标记（不消耗链）：buffPower 授予面追踪
-	if ctx.rng.oracle_trace:
-		ctx.rng.oracle_trace_log.push_back([ctx.rng.oracle_trace_log.size(),
-				"BFP", String(descriptor.identifier), str(buffType), str(power),
-				""])
 	buffPowers[buffType] += power
 
 

@@ -25,6 +25,7 @@ class CoreTimer(GodotObject):
 		self._left = 0.0
 		self._stopped = True
 		self.fire_count = 0        # 供测试断言
+		self._started_frame = -1
 
 	# =============================================================================
 	# CoreTimer.gd — 无头战斗内核：虚拟计时器
@@ -78,6 +79,14 @@ class CoreTimer(GodotObject):
 
 
 	# 对齐 MultiTimer.gd:12-18 / Godot Timer.start(time)
+	# ★ kernel_r3：oracle_fight.gd drive_timers 的注册表语义（:881-905）——外部
+	#   start(x) 当 tick：`eng(x) != e[1] → e[0] = eng`，**注册 tick 不递减**，首帧
+	#   递减发生在下一 tick。此前 _left 直赋 + 同 tick step⑦ 即递减 → 一切中途
+	#   启动的计时器恒早 1 tick 到期（run583_r11 SPF 毒批语料 5.5167 v gd 5.5，
+	#   P3=3.5=210 tick 整、heal@1.9833 实证）。_started_frame 记注册 tick，
+	#   tick() 同帧跳过一次递减；循环内 handler 重启（_onTimeout 的 start(dif)）
+	#   走 oracle 的 restart 语义（当帧已消耗递减、下帧照常），不设标记。
+
 	def start(self, time=-1.0):
 		if time != None:
 			self.wait_time = time
@@ -86,6 +95,7 @@ class CoreTimer(GodotObject):
 			return
 		self._stopped = False
 		self._left = self.wait_time
+		self._started_frame = self._ctx.frame_counter if self._ctx != None else -1
 
 
 	# 对齐 MultiTimer.gd:20-22
@@ -103,6 +113,8 @@ class CoreTimer(GodotObject):
 	# 由物理帧推进（对齐 Timer 的 process_mode = TIMER_PROCESS_PHYSICS）
 	def tick(self, delta):
 		if self._stopped:
+			return
+		if self._ctx != None and self._ctx.frame_counter == self._started_frame:
 			return
 		self._left -= delta
 		if self._left > 0.0:
@@ -128,7 +140,12 @@ class CoreTimer(GodotObject):
 			nextTimestamp = self.timestamps.pop(0)
 			dif = nextTimestamp - self._utilTime()
 			if dif > 0.05:
-				self.start(dif)
+				# ★ kernel_r3：此处为 fire-tick 内的 handler 重启（oracle restart 语义：
+				#   当帧已消耗递减、下帧照常递减）——不走 start() 以免误设
+				#   _started_frame 同帧跳过标记（比对 drive_timers :905 restart 路径）。
+				self.wait_time = dif
+				self._stopped = False
+				self._left = dif
 			else:
 				self._onTimeout()
 

@@ -29,7 +29,10 @@ import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DB_PATH = os.path.join(ROOT, "assets", "battle_items.json")
-CSV_PATH = os.path.join(ROOT, "decompiled_full", "Sheets", "CSV", "ItemData_e.csv")
+# ★ np23 data_r2：数据源切 oracle 语料版（1.1.9 录制真值）。shop==unique 集合与
+#   decompiled ItemData_e.csv 全等（oracle 仅多 Time Pendant——库外行、语料零引用），
+#   切源不改值，只统一战斗数据链 provenance（与 enrich_stack_flags 同口径）。
+CSV_PATH = os.path.join(ROOT, "oracle", "Sheets", "CSV", "ItemData.csv")
 
 
 def main() -> int:

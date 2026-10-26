@@ -63,6 +63,15 @@ func get_time_left() -> float:
 
 
 # 对齐 MultiTimer.gd:12-18 / Godot Timer.start(time)
+# ★ kernel_r3：oracle_fight.gd drive_timers 的注册表语义（:881-905）——外部
+#   start(x) 当 tick：`eng(x) != e[1] → e[0] = eng`，**注册 tick 不递减**，首帧
+#   递减发生在下一 tick。此前 _left 直赋 + 同 tick step⑦ 即递减 → 一切中途
+#   启动的计时器恒早 1 tick 到期（run583_r11 SPF 毒批语料 5.5167 v gd 5.5，
+#   P3=3.5=210 tick 整、heal@1.9833 实证）。_started_frame 记注册 tick，
+#   tick() 同帧跳过一次递减；循环内 handler 重启（_onTimeout 的 start(dif)）
+#   走 oracle 的 restart 语义（当帧已消耗递减、下帧照常），不设标记。
+var _started_frame := -1
+
 func start(time = -1.0) -> void :
 	if time != null:
 		wait_time = time
@@ -71,6 +80,7 @@ func start(time = -1.0) -> void :
 		return
 	_stopped = false
 	_left = wait_time
+	_started_frame = _ctx.frame_counter if _ctx != null else -1
 
 
 # 对齐 MultiTimer.gd:20-22
@@ -88,6 +98,8 @@ func isFinished() -> bool:
 # 由物理帧推进（对齐 Timer 的 process_mode = TIMER_PROCESS_PHYSICS）
 func tick(delta: float) -> void :
 	if _stopped:
+		return
+	if _ctx != null and _ctx.frame_counter == _started_frame:
 		return
 	_left -= delta
 	if _left > 0.0:
@@ -113,7 +125,12 @@ func _onTimeout() -> void :
 		var nextTimestamp = timestamps.pop_front()
 		var dif = nextTimestamp - _utilTime()
 		if dif > 0.05:
-			start(dif)
+			# ★ kernel_r3：此处为 fire-tick 内的 handler 重启（oracle restart 语义：
+			#   当帧已消耗递减、下帧照常递减）——不走 start() 以免误设
+			#   _started_frame 同帧跳过标记（比对 drive_timers :905 restart 路径）。
+			wait_time = dif
+			_stopped = false
+			_left = dif
 		else:
 			_onTimeout()
 
