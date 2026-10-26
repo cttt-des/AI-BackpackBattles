@@ -108,12 +108,6 @@ func trace_event(type: int) -> void :
 
 
 func randf_range(from: float, to: float, tag: String = "randf_range") -> float:
-	# ★ kernel_r9 临时诊断注入（ORACLE_TEST_INJECT_AT/N，默认关闭零影响）
-	if oracle_trace and OS.get_environment("ORACLE_TEST_INJECT_AT") != "":
-		if oracle_trace_log.size() == int(OS.get_environment("ORACLE_TEST_INJECT_AT")):
-			var n_inj := int(OS.get_environment("ORACLE_TEST_INJECT_N"))
-			for _i in n_inj:
-				rng.randf_range(0.95, 1.05)
 	var r = rng.randf_range(from, to)
 	if oracle_trace:
 		_trace(tag, from, to, r)
