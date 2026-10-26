@@ -117,6 +117,16 @@ def sync_item(key: str, entry: dict, re_: dict, ro: dict, log: list) -> bool:
         if ce == co:
             continue
         pe, po = parse_p_cell(ce), parse_p_cell(co)
+        # ★ np24：当前值已==oracle 解析值 ⇒ 该格早前已手工对齐，跳过（不算冲突）
+        have_slot = po[0][0] if po else 0.0
+        have_named_ok = all(
+            name in np_ and _feq(np_[name], val) for val, name in (po or []) if name
+        ) and all(
+            name not in np_ for val, name in (pe or []) if name and not any(
+                n == name for _, n in (po or []))
+        )
+        if _feq(params[i], have_slot) and have_named_ok:
+            continue
         # 对账：_e 侧解析 == 当前库值
         want_slot = pe[0][0] if pe else 0.0
         if not _feq(params[i], want_slot):
@@ -145,26 +155,34 @@ def sync_item(key: str, entry: dict, re_: dict, ro: dict, log: list) -> bool:
         cde, cdo = parse_cd_cell(re_.get("cd")), parse_cd_cell(ro.get("cd"))
         cur = [_f(entry.get("cd") or 0.0)] + [
             _f(x) for x in (entry.get("extra_cds") or [])]
-        if cde is None:
+        already = cdo is not None and cur == [
+            _f(cdo[0] or 0.0)] + [_f(x) for x in (cdo[1:] or [])]
+        if already:
+            log.append("  %s.cd: 已对齐(跳过) %r" % (key, ro.get("cd")))
+        if not already and cde is None:
             if not _feq(entry.get("cd") or 0.0, 0.0) or (entry.get("extra_cds") or []):
                 raise SystemExit("%s.cd：当前值 %r 与 _e 空列不符（拒绝盲写）"
                                  % (key, cur))
-        elif len(cde) != len(cur) or any(not _feq(a, b) for a, b in zip(cde, cur)):
+        elif not already and (len(cde) != len(cur) or any(
+                not _feq(a, b) for a, b in zip(cde, cur))):
             raise SystemExit("%s.cd：当前值 %r 与 _e 解析 %r 不符（拒绝盲写）"
                              % (key, cur, cde))
-        if cdo is None:
-            entry["cd"], entry["extra_cds"] = 0.0, []
-        else:
-            entry["cd"] = _f(cdo[0])
-            entry["extra_cds"] = [_f(x) for x in cdo[1:]]
-        log.append("  %s.cd: %r → %r" % (key, re_.get("cd"), ro.get("cd")))
-        touched = True
+        if not already:
+            if cdo is None:
+                entry["cd"], entry["extra_cds"] = 0.0, []
+            else:
+                entry["cd"] = _f(cdo[0])
+                entry["extra_cds"] = [_f(x) for x in cdo[1:]]
+            log.append("  %s.cd: %r → %r" % (key, re_.get("cd"), ro.get("cd")))
+            touched = True
 
     # ---- 整数列 / 浮点列 ----
     for col, field in INT_COLS.items():
         ve, vo = (re_.get(col) or "").strip(), (ro.get(col) or "").strip()
         if ve == vo:
             continue
+        if int(entry.get(field) or 0) == int(float(vo or 0)):
+            continue  # ★ np24：已对齐 oracle 值
         if int(entry.get(field) or 0) != int(float(ve or 0)):
             raise SystemExit("%s.%s：当前 %r 与 _e %r 不符（拒绝盲写）"
                              % (key, col, entry.get(field), ve))
@@ -175,6 +193,8 @@ def sync_item(key: str, entry: dict, re_: dict, ro: dict, log: list) -> bool:
         ve, vo = (re_.get(col) or "").strip(), (ro.get(col) or "").strip()
         if ve == vo:
             continue
+        if _feq(entry.get(field) or 0.0, float(vo or 0)):
+            continue  # ★ np24：已对齐 oracle 值
         if not _feq(entry.get(field) or 0.0, float(ve or 0)):
             raise SystemExit("%s.%s：当前 %r 与 _e %r 不符（拒绝盲写）"
                              % (key, col, entry.get(field), ve))
@@ -187,6 +207,8 @@ def sync_item(key: str, entry: dict, re_: dict, ro: dict, log: list) -> bool:
         ve, vo = (re_.get(col) or "").strip(), (ro.get(col) or "").strip()
         if ve == vo:
             continue
+        if _feq(lead_float(entry.get(field)), lead_float(vo)):
+            continue  # ★ np24：已对齐 oracle 值
         if not _feq(lead_float(entry.get(field)), lead_float(ve)):
             raise SystemExit("%s.%s：当前 %r 与 _e %r 不符（拒绝盲写）"
                              % (key, col, entry.get(field), ve))

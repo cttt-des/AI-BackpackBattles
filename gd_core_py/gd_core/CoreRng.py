@@ -279,12 +279,6 @@ class CoreRng(GodotObject):
 
 
 	def randf_range(self, from_, to, tag="randf_range"):
-		# ★ kernel_r9 临时诊断注入（ORACLE_TEST_INJECT_AT/N，默认关闭零影响）
-		if self.oracle_trace and _os_environ_get("ORACLE_TEST_INJECT_AT") != "":
-			if len(self.oracle_trace_log) == int(_os_environ_get("ORACLE_TEST_INJECT_AT")):
-				n_inj = int(_os_environ_get("ORACLE_TEST_INJECT_N"))
-				for _i in _iter(n_inj):
-					self.rng.randf_range(0.95, 1.05)
 		r = self.rng.randf_range(from_, to)
 		if self.oracle_trace:
 			self._trace(tag, from_, to, r)

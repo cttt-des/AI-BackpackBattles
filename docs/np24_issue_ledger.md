@@ -60,13 +60,13 @@
   ②直读 oracle/data/history.db 离线圈定受影响场；③oracle_fight.gd _item_snapshot 扩 stats
   （录制能力升级，改前先验 1 绿场 events 不变）；④仅重录受影响场（lineups+events 一并落 fights/，
   events 必须与旧语料一致才有效）；⑤夹具再生透传 + gd/py 装配消费 + 守门 582/635。
-- [ ] **P1-2 CSV 源版本差**：gd 夹具数据源=decompiled(1.1.7) ItemData_e.csv ≠ oracle 1.1.9
+- [x] **P1-2 CSV 源版本差**（已由 enrich_oracle_params.py 完成：battle_items 25 件 57 格全对齐 1.1.9，护栏已升级跳过已对齐格；Time Pendant 语料零引用不处理）：gd 夹具数据源=decompiled(1.1.7) ItemData_e.csv ≠ oracle 1.1.9
   语料源（oracle/Sheets/CSV/ItemData.csv，已解密明文在盘）。逐字段 diff 两 CSV，
   差异面落入 battle_items.json 再生链（gen_lineup_fixture/gen_gd_core_data），
   重生成本面（改 assets 后必跑两 gen 工具+核场数）。
-- [ ] **P1-3 栈标志列缺失**：CSV gain/use/remove 栈标志列丢失 → gainedStacks/usedStacks≡0
+- [x] **P1-3 栈标志列**（复核：CSV gain/use/remove 两代全等且非空 303/75/60；runtime 与 item_battle_fixture 的 gainedStacks 非零数=303 与 CSV 精确一致——早前簇签名系 CSV 对齐前的旧证据，已失效）：CSV gain/use/remove 栈标志列丢失 → gainedStacks/usedStacks≡0
   → gainsBuffs()/usesBuffs 面。与 P1-2 同一轮 CSV diff 一并处理。
-- [ ] **P1-4 数值面落后**：battle_items.json→gd_core_runtime.json 物品数值落后 1.1.9 真值
+- [x] **P1-4 数值面落后**（同 P1-2 轮：runtime/item_battle_fixture 已再生，mtime 23:01>22:34 核符）：battle_items.json→gd_core_runtime.json 物品数值落后 1.1.9 真值
   （实证 Snake maxhealth 类）。同 P1-2 轮。
 
 ### P2 内核/装配面
