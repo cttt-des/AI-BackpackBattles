@@ -89,3 +89,17 @@ Thumbs.db
 # np23: gd_core_test/gd_core_items 原为 symlink（Windows 检出成伪文件致 gd 腿挂死）
 # 改为真实目录+同步，不入库（内容与主树 gd_core_items 同源）
 gd_core_test/gd_core_items/
+
+# ============ AI 训练相关（暂不入库）============
+/ai/
+/bridge/
+/build_bridge_injector.py
+/.workbuddy/
+
+# ============ 游戏历史库（含真实存档数据，不入库）============
+/history/
+
+# ============ 根目录细碎运行产物 ============
+/oracle_chunk_*.log
+/debug.log
+/recover_guide.md
