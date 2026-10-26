@@ -1,0 +1,60 @@
+extends Reference
+class_name BalancedRange
+
+var acc = 0.0
+
+func reset():
+	acc = 0.0
+
+func randIntRange(from: int, to: int) -> int:
+	# ★ np24：伤害掷纳入 trace（录制侧 trace 完整化永久升级——此前直连
+	#   Util.rng.randi_range 不落 rng_log，gd 侧同位掷全量记账 ⇒ 逐抽对位盲区）。
+	#   tag 默认 "randi_range"，与 gd_core/CoreDamageSource.gd:210 的记账标签同构，
+	#   _probe_draw_diff 直接可用。门=ORACLE_DEBUG（oracleRngTrace）。
+	var rng = Util.rng_trace_irange(from, to)
+	var expected: float = 0.5 * (from + to)
+	
+	var dif: float = rng - expected
+	
+	
+	
+	
+	if acc >= 1:
+		var malus = min(rng - from, int(acc))
+		acc -= malus
+		rng -= malus
+		
+		
+	elif acc <= - 1:
+		var bonus = min(to - rng, int(abs(acc)))
+		acc += bonus
+		rng += bonus
+		
+	
+	acc += dif
+	
+	return rng
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

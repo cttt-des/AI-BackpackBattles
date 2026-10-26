@@ -611,6 +611,8 @@ class GDCoreEngine:
                  warm_latch: bool = False,
                  perm_stack_override: Optional[Dict[int, int]] = None,
                  r5_dual_exec: Optional[Dict[str, int]] = None,
+                 p_gem_lens: Optional[List[int]] = None,
+                 o_gem_lens: Optional[List[int]] = None,
                  _r5_warm: bool = False,
                  _r5_warm_gate: int = 25000,
                  formal_ev_gate: int = 25000):
@@ -642,6 +644,8 @@ class GDCoreEngine:
                 reseed_after_player_character=reseed_after_player_character,
                 post_seed_draws=post_seed_draws,
                 label_rng_enabled=label_rng_enabled,
+                p_gem_lens=p_gem_lens,
+                o_gem_lens=o_gem_lens,
                 _r5_warm=True,
                 _r5_warm_gate=int(r5_dual_exec.get("warm_event_gate", 25000)))
             warm.run()
@@ -695,12 +699,18 @@ class GDCoreEngine:
         self.ctx = ctx
         self.hooks.ctx = ctx
         # 对齐 Game.isBelowLeague(Master)（Character.gd:304 / Item.gd:3791 消费）。
-        # 受控神谕（1.1.8 全量工程 + 全新 persistent → 各职业 rating=0 → Bronze）
-        # 实测走 below_master=true 分支：对手冷却 randf_range(0.975,1.05)、
-        # 双方 accuracy/crit 平衡器 ±0.2 偏置（见 output/oracle/fights/*/rng_log.txt
-        # 的 `randf_range 0.975 1.05` 记录）。默认 False = 既有行为不变；
-        # 神谕对齐驱动（tools/verify_oracle.py）显式传 True。
+        # np24 终谳（探针 rng_log，三场 events≡语料）：录制时该条件为真——冷却批
+        # = 玩家侧 (0.95,1.05) + 对手侧 (0.975,1.05)、±0.2 命中/暴击偏置在位。
+        # 族A「对手全 +1 tick」根源在对手速度面（gd 1.06 v oracle ~1.07），非映射。
+        # 默认 False；神谕对齐驱动（tools/verify_oracle.py）显式传 True。
         ctx.below_master = bool(below_master)
+        # ★ np24：deferred 冲刷关闭（与 gd 宿主 OracleAlignBattle.gd 同位；录制
+        #   [M11]：阻塞循环无帧，战斗内 call_deferred 永不执行——Deck of Cards
+        #   卡链零启动实证）。py 腿此前靠装配期缓存陈旧而偶然一致（deck cards=0）。
+        ctx.deferred_flush_enabled = False
+        # ★ np24：EngineerBox 接力死亡镜像（与 gd 宿主 OracleAlignBattle.gd 同位；
+        #   录制侧 EB ChargeTimer 首弹 1 次/侧、队列不推进，接力重发射=0）。
+        ctx.eb_relay_mirrored = True
         p = self._make_character(ctx, k["CoreCharacter"].ID.PLAYER, ps, cls_p,
                                  player_lineup.get("base_max_stamina"))
         # ★ np21-R5 残留①（permanentStacks 收割灌入，gd 宿主 [r5-warm] 块同位）：
@@ -800,8 +810,14 @@ class GDCoreEngine:
                         self._descriptor(ctx, _pre_gk)
 
         owner = k["CoreConst"].Owner
+        # ★ np24 簇A①：per-index 实例槽真值（= cases json 条目 gems 数组长度，
+        #   含 null 空槽——v3 lineup 的 gems 在生成链丢了 null，长度不可用；
+        #   由驱动 run_py 从 oracle_align_cases.json 逐条传入，与 v3 items
+        #   按装配序 1:1 对齐）。None = 无真值（非神谕路径），回落夹具容量。
+        self._p_gem_lens = p_gem_lens
+        self._o_gem_lens = o_gem_lens
         self._p_items = self._build_side(ctx, p, player_lineup,
-                                         owner.PlayerInventory)
+                                         owner.PlayerInventory, p_gem_lens)
         if reseed_after_player_character:
             # 对手角色 4 抽落神谕位：玩家物品之后、对手物品之前；
             # combat.setup 在此补完整接线（ctx.player/ctx.combat 重赋值幂等）
@@ -810,7 +826,8 @@ class GDCoreEngine:
             self._p, self._o = p, o
             combat.setup(p, o)
             self.combat = combat
-        self._o_items = self._build_side(ctx, o, opponent_lineup, owner.Opponent)
+        self._o_items = self._build_side(ctx, o, opponent_lineup, owner.Opponent,
+                                         o_gem_lens)
         # 物品要在 combat.setup() 之后装（既有路径由上方 else 分支保证；
         # 神谕路径 ctx.player/ctx.combat 先绑定，op6 语义不变）；startBattle 再兜住双方
         # ★ 激活顺序直通（受控神谕对齐路径）：原版开战前的 shuffle 走引擎全局链
@@ -955,7 +972,10 @@ class GDCoreEngine:
                 # 配方图（tools/enrich_recipes.py）：战斗语义只消费非空性
                 #（isCraftedItem → Cog/Anvil 的 canAffect）
                 "originatingRecipes": d.get("originatingRecipes", []),
-                # 攻击动画场景（tools/enrich_animation_scene.py）：playAnimation 的闸
+                # 攻击动画场景（enrich_animation_scene.py）：playAnimation 的闸。
+                #   np24 终谳更正：神谕 ItemAnimation 4 抽走 Util.rng 直连（无日志），
+                #   块照常消耗——内核 activate 以裸抽对位（见 gd_core/CoreItem.gd），
+                #   数据面照夹具原值传递（与 gd 宿主 descriptor_of 同步）。
                 "animationScene": bool(d.get("animationScene", False)),
                 # FlickerAnimation 子节点（tools/enrich_flicker_animation.py，阶段2
                 # 装配期对齐）：_ready 消耗 randf_range(minDist,maxDist) 2 步 +
@@ -1003,11 +1023,16 @@ class GDCoreEngine:
             for color, cells in affected.items()}
         return it
 
-    def _place(self, ctx, chr_, key, row, col, rot, owner_type, ready=True):
+    def _place(self, ctx, chr_, key, row, col, rot, owner_type, ready=True,
+               sockets=None):
         k = self._K
         vec = k["Vector2"]
         pl = _place_of(self._data, key, row, col, rot)
-        it = self._make_item(ctx, chr_, key, pl["script"], pl["sockets"],
+        # np24 簇A①：sockets 显式传入时以传入值为准（= 神谕实例真值
+        # len(lineup gems)，见 _build_side 注）；缺省回落夹具容量（宝石自身的
+        # 槽——语料无嵌套宝石，零战斗面）。
+        it = self._make_item(ctx, chr_, key, pl["script"],
+                             pl["sockets"] if sockets is None else int(sockets),
                              pl["collision"], pl["affected"])
         it.occupiedCells = [vec(int(c[0]), int(c[1])) for c in pl["occupied"]]
         it.ownerType = owner_type
@@ -1022,8 +1047,9 @@ class GDCoreEngine:
             it._readyInit()
         return it
 
-    def _build_side(self, ctx, chr_, lineup, owner_type):
+    def _build_side(self, ctx, chr_, lineup, owner_type, gem_lens=None):
         out = []
+        _gi = 0
         for sec in ("backpack", "storage"):
             if sec == "storage":
                 continue          # 储物箱里的物品不参战（对齐原版：只装背包）
@@ -1032,9 +1058,16 @@ class GDCoreEngine:
                 key = e.get("id") or e.get("key")
                 if not key:
                     continue
+                # np24 簇A①：优先用驱动传入的实例槽真值（cases json 条目 gems
+                # 长度，null 空槽计入）；v3 gems 丢了 null 不能用其长度。
+                _sock = None
+                if gem_lens is not None and _gi < len(gem_lens):
+                    _sock = int(gem_lens[_gi])
+                _gi += 1
                 it = self._place(ctx, chr_, key, int(e.get("row") or 0),
                                  int(e.get("col") or 0),
-                                 int(e.get("rotation") or 0), owner_type)
+                                 int(e.get("rotation") or 0), owner_type,
+                                 sockets=_sock)
                 chr_.inventory.addItem(it, it.occupiedCells)
                 # ★ r34 crafted 效果真值覆写（对齐重放元组覆写点）：_ready_init 的
                 #   roll 照常消耗链位（与神谕重放同序），随后用史真值覆写（零 rng）。

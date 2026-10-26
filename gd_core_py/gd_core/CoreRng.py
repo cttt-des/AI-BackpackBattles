@@ -139,7 +139,12 @@ class BalancedRange(GodotObject):
 		self.acc = 0.0
 
 	def randIntRange(self, from_, to):
-		rng = self._rng.randi_range(from_, to)
+		# ★ kernel_r5：对齐 oracle Utility/BalancedRange.gd:14 `Util.rng.randi_range`
+		#   ——**裸调不入账本**（oracle 伤害掷点在 rng_log 零痕迹）。此前走
+		#   CoreRng.randi_range 追踪版，使 gd trace 多出伤害行、与语料账本
+		#   不可直比（run862_r18 对位 walk 在 c99/c100 间虚位差 δ 实证）。
+		#   消耗面不变（同一 PCG 同参数），仅账本可见性对齐。
+		rng = self._rng.rng.randi_range(from_, to)
 		expected = 0.5 * (from_ + to)
 
 		dif = rng - expected
@@ -274,6 +279,12 @@ class CoreRng(GodotObject):
 
 
 	def randf_range(self, from_, to, tag="randf_range"):
+		# ★ kernel_r9 临时诊断注入（ORACLE_TEST_INJECT_AT/N，默认关闭零影响）
+		if self.oracle_trace and _os_environ_get("ORACLE_TEST_INJECT_AT") != "":
+			if len(self.oracle_trace_log) == int(_os_environ_get("ORACLE_TEST_INJECT_AT")):
+				n_inj = int(_os_environ_get("ORACLE_TEST_INJECT_N"))
+				for _i in _iter(n_inj):
+					self.rng.randf_range(0.95, 1.05)
 		r = self.rng.randf_range(from_, to)
 		if self.oracle_trace:
 			self._trace(tag, from_, to, r)

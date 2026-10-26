@@ -36,6 +36,13 @@ const ITEMS := {
 		"tags": 0,
 		"params": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
 		"namedParams": {},
+		"gainedStacks": 0,
+		"removedStacks": 0,
+		"usedStacks": 0,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 2,
 		"originatingRecipes": [],
 		"animationScene": false,
 		"flickerAni": false,
@@ -46,7 +53,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": false,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 1
 	},
 	"Amulet Unidentified": {
 		"name": "Amulet Unidentified",
@@ -68,6 +75,13 @@ const ITEMS := {
 		"tags": 256,
 		"params": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
 		"namedParams": {},
+		"gainedStacks": 0,
+		"removedStacks": 0,
+		"usedStacks": 0,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 2,
 		"originatingRecipes": [],
 		"animationScene": false,
 		"flickerAni": false,
@@ -78,7 +92,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": false,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 1
 	},
 	"Amulet of Steel": {
 		"name": "Amulet of Steel",
@@ -103,6 +117,13 @@ const ITEMS := {
 			"blockt": 40.0,
 			"empower": 1.0
 		},
+		"gainedStacks": 64,
+		"removedStacks": 0,
+		"usedStacks": 0,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 2,
 		"originatingRecipes": [],
 		"animationScene": false,
 		"flickerAni": false,
@@ -113,7 +134,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": false,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 1
 	},
 	"Badger Rune": {
 		"name": "Badger Rune",
@@ -139,6 +160,13 @@ const ITEMS := {
 			"damreduction": 7.0,
 			"stamina": 10.0
 		},
+		"gainedStacks": 0,
+		"removedStacks": 0,
+		"usedStacks": 0,
+		"hasBattleRageEffect": true,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 3,
 		"originatingRecipes": [],
 		"animationScene": false,
 		"flickerAni": false,
@@ -149,7 +177,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": true,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 1
 	},
 	"Badger Spirit": {
 		"name": "Badger Spirit",
@@ -177,6 +205,13 @@ const ITEMS := {
 			"maxhealth": 20.0,
 			"maxhealth_bonus": 2.0
 		},
+		"gainedStacks": 0,
+		"removedStacks": 0,
+		"usedStacks": 32,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 2,
 		"originatingRecipes": [],
 		"animationScene": false,
 		"flickerAni": false,
@@ -187,7 +222,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": false,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 1
 	},
 	"Berserker Bag": {
 		"name": "Berserker Bag",
@@ -207,13 +242,20 @@ const ITEMS := {
 		"chance2": 0.0,
 		"types": [0],
 		"tags": 64,
-		"params": [50.0, 5.0, 35.0, 25.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+		"params": [50.0, 5.5, 35.0, 25.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
 		"namedParams": {
 			"healtht": 50.0,
-			"dur_rage": 5.0,
+			"dur_rage": 5.5,
 			"speed_rage": 35.0,
 			"damresistance": 25.0
 		},
+		"gainedStacks": 0,
+		"removedStacks": 0,
+		"usedStacks": 0,
+		"hasBattleRageEffect": true,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 2,
 		"originatingRecipes": [],
 		"animationScene": false,
 		"flickerAni": false,
@@ -224,7 +266,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": false,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 1
 	},
 	"Blueberries": {
 		"name": "Blueberries",
@@ -250,6 +292,13 @@ const ITEMS := {
 			"manat": 10.0,
 			"luck": 1.0
 		},
+		"gainedStacks": 34,
+		"removedStacks": 0,
+		"usedStacks": 0,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 2,
 		"originatingRecipes": [],
 		"animationScene": false,
 		"flickerAni": false,
@@ -284,6 +333,13 @@ const ITEMS := {
 		"namedParams": {
 			"maxhealth": 10.0
 		},
+		"gainedStacks": 254,
+		"removedStacks": 0,
+		"usedStacks": 0,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 2,
 		"originatingRecipes": [],
 		"animationScene": false,
 		"flickerAni": false,
@@ -294,7 +350,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": false,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 1
 	},
 	"Cheese Goobert": {
 		"name": "Cheese Goobert",
@@ -319,6 +375,13 @@ const ITEMS := {
 			"activations": 5.0,
 			"maxhealth": 22.0
 		},
+		"gainedStacks": 254,
+		"removedStacks": 0,
+		"usedStacks": 0,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 2,
 		"originatingRecipes": [{
 			"b": "Goobert",
 			"i": ["Cheese"],
@@ -333,7 +396,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": false,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 1
 	},
 	"Chili Goobert": {
 		"name": "Chili Goobert",
@@ -359,6 +422,13 @@ const ITEMS := {
 			"heal": 16.0,
 			"heat": 2.0
 		},
+		"gainedStacks": 128,
+		"removedStacks": 1792,
+		"usedStacks": 0,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 2,
 		"originatingRecipes": [{
 			"b": "Goobert",
 			"i": ["Chili Pepper"],
@@ -373,7 +443,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": false,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 1
 	},
 	"Claws of Attack": {
 		"name": "Claws of Attack",
@@ -399,6 +469,13 @@ const ITEMS := {
 			"maxspeed": 1000.0,
 			"attackst": 4.0
 		},
+		"gainedStacks": 64,
+		"removedStacks": 0,
+		"usedStacks": 0,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 2,
 		"originatingRecipes": [{
 			"b": "Gloves of Haste",
 			"i": ["Walrus Tusk"],
@@ -413,7 +490,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": false,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 2
 	},
 	"Corrupted Crystal": {
 		"name": "Corrupted Crystal",
@@ -435,6 +512,13 @@ const ITEMS := {
 		"tags": 0,
 		"params": [30.0, 50.0, 7.0, 6.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
 		"namedParams": {},
+		"gainedStacks": 0,
+		"removedStacks": 0,
+		"usedStacks": 0,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 3,
 		"originatingRecipes": [],
 		"animationScene": false,
 		"flickerAni": false,
@@ -445,7 +529,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": true,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 1
 	},
 	"Crown": {
 		"name": "Crown",
@@ -471,6 +555,13 @@ const ITEMS := {
 			"dur_invu": 2.0,
 			"heal": 5.0
 		},
+		"gainedStacks": 0,
+		"removedStacks": 512,
+		"usedStacks": 32,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 2,
 		"originatingRecipes": [],
 		"animationScene": false,
 		"flickerAni": false,
@@ -481,7 +572,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": false,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 2
 	},
 	"Customer Card": {
 		"name": "Customer Card",
@@ -503,6 +594,13 @@ const ITEMS := {
 		"tags": 0,
 		"params": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
 		"namedParams": {},
+		"gainedStacks": 0,
+		"removedStacks": 0,
+		"usedStacks": 0,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 2,
 		"originatingRecipes": [],
 		"animationScene": false,
 		"flickerAni": false,
@@ -513,7 +611,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": false,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 1
 	},
 	"Djinn Lamp": {
 		"name": "Djinn Lamp",
@@ -535,6 +633,13 @@ const ITEMS := {
 		"tags": 0,
 		"params": [7.0, 27.0, 27.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
 		"namedParams": {},
+		"gainedStacks": 50,
+		"removedStacks": 0,
+		"usedStacks": 51,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 2,
 		"originatingRecipes": [],
 		"animationScene": false,
 		"flickerAni": false,
@@ -545,7 +650,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": false,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 1
 	},
 	"Dragon Knight": {
 		"name": "Dragon Knight",
@@ -565,13 +670,20 @@ const ITEMS := {
 		"chance2": 0.0,
 		"types": [3, 4, 20, 21, 27],
 		"tags": 16,
-		"params": [5.0, 4.0, 8.0, 15.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+		"params": [5.0, 4.0, 7.0, 15.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
 		"namedParams": {
 			"heat": 5.0,
 			"reflect": 4.0,
-			"heal": 8.0,
+			"heal": 7.0,
 			"advance": 15.0
 		},
+		"gainedStacks": 128,
+		"removedStacks": 0,
+		"usedStacks": 0,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 2,
 		"originatingRecipes": [{
 			"b": "Twine",
 			"i": ["Goobert", "Ruby Whelp"],
@@ -586,7 +698,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": false,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 3
 	},
 	"Dual Wielding": {
 		"name": "Dual Wielding",
@@ -611,6 +723,13 @@ const ITEMS := {
 			"speed": 20.0,
 			"stamina": 30.0
 		},
+		"gainedStacks": 0,
+		"removedStacks": 0,
+		"usedStacks": 0,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 2,
 		"originatingRecipes": [],
 		"animationScene": false,
 		"flickerAni": false,
@@ -621,7 +740,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": false,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 1
 	},
 	"Elephant Rune": {
 		"name": "Elephant Rune",
@@ -647,6 +766,13 @@ const ITEMS := {
 			"dur_resist": 4.0,
 			"maxhealth": 50.0
 		},
+		"gainedStacks": 0,
+		"removedStacks": 0,
+		"usedStacks": 0,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 3,
 		"originatingRecipes": [],
 		"animationScene": false,
 		"flickerAni": false,
@@ -657,7 +783,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": true,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 1
 	},
 	"Evil Cap": {
 		"name": "Evil Cap",
@@ -683,6 +809,13 @@ const ITEMS := {
 			"dur": 5.0,
 			"healreduction": 30.0
 		},
+		"gainedStacks": 0,
+		"removedStacks": 0,
+		"usedStacks": 0,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 2,
 		"originatingRecipes": [{
 			"b": "Leather Helm",
 			"i": ["Corrupted Crystal"],
@@ -697,7 +830,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": false,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 2
 	},
 	"Falcon Blade": {
 		"name": "Falcon Blade",
@@ -721,6 +854,13 @@ const ITEMS := {
 		"namedParams": {
 			"speed": 40.0
 		},
+		"gainedStacks": 0,
+		"removedStacks": 0,
+		"usedStacks": 0,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 2,
 		"originatingRecipes": [{
 			"b": "Hero Sword",
 			"i": ["Gloves of Haste", "Gloves of Haste"],
@@ -735,7 +875,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": false,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 3
 	},
 	"False Life": {
 		"name": "False Life",
@@ -761,6 +901,13 @@ const ITEMS := {
 			"heal": 10.0,
 			"heal_dark": 4.0
 		},
+		"gainedStacks": 0,
+		"removedStacks": 0,
+		"usedStacks": 0,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 2,
 		"originatingRecipes": [],
 		"animationScene": false,
 		"flickerAni": false,
@@ -771,7 +918,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": false,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 1
 	},
 	"Fanny Pack": {
 		"name": "Fanny Pack",
@@ -793,6 +940,13 @@ const ITEMS := {
 		"tags": 0,
 		"params": [10.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
 		"namedParams": {},
+		"gainedStacks": 0,
+		"removedStacks": 0,
+		"usedStacks": 0,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 2,
 		"originatingRecipes": [],
 		"animationScene": false,
 		"flickerAni": false,
@@ -803,14 +957,14 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": false,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 1
 	},
 	"Fedora": {
 		"name": "Fedora",
 		"identifier": "Fedora",
 		"minDam": 0,
 		"maxDam": 0,
-		"cd": 2.8,
+		"cd": 3.2,
 		"extraCds": [],
 		"accuracy": 100.0,
 		"staminaCost": 0.0,
@@ -823,7 +977,7 @@ const ITEMS := {
 		"chance2": 0.0,
 		"types": [9],
 		"tags": 0,
-		"params": [60.0, 3.0, 1.0, 3.0, 1.0, 2.0, 25.0, 0.0, 0.0, 0.0],
+		"params": [60.0, 3.0, 1.0, 3.0, 1.0, 2.0, 20.0, 0.0, 0.0, 0.0],
 		"namedParams": {
 			"uniques": 60.0,
 			"uniquest": 3.0,
@@ -831,8 +985,15 @@ const ITEMS := {
 			"luck2": 3.0,
 			"luckt": 1.0,
 			"buffs": 2.0,
-			"chance": 25.0
+			"chance": 20.0
 		},
+		"gainedStacks": 254,
+		"removedStacks": 254,
+		"usedStacks": 2,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 2,
 		"originatingRecipes": [],
 		"animationScene": false,
 		"flickerAni": false,
@@ -843,7 +1004,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": false,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 1
 	},
 	"Gold Armor": {
 		"name": "Gold Armor",
@@ -871,6 +1032,13 @@ const ITEMS := {
 			"block": 25.0,
 			"speed": 50.0
 		},
+		"gainedStacks": 4,
+		"removedStacks": 1792,
+		"usedStacks": 0,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 2,
 		"originatingRecipes": [{
 			"b": "Holy Armor",
 			"i": ["Coins"],
@@ -889,7 +1057,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": false,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 4
 	},
 	"Goobling": {
 		"name": "Goobling",
@@ -914,6 +1082,13 @@ const ITEMS := {
 			"activations": 3.0,
 			"heal": 4.0
 		},
+		"gainedStacks": 0,
+		"removedStacks": 0,
+		"usedStacks": 0,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 2,
 		"originatingRecipes": [],
 		"animationScene": false,
 		"flickerAni": false,
@@ -924,7 +1099,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": false,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 1
 	},
 	"Hawk Rune": {
 		"name": "Hawk Rune",
@@ -949,6 +1124,13 @@ const ITEMS := {
 			"critchance": 12.0,
 			"critdam": 15.0
 		},
+		"gainedStacks": 512,
+		"removedStacks": 0,
+		"usedStacks": 0,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 3,
 		"originatingRecipes": [],
 		"animationScene": false,
 		"flickerAni": false,
@@ -959,7 +1141,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": true,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 1
 	},
 	"Heart of Darkness": {
 		"name": "Heart of Darkness",
@@ -988,6 +1170,13 @@ const ITEMS := {
 			"buffsteal": 2.0,
 			"darkspeed": 20.0
 		},
+		"gainedStacks": 254,
+		"removedStacks": 0,
+		"usedStacks": 4,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 2,
 		"originatingRecipes": [{
 			"b": "Heart Container",
 			"i": ["Corrupted Crystal"],
@@ -1002,7 +1191,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": false,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 2
 	},
 	"Holy Collar": {
 		"name": "Holy Collar",
@@ -1027,6 +1216,13 @@ const ITEMS := {
 			"luck": 1.0,
 			"regen": 1.0
 		},
+		"gainedStacks": 6,
+		"removedStacks": 0,
+		"usedStacks": 0,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 2,
 		"originatingRecipes": [],
 		"animationScene": false,
 		"flickerAni": false,
@@ -1037,7 +1233,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": false,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 1
 	},
 	"Leather Bag": {
 		"name": "Leather Bag",
@@ -1059,6 +1255,13 @@ const ITEMS := {
 		"tags": 0,
 		"params": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
 		"namedParams": {},
+		"gainedStacks": 0,
+		"removedStacks": 0,
+		"usedStacks": 0,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 2,
 		"originatingRecipes": [],
 		"animationScene": false,
 		"flickerAni": false,
@@ -1069,7 +1272,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": false,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 1
 	},
 	"Light Goobert": {
 		"name": "Light Goobert",
@@ -1096,6 +1299,13 @@ const ITEMS := {
 			"blind": 7.0,
 			"dur_blind": 3.0
 		},
+		"gainedStacks": 512,
+		"removedStacks": 0,
+		"usedStacks": 0,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 2,
 		"originatingRecipes": [{
 			"b": "Goobert",
 			"i": ["Lightsaber"],
@@ -1110,7 +1320,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": false,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 1
 	},
 	"Lucky Cat": {
 		"name": "Lucky Cat",
@@ -1137,6 +1347,13 @@ const ITEMS := {
 			"gold2": 40.0,
 			"speed": 15.0
 		},
+		"gainedStacks": 0,
+		"removedStacks": 0,
+		"usedStacks": 0,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 2,
 		"originatingRecipes": [],
 		"animationScene": false,
 		"flickerAni": false,
@@ -1147,7 +1364,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": false,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 1
 	},
 	"Mana Orb": {
 		"name": "Mana Orb",
@@ -1172,6 +1389,13 @@ const ITEMS := {
 			"manat": 35.0,
 			"buffs": 20.0
 		},
+		"gainedStacks": 254,
+		"removedStacks": 0,
+		"usedStacks": 32,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 2,
 		"originatingRecipes": [],
 		"animationScene": false,
 		"flickerAni": false,
@@ -1182,7 +1406,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": false,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 1
 	},
 	"Oil Lamp": {
 		"name": "Oil Lamp",
@@ -1208,6 +1432,13 @@ const ITEMS := {
 			"dam": 1.0,
 			"accuracy": 5.0
 		},
+		"gainedStacks": 128,
+		"removedStacks": 0,
+		"usedStacks": 0,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 2,
 		"originatingRecipes": [],
 		"animationScene": false,
 		"flickerAni": true,
@@ -1218,7 +1449,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": false,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 1
 	},
 	"Piggybank": {
 		"name": "Piggybank",
@@ -1242,6 +1473,13 @@ const ITEMS := {
 		"namedParams": {
 			"maxhealth": 2.0
 		},
+		"gainedStacks": 0,
+		"removedStacks": 0,
+		"usedStacks": 0,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 2,
 		"originatingRecipes": [],
 		"animationScene": false,
 		"flickerAni": false,
@@ -1252,7 +1490,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": false,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 1
 	},
 	"Poison Dagger": {
 		"name": "Poison Dagger",
@@ -1274,6 +1512,13 @@ const ITEMS := {
 		"tags": 0,
 		"params": [2.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
 		"namedParams": {},
+		"gainedStacks": 256,
+		"removedStacks": 0,
+		"usedStacks": 0,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 2,
 		"originatingRecipes": [{
 			"b": "Dagger",
 			"i": ["Pestilence Flask"],
@@ -1288,7 +1533,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": false,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 2
 	},
 	"Potion Belt": {
 		"name": "Potion Belt",
@@ -1312,6 +1557,13 @@ const ITEMS := {
 		"namedParams": {
 			"cleanse": 10.0
 		},
+		"gainedStacks": 254,
+		"removedStacks": 1792,
+		"usedStacks": 0,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 2,
 		"originatingRecipes": [],
 		"animationScene": false,
 		"flickerAni": false,
@@ -1322,7 +1574,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": false,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 1
 	},
 	"Protective Purse": {
 		"name": "Protective Purse",
@@ -1344,6 +1596,13 @@ const ITEMS := {
 		"tags": 0,
 		"params": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
 		"namedParams": {},
+		"gainedStacks": 0,
+		"removedStacks": 0,
+		"usedStacks": 0,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 2,
 		"originatingRecipes": [],
 		"animationScene": false,
 		"flickerAni": false,
@@ -1354,7 +1613,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": false,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 1
 	},
 	"Pumpkin": {
 		"name": "Pumpkin",
@@ -1379,6 +1638,13 @@ const ITEMS := {
 			"dur_stun": 0.5,
 			"heat": 10.0
 		},
+		"gainedStacks": 128,
+		"removedStacks": 0,
+		"usedStacks": 0,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 2,
 		"originatingRecipes": [],
 		"animationScene": true,
 		"flickerAni": false,
@@ -1388,8 +1654,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"randomUniquePool": false,
-		"sockets": 0
+		"randomUniquePool": true,
+		"sockets": 3
 	},
 	"Rainbow Badge": {
 		"name": "Rainbow Badge",
@@ -1411,6 +1677,13 @@ const ITEMS := {
 		"tags": 0,
 		"params": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
 		"namedParams": {},
+		"gainedStacks": 254,
+		"removedStacks": 0,
+		"usedStacks": 0,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 2,
 		"originatingRecipes": [],
 		"animationScene": false,
 		"flickerAni": false,
@@ -1420,8 +1693,8 @@ const ITEMS := {
 		"flickerMaxSpeed": 1.0,
 		"connectorReadyRoll": false,
 		"gemRoll": false,
-		"randomUniquePool": false,
-		"sockets": 0
+		"randomUniquePool": true,
+		"sockets": 1
 	},
 	"Rat": {
 		"name": "Rat",
@@ -1447,6 +1720,13 @@ const ITEMS := {
 			"poison": 1.0,
 			"blind": 1.0
 		},
+		"gainedStacks": 256,
+		"removedStacks": 0,
+		"usedStacks": 0,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 2,
 		"originatingRecipes": [],
 		"animationScene": false,
 		"flickerAni": false,
@@ -1457,7 +1737,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": false,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 1
 	},
 	"Rope": {
 		"name": "Rope",
@@ -1483,6 +1763,13 @@ const ITEMS := {
 			"dur": 6.0,
 			"max": 50.0
 		},
+		"gainedStacks": 0,
+		"removedStacks": 0,
+		"usedStacks": 0,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 2,
 		"originatingRecipes": [{
 			"b": "Twine",
 			"i": ["Twine"],
@@ -1497,7 +1784,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": false,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 1
 	},
 	"Seal the Deal": {
 		"name": "Seal the Deal",
@@ -1527,6 +1814,13 @@ const ITEMS := {
 			"manat": 2.0,
 			"empower": 2.0
 		},
+		"gainedStacks": 88,
+		"removedStacks": 0,
+		"usedStacks": 38,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 2,
 		"originatingRecipes": [],
 		"animationScene": false,
 		"flickerAni": false,
@@ -1537,7 +1831,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": false,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 1
 	},
 	"Sewing Case": {
 		"name": "Sewing Case",
@@ -1561,6 +1855,13 @@ const ITEMS := {
 		"namedParams": {
 			"speed": 15.0
 		},
+		"gainedStacks": 0,
+		"removedStacks": 0,
+		"usedStacks": 0,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 2,
 		"originatingRecipes": [],
 		"animationScene": false,
 		"flickerAni": false,
@@ -1571,7 +1872,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": false,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 1
 	},
 	"Shaman Mask": {
 		"name": "Shaman Mask",
@@ -1593,6 +1894,13 @@ const ITEMS := {
 		"tags": 0,
 		"params": [1.0, 2.0, 5.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
 		"namedParams": {},
+		"gainedStacks": 254,
+		"removedStacks": 0,
+		"usedStacks": 2,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 2,
 		"originatingRecipes": [],
 		"animationScene": false,
 		"flickerAni": false,
@@ -1603,7 +1911,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": false,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 1
 	},
 	"Shelly": {
 		"name": "Shelly",
@@ -1629,6 +1937,13 @@ const ITEMS := {
 			"heal": 40.0,
 			"speed": 20.0
 		},
+		"gainedStacks": 0,
+		"removedStacks": 0,
+		"usedStacks": 0,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 2,
 		"originatingRecipes": [{
 			"b": "Shiny Shell",
 			"i": ["Health Potion"],
@@ -1643,7 +1958,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": false,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 1
 	},
 	"Snowmaster": {
 		"name": "Snowmaster",
@@ -1670,6 +1985,13 @@ const ITEMS := {
 			"empower": 1.0,
 			"speed": 10.0
 		},
+		"gainedStacks": 1088,
+		"removedStacks": 1792,
+		"usedStacks": 0,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 2,
 		"originatingRecipes": [{
 			"b": "Carrot",
 			"i": ["Snowball", "Lump of Coal"],
@@ -1684,7 +2006,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": false,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 1
 	},
 	"Speak with Animals": {
 		"name": "Speak with Animals",
@@ -1708,6 +2030,13 @@ const ITEMS := {
 		"namedParams": {
 			"sale": 25.0
 		},
+		"gainedStacks": 0,
+		"removedStacks": 0,
+		"usedStacks": 0,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 2,
 		"originatingRecipes": [],
 		"animationScene": false,
 		"flickerAni": false,
@@ -1718,7 +2047,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": false,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 1
 	},
 	"Stamina Sack": {
 		"name": "Stamina Sack",
@@ -1740,6 +2069,13 @@ const ITEMS := {
 		"tags": 0,
 		"params": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
 		"namedParams": {},
+		"gainedStacks": 0,
+		"removedStacks": 0,
+		"usedStacks": 0,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 2,
 		"originatingRecipes": [],
 		"animationScene": false,
 		"flickerAni": false,
@@ -1750,7 +2086,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": false,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 1
 	},
 	"Stone Helm": {
 		"name": "Stone Helm",
@@ -1775,6 +2111,13 @@ const ITEMS := {
 			"damagereduction": 25.0,
 			"dur": 5.0
 		},
+		"gainedStacks": 0,
+		"removedStacks": 0,
+		"usedStacks": 0,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 2,
 		"originatingRecipes": [{
 			"b": "Leather Helm",
 			"i": ["Stone Skin Potion"],
@@ -1789,7 +2132,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": false,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 2
 	},
 	"Tiger Rune": {
 		"name": "Tiger Rune",
@@ -1816,6 +2159,13 @@ const ITEMS := {
 			"block": 5.0,
 			"chance_vamp": 50.0
 		},
+		"gainedStacks": 0,
+		"removedStacks": 0,
+		"usedStacks": 0,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 3,
 		"originatingRecipes": [],
 		"animationScene": false,
 		"flickerAni": false,
@@ -1826,7 +2176,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": true,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 1
 	},
 	"Toad": {
 		"name": "Toad",
@@ -1856,6 +2206,13 @@ const ITEMS := {
 			"luck2": 1.0,
 			"mana2": 1.0
 		},
+		"gainedStacks": 34,
+		"removedStacks": 0,
+		"usedStacks": 0,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 2,
 		"originatingRecipes": [],
 		"animationScene": false,
 		"flickerAni": false,
@@ -1866,7 +2223,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": false,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 1
 	},
 	"Twine": {
 		"name": "Twine",
@@ -1890,6 +2247,13 @@ const ITEMS := {
 		"namedParams": {
 			"health": 2.0
 		},
+		"gainedStacks": 0,
+		"removedStacks": 0,
+		"usedStacks": 0,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 2,
 		"originatingRecipes": [],
 		"animationScene": false,
 		"flickerAni": false,
@@ -1900,7 +2264,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": false,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 1
 	},
 	"Wolpertinger": {
 		"name": "Wolpertinger",
@@ -1922,6 +2286,13 @@ const ITEMS := {
 		"tags": 0,
 		"params": [0.7, 3.0, 15.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
 		"namedParams": {},
+		"gainedStacks": 254,
+		"removedStacks": 0,
+		"usedStacks": 0,
+		"hasBattleRageEffect": false,
+		"animSpeedMin": 0.8,
+		"animSpeedMax": 1.2,
+		"sceneDepth": 2,
 		"originatingRecipes": [],
 		"animationScene": false,
 		"flickerAni": false,
@@ -1932,7 +2303,7 @@ const ITEMS := {
 		"connectorReadyRoll": false,
 		"gemRoll": false,
 		"randomUniquePool": false,
-		"sockets": 0
+		"sockets": 1
 	},
 }
 

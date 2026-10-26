@@ -18,8 +18,9 @@
 #     sort_custom（同一非稳定 introsort）→ 终序与神谕逐位相同；
 #   · startBattle(…, preordered=true) 直通该终序（内核不 shuffle、不排序、
 #     不消耗 ctx.rng —— gd_core/CoreCombat.gd 的对齐分支）；
-#   · ctx.below_master = true（神谕实证：全新 persistent → rating 0 → Bronze，
-#     output/oracle/fights/*/rng_log.txt 的 randf_range(0.975,1.05) 分支）；
+#   · ctx.below_master = true（np24 终谳：探针 rng_log 实证录制走了 0.975 对手分支——
+#     run574_r7/run570_r18/run582_r15 三场探针 events≡语料后其 rng_log 显示冷却批
+#     = 玩家侧全 (0.95,1.05) + 对手侧全 (0.975,1.05)，见 run_case 内注）；
 #   · ctx.cur_round = 回合数（LevelUp.onPrepare 消费，对齐原版 Game.curRound）；
 #   · 事件捕获在 hooks.logEvent 处按 ctx.fight_ended 闸断（对齐原版
 #     CombatLog.gd:266-267 logEvent 的 fightEnded 早退：判胜后事件不再入日志，
@@ -328,7 +329,11 @@ func descriptor_of(ctx, key: String) -> CoreItemData:
 		# 配方图（tools/enrich_recipes.py）：战斗语义只消费非空性
 		#（isCraftedItem → Cog/Anvil 的 canAffect），CoreItemData.fromDict 原生读此键
 		"originatingRecipes": d.get("originatingRecipes", []),
-		# 攻击动画场景（tools/enrich_animation_scene.py）：playAnimation 的闸
+		# 攻击动画场景（tools/enrich_animation_scene.py）：playAnimation 的闸。
+		#   ★ np24 终谳更正：探针 rng_log 三场 (-100,100)=0 行并非「块未消耗」——
+		#   神谕 ItemAnimation.gd 直连 Util.rng（无日志），块照常消耗（run574
+		#   注入实验 4 笔裸抽精确命中神谕值，见 gd_core/CoreItem.gd activate ②）。
+		#   数据面照夹具原值传递，内核以裸抽对位。
 		"animationScene": bool(d.get("animationScene", false)),
 		"animSpeedMin": float(d.get("animSpeedMin", 0.8)),
 		"animSpeedMax": float(d.get("animSpeedMax", 1.2)),
@@ -403,7 +408,16 @@ func place_one(ctx, chr, entry: Dictionary, owner_type: int):
 		say("FAIL 脚本不匹配：%s（物品 %s）" % [path, key])
 		return null
 	it.setup(ctx, descriptor_of(ctx, key), chr)
-	for _i in range(int(_table["items"][key]["sockets"])):
+	# ★ np24 簇A①：socket 数 = **神谕实例真值**（entry["gems"] 数组长度），非夹具
+	#   容量。原版 sockets = $Icon/Sockets.get_children()（Item.gd:309）——实例场景
+	#   决定，可少于描述符容量；lineups 快照（oracle_fight.gd::_item_snapshot）按
+	#   「每 socket 一条、空槽记 null」逐位导出，故 len(entry["gems"]) 即实例
+	#   Socket 节点数（空 [null]=1 空槽、[]=0 槽，全语料 case↔lineups 长度零残差
+	#   实证）。此前按夹具 capacity 建槽：①空槽语义丢失（Leather Bag 类 0 槽实例
+	#   被建出 1 槽，getNumSockets/hasGems 面失真）；②夹具 sockets 已改由数据面
+	#   出处（np23 后置 0，容量不再可信），按它建槽会致 setGem 越界全灭（宝石
+	#   装配 0 颗、countSocketedGems 恒 0）。宝石装配必须只依赖 case 条目真值。
+	for _i in range((entry["gems"] as Array).size()):
 		it.gems.push_back(null)
 	it.collisionCells = vlist(entry["collision"])
 	var aff := {}
@@ -546,11 +560,24 @@ func run_case(c: Dictionary, out_root: String, perm_warm := false, r5_warm := fa
 	if c.has("label_rng"):
 		ctx.label_rng_enabled = bool(c["label_rng"])
 	probe.gate_ctx = ctx
+	# ★ np24：deferred 冲刷关闭（对位录制 [M11]：阻塞循环无帧，战斗内
+	#   call_deferred 永不执行——run574 Deck of Cards 卡链零启动实证；
+	#   机理与开关见 gd_core/CoreContext.gd flushDeferred 注）。
+	ctx.deferred_flush_enabled = false
+	# ★ np24：EngineerBox 接力死亡镜像（机理见 CoreContext.gd eb_relay_mirrored 注；
+	#   录制侧 EB ChargeTimer 首弹 1 次/侧、队列不推进，接力重发射=0）。
+	ctx.eb_relay_mirrored = true
 	# np21-R5：暖场 ctx 打开连接台账（键控见 R5_DUAL_EXEC 表注； CoreEventBus
 	#   connect_journal 默认关，正式/非键控路径零扰动）
 	if r5_warm:
 		ctx.bus.connect_journal_enabled = true
-	# 神谕约定（见文件头）：below_master=true + cur_round=回合数
+	# ★ np24 终谳（探针 rng_log）：below_master=true + cur_round=回合数。
+	#   run574_r7/run570_r18/run582_r15 三场探针（events≡语料，判据=守门前置
+	#   通过）rng_log 实证开战冷却批 = 玩家侧全 (0.95,1.05) + 对手侧全
+	#   (0.975,1.05) ⇒ 录制时 isBelowLeague(Master)=真。此前「族A 对手全 +1
+	#   tick ⇒ 映射应 (0.95,1.05)」的推断被证伪：同 J₀ 下 gd FFR 速度 1.06 而
+	#   oracle 实测需 ~1.07（1.4·0.985024/(78/60)），±1 tick 的真根源是对手
+	#   速度面差（族A 同签名），非冷却映射；±0.2 命中/暴击偏置随本开关在位。
 	ctx.below_master = true
 	ctx.cur_round = int(c["round_id"])
 

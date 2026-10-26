@@ -28,7 +28,10 @@ import sys
 from datetime import datetime
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CSV_PATH = os.path.join(ROOT, "decompiled_full", "Sheets", "CSV", "ItemData_e.csv")
+# ★ np23 data_r1：数据源切 oracle 语料版（1.1.9 录制真值）。gain/use/remove 三列
+#   与 decompiled ItemData_e.csv 逐行全等（53 行参数 diff 中无此三列），切源不改
+#   值，只把战斗数据链的 provenance 统一到语料版本。
+CSV_PATH = os.path.join(ROOT, "oracle", "Sheets", "CSV", "ItemData.csv")
 DB_PATH = os.path.join(ROOT, "assets", "battle_items.json")
 
 # Item.gd:96-112 enum Stack（聚合键与位值原样照搬）
@@ -72,7 +75,7 @@ def main():
     with open(CSV_PATH, encoding="utf-8-sig") as f:
         for r in csv.DictReader(f):
             rows[r["name"]] = r
-    print(f"ItemData_e.csv: {len(rows)} 行")
+    print(f"oracle ItemData.csv: {len(rows)} 行")
 
     db = json.load(open(DB_PATH, encoding="utf-8"))
     items = db.get("items", db)

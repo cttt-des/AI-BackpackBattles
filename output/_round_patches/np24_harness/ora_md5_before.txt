@@ -1,0 +1,3 @@
+87a2ddb73e30379bdca65600fb44ee6f *oracle/Utility/MultiTimer.gd
+ae19749211a20fd0d88257ce35f459f2 *oracle/oracle_fight.gd
+551e494b919540c0658480921406982a *oracle/Items/Bag.gd

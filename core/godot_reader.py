@@ -97,6 +97,30 @@ GODOT_OFFSETS = {
     #   Game.gd 成员声明序（var 序，0 起）：curRound=65 / gold=72 / curClass=83
     "member_cur_class": 83,
 
+    # --- 商店价格读取（2026-10-25 依据解包源码推导，序号经活体锚点验证）---
+    # 价格编码（Game.gd:4784）：encode(g) = (g + (g<<32)) ^ randnum，
+    #   randnum 为 64 位随机数（Game._ready 一次性生成，Game.gd:2397）。
+    #   编码不变量：low32(e) ^ high32(e) == low32(randnum) ^ high32(randnum)，
+    #   可用于运行时自校验（详见 read_randnum / core/item_reader.py 模块注释）。
+    # Game.gd 顶层 var 声明序（0 起，解析脚本与活体锚点 65/72/83 三点吻合）：
+    #   gold=72 / gold_internal=73 / randnum=113
+    "member_gold_internal": 73,
+    "member_randnum": 113,
+    # ShopOffer.gd 顶层 var 声明序（0 起）：
+    #   index=0 item=1 price=2 free=3 onSale=4 wasOnSale=5 bought=6 reserved=7
+    #   normalPrice=8 salePrice=9 saleMode=10 priceLabel=11(OBJECT)…
+    #   有效成交价 = onSale ? salePrice : normalPrice（price 由动画轨道异步写回）
+    "shopoffer_script_path": "res://Interface/ShopOffer.gd",
+    "shopoffer_item": 1,
+    "shopoffer_price": 2,
+    "shopoffer_free": 3,
+    "shopoffer_onsale": 4,
+    "shopoffer_bought": 6,
+    "shopoffer_reserved": 7,
+    "shopoffer_normal_price": 8,
+    "shopoffer_sale_price": 9,
+    "shopoffer_sale_mode": 10,
+
     # --- Util.rng 定位（docs/rng_truth.md §2 / §5）---
     # Util 是 autoload 列表第 2 个（project.godot:470，0 起下标 =1）；
     # 稳健法：BFS 按脚本路径匹配，节点名/固定下标做兜底。
@@ -151,6 +175,28 @@ GODOT_OFFSETS = {
 PCG_MULT = 6364136223846793005
 PCG_INC = 2885390081777926815
 PCG_MOD = 1 << 64
+
+# 价格编码（decompiled_full/Core/Game.gd:4784-4806，1:1 复刻）：
+#   encode(g) = (g + (g<<32)) ^ randnum   （GDScript int64 语义）
+#   decode(e)：a = e ^ randnum；low32(a) 必须等于 high32(a)（游戏自身的
+#   b==c 校验），其公共值即 g。g < 2^31 时 a = g×(2^32+1) 无半字进位。
+_U64 = (1 << 64) - 1
+
+
+def price_signature(encoded: int) -> int:
+    """编码值的半字异或签名 low32(e) ^ high32(e)（== randnum 的同款签名）。"""
+    e = encoded & _U64
+    return (e & 0xFFFFFFFF) ^ ((e >> 32) & 0xFFFFFFFF)
+
+
+def decode_game_price(encoded: int, randnum: int) -> Optional[int]:
+    """Game.decode 的 Python 复刻。校验失败（半字不等）返回 None。"""
+    a = ((encoded & _U64) ^ (randnum & _U64)) & _U64
+    lo = a & 0xFFFFFFFF
+    hi = (a >> 32) & 0xFFFFFFFF
+    if lo != hi:
+        return None
+    return lo
 
 
 def pcg_next(state: int) -> int:
@@ -788,6 +834,97 @@ class GodotReader:
         if not mptr or msize is None or index >= msize:
             return None
         return self._read_variant_int(mptr + index * self.off["variant_size"])
+
+    def read_variants(self, node: int) -> List[tuple]:
+        """读取 GDScriptInstance.members 的全部变体，返回 [(type, value), …]。
+
+        type 为 Godot 3.x Variant.Type 枚举：0=NIL 1=BOOL 2=INT 3=REAL
+        17=OBJECT（本构建经 _variant_object 间址解出对象指针）。
+        value：BOOL→bool，INT→int，REAL→float，OBJECT→节点/对象地址，其余 None。
+        """
+        si = self._script_instance(node)
+        if not si:
+            return []
+        mptr = self._ptr(si + self.off["gdscript_members_off"])
+        msize = self._cow_count(mptr)
+        if not mptr or msize is None or msize <= 0 or msize > 10000:
+            return []
+        vsize = self.off["variant_size"]
+        out: List[tuple] = []
+        for i in range(msize):
+            va = mptr + i * vsize
+            vtype = self._read_int(va, 4)
+            if vtype is None:
+                out.append((0, None))
+                continue
+            if vtype == 1:  # BOOL：联合体首字节
+                b = self.reader.read(va + 8, 1)
+                out.append((1, bool(b[0]) if b else None))
+            elif vtype == 2:  # INT
+                out.append((2, self._read_int(va + 8, 8)))
+            elif vtype == 3:  # REAL
+                out.append((3, self._read_double(va + 8)))
+            elif vtype == 17:  # OBJECT
+                out.append((17, self._variant_object(va)))
+            else:
+                out.append((vtype, None))
+        return out
+
+    def _randnum_matches(self, r: int, encoded_prices: List[int]) -> bool:
+        """候选 randnum 与全部编码价格样本的签名一致性（每样本误报 2^-32）。"""
+        if not encoded_prices:
+            return True  # 无样本时签名关视为通过（金币交叉验证仍是硬关）
+        k = price_signature(r)
+        return all(price_signature(e) == k for e in encoded_prices)
+
+    def read_randnum(self, encoded_prices: Optional[List[int]] = None,
+                     game_node: Optional[int] = None) -> Optional[int]:
+        """读取 Game.randnum（价格/金币编码密钥，Game._ready 一次性生成）。
+
+        校验（双重，杜绝把其它编码成员误当 randnum）：
+          1. 签名一致：候选 r 须与全部编码价格样本满足
+             low32^high32 相等（encoded_prices 给定时）；
+          2. 金币交叉验证：decode(gold_internal, r) == gold（明文成员）——
+             gold_internal(73) 与商店价格共用 randnum 编码，仅凭签名
+             无法与 randnum 区分，此步是唯一鉴别器。
+
+        优先用标定下标 member_randnum(113)，失败则对 Game 成员做结构扫描。
+        两关全部不可用（无价格样本且金币成员读不到）时返回 None，
+        绝不返回未确证的值。返回无符号 64 位 int。
+        """
+        node = game_node or self.get_game_node()
+        if not node:
+            return None
+        gold_plain = self.read_member(node, self.off["member_gold"])
+        gold_enc = self.read_member(node, self.off["member_gold_internal"])
+        prices = [e & _U64 for e in (encoded_prices or [])]
+        gold_checkable = gold_plain is not None and gold_enc is not None
+        if not prices and not gold_checkable:
+            return None  # 无任何校验手段 → fail-fast
+
+        def gold_ok(r: int) -> bool:
+            if not gold_checkable:
+                return True
+            g = decode_game_price(gold_enc, r)
+            return g is not None and g == gold_plain
+
+        candidates: List[int] = []
+        idx = self.off.get("member_randnum", -1)
+        if idx is not None and idx >= 0:
+            v = self.read_member(node, idx)
+            if v is not None:
+                candidates.append(v & _U64)
+        if gold_checkable or prices:
+            for t, v in self.read_variants(node):
+                if t == 2 and v is not None:
+                    r = v & _U64
+                    if r not in candidates:
+                        candidates.append(r)
+
+        for r in candidates:
+            if self._randnum_matches(r, prices) and gold_ok(r):
+                return r
+        return None
 
     # ---------------- 高层 API ----------------
     def read_stats(self) -> Dict[str, Optional[int]]:

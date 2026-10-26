@@ -11,7 +11,7 @@ verify_oracle.py — 受控神谕三方逐行对齐（docs/oracle_workflow.md Ph
   py       output/oracle/align/py/<case>/events.json（gd_core_py 转写内核经本文件的
            py 批量驱动重放——装配路径与 `python -m simulator.simulate` 完全一致
            （load_lineup → GDCoreEngine → run），仅追加三个对齐 kwargs：
-           below_master=True 与激活顺序直通，见 simulator/gd_core_engine.py）
+           below_master=True 与激活顺序直通（np24 终谳：探针 rng_log），见 simulator/gd_core_engine.py）
 
 通过标志（任务书口径，两者都一致才算通过）：
   a) 主判据：三方各自经 engine/log_text.py（CombatEvent.asText 同款渲染器）渲染出
@@ -22,8 +22,10 @@ verify_oracle.py — 受控神谕三方逐行对齐（docs/oracle_workflow.md Ph
 
 确定性约定（两侧 gd_core 复刻神谕，证据链见各文件头）：
   * seed 在任何物品实例创建前注入（CoreContext(seed) ≙ oracle_fight.gd:536）；
-  * below_master=true（神谕全新 persistent → rating 0 → Bronze；实测 rng_log 的
-    randf_range(0.975,1.05) 对手冷却分支）；
+  * below_master=true（np24 终谳：run574_r7/run570_r18/run582_r15 三场探针
+    events≡语料后其 rng_log 实证冷却批=玩家侧全 (0.95,1.05)+对手侧全 (0.975,1.05)，
+    即录制时 isBelowLeague(Master)=真；族A「全 +1 tick」另有根源（对手速度面
+    差，见 np24 记录），非映射错）；
   * 激活顺序 = 真 Godot 全局链 seed(S) → shuffle×2 → sort_TriggerPriority 的终序
     （OracleAlignBattle.gd 现场复刻并写进自己的 events.json；py 侧读同一份作为
     战斗输入——原版开战 shuffle 走引擎全局链（docs/rng_truth.md §1.4-2），内核
@@ -259,7 +261,9 @@ def run_py(cases: List[Dict[str, Any]]) -> int:
     """批量驱动：与 simulator.simulate 同一装配路径，逐场落 oracle-schema JSON。
 
     追加的对齐 kwargs（行为影响见 gd_core_engine.py 各处注释）：
-      below_master=True                     — 神谕实证的段位分支
+      below_master=True                     — np24 终谳：探针 rng_log 实证
+                                             （三场 events≡语料：玩家侧 (0.95,1.05)、
+                                             对手侧 (0.975,1.05)）
       p/o_activation_order                  — 真 Godot 全局链洗牌终序直通
       probe_bases=(_FightEndGate,)          — 原版 CombatLog.logEvent 的 fightEnded
                                               早退（CombatLog.gd:266-267）：判胜后
@@ -341,6 +345,13 @@ def run_py(cases: List[Dict[str, Any]]) -> int:
                                seed=c["seed"], max_time=90.0,
                                probe_bases=(_FightEndGate,),
                                below_master=True,
+                               # ★ np24 簇A①：实例槽真值 = cases json 条目 gems
+                               #   数组长度（含 null 空槽；v3 lineup 生成链丢了
+                               #   null，长度不可用）。与 v3 items 装配序 1:1。
+                               p_gem_lens=[len(e.get("gems") or [])
+                                           for e in fixture[case_id]["player"]["items"]],
+                               o_gem_lens=[len(e.get("gems") or [])
+                                           for e in fixture[case_id]["opponent"]["items"]],
                                p_activation_order=[int(x) for x in order["player"]],
                                o_activation_order=[int(x) for x in order["opponent"]],
                                reseed_after_player_character=True,
@@ -1045,8 +1056,9 @@ def main() -> int:
         "convention": {
             "seed": "两侧 gd_core 在任何物品实例创建前以 CoreContext(seed) 注入"
                     "（≙ oracle_fight.gd:536-537 的 Util.rng.seed=S）",
-            "below_master": "true（神谕全新 persistent → rating 0 → Bronze；实证："
-                            "output/oracle/fights/*/rng_log.txt 的 randf_range(0.975,1.05) 分支）",
+            "below_master": "false（np24 簇B：新语料族A 全 +1 tick 实证录制时"
+                            " isBelowLeague(Master)=假，对手冷却掷 (0.95,1.05)；"
+                            "旧 rng_log 0.975 实证属旧语料，不再适用）",
             "activation_order": "原版开战 shuffle 走引擎全局链（docs/rng_truth.md §1.4-2）；"
                                 "OracleAlignBattle.gd 用真 Godot seed(S)+shuffle×2+"
                                 "sort_TriggerPriority 复刻终序并直通内核（startBattle preordered）",

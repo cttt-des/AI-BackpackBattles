@@ -27,10 +27,12 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 DB_PATH = os.path.join(ROOT, "assets", "battle_items.json")
-# 与 ItemBook.gd:788-802 同源的探测根（enrich_animation_scene.py 同款）
+# ★ np23 data_r5：动画 tscn 源由 extracted_running/decomp（目录已不存在，探测恒空）
+#   切到录制侧工程 oracle/Items（只读）。原两根布局（Items/Animations +
+#   Items/Exclusive/Animations）在 oracle 树同构存活（86+75 个 tscn）。
 ANI_DIRS = [
-    os.path.join(ROOT, "extracted_running", "decomp", "Items", "Animations"),
-    os.path.join(ROOT, "extracted_running", "decomp", "Items", "Exclusive", "Animations"),
+    os.path.join(ROOT, "oracle", "Items", "Animations"),
+    os.path.join(ROOT, "oracle", "Items", "Exclusive", "Animations"),
 ]
 
 DEFAULT_MIN, DEFAULT_MAX = 0.8, 1.2

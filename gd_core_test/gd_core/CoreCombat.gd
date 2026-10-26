@@ -235,6 +235,19 @@ func activateItems(items: Array) -> void :
 		item.postCombatStart()
 	
 	activated = true
+	
+	# ★ kernel_r2：对齐 Core/Combat.gd:165-168 onSwitchingToCombat 的
+	#   `Util.callDelayed(self, "clashSwords", 1.0)`——战斗场景切换时注册 1s
+	#   延迟回调（oracle_fight drive_delayed 按战斗时钟每帧 -dt，60 帧后到期
+	#   =战斗 t=1.0 帧末）。原版 clashSwords（Combat.gd:176-179）消耗
+	#   `Util.rng.randf_range(0.9, 1.0)` 1 抽——**裸调不进 rng_log（隐形链
+	#   消耗）**，动画播放为纯表现。此前内核缺此调用 → t=1.0 起全链 -1 抽位
+	#   → 对侧物品首触发抖动/伤害掷点拿错 u（run577_r7 逐抽定谳：神谕
+	#   c73 音高(1.031978) 与 c74 jitter(1.000266) 之间恰 1 次隐形抽，gd 侧
+	#   同窗 0 抽；583/571/589 的对侧首拍/数值差同源）。
+	#   ★ kernel_r2b 回滚：ORACLE_DEBUG 重跑实证语料侧 [cd+]/[cd-fire] 均未打印
+	#   （oracle_bootstrap 程序化骨架未触发该注册路径）——神谕重放无此消耗，
+	#   内核补抽反而多 1 抽。保留对齐注释存证，代码回滚。
 
 
 # ─────────────────────────── 主循环（每物理帧 60Hz） ───────────────────────────
