@@ -101,6 +101,7 @@ class Item_2(_R.C("res://gd_core/CoreItem.gd")):
 		self.spotlight = False
 		self.collisionShape = None
 		self.wasJustCrafted = False
+		self.crafted_instance = -1
 		self.pickupPosition = Vector2()
 		self.pickupRotation = 0.0
 		self.pickupTopLeftCell = Vector2()
@@ -241,6 +242,9 @@ class Item_2(_R.C("res://gd_core/CoreItem.gd")):
 	shadowOffset_dropped = Vector2(5, 5)
 	shadowOffset_dragged = Vector2(15, 15)
 	DRAG_PRIORITY = 2
+	# ★ np24：crafted 实例真值（语料 lineups snapshot；-1=未注入→退回类型级）。
+	#   run871 定谳：实例 crafted ≠ 配方图（7 件无配方 crafted / 7 件有配方未
+	#   crafted）——Anvil.onPreCombatStart 的 numCrafted 计数差根因。
 	correction = [
 		Vector2.ZERO, 
 		Vector2( - cellSize.x, 0), 
@@ -1282,6 +1286,8 @@ class Item_2(_R.C("res://gd_core/CoreItem.gd")):
 
 
 	def isCrafted(self):
+		if self.crafted_instance >= 0:
+			return self.crafted_instance == 1
 		return self.descriptor.isCraftedItem()
 
 

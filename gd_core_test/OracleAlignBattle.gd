@@ -439,6 +439,11 @@ func place_one(ctx, chr, entry: Dictionary, owner_type: int):
 	var np17_no_reorder := OS.get_environment("ORACLE_ALIGN_NO_CRAFTED_REORDER") != ""
 	if np17_no_reorder and entry.get("effects") != null and it.has_method("setCraftedEffects"):
 		it.setCraftedEffects(entry["effects"])
+	# ★ np24：crafted 实例真值须在 addItem 前注入——currentAffectedItems 在放置期
+	#   按 canAffect_color（isCrafted）增量入账，晚注入会被半径快照过滤
+	#   （run871 Anvil numCrafted 2 v 4 定谳）。
+	if entry.has("crafted"):
+		it.crafted_instance = 1 if bool(entry["crafted"]) else 0
 	chr.inventory.addItem(it, it.occupiedCells)
 	for gi in range((entry["gems"] as Array).size()):
 		var g = entry["gems"][gi]

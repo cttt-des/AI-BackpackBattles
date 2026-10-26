@@ -80,6 +80,14 @@
 
 ### P3 逐场深坑（每面 2-4 轮专属深查；探针纪律见铁律 3）
 
+- [x] **新根因A crafted 实例真值**（run871 定谳并修复，2026-10-26）：
+  - 根因三连：①语料 lineups 有实例 crafted（8/39），夹具生成链丢字段；②注入须在
+    addItem/setup 前（currentAffectedItems 放置期按 isCrafted 增量入账，晚注入被
+    半径快照过滤——Anvil numCrafted 2v4）；③type16 事件 params.item=translatedName，
+    录制环境无翻译表恒空串（语料 26/26），gd 写 identifier→镜像空串。
+  - 修复：Item.crafted_instance 字段+isCrafted 优先实例值；gen_fixture crafted 透传
+    （entries/v3/batch 三处）；harness/py engine addItem 前注入；CoreCombatLog type16
+    item 镜像空串。战果：871 gd 0→16、955 0→159、1386 0→44（Anvil 层全清）。
 - [ ] **P3-1 582@42**：gd 独有 Elephant Rune stun 事件（Halberd 攻击 rollChance）。
   全量 trace 探针已可用（ORACLE_DEBUG=1 现在盖 flip/randIntRange）——对位首支不一致抽，
   判 onAttack 连接三选一（未建/未触发/掷未中）。

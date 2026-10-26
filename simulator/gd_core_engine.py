@@ -260,6 +260,7 @@ class _LogMixin:
         super()._init_fields()
         self.events: List[_EventOut] = []
         self.warnings: List[str] = []
+        self._pending_crafted = None  # np24 crafted 实例真值（_place 前 set）
         self.stats = {0: _new_stats(), 1: _new_stats()}
 
     # ── 工具 ──
@@ -1013,6 +1014,11 @@ class GDCoreEngine:
             raise _MissingItem("物品 %s 的脚本未转译：%s" % (key, script))
         vec = k["Vector2"]
         it = R.C(script)()
+        # ★ np24：crafted 实例真值在 setup（含 addToInventory→半径增量入账）
+        #   前注入；run871 Anvil numCraftd 定谳。经 _pending_crafted 传递。
+        if getattr(self, "_pending_crafted", None) is not None:
+            it.crafted_instance = 1 if self._pending_crafted else 0
+            self._pending_crafted = None
         it.setup(ctx, self._descriptor(ctx, key), chr_)
         # 插座数组按 socket 数建等长（原版 sockets = $Icon/Sockets.get_children()）
         for _i in range(int(sockets)):
@@ -1064,6 +1070,8 @@ class GDCoreEngine:
                 if gem_lens is not None and _gi < len(gem_lens):
                     _sock = int(gem_lens[_gi])
                 _gi += 1
+                # np24：crafted 实例真值经 pending 传入（addItem 前注入）
+                self._pending_crafted = bool(e["crafted"]) if "crafted" in e else None
                 it = self._place(ctx, chr_, key, int(e.get("row") or 0),
                                  int(e.get("col") or 0),
                                  int(e.get("rotation") or 0), owner_type,
