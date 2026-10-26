@@ -228,7 +228,9 @@ func createEvent_OutOfStamina(item, playerId, triggerEvent = null):
 func createEvent_DamageBuff(item, buffedItem, damage, playerId, triggerEvent = null):
 	var event = createEvent(triggerEvent, item, CoreConst.EventType.DamageBuff)
 	event.setTarget(playerId)
-	event.setParam("item", buffedItem.getTranslatedName())
+	# ★ np24：oracle 录制环境无翻译表（Unreleased.*.translation 缺失）⇒
+	#   getTranslatedName() 实录恒空串（语料 26/26 type16 item=""）——镜像。
+	event.setParam("item", "")
 	event.setParam("damage", damage)
 	return event
 

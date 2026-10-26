@@ -179,6 +179,8 @@ def _oracle_side_entries(lu_side: dict, db: dict, warnings: list) -> list:
                 {"triggerType": int(e["triggerType"]), "stackType": int(e["stackType"])}
                 for e in (it.get("effects") or [])
             ] if it.get("effects") else None),
+            # ★ np24：crafted 实例真值透传（run871 定谳：实例≠配方图）
+            "crafted": bool(it.get("crafted")),
         })
     return entries
 
@@ -256,6 +258,8 @@ def _v3_lineup(case_id: str, side: str, lu_side: dict, entries: list,
                                 "container": False, "contents": [],
                                 # r34：crafted 效果真值（None 时不落键，py 侧同判）
                                 "effects": e["effects"],
+                                # ★ np24：crafted 实例真值（py 侧同注入）
+                                "crafted": e["crafted"],
                                 "gems": [{"id": g} for g in e["gems"] if g]}
                                for e in entries]},
         "storage": [],
@@ -351,6 +355,8 @@ def oracle_mode(case_dirs: list, lineup_out: str, batch_out: str) -> int:
                     "gems": gems_gd,
                     # r34：crafted 效果真值（None=不注入，键仍保留便于宿主判空）
                     "effects": e["effects"],
+                    # ★ np24：crafted 实例真值（Anvil 计数根因）
+                    "crafted": e["crafted"],
                 })
             batch_sides[side] = {
                 "class": int(lu[side]["class"]),

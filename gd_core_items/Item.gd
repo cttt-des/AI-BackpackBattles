@@ -284,6 +284,10 @@ var focus: = false
 var spotlight: = false
 var collisionShape
 var wasJustCrafted: = false
+# ★ np24：crafted 实例真值（语料 lineups snapshot；-1=未注入→退回类型级）。
+#   run871 定谳：实例 crafted ≠ 配方图（7 件无配方 crafted / 7 件有配方未
+#   crafted）——Anvil.onPreCombatStart 的 numCrafted 计数差根因。
+var crafted_instance: = -1
 var pickupPosition: Vector2
 var pickupRotation: float
 var pickupTopLeftCell: Vector2
@@ -1384,6 +1388,8 @@ func setRevealed():
 
 
 func isCrafted() -> bool:
+	if crafted_instance >= 0:
+		return crafted_instance == 1
 	return descriptor.isCraftedItem()
 
 
