@@ -103,3 +103,7 @@ gd_core_test/gd_core_items/
 /oracle_chunk_*.log
 /debug.log
 /recover_guide.md
+
+# ============ 根目录一次性脚本（非仓库内容）============
+/shutdown_at_2355.ps1
+/stop_zcode_and_shutdown.bat
