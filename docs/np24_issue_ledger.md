@@ -32,6 +32,12 @@
 11. **分片器幂等跳过**（np24-P3-7 教训）：`_np23_shard_verify.py` 不带 `--rerun`
     时跳过已有产物——内核/夹具/引擎变更后直接跑全量会把**陈旧产物**当现状比对
     （RED 账本失真）。任何变更后收口一律 `--rerun <全部红场>`（或至少受影响簇）。
+12. **assets 再生链三产物一个不能漏**（np24 修复F 教训，2026-10-27）：改
+    battle_items.json 后必跑齐 `gen_lineup_fixture.py`（→LineupFixture.gd +
+    item_battle_fixture.json）+ `gen_fixture_from_lineup.py --oracle`（→cases+
+    v3 lineups）+ `gen_gd_core_data.py`（→**gd_core_runtime.json**，py 引擎
+    几何源）——A2 轮漏跑第三个，py-only 60 场全因 runtime 旧几何假红
+    （守门 np24_pygeo_r1 十场 ALL PASS）。
 
 ## 1. 工具速查
 
