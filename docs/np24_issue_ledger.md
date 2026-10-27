@@ -74,6 +74,12 @@
 
 ## 3. 问题清单（按优先序；「线索」=已实证的定位面）
 
+> ★ **开工第一步（2026-10-27 追加，先于一切修复）**：当前 alignment.json 的
+> gd/py 产物大量陈旧（crafted/A2/registry 三笔修复后未全量重跑，分片器幂等
+> 跳过旧产物，RED 账本失真）。先执行
+> `python -X utf8 tools/_np23_shard_verify.py --shards 3 --rerun <当前RED清单全部场>`
+> 得到诚实基线，重新分簇后再逐簇开工（铁律 11）。
+
 ### P1 数据面整族（预计最大收敛面）
 
 - [ ] **P1-1 物品持久强化态缺失**：史流 setData 的 bonusMinDam/bonusMaxDam/bonusDamageFactor
