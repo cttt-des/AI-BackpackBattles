@@ -41,7 +41,7 @@
 | 定向 gd 逐抽 | `ORACLE_ALIGN_OUT=<abs scratch> ORACLE_ALIGN_CASES=<cid> ORACLE_ALIGN_CHUNK=0 ORACLE_ALIGN_SELFCHECK=0 ORACLE_ALIGN_TRACE=1` + Godot（见铁律 2）→ `<scratch>/<cid>/rng_trace.txt` |
 | 逐抽对位 | `python -X utf8 tools/_probe_draw_diff.py <语料rng_log> <gd rng_trace> [N]` |
 | canonical 对拍 | `sys.path.insert(0,'tools'); import verify_oracle as V; V.first_divergence(...)` |
-| 神谕探针（带逐抽） | `ORACLE_FIGHTS_ROOT=<abs> ORACLE_ONLY_CASES=<cid> ORACLE_DEBUG=1 ORACLE_FIGHT_CHUNK=0` + Godot（oracle 工程）；**先验探针 events≡语料才采信其 rng_log** |
+| 神谕探针（带逐抽） | `ORACLE_FIGHTS_ROOT=<abs> ORACLE_ONLY_CASES=<cid> ORACLE_DEBUG=1 ORACLE_FIGHT_CHUNK=0` + Godot（oracle 工程）；**先验探针 events≡语料才采信其 rng_log**；**桩行必须 6 元素**（5 元素会炸 oracle_fight.gd:819 dump 循环 → rng_log 恒 0 字节，2026-10-27 TOADSND 实证） |
 | 全量分片 | `python -X utf8 tools/_np23_shard_verify.py --shards 3 [--rerun <红场>]` |
 | 神谕重录（如需） | 抬闸版参数在 `output/_recovery/oracle_fight_lifted.gd`（事件闸 200000/墙钟 1200s）；单场单进程 |
 
@@ -143,10 +143,18 @@
     `gd_core/Item.py`（build_item_scripts 适配层）与 `gd_core_items/Item.py`
     （行为基类）同名注册 "Item"，后到者胜；引擎实例固定经 gd_core_items 树
     装配，若适配层占名，行为脚本全部 `x is Item`（→`_R.C("Item")` isinstance）
-    恒 False。受害闸共 4 脚本：CorruptedCrystal（gem Block 族 gd 9710 条 vs
-    py 1531）/ManaPotion/ChainWhip/EvilHat。修复=gd_core_py/_registry.py::reg
+    恒 False。受害闸全量补遗（2026-10-27 扫描）：`is Item`×4
+    （CorruptedCrystal/ManaPotion/ChainWhip/EvilHat）+ `is Card`×2
+    （DeckofCards:54/60）+ `is Goobert`（SlimeTime:19）——registry 仲裁行为树
+    优先一次全覆盖（双树复制面=全部行为脚本，gd_core/*.gd 与
+    gd_core_items/*.gd 名单全同）。修复=gd_core_py/_registry.py::reg
     仲裁（行为树已持有的裸名拒绝内核/适配树后写覆盖，手写文件不被 gd_to_py
     覆盖）。修后 run845 py gem Block 恢复发射（0→6）。
+  - **assert 恒真元组族**（2026-10-27 已修，小）：gd_to_py 直译
+    `assert(false,"msg")` → `assert (False, msg)` = Python 恒真元组，断言永不
+    触发（CoreCharacter 未知职业音效表守卫 ×2 实证）。修复=生成器 _stmt 窄
+    规则剥顶层括号（tools/gd_to_py.py），重生成全树仅 2 行变化（零附带），
+    导入面 SyntaxWarning 清零。
   - 残留：run845 py 仍 IndexError（CoreBuff.onTimeout nextTemporaryTimeout
     越界，temporaryStacks 清算路径删 farthestIndex 后 nextTemporaryTimeout
     未回拨——oracle/gd 同有此潜在险，语料录制未触发）。py-vs-gd 事件对位到

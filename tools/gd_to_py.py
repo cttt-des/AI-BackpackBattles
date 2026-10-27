@@ -1751,6 +1751,22 @@ class Emitter:
         r = rw.rewrite(line, locals_, in_func, in_static)
         r = "\n".join(rewrite_divmod(p, self.stat) for p in r.split("\n"))
         parts = r.split("\n")
+        # ★ np24：GDScript `assert(cond, msg)` 直译成 `assert (cond, msg)` 在
+        #   Python 里是**恒真元组**（非空元组为真）——断言永不触发。剥掉这层
+        #   括号还原成 py 的 `assert cond, msg`（只在顶层逗号处拆，括号平衡内不动）。
+        first = parts[0].lstrip("\t")
+        if first.startswith("assert (") and first.endswith(")"):
+            inner = first[len("assert ("):-1]
+            depth = 0
+            for _i, _ch in enumerate(inner):
+                if _ch in "([{":
+                    depth += 1
+                elif _ch in ")]}":
+                    depth -= 1
+                elif _ch == "," and depth == 0:
+                    parts[0] = ("\t" * py_indent + "assert " + inner[:_i].strip()
+                                + ", " + inner[_i + 1:].strip())
+                    break
         base_gd = count_tabs(parts[0])
         out = ["\t" * py_indent + parts[0].lstrip("\t")]
         for p in parts[1:]:
