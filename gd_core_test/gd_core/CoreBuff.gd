@@ -233,6 +233,9 @@ func gainTemporary(amount: int, duration: float, item = null,
 						reflect)
 
 				var appliedToOpponent = (character != item.character())
+				# ★ np24 诊断（受控）：镜像神谕 SRC gain_label 行（Buff.gd:192-197）。
+				ctx.rng.trace_diag("SRC", "gain_label",
+						String(item.descriptor.identifier), str(type))
 				# ★ 表现层链消耗还原（Buff.gd:194 → Util.gd:975-983 spawnBuffLabel_item
 				#   → Item.gd:6485-6494 getNextFreeLabelPosition）：物品身上的 buff
 				#   浮动标签在事件 emit 之前取位，恒消耗 Util.randInBox 2 抽

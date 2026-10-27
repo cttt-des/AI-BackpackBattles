@@ -1044,6 +1044,16 @@ class CoreItem(GodotObject):
 		#     行一并移除（神谕无 ORACLE_STACKTRACE 时无此行，保持日志逐行对位）。
 		#   ③ damageRes 非空时 playActivateAnimation（Character.gd:464-481，见该函数）。
 		self.playDropSound(-6)
+		# ★ np24 诊断（受控）：镜像神谕 playAnimation 标记行（Item.gd:5345-5358，
+		#   hit 语义同 :4710 playAnimation(false) 分支），点名每次 activate 的物品。
+		#   仅 ORACLE_ALIGN_STACKTRACE=1 时写（神谕同门控），正常跑批零影响——
+		#   此前「ANIM 行一并移除」的结论只对无栈对位成立，有栈对位需要本行。
+		if playCombatAni:
+			anim_hit = True
+			if damageRes != None and not damageRes.hasHit():
+				anim_hit = False
+			self.ctx.rng.trace_diag("ANIM", String(self.descriptor.identifier),
+					str(self.descriptor.animationScene), "hit=" + str(anim_hit))
 		if playCombatAni and self.descriptor.animationScene:
 			self.ctx.rng.rng.randf_range(-30.0, 30.0)
 			self.ctx.rng.rng.randf_range(-100.0, 100.0)
@@ -2781,6 +2791,9 @@ class CoreItem(GodotObject):
 	#   开战后前 5 次走槽位分支。坐标本身无判定意义，链消耗面必须逐位一致。
 
 	def getNextFreeLabelPosition(self):
+		# ★ np24 诊断（受控）：镜像神谕 LABEL 行（Item.gd:6505-6510）。
+		self.ctx.rng.trace_diag("LABEL", String(self.descriptor.identifier), int(self.ownerType),
+				str(self.character() != None and self.character().playerId))
 		for i in _iter(len(self.buffLabelPositionTimestamps)):
 			if self.ctx.time >= self.buffLabelPositionTimestamps[i]:
 				self.buffLabelPositionTimestamps[i] = self.ctx.time + 0.5

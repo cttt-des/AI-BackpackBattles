@@ -60,6 +60,12 @@ class MrStruggles_2(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def onDebuffed(self, amount, event):
+		# ★ np24 诊断（受控）：镜像神谕 MSROLL 行（oracle/Items/MrStruggles.gd 取证桩
+		#   同位），逐次记录掷点前的 BalancedRng 状态与 chance 修正，供两侧对位。
+		self.ctx.rng.trace_diag("MSROLL", String(self.descriptor.identifier), int(self.ownerType),
+				"type=" + str(event.type) + " amt=" + str(amount)
+				+ " ew=" + str(self.chanceRng.expectedWins) + " w=" + str(self.chanceRng.wins)
+				+ " lr=" + str(self.chanceRng.lastResult))
 		if self.checkTriggerCount(10):
 			if self.rollChance():
 				debuffType = event.type

@@ -278,6 +278,15 @@ class CoreRng(GodotObject):
 		self.oracle_trace_log.append([len(self.oracle_trace_log), "EVENT", str(type), "", ""])
 
 
+	# ★ 诊断标记（不消耗链，np24）：镜像神谕 ORACLE_STACKTRACE 下的 ANIM/SRC/LABEL
+	#   行（oracle/Items/Item.gd:5357、oracle/Core/Buff.gd:196、oracle/Items/Item.gd:6508），
+	#   供两侧 rng 日志逐行对位时点名分歧调用方。仅 ORACLE_ALIGN_TRACE（宿主已开
+	#   oracle_trace）且 ORACLE_ALIGN_STACKTRACE 时写；正常跑批零影响。
+	def trace_diag(self, kind, a, b, c=""):
+		if self.oracle_trace and self._stacktrace:
+			self.oracle_trace_log.append([len(self.oracle_trace_log), kind, str(a), str(b), str(c)])
+
+
 	def randf_range(self, from_, to, tag="randf_range"):
 		r = self.rng.randf_range(from_, to)
 		if self.oracle_trace:

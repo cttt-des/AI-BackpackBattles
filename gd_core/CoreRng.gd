@@ -107,6 +107,15 @@ func trace_event(type: int) -> void :
 	oracle_trace_log.push_back([oracle_trace_log.size(), "EVENT", str(type), "", ""])
 
 
+# ★ 诊断标记（不消耗链，np24）：镜像神谕 ORACLE_STACKTRACE 下的 ANIM/SRC/LABEL
+#   行（oracle/Items/Item.gd:5357、oracle/Core/Buff.gd:196、oracle/Items/Item.gd:6508），
+#   供两侧 rng 日志逐行对位时点名分歧调用方。仅 ORACLE_ALIGN_TRACE（宿主已开
+#   oracle_trace）且 ORACLE_ALIGN_STACKTRACE 时写；正常跑批零影响。
+func trace_diag(kind: String, a, b, c = "") -> void :
+	if oracle_trace and _stacktrace:
+		oracle_trace_log.push_back([oracle_trace_log.size(), kind, str(a), str(b), str(c)])
+
+
 func randf_range(from: float, to: float, tag: String = "randf_range") -> float:
 	var r = rng.randf_range(from, to)
 	if oracle_trace:

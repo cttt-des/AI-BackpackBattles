@@ -43,6 +43,12 @@ func onSpeedbuffTimeout():
 
 
 func onDebuffed(amount, event):
+	# ★ np24 诊断（受控）：镜像神谕 MSROLL 行（oracle/Items/MrStruggles.gd 取证桩
+	#   同位），逐次记录掷点前的 BalancedRng 状态与 chance 修正，供两侧对位。
+	ctx.rng.trace_diag("MSROLL", String(descriptor.identifier), int(ownerType),
+			"type=" + str(event.type) + " amt=" + str(amount)
+			+ " ew=" + str(chanceRng.expectedWins) + " w=" + str(chanceRng.wins)
+			+ " lr=" + str(chanceRng.lastResult))
 	if checkTriggerCount(10):
 		if rollChance():
 			var debuffType = event.type
