@@ -79,16 +79,16 @@
 > **当前真基线 69/914**（RED 845）。分簇摘要随时可出：
 > `python -X utf8 tools/_np24_red_clusters.py --top 14`。
 >
-> ★ **头号目标 P2-0（新，2026-10-27 分簇定谳）：长度簇 461 场**——
-> firstDivergence.kind=length，即**事件前缀全等、仅战斗总长/尾部不同**。
-> 细分（关系签名）：G>O_P<G win同 97 / G<O_P<G win同 82 / G>O_P<G win翻转 75 /
-> G<O_P>G win同 62 / G<O_P<G win翻转 49 / G<O_P>G win翻转 45 / G>O_P>G 51 /
-> 其余零头。**铁线索**：其中 199 场 win 翻转——前缀逐事件全等但 winner() 不同
-> ⇒ **判胜与事件流脱钩**（血量账本不可见面/同时死亡判定/fight_ended 语义）。
-> 打法：各取 2 场样本（win同 G≠O 一场、win翻转一场），ORACLE_ALIGN_TRACE 尾段
-> 逐抽对位 + 血量轨迹对拍，定位判胜时刻差。修掉此簇 = 一次性收敛 ~461 场。
-> 次大簇：evt0@1-50 ×55、evt1@1-50 ×43（t0 族残余，接 P2-1 打法）、
-> evt1@51-150 ×28、evt12 ×26、evt8@151-400 ×26（按簇成员逐簇）。
+> ★ **P2-0 勘误（2026-10-27 晚，offpeak 实跑推翻）**：早前「长度簇 461 场」是
+> **分簇器解析 bug**——firstDivergence 有两种形状（平铺=只一对分歧；嵌套
+> {oracle_vs_gdcore, gdcore_vs_py}=两对都分歧），嵌套场被按平铺读成 kind=None，
+> 484 场误判「len」。修正后真分簇（tools/_np24_red_clusters.py 已修）：
+> **evt1@1-50 ×125**（早期 DealDamage 分歧，最大簇）＞ **evt0@1-50 ×101**
+> （早期 Activation，含 P2-1 t0 族）＞ evt1@51-150 ×73 ＞ **py-only ×60**
+> （gd≡oracle 全等、py 单独分歧——纯 py 缺陷，gd 即真值，无需 oracle 取证，
+> 最快收敛面，样本 run569_r11 idx129 evt104 Spiked Shield）＞ evt8@151-400 ×48
+> ＞ evt107@1-50 ×44 ＞ evt12@51-150 ×25 ＞ evt105@51-150 ×24 …。
+> 打法：先 py-only（对照面=gd 产物直读），再 evt0 族（接 P2-1），再 evt1 族。
 
 ### P1 数据面整族（预计最大收敛面）
 
