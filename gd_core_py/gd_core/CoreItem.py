@@ -905,6 +905,11 @@ class CoreItem(GodotObject):
 
 
 	def trigger(self):
+		# ★ np24 诊断（受控）：镜像神谕 TRIG 取证桩（oracle/Items/Item.gd trigger 段，
+		#   双门控零耗链），对拍逐次触发的 triggerTime/iterationCooldown/speed。
+		self.ctx.rng.trace_diag("TRIG", String(self.descriptor.identifier), int(self.ownerType),
+				"tt=" + str(self.triggerTime) + " cd=" + str(self.iterationCooldown)
+				+ " spd=" + str(self.getSpeed()) + " t=" + str(self.ctx.time))
 		self.iterationCooldown = self.adjustCooldown()
 		self.triggerTime += self.iterationCooldown
 

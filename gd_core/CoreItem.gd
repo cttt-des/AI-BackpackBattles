@@ -805,6 +805,11 @@ func checkTriggerCount(limit: int) -> bool:
 
 
 func trigger():
+	# ★ np24 诊断（受控）：镜像神谕 TRIG 取证桩（oracle/Items/Item.gd trigger 段，
+	#   双门控零耗链），对拍逐次触发的 triggerTime/iterationCooldown/speed。
+	ctx.rng.trace_diag("TRIG", String(descriptor.identifier), int(ownerType),
+			"tt=" + str(triggerTime) + " cd=" + str(iterationCooldown)
+			+ " spd=" + str(getSpeed()) + " t=" + str(ctx.time))
 	iterationCooldown = adjustCooldown()
 	triggerTime += iterationCooldown
 	
