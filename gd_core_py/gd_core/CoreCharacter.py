@@ -512,7 +512,7 @@ class CoreCharacter(GodotObject):
 
 	def classAttackSoundCount(self):
 		if not (self.characterClass in self.CLASS_SOUND_COUNTS):
-			assert (False, _gd_fmt('未知职业音效表：%s', str(self.characterClass)))
+			assert False, _gd_fmt('未知职业音效表：%s', str(self.characterClass))
 		return self.CLASS_SOUND_COUNTS[self.characterClass]["attack"]
 
 
@@ -520,7 +520,7 @@ class CoreCharacter(GodotObject):
 	# Util.pickRandomElement(职业 winRoundSounds/loseRoundSounds)，1 抽）
 	def classRoundSoundCount(self, win):
 		if not (self.characterClass in self.CLASS_SOUND_COUNTS):
-			assert (False, _gd_fmt('未知职业音效表：%s', str(self.characterClass)))
+			assert False, _gd_fmt('未知职业音效表：%s', str(self.characterClass))
 		return self.CLASS_SOUND_COUNTS[self.characterClass]["win" if win else "lose"]
 
 
