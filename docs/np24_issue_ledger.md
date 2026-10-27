@@ -95,6 +95,15 @@
 > 最快收敛面，样本 run569_r11 idx129 evt104 Spiked Shield）＞ evt8@151-400 ×48
 > ＞ evt107@1-50 ×44 ＞ evt12@51-150 ×25 ＞ evt105@51-150 ×24 …。
 > 打法：先 py-only（对照面=gd 产物直读），再 evt0 族（接 P2-1），再 evt1 族。
+>
+> ★ **进展（2026-10-27 晚）**：修复F（runtime 漏重生，be23196d）全量兑现
+> **125/914**（+56，py-only 族全灭）。evt1 族根因**定谳汇合 P3-3 电荷族**
+> （run572_r9 TRIG 双侧桩实证）：开战抖动块逐值全等、cd 全等（1.408125），
+> 唯 **speed 差**——Death Scythe oracle 1.2 v gd 1.1（FP+10% 同、缺 Battery
+> 电荷 +10%），Cauldron 双侧 1.3（电荷同得）。⇒ gd 电荷路径漏过 DS 所在格
+> （像素几何，P3-3 已授权的 Battery.position 探针是正解）。evt1@1-50 ×125
+> 预计大半为电荷速度面，修 P3-3 即联动收敛。gd 侧 TRIG 诊断已入库
+> （CoreItem.trigger，双门控零耗链，与 MSROLL/ANIM 同规）。
 
 ### P1 数据面整族（预计最大收敛面）
 
