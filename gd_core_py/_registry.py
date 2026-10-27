@@ -41,9 +41,31 @@ def _placeholder(name):
     return ph
 
 
+def _is_behavior_tree(cls) -> bool:
+    """实例链真身判定：夹具脚本路径恒为 res://gd_core_items/**，引擎据此从
+    gd_core_py.gd_core_items.** 装配物品——行为脚本的基类链（Item_2/Bag/…）
+    全在行为树模块里。"""
+    return getattr(cls, "__module__", "").startswith("gd_core_py.gd_core_items.")
+
+
 def reg(name, cls):
-    """登记一个类（幂等；同名重复登记以先到者为准之外的后者覆盖）。"""
-    _REG[str(name)] = cls
+    """登记一个类（幂等；同名重复登记以先到者为准之外的后者覆盖）。
+
+    ★ np24-P3-7 仲裁（2026-10-27）：裸类名可能被**两棵平行树**登记——
+      gd_core/Item.gd（build_item_scripts 生成的适配层，class_name Item）与
+      gd_core_items/Item.gd（行为基类，同名 class_name）转写后都注册 "Item"，
+      后到者胜。而引擎实例**固定**经 gd_core_items 树装配（夹具 script 路径），
+      若裸名被适配层占据，行为脚本里所有 `x is Item`（→
+      `isinstance(x, _R.C("Item"))`）恒 False——CorruptedCrystal 的
+      giveBlock 闸因此全废（gd 9710 条 gem Block vs py 1531，run845 因此
+      链式分叉并在 CoreBuff.onTimeout 崩溃）。故仲裁：行为树已持有的裸名，
+      拒绝内核/适配树的后写覆盖；反向（行为树后写）仍按后者覆盖。
+    """
+    name = str(name)
+    prev = _REG.get(name)
+    if prev is not None and _is_behavior_tree(prev) and not _is_behavior_tree(cls):
+        return cls
+    _REG[name] = cls
     return cls
 
 

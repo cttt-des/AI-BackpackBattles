@@ -29,6 +29,9 @@
 9. 盲修禁制：同一假设两连证伪即停；反例锚先行；数值同而状态分叉=有看不见的抽。
 10. 语料=2026-10-24/25 全量重录的干净形状（自然终止+确定性自证）。
     **below_master=true 已终谳**（run574 FFR tick 78 实证），勿回退。
+11. **分片器幂等跳过**（np24-P3-7 教训）：`_np23_shard_verify.py` 不带 `--rerun`
+    时跳过已有产物——内核/夹具/引擎变更后直接跑全量会把**陈旧产物**当现状比对
+    （RED 账本失真）。任何变更后收口一律 `--rerun <全部红场>`（或至少受影响簇）。
 
 ## 1. 工具速查
 
@@ -129,10 +132,22 @@
   语料则记「录制工件」留档，勿恋战。
 - [ ] **P3-6 580/586/592/862/813/732/1514 未诊面**：先批量 canonical 对拍分簇
   （同签名合并），再按 P2/P3 打法逐簇。
-- [ ] **P3-7 py 腿 run845_r18 IndexError 缺产物**（A2 全量重提取后新暴露）：
-  `[py][FAIL] run845_r18：IndexError: list index out of range`（分片 shard_a2.log）。
-  疑 py 侧对 2×2 占格物品的放置/affected 展开越界（simulator/gd_core_engine.py
-  _place 段）。修后单独守门 run845_r18。
+- [ ] **P3-7 py 腿 run845_r18 IndexError 缺产物**（根因族已修，残崩待查）：
+  - 根因族（2026-10-27 已修，守门 np24_p37_r1 无退步）：**py 裸类名双树抢占**——
+    `gd_core/Item.py`（build_item_scripts 适配层）与 `gd_core_items/Item.py`
+    （行为基类）同名注册 "Item"，后到者胜；引擎实例固定经 gd_core_items 树
+    装配，若适配层占名，行为脚本全部 `x is Item`（→`_R.C("Item")` isinstance）
+    恒 False。受害闸共 4 脚本：CorruptedCrystal（gem Block 族 gd 9710 条 vs
+    py 1531）/ManaPotion/ChainWhip/EvilHat。修复=gd_core_py/_registry.py::reg
+    仲裁（行为树已持有的裸名拒绝内核/适配树后写覆盖，手写文件不被 gd_to_py
+    覆盖）。修后 run845 py gem Block 恢复发射（0→6）。
+  - 残留：run845 py 仍 IndexError（CoreBuff.onTimeout nextTemporaryTimeout
+    越界，temporaryStacks 清算路径删 farthestIndex 后 nextTemporaryTimeout
+    未回拨——oracle/gd 同有此潜在险，语料录制未触发）。py-vs-gd 事件对位到
+    idx651 后遇 gd 产物陈旧伪差（crafted 前 type16 非空 item）——**先跑新鲜
+    gd 腿再对位**；崩点是否=首个行为分歧待定谳。
+  - ⚠ 连带发现：**分片器幂等跳过使陈旧产物污染 RED 账本**——内核/夹具变更后
+    必须 `--rerun <全部红场>` 重跑再读 alignment.json（已补铁律 11）。
 
 ### P4 收口与防退步
 
