@@ -21,7 +21,9 @@ import re
 import json
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-EXTRACTED = os.path.join(ROOT, "extracted", "Items")
+# np24 根因A2：源树由 extracted/Items（1.1.7，已清理）改指 oracle/Items（1.1.9 真值，
+# 与 P1-2 CSV 对齐同源）。oracle/ 只读——本工具只读 tscn、写 battle_items.json。
+EXTRACTED = os.path.join(ROOT, "oracle", "Items")
 DB_PATH = os.path.join(ROOT, "assets", "battle_items.json")
 
 # Item.gd Tiles 枚举
@@ -72,6 +74,18 @@ def parse_tscn_grid(path: str):
     return tiles
 
 
+# np24 根因A2（run602_r14 RubyWhelp 实证）：不覆写 CollisionMap 的 tscn（实例化
+# 基座 Items/Item.tscn）继承基座 CollisionMap 的 tile_data——此前按 size [1,1]
+# 兜底，把蛋/幼龙/盾/王冠等 19 件真身 2×2 的物品截成 1 格 → 袋内容物/affected
+# 几何全错（Fanny Pack 包内 Ruby Whelp 丢失 → 开战激活差 → 全链漂移）。
+BASE_ITEM_TSCN = os.path.join(EXTRACTED, "Item.tscn")
+
+
+def load_base_tiles():
+    """基座 Items/Item.tscn 的 CollisionMap tile_data（无覆写物品的真身）。"""
+    return parse_tscn_grid(BASE_ITEM_TSCN)
+
+
 def scan_tscn_index():
     """扫描所有 tscn，返回 {规范名(小写无空格): 完整路径}"""
     idx = {}
@@ -97,6 +111,8 @@ def main():
 
     matched = 0
     no_tscn = []
+    inherited = []
+    base_tiles = load_base_tiles()
     for key in items:
         sp = None
         scr = items[key].get("script")
@@ -117,8 +133,21 @@ def main():
             continue
         tiles = parse_tscn_grid(sp)
         if tiles is None:
-            no_tscn.append(key)
-            continue
+            # 无自有 tile_data：若该 tscn 实例化基座 Items/Item.tscn 且未覆写
+            # CollisionMap 节点 → 继承基座占格（np24 根因A2）；否则保持兜底。
+            # ★ 宝石/棋子排除：宝石恒 1×1（装在宿主 socket 内，无背包占格语义），
+            #   其 tscn 无 CollisionMap 属常态，继承基座 2×2 会把 gem 占格撑爆。
+            if items[key].get("category") in ("gem", "chess"):
+                no_tscn.append(key)
+                continue
+            txt = open(sp, encoding="utf-8", errors="replace").read()
+            has_cm_override = re.search(r'\[node name="CollisionMap"[^\]]*\]', txt)
+            base = base_tiles if (base_tiles and not has_cm_override) else None
+            if base is None:
+                no_tscn.append(key)
+                continue
+            tiles = base
+            inherited.append(key)
         grid = {}
         for tid, keyname in TILE_KEYS.items():
             if tid in tiles and tiles[tid]:
@@ -143,6 +172,7 @@ def main():
         rect_fallback += 1
 
     print(f"已写入 grid: {matched}  无 tscn/数据: {len(no_tscn)}  矩形兜底: {rect_fallback}")
+    print(f"继承基座 2x2: {len(inherited)} {sorted(inherited)}")
     if no_tscn:
         print("无 grid 物品示例:", no_tscn[:25])
     json.dump(db, open(DB_PATH, "w", encoding="utf-8"), ensure_ascii=False, indent=1)

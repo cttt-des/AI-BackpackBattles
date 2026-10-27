@@ -49,6 +49,25 @@
 - defer 镜像 / ANIM 裸抽 / MagicRing.setCraftedEffects / EB 接力死亡镜像（6 笔，commit 4315c580）
 - oracle trace 完整化（Util.flip/BalancedRange.randIntRange 入 ORACLE_DEBUG trace 面）+ stats 快照通道（录制能力，已入库）
 - 工具链：symlink 根治/类注册表/label_rng_enabled/APPDATA PID 隔离/三路分片器
+- **新根因A（crafted 实例真值链）**（2026-10-26，commit c1655431）：871/955/1386 Anvil 层全清
+- **新根因A2（grid 真值面 1.1.7 旧提取）**（2026-10-26/27）：
+  - 根因三连：①`simulator/extract_grid.py` 源树指 extracted/Items（1.1.7，已清理），
+    对无自有 tile_data 的 tscn 按 size[1,1] rect_fallback——**19 件实例化基座
+    Items/Item.tscn 的物品（蛋/幼龙/盾/王冠族）真身=基座 CollisionMap 2×2**
+    （RubyWhelp 实证：oracle 包内占 (5,5)+(5,6)，夹具只给 (5,5)→FannyPack 包内容错
+    →开战激活 3v2→全链漂移）；②**affected_cells 同为 1.1.7 旧值**
+    （LightGoobert 真值左右两列 [[±2,±1]]，旧库折叠单行→Goobert 族
+    onItemActivated 连接收漏 301 次治愈）；③宝石/棋子被继承逻辑污染（已显式复位 1×1）。
+  - 修复：extract_grid.py 重指 oracle/Items（1.1.9 真值，只读）+ 无 tile_data 时
+    查基座继承（gem/chess 排除）；battle_items.json 全量重提取（472 grid +
+    19 继承 2×2 + 46 宝石复位）；gen_lineup_fixture → item_battle_fixture →
+    gen_fixture_from_lineup 三产物重生（914 场）。
+  - 证据：run602 逐抽对位 cons-idx 61→**549** 全等（gd_v3 vs actp2 探针，探针≡语料
+    逐字节验证）；gd 侧诊断行工具链已入库（ANIM/SRC/LABEL/SRC gain_label/MSROLL，
+    全部 ORACLE_ALIGN_STACKTRACE 门控零耗链，gd_core/CoreRng.trace_diag）。
+  - 分片全量复测：仍 60/914（符合预期——A2 前移首分歧非整场翻绿）；REG 九场无退步。
+  - 取证桩已还原（FannyPack/Item/MrStruggles md5 在 output/_round_patches/np24_fix/fpact_probe/）。
+  - ⚠ 新发现：**py 腿 run845_r18 IndexError 缺产物**（A2 后新暴露，见 P3-7）
 
 ## 3. 问题清单（按优先序；「线索」=已实证的定位面）
 
@@ -71,10 +90,18 @@
 
 ### P2 内核/装配面
 
-- [ ] **P2-1 开战段调用点分配序**：rng_state 注入后、首事件前，同一 u 抽链被三腿以不同顺序消费
-  （冷却抖动(0.95,1.05)↔动画(0.9,1.1)↔标签盒(-10,10) 互换位）。打法：绿场（570/574/1029）
-  与红场各取一场，ORACLE_ALIGN_TRACE 逐抽对位首 20 抽，按「区间签名」定位互换对，
-  修 gd 装配调用序（gd_core/CoreCombat.gd startBattle 段）。
+- [ ] **P2-1 t0 事件序族（~120 场）——A2 已修，残留「监听路由」子因**：
+  - 已排除：开战段调用点分配序（修复 A2 后 run602 t0 逐抽链 549 抽全等，
+    激活/音效/疲劳次序双侧一致）。
+  - 残留子因（run602 idx10 定谳面）：**对面 Mr Struggles 对第 2 次对面疲劳的
+    rollChance**——oracle 败（无子事件）、gd 成（多一条 par 指向疲劳 109 的子事件），
+    但两侧 MSROLL 桩记录的 BalancedRng 状态（ew/w/lr）与全量 flip 抽值**完全一致**，
+    且 gd 侧无多余 flip ⇒ gd 的该子事件**不经过新掷点**产生。
+  - 下一步：MSROLL v3 = 双侧加「父事件 id + roll 返回值 + 本次 flip 值」，
+    逐行配对找首行结果差；假设空间＝debuff 信号连接集/通知次序（两侧 MrS 的
+    连接建立序）、checkTriggerCount 帧计数差、giveStacksTemporary 的 resisted/reflected
+    分流。工具已备：gd_core_items/MrStruggles.gd MSROLL 诊断（v2，type/amt）+
+    oracle 取证桩流程（fpact_probe/ 有先例）。
 - [ ] **P2-2 装配期闩/below_master 周边残差**：若 P2-1 修后仍见首攻 ±1 tick 类，对照
   oracle_fight.gd prepareItems/activateItems 顺序再审 harness 装配段。
 
@@ -102,6 +129,10 @@
   语料则记「录制工件」留档，勿恋战。
 - [ ] **P3-6 580/586/592/862/813/732/1514 未诊面**：先批量 canonical 对拍分簇
   （同签名合并），再按 P2/P3 打法逐簇。
+- [ ] **P3-7 py 腿 run845_r18 IndexError 缺产物**（A2 全量重提取后新暴露）：
+  `[py][FAIL] run845_r18：IndexError: list index out of range`（分片 shard_a2.log）。
+  疑 py 侧对 2×2 占格物品的放置/affected 展开越界（simulator/gd_core_engine.py
+  _place 段）。修后单独守门 run845_r18。
 
 ### P4 收口与防退步
 

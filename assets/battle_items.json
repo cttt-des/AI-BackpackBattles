@@ -519,11 +519,22 @@
    "grid": {
     "collision_cells": [
      [
+      -1,
+      -1
+     ],
+     [
+      -1,
+      0
+     ],
+     [
+      0,
+      -1
+     ],
+     [
       0,
       0
      ]
-    ],
-    "rect_fallback": true
+    ]
    },
    "linkage": {
     "overrides": [],
@@ -1451,7 +1462,15 @@
    "gem_roll": true,
    "has_animation_scene": false,
    "gained_stacks": 2046,
-   "scene_depth": 3
+   "scene_depth": 3,
+   "grid": {
+    "collision_cells": [
+     [
+      0,
+      0
+     ]
+    ]
+   }
   },
   "Shiny Shell": {
    "key": "Shiny Shell",
@@ -2133,11 +2152,22 @@
    "grid": {
     "collision_cells": [
      [
+      -1,
+      -1
+     ],
+     [
+      -1,
+      0
+     ],
+     [
+      0,
+      -1
+     ],
+     [
       0,
       0
      ]
-    ],
-    "rect_fallback": true
+    ]
    },
    "linkage": {
     "overrides": [],
@@ -2770,18 +2800,18 @@
     "affected_cells": [
      [
       -2,
-      0
+      -1
      ],
      [
-      -1,
+      -2,
       0
      ],
      [
       1,
-      0
+      -1
      ],
      [
-      2,
+      1,
       0
      ]
     ]
@@ -4716,7 +4746,15 @@
    "gem_roll": true,
    "has_animation_scene": false,
    "gained_stacks": 128,
-   "scene_depth": 3
+   "scene_depth": 3,
+   "grid": {
+    "collision_cells": [
+     [
+      0,
+      0
+     ]
+    ]
+   }
   },
   "Torch": {
    "key": "Torch",
@@ -6353,7 +6391,15 @@
    "connector_ready_roll": false,
    "gem_roll": true,
    "has_animation_scene": false,
-   "scene_depth": 3
+   "scene_depth": 3,
+   "grid": {
+    "collision_cells": [
+     [
+      0,
+      0
+     ]
+    ]
+   }
   },
   "Oil Lamp": {
    "key": "Oil Lamp",
@@ -9212,11 +9258,22 @@
    "grid": {
     "collision_cells": [
      [
+      -1,
+      -1
+     ],
+     [
+      -1,
+      0
+     ],
+     [
+      0,
+      -1
+     ],
+     [
       0,
       0
      ]
-    ],
-    "rect_fallback": true
+    ]
    },
    "linkage": {
     "overrides": [],
@@ -10428,18 +10485,18 @@
     "affected_cells": [
      [
       -2,
-      0
+      -1
      ],
      [
-      -1,
+      -2,
       0
      ],
      [
       1,
-      0
+      -1
      ],
      [
-      2,
+      1,
       0
      ]
     ]
@@ -10585,19 +10642,37 @@
     "affected_cells": [
      [
       -2,
-      0
+      -1
      ],
      [
-      -1,
+      -2,
       0
      ],
      [
       1,
-      0
+      -1
      ],
      [
-      2,
+      1,
       0
+     ]
+    ],
+    "affected_secondary": [
+     [
+      -1,
+      -2
+     ],
+     [
+      -1,
+      1
+     ],
+     [
+      0,
+      -2
+     ],
+     [
+      0,
+      1
      ]
     ]
    },
@@ -13971,11 +14046,22 @@
    "grid": {
     "collision_cells": [
      [
+      -1,
+      -1
+     ],
+     [
+      -1,
+      0
+     ],
+     [
+      0,
+      -1
+     ],
+     [
       0,
       0
      ]
-    ],
-    "rect_fallback": true
+    ]
    },
    "linkage": {
     "overrides": [],
@@ -14596,11 +14682,22 @@
    "grid": {
     "collision_cells": [
      [
+      -1,
+      -1
+     ],
+     [
+      -1,
+      0
+     ],
+     [
+      0,
+      -1
+     ],
+     [
       0,
       0
      ]
-    ],
-    "rect_fallback": true
+    ]
    },
    "tags": [
     "dragon"
@@ -15008,18 +15105,18 @@
     "affected_cells": [
      [
       -2,
-      0
+      -1
      ],
      [
-      -1,
+      -2,
       0
      ],
      [
       1,
-      0
+      -1
      ],
      [
-      2,
+      1,
       0
      ]
     ]
@@ -16161,11 +16258,22 @@
    "grid": {
     "collision_cells": [
      [
+      -1,
+      -1
+     ],
+     [
+      -1,
+      0
+     ],
+     [
+      0,
+      -1
+     ],
+     [
       0,
       0
      ]
-    ],
-    "rect_fallback": true
+    ]
    },
    "linkage": {
     "overrides": [],
@@ -18963,7 +19071,15 @@
    "has_animation_scene": false,
    "gained_stacks": 64,
    "random_unique_pool": true,
-   "scene_depth": 3
+   "scene_depth": 3,
+   "grid": {
+    "collision_cells": [
+     [
+      0,
+      0
+     ]
+    ]
+   }
   },
   "Artifact Stone Heat": {
    "key": "Artifact Stone Heat",
@@ -19154,11 +19270,22 @@
    "grid": {
     "collision_cells": [
      [
+      -1,
+      -1
+     ],
+     [
+      -1,
+      0
+     ],
+     [
+      0,
+      -1
+     ],
+     [
       0,
       0
      ]
-    ],
-    "rect_fallback": true
+    ]
    },
    "linkage": {
     "overrides": [],
@@ -20426,11 +20553,22 @@
    "grid": {
     "collision_cells": [
      [
+      -1,
+      -1
+     ],
+     [
+      -1,
+      0
+     ],
+     [
+      0,
+      -1
+     ],
+     [
       0,
       0
      ]
-    ],
-    "rect_fallback": true
+    ]
    },
    "linkage": {
     "overrides": [],
@@ -21022,11 +21160,22 @@
    "grid": {
     "collision_cells": [
      [
+      -1,
+      -1
+     ],
+     [
+      -1,
+      0
+     ],
+     [
+      0,
+      -1
+     ],
+     [
       0,
       0
      ]
-    ],
-    "rect_fallback": true
+    ]
    },
    "linkage": {
     "overrides": [],
@@ -21363,7 +21512,15 @@
    "connector_ready_roll": false,
    "gem_roll": true,
    "has_animation_scene": false,
-   "scene_depth": 3
+   "scene_depth": 3,
+   "grid": {
+    "collision_cells": [
+     [
+      0,
+      0
+     ]
+    ]
+   }
   },
   "Flawed Ruby": {
    "key": "Flawed Ruby",
@@ -21470,7 +21627,15 @@
    "connector_ready_roll": false,
    "gem_roll": true,
    "has_animation_scene": false,
-   "scene_depth": 3
+   "scene_depth": 3,
+   "grid": {
+    "collision_cells": [
+     [
+      0,
+      0
+     ]
+    ]
+   }
   },
   "Regular Ruby": {
    "key": "Regular Ruby",
@@ -21577,7 +21742,15 @@
    "connector_ready_roll": false,
    "gem_roll": true,
    "has_animation_scene": false,
-   "scene_depth": 3
+   "scene_depth": 3,
+   "grid": {
+    "collision_cells": [
+     [
+      0,
+      0
+     ]
+    ]
+   }
   },
   "Flawless Ruby": {
    "key": "Flawless Ruby",
@@ -21684,7 +21857,15 @@
    "connector_ready_roll": false,
    "gem_roll": true,
    "has_animation_scene": false,
-   "scene_depth": 3
+   "scene_depth": 3,
+   "grid": {
+    "collision_cells": [
+     [
+      0,
+      0
+     ]
+    ]
+   }
   },
   "Perfect Ruby": {
    "key": "Perfect Ruby",
@@ -21791,7 +21972,15 @@
    "connector_ready_roll": false,
    "gem_roll": true,
    "has_animation_scene": false,
-   "scene_depth": 3
+   "scene_depth": 3,
+   "grid": {
+    "collision_cells": [
+     [
+      0,
+      0
+     ]
+    ]
+   }
   },
   "Chipped Sapphire": {
    "key": "Chipped Sapphire",
@@ -21893,7 +22082,15 @@
    "gem_roll": true,
    "has_animation_scene": false,
    "gained_stacks": 1024,
-   "scene_depth": 3
+   "scene_depth": 3,
+   "grid": {
+    "collision_cells": [
+     [
+      0,
+      0
+     ]
+    ]
+   }
   },
   "Flawed Sapphire": {
    "key": "Flawed Sapphire",
@@ -22000,7 +22197,15 @@
    "gem_roll": true,
    "has_animation_scene": false,
    "gained_stacks": 1024,
-   "scene_depth": 3
+   "scene_depth": 3,
+   "grid": {
+    "collision_cells": [
+     [
+      0,
+      0
+     ]
+    ]
+   }
   },
   "Regular Sapphire": {
    "key": "Regular Sapphire",
@@ -22107,7 +22312,15 @@
    "gem_roll": true,
    "has_animation_scene": false,
    "gained_stacks": 1024,
-   "scene_depth": 3
+   "scene_depth": 3,
+   "grid": {
+    "collision_cells": [
+     [
+      0,
+      0
+     ]
+    ]
+   }
   },
   "Flawless Sapphire": {
    "key": "Flawless Sapphire",
@@ -22214,7 +22427,15 @@
    "gem_roll": true,
    "has_animation_scene": false,
    "gained_stacks": 1024,
-   "scene_depth": 3
+   "scene_depth": 3,
+   "grid": {
+    "collision_cells": [
+     [
+      0,
+      0
+     ]
+    ]
+   }
   },
   "Perfect Sapphire": {
    "key": "Perfect Sapphire",
@@ -22321,7 +22542,15 @@
    "gem_roll": true,
    "has_animation_scene": false,
    "gained_stacks": 1024,
-   "scene_depth": 3
+   "scene_depth": 3,
+   "grid": {
+    "collision_cells": [
+     [
+      0,
+      0
+     ]
+    ]
+   }
   },
   "Chipped Emerald": {
    "key": "Chipped Emerald",
@@ -22416,7 +22645,15 @@
    "gem_roll": true,
    "has_animation_scene": false,
    "gained_stacks": 4,
-   "scene_depth": 3
+   "scene_depth": 3,
+   "grid": {
+    "collision_cells": [
+     [
+      0,
+      0
+     ]
+    ]
+   }
   },
   "Flawed Emerald": {
    "key": "Flawed Emerald",
@@ -22522,7 +22759,15 @@
    "gem_roll": true,
    "has_animation_scene": false,
    "gained_stacks": 4,
-   "scene_depth": 3
+   "scene_depth": 3,
+   "grid": {
+    "collision_cells": [
+     [
+      0,
+      0
+     ]
+    ]
+   }
   },
   "Regular Emerald": {
    "key": "Regular Emerald",
@@ -22628,7 +22873,15 @@
    "gem_roll": true,
    "has_animation_scene": false,
    "gained_stacks": 4,
-   "scene_depth": 3
+   "scene_depth": 3,
+   "grid": {
+    "collision_cells": [
+     [
+      0,
+      0
+     ]
+    ]
+   }
   },
   "Flawless Emerald": {
    "key": "Flawless Emerald",
@@ -22734,7 +22987,15 @@
    "gem_roll": true,
    "has_animation_scene": false,
    "gained_stacks": 4,
-   "scene_depth": 3
+   "scene_depth": 3,
+   "grid": {
+    "collision_cells": [
+     [
+      0,
+      0
+     ]
+    ]
+   }
   },
   "Perfect Emerald": {
    "key": "Perfect Emerald",
@@ -22840,7 +23101,15 @@
    "gem_roll": true,
    "has_animation_scene": false,
    "gained_stacks": 4,
-   "scene_depth": 3
+   "scene_depth": 3,
+   "grid": {
+    "collision_cells": [
+     [
+      0,
+      0
+     ]
+    ]
+   }
   },
   "Chipped Topaz": {
    "key": "Chipped Topaz",
@@ -22931,7 +23200,15 @@
    "connector_ready_roll": false,
    "gem_roll": true,
    "has_animation_scene": false,
-   "scene_depth": 3
+   "scene_depth": 3,
+   "grid": {
+    "collision_cells": [
+     [
+      0,
+      0
+     ]
+    ]
+   }
   },
   "Flawed Topaz": {
    "key": "Flawed Topaz",
@@ -23030,7 +23307,15 @@
    "connector_ready_roll": false,
    "gem_roll": true,
    "has_animation_scene": false,
-   "scene_depth": 3
+   "scene_depth": 3,
+   "grid": {
+    "collision_cells": [
+     [
+      0,
+      0
+     ]
+    ]
+   }
   },
   "Regular Topaz": {
    "key": "Regular Topaz",
@@ -23129,7 +23414,15 @@
    "connector_ready_roll": false,
    "gem_roll": true,
    "has_animation_scene": false,
-   "scene_depth": 3
+   "scene_depth": 3,
+   "grid": {
+    "collision_cells": [
+     [
+      0,
+      0
+     ]
+    ]
+   }
   },
   "Flawless Topaz": {
    "key": "Flawless Topaz",
@@ -23228,7 +23521,15 @@
    "connector_ready_roll": false,
    "gem_roll": true,
    "has_animation_scene": false,
-   "scene_depth": 3
+   "scene_depth": 3,
+   "grid": {
+    "collision_cells": [
+     [
+      0,
+      0
+     ]
+    ]
+   }
   },
   "Perfect Topaz": {
    "key": "Perfect Topaz",
@@ -23327,7 +23628,15 @@
    "connector_ready_roll": false,
    "gem_roll": true,
    "has_animation_scene": false,
-   "scene_depth": 3
+   "scene_depth": 3,
+   "grid": {
+    "collision_cells": [
+     [
+      0,
+      0
+     ]
+    ]
+   }
   },
   "Chipped Amethyst": {
    "key": "Chipped Amethyst",
@@ -23423,7 +23732,15 @@
    "gem_roll": true,
    "has_animation_scene": false,
    "removed_stacks": 1792,
-   "scene_depth": 3
+   "scene_depth": 3,
+   "grid": {
+    "collision_cells": [
+     [
+      0,
+      0
+     ]
+    ]
+   }
   },
   "Flawed Amethyst": {
    "key": "Flawed Amethyst",
@@ -23529,7 +23846,15 @@
    "gem_roll": true,
    "has_animation_scene": false,
    "removed_stacks": 1792,
-   "scene_depth": 3
+   "scene_depth": 3,
+   "grid": {
+    "collision_cells": [
+     [
+      0,
+      0
+     ]
+    ]
+   }
   },
   "Regular Amethyst": {
    "key": "Regular Amethyst",
@@ -23635,7 +23960,15 @@
    "gem_roll": true,
    "has_animation_scene": false,
    "removed_stacks": 1792,
-   "scene_depth": 3
+   "scene_depth": 3,
+   "grid": {
+    "collision_cells": [
+     [
+      0,
+      0
+     ]
+    ]
+   }
   },
   "Flawless Amethyst": {
    "key": "Flawless Amethyst",
@@ -23741,7 +24074,15 @@
    "gem_roll": true,
    "has_animation_scene": false,
    "removed_stacks": 1792,
-   "scene_depth": 3
+   "scene_depth": 3,
+   "grid": {
+    "collision_cells": [
+     [
+      0,
+      0
+     ]
+    ]
+   }
   },
   "Perfect Amethyst": {
    "key": "Perfect Amethyst",
@@ -23847,7 +24188,15 @@
    "gem_roll": true,
    "has_animation_scene": false,
    "removed_stacks": 1792,
-   "scene_depth": 3
+   "scene_depth": 3,
+   "grid": {
+    "collision_cells": [
+     [
+      0,
+      0
+     ]
+    ]
+   }
   },
   "Ranger Bag": {
    "key": "Ranger Bag",
@@ -27211,11 +27560,22 @@
    "grid": {
     "collision_cells": [
      [
+      -1,
+      -1
+     ],
+     [
+      -1,
+      0
+     ],
+     [
+      0,
+      -1
+     ],
+     [
       0,
       0
      ]
-    ],
-    "rect_fallback": true
+    ]
    },
    "linkage": {
     "overrides": [],
@@ -30164,18 +30524,18 @@
     "affected_cells": [
      [
       -2,
-      0
+      -1
      ],
      [
-      -1,
+      -2,
       0
      ],
      [
       1,
-      0
+      -1
      ],
      [
-      2,
+      1,
       0
      ]
     ]
@@ -36553,11 +36913,22 @@
    "grid": {
     "collision_cells": [
      [
+      -1,
+      -1
+     ],
+     [
+      -1,
+      0
+     ],
+     [
+      0,
+      -1
+     ],
+     [
       0,
       0
      ]
-    ],
-    "rect_fallback": true
+    ]
    },
    "linkage": {
     "overrides": [],
@@ -36924,11 +37295,22 @@
    "grid": {
     "collision_cells": [
      [
+      -1,
+      -1
+     ],
+     [
+      -1,
+      0
+     ],
+     [
+      0,
+      -1
+     ],
+     [
       0,
       0
      ]
-    ],
-    "rect_fallback": true
+    ]
    },
    "linkage": {
     "overrides": [],
@@ -37019,11 +37401,22 @@
    "grid": {
     "collision_cells": [
      [
+      -1,
+      -1
+     ],
+     [
+      -1,
+      0
+     ],
+     [
+      0,
+      -1
+     ],
+     [
       0,
       0
      ]
-    ],
-    "rect_fallback": true
+    ]
    },
    "tags": [
     "dragon"
@@ -37119,11 +37512,22 @@
    "grid": {
     "collision_cells": [
      [
+      -1,
+      -1
+     ],
+     [
+      -1,
+      0
+     ],
+     [
+      0,
+      -1
+     ],
+     [
       0,
       0
      ]
-    ],
-    "rect_fallback": true
+    ]
    },
    "linkage": {
     "overrides": [],
@@ -37222,11 +37626,22 @@
    "grid": {
     "collision_cells": [
      [
+      -1,
+      -1
+     ],
+     [
+      -1,
+      0
+     ],
+     [
+      0,
+      -1
+     ],
+     [
       0,
       0
      ]
-    ],
-    "rect_fallback": true
+    ]
    },
    "tags": [
     "dragon"
@@ -37321,11 +37736,22 @@
    "grid": {
     "collision_cells": [
      [
+      -1,
+      -1
+     ],
+     [
+      -1,
+      0
+     ],
+     [
+      0,
+      -1
+     ],
+     [
       0,
       0
      ]
-    ],
-    "rect_fallback": true
+    ]
    },
    "linkage": {
     "overrides": [],
@@ -37417,11 +37843,22 @@
    "grid": {
     "collision_cells": [
      [
+      -1,
+      -1
+     ],
+     [
+      -1,
+      0
+     ],
+     [
+      0,
+      -1
+     ],
+     [
       0,
       0
      ]
-    ],
-    "rect_fallback": true
+    ]
    },
    "tags": [
     "dragon"
@@ -41043,7 +41480,15 @@
    "gem_roll": true,
    "has_animation_scene": false,
    "has_battle_rage_effect": true,
-   "scene_depth": 3
+   "scene_depth": 3,
+   "grid": {
+    "collision_cells": [
+     [
+      0,
+      0
+     ]
+    ]
+   }
   },
   "Elephant Rune": {
    "key": "Elephant Rune",
@@ -41150,7 +41595,15 @@
    "connector_ready_roll": false,
    "gem_roll": true,
    "has_animation_scene": false,
-   "scene_depth": 3
+   "scene_depth": 3,
+   "grid": {
+    "collision_cells": [
+     [
+      0,
+      0
+     ]
+    ]
+   }
   },
   "Hawk Rune": {
    "key": "Hawk Rune",
@@ -41243,7 +41696,15 @@
    "gem_roll": true,
    "has_animation_scene": false,
    "gained_stacks": 512,
-   "scene_depth": 3
+   "scene_depth": 3,
+   "grid": {
+    "collision_cells": [
+     [
+      0,
+      0
+     ]
+    ]
+   }
   },
   "Tiger Rune": {
    "key": "Tiger Rune",
@@ -41344,7 +41805,15 @@
    "connector_ready_roll": false,
    "gem_roll": true,
    "has_animation_scene": false,
-   "scene_depth": 3
+   "scene_depth": 3,
+   "grid": {
+    "collision_cells": [
+     [
+      0,
+      0
+     ]
+    ]
+   }
   },
   "Unidentified Skill": {
    "key": "Unidentified Skill",
@@ -48120,7 +48589,15 @@
    "connector_ready_roll": false,
    "gem_roll": false,
    "has_animation_scene": false,
-   "gained_stacks": 6
+   "gained_stacks": 6,
+   "grid": {
+    "collision_cells": [
+     [
+      0,
+      0
+     ]
+    ]
+   }
   },
   "Black Pawn": {
    "key": "Black Pawn",
@@ -48212,7 +48689,15 @@
    "connector_ready_roll": false,
    "gem_roll": false,
    "has_animation_scene": false,
-   "gained_stacks": 288
+   "gained_stacks": 288,
+   "grid": {
+    "collision_cells": [
+     [
+      0,
+      0
+     ]
+    ]
+   }
   },
   "White Knight": {
    "key": "White Knight",
@@ -48304,7 +48789,15 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "grid": {
+    "collision_cells": [
+     [
+      0,
+      0
+     ]
+    ]
+   }
   },
   "Black Knight": {
    "key": "Black Knight",
@@ -48397,7 +48890,15 @@
    "connector_ready_roll": false,
    "gem_roll": false,
    "has_animation_scene": false,
-   "gained_stacks": 8
+   "gained_stacks": 8,
+   "grid": {
+    "collision_cells": [
+     [
+      0,
+      0
+     ]
+    ]
+   }
   },
   "White Bishop": {
    "key": "White Bishop",
@@ -48489,7 +48990,15 @@
    "connector_ready_roll": false,
    "gem_roll": false,
    "has_animation_scene": false,
-   "removed_stacks": 1792
+   "removed_stacks": 1792,
+   "grid": {
+    "collision_cells": [
+     [
+      0,
+      0
+     ]
+    ]
+   }
   },
   "Black Bishop": {
    "key": "Black Bishop",
@@ -48583,7 +49092,15 @@
    "connector_ready_roll": false,
    "gem_roll": false,
    "has_animation_scene": false,
-   "gained_stacks": 1792
+   "gained_stacks": 1792,
+   "grid": {
+    "collision_cells": [
+     [
+      0,
+      0
+     ]
+    ]
+   }
   },
   "White Rook": {
    "key": "White Rook",
@@ -48678,7 +49195,15 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "grid": {
+    "collision_cells": [
+     [
+      0,
+      0
+     ]
+    ]
+   }
   },
   "Black Rook": {
    "key": "Black Rook",
@@ -48776,7 +49301,15 @@
    "connector_ready_roll": false,
    "gem_roll": false,
    "has_animation_scene": false,
-   "gained_stacks": 16
+   "gained_stacks": 16,
+   "grid": {
+    "collision_cells": [
+     [
+      0,
+      0
+     ]
+    ]
+   }
   },
   "White Queen": {
    "key": "White Queen",
@@ -48869,7 +49402,15 @@
    "connector_ready_roll": false,
    "gem_roll": false,
    "has_animation_scene": false,
-   "gained_stacks": 128
+   "gained_stacks": 128,
+   "grid": {
+    "collision_cells": [
+     [
+      0,
+      0
+     ]
+    ]
+   }
   },
   "Black Queen": {
    "key": "Black Queen",
@@ -48961,7 +49502,15 @@
    "gem_roll": false,
    "has_animation_scene": false,
    "gained_stacks": 254,
-   "removed_stacks": 254
+   "removed_stacks": 254,
+   "grid": {
+    "collision_cells": [
+     [
+      0,
+      0
+     ]
+    ]
+   }
   },
   "White King": {
    "key": "White King",
@@ -49054,7 +49603,15 @@
    "connector_ready_roll": false,
    "gem_roll": false,
    "has_animation_scene": false,
-   "gained_stacks": 254
+   "gained_stacks": 254,
+   "grid": {
+    "collision_cells": [
+     [
+      0,
+      0
+     ]
+    ]
+   }
   },
   "Black King": {
    "key": "Black King",
@@ -49147,7 +49704,15 @@
    "connector_ready_roll": false,
    "gem_roll": false,
    "has_animation_scene": false,
-   "removed_stacks": 254
+   "removed_stacks": 254,
+   "grid": {
+    "collision_cells": [
+     [
+      0,
+      0
+     ]
+    ]
+   }
   },
   "Wand": {
    "key": "Wand",
@@ -56242,11 +56807,22 @@
    "grid": {
     "collision_cells": [
      [
+      -1,
+      -1
+     ],
+     [
+      -1,
+      0
+     ],
+     [
+      0,
+      -1
+     ],
+     [
       0,
       0
      ]
-    ],
-    "rect_fallback": true
+    ]
    },
    "tags": [
     "transient"
@@ -62226,11 +62802,22 @@
    "grid": {
     "collision_cells": [
      [
+      -1,
+      -1
+     ],
+     [
+      -1,
+      0
+     ],
+     [
+      0,
+      -1
+     ],
+     [
       0,
       0
      ]
-    ],
-    "rect_fallback": true
+    ]
    },
    "linkage": {
     "overrides": [],
@@ -65409,40 +65996,6 @@
    },
    "grid": {
     "collision_cells": [
-     [
-      -1,
-      -1
-     ]
-    ],
-    "affected_cells": [
-     [
-      -2,
-      -2
-     ],
-     [
-      -2,
-      -1
-     ],
-     [
-      -2,
-      0
-     ],
-     [
-      -1,
-      -2
-     ],
-     [
-      -1,
-      0
-     ],
-     [
-      0,
-      -2
-     ],
-     [
-      0,
-      -1
-     ],
      [
       0,
       0
