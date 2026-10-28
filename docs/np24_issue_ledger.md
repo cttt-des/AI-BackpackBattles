@@ -10,10 +10,17 @@
 ## 0. 环境与铁律（每次动手前重读）
 
 1. 工作区 `D:\文件资料\学习\自动背包AI`；**工作区外零操作**（用户铁令）。
-2. Godot 一律 `--headless --audio-driver Dummy` + **APPDATA 按 PID 隔离**
+2. Godot 一律 `--no-window --audio-driver Dummy` + **APPDATA 按 PID 隔离**
    （跑 Godot 的 python 侧已由 `tools/verify_oracle.py::run_godot` 内置；
-   手动跑 Godot 时用 `APPDATA="…\output\_recovery\appdata_p\<pid>"`）。
-   并行 Godot 共享 user:// 日志目录会弹 openmem err=5 风暴——已根治勿回退。
+   手动跑 Godot 时用 `APPDATA="…\output\_recovery\appdata_p\<pid>"`；
+   最省事直接调 `tools/run_gd_core.py::run`——内置隔离+_NOISE_KEYS 噪声过滤）。
+   ⚠ **OpenMem failed err=5 已终谳（2026-10-29 避坑指南）**：搜狗输入法注入
+   抢 `Local\sgime_skin.*.filemap` 失败打的日志，failed 后自动重建成功=纯
+   噪声，Godot/内核自身不报错；**`--headless` 是 4.x 参数**，3.6 写了会走
+   GUI 窗口路径反而触发 IME 注入——一律 `--no-window`。不要并行开多个
+   Godot（共享 user:// 互相踩、噪声更凶）；批量走串行/分片；跑前
+   `Get-Process | ? ProcessName -match 'odot'` 清残留。为它改
+   gd_core/gd_core_items/oracle/语料是禁区。
 3. `output/oracle/fights/`（语料）与 `oracle/` 树只读。oracle 取证桩须：
    备份→≤10 行环境变量门控→ORACLE_FIGHTS_ROOT 重定向探针→逐字节还原→md5 三方留档
    （先例：output/_round_patches/np24_harness/）。
@@ -142,7 +149,21 @@
 >
 > **已完成（np25 主会话）**：P3-3 电荷像素几何族（commit 80db42c2，143/914）；
 > P3-2 悖论勘误（跨实例误读）+真分歧定位（478 行后未留痕抽差）；
-> py trace 通道垫片（e0dc73ed）；run874 冷却链排除+信号级锁定（73e4593f）。
+> py trace 通道垫片（e0dc73ed）；run874 冷却链排除+信号级锁定（73e4593f）；
+> BUS 探针+f32 对称化（940ffd39/cc74a0be）；全局流错位修复（35249827+
+> d9887a9e，148/914）；新问题批次 A/B/C 入账（a972f726/7dfb374d/f4226f3b）。
+>
+> **★ offpeak 续作战报（2026-10-29，offpeak-488589ec）**：
+> - **✅ py-only 族清零（commit bcc6e858）**：run1132_r18 的 IndexError 根因
+>   定谳=loseStacks 删 farthest 后 nextTemporaryTimeout 未回拨（原版同构隐患）
+>   × Godot **release 越界读=软错误中止整个函数**（gd1132v 无守卫跑铁证：栈
+>   保留/定时器死/零事件）vs py 硬索引进程崩溃。修复=onTimeout 越界**早退**
+>   同语义（gd1132u 反证：skip+重扫版本会多 -1 事件+提前移除=行为改变不可用）。
+>   BLND 簿记诊断六点入库（实例 tag+timer 态，双门控零耗）。守门
+>   np25_ofp_r1132：绿 4 保持+REG 七红分歧点逐场同基线+run1132 双腿同位红
+>   ev@12（=其本簇签名）。全量分片复验中（结果回填）。教训入册：
+>   **gd 侧改动跑批前必须确认 Godot 进程启动于 cp 之后**（gd1132v 跑了旧码
+>   导致一次误判）；release 软错误语义只能靠无守卫跑实证，不能靠推演。
 >
 > **★ BUS 探针入库 + run874 深挖定谳（2026-10-28 续）**：
 > - **总线探针**（gd_core/CoreEventBus.gd，连接表值改存 [funcRef, receiver] 对
