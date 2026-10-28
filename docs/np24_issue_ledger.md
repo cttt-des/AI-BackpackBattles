@@ -197,6 +197,20 @@
 > - **offpeak 续作清单**：①916 gate 异常核查 ②装配段外全局消耗盘点
 >   （gd_core_test 宿主 activation_order 之后、战斗期各机制的全局链消费，
 >   与 py 引擎逐一对账）③ESHUF 对位驱动剩余 4 场收敛 ④run1132 py IndexError。
+>
+> **★★ 全局流真根因补全 + py-only 五场全翻绿（2026-10-29，np25 主会话）**：
+> 上一轮预热后 py 六拍 shuffle 全为 CBC×6 → 实测发现 **`_bind_battle` 全树
+> 零调用点**（_rt.py docstring 声称 CoreContext._init 调它——实际没有）——
+> py 全局 Math 流从未以本场 seed 播种，回落 DEFAULT_SEED 的**进程级单例**，
+> 且跨场累积（批内前序场状态污染后序场）。修复：order 路径 startBattle 前
+> `_bind_battle(int(self._seed))` + 补两条装配 shuffle 消耗。
+> **直接验证：run874_r7/run916_r6/run1316_r10/run1422_r14/run1528_r13
+> 全部翻绿（三方一致）**，570/1029 保持绿，8/8 场 rc=0。REG 九场 gate 无退步
+> （np25_warm_r2）。全量分片验证中（结果回填本节）。剩：run1132_r18 py
+> IndexError（独立崩溃，非分歧）、916 gate 异常已由本场翻绿证伪（上轮 gate
+> 的 gd 腿产物问题）。ESHUF/GACT/CDX 诊断行保留（双门控零耗）。
+> ⚠ 教训入册：**「_rt 垫片 docstring 声称的调用方」必须 grep 实证**——
+> 声称的注入点不存在时流语义整体漂移，且批内跨场污染极其隐蔽。
 
 >
 > **进行中（np25 主会话，若已入库则以 git log 为准）**：py-only 收敛。
