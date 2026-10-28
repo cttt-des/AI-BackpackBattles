@@ -152,9 +152,16 @@
 > 139→140 后移但不修；②整链 f32（PHYSICS_DELTA/adjustCooldown/trigger/getSpeed/
 > addSpeed）→ **run570 三方一致被打红**（退步）。gd 实际算术精度比 f32 模型更近
 > f64（143 场全绿旁证）。实验已全部还原（gd_to_py 重生成，工作树仅 _rt.py 垫片）。
-> **下一探针**：用修好的 py trace 通道 dump 分歧 tick 各物品 TRIG 行
-> （triggerTime/iterationCooldown/spd 逐值对位 gd），判「到期时刻差」vs
-> 「同刻判定序差（_physics_process 遍历序/激活信号广播序）」。
+> **★ 冷却链已排除（2026-10-28 深夜）**：分歧点前后 ±10 秒的 TRIG 行两侧逐值
+> 全等（同一物品集合/同一时刻/同 cd/spd）——触发时刻与到期序完全一致。
+> 分歧锁定在 **activated 信号级联序**：Chili#10 激活 → 总线按连接序派发监听者
+> （ManaOrb.onItemActivated→105 两侧同位；下一个 gd=Pine12 / py=Blueberries105）。
+> bus.emitEvent/connectEvent 实现两侧等价（连接序=数组序），嫌疑=**连接建立序**
+> （onPrepare 的 connectForCombat 对 getAffectedItems 迭代序——gd CoreGrid.
+> getItemsInCells 有 `placed` 过滤与去重，py 对位面）或 ManaOrb/Pine 的
+> getAffectedItems 顺序差。**下一探针**：总线诊断行 BUS（emitEvent 头部：
+> emitter identifier+signalName+监听数，双门控零耗链同规；gd_core/CoreEventBus.
+> gd + py 侧经 gd_to_py 再生成），分歧 tick 两侧对位即可点名监听集与顺序差。
 >
 > **offpeak 任务书（按序修复；每项守门+台账打勾+commit 不 push）**：
 > 1. **py-only 面**：6 场（run874_r7/run916_r6/run1132_r18/run1316_r10/
