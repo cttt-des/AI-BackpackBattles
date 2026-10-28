@@ -412,3 +412,56 @@ recorder:
 3. 把下标填进 `config.yaml` 的 `godot.member_state`（当前默认 -1 = 关闭）。
 
 标定后 `read_state()` 生效，阶段判定第一顺位用它；不标定则用 CombatLog。
+---
+
+## 12. 实机事故与修复（2026-10-28 第一次实跑）
+
+### 12.1 现象
+
+人类手动打了 18 回合，但记录只到第 6 回合（`R06.jsonl` 仍为明文、meta 无 end_reason），
+进程在 20:36:48 之后**静默消失**，日志停在「已开始记录」，没有任何异常输出。
+
+### 12.2 根因
+
+GUI 的「生命看门狗」在**守护线程**里调用了 `self.winfo_exists()`。tkinter 不是线程安全的；
+主线程忙于 0.5s 一次的全量背包重绘时这次调用抛异常，命中该线程的
+`except Exception:` 分支 → `os._exit(0)`，于是：
+
+* 没有 traceback（`os._exit` 不走 finally/atexit）；
+* 记录器来不及收尾，最后一回合留在明文、meta 无 end_reason；
+* 用户侧表现为「程序自己没了」。
+
+放大因素：GUI 轮询（0.5s）与记录器采样（0.4s）各自完整读一次状态（多次
+ReadProcessMemory），叠加战斗期频繁重绘，主线程被拖慢的概率显著上升。
+
+### 12.3 修复
+
+| 位置 | 修复 |
+| --- | --- |
+| `gui/app.py` 看门狗 | **只读标志，绝不调用 Tk API**；卡顿 60s 先记日志并尽力归档记录，180s 才强杀 |
+| `gui/app.py` 关闭流程 | 兜底强杀从 0.25s 延后到 5s，给记录归档留时间 |
+| `gui/app.py` 背包重绘 | 背包签名不变则**跳过重绘**（战斗里物品不动，原本每 0.5s 全量 delete + PIL 旋转缩放） |
+| `core/bot.py` | `get_state` 加 150ms TTL 缓存，两条线程共用一次读取 |
+| `core/store.py` | 新增 `seal_run` / `seal_orphan_runs`：给被强杀的局补归档 + 写 end_reason=crash |
+| `core/bot.py` | 初始化与开录前自动扫描并补收尾上次的残缺局 |
+| `tools/corpus_recover.py` | 手动修复入口（`--dry-run` 只报告） |
+
+### 12.4 顺带修掉的识别缺口（同一批实机数据暴露）
+
+| 现象 | 原因 | 现在的处理 |
+| --- | --- | --- |
+| 每次买完多一条 `storage_put` | 买来的物品落进储物箱又单独记了一次 | 并入 `buy`，并在 `action.added_to` 记落地位置 |
+| 宝石镶嵌报成 `unknown_change` + `gems_change` | 散装宝石消失与宿主 gems 增加被当成两件事 | 配对成一条 `gem_socket` |
+| 宝石镶嵌被误判为 `combine` | 「多消失一出现」也匹配合成的形状 | 加「消失件与新增件不得同 id」条件 |
+| 买入后金币下一帧才掉 → 报 unknown | 游戏的扣款比 `bought` 标志晚一帧 | `pending_gold` 欠账对账，下一帧产出 `gold_settle` |
+| 回合金币自然增加报 unknown | 没有对应物品变化 | 记为 `round_income` |
+| 回合切换时商店整批换货报 unknown | 不是玩家刷新的 reroll | 过半槽位被替换 → `shop_restock` |
+
+### 12.5 事故那一局的数据
+
+数据没有丢——事件都逐条 flush 到盘上了，只是缺封印。用
+
+    python -X utf8 tools/corpus_recover.py dist/output/records
+
+补收尾后 `R06.jsonl` 归档、`end_reason=crash`、`incomplete=true`，
+仍可折叠出 6 个回合的样本（决策与摆盘都在）。

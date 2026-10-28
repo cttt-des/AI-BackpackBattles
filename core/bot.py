@@ -58,6 +58,7 @@ class BackpackBot:
         # 内部含多次 ReadProcessMemory 与 item_reader 的节点缓存写入，
         # 必须串行化，否则缓存半写会读出撕裂数据。
         self._state_lock = threading.Lock()
+        self._state_cache: Optional[tuple] = None
 
         # AI 策略
         strategy_cfg = self.config.get("ai", {})
@@ -271,10 +272,25 @@ class BackpackBot:
                 return None
         return None
 
-    def get_state(self) -> dict:
-        """获取完整游戏状态（线程安全：GUI 轮询与记录器采样共用）。"""
+    # get_state 结果缓存 TTL（秒）：GUI 每 0.5s 轮询 + 记录器每 0.4s 采样，
+    # 两条线程各读一次等于双倍 ReadProcessMemory，而状态在 150ms 内几乎不会变。
+    # 缓存把读取合并成一份，显著降低 GIL 争抢（主线程卡顿的主因之一）。
+    STATE_CACHE_TTL = 0.15
+
+    def get_state(self, force: bool = False) -> dict:
+        """获取完整游戏状态（线程安全 + 短 TTL 缓存）。
+
+        `force=True` 跳过缓存（收尾、一次性质检用）。
+        """
         with self._state_lock:
-            return self._get_state_locked()
+            now = time.time()
+            cache = getattr(self, "_state_cache", None)
+            if (not force and cache is not None
+                    and now - cache[0] <= self.STATE_CACHE_TTL):
+                return cache[1]
+            state = self._get_state_locked()
+            self._state_cache = (now, state)
+            return state
 
     def _get_state_locked(self) -> dict:
         self.update_state()
@@ -326,11 +342,34 @@ class BackpackBot:
         self.recorder = Recorder(self, cfg)
         return self.recorder
 
+    def seal_orphan_records(self) -> list:
+        """给上次被强杀的对局补收尾（归档明文 + 写 end_reason）。
+
+        进程被 os._exit 之类的硬杀中断时来不及收尾；数据还在盘上，只是缺
+        封印。启动/开录时扫一遍把它们收干净。
+        """
+        try:
+            from .store import seal_orphan_runs
+            root = Path(self.recorder.cfg.out_dir if self.recorder
+                        else (self.config.get("recorder") or {}).get("out_dir", "")
+                        or (get_base_dir() / "output" / "records"))
+            if not root.is_absolute():
+                root = get_base_dir() / root
+            done = seal_orphan_runs(root)
+            if done:
+                self.log("info", f"已补收尾 {len(done)} 个中断的对局: {', '.join(done)}")
+            return done
+        except Exception as e:  # noqa: BLE001
+            logger.debug("补收尾扫描失败: %s", e)
+            return []
+
     def start_recording(self) -> bool:
         """开始记录（人类手动游玩时也只需初始化+此开关，不必「开始」挂机）。"""
         if self.recorder is not None and self.recorder.running:
             return True
         rec = self.recorder or self.make_recorder()
+        # 开录前先收掉上次硬杀留下的残缺局
+        self.seal_orphan_records()
         if rec.start():
             self.log("info", "● 已开始记录对局语料")
             return True

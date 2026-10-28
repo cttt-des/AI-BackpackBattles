@@ -242,6 +242,75 @@ def new_run_id(now: Optional[datetime] = None, ordinal: int = 1) -> str:
     return now.strftime("%Y%m%d_%H%M%S") + f"_r{ordinal:02d}"
 
 
+# ---------------- 中断对局的补收尾 ----------------
+def seal_run(run_dir: Path, reason: str = "crash",
+             extra: Optional[Dict[str, Any]] = None) -> Optional[Dict[str, Any]]:
+    """给"没写收尾"的对局补上收尾（归档明文分片 + 写 end_reason）。
+
+    进程被强杀（os._exit / 任务管理器 / 蓝屏）时 meta.end_reason 仍是 null，
+    明文分片也来不及压缩。下次启动时扫描一遍把它们收干净——数据已经在盘上，
+    只是缺"封印"，不该因此丢掉。
+
+    返回更新后的 meta；目录不存在或本来就有 end_reason 时返回 None（幂等）。
+    """
+    run_dir = Path(run_dir)
+    meta_path = run_dir / "meta.json"
+    if not meta_path.exists():
+        return None
+    try:
+        meta = json.loads(meta_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return None
+    if meta.get("end_reason"):
+        return None
+
+    # 归档残留明文（复用归档器的压缩+校验逻辑，不带打开中的句柄）
+    compress = ((meta.get("recorder") or {}).get("config") or {}).get("compress", "lzma")
+    store = RunStore(run_dir.parent, run_dir.name, compress=compress)
+    store._meta = meta
+    failed = []
+    for p in sorted((run_dir / "raw").glob("R*.jsonl")):
+        try:
+            rnd = int(p.stem[1:])
+        except ValueError:
+            continue
+        if not store.archive_round(rnd):
+            failed.append({"round": rnd})
+
+    meta.update({
+        "ended_at": datetime.now().isoformat(timespec="seconds"),
+        "end_reason": reason,
+        "incomplete": True,
+        "sealed_after_crash": True,
+    })
+    if failed:
+        meta["archive_failed"] = failed
+    if extra:
+        meta.update(extra)
+    try:
+        _atomic_write_text(meta_path, _json_dumps(meta, indent=2))
+    except OSError as e:
+        logger.warning("补写 meta 失败 %s: %s", meta_path, e)
+        return None
+    return meta
+
+
+def seal_orphan_runs(root: Path) -> list:
+    """扫描 root 下所有对局目录，给没有 end_reason 的补收尾。返回处理过的 run_id。"""
+    root = Path(root)
+    if not root.exists():
+        return []
+    done = []
+    for d in sorted(p for p in root.iterdir() if p.is_dir()):
+        if not (d / "raw").exists():
+            continue
+        meta = seal_run(d, reason="crash")
+        if meta:
+            logger.info("已补收尾中断的对局: %s", d.name)
+            done.append(d.name)
+    return done
+
+
 # ---------------- 读取侧（校验/折叠工具共用） ----------------
 def iter_run_events(run_dir: Path):
     """按回合顺序产出 (round, event)。兼容明文与 lzma 归档两种状态。"""
