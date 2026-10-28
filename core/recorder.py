@@ -312,12 +312,23 @@ def diff_frames(prev: Frame, cur: Frame, ctx: dict) -> List[dict]:
             "evidence": {"kept_slots": _kept_slots(prev, cur)},
         })
     elif buy_events and gold_delta is not None and gold_delta < -spent_on_buys:
-        # 买完还花了钱：可能同帧内也刷新了
+        # 买完还花了钱：可能同帧内也刷新了，记下待结算差额（下一帧对账）
         events.append({
             **base, "type": "unknown_change", "confidence": 0.0,
             "action": {},
             "delta": {"gold": gold_delta - (-spent_on_buys)},
             "evidence": {"reason": "买入之外的金币减少，无法归类"},
+        })
+    elif (not buy_events and (gold_delta is None or gold_delta <= 0)
+          and _shop_restocked(prev, cur)):
+        # 商店整体换货（回合过渡帧常见）：旧槽整批消失/更名、新槽整批出现。
+        # 这类帧与 reroll 的区别是没有"玩家花钱"的动作语义，应单独标出，
+        # 否则会被当成未知变化（2026-10-28 实机：每次回合切换都报一次）。
+        events.append({
+            **base, "type": "shop_restock", "confidence": 0.85,
+            "action": {"gold_delta": gold_delta},
+            "delta": {"shop": _shop_diff(prev, cur)},
+            "evidence": {"signal": "bulk_shop_replacement"},
         })
 
     # --- 2. 背包内部 / 储物箱 ---
@@ -328,13 +339,43 @@ def diff_frames(prev: Frame, cur: Frame, ctx: dict) -> List[dict]:
     # --- 3. 锁定 / 解锁 ---
     events.extend(_detect_reserved(prev, cur, consumed_slots, base))
 
-    # --- 4. 未归类兜底 ---
+    # --- 4. 金币对账（滞后结算）与回合收入 ---
+    # 游戏里"买入"与"金币扣除"不在同一帧生效：bought 标志先变，金币下一帧才掉。
+    # 用 ctx["pending_gold"] 记住"已记账但金币还没扣"的金额，下一帧对账。
+    pending = int(ctx.get("pending_gold") or 0)
+    if buy_events:
+        # 欠账 = 本帧买入总价 - 本帧实际扣掉的金币（负数取绝对值）
+        deducted = -gold_delta if (gold_delta is not None and gold_delta < 0) else 0
+        pending = max(0, pending + spent_on_buys - deducted)
+    elif (pending > 0 and gold_delta is not None and gold_delta < 0):
+        settled = min(pending, -gold_delta)
+        events.append({
+            **base, "type": "gold_settle", "confidence": 0.8,
+            "action": {"settled": settled},
+            "delta": {"gold": -settled},
+            "evidence": {"pending_before": pending,
+                         "signal": "buy_cost_applied_late"},
+        })
+        pending -= settled
+    elif (not events and gold_delta is not None and gold_delta > 0):
+        events.append({
+            **base, "type": "round_income", "confidence": 0.7,
+            "action": {"amount": gold_delta},
+            "delta": {"gold": gold_delta},
+            "evidence": {"signal": "gold_up_without_item_change"},
+        })
+    ctx["pending_gold"] = pending
+
+    # --- 5. 未归类兜底 ---
     covered = {e["type"] for e in events}
     if not events and prev.signature() != cur.signature():
         events.append({
             **base, "type": "unknown_change", "confidence": 0.0,
             "action": {},
-            "delta": {"gold": gold_delta, "shop": _shop_diff(prev, cur)},
+            "delta": {"gold": gold_delta, "shop": _shop_diff(prev, cur),
+                      "hp": [prev.hp, cur.hp], "round": [prev.round, cur.round],
+                      "backpack_changed": prev.backpack != cur.backpack,
+                      "storage_changed": prev.storage != cur.storage},
             "evidence": {"covered": sorted(covered), "reason": "未匹配任何判定规则"},
         })
     return events
@@ -342,6 +383,18 @@ def diff_frames(prev: Frame, cur: Frame, ctx: dict) -> List[dict]:
 
 def _slot_map(frame: Frame) -> Dict[int, Tuple]:
     return {s[0]: s for s in frame.shop}
+
+
+def _shop_restocked(prev: Frame, cur: Frame) -> bool:
+    """商店是否整批换货（回合过渡）：旧槽几乎全消失/改名，新槽几乎全新。"""
+    a, b = _slot_map(prev), _slot_map(cur)
+    if not a or not b:
+        return False
+    # 同槽同 id 视为"同一件仍在售"
+    same = sum(1 for s, pa in a.items() if s in b and b[s][1] == pa[1])
+    replaced = len(a) - same
+    # 过半槽位被替换才算整批换货，避免把普通 reroll 误判
+    return replaced >= max(2, (len(a) + 1) // 2)
 
 
 def _shop_changed(prev: Frame, cur: Frame) -> bool:
@@ -445,12 +498,18 @@ def _detect_inventory(prev: Frame, cur: Frame, gold_delta: Optional[int],
     prev_st = list(prev.storage)
     cur_st = list(cur.storage)
 
+    installed: List[str] = []   # 本帧新装到宿主上的宝石（与散装宝石配对用）
+
     # 背包多重集差
     gone_bp, new_bp = _multiset_delta(prev_bp, cur_bp)
     gone_st, new_st = _multiset_delta(prev_st, cur_st)
 
-    # --- 合成：多件消失 + 一件新增，且金币没变 ---
-    if len(gone_bp) >= 2 and len(new_bp) == 1 and not gold_up:
+    # --- 合成：多件消失 + 一件新增，且金币没变、且消失件里没有与新增件同 id 的 ---
+    # 加了"无同名配对"条件：宝石镶嵌（散装宝石 + 宿主 gems 变）也是"多消失一
+    # 未消失"，会被误判成合成（2026-10-28 实机）。
+    new_ids = {s[0] for s in new_bp}
+    if (len(gone_bp) >= 2 and len(new_bp) == 1 and not gold_up
+            and not any(s[0] in new_ids for s in gone_bp)):
         ev = {
             **base, "type": "combine", "confidence": 0.6,
             "action": {
@@ -469,7 +528,7 @@ def _detect_inventory(prev: Frame, cur: Frame, gold_delta: Optional[int],
             continue
         gone_bp.remove(sig)
         new_bp.remove(match)
-        _emit_transform(out, sig, match, base)
+        installed.extend(_emit_transform(out, sig, match, base))
 
     # --- 储物箱消失 → 回到背包（storage_out 语义并入 place.from=storage）---
     moved_from_storage: set = set()
@@ -501,6 +560,26 @@ def _detect_inventory(prev: Frame, cur: Frame, gold_delta: Optional[int],
                        "gems": list(sig[4])},
             "evidence": {"signal": "storage_increased"},
         })
+
+    # --- 散装宝石被镶嵌：宿主 gems 增加 + 背包/储物箱里同名宝石消失 ---
+    # 这两半原本会被分别报成 gems_change（宿主）与 unknown_change（散装件）；
+    # 这里配对成一条 gem_socket，并给宿主那条打 socket_in 标记。
+    if installed:
+        for pool, zone in ((gone_bp, "backpack"), (gone_st, "storage")):
+            for sig in list(pool):
+                if sig[0] not in installed:
+                    continue
+                installed.remove(sig[0])
+                pool.remove(sig)
+                out.append({
+                    **base, "type": "gem_socket", "confidence": 0.85,
+                    "action": {"id": sig[0], "from": zone,
+                               "at": [sig[1], sig[2]] if zone == "backpack" else None},
+                    "evidence": {"signal": "host_gems_increased"},
+                })
+        for ev in out:
+            if ev.get("type") == "gems_change" and ev["action"].get("added"):
+                ev["evidence"]["signal"] = "socket_in"
 
     # --- 背包消失且金币增加 → 卖出 ---
     sold_rows = []
@@ -538,6 +617,15 @@ def _detect_inventory(prev: Frame, cur: Frame, gold_delta: Optional[int],
     # --- 储物箱新增（非背包移入）---
     for sig in list(new_st):
         new_st.remove(sig)
+        if sig[0] in buyer_ids:
+            # 买来的东西直接落进储物箱：价格与商店槽位已记在 buy 事件里，
+            # 这里只是它的落地位置，不再单独算一次动作（否则每次买入都会
+            # 多出一条 storage_put，污染决策样本）。
+            for ev in out:
+                if ev.get("type") == "buy" and ev["action"].get("id") == sig[0]:
+                    ev["action"]["added_to"] = "storage"
+                    break
+            continue
         out.append({
             **base, "type": "storage_put", "confidence": 0.6,
             "action": {"id": sig[0], "at": [sig[1], sig[2]], "r": sig[3],
@@ -559,8 +647,15 @@ def _detect_inventory(prev: Frame, cur: Frame, gold_delta: Optional[int],
     return out
 
 
-def _emit_transform(out: List[dict], sig: Tuple, match: Tuple, base: dict) -> None:
-    """同一物品的位移/旋转/宝石变化 → move / rotate / gems_change。"""
+def _emit_transform(out: List[dict], sig: Tuple, match: Tuple,
+                    base: dict) -> List[str]:
+    """同一物品的位移/旋转/宝石变化 → move / rotate / gems_change。
+
+    返回本次**新装上**的宝石 id 列表：散装宝石被镶嵌表现为"背包/储物箱里
+    少一颗宝石 + 某件宿主 gems 多了它"，前一半要靠这个返回值去配对，
+    否则会被误报成 unknown_change。
+    """
+    added: List[str] = []
     rot_changed = sig[3] != match[3]
     pos_changed = sig[1:3] != match[1:3] or sig[5] != match[5]
     gems_changed = sig[4] != match[4]
@@ -586,10 +681,12 @@ def _emit_transform(out: List[dict], sig: Tuple, match: Tuple, base: dict) -> No
             "evidence": {},
         })
     if gems_changed:
+        added = [g for g in match[4] if g not in sig[4]]
         out.append({
             **base, "type": "gems_change", "confidence": 0.85,
             "action": {"id": sig[0], "at": [match[1], match[2]],
-                       "from": list(sig[4]), "to": list(match[4])},
+                       "from": list(sig[4]), "to": list(match[4]),
+                       "host": sig[0], "added": added},
             "evidence": {},
         })
     if not (rot_changed or pos_changed or gems_changed):
@@ -598,6 +695,7 @@ def _emit_transform(out: List[dict], sig: Tuple, match: Tuple, base: dict) -> No
             "action": {"id": sig[0]},
             "evidence": {"reason": "签名相同却配了对（不应发生）"},
         })
+    return added
 
 
 def _detect_reserved(prev: Frame, cur: Frame, consumed_slots: set,
@@ -733,6 +831,7 @@ class Recorder:
         self._hp_before_combat: Optional[int] = None
         self._shop_snapshot_ref: Optional[str] = None
         self._gap_open = False
+        self._pending_gold = 0      # 已记账未扣款的金币（买入成本滞后结算）
         self._stop_reason: Optional[str] = None
         self._finished = False
         self._t0 = time.time()
@@ -885,8 +984,11 @@ class Recorder:
             self._dropped += 1
             return
 
-        ctx = {"anchor": self._cur_anchor_ref()}
+        # ctx 携带跨帧会话态（金币欠账对账），diff 本身仍是纯函数
+        ctx = {"anchor": self._cur_anchor_ref(),
+               "pending_gold": self._pending_gold}
         events = diff_frames(prev, cur, ctx)
+        self._pending_gold = int(ctx.get("pending_gold") or 0)
         for ev in events:
             self._emit(ev)
 
@@ -977,6 +1079,7 @@ class Recorder:
             self.store = None
             return
         self._t0 = time.time()
+        self._pending_gold = 0          # 新局清空金币欠账
         self._rounds_started = 1 if frame.round else 0
         self._write_shop_snapshot(frame)
         self._emit({

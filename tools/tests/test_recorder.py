@@ -220,12 +220,88 @@ class TestDiffCombatAndRound(unittest.TestCase):
         rs = next(e for e in ev if e["type"] == "round_start")
         self.assertEqual(rs["action"]["to_round"], 7)
 
-    def test_unknown_change_when_unclassifiable(self):
+    def test_gold_up_without_items_is_round_income(self):
+        """金币增加且无物品变化 = 回合奖励/利息，不该报"未归类"。"""
         prev = _frame(gold=10)
-        cur = _frame(gold=13)   # 金币增加但没有物品变化
+        cur = _frame(gold=13)
         ev = _diff(prev, cur)
-        self.assertEqual(_types(ev), ["unknown_change"])
-        self.assertEqual(ev[0]["confidence"], 0.0)
+        self.assertEqual(_types(ev), ["round_income"])
+        self.assertEqual(ev[0]["action"]["amount"], 3)
+        self.assertGreaterEqual(ev[0]["confidence"], 0.7)
+
+
+class TestGoldSettlement(unittest.TestCase):
+    """买入与扣款不同帧：bought 先变、金币下一帧才掉（2026-10-28 实机实证）。"""
+
+    def test_late_gold_deduction_is_settled(self):
+        ctx = {"anchor": "x"}
+        prev = _frame(gold=10, shop=_shop((0, "Dagger", 3, 3, False, False, False, False)))
+        cur = _frame(gold=10, shop=_shop((0, "Dagger", 3, 3, False, False, True, False)))
+        ev = diff_frames(prev, cur, ctx)
+        self.assertEqual(_types(ev), ["buy"])
+        self.assertEqual(ctx["pending_gold"], 3)      # 欠账 3 金
+
+        prev2 = cur
+        cur2 = _frame(gold=7,
+                      shop=_shop((0, "Dagger", 3, 3, False, False, True, False)),
+                      storage=_st(("Dagger", 0, 0, 0, ())))
+        ev2 = diff_frames(prev2, cur2, ctx)
+        self.assertIn("gold_settle", _types(ev2))
+        settle = next(e for e in ev2 if e["type"] == "gold_settle")
+        self.assertEqual(settle["action"]["settled"], 3)
+        self.assertEqual(ctx["pending_gold"], 0)
+
+    def test_no_double_counting_when_gold_drops_same_frame(self):
+        ctx = {"anchor": "x"}
+        prev = _frame(gold=10, shop=_shop((0, "Dagger", 3, 3, False, False, False, False)))
+        cur = _frame(gold=7, shop=_shop((0, "Dagger", 3, 3, False, False, True, False)),
+                     storage=_st(("Dagger", 0, 0, 0, ())))
+        ev = diff_frames(prev, cur, ctx)
+        self.assertEqual(_types(ev), ["buy"])
+        self.assertEqual(ctx["pending_gold"], 0)      # 已当场扣掉，不欠账
+
+
+class TestShopRestock(unittest.TestCase):
+    def test_bulk_replacement_is_restock(self):
+        prev = _frame(gold=10, shop=_shop(
+            (0, "Forging Hammer", 5, 5, False, False, False, False),
+            (1, "Garlic", 3, 3, False, False, False, False),
+            (2, "Pocket Sand", 2, 2, False, False, False, False),
+            (3, "Piggybank", 4, 4, False, False, False, False)))
+        cur = _frame(gold=10, shop=_shop(
+            (0, "Slime Time", 6, 6, False, False, False, False),
+            (1, "Just Stats", 4, 4, False, False, False, False),
+            (2, "Smelly Barrier", 5, 5, False, False, False, False),
+            (3, "Whetstone", 3, 3, False, False, False, False)))
+        self.assertEqual(_types(_diff(prev, cur)), ["shop_restock"])
+
+    def test_single_slot_change_is_reroll_not_restock(self):
+        prev = _frame(gold=10, shop=_shop(
+            (0, "Dagger", 3, 3, False, False, False, False),
+            (1, "Broom", 4, 4, False, False, False, False),
+            (2, "Garlic", 3, 3, False, False, False, False)))
+        cur = _frame(gold=9, shop=_shop(
+            (0, "Sword", 5, 5, False, False, False, False),
+            (1, "Broom", 4, 4, False, False, False, False),
+            (2, "Garlic", 3, 3, False, False, False, False)))
+        self.assertEqual(_types(_diff(prev, cur)), ["reroll"])
+
+
+class TestGemSocket(unittest.TestCase):
+    def test_socketed_gem_is_paired_not_unknown(self):
+        """散装宝石消失 + 宿主 gems 增加 → gem_socket，不再是两条半截事件。"""
+        prev = _frame(backpack=_bp(
+            ("Chipped Topaz", 3, 6, 0, (), -1),
+            ("Wooden Sword", 2, 4, 0, (), -1)))
+        cur = _frame(backpack=_bp(
+            ("Wooden Sword", 2, 4, 0, ("Chipped Topaz",), -1)))
+        ev = _diff(prev, cur)
+        types = _types(ev)
+        self.assertIn("gem_socket", types)
+        self.assertNotIn("unknown_change", types)
+        sock = next(e for e in ev if e["type"] == "gem_socket")
+        self.assertEqual(sock["action"]["id"], "Chipped Topaz")
+        self.assertEqual(sock["action"]["from"], "backpack")
 
 
 class TestNormalize(unittest.TestCase):

@@ -40,11 +40,16 @@ from core.store import iter_run_events, load_meta, load_snapshot  # noqa: E402
 # 决策点事件（切段）
 DECISION_TYPES = {"round_start", "buy", "sell", "reroll", "combine", "combat_start"}
 # 过程事件（只更新状态，不切段）
-PROCESS_TYPES = {"place", "move", "rotate", "gems_change", "storage_in",
-                 "storage_put", "lock", "unlock"}
+# gem_socket 是"散装宝石镶进宿主"，零花费、纯摆盘动作 → 归过程事件，交给 RL；
+# 段内净零时随段一起丢弃（换一颗再换回来不会留下样本）。
+PROCESS_TYPES = {"place", "move", "rotate", "gems_change", "gem_socket",
+                 "storage_in", "storage_put", "lock", "unlock"}
 # 忽略事件（不影响状态等价性）
+# gold_settle / round_income 是"资源账目的滞后记录"，只影响金币数字，
+# 不改变物品与商店的等价性；shop_restock 是回合换货的自然现象。
 IGNORE_TYPES = {"frame", "gap", "run_start", "run_end", "carry_over",
-                "combat_end", "recorder_stopped"}
+                "combat_end", "recorder_stopped", "gold_settle",
+                "round_income", "shop_restock"}
 
 
 @dataclass
@@ -157,6 +162,20 @@ def apply_event(state: WorldState, ev: dict) -> WorldState:
     if t == "combat_end":
         if a.get("hp_after") is not None:
             st.hp = a.get("hp_after")
+        return st
+
+    if t in ("gold_settle", "round_income"):
+        gd = d.get("gold")
+        if gd is not None and st.gold is not None:
+            st.gold = st.gold + int(gd)
+        return st
+
+    if t == "gem_socket":
+        # 散装宝石消失（宿主的 gems 由同帧 gems_change 记录）
+        if a.get("from") == "storage":
+            _remove_any(st.storage, a.get("id"))
+        else:
+            _remove_any(st.backpack, a.get("id"))
         return st
 
     if t in ("buy", "sell", "reroll"):

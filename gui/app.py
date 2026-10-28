@@ -387,6 +387,22 @@ class BackpackAIApp(tk.Tk):
         self._cell_cache[kind] = None
         return None
 
+    @staticmethod
+    def _backpack_signature(items) -> tuple:
+        """背包重绘判等用的签名（名字/格/旋转/宝石），变则重绘，不变则跳过。"""
+        out = []
+        for it in items or []:
+            gems = tuple(sorted(g.get("id") for g in (it.get("gems") or [])
+                                if isinstance(g, dict) and g.get("id")))
+            out.append((
+                it.get("name"), it.get("row"), it.get("col"),
+                round(float(it.get("rotation") or 0.0), 3), gems,
+                tuple(it.get("cells") or ()),
+                tuple(sorted(c.get("id") for c in (it.get("contents") or [])
+                             if isinstance(c, dict))),
+            ))
+        return tuple(sorted(out, key=str))
+
     def _draw_backpack(self, items):
         """仿游戏渲染，严格分层（底→顶）：背包底框 → 背包(容器) → 格子素材 → 普通物品。
 
@@ -1417,6 +1433,9 @@ class BackpackAIApp(tk.Tk):
             self._start_index_map_refresh()
             # 记录器：初始化即就绪（人类手动游玩不需要点「开始」挂机）
             try:
+                # 先把上次被强杀留下的残缺局收干净（后台跑，读盘可能慢）
+                threading.Thread(target=self.bot.seal_orphan_records,
+                                 daemon=True).start()
                 rec = self.bot.make_recorder()
                 if rec.cfg.enabled:
                     self.bot.start_recording()
@@ -1503,36 +1522,59 @@ class BackpackAIApp(tk.Tk):
         self._state_thread = threading.Thread(target=_poll, daemon=True)
         self._state_thread.start()
 
-    def _start_exit_watchdog(self):
-        """『生命看门狗』守护线程：作为进程退出的终极兜底。
+    # 看门狗阈值（秒）
+    STALL_SEAL_AFTER = 60      # 主线程卡这么久 → 记日志 + 尽力收尾当前记录
+    STALL_EXIT_AFTER = 180     # 再卡这么久（合计） → 才允许强杀
 
-        即便 _on_close 因任何原因未被触发（事件循环卡死、WM_DELETE_WINDOW 未派发
-        等），只要出现以下任一情况就强制 os._exit(0) 终止整个进程，杜绝残留：
-          1) 已请求关闭（_closing 为真）；
-          2) 主窗口已被销毁（winfo_exists() 为假）——无论因何种方式关闭；
-          3) 主线程心跳超时（>8s 未更新）——说明主线程疑似卡死（如绘制/读取异常），
-             此时强制退出，避免进程变成僵尸。
-        看门狗本身不依赖任何 GUI 调用能否成功，异常也照常退出。
+    def _start_exit_watchdog(self):
+        """『生命看门狗』守护线程：**只读标志，绝不调用任何 Tk API**。
+
+        历史教训（2026-10-28 实机）：旧版在守护线程里调 self.winfo_exists()，
+        tkinter 抛 "main thread is not in main loop" 后被 except 分支
+        os._exit(0) 吞掉——进程在第 6 回合静默消失，日志、收尾、meta 全丢。
+        Tk 不是线程安全的，任何 GUI 调用都必须留在主线程。
+
+        现在的三档处置：
+          1) 已请求关闭（_closing）→ 立即退出；
+          2) 主线程卡住 > STALL_SEAL_AFTER → 记日志 + 尽力归档当前记录
+             （对局数据比"看起来没卡"重要），但**不杀进程**；
+          3) 卡住 > STALL_EXIT_AFTER → 才强杀（此时记录已尽力保存）。
         """
+        self._stall_sealed = False
+
         def _watch():
             while True:
                 try:
-                    time.sleep(0.3)
+                    time.sleep(0.5)
                 except Exception:
                     pass
-                try:
-                    if self._closing:
-                        os._exit(0)
-                    if not self.winfo_exists():
-                        os._exit(0)
-                    if time.time() - self._heartbeat > 15:
-                        os._exit(0)
-                except Exception:
-                    # 连 winfo_exists 都抛异常（窗口已半销毁）→ 直接退出
+
+                if self._closing:
+                    os._exit(0)
+
+                stalled = time.time() - self._heartbeat
+                if stalled > self.STALL_SEAL_AFTER and not self._stall_sealed:
+                    self._stall_sealed = True
+                    # 只写日志文件 + 归档记录，不碰 Tk
+                    logging.getLogger(__name__).warning(
+                        "主线程已 %d 秒未更新心跳，正在收尾当前记录", int(stalled))
                     try:
-                        os._exit(0)
-                    except Exception:
+                        if self.bot is not None:
+                            self.bot.stop_recording("ui_stall")
+                    except Exception:  # noqa: BLE001
                         pass
+                if stalled > self.STALL_EXIT_AFTER:
+                    try:
+                        if self.bot is not None:
+                            self.bot.stop_recording("ui_stall_exit")
+                    except Exception:  # noqa: BLE001
+                        pass
+                    os._exit(0)
+
+                # 心跳恢复后允许下一次再收尾
+                if stalled < 5 and self._stall_sealed:
+                    self._stall_sealed = False
+
         threading.Thread(target=_watch, daemon=True).start()
 
     def _apply_state(self, state):
@@ -1562,20 +1604,26 @@ class BackpackAIApp(tk.Tk):
                 f"阶段: {phase}  |  摆盘: {n_bp}  储物箱: {n_st}  商店: {n_shop}")
             self.bp_count_var.set(f"物品 {n_bp}")
             bp = live.get("backpack", [])
-            self._draw_backpack(bp)
+            # 背包签名不变就跳过重绘：战斗里物品不动，旧版每 0.5s 全量
+            # delete("all") + 逐物品 PIL 旋转缩放，是主线程卡顿的主要来源之一。
+            sig = self._backpack_signature(bp)
+            if sig != getattr(self, "_bp_sig", None):
+                self._bp_sig = sig
+                self._draw_backpack(bp)
             self._refresh_text_panel(self.storage_text, live.get("storage", []),
                                      self.storage_count)
             self._refresh_text_panel(self.shop_text, live.get("shop", []),
                                      self.shop_count, show_price=True)
 
     def _on_close(self):
-        # 1) 立刻置关闭标志（生命看门狗会据此在 0.3s 内强制退出）
+        # 1) 立刻置关闭标志
         self._closing = True
-        # 2) 看门狗：独立 daemon 线程，短延时后无条件 os._exit(0)。
-        #    即使本函数后续任何步骤卡死/抛错，进程也必然终止。
+        # 2) 兜底强杀延后到 5s：给记录器留出归档当前回合的时间
+        #    （旧版 0.25s 就 os._exit(0)，正在收尾的记录会被截断，
+        #      表现为"最后一回合有明文/半截、meta 无 end_reason"）。
         def _kill():
             try:
-                time.sleep(0.25)
+                time.sleep(5.0)
             except Exception:
                 pass
             os._exit(0)
