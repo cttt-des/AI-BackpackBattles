@@ -109,11 +109,30 @@ class CoreEventBus(GodotObject):
 
 		signalID = self.signalIDs[signalName]
 		emissionID = self.getEmissionID(emitter, signalID)
-		for funcRef in _iter(self.connections.get(emissionID, [])):
+		# ★ np25：连接表值 = [funcRef, receiver] 对（receiver 供 BUS 诊断读身份；
+		#   派发语义不变——仍只调 funcRef）。Godot 3 FuncRef 无实例读取器，唯一
+		#   身份源就是连接时的 receiver 引用。
+		_bus_list = self.connections.get(emissionID, [])
+		# ★ np25 诊断（受控，双门控零耗链）：总线派发面——发射者/信号/监听数 +
+		#   监听者逐个身份（isCoreItem 鸭子守卫，非物品监听记 "?"）。
+		#   对拍 activated 级联派发序（run874_r7 P3 py-only 面）。
+		if self._ctx.rng.oracle_trace and self._ctx.rng._stacktrace:
+			_eid = "?"
+			if emitter != None and emitter.has_method("isCoreItem"):
+				_eid = String(emitter.descriptor.identifier) + '/ot' + str(int(emitter.ownerType))
+			self._ctx.rng.trace_diag("BUS", String(signalName), str(len(_bus_list)), "emitter=" + _eid)
+		_bus_i = 0
+		for _bus_pair in _iter(_bus_list):
 			if self._ctx.fight_ended:
 				return
-
-			funcRef.call_funcv(arguments)
+			if self._ctx.rng.oracle_trace and self._ctx.rng._stacktrace:
+				_rid = "?"
+				_recv = _bus_pair[1]
+				if _recv != None and _recv.has_method("isCoreItem"):
+					_rid = String(_recv.descriptor.identifier) + '/ot' + str(int(_recv.ownerType))
+				self._ctx.rng.trace_diag("BUSL", String(signalName), str(_bus_i), _rid)
+			_bus_i += 1
+			_bus_pair[0].call_funcv(arguments)
 
 
 	def connectEvent(self, emitter, signalName, receiver, method):
@@ -126,7 +145,8 @@ class CoreEventBus(GodotObject):
 		funcRef.set_function(method)
 		funcRef.set_instance(receiver)
 
-		self.Util_dictAppend(self.connections, emissionID, funcRef)
+		# ★ np25：值 = [funcRef, receiver] 对（见 emitAndLog 注释）。
+		self.Util_dictAppend(self.connections, emissionID, [funcRef, receiver])
 
 
 	def getEmissionID(self, emitter, signalID):

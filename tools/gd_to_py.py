@@ -1923,11 +1923,81 @@ def emit_bootstrap(order, files_by_rel):
     return "".join(out)
 
 
+def _apply_cooldown_f32(texts):
+    """★ np25 P3（py-only 压线到期翻转）：冷却链对称 float32 化。
+
+    GDScript 3 的 Variant REAL 是 float32——每个算术 op 一次舍入；直译成
+    Python float64 后低位分叉在**压线到期判定**（triggerTime 恰在 0 附近）
+    上翻帧：run874_r7 实证同一物理帧 gd 到期序 Chili#10→Chili#11→Blueberries、
+    py 为 Chili#10→Blueberries→Chili#11（TRIG/BUS 双侧桩，rng 消耗逐值全等）。
+    规则清单覆盖 triggerTime/iterationCooldown/speedScale 的**全部**写点
+    （缺一处就制造新的单边不对称——np25 曾因漏 953/970 两写点把 run570 打红）。
+    f32 = _rt 的 float32 舍入垫片（生成文件已 `from ._rt import *`）。
+    """
+    R = [
+        # 物理帧推进（Item.py 与 CoreItem.py 两处同形）
+        ("self.triggerTime -= delta * self.getSpeed()",
+         "self.triggerTime = f32(self.triggerTime - f32(delta * self.getSpeed()))"),
+        # speed 链（getSpeed）
+        ("speed_ = self.speed() + self.getStackSpeedMods()",
+         "speed_ = f32(self.speed() + self.getStackSpeedMods())"),
+        ("modifiedSpeed = 1.0 + speed_",
+         "modifiedSpeed = f32(1.0 + speed_)"),
+        ("modifiedSpeed = _div(1.0, 1.0 - speed_)",
+         "modifiedSpeed = f32(_div(1.0, 1.0 - speed_))"),
+        ("modifiedSpeed = clamp(modifiedSpeed, 0.1, 10.0)",
+         "modifiedSpeed = f32(clamp(modifiedSpeed, 0.1, 10.0))"),
+        # getStackSpeedMods
+        ("return (self.character().getHeat() - self.character().getCold()) * 0.02",
+         "return f32(f32(self.character().getHeat() - self.character().getCold()) * 0.02)"),
+        # adjustCooldown
+        ("adjustedCooldown = self.getCooldown()",
+         "adjustedCooldown = f32(self.getCooldown())"),
+        ("adjustedCooldown *= self.ctx.rng.randf_range(0.975, 1.05)",
+         "adjustedCooldown = f32(adjustedCooldown * self.ctx.rng.randf_range(0.975, 1.05))"),
+        ("adjustedCooldown *= self.ctx.rng.randf_range(0.95, 1.05)",
+         "adjustedCooldown = f32(adjustedCooldown * self.ctx.rng.randf_range(0.95, 1.05))"),
+        # updateBaseCooldown
+        ("cdProgress = _div(self.triggerTime, self.iterationCooldown)",
+         "cdProgress = f32(_div(self.triggerTime, self.iterationCooldown))"),
+        # trigger() 与 onCooldownStart（两处同形 iterationCooldown 赋值）
+        ("self.iterationCooldown = self.adjustCooldown()",
+         "self.iterationCooldown = f32(self.adjustCooldown())"),
+        ("self.triggerTime = self.iterationCooldown",
+         "self.triggerTime = f32(self.iterationCooldown)"),
+        ("self.triggerTime += self.iterationCooldown",
+         "self.triggerTime = f32(self.triggerTime + self.iterationCooldown)"),
+        ("self.triggerTime = cdProgress * self.iterationCooldown",
+         "self.triggerTime = f32(cdProgress * self.iterationCooldown)"),
+        # advanceCooldownPercent / advanceCooldownSeconds
+        ("reduction = _div(amount, 100.0) * self.iterationCooldown",
+         "reduction = f32(_div(amount, 100.0) * self.iterationCooldown)"),
+        ("self.triggerTime -= reduction",
+         "self.triggerTime = f32(self.triggerTime - reduction)"),
+        ("self.triggerTime -= amount * self.getSpeed()",
+         "self.triggerTime = f32(self.triggerTime - f32(amount * self.getSpeed()))"),
+        # addSpeed / reduceSpeed
+        ("self.speedScale += amount",
+         "self.speedScale = f32(self.speedScale + amount)"),
+        ("self.speedScale -= amount",
+         "self.speedScale = f32(self.speedScale - amount)"),
+    ]
+    for rel, text in list(texts.items()):
+        t = text
+        for old, new in R:
+            if old in t:
+                t = t.replace(old, new)
+        if t != text:
+            texts[rel] = t
+    return texts
+
+
 def write_pkg(order, files_by_rel, by_name, by_path, class_names, stat, hit, write):
     texts = {}
     for rel in order:
         texts[rel] = transform_file(files_by_rel[rel], by_name, by_path,
                                     stat, hit, class_names)
+    texts = _apply_cooldown_f32(texts)
     if not write:
         return texts
     dirs = {OUT_PKG}

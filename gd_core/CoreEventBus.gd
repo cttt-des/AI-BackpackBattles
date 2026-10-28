@@ -95,11 +95,30 @@ func emitAndLog(emitter, signalName: String, event, arguments: Array):
 	
 	var signalID = signalIDs[signalName]
 	var emissionID = getEmissionID(emitter, signalID)
-	for funcRef in connections.get(emissionID, []):
+	# ★ np25：连接表值 = [funcRef, receiver] 对（receiver 供 BUS 诊断读身份；
+	#   派发语义不变——仍只调 funcRef）。Godot 3 FuncRef 无实例读取器，唯一
+	#   身份源就是连接时的 receiver 引用。
+	var _bus_list: Array = connections.get(emissionID, [])
+	# ★ np25 诊断（受控，双门控零耗链）：总线派发面——发射者/信号/监听数 +
+	#   监听者逐个身份（isCoreItem 鸭子守卫，非物品监听记 "?"）。
+	#   对拍 activated 级联派发序（run874_r7 P3 py-only 面）。
+	if _ctx.rng.oracle_trace and _ctx.rng._stacktrace:
+		var _eid = "?"
+		if emitter != null and emitter.has_method("isCoreItem"):
+			_eid = String(emitter.descriptor.identifier) + "/ot" + str(int(emitter.ownerType))
+		_ctx.rng.trace_diag("BUS", String(signalName), str(_bus_list.size()), "emitter=" + _eid)
+	var _bus_i = 0
+	for _bus_pair in _bus_list:
 		if _ctx.fight_ended:
 			return
-		
-		funcRef.call_funcv(arguments)
+		if _ctx.rng.oracle_trace and _ctx.rng._stacktrace:
+			var _rid = "?"
+			var _recv = _bus_pair[1]
+			if _recv != null and _recv.has_method("isCoreItem"):
+				_rid = String(_recv.descriptor.identifier) + "/ot" + str(int(_recv.ownerType))
+			_ctx.rng.trace_diag("BUSL", String(signalName), str(_bus_i), _rid)
+		_bus_i += 1
+		_bus_pair[0].call_funcv(arguments)
 
 
 func connectEvent(emitter, signalName: String, receiver, method: String):
@@ -112,7 +131,8 @@ func connectEvent(emitter, signalName: String, receiver, method: String):
 	funcRef.set_function(method)
 	funcRef.set_instance(receiver)
 	
-	Util_dictAppend(connections, emissionID, funcRef)
+	# ★ np25：值 = [funcRef, receiver] 对（见 emitAndLog 注释）。
+	Util_dictAppend(connections, emissionID, [funcRef, receiver])
 
 
 func getEmissionID(emitter, signalID: int) -> int:
