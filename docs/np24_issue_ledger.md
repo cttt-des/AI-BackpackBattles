@@ -211,6 +211,23 @@
 > 的 gd 腿产物问题）。ESHUF/GACT/CDX 诊断行保留（双门控零耗）。
 > ⚠ 教训入册：**「_rt 垫片 docstring 声称的调用方」必须 grep 实证**——
 > 声称的注入点不存在时流语义整体漂移，且批内跨场污染极其隐蔽。
+>
+> **★ 新发现的问题批次（2026-10-29，np25 主会话寻 新问题轮）**：
+> - **新A：oracle 探针 rng_log 只覆盖战斗中段窗口**——run572_r9 探针
+>   （events≡语料逐字节 ✓）的 rng_log 仅 1544 行、t=30.0→44.0s，而战斗
+>   更长且分歧点在 6.27s——窗口外分叉无法逐抽对位。根因疑似 harness 的
+>   first-pass/resume 快照机制只留了 resume 窗口的 trace（rng_log_first.txt
+>   分档线索 oracle_fight.gd:1086-1091）。**修法方向**：给探针加
+>   ORACLE_FULL_TRACE 开关（首跑即开 trace、禁用覆盖式分档），或查清
+>   resume 窗口的起点约定。
+> - **新B：run572_r9 ev@109 = Strong Divine Potion giveRandomBuffs 选型分叉**
+>   （oracle 首爆 Vampirism+1 vs gd Lucky+2；爆发构成 oracle
+>   [103:+1,101:+2,106:+1]）——候选列表两侧全同（getBuffs=range(101,108)），
+>   是 pick 值分叉，被新A阻挡逐抽定位；新A修后即可并簇 evt1。
+> - **新C：run845_r18 py IndexError 重测被阻**——gd 产物正被全量重建，
+>   全量落地后第一件事重测（全局流修复可能已顺带改变其状态）。
+> - **待验证**：全局流修复的全量分片复验运行中（预期 ≥148/914，即
+>   +5 场 py-only 翻绿）；落地后按新簇签名重扫。
 
 >
 > **进行中（np25 主会话，若已入库则以 git log 为准）**：py-only 收敛。
