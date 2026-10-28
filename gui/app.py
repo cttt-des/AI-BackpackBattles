@@ -116,6 +116,7 @@ class BackpackAIApp(tk.Tk):
         self._heartbeat = time.time()  # 主线程存活心跳（看门狗用）
         self._last_live = None          # 最近一次读取到的物品快照（导出阵容用）
         self._last_round = None         # 最近一次读取到的回合（导出阵容用）
+        self._rec_tick = 0               # 记录状态行的刷新计数（降频用）
 
         # 物品资源库（贴图 + 中文名 + 占格形状 + 格子素材）
         self.item_db = ItemDB()
@@ -321,8 +322,27 @@ class BackpackAIApp(tk.Tk):
             cursor="hand2", activebackground=COLORS["border"],
             activeforeground=COLORS["text"],
             command=self._on_export_current_selection, padx=6, pady=8)
-        cur_sel_btn.pack(fill="x", padx=13, pady=(0, 12))
+        cur_sel_btn.pack(fill="x", padx=13, pady=(0, 8))
         self.buttons["cur_selection"] = cur_sel_btn
+
+        # ---- 对局语料记录（人类手动游玩也用它）----
+        rec_row = tk.Frame(panel, bg=COLORS["panel"])
+        rec_row.pack(fill="x", padx=13, pady=(0, 8))
+        self.rec_var = tk.StringVar(value="记录: 未开始")
+        tk.Label(rec_row, textvariable=self.rec_var, font=FONTS["small"],
+                 bg=COLORS["panel"], fg=COLORS["text_dim"]).pack(side="left")
+        self.rec_btn = tk.Button(
+            rec_row, text="开始记录", font=FONTS["button"], relief="flat",
+            bg=COLORS["panel_light"], fg=COLORS["text"], cursor="hand2",
+            activebackground=COLORS["border"], activeforeground=COLORS["text"],
+            command=self._on_record_toggle, padx=6, pady=5)
+        self.rec_btn.pack(side="right")
+        open_btn = tk.Button(
+            rec_row, text="目录", font=FONTS["small"], relief="flat",
+            bg=COLORS["panel"], fg=COLORS["text_dim"], cursor="hand2",
+            activebackground=COLORS["border"], activeforeground=COLORS["text"],
+            command=self._on_open_records, padx=6, pady=5)
+        open_btn.pack(side="right", padx=(0, 4))
 
         self._set_buttons_state(running=False, initialized=False)
 
@@ -851,6 +871,8 @@ class BackpackAIApp(tk.Tk):
         en(self.buttons["step"], initialized and not running)
         en(self.buttons["stop"], running)
         en(self.buttons["estop"], True)
+        if getattr(self, "rec_btn", None) is not None:
+            en(self.rec_btn, initialized)
 
     def _set_status(self, text: str, color: str):
         self.status_text.configure(text=text, fg=color)
@@ -1272,6 +1294,56 @@ class BackpackAIApp(tk.Tk):
                                  f"{datetime.fromtimestamp(run['time']).strftime('%m-%d %H:%M')}")
 
     # ---------- 日志 ----------
+    # ---------- 对局语料记录 ----------
+    def _on_record_toggle(self):
+        """开始/停止记录。人类手动游玩时不需要点「开始」，初始化后即可记录。"""
+        if not self.bot or not self._initialized:
+            messagebox.showwarning("提示", "请先初始化")
+            return
+        rec = self.bot.recorder
+        if rec is not None and rec.running:
+            self.bot.stop_recording("user_stop")
+            self._log("info", "○ 已停止记录")
+            self._refresh_rec_label()
+            return
+
+        if self.bot.start_recording():
+            rid = (self.bot.recording_stats() or {}).get("run_id") or "等待首帧"
+            self._log("info", f"● 开始记录 → {rid}")
+            self.rec_btn.configure(text="停止记录", bg=COLORS["danger"],
+                                   fg="#ffffff", activebackground=COLORS["danger"])
+        else:
+            self._log("error", "记录启动失败，详见日志")
+        self._refresh_rec_label()
+
+    def _refresh_rec_label(self):
+        stats = self.bot.recording_stats() if self.bot else {"running": False}
+        if stats.get("running"):
+            text = (f"记录中 · {stats.get('run_id') or '—'} · "
+                    f"{stats.get('events', 0)} 事件")
+        else:
+            text = "记录: 未开始"
+        self.rec_var.set(text)
+        if not stats.get("running"):
+            self.rec_btn.configure(text="开始记录", bg=COLORS["panel_light"],
+                                   fg=COLORS["text"],
+                                   activebackground=COLORS["border"])
+
+    def _on_open_records(self):
+        """打开记录目录（Windows 资源管理器）。"""
+        try:
+            base = get_base_dir()
+            cfg = (self.bot.config.get("recorder") or {}) if self.bot else {}
+            out = cfg.get("out_dir") or "output/records"
+            path = Path(out) if os.path.isabs(out) else base / out
+            path.mkdir(parents=True, exist_ok=True)
+            if os.name == "nt":
+                os.startfile(str(path))  # noqa: S606
+            else:
+                messagebox.showinfo("记录目录", str(path))
+        except Exception as e:  # noqa: BLE001
+            messagebox.showerror("打开失败", f"{e}")
+
     def _log(self, level: str, msg: str):
         self.log_text.configure(state="normal")
         self.log_text.insert("end", msg + "\n", level)
@@ -1343,6 +1415,17 @@ class BackpackAIApp(tk.Tk):
             self._initialized = True
             self._log("success", "✓ 初始化完成，可以开始")
             self._start_index_map_refresh()
+            # 记录器：初始化即就绪（人类手动游玩不需要点「开始」挂机）
+            try:
+                rec = self.bot.make_recorder()
+                if rec.cfg.enabled:
+                    self.bot.start_recording()
+                    self._log("info", f"● 记录已按配置自动开始 → {rec.run_id}")
+                else:
+                    self._log("info", "记录器就绪（点「开始记录」即可采集真人语料）")
+            except Exception as e:  # noqa: BLE001
+                self._log("warning", f"记录器初始化失败: {e}")
+            self._refresh_rec_label()
             if self.bot and self.bot.godot_reader and self.bot.godot_reader.is_ready():
                 self._set_status("已就绪", COLORS["success"])
                 self._log("success", "✓ 结构性读取已启用：金币/血量/回合自动读取")
@@ -1453,6 +1536,10 @@ class BackpackAIApp(tk.Tk):
         threading.Thread(target=_watch, daemon=True).start()
 
     def _apply_state(self, state):
+        # 记录状态行（降频：每 10 帧刷一次，避免频繁 set 文本）
+        self._rec_tick = getattr(self, "_rec_tick", 0) + 1
+        if self._rec_tick % 10 == 0 and getattr(self, "rec_var", None) is not None:
+            self._refresh_rec_label()
         cal = state.get("calibrated", {})
         gold = state.get("gold") if cal.get("gold") else "—"
         hp = state.get("hp") if cal.get("hp") else "—"

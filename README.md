@@ -76,6 +76,33 @@
 
 > 这些工具证明的是"改动没有引入回归"。与游戏行为的最终对齐以 `output/combat_logs/` 实录对照为准——多个严重问题正是在固定用例全绿的状态下由实录发现的。
 
+### ⑥ 对局语料记录器（真人操作 → 训练数据）
+
+主程序内置记录器：**纯外置只读**地记录整局操作（买/卖/刷新/锁定/合成）与操作时的完整状态
+（回合、金币、生命、职业、摆盘、储物箱、商店 5 槽及价格/打折/锁定），产出两路语料：
+
+| 输出 | 内容 | 给谁用 |
+|------|------|--------|
+| `raw/` | 原样事件流（含每一次摆放、每一次锁定切换），按回合分片 + lzma 归档 | 审计、回溯、可重算 |
+| `corpus/decisions.jsonl` | 折叠后的**局内决策**样本（状态 + 净动作 + 下一状态 + 标签） | 局内决策 AI（行为克隆 → 价值加权） |
+| `corpus/lineups.jsonl` | 每回合**开战瞬时摆盘**（v4 阵容 + 可用商店资源 + 结果标签） | 摆盘 AI（RL 的分布基准 / OOD 告警 / 评估集） |
+| `corpus/traces.jsonl` | 可选：摆盘搜索轨迹（`--traces` 才导出） | 仅 RL 热启动 |
+
+**关键设计**：反复摆盘、反复切换锁定不会污染训练集——折叠层按"决策点"（买/卖/刷新/合成/开战）
+切段，段内净变化为零就整段丢弃；**摆盘过程不产生决策样本**（那是 RL 自己探索的领域），
+只在 `next_state` 里体现结果。详见 [docs/recorder_design.md](docs/recorder_design.md)。
+
+    # GUI：初始化后点「开始记录」即可（人类手动游玩也照常用），结束后点「停止记录」
+    python launcher.py
+
+    # 折叠 + 校验 + 统计（也可对整目录批量）
+    python -X utf8 tools/corpus_fold.py  output/records/<run_id>
+    python -X utf8 tools/corpus_check.py output/records/<run_id>
+    python -X utf8 tools/corpus_stats.py output/records/<run_id>
+    python -X utf8 tools/corpus_fold.py  --all output/records --traces
+
+配置在 `config.yaml` 的 `recorder:` 段（采样间隔、压缩方式、是否也记录 AI 自身动作等）。
+
 ## 项目结构
 
 ```
@@ -85,6 +112,9 @@ gd_core_items/              # 物品行为脚本（gd_core 侧）
 gd_core_test/               # Godot 基准对局结果（56 局逐字符校验用）
 core/                       # 外挂 AI 核心（bot/memory_reader/item_reader/godot_reader/
                             #   combatlog_reader/build_history/item_db/…）
+├── recorder.py             # ★ 对局语料记录器（采样/去抖/差分/局边界，纯只读）
+├── store.py                #   记录写盘：回合分片 + lzma 归档 + 快照
+└── lineup.py               #   ItemInfo → v4 阵容的唯一序列化实现
 engine/                     # 共享渲染层（log_text 游戏格式战报/i18n）+ 历史转译内核（已下线）
 simulator/                  # CLI/GUI 入口（simulate.py 单内核 gd_core）+ 数据管线
 ├── gd_core_engine.py       # gd_core 内核适配层
@@ -102,6 +132,7 @@ assets/                     # 物品贴图、battle_items.json、gd_core_runtime
                             #   item_index_map*.json（历史解码映射）、翻译表
 dist/lineups/               # 内置与游戏历史阵容 JSON
 tools/                      # 逆向工具 + 真值对照 + 验收链（见上表）
+                            #   + corpus_fold/check/stats（对局语料折叠与校验）
 docs/                       # 逆向记录、内核真值（engine_truth/gd_core_truth/
                             #   engine_v2）、模拟器架构、阵容格式
 ```

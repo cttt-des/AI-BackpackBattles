@@ -45,9 +45,17 @@ godot:
   game_node_name: "Game"
   bfs_max_depth: 6
   # 2026-07-26 活体标定（金币13/生命5/回合1）：[72]=gold [68]=hp [65]=round
+  # 注意：[68] 实测读到的是 Game.tries（"剩余生命次数"），与游戏内红心数一致，
+  #       但语义是 tries 而非战斗血量——语料记录按此语义使用（见 docs/recorder_design.md §11.3）。
   member_gold: 72
   member_hp: 68
   member_round: 65
+  # 记录器用：胜负计数（由 curRound=65 在 Game.gd 声明序推得，值域校验后采信）
+  member_wins: 66
+  member_losses: 67
+  # Game.state：0=Title 1=Shop 2=Combat。-1 = 未标定（阶段判定退回 CombatLog+场景启发式）。
+  # 标定方法见 docs/recorder_design.md §11.4
+  member_state: -1
     
   os_main_loop_off: 0x1D0
   scenetree_root_off: 0x148     # 真 root 视口(name='root'，含18个autoload)；0x230 是 current_scene
@@ -60,6 +68,28 @@ godot:
   gdscript_members_off: 0x20
   variant_size: 24
   cowdata_size_back_off: 4       # Vector 元素个数在 _ptr-4（uint32）
+
+# 对局语料记录（训练 AI 用的真人操作日志）
+# 设计见 docs/recorder_design.md：raw/ 原样层 + corpus/ 折叠层两层结构。
+# 人类手动游玩时只需初始化 + 打开记录；不需要点「开始」挂机。
+recorder:
+  enabled: false          # GUI 的「开始记录」按钮也会切换
+  out_dir: "output/records"
+  interval_ms: 400        # 采样间隔（毫秒）
+  adaptive_interval: true # 读得慢时自动拉长间隔，避免堆积
+  combat_interval_ms: 800 # 战斗段降频（战斗期不做动作差分）
+  capture_bot: false      # true = 也记录 AI 自己执行的动作（source=bot）
+  confirm_frames: 2       # 撕裂读防护：连续两帧一致才提交
+  compress: "lzma"        # lzma | gzip | none（回合归档时压缩）
+  auto_stop_on_title: true
+  max_events_per_run: 20000
+  gap_threshold_ms: 5000
+  save_frames: false      # 调试用：把每帧原始状态也写进事件流
+  fold:
+    export_traces: false  # 是否额外导出摆盘搜索轨迹（RL 热启动用）
+    merge_qty: false      # 连续同名同价买入是否合并为 qty
+    drop_zero_net: true   # 净零段丢弃（反复摆盘/反复锁定的过滤器）
+    engine_winrate: false # 是否调模拟器重算标签胜率
 
 dashboard:
   host: "127.0.0.1"

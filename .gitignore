@@ -107,3 +107,8 @@ gd_core_test/gd_core_items/
 # ============ 根目录一次性脚本（非仓库内容）============
 /shutdown_at_2355.ps1
 /stop_zcode_and_shutdown.bat
+
+# ============ 对局记录（真人语料）与测试临时目录 ============
+# 原始记录不进仓库（单局约 100KB，长期累积很大）；只保留工具与格式文档
+/output/records/
+/.recorder_test_tmp/

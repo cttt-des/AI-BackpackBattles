@@ -96,6 +96,17 @@ GODOT_OFFSETS = {
     # 2026-09-29 活体标定（curClass=2/Berserker，PID 16892）：
     #   Game.gd 成员声明序（var 序，0 起）：curRound=65 / gold=72 / curClass=83
     "member_cur_class": 83,
+    # --- 记录器专用（语料采集）---
+    # member_wins/losses：由 curRound=65 在 Game.gd 声明序里的相对位置推出
+    #   （curRound:65 → wins:66 → losses:67 → tries:68 → triesBeforeFight:69），
+    #   其中 68 已由 member_hp 的活体锚点独立印证（它读到的其实是 tries）。
+    #   仍属**推定值**：read_combat_stats 会做值域校验，不合理即返回 None。
+    "member_wins": 66,
+    "member_losses": 67,
+    # member_state：Game.state（Title=0/Shop=1/Combat=2）。默认 -1 = 未标定，
+    #   阶段判定退化为 CombatLog + 场景启发式（功能不降级，只是少一路信号）。
+    #   标定方法见 docs/recorder_design.md §6。
+    "member_state": -1,
 
     # --- 商店价格读取（2026-10-25 依据解包源码推导，序号经活体锚点验证）---
     # 价格编码（Game.gd:4784）：encode(g) = (g + (g<<32)) ^ randnum，
@@ -937,6 +948,46 @@ class GodotReader:
             "hp": self.read_member(node, self.off["member_hp"]),
             "round": self.read_member(node, self.off["member_round"]),
         }
+
+    def read_combat_stats(self) -> Dict[str, Optional[int]]:
+        """读取胜负计数（Game.wins / Game.losses）。
+
+        记录器用于给语料打标签；这两个成员下标是**推定值**，因此做值域
+        校验（0..99 且 wins+losses 不超过最大回合数），不合理一律返回 None
+        —— 宁可缺标签，也不给错值（与商店价格同一原则）。
+        """
+        node = self.get_game_node()
+        empty = {"wins": None, "losses": None, "state": None}
+        if not node:
+            return empty
+        out: Dict[str, Optional[int]] = dict(empty)
+        wi = int(self.off.get("member_wins", -1))
+        li = int(self.off.get("member_losses", -1))
+        wins = self.read_member(node, wi) if wi >= 0 else None
+        losses = self.read_member(node, li) if li >= 0 else None
+        if isinstance(wins, int) and 0 <= wins <= 99:
+            out["wins"] = wins
+        if isinstance(losses, int) and 0 <= losses <= 99:
+            out["losses"] = losses
+        out["state"] = self.read_state()
+        return out
+
+    def read_state(self) -> Optional[int]:
+        """读取 Game.state（0=Title / 1=Shop / 2=Combat）。
+
+        未标定（member_state<0）或读数越界时返回 None——调用方据此退回
+        CombatLog + 场景启发式，而不是拿可疑值当阶段用。
+        """
+        idx = int(self.off.get("member_state", -1))
+        if idx < 0:
+            return None
+        node = self.get_game_node()
+        if not node:
+            return None
+        val = self.read_member(node, idx)
+        if isinstance(val, int) and 0 <= val <= 2:
+            return val
+        return None
 
     def read_character(self) -> Optional[str]:
         """读取当前职业名（Game.curClass → Classes 枚举名）。未标定/异常返回 None。"""
