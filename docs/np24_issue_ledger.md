@@ -212,25 +212,40 @@
 > ⚠ 教训入册：**「_rt 垫片 docstring 声称的调用方」必须 grep 实证**——
 > 声称的注入点不存在时流语义整体漂移，且批内跨场污染极其隐蔽。
 >
-> **★ 新发现的问题批次（2026-10-29，np25 主会话寻 新问题轮）**：
-> - **新A：oracle 探针 rng_log 只覆盖战斗中段窗口**——run572_r9 探针
->   （events≡语料逐字节 ✓）的 rng_log 仅 1543 行/64063 字节、t=30.0→44.0s，
->   而分歧点在 6.27s——窗口外分叉无法逐抽对位。**追加观测**：首跑留档
->   rng_log_first.txt 同为 1543 行/64063 字节但起点 t=16.017（两跑同容量不同
->   窗口=trace 起点随跑次漂移+容量上限并存）；Util trace 面无 cap 常量
->   （push_back 直入），oracle_fight 仅 598 行逐场清空——cap 机制未明，
->   需读 run_case 全结构（首跑/复跑/snapshot 分档）。**修法方向**：给探针加
->   ORACLE_FULL_TRACE 开关，或查清窗口起点约定。
->   ⚠ 注意：gd 侧（OracleAlignBattle）的 rng_trace **无此截断**（874 全场
->   6618 行连续覆盖）——py 侧逐抽对位不受影响，仅 oracle 探针受阻。
-> - **新B：run572_r9 ev@109 = Strong Divine Potion giveRandomBuffs 选型分叉**
->   （oracle 首爆 Vampirism+1 vs gd Lucky+2；爆发构成 oracle
->   [103:+1,101:+2,106:+1]）——候选列表两侧全同（getBuffs=range(101,108)），
->   是 pick 值分叉，被新A阻挡逐抽定位；新A修后即可并簇 evt1。
-> - **新C：run845_r18 py IndexError 重测被阻**——gd 产物正被全量重建，
->   全量落地后第一件事重测（全局流修复可能已顺带改变其状态）。
-> - **待验证**：全局流修复的全量分片复验运行中（预期 ≥148/914，即
->   +5 场 py-only 翻绿）；落地后按新簇签名重扫。
+> - **✅ 全量分片复验落地（2026-10-29）**：**148/914（+5），零新增红**——
+>   run874_r7/run916_r6/run1316_r10/run1422_r14/run1528_r13 全部翻绿，
+>   py-only 族 6→1（仅剩 run1132_r18 的 py IndexError 独立崩溃）。
+>
+> **★ 新一轮问题清单（148/914 基线重扫，2026-10-29；offpeak 续作按此序）**：
+> 1. **evt1@1-50 ×124**（最大簇）：早期 DealDamage 分歧。样本=run616_r18
+>    （ev@19）/run622_r15（ev@28）/run623_r6（ev@17）——P3-3 后簇签名已变，
+>    先抽 3 场 canonical 对拍分簇（同签名合并）再定打法。
+> 2. **evt0@1-50 ×81**：早期 Activation。样本=run618_r18（idx45/46 同 tick
+>    双激活）——冷却亚 tick 到期序（P2-1 深端），打法=trace 对位到期顺序差。
+> 3. **evt1@51-150 ×69**：含 run635_r12（ev@107，478 行后未留痕抽差待深挖）。
+> 4. **evt8@151-400 ×53**：含 P3-4（576@128 Mana Orb 触发缺失）。
+> 5. **evt12@51-150 ×26 / evt105@51-150 ×24**：Goobert 治愈面剩余/受击面。
+> 6. **evt109@151-400 ×21**：Twine/疲劳类（602/605/619/624/668/679/685/732）。
+> 7. **py-only 最后一场 run1132_r18**：py IndexError（CoreBuff.onTimeout
+>    nextTemporaryTimeout 越界）——独立崩溃非分歧，全局流修复未除。
+> 8. **工具面**：新A（oracle 探针 rng_log 窗口截断）——修掉即解锁新B
+>    （run572 SDP Vampirism 选型分叉并簇 evt1）。
+> 9. **P2-1 MrS MSROLL v3 / P3-1 582 Elephant Rune / P3-2 真分歧（未留痕
+>    抽差带栈重探）/ P1-1 物品持久强化态**：按 §3 原打法排队。
+>
+> **工具面新问题详情（2026-10-28/29 定谳）**：
+> - **新A**：oracle 探针 rng_log 截断——run572_r9 探针（events≡语料 ✓）的
+>   rng_log 仅 1543 行/64063 字节、覆盖 t=30→44s；首跑留档 rng_log_first.txt
+>   同容量但起点 t=16s（trace 起点随跑次漂移+容量上限并存）；Util trace 面
+>   无 cap 常量，oracle_fight 仅 598 行逐场清空——机制需读 run_case 全结构。
+>   ⚠ gd 侧 trace 无此截断（874 全场 6618 行），仅 oracle 探针受阻。
+> - **新B**：run572 ev@109（t=6.27s）= SDP giveRandomBuffs 选型分叉
+>   （oracle 首爆 Vampirism+1 vs gd Lucky+2；oracle 爆发构成
+>   [103:+1,101:+2,106:+1]）——候选表两侧全同（getBuffs=range(101,108)），
+>   pick 值分叉；新A修后逐抽定位即可并簇 evt1。
+> - **新C**：run845_r18 py IndexError（CoreBuff.onTimeout 越界）——独立
+>   崩溃，全局流修复未除，见清单第 7 项。
+
 
 >
 > **进行中（np25 主会话，若已入库则以 git log 为准）**：py-only 收敛。
