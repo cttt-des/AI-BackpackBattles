@@ -135,8 +135,44 @@
 > 「已完成」栏。**commit 允许（格式 `np25修复X：…`），push 禁止**（用户指令：
 > 减少 push 频率，由主会话统一 push）。
 >
+> **★ 接管声明（2026-10-28）**：主会话继续活跃修复中，offpeak（488589ec）若开跑
+> **先实读 git log 与本节**——主会话每完成一项即回写本节并 commit；「已完成」
+> 栏出现的项直接跳过勿重做；「进行中」栏是主会话当前工作面，offpeak 从任务书
+> 第 ② 项起步避让。
+>
 > **已完成（np25 主会话）**：P3-3 电荷像素几何族（commit 80db42c2，143/914）；
-> P3-2 悖论勘误（跨实例误读）+真分歧定位（478 行后未留痕抽差）。
+> P3-2 悖论勘误（跨实例误读）+真分歧定位（478 行后未留痕抽差）；
+> py trace 通道垫片（e0dc73ed）；run874 冷却链排除+信号级锁定（73e4593f）。
+>
+> **★ BUS 探针入库 + run874 深挖定谳（2026-10-28 续）**：
+> - **总线探针**（gd_core/CoreEventBus.gd，连接表值改存 [funcRef, receiver] 对
+>   ——Godot 3 FuncRef 无实例读取器；BUS=发射者/信号/监听数 + BUSL=监听者逐个
+>   身份，双门控零耗链；13 场守门 np25_bus_r1 与基线 RED 清单逐场一致=零行为差）。
+> - **f32 冷却链对称化**（gd_to_py.py::_apply_cooldown_f32 窄重写规则 19 条，
+>   覆盖 triggerTime/iterationCooldown/speedScale **全部**写点；此前漏
+>   advanceCooldownPercent/Seconds 两写点的半包版本打红 run570 的教训已吸收）。
+>   13 场守门逐场一致；**全量分片复验通过：143/914 零新增红/零新增绿**
+>   （25.3 分钟，np25 主会话回填）——两项均行为中性，已可安全入库。
+> - **run874_r7 真分歧面（BUS 桩定谳）**：分歧 tick（t=619）**无任何 TRIG 行**
+>   ——不是冷却触发！两侧 Eggscalibur 攻击链完全对齐（TRIG/攻击/尖刺/mana/
+>   ManaOrb 监听/SRC Chili 107 全等），分叉在**链式激活的下一拍**：两侧都
+>   ANIM Chili#11（activate() 被外部调用——非冷却路径），gd 继续 Chili 自己的
+>   giveHeat（SRC Chili 107→EVENT 107→12→0→BUS activated **1**），
+>   py 跳到 **Blueberries 的 giveMana**（SRC Blueberries 105→105→0→BUS
+>   activated 2）→ 之后 gd 的 Blueberries、py 的 Chili#11 交错收尾。
+>   **根因方向（已收窄到 20 行窗口）**：分歧拍两侧都是**无 TRIG 的
+>   doCooldownEffect+activate**（冷却链彻底排除）。gd 侧走 Goobert
+>   （Chili Pepper extends Goobert）的 onItemActivated 计数路径——合法无 TRIG；
+>   **py 侧同一拍却是 Blueberries（extends Food，不在 onItemActivated 四类
+>   Goobert/ManaOrb/StorageCoffin/PiercingArrow 之列）跑了 doCooldownEffect
+>   （giveMana_capped 全树唯一调用点）+activate（BUS emitter=Blueberries 铁证），
+>   且无 TRIG 行**——按调用图不可能，指向 py 侧行为派发/计数串扰
+>   （.FuncRef method 绑定或 Goobert 计数器跨实例污染）。**下一探针**：py 侧
+>   Goobert.onItemActivated 与 Food.doCooldownEffect 入口各加一行
+>   trace_diag("GACT", identifier, activations, "self="+str(id(self)))，
+>   单场重放即见串扰点；同查 gd_to_py 的 Goobert.py 转写（计数器是否实例态）。
+> - f32v2 未翻动 6 场 py-only（分歧 idx 不变 140）——压线翻转不是其根因，
+>   但位级对称化保留（防未来同类；全量确认无副作用后去留待定）。
 >
 > **进行中（np25 主会话，若已入库则以 git log 为准）**：py-only 收敛。
 > **py trace 通道已修**（gd_core_py/_rt.py 加 `get_stack`/`PoolStringArray`
