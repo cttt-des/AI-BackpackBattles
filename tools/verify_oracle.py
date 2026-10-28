@@ -231,7 +231,9 @@ def run_godot(case_ids: Optional[List[str]] = None,
         env["ORACLE_ALIGN_OUT"] = GD_OUT
         if chunk > 0:
             env["ORACLE_ALIGN_CHUNK"] = str(chunk)
-        cmd = [GODOT, "--headless", "--audio-driver", "Dummy", "--path", os.path.join(ROOT, "gd_core_test"),
+        # ★ Godot 3.6 无 --headless（那是 4.x 参数，写了会走 GUI 窗口路径触发
+        #   输入法注入 → OpenMem failed err=5 噪声风暴）；标准参数是 --no-window。
+        cmd = [GODOT, "--no-window", "--audio-driver", "Dummy", "--path", os.path.join(ROOT, "gd_core_test"),
                "--script", "OracleAlignBattle.gd"]
         proc = subprocess.run(cmd, capture_output=True, text=True,
                               encoding="utf-8", errors="replace", cwd=ROOT, env=env)
