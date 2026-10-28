@@ -86,7 +86,7 @@ class Card_2(_R.C("res://gd_core_items/Item.gd")):
 
 		self.activating = True
 		self.iterationCooldown = self.getCooldown()
-		self.triggerTime = self.iterationCooldown
+		self.triggerTime = f32(self.iterationCooldown)
 		self.activateCooldown()
 		self.ctx.combat_log.snapshotItemTooltipStat(self, _R.C("CoreConst").ItemStat.Cooldown)
 
@@ -124,7 +124,7 @@ class Card_2(_R.C("res://gd_core_items/Item.gd")):
 		if nextCard:
 			nextCard.startActivation()
 
-		self.triggerTime = self.iterationCooldown
+		self.triggerTime = f32(self.iterationCooldown)
 
 		self.setState(True, True)
 		self.deactivateCooldown()

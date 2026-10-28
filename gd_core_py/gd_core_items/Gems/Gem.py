@@ -229,8 +229,8 @@ class Gem(_R.C("res://gd_core_items/Item.gd")):
 
 	def combatStart(self):
 		super().combatStart()
-		self.iterationCooldown = self.adjustCooldown()
-		self.triggerTime = self.iterationCooldown
+		self.iterationCooldown = f32(self.adjustCooldown())
+		self.triggerTime = f32(self.iterationCooldown)
 
 		if self.getGemMode() == self.GemMode.Inventory:
 				self.combatStartInventory()
