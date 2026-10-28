@@ -905,16 +905,18 @@ class GDCoreEngine:
                     or sorted(o_activation_order) != list(range(len(self._o_items)))):
                 raise ValueError("激活顺序下标表必须两侧同时给出且为满排列")
             # ★ np25 P3-3b（py-only 全局 Math 流错位，run874_r7 三桩定谳）：
-            #   gd_core_test::activation_order / oracle_fight 装配段在 seed(S) 后
-            #   各消耗**两条 Array.shuffle()**（player/opponent 下标数组，Godot
-            #   C++ Fisher-Yates：自后向前 j=randi()%(i+1)，每条 n-1 抽）。
-            #   战斗期物品脚本裸 arr.shuffle()（Eggscalibur.onDealtDamage 的
-            #   affected.shuffle() 等）消费的就是这条全局链——py 的 _math_rng
-            #   由 _bind_battle 绑定后从 seed(S) **全新起步**，缺装配段消耗 →
-            #   每次 shuffle 结果序错位 → food 连锁激活序分叉（gd 侧 Chili#11 /
-            #   py 侧 Blueberries 先后互换）。此处按同算法补消耗（结果弃置，
-            #   仅对齐链状态；常规模拟器无 order 路径不受影响）。
-            from gd_core_py._rt import _math_rng
+            #   gd_core_test::activation_order / oracle_fight 装配段每场
+            #   `seed(S)` 播种 Godot 全局链后各消耗**两条 Array.shuffle()**
+            #   （player/opponent 下标数组，Godot C++ Fisher-Yates：自后向前
+            #   j=randi()%(i+1)，每条 n-1 抽）。战斗期物品脚本裸 arr.shuffle()
+            #   （Eggscalibur.onDealtDamage 的 affected.shuffle() 等）消费的就是
+            #   这条链。py 的 `_bind_battle` 此前**无任何调用点**（docstring 声称
+            #   CoreContext._init 调它——实际没有），全局流回落 DEFAULT_SEED 的
+            #   进程级单例且跨场累积——既不对齐 S，也随批内前序场漂移。
+            #   此处先以本场 seed 重绑、再按同算法补两条消耗（结果弃置，仅对齐
+            #   链状态；常规模拟器无 order 路径不受影响）。
+            from gd_core_py._rt import _bind_battle, _math_rng
+            _bind_battle(int(self._seed))
             _m = _math_rng()
             for _n in (len(self._p_items), len(self._o_items)):
                 for _i in range(_n - 1, 0, -1):
