@@ -99,6 +99,9 @@ def build() -> dict:
                 "collision": [[int(c[0]), int(c[1])] for c in pl["collision"]],
                 "affected": {str(int(col)): [[int(c[0]), int(c[1])] for c in cells]
                              for col, cells in pl["affected"].items()},
+                # ★ np25 P3-3：该朝向的 rotmin（旋转后碰撞包围盒 min）——电荷格
+                # →背包格映射的减项（py 引擎装配注入 CoreItem.chargeFrame）。
+                "charge_frame": GF.charge_frame_of(entry)[deg // 90],
             }
         items[key] = {
             "script": path,

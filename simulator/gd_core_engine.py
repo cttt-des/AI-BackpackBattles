@@ -583,7 +583,10 @@ def _place_of(data: dict, key: str, row: int, col: int, rot: int) -> dict:
     occupied = sorted({(c[0] + col, c[1] + row) for c in anchor})
     return {"occupied": occupied, "collision": collision, "affected": affected,
             "script": ent["script"], "sockets": int(ent["sockets"]),
-            "descr": ent["descr"]}
+            "descr": ent["descr"],
+            # ★ np25 P3-3：该朝向的 rotmin（旋转后碰撞包围盒 min）——
+            #   电荷格→背包格映射的减项（CoreItem._chargeInventoryCells 消费）
+            "charge_frame": tuple(r.get("charge_frame") or (0, 0))}
 
 
 # ★ 模块级 = 原版脚本级 var，跨对局复用。见文件头「描述符必须全局唯一」。
@@ -1048,6 +1051,11 @@ class GDCoreEngine:
         #   的节点旋转变换映射进背包）与 SpintoWin/LongSpear/RainbowPotion 的
         #   朝向分流全部按 0° 计算（受控神谕对齐路径 run1160_r18 实证）。
         it.faceDirection = (int(rot) // 90) % 4
+        # ★ np25 P3-3：电荷格映射旋转系原点（rotmin(fd)）——与 gd 夹具注入同规。
+        #   chargeFrame 是 4 元列表（_chargeInventoryCells 按 fd 下标取），fd 在
+        #   装配后恒定，四项同值即可。
+        _cf = pl["charge_frame"]
+        it.chargeFrame = [vec(int(_cf[0]), int(_cf[1]))] * 4
         # 原版次序：物品入场景树时 _ready 先跑，随后 Inventory.addItem 才调 addToInventory
         if ready:
             it._readyInit()
