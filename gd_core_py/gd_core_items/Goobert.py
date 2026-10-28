@@ -36,7 +36,7 @@ class Goobert_2(_R.C("res://gd_core_items/Item.gd")):
 	def prepare(self):
 		self.activations = 0
 		self.iterationCooldown = self.activationsToTrigger
-		self.triggerTime = self.iterationCooldown
+		self.triggerTime = f32(self.iterationCooldown)
 		self.ctx.combat_log.snapshotItemTooltipStat(self, _R.C("CoreConst").ItemStat.Cooldown)
 
 		for item in _iter(self.getAffectedItems()):

@@ -1081,7 +1081,7 @@ class Item_2(_R.C("res://gd_core/CoreItem.gd")):
 
 	def _physics_process(self, delta):
 		if not self.character().isStunned():
-			self.triggerTime -= delta * self.getSpeed()
+			self.triggerTime = f32(self.triggerTime - f32(delta * self.getSpeed()))
 			self.showCooldown(1.0 - _div(self.triggerTime, self.iterationCooldown))
 			if self.triggerTime <= 0:
 				self.trigger()
