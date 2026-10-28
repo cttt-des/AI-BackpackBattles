@@ -24,6 +24,7 @@ from .state_tracker import GameStateTracker, Item, ItemCategory
 from .actions import GameActions
 from .ai_interface import HeuristicStrategy, LLMStrategy, Action, ActionType
 from .paths import get_base_dir, get_config_path
+from .recorder import Recorder, RecorderConfig
 
 logger = logging.getLogger(__name__)
 
@@ -50,6 +51,13 @@ class BackpackBot:
         self.item_reader: Optional[ItemReader] = None
         self.tracker = GameStateTracker()
         self.actions: Optional[GameActions] = None
+
+        # 对局记录器（可选，GUI/CLI 通过 start_recording 打开）
+        self.recorder: Optional[Recorder] = None
+        # get_state() 会被 GUI 状态轮询线程与记录器采样线程并发调用，
+        # 内部含多次 ReadProcessMemory 与 item_reader 的节点缓存写入，
+        # 必须串行化，否则缓存半写会读出撕裂数据。
+        self._state_lock = threading.Lock()
 
         # AI 策略
         strategy_cfg = self.config.get("ai", {})
@@ -264,7 +272,11 @@ class BackpackBot:
         return None
 
     def get_state(self) -> dict:
-        """获取完整游戏状态"""
+        """获取完整游戏状态（线程安全：GUI 轮询与记录器采样共用）。"""
+        with self._state_lock:
+            return self._get_state_locked()
+
+    def _get_state_locked(self) -> dict:
         self.update_state()
         state = self.tracker.get_summary()
         if self.memory_state:
@@ -292,7 +304,46 @@ class BackpackBot:
                 state["live_shop_count"] = len(items["shop"])
             except Exception:  # noqa: BLE001
                 state["live_items"] = {"backpack": [], "storage": [], "shop": []}
+        # 记录器需要的字段（职业用于快照；胜负数来自游戏成员，读不到就是 None）
+        state["character"] = self.read_character()
+        stats = {}
+        if self.godot_reader and self.godot_reader.is_ready():
+            try:
+                stats = getattr(self.godot_reader, "read_combat_stats", lambda: {})()
+            except Exception:  # noqa: BLE001
+                stats = {}
+        state["wins"] = stats.get("wins")
+        state["losses"] = stats.get("losses")
+        state["game_state"] = stats.get("state")   # 0=Title 1=Shop 2=Combat（未标定为 None）
         return state
+
+    # ---------------- 对局记录（语料采集）----------------
+    def make_recorder(self) -> Recorder:
+        """按 config.yaml 的 recorder 段创建记录器（不启动）。"""
+        cfg = RecorderConfig.from_dict(self.config.get("recorder"))
+        cfg.out_dir = str(get_base_dir() / cfg.out_dir) if not os.path.isabs(cfg.out_dir) \
+            else cfg.out_dir
+        self.recorder = Recorder(self, cfg)
+        return self.recorder
+
+    def start_recording(self) -> bool:
+        """开始记录（人类手动游玩时也只需初始化+此开关，不必「开始」挂机）。"""
+        if self.recorder is not None and self.recorder.running:
+            return True
+        rec = self.recorder or self.make_recorder()
+        if rec.start():
+            self.log("info", "● 已开始记录对局语料")
+            return True
+        self.log("error", "记录启动失败")
+        return False
+
+    def stop_recording(self, reason: str = "user_stop") -> None:
+        if self.recorder is not None and self.recorder.running:
+            self.recorder.stop(reason)
+            self.log("info", "○ 已停止记录对局语料")
+
+    def recording_stats(self) -> dict:
+        return self.recorder.stats() if self.recorder else {"running": False}
 
     def run_round(self) -> bool:
         """执行一个完整的购买+放置回合"""
@@ -414,6 +465,13 @@ class BackpackBot:
         elif at == ActionType.COMBAT:
             pass  # combat is handled by run_round
 
+        # AI 主动上报（只有 recorder.capture_bot=true 时才落盘；人类模式是空操作）
+        if self.recorder is not None and self.recorder.running:
+            try:
+                self.recorder.emit_action(at.value, dict(params), ok=True)
+            except Exception as e:  # noqa: BLE001
+                logger.debug("记录动作失败: %s", e)
+
         time.sleep(self.action_delay)
 
     def _wait_unpause(self):
@@ -458,6 +516,7 @@ class BackpackBot:
         """停止机器人"""
         self.running = False
         self._stop_event.set()
+        self.stop_recording("bot_stop")
         self.log("info", "机器人已停止")
         if self.memory_reader:
             self.memory_reader.close()

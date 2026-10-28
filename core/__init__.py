@@ -8,6 +8,7 @@ from .memory_reader import MemoryReader, MemoryGameState
 from .state_tracker import GameStateTracker, Item, ItemCategory, BackpackGrid
 from .actions import GameActions
 from .ai_interface import HeuristicStrategy, LLMStrategy, Action, ActionType
+from .recorder import Recorder, RecorderConfig
 from .bot import BackpackBot
 
 __all__ = [
@@ -24,6 +25,8 @@ __all__ = [
     "LLMStrategy",
     "Action",
     "ActionType",
+    "Recorder",
+    "RecorderConfig",
     "BackpackBot",
 ]
 __version__ = "0.2.0"
