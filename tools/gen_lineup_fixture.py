@@ -366,6 +366,26 @@ def placement_of(key: str, entry: dict, row: int, col: int, rot: int) -> dict:
     }
 
 
+def charge_frame_of(entry: dict) -> list:
+    """电荷格映射的旋转系原点 rotmin(fd)（fd 0..3 各一，np25 P3-3）。
+
+    电荷格（Battery.chargeCells 等脚本常量）与碰撞格同处 CollisionMap 本地
+    空间；装配层绝对格 = 锚点 + 旋转后坐标 − **旋转后碰撞包围盒 min**
+    （placement_of 同规），故电荷格→背包格必须减同一个 min
+    （消费点 gd_core/CoreItem.gd::_chargeInventoryCells / py 同名）。
+    无格物品（宝石/棋子…）raw min=(0,0) → (0,0)×4。
+    """
+    grid = entry.get("grid") or {}
+    base = [tuple(c) for c in (grid.get("collision_cells") or [])]
+    if not base:
+        return [[0, 0], [0, 0], [0, 0], [0, 0]]
+    out = []
+    for fd in range(4):
+        rotated = [rotate_cell(c, fd * 90) for c in base]
+        out.append([min(c[0] for c in rotated), min(c[1] for c in rotated)])
+    return out
+
+
 # ───────────────────────── 阵容读取 ─────────────────────────
 
 def key_of(x):
@@ -570,6 +590,8 @@ def build_item_table() -> dict:
             "occupied": pl["occupied"],
             "collision": pl["collision"],
             "affected": pl["affected"],
+            # ★ np25 P3-3：电荷格映射旋转系原点（CoreItem.chargeFrame 消费）
+            "charge_frame": charge_frame_of(entry),
         }
     return {"anchor": list(ANCHOR), "items": items, "skipped": skipped}
 

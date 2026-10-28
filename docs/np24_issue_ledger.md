@@ -96,14 +96,39 @@
 > ＞ evt107@1-50 ×44 ＞ evt12@51-150 ×25 ＞ evt105@51-150 ×24 …。
 > 打法：先 py-only（对照面=gd 产物直读），再 evt0 族（接 P2-1），再 evt1 族。
 >
-> ★ **进展（2026-10-27 晚）**：修复F（runtime 漏重生，be23196d）全量兑现
-> **125/914**（+56，py-only 族全灭）。evt1 族根因**定谳汇合 P3-3 电荷族**
-> （run572_r9 TRIG 双侧桩实证）：开战抖动块逐值全等、cd 全等（1.408125），
-> 唯 **speed 差**——Death Scythe oracle 1.2 v gd 1.1（FP+10% 同、缺 Battery
-> 电荷 +10%），Cauldron 双侧 1.3（电荷同得）。⇒ gd 电荷路径漏过 DS 所在格
-> （像素几何，P3-3 已授权的 Battery.position 探针是正解）。evt1@1-50 ×125
-> 预计大半为电荷速度面，修 P3-3 即联动收敛。gd 侧 TRIG 诊断已入库
-> （CoreItem.trigger，双门控零耗链，与 MSROLL/ANIM 同规）。
+> ★ **进展（2026-10-28，np25 会话）**：**P3-3 电荷像素几何族已修复**
+> （gd_core/CoreItem._chargeInventoryCells 重写 + chargeFrame 数据链三产物），
+> 全量复跑 **143/914（+18）**。根因：电荷格映射漏 −rotmin 项——原版
+> addItemByTopLeft 放置平移使 P_cm/corr 相位项解析抵消，闭式
+> `inventory_cell(c) = 锚点 + R_fd(c) − rotmin(fd)`；旧实现 collisionMapPosition
+> 无数据源恒 ZERO，raw min=(−1,−1) 的送电荷物品（Battery/CogBadge/Generator/
+> ChargeSplitter/Con-Trap-Tron；LightningStaff (0,−2)）整条路径错格。
+> run572_r9 实证：Battery 电荷 cur=null→Death Scythe，DS 首攻 1.283→1.183
+> 精确同语料；run572 首分歧 ev@22→ev@109（新残差=Strong Divine Potion
+> type-103 面splat）；run1160 ev@3→ev@155。REG 九场零退步（570/1029 绿保持）。
+> 数据链：battle_items.json raw collision_cells → gen_lineup_fixture.py
+> （item_battle_fixture.json `charge_frame`[fd0..3]）→ gen_gd_core_data.py
+> （runtime per-rot `charge_frame`）→ harness/py 引擎注入 CoreItem.chargeFrame。
+> 诊断行 CHRG（changeChargedItemStat 命中面）+ SPD+（addSpeed 账本）入库，
+> 双门控零耗链同规。evt0@1-50 簇 101→81；evt1@1-50 簇 125→124（首分歧大幅
+> 后移，同簇不同签名）。
+>
+> ★ **P3-2 勘误（2026-10-28，探针已执行）**：635「BalancedRange malus 悖论」
+> **不存在**——BRPROBE 取证桩（oracle/Utility/BalancedRange.gd，已逐字节还原
+> md5 留档 output/_round_patches/np24_fix/p332_probe/）实证语料 [5,5,5,4] =
+> **两个不同 Falcon Blade 实例交错**（iid=76412 掷 5,5；iid=99251 掷 5,4），
+> 每实例 acc 从未 ≥1，行为精确正确；前会跨实例误读。探针 events≡语料逐字节
+> 验证。635 真分歧（ev@107）= 对方 FB 第 4 攻 oracle 掷 4 v gd 掷 5：u 值对位
+> （阈值 1e-6，容忍 6 位小数量化）**478 行全对齐后在 479 分叉**——伤害数字动画
+> roll（0.9,1.1）与下一 tick 首抽（对方 cooldown jitter 0.975,1.05）之间存在
+> **未留痕抽差**（两侧伤害掷点均刻意裸调不入账本，CoreRng.BalancedRange
+> kernel_r5 注释；嫌疑人=攻击收尾链 single-side 未留痕消耗）。待带栈重探
+> （get_stack 在当前 headless 上下文返回空，需先解栈帧可用性）。
+>
+> ★ **py-only 新 6 场（2026-10-28）**：run874_r7/run916_r6/run1132_r18/
+> run1316_r10/run1422_r14/run1528_r13——P3-3 后 gd 腿翻绿（gd≡oracle）暴露
+> py 残留（长度分歧），与 run845 同类。对照面=gd 产物直读，最快收敛面。
+
 
 ### P1 数据面整族（预计最大收敛面）
 

@@ -63,7 +63,7 @@ class CoreItem(GodotObject):
 		self.inventory = None
 		self.placed = False
 		self.name = ""
-		self.collisionMapPosition = Vector2.ZERO
+		self.chargeFrame = [Vector2.ZERO, Vector2.ZERO, Vector2.ZERO, Vector2.ZERO]
 		self.speedScale = 0.0
 		self.bonusMaxDam = 0.0
 		self.bonusMinDam = 0.0
@@ -205,9 +205,12 @@ class CoreItem(GodotObject):
 	BASE_CRIT_SEVERITY = 2.0
 	cdEncodingFactor = 100000.0
 
-	# 场景数据字段：各物品 .tscn 里 CollisionMap 节点的 position（像素）。
-	# 内核无场景树，作为数据字段由物品脚本写入（消费点 = sendCharge 的电荷格映射，
-	# 见 _chargeInventoryCells；基类 Item.tscn 无 position 覆写 = Vector2.ZERO）。
+	# 场景数据字段：电荷格→背包格映射的旋转系原点（★ np25 P3-3）。
+	# 原版电荷格与碰撞格同处 CollisionMap 本地 TileMap 空间；而装配层的绝对格
+	# （夹具/runtime）= 锚点 + 旋转后坐标 − **旋转后碰撞包围盒 min**。电荷格映射
+	# 必须减同一个 min（对齐 gen_lineup_fixture.py::placement_of 的归一化）。
+	# 由夹具表 item_battle_fixture.json / runtime 的 charge_frame 按 faceDirection
+	# 注入（4 项，fd 0..3 各一；缺省 4×ZERO = raw 格已以 (0,0) 为 min 的物品）。
 
 	# 伤害与速度修正（对齐 Item.gd:474-495）
 
@@ -1829,6 +1832,9 @@ class CoreItem(GodotObject):
 	# 对齐 Item.gd:4872-4876
 	def addSpeed(self, amount):
 		self.speedScale += amount
+		# ★ np25 诊断（受控，双门控零耗链）：速度账本——谁加了多少、现值多少。
+		self.ctx.rng.trace_diag("SPD+", String(self.descriptor.identifier) + "@" + String(self.getTopLeftCell())
+				+ " ot=" + str(int(self.ownerType)), str(amount), "now=" + str(self.speedScale))
 		self.ctx.combat_log.snapshotItemTooltipStat(self, _R.C("CoreConst").ItemStat.Speed)
 		self.ctx.combat_log.snapshotItemTooltipStat(self, _R.C("CoreConst").ItemStat.Cooldown)
 
@@ -2165,28 +2171,31 @@ class CoreItem(GodotObject):
 		self.ctx.rng.randf_range(0.7, 1.3)
 
 
-	# ElectricalCharge.start 的 cell→inventory 格映射（格空间折叠，见 sendCharge 注释）。
-	# ★ 像素级还原（Item.gd:1040-1047 → Inventory.gd:377-381 两步互逆）：
-	#   point(相对物品左上角) = R_fd( 80*cell + collisionMapPosition + (40,40) )
-	#   inventory_cell = top_left + floor(point / 80)
-	#   其中 collisionMapPosition = 各物品 .tscn 里 CollisionMap 节点的 position
-	#   （基类 Item.tscn 无 position 覆写 = (0,0)；Battery/ChargeSplitter/CogBadge
-	#   =(40,40)、Generator=(40,0)、LightningStaff=(-40,0)、ManaCrystal=(-40,-40)、
-	#   Con-Trap-Tron=(40,-20)，由各物品脚本 _readyInit 写入）。floor 语义 =
-	#   TileMap.world_to_map（负坐标向 -∞ 取整，Con-Trap-Tron 的半格偏移在旋转后
-	#   正确落格的关键）。
+	# ElectricalCharge.start 的 cell→inventory 格映射（格空间折叠）。
+	# ★ np25 P3-3 像素级还原（可从原版两步变换**解析地**折叠出来）：
+	#   原版链：point(c) = getGlobalPointsForCells → O + R(P_cm + 80c + (40,40))，
+	#   Inventory 反变换 floor(/80)；放置链 addItemByTopLeft 把 getTopLeftGlobal()
+	#   平移到 80*锚点 ⇒ O + R(P_cm + 80·argmin旋转后碰撞格) = 80·锚点 − corr[fd]。
+	#   两式相减，P_cm 与 corr 全部抵消（floor((R(40,40) − corr[fd])/80) ≡ (0,0)
+	#   对 fd 0..3 恒成立），得闭式：
+	#     inventory_cell(c) = 锚点 + R_fd(c) − rotmin(fd)
+	#   其中 rotmin(fd) = 旋转 fd 后**碰撞格**包围盒 min（与 placement_of 的
+	#   occupied/collision/affected 归一化完全同规——电荷格与碰撞格同处
+	#   CollisionMap 本地空间，故必须减同一个 min）。
+	#   此前实现 = 锚点 + floor(R(80c + collisionMapPosition + (40,40))/80)，且
+	#   collisionMapPosition 无数据源恒 ZERO ⇒ 漏了 −rotmin 项，raw min ≠ (0,0)
+	#   的送电荷物品（Battery/CogBadge/Generator/ChargeSplitter/Con-Trap-Tron 均
+	#   raw min (−1,−1)，LightningStaff (0,−2)）整条路径平移错格——run572_r9
+	#   Battery 电荷落空格 (0,3)、DS 少 +10% speed（oracle 1.2 v gd 1.1，TRIG/CHRG
+	#   双桩实证）。chargeFrame[fd] = rotmin(fd) 由夹具表/runtime 注入。
 	def _chargeInventoryCells(self, cells):
 		top_left = self.getTopLeftCell()
 		inv = self.inventory if self.inventory != None else self.getOwnOrPlayerInventory()
 		out = []
 		for c in _iter(cells):
-			px = Vector2(80, 80) * c + self.collisionMapPosition + Vector2(40, 40)
-			px = self._rotVecQuarterTurns(px, self.faceDirection)
-			# ★ push_back 的实参必须与调用同行：gd_to_py 的方法调用改写器按行解析
-			#   实参，跨行续行的 push_back 会原样漏到 Python 侧（'list' has no
-			#   attribute 'push_back'，2026-10-08 重转后 164 场实证）。
-			hit_cells = inv.getCellsForGlobalPositions(
-					[top_left + Vector2(floor(_div(px.x, 80.0)), floor(_div(px.y, 80.0)))])
+			# ★ 逐行单语句：gd_to_py 的方法调用改写器按行解析，跨行续行实参会漏。
+			v = top_left + self._rotVecQuarterTurns(Vector2(c.x, c.y), self.faceDirection) - self.chargeFrame[_mod(self.faceDirection, 4)]
+			hit_cells = inv.getCellsForGlobalPositions([v])
 			out.append(hit_cells[0])
 		return out
 
@@ -2251,6 +2260,16 @@ class CoreItem(GodotObject):
 
 		previousVal = flatVal + (cellIndex - 2) * valPerTile
 		newVal = previousVal + valPerTile
+		# ★ np25 诊断（受控，双门控零耗链）：电荷命中面——发射者@左上格/格序/
+		#   前后持电物品（含其左上格）/增减值。对拍电荷路径漏格（P3-3）。
+		self.ctx.rng.trace_diag("CHRG",
+				String(self.descriptor.identifier) + "@" + String(self.getTopLeftCell()),
+				int(cellIndex),
+				"last=" + (String(charge.lastChargedItem.descriptor.identifier)
+						if charge.lastChargedItem != None else "null")
+				+ " cur=" + (String(charge.curChargedItem.descriptor.identifier)
+						if charge.curChargedItem != None else "null")
+				+ " del=" + str(- previousVal) + " add=" + str(newVal))
 
 		if charge.lastChargedItem != None:
 			if charge.curChargedItem == None:

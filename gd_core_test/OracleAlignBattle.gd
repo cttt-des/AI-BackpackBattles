@@ -435,6 +435,13 @@ func place_one(ctx, chr, entry: Dictionary, owner_type: int):
 	it.affectedTileCells = aff
 	it.occupiedCells = vlist(entry["occupied"])
 	it.ownerType = owner_type
+	# ★ np25 P3-3：电荷格映射的旋转系原点（rotmin(fd)，4 项 fd0..3）——
+	#   夹具表由 gen_lineup_fixture.py 从 battle_items.json raw 碰撞格预算；
+	#   缺省（旧表/无格物品）= 4×ZERO，行为同 raw min=(0,0)。
+	var _cf = _table["items"][key].get("charge_frame")
+	if _cf != null:
+		it.chargeFrame = [Vector2(_cf[0][0], _cf[0][1]), Vector2(_cf[1][0], _cf[1][1]),
+				Vector2(_cf[2][0], _cf[2][1]), Vector2(_cf[3][0], _cf[3][1])]
 	# ★ 朝向（战斗判定输入，CoreConst.FaceDirection 0..3 = 顺时针 1/4 圈）：
 	#   夹具条目的 rotation 是度数（gen_fixture_from_lineup.py 由神谕 face_direction
 	#   ×90 得到）。此前内核恒 UP——电荷路径（Battery.chargeCells 等**本地格**
