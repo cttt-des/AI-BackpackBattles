@@ -18,6 +18,10 @@ class Eggscalibur_2(_R.C("res://gd_core_items/Pan.gd")):
 		if event:
 			affected = self.getAffectedItems()
 			_shuffle(affected)
+			_ids = ""
+			for food in _iter(affected):
+				_ids += String(food.descriptor.identifier) + "|"
+			self.ctx.rng.trace_diag("ESHUF", str(_ids), "t=" + str(self.ctx.time), "")
 			for food in _iter(affected):
 				food.doCooldownEffect()
 

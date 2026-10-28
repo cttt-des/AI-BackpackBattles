@@ -824,6 +824,10 @@ func trigger():
 
 # 物品行为覆写点（Items/*.gd 里绝大多数 doCooldownEffect 来自子类脚本）
 func doCooldownEffect():
+	# ★ np25 诊断（受控，双门控零耗链）：效果执行者——每个 doCooldownEffect
+	#   落一行（trigger 路径必有前置 TRIG 行；无 TRIG 的 CDX=异常调用路径）。
+	ctx.rng.trace_diag("CDX", String(descriptor.identifier) + "/ot" + str(int(ownerType)),
+			"t=" + str(ctx.time), "")
 	_behavior_call("doCooldownEffect")
 
 

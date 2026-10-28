@@ -172,7 +172,32 @@
 >   trace_diag("GACT", identifier, activations, "self="+str(id(self)))，
 >   单场重放即见串扰点；同查 gd_to_py 的 Goobert.py 转写（计数器是否实例态）。
 > - f32v2 未翻动 6 场 py-only（分歧 idx 不变 140）——压线翻转不是其根因，
->   但位级对称化保留（防未来同类；全量确认无副作用后去留待定）。
+>   但位级对称化保留（防未来同类；全量已确认无副作用）。
+> **★ run874 根因定谳 + 全局链预热修复（2026-10-28 深夜，np25 主会话）**：
+> - **根因链（spy 调用栈铁证）**：无 TRIG 的 doCooldownEffect =
+>   **Eggscalibur.onDealtDamage**（攻击命中→tryUseMana→`affected.shuffle()`→
+>   逐个直呼 `food.doCooldownEffect()`，合法机制 gd/py 都有）。裸
+>   `Array.shuffle()` 消费 **Godot 全局 Math 流**（seed(S) 播种、装配段
+>   activation_order 消耗两条 shuffle），与战斗 PCG 主链独立——主链逐抽全等
+>   与本分歧并存不矛盾。py 的 `_math_rng` 绑定后从 seed(S) **全新起步**，
+>   缺装配段消耗 → 每次 shuffle 结果序错位 → food 激活序分叉。
+>   ESHUF 六拍对照铁证：gd=`C|C|B, B|C|C, C|B|C, C|B|C, B|C|C, C|C|B`，
+>   py 热身后=`C|B|C`×6（第一拍仍不同——**装配段之外还有未盘点的全局消耗**，
+>   gd_core_test 宿主 activation_order 之外、Eggscalibur 首攻之前的全局链
+>   消费者待逐项盘点；Godot 全局流状态不可读回，只能逐机制复算）。
+> - **修复（simulator/gd_core_engine.py，order 路径 startBattle 前）**：按
+>   activation_order 同算法补两条 shuffle 消耗（结果弃置）。**直接验证：
+>   run916_r6 翻绿（三方一致），570/1029 保持绿**；run874 分歧 140→135 后移。
+>   ⚠ **待查**：np25_warm_r1 gate 里 916 回红 ev@72（与直接测矛盾，疑似 gate
+>   scratch 的 gd 腿产物/激活序来源问题）；run1132_r18 py IndexError 仍在。
+> - **诊断入库**：GACT（gd_core/Goobert.gd，单行语句）、CDX（gd_core/CoreItem.
+>   gd doCooldownEffect 包装器——注意物品覆写虚分发绕过内核包装器，CDX 只对
+>   未覆写者生效）、ESHUF（gd_core_items/Eggscalibur.gd 行为树，全序落 trace）。
+>   上一轮「CDX/GACT 零行」之谜同解：物品覆写+双树继承使内核树诊断旁路。
+> - **offpeak 续作清单**：①916 gate 异常核查 ②装配段外全局消耗盘点
+>   （gd_core_test 宿主 activation_order 之后、战斗期各机制的全局链消费，
+>   与 py 引擎逐一对账）③ESHUF 对位驱动剩余 4 场收敛 ④run1132 py IndexError。
+
 >
 > **进行中（np25 主会话，若已入库则以 git log 为准）**：py-only 收敛。
 > **py trace 通道已修**（gd_core_py/_rt.py 加 `get_stack`/`PoolStringArray`

@@ -49,6 +49,12 @@ class Goobert(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def onItemActivated(self, event):
+		# ★ np25 诊断（受控，双门控零耗链）：Goobert 计数器入口——接收者/计数/
+		#   阈值/触发源（对拍 py 侧无 TRIG doCooldownEffect 串扰，run874_r7）。
+		_gsrc = "?"
+		if event != None and event.origin != None:
+			_gsrc = String(event.origin.name)
+		self.ctx.rng.trace_diag('GACT', String(self.descriptor.identifier) + '/ot' + str(int(self.ownerType)), str(self.activations + 1) + '/' + str(self.getP1()), 'src=' + _gsrc)
 		self.activations += 1
 
 		if self.activations == self.getP1():

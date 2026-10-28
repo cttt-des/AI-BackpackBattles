@@ -28,6 +28,12 @@ func doCooldownEffect():
 
 
 func onItemActivated(event):
+	# ★ np25 诊断（受控，双门控零耗链）：Goobert 计数器入口——接收者/计数/
+	#   阈值/触发源（对拍 py 侧无 TRIG doCooldownEffect 串扰，run874_r7）。
+	var _gsrc = "?"
+	if event != null and event.origin != null:
+		_gsrc = String(event.origin.name)
+	ctx.rng.trace_diag("GACT", String(descriptor.identifier) + "/ot" + str(int(ownerType)), str(activations + 1) + "/" + str(getP1()), "src=" + _gsrc)
 	activations += 1
 	
 	if activations == getP1():

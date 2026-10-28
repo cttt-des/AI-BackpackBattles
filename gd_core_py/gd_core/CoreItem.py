@@ -924,6 +924,10 @@ class CoreItem(GodotObject):
 
 	# 物品行为覆写点（Items/*.gd 里绝大多数 doCooldownEffect 来自子类脚本）
 	def doCooldownEffect(self):
+		# ★ np25 诊断（受控，双门控零耗链）：效果执行者——每个 doCooldownEffect
+		#   落一行（trigger 路径必有前置 TRIG 行；无 TRIG 的 CDX=异常调用路径）。
+		self.ctx.rng.trace_diag("CDX", String(self.descriptor.identifier) + "/ot" + str(int(self.ownerType)),
+				"t=" + str(self.ctx.time), "")
 		self._behavior_call("doCooldownEffect")
 
 
