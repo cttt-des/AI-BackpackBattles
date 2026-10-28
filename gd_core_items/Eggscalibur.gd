@@ -5,6 +5,10 @@ func onDealtDamage(damageRes: CoreDamageResult):
 	if event:
 		var affected = getAffectedItems()
 		affected.shuffle()
+		var _ids := ""
+		for food in affected:
+			_ids += String(food.descriptor.identifier) + "|"
+		ctx.rng.trace_diag("ESHUF", str(_ids), "t=" + str(ctx.time), "")
 		for food in affected:
 			food.doCooldownEffect()
 		

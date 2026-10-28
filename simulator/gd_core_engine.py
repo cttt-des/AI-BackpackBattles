@@ -904,6 +904,21 @@ class GDCoreEngine:
                     or sorted(p_activation_order) != list(range(len(self._p_items)))
                     or sorted(o_activation_order) != list(range(len(self._o_items)))):
                 raise ValueError("激活顺序下标表必须两侧同时给出且为满排列")
+            # ★ np25 P3-3b（py-only 全局 Math 流错位，run874_r7 三桩定谳）：
+            #   gd_core_test::activation_order / oracle_fight 装配段在 seed(S) 后
+            #   各消耗**两条 Array.shuffle()**（player/opponent 下标数组，Godot
+            #   C++ Fisher-Yates：自后向前 j=randi()%(i+1)，每条 n-1 抽）。
+            #   战斗期物品脚本裸 arr.shuffle()（Eggscalibur.onDealtDamage 的
+            #   affected.shuffle() 等）消费的就是这条全局链——py 的 _math_rng
+            #   由 _bind_battle 绑定后从 seed(S) **全新起步**，缺装配段消耗 →
+            #   每次 shuffle 结果序错位 → food 连锁激活序分叉（gd 侧 Chili#11 /
+            #   py 侧 Blueberries 先后互换）。此处按同算法补消耗（结果弃置，
+            #   仅对齐链状态；常规模拟器无 order 路径不受影响）。
+            from gd_core_py._rt import _math_rng
+            _m = _math_rng()
+            for _n in (len(self._p_items), len(self._o_items)):
+                for _i in range(_n - 1, 0, -1):
+                    _j = _m.randi() % (_i + 1)
             combat.startBattle([self._p_items[i] for i in p_activation_order],
                                [self._o_items[i] for i in o_activation_order],
                                True)
