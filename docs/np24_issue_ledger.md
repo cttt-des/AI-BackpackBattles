@@ -214,12 +214,15 @@
 >
 > **★ 新发现的问题批次（2026-10-29，np25 主会话寻 新问题轮）**：
 > - **新A：oracle 探针 rng_log 只覆盖战斗中段窗口**——run572_r9 探针
->   （events≡语料逐字节 ✓）的 rng_log 仅 1544 行、t=30.0→44.0s，而战斗
->   更长且分歧点在 6.27s——窗口外分叉无法逐抽对位。根因疑似 harness 的
->   first-pass/resume 快照机制只留了 resume 窗口的 trace（rng_log_first.txt
->   分档线索 oracle_fight.gd:1086-1091）。**修法方向**：给探针加
->   ORACLE_FULL_TRACE 开关（首跑即开 trace、禁用覆盖式分档），或查清
->   resume 窗口的起点约定。
+>   （events≡语料逐字节 ✓）的 rng_log 仅 1543 行/64063 字节、t=30.0→44.0s，
+>   而分歧点在 6.27s——窗口外分叉无法逐抽对位。**追加观测**：首跑留档
+>   rng_log_first.txt 同为 1543 行/64063 字节但起点 t=16.017（两跑同容量不同
+>   窗口=trace 起点随跑次漂移+容量上限并存）；Util trace 面无 cap 常量
+>   （push_back 直入），oracle_fight 仅 598 行逐场清空——cap 机制未明，
+>   需读 run_case 全结构（首跑/复跑/snapshot 分档）。**修法方向**：给探针加
+>   ORACLE_FULL_TRACE 开关，或查清窗口起点约定。
+>   ⚠ 注意：gd 侧（OracleAlignBattle）的 rng_trace **无此截断**（874 全场
+>   6618 行连续覆盖）——py 侧逐抽对位不受影响，仅 oracle 探针受阻。
 > - **新B：run572_r9 ev@109 = Strong Divine Potion giveRandomBuffs 选型分叉**
 >   （oracle 首爆 Vampirism+1 vs gd Lucky+2；爆发构成 oracle
 >   [103:+1,101:+2,106:+1]）——候选列表两侧全同（getBuffs=range(101,108)），
