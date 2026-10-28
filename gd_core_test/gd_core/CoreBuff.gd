@@ -215,6 +215,7 @@ func gainTemporary(amount: int, duration: float, item = null,
 						_stopTimer()
 						_startTimer(duration)
 						nextTemporaryTimeout = temporaryStacks.size() - 1
+				_blnd_snap("gain", str(duration))
 			
 			if item:
 				var isPlayer = (character == ctx.player)
@@ -320,11 +321,13 @@ func loseStacks(amount: int, item = null, triggerEvent = null, used = false):
 			var farthest = temporaryStacks[farthestIndex]
 			if farthest.amount > tempToCleanse:
 				farthest.amount -= tempToCleanse
+				_blnd_snap("partial", str(farthestIndex) + "amt" + str(farthest.amount))
 				tempToCleanse = 0
 				
 			else:
 				tempToCleanse -= farthest.amount
 				temporaryStacks.remove(farthestIndex)
+				_blnd_snap("lose", str(farthestIndex))
 				
 				if temporaryStacks.empty():
 					_stopTimer()
@@ -369,10 +372,28 @@ func changeCurrentLogShowLabel(isTimeout: bool, amount: int,
 	return null
 
 
+func _blnd_snap(op: String, pre: String) -> void :
+	if ctx.rng.oracle_trace and ctx.rng._stacktrace:
+		var _b := ""
+		for ts in temporaryStacks:
+			_b += "(%s@%s)" % [str(ts.amount), str(ts.timeout).substr(0, 5)]
+		ctx.rng.trace_diag("BLND", "p" + str(character.playerId) + " ty" + str(type) + " " + op + " " + pre, "len=" + str(temporaryStacks.size()) + " ntp=" + str(nextTemporaryTimeout) + " tm=" + str(_timer_active) + "/" + str(_timer_left), _b)
+
 func onTimeout():
+	_blnd_snap("fire", str(nextTemporaryTimeout))
+	# ★ np25（run1132_r18 定谳，gd1132v 无守卫跑实证）：Godot **release** 构建的
+	#   数组越界读是**软错误并中止整个函数**——fire 行之后无 CLS/remove/重扫/
+	#   重挂任何痕迹：栈原样保留、定时器已被 _tick 置死（该临时栈随后由普通
+	#   loseStacks 路径清掉，Automanaton -5 铁证）。此处显式同语义**早退**；
+	#   转写侧若不早退，Python 硬索引越界即进程崩溃（IndexError，py-only 族
+	#   最后一场残因）。越界源=loseStacks 删 farthest 后 ntp 未回拨（原版同构
+	#   隐患，仅 release 软错误语义下无症状）。
+	if nextTemporaryTimeout < 0 or nextTemporaryTimeout >= temporaryStacks.size():
+		return
 	var timedOutStacks = temporaryStacks[nextTemporaryTimeout]
 	changeCurrentLogShowLabel(true, timedOutStacks.amount, timedOutStacks.item)
 	temporaryStacks.remove(nextTemporaryTimeout)
+	_blnd_snap("timeout", str(nextTemporaryTimeout))
 	
 	if not temporaryStacks.empty():
 		var earliestTimeout = INF
@@ -385,6 +406,7 @@ func onTimeout():
 		
 		nextTemporaryTimeout = earliestIndex
 		var delay = earliestTimeout - ctx.time
+		_blnd_snap("rearm", "delay=" + str(delay) + " et=" + str(earliestTimeout) + " now=" + str(ctx.time))
 		if delay <= 0.01:
 			onTimeout()
 		else:

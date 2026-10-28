@@ -285,6 +285,7 @@ class CoreBuff(GodotObject):
 							self._stopTimer()
 							self._startTimer(duration)
 							self.nextTemporaryTimeout = len(self.temporaryStacks) - 1
+					self._blnd_snap("gain", str(duration))
 
 				if item:
 					isPlayer = (self.character == self.ctx.player)
@@ -390,11 +391,13 @@ class CoreBuff(GodotObject):
 				farthest = self.temporaryStacks[farthestIndex]
 				if farthest.amount > tempToCleanse:
 					farthest.amount -= tempToCleanse
+					self._blnd_snap("partial", str(farthestIndex) + "amt" + str(farthest.amount))
 					tempToCleanse = 0
 
 				else:
 					tempToCleanse -= farthest.amount
 					_pop_at(self.temporaryStacks, farthestIndex)
+					self._blnd_snap("lose", str(farthestIndex))
 
 					if (not self.temporaryStacks):
 						self._stopTimer()
@@ -438,10 +441,28 @@ class CoreBuff(GodotObject):
 		return None
 
 
+	def _blnd_snap(self, op, pre):
+		if self.ctx.rng.oracle_trace and self.ctx.rng._stacktrace:
+			_b = ""
+			for ts in _iter(self.temporaryStacks):
+				_b += _gd_fmt('(%s@%s)', [str(ts.amount), _substr(str(ts.timeout), 0, 5)])
+			self.ctx.rng.trace_diag('BLND', 'p' + str(self.character.playerId) + ' ty' + str(self.type) + ' ' + op + ' ' + pre, 'len=' + str(len(self.temporaryStacks)) + ' ntp=' + str(self.nextTemporaryTimeout) + ' tm=' + str(self._timer_active) + '/' + str(self._timer_left), _b)
+
 	def onTimeout(self):
+		self._blnd_snap("fire", str(self.nextTemporaryTimeout))
+		# ★ np25（run1132_r18 定谳，gd1132v 无守卫跑实证）：Godot **release** 构建的
+		#   数组越界读是**软错误并中止整个函数**——fire 行之后无 CLS/remove/重扫/
+		#   重挂任何痕迹：栈原样保留、定时器已被 _tick 置死（该临时栈随后由普通
+		#   loseStacks 路径清掉，Automanaton -5 铁证）。此处显式同语义**早退**；
+		#   转写侧若不早退，Python 硬索引越界即进程崩溃（IndexError，py-only 族
+		#   最后一场残因）。越界源=loseStacks 删 farthest 后 ntp 未回拨（原版同构
+		#   隐患，仅 release 软错误语义下无症状）。
+		if self.nextTemporaryTimeout < 0 or self.nextTemporaryTimeout >= len(self.temporaryStacks):
+			return
 		timedOutStacks = self.temporaryStacks[self.nextTemporaryTimeout]
 		self.changeCurrentLogShowLabel(True, timedOutStacks.amount, timedOutStacks.item)
 		_pop_at(self.temporaryStacks, self.nextTemporaryTimeout)
+		self._blnd_snap("timeout", str(self.nextTemporaryTimeout))
 
 		if not (not self.temporaryStacks):
 			earliestTimeout = INF
@@ -454,6 +475,7 @@ class CoreBuff(GodotObject):
 
 			self.nextTemporaryTimeout = earliestIndex
 			delay = earliestTimeout - self.ctx.time
+			self._blnd_snap("rearm", "delay=" + str(delay) + " et=" + str(earliestTimeout) + " now=" + str(self.ctx.time))
 			if delay <= 0.01:
 				self.onTimeout()
 			else:
