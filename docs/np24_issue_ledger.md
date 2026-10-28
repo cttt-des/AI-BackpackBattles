@@ -129,6 +129,48 @@
 > run1316_r10/run1422_r14/run1528_r13——P3-3 后 gd 腿翻绿（gd≡oracle）暴露
 > py 残留（长度分歧），与 run845 同类。对照面=gd 产物直读，最快收敛面。
 
+> ★ **★ np25 会话 ↔ offpeak 任务同步节（唯一协调面，2026-10-28）★**
+> 主会话与 offpeak 任务**通过本节交接**：开工先读本节+实读 alignment.json/git log
+> （**运行时状态以实读为准，勿信本节快照**）；每完成一项在 §3 打勾并回写本节
+> 「已完成」栏。**commit 允许（格式 `np25修复X：…`），push 禁止**（用户指令：
+> 减少 push 频率，由主会话统一 push）。
+>
+> **已完成（np25 主会话）**：P3-3 电荷像素几何族（commit 80db42c2，143/914）；
+> P3-2 悖论勘误（跨实例误读）+真分歧定位（478 行后未留痕抽差）。
+>
+> **进行中（np25 主会话，若已入库则以 git log 为准）**：py-only 收敛。
+> **py trace 通道已修**（gd_core_py/_rt.py 加 `get_stack`/`PoolStringArray`
+> 垫片，双门控调试路径专用、正常跑批零影响）——py 侧逐抽 trace 可用
+> （monkey-patch `GDCoreEngine.__init__` 置 `ctx.rng.oracle_trace/_stacktrace=True`
+> + `run` 落盘 oracle_trace_log，见 output/_probe_p33/py874_trace.txt 先例）。
+>
+> **run874_r7 定谳面（已实证）**：gd≡oracle；py 同一 tick（t≈10.317/619 tick）
+> 多物品到期/广播序翻转（gd: Chili→ManaOrb105→Pine12→Chili→Blueberries→Pine；
+> py: Chili→ManaOrb105→Blueberries→Pine→Chili→Pine），装配序两侧同
+> （Blueberries9<Chili10,11<ManaOrb12<Pine13），rng 消耗逐值同——纯**同帧判定序**
+> 差。**f32 假设已两连证伪（铁律 9 停）**：①只包 `triggerTime -=` 减法→分歧
+> 139→140 后移但不修；②整链 f32（PHYSICS_DELTA/adjustCooldown/trigger/getSpeed/
+> addSpeed）→ **run570 三方一致被打红**（退步）。gd 实际算术精度比 f32 模型更近
+> f64（143 场全绿旁证）。实验已全部还原（gd_to_py 重生成，工作树仅 _rt.py 垫片）。
+> **下一探针**：用修好的 py trace 通道 dump 分歧 tick 各物品 TRIG 行
+> （triggerTime/iterationCooldown/spd 逐值对位 gd），判「到期时刻差」vs
+> 「同刻判定序差（_physics_process 遍历序/激活信号广播序）」。
+>
+> **offpeak 任务书（按序修复；每项守门+台账打勾+commit 不 push）**：
+> 1. **py-only 面**：6 场（run874_r7/run916_r6/run1132_r18/run1316_r10/
+>    run1422_r14/run1528_r13）+ run845_r18（EVGATE 表内）——gd 产物即真值，
+>    py-vs-gd 直读对位，无需 oracle 取证。先修 py trace 通道
+>    （gd_to_py 生成器 get_stack shim，见「进行中」）。
+> 2. **evt0@1-50 ×81**：run618_r18 冷却亚 tick 到期序（语料 idx45/46 同 tick
+>    双激活；打法=_physics_process 触发序对位，注意 tick_states 各自相位
+>    不可直 diff，需校准）。
+> 3. **evt1@1-50 ×124**：P3-3 后新分簇，签名已变（run572 新首分歧=
+>    对方 Strong Divine Potion type-103 面splat 缺发）——重跑
+>    `_np24_red_clusters.py --top 14` 按新签名并簇。
+> 4. **P3-1（582@42 Elephant Rune stun）/ P3-4（576@128 Mana Orb）/ P2-1
+>    （MrS MSROLL v3）/ P1-1（物品持久强化态五步路径）**：按 §3 原打法。
+> 5. 每轮全量：`_np23_shard_verify.py --shards 3 --rerun <红场>`，REG 九场防退步。
+
 
 ### P1 数据面整族（预计最大收敛面）
 

@@ -73,7 +73,7 @@ __all__ = [
     "_gd_range", "_gd_fmt",
     "String", "Dictionary",
     # GDScript 全局函数与常量（转写产物按字面名字引用，见函数定义处的说明）
-    "typeof", "tr", "TYPE_VECTOR2",
+    "typeof", "tr", "TYPE_VECTOR2", "get_stack", "PoolStringArray",
     # ── ② 容器/语义垫片 ──
     "_div", "_mod", "_iter", "_dup", "_erase", "_pop_at", "_find", "_resize",
     "_sort_custom", "_shuffle", "_get_slice", "_invert", "_hash", "_join",
@@ -240,6 +240,26 @@ def is_instance_valid(obj):
 #   ARRAY=19，之后是 Pool*Array 20–26）。
 #   刻意**不**预先定义整张表 —— 没有调用点的常量＝没人守的契约。
 TYPE_VECTOR2 = 5
+
+
+def get_stack():
+    """`get_stack()` 垫片（np25）：Python 侧无 GDScript 风格栈帧字典。
+
+    消费方只有诊断追踪（CoreRng._trace 的 ORACLE_ALIGN_STACKTRACE 双门控
+    调试路径）；返回 None = 调用方跳过帧收集——与 gd headless 下 get_stack()
+    返回 null 的行为语义对齐（正常跑批零影响）。
+    """
+    return None
+
+
+def PoolStringArray(arr):
+    """`PoolStringArray()` 垫片（np25）：恒等返回 list。
+
+    消费方只有 CoreRng._trace 调试路径的 `PoolStringArray(frames).join(sep)`
+    （转写为 `_join(PoolStringArray(frames), sep)`）；Python 的 `_join` 直接
+    吃 list，恒等转换即语义等价（正常跑批零影响）。
+    """
+    return arr
 
 
 def typeof(v):
