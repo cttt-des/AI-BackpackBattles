@@ -122,6 +122,9 @@ class CoreEventBus(GodotObject):
 				_eid = String(emitter.descriptor.identifier) + '/ot' + str(int(emitter.ownerType))
 			self._ctx.rng.trace_diag("BUS", String(signalName), str(len(_bus_list)), "emitter=" + _eid)
 		_bus_i = 0
+		_eid2 = "?"
+		if emitter != None and emitter.has_method("isCoreItem"):
+			_eid2 = String(emitter.descriptor.identifier) + '/ot' + str(int(emitter.ownerType))
 		for _bus_pair in _iter(_bus_list):
 			if self._ctx.fight_ended:
 				return
@@ -133,6 +136,8 @@ class CoreEventBus(GodotObject):
 				self._ctx.rng.trace_diag("BUSL", String(signalName), str(_bus_i), _rid)
 			_bus_i += 1
 			_bus_pair[0].call_funcv(arguments)
+		if self._ctx.rng.oracle_trace and self._ctx.rng._stacktrace:
+			self._ctx.rng.trace_diag("BUSD", String(signalName), str(_bus_i), "emitter=" + _eid2)
 
 
 	def connectEvent(self, emitter, signalName, receiver, method):
