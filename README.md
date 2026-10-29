@@ -156,6 +156,10 @@
 > MagicRing/MrStruggles/Item）**任何源重建都会被冲掉**（builder 不生成它们），与版本无关，
 > 重建后必须回植。
 
+**模拟器当前对齐哪一版？** 分面混合：**行为逻辑 = 1.1.7 转译**，**数值/占格/贴图/真值对照 = 1.1.9**。
+逐面证据（含 3104/3104 数值对拍、519/519 索引 id 对拍）见
+[docs/version_alignment.md](docs/version_alignment.md)。
+
 ## 项目结构
 
 ```
