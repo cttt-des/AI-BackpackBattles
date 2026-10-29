@@ -783,6 +783,51 @@
 >   `tools/verify_oracle.py`、`docs/parallel_workflow.md`、
 >   `gd_core_py/gd_core/CoreCombat.py`（EOL 幻影）。
 >
+> **★★ np25wf 修复面①：sceneDepth 装配缺抽（2026-10-30 深夜，修复员·flicker 派发定谳转 sceneDepth 面）★★**
+> - **flicker 派发机理定谳（推翻上轮留档叙事）**：5080938f 的补注册**在 run784 其实已开火**
+>   ——修后 gd u 流在 t≈2.13 移位一格、events 1637→1705（md5 2e86fc0d→4120f3a7）；
+>   「修复前后可见流逐位同」系只对了首分歧位（vs oracle 均 idx28）未对全流。
+>   注入链（夹具 descr.flickerAni=9 件→宿主 :355→fromDict→_readyInit）与
+>   callDelayed/_flushTimed 递减驱动全链静态+动态完好。
+> - **真根因（oracle ORACLE_DEBUG+FLKSTUB 桩 × gd FLKREG/FLKFIRE/ITEMREADY 诊断，
+>   PCG state 前向模拟定位，randf=2 pcg 步常数 A=MULT²、C=INC·(MULT+1) 实测标定）**：
+>   run784 五符文（Hawk/Tiger/Badger/Badger2/Elephant，= Spiked Wall/Falcon Blade 的
+>   socketed gems）每个在 oracle 装配段多耗 **1 抽** ——gd 2# chanceRng 后缺第 3 层
+>   脚本重绑定（Item.tscn→Gem.tscn→HawkRune.tscn 三层链成员初始化器跑 3 遍）。
+>   链位铁证：gd 对手油灯 delay 抽 @112（state S_113）v oracle @117（S_118）；
+>   delay 值 1.97897 v **0.662**；fire 链位 gd @? v oracle **@238/@355**。
+>   夹具 `sceneDepth`（enrich_scene_depth.py，宝石类=3/普通=2，34 件）宿主
+>   OracleAlignBattle:377 与 py 引擎 gd_core_engine:1025 早已透传，**CoreItemData
+>   从未接字段、CoreItem.setup 硬编码 2 层** = 断环。
+> - **修复**：CoreItemData 增 `sceneDepth` 字段+fromDict 消费；CoreItem.setup 增
+>   `for _i in range(max(0, int(descriptor.sceneDepth)-2)): chanceRng=BalancedRng.new()`
+>   （第 2 层后、gemRoll 前，与神谕实例化序同构）。三树同步（gd_to_py rc=0、
+>   test cp md5 d895b2ed/12ec43a7 两方一致）。
+> - **B3 验证（修复后单场重放）**：四份 FLK 快照与 oracle **逐位同**——
+>   delay#1 2.306077@33 / delay#2 **0.661956@118**（st=-1182524832935800297 与
+>   oracle 全同）/ fire **@238、@355**（st 同 oracle）。
+> - **绿场零回归的构造性依据**：已装配 S3 物品的场在基线必红（gd 3 抽 v oracle 4 抽
+>   链必错位），故绿场不含已装配 S3 ⇒ 修复不可能打绿（袋内容物不参与装配，
+>   run570 的 32 处 S3 引用全在袋内=两引擎皆不实例化，绿锚无恙）。
+> - **守门 np25_scenedepth_r1（16 场=锚场+REG9+红场样本6，RED LIST 非空但零退步）**：
+>   **run784 首分歧 28→767（27 倍深移，py 腿整场 PASS=py≡oracle）**、run862
+>   **33→727**（py PASS）、run813 **92→446**（py PASS）、run1514 33→36；
+>   1160@155/732@179/695@172 逐场同位未动（袋内 S3 不受影响）；
+>   570/1029/635 双腿 PASS，py-only 族 gd 腿全 PASS、py 腿位置不变
+>   （571@1180/581@434/1222@758/1223@567=冷却 float 面另修，本轮未动）。
+>   alignment.json 全程未收缩（279/914 复核 ✓）。
+> - **取证桩已还原（md5 三方留档 output/_round_patches/np24_fix/flk_stub_r1/）**：
+>   oracle FlickerAnimation.gd=82c296d3、Item.gd=605a8958 均与 pre 逐位同；
+>   gd 修复前备份 output/_round_patches/np24_fix/scenedepth_r1/。
+>   ⚠ 环境新坑入册：**搜狗 IME 注入失败今天会弹模态 "Error"（OpenMem failed err=5）
+>   对话框卡死一切 Godot 启动**（昨日仅日志噪声）——看门狗=EnumWindows 找
+>   pid 的 Error 窗发 WM_CLOSE 放行（output/_offpeak/np25_flk_a/_run_probe.py
+>   可复用）；微探针实测 PCG：get_state 每 randf 前进 A=0x685f98a2018fade9
+>   （=MULT²）、C=0x8c63d050560a5992（=INC·(MULT+1)）。
+> - **遗留**：①受影响簇=红场含已装配 S3 者约 400 场待全量分片复验（--rerun）
+>   重算 alignment；②run784 残红 ev@767=下一层分歧面；③py-only 冷却 float 族
+>   11 场位置未动（本轮未碰）。
+>
 ### P1 数据面整族（预计最大收敛面）
 
 - [ ] **P1-1 物品持久强化态缺失**：史流 setData 的 bonusMinDam/bonusMaxDam/bonusDamageFactor
