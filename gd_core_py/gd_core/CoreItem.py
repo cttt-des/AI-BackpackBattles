@@ -311,6 +311,15 @@ class CoreItem(GodotObject):
 		self.chanceRng = self.ctx.rng.BalancedRng(self.ctx.rng)
 		self.damageRangeRng = self.ctx.rng.BalancedRange(self.ctx.rng)
 		self.chanceRng = self.ctx.rng.BalancedRng(self.ctx.rng)   # 覆盖脚本重绑定：成员初始化器重跑
+		# ★ np25 sceneDepth 面（run784_r13 state 快照定谳）：三层覆盖链
+		#   （Item.tscn → Gem.tscn → <gem>.tscn，如 HawkRune）成员初始化器跑
+		#   sceneDepth 遍——第 3 层的 chanceRng 才是幸存实例（战斗期平衡器状态源）。
+		#   夹具/宿主/引擎描述符早传 sceneDepth（enrich_scene_depth.py，宝石类=3、
+		#   普通物品=2）但内核从未消费 ⇒ 每个宝石类物品装配少 1 抽（run784 五符文
+		#   = 5 抽，第 2 油灯 flicker delay 1.979v0.662 的错位即此所赐）。
+		#   消耗位置 = 第 2 层之后、gemRoll(advance) 之前，与神谕实例化序逐位同构。
+		for _i in _iter(_gd_range(max(0, int(self.descriptor.sceneDepth) - 2))):
+			self.chanceRng = self.ctx.rng.BalancedRng(self.ctx.rng)
 		self.baseCooldownOverride = _descriptor.cd
 		for buff in _iter(_R.C("CoreConst").getStacks()):
 			self.buffPowers[buff] = 1.0
@@ -851,6 +860,10 @@ class CoreItem(GodotObject):
 			#   驱动对齐 drive_delayed；animation_finished 无帧永不发 ⇒ 每件战斗期
 			#   恰 1 笔），到点派发 flickerPlayAni 走 ctx.rng.rng 裸抽（零痕迹同规）。
 			self.ctx.callDelayed(self, "flickerPlayAni", flicker_delay)
+			# ★ np25 flicker 派发定谳探针（双门控零耗）：与 oracle FLKSTUB 桩对称——
+			#   delay 抽后的链状态快照，供 state→PCG 前向模拟数精确链位。
+			self.ctx.rng.trace_diag("FLKREG", String(self.descriptor.identifier) + "/ot" + str(int(self.ownerType)),
+					str(flicker_delay), "st=" + str(self.ctx.rng.rng.get_state()))
 
 		# ★ 连接器 _ready 抽（阶段2）：Potion._ready 动态挂 PotionConnector
 		#（Potion.gd:22-28）/场景内嵌 CardConnector——两者 _ready 均为
@@ -884,6 +897,10 @@ class CoreItem(GodotObject):
 		# 但调用点**照原版保留**：这样「物品准备好」这个生命周期点与源码逐条对得上，
 		# 将来若折叠被拆开（例如某行为脚本开始用 `socket.getGem()`），这里有落点。
 		self.initSockets()
+		# ★ np25 flicker 派发定谳探针（双门控零耗）：物品就绪边界链状态快照，
+		#   与 oracle Item.gd _ready 入口的 itemready 行同构对位。
+		self.ctx.rng.trace_diag("ITEMREADY", String(self.descriptor.identifier) + "/ot" + str(int(self.ownerType)),
+				"", "st=" + str(self.ctx.rng.rng.get_state()))
 
 
 	# FlickerAnimation.playAni（Items/Animations/FlickerAnimation.gd:17-19）：
@@ -894,6 +911,10 @@ class CoreItem(GodotObject):
 	#   animation_finished 永不发出 → onAnimationEnded 不会重排下一轮——playAni
 	#   每场至多一次（判胜前），与神谕 drive_delayed 的一次性派发逐位一致。
 	def flickerPlayAni(self):
+		# ★ np25 flicker 派发定谳探针（双门控零耗）：开火时战斗时刻+链状态快照
+		#（裸抽前），与 oracle FLKSTUB fire 行同规对位。
+		self.ctx.rng.trace_diag("FLKFIRE", String(self.descriptor.identifier) + "/ot" + str(int(self.ownerType)),
+				str(self.ctx.time), "st=" + str(self.ctx.rng.rng.get_state()))
 		# ★ kernel_r6：oracle FlickerAnimation.gd:16 playAni = Util.rng.randf_range
 		#   裸调（rng_log 零痕迹，与 np24 ItemAnimation 同款）⇒ 裸抽不进 trace。
 		self.ctx.rng.rng.randf_range(self.descriptor.flickerMinSpeed, self.descriptor.flickerMaxSpeed)

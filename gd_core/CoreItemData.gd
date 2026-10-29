@@ -93,6 +93,13 @@ var connectorReadyRoll := false
 # 宝石 _ready 抽（Gem._ready → gemAnimation.advance(
 # Util.rng.randf_range(0,10))，Items/Gems/Gem.gd:24）——+2 步。types 含 gem。
 var gemRoll := false
+# 场景脚本绑定层数（tools/enrich_scene_depth.py：setup() chanceRng 次数）：
+# 普通物品=2（Item.tscn 基脚本 + 物品脚本覆盖重绑定），宝石类=3
+#（Item.tscn → Gem.tscn → <gem>.tscn 三层，每层成员初始化器各跑一遍
+#  ⇒ chanceRng 构造 3 次）。★ np25 sceneDepth 面：宿主/引擎描述符早已透传，
+#  内核此前从未消费 ⇒ 每个宝石类物品装配少 1 抽（run784_r13 五符文 = 5 抽，
+#  第 2 油灯 delay 1.979v0.662 移位即此所赐，state 快照定谳）。
+var sceneDepth := 2
 
 # 对齐 ItemDescriptor.gd:17-21、:82、:349-355
 #   isReleased() 的三分支：Demo → 恒真；Full/Unreleased → 问构建特性标志。
@@ -331,6 +338,7 @@ func fromDict(d: Dictionary):
 	o.connectorReadyRoll = CoreConst.truth(d.get("connectorReadyRoll",
 			d.get("connector_ready_roll", false)))
 	o.gemRoll = CoreConst.truth(d.get("gemRoll", d.get("gem_roll", false)))
+	o.sceneDepth = int(d.get("sceneDepth", d.get("scene_depth", 2)))
 	o.releaseState = int(d.get("releaseState", d.get("release_state", ReleaseState.Full)))
 	o.params = d.get("params", [])
 	# 具名参数：camel（内核/测试）与 snake（battle_items.json 的原始键）都接受。
