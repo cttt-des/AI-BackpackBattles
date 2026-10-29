@@ -683,6 +683,40 @@
 >   output/_round_patches/np24_fix/preptape_r1/oracle_fight.gd.pre_tape.bak，
 >   pre md5=ae19749211a20fd0d88257ce35f459f2）+ md5 三方留档。
 >
+> **★★ 方案D 守门战报+本会话收口（2026-10-29 深夜，用户指令收尾）★★**
+> - **tape 落地 78+1 场**（gd_core_test/prepare_tape.json 已 commit）：守门实证
+>   used order == tape order（run639/run604 抽查）。**7 场跳过**待补采：
+>   run1068_r18/run1144_r18/run1177_r18/run1254_r18/run1307_r12/run1436_r10/
+>   run930_r18——P 侧恰缺 1 件=袋内物品不在 INVENTORY.getItems() 顶层，需
+>   「随载体插入」映射规则（tools/_np25_tape_extract.py 预留 skip 告警）。
+> - **守门 np25_tape_c1（87 场）**：REG 零退步——570/1029 双腿 PASS（绿保持），
+>   七红 1160@155/862@33/813@69/635@104/732@179/695@172/1514@23 与基线逐场
+>   同位 ✓。**tape 场 gd 腿翻绿 3**：run1222_r10/run1223_r7/run1406_r18
+>   （py 腿红@758/567/248=py-only 面另修，py 引擎零改动不受 tape 影响）；
+>   py-only 老成员 run701/run828 gd 保持 PASS；run639 ev@65→71。
+>   其余 74 场新 fd 位明细在 output/_offpeak/preptape_r1/_gate_analysis.json
+>   与 _gate_cases.txt；**全簇改善分布待 alignment.json 重建后**
+>   `python -X utf8 tools/_np25_tape_analysis.py --tag np25_tape_c1
+>   --cases output/_offpeak/preptape_r1/_gate_cases.txt` 重算（基线位随下述
+>   事故丢失；分析器已修好嵌套/平铺两种 firstDivergence 形状）。
+> - **⚠ 事故入册：alignment.json 被覆写为 0/2**（21:26:59，1264 字节）——
+>   verify_oracle.py compare 主流程 `--alignment-out` **默认直写主账本**，对
+>   部分场集跑 compare 即整文件重写（本次 2 行=py 缺产物 2 场）。**门规新增**：
+>   ①任何 partial compare 必须显式 `--alignment-out <scratch>`；②收尾全量前
+>   先校验 alignment.json 行数/total==914。**下一执行体收尾全量时重算全量
+>   alignment.json**：`python -X utf8 tools/_np23_shard_verify.py`（无 --rerun，
+>   gd 产物 914/py 产物 912 在盘，CPU compare 分钟级）。
+> - **残红面（tape 后下一层，已实证）**：run639 ev@71=DK 激活级联中 oracle
+>   ManaOrb 105 先发（新根 parent=-1）v gd Twine 19 先发（嵌套），且 **AoL 102
+>   父激活两侧不同**（O 挂 LG 激活 v gd 挂 Twine 激活）——监听集成员差或
+>   BalancedRng 分支差，BUSL/ROLLW 双侧对位可定谳（探针已入库零耗）。
+> - **探针已还原** ✓：oracle_fight.gd md5=ae19749211a20fd0d88257ce35f459f2
+>   （=pre，三方留档 output/_round_patches/np24_fix/preptape_r1/restore_md5.txt）。
+>   工具（本地不入库）：_np25_tape_run.py（批量+断点续跑）/ _np25_tape_extract.py
+>   （角点匹配）/ _np25_tape_analysis.py（改善分布）。
+> - **本会话 np25 累计 commit**：c212c1ef（台账接管）/ 6af0c3ff（tape 落码）/
+>   本笔（战报+tape 数据）。队列②③④⑤由 offpeak-6ecfa1b4 继续。
+>
 ### P1 数据面整族（预计最大收敛面）
 
 - [ ] **P1-1 物品持久强化态缺失**：史流 setData 的 bonusMinDam/bonusMaxDam/bonusDamageFactor
