@@ -332,13 +332,45 @@
 >   evt105+evt12 异型子簇
 >   ≈54 场=总线监听级联缺发/多触发（同 run874 定谳族，BUS 探针就绪）；
 >   evt109@1-50≈24 场=周期触发器首拍迟到/缺发（Spell Scroll Dark×11、
->   Burning Banner×5，推迟 13~40 tick 节奏保持）独立成面。**待验映射裁决**：
+>   Burning Banner×5，推迟 13~40 tick 节奏保持）独立成面。✅ **已修复
+>   （2026-10-29，首拍迟到面，py 腿守门）**：定谳推翻「gd 独有/登记未旋」
+>   两假说——py≡gd 同病，真根因两线**互锁缺一不生效**：
+>   ①`CoreItem.hasType` 漏 `or type in dynamicTypes`（gd_core/CoreItem.gd:262
+>   vs decompiled Item.gd:3594-3595）→ 动态 Dark 对暗系计数恒不可见；
+>   ②**派发死链**（py 装配级探针定谳，推翻 ask 草案「登记未随 face_direction
+>   旋转」——探针实证 affectedCellsCache[Secondary]=[(2,0),(3,2),(5,0),(6,2)]
+>   旋转正确）：addDynamicType/removeDynamicType tail 原版走
+>   `inventory.onItemTypeChanged(self)`（Inventory.gd:971-972 纯信号 emit→
+>   Item.gd:1457-1480 全背包重建 currentAffectedItems=**数据面**），内核却路由
+>   到 ctx.hooks 空桩（CoreHooks.gd:192 pass，旧注释误判「属背包刷新」）→
+>   CA 放置期腐蚀后 SSD 的 Secondary 受影响集永不登记，prepare() 快照恒 0。
+>   修=tail 改调 `inventory.onItemTypeChanged(self)`（CoreGrid.gd:249-251
+>   同序派发本就实现、只是无人调用）。实证链：①单独打 run650_r11 仍 ev@16
+>   （无行为差）；①+② 后 `currentAffectedItems[Secondary]=[SSL,SSL]`、
+>   `getNumAffectedItems(Secondary)=2`、语料首两条 evt109 idx16/18（SSD×双方）
+>   逐位对齐（修前 42/44）。**py 腿守门 20 场**（8 簇+绿样 570/1029/874/916+
+>   REG 九场，evt109fix2 vs evt109pre 同驱动对拍）：run652_r10/run1255_r18
+>   **整场转绿**；run650 ev@16→364、run670 ev@24→123、run768 ev@33→147、
+>   run1173 ev@46→240、run1246 ev@40→238、run1254 ev@28→190（8/8 越过 SSD
+>   首拍；run650 残 ev@364=Shiny Mantle evt8 t_tick 910v911 属 timeout1t 残
+>   红签名非本面）；绿样 4 场 PASS 零退步；REG 七红逐场同基线位
+>   （1160@155/862@33/813@69/635@104/732@179/695@172/1514@23）+run1132@12。
+>   winner：run1246/run1255 翻向语料=改善；**run1173_r18 winner 翻离语料**
+>   （opp→player，语料=opp）——其 ev@240 残分歧（Prismatic Sword evt3 vs
+>   Amulet of Light evt102 链，t≈6.9s 总数 2959v2825）属另一未修面的连带，
+>   非本面语义错误，留档待该面修复后回归。hasType 波及面（暗系计数/BB×5
+>   入口）在 20 场内零退步；**gd 腿（Godot）与三产物再生+全量 alignment 重算
+>   notCovered**（本 ask 禁跑 Godot，待独占窗口）；check_gd_core_engine FAIL
+>   系基准文件陈旧（22 行非 56 局，0 可比，先在非本修引入）。备份+
+>   基线/终局 JSON：output/_round_patches/np24_fix/evt109_r1/。
+>   **待验映射裁决**：
 >   P3-4 Mana Orb 真身在 evt105（run604/run639）非 evt8；受击/反伤面真身=
 >   evt104@1-50×17（Spiked Shield/Pine Protector）；evt12 Goobert 系仅 Blood
 >   Goobert 2 场；evt109≠Twine/疲劳（602/605/624/668 实为 LG 到期 T-1）。
 > - **修复优先序**（材料准备中，修复 workflow 串行链待校准）：①棋盘数据面
->   (~75 场，数据位+三产物再生) ②buff 到期 ±1 tick(~84 场) ③全局流错位
->   (111 场，对位材料已备) ④首拍迟到(~24 场) ⑤总线级联(~54 场，深水后置)。
+>   (~75 场，数据位+三产物再生)✅ ②buff 到期 ±1 tick(~84 场)✅ ③全局流错位
+>   (111 场，对位材料已备) ④首拍迟到(~24 场)✅（py 腿；gd 腿+三产物再生
+>   待独占窗口）⑤总线级联(~54 场，深水后置)。
 >   修复已并入 workflow（dwfrun-7b6116b7）按互斥类串行执行，每笔独立 commit。
 >
 > **★ 新一轮问题清单（148/914 基线重扫，2026-10-29；已被上方四面分析重定谳，条目保留作历史索引）**：

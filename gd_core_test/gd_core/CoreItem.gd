@@ -1523,15 +1523,21 @@ func hasDynamicType(type: int, fromItem) -> bool:
 	return false
 
 
-# 对齐 Item.gd:3603-3613。原版 tail 的 inventory.onItemTypeChanged(self) 属背包刷新，
-# ObjectPool.particleOneShot 属粒子表现 —— 两者均走钩子。
+# 对齐 Item.gd:3603-3613。原版 tail 的 inventory.onItemTypeChanged(self)
+# （Inventory.gd:971-972 = emit "item_type_changed"）是**数据面**：各物品在装备时
+# （Item.gd:1333 connect）把自己的 onItemTypeChanged（Item.gd:1457-1480）挂上
+# 该信号，动态类型变化后全背包重建 currentAffectedItems 受影响集——并非表现层。
+# 内核等价物 = CoreGrid.onItemTypeChanged（CoreGrid.gd:249-251，同序逐件派发）。
+# 旧实现路由到 ctx.hooks 空桩（CoreHooks.gd:192 pass）→ 派发恒死：CorruptedArmor
+# 放置期腐蚀 Holy→Dark 后 SSD 的 Secondary 受影响集永不登记 → 周期首拍迟到
+# （evt109@1-50 簇根因②，2026-10-29 py 装配级探针定谳）。
 func addDynamicType(type: int, byItem) -> void :
 	if not type in descriptor.types:
 		CoreUtil.dictAppend(dynamicTypes, type, byItem.get_instance_id())
 		
 		if dynamicTypes[type].size() == 1:
 			if placed:
-				ctx.hooks.onItemTypeChanged(self)
+				inventory.onItemTypeChanged(self)
 
 
 # 对齐 Item.gd:3614-3621
@@ -1541,7 +1547,7 @@ func removeDynamicType(type: int, byItem) -> void :
 		
 		if not type in dynamicTypes:
 			if placed:
-				ctx.hooks.onItemTypeChanged(self)
+				inventory.onItemTypeChanged(self)
 
 
 # 对齐 Item.gd:3629-3631
