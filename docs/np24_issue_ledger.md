@@ -450,7 +450,7 @@
 > emitter identifier+signalName+监听数，双门控零耗链同规；gd_core/CoreEventBus.
 > gd + py 侧经 gd_to_py 再生成），分歧 tick 两侧对位即可点名监听集与顺序差。
 >
-> **★★ offpeak 续作任务书 v2（2026-10-29，基线 277/914；v1 已完成/被四面分析重定谳，见下）★★**
+> **★★ offpeak 续作任务书 v2（2026-10-29，基线 279/914；v1 已完成/被四面分析重定谳，见下）★★**
 > **当前战线**：修复 workflow 串行链已收口三面——loseHealth 补抽（c251a762，
 > run572 ev@109→242）、buff/timer 到期早 1 tick（d7fe5cb5，目标族 85 场 50 绿）、
 > 棋盘 capture 数据面（d4afe736/b05e33f9/bc0a3dee，148→277 +129）；「首拍迟到」
