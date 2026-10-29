@@ -771,6 +771,18 @@
 >   下轮动作=全量分片复验（--rerun 红场）+ 新分簇 + flicker 派发实证**。
 > - 队列④（P2-1/P1-1/run845）原样移交未动；队列⑤重扫待上项复验后进行。
 >
+> **★★ np25 工作流执行体接管声明（2026-10-29 深夜，用户指令：启动修复工作流+并行子代理+往复循环）★★**
+> - **修复工作流（np25wf）现为唯一活跃修复执行体**：offpeak-6ecfa1b4 若开跑，
+>   **先实读 git log与本节**——队列②③④可能已被工作流认领/完成，勿重复修复；
+>   以最新 np25wf 系 commit 为准避让。工作流拓扑：并行勘察（py-only 族+P1-1
+>   数据面，只读不跑 Godot）→ 内核修复链（单代理串行 Godot 独占：flicker 派发
+>   定谳/M3-AoL 总线面/…）→ 全量分片复验（--rerun 受影响场）→ 台账收尾 →
+>   下一轮循环。
+> - **外来在途文件清单（并行工具执行体所作，一切执行体勿 add 勿还原）**：
+>   `.gitignore`、`oracle/debug.log`、`tools/run_gd_core.py`、
+>   `tools/verify_oracle.py`、`docs/parallel_workflow.md`、
+>   `gd_core_py/gd_core/CoreCombat.py`（EOL 幻影）。
+>
 ### P1 数据面整族（预计最大收敛面）
 
 - [ ] **P1-1 物品持久强化态缺失**：史流 setData 的 bonusMinDam/bonusMaxDam/bonusDamageFactor
