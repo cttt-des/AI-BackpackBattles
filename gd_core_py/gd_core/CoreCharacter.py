@@ -864,6 +864,16 @@ class CoreCharacter(GodotObject):
 
 	def loseHealth(self, amount, item=None, triggerEvent=None):
 		self.curHealth -= amount
+		# ★ 表现层链消耗还原（Character.gd:859-861）：loseHealth 在事件发射前
+		#   无条件抽伤害飘字位置（randDmgNumberPos 2 抽）+ 方向（randDmgNumberDir
+		#   1 抽）——无 item 也不豁免（三行位于 `if item:` 之前）。np25 定谳：
+		#   run572_r9 gd trace 相对 oracle rng_log 每处 EVENT 5 恰缺该三元组
+		#   （7 处共少 21 uniform）。pos/direction 仅喂视觉标签（gd_core 无头
+		#   版 spawnNumberLabel 为 no-op hook），故不保留返回值，抽数与顺序
+		#   与原版逐位一致。
+		self.randDmgNumberPos()
+		self.randDmgNumberDir()
+		self.ctx.hooks.spawnNumberLabel(_R.C("CoreConst").EventType.LoseHealth, None, None, amount)
 		event = None
 		if item:
 			event = self.ctx.combat_log.createEvent_LoseHealth( - amount, self.playerId, item, triggerEvent)
