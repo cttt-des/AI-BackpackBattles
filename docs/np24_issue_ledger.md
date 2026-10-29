@@ -899,6 +899,54 @@
 >   ②run592 gd≡py 同位红@219 下一层；③M3/AoL 总线面；④fd 对位绿场
 >   586-186-400 的中间态分布待重扫。
 >
+> **★★ np25wf 台账收尾：勘察→三面修复链→全量复验 398/914 收口（2026-10-30，收尾记录员·np25wf_r1）★★**
+> - **本轮勘察结论（np25wf 并行勘察，只读零 Godot）**：①py-only 残面=**1 族
+>   11 场**（冷却 float 族 gd≡oracle：571/581/701/787/828/864/960/1189/1222/
+>   1223/1406；分簇实证 output/_offpeak/_pyonly_cluster_full.txt「n=11
+>   py-only(gd≡oracle)」）→ 面②全收编；**398 基线 py-only 计数=0**（本员实读
+>   alignment.json 逐场判定 oracle_gd∧¬gd_py 空集）。run1132_r18 py IndexError
+>   另案：398 基线该场 gd 腿亦红（oracle 2121 v gd/py 1405 事件）转 gd_core
+>   面另诊。②**P1-1 圈定 136 场**（t0 面，output/_p11_affected_t0.json len=136
+>   实证；全 faces 口径 564 场=_p11_affected_final.json）——史流 bonusMinDam/
+>   bonusMaxDam 快照缺字段面的受影响场离线圈定完成，修复待 §3 P1-1 五步路径。
+> - **修复链（3 commit，git log 实证）**：① **sceneDepth 装配缺抽**
+>   （2e5c49db）：CoreItemData 接 sceneDepth 字段+CoreItem.setup 补第 3 层
+>   chanceRng（宝石类三层覆盖链每件少 1 抽）；守门 np25_scenedepth_r1
+>   run784 28→767（py 腿整场 PASS）/862 33→727/813 92→446，REG 零退步。
+>   ② **py-only 冷却族 f64 直译**（f5500e74）：_apply_cooldown_f32 整体停用
+>   （P3「REAL=float32」系误设，Godot 3.x float=64 位 double）；实验 11 场
+>   py 重放 vs gd 真值 ALL PASS；守门 np25_f64_r1（20 场）11/11 双腿整场
+>   PASS+REG 零退步。③ **Stamina Sack 体力上限**（af082c8c）：
+>   recalculateMaxStamina 死数组 `items` → `inventory.getItems()`（gd 对手
+>   max 恒 5.0 v 神谕 6.0，体力池差 1.0 静默→压线拍 OutofStamina）；守门
+>   np25_stamsack_r1（17 场）run784/862/813 三场整场翻绿+绿袋哨兵保持+REG
+>   零退步。
+> - **✅ 全量复验收口（398/914，+4）**：stamsack 后 gd 腿 rerun 27 场 PASS
+>   （output/oracle/align/gdcore/_align_gd_summary.txt：914 场 resume 跳过
+>   887、实跑 27、170.2s PASS）+ py 腿 + _cmp_shards compare 重建（10-30
+>   07:33）→ **ALIGNED 398/914**（收口退出码 0 载自 np25wf 收口记录；本员
+>   实读 alignment.json 复核 aligned=398/total=914，match_distribution
+>   三方一致 398/gdcore≡oracle 但 py 分歧 0/oracle≠gdcore 324/且 py 分歧
+>   192；`_np24_red_clusters.py --top 20` 印证 ALIGNED 398/914 RED 516）。
+>   **394→398 翻绿 4 场=run784_r13/run862_r18/run813_r12（stamsack 三场）+
+>   run1015_r18（绿袋哨兵真值翻绿=潜伏差论证实证）**；零新红（394 RED 520
+>   清单与 398 RED 516 diff 实证）。基线历史链：279→394（sceneDepth+f64，
+>   41.3min）→**398（+stamsack，本笔）**。遗留③stamsack 受影响簇已随本笔
+>   进基线收口。
+> - **红簇 top20（398 基线 RED 516，_np24_red_clusters.py 实跑）**：
+>   n=50 evt109@151-400（LG/Twine 到期族余量）｜n=38 evt12@51-150｜n=37
+>   evt109@401-1200｜n=30 evt1@151-400｜n=28 evt12@151-400｜n=25
+>   evt0@151-400｜n=17 evt12@401-1200｜n=17 evt105@151-400｜n=16
+>   evt1@51-150｜n=14 evt0@51-150｜n=13 evt109@51-150｜n=12 evt105@51-150｜
+>   n=11 evt12@1-50｜n=10 evt8@151-400｜n=10 evt8@401-1200｜n=9
+>   evt101@151-400｜n=9 evt102@151-400｜n=9 evt104@401-1200｜n=8
+>   evt103@151-400｜n=8 evt1@1-50；localization 分布 rng-mechanism 431/
+>   gd_core-kernel 85。**下轮建议**：①evt109/evt8 到期族残量（timeout1t
+>   残红 35 场+ty109 多栈次序 8 场）②evt12/evt105 总线级联（M3/AoL 面）
+>   ③evt0/evt1 局部族重分簇 ④run592 gd≡py 同位红@219 下一层 ⑤P1-1 数据面
+>   五步路径（136 场已圈定）。战报全文：output/_offpeak/np25wf_r1/report.md
+>   （本地不入库）。
+>
 ### P1 数据面整族（预计最大收敛面）
 
 - [ ] **P1-1 物品持久强化态缺失**：史流 setData 的 bonusMinDam/bonusMaxDam/bonusDamageFactor
