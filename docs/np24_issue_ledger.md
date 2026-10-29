@@ -489,6 +489,76 @@
 > 4. **P3-1（582@42 Elephant Rune stun）/ P3-4（576@128 Mana Orb）/ P2-1
 >    （MrS MSROLL v3）/ P1-1（物品持久强化态五步路径）**：按 §3 原打法。
 > 5. 每轮全量：`_np23_shard_verify.py --shards 3 --rerun <红场>`，REG 九场防退步。
+>
+> **★★ 修复 workflow 战报（串行链）收口（2026-10-29，串行链 4 面 7 commit；收口门退出码=0，收口基线 148→279/914）★★**
+> 串行链执行序（git log 实证）：c251a762→d7fe5cb5→d4afe736→b05e33f9→bc0a3dee→aec78fe7→b94f1c18
+> （期间 30cea409/722a5df3 为台账/GUI 无关插笔）；每笔独立守门+独立 commit+备份留档，REG 九场
+> 全程零退步。**收口基线 279/914（修复前 148/914，+131）**：279 数=收口门回执（收口员未复跑该门）
+> 且已实读 output/oracle/alignment.json 复核（aligned=279/total=914；match_distribution 三方一致 279/
+> gdcore≡oracle 但 py 分歧 11/oracle≠gdcore 390/oracle≠gdcore 且 py 分歧 234）。收口抽查同符：
+> run576_r14/run599_r10/run652_r10 当前快照**三方一致 ✓**；run644_r7 首分歧 idx=301=③战报值 ✓；
+> run572_r9 残红 ev@248（t 629v628 type104 timeout ±1 tick 签名=①守门 ev@242 经②面修复后再深移，
+> 归残红面）；⚠ run1255_r18 py 腿「整场 PASS」属实，但其 gd 腿（施修时点 notCovered）在本轮全量
+> 复验新暴露深位残红 ev@1553（t≈646，py≡oracle）——归残红面接续，不构成回滚。
+>
+> **① loseHealth 补抽（c251a762，fixed）**：gd loseHealth 补 randDmgNumberPos(2抽)+randDmgNumberDir(1抽)，
+> 镜像 oracle/Core/Character.gd:857-864 事件发射前**无条件**三元组（gd 唯一漏镜像位；run572_r9 七处
+> EVENT 5 每处缺 3 uniform 共 21 铁证；施修前置=148 绿场 type==5 事件总数=0，对绿场零影响）。
+> 守门 np25_losehealth_r1（13 场，rc=1 但 11 红均遗留根因面非退步、未触发回滚）：run570_r18/
+> run1029_r2 两绿 PASS；REG 七红逐场同基线位（1160@155/862@33/813@69/635@107/732@179/695@147/
+> 1514@23）。战果：**run572_r9 首分歧 ev@109→ev@242**（越其末处 EVENT 5@语料 idx230；gd 腿事件数
+> 324→320=与 oracle 同长；小场先行 tag np25_losehealth_small 同位确认）；run616/622/623 位置未动
+> （语料 type==5=0，非本面=evt1 次族待接续）。备份 output/_round_patches/np24_fix/losehealth_r1/。
+>
+> **② buff/timer 到期「gd 早 1 tick」（d7fe5cb5，fixed；10 files=gd_core×3+gd_core_py×3+gd_core_test×3
+> +台账）**：gd 三链（CoreBuff._timer_*/CoreCharacter rage/invul）改**严格三变量模型**逐位映射
+> drive_timers 注册表（_timer_left≡e[0]/_timer_eng≡引擎读数/_timer_seen≡e[1]）+activateItems 末尾
+> rebuild 等价步骤；初版 _seen 直采样因冲掉 e[0] 遗留值被 run599_r10 证伪（Light Goobert 3.25s 重
+> gain dur=3 Blind，oracle 同值重启 e[0]=-1 遗留+:901 连减当帧 fire=高频主路径）。守门 timeout1t_r2：
+> run576_r14/run599_r10 **四腿 ALL PASS**（ev@162→PASS/ev@99→PASS）；REG timeout1t_reg 绿 4 保持
+> （570/1029/874/916）、七红+run1132@12 逐场同基线 np25_ofp_r1132；BLND 探针验收 run599_r10 p1
+> ty109 gain fr=198→fire fr=379（fr差=181=K ✓）；md5 三方留档 output/_round_patches/np24_fix/
+> timeout1t_r1/md5_sync.txt（gd_core≡gd_core_test）。战果：**目标族 85 场 gd 腿 50 绿+py 腿 50 绿**
+> （首分歧 type 直方图 (8,8)=49+(109,109)=20+(22,22)=16；py 红集与 gd 相同逐场同位=转写保真）；
+> **残红 35 场定性建档** family_still_red.json（7 场 dt=+1 dur 边界需 oracle 腿 ORACLE_DEBUG 活体
+> 取证/2.0 边界 10 场 121 间隔全 PASS 证模型正确；8 场 ty109 同 tick 移除数量差 -11v-5 多栈次序面；
+> 20 场非本面）。诊断入库：BLND fr=帧号字段六点+INVU make/fire（双门控零耗）。
+>
+> **③ 棋盘 capture 数据面（d4afe736 S1-S4+b05e33f9 S5/S6+bc0a3dee S8 收口，fixed）**：三层缺口+两处
+> 计划外缺口全定谳落码——①数据位双缺口（build_data.py CSV 重指+chess→'chesspiece' 分支；
+> enrich_types.py TYPE_NORM 双键+CSV 重指；落库 diff 恰 12 条 []→['chesspiece']，fixture
+> descr.types=[17] 实证）；②计划外 CoreGrid.moveItem 内核缺口（Inventory.gd:640-646 判定面，
+> 零信号零 rng）；③extract_grid.py 三层改递归+解除 chess 双排除→12 件棋子 affected_cells 移动模式
+> 真值落库（Pawn 2/B·Q·R 20/K·N 8 格，collision 未动）；内核 r1_0 全局链台账（CoreRng.shuffleEngine/
+> pickRandomEngine/globalChainOpen+startBattle(preordered)）；builder 四 pass 全量重建 gd_core_items
+> 68 文件+五处手补回植。守门：chessfix 三例 run644_r7 语料512=gd512=py512、首分歧 ev@2→301（当前
+> 快照复核 idx=301 ✓）、run660 ev@12→460、run1046 ev@24→388（py 与 gd 逐场同位）；chessfix_reg
+> 九场零退步（run695 147→172、run635 107→104 改善）；S4 run570 双腿 ALL PASS；**S8 全量分片复验
+> 767 场 --rerun 三分片 0 失败（32.6 分钟单军独占窗口），ALIGNED 148→277（+129）**，148 旧绿结构性
+> 保持（绿锚 570/1029/874/916/569/994/1139/750 抽查全绿）。备份 output/_round_patches/np24_fix/
+> chessdata_r1/。
+>
+> **④ evt109 周期触发器首拍迟到/缺发（aec78fe7 ①+b94f1c18 ②，fixed）**：真根因两线**互锁缺一不
+> 生效**——①CoreItem.hasType 补 dynamicTypes（decompiled Item.gd:3594-3595 逐字；py=gd_core_py
+> CoreItem.py:362 机械镜像）；②addDynamicType/removeDynamicType tail 由 ctx.hooks 空桩
+> （CoreHooks.gd:192 pass）改调 inventory.onItemTypeChanged（对齐 Inventory.gd:971-972 纯信号
+> emit→Item.gd:1457-1480 全背包重建 currentAffectedItems=数据面；内核派发 CoreGrid.gd:249-251
+> 本就实现只是无人调用）。ask 草案「登记未随 face_direction 旋转」被 py 装配级探针推翻
+> （affectedCellsCache[Secondary] 旋转正确）；①单独打 run650_r11 仍 ev@16（登记面被钳死）。
+> 守门 evt109fix2 py 腿 20 场（8 簇+绿样 570/1029/874/916+REG 九场+run1132；受测树 md5 71871362…
+> 留档 post_fix_md5.txt）：**run652_r10/run1255_r18 整场 PASS**（修前 ev@37/50）；其余 6 簇场首分歧
+> ev@16/37/24/33/46/40/28/50→364/-/123/147/240/238/190/-（8/8 越 SSD 首拍；run650 残 ev@364=
+> Shiny Mantle evt8 910v911=timeout1t 残红签名非本面）；绿样 4 场 PASS 零退步；REG 七红逐场同基线
+> 位（1160@155/862@33/813@69/635@104/732@179/695@172/1514@23）+run1132@12。winner：run1246/
+> run1255 翻向语料；run1173_r18 翻离（opp→player，残 ev@240=Prismatic Sword evt3 v Amulet of
+> Light evt102 另一面连带，留档待回归）。gd 腿 Godot+三产物再生+全量 alignment 重算在施修时点
+> notCovered（本 ask 禁跑）——收口时点全量快照已落地（见收口基线行）；run1255_r18 gd 腿深位残红
+> ev@1553 为该复验新暴露（py≡oracle）。备份+取证 output/_round_patches/np24_fix/evt109_r1/。
+>
+> **残面接续**：残红 635（=914−279）按上方 v2 任务书非重叠队列：①总线级联 ~54 ②evt104 受击面 17
+> ③M3 掷值差 ~35 ④遗留 P2-1/P1-1/run845 ⑤重扫循环（`_np24_red_clusters.py --top 20`）。
+> 本收口动作=仅回写本节+commit 台账（收口员实读 alignment.json+git log 复核；未跑 Godot、未复跑
+> 收口门、未动 oracle/ 树）。
 
 
 ### P1 数据面整族（预计最大收敛面）
