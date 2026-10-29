@@ -64,6 +64,8 @@ class BalancedRng(GodotObject):
 		elif not self.lastResult and target > 0.6:
 			chance *= 2.0
 
+		if self._rng.oracle_trace and self._rng._stacktrace:
+			self._rng.trace_diag("BALROLL", "ch=" + str(chance), "ew=" + str(self.expectedWins) + " w=" + str(self.wins), "lr=" + str(self.lastResult))
 		result = self._rng.flip(chance)
 
 		self.lastResult = result

@@ -1147,7 +1147,11 @@ func getChance2() -> float:
 func rollChance(chance = null) -> bool:
 	if chance == null:
 		chance = getBaseChance()
-	return chanceRng.rollPercent(applyBonusChance(chance, 1))
+	var _rc = chanceRng.rollPercent(applyBonusChance(chance, 1))
+	if ctx.rng.oracle_trace and ctx.rng._stacktrace:
+		ctx.rng.trace_diag("ROLLW", String(descriptor.identifier) + "/ot" + str(int(ownerType)),
+				"ch=" + str(applyBonusChance(chance, 1)), "res=" + str(_rc))
+	return _rc
 
 
 func rollChance2() -> bool:

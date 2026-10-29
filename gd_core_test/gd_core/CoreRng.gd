@@ -241,6 +241,8 @@ class BalancedRng extends Reference:
 		elif not lastResult and target > 0.6:
 			chance *= 2.0
 		
+		if _rng.oracle_trace and _rng._stacktrace:
+			_rng.trace_diag("BALROLL", "ch=" + str(chance), "ew=" + str(expectedWins) + " w=" + str(wins), "lr=" + str(lastResult))
 		var result = _rng.flip(chance)
 		
 		lastResult = result
