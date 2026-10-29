@@ -120,8 +120,17 @@ class BackpackAIApp(tk.Tk):
 
         # 物品资源库（贴图 + 中文名 + 占格形状 + 格子素材）
         self.item_db = ItemDB()
-        self._img_cache: dict = {}      # sprite 路径 -> PIL.Image
-        self._bp_refs: list = []        # 背包贴图 PhotoImage 引用（防 GC）
+        self._img_cache: dict = {}      # sprite 路径 -> PIL.Image（原图）
+        # 旋转+缩放后的 PhotoImage 缓存：key -> PhotoImage（同时充当防 GC 引用）
+        # 实测（2026-10-29）：40 件物品重绘一次 PIL rotate+resize 约 400ms，
+        # 而同样的图在战斗中一分钟都不变——不缓存就是纯烧主线程。
+        self._sprite_cache: dict = {}
+        self._font_cache: dict = {}     # (size, bold) -> tkfont.Font
+        self._bp_refs: list = []        # 后备渲染的 PhotoImage 引用（防 GC）
+        self._bp_sig = None             # 背包签名（变则重绘）
+        self._last_bp_draw = 0.0        # 上次重绘时间（节流用）
+        self._stall_dump_at = 0.0       # 上次卡顿栈取证时间
+        self._text_sig: dict = {}       # 文本面板内容签名（不变则跳过重建）
         self._cell_cache: dict = {}     # "empty"/"filled" -> PhotoImage
 
         self._setup_style()
@@ -133,6 +142,9 @@ class BackpackAIApp(tk.Tk):
         self._start_exit_watchdog()
 
         self.protocol("WM_DELETE_WINDOW", self._on_close)
+        # Tk 回调异常在 --windowed 的 exe 里既无控制台也无日志，等于静默；
+        # 统一接住写入日志文件，下次出问题能直接看到 traceback。
+        self.report_callback_exception = self._on_tk_exception
         if _HAS_PIL:
             self._log("info", "欢迎使用背包乱斗 AI 控制台。检测到游戏窗口后将自动连接（也可手动点击「初始化」）。")
         else:
@@ -141,6 +153,16 @@ class BackpackAIApp(tk.Tk):
         # 自动连接：启动后后台轮询，检测到游戏窗口即自动初始化
         self._auto_connect_attempts = 0
         self.after(600, self._auto_connect_tick)
+
+    def _on_tk_exception(self, exc, val, tb):
+        """全局 Tk 回调异常钩子：写日志 + 面板提示，绝不静默吞掉。"""
+        try:
+            import traceback
+            detail = "".join(traceback.format_exception(exc, val, tb))
+            logging.getLogger(__name__).error("[UI] 回调异常：\n%s", detail)
+            self._log("error", f"[UI] 回调异常: {val}")
+        except Exception:  # noqa: BLE001
+            pass
 
     # ---------- 自动连接 ----------
     def _auto_connect_tick(self):
@@ -273,6 +295,23 @@ class BackpackAIApp(tk.Tk):
         mcombo.pack(side="left", padx=(8, 0))
         tk.Label(mrow, text="贴图 / 染色", font=FONTS["small"],
                  bg=COLORS["panel"], fg=COLORS["text_dim"]).pack(side="left", padx=(6, 0))
+
+        # 背包刷新方式：自动（每秒最多一次）/ 手动（点按钮才重绘）
+        # 渲染是主线程最重的活；手动模式下即使物品频繁变化也不自动重绘，
+        # 长时间游玩/低配机器可显著降低卡顿风险。
+        frow = tk.Frame(panel, bg=COLORS["panel"])
+        frow.pack(fill="x", padx=12, pady=(0, 6))
+        tk.Label(frow, text="背包刷新:", font=FONTS["body"],
+                 bg=COLORS["panel"], fg=COLORS["text_dim"]).pack(side="left")
+        self.refresh_mode_var = tk.StringVar(value="auto")
+        rcombo = ttk.Combobox(frow, textvariable=self.refresh_mode_var,
+                              state="readonly", values=["auto", "manual"], width=10)
+        rcombo.pack(side="left", padx=(8, 0))
+        rbtn = tk.Button(frow, text="刷新预览", font=FONTS["small"], relief="flat",
+                         bg=COLORS["panel_light"], fg=COLORS["text"], cursor="hand2",
+                         activebackground=COLORS["border"], activeforeground=COLORS["text"],
+                         command=self._on_refresh_preview, padx=6, pady=3)
+        rbtn.pack(side="right")
 
         # 按钮 2×3 网格
         btns = tk.Frame(panel, bg=COLORS["panel"])
@@ -501,24 +540,34 @@ class BackpackAIApp(tk.Tk):
         bh = (maxr - minr + 1) * self.CELL + (maxr - minr) * self.GAP
         return cells, x0, y0, bw, bh
 
-    def _draw_sprite_scaled(self, it, x0, y0, bw, bh, overflow_px=0):
-        """绘制单个物品的贴图：按内存 rotation 旋转、等比缩放(contain，不变形)、居中。"""
-        sp = self.item_db.sprite_path(it["name"])
+    SPRITE_CACHE_MAX = 400      # 贴图缓存上限（超出整清，避免无限增长）
+
+    def _sprite_photo(self, name: str, rotation: float, bw: int, bh: int,
+                      overflow_px: int):
+        """旋转+缩放后的 PhotoImage（带缓存）。
+
+        缓存键 = 名字 + 旋转 + 目标盒尺寸 + 溢出量：同一件物品在同一格位、
+        同一朝向下重绘时直接命中，跳过 PIL 旋转/缩放与 ImageTk 转换
+        （这是主线程卡顿的主要来源）。
+        """
+        key = (name, round(float(rotation or 0.0), 2), int(bw), int(bh),
+               int(overflow_px))
+        cached = self._sprite_cache.get(key)
+        if cached is not None:
+            return cached
+        sp = self.item_db.sprite_path(name)
         if not (sp and sp.exists() and _HAS_PIL):
-            self._draw_fallback_tile(x0, y0, bw, bh, it.get("is_bag"), name=it.get("zh") or it["name"])
-            return
+            return None
         img = self._load_image(sp)
         if img is None:
-            self._draw_fallback_tile(x0, y0, bw, bh, it.get("is_bag"), name=it.get("zh") or it["name"])
-            return
-        rot = it.get("rotation") or 0.0
+            return None
+        rot = rotation or 0.0
         if abs(rot) > 1e-4:
             # 负号：与 Godot 顺时针旋转一致（PIL rotate 默认逆时针）
             img = img.rotate(-math.degrees(rot), expand=True, resample=Image.BICUBIC)
             bb = img.getbbox()
             if bb:
                 img = img.crop(bb)
-        # 等比缩放（contain，不变形）；overflow 时允许稍微超出格子
         box_w = bw + overflow_px * 2
         box_h = bh + overflow_px * 2
         iw, ih = img.size
@@ -528,8 +577,23 @@ class BackpackAIApp(tk.Tk):
                 nw = max(1, int(round(iw * scale)))
                 nh = max(1, int(round(ih * scale)))
                 img = img.resize((nw, nh), Image.LANCZOS)
-        photo = ImageTk.PhotoImage(img)
-        self._bp_refs.append(photo)
+        try:
+            photo = ImageTk.PhotoImage(img)
+        except Exception:  # noqa: BLE001
+            return None
+        if len(self._sprite_cache) >= self.SPRITE_CACHE_MAX:
+            self._sprite_cache.clear()
+        self._sprite_cache[key] = photo
+        return photo
+
+    def _draw_sprite_scaled(self, it, x0, y0, bw, bh, overflow_px=0):
+        """绘制单个物品的贴图：按内存 rotation 旋转、等比缩放(contain，不变形)、居中。"""
+        photo = self._sprite_photo(it.get("name", ""), it.get("rotation") or 0.0,
+                                   bw, bh, overflow_px)
+        if photo is None:
+            self._draw_fallback_tile(x0, y0, bw, bh, it.get("is_bag"),
+                                     name=it.get("zh") or it["name"])
+            return
         # 始终以原包围盒中心为锚点居中（overflow 时向外略微溢出，仍不变形）
         self.grid_canvas.create_image(x0 + bw / 2, y0 + bh / 2, image=photo)
 
@@ -631,9 +695,19 @@ class BackpackAIApp(tk.Tk):
             int(bg[i] * (1 - a) + fg[i] * a) for i in range(3))
 
     # ---------- 自动字号 / 换行 ----------
+    def _font(self, size: int, bold: bool = False):
+        """缓存的 tkfont.Font（构造 + 测量都很贵，别每帧新建）。"""
+        key = (int(size), bool(bold))
+        f = self._font_cache.get(key)
+        if f is None:
+            f = tkfont.Font(family=FONT_FAMILY, size=int(size),
+                            weight="bold" if bold else "normal")
+            self._font_cache[key] = f
+        return f
+
     def _fit_text(self, text, box_w, box_h, base=7):
         for size in range(base, 6, -1):
-            f = tkfont.Font(family=FONT_FAMILY, size=size)
+            f = self._font(size)
             lines, cur = [], ""
             for ch in text:
                 if f.measure(cur + ch) > box_w * 0.94 and cur:
@@ -646,7 +720,7 @@ class BackpackAIApp(tk.Tk):
             if lines and len(lines) * (size + 2) <= box_h * 0.94:
                 return size, lines
         # 兜底：最小字号，强制换行
-        f = tkfont.Font(family=FONT_FAMILY, size=7)
+        f = self._font(7)
         lines, cur = [], ""
         for ch in text:
             if f.measure(cur + ch) > box_w * 0.94 and cur:
@@ -714,6 +788,16 @@ class BackpackAIApp(tk.Tk):
         return txt, count_var
 
     def _refresh_text_panel(self, txt, items, count_var, show_price=False):
+        # 内容没变就不重建：Text.delete+insert 是同步 Tcl 调用，每 0.5s 全量
+        # 重写两个面板在列表很长时明显拖慢主线程。
+        sig = tuple((it.get("name"), it.get("price"), it.get("on_sale"),
+                     it.get("bought"), it.get("reserved"), it.get("is_bag"),
+                     it.get("zh")) for it in (items or []))
+        cache_key = id(txt)
+        if self._text_sig.get(cache_key) == (sig, show_price):
+            count_var.set(str(len(items or [])))
+            return
+        self._text_sig[cache_key] = (sig, show_price)
         txt.configure(state="normal")
         txt.delete("1.0", "end")
         if not items:
@@ -1311,6 +1395,23 @@ class BackpackAIApp(tk.Tk):
 
     # ---------- 日志 ----------
     # ---------- 对局语料记录 ----------
+    # 自动模式下两次背包重绘的最小间隔（秒）：渲染一帧约 20–400ms，
+    # 每 0.5s 全量重绘会把主线程长期占住。
+    BP_REDRAW_MIN_INTERVAL = 0.8
+
+    def _on_refresh_preview(self):
+        """手动刷新一次背包预览（手动模式下唯一的重绘入口）。"""
+        if self._last_live is not None:
+            self._bp_sig = None          # 强制重绘
+            self._draw_backpack(self._last_live.get("backpack", []))
+            self._refresh_text_panel(self.storage_text,
+                                     self._last_live.get("storage", []),
+                                     self.storage_count)
+            self._refresh_text_panel(self.shop_text,
+                                     self._last_live.get("shop", []),
+                                     self.shop_count, show_price=True)
+            self._last_bp_draw = time.time()
+
     def _on_record_toggle(self):
         """开始/停止记录。人类手动游玩时不需要点「开始」，初始化后即可记录。"""
         if not self.bot or not self._initialized:
@@ -1360,9 +1461,18 @@ class BackpackAIApp(tk.Tk):
         except Exception as e:  # noqa: BLE001
             messagebox.showerror("打开失败", f"{e}")
 
+    LOG_MAX_LINES = 2000     # 日志面板保留行数（超出从头截断，防长期挂机膨胀）
+
     def _log(self, level: str, msg: str):
         self.log_text.configure(state="normal")
         self.log_text.insert("end", msg + "\n", level)
+        # 行数上限：Text 无限增长会让 insert/see 越来越慢，长时间挂机尤其明显
+        try:
+            lines = int(self.log_text.index("end-1c").split(".")[0])
+            if lines > self.LOG_MAX_LINES:
+                self.log_text.delete("1.0", f"{lines - self.LOG_MAX_LINES + 1}.0")
+        except Exception:  # noqa: BLE001
+            pass
         self.log_text.see("end")
         self.log_text.configure(state="disabled")
 
@@ -1379,31 +1489,48 @@ class BackpackAIApp(tk.Tk):
         否则重绘太频繁会导致主线程长时间卡在 _draw_backpack 上，UI 失去响应。
         """
         self._heartbeat = time.time()  # 主线程存活心跳（看门狗用）
+        _t_start = time.perf_counter()
         latest_state = None
         try:
-            while True:
-                kind, a, b = self.ui_queue.get_nowait()
-                if kind == "state":
-                    # state 消息：只保留最新的，跳过中间积压
-                    latest_state = (a,)
-                    continue
-                # 非 state 消息立即处理
-                if kind == "log":
-                    self._log(a, b)
-                elif kind == "init_done":
-                    self._on_init_done(a, b)
-                elif kind == "bot_stopped":
-                    self._on_bot_stopped()
-                elif kind == "auto_cal_rva":
-                    self._on_auto_cal_rva(a)
-        except queue.Empty:
-            pass
+            try:
+                while True:
+                    kind, a, b = self.ui_queue.get_nowait()
+                    if kind == "state":
+                        # state 消息：只保留最新的，跳过中间积压
+                        latest_state = (a,)
+                        continue
+                    # 非 state 消息立即处理
+                    if kind == "log":
+                        self._log(a, b)
+                    elif kind == "init_done":
+                        self._on_init_done(a, b)
+                    elif kind == "bot_stopped":
+                        self._on_bot_stopped()
+                    elif kind == "auto_cal_rva":
+                        self._on_auto_cal_rva(a)
+            except queue.Empty:
+                pass
 
-        # 最后只处理最新的一条 state
-        if latest_state:
-            self._apply_state(latest_state[0])
-
-        self.after(100, self._process_queue)
+            # 最后只处理最新的一条 state。
+            # 2026-10-29 事故：_apply_state 一旦抛异常，本函数末尾的 after()
+            # 就永远执行不到 → UI 轮询彻底停摆、心跳不再更新 → 看门狗判"卡死"。
+            # 而 tkinter 回调异常在 --windowed 的 exe 里没有 stderr，完全静默。
+            if latest_state:
+                self._apply_state(latest_state[0])
+        except Exception:  # noqa: BLE001
+            logging.getLogger(__name__).exception("[UI] 状态刷新异常（已跳过本帧）")
+        finally:
+            # 单次轮询超过 1 秒就把耗时与队列积压写进日志——主线程卡顿的定量证据
+            _dt = (time.perf_counter() - _t_start) * 1000
+            if _dt > 1000:
+                try:
+                    backlog = self.ui_queue.qsize()
+                except Exception:  # noqa: BLE001
+                    backlog = -1
+                logging.getLogger(__name__).warning(
+                    "[UI] 单次轮询耗时 %.0fms（队列积压 %d）", _dt, backlog)
+            # 无论上面发生什么，都必须把下一次轮询排上
+            self.after(100, self._process_queue)
 
     def _start_index_map_refresh(self):
         """后台刷新历史解码用的物品索引映射（读运行中 ItemBook，一次性）。
@@ -1542,6 +1669,39 @@ class BackpackAIApp(tk.Tk):
         """
         self._stall_sealed = False
 
+        main_ident = threading.main_thread().ident
+        self._stall_dumps = 0
+        NL = chr(10)
+
+        def _dump_main_stack(tag: str):
+            """把主线程当前调用栈同时写进日志与独立文件（只读，不碰 Tk）。
+
+            独立文件走 faulthandler.dump_traceback(file=...)：即使 logging 的
+            handler 本身卡住（磁盘/锁），也能留下证据。
+            """
+            try:
+                import sys as _sys
+                import traceback as _tb
+                frame = _sys._current_frames().get(main_ident)
+                if frame is None:
+                    return
+                stack = "".join(_tb.format_stack(frame))
+                logging.getLogger(__name__).warning(
+                    "[卡顿取证/%s] 主线程栈：" + NL + "%s", tag, stack)
+            except Exception:  # noqa: BLE001
+                pass
+            try:
+                import faulthandler
+                logs = get_base_dir() / "logs"
+                logs.mkdir(parents=True, exist_ok=True)
+                path = logs / f"lag_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
+                with open(path, "w", encoding="utf-8") as fh:
+                    fh.write(f"# 主线程卡顿取证 {tag} {datetime.now().isoformat()}" + NL)
+                    faulthandler.dump_traceback(file=fh, all_threads=True)
+                logging.getLogger(__name__).warning("[卡顿取证] 已写入 %s", path)
+            except Exception:  # noqa: BLE001
+                pass
+
         def _watch():
             while True:
                 try:
@@ -1553,16 +1713,22 @@ class BackpackAIApp(tk.Tk):
                     os._exit(0)
 
                 stalled = time.time() - self._heartbeat
+                # 卡顿 10s 就先取一次栈，用来定位到底卡在哪（渲染/读取/Tk）
+                if stalled > 10 and self._stall_dumps < 3:
+                    self._stall_dumps += 1
+                    last = getattr(self, "_stall_dump_at", 0.0)
+                    if time.time() - last > 5:
+                        self._stall_dump_at = time.time()
+                        _dump_main_stack(f"{int(stalled)}s")
                 if stalled > self.STALL_SEAL_AFTER and not self._stall_sealed:
                     self._stall_sealed = True
-                    # 只写日志文件 + 归档记录，不碰 Tk
+                    # 2026-10-29 修正：UI 卡住 ≠ 记录失败。记录器跑在独立线程，
+                    # 主线程卡死时它照样在采；此时停记录等于主动丢后半局
+                    # （上一版就是这么丢的）。这里只告警 + 取证，不动记录。
                     logging.getLogger(__name__).warning(
-                        "主线程已 %d 秒未更新心跳，正在收尾当前记录", int(stalled))
-                    try:
-                        if self.bot is not None:
-                            self.bot.stop_recording("ui_stall")
-                    except Exception:  # noqa: BLE001
-                        pass
+                        "主线程已 %d 秒未更新心跳（记录继续，180 秒仍未恢复才强杀）",
+                        int(stalled))
+                    _dump_main_stack(f"stall{int(stalled)}s")
                 if stalled > self.STALL_EXIT_AFTER:
                     try:
                         if self.bot is not None:
@@ -1571,9 +1737,12 @@ class BackpackAIApp(tk.Tk):
                         pass
                     os._exit(0)
 
-                # 心跳恢复后允许下一次再收尾
-                if stalled < 5 and self._stall_sealed:
+                # 心跳恢复：清状态，允许下次再取证
+                if stalled < 5:
+                    if self._stall_sealed:
+                        logging.getLogger(__name__).info("主线程已恢复响应")
                     self._stall_sealed = False
+                    self._stall_dumps = 0
 
         threading.Thread(target=_watch, daemon=True).start()
 
@@ -1604,16 +1773,28 @@ class BackpackAIApp(tk.Tk):
                 f"阶段: {phase}  |  摆盘: {n_bp}  储物箱: {n_st}  商店: {n_shop}")
             self.bp_count_var.set(f"物品 {n_bp}")
             bp = live.get("backpack", [])
-            # 背包签名不变就跳过重绘：战斗里物品不动，旧版每 0.5s 全量
-            # delete("all") + 逐物品 PIL 旋转缩放，是主线程卡顿的主要来源之一。
-            sig = self._backpack_signature(bp)
-            if sig != getattr(self, "_bp_sig", None):
-                self._bp_sig = sig
-                self._draw_backpack(bp)
-            self._refresh_text_panel(self.storage_text, live.get("storage", []),
-                                     self.storage_count)
-            self._refresh_text_panel(self.shop_text, live.get("shop", []),
-                                     self.shop_count, show_price=True)
+            # 自动模式：签名变化 + 距上次重绘超过最小间隔才画；
+            # 手动模式：完全不自动重绘，等用户点「刷新预览」。
+            if self.refresh_mode_var.get() == "auto":
+                sig = self._backpack_signature(bp)
+                now = time.time()
+                if (sig != self._bp_sig
+                        and now - self._last_bp_draw >= self.BP_REDRAW_MIN_INTERVAL):
+                    self._bp_sig = sig
+                    self._last_bp_draw = now
+                    _t0 = time.perf_counter()
+                    self._draw_backpack(bp)
+                    self._refresh_text_panel(self.storage_text,
+                                             live.get("storage", []),
+                                             self.storage_count)
+                    self._refresh_text_panel(self.shop_text, live.get("shop", []),
+                                             self.shop_count, show_price=True)
+                    dt = (time.perf_counter() - _t0) * 1000
+                    self._bp_draw_ms = dt
+                    if dt >= 300:
+                        # 单帧重绘超 300ms 就把耗时写进日志（排查卡顿用）
+                        logging.getLogger(__name__).warning(
+                            "[渲染] 背包重绘耗时 %.0fms（%d 件）", dt, len(bp))
 
     def _on_close(self):
         # 1) 立刻置关闭标志
