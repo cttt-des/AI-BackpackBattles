@@ -257,8 +257,10 @@ func isPlayer() -> bool:
 
 # ─────────────────────── 类型 / 标签（对齐 3594-3601, 5370-5390） ───────────────────────
 
+# 对齐 Item.gd:3594-3595：动态类型（addDynamicType，如 CorruptedArmor 腐蚀
+# Holy→Dark）必须参与 hasType 判定，否则 SSD/BookofDarkness 等暗系计数恒 0。
 func hasType(type: int) -> bool:
-	return type in descriptor.types
+	return type in descriptor.types or type in dynamicTypes
 
 
 func getTypeMultiplicity(type: int) -> int:
