@@ -107,7 +107,7 @@
 ### ⑦ UI 贴图资产（物品渲染真值）
 
 主程序背包摆盘的贴图来自 `assets/sprites/` + `assets/item_db.json`，由
-`tools/extract_sprites.py` 从全量反编译树（`output/_recovery/decomp_cur`，GDRE 导出）
+`tools/extract_sprites.py` 从 `oracle/`（1.1.9 全量 GDRE 反编译树，含 png/tscn/CSV）
 重新生成。三条曾经导致"贴图缺失 / 多层只画一层"的坑，已在生成器里处理：
 
 1. **继承节点没有 type**：物品场景是 `Items/Xxx.tscn` 实例化 `res://Items/Item.tscn`
@@ -126,7 +126,19 @@
 精确钉到物品原点、按 `CELL/80` 缩放、绕原点旋转——不再用"占格包围盒 contain"近似，
 多格物品不再被压扁。
 
-    python -X utf8 tools/extract_sprites.py     # 需要 output/_recovery/decomp_cur（GDRE 全量导出）
+    python -X utf8 tools/extract_sprites.py     # 源 = oracle/（1.1.9 全量反编译树）
+
+**两份反编译树的分工**（都只有一份，不重复）：
+
+| 目录 | 版本 | 用途 |
+|------|------|------|
+| `decompiled_full/` | v1.1.7 | `gd_core` / `gd_core_py` 逐行转译的**文本基线**（1028 tscn + 820 gd，约 15MB） |
+| `oracle/` | v1.1.9 | 战斗神谕真值 + UI 贴图提取源（15408 文件，含 2547 png） |
+
+二者**不是副本**：`Core/Game.gd` 的 `VERSION` 分别为 1.1.7 / 1.1.9，忽略行尾仍有
+32 个文件内容不同，覆盖会打断内核与真值的逐行对照。历史上那份额外的
+`output/_recovery/decomp_cur`（1.1.9 重复导出）已按全量哈希校验后删除
+（详见 `output/_recovery/cleanup_20261029_dedup.md`）。
 
 ## 项目结构
 
@@ -150,9 +162,8 @@ build_exe.py                # 外挂 AI 打包        build_simulator_exe.py  # 
 build_combatlog_exporter_exe.py  # 战斗日志导出器打包
 launcher.py                 # 外挂 AI 入口        battle_simulator.py  # 模拟器 GUI 入口
 bridge/                     # 桥接注入（可选）
-decompiled_full/            # ★ v1.1.7 反编译源码 + 资源（全文本可读）
-extracted/                  # ★ v1.1.7 原版 pck 全量原始提取（9377 文件）
-extracted_running/decomp/   # ★ 运行版（1.1.8）反编译产物
+decompiled_full/            # ★ v1.1.7 反编译文本基线（gd_core 转译真值，1028 tscn + 820 gd）
+oracle/                     # ★ v1.1.9 全量反编译树（神谕真值 + 贴图提取源，含 2547 png）
 assets/                     # 物品贴图、battle_items.json、gd_core_runtime.json、
                             #   item_index_map*.json（历史解码映射）、翻译表
 dist/lineups/               # 内置与游戏历史阵容 JSON
