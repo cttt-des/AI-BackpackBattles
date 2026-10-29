@@ -604,6 +604,30 @@
 > 收口门、未动 oracle/ 树）。
 
 
+>
+> **★ offpeak 战报①终：全局链双轨定谳 + 录音带方案 D 立项（2026-10-29 晚）**：
+> - **BALROLL 双侧账本对位完成**（oracle 侧 2406 掷 vs gd 2225 掷，正式场）：
+>   roll#51 前 ch 序列逐位同（含 0.95/0.428571 两掷），#51 起**实质分叉**
+>   （O 多 ch=0.75 掷、G 的 ch=0.27 系）——gd 的 ManaOrb roll(50) res=False
+>   （flip=0.8646）vs oracle True，同一次 roll 结果不同=**链位/平衡态差**。
+> - **BREAKTHROUGH（PRESTATE 桩实证）**：oracle 的 prepare-shuffle 走 **Godot
+>   全局链**（Array.shuffle 原生；U.rng.state 在 shuffle 前后不动），gd 宿主
+>   activation_order 的 p_idx.shuffle() 同走全局链但经 seed(S) 重置——
+>   **链位对齐依赖「oracle 装配期全局链消耗==0」**；实证 prepare 序不同 ⇒
+>   oracle 装配期全局消耗>0（暖场残留实例混入 INVENTORY：Corrupted Crystal
+>   2 件不在 lineups 却 prepare 2 次——**oracle shuffle 数组=96 元素（49 残留+47
+>   正式）vs gd 47 下标**——元素数不同 ⇒ 置换不同 ⇒ prepare/连接/派发序全错位）。
+> - **假设三（shuffle 链位在主链）证伪**：PRESTATE 实证 shuffle 不动主链；
+>   「回滚主链」实验无效与此自洽。铁律 9：三假设全停，转方案 D。
+> - **方案 D（录音带，已立项）**：oracle 装配含暖场残留（录制工件、不该复刻）——
+>   正式物品相对序才是语义。用 PREPPROBE 序提取每场正式 activation 真值序写入
+>   cases json，gd 宿主直读（跳过自算 shuffle）——prepare/连接/派发序与 oracle
+>   逐位同。需一次全量 PREPPROBE 跑（文件重定向！）+ cases json 扩展 + 宿主读表。
+>   **M3 掷值差 ~35 场同根**（roll 值错位由此而来）。
+> - **工具沉淀**：BALROLL（gd CoreRng.BalancedRng 内部类经 _rng 引用打点——
+>   内部类访问外层成员须 _rng.oracle_trace）+ ROLLW（CoreItem.rollChance 带
+>   owner）双门控零耗入库；**oracle 探针大输出必须文件重定向**（管道阻塞致
+>   非确定扰动，probe events ≢ 语料——已实证并写入流程）。
 ### P1 数据面整族（预计最大收敛面）
 
 - [ ] **P1-1 物品持久强化态缺失**：史流 setData 的 bonusMinDam/bonusMaxDam/bonusDamageFactor

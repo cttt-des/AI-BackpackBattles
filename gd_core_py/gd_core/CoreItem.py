@@ -1259,7 +1259,11 @@ class CoreItem(GodotObject):
 	def rollChance(self, chance=None):
 		if chance == None:
 			chance = self.getBaseChance()
-		return self.chanceRng.rollPercent(self.applyBonusChance(chance, 1))
+		_rc = self.chanceRng.rollPercent(self.applyBonusChance(chance, 1))
+		if self.ctx.rng.oracle_trace and self.ctx.rng._stacktrace:
+			self.ctx.rng.trace_diag("ROLLW", String(self.descriptor.identifier) + "/ot" + str(int(self.ownerType)),
+					"ch=" + str(self.applyBonusChance(chance, 1)), "res=" + str(_rc))
+		return _rc
 
 
 	def rollChance2(self):
