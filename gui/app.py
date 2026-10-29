@@ -515,9 +515,9 @@ class BackpackAIApp(tk.Tk):
         if not reg:
             return
         cells, x0, y0, bw, bh = reg
-        # 背包允许稍微超出格子（仍等比不变形），普通物品 overflow_px=0 严格不超出
-        self._draw_sprite_scaled(it, x0, y0, bw, bh,
-                                 overflow_px=max(8, int(self.CELL * 0.3)))
+        # 容器贴图同样按物品原点对齐；容器本来就比占格更大（袋壁/提手），
+        # 由画布自然溢出即可，不再人为放大
+        self._draw_sprite_scaled(it, x0, y0, bw, bh)
         self._draw_name_label(x0, y0, bw, bh, it.get("zh") or it["name"],
                               bold=(mode == "color"), pos="bottom")
 
@@ -542,60 +542,91 @@ class BackpackAIApp(tk.Tk):
 
     SPRITE_CACHE_MAX = 400      # 贴图缓存上限（超出整清，避免无限增长）
 
-    def _sprite_photo(self, name: str, rotation: float, bw: int, bh: int,
-                      overflow_px: int):
-        """旋转+缩放后的 PhotoImage（带缓存）。
+    # 游戏内一格 = 80px；物品坐标来自游戏内存，按 CELL/80 等比映射到画布
+    GAME_CELL = 80.0
 
-        缓存键 = 名字 + 旋转 + 目标盒尺寸 + 溢出量：同一件物品在同一格位、
-        同一朝向下重绘时直接命中，跳过 PIL 旋转/缩放与 ImageTk 转换
-        （这是主线程卡顿的主要来源）。
+    def _sprite_photo(self, name: str, rotation: float, script: str = None):
+        """按游戏真实几何缩放/旋转后的 (PhotoImage, 锚点x, 锚点y)，带缓存。
+
+        锚点 = 「物品节点原点」在这张图里的像素位置。绘制时把锚点对齐物品原点
+        即可精确复现游戏摆盘——旧实现用「占格包围盒 contain + 居中」近似，
+        会把多格物品压扁、把旋转中心算错，是多格/多层物品渲染错误的直接原因。
+
+        缓存键 = 名字 + 旋转：同朝向重绘直接命中，省掉 PIL 旋转与缩放开销。
         """
-        key = (name, round(float(rotation or 0.0), 2), int(bw), int(bh),
-               int(overflow_px))
+        key = (name, script or "", round(float(rotation or 0.0), 3))
         cached = self._sprite_cache.get(key)
         if cached is not None:
             return cached
-        sp = self.item_db.sprite_path(name)
+        sp = self.item_db.sprite_path(name, script)
         if not (sp and sp.exists() and _HAS_PIL):
             return None
         img = self._load_image(sp)
         if img is None:
             return None
+        ox, oy = self.item_db.sprite_origin(name, script)
+        k = self.CELL / self.GAME_CELL
+        if abs(k - 1.0) > 1e-6:
+            nw = max(1, int(round(img.width * k)))
+            nh = max(1, int(round(img.height * k)))
+            img = img.resize((nw, nh), Image.LANCZOS)
+            ox, oy = ox * k, oy * k
         rot = rotation or 0.0
         if abs(rot) > 1e-4:
-            # 负号：与 Godot 顺时针旋转一致（PIL rotate 默认逆时针）
-            img = img.rotate(-math.degrees(rot), expand=True, resample=Image.BICUBIC)
-            bb = img.getbbox()
-            if bb:
-                img = img.crop(bb)
-        box_w = bw + overflow_px * 2
-        box_h = bh + overflow_px * 2
-        iw, ih = img.size
-        if iw > 0 and ih > 0:
-            scale = min(box_w / iw, box_h / ih)
-            if scale > 0 and abs(scale - 1.0) > 1e-3:
-                nw = max(1, int(round(iw * scale)))
-                nh = max(1, int(round(ih * scale)))
-                img = img.resize((nw, nh), Image.LANCZOS)
+            # 负号：与 Godot 顺时针旋转一致（PIL rotate 默认逆时针）；
+            # expand=True 绕图心旋转，锚点随之搬移。
+            cx, cy = img.width / 2.0, img.height / 2.0
+            img = img.rotate(-math.degrees(rot), expand=True,
+                             resample=Image.BICUBIC)
+            nx, ny = img.width / 2.0, img.height / 2.0
+            dx, dy = ox - cx, oy - cy
+            cos_r, sin_r = math.cos(-rot), math.sin(-rot)
+            ox = nx + dx * cos_r - dy * sin_r
+            oy = ny + dx * sin_r + dy * cos_r
         try:
             photo = ImageTk.PhotoImage(img)
         except Exception:  # noqa: BLE001
             return None
+        entry = (photo, ox, oy)
         if len(self._sprite_cache) >= self.SPRITE_CACHE_MAX:
             self._sprite_cache.clear()
-        self._sprite_cache[key] = photo
-        return photo
+        self._sprite_cache[key] = entry
+        return entry
+
+    def _item_anchor_px(self, it, x0, y0, bw, bh):
+        """物品原点在画布上的像素坐标。
+
+        优先用内存读到的背包坐标系像素 (px, py)（与游戏完全一致）；
+        缺失时退回「占格包围盒中心」，保证桥接/旧数据仍能显示。
+        """
+        px, py = it.get("px"), it.get("py")
+        if px is not None and py is not None:
+            # 游戏坐标是连续的 80px 格；画布每格之间还有 GAP 间隙，
+            # 所以必须按「整格数 × (CELL+GAP) + 格内偏移 × CELL」换算，
+            # 直接用 px * CELL/80 会每跨一格累积 GAP 的偏差。
+            col = px / self.GAME_CELL
+            row = py / self.GAME_CELL
+            step = self.CELL + self.GAP
+            return (self.GAP + col * step, self.GAP + row * step)
+        return x0 + bw / 2.0, y0 + bh / 2.0
 
     def _draw_sprite_scaled(self, it, x0, y0, bw, bh, overflow_px=0):
-        """绘制单个物品的贴图：按内存 rotation 旋转、等比缩放(contain，不变形)、居中。"""
-        photo = self._sprite_photo(it.get("name", ""), it.get("rotation") or 0.0,
-                                   bw, bh, overflow_px)
-        if photo is None:
+        """把合成贴图钉在物品原点上（缩放、旋转都按游戏真实几何）。
+
+        合成贴图已包含该物品的全部可见图层（主图 + 发光/内胆/瞳孔等）与
+        未被裁剪的原始画布，所以这里只需一次锚点对齐，不再做任何包围盒
+        缩放——旧实现的 contain 近似正是「多层只显示一层/变形」的成因。
+        """
+        got = self._sprite_photo(it.get("name", ""), it.get("rotation") or 0.0,
+                                 it.get("script") or None)
+        if got is None:
             self._draw_fallback_tile(x0, y0, bw, bh, it.get("is_bag"),
                                      name=it.get("zh") or it["name"])
             return
-        # 始终以原包围盒中心为锚点居中（overflow 时向外略微溢出，仍不变形）
-        self.grid_canvas.create_image(x0 + bw / 2, y0 + bh / 2, image=photo)
+        photo, ox, oy = got
+        ax, ay = self._item_anchor_px(it, x0, y0, bw, bh)
+        self._bp_refs.append(photo)      # 防 GC
+        self.grid_canvas.create_image(ax - ox, ay - oy, image=photo, anchor="nw")
 
     def _draw_items_sprite(self, items):
         for it in items:
