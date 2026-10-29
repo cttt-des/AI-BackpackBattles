@@ -294,6 +294,10 @@ var _report := []
 var _descr_cache := {}
 var _script_cache := {}
 var _table := {}            # item_battle_fixture.json
+# np25 方案D 录音带：prepare_tape.json（cid→{player:[idx],opponent:[idx]}，oracle
+# 开战序真值；缺失/不含本场=回落自算，对现有绿场零影响）
+var _tape := {}
+var _tape_loaded := false
 # 神谕语料根（每场 rng_state.txt 的来源）；_init 里填
 var _fights_root := ""
 
@@ -533,6 +537,40 @@ func by_order(items: Array, order: Array) -> Array:
 	var out := []
 	for i in order:
 		out.push_back(items[int(i)])
+	return out
+
+
+# ── ★ np25 方案D 录音带（prepare_tape.json 旁路）─────────────────────────────
+# oracle_fight.gd 分侧 shuffle+sort 终序的真值导出（ORACLE_PREPARE_TAPE 探针，
+# 探针 events≡语料逐字节校验 + 两跑 TAP 一致性由 tools/_np25_tape_run.py /
+# _np25_tape_extract.py 保证）。tape 只覆盖**结果序**——activation_order 的
+# 全局链消耗（seed(S)+两条 n-1 抽 shuffle）必须照常发生，战斗期全局链消费者
+# （Eggscalibur affected.shuffle 等）依赖该链位。
+func load_tape() -> Dictionary:
+	if not _tape_loaded:
+		_tape_loaded = true
+		var tf = File.new()
+		if tf.file_exists("res://prepare_tape.json"):
+			tf.open("res://prepare_tape.json", File.READ)
+			var parsed = JSON.parse(tf.get_as_text())
+			tf.close()
+			if parsed.error == OK and typeof(parsed.result) == TYPE_DICTIONARY:
+				_tape = parsed.result
+	return _tape
+
+
+# 校验并规整一条 tape 序：必须是 0..n-1 满排列（int 数组），否则返回空数组
+func _tape_perm(arr) -> Array:
+	var out := []
+	if typeof(arr) != TYPE_ARRAY or arr.size() == 0:
+		return out
+	var seen := {}
+	for v in arr:
+		var i := int(v)
+		if i < 0 or i >= arr.size() or seen.has(i):
+			return []
+		seen[i] = true
+		out.push_back(i)
 	return out
 
 
@@ -778,6 +816,19 @@ func run_case(c: Dictionary, out_root: String, perm_warm := false, r5_warm := fa
 	o.recalculateMaxStamina()
 
 	var order := activation_order(seed_value, p_items, o_items)
+	# ★ np25 方案D 录音带：prepare_tape.json 有本场真值序时覆盖**结果序**
+	#   （activation_order 的全局链消耗照常发生——战斗期全局链消费者依赖链位；
+	#   真值序=oracle 分侧 shuffle+sort 终序，绕开链状态/输入序/优先级差的全部
+	#   归因。py 腿经本 res 的 activation_order 自动跟随，引擎零改动。）
+	var _tape_c := load_tape()
+	if typeof(_tape_c.get(case_id)) == TYPE_DICTIONARY:
+		var _tp = _tape_c[case_id]
+		var _tpo := _tape_perm(_tp.get("player"))
+		var _tpo2 := _tape_perm(_tp.get("opponent"))
+		if _tpo.size() > 0 and _tpo2.size() > 0 \
+				and _tpo.size() == p_items.size() and _tpo2.size() == o_items.size():
+			order = {"player": _tpo, "opponent": _tpo2}
+			res["activation_order_taped"] = true
 	res["activation_order"] = order
 	# ★ 阶段1 神谕 rng state 注入：装配（角色+物品实例）完成后、startBattle 的
 	#   prepareItems/activateItems 与逐 tick 判定链之前，把神谕捕获的 Util.rng
