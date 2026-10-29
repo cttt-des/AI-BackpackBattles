@@ -453,6 +453,26 @@
 > **★★ offpeak 续作任务书 v2（2026-10-29，基线 279/914；v1 已完成/被四面分析重定谳，见下）★★**
 > **当前战线**：修复 workflow 串行链已收口三面——loseHealth 补抽（c251a762，
 > run572 ev@109→242）、buff/timer 到期早 1 tick（d7fe5cb5，目标族 85 场 50 绿）、
+>
+> **★ offpeak 战报①：总线级联面定谳（2026-10-29，BUS/BUSD 探针实跑）**：
+> - **面定性修正**：evt105+evt12 级联样本（run604/run639/run583/run943）的首分歧
+>   不是「监听缺发」而是**同集不同序**—— ManaOrb 的 105 两侧都发，
+>   但挂的父激活不同（O: Dragon Knight 激活响应；G: 嵌套深处 Light Goobert 激活
+>   响应）。**activated 监听者派发序两侧不同**（O: ManaOrb 先于 Twine；
+>   G: Twine 先）= 连接建立序差。
+> - **静态对拍已排除**：装配序（lineups vs 夹具逐位同）、getItemsInCells/getAffectedItems
+>   实现（两侧同构）、sort_TriggerPriority 比较子（同）、prepare 喂入数组（两侧都
+>   是重排后序）——全链静态等价仍出实证序差。
+> - **剩余自由度（需 oracle 取证桩定谳）**：①oracle prepareItems 的 items 序在
+>   Game.gd:3023 call_deferred 链上的实际值 ②BalancedRng roll 早退分支外的
+>   rollPercent 细节 ③onPrepare 内 getAffectedItems 的实时序（affectedCellsCache
+>   构建时机）。**探针设计**：oracle 取证桩在 Item.gd onPrepare 尾打
+>   PREPARE 序号+identifier（≤10 行门控）+ CoreEventBus connectEvent 打 CONN 行，
+>   单场 run639_r18 重放即得两侧连接全序，直接比对出第一个连接序差点。
+> - **探针工具沉淀**：BUSD（派发完成数）探针已入库 gd_core/CoreEventBus.gd
+>   （零耗双门控）；BUSL 行含义=监听者身份逐个。**教训**：BUSL 行在嵌套派发中
+>   会交错——判「派发中断」必须用 BUSD 完成数对照监听数，勿凭行序误读
+>   （本轮 BUSD 探针实证外层 8 监听全部执行完毕，推翻了「嵌套截断」假说）。
 > 棋盘 capture 数据面（d4afe736/b05e33f9/bc0a3dee，148→277 +129）；「首拍迟到」
 > 面仍由 workflow 认领中。**开工避让协议**：`git log --oneline -5` 看修复链是否
 > 仍在推进 + `Get-Process | ? ProcessName -match 'odot'` 清残留——workflow 在跑

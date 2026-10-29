@@ -108,6 +108,9 @@ func emitAndLog(emitter, signalName: String, event, arguments: Array):
 			_eid = String(emitter.descriptor.identifier) + "/ot" + str(int(emitter.ownerType))
 		_ctx.rng.trace_diag("BUS", String(signalName), str(_bus_list.size()), "emitter=" + _eid)
 	var _bus_i = 0
+	var _eid2 = "?"
+	if emitter != null and emitter.has_method("isCoreItem"):
+		_eid2 = String(emitter.descriptor.identifier) + "/ot" + str(int(emitter.ownerType))
 	for _bus_pair in _bus_list:
 		if _ctx.fight_ended:
 			return
@@ -119,6 +122,8 @@ func emitAndLog(emitter, signalName: String, event, arguments: Array):
 			_ctx.rng.trace_diag("BUSL", String(signalName), str(_bus_i), _rid)
 		_bus_i += 1
 		_bus_pair[0].call_funcv(arguments)
+	if _ctx.rng.oracle_trace and _ctx.rng._stacktrace:
+		_ctx.rng.trace_diag("BUSD", String(signalName), str(_bus_i), "emitter=" + _eid2)
 
 
 func connectEvent(emitter, signalName: String, receiver, method: String):
