@@ -654,6 +654,35 @@
 > - 工作树备注：`gd_core_py/gd_core/CoreCombat.py` 为 **EOL 幻影**（git diff 空），
 >   非任何执行体在途改动，勿 add 勿还原。
 >
+> **★ 方案D 中期战报（2026-10-29 深夜，实施中）**：
+> - **录音带探针已验证**：oracle_fight.gd 开战序探针（`ORACLE_PREPARE_TAPE` 门控
+>   7 行，两 sort_custom 之后）单场 run639_r18 实测：TAP 188 行=两跑×47+47 **逐位
+>   一致**，探针 events≡语料 ✓。⚠ **重大勘误**：tape 实测 INVENTORY **47=47 无
+>   暖场残留**（Corrupted Crystal「prepare 2 次」与「96 元素 shuffle」系早前把
+>   **暖场段探针行误读为正式段**——ddb49c1f 的该两claim作废）；真差异=**分侧
+>   shuffle 的全局链状态/输入序/优先级差**导致的置换结果差（tape 直接绕开全部
+>   归因）。匹配规则：getTopLeftCell()=**包围盒角点** (min_r,min_c)，不必然是
+>   占格之一（Boomerang L 形实证），提取按角点匹配，47/47 全配零残留。
+> - **消费侧已落码**（比原设计更简）：宿主 OracleAlignBattle.gd 三处
+>   （`_tape/_tape_loaded` 成员 + `load_tape()/_tape_perm()` + run_case 调用点
+>   tape 覆盖）；**activation_order 的全局链消耗（seed+两条 shuffle）照常发生，
+>   tape 只覆盖结果序**——战斗期全局链消费者（Eggscalibur 类）链位零扰动；
+>   **引擎与 verify_oracle 零改动**（py 腿经 gd 产物 events.json 的
+>   activation_order 自动跟随，taped 标志仅入账）。tape 文件=
+>   `gd_core_test/prepare_tape.json`（旁路，cases 再生免疫；缺失/不含本场=
+>   回落自算=绿场零影响）。工具=tools/_np25_tape_run.py（批量+断点续跑）/
+>   _np25_tape_extract.py（角点匹配+满排列校验）。
+> - **首场验证**：run639_r18 tape 后首分歧 **ev@65→ev@71（+6 深移）**，gd/py
+>   双腿同位 ev@71 ln@28（转写保真），selfcheck 一致性 PASS。残红 ev@71=下一层
+>   面（嫌疑：总线连接表内残留嫁接段与真值交错位/BALROLL 平衡态）。
+> - **批量收集中**：当前快照 evt105+evt12 全集 **84 场**（六簇 34+22+21+14+11+11，
+>   M3 ⊆ 其中）分 7 组采集（output/_offpeak/preptape_r1/，断点可续）→
+>   prepare_tape.json → 全簇守门 → REG 九场。
+> - ⚠ **探针还原待办**：`oracle/oracle_fight.gd` 探针**当前在装**（批量采集
+>   使用中）；采集完成后必须逐字节还原（备份
+>   output/_round_patches/np24_fix/preptape_r1/oracle_fight.gd.pre_tape.bak，
+>   pre md5=ae19749211a20fd0d88257ce35f459f2）+ md5 三方留档。
+>
 ### P1 数据面整族（预计最大收敛面）
 
 - [ ] **P1-1 物品持久强化态缺失**：史流 setData 的 bonusMinDam/bonusMaxDam/bonusDamageFactor
