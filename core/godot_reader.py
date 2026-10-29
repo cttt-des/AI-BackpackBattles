@@ -22,6 +22,7 @@ from __future__ import annotations
 import logging
 import math
 import struct
+import time
 from typing import Dict, List, Optional
 
 from .memory_reader import MemoryReader
@@ -228,6 +229,11 @@ def pcg_match_forward(s0: int, s1: int, max_steps: int = 1 << 20) -> Optional[in
         s = (s * PCG_MULT + PCG_INC) % PCG_MOD
         if s == s1:
             return k
+        # 每 4096 步让出 GIL：纯 Python 大整数取模循环不会自然释放，
+        # 实测 100 万步要 700ms，连续几次就能把 tkinter 主线程饿死
+        # （2026-10-29 实机：主线程 60s 未更新心跳）。
+        if not (k & 0xFFF):
+            time.sleep(0)
     return None
 
 # Game.Classes 枚举（Game.gd:131）：职业下标 → 名称
@@ -908,6 +914,13 @@ class GodotReader:
             return None
         gold_plain = self.read_member(node, self.off["member_gold"])
         gold_enc = self.read_member(node, self.off["member_gold_internal"])
+        # 缓存：randnum 一局内固定（Game._ready 生成一次），而金币变化会改变
+        # gold_internal 的编码值——用 (gold_enc, gold_plain) 作为失效键即可。
+        # 命中缓存可省掉整轮成员扫描（最坏 700ms/次，见 pcg_match_forward）。
+        ck = (gold_enc, gold_plain)
+        cache = getattr(self, "_randnum_cache", None)
+        if cache is not None and cache[0] == ck:
+            return cache[1]
         prices = [e & _U64 for e in (encoded_prices or [])]
         gold_checkable = gold_plain is not None and gold_enc is not None
         if not prices and not gold_checkable:
@@ -934,6 +947,7 @@ class GodotReader:
 
         for r in candidates:
             if self._randnum_matches(r, prices) and gold_ok(r):
+                self._randnum_cache = (ck, r)
                 return r
         return None
 
