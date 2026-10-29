@@ -743,11 +743,14 @@ func _readyInit() -> void :
 	if descriptor.flickerAni:
 		var flicker_delay = ctx.rng.randf_range(descriptor.flickerMinDist,
 				descriptor.flickerMaxDist)
-		# ★ kernel_r6：注册保留（oracle FlickerAnimation.gd:9-11 onAnimationEnded
-		#   确有 callDelayed 注册且 drive_delayed 确会驱动），但 playAni 的速度抽
-		#   在 oracle = Util.rng.randf_range **裸调**（FlickerAnimation.gd:16，
-		#   与 ItemAnimation 同款）⇒ rng_log 零痕迹 ⇒ flickerPlayAni 改走
-		#   ctx.rng.rng 裸抽（见该函数）。
+		# ★ np25 evt104 族定谳（run784_r13 u 流对位）：此前只抽 delay 不注册——
+		#   flickerPlayAni 无调用点=死代码，战斗期 playAni 的速度抽（oracle
+		#   FlickerAnimation.gd:16 Util.rng **裸调**，rng_log 零痕迹）整笔缺失，
+		#   oracle 侧多 1 笔隐形消耗 ⇒ 显形序列整体右移 1 位（run784 t=1.133
+		#   Djinn jitter 起全链错位）。修复=补 callDelayed 注册（kernel_r6 递减
+		#   驱动对齐 drive_delayed；animation_finished 无帧永不发 ⇒ 每件战斗期
+		#   恰 1 笔），到点派发 flickerPlayAni 走 ctx.rng.rng 裸抽（零痕迹同规）。
+		ctx.callDelayed(self, "flickerPlayAni", flicker_delay)
 
 	# ★ 连接器 _ready 抽（阶段2）：Potion._ready 动态挂 PotionConnector
 	#（Potion.gd:22-28）/场景内嵌 CardConnector——两者 _ready 均为

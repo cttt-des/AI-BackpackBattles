@@ -744,6 +744,33 @@
 > - 并行期间不要再手动开 Godot；分片失败先看 `output/oracle/align/_*_shards/*_N.log`；
 >   改并行管线后先 `_np_compare_par.py --selftest`（1 路 v N 路逐字节对照）。
 >
+> **★ offpeak-6ecfa1b4 战报+收尾（2026-10-29 深夜；用户指令"闲时任务收尾，不继续修复"）★**
+> - **避让 ✓**：alignment.json 已由并行工具执行体恢复 **279/914**（=tape 后代码
+>   12:58 全量重放，tape 影响已含在基线内）；其工作树在途改动
+>   （verify_oracle.py/run_gd_core.py/docs/parallel_workflow.md/.gitignore）照旧避让勿 add。
+> - **队列③收割定谳**：恢复基线已含 tape ⇒ tape 守门 87 场与基线逐场同位、
+>   evt105/12 六簇 113 场零变化零整场翻绿——**「M3 与总线级联同根、tape 连带
+>   收敛」假设证伪一计**（铁律 9）；M3 真根因仍在监听集/BalancedRng 面。
+> - **队列② evt104 时序族（run784_r13 打法样本）**：双腿探针（gd
+>   ORACLE_ALIGN_TRACE + oracle ORACLE_DEBUG 探针 events≡语料✓）+ 新工具
+>   **tools/_np25_u_align.py**（PCG u 流对位：值反解 u，插/删块 unified diff，
+>   对标签/参数差不敏感）定谳首分歧=显形流 pair96 @t=19.25；静态排除面：
+>   EVENT 创建/入账两侧同步、takeDamage/gainStacks/EventBus.emitSignal 逐行
+>   同构、LoggingMode.Delayed 仅 RandomBuffs 族局部使用与本面无关。
+>   **落码修复**：CoreItem._readyInit flicker 分支此前**只抽 delay 不注册**
+>   （flickerPlayAni 无调用点=死代码；oracle FlickerAnimation.gd 经 drive_delayed
+>   到点 Util.rng 裸调 speed 1 笔隐形）⇒ 补 `ctx.callDelayed(self,"flickerPlayAni",
+>   flicker_delay)`；三树同步（gd_to_py rc=0、test cp md5=cfb2cb56 三方一致）。
+>   **守门 np25_flicker_r1**（33 场=evt104/108 簇 22+REG9+级联样本4）：
+>   **run635_r12 双腿整场翻绿（REG 红场→绿）**、run813 69→92 / run1514 23→33
+>   深移、py run976_r12/run1122_r11 翻绿、570/1029 绿保持=零绿退步。
+>   ⚠ **两项留档**：①run784 修复前后可见流逐位同=flicker 在该场**未触发**
+>   （Oil Lamp flickerAni=true 但效果未现——机理叙事未获 trace 复核，疑
+>   descriptor 注入面/_flushTimed 派发面，下轮先实证再深修）；②run639 gd
+>   71→46 浅移（红场内移位非绿退步）。**修复按守门口径入库，机理面待复核；
+>   下轮动作=全量分片复验（--rerun 红场）+ 新分簇 + flicker 派发实证**。
+> - 队列④（P2-1/P1-1/run845）原样移交未动；队列⑤重扫待上项复验后进行。
+>
 ### P1 数据面整族（预计最大收敛面）
 
 - [ ] **P1-1 物品持久强化态缺失**：史流 setData 的 bonusMinDam/bonusMaxDam/bonusDamageFactor
