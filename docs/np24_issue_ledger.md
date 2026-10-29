@@ -418,6 +418,31 @@
 > emitter identifier+signalName+监听数，双门控零耗链同规；gd_core/CoreEventBus.
 > gd + py 侧经 gd_to_py 再生成），分歧 tick 两侧对位即可点名监听集与顺序差。
 >
+> **★★ offpeak 续作任务书 v2（2026-10-29，基线 277/914；v1 已完成/被四面分析重定谳，见下）★★**
+> **当前战线**：修复 workflow 串行链已收口三面——loseHealth 补抽（c251a762，
+> run572 ev@109→242）、buff/timer 到期早 1 tick（d7fe5cb5，目标族 85 场 50 绿）、
+> 棋盘 capture 数据面（d4afe736/b05e33f9/bc0a3dee，148→277 +129）；「首拍迟到」
+> 面仍由 workflow 认领中。**开工避让协议**：`git log --oneline -5` 看修复链是否
+> 仍在推进 + `Get-Process | ? ProcessName -match 'odot'` 清残留——workflow 在跑
+> 则只做下面①④⑤，勿碰②③与其已认领面。
+> **offpeak 非重叠队列（按 277 基线，按序）**：
+> ① **总线监听级联 ~54 场**（evt105+evt12 同 tick 异型子簇；与 workflow 四面
+>    零重叠；BUS/BLND 诊断已入库）：样本 run604_r10（fd@65 ManaOrb-105 缺发后
+>    跳 444）/run639_r18（缺发+Twine TMH 双发）/run583_r11（多发 Poison+
+>    Cauldron Mana）/run943_r18（Health 换发 unhealing+多 damage:7）。打法=
+>    BUS 诊断对位监听路由与级联发射点（run874 定谳族同法）。
+> ② **evt104@1-50×17 受击/反伤面**（Spiked Shield/Pine Protector origin）：
+>    D2 时序族近亲——重扫看 loseHealth/时序修复是否连带收敛。
+> ③ **M3 随机掷值差 ~35 场**（evt12 P×20+evt105 P×16）：loseHealth 补抽已
+>    入库——先重扫（run601 fd@72 Unhealing 38v39 类可能已连带）。
+> ④ **遗留独立面**：P2-1（MrS MSROLL v3 双侧对位）/ P1-1（物品持久强化态
+>    五步路径）/ run845_r18（oracle≠gdcore ev@12 独立面）。
+> ⑤ 全部清完回到重扫循环（`_np24_red_clusters.py --top 20`，按 277 新簇签名）。
+> **纪律不变**：每笔守门+台账打勾+独立 commit（np25修复X：…）禁 push；
+> Godot --no-window+APPDATA 隔离+不并行+跑前清残留；gd 树改动 gd_to_py+cp
+> 同步；battle_items.json 改动三产物再生；oracle 取证桩流程；两连证伪即停。
+>
+> **（历史）offpeak 任务书 v1（已完成/重定谳；按序修复；每项守门+台账打勾+commit 不 push）：**
 > **offpeak 任务书（按序修复；每项守门+台账打勾+commit 不 push）**：
 > 1. **py-only 面**：6 场（run874_r7/run916_r6/run1132_r18/run1316_r10/
 >    run1422_r14/run1528_r13）+ run845_r18（EVGATE 表内）——gd 产物即真值，
