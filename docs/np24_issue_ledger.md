@@ -485,6 +485,29 @@
 >    BUS 诊断对位监听路由与级联发射点（run874 定谳族同法）。
 > ② **evt104@1-50×17 受击/反伤面**（Spiked Shield/Pine Protector origin）：
 >    D2 时序族近亲——重扫看 loseHealth/时序修复是否连带收敛。
+>
+> **★ offpeak 战报①续：连接序取证完成+两假设证伪归档（2026-10-29）**：
+> - **取证桩已执行并还原**（output/_round_patches/np24_fix/busconn_probe/，
+>   Item.gd+EventBus.gd md5 三方留档）：oracle PREPPROBE（prepare 序账本）+
+>   CONNPROBE（连接序账本）单场 run639_r18，probe events≡语料逐字节 ✓。
+> - **假设一证伪（shuffle 链位）**：gd activation_order 的 shuffle（注入前）
+>   vs oracle（装配消耗后）——回滚实验（shuffle 后恢复链态）未改变 run639 fd71，
+>   实验代码已 git checkout 还原。
+> - **假设二证伪（派发序差）**：CONNPROBE 实证 oracle 正式场 DK 监听序
+>   =[Twine1456, ManaOrb, LightGoobert, Twine, Twine, AoL, AoD]——**与 gd 的
+>   BUSL 序完全同构**（早前「Twine/ManaOrb 相对序相反」系把暖场段 @1246 系
+>   误当正式段）。且 oracle 有「Godot 同名实例改名 @X@id」与暖场残留混入
+>   （Corrupted Crystal 2 件不在 lineups 却 prepare 2 次）干扰，序解读须先剥壳。
+> - **真分歧面（当前定谳）**：派发序两侧同构下，语料 105(ManaOrb) 在 19(Twine)
+>   **之前**、gd 的 105 缺失且 ManaOrb 的 roll（0.86）发生在 Twine 激活级联深处
+>   =**监听者回调内的 chanceRng roll 分支结果差**（Twine 20% 系、ManaOrb 50% 系）。
+>   roll 值本身在 gd trace 可见（randf 行），oracle 侧 roll 值被 BalancedRng 平衡
+>   调制（expectedWins/wins/lastResult 三态）——**嫌疑=chanceRng 平衡器状态差**
+>   （装配期 BalancedRng.new 2 抽/实例的次序或 prepareItems 的 chanceRng.reset 面）。
+> - **下一探针（设计就绪未执行）**：oracle 取证桩在 BalancedRandom.gd roll()
+>   打 BALROLL（expectedWins/wins/lastResult/结果，≤6 行门控）+ gd 侧
+>   CoreRng.BalancedRng.roll 同款 trace_diag——单场 run639 重放对位第 71 事件前的
+>   全部 roll，第一个状态差点即根因。**同型面**：M3 随机掷值差 ~35 场大概率同根。
 > ③ **M3 随机掷值差 ~35 场**（evt12 P×20+evt105 P×16）：loseHealth 补抽已
 >    入库——先重扫（run601 fd@72 Unhealing 38v39 类可能已连带）。
 > ④ **遗留独立面**：P2-1（MrS MSROLL v3 双侧对位）/ P1-1（物品持久强化态
