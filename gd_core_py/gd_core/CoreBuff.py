@@ -49,6 +49,8 @@ class CoreBuff(GodotObject):
 		self._MAX_STACKS = 0
 		self._timer_left = 0.0
 		self._timer_active = False
+		self._timer_eng = 0.0
+		self._timer_seen = 0.0
 		self.ctx = None
 
 	@property
@@ -124,6 +126,21 @@ class CoreBuff(GodotObject):
 
 
 	# 内核计时器（替代 Godot Timer，语义等价）
+	# ★ np25 timeout1t：严格三变量模型，逐位映射 oracle_fight.gd drive_timers 注册表
+	#   （:880-924）——引擎读数被独立建模，_startTimer 只改写它，绝不能直赋
+	#   _timer_left：
+	#     _timer_eng   ≡ Godot Timer.time_left / drive_timers 的 eng
+	#                    （start(t) 时=t、stop() 时=0，其余每帧不变——阻塞循环下冻结）
+	#     _timer_left  ≡ 注册表 e[0]（自记剩余；每 pass 递减或被 eng 重同步；fire 后
+	#                    保留 ≤0 发火值、停止期冻结——同值重启时它继续减出 ≤0 →
+	#                    立即 fire，正是 oracle e[0]=-1 遗留 + :901 的原版怪癖，
+	#                    run599_r10 实证：Light Goobert 每 3.25s 重 gain dur=3 Blind，
+	#                    oracle 393 gain+TO 同 tick、对手侧 409 gain→410 TO）
+	#     _timer_seen  ≡ 注册表 e[1]（上一 pass 的 eng 采样）
+	# 「外部 start/重挂/延长改写引擎读数的当 tick：eng != _timer_seen → 重同步
+	#   **不递减**（首递减推迟到下一 tick）」，修「中途 (re)start 计时器恒早 1 tick」
+	#   （evt8=InvulnerableEnd 全族 + evt109=Blind StackTimeout 族 ≈84 场）。
+	#   停止期**不动** _timer_seen（对齐 :890-892 continue 不更新 e[1]）。
 
 
 
@@ -446,7 +463,10 @@ class CoreBuff(GodotObject):
 			_b = ""
 			for ts in _iter(self.temporaryStacks):
 				_b += _gd_fmt('(%s@%s)', [str(ts.amount), _substr(str(ts.timeout), 0, 5)])
-			self.ctx.rng.trace_diag('BLND', 'p' + str(self.character.playerId) + ' ty' + str(self.type) + ' ' + op + ' ' + pre, 'len=' + str(len(self.temporaryStacks)) + ' ntp=' + str(self.nextTemporaryTimeout) + ' tm=' + str(self._timer_active) + '/' + str(self._timer_left), _b)
+			# ★ np25 timeout1t：payload 追加 fr=<frame_counter>（六点全加、双门控
+			#   不变）——rng_trace 行首数字是行号非时间，没有帧号无法读「gain→fire
+			#   间隔 = K 或 K-1 次递减」这一决定性读数（验收门，见守门方案3）。
+			self.ctx.rng.trace_diag('BLND', 'p' + str(self.character.playerId) + ' ty' + str(self.type) + ' ' + op + ' ' + pre, 'len=' + str(len(self.temporaryStacks)) + ' ntp=' + str(self.nextTemporaryTimeout) + ' tm=' + str(self._timer_active) + '/' + str(self._timer_left) + '/e' + str(self._timer_eng) + '/s' + str(self._timer_seen) + ' fr=' + str(self.ctx.frame_counter), _b)
 
 	def onTimeout(self):
 		self._blnd_snap("fire", str(self.nextTemporaryTimeout))
@@ -490,13 +510,21 @@ class CoreBuff(GodotObject):
 	# ── 内核计时器（语义等价于 Godot Timer(one_shot, TIMER_PROCESS_PHYSICS)） ──
 
 	def _startTimer(self, duration):
-		self._timer_left = duration
+		# ★ np25 timeout1t：对齐 Timer.start(t)——**只改写引擎读数**，_timer_left
+		#   （≡e[0]）不动：oracle 注册表 e[0] 停留遗留值（fire 后 -1），同值重启
+		#   （eng==e[1]）时走 :901 从遗留值继续减 → ≤0 当 tick 立即 fire。若在这里
+		#   直赋 _timer_left=duration（初版 timeout1t 的写法），遗留值被冲掉 →
+		#   重同步不递减 → 比 oracle 晚 1 tick 起（run599_r10 Blind 393/574 铁证）。
+		self._timer_eng = duration
 		self._timer_active = True
 
 
 	def _stopTimer(self):
+		# 对齐 Timer.stop()：引擎读数归零；e[0]（_timer_left）从不在 stop 里被动
+		# （oracle :891 的 e[0]=-1 是 drive_timers 停止分支每帧重置，gd 停止期
+		# _tick 早退等价该 continue；_timer_left 冻结在遗留值，语义同 ≤0）。
 		self._timer_active = False
-		self._timer_left = 0.0
+		self._timer_eng = 0.0
 
 
 	def isTimerActive(self):
@@ -506,11 +534,32 @@ class CoreBuff(GodotObject):
 	def _tick(self, delta):
 		if not self._timer_active:
 			return
-		self._timer_left -= delta
-		if self._timer_left <= 0.0:
-			self._timer_active = False
-			self._timer_left = 0.0
-			self.onTimeout()
+		# ★ np25 timeout1t：逐行对齐 drive_timers :895-904。
+		if self._timer_eng == self._timer_seen:
+			self._timer_left -= delta       # :901 eng==e[1] → e[0]-=dt（遗留值继续减=
+		else:                          #   同值重启当 tick 立即 fire 的原版怪癖）
+			self._timer_left = self._timer_eng   # :899 eng!=e[1] → e[0]=eng 重同步（不递减）
+		self._timer_seen = self._timer_eng       # :902 e[1]=eng（每 pass 更新，先于 fire 判定）
+		if self._timer_left > 0.0:          # :903-904
+			return
+		self._timer_active = False          # :910 one_shot 自停先于派发
+		self._timer_eng = 0.0               # :910 stop() → 引擎读数归零；_timer_left
+		self.onTimeout()                    #   保留 ≤0 发火值（下一次同值重启靠它立即 fire）
+		if self._timer_active:              # :915-917 handler 内重挂（rearm start(delay)）
+			self._timer_left = self._timer_eng   #   → e[0]=e[1]=新引擎读数，下一 tick 照常递减
+			self._timer_seen = self._timer_eng
+
+
+	# ★ np25 timeout1t：rebuild_timer_registry 等价（oracle_fight.gd:690 调用、
+	#   :972-987 实现——activateItems 之后、手动 tick 循环之前把全部 Timer 以
+	#   [left,left]=[eng,eng] 重入册；停止态 get_time_left()=0）。由
+	#   CoreCombat.activateItems 末尾逐角色委托。激活期 start 的计时器 → 战斗首帧
+	#   即递减；战斗中首 gain 的新 Buff [0,0] → start 后首帧重同步——两分支由此锚定。
+	def rebuildTimerSeen(self):
+		if not self._timer_active:
+			self._timer_eng = 0.0
+		self._timer_left = self._timer_eng
+		self._timer_seen = self._timer_eng
 
 
 CoreBuff.TemporaryStacks = TemporaryStacks

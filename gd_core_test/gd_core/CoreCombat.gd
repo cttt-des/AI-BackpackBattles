@@ -235,6 +235,16 @@ func activateItems(items: Array) -> void :
 		item.postCombatStart()
 	
 	activated = true
+
+	# ★ np25 timeout1t：rebuild_timer_registry 等价（oracle_fight.gd:684→690——
+	#   G.activateItems() 之后、手动 tick 循环之前 rebuild_timer_registry() 把
+	#   Main 树下全部 Timer 以 [left,left] 重入册，停止态 [0,0]）。影子采样链
+	#   （buff/rage/invul）的 _seen 在此锚定：激活期 start 的计时器战斗首帧即
+	#   递减（_left==_seen）；战斗中首 gain 的新计时器 [0,0] → start 后首帧
+	#   重同步。缺此步则激活期 start 的计时器首帧会被误判为「外部改写→重同步」
+	#   而晚 1 tick（修复前无条件递减本是对的，不能退）。
+	player.rebuildTimerSeen()
+	opponent.rebuildTimerSeen()
 	
 	# ★ kernel_r2：对齐 Core/Combat.gd:165-168 onSwitchingToCombat 的
 	#   `Util.callDelayed(self, "clashSwords", 1.0)`——战斗场景切换时注册 1s
