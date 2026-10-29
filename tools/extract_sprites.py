@@ -31,7 +31,10 @@ from PIL import Image
 BASE = Path(__file__).resolve().parent.parent
 OUT_DIR = BASE / "assets"
 SPRITE_DIR = OUT_DIR / "sprites"
-SRC_ROOT = BASE / "output" / "_recovery" / "decomp_cur"
+# 贴图真值源：oracle/ = 1.1.9 全量 GDRE 反编译树（含 png/tscn/CSV）。
+# 历史上还有一份 output/_recovery/decomp_cur，经全量哈希校验与 oracle 一致
+# （15389 文件里 15373 相同，16 处差异全是 oracle 的战斗插桩），已删除以免重复。
+SRC_ROOT = BASE / "oracle"
 FALLBACK_ROOT = BASE / "decompiled_full"
 
 # 只认「物品」根场景：实例化 Item.tscn / Gem.tscn
@@ -493,6 +496,8 @@ def load_zh_map():
     """中文名：优先游戏内 Sheets/CSV/Full.csv（官方翻译真值），再叠旧库与补充表。"""
     out = {}
     csv = SRC_ROOT / ".assets" / "Sheets" / "CSV" / "Full.csv"
+    if not csv.exists():
+        csv = FALLBACK_ROOT / ".assets" / "Sheets" / "CSV" / "Full.csv"
     if csv.exists():
         try:
             import csv as _csv
