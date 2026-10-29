@@ -174,6 +174,7 @@ class CoreRng(GodotObject):
 		self.oracle_trace = False
 		self.oracle_trace_log = []
 		self._stacktrace = False      # ORACLE_ALIGN_STACKTRACE=1：逐抽附调用栈签名（诊断用）
+		self.globalChainOpen = False
 
 	# =============================================================================
 	# CoreRng.gd — 无头战斗内核：随机数层
@@ -325,6 +326,35 @@ class CoreRng(GodotObject):
 			array[i] = array[i + j]
 			array[i + j] = tmp
 		return array
+
+
+	# ── r1_0 全局链台账：引擎全局链直通 + 台账追踪 ──
+	# 物品脚本裸 Array.shuffle()/pick_random() 消费 Godot **引擎全局链**
+	# （docs/rng_truth.md §1.4-1/§1.4-2，与本类 rng（Util.rng 替身）相互独立）。
+	# 全局链真身不在本类：gd 侧 = 真 Godot 进程全局链（受控神谕对齐路径的宿主
+	# OracleAlignBattle.activation_order 已做 seed(S)→shuffle×2，起跑位与神谕装配段
+	# 逐位同态）；py 侧 = _rt._math_rng()（对齐分支 gd_core_engine _bind_battle+补两条）。
+	# 本两方法只是 builder r1_0 pass 改道后的统一入口：
+	#   1) 两态都直调引擎原生方法本体 —— 消耗恒落在真全局链上，这正是
+	#      「preordered 开账后与原版引擎链同链位逐位等价」的机制本身；
+	#   2) 开账（globalChainOpen=true）且 oracle_trace 时写 Gshuffle/Gpick 行入
+	#      oracle_trace_log（不消耗链；行型同 trace_diag，tag 列 = decomp 源文件:行号，
+	#      供逐抽对位点名全局链消耗位）；
+	#   3) 未开账 = 与旧树裸调用同链同效（LineupBattle 基线零回归）。
+	# 开账点：CoreCombat.startBattle(preordered=true)（受控神谕对齐路径）。
+
+
+	def shuffleEngine(self, array, tag="Gshuffle"):
+		_shuffle(array)
+		if self.globalChainOpen and self.oracle_trace:
+			self.oracle_trace_log.append([len(self.oracle_trace_log), "Gshuffle", tag, len(array), ""])
+
+
+	def pickRandomEngine(self, array, tag="Gpick"):
+		v = _pick_random(array)
+		if self.globalChainOpen and self.oracle_trace:
+			self.oracle_trace_log.append([len(self.oracle_trace_log), "Gpick", tag, len(array), ""])
+		return v
 
 
 	# =============================================================================

@@ -176,6 +176,13 @@ class CoreCombat(GodotObject):
 		#   默认 false = 既有行为（LineupBattle 56 局基准与 gd_core_py 转写版不变）。
 		if preordered:
 			self.ordered_items = player_items + opponent_items
+			# r1_0 全局链台账开账：受控神谕对齐路径上，宿主（OracleAlignBattle.
+			# activation_order）已在真 Godot 全局链上 seed(S) 并消耗开局 shuffle×2，
+			# 链起跑位与神谕装配段逐位同态——此后物品脚本的 shuffleEngine/
+			# pickRandomEngine 消耗同一真链，与神谕引擎链同链位逐位等价。
+			# 未开账（默认 false）时两方法直通引擎方法，与裸调用无差
+			# （LineupBattle 基线不变）。实例级标志：新 ctx 新 CoreRng 自归 false。
+			self.ctx.rng.globalChainOpen = True
 		else:
 			p_items = _dup(player_items)
 			self.ctx.rng.shuffle(p_items)
