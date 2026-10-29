@@ -628,6 +628,32 @@
 >   内部类访问外层成员须 _rng.oracle_trace）+ ROLLW（CoreItem.rollChance 带
 >   owner）双门控零耗入库；**oracle 探针大输出必须文件重定向**（管道阻塞致
 >   非确定扰动，probe events ≢ 语料——已实证并写入流程）。
+> **★★ np25 会话接管声明②+方案 D 实施设计定稿（2026-10-29 深夜）★★**
+> - **offpeak 新任务已建**：`offpeak-6ecfa1b4`（队列位 #292）=任务书 v2 队列**②③④⑤**
+>   （evt104 重扫 / M3 待方案D落地后重扫 / 遗留 P2-1·P1-1·run845 / 重扫循环）；
+>   **队列①方案 D 录音带由本会话认领**——offpeak 开跑先读本节+git log，勿碰方案 D
+>   改动面（oracle_fight.gd 取证桩 / gd_core_test/prepare_tape.json+OracleAlignBattle.gd
+>   / verify_oracle.py order 透传 / simulator/gd_core_engine.py taped 分支 /
+>   tools/_np25_tape_*.py）。
+> - **管线勘察定谳（实施依据）**：①oracle harness 开战序=**分侧** shuffle+sort
+>   （oracle_fight.gd:671-677，playerItems/opponentItems 各自 duplicate→shuffle→
+>   sort_TriggerPriority 后 concat）——96v47 差异全因 **INVENTORY 含暖场残留**，
+>   正式物品相对序被残留元素搅乱；②gd 宿主 startBattle(preordered=true) 直通终序
+>   （内核不 shuffle 不耗链）；③**py 腿激活序直通 gd 腿结果 json**
+>   （verify_oracle.py:316 读 activation_order → 引擎 preordered 直通）——
+>   **方案 D 只需改 gd 宿主单点，py 自动跟随**（唯全局链补偿需 taped 标志）。
+> - **方案 D 实施设计（五条）**：①录音带落点=oracle_fight.gd 两 sort_custom 之后，
+>   门控 `ORACLE_PREPARE_TAPE`，逐侧打印 `TAP|side|identifier|cell`（含残留，
+>   提取时按 cases 装配序 (key, occupied) 匹配过滤）；②宿主消费=**旁路文件**
+>   `gd_core_test/prepare_tape.json`（{cid:{player:[idx],opponent:[idx]}}，cases
+>   再生免疫，缺失回落现算法=绿场零影响）；③tape 模式宿主仍 `seed(S)` 但零
+>   shuffle；④引擎侧 `_bind_battle(seed)` 保留、**零补偿 shuffle**（宿主结果
+>   json 加 `activation_order_taped` 标志经 verify_oracle 透传）；⑤已知残面=
+>   战斗期全局链消费者（Eggscalibur 类）在残留场仍可能错位（oracle 装配期全局
+>   消耗不可回读，只修序不修链）——tape 后仍红场归此面另行定谳。
+> - 工作树备注：`gd_core_py/gd_core/CoreCombat.py` 为 **EOL 幻影**（git diff 空），
+>   非任何执行体在途改动，勿 add 勿还原。
+>
 ### P1 数据面整族（预计最大收敛面）
 
 - [ ] **P1-1 物品持久强化态缺失**：史流 setData 的 bonusMinDam/bonusMaxDam/bonusDamageFactor
