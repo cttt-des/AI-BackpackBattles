@@ -237,7 +237,46 @@
 >   run874_r7/run916_r6/run1316_r10/run1422_r14/run1528_r13 全部翻绿，
 >   py-only 族 6→1（仅剩 run1132_r18 的 py IndexError 独立崩溃）。
 >
-> **★ 新一轮问题清单（148/914 基线重扫，2026-10-29；offpeak 续作按此序）**：
+> **★ 四修复面并行分析落地（2026-10-29，workflow 四面分析+独立复核 4/4 成立）**：
+> 修复路线图全文见 workflow 产物卡片（修复路线图·primary）。要点：
+> - **新A 勘误（重要）**：oracle 探针 rng_log **根本没有截断机制**——1543 行/
+>   64063 字节=run572_r9 一场 14.000s（840 tick）战斗的完整自然长度；「中段窗口」
+>   是 @t 列被误读（@t=进程累计时钟 Util.time，每 tick +1/60 **从不按场重置**；
+>   窗口起点=暖场 960tick(16s)→首跑 16s→determinism 复跑 30s 的累计）。64KiB
+>   容量假说被 or635 探针 273711/351310 字节实测否。**新B 随之解锁**：ev@109
+>   =rng_log.txt 行 562，其前 8 连抽 pickRandomElement(0,6)（结果 2,0,5,1,0,6,1,1）
+>   即选型分叉候选；EVENT 行与语料事件 1:1 对位实测通过（±1 tick 双组歧义须按行序
+>   对位——U.time 步①先于 combatTime 步④）。修复降级为可选小补丁（@ct 列或
+>   rng_state 加 utime 字段）。
+> - **evt1@1-50×125 重分簇**（基线已更新 124→125，run1132 迁入）：
+>   **主体 111/125=全局 Util.rng 流错位单一族**（与新B 同族；伤害掷骰/命中币/
+>   暴击币/机会栈增益只是同一错位流的四类首暴露面；Δ±1×64/±2×22 符号平衡=
+>   小值域掷骰上的流错位特征；错位在 rng_state 注入之后）；**次族 14 场=gd 受击
+>   反应钩子先于攻击事件发射的确定性时序族**（13×ty104 Spiked Wall/Pine Protector/
+>   Spiked Shield + 1×ty108 Storage Coffin；SpikedShield.gd:11-16 giveSpikes 无 roll，
+>   run784_r13 同 tick 同事件集纯顺序颠倒）。
+> - **evt0@1-50×81 重定谳**：**主体 ~75 场=棋盘子系统永不 capture**——
+>   Type.ChessPiece=17 类型位数据面全缺（battle_items.json 棋子 types=[]）→
+>   ChessPiece.gd:15 canAffect 恒假 → ChessBoard 永不 capture（gd TRIG 时刻与
+>   语料逐位吻合=机制脚本就绪只缺数据位；py/gd 双引擎同哑）；头号样本 run618
+>   实为 **Amulet of Darkness 反应式 30% 掷点分歧**（cd=0 信号驱动，MF 双激活
+>   两侧同现同序，非双激活/到期序问题）；同帧多物品到期事件序=装配序+对手块
+>   先于玩家块（CoreCombat.gd physicsTick ①-⑦，与亚 tick 无关——P2-2 面澄清）。
+> - **次大簇归并裁决**：**evt8 全族 66/68 + evt109 时移 18 ≈ 84 场=buff 到期
+>   gd 早 1 tick**（apply/Start 两侧逐字节全同、到期恰差 1/60s、下一事件回同；
+>   锚点 CoreBuff.gd:206/:382）——最大收益最低难度；evt105+evt12 异型子簇
+>   ≈54 场=总线监听级联缺发/多触发（同 run874 定谳族，BUS 探针就绪）；
+>   evt109@1-50≈24 场=周期触发器首拍迟到/缺发（Spell Scroll Dark×11、
+>   Burning Banner×5，推迟 13~40 tick 节奏保持）独立成面。**待验映射裁决**：
+>   P3-4 Mana Orb 真身在 evt105（run604/run639）非 evt8；受击/反伤面真身=
+>   evt104@1-50×17（Spiked Shield/Pine Protector）；evt12 Goobert 系仅 Blood
+>   Goobert 2 场；evt109≠Twine/疲劳（602/605/624/668 实为 LG 到期 T-1）。
+> - **修复优先序**（材料准备中，修复 workflow 串行链待校准）：①棋盘数据面
+>   (~75 场，数据位+三产物再生) ②buff 到期 ±1 tick(~84 场) ③全局流错位
+>   (111 场，对位材料已备) ④首拍迟到(~24 场) ⑤总线级联(~54 场，深水后置)。
+>   修复已并入 workflow（dwfrun-7b6116b7）按互斥类串行执行，每笔独立 commit。
+>
+> **★ 新一轮问题清单（148/914 基线重扫，2026-10-29；已被上方四面分析重定谳，条目保留作历史索引）**：
 > 1. **evt1@1-50 ×124**（最大簇）：早期 DealDamage 分歧。样本=run616_r18
 >    （ev@19）/run622_r15（ev@28）/run623_r6（ev@17）——P3-3 后簇签名已变，
 >    先抽 3 场 canonical 对拍分簇（同签名合并）再定打法。
@@ -267,7 +306,27 @@
 > - **新C**：run845_r18 py IndexError（CoreBuff.onTimeout 越界）——独立
 >   崩溃，全局流修复未除，见清单第 7 项。
 
-
+> **★ np25修复loseHealth补抽（2026-10-29，修复员·loseHealth补抽）**：
+> 定谳：oracle/Core/Character.gd:857-864 loseHealth 在事件发射前**无条件**
+> 消耗 randDmgNumberPos（2 抽）+ randDmgNumberDir（1 抽）；
+> gd_core/CoreCharacter.gd:810 loseHealth 直接建事件**零抽**=唯一漏镜像位
+> （gd 两抽函数 :494/:501 已在，takeDamage/治疗路均已对位）。对位铁证：
+> run572_r9 gd trace 相对 oracle rng_log 滞后恰 3×N（7 处 EVENT 5 每处缺该
+> 三元组，累计少 21 uniform）。修复=三行镜像（`randDmgNumberPos()` +
+> `randDmgNumberDir()` + `ctx.hooks.spawnNumberLabel(LoseHealth,…)`，置于
+> `curHealth -= amount` 之后、`if item:` 之前=无条件性/先后顺序逐行同构；
+> pos/direction 不保留返回值——gd_core 无头版 spawnNumberLabel 为 no-op
+> hook 无消费方，抽数与顺序与原版逐位一致）。**施修前置检查：148 绿场语料
+> type==5 事件总数=0（对绿场零影响，可安全施修）**。守门
+> `tools/_np21_gate.py --cases run572_r9,run616_r18,run622_r15,run623_r6,
+> run570_r18,run1160_r18,run1029_r2,run862_r18,run813_r12,run635_r12,
+> run732_r12,run695_r18,run1514_r18 --tag np25_losehealth_r1`：
+> **run572_r9 首分歧 ev@109→ev@242**（越其末处 EVENT 5@语料 idx230；gd 腿
+> 事件数 324→320=与 oracle 同长）；**REG 零退步**（七红分歧点与基线逐场
+> 同位：1160@155/862@33/813@69/635@107/732@179/695@147/1514@23；
+> 570/1029 绿保持 PASS）；run616/622/623 位置未动（其语料 type==5=0，
+> 分歧根因在别的面，evt1 次族）。gd_to_py rc=0，gd_core_test 同步 md5
+> 一致。备份 output/_round_patches/np24_fix/losehealth_r1/。
 >
 > **进行中（np25 主会话，若已入库则以 git log 为准）**：py-only 收敛。
 > **py trace 通道已修**（gd_core_py/_rt.py 加 `get_stack`/`PoolStringArray`
