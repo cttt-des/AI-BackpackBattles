@@ -7,7 +7,7 @@ func onPreDealDamage_early(damageRes: CoreDamageResult):
 	if damageRes.hasHit():
 		var buffsLeft = buffRemoval
 		var ownMostBuffs = getMostStacks(character(), CoreConst.getBuffs())
-		ownMostBuffs.shuffle()
+		ctx.rng.shuffleEngine(ownMostBuffs, "Exclusive/CupcakeDragon.gd:11")
 		for buffType in ownMostBuffs:
 			var cur = opponent().getStacks(buffType)
 			var buffsRemoved = min(cur, buffsLeft)

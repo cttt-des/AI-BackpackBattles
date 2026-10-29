@@ -287,6 +287,9 @@ var wasJustCrafted: = false
 # ★ np24：crafted 实例真值（语料 lineups snapshot；-1=未注入→退回类型级）。
 #   run871 定谳：实例 crafted ≠ 配方图（7 件无配方 crafted / 7 件有配方未
 #   crafted）——Anvil.onPreCombatStart 的 numCrafted 计数差根因。
+# ★ np25棋盘面重建回植：本适配层由 builder 从 decompiled Item.gd 再生，
+#   builder 无此手补 → 重建会冲掉（chessfix 重建实测），宿主 place_one
+#   的 it.crafted_instance 注入会 Invalid set index → 全场 assembly-fail。
 var crafted_instance: = -1
 var pickupPosition: Vector2
 var pickupRotation: float
@@ -979,10 +982,6 @@ func hideSockets():
 func playPickupSound():
 	pass
 
-# ★ playDropSound 已回归内核权威（kernel_r2c）：CoreItem 现定义带音高抽的
-# 基类实现（activate() 虚分发），此处剥离版曾遮蔽之使全物品音高抽消失
-# （589/577/583/571 开战段全面错位）。生成器对同名函数按“内核版本权威”丢弃，
-# 与重生成结果一致。
 func canBeSold() -> bool:
 	return (ownerType == CoreConst.Owner.PlayerInventory or 
 		ownerType == CoreConst.Owner.PlayerStorageBox or 
@@ -1388,6 +1387,8 @@ func setRevealed():
 
 
 func isCrafted() -> bool:
+	# ★ np24 实例真值优先（crafted_instance≥0=宿主已注入），-1 退回类型级。
+	#   np25棋盘面重建回植（同 crafted_instance，builder 再生会冲掉）。
 	if crafted_instance >= 0:
 		return crafted_instance == 1
 	return descriptor.isCraftedItem()

@@ -47,7 +47,7 @@ class Exclusive__Ukulele(_R.C("res://gd_core_items/Item.gd")):
 				self.nonMusicalItems.append(item)
 
 		if not (not self.nonMusicalItems):
-			_shuffle(self.nonMusicalItems)
+			self.ctx.rng.shuffleEngine(self.nonMusicalItems, 'Exclusive/Ukulele.gd:34')
 
 			for item in _iter(self.getAffectedItems(_R.C("CoreConst").Affected.Secondary)):
 				self.connectForCombat(item, "activated", "onItemActivated")
@@ -101,16 +101,16 @@ class Exclusive__Ukulele(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def playPickupSound(self):
+		# decomp Items/Exclusive/Ukulele.gd:90 Sound.playSound_process(pickupSound, - 4, Util.randPitch(0.15))——GDScript 实参求值即消耗：randPitch 1 抽
+		self.ctx.rng.randf_range(0.9, 1.1)
 		pass
 
 
 	def playDropSound(self, volume=0):
 		volume += self.impactSoundVolume
-		# ★ kernel_r2c 移植补抽：原版此行含 Util.randPitch(0.15)（=randf_range(0.85, 1.15)，
-		#   Util.gd:685-686），转译期随音效行被剥——链消耗丢失（activate() 虚分发
-		#   后此覆写生效，抽面必须与原版一致）。
-		self.ctx.rng.randf_range(0.85, 1.15)
 
+		# decomp Items/Exclusive/Ukulele.gd:94 Sound.playSound(dropSound, volume - 4, Util.randPitch(0.15))——GDScript 实参求值即消耗：randPitch 1 抽
+		self.ctx.rng.randf_range(0.9, 1.1)
 	def _readyInit(self):
 		super()._readyInit()
 		self.speedPerItem = _div(self.getP('speed'), 100.0)

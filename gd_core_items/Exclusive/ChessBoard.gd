@@ -59,7 +59,7 @@ func onPrepare():
 
 func doCooldownEffect():
 	var activePieces = getPiecesForColor(turnColor)
-	activePieces.shuffle()
+	ctx.rng.shuffleEngine(activePieces, "Exclusive/ChessBoard.gd:80")
 	
 	var capturingPiece
 	if isTypeInInventory(chessMasterDescr):
@@ -80,7 +80,7 @@ func doCooldownEffect():
 func findPieceToCapture(activePieces):
 	for piece in activePieces:
 		var captureCells = piece.getCaptureCells()
-		captureCells.shuffle()
+		ctx.rng.shuffleEngine(captureCells, "Exclusive/ChessBoard.gd:100")
 		
 		
 		for cell in captureCells:
@@ -102,7 +102,7 @@ func findBestPieceToCapture(activePieces):
 	for piece in activePieces:
 		
 		var captureCells = piece.getCaptureCells()
-		captureCells.shuffle()
+		ctx.rng.shuffleEngine(captureCells, "Exclusive/ChessBoard.gd:121")
 		
 		for cell in captureCells:
 			var globalCell = piece.occupiedCells[0] + cell
@@ -147,7 +147,7 @@ func capture(capturingPiece, eliminatedPiece, activateEvent):
 func findSpaceToMove(activePieces):
 	for piece in activePieces:
 		var moveCells = piece.getMoveCells()
-		moveCells.shuffle()
+		ctx.rng.shuffleEngine(moveCells, "Exclusive/ChessBoard.gd:164")
 		
 		
 		for cell in moveCells:

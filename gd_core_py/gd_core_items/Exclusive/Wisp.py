@@ -81,16 +81,16 @@ class Exclusive__Wisp(_R.C("res://gd_core_items/Gems/Gem.gd")):
 
 
 	def playPickupSound(self):
+		# decomp Items/Exclusive/Wisp.gd:62 Sound.playSound_process(pickupSound, - 8, Util.randPitch(0.1))——GDScript 实参求值即消耗：randPitch 1 抽
+		self.ctx.rng.randf_range(0.9, 1.1)
 		pass
 
 
 	def playDropSound(self, volume=0):
 		volume += self.impactSoundVolume
-		# ★ kernel_r2c 移植补抽：原版此行含 Util.randPitch(0.1)（=randf_range(0.9, 1.1)，
-		#   Util.gd:685-686），转译期随音效行被剥——链消耗丢失（activate() 虚分发
-		#   后此覆写生效，抽面必须与原版一致）。
-		self.ctx.rng.randf_range(0.9, 1.1)
 
+		# decomp Items/Exclusive/Wisp.gd:66 Sound.playSound(dropSound, volume - 8, Util.randPitch(0.1))——GDScript 实参求值即消耗：randPitch 1 抽
+		self.ctx.rng.randf_range(0.9, 1.1)
 	def _readyInit(self):
 		super()._readyInit()
 		self.luck = int(self.getP("luck"))

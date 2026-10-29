@@ -25,7 +25,7 @@ class Exclusive__UnidentifiedSkill(_R.C("res://gd_core_items/Item.gd")):
 			dropRes == self.DropResult.AddedToStorageBox):
 
 			self.prepareReplacement()
-			skill = _pick_random(self.skillPool)
+			skill = self.ctx.rng.pickRandomEngine(self.skillPool, 'Exclusive/UnidentifiedSkill.gd:23')
 			self.ctx.defer(self, "identifySkill", [dropRes, skill])
 
 

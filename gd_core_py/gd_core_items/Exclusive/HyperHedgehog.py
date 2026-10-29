@@ -32,17 +32,17 @@ class Exclusive__HyperHedgehog(_R.C("res://gd_core_items/Exclusive/Hedgehog.gd")
 
 
 	def playPickupSound(self):
+		# decomp Items/Exclusive/HyperHedgehog.gd:23 Sound.playSound_process(pickupSound, - 4, Util.randPitch(0.1))——GDScript 实参求值即消耗：randPitch 1 抽
+		self.ctx.rng.randf_range(0.9, 1.1)
 		pass
 
 
 	def playDropSound(self, volume=0):
 		volume += self.impactSoundVolume
-		# ★ kernel_r2c 移植补抽：原版此行含 Util.randPitch(0.1)（=randf_range(0.9, 1.1)，
-		#   Util.gd:685-686），转译期随音效行被剥——链消耗丢失（activate() 虚分发
-		#   后此覆写生效，抽面必须与原版一致）。
+
+
+		# decomp Items/Exclusive/HyperHedgehog.gd:27 Sound.playSound(dropSound, volume - 4, Util.randPitch(0.1))——GDScript 实参求值即消耗：randPitch 1 抽
 		self.ctx.rng.randf_range(0.9, 1.1)
-
-
 	def spawnSpikeParticles(self):
 		pass
 

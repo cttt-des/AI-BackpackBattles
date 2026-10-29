@@ -8,7 +8,7 @@ func canAffect(item):
 
 func onPrepare():
 	affectedItems = getAffectedItems()
-	affectedItems.shuffle()
+	ctx.rng.shuffleEngine(affectedItems, "Exclusive/EchoingBattlecry.gd:14")
 	
 	addSpeed(speedPerItem * affectedItems.size())
 

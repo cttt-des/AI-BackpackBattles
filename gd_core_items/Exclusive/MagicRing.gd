@@ -174,13 +174,9 @@ func randEffects(clearIfOnlyDisplay = true):
 		
 	
 	sortEffects()
-	
+
 	if clearIfOnlyDisplay and isOnlyForDisplay():
 		effects.clear()
-
-
-func getScaledParam(stackName: String, paramScale: float) -> float:
-	return round(getP(stackName) * paramScale)
 
 
 # ★ np24 harness：crafted 效果真值注入（r34 的幽灵调用落地）——宿主
@@ -192,6 +188,8 @@ func getScaledParam(stackName: String, paramScale: float) -> float:
 #   双对齐。此前全树（oracle/decompiled/gd/py）皆无此方法，宿主
 #   has_method/hasattr 守卫恒假 ⇒ 两腿戒指效果恒为随机 roll（run695_r18
 #   Superior Ring idx18：gd/py (104,5) vs 语料真值 (105,6) 实证）。
+# ★ np25棋盘面重建回植：builder 从 decompiled 再生无此手补（chessfix 重建
+#   实测被冲掉），漏植则 np17-A 效果真值静默退化为随机 roll。
 func setCraftedEffects(crafted) -> void :
 	effects.clear()
 	for e in crafted:
@@ -200,6 +198,10 @@ func setCraftedEffects(crafted) -> void :
 		effect.stackType = int(e["stackType"])
 		effects.push_back(effect)
 	sortEffects()
+
+
+func getScaledParam(stackName: String, paramScale: float) -> float:
+	return round(getP(stackName) * paramScale)
 
 
 func isOnlyForDisplay() -> bool:

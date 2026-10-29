@@ -43,6 +43,13 @@ class FalconBlade_2(_R.C("res://gd_core_items/Weapon.gd")):
 			else:
 				pass
 
+			# ★ RNG 链消耗还原（r2_1）：decomp Items/FalconBlade.gd:24-25 createAnimation()+ani.randomizePosition() ——
+			#   ItemAnimation.gd:26-28 恒抽 3 次（(30,100)/5.0 export 默认；直调不经 intialize 无 playback_speed）。
+			#   run631_r9/701_r11/722_r7 逐抽对位实证 + 台账第 24 轮 run634 同根。
+			self.ctx.rng.randf_range( - 30.0, 30.0)
+			self.ctx.rng.randf_range( - 100.0, 100.0)
+			self.ctx.rng.randf_range( - 5.0, 5.0)
+
 
 	def getCraftingOffset(self, forDirection):
 		if forDirection == _R.C("CoreConst").FaceDirection.UP:

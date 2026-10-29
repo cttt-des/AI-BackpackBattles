@@ -25,7 +25,7 @@ func onPrepare():
 			nonMusicalItems.push_back(item)
 	
 	if not nonMusicalItems.empty():
-		nonMusicalItems.shuffle()
+		ctx.rng.shuffleEngine(nonMusicalItems, "Exclusive/Ukulele.gd:34")
 		
 		for item in getAffectedItems(CoreConst.Affected.Secondary):
 			connectForCombat(item, "activated", "onItemActivated")
@@ -79,16 +79,16 @@ func doCooldownEffect():
 	
 
 func playPickupSound():
+	# decomp Items/Exclusive/Ukulele.gd:90 Sound.playSound_process(pickupSound, - 4, Util.randPitch(0.15))——GDScript 实参求值即消耗：randPitch 1 抽
+	ctx.rng.randf_range(0.9, 1.1)
 	pass
 
 
 func playDropSound(volume = 0):
 	volume += impactSoundVolume
-	# ★ kernel_r2c 移植补抽：原版此行含 Util.randPitch(0.15)（=randf_range(0.85, 1.15)，
-	#   Util.gd:685-686），转译期随音效行被剥——链消耗丢失（activate() 虚分发
-	#   后此覆写生效，抽面必须与原版一致）。
-	ctx.rng.randf_range(0.85, 1.15)
 
+	# decomp Items/Exclusive/Ukulele.gd:94 Sound.playSound(dropSound, volume - 4, Util.randPitch(0.15))——GDScript 实参求值即消耗：randPitch 1 抽
+	ctx.rng.randf_range(0.9, 1.1)
 func _readyInit():
 	._readyInit()
 	speedPerItem = getP("speed") / 100.0

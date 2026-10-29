@@ -32,16 +32,16 @@ class Exclusive__Pop(_R.C("res://gd_core_items/Weapon.gd")):
 
 
 	def playPickupSound(self):
+		# decomp Items/Exclusive/Pop.gd:21 Sound.playSound_process(popSound, 4, Util.randPitch(0.15))——GDScript 实参求值即消耗：randPitch 1 抽
+		self.ctx.rng.randf_range(0.9, 1.1)
 		pass
 
 
 	def playDropSound(self, volume=0):
 		volume += self.impactSoundVolume
-		# ★ kernel_r2c 移植补抽：原版此行含 Util.randPitch(0.15)（=randf_range(0.85, 1.15)，
-		#   Util.gd:685-686），转译期随音效行被剥——链消耗丢失（activate() 虚分发
-		#   后此覆写生效，抽面必须与原版一致）。
-		self.ctx.rng.randf_range(0.85, 1.15)
 
+		# decomp Items/Exclusive/Pop.gd:25 Sound.playSound(popSound, volume - 0, Util.randPitch(0.15))——GDScript 实参求值即消耗：randPitch 1 抽
+		self.ctx.rng.randf_range(0.9, 1.1)
 	def _readyInit(self):
 		super()._readyInit()
 		self.speedPerMana = _div(self.getP('speed'), 100.0)

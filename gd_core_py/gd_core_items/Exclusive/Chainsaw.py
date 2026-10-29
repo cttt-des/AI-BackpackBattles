@@ -77,6 +77,8 @@ class Exclusive__Chainsaw(_R.C("res://gd_core_items/Weapon.gd")):
 
 
 	def playPickupSound(self):
+		# decomp Items/Exclusive/Chainsaw.gd:72 Sound.playSound(pickupSound, 0, Util.randPitch(0.1) + 0.1)——GDScript 实参求值即消耗：randPitch 1 抽
+		self.ctx.rng.randf_range(0.9, 1.1)
 		pass
 
 	def _readyInit(self):

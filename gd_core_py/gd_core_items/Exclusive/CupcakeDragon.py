@@ -23,7 +23,7 @@ class Exclusive__CupcakeDragon(_R.C("res://gd_core_items/Weapon.gd")):
 		if damageRes.hasHit():
 			buffsLeft = self.buffRemoval
 			ownMostBuffs = self.getMostStacks(self.character(), _R.C("CoreConst").getBuffs())
-			_shuffle(ownMostBuffs)
+			self.ctx.rng.shuffleEngine(ownMostBuffs, 'Exclusive/CupcakeDragon.gd:11')
 			for buffType in _iter(ownMostBuffs):
 				cur = self.opponent().getStacks(buffType)
 				buffsRemoved = min(cur, buffsLeft)
