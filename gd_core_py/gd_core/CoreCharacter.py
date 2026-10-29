@@ -87,6 +87,10 @@ class CoreCharacter(GodotObject):
 		self._rage_active = False
 		self._autoRage_left = 0.0
 		self._autoRage_active = False
+		self._rage_seen = 0.0
+		self._invul_seen = 0.0
+		self._rage_eng = 0.0
+		self._invul_eng = 0.0
 		self.attack_moving_forward = False
 		self.attack_sound_ready_time = - 1.0
 		self._tick_timer_left = 0.0
@@ -230,6 +234,18 @@ class CoreCharacter(GodotObject):
 	# 战怒计时（对齐 Character.tscn 的 BattleRageTimer / AutoRageTimer，均为 one_shot）
 	#   BattleRageTimer.timeout → endBattleRage()
 	#   AutoRageTimer.timeout   → startAutoRage()
+	# ★ np25 timeout1t：严格三变量模型（与 CoreBuff._timer_* 同案，逐位映射
+	#   oracle_fight.gd drive_timers 注册表 :880-924）：
+	#     _rage_left/_invul_left   ≡ 注册表 e[0]（自记剩余；fire 后保留 ≤0 发火值）
+	#     _rage_eng/_invul_eng     ≡ Godot Timer.time_left（start(t)/changeTimer 只
+	#                                改写它——**绝不能直赋 _*_left**，同值重启的
+	#                                「遗留值继续减 → 立即 fire」原版怪癖靠它保真）
+	#     _rage_seen/_invul_seen   ≡ 注册表 e[1]（上一 tick 的 eng 采样）
+	#   中途 (re)start/延长当 tick：eng != seen → 重同步不递减（修「gd 早 1 tick」，
+	#   evt8=InvulnerableEnd 全族）；赋值点 _setRageTimer/makeInvulnerable 的延长
+	#   基准用 _*_left（e[0]）——对齐 Util.changeTimer=start(t+oracleLeft)
+	#   （Util.gd:1677-1683 oracleLeft 优先语义）。autoRage 不在红族且激活帧启动
+	#   首递减天然在下一帧，不加。
 
 
 	def _init(self, _ctx, _playerId):
@@ -378,10 +394,14 @@ class CoreCharacter(GodotObject):
 
 		self._rage_left = 0.0
 		self._rage_active = False
+		self._rage_eng = 0.0
+		self._rage_seen = 0.0
 		self._autoRage_left = 0.0
 		self._autoRage_active = False
 		self._invul_left = 0.0
 		self._invul_active = False
+		self._invul_eng = 0.0
+		self._invul_seen = 0.0
 
 
 	# 原版是动画 tween 复位；无头下只需清标志
@@ -1192,7 +1212,8 @@ class CoreCharacter(GodotObject):
 	#   [connection signal="timeout" from="BattleRageTimer" to="." method="endBattleRage"]
 	# 驱动；内核改为物理帧步进，超时点在本类 physicsTick 里触发同一方法。）
 	def endBattleRage(self):
-		self._rage_left = 0.0
+		# ★ np25 timeout1t：fire 后 _rage_left 保留 ≤0 发火值（e[0] 遗留，同值重启
+		#   怪癖依赖）、_rage_eng 已在 tick 驱动块 stop 归零——此处不再清 _rage_left。
 		self._rage_active = False
 		event = self.ctx.combat_log.createEvent_BattleRageEnd(self.playerId)
 		self.ctx.bus.emitEvent(self, "battle_rage_ended", event, [event])
@@ -1331,11 +1352,14 @@ class CoreCharacter(GodotObject):
 
 
 	# Util.changeTimer 语义：start(t + timeLeft) —— 在**剩余时间**基础上延长。
+	# ★ np25 timeout1t：只改写引擎读数 _rage_eng（=Timer.start(t)），_rage_left
+	#   （e[0]）不动。延长分支基准=_rage_left（e[0]）——对齐 Util.gd:1677-1683
+	#   changeTimer 的 oracleLeft 优先语义（start(t + oracleLeft)）。
 	def _setRageTimer(self, t):
 		if self._rage_active:
-			self._rage_left = t + self._rage_left
+			self._rage_eng = t + self._rage_left
 		else:
-			self._rage_left = t
+			self._rage_eng = t
 			self._rage_active = True
 
 
@@ -1346,8 +1370,11 @@ class CoreCharacter(GodotObject):
 
 		# 对齐 Character.gd:1038-1044：首次 start(invuDur)；已无敌时 Util.changeTimer
 		# （= start(t + timeLeft)，在**剩余时间**上加）→ 所以是延长而非覆盖。
+		# ★ np25 timeout1t：只改写引擎读数 _invul_eng（=Timer.start(t)），_invul_left
+		#   （e[0]）不动；延长分支基准=_invul_left——对齐 Util.gd:1677-1683 changeTimer
+		#   的 oracleLeft（e[0]）优先语义。
 		if not self.invulnerable:
-			self._invul_left = invuDur
+			self._invul_eng = invuDur
 			self._invul_active = True
 			self.invulnerable = True
 			self.ctx.hooks.playInvulnerableAnimation(self, True)
@@ -1358,7 +1385,12 @@ class CoreCharacter(GodotObject):
 			#   首分支实证：oracle 探针 O536 randPitch(0.9,1.1)=>1.073782 缺失）。
 			self.ctx.rng.randf_range(0.9, 1.1, "randPitch")
 		else:
-			self._invul_left = invuDur + self._invul_left
+			self._invul_eng = invuDur + self._invul_left
+		# ★ np25 timeout1t 诊断（双门控零耗）：INVU 行读 make 时序（fr vs rebuild 的
+		#   activateItems 末尾）+ 三变量值，定位「激活期 start 是否被 rebuild 锚定」。
+		#   lt/gt=dur 对字面量 3.1 的 ULP 方位（run1069_r15 定谳用：D 在 186dt 浮点
+		#   边界上时 1 ULP 决定 fire@186/187）。
+		self.ctx.rng.trace_diag("INVU", "make p" + str(self.playerId) + (" first" if not self.invulnerable else " ext") + " dur=" + str(invuDur) + " lt3.1=" + str(invuDur < 3.1) + " gt3.1=" + str(invuDur > 3.1) + " eng=" + str(self._invul_eng) + " left=" + str(self._invul_left), "act=" + str(self._invul_active) + " fr=" + str(self.ctx.frame_counter))
 
 		event = self.ctx.combat_log.createEvent_InvulnerableStart(item, invuDur, self.playerId, triggerEvent)
 		self.ctx.bus.emitEvent(self, "character_invulnerable_start", event, [event])
@@ -1931,16 +1963,29 @@ class CoreCharacter(GodotObject):
 				self._tick_timer_left += 1.0
 
 		# registry 次序：BattleRageTimer 先于 InvulnerabilityTimer（tscn :1635/:1639）
+		# ★ np25 timeout1t：两链均严格三变量驱动（对齐 drive_timers :895-910）。
 		if self._rage_active:
-			self._rage_left -= delta
+			if self._rage_eng == self._rage_seen:
+				self._rage_left -= delta       # :901（遗留值继续减=同值重启立即 fire 怪癖）
+			else:
+				self._rage_left = self._rage_eng    # :899 重同步（不递减）
+			self._rage_seen = self._rage_eng        # :902 e[1]=eng
 			if self._rage_left <= 0.0:
+				self._rage_active = False
+				self._rage_eng = 0.0           # :910 stop() 引擎读数归零；_rage_left 保留发火值
 				self.endBattleRage()
 
 		if self._invul_active:
-			self._invul_left -= delta
+			if self._invul_eng == self._invul_seen:
+				self._invul_left -= delta
+			else:
+				self._invul_left = self._invul_eng
+			self._invul_seen = self._invul_eng
 			if self._invul_left <= 0.0:
-				self._invul_left = 0.0
 				self._invul_active = False
+				self._invul_eng = 0.0          # :910 stop()；_invul_left 保留发火值
+				# ★ np25 timeout1t 诊断（双门控零耗）：INVU fire 行读三变量终值。
+				self.ctx.rng.trace_diag("INVU", "fire p" + str(self.playerId) + " left=" + str(self._invul_left) + " eng=" + str(self._invul_eng) + " seen=" + str(self._invul_seen), "fr=" + str(self.ctx.frame_counter))
 				self.invulnerabilityEnded()
 
 		if self._autoRage_active:
@@ -1955,6 +2000,26 @@ class CoreCharacter(GodotObject):
 	def tickBuffs(self, delta):
 		for buffType in _iter(self.buffs):
 			self.buffs[buffType]._tick(delta)
+
+
+	# ★ np25 timeout1t：rebuild_timer_registry 等价（oracle_fight.gd:690/:972-987）
+	#   的角色侧半步，由 CoreCombat.activateItems 末尾（activated=true 之后、首
+	#   tick 前）逐角色调用——oracle 在 G.activateItems() 之后、手动 tick 循环之前
+	#   把 Main 树下全部 Timer 以 [left,left]=[eng,eng] 重入册（停止态读数=0）。
+	#   rage/invul 激活期 start 的 → e[0]=e[1]=eng → 战斗首帧即递减；buffs 全量
+	#   委托 CoreBuff.rebuildTimerSeen。autoRage/_tick_timer 无影子（激活帧启动、
+	#   激活帧无 step⑦，首递减天然在下一帧 = oracle rebuild [dur,dur] 首帧递减，一致）。
+	def rebuildTimerSeen(self):
+		if not self._rage_active:
+			self._rage_eng = 0.0
+		self._rage_left = self._rage_eng
+		self._rage_seen = self._rage_eng
+		if not self._invul_active:
+			self._invul_eng = 0.0
+		self._invul_left = self._invul_eng
+		self._invul_seen = self._invul_eng
+		for buffType in _iter(self.buffs):
+			self.buffs[buffType].rebuildTimerSeen()
 
 
 _R.reg("res://gd_core/CoreCharacter.gd", CoreCharacter)

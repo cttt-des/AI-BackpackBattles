@@ -151,7 +151,11 @@
 > P3-2 悖论勘误（跨实例误读）+真分歧定位（478 行后未留痕抽差）；
 > py trace 通道垫片（e0dc73ed）；run874 冷却链排除+信号级锁定（73e4593f）；
 > BUS 探针+f32 对称化（940ffd39/cc74a0be）；全局流错位修复（35249827+
-> d9887a9e，148/914）；新问题批次 A/B/C 入账（a972f726/7dfb374d/f4226f3b）。
+> d9887a9e，148/914）；新问题批次 A/B/C 入账（a972f726/7dfb374d/f4226f3b）；
+> **buff/timer 到期「gd 早 1 tick」修复（2026-10-29，timeout1t 面）**——
+> 三变量模型（e[0]/eng/e[1]）+rebuild 等价步骤，定位场四腿 ALL PASS、
+> 目标族 85 场 50 绿、REG 零退步；残红 35 场定性建档待后续面
+> （7 场 dur 边界 ULP 需 oracle 腿取证 / 8 场多栈次序 / 20 场非本面）。
 >
 > **★ offpeak 续作战报（2026-10-29，offpeak-488589ec）**：
 > - **✅ py-only 族清零（commit bcc6e858）**：run1132_r18 的 IndexError 根因
@@ -264,7 +268,32 @@
 >   先于玩家块（CoreCombat.gd physicsTick ①-⑦，与亚 tick 无关——P2-2 面澄清）。
 > - **次大簇归并裁决**：**evt8 全族 66/68 + evt109 时移 18 ≈ 84 场=buff 到期
 >   gd 早 1 tick**（apply/Start 两侧逐字节全同、到期恰差 1/60s、下一事件回同；
->   锚点 CoreBuff.gd:206/:382）——最大收益最低难度；evt105+evt12 异型子簇
+>   锚点 CoreBuff.gd:206/:382）——最大收益最低难度；✅ **已修复（2026-10-29，
+>   timeout1t 面）**：gd 三链（CoreBuff._timer_* / CoreCharacter rage/invul）
+>   改**严格三变量模型**逐位映射 drive_timers 注册表（_timer_left≡e[0]、
+>   _timer_eng≡引擎读数、_timer_seen≡e[1]；oracle_fight.gd:880-924）——
+>   **_startTimer 只改写 eng 绝不直赋 e[0]**（初版 _seen 直采样方案因冲掉
+>   e[0] 遗留值被 run599_r10 证伪：Light Goobert 每 3.25s 重 gain dur=3
+>   Blind，oracle 393 gain+TO 同 tick=同值重启 e[0]=-1 遗留+:901 连减立即
+>   fire 的原版怪癖；对手侧 409→410=case-B 由 gd 现有 tickBuffs 先于
+>   tickTimersPass 次序天然复刻）；activateItems 末尾补
+>   rebuild_timer_registry 等价步骤（oracle_fight.gd:690——激活期 start 的
+>   e[0]=e[1]=eng 战斗首帧即递减；漏此步激活期计时器反向晚 1）。战果：
+>   定位场 run576_r14/run599_r10 **四腿 ALL PASS**；目标族 85 场
+>   （evt8×49+evt109×20+evt22×16）gd/py 双腿 **50 绿 + 35 残红首分歧全部
+>   大幅后移**（py 与 gd 逐场同位=转写保真）；REG 零退步（570/1029/874/916
+>   绿保持，七红+run1132 逐场同基线）；BLND fr= 帧号字段入库（六点全加
+>   双门控零耗；验收门 p1 ty109 gain fr=198→fire fr=379 fr差=181=K ✓）
+>   + INVU make/fire 诊断行（双门控，含 dur ULP 方位）。**残红 35 场已定性
+>   建档**（output/_round_patches/np24_fix/timeout1t_r1/family_still_red.json）：
+>   7 场 dt=+1（run1069_r15 定谳 gd dur 位级=3.1 double 自洽、oracle
+>   fire@186 与连减 187 次模型差 1——需 oracle 腿 ORACLE_DEBUG
+>   [timer-fire-dbg] 活体取证定谳，属参数 ULP/CT 累加面非本 timer 面；
+>   2.0 边界 10 场 121 间隔全 PASS 证模型正确）；8 场 ty109 同 tick 移除
+>   数量差（-11 v -5，nextTemporaryTimeout 多栈次序面）；其余 20 场
+>   ty12/fatigue/ty106/107 等非本面签名。备份
+>   output/_round_patches/np24_fix/timeout1t_r1/。
+>   evt105+evt12 异型子簇
 >   ≈54 场=总线监听级联缺发/多触发（同 run874 定谳族，BUS 探针就绪）；
 >   evt109@1-50≈24 场=周期触发器首拍迟到/缺发（Spell Scroll Dark×11、
 >   Burning Banner×5，推迟 13~40 tick 节奏保持）独立成面。**待验映射裁决**：
