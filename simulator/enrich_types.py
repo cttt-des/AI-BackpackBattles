@@ -11,7 +11,9 @@ import os
 import re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CSV_PATH = os.path.join(ROOT, "extracted", "Sheets", "CSV", "ItemData_e.csv")
+# np25棋盘面：extracted/ 目录已不存在（np23 只重指了 gen_lineup_fixture 的 tscn 源），
+# CSV 权威真值在录制侧工程 oracle/Sheets/CSV/ItemData.csv（只读）。
+CSV_PATH = os.path.join(ROOT, "oracle", "Sheets", "CSV", "ItemData.csv")
 DB_PATH = os.path.join(ROOT, "assets", "battle_items.json")
 
 TYPE_NORM = {
@@ -19,7 +21,13 @@ TYPE_NORM = {
     "weapon": "weapon", "shield": "shield", "armor": "armor", "gloves": "gloves",
     "shoes": "shoes", "helmet": "helmet", "accessory": "accessory",
     "potion": "potion", "card": "card", "gem": "gem", "scroll": "scroll",
-    "book": "book", "skill": "skill", "chesspiece": "chess", "spell": "spell",
+    "book": "book", "skill": "skill",
+    # np25棋盘面：CSV type 列真值是 'Chess Piece'（带空格，strip().lower() 后为
+    # 'chess piece'）——旧键 'chesspiece'（无空格）恒查不到 → 12 件棋子 types 恒丢。
+    # ★ 值必须是 'chesspiece'（CoreConst.Type 枚举名，gen_lineup_fixture.py:226-234
+    #   enum_lookup 实测 'chesspiece'→17；'chess'→None 会令其 SystemExit）。
+    "chess piece": "chesspiece", "chesspiece": "chesspiece",
+    "spell": "spell",
     "melee": "melee", "ranged": "ranged", "effect": "effect",
     "holy": "holy", "magic": "magic", "vampiric": "vampiric", "dark": "dark",
     "nature": "nature", "fire": "fire", "ice": "ice", "musical": "musical",

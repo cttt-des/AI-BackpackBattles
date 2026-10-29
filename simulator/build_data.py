@@ -20,7 +20,7 @@ import re
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ASSETS = os.path.join(BASE, 'assets')
 DECOMP = os.path.join(BASE, 'decompiled_full', 'Items')
-CSV_PATH = os.path.join(BASE, 'extracted', 'Sheets', 'CSV', 'ItemData_e.csv')
+CSV_PATH = os.path.join(BASE, 'oracle', 'Sheets', 'CSV', 'ItemData.csv')
 
 # ---------------- 脚本效果解析 ----------------
 _OPT_ARGS = r'[^)]*\)'
@@ -261,6 +261,14 @@ def _types(cat: str, dmg_type: str, r: dict) -> list:
         types.append('bag')
     elif cat == 'armor':
         types.append('armor')
+    elif cat == 'chess':
+        # np25棋盘面：CSV type='Chess Piece' 经 category_from_type 映射为 cat='chess'
+        #（build_data.py:237-238），此前 _types() 无 chess 分支 → 12 件棋子 types=[]，
+        # gd_core/CoreItem.gd:260 hasType(Type.ChessPiece=17) 恒假 → 棋盘捕获链整簇缺失。
+        # ★ token 必须是 'chesspiece'：CoreConst.Type 枚举名（gen_lineup_fixture.py
+        #   :226-234 compile_descriptor 经 enum_lookup 大小写不敏感解析，'chess' 查不
+        #   到会直接 SystemExit——实测 enum_lookup('Type','chesspiece')=17）。
+        types.append('chesspiece')
     for ex in (r.get('extraTypes') or '').split(','):
         ex = ex.strip().lower()
         if ex and ex not in types:
