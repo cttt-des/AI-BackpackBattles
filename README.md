@@ -140,6 +140,22 @@
 `output/_recovery/decomp_cur`（1.1.9 重复导出）已按全量哈希校验后删除
 （详见 `output/_recovery/cleanup_20261029_dedup.md`）。
 
+> `decompiled_full/`（1.1.7）**不是过时垃圾**，理由有三（2026-10-29 实测）：
+>
+> 1. **它是构建链唯一输入**：`tools/build_item_scripts.py` → `gd_core_items/`、
+>    `simulator/build_data.py` → `battle_items.json`、`tools/gen_core_item_book.py` →
+>    `gd_core_py/CoreItemBook.py`，全仓 **28 处硬编码路径**指向它。运行时（core/gui/engine）
+>    不读它——删了程序照跑，但**内核与数据再无法从源码重建/复核**。
+> 2. **`oracle/` 不能当构建源**：它是**插桩过**的神谕工程（11 个 .gd 带
+>    `ORACLE HARNESS`/`oracleRngLog`/`oracleTimeLeft`/`B2_SHUF_DBG`/`ORACLE_PROC_DEBUG`），
+>    拿它再生会把调试桩灌进内核树。`decompiled_full` 全树 **0 处**插桩，是唯一的纯净反编译源。
+> 3. **两者产物只差 5 个文件**（Eggscalibur/AmuletofDarkness/Eat-o-matic/EchoingBattlecry/Item
+>    + 1 个新增 TimePendant），差的正是 oracle 的调试桩——再次说明差异来自插桩而非"版本更新更好"。
+>
+> 另注：`gd_core_items/` 里的 5 处手工回植（`★ np24/np25` 注释：Eggscalibur/EngineerBox/
+> MagicRing/MrStruggles/Item）**任何源重建都会被冲掉**（builder 不生成它们），与版本无关，
+> 重建后必须回植。
+
 ## 项目结构
 
 ```
