@@ -9,7 +9,7 @@ func onDropped(dropRes):
 		dropRes == DropResult.AddedToStorageBox):
 		
 		prepareReplacement()
-		var skill = skillPool.pick_random()
+		var skill = ctx.rng.pickRandomEngine(skillPool, "Exclusive/UnidentifiedSkill.gd:23")
 		ctx.defer(self, "identifySkill", [dropRes, skill])
 
 

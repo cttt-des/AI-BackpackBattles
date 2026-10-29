@@ -229,6 +229,19 @@ func clearItemCells(item) -> void :
 				filledCells.erase(cell)
 
 
+# 对齐 Inventory.gd:640-646（r4_2 棋族面内核对应物）：
+#   clearItemCells + addItemCells + occupiedCells 赋值 —— 零信号零 rng 的纯
+#   格映射判定面（z_index/moveTo/movebackTween/recalculateTilemap 均表现/元
+#   进程，剥离教义同 addItem 处注释）。棋子捕获（onPieceCaptured→setState）
+#   与移动（onPieceMoved→setState）两路都经 onStateChanged 的 Vector2 分支调
+#   repositionPiece→本方法：捕获者占被吃格、移动落格，occupiedCells 不再冻结，
+#   ChessBoard.findPieceToCapture 的查询格才与原版同态。
+func moveItem(item, newCells: Array) -> void :
+	clearItemCells(item)
+	addItemCells(item, newCells)
+	item.occupiedCells = newCells
+
+
 # 对齐 Inventory.gd:971-972。原版 emit_signal("item_type_changed", item)，各物品在
 # 装备时（Item.gd:1333）把**自己的** onItemTypeChanged 连到这个信号上，于是
 # 「任一物品类型变化」→ 全背包物品都收到通知并重建受影响集。

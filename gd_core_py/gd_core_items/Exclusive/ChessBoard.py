@@ -81,7 +81,7 @@ class Exclusive__ChessBoard(_R.C("res://gd_core_items/Item.gd")):
 
 	def doCooldownEffect(self):
 		activePieces = self.getPiecesForColor(self.turnColor)
-		_shuffle(activePieces)
+		self.ctx.rng.shuffleEngine(activePieces, 'Exclusive/ChessBoard.gd:80')
 
 		capturingPiece = None
 		if self.isTypeInInventory(self.chessMasterDescr):
@@ -102,7 +102,7 @@ class Exclusive__ChessBoard(_R.C("res://gd_core_items/Item.gd")):
 	def findPieceToCapture(self, activePieces):
 		for piece in _iter(activePieces):
 			captureCells = piece.getCaptureCells()
-			_shuffle(captureCells)
+			self.ctx.rng.shuffleEngine(captureCells, 'Exclusive/ChessBoard.gd:100')
 
 
 			for cell in _iter(captureCells):
@@ -124,7 +124,7 @@ class Exclusive__ChessBoard(_R.C("res://gd_core_items/Item.gd")):
 		for piece in _iter(activePieces):
 
 			captureCells = piece.getCaptureCells()
-			_shuffle(captureCells)
+			self.ctx.rng.shuffleEngine(captureCells, 'Exclusive/ChessBoard.gd:121')
 
 			for cell in _iter(captureCells):
 				globalCell = piece.occupiedCells[0] + cell
@@ -169,7 +169,7 @@ class Exclusive__ChessBoard(_R.C("res://gd_core_items/Item.gd")):
 	def findSpaceToMove(self, activePieces):
 		for piece in _iter(activePieces):
 			moveCells = piece.getMoveCells()
-			_shuffle(moveCells)
+			self.ctx.rng.shuffleEngine(moveCells, 'Exclusive/ChessBoard.gd:164')
 
 
 			for cell in _iter(moveCells):

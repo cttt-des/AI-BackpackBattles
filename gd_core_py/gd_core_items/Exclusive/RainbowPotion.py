@@ -59,7 +59,7 @@ class Exclusive__RainbowPotion(_R.C("res://gd_core_items/Potion.gd")):
 		for item in _iter(self.inventory.getItems()):
 			if self.canAffect_global(item):
 				allPotions.append(item)
-		_shuffle(allPotions)
+		self.ctx.rng.shuffleEngine(allPotions, 'Exclusive/RainbowPotion.gd:37')
 
 
 

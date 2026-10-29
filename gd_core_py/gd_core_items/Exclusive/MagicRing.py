@@ -218,10 +218,6 @@ class Exclusive__MagicRing(_R.C("res://gd_core_items/Item.gd")):
 			self.effects.clear()
 
 
-	def getScaledParam(self, stackName, paramScale):
-		return round(self.getP(stackName) * paramScale)
-
-
 	# ★ np24 harness：crafted 效果真值注入（r34 的幽灵调用落地）——宿主
 	#   （OracleAlignBattle.gd place_one / py 引擎 _build_side）在 _readyInit 的
 	#   randEffects() 链位消耗之后调本方法，用 lineups.json 快照 3 的史真值
@@ -231,6 +227,8 @@ class Exclusive__MagicRing(_R.C("res://gd_core_items/Item.gd")):
 	#   双对齐。此前全树（oracle/decompiled/gd/py）皆无此方法，宿主
 	#   has_method/hasattr 守卫恒假 ⇒ 两腿戒指效果恒为随机 roll（run695_r18
 	#   Superior Ring idx18：gd/py (104,5) vs 语料真值 (105,6) 实证）。
+	# ★ np25棋盘面重建回植：builder 从 decompiled 再生无此手补（chessfix 重建
+	#   实测被冲掉），漏植则 np17-A 效果真值静默退化为随机 roll。
 	def setCraftedEffects(self, crafted):
 		self.effects.clear()
 		for e in _iter(crafted):
@@ -239,6 +237,10 @@ class Exclusive__MagicRing(_R.C("res://gd_core_items/Item.gd")):
 			effect.stackType = int(e["stackType"])
 			self.effects.append(effect)
 		self.sortEffects()
+
+
+	def getScaledParam(self, stackName, paramScale):
+		return round(self.getP(stackName) * paramScale)
 
 
 	def isOnlyForDisplay(self):

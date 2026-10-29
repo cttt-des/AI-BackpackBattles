@@ -18,7 +18,7 @@ func onPrepare():
 	numCollectedCharges = 0
 	advanceItemCounter = 0
 	itemsToAdvance = getAffectedItems().duplicate()
-	itemsToAdvance.shuffle()
+	ctx.rng.shuffleEngine(itemsToAdvance, "Exclusive/TeslaCoil.gd:26")
 	
 	var otherItems = []
 	for item in inventory.getItems():
@@ -26,7 +26,7 @@ func onPrepare():
 			if item.hasCooldown():
 				otherItems.push_back(item)
 	
-	otherItems.shuffle()
+	ctx.rng.shuffleEngine(otherItems, "Exclusive/TeslaCoil.gd:34")
 	itemsToAdvance.append_array(otherItems)
 
 

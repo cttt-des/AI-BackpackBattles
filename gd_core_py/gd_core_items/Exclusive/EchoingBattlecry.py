@@ -24,7 +24,7 @@ class Exclusive__EchoingBattlecry(_R.C("res://gd_core_items/Item.gd")):
 
 	def onPrepare(self):
 		self.affectedItems = self.getAffectedItems()
-		_shuffle(self.affectedItems)
+		self.ctx.rng.shuffleEngine(self.affectedItems, 'Exclusive/EchoingBattlecry.gd:14')
 
 		self.addSpeed(self.speedPerItem * len(self.affectedItems))
 

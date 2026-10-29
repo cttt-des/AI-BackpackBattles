@@ -35,7 +35,7 @@ func onTriggerPotion(event = null):
 	for item in inventory.getItems():
 		if canAffect_global(item):
 			allPotions.push_back(item)
-	allPotions.shuffle()
+	ctx.rng.shuffleEngine(allPotions, "Exclusive/RainbowPotion.gd:37")
 	
 
 

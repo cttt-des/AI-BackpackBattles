@@ -34,7 +34,7 @@ class Exclusive__TeslaCoil(_R.C("res://gd_core_items/Item.gd")):
 		self.numCollectedCharges = 0
 		self.advanceItemCounter = 0
 		self.itemsToAdvance = _dup(self.getAffectedItems())
-		_shuffle(self.itemsToAdvance)
+		self.ctx.rng.shuffleEngine(self.itemsToAdvance, 'Exclusive/TeslaCoil.gd:26')
 
 		otherItems = []
 		for item in _iter(self.inventory.getItems()):
@@ -42,7 +42,7 @@ class Exclusive__TeslaCoil(_R.C("res://gd_core_items/Item.gd")):
 				if item.hasCooldown():
 					otherItems.append(item)
 
-		_shuffle(otherItems)
+		self.ctx.rng.shuffleEngine(otherItems, 'Exclusive/TeslaCoil.gd:34')
 		self.itemsToAdvance.extend(otherItems)
 
 

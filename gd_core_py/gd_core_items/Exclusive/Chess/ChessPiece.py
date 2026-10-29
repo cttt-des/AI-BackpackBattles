@@ -59,7 +59,8 @@ class ChessPiece(_R.C("res://gd_core_items/Item.gd")):
 
 		self.moveCells.clear()
 		for cell in _iter(self.getAffectedCells_tilemap()):
-			self.moveCells.append(cell.rotated(self.rotation).round())
+			# fam_r1 棋族面：decomp Items/Exclusive/Chess/ChessPiece.gd:50-51 按局部格消费（cell.rotated(rotation) 后 ChessBoard.gd:104 occupied[0]+cell 还原全局）；内核 affectedTileCells 为绝对格（装配已烘焙旋转）→ 换算回局部
+			self.moveCells.append((cell - self.occupiedCells[0]).round())
 
 		self.numCaptures = 0
 
@@ -86,6 +87,10 @@ class ChessPiece(_R.C("res://gd_core_items/Item.gd")):
 		self.inventory.clearItemCells(eliminatedPiece)
 
 		self.setState(targetCell, False, activateEvent)
+		# decomp Items/Exclusive/Chess/ChessPiece.gd:74 Sound.playSound(captureSounds.pick_random(), 0, Util.randPitch())——GDScript 实参求值即消耗：randPitch 1 抽
+		# 同行 pick_random 走引擎全局链（docs/rng_truth.md §1.4-2）：1 抽，r1_0 台账轮起改道入账
+		self.ctx.rng.pickRandomEngine([None, None, None], 'Exclusive/Chess/ChessPiece.gd:74')
+		self.ctx.rng.randf_range(0.9, 1.1)
 		event = self.doCapturingEffect(eliminatedPiece)
 		return event
 
@@ -104,7 +109,10 @@ class ChessPiece(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def repositionPiece(self, toCell):
-		pass
+		# r4_2 棋族面：decomp Items/Exclusive/Chess/ChessPiece.gd:93-97 ——
+		# z_index/moveTo/movebackTween 为表现面剥离；判定面 inventory.moveItem
+		# （Inventory.gd:640-647，捕获者占被吃格）保留 → 内核 CoreGrid.moveItem
+		self.inventory.moveItem(self, [toCell])
 
 	def onShopEntered(self):
 		self.onStateChanged(False)
@@ -114,7 +122,7 @@ class ChessPiece(_R.C("res://gd_core_items/Item.gd")):
 	def onStateChanged(self, state):
 		if typeof(state) == TYPE_VECTOR2:
 			targetCell = state
-
+			self.repositionPiece(targetCell)
 		else:
 			self.captured = state
 			if self.captured:

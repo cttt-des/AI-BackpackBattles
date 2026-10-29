@@ -87,15 +87,19 @@ def load_base_tiles():
 
 
 def scan_tscn_index():
-    """扫描所有 tscn，返回 {规范名(小写无空格): 完整路径}"""
+    """扫描所有 tscn，返回 {规范名(小写无空格): 完整路径}
+
+    ★ np25棋盘面：由固定三层（""/Exclusive/Gems）改为**递归**——12 件棋子的
+      tscn 在 Exclusive/Chess/ 第四层，旧扫描恒索引不到（白/黑棋子 key 查询
+      落空 → grid 恒为 np23 手补裸 1×1、affected 移动模式从未落库）。遍历序
+      确定性排序，覆盖优先级与旧三层一致（后写胜：Gems > Exclusive > 基座）。
+    """
     idx = {}
-    for sub in ("", "Exclusive", "Gems"):
-        d = os.path.join(EXTRACTED, sub)
-        if not os.path.isdir(d):
-            continue
-        for fn in sorted(os.listdir(d)):
+    for root, dirs, files in os.walk(EXTRACTED):
+        dirs.sort()
+        for fn in sorted(files):
             if fn.endswith(".tscn"):
-                idx[fn[:-5].lower().replace(" ", "")] = os.path.join(d, fn)
+                idx[fn[:-5].lower().replace(" ", "")] = os.path.join(root, fn)
     return idx
 
 
@@ -135,9 +139,16 @@ def main():
         if tiles is None:
             # 无自有 tile_data：若该 tscn 实例化基座 Items/Item.tscn 且未覆写
             # CollisionMap 节点 → 继承基座占格（np24 根因A2）；否则保持兜底。
-            # ★ 宝石/棋子排除：宝石恒 1×1（装在宿主 socket 内，无背包占格语义），
+            # ★ 宝石排除：宝石恒 1×1（装在宿主 socket 内，无背包占格语义），
             #   其 tscn 无 CollisionMap 属常态，继承基座 2×2 会把 gem 占格撑爆。
-            if items[key].get("category") in ("gem", "chess"):
+            # ★ np25棋盘面：'chess' 从本排除移除——棋子在背包恒 1×1 占格
+            #   （collision 与 tscn 一致），但 **tscn tile id=4 的 affected_cells
+            #   是棋子移动模式真值**（ChessPiece.prepare 的
+            #   getAffectedCells_tilemap→moveCells→捕获/移动全靠它；WhitePawn
+            #   2 格、BlackBishop 20 格斜线，parse_tscn_grid 实测可解析）。旧
+            #   排除把棋子连坐 → grid 恒为 np23 手补裸 1×1 → moveCells 恒空
+            #   → 棋盘捕获恒空转（run644_r7 Gshuffle:100 size=0 铁证）。
+            if items[key].get("category") in ("gem",):
                 no_tscn.append(key)
                 continue
             txt = open(sp, encoding="utf-8", errors="replace").read()
@@ -158,12 +169,14 @@ def main():
             items[key]["grid"] = grid
             matched += 1
 
-    # 兜底：非宝石/棋子且无 tscn 数据的物品，用 DB size 生成矩形占格
+    # 兜底：非宝石且无 tscn 数据的物品，用 DB size 生成矩形占格
+    #（np25棋盘面：'chess' 从兜底排除移除——12 件棋子均有自有 tile_data
+    #  走上方匹配路径，不走矩形兜底；留此防未来新增棋子缺 tscn 时静默裸 1×1）
     rect_fallback = 0
     for key, v in items.items():
         if v.get("grid"):
             continue
-        if v.get("category") in ("gem", "chess"):
+        if v.get("category") in ("gem",):
             continue
         size = v.get("size") or [1, 1]
         w, h = int(size[0]), int(size[1])

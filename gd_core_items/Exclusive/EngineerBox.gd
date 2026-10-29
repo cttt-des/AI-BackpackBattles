@@ -17,6 +17,8 @@ func onPrepare():
 	# ★ np24：录制镜像（gd_core/CoreContext.gd eb_relay_mirrored）——录制侧 EB
 	#   ChargeTimer 首弹后队列不推进（探针实证 fire=1 次/侧、ts=0），接力重发射
 	#   =0；gd 侧 CoreTimer 级联=接力活跃（sendCharge +10）。镜像=连接环不建。
+	# ★ np25棋盘面重建回植：builder 从 decompiled 再生无此手补（chessfix 重建
+	#   实测被冲掉），漏植则 EB 接力语义回退。
 	if ctx != null and ctx.eb_relay_mirrored:
 		return
 	for item in getAffectedItemsInside():

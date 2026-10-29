@@ -43,16 +43,16 @@ class Exclusive__BadgerSpirit(_R.C("res://gd_core_items/Exclusive/SpiritCompanio
 
 
 	def playPickupSound(self):
+		# decomp Items/Exclusive/BadgerSpirit.gd:30 Sound.playSound_process(pickupSound, - 12, Util.randPitch(0.1))——GDScript 实参求值即消耗：randPitch 1 抽
+		self.ctx.rng.randf_range(0.9, 1.1)
 		pass
 
 
 	def playDropSound(self, volume=0):
 		volume += self.impactSoundVolume
-		# ★ kernel_r2c 移植补抽：原版此行含 Util.randPitch(0.1)（=randf_range(0.9, 1.1)，
-		#   Util.gd:685-686），转译期随音效行被剥——链消耗丢失（activate() 虚分发
-		#   后此覆写生效，抽面必须与原版一致）。
-		self.ctx.rng.randf_range(0.9, 1.1)
 
+		# decomp Items/Exclusive/BadgerSpirit.gd:34 Sound.playSound(dropSound, volume - 6, Util.randPitch(0.1))——GDScript 实参求值即消耗：randPitch 1 抽
+		self.ctx.rng.randf_range(0.9, 1.1)
 	def _readyInit(self):
 		super()._readyInit()
 		self.healthThreshold = _div(self.getP('healtht'), 100.0)

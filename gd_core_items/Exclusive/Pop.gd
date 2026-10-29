@@ -16,16 +16,16 @@ func onManaChanged(_amount, _event):
 
 
 func playPickupSound():
+	# decomp Items/Exclusive/Pop.gd:21 Sound.playSound_process(popSound, 4, Util.randPitch(0.15))——GDScript 实参求值即消耗：randPitch 1 抽
+	ctx.rng.randf_range(0.9, 1.1)
 	pass
 
 
 func playDropSound(volume = 0):
 	volume += impactSoundVolume
-	# ★ kernel_r2c 移植补抽：原版此行含 Util.randPitch(0.15)（=randf_range(0.85, 1.15)，
-	#   Util.gd:685-686），转译期随音效行被剥——链消耗丢失（activate() 虚分发
-	#   后此覆写生效，抽面必须与原版一致）。
-	ctx.rng.randf_range(0.85, 1.15)
 
+	# decomp Items/Exclusive/Pop.gd:25 Sound.playSound(popSound, volume - 0, Util.randPitch(0.15))——GDScript 实参求值即消耗：randPitch 1 抽
+	ctx.rng.randf_range(0.9, 1.1)
 func _readyInit():
 	._readyInit()
 	speedPerMana = getP("speed") / 100.0
