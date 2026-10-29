@@ -30,8 +30,17 @@
 5. 判据双轨不放宽：canonical 事件 + 渲染行。守门唯一口径：
    `python -X utf8 tools/_np21_gate.py --cases <cid,...> --tag <每轮新标签>`（rc=0 全绿）。
 6. REG 九场防退步：`run570_r18,run1160_r18,run1029_r2,run862_r18,run813_r12,run635_r12,run732_r12,run695_r18,run1514_r18`。
-7. 全量验证用分片器（**勿用 verify_oracle --force**，其 gd 腿单进程慢且占锁）：
-   `python -X utf8 tools/_np23_shard_verify.py --shards 3 [--rerun <cid,...>]`（约 16 分钟）。
+7. 全量验证三腿自动并行（2026-10-29 起，**详见 docs/parallel_workflow.md**）：
+   总控 `python -X utf8 tools/_np23_shard_verify.py [--rerun <cid,...>]`
+   （= gd/py/compare 三腿各自并行，等价 `tools/verify_oracle.py --force`）。
+   路数每次运行按当时 CPU/可用内存自动定（上限 5，LPT 分桶），**无需手填**——
+   旧「`--shards 3`」写法作废（--shards 现仅是并行度提示）。定向重跑=`--rerun`
+   或 `verify_oracle.py --force --cases <cid,...>`（cases json 被其他执行体占用
+   时加 `--skip-fixtures`）。**⚠ 定向跑（--cases）会把 alignment.json 收缩成
+   那几场**——收工必须补一次全量 `verify_oracle.py --compare-only`（不带
+   --cases）还原 914 行基线（np25 实测曾被收缩成 2 行假基线）。并行管线改动后
+   先跑 `python -X utf8 tools/_np_compare_par.py --selftest`；并行期间不要再
+   手动开 Godot。
 8. 变异前备份到 `output/_round_patches/np24_fix/`。已绿场不许退步。
 9. 盲修禁制：同一假设两连证伪即停；反例锚先行；数值同而状态分叉=有看不见的抽。
 10. 语料=2026-10-24/25 全量重录的干净形状（自然终止+确定性自证）。
@@ -55,7 +64,8 @@
 | 逐抽对位 | `python -X utf8 tools/_probe_draw_diff.py <语料rng_log> <gd rng_trace> [N]` |
 | canonical 对拍 | `sys.path.insert(0,'tools'); import verify_oracle as V; V.first_divergence(...)` |
 | 神谕探针（带逐抽） | `ORACLE_FIGHTS_ROOT=<abs> ORACLE_ONLY_CASES=<cid> ORACLE_DEBUG=1 ORACLE_FIGHT_CHUNK=0` + Godot（oracle 工程）；**先验探针 events≡语料才采信其 rng_log**；**桩行必须 6 元素**（5 元素会炸 oracle_fight.gd:819 dump 循环 → rng_log 恒 0 字节，2026-10-27 TOADSND 实证） |
-| 全量分片 | `python -X utf8 tools/_np23_shard_verify.py --shards 3 [--rerun <红场>]` |
+| 全量分片（三腿自动并行） | `python -X utf8 tools/_np23_shard_verify.py [--rerun <红场>]`（详见 docs/parallel_workflow.md） |
+| alignment 重建/还原 | `python -X utf8 tools/verify_oracle.py --compare-only`（全量、**绝不带 --cases**） |
 | 神谕重录（如需） | 抬闸版参数在 `output/_recovery/oracle_fight_lifted.gd`（事件闸 200000/墙钟 1200s）；单场单进程 |
 
 ## 2. 已修复（勿重做，防回退）
@@ -716,6 +726,23 @@
 >   （角点匹配）/ _np25_tape_analysis.py（改善分布）。
 > - **本会话 np25 累计 commit**：c212c1ef（台账接管）/ 6af0c3ff（tape 落码）/
 >   本笔（战报+tape 数据）。队列②③④⑤由 offpeak-6ecfa1b4 继续。
+>
+> **★★ 并行工具换代同步（2026-10-29，→ offpeak-6ecfa1b4 与一切后续执行体）★★**
+> `tools/verify_oracle.py` 与 `_np23_shard_verify.py` 已改**三腿全并行**
+> （gd/py/compare 各自并行；详细规格实读 **docs/parallel_workflow.md**，已核对实机 flags）：
+> - **用法**：全量=裸跑 `_np23_shard_verify.py` 或 `verify_oracle.py --force`；
+>   定向=`--force --cases <c,...>`（cases json 被其他执行体占用→加 `--skip-fixtures`）；
+>   **alignment.json 重建/还原=`verify_oracle.py --compare-only`（全量、绝不带 --cases）**。
+>   路数自动（上限 5、按内存实时降档、LPT 分桶）——历史「`--shards 3`」写法全部作废，
+>   本文件早前节次里的该字样一律按新语义理解。
+> - **沙箱硬约束**：本环境禁匿名/命名管道——`capture_output=True`/`multiprocessing.Pipe`/
+>   `ProcessPoolExecutor` 全都 WinError 5；子进程输出一律**文件重定向**（run_godot/
+>   run_gd_core.run 已内置，日志在 output/_recovery/*_logs/）；并行实现=独立子进程+
+>   真实文件交换，**勿**自作聪明改线程池。
+> - **⚠ 定向跑收缩基线**：`--cases` 会把 alignment.json 整文件重写为那几场
+>   （np25 实测 2 行假基线事故）——收工必须补全量 `--compare-only`。
+> - 并行期间不要再手动开 Godot；分片失败先看 `output/oracle/align/_*_shards/*_N.log`；
+>   改并行管线后先 `_np_compare_par.py --selftest`（1 路 v N 路逐字节对照）。
 >
 ### P1 数据面整族（预计最大收敛面）
 
