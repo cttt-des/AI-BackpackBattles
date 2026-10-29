@@ -859,6 +859,46 @@
 >   ②run784 ev@767 gd-only 面；③M3/AoL 总线面；④_rt.py 的 f32 垫片保留
 >   （生成树已零引用，防他面回滚需即插即用）。
 >
+> **★★ np25wf 修复面③：遗留①全量复验收口（394/914，+115）+ 面② Stamina Sack 体力上限面收编（2026-10-30 深夜，修复员）★★**
+> - **✅ 遗留①收口**：`_np23_shard_verify.py --rerun <635 红场>` 全量三腿复验
+>   （41.3 分钟）→ **ALIGNED 394/914（+115）**——sceneDepth（面①）+f64（面②）
+>   两笔修复全量兑现，alignment.json 已重建为新基线（总耗时/红清单落
+>   output/_offpeak/np25_r3_shardverify.log）。
+> - **面②定谳（run784 残红 ev@767，py≡oracle 而 gd 独红）**：三方工件对位
+>   （np25_scenedepth_r1 scratch）——oracle/py@767 = Falcon Blade DealDamage 20，
+>   **gd@767 = type 15 OutofStamina**（同 tick 同 origin，体力不足没打出去）。
+>   py 引擎 STAM 插桩（临时改 gd_core_py CoreCharacter，已随 gd_to_py 再生
+>   自然还原）取真值轨迹：对手（pid=1，max=6.0=5+1 Stamina Sack）翻转拍
+>   `USE t=19.3667 amt=1.0 cur=1.7333`（边际 0.73，**非 ULP=实量差 1.0**）；
+>   gd 侧同构 STAM 探针（gd_core/CoreCharacter.gd 双门控，保留）抓到战斗启动
+>   序：`ADD(6)→RECALC base=5 sacks=0 max=5 cur=5`——
+>   **根因=recalculateMaxStamina 数袋遍历 `items`（「参战物品」成员，
+>   全工程零填充死数组）而原版遍历 INVENTORY.getItems()（Character.gd:978）**：
+>   gd 对手 max 恒 base 5.0 v 神谕 6.0（=5+1 顶层袋），体力池差 1.0 静默无事件
+>   （前 767 事件流全同的成因），压线拍翻转。py 引擎不经 recalc（_make_character
+>   直灌 lineup 的 stamina=5+袋数烘焙值）故 py≡oracle。
+> - **修复（一行集合替换）**：`for item in items:` → `for item in inventory.getItems():`
+>   （CoreGrid=INVENTORY 的内核镜像；三树同步 gd_to_py rc=0、test cp
+>   md5 一致）。爆炸半径=586 场含对手顶层 Stamina Sack；**绿场零回归论证**：
+>   max 增大只会提高可负担性（修后 gd=oracle 精确模型），186 个绿袋场的
+>   max 差为潜伏无事件差；玩家侧 deferred recalc 在对齐宿主永不触发
+>   （deferred_flush_enabled=false + PLAYER-only guard）→ 玩家 max=快照基值
+>   两侧同构不受影响。
+> - **守门 np25_stamsack_r1（17 场）**：**run784/862/813 三场整场翻绿**
+>   （784 残红@767 收编、862 @727 收编、813 @446 收编，三者双腿 PASS）；
+>   绿袋哨兵 run1015/1051/1041 保持 PASS（潜伏差论证实证）；REG 零退步
+>   （570/1029/635 PASS；1160@155/732@179/695@172/1514@36 双腿同位未动）；
+>   f64 族 571/581/1222 保持 PASS。**新残面**：run592_r17 RED ev@219
+>   **gd≡py 同位红**（max=7 已对齐、分歧转下一层，双引擎一致=非转写面）。
+> - **环境纪要**：①py 腿跑批幂等跳过依赖 scratch 产物存在——插桩类实验
+>   重跑前必须清 scratch（本轮 `_callcount` 全零假象即此）；②Godot 3.6 无
+>   `String.num`（4.x API），printf 用 `"%.6f" % v`；③分片复验期间禁改
+>   gd_core（worker 启动读树竞态），本轮诊断编辑均在复验完成后落地。
+> - **遗留（顺延）**：①stamsack 受影响簇（586 场含对手顶层袋）待下轮
+>   全量复验进基线（本轮 394/914 基线含 sceneDepth+f64、不含本笔）；
+>   ②run592 gd≡py 同位红@219 下一层；③M3/AoL 总线面；④fd 对位绿场
+>   586-186-400 的中间态分布待重扫。
+>
 ### P1 数据面整族（预计最大收敛面）
 
 - [ ] **P1-1 物品持久强化态缺失**：史流 setData 的 bonusMinDam/bonusMaxDam/bonusDamageFactor

@@ -911,6 +911,10 @@ func gainStamina(amount, item = null, triggerEvent = null) -> void :
 func addStamina(amount) -> void :
 	curStamina += amount
 	clampStamina()
+	# ★ np25 面②定谳探针（STAM_TRACE 门控零耗）：体力轨迹取证（py 侧同构
+	#   插桩已证 py≡oracle，本侧对位抓 gd 独有分歧源）。
+	if OS.get_environment("STAM_TRACE") != "" and ctx.combat != null:
+		print("ADD t=%s pid=%d amt=%s cur=%s max=%s" % ["%.6f" % ctx.combat.combat_time, playerId, amount, curStamina, getMaxStamina()])
 
 
 func clampStamina() -> void :
@@ -931,7 +935,10 @@ func useStamina(amount):
 	allowStaminaOverflow = true
 	ctx.bus.emitSignal(self, "character_pre_use_stamina", [amount])
 	allowStaminaOverflow = false
-	
+	# ★ np25 面②定谳探针（STAM_TRACE 门控零耗）：扣体判定快照。
+	if OS.get_environment("STAM_TRACE") != "" and ctx.combat != null:
+		print("USE t=%s pid=%d amt=%s cur=%s max=%s" % ["%.6f" % ctx.combat.combat_time, playerId, amount, curStamina, getMaxStamina()])
+
 	if curStamina >= amount:
 		curStamina = max(curStamina - amount, 0)
 		clampStamina()
@@ -954,6 +961,8 @@ func drainStamina(amount, item, triggerEvent = null):
 
 
 func setTemporaryMaxStamina(amount) -> void :
+	if OS.get_environment("STAM_TRACE") != "" and ctx != null and ctx.combat != null:
+		print("SETTEMP t=%s pid=%d amount=%s prev=%s" % ["%.6f" % ctx.combat.combat_time, playerId, amount, temporaryMaxStamina])
 	temporaryMaxStamina = amount
 
 
@@ -1660,6 +1669,8 @@ func isFullStamina() -> bool:
 
 # 对齐 Character.gd:948-952（emit_signal("max_stamina_changed_ui") → 钩子）
 func setMaxStamina(_maxStamina):
+	if OS.get_environment("STAM_TRACE") != "" and ctx != null and ctx.combat != null:
+		print("SETMAX t=%s pid=%d new=%s prev_max=%s prev_cur=%s temp=%s stack=%s" % ["%.6f" % ctx.combat.combat_time, playerId, _maxStamina, maxStamina, curStamina, temporaryMaxStamina, maxStamina])
 	maxStamina = _maxStamina
 	curStamina = maxStamina
 	ctx.hooks.onMaxStaminaChangedUI(self)
@@ -1732,10 +1743,22 @@ func changeBaseMaxStamina():
 func recalculateMaxStamina():
 	staminaUpdateQueued = false
 	maxStamina = getBaseMaxStamina()
-	for item in items:
+	var _sack := 0
+	# ★ np25 面②修复（run784_r13 STAM_TRACE 定谳）：原版数袋遍历
+	#   INVENTORY.getItems()（Character.gd:978-980）——本内核误遍历 `items`
+	#   （「参战物品」成员，全工程**零填充死数组**）⇒ sacks 恒 0 ⇒ 对手
+	#   recalculateMaxStamina（OracleAlignBattle.gd:816 尾部显式调用，镜像
+	#   initHistoryOpponent）恒得 base：max=5.0 v 神谕/py 6.0（=5+1 袋），
+	#   体力池差 1.0 静默无事件 ⇒ run784 ev@767 Falcon Blade OutofStamina
+	#   （py cur=1.7333 v gd 0.7333<cost 1.0）。修复=改遍历 inventory.getItems()
+	#   （CoreGrid 真背包，即 INVENTORY.getItems() 的内核镜像）。
+	for item in inventory.getItems():
 		if item.descriptor.name == "Stamina Sack":
 			maxStamina += 1
+			_sack += 1
 	curStamina = maxStamina
+	if OS.get_environment("STAM_TRACE") != "" and ctx != null and ctx.combat != null:
+		print("RECALC t=%s pid=%d base=%s sacks=%d max=%s cur=%s" % ["%.6f" % ctx.combat.combat_time, playerId, getBaseMaxStamina(), _sack, maxStamina, curStamina])
 	ctx.hooks.onMaxStaminaChangedUI(self)
 
 

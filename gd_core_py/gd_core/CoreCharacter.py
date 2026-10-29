@@ -966,6 +966,10 @@ class CoreCharacter(GodotObject):
 	def addStamina(self, amount):
 		self.curStamina += amount
 		self.clampStamina()
+		# ★ np25 面②定谳探针（STAM_TRACE 门控零耗）：体力轨迹取证（py 侧同构
+		#   插桩已证 py≡oracle，本侧对位抓 gd 独有分歧源）。
+		if _os_environ_get("STAM_TRACE") != "" and self.ctx.combat != None:
+			print(_gd_fmt('ADD t=%s pid=%d amt=%s cur=%s max=%s', [_gd_fmt('%.6f', self.ctx.combat.combat_time), self.playerId, amount, self.curStamina, self.getMaxStamina()]))
 
 
 	def clampStamina(self):
@@ -982,6 +986,9 @@ class CoreCharacter(GodotObject):
 		self.allowStaminaOverflow = True
 		self.ctx.bus.emitSignal(self, "character_pre_use_stamina", [amount])
 		self.allowStaminaOverflow = False
+		# ★ np25 面②定谳探针（STAM_TRACE 门控零耗）：扣体判定快照。
+		if _os_environ_get("STAM_TRACE") != "" and self.ctx.combat != None:
+			print(_gd_fmt('USE t=%s pid=%d amt=%s cur=%s max=%s', [_gd_fmt('%.6f', self.ctx.combat.combat_time), self.playerId, amount, self.curStamina, self.getMaxStamina()]))
 
 		if self.curStamina >= amount:
 			self.curStamina = max(self.curStamina - amount, 0)
@@ -1005,6 +1012,8 @@ class CoreCharacter(GodotObject):
 
 
 	def setTemporaryMaxStamina(self, amount):
+		if _os_environ_get("STAM_TRACE") != "" and self.ctx != None and self.ctx.combat != None:
+			print(_gd_fmt('SETTEMP t=%s pid=%d amount=%s prev=%s', [_gd_fmt('%.6f', self.ctx.combat.combat_time), self.playerId, amount, self.temporaryMaxStamina]))
 		self.temporaryMaxStamina = amount
 
 
@@ -1707,6 +1716,8 @@ class CoreCharacter(GodotObject):
 
 	# 对齐 Character.gd:948-952（emit_signal("max_stamina_changed_ui") → 钩子）
 	def setMaxStamina(self, _maxStamina):
+		if _os_environ_get("STAM_TRACE") != "" and self.ctx != None and self.ctx.combat != None:
+			print(_gd_fmt('SETMAX t=%s pid=%d new=%s prev_max=%s prev_cur=%s temp=%s stack=%s', [_gd_fmt('%.6f', self.ctx.combat.combat_time), self.playerId, _maxStamina, self.maxStamina, self.curStamina, self.temporaryMaxStamina, self.maxStamina]))
 		self.maxStamina = _maxStamina
 		self.curStamina = self.maxStamina
 		self.ctx.hooks.onMaxStaminaChangedUI(self)
@@ -1779,10 +1790,22 @@ class CoreCharacter(GodotObject):
 	def recalculateMaxStamina(self):
 		self.staminaUpdateQueued = False
 		self.maxStamina = self.getBaseMaxStamina()
-		for item in _iter(self.items):
+		_sack = 0
+		# ★ np25 面②修复（run784_r13 STAM_TRACE 定谳）：原版数袋遍历
+		#   INVENTORY.getItems()（Character.gd:978-980）——本内核误遍历 `items`
+		#   （「参战物品」成员，全工程**零填充死数组**）⇒ sacks 恒 0 ⇒ 对手
+		#   recalculateMaxStamina（OracleAlignBattle.gd:816 尾部显式调用，镜像
+		#   initHistoryOpponent）恒得 base：max=5.0 v 神谕/py 6.0（=5+1 袋），
+		#   体力池差 1.0 静默无事件 ⇒ run784 ev@767 Falcon Blade OutofStamina
+		#   （py cur=1.7333 v gd 0.7333<cost 1.0）。修复=改遍历 inventory.getItems()
+		#   （CoreGrid 真背包，即 INVENTORY.getItems() 的内核镜像）。
+		for item in _iter(self.inventory.getItems()):
 			if item.descriptor.name == "Stamina Sack":
 				self.maxStamina += 1
+				_sack += 1
 		self.curStamina = self.maxStamina
+		if _os_environ_get("STAM_TRACE") != "" and self.ctx != None and self.ctx.combat != None:
+			print(_gd_fmt('RECALC t=%s pid=%d base=%s sacks=%d max=%s cur=%s', [_gd_fmt('%.6f', self.ctx.combat.combat_time), self.playerId, self.getBaseMaxStamina(), _sack, self.maxStamina, self.curStamina]))
 		self.ctx.hooks.onMaxStaminaChangedUI(self)
 
 
