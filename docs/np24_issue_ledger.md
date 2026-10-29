@@ -828,6 +828,37 @@
 >   重算 alignment；②run784 残红 ev@767=下一层分歧面；③py-only 冷却 float 族
 >   11 场位置未动（本轮未碰）。
 >
+> **★★ np25wf 修复面②：py-only 冷却族 11 场全收编——f32 对称化整体停用=纯 f64 直译（2026-10-30 深夜，修复员·转写器面）★★**
+> - **选面依据**：`_np24_red_clusters.py --top 14` 分簇表 `n=11 py-only(gd≡oracle)`
+>   在勘察清单（ask 指定转写器面优先收编）；上轮守门其位置全部未动。
+> - **定谳（纯 Python 零 Godot）**：基线量测 `_div_report.py`（verify_oracle
+>   canonical 口径）11 场 py-vs-gd 首分歧 571@1180/581@434/701@1320/787@178/
+>   828@535/864@673/960@335/1189@989/1222@758/1223@567/1406@248——与勘察输入
+>   逐场吻合。P3（940ffd39）前提「GDScript3 Variant REAL=float32」系与 Godot 4
+>   混淆的误设：**Godot 3.x Variant REAL / GDScript float = 64 位 double**，
+>   gd 冷却链为 typed float 直减无外层舍入 ⇒ 正确转写 = 纯 f64。f32 垫片在
+>   压线到期判定（勘察实测 run1223_r7 翻转拍 triggerTime=0.01657561772、
+>   每帧递减≈0.01666665、穿越残差 −9.1e-8s）上制造 ±1 tick 翻转。
+>   ⚠ 与铁律 9 两连证伪的关系：run874 时代两次证伪均为**加码 f32**（①只包
+>   triggerTime 减法 ②整链 f32 打红 run570）；本轮为**反向假设=停用 f32 回归
+>   f64**，未被证伪过，且台账原已旁证「gd 实际算术更近 f64」。
+> - **修复**：`tools/gd_to_py.py::_apply_cooldown_f32` 整体 BYPASS（`return texts`
+>   置于规则表前，19 条规则留作历史档案可回滚）→ `python -X utf8 tools/gd_to_py.py`
+>   rc=0 重生成（gd_core_py 8 文件 31 行：CoreItem/Card/Goobert/Item +
+>   gd_core_items 同名四处，diff 全为 f32 剥除，CoreCombat.py EOL 幻影未触碰）。
+> - **实验验证（scratch 重定向，_run_py_exp.py）**：11 场 py 重放 vs gd 真值
+>   **ALL PASS 全部整场同长同流**（基线全红→11/11 翻绿）。
+> - **守门 np25_f64_r1（20 场=11 族+REG9）**：**11/11 双腿整场 PASS**；
+>   REG 零退步（570/1029/635 PASS；1160@155、732@179、695@172、1514@36 双腿
+>   同位未动=sceneDepth 时代位；862 gd@727+py PASS、813 gd@446+py PASS 与
+>   上轮 gate 逐位同）。alignment.json 未触碰。
+> - **备份**：output/_round_patches/np24_fix/f64_exp_r1/（gd_core_py_pre 全树 +
+>   gd_to_py.py.pre + pre_md5.txt）；实验脚本 _div_report.py/_run_py_exp.py 在
+>   output/_offpeak/np25_f64_exp/（本地不入库）。
+> - **遗留（顺延）**：①sceneDepth 受影响簇全量分片复验+alignment 重算；
+>   ②run784 ev@767 gd-only 面；③M3/AoL 总线面；④_rt.py 的 f32 垫片保留
+>   （生成树已零引用，防他面回滚需即插即用）。
+>
 ### P1 数据面整族（预计最大收敛面）
 
 - [ ] **P1-1 物品持久强化态缺失**：史流 setData 的 bonusMinDam/bonusMaxDam/bonusDamageFactor

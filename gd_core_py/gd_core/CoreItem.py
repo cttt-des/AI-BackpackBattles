@@ -442,14 +442,14 @@ class CoreItem(GodotObject):
 			return override
 
 		if self.hasCharacter():
-			speed_ = f32(self.speed() + self.getStackSpeedMods())
+			speed_ = self.speed() + self.getStackSpeedMods()
 			modifiedSpeed = None
 			if speed_ >= 0:
-				modifiedSpeed = f32(1.0 + speed_)
+				modifiedSpeed = 1.0 + speed_
 			else:
-				modifiedSpeed = f32(_div(1.0, 1.0 - speed_))
+				modifiedSpeed = _div(1.0, 1.0 - speed_)
 
-			modifiedSpeed = f32(clamp(modifiedSpeed, 0.1, 10.0))
+			modifiedSpeed = clamp(modifiedSpeed, 0.1, 10.0)
 			return modifiedSpeed
 		else:
 			return 1.0
@@ -460,7 +460,7 @@ class CoreItem(GodotObject):
 
 
 	def getStackSpeedMods(self):
-		return f32(f32(self.character().getHeat() - self.character().getCold()) * 0.02)
+		return (self.character().getHeat() - self.character().getCold()) * 0.02
 
 
 	def hasCooldown(self):
@@ -530,16 +530,16 @@ class CoreItem(GodotObject):
 
 
 	def adjustCooldown(self):
-		adjustedCooldown = f32(self.getCooldown())
+		adjustedCooldown = self.getCooldown()
 		# ★ 对齐 Item.gd:3789-3794：分支判 **ownerType == Owner.Opponent**——不是宿主
 		#   角色的 playerId。插座宝石的 ownerType = Owner.Socket（Item.gd:3041
 		#   setGem），挂在对手物品上也不进 0.975 分支；此前按宿主判，对手插座宝石
 		#   被误入 0.975（run570_r18 开战段 3 个链位实证：神谕 0.95 vs 内核 0.975，
 		#   返回值差 ⇒ triggerTime 差 ⇒ 1-tick 触发漂移）。
 		if self.ownerType == _R.C("CoreConst").Owner.Opponent and (self.ctx.below_master or self.ctx.lobbies_mode):
-			adjustedCooldown = f32(adjustedCooldown * self.ctx.rng.randf_range(0.975, 1.05))
+			adjustedCooldown *= self.ctx.rng.randf_range(0.975, 1.05)
 		else:
-			adjustedCooldown = f32(adjustedCooldown * self.ctx.rng.randf_range(0.95, 1.05))
+			adjustedCooldown *= self.ctx.rng.randf_range(0.95, 1.05)
 
 		return adjustedCooldown
 
@@ -554,9 +554,9 @@ class CoreItem(GodotObject):
 
 
 	def updateBaseCooldown(self):
-		cdProgress = f32(_div(self.triggerTime, self.iterationCooldown))
-		self.iterationCooldown = f32(self.adjustCooldown())
-		self.triggerTime = f32(cdProgress * self.iterationCooldown)
+		cdProgress = _div(self.triggerTime, self.iterationCooldown)
+		self.iterationCooldown = self.adjustCooldown()
+		self.triggerTime = cdProgress * self.iterationCooldown
 		self.ctx.combat_log.snapshotItemTooltipStat(self, _R.C("CoreConst").ItemStat.Cooldown)
 		self.ctx.combat_log.snapshotItemTooltipStat(self, _R.C("CoreConst").ItemStat.BaseCooldown)
 
@@ -685,8 +685,8 @@ class CoreItem(GodotObject):
 			gem.preCombatStart()
 
 		if self.hasCooldown():
-			self.iterationCooldown = f32(self.adjustCooldown())
-			self.triggerTime = f32(self.iterationCooldown)
+			self.iterationCooldown = self.adjustCooldown()
+			self.triggerTime = self.iterationCooldown
 			self.activateCooldown()
 			self.ctx.combat_log.snapshotItemTooltipStat(self, _R.C("CoreConst").ItemStat.Cooldown)
 
@@ -787,7 +787,7 @@ class CoreItem(GodotObject):
 		if not self._cooldown_active:
 			return
 		if not self.character().isStunned():
-			self.triggerTime = f32(self.triggerTime - f32(delta * self.getSpeed()))
+			self.triggerTime -= delta * self.getSpeed()
 			self.ctx.hooks.showCooldown(self, 1.0 - _div(self.triggerTime, self.iterationCooldown))
 			if self.triggerTime <= 0:
 				self.trigger()
@@ -939,8 +939,8 @@ class CoreItem(GodotObject):
 		self.ctx.rng.trace_diag("TRIG", String(self.descriptor.identifier), int(self.ownerType),
 				"tt=" + str(self.triggerTime) + " cd=" + str(self.iterationCooldown)
 				+ " spd=" + str(self.getSpeed()) + " t=" + str(self.ctx.time))
-		self.iterationCooldown = f32(self.adjustCooldown())
-		self.triggerTime = f32(self.triggerTime + self.iterationCooldown)
+		self.iterationCooldown = self.adjustCooldown()
+		self.triggerTime += self.iterationCooldown
 
 		self.doCooldownEffect()
 
@@ -979,8 +979,8 @@ class CoreItem(GodotObject):
 		if not self.isCooldownActive():
 			return
 
-		reduction = f32(_div(amount, 100.0) * self.iterationCooldown)
-		self.triggerTime = f32(self.triggerTime - reduction)
+		reduction = _div(amount, 100.0) * self.iterationCooldown
+		self.triggerTime -= reduction
 
 		while self.triggerTime <= 0:
 			self.trigger()
@@ -997,7 +997,7 @@ class CoreItem(GodotObject):
 		if not self.isCooldownActive():
 			return
 
-		self.triggerTime = f32(self.triggerTime - f32(amount * self.getSpeed()))
+		self.triggerTime -= amount * self.getSpeed()
 
 		while self.triggerTime <= 0:
 			self.trigger()
@@ -1871,7 +1871,7 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:4872-4876
 	def addSpeed(self, amount):
-		self.speedScale = f32(self.speedScale + amount)
+		self.speedScale += amount
 		# ★ np25 诊断（受控，双门控零耗链）：速度账本——谁加了多少、现值多少。
 		self.ctx.rng.trace_diag("SPD+", String(self.descriptor.identifier) + "@" + String(self.getTopLeftCell())
 				+ " ot=" + str(int(self.ownerType)), str(amount), "now=" + str(self.speedScale))
@@ -1881,7 +1881,7 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:4877-4881
 	def reduceSpeed(self, amount):
-		self.speedScale = f32(self.speedScale - amount)
+		self.speedScale -= amount
 		self.ctx.combat_log.snapshotItemTooltipStat(self, _R.C("CoreConst").ItemStat.Speed)
 		self.ctx.combat_log.snapshotItemTooltipStat(self, _R.C("CoreConst").ItemStat.Cooldown)
 

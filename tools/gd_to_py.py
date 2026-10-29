@@ -1933,7 +1933,18 @@ def _apply_cooldown_f32(texts):
     规则清单覆盖 triggerTime/iterationCooldown/speedScale 的**全部**写点
     （缺一处就制造新的单边不对称——np25 曾因漏 953/970 两写点把 run570 打红）。
     f32 = _rt 的 float32 舍入垫片（生成文件已 `from ._rt import *`）。
+
+    ★★ np25 f64 实验面（2026-10-30，修复员·py-only 11 场收编）——本函数已整体
+    停用（BYPASS）：Godot 3.x 的 Variant REAL / GDScript float 实为 **64 位
+    double**（P3 前提「REAL=float32」系与 Godot 4 混淆的误设），gd 侧
+    CoreItem.gd 冷却链为 typed float 直减无外层舍入 ⇒ 正确转写 = 纯 f64 直译。
+    P3 的 f32 规则在 11 场 py-only 冷却族（run571/581/701/787/828/864/960/
+    1189/1222/1223/1406）上制造压线 ±1 tick 翻转（勘察输入实测 run1223_r7
+    翻转拍 triggerTime=0.01657561772、每帧递减≈0.01666665、穿越残差 −9.1e-8s）。
+    143 场全量「行为中性」旁证gd 实际算术更近 f64（台账 run874 定谳原文）。
+    规则表保留在下方仅作历史档案（R_LIST_F32），便于回滚/对照。
     """
+    return texts  # ← BYPASS：f64 直译
     R = [
         # 物理帧推进（Item.py 与 CoreItem.py 两处同形）
         ("self.triggerTime -= delta * self.getSpeed()",
