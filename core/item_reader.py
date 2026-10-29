@@ -64,7 +64,8 @@ _EXCLUDE_SCRIPT_PARTS = ("/Tiles/", "/Animations/")
 class ItemInfo(dict):
     """物品信息（dict 子类，便于 JSON/GUI 直接用）。
     字段: name(英文), zh(中文), zone(backpack|storage|shop), is_bag(容器),
-          row, col(锚点格), cells([(row,col)..] 占用格), rotation, x, y, script
+          row, col(锚点格), cells([(row,col)..] 占用格), rotation, x, y, script,
+          px, py（相对背包原点的像素坐标，仅背包物品；GUI 精确贴图定位用）
     """
 
 
@@ -194,7 +195,9 @@ class ItemReader:
             if pos:
                 info["x"], info["y"] = round(pos[0], 1), round(pos[1], 1)
                 if zone == "backpack" and inv_origin:
-                    # 锚点格（物品原点所在格）
+                    # 锚点格（物品原点所在格）+ 背包坐标系像素位置
+                    info["px"] = round(pos[0] - inv_origin[0], 2)
+                    info["py"] = round(pos[1] - inv_origin[1], 2)
                     gx = (pos[0] - inv_origin[0]) / cell
                     gy = (pos[1] - inv_origin[1]) / cell
                     if -2 <= gx < 30 and -2 <= gy < 30:
@@ -257,6 +260,8 @@ class ItemReader:
                                 script=item.get("script_path", ""))
                 if x is not None and y is not None:
                     if zone == "backpack" and inv_origin:
+                        info["px"] = round(float(x) - inv_origin[0], 2)
+                        info["py"] = round(float(y) - inv_origin[1], 2)
                         gx = (float(x) - inv_origin[0]) / cell
                         gy = (float(y) - inv_origin[1]) / cell
                         if -2 <= gx < 30 and -2 <= gy < 30:
@@ -297,6 +302,10 @@ class ItemReader:
         if pos:
             info["x"], info["y"] = round(pos[0], 1), round(pos[1], 1)
             if compute_grid and zone == "backpack" and inv_origin:
+                # 物品原点在背包网格坐标系中的像素位置（GUI 按此精确贴图，
+                # 而不是把贴图硬塞进「占格包围盒」——后者会让多格物品变形）
+                info["px"] = round(pos[0] - inv_origin[0], 2)
+                info["py"] = round(pos[1] - inv_origin[1], 2)
                 gx = (pos[0] - inv_origin[0]) / cell
                 gy = (pos[1] - inv_origin[1]) / cell
                 if -2 <= gx < 30 and -2 <= gy < 30:

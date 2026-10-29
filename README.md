@@ -73,6 +73,7 @@
 | `tools/regression_baseline.py` | 固定种子 56 场战斗指纹比对（防回归） |
 | `tools/check_gd_core_engine.py` | gd_core 内核 vs 56 局 Godot 基准逐字符校验 |
 | `tools/repack_lineups.py` | 占格形状变更后内置阵容自动重摆 |
+| `tools/extract_sprites.py` | 从全量反编译树重建 `assets/sprites/` 与 `assets/item_db.json`（多层贴图合成 + 物品原点，见 ⑦） |
 
 > 这些工具证明的是"改动没有引入回归"。与游戏行为的最终对齐以 `output/combat_logs/` 实录对照为准——多个严重问题正是在固定用例全绿的状态下由实录发现的。
 
@@ -102,6 +103,30 @@
     python -X utf8 tools/corpus_fold.py  --all output/records --traces
 
 配置在 `config.yaml` 的 `recorder:` 段（采样间隔、压缩方式、是否也记录 AI 自身动作等）。
+
+### ⑦ UI 贴图资产（物品渲染真值）
+
+主程序背包摆盘的贴图来自 `assets/sprites/` + `assets/item_db.json`，由
+`tools/extract_sprites.py` 从全量反编译树（`output/_recovery/decomp_cur`，GDRE 导出）
+重新生成。三条曾经导致"贴图缺失 / 多层只画一层"的坑，已在生成器里处理：
+
+1. **继承节点没有 type**：物品场景是 `Items/Xxx.tscn` 实例化 `res://Items/Item.tscn`
+   再覆盖同名节点，子场景里 `[node name="Icon" parent="."]` 不带 `type`——
+   只按 `type=="Sprite"` 收层会把绝大多数物品的主贴图整件漏掉。
+2. **根节点属性含方括号**：根节点声明形如
+   `[node name="Item" type="RigidBody2D" groups=["Item"]]`，用"非方括号字符类"
+   的单条正则解析会在第一个 `]` 处提前截断，导致基类根节点认不出、整条继承链失效
+   （生成器改为逐行状态机解析）。
+3. **同名场景根 + shader 辅助层**：多个护符场景根名都是 `Amulet Unidentified`
+   （靠 `.gd` 脚本路径区分）；`Assets/Pixel.png` 这类屏幕扭曲占位纹理必须排除，
+   否则合成图会整张变白。
+
+生成物：合成图**保留原始画布几何**（不裁透明边），并在 `item_db.json` 记录
+`origin_px`（物品节点原点在图中的像素位置）与 `img_w/img_h`。GUI 据此把贴图
+精确钉到物品原点、按 `CELL/80` 缩放、绕原点旋转——不再用"占格包围盒 contain"近似，
+多格物品不再被压扁。
+
+    python -X utf8 tools/extract_sprites.py     # 需要 output/_recovery/decomp_cur（GDRE 全量导出）
 
 ## 项目结构
 
