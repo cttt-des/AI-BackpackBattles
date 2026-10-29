@@ -120,6 +120,38 @@
 > 双门控零耗链同规。evt0@1-50 簇 101→81；evt1@1-50 簇 125→124（首分歧大幅
 > 后移，同簇不同签名）。
 >
+> ★ **棋盘 capture 数据面已修复（2026-10-29，np25棋盘面，commits d4afe736+b05e33f9）**：
+> **ALIGNED 148→277（+129），evt0@1-50 棋子主体簇自分簇表消失**。三层缺口逐一定谳：
+> ①类型位（ask 定谳①②）：build_data._types 无 chess 分支 + enrich_types TYPE_NORM
+> 'chesspiece'（无空格）查不到 CSV 'Chess Piece'（带空格）→ 12 件棋子 types=[]；
+> token 必须 'chesspiece'（=CoreConst.Type 枚举名 17；'chess' 会使
+> gen_lineup_fixture compile_descriptor SystemExit——实测栅栏）。②**计划外根因③**：
+> extract_grid.py scan_tscn_index 只扫三层目录（棋子 tscn 在 Exclusive/Chess/ 第四层
+> 恒不被索引）+ chess 被排除/兜底双排除连坐（排除理由系宝石）→ 棋子 grid 恒 np23
+> 手补裸 1×1，**affected_cells=移动模式真值从未落库**（WhitePawn 对角 2 格 /
+> Bishop·Queen·Rook 20 格 / King·Knight 8 格）→ moveCells 恒空（run644_r7 trace
+> Gshuffle ChessBoard:100 size=0 铁证）→ 即使 canAffect 修好也捕获恒空转——
+> ask 预言「只补数据位会立刻再变红」的第二机制。递归扫描+解除 chess 排除后
+> battle_items.json diff 恰 12 条（Wisp 1.1.9 tscn 真值漂移属面外已回植+立案）。③**内核双缺口**：
+> r1_0 对应物 CoreRng.shuffleEngine/pickRandomEngine/globalChainOpen（净新增，
+> 开账点 CoreCombat.startBattle(preordered)；两态直调引擎原生方法=链位等价机制本身）
+> + **r4_2 对应物 CoreGrid.moveItem**（Inventory.gd:640-646 判定面，ask 漏登记——
+> r4_2 生成代码调不存在的内核方法，漏补则棋子首次移动/捕获即炸）。④builder 四 pass
+> 全量落树（a1 14文件26点/fam_r1 1·1/r4_2 1·2·0miss/r1_0 8文件 shuffle11+pick1；
+> 注释'12'系 np23 计数笔误——16 处 shuffle 中 5 处在剥离函数体内、存活全集恰 11）
+> 并回植五处被冲掉的手补（Item.gd crafted_instance+playActivationSound+isCrafted、
+> MagicRing.setCraftedEffects、EngineerBox eb_relay 镜像、Eggscalibur ESHUF、
+> MrStruggles MSROLL——漏植一即全场 assembly-fail 或 np17-A crafted 语义静默退化）。
+> 守门：chessfix 三例 run644_r7 语料512=gd512=py512 逐位同至 idx2 CB-Activation
+> （CB-Act gd2=py2=语料2；run660 12→460、run1046 24→388、run644 2→301）；
+> REG 九场 570/1029 绿保持+run1266_r11（唯一含棋盘绿场）PASS、七红五同位+
+> run695 改善147→172+run635 107→104（双侧 FalconBlade，r2_1 三抽真值还原致红场
+> 链位重排——builder 已修而树从未接收的另一例，0 绿场含 FalconBlade）；
+> 全量 32.6 分钟 767 场 --rerun 三分片 0 失败。S7 活体 trace：Gshuffle
+> ChessBoard:80/:100 size=1/2 + Gpick ChessPiece:74 size=3 全链入账（idx7
+> rng_log 逐抽对位不可行——语料 914 场现库 rng_log.txt=0，属 ORACLE_DEBUG
+> 场次产物，已留档改道）。备份 output/_round_patches/np24_fix/chessdata_r1/。
+>
 > ★ **P3-2 勘误（2026-10-28，探针已执行）**：635「BalancedRange malus 悖论」
 > **不存在**——BRPROBE 取证桩（oracle/Utility/BalancedRange.gd，已逐字节还原
 > md5 留档 output/_round_patches/np24_fix/p332_probe/）实证语料 [5,5,5,4] =
@@ -155,7 +187,11 @@
 > **buff/timer 到期「gd 早 1 tick」修复（2026-10-29，timeout1t 面）**——
 > 三变量模型（e[0]/eng/e[1]）+rebuild 等价步骤，定位场四腿 ALL PASS、
 > 目标族 85 场 50 绿、REG 零退步；残红 35 场定性建档待后续面
-> （7 场 dur 边界 ULP 需 oracle 腿取证 / 8 场多栈次序 / 20 场非本面）。
+> （7 场 dur 边界 ULP 需 oracle 腿取证 / 8 场多栈次序 / 20 场非本面）；
+> **棋盘 capture 数据面修复（2026-10-29，np25棋盘面，d4afe736+b05e33f9）**——
+> 类型位+grid 移动模式+内核双缺口（CoreRng 全局链台账/CoreGrid.moveItem）+
+> builder 四 pass 落树+五处手补回植，ALIGNED 148→277（+129），
+> evt0@1-50 棋子主体簇消失，REG 零退步（详见 §3 打勾块）。
 >
 > **★ offpeak 续作战报（2026-10-29，offpeak-488589ec）**：
 > - **✅ py-only 族清零（commit bcc6e858）**：run1132_r18 的 IndexError 根因
