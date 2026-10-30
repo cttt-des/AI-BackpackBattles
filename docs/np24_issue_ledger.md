@@ -1541,6 +1541,47 @@
 >   按「绝不 git add 他人在途改动」本执行者不代提交，由台账属主或下一
 >   执行体合并入库。
 >
+> **★ offpeak 续：evt12 面分叉窗口行级定谳（2026-10-30 深夜，offpeak 执行者）★**
+> - **对位修正**：pair566 的「分叉」是**错位巧合**（oracle r702=冷却抖动
+>   0.95-1.05→u=0.14736 与 gd 毒 flip 0.147359 在 1e-6 内巧合相撞，被当同位
+>   配对）——**真分叉=4.8 拍内部投掷次数差：oracle 11 条 evt108 v gd 10 条**
+>   （oracle 多一条「孤毒 9」=只有 P1 毒 flip 无 P2 自毒 flip 配对的投掷）。
+>   gd trace 分叉段原文（run583 trace :1576-1613）已核：gd=X 投→9 flip→Y 投
+>   →TRIG Cauldron→heal 20→healed 2 监听；oracle=X→9 roll→Y→TRIG Cauldron→
+>   heal——两侧结构同构，差在**投掷条数**（flip/roll 串因错位而值序不同）。
+> - **排除面**：Potion 基类 diff=逻辑同构（差异全为无 rng 表现层）；
+>   poison(ty19) 战斗期零事件；healed 信号与 ty12 事件 1:1（@4.8 双侧各 1 条
+>   heal 19）⇒ **单次 heal 信号下 oracle 11 投 v gd 10 投=触发链深度差**。
+> - **剩余候选（下轮）**：①「孤毒 9」的投掷者身份——SPF×2 瓶+affected[0]
+>   链（SPF affected={} 但运行时 getAffectedItems 可能非空——**Cauldron
+>   affected {'0':6} 的 6 件受影响集**里是否含第三瓶）→ 对位
+>   getAffectedItems 运行时值（gd 侧 CHRG 式探针或 cases affected 展开）；
+>   ②SDF stealLife→healed 的发射次数（gd BUS character_healed 计数 vs
+>   oracle ty12 数——已排除 1:1 差异）；③4.8 拍 flip 串数逐投清点（gd
+>   10 串 v oracle 11 串的毒量序列 [9,3]×n+孤9 定投掷者）。
+> - **工具沉淀**：u 流对位已修三 bug（负索引/三元组比较/伪锚），锚定法=
+>   「(randf_range,u) 后紧跟 EVENT:108」双条件，工具脚本内嵌于本节
+>   （下一轮可提取为 tools/_np25_u_align2.py）。
+>
+> - **★ 信号链全解（同轮续）★**：投掷触发链=DS 攻击(t=5.1)→opponent
+>   damaged→**opponent 侧 SDF 喝毒**（onOpponentDamaged+血量阈值→
+>   drinkStrongDemonicFlask→stealLife）→opponent healed→**opponent 侧 SPF
+>   反制投掷**（onOpponentHeal→drink→triggerPotion→inflictPoison(P1=9)+
+>   selfInflictPoison(P2=3)）——**9 flip=对敌毒 9 的 resist**（flip 数=毒量，
+>   gd trace :1549/:1567/:1585 三串 9/9/9 flip=三投；P2 自毒 3 的 flip 在
+>   无抗性时零笔）。**5.5167 拍：gd 3 投 v oracle 2 投**——**头号候选=gd 的
+>   affected[0].triggerPotion() 链多执行一级**：SPF affected_cells=[[0,0]]+
+>   getAffectedCellsAfterRotate_primary=上方格（SPF-o(30)@3,2 上=[2,2]=
+>   Smelly Barrier，types=['nature','skill'] 非 Potion——oracle 侧
+>   canAffect(=hasType(Potion))=假、链应断）——**gd 侧 getAffectedItems
+>   运行时返回非空**（canAffect 走 hasType 的引擎差/affectedCellsCache 数据
+>   差）⇒ 多出的第 3 投=Barrier 的 triggerPotion（若 Barrier 被当 Potion，
+>   其 onTriggerPotion=inflictPoison(P1)→**孤毒 9 flip 串**——gd 第 3 串
+>   9 flip 与 SPF P1 同量=无法从 flip 数区分，需 ROLLW/owner 探针或
+>   getAffectedItems 值打印定谳）。**下轮单点**：gd 侧打印 SPF-o
+>   getAffectedItems() 运行时值（双门控探针≤5 行）——非空=修 canAffect/
+>   getAffectedItems 引擎差；空=投掷触发另有路径（damaged 直连候选）。
+>
 ### P1 数据面整族（预计最大收敛面）
 
 - [ ] **P1-1 物品持久强化态缺失**：史流 setData 的 bonusMinDam/bonusMaxDam/bonusDamageFactor
