@@ -1582,6 +1582,24 @@
 >   getAffectedItems() 运行时值（双门控探针≤5 行）——非空=修 canAffect/
 >   getAffectedItems 引擎差；空=投掷触发另有路径（damaged 直连候选）。
 >
+> **★★ offpeak 新发掘问题批次 v2（15 项，2026-10-30 深夜，供闲时任务按序认领；基线 461/914、RED 453 全景=当前分簇器 --top 30 实读）★★**
+> 每项含：规模｜样本｜定性/证据｜打法。已永停面（总线级联）与已定谳在修面（evt12 头号）不重复立项。
+> 1. **evt12 族 89 场 affected 格错位**（37+30+18+10+4）：样本 run583_r11（fd@120 短场探针≡语料✓）｜已定谳 gd 的 SPF.getAffectedItems n=1（另一瓶 SPF）→affected[0] 链双投，oracle 链空=2 投；几何错位嫌疑（SPF_a@2,3 上方 [1,3] 无物却 aff 到 SPF_b）｜单点=CoreItem.getAffectedItems/affectedCellsCache 格解析 vs oracle 对位→修→守门 evt12 样本+REG。
+> 2. **evt109 族 110 场 timeout1t 时基差**（54+43+13）：样本 run619_r18/run588_r18｜round-7 铁证=施加时内部 time 读数差 1 tick（gd to=5.55 v oracle 5.5167）｜先 oracle 腿分片取证（oracle_chunk_driver 1 1 1 配方；run619 ItemBook Nil/run588 超时勿重踩）定 LG 施加路径与 to 读数差，取证成功前不落码。
+> 3. **evt12 极长场 4 场（1201+ 桶）**：run1394_r18 fd@8666（10254 事件）｜前 8665 事件全对，分叉=Eggscalibur 攻击后 spikes 12 嵌套序｜超长场=数值累积稳定性面（时基差/毒栈平衡器长程漂移候选），取证同②的并行分片跑法。
+> 4. **evt8 余部 29 场 Crown 系 heal ±1**（11+10+4+4）：样本 run616_r18 fd@399（Crown heal 5 后 divergence）｜d7fe5cb5 三变量模型的残差族（timeout1t 档案 35 场定性近亲）｜按 BLND fr= 字段验收门逐场核 gain→fire 间隔 K/K-1，分 dur 边界 ULP 与多栈次序两小类。
+> 5. **evt101 幸运栈 8 场**：样本 run827_r10 fd@198（Piercing Arrow gain 1，oracle 320 v gd 359 事件数差）｜幸运链放大面（BalancedRng luckBalance acc 残差候选）｜BRPROBE 式 acc 瞬时值+实例 id 探针（p332_probe 先例）。
+> 6. **evt19@1-50 ×7 AoL t0 嵌套 heal 序**：样本 run846_r11 fd@5（AoL ty102→ty19 嵌套 depth2，gd 467 v oracle 67 事件数差巨大=t0 级联序）｜开战激活深级联的监听派发序差｜BUS/BUSL 对位（盘面 evt12 头号定谳同法）。
+> 7. **evt103 ×7 Heavy Drinking/Frostbite 伤害值**：样本 run594_r12 fd@384（Frostbite damage 31，oracle 1114 v gd 739 事件数差）｜伤害公式/冻伤栈面｜窗口首两行同值→需深入位对位（u 流法）。
+> 8. **evt102 10 场 King Crown heal**（5+5）：样本 run597_r18 fd@101（heal 11 窗口同值→晚位差）｜heal 计算/healingEfficiency 面｜同⑦打法。
+> 9. **evt105 余部 29 场 ManaOrb 系**（18+11）：样本 run604_r10（fd@65 ManaOrb 105 缺发后跳 444 旧档）｜已定谳 ManaOrb 真身在 evt105=连接集/BalancedRng 平衡态｜与①同法：连接集运行时打印探针（AFFL 模式）。
+> 10. **evt104/108 残量 14 场**（6+4+4）：样本 run572_r9 fd@248（Banana→Storage Coffin 108）、run593_r12｜时序族残量（c251a762 补抽后）｜gd 受击钩子先于攻击事件发射假设逐场核（run784 打法）。
+> 11. **evt0 族 39 场 Staff of Unhealing heal 计算**：样本 run592_r17 fd@219（heal 42 窗口同→事件数 3202 v 2558 中盘发散）｜healingEfficiency/Unhealing 反噬计算面｜heal 值公式对位（gd CoreCharacter.heal vs oracle Character.gd:743）。
+> 12. **evt1 族 32 场重分簇**（12+12+4+4，签名异质性高）：样本 run590_r13/run628_r14/run1220_r9｜先 canonical 对拍并簇再定打法（勿直接开修）。
+> 13. **py-only run1151_r13 单场新回归**：AoA evt105 双条（gd≡oracle，py 单独）｜py 引擎新回归（461 基线后新暴露）｜gd 产物直读对位（最快面）。
+> 14. **tape 未覆盖 7 场**：run1068_r18/run1144_r18/run1177_r18/run1254_r18/run1307_r12/run1436_r10/run930_r18｜袋内物品不在 INVENTORY.getItems 顶层→提取「随载体插入」映射规则（tools/_np25_tape_extract.py 预留 skip 告警处）→补采→evt105/12 簇再收割。
+> 15. **P1-1 收缩版五步路径**：136 场圈定清单 output/_p11_affected_t0.json｜真持久面=MagicRing pd 12bit+16 处技能计数器+26 种 t0 钩子授予（勘察在案）｜③_item_snapshot 扩 stats 需先验 1 绿场 events 不变；**语料写=禁区需用户批准独占窗口**。
+>
 ### P1 数据面整族（预计最大收敛面）
 
 - [ ] **P1-1 物品持久强化态缺失**：史流 setData 的 bonusMinDam/bonusMaxDam/bonusDamageFactor
