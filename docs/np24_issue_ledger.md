@@ -1102,6 +1102,64 @@
 >   等实验态）均已 git checkout 还原，工作树仅剩外来在途文件+EOL 幻影——
 >   **无代码 diff 可 commit**；本条目为纯定谳修正回写。
 >
+> **★★ np25wf 台账收尾·第三循环：面⑥ CALLDONE 取证定谳修正（无代码）→ 收口复验 398/914 持平（2026-10-30，收尾记录员·三）★★**
+> - **第三循环 1 轮明细（face/根因/守门/commit，git log -20 实读）**：
+>   ① **面⑥ 总线面 CALLDONE 取证——round-4「计数死锁」定谳作废 + 三修复
+>   形态证伪还原**（commit a7318686；纯定谳修正回写，实验态全还原无代码
+>   diff）：face=run619 总线派发面（LightGoobert activated 66 次投递）。
+>   根因修正=CALLDONE 实证 `call_funcv` 66 派发 66 返回全执行（HASHAS
+>   `has_method=True`）——round-4/5「GACT=0=计数路径死锁/FuncRef 静默」
+>   **作废**，GACT 真因=打点在 gd_core/Goobert.gd 而 LightGoobert 继承链
+>   落 gd_core_items/Goobert.gd（同 class_name 双文件）=在错误文件找打点；
+>   三修复形态证伪：callv 直调/CVDBG（ret=Null×1312 零副作用）/分支展开
+>   call 恒 19321 基线，字面名 call 追加（CALL2/复刻）唯一执行但与 funcRef
+>   双计数（ev→23271、首分歧恶化 307→40）⇒ **调用机制从不是分歧源**；
+>   干净重对位=施加前 4 笔对齐（152/155/279/293，round-4「计数节奏
+>   240v279」系 Util.time 暖场偏移 δ₂=78.7334 与 combat_time 错位误读），
+>   唯一首分歧=**fire@334 timeout 移除量 oracle −7 v gd −5**（gd Crown 削
+>   batch0 7→5；oracle 同窗 BCLEANSE pick_to=43.2167 晚批→batch0 保 7），
+>   新单点假设=削切时刻批次分裂状态/选批落点两侧不同。守门=还原净洁
+>   （run619 复验 19321 精确复现 + REG9 np25_r6_restore_check 逐场同位 +
+>   alignment 398/914 未触碰）；⚠resume 幂等跳过复用旧产物再录（实验前必
+>   rm scratch）。
+> - **✅ 第三循环收口复验（2026-10-30 11:29-11:38，本员实测）**：gd 腿
+>   rerun 11 场（=④⑤⑥取证样本场 run588/605/619/624/625/665/668/679/708/
+>   717/718，resume 跳过 903，148.4s PASS，selfcheck run588_r18 逐字节一致，
+>   **run619 ev=19321=HEAD 基线精确复现**；output/oracle/align/gdcore/
+>   _align_gd_summary.txt 11:30）+ py 腿产物 11:30 + compare 五分片重建
+>   本员实跑 `python tools/verify_oracle.py --compare-only`（126.3s，
+>   182+182+184+183+183=914 零缺场，三方一致 398，alignment.json 11:38
+>   覆盖写回）→ **ALIGNED 398/914 持平**（本员实读本员重建版，红簇工具
+>   复核同数）。**退出码如实载明**：compare 重建实测退出码 **1**=源码语义
+>   「aligned==total 才返 0」（tools/verify_oracle.py:1388-1389），即 516
+>   红场在册的常规返回、非复验失败；收口步整体「退出码 0」本会话不可自证
+>   （工作流内省不可达），gd 腿 rerun PASS 载自 summary 文件。基线历史链：
+>   279→394→398（第一循环）→398（第二循环）→**398（第三循环持平，三轮均
+>   零行为变更）**。
+> - **红簇 top20（398 基线 RED 516，_np24_red_clusters.py --top 20 本员
+>   实跑于 11:38 重建基线）**：n=50 evt109@151-400｜n=38 evt12@51-150｜
+>   n=37 evt109@401-1200｜n=30 evt1@151-400｜n=28 evt12@151-400｜n=25
+>   evt0@151-400｜n=17 evt12@401-1200｜n=17 evt105@151-400｜n=16
+>   evt1@51-150｜n=14 evt0@51-150｜n=13 evt109@51-150｜n=12 evt105@51-150｜
+>   n=11 evt12@1-50｜n=10 evt8@151-400｜n=10 evt8@401-1200｜n=9
+>   evt101@151-400｜n=9 evt102@151-400｜n=9 evt104@401-1200｜n=8
+>   evt103@151-400｜n=8 evt1@1-50（top20 合计 371，与第二循环逐项同=三轮
+>   零行为变更互证）；三大簇归属=evt109 族 100 场（面④⑥定谳已收窄到
+>   「削切时刻批次分裂/选批落点」，下轮批次账重放定谳）/evt12+evt105 级联
+>   123 场/evt0+evt1 族 93 场；localization=rng-mechanism 431/
+>   gd_core-kernel 85、match_distribution 实测 327/189（本员实读
+>   alignment.json）；py-only=0（本员实算：judgement oracle_gd=True 且
+>   gd_py=False 逐场扫描=空集；327 场实为 gd≡py 对 oracle 分歧）。
+> - **下轮建议**：①纯 python 批次账重放定谳 fire@334 移除量差（np25_flk_b3
+>   gd BLND + np25_flk_a3 oracle [BGAIN]/[BEXPIRE]/[BCLEANSE] 数据在盘、
+>   δ₂=78.733367 已标定；evt109 100 场唯一活口）②批次账若定谳选批落点差→
+>   Crown 削切时序面修复开题 ③evt0/evt1 局部族重分簇（93 场）④run592
+>   gd≡py 同位红@219 下一层 ⑤P1-1 数据面五步路径（136 场已圈定）。战报
+>   全文：output/_offpeak/np25wf_r1/report.md（本地不入库，已覆盖更新为
+>   三循环全量版）。
+> - **在途文件纪要（沿用第二循环）**：gd_core_test/gd_core/Goobert.gd EOL
+>   幻影勿 add 勿还原；工作树仅剩外来在途文件+幻影，本循环无代码 diff。
+>
 ### P1 数据面整族（预计最大收敛面）
 
 - [ ] **P1-1 物品持久强化态缺失**：史流 setData 的 bonusMinDam/bonusMaxDam/bonusDamageFactor
