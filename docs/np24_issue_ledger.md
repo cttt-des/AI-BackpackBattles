@@ -947,6 +947,39 @@
 >   五步路径（136 场已圈定）。战报全文：output/_offpeak/np25wf_r1/report.md
 >   （本地不入库）。
 >
+> **★★ np25wf 修复面④：evt109 最大簇（100 场）定谳——Goobert 计数路径死锁，根因挂载 M3/AoL 总线面（2026-10-30，修复员·定谳里程碑，修复=下轮总线面开题）★★**
+> - **选面**：分簇表 evt109 = 50(@151-400)+37(@401-1200)+13(@51-150) = **100 场最大簇**
+>   （样本 run619_r18/run588_r18）。
+> - **定谳（三工具链）**：①两样本首分歧 = **Light Goobert Blind(ty109) timeout 移除量差**
+>   （run619@307：oracle −7 v gd −5，t_tick 334；run588@576：oracle −13 v gd 结构性缺失）
+>   ——即台账点名的 ty109 多栈次序面，且规模远超 8 场。②**gd BLND 账本**
+>   （np25_flk_b3/run619 rng_trace，STAM/BLND 双门控）：LG 盲批次
+>   [(7@5.55)(7@7.666)]、Crown 削切 −1/−1/−2 落在**最早批**、fire@334 移 batch0=5。
+>   ③**oracle [BEXPIRE]/[BCLEANSE] 账本**（np25_flk_a3/_probe_stdout.log 33MB，
+>   run619 全量重放 170s，events≡语料 ✓；Buff.gd 的无条件打点=历史探针残留）：
+>   神谕同 tick **双批同爆**（side=0: amt=6+7 / side=1: amt=5+7，两 LG 同刻触发、
+>   双批 to 相同）+ 递归 fire（rearm delay≤0.01 同 tick 连爆）——**批次结构 GD 少整批**。
+> - **根因链（机制级）**：Goobert 族触发=**双机制**——prepare() 置
+>   triggerTime=activationsToTrigger(6s countdown) + connectForCombat 挂
+>   onItemActivated 计数器（每 activation 计数、计数到 6 触发并把 triggerTime
+>   刷回 6=**倒计时永不自然到期**）。**gd 侧 GACT=0 行**（run619 全程
+>   onItemActivated 从未触发=计数路径死锁）⇒ 倒计时失去刷新 → gd 的 blind
+>   以 **countdown 节奏**（6s÷speed，间隔 2/125/13 tick 野值）乱 firing；
+>   oracle 以**计数节奏**（每 6 activation，间隔 88 tick 规整）firing。
+>   批次/移除量/到期 tick 全部由此错位 → evt109 timeout 量差。
+> - **挂载点**：计数路径死锁 = connectForCombat 挂接的 activated 信号投递/路由
+>   断裂（夹具 affected 格=A2 真值 ✓、getAffectedItems 链完好 ✓、
+>   canAffect=canActivate ✓——**排除数据面**；run874 的 Chili GACT 曾正常 firing
+>   ⇒ 非实现缺失，是**运行期路由/连接态差**）= **M3/AoL 总线面（下轮建议②）
+>   的邻接证据**：evt109(100 场) 与 evt12/evt105 级联簇同根挂载。
+> - **本轮无代码修复**（修复=总线面开题后的连带收敛）；**取证工件**：
+>   gd BLND=output/_offpeak/np25_flk_b3/run619_r18/rng_trace.txt、
+>   oracle 账本=output/_offpeak/np25_flk_a3/_probe_stdout.log（33MB）、
+>   gd 探针 np25_flk_b3/（scratch）。**面④下轮打法**：BUSL 连接台账对位
+>   LG 的 connectForCombat 挂接清单 → 首个断连接/漏投递点 → 修复 →
+>   evt109+evt12/evt105 连带复验。
+> - **守门**：本轮零代码变更=零行为风险（alignment 398/914 未触碰）。
+>
 ### P1 数据面整族（预计最大收敛面）
 
 - [ ] **P1-1 物品持久强化态缺失**：史流 setData 的 bonusMinDam/bonusMaxDam/bonusDamageFactor
