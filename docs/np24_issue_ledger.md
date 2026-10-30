@@ -1588,6 +1588,8 @@
 >   - **【np25 波次标注 2026-10-31（f01）】✅已修 commit=167b7f6e**｜根因=**非格错位**：gd CoreTimer 到点保留 MultiTimer 叠加 pop/递归多发语义，而 oracle harness drive_timers 到点段先 timer.stop()（oracle/Utility/MultiTimer.gd stop 清 timestamps）再 emit——运行中 start() 排队的叠加到期在首到期拍被丢弃；run583_r11 SPF poisonTimer 于 1.9833 拍被双侧同量 start 3 次（瓶1 own+chain 叠加、瓶2 own），语料发 2 次、gd 发 3 次，5.5167 拍毒 9 多一行即首分歧@120。
 >   - 场影响=样本 run583_r11：修前 gd/py 各 143 事件 RED（fd@120）→修后 gd=py=语料 141 事件、canonical+渲染双判据双腿 PASS（守门 np25w_f01）；REG 九场零退步。**89 场族级收割（叠加 poisonTimer 形态应大面积同因）按指令留待波末全量 --compare-only，本面未跑全量。**
 > 2. **evt109 族 110 场 timeout1t 时基差**（54+43+13）：样本 run619_r18/run588_r18｜round-7 铁证=施加时内部 time 读数差 1 tick（gd to=5.55 v oracle 5.5167）｜先 oracle 腿分片取证（oracle_chunk_driver 1 1 1 配方；run619 ItemBook Nil/run588 超时勿重踩）定 LG 施加路径与 to 读数差，取证成功前不落码。
+>   - **【np25 波次标注 2026-10-31（f02）】⛔两连证伪永停（commits=none）**｜本面前提『timeout1t 时基差』被两连证伪：gd_core/py 与 oracle 单场重放（round-4 np25_flk_a3 复跑）19535 事件逐位零差（同=-5），残红签名源自语料录制期（10-24/25）的**进程内批量位置依赖（跨场状态泄漏）**——语料 run619_r18（19077 事件，idx307=-7）不可单场复现，**属语料重录面（禁区），非 gd 行为差，无可修代码**。
+>   - 场影响=run619_r18 残红（ev@307=-7 语料孤立签名，gd≡oracle 现行为，归语料重录面）；run588/1388/1442/1042/774 五场已 PASS（前序 f01+f04 收编，本轮门验实证）；run1246_r11 残红已易面（evt12 Badger Spirit @1045，非本面）；run631_r9/run904_r18 fresh trace≡语料全等（**461 账过期**）。REG 九场零退步（5 绿保持、4 红同基线位）。门①已过；门②不适用（零代码变更）。族级 110 场最终绿/红构成留波末全量 --compare-only（主控）刷新 461 账后重分簇。
 > 3. **evt12 极长场 4 场（1201+ 桶）**：run1394_r18 fd@8666（10254 事件）｜前 8665 事件全对，分叉=Eggscalibur 攻击后 spikes 12 嵌套序｜超长场=数值累积稳定性面（时基差/毒栈平衡器长程漂移候选），取证同②的并行分片跑法。
 > 4. **evt8 余部 29 场 Crown 系 heal ±1**（11+10+4+4）：样本 run616_r18 fd@399（Crown heal 5 后 divergence）｜d7fe5cb5 三变量模型的残差族（timeout1t 档案 35 场定性近亲）｜按 BLND fr= 字段验收门逐场核 gain→fire 间隔 K/K-1，分 dur 边界 ULP 与多栈次序两小类。
 >   - **【np25 波次标注 2026-10-31（f04）】✅已修 commit=c0392d3b**｜现场实读=**25 场（11+10+4，台账 29 场的第 4 簇 n=4 已不在基线）**｜根因=gd 三变量计时模型漏镜像 Godot 3.6 引擎 Timer 的 real_t(float32) 存储（oracle_fight.gd:897 eng=get_time_left() 读 f32 值；f32(3.1)=3.0999999046 穿零 186 帧=语料 K，gd 用 f64 3.1 穿零 187 帧恰晚 1），且 fire 后缺 oracle drive_timers:915-917「timeout 处理器内重挂→当拍 e[0]=e[1]=新 eng」重同步块（同拍 proc 链再晚 1）——**双修后 25 场 invul ±1 签名全部消失**。
@@ -1596,7 +1598,11 @@
 >   - **【np25 波次标注 2026-10-31（f05）】✅已修 commit=aba6d2b4**｜根因=散装宝石 Wisp 的邻接受影响格在 A2 轮「46 宝石复位 1×1」时被连坐清空（battle_items.json 的 Wisp.grid 只有 collision [[0,0]]、无 affected_cells，而 Wisp.tscn 自带 tile_data：t3=collision[(-1,-1)]+t4=affected 周邻 8 格），gd/py 两侧 getAffectedPoints 恒空→getNumAffectedItems()=0→addSpeed(0)→speed 1.0，oracle 真值 speed=1+5×0.1=1.5（Wisp@(2,2) 在 Vineweave Basket 内、8 邻恰 5 个 Nature）→Wisp 冷却 8.033s vs gd 12.05s（同一 jitter、双侧同链位），luck+10 迟到 241 tick→getBuffAccuracyMod 差 50→accuracy 掷链放大、胜负翻转。**台账原猜「BalancedRng luckBalance acc 残差」被证伪——首分歧在 Wisp 时点而非 acc。**
 >   - 场影响=run827_r10 翻绿（双腿 PASS，320=320）、run1150_r18 翻绿（双腿 PASS）、run1153_r18 推进 fd@378→694（事件数 764=764 对齐；残位=oracle idx694 Crown type8 heal@10.8333 gd 缺发，属 evt8 Crown 残差族=第 4 项，移交）、run994_r1（原绿锚）PASS 保持；异质 5 场红位与基线不变=**别根另立**（run946 SpiritBells 聚合差 1+2v3、run1104/1108/1163 Coil 数值差、run1261 Wand 101/102 型差——同簇异质，勿按本面 luckBalance 假设立案）；REG9 零退步；全量 --compare-only 留主控波末统一跑。
 > 6. **evt19@1-50 ×7 AoL t0 嵌套 heal 序**：样本 run846_r11 fd@5（AoL ty102→ty19 嵌套 depth2，gd 467 v oracle 67 事件数差巨大=t0 级联序）｜开战激活深级联的监听派发序差｜BUS/BUSL 对位（盘面 evt12 头号定谳同法）。
+>   - **【np25 波次标注 2026-10-31（f06）】⛔证伪永停——面前提不成立（commits=none，零落码）**｜「gd 开战监听派发序差」前提被证伪：**语料本身被录制进程跨场物品泄漏污染**——run846_r11 语料事件流混入前序场 run845_r18 的 player 再生应答物品（AoL@(5,4)/False Life@(7,1)）的幻影 ty19(TemporaryMaxHealth) 事件，任何干净单场引擎（gd/py/单场 oracle 复跑）都不可能复现——属语料重录面（禁区），非引擎差。
+>   - 场影响=样本 run846_r11 修后仍红，属**语料污染性红位——不可能由修 gd 翻绿**；同簇 7 场（run846/895/903/907/1126/1303/1363）红位与基线不变（alignment.json 未动，波末全量 --compare-only 归主控）；REG 九场门未跑（Godot 楔死），但本面零代码改动+桩已还原，基线无被本面改动可能。**移交主控**：①7+ 场语料重录需先修录制 harness 场间清场（teardown_case 补 EventBus.disconnectAll+玩家物品 free）并经用户批准独占窗口（语料写=禁区）；②重录决策前可先跑全库幻影普查（12 场格级已列+同格隐匿需逐场核）；③顺手移交 run725/run1524=夹具丢件面、run1069_r18 语料缺 events.json。锁文件 np25w_f06.lock 已删。
 > 7. **evt103 ×7 Heavy Drinking/Frostbite 伤害值**：样本 run594_r12 fd@384（Frostbite damage 31，oracle 1114 v gd 739 事件数差）｜伤害公式/冻伤栈面｜窗口首两行同值→需深入位对位（u 流法）。
+>   - **【np25 波次标注 2026-10-31（f07）】⏸deferred——定谳未修（commits=none，零落码）**｜根因=run594_r12 首分歧@384(t=955)=Strong Vampiric Potion 的 lifestealTimer 在 oracle 神谕 harness 下的 fire/wipe/pop 时刻表与 gd CoreTimer 不同：oracle 侧 eid=383(Frostbite 31 伤害) 拍玩家 SVP curLifesteal=0.0000/given=[]（15.75s HeavyDrinking 触发的 +0.35 add 已被一次由「无形触发」排定的引擎 deadline fire 洗掉——VP 链 triggerPotion、+5 因吸血栈满被钳制不发事件但 timer.start(6) 照常；stop→timestamps.clear→pop front）故 d31 无 heal，同拍 +5@384 的 add 存活→d15 heal=ceil(15×0.35)=6；gd 单实例 CoreTimer 对同一触发序给出 fire@11.28 后 stop→15.75 start 走重启动分支→deadline 21.75 存活→d31 多 heal 11、d15 heal=ceil(15×0.7)=11，两差级联放大至 1114v739 事件数。**次级根因（影响 37s 后段）**：oracle 战斗中 ~37.05 拍 SVP 被「@Strong Vampiric Potion@4125」新实例顶替（onPrepare 重跑、HD.allPotions 旧引用与信号连接新实例分裂），gd 无此分裂。
+>   - 场影响=无场翻绿：7 样本场 RED 维持基线位（594@384/659@212/715@271/984@354/1103@282/1106@329/1244@158），REG 九场零退步，alignment.json 未动。**下一轮单点**：gd CoreTimer/CoreItem 需镜像 oracle harness MultiTimer 精确 fire/wipe/pop 语义——关键差=「start() 落在引擎 RUNNING 态时只入 timestamps 不改 deadline，fire 时 stop() 清队+pop_front，由无形触发(满栈钳制)排定的 deadline 决定 add 存活窗」——先以 GD 侧等价探针（打印 CoreTimer start/fire/pop 时刻表）对拍 oracle [SVPPOP]/[timer-fire] 表定谳分叉最终一行，再落码+gd_to_py 三树同步+守门 16 场。
 > 8. **evt102 10 场 King Crown heal**（5+5）：样本 run597_r18 fd@101（heal 11 窗口同值→晚位差）｜heal 计算/healingEfficiency 面｜同⑦打法。
 > 9. **evt105 余部 29 场 ManaOrb 系**（18+11）：样本 run604_r10（fd@65 ManaOrb 105 缺发后跳 444 旧档）｜已定谳 ManaOrb 真身在 evt105=连接集/BalancedRng 平衡态｜与①同法：连接集运行时打印探针（AFFL 模式）。
 > 10. **evt104/108 残量 14 场**（6+4+4）：样本 run572_r9 fd@248（Banana→Storage Coffin 108）、run593_r12｜时序族残量（c251a762 补抽后）｜gd 受击钩子先于攻击事件发射假设逐场核（run784 打法）。
@@ -1655,6 +1661,27 @@
 >   canonical 对拍再分簇定打法（勿按 invul ±1 假设立案，同 evt1 重分簇纪律）。
 > - **Crown type8 heal 缺发残位**：run1153_r18 idx694 oracle heal@10.8333
 >   gd 缺发（f05 推进后残留）｜已移交第 4 项 evt8 Crown 残差族，随该面收割。
+>
+> **★ 波次标注补充线索·第二轮（2026-10-31，f02/f06/f07 修后新增，供认领）★**
+> 波次状态：当前复验绿场=461/914（但见下「461 账过期」信号）；f02/f06 零落码
+> 永停、f07 定谳未修待认领。
+> - **★★ 语料跨场泄漏族（语料重录面=禁区，两独立面同因汇合，最高优先移交主控）**：
+>   证据①f02/evt109——语料 run619_r18（19077 事件，idx307=-7）不可单场复现，
+>   gd/py v oracle 单场重放 19535 事件逐位零差 ⇒ 录制期（10-24/25）进程内批量
+>   位置依赖；证据②f06/evt19——语料 run846_r11 混入前序场 run845_r18 的
+>   player 物品（AoL@(5,4)/False Life@(7,1)）幻影 ty19 事件 ⇒ 场间物品/状态
+>   未清场。根子=录制 harness teardown_case 缺场间清场（EventBus.disconnectAll
+>   +玩家物品 free）。**打法**：先全库幻影普查（12 场格级已列+同格隐匿逐场核）
+>   圈定重录清单→修 teardown 清场→用户批准独占窗口重录（语料写=禁区）→
+>   alignment.json 与 461 账随之刷新重分簇。
+> - **夹具丢件面（≥2 场+1 语料缺档）**：run725/run1524=夹具丢件面（f06 顺手
+>   移交）｜run1069_r18=语料缺 events.json（非 gd 差，归语料档完整性）｜打法=
+>   逐场核 lineups↔夹具物品集 diff（P1 数据面同法）。
+> - **461 账过期信号**：run631_r9/run904_r18 fresh trace≡语料全等（f02 门验
+>   实证）——461/914 账未反映 f01/f04 收编后真值，**波末全量 --compare-only
+>   （主控）为唯一权威刷新点**，刷新前勿按 461 账认领新面。
+> - **run1246_r11 已易面**：evt12 Badger Spirit @1045（原 evt109 族样本）——
+>   波末刷新后并入 evt12 族/伤害流分簇，勿再按 timeout1t 立案。
 >
 ### P1 数据面整族（预计最大收敛面）
 
