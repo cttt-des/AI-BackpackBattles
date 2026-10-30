@@ -102,22 +102,21 @@ def run_godot_s2(cases: List[Dict[str, Any]], chunk: int = 40,
         if done_before >= total:
             print("[godot-s2] 全部 %d 场已完成" % total)
             return 0
-        cmd = [vo.GODOT, "--headless", "--path",
-               os.path.join(ROOT, "gd_core_test"),
-               "--script", "OracleAlignBattle.gd"]
-        import subprocess
-        proc = subprocess.run(cmd, capture_output=True, text=True,
-                              encoding="utf-8", errors="replace", cwd=ROOT)
-        last_rc = proc.returncode
+        # ★ 2026-10-30：--headless 是 4.x 参数，3.6 写了会走窗口路径出真窗口
+        #   并招搜狗 IME 弹 "OpenMem failed"；沙箱又禁匿名管道（capture_output
+        #   会 CreatePipe WinError 5）。统一走 tools/godot_headless（--no-window）。
+        import godot_headless as gh
+        rc, out, _lp = gh.run(gh.cmd(project="gd_core_test",
+                                     script="OracleAlignBattle.gd"),
+                              label="s2_gd", env_extra=None)
+        last_rc = rc
         done_after = sum(1 for c in cases
                          if vo._event_count(os.path.join(GD_OUT, c["case_id"],
                                                          "events.json")) > 0)
         print("[godot-s2] 第 %d 轮：退出码 %d，完成 %d/%d" % (round_i + 1, last_rc,
                                                             done_after, total))
-        if proc.stdout:
-            sys.stdout.write(proc.stdout[-1200:])
-        if proc.stderr:
-            sys.stderr.write(proc.stderr[-800:])
+        if out:
+            sys.stdout.write(out[-1200:])
         if done_after >= total:
             return 0
         if done_after <= done_before:

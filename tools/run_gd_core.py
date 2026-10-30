@@ -129,15 +129,59 @@ _NOISE_KEYS = (
     "ObjectDB instances leaked", "Resources still in use",
     '_first != nullptr',
     "at: ~List", "at: cleanup", "at: clear",
+    # ★ 输入法噪声（2026-10-28）：搜狗 IME 会注入每个进程，其皮肤模块
+    #   (t_skinfilemap.cpp) 启动时抢同名共享内存 Local\sgime_skin.*.filemap，
+    #   没抢到就打印 "OpenMem failed"/err=5，随后自动重建成功（failed→Suc 成对）。
+    #   与内核/战斗判定完全无关，多开 Godot 时每进程各打一遍即"刷屏"。
+    #   根治=让子进程各自隔离 APPDATA（见 _godot_env），这里再做输出面过滤。
+    "SGRenderLog", "OpenMem", "t_skinfilemap", "sgime_",
+    "打开Filemap失败",
 )
+
+
+_RUN_SEQ = 0
+
+
+def _godot_env():
+    """给子进程准备隔离环境（2026-10-28 修 openmem err=5 刷屏）。
+
+    根因：搜狗输入法把皮肤模块注入每个进程，用**全局命名**共享内存
+    `Local\\sgime_skin.*.filemap`；同时跑多个 Godot 时后启动的抢不到，
+    每进程打一遍 "OpenMem failed / err=5"，看起来像 Godot 反复报错。
+    此外 Godot 的 `user://` 落在 %APPDATA%\\Godot\\app_userdata\\<项目名>，
+    并行实例共享同一目录还会互踩日志。
+
+    对策：按**当前进程 PID** 隔离 APPDATA（每个 python 进程一套，
+    其下所有 Godot 子进程共用），既避开 user:// 冲突，也让每个 Godot
+    首次创建 IME 映射，失败一次后即成功、不再反复重试。
+    """
+    env = dict(os.environ)
+    appdata = os.path.join(ROOT, "output", "_recovery", "appdata_p", str(os.getpid()))
+    os.makedirs(appdata, exist_ok=True)
+    env["APPDATA"] = appdata
+    return env
 
 
 def run(cmd, label, cwd=None, scan_errors=False):
     print("\n" + "=" * 68)
     print(f"[{label}]")
     print("=" * 68)
-    p = subprocess.run(cmd, cwd=cwd or ROOT, capture_output=True)
-    out = _decode((p.stdout or b"") + (p.stderr or b""))
+    # ★ 沙箱禁匿名管道（2026-10-29 实证）：capture_output=True 在 CreatePipe
+    #   处抛 PermissionError [WinError 5]。故输出重定向到文件再读回，
+    #   文件名带 pid+序号，避免并行/重入时互撞。
+    global _RUN_SEQ
+    _RUN_SEQ += 1
+    logdir = os.path.join(ROOT, "output", "_recovery", "gdcore_run_logs")
+    os.makedirs(logdir, exist_ok=True)
+    log_path = os.path.join(logdir, "run_%d_%d.log" % (os.getpid(), _RUN_SEQ))
+    with open(log_path, "wb") as lf:
+        p = subprocess.run(cmd, cwd=cwd or ROOT, stdout=lf,
+                           stderr=subprocess.STDOUT, env=_godot_env())
+    try:
+        with open(log_path, "rb") as lf:
+            out = _decode(lf.read())
+    except OSError:
+        out = ""
     script_errors = []
     for line in out.splitlines():
         s = line.strip()

@@ -14,13 +14,17 @@
    （跑 Godot 的 python 侧已由 `tools/verify_oracle.py::run_godot` 内置；
    手动跑 Godot 时用 `APPDATA="…\output\_recovery\appdata_p\<pid>"`；
    最省事直接调 `tools/run_gd_core.py::run`——内置隔离+_NOISE_KEYS 噪声过滤）。
-   ⚠ **OpenMem failed err=5 已终谳（2026-10-29 避坑指南）**：搜狗输入法注入
-   抢 `Local\sgime_skin.*.filemap` 失败打的日志，failed 后自动重建成功=纯
-   噪声，Godot/内核自身不报错；**`--headless` 是 4.x 参数**，3.6 写了会走
-   GUI 窗口路径反而触发 IME 注入——一律 `--no-window`。不要并行开多个
-   Godot（共享 user:// 互相踩、噪声更凶）；批量走串行/分片；跑前
-   `Get-Process | ? ProcessName -match 'odot'` 清残留。为它改
-   gd_core/gd_core_items/oracle/语料是禁区。
+   ⚠ **OpenMem 弹窗已终谳（2026-10-30 订正 + 根治）**：搜狗输入法把皮肤模块
+   注入**每个宿进程**，抢全局共享内存 `Local\sgime_skin.*.filemap` 失败就打日志
+   并弹 `MessageBox`（窗口类 `#32770`、标题 `Error`）。**err 号是 2（找不到
+   文件），不是 5**（2026-10-29 记错了；`oracle/debug.log` 446 行逐行核过）；
+   日志里 failed 后紧跟一条 Suc = 自动重建成功，纯噪声，Godot/内核自身不报错。
+   **根治 = `tools/godot_headless.py` 的独立隐藏桌面**（窗口和弹窗都只存在于
+   隐藏桌面，用户屏幕 0 泄漏）；只有 `--no-window` 不够（实测仍出可见窗口），
+   `--video-driver Dummy` 非法（rc=255），`--headless` 是 4.x 参数（3.6 写了被
+   忽略、照常出窗口）。**并行多开现在可以了**（每进程独立 APPDATA + 隐藏桌面），
+   见 `docs/parallel_workflow.md` §1b/§3b。为它改
+   gd_core/gd_core_items/oracle/语料仍是禁区。
 3. `output/oracle/fights/`（语料）与 `oracle/` 树只读。oracle 取证桩须：
    备份→≤10 行环境变量门控→ORACLE_FIGHTS_ROOT 重定向探针→逐字节还原→md5 三方留档
    （先例：output/_round_patches/np24_harness/）。
@@ -1514,6 +1518,27 @@
 > - **下一步**：①SDF（StrongDemonicFlask）两侧 doCooldownEffect 逐行 diff
 >   （最可能单点）；②evt12 族 89 场按本面重定性（脱挂 timeout1t）；
 >   ③evt109 族 110 场仍归 timeout1t（round-7 时基差铁证有效）。
+>
+> **★ 并行工具修订版增量交接（2026-10-30 晚，→ offpeak-31dd8865；铁律 2 已由
+>   并行工具执行体就地订正，此处补其未覆盖四条，全文实读 docs/parallel_workflow.md
+>   19:34 版）★**
+> 1. **gd→py 是分片流水线非整段并发**（§3b）：py 腿依赖 gd 产物
+>    activation_order——两腿同时 start 会让 py 全 skip 白跑；verify_oracle
+>    主流程已实现「gd 片完成→py 接手」流水线，**勿改回两腿同时 join**。
+> 2. **oracle 单场探针新配方**：`ORACLE_ONLY_CASES=<cid> python -X utf8
+>    tools/oracle_chunk_driver.py 1 1 1`（隐藏桌面+独立 APPDATA+并行分片上限
+>    4 路）——**evt109 族超长场取证（run588 timeout 旧账）优先走此路**，
+>    取代 run_gd_core 直拼（其不在改造清单，仍可用但会出可见窗口+搜狗弹窗
+>    落用户桌面）。
+> 3. **旧「不并行跑 Godot」纪律废止**：隐藏桌面+每进程独立 APPDATA 下并发
+>    验收 4 组 vs 冻结语料逐字节一致（§8）；但并行期间仍勿再手动开第二个
+>    Godot 走旧路径（两套隔离机制混用）。
+> 4. 门规延续：并行管线改动后先 `python -X utf8 tools/_np_compare_par.py
+>    --selftest`；`--cases` 收缩 alignment.json 收工补全量 `--compare-only`；
+>    `--force --cases` 撞 cases json 锁加 `--skip-fixtures`。
+> ⚠ 本块与铁律 2 订正同为未提交工作树内容（并行工具执行体在途）——
+>   按「绝不 git add 他人在途改动」本执行者不代提交，由台账属主或下一
+>   执行体合并入库。
 >
 ### P1 数据面整族（预计最大收敛面）
 
