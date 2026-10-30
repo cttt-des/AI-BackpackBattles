@@ -1623,6 +1623,18 @@
 > - **工具沉淀**：GRD 探针入库（零耗）；u 流对位工具三 bug 已修（负索引/
 >   三元组比较/伪锚），锚定法=「(tag,u) 后紧跟 EVENT:108」双条件。
 >
+> - **枚举与几何再核（同轮）**：FaceDirection 两侧同构（UP0/RIGHT1/DOWN2/
+>   LEFT3）——fd=1=**RIGHT 非 DOWN**，Potion 覆写两侧同走 `rc[0]+UP` 分支；
+>   cases 真值：SPF_a occupied=[[2,3],[3,3]] collision=[[3,3],[2,3]] rotation=90
+>   （lineups face_direction=1 ✓）——**gd 的 aff=(3,2)=cp[0]+UP 命中 SPF_b
+>   的 occupiedCells 属「正确几何」**（SPF_b occupiedCells 含 (3,2)）——
+>   **同构代码+同数据下 oracle 侧该链也应活跃**（2 投 v 3 投之差=**触发次数**
+>   而非链空）：gd 的 SPF.onOpponentHeal 触发 4 次（AFFL 4 行@4.8 拍）——
+>   **oracle 侧触发数待证**（无探针；BCLEANSE 式格探针为下轮取证路径）。
+>   **n 翻转**（getItemsInCells 同格时有时无）=gd 内部 inventory 登记时序态
+>   （affectedCellsCache 重建时机/cleanCachedAffectedItems 清理点），
+>   与 oracle 差异并入同一次对位。
+>
 ### P1 数据面整族（预计最大收敛面）
 
 - [ ] **P1-1 物品持久强化态缺失**：史流 setData 的 bonusMinDam/bonusMaxDam/bonusDamageFactor
