@@ -70,6 +70,7 @@
 | 神谕探针（带逐抽） | `ORACLE_FIGHTS_ROOT=<abs> ORACLE_ONLY_CASES=<cid> ORACLE_DEBUG=1 ORACLE_FIGHT_CHUNK=0` + Godot（oracle 工程）；**先验探针 events≡语料才采信其 rng_log**；**桩行必须 6 元素**（5 元素会炸 oracle_fight.gd:819 dump 循环 → rng_log 恒 0 字节，2026-10-27 TOADSND 实证） |
 | 全量分片（三腿自动并行） | `python -X utf8 tools/_np23_shard_verify.py [--rerun <红场>]`（详见 docs/parallel_workflow.md） |
 | alignment 重建/还原 | `python -X utf8 tools/verify_oracle.py --compare-only`（全量、**绝不带 --cases**） |
+| GitHub API（release/issue 等） | `gh` CLI（v2.103.3 已装已登录 cttt-des；脚本内 raw curl 读 `output/_recovery/gh_token.txt`（200 有效，gitignored+600））；**禁止 `git credential fill` 取 token——会弹 GCM 登录窗** |
 | 神谕重录（如需） | 抬闸版参数在 `output/_recovery/oracle_fight_lifted.gd`（事件闸 200000/墙钟 1200s）；单场单进程 |
 
 ## 2. 已修复（勿重做，防回退）
