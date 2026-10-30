@@ -365,23 +365,36 @@ class BackpackAIApp(tk.Tk):
         self.buttons["cur_selection"] = cur_sel_btn
 
         # ---- 对局语料记录（人类手动游玩也用它）----
+        # ★ 布局要点：按钮必须**先** pack(side="right")，文字标签后 pack 并
+        #   限制宽度。反过来（label 先 side="left" 且不设 expand/宽度）时，
+        #   "记录中 · run_xxx · 12345 事件" 会一路撑满整行，把「停止记录」
+        #   按钮挤出可视区——这正是按钮"消失"的原因。
         rec_row = tk.Frame(panel, bg=COLORS["panel"])
         rec_row.pack(fill="x", padx=13, pady=(0, 8))
-        self.rec_var = tk.StringVar(value="记录: 未开始")
-        tk.Label(rec_row, textvariable=self.rec_var, font=FONTS["small"],
-                 bg=COLORS["panel"], fg=COLORS["text_dim"]).pack(side="left")
         self.rec_btn = tk.Button(
             rec_row, text="开始记录", font=FONTS["button"], relief="flat",
             bg=COLORS["panel_light"], fg=COLORS["text"], cursor="hand2",
             activebackground=COLORS["border"], activeforeground=COLORS["text"],
-            command=self._on_record_toggle, padx=6, pady=5)
-        self.rec_btn.pack(side="right")
+            command=self._on_record_toggle, padx=4, pady=5, width=6)
+        self.rec_btn.pack(side="right")          # 先占位：永远可见
+        self.rec_dot = tk.Label(rec_row, text="●", font=FONTS["small"],
+                                bg=COLORS["panel"], fg=COLORS["text_dim"])
+        self.rec_dot.pack(side="right", padx=(0, 4))
         open_btn = tk.Button(
             rec_row, text="目录", font=FONTS["small"], relief="flat",
             bg=COLORS["panel"], fg=COLORS["text_dim"], cursor="hand2",
             activebackground=COLORS["border"], activeforeground=COLORS["text"],
             command=self._on_open_records, padx=6, pady=5)
-        open_btn.pack(side="right", padx=(0, 4))
+        open_btn.pack(side="right", padx=(0, 6))
+        self.rec_var = tk.StringVar(value="记录: 未开始")
+        self.rec_label = tk.Label(rec_row, textvariable=self.rec_var,
+                                  font=FONTS["small"], bg=COLORS["panel"],
+                                  fg=COLORS["text_dim"], anchor="w",
+                                  justify="left",
+                                  # 侧栏可用宽度有限：允许换行而不是硬截断
+                                  wraplength=150)
+        # expand+fill 吃掉剩余宽度，窗口再窄也先保证按钮宽度
+        self.rec_label.pack(side="left", fill="x", expand=True)
 
         self._set_buttons_state(running=False, initialized=False)
 
@@ -428,17 +441,29 @@ class BackpackAIApp(tk.Tk):
 
     @staticmethod
     def _backpack_signature(items) -> tuple:
-        """背包重绘判等用的签名（名字/格/旋转/宝石），变则重绘，不变则跳过。"""
+        """背包重绘判等用的签名（名字/格/旋转/宝石），变则重绘，不变则跳过。
+
+        ★ 可空字段一律不参与原生排序：内存读取中途会出现 row/col/id 为 None
+        的半帧（例如物品刚被替换、属性尚未写入），直接 sorted() 会抛
+        "TypeError: '<' not supported between instances of 'NoneType' and
+        'NoneType'"，整个 _apply_state 被跳过 → UI 卡住不刷新。
+        这里统一把集合类字段转成字符串元组（None → "None"），保证全序可比。
+        """
+        def _ids(seq) -> tuple:
+            return tuple(sorted(
+                str(g.get("id")) for g in (seq or [])
+                if isinstance(g, dict) and g.get("id") is not None))
+
         out = []
         for it in items or []:
-            gems = tuple(sorted(g.get("id") for g in (it.get("gems") or [])
-                                if isinstance(g, dict) and g.get("id")))
+            if not isinstance(it, dict):
+                continue
             out.append((
                 it.get("name"), it.get("row"), it.get("col"),
-                round(float(it.get("rotation") or 0.0), 3), gems,
+                round(float(it.get("rotation") or 0.0), 3),
+                _ids(it.get("gems")),
                 tuple(it.get("cells") or ()),
-                tuple(sorted(c.get("id") for c in (it.get("contents") or [])
-                             if isinstance(c, dict))),
+                _ids(it.get("contents")),
             ))
         return tuple(sorted(out, key=str))
 
@@ -457,9 +482,9 @@ class BackpackAIApp(tk.Tk):
         # 收集被占用的格子
         occupied = set()
         for it in items:
-            for (r, c) in (it.get("cells") or []):
-                if 0 <= r < self.GRID_ROWS and 0 <= c < self.GRID_COLS:
-                    occupied.add((r, c))
+            for cell in (it.get("cells") or []):
+                if self._valid_cell(cell):
+                    occupied.add((cell[0], cell[1]))
 
         # 图层 1：背包底框（所有格子底色）
         self._draw_base_layer()
@@ -521,12 +546,28 @@ class BackpackAIApp(tk.Tk):
         self._draw_name_label(x0, y0, bw, bh, it.get("zh") or it["name"],
                               bold=(mode == "color"), pos="bottom")
 
+    def _valid_cell(self, cell) -> bool:
+        """格子 (row, col) 是否在网格内；None/非数字一律判为非法。
+
+        ★ 内存读取可能给出 row/col = None 的半帧。Python 里 0 <= None 会直接抛
+        TypeError（"<=" not supported between instances of "int" and
+        "NoneType"），把整帧绘制打断，UI 就停在旧画面上不刷新。
+        """
+        try:
+            r, c = cell
+        except (TypeError, ValueError):
+            return False
+        if not (isinstance(r, int) and isinstance(c, int)):
+            return False
+        return 0 <= r < self.GRID_ROWS and 0 <= c < self.GRID_COLS
+
     def _item_region(self, it):
-        cells = [(r, c) for (r, c) in (it.get("cells") or [])
-                 if 0 <= r < self.GRID_ROWS and 0 <= c < self.GRID_COLS]
+        # 注意：cells 里可能混入 None（半帧），必须先判可解包再解包
+        cells = [(cell[0], cell[1]) for cell in (it.get("cells") or [])
+                 if self._valid_cell(cell)]
         if not cells:
-            a = it.get("row"), it.get("col")
-            if a and 0 <= a[0] < self.GRID_ROWS and 0 <= a[1] < self.GRID_COLS:
+            a = (it.get("row"), it.get("col"))
+            if self._valid_cell(a):
                 cells = [a]
             else:
                 return None
@@ -697,9 +738,9 @@ class BackpackAIApp(tk.Tk):
     def _assign_colors(self, items):
         occ = {}
         for it in items:
-            for (r, c) in (it.get("cells") or []):
-                if 0 <= r < self.GRID_ROWS and 0 <= c < self.GRID_COLS:
-                    occ[(r, c)] = it["name"]
+            for cell in (it.get("cells") or []):
+                if self._valid_cell(cell):
+                    occ[(cell[0], cell[1])] = it["name"]
         neigh = defaultdict(set)
         for (r, c), nm in occ.items():
             for dr, dc in product((-1, 0, 1), (-1, 0, 1)):
@@ -1194,7 +1235,8 @@ class BackpackAIApp(tk.Tk):
 
         def item_entry(it, bag_index=None):
             """生成单个物品的 v4 平铺条目；袋内物品带 `in` 指向承载袋下标。"""
-            cells = [(r, c) for (r, c) in (it.get("cells") or [])]
+            cells = [(cell[0], cell[1]) for cell in (it.get("cells") or [])
+                     if self._valid_cell(cell)]
             if cells:
                 row = min(r for r, _ in cells)
                 col = min(c for _, c in cells)
@@ -1467,10 +1509,20 @@ class BackpackAIApp(tk.Tk):
     def _refresh_rec_label(self):
         stats = self.bot.recording_stats() if self.bot else {"running": False}
         if stats.get("running"):
-            text = (f"记录中 · {stats.get('run_id') or '—'} · "
-                    f"{stats.get('events', 0)} 事件")
+            # 侧栏只有约 110px 可用宽度：优先显示"记录中 + 事件数"，
+            # run_id 完整版留给日志行，避免被硬截断成 "记录中 · run_2"。
+            text = f"记录中·{stats.get('events', 0)}事件"
+            self.rec_dot.configure(fg=COLORS["danger"])
         else:
-            text = "记录: 未开始"
+            # 手动停止属于"用户主动关掉"，回到常驻文案即可；
+            # 只有自动停止（本局结束/超限）才提示原因，那才是有信息量的状态。
+            reason_code = (stats.get("last_reason") or "").strip()
+            reason = (stats.get("last_reason_text") or "").strip()
+            if not reason or reason_code in ("user_stop", "stopped"):
+                text = "记录: 未开始"
+            else:
+                text = f"已停止·{reason}"
+            self.rec_dot.configure(fg=COLORS["text_dim"])
         self.rec_var.set(text)
         if not stats.get("running"):
             self.rec_btn.configure(text="开始记录", bg=COLORS["panel_light"],

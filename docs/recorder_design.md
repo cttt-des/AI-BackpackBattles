@@ -262,7 +262,30 @@ docs/recorder_design.md             本文档
 
 ### 6.3 局边界
 
-首帧 `round==1` 开新局；`phase→title` / 进程消失 / 用户停止 / `max_events_per_run` 超限收尾；所有路径先归档当前回合、flush，再写 `meta.end_reason`；有 gap 则 `incomplete=true`。
+首帧开新局；以下任一发生即收尾：**一局结束**（自动检测，见下）/ 进程消失 / 用户停止 / `max_events_per_run` 超限。
+所有路径先归档当前回合、flush，再写 `meta.end_reason`；有 gap 则 `incomplete=true`。
+
+#### 一局结束的自动检测（2026-10-30 新增）
+
+检测在 `_handle_frame` 里**早于签名去抖**执行（`Recorder._maybe_auto_stop`）。
+历史实现把检测挂在 `_commit` 内且只在 `phase` 变化那一帧触发，而标题/结算界面
+上帧签名不再变化，会被"变化未稳定"分支提前 return —— 结果就是打完一局从来不自动停。
+
+多信号取并集，且需连续 `run_end_confirm_frames` 帧成立（默认 2，压掉半帧噪声）：
+
+| 信号 | 条件 | 说明 |
+| --- | --- | --- |
+| 阵亡 | `hp <= 0` | 最硬信号；**战斗阶段也生效**（阵亡瞬间 phase 仍是 combat） |
+| 回标题 | `phase == title` 或 `game_state == 0` | 兼容 `member_state` 未标定的情况 |
+| 开新局 | 回合号回退（见过第 N 回合后又读到更小值） | 玩家直接开下一局，旧局已结束 |
+
+守卫：必须 `_run_active`（本局有过回合/摆盘/战斗），否则"刚开录就停在标题"会被立刻判停。
+战斗阶段只认 HP 归零——战斗中商店被隐藏是正常现象，不能当结束。
+判定成立后写一条 `run_end` 事件（含 last_round/hp/wins/losses），再置停止位，
+由采样线程收尾（在采样线程内不直接 join 自己）。
+
+重开录时 `start()` 会重置上一局的 `_finished / _stop_reason / _run_active / _best_round`
+等状态，避免残留判据把新局误判成"已结束"。
 
 ### 6.4 配置
 
@@ -277,6 +300,8 @@ recorder:
   confirm_frames: 2
   compress: "lzma"          # lzma | gzip | none
   auto_stop_on_title: true
+  auto_stop_on_run_end: true   # 一局结束自动停（阵亡/回标题/开新局）
+  run_end_confirm_frames: 2    # 连续 N 帧确认，防半帧误判
   max_events_per_run: 20000
   gap_threshold_ms: 5000
   fold:                      # 折叠层参数
