@@ -82,6 +82,9 @@ recorder:
   confirm_frames: 2       # 撕裂读防护：连续两帧一致才提交
   compress: "lzma"        # lzma | gzip | none（回合归档时压缩）
   auto_stop_on_title: true
+  # ★ 自动检测"一局结束"并停止记录：阵亡(HP≤0) / 回到标题 / 回合回退(开新局)
+  auto_stop_on_run_end: true
+  run_end_confirm_frames: 2    # 连续 N 帧确认才停，防半帧误判
   max_events_per_run: 20000
   gap_threshold_ms: 5000
   save_frames: false      # 调试用：把每帧原始状态也写进事件流

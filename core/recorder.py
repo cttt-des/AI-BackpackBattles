@@ -37,6 +37,15 @@ PHASE_COMBAT = "combat"
 PHASE_TITLE = "title"
 PHASE_UNKNOWN = "unknown"
 
+# 停止原因 → 中文短文案（GUI 状态行显示用）
+STOP_REASON_TEXT = {
+    "user_stop": "手动停止",
+    "run_end": "本局结束",
+    "limit": "事件数上限",          # _emit 触顶时用的 reason
+    "max_events": "事件数上限",     # 兼容旧写法
+    "stopped": "已停止",
+}
+
 # CombatLog 事件类型：111=Win 112=Loss（见 core/combatlog_reader.py EVENT_TYPES）
 COMBAT_EVENT_WIN = 111
 COMBAT_EVENT_LOSS = 112
@@ -763,6 +772,10 @@ class RecorderConfig:
     compress: str = "lzma"
     auto_stop_on_title: bool = True
     max_events_per_run: int = 20000
+    # ★ 自动检测一局结束并停止记录（GUI 的"打完一局自动停"）
+    auto_stop_on_run_end: bool = True
+    # 连续多少帧满足结束条件才判停（防半帧误判）
+    run_end_confirm_frames: int = 2
     gap_threshold_ms: int = 5000
     save_frames: bool = False
 
@@ -773,7 +786,8 @@ class RecorderConfig:
         for f in ("enabled", "out_dir", "interval_ms", "adaptive_interval",
                   "combat_interval_ms", "capture_bot", "confirm_frames",
                   "compress", "auto_stop_on_title", "max_events_per_run",
-                  "gap_threshold_ms", "save_frames"):
+                  "gap_threshold_ms", "save_frames",
+                  "auto_stop_on_run_end", "run_end_confirm_frames"):
             if f in d and d[f] is not None:
                 cur = getattr(cfg, f)
                 try:
@@ -835,6 +849,11 @@ class Recorder:
         self._stop_reason: Optional[str] = None
         self._finished = False
         self._t0 = time.time()
+        # ---- 局结束自动检测 ----
+        self._run_active = False      # 本局是否有过实质内容（有回合/有物品）
+        self._run_end_votes = 0       # 连续满足结束条件的帧数
+        self._run_end_seen_round: Optional[int] = None  # 见过的最小回合
+        self._best_round: Optional[int] = None          # 本局记录到的最大回合
 
     # ---------------- 对外状态 ----------------
     @property
@@ -851,6 +870,9 @@ class Recorder:
             "gaps": self._gaps,
             "read_cost_ms": round(self._read_cost_ms, 1),
             "last_error": self._last_error,
+            # 停止原因（GUI 用来显示"已停止（本局结束）"这类文案）
+            "last_reason": self._stop_reason,
+            "last_reason_text": STOP_REASON_TEXT.get(self._stop_reason or "", ""),
         }
 
     # ---------------- 启停 ----------------
@@ -860,6 +882,25 @@ class Recorder:
         if self.bot is None:
             self._err("未初始化机器人，无法开始记录")
             return False
+        # ★ 重置上一局的收尾态：否则重新开录时会残留"已停止·本局结束"，
+        #   上一局的活跃标记/回合记忆也会把新局误判成"已结束"。
+        self._finished = False
+        self._stop_reason = None
+        self._committed = None
+        self._last_seen = None
+        self._prev = None
+        self._run_active = False
+        self._run_end_votes = 0
+        self._run_end_seen_round = None
+        self._best_round = None
+        self._event_count = 0
+        self._rounds_started = 0
+        self._dropped = 0
+        self._gaps = 0
+        self._gap_open = False
+        self._combat_open = False
+        self._pending_gold = 0
+        self._t0 = time.time()
         self._stop.clear()
         self._thread = threading.Thread(target=self._loop, name="recorder",
                                         daemon=True)
@@ -938,6 +979,84 @@ class Recorder:
                     "evidence": {"reason": "连续读取失败"},
                 })
 
+    # ---------------- 局结束自动检测 ----------------
+    def _note_activity(self, frame: Frame) -> None:
+        """记录本局"有过实质内容"的证据（回合数、摆盘、战斗）。"""
+        if frame.round is not None:
+            self._run_active = True
+            if self._best_round is None or frame.round > self._best_round:
+                self._best_round = frame.round
+            if self._run_end_seen_round is None:
+                self._run_end_seen_round = frame.round
+        elif frame.backpack or frame.storage or frame.shop:
+            self._run_active = True
+        if frame.phase == PHASE_COMBAT or frame.combat_count:
+            self._run_active = True
+
+    def _run_end_reason(self, frame: Frame) -> Optional[str]:
+        """判断这一帧是否表示"本局已经结束"；是则返回原因串。
+
+        多信号取并集（任一成立即可，再靠连续帧确认压噪声）：
+
+        1. **HP 归零**（最硬的信号）：本局阵亡。守卫 = 本局已有过实质内容
+           （避免标题界面 hp=0 被误判）。
+        2. **回到标题**：���用原有 auto_stop_on_title 的语义，但不再只在
+           phase 变化那一帧才检测（早期实现挂在 _commit 里，遇到签名相同
+           的帧会被提前 return，标题界面上"静止"就永远检测不到）。
+        3. **回合回退**：见过第 N 回合后又读到更小的回合号 → 玩家开了新局
+           （旧局已结束）。要求回退量 ≥1 且本局有效。
+        4. **长时间空场**：phase=unknown 且连续无物品无用例（靠票数累计）。
+        """
+        if not self._run_active:
+            return None
+        hp = frame.hp
+        if isinstance(hp, int) and hp <= 0:
+            return "run_end"
+        # 战斗进行中只看 HP：其余信号（回合回退/空场景）在战斗里都不成立，
+        # 若照搬会把"战斗中商店被隐藏"误判成结束。
+        if frame.phase == PHASE_COMBAT and frame.combat_finished is not True:
+            return None
+        if frame.phase == PHASE_TITLE:
+            return "run_end"
+        if isinstance(frame.game_state, int) and frame.game_state == 0:
+            return "run_end"
+        prev_round = self._run_end_seen_round
+        if (isinstance(frame.round, int) and isinstance(prev_round, int)
+                and frame.round < prev_round):
+            return "run_end"
+        return None
+
+    def _maybe_auto_stop(self, frame: Frame) -> bool:
+        """局结束自动停录。返回 True 表示已请求停止（调用方应立刻 return）。
+
+        必须在 **_handle_frame 早于签名去抖** 的位置调用：否则标题界面上
+        帧签名不再变化，会被"变化未稳定"分支吃掉，永远等不到停止。
+        """
+        self._note_activity(frame)
+        reason = self._run_end_reason(frame)
+        if reason is None:
+            self._run_end_votes = 0
+            return False
+        self._run_end_votes += 1
+        need = max(1, int(self.cfg.run_end_confirm_frames or 1))
+        if self._run_end_votes < need:
+            return False
+        # 记一条 run_end 事件（语料里能看到"这局是怎么结束的"）
+        self._emit({
+            "type": "run_end", "round": frame.round, "phase": frame.phase,
+            "source": "recorder", "confidence": 1.0,
+            "action": {"reason": "auto_detect", "last_round": self._best_round,
+                       "hp": frame.hp, "wins": frame.wins,
+                       "losses": frame.losses},
+            "evidence": {"votes": self._run_end_votes,
+                         "game_state": frame.game_state},
+        })
+        if self.cfg.auto_stop_on_run_end or self.cfg.auto_stop_on_title:
+            self._stop_reason = "run_end"
+            self._stop.set()       # 采样线程内只置位，收尾由 _loop 完成
+            return True
+        return False
+
     def _handle_frame(self, frame: Frame) -> None:
         """去抖提交（debounce）。
 
@@ -957,6 +1076,13 @@ class Recorder:
             self._open_run(frame)
             self._committed = frame
             self._last_seen = frame
+            self._note_activity(frame)
+            return
+
+        # ★ 局结束自动检测：必须在"签名不变 → 提前 return"之前，
+        #   否则标题/结算界面等静止画面上永远检测不到（历史 bug）。
+        #   战斗阶段同样要检测（阵亡瞬间 HP 归零就在 combat 里）。
+        if self._maybe_auto_stop(frame):
             return
 
         if frame.signature() == self._committed.signature():
@@ -1002,16 +1128,9 @@ class Recorder:
                 self._rounds_started += 1
                 self._write_shop_snapshot(cur)
 
-        # 回到标题 = 本局结束
-        if cur.phase == PHASE_TITLE and prev.phase != PHASE_TITLE:
-            self._emit({
-                "type": "run_end", "round": prev.round, "phase": PHASE_TITLE,
-                "source": "recorder", "confidence": 1.0,
-                "action": {"reason": "back_to_title", "last_round": prev.round},
-                "evidence": {"hp": prev.hp},
-            })
-            if self.cfg.auto_stop_on_title:
-                self.stop("run_end")
+        # 注：本局结束的检测与停止已统一上移到 _handle_frame 的
+        # self._maybe_auto_stop()（回标题 / HP 归零 / 回合回退 / 新局），
+        # 此处保留旧实现会重复 emit run_end 并二次 stop，故删除。
 
     def _maybe_combat_transition(self, prev: Frame, cur: Frame) -> None:
         started = (prev.phase != PHASE_COMBAT and cur.phase == PHASE_COMBAT)
