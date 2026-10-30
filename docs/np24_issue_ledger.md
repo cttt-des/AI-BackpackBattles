@@ -1585,10 +1585,16 @@
 > **★★ offpeak 新发掘问题批次 v2（15 项，2026-10-30 深夜，供闲时任务按序认领；基线 461/914、RED 453 全景=当前分簇器 --top 30 实读）★★**
 > 每项含：规模｜样本｜定性/证据｜打法。已永停面（总线级联）与已定谳在修面（evt12 头号）不重复立项。
 > 1. **evt12 族 89 场 affected 格错位**（37+30+18+10+4）：样本 run583_r11（fd@120 短场探针≡语料✓）｜已定谳 gd 的 SPF.getAffectedItems n=1（另一瓶 SPF）→affected[0] 链双投，oracle 链空=2 投；几何错位嫌疑（SPF_a@2,3 上方 [1,3] 无物却 aff 到 SPF_b）｜单点=CoreItem.getAffectedItems/affectedCellsCache 格解析 vs oracle 对位→修→守门 evt12 样本+REG。
+>   - **【np25 波次标注 2026-10-31（f01）】✅已修 commit=167b7f6e**｜根因=**非格错位**：gd CoreTimer 到点保留 MultiTimer 叠加 pop/递归多发语义，而 oracle harness drive_timers 到点段先 timer.stop()（oracle/Utility/MultiTimer.gd stop 清 timestamps）再 emit——运行中 start() 排队的叠加到期在首到期拍被丢弃；run583_r11 SPF poisonTimer 于 1.9833 拍被双侧同量 start 3 次（瓶1 own+chain 叠加、瓶2 own），语料发 2 次、gd 发 3 次，5.5167 拍毒 9 多一行即首分歧@120。
+>   - 场影响=样本 run583_r11：修前 gd/py 各 143 事件 RED（fd@120）→修后 gd=py=语料 141 事件、canonical+渲染双判据双腿 PASS（守门 np25w_f01）；REG 九场零退步。**89 场族级收割（叠加 poisonTimer 形态应大面积同因）按指令留待波末全量 --compare-only，本面未跑全量。**
 > 2. **evt109 族 110 场 timeout1t 时基差**（54+43+13）：样本 run619_r18/run588_r18｜round-7 铁证=施加时内部 time 读数差 1 tick（gd to=5.55 v oracle 5.5167）｜先 oracle 腿分片取证（oracle_chunk_driver 1 1 1 配方；run619 ItemBook Nil/run588 超时勿重踩）定 LG 施加路径与 to 读数差，取证成功前不落码。
 > 3. **evt12 极长场 4 场（1201+ 桶）**：run1394_r18 fd@8666（10254 事件）｜前 8665 事件全对，分叉=Eggscalibur 攻击后 spikes 12 嵌套序｜超长场=数值累积稳定性面（时基差/毒栈平衡器长程漂移候选），取证同②的并行分片跑法。
 > 4. **evt8 余部 29 场 Crown 系 heal ±1**（11+10+4+4）：样本 run616_r18 fd@399（Crown heal 5 后 divergence）｜d7fe5cb5 三变量模型的残差族（timeout1t 档案 35 场定性近亲）｜按 BLND fr= 字段验收门逐场核 gain→fire 间隔 K/K-1，分 dur 边界 ULP 与多栈次序两小类。
+>   - **【np25 波次标注 2026-10-31（f04）】✅已修 commit=c0392d3b**｜现场实读=**25 场（11+10+4，台账 29 场的第 4 簇 n=4 已不在基线）**｜根因=gd 三变量计时模型漏镜像 Godot 3.6 引擎 Timer 的 real_t(float32) 存储（oracle_fight.gd:897 eng=get_time_left() 读 f32 值；f32(3.1)=3.0999999046 穿零 186 帧=语料 K，gd 用 f64 3.1 穿零 187 帧恰晚 1），且 fire 后缺 oracle drive_timers:915-917「timeout 处理器内重挂→当拍 e[0]=e[1]=新 eng」重同步块（同拍 proc 链再晚 1）——**双修后 25 场 invul ±1 签名全部消失**。
+>   - 场影响=样本 25 场：18 绿（含样本 run616_r18 fd@399 消失、双腿 PASS）+7 红但首分歧全部后移至他面签名（heal 数值±1：run725/942/948；伤害流：run1423/1524/1069/1495）——**evt8 Crown invul ±1 本体已终结**；REG 九场零退步；alignment.json 未动（波末全量 --compare-only 归主控）。
 > 5. **evt101 幸运栈 8 场**：样本 run827_r10 fd@198（Piercing Arrow gain 1，oracle 320 v gd 359 事件数差）｜幸运链放大面（BalancedRng luckBalance acc 残差候选）｜BRPROBE 式 acc 瞬时值+实例 id 探针（p332_probe 先例）。
+>   - **【np25 波次标注 2026-10-31（f05）】✅已修 commit=aba6d2b4**｜根因=散装宝石 Wisp 的邻接受影响格在 A2 轮「46 宝石复位 1×1」时被连坐清空（battle_items.json 的 Wisp.grid 只有 collision [[0,0]]、无 affected_cells，而 Wisp.tscn 自带 tile_data：t3=collision[(-1,-1)]+t4=affected 周邻 8 格），gd/py 两侧 getAffectedPoints 恒空→getNumAffectedItems()=0→addSpeed(0)→speed 1.0，oracle 真值 speed=1+5×0.1=1.5（Wisp@(2,2) 在 Vineweave Basket 内、8 邻恰 5 个 Nature）→Wisp 冷却 8.033s vs gd 12.05s（同一 jitter、双侧同链位），luck+10 迟到 241 tick→getBuffAccuracyMod 差 50→accuracy 掷链放大、胜负翻转。**台账原猜「BalancedRng luckBalance acc 残差」被证伪——首分歧在 Wisp 时点而非 acc。**
+>   - 场影响=run827_r10 翻绿（双腿 PASS，320=320）、run1150_r18 翻绿（双腿 PASS）、run1153_r18 推进 fd@378→694（事件数 764=764 对齐；残位=oracle idx694 Crown type8 heal@10.8333 gd 缺发，属 evt8 Crown 残差族=第 4 项，移交）、run994_r1（原绿锚）PASS 保持；异质 5 场红位与基线不变=**别根另立**（run946 SpiritBells 聚合差 1+2v3、run1104/1108/1163 Coil 数值差、run1261 Wand 101/102 型差——同簇异质，勿按本面 luckBalance 假设立案）；REG9 零退步；全量 --compare-only 留主控波末统一跑。
 > 6. **evt19@1-50 ×7 AoL t0 嵌套 heal 序**：样本 run846_r11 fd@5（AoL ty102→ty19 嵌套 depth2，gd 467 v oracle 67 事件数差巨大=t0 级联序）｜开战激活深级联的监听派发序差｜BUS/BUSL 对位（盘面 evt12 头号定谳同法）。
 > 7. **evt103 ×7 Heavy Drinking/Frostbite 伤害值**：样本 run594_r12 fd@384（Frostbite damage 31，oracle 1114 v gd 739 事件数差）｜伤害公式/冻伤栈面｜窗口首两行同值→需深入位对位（u 流法）。
 > 8. **evt102 10 场 King Crown heal**（5+5）：样本 run597_r18 fd@101（heal 11 窗口同值→晚位差）｜heal 计算/healingEfficiency 面｜同⑦打法。
@@ -1634,6 +1640,21 @@
 >   **n 翻转**（getItemsInCells 同格时有时无）=gd 内部 inventory 登记时序态
 >   （affectedCellsCache 重建时机/cleanCachedAffectedItems 清理点），
 >   与 oracle 差异并入同一次对位。
+>
+> **★ 波次标注补充线索（2026-10-31，f01/f04/f05 修后新增，供认领）★**
+> 波次状态：当前复验绿场=461/914；三面（f01/f04/f05）的 89+25+8 场全量
+> --compare-only 留波末主控统一跑，本波仅守门样本+REG 九场。
+> - **evt8 heal 数值±1 残簇（≥3 场，f04 修后易面暴露）**：样本 run942_r18
+>   fd@566、run948_r18 fd@1966、run725_r18 fd@455（Toad/Badger Spirit heal
+>   数值 ±1，f04 双修后 invul ±1 消失方显出）｜heal gain 计算/多栈次序面
+>   （原第 4 项「分 dur 边界 ULP 与多栈次序两小类」的 heal 半边）｜打法=⑦⑧
+>   同款 u 流深入位对位，先核 heal 值窗口首两行同值性。
+> - **evt8 伤害流新簇（4 场，f04 修后易面暴露）**：run1423_r18 fd@211、
+>   run1524_r18 fd@326、run1069_r18 fd@146、run1495_r18 fd@181（首分歧全部
+>   大幅后移且签名易面=伤害流）｜新签名，与 invul/heal 均不同根｜打法=先
+>   canonical 对拍再分簇定打法（勿按 invul ±1 假设立案，同 evt1 重分簇纪律）。
+> - **Crown type8 heal 缺发残位**：run1153_r18 idx694 oracle heal@10.8333
+>   gd 缺发（f05 推进后残留）｜已移交第 4 项 evt8 Crown 残差族，随该面收割。
 >
 ### P1 数据面整族（预计最大收敛面）
 
