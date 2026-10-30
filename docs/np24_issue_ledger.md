@@ -1069,6 +1069,39 @@
 >   EOL 幻影（git diff 内容为空，本员实测）——并入外来在途清单，一切
 >   执行体勿 add 勿还原。
 >
+> **★★ np25wf 修复面⑥：总线面 CALLDONE 取证——round-4「计数死锁」定谳作废 + 三修复形态证伪还原（2026-10-30，修复员）★★**
+> - **CALLDONE 实证（run619，66 次 LG 派发）**：`BUSCALL enter=66 done=66`
+>   全返回（call_funcv 全部返回）、同轮 HASHAS `has_method=True cls=LightGoobert.gd`
+>   ——**call_funcv 在执行 onItemActivated**。round-4/5 的「GACT=0=计数路径
+>   死锁/FuncRef 静默」**定谳作废**：GACT trace 行在 gd_core/Goobert.gd（诊断版），
+>   而 LightGoobert extends 解析的继承链落在 **gd_core_items/Goobert.gd**（同
+>   class_name 双文件、无 GACT 行）——**在错误的文件里找打点**。
+> - **三修复形态全部证伪（→已还原 HEAD）**：①callv 直调（round-5）②CVDBG
+>   callv+返回值（ret=Null×1312 零副作用）③分支展开 call（变量方法名）——
+>   事件数恒 19321 基线；④**字面名 call 追加（CALL2/复刻）=唯一执行者**但
+>   与 call_funcv **双计数**（ev 19321→23271、首分歧恶化 307→40：heal 提前）
+>   ⇒ 调用机制从来不是分歧源。
+> - **干净重对位（corpus vs gd 基线 19321）**：**施加序列前 4 笔完全对齐**
+>   （tick 152/155/279/293，round-4「计数节奏 240v279」系时钟基准错位误读
+>   ——oracle print 的 t=Util.time 含暖场/复跑累积偏移（实测 δ₂=78.7334），
+>   不可与 gd combat_time 直比）；唯一首分歧=**fire@334 timeout 移除量
+>   oracle −7 v gd −5**。gd BLND（combat 时钟可信）：Crown 削切把 batch0
+>   7→5 → fire 移 5；oracle 真跑段同窗 BCLEANSE `pick_to=43.2167`（**晚批**）
+>   → batch0 保 7 → fire 移 7。**新单点假设（下轮）**：削切时刻的批次分裂
+>   状态/选批落点两侧不同（gd 打早批 v oracle 打晚批）——纯 python 批次账
+>   重放可定谳（数据全在盘：gd BLND=np25_flk_b3 + oracle [BGAIN]/[BEXPIRE]/
+>   [BCLEANSE]=np25_flk_a3 33MB，δ₂=78.733367 已标定）。
+> - **还原净洁实证**：git checkout CoreEventBus + 三树同步 rc=0；
+>   run619 复验 **19321=HEAD 基线精确复现**；REG9 守门 np25_r6_restore_check
+>   逐场同位（570/1029/862/813/635 PASS、1160@155/732@179/695@172/1514@36
+>   双腿同位未动）；alignment 398/914 未触碰。
+> - **⚠ 环境坑再录**：probe resume 幂等跳过会复用**上一实验形态**的旧产物
+>   （本轮 4s「假完成」ev=23271 险些误判还原失败）——**每次实验前必须
+>   rm -rf scratch 产物目录**（round-3 已录，本轮再犯一次）。
+> - **commit 纪律说明**：本轮全部代码变更（CALLDONE/HASHAS/CVDBG/字面 call
+>   等实验态）均已 git checkout 还原，工作树仅剩外来在途文件+EOL 幻影——
+>   **无代码 diff 可 commit**；本条目为纯定谳修正回写。
+>
 ### P1 数据面整族（预计最大收敛面）
 
 - [ ] **P1-1 物品持久强化态缺失**：史流 setData 的 bonusMinDam/bonusMaxDam/bonusDamageFactor
