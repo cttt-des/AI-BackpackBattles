@@ -1194,6 +1194,74 @@
 > - **在途文件纪要（沿用第二循环）**：gd_core_test/gd_core/Goobert.gd EOL
 >   幻影勿 add 勿还原；工作树仅剩外来在途文件+幻影，本循环无代码 diff。
 >
+>
+> **★★ np25wf 台账收尾·第四循环：面⑦ 批次账重放第五证伪=削切落点假设不成立 → 总线面五连证伪按铁律 9 永停 + 换面 P1-1 勘察 → 收口复验 398/914 持平（2026-10-30，收尾记录员·四）★★**
+> - **第四循环 1 轮明细（face/根因/守门/commit，git log -24 实读）**：
+>   ① **面⑦ 总线面第五证伪+永停决定+换面勘察**（commit 3c01f816；纯定谳/
+>   勘察回写，零代码 diff）：face=fire@334 削切落点假设定谳轮（面⑥新单点
+>   假设「削切时刻批次分裂状态/选批落点差」的批次账重放验证；对位脚本
+>   output/_offpeak/np25_r7_ledger/_align.py 本员实读=gd BLND×oracle
+>   [BGAIN]/[BCLEANSE]/[BEXPIRE] 双账本对齐，δ₂=78.733367）。
+>   **削切落点假设证伪**=两侧同构 farthest（gd BLND len=2 partial 打
+>   index1、oracle BCLEANSE pick_to=晚批）；**真分歧=施加时内部 time 基差
+>   1~2 tick**（同一施加 gd to=5.55 v oracle to=5.5167/5.5333、施②
+>   5.5833 v 5.7）=**timeout1t 残红档案 dt=+1 同族**。δ 标定流教训=
+>   oracle print 流跨三场 Util.time 连续累积无统一 δ（δ₂/δ₃ 多版皆偏），
+>   批次 to 绝对值直比才是时钟无关对位。换面 **P1-1 勘察第一步（纯静态）
+>   完成**：cases pd 0/914 场携带（effects 178 处=Ring 族已消费）、消费端
+>   就绪（CoreItem:63-66+:1043/:1050）、py 引擎无 pd 注入=两端同缺数据源，
+>   修复需 _item_snapshot 扩 stats+重录受影响场（fights/ 写=禁区留独占
+>   窗口）。守门=本轮零代码变更零行为风险（alignment 398/914 未触碰）；
+>   取证工件 np25_flk_b3/np25_flk_a3+np25_r7_ledger 留档。
+> - **🛑 总线面永停决定（已发生，载自 3c01f816 commit 文实读）**：总线面
+>   五连证伪按铁律 9 永停——面④⑤⑥⑦ 对总线面挂载（连接断裂）/派发
+>   （FuncRef 静默→绕过）/调用机制（callv·CVDBG·字面 call 三形态）/
+>   削切落点（批次分裂状态·选批落点差）的假设链五次逐一证伪（各循环
+>   在册条目为证），本轮第五证伪（削切落点两侧同构 farthest）后铁律 9
+>   触发=**总线面永停；evt109（100 场）/evt12+evt105 级联簇后续归
+>   timeout1t dt=+1 面**。
+> - **✅ 第四循环收口复验（2026-10-30 12:01-12:03 收口步实跑，本员实读）**：
+>   gd 腿 rerun 11 场（=④⑤⑥取证样本场 run588/605/619/624/625/665/668/
+>   679/708/717/718，resume 跳过 903，**149.1s PASS**（selfcheck 已消耗
+>   一次复跑），selfcheck run588_r18 同种子复跑逐字节一致 ✓，**run619
+>   ev=19321=HEAD 基线精确复现**；output/oracle/align/gdcore/
+>   _align_gd_summary.txt 12:01 本员实读）+ py 腿产物 12:01 + compare
+>   五分片（_cmp_shards .in 12:01:38-39 / .out 12:03:34-42 mtime 实勘）
+>   → alignment.json **12:03:43 覆盖写回**（mtime 实勘）→ **ALIGNED
+>   398/914 持平**（本员实读 12:03 版：aligned=398/total=914、
+>   match_distribution 327/189；红簇工具复核同数）。**复验退出码 0 载自
+>   收口材料**（收口回执口径；工作流步内省本会话不可达不可自证）；
+>   compare 步源码语义=「aligned==total 才返 0」（tools/verify_oracle.py:1388
+>   本员复核）即 516 红场在册 compare 步恒返 1=常规返回非复验失败；
+>   盘面判据=gd 腿 PASS 摘要+五分片零缺场+ALIGNED 持平。基线历史链：
+>   279→394→398（第一循环）→398（第二循环）→398（第三循环）→**398
+>   （第四循环持平，四轮均零行为变更）**。
+> - **红簇 top20（398 基线 RED 516，tools/_np24_red_clusters.py --top 20
+>   本员实跑于 12:03 基线）**：n=50 evt109@151-400｜n=38 evt12@51-150｜
+>   n=37 evt109@401-1200｜n=30 evt1@151-400｜n=28 evt12@151-400｜n=25
+>   evt0@151-400｜n=17 evt12@401-1200｜n=17 evt105@151-400｜n=16
+>   evt1@51-150｜n=14 evt0@51-150｜n=13 evt109@51-150｜n=12 evt105@51-150｜
+>   n=11 evt12@1-50｜n=10 evt8@151-400｜n=10 evt8@401-1200｜n=9
+>   evt101@151-400｜n=9 evt102@151-400｜n=9 evt104@401-1200｜n=8
+>   evt103@151-400｜n=8 evt1@1-50（top20 合计 371，与第二/三循环逐项同=
+>   四轮零行为变更互证）；三大簇归属=evt109 族 100 场（面⑦定谳=施加时
+>   内部 time 基差 1~2 tick，归 timeout1t dt=+1 面）/evt12+evt105 级联
+>   123 场/evt0+evt1 族 93 场；localization=rng-mechanism 431/
+>   gd_core-kernel 85、match_distribution 实测 327/189（本员实读
+>   alignment.json 12:03 版）；py-only=0（本员实算：judgement.event_tuples
+>   oracle_gd=True 且 gd_py=False 逐场扫描=空集；327 场实为 gd≡py 对
+>   oracle 分歧）。
+> - **下轮建议（永停后重排，载自 3c01f816+本员整理）**：①timeout1t
+>   dt=+1 面重启（7 场残红档案+面⑦施加时基差 1~2 tick 铁证；oracle 腿
+>   ORACLE_DEBUG [timer-fire-dbg] 活体取证路径在档案）②P1-1 数据面五步
+>   申请独占窗口（勘察第一步纯静态已完成；修复=_item_snapshot 扩 stats+
+>   重录受影响场，fights/ 写=禁区）③evt0/evt1 局部族重分簇（93 场）
+>   ④run592 gd≡py 同位红@219 下一层 ⑤evt109/12/105 归 timeout1t 面后
+>   重分簇叙事刷新。战报全文：output/_offpeak/np25wf_r1/report.md
+>   （本地不入库，已覆盖更新为四循环全量版）。
+> - **在途文件纪要（沿用第三循环）**：gd_core_test/gd_core/Goobert.gd EOL
+>   幻影勿 add 勿还原；工作树仅剩外来在途文件+幻影，本循环无代码 diff。
+>
 ### P1 数据面整族（预计最大收敛面）
 
 - [ ] **P1-1 物品持久强化态缺失**：史流 setData 的 bonusMinDam/bonusMaxDam/bonusDamageFactor
