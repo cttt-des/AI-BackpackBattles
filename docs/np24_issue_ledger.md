@@ -1102,6 +1102,40 @@
 >   等实验态）均已 git checkout 还原，工作树仅剩外来在途文件+EOL 幻影——
 >   **无代码 diff 可 commit**；本条目为纯定谳修正回写。
 >
+> **★★ np25wf 修复面⑦：总线面第五证伪=削切落点假设收敛至 timeout1t 时基差——总线面永停；换面 P1-1 勘察（2026-10-30，修复员）★★**
+> - **fire@334 批次落点假设验证（纯 python 双账本，δ 标定流）**：oracle print
+>   流跨三场（暖场/正式/复跑 Util.time 连续累积），δ₂/δ₃ 多版锚定后确认
+>   **无法用统一 δ 对齐**——改用批次 to 绝对值直比（时钟无关）：
+>   **同一施加（corpus tick 152）gd 批次 to=5.55 v oracle to=5.5167/5.5333**；
+>   施②（155）gd to=5.5833 v oracle to=5.7——**两侧施加时的内部 time 读数
+>   基差 1~2 tick**。削切方向两侧**同构**（均为 farthest 最晚批：gd BLND
+>   len=2 时 partial 打 index1；oracle BCLEANSE pick_to=晚批 43.2167）——
+>   「gd 打早批 v oracle 打晚批」假设**证伪**；真分叉=**批次 to 的时基差**
+>   （fire 到期拍随 to 平移+削切落点随 to 归属漂移）——**与 timeout1t 残红
+>   档案「7 场 dt=+1（oracle fire 与连减模型差 1）」同族**（output/_round_patches/
+>   np24_fix/timeout1t_r1/family_still_red.json 已建档面）。
+> - **总线面处置**：五连证伪（FuncRef 绕过/三修复形态/计数死论/时钟节奏论/
+>   削切落点论）+ 本假设收敛至已知 timeout1t 面——**按铁律 9 永停总线面**；
+>   evt109/evt12/evt105 簇的后续收敛归 timeout1t dt=+1 面（7 场 oracle 腿
+>   取证定性档案扩展）。
+> - **换面 P1-1 勘察第一步（纯静态零 Godot）**：①cases json 物品条目键=
+>   affected/collision/crafted/effects/gems/key/occupied/rotation/script——
+>   **pd（史流 persistData）0/914 场携带**（仅 effects 178 处=Magic Ring 104+
+>   Superior Ring 74，np17 链已消费）；②消费端**就绪**：gd_core/CoreItem.gd:63-66
+>   bonusMinDam/bonusMaxDam/bonusDamageFactor 字段+:1043/:1050 战斗公式消费点；
+>   ③py 引擎 simulator/gd_core_engine.py 无 pd 注入（grep 零命中）——两端
+>   同缺数据源；④修复路径=台账 P1-1 五步（oracle_fight _item_snapshot 扩
+>   stats→**重录受影响场**）——**涉及 fights/ 语料写=禁区**，需独占窗口+
+>   用户级决策，本轮不落码。
+> - **守门**：本轮零代码变更（纯对位分析+勘察）；alignment 398/914 未触碰；
+>   上轮还原态延续（工作树仅外来在途文件+EOL 幻影）。
+> - **两轮受阻收尾提示（按 ask 预案）**：round-6（总线面取证）+round-7（本面
+>   验证转永停+换面勘察）连续两轮无代码入库；round-8 建议=①timeout1t dt=+1
+>   面重启（7 场档案+本轮 oracle print 时基差铁证——oracle 腿 ORACLE_DEBUG
+>   [timer-fire-dbg] 活体取证路径已在档案）或②P1-1 五步申请独占窗口重录
+>   或③evt0/evt1 局部族重分簇（93 场）。
+>
+>
 > **★★ np25wf 台账收尾·第三循环：面⑥ CALLDONE 取证定谳修正（无代码）→ 收口复验 398/914 持平（2026-10-30，收尾记录员·三）★★**
 > - **第三循环 1 轮明细（face/根因/守门/commit，git log -20 实读）**：
 >   ① **面⑥ 总线面 CALLDONE 取证——round-4「计数死锁」定谳作废 + 三修复
