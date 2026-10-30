@@ -980,6 +980,35 @@
 >   evt109+evt12/evt105 连带复验。
 > - **守门**：本轮零代码变更=零行为风险（alignment 398/914 未触碰）。
 >
+> **★★ np25wf 修复面⑤：总线面开题——连接/投递实证 + FuncRef 绕过证伪（2026-10-30，修复员）★★**
+> - **连接面实证（run619 gd BLND 探针现成 trace）**：**LG 在监听表内**——
+>   `BUSL activated 2 => Light Goobert/ot1` 等投递行 1312 次（LG 作为 receiver
+>   出现在 FFR/Cheese/Goobling/Crown 等激活的派发清单里）⇒ **connectForCombat
+>   挂接成功、总线按 (emitter,signal) 键控投递正常**——round-4 的「连接断裂」
+>   假设证伪。
+> - **BUSF 取证（派发循环加 funcRef.is_valid() 门控诊断）**：对 LG 的
+>   activated 派发 `BUSF valid=True fn=onItemActivated args=1`——**FuncRef
+>   有效、函数名/参数形状全对，call_funcv 却静默不执行**（onItemActivated
+>   入口 GACTRAW 无条件打点零输出、GACT trace 零行）。
+> - **FuncRef 绕过修复（已实施→证伪→已还原）**：连接表改
+>   [funcRef, receiver, method]、派发改 receiver.callv(method, args) 直调
+>   （_rt 垫片 GodotObject.callv 既有 ✓）——run619 重放：GACTRAW 仍零输出、
+>   首分歧@307 未动 ⇒ **失效层比 FuncRef 更深**（receiver.callv 直调同样静默）
+>   ⇒ 按 铁律 8/9 还原 FuncRef 路径（对其他监听者=工作路径，Spiked Wall 的
+>   pre_take_damage 监听 roll 正常 firing）。还原后三树同步 rc=0。
+> - **round-4 勘误**：application 时序 = **对齐**（round-4 的「gd 施加晚
+>   1/3 tick」系 BLND fr=ctx.frame_counter 与事件 t_tick 差 1 的读数误判；
+>   两侧施加同在 combat tick 152/155）。真分歧收敛为两条：①**计数节奏**——
+>   oracle=计数器 6 次触发（第 2 次施加 combat tick 240）；gd=countdown 兜底
+>   （第 2 次施加 tick 279，39 tick 差）；②**批次 timeout 值**——gd 5.55/5.5833
+>   v oracle 5.5333/5.5333（ctx.time@施加读数差，且 oracle 双批同爆结构 gd 无）。
+> - **下轮探针（设计就绪）**：派发循环 call 后加「CALLDONE n=」打点 +
+>   receiver.callv 返回值/异常捕获——区分「FuncRef/直调都不进入函数体」v
+>   「进入但 instant crash」；同场对位 Storage Coffin（同清单内、非 Goobert、
+>   监听行为未知）分离「连接类差」v「回调体差」。
+> - **守门**：绕过已还原=零行为差（alignment 398/914 未触碰）；取证工件
+>   np25_flk_b3/（BUSF 版 trace）+np25_flk_a3/（oracle 账本）留档。
+>
 ### P1 数据面整族（预计最大收敛面）
 
 - [ ] **P1-1 物品持久强化态缺失**：史流 setData 的 bonusMinDam/bonusMaxDam/bonusDamageFactor
