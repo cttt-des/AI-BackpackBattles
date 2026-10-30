@@ -26,6 +26,15 @@ class PestilenceFlask_2(_R.C("res://gd_core_items/Potion.gd")):
 		if self.isEmpty():
 			return
 
+		# ★ np25 evt12 面 AFFL 探针（双门控零耗链）：反制投掷链定谳——
+		#   getAffectedItems 运行时值（gd 3 投 v oracle 2 投，affected[0] 链
+		#   是否多执行一级）。定谳后可移除或保留（零耗不影响行为）。
+		_aff = self.getAffectedItems()
+		_aff_names = ""
+		for _a in _iter(_aff):
+			_aff_names += String(_a.descriptor.identifier) + ","
+		self.ctx.rng.trace_diag("AFFL", String(self.descriptor.identifier), "n=" + str(len(_aff)), _aff_names)
+
 		self.drink()
 
 		self.triggerPotion(event)
