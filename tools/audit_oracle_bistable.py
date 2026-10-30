@@ -106,23 +106,36 @@ def run_harness_once(case_id: str, probe_root: str, timeout: float) -> Dict[str,
     harness 对 cases[0] 自动做紧邻同种子复跑（1 进程=2 跑）。"""
     case_probe_dir = os.path.join(probe_root, case_id)
     os.makedirs(case_probe_dir, exist_ok=True)
-    env = dict(os.environ)
-    env["ORACLE_FIGHTS_ROOT"] = probe_root
-    env["ORACLE_ONLY_CASES"] = case_id
-    cmd = [GODOT, "--headless", "--audio-driver", "Dummy",
-           "--path", ORACLE_PROJECT, "--script", "oracle_fight.gd"]
-    proc = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8",
-                          errors="replace", cwd=ROOT, env=env, timeout=timeout)
-    stdout = proc.stdout or ""
+    # ★ 2026-10-30：改走 tools/godot_headless（--no-window 而非 --headless）。
+    #   Godot 3.6 没有 --headless，写了会走窗口路径出真窗口、还招搜狗 IME
+    #   弹 "OpenMem failed" 模态框；同时本沙箱禁匿名管道，capture_output 会
+    #   CreatePipe 失败（WinError 5），故输出重定向到文件再读回。
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import godot_headless as gh
+    cmd = gh.cmd(project="oracle", script="oracle_fight.gd")
+    p, _lp, _fh = gh.spawn(cmd, label="bistable_%s" % case_id, tag="bistable",
+                           env_extra={"ORACLE_FIGHTS_ROOT": probe_root,
+                                      "ORACLE_ONLY_CASES": case_id})
+    try:
+        rc = p.wait(timeout=timeout)
+    except subprocess.TimeoutExpired:
+        p.kill()
+        p.wait()
+        _fh.close()
+        raise
+    finally:
+        try:
+            _fh.close()
+        except OSError:
+            pass
+    stdout = gh.read_log(_lp)
     # 判定行可能带全角✓/场 id，宽松匹配
     verdict = "pass" if (VERDICT_PASS in stdout) else \
         ("fail" if VERDICT_FAIL in stdout else "no-verdict")
     log_path = os.path.join(case_probe_dir, "_harness_stdout.log")
     with io.open(log_path, "w", encoding="utf-8", newline="\n") as fh:
-        fh.write(stdout)
-        if proc.stderr:
-            fh.write("\n--- stderr ---\n" + proc.stderr[-4000:])
-    return {"verdict_line": verdict, "exit": proc.returncode, "log": log_path}
+        fh.write(stdout)  # 已含 stderr（重定向合并），无需再追加
+    return {"verdict_line": verdict, "exit": rc, "log": log_path}
 
 
 def audit_case(case_id: str, probe_root: str) -> Dict[str, Any]:

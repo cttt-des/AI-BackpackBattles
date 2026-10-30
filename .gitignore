@@ -8,8 +8,7 @@ build/
 build_gui/
 *.spec
 dist/*
-# 阵容 JSON 入库（含游戏历史导出存档——已知联动问题的复现材料，见 README）
-!dist/lineups/
+
 
 # ============ 日志与临时文件 ============
 logs/
@@ -22,15 +21,9 @@ gh_tmp/
 Backpack Battles/
 *.pck
 # 反编译产物的整包压缩档（467MB，本地备份用，不入库）
-decompiled_full.7z
+
 
 # ============ 提取/解密/反编译的游戏内容（本地保留，不入库）============
-extracted/
-extracted_running/
-extracted_v117/
-extracted_decrypted/
-extracted_gdc/
-decompiled_gd/
 
 # 反编译最终产物（入库保留源码类文本）；排除二进制/派生资源、GDRE 中间缓存、导出日志与 Godot 自动生成文件
 decompiled_full/.autoconverted/

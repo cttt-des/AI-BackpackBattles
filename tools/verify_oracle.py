@@ -53,6 +53,7 @@ import os
 import re
 import subprocess
 import sys
+import time
 from typing import Any, Dict, List, Optional, Tuple
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -231,21 +232,26 @@ def run_godot(case_ids: Optional[List[str]] = None,
         env["ORACLE_ALIGN_OUT"] = GD_OUT
         if chunk > 0:
             env["ORACLE_ALIGN_CHUNK"] = str(chunk)
-        # ★ Godot 3.6 无 --headless（那是 4.x 参数，写了会走 GUI 窗口路径触发
-        #   输入法注入 → OpenMem failed err=5 噪声风暴）；标准参数是 --no-window。
-        cmd = [GODOT, "--no-window", "--audio-driver", "Dummy", "--path", os.path.join(ROOT, "gd_core_test"),
-               "--script", "OracleAlignBattle.gd"]
-        proc = subprocess.run(cmd, capture_output=True, text=True,
-                              encoding="utf-8", errors="replace", cwd=ROOT, env=env)
-        last_rc = proc.returncode
+        # ★ 2026-10-30 统一走 tools/godot_headless：--no-window（3.6 无 --headless，
+        #   写了会走窗口路径）、**独立隐藏桌面**（否则窗口与搜狗 IME 的
+        #   "OpenMem failed" 弹窗都会出现在用户屏幕上）、输出重定向到文件
+        #   （沙箱禁匿名管道，capture_output 会 WinError 5）。
+        import godot_headless as _gh
+        cmd = _gh.cmd(project="gd_core_test", script="OracleAlignBattle.gd")
+        p, log_path, _fh = _gh.spawn(cmd, label="gd_r%d" % round_i,
+                                     env_extra={"APPDATA": env["APPDATA"],
+                                                "ORACLE_ALIGN_OUT": GD_OUT,
+                                                **({"ORACLE_ALIGN_CHUNK": str(chunk)}
+                                                   if chunk > 0 else {})})
+        _fh.close()
+        last_rc = p.wait()
         done_after = sum(1 for cid in ids
                          if _event_count(os.path.join(GD_OUT, cid, "events.json")) > 0)
         print("[godot] 第 %d 轮：退出码 %d，完成 %d/%d" % (round_i + 1, last_rc,
                                                           done_after, total))
-        if proc.stdout:
-            sys.stdout.write(proc.stdout[-1200:])
-        if proc.stderr:
-            sys.stderr.write(proc.stderr[-800:])
+        tail_txt = _gh.read_log(log_path)[-2000:]
+        if tail_txt:
+            sys.stdout.write(tail_txt)
         if done_after >= total:
             return 0
         if done_after <= done_before:
@@ -676,6 +682,361 @@ def first_divergence(a: List, b: List, label_a: str, label_b: str) -> Dict[str, 
     return out
 
 
+# ── 并行比对（2026-10-29）─────────────────────────────────────────────
+# 比对是**纯 CPU 的逐场独立计算**（读三份 events.json → canonical_stream →
+# render_lines → first_divergence），无共享状态，故可按 case 分片并行。
+# 实测 914 场：串行约 10 分钟 → 5 路 279s（LPT 分桶后各片 173MB 均衡）；
+# 结果与串行**逐场一致**（perCase 顺序、match、首分歧 index 全等，
+# 对照产物 output/_recovery/align_par_lpt.json）。
+#
+# 实现约束（照抄别改）：
+#   * 沙箱禁止命名管道（ProcessPoolExecutor 建 Pipe 报 WinError 5），
+#     故用**独立子进程 + 真实文件交换**，分片结果写 cmp_shards/shard_N.out.json；
+#   * 分桶用 LPT（按语料 events.json 体积降序装箱），避免轮转分片把长战堆一起；
+#   * 结果必须按 cases 原顺序还原——alignment.json 的 perCase 顺序是可比基线；
+#   * 任一子进程失败即抛错（由 main 决定是否回退串行），绝不静默缺场。
+#
+# ── 并行度：默认"按当时机器资源实时决定"（2026-10-29）───────────────────
+# 规则（三条同时满足才加路数，取最小）：
+#   1. CPU：jobs <= max(1, cpu_count - 1)   —— 留一核给系统与主进程
+#   2. 内存：jobs <= 可用内存 // PER_JOB_MEM_GB  —— 每个 worker 的峰值预算
+#   3. 硬上限 PARALLEL_MAX_JOBS = 5        —— 与 gd/py 腿分片对齐，收益递减
+# 任何一条探测失败都退回保守值（1），绝不因为探测异常把机器压垮。
+PARALLEL_MAX_JOBS = 5
+PER_JOB_MEM_GB = 1.2      # 单 worker 峰值预算：长战单场 events 解析 + 内核装载
+
+
+def _avail_mem_gb() -> float:
+    """当前可用物理内存（GB）。Windows 用 GlobalMemoryStatusEx，其它平台退回 8。"""
+    try:
+        import ctypes
+
+        class _MEMSTATUSEX(ctypes.Structure):
+            _fields_ = [("dwLength", ctypes.c_ulong),
+                        ("dwMemoryLoad", ctypes.c_ulong),
+                        ("ullTotalPhys", ctypes.c_ulonglong),
+                        ("ullAvailPhys", ctypes.c_ulonglong),
+                        ("ullTotalPageFile", ctypes.c_ulonglong),
+                        ("ullAvailPageFile", ctypes.c_ulonglong),
+                        ("ullTotalVirtual", ctypes.c_ulonglong),
+                        ("ullAvailVirtual", ctypes.c_ulonglong),
+                        ("ullAvailExtendedVirtual", ctypes.c_ulonglong)]
+
+        st = _MEMSTATUSEX()
+        st.dwLength = ctypes.sizeof(_MEMSTATUSEX)
+        if not ctypes.windll.kernel32.GlobalMemoryStatusEx(ctypes.byref(st)):
+            return 8.0
+        return float(st.ullAvailPhys) / (1024.0 ** 3)
+    except Exception:  # noqa: BLE001 —— 探测失败不影响正确性
+        return 8.0
+
+
+def auto_jobs(n_cases: int, requested: int = 0) -> int:
+    """并行度决策：requested>0 时按请求（仍受上限约束），0=按机器资源自动。"""
+    if n_cases <= 0:
+        return 1
+    cap = PARALLEL_MAX_JOBS
+    if requested and requested > 0:
+        return max(1, min(int(requested), cap, n_cases))
+    cpu = os.cpu_count() or 1
+    by_cpu = max(1, cpu - 1)
+    mem = _avail_mem_gb()
+    by_mem = max(1, int(mem // PER_JOB_MEM_GB))
+    return max(1, min(cap, by_cpu, by_mem, n_cases))
+
+
+def _shard_by_weight(case_ids: List[str], jobs: int) -> Tuple[List[List[str]], List[int]]:
+    """LPT 分桶：按语料 events.json 体积降序投放给当前最轻的桶。
+
+    长战（run906_r18 25026 事件 / 8MB）若与别的场挤在同一片，该片决定总时长；
+    LPT 让各片负载近似相等（实测 914 场 5 片各 173MB，同时收尾）。
+    """
+    weight = {}
+    for cid in case_ids:
+        try:
+            weight[cid] = os.path.getsize(os.path.join(FIGHTS_DIR, cid, "events.json"))
+        except OSError:
+            weight[cid] = 1
+    buckets: List[List[str]] = [[] for _ in range(jobs)]
+    load = [0] * jobs
+    for cid in sorted(case_ids, key=lambda c: -weight[c]):
+        k = load.index(min(load))
+        buckets[k].append(cid)
+        load[k] += weight[cid]
+    return buckets, load
+
+
+def _worker_env(idx: int) -> Dict[str, str]:
+    """并行 worker 的环境：按分片号隔离 APPDATA。
+
+    每个 worker 是独立 python 进程（自身 PID 不同），但 run_godot 内部按
+    os.getpid() 再派生一层，仍有重叠风险；这里显式给 ORACLE_ALIGN_APPDATA，
+    run_godot 会优先采用它，保证同一时刻多个 Godot 不共 user://。
+    """
+    env = dict(os.environ)
+    env["ORACLE_ALIGN_APPDATA"] = os.path.join(
+        ROOT, "output", "_recovery", "appdata_p", "shard_%d_%d" % (os.getpid(), idx))
+    os.makedirs(env["ORACLE_ALIGN_APPDATA"], exist_ok=True)
+    return env
+
+
+def _spawn_workers(subcmd: str, buckets: List[List[str]], tmpdir: str,
+                   log_prefix: str) -> List[Tuple[int, int, Any]]:
+    """起若干子进程（一桶一进程），返回 [(序号, 场数, Popen)]。
+
+    subcmd: 传给本文件的子命令（--gd-worker/--py-worker），每桶一个清单文件。
+    """
+    os.makedirs(tmpdir, exist_ok=True)
+    procs = []
+    for i, shard in enumerate(buckets):
+        if not shard:
+            continue
+        lst = os.path.join(tmpdir, "%s_%d.in.json" % (log_prefix, i))
+        with io.open(lst, "w", encoding="utf-8") as fh:
+            json.dump(shard, fh)
+        log = open(os.path.join(tmpdir, "%s_%d.log" % (log_prefix, i)), "wb")
+        procs.append((i, len(shard), subprocess.Popen(
+            [sys.executable, "-X", "utf8", os.path.abspath(__file__), subcmd, lst],
+            cwd=ROOT, stdout=log, stderr=subprocess.STDOUT, env=_worker_env(i))))
+    return procs
+
+
+def gd_worker_main(list_path: str) -> int:
+    """gd 腿子进程：跑一个分片（chunk=0，避免每 120 场再重启 Godot）。"""
+    with io.open(list_path, encoding="utf-8") as fh:
+        case_ids = json.load(fh)
+    return run_godot(case_ids=case_ids, chunk=0)
+
+
+def py_worker_main(list_path: str) -> int:
+    """py 腿子进程：跑一个分片（run_py 自身幂等跳过已有产物）。"""
+    with io.open(list_path, encoding="utf-8") as fh:
+        want = json.load(fh)
+    fixture = {c["case_id"]: c for c in
+               json.load(io.open(CASES_JSON, encoding="utf-8"))["cases"]}
+    cases = [fixture[c] for c in want if c in fixture]
+    return run_py(cases)
+
+
+def run_godot_parallel(case_ids: List[str], jobs: int) -> int:
+    """gd 腿并行：按 LPT 分片、每片一个子进程；返回首个非零 rc（0=全成功）。"""
+    jobs = auto_jobs(len(case_ids), jobs)
+    if jobs <= 1:
+        print("[godot] 串行（jobs=1）")
+        return run_godot(case_ids=case_ids, chunk=0)
+    buckets, load = _shard_by_weight(case_ids, jobs)
+    print("[godot] 并行 %d 路，分桶负载（MB）：%s" % (
+        jobs, ", ".join("%.1f" % (x / 1048576.0) for x in load)))
+    tmpdir = os.path.join(ALIGN_DIR, "_gd_shards")
+    t0 = time.time()
+    procs = _spawn_workers("--gd-worker", buckets, tmpdir, "gd")
+    rc_all = 0
+    for i, n, proc in procs:
+        rc = proc.wait()
+        print("[godot] 分片 %d 完成：%d 场 rc=%s（累计 %.0fs）" % (i, n, rc, time.time() - t0))
+        if rc and not rc_all:
+            rc_all = rc
+    return rc_all
+
+
+def run_py_parallel(cases: List[Dict[str, Any]], jobs: int) -> int:
+    """py 腿并行：按 LPT 分片、每片一个子进程。"""
+    case_ids = [c["case_id"] for c in cases]
+    jobs = auto_jobs(len(case_ids), jobs)
+    if jobs <= 1:
+        print("[py] 串行（jobs=1）")
+        return run_py(cases)
+    buckets, load = _shard_by_weight(case_ids, jobs)
+    print("[py] 并行 %d 路，分桶负载（MB）：%s" % (
+        jobs, ", ".join("%.1f" % (x / 1048576.0) for x in load)))
+    tmpdir = os.path.join(ALIGN_DIR, "_py_shards")
+    t0 = time.time()
+    procs = _spawn_workers("--py-worker", buckets, tmpdir, "py")
+    rc_all = 0
+    for i, n, proc in procs:
+        rc = proc.wait()
+        print("[py] 分片 %d 完成：%d 场 rc=%s（累计 %.0fs）" % (i, n, rc, time.time() - t0))
+        if rc and not rc_all:
+            rc_all = rc
+    return rc_all
+
+
+def _run_both_legs(cases: List[Dict[str, Any]], gd_jobs: int, py_jobs: int,
+                   skip_godot: bool = False, skip_py: bool = False) -> None:
+    """gd 腿（Godot 子进程）与 py 腿（纯 Python）**重叠执行**（2026-10-30）。
+
+    为什么能重叠：两腿读同一份 case 清单，但产物写各自目录（GD_OUT / PY_OUT），
+    中间不交换任何数据；唯一的交汇点是之后的 compare，它必须等两腿都完。
+    串行时总耗时 = gd + py，重叠后 = max(gd, py)。
+
+    并行度预算：两腿同时跑会争 CPU，故默认把总预算 PARALLEL_MAX_JOBS 平分成
+    两半（各至少 1）；用户显式 --gd-jobs/--py-jobs 时按显式值，不被截断。
+
+    失败语义不变：某腿非零不中断另一腿，只打警告（比对阶段会用已有产物给出
+    "缺产物"结论，绝不静默当作一致）。
+    """
+    if skip_godot and skip_py:
+        return
+    if skip_godot or skip_py:
+        # 只有一腿 → 没什么可重叠的，按原样串行
+        if not skip_godot:
+            rc = run_godot_parallel([c["case_id"] for c in cases], gd_jobs)
+            if rc != 0:
+                print("gd_core(Godot) 批量未全 PASS（退出码 %d）——继续比对已有产物" % rc,
+                      file=sys.stderr)
+        if not skip_py:
+            run_py_parallel(cases, py_jobs)
+        return
+
+    case_ids = [c["case_id"] for c in cases]
+    gd_n = auto_jobs(len(case_ids), gd_jobs)
+    py_n = auto_jobs(len(case_ids), py_jobs)
+    if gd_n <= 1 and py_n <= 1:
+        _run_legs_serial(case_ids, cases, gd_jobs, py_jobs)
+        return
+
+    # ── 流水线重叠 ─────────────────────────────────────────────────────
+    # gd 腿必须**先**产出：py 腿读 gd 的 events.json 取 activation_order
+    # （verify_oracle.py:318-322，激活顺序来源），没产物就 skip。所以两腿
+    # 不能整段重叠，只能**按分片流水**：gd 的第 N 片一完成，立刻让 py 接手这
+    # 一片，gd 后面的片继续跑。实测总耗时 = 首批 py 等待 + 后续交错。
+    gd_buckets, gd_load = _shard_by_weight(case_ids, gd_n)
+    print("[legs] 流水线：gd %d 路交错，py 分片批跟随（py 最多 %d 路/批）"
+          % (gd_n, py_n))
+    print("[legs] gd 分桶负载（MB）：%s"
+          % ", ".join("%.1f" % (x / 1048576.0) for x in gd_load))
+    t0 = time.time()
+    tmpdir = os.path.join(ALIGN_DIR, "_gd_shards")
+    gd_procs = _spawn_workers("--gd-worker", gd_buckets, tmpdir, "gdpipe")
+    py_procs: List[Tuple[int, int, Any]] = []
+    rc_all = 0
+    pid = 0
+    for i, n, proc in gd_procs:
+        rc = proc.wait()
+        if rc and not rc_all:
+            rc_all = rc
+        print("[legs] gd 片 %d 完成（%d 场 rc=%s，累计 %.0fs）——py 接手该片"
+              % (i, n, rc, time.time() - t0))
+        shard = gd_buckets[i]
+        # 该片的 py 按 py_n 再切一刀，避免单进程串跑长尾
+        sub = max(1, min(py_n, len(shard)))
+        for k, part in enumerate(shard[j::sub] for j in range(sub)):
+            if not part:
+                continue
+            lstdir = os.path.join(ALIGN_DIR, "_py_shards")
+            os.makedirs(lstdir, exist_ok=True)
+            lst = os.path.join(lstdir, "pypipe_%d_%d.in.json" % (i, k))
+            with io.open(lst, "w", encoding="utf-8") as fh:
+                json.dump(part, fh)
+            log = open(os.path.join(lstdir, "pypipe_%d_%d.log" % (i, k)), "wb")
+            py_procs.append((pid, len(part), subprocess.Popen(
+                [sys.executable, "-X", "utf8", os.path.abspath(__file__),
+                 "--py-worker", lst],
+                cwd=ROOT, stdout=log, stderr=subprocess.STDOUT,
+                env=_worker_env(100 + pid))))
+            pid += 1
+    for j, n, proc in py_procs:
+        prc = proc.wait()
+        print("[legs] py 片 %d 完成（%d 场 rc=%s，累计 %.0fs）"
+              % (j, n, prc, time.time() - t0))
+    print("[legs] 流水线完成，总墙钟 %.0fs" % (time.time() - t0))
+    if rc_all:
+        print("gd_core(Godot) 批量未全 PASS（退出码 %s）——继续比对已有产物" % (rc_all,),
+              file=sys.stderr)
+
+
+def _run_legs_serial(case_ids: List[str], cases: List[Dict[str, Any]],
+                     gd_jobs: int, py_jobs: int) -> None:
+    """一腿一路时的退化路径：gd 跑完再 py。"""
+    rc = run_godot_parallel(case_ids, gd_jobs)
+    if rc != 0:
+        print("gd_core(Godot) 批量未全 PASS（退出码 %d）——继续比对已有产物" % rc,
+              file=sys.stderr)
+    run_py_parallel(cases, py_jobs)
+
+
+COMPARE_MAX_JOBS = 5
+
+
+def _compare_worker_main(list_path: str, out_path: str) -> int:
+    """子进程入口：读 case 清单 → 逐场比对 → 写 {case_id: result}。"""
+    with io.open(list_path, encoding="utf-8") as fh:
+        case_ids = json.load(fh)
+    et = _et_names()
+    out: Dict[str, Any] = {}
+    for cid in case_ids:
+        try:
+            out[cid] = compare_case(cid, et)
+        except Exception as exc:  # noqa: BLE001 —— 与串行口径完全一致
+            out[cid] = {"caseId": cid, "match": "比对异常",
+                        "error": "%s: %s" % (type(exc).__name__, exc),
+                        "firstDivergence": None}
+    tmp = out_path + ".tmp"
+    with io.open(tmp, "w", encoding="utf-8") as fh:
+        json.dump(out, fh, ensure_ascii=False)
+    os.replace(tmp, out_path)
+    return 0
+
+
+def compare_cases(cases: List[Dict[str, Any]], et_names: Dict[int, str],
+                  jobs: int = COMPARE_MAX_JOBS) -> List[Dict[str, Any]]:
+    """逐场比对；jobs>1 时用子进程分片并行（保序），否则单进程。"""
+    order = [c["case_id"] for c in cases]
+    jobs = auto_jobs(len(order), jobs)
+    if jobs <= 1:
+        per_case = []
+        for i, cid in enumerate(order, 1):
+            try:
+                result = compare_case(cid, et_names)
+            except Exception as exc:  # noqa: BLE001
+                result = {"caseId": cid, "match": "比对异常",
+                          "error": "%s: %s" % (type(exc).__name__, exc),
+                          "firstDivergence": None}
+            per_case.append(result)
+            if i % 20 == 0 or i == len(order):
+                aligned = sum(1 for r in per_case if r.get("match") == "三方一致")
+                print("  [compare] %d/%d（三方一致 %d）" % (i, len(order), aligned))
+        return per_case
+
+    t0 = time.time()
+    buckets, load = _shard_by_weight(order, jobs)
+    print("  [compare] 并行 %d 路，分桶负载（MB）：%s" % (
+        jobs, ", ".join("%.1f" % (x / 1048576.0) for x in load)))
+
+    tmpdir = os.path.join(ALIGN_DIR, "_cmp_shards")
+    os.makedirs(tmpdir, exist_ok=True)
+    procs = []
+    for i, shard in enumerate(buckets):
+        if not shard:
+            continue
+        lst = os.path.join(tmpdir, "shard_%d.in.json" % i)
+        out = os.path.join(tmpdir, "shard_%d.out.json" % i)
+        with io.open(lst, "w", encoding="utf-8") as fh:
+            json.dump(shard, fh)
+        if os.path.exists(out):
+            os.remove(out)
+        procs.append((i, len(shard), out, subprocess.Popen(
+            [sys.executable, "-X", "utf8", os.path.abspath(__file__),
+             "--compare-worker", lst, out],
+            cwd=ROOT, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)))
+
+    out_by_id: Dict[str, Dict[str, Any]] = {}
+    for i, n, out, proc in procs:
+        rc = proc.wait()
+        if rc != 0 or not os.path.exists(out):
+            raise RuntimeError("compare 分片 %d 失败（rc=%s，%d 场）" % (i, rc, n))
+        with io.open(out, encoding="utf-8") as fh:
+            out_by_id.update(json.load(fh))
+        print("  [compare] 分片 %d 完成（%d 场，累计 %.1fs）" % (i, n, time.time() - t0))
+    missing = [c for c in order if c not in out_by_id]
+    if missing:
+        raise RuntimeError("并行比对缺 %d 场（首例 %s）" % (len(missing), missing[0]))
+    aligned = sum(1 for c in order if out_by_id[c].get("match") == "三方一致")
+    print("  [compare] %d/%d（三方一致 %d，%.1fs）" % (
+        len(order), len(order), aligned, time.time() - t0))
+    return [out_by_id[cid] for cid in order]
+
+
 def compare_case(case_id: str, et_names: Dict[int, str]) -> Optional[Dict[str, Any]]:
     paths = {
         "oracle": os.path.join(FIGHTS_DIR, case_id, "events.json"),
@@ -984,8 +1345,30 @@ def main() -> int:
     ap.add_argument("--skip-godot", action="store_true", help="跳过 gd_core(Godot) 重放")
     ap.add_argument("--skip-py", action="store_true", help="跳过 gd_core_py 重放")
     ap.add_argument("--compare-only", action="store_true", help="只重跑比对（复用全部重放产物）")
+    ap.add_argument("--gd-jobs", type=int, default=0,
+                    help="gd_core(Godot) 重放并发数（0=按机器资源自动，上限 %d）"
+                         % PARALLEL_MAX_JOBS)
+    ap.add_argument("--py-jobs", type=int, default=0,
+                    help="gd_core_py 重放并发数（0=按机器资源自动，上限 %d）"
+                         % PARALLEL_MAX_JOBS)
+    ap.add_argument("--compare-jobs", type=int, default=0,
+                    help="比对并发数（0=按机器资源自动，上限 %d；1=串行）"
+                         % PARALLEL_MAX_JOBS)
     ap.add_argument("--alignment-out", default=ALIGNMENT_JSON)
+    # 内部子进程入口（并行分片 worker），不要手工调用
+    ap.add_argument("--compare-worker", nargs=2, default=None,
+                    metavar=("LIST_JSON", "OUT_JSON"), help=argparse.SUPPRESS)
+    ap.add_argument("--gd-worker", default=None, metavar="LIST_JSON",
+                    help=argparse.SUPPRESS)
+    ap.add_argument("--py-worker", default=None, metavar="LIST_JSON",
+                    help=argparse.SUPPRESS)
     args = ap.parse_args()
+    if args.compare_worker:
+        return _compare_worker_main(*args.compare_worker)
+    if args.gd_worker:
+        return gd_worker_main(args.gd_worker)
+    if args.py_worker:
+        return py_worker_main(args.py_worker)
 
     cases = select_cases(args.limit)
     if args.cases:
@@ -1026,27 +1409,11 @@ def main() -> int:
         if not cases:
             print("夹具为空（全部用例生成期被剔除）", file=sys.stderr)
             return 2
-        if not args.skip_godot:
-            rc = run_godot([c["case_id"] for c in cases] if args.cases else None)
-            if rc != 0:
-                print("gd_core(Godot) 批量未全 PASS（退出码 %d）——继续比对已有产物" % rc,
-                      file=sys.stderr)
-        if not args.skip_py:
-            run_py(cases)
+        _run_both_legs(cases, args.gd_jobs, args.py_jobs,
+                       skip_godot=args.skip_godot, skip_py=args.skip_py)
 
     et_names = _et_names()
-    per_case = []
-    for i, c in enumerate(cases, 1):
-        try:
-            result = compare_case(c["case_id"], et_names)
-        except Exception as exc:  # noqa: BLE001 —— 单场比对失败如实记档
-            result = {"caseId": c["case_id"], "match": "比对异常",
-                      "error": "%s: %s" % (type(exc).__name__, exc),
-                      "firstDivergence": None}
-        per_case.append(result)
-        if i % 20 == 0 or i == len(cases):
-            aligned = sum(1 for r in per_case if r.get("match") == "三方一致")
-            print("  [compare] %d/%d（三方一致 %d）" % (i, len(cases), aligned))
+    per_case = compare_cases(cases, et_names, args.compare_jobs)
 
     # ── 汇总 localization / fixPlan ──
     localization: Dict[str, List[Dict[str, Any]]] = {}
