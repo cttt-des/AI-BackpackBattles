@@ -47,6 +47,10 @@ class CoreTimer(GodotObject):
 	#   start(t)：已停止 → 正常启动；否则 → 把 `Util.time + t` 压入 timestamps
 	#   stop()：清 timestamps 并停止
 	#   onTimeout()：先发信号，再取下一个时间戳；差值 > 0.05 则重新 start，否则立即递归
+	#   ★ np25w_f01 订正：以上 onTimeout 的「取下一时间戳/递归」在神谕 harness 下
+	#     不可达——oracle_fight.gd drive_timers 到点段先 `timer.stop()`（清排队）
+	#     再 emit。内核 _onTimeout 已按此对齐（见该函数注释），叠加排队只活到
+	#     首个到期拍。
 	#   内核把 `Util.time` 换成 `ctx.time`（同一物理帧累加量），把 `emit_signal("multi_timeout")`
 	#   换成 tscn 连接的等价物：直接调用目标方法（全部 43 条连接都是 `to="."`，即物品自身）。
 	#
@@ -123,31 +127,29 @@ class CoreTimer(GodotObject):
 
 
 	# 对齐 MultiTimer.gd:27-38
+	# ★ np25w_f01 定谳（run583_r11 SPF 毒批首分歧@120：gd 3 发 v 语料 2 发）：
+	#   到点序列必须对齐 oracle_fight.gd drive_timers 到点段（:908-912）——引擎侧
+	#   `timer.stop()` 先于 `emit_signal("timeout")`。MultiTimer.stop()
+	#   （oracle/Utility/MultiTimer.gd:20-22）清 timestamps ⇒ start() 在运行中
+	#   排队的叠加到期（timestamps.push_back）在首个到期拍**全部丢弃**。
+	#   实证链：1.9833 拍两侧 canonical 逐行全等 ⇒ 双侧同为 3 次 start
+	#   （瓶1 own+chain 叠加、瓶2 own）；语料 fire=2（瓶1 叠加被 stop 清掉），
+	#   gd 旧 pop/递归语义 fire=3。处理器内再 start(x)（refresh 语义）因
+	#   先已 _stopped=true 走重启动分支（push 分支不触发），与 harness emit 后
+	#   `is_stopped()==false → e[0]=time_left` 同构。
 	def _onTimeout(self):
+		self._stopped = True
+		self._left = 0.0
+		if self.multi:
+			self.timestamps.clear()
 		self.fire_count += 1
 		if self._owner != None and self.callback_method != "":
 			self._owner.call(self.callback_method)
 
-		if not self.multi:
-			if self.one_shot:
-				self._stopped = True
-			else:
-				self._left = self.wait_time
-			return
-
-		self._stopped = True
-		if not self.isFinished():
-			nextTimestamp = self.timestamps.pop(0)
-			dif = nextTimestamp - self._utilTime()
-			if dif > 0.05:
-				# ★ kernel_r3：此处为 fire-tick 内的 handler 重启（oracle restart 语义：
-				#   当帧已消耗递减、下帧照常递减）——不走 start() 以免误设
-				#   _started_frame 同帧跳过标记（比对 drive_timers :905 restart 路径）。
-				self.wait_time = dif
-				self._stopped = False
-				self._left = dif
-			else:
-				self._onTimeout()
+		if self._stopped:
+			return          # 处理器未重启：叠加排队已清、one_shot 恒停（=harness e[0]=-1）
+		if not self.multi and not self.one_shot:
+			self._left = self.wait_time   # 循环计时器兜底续接（harness: start(wait_time)）
 
 
 	# 对齐 Util.time（无 ctx 时的兜底，便于独立单测）
