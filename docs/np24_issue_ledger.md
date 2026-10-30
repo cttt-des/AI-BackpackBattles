@@ -1600,6 +1600,29 @@
 > 14. **tape 未覆盖 7 场**：run1068_r18/run1144_r18/run1177_r18/run1254_r18/run1307_r12/run1436_r10/run930_r18｜袋内物品不在 INVENTORY.getItems 顶层→提取「随载体插入」映射规则（tools/_np25_tape_extract.py 预留 skip 告警处）→补采→evt105/12 簇再收割。
 > 15. **P1-1 收缩版五步路径**：136 场圈定清单 output/_p11_affected_t0.json｜真持久面=MagicRing pd 12bit+16 处技能计数器+26 种 t0 钩子授予（勘察在案）｜③_item_snapshot 扩 stats 需先验 1 绿场 events 不变；**语料写=禁区需用户批准独占窗口**。
 >
+> **★ offpeak 续：evt12 面 GRD 格级定谳（2026-10-30 深夜，offpeak 执行者）★**
+> - **GRD 探针**（StrongPestilenceFlask.getAffectedItems 覆写，双门控零耗，
+>   打 faceDirection/collision 全局格 cp/aff 格/命中物品 n）：
+>   - **aff 格=(3,2)**=cp[0]+UP（fd=1 非 DOWN 分支，Potion 覆写两侧同构）
+>     ——**几何正确命中 SPF_b 的 cp 格 [(4,2),(3,2)] 之一**；
+>   - **n 翻转**：绝大多数调用 **n=0**（getItemsInCells([(3,2)]) 空）、仅
+>     onOpponentHeal 时刻 3 次 **n=1**（命中 SPF_b@[(3,2),(4,2)]）——**同格
+>     查询时有时无=inventory cell 映射瞬态**；
+>   - **cp 与 battle_items collision_cells 系差**：SPF_a cp=[(3,3),(2,3)]
+>     vs collision_cells[[-1,-1],[-1,0]]+topLeft[2,3] 应=[1,2],[1,3]——
+>     恒差 (2,0)（fd=1 的旋转语义或 collision_cells 行列序）。
+> - **oracle 恒空 v gd 翻转**：两侧 getAffectedItems/Potion 覆写逐行同构
+>   ⇒ 差异在 **CoreGrid.getItemsInCells/cell→item 登记系**（gd 的登记格
+>   occupiedCells=[(3,2),(4,2)]=topLeft 系、查询格=cp 系——**两系在 gd 的
+>   某些时点重合（n=1）、oracle 恒不重合（恒空）**——**登记格系与查询格
+>   系的解析差**=头号根因。
+> - **下轮单点**：gd_core/CoreGrid.getCellsForGlobalPositions/addToInventory
+>   的格系 vs decompiled Inventory.gd 同名函数逐行 diff（重点=globalPosition
+>   像素→cell 的取整与 collision_cells 的 (dx,dy) 行列序）→修→守门 evt12
+>   样本+REG 九场。
+> - **工具沉淀**：GRD 探针入库（零耗）；u 流对位工具三 bug 已修（负索引/
+>   三元组比较/伪锚），锚定法=「(tag,u) 后紧跟 EVENT:108」双条件。
+>
 ### P1 数据面整族（预计最大收敛面）
 
 - [ ] **P1-1 物品持久强化态缺失**：史流 setData 的 bonusMinDam/bonusMaxDam/bonusDamageFactor
