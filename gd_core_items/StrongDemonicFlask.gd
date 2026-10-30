@@ -35,7 +35,13 @@ func onOpponentDamaged(healthChange, event):
 		
 
 func drinkStrongDemonicFlask(event):
-	
+	# ★ np25 evt12 面 AFFL 探针（双门控零耗链）：SDF 喝毒的 affected[0] 链定谳
+	var _aff = getAffectedItems()
+	var _aff_names = ""
+	for _a in _aff:
+		_aff_names += String(_a.descriptor.identifier) + ","
+	ctx.rng.trace_diag("AFFL", String(descriptor.identifier), "n=" + str(_aff.size()), _aff_names)
+
 	drink()
 	
 	triggerPotion(event)
