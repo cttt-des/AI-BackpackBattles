@@ -1315,12 +1315,29 @@ func playBattleRageAnimation(rageStart):
 # ★ np25 timeout1t：只改写引擎读数 _rage_eng（=Timer.start(t)），_rage_left
 #   （e[0]）不动。延长分支基准=_rage_left（e[0]）——对齐 Util.gd:1677-1683
 #   changeTimer 的 oracleLeft 优先语义（start(t + oracleLeft)）。
+# ★ np25w_f04：eng 写入点一律先过 _f32eng —— Godot 3.6 Timer 的 wait_time/
+#   time_left 是 real_t(float32) 存储（引擎探针 F32Probe：start(3.1) 后
+#   get_time_left() 的读数 ≠ 3.1 的 float64 且 <3.1）；oracle_fight.gd:897
+#   `eng = timer.get_time_left()` 每帧读的正是该 f32 值 → 注册表 e[0] 重同步
+#   基准=f32(dur)。3.1：f32 穿零 186 帧 v f64 187 帧（语料 run616_r18
+#   ty7@318→ty8@504=186 ✓）；1.2：f32 73 v f64 72（run942/948/676 dt=-1 ✓）；
+#   2.0/2.5/3.0 等 f32 精确值恒等式零影响（timeout1t「2.0 边界 121 间隔全
+#   PASS」即此类）。
 func _setRageTimer(t: float) -> void :
 	if _rage_active:
-		_rage_eng = t + _rage_left
+		_rage_eng = _f32eng(t + _rage_left)
 	else:
-		_rage_eng = t
+		_rage_eng = _f32eng(t)
 		_rage_active = true
+
+
+# ★ np25w_f04：引擎 real_t(float32) 存储镜像。gd 侧无 f32 cast，用
+#   PoolRealArray 单元素写读实现（round-to-nearest）；三行模板走 gd_to_py
+#   op11（→ return f32(x)，_rt.f32=struct round-trip）。
+static func _f32eng(x: float) -> float :
+	var pa = PoolRealArray()
+	pa.append(x)
+	return pa[0]
 
 
 # ── 无敌（对齐 Character.gd:1037-1062，Timer 改为物理帧步进） ──
@@ -1334,7 +1351,7 @@ func makeInvulnerable(invuDur, item, triggerEvent = null):
 	#   （e[0]）不动；延长分支基准=_invul_left——对齐 Util.gd:1677-1683 changeTimer
 	#   的 oracleLeft（e[0]）优先语义。
 	if not invulnerable:
-		_invul_eng = invuDur
+		_invul_eng = _f32eng(invuDur)
 		_invul_active = true
 		invulnerable = true
 		ctx.hooks.playInvulnerableAnimation(self, true)
@@ -1345,7 +1362,7 @@ func makeInvulnerable(invuDur, item, triggerEvent = null):
 		#   首分支实证：oracle 探针 O536 randPitch(0.9,1.1)=>1.073782 缺失）。
 		ctx.rng.randf_range(0.9, 1.1, "randPitch")
 	else:
-		_invul_eng = invuDur + _invul_left
+		_invul_eng = _f32eng(invuDur + _invul_left)
 	# ★ np25 timeout1t 诊断（双门控零耗）：INVU 行读 make 时序（fr vs rebuild 的
 	#   activateItems 末尾）+ 三变量值，定位「激活期 start 是否被 rebuild 锚定」。
 	#   lt/gt=dur 对字面量 3.1 的 ULP 方位（run1069_r15 定谳用：D 在 186dt 浮点
@@ -1942,6 +1959,12 @@ func tickPhysicsTimers(delta: float) -> void :
 	
 	# registry 次序：BattleRageTimer 先于 InvulnerabilityTimer（tscn :1635/:1639）
 	# ★ np25 timeout1t：两链均严格三变量驱动（对齐 drive_timers :895-910）。
+	# ★ np25w_f04：fire 后补 :915-917「处理器重启了」当拍重同步——timeout 处理器
+	#   里重挂（如 run725_r18 fr=300 King Goobert 无敌结束→character_invulnerable_end
+	#   →另一 Crown onInvuEnded→checkTrigger→makeInvulnerable 同拍 start）时，
+	#   oracle 在同一 drive pass 内 e[0]=e[1]=新 eng（resync@300→fire@421）；
+	#   gd 原版漏此块→下一拍才 resync（→fire@422 恰晚 1）。CoreBuff._tick 的
+	#   `if _timer_active:` 重挂块（timeout1t 已入）同构。
 	if _rage_active:
 		if _rage_eng == _rage_seen:
 			_rage_left -= delta       # :901（遗留值继续减=同值重启立即 fire 怪癖）
@@ -1952,6 +1975,9 @@ func tickPhysicsTimers(delta: float) -> void :
 			_rage_active = false
 			_rage_eng = 0.0           # :910 stop() 引擎读数归零；_rage_left 保留发火值
 			endBattleRage()
+			if _rage_active:          # :915-917 处理器重启了（start(x)→time_left=x）
+				_rage_left = _rage_eng
+				_rage_seen = _rage_eng
 
 	if _invul_active:
 		if _invul_eng == _invul_seen:
@@ -1965,7 +1991,10 @@ func tickPhysicsTimers(delta: float) -> void :
 			# ★ np25 timeout1t 诊断（双门控零耗）：INVU fire 行读三变量终值。
 			ctx.rng.trace_diag("INVU", "fire p" + str(playerId) + " left=" + str(_invul_left) + " eng=" + str(_invul_eng) + " seen=" + str(_invul_seen), "fr=" + str(ctx.frame_counter))
 			invulnerabilityEnded()
-	
+			if _invul_active:         # :915-917 处理器重启了（start(x)→time_left=x）
+				_invul_left = _invul_eng
+				_invul_seen = _invul_eng
+
 	if _autoRage_active:
 		_autoRage_left -= delta
 		if _autoRage_left <= 0.0:

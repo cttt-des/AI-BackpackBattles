@@ -515,8 +515,20 @@ class CoreBuff(GodotObject):
 		#   （eng==e[1]）时走 :901 从遗留值继续减 → ≤0 当 tick 立即 fire。若在这里
 		#   直赋 _timer_left=duration（初版 timeout1t 的写法），遗留值被冲掉 →
 		#   重同步不递减 → 比 oracle 晚 1 tick 起（run599_r10 Blind 393/574 铁证）。
-		self._timer_eng = duration
+		# ★ np25w_f04：oracle 侧 Buff 的 timer 是真 Godot Timer 节点
+		#   （oracle/Core/Buff.gd:32 timer=Timer.new()、:162/:173 start(duration)），
+		#   wait_time/time_left 为 real_t(float32) 存储 → 注册表 eng=f32(duration)
+		#   （引擎探针 F32Probe：start(3.1)→get_time_left()≠3.1f64；穿零 186 v 187
+		#   帧=run616_r18 定谳）。f32 精确的 duration（2.0/3.0/3.25）恒等式零影响。
+		self._timer_eng = self._f32eng(duration)
 		self._timer_active = True
+
+
+	# ★ np25w_f04：引擎 real_t(float32) 存储镜像（三行模板走 gd_to_py op11 →
+	#   return f32(x)，_rt.f32=struct round-trip；与 CoreCharacter._f32eng 同构）。
+	@staticmethod
+	def _f32eng(x):
+		return f32(x)
 
 
 	def _stopTimer(self):
