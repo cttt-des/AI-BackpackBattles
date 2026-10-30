@@ -1490,6 +1490,31 @@
 > - **在途文件纪要（沿用第三循环）**：gd_core_test/gd_core/Goobert.gd EOL
 >   幻影勿 add 勿还原；工作树仅剩外来在途文件+幻影，本循环无代码 diff。
 >
+> **★ offpeak-7e580897 战报：timeout1t 面重开取证——evt12 族误挂定谳，真面=Potion/Flask 反制投掷（2026-10-30，offpeak 执行者）★**
+> - **样本定谳（run583_r11，fd@120 ty12）**：oracleEvents 141 超短场，
+>   oracle 探针（ORACLE_DEBUG，ORACLE_FIGHTS_ROOT 重定向）≡语料逐字节 ✓，
+>   证据已留档 output/_round_patches/np24_fix/t1t_r1/（双方 rng 账本）。
+> - **fd@120 真身**：t=5.5167 的 Strong Pestilence Flask evt108 投掷
+>   **oracle 2 条 v gd 3 条**（ty12 heal 20 是下游回声）——**evt12 族 89 场
+>   被归挂 timeout1t 是误挂**（fd 报在 ty12、真分歧在上游 evt108 数量差）。
+> - **投掷链机制（两侧脚本逐行同构）**：PestilenceFlask.onOpponentHeal
+>   （对手被 heal→drink→triggerPotion→affected[0].triggerPotion→activate），
+>   触发源=character_healed 信号；gd 的 BUSL 实证 healed 监听=2 瓶（ot1×2）。
+> - **u 流对位（_np25_u_align.py，锚=首 EVENT:108）**：**566 对全同**
+>   （覆盖 1.9833 首拍 [5,4,3,9,3,9,3] 与 4.8 拍前段——首拍两侧逐抽同），
+>   分叉于 4.8 拍收尾：**oracle=[roll×5(毒栈 flip)→EVENT:12(heal 19)→EVENT:0]
+>   v gd=[roll×7→EVENT:108 续投]**——Strong Demonic Flask 的「喝毒 heal vs
+>   反制投掷」顺序/毒量差（flip 数=inflictPoison amount，5 v 7）。
+>   候选根因：①SDF doCooldownEffect 的 heal/投掷分支序差；②0 量 heal 信号
+>   的响应次数差；③Belt 补瓶（potion_emptied→pickRandomElement(0,6)，oracle
+>   pick=2 v gd pick=5 为分叉后下游）。
+> - **取证受阻记录**：run619_r18 oracle 探针早期崩（ItemBook.gd:1506 Nil，
+>  个案）；run588_r18 探针引擎 timeout（超长场）——超长场活体取证需
+>   ORACLE_FIGHT_CHUNK 分片或 lifted 版参数（台账 §1 神谕重录行）。
+> - **下一步**：①SDF（StrongDemonicFlask）两侧 doCooldownEffect 逐行 diff
+>   （最可能单点）；②evt12 族 89 场按本面重定性（脱挂 timeout1t）；
+>   ③evt109 族 110 场仍归 timeout1t（round-7 时基差铁证有效）。
+>
 ### P1 数据面整族（预计最大收敛面）
 
 - [ ] **P1-1 物品持久强化态缺失**：史流 setData 的 bonusMinDam/bonusMaxDam/bonusDamageFactor
