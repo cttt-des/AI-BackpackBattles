@@ -1009,6 +1009,66 @@
 > - **守门**：绕过已还原=零行为差（alignment 398/914 未触碰）；取证工件
 >   np25_flk_b3/（BUSF 版 trace）+np25_flk_a3/（oracle 账本）留档。
 >
+> **★★ np25wf 台账收尾·第二循环：面④ evt109 定谳 + 面⑤ 总线面 FuncRef 证伪（两轮零代码行为持平）→ 收口复验 398/914（2026-10-30，收尾记录员·二）★★**
+> - **第二循环 2 轮明细（face/根因/守门/commit，git log -16 实读）**：
+>   ① **面④ evt109 最大簇（100 场）定谳**（commit 6bbbf409）：face=Light
+>   Goobert Blind(ty109) timeout 移除量差（run619@307 oracle −7 v gd −5；
+>   run588 −13 v 结构性缺失）。根因=Goobert 族双机制触发（prepare 置 6s
+>   countdown + onItemActivated 计数器计数到 6 触发并刷回 countdown 永不
+>   自然到期），gd 侧 GACT=0 行（run619 全程计数路径死锁）→ blind 以
+>   countdown 节奏乱 firing（间隔 2/125/13 tick 野值）v oracle 计数节奏
+>   （88 tick 规整）→ 批次/移除量/到期 tick 全错位；定谳三工具链=gd BLND
+>   账本 × oracle [BEXPIRE]/[BCLEANSE] 账本（run619 全量重放 170s
+>   events≡语料 ✓）× 快照互证。守门=零代码变更零行为风险。
+>   ② **面⑤ 总线面开题——连接/投递实证 + FuncRef 绕过证伪（已还原）**
+>   （commit 0a2cb8f3）：连接面实证=LG 在监听表内（BUSL activated 投递行
+>   1312 次、connectForCombat 挂接成功、总线按 (emitter,signal) 键控投递
+>   正常）⇒ round-4「连接断裂」假设证伪；BUSF 取证=FuncRef valid=True
+>   fn=onItemActivated args=1 全对但 call_funcv 静默不执行（onItemActivated
+>   入口 GACTRAW 无条件打点零输出、GACT trace 零行）；FuncRef 绕过修复
+>   （连接表改存方法名+receiver.callv 直调）已实施→证伪（GACTRAW 仍零、
+>   首分歧@307 未动=失效层比 FuncRef 更深）→按铁律 8/9 还原（FuncRef 路径
+>   对其他监听者=工作路径）；round-4 勘误=application 时序对齐（fr=
+>   frame_counter 与 t_tick 差 1 的读数误判），真分歧收敛=计数节奏
+>   （oracle 计数器 6 次触发@240 v gd countdown 兜底@279，39 tick 差）+
+>   批次 timeout 值（gd 5.55/5.5833 v oracle 5.5333/5.5333）。守门=还原后
+>   零行为差。下轮探针已设计就绪=派发循环 CALLDONE 打点+Storage Coffin
+>   对照（分离连接类差 v 回调体差）。
+> - **✅ 第二循环收口复验（2026-10-30 08:47-08:50；退出码 0 载自 np25wf
+>   收口材料）**：gd 腿 rerun 11 场（=④⑤取证样本场 run588/605/619/624/
+>   625/665/668/679/708/717/718，resume 跳过 903，148.4s PASS，selfcheck
+>   run588_r18 同种子复跑逐字节一致 ✓；output/oracle/align/gdcore/
+>   _align_gd_summary.txt）+ py 腿（五分片各「完成 182/182 场」，in 清单
+>   182+182+184+183+183=914）+ compare 五分片重建（08:48-08:50）→
+>   **ALIGNED 398/914 持平**（本员实读 alignment.json 08:50 重建版：
+>   aligned=398/total=914；11 场 gd≡py——gd/py 事件数逐场相等、
+>   fd_pair=oracle_vs_gdcore=绕过还原净洁实证）。⚠ match_distribution 当前
+>   实测 327/189（首循环台账所载 324/192 出自 07:33 时代旧文件、已被
+>   08:50 重建覆盖、逐场归因不可考；ALIGNED 恒 398 不变）。基线历史链：
+>   279→394→398（第一循环）→**398（第二循环持平，两轮均零行为变更）**。
+> - **红簇 top20（398 基线 RED 516，_np24_red_clusters.py --top 20 实跑于
+>   08:50 新基线）**：n=50 evt109@151-400｜n=38 evt12@51-150｜n=37
+>   evt109@401-1200｜n=30 evt1@151-400｜n=28 evt12@151-400｜n=25
+>   evt0@151-400｜n=17 evt12@401-1200｜n=17 evt105@151-400｜n=16
+>   evt1@51-150｜n=14 evt0@51-150｜n=13 evt109@51-150｜n=12 evt105@51-150｜
+>   n=11 evt12@1-50｜n=10 evt8@151-400｜n=10 evt8@401-1200｜n=9
+>   evt101@151-400｜n=9 evt102@151-400｜n=9 evt104@401-1200｜n=8
+>   evt103@151-400｜n=8 evt1@1-50（top20 合计 371，余 145 场散布更小簇）；
+>   三大簇归属=evt109 族 100 场（面④已定谳挂总线面）/evt12+evt105 级联
+>   123 场/evt0+evt1 族 93 场；localization=rng-mechanism 431/
+>   gd_core-kernel 85（本员实读 alignment.json perCase 计数）；py-only=0
+>   （本员实跑复验：逐场 firstDivergence 无 oracle_vs_gdcore 对=空集）。
+> - **下轮建议**：①总线面 CALLDONE 打点探针+Storage Coffin 对照（面⑤
+>   设计就绪；evt109 100+evt12/evt105 123 场同根挂载，最大收敛面）②
+>   evt0/evt1 局部族重分簇（93 场）③run592 gd≡py 同位红@219 下一层 ④
+>   P1-1 数据面五步路径（136 场已圈定）⑤timeout1t 残红 35 场定性档案
+>   （7 场 oracle 腿取证+8 场多栈次序）。战报全文：
+>   output/_offpeak/np25wf_r1/report.md（本地不入库，已覆盖更新为两循环
+>   全量版）。
+> - **在途文件纪要**：gd_core_test/gd_core/Goobert.gd 现为 status-M
+>   EOL 幻影（git diff 内容为空，本员实测）——并入外来在途清单，一切
+>   执行体勿 add 勿还原。
+>
 ### P1 数据面整族（预计最大收敛面）
 
 - [ ] **P1-1 物品持久强化态缺失**：史流 setData 的 bonusMinDam/bonusMaxDam/bonusDamageFactor
