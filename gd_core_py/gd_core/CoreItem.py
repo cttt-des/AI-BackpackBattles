@@ -2326,10 +2326,19 @@ class CoreItem(GodotObject):
 
 	# ─────────────────────── 治疗 / 伤害 / 减益（对齐 4826-5136, 5379-5394） ───────────────────────
 
-	# 对齐 Item.gd:4826-4828
+	# 对齐 Item.gd:4810（形参 `amount: int`）
 	def heal(self, amount=None, triggerEvent=None):
 		if amount == None:
+			# 默认实参 `= getP_m("heal")`：GDScript 非常量默认值按 Variant 直通，
+			# 不过类型转换（oracle 探针 amt=8.56 浮点入 Character.heal，f03_probe）。
 			amount = self.getP_m("heal")
+		else:
+			# ★ 显式实参过类型化形参边界：float 向零截断（GDScript 隐式转换）。
+			#   oracle 探针（f03_probe，events≡语料逐字节）：Badger amt=247=
+			#   trunc(1033×24/100)（run1394_r18）、amt=254=trunc(254.8)（run1023_r18）；
+			#   原转写丢类型致 Variant 直通，CoreCharacter.heal round() 后 frac≥0.5
+			#   的治疗恒 +1（247.92→248）。
+			amount = int(amount)
 		healed = self.character().heal(amount, self, triggerEvent)
 
 
