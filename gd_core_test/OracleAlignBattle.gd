@@ -623,9 +623,12 @@ func run_case(c: Dictionary, out_root: String, perm_warm := false, r5_warm := fa
 	#   call_deferred 永不执行——run574 Deck of Cards 卡链零启动实证；
 	#   机理与开关见 gd_core/CoreContext.gd flushDeferred 注）。
 	ctx.deferred_flush_enabled = false
-	# ★ np24：EngineerBox 接力死亡镜像（机理见 CoreContext.gd eb_relay_mirrored 注；
-	#   录制侧 EB ChargeTimer 首弹 1 次/侧、队列不推进，接力重发射=0）。
-	ctx.eb_relay_mirrored = true
+	# ★ np25-p5 订正（2026-10-31）：np24「接力死亡镜像」作废——其探针前提
+	#   （旧语料+旧 harness+旧 CoreTimer）已全部换代；新语料 run1119_r6 实证
+	#   录制侧 EB 接力活跃（Battery 开战发射→EB chargeTimer delay=5s 接力
+	#   emitCharge→Battery@5.0167 再激活→Eggscalibur damage 15→16）。
+	#   恢复 EB 接力（CoreTimer 已是注册表同构模型，级联语义由 f11 规则约束）。
+	ctx.eb_relay_mirrored = false
 	# np21-R5：暖场 ctx 打开连接台账（键控见 R5_DUAL_EXEC 表注； CoreEventBus
 	#   connect_journal 默认关，正式/非键控路径零扰动）
 	if r5_warm:
