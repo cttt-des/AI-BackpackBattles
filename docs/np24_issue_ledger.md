@@ -1591,6 +1591,8 @@
 >   - **【np25 波次标注 2026-10-31（f02）】⛔两连证伪永停（commits=none）**｜本面前提『timeout1t 时基差』被两连证伪：gd_core/py 与 oracle 单场重放（round-4 np25_flk_a3 复跑）19535 事件逐位零差（同=-5），残红签名源自语料录制期（10-24/25）的**进程内批量位置依赖（跨场状态泄漏）**——语料 run619_r18（19077 事件，idx307=-7）不可单场复现，**属语料重录面（禁区），非 gd 行为差，无可修代码**。
 >   - 场影响=run619_r18 残红（ev@307=-7 语料孤立签名，gd≡oracle 现行为，归语料重录面）；run588/1388/1442/1042/774 五场已 PASS（前序 f01+f04 收编，本轮门验实证）；run1246_r11 残红已易面（evt12 Badger Spirit @1045，非本面）；run631_r9/run904_r18 fresh trace≡语料全等（**461 账过期**）。REG 九场零退步（5 绿保持、4 红同基线位）。门①已过；门②不适用（零代码变更）。族级 110 场最终绿/红构成留波末全量 --compare-only（主控）刷新 461 账后重分簇。
 > 3. **evt12 极长场 4 场（1201+ 桶）**：run1394_r18 fd@8666（10254 事件）｜前 8665 事件全对，分叉=Eggscalibur 攻击后 spikes 12 嵌套序｜超长场=数值累积稳定性面（时基差/毒栈平衡器长程漂移候选），取证同②的并行分片跑法。
+>   - **【np25 波次标注 2026-10-31（f03）】✅已修 commit=edfc0784**｜根因=gd 转写丢失 oracle Item.gd:4810 `heal(amount: int = getP_m("heal"), …)` 的类型化形参边界语义——GDScript 对显式 float 实参做向零截断（Badger: trunc(1033×24/100)=247）而对非常量默认实参按 Variant 直通不转换（Pine 8.56 浮点直通）；gd 双路直通使浮点穿到 CoreCharacter.heal 的 round() 才落整，frac≥0.5 的 heal 恒 +1（247.92→248）——**四场首分歧全是该 Badger Spirit heal ±1，Eggscalibur→spikes 嵌套序本身逐位全对，台账原猜『长程漂移/时基差』不成立**。
+>   - 场影响=本面 4 场修后全绿：run1023_r18、run1251_r17、run1394_r18（fd@8666/10254 事件）、run1531_r15 双腿 canonical+渲染双判据 PASS；REG 九场零退步。alignment.json 未动（未跑 --cases 收缩），波末全量 --compare-only 归主控。**同链 bonus：20+ 显式 heal(expr) 调用点（Toad/FrogPrince/HogusBogus/ToadSpirit=Toad.gd:27 等）一并修正——f04 残簇 run942/948/725（Toad/Badger heal±1）预计随全量刷新翻绿，evt12 族 89 场（f01 波次标注）同批收割。**
 > 4. **evt8 余部 29 场 Crown 系 heal ±1**（11+10+4+4）：样本 run616_r18 fd@399（Crown heal 5 后 divergence）｜d7fe5cb5 三变量模型的残差族（timeout1t 档案 35 场定性近亲）｜按 BLND fr= 字段验收门逐场核 gain→fire 间隔 K/K-1，分 dur 边界 ULP 与多栈次序两小类。
 >   - **【np25 波次标注 2026-10-31（f04）】✅已修 commit=c0392d3b**｜现场实读=**25 场（11+10+4，台账 29 场的第 4 簇 n=4 已不在基线）**｜根因=gd 三变量计时模型漏镜像 Godot 3.6 引擎 Timer 的 real_t(float32) 存储（oracle_fight.gd:897 eng=get_time_left() 读 f32 值；f32(3.1)=3.0999999046 穿零 186 帧=语料 K，gd 用 f64 3.1 穿零 187 帧恰晚 1），且 fire 后缺 oracle drive_timers:915-917「timeout 处理器内重挂→当拍 e[0]=e[1]=新 eng」重同步块（同拍 proc 链再晚 1）——**双修后 25 场 invul ±1 签名全部消失**。
 >   - 场影响=样本 25 场：18 绿（含样本 run616_r18 fd@399 消失、双腿 PASS）+7 红但首分歧全部后移至他面签名（heal 数值±1：run725/942/948；伤害流：run1423/1524/1069/1495）——**evt8 Crown invul ±1 本体已终结**；REG 九场零退步；alignment.json 未动（波末全量 --compare-only 归主控）。
@@ -1604,7 +1606,11 @@
 >   - **【np25 波次标注 2026-10-31（f07）】⏸deferred——定谳未修（commits=none，零落码）**｜根因=run594_r12 首分歧@384(t=955)=Strong Vampiric Potion 的 lifestealTimer 在 oracle 神谕 harness 下的 fire/wipe/pop 时刻表与 gd CoreTimer 不同：oracle 侧 eid=383(Frostbite 31 伤害) 拍玩家 SVP curLifesteal=0.0000/given=[]（15.75s HeavyDrinking 触发的 +0.35 add 已被一次由「无形触发」排定的引擎 deadline fire 洗掉——VP 链 triggerPotion、+5 因吸血栈满被钳制不发事件但 timer.start(6) 照常；stop→timestamps.clear→pop front）故 d31 无 heal，同拍 +5@384 的 add 存活→d15 heal=ceil(15×0.35)=6；gd 单实例 CoreTimer 对同一触发序给出 fire@11.28 后 stop→15.75 start 走重启动分支→deadline 21.75 存活→d31 多 heal 11、d15 heal=ceil(15×0.7)=11，两差级联放大至 1114v739 事件数。**次级根因（影响 37s 后段）**：oracle 战斗中 ~37.05 拍 SVP 被「@Strong Vampiric Potion@4125」新实例顶替（onPrepare 重跑、HD.allPotions 旧引用与信号连接新实例分裂），gd 无此分裂。
 >   - 场影响=无场翻绿：7 样本场 RED 维持基线位（594@384/659@212/715@271/984@354/1103@282/1106@329/1244@158），REG 九场零退步，alignment.json 未动。**下一轮单点**：gd CoreTimer/CoreItem 需镜像 oracle harness MultiTimer 精确 fire/wipe/pop 语义——关键差=「start() 落在引擎 RUNNING 态时只入 timestamps 不改 deadline，fire 时 stop() 清队+pop_front，由无形触发(满栈钳制)排定的 deadline 决定 add 存活窗」——先以 GD 侧等价探针（打印 CoreTimer start/fire/pop 时刻表）对拍 oracle [SVPPOP]/[timer-fire] 表定谳分叉最终一行，再落码+gd_to_py 三树同步+守门 16 场。
 > 8. **evt102 10 场 King Crown heal**（5+5）：样本 run597_r18 fd@101（heal 11 窗口同值→晚位差）｜heal 计算/healingEfficiency 面｜同⑦打法。
+>   - **【np25 波次标注 2026-10-31（f08）】✅已修 commit=823bfe33**｜根因=双根因：①数据面——battle_items.json 的 classes 派生缺 oracle calcClassAvailability 全链（源头 tools/item_sheet.py 指向已删的 extracted/ 1.1.7 树→enrich_recipes 崩溃/陈旧：配方图缺 VP 等条目+TYPE_NAMES 缺 Fire 等元素类型键致 Fire*>Burning Coal 族配方整条丢弃+enrich_classes 的 AND 不跳类型成分）→run597 里 Strong Vampiric Potion classes 0(假) v oracle 运行时 c2(真)，Girl Power 的 getNumDistinctAffectedItems 3v4→addSpeed 差 0.35→首触发 3.2167v2.7667；②代码面——getStackFraction 的 overflow 洗牌走 ctx.rng（BalancedRng 主链）而非引擎全局链（登记在案的「有意偏差」前提对 harness 不成立：oracle_fight.gd:595 每场 seed(seed) 播种全局链），且污染主链致后续 flip/roll 全错位=**多类型栈增益错排的公共根因**。
+>   - 场影响=本面 10 场：6 场双腿双判据 PASS 翻绿（run670_r15/run721_r13/run757_r12/run661_r18/run768_r14/run883_r13）；run597_r18 fd@101→@194 推进 93 事件（SVP classes 根因已消，新位=StrongManaPotion+9/KingCrown rage t4.3833 触发集差，另根）；run687_r18@72（GirlPower regen resist 翻转：oracle 2 栈 1 resisted、gd 0）、run894_r18@72（同拍激活序 AoL v ManaOrb）、run1109_r18@270（Coil 栈转移类型选择）红位不变、签名各异，留后续轮次 u 流取证。REG 九场零退步：5 绿锚保持（570/1029/862/813/635 PASS）+**run732_r12 附带翻绿（原基线红@179）**+1160@155/695@172/1514@36 同基线位。alignment.json 未动（禁写）；波末全量 --compare-only 归主控刷新。
 > 9. **evt105 余部 29 场 ManaOrb 系**（18+11）：样本 run604_r10（fd@65 ManaOrb 105 缺发后跳 444 旧档）｜已定谳 ManaOrb 真身在 evt105=连接集/BalancedRng 平衡态｜与①同法：连接集运行时打印探针（AFFL 模式）。
+>   - **【np25 波次标注 2026-10-31（f09）】✅已修 commit=2b259654**｜根因=gd/py 的 getAffectedCells_tilemap 直接透出夹具 affected 数组的提取归一序（extract_grid.py:107 sorted([x,y])），而 oracle 真身=collisionMap.get_used_cells_by_id(tileId)，Godot 3.6 TileMap 内部 used_cells_by_id 是 Set&lt;Vector2&gt;（RB 树）返回序恒为 Vector2 operator&lt; 排序（先 y 后 x，引擎实证）——格序差使 getAffectedItems 物品序错位，EchoingBattlecry.onPrepare 的 affectedItems.shuffle()（战斗期首个全局链消费者，双侧链位/j 值实证一致）输入序 [(5,6),(7,4)] v oracle [(7,4),(5,6)]，pop_back 首弹弹错 Piggybank（gd 弹 (5,6) 0 监听 v 语料弹 (7,4) 被 ManaOrb 应答发 105）＝fd@65 ManaOrb 105 缺发。
+>   - 场影响=修后（守门 np25w_f09，gd/py 双腿逐场同 PASS/RED=转写保真）：本面 29 场→**16 场双腿 PASS 翻绿**（样本 run604_r10 fd@65 消失、997=997；run1174_r18 35214=35214、run1241、run1267、run1517、run682、run758、run761、run810、run925、run985、run992、run1019、run1254、run1392、run1506）；5 场首分歧大幅推进已易面（run1334@105→547、run1227@156→447、run1487@230→533、run1307@110→159、run1130@165→214）；8 场原位红签名各异＝异质子簇非本根（PerpetuumMobile 105 缺发×2、Staff of Unhealing 偷蓝缺发、Badger Spirit t_tick 185v184 ±1tick、Magic Staff 时序 424v420、Miss Fortune 105 amount 3v1+resisted、run1105 run1102 同簇）留波末重分簇另立案。REG 九场零退步：570/1029/862/813/635/732 六绿保持，1160@155/695@172/1514@36 三红同基线位。alignment.json 未动（波末全量 --compare-only 归主控）；锁文件 np25w_f09.lock 已删。
 > 10. **evt104/108 残量 14 场**（6+4+4）：样本 run572_r9 fd@248（Banana→Storage Coffin 108）、run593_r12｜时序族残量（c251a762 补抽后）｜gd 受击钩子先于攻击事件发射假设逐场核（run784 打法）。
 > 11. **evt0 族 39 场 Staff of Unhealing heal 计算**：样本 run592_r17 fd@219（heal 42 窗口同→事件数 3202 v 2558 中盘发散）｜healingEfficiency/Unhealing 反噬计算面｜heal 值公式对位（gd CoreCharacter.heal vs oracle Character.gd:743）。
 > 12. **evt1 族 32 场重分簇**（12+12+4+4，签名异质性高）：样本 run590_r13/run628_r14/run1220_r9｜先 canonical 对拍并簇再定打法（勿直接开修）。
@@ -1682,6 +1688,26 @@
 >   （主控）为唯一权威刷新点**，刷新前勿按 461 账认领新面。
 > - **run1246_r11 已易面**：evt12 Badger Spirit @1045（原 evt109 族样本）——
 >   波末刷新后并入 evt12 族/伤害流分簇，勿再按 timeout1t 立案。
+>
+> **★ 波次标注补充线索·第三轮（2026-10-31，f03/f08/f09 修后新增，供认领）★**
+> 波次状态：当前复验绿场=461/914（以波末全量 --compare-only 刷新为唯一权威）。
+> - **evt102 残位 4 场（f08 修后，签名各异待 u 流取证）**：run597_r18@194
+>   （StrongManaPotion+9/KingCrown rage t4.3833 触发集差，另根）、run687_r18@72
+>   （GirlPower regen resist 翻转：oracle 2 栈 1 resisted、gd 0）、run894_r18@72
+>   （同拍激活序 AoL v ManaOrb）、run1109_r18@270（Coil 栈转移类型选择）｜
+>   打法=⑦⑧同款 u 流深入位对位，逐场单独立案勿并簇。
+> - **evt105 异质残红 8 场（f09 修后，波末重分簇另立案）**：PerpetuumMobile
+>   105 缺发×2、Staff of Unhealing 偷蓝缺发、Badger Spirit t_tick 185v184
+>   ±1tick、Magic Staff 时序 424v420、Miss Fortune 105 amount 3v1+resisted、
+>   run1105/1102 同簇｜打法=波末全量刷新后按新 fd 位重分簇，勿按 ManaOrb
+>   格序假设立案。
+> - **getStackFraction 洗牌链公共根因外溢线索（f08 ②副产品）**：overflow 洗牌
+>   改走引擎全局链（oracle_fight.gd:595 每场 seed）——凡多类型栈+overflow
+>   洗牌场景均可能曾受 ctx.rng 主链污染错位影响，波末全量刷新时留意此类
+>   签名批量收敛（同批疑签名=多类型栈增益错排族）。
+> - **f03 同链收割预告**：heal 类型化形参边界语义修正波及 20+ 显式 heal(expr)
+>   调用点——f04 残簇 run942/948/725（Toad/Badger heal±1）与 evt12 族 89 场
+>   （f01）预计随全量 --compare-only 同批翻绿/收割，刷新前勿对这两簇新立案。
 >
 ### P1 数据面整族（预计最大收敛面）
 
