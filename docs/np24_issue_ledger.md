@@ -337,3 +337,12 @@ F.Goobert blind 到期缺发（633）；G.同拍物品激活序（1101）；H.�
   4. **隐形栈数差**（spikes 反伤 7v5，ty104 事件全同）。
 - **下轮攻击序**：①spy v7（先自证行为无害——单独 bare RandomNumberGenerator 对照实验定位 spy 行为差真因，再上）②格重叠井（Eggscalibur 10 格判定）③charge 序井 ④隐形栈井。**资产：PCG 推演器 _pcg32_walk.py+全链自洽方法论**。
 - **取证现场**：oracle/Utility/Util.gd 已还原（pre_rstate.bak）；Coil 已还原；fNbatch 127 场 probe 保留 output/oracle/probe/fNbatch/。
+
+## 5i. np26 循环轮终态（2026-11-01；749/860 收束）
+
+- **Eggscalibur 簇改判**：双面 PAN 探针（oracle probe≡corpus 先验 ✓）实证**两侧 affected 完全一致（n=8，同 items 串）**——「格重叠井」排除；damage 40v30 的差=**randDamage 的 roll 链位差**（BalancedRange 裸调同构、独立链也走主链 PCG）——**与 Coil/Banner 同一「隐藏 randf_range 链位差」大井**（四井合一：pickRandom/roll 域 ~45 场）。
+- **spy 系终局**：v6/v7 行为差根因未破（v6 fd@10 AmuletSteel amount 3v2；v7 卡死=抽间动态分派+IO 放大 2.5 倍致 240s 不足）；**A/B/C 对照实验（bare vs spy vs 带钩子）三等**——透传无害已证，行为差在 oracle 工程的更深交互。**教训链**：/tmp 路径在 Godot Windows=open 失败每抽重试卡死；内类动态分派全程减速 ~2.5x 需 timeout×3；GDScript 字面量 0xFFFFFFFFFFFFFFFF 溢出陷阱。
+- **oracle/Core/Character.gd:812 [ADD-O] 桩=np 时代遗留未还原**（无害但违六步——下轮顺手清）。
+- **终态账面 749/860**（本会话累计 +42：重录 33+py 修复 4+族 A/H 等）；**剩 111 真差聚焦一大井（roll/pickRandom 链位差 ~45 场）+charge 序+隐形栈+长尾**。
+- **钥匙资产**：PCG 推演器（_pcg32_walk.py，常数已标定 inc=2885390081777926815）+全链自洽方法论+双面 PAN 探针模式（oracle probe≡corpus 先验）+定性批并行器（_classify_all_reds.py 3 路）。
+- **下轮首攻**：spy v8=**预计算窗口内抽次+批次快照**（避免每抽 IO：仅记录窗口内抽值到内存数组、场末一次性落盘）；或 oracle 侧「state 哨兵」——在 Character.playAttackAnimation/activate/EventBus 等 5 个链上必经点加 state 快照桩（≤10 行×六步），与 gd 同点对照把隐藏 2 步夹到函数级。
