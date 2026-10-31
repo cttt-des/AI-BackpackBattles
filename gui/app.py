@@ -1509,10 +1509,15 @@ class BackpackAIApp(tk.Tk):
     def _refresh_rec_label(self):
         stats = self.bot.recording_stats() if self.bot else {"running": False}
         if stats.get("running"):
-            # 侧栏只有约 110px 可用宽度：优先显示"记录中 + 事件数"，
-            # run_id 完整版留给日志行，避免被硬截断成 "记录中 · run_2"。
-            text = f"记录中·{stats.get('events', 0)}事件"
-            self.rec_dot.configure(fg=COLORS["danger"])
+            # 懒启动：已在录制但人还在主界面时 run 尚未创建 —— 必须显式提示，
+            # 否则用户会以为"没在录"。进入对局后自动切换成事件计数。
+            if stats.get("waiting") or not stats.get("run_id"):
+                text = "等待进入对局…"
+                self.rec_dot.configure(fg=COLORS.get("warning", COLORS["accent"]))
+            else:
+                # 侧栏宽度有限：优先显示"记录中 + 事件数"（run_id 留给日志行）
+                text = f"记录中·{stats.get('events', 0)}事件"
+                self.rec_dot.configure(fg=COLORS["danger"])
         else:
             # 手动停止属于"用户主动关掉"，回到常驻文案即可；
             # 只有自动停止（本局结束/超限）才提示原因，那才是有信息量的状态。
