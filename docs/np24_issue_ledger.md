@@ -352,3 +352,10 @@ F.Goobert blind 到期缺发（633）；G.同拍物品激活序（1101）；H.�
 - **EVENT 行 state 哨兵一击定谳**：oracle CombatLog.logEvent 的 EVENT 行+gd trace_event 各附 rng.state（六步，已还原；gd 写循环改全行 join 兜底——固定列格式化在抽行第 3 行崩且原因未明，join 零风险已入库 OracleAlignBattle）——**同 index EVENT 对照（run1102）：EVENT 197/198/199（ty1/106/106）两侧 state 全同；EVENT 200 分叉（gd ty106 st=8908…v oracle ty105 st=8729…）**——**隐藏 2 步 randf_range 锁定在「第一次偷的 +2 事件 flush 完成后 → 第二次 stealRandomBuff 的 pickRandom 之前」= charge 飞行/到达段（ElectricalCharge 移动→下一 cell→chargeReceived）或该段 handler**。
 - **下轮首攻**：oracle 的 Item.chargeReceived/ElectricalCharge cell 切换点加 state 哨兵（1 行×六步）+gd 的 chargeReceived 同点——把 2 步夹到 charge 链的具体函数；**ElectricalCharge.gd 此前 grep 无 randf——嫌疑=charge.start/_physics_process 的粒子/位移或 chargeReceived 的某个默认实参抽**。
 - **修成杠杆**：pickRandom 域 ~45 场（Coil×6/Banner×15/LightGoobert 残余/Eggscalibur×5/spikes×5——Egg 簇已改判入本井：双面 PAN 探针实证 affected 一致 n=8，damage 40v30=roll 链位差）。
+
+## 5k. np27 charge 时序机方案定谳（2026-11-01）
+
+- **Zap 抽已证**：oracle 隐藏 2 步=Zap.gd:32 randf_range(4.0,4.02)（f53=0.46907114→4.00938 域匹配），触发=charge 换主（ElectricalCharge.onNewCellEntered 的 curChargedItem 变更后）。
+- **gd 单 cell1 模型+盲插 zap ✓已有**；**全 cell 瞬时循环化失败**（fd@1——oracle 的 cell 推进是跨物理 tick 的 tween 时序：halfCellDur=0.5×dur/(cells-1)，每 cell 间隔=duration/(cells-1)，非同拍）。
+- **正确方案=CoreElectricalCharge 时序机**：charge 对象带 progress/cells/inv_cells 状态，physicsTick 按 dt 推进 cellIndex（每跨 cell 阈值→_chargeEnterCell(cell)+换主判定+zap），duration 到→returnToObjectPool。**工程量 1-2 小时**，REG+charge 场全量回归必跑。
+- **下轮实现要点**：①CoreElectricalCharge 扩 progress/inv_cells/duration ②CoreCombat.physicsTick 的 charge 步骤（activateItems 后）③sendCharge 只建 charge 不瞬时进 cell（cell1 由首个 tick 推进）④seek/replaying 分支（录音带场景）注意。
