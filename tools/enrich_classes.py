@@ -105,7 +105,14 @@ def apply_recipe_inheritance(items: dict) -> int:
                 for ings in recipes[k]:
                     rc = STUFFED["Neutral"]
                     for ing in ings:
-                        rc &= classes.get(ing, 0)
+                        # ★ np25 f08：类型名成分（"Fire" 等 ∈ Item.Type，非物品）
+                        #   不进 AND（对齐 ItemDescriptor.calcClassAvailability 的
+                        #   `if Util.isItemDescriptor(ingredient)` 守卫）——此前
+                        #   classes.get('Fire',0)=0 吃光 AND，"Fire*>Burning Coal"
+                        #   族恒 0（真值 127，run597 探针链定谳）。
+                        if ing not in classes:
+                            continue
+                        rc &= classes[ing]
                     acc |= rc
                 cur |= acc
             if cur != classes.get(k, 0):

@@ -331,6 +331,14 @@ Godot 3.x 里 `class_name` 脚本互相引用（含自引用）会报
     再做 Godot 非稳定的 `sort_custom`。内核改为「注入 rng 洗牌 + 稳定降序」，
     取值域相同（同为按值降序），仅同值并列次序不同。全仓库只有
     `Item.getStackFraction`（`Item.gd:5642`）用到该分支。
+    **★ np25 f08（2026-10-31）订正：本条偏差已撤销，改回原文语义。**
+    「全局链不可复现」的前提对神谕 harness 不成立——`oracle_fight.gd:595`
+    每场 `seed(seed)` 播种引擎全局链，录制逐位可复现；旧实现还从 ctx.rng
+    （BalancedRng 主链）抽 n-1 抽洗牌，**污染主链**使后续全部 flip/roll 错位
+    （evt102 面类型错排/resist 差公共根因，run670/661/721/757/768/883+REG732
+    翻绿实证）。现 `CoreItem.getStackFraction` 走 `CoreRng.shuffleEngine`
+    （引擎全局链直通，tag=`Items/Item.gd:5642`）+ Godot `sort_custom`+DictSorter
+    原语义，与原版逐位同链位。`CoreUtil.sortDict` 保留为死代码（无调用点）。
 
 15. **★ `descriptor.params` 必须按列对齐（定长 10），紧凑数组是错的。**
     原版 `ItemBook.gd:855-875` 对 `p1..p10` **每一列**取值 push_back（空列 push 默认 0），

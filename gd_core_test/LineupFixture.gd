@@ -1205,7 +1205,7 @@ const ITEMS := {
 		"block": 0,
 		"price": 8,
 		"rarity": 3,
-		"classes": 0,
+		"classes": 1,
 		"canActivate": false,
 		"chance": 22.0,
 		"chance2": 1.0,
@@ -1223,7 +1223,11 @@ const ITEMS := {
 		"animSpeedMin": 0.8,
 		"animSpeedMax": 1.2,
 		"sceneDepth": 2,
-		"originatingRecipes": [],
+		"originatingRecipes": [{
+			"b": "Acorn Collar",
+			"i": ["Holy Armor"],
+			"c": [true]
+		}],
 		"animationScene": false,
 		"flickerAni": false,
 		"flickerMinDist": 0.1,

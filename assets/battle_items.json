@@ -4506,11 +4506,31 @@
    "tags": [
     "transient"
    ],
-   "classes": 0,
+   "classes": 127,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "originating_recipes": [
+    {
+     "b": "Piggybank",
+     "i": [
+      "Hammer"
+     ],
+     "c": [
+      true
+     ]
+    },
+    {
+     "b": "Piggybank",
+     "i": [
+      "Thors Hammer"
+     ],
+     "c": [
+      true
+     ]
+    }
+   ]
   },
   "Shovel": {
    "key": "Shovel",
@@ -4736,7 +4756,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "flicker_animation": true,
    "flicker_min_dist": 0.1,
    "flicker_max_dist": 3.0,
@@ -4754,7 +4774,18 @@
       0
      ]
     ]
-   }
+   },
+   "originating_recipes": [
+    {
+     "b": "Lump of Coal",
+     "i": [
+      "Fire"
+     ],
+     "c": [
+      true
+     ]
+    }
+   ]
   },
   "Torch": {
    "key": "Torch",
@@ -7704,7 +7735,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 127,
    "has_animation_scene": true,
    "flicker_animation": true,
    "flicker_min_dist": 0.1,
@@ -7713,7 +7744,18 @@
    "flicker_max_speed": 1.0,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "gained_stacks": 128
+   "gained_stacks": 128,
+   "originating_recipes": [
+    {
+     "b": "Torch",
+     "i": [
+      "Fire"
+     ],
+     "c": [
+      true
+     ]
+    }
+   ]
   },
   "Platin Customer Card": {
    "key": "Platin Customer Card",
@@ -8221,11 +8263,40 @@
      "onAffectedItemInsideRemoved"
     ]
    },
-   "classes": 0,
+   "classes": 127,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "originating_recipes": [
+    {
+     "b": "Box of Riches",
+     "i": [
+      "Lucky Cat"
+     ],
+     "c": [
+      true
+     ]
+    },
+    {
+     "b": "Box of Riches",
+     "i": [
+      "Hammer"
+     ],
+     "c": [
+      true
+     ]
+    },
+    {
+     "b": "Box of Riches",
+     "i": [
+      "Thors Hammer"
+     ],
+     "c": [
+      true
+     ]
+    }
+   ]
   },
   "Holdall": {
    "key": "Holdall",
@@ -8338,11 +8409,40 @@
      "onAffectedItemInsideRemoved"
     ]
    },
-   "classes": 0,
+   "classes": 127,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "originating_recipes": [
+    {
+     "b": "Leather Armor",
+     "i": [
+      "Goobert"
+     ],
+     "c": [
+      true
+     ]
+    },
+    {
+     "b": "Leather Armor",
+     "i": [
+      "Hammer"
+     ],
+     "c": [
+      true
+     ]
+    },
+    {
+     "b": "Leather Armor",
+     "i": [
+      "Thors Hammer"
+     ],
+     "c": [
+      true
+     ]
+    }
+   ]
   },
   "Rib Saw Blade": {
    "key": "Rib Saw Blade",
@@ -9589,12 +9689,23 @@
      "onAffectedItemRemoved"
     ]
    },
-   "classes": 0,
+   "classes": 127,
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": true,
    "gem_roll": false,
-   "gained_stacks": 8
+   "gained_stacks": 8,
+   "originating_recipes": [
+    {
+     "b": "Strong Health Potion",
+     "i": [
+      "Blood Amulet"
+     ],
+     "c": [
+      true
+     ]
+    }
+   ]
   },
   "Lucky Cat": {
    "key": "Lucky Cat",
@@ -11112,7 +11223,18 @@
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "used_stacks": 32
+   "used_stacks": 32,
+   "originating_recipes": [
+    {
+     "b": "Dagger",
+     "i": [
+      "Mana Orb"
+     ],
+     "c": [
+      true
+     ]
+    }
+   ]
   },
   "Hero Longsword": {
    "key": "Hero Longsword",
@@ -26536,11 +26658,22 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 1,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "originating_recipes": [
+    {
+     "b": "Acorn Collar",
+     "i": [
+      "Blood Amulet"
+     ],
+     "c": [
+      true
+     ]
+    }
+   ]
   },
   "Magic Collar": {
    "key": "Magic Collar",
@@ -26671,12 +26804,23 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 1,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
    "has_animation_scene": false,
-   "gained_stacks": 32
+   "gained_stacks": 32,
+   "originating_recipes": [
+    {
+     "b": "Acorn Collar",
+     "i": [
+      "Mana Orb"
+     ],
+     "c": [
+      true
+     ]
+    }
+   ]
   },
   "Holy Collar": {
    "key": "Holy Collar",
@@ -26810,12 +26954,23 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 1,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
    "has_animation_scene": false,
-   "gained_stacks": 6
+   "gained_stacks": 6,
+   "originating_recipes": [
+    {
+     "b": "Acorn Collar",
+     "i": [
+      "Holy Armor"
+     ],
+     "c": [
+      true
+     ]
+    }
+   ]
   },
   "Rainbow Goobert Ranger": {
    "key": "Rainbow Goobert Ranger",
@@ -32949,7 +33104,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 2,
    "originating_recipes": [
     {
      "b": "Vampiric Potion",
@@ -38838,13 +38993,24 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 4,
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
    "removed_stacks": 254,
-   "has_battle_rage_effect": true
+   "has_battle_rage_effect": true,
+   "originating_recipes": [
+    {
+     "b": "Thorn Whip",
+     "i": [
+      "Forging Hammer"
+     ],
+     "c": [
+      true
+     ]
+    }
+   ]
   },
   "Dragonscale Armor": {
    "key": "Dragonscale Armor",
@@ -38953,12 +39119,23 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 4,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
    "has_animation_scene": false,
-   "has_battle_rage_effect": true
+   "has_battle_rage_effect": true,
+   "originating_recipes": [
+    {
+     "b": "Leather Armor",
+     "i": [
+      "Forging Hammer"
+     ],
+     "c": [
+      true
+     ]
+    }
+   ]
   },
   "Dragon Claws": {
    "key": "Dragon Claws",
@@ -39062,12 +39239,23 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 4,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
    "has_animation_scene": false,
-   "has_battle_rage_effect": true
+   "has_battle_rage_effect": true,
+   "originating_recipes": [
+    {
+     "b": "Gloves of Haste",
+     "i": [
+      "Forging Hammer"
+     ],
+     "c": [
+      true
+     ]
+    }
+   ]
   },
   "Dragonskin Boots": {
    "key": "Dragonskin Boots",
@@ -39160,13 +39348,24 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 4,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
    "has_animation_scene": false,
    "gained_stacks": 64,
-   "has_battle_rage_effect": true
+   "has_battle_rage_effect": true,
+   "originating_recipes": [
+    {
+     "b": "Leather Boots",
+     "i": [
+      "Forging Hammer"
+     ],
+     "c": [
+      true
+     ]
+    }
+   ]
   },
   "Busted Blade": {
    "key": "Busted Blade",
@@ -39296,12 +39495,23 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 4,
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_battle_rage_effect": true
+   "has_battle_rage_effect": true,
+   "originating_recipes": [
+    {
+     "b": "Greatsword",
+     "i": [
+      "Forging Hammer"
+     ],
+     "c": [
+      true
+     ]
+    }
+   ]
   },
   "Spiked Staff": {
    "key": "Spiked Staff",
@@ -41121,11 +41331,22 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 4,
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
-   "gem_roll": false
+   "gem_roll": false,
+   "originating_recipes": [
+    {
+     "b": "Courage Puppy",
+     "i": [
+      "Forging Hammer"
+     ],
+     "c": [
+      true
+     ]
+    }
+   ]
   },
   "Armored Wisdom Puppy": {
    "key": "Armored Wisdom Puppy",
@@ -41249,12 +41470,23 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 4,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
    "has_animation_scene": false,
-   "removed_stacks": 1024
+   "removed_stacks": 1024,
+   "originating_recipes": [
+    {
+     "b": "Wisdom Puppy",
+     "i": [
+      "Forging Hammer"
+     ],
+     "c": [
+      true
+     ]
+    }
+   ]
   },
   "Armored Power Puppy": {
    "key": "Armored Power Puppy",
@@ -41375,12 +41607,23 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 4,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
    "has_animation_scene": false,
-   "gained_stacks": 70
+   "gained_stacks": 70,
+   "originating_recipes": [
+    {
+     "b": "Power Puppy",
+     "i": [
+      "Forging Hammer"
+     ],
+     "c": [
+      true
+     ]
+    }
+   ]
   },
   "Badger Rune": {
    "key": "Badger Rune",
@@ -60676,12 +60919,23 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 64,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
    "has_animation_scene": false,
-   "gained_stacks": 4
+   "gained_stacks": 4,
+   "originating_recipes": [
+    {
+     "b": "Slice of Bread",
+     "i": [
+      "Fire"
+     ],
+     "c": [
+      true
+     ]
+    }
+   ]
   },
   "Toast Goobert": {
    "key": "Toast Goobert",
@@ -60809,7 +61063,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 64,
    "originating_recipes": [
     {
      "b": "Goobert",
@@ -60992,7 +61246,7 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 64,
    "originating_recipes": [
     {
      "b": "Toast Goobert",
@@ -64240,12 +64494,23 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 64,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
    "has_animation_scene": false,
-   "gained_stacks": 32
+   "gained_stacks": 32,
+   "originating_recipes": [
+    {
+     "b": "Leather Helm",
+     "i": [
+      "Mana Crystal"
+     ],
+     "c": [
+      true
+     ]
+    }
+   ]
   },
   "Magitecc Armor": {
    "key": "Magitecc Armor",
@@ -64412,13 +64677,24 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 64,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
    "has_animation_scene": false,
    "removed_stacks": 1792,
-   "used_stacks": 32
+   "used_stacks": 32,
+   "originating_recipes": [
+    {
+     "b": "Holy Armor",
+     "i": [
+      "Mana Crystal"
+     ],
+     "c": [
+      true
+     ]
+    }
+   ]
   },
   "Arcane Boots": {
    "key": "Arcane Boots",
@@ -64571,13 +64847,24 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 64,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
    "has_animation_scene": false,
    "gained_stacks": 66,
-   "used_stacks": 32
+   "used_stacks": 32,
+   "originating_recipes": [
+    {
+     "b": "Leather Boots",
+     "i": [
+      "Mana Crystal"
+     ],
+     "c": [
+      true
+     ]
+    }
+   ]
   },
   "Thors Hammer": {
    "key": "Thors Hammer",
@@ -64698,13 +64985,24 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 64,
    "has_animation_scene": true,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
    "gained_stacks": 512,
-   "used_stacks": 32
+   "used_stacks": 32,
+   "originating_recipes": [
+    {
+     "b": "Hammer",
+     "i": [
+      "Mana Crystal"
+     ],
+     "c": [
+      true
+     ]
+    }
+   ]
   },
   "Automanaton": {
    "key": "Automanaton",
@@ -64893,7 +65191,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 64,
    "originating_recipes": [
     {
      "b": "Magitecc Armor",
@@ -65051,12 +65349,23 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 64,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
    "has_animation_scene": false,
-   "used_stacks": 32
+   "used_stacks": 32,
+   "originating_recipes": [
+    {
+     "b": "Banana",
+     "i": [
+      "Mana Crystal"
+     ],
+     "c": [
+      true
+     ]
+    }
+   ]
   },
   "Gigawatz": {
    "key": "Gigawatz",
@@ -67900,11 +68209,22 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 4,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "originating_recipes": [
+    {
+     "b": "Whetstone",
+     "i": [
+      "Forging Hammer"
+     ],
+     "c": [
+      true
+     ]
+    }
+   ]
   },
   "Whetstone3": {
    "key": "Whetstone3",
@@ -68033,11 +68353,22 @@
     "related_columns": false,
     "callbacks": []
    },
-   "classes": 0,
+   "classes": 4,
    "flicker_animation": false,
    "connector_ready_roll": false,
    "gem_roll": false,
-   "has_animation_scene": false
+   "has_animation_scene": false,
+   "originating_recipes": [
+    {
+     "b": "Whetstone2",
+     "i": [
+      "Forging Hammer"
+     ],
+     "c": [
+      true
+     ]
+    }
+   ]
   },
   "Steel Dragon": {
    "key": "Steel Dragon",
@@ -68206,7 +68537,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 4,
    "originating_recipes": [
     {
      "b": "Ruby Whelp",
@@ -68376,7 +68707,7 @@
     "callbacks": []
    },
    "extra_cds": [],
-   "classes": 0,
+   "classes": 4,
    "originating_recipes": [
     {
      "b": "Axe",
