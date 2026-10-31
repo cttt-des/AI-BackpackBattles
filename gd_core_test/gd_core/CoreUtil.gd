@@ -54,6 +54,20 @@ static func truth(v) -> bool:
 	return CoreConst.truth(v)
 
 
+# ★ np25 evt105 f09 面：Vector2 的 (y,x) 字典序（Godot Vector2::operator<）。
+# oracle 侧 getAffectedCells_tilemap = collisionMap.get_used_cells_by_id(tileId)，
+# Godot 3.6 TileMap 内部 used_cells_by_id 是 Set<Vector2>（RB 树）→ 返回序恒为
+# 该比较子的排序（f09_probe/tilemap_order_probe 引擎实证：按 (1,0),(0,1),(0,0),
+# (5,0) 插入 → 返回 (0,0),(1,0),(5,0),(0,1)）。夹具 affected 数组是提取归一序
+# sorted(x,y)，直接透出会让 getAffectedItems 物品序错位（run604_r10 实证：
+# Echoing Battlecry 洗牌输入序 [(5,6),(7,4)] v oracle [(7,4),(5,6)] → pop_back
+# 首弹弹错 Piggybank → ManaOrb 的 105 缺发 = fd@65）。
+static func vec2_less_yx(a, b) -> bool:
+	if a.y == b.y:
+		return a.x < b.x
+	return a.y < b.y
+
+
 # 对齐 Util.gd:961-964
 static func dictAdd(dict: Dictionary, key, val = 1, base = 0) -> int:
 	var newVal = dict.get(key, base) + val

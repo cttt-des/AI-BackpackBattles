@@ -2993,9 +2993,16 @@ func getExtensionPoints():
 
 # ── 受影响格 ──
 
-# 对齐 Item.gd:1112-1116
+# 对齐 Item.gd:1112-1116（oracle 实体 = collisionMap.get_used_cells_by_id(
+# affectedColorToTileId[color])，返回序恒为 Vector2 (y,x) 字典序——Godot 3.6
+# TileMap used_cells_by_id 是 Set<Vector2>（RB 树），见 CoreUtil.vec2_less_yx 注。
+# 内核夹具数组是提取归一序 sorted(x,y)，此处排序镜像 oracle 运行时序（仅序变）。
 func getAffectedCells_tilemap(color = CoreConst.Affected.Primary) -> Array:
-	return affectedTileCells.get(color, [])
+	var _cells = affectedTileCells.get(color, [])
+	if _cells.size() > 1:
+		_cells = _cells.duplicate()
+		_cells.sort_custom(CoreUtil, "vec2_less_yx")
+	return _cells
 
 
 # 对齐 Item.gd:1117-1124
