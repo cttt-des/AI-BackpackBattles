@@ -213,9 +213,11 @@
   爬 6.6GB 内存/数十分钟）。
 - **快速腿结果**：707/860（153 红；rng-mechanism 139/gd_core-kernel 13/
   py-transpiler 1）。
-- **54 场专用通道**：全量夹具已恢复；54 场陈旧产物已清，`--force --cases <54>
-  --skip-fixtures` 后台跑（超长但与主通道解耦）；完成后 `--compare-only`（全量
-  夹具）出 914 行正式账。
+- **54 场专用通道**（2026-10-31 傍晚用户令：**暂停**——860 场未全对齐前不处理
+  长场）：全量夹具已恢复（914 行账待 860 全绿后一次 `--compare-only` 合并出账）；
+  54 场陈旧产物已清；通道待重启（届时 `--force --cases <54> --skip-fixtures`，
+  清单 output/_recovery/excluded_long_cases.json）。offpeak-06e4dc89 任务面=
+  860 快速腿的 153 红处置，与长场无关。
 
 ## 6. 交付口径与收口
 
