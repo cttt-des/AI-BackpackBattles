@@ -40,6 +40,7 @@ import ctypes
 import ctypes.wintypes as _w
 import os
 import subprocess
+import time
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -55,7 +56,11 @@ LOG_DIR = os.path.join(ROOT, "output", "_recovery", "godot_logs")
 CWD_DIR = os.path.join(ROOT, "output", "_recovery", "cwd")
 
 #: 隐藏桌面名（同一进程复用同一个桌面，避免每场建一个）
-DESKTOP_NAME = "dsh_godot_hidden"
+# ★ 2026-10-31：桌面名按进程唯一化（_pid 后缀）——desktop heap 是有限资源，
+#   单日数百场 Godot 的泄漏对象会撑爆共享桌面的堆 ⇒ 并发子进程挂载失败被
+#   Windows 摔回默认桌面=漏窗（np25 重录实测：单发恒静默、4 路并发必漏）。
+#   每 driver 进程私有新桌面=新堆；进程退出、桌面随灭、堆自动回收。
+DESKTOP_NAME = "dsh_godot_hidden_%d" % os.getpid()
 
 _SEQ = 0
 _DESK_HANDLE = None
@@ -86,21 +91,34 @@ def is_noise(line: str) -> bool:
 
 
 def _hidden_desktop():
-    """建（或复用）隐藏桌面，返回句柄；失败返回 None（调用方回退普通启动）。"""
-    global _DESK_HANDLE, _DESK_TRIED
-    if _DESK_HANDLE is not None or _DESK_TRIED:
+    """建（或复用）隐藏桌面，返回句柄。
+
+    ★ 2026-10-31 订正：旧版「每进程只试一次、失败静默回退默认桌面」——
+      np25 全量重录实测 driver 首次 CreateDesktopW 瞬态失败 ⇒ 整批 Godot
+      全部漏到用户桌面（Engine 类窗口 ×4 实枚举）。铁令=无窗，静默回退
+      违规：改为重试 3 次（间隔 0.5s），仍失败**抛 RuntimeError 响亮死**，
+      绝不带窗运行。句柄跨调用缓存不变。"""
+    global _DESK_HANDLE
+    if _DESK_HANDLE is not None:
         return _DESK_HANDLE
-    _DESK_TRIED = True
     if not sys.platform.startswith("win"):
         return None
-    try:
-        GENERIC_ALL = 0x10000000
-        user32 = ctypes.windll.user32
-        h = user32.CreateDesktopW(DESKTOP_NAME, None, None, 0, GENERIC_ALL, None)
-        _DESK_HANDLE = h or None
-    except Exception:  # noqa: BLE001 —— 建桌面失败不影响正确性，只是又会出窗口
-        _DESK_HANDLE = None
-    return _DESK_HANDLE
+    err = None
+    for _attempt in range(3):
+        try:
+            GENERIC_ALL = 0x10000000
+            user32 = ctypes.windll.user32
+            h = user32.CreateDesktopW(DESKTOP_NAME, None, None, 0, GENERIC_ALL, None)
+            if h:
+                _DESK_HANDLE = h
+                return _DESK_HANDLE
+        except Exception as e:  # noqa: BLE001
+            err = e
+        time.sleep(0.5)
+    raise RuntimeError(
+        "CreateDesktopW(%s) 连续 3 次失败（err=%r）——拒绝静默回退到可见桌面"
+        "（铁令：无窗无弹窗）。请排查 window station 状态后重试。"
+        % (DESKTOP_NAME, err))
 
 
 def _startupinfo(desktop=True):
@@ -111,7 +129,7 @@ def _startupinfo(desktop=True):
     si.dwFlags |= subprocess.STARTF_USESHOWWINDOW
     si.wShowWindow = 0  # SW_HIDE
     if desktop and _hidden_desktop() is not None:
-        si.lpDesktop = DESKTOP_NAME
+        si.lpDesktop = "WinSta0\\" + DESKTOP_NAME
     return si
 
 
@@ -151,8 +169,22 @@ def spawn(cmdline, label="godot", cwd=None, tag=None, env_extra=None):
     if env_extra:
         e.update({k: str(v) for k, v in env_extra.items()})
     fh = open(log_path, "wb")
+    si = _startupinfo()
+    try:
+        k32 = ctypes.WinDLL("kernel32")
+        hws = k32.GetProcessWindowStation()
+        name = ctypes.create_unicode_buffer(64)
+        u32 = ctypes.WinDLL("user32")
+        u32.GetUserObjectInformationW(hws, 2, name, 64, None)  # UOI_NAME=2
+        winsta = name.value
+    except Exception:  # noqa: BLE001
+        winsta = "?"
+    fh.write(("[gh] provenance pid=%d label=%s lpDesktop=%r deskHandle=%r winsta=%s"
+              % (os.getpid(), label,
+                 (si.lpDesktop if si is not None else None), _DESK_HANDLE, winsta)).encode())
+    fh.flush()
     p = subprocess.Popen(cmdline, cwd=cwd or CWD_DIR, env=e, stdout=fh,
-                         stderr=subprocess.STDOUT, startupinfo=_startupinfo())
+                         stderr=subprocess.STDOUT, startupinfo=si)
     return p, log_path, fh
 
 
@@ -181,3 +213,107 @@ def run(cmdline, label="godot", cwd=None, timeout=None, tag=None, env_extra=None
     finally:
         fh.close()
     return rc, read_log(log_path), log_path
+
+
+# ======================= 并行原语（docs/parallel_workflow.md 口径） =======================
+#
+# 为什么把这些放在模块里而不是每个工具各写一份：
+#   docs/parallel_workflow.md §2 规定并行度**每次运行按当时 CPU 与可用内存实时决定**、
+#   §3 规定分桶用 LPT、§4 规定禁匿名管道（一律文件重定向）。
+#   这几条是环境硬约束，四处复制就会四处漂移（历史上 _np25_tape_run / run_item_parse
+#   就是各拼一份 subprocess 且漏了隐藏桌面）。
+
+#: 并行度硬上限。收益递减 + 内存峰值随路数线性放大（实测 5 路上限）。
+PARALLEL_MAX_JOBS = 5
+#: 单个 Godot worker 的峰值内存预算（GB）。gd_core 与 oracle 长战实测峰值约 1GB。
+PER_JOB_MEM_GB = 1.2
+
+
+def avail_mem_gb() -> float:
+    """当前可用物理内存（GB）。Windows 走 GlobalMemoryStatusEx，探测失败退回 8GB。"""
+    try:
+        class _M(ctypes.Structure):
+            _fields_ = [("dwLength", ctypes.c_ulong), ("dwMemoryLoad", ctypes.c_ulong),
+                        ("ullTotalPhys", ctypes.c_ulonglong),
+                        ("ullAvailPhys", ctypes.c_ulonglong),
+                        ("ullTotalPageFile", ctypes.c_ulonglong),
+                        ("ullAvailPageFile", ctypes.c_ulonglong),
+                        ("ullTotalVirtual", ctypes.c_ulonglong),
+                        ("ullAvailVirtual", ctypes.c_ulonglong),
+                        ("ullAvailExtendedVirtual", ctypes.c_ulonglong)]
+
+        _st = _M()
+        _st.dwLength = ctypes.sizeof(_M)
+        if not ctypes.windll.kernel32.GlobalMemoryStatusEx(ctypes.byref(_st)):
+            return 8.0
+        return float(_st.ullAvailPhys) / (1024.0 ** 3)
+    except Exception:  # noqa: BLE001 —— 探测失败不影响正确性
+        return 8.0
+
+
+def auto_jobs(n_items, requested=0, per_job_mem_gb=None, cap=None):
+    """并行度决策：requested>0 时按请求（仍受上限约束），0=按机器资源自动。
+
+    jobs = min( 上限, cpu_count-1, 可用内存//per_job, 任务数 )
+    """
+    n_items = int(n_items or 0)
+    if n_items <= 0:
+        return 1
+    cap = min(PARALLEL_MAX_JOBS, int(cap or PARALLEL_MAX_JOBS))
+    if requested and int(requested) > 0:
+        return max(1, min(int(requested), cap, n_items))
+    per = float(per_job_mem_gb or PER_JOB_MEM_GB)
+    by_cpu = max(1, (os.cpu_count() or 1) - 1)
+    by_mem = max(1, int(avail_mem_gb() // per))
+    return max(1, min(cap, by_cpu, by_mem, n_items))
+
+
+def lpt_buckets(items, jobs, weight=None):
+    """LPT（Longest Processing Time first）分桶：重活先投，依次投给当前最轻的桶。
+
+    weight: {item: 数值}；不给则按等权（均分）。返回 (桶列表, 每桶负载)。
+    为什么不是 items[i::jobs] 轮转：长件会挤进同一片，该片决定总时长
+    （实测 914 场 5 片：轮转 384s vs LPT 242s，差 37%）。
+    """
+    items = list(items)
+    jobs = max(1, min(int(jobs), len(items) or 1))
+    if weight is None:
+        weight = {}
+    buckets = [[] for _ in range(jobs)]
+    load = [0.0] * jobs
+    for it in sorted(items, key=lambda x: -float(weight.get(x, 1))):
+        k = load.index(min(load))
+        buckets[k].append(it)
+        load[k] += float(weight.get(it, 1))
+    return [b for b in buckets if b], load
+
+
+def run_many(specs, label="godot", timeout=None):
+    """并行起 N 个 Godot（每个独立 APPDATA + 各自日志），等齐后返回结果表。
+
+    specs: [{"cmd": [...], "tag": "s0", "env_extra": {...}, "timeout": 秒?}, ...]
+    返回 [{"index","tag","rc","log","tail"}...]（顺序同 specs）。
+    ★ 每片 tag 不同 → env() 按 pid+tag 隔离 APPDATA，多进程不共享 user://。
+    ★ 输出一律重定向到文件（沙箱禁匿名管道，PIPE 会 CreatePipe WinError 5）。
+    ★ 每个进程都走 _startupinfo() 的隐藏桌面：窗口与 IME 弹窗都不落用户桌面。
+    """
+    procs = []
+    for i, sp in enumerate(specs):
+        tag = sp.get("tag") or ("w%d" % i)
+        p, log_path, fh = spawn(sp["cmd"], label="%s_%s" % (label, tag), tag=tag,
+                                cwd=sp.get("cwd"), env_extra=sp.get("env_extra"))
+        procs.append((i, tag, p, fh, log_path, sp.get("timeout") or timeout))
+    out = []
+    for i, tag, p, fh, log_path, tmo in procs:
+        try:
+            rc = p.wait(timeout=tmo) if tmo else p.wait()
+        except subprocess.TimeoutExpired:
+            p.kill()
+            p.wait()
+            rc = -9
+        finally:
+            fh.close()
+        text = read_log(log_path)
+        tail = [l for l in text.splitlines() if l.strip() and not is_noise(l)][-5:]
+        out.append({"index": i, "tag": tag, "rc": rc, "log": log_path, "tail": tail})
+    return out
