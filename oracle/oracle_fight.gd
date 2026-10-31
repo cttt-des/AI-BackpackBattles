@@ -1001,6 +1001,22 @@ func teardown_case() -> void :
 	# temporaryMaxHealthGain 等状态带进下一场，破坏跨场确定性。
 	if is_instance_valid(G.PLAYER):
 		G.PLAYER.cleanse()
+	# ★ np25 语料泄漏定谳（2026-10-31，f11/f02/f06 三案同根）：discard→
+	#   ObjectPool.returnInstance 回池保留物品脚本态（StaffofUnhealing.
+	#   buffActive 等），真实游戏每轮 startRound→PLAYER.shopEntered→
+	#   item.shopEntered() 大重置（buffPowers/critTokens/paramMult/numCharges/
+	#   consumed/baseCooldownOverride + onShopEntered → gem.shopEntered）。
+	#   harness 无商店过场 ⇒ 上一场战斗态经池带进下一场/下一 case——
+	#   f06 幻影物品（run845→run846）、f02 不可单场复现（run619）、f11
+	#   unhealing 缺反射（run592 determinism_check 复跑覆盖首跑流）三案同源。
+	#   修=每场 teardown 对双侧全部物品补 shopEntered(false)（宝石由
+	#   item.shopEntered 内部派发），池中实例回到「等价刚上架」态——语料自此
+	#   与单场重放逐位同构，语义=每场全新实例（与 gd_core/gd_core_py 一致）。
+	for _inv in [G.PLAYER.INVENTORY] + (
+			[G.OPPONENT.INVENTORY] if G.OPPONENT != null and is_instance_valid(G.OPPONENT) else []):
+		for _it in _inv.getItems().duplicate():
+			if is_instance_valid(_it):
+				_it.shopEntered(false)
 	if G.OPPONENT != null:
 		G.OPPONENT.INVENTORY.deleteItems()
 		var opp_inv = G.OPPONENT.INVENTORY

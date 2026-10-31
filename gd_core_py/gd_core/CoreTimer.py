@@ -25,6 +25,8 @@ class CoreTimer(GodotObject):
 		self._left = 0.0
 		self._stopped = True
 		self.fire_count = 0        # 供测试断言
+		self._eng = 0.0            # 引擎 time_left 冻结镜像（仅 start/stop 改写）
+		self._seen = 0.0           # 注册表 e[1]：上一 pass 的 eng（battle setup 登记 [left,left]；
 		self._started_frame = -1
 
 	# =============================================================================
@@ -64,6 +66,12 @@ class CoreTimer(GodotObject):
 
 	# MultiTimer.gd 的 timestamps
 
+	# ★ np25w_f11 注册表同构（oracle_fight.gd drive_timers :881-919）：
+	#   阻塞循环无帧时钟 ⇒ 引擎 time_left 冻结、仅 start/stop 改写。harness 以
+	#   「eng != e[1]」判外部 start 并重同步 e[0]；冻结时钟下 eng 恒=wait_time，
+	#   故【运行中同值 start 是注册表盲区】——e[0] 沿旧截止期继续递减=重启丢失
+	#   （真实引擎有帧时钟本会重置；但语料即冻结时钟语义，461 绿场同此，gd 从之）。
+	#   stopped pass 走 e[0]=-1 分支不更新 e[1]）
 
 
 	def _init(self, ctx=None, owner=None, timerName=""):
@@ -97,16 +105,24 @@ class CoreTimer(GodotObject):
 		if self.multi and not self._stopped:
 			self.timestamps.append(self._utilTime() + self.wait_time)
 			return
+		if self.multi:
+			# multi 停止态重启：维持 f01 对齐语义（无条件满计数）
+			self._stopped = False
+			self._left = self.wait_time
+			return
+		self._eng = self.wait_time      # 引擎：start 必写 time_left=wait_time（3.6 语义）
 		self._stopped = False
-		self._left = self.wait_time
-		self._started_frame = self._ctx.frame_counter if self._ctx != None else -1
+		# ★ 重同步移交 tick()（eng vs _seen 判定），不再无条件 _left=wait_time
 
 
 	# 对齐 MultiTimer.gd:20-22
 	def stop(self):
 		self.timestamps.clear()
 		self._stopped = True
-		self._left = 0.0
+		self._eng = 0.0            # 引擎：stop ⇒ time_left=0
+		# ★ e[0]（_left）不动——harness 只在【停走 pass】置 e[0]=-1（:889-891）；
+		#   同一处理器内 stop+start（changeTimer 模式）之间无 drive pass，
+		#   旧截止期存活（f10 棺材案 3.4 提前触发=此处曾误清）。
 
 
 	# 对齐 MultiTimer.gd:24-25
@@ -117,10 +133,18 @@ class CoreTimer(GodotObject):
 	# 由物理帧推进（对齐 Timer 的 process_mode = TIMER_PROCESS_PHYSICS）
 	def tick(self, delta):
 		if self._stopped:
-			return
-		if self._ctx != None and self._ctx.frame_counter == self._started_frame:
-			return
-		self._left -= delta
+			self._left = -1.0      # ★ 停走 pass：e[0]=-1（:889-891）——此后同值 start
+			return            #   会在下一 pass 立即到点（harness 语义，语料实证）
+		# ★ 注册表同构（:897-901）：eng=_eng（冻结）；eng != _seen ⇒ 外部 start/
+		#   changeTimer → e[0]=eng（登记/重启拍不递减=kernel_r3 语义，由本分支覆盖，
+		#   _started_frame 机制退役）；eng == _seen ⇒ 正常递减——同值 start 落此
+		#   分支=重启丢失（盲区），旧截止期存活。
+		eng = self._eng
+		if eng != self._seen:
+			self._left = eng
+		else:
+			self._left = self._left - delta
+		self._seen = eng
 		if self._left > 0.0:
 			return
 		self._onTimeout()
@@ -148,8 +172,13 @@ class CoreTimer(GodotObject):
 
 		if self._stopped:
 			return          # 处理器未重启：叠加排队已清、one_shot 恒停（=harness e[0]=-1）
-		if not self.multi and not self.one_shot:
-			self._left = self.wait_time   # 循环计时器兜底续接（harness: start(wait_time)）
+		if self.multi:
+			return          # multi 重启走 start() 的 timestamps 路径（f01 语义）
+		# ★ post-emit 重挂（harness :915-919）：处理器重启 ⇒ e[0]=e[1]=eng 无条件
+		#   （含同值）；循环计时器无重启 ⇒ harness 代 start(w) 兜底续接，同式。
+		self._left = self.wait_time
+		self._seen = self.wait_time
+		self._eng = self.wait_time
 
 
 	# 对齐 Util.time（无 ctx 时的兜底，便于独立单测）
