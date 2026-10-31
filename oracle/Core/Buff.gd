@@ -51,6 +51,17 @@ func setStacks(amount: int):
 
 func reset():
 	setStacks(0)
+	# ★ np25-p1 录制基建修复（2026-10-31）：阻塞循环无帧时钟 ⇒ Buff 内 Timer
+	#   冻结 ⇒ 上一场终局未到期的 temporaryStacks 跨场存活并渗入下一场
+	#   （真游戏=商店期帧时钟自然走到期清空；本 harness=cleanse 即等效过场）。
+	#   实证：run605_r15 语料(批内5683)≠单场重放(5455)=gd≡oracle 单场逐字节全等
+	#   ⇒ 残留只在批内录制侧。清临时栈=模拟「商店期已流逝」，与 gd/py 每场
+	#   全新 CoreBuff 语义对齐。timer 停走防冻结到期在下一场误触发。
+	temporaryStacks.clear()
+	nextTemporaryTimeout = 0
+	permanentStacks = 0
+	if timer != null:
+		timer.stop()
 	resistStacks = 0
 	resistChancePercent = 0.0
 	cleanseProtectionChancePercent = 0.0
