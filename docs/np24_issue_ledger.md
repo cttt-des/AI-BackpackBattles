@@ -25,6 +25,15 @@
    忽略、照常出窗口）。**并行多开现在可以了**（每进程独立 APPDATA + 隐藏桌面），
    见 `docs/parallel_workflow.md` §1b/§3b。为它改
    gd_core/gd_core_items/oracle/语料仍是禁区。
+   ⚠ **wintab32 楔死（2026-10-31 05:35 主控定谳+根治）**：02:42 起 Godot 全项目/
+   双桌面/双 GL 栈启动挂死（banner 后零输出、--verbose 零行）约 2.5h——线程栈
+   回属实锤主线程卡 `KERNELBASE(Wait)←ucrtbase←wintab32.dll+0x1a7a7`（数位板
+   服务 WTInfo 查询挂死，**非 GL**：NVIDIA 与 Mesa llvmpipe 同卡、--version 不走
+   显示初始化故正常、python/curl 不受累）。**根治=stub 劫持**：
+   `output/godot36/wintab32.dll`（30 字节无效文件→LoadLibrary 搜索序先命中→
+   加载失败→Godot 优雅跳过笔输入，战斗逻辑零依赖）；已实测 rc=0+MX130
+   renderer 行恢复。**用户侧修好数位板服务后删此文件即还原硬件路径**；
+   切勿手动给该目录装回真 wintab32。
 3. `output/oracle/fights/`（语料）与 `oracle/` 树只读。oracle 取证桩须：
    备份→≤10 行环境变量门控→ORACLE_FIGHTS_ROOT 重定向探针→逐字节还原→md5 三方留档
    （先例：output/_round_patches/np24_harness/）。
@@ -1709,6 +1718,33 @@
 >   调用点——f04 残簇 run942/948/725（Toad/Badger heal±1）与 evt12 族 89 场
 >   （f01）预计随全量 --compare-only 同批翻绿/收割，刷新前勿对这两簇新立案。
 >
+> **★★ 工作流收尾交接（2026-10-31 清晨，主控；run dwfrun-f2c47064 停机待续）★★**
+> - **停机态**：批次 v2 串行修复循环 10/14 面收工后主控 TaskStop（reason=model，
+>   **可恢复**，journal 落盘重启无损）。**10 面结果**：✅已修 7=f01 167b7f6e
+>   （CoreTimer 叠加到期语义，evt12「格错位」定性翻案）/f04 c0392d3b（Timer f32
+>   镜像+fire 后重同步，25 场 18 绿）/f05 aba6d2b4（Wisp t4 涂格连坐清空，
+>   luckBalance 原猜证伪）/f03 edfc0784（heal 类型化形参 frac≥0.5 恒+1，evt12
+>   极长场 4 场全绿）/f08 823bfe33（classes 派生链断裂+getStackFraction 洗牌走错
+>   链，6 场翻绿）/f09 2b259654（TileMap used_cells_by_id RB 树序 v 提取 sorted
+>   序，16 场翻绿）/f10 6f82a29c（PotM advanceTime 死调用镜像，6 场翻绿）；
+>   ⛔两连证伪永停 2=f02（timeout1t 前提被 gd/py↔oracle 19535 事件逐位零差证伪）/
+>   f06（run846_r11 被 run845_r18 幻影 ty19 污染）；⏸deferred 1=f07（SVP
+>   lifestealTimer fire/wipe/pop 语义差+37s 新实例顶替分裂，定谳未修，材料
+>   output/_round_patches/np24_fix/f07_probe/）。
+> - **⚠ 461 账已过期**：全量复验只跑了 #1（=461/914，波 2 后）；f03/f08/f09/f10
+>   四面翻绿（合计 40+ 场）未入库——**接手第一件事=全量
+>   `python -X utf8 tools/verify_oracle.py --compare-only` 重建基线**（预计显著
+>   >461），再谈分簇与剩余面。
+> - **未跑面**：f11 evt0 Unhealing（停机时在途；py 侧 UNHEAL_TRACE 门控探针 4 处
+>   遗留树中=零耗可续用，未提交）/f12 evt1 重分簇/f13 py-only run1151/f14 tape
+>   补采 7 场。
+> - **新头号=语料跨场泄漏族**（f02/f06 两面独立汇合同因，见上第二轮线索节）：
+>   语料污染性红位修 gd 不可翻绿；重录/清场/普查三步需**用户批准窗口**（语料写
+>   禁区）。
+> - **恢复路径**：①ResumeWorkflowRun dwfrun-f2c47064-cc57（缓存回收 10 面+复验+
+>   记录员三轮标注）或按用户新指令重组；②wintab32 stub 见 §0 铁律 2（重启修好
+>   数位板服务后可删）；③波次标注 3 commit 在库=1ebaa5a8/d1f209ad/7e8cb1fa。
+
 ### P1 数据面整族（预计最大收敛面）
 
 - [ ] **P1-1 物品持久强化态缺失**：史流 setData 的 bonusMinDam/bonusMaxDam/bonusDamageFactor
