@@ -714,7 +714,8 @@ class GDCoreEngine:
         ctx.deferred_flush_enabled = False
         # ★ np24：EngineerBox 接力死亡镜像（与 gd 宿主 OracleAlignBattle.gd 同位；
         #   录制侧 EB ChargeTimer 首弹 1 次/侧、队列不推进，接力重发射=0）。
-        ctx.eb_relay_mirrored = True
+        # np25-p5 订正：接力镜像作废（见 OracleAlignBattle.gd 同注），EB 接力恢复
+        ctx.eb_relay_mirrored = False
         p = self._make_character(ctx, k["CoreCharacter"].ID.PLAYER, ps, cls_p,
                                  player_lineup.get("base_max_stamina"))
         # ★ np21-R5 残留①（permanentStacks 收割灌入，gd 宿主 [r5-warm] 块同位）：
