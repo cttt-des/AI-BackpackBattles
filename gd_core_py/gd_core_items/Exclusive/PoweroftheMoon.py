@@ -40,7 +40,16 @@ class Exclusive__PoweroftheMoon(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def onPostCombatStart(self):
-		self.ctx.combat.advanceTime(self.timeAdvance)
+		# ★ np25w_f10：此处必须是**死调用**。受控神谕语料的真值：oracle_bootstrap.gd:108
+		#   把 Main/Combat 搭成裸 Node2D（不挂 Core/Combat.gd）→ 原版
+		#   `Game.combatSceneNode.advanceTime(timeAdvance)` 在神谕 harness 内
+		#   "Nonexistent function" 脚本错误中断 = 无操作 → 语料全库疲劳起点恒为
+		#   CombatTimer.start() 的 FATIGUE_TIME-3=14s（首笔疲劳伤 + fatigue_start
+		#   信号在 17.0167=+3s tick+1tick；514 场 >17s 语料全数实证、0 提前例）。
+		#   gd 若真推进时钟（CoreCombat.advanceTime），PotM time=6 ×2 件把疲劳
+		#   提前到 5.0333（run741_r9/run926_r11 实证=本面首分歧）。镜像死调用语义：
+		#   不推进、不改 time_advance。CoreCombat.advanceTime 本体保留（无其他调用点）。
+		pass
 
 
 	def onPrepare(self):
