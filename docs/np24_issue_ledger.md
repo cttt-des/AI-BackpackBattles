@@ -326,3 +326,14 @@ F.Goobert blind 到期缺发（633）；G.同拍物品激活序（1101）；H.�
 - **spikes 簇 ×5**：run1134=Snow Stick 攻击反伤 7 v 5——**victim spikes 栈数隐形差 2**（ty104 事件全同，消耗路径不可见差）——深井挂起。
 - **Light Goobert ×20（fd 聚类新面孔）**：与已收割 17 不相交——**批量定性分拣中**（127 场，fNbatch）。
 - **fd 全红聚类（127 场）**：LightGoobert ty109×20/BurningBanner ty109×15/spikes×5/Eggscalibur×5/FFR×3/poison×3/RubyWhelp×3/ChargeSplitter×3/Coil×6/长尾——**盲栈到期+pickRandom+隐形栈三大族**。
+
+## 5h. np26 循环轮战报 II（2026-11-01；账面 749/860，剩 111 真差）
+
+- **第二批重录 ✅**：定性批（127 场 oracle 单场分拣，fNbatch 并行 3 路 20 分钟）→**RESIDUE 16+REAL-DIFF 111**；16 残留态重录全绿 → **749/860**（累计 +42 自 707）。
+- **fd 全聚类（111 真差，四大深井）**：
+  1. **pickRandom 链位差**（Coil 偷栈 ×6+BurningBanner removeRandomBuffs ×15+LightGoobert 残余 ~17+spikes×5=**~40 场**）：PCG 全链自洽铁证=oracle 在 pickRandomStacks 前多一个隐藏 randf_range（2 步，f53=0.46907114）；**调用点穷尽未果**（handler/label/metric/snapshot/charge/localizeFonts 全查无抽）；**spy 系四连败**（v1 内类裸引用 Nil 风暴/v2+栈超时/v5 行为差 fd@10 AmuletSteel amount 3v2/v6 同败）——**铁律 9 硬停**。GDScript 3.6 坑：内类裸引用外实例成员=Nil；0xFFFFFFFFFFFFFFFF 字面量溢出。
+  2. **格重叠 affected 判定**（Eggscalibur damage 40v30=P1(1)×affected 差 10——**10 格全灭**；Cupcake 与 Eggscalibur 同格 (3,3) 重叠）——A2 格真值面深水区。
+  3. **charge 到达序**（ChargeSplitter 首充 activate 与 Coil gain 同拍序差；gd 的 _chargeEnterCell 简化 vs oracle 真实飞行）。
+  4. **隐形栈数差**（spikes 反伤 7v5，ty104 事件全同）。
+- **下轮攻击序**：①spy v7（先自证行为无害——单独 bare RandomNumberGenerator 对照实验定位 spy 行为差真因，再上）②格重叠井（Eggscalibur 10 格判定）③charge 序井 ④隐形栈井。**资产：PCG 推演器 _pcg32_walk.py+全链自洽方法论**。
+- **取证现场**：oracle/Utility/Util.gd 已还原（pre_rstate.bak）；Coil 已还原；fNbatch 127 场 probe 保留 output/oracle/probe/fNbatch/。
