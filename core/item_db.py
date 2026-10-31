@@ -60,12 +60,23 @@ class ItemDB:
                     # 归一化索引（忽略大小写/空格/标点）→ 容忍运行时改名与拼写差异
                     for k, v in self.db.items():
                         self._by_norm.setdefault(_norm(k), v)
-                    # 脚本路径索引：节点名会重名（8 个护符场景都叫 Amulet Unidentified），
-                    # 脚本路径才唯一，GUI 用内存里读到的 .gd 路径精确选贴图
-                    for k, v in self.db.items():
+                    # 脚本路径索引：节点名会重名（护符场景根名都是 Amulet Unidentified），
+                    # 但脚本路径在**该物品独有时**才唯一。
+                    #
+                    # ★ 不能无条件 setdefault：宝石/强化药水这一族是**多件物品共用一个
+                    #   脚本**（5 种紫水晶都挂 Amethyst.gd、普通/强化/英雄药水共挂
+                    #   ManaPotion.gd…）。若按脚本建唯一索引，它们会全部命中同一条，
+                    #   导致"碎裂紫水晶"显示成"完美紫水晶"的贴图——这正是贴图串货的根因。
+                    #   因此只收录"脚本→条目"一一对应的脚本；共用脚本留给按名字查。
+                    gd_count: Dict[str, int] = {}
+                    for v in self.db.values():
                         gd = v.get("gd")
                         if gd:
-                            self._by_gd.setdefault(gd, v)
+                            gd_count[gd] = gd_count.get(gd, 0) + 1
+                    for k, v in self.db.items():
+                        gd = v.get("gd")
+                        if gd and gd_count.get(gd) == 1:
+                            self._by_gd[gd] = v
                 except Exception:
                     self.db = {}
             s = self.assets_dir / "item_zh_official.json"
@@ -130,8 +141,15 @@ class ItemDB:
     def entry_for(self, name: str, script: Optional[str] = None) -> Optional[dict]:
         """带脚本路径的条目查找（GUI 用）。
 
-        节点名会撞车（护符们共用 Amulet Unidentified），但脚本路径唯一；
-        因此先用内存里读到的 .gd 精确命中，再退回按名字查。
+        两类撞车要分开处理：
+
+        1. **一个脚本 → 多件物品**（宝石 5 档共用 Amethyst.gd、药水三档共用
+           ManaPotion.gd 等）：脚本不能区分，必须按名字；
+        2. **多件物品 → 同一个节点名**（各护符场景根名都是 Amulet Unidentified，
+           但各自的 .gd 不同）：名字不能区分，必须按脚本。
+
+        所以策略是：仅当该脚本在库中**唯一对应一条**时才用脚本命中（解第 2 类），
+        否则退回按名字（解第 1 类）。名字查不到再走归一化兜底。
         """
         if script:
             e = self._by_gd.get(script)

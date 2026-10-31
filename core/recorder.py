@@ -854,6 +854,7 @@ class Recorder:
         self._run_end_votes = 0       # 连续满足结束条件的帧数
         self._run_end_seen_round: Optional[int] = None  # 见过的最小回合
         self._best_round: Optional[int] = None          # 本局记录到的最大回合
+        self._waiting_frames = 0      # 已等待多少帧才进入对局（懒启动）
 
     # ---------------- 对外状态 ----------------
     @property
@@ -864,6 +865,9 @@ class Recorder:
         return {
             "running": self.running,
             "run_id": self.run_id,
+            # 已启动但还没进入对局（在主界面/菜单上）：GUI 显示"等待进入对局"
+            "waiting": bool(self.running and self.run_id is None),
+            "waiting_frames": self._waiting_frames,
             "events": self._event_count,
             "rounds": self._rounds_started,
             "dropped_frames": self._dropped,
@@ -893,6 +897,7 @@ class Recorder:
         self._run_end_votes = 0
         self._run_end_seen_round = None
         self._best_round = None
+        self._waiting_frames = 0
         self._event_count = 0
         self._rounds_started = 0
         self._dropped = 0
@@ -980,6 +985,32 @@ class Recorder:
                 })
 
     # ---------------- 局结束自动检测 ----------------
+    def _is_in_match(self, frame: Frame) -> bool:
+        """这一帧是否已经"真的在一局对局里"（决定要不要开 run）。
+
+        标题界面上 round/hp 可能残留上一局的旧值，因此**不能只看 round**。
+        以"对局阶段 + 局内可见证据"为准，宁可晚开一帧，也不要把主界面
+        误当对局（那会立刻触发"回标题=结束"，并且把残留值写成事件）。
+
+        判定（任一成立即算局内）：
+          1. Game.state 明确是 Shop(1)/Combat(2)；
+          2. 阶段判为 shop/combat（阶段推断本身已排除 title）；
+          3. 场景里能读到局内物品（背包/储物箱/商店）——这是最硬的证据，
+             标题界面不会有这三者。
+        """
+        gs = frame.game_state
+        if isinstance(gs, int):
+            if gs in (1, 2):
+                return True
+            if gs == 0:
+                return False        # 明确的标题态：即使残留 round 也不开
+        if frame.phase in (PHASE_SHOP, PHASE_COMBAT):
+            return True
+        if frame.phase == PHASE_TITLE:
+            return False
+        # 阶段未知：只有当场景里确实读到局内物品时才认
+        return bool(frame.backpack or frame.storage or frame.shop)
+
     def _note_activity(self, frame: Frame) -> None:
         """记录本局"有过实质内容"的证据（回合数、摆盘、战斗）。"""
         if frame.round is not None:
@@ -1071,8 +1102,21 @@ class Recorder:
         if getattr(self, "_gap_open", False):
             self._gap_open = False
 
-        # 首帧：开新局
+        # ---- 首帧：等到"真的在对局里"再开新局（懒启动）----
+        #
+        # ★ 曾经的 bug：点「开始记录」时若人还停在主界面，标题界面上仍残留
+        #   上一局的 round/hp，于是首帧就被当成本局内容（_run_active=True），
+        #   紧接着"回标题 = 本局结束"立刻命中 → 录制几秒就自动停，
+        #   期间残留的 round/hp 还会被当成事件写进语料。
+        #
+        #   改为：标题/未知阶段只待机，不建 run、不写事件、不判结束；
+        #   一旦进入商店/战斗（或读到明确的局内证据）才真正开 run，
+        #   并以该帧为 diff 基准——之前的标题期一帧都不进语料。
         if self._committed is None:
+            if not self._is_in_match(frame):
+                self._last_seen = frame
+                self._waiting_frames += 1
+                return
             self._open_run(frame)
             self._committed = frame
             self._last_seen = frame
