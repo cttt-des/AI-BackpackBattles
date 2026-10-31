@@ -219,6 +219,50 @@
   清单 output/_recovery/excluded_long_cases.json）。offpeak-06e4dc89 任务面=
   860 快速腿的 153 红处置，与长场无关。
 
+## 5d. offpeak-06e4dc89 十二面定性战报（2026-10-31 晚）
+
+**单场语义定性器批量结果（18 样本场，全部 REAL-DIFF——上轮 p1「残留态」解释
+只适用 run605 类少数场，153 红绝大多数=gd 真实引擎差，语料 12/18 场≡oracle
+单场=干净可比基准）**。逐面三态：
+
+1. evt109@151-400 ×30：⏸混合——run633 fd@215（对手 LG blind ty109 timeout
+   缺发）/run622 fd@276（FFR miss 判定）真实差；run605=残留态（上轮已证）。
+2. evt109@401-1200 ×13：⏸真实差——run702 语料短(3590)=60s 截断场；run823 三数
+   同(3615)三字节异。
+3. evt109@51-150 ×7+×2：⏸真实差——run688 fd@131 三方三值；run726 三数同三字节异。
+4. evt1@1-50 ×11：⏸真实差——run1084 语料 3803=截断场（gd/oracle 单场均 5579
+   同数异字节）；run1086 语料 2499 截断。
+5. evt1@151-400 ×9+@51-150 ×9：⏸真实差——run595 fd@187 SVP lifesteal 链
+   （gd 缺 heal 段转 PF 108）；run628 fd@105 FFR oracle 命中11 v gd Miss。
+6. evt1@401-1200 ×7：⏸真实差——run579 fd@595 SVP heal 三份97（oracle 双份
+   49/97）。
+7. evt0@151-400 ×7+×2：⏸混合——run601 fd@186（gd 缺 Battery@5.0167 再激活=
+   EB 接力域，p5 修复后需重验）；run1283 fd@198/run1130 fd@502。
+8. evt108 ×10：⏸真实差——run578 fd@80（gd 缺 Storage Coffin ty108）/run590
+   fd@208（SPF 双发 t=4.9833 v gd 4.9667=**1 tick 早**）/run597 fd@161（同
+   SPF 1-tick：3.9667 v 3.9500）/run981 fd@231（gd 多 Coffin ty108）——
+   **SPF/PF 触发时刻 1-tick 差=独立签名族**（f11 注册表模型的残余 corner）。
+9. evt19@1-50 ×5：⏸真实差——run1128 同数异字节（prefix 到 1022 全等=尾部差）。
+10. evt105 ×8：⏸真实差——run1101 fd@172（同拍 PM 105/13 v Thunder Drake 攻击
+   序）/run947 fd@6（**开战期 Rainbow Potion 栈施加序**：oracle 105/20/105/
+   104/103 v gd 105/20/103/105/101）。
+11. evt103 ×4：⏸受阻（f07 域继承）——run594 深挖：两侧 SVP heal 前 13 笔逐
+   值同时刻全同；分叉=15.917 Frostbite31 oracle 无 SVP heal（curLifesteal=0）
+   而 15.75 的 ty103 add 已发生——add 时序与 heal 判定归属歧义（own1/own3 分
+   桶仍有矛盾），两连证伪接近即停；f07 材料（infer_cur.py+u_align2.py）完备
+   可续，下轮用活体探针逐实例追踪 lifestealTimer。
+12. evt102/12/101 小簇+py-only：⏸真实差——run597 fd@161（归面 8 SPF 1-tick）/
+   run981（归面 8 Coffin）/run1104 fd@155（**Coil 栈转移类型**：oracle
+   101(-2)/101(2)/104(-1) v gd 105(-1)/105(1)/101(-1)）/run1151+run1128
+   prefix 全等同数=尾部/渲染行差。
+
+**签名族归并（供下轮立项）**：A.SPF/PF 1-tick 触发差（590/597/594 邻域）；
+B.SVP lifestealTimer 生命周期（595/579/594，f07 域）；C.FFR accuracy/miss
+（628/622）；D.开战期栈施加序（947/1104）；E.Coffin 触发有无（578/981）；
+F.Goobert blind 到期缺发（633）；G.同拍物品激活序（1101）；H.尾部/渲染行差
+（1151/1128/726/823）；I.截断场×5（1084/1086/702 语料短——60s 墙钟产物，
+随重录收割）。
+
 ## 6. 交付口径与收口
 
 - 唯一出口 alignment.json（914 行、perCase 保序）；三方全对齐=914/914。
