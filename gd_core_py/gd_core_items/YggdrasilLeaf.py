@@ -36,7 +36,12 @@ class YggdrasilLeaf_2(_R.C("res://gd_core_items/Item.gd")):
 
 	def onManaChanged(self, amount, event):
 		if amount < 0 and event.getParam("used", False):
-			self.manaUsed += - amount
+			# ★ np26fH：gd 的 manaUsed 是 int 推断变量、信号 amount 也是 int
+			#   （mana int 计数）→ int/int 整除 → activations 恒 int。py 侧事件
+			#   amount 为 float（mana 系统 float 化），直加会让 manaUsed 变 float、
+			#   _div(float,int)=真除 → activations 1.2/1.4 浮动 → heal 29/34/24
+			#   波动（run1151_r13 实证）。截断回 int 对齐 gd。
+			self.manaUsed += int(- amount)
 			activations = _div(self.manaUsed, self.manaNeeded)
 			self.manaUsed %= self.manaNeeded
 			if activations >= 1:
