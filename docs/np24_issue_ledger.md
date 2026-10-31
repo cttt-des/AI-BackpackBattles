@@ -179,6 +179,31 @@
 - **分簇器**：firstDivergence 有平铺/嵌套两种形状（嵌套=两对都分歧），解析已修
   勿回退。
 
+## 5b. offpeak 会话战报（2026-10-31 下午；任务书=本文件 §4 十二问题）
+
+- **p1 evt109@151-400 ×33 → 定谳+基建修（76e2d76d）**：run605_r15 语料（批内
+  5683 事件）≠oracle 单场重放（5455）且 **gd≡oracle 单场逐字节全等** ⇒ 分歧不在
+  引擎、在**语料批内残留态**。载体=oracle Buff.reset 只清 current 不清
+  temporaryStacks/nextTemporaryTimeout/permanentStacks+timer（阻塞循环无帧时钟
+  ⇒ 上一场终局未到期临时栈跨场渗入；真游戏=商店期帧时钟自然到期清空）。
+  修后 37 场 manifest 前缀重放 ≡ 单场（5455）验证通过。**语料残留态场需下一轮
+  重录收割（用户批准窗口）**；同簇 run622_r15 三方三值（oracle 单场 4797/gd
+  4682/语料 4792）=真实引擎差另根，留 u 流深挖。
+- **p5 evt0@51-150 ×10 → ✅fixed（3d270e81）**：np24「EB 接力死亡镜像」手补
+  （eb_relay_mirrored=true）的探针前提全部换代——新语料 run1119_r6 实证录制侧
+  EngineerBox 接力**活跃**（Battery 开战发射→EB.chargeTimer delay=5s 接力
+  emitCharge→Battery@5.0167 再激活→Eggscalibur damage 15→16）。三处开关翻转
+  true→false。守门：run1119_r6 双腿 PASS + **run1160_r18 附带翻绿**；
+  p5b 扩验 6/8 翻绿（1287/1305/1312/1314/1319/1329 PASS，1283@198/1130@502 残）；
+  p5c 扩验 run1282_r18 PASS。**合计 +9 场（守门口径）**，REG 零退步。
+- **全量基线**：EB 恢复后全量 --force 重跑中（本节落笔时），数字以重跑后
+  alignment.json 为准（预期 ≥706+9）。
+- **方法论沉淀**：「单场语义定性器」——gd vs oracle **单场**（无批内残留）对拍：
+  单场逐字节全等 ⇒ 语料残留态（重录收割）；单场≠ ⇒ 真实引擎差（可修）。批量
+  定性脚本模式见本会话（oracle 侧 ORACLE_FIGHTS_ROOT 重定向 + gd 侧
+  ORACLE_ALIGN_OUT 重定向 + ORACLE_ALIGN_CASES 显式限场——**勿用
+  run_godot(case_ids=) 裸调**，它会跑全量 914 场 37 分钟）。
+
 ## 6. 交付口径与收口
 
 - 唯一出口 alignment.json（914 行、perCase 保序）；三方全对齐=914/914。
