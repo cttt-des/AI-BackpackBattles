@@ -27,6 +27,7 @@ class CoreTimer(GodotObject):
 		self.fire_count = 0        # 供测试断言
 		self._eng = 0.0            # 引擎 time_left 冻结镜像（仅 start/stop 改写）
 		self._seen = 0.0           # 注册表 e[1]：上一 pass 的 eng（battle setup 登记 [left,left]；
+		self._multi_start_time = -1.0
 		self._started_frame = -1
 
 	# =============================================================================
@@ -72,6 +73,14 @@ class CoreTimer(GodotObject):
 	#   故【运行中同值 start 是注册表盲区】——e[0] 沿旧截止期继续递减=重启丢失
 	#   （真实引擎有帧时钟本会重置；但语料即冻结时钟语义，461 绿场同此，gd 从之）。
 	#   stopped pass 走 e[0]=-1 分支不更新 e[1]）
+	# ★ np26fA multi 相位锚：multi start 发生在本拍 tickTimersPass **之后**时（如 EB
+	#   ChargeTimer=charge_emitted 回调链），下一拍 tick 的登记分支须照常递减 1 次
+	#   补相位——语料 harness drive_timers 对该场景登记拍也不递减，但语料事件
+	#   t=(fire拍-1)×dt（combatTime 在 drive_timers 之后推进=落后 1 tick）而 gd 事件
+	#   t=fire拍×dt（combat_time 在 tickTimersPass 之前推进=领先），两口径差 1 tick，
+	#   gd 端用「登记拍递减」吸收（run1160 EB Battery 5.0167 实证）。同拍 start
+	#   （start 在 tickTimersPass 之前，如 SPF poisonTimer=character_healed 链）则
+	#   登记拍不递减（run590 SPF 毒 4.9833 实证）。
 
 
 	def _init(self, ctx=None, owner=None, timerName=""):
@@ -109,6 +118,15 @@ class CoreTimer(GodotObject):
 			# multi 停止态重启：维持 f01 对齐语义（无条件满计数）
 			self._stopped = False
 			self._left = self.wait_time
+			# ★ np26fA 定谳（run590_r13 SPF 毒 4.9667 v 语料 4.9833=早 1 tick）：
+			#   f11 注册表同构重构时 multi 分支漏写 _eng——同帧 tickTimersPass 里
+			#   eng(0.0)==_seen(0.0) 走递减分支=登记拍同帧递减，multi timer 恒早
+			#   1 tick（f01 的 _started_frame 机制退役后未补 eng/_seen 等价物）。
+			#   语料 harness drive_timers 对 MultiTimer 同走 eng!=e[1] 判定
+			#   （oracle_fight.gd:899-901，SPF tscn PoisonTimer 挂 MultiTimer 脚本
+			#   实证），补 _eng 后同帧 tick 走登记分支（不递减），211 递减对齐。
+			self._eng = self.wait_time
+			self._multi_start_time = self._utilTime()
 			return
 		self._eng = self.wait_time      # 引擎：start 必写 time_left=wait_time（3.6 语义）
 		self._stopped = False
@@ -142,6 +160,12 @@ class CoreTimer(GodotObject):
 		eng = self._eng
 		if eng != self._seen:
 			self._left = eng
+			# ★ np26fA 相位补偿：multi start 发生在上一拍 tickTimersPass 之后时，
+			#   本拍（=start 后第一个 tick pass）登记拍照常递减（事件 t 口径差
+			#   1 tick 的吸收，见 _multi_start_time 注）。同拍 start 不补。
+			if self.multi and self._multi_start_time >= 0.0 and self._multi_start_time < self._utilTime():
+				self._left = eng - delta
+			self._multi_start_time = -1.0
 		else:
 			self._left = self._left - delta
 		self._seen = eng
