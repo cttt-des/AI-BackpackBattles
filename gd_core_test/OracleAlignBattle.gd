@@ -233,14 +233,19 @@ class CaptureProbe extends CoreHooks:
 		}
 
 	# oracle_fight.gd::_jsonable_impl 同构（宝石宿主折叠判据一致：先查 socket）
-	# ★ gem origin 转录（round8）：原版 gem.socket 是 GemSocket2 节点
-	#   （decompiled_full/Items/GemSocket.gd=class Socket：单数 gem、无 gems 数组、
-	#   无 descriptor/getTopLeftCell → _jsonable_impl 折叠 {kind:unknown,str} 且
-	#   socket_index 恒 -1）。神谕语料实证：21164/21164 个 gem origin 全为
-	#   host={kind:unknown,str:GemSocket2} socket_index=-1（全语料扫描）。
-	#   内核把 socket 身份折叠进宿主物品（CoreItem.setGem 的 gem.socket=self，
-	#   gd_core/CoreItem.gd:2786-2806，闸门10已验等价）——dump 层把该折叠 item
-	#   还原成原版序列化形状，非判定放宽（run570 idx34 首分歧即此）。
+	# ★ gem origin 转录（round8，2026-10-31 修订）：GEM_HOST_STR 是**占位字面**，
+	#   不是真值——gd_core 无 GemSocket 节点树（内核把 socket 身份折叠进宿主
+	#   物品：CoreItem.setGem 的 gem.socket=self，gd_core/CoreItem.gd:2786-2806，
+	#   闸门10已验等价），本侧不存在与录制工程同源的节点名可取。
+	#   语料真值=录制工程 socket 节点自动名（Godot 同名子节点自动序号）：
+	#   2026-10-31 新语料抽样（80 场 3073 例）分布
+	#   {GemSocket2:1704, GemSocket:931, GemSocket1:382, GemSocket3:56}，
+	#   socket_index 恒 -1；旧注释「21164/21164 全为 GemSocket2」系旧语料
+	#   批内残留态化石（前场残留 socket 节点挤占自动命名），勿回信。
+	#   消费面实证：canonical（verify_oracle._origin_canon）只取
+	#   host_identifier/socket_index → ("gem", None, -1)，render_lines 走
+	#   canonical 元组——host.str 在判定与渲染双层都不消费，本字面纯属
+	#   dump 层形状兼容（run570 idx34 首分歧即此形状对齐）。
 	func _j(o, depth: int = 0) :
 		if o == null:
 			return null
@@ -267,6 +272,8 @@ class CaptureProbe extends CoreHooks:
 			return {"kind": "gem",
 					"host": {"kind": "unknown", "str": "GemSocket2"},
 					"socket_index": -1}
+		# （上分支 host.str="GemSocket2" 为占位字面：真值=录制工程 socket 节点
+		#   自动名、双层不消费——实证注释见本文件 _j 上方 ★ gem origin 转录块。）
 		if o.has_method("getTopLeftCell") and "descriptor" in o:
 			var tl = o.getTopLeftCell()
 			return {"kind": "item", "name": String(o.getName()),

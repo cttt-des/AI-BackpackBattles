@@ -445,14 +445,18 @@ def _py_payload(case_id: str, seed: int, eng, et_names: Dict[int, str],
         elif getattr(origin, "damage_source", False):
             oj = {"kind": "damage_source", "keyword": origin.key}
         elif getattr(origin, "gem_host", None) is not None:
-            # ★ gem origin 转录（round8，与 gd_core_test/OracleAlignBattle.gd::_j
-            #   同口径）：原版 gem.socket 是 GemSocket2 节点（decompiled_full/Items/
-            #   GemSocket.gd=class Socket：单数 gem、无 gems 数组、无 descriptor/
-            #   getTopLeftCell），oracle_fight.gd::_jsonable_impl 对其恒折叠为
-            #   {kind:unknown,str:GemSocket2} + socket_index=-1。神谕语料实证
-            #   21164/21164 全为该形状。内核 py 镜像把 socket 折叠进宿主物品
-            #   （CoreItem.setGem），此处还原原版序列化形状——仅转写 dump，
-            #   判定逻辑（canonical/_origin_canon/compare）未动。
+            # ★ gem origin 转录（round8，2026-10-31 修订，与
+            #   gd_core_test/OracleAlignBattle.gd::_j 同口径）：host.str="GemSocket2"
+            #   是**占位字面**，不是真值——录制工程 socket 节点自动名分布为
+            #   {GemSocket2/GemSocket/GemSocket1/GemSocket3}（2026-10-31 新语料
+            #   抽样 80 场 3073 例），socket_index 恒 -1；旧「21164/21164 全为
+            #   GemSocket2」系旧语料批内残留态化石，勿回信。py 内核侧真值
+            #   （宿主 identifier+槽位）在 _OriginRef(ident, host_key, slot) 已
+            #   动态保留，但**不可**写入 host.identifier——canonical
+            #   （_origin_canon）会取 host_identifier 入元组，而语料无此字段，
+            #   写入即破坏三方元组等价（("gem", None, -1)）。消费面实证：
+            #   canonical 与 render_lines 双层都不消费 host.str，本字面纯属
+            #   dump 层形状兼容。
             oj = {"kind": "gem",
                   "host": {"kind": "unknown", "str": "GemSocket2"},
                   "socket_index": -1}
