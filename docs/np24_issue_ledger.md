@@ -204,6 +204,19 @@
   ORACLE_ALIGN_OUT 重定向 + ORACLE_ALIGN_CASES 显式限场——**勿用
   run_godot(case_ids=) 裸调**，它会跑全量 914 场 37 分钟）。
 
+## 5c. 超长场剔除通道（2026-10-31 傍晚，用户指令）
+
+- **方案**：events.json ≥3MB 的 54 场从对齐夹具临时剔除（清单
+  output/_recovery/excluded_long_cases.json；全量夹具备份
+  output/_recovery/oracle_align_cases_full_backup.json）——并行腿速度的杀手
+  不是腿数（三腿本就 ≤5 路分片并行）而是**片内串行撞上超长场**（run629 一场
+  爬 6.6GB 内存/数十分钟）。
+- **快速腿结果**：707/860（153 红；rng-mechanism 139/gd_core-kernel 13/
+  py-transpiler 1）。
+- **54 场专用通道**：全量夹具已恢复；54 场陈旧产物已清，`--force --cases <54>
+  --skip-fixtures` 后台跑（超长但与主通道解耦）；完成后 `--compare-only`（全量
+  夹具）出 914 行正式账。
+
 ## 6. 交付口径与收口
 
 - 唯一出口 alignment.json（914 行、perCase 保序）；三方全对齐=914/914。
