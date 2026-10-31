@@ -253,8 +253,19 @@
    可续，下轮用活体探针逐实例追踪 lifestealTimer。
 12. evt102/12/101 小簇+py-only：⏸真实差——run597 fd@161（归面 8 SPF 1-tick）/
    run981（归面 8 Coffin）/run1104 fd@155（**Coil 栈转移类型**：oracle
-   101(-2)/101(2)/104(-1) v gd 105(-1)/105(1)/101(-1)）/run1151+run1128
-   prefix 全等同数=尾部/渲染行差。
+   101(-2)/101(2)/104(-1) v gd 105(-1)/105(1)/101(-1)）/run1151 深挖=**py 真差
+   落点**：Yggdrasil Leaf heal amount 29(py) v 24(oracle/gd 同)@t=2.7667
+   （f03 heal 分支截断的 py 转写残缺，id/type_name/parent 偏移系序列化化妆品
+   已被 canonical_stream 归一）；run1128 同法待查（prefix 1022 全等）。
+
+**★ GemSocket 化石发现（面 12 副产品，重要）**：gd_core_test/OracleAlignBattle.gd::_j
+与 simulator/gd_core_engine.py 两处 gem origin **硬编码 "GemSocket2"**——其依据
+（旧语料 21164/21164 全为 GemSocket2）系**旧批内残留态化石**（前场残留 socket
+节点挤占 Godot 自动命名）；新语料全扫=动态命名分布
+{GemSocket:12543, 2:6266, 3:952, 4:101, 5:38, 6:38, **1:667**}。
+待办：两处 dump 需按「宿主物品第 N 槽→节点自动名」动态化（或 canonical 层把
+host.str 归一——比对口径不应被节点命名噪声劫持）。当前 gd 腿 PASS 说明
+_origin_canon 已容忍该差异，py 腿红另有真因（见上 run1151）。
 
 **签名族归并（供下轮立项）**：A.SPF/PF 1-tick 触发差（590/597/594 邻域）；
 B.SVP lifestealTimer 生命周期（595/579/594，f07 域）；C.FFR accuracy/miss
