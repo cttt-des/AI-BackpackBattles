@@ -44,10 +44,18 @@ from item_sheet import load_rows  # noqa: E402  — tools/ 在 sys.path
 DB_PATH = os.path.join(ROOT, "assets", "battle_items.json")
 
 # CoreConst.gd:344 Item.Type 的键集（类型名成分的判定表，1:1）
+# ★ np25 f08 补全：原表缺元素/效果类键（Effect/Holy/Vampiric/Dark/Nature/Fire/Ice）
+#   —— "Fire*>Burning Coal" 这类**元素类型成分**配方被整条丢弃（Recipe.gd:14
+#   `ingredient in Item.Type` 按名判定，oracle 侧照常注册：类型成分不查发布、
+#   不进 AND，但配方本体注册）→ Burning Coal/Torch、Slice of Toast 等的
+#   originatingRecipes 恒空 → classes 继承链断（0 v 真值 127，run597 探针定谳）。
+#   Ultimate/Container/Skin/Material 非 oracle Item.Type 键，保守保留
+#   （recipes 列不出现这些名，无行为差）。
 TYPE_NAMES = {
     "Bag", "Consumable", "Food", "Pet", "Weapon", "Shield", "Armor", "Gloves",
     "Shoes", "Helmet", "Accessory", "Potion", "Card", "Gem", "Scroll", "Book",
-    "Skill", "ChessPiece", "Spell", "Melee", "Ranged", "Magic", "Musical",
+    "Skill", "ChessPiece", "Spell", "Melee", "Ranged", "Effect", "Holy",
+    "Magic", "Vampiric", "Dark", "Nature", "Fire", "Ice", "Musical",
     "Ultimate", "Container", "Skin", "Material",
 }
 

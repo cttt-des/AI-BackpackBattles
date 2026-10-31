@@ -2565,7 +2565,18 @@ func getStackFraction(target, fraction: float,
 		totalGiven += guaranteed
 	
 	var overflowBuffs: int = totalToGive - totalGiven
-	var sortedOverflow: Array = CoreUtil.sortDict(overflow, ctx.rng, true)
+	# ★ np25 f08（对齐 Item.gd:5642 原字面）：原版 Util.sortDict(overflow, true)
+	#   的洗牌走 Godot **引擎全局链**（Array.shuffle，Util.gd:1693-1699），且
+	#   sort_custom 是引擎非稳定 introsort——此前的「有意偏差」（ctx.rng 洗牌+
+	#   稳定排序）前提「全局链 randomize 后无种子不可复现」对 harness 不成立：
+	#   oracle_fight.gd:595 每场 seed(seed) 播种全局链，录制逐位可复现。
+	#   旧实现还从 ctx.rng（BalancedRng 主链）抽 n-1 抽洗牌=**污染主链**，
+	#   后续全部 flip/roll 错位（evt102 面类型错排/resist 差的公共根因）。
+	#   改为 shuffleEngine（r1_0 全局链直通，py 侧 _rt._math_rng 同链位），
+	#   排序保持 Godot sort_custom+DictSorter 原语义。
+	var sortedOverflow: Array = overflow.keys()
+	ctx.rng.shuffleEngine(sortedOverflow, "Items/Item.gd:5642")
+	sortedOverflow.sort_custom(CoreUtil.DictSorter.new(overflow), "sort")
 	
 	for buff in sortedOverflow:
 		if overflowBuffs == 0:

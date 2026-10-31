@@ -36,7 +36,11 @@ import os
 import re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CSV_PATH = os.path.join(ROOT, "extracted", "Sheets", "CSV", "ItemData_e.csv")
+# ★ np25 f08（2026-10-31）：源重指 oracle 工程 1.1.9 真值明文表（A2 轮 extract_grid
+#   同款先例：extracted/ 1.1.7 树已删，默认路径 FileNotFoundError → enrich_recipes
+#   崩溃 → originating_recipes 陈旧 → classes 继承链断）。plaintext 与解密后的
+#   ItemData_e.csv 同内容（P1-2：oracle/Sheets/CSV/ItemData.csv 已解密明文在盘）。
+CSV_PATH = os.path.join(ROOT, "oracle", "Sheets", "CSV", "ItemData.csv")
 KEY_PATH = os.path.join(ROOT, "tools", "csv_key.txt")
 
 # 对齐 ItemBook.gd:8 `const NUM_PARAMS = 10`
