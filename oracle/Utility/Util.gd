@@ -778,7 +778,7 @@ func rng_trace_range(from, to, tag = "randf_range"):
 			oracleRngLog.push_back([oracleRngLog.size(), tag, from, to, r, time,
 					_oracle_stack_frames()])
 		else:
-			oracleRngLog.push_back([oracleRngLog.size(), tag, from, to, r, time])
+			oracleRngLog.push_back([oracleRngLog.size(), tag, from, to, r, time, "", rng.get_state()])
 	return r
 
 func rng_trace_irange(from, to, tag = "randi_range"):
@@ -786,21 +786,21 @@ func rng_trace_irange(from, to, tag = "randi_range"):
 	if oracleRngTrace:
 		if oracleRngStack:
 			oracleRngLog.push_back([oracleRngLog.size(), tag, from, to, r, time,
-					_oracle_stack_frames()])
+					_oracle_stack_frames(), rng.get_state()])
 		else:
-			oracleRngLog.push_back([oracleRngLog.size(), tag, from, to, r, time])
+			oracleRngLog.push_back([oracleRngLog.size(), tag, from, to, r, time, "", rng.get_state()])
 	return r
 
 func rng_trace_f():
 	var r = rng.randf()
 	if oracleRngTrace:
-		oracleRngLog.push_back([oracleRngLog.size(), "randf", 0, 0, r, time])
+		oracleRngLog.push_back([oracleRngLog.size(), "randf", 0, 0, r, time, "", rng.get_state()])
 	return r
 
 func rng_trace_i():
 	var r = rng.randi()
 	if oracleRngTrace:
-		oracleRngLog.push_back([oracleRngLog.size(), "randi", 0, 0, r, time])
+		oracleRngLog.push_back([oracleRngLog.size(), "randi", 0, 0, r, time, "", rng.get_state()])
 	return r
 
 

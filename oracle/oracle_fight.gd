@@ -812,8 +812,10 @@ func run_case(c: Dictionary, warmup := false) -> Dictionary :
 		lg.open(dir.plus_file("rng_log.txt"), File.WRITE)
 		var rows := []
 		for e in U.oracleRngLog:
-			# 第 7 列 = 调用栈（ORACLE_STACKTRACE=1 时存在）
-			if e.size() > 6:
+			# 第 7 列 = 调用栈；第 8 列 = rng.state（np29 哨兵）
+			if e.size() > 7:
+				rows.append("%d %s %s %s => %s @t=%.3f | %s | st=%s" % [e[0], e[1], e[2], e[3], e[4], e[5], e[6], str(e[7])])
+			elif e.size() > 6:
 				rows.append("%d %s %s %s => %s @t=%.3f | %s" % [e[0], e[1], e[2], e[3], e[4], e[5], e[6]])
 			else:
 				rows.append("%d %s %s %s => %s @t=%.3f" % [e[0], e[1], e[2], e[3], e[4], e[5]])
