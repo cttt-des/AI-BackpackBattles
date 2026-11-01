@@ -395,3 +395,14 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **方法论闭环**：oracle Coil.onChargeReceived 入口哨兵（COILR 行带 state）——**一次跑把隐藏抽夹到函数级**（zap 在 COILR#1 与 COILR#2 之间、量=2 步、域 4.0-4.02 三重匹配）。**同类剥抽排查清单**：zapItem 系（ThunderDrake✅已修/MechaBat/ElectricTorch/Gigawatz——同款 hasOnChargeReceivedEffect+zap 结构逐个 grep Zap 场景调用）；lightningMultiplicity 的 reduceSpeed 链。
 - **剩余 108 红簇清单（下轮）**：LightGoobert ty109×16+Banner ty109×13=**盲栈 timer 清算份批域**（np25 ntp 守卫后的残余——temporaryStacks fire 次序/量差，建议 temporaryStacks 全生命周期 state 哨兵同法）；spikes×5（隐形栈数差）；ChargeSplitter×5（charge 到达序——§5k 时序机方案仍有效）；FFR×3/poison×3/Egg×3（roll 链位残差）；PM ty105×3（refund round 边界——zap 修复后的下游推进）；长尾小簇。
 - **现场**：探针全还原（Coil/CoreItem git checkout+两树 md5 一致 4b108afc）；夹具已还原 914；ZDBG/GCOIL 桩已撤。
+
+## 6c. 108 红完整攻击序（2026-11-01 发掘；752/860 基线）
+
+- **发掘方法**：alignment.json 108 红全量按 fd 处 origin 物品聚类（74 簇→4 井）→ **新鲜 oracle 单场重放定性**（`output/_offpeak/_classify_108_fresh.py`，fPbatch，RESIDUE/REAL-DIFF 分流=op4_classify_108.json）。
+- **攻击清单（机读）**：`output/_offpeak/reds108_attack_manifest.json`（井/证据/机制/方法/攻击点/代表场/循环与退出协议）。
+- **W1 盲栈 temporaryStacks 生命周期域（最大簇 ~21-31 场）**：t109 amount 差（ora -7 v gd -6/-5）=批次边界/timeout 值差/漏 gain（Banner rollChance 抽）。方法=BLND 全生命周期哨兵（oracle [BGAIN]/[BEXPIRE] 与 gd _blnd_snap trace_diag 均已在树；py _py_blnd_probe.py 模式）。代表场 run622_r15（三方三值）/run633_r18/run876_r18。
+- **W2 charge 电荷级联域（~16 场）**：**窗口证据定谳（run1097_r18 fd279）**：oracle CS 激活 t=314→Coil 收电 t=320（6 tick 电荷飞行）；gd 同 tick 瞬时收电（Coil t104 提前、CS t0/Mana Orb 缺位）——**§5k 时序机（CoreElectricalCharge progress/inv_cells/duration + physicsTick 推进）实证必需**，辅以 COILR 哨兵逐场定位（run1130_r14 型=gd Battery 激活缺位）。
+- **W3 roll 链位域（~30 场）**：t1 damage 值差（Egg 40v30/20v15 同比 4:3、spikes 7v5/8v6 CanCrit、poison 16v8、FFR/HolySpear/武器单发）。方法=zap 同款：damage 事件 state 哨兵（前事件 state 同+本事件值差⇒两抽之间隐藏抽）+_pcg32_walk.py 回推。剥抽排查清单：MechaBat/ElectricTorch/Gigawatz。
+- **W4 次序型单发域（~40 场）**：op4 分流——RESIDUE 走重录收割（删 events→oracle 单场重录→三方复核；先例 16/17 翻绿）；REAL-DIFF 按机制二次聚类（StorageCoffin×3 延迟释放/ManaOrb 系×4/Amulet 系×3…）逐域小哨兵。
+- **循环协议**：每井修复→gd_to_py 三树同步→REG gate（7 核心场+域代表场；run695/run1514 基线红）→860 收缩刷账（verify_oracle --skip-fixtures --force）→新索单聚类回流队首。
+- **退出协议**：860/860 全绿→夹具还原 914→P4 收口（--compare-only 复读/r55 快照/台账收口节/战报）→停止。
