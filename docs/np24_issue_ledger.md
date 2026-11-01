@@ -407,3 +407,9 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **★ op4 定性终谳（fPbatch 108/108）**：**RESIDUE=0**（残留态已收割尽，无免费翻绿）；**REAL-DIFF=107**+run1104_r18 no-probe（oracle 重放未出 events，归 REAL-DIFF 池）。**新发现=29 场双分歧**（corpus≠oracle 且 X≈fd_og：run996/702/747/727/1167/996 等）——语料是 76e2d76d reset 修复**前**批录的（跨场残留仍在事件流里）；这 29 场在引擎修好后**必须重录**才可能翻绿（重录协议进每口井收尾，非独立收割）。78 场 corpus==oracle(sg) 修 gd 即翻绿。产物：output/_offpeak/op4_classify_108.json。
 - **循环协议**：每井修复→gd_to_py 三树同步→REG gate（7 核心场+域代表场；run695/run1514 基线红）→860 收缩刷账（verify_oracle --skip-fixtures --force）→新索单聚类回流队首。
 - **退出协议**：860/860 全绿→夹具还原 914→P4 收口（--compare-only 复读/r55 快照/台账收口节/战报）→停止。
+
+## 6d. offpeak-db0c6696 循环轮战报 I（2026-11-01；W1 破案+13）
+
+- **W1 盲栈碰撞语义破案 ✅（8d8324ac）**：`CoreBuff._tick` 停止分支补 `_timer_left=-1.0`（对齐 oracle drive_timers:889-891 **停止期每帧 e[0]=-1**）——此前批A dispel→stop 后遗留运行中值（1.98），下一批同 dur start（LightGoobert/Banner 恒 dur_blind=3）走 eng==seen 碰撞分支减的是遗留值 → 不立即 fire。oracle 侧：stop 期间 e[0] 已=-1 → 同值 start 后 -1-dt≤0 **当拍 fire**。BLND 全生命周期哨兵定谳（fQ633：gain 时 stopped=True reg=-1、批A 无声消失=Stable Recombo dispel、fire=gain 同拍）。**语料 TO=gain+1tick 全序列铁证**。验证：W1 簇 19 场中 **13 场 oracle_sg≡gd 逐字节全等**（run633 fd215→999 残位转 poison 值差=W3）；REG np30w1g **双腿 14/14 全绿**；重录 9 场双分歧 SAME（876/826/727/1036/1075/1079/717/1132/1171）**9/9 三方一致**+4 场直接翻绿（999/1018/1038/1073）=**W1 净 +13**。
+- **★ §5k 时序机伪命题定谳（fS1097 CHRG 探针）**：run1097 单场 76 次 onNewCellEntered **全部 idx=1**——受控神谕下 **cell2+ 从不发生**（tween 不驱动），run1160 实证复核成立。§5k「charge 跨 tick 飞行」模型废弃；W2 重定义为**激活/到达链细节**（run1097@320 的 oracle 序 CS t0→ManaOrb→Coil vs gd 序 Coil→CS=同 tick 激活次序+冷却进度链；run1130 Battery@473 缺激活）——需逐抽对位（rng_log）定位，非时序机。
+- **运维铁律新增**：`verify_oracle --cases` **会改写夹具**（定向清单写回 oracle_align_cases.json）——每次 --cases 后必须 git checkout+重收缩；fPbatch 定性/批量验证后夹具曾两次被缩到 5/1 场（op4_full_w1 首跑跑歪根因）。
