@@ -2998,11 +2998,12 @@ func getExtensionPoints():
 # TileMap used_cells_by_id 是 Set<Vector2>（RB 树），见 CoreUtil.vec2_less_yx 注。
 # 内核夹具数组是提取归一序 sorted(x,y)，此处排序镜像 oracle 运行时序（仅序变）。
 func getAffectedCells_tilemap(color = CoreConst.Affected.Primary) -> Array:
-	var _cells = affectedTileCells.get(color, [])
-	if _cells.size() > 1:
-		_cells = _cells.duplicate()
-		_cells.sort_custom(CoreUtil, "vec2_less_yx")
-	return _cells
+	# ★ np32W2：**透传夹具序**（affectedTileCells=夹具 affected 数组，np32 已
+	#   再生为 tile_data 文件序=涂格真序：extract_grid parse_tscn_grid 保序+
+	#   placement_of 保序变换，cases 的 T 序=oracle fAffC 实测逐位同构）——
+	#   删除 np25 f09 的 sort(vec2_less_yx)（其 yx 序是空图手插探针的不可外推
+	#   结论；文件序才是真值）。序即物品链遍历序（TD zapItem 的 CS/Coil 收发序）。
+	return affectedTileCells.get(color, [])
 
 
 # 对齐 Item.gd:1117-1124

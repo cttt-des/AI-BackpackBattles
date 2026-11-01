@@ -2364,7 +2364,7 @@ const LINEUPS := {
 						"col": 0,
 						"rot": 0,
 						"occupied": [[0, 0], [0, 1], [1, 0], [1, 1]],
-						"collision": [[0, 0], [0, 1], [1, 0], [1, 1]],
+						"collision": [[0, 0], [1, 0], [0, 1], [1, 1]],
 						"affected": {},
 						"key": "Leather Bag",
 						"script": "res://gd_core_items/Bag.gd",
@@ -2377,7 +2377,7 @@ const LINEUPS := {
 						"col": 2,
 						"rot": 0,
 						"occupied": [[2, 0], [2, 1], [3, 0], [3, 1]],
-						"collision": [[2, 0], [2, 1], [3, 0], [3, 1]],
+						"collision": [[2, 0], [3, 0], [2, 1], [3, 1]],
 						"affected": {},
 						"key": "Leather Bag",
 						"script": "res://gd_core_items/Bag.gd",
@@ -2390,7 +2390,7 @@ const LINEUPS := {
 						"col": 4,
 						"rot": 0,
 						"occupied": [[4, 0], [4, 1], [5, 0], [5, 1]],
-						"collision": [[4, 0], [4, 1], [5, 0], [5, 1]],
+						"collision": [[4, 0], [5, 0], [4, 1], [5, 1]],
 						"affected": {},
 						"key": "Leather Bag",
 						"script": "res://gd_core_items/Bag.gd",
@@ -2403,7 +2403,7 @@ const LINEUPS := {
 						"col": 5,
 						"rot": 0,
 						"occupied": [[5, 2], [5, 3], [6, 2], [6, 3]],
-						"collision": [[5, 2], [5, 3], [6, 2], [6, 3]],
+						"collision": [[5, 2], [6, 2], [5, 3], [6, 3]],
 						"affected": {},
 						"key": "Leather Bag",
 						"script": "res://gd_core_items/Bag.gd",
@@ -2416,7 +2416,7 @@ const LINEUPS := {
 						"col": 7,
 						"rot": 0,
 						"occupied": [[7, 2], [7, 3], [8, 2], [8, 3]],
-						"collision": [[7, 2], [7, 3], [8, 2], [8, 3]],
+						"collision": [[7, 2], [8, 2], [7, 3], [8, 3]],
 						"affected": {},
 						"key": "Leather Bag",
 						"script": "res://gd_core_items/Bag.gd",
@@ -2429,7 +2429,7 @@ const LINEUPS := {
 						"col": 6,
 						"rot": 0,
 						"occupied": [[6, 0], [6, 1], [7, 0], [7, 1]],
-						"collision": [[6, 0], [6, 1], [7, 0], [7, 1]],
+						"collision": [[6, 0], [7, 0], [6, 1], [7, 1]],
 						"affected": {},
 						"key": "Leather Bag",
 						"script": "res://gd_core_items/Bag.gd",
@@ -2442,7 +2442,7 @@ const LINEUPS := {
 						"col": 2,
 						"rot": 0,
 						"occupied": [[2, 5], [2, 6], [3, 5], [3, 6]],
-						"collision": [[2, 5], [2, 6], [3, 5], [3, 6]],
+						"collision": [[2, 5], [3, 5], [2, 6], [3, 6]],
 						"affected": {},
 						"key": "Leather Bag",
 						"script": "res://gd_core_items/Bag.gd",
@@ -2455,7 +2455,7 @@ const LINEUPS := {
 						"col": 0,
 						"rot": 0,
 						"occupied": [[0, 5], [0, 6], [1, 5], [1, 6]],
-						"collision": [[0, 5], [0, 6], [1, 5], [1, 6]],
+						"collision": [[0, 5], [1, 5], [0, 6], [1, 6]],
 						"affected": {},
 						"key": "Leather Bag",
 						"script": "res://gd_core_items/Bag.gd",
@@ -2559,7 +2559,7 @@ const LINEUPS := {
 						"col": 4,
 						"rot": 270,
 						"occupied": [[4, 3], [4, 4], [4, 5], [4, 6], [5, 4], [5, 5]],
-						"collision": [[4, 6], [4, 5], [5, 5], [4, 4], [5, 4], [4, 3]],
+						"collision": [[4, 6], [4, 5], [4, 4], [4, 3], [5, 5], [5, 4]],
 						"affected": {},
 						"key": "Sewing Case",
 						"script": "res://gd_core_items/Exclusive/SewingCase.gd",
@@ -2613,7 +2613,7 @@ const LINEUPS := {
 						"occupied": [[4, 5]],
 						"collision": [[4, 5]],
 						"affected": {
-							0: [[3, 4], [3, 5], [3, 6], [4, 4], [4, 6], [5, 4], [5, 5], [5, 6]]
+							0: [[3, 4], [4, 4], [5, 4], [3, 5], [5, 5], [3, 6], [4, 6], [5, 6]]
 						},
 						"key": "Acorn Collar",
 						"script": "res://gd_core_items/AcornCollar.gd",
@@ -2628,7 +2628,7 @@ const LINEUPS := {
 						"occupied": [[1, 5], [1, 6]],
 						"collision": [[1, 6], [1, 5]],
 						"affected": {
-							0: [[0, 4], [0, 5], [0, 6], [0, 7], [1, 4], [1, 7], [2, 3], [2, 4], [3, 2], [3, 3], [3, 4], [4, 2], [4, 3]]
+							0: [[0, 7], [0, 6], [0, 5], [0, 4], [1, 7], [1, 4], [2, 4], [2, 3], [3, 4], [3, 3], [3, 2], [4, 3], [4, 2]]
 						},
 						"key": "Badger Spirit",
 						"script": "res://gd_core_items/Exclusive/BadgerSpirit.gd",
@@ -2643,7 +2643,7 @@ const LINEUPS := {
 						"occupied": [[5, 4]],
 						"collision": [[5, 4]],
 						"affected": {
-							0: [[4, 4], [5, 3], [5, 5], [6, 4]]
+							0: [[5, 3], [4, 4], [6, 4], [5, 5]]
 						},
 						"key": "Blueberries",
 						"script": "res://gd_core_items/Blueberries.gd",
@@ -2658,7 +2658,7 @@ const LINEUPS := {
 						"occupied": [[0, 1], [1, 1]],
 						"collision": [[0, 1], [1, 1]],
 						"affected": {
-							0: [[-1, 1], [0, 0], [0, 2], [1, 0], [1, 2], [2, 1]]
+							0: [[0, 0], [1, 0], [-1, 1], [2, 1], [0, 2], [1, 2]]
 						},
 						"key": "Cheese",
 						"script": "res://gd_core_items/Exclusive/Cheese.gd",
@@ -2671,9 +2671,9 @@ const LINEUPS := {
 						"col": 4,
 						"rot": 90,
 						"occupied": [[4, 0], [4, 1], [5, 0], [5, 1]],
-						"collision": [[5, 0], [4, 0], [5, 1], [4, 1]],
+						"collision": [[5, 0], [5, 1], [4, 0], [4, 1]],
 						"affected": {
-							0: [[4, -1], [4, 2], [5, -1], [5, 2]]
+							0: [[5, -1], [5, 2], [4, -1], [4, 2]]
 						},
 						"key": "Chili Goobert",
 						"script": "res://gd_core_items/Exclusive/ChiliGoobert.gd",
@@ -2699,9 +2699,9 @@ const LINEUPS := {
 						"col": 3,
 						"rot": 180,
 						"occupied": [[3, 2], [3, 3], [3, 4], [4, 2], [4, 3], [4, 4]],
-						"collision": [[4, 4], [4, 3], [4, 2], [3, 4], [3, 3], [3, 2]],
+						"collision": [[4, 4], [3, 4], [4, 3], [3, 3], [4, 2], [3, 2]],
 						"affected": {
-							0: [[2, 2], [2, 3], [5, 2], [5, 3]]
+							0: [[5, 3], [2, 3], [5, 2], [2, 2]]
 						},
 						"key": "Dragon Knight",
 						"script": "res://gd_core_items/Exclusive/DragonKnight.gd",
@@ -2729,7 +2729,7 @@ const LINEUPS := {
 						"occupied": [[4, 6], [5, 6], [6, 6]],
 						"collision": [[6, 6], [5, 6], [4, 6]],
 						"affected": {
-							0: [[3, 6], [4, 4], [4, 5], [4, 7], [4, 8], [5, 5], [5, 7], [6, 5], [6, 7], [7, 6]]
+							0: [[7, 6], [6, 5], [6, 7], [5, 5], [5, 7], [4, 4], [4, 5], [4, 7], [4, 8], [3, 6]]
 						},
 						"key": "Falcon Blade",
 						"script": "res://gd_core_items/FalconBlade.gd",
@@ -2743,9 +2743,9 @@ const LINEUPS := {
 						"col": 6,
 						"rot": 90,
 						"occupied": [[6, 3], [6, 4], [6, 5], [7, 4]],
-						"collision": [[6, 3], [7, 4], [6, 4], [6, 5]],
+						"collision": [[7, 4], [6, 3], [6, 4], [6, 5]],
 						"affected": {
-							0: [[6, 1], [6, 2], [6, 6], [6, 7], [7, 3], [7, 5], [8, 4]],
+							0: [[8, 4], [7, 3], [7, 5], [6, 1], [6, 2], [6, 6], [6, 7]],
 							1: [[5, 1], [5, 2], [5, 3], [5, 4], [5, 5], [5, 6], [5, 7]]
 						},
 						"key": "Fedora",
@@ -2776,7 +2776,7 @@ const LINEUPS := {
 						"occupied": [[1, 4]],
 						"collision": [[1, 4]],
 						"affected": {
-							0: [[0, 3], [0, 4], [0, 5], [1, 3], [1, 5], [2, 3], [2, 4], [2, 5]]
+							0: [[0, 5], [0, 4], [0, 3], [1, 5], [1, 3], [2, 5], [2, 4], [2, 3]]
 						},
 						"key": "Holy Collar",
 						"script": "res://gd_core_items/Exclusive/HolyCollar.gd",
@@ -2789,9 +2789,9 @@ const LINEUPS := {
 						"col": 2,
 						"rot": 90,
 						"occupied": [[2, 0], [2, 1], [3, 0], [3, 1]],
-						"collision": [[3, 0], [2, 0], [3, 1], [2, 1]],
+						"collision": [[3, 0], [3, 1], [2, 0], [2, 1]],
 						"affected": {
-							0: [[2, -1], [2, 2], [3, -1], [3, 2]]
+							0: [[3, -1], [3, 2], [2, -1], [2, 2]]
 						},
 						"key": "Light Goobert",
 						"script": "res://gd_core_items/LightGoobert.gd",
@@ -2806,7 +2806,7 @@ const LINEUPS := {
 						"occupied": [[1, 2], [1, 3]],
 						"collision": [[1, 2], [1, 3]],
 						"affected": {
-							0: [[0, 2], [0, 3], [1, 1], [1, 4], [2, 2], [2, 3]]
+							0: [[1, 1], [0, 2], [2, 2], [0, 3], [2, 3], [1, 4]]
 						},
 						"key": "Lucky Cat",
 						"script": "res://gd_core_items/Exclusive/LuckyCat.gd",
@@ -2821,7 +2821,7 @@ const LINEUPS := {
 						"occupied": [[7, 2]],
 						"collision": [[7, 2]],
 						"affected": {
-							0: [[6, 1], [6, 3], [8, 1], [8, 3]]
+							0: [[6, 1], [8, 1], [6, 3], [8, 3]]
 						},
 						"key": "Mana Orb",
 						"script": "res://gd_core_items/ManaOrb.gd",
@@ -2851,7 +2851,7 @@ const LINEUPS := {
 						"occupied": [[0, 3], [0, 4]],
 						"collision": [[0, 3], [0, 4]],
 						"affected": {
-							0: [[-1, 3], [-1, 4], [1, 3], [1, 4]]
+							0: [[1, 3], [1, 4], [-1, 3], [-1, 4]]
 						},
 						"key": "Piggybank",
 						"script": "res://gd_core_items/Piggybank.gd",
@@ -2866,7 +2866,7 @@ const LINEUPS := {
 						"occupied": [[8, 2], [8, 3]],
 						"collision": [[8, 2], [8, 3]],
 						"affected": {
-							0: [[7, 2], [7, 3], [9, 2], [9, 3]]
+							0: [[9, 2], [9, 3], [7, 2], [7, 3]]
 						},
 						"key": "Piggybank",
 						"script": "res://gd_core_items/Piggybank.gd",
@@ -2879,9 +2879,9 @@ const LINEUPS := {
 						"col": 7,
 						"rot": 0,
 						"occupied": [[7, 5], [7, 6], [8, 5], [8, 6]],
-						"collision": [[7, 5], [7, 6], [8, 5], [8, 6]],
+						"collision": [[7, 5], [8, 5], [7, 6], [8, 6]],
 						"affected": {
-							0: [[6, 5], [6, 6], [7, 4], [7, 7], [8, 4], [8, 7], [9, 5], [9, 6]]
+							0: [[7, 4], [8, 4], [6, 5], [9, 5], [6, 6], [9, 6], [7, 7], [8, 7]]
 						},
 						"key": "Pumpkin",
 						"script": "res://gd_core_items/Pumpkin.gd",
@@ -2909,7 +2909,7 @@ const LINEUPS := {
 						"occupied": [[8, 0], [8, 1]],
 						"collision": [[8, 0], [8, 1]],
 						"affected": {
-							0: [[7, 0], [7, 1], [8, -1], [8, 2], [9, 0], [9, 1]]
+							0: [[9, 0], [9, 1], [8, -1], [8, 2], [7, 0], [7, 1]]
 						},
 						"key": "Rat",
 						"script": "res://gd_core_items/Exclusive/Rat.gd",
@@ -2955,7 +2955,7 @@ const LINEUPS := {
 						"occupied": [[6, 0], [6, 1]],
 						"collision": [[6, 0], [6, 1]],
 						"affected": {
-							0: [[5, 1], [5, 2], [6, 2], [7, 1], [7, 2]]
+							0: [[5, 1], [7, 1], [5, 2], [6, 2], [7, 2]]
 						},
 						"key": "Snowmaster",
 						"script": "res://gd_core_items/Exclusive/Snowmaster.gd",
@@ -2970,7 +2970,7 @@ const LINEUPS := {
 						"occupied": [[5, 5]],
 						"collision": [[5, 5]],
 						"affected": {
-							0: [[2, 1], [3, 1], [3, 2], [4, 1], [4, 2], [4, 3], [5, 1], [5, 2], [5, 3], [5, 4], [6, 1], [6, 2], [6, 3], [7, 1], [7, 2], [8, 1]]
+							0: [[2, 1], [3, 2], [3, 1], [4, 3], [4, 2], [4, 1], [5, 4], [5, 3], [5, 2], [5, 1], [6, 3], [6, 2], [6, 1], [7, 2], [7, 1], [8, 1]]
 						},
 						"key": "Speak with Animals",
 						"script": "res://gd_core_items/Exclusive/SpeakwithAnimals.gd",
@@ -2985,7 +2985,7 @@ const LINEUPS := {
 						"occupied": [[8, 4]],
 						"collision": [[8, 4]],
 						"affected": {
-							0: [[6, 4], [8, 2], [8, 6], [10, 4]]
+							0: [[8, 2], [6, 4], [10, 4], [8, 6]]
 						},
 						"key": "Toad",
 						"script": "res://gd_core_items/Exclusive/Toad.gd",
@@ -3001,7 +3001,7 @@ const LINEUPS := {
 						"collision": [[5, 2]],
 						"affected": {
 							0: [[4, 2]],
-							1: [[6, 2], [7, 2], [8, 2]]
+							1: [[8, 2], [7, 2], [6, 2]]
 						},
 						"key": "Twine",
 						"script": "res://gd_core_items/Exclusive/Twine.gd",
@@ -3017,7 +3017,7 @@ const LINEUPS := {
 						"collision": [[5, 3]],
 						"affected": {
 							0: [[5, 2]],
-							1: [[5, 4], [5, 5], [5, 6]]
+							1: [[5, 6], [5, 5], [5, 4]]
 						},
 						"key": "Twine",
 						"script": "res://gd_core_items/Exclusive/Twine.gd",
@@ -3072,7 +3072,7 @@ const LINEUPS := {
 						"col": 0,
 						"rot": 0,
 						"occupied": [[0, 2], [0, 3], [1, 2], [1, 3], [2, 2], [2, 3]],
-						"collision": [[0, 2], [0, 3], [1, 2], [1, 3], [2, 2], [2, 3]],
+						"collision": [[0, 2], [1, 2], [2, 2], [0, 3], [1, 3], [2, 3]],
 						"affected": {},
 						"key": "Berserker Bag",
 						"script": "res://gd_core_items/Exclusive/BerserkerBag.gd",
@@ -3202,7 +3202,7 @@ const LINEUPS := {
 						"col": 7,
 						"rot": 0,
 						"occupied": [[7, 3], [7, 4], [8, 3], [8, 4]],
-						"collision": [[7, 3], [7, 4], [8, 3], [8, 4]],
+						"collision": [[7, 3], [8, 3], [7, 4], [8, 4]],
 						"affected": {},
 						"key": "Leather Bag",
 						"script": "res://gd_core_items/Bag.gd",
@@ -3215,7 +3215,7 @@ const LINEUPS := {
 						"col": 7,
 						"rot": 90,
 						"occupied": [[7, 5], [7, 6], [8, 5], [8, 6]],
-						"collision": [[8, 5], [7, 5], [8, 6], [7, 6]],
+						"collision": [[8, 5], [8, 6], [7, 5], [7, 6]],
 						"affected": {},
 						"key": "Leather Bag",
 						"script": "res://gd_core_items/Bag.gd",
@@ -3228,7 +3228,7 @@ const LINEUPS := {
 						"col": 4,
 						"rot": 0,
 						"occupied": [[4, 0], [4, 1], [5, 0], [5, 1]],
-						"collision": [[4, 0], [4, 1], [5, 0], [5, 1]],
+						"collision": [[4, 0], [5, 0], [4, 1], [5, 1]],
 						"affected": {},
 						"key": "Leather Bag",
 						"script": "res://gd_core_items/Bag.gd",
@@ -3241,7 +3241,7 @@ const LINEUPS := {
 						"col": 0,
 						"rot": 90,
 						"occupied": [[0, 4], [0, 5], [1, 4], [1, 5]],
-						"collision": [[1, 4], [0, 4], [1, 5], [0, 5]],
+						"collision": [[1, 4], [1, 5], [0, 4], [0, 5]],
 						"affected": {},
 						"key": "Leather Bag",
 						"script": "res://gd_core_items/Bag.gd",
@@ -3254,7 +3254,7 @@ const LINEUPS := {
 						"col": 5,
 						"rot": 180,
 						"occupied": [[5, 2], [5, 3], [6, 2], [6, 3]],
-						"collision": [[6, 3], [6, 2], [5, 3], [5, 2]],
+						"collision": [[6, 3], [5, 3], [6, 2], [5, 2]],
 						"affected": {},
 						"key": "Leather Bag",
 						"script": "res://gd_core_items/Bag.gd",
@@ -3373,7 +3373,7 @@ const LINEUPS := {
 						"occupied": [[1, 3]],
 						"collision": [[1, 3]],
 						"affected": {
-							0: [[0, -1], [0, 0], [0, 1], [0, 2], [0, 3], [0, 4], [0, 5], [0, 6], [0, 7], [1, -1], [1, 0], [1, 1], [1, 2], [1, 4], [1, 5], [1, 6], [1, 7], [2, -1], [2, 0], [2, 1], [2, 2], [2, 3], [2, 4], [2, 5], [2, 6], [2, 7]]
+							0: [[2, -1], [2, 0], [2, 1], [2, 2], [2, 3], [2, 4], [2, 5], [2, 6], [2, 7], [1, -1], [1, 0], [1, 1], [1, 2], [1, 4], [1, 5], [1, 6], [1, 7], [0, -1], [0, 0], [0, 1], [0, 2], [0, 3], [0, 4], [0, 5], [0, 6], [0, 7]]
 						},
 						"key": "Amulet of Steel",
 						"script": "res://gd_core_items/Exclusive/AmuletofSteel.gd",
@@ -3388,7 +3388,7 @@ const LINEUPS := {
 						"occupied": [[3, 1]],
 						"collision": [[3, 1]],
 						"affected": {
-							0: [[2, 1], [3, 0], [3, 2], [4, 1]]
+							0: [[3, 0], [2, 1], [4, 1], [3, 2]]
 						},
 						"key": "Blueberries",
 						"script": "res://gd_core_items/Blueberries.gd",
@@ -3403,7 +3403,7 @@ const LINEUPS := {
 						"occupied": [[5, 1]],
 						"collision": [[5, 1]],
 						"affected": {
-							0: [[4, 1], [5, 0], [5, 2], [6, 1]]
+							0: [[5, 0], [4, 1], [6, 1], [5, 2]]
 						},
 						"key": "Blueberries",
 						"script": "res://gd_core_items/Blueberries.gd",
@@ -3418,7 +3418,7 @@ const LINEUPS := {
 						"occupied": [[2, 0], [3, 0]],
 						"collision": [[3, 0], [2, 0]],
 						"affected": {
-							0: [[1, 0], [2, -1], [2, 1], [3, -1], [3, 1], [4, 0]]
+							0: [[3, 1], [2, 1], [4, 0], [1, 0], [3, -1], [2, -1]]
 						},
 						"key": "Cheese",
 						"script": "res://gd_core_items/Exclusive/Cheese.gd",
@@ -3431,9 +3431,9 @@ const LINEUPS := {
 						"col": 5,
 						"rot": 0,
 						"occupied": [[5, 2], [5, 3], [6, 2], [6, 3]],
-						"collision": [[5, 2], [5, 3], [6, 2], [6, 3]],
+						"collision": [[5, 2], [6, 2], [5, 3], [6, 3]],
 						"affected": {
-							0: [[4, 2], [4, 3], [7, 2], [7, 3]]
+							0: [[4, 2], [7, 2], [4, 3], [7, 3]]
 						},
 						"key": "Cheese Goobert",
 						"script": "res://gd_core_items/Exclusive/CheeseGoobert.gd",
@@ -3532,7 +3532,7 @@ const LINEUPS := {
 						"occupied": [[2, 2], [3, 2], [4, 2]],
 						"collision": [[4, 2], [3, 2], [2, 2]],
 						"affected": {
-							0: [[1, 2], [2, 0], [2, 1], [2, 3], [2, 4], [3, 1], [3, 3], [4, 1], [4, 3], [5, 2]]
+							0: [[5, 2], [4, 1], [4, 3], [3, 1], [3, 3], [2, 0], [2, 1], [2, 3], [2, 4], [1, 2]]
 						},
 						"key": "Falcon Blade",
 						"script": "res://gd_core_items/FalconBlade.gd",
@@ -3548,7 +3548,7 @@ const LINEUPS := {
 						"occupied": [[0, 3]],
 						"collision": [[0, 3]],
 						"affected": {
-							0: [[-2, 1], [-2, 2], [-1, 1], [-1, 2], [-1, 3], [0, 2], [0, 4], [1, 1], [1, 2], [1, 3], [2, 1], [2, 2]]
+							0: [[-2, 1], [-1, 1], [1, 1], [2, 1], [-2, 2], [-1, 2], [0, 2], [1, 2], [2, 2], [-1, 3], [1, 3], [0, 4]]
 						},
 						"key": "False Life",
 						"script": "res://gd_core_items/Exclusive/FalseLife.gd",
@@ -3561,9 +3561,9 @@ const LINEUPS := {
 						"col": 0,
 						"rot": 0,
 						"occupied": [[0, 0], [0, 1], [0, 2], [1, 0], [1, 1], [1, 2]],
-						"collision": [[0, 0], [0, 1], [0, 2], [1, 0], [1, 1], [1, 2]],
+						"collision": [[0, 0], [1, 0], [0, 1], [1, 1], [0, 2], [1, 2]],
 						"affected": {
-							0: [[-1, 0], [-1, 1], [-1, 2], [0, -1], [0, 3], [1, -1], [1, 3], [2, 0], [2, 1], [2, 2]]
+							0: [[0, -1], [1, -1], [-1, 0], [2, 0], [-1, 1], [2, 1], [-1, 2], [2, 2], [0, 3], [1, 3]]
 						},
 						"key": "Gold Armor",
 						"script": "res://gd_core_items/Exclusive/GoldArmor.gd",
@@ -3577,9 +3577,9 @@ const LINEUPS := {
 						"col": 5,
 						"rot": 0,
 						"occupied": [[5, 4], [5, 5], [6, 4], [6, 5]],
-						"collision": [[5, 4], [5, 5], [6, 4], [6, 5]],
+						"collision": [[5, 4], [6, 4], [5, 5], [6, 5]],
 						"affected": {
-							0: [[4, 4], [4, 5], [5, 3], [5, 6], [6, 3], [6, 6], [7, 4], [7, 5]]
+							0: [[5, 3], [6, 3], [4, 4], [7, 4], [4, 5], [7, 5], [5, 6], [6, 6]]
 						},
 						"key": "Heart of Darkness",
 						"script": "res://gd_core_items/HeartofDarkness.gd",
@@ -3594,7 +3594,7 @@ const LINEUPS := {
 						"occupied": [[3, 3]],
 						"collision": [[3, 3]],
 						"affected": {
-							0: [[2, 2], [2, 4], [4, 2], [4, 4]]
+							0: [[2, 2], [4, 2], [2, 4], [4, 4]]
 						},
 						"key": "Mana Orb",
 						"script": "res://gd_core_items/ManaOrb.gd",
@@ -3750,9 +3750,9 @@ const LINEUPS := {
 						"col": 7,
 						"rot": 0,
 						"occupied": [[7, 4], [7, 5], [8, 4], [8, 5]],
-						"collision": [[7, 4], [7, 5], [8, 4], [8, 5]],
+						"collision": [[7, 4], [8, 4], [7, 5], [8, 5]],
 						"affected": {
-							0: [[6, 4], [6, 5], [7, 3], [7, 6], [8, 3], [8, 6], [9, 4], [9, 5]]
+							0: [[7, 3], [8, 3], [6, 4], [9, 4], [6, 5], [9, 5], [7, 6], [8, 6]]
 						},
 						"key": "Wolpertinger",
 						"script": "res://gd_core_items/Wolpertinger.gd",

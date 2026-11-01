@@ -56,7 +56,12 @@ def decode_tile(v: int):
 
 
 def parse_tscn_grid(path: str):
-    """解析一个 tscn 的 CollisionMap tile_data，返回 {tile_id: set((x,y))}"""
+    """解析一个 tscn 的 CollisionMap tile_data，返回 {tile_id: list[(x,y)]}。
+
+    ★ np32W2：**保文件序**（list 顺序追加，不再 set 去重乱序）——tile_data 的
+      PoolIntArray 存储序=涂格真序（1097 fAffC 实测：文件序逐格变换与 oracle
+      getCellsForGlobalPositions 输出序同构；norm_cells 的 sorted 是序破坏点）。
+      受影响格的遍历序=物品链遍历序（TD zapItem 的 CS/Coil 收发序），序即链位。"""
     try:
         with open(path, encoding="utf-8", errors="replace") as f:
             txt = f.read()
@@ -70,7 +75,9 @@ def parse_tscn_grid(path: str):
     for i in range(2, len(nums), 3):
         cell = decode_tile(nums[i - 2])
         tid = nums[i - 1]
-        tiles.setdefault(tid, set()).add(cell)
+        tiles.setdefault(tid, [])
+        if cell not in tiles[tid]:
+            tiles[tid].append(cell)
     return tiles
 
 
@@ -104,7 +111,14 @@ def scan_tscn_index():
 
 
 def norm_cells(cells) -> list:
-    return sorted([list(c) for c in cells])
+    # ★ np32W2：保序去重（tile_data 文件序=涂格真序，见 parse_tscn_grid 注）——
+    #   去掉 sorted（序破坏点）。
+    out = []
+    for c in cells:
+        cl = list(c)
+        if cl not in out:
+            out.append(cl)
+    return out
 
 
 def main():
