@@ -591,7 +591,7 @@ func run_case(c: Dictionary, warmup := false) -> Dictionary :
 	G.get_node("/root/CustomRules").fromString(player_run.customRules)
 
 	# ── ★ 确定性种子：任何物品实例创建之前（约定 2b）────────────────────
-	U.rng.seed = seed_value
+	U.rng.set_seed(seed_value)
 	seed(seed_value)   # 引擎全局链（Array.shuffle/pick_random 消费，原版同源）
 	U.oracleRngTrace = _dbg_delayed
 	U.oracleRngStack = OS.get_environment("ORACLE_STACKTRACE") != ""
@@ -675,7 +675,7 @@ func run_case(c: Dictionary, warmup := false) -> Dictionary :
 	if not warmup:
 		var rsf = File.new()
 		rsf.open(dir.plus_file("rng_state.txt"), File.WRITE)
-		rsf.store_string("seed=%d\nstate=%d\n" % [U.rng.get_seed(), U.rng.state])
+		rsf.store_string("seed=%d\nstate=%d\n" % [U.rng.get_seed(), U.rng.get_state()])
 		rsf.close()
 
 	G.prepareItems(playerItems + opponentItems)
