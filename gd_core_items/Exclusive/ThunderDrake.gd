@@ -42,6 +42,13 @@ func onDealtDamage(damageRes: CoreDamageResult):
 func zapItem(item):
 	item.chargeReceived(self)
 	if item.hasOnChargeReceivedEffect:
+		# ★ np27 破案（EVENT state 哨兵+GCOIL/ZDBG 双桩，run1102_r13）：原版此处
+		#   ObjectPool.instance(Util.zapScene)+zap.zap(...) → Zap.gd:32 的
+		#   randf_range(4.0,4.02)（1 抽=2 步）——转写剥表现层时把 rng 消耗一并
+		#   剥掉：oracle 偷1(Coil×2 层 106) 后 zap 2 步（-8602→7014，PCG 全链
+		#   自洽）→ 偷2 pick(2,1)；gd 无 zap → 偷2 pick(3,0) → 偷栈类型分叉
+		#   （语料 106/105/104 v gd 106/106/101）。补消耗（表现层照剥）。
+		ctx.rng.randf_range(4.0, 4.02)
 		var targetPos = item.getGlobalCenter()
 
 
