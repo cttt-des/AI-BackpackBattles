@@ -388,3 +388,10 @@ F.Goobert blind 到期缺发（633）；G.同拍物品激活序（1101）；H.�
 spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 commit；账面刷新用
 完整跑勿 compare-only）。
 【退出】860/860（REG 全绿+账面确认）→ 夹具还原 914 → 收口协议（§6 P4）→ 战报。
+
+## 6b. offpeak-b16489cf 循环轮战报（2026-11-01；账面 749→752/860）
+
+- **zap 破案 ✅（0fa3be1a，本轮最大成果）**：**ThunderDrake.zapItem 的 Zap rng 消耗被转写剥除**（Zap.gd:32 randf_range(4.0,4.02)=2 步/次）——EVENT state 哨兵+GCOIL/ZDBG 双桩定谳（oracle COILR#1 st=3941→偷×2→zap→7014→COILR#2；gd 无 zap 直通-8602→偷2 pick(3,0) 选错栈）。**修=补 ctx.rng.randf_range(4.0,4.02)（表现层照剥）**。验证：run1103/1108 PASS 翻绿、run1102 fd200→205、run1104 fd155→180；REG np28z1 零退步；860 全量 --force → **752/860**（py-only 清零）。
+- **方法论闭环**：oracle Coil.onChargeReceived 入口哨兵（COILR 行带 state）——**一次跑把隐藏抽夹到函数级**（zap 在 COILR#1 与 COILR#2 之间、量=2 步、域 4.0-4.02 三重匹配）。**同类剥抽排查清单**：zapItem 系（ThunderDrake✅已修/MechaBat/ElectricTorch/Gigawatz——同款 hasOnChargeReceivedEffect+zap 结构逐个 grep Zap 场景调用）；lightningMultiplicity 的 reduceSpeed 链。
+- **剩余 108 红簇清单（下轮）**：LightGoobert ty109×16+Banner ty109×13=**盲栈 timer 清算份批域**（np25 ntp 守卫后的残余——temporaryStacks fire 次序/量差，建议 temporaryStacks 全生命周期 state 哨兵同法）；spikes×5（隐形栈数差）；ChargeSplitter×5（charge 到达序——§5k 时序机方案仍有效）；FFR×3/poison×3/Egg×3（roll 链位残差）；PM ty105×3（refund round 边界——zap 修复后的下游推进）；长尾小簇。
+- **现场**：探针全还原（Coil/CoreItem git checkout+两树 md5 一致 4b108afc）；夹具已还原 914；ZDBG/GCOIL 桩已撤。
