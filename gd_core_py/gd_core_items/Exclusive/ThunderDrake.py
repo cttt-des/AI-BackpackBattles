@@ -47,18 +47,42 @@ class Exclusive__ThunderDrake(_R.C("res://gd_core_items/Weapon.gd")):
 
 
 				if self.active:
-					for item in _iter(self.getAffectedItems(_R.C("CoreConst").Affected.Lightning)):
+					for item in _iter(self._lightningOrdered()):
 						item.chargeLeft(self)
 						self.zapItem(item)
 				else:
 					self.setState(True)
-					for item in _iter(self.getAffectedItems(_R.C("CoreConst").Affected.Lightning)):
+					for item in _iter(self._lightningOrdered()):
 						item.addSpeed(self.buffSpeed * self.lightningMultiplicity[item])
 						self.zapItem(item)
 
 				self.buffTimer.stop()
 				self.buffTimer.start(self.getP_m("dur"))
 				self.curHitCount = 0
+
+
+	# ★ np32W2：TD 的 Lightning 受影响循环序=tile_data 静态涂色序（x 分组升、
+	#   组内 y 降，1097 fAffC oracle 实测）——按物品锚格排序的物品列表副本。
+	#   TD 是全场唯一 Lightning 色遍历者，局部排序零全局风险
+	#   （v1 失败复盘：排序键误用 vec2 于物品列表+cp 路径错未生效，见 3d7b1d21）。
+	def _lightningOrdered(self):
+		arr = self.getAffectedItems(_R.C("CoreConst").Affected.Lightning)
+		keyed = []
+		for it in _iter(arr):
+			keyed.append([it.getTopLeftCell(), it])
+		_sort_custom(keyed, self, "_tl_key_less")
+		out = []
+		for kv in _iter(keyed):
+			out.append(kv[1])
+		return out
+
+
+	def _tl_key_less(self, a, b):
+		ca = a[0]
+		cb = b[0]
+		if ca.x == cb.x:
+			return ca.y > cb.y
+		return ca.x < cb.x
 
 
 	def zapItem(self, item):
@@ -77,7 +101,7 @@ class Exclusive__ThunderDrake(_R.C("res://gd_core_items/Weapon.gd")):
 	def onBuffEnded(self):
 		self.setState(False)
 
-		for item in _iter(self.getAffectedItems(_R.C("CoreConst").Affected.Lightning)):
+		for item in _iter(self._lightningOrdered()):
 			item.reduceSpeed(self.buffSpeed * self.lightningMultiplicity[item])
 			item.chargeLeft(self)
 
