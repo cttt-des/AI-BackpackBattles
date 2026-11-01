@@ -359,3 +359,32 @@ F.Goobert blind 到期缺发（633）；G.同拍物品激活序（1101）；H.�
 - **gd 单 cell1 模型+盲插 zap ✓已有**；**全 cell 瞬时循环化失败**（fd@1——oracle 的 cell 推进是跨物理 tick 的 tween 时序：halfCellDur=0.5×dur/(cells-1)，每 cell 间隔=duration/(cells-1)，非同拍）。
 - **正确方案=CoreElectricalCharge 时序机**：charge 对象带 progress/cells/inv_cells 状态，physicsTick 按 dt 推进 cellIndex（每跨 cell 阈值→_chargeEnterCell(cell)+换主判定+zap），duration 到→returnToObjectPool。**工程量 1-2 小时**，REG+charge 场全量回归必跑。
 - **下轮实现要点**：①CoreElectricalCharge 扩 progress/inv_cells/duration ②CoreCombat.physicsTick 的 charge 步骤（activateItems 后）③sendCharge 只建 charge 不瞬时进 cell（cell1 由首个 tick 推进）④seek/replaying 分支（录音带场景）注意。
+
+## 6a. offpeak 最终任务书（860 全绿收口；2026-11-01 移交）
+
+> 本节=**下一棒 offpeak 的完整任务书**。现场已核：夹具 914（收缩用 §5c 清单）、
+> 无 godot 孤儿、探针全还原（oracle Util/CombatLog/Pan + gd CoreItem/Coil/Pan
+> md5 三方一致）、OracleAlignBattle join-all 已入库（eaea5fe1）、
+> oracle_fight.gd 工作树含未提交的哨兵写循环扩展（无害，勿回退勿提交）。
+
+【账面】749/860 绿；剩 111 真差，**主井=roll/pickRandom 链位差（~45 场）**。
+【首攻=charge 时序机（§5k 方案，杠杆最大）】
+1. CoreElectricalCharge（CoreItem.gd:2072 内类）扩状态：cells/inv_cells/duration/
+   cell_index(progress)/emitter。
+2. CoreCombat.physicsTick 加电荷推进步骤（activateItems 后）：按 dt 累计，
+   每跨 halfCellDur=0.5×duration/(cells-1) 推进一格 cellIndex→
+   _chargeEnterCell(charge, cellIndex, inv_cells)（换主判定+zap
+   randf_range(4.0,4.02)+chargeLeft/Received 全在既有实现）。
+3. sendCharge 改为：只建 charge 注册+音效 4 步（-12,-5 与 0.7,1.3 保留）+
+   **立即同步 _chargeEnterCell(cellIndex=1)**（对齐 oracle start 的 i==0 同步分支——
+   这是大量绿场的既有语义，勿丢）。
+4. duration 到→charge 出清（cur=null 收尾对齐 cellIndex==size 分支）。
+5. 验证序：单场 run1097/1102/1107 → 同簇 run1103/1104/1105/1106/1108/1109/1163
+   → REG 8 场 → 860 夹具收缩（§5c 清单）+`--skip-fixtures` 完整跑刷账。
+6. 预期翻绿：Coil×6/Banner×15/LightGoobert 残余/Egg×5/spikes×5 ≈ 35-45 场。
+【次攻】新索单逐簇：同一「roll 链位差」签名继续用 charge/事件哨兵法；RESIDUE
+新发现继续重录（已授权至全绿）；Eggscalibur 同款 affected 探针法已证伪格井。
+【铁律】§0 全部+§5f-5k 教训（gh env 勿传 os.environ；幂等三杀；GDScript 三坑；
+spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 commit；账面刷新用
+完整跑勿 compare-only）。
+【退出】860/860（REG 全绿+账面确认）→ 夹具还原 914 → 收口协议（§6 P4）→ 战报。
