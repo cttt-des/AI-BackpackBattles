@@ -351,12 +351,18 @@ def placement_of(key: str, entry: dict, row: int, col: int, rot: int) -> dict:
 
     affected = {}
     for color, gkey in AFFECTED_KEYS.items():
-        cells = set()
+        # ★ np32W2：**保 grid 文件序**（tile_data 涂格真序，extract_grid np32
+        #   已保序）——逐格旋转+平移（变换保序），序即物品链遍历序
+        #   （TD zapItem 的 Lightning 受影响循环序=CS/Coil 收发序，1097 实证）。
+        #   此前 set+sorted 双重破坏序。
+        cells = []
         for c in (grid.get(gkey) or []):
             rc = rotate_cell(tuple(c), rot)
-            cells.add((rc[0] - minx + col, rc[1] - miny + row))
+            ac = (rc[0] - minx + col, rc[1] - miny + row)
+            if ac not in cells:
+                cells.append(ac)
         if cells:
-            affected[color] = sorted(cells)
+            affected[color] = [list(c) for c in cells]
 
     return {
         "row": row, "col": col, "rot": rot,
