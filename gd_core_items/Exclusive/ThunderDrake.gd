@@ -25,27 +25,18 @@ func onDealtDamage(damageRes: CoreDamageResult):
 			
 			
 			if active:
-				for item in _lightningOrdered():
+				for item in getAffectedItems(CoreConst.Affected.Lightning):
 					item.chargeLeft(self)
 					zapItem(item)
 			else:
 				setState(true)
-				for item in _lightningOrdered():
+				for item in getAffectedItems(CoreConst.Affected.Lightning):
 					item.addSpeed(buffSpeed * lightningMultiplicity[item])
 					zapItem(item)
 				
 			buffTimer.stop()
 			buffTimer.start(getP_m("dur"))
 			curHitCount = 0
-
-
-# ★ np31W2：TD 的 Lightning 受影响循环序=tile_data 静态涂色序（x 分组升、
-#   组内 y 降）——1097 fAffC oracle 实测；TD 是全场唯一 Lightning 色遍历者，
-#   局部排序副本零全局风险（全局按色分曾致 -62 退步已回滚 9c447568）。
-func _lightningOrdered():
-	var arr = getAffectedItems(CoreConst.Affected.Lightning)
-	arr.sort_custom(CoreUtil, "vec2_tile_data")
-	return arr
 
 
 func zapItem(item):
@@ -64,7 +55,7 @@ func zapItem(item):
 func onBuffEnded():
 	setState(false)
 	
-	for item in _lightningOrdered():
+	for item in getAffectedItems(CoreConst.Affected.Lightning):
 		item.reduceSpeed(buffSpeed * lightningMultiplicity[item])
 		item.chargeLeft(self)
 
