@@ -99,11 +99,25 @@ class CoreUtil(GodotObject):
 	# sorted(x,y)，直接透出会让 getAffectedItems 物品序错位（run604_r10 实证：
 	# Echoing Battlecry 洗牌输入序 [(5,6),(7,4)] v oracle [(7,4),(5,6)] → pop_back
 	# 首弹弹错 Piggybank → ManaOrb 的 105 缺发 = fd@65）。
+	# ★ np31W2：tile_data 静态涂色序（x 分组升、组内 y 降）——Lightning 色受影响
+	#   格序（run1097 fAffC oracle 实测）。判据与用途见 CoreItem.getAffectedCells_tilemap。
+	@staticmethod
+	def vec2_tile_data(a, b):
+		if a.x == b.x:
+			return a.y > b.y
+		return a.x < b.x
+
+
 	@staticmethod
 	def vec2_less_yx(a, b):
-		if a.y == b.y:
-			return a.x < b.x
-		return a.y < b.y
+		# ★ np31W2（涂色来源定谳，台账 §6h 补4）：夹具 affected=tile_data 静态涂色
+		#   →真序=x 升分组、组内 y 降（1097 fAffC 实测 [(1,0),(2,1),(2,0),(3,2)...]）。
+		#   运行时涂色（ManaOrb onPrepare 动态 set_cell，604 实测 [(5,3),(7,3),(5,5),(7,5)]）
+		#   =y 行优先 x 升——gd 无运行时涂色路径，其 affectedTileCells 全静态，
+		#   统一用 tile_data 序；运行时涂色场（f09 的 16 场）另有修复面（§6h 补4 ③）。
+		if a.x == b.x:
+			return a.y > b.y
+		return a.x < b.x
 
 
 	# 对齐 Util.gd:961-964
