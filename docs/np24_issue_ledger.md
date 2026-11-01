@@ -427,3 +427,19 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **W1 残余盲栈破案定谳（fX622/fY622 BLC 哨兵）**：run622 型「O -7 v G -6」=**语料双分歧残留**（op4 的 29 场双分歧之一）——fY622 oracle 单场重放自身 fire 批=6（BLND fire p0 amt=6 + BLC pick_amt=7→partial 削 1），与 gd -6 全同；语料 -7 是 76e2d76d reset 修复前批录的跨场残留（上一场渗入 1 层）。**引擎已对，收割即绿**。
 - **收割轮 ✅（+13 → 809/860）**：op5 分流（fPbatch 探针对比新 gd 产物——oracle 引擎未变、探针仍有效）：64 红=**13 HARVEST**（oracle_sg≡gd）+50 REAL+1 noprobe（run1104）。13 场删 events 重录→**13/13 三方一致**（688/718/747/971/996/1086/1167/1178/1233/1352/1361/1377/1447）。
 - **剩余 51 红面（下一棒）**：50 REAL（fPbatch fd 位=output/_offpeak/op5_harvest_64.json）+run1104（oracle 重放无产物，先单独取证）。分域：W1 真差残余（run622@289/run1120@868）、W2 激活链（run1097/1101/1102/1105/1106/1107/1163/1280/1290…）、W3 roll（FFR/RubyWhelp/HolySpear/FlameWhip/Automanaton/Egg）、W4 长尾（StorageCoffin/Amulet/MrStruggles/RainbowPotion/Toad/Badger/Wand/MissFortune/Wolpertinger/CursedDagger…）。
+
+
+## 6g. 循环轮战报 IV（2026-11-01；W2 激活链证据链+方案，转攻 W3/W4）
+
+- **run1104 取证 ✅**：corpus==oracle_sg（语料新鲜）、REAL-DIFF@180（归 W2 Coil 域）。op4 的 no-probe 为偶发，重放正常。
+- **W2 激活链证据链（fZ1097/fZa1097/fAffO2/fAffC/fAffM2 五轮哨兵）**：
+  1. **EVENT state 哨兵**：fd@279 前 [276-278] state 双侧全同（5420...）——差在确定性计算面。
+  2. **CS 的 t0 双来源定谳**：①doCooldownEffect→onAfterEffectFinished→**consume()→activate()**（冷却链，heat 够时）；②onChargeReceived→emitCharge→activate（charge 到达）。CSRX 哨兵 4 次=tick 320/547/841/1137。**fd@279 的 CS t0=CSRX 紧跟 ThunderDrake t1（row1277→1278）——触发者=ThunderDrake.zapItem→item.chargeReceived(self)**（zapItem 循环里逐件 chargeReceived）。
+  3. **根因=ThunderDrake.getAffectedItems(Lightning) 的序+集差**（AFF 哨兵）：oracle=[DjinnLamp, MagiteccArmor, LightningStaff, **ChargeSplitter, Coil, Coil, ManaCrystal**]（7 件）；gd=[DjinnLamp, LightningStaff, MagiteccArmor, **Coil, ChargeSplitter**]（5 件）——**gd 的 Coil 在 CS 前**→zapItem 循环里 Coil 的 chargeReceived（steal 104×2）先于 CS 的 chargeReceived（emitCharge t0）→事件序分叉。
+  4. **格集相同、序不同、命中差**（AFFC/AFFM 哨兵）：两侧 affected 格集=同 16 格；**oracle 序=Godot TileMap get_used_cells_by_id 原生序**（[(1,0),(2,1),(2,0),(3,2),...]，x 优先 y 乱序）；**gd 序=sort(vec2_less_yx)**（yx 排序，顺序必然不同）。**gd 的 (4,2)=Coil#2、(5,2)=ManaCrystal、(6,1)=AmuletOfDarkness 三格 null**（oracle 三格有件）。
+  5. **摆放排除**（PLACE/MV29 桩）：gd 装配时三件 occ 正确+filledCells 命中（inv=True）；战斗中 moveItem/removeItem 对三件**零调用**——三格在装配后、AFFM 采样（tick150）前消失，**清空路径不经 moveItem/removeItem**。
+- **W2 修复方案（下一棒执行）**：
+  A. **三件消失之谜**：在 gd 装配尾部与战斗 tick1/tick150 各 dump 一次 p1 filledCells 全表 diff，锁定清空点（嫌疑：开战激活链中 inventory 重建、或某处直接写 filledCells/occupiedCells 绕过 moveItem）。
+  B. **序对齐**：oracle 用 TileMap 原生序——gd 的 getAffectedCells_tilemap 的 `sort_custom(vec2_less_yx)` 与 oracle 不符；需打 oracle 的 TileMap 涂格原始序（tscn tile_data 序）与夹具 affected 数组序对照，让 gd 的 affectedTileCells 序=涂格序（去掉 yx sort 或改为涂格序）。
+  C. 修后 affected 序→zapItem 循环序→CS/Coil 事件序全链对齐；REG+charge 域 9 场验证。
+- **转攻 W3 roll 残余（~8 场）**：FFR（733/846/628）、RubyWhelp（933/1441）、HolySpear（1118/1322）、FlameWhip（1086）、Automanaton（1129）、Egg（1507）、单发武器（1534/1536/1545/1499/962）。同 spikes 的 DR/crit 确定性面模式（fd 前 state 全同），SPK/SPKA/SPKR 桩法直接复用。
