@@ -270,7 +270,7 @@ func logEvent(event, afterFightAllowed = false):
 	#   供「逐抽 ↔ 逐事件」精确对位（不消耗链、不影响任何行为）。
 	if Util.oracleRngTrace:
 		Util.oracleRngLog.push_back([Util.oracleRngLog.size(), "EVENT",
-			str(event.type), "", "", Util.time])
+			str(event.type), "", "", Util.time, "", Util.rng.get_state()])
 
 	eventsLogged += 1
 	if not visible:
