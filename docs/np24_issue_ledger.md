@@ -429,6 +429,15 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **剩余 51 红面（下一棒）**：50 REAL（fPbatch fd 位=output/_offpeak/op5_harvest_64.json）+run1104（oracle 重放无产物，先单独取证）。分域：W1 真差残余（run622@289/run1120@868）、W2 激活链（run1097/1101/1102/1105/1106/1107/1163/1280/1290…）、W3 roll（FFR/RubyWhelp/HolySpear/FlameWhip/Automanaton/Egg）、W4 长尾（StorageCoffin/Amulet/MrStruggles/RainbowPotion/Toad/Badger/Wand/MissFortune/Wolpertinger/CursedDagger…）。
 
 
+## 6h. 循环轮战报 V（2026-11-01；W3 修复2+隐形抽定位法）
+
+- **W3 修复2 ✅（984fbdce）**：`spawnLabel_native` 走 item 的**有状态槽位逻辑**（getNextFreeLabelPosition：5 槽 0.5s 窗、闲槽 randInBox(10,10)/全忙兜底 randInBox(30,30)）——此前无状态硬编码 2 抽 randf_range(-10,10)。逐抽 state 对拍定谳（run733 fd@87 锚后窗口：oracle 兜底 -30,30 vs gd 硬编码 -10,10）。run1129 fd310→59（推进 251 事件）；REG 8/8。860 全量刷账 809/51（fd 全面推进、暂无翻绿）。
+- **★ 每抽 state 哨兵升级**：oracle rng_trace_range/irange/f/i 全部第 8 列附 rng.get_state()+oracle_fight fmt 的 e.size()>7 分支——**state 跳数法**（前行后 state→本行后 state 的 PCG 步数 vs 行类型正常步数）直接暴露隐形抽。PCG 常数定谳：INC=2885390081777926815（state 转移验证）、randf_range/randf=2 步、randi_range/randi=1 步（裸 Godot 3.6 实测）。
+- **BalancedRange 定谳**：oracle Utility/BalancedRange.gd:14 `Util.rng.randi_range` **裸调不入账本**=伤害掷点隐形 +1 步/次；gd 侧 kernel_r5 已同构（CoreRng BalancedRange 裸调 `_rng.rng.randi_range`）——**两侧同构非分歧**。
+- **W3 真分歧=每伤害帧一次隐形 randf_range(+2 步)**：run733 锚后窗口 oracle O424（受击动画 playback_speed 抽）→**+2 隐形**→O425（冷却 jitter）。gd 同区间 0 隐形。调用点未定谳（oracle 裸调用检索无果：playGlitterSound 死代码/Game.gd 装配段/Character._physics_process 均排除）——下轮：①给 oracle Item._physics_process/冷却 tick 路径补临时 state 桩二分；②或 ORACLE_ROLL_STACK 环境窗打印栈（Util.roll 已有 [ROLLSTACK] 钩子，60s 窗改到 fd tick）。
+- **W2 方案 A/B/C 不变（§6g）**：三件消失之谜（gd p1 的 Coil#2/ManaCrystal/AmuletOfDarkness 装配后静默消失、非 moveItem 路径）+ affected 格序（TileMap 涂格序 v yx sort）。
+- **op6 分流**：51 红=fPbatch 探针对新账面 gd 全 REAL（0 HARVEST）——残留态已彻底收割尽。
+- **现场**：oracle 探针（rng_trace_* state 列+fmt 分支）**仍在树上未还原**（下轮直接复用）；gd 侧无探针残留；夹具=860 收缩版。
 ## 6g. 循环轮战报 IV（2026-11-01；W2 激活链证据链+方案，转攻 W3/W4）
 
 - **run1104 取证 ✅**：corpus==oracle_sg（语料新鲜）、REAL-DIFF@180（归 W2 Coil 域）。op4 的 no-probe 为偶发，重放正常。
