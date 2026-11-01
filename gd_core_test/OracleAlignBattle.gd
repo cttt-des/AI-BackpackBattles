@@ -1109,17 +1109,11 @@ func run_case(c: Dictionary, out_root: String, perm_warm := false, r5_warm := fa
 			#   trace 从首个 4 元素行起截断（run695 恒 811 行实锤：LG 首proc 恰在
 			#   t=0.667）。标记行非数值抽，对拍工具本就过滤，格式宽松即可。
 			for e in ctx.rng.oracle_trace_log:
-				if e.size() >= 5:
-					# 栈签名（ORACLE_ALIGN_STACKTRACE=1 时第 6 列）逐抽附调用方
-					if e.size() > 5:
-						tf.store_line("%d %s %s %s => %s | %s" % [e[0], e[1], e[2], e[3], e[4], e[5]])
-					else:
-						tf.store_line("%d %s %s %s => %s" % [e[0], e[1], e[2], e[3], e[4]])
-				else:
-					var parts := []
-					for v in e:
-						parts.append(str(v))
-					tf.store_line(PoolStringArray(parts).join(" "))
+				# np27：全行 join 兜底（固定列格式化在第 3 行崩，原因未明——宽松 join 零风险）
+				var parts := []
+				for v in e:
+					parts.append(str(v))
+				tf.store_line(PoolStringArray(parts).join(" "))
 			tf.close()
 	if trace_on and not tick_states.empty():
 		var sf = File.new()
