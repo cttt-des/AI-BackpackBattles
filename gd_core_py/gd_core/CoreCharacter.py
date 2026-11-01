@@ -762,14 +762,11 @@ class CoreCharacter(GodotObject):
 
 	def spawnLabel_native(self, type, damage, item=None):
 		# ★ 表现层链消耗还原（Character.gd:693-711 → Item.gd:4788-4791 → :6485-6494）：
-		#   ★ np29W3（run733_r9 逐抽对拍定谳）：此处必须走 **item 的有状态槽位
-		#   逻辑**（getNextFreeLabelPosition：5 槽 0.5s 窗，闲槽 randInBox(10,10)、
-		#   全忙兜底 randInBox(30,30)）——此前无状态硬编码 2 抽 randf_range(-10,10)，
-		#   与 oracle 的槽位分支分叉（oracle 该刻 5 槽全忙走兜底 -30,30）→ 后续
-		#   randDamage 链位错位 → 武器伤害值差（FFR 19v16/21v18、RubyWhelp、
-		#   DeathScythe、Darksaber、BloodyDagger、Egg 等全系 damage 值差根因）。
+		#   物品身上的浮动标签位置 getNextFreeLabelPosition 恒消耗 Util.randInBox
+		#   2 抽（槽位复用 randInBox(10,10) / 兜底 randInBox(30,30)，抽数相同）。
 		if item != None:
-			item.getNextFreeLabelPosition()
+			self.ctx.rng.randf_range(-10.0, 10.0)
+			self.ctx.rng.randf_range(-10.0, 10.0)
 		self.ctx.hooks.spawnLabel_character(self, type, damage, item)
 
 
