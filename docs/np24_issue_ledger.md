@@ -443,6 +443,16 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **★ W3 隐形抽值反推定谳（本轮）**：randf_range 消耗模型定谳=**每抽 2 步：第 1 步弃、第 2 步为值**（run733 锚后 out[1]/2^32=0.517482=424 值 1.003496 的 f ✓ 6 位精确；out[5]=0.700327=425 值 f ✓）。隐形抽=outs[2](弃)+outs[3](用)→**值=0.738357（(0,1) 归一）**；若域 (0.9,1.1)=1.0477、(0.9,1.0)=0.9738、(0.975,1.05)=1.0033、(0.95,1.05)=1.0179——与全部已知裸调域（grep 全量 12 处）的语义位置（受击动画→下一 trigger 之间）无匹配⇒**该裸调不在 gd 源码 grep 面**（嫌疑：oracle 场景树某个 .tscn 内联脚本/信号回调）。下轮：①用 v=0.738357 对照 425 后续每抽值找同源二次出现（若每伤害帧一次则值序列可交叉验证调用者身份）；②Instrument Util.flip 的调用方日志。
 - **W3 隐形抽终局方案（下轮执行）**：oracle Util.gd 的 `var rng` 换**追踪包装器**（class RngTrace extends Reference：base=RandomNumberGenerator，randf/randf_range/randi/randi_range/get_state/set_state/seed 全方法代理+每次调用 push log（tag=RNGX））——一次性消灭「裸调不入账」盲区，隐形 +2 的调用点一次跑现形。风险面：grep Util.rng 全方法面覆盖后替换；ORACLE_DEBUG 门控（非 debug 走裸 rng 同一对象）。MARK 桩法（Character takeDamage A/B/C 点）已试因『isOpen on Nil』偶发崩溃弃用（桩已撤净，原因未定谳疑与长跑节点复用相关，下轮可再用短跑）。
 - **现场**：oracle 探针（rng_trace_* state 列+fmt 分支）**仍在树上未还原**（下轮直接复用）；gd 侧无探针残留；夹具=860 收缩版。
+## 6i. 循环轮战报 VI（2026-11-02；回滚链闭环，基线回归 809/51）
+
+- **回滚决策链（全部闭环，REG 双腿 16/16+op11 全量 809/51 复基线）**：
+  1. **W2 全局按色分（9c447568）净 -62**→回滚（84b2061e）；
+  2. **TD 局部序桩**：cp 路径错未生效（gd 跑旧版）+py 版排序物品列表用 vec2 比较子崩（AttributeError x）→撤（3d7b1d21）；
+  3. **label 修复（984fbdce）净 -51**（+4 CS/Coil 簇 1097/1105/1106/1107 vs -55 run615@363 型链位连锁）→revert（5a1da85f）；
+  4. **★ 84b2061e 回滚漏 CoreUtil**（vec2_less_yx 残留 tile_data 序版=op10 747 真因）→三树恢复 f09 原版（846d237a）+py 缩进修补。
+- **工程铁律新增**：①回滚提交必须 diff 校验**全部 touched 文件**（84b2061e 只核了 CoreItem 漏了 CoreUtil）；②跨树 cp 必须验证目标文件内容（TD 桩 cp 路径错被 `2>/dev/null || true` 吞掉）；③净评估以**全量刷账**为准（单跑 SAME+REG 绿不能外推全量）。
+- **保留的正资产**：W2 序来源定谳（§6h 补4：tile_data 静态=x组y降 v 运行时涂色=y行x升）——1097/1105/1106/1107 四场在 label 修复存续期曾 SAME（其 fd 分歧面=TD zapItem 序×label 取位交互），回滚后重回 51 红池待（槽位历史对齐+运行时涂色路径）联合修复；W3 隐形抽值 0.738357+消耗模型（第1步弃第2步用）不变。
+- **账面**：809/860（51 红同 op6/op7 分域）。
 ## 6g. 循环轮战报 IV（2026-11-01；W2 激活链证据链+方案，转攻 W3/W4）
 
 - **run1104 取证 ✅**：corpus==oracle_sg（语料新鲜）、REAL-DIFF@180（归 W2 Coil 域）。op4 的 no-probe 为偶发，重放正常。
