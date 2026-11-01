@@ -88,7 +88,7 @@ var oracle_trace_log: Array = []
 var _stacktrace := false      # ORACLE_ALIGN_STACKTRACE=1：逐抽附调用栈签名（诊断用）
 
 func _trace(kind: String, from, to, r) -> void :
-	var row = [oracle_trace_log.size(), kind, from, to, r]
+	var row = [oracle_trace_log.size(), kind, from, to, r, 0.0, "", str(rng.get_state())]
 	if _stacktrace:
 		var frames := []
 		var st = get_stack()
@@ -104,7 +104,8 @@ func _trace(kind: String, from, to, r) -> void :
 # ★ 事件标记（不消耗链）：CoreCombatLog.logEvent 在逐抽追踪开启时把事件类型
 #   写进 trace，与神谕 rng_log 的 EVENT 行同构，供逐抽↔逐事件精确对位。
 func trace_event(type: int) -> void :
-	oracle_trace_log.push_back([oracle_trace_log.size(), "EVENT", str(type), "", ""])
+	oracle_trace_log.push_back([oracle_trace_log.size(), "EVENT", str(type), "", "",
+		0.0, "", str(rng.get_state())])
 
 
 # ★ 诊断标记（不消耗链，np24）：镜像神谕 ORACLE_STACKTRACE 下的 ANIM/SRC/LABEL
