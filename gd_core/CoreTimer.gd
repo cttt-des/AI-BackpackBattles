@@ -100,16 +100,17 @@ func start(time = -1.0) -> void :
 		timestamps.push_back(_utilTime() + wait_time)
 		return
 	if multi:
-		# multi 停止态重启：维持 f01 对齐语义（无条件满计数）
+		# multi 停止态重启：★ np28W3（run1134_r18 SPKR 哨兵定谳）——**不再直赋
+		#   _left=wait_time**：oracle harness 对 MultiTimer 重启同走 eng==e[1]
+		#   碰撞判定（stop 期间 e[0]=-1 每帧重置；同值 start 后 -1-dt≤0 当拍
+		#   fire）——Echoing Battlecry 重放 LeatherHelm：oracle 重放 start(3)
+		#   碰撞立即 fire（buffEnded +25/-25 同拍抵消，fW1134 SPKR 890/895 同
+		#   t=6.583 铁证），gd 旧码 _left 直赋冲掉 -1 遗留→正常 3s 后才 fire
+		#   （fd@7.67 DR 残留 25 → spikes 反弹 round(7×0.75)=5 v 语料 7）。
+		#   _left 交 tick() 的 eng vs _seen 判定：eng==_seen→遗留值递减（立即
+		#   fire）；eng!=_seen→登记分支 _left=eng（f01 首启 _seen=0 恒走此，
+		#   语义不变；np26fA 相位补偿在登记分支，保持）。
 		_stopped = false
-		_left = wait_time
-		# ★ np26fA 定谳（run590_r13 SPF 毒 4.9667 v 语料 4.9833=早 1 tick）：
-		#   f11 注册表同构重构时 multi 分支漏写 _eng——同帧 tickTimersPass 里
-		#   eng(0.0)==_seen(0.0) 走递减分支=登记拍同帧递减，multi timer 恒早
-		#   1 tick（f01 的 _started_frame 机制退役后未补 eng/_seen 等价物）。
-		#   语料 harness drive_timers 对 MultiTimer 同走 eng!=e[1] 判定
-		#   （oracle_fight.gd:899-901，SPF tscn PoisonTimer 挂 MultiTimer 脚本
-		#   实证），补 _eng 后同帧 tick 走登记分支（不递减），211 递减对齐。
 		_eng = wait_time
 		_multi_start_time = _utilTime()
 		return
