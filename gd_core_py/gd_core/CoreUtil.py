@@ -110,9 +110,9 @@ class CoreUtil(GodotObject):
 
 	@staticmethod
 	def vec2_less_yx(a, b):
-	if a.y == b.y:
-		return a.x < b.x
-	return a.y < b.y
+		if a.y == b.y:
+			return a.x < b.x
+		return a.y < b.y
 
 
 	# 对齐 Util.gd:961-964
