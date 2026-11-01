@@ -403,6 +403,7 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **W1 盲栈 temporaryStacks 生命周期域（最大簇 ~21-31 场）**：t109 amount 差（ora -7 v gd -6/-5）=批次边界/timeout 值差/漏 gain（Banner rollChance 抽）。方法=BLND 全生命周期哨兵（oracle [BGAIN]/[BEXPIRE] 与 gd _blnd_snap trace_diag 均已在树；py _py_blnd_probe.py 模式）。代表场 run622_r15（三方三值）/run633_r18/run876_r18。
 - **W2 charge 电荷级联域（~16 场）**：**窗口证据定谳（run1097_r18 fd279）**：oracle CS 激活 t=314→Coil 收电 t=320（6 tick 电荷飞行）；gd 同 tick 瞬时收电（Coil t104 提前、CS t0/Mana Orb 缺位）——**§5k 时序机（CoreElectricalCharge progress/inv_cells/duration + physicsTick 推进）实证必需**，辅以 COILR 哨兵逐场定位（run1130_r14 型=gd Battery 激活缺位）。
 - **W3 roll 链位域（~30 场）**：t1 damage 值差（Egg 40v30/20v15 同比 4:3、spikes 7v5/8v6 CanCrit、poison 16v8、FFR/HolySpear/武器单发）。方法=zap 同款：damage 事件 state 哨兵（前事件 state 同+本事件值差⇒两抽之间隐藏抽）+_pcg32_walk.py 回推。剥抽排查清单：MechaBat/ElectricTorch/Gigawatz。
-- **W4 次序型单发域（~40 场）**：op4 分流——RESIDUE 走重录收割（删 events→oracle 单场重录→三方复核；先例 16/17 翻绿）；REAL-DIFF 按机制二次聚类（StorageCoffin×3 延迟释放/ManaOrb 系×4/Amulet 系×3…）逐域小哨兵。
+- **W4 次序型单发域（~40 场）**：按机制二次聚类（StorageCoffin×3 延迟释放/ManaOrb 系×4/Amulet 系×3…）逐域小哨兵。
+- **★ op4 定性终谳（fPbatch 108/108）**：**RESIDUE=0**（残留态已收割尽，无免费翻绿）；**REAL-DIFF=107**+run1104_r18 no-probe（oracle 重放未出 events，归 REAL-DIFF 池）。**新发现=29 场双分歧**（corpus≠oracle 且 X≈fd_og：run996/702/747/727/1167/996 等）——语料是 76e2d76d reset 修复**前**批录的（跨场残留仍在事件流里）；这 29 场在引擎修好后**必须重录**才可能翻绿（重录协议进每口井收尾，非独立收割）。78 场 corpus==oracle(sg) 修 gd 即翻绿。产物：output/_offpeak/op4_classify_108.json。
 - **循环协议**：每井修复→gd_to_py 三树同步→REG gate（7 核心场+域代表场；run695/run1514 基线红）→860 收缩刷账（verify_oracle --skip-fixtures --force）→新索单聚类回流队首。
 - **退出协议**：860/860 全绿→夹具还原 914→P4 收口（--compare-only 复读/r55 快照/台账收口节/战报）→停止。
