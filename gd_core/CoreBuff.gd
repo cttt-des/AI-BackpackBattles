@@ -477,6 +477,15 @@ func isTimerActive() -> bool:
 
 func _tick(delta: float) -> void :
 	if not _timer_active:
+		# ★ np26W1（run633_r18 BLND 全生命周期哨兵定谳）：对齐 oracle drive_timers
+		#   停止分支**每帧** e[0]=-1（oracle_fight.gd:889-891）——此前停止期早退
+		#   不动 _timer_left，批A dispel→stop 后遗留运行中值（如 1.98）；下一批
+		#   同 dur start（LightGoobert/Banner 恒 dur_blind=3）走 eng==seen 碰撞
+		#   分支减的是遗留值而非 -1 → 不立即 fire，比 oracle 晚 ~dur 一整段
+		#   （oracle: stop 期间 e[0] 已被 -1 → 同值 start 后 -1-dt≤0 当拍 fire，
+		#   语料 TO=gain+1tick 全序列铁证；CoreTimer.gd 类同款语义 np25w 已修，
+		#   此处补齐 CoreBuff 内嵌计时器）。
+		_timer_left = - 1.0
 		return
 	# ★ np25 timeout1t：逐行对齐 drive_timers :895-904。
 	if _timer_eng == _timer_seen:
