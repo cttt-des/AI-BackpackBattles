@@ -262,7 +262,7 @@ class CoreRng(GodotObject):
 
 
 	def _trace(self, kind, from_, to, r):
-		row = [len(self.oracle_trace_log), kind, from_, to, r]
+		row = [len(self.oracle_trace_log), kind, from_, to, r, 0.0, "", str(self.rng.get_state())]
 		if self._stacktrace:
 			frames = []
 			st = get_stack()
@@ -278,7 +278,8 @@ class CoreRng(GodotObject):
 	# ★ 事件标记（不消耗链）：CoreCombatLog.logEvent 在逐抽追踪开启时把事件类型
 	#   写进 trace，与神谕 rng_log 的 EVENT 行同构，供逐抽↔逐事件精确对位。
 	def trace_event(self, type):
-		self.oracle_trace_log.append([len(self.oracle_trace_log), "EVENT", str(type), "", ""])
+		self.oracle_trace_log.append([len(self.oracle_trace_log), "EVENT", str(type), "", "",
+			0.0, "", str(self.rng.get_state())])
 
 
 	# ★ 诊断标记（不消耗链，np24）：镜像神谕 ORACLE_STACKTRACE 下的 ANIM/SRC/LABEL

@@ -3101,17 +3101,7 @@ class CoreItem(GodotObject):
 		_cells = self.affectedTileCells.get(color, [])
 		if len(_cells) > 1:
 			_cells = _dup(_cells)
-			# ★ np31W2（涂色来源定谳，台账 §6h 补4/5）：序按色分——
-			#   Primary/常规色（ManaOrb 系，604 实测 [(5,3),(7,3),(5,5),(7,5)]）=
-			#   y 行优先 x 升（np25 f09 现状 vec2_less_yx，16 场已绿）；
-			#   Lightning 色（ThunderDrake/T，1097 fAffC 实测 [(1,0),(2,1),(2,0),
-			#   (3,2)...]）=x 分组升、组内 y 降（tile_data 序 vec2_tile_data）——
-			#   zapItem 的 getAffectedItems(Lightning) 循环序=CS/Coil 收发序，
-			#   修复后 run1097/1105/1106/1107 四场 SAME。
-			if color == _R.C("CoreConst").Affected.Lightning:
-				_sort_custom(_cells, _R.C("CoreUtil"), "vec2_tile_data")
-			else:
-				_sort_custom(_cells, _R.C("CoreUtil"), "vec2_less_yx")
+			_sort_custom(_cells, _R.C("CoreUtil"), "vec2_less_yx")
 		return _cells
 
 
