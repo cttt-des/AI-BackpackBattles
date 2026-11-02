@@ -564,3 +564,9 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **下一棒取证桩**（打点后必须还原+镜像同步）：①[ACT] 桩两侧 Ruby Whelp trigger 全链逐抽打点（adjustCooldown 前后/attackSound/animation/damage 各面，ACD3 全息模式 pre+post+值一行）——先锁「gd 多的裸抽」的精确值域（flicker speed=(minSpeed,maxSpeed) 特征值域 vs 动画 4 连=(-30,30)等）②双侧 Weapon.attack/doCooldownEffect 的音效调用面逐行对照（oracle Item.gd playAttackSound 族）③修=gd 补漏的 pitch 或删多的裸抽（按 oracle 分解对齐）。
 - **通用性**：值序对齐法+PCG 步数解算（X+2 v X+4）的组合**可直接复用于早簇其余场**（1427/1499@40、1534@30、1536@42、1545@63、962@83、1540@84、1514@36）——每场 30 分钟内可锁定「多/少/分解差」的具体抽面。1540 的「oracle 多 14 裸步」（§6m2）与本例「gd 多 2 步+少 pitch」**方向相反**——隐形抽面不是单一方向，须逐场定量。
 - **账面**：841/860（红场集合不变）；本节纯诊断无桩残留（1441 双侧 trace 为 env 门控产物，工作树零改动）。
+
+## 6m9. §6m8 修正+本会话收口（2026-11-03 iv）
+
+- **§6m8 的 PCG 解算修正**：X→ora91=X+2/gd91=X+4 的解读基于「randf_range=2 步」假设；但用 Godot randf_range 取值公式反算，**ora91 的值 1.015923 从 X 出发 1-4 步的 u 都映射不出**——**ora91 的 pre≠X=oracle 侧 X→ora91 之间同样存在 log 零痕迹抽（隐形抽是双侧的）**。1441 的 X 段纯离线推理已到极限，**必须 [ACT] 全息桩实测**：两侧 Ruby Whelp trigger 链（adjustCooldown/attack/音效/动画面）逐抽 pre+post+值一行打点（ACD3 模式），单场对拍即可锁定双侧隐形抽的精确位置与值域。flicker 已排除（1441 零 FLKFIRE=阵容无 flickerAni）。
+- **本会话（offpeak-70fcff69 接力）总战果**：①**autoRage 修复**（dc77fc16，np29fD）：oracle Array.pick_random=引擎全局链（seed(S) 播种）主链零耗，gd 误用主链 1 抽×双方→冷却批晚 2 步→Rainbow 掷块错位 fd@6；修=pickRandomEngine。REG 基线 7 场零退；947 fd 6→46；860 全量 841/860（红场集合不变）。②fd@46 深挖（037b4cdf，§6m7）：CBS 桩证回合 0-5 棋子序全同、回合 4/5 捕获选择分叉（gd 吃 BR/ora 吃 BP）→t=89 捕获者差。③1441 值序对位（5f3f9864，§6m8/§6m9）：前 90 笔 post 链全同（修复后装配+激活期已齐）；X 处双侧隐形抽复合（gd 多 1 笔+ora 有隐形）→伤害掷错位→fd@18 5v6。④方法论沉淀：**值序对齐法**（from+值逐行比，忽略 tag；过滤标记行）+**post 链验证**（防值碰撞假同步）+**PCG 步数解算**（X+k 定位隐形抽）三件套，可复用于早簇全部场。
+- **下一棒**：①[ACT] 全息桩打 1441 X 段（本轮即可修——gd 补 pitch/删多余裸抽按实测对齐）②fd@46 的 ChessBoard 三桩（§6m7 抓手）③两根因修后 860 刷账→预期早簇多场翻绿→继续向 860 推进。
