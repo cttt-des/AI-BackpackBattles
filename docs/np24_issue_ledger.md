@@ -593,3 +593,10 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **已排除（本 run 内实证）**：宝石脚本层（Amethyst/Topaz 无 preCombatStart 抽、gd Regular Topaz cd=0 无 cd 分支）、Regular Topaz 的宝石循环（PCS0=PCS1 的 pass 内）、BalancedRange.randIntRange（全树零调用方）、flicker/动画 4 连/expectedWins 中途构造。
 - **下一棒（最小闭环）**：①[UBC] 探针打 `updateBaseCooldown`/`setBaseCooldown`/`resetBaseCooldown` 入口（物品名+state，双侧）+Ruby 的 [PCS0]——单 run 内看 Ruby cd 的真实调用方与其前置段的 state 落差 ②同一探针轮里打 `[SNAP]` `snapshotItemTooltipStat` 入口（Amethyst cd 后那笔）——若落差在其内=stat logger 路径有裸抽 ③修=对齐该调用方的抽耗（gd 补/删按 oracle）④REG（1441+947+基线 7）→860 刷账。**跨 run 关联禁令维持**：一切分析限单 run 双侧同跑。
 - **账面 841/860**；探针已全还原（CoreItem/Item checkout+镜像+重转写零残留）。本轮 session 净 +3（838→841，autoRage）+ fd@46 回合定位 + 1441 H 单点锁定；offpeak-70fcff69(#215)/0bfcfee4(#306) 按本节接力冲 860。
+
+## 6m13. ★ 跨进程非确定性发现（2026-11-03 viii；本轮最终收口）
+
+- **★ 重大发现**：同一 case（run1441_r11）两次独立 harness 调用，其 rng_trace 的**同位置链态不同**（跳点 Xp 一次=88ca7ebea078e92a、另一次=7e54c627cc125bd8）——**进程间 trace 链不可复现**，而进程内 selfcheck（同种子复跑）逐字节一致。⟹ 差异源=**进程级状态**：APPDATA 按 PID 隔离（user:// 下有跨调用持久态：RunDatabaseStub.run 历史/暖场收割缓存/latch 表）或 pass 构成随环境变化。**这可能是早簇多场的共同根因**：若 gd real pass 链依赖进程历史，而语料=特定历史下的录制，对齐断点会随调用漂移。
+- **H 证据最终状态**：单 trace 内「0.975+4×0.95+0.975」跳变（4 步 v ora 2 步）**在该 trace 的 pass 内成立**；跳点两侧 ACD 物品（Chipped Amethyst → Ruby Whelp）双侧全同；Ruby 该笔 cd 的调用方仍未锁定（PCS0/TRG 探针在跳点段的缺席/错位=pass 关联未解决）。
+- **下一棒（最高优先）**：①**进程级状态审计**：diff 两次调用的 APPDATA 目录（output/_recovery/appdata_p/<pid>/）——找出 user:// 持久文件；grep harness 对 user:// 的读写（ConfigFile/Store）② harness 的 pass 序号显式化（每 pass print ===PASS n===）+ 探针带 pass 号 ③若确认 user:// 态影响 real pass 链 → 修=隔离/清空（对齐语料的录制条件）④之后按 §6m12 抓手继续 H 宿主定位。
+- 账面 841/860；探针已全还原（checkout+镜像+重转写零残留）。
