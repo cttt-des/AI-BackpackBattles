@@ -28,6 +28,7 @@ class CoreTimer(GodotObject):
 		self._eng = 0.0            # 引擎 time_left 冻结镜像（仅 start/stop 改写）
 		self._seen = 0.0           # 注册表 e[1]：上一 pass 的 eng（battle setup 登记 [left,left]；
 		self._multi_start_time = -1.0
+		self._dbg = _os_environ_get("GD_TMR") != ""
 		self._started_frame = -1
 
 	# =============================================================================
@@ -82,6 +83,9 @@ class CoreTimer(GodotObject):
 	#   （start 在 tickTimersPass 之前，如 SPF poisonTimer=character_healed 链）则
 	#   登记拍不递减（run590 SPF 毒 4.9833 实证）。
 
+	# ★ TMR 探针（tick1diff 簇诊断，env 门控零耗）：每个计时器的 start 值与 fire
+	#   时刻流——oracle 侧对应 [timer-reg]/[timer-fire]（oracle_fight.gd）。
+
 
 	def _init(self, ctx=None, owner=None, timerName=""):
 		self._ctx = ctx
@@ -111,6 +115,9 @@ class CoreTimer(GodotObject):
 	def start(self, time=-1.0):
 		if time != None:
 			self.wait_time = time
+		if self._dbg:
+			print("_mod([tstart], s) wt=%.6f multi=%s t=%.6f" % [self.name, self.wait_time,
+					self.multi, self._utilTime()])
 		if self.multi and not self._stopped:
 			self.timestamps.append(self._utilTime() + self.wait_time)
 			return
@@ -126,10 +133,10 @@ class CoreTimer(GodotObject):
 			#   fire）；eng!=_seen→登记分支 _left=eng（f01 首启 _seen=0 恒走此，
 			#   语义不变；np26fA 相位补偿在登记分支，保持）。
 			self._stopped = False
-			self._eng = self.wait_time
+			self._eng = self._f32eng(self.wait_time)
 			self._multi_start_time = self._utilTime()
 			return
-		self._eng = self.wait_time      # 引擎：start 必写 time_left=wait_time（3.6 语义）
+		self._eng = self._f32eng(self.wait_time)   # 引擎：start 必写 time_left=wait_time（3.6 语义）
 		self._stopped = False
 		# ★ 重同步移交 tick()（eng vs _seen 判定），不再无条件 _left=wait_time
 
@@ -187,6 +194,9 @@ class CoreTimer(GodotObject):
 	#   先已 _stopped=true 走重启动分支（push 分支不触发），与 harness emit 后
 	#   `is_stopped()==false → e[0]=time_left` 同构。
 	def _onTimeout(self):
+		if self._dbg:
+			print("_mod([tfire], s) wt=%.6f left=%.6f t=%.6f n=%d" % [self.name, self.wait_time,
+					self._left, self._utilTime(), self.fire_count])
 		self._stopped = True
 		self._left = 0.0
 		if self.multi:
@@ -201,9 +211,11 @@ class CoreTimer(GodotObject):
 			return          # multi 重启走 start() 的 timestamps 路径（f01 语义）
 		# ★ post-emit 重挂（harness :915-919）：处理器重启 ⇒ e[0]=e[1]=eng 无条件
 		#   （含同值）；循环计时器无重启 ⇒ harness 代 start(w) 兜底续接，同式。
-		self._left = self.wait_time
-		self._seen = self.wait_time
-		self._eng = self.wait_time
+		#   ★ np29fB 三值一律过 f32：harness e[0]/e[1] 的源是引擎读数
+		#   get_time_left()（real_t=float32 存储）——见本文件 _f32eng 注。
+		self._left = self._f32eng(self.wait_time)
+		self._seen = self._f32eng(self.wait_time)
+		self._eng = self._f32eng(self.wait_time)
 
 
 	# 对齐 Util.time（无 ctx 时的兜底，便于独立单测）
@@ -211,6 +223,19 @@ class CoreTimer(GodotObject):
 		if self._ctx != None:
 			return self._ctx.time
 		return 0.0
+
+
+	# ★ np29fB：引擎 real_t(float32) 存储镜像（np25w_f04 同款，模板取自
+	#   CoreCharacter._f32eng）。oracle harness 对物品/Buff 计时器的全部读数
+	#   （rebuild 登记 left、每拍 eng=get_time_left()、post-emit 重挂 e[0]/e[1]）
+	#   都穿引擎 f32——如 BuffTimer start(1.55)：f32(1.55)=1.5499999523，93 拍
+	#   e[0] 即穿零；gd 全 64 位剩 +5.5e-16 → 94 拍才 fire（run1253 Amulet
+	#   减速 gd 晚 1 tick，tick1diff 簇 9 场同根）。gd 侧无 f32 cast，用
+	#   PoolRealArray 单元素写读实现（round-to-nearest）；三行模板走 gd_to_py
+	#   op11（→ return f32(x)，_rt.f32=struct round-trip）。
+	@staticmethod
+	def _f32eng(x):
+		return f32(x)
 
 
 _R.reg("res://gd_core/CoreTimer.gd", CoreTimer)

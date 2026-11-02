@@ -82,6 +82,11 @@ var speed_scale := 1.0            # 对齐 Engine.time_scale（无头恒 1.0，�
 var _activate_countdown := 0.0
 var activated := false
 
+# ★ SPDT 探针（tick1diff 簇诊断，env 门控零耗）：全物品每 tick 递减后
+#   (triggerTime, getSpeed) 流——速度变更边界两侧对拍（np26 §6m1，
+#   oracle 侧同款桩=oracle_fight.gd _dbg_spdt/ORACLE_SPDT）。
+var _dbg_spdt := OS.get_environment("GD_SPDT") != ""
+
 # ── 角色 TickTimer（Character.tscn 的 TickTimer：wait_time=1、循环） ──
 var _tick_timer_left := 0.0
 var _tick_timer_active := false
@@ -300,6 +305,10 @@ func physicsTick(delta: float) -> void :
 	# ③ 对手物品 _physics_process（Items/Item.gd:4453-4458，遍历=INVENTORY 装配序）
 	for item in opponent.inventory.getItems():
 		item.physicsTick(delta)
+		if _dbg_spdt and item._cooldown_active:
+			print("[spdt] t=%.6f OPP %s tt=%.6f spd=%.6f" % [combat_time,
+					String(item.descriptor.identifier), item.triggerTime,
+					item.getSpeed()])
 	
 	# ④ CombatTimer._physics_process: combatTime += delta（事件时间戳源，
 	#    oracle tick_battle 步骤④：夹在双方物品推进之间）
@@ -312,6 +321,10 @@ func physicsTick(delta: float) -> void :
 	# ⑥ 玩家物品 _physics_process（INVENTORY 装配序）
 	for item in player.inventory.getItems():
 		item.physicsTick(delta)
+		if _dbg_spdt and item._cooldown_active:
+			print("[spdt] t=%.6f PLR %s tt=%.6f spd=%.6f" % [combat_time,
+					String(item.descriptor.identifier), item.triggerTime,
+					item.getSpeed()])
 	
 	# ⑦ 物理型 Timer（oracle tick_battle 步骤⑥⑦ drive_timers(true)，registry=场景树
 	#    次序）：逐角色 [TickTimer(onTick) → BattleRageTimer → InvulnerabilityTimer →
