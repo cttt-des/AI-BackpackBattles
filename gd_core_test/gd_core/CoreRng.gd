@@ -67,7 +67,10 @@ func flipWeighted(weights: Array) -> int:
 	for weight in weights:
 		sum += weight
 	
-	var val = rng.randf_range(0, sum)
+	# ★ np29fG：对齐 oracle Util.gd:1115 `rng_trace_range(0, sum, "flipWeighted")`——
+	#   神谕记账（tag=flipWeighted），此前 gd 走裸 rng.randf_range 不进 trace（链
+	#   消耗相同、仅账本可见性差）。Shovel/Robodog onShopEntered 用。
+	var val = randf_range(0, sum, "flipWeighted")
 	var subsum = 0.0
 	for i in weights.size():
 		subsum += weights[i]

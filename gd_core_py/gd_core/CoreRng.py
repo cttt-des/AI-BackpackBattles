@@ -244,7 +244,10 @@ class CoreRng(GodotObject):
 		for weight in _iter(weights):
 			sum += weight
 
-		val = self.rng.randf_range(0, sum)
+		# ★ np29fG：对齐 oracle Util.gd:1115 `rng_trace_range(0, sum, "flipWeighted")`——
+		#   神谕记账（tag=flipWeighted），此前 gd 走裸 rng.randf_range 不进 trace（链
+		#   消耗相同、仅账本可见性差）。Shovel/Robodog onShopEntered 用。
+		val = self.randf_range(0, sum, "flipWeighted")
 		subsum = 0.0
 		for i in _iter(len(weights)):
 			subsum += weights[i]
