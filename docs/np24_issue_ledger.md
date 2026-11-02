@@ -579,3 +579,9 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **★ 关键教训（下一棒必读）**：本工程 gd harness 每场跑 **4 个 pass**（warmup 收割/real(latched)/selfcheck×2，real+selfcheck 有 WARM_LATCH `attack_moving_forward=true`），**探针行必须带 pass 序号**（本轮 ACT/ACD 跨 pass 关联两次误判的根源）；rng_trace.txt=real pass；stdout=全部 pass 混杂。oracle playAttackAnimation 的 `distance=Util.rng_trace_range(100,160)` 是**默认实参抽，先于 attackMovingForward 闸**——被闸的调用仍消耗 2 步（gate 前置抽），对账时勿漏。
 - **下一棒抓手**：①探针加 pass 计数器（harness 在 pass 开始时 set 一个 env 或 ctx 计数，探针行前缀 p0/p1/p2/p3），重跑 PCS+ACD 双侧，**同 pass 内**对齐四连 0.95 批→Ruby cd 段，锁定 H 的宿主物品与 hook ②H=2 步裸抽候选兜底排查：在 CoreRng 增加临时 `raw_draw_counter`（构造 RandomNumberGenerator 包装对象替换 rng 成员——慎用，须事后完全还原），或逐项 grep gd_core 全部 `rng.rng.` 已穷尽（6 处）→ 若宿主是 gd_core_items 脚本层的引擎调用（如 `array.pick_random()` 全局链误用主链的反向案例），按 §6m6 同法修 ③修后 REG（1441+947+早簇+基线 7）→860 刷账。
 - **账面**：841/860（19 红，集合不变）。本轮全部探针已还原（CoreItem/CoreCombat/Item 三处 checkout+镜像 cp+重转写零残留），offpeak-70fcff69/#215 与 offpeak-0bfcfee4/#306 按本节接力。
+
+## 6m11. §6m10 勘误：跨 run 状态关联无效，单 trace 内 H 证据仍稳固（2026-11-03 vi）
+
+- **勘误**：§6m10 的「ACD 桩 ora Ruby cd pre=X v gd pre=X+2」是**跨 run 对比**——本轮实测同一 case 的两次 harness 调用，其 rng_trace.txt 行布局不同（首次 0.975 行号 332 v 244，pass 构成/latch 状态差异），**X/X+2 等绝对态值不可跨 run 关联**。PCS 跑内 Ruby cd pre 双侧同=609c（该 run 的 pass 里无 H 或 H 在别的 pass）。
+- **仍然稳固的证据（全部单文件内）**：①原始 trace（trace-run）内四连 0.95 末态 X → 下一 0.975 距离恰 4 步（多 2 步）；②ora rng_log 内同位置距离 2 步；③值序对齐 90 笔后首分歧即该 0.975；④其后攻击链内容双侧同构（含 boxx 3 步公共隐形）。H=gd trace 该 pass 内、四连 0.95 与下一 opp cd 之间的 2 步裸抽——**结论不变**。
+- **下一棒修正案**：①所有探针行必须内嵌 pass 序号+trace 行号可回溯（harness 在每 pass 开始 print `===PASS n (latch=?)===` 到 stdout，并把 pass 号写进每条探针行）②**只做单 run 内分析**：同一次双侧跑的 trace+stdout，按 pass 切分后对齐 ③H 宿主=四连 0.95 cd 物品与下一 opp cd 物品之间的 hook 链——用同 run 的 [PCS0/1/2]+[ACD] 行（带 pass 号）直接读出 state 跳变发生在哪个物品的哪段 ④若 H 在 PCS0→PCS1 之间=宝石循环内某宝石抽（1441 Ruby 镶 Regular Topaz——单 run 内验证 PCS0≠PCS1 即实锤）。
