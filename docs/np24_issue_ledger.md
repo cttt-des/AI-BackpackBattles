@@ -443,6 +443,19 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **★ W3 隐形抽值反推定谳（本轮）**：randf_range 消耗模型定谳=**每抽 2 步：第 1 步弃、第 2 步为值**（run733 锚后 out[1]/2^32=0.517482=424 值 1.003496 的 f ✓ 6 位精确；out[5]=0.700327=425 值 f ✓）。隐形抽=outs[2](弃)+outs[3](用)→**值=0.738357（(0,1) 归一）**；若域 (0.9,1.1)=1.0477、(0.9,1.0)=0.9738、(0.975,1.05)=1.0033、(0.95,1.05)=1.0179——与全部已知裸调域（grep 全量 12 处）的语义位置（受击动画→下一 trigger 之间）无匹配⇒**该裸调不在 gd 源码 grep 面**（嫌疑：oracle 场景树某个 .tscn 内联脚本/信号回调）。下轮：①用 v=0.738357 对照 425 后续每抽值找同源二次出现（若每伤害帧一次则值序列可交叉验证调用者身份）；②Instrument Util.flip 的调用方日志。
 - **W3 隐形抽终局方案（下轮执行）**：oracle Util.gd 的 `var rng` 换**追踪包装器**（class RngTrace extends Reference：base=RandomNumberGenerator，randf/randf_range/randi/randi_range/get_state/set_state/seed 全方法代理+每次调用 push log（tag=RNGX））——一次性消灭「裸调不入账」盲区，隐形 +2 的调用点一次跑现形。风险面：grep Util.rng 全方法面覆盖后替换；ORACLE_DEBUG 门控（非 debug 走裸 rng 同一对象）。MARK 桩法（Character takeDamage A/B/C 点）已试因『isOpen on Nil』偶发崩溃弃用（桩已撤净，原因未定谳疑与长跑节点复用相关，下轮可再用短跑）。
 - **现场**：oracle 探针（rng_trace_* state 列+fmt 分支）**仍在树上未还原**（下轮直接复用）；gd 侧无探针残留；夹具=860 收缩版。
+## 6j. 循环轮战报 VII+下一棒任务书（2026-11-02；W2 正解落地，860 全绿冲刺交接）
+
+- **★ W2 正解落地（aaeaf731）**：「三场三序矛盾」终谳=**全部=tile_data 文件序**（此前 yx 排序/按色分都是误判）——①extract_grid parse_tscn_grid 保序（set→list，去 norm_cells sorted）；②gen_lineup_fixture placement_of 保序变换（去 set+sorted）；③三产物再生（battle_items+item_battle_fixture+LineupFixture+oracle_align_cases 914 场+lineups+gd_core_runtime——**铁律 12 全链一个不漏**）；④gd getAffectedCells_tilemap 删 sort 透传。实证：cases 的 T affected.3 序=oracle fAffC 实测**逐位同构**；**1097/604/827/1105/1106/1107/1130/1283 八场双腿 SAME**（f09 ManaOrb 面+Lightning 面同绿）；REG np32w2reg 20/20 全绿。
+- **label 修复二滚定谳（2b88a742→331227b5）**：干净实验 op12（807/42，新退 0，翻绿 9 场中 7 场真绿）但四场 CS/Coil 仅剩 py 分歧=TD v2 桩破坏（撤 176b6f44 后三路复核 corpus_vs_gd 仍 279）——**无 TD 桩+文件序时 fd 回 279 的残余=无序干扰下的真链位差**，净 -2 出局。定谳事实保留：oracle LABEL 兜底分支真值、槽位逻辑（getNextFreeLabelPosition 5 槽 0.5s 窗）。
+- **账面**：op13=809/51 基线复确认；**op14b 全量刷账（夹具再生后首次）运行中——预期 ≥816**（八场 SAME 入账+1163/1130 等推进）。
+- **现场**：夹具 860 收缩版；三树一致（aaeaf731）；现役探针=EVENT state 桩两侧+oracle rng_trace 第 8 列（b499a6ab）；TD 无桩。
+- **下一棒任务书（W3 隐形抽+W4 长尾冲刺 860）**：
+  1. **W3 隐形抽（~15 场 damage 值差）**：隐形 randf_range(+2 步) 值=0.738357（(0,1) 归一，out[3]/2^32 反推 6 位精确互证），位置=受击动画抽(625)→下一 trigger 之间，grep 全量 12 处裸调无匹配⇒嫌疑 tscn 内联脚本。方法：①值序列交叉验证（多场多帧隐形值若同源可指纹识别调用者）；②oracle Util.roll 的 [ROLLSTACK] 钩子改窗到 fd tick+get_stack。
+  2. **W4 长尾（~30 场）**：逐场 oracle 单场重放分流（≡→重录收割；≠→按机制聚类小哨兵）。StorageCoffin×3/Amulet×2/MrStruggles×2/GirlPower×2/MissFortune×2 优先。
+  3. **1163 fd440/1130 fd157 等推进场**：W2 修复后的新 fd 面逐个哨兵。
+  4. 每循环：修复→gd_to_py→REG（_np21_gate 8 场+域代表场）→860 刷账（--skip-fixtures --force）→重聚类→台账追记。
+  5. **860 全绿后**：夹具还原 914→--compare-only 全量账→P4 收口（--compare-only 复读/r55 快照/台账收口节/战报）。
+- **运维铁律**：verify --cases 改写夹具用后还原+重收缩；回滚提交 diff 校验全部 touched 文件；跨树 cp 验证目标内容；批量 oracle 重放逐场单进程；gh.run 勿传 os.environ。
 ## 6i. 循环轮战报 VI（2026-11-02；回滚链闭环，基线回归 809/51）
 
 - **回滚决策链（全部闭环，REG 双腿 16/16+op11 全量 809/51 复基线）**：
