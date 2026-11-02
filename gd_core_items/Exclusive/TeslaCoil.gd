@@ -61,6 +61,11 @@ func advanceItem():
 		
 		if item.isCooldownActive():
 			item.advanceCooldownSeconds(cdAdvance)
+			# ★ np33（EATI 双侧对拍定谳，同 np27 zapItem 剥抽同构）：原版此处
+			#   ObjectPool.instance(Util.zapScene)+zap.zap(...) → Zap.gd:32
+			#   randf_range(4.0,4.02)=2 步——转写剥表现层时把 rng 消耗一并剥掉
+			#   （隐形 +2/次）。补消耗（表现层照剥）。
+			ctx.rng.randf_range(4.0, 4.02)
 			
 			
 			if itemsToAdvance.size() < advanceItemCounter + 1:
