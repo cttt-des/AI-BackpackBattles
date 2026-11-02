@@ -600,3 +600,10 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **H 证据最终状态**：单 trace 内「0.975+4×0.95+0.975」跳变（4 步 v ora 2 步）**在该 trace 的 pass 内成立**；跳点两侧 ACD 物品（Chipped Amethyst → Ruby Whelp）双侧全同；Ruby 该笔 cd 的调用方仍未锁定（PCS0/TRG 探针在跳点段的缺席/错位=pass 关联未解决）。
 - **下一棒（最高优先）**：①**进程级状态审计**：diff 两次调用的 APPDATA 目录（output/_recovery/appdata_p/<pid>/）——找出 user:// 持久文件；grep harness 对 user:// 的读写（ConfigFile/Store）② harness 的 pass 序号显式化（每 pass print ===PASS n===）+ 探针带 pass 号 ③若确认 user:// 态影响 real pass 链 → 修=隔离/清空（对齐语料的录制条件）④之后按 §6m12 抓手继续 H 宿主定位。
 - 账面 841/860；探针已全还原（checkout+镜像+重转写零残留）。
+
+## 6m14. H 分析的 pass 拼接真相+最终交接（2026-11-03 ix；本轮绝对收口）
+
+- **★ trace 结构真相**：gd rng_trace.txt = **real+selfcheck 两 pass 拼接**（1891 行≈2×945；state 在 pass 边界重置）。本轮全部探针（PCS0/1/2+TRG+ACD）的状态→trace 行号映射显示：**跳点段（trace 行 331→333，dist=4）无任何探针行映射**——即 traced pass 的激活段与其他 pass 的探针态对不上。两种解释：①trace 的 pass 与探针 pass 不同源（dump 选错了 ctx）②traced pass 的激活走了绕过 Item.preCombatStart 的路径。
+- **稳定不变的事实**（跨 run 复现）：①「0.975+4×0.95+0.975」模式跳点 gd=4 步（本轮一次实测 6 步=跳距亦随 pass 漂移）v ora=2 步；②跳点两侧 ACD 物品双侧全同（Chipped Emerald3→四宝石 ot7→Ruby Whelp3）；③批内第二 case 检验：H 不消失（非进程历史问题）；④flipWeighted 记账不对称（gd CoreRng 无 _trace v ora rng_trace_range）——**独立待修雷**（Shovel/Robodog 商店期，1441 不涉但其他场可能涉）。
+- **下一棒（最短路径）**：①harness dump 处加 pass 标识（rng_trace.txt 首行写 `#pass=N latch=?`；或每 pass 独立文件）②重跑 PCS+ACD+TRG 探针，**在 traced pass 内**读跳点段的探针缺口——缺口即 H 宿主 ③若 traced pass 绕过 preCombatStart→审计 real pass 的物品构造/灌入路径（「正式场玩家构造后灌入」的代码路径是否直调 adjustCooldown）④修后 REG→860 刷账。**flipWeighted 补 _trace**（一行：`var val = randf_range(0, sum, "flipWeighted")` 对齐 ora Util.gd:1115）可顺带落。
+- 账面 841/860；探针全还原；本轮 session 净 +3（838→841）+ 三层根因收敛（autoRage 修复落地、fd@46 回合定位、1441 H 收窄至 traced pass 激活段）。
