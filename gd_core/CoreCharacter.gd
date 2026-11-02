@@ -291,22 +291,31 @@ func prepare() -> void :
 	
 	# 自动战怒选品（对齐 Character.gd:312-326）：背包里有带 BattleRage 标签的物品时不启用
 	# 自动战怒；否则从**含宝石**的物品里随机挑一个 isBattleRageItem() 的。
-	# ★ 原版用 Array.pick_random()（Godot 全局 RNG），内核改用注入 rng 以保证同种子可复现。
 	autoRageItem = null
 	var hasBattleRageStarter = false
 	for item in inventory.getItems():
 		if item.hasTag(CoreConst.Tag.BattleRage):
 			hasBattleRageStarter = true
 			break
-	
+
 	if not hasBattleRageStarter:
 		var battleRageItems = []
 		for item in inventory.getItemsAndGems():
 			if item.isBattleRageItem():
 				battleRageItems.push_back(item)
-		
+
 		if not battleRageItems.empty():
-			autoRageItem = ctx.rng.pickRandomElement(battleRageItems)
+			# ★ np29fD 定谳（run947 fd@6）：oracle Character.gd:327 用**引擎内建
+			#   Array.pick_random()**——消耗 seed(S) 种子化的引擎全局链（与
+			#   playerItems.shuffle() 同流，oracle_fight.gd:595；gd harness 同样
+			#   seed(S)，OracleAlignBattle.gd:523），**主链零消耗**。早年注释
+			#   「改用注入 rng 以保证同种子可复现」的前提（全局链不可复现）已被
+			#   harness 全局链播种机制推翻。此前误用 ctx.rng.pickRandomElement
+			#   （主链 1 步/次×双方）→ 开局冷却批整体晚 2 步 → 批内物品-抖动值
+			#   错位一件 → Rainbow Potion giveRandomBuffs 掷块错位 → 选型
+			#   dict 3 型 v 4 型（fd@6，早簇 962/1427/1499/1534/1536/1545 同域）。
+			#   修复=pickRandomEngine（array.pick_random()，全局链同流零主链耗）。
+			autoRageItem = ctx.rng.pickRandomEngine(battleRageItems, "Character.gd:327")
 
 
 # 对齐 Character.gd:328-337
