@@ -1115,7 +1115,10 @@ class CoreItem(GodotObject):
 
 
 	def checkActivationLimit(self):
-		if self.ctx.time > self.lastActivationTime:
+		# ★ np33（checkTriggerCount 同款进程钟语义，见该函数注）：oracle 基准
+		#   Util.time 为进程钟（战斗开跑 ≈40s>limit=3）→ 恒走重置分支=恒过；
+		#   gd ctx.time 战斗钟 <3s 时误熔断第 4+ 次同帧激活。
+		if self.ctx.time + 40.0 > self.lastActivationTime:
 			self.activationsThisFrame = 1
 			self.lastActivationTime = self.ctx.time
 		else:

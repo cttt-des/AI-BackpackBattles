@@ -1012,7 +1012,10 @@ func activate(damageRes = null, playCombatAni = true, consume = false,
 
 
 func checkActivationLimit() -> bool:
-	if ctx.time > lastActivationTime:
+	# ★ np33（checkTriggerCount 同款进程钟语义，见该函数注）：oracle 基准
+	#   Util.time 为进程钟（战斗开跑 ≈40s>limit=3）→ 恒走重置分支=恒过；
+	#   gd ctx.time 战斗钟 <3s 时误熔断第 4+ 次同帧激活。
+	if ctx.time + 40.0 > lastActivationTime:
 		activationsThisFrame = 1
 		lastActivationTime = ctx.time
 	else:
