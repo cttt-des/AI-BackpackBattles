@@ -923,7 +923,15 @@ class CoreItem(GodotObject):
 	# ─────────────────────── 触发（对齐 4416-4451） ───────────────────────
 
 	def checkTriggerCount(self, limit):
-		if self.ctx.time > self.triggersThisFrame:
+		# ★ np33（run899_r18 MrStruggles 熔断定谳）：oracle 的比较基准 Util.time 是
+		#   **进程钟**——战斗开跑时已累积装配耗时（fW3fin 实测 run733 起点 t=42.13s，
+		#   远超任何 limit），故 `Util.time > triggersThisFrame(≤10)` 恒真 → 每次
+		#   调用都走重置分支 → **受控神谕语义=limit 恒不熔断**。gd 的 ctx.time 是
+		#   战斗钟（0 起）→ 战斗前 10s 内 `time > count` 恒 false → else 分支计数
+		#   累积到 limit 后**永久熔断**（run899：MS onDebuffed 133 次进、rollChance
+		#   仅 t=0 前 10 次、MSWIN 桩 6 次后全灭）。修=复刻进程钟语义（+40s 偏移，
+		#   行为等效 oracle「恒过」；全场唯一调用者 MrStruggles，零全局风险）。
+		if self.ctx.time + 40.0 > self.triggersThisFrame:
 			self.triggersThisFrame = 1
 			self.lastTriggerTime = self.ctx.time
 		else:
