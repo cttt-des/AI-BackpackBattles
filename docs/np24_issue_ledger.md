@@ -607,3 +607,9 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **稳定不变的事实**（跨 run 复现）：①「0.975+4×0.95+0.975」模式跳点 gd=4 步（本轮一次实测 6 步=跳距亦随 pass 漂移）v ora=2 步；②跳点两侧 ACD 物品双侧全同（Chipped Emerald3→四宝石 ot7→Ruby Whelp3）；③批内第二 case 检验：H 不消失（非进程历史问题）；④flipWeighted 记账不对称（gd CoreRng 无 _trace v ora rng_trace_range）——**独立待修雷**（Shovel/Robodog 商店期，1441 不涉但其他场可能涉）。
 - **下一棒（最短路径）**：①harness dump 处加 pass 标识（rng_trace.txt 首行写 `#pass=N latch=?`；或每 pass 独立文件）②重跑 PCS+ACD+TRG 探针，**在 traced pass 内**读跳点段的探针缺口——缺口即 H 宿主 ③若 traced pass 绕过 preCombatStart→审计 real pass 的物品构造/灌入路径（「正式场玩家构造后灌入」的代码路径是否直调 adjustCooldown）④修后 REG→860 刷账。**flipWeighted 补 _trace**（一行：`var val = randf_range(0, sum, "flipWeighted")` 对齐 ora Util.gd:1115）可顺带落。
 - 账面 841/860；探针全还原；本轮 session 净 +3（838→841）+ 三层根因收敛（autoRage 修复落地、fd@46 回合定位、1441 H 收窄至 traced pass 激活段）。
+
+## 6m15. H 窗口相位最终确认（2026-11-03 x；交接完毕）
+
+- **相位定谳**：四连 0.95=**宝石 combatStart 的 adjustCooldown 重掷**（Gem.gd:312 combatStart→.combatStart()→adjustCooldown，Inventory/Weapon/Armor 分支双侧同构）；Ruby 的 0.975=**其首次 trigger() 的 adjustCooldown**（Item.combatStart 不调 adjustCooldown）。H=两者之间的 2 步裸抽，窗口=「combatStart/postCombatStart 相位尾+tick0+tick1 头」。该窗口无探针覆盖（PCS 只探 preCombatStart；[spdt] 行无 state 列）。
+- **下一棒（3 步闭环）**：①[spdt] 探针补 state 列（一行改：print 加 `st=%s` % ctx.rng.rng.get_state()——注意 CoreCombat 两处+镜像）②重跑 GD_SPDT=1，跳点 Xp/Xq（trace 内）之间的 [spdt] 行即宿主物品 ③按宿主修（gd 补/删抽对齐 oracle）。备选嫌疑：cbt/post 相位的某 item hook、首 tick 的 callDelayed 派发、Wolpertinger/Toad/Relic Case 等 onCombatStart 物品的隐形抽。
+- 账面 841/860。本轮 session（goal 接续）累计：autoRage 修复（净+3）+ flipWeighted 记账对称 + fd@46 回合定位 + 1441 H 三层收敛至相位窗口。工作树零残留，offpeak-70fcff69(#215)/0bfcfee4(#306) 接力。
