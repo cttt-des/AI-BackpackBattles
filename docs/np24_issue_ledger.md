@@ -449,6 +449,8 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
   1. **isAvailableFor 位变换（aac9e02f）净 +6**：stuffClassIndex(1<<classId) 缺失→isClassItem(职业) 全拒→PM 簇 6 场（1101/1102/1280/1290/1331/1530）。
   2. **checkTriggerCount 进程钟语义（3f9b605a）净 +13**：oracle Util.time 进程钟起点 42s>limit=10 恒真=恒过；gd 战斗钟 0 起前 10s 永久熔断（run899 MS 133 进 5 发 v oracle 27 发）→+40s 偏移复刻。翻绿：578/618/628/775/846/848/899/933/981/984/1487/1491/1507。
   3. **checkActivationLimit +40s（f549874d）净 -45 → 回滚（b5876136）**：量纲分析教训——checkTriggerCount 的 count 上限(10)<进程钟起点(42) 恒真成立；checkActivationLimit 的 lastActivationTime 是**移动基准**（每次激活更新为当前时刻），同 tick 第 2+ 次 time==基准走 else=oracle 真熔断，+40 偏移误改。op19=789 → 回滚 → op20=834 复确认。
+- **★ tick1diff 簇（9 场）定谳进展（BTC 桩，2026-11-02 晚）**：run1253 Badger 双侧每 tick triggerTime/spd 桩对拍——rng state 序列全同、jitter 全同，但同战斗时刻 gd 的 tt 比 oracle **少减 1 次**（差=0.016667×1.12=一次完整递减），分歧起点=速度变更边界（combat t≈1.5667 减速生效拍）——**「变更拍是否用新速度递减」两侧语义差**（oracle 变更拍仍用旧速度；gd 当拍即用新速度）。9 场 tick1diff（760/1118/1163/1253 gd 早 1 tick；986 gd 晚；921/939/1540 级联）同根。**下轮修复**：physicsTick 递减用「本 tick 开始时的速度」快照（speed 变更延后一拍生效），REG+9 场验证。
+- **EATI 桩方法论升级**：oracle tick_battle ③⑤ 与 gd physicsTick ③⑥ 的 per-item EATI 双侧实现（临时桩已还原）；时差对齐后逐物品锁定首个消耗分歧——本轮定位 TeslaCoil.advanceItem（fb29b6a2 已修）+tick1diff 簇（本条）。
 - **834/860（26 红）分域**：隐形抽族残余（733/846/933/1118/1427/1441/1499/1534/1536/1545）+W2 charge（1104/1163/1130 已绿）+W4（622/687/702/760/921/939/947/962/977/986/1022/1120/1253/1444/1499/1540/1514 基线）。
 - **交接**：offpeak-2cbf06c9（§6j 任务书+§6k/§6l/§6l2 进度）。下一棒攻击序：①隐形抽值指纹（0.738357）②1104/1163 新 fd ③W4 逐场分流 ④914 全量合并。860 全绿后：README 重写→commit/push→超长场。
 ## 6k. 循环轮战报 VIII（2026-11-02；W2 正解入账 815/45）
