@@ -450,6 +450,7 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **W2 charge 残余模式（1101/1102 窗口）**：oracle PM@201/255 激活（105+13+t0），gd 的 PM 缺位/迟激活——PerpetuumMobile.onPrepare 的 connectToCharacterBuffs(onBuffChanged)+character_used_stamina 连接面+doCooldownEffect 循环（usedStacks refund→giveStacks；giveStamina→activate）逐抽对位待做；1104=Djinn Lamp 101@250 v gd Mana Orb 105 次序差。
 - **隐形抽定位暂停**（Healthbar/DamageMeter/Game.gd:4969 等排除，属商店面）——两轮对拍法（MARK 桩/全场扫描）均已证伪，值指纹法（0.738357 同源序列）留下轮。
 - **下一棒**：offpeak-2cbf06c9 任务书（§6j 攻击序+本节更新）——①W2 charge 残余 8 场逐抽（PM 连接面优先，1104 次序差次之）②W4 长尾 22 场分流聚类 ③W3 隐形抽值指纹。860 全绿后：夹具还原 914→--compare-only 全量账→README 重写→commit/push→超长场通道（54 场 --force --cases 逐场）。
+- **★ PM 面定谳（本轮收尾）**：run1101 全 PM 事件对拍——oracle 首激活@3.35 且激活间隔 0.13s（高加速）；gd 首激活@6.63 间隔 0.5s（无加速）——**gd 的 PerpetuumMobile.onPrepare addSpeed(speed×getNumAffectedItems()) 未生效**（affected=Engineer 色邻接，gd 侧计数 0 或夹具 affected 空）。攻击点：PM.tscn tile_data 的 Engineer 色 tid→夹具 affected 键→getNumAffectedItems 链。1104 的 DjinnLamp 101@250 次序差疑似同源（PM 激活慢→全场冷却链慢）。
 - **账面**：**815/860**（45 红）。
 ## 6j. 循环轮战报 VII+下一棒任务书（2026-11-02；W2 正解落地，860 全绿冲刺交接）
 
