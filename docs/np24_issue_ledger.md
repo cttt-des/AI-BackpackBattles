@@ -443,6 +443,14 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **★ W3 隐形抽值反推定谳（本轮）**：randf_range 消耗模型定谳=**每抽 2 步：第 1 步弃、第 2 步为值**（run733 锚后 out[1]/2^32=0.517482=424 值 1.003496 的 f ✓ 6 位精确；out[5]=0.700327=425 值 f ✓）。隐形抽=outs[2](弃)+outs[3](用)→**值=0.738357（(0,1) 归一）**；若域 (0.9,1.1)=1.0477、(0.9,1.0)=0.9738、(0.975,1.05)=1.0033、(0.95,1.05)=1.0179——与全部已知裸调域（grep 全量 12 处）的语义位置（受击动画→下一 trigger 之间）无匹配⇒**该裸调不在 gd 源码 grep 面**（嫌疑：oracle 场景树某个 .tscn 内联脚本/信号回调）。下轮：①用 v=0.738357 对照 425 后续每抽值找同源二次出现（若每伤害帧一次则值序列可交叉验证调用者身份）；②Instrument Util.flip 的调用方日志。
 - **W3 隐形抽终局方案（下轮执行）**：oracle Util.gd 的 `var rng` 换**追踪包装器**（class RngTrace extends Reference：base=RandomNumberGenerator，randf/randf_range/randi/randi_range/get_state/set_state/seed 全方法代理+每次调用 push log（tag=RNGX））——一次性消灭「裸调不入账」盲区，隐形 +2 的调用点一次跑现形。风险面：grep Util.rng 全方法面覆盖后替换；ORACLE_DEBUG 门控（非 debug 走裸 rng 同一对象）。MARK 桩法（Character takeDamage A/B/C 点）已试因『isOpen on Nil』偶发崩溃弃用（桩已撤净，原因未定谳疑与长跑节点复用相关，下轮可再用短跑）。
 - **现场**：oracle 探针（rng_trace_* state 列+fmt 分支）**仍在树上未还原**（下轮直接复用）；gd 侧无探针残留；夹具=860 收缩版。
+## 6l2. 循环轮战报 IX 收官（2026-11-02 14:00；session 净 +25：809→834）
+
+- **三笔修复两净正一教训**：
+  1. **isAvailableFor 位变换（aac9e02f）净 +6**：stuffClassIndex(1<<classId) 缺失→isClassItem(职业) 全拒→PM 簇 6 场（1101/1102/1280/1290/1331/1530）。
+  2. **checkTriggerCount 进程钟语义（3f9b605a）净 +13**：oracle Util.time 进程钟起点 42s>limit=10 恒真=恒过；gd 战斗钟 0 起前 10s 永久熔断（run899 MS 133 进 5 发 v oracle 27 发）→+40s 偏移复刻。翻绿：578/618/628/775/846/848/899/933/981/984/1487/1491/1507。
+  3. **checkActivationLimit +40s（f549874d）净 -45 → 回滚（b5876136）**：量纲分析教训——checkTriggerCount 的 count 上限(10)<进程钟起点(42) 恒真成立；checkActivationLimit 的 lastActivationTime 是**移动基准**（每次激活更新为当前时刻），同 tick 第 2+ 次 time==基准走 else=oracle 真熔断，+40 偏移误改。op19=789 → 回滚 → op20=834 复确认。
+- **834/860（26 红）分域**：隐形抽族残余（733/846/933/1118/1427/1441/1499/1534/1536/1545）+W2 charge（1104/1163/1130 已绿）+W4（622/687/702/760/921/939/947/962/977/986/1022/1120/1253/1444/1499/1540/1514 基线）。
+- **交接**：offpeak-2cbf06c9（§6j 任务书+§6k/§6l/§6l2 进度）。下一棒攻击序：①隐形抽值指纹（0.738357）②1104/1163 新 fd ③W4 逐场分流 ④914 全量合并。860 全绿后：README 重写→commit/push→超长场。
 ## 6k. 循环轮战报 VIII（2026-11-02；W2 正解入账 815/45）
 
 - **W2 正解净账 ✅**：op14b 全量=**814/860**（净 +5：1097/1105/1106/1107/1269 翻绿，零退步）——文件序全链保序（aaeaf731）实效验证。**+收割 run1129（重录）=815/860**（--compare-only 合并）。
