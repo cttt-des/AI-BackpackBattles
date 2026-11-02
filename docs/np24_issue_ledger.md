@@ -461,7 +461,10 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **★ PM 面定谳（本轮收尾）**：run1101 全 PM 事件对拍——oracle 首激活@3.35 且激活间隔 0.13s（高加速）；gd 首激活@6.63 间隔 0.5s（无加速）——**gd 的 PerpetuumMobile.onPrepare addSpeed(speed×getNumAffectedItems()) 未生效**（affected=Engineer 色邻接，gd 侧计数 0 或夹具 affected 空）。攻击点：PM.tscn tile_data 的 Engineer 色 tid→夹具 affected 键→getNumAffectedItems 链。1104 的 DjinnLamp 101@250 次序差疑似同源（PM 激活慢→全场冷却链慢）。
 - **op17 分流**：39 红=fPbatch 对比全 REAL（0 HARVEST）。
 - **★ checkTriggerCount 修复 ✅（np33 修复2，op18=834/860 净 +13 零退步）**：oracle 比较基准 Util.time 是**进程钟**（战斗开跑已累积装配耗时 ≈42s>fW3fin 实测），time>count(≤10) 恒真=**limit 恒不熔断**；gd ctx.time 战斗钟 0 起→前 10s 恒 false→永久熔断。修=+40s 偏移复刻（全场唯一调用者 MrStruggles 零全局风险）。翻绿 13 场：578/618/628/775/846/848/899/933/981/984/1487/1491/1507。REG np33ctc2 双腿 18/18。
-- **账面**：**834/860**（26 红：947 三色/隐形抽族 733-1545 残余/W2 charge 1104+1163/W4 长尾 622-1022/基线红 1514）。
+- **收割轮 ✅（op21 分流后）**：run622_r15 变 HARVEST（isAvailableFor/文件序修复后 oracle_sg≡gd）→重录翻绿；run1104 补重放（语料新鲜仍 REAL@180）。**账面=835/860（25 红）**。
+- **进程钟语义面收官 ✅**：gd 全树 `ctx.time >` 比较逐个量纲核验（attack_sound_ready_time/buffLabelPositionTimestamps/lastActivationTime 均为相对间隔或移动基准=量纲无关；checkTriggerCount 是唯一 absolute-vs-count 错配已修）——进程钟面收割完毕。
+- **25 红全部 gd≡py**（转写零分歧，纯引擎差）；op17 分流 0 HARVEST。**1104 窗口证据**（CHRG 桩 f1104c）：fd@180=gd 在 Coil 105 后多插 Mana Orb 105 tgt1（oracle 同位无此事件、Mana Orb 激活面/mana 链差另根）；**947 归档**：fd@6=Rainbow Potion giveRandomBuffs 选型（oracle 4 类型恰不重复 v gd 3 类型=抽到重复）=随机链位差（归隐形抽族）。**899 归档**：fd@39 已修（checkTriggerCount）。
+- **账面**：**835/860**（25 红：隐形抽族 947/733/846/933/962/1118/1427/1441/1499/1534/1536/1545、charge 残余 1104/1163/702/986/1120/977、长尾 687/760/921/939/977/1022/1253/1444/1540/1514 基线）。
 - **隐形抽监听链排除（本轮收网）**：run733 阵容全部 EventBus 监听者（MrStruggles.onDamaged/Shield.onCharacterAttacked/CriticalPoison/Toad/FortunasKiss）逐个查证**零 rng**；Healthbar.onHealthChanged 无 rng（call_deferred updateBar 纯 tween）。隐形抽调用者只剩 tscn 内联脚本/动画帧回调两条暗路——值指纹法（0.738357）是唯一低成本剩招。
 - **947 线索**：fd@6=Rainbow Potion 三色物品（Primary 覆写 getAffectedCellsAfterRotate_primary+Secondary/ Tertiary）开战激活链 buff 类型序差（oracle [105,104,103,101] v gd [103,105,101]）——多色物品的受影响序/连接序独立面，与 Lightning 面无关。
 - **899 线索**：fd@39=t0 阶段 Snowball 给 blind 后 Mr Struggles.onDebuffed 未响应（oracle 同拍 t110 tgt=0 amt=2，gd 缺）——debuff 信号连接在 t0 激活链的生效时机差（连接于 onPrepare 装配期应已生效；疑 rollChance/ BalancedRng 首抽位差）。MSROLL 桩（gd trace_diag）可复用对拍。
