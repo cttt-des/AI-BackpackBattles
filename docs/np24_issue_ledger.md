@@ -613,3 +613,9 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **相位定谳**：四连 0.95=**宝石 combatStart 的 adjustCooldown 重掷**（Gem.gd:312 combatStart→.combatStart()→adjustCooldown，Inventory/Weapon/Armor 分支双侧同构）；Ruby 的 0.975=**其首次 trigger() 的 adjustCooldown**（Item.combatStart 不调 adjustCooldown）。H=两者之间的 2 步裸抽，窗口=「combatStart/postCombatStart 相位尾+tick0+tick1 头」。该窗口无探针覆盖（PCS 只探 preCombatStart；[spdt] 行无 state 列）。
 - **下一棒（3 步闭环）**：①[spdt] 探针补 state 列（一行改：print 加 `st=%s` % ctx.rng.rng.get_state()——注意 CoreCombat 两处+镜像）②重跑 GD_SPDT=1，跳点 Xp/Xq（trace 内）之间的 [spdt] 行即宿主物品 ③按宿主修（gd 补/删抽对齐 oracle）。备选嫌疑：cbt/post 相位的某 item hook、首 tick 的 callDelayed 派发、Wolpertinger/Toad/Relic Case 等 onCombatStart 物品的隐形抽。
 - 账面 841/860。本轮 session（goal 接续）累计：autoRage 修复（净+3）+ flipWeighted 记账对称 + fd@46 回合定位 + 1441 H 三层收敛至相位窗口。工作树零残留，offpeak-70fcff69(#215)/0bfcfee4(#306) 接力。
+
+## 6m16. H 宿主二选一收敛+pass 混叠定谳（2026-11-03 xi；本轮终）
+
+- **★ 收敛**：CBT/PST 探针（本轮）锁点——四连 0.95=**四颗独立宝石 item 的 combatStart cd**（Chipped Emerald/Corrupted Crystal/Chipped Ruby/Chipped Amethyst，各自 CBT0/CBT1 行实证）；跳点=「Amethyst（Cursed Dagger 的宝石）combatStart cd」→「Ruby Whelp 首笔 0.975 cd」之间。Ruby 该笔 cd 的调用方=preCombatStart/trigger/updateBaseCooldown 三选一——**PCS0/TRG 探针在其邻域缺席=pass 混叠**（同一 state 在 real/selfcheck 两 pass 各出现一次，state→行号映射把两 pass 折叠，时序不可分）。
+- **解法（唯一障碍，下一棒第一步）**：harness `run_case` 入口 `pass_index += 1`（ctx 或全局变量），**全部探针行前缀 `p%d`**；重跑一次 PCS0/1/2+ACD+TRG+CBT/PST 双侧——同 pass 内跳点段的探针缺口即 H 宿主（预期二选一：①Ruby preCombatStart 的宝石循环（Topaz 无 cd 已排除→若缺口在 PCS0 前则 Ruby 的 cd 来自 preCombatStart 而其宝石循环有隐形抽）②Ruby 首次 trigger 前置段）。
+- **已固化事实**（不再重查）：四宝石 combatStart cd 双侧全同；Ruby 首触发链内容双侧同构；跳距 gd 4/6 步（随 pass 漂移）v ora 2 步；批内第二 case 检验 H 不消失；flipWeighted 已修（c1a72146）。账面 841/860。
