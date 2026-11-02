@@ -450,10 +450,13 @@ func absv(vec: Vector2):
 	return Vector2(abs(vec.x), abs(vec.y))
 
 func pickRandomElement(array: Array):
-	# ★ 临时诊断（ORACLE_RNG_DEBUG=1）：打印被选数组内容，定位歧义抽取点
+	# ★ 临时诊断（ORACLE_RNG_DEBUG=1）：打印被选数组内容+抽中位/值/链态
+	var _pi = rng_trace_irange(0, array.size() - 1, "pickRandomElement")
 	if OS.get_environment("ORACLE_RNG_DEBUG") != "" and array.size() <= 8:
-		print("[pick] size=%d %s" % [array.size(), str(array)])
-	return array[rng_trace_irange(0, array.size() - 1, "pickRandomElement")]
+		print("[pick] size=%d %s => idx=%d val=%s st=%s" % [
+				array.size(), str(array), _pi, str(array[_pi]),
+				str(rng.get_state())])
+	return array[_pi]
 
 func getArrayElement(array: Array, index: int, default = null):
 	if index > array.size() - 1:

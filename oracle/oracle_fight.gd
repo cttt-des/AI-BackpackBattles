@@ -593,7 +593,7 @@ func run_case(c: Dictionary, warmup := false) -> Dictionary :
 	# ── ★ 确定性种子：任何物品实例创建之前（约定 2b）────────────────────
 	U.rng.set_seed(seed_value)
 	seed(seed_value)   # 引擎全局链（Array.shuffle/pick_random 消费，原版同源）
-	U.oracleRngTrace = _dbg_delayed
+	U.oracleRngTrace = _dbg_delayed or OS.get_environment("ORACLE_RNG_TRACE") != ""  # ★ np29fC：独立门控（绕开 ORACLE_DEBUG 逐 tick 噪声）
 	U.oracleRngStack = OS.get_environment("ORACLE_STACKTRACE") != ""
 	U.oracleRngLog = []
 
@@ -807,7 +807,7 @@ func run_case(c: Dictionary, warmup := false) -> Dictionary :
 		G.OPPONENT.getCurrentHealth(), G.OPPONENT.maxHealth, CT.fatigueCounter]
 	write_case_result(res, [hp_line])
 
-	if _dbg_delayed and not _in_warmup:
+	if (_dbg_delayed or OS.get_environment("ORACLE_RNG_TRACE") != "") and not _in_warmup:
 		var lg = File.new()
 		lg.open(dir.plus_file("rng_log.txt"), File.WRITE)
 		var rows := []
