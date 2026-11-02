@@ -66,6 +66,10 @@ var _seen := 0.0           # 注册表 e[1]：上一 pass 的 eng（battle setup
 #   登记拍不递减（run590 SPF 毒 4.9833 实证）。
 var _multi_start_time := -1.0
 
+# ★ TMR 探针（tick1diff 簇诊断，env 门控零耗）：每个计时器的 start 值与 fire
+#   时刻流——oracle 侧对应 [timer-reg]/[timer-fire]（oracle_fight.gd）。
+var _dbg := OS.get_environment("GD_TMR") != ""
+
 
 func _init(ctx = null, owner = null, timerName: String = "") -> void :
 	_ctx = ctx
@@ -96,6 +100,9 @@ var _started_frame := -1
 func start(time = -1.0) -> void :
 	if time != null:
 		wait_time = time
+	if _dbg:
+		print("[tstart] %s wt=%.6f multi=%s t=%.6f" % [name, wait_time,
+				multi, _utilTime()])
 	if multi and not _stopped:
 		timestamps.push_back(_utilTime() + wait_time)
 		return
@@ -111,10 +118,10 @@ func start(time = -1.0) -> void :
 		#   fire）；eng!=_seen→登记分支 _left=eng（f01 首启 _seen=0 恒走此，
 		#   语义不变；np26fA 相位补偿在登记分支，保持）。
 		_stopped = false
-		_eng = wait_time
+		_eng = _f32eng(wait_time)
 		_multi_start_time = _utilTime()
 		return
-	_eng = wait_time      # 引擎：start 必写 time_left=wait_time（3.6 语义）
+	_eng = _f32eng(wait_time)   # 引擎：start 必写 time_left=wait_time（3.6 语义）
 	_stopped = false
 	# ★ 重同步移交 tick()（eng vs _seen 判定），不再无条件 _left=wait_time
 
@@ -172,6 +179,9 @@ func tick(delta: float) -> void :
 #   先已 _stopped=true 走重启动分支（push 分支不触发），与 harness emit 后
 #   `is_stopped()==false → e[0]=time_left` 同构。
 func _onTimeout() -> void :
+	if _dbg:
+		print("[tfire] %s wt=%.6f left=%.6f t=%.6f n=%d" % [name, wait_time,
+				_left, _utilTime(), fire_count])
 	_stopped = true
 	_left = 0.0
 	if multi:
@@ -186,9 +196,11 @@ func _onTimeout() -> void :
 		return          # multi 重启走 start() 的 timestamps 路径（f01 语义）
 	# ★ post-emit 重挂（harness :915-919）：处理器重启 ⇒ e[0]=e[1]=eng 无条件
 	#   （含同值）；循环计时器无重启 ⇒ harness 代 start(w) 兜底续接，同式。
-	_left = wait_time
-	_seen = wait_time
-	_eng = wait_time
+	#   ★ np29fB 三值一律过 f32：harness e[0]/e[1] 的源是引擎读数
+	#   get_time_left()（real_t=float32 存储）——见本文件 _f32eng 注。
+	_left = _f32eng(wait_time)
+	_seen = _f32eng(wait_time)
+	_eng = _f32eng(wait_time)
 
 
 # 对齐 Util.time（无 ctx 时的兜底，便于独立单测）
@@ -196,3 +208,17 @@ func _utilTime() -> float:
 	if _ctx != null:
 		return _ctx.time
 	return 0.0
+
+
+# ★ np29fB：引擎 real_t(float32) 存储镜像（np25w_f04 同款，模板取自
+#   CoreCharacter._f32eng）。oracle harness 对物品/Buff 计时器的全部读数
+#   （rebuild 登记 left、每拍 eng=get_time_left()、post-emit 重挂 e[0]/e[1]）
+#   都穿引擎 f32——如 BuffTimer start(1.55)：f32(1.55)=1.5499999523，93 拍
+#   e[0] 即穿零；gd 全 64 位剩 +5.5e-16 → 94 拍才 fire（run1253 Amulet
+#   减速 gd 晚 1 tick，tick1diff 簇 9 场同根）。gd 侧无 f32 cast，用
+#   PoolRealArray 单元素写读实现（round-to-nearest）；三行模板走 gd_to_py
+#   op11（→ return f32(x)，_rt.f32=struct round-trip）。
+static func _f32eng(x: float) -> float :
+	var pa = PoolRealArray()
+	pa.append(x)
+	return pa[0]

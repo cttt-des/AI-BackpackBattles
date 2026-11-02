@@ -844,6 +844,9 @@ func tick_battle(dt: float, n := 0) -> void :
 			item._physics_process(dt)
 			if n == _trace_tick and U.rng.get_state() != sa:
 				print("[eat] t=%.3f OPP item %s" % [U.time, item.getName()])
+			if _dbg_spdt:
+				print("[spdt] t=%.6f OPP %s tt=%.6f spd=%.6f" % [CT.combatTime,
+						item.getName(), item.triggerTime, item.getSpeed()])
 	# ④ CombatTimer（combatTime += dt，事件时间戳源）
 	if CT.is_physics_processing():
 		CT._physics_process(dt)
@@ -857,6 +860,9 @@ func tick_battle(dt: float, n := 0) -> void :
 			item._physics_process(dt)
 			if n == _trace_tick and U.rng.get_state() != sa:
 				print("[eat] t=%.3f PLR item %s" % [U.time, item.getName()])
+			if _dbg_spdt:
+				print("[spdt] t=%.6f PLR %s tt=%.6f spd=%.6f" % [CT.combatTime,
+						item.getName(), item.triggerTime, item.getSpeed()])
 	# ⑥⑦ Timer 节点（先物理型后空闲型——引擎两个 pass 的先后次序）
 	var s_items = U.rng.get_state() if _dbg_ticks else 0
 	drive_timers(true, dt)
@@ -929,6 +935,9 @@ func drive_timers(physics_pass: bool, dt: float) -> void :
 # SceneTreeTimer（Util.callDelayed/setDelayed 注册表）驱动；判胜后不再补发 [M4]
 var _dbg_delayed := OS.get_environment("ORACLE_DEBUG") != ""
 var _dbg_ticks := OS.get_environment("ORACLE_DEBUG") != ""
+# ★ SPDT 探针（tick1diff 簇诊断，env 门控零耗）：全物品每 tick 递减后
+#   (triggerTime, getSpeed) 流——速度变更边界两侧对拍（np26 §6m1）。
+var _dbg_spdt := OS.get_environment("ORACLE_SPDT") != ""
 var _trace_tick := int(OS.get_environment("ORACLE_TRACE_TICK"))
 # ★ ORACLE_LINEUPS_ONLY=1：只装配 + 导 lineups.json（宝石快照补全用），不重跑
 #   战斗——events.json / rng_state.txt / rng_log.txt / result.txt 一概不碰，语料
