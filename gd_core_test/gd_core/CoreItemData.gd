@@ -215,8 +215,14 @@ func getTypes() -> Array:
 
 
 # 对齐 ItemDescriptor.gd:153-158
+# ★ np33（run1101 PM 面定谳）：oracle isAvailableFor=stuffClassIndex 位变换
+#   （ItemDescriptor.gd:86 `1 << classI`——classId 是 Classes_Full **序数**
+#   （Engineer=6），classes 掩码=1<<序数（Magitecc=64））；gd 缺这步 →
+#   classes & 6 = 0 恒 false → isClassItem(Engineer) 全拒 → PM 的
+#   getNumAffectedItems()=1（仅误判幸存者）v oracle=4 → addSpeed 差 4 倍
+#   → PM 激活间隔 0.5s v 0.13s（1101 PM 事件全对拍铁证）。
 func isAvailableFor(classId: int) -> bool:
-	return (classes & classId) != 0
+	return (classes & (1 << classId)) != 0
 
 
 # 对齐 ItemDescriptor.gd:160-161
