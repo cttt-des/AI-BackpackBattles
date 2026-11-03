@@ -670,3 +670,10 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **含义**：Oil Lamp 的 flicker 注册（FlickerAnimation._ready=oracle add_child 时）发生**晚于** gd 的 _readyInit 注册点整整 1 笔 chanceRng 抽——即 oracle 的 add_child 时点比 gd 的 _readyInit 调用时点**晚一个物品构造**（或 Oil Lamp 自身多 1 个 BalancedRng 构造在 gd 缺失/次序异）。battle-start 对齐=后续镜像补偿（60 步内无公共锚点与此一致）。
 - **修复方案（下一棒，具体）**：①定位 gd 该链段的 (0.2,-0.2)=谁的 chanceRng（trace 行 94/96/97 的物品归属——上 Oil Lamp 前后物品的构造次序，harness createItem 循环+place_gem 已知）②oracle 侧 add_child 时点=createFromItemTuples 的 add 步（np17-A 注释），gd 对应=inventory.addItem 或 _readyInit 调用点——把 gd flicker 延时抽+callDelayed 注册从 _readyInit 挪到 oracle 时点等价处（如 addItem 尾/独立 ready 钩子），或反向验证 Oil Lamp 是否有 2 个 BalancedRng 成员（gd 缺 1）③修后 1441 应 fd 后移或消失→REG→860 刷账（早簇 8 场同域连锁）。
 - **本限时轮总账**：账面 841/860；7 笔提交（autoRage 修复 dc77fc16+flipWeighted c1a72146+§6m5-§6m23 台账链）；1441 fd@18 根因从「未知」推进到「flicker 注册时点差 1 笔 chanceRng」单步可修；fd@46=ChessBoard 回合 4/5 定位；全部探针还原零残留。
+
+## 6m24. 构造计数审计+深度差来源域锁定（2026-11-03 xviii；13:50 轮终）
+
+- **BalancedRng 构造计数审计**：oracle Item.gd=**1×** chanceRng.new()（行 472）；gd CoreItem=**2×**（行 212/214，"覆盖脚本重绑定：成员初始化器重跑"模拟）；Character 双侧 4×同构；Gem 双侧 0。宝石 (0,10) 抽：oracle=Gem._ready:24（宝石入树）；gd=CoreItem._readyInit:780 经**宝石自身 descriptor.gemRoll 旗**（Regular Topaz/Chipped Amethyst=True ✓ place_gem→gem._readyInit 时画）——**两侧都有宝石抽，位置不同**（gd 在 place_gem 的 gem._readyInit；oracle 在宝石节点 add 时）。
+- **1441 深度差量测（battle-start=4462fc26be654368 双侧同）**：gd flicker 延时抽 pre 深度 **268/40** v oracle **264/32**——差 4/8 步。来源域=item._readyInit 双 chanceRng（+2 步/物）与宝石抽位置的累积错位（1441 两颗宝石=2×2 步=4 步 + 双 CR 分布局部差 4 步——量级吻合）。
+- **下一棒（具体到判据）**：①**[RDY-I] 桩**：gd CoreItem._readyInit 入口/出口+flicker 段+gemRoll 段四点 state 打印（带 pass+物品名）；oracle 同款（FlickerAnimation.gd:14 前后+Item 场景 add_child 时点）——**单 run 内**列出每物品创建的抽数与序，diff 即得换位对精确内容（预期：gd=2CR+flicker+…+gem(0,10)@place_gem v oracle=CR+flicker@…+gem(0,10)@宝石add——次序差异逐笔显形）②修=按 oracle 序重排 gd 抽位（注意 gemRoll 双重构造是否 oracle 侧等价存在——若 oracle 物品真只 1 次 CR 而 gd 2 次，去掉 gd 的第二次构造为第一优先试验，REG 定谳）③860 刷账。
+- 账面 841/860；工作树零残留；offpeak-1476e382(#150) 接力。
