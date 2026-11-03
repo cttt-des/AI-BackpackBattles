@@ -699,3 +699,10 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **★ 两窗 +4 的候选源（强）**：两窗各紧邻一颗 Oil Lamp 的创建窗（PLR Oil Lamp 在 seg1-2 间、OPP Oil Lamp 在 seg8-9 间）——**oracle Oil Lamp 创建比 gd 多 2 笔 randf_range（4 步）**，gd 则多 2 笔 chanceRng（gd 双重构造 212/214）+尾段 4 笔——即 **Oil Lamp 创建的抽构成两侧结构性不同**：oracle=[CR][X1][X2][flicker-delay] gd=[CR][CR2][flicker-delay][…尾段补]。X1/X2=oracle Oil Lamp 实例化特有的 2 笔裸抽（候选：ItemBook.instantiateItem 内的随机 rot/品质抽、MagicRing 式 _ready 随机、或 Bag 链 Bag.gd 的某裸调）。
 - **下一棒（终判路径，数据链完备）**：①读 `oracle/Items/Exclusive/OilLamp.gd` 全文+`ItemBook.instantiateItem` 全文——找其中 2 笔 `Util.rng.randf_range/randi` 裸调（grep `Util.rng\.` 计数）②gd 对应脚本/装配路径核对——缺则补（按 oracle 值域）③REG（1441+947+基线 7）→860 刷账（早簇 8 场同域连锁翻绿预期）。
 - 账面 841/860；本轮探针（GEMR/FLKD/PCS/ACD/S*)已全部还原零残留；offpeak-1476e382(#150) 接力。
+
+## 6m27. 装配期 CR 计数与最终假设空间（2026-11-03 xx；≤14:00 收口）
+
+- **gd 装配段 (0.2,-0.2) 笔数=100/遍**（rows 1-223）：≈2 笔/物品 × ~50 物品 ✓ 与 CoreItem 212/214 双重构造自洽；battle-start 双侧对齐 ⟹ oracle 装配总耗同（其 2× 的来源=GDScript 覆盖脚本重绑定语义或等价机制，已由 841 绿场历史互证）。
+- **剩余假设空间（fd@18 根因的最后一环）**：装配抽的**归属分组**在两侧不同——gd=[GEM(Ruby宝石)][CR][CR][FLICKER(OilLamp)][CR][CR][GEM(Amethyst宝石)][CR][CR][FLICKER(OilLamp-OPP)]…，oracle 的 GEM/CR/FLICKER 分组边界至少差 1 笔 CR（flicker 深度 268 v 264）。**下一棒判据（零新桩）**：gd trace 装配段 rows 1-223 的全序列（每行 tag/from/to/value）已完整可见；oracle 侧等价序列可用 3 个锚（FLKD p3 两行 pre=46e5/e54f@深度 264/32 + GEMR p3 十四行）+ 其余不可见约束做**深度索引重对齐**：对 gd 每行计算深度，按「同深度同链必同约定值」的原则逐窗比对 oracle 锚的归属——窗内冲突=换位对内容。工具已齐（本轮 python 片段即可复用）。
+- **860 差距 19 红中**：早簇 8 场（1441/1427/1499/1534/1536/1545/962/1540/1514）共用本根因域；修复落在 CoreItem._readyInit flicker/CR 序或 place_gem 时点，REG+860 刷账后连锁翻绿预期 ≥5 场。
+- 账面 841/860；本轮（12:40-13:2x）全部探针已还原零残留；9 笔提交；offpeak-1476e382(#150) 接力。
