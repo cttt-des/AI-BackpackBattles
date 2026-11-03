@@ -742,3 +742,18 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **REG（np29i_gate3）**：基线 7+1514+1441+947——**1514 双腿 PASS**（1899 行全对齐）、基线 7+1441 零退、947 双腿红（ChessBoard 井未动）。
 - **860 刷账中**（预期 849/860）。
 - 下一棒：①947@46 ChessBoard（t=1.483 棋子捕获选择分叉，需三桩对拍全局链/输入序）②712 簇重定性（702@1118/921@452/962@83/977@497/986@206/1022@2456/1118@422/1120@868/1444@342/1545@63）。
+
+## 6m32. 947@46 ChessBoard 哨兵定谳：分歧在 captureCells/canAffect 语义域（2026-11-03 xxv）
+
+- **[CBS] 双侧桩**（doCooldownEffect 入口：棋子名:色:格指纹+oracle 侧链态）实证：白方首捕获窗 n=3 输入序 [WB(1,4)|WK(7,1)|WP(5,0)] 双侧逐位同、事件 0-45 全同（链态同）；黑方 n=1 窗存活序差（ora [BR][BP] v gd [BP][BR]）=fd@46 捕获分叉的**下游结果**非原因。
+- **排除法收敛**：全局链位✗（事件同+shuffle n=2 双窗序演化同）、数组输入序✗、评分路径✗（findPieceToCapture 首中即 return 不涉及评分）。**首因域=getCaptureCells() 返回内容/序（ChessPiece.gd cells 常量表）或 canAffect 语义**——oracle 吃 BP(6,1)（WP 斜吃）v gd 吃 BR(8,0)（WK 直吃）。
+- **下一棒（零基建）**：对拍 oracle/Items/Exclusive/ChessPiece.gd 与 gd_core_items/Exclusive/ChessPiece.gd 的 Pawn/Knight/Rook captureCells 常量表+getCaptureCells 组装（含 occupiedCells[0] 相对系）→ 差异格即根因；修复后 REG（947+基线 7）→860（947 或连锁 9 红中同域场）。
+- 探针（[CBS]/probePass）已还原零残留。
+
+## 6m33. 22:59 收口（2026-11-03 xxvi；限时轮终）
+
+- **本轮（18:15→22:59）净 +10 场：841→851/860**。两连修：①np29fH WEB Dragon/The Lovers tscn 实例化 CardConnector 旗标漏扫（装配窗 +4；b8192b61；939/1427/1441/1499/1534/1536/1540 七场连锁翻绿）②np29fI RubyChonk/FalconBlade 攻击尾 createAnimation+randomizePosition 3 笔隐形抽（3a9abc5f；1514+702 簇三场翻绿——FalconBlade 意外收益）。
+- **方法论新增**：上轮遗留双侧 trace（state 列全）+ PCG 前向解算=零新桩定谳装配链位（§6m30）；IRND 探针态==链锚实锤隐形抽宿主与笔数（§6m31）；[CBS] 哨兵指纹桩排除法收敛（§6m32）。
+- **收口链执行**：探针全还原（oracle 5 处/gd ANIMDBG/[CBS]/probePass 两轮全净）→ --compare-only 914 全量账合并（851/860）→ README 补「⑥ 三方确定性对齐」节 → 本节 → commit+push。
+- **残余 9 红交接**：947@46（下一棒=对拍两侧 ChessPiece captureCells 常量表，§6m32 有精确靶）+ 8 场中晚簇（702@1118 Goobert timeout amount/921@452/977@497/986@206 Banner 错位/1022@2456/1118@422 Holy Spear 值同位差/1120@868/1444@342）——全为 [rng-mechanism] 类，用 §6m31 三件套模板逐场解剖。
+- offpeak-1476e382(#150)/0bfcfee4(#306) 按本节接力。

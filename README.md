@@ -22,9 +22,9 @@
 
 | 版本 | 文件 | 说明 |
 |------|------|------|
-| **v0.3.1** | [`BackpackSimulator_v0.3.1.exe`](https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.3.1/BackpackSimulator_v0.3.1.exe) | 战斗模拟器（阵容对战 / 蒙特卡洛胜率 / 物品联动 / 游戏格式战报） |
+| **v0.4.0** | [`BackpackSimulator.exe`](https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.4.0/BackpackSimulator.exe) | 战斗模拟器（阵容对战 / 蒙特卡洛胜率 / 物品联动 / 游戏格式战报） |
 | **v0.3.1** | [`BackpackCombatLog_v0.3.1.exe`](https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.3.1/BackpackCombatLog_v0.3.1.exe) | 战斗日志导出器（游戏内真实战斗 → 游戏同格式战报 + 原始事件 JSON） |
-| **v0.3.1** | [`BackpackAI_v0.3.1.exe`](https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.3.1/BackpackAI_v0.3.1.exe) | 外挂 AI 主程序（自动游玩 GUI） |
+| **v0.4.0** | [`BackpackAI.exe`](https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.4.0/BackpackAI.exe) | 外挂 AI 主程序（自动游玩 GUI） |
 
 开发版随每次改动重新打包到 `dist/`（不带版本号）。
 
@@ -76,6 +76,15 @@
 | `tools/extract_sprites.py` | 从全量反编译树重建 `assets/sprites/` 与 `assets/item_db.json`（多层贴图合成 + 物品原点，见 ⑦） |
 
 > 这些工具证明的是"改动没有引入回归"。与游戏行为的最终对齐以 `output/combat_logs/` 实录对照为准——多个严重问题正是在固定用例全绿的状态下由实录发现的。
+
+### ⑥ 三方确定性对齐（语料 ↔ gd_core ↔ gd_core_py）
+
+- **对齐出口**：`output/oracle/alignment.json` —— 唯一账本，双判据（canonical 事件流 + 渲染行）逐场裁决 860 场语料战斗，当前 **851/860 三方逐行一致**（914 场语料中 54 场超长战斗在合并账另列）。
+- **三方架构**：`oracle/`（Godot 受控神谕，手动 tick 驱动 v1.1.9 真源）↔ `gd_core/`（GDScript 无头内核）↔ `gd_core_py/`（Python 机械转写，`tools/gd_to_py.py` 生成 661 模块）——任一修复需四树同步（gd_core/、gd_core_test 双镜像、gd_core_items/）后重跑 gd_to_py。
+- **REG gate**：`tools/_np21_gate.py` 基线 7 场 + 域代表场双腿（gd/py）防回归；全量刷账 `python -X utf8 tools/verify_oracle.py --skip-fixtures --force`（约 28 分钟）。
+- **方法论**（详见 `docs/np24_issue_ledger.md` §6m1→§6m32）：值序对齐法、PCG32 步数解算（INC=2885390081777926815，randf=2 步）、pass 序号内嵌探针、深度索引重对齐；本轮定谳根因谱系＝**隐形链消耗**（tscn 实例化 CardConnector 旗标漏扫 / 攻击尾 createAnimation+randomizePosition 3 笔裸抽 / BuffTimer-Engine real_t=float32 量化 / 引擎全局链 Array.pick_random vs 主链）。
+- **残余 9 红已定性**：947@46 ChessBoard（captureCells/canAffect 语义域，[CBS] 哨兵实证链位/输入序排除）、702/986 等中晚簇（首分歧 t>200，逐场待三件套解剖）。
+
 
 ### ⑥ 对局语料记录器（真人操作 → 训练数据）
 
