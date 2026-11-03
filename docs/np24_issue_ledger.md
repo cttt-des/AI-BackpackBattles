@@ -706,3 +706,11 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **剩余假设空间（fd@18 根因的最后一环）**：装配抽的**归属分组**在两侧不同——gd=[GEM(Ruby宝石)][CR][CR][FLICKER(OilLamp)][CR][CR][GEM(Amethyst宝石)][CR][CR][FLICKER(OilLamp-OPP)]…，oracle 的 GEM/CR/FLICKER 分组边界至少差 1 笔 CR（flicker 深度 268 v 264）。**下一棒判据（零新桩）**：gd trace 装配段 rows 1-223 的全序列（每行 tag/from/to/value）已完整可见；oracle 侧等价序列可用 3 个锚（FLKD p3 两行 pre=46e5/e54f@深度 264/32 + GEMR p3 十四行）+ 其余不可见约束做**深度索引重对齐**：对 gd 每行计算深度，按「同深度同链必同约定值」的原则逐窗比对 oracle 锚的归属——窗内冲突=换位对内容。工具已齐（本轮 python 片段即可复用）。
 - **860 差距 19 红中**：早簇 8 场（1441/1427/1499/1534/1536/1545/962/1540/1514）共用本根因域；修复落在 CoreItem._readyInit flicker/CR 序或 place_gem 时点，REG+860 刷账后连锁翻绿预期 ≥5 场。
 - 账面 841/860；本轮（12:40-13:2x）全部探针已还原零残留；9 笔提交；offpeak-1476e382(#150) 接力。
+
+## 6m28. ≤14:00 轮终：宝石抽深度分段差全谱（2026-11-03 xxi；收口）
+
+- **修正后双侧宝石 pre 深度表（pre=post+2）**：gd=[360,324,316,304,288,276,254,132,96,88,76,60,48,26]；ora=[360,320,318,300,284,272,250,128,88,80,68,52,40,18]。
+- **相邻间隔差谱（ora−gd）**：seg1(gem1→gem2) **+4**；seg2 **−6**；seg3 **+6**；seg4-7 **0**；seg8(gem8→gem9) **+4**；seg9-13 **0**；尾段(gem14→battle-start) **gd+8**（gd 26 步 v ora 18 步）。净零=battle-start 对齐 ✓。flicker PLR/OPP pre 深度：gd 268/40 v ora 264/32（+4/+8，与宝石谱一致）。
+- **结构解读**：装配期存在**三处局部消耗差**（两处 oracle 各多 2 笔 randf_range=4 步；一处 gd 多 3 笔=6 步+尾段 gd 多 4 笔=8 步）——它们互相补偿使 battle-start 对齐，但使 flicker 延时值与派发时刻错位→Ruby 链吃错 u→fd@18。**非单一换位对，而是「宝石抽/CR 抽在两物品创建段的次序+数量差」的组合**。
+- **下一棒（终判与修复，数据全在）**：①seg1/seg3/seg8 的 +4/+6/+4 各对应 oracle 物品创建期的 2/3/2 笔 randf_range 裸抽——用 [FLKD]/[GEMR] 之外再打 **[RDY] oracle Item._ready 逐段 pre 态**（oracle/Items/Item.gd _ready 510-570 段）与 gd _readyInit 对拍，即可逐笔归属到物品 ②修复=按 oracle 分组重排 gd 的 _readyInit/flicker/gemRoll 抽序与数量 ③REG（1441+947+基线 7）→860 刷账（早簇 8 场连锁翻绿预期）。
+- 账面 841/860；工作树零残留；本轮（≤14:00 轮）产出=宝石深度全谱+分段差定量+6 项交接；offpeak-1476e382(#150) 接力执行。
