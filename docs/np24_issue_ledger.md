@@ -656,3 +656,10 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **逆推结论**：8×2 组合×60 步回退**无公共锚点**——双侧 flicker 延时抽坐落相距 >60 步（30 抽）的装配链位；battle-start 对齐靠后续消耗差镜像补偿。**同 pass 归属未定**（oracle probePass 首轮 inject 晚于 FLKD 捕获 run——p0 行=inject 前的 bootstrap 装配；gd p1/p2=real/selfcheck）。
 - **下一棒（两条并行路径，选一即可终判）**：①**纯逻辑路径（推荐，零桩）**：oracle 侧 Oil Lamp 的 flicker 注册在 `FlickerAnimation._ready`（Item 场景子节点，add_child 时触发）；gd 在 `CoreItem._readyInit`（harness createItem 后直调）。**两处的执行时点差**=Oil Lamp 场景实例化到 CoreItem._readyInit 之间是否有额外抽（gd place/装配段的 place_gem/setData 族 vs oracle add_child 段的子节点 ready 族+createFromItemTuples 宝石步）——把两侧「Oil Lamp 创建→flicker 延时抽」之间的抽序列逐笔列出（gd 用 trace 行 60-95 段+ACC 行；oracle 用 [ACD] 行 226/249 段+新增 [RDY] 桩）对拍即终判。②**pass 归属修正路径**：oracle_fight 的 probePass inject 从 run_case 顶挪到**装配开始处**（或 bootstrap 段也计数），重跑 FLKD 拿同 pass 数据。
 - **时间盒记录**：本轮（≤14:00 轮）完成 FLKD 捕获+XOR 约定发现+逆推排除；账面 841/860；探针已还原（CoreItem/FlickerAnimation/Util/fight checkout+镜像+重转写零残留）；offpeak-1476e382(#150) 接力按本节执行。
+
+## 6m22. ≤14:00 限时轮：配对搜索与派发时刻数学（2026-11-03 xvi；本轮收口）
+
+- **u 邻域搜索**：gd 装配段（trace 行 1-230）全行 u 扫描——flicker1(0.5345±0.015)/flicker2(0.9724±0.015) 邻域 **0 命中**——gd 装配从不产生 oracle 延时抽的 u 值（两侧装配抽内容真实不同，非换位）。
+- **派发时刻数学修正**：[CDF] 打印的 U.time=进程钟（含装配段），battle 派发 t=U.time−S（S=战斗首 tick 进程钟，未知但 created=13.683≤S）。两笔派发差=16.600−15.333=**1.2667 整（=76 tick）**——双侧延时值对须满足 Δ=1.2667（若递减从 battle t=0 起）。oracle 8 pre 双约定解码值全集内 Δ=1.2667 无配对（最近 1.6162/2.8949 Δ=1.2833）⟹ 递减起点非 battle t=0（e[1] 在装配期已被 drive_delayed 消耗过——registry **跨 pass/跨阶段持久**！[CDF] created=13.683=本 case 装配注册，但 warmup(p1/p2) 的残留条目可能仍在表中参与递减）。
+- **★ 由此得出的下一棒主攻**：**oracle_fight 的 U.oracleDelayedTimers 跨 case 持久性审计**——run_case 之间/装配之间是否清表（grep `oracleDelayedTimers.clear\|oracleDelayedTimers = \[\]`——若只在 warmup 前清一次，则 real 遍的 registry 含 warmup 残留条目，其递减消耗污染链位）。gd 侧对应=ctx._timed 每 pass 新建（干净）——**oracle 多消耗的残留递减=正确侧、gd 缺失=错**！这与 §6m2「1540 oracle 多 14 裸步」「1441 gd 多 2 步」方向相反的两例可统一为「残留条目递减差」。
+- 账面 841/860；工作树零残留；offpeak-1476e382(#150) 按 §6m22 审计路径接力。
