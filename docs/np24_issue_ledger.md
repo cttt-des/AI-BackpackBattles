@@ -714,3 +714,10 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **结构解读**：装配期存在**三处局部消耗差**（两处 oracle 各多 2 笔 randf_range=4 步；一处 gd 多 3 笔=6 步+尾段 gd 多 4 笔=8 步）——它们互相补偿使 battle-start 对齐，但使 flicker 延时值与派发时刻错位→Ruby 链吃错 u→fd@18。**非单一换位对，而是「宝石抽/CR 抽在两物品创建段的次序+数量差」的组合**。
 - **下一棒（终判与修复，数据全在）**：①seg1/seg3/seg8 的 +4/+6/+4 各对应 oracle 物品创建期的 2/3/2 笔 randf_range 裸抽——用 [FLKD]/[GEMR] 之外再打 **[RDY] oracle Item._ready 逐段 pre 态**（oracle/Items/Item.gd _ready 510-570 段）与 gd _readyInit 对拍，即可逐笔归属到物品 ②修复=按 oracle 分组重排 gd 的 _readyInit/flicker/gemRoll 抽序与数量 ③REG（1441+947+基线 7）→860 刷账（早簇 8 场连锁翻绿预期）。
 - 账面 841/860；工作树零残留；本轮（≤14:00 轮）产出=宝石深度全谱+分段差定量+6 项交接；offpeak-1476e382(#150) 接力执行。
+
+## 6m29. ≤14:00 轮终：oracle 装配 GEM 锚定 10/14+4 不连通（2026-11-03 xxii；13:50 收口）
+
+- **决定性数据（[RDY]/[FLKD]/[GEMR]/[ACD] 全息桩，oracle p3=real pass）**：①battle-start 态双侧同=4462fc26be654368；②oracle 14 笔 GEMR pre 中 **10 笔锚定于战斗链深度 358/318/310/298/282/270/248/126/86/78/66/50/38/16 中的 10 个**、**4 笔不连通**（dist>6000=非主链实例：候选=BuildViewer/RecipeBook/池化模板的额外 Oil Lamp 系实例）；③oracle flicker 延时抽 pre 深度 264/32 v gd 268/40（早 4/8 步）；④gd 装配段 CR=201 笔 (0.2,-0.2)（rows 1-223）。
+- **gd 侧锚定**：flicker delay 双笔 pre 深度 268/40；GEM 14 笔 pre 深度 358/322/314/302/286/274/252/130/94/86/74/58/46/24——**gd gem1(358)=ora gem1(358) 首锚重合**；gd gem2-8 深度比 ora 对应 **+4**（gd 早 4 步=oracle 在 gem1→gem2 间多耗 2 笔 randf_range）；gem9-14 深度比 ora **+8**（再 +4）——两处 +4=oracle Oil Lamp 创建（PLR/OPP 各一）特有的 2 笔裸 randf_range。
+- **下一棒（终判路径已完备）**：①oracle `FlickerAnimation._ready`（延时抽）**前**的 4 步=2 笔裸 randf_range——grep OilLamp 场景链（FlickerAnimation 之外的 Icon/TorchLight/SquishySprite.init/Item._ready 前段）的 `Util.rng.randf_range` 裸调（注意 Util.rng.randf_range=**不经 rng_trace_range 不入账**，与 gd 的 ctx.rng.randf_range（入账）形成「同耗不同账」）——定位后对 gd 补同位裸抽或改 gd 入账口径对齐 ②REG→860 刷账。**换位对已被压缩到「Oil Lamp 创建窗内 2 笔裸抽」单点**。
+- 账面 841/860；工作树零残留；pass 基建持久。offpeak-1476e382(#150) 接力。
