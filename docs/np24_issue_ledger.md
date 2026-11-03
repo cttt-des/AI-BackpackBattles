@@ -642,3 +642,10 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **真正分歧面（数值实锤）**：gd flicker 延时值 u=0.601/0.222（trace row95=1.842785、row209=0.743884，可=nil→battle 1.85/0.75 派发）；oracle u=0.5345/0.9724（→battle 1.65/2.92 派发）。**同一物品、同物品内位、不同 u** ⟹ 前序链消耗分组不同：gd 的 Oil Lamp 延时抽之前（含上一物品尾段+Oil Lamp 前段）与 oracle 的对应段，**消耗总数相同（battle-start 链态对齐铁证）但中间某几笔的次序/归属不同**——即装配期存在「成对换位」的抽（A、B 两笔在 gd 是 [A,B]、oracle 是 [B,A]——总量同、逐值异）。候选换位对：①上一物品的 connector/gem 抽 vs flicker 延时抽 ②双 Oil Lamp（镜像阵容各一）的创建序 ③`Extra Bags`/`Piggybank` 类无抽物品的 _ready 分支差。
 - **下一棒（终判桩，2 步）**：①双侧 FlickerAnimation 延时抽 pre 态打印（oracle/Items/Animations/FlickerAnimation.gd:14 前加 `print("[FLKD] p%d st=%s" % [Util.probePass, str(Util.rng.get_state())])`；gd CoreItem.gd _readyInit flicker 段同款）——得到双侧延时抽的**前置态**②用 PCG 逆推（MINV 已有）从双侧前置态各回退 N 步到上一公共锚点，N 差值+中间抽的值序列=换位对的精确内容 → 按内容修 gd 装配序。
 - 账面 841/860。pass 基建已持久化（3f1fea9c：harness probe_pass_idx+ctx.probe_pass/Util.probePass+[CDF] 探针门控）；本轮探针零残留。
+
+## 6m20. FLKD 前置态捕获+取值约定新层（2026-11-03 xv；接力交接数据全量）
+
+- **★ FLKD 桩双侧捕获成功**：gd flicker 延时抽前置态 p1/p2 重复稳定=**-6989916417164439028 / 6732581090020881056**（两颗 Oil Lamp）；oracle 侧捕获 8 行（p0 起多 pass，含 -7096985976994206990 等）。oracle FLKD 首跑 0 行的坑=**上轮收尾 checkout 掉了 Util.probePass 而 FLKD 引用它→每次调用 Invalid 静默炸**（55 个 Invalid 错误）——探针引用的成员必须与基建同 commit。
+- **★ 取值约定新层（重要）**：PCG 步距 2 步内、延时值 1.842785 = **f(pre+1) XOR 0x80000000**（u=0.600960，val=0.1+2.9*0.600960=1.842784 精确）；而 anim 族（100,160）=f(pre+1) 无 XOR。**XOR 高位=有符号/无符号两种 randf 映射并存**——battle 窗内此前 90 笔对齐不受影响（gd trace/ora log 双侧同约定、同错同对），但**离线 u 反解必须双约定尝试**。oracle 延时值 1.65/2.92 的对应 pre 态已在捕获集中（待双约定解算定位）。
+- **下一棒（数据全备，纯离线即可终判）**： captured 数据文件=output/_offpeak/probe_spdt/{gd,ora}_1441_stdout.log（[FLKD] 行）。①oracle 8 个 pre 态逐个双约定解算 delay 值→与 [CDF] 派发时刻（1.65/2.92）对上者=真 pre ②从真 pre 用 MINV 逆推到与 gd pre1(-6989…) 的公共锚点→两 pre 间的步距差与中间值序列=换位对的精确内容→按内容修 gd 装配序（预期=某几笔装配抽在 gd/oracle 间次序互换，修=对齐次序）③修后 REG（1441+947+基线 7）→860 刷账。
+- 账面 841/860。探针全还原（CoreItem/FlickerAnimation/Util/fight checkout+镜像+重转写零残留）；pass 基建持久（3f1fea9c）。offpeak-1476e382(#150) 接力。
