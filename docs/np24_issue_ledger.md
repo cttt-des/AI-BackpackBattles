@@ -663,3 +663,10 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **派发时刻数学修正**：[CDF] 打印的 U.time=进程钟（含装配段），battle 派发 t=U.time−S（S=战斗首 tick 进程钟，未知但 created=13.683≤S）。两笔派发差=16.600−15.333=**1.2667 整（=76 tick）**——双侧延时值对须满足 Δ=1.2667（若递减从 battle t=0 起）。oracle 8 pre 双约定解码值全集内 Δ=1.2667 无配对（最近 1.6162/2.8949 Δ=1.2833）⟹ 递减起点非 battle t=0（e[1] 在装配期已被 drive_delayed 消耗过——registry **跨 pass/跨阶段持久**！[CDF] created=13.683=本 case 装配注册，但 warmup(p1/p2) 的残留条目可能仍在表中参与递减）。
 - **★ 由此得出的下一棒主攻**：**oracle_fight 的 U.oracleDelayedTimers 跨 case 持久性审计**——run_case 之间/装配之间是否清表（grep `oracleDelayedTimers.clear\|oracleDelayedTimers = \[\]`——若只在 warmup 前清一次，则 real 遍的 registry 含 warmup 残留条目，其递减消耗污染链位）。gd 侧对应=ctx._timed 每 pass 新建（干净）——**oracle 多消耗的残留递减=正确侧、gd 缺失=错**！这与 §6m2「1540 oracle 多 14 裸步」「1441 gd 多 2 步」方向相反的两例可统一为「残留条目递减差」。
 - 账面 841/860；工作树零残留；offpeak-1476e382(#150) 按 §6m22 审计路径接力。
+
+## 6m23. ★★ 换位对显形：gd flicker 早 1 笔 chanceRng（2026-11-03 xvii；≤14:00 轮真正收口）
+
+- **★ 深度窗终判（battle-start 态双侧同=4462fc26be654368）**：gd flicker 延时抽 pre 深度 **268**（post 266）；oracle flicker 延时抽 pre 深度 **264**（post 262）——**gd 的 flicker 比 oracle 早 1 笔 (0.2,-0.2) chanceRng 抽**。链段逐笔：gd=[CR@270→268][flicker@268→266][CR@266→264][CR@264→262]；oracle=[CR@270→268][CR@268→266][flicker@266→264][CR@264→262]——**同一 CR 抽（gd 行96/oracle 同位）与 flicker 次序互换**！
+- **含义**：Oil Lamp 的 flicker 注册（FlickerAnimation._ready=oracle add_child 时）发生**晚于** gd 的 _readyInit 注册点整整 1 笔 chanceRng 抽——即 oracle 的 add_child 时点比 gd 的 _readyInit 调用时点**晚一个物品构造**（或 Oil Lamp 自身多 1 个 BalancedRng 构造在 gd 缺失/次序异）。battle-start 对齐=后续镜像补偿（60 步内无公共锚点与此一致）。
+- **修复方案（下一棒，具体）**：①定位 gd 该链段的 (0.2,-0.2)=谁的 chanceRng（trace 行 94/96/97 的物品归属——上 Oil Lamp 前后物品的构造次序，harness createItem 循环+place_gem 已知）②oracle 侧 add_child 时点=createFromItemTuples 的 add 步（np17-A 注释），gd 对应=inventory.addItem 或 _readyInit 调用点——把 gd flicker 延时抽+callDelayed 注册从 _readyInit 挪到 oracle 时点等价处（如 addItem 尾/独立 ready 钩子），或反向验证 Oil Lamp 是否有 2 个 BalancedRng 成员（gd 缺 1）③修后 1441 应 fd 后移或消失→REG→860 刷账（早簇 8 场同域连锁）。
+- **本限时轮总账**：账面 841/860；7 笔提交（autoRage 修复 dc77fc16+flipWeighted c1a72146+§6m5-§6m23 台账链）；1441 fd@18 根因从「未知」推进到「flicker 注册时点差 1 笔 chanceRng」单步可修；fd@46=ChessBoard 回合 4/5 定位；全部探针还原零残留。
