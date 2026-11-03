@@ -677,3 +677,14 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **1441 深度差量测（battle-start=4462fc26be654368 双侧同）**：gd flicker 延时抽 pre 深度 **268/40** v oracle **264/32**——差 4/8 步。来源域=item._readyInit 双 chanceRng（+2 步/物）与宝石抽位置的累积错位（1441 两颗宝石=2×2 步=4 步 + 双 CR 分布局部差 4 步——量级吻合）。
 - **下一棒（具体到判据）**：①**[RDY-I] 桩**：gd CoreItem._readyInit 入口/出口+flicker 段+gemRoll 段四点 state 打印（带 pass+物品名）；oracle 同款（FlickerAnimation.gd:14 前后+Item 场景 add_child 时点）——**单 run 内**列出每物品创建的抽数与序，diff 即得换位对精确内容（预期：gd=2CR+flicker+…+gem(0,10)@place_gem v oracle=CR+flicker@…+gem(0,10)@宝石add——次序差异逐笔显形）②修=按 oracle 序重排 gd 抽位（注意 gemRoll 双重构造是否 oracle 侧等价存在——若 oracle 物品真只 1 次 CR 而 gd 2 次，去掉 gd 的第二次构造为第一优先试验，REG 定谳）③860 刷账。
 - 账面 841/860；工作树零残留；offpeak-1476e382(#150) 接力。
+
+## 6m25. 深度窗结构显形（2026-11-03 xix；≤14:00 轮终）
+
+- **gd 装配段深度窗解码**（battle-start=4462fc26be654368，深度=距 battle-start 的步数）：
+  - WIN1（PLR Oil Lamp 区）：[CR@274][GEM(0,10)@272][CR@270][CR@268][FLICKER@266][CR@264][CR@262][CR@260][CR@258]…
+  - WIN2（OPP Oil Lamp 区）：[CR@48][CR@46][GEM(0,10)@44][CR@42][CR@40][FLICKER@38][CR@36][CR@34][CR@32][CR@30][CR@28]…
+  - （GEM(0,10)=宝石 _ready 抽，两窗各 1 颗=RUBY Whelp 的 Regular Topaz 与 Cursed Dagger 的 Chipped Amethyst——两颗宝石位置分属两窗）
+- **oracle 对应（FLKD p3+CDF 实证）**：flicker 延时抽 pre 深度 264/32（=gd 的 268/40 各晚 4 步/8 步——即 gd 的 flicker 比 oracle 早「2 抽」）；派发 battle 1.65/2.92 v gd 0.75/1.85。
+- **结构性结论**：两侧每物品创建抽的**分组不同**——gd 的 [GEM][CR][CR][FLICKER] 局部序 vs oracle 的（不可见）序在「宝石抽与 chanceRng/flicker 的相对位置」上错位，且错位在两窗反号（WIN1 gd 深.Consumer、WIN2 gd 浅）→ 总量守恒、battle-start 对齐、延时值不同、派发位错位 → fd@18。
+- **下一棒（终判+修复一体）**：①oracle 侧装配可见化：`FlickerAnimation.gd:14` 延时抽已有 [FLKD]；**补 [GEMR] 桩至 `oracle/Items/Gems/Gem.gd:24`**（宝石抽 pre 态）+ Item 场景 add_child 时点桩——oracle p3 的 [FLKD]/[GEMR] 深度序列即可与 gd 逐笔对拍 ②按对拍结果重排 gd 的 _readyInit/place_gem 抽序 ③REG（1441+947+基线 7）→860 刷账（早簇 8 场同域连锁翻绿预期）。
+- 账面 841/860；工作树零残留；pass 基建持久（3f1fea9c）。
