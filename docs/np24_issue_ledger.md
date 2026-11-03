@@ -733,3 +733,12 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **受益场预判**：19 红中 7 场阵容含修复物品（939/1427/1441/1499/1534/1536/1540）——860 刷账验证。残余 12 红另聚簇（702@1118/921@452/947@46/962@83/977@497/986@206/1022@2456/1118@422/1120@868/1444@342/1514@36/1545@63）。
 - **947@46 预研**：t=1.483 首个 doCooldownEffect 棋子捕获选择分叉（ora 吃 Black Pawn/gd 吃 Black Rook）；t=0 全局链消费者=双侧 Rainbow Potion allPotions.shuffle（事件 0-45 全同⇒链态同步）；分歧源=activePieces/captureCells 输入序或更早隐性消耗——三桩（§6m7）=双侧 (site,size,数组内容指纹) 序列对拍待跑。
 - 下一棒：①860 刷账落账（预期 848/860）②947 三桩实测 ③中晚簇重聚类。
+
+## 6m31. ★ 1514 定谳：攻击尾 createAnimation+randomizePosition 3 笔隐形抽（2026-11-03 xxiv）
+
+- **判定法（值序对齐+PCG 步数解算+事件行三件套，零新桩达成）**：重跑 oracle 1514（ORACLE_RNG_TRACE）+ gd 腿（ORACLE_ALIGN_TRACE，注意 ORACLE_ALIGN_OUT 必须绝对路径——相对路径在此桌面环境恒 io-fail），双侧 trace 逐行游走：前 1899 行逐位一致，首分歧=净行 183（(0.95,1.05) PLR adjustCooldown，ora u=0.358470 v gd 旧 u=0.897829=out(S+1)）。
+- **步数解算**：st218(post)==双侧同态 S；st218→st219 gap=8 步；row219 自身 2 步 ⇒ **oracle 侧恰 3 笔隐形抽（6 步）**；PAA/IRND 探针（IV 轮）实锤 IRND 态==S=randomizePosition 首笔 pre ⇒ 3 笔=RubyChonk.doCooldownEffect 尾的 `createAnimation()+randomizePosition()`（Item.gd:5336 + Animations/ItemAnimation.gd:26-28，Util.rng 裸调不入账）。第 4 笔（playback_speed）属 intialize、仅 activate 的 playCombatAni 闸路径（Hammer 走此，行内 ANIM 标记实证），RC activate(res,false) pc=false 不含——首轮补 4 笔 overshoot 2 步（gd 新 u=0.0645 无 advance 锚）即为反证。
+- **修复**：gd_core/RubyChonk.gd + FalconBlade.gd（grep createAnimation 全源仅此两物品+Item 基类）doCooldownEffect 尾补 3 笔裸抽（(-30,30)/(-100,100)/(-5,5)=ItemAnimation export 默认，randomizePosition 无场景覆写）；四树同步（gd_core/、gd_core_test/gd_core/、gd_core_test/gd_core_items/、**gd_core_items/**（py 腿源——gd_to_py 输入 SRC_DIRS=根 gd_core_items，非 gd_core_test 镜像））→ gd_to_py 重生成 661 模块。
+- **REG（np29i_gate3）**：基线 7+1514+1441+947——**1514 双腿 PASS**（1899 行全对齐）、基线 7+1441 零退、947 双腿红（ChessBoard 井未动）。
+- **860 刷账中**（预期 849/860）。
+- 下一棒：①947@46 ChessBoard（t=1.483 棋子捕获选择分叉，需三桩对拍全局链/输入序）②712 簇重定性（702@1118/921@452/962@83/977@497/986@206/1022@2456/1118@422/1120@868/1444@342/1545@63）。

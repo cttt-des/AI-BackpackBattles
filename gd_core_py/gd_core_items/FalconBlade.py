@@ -36,19 +36,12 @@ class FalconBlade_2(_R.C("res://gd_core_items/Weapon.gd")):
 			if res2.hasHit():
 				hits += 1
 
-			if hits == 2:
-				pass
-			elif hits == 1:
-				pass
-			else:
-				pass
-
-			# ★ RNG 链消耗还原（r2_1）：decomp Items/FalconBlade.gd:24-25 createAnimation()+ani.randomizePosition() ——
-			#   ItemAnimation.gd:26-28 恒抽 3 次（(30,100)/5.0 export 默认；直调不经 intialize 无 playback_speed）。
-			#   run631_r9/701_r11/722_r7 逐抽对位实证 + 台账第 24 轮 run634 同根。
-			self.ctx.rng.randf_range( - 30.0, 30.0)
-			self.ctx.rng.randf_range( - 100.0, 100.0)
-			self.ctx.rng.randf_range( - 5.0, 5.0)
+			# ★ np29fI（同 RubyChonk 定谳）：原版攻击尾 createAnimation+randomize
+			#   Position（Item.gd:5336/Animations/ItemAnimation.gd:26-28）= 3 笔
+			#   Util.rng 裸抽不入账；内核此前整块剥离 → 每双击缺 6 步。
+			self.ctx.rng.rng.randf_range(-30.0, 30.0)
+			self.ctx.rng.rng.randf_range(-100.0, 100.0)
+			self.ctx.rng.rng.randf_range(-5.0, 5.0)
 
 
 	def getCraftingOffset(self, forDirection):
