@@ -36,12 +36,12 @@ class FalconBlade(_R.C("res://gd_core_items/Weapon.gd")):
 			if res2.hasHit():
 				hits += 1
 
-			if hits == 2:
-				pass
-			elif hits == 1:
-				pass
-			else:
-				pass
+			# ★ np29fI（同 RubyChonk 定谳）：原版攻击尾 createAnimation+randomize
+			#   Position（Item.gd:5336/Animations/ItemAnimation.gd:26-28）= 3 笔
+			#   Util.rng 裸抽不入账；内核此前整块剥离 → 每双击缺 6 步。
+			self.ctx.rng.rng.randf_range(-30.0, 30.0)
+			self.ctx.rng.rng.randf_range(-100.0, 100.0)
+			self.ctx.rng.rng.randf_range(-5.0, 5.0)
 
 
 	def getCraftingOffset(self, forDirection):
