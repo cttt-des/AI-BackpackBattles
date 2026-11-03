@@ -649,3 +649,10 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **★ 取值约定新层（重要）**：PCG 步距 2 步内、延时值 1.842785 = **f(pre+1) XOR 0x80000000**（u=0.600960，val=0.1+2.9*0.600960=1.842784 精确）；而 anim 族（100,160）=f(pre+1) 无 XOR。**XOR 高位=有符号/无符号两种 randf 映射并存**——battle 窗内此前 90 笔对齐不受影响（gd trace/ora log 双侧同约定、同错同对），但**离线 u 反解必须双约定尝试**。oracle 延时值 1.65/2.92 的对应 pre 态已在捕获集中（待双约定解算定位）。
 - **下一棒（数据全备，纯离线即可终判）**： captured 数据文件=output/_offpeak/probe_spdt/{gd,ora}_1441_stdout.log（[FLKD] 行）。①oracle 8 个 pre 态逐个双约定解算 delay 值→与 [CDF] 派发时刻（1.65/2.92）对上者=真 pre ②从真 pre 用 MINV 逆推到与 gd pre1(-6989…) 的公共锚点→两 pre 间的步距差与中间值序列=换位对的精确内容→按内容修 gd 装配序（预期=某几笔装配抽在 gd/oracle 间次序互换，修=对齐次序）③修后 REG（1441+947+基线 7）→860 刷账。
 - 账面 841/860。探针全还原（CoreItem/FlickerAnimation/Util/fight checkout+镜像+重转写零残留）；pass 基建持久（3f1fea9c）。offpeak-1476e382(#150) 接力。
+
+## 6m21. FLKD 数据全量捕获+逆推结论（2026-11-03 xv；≤14:00 限时轮收口）
+
+- **FLKD 数据已捕获**（output/_offpeak/probe_spdt/{gd,ora}_1441_stdout.log）：gd p1/p2 各 2 行（pre=-6989916417164439028/6732581090020881056，两颗 Oil Lamp，delay=1.842785/0.743884，battle 派发 1.85/0.75）；oracle 8 行（p0 起，pre 含 -7096985976994206990/5204326091192679036/-531223166783753296/…；[CDF] p3 实证 battle 派发 1.65/2.92）。
+- **逆推结论**：8×2 组合×60 步回退**无公共锚点**——双侧 flicker 延时抽坐落相距 >60 步（30 抽）的装配链位；battle-start 对齐靠后续消耗差镜像补偿。**同 pass 归属未定**（oracle probePass 首轮 inject 晚于 FLKD 捕获 run——p0 行=inject 前的 bootstrap 装配；gd p1/p2=real/selfcheck）。
+- **下一棒（两条并行路径，选一即可终判）**：①**纯逻辑路径（推荐，零桩）**：oracle 侧 Oil Lamp 的 flicker 注册在 `FlickerAnimation._ready`（Item 场景子节点，add_child 时触发）；gd 在 `CoreItem._readyInit`（harness createItem 后直调）。**两处的执行时点差**=Oil Lamp 场景实例化到 CoreItem._readyInit 之间是否有额外抽（gd place/装配段的 place_gem/setData 族 vs oracle add_child 段的子节点 ready 族+createFromItemTuples 宝石步）——把两侧「Oil Lamp 创建→flicker 延时抽」之间的抽序列逐笔列出（gd 用 trace 行 60-95 段+ACC 行；oracle 用 [ACD] 行 226/249 段+新增 [RDY] 桩）对拍即终判。②**pass 归属修正路径**：oracle_fight 的 probePass inject 从 run_case 顶挪到**装配开始处**（或 bootstrap 段也计数），重跑 FLKD 拿同 pass 数据。
+- **时间盒记录**：本轮（≤14:00 轮）完成 FLKD 捕获+XOR 约定发现+逆推排除；账面 841/860；探针已还原（CoreItem/FlickerAnimation/Util/fight checkout+镜像+重转写零残留）；offpeak-1476e382(#150) 接力按本节执行。
