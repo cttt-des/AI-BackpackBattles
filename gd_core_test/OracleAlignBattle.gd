@@ -603,7 +603,10 @@ func read_rng_state(case_id: String) -> String:
 	return ""
 
 
+var probe_pass_idx := 0
+
 func run_case(c: Dictionary, out_root: String, perm_warm := false, r5_warm := false) -> Dictionary:
+	probe_pass_idx += 1
 	var case_id: String = c["case_id"]
 	var seed_value: int = int(c["seed"])
 	var dir = out_root.plus_file(case_id)
@@ -618,6 +621,8 @@ func run_case(c: Dictionary, out_root: String, perm_warm := false, r5_warm := fa
 
 	var probe = CaptureProbe.new()
 	var ctx = CoreContext.new(seed_value, probe)
+	# ★ np29fH：pass 序号（warmup/latch/selfcheck 区分，探针行内嵌防跨 pass 折叠）
+	ctx.probe_pass = probe_pass_idx
 	# ★ 标签视觉抽开关（round19）：每录制场的标签视觉设置不同
 	#  （oracle rng_log randInBox 行数：run570=696 vs run569=0），夹具生成期
 	#   按 fights/<case>/rng_log.txt 的 randInBox 行数写入 label_rng（缺省 true）。
