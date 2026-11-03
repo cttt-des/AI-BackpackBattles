@@ -46,6 +46,9 @@ var opponent                   # CoreCharacter
 
 var fight_ended := false
 var time := 0.0                # 对齐 Util.time（物理帧累加）
+# ★ np29fH：探针 pass 序号（harness run_case 注入；warmup/latch/selfcheck 区分，
+#   防「同 state 两 pass 折叠」的时序不可分——§6m16 方案的持久基建）
+var probe_pass := 0
 var frame_counter := 0         # 对齐 Util.frameCounter
 var combat_time := 0.0         # 对齐 CombatTimer.combatTime（供事件时间戳）
 

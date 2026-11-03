@@ -23,6 +23,7 @@ class CoreContext(GodotObject):
 		self.opponent = None
 		self.fight_ended = False
 		self.time = 0.0                # 对齐 Util.time（物理帧累加）
+		self.probe_pass = 0
 		self.frame_counter = 0         # 对齐 Util.frameCounter
 		self.combat_time = 0.0         # 对齐 CombatTimer.combatTime（供事件时间戳）
 		self.below_master = False      # 对齐 Game.isBelowLeague(Game.Leagues.Master)
@@ -85,6 +86,8 @@ class CoreContext(GodotObject):
 	FATIGUE_TIME = 17
 
 
+	# ★ np29fH：探针 pass 序号（harness run_case 注入；warmup/latch/selfcheck 区分，
+	#   防「同 state 两 pass 折叠」的时序不可分——§6m16 方案的持久基建）
 
 
 	# ── 单例门面（原版 autoload → 显式对象，随 ctx 走） ──
