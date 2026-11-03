@@ -721,3 +721,15 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **gd 侧锚定**：flicker delay 双笔 pre 深度 268/40；GEM 14 笔 pre 深度 358/322/314/302/286/274/252/130/94/86/74/58/46/24——**gd gem1(358)=ora gem1(358) 首锚重合**；gd gem2-8 深度比 ora 对应 **+4**（gd 早 4 步=oracle 在 gem1→gem2 间多耗 2 笔 randf_range）；gem9-14 深度比 ora **+8**（再 +4）——两处 +4=oracle Oil Lamp 创建（PLR/OPP 各一）特有的 2 笔裸 randf_range。
 - **下一棒（终判路径已完备）**：①oracle `FlickerAnimation._ready`（延时抽）**前**的 4 步=2 笔裸 randf_range——grep OilLamp 场景链（FlickerAnimation 之外的 Icon/TorchLight/SquishySprite.init/Item._ready 前段）的 `Util.rng.randf_range` 裸调（注意 Util.rng.randf_range=**不经 rng_trace_range 不入账**，与 gd 的 ctx.rng.randf_range（入账）形成「同耗不同账」）——定位后对 gd 补同位裸抽或改 gd 入账口径对齐 ②REG→860 刷账。**换位对已被压缩到「Oil Lamp 创建窗内 2 笔裸抽」单点**。
 - 账面 841/860；工作树零残留；pass 基建持久。offpeak-1476e382(#150) 接力。
+
+## 6m30. ★★ 装配链位定谳：WEB Dragon/The Lovers 实例化 CardConnector 漏扫（2026-11-03 xxiii；修复落库）
+
+- **方法论突破（零新桩解旧案）**：上轮 probe_spdt 双侧遗留产物（gd rng_trace 1891 行含 state 列 + ora stdout 88 行 GEMR 探针）+ PCG 前向解算（INC=2885390081777926815，gd 相邻行 +2 步 59/59 确证）直接联接，**推翻 §6m28/6m29 的 oracle 深度表**——其 seg2/seg3 差（−6/+6）是 4 笔非主链 GEMR 锚定污染的假象。
+- **真实结构（PCG 逐步解算 ora GEMR p3 相邻态）**：oracle 宝石间隙=[40,8,12,16,12,22,122,40,8,12,16,12,22]+尾 16；gd=[36,8,12,16,12,22,122,36,8,12,16,12,22]+尾 24。**唯二分歧=seg1/seg8（各 ora+4=2 抽）**；其余逐位相同；flicker 本地位次无损（268/264 差=纯传导）。
+- **全量状态联接（oracle 重打 4 处门控探针 [RDY]/[GEMR]/[FLKD]/[CONR] + Util.probePass/run_case 递增，跑后即还原）**：oracle p3 全部 118 行探针态与 gd trace 逐行精确对位，偏移时间线=0 → WEB#1 connector 后 +2 → WEB#2 connector 后 +4 →（DoC/Hammer/宝石/油灯 flicker/BloodyDagger 全 +4）→ Customer Card 归零。**+4 宿主=每侧两只 White-Eyes Blue Dragon 的 CardConnector._ready 抽（0.9,1.1）×2 步**。
+- **根因**：`White-EyesBlueDragon.tscn:286`/`TheLovers.tscn:312` 的连接器=**整场景实例**（`instance=ExtResource(CardConnector.tscn)`，script 藏在子场景内），旗标扫描只认内联 `script=ExtResource(...CardConnector.gd)` → `assets/battle_items.json` 两件 `connector_ready_roll=false`。Card 家族 8 件中恰此 2 件 false=漏扫铁证。
+- **修复（三数据面）**：`assets/battle_items.json`（snake_case 源头）+`gd_core_test/item_battle_fixture.json`（descr.connectorReadyRoll，gd 腿）+`assets/gd_core_runtime.json`（py 腿 runtime_data()，gen_gd_core_data.py 生成物）两件 → true（25→27）。另 `simulator/gd_core_engine.py:1013` 描述符构建补双键读取（camelCase 优先、snake_case 回退，镜像 CoreItemData.py:436 既有式样）。
+- **REG gate（np29h_gate2）**：基线 7 + run1441_r11 + run947_r10——gd 腿 1441 **PASS**（旗舰红场翻绿）、基线 7 零退；py 腿 1441 **PASS**（runtime 数据补丁生效）；947 双腿 RED ev@46=ChessBoard 井（无 WEB/Lovers，另根，不受此修影响）。
+- **受益场预判**：19 红中 7 场阵容含修复物品（939/1427/1441/1499/1534/1536/1540）——860 刷账验证。残余 12 红另聚簇（702@1118/921@452/947@46/962@83/977@497/986@206/1022@2456/1118@422/1120@868/1444@342/1514@36/1545@63）。
+- **947@46 预研**：t=1.483 首个 doCooldownEffect 棋子捕获选择分叉（ora 吃 Black Pawn/gd 吃 Black Rook）；t=0 全局链消费者=双侧 Rainbow Potion allPotions.shuffle（事件 0-45 全同⇒链态同步）；分歧源=activePieces/captureCells 输入序或更早隐性消耗——三桩（§6m7）=双侧 (site,size,数组内容指纹) 序列对拍待跑。
+- 下一棒：①860 刷账落账（预期 848/860）②947 三桩实测 ③中晚簇重聚类。
