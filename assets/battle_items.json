@@ -29363,7 +29363,7 @@
    "extra_cds": [],
    "classes": 2,
    "flicker_animation": false,
-   "connector_ready_roll": false,
+   "connector_ready_roll": true,
    "gem_roll": false,
    "has_animation_scene": false,
    "gained_stacks": 4
@@ -29696,7 +29696,7 @@
    "extra_cds": [],
    "classes": 2,
    "flicker_animation": false,
-   "connector_ready_roll": false,
+   "connector_ready_roll": true,
    "gem_roll": false,
    "has_animation_scene": false,
    "gained_stacks": 1024

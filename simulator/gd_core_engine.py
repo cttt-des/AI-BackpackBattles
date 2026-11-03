@@ -1010,7 +1010,11 @@ class GDCoreEngine:
                 "flickerMinSpeed": float(d.get("flickerMinSpeed", 0.3)),
                 "flickerMaxSpeed": float(d.get("flickerMaxSpeed", 1.0)),
                 # 连接器/宝石 _ready 抽（同阶段2 装配期对齐，消费点 CoreItem._readyInit）
-                "connectorReadyRoll": bool(d.get("connectorReadyRoll", False)),
+                # ★ np29fH：双键读取——battle_items.json 用 snake_case（WEB Dragon/
+                #  The Lovers 实例化 CardConnector 漏扫补真后由此生效），
+                #  item_battle_fixture.json 用 camelCase
+                "connectorReadyRoll": bool(d.get("connectorReadyRoll",
+                        d.get("connector_ready_roll", False))),
                 "gemRoll": bool(d.get("gemRoll", False)),
                 # 随机 unique 池（tools/enrich_unique_pool.py）：isTreasure() 的唯一
                 # 依据（Item.gd:5723-5724 ← ItemBook.gd:899-901）——Fedora 计 treasure
