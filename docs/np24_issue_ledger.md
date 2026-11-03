@@ -688,3 +688,14 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **结构性结论**：两侧每物品创建抽的**分组不同**——gd 的 [GEM][CR][CR][FLICKER] 局部序 vs oracle 的（不可见）序在「宝石抽与 chanceRng/flicker 的相对位置」上错位，且错位在两窗反号（WIN1 gd 深.Consumer、WIN2 gd 浅）→ 总量守恒、battle-start 对齐、延时值不同、派发位错位 → fd@18。
 - **下一棒（终判+修复一体）**：①oracle 侧装配可见化：`FlickerAnimation.gd:14` 延时抽已有 [FLKD]；**补 [GEMR] 桩至 `oracle/Items/Gems/Gem.gd:24`**（宝石抽 pre 态）+ Item 场景 add_child 时点桩——oracle p3 的 [FLKD]/[GEMR] 深度序列即可与 gd 逐笔对拍 ②按对拍结果重排 gd 的 _readyInit/place_gem 抽序 ③REG（1441+947+基线 7）→860 刷账（早簇 8 场同域连锁翻绿预期）。
 - 账面 841/860；工作树零残留；pass 基建持久（3f1fea9c）。
+
+## 6m26. ★ 1441 装配段全量地图+两窗 +4 差定位（2026-11-03 xx；13:50 轮收口）
+
+- **★ 装配段分段地图（battle-start=4462fc26be654368 双侧同；深度=battle 前步数；GEM=宝石 (0,10) 抽）**：
+  - gd GEM pre 深度表：358/322/314/302/286/274/252/130/94/86/74/58/46/24（14 颗宝石，PLR+OPP 两侧）
+  - ora GEMR pre 深度表：358/318/310/298/282/270/248/126/86/78/66/50/38/16
+  - **分段差**：seg1(gem1→gem2) gd36 v ora40（**ora+4**）；seg2-7 相同（8/12/16/12/22）；seg8(gem7→gem8) gd122 v ora40（**gd+82**）；seg9(gem8→gem9) gd36 v ora40（**ora+4**）；seg10-13 相同；seg14(gem14→battle) gd24 v ora16（**gd+8**）——净零=battle-start 对齐 ✓。
+  - **flicker 派发锚点**：gd flicker pre 深度 268（PLR）/40（OPP）——恰在 gd+4 的 seg1 尾与 gd+8 的 seg9 头；oracle flicker 264/32 恒比 gd 浅 4/8=**oracle 侧各多 2 笔 randf_range（4 步）在 gem1→PLR-flicker 窗与 gem8→OPP-flicker 窗内**，gd 则在 flicker→battle 尾段多 4 笔（8 步）补偿。
+- **★ 两窗 +4 的候选源（强）**：两窗各紧邻一颗 Oil Lamp 的创建窗（PLR Oil Lamp 在 seg1-2 间、OPP Oil Lamp 在 seg8-9 间）——**oracle Oil Lamp 创建比 gd 多 2 笔 randf_range（4 步）**，gd 则多 2 笔 chanceRng（gd 双重构造 212/214）+尾段 4 笔——即 **Oil Lamp 创建的抽构成两侧结构性不同**：oracle=[CR][X1][X2][flicker-delay] gd=[CR][CR2][flicker-delay][…尾段补]。X1/X2=oracle Oil Lamp 实例化特有的 2 笔裸抽（候选：ItemBook.instantiateItem 内的随机 rot/品质抽、MagicRing 式 _ready 随机、或 Bag 链 Bag.gd 的某裸调）。
+- **下一棒（终判路径，数据链完备）**：①读 `oracle/Items/Exclusive/OilLamp.gd` 全文+`ItemBook.instantiateItem` 全文——找其中 2 笔 `Util.rng.randf_range/randi` 裸调（grep `Util.rng\.` 计数）②gd 对应脚本/装配路径核对——缺则补（按 oracle 值域）③REG（1441+947+基线 7）→860 刷账（早簇 8 场同域连锁翻绿预期）。
+- 账面 841/860；本轮探针（GEMR/FLKD/PCS/ACD/S*)已全部还原零残留；offpeak-1476e382(#150) 接力。
