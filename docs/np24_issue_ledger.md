@@ -790,3 +790,10 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **差额定位收窄**：gd 锚后理论消耗=autoRage 2 pick（ARDbg 实证执行）+窗 0(2+27+27/28)+窗 1(2+27+20，M 循环 early return)=**实测 115 v 理论 ~114——多的 1 步在 gd harness 锚后独有路径**（窗谱精确重算待做）；**矛盾线索**：ARDbg 证 pickRandomEngine 执行但 trace **无 Gpick 行**（globalChainOpen 时序 or 日志条件）——查此矛盾即定位点。
 - **下一棒（图纸）**：①查 Gpick 缺日志矛盾（CoreRng.pickRandomEngine 写日志条件 globalChainOpen/и oracle_trace 在 prepare 时刻的值）②gd G 行全谱（窗 0/1 的 :80/:100/:164 行数+尺寸）精确重算总步→与 115 对账找多 1 步的宿主 ③修复（gd 删该步或 oracle 补）→REG（947+基线 7）→860。
 - 探针零残留（oracle 5 文件+gd 3 文件 checkout+镜像 md5 同步）；851/860 compare-only 复核；offpeak #156 与本节图纸同步接力。
+
+## 6m38. 数学终审修订：oracle prepare 期 ≥8 步全局链 vs gd 1 步（2026-11-04 晚轮三；收口）
+
+- **精确解（PCG 逆推，替换 §6m37 假设 A 表述）**：post-startBattle/post-prepare 采样输出=锚后第 2+N 抽（N=prepare 段全局消耗）。**gd 侧 N=1 精确命中 766411998**（f(K0+1+1)）——gd prepare 全局消耗仅 1 步（ARDbg 4 行打印与 1 步的矛盾=pass 归属待查：4 行可能是 warm+selfcheck，real pass 或只 1 pick）。**oracle 侧 2797622764 在 N∈0..7 全不中**——oracle prepareItems 期全局消耗 **≥8 步**（PLAYER/OPPONENT.prepare 各 1 pick 仅 2——**≥8 的来源未名**，候选=oracle item.prepare 链的隐藏全局调用/PLAYER.prepare 更深路径/锚位 2 步平移（opp instanceCharacter tween 在 seed 后——需核对 oracle_fight 装配流））。
+- **自洽图景（待证）**：oracle prepare 多耗 X≥7 步 + 窗 0-2 间 oracle 少耗 X-1 步（M 循环 early return 位置差）→净差 1（窗 2 j 相邻奇偶）。M 循环 early return 的位置差=「第几个 piece 找到空位」——上游=棋盘占用状态差（可能同源于 prepare 期）。
+- **下一棒（终审图纸）**：①解 oracle post-prepare=2797622764 的精确 N（扩程 8..40 步模拟）②按 N 反推 oracle prepare 的全局链调用组合（源码穷举 Character.prepare×2+item.prepare×79 的可达调用）③修 gd（若 oracle 的 ≥8 步为真，gd 需补同位消耗——大概率是某物品 prepare 的全局链缺口）④REG→860。
+- **收口状态**：851/860（compare-only 复核）；探针零残留+镜像同步；本轮 §6m36-38 三节+全部提交已 push（→3b1bdbdb）；offpeak #156 按图纸接力。
