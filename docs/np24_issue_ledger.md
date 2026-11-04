@@ -845,3 +845,11 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **剩余待证（下轮 1-2 针）**：advanceCooldownPercent 的信号投递序——两侧 EventBus 的 "activated" 对双 DK listener 的派发序（连接序=装配序 player 先？还是 bus 字典序？）+ 同帧多次 advance 的累加次序。修复=对齐派发序（大概率 gd bus 的 connectEvent 派发序与 oracle EventBus 相反或同帧 advance 应用点不同）。
 - **连锁预期**：DK 在 702/1118/921/977/986/1022/1120/1444 阵容中普遍存在（charge 族）——本修可能连锁多场。
 - 探针状态：np29fT 全套未还原（清单见 §6m43）；账面 852/860；全部提交已 push（→e8aaeda9）。
+
+## 6m45. 702 收敛终态：同位 strike 的 acc 值差=非盲分量（2026-11-04 晚轮十）
+
+- **[DKA] 轨迹定谳（双侧批结构逐批全同）**：advance 批 [3,3,3,3,3,4,4,2] 双侧一致、批内 tt0 序列（1.804/1.817/1.679/1.775/1.834/1.729/1.703/1.751）**逐位一致**——advance 馈送/CD 演化无分歧；前轮「4 v 3 批差」「触发次序翻转」均为跨钟对齐假象（oracle Util.time 进程钟累计 v gd ctx.time 战斗钟——[DKA]/[ACC] 的 t 字段跨侧不可比，只可比状态元组）。
+- **终态事实**：u 级首分歧 flip=DK acc roll（chance 0.05→balancer 0.015152）——gd 在该 strike **消耗**（acc=5>0）、oracle **短路**（acc≤0）。同一 strike 的 acc 值差 5 v ≤0，而 blind/lucky 事件流 11.48 前全同 → **acc 的非盲分量差**（bonusAccuracy 或 getBuffAccuracyMod 的实现差）。注：gd [ACC] acc=5 lucky=0 blind=19/21→90+(0−20)×5+bonus=5 ⇒ bonus=+15?；oracle acc=−5 blind=20 ⇒ bonus=+5——**bonusAccuracy 差 10**=下一靶（两侧 addAccuracy 调用面：Amulet of Darkness/Evil Cap/Shiny Shell 的 acc buff 语义对拍）。
+- **下轮图纸**：①对拍两侧 DK 的 bonusAccuracy 演化（[ACC] 已含 lucky/blind——补 bonusAccuracy 字段重跑一轮即得差值时刻表）②定位 addAccuracy 差的调用点→修→REG（702+基线7+947+1441+1514）→860。
+- 探针：np29fT 全套仍在树（oracle 3 文件+gd 5 文件+镜像）——下轮开工先 checkout 全套+镜像重同步（清单同 §6m43）。
+- 账面 852/860；全部提交已 push（→376e7909）。
