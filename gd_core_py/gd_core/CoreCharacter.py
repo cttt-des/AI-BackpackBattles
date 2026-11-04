@@ -1405,8 +1405,17 @@ class CoreCharacter(GodotObject):
 		# 对齐 Character.gd:1038-1044：首次 start(invuDur)；已无敌时 Util.changeTimer
 		# （= start(t + timeLeft)，在**剩余时间**上加）→ 所以是延长而非覆盖。
 		# ★ np25 timeout1t：只改写引擎读数 _invul_eng（=Timer.start(t)），_invul_left
-		#   （e[0]）不动；延长分支基准=_invul_left——对齐 Util.gd:1677-1683 changeTimer
-		#   的 oracleLeft（e[0]）优先语义。
+		#   （e[0]）不动。
+		# ★ np34（run921_r18 定谳）：oracle 的 Util.changeTimer 是 **harness 补丁版**
+		#   （oracle/Utility/Util.gd:1680-1686；decompiled 版 ：1591-1593 无补丁）——
+		#   base=oracleTimeLeft(timer)（注册表 e[0]）**仅当 ≥0**；<0（停走遗留/同拍
+		#   start 尚未经 drive pass 登记）回落 timer.get_time_left()（引擎冻结读数=
+		#   最后一次 start 写入值）。语料铁证：run921_r18 King Goobert start(1.5)
+		#   同拍 Frog Prince extend(2.5)——oracle 复跑 [bt-resync] eng=4.0000
+		#   old_e0=-1.0000 old_e1=1.5000（fallback=eng 1.5）→ 语料 END@598；旧码恒
+		#   用 _invul_left=-0.033333（发火遗留）→ eng=2.4667 → fire@506 ⇒ FD@452
+		#   （gd 多弹两条 invulnerable_end）。oLeft≥0 的延长（run1116/1264 全部 8 例，
+		#   e[0]=逐拍递减活余量）基准不变，逐位已对齐勿动。
 		if not self.invulnerable:
 			self._invul_eng = self._f32eng(invuDur)
 			self._invul_active = True
@@ -1419,7 +1428,10 @@ class CoreCharacter(GodotObject):
 			#   首分支实证：oracle 探针 O536 randPitch(0.9,1.1)=>1.073782 缺失）。
 			self.ctx.rng.randf_range(0.9, 1.1, "randPitch")
 		else:
-			self._invul_eng = self._f32eng(invuDur + self._invul_left)
+			_invul_base = self._invul_left
+			if _invul_base < 0.0:
+				_invul_base = self._invul_eng
+			self._invul_eng = self._f32eng(invuDur + _invul_base)
 		# ★ np25 timeout1t 诊断（双门控零耗）：INVU 行读 make 时序（fr vs rebuild 的
 		#   activateItems 末尾）+ 三变量值，定位「激活期 start 是否被 rebuild 锚定」。
 		#   lt/gt=dur 对字面量 3.1 的 ULP 方位（run1069_r15 定谳用：D 在 186dt 浮点
@@ -2047,6 +2059,13 @@ class CoreCharacter(GodotObject):
 				if self._invul_active:         # :915-917 处理器重启了（start(x)→time_left=x）
 					self._invul_left = self._invul_eng
 					self._invul_seen = self._invul_eng
+		else:
+			# ★ np34：oracle_fight.gd:898-900 停走分支——is_stopped() 时注册表
+			#   e[0] **每拍刷新为 -1.0**（发火遗留值不驻留）。旧码漏此 else →
+			#   停走期 _invul_left 停在发火遗留（或 rebuild 初值 0.0），同拍
+			#   start+extend 形（run921_r18 King Goobert+Frog Prince）的延长
+			#   fallback 判别（left<0 → 用 eng）会误读 0.0 走 e[0] 基准。
+			self._invul_left = -1.0
 
 		if self._autoRage_active:
 			self._autoRage_left -= delta
