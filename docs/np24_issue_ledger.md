@@ -943,3 +943,10 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **矛盾点（下轮靶心）**：gd 批=3 advance v oracle 批=4，而 4 次 rollChance 的 flip 值 u 级全同（net 3860-3870 匹配）——同 roll 结果应同成功数！嫌疑：①oracle 的 Twine affectedSecondary 数≠gd（totalChance 不同→成功阈值不同——但 flip 值同、chance 不同→成功判定可不同！）②第 4 个 advance 的 src Twine 在 gd 该 tick 未激活（激活事件在别 tick——事件流匹配仅到 11.48，批内 tick 归属未逐一对齐）。
 - **下轮图纸**：①双侧打 Twine.onTriggerItemActivated 针（totalChance/roll 结果/是否 activate）→ 同批 4 roll 的成败序列对照 ②核对 Twine 的 Secondary affected 数（getAffectedItems(Affected.Secondary)=isNeutral() 物品——两侧 neutral 集合差=totalChance 差=成功数差的直接机制）③修→REG→860。
 - 探针 np29fT 全套仍在树（§6m46 清单+DragonKnight/LightGoobert/ChessBoard/ChessPiece）；账面 852/860；全部 push（→310e441b）。
+
+## 6m55 附言（收口）：树状态与下轮开工清单
+
+- **探针已全部还原**（FLP/RDA/ACC/ACCO/RDAO/DKA/LGA 零残留；oracle Buff.gd 的 [BGAIN]/[BCLEANSE]=原生诊断非探针）；镜像 md5 同步；工作树仅剩长期文件（README/docs/tools 12 项）。
+- **下轮开工即可用资产**：双侧 traced log 全套在 output/_offpeak/np29t_702/（ora8 含 [BGAIN]/[BCLEANSE]/[BEXPIRE]/[ACCO] 池账+快照；gd6 含同款 gd 侧；gd13 含 [LGA]）——离线可复分析。
+- **第一动作**：Twine 的 totalChance 对拍——getBaseChance()+getNumAffectedItems(Affected.Secondary)×getBaseChance2()：双侧打 Twine onTriggerItemActivated 针（totalChance/roll 值/activate 与否）→ 同批 4 roll 的成败序列对照 → Secondary 数差=修复点（isNeutral=classes==Neutral 数据面核对）。
+- 账面 852/860；8 红：702@1118/921@452/977@497/986@206/1022@2456/1118@422/1120@868/1444@342。
