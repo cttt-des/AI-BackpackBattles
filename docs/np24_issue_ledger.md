@@ -876,3 +876,11 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **修复方向（下轮直击）**：DK 的 advanceCooldownPercent 经 EventBus "activated" 派发（DK onItemActivated←connectForCombat(item,"activated")）——同帧内 LG activate()→事件派发→DK advance 的链路：oracle EventBus 派发序/时点 vs gd ctx.bus 的 connectEvent 派发——**重点对拍 advance 生效的 tick 边界**（oracle advance 在 LG 攻击同帧立即生效、gd 是否 defer 到帧末/下帧——或反之）。修=对齐 advance 的生效 tick。
 - **方法资产**：钟无关比较=间隔 tick 序列（×60）——本轮所有跨钟假象的根治手段；[BGAIN] 池账 print（np29fT）双侧已验证可用。
 - 探针 np29fT 全套仍未还原（§6m46 清单+DragonKnight.gd 两侧+镜像）。账面 852/860；全部 push（→0a5f2744）。
+
+## 6m49. 702 再收敛：节奏差早于 DK 首.advance→speed/cd 推进速率嫌疑（2026-11-04 晚轮十四）
+
+- **时间线精排**：首池 t ora=0.7667 v gd=0.8833（差 7 tick）；第 1→2 池间隔 ora=74 tick v gd=64 tick（差 10）——**分歧从开局即存在，早于 DK 首次 advance（gd 批首=2.400）→DK 假设（§6m44）排除**。
+- **LG 首攻事件戳双侧同**（0.866667）而内钟 print 差 7 tick（ora 0.7667/gd 0.8833——各侧 print 钟与事件钟不同轴已二次确认）→**事件流无法反映 cd 到点的真实 tick**——「事件流全同」只保证逻辑分支一致，**不保证 cd 到点 tick 一致**。
+- **新主嫌疑=speed/cd 推进速率**：LG 的 cd 到点节奏差→getSpeed()/speedScale 状态差（702 有 Gloves of Haste——giveSpeed 链）→**speed 不进事件流**→完全可静默分歧。次嫌疑=LG 首 cd 的 adjustCooldown 抽（已证锚后值序同——但 LG 具体取哪个抽未定位）。
+- **下轮图纸**：①双侧打 LG getSpeed() 每帧针（env 门控）+首攻到点 tick 针→定 speed 差与首攻 tick 差 ②若 speed 同→对拍 LG 首 cd 值（prepare 时的 iterationCooldown——[ACD] 类针）③修→REG→860。**speed/cd 推进速率差候选=中晚簇全部 8 场的共同机制**（cd 驱动物品普遍）。
+- 探针 np29fT 全套仍在树（清单 §6m46）；账面 852/860；全部 push（→31a34c66）。
