@@ -920,3 +920,10 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **语义后果**：oracle 的 removeRandomBuffs 移除「随机 2 buff」（可含 Heat/Regen 任意）——gd 若走另一路径（如确定性移除 heat）→池演化分歧起点=**第一场带 Amethyst+DK 的攻击命中**（t=0.35）——比盲池/Crown 更早！**FD@1118 首环=此处**。
 - **下轮图纸**：①diff gd_core_items/Gems/Amethyst.gd v oracle（rollChance 条件/信号连接/buffRemoval 参数）②gd 侧给 Amethyst onAttack 打针（触发次/rollChance 值/removeRandomBuffs 入口）③对齐路径→REG（702+基线7+947+1441+1514）→860。**Amethyst 是 702 DK 宝石——1118 红场直接受益；其他红场的宝石构成待查**。
 - 探针 np29fT 全套仍未还原（§6m46 清单+DragonKnight/LightGoobert）；账面 852/860；全部 push（→31a34c66/6aef10c2/…）。
+
+## 6m53 附言（收口移交）：探测资产与本段结论索引
+
+- **本段（offpeak #156+会话接力）702 挖掘资产**：双侧 traced log（np29r/np29t 系列：ora8/gd6 含 [BGAIN]/[BCLEANSE] 池账、gd13 含 [LGA] 攻击入口、ora3/gd5 含 [ACC]/[ACCO] acc+blind+bonus 快照）全部在 output/_offpeak/np29t_702/ 与 np29r_702/ ——离线可复分析，零新跑。
+- **已定谳结论链**：①u 级首真分歧=DK acc roll（gd acc=5 消耗 v oracle acc=−5 短路，[ACC] 实证）②acc 差=盲层差（非 buff 分量）③盲层差=盲池 to 序/构成差 ④盲池 gain 间隔 tick 序列双侧分歧（首间隔 75 v 64，钟无关法）⑤**oracle removeRandomBuffs=388 pickRandomElement 主链行 v gd 0 行**（核心不对称——两侧 heat −1 路径不同）。
+- **下轮第一动作**：diff gd_core_items/Gems/Amethyst.gd 的 rollChance 触发（gd rollChance 恒 false 嫌疑→removeRandomBuffs 从未执行→heat −1 另路）——**Amethyst csv_chance 数据面核对**（battle_items.json Amethyst 的 chance 字段 v oracle ItemData.csv chance 列）→缺则补→REG→860。
+- 探针：np29fT 的 LightGoobert [LGA] 已随本笔还原；其余（FLP/RDA/ACC/ACCO/RDAO/BGAIN/BCLEANSE/DKA）已在前轮还原。树净、镜像同步。
