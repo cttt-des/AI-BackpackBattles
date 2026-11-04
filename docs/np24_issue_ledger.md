@@ -765,3 +765,10 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **注入实验（gd 黑窗前一次性 randi()×k，k=1..4）**：黑窗 CAP 恒 BR（k=4 时窗数变=注入生效）——**短程注入不翻转**；每窗注入 2（累计 6 步）才翻转。含义：黑窗 shuffle 的 j 对 [黑窗前链位] 敏感但 1-4 步内未遇翻转点，差额步数>4 或在更早窗（白窗前）——白窗 0 输出序一致铁证窗 0 前链态同 → 差额窗 0-10 间的「非 shuffle 全局链消耗」（CFP 不可见类）或 Godot Array.shuffle 与 randi() 的消耗步数差异（Math::rand vs Math::random 的 1/2 步语义需核对 3.6 源码 core/array.cpp shuffle）。
 - **下一棒（图纸）**：①读 Godot 3.6 core/array.cpp Array::shuffle 源码定每调用消耗步数（randi()%2 语义）②按步数语义重算黑窗前双侧全局链总消耗（gd 侧 Gshuffle 日志有序列可累加；oracle 侧按源码逐处数）③差额步数即 oracle 独有消耗——grep oracle 窗间调用链（movePiece/onPieceMoved/snapshotItemState 已证零 rng）外的全局链（Sound.playSound 内部？ObjectPool.particleOneShot？）④修复=gd 补同位消耗。
 - 探针（CMC/CTURN/CFP/注入/inj/_inj_call/probePass infra）**已全部还原零残留**（oracle 4 文件+gd 2 文件 checkout，镜像重同步 md5 验证）。
+
+## 6m35. 9:30 收口（2026-11-04 早轮终）
+
+- **§6m34 后记（零成本排除）**：oracle Sound.playSound（:174-186）与 ObjectPool.gd **零 rng**——窗间表现层全局链盲区再排除两项。窗结构澄清：白窗 2 与黑窗**同帧**（t=1.483，Chess Board 双侧棋窗连续到点）；Hammer 攻击（t=1.233）在白窗 1 与窗 2 之间。
+- **947 残谜精确化**：窗 0-10 全部可观测 shuffle（CFP 序/尺寸/occ）双侧严格同、每窗 shuffle 消耗=n-1 步（Godot 3.6 Array::shuffle=`Math::rand()%(i+1)` Fisher-Yates）→ 黑窗前链态在消耗数口径下双侧必同；实证黑窗 j 分叉 → **存在「非 ChessBoard 的窗间全局链消耗差」**——候选收窄到引擎级调用（Math::rand 系 hook 可定位）：下一棒=在 oracle_fight.gd 的 tick 循环里以 Math::rand 计数器（GDScript 侧无 hook——改用「每窗前 randi() 采样+丢弃再 seed 回注」不可行；改为对 gd harness 的 Gshuffle/Gpick 日志求累计和 vs oracle 事件流对齐的每窗 randi 推断值逆推差额窗）。
+- **本会话（2026-11-03 18:15→11-04 09:30）累计**：841→851/860（净+10）——np29fH（connector 旗标+7）/np29fI（攻击尾隐形抽+3）/np29fJ-K（947 定性推进+探针基建）。全部提交已 push（84e992b1→81ab4642）。
+- offpeak #150/#306 按 §6m34-35 图纸接力；中晚簇 8 场（702/921/977/986/1022/1118/1120/1444）待 §6m31 三件套模板逐场解剖。
