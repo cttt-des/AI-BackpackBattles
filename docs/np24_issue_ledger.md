@@ -757,3 +757,11 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **收口链执行**：探针全还原（oracle 5 处/gd ANIMDBG/[CBS]/probePass 两轮全净）→ --compare-only 914 全量账合并（851/860）→ README 补「⑥ 三方确定性对齐」节 → 本节 → commit+push。
 - **残余 9 红交接**：947@46（下一棒=对拍两侧 ChessPiece captureCells 常量表，§6m32 有精确靶）+ 8 场中晚簇（702@1118 Goobert timeout amount/921@452/977@497/986@206 Banner 错位/1022@2456/1118@422 Holy Spear 值同位差/1120@868/1444@342）——全为 [rng-mechanism] 类，用 §6m31 三件套模板逐场解剖。
 - offpeak-1476e382(#150)/0bfcfee4(#306) 按本节接力。
+
+## 6m34. 947@46 黑窗分叉解剖至最后一步（2026-11-04 早轮；09:15 收口）
+
+- **[CMC] captureCells 定谳（零差异）**：双侧 ChessPiece.prepare 的 moveCells（5 棋子×occ+cells 序）逐位一致——§6m32 的 captureCells 假设**排除**。
+- **[CTURN]/[CFP] 单 pass 全谱**：白两窗（窗 0-10）C/M shuffle 的 piece 序+尺寸+occ **双侧严格一致**（findPieceToCapture/findSpaceToMove 的全部 shuffle 调用同数同参）；窗 11 黑方首捕获分叉=ora CAP BP（mana3）v gd CAP BR（spikes3）——两棋均可吃 WP(5,0)（BP delta(-1,-1)∈cells、BR delta(-3,0)∈cells），CAP 结果由 activePieces.shuffle(n=2) 的 j=randi()%2 纯定。
+- **注入实验（gd 黑窗前一次性 randi()×k，k=1..4）**：黑窗 CAP 恒 BR（k=4 时窗数变=注入生效）——**短程注入不翻转**；每窗注入 2（累计 6 步）才翻转。含义：黑窗 shuffle 的 j 对 [黑窗前链位] 敏感但 1-4 步内未遇翻转点，差额步数>4 或在更早窗（白窗前）——白窗 0 输出序一致铁证窗 0 前链态同 → 差额窗 0-10 间的「非 shuffle 全局链消耗」（CFP 不可见类）或 Godot Array.shuffle 与 randi() 的消耗步数差异（Math::rand vs Math::random 的 1/2 步语义需核对 3.6 源码 core/array.cpp shuffle）。
+- **下一棒（图纸）**：①读 Godot 3.6 core/array.cpp Array::shuffle 源码定每调用消耗步数（randi()%2 语义）②按步数语义重算黑窗前双侧全局链总消耗（gd 侧 Gshuffle 日志有序列可累加；oracle 侧按源码逐处数）③差额步数即 oracle 独有消耗——grep oracle 窗间调用链（movePiece/onPieceMoved/snapshotItemState 已证零 rng）外的全局链（Sound.playSound 内部？ObjectPool.particleOneShot？）④修复=gd 补同位消耗。
+- 探针（CMC/CTURN/CFP/注入/inj/_inj_call/probePass infra）**已全部还原零残留**（oracle 4 文件+gd 2 文件 checkout，镜像重同步 md5 验证）。
