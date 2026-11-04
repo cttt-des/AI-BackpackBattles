@@ -868,3 +868,11 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **acc 快照语义**：accuracy=updateItem 时的 getAccuracy() 快照（盲旧值）；[ACCO] 的 blind=print 时活值——两者可跨 expiry 窗（print acc=−5=快照时 blind 21、print blind=15=expiry 后）——**读 acc 差必须用快照时刻的盲值**。
 - **下轮主攻（不变）**：python 离线重放盲事件流×双 CoreBuff 模型——10.85 窗的顺序（gain 先 v expiry 先：oracle tick ③物品激活 vs ⑦计时器）与 MAX_STACKS 截断值（grep MAX_STACKS 常数）为首要嫌疑——gd 侧 tick 序（CoreCombat.physicsTick ③物品→⑦计时器）与 oracle 2c（①钟②角色③物品…⑥⑦计时器）**同为物品先**——但 gd 的 Buff 计时器=_timer_active 自管（tickBuffs ⑦）而 oracle=注册表 Timer（⑥⑦ drive_timers）——**fire 的 tick 边界差=嫌疑核心**。
 - 探针 np29fT 全套仍未还原（§6m46 清单）；账面 852/860；全部 push（→78610d6d）。
+
+## 6m48. ★ 702 直接上游锁定：LG blind gain 间隔 tick 序列分歧（2026-11-04 晚轮十三）
+
+- **钟无关终比（间隔 tick 数）**：side0 blind 7-池的相邻创建间隔（×60 tick）——oracle=[75,49,66,74,70,61,56,70,57,59,96,78,60,59]（pass1，进程钟连续段）；gd real=[64,68,46,72,77,79,49,83,56,64,75,49,66,74]——**模式完全不同，首间隔差 11 tick**。gd pass0≡pass2、pass1≡pass3（确定性 ✓）。
+- **语义**：盲池创建=LG 的 blind 攻击（7 池/次）——间隔=LG cd 到点节奏。**LG cd 被 DK advanceCooldownPercent(15%) 推进**——advance 批次结构虽双侧同（§6m45），但**同帧内 advance 相对 LG 所在 tick 边界的应用位置**不同步→LG 第 2 次攻击时刻差 11 tick→盲池 to 序差→Crown farthest 清洗选择差→池构成差→timeout −7/−6→idx1118/1119。**FD@1118 直接上游=LG 攻击节奏差。**
+- **修复方向（下轮直击）**：DK 的 advanceCooldownPercent 经 EventBus "activated" 派发（DK onItemActivated←connectForCombat(item,"activated")）——同帧内 LG activate()→事件派发→DK advance 的链路：oracle EventBus 派发序/时点 vs gd ctx.bus 的 connectEvent 派发——**重点对拍 advance 生效的 tick 边界**（oracle advance 在 LG 攻击同帧立即生效、gd 是否 defer 到帧末/下帧——或反之）。修=对齐 advance 的生效 tick。
+- **方法资产**：钟无关比较=间隔 tick 序列（×60）——本轮所有跨钟假象的根治手段；[BGAIN] 池账 print（np29fT）双侧已验证可用。
+- 探针 np29fT 全套仍未还原（§6m46 清单+DragonKnight.gd 两侧+镜像）。账面 852/860；全部 push（→0a5f2744）。
