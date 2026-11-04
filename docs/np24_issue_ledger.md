@@ -837,3 +837,11 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **702 机制链（终版）**：盲池内部构成分歧（同总数不同池）→ DK acc 差（gd 5>0 消耗 acc flip v oracle ≤0 短路）→ rng 链位差 1 抽 → 下游 Blind timeout 取错 u（-7 v -6 @11.4833）→ alignment 首分歧 idx1118/1119。盲池账 diff 的正确姿势=按事件流重放双侧 CoreBuff 模型（gainTemporary 池 push+farthest 清洗+超时），首个状态分歧操作即根因——python 重放脚本可离线做（两侧 CoreBuff 语义已读透：oracle Buff.gd:87-300/gd CoreBuff.gd:130-345 逐字同构候选——差异或在 TemporaryStacks 结构/超时处理器 tick 对齐）。
 - **下轮图纸**：①python 离线重放盲事件流×双模型→定位分歧操作 ②若模型逐字同构→超时处理器（timer 驱动的 pool expiry 顺序）打针对照 ③修→REG→860。Light Goobert 5/8 红场——本井连锁预期最高。
 - 探针（FLP/RDA/ACC/ACCO/RDAO/BGAIN/BCLEANSE）**仍未还原**（np29fT）——下轮开工先 checkout：oracle(Core/Character.gd,Items/Item.gd,Utility/Util.gd)+gd_core(CoreRng.gd,CoreItem.gd,CoreCharacter.gd,CoreBuff.gd)+两镜像。
+
+## 6m44. ★★ 702 真根因：双方 DK 触发次序翻转（2026-11-04 晚轮九；终版）
+
+- **决定性修正**：gd5 带 pid 的 [ACC] 实证——0.0152 flip 的 strike=**pid=0（player DK）acc=5**；oracle 同位的 DK strike=**pid=1（opp DK）acc=-5**（[ACCO] pid=1 @11.3167）。**盲状态无分歧**（player 被盲 17 层 acc=5、opp 被盲 20 层 acc=-5——两侧各自的 blind/lucky 状态自洽）——前轮「盲池构成分歧」定性作废。
+- **真根因=双方 DK 的相对触发次序翻转**：oracle opp-DK 先动（11.3167）、gd player-DK 先动（11.3667）。DK cd=基础 1.8s×advanceCooldownPercent(15%/激活)——激活流（事件）双侧全同，但**同帧内两次 advanceCooldownPercent 的投递/应用次序**（player-DK 先 v opp-DK 先）两侧相反 → 两 DK 的 cd 相对状态翻转 → 触发次序翻转 → 每次攻击的 roll 序列（rollDA/acc/3 抽/randInBox）**成对互换** → rng 链位错位 → 下游 Blind timeout 取错 u → idx1118/1119。
+- **剩余待证（下轮 1-2 针）**：advanceCooldownPercent 的信号投递序——两侧 EventBus 的 "activated" 对双 DK listener 的派发序（连接序=装配序 player 先？还是 bus 字典序？）+ 同帧多次 advance 的累加次序。修复=对齐派发序（大概率 gd bus 的 connectEvent 派发序与 oracle EventBus 相反或同帧 advance 应用点不同）。
+- **连锁预期**：DK 在 702/1118/921/977/986/1022/1120/1444 阵容中普遍存在（charge 族）——本修可能连锁多场。
+- 探针状态：np29fT 全套未还原（清单见 §6m43）；账面 852/860；全部提交已 push（→e8aaeda9）。
