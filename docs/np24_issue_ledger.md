@@ -935,3 +935,11 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **lucky 差的来源嫌疑（下轮图纸）**：①Cheese Goobert +1 lucky（t=5.7667）的 duration/过期语义（temporary lucky 过期 tick 差）②Lucky Cat 的 useStacks 消耗时机（lucky>0 闸的 tick 差）③Fedora +5 的池构成。**离线重放 lucky 事件流（type=101 全量）×双模型**——方法同 §6m46（事件流全同已验，状态差=模型差）。
 - **连锁**：lucky→getBuffAccuracyMod→acc→命中 roll→攻击节奏——所有含 LuckyCat/Cheese Goobert/Fedora 的红场（8 红全含概率高）。
 - 探针 np29fT 全套仍未还原（§6m46 清单）；账面 852/860；全部 push（→9a8f123f）。
+
+## 6m55. 702 级联结构显形+矛盾点锁定（2026-11-04 晚轮十八；交接）
+
+- **前轮修正**：gd removeRandomBuffs **有执行**（trace 491/493=randi_range(0,2)/(0,3)，值与 oracle 同——"0 行"=tag 文本匹配假象）；oracle 批 4 advance 的 srcs=4 个**不同** Twine（@9845/@9847/@9797/@9839，无重复投递）。
+- **级联结构**：Light Goobert 激活 → 4 Twine（DK affected）各自 onTriggerItemActivated→rollChance(totalChance=base+Secondary数×chance2) → 成功者 activate()（type 0 事件）→ DK "activated"→advance。**DK 的 advance 批=Twine 级联成功数**。
+- **矛盾点（下轮靶心）**：gd 批=3 advance v oracle 批=4，而 4 次 rollChance 的 flip 值 u 级全同（net 3860-3870 匹配）——同 roll 结果应同成功数！嫌疑：①oracle 的 Twine affectedSecondary 数≠gd（totalChance 不同→成功阈值不同——但 flip 值同、chance 不同→成功判定可不同！）②第 4 个 advance 的 src Twine 在 gd 该 tick 未激活（激活事件在别 tick——事件流匹配仅到 11.48，批内 tick 归属未逐一对齐）。
+- **下轮图纸**：①双侧打 Twine.onTriggerItemActivated 针（totalChance/roll 结果/是否 activate）→ 同批 4 roll 的成败序列对照 ②核对 Twine 的 Secondary affected 数（getAffectedItems(Affected.Secondary)=isNeutral() 物品——两侧 neutral 集合差=totalChance 差=成功数差的直接机制）③修→REG→860。
+- 探针 np29fT 全套仍在树（§6m46 清单+DragonKnight/LightGoobert/ChessBoard/ChessPiece）；账面 852/860；全部 push（→310e441b）。
