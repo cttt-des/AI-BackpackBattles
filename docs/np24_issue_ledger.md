@@ -772,3 +772,12 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **947 残谜精确化**：窗 0-10 全部可观测 shuffle（CFP 序/尺寸/occ）双侧严格同、每窗 shuffle 消耗=n-1 步（Godot 3.6 Array::shuffle=`Math::rand()%(i+1)` Fisher-Yates）→ 黑窗前链态在消耗数口径下双侧必同；实证黑窗 j 分叉 → **存在「非 ChessBoard 的窗间全局链消耗差」**——候选收窄到引擎级调用（Math::rand 系 hook 可定位）：下一棒=在 oracle_fight.gd 的 tick 循环里以 Math::rand 计数器（GDScript 侧无 hook——改用「每窗前 randi() 采样+丢弃再 seed 回注」不可行；改为对 gd harness 的 Gshuffle/Gpick 日志求累计和 vs oracle 事件流对齐的每窗 randi 推断值逆推差额窗）。
 - **本会话（2026-11-03 18:15→11-04 09:30）累计**：841→851/860（净+10）——np29fH（connector 旗标+7）/np29fI（攻击尾隐形抽+3）/np29fJ-K（947 定性推进+探针基建）。全部提交已 push（84e992b1→81ab4642）。
 - offpeak #150/#306 按 §6m34-35 图纸接力；中晚簇 8 场（702/921/977/986/1022/1118/1120/1444）待 §6m31 三件套模板逐场解剖。
+
+## 6m36. 947 黑窗破案 halfway：j 分叉=窗 2 前 1 步全局链差额（2026-11-04 晚轮）
+
+- **零消耗 [CBS0]/[CBS2] 定谳（终版方法学）**：窗 2 pre 序双侧**严格同** [BR,BP]（初始序排除）→窗 2 post ora [BP,BR](j=0) v gd [BR,BP](j=1)——**j 分叉=窗 2 shuffle 时刻链位差 1 步**（前轮 [CBS2]+g 采样的「窗 0 已分叉」是探针污染假象：oracle [GCHK] pre/post-prepare 两针多余 2 步——已还原并定规**探针 print 本身零消耗、采样针双侧同位等数**）。
+- **窗 0/1 全部 pre+post 序双侧严格同**（n=3 白窗×2）→窗 0/1 内 56+56 步消耗双侧同、窗 1 后恰好差 1。窗 1→窗 2 间已穷举路径（movePiece/onPieceMoved/snapshotItemState/Combat.gd 3 处均主链/checkForInventoryAchievements 商店期/Piggybank explode 战斗外/Sound/ObjectPool 零 rng）全排除。
+- **注入实验修正**：前轮 one-shot 无效（_inj_call 成员跨 pass 未重置→real pass 未注入）；修正版（onPrepare 重置）k=1/2 注入窗 2 前仍不翻转（窗 2 j 对 ±2 步稳健）→差额可能 ≠ 简单 ±1 位置敏感。
+- **数学终审路径（下一棒）**：全局链=seed(S) 后 PCG(inc=1442695040888963407)+rand()=1 LCG 步；双侧锚 3875780676（=78 步 shuffle×2 后第 79 抽）双侧实证同；窗 2 前消耗 gd=85 步（active2+C27+M27×2 窗）→模拟 seed(S) PCG 走 190 步 vs 191 步的 rand()%2——匹配 gd j=1 / ora j=0 者即真步数 → **若 oracle=86 步：那 1 步在 oracle activateItems→窗 0 路径或 t=0-1.483 的未知名调用**——用「oracle_fight.gd 手动路径+tick 步骤①-⑨逐段 grep Array/全局链」+模拟定段。
+- **702@1118 定性（三件套初轮）**：Blind timeout amount -7 v -6（同 t=11.4833）=**player blind 层差 1**——上游=Crown cleanseBlind(1) 到点 tick 差（Crown -1 每 1.05s 周期，gd 某轮早 1 tick 生效）→Timer/tick1diff 族残余（非新域）——下一棒=对拍 Crown cdTimer 到点序列（双侧 traced rng_log 的 (0.95,1.05) cd 行+timeout 行）定位差 1 tick 的计时器。
+- 本轮全部探针（CBS0/CBS2/GCHK/ARDbg/注入/_inj_call）**已还原零残留**+镜像 md5 同步；851/860 复核（compare-only）。
