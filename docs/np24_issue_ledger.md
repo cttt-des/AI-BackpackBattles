@@ -797,3 +797,11 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **自洽图景（待证）**：oracle prepare 多耗 X≥7 步 + 窗 0-2 间 oracle 少耗 X-1 步（M 循环 early return 位置差）→净差 1（窗 2 j 相邻奇偶）。M 循环 early return 的位置差=「第几个 piece 找到空位」——上游=棋盘占用状态差（可能同源于 prepare 期）。
 - **下一棒（终审图纸）**：①解 oracle post-prepare=2797622764 的精确 N（扩程 8..40 步模拟）②按 N 反推 oracle prepare 的全局链调用组合（源码穷举 Character.prepare×2+item.prepare×79 的可达调用）③修 gd（若 oracle 的 ≥8 步为真，gd 需补同位消耗——大概率是某物品 prepare 的全局链缺口）④REG→860。
 - **收口状态**：851/860（compare-only 复核）；探针零残留+镜像同步；本轮 §6m36-38 三节+全部提交已 push（→3b1bdbdb）；offpeak #156 按图纸接力。
+
+## 6m39. ★ 947 翻绿：autoRage 误标修复（2026-11-04 晚轮四；852/860）
+
+- **[ARO] 探针终证**：oracle p1/p2/p3 三 pass 双角色 `starter=False n=0 hasEff=empty`——battleRageItems **恒空**→autoRage 0 pick→prepare 0 步（与 PCG 精确解 f(K0+1)=2797622764 吻合）。
+- **根因链**：oracle harness 运行时 Util.tra 断链（enrich_battle_rage.py 自注 rage_dump rc=124 同源）→`$rage[` 判据恒 false→oracle 的 hasBattleRageEffect 全物品 false；**gd 数据面 16 物品误标 true**（静态 ExclusiveItems.csv 口径）→gd 每场 autoRage 2 pick=**多 2 步全局链+autoRageItem=Spiked Staff 的行为差**（战怒计时器幽灵激活）。
+- **修复**：三数据面（battle_items.json/fixture/runtime）16 件 hasBattleRageEffect→false。
+- **REG（np29q_gate）**：基线 7+947+1441+1514 **双腿 ALL PASS（10/10）**——**947 fd@46 翻绿**。860 刷账 **851→852**。残 8 红：702@1118/921@452/977@497/986@206/1022@2456/1118@422/1120@868/1444@342。
+- **注意**：np29fD 当年「pickRandomElement→pickRandomEngine」修复的 fd@6 真相=gd 数据面误标的两步差被移到全局链（当年误判 oracle 有 pick）——本修把误标本身拔掉，行为+链位双对齐。
