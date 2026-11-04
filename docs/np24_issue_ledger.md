@@ -899,3 +899,9 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - getHeat/getCold 逐字同构；heat 事件流（含 +6/+2/+2/+5/−1/+1/−1 全量）双侧逐位同——**池的输入输出全同**。但 [LGA] 实测 spd 差（heat−cold 2 v 1）⇒ **读数时刻的池状态不同** ⇒ 唯一可能=**1.4667 的 +1（Cheese Goobert heat）在两侧的生效 tick 不同**（oracle 事件戳 1.466667=池即刻入账 v gd 的 +1 实际入账晚 1+ tick——或反之）——**bus 派发/池入账的 tick 边界差**。
 - **下轮第一针**：双侧 gainTemporary(type=107) 的 [BGAIN] print t 值对比（+1 池的创建时刻差）——[BGAIN] 已有（np29t 两轮 log 在盘）——离线比对 type=107 的池账即可，零新跑。
 - 机制链完整：+1 入账 tick 差 → heat−cold 差 1 → LG getSpeed 差 → cd 节奏差 → 盲池 to 序差 → Crown 选择差 → 盲层差 → DK acc 差 → rng 位差 → timeout 错 u → idx1118/1119。**+1 入账差的最上游=Cheese Goobert 的 heal/heat 链触发时刻**（Cheese Goobert=受击回heat?——its trigger 链的 tick 边界）。
+
+## 6m51. heat 衰减调用点未定位（下轮首查）（2026-11-04 晚轮末）
+
+- **heat 语义**：gainHeat=gainStacks(**永久池**,非 temporary——[BGAIN] 0 行的原因)；−1 衰减事件（t=0.35/1.4667/2.1833，used=False）的调用点**未定位**（loseHeat 全源=Item.gd:5111 item 层封装；Character 内部无 decay tick；GingerbreadMan 的 useHeat=used=True 事件非衰减）——衰减可能来自 **Item.gd 的 heat item 覆写**（某 heat 物品的 onTick/onCooldownEffect 调 loseHeat——如 Oil Lamp doCooldownEffect？或 RubyWhelp heat 的被动衰减在 **Character.gd _physics_process 之外**（Combat.gd tick 步骤②角色的 heat 衰减——oracle Core/Combat.gd 的 onTick）——**下轮首查=oracle Core/Combat.gd 全文 heat/107 引用+衰减物品定位**（t=0.35 的 −1 origin 为空名——origin=衰减物品！事件 origin 打印空=origin 结构非 dict（kind=item 但 name 缺？）——**用 raw json 查该事件 origin**即得衰减物品名。
+- 下轮首查 2 分钟内可完成：python 读 run702 events.json i=70 的 origin 字段 → 衰减物品名 → 对拍其脚本两侧 → 修。
+- 探针 np29fT 全套未还原（清单 §6m46+DragonKnight/LightGoobert 两侧）；账面 852/860；全部 push（→4c1addf4）。
