@@ -813,3 +813,10 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **下游**：3 抽位差累计→Blind/Crown 的 cd adjust 拿错 u→702@1118 blind timeout -7 v -6（层数 tick 差）✓ 链路通。
 - **下一棒**：①读 gd FalconBlade.doCooldownEffect 双击的 dealDamage 调用链在第一击 miss（damageRes.hit=false）时的 return/short 路径（damageSource.origin is CoreItem 检查/isDead/FB 覆写）②oracle 同路径对照（oracle miss 后 3 抽在→无短路）③修 gd 补 miss 路径 3 抽→REG（702+基线7+947+1441）→860。**FB 双击模式可能连锁**：1118（FD 场）/962/1444 等含 FB 或双击武器的红场。
 - 探针零残留；852/860；offpeak #156 同步接力。
+
+## 6m41. 702 终审：FB 双击 rollDA flip 序列差（2026-11-04 晚轮六）
+
+- **[TD] 针实证**：gd FB 双击 t=11.3/11.3167 **都进 takeDamage 3 抽块**（此前「第一击缺 3 抽」解读作废）——真实差异=**击前 flip 数**：gd 每击=rollDA(1 flip)+acc(1 flip)+3 抽+randInBox（第一击 2 flip）；oracle 每击=1 flip+3 抽+randInBox——**oracle 每击恰缺 1 flip（rollDA 或 acc 之一未消耗）**。
+- **已排除**：canMiss/Flags 枚举（两侧逐字同构：CanMiss=16、meleeFlags=All）；takeDamage 头部结构（rollDA→canMiss→acc→3 抽 逐字同）；rollDoubleAttackEffect 实现（同 flip(chance) 同耗）；FB doubleAttackEffectChance=0（两侧 prepare reset 同 0→flip(0) 同耗 1）。
+- **剩余假设（下一棒）**：①oracle 的 attackEffectCount 块 `if item != null`——FB 攻击的 damageSource.origin 在 oracle 的类型判定（origin is Item——FB 的 damageSource.setItem 链→origin=FB ✓ 应非空）②**girlPower -5 accuracy 的写入路径**（acc=-5→rollPercent(-5)→flip 语义差？accuracyRng.rollPercent=BalancedRng.roll→flip(chance) 同耗）③**FB 第二击**：gd [rollDA+randInBox] 无 acc——oracle 第二击 [flip+3抽+randInBox]——第二击的 canMiss 判定翻转（第一击后 dodgeStacks/状态差）④终审手段=**双侧 rollDA/acc 各打 1 针**（调用点级，env 门控零耗 print）——3 针定谁是缺方。
+- 状态：852/860；探针 TD 已还原（gd_core/CoreCharacter.gd+镜像 checkout）；其余干净。offpeak #156 接力。
