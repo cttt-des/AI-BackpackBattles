@@ -805,3 +805,11 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **修复**：三数据面（battle_items.json/fixture/runtime）16 件 hasBattleRageEffect→false。
 - **REG（np29q_gate）**：基线 7+947+1441+1514 **双腿 ALL PASS（10/10）**——**947 fd@46 翻绿**。860 刷账 **851→852**。残 8 红：702@1118/921@452/977@497/986@206/1022@2456/1118@422/1120@868/1444@342。
 - **注意**：np29fD 当年「pickRandomElement→pickRandomEngine」修复的 fd@6 真相=gd 数据面误标的两步差被移到全局链（当年误判 oracle 有 pick）——本修把误标本身拔掉，行为+链位双对齐。
+
+## 6m40. 702 井破案 halfway：FB 双击 miss 路径缺 takeDamage 3 抽（2026-11-04 晚轮五）
+
+- **双侧 traced 游走（值序对齐+u 级比较）**：702 锚（首个 (0.95,1.05) cd 行）后形状分歧@252（假差异：randInBox(-30,30) v (-10,10) 的**动画 export 参数差**，u 同——不进事件流，但揭示某 animation scene 的 positionRandom 覆写 gd 缺——挂次要账）；**u 级首真分歧@3872（t≈11.3 Falcon Blade 双击 miss）**。
+- **精确结构**：oracle=acc#1 flip→**takeDamage 3 抽**（-50/-70/-0.366，miss 路径无条件）→randInBox(miss 动画)→acc#2→3 抽→randInBox；gd=acc#1→**直接 acc#2**→3 抽×1→randInBox×1——**gd FB 第一击 miss 后缺 takeDamage 3 抽**（gd takeDamage:584 的 3 抽块无条件存在但该次未执行=miss 短路候选）。
+- **下游**：3 抽位差累计→Blind/Crown 的 cd adjust 拿错 u→702@1118 blind timeout -7 v -6（层数 tick 差）✓ 链路通。
+- **下一棒**：①读 gd FalconBlade.doCooldownEffect 双击的 dealDamage 调用链在第一击 miss（damageRes.hit=false）时的 return/short 路径（damageSource.origin is CoreItem 检查/isDead/FB 覆写）②oracle 同路径对照（oracle miss 后 3 抽在→无短路）③修 gd 补 miss 路径 3 抽→REG（702+基线7+947+1441）→860。**FB 双击模式可能连锁**：1118（FD 场）/962/1444 等含 FB 或双击武器的红场。
+- 探针零残留；852/860；offpeak #156 同步接力。
