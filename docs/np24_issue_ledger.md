@@ -820,3 +820,12 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **已排除**：canMiss/Flags 枚举（两侧逐字同构：CanMiss=16、meleeFlags=All）；takeDamage 头部结构（rollDA→canMiss→acc→3 抽 逐字同）；rollDoubleAttackEffect 实现（同 flip(chance) 同耗）；FB doubleAttackEffectChance=0（两侧 prepare reset 同 0→flip(0) 同耗 1）。
 - **剩余假设（下一棒）**：①oracle 的 attackEffectCount 块 `if item != null`——FB 攻击的 damageSource.origin 在 oracle 的类型判定（origin is Item——FB 的 damageSource.setItem 链→origin=FB ✓ 应非空）②**girlPower -5 accuracy 的写入路径**（acc=-5→rollPercent(-5)→flip 语义差？accuracyRng.rollPercent=BalancedRng.roll→flip(chance) 同耗）③**FB 第二击**：gd [rollDA+randInBox] 无 acc——oracle 第二击 [flip+3抽+randInBox]——第二击的 canMiss 判定翻转（第一击后 dodgeStacks/状态差）④终审手段=**双侧 rollDA/acc 各打 1 针**（调用点级，env 门控零耗 print）——3 针定谁是缺方。
 - 状态：852/860；探针 TD 已还原（gd_core/CoreCharacter.gd+镜像 checkout）；其余干净。offpeak #156 接力。
+
+## 6m42. ★ 702 机制链全通：DK acc flip→盲池记账（2026-11-04 晚轮七）
+
+- **[FLP]/[RDA]/[ACC] 值级探针破案**：u 级首真分歧 flip（r=0.025831）=**Dragon Knight 的 acc roll**（chance 0.05→balancer 调 0.015152；[ACC] Dragon Knight acc=5.0000 实证）——**gd 消耗（acc=5>0 过短路）、oracle 不消耗（acc=-5≤0 短路 roll(−0.05)）**。此前「FB rollDA/acc 缺方」定性作废（0.428842=DK 的 rollDA，非 FB）。
+- **acc 差=盲状态差**：acc=90+(lucky−blind)×5——gd DK (lucky−blind)=−17、oracle=−19（acc 5 v −5）→**blind 内部池构成分歧**（事件流 11.48 前全同→池账不可见分歧）。11.4833 的 timeout −7(ora) v −6(gd)=池部分过期差 1 层（Crown cleanse 从 farthest 池扣 1——两侧 farthest 语义同构已验）。
+- **重磅支线**：gd 自身两 pass 的 DK acc 不一致（pass1 acc=−5/blind=21 v pass2 acc=5/blind=19，pass2 出现 lucky=1）——**gd 内核同种子跨 pass 盲状态不可复现**（R5 暖场连接嫁接/暖场收割污染候选）——独立于 702 的完整性问题，需单独立井。
+- **下一棒（图纸）**：①统一时钟语义重打 blind 池账（oracle [BGAIN]/[BCLEANSE] 已无条件打印、gd 已加同款 np29fT 暂存探针）——按事件流时间对齐双侧池演化，找首个池构成分歧操作 ②查 gd 跨 pass 盲状态不可复现（暖场 bus 嫁接的幸运/盲栈残留？）③修 CoreBuff 盲池语义→REG（702+基线7+947+1441+1514）→860。**Light Goobert 5/8 红场共有——本井可能连锁多场。**
+- 探针状态：oracle（FLP/ACCO/RDAO）+gd（FLP/RDA/ACC/BGAIN/BCLEANSE）均为 np29fT 暂存未还原——下轮开工先 git checkout 全套+镜像重同步。
+- 账面 852/860 不变；全部提交已 push（→3bbd3d39+dd1bea37）。
