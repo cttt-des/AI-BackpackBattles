@@ -781,3 +781,12 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **数学终审路径（下一棒）**：全局链=seed(S) 后 PCG(inc=1442695040888963407)+rand()=1 LCG 步；双侧锚 3875780676（=78 步 shuffle×2 后第 79 抽）双侧实证同；窗 2 前消耗 gd=85 步（active2+C27+M27×2 窗）→模拟 seed(S) PCG 走 190 步 vs 191 步的 rand()%2——匹配 gd j=1 / ora j=0 者即真步数 → **若 oracle=86 步：那 1 步在 oracle activateItems→窗 0 路径或 t=0-1.483 的未知名调用**——用「oracle_fight.gd 手动路径+tick 步骤①-⑨逐段 grep Array/全局链」+模拟定段。
 - **702@1118 定性（三件套初轮）**：Blind timeout amount -7 v -6（同 t=11.4833）=**player blind 层差 1**——上游=Crown cleanseBlind(1) 到点 tick 差（Crown -1 每 1.05s 周期，gd 某轮早 1 tick 生效）→Timer/tick1diff 族残余（非新域）——下一棒=对拍 Crown cdTimer 到点序列（双侧 traced rng_log 的 (0.95,1.05) cd 行+timeout 行）定位差 1 tick 的计时器。
 - 本轮全部探针（CBS0/CBS2/GCHK/ARDbg/注入/_inj_call）**已还原零残留**+镜像 md5 同步；851/860 复核（compare-only）。
+
+## 6m37. ★ 947 数学终审：gd 锚后多 1 步全局链（双点验证）（2026-11-04 晚轮二）
+
+- **全局链常数定谳**：`seed(S)` → Godot `pcg32_seed(state=0,inc=PCG32_INC<<1|1=**2885390081777926815**,state+=seed,步进2)`——工程实测 INC 正是它；rand()=标准 pcg32_random_r（输出=pcg_out(步进前状态)）。947 seed=7499306。
+- **锚定**：污染轮双侧 post-order/pre-prepare 采样同=3875780676=锚后第 77 抽（模拟命中）——**双侧同锚铁证**。
+- **双点验证（假设 A 成立：gd 多 1 步）**：锚后 gd=115 步→窗 2 j=1（实测 ✓ post 不换 [BR,BP]）；ora=114 步→j=0（实测 ✓ 换 [BP,BR]）。窗 3 交叉验证：gd=115+21=136→j=0 ✓（post swap [BP,BR]）；ora=114+3=117→j=1 ✓（不换）——**四点全中**。
+- **差额定位收窄**：gd 锚后理论消耗=autoRage 2 pick（ARDbg 实证执行）+窗 0(2+27+27/28)+窗 1(2+27+20，M 循环 early return)=**实测 115 v 理论 ~114——多的 1 步在 gd harness 锚后独有路径**（窗谱精确重算待做）；**矛盾线索**：ARDbg 证 pickRandomEngine 执行但 trace **无 Gpick 行**（globalChainOpen 时序 or 日志条件）——查此矛盾即定位点。
+- **下一棒（图纸）**：①查 Gpick 缺日志矛盾（CoreRng.pickRandomEngine 写日志条件 globalChainOpen/и oracle_trace 在 prepare 时刻的值）②gd G 行全谱（窗 0/1 的 :80/:100/:164 行数+尺寸）精确重算总步→与 115 对账找多 1 步的宿主 ③修复（gd 删该步或 oracle 补）→REG（947+基线 7）→860。
+- 探针零残留（oracle 5 文件+gd 3 文件 checkout+镜像 md5 同步）；851/860 compare-only 复核；offpeak #156 与本节图纸同步接力。
