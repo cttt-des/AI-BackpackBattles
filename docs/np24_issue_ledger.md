@@ -912,3 +912,11 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **FD@1118 完整根因链（终版）**：DK Amethyst 的 `removeRandomBuffs(2)` 随机移除→**候选池构成/选择序列双侧分歧**（某次移除：oracle 移了 heat 层、gd 移了别的——或反之）→heat−cold 差 1→LG getSpeed 差→LG cd 节奏差→盲池 to 序差→Crown farthest 清洗选择差→盲层差→DK acc 差→acc roll 消耗差→rng 链位差→Blind timeout 错 u→idx1118/1119。
 - **下轮唯一靶（图纸终版）**：①读 removeRandomBuffs 实现（oracle Util/Core+gd 对应——随机选择的 rng 用法与候选池枚举序）②双侧打该函数针（候选池名表+选中名）→首个选择分歧点=池构成差的首证据 ③按差修（候选枚举序 or 移除规则）→REG（702+基线7+947+1441+1514）→860。**removeRandomBuffs 的随机枚举序（Array.shuffle? pick_random×n? 主链 roll?）是关键**——它在 trace 里的消耗面（roll 行）已证值序同→分歧在**候选集合**（池构成回环）——需先修池构成差的首环：**回环起点=最早一次「候选池构成差→选择差→池差」的自激**——离线重放 removeRandomBuffs 序列（双侧 trace 的 roll 值+当时池集合）可解。
 - 探针 np29fT 全套未还原（清单 §6m46+DragonKnight/LightGoobert 两侧+镜像）；账面 852/860；全部 push（→e45d649d+本笔）。
+
+## 6m53. ★ 702 核心不对称：oracle removeRandomBuffs(388 pick 行) v gd 0 行（2026-11-04 晚轮十六）
+
+- **决定性计数**：oracle 702 rng_log 的 `pickRandomElement` 行=**388**（=DK 双 Amethyst 的 onAttack rollChance 命中后的 removeRandomBuffs→pickRandomStacks→pickRandomElement×2/次 + 其他调用面）；**gd trace 的 pickRandomElement 行=0、Gpick 行=0**——**gd 的 pickRandomStacks 在 702 全场从未执行**（gd_core/CoreRng.gd:141 pickRandomElement=randi_range 追踪版，若执行必留行）。
+- **双侧 heat −1 事件都在**（i=70/71 同）→**两侧的 heat −1 走不同路径**：oracle=Amethyst onAttack(rollChance 命中)→removeRandomBuffs(2)（候选=opponent buffs，pickRandomElement 主链 2 抽/次）；gd=**未知路径**（候选：①Amethyst onAttack 的 rollChance 恒 false→removeRandomBuffs 不执行→−1 来自别处 ②gd 的 Amethyst.gd 行为差异）。**gd_core_items/Gems/Amethyst.gd 需逐行对拍 oracle**（onAttack 的 rollChance 条件/attach 的信号）。
+- **语义后果**：oracle 的 removeRandomBuffs 移除「随机 2 buff」（可含 Heat/Regen 任意）——gd 若走另一路径（如确定性移除 heat）→池演化分歧起点=**第一场带 Amethyst+DK 的攻击命中**（t=0.35）——比盲池/Crown 更早！**FD@1118 首环=此处**。
+- **下轮图纸**：①diff gd_core_items/Gems/Amethyst.gd v oracle（rollChance 条件/信号连接/buffRemoval 参数）②gd 侧给 Amethyst onAttack 打针（触发次/rollChance 值/removeRandomBuffs 入口）③对齐路径→REG（702+基线7+947+1441+1514）→860。**Amethyst 是 702 DK 宝石——1118 红场直接受益；其他红场的宝石构成待查**。
+- 探针 np29fT 全套仍未还原（§6m46 清单+DragonKnight/LightGoobert）；账面 852/860；全部 push（→31a34c66/6aef10c2/…）。
