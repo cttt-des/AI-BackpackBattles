@@ -829,3 +829,11 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **下一棒（图纸）**：①统一时钟语义重打 blind 池账（oracle [BGAIN]/[BCLEANSE] 已无条件打印、gd 已加同款 np29fT 暂存探针）——按事件流时间对齐双侧池演化，找首个池构成分歧操作 ②查 gd 跨 pass 盲状态不可复现（暖场 bus 嫁接的幸运/盲栈残留？）③修 CoreBuff 盲池语义→REG（702+基线7+947+1441+1514）→860。**Light Goobert 5/8 红场共有——本井可能连锁多场。**
 - 探针状态：oracle（FLP/ACCO/RDAO）+gd（FLP/RDA/ACC/BGAIN/BCLEANSE）均为 np29fT 暂存未还原——下轮开工先 git checkout 全套+镜像重同步。
 - 账面 852/860 不变；全部提交已 push（→3bbd3d39+dd1bea37）。
+
+## 6m43. 702 终审补遗：盲池账 diff 方法+假警报排除（2026-11-04 晚轮八）
+
+- **假警报排除**：gd DK 签名 2× 分布=2 pass 全同（361 签名×2+27×4）——**gd 跨 pass 可复现 ✓**（§6m42 的「pass1/pass2 不一致」=半分切错 pass 边界的对齐假象）。DK 11.3667 双 [ACC]=rollDA 后的双击（blind 19→21=对手 Goobert 中插盲）。
+- **时钟语义澄清**：oracle [ACCO] t=Util.time（进程钟）、gd [ACC] t=ctx.time——**两者不可直接比时间**（前轮「DK 攻击时刻不同」结论作废）；只可比 (pid,item,acc,lucky,blind) 状态元组。
+- **702 机制链（终版）**：盲池内部构成分歧（同总数不同池）→ DK acc 差（gd 5>0 消耗 acc flip v oracle ≤0 短路）→ rng 链位差 1 抽 → 下游 Blind timeout 取错 u（-7 v -6 @11.4833）→ alignment 首分歧 idx1118/1119。盲池账 diff 的正确姿势=按事件流重放双侧 CoreBuff 模型（gainTemporary 池 push+farthest 清洗+超时），首个状态分歧操作即根因——python 重放脚本可离线做（两侧 CoreBuff 语义已读透：oracle Buff.gd:87-300/gd CoreBuff.gd:130-345 逐字同构候选——差异或在 TemporaryStacks 结构/超时处理器 tick 对齐）。
+- **下轮图纸**：①python 离线重放盲事件流×双模型→定位分歧操作 ②若模型逐字同构→超时处理器（timer 驱动的 pool expiry 顺序）打针对照 ③修→REG→860。Light Goobert 5/8 红场——本井连锁预期最高。
+- 探针（FLP/RDA/ACC/ACCO/RDAO/BGAIN/BCLEANSE）**仍未还原**（np29fT）——下轮开工先 checkout：oracle(Core/Character.gd,Items/Item.gd,Utility/Util.gd)+gd_core(CoreRng.gd,CoreItem.gd,CoreCharacter.gd,CoreBuff.gd)+两镜像。
