@@ -893,3 +893,9 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **下轮主攻（收敛后的唯一靶）**：CoreBuff 的 **heat 衰减驱动对照**——oracle=Heat buff 的 timer（drive_timers 注册表 ⑥⑦，Util.oracleTimeLeft 注册表语义）+ onTimeout 池重扫；gd=_tick 自管 timer（tickBuffs ⑦）——**fire 的 tick 边界/池遍历**。方法=离线重放 type=107 事件流×双模型（§6m46 方法，type 换 107——heat 事件少、重放快）。
 - 探针 np29fT 全套（oracle 5 文件+gd 5 文件+DragonKnight/LightGoobert 两侧+镜像）**仍未还原**——下轮开工先全套 checkout+镜像重同步。
 - 账面 852/860；全部 push（→6aef10c2）。
+
+## 6m50 附言：Cheese Goobert heat +1 的投递 tick 差=最后一环（同轮终笔）
+
+- getHeat/getCold 逐字同构；heat 事件流（含 +6/+2/+2/+5/−1/+1/−1 全量）双侧逐位同——**池的输入输出全同**。但 [LGA] 实测 spd 差（heat−cold 2 v 1）⇒ **读数时刻的池状态不同** ⇒ 唯一可能=**1.4667 的 +1（Cheese Goobert heat）在两侧的生效 tick 不同**（oracle 事件戳 1.466667=池即刻入账 v gd 的 +1 实际入账晚 1+ tick——或反之）——**bus 派发/池入账的 tick 边界差**。
+- **下轮第一针**：双侧 gainTemporary(type=107) 的 [BGAIN] print t 值对比（+1 池的创建时刻差）——[BGAIN] 已有（np29t 两轮 log 在盘）——离线比对 type=107 的池账即可，零新跑。
+- 机制链完整：+1 入账 tick 差 → heat−cold 差 1 → LG getSpeed 差 → cd 节奏差 → 盲池 to 序差 → Crown 选择差 → 盲层差 → DK acc 差 → rng 位差 → timeout 错 u → idx1118/1119。**+1 入账差的最上游=Cheese Goobert 的 heal/heat 链触发时刻**（Cheese Goobert=受击回heat?——its trigger 链的 tick 边界）。
