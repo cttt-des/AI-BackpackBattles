@@ -853,3 +853,11 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **下轮图纸**：①对拍两侧 DK 的 bonusAccuracy 演化（[ACC] 已含 lucky/blind——补 bonusAccuracy 字段重跑一轮即得差值时刻表）②定位 addAccuracy 差的调用点→修→REG（702+基线7+947+1441+1514）→860。
 - 探针：np29fT 全套仍在树（oracle 3 文件+gd 5 文件+镜像）——下轮开工先 checkout 全套+镜像重同步（清单同 §6m43）。
 - 账面 852/860；全部提交已 push（→376e7909）。
+
+## 6m46. 702 终态定谳：DK strike 序列 K1 起分歧+盲池离线重放图纸（2026-11-04 晚轮十一；收口）
+
+- **[ACC]+bonus 字段终测**：DK strike 序列（按序号,忽略钟）——oracle pid0 K1=(acc−40,blind22) v gd K1=(0,20)；oracle pid1 K1=(−10,23) v gd (0,21)——**自 K1 起两侧 acc/blind 序列全面分歧**（blind 差达 8=整池），而 blind/lucky 事件流（type 109/101 全量）11.48 前逐位同。
+- **逻辑终审**：盲状态=f(盲事件流)——事件全同+状态分歧 ⇒ **两侧 CoreBuff 盲池内部记账语义有差**（gainTemporary 的 MAX_STACKS 截断/resist/reflect 分支/TemporaryStacks 结构/超时处理器驱动方式之一）——表现为同刻 blind 数差（DK acc 随之差→acc roll 消耗差→rng 链位差→timeout 错 u→idx1118）。
+- **下轮主攻（离线零成本）**：python 离线重放——提取 702 双侧盲事件流（全同），分别按 oracle Buff.gd:87-300 与 gd CoreBuff.gd:130-345 语义建模（重点：MAX_STACKS 截断、resistStacks/debuffReflectStacks 分支、temporaryStacks 的 farthest 清洗、超时 handler 的池遍历序、timer.start/stop 的 nextTemporaryTimeout 指针），逐步对账找首个状态分歧操作——该操作即修复点。**Light Goobert 5/8 红场——本修连锁预期最高。**
+- 探针终还原清单（np29fT 全套）：oracle(Core/Character.gd,Items/Item.gd,Utility/Util.gd,Items/Exclusive/DragonKnight.gd,oracle_fight.gd)+gd_core(CoreRng.gd,CoreItem.gd,CoreCharacter.gd,CoreBuff.gd)+gd_core_items(Exclusive/DragonKnight.gd,Exclusive/ChessBoard.gd,Exclusive/Chess/ChessPiece.gd)+两镜像——**下轮开工先 git checkout 全套+cp 镜像重同步**。
+- 账面 852/860；全部提交已 push（→5ad148cb）。offpeak #156 接力。
