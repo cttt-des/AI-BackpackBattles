@@ -861,3 +861,10 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **下轮主攻（离线零成本）**：python 离线重放——提取 702 双侧盲事件流（全同），分别按 oracle Buff.gd:87-300 与 gd CoreBuff.gd:130-345 语义建模（重点：MAX_STACKS 截断、resistStacks/debuffReflectStacks 分支、temporaryStacks 的 farthest 清洗、超时 handler 的池遍历序、timer.start/stop 的 nextTemporaryTimeout 指针），逐步对账找首个状态分歧操作——该操作即修复点。**Light Goobert 5/8 红场——本修连锁预期最高。**
 - 探针终还原清单（np29fT 全套）：oracle(Core/Character.gd,Items/Item.gd,Utility/Util.gd,Items/Exclusive/DragonKnight.gd,oracle_fight.gd)+gd_core(CoreRng.gd,CoreItem.gd,CoreCharacter.gd,CoreBuff.gd)+gd_core_items(Exclusive/DragonKnight.gd,Exclusive/ChessBoard.gd,Exclusive/Chess/ChessPiece.gd)+两镜像——**下轮开工先 git checkout 全套+cp 镜像重同步**。
 - 账面 852/860；全部提交已 push（→5ad148cb）。offpeak #156 接力。
+
+## 6m47. 盲池账数据完备+acc 快照语义澄清（2026-11-04 晚轮十二；交接）
+
+- **oracle 池账全史已提取**（np29t_ora8 stdout）：side0 blind 的 [BGAIN]（10 池:to=3.767…13.85）/ [BCLEANSE]（7 次 farthest）/ [BEXPIRE]（242 行全量）——DK strike 时刻的盲数重构：@9.3167=22（expiry 前）→@9.8167=16（−7 ✓）→@10.1833=22（+7−1 ✓）→@10.7833=22→@11.15=15（10.85 expiry −7 后、+7 增益未计入？？）——**@11.15 的 15 vs 池账预期 22 = 6 层缺口=分歧操作所在窗**（10.85 的 expiry/gain 顺序或 MAX_STACKS 截断）。
+- **acc 快照语义**：accuracy=updateItem 时的 getAccuracy() 快照（盲旧值）；[ACCO] 的 blind=print 时活值——两者可跨 expiry 窗（print acc=−5=快照时 blind 21、print blind=15=expiry 后）——**读 acc 差必须用快照时刻的盲值**。
+- **下轮主攻（不变）**：python 离线重放盲事件流×双 CoreBuff 模型——10.85 窗的顺序（gain 先 v expiry 先：oracle tick ③物品激活 vs ⑦计时器）与 MAX_STACKS 截断值（grep MAX_STACKS 常数）为首要嫌疑——gd 侧 tick 序（CoreCombat.physicsTick ③物品→⑦计时器）与 oracle 2c（①钟②角色③物品…⑥⑦计时器）**同为物品先**——但 gd 的 Buff 计时器=_timer_active 自管（tickBuffs ⑦）而 oracle=注册表 Timer（⑥⑦ drive_timers）——**fire 的 tick 边界差=嫌疑核心**。
+- 探针 np29fT 全套仍未还原（§6m46 清单）；账面 852/860；全部 push（→78610d6d）。
