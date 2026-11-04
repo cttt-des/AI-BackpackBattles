@@ -905,3 +905,10 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **heat 语义**：gainHeat=gainStacks(**永久池**,非 temporary——[BGAIN] 0 行的原因)；−1 衰减事件（t=0.35/1.4667/2.1833，used=False）的调用点**未定位**（loseHeat 全源=Item.gd:5111 item 层封装；Character 内部无 decay tick；GingerbreadMan 的 useHeat=used=True 事件非衰减）——衰减可能来自 **Item.gd 的 heat item 覆写**（某 heat 物品的 onTick/onCooldownEffect 调 loseHeat——如 Oil Lamp doCooldownEffect？或 RubyWhelp heat 的被动衰减在 **Character.gd _physics_process 之外**（Combat.gd tick 步骤②角色的 heat 衰减——oracle Core/Combat.gd 的 onTick）——**下轮首查=oracle Core/Combat.gd 全文 heat/107 引用+衰减物品定位**（t=0.35 的 −1 origin 为空名——origin=衰减物品！事件 origin 打印空=origin 结构非 dict（kind=item 但 name 缺？）——**用 raw json 查该事件 origin**即得衰减物品名。
 - 下轮首查 2 分钟内可完成：python 读 run702 events.json i=70 的 origin 字段 → 衰减物品名 → 对拍其脚本两侧 → 修。
 - 探针 np29fT 全套未还原（清单 §6m46+DragonKnight/LightGoobert 两侧）；账面 852/860；全部 push（→4c1addf4）。
+
+## 6m52. ★★ 702 FD 根因链最终闭合：DK Amethyst removeRandomBuffs（2026-11-04 晚轮终）
+
+- **heat −1 源定谳**：parent 链 i=67(DK 攻击 damage4)→i=69(102 −1)+i=70(**107 −1**)=**DK 双 Amethyst 宝石的 onAttack→removeRandomBuffs(buffRemoval=2)**——随机移除 2 个 buff（本例=Regeneration 1+Heat 1，双侧本例同选）。
+- **FD@1118 完整根因链（终版）**：DK Amethyst 的 `removeRandomBuffs(2)` 随机移除→**候选池构成/选择序列双侧分歧**（某次移除：oracle 移了 heat 层、gd 移了别的——或反之）→heat−cold 差 1→LG getSpeed 差→LG cd 节奏差→盲池 to 序差→Crown farthest 清洗选择差→盲层差→DK acc 差→acc roll 消耗差→rng 链位差→Blind timeout 错 u→idx1118/1119。
+- **下轮唯一靶（图纸终版）**：①读 removeRandomBuffs 实现（oracle Util/Core+gd 对应——随机选择的 rng 用法与候选池枚举序）②双侧打该函数针（候选池名表+选中名）→首个选择分歧点=池构成差的首证据 ③按差修（候选枚举序 or 移除规则）→REG（702+基线7+947+1441+1514）→860。**removeRandomBuffs 的随机枚举序（Array.shuffle? pick_random×n? 主链 roll?）是关键**——它在 trace 里的消耗面（roll 行）已证值序同→分歧在**候选集合**（池构成回环）——需先修池构成差的首环：**回环起点=最早一次「候选池构成差→选择差→池差」的自激**——离线重放 removeRandomBuffs 序列（双侧 trace 的 roll 值+当时池集合）可解。
+- 探针 np29fT 全套未还原（清单 §6m46+DragonKnight/LightGoobert 两侧+镜像）；账面 852/860；全部 push（→e45d649d+本笔）。
