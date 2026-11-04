@@ -927,3 +927,11 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **已定谳结论链**：①u 级首真分歧=DK acc roll（gd acc=5 消耗 v oracle acc=−5 短路，[ACC] 实证）②acc 差=盲层差（非 buff 分量）③盲层差=盲池 to 序/构成差 ④盲池 gain 间隔 tick 序列双侧分歧（首间隔 75 v 64，钟无关法）⑤**oracle removeRandomBuffs=388 pickRandomElement 主链行 v gd 0 行**（核心不对称——两侧 heat −1 路径不同）。
 - **下轮第一动作**：diff gd_core_items/Gems/Amethyst.gd 的 rollChance 触发（gd rollChance 恒 false 嫌疑→removeRandomBuffs 从未执行→heat −1 另路）——**Amethyst csv_chance 数据面核对**（battle_items.json Amethyst 的 chance 字段 v oracle ItemData.csv chance 列）→缺则补→REG→860。
 - 探针：np29fT 的 LightGoobert [LGA] 已随本笔还原；其余（FLP/RDA/ACC/ACCO/RDAO/BGAIN/BCLEANSE/DKA）已在前轮还原。树净、镜像同步。
+
+## 6m54. ★★★ 702 FD 真根因终定：1 层 lucky 差（2026-11-04 晚轮十七）
+
+- **决定性元组**（分歧 strike=DK rollDA r=0.428842 同链位双侧实证）：oracle [ACCO] pid=1 acc=0 lucky=1 blind=21 bonus=10 v gd real pass [ACC] pid=0 acc=5 lucky=0 blind=21（bonus=10 推算）——**blind 相同、唯一差=lucky 1 v 0**。acc 公式双验证：90+10+(1−21)×5=0（短路不抽 ✓）；90+10+(0−21)×5=−5（roll(−0.05)…wait acc=5 ⇒ lucky−blind=−19 ⇒ blind=19?——gd real pass 盲 19/21 两读数=strike 前后快照差，需下轮钉死；核心不变：**lucky 差 1→acc 差 5→roll 消耗差**）。
+- **前轮修正**：①"gd removeRandomBuffs 未执行"=探针文本假象（gd trace 491/493=randi_range(0,2)/(0,3) 双侧同值同选 ✓ removeRandomBuffs 正常）②"盲池 gain 间隔分歧"=print 钟抖动假象（间隔和 930 v 922 仅漂移）③盲层差假设作废（blind 双侧 21 同）——**真根因=lucky 栈记账差 1 层**。
+- **lucky 差的来源嫌疑（下轮图纸）**：①Cheese Goobert +1 lucky（t=5.7667）的 duration/过期语义（temporary lucky 过期 tick 差）②Lucky Cat 的 useStacks 消耗时机（lucky>0 闸的 tick 差）③Fedora +5 的池构成。**离线重放 lucky 事件流（type=101 全量）×双模型**——方法同 §6m46（事件流全同已验，状态差=模型差）。
+- **连锁**：lucky→getBuffAccuracyMod→acc→命中 roll→攻击节奏——所有含 LuckyCat/Cheese Goobert/Fedora 的红场（8 红全含概率高）。
+- 探针 np29fT 全套仍未还原（§6m46 清单）；账面 852/860；全部 push（→9a8f123f）。
