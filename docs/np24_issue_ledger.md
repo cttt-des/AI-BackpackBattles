@@ -884,3 +884,12 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **新主嫌疑=speed/cd 推进速率**：LG 的 cd 到点节奏差→getSpeed()/speedScale 状态差（702 有 Gloves of Haste——giveSpeed 链）→**speed 不进事件流**→完全可静默分歧。次嫌疑=LG 首 cd 的 adjustCooldown 抽（已证锚后值序同——但 LG 具体取哪个抽未定位）。
 - **下轮图纸**：①双侧打 LG getSpeed() 每帧针（env 门控）+首攻到点 tick 针→定 speed 差与首攻 tick 差 ②若 speed 同→对拍 LG 首 cd 值（prepare 时的 iterationCooldown——[ACD] 类针）③修→REG→860。**speed/cd 推进速率差候选=中晚簇全部 8 场的共同机制**（cd 驱动物品普遍）。
 - 探针 np29fT 全套仍在树（清单 §6m46）；账面 852/860；全部 push（→31a34c66）。
+
+## 6m50. ★★ 702 终版机制链闭合：heat−cold 差 1→LG speed→全部分歧（2026-11-04 晚轮十五）
+
+- **[LGA] 双侧终测**：LG 前 4 攻 spd=0.9804 双侧同；**第 5 攻起分歧**（ora pid0=0.9804 恒 v gd=0.9615；第 6 攻 ora pid1=0.9091 v gd=0.8929）。getSpeed=getStackSpeedMods=(**heat−cold**)×0.02 的 1/(1−x) 分支——spd 差=**heat−cold 差 1**（gd=2 v ora=1）。
+- **热事件流双侧全同**（type 107 全量：DK +6/+5、油灯 +2×2、衰减 −1 序列——逐位同）→**heat/cold 池状态差=池内部记账/衰减驱动差**（同盲池=同一 CoreBuff 类）——**Blind 池差与 Heat 池差同根**。
+- **完整机制链（终版）**：CoreBuff 池语义/衰减驱动差 → heat−cold 差 1 → LG getSpeed 差 0.02 → LG cd 到点节奏差（首池 7 tick、间隔 10 tick）→ 盲池 to 序差 → Crown farthest 清洗选择差 → 盲层差 → DK acc 差 → acc roll 消耗差 → rng 链位差 → Blind timeout 取错 u → idx1118/1119。
+- **下轮主攻（收敛后的唯一靶）**：CoreBuff 的 **heat 衰减驱动对照**——oracle=Heat buff 的 timer（drive_timers 注册表 ⑥⑦，Util.oracleTimeLeft 注册表语义）+ onTimeout 池重扫；gd=_tick 自管 timer（tickBuffs ⑦）——**fire 的 tick 边界/池遍历**。方法=离线重放 type=107 事件流×双模型（§6m46 方法，type 换 107——heat 事件少、重放快）。
+- 探针 np29fT 全套（oracle 5 文件+gd 5 文件+DragonKnight/LightGoobert 两侧+镜像）**仍未还原**——下轮开工先全套 checkout+镜像重同步。
+- 账面 852/860；全部 push（→6aef10c2）。
