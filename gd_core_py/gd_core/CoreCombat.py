@@ -286,6 +286,15 @@ class CoreCombat(GodotObject):
 		#   而晚 1 tick（修复前无条件递减本是对的，不能退）。
 		self.player.rebuildTimerSeen()
 		self.opponent.rebuildTimerSeen()
+		# ★ np38（run1118_r18 fd@422）：harness rebuild_timer_registry 覆盖 Main 树
+		#   **全部** Timer 节点（oracle_fight.gd:969-987），物品计时器（tscn
+		#   XxxTimer）不在角色影子链里——逐参战物品补锚（含宝石计时器=树 DFS 同
+		#   构）。缺此步则激活期 start 的物品计时器首拍被 eng!=_seen 判为外部
+		#   start 只登记不递减 → 恒晚 1 拍（Holy Spear BuffTimer wt=3 语料
+		#   ty8@3.0167 同帧 buffEnded，gd 恒晚 1 拍 → spear 冷却 4.0833 早火
+		#   fd@422；战中断 start 的 Crown wt=2 双侧全对不受影响）。
+		for item in _iter(items):
+			item.rebuildTimerSeen()
 
 		# ★ kernel_r2：对齐 Core/Combat.gd:165-168 onSwitchingToCombat 的
 		#   `Util.callDelayed(self, "clashSwords", 1.0)`——战斗场景切换时注册 1s
