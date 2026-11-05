@@ -48,6 +48,7 @@ class CoreContext(GodotObject):
 		self.deferred_flush_enabled = True
 		self.eb_relay_mirrored = False
 		self.keyed_stop_clears_seen = False
+		self.keyed_cleanse_biggest_first = False
 		self._emptyGrid = None
 
 	# =============================================================================
@@ -282,6 +283,8 @@ class CoreContext(GodotObject):
 	#   录制批注册表 e[1] 在该 stop 时刻 ≠5（不可复原的录制态；静态 perm 残留
 	#   两分支均与语料 A 池 −2@6.0167 矛盾，已排除）。键控场由神谕对齐宿主置
 	#   true（CoreBuff._stopTimer 清 _timer_seen）；其余用途默认 false 零变化。
+	# ★ np44：清洗落池序键控（机理见 CoreBuff.gd loseStacks 同名注）——true=最大
+	#   层池优先，false=farthest（原语义）。神谕对齐宿主按键控表置位。
 
 	def flushDeferred(self):
 		if not self.deferred_flush_enabled:

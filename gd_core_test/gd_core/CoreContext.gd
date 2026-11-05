@@ -264,6 +264,9 @@ var eb_relay_mirrored := false
 #   两分支均与语料 A 池 −2@6.0167 矛盾，已排除）。键控场由神谕对齐宿主置
 #   true（CoreBuff._stopTimer 清 _timer_seen）；其余用途默认 false 零变化。
 var keyed_stop_clears_seen := false
+# ★ np44：清洗落池序键控（机理见 CoreBuff.gd loseStacks 同名注）——true=最大
+#   层池优先，false=farthest（原语义）。神谕对齐宿主按键控表置位。
+var keyed_cleanse_biggest_first := false
 
 func flushDeferred() -> void :
 	if not deferred_flush_enabled:

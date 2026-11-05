@@ -619,6 +619,7 @@ class GDCoreEngine:
                  o_gem_lens: Optional[List[int]] = None,
                  warmup_time_ticks: int = 0,
                  keyed_stop_clears_seen: bool = False,
+                 keyed_cleanse_biggest_first: bool = False,
                  _r5_warm: bool = False,
                  _r5_warm_gate: int = 25000,
                  formal_ev_gate: int = 25000):
@@ -669,6 +670,8 @@ class GDCoreEngine:
         #   BUFF_STOP_CLEARS_SEEN；机理见 gd_core/CoreContext.gd 同名注）：
         #   构造后置 ctx 字段，_stopTimer 清 seen 使下次 start 恒走重同步支。
         self._keyed_stop_clears_seen = False if _r5_warm else bool(keyed_stop_clears_seen)
+        # ★ np44 清洗落池序键控（py 腿镜像，见 verify_oracle.py PY_CLEANSE_BIGGEST_FIRST）
+        self._keyed_cleanse_biggest_first = False if _r5_warm else bool(keyed_cleanse_biggest_first)
         # ★ np22 重录场正式腿事件闸对位（真源 = gd_core_test/OracleAlignBattle.gd
         #   NP22_REC_EV_GATE 表 + tools/verify_oracle.py PY_NP22_REC_EV_GATE）：
         #   三场新语料以 ORACLE_NOLIMIT=1（事件闸 200000）全长录制，正式腿
@@ -723,6 +726,7 @@ class GDCoreEngine:
         ctx.below_master = bool(below_master)
         # ★ np43 键控（py 腿镜像，见 __init__ 签名注）：Buff 清空 stop seen 清除
         ctx.keyed_stop_clears_seen = bool(self._keyed_stop_clears_seen)
+        ctx.keyed_cleanse_biggest_first = bool(self._keyed_cleanse_biggest_first)
         # ★ np24：deferred 冲刷关闭（与 gd 宿主 OracleAlignBattle.gd 同位；录制
         #   [M11]：阻塞循环无帧，战斗内 call_deferred 永不执行——Deck of Cards
         #   卡链零启动实证）。py 腿此前靠装配期缓存陈旧而偶然一致（deck cards=0）。
