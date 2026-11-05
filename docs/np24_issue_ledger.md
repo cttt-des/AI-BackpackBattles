@@ -1015,3 +1015,14 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **offpeak 铁律（重申）**：修复完所有问题（860 全绿+收口链）前不可主动退出。
 - **下轮图纸（残红 3）**：①第一嫌疑=Buff 计时器族（已三连翻绿：盲残差真值 R 标定/invul 延长分支 fallback/CoreTimer rebuildSeen 补锚——986@271 与 1120@868 的首分歧读台账 §6m59 前后）②§6m55 Twine totalChance 对拍备用 ③REG=基线7+本井+702/921/977/1022/1118 防退 ④860 全绿后收口链（compare-only→P4→README→commit→**push 含前序**→54 超长场）。
 - **workflow 教训（资产）**：①Amend 改任务书文本会使全缓存 miss（攻关员-RN 全重跑）——改任务书措辞前先想清楚 ②跑长循环的 workflow 到硬时限时用 Amend 收口（本轮即此模式）③探针 print 与 trace tag 匹配要用内容子串（tag 名双侧不同构）。
+
+## 6m62. 残红 3 场 FD 结构定谳+池账对拍方法论落地（2026-11-05 offpeak）
+
+- **池账对拍基建建成**：oracle 录制管线的 [BGAIN]/[BCLEANSE]/[BEXPIRE] 原生打印已验证可提取（np36 scratch log）；gd 侧同款 print 已入 gd_core/CoreBuff.gd（np42 temp，已还原）并跑通 run986 单场（np42_gd3 log 314 BEXPIRE）。**战斗时间归一**：oracle 进程钟−战起点（LS 8@6 gain 时刻，986 战 2=59.0333）=gd ctx.time——验证过 5 笔 cleanse/4 笔 expire 的 pick_to/to 逐一对齐。
+- **np36 修正**：§6m58 的「gd 多一发@6.5333」在 np36 修复后**已消失**（BEXPIRE 序列 5.0167×2/6.0167 amt=2/6.5333 amt=1 双侧逐位同；5 笔 cleanse 同池同量）——盲池账在 FD 窗已对齐，986 的残红在**更上游或别类型池**。
+- **残红 3 场 FD 结构（当前 alignment.json 实测）**：
+  - **986@271**：ora idx271=False Life Health+10 v gd 同位=Burning Banner Blind TO −1——gd 多一发盲 TO（Banner 池）在 oracle 无此火的时刻。np36 后盲池账对齐 ⇒ 分歧池=**战内 t≈300+ 的后段池**（np36 scratch log 只覆盖战内 0-118，后段需重录）。
+  - **1120@868**：ora=Light Goobert Blind TO **−11**（单事件 11 层合并池）v gd=Burning Banner TO −1——**池合并粒度差**（oracle 单池 11 层同 to；gd 拆小池各自到期）——LG 盲 gain 的 dur/入池路径对拍是靶。
+  - **1444@342**：Frostbolt Cold TO **−3 v −1**——Cold 池到期时余量差 2 层（事件流同→池内构成/清洗落点差）。
+- **下轮图纸**：①1120 最锋利——LG 盲 gain 的 amount/dur 序列双侧对拍（events 的 +N gain 事件已全同→入池 dur 或合并行为差）——查 LightGoobert.gd 的 blind 施加（gainTemporary amount/dur）与 gd 同位；②986 需重录 oracle 全战池账（np36 scratch 覆盖不足，重跑 ORACLE_DEBUG 单场到战终）；③1444 对拍 Cold 池的 cleanse 落点（spell scroll frostbolt 的 cold 施加+FA 清洗）。
+- 探针 np42（gd CoreBuff BGAIN/BCLEANSE/BEXPIRE）**已还原**；账面 857/860；全部 push（→8307625b）。
