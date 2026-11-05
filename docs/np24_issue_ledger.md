@@ -1005,3 +1005,13 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **修复（3 文件纯引擎面，126 行含注）**：gd_core/CoreTimer.gd +rebuildSeen()（_left=_eng; _seen=_eng=rebuild 登记 [left,left] 等价）；gd_core/CoreItem.gd +rebuildTimerSeen()（timers+gems 递归=场景树 DFS 同构）；gd_core/CoreCombat.gd activateItems 末尾（player/opponent.rebuildTimerSeen 同点）逐参战物品委托。镜像 gd_core_test/gd_core ×3（md5 同）+ gd_to_py 重生成（grep：CoreTimer.py:241/CoreItem.py:846/CoreCombat.py:297）。
 - **REG**：np38fix 门 run1118_r18 **gd+py 双腿 PASS 翻绿**（760 事件全同）；np38reg 门 16 场双腿 ALL PASS 零退（921/1116/1264/1514/570/1160/1029_r2/862/813_r12/635_r12/732_r12/947_r10/1441_r11/977/702/1022）；np38red 门 986_r12/1120_r18/1444_r18 FD 位置不变（271/868/342=各自原位，池族另根）。**860 全量刷账**：夹具先被 gen_fixtures 重建为 914（fights/ 在 np37 后新增 ~54 录制场——本会话第 2 次踩 §6m59 事故面，git checkout 还原 860 后 --compare-only 重刷 62.2s）；**860 口径 857/860 逐行一致（856→857）**，账面残 3 红 986@271/1120@868/1444@342；914 里的另 25 红全部不在 HEAD-860 账面（新录制场，含 rng-mechanism 已知族，留待语料扩容后另立项）。
 - **下轮提示**：①986@271 层二（§6m58「停走后同值重启立即 fire 形」）与 1120@868/1444@342（池族）仍按 §6m59 提示① 路线（sim1022v4 求解器+录制器级池账）；②本轮修复后**激活期 start 的物品计时器全部提前 1 拍**——凡「同位事件落点 tick 差」类新红场优先怀疑此族残余（[tfire]/[timer-fire] 双桩直接定谳，成本 ~2h）；③新录制 54 场未入账面，入账前须先过 gen_fixture 预检（events 非空）与排除族归类（run906_r18=gd_core_py-transpiler 转写已知）。
+
+## 6m61. ★ workflow 收口移交 offpeak（2026-11-05 13:54；按用户指令 13:50 收口停止写台账）
+
+- **workflow（dwfrun 系列）战果**：R1 702@1118 翻绿（盲永久残差真值 R=4，4ba4a104）→ R2 921@452 翻绿（makeInvulnerable 延长分支 fallback+停走 else，99eb6f14）→ R3' 977@497 翻绿（CoreBuff 重启分支基准=注册表 e[0] 优先+<0 回落 _timer_eng，e5a6ba4d）→ R4' 1118@422 翻绿（rebuild_timer_registry 物品计时器补锚，b97345a7/§6m60）——**账面 852→857/860，本段 +5 场**。
+- **移交时账面**：857/860，残红 3=run986_r12@206、run1120_r18@868、run1444_r18@342。
+- **工作树状态**：引擎四树（gd_core/gd_core_items/gd_core_py/gd_core_test）零探针零 WIP ✓（R4 重跑攻关员在定位阶段被停，无文件残留）；tools/docs 的 M=并行会话沉积与本段台账改动。
+- **未 push 事项**：本地 commit 至 b97345a7+本移交节 commit——**offpeak 开工先 git push（含前序全部本地 commit）**。
+- **offpeak 铁律（重申）**：修复完所有问题（860 全绿+收口链）前不可主动退出。
+- **下轮图纸（残红 3）**：①第一嫌疑=Buff 计时器族（已三连翻绿：盲残差真值 R 标定/invul 延长分支 fallback/CoreTimer rebuildSeen 补锚——986@271 与 1120@868 的首分歧读台账 §6m59 前后）②§6m55 Twine totalChance 对拍备用 ③REG=基线7+本井+702/921/977/1022/1118 防退 ④860 全绿后收口链（compare-only→P4→README→commit→**push 含前序**→54 超长场）。
+- **workflow 教训（资产）**：①Amend 改任务书文本会使全缓存 miss（攻关员-RN 全重跑）——改任务书措辞前先想清楚 ②跑长循环的 workflow 到硬时限时用 Amend 收口（本轮即此模式）③探针 print 与 trace tag 匹配要用内容子串（tag 名双侧不同构）。
