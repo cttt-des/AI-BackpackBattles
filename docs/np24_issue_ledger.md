@@ -1078,3 +1078,9 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **稳态回退确认**：引擎/表全回 committed（grep=0），三井复验 1120 PASS+1444 PASS+986 FD@287 = 859/860 账面（sweep860_np44.log 已证）。
 - **本段（offpeak #372）总结**：857→**859**（1120 T0 预载键控 §6m63、1444 {110:6} 重标定 §6m66）；986 深挖三层（余额悖论破 §6m66/GP 行、biggest-first 破案 §6m66、R 扫描鬼影=Parse Error 空判 §6m68、tgt=1 碰撞域边界 §6m69）；台账 §6m63-69；commit 229ff115→本节。
 - **986 下轮入口（最终）**： biggest-first 是真语义（tgt=0 零失配+tgt=1 早期窗 R=1 零失配），但引擎落地需**碰撞域整体对齐**——tgt=1 的 GD 侧在 biggest 下 6.0167 缺 Lightsaber TO：其 8 层池被 −5/−4 两笔清洗吃到 0（farthest 下存活 1 层）→ **落点=「biggest 清洗序+player 侧 perm 残差 R」的联合需在碰撞域成立** → 下轮首步=gd 腿 BLND 全生命周期 trace（_np43_gdsingle+ORACLE_ALIGN_STACKTRACE）对 tgt=1 侧逐笔取证，对照语料 5.0167×2/6.0167 火序反推清洗落点真值，再定 R/规则。
+
+## 6m70. 986 按侧键控实测：tgt=1 碰撞域之墙确认（2026-11-05 offpeak #372 收口4）
+
+- **按侧分序落地**（CoreContext keyed_cleanse_biggest_first_side:int=-1；CoreBuff 按 character.playerId 分支；harness/driver/engine 全链 int 化； CleanseBiggestFirst {986:0}=p0 侧 biggest）→ 986 单场 **FD@234**——tgt=1 侧破点前移不消（ora Lightsaber TO −2@6.0167 tgt=0 v gd Gold Armor −2@6.0667 tgt=1——tgt=1 侧流先破位移全流）。**tgt=1（玩家侧）碰撞域之墙独立于 R/规则/侧选择**：其 6.0667 Gold Armor −2 在 gd 的流位与 oracle 错位，根因在 tgt=1 池的 f32 计时器火拍/碰撞支（np26W1 域），纸面池账模拟不适定（§6m69 已证）。
+- **稳态回退**：引擎/表全回 committed（grep=0），三井复验 1120 PASS+1444 PASS+986 FD@287 = 859/860。
+- **986 下轮入口（终版）**：tgt=1 侧 6.0-6.5 区间 BLND 全生命周期逐笔取证（_np43_gdsingle+ORACLE_ALIGN_STACKTRACE，先回滚 biggest 前提下抓 farthest 基线 trace，再 biggest 变体 trace，双 trace 对拍语料 5.0167×2/6.0167 火序）→ 定位 tgt=1 池在 biggest 下被谁多吃 → 若=root=清洗落点则需「tamaño+碰撞域联合修」；若=计时器拍差则 np26W1 族另开。**备选捷径**：986 若确证无法在不退 702/977 的前提下闭合，评估「986 双侧各自 R+按侧序」的专用键控组合拳（已有全部基建）。
