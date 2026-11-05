@@ -747,13 +747,18 @@ func run_case(c: Dictionary, warmup := false) -> Dictionary :
 			say("    [lockup] tick %d 单 tick 墙钟 %.1fs——tick 内失控循环，止损判停"
 					% [ticks, (t_now - tick_t0) / 1000000.0])
 			break
-		if t_now - case_t0 > 60_000_000:
-			stop_reason = "墙钟闸 60s"
-			say("    [watchdog] 墙钟超 60s，提前判停（原版无此上限，纯兜底防消息队列溢出 dump）")
+		if t_now - case_t0 > 1_200_000_000:
+			stop_reason = "墙钟闸 1200s"
+			say("    [watchdog] 墙钟超 1200s，提前判停（原版无此上限，纯兜底防消息队列溢出 dump）")
 			break
-		if G.combatLog.events.size() > 25000:
-			stop_reason = "事件闸 25000"
-			say("    [watchdog] 事件数超 25000，提前判停（防消息队列溢出 dump，纯兜底）")
+		# ★ np46 事件闸全长（台账 §6m83，ORACLE_NOLIMIT 语义=200000，np22 抬闸版
+		#   同形 output/_recovery/oracle_fight_lifted.gd）：重录必须全长——「语料
+		#   截断·严格前缀」簇（§6m77-81 五场）就是旧闸 25000 截的（gd≡py 全等、
+		#   语料无终局事件）。墙钟闸同批放宽（60s→1200s，np22 抬闸版同值）：
+		#   否则长场触 60s 墙钟闸仍截（§6m63 实测 run1124/1125 55s 游戏时即止）。
+		if G.combatLog.events.size() > 200000:
+			stop_reason = "事件闸 200000"
+			say("    [watchdog] 事件数超 200000，提前判停（防消息队列溢出 dump，纯兜底）")
 			break
 	_in_battle = false
 	# ★ 逐 tick 链状态落盘（ORACLE_DEBUG 时）：与内核 OracleAlignBattle 的
@@ -1310,7 +1315,8 @@ func harness_notes() -> Array :
 		"- [M9] 防泄漏三件套：池孤儿逐个 free（原仅丢引用）、场末清扫 ItemAnimations/Labels 瞬态节点、[M2] 基础上每 tick 墙钟/单 tick 尖峰双闸（5s/120s）止损失控场",
 		"- [M10] 长战斗每 60 tick 清扫 Labels/ItemAnimations（>400 子节点归还池/释放）——纯视觉节点，防 2.7 万事件级战斗 tick 成本爬升触墙钟闸",
 		"- [M11] 进程配额 ORACLE_FIGHT_CHUNK（外层驱动续跑）：阻塞循环下 MessageQueue 只能帧末 flush，跨场累积至溢出会逐条刷陈旧目标错误；配额退出=干净 flush，resume 幂等续接",
-		"- [M12] 兜底三闸（每 tick 检查）：单 tick 墙钟>5s(lockup)/单场墙钟>60s/事件数>25000——2.7 万事件级战斗每事件排队数十条 Control 布局消息，约 90 万条触发 MessageQueue 溢出 dump（3.5GB）；被截断的战斗照常 dump 已产生事件，status 如实标 timeout",
+		"- [M12] 兜底三闸（每 tick 检查）：单 tick 墙钟>5s(lockup)/单场墙钟>1200s/事件数>200000（np46 抬闸，见 [M14]）——2.7 万事件级战斗每事件排队数十条 Control 布局消息，约 90 万条触发 MessageQueue 溢出 dump（3.5GB）；被截断的战斗照常 dump 已产生事件，status 如实标 timeout",
+		"- [M14] np46 事件闸全长（台账 §6m83，ORACLE_NOLIMIT 语义=200000，np22 抬闸版同形）：重录给全部场抬 recording 事件闸 25000→200000、墙钟闸 60s→1200s——「语料截断·严格前缀」簇（§6m77-81 五场）即旧闸 25000 所截，全长录制后自然终局事件（type=111/112+winner）齐备",
 		"- [M13] np46 逐案隔离（台账 §6m82）：每场开战前跨案/跨执行累积态归零（T0 绝对钟 Util.time/clockTime/frameCounter=0、EventBus.disconnectAll、oracleTimerLefts/oracleDelayedTimers 清、ropeSpeedups/cubeAdvanced/sandbagActive/fatigueCounter/fatigueDamageSource 归零、双侧角色 attackMovingForward=false+attackSoundReadyTime=-1+damageAnimation stop 复位+全 buff permanentStacks=0+物品 buffLabelPositionTimestamps/usedStacks 清）——初态=gd_core 全新 CoreContext，零 rng 消耗",
 		"- [M5] UI/音频照常调用但入虚空；其 Util.rng 消耗按原版保留（docs/rng_truth.md §1.4-4）",
 		"- 隔离：config/name=BackpackBattlesOracle；history.db 用本地快照副本（原快照只读）",
