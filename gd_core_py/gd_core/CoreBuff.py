@@ -558,6 +558,12 @@ class CoreBuff(GodotObject):
 		# _tick 早退等价该 continue；_timer_left 冻结在遗留值，语义同 ≤0）。
 		self._timer_active = False
 		self._timer_eng = 0.0
+		# ★ np43（键控，ctx.keyed_stop_clears_seen 机理见 CoreContext.gd 同名注）：
+		#   语料 run986_r12 6.4833 清空 stop 后，6.5167 同 dur gain 须重同步（满
+		#   时长）——清 _timer_seen 使下次 start 的 eng!=seen 恒走重同步支。非键控
+		#   场零变化（np26W1 碰撞支语义保留，run633 族铁证）。
+		if self.ctx.keyed_stop_clears_seen:
+			self._timer_seen = 0.0
 
 
 	def isTimerActive(self):
