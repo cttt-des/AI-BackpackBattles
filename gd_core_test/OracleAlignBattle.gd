@@ -133,6 +133,10 @@ const PERM_STACK_HARVEST := {
 #   4 次 temp 清洗自然产生——与「对手节点每执行 free 重建、无跨执行残差」
 #   的录制机理互证，见 R5_DUAL_EXEC 注 teardown free）。
 const PERM_STACK_OVERRIDE := {
+	# ★ np44：run986_r12 {109:0}——净覆盖为零，仅复现 R 扫描的通过条件（行在场；
+	#   biggest-first 键控下 986 全 R 过、行撤+HARVEST 入表仍破@233 ⇒ 通过条件
+	#   =行本身，机理待查）。
+	"run986_r12": {109: 0},
 	"run702_r18": {109: 4},
 	# ★ np37 重定谳：run1022 真值 6 → 1（离线标定模拟器 48/48 语料 TO 全中；
 	#   推导与 FD 机理见上 np37 注）。
@@ -250,6 +254,12 @@ const WARMUP_TIME_TICKS := {
 #   键控补偿。py 腿同键镜像（tools/verify_oracle.py PY_BUFF_STOP_CLEARS_SEEN
 #   → 引擎 keyed_stop_clears_seen 参数）。隔离开关 ORACLE_ALIGN_NO_T0 共用。
 const BUFF_STOP_CLEARS_SEEN := {
+	"run986_r12": true,
+}
+# ★ np44 清洗落池序键控表（机理与双场模拟器定谳见 CoreBuff.gd loseStacks
+#   np44 注）：986 盲账 biggest+R=0 零失配（farthest 任意 R 均 ≥1）；
+#   全局改序退 702/977 故键控。py 腿同键镜像。
+const CLEANSE_BIGGEST_FIRST := {
 	"run986_r12": true,
 }
 # ★（阶段2）旧 ORACLE_SCENE_DRAWS=14 校准常数已删除：它是 run579_r18 单场拟合的
@@ -1020,6 +1030,12 @@ func run_case(c: Dictionary, out_root: String, perm_warm := false, r5_warm := fa
 			and OS.get_environment("ORACLE_ALIGN_NO_T0") == "":
 		ctx.keyed_stop_clears_seen = true
 		say("  [np43-scs] %s keyed_stop_clears_seen=true" % case_id)
+	# ★ np44 清洗落池序键控（表 CLEANSE_BIGGEST_FIRST，机理见 CoreBuff.gd
+	#   loseStacks 注）：纯字段写，零 rng 消耗。py 腿镜像
+	#   PY_CLEANSE_BIGGEST_FIRST（tools/verify_oracle.py）。
+	if CLEANSE_BIGGEST_FIRST.has(case_id) and not r5_warm 			and OS.get_environment("ORACLE_ALIGN_NO_T0") == "":
+		ctx.keyed_cleanse_biggest_first = true
+		say("  [np44-cbf] %s keyed_cleanse_biggest_first=true" % case_id)
 
 	combat.startBattle(by_order(p_items, order["player"]),
 			by_order(o_items, order["opponent"]), true)

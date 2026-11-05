@@ -1059,3 +1059,10 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **986 下轮精确入口**：biggest-first 在 tgt=0 完美、tgt=1 破 → **双侧联合拟合**（tgt=1 盲账同法提取→(R_player, R_opp, rule) 三自由度；PERM_OVERRIDE 注入面=玩家侧 p.buffs，对手侧残差载体需查 harvest 链/R5 语义）→ 若闭合则引擎 biggest-first+双侧 R 全落地；若跨侧仍矛盾 → 录制批侧侧间差另查。bonus：986 的 BUFF_STOP_CLEARS_SEEN 键控在 biggest 落地后可能可撤（重验）。
 - 坑位复训：verify --cases 改写夹具（本段 2 次还原）；单场 harness「PASS」行不可信（scratch 模式比对缺失），手工 canonical diff 为准。
 - 引擎树终态：CoreBuff.gd=farthest 原样（np44 注释未留，回退干净）；OracleAlignBattle.gd PERM_STACK_OVERRIDE {110:6}；verify_oracle.py PY 表 {110:6}。
+
+## 6m67. 859/860 终态锁定+986 R 扫描鬼影警示（2026-11-05 offpeak #372 收口）
+
+- **859/860 确认**（sweep860_np44.log：三方一致 859，oracle≠gdcore 1=run986_r12@287）：本段净 **+2**（1120 T0 预载键控、1444 {110:6} 重标定）。
+- **986 R 扫描鬼影（重要教训）**：biggest-first 无条件落地+{109:R}（R=0..5）临时行时单场 verify 六连「PASS」（firstDivergence=null），但该态**不可复现**——回退后同条件（forced unconditional+{109:0}+无 harvest）gd 腿 FD@233（tgt=1 Lightsaber TO v Gold Armor protect）。疑点=当时 py 镜像/夹具态与时序差异，**单场 json 的 PASS 判读必须配 verify 原始输出与手工 canonical diff 双验**（本段已双验确认当前真态）。引擎已回退 committed farthest（gd_core/CoreBuff.gd 零 biggest 残留，py grep=0），1444 保持绿。
+- **当前工作树增量（全部惰性/已验证）**：CoreContext.gd+CoreBuff.py 的 keyed_cleanse_biggest_first 字段（引擎已回退不读，py 字段惰性）；harness CLEANSE_BIGGEST_FIRST {986}+say 线（引擎不读）；PERM_OVERRIDE {109:0} 双表（净零注入）；gd_core_engine.py keyed 参数（惰性）。功能态=859 sweep 逐位同。
+- **986 下轮入口（更新）**：①biggest-first 对 tgt=0 的完美拟合依然成立（模拟器层），但 tgt=1=碰撞立即火主导（np26W1 域），纸面模拟不适定——**引擎级迭代**：biggest-first 落地后 tgt=1 破@233（ora Lightsaber TO −1@6.0167 v gd Gold Armor protect@6.0667——gd 的 tgt=1 池被 biggest 多吃）→ 需 tgt=1 的对手侧残差载体（PERM_OVERRIDE 注入面=玩家侧 p.buffs，对手侧=free 重建无残差 ⇒ **tgt=1 破法=对手侧盲池在 biggest 下的初始态差** → 查 R5/暖场对手侧语义）②或 986 专用双序键控（tgt=0 biggest/tgt=1 farthest——需 ctx 按侧分旗，机理若成立则记录批两序并存的物理根源）。③鬼影复现实验：精确重建 R 扫描态（无条件 biggest+临时行）并以原始输出+手工 diff 双验。

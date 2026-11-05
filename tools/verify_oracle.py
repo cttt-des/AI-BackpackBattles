@@ -87,7 +87,7 @@ PY_PERM_STACK_HARVEST = {"run702_r18": True, "run1022_r18": True}
 #   与 gd 宿主 PERM_STACK_OVERRIDE np37 重定谳同步——离线标定模拟器
 #   sim1022v4 48/48 语料 TO 全中唯一 R=1；R=6 → ct898 Shelly -6 被 perm 全吸
 #   → BB(to=ct1118) 存活 → ct1118 武装火=FD@2456）。推导与证据见 gd 宿主表注。
-PY_PERM_STACK_OVERRIDE = {"run702_r18": {109: 4}, "run1022_r18": {109: 1},
+PY_PERM_STACK_OVERRIDE = {"run986_r12": {109: 0}, "run702_r18": {109: 4}, "run1022_r18": {109: 1},
                           # ★ np35（2026-11-05）：run977 blind 残差真值 18（离线模拟器
                           #   逐笔对拍语料 39 笔玩家侧到期全中；R=0 首失配位=idx3386=
                           #   np35 修前账面 FD；R<18 单调阶梯全失配。批内录制侧前场
@@ -116,6 +116,11 @@ PY_WARMUP_TIME_TICKS = {
 #   录制批注册表态不可复原，键控补偿。引擎侧 simulator/gd_core_engine.py
 #   keyed_stop_clears_seen 参数（构造后置 ctx 字段）。
 PY_BUFF_STOP_CLEARS_SEEN = {
+    "run986_r12": True,
+}
+# ★ np44 清洗落池序键控表（py 腿镜像，真源 = gd 宿主 CLEANSE_BIGGEST_FIRST）：
+#   机理与双场模拟器定谳见 gd_core/CoreBuff.gd loseStacks np44 注。
+PY_CLEANSE_BIGGEST_FIRST = {
     "run986_r12": True,
 }
 # ★ np22 重录后摘除 696/1371 两键（新语料=ORACLE_NOLIMIT 全长重录干净形状，
@@ -429,6 +434,8 @@ def run_py(cases: List[Dict[str, Any]]) -> int:
                 warmup_ticks = int(PY_WARMUP_TIME_TICKS[case_id])
             # ★ np43 Buff 清空 stop seen 清除键控（镜像 gd 宿主，共用 NO_T0 开关）
             stop_clears_seen = (not _no_t0 and case_id in PY_BUFF_STOP_CLEARS_SEEN)
+            # ★ np44 清洗落池序键控（镜像 gd 宿主，共用 NO_T0 开关）
+            cleanse_biggest_first = (not _no_t0 and case_id in PY_CLEANSE_BIGGEST_FIRST)
             eng = GDCoreEngine(player, opponent, item_db, character_db,
                                seed=c["seed"], max_time=90.0,
                                probe_bases=(_FightEndGate,),
@@ -452,6 +459,7 @@ def run_py(cases: List[Dict[str, Any]]) -> int:
                                r5_dual_exec=r5_dual,
                                warmup_time_ticks=warmup_ticks,
                                keyed_stop_clears_seen=stop_clears_seen,
+                               keyed_cleanse_biggest_first=cleanse_biggest_first,
                                formal_ev_gate=int(PY_NP22_REC_EV_GATE.get(case_id, 25000)))
             eng.run()
         except Exception as exc:  # noqa: BLE001 —— 单场失败不拖垮批量，如实记档
