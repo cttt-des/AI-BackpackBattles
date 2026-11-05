@@ -103,6 +103,20 @@ const PERM_STACK_HARVEST := {
 #     run1022_r18 PLAYER Blind(109) = 6：50/50 弹批吻合；R≤3 在 1118（语料
 #       Banner TO -1 弹批丢失，即现首分歧位）失配，R=4/5 在 1226/1357
 #       NO-BATCH；R=6 起全洁（P 不再耗尽，弹批对 R 不再敏感，取最小值）。
+# ★ np37 重定谳（2026-11-05，offpeak 接力）：run1022 真值 6 → **1**。np20 的
+#   R=6 推导（同批「R=6 起全洁、弹批对 R 不敏感」——R≥6 在弹批视野内不可
+#   分辨，np20 自己取了「最小可分辨值」而非真值）系过期推导残留；np37 以
+#   离线标定模拟器（oracle harness 全 f64 时钟 + f32 引擎量化逐帧模型，
+#   output/_np37_scratch/sim1022v4.py）逐笔对拍语料 48 笔 p0 池 TO
+#   （tick+amount+origin 三元组）：R=1 全中（唯一）；R=0 LEN 47≠48；R≥2 起
+#   超产/错位单调恶化。R=6 的直接 FD 机理=ct898（t=14.9667）Shelly -6 清洗
+#   被 perm 全额吸收（R=6 时 perm=R+SB增益-前清洗≈9≥6）→ BB@ct817 的临时条目
+#   （to=ct1118）存活并被 ct1080 fire 后的 rearm 武装 → ct1118 当拍 fire =
+#   账面 FD 事件（BB TO -1@t=18.6333）；R=1 时 perm 在 ct898 耗尽、最远优先
+#   吃掉 3 个临时条目（含 to=ct1118 者与 LG to=ct1119 前 1 tick 者）→ ct1080
+#   rearm 武装 LG(7@18.65) → ct1119 火 = 语料。gd 腿实测（np37blnd BLND 全史）
+#   佐证：fr1118 先 lose(idx15 最远条目) 再 fire(idx0=(1@18.63)) 逐位=FD。
+#   与 np30 的 run702 1→4 同族（np20 推导残留批量复验）。
 #   仅本表键控场生效（键 ⊆ PERM_STACK_HARVEST）；零 rng 消耗（播种前纯字段
 #   写）；隔离开关沿用 ORACLE_ALIGN_NO_PERM_HARVEST=1（关收割即关本覆盖，
 #   单笔隔离用）。
@@ -120,7 +134,17 @@ const PERM_STACK_HARVEST := {
 #   的录制机理互证，见 R5_DUAL_EXEC 注 teardown free）。
 const PERM_STACK_OVERRIDE := {
 	"run702_r18": {109: 4},
-	"run1022_r18": {109: 6},
+	# ★ np37 重定谳：run1022 真值 6 → 1（离线标定模拟器 48/48 语料 TO 全中；
+	#   推导与 FD 机理见上 np37 注）。
+	"run1022_r18": {109: 1},
+	# ★ np35（2026-11-05）：run977_r18 PLAYER Blind(109) = 18。离线模拟器逐笔
+	#   对拍语料 39 笔玩家侧到期全中（R 单调阶梯 23→39，R<18 全部失配）；
+	#   R=0 首失配位=idx3386（t=20.816667 LG Blind TO -11 v -10）= np35 修前
+	#   账面 FD 逐位吻合（求解器自证）。残差机理=批内录制侧前场残留（np25-p1
+	#   Buff.reset 之前录制；clean warmup 终局 109=0 ⇒ 非同 case 多执行形状，
+	#   故 OVERRIDE-only 不入 HARVEST——干净暖场其他维终局值≠语料前场残留，
+	#   不注入以免引入新面）。
+	"run977_r18": {109: 18},
 	# ★ np22（1444 见 PERM_STACK_HARVEST np22 增行注）：暖场收割（=exec1 干净
 	#   终局）Cold(110)=0，但新语料=exec3 携带 exec2 终局残差——exec2 带着
 	#   exec1 残差（100:129/106:83/…）跑出的净化路径使自身终局 Cold 残差 ≥1

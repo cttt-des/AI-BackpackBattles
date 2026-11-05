@@ -83,7 +83,17 @@ PY_PERM_STACK_HARVEST = {"run702_r18": True, "run1022_r18": True}
 # ★ np30（2026-11-05）：run702 blind 残差真值 1→4（与 gd 宿主 PERM_STACK_OVERRIDE
 #   np30 重定谳同步；R=4 全中语料 31 笔玩家侧到期、R=3 @24.867 失配、R=1 正是
 #   FD@1118 LG Blind TO -7 v -6 的直接根因）。推导与证据见 gd 宿主表注。
-PY_PERM_STACK_OVERRIDE = {"run702_r18": {109: 4}, "run1022_r18": {109: 6},
+# ★ np37（2026-11-05）：run1022 blind 残差真值 6→1（np20 同批过期推导批量复验；
+#   与 gd 宿主 PERM_STACK_OVERRIDE np37 重定谳同步——离线标定模拟器
+#   sim1022v4 48/48 语料 TO 全中唯一 R=1；R=6 → ct898 Shelly -6 被 perm 全吸
+#   → BB(to=ct1118) 存活 → ct1118 武装火=FD@2456）。推导与证据见 gd 宿主表注。
+PY_PERM_STACK_OVERRIDE = {"run702_r18": {109: 4}, "run1022_r18": {109: 1},
+                          # ★ np35（2026-11-05）：run977 blind 残差真值 18（离线模拟器
+                          #   逐笔对拍语料 39 笔玩家侧到期全中；R=0 首失配位=idx3386=
+                          #   np35 修前账面 FD；R<18 单调阶梯全失配。批内录制侧前场
+                          #   残留，OVERRIDE-only 不入 HARVEST——推导与证据见 gd 宿主
+                          #   PERM_STACK_OVERRIDE np35 注）。
+                          "run977_r18": {109: 18},
                           "run1371_r18": {101: 1, 102: 41, 104: 2, 105: 326,
                                           106: 2, 107: 86, 110: 2},
                           "run1444_r18": {100: 129, 102: 4, 103: 10, 106: 83,
@@ -241,13 +251,40 @@ def run_godot(case_ids: Optional[List[str]] = None,
         #   （沙箱禁匿名管道，capture_output 会 WinError 5）。
         import godot_headless as _gh
         cmd = _gh.cmd(project="gd_core_test", script="OracleAlignBattle.gd")
-        p, log_path, _fh = _gh.spawn(cmd, label="gd_r%d" % round_i,
-                                     env_extra={"APPDATA": env["APPDATA"],
-                                                "ORACLE_ALIGN_OUT": GD_OUT,
-                                                **({"ORACLE_ALIGN_CHUNK": str(chunk)}
-                                                   if chunk > 0 else {})})
+        # ★★★ 2026-11-01 修的**严重 bug**：这里过去从不下发 ORACLE_ALIGN_CASES，
+        #   于是 GDScript 侧（OracleAlignBattle.gd:1149-1161）看不到定向清单，
+        #   每个 gd 分片进程都按 res://oracle_align_cases.json 跑**全量**。
+        #   后果实测（860 场全量刷账）：
+        #     · 5 个分片各跑 860 场 = 5 倍工作量，还互相争同一批 events.json；
+        #     · 墙钟 29 分钟 ≈ 单进程全量的 22.6 分钟 —— **并行度 5，收益 0**；
+        #     · 多个进程并发写同一 events.json，产物有竞争风险。
+        #   修法：只要本轮的 ids 是**真子集**（分片 worker 就是这种情况），就显式下发；
+        #   全量单进程时不下发（省掉 ~10KB 环境变量，且保留调用方经 os.environ
+        #   自行设置的能力，例如 tools/_np21_gate.py 就是这么用的）。
+        extra = {"APPDATA": env["APPDATA"], "ORACLE_ALIGN_OUT": GD_OUT}
+        if chunk > 0:
+            extra["ORACLE_ALIGN_CHUNK"] = str(chunk)
+        all_fixture = fixture_case_ids()
+        if case_ids is not None and len(ids) < len(all_fixture):
+            extra["ORACLE_ALIGN_CASES"] = ",".join(ids)
+            expect = len(ids)
+        else:
+            expect = None
+        p, log_path, _fh = _gh.spawn(cmd, label="gd_r%d" % round_i, env_extra=extra)
         _fh.close()
         last_rc = p.wait()
+        # ★ 自证「分片清单真的生效了」：GDScript 侧收到定向清单会打印
+        #   「★ 定向：ORACLE_ALIGN_CASES → N 场」。N 与本片场数不符 → 说明它又跑了
+        #   全量（即上面的 env 下发失效），此时如实报错，绝不静默当成跑完。
+        if expect is not None:
+            _txt = _gh.read_log(log_path)
+            _m = re.search(r"ORACLE_ALIGN_CASES\s*→\s*(\d+)\s*场", _txt)
+            if _m is None or int(_m.group(1)) != expect:
+                print("[godot][BUG] 本片 %d 场的定向清单没生效（日志里 %s）"
+                      "——它会跑全量，已中止以免 5 倍重复劳动"
+                      % (expect, "无定向行" if _m is None else "定向 %s 场" % _m.group(1)),
+                      file=sys.stderr)
+                return -1
         done_after = sum(1 for cid in ids
                          if _event_count(os.path.join(GD_OUT, cid, "events.json")) > 0)
         print("[godot] 第 %d 轮：退出码 %d，完成 %d/%d" % (round_i + 1, last_rc,
@@ -802,7 +839,10 @@ def _spawn_workers(subcmd: str, buckets: List[List[str]], tmpdir: str,
         with io.open(lst, "w", encoding="utf-8") as fh:
             json.dump(shard, fh)
         log = open(os.path.join(tmpdir, "%s_%d.log" % (log_prefix, i)), "wb")
-        procs.append((i, len(shard), subprocess.Popen(
+        # ★ 走 gh.py_popen 而非裸 Popen：worker 自己也要落在**隐藏桌面**上。
+        #   否则搜狗 IME 注入 worker 后，它弹的框就出现在用户屏幕上（2026-11-02 定位）。
+        import godot_headless as _gh2
+        procs.append((i, len(shard), _gh2.py_popen(
             [sys.executable, "-X", "utf8", os.path.abspath(__file__), subcmd, lst],
             cwd=ROOT, stdout=log, stderr=subprocess.STDOUT, env=_worker_env(i))))
     return procs
@@ -868,6 +908,41 @@ def run_py_parallel(cases: List[Dict[str, Any]], jobs: int) -> int:
     return rc_all
 
 
+def _split_leg_budget(n_cases: int, gd_jobs: int, py_jobs: int) -> Tuple[int, int]:
+    """把**总**并行预算分给 gd / py 两条腿（2026-11-01 修）。
+
+    ★ 修的是什么 bug：过去两腿各叫一次 auto_jobs()，各自都能拿到 5，于是
+      **同时在跑的 worker 上限是 5+5=10**，而不是文档说的 PARALLEL_MAX_JOBS=5。
+      实测（30 场样本）峰值 **27 个 python + 5 个 Godot**，机器明显卡顿。
+      更糟的是 py 那一侧还是**只起不收**（见下面的滚动池修复），最多堆到 25 个。
+
+    ★ 现在的口径：
+      · 用户**显式**给了 --gd-jobs / --py-jobs → 按用户给的值（不截断、不改写），
+        但另一条腿若没给，就从"总预算 - 已给"里分，避免叠加超限；
+      · 都没给（自动）→ 总预算 = auto_jobs(n)，按 6:4 分给 gd / py
+        （gd 腿跑真 Godot 更重，给它多一点），两项都至少 1。
+    """
+    total = auto_jobs(n_cases, 0)
+    gd_req = int(gd_jobs or 0)
+    py_req = int(py_jobs or 0)
+    if gd_req > 0 and py_req > 0:
+        # 两个都显式：尊重用户，只提示可能的过载
+        if gd_req + py_req > total:
+            print("[legs][提示] 显式要求 gd %d 路 + py %d 路 = %d 路，超出自适应预算 %d；"
+                  "按显式值执行，机器可能吃紧" % (gd_req, py_req, gd_req + py_req, total),
+                  file=sys.stderr)
+        return min(gd_req, PARALLEL_MAX_JOBS), min(py_req, PARALLEL_MAX_JOBS)
+    if gd_req > 0:
+        gd_n = min(gd_req, PARALLEL_MAX_JOBS)
+        return gd_n, max(1, min(total - gd_n, PARALLEL_MAX_JOBS))
+    if py_req > 0:
+        py_n = min(py_req, PARALLEL_MAX_JOBS)
+        return max(1, min(total - py_n, PARALLEL_MAX_JOBS)), py_n
+    gd_n = max(1, min(PARALLEL_MAX_JOBS, int(round(total * 0.6))))
+    py_n = max(1, min(PARALLEL_MAX_JOBS, total - gd_n))
+    return gd_n, py_n
+
+
 def _run_both_legs(cases: List[Dict[str, Any]], gd_jobs: int, py_jobs: int,
                    skip_godot: bool = False, skip_py: bool = False) -> None:
     """gd 腿（Godot 子进程）与 py 腿（纯 Python）**重叠执行**（2026-10-30）。
@@ -896,8 +971,7 @@ def _run_both_legs(cases: List[Dict[str, Any]], gd_jobs: int, py_jobs: int,
         return
 
     case_ids = [c["case_id"] for c in cases]
-    gd_n = auto_jobs(len(case_ids), gd_jobs)
-    py_n = auto_jobs(len(case_ids), py_jobs)
+    gd_n, py_n = _split_leg_budget(len(case_ids), gd_jobs, py_jobs)
     if gd_n <= 1 and py_n <= 1:
         _run_legs_serial(case_ids, cases, gd_jobs, py_jobs)
         return
@@ -915,9 +989,54 @@ def _run_both_legs(cases: List[Dict[str, Any]], gd_jobs: int, py_jobs: int,
     t0 = time.time()
     tmpdir = os.path.join(ALIGN_DIR, "_gd_shards")
     gd_procs = _spawn_workers("--gd-worker", gd_buckets, tmpdir, "gdpipe")
-    py_procs: List[Tuple[int, int, Any]] = []
-    rc_all = 0
+    lstdir = os.path.join(ALIGN_DIR, "_py_shards")
+    os.makedirs(lstdir, exist_ok=True)
+
+    # ★ 滚动池（2026-11-01 修）：过去 py 进程是「只起不收」——每个 gd 分片完成就把
+    #   min(py_n, 片场数) 个 py 进程 append 进列表，直到最后才统一 wait()。
+    #   gd 5 片 × py 5 路 = 最多 25 个 py 进程同时活着，实测峰值 27 python + 5 godot。
+    #   现在改成真正的池：在途数恒 <= py_n，完成一个立刻补下一个。
+    pending_py: List[Tuple[str, List[str]]] = []   # [(tag, 该片的 case 清单)]
     pid = 0
+    rc_all = 0
+    py_done = 0
+    py_fail = 0
+
+    def _py_launch(tag, part):
+        lst = os.path.join(lstdir, "pypipe_%s.in.json" % tag)
+        with io.open(lst, "w", encoding="utf-8") as fh:
+            json.dump(part, fh)
+        log = open(os.path.join(lstdir, "pypipe_%s.log" % tag), "wb")
+        import godot_headless as _gh2
+        proc = _gh2.py_popen(
+            [sys.executable, "-X", "utf8", os.path.abspath(__file__),
+             "--py-worker", lst],
+            cwd=ROOT, stdout=log, stderr=subprocess.STDOUT,
+            env=_worker_env(100 + int(tag.split("_")[-1])))
+        return (tag, len(part), proc, log)
+
+    running_py = []
+
+    def _py_reap(block=False):
+        nonlocal py_done, py_fail
+        while running_py:
+            tag, n, proc, log = running_py[0]
+            if not block and proc.poll() is None:
+                return
+            prc = proc.wait()
+            try:
+                log.close()
+            except OSError:
+                pass
+            running_py.pop(0)
+            py_done += 1
+            if prc:
+                py_fail += 1
+            print("[legs] py 片 %s 完成（%d 场 rc=%s，累计 %.0fs）"
+                  % (tag, n, prc, time.time() - t0))
+            if not block:
+                return
+
     for i, n, proc in gd_procs:
         rc = proc.wait()
         if rc and not rc_all:
@@ -930,22 +1049,19 @@ def _run_both_legs(cases: List[Dict[str, Any]], gd_jobs: int, py_jobs: int,
         for k, part in enumerate(shard[j::sub] for j in range(sub)):
             if not part:
                 continue
-            lstdir = os.path.join(ALIGN_DIR, "_py_shards")
-            os.makedirs(lstdir, exist_ok=True)
-            lst = os.path.join(lstdir, "pypipe_%d_%d.in.json" % (i, k))
-            with io.open(lst, "w", encoding="utf-8") as fh:
-                json.dump(part, fh)
-            log = open(os.path.join(lstdir, "pypipe_%d_%d.log" % (i, k)), "wb")
-            py_procs.append((pid, len(part), subprocess.Popen(
-                [sys.executable, "-X", "utf8", os.path.abspath(__file__),
-                 "--py-worker", lst],
-                cwd=ROOT, stdout=log, stderr=subprocess.STDOUT,
-                env=_worker_env(100 + pid))))
-            pid += 1
-    for j, n, proc in py_procs:
-        prc = proc.wait()
-        print("[legs] py 片 %d 完成（%d 场 rc=%s，累计 %.0fs）"
-              % (j, n, prc, time.time() - t0))
+            pending_py.append(("%d_%d" % (i, k), part))
+        # 立刻尽量把池填满；满了就先回收一个再补
+        while pending_py:
+            while pending_py and len(running_py) < py_n:
+                tag, part = pending_py.pop(0)
+                running_py.append(_py_launch(tag, part))
+                pid += 1
+            if pending_py:
+                _py_reap(block=True)
+    # gd 全部完成后，把剩余 py 跑完
+    while running_py:
+        _py_reap(block=True)
+    print("[legs] py 共 %d 片完成（失败 %d）" % (py_done, py_fail))
     print("[legs] 流水线完成，总墙钟 %.0fs" % (time.time() - t0))
     if rc_all:
         print("gd_core(Godot) 批量未全 PASS（退出码 %s）——继续比对已有产物" % (rc_all,),
@@ -1022,7 +1138,8 @@ def compare_cases(cases: List[Dict[str, Any]], et_names: Dict[int, str],
             json.dump(shard, fh)
         if os.path.exists(out):
             os.remove(out)
-        procs.append((i, len(shard), out, subprocess.Popen(
+        import godot_headless as _gh2
+        procs.append((i, len(shard), out, _gh2.py_popen(
             [sys.executable, "-X", "utf8", os.path.abspath(__file__),
              "--compare-worker", lst, out],
             cwd=ROOT, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)))
@@ -1418,6 +1535,23 @@ def main() -> int:
             return 2
         _run_both_legs(cases, args.gd_jobs, args.py_jobs,
                        skip_godot=args.skip_godot, skip_py=args.skip_py)
+    else:
+        # ★ 口径修正（2026-11-01）：--compare-only 过去**不做夹具过滤**，于是全量
+        #   比对报的是语料场数（914），而主流程报的是夹具场数（860）——同一个
+        #   alignment.json 在两条路径下 total 不一样，读报告的人会以为基线漂了。
+        #   这里补上过滤（夹具文件缺失时退回全集，且如实提示）。
+        try:
+            fixture_ids = set(fixture_case_ids())
+        except Exception:  # noqa: BLE001 —— 夹具不在就别硬套口径
+            fixture_ids = set()
+        if fixture_ids:
+            before = len(cases)
+            cases = [c for c in cases if c["case_id"] in fixture_ids]
+            print("[cases] --compare-only：按夹具口径 %d/%d 场（与主流程一致）"
+                  % (len(cases), before))
+            if not cases:
+                print("夹具为空（全部用例生成期被剔除）", file=sys.stderr)
+                return 2
 
     et_names = _et_names()
     per_case = compare_cases(cases, et_names, args.compare_jobs)
