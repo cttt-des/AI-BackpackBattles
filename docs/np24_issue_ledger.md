@@ -1071,3 +1071,10 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 
 - **根因**：R 扫描的首个 biggest-first 补丁的 replace 链只改了 _blnd_snap 两处实参，**漏改 `temporaryStacks.remove(farthestIndex)`** → GDScript Parse Error（「farthestIndex isn't declared」）→ gd 腿零事件产物 → verify 的 compare 对空流判 firstDivergence=null → 单场 json 假 PASS。第二个补丁（修好 remove 行）后的引擎实测=真 FD@233（tgt=1）。**验证纪律追加：单场 json PASS 判读必须先核 gd 产物 events.json 非空+verify 原始 tail 无 SCRIPT ERROR**（本段第 3 次工具链坑位，与 np29 探针自炸/夹具改写同列入册）。
 - **986 真态不变**：859/860，FD@287（farthest 基线）。biggest-first 的唯一真实引擎实测=tgt=1 破@233（§6m67 入口①不变）。
+
+## 6m69. 986 biggest+R=1 引擎实测不迁移+稳态回退确认（2026-11-05 offpeak #372 收口3）
+
+- **实验**：键控 biggest-first（parse-safe 全三处替换，py grep=0 残留）+ {109:1} 双表 → 986 单场仍 **FD@233**（与无 override 的 biggest 实测同位）——tgt=1 早期窗模拟器拟合（biggest+R=1 零失配）**不迁移引擎**：tgt=1=碰撞立即火主导域（np26W1），纸面池账模拟不适定（fire 时刻/池识别由 f32 计时器+碰撞支决定，非纯池量）。模拟器方法论边界入册：**碰撞域侧只能引擎级迭代**。
+- **稳态回退确认**：引擎/表全回 committed（grep=0），三井复验 1120 PASS+1444 PASS+986 FD@287 = 859/860 账面（sweep860_np44.log 已证）。
+- **本段（offpeak #372）总结**：857→**859**（1120 T0 预载键控 §6m63、1444 {110:6} 重标定 §6m66）；986 深挖三层（余额悖论破 §6m66/GP 行、biggest-first 破案 §6m66、R 扫描鬼影=Parse Error 空判 §6m68、tgt=1 碰撞域边界 §6m69）；台账 §6m63-69；commit 229ff115→本节。
+- **986 下轮入口（最终）**： biggest-first 是真语义（tgt=0 零失配+tgt=1 早期窗 R=1 零失配），但引擎落地需**碰撞域整体对齐**——tgt=1 的 GD 侧在 biggest 下 6.0167 缺 Lightsaber TO：其 8 层池被 −5/−4 两笔清洗吃到 0（farthest 下存活 1 层）→ **落点=「biggest 清洗序+player 侧 perm 残差 R」的联合需在碰撞域成立** → 下轮首步=gd 腿 BLND 全生命周期 trace（_np43_gdsingle+ORACLE_ALIGN_STACKTRACE）对 tgt=1 侧逐笔取证，对照语料 5.0167×2/6.0167 火序反推清洗落点真值，再定 R/规则。
