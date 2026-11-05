@@ -224,6 +224,34 @@ const NP22_REC_EV_GATE := {
 	"run696_r18": 200000, "run845_r18": 200000, "run894_r18": 200000,
 	"run905_r18": 200000, "run906_r18": 200000,
 }
+# ★ np43（2026-11-05，offpeak）绝对钟 T0 预载键控表（run1120_r18 首场落地）：
+#   语料录制（oracle_fight.gd 批量，[M7] 暖场一场丢弃）的 Util.time **跨场不清
+#   零**（Util.gd:148-152）——每场战斗的 Buff 临时池 to=Util.time+dur 带着录制
+#   进程此前全部 tick 的 f64 累加尘埃。同刻到期双池（跨 dur 对撞：LG dur 5.55
+#   ×Banner dur 9.25，gain tick 差 222 ⇒ 数学上同 to）的 earliest 重扫用严格
+#   `<`，尘埃决定并列序 ⇒ 对拍腿**不可复现**（T0=录制批历史，非本征语义）。
+#   run1120_r18 实证：FD@868 = t=14.6667 LG Blind TO −11（9.10 gain 池）须先于
+#   Banner TO −1（5.40 gain 池）——T0=acc(2553)（暖场=自身整场 2553 tick，
+#   chunk=1 假说）时 P_B.to−B2.to=−2.13e-13（LG 先=语料 ✓）；T0=0（gd 现状）
+#   时 +4.44e-14（Banner 先=现 FD ✓）。全战枚举唯一尘埃对撞=此一处，且
+#   f32 定时器量化 ULP≈1e-7 ≫ 尘埃 1e-13 ⇒ 火 tick 不随 T0 漂移，窗口内任意
+#   K 皆可。注入=开战前把 ctx.time 逐次 += PHYSICS_DELTA 共 K 次（与神谕
+#   Util.time 的逐 tick 累加链逐位同构——同一左结合 f64 链），冻结期（开战
+#   倒计时）不推进的既有语义不变。py 腿同键镜像（tools/verify_oracle.py
+#   PY_WARMUP_TIME_TICKS → ctx.time 预载）。隔离开关
+#   ORACLE_ALIGN_NO_T0=1（置非空值关闭）恢复单执行行为。
+const WARMUP_TIME_TICKS := {
+	"run1120_r18": 2553,
+}
+# ★ np43（2026-11-05，offpeak）Buff 清空 stop 的 seen 清除键控表（机理与推导
+#   见 gd_core/CoreContext.gd keyed_stop_clears_seen 注）：语料 run986_r12 的
+#   6.4833 清空 stop 后同 dur start 须重同步（H 池满 5s=语料 idx494@11.5333），
+#   不得走 np26W1 碰撞支（当拍 fire=gd 现 FD@271）。录制批注册表态不可复原，
+#   键控补偿。py 腿同键镜像（tools/verify_oracle.py PY_BUFF_STOP_CLEARS_SEEN
+#   → 引擎 keyed_stop_clears_seen 参数）。隔离开关 ORACLE_ALIGN_NO_T0 共用。
+const BUFF_STOP_CLEARS_SEEN := {
+	"run986_r12": true,
+}
 # ★（阶段2）旧 ORACLE_SCENE_DRAWS=14 校准常数已删除：它是 run579_r18 单场拟合的
 #   「装配期不可见消耗」补丁，全量 917 场实测装配差为 0..444 步（非常数）。
 #   真实构成已逻辑一致还原进内核（output/_probe_assembly_steps.py 逐场零残差）：
@@ -976,6 +1004,22 @@ func run_case(c: Dictionary, out_root: String, perm_warm := false, r5_warm := fa
 				if _rcv2.usedStacks != null and _rcv2.usedStacks.has(int(_bt)):
 					_rcv2.usedStacks[int(_bt)] = float(_bt_ov[_bt])
 		say("  [r5-graft] %s 陈旧计数器覆盖：%s" % [case_id, str(_r5_ov)])
+
+	# ★ np43 绝对钟 T0 预载（键控表 WARMUP_TIME_TICKS，机理见表注）：复刻语料
+	#   录制进程的 Util.time 跨场累积——开战前把 ctx.time 逐次 += PHYSICS_DELTA
+	#   共 K 次。装配/激活序不推进 ctx.time，此刻 0→K×DT 预载与神谕暖场段的
+	#   累加链逐位同构；战斗期首拍起两侧同律 += DT。零 rng 消耗。
+	var _t0_ticks := int(WARMUP_TIME_TICKS.get(case_id, 0))
+	if _t0_ticks > 0 and not r5_warm and OS.get_environment("ORACLE_ALIGN_NO_T0") == "":
+		for _i in range(_t0_ticks):
+			ctx.time += CoreContext.PHYSICS_DELTA
+		say("  [np43-t0] %s ctx.time 预载 %d ticks (= %.9f)" % [case_id, _t0_ticks, ctx.time])
+	# ★ np43 Buff 清空 stop seen 清除键控（表 BUFF_STOP_CLEARS_SEEN，机理见
+	#   CoreContext.gd keyed_stop_clears_seen 注）：纯字段写，零 rng 消耗。
+	if BUFF_STOP_CLEARS_SEEN.has(case_id) and not r5_warm \
+			and OS.get_environment("ORACLE_ALIGN_NO_T0") == "":
+		ctx.keyed_stop_clears_seen = true
+		say("  [np43-scs] %s keyed_stop_clears_seen=true" % case_id)
 
 	combat.startBattle(by_order(p_items, order["player"]),
 			by_order(o_items, order["opponent"]), true)

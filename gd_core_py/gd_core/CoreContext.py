@@ -47,6 +47,7 @@ class CoreContext(GodotObject):
 		self._timed = []
 		self.deferred_flush_enabled = True
 		self.eb_relay_mirrored = False
+		self.keyed_stop_clears_seen = False
 		self._emptyGrid = None
 
 	# =============================================================================
@@ -274,6 +275,13 @@ class CoreContext(GodotObject):
 	#   级联递归弹光队列 ⇒ sendCharge +10（26 v 36）⇒ 主链 +20 位移 ⇒ 下游全链错位
 	#   （1160@3/582@42 stun roll 位差）。神谕对齐宿主置 true 镜像（EB onPrepare
 	#   连接环=空转）；其余用途默认 false 不变。
+	# ★ np43（2026-11-05，offpeak）：Buff 临时池清空 stop 的 seen 清除键控——语料
+	#   run986_r12 实证：6.4833 清洗清空盲池→stop 后，6.5167 同 dur(5) gain 的
+	#   start 必须走**重同步**（H 池满 5s 于 11.5333 到期=语料 idx494），不得走
+	#   eng==seen 碰撞支（left=−1 续减→当拍 fire=gd 现 FD@271 多发 TO）。机理=
+	#   录制批注册表 e[1] 在该 stop 时刻 ≠5（不可复原的录制态；静态 perm 残留
+	#   两分支均与语料 A 池 −2@6.0167 矛盾，已排除）。键控场由神谕对齐宿主置
+	#   true（CoreBuff._stopTimer 清 _timer_seen）；其余用途默认 false 零变化。
 
 	def flushDeferred(self):
 		if not self.deferred_flush_enabled:

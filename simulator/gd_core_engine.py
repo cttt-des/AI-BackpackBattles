@@ -617,6 +617,8 @@ class GDCoreEngine:
                  r5_dual_exec: Optional[Dict[str, int]] = None,
                  p_gem_lens: Optional[List[int]] = None,
                  o_gem_lens: Optional[List[int]] = None,
+                 warmup_time_ticks: int = 0,
+                 keyed_stop_clears_seen: bool = False,
                  _r5_warm: bool = False,
                  _r5_warm_gate: int = 25000,
                  formal_ev_gate: int = 25000):
@@ -656,6 +658,17 @@ class GDCoreEngine:
             self._r5_warm_pkg = warm
         self._r5_warm_flag = _r5_warm
         self._r5_warm_gate = int(_r5_warm_gate)
+        # ★ np43 绝对钟 T0 预载（键控镜像 gd_core_test/OracleAlignBattle.gd
+        #   WARMUP_TIME_TICKS 表 + 注入段，逐点同步）：语料录制批 Util.time 跨场
+        #   不清零 ⇒ Buff 临时池 to=Util.time+dur 带录制进程 f64 累加尘埃，跨
+        #   dur 同刻对撞双池的 earliest 重扫严格 `<` 序不可复现。开战前把
+        #   ctx.time 逐次 += PHYSICS_DELTA 共 K 次（与神谕暖场段同一左结合 f64
+        #   链，逐位同构）。暖场实例不传此参（默认 0），双保险再挡一次。
+        self._warmup_time_ticks = 0 if _r5_warm else int(warmup_time_ticks)
+        # ★ np43 Buff 清空 stop seen 清除键控（py 腿镜像，真源 = gd 宿主
+        #   BUFF_STOP_CLEARS_SEEN；机理见 gd_core/CoreContext.gd 同名注）：
+        #   构造后置 ctx 字段，_stopTimer 清 seen 使下次 start 恒走重同步支。
+        self._keyed_stop_clears_seen = False if _r5_warm else bool(keyed_stop_clears_seen)
         # ★ np22 重录场正式腿事件闸对位（真源 = gd_core_test/OracleAlignBattle.gd
         #   NP22_REC_EV_GATE 表 + tools/verify_oracle.py PY_NP22_REC_EV_GATE）：
         #   三场新语料以 ORACLE_NOLIMIT=1（事件闸 200000）全长录制，正式腿
@@ -708,6 +721,8 @@ class GDCoreEngine:
         # 族A「对手全 +1 tick」根源在对手速度面（gd 1.06 v oracle ~1.07），非映射。
         # 默认 False；神谕对齐驱动（tools/verify_oracle.py）显式传 True。
         ctx.below_master = bool(below_master)
+        # ★ np43 键控（py 腿镜像，见 __init__ 签名注）：Buff 清空 stop seen 清除
+        ctx.keyed_stop_clears_seen = bool(self._keyed_stop_clears_seen)
         # ★ np24：deferred 冲刷关闭（与 gd 宿主 OracleAlignBattle.gd 同位；录制
         #   [M11]：阻塞循环无帧，战斗内 call_deferred 永不执行——Deck of Cards
         #   卡链零启动实证）。py 腿此前靠装配期缓存陈旧而偶然一致（deck cards=0）。
@@ -1127,6 +1142,13 @@ class GDCoreEngine:
 
     def run(self):
         d = self._K["CoreContext"].PHYSICS_DELTA
+        # ★ np43 T0 预载（键控镜像 gd_core_test/OracleAlignBattle.gd 注入段）：
+        #   开战前逐次 += PHYSICS_DELTA 共 K 次，与神谕录制进程暖场段的 Util.time
+        #   累加链逐位同构（同一左结合 f64 链）；战斗期首拍起两侧同律 += DT。
+        #   暖场实例恒 0（__init__ 已挡），此处双保险。
+        if self._warmup_time_ticks > 0:
+            for _ in range(int(self._warmup_time_ticks)):
+                self.ctx.time += d
         ticks = 0
         # oracle M12 事件数闸对位（oracle_fight.gd:742-744：events>25000
         # 提前判停、status=timeout、已产生事件照常 dump、winner 不判胜）。

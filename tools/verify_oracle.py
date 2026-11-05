@@ -98,6 +98,26 @@ PY_PERM_STACK_OVERRIDE = {"run702_r18": {109: 4}, "run1022_r18": {109: 1},
                                           106: 2, 107: 86, 110: 2},
                           "run1444_r18": {100: 129, 102: 4, 103: 10, 106: 83,
                                           107: 4, 110: 1}}
+# ★ np43（2026-11-05）绝对钟 T0 预载键控表（py 腿镜像，真源 = gd 宿主
+#   WARMUP_TIME_TICKS 同步）：机理与 run1120_r18 推导见 gd 宿主表注——语料录制
+#   批 Util.time 跨场不清零，跨 dur 同刻对撞双池的 earliest 重扫严格 `<` 序由
+#   录制进程 f64 累加尘埃决定（不可复现的录制工件）。K=暖场整场 tick 数
+#   （[M7] chunk=1 假说：暖场=自身同 seed 整场，2553 ticks）。gd 腿 3466/3466
+#   实证（T0=0 时 Banner 先=原 FD@868；K=2553 时 LG 先=语料）。引擎侧
+#   simulator/gd_core_engine.py warmup_time_ticks 参数（run() 开战前逐次
+#   += PHYSICS_DELTA 共 K 次，与神谕 Util.time 累加链逐位同构）。
+PY_WARMUP_TIME_TICKS = {
+    "run1120_r18": 2553,
+}
+# ★ np43（2026-11-05）Buff 清空 stop seen 清除键控表（py 腿镜像，真源 = gd 宿主
+#   BUFF_STOP_CLEARS_SEEN 同步）：机理与 run986_r12 推导见 gd_core/CoreContext.gd
+#   keyed_stop_clears_seen 注——语料 6.4833 清空 stop 后同 dur(5) start 须重同步
+#   （H 池满 5s=语料 idx494@11.5333），不得走 np26W1 碰撞支（当拍 fire=FD@271）。
+#   录制批注册表态不可复原，键控补偿。引擎侧 simulator/gd_core_engine.py
+#   keyed_stop_clears_seen 参数（构造后置 ctx 字段）。
+PY_BUFF_STOP_CLEARS_SEEN = {
+    "run986_r12": True,
+}
 # ★ np22 重录后摘除 696/1371 两键（新语料=ORACLE_NOLIMIT 全长重录干净形状，
 #   无闩残留；真源=gd 宿主 WARM_LATCH_PLAYERS 同步）。906/1125/1409 保留。
 PY_WARM_LATCH_PLAYERS = {
@@ -402,6 +422,13 @@ def run_py(cases: List[Dict[str, Any]]) -> int:
             r5_dual = None
             if not _no_r5 and case_id in PY_R5_DUAL_EXEC:
                 r5_dual = dict(PY_R5_DUAL_EXEC[case_id])
+            # ★ np43 T0 预载（镜像 gd 宿主 ORACLE_ALIGN_NO_T0 隔离开关）
+            _no_t0 = os.environ.get("ORACLE_ALIGN_NO_T0", "") != ""
+            warmup_ticks = 0
+            if not _no_t0 and case_id in PY_WARMUP_TIME_TICKS:
+                warmup_ticks = int(PY_WARMUP_TIME_TICKS[case_id])
+            # ★ np43 Buff 清空 stop seen 清除键控（镜像 gd 宿主，共用 NO_T0 开关）
+            stop_clears_seen = (not _no_t0 and case_id in PY_BUFF_STOP_CLEARS_SEEN)
             eng = GDCoreEngine(player, opponent, item_db, character_db,
                                seed=c["seed"], max_time=90.0,
                                probe_bases=(_FightEndGate,),
@@ -423,6 +450,8 @@ def run_py(cases: List[Dict[str, Any]]) -> int:
                                warm_latch=warm_latch,
                                perm_stack_override=perm_override,
                                r5_dual_exec=r5_dual,
+                               warmup_time_ticks=warmup_ticks,
+                               keyed_stop_clears_seen=stop_clears_seen,
                                formal_ev_gate=int(PY_NP22_REC_EV_GATE.get(case_id, 25000)))
             eng.run()
         except Exception as exc:  # noqa: BLE001 —— 单场失败不拖垮批量，如实记档
