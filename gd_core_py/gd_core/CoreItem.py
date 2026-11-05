@@ -836,6 +836,21 @@ class CoreItem(GodotObject):
 				gem._tickTimers(delta)
 
 
+	# ★ np38（run1118_r18 fd@422）：rebuild_timer_registry 的物品侧等价——由
+	#   CoreCombat.activateItems 末尾（player/opponent.rebuildTimerSeen 同点）逐
+	#   参战物品委托。harness 重入册覆盖 Main 树全部 Timer 节点：物品自身计时器
+	#   先于其镶嵌宝石计时器（场景树 DFS：宝石是 socket 子节点）——与
+	#   tickTimersPass 的遍历同构。激活期 start 的计时器 → 战斗首拍即递减
+	#   （CoreTimer.rebuildSeen 注）；停止态 [0,0] → _seen=_eng=0（stop() 已置）
+	#   零影响。
+	def rebuildTimerSeen(self):
+		for t in _iter(self.timers):
+			t.rebuildSeen()
+		for gem in _iter(self.gems):
+			if gem != None:
+				gem.rebuildTimerSeen()
+
+
 	# 装配期一次性初始化（对齐 Node 的 `_ready` + `onready var` 求值时机）。
 	# 原版时机：物品入树后，onready 变量先赋值、随后调用 _ready()。
 	# 内核时机：装配层在「ctx / descriptor / inventory 都就位」之后调用一次。

@@ -225,6 +225,24 @@ class CoreTimer(GodotObject):
 		return 0.0
 
 
+	# ★ np38（run1118_r18 fd@422）：rebuild_timer_registry 的 CoreTimer 侧等价
+	#   （oracle_fight.gd:969-987 _collect_timers——activateItems 之后、首拍之前把
+	#   Main 树下全部 Timer 以 [left,left]=[eng,eng] 重入册）。开局 setup 期
+	#   （激活窗内）start 的计时器在 rebuild 时被采集 e[0]=e[1]=eng → **战斗首拍
+	#   即递减**（eng==e[1] 走递减分支）；此前内核只锚了角色影子链
+	#   （CoreCharacter.rebuildTimerSeen 的 rage/invul/Buff 栈），物品 CoreTimer
+	#   的 _seen 恒 0 → 首拍被 eng!=_seen 判为「外部 start」只登记不递减 → 一切
+	#   激活期 start 的物品计时器恒晚 1 拍（Holy Spear BuffTimer wt=3：语料
+	#   invu 结束 ty8@3.0167 同帧 buffEnded→SPDT 减速生效拍 3.0333，gd 恒
+	#   3.0333→3.05——run1118 fd@422 玩家 spear 冷却早 1 tick 的根因）。
+	#   战中断 start（Crown wt=2@3.0167→语料 5.0333）不走此路（rebuild 只在
+	#   activateItems 末尾跑一次，之后 start 靠 eng!=_seen 当拍登记——双侧同构）。
+	#   由 CoreItem.rebuildTimerSeen 逐物品委托（含宝石计时器=场景树 DFS 同构）。
+	def rebuildSeen(self):
+		self._left = self._eng
+		self._seen = self._eng
+
+
 	# ★ np29fB：引擎 real_t(float32) 存储镜像（np25w_f04 同款，模板取自
 	#   CoreCharacter._f32eng）。oracle harness 对物品/Buff 计时器的全部读数
 	#   （rebuild 登记 left、每拍 eng=get_time_left()、post-emit 重挂 e[0]/e[1]）
