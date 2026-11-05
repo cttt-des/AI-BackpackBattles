@@ -47,7 +47,7 @@ class CoreBuff(GodotObject):
 		self.temporaryStacks = []
 		self._nextTemporaryTimeout = 0
 		self._MAX_STACKS = 0
-		self._timer_left = 0.0
+		self._timer_left = - 1.0
 		self._timer_active = False
 		self._timer_eng = 0.0
 		self._timer_seen = 0.0
@@ -137,6 +137,15 @@ class CoreBuff(GodotObject):
 	#                    run599_r10 实证：Light Goobert 每 3.25s 重 gain dur=3 Blind，
 	#                    oracle 393 gain+TO 同 tick、对手侧 409 gain→410 TO）
 	#     _timer_seen  ≡ 注册表 e[1]（上一 pass 的 eng 采样）
+	#   ★ np36（run986_r12 FD@206）：初值=oracle「未注册」哨兵 −1.0（Util.oracleTimeLeft
+	#     未命中即返 −1.0，Util.gd:810-813；rebuild_timer_registry 在 activateItems
+	#     **之后**才入册，战前激活窗的 gain 读到的注册表态=未命中/停走 −1）——激活窗
+	#     多笔 gain 的重启分支（np35）基准由此走对：oracle 读 −1 → 回落引擎读数（首笔
+	#     start 的 dur，如 Lightsaber 8@6 先于 Banner 1@5 → 5<6 重启 nTT=size−1）；
+	#     gd 旧初值 0.0 被当成「注册表 ≥0」→ 永不重启 → nTT=0 → 首火指向 6s 残留池
+	#     → 首火 +60tick=FD。中途首 gain 形（eng 初值 0.0）回落后比较面恒等零影响；
+	#     运行中（left≥0 优先）/发火遗留（<0 回落 eng=0）/停走（np26W1 每拍 −1）三
+	#     路径全部不变；rebuild 后 stopped=0.0 面与 oracle 入册 [0,0] 逐位同。
 	# 「外部 start/重挂/延长改写引擎读数的当 tick：eng != _timer_seen → 重同步
 	#   **不递减**（首递减推迟到下一 tick）」，修「中途 (re)start 计时器恒早 1 tick」
 	#   （evt8=InvulnerableEnd 全族 + evt109=Blind StackTimeout 族 ≈84 场）。
