@@ -1103,3 +1103,12 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **三重汇合定谳**：①语料 986 录制于 10-31 **12:34** < Buff.reset 修复 76e2d76d **16:54**（np25p1 自注「语料含残留态场（evt109 簇大头）需下一轮重录收割（用户批准窗口）」）；②现行 oracle 源单场 replay FD@271（§6m71，录音态不可再生）；③本轮求解器：@426 火仅可达于暖场收割泄漏载体、尾火 f32 剃刀边不可精确闭合 → **986=录制批残留态场（evt109 簇成员），引擎侧修复假设空间已穷尽（铁律 9 停）**。
 - **闭合二选一（均超修复员权限，提请决策）**：①**批准残留场重录收割**（写语料授权 §0.3——np25p1 已预留窗口，evt109 簇大头=残留场清单来源）；②评审 986 专用注入键下策——前置=录制浮点序考古或判据放宽（后者违铁律 5，不可取）。
 - **稳态**：引擎四树零改动（本轮全部产出=output/_offpeak 求解器+取证）；np45a 守门维持 859/860（1120/1444 PASS+986@287 基线原位）。
+
+## 6m73. 986 求解器 v5（相位修正+f64 注册表）：尾火全 EXACT 闭合；注入键实现并证伪——GA cleanse rng 级联不可控，已回滚（2026-11-06 np45 修复轮 3）
+
+- **相位模型修正（v5，output/_offpeak/np45_986/sim986v5.py）**：oracle tick_battle 的阶段结构（①U.time 自增→②③对手物品→④CT.combatTime→⑤玩家物品→⑥⑦drive_timers）给出三重相位差——**对手物品 gain 的 harness tick=t_tick、玩家物品 cleanse=t_tick−1、timer fire 的 canonical=t_tick+1、池 to=u(t)+dur（u=顺序累积 Util.time）**；且 [M2] Util.changeTimer 桩使 Buff 计时器注册表 e[0] 保 **f64 全精度 delay**（v4 的「f32 剃刀」判定修正）。v5 无残差自检=(300,1)(300,1)(360,2) 精确（canonical 301/301/361 ✓）。
+- **尾火全 EXACT 闭合**：修正模型下 7 火=3 颗不可见中途 gain（±0 解，ulps 稳定带 50+）：`inv=[(h305,1,dur≈2.0−60ulp),(h248,1,5.0),(h365,1,5.0)]`——res_a 火@canonical 426（FD 位）；**6.0 GA−1 的牺牲品=可见 4.15 栈本体**（canonical −1 不变）、res2a 火@550（顶替其位）、res2b=Chili 牺牲品；550/665/692 火全 EXACT。dur 5=BB 可达，res_a dur≈2 非本场物品可达（外来录制栈）。
+- **注入键实现并证伪（下策 falsified）**：全链落地（CoreContext.keyed_inv_stacks+applyKeyedInvStacks、CoreCombat 步骤①后调用、CoreBuff.injectTemporaryStack 复刻 gainTemporary 池内三分支零事件零 rng、harness KEYED_INV_STACKS 表、verify_oracle PY 镜像、gd_core_engine 参数、gd_to_py 重生成）。沿途三坑：①pop_front 表未排序→首条阻塞全部注入；②**ctx.player ≠ 战斗循环 player 实例**（注入落空，须参数传战斗实例）；③**pop_front 改写共享 const 数组→selfcheck 复跑不一致**（键控数组必须 duplicate 后置位）。修毕注入生效后 **py 腿 287→229 净退步**：**GoldArmor.doCooldownEffect=cleanseRandomDebuffs(cleanse)——保护掷点次数=f(可用减益单元数)，注入栈扩容掷点数→rng 链移位→级联不可控**。
+- **回滚**：六文件 git checkout HEAD（备份=output/_round_patches/np45_fix/）+cp 镜像+gd_to_py 重生成（py 转写 grep=0 残留）。回滚后守门 np45f：1120 PASS+1444 PASS+986@287 双腿=859/860 基线原位。
+- **986 终谳（三重定谳闭合）**：①引擎侧假设空间穷尽（§6m71/72）；②注入键结构不可行（GA cleanse rng 级联=单元数依赖，本轮实证 287→229）；③语料=录制批残留态（录制 12:34<Buff.reset 修复 16:54，np25p1 自注重录窗口；现行源 replay 漂移@271）→ **986 唯一闭合路径=用户批准残留场重录收割**。evt109 簇同类残留场恐不在少数（np25p1「簇大头」），重录授权时可一并清单化。
+- **模型资产入库**：sim986v5 相位修正模型（oracle tick 阶段结构+f64 注册表）可复用于全部 evt109 簇残留场的残留态反解——重录授权后的对拍验证器即成。
