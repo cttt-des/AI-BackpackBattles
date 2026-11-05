@@ -1112,3 +1112,10 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **回滚**：六文件 git checkout HEAD（备份=output/_round_patches/np45_fix/）+cp 镜像+gd_to_py 重生成（py 转写 grep=0 残留）。回滚后守门 np45f：1120 PASS+1444 PASS+986@287 双腿=859/860 基线原位。
 - **986 终谳（三重定谳闭合）**：①引擎侧假设空间穷尽（§6m71/72）；②注入键结构不可行（GA cleanse rng 级联=单元数依赖，本轮实证 287→229）；③语料=录制批残留态（录制 12:34<Buff.reset 修复 16:54，np25p1 自注重录窗口；现行源 replay 漂移@271）→ **986 唯一闭合路径=用户批准残留场重录收割**。evt109 簇同类残留场恐不在少数（np25p1「簇大头」），重录授权时可一并清单化。
 - **模型资产入库**：sim986v5 相位修正模型（oracle tick 阶段结构+f64 注册表）可复用于全部 evt109 簇残留场的残留态反解——重录授权后的对拍验证器即成。
+
+## 6m74. 986 根因定谳：录制批 rng 链位差——BB 冷却链双火 vs 单火，[BGAIN] 表位级对拍全揭示（2026-11-06 np45 修复轮 4）
+
+- **@246 配对解密（oracle [BCLEANSE] 实证，script_oracle_fight.gd_3404_1.log）**：`[BCLEANSE] t=4.1 side=0 amt=4 pick_to=7.1 pick_amt=1 n=4 / amt=3 pick_to=6.016667 pick_amt=5 n=3`——oracle 池 @4.1 四栈=[?,7.2333,7.1,6.01667(amt5)]，首删=**to=7.1 栈本体**、次删=L partial−3（canonical −4 ✓）；+1prot=GA 保护通知（flip=4→protected=1→amt=3→但 BCLEANSE amt=4=pre-protection tempToCleanse，两打印相位差=amount 减序——**protected 栈仍计入 [BCLEANSE] 的 tempToCleanse**）。关键推论：**+2prot/−1（@360）=3 flips=池 3 单元=纯可见（2@6=2 单元+9.1666=1 单元）——res_a 类不可见栈在 @359 不在场**（round-3 解的 res2a@h248 被此算术证伪——fires-only 校验不校验 cleanse 单元数，round-3 解作废）。
+- **[BGAIN] 表位级对拍（oracle [BGAIN] side=0 实证）**：现行源 replay 的玩家盲池 gain 表=[8@6,1@5,1@5 @t=0.016667；1@5 @t=2.1；1@5 @t=6.15]；**语料 canonical tgt=0 gain 表=[同 @0×3；@2.0667；@2.2167；@4.15；@6.0667；@6.5167]**——**现行源=单火@2.1，语料=双火@2.0667+2.2167+错位三火**。BB（Burning Banner）的冷却链=adjustCooldown rng 依赖——**录制批的 rng 链位（暖场累积）≠干净重放链位 → BB 盲 gain 时序整体错位 → 全部下游 evt109 事件（盲池账/清理/火）=错位宇宙**。round-3 的「三不可见中途 gain」=错位宇宙的 gain 表差之本轮重解读——**非 invisiable，是另一条 rng 链上的可见 gain，其 canonical 时戳被链位差整体平移**。
+- **986 终谳（第四轮收口）**：根因=**录制批 rng 链位差（暖场累积的不可复现面）作用于对手 BB 冷却链 → BB 盲 gain 时序集错位 → evt109 簇全下游错位**。与 np43 T0 键（1120）、np22 批内状态族同根。引擎侧（round1/2）与注入侧（round3，GA cleanse rng 级联）均穷尽/证伪。**唯一闭合=用户批准残留场重录收割**；重录前可清单化：tgt=0 gain 表差（双火位/错位火位）=BB 冷却链位差的直接指纹，可作同类残留场扫描器（逐场 [BGAIN] 对拍）。
+- **稳态**：引擎六文件回滚后 np45f 守门 859/860 原位（1120/1444 PASS+986@287 双腿）；本轮零引擎改动（全部产出=取证+sim986v5 模型）。
