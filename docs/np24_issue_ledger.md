@@ -1044,3 +1044,10 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **统一根因假设（两场汇合）**：np22 注已言明「新语料（10-31 重录）=**exec3** 携带 exec2 终局残差」，而现行 PERM_STACK_HARVEST/R5 管线只做 **exec1 单层收割**（暖场干净终局）——三执行链的中间层残差（exec2 带着 exec1 残差跑出的净化路径→自身终局残差）缺位，{110:1}/{109:18} 等静态 OVERRIDE 只是该缺位的净值近似。986 的盲池清洗落点差同属此族：录制批 exec3 开局的 Buff 态（perm 及可能的注册表残留）不可由单层收割复原。
 - **下轮图纸（按序）**：①**收割链扩展**——PERM_STACK_HARVEST/R5 管线加深到 exec2：warm1（干净）→收割 h1→warm2（初态=h1，R5 嫁接语义）→收割 h2→正式场（初态=h2）；oracle 侧机理=录制批每 case 的暖场+正式同进程连续三执行（ Buff.reset 只在 case 装配段跑，exec 链内无 reset——**需先验证 oracle_fight.gd 的 case 内多执行结构**，fights/<case>/result.txt+np22 证据包）。②986/1444 逐笔对拍验证 h2 终局值（np37 离线模拟器法，PERM_OVERRIDE 现值 {109:?}/{110:1} 应与 h2 自然吻合——若吻合则键控表可全撤）。③若收割链仍不闭合，再评估 986 专用键控池账补偿（下策，台账 §6m63 阻塞点）。
 - 关键文件：PERM_STACK_HARVEST/R5_DUAL_EXEC（OracleAlignBattle.gd 文件头注+注入段）、PY_PERM_STACK_OVERRIDE（verify_oracle.py:90）、simulator/gd_core_engine.py r5 双执行段；1444 语料约束=idx 141/281 两笔 Gold Armor 落地 4/5 + TO 342/347/…（−3@6.35/−3@6.5）。
+
+## 6m65. 1444 补充约束：OVERRIDE 现值有效性确认+R 拟合矩阵（2026-11-05 offpeak #372 续2）
+
+- **{110:1} 现值有效性实验**：ORACLE_ALIGN_NO_PERM_HARVEST=1 单场复跑 → FD 342→**330 前移**（gd 多一发 Frostbolt Cold TO −2@5.9833 Snowmaster 段）⇒ np22 的 {110:1} 对现行语料仍有效（330-341 被它救回），残差 342+ 另有自由度。
+- **R 拟合矩阵（gd 侧 trace 推演）**：R=1（现值）→4.5 清洗 perm1+P2−4（P2 整池删除）✗；R=9 → 4.5 perm4+P2−1 完美（P1=3/P2=3 ✓✓）但 291@4.9167 dance −1 落 P2→2 ✗；R=10 → 291 吃 P2 得 3 ✓ 但 319@5.8833 再吃 P2→2 ✗ 且 P2 应火 −4 ✗。**结论：static R 无解——dance −1 的损耗目标规则本身是缺失自由度**（现码=farthest-first；语料要求某几笔 −1 落 perm、某几笔落 temp 的精确交错）。
+- **下轮主攻（替代 §6m64 图纸①的先行步）**：np37 法离线模拟器（sim1444v1）：喂全战 type-110 tgt=0 事件序（temp 6 池 13 层+dance ±1+两笔 Gold Armor+TO 3 笔），双自由度 (R, dance-loss-rule∈{farthest,earliest,newest,perm-first-else-X}) 逐笔对拍 TO 序（−3@6.35/−3@6.5/−1@9）+330 前的 Snowmaster 段；**若 (R,rule) 唯一解 → 986 同法（dance-rule=清洗落点差的更一般表述）**；若仍不闭合 → 回收割链扩展（§6m64 图纸①）。
+- 语料事实补充：1444 两笔 Gold Armor（2.2667 −4 / 4.5 −5）tgt=0 均无 protect 前置事件（落地=全额）；dance 序列 tgt=0 ±1 共 ~30 笔（resisted +1 不入账）；perm gains 30/losses 34 含清洗。
