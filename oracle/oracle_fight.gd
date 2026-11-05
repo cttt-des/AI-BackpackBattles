@@ -634,6 +634,13 @@ func run_case(c: Dictionary, warmup := false) -> Dictionary :
 	G.curOpponentData = {"class": opp_run.classI}
 
 	# ── 开战（原版 finishSwitchingToCombat 尾段 @ Game.gd:2671-2694）──────
+	# ★ np46 逐案隔离（净化重录，台账 §6m82）：全部跨案/跨执行累积态归零——
+	#   暖场与确定性自证复跑同径受益。目标初态 = gd_core 全新 CoreContext 构造
+	#   （gd_core_test/gd_core/CoreContext.gd：time=0/frame_counter=0/bus 无连接/
+	#    rope_speedups={} /cube_advanced={} /sandbag_active=false /永久栈=0/闩=false）。
+	#   零 rng 消耗（纯字段写/清容器），插在播种+装配完成后、任何战斗序列之前——
+	#   此后单场复放 ≡ 语料 by construction（T0/exec3 拓扑类录制工件不再产生）。
+	reset_residual_state()
 	_reset_combat_log()                       # 事件数组清零（批量内每场独立）
 	G.fightEnded = false
 	G.numTimesOutOfStamina = 0
@@ -1065,6 +1072,73 @@ func _flush_queued(node) -> void :
 		node.free()
 
 
+# ★ np46 逐案隔离（净化重录，台账 §6m82）：每次 run_case 开战前把全部跨案/跨执行
+#   累积态归零——对照 gd_core 全新 CoreContext 构造逐一清零，全部零 rng 消耗。
+#   残留面与机理（各处实证锚点）：
+#   · [T0] Util.time/clockTime/frameCounter 跨场不清零（Util.gd:148-152）——Buff
+#     临时池 to=Util.time+dur 的 f64 尘埃序=录制批历史（§6m63 run1120 定谳），
+#     gd_core ctx.time/frame_counter 从 0 起累 → 逐案归零后两侧同律。
+#   · EventBus 全局单例连接表（Utility/EventBus.gd connections）——原版仅
+#     combatEndDeferred（Game.gd:3316） disconnectAll，timeout/lockup 判停路径
+#     不达 → 暖场物品→PLAYER 连接跨执行存活（np22 exec3 拓扑=R5_DUAL_EXEC 成因）；
+#     connectEvent 全部调用点在物品激活链内（Items/Item.gd:5696、EngineerBox.gd:18），
+#     逐案断开后本场激活链重新建立=全新 CoreEventBus 语义。
+#   · U.oracleTimerLefts/oracleDelayedTimers——teardown 收尾已清，此处兜底
+#     （开战前任何残计时器既不被驱动也不该被 [M2] 桥读到）。
+#   · Game.ropeSpeedups/cubeAdvanced/sandbagActive——原版 combatEndDeferred 尾段
+#     （Game.gd:3330-3332）清零，仅自然终局可达；截断路径残留进下一场。
+#   · CombatTimer.fatigueCounter/fatigue 计时器/fatigueDamageSource——np21-R5
+#     第四残留实证：fatigueCounter 仅 combatEnd()（CombatTimer.gd:98-99）复位，
+#     截断路径不达 → 正式场 hasFatigueStarted() 自 t=0 恒真（run1125 定谳）；
+#     Game.fatigueDamageSource.setDamage(0) 同在 combatEnd() 内。
+#   · 双侧角色残留（PLAYER 节点跨场复用，Game.instanceCharacter else 分支；
+#     OPPONENT 每场新建，同样归零防御）：
+#     - attackMovingForward——combatEnd（Character.gd:342）复位仅自然终局可达，
+#       截断路径闩死进下一场（np17-B WARM_LATCH 成因）；
+#     - attackSoundReadyTime= -1.0——0.1s 职业攻击音时闸（Character.gd:461），
+#       跨场残留会让 T0 归零后的首攻漏过 pickRandomElement 抽取；-1.0 =
+#       gd_core 约定的「首战必过闸」等价初始化（CoreCharacter.gd:433）；
+#     - damageAnimation 停走复位——np24 镜像闸（current_animation != "Poison"，
+#       Character.gd:617）的播放门也门住 playback_speed 的 rng 抽取；
+#       引擎实测（AnimStateProbe.gd，2026-11-06 本 3.6 构建）：stop() 即复位
+#       current_animation=""（=gd_core damage_anim_current fresh 值）；
+#     - 全 buff 类型 permanentStacks=0——Buff.reset（np25-p1，76e2d76d）已在
+#       teardown 的 cleanse 链清零，此处显式兜底（键控表 HARVEST/OVERRIDE 的
+#       录制批残留面由此不再存在）；
+#     - 物品 buffLabelPositionTimestamps/usedStacks 归零——物品实例虽逐场新建
+#       （M6b 池清 + instantiateItem 直造），仍按gd_core fresh 语义显式归零。
+func reset_residual_state() -> void :
+	U.time = 0.0
+	U.clockTime = 0.0
+	U.frameCounter = 0
+	root.get_node("EventBus").disconnectAll()
+	U.oracleTimerLefts.clear()
+	U.oracleDelayedTimers.clear()
+	G.ropeSpeedups.clear()
+	G.cubeAdvanced.clear()
+	G.sandbagActive = false
+	CT.fatigueCounter = 0
+	CT.fatigueStartTimer.stop()
+	CT.fatigueTickTimer.stop()
+	G.fatigueDamageSource.setDamage(0)
+	for chr in [G.PLAYER, G.OPPONENT]:
+		if chr == null or not is_instance_valid(chr):
+			continue
+		chr.attackMovingForward = false
+		chr.attackSoundReadyTime = - 1.0
+		chr.damageAnimation.stop()
+		for bt in chr.buffs:
+			chr.buffs[bt].permanentStacks = 0
+		for it in chr.INVENTORY.getItems():
+			if not is_instance_valid(it):
+				continue
+			for i in it.buffLabelPositionTimestamps.size():
+				it.buffLabelPositionTimestamps[i] = 0.0
+			if "usedStacks" in it and it.usedStacks != null:
+				for sk in it.usedStacks:
+					it.usedStacks[sk] = 0.0
+
+
 # 逐字段等价原版 CombatLog.clear()（Core/CombatLog.gd:135-166）的战斗数据面，
 # 跳过 UI 件（滚动容器/伤害图表/日志行节点池）——神谕骨架里它们是无脚本占位
 # 节点，且批量场景无需其视觉状态；战斗数据（事件/统计/时间戳）全部等价清零。
@@ -1237,6 +1311,7 @@ func harness_notes() -> Array :
 		"- [M10] 长战斗每 60 tick 清扫 Labels/ItemAnimations（>400 子节点归还池/释放）——纯视觉节点，防 2.7 万事件级战斗 tick 成本爬升触墙钟闸",
 		"- [M11] 进程配额 ORACLE_FIGHT_CHUNK（外层驱动续跑）：阻塞循环下 MessageQueue 只能帧末 flush，跨场累积至溢出会逐条刷陈旧目标错误；配额退出=干净 flush，resume 幂等续接",
 		"- [M12] 兜底三闸（每 tick 检查）：单 tick 墙钟>5s(lockup)/单场墙钟>60s/事件数>25000——2.7 万事件级战斗每事件排队数十条 Control 布局消息，约 90 万条触发 MessageQueue 溢出 dump（3.5GB）；被截断的战斗照常 dump 已产生事件，status 如实标 timeout",
+		"- [M13] np46 逐案隔离（台账 §6m82）：每场开战前跨案/跨执行累积态归零（T0 绝对钟 Util.time/clockTime/frameCounter=0、EventBus.disconnectAll、oracleTimerLefts/oracleDelayedTimers 清、ropeSpeedups/cubeAdvanced/sandbagActive/fatigueCounter/fatigueDamageSource 归零、双侧角色 attackMovingForward=false+attackSoundReadyTime=-1+damageAnimation stop 复位+全 buff permanentStacks=0+物品 buffLabelPositionTimestamps/usedStacks 清）——初态=gd_core 全新 CoreContext，零 rng 消耗",
 		"- [M5] UI/音频照常调用但入虚空；其 Util.rng 消耗按原版保留（docs/rng_truth.md §1.4-4）",
 		"- 隔离：config/name=BackpackBattlesOracle；history.db 用本地快照副本（原快照只读）",
 	]
