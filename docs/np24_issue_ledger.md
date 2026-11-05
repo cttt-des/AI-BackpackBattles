@@ -1051,3 +1051,11 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **R 拟合矩阵（gd 侧 trace 推演）**：R=1（现值）→4.5 清洗 perm1+P2−4（P2 整池删除）✗；R=9 → 4.5 perm4+P2−1 完美（P1=3/P2=3 ✓✓）但 291@4.9167 dance −1 落 P2→2 ✗；R=10 → 291 吃 P2 得 3 ✓ 但 319@5.8833 再吃 P2→2 ✗ 且 P2 应火 −4 ✗。**结论：static R 无解——dance −1 的损耗目标规则本身是缺失自由度**（现码=farthest-first；语料要求某几笔 −1 落 perm、某几笔落 temp 的精确交错）。
 - **下轮主攻（替代 §6m64 图纸①的先行步）**：np37 法离线模拟器（sim1444v1）：喂全战 type-110 tgt=0 事件序（temp 6 池 13 层+dance ±1+两笔 Gold Armor+TO 3 笔），双自由度 (R, dance-loss-rule∈{farthest,earliest,newest,perm-first-else-X}) 逐笔对拍 TO 序（−3@6.35/−3@6.5/−1@9）+330 前的 Snowmaster 段；**若 (R,rule) 唯一解 → 986 同法（dance-rule=清洗落点差的更一般表述）**；若仍不闭合 → 回收割链扩展（§6m64 图纸①）。
 - 语料事实补充：1444 两笔 Gold Armor（2.2667 −4 / 4.5 −5）tgt=0 均无 protect 前置事件（落地=全额）；dance 序列 tgt=0 ±1 共 ~30 笔（resisted +1 不入账）；perm gains 30/losses 34 含清洗。
+
+## 6m66. ★ run1444_r18 翻绿（858→859）：{110:1}→{110:6} 重标定+清洗落池规则破案（biggest-first，986 完美拟合但跨侧矛盾回退）（2026-11-05 offpeak #372 续3）
+
+- **1444 翻绿**：np37 法离线模拟器（output/_offpeak/np43_1120/sim1444v1.py+cold1444_ledger.txt）R 扫描 → **{110:6}**（现值 {110:1} 系 np22 旧标定）单场 verify **三方一致**；REG np44reg 13 场 gd+py 双腿 12 PASS（986 已知残差）零退。PY_PERM_STACK_OVERRIDE 同步 110:6。
+- **清洗落池规则破案（np44 线索，未落地）**：986 盲账（blind986_ledger.txt，含此前漏抽的 GP 永久 gain 行 2.0333 +1/4.1 +1/6.0 +2——Gold Armor 清洗同拍补充，余额悖论前提崩塌）**biggest-first+R=0 零失配**（oldest 同）；1444 biggest+R=6=farthest+R=6（残 1 笔@t=9 系模拟器简化伪差，引擎实测全过）。**引擎试落（CoreBuff loseStacks farthest→biggest+镜像+py 重生成）：1444 保持绿 ✓ 但 986 tgt=1 侧前移破到 FD@233**（本求解只做了 tgt=0）→ 已回退（git checkout+镜像+py 重生成，verify 确认 986 回 287/1444 保持绿）。
+- **986 下轮精确入口**：biggest-first 在 tgt=0 完美、tgt=1 破 → **双侧联合拟合**（tgt=1 盲账同法提取→(R_player, R_opp, rule) 三自由度；PERM_OVERRIDE 注入面=玩家侧 p.buffs，对手侧残差载体需查 harvest 链/R5 语义）→ 若闭合则引擎 biggest-first+双侧 R 全落地；若跨侧仍矛盾 → 录制批侧侧间差另查。bonus：986 的 BUFF_STOP_CLEARS_SEEN 键控在 biggest 落地后可能可撤（重验）。
+- 坑位复训：verify --cases 改写夹具（本段 2 次还原）；单场 harness「PASS」行不可信（scratch 模式比对缺失），手工 canonical diff 为准。
+- 引擎树终态：CoreBuff.gd=farthest 原样（np44 注释未留，回退干净）；OracleAlignBattle.gd PERM_STACK_OVERRIDE {110:6}；verify_oracle.py PY 表 {110:6}。
