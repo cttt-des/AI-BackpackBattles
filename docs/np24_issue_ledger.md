@@ -1066,3 +1066,8 @@ spy 系五败勿重蹈——新探针先自证 probe≡corpus；每井 ≥1 comm
 - **986 R 扫描鬼影（重要教训）**：biggest-first 无条件落地+{109:R}（R=0..5）临时行时单场 verify 六连「PASS」（firstDivergence=null），但该态**不可复现**——回退后同条件（forced unconditional+{109:0}+无 harvest）gd 腿 FD@233（tgt=1 Lightsaber TO v Gold Armor protect）。疑点=当时 py 镜像/夹具态与时序差异，**单场 json 的 PASS 判读必须配 verify 原始输出与手工 canonical diff 双验**（本段已双验确认当前真态）。引擎已回退 committed farthest（gd_core/CoreBuff.gd 零 biggest 残留，py grep=0），1444 保持绿。
 - **当前工作树增量（全部惰性/已验证）**：CoreContext.gd+CoreBuff.py 的 keyed_cleanse_biggest_first 字段（引擎已回退不读，py 字段惰性）；harness CLEANSE_BIGGEST_FIRST {986}+say 线（引擎不读）；PERM_OVERRIDE {109:0} 双表（净零注入）；gd_core_engine.py keyed 参数（惰性）。功能态=859 sweep 逐位同。
 - **986 下轮入口（更新）**：①biggest-first 对 tgt=0 的完美拟合依然成立（模拟器层），但 tgt=1=碰撞立即火主导（np26W1 域），纸面模拟不适定——**引擎级迭代**：biggest-first 落地后 tgt=1 破@233（ora Lightsaber TO −1@6.0167 v gd Gold Armor protect@6.0667——gd 的 tgt=1 池被 biggest 多吃）→ 需 tgt=1 的对手侧残差载体（PERM_OVERRIDE 注入面=玩家侧 p.buffs，对手侧=free 重建无残差 ⇒ **tgt=1 破法=对手侧盲池在 biggest 下的初始态差** → 查 R5/暖场对手侧语义）②或 986 专用双序键控（tgt=0 biggest/tgt=1 farthest——需 ctx 按侧分旗，机理若成立则记录批两序并存的物理根源）。③鬼影复现实验：精确重建 R 扫描态（无条件 biggest+临时行）并以原始输出+手工 diff 双验。
+
+## 6m68. 986 鬼影定谳：R 扫描六连 PASS=Parse Error 空判（2026-11-05 offpeak #372 收口2）
+
+- **根因**：R 扫描的首个 biggest-first 补丁的 replace 链只改了 _blnd_snap 两处实参，**漏改 `temporaryStacks.remove(farthestIndex)`** → GDScript Parse Error（「farthestIndex isn't declared」）→ gd 腿零事件产物 → verify 的 compare 对空流判 firstDivergence=null → 单场 json 假 PASS。第二个补丁（修好 remove 行）后的引擎实测=真 FD@233（tgt=1）。**验证纪律追加：单场 json PASS 判读必须先核 gd 产物 events.json 非空+verify 原始 tail 无 SCRIPT ERROR**（本段第 3 次工具链坑位，与 np29 探针自炸/夹具改写同列入册）。
+- **986 真态不变**：859/860，FD@287（farthest 基线）。biggest-first 的唯一真实引擎实测=tgt=1 破@233（§6m67 入口①不变）。
