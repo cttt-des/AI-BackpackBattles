@@ -688,3 +688,12 @@
 - **fights_np46 清点**：141 目录，137 场 [M13]+ok 完成（860 主夹具 129/860；54 长场 8/54），4 残场（run575_r18/run734_r18/run753_r15/run771_r18 无 result.txt=被杀残件，续跑自动重录覆盖）。
 - **续跑**：`_np46_rerecord.py --cases <860 清单>`（ORACLE_FIGHTS_ROOT=fights_np46，resume 幂等，129 跳过）后台进行；完成后续 54 长场用 np48 的 `--record` 入口（分档+并行省自证成本）。
 - **纪律不变**：重录完成后→NP22_REC_EV_GATE 按新 event_count 再生→原子换目录→回补基线（--force）→860/860→P4→54 长场剩余。
+
+## 6m108. np47②③完成：914 净化语料换目录+闸再生+回补基线 876/914（38 红两簇）（2026-11-07 offpeak np47）
+
+- **np46 全量重录收口**：860 主夹具定向重录 PASS（fights_np46，resume 三段累计 wall≈80min，速率 ~9.7 场/分）；54 长场经 np48 --record 分档+并行完成（53 场 [M13]+status=ok + run1374 探针单录 37968 事件自然终局——批量段内 lockup@tick2579 系内存压力伪障，单场路径 §6m77 同证可录）。**内存闸血训并入 guide §9.7 模型**：自动推导 5999MB 对全长场低估（截断语料场全长更长，实测峰值 6GB+），batch=2+显式 9000MB 稳过；看门狗「日志停滞」判据会被错误循环刷屏打败（rec0_0 段 run1374 lockup 后 deferred 回调风暴刷 2.6GB 日志永不触发停滞判据）——刷屏型卡死需「日志增长率」或墙钟硬闸兜底（下轮工具改进项）。
+- **914 语料原子换目录**：tools/_np47_swap_rebase.py（自校验 860 [M13]+ok + 54 两源取优 + 备份在位）→ fights = np46 干净语料 914 场（旧件 → fights_pre_np47_swap_backup；初始备份 fights_pre_npur_20261106 不动）。坑修正：短场合法事件数可 <100（r2/r1 轮 36/47 事件），validity 阈值 >100 误杀 21 场——schema 校验（events 列表≥1）替代行数阈值。
+- **NP22 闸再生**：914 全量扫描 → >25000 共 20 场（=54 长场全长件）→ gd 宿主+PY 镜像同表 200000。教训：第一版只扫 860 主夹具漏长场 → 20 场长度型伪红（idx=None）——闸扫描必须跟 fixture 口径一致。
+- **夹具升 914**：gen_fixtures(select_cases(0)) → oracle_align_cases.json=914 场（本 commit 入库=新基线口径；P4 §6「唯一出口 alignment.json 914 行」回归本位）。
+- **回补基线（914 口径）**：verify --force 全量 → **876/914**（118.6s compare）。38 红=两簇：①20 长场 idx=None 长度型（闸漏扫伪红，已随闸再生修复，待重跑腿）②18 主夹具真引擎分歧（净化语料暴露的真 bug，修复循环主菜：run578/602/618/622/628/775/846/848/899/928/933/977/981/984/1094/1487/1491/1507——签名含 ty106/102 型混、Amulet Dark/Light 件身份、Miss Fortune amt 差、Storage Coffin 8-tick 相移等）。
+- **红线核对**：verify_oracle.py/OracleAlignBattle.gd 本轮仅键控表面再生成（np46 获批面）；语料树=np46 授权重录面。
