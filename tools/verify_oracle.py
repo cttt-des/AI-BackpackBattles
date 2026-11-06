@@ -75,7 +75,10 @@ GODOT = os.path.join(ROOT, "output", "godot36", "Godot_v3.6-stable_win64.exe")
 #    与 output/oracle/wf_notes/np18_fix.md §3、np20 台账 round2）──
 #    隔离开关：环境变量 ORACLE_ALIGN_NO_PERM_HARVEST / ORACLE_ALIGN_NO_WARM_LATCH
 #    置任意非空值即关对应补偿（与 gd 宿主同名同义，单笔隔离用）。
-PY_PERM_STACK_HARVEST = {"run702_r18": True, "run1022_r18": True}
+# ★ np46 净化重录后清空（2026-11-06，与 gd 宿主 PERM_STACK_HARVEST 同步）：
+#    语料=逐案隔离 harness 全量重录的干净形状（台账 §6m82），执行链收割键控面
+#    退役；run702/1022 旧键已随旧语料退役。
+PY_PERM_STACK_HARVEST = {}
 # ★ np22（与 gd 宿主 PERM_STACK_HARVEST/OVERRIDE np22 增行镜像；值=gd 收割
 #   管线全长对拍定谳的净真值向量，np21-①「py 只灌净真值表、不复刻收割管线」
 #   体例）：1371=gd 暖场自然终局收割原值；1444=收割之上 Cold(110) 覆写 1
@@ -87,17 +90,10 @@ PY_PERM_STACK_HARVEST = {"run702_r18": True, "run1022_r18": True}
 #   与 gd 宿主 PERM_STACK_OVERRIDE np37 重定谳同步——离线标定模拟器
 #   sim1022v4 48/48 语料 TO 全中唯一 R=1；R=6 → ct898 Shelly -6 被 perm 全吸
 #   → BB(to=ct1118) 存活 → ct1118 武装火=FD@2456）。推导与证据见 gd 宿主表注。
-PY_PERM_STACK_OVERRIDE = {"run986_r12": {109: 0}, "run702_r18": {109: 4}, "run1022_r18": {109: 1},
-                          # ★ np35（2026-11-05）：run977 blind 残差真值 18（离线模拟器
-                          #   逐笔对拍语料 39 笔玩家侧到期全中；R=0 首失配位=idx3386=
-                          #   np35 修前账面 FD；R<18 单调阶梯全失配。批内录制侧前场
-                          #   残留，OVERRIDE-only 不入 HARVEST——推导与证据见 gd 宿主
-                          #   PERM_STACK_OVERRIDE np35 注）。
-                          "run977_r18": {109: 18},
-                          "run1371_r18": {101: 1, 102: 41, 104: 2, 105: 326,
-                                          106: 2, 107: 86, 110: 2},
-                          "run1444_r18": {100: 129, 102: 4, 103: 10, 106: 83,
-                                          107: 4, 110: 6}}
+# ★ np46 净化重录后清空（2026-11-06，与 gd 宿主 PERM_STACK_OVERRIDE 同步）：
+#    canonical 推导残留覆盖全面退役；run986/702/1022/977/1371/1444 旧键已随
+#    旧语料退役（§6m84 986 已实测零键控三方一致）。
+PY_PERM_STACK_OVERRIDE = {}
 # ★ np43（2026-11-05）绝对钟 T0 预载键控表（py 腿镜像，真源 = gd 宿主
 #   WARMUP_TIME_TICKS 同步）：机理与 run1120_r18 推导见 gd 宿主表注——语料录制
 #   批 Util.time 跨场不清零，跨 dur 同刻对撞双池的 earliest 重扫严格 `<` 序由
@@ -107,7 +103,9 @@ PY_PERM_STACK_OVERRIDE = {"run986_r12": {109: 0}, "run702_r18": {109: 4}, "run10
 #   simulator/gd_core_engine.py warmup_time_ticks 参数（run() 开战前逐次
 #   += PHYSICS_DELTA 共 K 次，与神谕 Util.time 累加链逐位同构）。
 PY_WARMUP_TIME_TICKS = {
-    "run1120_r18": 2553,
+    # ★ np46 净化重录后清空（2026-11-06，与 gd 宿主 WARMUP_TIME_TICKS 同步）：
+    #    新语料每场 Util.time 归零=gd_core fresh，T0 预载键控面退役；run1120
+    #    旧键 2553 已随旧语料退役。
 }
 # ★ np43（2026-11-05）Buff 清空 stop seen 清除键控表（py 腿镜像，真源 = gd 宿主
 #   BUFF_STOP_CLEARS_SEEN 同步）：机理与 run986_r12 推导见 gd_core/CoreContext.gd
@@ -116,17 +114,22 @@ PY_WARMUP_TIME_TICKS = {
 #   录制批注册表态不可复原，键控补偿。引擎侧 simulator/gd_core_engine.py
 #   keyed_stop_clears_seen 参数（构造后置 ctx 字段）。
 PY_BUFF_STOP_CLEARS_SEEN = {
-    "run986_r12": True,
+    # ★ np46 净化重录后清空（2026-11-06，与 gd 宿主同步）：run986_r12 已以净化
+    #    harness 重录收割（台账 §6m84，零键控三方一致）。
 }
 # ★ np44 清洗落池序键控表（py 腿镜像，真源 = gd 宿主 CLEANSE_BIGGEST_FIRST）：
 #   机理与双场模拟器定谳见 gd_core/CoreBuff.gd loseStacks np44 注。
 PY_CLEANSE_BIGGEST_FIRST = {
-    "run986_r12": True,
+    # ★ np46 净化重录后清空（2026-11-06，与 gd 宿主同步）：986 残留态已随重录
+    #    收割退役。
 }
 # ★ np22 重录后摘除 696/1371 两键（新语料=ORACLE_NOLIMIT 全长重录干净形状，
 #   无闩残留；真源=gd 宿主 WARM_LATCH_PLAYERS 同步）。906/1125/1409 保留。
 PY_WARM_LATCH_PLAYERS = {
-    "run906_r18": True, "run1125_r18": True, "run1409_r18": True,
+    # ★ np46 净化重录后清空（2026-11-06，与 gd 宿主 WARM_LATCH_PLAYERS 同步）：
+    #    gd 侧 np23 已清空、py 侧 906/1125/1409 三键系旧镜像未同步残留——本轮
+    #    语料=逐案隔离 harness 全量重录（每场开战前 attackMovingForward=false），
+    #    暖场闩面彻底退役。
 }
 # ★ np21-R5 双执行拓扑键控表（py 腿镜像，真源 = gd_core_test/OracleAlignBattle.gd
 #   R5_DUAL_EXEC 表，机理/证据链/值不敏感论证见该处注释）：键控场先跑同 case
@@ -137,11 +140,13 @@ PY_WARM_LATCH_PLAYERS = {
 #   run1409_r18 标定见 gd 宿主 R5_DUAL_EXEC 表注（T_w=事件闸 25000、θ=N/A、
 #   AoL 全双/AoA 分路径双发/Egg 对称双笔=合法机制勿注入 + stale_used_stacks
 #   封闭推导覆盖 {105: -0.375}——推导链见该表注）。
-PY_R5_DUAL_EXEC = {"run1125_r18": {"warm_event_gate": 25000},
-                   "run1409_r18": {"warm_event_gate": 25000,
-                                   "stale_used_stacks": {"Amulet of Agility": {105: -0.375}}},
-                   "run906_r18": {"warm_event_gate": 25000,
-                                  "stale_used_stacks": {"Amulet of Agility": {105: 0.125}}}}
+PY_R5_DUAL_EXEC = {
+    # ★ np46 净化重录后清空（2026-11-06）：「清空全部录制工件键控表」范围
+    #    （超出 ask 点名的六表清单，依据=gd 孪生表 R5_DUAL_EXEC 自 np23 起已空、
+    #    本表三键系未同步的镜像残留）。新语料=逐案隔离 harness 全量重录的干净
+    #    形状（每场开战前 EventBus.disconnectAll+permanentStacks=0+闩复位，台账
+    #    §6m82），双执行拓扑在录制面已不存在，嫁接只会污染 py 腿。
+}
 # ★ np22 重录场正式腿事件闸对位抬闸（真源 = gd_core_test/OracleAlignBattle.gd
 #   NP22_REC_EV_GATE 表）：三场新语料以 ORACLE_NOLIMIT=1（事件闸 200000）
 #   全长录制，py 正式腿同闸对位（引擎 formal_ev_gate 参数），否则 M12=25000
@@ -153,13 +158,14 @@ PY_R5_DUAL_EXEC = {"run1125_r18": {"warm_event_gate": 25000},
 #   操作定义全量补齐（run1444 语料事件数≤25000 走标准闸，不在集中；
 #   语料删除的是 run1445，勿混淆）。
 PY_NP22_REC_EV_GATE = {
-    "run1082_r18": 200000, "run1124_r18": 200000, "run1125_r18": 200000,
-    "run1174_r18": 200000, "run1194_r18": 200000, "run1219_r18": 200000,
-    "run1302_r18": 200000, "run1342_r18": 200000, "run1348_r18": 200000,
-    "run1362_r18": 200000, "run1371_r18": 200000, "run1374_r18": 200000,
-    "run1408_r18": 200000, "run1409_r18": 200000, "run685_r18": 200000,
-    "run696_r18": 200000, "run845_r18": 200000, "run894_r18": 200000,
-    "run905_r18": 200000, "run906_r18": 200000,
+    # ★ np46 再生（2026-11-06，与 gd 宿主 NP22_REC_EV_GATE 同步）：抬闸面=
+    #    **新语料** event_count>25000 全集 10 场（逐场实测
+    #    output/oracle/fights/<case>/events.json；np46 逐案隔离+事件闸 200000
+    #    全长重录后的新分布——旧 20 场表按旧语料生成，已退役）。
+    "run1342_r18": 200000, "run1374_r18": 200000, "run1408_r18": 200000,
+    "run1409_r18": 200000, "run685_r18": 200000, "run696_r18": 200000,
+    "run845_r18": 200000, "run894_r18": 200000, "run905_r18": 200000,
+    "run906_r18": 200000,
 }
 
 

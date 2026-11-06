@@ -76,7 +76,20 @@ def case_done(cid):
     except Exception:
         return False
     # 与 harness case_events_done 同判据：还要求 rng_state.txt 已导出
-    return os.path.exists(os.path.join(fights_root(), cid, "rng_state.txt"))
+    if not os.path.exists(os.path.join(fights_root(), cid, "rng_state.txt")):
+        return False
+    # ★ np46 修正（2026-11-06 假门实锤后补，台账 §6m86）：还要求 result.txt 带
+    #   净化 harness 标记（[M13]）——否则 10-31 旧语料的 events.json/rng_state.txt
+    #   会被 resume 视为已完成，包装器 10 秒假 PASS（output/oracle/fights/
+    #   _batch_summary.txt wall_seconds=10 实证），完成度门放行了未重录的语料。
+    res = os.path.join(fights_root(), cid, "result.txt")
+    if not os.path.exists(res):
+        return False
+    try:
+        with open(res, encoding="utf-8", errors="replace") as fh:
+            return "[M13]" in fh.read()
+    except OSError:
+        return False
 
 
 def pending_cases(only=None):
