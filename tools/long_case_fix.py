@@ -678,6 +678,125 @@ def cmd_prefix(args) -> int:
     _save_progress(prog)
     return 0 if (new_idx is None or new_idx < int(known_idx)) else 1
 
+
+
+# ═══════════════════════ 5) 长场重录（①分档 + ③并行）═══════════════════════
+
+#: 重录产物落这里（**不覆盖** output/oracle/fights 冻结语料）
+REC_DIR = os.path.join(LONG_DIR, 'record')
+
+
+def cmd_record(args) -> int:
+    """长场**重录**：① 分档（每进程只对首场做确定性复跑）+ ③ 并行分片。
+
+    ## 为什么这样提速（两笔账，都是实测）
+
+    **① 分档：53/54 场自动只跑一遍**
+      `oracle_fight.gd` 的确定性自证（`determinism_check`）**只对 cases[0] 执行**
+      （oracle_fight.gd:342 紧邻复跑 + :355 批尾复跑）。所以过去「一场一进程」时
+      每场都白跑一遍复跑；现在把 N 场塞进**同一个进程**，只有第 1 场付复跑成本，
+      其余 N-1 场只跑一遍。单场 117s -> 60s 的效果就从这里来。
+      **不需要改 oracle 任何代码** —— 只是换个喂法。
+
+    **③ 并行：按事件数 LPT 分桶，一进程一桶**
+      长场 54 场游戏时间合计 2543.7s（42.4 分钟单进程下界），4 路并行 ~10.6 分钟。
+
+    ## 两道安全闸
+
+    **批要小**：`oracle_fight.gd` 的 MessageQueue 只在帧末 flush，跨场累积会溢出
+      （文档 M11 实测 ~116 场普通场后溢出；长场事件多，故默认 --batch 3）。
+    **产物隔离**：写 `output/oracle/align_long/record/`，**绝不覆盖**冻结语料
+      `output/oracle/fights/`。要替换语料请人工确认后再搬运。
+    """
+    fights = json.load(io.open(os.path.join(ROOT, 'oracle', 'fights.json'),
+                               encoding='utf-8'))['cases']
+    main_ids = set()
+    try:
+        main_ids = {c['case_id'] for c in
+                    json.load(io.open(MAIN_FIXTURE, encoding='utf-8'))['cases']}
+    except Exception:  # noqa: BLE001
+        pass
+    rows = []
+    for c in fights:
+        cid = c['case_id']
+        if args.only:
+            if cid not in args.only:
+                continue
+        elif not args.all_long and main_ids and cid in main_ids:
+            continue
+        p = os.path.join(V.FIGHTS_DIR, cid, 'events.json')
+        if not os.path.exists(p):
+            continue
+        rows.append({
+            'case_id': cid,
+            'seed': int(c['seed']),
+            'event_count': _event_count_of(p),
+            'bytes': os.path.getsize(p),
+        })
+    if not rows:
+        print('没有可重录的场', file=sys.stderr)
+        return 2
+    # ③ LPT：事件多的先投给最轻的桶（事件数是耗时的最好代理）
+    jobs = gh.effective_jobs(len(rows), gh.auto_jobs(len(rows), args.jobs),
+                             max(1, args.batch))
+    buckets, load = gh.lpt_buckets([r['case_id'] for r in rows], jobs,
+                                   {r['case_id']: r['event_count'] for r in rows})
+    by_id = {r['case_id']: r for r in rows}
+    print('[record] %d 场 -> %d 桶（并行 %d 路），桶负载（事件数）：%s'
+          % (len(rows), len(buckets), jobs,
+             ', '.join('%.0f' % x for x in load)))
+    print('[record] 每进程最多 %d 场：首场付确定性复跑，其余只跑一遍' % args.batch)
+
+    os.makedirs(REC_DIR, exist_ok=True)
+    specs = []
+    for bi, bucket in enumerate(buckets):
+        # 桶内再按 batch 切段：每段一个进程（段首场付复跑）
+        for si in range(0, len(bucket), max(1, args.batch)):
+            seg = bucket[si:si + max(1, args.batch)]
+            specs.append({
+                'cmd': gh.cmd(project='oracle', script='oracle_fight.gd'),
+                'tag': 'rec%d_%d' % (bi, si),
+                'env_extra': {'ORACLE_FIGHTS_ROOT': REC_DIR,
+                              'ORACLE_ONLY_CASES': ','.join(seg)},
+            })
+    t0 = time.time()
+    rc_all = 0
+    done = 0
+    for r in gh.run_many(specs, label='long_rec', max_parallel=jobs):
+        done += 1
+        print('  段 %d/%d rc=%s（累计 %.0f 分钟）'
+              % (done, len(specs), r['rc'], (time.time() - t0) / 60), flush=True)
+        if r['rc'] and not rc_all:
+            rc_all = r['rc']
+            for t in r['tail']:
+                print('     ' + t[:150])
+
+    # 汇总：逐场对照语料（产物在 REC_DIR，语料在 FIGHTS_DIR）
+    ok = miss = diff = 0
+    worst = []
+    for r in rows:
+        cid = r['case_id']
+        new = os.path.join(REC_DIR, cid, 'events.json')
+        old = os.path.join(V.FIGHTS_DIR, cid, 'events.json')
+        if not os.path.exists(new):
+            miss += 1
+            continue
+        d = json.load(io.open(new, encoding='utf-8'))
+        if int(d.get('event_count', 0)) == r['event_count']:
+            ok += 1
+        else:
+            diff += 1
+            worst.append((cid, int(d.get('event_count', 0)), r['event_count']))
+    print()
+    print('[record] 完成：事件数一致 %d / 缺失 %d / 不一致 %d（共 %d 场，墙钟 %.1f 分钟）'
+          % (ok, miss, diff, len(rows), (time.time() - t0) / 60))
+    for cid, got, want in worst[:8]:
+        print('   [差异] %-16s 重录 %d vs 语料 %d' % (cid, got, want))
+    print('[record] 产物 -> %s（**未覆盖冻结语料**，需人工确认后再搬）'
+          % os.path.relpath(REC_DIR, ROOT))
+    return 0 if (rc_all == 0 and miss == 0 and diff == 0) else 1
+
+
 # ═══════════════════════ main ═══════════════════════
 
 def main() -> int:
@@ -692,6 +811,8 @@ def main() -> int:
                    help='单场深挖：跑 gd+py 并打印首分歧事件与上下文')
     g.add_argument('--prefix', default='', metavar='CASE',
                    help='**前缀重放**：只跑到上次分歧点+余量，秒级验证修复是否前移（修复迭代主入口）')
+    g.add_argument('--record', action='store_true',
+                   help='**长场重录**：分档（每进程只首场付复跑）+ 并行分片，产物写 align_long/record（不覆盖冻结语料）')
     ap.add_argument('--jobs', type=int, default=0,
                     help='并行度（0=自动，上限 %d）' % gh.PARALLEL_MAX_JOBS)
     ap.add_argument('--batch', type=int, default=4,
@@ -703,6 +824,10 @@ def main() -> int:
                          '「上次分歧 + margin 个事件」，否则前缀太短判不了')
     ap.add_argument('--force-full', action='store_true',
                     help='--prefix 时忽略账本，重新全量定位首分歧')
+    ap.add_argument('--only', default='',
+                    help='--record 时只重录逗号分隔的 case_id')
+    ap.add_argument('--all-long', action='store_true',
+                    help='--record 时连主夹具内的场也重录（默认只重录被排除的 54 场）')
     args = ap.parse_args()
 
     if args.list:
@@ -717,6 +842,9 @@ def main() -> int:
         return cmd_focus(args)
     if args.prefix:
         return cmd_prefix(args)
+    if args.record:
+        args.only = {x for x in (getattr(args, 'only', '') or '').split(',') if x}
+        return cmd_record(args)
     ap.print_help()
     return 0
 
