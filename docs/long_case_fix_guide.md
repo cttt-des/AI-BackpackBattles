@@ -28,6 +28,15 @@ python -X utf8 tools/long_case_fix.py --prefix <case>   # 4) 前缀重放：修�
 python -X utf8 tools/long_case_fix.py --run             # 5) 批量三腿验证（54 场全跑）
 python -X utf8 tools/long_case_fix.py --report          # 6) 汇总：按分歧类型聚类
 python -X utf8 tools/long_case_fix.py --record          # 7) 长场重录（分档+并行+卡死重跑，见 §9）
+
+# --record 的可调项（一般都不用填，全自动）
+#   --batch N          每进程几场（0=自动挑最快值，见 §9.7）
+#   --jobs N           并行度（0=自动；写死也会被内存闸压住，见 §9.8）
+#   --stall-seconds N  卡死判据：日志停滞多少秒算卡死（默认 90，见 §9.4）
+#   --max-retries N    单段卡死最多重跑几次（默认 2）
+#   --mem-limit-mb N   单进程内存上限（0=按峰值模型 x1.3 自动推导，见 §9.7）
+#   --only a,b,c       只重录指定场
+#   --all-long         连主夹具内的场也重录
 ```
 
 ---
@@ -260,6 +269,95 @@ run1015_r18 run1080_r18 run1082_r18 run1124_r18 run1125_r18
 run1174_r18 run1194_r18 run1219_r18 run1302_r18 run1348_r18
 ```
 
+### 9.7 内存模型（★ 最重要：跑久了卡顿的根因）
+
+#### 实测数据（2026-11-07）
+
+对比「单场」与「同进程两场」（run1015_r18）：
+
+| 组 | 峰值 | **teardown 后** | 墙钟 |
+|---|---|---|---|
+| A 单场 | 2751 MB | **1131 MB** | 194s |
+| B 两场 | 4434 MB | **1210 MB** | 372s |
+
+**两条结论**：
+
+1. **不是跨场泄漏** —— 结束基线只差 79 MB。`teardown_case()` 里 `_flush_queued()`
+   逐树 `free()` 是有效的（源码注释实测「一场拆 ~15 万节点」）。
+2. **峰值 ∝ 进程运行时长**：
+
+```
+(2751 - 1131) / 194s = 8.35 MB/s
+(4434 - 1210) / 372s = 8.67 MB/s      → 取 9 MB/s（偏保守）
+
+模型：peak = 1.1GB + 墙钟 x 9MB/s
+校验：A 预计 2872MB / 实测 2751MB（+4%）；B 预计 4474 / 实测 4434（+1%）
+```
+
+#### 推论：batch 越大，峰值越高
+
+```
+batch=1 -> 约 2.8 GB      batch=2 -> 约 4.5 GB
+batch=3 -> 约 6.0 GB      batch=4 -> 约 6.8 GB
+```
+
+> ⚠ **这是「跑久了疯狂卡顿」的真因**：4 路 x batch=3 = 24~32 GB，
+> 而物理内存只有 15.84 GB —— 必然换页，整机卡死。
+> 实测当时的系统状态：占用 96%、可用 0.49 GB、提交区 28.52/32.39 GB。
+
+#### 现在的自动化（2026-11-07 起）
+
+**`--batch` 默认 0 = 自动挑最快值**（按当时可用内存算）：
+
+```
+[record] 自动选 batch=2（可用 7.7GB）：预计 2 路 / 约 2 分钟
+[record] 最坏段预计墙钟 236s -> 单进程峰值预算 3.17 GB（模型 1.1GB+9MB/s）
+[record] 内存上限 4220 MB（= 峰值预算 3.17GB x 1.3 自动推导）
+```
+
+为什么必须自动：**最优点随内存变化**（实测）：
+
+| 可用内存 | 最快 batch | 路数 | 预计时长 |
+|---|---|---|---|
+| 7.5 GB | batch=1 | 2 | 85.9 分钟 |
+| 11.0 GB | batch=1 | 3 | 57.2 分钟 |
+| 14.0 GB | **batch=4** | 2 | 50.0 分钟 |
+
+内存紧时 **小 batch 才能多开路**，内存松时 **大 batch 摊薄启动/复跑成本**。
+这个不该让使用者硬记。
+
+**`--mem-limit-mb` 默认 0 = 按模型 x1.3 自动推导**：超限由看门狗杀掉重跑。
+
+> 踩过的坑：曾经把这值写死 2400MB，结果 batch=2 的段峰值约 3.2GB 被**连杀两次**，
+> 白跑 4 分钟。写死的值必然错（batch=1 要 2.8GB、batch=4 要 6.8GB）。
+
+#### 相关常量的位置（`tools/godot_headless.py`）
+
+```python
+ORACLE_BASE_MEM_GB = 1.1          # teardown 后的稳定基线
+ORACLE_MEM_PER_SEC_GB = 9.0/1024  # 峰值增长速率（GB/秒墙钟）
+oracle_job_mem_gb(est_wall_secs)  # 按预计墙钟换算峰值预算
+```
+
+> ⚠ 这两个常数是**本机实测值**。换机器（尤其内存/CPU 差异大）要重测：
+> 跑一场长场，每 2 秒采 `godot_watchdog._rss_mb(pid)`，反推 `(峰值-基线)/墙钟`。
+
+---
+
+### 9.8 ⚠ 坑 6：显式 --jobs 也会被内存闸压住（特性，不是 bug）
+
+```bash
+python -X utf8 tools/long_case_fix.py --record --jobs 4
+# [jobs] 请求 4 路，但可用内存仅 0.40 GB（每路预算 2.00 GB）
+#        -> 压到 1 路；确实要 4 路请用 force=True
+```
+
+过去 `auto_jobs` 在 `requested > 0` 时**直接返回请求值、完全绕过内存闸**，
+于是 `--jobs 4` 能把 4 个 1.7~2.8GB 的进程硬塞进 15.84GB 的机器。
+现在显式请求也要过闸，被压住时会**打一行说明**（不静默降级）。
+
+**建议：直接不写 `--jobs`**，让它按可用内存自动定。
+
 ---
 
 ## 9b. 典型修复流程
@@ -297,7 +395,7 @@ python -X utf8 tools/long_case_fix.py --report
 | `run906_r18` | `gdcore≡oracle`，**py 分歧** | idx=6，gdcore 11 伤害 / py 12 伤害（荷包蛋圣锅） |
 | 其余 53 场 | **未验证** | — |
 
-### 10.2 重录侧：已验证 3 场（含 1 场截断场）
+### 10.2 重录侧：已验证 5 场（含 1 场截断场）
 
 用 `--record --batch 3` 同进程跑 3 场（墙钟 7.7 分钟）：
 
@@ -336,6 +434,8 @@ git diff --numstat tools/verify_oracle.py gd_core_test/OracleAlignBattle.gd
 
 ---
 
+---
+
 ## 12. 相关文档
 
 | 文档 | 什么时候看 |
@@ -344,3 +444,69 @@ git diff --numstat tools/verify_oracle.py gd_core_test/OracleAlignBattle.gd
 | `docs/consistency_workflow.md` | 一致性总流程、里程碑定义 |
 | `docs/alignment_fix_workflow.md` | 阶段1/阶段2 对齐方法论 |
 
+---
+
+## 13. 新接手的 agent 请先读这一节（5 分钟上手）
+
+### 13.1 三条铁律
+
+1. **不改 `tools/verify_oracle.py`、不改 `gd_core_test/OracleAlignBattle.gd`**
+   —— 长场工具是**完全独立**的一套（自带夹具、自带产物目录、自带报告）。
+   主基线 `alignment.json` 的 860 场不受影响。
+2. **产物写 `output/oracle/align_long/` 下，绝不覆盖 `output/oracle/fights/`**
+   —— 冻结语料要人工确认后才能替换。
+3. **跑重录前不要手填 `--batch` / `--jobs`**
+   —— 默认全自动，按当时可用内存选。硬填会被内存闸压住（见 §9.8）。
+
+### 13.2 第一次上手做什么
+
+```bash
+# 1) 先看现状：这 54 场是什么、多大
+python -X utf8 tools/long_case_fix.py --list
+
+# 2) 生成夹具（一次就够，已存在会跳过）
+python -X utf8 tools/long_case_fix.py --prepare
+
+# 3) 重录那 10 场截断场（语料 winner="-" 的，见 §9.6）
+python -X utf8 tools/long_case_fix.py --record \
+    --only run1015_r18,run1080_r18,run1082_r18,run1124_r18,run1125_r18,\
+run1174_r18,run1194_r18,run1219_r18,run1302_r18,run1348_r18
+
+# 4) 批量三腿验证，拿到全貌
+python -X utf8 tools/long_case_fix.py --run
+
+# 5) 看报告，从最大的簇开始修
+python -X utf8 tools/long_case_fix.py --report
+```
+
+### 13.3 修复迭代的正确姿势
+
+```bash
+# ❌ 不要：每次都 --focus（每轮全量跑，几十秒到几分钟）
+# ✅ 要这样：
+python -X utf8 tools/long_case_fix.py --focus  run906_r18   # 首轮：定位首分歧，记账
+# ...改代码...
+python -X utf8 tools/long_case_fix.py --prefix run906_r18   # 之后每轮：只跑前缀，秒级
+#   输出「前移 / 未动 / 退步」，退步要立刻回滚
+```
+
+### 13.4 六个坑（都已经踩过，别重踩）
+
+| # | 坑 | 文档位置 |
+|---|---|---|
+| 1 | `--margin` 是**事件数**不是 tick | §3.3 |
+| 2 | py 腿事件闸不抬 → 全是**伪分歧** | §4 |
+| 3 | 一场一进程 → 启动成本吃掉全部收益 | §5 |
+| 4 | 分片清单没真的下发 → N 个进程各跑全量 | §6 |
+| 5 | 用 `read` 改 `.gd` 会**截断**（隐式字节上限） | §7 |
+| 6 | 显式 `--jobs` 绕过内存闸 → 整机卡死 | §9.8 |
+
+### 13.5 出问题先看哪里
+
+| 症状 | 先查 |
+|---|---|
+| 跑着跑着整机卡 | 可用内存；`--batch` 是否被手填太大（§9.7） |
+| 某段一直重跑 | 看门狗日志的「内存超限」还是「日志停滞」（§9.4） |
+| 事件数比语料多 | 多半是截断场，预期行为（§9.6） |
+| 分歧位置来回变 | 用 `--prefix` 看是「前移」还是「退步」，退步立即回滚 |
+| 产物缺失 | 看 `output/_recovery/godot_logs/long_rec_*.log` 的 tail |
