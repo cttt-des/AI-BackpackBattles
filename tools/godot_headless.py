@@ -49,7 +49,16 @@ TEST_PROJ = os.path.join(ROOT, "gd_core_test")
 ORACLE_PROJ = os.path.join(ROOT, "oracle")
 
 #: 无窗口 + 静音音频。**不要**换回 --headless（3.6 不认）。
-BASE_ARGS = ["--no-window", "--audio-driver", "Dummy"]
+#: 无窗口 + 静音音频 + **窗口出生即在屏外**。
+# ★ 不要换回 --headless（3.6 不认，等于走普通窗口路径）。
+# ★ 2026-11-06 修复：--no-window 不足以保证窗口不显示 —— 普查发现同 pid 下存在
+#   Engine 类窗口 rect=(0,0,1280,720)，且**可见了 56/473 次采样**（这就是用户看到的
+#   「开场图全屏弹出来」）。看门狗 50ms 压一次、Godot 立刻 ShowWindow 回来，中间
+#   始终有可见窗口期，纯压制压不住。故在**出生参数**上解决：--position 直接放到
+#   屏幕外；--resolution 固定尺寸（不改尺寸语义，只防它按默认尺寸铺满屏）。
+BASE_ARGS = ["--no-window", "--audio-driver", "Dummy",
+             "--position", "-32000,-32000",
+             "--resolution", "1280x720"]
 
 #: 日志与 cwd 落点。cwd 设到这里，搜狗注入的 debug.log 就不落进仓库根目录。
 LOG_DIR = os.path.join(ROOT, "output", "_recovery", "godot_logs")
@@ -131,6 +140,30 @@ def _startupinfo(desktop=True):
     if desktop and _hidden_desktop() is not None:
         si.lpDesktop = "WinSta0\\" + DESKTOP_NAME
     return si
+
+
+def worker_startupinfo(desktop=True):
+    """给**任意子进程**（不只 Godot）用的 startupinfo：同样 SW_HIDE。
+
+    ★ 为什么 python worker 也要藏：搜狗 IME 会往**每个**宿进程注入 DLL，注入后调
+      MessageBox 时弹在**该进程所在桌面**上。过去只有 Godot 走 _startupinfo()，
+      而启动它的 python worker（--gd-worker / --py-worker / --compare-worker）
+      是裸 subprocess.Popen —— worker 留在用户桌面，被注入后弹框就落到用户屏幕。
+    """
+    return _startupinfo(desktop=desktop)
+
+
+def py_popen(cmd, **kwargs):
+    """起一个 Python/普通子进程，默认带 SW_HIDE（别把窗口留到用户桌面）。
+
+    用法与 subprocess.Popen 相同：
+        p = gh.py_popen([sys.executable, worker, '--gd-worker', lst],
+                        cwd=ROOT, stdout=log, stderr=subprocess.STDOUT, env=e)
+    ★ 只在**不需要可见窗口**的场合用。capture_replay / launch_fresh_and_scan
+      那类需要真实窗口与人类输入的工具必须保持默认桌面。
+    """
+    kwargs.setdefault("startupinfo", worker_startupinfo())
+    return subprocess.Popen(cmd, **kwargs)
 
 
 def env(tag=None) -> dict:
@@ -268,6 +301,23 @@ def auto_jobs(n_items, requested=0, per_job_mem_gb=None, cap=None):
     return max(1, min(cap, by_cpu, by_mem, n_items))
 
 
+def effective_jobs(n_items, jobs, min_items_per_job=1):
+    """把并行度压到「每片至少 min_items_per_job 个任务」。
+
+    ★ 为什么必须这道闸（实测教训）：Godot 启动成本随项目体积走 ——
+      gd_core_test（45MB/701 文件）≈1s；oracle（544MB/15419 文件）≈25s。
+      分片只在「每片的活 ≫ 启动成本」时划算，否则每多一片就多付一次启动。
+      实测负优化两例：oracle 两场各起一进程 8.49s vs 单进程 6.12s（0.72x）；
+      物品解析 3 路 11.22s vs 单进程 8.48s（0.76x）。
+    """
+    n = int(n_items or 0)
+    if n <= 0:
+        return 1
+    j = max(1, int(jobs or 1))
+    per = max(1, int(min_items_per_job or 1))
+    return max(1, min(j, n // per or 1))
+
+
 def lpt_buckets(items, jobs, weight=None):
     """LPT（Longest Processing Time first）分桶：重活先投，依次投给当前最轻的桶。
 
@@ -288,32 +338,86 @@ def lpt_buckets(items, jobs, weight=None):
     return [b for b in buckets if b], load
 
 
-def run_many(specs, label="godot", timeout=None):
-    """并行起 N 个 Godot（每个独立 APPDATA + 各自日志），等齐后返回结果表。
+def run_many(specs, label="godot", timeout=None, max_parallel=0,
+             on_done=None, poll=0.15):
+    """并行跑 N 个 Godot（每个独立 APPDATA + 各自日志），**按完成顺序补位**。
 
     specs: [{"cmd": [...], "tag": "s0", "env_extra": {...}, "timeout": 秒?}, ...]
-    返回 [{"index","tag","rc","log","tail"}...]（顺序同 specs）。
+    max_parallel: 在途进程上限（0 / 不传 = 一起起齐）。
+    on_done: 回调 fn(result)，在**完成那一刻**调用（调用方据此即时打印，
+             不必等前面慢的把结论一起压住）。
+    返回 [{"index","tag","rc","log","tail","secs"}...]，**按完成顺序**；
+    要原顺序请按 index 排序。
+
+    ★ 为什么要有 max_parallel + 完成补位：过去这里「一次起齐、按启动顺序 wait()」，
+      队首慢任务会把槽位空占住，后面的干等不补位。实测（队首 4s 慢活 + 6 个 0.5s
+      快活、上限 2）按序回收 5.78s，理想 4.0s —— 多花 44%。
     ★ 每片 tag 不同 → env() 按 pid+tag 隔离 APPDATA，多进程不共享 user://。
     ★ 输出一律重定向到文件（沙箱禁匿名管道，PIPE 会 CreatePipe WinError 5）。
-    ★ 每个进程都走 _startupinfo() 的隐藏桌面：窗口与 IME 弹窗都不落用户桌面。
     """
-    procs = []
-    for i, sp in enumerate(specs):
+    specs = list(specs)
+    if not specs:
+        return []
+    limit = int(max_parallel) if max_parallel and int(max_parallel) > 0 else len(specs)
+    limit = max(1, min(limit, len(specs)))
+
+    pending = list(enumerate(specs))
+    running = []          # [(index, tag, proc, fh, log_path, deadline, t0)]
+    out = []
+
+    def _reap(entry, rc):
+        i, tag, p, fh, log_path, _dl, t0 = entry
+        try:
+            fh.close()
+        except OSError:
+            pass
+        text = read_log(log_path)
+        tail = [l for l in text.splitlines() if l.strip() and not is_noise(l)][-5:]
+        res = {"index": i, "tag": tag, "rc": rc, "log": log_path,
+               "tail": tail, "secs": time.time() - t0}
+        out.append(res)
+        if on_done is not None:
+            try:
+                on_done(res)
+            except Exception:  # noqa: BLE001 —— 回调出错不该毁掉整批
+                pass
+        return res
+
+    def _launch(i, sp):
         tag = sp.get("tag") or ("w%d" % i)
         p, log_path, fh = spawn(sp["cmd"], label="%s_%s" % (label, tag), tag=tag,
                                 cwd=sp.get("cwd"), env_extra=sp.get("env_extra"))
-        procs.append((i, tag, p, fh, log_path, sp.get("timeout") or timeout))
-    out = []
-    for i, tag, p, fh, log_path, tmo in procs:
-        try:
-            rc = p.wait(timeout=tmo) if tmo else p.wait()
-        except subprocess.TimeoutExpired:
-            p.kill()
-            p.wait()
-            rc = -9
-        finally:
-            fh.close()
-        text = read_log(log_path)
-        tail = [l for l in text.splitlines() if l.strip() and not is_noise(l)][-5:]
-        out.append({"index": i, "tag": tag, "rc": rc, "log": log_path, "tail": tail})
+        tmo = sp.get("timeout") or timeout
+        deadline = (time.time() + float(tmo)) if tmo else None
+        running.append((i, tag, p, fh, log_path, deadline, time.time()))
+
+    while pending and len(running) < limit:
+        i, sp = pending.pop(0)
+        _launch(i, sp)
+
+    while running:
+        finished = None
+        for entry in running:
+            i, tag, p, fh, log_path, deadline, t0 = entry
+            rc = p.poll()
+            if rc is not None:
+                finished = (entry, rc)
+                break
+            if deadline is not None and time.time() > deadline:
+                p.kill()
+                try:
+                    p.wait(timeout=5)
+                except Exception:  # noqa: BLE001
+                    pass
+                finished = (entry, -9)
+                break
+        if finished is None:
+            time.sleep(poll)
+            continue
+        entry, rc = finished
+        running.remove(entry)
+        _reap(entry, rc)
+        if pending:
+            i, sp = pending.pop(0)
+            _launch(i, sp)
     return out
