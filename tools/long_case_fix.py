@@ -55,6 +55,7 @@ sys.path.insert(0, os.path.join(ROOT, 'tools'))
 sys.path.insert(0, ROOT)
 
 import godot_headless as gh  # noqa: E402
+import godot_watchdog as wd  # noqa: E402
 import verify_oracle as V  # noqa: E402
 
 #: 长场产物根（与主基线 output/oracle/align/ 完全分开）
@@ -762,14 +763,39 @@ def cmd_record(args) -> int:
     t0 = time.time()
     rc_all = 0
     done = 0
-    for r in gh.run_many(specs, label='long_rec', max_parallel=jobs):
+    stalls = 0
+
+    # ★ 带看门狗跑（2026-11-06）：窗口会在屏幕上出现，用户点了就会让 Godot
+    #   卡在阻塞 tick 循环里（实测两次：231s/161s 后 0 事件、退出码 0xCFFFFFFF）。
+    #   判据 = **日志文件 90 秒零增长**（正常录制实测最长停滞 7s，留 10 倍余量）。
+    #   不用 IsHungAppWindow：实测正常录制期间它恒返回 1，是假信号。
+    def _on_ev(kind, payload):
+        nonlocal stalls
+        if kind == 'stalled':
+            stalls += 1
+            print('  [看门狗] %s 日志停滞 %ss -> 判卡死，杀掉重跑'
+                  % (payload.get('tag'), payload.get('stalled_for')), flush=True)
+        elif kind == 'done' and payload.get('killed'):
+            print('  [看门狗] %s 已终止（rc=%s，重跑 %d 次）'
+                  % (payload.get('tag'), payload.get('rc'),
+                     payload.get('retries', 0)), flush=True)
+
+    results = wd.run_with_watchdog(
+        specs, label='long_rec', max_parallel=jobs,
+        stall_seconds=args.stall_seconds,
+        max_retries=args.max_retries, on_event=_on_ev)
+    for r in results:
         done += 1
-        print('  段 %d/%d rc=%s（累计 %.0f 分钟）'
-              % (done, len(specs), r['rc'], (time.time() - t0) / 60), flush=True)
+        print('  段 %d/%d %s rc=%s%s（累计 %.0f 分钟）'
+              % (done, len(results), r['tag'], r['rc'],
+                 ' [被看门狗终止]' if r.get('killed') else '',
+                 (time.time() - t0) / 60), flush=True)
         if r['rc'] and not rc_all:
             rc_all = r['rc']
             for t in r['tail']:
                 print('     ' + t[:150])
+    if stalls:
+        print('[record] 看门狗共介入 %d 次（卡死重跑）' % stalls)
 
     # 汇总：逐场对照语料（产物在 REC_DIR，语料在 FIGHTS_DIR）
     ok = miss = diff = 0
@@ -826,6 +852,10 @@ def main() -> int:
                     help='--prefix 时忽略账本，重新全量定位首分歧')
     ap.add_argument('--only', default='',
                     help='--record 时只重录逗号分隔的 case_id')
+    ap.add_argument('--stall-seconds', type=float, default=wd.DEFAULT_STALL_SECONDS,
+                    help='--record 时判定卡死的日志停滞阈值（秒，默认 %(default)s）')
+    ap.add_argument('--max-retries', type=int, default=wd.DEFAULT_MAX_RETRIES,
+                    help='--record 时单段卡死最多重跑几次（默认 %(default)s）')
     ap.add_argument('--all-long', action='store_true',
                     help='--record 时连主夹具内的场也重录（默认只重录被排除的 54 场）')
     args = ap.parse_args()
