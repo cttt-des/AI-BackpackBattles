@@ -63,16 +63,71 @@ def _log_size(path: str) -> int:
         return -1
 
 
+#: 内存监控的进程句柄缓存（OpenProcess 一次，避免每轮重开）
+_PROC_HANDLE_CACHE = {}
+
+
+def _rss_mb(pid: int) -> int:
+    """读进程工作集大小（MB）。失败返回 -1（不参与判定）。
+
+    ★ 为什么要监控内存：oracle 长场进程内存**持续增长**，实测
+        t=1s 170MB -> t=43s ~1420MB -> t=159s ~1731MB
+      4 路并行时合计 6.8GB，会把物理内存吃到 96% 并开始疯狂换页 ——
+      表现就是「跑久了整台机器卡顿」，而不是某个进程报错。
+      所以与其等系统 OOM，不如主动把超限的那个杀掉重跑。
+    """
+    try:
+        import ctypes
+        from ctypes import wintypes as w
+
+        class PMC(ctypes.Structure):
+            _fields_ = [("cb", w.DWORD), ("PageFaultCount", w.DWORD),
+                        ("PeakWorkingSetSize", ctypes.c_size_t),
+                        ("WorkingSetSize", ctypes.c_size_t),
+                        ("QuotaPeakPagedPoolUsage", ctypes.c_size_t),
+                        ("QuotaPagedPoolUsage", ctypes.c_size_t),
+                        ("QuotaPeakNonPagedPoolUsage", ctypes.c_size_t),
+                        ("QuotaNonPagedPoolUsage", ctypes.c_size_t),
+                        ("PagefileUsage", ctypes.c_size_t),
+                        ("PeakPagefileUsage", ctypes.c_size_t)]
+
+        k32 = ctypes.WinDLL("kernel32")
+        k32.OpenProcess.argtypes = [w.DWORD, w.BOOL, w.DWORD]
+        k32.OpenProcess.restype = w.HANDLE
+        h = _PROC_HANDLE_CACHE.get(pid)
+        if h is None:
+            h = k32.OpenProcess(0x0410, False, int(pid))  # QUERY_INFORMATION|VM_READ
+            if not h:
+                return -1
+            _PROC_HANDLE_CACHE[pid] = h
+        pmc = PMC()
+        pmc.cb = ctypes.sizeof(PMC)
+        # ★ 函数名是 K32GetProcessMemoryInfo（kernel32 导出的重命名版）；
+        #   裸 GetProcessMemoryInfo 只能从 psapi.dll 拿，直接 getattr(k32, ...) 会失败。
+        fn = getattr(k32, "K32GetProcessMemoryInfo", None)
+        if fn is None:
+            fn = ctypes.WinDLL("psapi").GetProcessMemoryInfo
+        fn.argtypes = [w.HANDLE, ctypes.c_void_p, w.DWORD]
+        fn.restype = w.BOOL
+        if not fn(w.HANDLE(h), ctypes.byref(pmc), pmc.cb):
+            return -1
+        return int(pmc.WorkingSetSize // (1024 * 1024))
+    except Exception:  # noqa: BLE001
+        return -1
+
+
 def run_with_watchdog(specs, label="godot", max_parallel=0,
                       stall_seconds=DEFAULT_STALL_SECONDS,
                       max_retries=DEFAULT_MAX_RETRIES,
-                      on_event=None):
+                      mem_limit_mb=0, on_event=None):
     """跑一批 Godot，**卡死（日志停滞）就杀掉重跑**。
 
     specs 同 gh.run_many：[{"cmd", "tag", "env_extra", "timeout"}, ...]
     返回 [{"index","tag","rc","log","tail","secs","retries","killed"}...]。
 
     ★ 卡死判据 = 该进程自己的日志文件 stall_seconds 内零增长。
+    ★ 内存上限 = mem_limit_mb（>0 时生效）。超限即杀掉重跑，防止把物理内存吃光
+      导致整机换页卡顿（oracle 长场实测会从 170MB 涨到 1.7GB+）。
     ★ 杀掉时用 Popen.kill()（只杀自己起的进程，不按进程名扫）。
     ★ 重跑 = 同一 spec 原样再起一次（调用方通常靠"产物存在即跳过"保证幂等）。
     """
@@ -103,10 +158,10 @@ def run_with_watchdog(specs, label="godot", max_parallel=0,
         tmo = sp.get("timeout")
         deadline = (time.time() + float(tmo)) if tmo else None
         running.append([i, tag, proc, fh, log_path, deadline, time.time(),
-                        _log_size(log_path), None])
+                        _log_size(log_path), None, 0, 0])  # [..., stale_since, peak_mb, over_since]
 
     def _finish(entry, rc, killed):
-        i, tag, proc, fh, log_path, _dl, t0, _ls, _ss = entry
+        i, tag, proc, fh, log_path, _dl, t0, _ls, _ss, peak_mb, _os_ = entry
         try:
             fh.close()
         except OSError:
@@ -129,7 +184,7 @@ def run_with_watchdog(specs, label="godot", max_parallel=0,
         now = time.time()
         action = None
         for entry in running:
-            i, tag, proc, fh, log_path, deadline, t0, last_size, stale_since = entry
+            i, tag, proc, fh, log_path, deadline, t0, last_size, stale_since = entry[:9]
             # 1) 正常退出
             rc = proc.poll()
             if rc is not None:
@@ -144,7 +199,20 @@ def run_with_watchdog(specs, label="godot", max_parallel=0,
                     pass
                 action = ("timeout", entry, -9, True)
                 break
-            # 3) 日志停滞 -> 判卡死
+            # 3) 内存超限 -> 杀掉重跑（防整机换页）
+            if mem_limit_mb and mem_limit_mb > 0:
+                rss = _rss_mb(proc.pid)
+                if rss > entry[9]:
+                    entry[9] = rss
+                if rss >= mem_limit_mb:
+                    proc.kill()
+                    try:
+                        proc.wait(timeout=5)
+                    except Exception:  # noqa: BLE001
+                        pass
+                    action = ("memlimit", entry, -7, True)
+                    break
+            # 4) 日志停滞 -> 判卡死
             size = _log_size(log_path)
             if size > last_size:
                 entry[7] = size
@@ -166,9 +234,13 @@ def run_with_watchdog(specs, label="godot", max_parallel=0,
         kind, entry, rc, killed = action
         running.remove(entry)
         i, sp0 = entry[0], specs[entry[0]]
-        if kind == "stalled":
-            _emit("stalled", {"index": i, "tag": entry[1],
-                              "stalled_for": round(now - (entry[8] or now), 1)})
+        if kind in ("stalled", "memlimit"):
+            if kind == "memlimit":
+                _emit("memlimit", {"index": i, "tag": entry[1],
+                                   "peak_mb": entry[9], "limit_mb": mem_limit_mb})
+            else:
+                _emit("stalled", {"index": i, "tag": entry[1],
+                                  "stalled_for": round(now - (entry[8] or now), 1)})
             if attempts.get(i, 0) <= max_retries:
                 attempts[i] = attempts.get(i, 0) + 1
                 _launch(i, sp0, attempts[i] - 1)

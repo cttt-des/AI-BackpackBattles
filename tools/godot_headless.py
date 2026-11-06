@@ -258,8 +258,18 @@ def run(cmdline, label="godot", cwd=None, timeout=None, tag=None, env_extra=None
 
 #: 并行度硬上限。收益递减 + 内存峰值随路数线性放大（实测 5 路上限）。
 PARALLEL_MAX_JOBS = 5
-#: 单个 Godot worker 的峰值内存预算（GB）。gd_core 与 oracle 长战实测峰值约 1GB。
+#: 单个 Godot worker 的峰值内存预算（GB）。
+#:
+#: ★ 2026-11-07 实测修订：oracle **长场**进程内存持续增长，实测曲线
+#:     t=1s    170 MB   （刚起）
+#:     t=43s   ~1420 MB  （暖场加载完；这段约 400 MB/分钟）
+#:     t=159s  ~1731 MB  （之后转慢涨，仍约 1-2 MB/秒）
+#:   4 路合计 ≈6.8 GB，把 15.84 GB 机器吃到 **96% 占用、可用 0.49 GB**，
+#:   提交区 28.5/32.4 GB 开始疯狂换页 —— 这就是「时间一长就疯狂卡顿」的直接原因。
+#:   故 oracle 类长场单独用 ORACLE_JOB_MEM_GB，别用这里的 1.2。
 PER_JOB_MEM_GB = 1.2
+#: oracle 长场专用预算（录制/重放长战，单进程实测峰值 1.7 GB + 余量）
+ORACLE_JOB_MEM_GB = 2.0
 
 
 def avail_mem_gb() -> float:
@@ -284,20 +294,37 @@ def avail_mem_gb() -> float:
         return 8.0
 
 
-def auto_jobs(n_items, requested=0, per_job_mem_gb=None, cap=None):
-    """并行度决策：requested>0 时按请求（仍受上限约束），0=按机器资源自动。
+def auto_jobs(n_items, requested=0, per_job_mem_gb=None, cap=None,
+              verbose=True):
+    """并行度决策：`min( 上限, cpu-1, 可用内存//per_job, 任务数 )`。
 
-    jobs = min( 上限, cpu_count-1, 可用内存//per_job, 任务数 )
+    ## ★ 2026-11-07 关键修正：显式 `requested` **也要过内存闸**
+
+    改动前 `requested > 0` 时直接 `return requested`，**完全绕过内存闸**。后果实测：
+    `long_case_fix --record --jobs 4` 强制起 4 路 oracle 长场进程，每个峰值
+    **1.7 GB**，合计 6.8 GB —— 把 15.84 GB 物理内存吃到 **占用 96%、可用 0.49 GB**，
+    提交区 28.52/32.39 GB 开始疯狂换页，于是「时间一长就疯狂卡顿」。
+
+    现在按 `min(requested, by_mem)` 取，被内存压住时打印一行说明（不静默降级，
+    免得用户以为参数没生效）。真要在内存紧张时硬上，用 `force=True`。
     """
     n_items = int(n_items or 0)
     if n_items <= 0:
         return 1
     cap = min(PARALLEL_MAX_JOBS, int(cap or PARALLEL_MAX_JOBS))
-    if requested and int(requested) > 0:
-        return max(1, min(int(requested), cap, n_items))
     per = float(per_job_mem_gb or PER_JOB_MEM_GB)
     by_cpu = max(1, (os.cpu_count() or 1) - 1)
-    by_mem = max(1, int(avail_mem_gb() // per))
+    mem_gb = avail_mem_gb()
+    by_mem = max(1, int(mem_gb // per))
+
+    if requested and int(requested) > 0:
+        want = max(1, min(int(requested), cap, n_items))
+        got = max(1, min(want, by_mem))
+        if got < want and verbose:
+            print("[jobs] 请求 %d 路，但可用内存仅 %.2f GB（每路预算 %.2f GB）"
+                  " -> 压到 %d 路；确实要 %d 路请用 force=True"
+                  % (want, mem_gb, per, got, want), file=sys.stderr)
+        return got
     return max(1, min(cap, by_cpu, by_mem, n_items))
 
 

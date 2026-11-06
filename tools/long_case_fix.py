@@ -287,8 +287,11 @@ def cmd_run(args) -> int:
         print('[force] 已删 %d 场的长场产物' % len(ids))
 
     # ── gd 腿 ──
-    jobs = gh.effective_jobs(len(ids), gh.auto_jobs(len(ids), args.jobs),
-                             MIN_CASES_PER_SHARD)
+    # ★ 长场按 oracle 预算算并行度（单进程峰值实测 1.7GB），别用通用 1.2GB
+    jobs = gh.effective_jobs(
+        len(ids),
+        gh.auto_jobs(len(ids), args.jobs, per_job_mem_gb=gh.ORACLE_JOB_MEM_GB),
+        MIN_CASES_PER_SHARD)
     groups = [ids[i:i + max(1, args.batch)] for i in range(0, len(ids), args.batch)]
     # 注意：不用 os.environ 传夹具，改为在 _LongContext 里显式接管 V 的模块级配置，
     # 避免把长场口径泄漏给同进程里其它逻辑。
@@ -738,8 +741,11 @@ def cmd_record(args) -> int:
         print('没有可重录的场', file=sys.stderr)
         return 2
     # ③ LPT：事件多的先投给最轻的桶（事件数是耗时的最好代理）
-    jobs = gh.effective_jobs(len(rows), gh.auto_jobs(len(rows), args.jobs),
-                             max(1, args.batch))
+    # ★ 重录/重放长场同样按 oracle 预算（实测 1.7GB/进程，通用 1.2GB 会超卖）
+    jobs = gh.effective_jobs(
+        len(rows),
+        gh.auto_jobs(len(rows), args.jobs, per_job_mem_gb=gh.ORACLE_JOB_MEM_GB),
+        max(1, args.batch))
     buckets, load = gh.lpt_buckets([r['case_id'] for r in rows], jobs,
                                    {r['case_id']: r['event_count'] for r in rows})
     by_id = {r['case_id']: r for r in rows}
@@ -775,6 +781,10 @@ def cmd_record(args) -> int:
             stalls += 1
             print('  [看门狗] %s 日志停滞 %ss -> 判卡死，杀掉重跑'
                   % (payload.get('tag'), payload.get('stalled_for')), flush=True)
+        elif kind == 'memlimit':
+            print('  [看门狗] %s 内存 %dMB 超上限 %dMB -> 杀掉重跑'
+                  % (payload.get('tag'), payload.get('peak_mb'),
+                     payload.get('limit_mb')), flush=True)
         elif kind == 'done' and payload.get('killed'):
             print('  [看门狗] %s 已终止（rc=%s，重跑 %d 次）'
                   % (payload.get('tag'), payload.get('rc'),
@@ -783,7 +793,8 @@ def cmd_record(args) -> int:
     results = wd.run_with_watchdog(
         specs, label='long_rec', max_parallel=jobs,
         stall_seconds=args.stall_seconds,
-        max_retries=args.max_retries, on_event=_on_ev)
+        max_retries=args.max_retries,
+        mem_limit_mb=args.mem_limit_mb, on_event=_on_ev)
     for r in results:
         done += 1
         print('  段 %d/%d %s rc=%s%s（累计 %.0f 分钟）'
@@ -856,6 +867,8 @@ def main() -> int:
                     help='--record 时判定卡死的日志停滞阈值（秒，默认 %(default)s）')
     ap.add_argument('--max-retries', type=int, default=wd.DEFAULT_MAX_RETRIES,
                     help='--record 时单段卡死最多重跑几次（默认 %(default)s）')
+    ap.add_argument('--mem-limit-mb', type=int, default=2400,
+                    help='--record 时单进程内存上限（MB），超限杀掉重跑；0=不限（默认 %(default)s）')
     ap.add_argument('--all-long', action='store_true',
                     help='--record 时连主夹具内的场也重录（默认只重录被排除的 54 场）')
     args = ap.parse_args()
