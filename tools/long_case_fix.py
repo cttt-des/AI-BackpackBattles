@@ -731,35 +731,85 @@ def cmd_record(args) -> int:
         p = os.path.join(V.FIGHTS_DIR, cid, 'events.json')
         if not os.path.exists(p):
             continue
+        try:
+            _meta = json.load(io.open(p, encoding='utf-8'))
+            _gsec = float(_meta.get('combat_time') or 0) or 0.0
+        except Exception:  # noqa: BLE001
+            _gsec = 0.0
         rows.append({
             'case_id': cid,
             'seed': int(c['seed']),
             'event_count': _event_count_of(p),
             'bytes': os.path.getsize(p),
+            'game_secs': _gsec,
         })
     if not rows:
         print('没有可重录的场', file=sys.stderr)
         return 2
-    # ③ LPT：事件多的先投给最轻的桶（事件数是耗时的最好代理）
-    # ★ 重录/重放长场同样按 oracle 预算（实测 1.7GB/进程，通用 1.2GB 会超卖）
+    # ★★ 内存预算按**最坏段的预计墙钟**算，不是固定值（这是卡顿的真因）。
+    #
+    #   内存峰值 ∝ 单进程运行时长，实测模型（见 gh.oracle_job_mem_gb）：
+    #       peak = 1.1 GB + 墙钟 x 9 MB/s
+    #   校验：A 单场 194s 预计 2872MB / 实测 2751MB；B 两场 372s 预计 4474 / 实测 4434。
+    #
+    #   而「一段的墙钟」= 启动 ~25s + 首场游戏时间 x2（首场付确定性复跑）
+    #                  + 其余场游戏时间，整体再乘录制实测倍数 1.76。
+    #
+    #   最坏的段 = batch 个**最长**的场（不需要真分桶就能估上界）。
+    #   过去按固定 1.2GB/2.0GB 算，batch=3 时会把 8GB 的进程当 2GB 放进来，
+    #   于是 4 路并行 = 32GB > 物理内存 15.84GB -> 疯狂换页卡顿。
+    _all_secs = sorted((r['game_secs'] or 120.0 for r in rows), reverse=True)
+
+    def _plan(batch):
+        """给定 batch，返回 (段墙钟列表, 峰值预算GB)。"""
+        segs = []
+        for i in range(0, len(_all_secs), batch):
+            seg = _all_secs[i:i + batch]
+            # 启动 25s + 首场付复跑(x2) + 其余单跑，整体乘录制实测倍数 1.76
+            segs.append(25.0 + (seg[0] * 2 + (sum(seg) - seg[0])) * 1.76)
+        return segs, gh.oracle_job_mem_gb(max(segs) if segs else 0.0)
+
+    avail = gh.avail_mem_gb()
+    if args.batch and int(args.batch) > 0:
+        batch = int(args.batch)
+        _segs, mem_budget = _plan(batch)
+        print('[record] batch=%d（用户指定）' % batch)
+    else:
+        # ★ 自动挑 batch：内存紧时小 batch 才能多开路，内存松时大 batch 摊薄复跑。
+        #   实测推荐值差异很大（可用 7.5GB -> batch1/2 路 86 分钟；
+        #   可用 14GB -> batch4/2 路 50 分钟），所以不能让用户硬记。
+        best = None
+        for cand in (1, 2, 3, 4, 6):
+            _s, _m = _plan(cand)
+            _j = max(1, min(gh.PARALLEL_MAX_JOBS, int(avail // max(_m, 0.1))))
+            _wall = sum(_s) / _j
+            if best is None or _wall < best[2]:
+                best = (cand, _m, _wall, _j)
+        batch, mem_budget = best[0], best[1]
+        print('[record] 自动选 batch=%d（可用 %.1fGB）：预计 %d 路 / 约 %.0f 分钟'
+              % (batch, avail, best[3], best[2] / 60.0))
+    _segs, _ = _plan(batch)
+    print('[record] 最坏段预计墙钟 %.0fs -> 单进程峰值预算 %.2f GB（模型 1.1GB+9MB/s）'
+          % (max(_segs) if _segs else 0.0, mem_budget))
     jobs = gh.effective_jobs(
         len(rows),
-        gh.auto_jobs(len(rows), args.jobs, per_job_mem_gb=gh.ORACLE_JOB_MEM_GB),
-        max(1, args.batch))
+        gh.auto_jobs(len(rows), args.jobs, per_job_mem_gb=mem_budget),
+        batch)
+    # ③ LPT 分桶（事件数是耗时的最好代理），桶数 = 上面定下的并行路数
     buckets, load = gh.lpt_buckets([r['case_id'] for r in rows], jobs,
                                    {r['case_id']: r['event_count'] for r in rows})
     by_id = {r['case_id']: r for r in rows}
     print('[record] %d 场 -> %d 桶（并行 %d 路），桶负载（事件数）：%s'
           % (len(rows), len(buckets), jobs,
              ', '.join('%.0f' % x for x in load)))
-    print('[record] 每进程最多 %d 场：首场付确定性复跑，其余只跑一遍' % args.batch)
+    print('[record] 每进程最多 %d 场：首场付确定性复跑，其余只跑一遍' % batch)
 
     os.makedirs(REC_DIR, exist_ok=True)
     specs = []
     for bi, bucket in enumerate(buckets):
         # 桶内再按 batch 切段：每段一个进程（段首场付复跑）
-        for si in range(0, len(bucket), max(1, args.batch)):
-            seg = bucket[si:si + max(1, args.batch)]
+        for si in range(0, len(bucket), batch):
+            seg = bucket[si:si + batch]
             specs.append({
                 'cmd': gh.cmd(project='oracle', script='oracle_fight.gd'),
                 'tag': 'rec%d_%d' % (bi, si),
@@ -790,11 +840,22 @@ def cmd_record(args) -> int:
                   % (payload.get('tag'), payload.get('rc'),
                      payload.get('retries', 0)), flush=True)
 
+    # 内存上限：默认按峰值模型 x1.3 自动推导。
+    # ★ 不能写死一个数：batch=1 峰值约 2.8GB、batch=4 约 6.8GB，写死的值必然
+    #   要么误杀（太小）要么形同虚设（太大）。实测写死 2400MB 时，batch=2 的段
+    #   峰值约 3.2GB，被连杀两次、白跑 4 分钟。
+    if args.mem_limit_mb and args.mem_limit_mb > 0:
+        mem_cap = int(args.mem_limit_mb)
+        print('[record] 内存上限 %d MB（用户指定）' % mem_cap)
+    else:
+        mem_cap = int(mem_budget * 1024 * 1.3)
+        print('[record] 内存上限 %d MB（= 峰值预算 %.2fGB x 1.3 自动推导）'
+              % (mem_cap, mem_budget))
     results = wd.run_with_watchdog(
         specs, label='long_rec', max_parallel=jobs,
         stall_seconds=args.stall_seconds,
         max_retries=args.max_retries,
-        mem_limit_mb=args.mem_limit_mb, on_event=_on_ev)
+        mem_limit_mb=mem_cap, on_event=_on_ev)
     for r in results:
         done += 1
         print('  段 %d/%d %s rc=%s%s（累计 %.0f 分钟）'
@@ -852,8 +913,9 @@ def main() -> int:
                    help='**长场重录**：分档（每进程只首场付复跑）+ 并行分片，产物写 align_long/record（不覆盖冻结语料）')
     ap.add_argument('--jobs', type=int, default=0,
                     help='并行度（0=自动，上限 %d）' % gh.PARALLEL_MAX_JOBS)
-    ap.add_argument('--batch', type=int, default=4,
-                    help='一个 Godot 进程跑几场（默认 4；oracle 启动 ≈25s 要摊薄）')
+    ap.add_argument('--batch', type=int, default=0,
+                    help='一个 Godot 进程跑几场（0=按可用内存自动挑最快值，'
+                         '推荐；显式指定会覆盖）')
     ap.add_argument('--limit', type=int, default=0, help='只处理前 N 场')
     ap.add_argument('--force', action='store_true', help='先删长场产物重跑')
     ap.add_argument('--margin', type=int, default=300,
@@ -867,8 +929,9 @@ def main() -> int:
                     help='--record 时判定卡死的日志停滞阈值（秒，默认 %(default)s）')
     ap.add_argument('--max-retries', type=int, default=wd.DEFAULT_MAX_RETRIES,
                     help='--record 时单段卡死最多重跑几次（默认 %(default)s）')
-    ap.add_argument('--mem-limit-mb', type=int, default=2400,
-                    help='--record 时单进程内存上限（MB），超限杀掉重跑；0=不限（默认 %(default)s）')
+    ap.add_argument('--mem-limit-mb', type=int, default=0,
+                    help='--record 时单进程内存上限（MB），超限杀掉重跑；'
+                         '0=按峰值模型自动推导（推荐）')
     ap.add_argument('--all-long', action='store_true',
                     help='--record 时连主夹具内的场也重录（默认只重录被排除的 54 场）')
     args = ap.parse_args()

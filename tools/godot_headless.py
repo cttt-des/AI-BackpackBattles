@@ -38,6 +38,7 @@ rc=0，事件数与冻结语料一致）。这是唯一同时根治"占屏幕"�
 """
 import ctypes
 import ctypes.wintypes as _w
+import io
 import os
 import subprocess
 import time
@@ -166,13 +167,68 @@ def py_popen(cmd, **kwargs):
     return subprocess.Popen(cmd, **kwargs)
 
 
+#: 预写进隔离 APPDATA 的静音配置（双保险，见 env() 的注释）
+ORACLE_CFG_QUIET = {
+    "bgm_muted": "true",
+    "sfx_muted": "true",
+    "voice_muted": "true",
+    "bgm_volume": "0.0",
+    "sfx_volume": "0.0",
+    "voice_volume": "0.0",
+}
+
+
+def _write_oracle_quiet_cfg(appdata: str) -> None:
+    """在隔离 APPDATA 里预写 `backpack.cfg` 的静音项（**第二道**静音保险）。
+
+    第一道是 `--audio-driver Dummy`（实测生效：Godot 全程不进音频会话列表）。
+    但 Dummy 只保证「不接到音频设备」；万一某条链路绕过引擎音频输出（或以后
+    换驱动），仍可能出声。所以再写死配置项：
+
+      · `Sound.muteBGM/muteSFX/muteVoice(true)` -> 对应 `*_muted=true`
+      · 三路音量归零 -> `*_volume=0.0`
+
+    这些设置默认值是 `false` / `0.3`（Settings.gd:96-101），即**游戏本来是会放
+    音乐的** —— 所以必须显式关掉。纯音频操作，不接触 RNG，实测事件流不变。
+
+    ★ ConfigFile 格式：字符串要带引号，浮点/布尔不带。
+    """
+    cfg_dir = os.path.join(appdata, "Godot", "app_userdata",
+                           "BackpackBattlesOracle", "full")
+    try:
+        os.makedirs(cfg_dir, exist_ok=True)
+        path = os.path.join(cfg_dir, "backpack.cfg")
+        existing = ""
+        if os.path.exists(path):
+            with io.open(path, encoding="utf-8") as fh:
+                existing = fh.read()
+        lines = [existing.rstrip("\n")] if existing.strip() else []
+        if not any(l.strip() == "[Options]" for l in lines):
+            lines.append("[Options]")
+            lines.append("")
+            lines.append('language="en"')
+        for key, val in ORACLE_CFG_QUIET.items():
+            # 已有同名键就以我们为准（静音优先）
+            lines = [l for l in lines if not l.strip().startswith(key + "=")]
+            lines.append("%s=%s" % (key, val))
+        with io.open(path, "w", encoding="utf-8", newline="\n") as fh:
+            fh.write("\n".join(lines) + "\n")
+    except Exception:  # noqa: BLE001 —— 配置写不进也不该拖垮启动
+        pass
+
+
 def env(tag=None) -> dict:
-    """子进程环境：按调用方 PID（可选再带 tag）隔离 APPDATA。"""
+    """子进程环境：按调用方 PID（可选再带 tag）隔离 APPDATA。
+
+    同时往隔离 APPDATA 里预写**静音配置**（bgm/sfx/voice 全静音 + 音量 0），
+    作为 `--audio-driver Dummy` 之外的第二道保险。见 `_write_oracle_quiet_cfg`。
+    """
     e = dict(os.environ)
     name = str(os.getpid()) if not tag else "%d_%s" % (os.getpid(), tag)
     appdata = os.path.join(ROOT, "output", "_recovery", "appdata_p", name)
     os.makedirs(appdata, exist_ok=True)
     e["APPDATA"] = appdata
+    _write_oracle_quiet_cfg(appdata)
     return e
 
 
@@ -268,8 +324,38 @@ PARALLEL_MAX_JOBS = 5
 #:   提交区 28.5/32.4 GB 开始疯狂换页 —— 这就是「时间一长就疯狂卡顿」的直接原因。
 #:   故 oracle 类长场单独用 ORACLE_JOB_MEM_GB，别用这里的 1.2。
 PER_JOB_MEM_GB = 1.2
-#: oracle 长场专用预算（录制/重放长战，单进程实测峰值 1.7 GB + 余量）
-ORACLE_JOB_MEM_GB = 2.0
+#: oracle 长场**基线**内存（进程刚起、资源加载完，不再增长的部分）。
+#: 实测 teardown 后的稳定基线：单场结束 1131MB、两场结束 1210MB。
+ORACLE_BASE_MEM_GB = 1.1
+#: ★★ 长场进程内存的**增长速率**（GB/秒墙钟）。这是本机实测的硬数据：
+#:
+#:   实测反推（扣掉 teardown 后的稳定基线）：
+#:     A 单场：(2751 - 1131) / 194s = 8.35 MB/s
+#:     B 两场：(4434 - 1210) / 372s = 8.67 MB/s
+#:   → 取 9.0 MB/s（略偏保守）。
+#:
+#:   模型校验：peak = 1.1GB + 墙钟 x 9MB/s
+#:     A 预计 2872MB vs 实测 2751MB（+4%）
+#:     B 预计 4474MB vs 实测 4434MB（+1%）
+#:
+#: 内存峰值 **∝ 进程运行时长**，与「跑了几场」无关（结束基线只差 79MB，
+#: 说明 teardown_case 的 _flush_queued 逐树 free 是有效的，不是跨场泄漏）。
+#:
+#: 推论（这就是「跑久了疯狂卡顿」的真因）：batch 越大、单进程跑得越久、峰值越高。
+#:   batch=1 -> 约 2.7 GB    batch=2 -> 约 5.4 GB
+#:   batch=3 -> 约 8.1 GB    batch=4 -> 约 10.9 GB
+#: 4 路 x batch=3 = 32 GB，而物理内存只有 15.84 GB -> 必然换页卡死。
+ORACLE_MEM_PER_SEC_GB = 9.0 / 1024.0
+
+
+def oracle_job_mem_gb(est_wall_secs: float) -> float:
+    """按**预计墙钟**估一个 oracle 长场进程的峰值内存（GB）。
+
+    内存峰值 ∝ 运行时长（实测 12~15 MB/s），所以不能用固定值：
+    同一个值对 batch=1 是浪费、对 batch=4 是超卖。
+    """
+    secs = max(0.0, float(est_wall_secs or 0))
+    return ORACLE_BASE_MEM_GB + secs * ORACLE_MEM_PER_SEC_GB
 
 
 def avail_mem_gb() -> float:
