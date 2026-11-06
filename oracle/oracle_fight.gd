@@ -1113,35 +1113,64 @@ func _flush_queued(node) -> void :
 #     - 物品 buffLabelPositionTimestamps/usedStacks 归零——物品实例虽逐场新建
 #       （M6b 池清 + instantiateItem 直造），仍按gd_core fresh 语义显式归零。
 func reset_residual_state() -> void :
-	U.time = 0.0
-	U.clockTime = 0.0
-	U.frameCounter = 0
-	root.get_node("EventBus").disconnectAll()
-	U.oracleTimerLefts.clear()
-	U.oracleDelayedTimers.clear()
-	G.ropeSpeedups.clear()
-	G.cubeAdvanced.clear()
-	G.sandbagActive = false
-	CT.fatigueCounter = 0
-	CT.fatigueStartTimer.stop()
-	CT.fatigueTickTimer.stop()
-	G.fatigueDamageSource.setDamage(0)
-	for chr in [G.PLAYER, G.OPPONENT]:
-		if chr == null or not is_instance_valid(chr):
-			continue
-		chr.attackMovingForward = false
-		chr.attackSoundReadyTime = - 1.0
-		chr.damageAnimation.stop()
-		for bt in chr.buffs:
-			chr.buffs[bt].permanentStacks = 0
-		for it in chr.INVENTORY.getItems():
-			if not is_instance_valid(it):
+	# ★ 分片门控（np46 二分诊断用）：ORACLE_NP46_PIECES=T0,BUS,… 只启用列出的
+	#   分片；未设=全部分片生效（正式语义）。分片定义见上方函数头注。
+	if _np46_has("T0"):
+		U.time = 0.0
+		U.clockTime = 0.0
+		U.frameCounter = 0
+	if _np46_has("BUS"):
+		root.get_node("EventBus").disconnectAll()
+	if _np46_has("TIMERS"):
+		U.oracleTimerLefts.clear()
+		# ★ np46 二分定谳（output/_offpeak/np46/bisect_*，2026-11-06）：本片若连带清
+		#   U.oracleDelayedTimers 会误杀装配期（createFromItemTuples→Item._ready→
+		#   FlickerAnimation callDelayed）合法登记的延迟计时器——它们在本场战斗内
+		#   到期派发并消耗链抽，是「全新状态」的一部分（gd_core 每场全新 ctx._timed
+		#   同构）。teardown_case 案末已清整表 ⇒ 开战块起点该表只含本场装配登记，
+		#   不清才是 fresh 语义。实证：bisect TIMERS 单片=run986_r12 idx162 首分歧
+		#   （Wolpertinger pick 序翻转），移除后（全片重录）与 gd 对拍闭合。
+	if _np46_has("GAME"):
+		G.ropeSpeedups.clear()
+		G.cubeAdvanced.clear()
+		G.sandbagActive = false
+	if _np46_has("FATIGUE"):
+		CT.fatigueCounter = 0
+		CT.fatigueStartTimer.stop()
+		CT.fatigueTickTimer.stop()
+		G.fatigueDamageSource.setDamage(0)
+	if _np46_has("CHAR"):
+		for chr in [G.PLAYER, G.OPPONENT]:
+			if chr == null or not is_instance_valid(chr):
 				continue
-			for i in it.buffLabelPositionTimestamps.size():
-				it.buffLabelPositionTimestamps[i] = 0.0
-			if "usedStacks" in it and it.usedStacks != null:
-				for sk in it.usedStacks:
-					it.usedStacks[sk] = 0.0
+			chr.attackMovingForward = false
+			chr.attackSoundReadyTime = - 1.0
+			chr.damageAnimation.stop()
+	if _np46_has("PERM"):
+		for chr in [G.PLAYER, G.OPPONENT]:
+			if chr == null or not is_instance_valid(chr):
+				continue
+			for bt in chr.buffs:
+				chr.buffs[bt].permanentStacks = 0
+	if _np46_has("ITEMS"):
+		for chr in [G.PLAYER, G.OPPONENT]:
+			if chr == null or not is_instance_valid(chr):
+				continue
+			for it in chr.INVENTORY.getItems():
+				if not is_instance_valid(it):
+					continue
+				for i in it.buffLabelPositionTimestamps.size():
+					it.buffLabelPositionTimestamps[i] = 0.0
+				if "usedStacks" in it and it.usedStacks != null:
+					for sk in it.usedStacks:
+						it.usedStacks[sk] = 0.0
+
+
+func _np46_has(piece: String) -> bool :
+	var spec = OS.get_environment("ORACLE_NP46_PIECES")
+	if spec == "":
+		return true
+	return spec.split(",").has(piece)
 
 
 # 逐字段等价原版 CombatLog.clear()（Core/CombatLog.gd:135-166）的战斗数据面，
