@@ -944,9 +944,11 @@ class CoreItem(GodotObject):
 		#   调用都走重置分支 → **受控神谕语义=limit 恒不熔断**。gd 的 ctx.time 是
 		#   战斗钟（0 起）→ 战斗前 10s 内 `time > count` 恒 false → else 分支计数
 		#   累积到 limit 后**永久熔断**（run899：MS onDebuffed 133 次进、rollChance
-		#   仅 t=0 前 10 次、MSWIN 桩 6 次后全灭）。修=复刻进程钟语义（+40s 偏移，
-		#   行为等效 oracle「恒过」；全场唯一调用者 MrStruggles，零全局风险）。
-		if self.ctx.time + 40.0 > self.triggersThisFrame:
+		#   仅 t=0 前 10 次、MSWIN 桩 6 次后全灭）。★ np47（2026-11-07）：np46 净化
+		#   重录（逐案隔离 §6m82）后 oracle 的 Util.time 同样从 0 起（战斗钟）→ 真实
+		#   语义回归：战斗前 limit 秒内计数累积、超限熔断（run899/977 反弹预算面）。
+		#   修=去掉 +40 偏移，两侧同为战斗钟直比。
+		if self.ctx.time > self.triggersThisFrame:
 			self.triggersThisFrame = 1
 			self.lastTriggerTime = self.ctx.time
 		else:
