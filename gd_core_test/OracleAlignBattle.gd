@@ -59,7 +59,9 @@ const MAX_TIME := 90.0
 #   （combatEndDeferred 跑通：闩复位/EventBus 断连/fatigue 归零），无闩残留，
 #   本表对两场不再适用。906/1125/1409 三键保留（旧语料未重录，闩补偿仍需）。
 const WARM_LATCH_PLAYERS := {
-	# np23 全清空：新语料干净形状
+	# ★ np46 净化重录后清空（2026-11-06）：np23 已清空过一轮（此前干净形状），
+	#   本轮语料=逐案隔离 harness 全量重录（每场开战前 attackMovingForward=false，
+	#   台账 §6m82），暖场闩面彻底退役（维持空表）。
 }
 # ★ np18-C 永久栈暖场收割键控表（run702_r18@423 / run1022_r18@1386 定谳，
 #   np18_fix §3）：这两场的语料=录制管线第 3 次执行（ok+确定性自证），其
@@ -82,13 +84,9 @@ const WARM_LATCH_PLAYERS := {
 #   内核差则可能污染计数（np18_fix §3.4）；702/1022 语料在更后段
 #   （1590/2456）与现树管线再歧——本笔预期把首分歧推到该位而非清零。
 const PERM_STACK_HARVEST := {
-	"run702_r18": true, "run1022_r18": true,
-	# ★ np22：重录两场（新语料=ORACLE_NOLIMIT 全长录制，exec3 携带 exec2 终局
-	#   permanentStacks 残留）。收割管线=录制残差的同构复刻：暖场递归跑完整干净
-	#   战斗（NP22_REC_EV_GATE 抬闸下自然终局=录制暖场形状），收割终局玩家
-	#   permanentStacks 灌入正式场。run696 实测残差零可见面（np22_r1 守门双腿
-	#   PASS）不入表。
-	"run1371_r18": true, "run1444_r18": true,
+	# ★ np46 净化重录后清空（2026-11-06）：语料=逐案隔离 harness 全量重录的干净
+	#   形状（每场开战前双侧全 buff permanentStacks=0，台账 §6m82），执行链收割
+	#   键控面退役。run702/1022/1371/1444 旧键已随旧语料退役（§6m84 986 同法）。
 }
 # ★ np20-C 永久栈残留校正值（PERM_STACK_HARVEST 收割值的 canonical 封闭推导覆盖，
 #   np20_round2 升级批准面）：收割值=gd 净跑暖场终局，≠ oracle 语料录制执行
@@ -133,29 +131,10 @@ const PERM_STACK_HARVEST := {
 #   4 次 temp 清洗自然产生——与「对手节点每执行 free 重建、无跨执行残差」
 #   的录制机理互证，见 R5_DUAL_EXEC 注 teardown free）。
 const PERM_STACK_OVERRIDE := {
-	# ★ np44：run986_r12 {109:0}——净覆盖为零，仅复现 R 扫描的通过条件（行在场；
-	#   biggest-first 键控下 986 全 R 过、行撤+HARVEST 入表仍破@233 ⇒ 通过条件
-	#   =行本身，机理待查）。
-	"run986_r12": {109: 0},
-	"run702_r18": {109: 4},
-	# ★ np37 重定谳：run1022 真值 6 → 1（离线标定模拟器 48/48 语料 TO 全中；
-	#   推导与 FD 机理见上 np37 注）。
-	"run1022_r18": {109: 1},
-	# ★ np35（2026-11-05）：run977_r18 PLAYER Blind(109) = 18。离线模拟器逐笔
-	#   对拍语料 39 笔玩家侧到期全中（R 单调阶梯 23→39，R<18 全部失配）；
-	#   R=0 首失配位=idx3386（t=20.816667 LG Blind TO -11 v -10）= np35 修前
-	#   账面 FD 逐位吻合（求解器自证）。残差机理=批内录制侧前场残留（np25-p1
-	#   Buff.reset 之前录制；clean warmup 终局 109=0 ⇒ 非同 case 多执行形状，
-	#   故 OVERRIDE-only 不入 HARVEST——干净暖场其他维终局值≠语料前场残留，
-	#   不注入以免引入新面）。
-	"run977_r18": {109: 18},
-	# ★ np22（1444 见 PERM_STACK_HARVEST np22 增行注）：暖场收割（=exec1 干净
-	#   终局）Cold(110)=0，但新语料=exec3 携带 exec2 终局残差——exec2 带着
-	#   exec1 残差（100:129/106:83/…）跑出的净化路径使自身终局 Cold 残差 ≥1
-	#   （@330 Snowmaster 净化 -1 需先吃永久，否则拆临时批 → gd 多弹 Frostbolt
-	#   Cold TO -2 @5.9833）。本表在收割之上仅覆写 110 一维（np20 体例：类内
-	#   值以守门对拍定谳）。
-	"run1444_r18": {110: 6},
+	# ★ np46 净化重录后清空（2026-11-06）：语料=逐案隔离 harness 全量重录的干净
+	#   形状（每场开战前 permanentStacks=0，台账 §6m82），canonical 推导残留覆盖
+	#   全面退役。run986/702/1022/977/1371/1444 旧键已随旧语料退役（§6m84 986
+	#   已实测零键控三方一致）。
 }
 # ★ np21-R5 双执行拓扑键控表（run1125_r18 首场落地；授权面=np20 ①「忠实补偿：
 #   gd 对拍腿复刻双执行共享 bus/日志拓扑」，用户已批）：
@@ -217,16 +196,14 @@ const R5_DUAL_EXEC := {
 #   同键镜像（tools/verify_oracle.py PY_NP22_REC_EV_GATE → 引擎
 #   formal_ev_gate 参数）。
 const NP22_REC_EV_GATE := {
-	# ★ np24 补全（2026-10-27）：抬闸面=语料 event_count>25000 全集 20 场
-	#   （与 tools/verify_oracle.py PY_NP22_REC_EV_GATE 同步；此前 np22 期只
-	#   登记 3 场，其余 17 场 gd 腿恒 25000 截断对全长语料必伪红）。
-	"run1082_r18": 200000, "run1124_r18": 200000, "run1125_r18": 200000,
-	"run1174_r18": 200000, "run1194_r18": 200000, "run1219_r18": 200000,
-	"run1302_r18": 200000, "run1342_r18": 200000, "run1348_r18": 200000,
-	"run1362_r18": 200000, "run1371_r18": 200000, "run1374_r18": 200000,
-	"run1408_r18": 200000, "run1409_r18": 200000, "run685_r18": 200000,
-	"run696_r18": 200000, "run845_r18": 200000, "run894_r18": 200000,
-	"run905_r18": 200000, "run906_r18": 200000,
+	# ★ np46 再生（2026-11-06，净化重录后）：抬闸面=**新语料** event_count>25000
+	#   全集 10 场（逐场实测 output/oracle/fights/<case>/events.json；np46 逐案
+	#   隔离+事件闸 200000 全长重录后的新分布——旧 20 场表按旧语料生成，已退役）。
+	#   与 tools/verify_oracle.py PY_NP22_REC_EV_GATE 同步。
+	"run1342_r18": 200000, "run1374_r18": 200000, "run1408_r18": 200000,
+	"run1409_r18": 200000, "run685_r18": 200000, "run696_r18": 200000,
+	"run845_r18": 200000, "run894_r18": 200000, "run905_r18": 200000,
+	"run906_r18": 200000,
 }
 # ★ np43（2026-11-05，offpeak）绝对钟 T0 预载键控表（run1120_r18 首场落地）：
 #   语料录制（oracle_fight.gd 批量，[M7] 暖场一场丢弃）的 Util.time **跨场不清
@@ -245,7 +222,9 @@ const NP22_REC_EV_GATE := {
 #   PY_WARMUP_TIME_TICKS → ctx.time 预载）。隔离开关
 #   ORACLE_ALIGN_NO_T0=1（置非空值关闭）恢复单执行行为。
 const WARMUP_TIME_TICKS := {
-	"run1120_r18": 2553,
+	# ★ np46 净化重录后清空（2026-11-06）：语料=逐案隔离 harness 全量重录的干净
+	#   形状（每场 Util.time 归零=gd_core fresh，台账 §6m82），T0 预载键控面退役。
+	#   run1120_r18 旧键 2553 已随旧语料退役；新语料对拍=零键控。
 }
 # ★ np43（2026-11-05，offpeak）Buff 清空 stop 的 seen 清除键控表（机理与推导
 #   见 gd_core/CoreContext.gd keyed_stop_clears_seen 注）：语料 run986_r12 的
@@ -254,13 +233,15 @@ const WARMUP_TIME_TICKS := {
 #   键控补偿。py 腿同键镜像（tools/verify_oracle.py PY_BUFF_STOP_CLEARS_SEEN
 #   → 引擎 keyed_stop_clears_seen 参数）。隔离开关 ORACLE_ALIGN_NO_T0 共用。
 const BUFF_STOP_CLEARS_SEEN := {
-	"run986_r12": true,
+	# ★ np46 净化重录后清空（2026-11-06）：run986_r12 已以净化 harness 重录收割
+	#   （台账 §6m84，零键控三方一致），录制批注册表态不复存在于新语料。
 }
 # ★ np44 清洗落池序键控表（机理与双场模拟器定谳见 CoreBuff.gd loseStacks
 #   np44 注）：986 盲账 biggest+R=0 零失配（farthest 任意 R 均 ≥1）；
 #   全局改序退 702/977 故键控。py 腿同键镜像。
 const CLEANSE_BIGGEST_FIRST := {
-	"run986_r12": true,
+	# ★ np46 净化重录后清空（2026-11-06）：同 BUFF_STOP_CLEARS_SEEN——986 残留态
+	#   已随重录收割退役（台账 §6m84）。
 }
 # ★（阶段2）旧 ORACLE_SCENE_DRAWS=14 校准常数已删除：它是 run579_r18 单场拟合的
 #   「装配期不可见消耗」补丁，全量 917 场实测装配差为 0..444 步（非常数）。
