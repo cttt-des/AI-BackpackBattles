@@ -1,10 +1,15 @@
 # 并行验证工作流（gd / py / compare 三腿并行 + 无窗口启动，默认自动定路数）
 
-> 生成：2026-10-29，**2026-10-30 修订**（新增隐藏桌面启动器、oracle 录制并行、
-> gd→py 流水线）。
-> 适用：`tools/verify_oracle.py`、`tools/_np23_shard_verify.py`、`tools/oracle_chunk_driver.py`。
-> 核心：**默认就是并行**，并行度**每次运行时按当时 CPU 与可用内存实时决定**，不需要手填；
-> **所有 Godot 启动统一走 `tools/godot_headless.py`**，屏幕上不会出现窗口或弹窗。
+> 生成：2026-10-29，**2026-11-06 修订**（窗口真相实测、卡死自动重跑、启动点治理、
+> 并行度闸门、长场工具；隐藏桌面方案已被实测推翻）。
+> 适用：`verify_oracle.py`、`_np23_shard_verify.py`、`oracle_chunk_driver.py`、
+> `long_case_fix.py`、`run_gd_core.py`，以及所有经 `godot_headless` 启动 Godot 的工具。
+> 核心：**默认就是并行**，并行度按当时 CPU 与可用内存实时决定，不需要手填；
+> **所有 Godot 启动统一走 `tools/godot_headless.py`**。
+>
+> ⚠ **两个必须先知道的结论**：
+> 1. 窗口**躲不掉**（隐藏桌面/虚拟桌面/外部压制全部失效，见 §1c）；
+> 2. 但**被点了也不白跑**（卡死自动重跑，见 §1d）。
 
 ---
 
@@ -34,9 +39,13 @@ python -X utf8 tools/oracle_chunk_driver.py 60 12 0
 
 ---
 
-## 1b. 无窗口、无弹窗：为什么必须走隐藏桌面
+## 1b. 无窗口、无弹窗：机制与（已被推翻的）隐藏桌面方案
 
 这是本工作流**最容易被绕过去**的一环，代价是屏幕被占 + 录制被弹窗卡住。
+
+> ⚠ **先看结论**：本节的「独立隐藏桌面」在 2026-11-06 被实测**推翻**（`lpDesktop`
+> 被 `CreateProcess` 忽略）。真正生效的只有 `SW_HIDE` + `--position` 屏外出生，
+> 而且它们也**挡不住引擎在 ~25s 后把窗口搬回屏幕**。完整实测与替代方案见 §1c / §1d。
 
 ### 实测结论（2026-10-30，逐条验证过）
 
@@ -46,7 +55,8 @@ python -X utf8 tools/oracle_chunk_driver.py 60 12 0
 | `--no-window` | ⚠️ **仍会创建可见窗口**（实测窗口类 `Engine`、标题 `<项目名>`，用户屏幕上真的看得到） |
 | `--video-driver Dummy` | ❌ 非法值。3.6 只认 `GLES3`/`GLES2`，写 Dummy 直接 `Unknown video driver 'Dummy', aborting.`、rc=255 |
 | `SW_HIDE` / `STARTF_USESHOWWINDOW` | ⚠️ 只影响初始显示状态，Godot 自己 `ShowWindow` 就又出来了 |
-| **独立隐藏桌面（`CreateDesktopW` + `lpDesktop`）** | ✅ **根治**：窗口和弹窗都只存在于那个桌面，用户桌面泄漏 **0 条** |
+| 独立隐藏桌面（`CreateDesktopW` + `lpDesktop`） | ❌ **2026-11-06 实测推翻**：`CreateProcess` 忽略 `lpDesktop`，子进程仍在 `Default` 桌面（连记事本都进不去）。当时看到的「泄漏 0 条」是 `SW_HIDE` 让窗口不可见造成的假象 |
+| **`--position -32000,-32000`（出生即在屏外）** | ✅ 有效（窗口一出生就在屏外）；但运行 20~30s 后引擎会把它搬回 (0,0)，见 §1c |
 
 ### `OpenMem failed` 弹窗到底是谁弹的
 
@@ -76,17 +86,127 @@ p, log, fh = gh.spawn(gh.cmd(project="gd_core_test", script="OracleAlignBattle.g
 rc = p.wait(); fh.close(); text = gh.read_log(log)
 ```
 
-模块做的四件事，别在外面重做：
+模块做的五件事，别在外面重做：
 
-1. `--no-window --audio-driver Dummy`（不是 `--headless`）
-2. `STARTUPINFO.lpDesktop` 指向隐藏桌面 `dsh_godot_hidden` + `SW_HIDE`
+1. `--no-window --audio-driver Dummy --position -32000,-32000 --resolution 1280x720`
+   （**不是** `--headless`；`--position` 让窗口出生即在屏外）
+2. `STARTUPINFO`：`lpDesktop` 指向隐藏桌面 + `SW_HIDE`
+   （★ `lpDesktop` 实测无效，真正起作用的是 `SW_HIDE`，详见 §1b 更正）
 3. stdout/stderr **重定向到文件**（沙箱禁匿名管道）
 4. `APPDATA` 按 PID+tag 隔离（`user://` 不互踩），**cwd** 设到
    `output/_recovery/cwd`（搜狗注入的 `debug.log` 就不落进仓库根目录了）
+5. `--resolution 1280x720` 固定尺寸，只防它按默认尺寸铺满屏；
+   **实测不影响事件流**（见 §1c 的确定性验证）
 
 > 已经在用的地方：`verify_oracle.run_godot`、`oracle_chunk_driver`、
 > `audit_oracle_bistable`、`verify_oracle_s2`、`run_truth_battle`。
 > **新写启动 Godot 的脚本，一律 import 这个模块**——别再复制粘贴参数。
+
+---
+
+## 1c. 窗口到底会不会出现：完整实测（2026-11-06）
+
+### 现象
+
+长场录制时会有一个 `Engine` 类窗口出现在屏幕 `(0,0)`，尺寸 **1280×720（满屏）**，
+显示的还是游戏开场图。用户若点了它，Godot 卡在阻塞 tick 循环里彻底未响应：
+实测两次墙钟 231s / 161s，退出码 `0xFFFFFFFF` / `0xCFFFFFFF`，`events.json` **0 事件**，
+日志停在 `t=63.3s`（整场 66.6s，差最后 3 秒）。
+
+### 时间线（多次复现，数值随机器负载浮动）
+
+```
+t=0.1s    窗口创建，位置 (209,116)，不可见
+t=0.6s    --position 生效 -> (-21333,-21333)，不可见   ✅
+t≈20-30s  引擎把它搬回 (0,0,1280,720) 并显示            ❌ 用户看到全屏开场图
+```
+
+### 试过的所有办法（逐条实测，别重复踩）
+
+| 手段 | 结果 |
+|---|---|
+| `--position -32000,-32000` | ✅ 出生即屏外，但 ~25s 后被引擎搬回 |
+| 外部 `ShowWindow(SW_HIDE)` | ❌ 在阻塞 tick 期间**阻塞 222 秒**（不是不生效，是排队） |
+| 外部 `SetWindowPos`（不带 ASYNC） | ❌ 阻塞 1.08s |
+| `SetWindowPos` + `SWP_ASYNCWINDOWPOS` | ⚠️ 不阻塞（0.0006s），但**请求不被目标线程处理**，窗口位置不变 |
+| `SetWindowLongW` 改 `GWL_EXSTYLE` | ❌ 阻塞 1.14s，且**触发窗口重排**，反而把窗口搬到屏幕正中 |
+| `DwmSetWindowAttribute(DWMWA_CLOAK)` | ❌ 跨进程 `hr=0x80070005` 权限不足 |
+| `OS.set_window_visible` | ❌ Godot 3.6 **不存在**这个 API |
+| `lpDesktop` 独立隐藏桌面 | ❌ `CreateProcess` 忽略该参数（见 §1b 更正） |
+| 虚拟桌面 `MoveWindowToDesktop` | ❌ 只能移动**自己进程**的窗口（自己的成功，记事本/Godot 均 `E_ACCESSDENIED`） |
+| `IVirtualDesktopManagerInternal`（未公开） | ❌ 本机三个已知 IID 全 `E_NOINTERFACE` |
+| `HWND_BOTTOM` 沉底（含抢在出现瞬间） | ❌ 引擎创建窗口时会主动带到前台，rank 仍是 1~2 |
+| 预写配置 `window_mode="windowed"` | ❌ `clipToScreen()` 把它夹回 (0,0)，67% 时间可见 |
+| 预写配置 `window_mode="fullscreen"` | ❌ 同样 67% 时间可见 |
+
+**根因**：Godot 录制主循环是**手动 tick 的阻塞循环**（整场战斗不返回消息循环），
+所以任何跨进程窗口操作都只能排队失效；而窗口是引擎自己创建并主动显示的。
+
+> ⚠️ 想真正隐藏窗口，只有**从引擎内部**做（在 `oracle_fight.gd` 主循环里调
+> `OS.set_window_position`）。**当前决定不做**（用户要求不动 oracle 项目）。
+> 替代方案见 §1d：卡死自动重跑。
+
+### 确定性：窗口参数**不影响事件流**
+
+三组配置跑同一场（run570_r18），`events.json` 的 sha1 **完全相同**：
+
+| 配置 | event_count | winner | ticks | sha1 |
+|---|---|---|---|---|
+| 仅 `--position` | 548 | player | 648 | `1bdb30f9…` |
+| `--position` + `--resolution` | 548 | player | 648 | `1bdb30f9…` |
+| 原始基线（只有 `--no-window`） | 548 | player | 648 | `1bdb30f9…` |
+
+**结论：窗口看着烦，但不污染语料。**（`globalPosToScreenPos` 只是坐标换算，不吃 RNG）
+
+---
+
+## 1d. 卡死自动重跑（`tools/godot_watchdog.py`）
+
+既然窗口躲不掉，就保证「被点了也不白跑」。
+
+```bash
+# 长场重录自动带看门狗
+python -X utf8 tools/long_case_fix.py --record --batch 3 --jobs 3
+# 可调：--stall-seconds 90  --max-retries 2
+```
+
+### 判据：日志停滞（**不是** `IsHungAppWindow`）
+
+`IsHungAppWindow` 实测是**假信号**——正常录制期间（t=5s~40s，日志持续增长、产物正常）
+它**恒返回 1**。原因同上：阻塞 tick 循环不处理消息，系统据此就判未响应。
+
+改用**日志文件零增长**。正常录制的日志停滞实测序列：
+
+```
+停滞时长（秒）：3, 0, 4, 2, 7, 1, 6, 1, 0      <- 最长 7 秒
+```
+
+故阈值取 **90 秒**（10 倍余量）。命中即 `Popen.kill()`（只杀自己起的进程，
+不按进程名扫，避免误伤）并重跑该段。
+
+### 验证方式与结果
+
+用 `SuspendThread` 挂起 Godot 全部 25 个线程，真实模拟「被点一下未响应」：
+
+```
+[破坏者] 挂起 pid=22828 的 25 个线程（模拟点击未响应）
+[看门狗] rec0_0 日志停滞 16.0s -> 判卡死，杀掉重跑
+段 1/1 rec0_0 rc=0（累计 1 分钟）
+[record] 完成：事件数一致 1 / 缺失 0 / 不一致 0
+```
+
+### Python API
+
+```python
+import godot_watchdog as wd
+
+res = wd.run_with_watchdog(
+    specs, label='long_rec', max_parallel=3,
+    stall_seconds=wd.DEFAULT_STALL_SECONDS,   # 90
+    max_retries=wd.DEFAULT_MAX_RETRIES,       # 2
+    on_event=lambda kind, p: print(kind, p))  # kind: done / stalled / timeout
+# res[i] = {index, tag, rc, log, tail, secs, retries, killed, verdict}
+```
 
 ---
 
@@ -112,6 +232,61 @@ jobs = min( PARALLEL_MAX_JOBS(5),
 [godot]  并行 3 路，分桶负载（MB）：...
 [py]     并行 3 路，分桶负载（MB）：...
 ```
+
+### 2b. 启动成本闸门：`gh.effective_jobs()`（**必读，防负优化**）
+
+上面算出的是**理论上限**。真正能开几路，还要过一道闸：
+
+```python
+jobs = gh.effective_jobs(n_items, gh.auto_jobs(n_items, requested),
+                         min_items_per_job=8)
+```
+
+**为什么必须有这道闸**（2026-10-31 实测教训）：Godot 的启动成本随项目体积走，
+不是常数 —— 而「每片一个进程」的分片方式会把启动成本乘上片数。
+
+| 项目 | 体积 / 文件数 | 单次启动（含 `res://` 扫描） |
+|---|---|---|
+| `gd_core_test` | 45 MB / 701 | **≈ 1 s** |
+| `oracle` | 544 MB / **15419** | **≈ 25 s** |
+
+实测负优化两例：
+
+| 场景 | 串行 | 分片 | 结果 |
+|---|---|---|---|
+| oracle 两场，每场一进程 | 6.12 s | 8.49 s | **0.72x 更慢** |
+| 物品解析 3 路 | 8.48 s | 11.22 s | **0.76x 更慢** |
+| 四个轻闸门（每道都是完整启动） | 7.51 s | **2.86 s**（4 路） | 2.6x 更快 ✅ |
+
+判据：
+
+```
+每片成本 = 启动成本 + 该片任务成本
+分片有收益  <=>  启动成本 < 单片任务成本 x (1 - 1/jobs)
+```
+
+| 调用点 | `min_items_per_job` | 理由 |
+|---|---|---|
+| `verify_oracle_s1/s2` 的 gd 腿 | `MIN_CASES_PER_SHARD = 8` | oracle 启动 25 s |
+| `verify_oracle_s1/s2` 的 py 腿与比对 | 2 | 无 Godot 启动，但要避免只起线程 |
+| `long_case_fix --record` | `--batch`（默认 3） | 长场事件多，防 MessageQueue 溢出 |
+| `run_item_parse` | **默认 1 路** | 分片不能少干活，只是多付启动 |
+
+### 2c. `gh.run_many()` 的正确用法（完成顺序补位）
+
+```python
+res = gh.run_many(
+    specs,                          # [{cmd, tag, env_extra, timeout}, ...]
+    label='myjob',
+    max_parallel=3,                 # 在途上限（0=一起起齐）
+    on_done=lambda r: print(r['index'], r['rc']),   # 完成即回调
+)
+# 返回 [{index, tag, rc, log, tail, secs}, ...]，**按完成顺序**；要原顺序按 index 排序
+```
+
+> ⚠ **别写「一次起齐、再按启动顺序 `wait()`」**：队首慢任务会把槽位空占住，
+> 后面的任务干等不补位。实测（队首 4s 慢活 + 6 个 0.5s 快活、上限 2）：
+> 按序回收 **5.78 s**，完成补位 **4.18 s**（理想 4.0 s）—— 多花 **44%**。
 
 ---
 
@@ -289,3 +464,102 @@ python -X utf8 tools/_np_compare_par.py --selftest --cases run570_r18,run906_r18
 
 > 注：compare 的收益与"最长单场"强相关，LPT 分桶是收益关键；gd/py 腿受磁盘与 CPU 双重约束，
 > 路数超过 5 收益明显递减。
+
+---
+
+## 10. 启动点治理：别让脚本绕过统一入口
+
+### 10.1 静态检查：`tools/check_godot_launch.py`
+
+```bash
+python -X utf8 tools/check_godot_launch.py        # 扫全仓，有违规 rc=1
+python -X utf8 tools/check_godot_launch.py --all  # 连 output/ 历史脚本一起扫
+```
+
+**为什么需要它**（2026-11-06 事故复盘）：`output/_offpeak/`、`output/_round_patches/`
+下有 8 个历史探针脚本自己拼 Godot 路径裸 `Popen`，同时丢掉了三样东西：
+
+| 丢掉的东西 | 后果 |
+|---|---|
+| `startupinfo` | 窗口**直接弹到屏幕**，用户一点就未响应卡死 |
+| `APPDATA` 隔离 | `user://` 互踩、IME 弹窗无人压制 |
+| 文件重定向 | 沙箱禁匿名管道，`capture_output` 会 `WinError 5` |
+
+而且它们大多还写着 `--headless` —— Godot 3.6 **没有这个参数**，
+写了等于走普通窗口路径，比不写更糟。
+
+判据（只认真正起进程的代码，**不误报注释**）：
+
+1. `subprocess.Popen/run` + 同一处出现 Godot 可执行名或 `GODOT` 变量 → 必须走 gh；
+2. 起进程的上下文没有 `startupinfo` / `py_popen` / `gh.` → 报违规；
+3. 命令行里出现**带引号的** `--headless` 字面量 → 报违规。
+
+### 10.2 单脚本统一入口：`tools/run_godot_script.py`
+
+别再手敲引擎命令行（少写一个参数就出窗口）：
+
+```bash
+# 跑一个 gd_core_test 脚本
+python -X utf8 tools/run_godot_script.py RngProbe.gd --quiet
+
+# 换项目 + 传环境变量（单场神谕复跑）
+python -X utf8 tools/run_godot_script.py oracle_fight.gd --project oracle \
+    --env ORACLE_ONLY_CASES=run570_r18 --quiet
+
+# 有墙钟上限的
+python -X utf8 tools/run_godot_script.py TruthBattle.gd --timeout 3600 --quiet
+```
+
+它内部就是 `gh.cmd` + `gh.run`，日志自动落 `output/_recovery/godot_logs/`。
+
+### 10.3 子进程也要藏：`gh.py_popen` / `gh.worker_startupinfo`
+
+搜狗 IME 是**往每个宿进程注入**的。过去只有 Godot 走 `_startupinfo()`，而启动它的
+python worker（`--gd-worker` / `--py-worker` / `--compare-worker`）是裸 `Popen` ——
+worker 留在用户桌面，被注入后弹框就落到用户屏幕上。
+
+```python
+# 起 Python 子进程时用它，别用裸 subprocess.Popen
+p = gh.py_popen([sys.executable, worker_py, "--gd-worker", lst],
+                cwd=ROOT, stdout=log, stderr=subprocess.STDOUT, env=e)
+```
+
+已改用它的地方：`verify_oracle` 三处 worker、`verify_oracle_s1`、`_np_compare_par`、
+`verify_parallel_safety`、`_np23_shard_verify`、`oracle_run_guarded`。
+
+> ⚠ `capture_replay.py` / `launch_fresh_and_scan.py` / `live_scan*.py` 那类**需要真实可见**
+> **窗口与人类输入**的工具，**必须保持默认桌面**，不要套这一层。
+
+---
+
+## 11. 并行安全验收：`tools/verify_parallel_safety.py`
+
+```bash
+python -X utf8 tools/verify_parallel_safety.py --jobs 3
+# 单项：--only byte | --only leak | --only itemparse
+```
+
+任何并行/窗口相关的改动之后都该跑它：
+
+| 项 | 判据 |
+|---|---|
+| `byte` | 同一批闸门 1 路 vs N 路，产物文件**逐字节相同** |
+| `leak` | N 路并发期间用户桌面**新增可见窗口 0 条** |
+| `itemparse` | 显式分片时各片「待解析」之和 == 全量（证明没漏切文件） |
+
+> 注：`leak` 判据只查**可见**窗口。若要看「窗口是否出现在屏内」，需另查
+> `GetWindowRect`（`--position` 让窗口在屏外时，它仍然"存在但不可见"）。
+
+---
+
+## 12. 相关工具索引（2026-11-06 现状）
+
+| 工具 | 一句话 |
+|---|---|
+| `tools/godot_headless.py` | **唯一**启动 Godot 的入口（spawn/run/cmd/env/py_popen/run_many/effective_jobs/lpt_buckets） |
+| `tools/godot_quiet.py` | 窗口静默层（`install()` 包一层 spawn；只做不阻塞的 `SetWindowPos(ASYNC)`） |
+| `tools/godot_watchdog.py` | **卡死自动重跑**（日志停滞判据，见 §1d） |
+| `tools/run_godot_script.py` | 单脚本统一入口（见 §10.2） |
+| `tools/check_godot_launch.py` | 启动点静态检查（见 §10.1） |
+| `tools/verify_parallel_safety.py` | 三项并行安全验收（见 §11） |
+| `tools/long_case_fix.py` | **长场专项**（诊断/夹具/验证/前缀重放/重录），见 `docs/long_case_fix_guide.md` |
