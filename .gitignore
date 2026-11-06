@@ -63,6 +63,7 @@ output/
 tools/gdre/
 tools/*.exe
 tools/_*
+!tools/_np46_rerecord.py
 tools/candidates_*.txt
 tools/Combat.gde
 tools/__pycache__/
