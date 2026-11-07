@@ -2156,20 +2156,6 @@ func _chargeInventoryCells(cells: Array) -> Array:
 	var top_left := getTopLeftCell()
 	var inv = inventory if inventory != null else getOwnOrPlayerInventory()
 	var out := []
-	# ★ np51㉘（2026-11-08）：半格中心偏移的 floor 项补齐。
-	# 原版像素管线：point(c) = O + R_item(P_cm + 80c) + R_item(halfCell)，
-	# cell(c) = floor((point − O_inv)/80) = anchor + R(c − corr_min)
-	#   + floor(R_item(halfCell)/80)——末项为**逐 fd 常量偏移**：
-	#   fd0=(0,0) fd1=(−1,0) fd2=(−1,−1) fd3=(0,−1)（halfCell=(40,40) 旋转后
-	#   /80 向下取整，负半格向下取整为 −1）。此前折叠式映射缺此末项 ⇒
-	#   fd≠0 时电荷路径整体错位一格（gd 落点=Coil、oracle 落点=Battery 等），
-	#   chargeReceived/heat/Zap/速度交付全链错位（604585 实证：gd 多 Zap 抽、
-	#   WolfBadge 战怒时机差、Dagger 首击 5v6；全量回归 761 场）。
-	# ★ np51㉘-实验记录（2026-11-08）：half_shift ±方向实验均未命中——
-	#   (+1,0) 向使 604585 前 2 击对齐但第 3 击起因 Battery 二次充能交付
-	#   差异新分歧（25 场定向 4/25 < 基线）；(−1,0) 向无改善。**半格中心
-	#   floor 项假设不成立**——±1 隐形消耗的注入面比电荷格映射更深，
-	#   收敛证据链见 np51⑳（stealRandomBuff (0.8,1.2) u 差）。
 	for c in cells:
 		# ★ 逐行单语句：gd_to_py 的方法调用改写器按行解析，跨行续行实参会漏。
 		var v: Vector2 = top_left + _rotVecQuarterTurns(Vector2(c.x, c.y), faceDirection) - chargeFrame[faceDirection % 4]
@@ -2215,10 +2201,8 @@ func _chargeEnterCell(charge, cell_index: int, inv_cells: Array) -> void :
 			# 命中带 onChargeReceivedEffect 的物品时原版放一个 Zap 电弧
 			#（ElectricalCharge.gd:195-201 → Items/Animations/Zap.gd:32 的
 			# randf_range(4.0,4.02)，1 抽/次——纯表现，但真实消耗链）
-			# ★ np51㉖→㉗（2026-11-08）：本抽恢复（移除实验翻绿 5 打破 6，
-			# Zap 消耗=逐场依赖：oracle 电荷像素管线落格命中接收者与否随布局）。
-			# 正修=充能格映射像素级对齐（np51㉗ 待办），对齐后本抽语义自洽。
-			ctx.rng.randf_range(4.0, 4.02)
+			if charge.curChargedItem.hasOnChargeReceivedEffect:
+				ctx.rng.randf_range(4.0, 4.02)
 
 
 # 对齐 Item.gd:5155-5159
