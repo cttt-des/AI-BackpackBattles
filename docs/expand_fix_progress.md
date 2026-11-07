@@ -241,4 +241,34 @@ A 组 61 场转绿 **56** 场；残余 5 场 `run101490_r5/r6/r8/r9/r12` 与 C �
   own mult=200 的 run101490 六场重录后仍 own rules ✓（gd 侧 CustomRules 修复匹配）。
 - 914 REG 二刷进行中（CoreCharacter/CoreContext 内核变更后的零回归证明）。
 
-（待续：重录结果 + 最终验证）
+### np51⑥ 重录结果 + 余红 24 场机制图谱（双链 trace 实证）
+
+**重录**：1,690/1,690 零失败（95 分钟，3 路）；accept PASS；与备份逐场对比
+**1,682 场逐字节不变 / 8 场变化**（=泄漏污染场，重录后全绿）→ **1,666/1,690**。
+
+**余红 24 场双链 trace 机制图谱**（迷你批 trace 采集法：`expand_run_oracle
+--cases <迷你批> --root <scratch>` + `ORACLE_RNG_TRACE=1`，77s/10 场——
+**单场 ORACLE_ONLY_CASES 重放路径有病**（战斗不启动、5,400 tick 纯回能×2，
+60k ADD-O 不产出；批量路径完全健康，勿再用单场重放做诊断）：
+
+| 族 | 场数 | 机制（trace 实证） |
+|---|---|---|
+| 伤害界/平衡器族 | ~10（705130/604585/101582/704881/604585/705130/704849×2/400013_r12/604687/101354） | 伤害掷点=**每物品私有 BalancedRange**（Item.gd:473 damageRangeRng，裸调 Util.rng 不入账本——np24 kernel_r5 已证）。705130 双链全程对齐但 Hammer 首击 16(oracle)/19(gd)：**首攻 bounds 即不同**（acc 初始相同⇒非累积差）⇒ 某战斗中 buff 态（Berserker rage/Whetstone/Cog Badge 类）的 +damage 授予量两侧不同（×2 模式：+3 vs +6）。py≡gd（19,20,8,21,15,27,12），oracle (16,21,8,23,15,27,12)——第 3/5/6/7 击相同说明 acc 路径大体同、分歧在特定 buff 窗口 |
+| 激活序翻转族 | ~6（101668/100897/101582/604825/704714/300219） | 同一链位 oracle 抽「ItemAnimation 激活速度 (0.8,1.2)」而 gd 抽「randi_range(0,2/3/5) 随机 pick」——activate() 内**动画 roll vs 效果 pick 的顺序翻转**（原版 Item.activate():4686 先 playActivationAnimation 后续效果；gd 的 hook 触发点错位）。条件性触发（激活物带 rng 效果时才显形） |
+| ObjectPool 暖池族 | ≥1（604585） | gd 多一次 Zap shader 抽 (4,4.02)（ElectricalCharge 充能命中特效，oracle 全场 0 次）——**池化实例 _ready 只跑一次** ⇒ 是否消耗取决于进程内池的冷热（录制批工件）。np49 §6m112 同族（ItemBook 桶） |
+| 工具债 | — | `_np51_trace_align.py` 现为简化对位器（skip≤12 会吸收次序翻转假对齐）；正式对齐需 np24 三件套 + MARKER 列（gd trace 格式 `idx kind a b val MARK st`，MARKER=SRC/LABEL/EVENT/BUS/BALROLL） |
+
+**下一步 playbook（续接者按序执行）**：
+1. 伤害界族：对 705130 用 py 探针（`tools/_np51_probe_705130.py`，注意必须传
+   `rng_state=<语料 rng_state.txt>` 才与正式腿同链）dump Hammer 每击 bounds+buff 态，
+   与 oracle 事件伤害反推对照，定位授予 ×2 的 buff 源（候选：Berserker Bag/BattleRage、
+   Cog Badge、Whetstone3 的 canAffect 链）。
+2. 激活序族：gd_core/CoreItem.activate() 的动画 hook 触发点 vs 原版 Item.activate():4686
+   `playActivationAnimation` 在效果前——对 101668（randi_range(6,6) vs (100,160) 攻击
+   动画错位）做最小复现。
+3. 暖池族：核对 gd_core 的 Zap/池化视觉 hook 的触发条件与 oracle 池语义（np49 先例：
+   reset_residual_state 需覆盖池面）。
+4. 每修一族：定向 `--cases <该族场> --force` 重验 + 914 REG + commit。
+5. 语料备份保留在 `output/_expand/corpus_backup_np51_pre_rerecord/`（重录前原始态）。
+
+（待续）
