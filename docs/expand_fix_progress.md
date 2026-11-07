@@ -310,3 +310,23 @@ A 组 61 场转绿 **56** 场；残余 5 场 `run101490_r5/r6/r8/r9/r12` 与 C �
 5. Whetstone3 拓扑旁证排除：tscn 真值受影响格=9 格（含自身），battle_items
    提取 8 格（去自身格）——Hammer 覆盖集不受自身格影响，三件全覆盖
    （拓扑工具化验证）；+3/+6 之差实为 Zap 链移位的下游表现。
+
+### np51⑨ 逐 tick 状态对位：伤害界族根因再进一层（tick 85/86 vs 97）
+
+ORACLE_DEBUG mini 批出 `tick_states.txt`（527 行=逐 tick 末态）与 gd 侧对位：
+- ticks 1-84 逐 tick 状态**完全一致**（链同速）；**gd 在 tick 86 消耗（→S3），
+  oracle 到 tick 97 才消耗（→S3，同一链位同一态）** ⇒ gd 的 Poison Dagger
+  首攻早 11 tick（86 vs 97，t≈1.4s vs 1.6s）。
+- 11 tick ≈ **Battery 充能 +10% 速度 buff 的交付差**：充能 sync 入格
+  （onChargeEnteredCell → changeChargedItemStat → addSpeed）在 gd 交付了
+  速度 buff，oracle 侧该 buff 未生效（或生效面不同）⇒ Dagger 冷却
+  cd/speed 差 ~12.5%。zap 抽 (4,4.02) 的 ±1 链位差是同一次入格的伴随消耗。
+- 待验证精确差异点：Battery charge cell-1 落格物品是否一致（布局绝对坐标
+  相同）、addSpeed 量（flatSpeed=10%）、oracle 的 sync 入格是否真调用了
+  onChargeEnteredCell（start() 是同步调用应已跑；需 charge 探针确认）。
+- 注意 run1160_r18「12/19 heat 在 t=0」实证 sync 入格链在 oracle 真实消耗过
+  ⇒ 更可能是**交付量/目标格差**而非不交付。
+- 修复方向候选：若 oracle 未交付 = gd 同语义不交付（复刻 tween 死面）；
+  若交付但路径不同 = 修 _chargeInventoryCells/chargeFrame。
+
+（待续：充能交付语义的逐格对照）
