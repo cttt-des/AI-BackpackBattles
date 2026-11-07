@@ -427,6 +427,20 @@ oracle harness 的电荷逐格探针（ORACLE_TRACE_ITEM 同款插桩，红线�
 该面 = np49 §6m112 池化/时序同族的深水区，需 np24 级仪器化战役（oracle
 harness 电荷探针需授权）。
 
+### np51⑮ 收窄到 GDScript 独有面（py 孪生正确）
+
+决定性对照：**py 引擎（转写孪生）的 Dagger speed=1.2@战斗起点 = oracle ✓；
+GDScript 腿 = 1.0 ✗**——同源转写的两实现在此分叉。已排除：FannyPack 交付链
+（py 探针：两个 FP 的 getItemsInside 都正确含 Dagger、addSpeed(0.1)×2 执行 ✓）、
+Bag.prepare 缓存逻辑（两侧逐行同）、充能映射折叠（np51⑭ 已证正确）、
+chargeFrame/rotmin（np25 已验证）。
+**剩余嫌疑面（下一会话首查）**：GDScript 的 addSpeed→速度栈记账 →
+getStackSpeedMods 求和 → getSpeed() 的运行时链（py 同码正确 ⇒ GDScript 侧
+必有状态/时序差：栈数组未初始化、prepare 时序、或 speedBonus 值读取）；
+用 GDScript 侧 FannyPack.onCombatStart 探针（ORACLE_TRACE_ITEM 同款
+ORACLE_ALIGN_TRACE 面）dump addSpeed 后的 speedStacks 与 getSpeed() 即可
+二分出确切行。
+
 ### np51⑩ ★item_trace 对位：速度 buff 交付差定量锁定（604585）
 
 `ORACLE_TRACE_ITEM="Poison Dagger"` 双侧 item_trace（oracle 528 tick / gd 678 tick，
