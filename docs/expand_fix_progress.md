@@ -557,3 +557,42 @@ MARKER=SRC/LABEL/EVENT/BUS/BALROLL 行内嵌于抽行间，可标记每抽的
 修复后伤害界族 ~14 场连带翻绿，再余激活序族 ~6 场。
 
 （np51 全部成果已 commit 至 np51㉑；终盘 1,666/1,690。）
+
+### np51㉒ (0,100) 行归属定谳 + BALANCEDRNG 面确认
+
+- **(0,100) 行 = BalancedRng.rollPercent 的追踪 randf_range**（CoreRng.gd:46
+  「走追踪版 randf_range（等价原版 Util.roll）」）；**BALROLL trace_diag
+  （:249）= gd 侧平衡态诊断行（expectedWins/wins/lastResult，零消耗）**。
+- **BalancedRng = BB 平衡随机机制**（accuracyRng/critRng = BalancedRng.new()，
+  Character.gd:94）：roll = f(全局 u、平衡态 wins/expectedWins/lastResult、
+  bias ±0.2、extraLuck=Lucky 面素)。三侧 bias/历史/Lucky 全同。
+- **gd 序列 [30.06, 87.84] vs oracle [20.54, 30.06]**：gd 的第一支 = oracle
+  的第二支值——**BalancedRng 序列整体 +1 错位**，其 u 前的全局消耗差 1 笔。
+  oracle 的第一支 20.54 的 u = 攻击 tick 的全局链位；gd 的 30.06 = 该链位
+  **+1** 的值——**±1 隐形消耗确认存在于攻击 tick 之前**（t=0 簇内）。
+- **BALROLL 诊断行 = gd 侧独有**（oracle 的 BalancedRng 内部态不可观测，
+  red line）⇒ ±1 注入的**调用面定位**需 oracle 侧探针授权；gd 侧可做的 =
+  逆向实验（在 gd 的 t=0 簇内按候选点注入 ±1 抽，看后续是否精确命中
+  oracle——np24 kernel_r1 的注入实验法，run574_r7 先例）。
+
+### np51㉓ 逆向注入实验方案（下一会话，无需授权）
+
+gd 侧 t=0 簇的候选注入点（按消耗序）：
+a. Battery#0 的 charge sync entry 的 Zap 抽（CoreItem.gd:2205）——**双侧
+   都消耗**（oracle 直连不可见但真消耗，np51⑰ 已证）——排除；
+b. FannyPack.onCombatStart 的 addSpeed 面素（零 rng）——排除；
+c. **Battery.onCombatStart 的 emitCharge 顺序**：gd = activate()→sendCharge
+   （np25 语义）；oracle = emitCharge 内 activate() 亦先于 sendCharge——
+   顺序同——排除；
+d. **Coil 的 stealRandomBuff 的 pickRandomStacks 的 keys() 序**：
+   Dictionary.keys() 顺序 = 插入序——oracle 与 gd 的 stacks dict 插入序
+   若因 dictAdd 实现差异而不同 ⇒ pick 的 (0,2)/(0,5) bounds 同但
+   **候选集序不同 ⇒ 同 u 不同 pick 结果**——**这是 pick(0,2)=>2 双侧同
+   但 (0.8,1.2) 后续 u 差的唯一自洽解释路径**（pick 本身 1 步两侧同、
+   值同，但 steal 的 *下游执行*（loseStacks/giveStacks 的 EventBus 面）
+   的 rng 消耗若因 stolen buff 类型不同而不同 ⇒ ±1）。
+e. **steal 的下游执行差异实验**：py 探针 dump stealRandomBuff 的
+   removedStacks 内容（双侧对照——oracle 侧经由事件反推：1.833 的
+   loseStacks 事件 ty=103 amount=1 = Bloody Dagger 的 Vampirism -1）。
+
+（np51 全部成果已 commit 至 np51㉓；终盘 1,666/1,690。）
