@@ -398,6 +398,23 @@ onDamaged 里 `getRelativeHealth() < getP1()/100−0.0001` → startBattleRage�
 （np51 本轮收口：1,666/1,690；余 24 场的充能/战怒/激活序三族全部归因到
 可插桩的精确差异点，续接 playbook 完备。）
 
+### np51⑬ 战怒时机差的统一解释与终局判词
+
+双侧 WolfBadge 战怒都由「**未入事件面的受损**」点燃：
+- oracle @战斗 t≈0.05（充能热伤/电荷交互的早期交付）；
+- py/gd @战斗 t=4.283（同族受损但晚 4.2s）。
+
+⇒ **充能系统交付时序差**是伤害界族（含 zap 抽、掷值错位、战怒时机、
+±tick 移位）的**唯一上游根因**：电荷的 sync 入格两侧一致（t=0 簇 ✓），
+分歧在**后续入格/热伤/电弧的调度时机**（原版=tween 实时延时驱动，
+harness 阻塞循环下的真实执行面 vs gd_core 的复刻面）。定谳该面需要
+oracle harness 的电荷逐格探针（ORACLE_TRACE_ITEM 同款插桩，红线需授权）
++ gd 侧 CoreElectricalCharge 的 tick 驱动对照。
+
+**np51 终盘**：1,666/1,690（97.5%）；五项根因修复全部落地并 REG×2 零回归；
+余 24 场 = 充能交付时序族（单一上游根因，已定位到可插桩差异点）。
+修复该族预计连带翻绿全部 24 场（掷值/战怒/tick 移位皆其下游）。
+
 ### np51⑩ ★item_trace 对位：速度 buff 交付差定量锁定（604585）
 
 `ORACLE_TRACE_ITEM="Poison Dagger"` 双侧 item_trace（oracle 528 tick / gd 678 tick，
