@@ -450,6 +450,22 @@ Zap/掷值/战怒全链错位（py 正确因 Python 侧注册语义与原版一�
 修复后该族 ~14 场应连带翻绿（Fanny/Whetstone3/充能/战怒全部依赖
 包内/受影响格拓扑），再余激活序族 ~6 场按同法处理。
 
+### np51⑰ Zap 红鲱鱼排除 + 本轮探针战役终判
+
+- **Zap (4,4.02) 非多消耗**：Zap.gd:32 的掷点在 `zap()` 内**每次调用都掷**
+  （无池化跳过）；oracle 侧 `Util.rng.randf_range` 直连 = **账本零痕迹但真消耗**
+  （与 ItemAnimation 直连同款，kernel_r1 注）。gd 的可见 (4,4.02) 行 =
+  同一消耗的可见账本——**两侧链位一致，账本可见性不同**。
+- **GDScript FannyPack/Whetstone3 探针（np24 纪律插桩→还原）**：FannyPack
+  的 getItemsInside/occ/speedBonus 全部正确（包内=Daggers ✓）；Whetstone3
+  的 onCombatStart=继承自 Whetstone 基类（本文件无此函数，探针改插基类）。
+- **真正未决面**：tick 内消耗**顺序**——oracle 与 gd 在攻击 tick 的
+  抖动/命中/伤害/Zap 等抽的相对次序存在差（我的简化对位器以 skip 吸收后
+  呈「对齐到底」，实为**多重排**）。定谳需 np24 正式对位器（gd trace 的
+  MARKER 列 + 三件套）在本 tick 做逐抽对位，产出序差清单后逐条修。
+- 探针已全部还原（FannyPack/Whetstone3 = git 原样）；trace 产物保留
+  output/_expand/trace_root/。
+
 ### np51⑩ ★item_trace 对位：速度 buff 交付差定量锁定（604585）
 
 `ORACLE_TRACE_ITEM="Poison Dagger"` 双侧 item_trace（oracle 528 tick / gd 678 tick，
