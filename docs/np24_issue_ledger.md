@@ -382,3 +382,19 @@
 - §6m106-108：工作流收尾移交+np47 接力：860 重录收口、914 原子换目录+闸再生+夹具升 914、回补基线 876/914。
 - §6m109：checkTriggerCount 一修翻 16→912/914+残红 playbook 初版。
 - §6m110：run602 双链 trace 零真分歧实锤+统一根因收窄（=本节 B）。
+
+## 6m111. ★★ run602_r14 翻绿（912→913）：Sandbag BuffTimer=普通 Timer 非 MultiTimer——gd multi 标志错标致 changeTimer 延长失效（2026-11-07 offpeak np49）
+
+- **§6m110 的 CC 宝石假设三重证伪**：①run602 阵容无任何宝石（CC/FB=0）；②gd CC TRIG=0（从未触发）、oracle 亦无 CC 激活事件；③rng 链 42434 抽+疲劳钟 212 笔 counter 抽值与流内间隔逐位全同。
+- **重定谳**：14 处分歧全为疲劳 dmg 数值，dmg=round((counter+bonus)×(1−resi))（DamageResult.reset 置 damage=0 ⇒ counter 抽+bonus 精确合成）；FAT 探针（双侧 add/take 172+212 笔）逐位全同 ⇒ (cnt,bonus) 全同 ⇒ **分歧=resi（damageResistance）窗口相位**。resi 唯一阵容写入者=Leather Helm(+25/dur3)+Sandbag(extends LH，自身+25+对手+25，EB 回声经 Util.changeTimer 延长)。
+- **根因**：oracle 的 Sandbag.tscn BuffTimer=**普通 one_shot Timer+timeout 信号**（区别于 LH.tscn 的 MultiTimer+multi_timeout），gd 误继承 LH 的 `newItemTimer(..., multi=true)`——multi 运行中 start(t+left) 只 push timestamps 不改写引擎读数 ⇒ 注册表 eng==e[1] 不重同步 ⇒ EB 回声 changeTimer@5.5 后 SB 仍按原截止期 7.017 提前 fire（oracle 实证 eng→8.5167 重同步、14.017 才炸）⇒ resi 窗口错位 ⇒ 疲劳 dmg 14 处分歧。
+- **修**：gd_core_items/Exclusive/Sandbag.gd `_readyInit` 重建 `newItemTimer("BuffTimer","buffEnded",false)`（四树+py 重生成）。单场 verify 三方一致。
+- **方法论**：tscn 计时器真身（脚本+信号名）必须逐件核对，继承链不保真；「总量同、相位异」的补偿形分歧=resi/Timer 窗口相位差的指纹。
+
+## 6m112. ★★ run1094_r9 翻绿（913→914 全绿）：语料池化残留——ItemBook 注册桶跨执行持有 freed 实例致 EB 计数崩溃，harness fresh instantiate+桶清空重注册+定向重录（2026-11-07 offpeak np49）
+
+- **重定谳（非 EB 首发侧翻转）**：新视角=EB(Everburning) 火箭计数面——EB.doCooldownEffect `if numFlames > 0: giveHeat(heat×numFlames)`；oracle 正式执行 PLR-EB 触发（TRGE 探针 tt0=-0.0152）但 doCooldownEffect 不执行（EBCD 探针缺席）且 onPrepare 仅暖场执行（EBP 缺席）。
+- **根因链（探针五连定谳）**：①ItemBook 注册桶跨执行残留 freed 实例（上一执行物品释放后未从桶摘除——摘除被 isOwnable() 闸）②下一执行 EB.onPrepare 的 countAllInInventoryOfType 迭代桶命中 freed 实例崩溃（日志实锤 `Invalid get index 'ownerType' (previously freed instance)` @ItemBook.gd:289）③numFlames=null ④`if numFlames > 0` null 比较再崩静默 abort ⑤无 Heat/无 FF 反应。不对称=对手侧 count_opponent 只取 .size() 不解引用 ⇒ OPP-EB 正常。TRGE@16/25/35s=每次跨越重复崩溃（不 deactivate）。
+- **修（harness 两点+语料重录）**：①oracle/Core/Inventory.gd createFromItemTuples 战斗装配弃用池化实例（fresh `descriptor.instantiate()`+保持 item_instantiated_deferred 信号）；②reset_residual_state 增 ItemBook.ownableItems/opponentItems 清空+按当前 getItemsAndGems() 重注册（注意：必须经 `root.get_node("/root/ItemBook")` 运行时取 autoload——主场景脚本静态引用 ItemBook 会改 autoload 载入环序引发 Util.gd:28 「Expected a constant expression」级联 Parse Error，全工程崩）；③run1094_r9 定向重录（新语料 650 事件/winner=player/双侧 EB 三连，[M13]+ok，sha256 双侧核对）。
+- **旧语料备份**：output/_offpeak/np49_corpus_backup/events_old_1094.json（旧 596 事件/winner=opponent）。单场 verify 三方一致 1/1。
+- **教训入册**：①「单场复放≡语料」的 by-construction 依赖**每执行全新注册基线**——ItemBook 桶/池化实例是 register-visible 状态面，reset_residual_state 必须覆盖；②主场景脚本勿静态引用 autoload（环序敏感）；③崩溃型静默分歧（null 比较/下标 freed）不留事件痕迹，只留 SCRIPT ERROR 日志——判读双验纪律的 SCRIPT ERROR 检查不可省。
