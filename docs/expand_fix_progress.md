@@ -357,6 +357,26 @@ ORACLE_DEBUG mini 批出 `tick_states.txt`（527 行=逐 tick 末态）与 gd �
 
 （待续：t=0 簇 addSpeed 逐笔对账）
 
+### np51⑪ addSpeed 逐笔台账（py 探针，604585）
+
+t=0 簇（与 oracle 里程碑**一致** ✓）：+0.1×2→Battery、+0.1→Coil、
++0.1→Bloody Dagger、+0.1→Poison Dagger（→1.1）、再 +0.1→Bloody Dagger/
+Poison Dagger（→**1.2** ✓=oracle 起步值）、+0.1→Oil Lamp、+0.1×2→Hammer、
++0.1→Dagger——**py 的速度账本与 oracle 起步一致**。
+
+**新分歧点**：+0.35 群体授予（→Dagger/Banana/Poison Dagger/Bloody Dagger/
+Seal the Deal，跨双方阵营的武器/食物面）——oracle 在战斗 t≈0.05 触发、
+py 在 t=4.283 触发 ⇒ **授予者的首火时刻两侧不同**（冷却型授予物）。
++0.35=0.05×7 或 0.05×n+0.15——候选授予面：Battery speed2=5%（per-tile）
+或某 0.05/次叠层物。命中物品跨阵营 ⇒ 授予者是**全局面/双方面**（非某侧
+affected 拓扑）。
+
+下一动作：py 探针打 addSpeed 的调用栈（`traceback.extract_stack` 取
+grantor 帧即可定位授予物品与其 doCooldownEffect/激活面），对照 oracle
+的 t≈0.05 时刻反推其冷却时长差（又一处 fd/参数/计时面差）。
+
+（待续：+0.35 授予者定谳）
+
 ### np51⑩ ★item_trace 对位：速度 buff 交付差定量锁定（604585）
 
 `ORACLE_TRACE_ITEM="Poison Dagger"` 双侧 item_trace（oracle 528 tick / gd 678 tick，
