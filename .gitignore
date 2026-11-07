@@ -92,6 +92,7 @@ gd_core_test/gd_core_items/
 
 # ============ 根目录细碎运行产物与一次性脚本 ============
 /oracle_chunk_*.log
+/oracle_batch_full_progress.log
 /debug.log
 /count
 /recover_guide.md
