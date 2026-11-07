@@ -2276,9 +2276,19 @@ class CoreItem(GodotObject):
 		top_left = self.getTopLeftCell()
 		inv = self.inventory if self.inventory != None else self.getOwnOrPlayerInventory()
 		out = []
+		# ★ np51㉘（2026-11-08）：半格中心偏移的 floor 项补齐。
+		# 原版像素管线：point(c) = O + R_item(P_cm + 80c) + R_item(halfCell)，
+		# cell(c) = floor((point − O_inv)/80) = anchor + R(c − corr_min)
+		#   + floor(R_item(halfCell)/80)——末项为**逐 fd 常量偏移**：
+		#   fd0=(0,0) fd1=(−1,0) fd2=(−1,−1) fd3=(0,−1)（halfCell=(40,40) 旋转后
+		#   /80 向下取整，负半格向下取整为 −1）。此前折叠式映射缺此末项 ⇒
+		#   fd≠0 时电荷路径整体错位一格（gd 落点=Coil、oracle 落点=Battery 等），
+		#   chargeReceived/heat/Zap/速度交付全链错位（604585 实证：gd 多 Zap 抽、
+		#   WolfBadge 战怒时机差、Dagger 首击 5v6；全量回归 761 场）。
+		half_shift = [Vector2(0, 0), Vector2(-1, 0), Vector2(-1, -1), Vector2(0, -1)][_mod(self.faceDirection, 4)]
 		for c in _iter(cells):
 			# ★ 逐行单语句：gd_to_py 的方法调用改写器按行解析，跨行续行实参会漏。
-			v = top_left + self._rotVecQuarterTurns(Vector2(c.x, c.y), self.faceDirection) - self.chargeFrame[_mod(self.faceDirection, 4)]
+			v = top_left + self._rotVecQuarterTurns(Vector2(c.x, c.y), self.faceDirection) - self.chargeFrame[_mod(self.faceDirection, 4)] + half_shift
 			hit_cells = inv.getCellsForGlobalPositions([v])
 			out.append(hit_cells[0])
 		return out
