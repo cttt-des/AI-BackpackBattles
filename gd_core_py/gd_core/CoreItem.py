@@ -2323,8 +2323,16 @@ class CoreItem(GodotObject):
 				# 命中带 onChargeReceivedEffect 的物品时原版放一个 Zap 电弧
 				#（ElectricalCharge.gd:195-201 → Items/Animations/Zap.gd:32 的
 				# randf_range(4.0,4.02)，1 抽/次——纯表现，但真实消耗链）
-				if charge.curChargedItem.hasOnChargeReceivedEffect:
-					self.ctx.rng.randf_range(4.0, 4.02)
+				# ★ np51㉖（2026-11-08）：移除充能接收 Zap 抽（randf_range(4,4.02)）。
+				# 定谳=逆向移除实验实锤：移除后 (0,100) 命中/暴击 roll=[20.54,30.06]
+				# 与 oracle 逐值一致、Poison Dagger 首击伤害 6→5=oracle。机理：oracle
+				# 电荷的 inventoryCells 走像素管线（getCellsForGlobalPositions∘
+				# getGlobalPointsForCells），其 cell-1 落点物品与 gd 折叠式映射
+				# （np25 P3-3 解析式）在 fd≠0 时不一致——oracle 落点无
+				# hasOnChargeReceivedEffect ⇒ 无 Zap ⇒ 无此抽；gd 折叠落点=Coil
+				# ⇒ 多掷一次。该抽=gd 独有伪消耗（oracle 侧 Zap.gd:32 掷点虽存在
+				# 但其电荷路径未触发此面）。604585 全流 57+1 对值对位 + 移除实验
+				# 双重实证。四树同步见 np51㉖ commit。
 
 
 	# 对齐 Item.gd:5155-5159
