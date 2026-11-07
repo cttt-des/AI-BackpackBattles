@@ -1248,7 +1248,16 @@ func createFromItemTuples(itemTuples: Array, ownerType: int):
 		if ownerType == Item.Owner.BuildViewer:
 			item = descriptor.instantiate_pooled()
 		else:
-			item = ItemBook.instantiateItem(descriptor)
+			# ★ np49（run1094_r9 fd@134）：战斗装配弃用池化实例——池化复用是跨执行
+			#   残留面：池化实例的 _ready/onPrepare 只在首个执行生效，后续执行
+			#   （暖场→正式→自证）读到半初始化脚本态（run1094 PLR Everburning
+			#   numFlames=null ⇒ doCooldownEffect 的 `if numFlames > 0` 运行时崩溃
+			#   无声 abort ⇒ 无 Heat 事件），且对手侧经 ItemBook 桶（opponentItems
+			#   无 ownerType 过滤）表现不对称。fresh instantiate=每执行全新
+			#   CoreContext 等价物，固化「单场复放 ≡ 语料 by construction」。
+			#   信号保持：与 instantiateItem 同形 emit item_instantiated_deferred。
+			item = descriptor.instantiate()
+			ItemBook.call_deferred("emit_signal", "item_instantiated_deferred", item)
 		item.ownerType = ownerType
 		itemNode.add_child(item)
 		var topLeftCellPos = tuple["c"]

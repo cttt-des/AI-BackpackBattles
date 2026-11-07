@@ -1152,6 +1152,28 @@ func reset_residual_state() -> void :
 				continue
 			for bt in chr.buffs:
 				chr.buffs[bt].permanentStacks = 0
+	# ★ np49（run1094_r9 fd@134）：ItemBook 注册桶跨执行残留——上一执行已释放的
+	#   物品实例留在 ownableItems/opponentItems 桶里，下一执行
+	#   countItemsInInventoryOfType 迭代到 freed instance 即崩溃
+	#   （「Invalid get index 'ownerType' (on base: previously freed instance)」，
+	#   ItemBook.gd:289），Everburning.onPrepare 中断 ⇒ numFlames=null ⇒
+	#   doCooldownEffect 的 `if numFlames > 0` 再崩 ⇒ PLR-EB 全程静默无事件。
+	#   配套 Inventory.createFromItemTuples 的 fresh instantiate（每执行重新
+	#   _ready 注册），此处清桶+按当前物品重注册=每执行全新注册基线（本函数
+	#   调用点在装配后，故清空后必须立刻重建，否则计数面全空）。
+	var _np49_ib = root.get_node("/root/ItemBook")
+	_np49_ib.ownableItems.clear()
+	_np49_ib.opponentItems.clear()
+	for chr in [G.PLAYER, G.OPPONENT]:
+		if chr == null or not is_instance_valid(chr):
+			continue
+		for it in chr.INVENTORY.getItemsAndGems():
+			if it == null or not is_instance_valid(it):
+				continue
+			if it.isOwnable():
+				_np49_ib.onOwnableItemAdded(it)
+			elif it.isOwnedByOpponent():
+				_np49_ib.onOpponentItemAdded(it)
 	if _np46_has("ITEMS"):
 		for chr in [G.PLAYER, G.OPPONENT]:
 			if chr == null or not is_instance_valid(chr):
