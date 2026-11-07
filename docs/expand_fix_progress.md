@@ -415,6 +415,18 @@ oracle harness 的电荷逐格探针（ORACLE_TRACE_ITEM 同款插桩，红线�
 余 24 场 = 充能交付时序族（单一上游根因，已定位到可插桩差异点）。
 修复该族预计连带翻绿全部 24 场（掷值/战怒/tick 移位皆其下游）。
 
+### np51⑭ 映射折叠复核（排除一项假设）
+
+原版像素↔格链的逐项推导：getGlobalPointsForCells 含 `+halfCellSize.rotated()`
+（+(40,40)），getTopLeftGlobal 用 `map_to_world`（角点，无中心项）——两式相减时
+**中心项不抵消**，floor((R(40,40)−correction[fd])/80) 对 fd 0..3 **恒=(0,0)**
+（中心偏移恰抵消 correction）⇒ **gd 的折叠（无 correction 项）= 正确**，
+充能格映射本身无 bug。⇒ 差异面收窄为：**电荷入格后的接收者效果交付时机**
+（原版 tween 实时调度 vs harness 阻塞循环的真实执行面——ORACLE_TRACE_ITEM
+实证 oracle 的 Dagger speed=1.2 从战斗起步、1.55@t≈0.05；gd/py 同值迟到）。
+该面 = np49 §6m112 池化/时序同族的深水区，需 np24 级仪器化战役（oracle
+harness 电荷探针需授权）。
+
 ### np51⑩ ★item_trace 对位：速度 buff 交付差定量锁定（604585）
 
 `ORACLE_TRACE_ITEM="Poison Dagger"` 双侧 item_trace（oracle 528 tick / gd 678 tick，
