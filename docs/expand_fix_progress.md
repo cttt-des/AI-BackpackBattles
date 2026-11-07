@@ -596,3 +596,23 @@ e. **steal 的下游执行差异实验**：py 探针 dump stealRandomBuff 的
    loseStacks 事件 ty=103 amount=1 = Bloody Dagger 的 Vampirism -1）。
 
 （np51 全部成果已 commit 至 np51㉓；终盘 1,666/1,690。）
+
+### np51㉔ (0,2) pick 调用栈定谳 + 终局收敛
+
+调用栈探针实锤：randi_range(0,2) = **CoreCharacter.playAttackAnimation**
+（攻击动画变体选择，dealDamage 内）——604585 的三支 (0,2) pick = 三次
+攻击的动画选择，值序列 gd=[2,1,2]。
+- Poison Dagger 首击（1.617）的动画 pick 值双侧同（=2 ✓）；**其后的
+  playback (0.8,1.2)：oracle 0.939 vs gd 0.8149**——±1 隐形消耗位于
+  playAttackAnimation 内部或其后、accuracy 之前。
+- playAttackAnimation（原版 Character.gd）内部：动画场景选择 (0,2) →
+  ItemAnimation 4 抽块（invisible）→ playback (0.8,1.2)（visible）——
+  **gd 的 playAttackAnimation 复刻已含 invisible 块（np24 kernel_r1）**，
+  ±1 在块内的 3 支 randomizePosition 与 playback 之间的某一面。
+- **终局**：需 oracle 侧 playAttackAnimation 逐抽探针（ORACLE_STACKTRACE
+  或 harness 插桩，red line 需授权）定谳；或 gd 侧逆向注入实验
+  （np24 kernel_r1 的 ORACLE_INJECT_AT 法，run574_r7 先例）。
+**np51 终盘（本轮三轮循环）**：1,652 → 1,666/1,690；四项根因修复 +
+泄漏根治重录 + REG×2；余 24 场收敛到 playAttackAnimation 块内 ±1 的
+单点，诊断基建（对位器/item_trace/addSpeed 台账/调用栈探针）全部
+就位。全部成果已 commit（np51①-㉔）。
