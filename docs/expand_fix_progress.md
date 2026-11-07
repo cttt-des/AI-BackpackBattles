@@ -330,3 +330,33 @@ ORACLE_DEBUG mini 批出 `tick_states.txt`（527 行=逐 tick 末态）与 gd �
   若交付但路径不同 = 修 _chargeInventoryCells/chargeFrame。
 
 （待续：充能交付语义的逐格对照）
+
+### np51⑩ ★item_trace 对位：速度 buff 交付差定量锁定（604585）
+
+`ORACLE_TRACE_ITEM="Poison Dagger"` 双侧 item_trace（oracle 528 tick / gd 678 tick，
+gd 的内部 tick 计数含装配段故数值偏大，按事件对齐）：
+
+| | oracle | gd |
+|---|---|---|
+| speed @ 战斗开始 | **1.2**（tick 2 起） | **1.0** |
+| speed 变化 | 1.2→1.55 @oracle tick 258 | 1.0→1.2 @gd tick 152（首次攻击重置点）、→1.55 @409 |
+| 首攻重置 | tick 98 | tick 152 |
+
+- **oracle 的 Dagger 从战斗开始就带 +0.2 速度**（=2 颗 Battery 的充能 sync 入格
+  buff，各 +0.1）；gd 的同名 buff **迟到/未落到 Dagger**（其 1.0→1.2 发生在
+  首攻重置点，来源待查）⇒ Dagger 冷却 1.9/1.2 vs 1.9/1.0 ⇒ 首攻
+  gd tick 152 vs oracle tick 98（内部计数），事件面首攻时刻虽同（t=1.617
+  双侧同）但**后续节拍错位** ⇒ 第二击起 21v20/23v21 等全链错位。
+- Battery fd=1（旋转态）——充能格映射 `_chargeInventoryCells =
+  top_left + R_fd(c) − chargeFrame[fd]` 在 fd≠0 的落格与 oracle 不一致
+  （np25 P3-3 只对 fd=0/验证场校准过 run1160/run572）。本轮
+  quick-check（手写旋转）称 cell-1 落点=self/空/Hammer，与 oracle
+  「+0.2 落 Dagger」矛盾 ⇒ 必须用**引擎自身实现**（py 侧直接调
+  `_chargeInventoryCells`）dump 两颗 Battery 的 5 格映射与命中物品，
+  禁止手写旋转复算。
+- 修复方向：fd≠0 时 charge cell 映射/rotmin 的差异点（怀疑
+  `charge_frame_of` 对旋转碰撞盒的 min 语义或 chargeCells 的轴向约定），
+  修 `gen_gd_core_data.charge_frame_of` 或 CoreItem._chargeInventoryCells，
+  四树同步 + 夹具/runtime 重生成 + 该族定向重验。
+- 本场探针脚本已删；trace 产物保留在 output/_expand/trace_root/（mini1tdi
+  =oracle、gd_tdi=gd）。
