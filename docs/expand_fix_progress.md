@@ -331,6 +331,32 @@ ORACLE_DEBUG mini 批出 `tick_states.txt`（527 行=逐 tick 末态）与 gd �
 
 （待续：充能交付语义的逐格对照）
 
+### np51⑩ item_trace 定量对位（604585，ORACLE_TRACE_ITEM="Poison Dagger" 双侧）
+
+- **gd 的 FannyPack 交付链完好**（onCombatStart 探针）：两个 FannyPack 的
+  `getItemsInside()` 都正确返回 `[Bloody Dagger, Poison Dagger]`、speedBonus=0.1、
+  `item.addSpeed(0.1)` 均执行——**Fanny 包内面不是差异点**。
+- **speed 演化对位**（item_trace 的 t 列=Util.time（harness 钟），战斗 t=0 ≈
+  Util.time 1.933；oracle 内部 tick 号=harness 帧号、gd=战斗 tick，两列不可直比，
+  按 t 列与事件对齐）：
+  - oracle：speed=**1.2 @ 战斗 t≈0**（起步即 +0.2）、**1.55 @ 战斗 t≈0.05**
+    （+0.35 = t=0 簇一次性到位：2×Fanny(0.1×2) + Battery speed2 面素（speed2=5%）
+    的 sync 入格授予等）；
+  - gd：speed=1.0 起步、1.2 @ 首攻重置、1.55 @ 其后——**交付时刻/记账面不同**。
+- 诊断副产物：①gd 注册表存在 `gd_core/FannyPack`（kernel 旧集）与
+  `gd_core_items/FannyPack_2`（现行集）同名碰撞——运行时走路径查找不受影响，
+  但**探针按名取类会拿错**（须从模块取真身）；②py 引擎单场跑必须
+  `G.kernel()` 先 bootstrap 再 import 物品模块，否则注册表占位符报错；
+  ③gd 侧 item_trace 需要 `ORACLE_ALIGN_TRACE=1` + 先删 scratch 内该场
+  events.json（resume 会跳过战斗）。
+- **下一动作**：逐项对位 t=0 簇的 addSpeed 授予（2×FannyPack + 3×Battery sync
+  入格 + Blood Manipulation vampiricSpeed 面），在 py 探针里 dump 每次调用
+  （目标物品、值、调用后 getSpeed()），与 oracle 的 speed 里程碑（1.2@0、
+  1.55@0.05）逐一对账——差值即缺失/多出的授予者。修复面在对应物品孪生或
+  CoreItem.addSpeed/getStackSpeedMods 记账。
+
+（待续：t=0 簇 addSpeed 逐笔对账）
+
 ### np51⑩ ★item_trace 对位：速度 buff 交付差定量锁定（604585）
 
 `ORACLE_TRACE_ITEM="Poison Dagger"` 双侧 item_trace（oracle 528 tick / gd 678 tick，
