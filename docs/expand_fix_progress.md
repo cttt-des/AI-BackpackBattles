@@ -466,11 +466,24 @@ MARKER 列 + 三件套）在该 tick 的逐抽对位；gd 的 rng_trace 需重�
    GDScript 侧的冷却调度提前/多转一轮**（该物品的冷却在 gd 于 Poison
    Dagger 攻击 tick 同期到期并掷了抖动，oracle 侧无此掷）⇒ 全簇后续
    抽（命中率 30.06 vs 20.5、伤害 6 vs 5）链位 +1 错位。
-**下一会话首查（精确定位多抖动物品）**：`ORACLE_TRACE_ITEM` 逐个追踪
-tick 97 前后有冷却的候选物品（Dagger@4.5 首击？Battery dur=2s 循环？
-Coil doCooldownEffect 循环），对比 triggerTime 演化找 gd 侧提前到期者；
-修复 = 该物品冷却计时面（CoreTimer/f32 量化/reschedule 语义）。
-数值面（5v6 等）全是这条链的下游，修一处连带翻绿伤害界族 ~14 场。
+**np51⑱+⑲ 对位器战役终态（本轮）**：
+1. 对位器升级=值匹配游走（四元组+归一表+双向 skip），604585 全流
+   **57 对配对、2 处差异**：①gd 可见 Zap（账本可见性差，非真分歧）；
+   ②**攻击簇 (0,100) 行错位**：oracle [20.54, 30.06] vs gd [30.06, 87.84]——
+   **gd 的子 rng 序列整体 +1 错位**（gd 的第一支 = oracle 的第二支）。
+2. **(0,100) 行归属定性**：accuracy/crit/critResist/stunResist 四个子 rng
+   （CoreRng.rollPercent 追踪面）的账本**交织**在同一 trace——±1 错位 =
+   **某一子 rng 的序列多/少一笔**。已排除：bias（三侧同 −0.2/lobbies）、
+   seed（prepare 时全局链对齐）、Poison Dagger crit=0（无 crit roll ✓ 双侧）、
+   Coil cd=0（无冷却）、Coins cd=0、Resistor 参数三层面全同。
+3. **残余候选（下一会话首查，30 分钟级）**：①四子 rng 分账本对位
+   （state 列=各子 rng 自身态，按 state 子序列分账本后逐本对位）；
+   ②WolfBadge 战怒 @4.267 双侧同但其**触发链**（onDamaged→startBattleRage→
+   battle_rage_started→addSpeed）的中间信号时刻三侧对位；
+   ③Vampiric Collar 的 onVampirismChanged → changeCritChancePercent 触发
+   时刻（vampirism 事件 1.833 双侧同）——若 crit chance 在 gd 提前 >0，
+   则 1.617 的攻击多一次 crit roll = ±1 定谳。
+4. 修复预期：该 ±1 定谳后伤害界族 ~14 场连带翻绿；再余激活序族 ~6 场。
 
 ### np51⑰ Zap 红鲱鱼排除 + 本轮探针战役终判
 
