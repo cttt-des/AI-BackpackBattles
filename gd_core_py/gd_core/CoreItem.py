@@ -2285,7 +2285,11 @@ class CoreItem(GodotObject):
 		#   fd≠0 时电荷路径整体错位一格（gd 落点=Coil、oracle 落点=Battery 等），
 		#   chargeReceived/heat/Zap/速度交付全链错位（604585 实证：gd 多 Zap 抽、
 		#   WolfBadge 战怒时机差、Dagger 首击 5v6；全量回归 761 场）。
-		half_shift = [Vector2(0, 0), Vector2(-1, 0), Vector2(-1, -1), Vector2(0, -1)][_mod(self.faceDirection, 4)]
+		# ★ np51㉘-实验记录（2026-11-08）：half_shift ±方向实验均未命中——
+		#   (+1,0) 向使 604585 前 2 击对齐但第 3 击起因 Battery 二次充能交付
+		#   差异新分歧（25 场定向 4/25 < 基线）；(−1,0) 向无改善。**半格中心
+		#   floor 项假设不成立**——±1 隐形消耗的注入面比电荷格映射更深，
+		#   收敛证据链见 np51⑳（stealRandomBuff (0.8,1.2) u 差）。
 		for c in _iter(cells):
 			# ★ 逐行单语句：gd_to_py 的方法调用改写器按行解析，跨行续行实参会漏。
 			v = top_left + self._rotVecQuarterTurns(Vector2(c.x, c.y), self.faceDirection) - self.chargeFrame[_mod(self.faceDirection, 4)] + half_shift
