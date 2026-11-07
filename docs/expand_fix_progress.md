@@ -538,3 +538,22 @@ pick#2 之间的 (0.8,1.2) 播放速度抽：oracle 0.939 vs gd 0.8149**——�
 全部落地；余 24 场收敛到 t=0 簇内 ±1 隐形消耗单一疑点，需 oracle 侧探针
 授权定谳。全部成果已 commit（np51①-⑳）；探针已全还原；trace 产物保留
 output/_expand/trace_root/；语料备份 output/_expand/corpus_backup_np51_pre_rerecord/。
+
+### np51㉑ Dagger 排除 + 攻击簇定位收口（本轮续接段）
+
+ORACLE_TRACE_ITEM="Dagger" 双侧实证：Dagger speed 演化（0.7937@起点=Cold
+减速 → 0.8621@tick529）与攻击重置（首攻 t=4.517）**双侧完全对齐**——
+Dagger 排除。多出的 (0.95,1.05) 抖动 = 某物品的**冷却重排掷点**在 gd
+提前/多转。
+
+**候选收敛**：Poison Dagger 自身的结构双侧同（O65 初排 + O66 攻击重排
+vs K171 + K172），但**重排值差**（O66=1.0376 vs K172=1.0157）= ±1 的
+显形——其 u 前消耗全同（np51⑳）⇒ ±1 注入点在 t=0 簇内且未被
+item_trace 捕获（非 speed/reschedule 面）。
+
+**下一会话首查（最终）**：np24 对位器 MARKER 列适配（gd trace 的
+MARKER=SRC/LABEL/EVENT/BUS/BALROLL 行内嵌于抽行间，可标记每抽的
+调用者身份）——MARKER 对位直接锁定 ±1 注入的调用面，无需逐物品排查。
+修复后伤害界族 ~14 场连带翻绿，再余激活序族 ~6 场。
+
+（np51 全部成果已 commit 至 np51㉑；终盘 1,666/1,690。）
