@@ -398,3 +398,11 @@
 - **修（harness 两点+语料重录）**：①oracle/Core/Inventory.gd createFromItemTuples 战斗装配弃用池化实例（fresh `descriptor.instantiate()`+保持 item_instantiated_deferred 信号）；②reset_residual_state 增 ItemBook.ownableItems/opponentItems 清空+按当前 getItemsAndGems() 重注册（注意：必须经 `root.get_node("/root/ItemBook")` 运行时取 autoload——主场景脚本静态引用 ItemBook 会改 autoload 载入环序引发 Util.gd:28 「Expected a constant expression」级联 Parse Error，全工程崩）；③run1094_r9 定向重录（新语料 650 事件/winner=player/双侧 EB 三连，[M13]+ok，sha256 双侧核对）。
 - **旧语料备份**：output/_offpeak/np49_corpus_backup/events_old_1094.json（旧 596 事件/winner=opponent）。单场 verify 三方一致 1/1。
 - **教训入册**：①「单场复放≡语料」的 by-construction 依赖**每执行全新注册基线**——ItemBook 桶/池化实例是 register-visible 状态面，reset_residual_state 必须覆盖；②主场景脚本勿静态引用 autoload（环序敏感）；③崩溃型静默分歧（null 比较/下标 freed）不留事件痕迹，只留 SCRIPT ERROR 日志——判读双验纪律的 SCRIPT ERROR 检查不可省。
+
+## 6m113. ★★★ P4 收口：914/914 三方一致全绿定谳（2026-11-07 offpeak np49；工程终局）
+
+- **终局账面**：`verify_oracle.py --skip-fixtures --force` 全量 → **914/914 三方一致**（零回归）；`--compare-only` 复读二次确认 914/914（157.2s）。alignment.json=914 行 perCase 保序，唯一出口。
+- **收官双修**：①run602_r14=Sandbag BuffTimer multi 错标（§6m111）；②run1094_r9=语料池化残留（ItemBook 桶 freed 实例⇒EB 计数崩溃，§6m112，harness fresh instantiate+桶清空重注册+定向重录，新语料 650 事件 winner=player）。两者单场 verify 三方一致后全量刷账一次通过。
+- **P4 链执行记录**：①compare-only 复读 ✓②r55 快照=output/_recovery/r55/r55_manifest.txt（alignment.json sha256+914 场语料逐件 sha256+total/aligned 自证）✓③本节 ✓④docs/np24_fix.md 留档（工程架构/修复史大针/方法论遗产/快照复现）✓⑤README 已知问题节更新（三方 914/914 声明+语料语义边界+实录对照提醒）✓⑥本 commit+push ✓⑦向用户终局声明 ✓。
+- **遗留禁区**：语料再写需用户批准；gd_core 与 oracle 树的行为逻辑禁改（np46/np49 获批面除外）；REG 九场防退步持续有效；长场账 long_alignment.json 独立（54 场全绿）。
+- **工程终态**：np24→np49 六代循环（含 3 代工作流+7 次 offpeak 接力）自 706/914 → **914/914**。全史=`git log -p docs/np24_issue_ledger.md`。
