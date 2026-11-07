@@ -68,6 +68,23 @@ RENDER_DIR = os.path.join(ALIGN_DIR, "render")
 LINEUP_OUT = os.path.join(ALIGN_DIR, "lineups")
 CASES_JSON = os.path.join(ROOT, "gd_core_test", "oracle_align_cases.json")
 ALIGNMENT_JSON = os.path.join(ROOT, "output", "oracle", "alignment.json")
+
+# ★ 扩样对齐（2026-11-07，docs/expand_fix_kickoff.md §6.3 Step 2）：新增
+#   --fights-root / --align-root / --cases-json / --alignment-out 四参数，全局
+#   在 main() 里重绑；不传参时一切取上述默认（914 基线口径，行为零回归）。
+#   worker 子进程经 _root_cli_args() 收到同一组参数后走同一重绑逻辑。
+_DEFAULT_FIGHTS_DIR = FIGHTS_DIR
+_DEFAULT_ALIGN_DIR = ALIGN_DIR
+_DEFAULT_CASES_JSON = CASES_JSON
+_DEFAULT_ALIGNMENT_JSON = ALIGNMENT_JSON
+#: gd 腿（Godot）的夹具/语料根覆盖（扩样模式由 main() 填充；基线模式恒空 =
+#: OracleAlignBattle.gd 走自己的默认路径，逐字节同旧行为）
+_GD_ENV_EXTRA: Dict[str, str] = {}
+
+
+def _is_default(path: str, default: str) -> bool:
+    return os.path.normcase(os.path.abspath(path)) == \
+        os.path.normcase(os.path.abspath(default))
 GODOT = os.path.join(ROOT, "output", "godot36", "Godot_v3.6-stable_win64.exe")
 
 # ── ★ np21-① 宿主补偿键控表（py 腿镜像；真源 = gd_core_test/OracleAlignBattle.gd
@@ -189,10 +206,24 @@ def _num_origin_key(num: int, et_names: Dict[int, str]) -> Optional[str]:
 
 # ═══════════════════════════ 用例选取与夹具 ═══════════════════════════
 
+def _fights_case_table() -> str:
+    """用例表来源（随 --fights-root 走）：基线 root 沿用 oracle/fights.json
+    （914 场用例序）；非默认 root（扩样语料）用其旁的 cases.json
+    （expand_select_cases 产物，含 case_id/seed/round_id）。旁表缺失时报错退出
+    ——绝不静默落回基线表（扩样 case_id 与 914 全不同，落回只会得到 0 场）。"""
+    if not _is_default(FIGHTS_DIR, _DEFAULT_FIGHTS_DIR):
+        sibling = os.path.join(os.path.dirname(os.path.abspath(FIGHTS_DIR)),
+                               "cases.json")
+        if not os.path.exists(sibling):
+            raise SystemExit("[cases] 语料根 %s 旁无 cases.json 用例表"
+                             "（expand_select_cases 产物）" % FIGHTS_DIR)
+        return sibling
+    return os.path.join(ROOT, "oracle", "fights.json")
+
+
 def select_cases(limit: int) -> List[Dict[str, Any]]:
-    """fights.json 用例序 ∩ 神谕语料（events.json 存在且非空），保序。"""
-    fights = json.load(io.open(os.path.join(ROOT, "oracle", "fights.json"),
-                               encoding="utf-8"))
+    """用例表 ∩ 神谕语料（events.json 存在且非空），保序。"""
+    fights = json.load(io.open(_fights_case_table(), encoding="utf-8"))
     out = []
     for c in fights["cases"]:
         p = os.path.join(FIGHTS_DIR, c["case_id"], "events.json")
@@ -289,6 +320,9 @@ def run_godot(case_ids: Optional[List[str]] = None,
         extra = {"APPDATA": env["APPDATA"], "ORACLE_ALIGN_OUT": GD_OUT}
         if chunk > 0:
             extra["ORACLE_ALIGN_CHUNK"] = str(chunk)
+        # ★ 扩样对齐（2026-11-07）：夹具/语料根覆盖下发给 Godot（基线模式
+        #   _GD_ENV_EXTRA 恒空 = GDScript 走自身默认路径，零变化）
+        extra.update(_GD_ENV_EXTRA)
         all_fixture = fixture_case_ids()
         if case_ids is not None and len(ids) < len(all_fixture):
             extra["ORACLE_ALIGN_CASES"] = ",".join(ids)
@@ -861,6 +895,24 @@ def _worker_env(idx: int) -> Dict[str, str]:
     return env
 
 
+def _root_cli_args() -> List[str]:
+    """把当前（可能被四参数重绑过的）root 全局下发给 worker 子进程。
+
+    worker 走同一 argparse 入口，收到参数后在 main() 里走同一重绑逻辑——
+    分片 worker 与主进程的语料/夹具/产物口径强一致。只在与默认值不同时下发，
+    基线路径的子进程命令行保持原样。"""
+    args: List[str] = []
+    if not _is_default(FIGHTS_DIR, _DEFAULT_FIGHTS_DIR):
+        args += ["--fights-root", FIGHTS_DIR]
+    if not _is_default(ALIGN_DIR, _DEFAULT_ALIGN_DIR):
+        args += ["--align-root", ALIGN_DIR]
+    if not _is_default(CASES_JSON, _DEFAULT_CASES_JSON):
+        args += ["--cases-json", CASES_JSON]
+    if not _is_default(ALIGNMENT_JSON, _DEFAULT_ALIGNMENT_JSON):
+        args += ["--alignment-out", ALIGNMENT_JSON]
+    return args
+
+
 def _spawn_workers(subcmd: str, buckets: List[List[str]], tmpdir: str,
                    log_prefix: str) -> List[Tuple[int, int, Any]]:
     """起若干子进程（一桶一进程），返回 [(序号, 场数, Popen)]。
@@ -880,7 +932,8 @@ def _spawn_workers(subcmd: str, buckets: List[List[str]], tmpdir: str,
         #   否则搜狗 IME 注入 worker 后，它弹的框就出现在用户屏幕上（2026-11-02 定位）。
         import godot_headless as _gh2
         procs.append((i, len(shard), _gh2.py_popen(
-            [sys.executable, "-X", "utf8", os.path.abspath(__file__), subcmd, lst],
+            [sys.executable, "-X", "utf8", os.path.abspath(__file__), subcmd, lst]
+            + _root_cli_args(),
             cwd=ROOT, stdout=log, stderr=subprocess.STDOUT, env=_worker_env(i))))
     return procs
 
@@ -1047,7 +1100,7 @@ def _run_both_legs(cases: List[Dict[str, Any]], gd_jobs: int, py_jobs: int,
         import godot_headless as _gh2
         proc = _gh2.py_popen(
             [sys.executable, "-X", "utf8", os.path.abspath(__file__),
-             "--py-worker", lst],
+             "--py-worker", lst] + _root_cli_args(),
             cwd=ROOT, stdout=log, stderr=subprocess.STDOUT,
             env=_worker_env(100 + int(tag.split("_")[-1])))
         return (tag, len(part), proc, log)
@@ -1178,7 +1231,7 @@ def compare_cases(cases: List[Dict[str, Any]], et_names: Dict[int, str],
         import godot_headless as _gh2
         procs.append((i, len(shard), out, _gh2.py_popen(
             [sys.executable, "-X", "utf8", os.path.abspath(__file__),
-             "--compare-worker", lst, out],
+             "--compare-worker", lst, out] + _root_cli_args(),
             cwd=ROOT, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)))
 
     out_by_id: Dict[str, Dict[str, Any]] = {}
@@ -1515,7 +1568,20 @@ def main() -> int:
     ap.add_argument("--compare-jobs", type=int, default=0,
                     help="比对并发数（0=按机器资源自动，上限 %d；1=串行）"
                          % PARALLEL_MAX_JOBS)
-    ap.add_argument("--alignment-out", default=ALIGNMENT_JSON)
+    ap.add_argument("--alignment-out", default="",
+                    help="对齐账本输出（默认 output/oracle/alignment.json；"
+                         "扩样传 output/oracle/expand/alignment_expand.json）")
+    # ★ 扩样对齐（2026-11-07，kickoff §6.3 Step 2）：四个 root 参数，默认值 =
+    #   模块常量（914 基线口径），不传参零回归。重绑逻辑见下方"四参数重绑"。
+    ap.add_argument("--fights-root", default="",
+                    help="神谕语料根（默认 output/oracle/fights；扩样传 "
+                         "output/oracle/expand/fights）")
+    ap.add_argument("--align-root", default="",
+                    help="三方重放产物根（默认 output/oracle/align；扩样传 "
+                         "output/oracle/align_expand）")
+    ap.add_argument("--cases-json", default="",
+                    help="用例夹具（默认 gd_core_test/oracle_align_cases.json；"
+                         "扩样传 gd_core_test/expand_align_cases.json）")
     # 内部子进程入口（并行分片 worker），不要手工调用
     ap.add_argument("--compare-worker", nargs=2, default=None,
                     metavar=("LIST_JSON", "OUT_JSON"), help=argparse.SUPPRESS)
@@ -1524,6 +1590,33 @@ def main() -> int:
     ap.add_argument("--py-worker", default=None, metavar="LIST_JSON",
                     help=argparse.SUPPRESS)
     args = ap.parse_args()
+
+    # ── ★ 四参数重绑全局（必须在 worker 分发之前：worker 子进程同样经此处
+    #    重绑后才有正确口径；基线模式四值全空 ⇒ 全局不动 ⇒ 逐字节旧行为）──
+    global FIGHTS_DIR, ALIGN_DIR, GD_OUT, PY_OUT, RENDER_DIR, LINEUP_OUT, \
+        CASES_JSON, ALIGNMENT_JSON
+    if args.fights_root:
+        FIGHTS_DIR = os.path.abspath(args.fights_root)
+    if args.align_root:
+        ALIGN_DIR = os.path.abspath(args.align_root)
+    elif args.fights_root:
+        # 只给 --fights-root 时防污染基线：产物根自动落到语料旁 align_expand
+        ALIGN_DIR = os.path.join(os.path.dirname(FIGHTS_DIR), "align_expand")
+        print("[align-root] 未指定，自动落 %s（防写入 914 基线 align/）" % ALIGN_DIR)
+    if args.fights_root or args.align_root:
+        GD_OUT = os.path.join(ALIGN_DIR, "gdcore")
+        PY_OUT = os.path.join(ALIGN_DIR, "py")
+        RENDER_DIR = os.path.join(ALIGN_DIR, "render")
+        LINEUP_OUT = os.path.join(ALIGN_DIR, "lineups")
+    if args.cases_json:
+        CASES_JSON = os.path.abspath(args.cases_json)
+    if args.alignment_out:
+        ALIGNMENT_JSON = os.path.abspath(args.alignment_out)
+    if not _is_default(FIGHTS_DIR, _DEFAULT_FIGHTS_DIR) or \
+            not _is_default(CASES_JSON, _DEFAULT_CASES_JSON):
+        _GD_ENV_EXTRA["ORACLE_ALIGN_FIGHTS_ROOT"] = FIGHTS_DIR.replace("\\", "/")
+        _GD_ENV_EXTRA["ORACLE_ALIGN_CASES_JSON"] = CASES_JSON.replace("\\", "/")
+
     if args.compare_worker:
         return _compare_worker_main(*args.compare_worker)
     if args.gd_worker:
@@ -1630,7 +1723,7 @@ def main() -> int:
         "localization": {k: v for k, v in localization.items()},
         "fixPlan": build_fixplan(localization),
     }
-    out_path = args.alignment_out
+    out_path = ALIGNMENT_JSON  # 四参数重绑后的全局（默认值或 --alignment-out）
     os.makedirs(os.path.dirname(os.path.abspath(out_path)), exist_ok=True)
     with io.open(out_path, "w", encoding="utf-8", newline="\n") as fh:
         json.dump(report, fh, ensure_ascii=False, indent=1)

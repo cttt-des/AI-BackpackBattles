@@ -2486,6 +2486,10 @@ def load_all():
     except Exception as exc:  # noqa: BLE001
         failed.append(('gd_core_items/Exclusive/TimeMelting.gd', repr(exc)))
     try:
+        import gd_core_py.gd_core_items.Exclusive.TimePendant  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core_items/Exclusive/TimePendant.gd', repr(exc)))
+    try:
         import gd_core_py.gd_core_items.Exclusive.ToastGoobert  # noqa: F401
     except Exception as exc:  # noqa: BLE001
         failed.append(('gd_core_items/Exclusive/ToastGoobert.gd', repr(exc)))

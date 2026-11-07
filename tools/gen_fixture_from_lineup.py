@@ -26,6 +26,12 @@ gen_fixture_from_lineup.py — 真值实录阵容 → lineups/*.json 夹具
     python tools/gen_fixture_from_lineup.py --oracle <神谕用例目录>... \
         --lineup-out output/oracle/align/lineups --batch-out gd_core_test/oracle_align_cases.json
 
+扩样语料（docs/expand_fix_kickoff.md §6.2，玩家开局 stamina 必须取合并库）：
+    python tools/gen_fixture_from_lineup.py --oracle <扩样用例目录>... \
+        --history-db output/oracle/expand/data/history.db \
+        --lineup-out output/oracle/align_expand/lineups --batch-out gd_core_test/expand_align_cases.json
+    （等价环境变量 EXPAND_HISTORY_DB=<合并库>；缺省仍取 oracle/data/history.db，零回归）
+
   <神谕用例目录> = output/oracle/fights/<case_id>/（含 lineups.json）。
   产出两类夹具，双方模拟器消费**同一份装配序**（lineups.json items 数组顺序，
   即原版 sort_BagOrder 后的装配顺序，oracle_fight.gd::dump_lineups 原样 dump）：
@@ -185,8 +191,21 @@ def _oracle_side_entries(lu_side: dict, db: dict, warnings: list) -> list:
     return entries
 
 
-_HISTORY_DB = os.path.join(ROOT, "oracle", "data", "history.db")
+# ★ 扩样语料（docs/expand_fix_kickoff.md §6.2）：合并库 runID 带 +100000×库序号
+#   偏移，只存在于 output/oracle/expand/data/history.db——硬编码基线库会查不到行
+#   ⇒ stamina 静默退回 base ⇒ gd 腿与神谕从开战不同源（假分歧）。覆盖入口：
+#   ① 环境变量 EXPAND_HISTORY_DB（模块加载时生效）；② --history-db 参数；
+#   ③ 驱动进程内调 set_history_db()。三者都缺省 = 基线库，行为零回归。
+_HISTORY_DB = os.environ.get("EXPAND_HISTORY_DB") or os.path.join(
+    ROOT, "oracle", "data", "history.db")
 _round_stamina_cache = {}
+
+
+def set_history_db(path: str) -> None:
+    """覆盖战斗起始 stamina 的取数库（扩样=合并库；缺行仍按 None 退回 base）。"""
+    global _HISTORY_DB
+    _HISTORY_DB = path
+    _round_stamina_cache.clear()
 
 
 def _history_round_stamina(run_id: int, round_id: int):
@@ -317,7 +336,11 @@ def oracle_mode(case_dirs: list, lineup_out: str, batch_out: str) -> int:
                 bad = True
                 break
             run_id = None
-            m = re.match(r"run(\d+)_r\d+$", case_id)
+            # ★ 扩样 case_id 形如 run<玩家>_r<回合>_o<对手>_r<对手回合>（带 _o…
+            #   后缀）；旧正则 r"run(\d+)_r\d+$" 尾锚必不匹配 ⇒ run_id=None ⇒
+            #   stamina 静默退回 base（kickoff §6.2 同型假分歧）。放宽为可选
+            #   _o… 尾段；基线 run<run>_r<round> 仍走第一支，零回归。
+            m = re.match(r"run(\d+)_r\d+(?:_o\d+_r\d+)?$", case_id)
             if m:
                 run_id = int(m.group(1))
             stamina, base_stamina = _battle_start_stamina(
@@ -418,7 +441,7 @@ def oracle_mode(case_dirs: list, lineup_out: str, batch_out: str) -> int:
 def main() -> int:
     argv = sys.argv[1:]
     if argv and argv[0] == "--oracle":
-        case_dirs, lineup_out, batch_out = [], None, None
+        case_dirs, lineup_out, batch_out, history_db = [], None, None, None
         i = 1
         while i < len(argv):
             if argv[i] == "--lineup-out":
@@ -427,12 +450,21 @@ def main() -> int:
             elif argv[i] == "--batch-out":
                 batch_out = argv[i + 1]
                 i += 2
+            elif argv[i] == "--history-db":
+                history_db = argv[i + 1]
+                i += 2
             else:
                 case_dirs.append(argv[i])
                 i += 1
         if not case_dirs:
-            print("用法：--oracle <用例目录>... [--lineup-out 目录] [--batch-out 文件]")
+            print("用法：--oracle <用例目录>... [--lineup-out 目录] [--batch-out 文件]"
+                  " [--history-db 库文件]")
             return 2
+        if history_db:
+            set_history_db(history_db)
+            print("stamina 取数库（--history-db）：%s" % history_db)
+        elif os.environ.get("EXPAND_HISTORY_DB"):
+            print("stamina 取数库（EXPAND_HISTORY_DB）：%s" % _HISTORY_DB)
         if lineup_out is None:
             lineup_out = os.path.join(ROOT, "output", "oracle", "align", "lineups")
         return oracle_mode(case_dirs, lineup_out, batch_out)
