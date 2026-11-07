@@ -636,3 +636,26 @@ randi(0,5) 声音选择抽的存在性差**（⑥的条件：oracle 侧 ctx.time
 **下一会话**：⑥的条件分支实验（attack_sound_ready_time 初值与 0.1s
 窗口在 1.617 攻击时的命中差——gd 的 attack_sound_ready_time 初值面）。
 **np51 终盘**：1,666/1,690；全部成果已 commit（np51①-㉕）。
+
+### np51㉖ attack_sound_ready_time 面对照（本轮最后一查）
+
+原版：`attackSoundReadyTime := 0.0`；判定 `Util.clockTime > attackSoundReadyTime`
+（**clockTime=harness 钟，战斗 t=0 时 ≈1.93**）。gd：`attack_sound_ready_time
+:= −1.0`；判定 `ctx.time > ...`（**ctx.time=战斗钟从 0 起**）。
+- **首攻（战斗 t=1.617）**：oracle clockTime=3.55>0 ✓ 发声、ready→3.65；
+  gd ctx.time=1.617>−1 ✓ 发声、ready→1.717——**首攻双侧同（均发声）**。
+- **后续攻击**：oracle 3.95>3.65 ✓（第二攻 发声、ready→4.05）；第三攻
+  clockTime=4.03<4.05 ✗ **跳过**。gd ctx.time=2.1>1.817 ✓ 发声。
+  ⇒ **第三攻起 gd 多一次声音选择抽 (0,5)**——但首攻的 5v6 在此之前，
+  **非首攻分歧的根因**（是叠加的第二处账本差，修前者时须同步）。
+- 修复候选：gd 的 attack_sound_ready_time 初值改 0.0、ctx.time 换
+  ctx.clock_time（=Util.clockTime 同源钟）——**两处均改**才能对齐
+  oracle 的发声节拍（首攻同、第三攻起跳过）。属 GDScript 侧
+  playAttackAnimation 面（非 oracle），**无需授权**，随伤害界族修复
+  一并实施并定向重验。
+
+**np51 终盘（本轮三轮）**：1,652 → 1,666/1,690；四项根因修复 + 泄漏
+根治重录 + REG×2；余 24 场的两个叠加分歧点均已定位到可插桩精度：
+①t=0 簇内 ±1 隐形消耗（需 oracle 探针授权或逆向注入实验）；
+②attack_sound_ready_time 钟面/初值差（无需授权，可直接修）。
+全部成果已 commit（np51①-㉖）。
