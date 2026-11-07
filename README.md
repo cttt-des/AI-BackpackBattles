@@ -4,9 +4,9 @@
 
 ## ⚠️ 已知问题（使用前必读）
 
-**确定性对齐现状（2026-11-07）**：模拟内核（gd_core）与逆向录制语料、Python 转写内核的**三方确定性对齐已达 914/914 场逐事件、逐 rng 抽一致**（rng 序列逐位收敛，含黏黏龙骑士冷却快进在内的历史问题已随全局 rng 对齐闭合；快照与复现见 `docs/np24_fix.md`）。以下提醒针对「模拟 vs 游戏实机」的剩余边界：
+**确定性对齐现状（2026-11-07）**：模拟内核（gd_core）与逆向录制语料、Python 转写内核的**三方确定性对齐已达 914/914 场逐事件、逐 rng 抽一致**（rng 序列逐位收敛，含黏黏龙骑士冷却快进在内的历史问题已随全局 rng 对齐闭合；快照锚定 `output/_recovery/r55/r55_manifest.txt`，复现与留档见 [docs/np24_fix.md](docs/np24_fix.md)）。以下提醒针对「模拟 vs 游戏实机」的剩余边界：
 
-1. **语料=录制回放语义**。914 场语料由逆向 harness 录制（逐案隔离、全新状态确定性执行），三方一致保证的是模拟器与该录制管线逐位一致；与游戏实机在未覆盖的 UI/信号时序面上仍可能存在差异。
+1. **语料=录制回放语义**。914 场语料由逆向 harness 录制（np46 起逐案隔离、全新状态确定性执行），三方一致保证的是模拟器与该录制管线逐位一致；与游戏实机在未覆盖的 UI/信号时序面上仍可能存在差异。
 
 2. **模拟器对战结果请勿当作游戏的精确胜率参考**。实录对照工作流仍是发现实机差异的最终手段。
 
@@ -28,7 +28,7 @@
 
 ### ① 逆向基础（GDEC 解密 + 全源码可读）
 
-- **2026-09-18 全量重逆向**：以官方原版 `BackpackBattles.pck`（clean v1.1.7）为真值重新解包——**9377/9377 个文件全部提取，MD5 逐条目校验零缺失**；另对**运行版（1.1.8）pck** 完成同规格提取与脚本反编译（`extracted_running/decomp/`），支撑双版本真值对照
+- **2026-09-18 全量重逆向**：以官方原版 `BackpackBattles.pck`（clean v1.1.7）为真值重新解包——**9377/9377 个文件全部提取，MD5 逐条目校验零缺失**；另对**运行版（1.1.8）pck** 完成同规格提取与脚本反编译，支撑双版本真值对照
 - **820 个 GDEC 加密脚本全部解密**（AES-256-ECB，脚本密钥经游戏进程 hook 动态确认，GDSC 魔数 + 全文件 MD5 双重验证）+ `ItemData_e.csv` 解密（518 物品行 MD5 吻合）
 - **820/820 脚本反编译 + 3817 个资源全部转换成功**（`decompiled_full/`：.gd/.tscn/材质/翻译/着色器全文本可读）
 - 内存布局活体标定：`OS::singleton` RVA 定位 → Godot 对象图遍历；密钥动态确认工具链：`tools/inject_gdec_hook.py`（x64 绝对跳转 hook，在启动解密风暴的约 29ms 窗口内捕获密钥）
@@ -64,25 +64,24 @@
 |------|------|
 | `tools/compare_truth.py` | 真值实录 ↔ 模拟器对照（同阵容多种子：胜负/时长/逐类型事件量分布） |
 | `tools/per_item_diff.py` | 逐物品激活次数/伤害总量归因（单组真值 vs 模拟中位数） |
-| `tools/verify_linkage.py` | 联动语义固定用例 | 
+| `tools/verify_linkage.py` | 联动语义固定用例 |
 | `tools/audit_item_effects.py` | 源码→转译→运行时三层对账 |
 | `tools/regression_baseline.py` | 固定种子 56 场战斗指纹比对（防回归） |
 | `tools/check_gd_core_engine.py` | gd_core 内核 vs 56 局 Godot 基准逐字符校验 |
 | `tools/repack_lineups.py` | 占格形状变更后内置阵容自动重摆 |
-| `tools/extract_sprites.py` | 从全量反编译树重建 `assets/sprites/` 与 `assets/item_db.json`（多层贴图合成 + 物品原点，见 ⑦） |
+| `tools/extract_sprites.py` | 从全量反编译树重建 `assets/sprites/` 与 `assets/item_db.json`（多层贴图合成 + 物品原点，见 ⑧） |
 
 > 这些工具证明的是"改动没有引入回归"。与游戏行为的最终对齐以 `output/combat_logs/` 实录对照为准——多个严重问题正是在固定用例全绿的状态下由实录发现的。
 
-### ⑥ 三方确定性对齐（语料 ↔ gd_core ↔ gd_core_py）
+### ⑥ 三方确定性对齐（语料 ↔ gd_core ↔ gd_core_py）——**已收口 914/914**
 
-- **对齐出口**：`output/oracle/alignment.json` —— 唯一账本，双判据（canonical 事件流 + 渲染行）逐场裁决 860 场语料战斗，当前 **851/860 三方逐行一致**（914 场语料中 54 场超长战斗在合并账另列）。
+- **对齐出口**：`output/oracle/alignment.json` —— 唯一账本（仅由 `tools/verify_oracle.py` 产出，禁手写），双判据（canonical 事件流 + 渲染行）逐场裁决，当前 **914/914 三方逐行一致**；54 场超长战斗的独立账为 `output/oracle/long_alignment.json`。
 - **三方架构**：`oracle/`（Godot 受控神谕，手动 tick 驱动 v1.1.9 真源）↔ `gd_core/`（GDScript 无头内核）↔ `gd_core_py/`（Python 机械转写，`tools/gd_to_py.py` 生成 661 模块）——任一修复需四树同步（gd_core/、gd_core_test 双镜像、gd_core_items/）后重跑 gd_to_py。
-- **REG gate**：`tools/_np21_gate.py` 基线 7 场 + 域代表场双腿（gd/py）防回归；全量刷账 `python -X utf8 tools/verify_oracle.py --skip-fixtures --force`（约 28 分钟）。
-- **方法论**（详见 `docs/np24_issue_ledger.md` §6m1→§6m32）：值序对齐法、PCG32 步数解算（INC=2885390081777926815，randf=2 步）、pass 序号内嵌探针、深度索引重对齐；本轮定谳根因谱系＝**隐形链消耗**（tscn 实例化 CardConnector 旗标漏扫 / 攻击尾 createAnimation+randomizePosition 3 笔裸抽 / BuffTimer-Engine real_t=float32 量化 / 引擎全局链 Array.pick_random vs 主链）。
-- **残余 9 红已定性**：947@46 ChessBoard（captureCells/canAffect 语义域，[CBS] 哨兵实证链位/输入序排除）、702/986 等中晚簇（首分歧 t>200，逐场待三件套解剖）。
+- **REG gate**：`tools/_np21_gate.py` 基线 7 场 + 域代表场双腿（gd/py）防回归；全量刷账 `python -X utf8 tools/verify_oracle.py --skip-fixtures --force`。
+- **收口留档**：[docs/np24_fix.md](docs/np24_fix.md)（目标/架构/修复史大针/方法论遗产/复现）；逐轮全史在 [docs/np24_issue_ledger.md](docs/np24_issue_ledger.md)（正文经 git 历史回溯）。
+- **下一步（扩大用例对齐）**：914 场是"录制回放语义"下的可证基线，覆盖面已测出缺口（62 件物品零覆盖、事件类型仅 31 种、仅取每 run 末回合）。扩样与判据升级（J2–J6）的完整规划见 [docs/扩大用例对齐规划.md](docs/扩大用例对齐规划.md)。
 
-
-### ⑥ 对局语料记录器（真人操作 → 训练数据）
+### ⑦ 对局语料记录器（真人操作 → 训练数据）
 
 主程序内置记录器：**纯外置只读**地记录整局操作（买/卖/刷新/锁定/合成）与操作时的完整状态
 （回合、金币、生命、职业、摆盘、储物箱、商店 5 槽及价格/打折/锁定），产出两路语料：
@@ -109,7 +108,7 @@
 
 配置在 `config.yaml` 的 `recorder:` 段（采样间隔、压缩方式、是否也记录 AI 自身动作等）。
 
-### ⑦ UI 贴图资产（物品渲染真值）
+### ⑧ UI 贴图资产（物品渲染真值）
 
 主程序背包摆盘的贴图来自 `assets/sprites/` + `assets/item_db.json`，由
 `tools/extract_sprites.py` 从 `oracle/`（1.1.9 全量 GDRE 反编译树，含 png/tscn/CSV）
@@ -141,9 +140,7 @@
 | `oracle/` | v1.1.9 | 战斗神谕真值 + UI 贴图提取源（15408 文件，含 2547 png） |
 
 二者**不是副本**：`Core/Game.gd` 的 `VERSION` 分别为 1.1.7 / 1.1.9，忽略行尾仍有
-32 个文件内容不同，覆盖会打断内核与真值的逐行对照。历史上那份额外的
-`output/_recovery/decomp_cur`（1.1.9 重复导出）已按全量哈希校验后删除
-（详见 `output/_recovery/cleanup_20261029_dedup.md`）。
+32 个文件内容不同，覆盖会打断内核与真值的逐行对照。
 
 > `decompiled_full/`（1.1.7）**不是过时垃圾**，理由有三（2026-10-29 实测）：
 >
@@ -171,7 +168,7 @@
 gd_core/                    # ★ 无头战斗内核（原版 GDScript 1:1 移植，531 件物品）
 gd_core_py/                 # ★ gd_core 的 Python 机械转写（模拟器实际加载的内核）
 gd_core_items/              # 物品行为脚本（gd_core 侧）
-gd_core_test/               # Godot 基准对局结果（56 局逐字符校验用）
+gd_core_test/               # Godot 基准对局结果（56 局逐字符校验用）+ 对齐重放器
 core/                       # 外挂 AI 核心（bot/memory_reader/item_reader/godot_reader/
                             #   combatlog_reader/build_history/item_db/…）
 ├── recorder.py             # ★ 对局语料记录器（采样/去抖/差分/局边界，纯只读）
@@ -194,9 +191,27 @@ assets/                     # 物品贴图、battle_items.json、gd_core_runtime
 dist/lineups/               # 内置与游戏历史阵容 JSON
 tools/                      # 逆向工具 + 真值对照 + 验收链（见上表）
                             #   + corpus_fold/check/stats（对局语料折叠与校验）
-docs/                       # 逆向记录、内核真值（engine_truth/gd_core_truth/
-                            #   engine_v2）、模拟器架构、阵容格式
+docs/                       # 逆向记录、内核真值、对齐规划与台账、模拟器架构（见下）
 ```
+
+### 文档索引（docs/）
+
+| 文档 | 内容 |
+|------|------|
+| [np24_fix.md](docs/np24_fix.md) | **对齐收口留档**：目标/架构/修复史大针/方法论/复现 |
+| [np24_issue_ledger.md](docs/np24_issue_ledger.md) | 逐轮问题台账（现行期总账 + 铁律 + playbook） |
+| [扩大用例对齐规划.md](docs/扩大用例对齐规划.md) | **下一步**：覆盖优先扩样、J2–J6 判据升级、三档并发预设 |
+| [gd_core_truth.md](docs/gd_core_truth.md) | gd_core 内核逆向真值规范 |
+| [engine_truth.md](docs/engine_truth.md) | 引擎战斗真值规范（含反编译源码行号对照） |
+| [rng_truth.md](docs/rng_truth.md) | PCG32 全局链与逐抽真值 |
+| [version_alignment.md](docs/version_alignment.md) | 模拟器对齐 1.1.7 还是 1.1.9 的逐面证据 |
+| [simulator_architecture.md](docs/simulator_architecture.md) | 阵容/物品库/战斗日志三套 JSON 架构规范 |
+| [recorder_design.md](docs/recorder_design.md) | 对局记录器设计与语料格式 |
+| [corpus_official_format.md](docs/corpus_official_format.md) | bpb 语料官方格式解码 |
+| [long_case_fix_guide.md](docs/long_case_fix_guide.md) | 长场修复工具交接（54 场 playbook） |
+| [parallel_workflow.md](docs/parallel_workflow.md) | 三腿并行验证工作流与无窗口启动 |
+| [oracle_workflow.md](docs/oracle_workflow.md) / [consistency_workflow.md](docs/consistency_workflow.md) / [alignment_fix_workflow.md](docs/alignment_fix_workflow.md) / [deterministic_replay_workflow.md](docs/deterministic_replay_workflow.md) / [capture_protocol.md](docs/capture_protocol.md) | 历史方法论（仍被工具注释引用，保留） |
+| [reverse_engineering_2026-09.md](docs/reverse_engineering_2026-09.md) | 2026-09 全量重逆向报告 |
 
 ## 快速开始
 
@@ -218,6 +233,15 @@ python -m simulator.simulate lineup_A.json lineup_B.json --runs 100
 python battle_simulator.py
 
 # 输出 *_log.json（事件流）、*_result.json（胜负/统计/HP 曲线）、*_log.txt（游戏格式战报）
+```
+
+### 三方对齐复现
+
+```bash
+# 全量刷账（约 28 分钟；--force 才会重跑，正常先删旧产物）
+python -X utf8 tools/verify_oracle.py --skip-fixtures --force
+# 只比对（秒级），账本仍是 output/oracle/alignment.json
+python -X utf8 tools/verify_oracle.py --compare-only
 ```
 
 ### 阵容格式（v4 推荐，v3 兼容）
