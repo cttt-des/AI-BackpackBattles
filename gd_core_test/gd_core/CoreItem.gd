@@ -2201,13 +2201,10 @@ func _chargeEnterCell(charge, cell_index: int, inv_cells: Array) -> void :
 			# 命中带 onChargeReceivedEffect 的物品时原版放一个 Zap 电弧
 			#（ElectricalCharge.gd:195-201 → Items/Animations/Zap.gd:32 的
 			# randf_range(4.0,4.02)，1 抽/次——纯表现，但真实消耗链）
-			# ★ np51㉖-回滚（2026-11-08）：本抽（randf_range(4,4.02)）**恢复**。
-			# 移除实验结论修正：Zap 消耗为**逐场依赖**——oracle 的电荷路径按
-			# 像素管线落格，命中 hasOnChargeReceivedEffect 物品与否随布局而变
-			# （604585 命中 Coil ⇒ 有抽但直连不可见；另有场次未命中 ⇒ 无抽）。
-			# 全量重验 1,665（−1）：移除翻绿 5 场（未命中场）但打破 6 场（命中
-			# 场）。**正修 = 充能格映射本身像素级对齐**（np51㉗ 待办），本抽在
-			# 映射对齐前保留。
+			# ★ np51㉖→㉗（2026-11-08）：本抽恢复（移除实验翻绿 5 打破 6，
+			# Zap 消耗=逐场依赖：oracle 电荷像素管线落格命中接收者与否随布局）。
+			# 正修=充能格映射像素级对齐（np51㉗ 待办），对齐后本抽语义自洽。
+			ctx.rng.randf_range(4.0, 4.02)
 
 
 # 对齐 Item.gd:5155-5159
