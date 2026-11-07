@@ -2172,7 +2172,7 @@ func _chargeInventoryCells(cells: Array) -> Array:
 	#   收敛证据链见 np51⑳（stealRandomBuff (0.8,1.2) u 差）。
 	for c in cells:
 		# ★ 逐行单语句：gd_to_py 的方法调用改写器按行解析，跨行续行实参会漏。
-		var v: Vector2 = top_left + _rotVecQuarterTurns(Vector2(c.x, c.y), faceDirection) - chargeFrame[faceDirection % 4] + half_shift
+		var v: Vector2 = top_left + _rotVecQuarterTurns(Vector2(c.x, c.y), faceDirection) - chargeFrame[faceDirection % 4]
 		var hit_cells: Array = inv.getCellsForGlobalPositions([v])
 		out.push_back(hit_cells[0])
 	return out

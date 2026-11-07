@@ -2292,7 +2292,7 @@ class CoreItem(GodotObject):
 		#   收敛证据链见 np51⑳（stealRandomBuff (0.8,1.2) u 差）。
 		for c in _iter(cells):
 			# ★ 逐行单语句：gd_to_py 的方法调用改写器按行解析，跨行续行实参会漏。
-			v = top_left + self._rotVecQuarterTurns(Vector2(c.x, c.y), self.faceDirection) - self.chargeFrame[_mod(self.faceDirection, 4)] + half_shift
+			v = top_left + self._rotVecQuarterTurns(Vector2(c.x, c.y), self.faceDirection) - self.chargeFrame[_mod(self.faceDirection, 4)]
 			hit_cells = inv.getCellsForGlobalPositions([v])
 			out.append(hit_cells[0])
 		return out
