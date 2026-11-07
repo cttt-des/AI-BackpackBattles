@@ -444,11 +444,21 @@ filledCells[cell]（每格单物品，后注册者覆盖）——GDScript 的叠
 碰撞检查若拒绝了叠放 ⇒ Fanny 的包内面空 ⇒ 速度 buff 缺失 ⇒ 冷却节拍差 ⇒
 Zap/掷值/战怒全链错位（py 正确因 Python 侧注册语义与原版一致）。
 
-**下一会话首查（30 分钟级）**：GDScript CoreGrid 的 addItem/filledCells
-注册对「叠加物品」（同格多物）的处理 vs 原版 Inventory.gd（原版允许包格
-堆叠：filledCells 直接覆盖 + getItemsInCells 靠 item.placed 过滤）；
-修复后该族 ~14 场应连带翻绿（Fanny/Whetstone3/充能/战怒全部依赖
-包内/受影响格拓扑），再余激活序族 ~6 场按同法处理。
+**np51⑱ 604585 最终对账（本轮终态）**：三方事件流 212/213 事件全同，
+唯一分歧 = Poison Dagger 首击伤害 5(oracle)/6(gd=py)。已**逐层排除**：
+speed 台账（1.2@0、1.55@4.283 三侧全同）、FannyPack 交付链（gd 探针实证
+inside=Daggers ✓）、充能映射折叠（(40,40) 中心项与 correction 在 floor 下
+抵消，gd 正确）、Resistor heat/heatt 参数（三层面全同）、Whetstone3 拓扑
+（三件全覆盖）、WolfBadge 战怒（ty=21@4.267 三侧同）、typed factor/参数面
+（minDam=5 三层面全同）。**剩余唯一未决**：该击的隐藏 BalancedRange 掷点
+的**链位/取值差**（u→int 映射两侧为同版 Godot 语义）——即攻击簇内某处
+存在一次**未对齐的隐形消耗**。定谳工具 = np24 正式对位器（gd trace
+MARKER 列 + 三件套）在该 tick 的逐抽对位；gd 的 rng_trace 需重跑
+（ORACLE_ALIGN_TRACE=1 + 删 scratch 产物，mini 批法 77s/10 场）。
+
+**下一会话首查**：①np24 对位器适配现行 trace 格式；②604585 攻击 tick
+逐抽序差清单；③按清单修（预计 ±1 隐形消耗一次定位一处）。该族
+（伤害界 ~14 场）同一根因预计连带翻绿；再余激活序族 ~6 场。
 
 ### np51⑰ Zap 红鲱鱼排除 + 本轮探针战役终判
 
