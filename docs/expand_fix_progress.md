@@ -288,3 +288,25 @@ A 组 61 场转绿 **56** 场；残余 5 场 `run101490_r5/r6/r8/r9/r12` 与 C �
 **本轮最终盘面：1,666/1,690（97.5%）**——余 24 场三族机制已图谱化，
 需 np24 级逐场仪器化战役（np24→np49 为 914 打了六代的同类战役）。
 全部四项根因修复 + 语料根治 + 2×914 REG 零回归已 commit。
+
+### np51⑧ 伤害界族根因链闭合（604585 完整案例）
+
+双链 trace + 子序列对位实证（run604585_r6）：
+1. gd 在 t≈1.3s **多消耗一次 Zap 抽 (4,4.02)**（CoreItem.gd:2205，充能进入
+   `hasOnChargeReceivedEffect` 物品时的电弧表现消耗）；oracle 全场 0 次。
+2. 全局链此后 +1 位 → 命中/暴击/伤害掷点全部错位 → Poison Dagger 5v6、
+   Hammer 16v19、暴击/miss 翻转、±tick 移位——**掷值家族全部由此一条链**。
+3. `hasOnChargeReceivedEffect = has_method("onChargeReceived")`——两侧定义集
+   **完全相同**（11 件：Chainsaw/ChargeSplitter/Coil/Eat-o-matic/ElectricTorch/
+   Gigawatz/MechaBat/PoisonGrenade/Resistor/Robodog/TeslaCoil）⇒ 差异不在标记，
+   在**充能路由**：gd 的某颗电荷多进了一个接收者格（Battery.onCombatStart
+   emitCharge → chargeCells 逐格 → getItemInCell）。
+4. 续接路径：对 604585 双侧 dump 充能逐格路由（gd：py 探针包
+   CoreItem.onChargeEnteredCell——本轮试跑 hook 未命中，需改挂
+   `CoreElectricalCharge` 类或 ctx.hooks；oracle：harness 已有
+   ORACLE_TRACE_ITEM 同款插桩面，需授权加 charge 探针）。比对第一颗
+   电荷的逐格路径即可定位错位点（布局绝对坐标相同⇒嫌疑在电荷移动的
+   tick 计时/speedFactor 或 inventoryCells 枚举序）。
+5. Whetstone3 拓扑旁证排除：tscn 真值受影响格=9 格（含自身），battle_items
+   提取 8 格（去自身格）——Hammer 覆盖集不受自身格影响，三件全覆盖
+   （拓扑工具化验证）；+3/+6 之差实为 Zap 链移位的下游表现。
