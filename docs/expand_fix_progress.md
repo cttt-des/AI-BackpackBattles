@@ -271,4 +271,20 @@ A 组 61 场转绿 **56** 场；残余 5 场 `run101490_r5/r6/r8/r9/r12` 与 C �
 4. 每修一族：定向 `--cases <该族场> --force` 重验 + 914 REG + commit。
 5. 语料备份保留在 `output/_expand/corpus_backup_np51_pre_rerecord/`（重录前原始态）。
 
-（待续）
+### np51⑦ 探针补充结论（本轮收口时）
+
+- **Coins 布局无嫌疑**：25 场含 Coins 仅 15 红（10 绿）⇒ 1×1 注册对多数场正确；
+  红场另有成因。
+- **gd 的 activate() 已是 np24 多轮校准态**（playCombatAni 闸/虚函数 playDropSound
+  分发/裸调 ANIM 块均已在位）——激活序翻转族不是 activate() 主体顺序问题，
+  需按场对 Specific 物品的 hook 消耗面做 np24 逐抽对位。
+- py 探针（rng_state 同链）实证 gd/py 的 Hammer bounds=(10,13)、resi=0、
+  damageReduction=0 而 final=19/20/21/27 > 13 ⇒ +6..14 来自 **pre_take_damage
+  总线监听者或 preDealDamage 钩子族**的加成，量随时间增长（+6@1.7s→+14@12.5s，
+  疑似叠层型物品：Forging Hammer/Berserker rage 面），且 oracle 攻击时刻
+  （7.55/10.82）与 gd（7.62/10.82）有 ±tick 相位差 ⇒ 时间型叠层的窗口错位。
+- 探针脚本已删（np24 纪律）；本节结论与 playbook 足以续接。
+
+**本轮最终盘面：1,666/1,690（97.5%）**——余 24 场三族机制已图谱化，
+需 np24 级逐场仪器化战役（np24→np49 为 914 打了六代的同类战役）。
+全部四项根因修复 + 语料根治 + 2×914 REG 零回归已 commit。
