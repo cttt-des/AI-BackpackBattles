@@ -434,12 +434,21 @@ GDScript 腿 = 1.0 ✗**——同源转写的两实现在此分叉。已排除�
 （py 探针：两个 FP 的 getItemsInside 都正确含 Dagger、addSpeed(0.1)×2 执行 ✓）、
 Bag.prepare 缓存逻辑（两侧逐行同）、充能映射折叠（np51⑭ 已证正确）、
 chargeFrame/rotmin（np25 已验证）。
-**剩余嫌疑面（下一会话首查）**：GDScript 的 addSpeed→速度栈记账 →
-getStackSpeedMods 求和 → getSpeed() 的运行时链（py 同码正确 ⇒ GDScript 侧
-必有状态/时序差：栈数组未初始化、prepare 时序、或 speedBonus 值读取）；
-用 GDScript 侧 FannyPack.onCombatStart 探针（ORACLE_TRACE_ITEM 同款
-ORACLE_ALIGN_TRACE 面）dump addSpeed 后的 speedStacks 与 getSpeed() 即可
-二分出确切行。
+**剩余嫌疑面（已收窄至最终一层）**：getStackSpeedMods = (heat−cold)×0.02
+（CoreItem.gd:362-363）——oracle 的 Dagger speed 1.2 = **热栈 10**（3×Battery
+sync 充能 ×3 heat=9 + 1，heat 经充能交付）；GDScript 腿 speed=1.0 = 热栈 0
+⇒ **GDScript 的充能→Resistor→giveHeat 交付缺失**。而 py 孪生（同源转写）
+的 FannyPack/速度面正确——**分叉在 GDScript 的 filledCells 叠加注册**：
+Dagger 叠在 FannyPack 占格上（BB 包内堆叠语义），getItemsInCells 走
+filledCells[cell]（每格单物品，后注册者覆盖）——GDScript 的叠加注册/放置
+碰撞检查若拒绝了叠放 ⇒ Fanny 的包内面空 ⇒ 速度 buff 缺失 ⇒ 冷却节拍差 ⇒
+Zap/掷值/战怒全链错位（py 正确因 Python 侧注册语义与原版一致）。
+
+**下一会话首查（30 分钟级）**：GDScript CoreGrid 的 addItem/filledCells
+注册对「叠加物品」（同格多物）的处理 vs 原版 Inventory.gd（原版允许包格
+堆叠：filledCells 直接覆盖 + getItemsInCells 靠 item.placed 过滤）；
+修复后该族 ~14 场应连带翻绿（Fanny/Whetstone3/充能/战怒全部依赖
+包内/受影响格拓扑），再余激活序族 ~6 场按同法处理。
 
 ### np51⑩ ★item_trace 对位：速度 buff 交付差定量锁定（604585）
 
