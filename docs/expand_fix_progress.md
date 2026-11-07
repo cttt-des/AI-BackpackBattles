@@ -377,6 +377,27 @@ grantor 帧即可定位授予物品与其 doCooldownEffect/激活面），对照
 
 （待续：+0.35 授予者定谳）
 
+### np51⑫ +0.35 授予者定谳：Wolf Badge 战怒时机差（604585）
+
+调用栈探针实锤：+0.35 群体授予 = **WolfBadge.py:51 onBattleRageStarted**
+（战怒开始 → 一组武器 +35% 速度）。Wolf Badge = 玩家阵容物品（原版 45 行：
+onDamaged 里 `getRelativeHealth() < getP1()/100−0.0001` → startBattleRage）。
+
+- **oracle：战怒 t≈0.05 即触发**（WolfBadge p1=200 ⇒ 阈值 200%，相对体力
+  100% < 200% 恒真——**开战即常开**，首个 onDamaged 就应点燃）；oracle 的
+  点燃时刻 t≈0.05 ⇒ oracle 在 t≈0.05 有一次**角色受损**（无事件面痕迹，
+  嫌疑=Resistor 充能热伤面/Battery 电荷交互，与充能语义互联）。
+- **py/gd：战怒 t=4.283 才触发** = 该时刻的首次 onDamaged（py 台账
+  +0.35@4.283）——**gd/py 的 WolfBadge 在 t≈0.05 的受损事件上未点燃**：
+  该次受损在 gd/py 缺席（又是充能/热伤交付差）或 onDamaged 的触发面不同。
+- 修复路径：双侧对照 WolfBadge 的 onDamaged 触发时刻（oracle t≈0.05 的
+  受损源 = 充能热伤家族），与 np51⑧-⑪ 的充能路由差异**同根**。定谳后
+  修 CoreElectricalCharge/Resistor 面的交付，本族（伤害界 ~10-14 场）应
+  连带翻绿。
+
+（np51 本轮收口：1,666/1,690；余 24 场的充能/战怒/激活序三族全部归因到
+可插桩的精确差异点，续接 playbook 完备。）
+
 ### np51⑩ ★item_trace 对位：速度 buff 交付差定量锁定（604585）
 
 `ORACLE_TRACE_ITEM="Poison Dagger"` 双侧 item_trace（oracle 528 tick / gd 678 tick，
