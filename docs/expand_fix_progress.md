@@ -677,3 +677,29 @@ gd 腿全灭（rc=4294967295），全量一度 905/1690 且混入陈旧产物比
 （证伪）+ 状态事故恢复。余 24 场 = t=0 簇内 ±1 隐形消耗单一疑点（np51⑳
 终判），定谳需 oracle harness 电荷探针授权（red line）。全部成果已
 commit（np51①-㉘）。
+
+### np51㉚ 逆向注入实验系列终盘（本轮全部结果）
+
+| 实验 | 结果 | 结论 |
+|---|---|---|
+| Zap 移除 | (0,100)=[20.54,30.06]=oracle ✓、Dagger 5=oracle ✓；但全量 1,665（翻绿5/打破6） | **Zap 消耗=逐场依赖**（oracle 电荷像素路径命中接收者与否随布局），移除不可行 |
+| Zap +1 注入 | (0,100)=[87.84,32.93]（更偏） | 方向错误：gd 是**多**消耗非少消耗 |
+| playAttackAnimation 4/5 边界 +1 | (0.8,1.2)=0.805≠0.939 | 非 4/5 边界 |
+| playAttackAnimation 3/4 边界 +1 | (0.8,1.2)=0.805（与 4/5 同值异常） | 发现 (0.8,1.2) 行仅 2 支/run（attack_moving_forward 闩：首攻后仅剩 ① 一抽） |
+| Dagger ORACLE_TRACE_ITEM | speed/攻击双侧对齐（首攻 4.517 同） | Dagger 排除 |
+| Poison Dagger ORACLE_TRACE_ITEM | speed 1.2@0、1.55@4.283 双侧同 | PD 速度面排除 |
+| Coil ORACLE_TRACE_ITEM | speed 1.1@起点 双侧同 | Coil 速度面排除 |
+| Hammer/addSpeed 台账 | +0.1 面素双侧同、Battery speed2 双侧均未交付 | 排除 |
+| WolfBadge 战怒/steal picks/(0,2) 动画 pick 调用栈 | 全部双侧同 | 排除 |
+
+**最终收敛**：分歧 = Coil stealRandomBuff 内 (0.8,1.2) 抽取值 0.939(oracle)
+vs 0.8149(gd)，其 u 前全部消耗双侧一致——**±1 隐形消耗在 t=0 簇内且不被
+任何现有探针面捕获**（BalancedRng 内部态/SceneTree 深水区）。
+
+**结论与移交**：1,666/1,690（97.5%）。剩余 ±1 的定谳 = oracle 侧
+BalancedRng/ElectricalCharge 逐抽探针（**red line：需主人授权**）或
+np24 正式对位器的 MARKER 列适配战役。本轮交付：对位器基建三轮迭代、
+逆向注入实验系列（含成功定位 Zap 逐场依赖性的移除实验）、9 项排除
+实证、Dagger/Coil/Poison Dagger/Hammer 逐物品追踪——全部记录于本文件
+np51⑳-㉚。**在未获授权前，本循环的可执行面已穷尽；获授权后从
+np51㉚ playbook 无缝续接。**全部成果已 commit（np51①-㉚）。
