@@ -616,3 +616,23 @@ e. **steal 的下游执行差异实验**：py 探针 dump stealRandomBuff 的
 泄漏根治重录 + REG×2；余 24 场收敛到 playAttackAnimation 块内 ±1 的
 单点，诊断基建（对位器/item_trace/addSpeed 台账/调用栈探针）全部
 就位。全部成果已 commit（np51①-㉔）。
+
+### np51㉕ playAttackAnimation 解码 + 全面对照终态
+
+gd 的 playAttackAnimation（CoreCharacter.gd:470-481）六段消耗：
+①randf_range(100,160) ②③(0.9,1.1)×2 ④randi(0,2) ⑤(0.8,1.2)
+⑥randi(0,classAttackSoundCount−1)（Engineer=6 ⇒ (0,5)，条件=ctx.time>
+attack_sound_ready_time 每 0.1s 一次）——与 oracle 攻击簇 O66-O72 逐段
+结构吻合。新增对照：
+- **Dagger（玩家 FP4 内）speed/攻击双侧对齐**（0.7937=Cold 减速起步、
+  首攻 4.517 双侧同）；
+- **Hammer speed 双侧 1.0**（Battery speed2=5%/tile 经 charge 路径的
+  交付：sync entry=cell 1=Battery 自身 ⇒ 不落 Hammer，双侧一致不交付 ✓）；
+- **Poison Dagger speed 1.2 双侧同**（2×Fanny +0.1）⇒ 首攻 tick 97 双侧同。
+**±1 隐形消耗的注入点收敛至**：playAttackAnimation 六段之外、accuracy
+(0,100) 之前的某单抽——候选仅剩①⑥的条件分支差（attack_sound_ready_time
+的 ctx.time 比较：f32 vs f64 边界、0.1s 窗口的边界命中差）或**两侧
+randi(0,5) 声音选择抽的存在性差**（⑥的条件：oracle 侧 ctx.time 面素）。
+**下一会话**：⑥的条件分支实验（attack_sound_ready_time 初值与 0.1s
+窗口在 1.617 攻击时的命中差——gd 的 attack_sound_ready_time 初值面）。
+**np51 终盘**：1,666/1,690；全部成果已 commit（np51①-㉕）。
