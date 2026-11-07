@@ -173,6 +173,7 @@ class CoreBuff(GodotObject):
 
 
 	def setStacks(self, amount):
+		amount = int(amount)
 		self.current = amount
 		self.ctx.hooks.activateBuffCounter(self.character, self.type)
 
@@ -202,11 +203,13 @@ class CoreBuff(GodotObject):
 
 
 	def gainStacks(self, amount, item=None, triggerEvent=None, reflect=False):
+		amount = int(amount)
 
 		return self.gainTemporary(amount, - 1, item, triggerEvent, reflect)
 
 
 	def gainTemporary(self, amount, duration, item=None, triggerEvent=None, reflect=False):
+		amount = int(amount)
 
 		event = None
 
@@ -362,6 +365,7 @@ class CoreBuff(GodotObject):
 
 
 	def loseStacks(self, amount, item=None, triggerEvent=None, used=False):
+		amount = int(amount)
 
 		amount = min(self.current, amount)
 
@@ -444,6 +448,7 @@ class CoreBuff(GodotObject):
 
 
 	def changeCurrentLogShowLabel(self, isTimeout, amount, item=None, triggerEvent=None, used=False):
+		amount = int(amount)
 
 		change = min(self.current, amount)
 

@@ -18,6 +18,7 @@ class Exclusive__Phoenix2(_R.C("res://gd_core_items/Exclusive/Phoenix.gd")):
 
 
 	def getTypeMultiplicity(self, type):
+		type = int(type)
 		if type == _R.C("CoreConst").Type.Fire:
 			return self.fireMultiplicity
 		else:

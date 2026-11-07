@@ -1328,18 +1328,20 @@ def render_func(sig, hit, stat):
     if cp < 0:
         stat["签名括号不配对"].append(sig[:100])
         cp = len(sig) - 1
-    args, deferred = [], []
+    args, deferred, coerces = [], [], []
     for a in split_args(sig[op + 1:cp]):
-        txt, d = render_arg(a, hit, stat)
+        txt, d, co = render_arg(a, hit, stat)
         if txt:
             args.append(txt)
         if d:
             deferred.append(d)
+        if co:
+            coerces.append(co)
     if is_static:
         hit["static func→@staticmethod"] += 1
-        return "@staticmethod\ndef %s(%s):" % (name, ", ".join(args)), deferred
+        return "@staticmethod\ndef %s(%s):" % (name, ", ".join(args)), deferred, coerces
     allargs = ["self"] + args
-    return "def %s(%s):" % (name, ", ".join(allargs)), deferred
+    return "def %s(%s):" % (name, ", ".join(allargs)), deferred, coerces
 
 
 def top_level_infer_eq(s: str) -> int:
@@ -1386,7 +1388,7 @@ def render_arg(a, hit, stat):
     """
     a = a.strip()
     if not a:
-        return "", None
+        return "", None, None
     eq = top_level_eq(a)
     if eq >= 0:
         lhs, rhs = a[:eq], a[eq + 1:]
@@ -1398,18 +1400,30 @@ def render_arg(a, hit, stat):
         else:
             lhs, rhs = a, None
     nm = lhs.split(":", 1)[0].strip()
+    # ★ np51：GDScript 对**显式类型化 int 形参**的实参做隐式截断（float→int 朝零
+    #   取整；实证：Dark Lantern onCombatStart loseHealth 107.5→事件 amount -107，
+    #   扩样 60 场 py 腿保 -107.5 全红）。Python 无类型约束，必须登记为函数体首行
+    #   `name = int(name)`（发射位在 GD_DEFAULT 默认值还原**之后**，语义=先取
+    #   实参/默认、后按形参类型截断）。仅精确 `: int` 生效；`: float` 的直减语义
+    #   已由 divmod/_div 改写面保证；`:=` 推断形参无显式注解，不在此列。
+    coerce = None
+    parts = lhs.split(":", 1)
+    if len(parts) == 2 and parts[1].strip() == "int":
+        coerce = nm
     for gd, py in PY_KEYWORD_RENAMES:
         if nm == gd:
             hit["关键字标识符:参数 %s→%s" % (gd, py)] += 1
             nm = py
+            if coerce == gd:
+                coerce = nm
     if rhs is None:
-        return nm, None
+        return nm, None, coerce
     rhs = rhs.strip()
     lit = _py_literals(rhs)
     if _is_plain_literal(lit):
-        return "%s=%s" % (nm, lit), None
+        return "%s=%s" % (nm, lit), None, coerce
     hit["默认值延迟求值→GD_DEFAULT"] += 1
-    return "%s=GD_DEFAULT" % nm, (nm, rhs)
+    return "%s=GD_DEFAULT" % nm, (nm, rhs), coerce
 
 
 def func_locals(body_lines, params) -> set:
@@ -1616,7 +1630,7 @@ class Emitter:
                 locs = func_locals(lines[body_start:body_end], params)
                 # ★ render_func 可能返回多行（static func 会多出 @staticmethod 行），
                 #   必须逐行加缩进 —— 只用一次 append 会让 `def` 掉回模块级。
-                func_text, deferred = render_func(sig, self.hit, self.stat)
+                func_text, deferred, coerces = render_func(sig, self.hit, self.stat)
                 for sig_line in func_text.split("\n"):
                     out.append("\t" * (gd_indent + py_off) + sig_line)
                 # 非字面量默认值在函数体首行还原（GDScript 每次调用求值）
@@ -1624,6 +1638,11 @@ class Emitter:
                     out.extend(self._stmt(
                         "if %s is GD_DEFAULT: %s = %s" % (dname, dname, dexpr),
                         gd_indent + py_off + 1, rw, locs, True, is_static))
+                # ★ np51 类型化 int 形参截断（在默认值还原之后、函数体之前）
+                for cname in coerces:
+                    out.append("\t" * (gd_indent + py_off + 1)
+                               + "%s = int(%s)" % (cname, cname))
+                    self.hit["带类型 int 参数→int() 截断"] += 1
                 self._body_lines(lines, body_start, body_end, py_off, rw,
                                  locs, out, is_static)
                 i = body_end

@@ -606,6 +606,7 @@ class GDCoreEngine:
                  max_time: float = 90.0,
                  probe_bases=(),
                  below_master: bool = False,
+                 custom_health_multiplier: float = 100.0,
                  p_activation_order: Optional[List[int]] = None,
                  o_activation_order: Optional[List[int]] = None,
                  reseed_after_player_character: bool = False,
@@ -724,6 +725,9 @@ class GDCoreEngine:
         # 族A「对手全 +1 tick」根源在对手速度面（gd 1.06 v oracle ~1.07），非映射。
         # 默认 False；神谕对齐驱动（tools/verify_oracle.py）显式传 True。
         ctx.below_master = bool(below_master)
+        # ★ np51：存档自定义规则健康倍率（镜像 gd 宿主 OracleAlignBattle 的
+        #   ctx.custom_health_multiplier 注入；CoreContext.py 字段由 gd_to_py 转写）。
+        ctx.custom_health_multiplier = float(custom_health_multiplier)
         # ★ np43 键控（py 腿镜像，见 __init__ 签名注）：Buff 清空 stop seen 清除
         ctx.keyed_stop_clears_seen = bool(self._keyed_stop_clears_seen)
         ctx.keyed_cleanse_biggest_first = bool(self._keyed_cleanse_biggest_first)

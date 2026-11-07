@@ -178,6 +178,7 @@ class Exclusive__MagicRing(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def hasType(self, type):
+		type = int(type)
 		return type in self.ringTypes or super().hasType(type)
 
 

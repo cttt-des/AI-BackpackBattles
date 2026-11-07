@@ -211,6 +211,7 @@ class Bag(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def getNumAffectedInside_type(self, type):
+		type = int(type)
 		num = 0
 		for item in _iter(self.getAffectedItemsInside()):
 			num += item.getTypeMultiplicity(type)

@@ -45,11 +45,13 @@ class Exclusive__SunArmor(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def onAffectedItemAdded(self, item, color):
+		color = int(color)
 		if item.hasType(_R.C("CoreConst").Type.Fire):
 			item.addDynamicType(_R.C("CoreConst").Type.Holy, self)
 
 
 	def onAffectedItemRemoved(self, item, color):
+		color = int(color)
 		item.removeDynamicType(_R.C("CoreConst").Type.Holy, self)
 
 

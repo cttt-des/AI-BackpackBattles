@@ -28,6 +28,7 @@ class Exclusive__LuckyCat(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def condition1Fulfilled(self, gold):
+		gold = int(gold)
 		return gold > self.goldThreshold1
 
 
@@ -89,10 +90,12 @@ class Exclusive__LuckyCat(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def onAffectedItemAdded(self, item, color):
+		color = int(color)
 		self.updatePaws()
 
 
 	def onAffectedItemRemoved(self, item, color):
+		color = int(color)
 		self.updatePaws()
 
 

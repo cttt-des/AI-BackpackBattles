@@ -81,6 +81,7 @@ class ManaOrb_2(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def addBonusRandomBuffs(self, amount):
+		amount = int(amount)
 		self.bonusBuffs += amount
 
 

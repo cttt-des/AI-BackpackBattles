@@ -93,10 +93,12 @@ class Exclusive__Scale(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def onAffectedItemAdded(self, item, color):
+		color = int(color)
 		self.updateScale()
 
 
 	def onAffectedItemRemoved(self, item, color):
+		color = int(color)
 		self.updateScale()
 
 

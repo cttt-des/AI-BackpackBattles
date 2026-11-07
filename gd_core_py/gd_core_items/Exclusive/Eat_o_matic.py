@@ -100,6 +100,7 @@ class Exclusive__Eat_o_matic(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def onStateChanged(self, _armState):
+		_armState = int(_armState)
 		self.armState = _armState
 		if self.armState == self.ArmState.Off:
 			pass

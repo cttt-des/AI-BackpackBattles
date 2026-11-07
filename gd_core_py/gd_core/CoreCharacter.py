@@ -249,6 +249,7 @@ class CoreCharacter(GodotObject):
 
 
 	def _init(self, _ctx, _playerId):
+		_playerId = int(_playerId)
 		self.ctx = _ctx
 		self.playerId = _playerId
 		self.accuracyRng = self.ctx.rng.BalancedRng(self.ctx.rng)
@@ -334,6 +335,15 @@ class CoreCharacter(GodotObject):
 
 	def prepare(self):
 		self.staminaRegen = self.baseStaminaRegen
+
+		# ★ np51：存档自定义规则健康倍率（对齐 Character.gd:296-298）——
+		#   bonusHealth = getMaxHealth() × (mult−100)/100，经 changeMaxHealthTemporary
+		#   落地（item=null ⇒ 不发事件，静默改写后续全部 max/cur 基线）。
+		#   实证：run101490 系列（mult=200）Dark Lantern 自伤 -130 vs gd -65；
+		#   run705064_r15 Sloth 临时体上限 522 vs 262（该 run custom 为空 ⇒ 录制批
+		#   CustomRules 单例跨场残留所致，见 docs/expand_fix_progress.md np51⑤）。
+		bonusHealth = self.getMaxHealth() * _div(self.ctx.custom_health_multiplier - 100.0, 100.0)
+		self.changeMaxHealthTemporary(bonusHealth)
 
 		self.accuracyRng.reset()
 		self.critRng.reset()
@@ -770,6 +780,8 @@ class CoreCharacter(GodotObject):
 
 
 	def spawnLabel_native(self, type, damage, item=None):
+		type = int(type)
+		damage = int(damage)
 		# ★ 表现层链消耗还原（Character.gd:693-711 → Item.gd:4788-4791 → :6485-6494）：
 		#   物品身上的浮动标签位置 getNextFreeLabelPosition 恒消耗 Util.randInBox
 		#   2 抽（槽位复用 randInBox(10,10) / 兜底 randInBox(30,30)，抽数相同）。
@@ -864,6 +876,7 @@ class CoreCharacter(GodotObject):
 
 
 	def reincarnate(self, healAmount, isHeal, item, triggerEvent):
+		healAmount = int(healAmount)
 		self.setCurrentHealth(0)
 
 		healAmount = min(self.getMaxHealth(), healAmount)
@@ -1075,6 +1088,7 @@ class CoreCharacter(GodotObject):
 
 
 	def changeDodgeStacks(self, amount):
+		amount = int(amount)
 		self.dodgeStacks = int(max(0, self.dodgeStacks + amount))
 		self.ctx.combat_log.snapshotCharacterStat(self, self.Stat.DodgeStacks)
 
@@ -1095,6 +1109,7 @@ class CoreCharacter(GodotObject):
 
 
 	def gainCritResistStacks(self, num):
+		num = int(num)
 		self.critResistStacks += num
 		self.ctx.combat_log.snapshotCharacterStat(self, self.Stat.CritResistStacks)
 
@@ -1254,6 +1269,7 @@ class CoreCharacter(GodotObject):
 	# 对齐 Character.gd:198-209。表现部分（nameBanner 贴图 / setSprite / class_changed 信号）
 	# 走 hooks 与 ctx.bus；对对手分支原版只调 setSprite（同样走 hooks）——内核两者等价。
 	def setClass(self, _class, _chibi, classResource=None):
+		_class = int(_class)
 		self.characterClass = _class
 		self.chibi = _chibi
 		if classResource == None:
@@ -1482,10 +1498,12 @@ class CoreCharacter(GodotObject):
 
 
 	def setStacks(self, buffType, amount):
+		amount = int(amount)
 		self.buffs[buffType].setStacks(amount)
 
 
 	def setStacksLogged(self, buffType, amount, item=None, triggerEvent=None):
+		amount = int(amount)
 		curStacks = self.getStacks(buffType)
 		if amount < curStacks:
 			self.loseStacks(buffType, curStacks - amount, item, triggerEvent)
@@ -1494,18 +1512,22 @@ class CoreCharacter(GodotObject):
 
 
 	def gainStacks(self, buffType, amount, item=None, triggerEvent=None, reflect=False):
+		amount = int(amount)
 		return self.buffs[buffType].gainStacks(amount, item, triggerEvent)
 
 
 	def gainStacksTemporary(self, buffType, amount, duration, item=None, triggerEvent=None, reflect=False):
+		amount = int(amount)
 		return self.buffs[buffType].gainTemporary(amount, duration, item, triggerEvent, reflect)
 
 
 	def loseStacks(self, buffType, amount, item=None, triggerEvent=None):
+		amount = int(amount)
 		return self.buffs[buffType].loseStacks(amount, item, triggerEvent)
 
 
 	def useStacks(self, buffType, amount, item=None, triggerEvent=None):
+		amount = int(amount)
 		return self.buffs[buffType].loseStacks(amount, item, triggerEvent, True)
 
 
@@ -1528,10 +1550,12 @@ class CoreCharacter(GodotObject):
 
 	# 对齐 Character.gd:1182-1183：原版此处写入的是 Spikes（原样保留，不修）
 	def setBlock(self, amount):
+		amount = int(amount)
 		self.setStacks(_R.C("CoreConst").EventType.Spikes, amount)
 
 
 	def gainBlock(self, amount, item=None, triggerEvent=None):
+		amount = int(amount)
 		return self.gainStacks(_R.C("CoreConst").EventType.Block, amount, item, triggerEvent)
 
 
@@ -1546,10 +1570,12 @@ class CoreCharacter(GodotObject):
 
 
 	def setSpikes(self, amount):
+		amount = int(amount)
 		self.setStacks(_R.C("CoreConst").EventType.Spikes, amount)
 
 
 	def gainSpikes(self, amount, item=None, triggerEvent=None):
+		amount = int(amount)
 		return self.gainStacks(_R.C("CoreConst").EventType.Spikes, amount, item, triggerEvent)
 
 
@@ -1562,10 +1588,12 @@ class CoreCharacter(GodotObject):
 
 
 	def setVampirism(self, amount):
+		amount = int(amount)
 		self.setStacks(_R.C("CoreConst").EventType.Vampirism, amount)
 
 
 	def gainVampirism(self, amount, item=None, triggerEvent=None):
+		amount = int(amount)
 		return self.gainStacks(_R.C("CoreConst").EventType.Vampirism, amount, item, triggerEvent)
 
 
@@ -1578,10 +1606,12 @@ class CoreCharacter(GodotObject):
 
 
 	def setPoison(self, amount):
+		amount = int(amount)
 		self.setStacks(_R.C("CoreConst").EventType.Poison, amount)
 
 
 	def gainPoison(self, amount, item=None, triggerEvent=None):
+		amount = int(amount)
 		# 原版 gainPoison 附带受击动画切「Poison」片段（Character.gd:1222-1226）——
 		# 冻结循环里 current 恒停在 Poison，闸住后续 takeDamage 的 playback_speed 抽取
 		event = self.gainStacks(_R.C("CoreConst").EventType.Poison, amount, item, triggerEvent)
@@ -1602,10 +1632,12 @@ class CoreCharacter(GodotObject):
 
 
 	def setRegeneration(self, amount):
+		amount = int(amount)
 		self.setStacks(_R.C("CoreConst").EventType.Regeneration, amount)
 
 
 	def gainRegeneration(self, amount, item=None, triggerEvent=None):
+		amount = int(amount)
 		return self.gainStacks(_R.C("CoreConst").EventType.Regeneration, amount, item, triggerEvent)
 
 
@@ -1618,10 +1650,12 @@ class CoreCharacter(GodotObject):
 
 
 	def setLucky(self, amount):
+		amount = int(amount)
 		self.setStacks(_R.C("CoreConst").EventType.Lucky, amount)
 
 
 	def gainLucky(self, amount, item=None, triggerEvent=None):
+		amount = int(amount)
 		return self.gainStacks(_R.C("CoreConst").EventType.Lucky, amount, item, triggerEvent)
 
 
@@ -1634,10 +1668,12 @@ class CoreCharacter(GodotObject):
 
 
 	def setBlind(self, amount):
+		amount = int(amount)
 		self.setStacks(_R.C("CoreConst").EventType.Blind, amount)
 
 
 	def gainBlind(self, amount, item=None, triggerEvent=None):
+		amount = int(amount)
 		return self.gainStacks(_R.C("CoreConst").EventType.Blind, amount, item, triggerEvent)
 
 
@@ -1650,10 +1686,12 @@ class CoreCharacter(GodotObject):
 
 
 	def setMana(self, amount):
+		amount = int(amount)
 		self.setStacks(_R.C("CoreConst").EventType.Mana, amount)
 
 
 	def gainMana(self, amount, item=None, triggerEvent=None):
+		amount = int(amount)
 		return self.gainStacks(_R.C("CoreConst").EventType.Mana, amount, item, triggerEvent)
 
 
@@ -1666,10 +1704,12 @@ class CoreCharacter(GodotObject):
 
 
 	def setEmpower(self, amount):
+		amount = int(amount)
 		self.setStacks(_R.C("CoreConst").EventType.Empower, amount)
 
 
 	def gainEmpower(self, amount, item=None, triggerEvent=None):
+		amount = int(amount)
 		return self.gainStacks(_R.C("CoreConst").EventType.Empower, amount, item, triggerEvent)
 
 
@@ -1682,10 +1722,12 @@ class CoreCharacter(GodotObject):
 
 
 	def setHeat(self, amount):
+		amount = int(amount)
 		self.setStacks(_R.C("CoreConst").EventType.Heat, amount)
 
 
 	def gainHeat(self, amount, item=None, triggerEvent=None):
+		amount = int(amount)
 		return self.gainStacks(_R.C("CoreConst").EventType.Heat, amount, item, triggerEvent)
 
 
@@ -1698,10 +1740,12 @@ class CoreCharacter(GodotObject):
 
 
 	def setCold(self, amount):
+		amount = int(amount)
 		self.setStacks(_R.C("CoreConst").EventType.Cold, amount)
 
 
 	def gainCold(self, amount, item=None, triggerEvent=None):
+		amount = int(amount)
 		return self.gainStacks(_R.C("CoreConst").EventType.Cold, amount, item, triggerEvent)
 
 
@@ -1876,6 +1920,7 @@ class CoreCharacter(GodotObject):
 
 	# 对齐 Character.gd:1379-1381
 	def changeDamageReduction(self, amount):
+		amount = int(amount)
 		self.damageReduction += amount
 
 
@@ -1892,6 +1937,7 @@ class CoreCharacter(GodotObject):
 
 	# 对齐 Character.gd:1494-1508（INVENTORY.getItems() → items）
 	def changeTypedDamageFactor(self, damageType, amount):
+		damageType = int(damageType)
 		self.typedDamageFactors[damageType] += amount
 		for item in _iter(self.items):
 			if item.damageSource != None and item.damageSource.hasType(damageType):
@@ -1942,6 +1988,7 @@ class CoreCharacter(GodotObject):
 
 	# 对齐 Character.gd:1282-1286
 	def useMana(self, amount, item=None, triggerEvent=None):
+		amount = int(amount)
 		event = self.useStacks(_R.C("CoreConst").EventType.Mana, amount, item, triggerEvent)
 
 		return event

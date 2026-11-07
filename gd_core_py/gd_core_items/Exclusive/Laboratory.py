@@ -123,6 +123,7 @@ class Exclusive__Laboratory(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def onStateChanged(self, _phase):
+		_phase = int(_phase)
 		self.phase = _phase
 		if self.phase <= 0:
 			self.baseCooldownOverride = self.getBaseCooldownIndex(0)

@@ -30,6 +30,7 @@ class Exclusive__MoltenGreatsword(_R.C("res://gd_core_items/Greatsword.gd")):
 
 
 	def getTypeMultiplicity(self, type):
+		type = int(type)
 		if type == _R.C("CoreConst").Type.Fire:
 			return self.fireMultiplicity
 		else:

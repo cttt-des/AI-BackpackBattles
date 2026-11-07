@@ -29,6 +29,7 @@ class CoreContext(GodotObject):
 		self.below_master = False      # 对齐 Game.isBelowLeague(Game.Leagues.Master)
 		self.label_rng_enabled = True
 		self.lobbies_mode = False      # 对齐 Game.curMode == Game.Mode.Lobbies
+		self.custom_health_multiplier = 100.0
 		self.combat = None
 		self.item_book = None
 		self.sandbag_active = False
@@ -92,6 +93,19 @@ class CoreContext(GodotObject):
 	#   防「同 state 两 pass 折叠」的时序不可分——§6m16 方案的持久基建）
 
 
+	# ★ np51：存档自定义规则健康倍率（对齐 CustomRules.Rules.HealthMultiplier，
+	#   范围 20..200，缺省 100）。oracle harness 逐场 fromString(player_run.customRules)
+	#   （oracle_fight.gd:591）；prepare() 按倍率给双方加**静默**临时体上限
+	#   （Character.gd:296-298，changeMaxHealthTemporary item=null 不发事件），
+	#   直接改写后续全部 max/cur 基线——不实现则该类场全链分歧（实证 run101490
+	#   系列 mult=200：Dark Lantern 自伤 oracle -130 vs gd -65）。
+	#   位流→倍率的解析在**夹具层**完成（tools/gen_fixture_from_lineup.py，python
+	#   侧 full-fidelity BitStream 语义），内核只消费数值——避免 py 转写面的
+	#   String 位操作垫片问题。缺省/缺字段 = 100.0（零回归）。
+
+	def set_custom_health_multiplier(self, v):
+		self.custom_health_multiplier = v
+
 	# ── 单例门面（原版 autoload → 显式对象，随 ctx 走） ──
 	#   Game.combatTimer     → ctx.combat      （ItemBook 之外的**信号发射者身份**：
 	#                                            CoreCombat 用 self 发 fatigue_start /
@@ -146,6 +160,7 @@ class CoreContext(GodotObject):
 
 
 	def _init(self, _seed=0, _hooks=None):
+		_seed = int(_seed)
 		self.rng = _R.C("CoreRng")(_seed)
 		self.util = _R.C("CoreUtil")(self.rng)
 		self.util._ctx = self
@@ -173,10 +188,13 @@ class CoreContext(GodotObject):
 	# 用途：确定性重放把 Godot 实测的 64 位 PCG state 原样灌进内核，从中途续跑。
 	# 语义见 CoreRng.set_state 处注释（对齐 random_pcg.h:79：直接赋值，不前进不重播）。
 	def set_state(self, state):
+		state = int(state)
 		self.rng.set_state(state)
 
 
 	def _newDamageSource(self, origin, type, flags):
+		type = int(type)
+		flags = int(flags)
 		src = _R.C("CoreDamageSource")()
 		src._rng = self.rng
 		src.init(origin, type)
@@ -185,6 +203,7 @@ class CoreContext(GodotObject):
 
 
 	def getCharacterFromId(self, playerId):
+		playerId = int(playerId)
 		return self.player if playerId == _R.C("CoreCharacter").ID.PLAYER else self.opponent
 
 

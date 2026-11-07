@@ -141,6 +141,8 @@ class BalancedRange(GodotObject):
 		self.acc = 0.0
 
 	def randIntRange(self, from_, to):
+		from_ = int(from_)
+		to = int(to)
 		# ★ kernel_r5：对齐 oracle Utility/BalancedRange.gd:14 `Util.rng.randi_range`
 		#   ——**裸调不入账本**（oracle 伤害掷点在 rng_log 零痕迹）。此前走
 		#   CoreRng.randi_range 追踪版，使 gd trace 多出伤害行、与语料账本
@@ -197,6 +199,7 @@ class CoreRng(GodotObject):
 
 
 	def _init(self, _seed=0):
+		_seed = int(_seed)
 		self.rng = RandomNumberGenerator()
 		if _seed == 0:
 			self.rng.randomize()
@@ -214,6 +217,7 @@ class CoreRng(GodotObject):
 	#   再加 initstate），且会改写 current_seed；state 只改 pcg 内部状态字。
 	#   两者不可混为一谈 —— 重放「中途续跑」必须用 state 而非 seed。
 	def set_state(self, state):
+		state = int(state)
 		self.rng.state = state
 
 
@@ -281,6 +285,7 @@ class CoreRng(GodotObject):
 	# ★ 事件标记（不消耗链）：CoreCombatLog.logEvent 在逐抽追踪开启时把事件类型
 	#   写进 trace，与神谕 rng_log 的 EVENT 行同构，供逐抽↔逐事件精确对位。
 	def trace_event(self, type):
+		type = int(type)
 		self.oracle_trace_log.append([len(self.oracle_trace_log), "EVENT", str(type), "", "",
 			0.0, "", str(self.rng.get_state())])
 
@@ -302,6 +307,8 @@ class CoreRng(GodotObject):
 
 
 	def randi_range(self, from_, to, tag="randi_range"):
+		from_ = int(from_)
+		to = int(to)
 		r = self.rng.randi_range(from_, to)
 		if self.oracle_trace:
 			self._trace(tag, from_, to, r)

@@ -798,6 +798,10 @@ def load_all():
     except Exception as exc:  # noqa: BLE001
         failed.append(('gd_core_items/ClawsofAttack.gd', repr(exc)))
     try:
+        import gd_core_py.gd_core_items.Coins  # noqa: F401
+    except Exception as exc:  # noqa: BLE001
+        failed.append(('gd_core_items/Coins.gd', repr(exc)))
+    try:
         import gd_core_py.gd_core_items.CorruptedArmor  # noqa: F401
     except Exception as exc:  # noqa: BLE001
         failed.append(('gd_core_items/CorruptedArmor.gd', repr(exc)))

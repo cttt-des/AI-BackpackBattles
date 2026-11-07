@@ -126,11 +126,13 @@ class Potion(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def onAffectedItemAdded(self, item, color):
+		color = int(color)
 		if color == _R.C("CoreConst").Affected.Primary:
 			self.updateConnector()
 
 
 	def onAffectedItemRemoved(self, item, color):
+		color = int(color)
 		if color == _R.C("CoreConst").Affected.Primary:
 			self.updateConnector()
 

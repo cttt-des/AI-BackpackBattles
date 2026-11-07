@@ -217,6 +217,7 @@ class CoreHooks(GodotObject):
 	# ── 统计埋点（数值型，可选实现） ──
 
 	def addMetric(self, item, metricIndex, amount):
+		metricIndex = int(metricIndex)
 		pass
 
 
@@ -229,6 +230,7 @@ class CoreHooks(GodotObject):
 
 
 	def snapshotItemMetric(self, item, metricIndex, playerId=None, withNextEvent=False):
+		metricIndex = int(metricIndex)
 		pass
 
 
@@ -245,6 +247,7 @@ class CoreHooks(GodotObject):
 
 
 	def snapshotGlobalStat(self, stat, newValue):
+		stat = int(stat)
 		pass
 
 

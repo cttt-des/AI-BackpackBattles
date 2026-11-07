@@ -128,6 +128,7 @@ class CoreDamageSource(GodotObject):
 
 
 	def hasType(self, _type):
+		_type = int(_type)
 		return _type in self.types
 
 

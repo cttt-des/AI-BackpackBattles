@@ -56,6 +56,7 @@ from __future__ import annotations
 
 import io
 import json
+import math
 import os
 import re
 import sys
@@ -235,6 +236,73 @@ def _history_round_stamina(run_id: int, round_id: int):
     return _round_stamina_cache[key]
 
 
+def _history_run_custom(run_id):
+    """player_run 的存档自定义规则串（runData.custom 列，BitStream 形态原样）。
+
+    ★ np51：oracle harness 逐场 fromString(player_run.customRules)（oracle_fight.gd:591），
+    prepare() 按其中的 HealthMultiplier 给双方加静默临时体上限（item=null 无事件）。
+    gd/py 腿经 ctx 复原该语义。缺库/缺行返回 ""（=100 零回归）。
+    与 _history_round_stamina 同库（--history-db / EXPAND_HISTORY_DB 可换）。"""
+    if run_id is None:
+        return ""
+    key = ("custom", run_id)
+    if key not in _round_stamina_cache:
+        val = ""
+        try:
+            import sqlite3
+            con = sqlite3.connect("file:%s?mode=ro" % _HISTORY_DB.replace("\\", "/"), uri=True)
+            try:
+                row = con.execute(
+                    "SELECT custom FROM runData WHERE runID=?", (run_id,)).fetchone()
+                if row is not None and row[0] is not None:
+                    val = str(row[0])
+            finally:
+                con.close()
+        except Exception:
+            val = ""
+        _round_stamina_cache[key] = val
+    return _round_stamina_cache[key]
+
+
+def custom_health_multiplier_of(serialized: str) -> float:
+    """BitStream 串 → CustomRules.Rules.HealthMultiplier（缺省/空串=100）。
+
+    对齐 CustomRules.fromString + BitStream（BASE64OFFSET=62，每字符 6bit
+    MSB-first，pull(n)=ceil(log2(n)) 位）：league pull(9)=4 位、BonusGold
+    pull(21)=5、BonusTreasures pull(21)=5、HealthMultiplier pull(37)=6，
+    值 = pulled×STEP(5) + MIN(20)，范围 20..200。后续规则战斗面不消费。
+    python 侧 full-fidelity 实现（内核只吃数值，规避 py String 位操作垫片）。"""
+    if not serialized:
+        return 100.0
+    bits = []
+    for ch in serialized:
+        v = ord(ch) - 62
+        if v < 0 or v > 63:
+            return 100.0
+        for d in range(5, -1, -1):
+            bits.append((v >> d) & 1)
+    pos = 0
+
+    def pull(range_max):
+        nonlocal pos
+        n = int(math.ceil(math.log2(range_max)))
+        if pos + n > len(bits):
+            return None
+        v = 0
+        for _ in range(n):
+            v = (v << 1) | bits[pos]
+            pos += 1
+        return v
+
+    pull(9)
+    pull(21)
+    pull(21)
+    hp = pull(37)
+    if hp is None or hp < 0:
+        return 100.0
+    return float(hp * 5 + 20)
+
+
 def _battle_start_stamina(lu_side: dict, entries: list, is_player: bool,
                           run_id: int = None, round_id: int = None):
     """→ (battle_start_stamina, base_stamina)。依据见文件头「战斗起始体力约定」。"""
@@ -410,10 +478,15 @@ def oracle_mode(case_dirs: list, lineup_out: str, batch_out: str) -> int:
                 json.dump(sides[side], fh, ensure_ascii=False, indent=1)
                 fh.write("\n")
 
+        # ★ np51：player_run 自定义规则 → 夹具 case 级 custom_health_multiplier
+        #   （位流在夹具层解析为数值）→ gd/py 腿 ctx 复原 prepare() 健康倍率。
+        m_case = re.match(r"run(\d+)_r\d+(?:_o\d+_r\d+)?$", case_id)
         cases.append({
             "case_id": case_id,
             "seed": int(lu["seed"]),
             "round_id": round_id,
+            "custom_health_multiplier": custom_health_multiplier_of(
+                _history_run_custom(int(m_case.group(1)) if m_case else None)),
             "player": batch_sides["player"],
             "opponent": batch_sides["opponent"],
         })

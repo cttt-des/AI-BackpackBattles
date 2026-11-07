@@ -992,6 +992,7 @@ class Item_2(_R.C("res://gd_core/CoreItem.gd")):
 
 
 	def giveGold(self, amount):
+		amount = int(amount)
 		pass
 
 	def getTranslatedTypeName(self, type):
@@ -1008,6 +1009,7 @@ class Item_2(_R.C("res://gd_core/CoreItem.gd")):
 
 	@staticmethod
 	def getRarityName(_rarity):
+		_rarity = int(_rarity)
 		return ""
 
 	def logCooldown(self):
@@ -1296,6 +1298,7 @@ class Item_2(_R.C("res://gd_core/CoreItem.gd")):
 		return False
 
 	def _notification(self, what):
+		what = int(what)
 		pass
 
 	def getAllInInventoryOfType(self, descr):

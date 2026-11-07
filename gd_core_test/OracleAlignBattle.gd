@@ -685,6 +685,11 @@ func run_case(c: Dictionary, out_root: String, perm_warm := false, r5_warm := fa
 	#   randInBox 抽自 #197 起漂移）。
 	if c.has("label_rng"):
 		ctx.label_rng_enabled = bool(c["label_rng"])
+	# ★ np51：存档自定义规则健康倍率（静默临时体上限；机理见
+	#   gd_core/CoreContext.gd custom_health_multiplier 注）。夹具链在
+	#   gen_fixture_from_lineup --oracle 解析 runData.custom 位流后写
+	#   custom_health_multiplier（数值）；缺省/缺字段 = 100 零回归。
+	ctx.custom_health_multiplier = float(c.get("custom_health_multiplier", 100.0))
 	probe.gate_ctx = ctx
 	# ★ np24：deferred 冲刷关闭（对位录制 [M11]：阻塞循环无帧，战斗内
 	#   call_deferred 永不执行——run574 Deck of Cards 卡链零启动实证；

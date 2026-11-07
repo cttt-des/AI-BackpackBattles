@@ -32,11 +32,13 @@ class Exclusive__Cthulhu(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def onAffectedItemAdded(self, item, color):
+		color = int(color)
 		if item.hasType(_R.C("CoreConst").Type.Food):
 			item.addDynamicType(_R.C("CoreConst").Type.Dark, self)
 
 
 	def onAffectedItemRemoved(self, item, color):
+		color = int(color)
 		item.removeDynamicType(_R.C("CoreConst").Type.Dark, self)
 
 

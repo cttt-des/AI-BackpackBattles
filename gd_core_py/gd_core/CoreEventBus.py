@@ -50,6 +50,7 @@ class CoreEventBus(GodotObject):
 
 
 	def setLoggingMode(self, mode):
+		mode = int(mode)
 		self.loggingMode = mode
 
 
@@ -155,6 +156,7 @@ class CoreEventBus(GodotObject):
 
 
 	def getEmissionID(self, emitter, signalID):
+		signalID = int(signalID)
 		ID = emitter.get_instance_id()
 
 		ID += (signalID << 32)

@@ -122,6 +122,8 @@ class CoreCombatLog(GodotObject):
 
 	# ── 生命类（对齐 704-720） ──
 	def createEvent_Heal(self, amount, playerId, origin, triggerEvent=None):
+		amount = int(amount)
+		playerId = int(playerId)
 		event = self.createEvent(triggerEvent, origin, _R.C("CoreConst").EventType.Health)
 		event.setParam("amount", amount)
 		event.setTarget(playerId)
@@ -130,6 +132,8 @@ class CoreCombatLog(GodotObject):
 
 
 	def createEvent_LoseHealth(self, amount, playerId, origin, triggerEvent=None):
+		amount = int(amount)
+		playerId = int(playerId)
 		event = self.createEvent(triggerEvent, origin, _R.C("CoreConst").EventType.LoseHealth)
 		event.setParam("amount", amount)
 		event.setTarget(playerId)
@@ -139,6 +143,9 @@ class CoreCombatLog(GodotObject):
 
 	# ── 栈类（对齐 722-774） ──
 	def createEvent_Stack(self, type, item, amount, playerId, triggerEvent=None, used=False, reflected=False):
+		type = int(type)
+		amount = int(amount)
+		playerId = int(playerId)
 
 		event = self.createEvent(triggerEvent, item, type)
 		event.setParam("amount", amount)
@@ -276,6 +283,7 @@ class CoreCombatLog(GodotObject):
 
 
 	def createEvent_Reincarnate(self, item, health, triggerEvent=None):
+		health = int(health)
 		event = self.createEvent(triggerEvent, item, _R.C("CoreConst").EventType.Reincarnate)
 		event.setParam("health", health)
 		self._ctx.hooks.snapshotCharacterStat(item.character(), _R.C("CoreCharacter").Stat.Health)
@@ -338,6 +346,7 @@ class CoreCombatLog(GodotObject):
 
 
 	def snapshotGlobalStat(self, stat, newValue):
+		stat = int(stat)
 		self._ctx.hooks.snapshotGlobalStat(stat, newValue)
 
 

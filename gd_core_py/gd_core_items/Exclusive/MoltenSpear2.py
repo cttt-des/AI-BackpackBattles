@@ -59,6 +59,7 @@ class Exclusive__MoltenSpear2(_R.C("res://gd_core_items/Weapon.gd")):
 
 
 	def getTypeMultiplicity(self, type):
+		type = int(type)
 		if type == _R.C("CoreConst").Type.Fire:
 			return self.fireMultiplicity
 		else:

@@ -274,7 +274,16 @@ func clearCharacterDiedHandlers() -> void :
 
 func prepare() -> void :
 	staminaRegen = baseStaminaRegen
-	
+
+	# ★ np51：存档自定义规则健康倍率（对齐 Character.gd:296-298）——
+	#   bonusHealth = getMaxHealth() × (mult−100)/100，经 changeMaxHealthTemporary
+	#   落地（item=null ⇒ 不发事件，静默改写后续全部 max/cur 基线）。
+	#   实证：run101490 系列（mult=200）Dark Lantern 自伤 -130 vs gd -65；
+	#   run705064_r15 Sloth 临时体上限 522 vs 262（该 run custom 为空 ⇒ 录制批
+	#   CustomRules 单例跨场残留所致，见 docs/expand_fix_progress.md np51⑤）。
+	var bonusHealth = getMaxHealth() * ((ctx.custom_health_multiplier - 100.0) / 100.0)
+	changeMaxHealthTemporary(bonusHealth)
+
 	accuracyRng.reset()
 	critRng.reset()
 	critResistanceRng.reset()

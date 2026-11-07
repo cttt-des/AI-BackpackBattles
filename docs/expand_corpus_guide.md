@@ -2,7 +2,7 @@
 
 > 依据：`docs/扩大用例对齐规划.md` §4–§5。本文记录**本轮扩样的实际落地口径**：
 > 数据来源、合并规则、选样算法、跑批方式、产物位置与验收判据。
-> 生成：2026-11-07｜状态：**已完成**——1,194 场（首批 1,168 + 稀有补样 26），验收 PASS。
+> 生成：2026-11-07｜状态：**已完成**——1,690 场（首批 1,168 + 稀有补样 26 + 低覆盖定向补样 496），验收 PASS。
 
 ---
 
@@ -89,7 +89,8 @@
 |---|---|
 | 用例数（首批） | **1,168**（选样 1,170，删 2 场超长场后） |
 | 补样（第二批） | **+26 场**（稀有物品定向，见 §4.2） |
-| 最终用例数 | **1,194** |
+| 补样（第三批） | **+496 场**（低覆盖物品 + 稀薄事件源定向，见 §4.3） |
+| 最终用例数 | **1,690** |
 | 镜像对局 | **0** |
 | 对局四元组重复 | 0 |
 | seed 重复 | 0 |
@@ -127,6 +128,30 @@
 补样规则（`tools/expand_supplement.py`）：候选回合与首批**不重复**、对手同阶段
 不同 run 且阵容不同；对手也带同一稀有物品时优先（一场补两件）。
 
+### 4.3 低覆盖物品 / 事件定向补样（第三批 496 场）
+
+主人指令：补的是**覆盖较少的物品和事件**，不是补场次。做法两条：
+
+1. **稀薄事件类型** → 补其触发源物品的出场（实测 origin 统计，目标 1,200 次）：
+
+| 类型 | 补前 | 补后 | 源物品 |
+|---|---|---|---|
+| Reincarnate | 28 | 189 | Dark Lantern / Phoenix / Phoenix2 |
+| BattleRageEnd | 89 | 211 | Berserker Bag / Toolbox / Wolf Badge / Extra Angy |
+| BattleRageStart | 262 | 576 | Berserker Bag / Toolbox / Wolf Badge |
+| StunResisted | 249 | 426 | Hammer / Thornburst / Thors Hammer / Bazooka / Sloth |
+| DamageBuff | 282 | 461 | Djinn Lamp / Anvil |
+
+2. **低覆盖物品** → 历史库频次 ≤300 且语料出场 <12 场的物品补出场：
+   **86 件 → 7 件**（剩余 7 件是 history 候选回合耗尽或装配不落盘，逐条见
+   targeted_summary.md 第三节）。
+
+**为什么不用 database/corpus.sqlite**：它只有 gid/x/y/face/gems 字段，**没有 buildInfo
+位流**，神谕无法反序列化；要用必须新写 encode_build_info（全仓只有解码器，编码器
+未验证），风险远大于收益。故本批只在 history/ 取数，缺口如实记录。
+
+删 4 场超长场（ticks 2,821–3,901）后实跑 **496 场**，均在异阵容约束内。
+
 ---
 
 ## 五、复现顺序
@@ -137,6 +162,7 @@ python -X utf8 tools/expand_select_cases.py        # 2. 选样（~25s）
 python -X utf8 tools/expand_merge_history.py       # 3. 合并库（~1s）
 python -X utf8 tools/expand_run_oracle.py          # 4. 跑批（断点续跑）
 python -X utf8 tools/expand_supplement.py          # 5. 稀有物品补样（第二批）
+python -X utf8 tools/expand_targeted.py            # 5b. 低覆盖物品/事件补样（第三批）
 python -X utf8 tools/expand_run_oracle.py --cases output/oracle/expand/supplement_cases.json
 python -X utf8 tools/expand_accept.py              # 6. 验收
 ```
@@ -149,7 +175,7 @@ python -X utf8 tools/expand_accept.py              # 6. 验收
 
 | 层 | 判据 | 实测 |
 |---|---|---|
-| A 完整性 | 全部产出 `events.json`（`event_count > 0`） | **1,194 / 1,194**（首批 1,168 + 补样 26），预检剔除 0、失败 0 |
+| A 完整性 | 全部产出 `events.json`（`event_count > 0`） | **1,690 / 1,690**（首批 1,168 + 补样 26 + 定向 496），预检剔除 0、失败 0 |
 | B 异阵容 | 逐场比对 `lineups.json` 双方物品多重集，必须不同 | 违例 **0**；双方差异均值 30.9 种、最小 5、最大 57；1,132 场差异 ≥11 件 |
 | C 覆盖 | 物品 / 职业配对 / 事件类型 | 物品 **512**（历史库 514）、职业配对 **49/49**、事件类型 **32** 种 |
 | D 质量 | winner 可知率、事件数与 ticks | winner 100%（player 677 / opponent 493 / 平 0）；事件总数 565,800，单场均值 484、最大 7,662；tick 均值 786、最大 3,061 |

@@ -92,6 +92,7 @@ class Exclusive__WaterElemental(_R.C("res://gd_core_items/Weapon.gd")):
 
 
 	def onStateChanged(self, _activeEffects):
+		_activeEffects = int(_activeEffects)
 		self.activeEffects = _activeEffects
 		if self.activeEffects == 3:
 			pass

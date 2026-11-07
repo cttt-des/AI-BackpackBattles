@@ -494,7 +494,11 @@ def run_py(cases: List[Dict[str, Any]]) -> int:
                                warmup_time_ticks=warmup_ticks,
                                keyed_stop_clears_seen=stop_clears_seen,
                                keyed_cleanse_biggest_first=cleanse_biggest_first,
-                               formal_ev_gate=int(PY_NP22_REC_EV_GATE.get(case_id, 25000)))
+                               formal_ev_gate=int(PY_NP22_REC_EV_GATE.get(case_id, 25000)),
+                               # ★ np51：存档自定义规则健康倍率（镜像 gd 宿主的
+                               #   ctx.custom_health_multiplier 注入；夹具层解析）
+                               custom_health_multiplier=float(
+                                   c.get("custom_health_multiplier", 100.0)))
             eng.run()
         except Exception as exc:  # noqa: BLE001 —— 单场失败不拖垮批量，如实记档
             os.makedirs(out_dir, exist_ok=True)

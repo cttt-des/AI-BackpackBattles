@@ -56,6 +56,20 @@ var below_master := false      # 对齐 Game.isBelowLeague(Game.Leagues.Master)
 var label_rng_enabled := true
 var lobbies_mode := false      # 对齐 Game.curMode == Game.Mode.Lobbies
 
+# ★ np51：存档自定义规则健康倍率（对齐 CustomRules.Rules.HealthMultiplier，
+#   范围 20..200，缺省 100）。oracle harness 逐场 fromString(player_run.customRules)
+#   （oracle_fight.gd:591）；prepare() 按倍率给双方加**静默**临时体上限
+#   （Character.gd:296-298，changeMaxHealthTemporary item=null 不发事件），
+#   直接改写后续全部 max/cur 基线——不实现则该类场全链分歧（实证 run101490
+#   系列 mult=200：Dark Lantern 自伤 oracle -130 vs gd -65）。
+#   位流→倍率的解析在**夹具层**完成（tools/gen_fixture_from_lineup.py，python
+#   侧 full-fidelity BitStream 语义），内核只消费数值——避免 py 转写面的
+#   String 位操作垫片问题。缺省/缺字段 = 100.0（零回归）。
+var custom_health_multiplier := 100.0
+
+func set_custom_health_multiplier(v: float) -> void :
+	custom_health_multiplier = v
+
 # ── 单例门面（原版 autoload → 显式对象，随 ctx 走） ──
 #   Game.combatTimer     → ctx.combat      （ItemBook 之外的**信号发射者身份**：
 #                                            CoreCombat 用 self 发 fatigue_start /

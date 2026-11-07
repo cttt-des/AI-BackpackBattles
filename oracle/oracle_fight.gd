@@ -588,6 +588,12 @@ func run_case(c: Dictionary, warmup := false) -> Dictionary :
 	IB.preparedItemInstances.clear()
 	IB.prepareQueue.clear()
 	G.instanceCharacter(player_run.classI)
+	# ★ np51⑤（2026-11-08）：逐场复位 CustomRules——fromString 对空串早退**不复位**，
+	#   单例残留上一场的规则（实证：某场 HealthMultiplier=200 后，后续 custom 为空的
+	#   场 prepare() 仍按 200% 加静默临时体上限 ⇒ 语料录制批内跨场污染，gd/py 恒
+	#   干净（mult=100）必分歧）。复位后本场 fromString 语义 = 「仅本场自有规则」，
+	#   空串 = 出厂默认（HealthMultiplier=100）。单行、零 rng、np49 §6m112 同族。
+	G.get_node("/root/CustomRules").reset()
 	G.get_node("/root/CustomRules").fromString(player_run.customRules)
 
 	# ── ★ 确定性种子：任何物品实例创建之前（约定 2b）────────────────────

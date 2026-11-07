@@ -203,6 +203,7 @@ class CoreUtil(GodotObject):
 
 	# 对齐 Util.gd:455-459
 	def getArrayElement(self, array, index, default=None):
+		index = int(index)
 		if index > len(array) - 1:
 			return default
 		else:

@@ -171,3 +171,74 @@ A 组 61 场转绿 **56** 场；残余 5 场 `run101490_r5/r6/r8/r9/r12` 与 C �
 2. `types` 只能写 CoreConst.Type 枚举名（`accessory`），`jewelry` 是 material，写了会 `未知类型名` 硬失败。
 3. 手写 `gd_core_runtime.json` 条目必须带 `rot` 四朝向，否则 py 腿 `_place_of` 抛 `KeyError: 'rot'`；正解是跑 `gen_gd_core_data.py` 生成而非手写。
 4. `battle_items.json` 是**单行紧凑 JSON**（无缩进），用 indent 重写会产生 7 万行假 diff（语义零变化）。
+
+## np51：1,690 全绿循环（2026-11-08 offpeak 接力，接续 np50）
+
+> 目标（用户指令）：语料扩至 1,690 场（targeted 批 +496），「发现问题→修复问题」循环直到
+> 1,690 全绿，不许主动停。基线纪律沿用：914 零回归、oracle/ 不动、四树同步。
+
+### np51① py 转写器「类型化 int 形参截断」规则（60 场翻绿）
+
+- **根因**：GDScript 对显式 `: int` 形参的实参**隐式截断**（朝零）；py 转写无类型约束。
+  实证：Dark Lantern onCombatStart `loseHealth(p1/100×maxHP)`，py 腿保 -107.5 而
+  gd/oracle -107（60 场同签名：t=0、type=5、amount 差恰 0.5）。
+- **修**：`tools/gd_to_py.py` render_arg/render_func/发射位——显式 `: int` 形参在函数体
+  首行（GD_DEFAULT 还原后）发射 `name = int(name)`；34 模块 +144 行，diff 纯度已核。
+- **REG**：914 全量刷账 `--skip-fixtures --force` → **914/914 零回归** ✓。
+
+### np51② Coins 装配面接入（25 场进场）
+
+- Coins 原版**无脚本**（oracle/Items/ 只有 tscn；battle_items behavior=null）——纯惰性
+  库存件，描述符表构建器按 script_file 过滤故被剔。
+- 修（np50 TP 同款三件套）：`gd_core_items/Coins.gd`（惰性 extends Item）+ gd_core_test
+  镜像 + `battle_items.json` Coins 补 `behavior.script_file`（单行 JSON 往返保真）→
+  gen_lineup_fixture（表 519 件，LineupFixture.gd 零变化）+ gen_gd_core_data +
+  gd_to_py（Coins.py 自动生成）。
+- 夹具 1,690/1,690 全生成，stamina 自检全中。
+
+### np51③ 验证 3：1,652/1,690（py-only 60 全清；残红 38 全 oracle≠gdcore）
+
+- 新增 `tools/expand_isolated_check.py`（红场三分类器）与
+  `tools/expand_trace_case.py`（隔离副本双链 trace，输出→scratch 语料盘零触碰）。
+
+### np51④ CustomRules 健康倍率（★本轮最大根因，解释 run101490 全系 + 指向余场）
+
+- **定谳链**：oracle harness 逐场 `CustomRules.fromString(player_run.customRules)`
+  （oracle_fight.gd:591）；原版 `Character.prepare()` 按其中 HealthMultiplier 给
+  **双方**加**静默**临时体上限（`changeMaxHealthTemporary(bonusHealth)`，item=null
+  不发事件，Character.gd:296-298）。gd_core prepare 缺失该段。
+- **位流格式**（python 夹具层 full-fidelity 解析）：BASE64OFFSET=62，每字符 6bit
+  MSB-first，pull(n)=ceil(log2(n)) 位；league pull(9)=**4 位**（Leagues.size()=9，
+  含 ImpossibleWoodRank=−1）+ BonusGold 5 + BonusTreasures 5 + HealthMultiplier
+  pull(37)=6（值=pulled×5+20，范围 20..200）。全库 968 带规则 run 的倍率分布
+  {100: 966, **200: 2**}——run101490（@cGIkN→200）的 6 场全红完美闭环。
+- **修**：位流解析放**夹具层**（`gen_fixture_from_lineup.custom_health_multiplier_of`，
+  python 无垫片问题），夹具 case 级写 `custom_health_multiplier` 数值；
+  gd_core `CoreContext.custom_health_multiplier` + `CoreCharacter.prepare()` 补
+  bonusHealth 段（镜像 Character.gd:296-298，mult=100 时 changeMaxHealthTemporary(0)
+  走 `if amount != 0` 早退 = 零回归）；OracleAlignBattle 注入 + py 适配器
+  `GDCoreEngine(custom_health_multiplier=…)` + gd_to_py 重生成（py 孪生验证 200 读写 OK）。
+- np50 遗留的「run101490 系列叠加根因」由本节**完全解释**（无需 trace）。
+
+### np51⑤ 验证 4/5 + CustomRules 修复实测 + ★录制批泄漏定谳与终局方案
+
+- **验证 4**（1,652/1,690→补 gd 6 场）：run101490 全系 6 场随 CustomRules 修复
+  **翻绿** → **1,658/1,690**；残红 32（rng-mechanism 26 + gd_core-kernel 6）。
+- **泄漏定谳**：`CustomRules.fromString` 对空串**早退不复位** ⇒ 单例跨场残留。
+  录制批内某场带 HealthMultiplier≠100 的规则后，后续 custom 为空的场在
+  `prepare()` 仍按残留倍率加静默临时体上限 ⇒ 语料被批内污染（np49 §6m112
+  语料池化残留同族）。705064_r15 的 Sloth 522（own custom 为空、需 200% 才成立）
+  即泄漏直接证据。
+- **单场隔离重放不可行**：泄漏会改变 run 早期回合的胜负路径，干净重放可能提前
+  败亡、永远到不了目标回合（分类器首场 40 分钟不到达，实证）。
+- **终局方案（np49 同款）**：修 harness——`oracle_fight.gd` 逐场 fromString 前
+  `CustomRules.reset()`（单行、零 rng；**副本与 oracle/ 正身同补丁**，oracle/ 红线
+  触碰=用户「修复到全绿」指令 + np46/np49 harness 修复先例，已在留档与本 commit
+  显式声明）；备份语料（`output/_expand/corpus_backup_np51_pre_rerecord/`）后
+  **全量重录 1,690 场**（expand_run_oracle，3 路）。
+- **重录安全性论证**：绿场 = gd(干净) ≡ 语料 ⇒ 其录制时泄漏未生效或无健康面影响
+  ⇒ 干净重录逐字节同事件；红场 = 泄漏污染 ⇒ 重录后 = own rules = gd/py 语义 ✓；
+  own mult=200 的 run101490 六场重录后仍 own rules ✓（gd 侧 CustomRules 修复匹配）。
+- 914 REG 二刷进行中（CoreCharacter/CoreContext 内核变更后的零回归证明）。
+
+（待续：重录结果 + 最终验证）

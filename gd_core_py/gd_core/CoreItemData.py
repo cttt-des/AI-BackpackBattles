@@ -314,6 +314,7 @@ class CoreItemData(GodotObject):
 	#   getNumAffectedItems()=1（仅误判幸存者）v oracle=4 → addSpeed 差 4 倍
 	#   → PM 激活间隔 0.5s v 0.13s（1101 PM 事件全对拍铁证）。
 	def isAvailableFor(self, classId):
+		classId = int(classId)
 		return (self.classes & (1 << classId)) != 0
 
 

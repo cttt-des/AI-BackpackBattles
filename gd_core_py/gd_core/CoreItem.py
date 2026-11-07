@@ -368,10 +368,12 @@ class CoreItem(GodotObject):
 	# 对齐 Item.gd:3594-3595：动态类型（addDynamicType，如 CorruptedArmor 腐蚀
 	# Holy→Dark）必须参与 hasType 判定，否则 SSD/BookofDarkness 等暗系计数恒 0。
 	def hasType(self, type):
+		type = int(type)
 		return type in self.descriptor.types or type in self.dynamicTypes
 
 
 	def getTypeMultiplicity(self, type):
+		type = int(type)
 		return 1 if self.hasType(type) else 0
 
 
@@ -488,6 +490,7 @@ class CoreItem(GodotObject):
 
 
 	def getBaseCooldownIndex(self, index):
+		index = int(index)
 		if index == 0:
 			return self.descriptor.cd
 		else:
@@ -504,6 +507,7 @@ class CoreItem(GodotObject):
 
 
 	def getCooldownIndex(self, index):
+		index = int(index)
 		return self.getBaseCooldownIndex(index)
 
 
@@ -512,6 +516,7 @@ class CoreItem(GodotObject):
 
 
 	def getModifiedCooldownIndex(self, index):
+		index = int(index)
 		return _div(self.getCooldownIndex(index), self.getSpeed())
 
 
@@ -938,6 +943,7 @@ class CoreItem(GodotObject):
 	# ─────────────────────── 触发（对齐 4416-4451） ───────────────────────
 
 	def checkTriggerCount(self, limit):
+		limit = int(limit)
 		# ★ np33（run899_r18 MrStruggles 熔断定谳）：oracle 的比较基准 Util.time 是
 		#   **进程钟**——战斗开跑时已累积装配耗时（fW3fin 实测 run733 起点 t=42.13s，
 		#   远超任何 limit），故 `Util.time > triggersThisFrame(≤10)` 恒真 → 每次
@@ -1455,12 +1461,14 @@ class CoreItem(GodotObject):
 
 
 	def giveStacks(self, target, type, amount, triggerEvent=None):
+		type = int(type)
 		if amount > 0:
 			return target.gainStacks(type, round(amount * self.buffPowers[type]), self, triggerEvent)
 		return None
 
 
 	def giveStacksTemporary(self, target, type, amount, duration, triggerEvent=None):
+		type = int(type)
 		if amount > 0:
 			return target.gainStacksTemporary(type, round(amount * self.buffPowers[type]), duration, self, triggerEvent)
 		return None
@@ -1500,6 +1508,7 @@ class CoreItem(GodotObject):
 
 
 	def stealStack(self, type, amount, triggerEvent=None):
+		type = int(type)
 		removeEvent = self.opponent().loseStacks(type, amount, self, triggerEvent)
 		giveEvent = self.giveStacks(self.character(), type, amount, removeEvent)
 		return giveEvent
@@ -1598,6 +1607,8 @@ class CoreItem(GodotObject):
 
 	@staticmethod
 	def getStackMetricIndex(stackChangeType, stackType):
+		stackChangeType = int(stackChangeType)
+		stackType = int(stackType)
 		offsetStackType = stackType - _R.C("CoreConst").EventType.Block
 		changeTypeOffset = stackChangeType * _R.C("CoreConst").numStackTypes()
 		return CoreItem.getNumNonStackItemMetrics() + changeTypeOffset + offsetStackType
@@ -1605,6 +1616,8 @@ class CoreItem(GodotObject):
 
 	@staticmethod
 	def getMultiMetricIndex(stackChangeType, metric):
+		stackChangeType = int(stackChangeType)
+		metric = int(metric)
 		offsetMetric = metric - _R.C("CoreConst").ItemMetrics.Stamina
 		numMultiMetrics = offsetMetric * len(_R.C("CoreConst").StackChangeType)
 		return _R.C("CoreConst").ItemMetrics.Stamina + numMultiMetrics + stackChangeType
@@ -1621,6 +1634,8 @@ class CoreItem(GodotObject):
 
 
 	def stackChanged(self, stackType, amount, onPlayer, used=False):
+		stackType = int(stackType)
+		amount = int(amount)
 		changeType = None
 		if amount > 0:
 			changeType = _R.C("CoreConst").StackChangeType.Added_Player
@@ -1639,6 +1654,7 @@ class CoreItem(GodotObject):
 
 
 	def staminaChanged(self, amount, changeType, withNextEvent=False):
+		changeType = int(changeType)
 		index = self.getMultiMetricIndex(changeType, _R.C("CoreConst").ItemMetrics.Stamina)
 		self.addMetric(index, amount, self.character().playerId, withNextEvent)
 
@@ -1685,6 +1701,7 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:3622-3628
 	def hasDynamicType(self, type, fromItem):
+		type = int(type)
 		if type in self.dynamicTypes:
 			if fromItem.get_instance_id() in self.dynamicTypes[type]:
 				return True
@@ -1701,6 +1718,7 @@ class CoreItem(GodotObject):
 	# 放置期腐蚀 Holy→Dark 后 SSD 的 Secondary 受影响集永不登记 → 周期首拍迟到
 	# （evt109@1-50 簇根因②，2026-10-29 py 装配级探针定谳）。
 	def addDynamicType(self, type, byItem):
+		type = int(type)
 		if not type in self.descriptor.types:
 			_R.C("CoreUtil").dictAppend(self.dynamicTypes, type, byItem.get_instance_id())
 
@@ -1711,6 +1729,7 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:3614-3621
 	def removeDynamicType(self, type, byItem):
+		type = int(type)
 		if self.hasDynamicType(type, byItem):
 			_R.C("CoreUtil").dictErase(self.dynamicTypes, type, byItem.get_instance_id())
 
@@ -2268,6 +2287,7 @@ class CoreItem(GodotObject):
 	# 向量按 90° 顺时针步进旋转 n 次（Godot rotated() 语义，y-down；
 	# 同 simulator/grid.py::rotate_cell 的角度约定，n = faceDirection）
 	def _rotVecQuarterTurns(self, v, n):
+		n = int(n)
 		n = _mod(n, 4)
 		if n < 0:
 			n += 4
@@ -2282,6 +2302,7 @@ class CoreItem(GodotObject):
 
 	# 对齐 ElectricalCharge.onNewCellEntered（ElectricalCharge.gd:170-206）
 	def _chargeEnterCell(self, charge, cell_index, inv_cells):
+		cell_index = int(cell_index)
 		charge.lastChargedItem = charge.curChargedItem
 		if cell_index == len(inv_cells):
 			charge.curChargedItem = None
@@ -2461,6 +2482,7 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:5010-5018
 	def cleansePoison(self, amount, triggerEvent=None):
+		amount = int(amount)
 		curPoison = self.character().getPoison()
 		if curPoison == 0:
 			return 0
@@ -2477,6 +2499,7 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:5025-5033
 	def cleanseBlind(self, amount, triggerEvent=None):
+		amount = int(amount)
 		curBlind = self.character().getBlind()
 		if curBlind == 0:
 			return 0
@@ -2527,6 +2550,7 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:5097-5106
 	def cleanseCold(self, amount, triggerEvent=None):
+		amount = int(amount)
 		curCold = self.character().getCold()
 		if curCold == 0:
 			return 0
@@ -2661,6 +2685,7 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:5610-5652（原版 Util.sortDict(overflow, true) → CoreUtil.sortDict(.., ctx.rng, true)）
 	def getStackFraction(self, target, fraction, limit, availableStacks):
+		limit = int(limit)
 
 		sum = 0.0
 		stacksUnlimited = {}
@@ -2716,6 +2741,7 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:5653-5663
 	def multiplyBuffsLimit(self, bonus, limit, availableBuffs=None):
+		limit = int(limit)
 		if availableBuffs == None:
 			availableBuffs = _R.C("CoreConst").getBuffs()
 		buffsToGive = self.getStackFraction(self.character(), bonus, limit, availableBuffs)
@@ -2730,6 +2756,7 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:5664-5674
 	def removeBuffsFraction(self, fraction, limit, triggerEvent=None, availableBuffs=None):
+		limit = int(limit)
 		if availableBuffs == None:
 			availableBuffs = _R.C("CoreConst").getBuffs()
 		buffsToRemove = self.getStackFraction(self.opponent(), fraction, limit, availableBuffs)
@@ -2744,6 +2771,7 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:5675-5685
 	def stealBuffsFraction(self, fraction, limit, triggerEvent=None, availableBuffs=None):
+		limit = int(limit)
 		if availableBuffs == None:
 			availableBuffs = _R.C("CoreConst").getBuffs()
 		buffsToSteal = self.getStackFraction(self.opponent(), fraction, limit, availableBuffs)
@@ -2808,6 +2836,7 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:5455-5463
 	def giveRandomBuffs(self, numBuffs, triggerEvent=None, availableBuffs=None, target=None):
+		numBuffs = int(numBuffs)
 
 		if availableBuffs == None:
 			availableBuffs = _R.C("CoreConst").getBuffs()
@@ -3035,6 +3064,7 @@ class CoreItem(GodotObject):
 	# ★ 原版第 3039 行的 `print("ohnonononononno")` 是作者的调试怨言，逐字保留：
 	#   它标记「插座下标越界」这一异常分支，越界时原版同样只是打印、不做任何事。
 	def setGem(self, socketId, gem):
+		socketId = int(socketId)
 		if socketId >= len(self.gems):
 			print("ohnonononononno")
 		else:
@@ -3298,6 +3328,7 @@ class CoreItem(GodotObject):
 	def getNumAffected_type(self, type, color=GD_DEFAULT):
 		if color is GD_DEFAULT:
 			color = _R.C("CoreConst").Affected.Primary
+		type = int(type)
 		num = 0
 		for item in _iter(self.getAffectedItems(color)):
 			num += item.getTypeMultiplicity(type)
@@ -3357,10 +3388,12 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:1517-1525（基类空，由物品行为覆写）
 	def onAffectedItemAdded(self, item, color):
+		color = int(color)
 		pass
 
 
 	def onAffectedItemRemoved(self, item, color):
+		color = int(color)
 		pass
 
 
