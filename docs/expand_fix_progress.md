@@ -456,9 +456,21 @@ inside=Daggers ✓）、充能映射折叠（(40,40) 中心项与 correction 在
 MARKER 列 + 三件套）在该 tick 的逐抽对位；gd 的 rng_trace 需重跑
 （ORACLE_ALIGN_TRACE=1 + 删 scratch 产物，mini 批法 77s/10 场）。
 
-**下一会话首查**：①np24 对位器适配现行 trace 格式；②604585 攻击 tick
-逐抽序差清单；③按清单修（预计 ±1 隐形消耗一次定位一处）。该族
-（伤害界 ~14 场）同一根因预计连带翻绿；再余激活序族 ~6 场。
+**np51⑱ DONE（序差清单已产出）**：对位器升级=值匹配游走（(kind,a,b,val)
+四元组 + kind 归一表 + 双向 skip≤20 + 锚定战斗起点 K105），run604585 全流
+**57 对配对、2 处差异**：
+1. K-extra @K129：gd 可见 Zap 抽 (4,4.02)（oracle 同消耗但直连不可见 =
+   账本可见性差，非真分歧）；
+2. **★MISMATCH @O57/K163-172：gd 的攻击簇含两次 (0.95,1.05) 冷却抖动抽
+   （K171+K172），oracle 只有一次（O65）**——多出的抖动 = **某物品在
+   GDScript 侧的冷却调度提前/多转一轮**（该物品的冷却在 gd 于 Poison
+   Dagger 攻击 tick 同期到期并掷了抖动，oracle 侧无此掷）⇒ 全簇后续
+   抽（命中率 30.06 vs 20.5、伤害 6 vs 5）链位 +1 错位。
+**下一会话首查（精确定位多抖动物品）**：`ORACLE_TRACE_ITEM` 逐个追踪
+tick 97 前后有冷却的候选物品（Dagger@4.5 首击？Battery dur=2s 循环？
+Coil doCooldownEffect 循环），对比 triggerTime 演化找 gd 侧提前到期者；
+修复 = 该物品冷却计时面（CoreTimer/f32 量化/reschedule 语义）。
+数值面（5v6 等）全是这条链的下游，修一处连带翻绿伤害界族 ~14 场。
 
 ### np51⑰ Zap 红鲱鱼排除 + 本轮探针战役终判
 
