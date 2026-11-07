@@ -501,32 +501,40 @@ MARKER 列 + 三件套）在该 tick 的逐抽对位；gd 的 rng_trace 需重�
 - 探针已全部还原（FannyPack/Whetstone3 = git 原样）；trace 产物保留
   output/_expand/trace_root/。
 
-### np51⑩ ★item_trace 对位：速度 buff 交付差定量锁定（604585）
 
-`ORACLE_TRACE_ITEM="Poison Dagger"` 双侧 item_trace（oracle 528 tick / gd 678 tick，
-gd 的内部 tick 计数含装配段故数值偏大，按事件对齐）：
+### np51⑱ 对位器升级 + 序差清单（DONE）
 
-| | oracle | gd |
-|---|---|---|
-| speed @ 战斗开始 | **1.2**（tick 2 起） | **1.0** |
-| speed 变化 | 1.2→1.55 @oracle tick 258 | 1.0→1.2 @gd tick 152（首次攻击重置点）、→1.55 @409 |
-| 首攻重置 | tick 98 | tick 152 |
+值匹配游走（(kind,a,b,val) 四元组 + kind 归一表 + 双向 skip≤20 + 锚定战斗
+起点 K105）跑 run604585 全流：**57 对配对、2 处差异**——
+1. K-extra @K129：gd 可见 Zap (4,4.02)（oracle 同消耗但直连不可见=账本
+   可见性差，非真分歧）；
+2. **★攻击簇 (0,100) 行错位：oracle [20.54, 30.06] vs gd [30.06, 87.84]**——
+   gd 的子 rng 序列整体 +1 错位（gd 的第一支 = oracle 的第二支）。
+(0,100) 行 = accuracy/crit/critResist/stunResist 四子 rng（CoreRng.rollPercent
+追踪面）的账本交织。已排除：bias（三侧同）、seed（prepare 对齐）、
+PD crit=0（双侧无 crit roll ✓）、Coil cd=0、Coins cd=0、Resistor 参数三层面。
 
-- **oracle 的 Dagger 从战斗开始就带 +0.2 速度**（=2 颗 Battery 的充能 sync 入格
-  buff，各 +0.1）；gd 的同名 buff **迟到/未落到 Dagger**（其 1.0→1.2 发生在
-  首攻重置点，来源待查）⇒ Dagger 冷却 1.9/1.2 vs 1.9/1.0 ⇒ 首攻
-  gd tick 152 vs oracle tick 98（内部计数），事件面首攻时刻虽同（t=1.617
-  双侧同）但**后续节拍错位** ⇒ 第二击起 21v20/23v21 等全链错位。
-- Battery fd=1（旋转态）——充能格映射 `_chargeInventoryCells =
-  top_left + R_fd(c) − chargeFrame[fd]` 在 fd≠0 的落格与 oracle 不一致
-  （np25 P3-3 只对 fd=0/验证场校准过 run1160/run572）。本轮
-  quick-check（手写旋转）称 cell-1 落点=self/空/Hammer，与 oracle
-  「+0.2 落 Dagger」矛盾 ⇒ 必须用**引擎自身实现**（py 侧直接调
-  `_chargeInventoryCells`）dump 两颗 Battery 的 5 格映射与命中物品，
-  禁止手写旋转复算。
-- 修复方向：fd≠0 时 charge cell 映射/rotmin 的差异点（怀疑
-  `charge_frame_of` 对旋转碰撞盒的 min 语义或 chargeCells 的轴向约定），
-  修 `gen_gd_core_data.charge_frame_of` 或 CoreItem._chargeInventoryCells，
-  四树同步 + 夹具/runtime 重生成 + 该族定向重验。
-- 本场探针脚本已删；trace 产物保留在 output/_expand/trace_root/（mini1tdi
-  =oracle、gd_tdi=gd）。
+### np51⑲ 逐层深挖（item_trace 对位 + addSpeed 台账 + 调用栈探针）
+
+- ORACLE_TRACE_ITEM 双侧 item_trace：Dagger speed 演化 **1.2@起点、
+  1.55@combat 4.283 三侧全同**（此前"gd=1.0"是装配段 tick 误读）；
+- addSpeed 逐笔台账：t=0 簇逐笔三侧一致 ✓；**+0.35 群体授予（WolfBadge
+  onBattleRageStarted，调用栈实锤）三侧同 @combat 4.283** ✓；
+- Coil speed 演化（1.1@起点）双侧同 ✓；充能映射折叠复核：
+  (40,40) 中心项与 correction 在 floor 下抵消，gd 折叠正确 ✓。
+
+### np51⑳ 攻击簇逐抽对位终态
+
+值对位深入到 Coil 的 stealRandomBuff 内部（pickRandomStacks：pick→anim→pick
+三连）：steal 两支 pick 值双侧全同（pick(0,2)=>2、pick(0,5)=>5）；**pick#1 与
+pick#2 之间的 (0.8,1.2) 播放速度抽：oracle 0.939 vs gd 0.8149**——其 u 前的
+全部消耗双侧完全一致。终判：该 (0.8,1.2) 的 u 差 = 前序 ±1 隐形消耗的累积
+显形（下游读数非根因）；±1 注入点在 t=0 簇内（zap 前后双侧状态短暂错位后
+重汇聚），**定谳需 oracle harness 电荷/Zap 探针授权或 gd 侧 tween 语义逆向
+实验**（np24 [M11]：tween 在阻塞循环不跑，但 ElectricalCharge.start 的 i==0
+同步分支已双侧复刻——差异面在更深的 SceneTree 状态机）。
+
+**np51 终盘**：1,666/1,690（97.5%）；五项根因修复 + 泄漏根治重录 + REG×2
+全部落地；余 24 场收敛到 t=0 簇内 ±1 隐形消耗单一疑点，需 oracle 侧探针
+授权定谳。全部成果已 commit（np51①-⑳）；探针已全还原；trace 产物保留
+output/_expand/trace_root/；语料备份 output/_expand/corpus_backup_np51_pre_rerecord/。
