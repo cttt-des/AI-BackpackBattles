@@ -659,3 +659,21 @@ randi(0,5) 声音选择抽的存在性差**（⑥的条件：oracle 侧 ctx.time
 ①t=0 簇内 ±1 隐形消耗（需 oracle 探针授权或逆向注入实验）；
 ②attack_sound_ready_time 钟面/初值差（无需授权，可直接修）。
 全部成果已 commit（np51①-㉖）。
+
+### np51㉘ 状态管理事故与恢复（本轮终局）
+
+half_shift 实验系列的回滚遗漏了 `v` 行的 `+ half_shift` 引用残留，引发
+GDScript Parse Error 级联（CoreItem→CoreDamageResult→CoreCharacter），
+gd 腿全灭（rc=4294967295），全量一度 905/1690 且混入陈旧产物比对。
+**恢复**：`git checkout c44e78fa -- gd_core/ gd_core_test/gd_core/ gd_core_py/`
+（np51⑱ 对账提交基线）+ gd_to_py 重生成 + 清产物全量重验 12 = **1,666/1,690
+恢复** ✓。残留引用已清（sed 双树）。
+**教训**：①内核实验的回滚必须 `git diff 基线 -- <四树>` 逐行核对，禁止
+手工 replace 链；②np24 纪律「探针用完即还原」的还原后必须立即重跑 REG
+确认基线，禁止在未验证基线上继续堆实验。
+
+**np51 全程终盘**：1,652 → 1,666/1,690（97.5%）。四项根因修复（int 截断
+60 场、Coins 25 场、CustomRules 6 场、泄漏根治重录 8 场）+ 半格偏移实验
+（证伪）+ 状态事故恢复。余 24 场 = t=0 簇内 ±1 隐形消耗单一疑点（np51⑳
+终判），定谳需 oracle harness 电荷探针授权（red line）。全部成果已
+commit（np51①-㉘）。
