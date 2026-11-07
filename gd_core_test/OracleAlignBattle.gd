@@ -38,6 +38,12 @@
 #   ORACLE_ALIGN_LIMIT    只跑前 N 场（冒烟）
 #   ORACLE_ALIGN_CHUNK    本进程最多跑 N 场即优雅退出（断点续跑）
 #   ORACLE_ALIGN_SELFCHECK=1  首场跑完立即同种子复跑逐字节自证（默认开）
+#   ORACLE_ALIGN_CASES_JSON   用例夹具路径（★ 扩样对齐 2026-11-07：默认
+#                       res://oracle_align_cases.json 不变，零回归；扩样语料传
+#                       gd_core_test/expand_align_cases.json 绝对路径）
+#   ORACLE_ALIGN_FIGHTS_ROOT  神谕语料根（rng_state.txt 来源；★ 默认
+#                       res://../output/oracle/fights 不变，零回归；扩样传
+#                       output/oracle/expand/fights 绝对路径）
 # 断点续跑（幂等）：<out>/<case_id>/events.json 已存在且 event_count>0 → 跳过。
 # =============================================================================
 extends SceneTree
@@ -1209,15 +1215,21 @@ func _init() -> void :
 	var t0 := OS.get_ticks_usec()
 
 	var fh = File.new()
-	if not fh.file_exists("res://oracle_align_cases.json"):
-		say("FAIL 缺 res://oracle_align_cases.json（先跑 tools/gen_fixture_from_lineup.py --oracle）")
+	# ★ 扩样对齐（2026-11-07）：夹具路径可由 ORACLE_ALIGN_CASES_JSON 覆盖
+	#   （默认 res://oracle_align_cases.json 不变，零回归）。绝对路径 Godot 3
+	#   File 直接支持；统一正斜杠（verify_oracle 侧已保证）。
+	var cases_path = OS.get_environment("ORACLE_ALIGN_CASES_JSON")
+	if cases_path.empty():
+		cases_path = "res://oracle_align_cases.json"
+	if not fh.file_exists(cases_path):
+		say("FAIL 缺 %s（先跑 tools/gen_fixture_from_lineup.py --oracle）" % cases_path)
 		quit(1)
 		return
-	fh.open("res://oracle_align_cases.json", File.READ)
+	fh.open(cases_path, File.READ)
 	var parsed = parse_json(fh.get_as_text())
 	fh.close()
 	if typeof(parsed) != TYPE_DICTIONARY or not (parsed.get("cases", []) is Array):
-		say("FAIL oracle_align_cases.json 格式错误")
+		say("FAIL %s 格式错误" % cases_path)
 		quit(1)
 		return
 	var cases: Array = parsed["cases"]
@@ -1252,7 +1264,13 @@ func _init() -> void :
 	if not d.dir_exists(out_root):
 		d.make_dir_recursive(out_root)
 	# 神谕语料根（rng_state.txt 来源）——gd_core_test 的 res://.. 即仓库根
-	_fights_root = ProjectSettings.globalize_path("res://..").plus_file("output/oracle/fights")
+	# ★ 扩样对齐（2026-11-07）：可由 ORACLE_ALIGN_FIGHTS_ROOT 覆盖（扩样语料根
+	#   output/oracle/expand/fights；缺省路径不变，零回归）
+	var fights_root_env = OS.get_environment("ORACLE_ALIGN_FIGHTS_ROOT")
+	if fights_root_env.empty():
+		_fights_root = ProjectSettings.globalize_path("res://..").plus_file("output/oracle/fights")
+	else:
+		_fights_root = fights_root_env
 
 	# 断点续跑（幂等）：events.json 已存在且 event_count>0 → 跳过
 	var limit := int(OS.get_environment("ORACLE_ALIGN_LIMIT"))

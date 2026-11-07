@@ -18,7 +18,7 @@
 
 | 版本 | 文件 | 说明 |
 |------|------|------|
-| **v0.4.0** | [`BackpackSimulator.exe`](https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.4.0/BackpackSimulator.exe) | 战斗模拟器（阵容对战 / 蒙特卡洛胜率 / 物品联动 / 游戏格式战报） |
+| **v0.4.1** | [`BackpackSimulator.exe`](https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.4.1/BackpackSimulator.exe) | 战斗模拟器（阵容对战 / 蒙特卡洛胜率 / 物品联动 / 游戏格式战报） |
 | **v0.3.1** | [`BackpackCombatLog_v0.3.1.exe`](https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.3.1/BackpackCombatLog_v0.3.1.exe) | 战斗日志导出器（游戏内真实战斗 → 游戏同格式战报 + 原始事件 JSON） |
 | **v0.4.0** | [`BackpackAI.exe`](https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.4.0/BackpackAI.exe) | 外挂 AI 主程序（自动游玩 GUI） |
 
@@ -79,7 +79,7 @@
 - **三方架构**：`oracle/`（Godot 受控神谕，手动 tick 驱动 v1.1.9 真源）↔ `gd_core/`（GDScript 无头内核）↔ `gd_core_py/`（Python 机械转写，`tools/gd_to_py.py` 生成 661 模块）——任一修复需四树同步（gd_core/、gd_core_test 双镜像、gd_core_items/）后重跑 gd_to_py。
 - **REG gate**：`tools/_np21_gate.py` 基线 7 场 + 域代表场双腿（gd/py）防回归；全量刷账 `python -X utf8 tools/verify_oracle.py --skip-fixtures --force`。
 - **收口留档**：[docs/np24_fix.md](docs/np24_fix.md)（目标/架构/修复史大针/方法论遗产/复现）；逐轮全史在 [docs/np24_issue_ledger.md](docs/np24_issue_ledger.md)（正文经 git 历史回溯）。
-- **下一步（扩大用例对齐）**：914 场是"录制回放语义"下的可证基线，覆盖面已测出缺口（62 件物品零覆盖、事件类型仅 31 种、仅取每 run 末回合）。扩样与判据升级（J2–J6）的完整规划见 [docs/扩大用例对齐规划.md](docs/扩大用例对齐规划.md)。
+- **扩样对齐（2026-11-07，独立账本不混算）**：1,194 场「全异阵容」扩样语料（`output/oracle/expand/fights/`，物品 512/514、职业配对 49/49、事件类型 32=可达全集）已接入三方对齐：夹具 **1,174 场**（20 场 Coins 装配派生语义剔除），**三方一致 1,143（97.4%）**；原 87 场分歧全部归因，其中 A 组 **Time Pendant 已在内核落地**（1.1.9 真值补 `gd_core_items/Exclusive/TimePendant.gd` + 两级夹具重建，61 场转绿 56 场）、B 13 场 = Dark Lantern 开局吸血 py 侧保留 0.5 尾数（gd_core 取整口径差，单点可修）、C 13 场 + A 残余 5 场 = 真分歧（Time Dilator/判胜时机/Sloth/rng 链位，逐场签名留证）。扩样账本 `output/oracle/expand/alignment_expand.json`（**独立，绝不混入 `alignment.json`**）；报告 [output/oracle/expand/expand_alignment_report.md](output/oracle/expand/expand_alignment_report.md)；过程留档 [docs/expand_fix_progress.md](docs/expand_fix_progress.md)。管线新增（默认值全部不变、914 基线零回归实测）：`verify_oracle.py` 四参数（`--fights-root/--align-root/--cases-json/--alignment-out`）、`gen_fixture_from_lineup.py --history-db`（扩样合并库取 stamina）、`tools/expand_gen_fixtures.py`（分批夹具驱动+stamina 逐场自检）、`OracleAlignBattle.gd` 的 `ORACLE_ALIGN_CASES_JSON/ORACLE_ALIGN_FIGHTS_ROOT` 覆盖。扩样与判据升级（J2–J6）完整规划见 [docs/扩大用例对齐规划.md](docs/扩大用例对齐规划.md)。
 
 ### ⑦ 对局语料记录器（真人操作 → 训练数据）
 
