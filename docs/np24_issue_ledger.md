@@ -713,3 +713,9 @@
 - **统一根因假设（两场）**：**激活期宝石/物品冷却计时器启动相位差**——activateItems 的宝石冷却启动（np38 rebuildSeen 家族的激活期面）在两侧的 tick 归属差 1（或启动次序），表现为：静默加成类（CC 疲劳+1）差 1 次、首发类（EB）差侧/差 tick。
 - **下轮 playbook**：①gd/oracle 各跑 run602 单场，抓 CC 宝石 cooldown 计时器首拍（gd：CoreItem tickTimersPass 的 gems 树+np38 rebuildSeen 补锚日志；oracle：drive_timers 的 gem Timer 注册表序）——对比启动 tick；②修=激活期宝石冷却启动的 tick 对齐（np38 家族第 3 笔）；③验证后 914 全量刷账→P4。run1094 同法验 EB。
 - 本轮临时探针（CoreItem LEAST trace）已回滚（git checkout 四树+py 重生成，grep=0）。
+
+## 6m110 附言（接续首步精确化）：CC 宝石 fire-tick 对比法
+
+- run602 的疲劳 +1=**CC 宝石（Falcon Blade/Corrupted Crystal）冷却第二次触发 gd 早 1 拍**（t419 拍双侧都触发 dmg 同 3；t429 拍 gd 又触发 oracle 未到）。证据链：疲劳事件 212 行全同位+触发(MS)171 行全同+链 42434 抽零分歧 ⇒ 唯一自由度=CC 宝石 Timer 的 fire tick。
+- **接续第一步（30 分钟）**：①oracle：ORACLE_DEBUG=1 单场重录 run602_r14（probe 目录）→ gd：GD_TMR/NP47 同法 → 双侧 grep `[timer-fire]`/`[cd-fire]` 中 Falcon Blade 宝石 Timer（path 含 @@/GemSocket）的 fire 时刻序列对比（首拍+第二拍）；②若 gd 早 1 拍=**宝石 Timer 的 f32 穿零/首拍递减差**（np38 家族第 3 笔：宝石 Timer 的 wait_time f32 化或 rebuildSeen 锚定）→ 修 CoreItem/CoreTimer 宝石侧；③同法验 run1094 的 EB（EB 的 fire 时刻序列对比——首发侧翻转大概率同根：EB cooldown Timer 穿零差 1 拍）。
+- 备选：若 fire 时刻全同但 fatigue +1 仍差 → 查 CC 的 doCooldownEffect 调用前提（use_stamina/activate 闸）与 GD 腿的 gem.doCooldownEffect 驱动位（tickTimersPass 的 gem._tickTimers 后谁调 doCooldownEffect）。
