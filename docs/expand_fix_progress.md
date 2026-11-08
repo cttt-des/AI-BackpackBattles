@@ -1258,3 +1258,16 @@ t=0 簇逐候选注入实验战役（每候选 1 次单场重验，候选 ~10 �
 - **工具链全齐**：_np51_window_forensic.py（GDRAW+计数器）+
   _np51_triage_windows.py + _np51_flk_parse_logs.py + GDRAW 计数已集成。
   每场重取证→对位→验证→入账循环不变。
+
+### np51㊳续⑳ run300219 攻击簇逐抽终局定位（2026-11-09 终二十一）
+- 攻击簇两侧 roll 次序完全对齐（doubleAttack→acc→dmg_pos/dir/rot→crit），
+  roll 顺序非根因。
+- **gd 多 randf(0,0)=0.883024**（pitch 与 acc 之间）= **doubleAttack roll**
+  （rollDoubleAttackEffect → flip(doubleAttackEffectChance)）→
+  gd 的 doubleAttackEffectChance ≠ 0 → 消耗一笔；oracle 同调用
+  Util.flip(doubleAttackEffectChance) → 也消耗 → **两侧都消耗但 u 值不同**
+  → 上游相位差在攻击前已存在 → 分歧点在**最后一个匹配事件与攻击 pitch 之间**
+  的隐形抽。最后匹配事件后的间隙=gd 多/少 1 笔——即 flicker speed 差
+  （Flame @6.7 发火 gd 有 oracle 无）或其它隐形差。
+- 修法：①核 run300219 的 flicker fire 时间序列（gd vs corpus）
+  ②按 np51㊳续⑭ 的 minus-dt 修火候 ③核 doubleAttackEffectChance 值。
