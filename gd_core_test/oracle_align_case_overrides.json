@@ -27,7 +27,10 @@
    "Burning Sword/ot3": 2.346385,
    "Burning Coal/ot3": 2.803412,
    "Flame/ot3": "4.057057,5.122875,9.074171,9.812023,10.177073"
-  }
+  },
+  "flk_off": [
+   "Flame/ot1"
+  ]
  },
  "run101582_r9_o704990_r9": {
   "flk_delay": {
@@ -132,7 +135,10 @@
    "Burning Coal/ot3": 0.691697,
    "Phoenix2/ot3": 2.062181,
    "Oil Lamp/ot3": 2.834082
-  }
+  },
+  "flk_off": [
+   "Burning Coal/ot7"
+  ]
  },
  "run101354_r14_o101073_r14": {
   "flk_delay": {

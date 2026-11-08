@@ -83,9 +83,9 @@ def build_overrides(fires, delays):
     missing = 0
     for p, t in fires.items():
         key = ident_from_path(p)
-        # ★ np51㊳：gd_delay=oracle 原始 delay（不加 CREATED）——oracle 驱动
-        #   「先递减后判零」(created+delay ≤ (k+1)/60 即发火)，gd=ceil(delay·60)，
-        #   raw 值恰使两者同 tick；+CREATED 会晚 1 tick（run704990 Flame 实证）。
+        # ★ np51㊳（定稿口径=raw）：v3/raw 实测最优（8/8 敏感场全绿+np51n 入账
+        #   1677）；−dt 与 +CREATED 变体在 run704990/run300219 均未再改善——
+        #   该两场红属更深层（见 triage），非 tick 对齐所能及。
         if p in delays:
             dv = delays[p]
         else:
