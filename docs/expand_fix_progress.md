@@ -1340,3 +1340,25 @@ t=0 簇逐候选注入实验战役（每候选 1 次单场重验，候选 ~10 �
 - **run704242 未动**：np26fA 相位补偿全局承重（移除→1147/1690 已回滚），其
   SPF 毒 tick 271v272 另寻手术刀条件。
 - 全量 1688/1690（余 run604687+run704242）。
+
+### np51㊳终③-3 交接：run604687 残差=同 tick 内 flicker 发火/物品相位次序（2026-11-09）
+- run604687 已从 idx55 推到 idx133。现门控：Oil Lamp/ot1=2.279478 +
+  Flame/ot1='5.033871,5.050538,99.0×6'（oracle 火种实测：OilLamp@2.2833 +
+  双 Flame@5.05/5.067，故 flame#2 真值 ∈ tick304）。
+- bare_align（战斗段起点锚定 v3）显示全流对齐至 +663，残差=+664：gd 先画
+  (0.3,0.8) 速度抽（flame#2，5.050538→⑨ _flushTimed）而 oracle 先画
+  (0.975,1.05) 对手侧 jitter（=对手物品 ③/⑥ 相位触发）。即【同一 tick 内
+  oracle 的对手相位抽插在了 gd 的 delayed 发火之前，而 gd 的 ⑨ 在全部
+  相位之后】——需核 oracle 该 tick 的对手触发为何落在 gd delayed 前
+  （疑：oracle drive_delayed 步骤⑧ 与 items ③⑤⑥ 的实际先后，或该 jitter
+  属于另一 tick）。下一棒：用 [CHU]/[BARE]/GDRAW 三流对位该 tick 的
+  全序列，定位 jitter 的调用方（0.975,1.05=对手 cooldown 抽，搜
+  adjustCooldown 调用面）后修 gd 相位序或 flk_delay 微调（+1 tick 族）。
+- AOD(Amulet of Darkness) 1.45 roll 两边均 True（[CHU] u=0.120825 同值同
+  ch=0.185484）——非残差源。
+- 探针已入库：GD/ORACLE_CHUPROBE（flip u）、GD/ORACLE_AODPROBE（AOD 触发面）、
+  GD/ORACLE_ACCPROBE（accuracy）、GD/ORACLE_CHPROBE（Hammer rollChance 面）、
+  ORACLE_FLKPROBE（[FLKD]/[FLKD-ani] 火种）、ORACLE_BARELOG（[BARE] 全裸流）、
+  GD_CHUPROBE 用 CoreRng.debug_flip_tag 槽。全部 env 门控零 rng 消耗。
+- 余 2 红：run604687（上述）、run704242（SPF 毒 tick 271v272；np26fA 补偿
+  全局承重不可移，需手术刀条件）。

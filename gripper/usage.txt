@@ -1,0 +1,13 @@
+- `download_and_import_opponents_loop.sh`：循环执行
+- `download_and_import_opponents.py`：Python 入口
+- `workflows.py`：下载与导入调度
+- `runtime/opponents.py`：下载管理
+- `fetch_opponents.gd`：Steam 请求核心
+- `opponents/store.py`：数据库导入
+
+2000、60000 在解包后的 Core/SteamWorkshop.gd → downloadScores() 中。搜索 numRuns 最直接，也可以搜索 statisticsMode 或 downloadLeaderboardEntries：
+var numRuns = 2000
+if RunDatabase.statisticsMode:
+    numRuns = 60000
+Steam.downloadLeaderboardEntries(0, numRuns, 0, leaderboardHandle)
+即普通模式为 2000，统计模式为 60000。
