@@ -1213,3 +1213,15 @@ t=0 簇逐候选注入实验战役（每候选 1 次单场重验，候选 ~10 �
 - 已有工具可直接定位：GDRAW（gd 全量含裸抽）vs oracle [DRAW]（wf 计数）
   → 逐笔对位 → 首个不匹配=分歧笔。数据已落盘（gdraw_injected_battle.txt
   /oracle_battle_draws.txt）。下一棒：按 np51㊳续⑥ 方法逐场对位。
+
+### np51㊳续⑰ run604635 首分歧=battle 起始构造抽（2026-11-09 终十八）
+- GDRAW vs oracle [DRAW] 逐笔对位：前 5 笔精确对齐（(0.2,-0.2) 构造），
+  第 6 笔起值差 → gd 在 battle start 后仍多 BalancedRng 构造抽。
+- **根因类**：注入后的 activateItems/combatStart 链中仍有 BalancedRng.new()
+  消耗（chanceRng 二次构造/新物品构造/宝石构造）→ 每构造 +1 笔 →
+  全链错位。修法=审计 gd 战斗启动期（activateItems/combatStart）的
+  BalancedRng 构造点并消解（对齐 oracle 无构造）。
+- 该类=余 6 红场的**统一根因**（所有场的 battle 起始构造差）。
+- **下一棒第一枪**：gd_core grep `BalancedRng.new` 全部调用点 → 排除
+  CoreItem._init 装配期（已注入抹除）→ 留下的战斗期构造点 = 修。
+  参照 oracle: 战斗启动无 BalancedRng 构造（构造全在装配期，被种子重置）。
