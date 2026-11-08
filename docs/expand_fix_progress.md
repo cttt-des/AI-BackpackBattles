@@ -1271,3 +1271,11 @@ t=0 簇逐候选注入实验战役（每候选 1 次单场重验，候选 ~10 �
   （Flame @6.7 发火 gd 有 oracle 无）或其它隐形差。
 - 修法：①核 run300219 的 flicker fire 时间序列（gd vs corpus）
   ②按 np51㊳续⑭ 的 minus-dt 修火候 ③核 doubleAttackEffectChance 值。
+
+### np51㊳终① minus-dt + suppression + stub 全量验证（2026-11-09 最终）
+- 全量验证：**1684/1690**（6 红不变——minus-dt 对已正确队列的 flicker
+  fires 精确对齐，但余 6 场的链差源头在 flicker 之外）。
+- 余 6 场=per-item 隐形笔差（Mana Orb pick / BALROLL ch≥1 / acc-crit 序 /
+  Snowmaster roll 条件 / Claws 命中判定 / Time Dilator 激活时差）——
+  每场需窗口取证→GDRAW 对位→per-item 语义定位→修→验。
+- 工具链完整定型并提交，每场约 2-3 轮取证+修可破。
