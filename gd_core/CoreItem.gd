@@ -97,6 +97,7 @@ var triggersThisFrame: int = 0
 var triggerTime: float = 0.0
 var iterationCooldown: float = 0.0
 # ★ np51㉛ 定向注入实验状态（用后还原）
+var flk_suppress_fire := false
 var _inj_item: String = ""
 var _inj_trigger_n: int = 0
 var _inj_trigger_count: int = 0

@@ -95,6 +95,7 @@ class CoreItem(GodotObject):
 		self._triggersThisFrame = 0
 		self.triggerTime = 0.0
 		self.iterationCooldown = 0.0
+		self.flk_suppress_fire = False
 		self._inj_item = ""
 		self.__inj_trigger_n = 0
 		self.__inj_trigger_count = 0
