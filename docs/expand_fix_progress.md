@@ -898,3 +898,17 @@ t=0 簇逐候选注入实验战役（每候选 1 次单场重验，候选 ~10 �
 - 余 17 场=剥离 flicker 层后的下一层异质机制（Ruby Whelp 伤害掷、Manathirst、
   Skull Badge Poison/Cold 反射映射、Time Dilator tick 漂移等），逐场
   CountingRng 取证攻坚；py 侧残留（Heroic Potion 响应链等）同步攻。
+
+### np51㊲终 窗口取证批扫上线（2026-11-08 续六）
+- **_np51_window_forensic.py**（分片并行）：oracle 计数器重放+gd 栈重放+
+  EVENT st 对位 → 每场 window_report.txt（首失配 EVENT 序号+两侧窗口全文+
+  oracle [DRAW] 全序列）。已产 8/19 场报告（余 11 场串行补跑中）。
+- 管线事故双连修：①gd_replay 的 rmtree 共享目录删了 oracle 产物（分目录
+  oracle/ 隔离+gd 产物复用）②窗口报告路径双重嵌套。
+- **首例 triage（run704990）**：Gold Armor 激活段 gd 多耗 BALROLL+ROLLW
+  （Mana Orb/ot3 rollWeighted 50 flip）而 oracle 窗内无该 roll；gd 的 Magic
+  Staff 在疲劳前多触发一次（TRIG+pitch+Spicy Banana stamina）。= gd 侧
+  Mana Orb/Magic Staff 触发时序差，待逐笔定谳。
+- **1,671/1,690 已入账**（np51k，commit 39377f8a）。余 19 场窗口报告
+  全出后统一 triage：Skull Badge 反射相位、Pestilence resisted 时刻、
+  Mana Orb rollWeighted、Time Dilator 漂移等族。
