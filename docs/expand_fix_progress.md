@@ -1068,3 +1068,14 @@ t=0 簇逐候选注入实验战役（每候选 1 次单场重验，候选 ~10 �
   去重构造（对齐 oracle 每物品 1 次）。
 - 工具已定型：gd ORACLE_ALIGN_DRAWSEQ=1 全量抽计数（[GDRAW]）+
   _np51_window_forensic.py 采集；oracle [DRAW] 对位脚本在本台账命令块。
+
+### np51㊳续⑥ 计数对位方法澄清（2026-11-09 终五）
+- run300219 的 (0.2,-0.2) 暴发（oracle 122 笔/gd ~120 笔）=正式 pass 装配期
+  chanceRng 构造（per-item），**被 rng_state 注入抹除、与战斗链无关**；
+  装配序差（gd[5..8]=oracle[4,1,2,3] 的换位）无链影响。
+- **正确的战斗链对位**：gd GDRAW 在暴发结束后的行（战斗期，注入后）↔
+  oracle [DRAW] 在暴发结束后的行。此前「+3 错位」结论作废（比错了段）。
+- **下一棒第一枪（精确）**：gd GDRAW 暴发尾（≈row 12 起）vs oracle [DRAW]
+  暴发尾（≈row 500+ 起，0.92232 锚在此区间），逐值对位找首分歧——
+ 分歧点即「gd 缺/多 1 笔」的精确身份（两侧计数行含 kind+range+value+state）。
+- gd 侧全量抽计数基建已上线（ORACLE_ALIGN_DRAWSEQ=1 → [GDRAW] 逐抽）。
