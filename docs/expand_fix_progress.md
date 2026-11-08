@@ -1009,3 +1009,18 @@ t=0 簇逐候选注入实验战役（每候选 1 次单场重验，候选 ~10 �
   行为脚本覆写面=仅 Time Dilator 1 个（grep 实证）→ 零绿场风险。
 - **验证**：3/4 三方一致（run400051_r10/r12、run400013_r11 新绿；
   run400013_r12 残红=自身另一层 Claws of Attack miss@0.48）。
+
+### np51㊳续② 余 6 场残差精确定位（2026-11-09 终）
+- **run300219**：gd 攻击簇 pitch±1 + **gd 多 randf(0,0) 一笔**（0.883024，
+  位于 crit-flip 0.661409 之前）→ gd=crit→acc 序 vs oracle=acc(0.661409 同位
+  同值)→crit(0.105288) 序翻转嫌疑；Hammer accBALROLL ch=1.125（平衡后≥1）
+  两早退语义差候选（gd BalancedRng.roll 平衡后≥1 不早退仍耗链 vs oracle
+  Util.flip(≥1) 恒真——早退检查点在平衡前，需逐语义核）。
+- **run101354**：Ruby Whelp pitch±1 + gd 多 randf(0,0)=0.960293（同形状）。
+- **run604635**：gd Snowmaster 多 (0,100)=63.544136 roll 一笔（oracle 缺该
+  roll——Snowmaster 效果条件差）。
+- **run604687**：Black Amulet 4.73 伤害 7v?（gd_core-kernel）。
+- **run400013_r12**：Claws of Attack 攻击落空 v 命中（gd_core-kernel）。
+- **run704242**：内容层（EVENT 全对，渲染层差异）。
+- 工具链定稿：_np51_window_forensic.py（断点复用）+_np51_triage_windows.py
+  （离线 triage）。下一棒逐场按上述定位修 kernel/数据面。
