@@ -1158,3 +1158,12 @@ t=0 簇逐候选注入实验战役（每候选 1 次单场重验，候选 ~10 �
 - **当前 1,684/1,690 有效**（np51o 账本对其余 1684 场仍成立）。
 - 余 6 场=深层 per-item 语义差，需每场继续窗口取证（工具链已定型，
   每场约 2-3 轮取证+修）。GDRAW 管线+lib 火候调度器基建已就位。
+
+### np51㊳续⑬ run300219 Broom 攻击簇深挖入口（2026-11-09 终十三）
+- 库 stub 重录后首分歧仍在 Broom@1.4167：gd 伤害 5+Blind(109) vs oracle
+  伤害 3+Activation——伤害 roll u 相位差（攻击事件前的隐形笔差）。
+- 候选源：Mana Orb/ot1 的 onItemActivated rollChance + giveRandomBuffs
+  pickRandomStacks 抽面（gd 窗 rows 1019-1046 有 BALROLL ch=0.5 + ROLLW
+  + randInBox×2 + EVENT 105×2——两侧 EVENT 对齐但 u 待核）。
+- 取证入口：window_report.txt 已刷新（gdraw.txt 2126 行=注入后完整战斗全抽）
+  + oracle_battle_draws.txt；对位脚本法见 np51㊳续⑥。
