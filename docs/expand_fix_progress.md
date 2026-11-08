@@ -1203,3 +1203,13 @@ t=0 簇逐候选注入实验战役（每候选 1 次单场重验，候选 ~10 �
   u 相位差（上游激活差导致链位错位）。
 - 修法优先：run604635 的 resisted 翻转（机制明确=抵抗 roll 次序）→
   run704242 的激活缺席（同 Time Dilator 族）→ 其余。
+
+### np51㊳续⑯ Buff.gd 抵抗 roll 逐字对齐确认（2026-11-09 终十七）
+- gd/oracle Buff.gd gainTemporary 的抵抗 roll **逐字对齐**
+  （flipPercent/totalResistChance 计算/循环结构完全一致）→
+  run604635 的 resisted 翻转=上游相位差的下游表现，非独立根因。
+- **全部 6 红场共性问题=注入后首个隐形笔分差点**（每场分差点位置不同，
+  表现为伤害/命中/抵抗/激活等不同症状）。消解=定位每场的首分歧笔身份。
+- 已有工具可直接定位：GDRAW（gd 全量含裸抽）vs oracle [DRAW]（wf 计数）
+  → 逐笔对位 → 首个不匹配=分歧笔。数据已落盘（gdraw_injected_battle.txt
+  /oracle_battle_draws.txt）。下一棒：按 np51㊳续⑥ 方法逐场对位。
