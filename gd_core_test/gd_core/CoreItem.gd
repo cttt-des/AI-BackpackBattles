@@ -96,6 +96,10 @@ var lastTriggerTime: float = 0.0
 var triggersThisFrame: int = 0
 var triggerTime: float = 0.0
 var iterationCooldown: float = 0.0
+# ★ np51㉛ 定向注入实验状态（用后还原）
+var _inj_item: String = ""
+var _inj_trigger_n: int = 0
+var _inj_trigger_count: int = 0
 
 # 统计（对齐 Item.gd:257 itemMetrics）
 var itemMetrics: Array = []
@@ -774,7 +778,25 @@ func _readyInit() -> void :
 		#   Djinn jitter 起全链错位）。修复=补 callDelayed 注册（kernel_r6 递减
 		#   驱动对齐 drive_delayed；animation_finished 无帧永不发 ⇒ 每件战斗期
 		#   恰 1 笔），到点派发 flickerPlayAni 走 ctx.rng.rng 裸抽（零痕迹同规）。
-		ctx.callDelayed(self, "flickerPlayAni", flicker_delay)
+		# ★ np51㉟：case 级 delay 覆盖（ORACLE_FLK_DELAY="物品/otN=值,…"）。
+		#   delay 抽本身是装配期笔（rng_state 注入抹除）⇒ 覆盖值零链影响，
+		#   纯行为对齐——修 np24 6m18 遗留的「flicker delay 装配链位差」红场。
+		# ★ np51㊱：同 key 多值=有序队列，按装配序逐实例消费（双 Burning Coal
+		#   类：两实例 oracle delay 不同）；游标存 ctx（每场重置）。
+		var _flk_delay_use: float = float(flicker_delay)
+		var _flk_ov := OS.get_environment("ORACLE_FLK_DELAY")
+		if _flk_ov != "":
+			var _key := String(descriptor.identifier) + "/ot" + str(int(ownerType))
+			var _vals: Array = []
+			for pair in _flk_ov.split(",", false):
+				var kv: PoolStringArray = String(pair).split("=")
+				if kv.size() == 2 and kv[0] == _key:
+					_vals.append(float(kv[1]))
+			if not _vals.empty():
+				var _cur: int = int(ctx.flk_delay_cursor.get(_key, 0))
+				_flk_delay_use = _vals[min(_cur, _vals.size() - 1)]
+				ctx.flk_delay_cursor[_key] = _cur + 1
+		ctx.callDelayed(self, "flickerPlayAni", _flk_delay_use)
 		# ★ np25 flicker 派发定谳探针（双门控零耗）：与 oracle FLKSTUB 桩对称——
 		#   delay 抽后的链状态快照，供 state→PCG 前向模拟数精确链位。
 		ctx.rng.trace_diag("FLKREG", String(descriptor.identifier) + "/ot" + str(int(ownerType)),
@@ -832,7 +854,22 @@ func flickerPlayAni() -> void :
 			str(ctx.time), "st=" + str(ctx.rng.rng.get_state()))
 	# ★ kernel_r6：oracle FlickerAnimation.gd:16 playAni = Util.rng.randf_range
 	#   裸调（rng_log 零痕迹，与 np24 ItemAnimation 同款）⇒ 裸抽不进 trace。
-	ctx.rng.rng.randf_range(descriptor.flickerMinSpeed, descriptor.flickerMaxSpeed)
+	# ★ np51㉞ 复盘（2026-11-08）：run604585_r6 单场移除实验 693/693 全对齐，
+	#   但全量重验 681 场反弹红 → **flicker 速度抽在语料大多数场存在**（oracle
+	#   侧有消耗），run604585 是特例（其 Oil Lamp=ot3 对手侧，oracle harness
+	#   对手装配不实例化 FlickerAnimation——[FLK-ready] 探针零输出实证）。
+	#   速度抽保留（np24 kernel_r6 口径），特例场由 ORACLE_NO_FLKFIRE 门控
+	#   逐场处理；普适条件待 24 红场清单归纳。
+	# ★ np51㊱：per-instance 抑制（ORACLE_FLK_OFF="物品/otN,…"）——gd 多发火
+	#   实例（oracle 无对应实例）的速度抽整笔跳过（run704933 Burning Sword 型）。
+	var _key := String(descriptor.identifier) + "/ot" + str(int(ownerType))
+	var _flk_off := OS.get_environment("ORACLE_FLK_OFF")
+	if _flk_off != "":
+		for off in _flk_off.split(",", false):
+			if String(off) == _key:
+				return
+	if OS.get_environment("ORACLE_NO_FLKFIRE") == "":
+		ctx.rng.rng.randf_range(descriptor.flickerMinSpeed, descriptor.flickerMaxSpeed)
 
 
 # ─────────────────────── 触发（对齐 4416-4451） ───────────────────────
@@ -864,11 +901,27 @@ func trigger():
 	ctx.rng.trace_diag("TRIG", String(descriptor.identifier), int(ownerType),
 			"tt=" + str(triggerTime) + " cd=" + str(iterationCooldown)
 			+ " spd=" + str(getSpeed()) + " t=" + str(ctx.time))
+	# ★ np51㉛ 定向注入（用后还原）：ORACLE_INJ_ITEM=物品名、ORACLE_INJ_TRIGGER_N=N
+	#   ——该物品第 N 次 trigger 后补 1 笔 (0,1) 裸抽（oracle 侧隐形消耗面定位）。
+	if _inj_item == "":
+		_inj_item = OS.get_environment("ORACLE_INJ_ITEM")
+		# ★ np51㉟：int("")在 py 侧抛异常（gd 静默 0）——空串守卫保证双腿同构
+		var _inj_n_s := OS.get_environment("ORACLE_INJ_TRIGGER_N")
+		_inj_trigger_n = 0
+		if _inj_n_s != "":
+			_inj_trigger_n = int(_inj_n_s)
+		if _inj_item != "":
+			print("INJ2_ARM item=[%s] n=%d" % [_inj_item, _inj_trigger_n])
+	if _inj_item != "" and String(descriptor.identifier) == _inj_item:
+		_inj_trigger_count += 1
+		if _inj_trigger_count == _inj_trigger_n:
+			print("INJ2_FIRED item=%s n=%d t=%s" % [_inj_item, _inj_trigger_n, str(ctx.time)])
+			ctx.rng.rng.randf_range(0.0, 1.0)
 	iterationCooldown = adjustCooldown()
 	triggerTime += iterationCooldown
-	
+
 	doCooldownEffect()
-	
+
 	if doubleActivationChance > 0 and ctx.rng.flip(doubleActivationChance):
 		doCooldownEffect()
 

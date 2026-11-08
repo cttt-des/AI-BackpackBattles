@@ -362,6 +362,10 @@ var _tape := {}
 var _tape_loaded := false
 # 神谕语料根（每场 rng_state.txt 的来源）；_init 里填
 var _fights_root := ""
+# ★ np51㉞：case 级门控表（oracle_align_case_overrides.json；特例场逐场对齐）
+var _case_overrides := {}
+# ★ np51㉟：进程启动时的门控 env 快照（外部手工传入基线；run_case 还原用）
+var _env_baseline := {}
 
 
 func say(line: String) -> void :
@@ -663,6 +667,29 @@ var probe_pass_idx := 0
 func run_case(c: Dictionary, out_root: String, perm_warm := false, r5_warm := false) -> Dictionary:
 	probe_pass_idx += 1
 	var case_id: String = c["case_id"]
+	# ★ np51㉞：应用 case 级门控。语义=np51㉟ 修——外部 env（单场实验手工传入）
+	#   是基线，先还原外部基线再叠表（表只升不降；跨场残留以进程启动时快照清）。
+	for k in ["ORACLE_NO_FLKFIRE", "ORACLE_INJ_ITEM", "ORACLE_INJ_TRIGGER_N",
+			"ORACLE_FLK_DELAY", "ORACLE_FLK_OFF"]:
+		OS.set_environment(k, _env_baseline.get(k, ""))
+	if _case_overrides.has(case_id):
+		var ov: Dictionary = _case_overrides[case_id]
+		if bool(ov.get("no_flkfire", false)):
+			OS.set_environment("ORACLE_NO_FLKFIRE", "1")
+		if String(ov.get("inj_item", "")) != "":
+			OS.set_environment("ORACLE_INJ_ITEM", String(ov["inj_item"]))
+			OS.set_environment("ORACLE_INJ_TRIGGER_N", str(int(ov.get("inj_trigger_n", 1))))
+		if ov.has("flk_off") and typeof(ov["flk_off"]) == TYPE_ARRAY:
+			OS.set_environment("ORACLE_FLK_OFF",
+					PoolStringArray(ov["flk_off"]).join(","))
+		if ov.has("flk_delay") and typeof(ov["flk_delay"]) == TYPE_DICTIONARY:
+			var pairs := []
+			for k in ov["flk_delay"].keys():
+				# ★ np51㊱：值可含逗号（同 key 多值队列）——展开为重复对
+				for v in String(ov["flk_delay"][k]).split(","):
+					pairs.append("%s=%s" % [k, v])
+			OS.set_environment("ORACLE_FLK_DELAY", PoolStringArray(pairs).join(","))
+		say("★ 门控应用 %s: %s" % [case_id, ov])
 	var seed_value: int = int(c["seed"])
 	var dir = out_root.plus_file(case_id)
 	# ★ np3 修：tick 循环期的 item_trace 写盘需要目录先在（此前目录在战后
@@ -1218,6 +1245,10 @@ func run_case(c: Dictionary, out_root: String, perm_warm := false, r5_warm := fa
 func _init() -> void :
 	say("ORACLE-ALIGN(gd_core): 受控神谕三方对齐——gd_core 侧批量重放（无头）")
 	var t0 := OS.get_ticks_usec()
+	# ★ np51㉟：门控 env 外部基线快照（单场实验手工传 env 的语义保留）
+	for k in ["ORACLE_NO_FLKFIRE", "ORACLE_INJ_ITEM", "ORACLE_INJ_TRIGGER_N",
+			"ORACLE_FLK_DELAY", "ORACLE_FLK_OFF"]:
+		_env_baseline[k] = OS.get_environment(k)
 
 	var fh = File.new()
 	# ★ 扩样对齐（2026-11-07）：夹具路径可由 ORACLE_ALIGN_CASES_JSON 覆盖
@@ -1238,6 +1269,21 @@ func _init() -> void :
 		quit(1)
 		return
 	var cases: Array = parsed["cases"]
+
+	# ★ np51㉞：case 级门控表（特例场逐场对齐的跑批通道）。表文件
+	#   res://oracle_align_case_overrides.json（缺省零回归）：
+	#   {"<case_id>": {"no_flkfire": true, "inj_item": "X", "inj_trigger_n": 1}}
+	#   run_case 开头按 case_id 应用（OS.set_environment），跑完清除——
+	#   gd_core/CoreItem 的 flicker 速度抽门控与 trigger 定向注入读同名 env。
+	_case_overrides = {}
+	var ov_path = cases_path.get_base_dir().plus_file("oracle_align_case_overrides.json")
+	if fh.file_exists(ov_path):
+		fh.open(ov_path, File.READ)
+		var ov_parsed = parse_json(fh.get_as_text())
+		fh.close()
+		if typeof(ov_parsed) == TYPE_DICTIONARY:
+			_case_overrides = ov_parsed
+			say("★ case 门控表：%d 场 → %s" % [_case_overrides.size(), ov_path])
 
 	# 可选定向（ORACLE_ALIGN_CASES=id1,id2,…）：只跑指定用例（保文件顺序）。
 	# 阶段1 试点用（docs/alignment_fix_workflow.md §2）：按物品数选

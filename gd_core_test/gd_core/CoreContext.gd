@@ -67,6 +67,10 @@ var lobbies_mode := false      # 对齐 Game.curMode == Game.Mode.Lobbies
 #   String 位操作垫片问题。缺省/缺字段 = 100.0（零回归）。
 var custom_health_multiplier := 100.0
 
+# ★ np51㊱：flicker delay 覆盖队列的消费游标（key → 已消费个数）——
+#   ORACLE_FLK_DELAY 同 key 多值时按装配序逐实例消费（双 Burning Coal 类）。
+var flk_delay_cursor := {}
+
 func set_custom_health_multiplier(v: float) -> void :
 	custom_health_multiplier = v
 

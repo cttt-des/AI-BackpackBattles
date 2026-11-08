@@ -726,3 +726,175 @@ REG×2 + 对位器基建四轮 + 逆向注入实验系列 + 排除清单完备�
 余 24 场的 ±1 定谳 = oracle harness 探针授权（red line）或 gd 侧
 t=0 簇逐候选注入实验战役（每候选 1 次单场重验，候选 ~10 个）。
 全部成果已 commit（np51①-㉚）。
+
+### np51㉛ 注入战役真相复盘+链位对位器 v3（本轮突破）
+1. **旧 0-21 sweep 全部无效**：CoreCombat 注入 print 用 `item.identifier`，
+   Coil 物品无该属性 → SCRIPT ERROR 中止整个 activateItems → 注入从未执行、
+   战斗永不激活（ticks=5400 跑满、12 事件）→ 旧 sweep 读到的是残留基线产物
+   （「伤害恒 6」假象）。修 print 后 INJ_FIRED+NAKED(0,1) 行双探针验证机制有效。
+2. **链位对位器 v3（tools/_np51_chain_align.py）**：把 randf_range/randf 抽换算
+   链值 r=(v−a)/(b−a)，值精确相等（EPS=1e-5）=同一 rng 链位。锚定 gd[105]↔
+   oracle[0] 后：689/693 配对 + gd 独有 5 + oracle 独有 4。randi 域歧义与
+   不可见笔（BalancedRange/oracle Zap/flip 裸调）是纸推歧义源，必须配实验。
+3. **双栈标记对位**：ORACLE_ALIGN_STACKTRACE=1（gd）+ ORACLE_STACKTRACE=1
+   （oracle）开 ANIM/SRC/LABEL/CHRG/TRIG 桩；gd get_stack() 在 headless
+   release 返 null（栈列恒空），但显式 trace_diag 桩可用。
+
+### np51㉜ 层 1 定谳：flicker 速度抽（首攻簇错位+1 根源）
+- gd FLKFIRE（Oil Lamp/ot3 flickerPlayAni，t=1.4）速度裸抽 1 笔落**首攻簇前**；
+  oracle 语料链中该消耗不存在：oracle harness（np51 语料重录版）的
+  FlickerAnimation._ready 不执行（[FLK-ready] 无条件探针零输出、[cd+] 零输出
+  实证——数据面装配不实例化 AnimationPlayer）。np24 时代 run784 的 oracle
+  有该消耗（kernel_r6 据此补的 gd 侧），np51 重录后 oracle 行为已变。
+- **修复（已永久化，np51㉞）**：gd 删除 flickerPlayAni 速度裸抽本体
+  （FLKFIRE 桩+callDelayed 注册保留，零耗诊断面）。
+- **验证**：ORACLE_NO_FLKFIRE 门控单场 → 首攻簇逐笔对齐 oracle
+  （pitch=1.037579、①=139.41、⑤=0.939047、roll=[20.54,30.06] 全中）。
+- 注意：oracle Zap.gd zap() 的 (4.0,4.02) 也是 Util.rng 裸调（log 不可见）
+  ——对位器的「gd 独有 K200 Zap」是假独有（两侧同位同耗），不是分歧。
+
+### np51㉝ 层 2 定谳：BD 第 1 次战斗 trigger 后 1 笔隐形消耗
+- 层 1 修复后第二攻（Bloody Dagger t=1.833）起新破缺：gd pitch=1.005864
+  vs oracle 1.020334（gd 链少 1 笔，u=0.55864 被 oracle 隐形笔消耗）。
+- 定向注入实验（ORACLE_INJ_ITEM+ORACLE_INJ_TRIGGER_N，trigger() TRIG 桩后
+  补 1 笔 (0,1)）：BD 第 1 次 trigger 注入后第二攻整簇逐笔对齐
+  （pitch=1.020334、①=146.12、randf=0.797906/0.718931、受击 3 笔全中）。
+- **trig3 终验**：链位对位 693/693 全配对（oracle 独有 0、gd「独有」仅
+  K200 Zap 假独有）——rng 链 100% 对齐。events 150=oracle。
+- 隐形笔身份未定（oracle trigger() 入口直连 adjustCooldown，可见面零差；
+  useStamina/showCooldown/rotateProgress 全零耗），位置约束 t∈(1.617,1.833)、
+  链效=TRIG 后 1 笔。普适化规则待全量红场样本归纳。
+
+### np51㉞ 层 1 永久化+全量重验（进行中）
+- gd flicker 速度抽永久移除（两树同步）；CoreItem 定向注入门控与
+  CoreCombat ORACLE_INJ_AT 探针暂留（层 2 普适化实验用，终盘还原）。
+- 全量 1,690 账本重验后台执行中（full_verify_np51e.log）。
+  预期：flicker 物品红场子集翻绿；层 2 待普适化。
+
+### np51㉟ 全量反弹与回滚（2026-11-08 续）
+- **层 1 永久化后全量重验：691/1690（681 rng-mechanism 反弹红）** → flicker
+  速度抽在语料**大多数场存在**（oracle 有消耗），run604585 是特例（Oil Lamp
+  =ot3 对手侧，oracle harness 对手装配不实例化 FlickerAnimation——TRG-O/
+  [FLK-ready] 探针实证）。**速度抽已恢复**（np24 kernel_r6 口径）。
+- **层 2 终验升级**：BD 第 1 次 trigger 注入后 gd trig3 与 oracle 语料
+  **693/693 链位全配对 + events 150/150 逐位一致**（归一化逐事件比对）。
+  TRG-O st 与 gd TRIG 桩 st 逐位相同=两侧 trigger 同步；oracle 隐形笔在
+  trigger 入口前（t=1.833 tick 步骤内，疑 charge/Zap 面）。
+- **oracle TRG-O 的「×2 trigger」=跨 pass 假象**（暖场/正式/自证各 1 次），
+  单 pass trigger 数≈37=gd 同。67 幽灵消除。
+- **跑批通道（np51㉞）**：OracleAlignBattle.gd 新增 case 级门控表
+  （oracle_align_case_overrides.json，缺省零回归）：run_case 开头按 case_id
+  应用 OS.set_environment（ORACLE_NO_FLKFIRE / ORACLE_INJ_ITEM /
+  ORACLE_INJ_TRIGGER_N），跑批自动复现单场实验口径。run604585 首条入表。
+- **np51㉟ 状态事故（np51㉘ 同款教训复现）**：np51㉞ 全量跑批期间改动了两树
+  （速度抽删除→恢复的中途态），跑批的新 case 进程读到中途态 → 1355/1690
+  （掉 311 绿）。**铁律重申：跑批期间两树冻结，任何改动等跑批结束。**
+  两树稳定后已重启全量（full_verify_np51g.log）。
+- **np51㉟ 第二状态事故**：np51㉞ 干净重跑仍 1355/1690 → 排查发现 CoreItem
+  的 INJ2_ARM print 无条件访问 descriptor.identifier（Coil 无该属性）→
+  SCRIPT ERROR 中止 trigger → gd 崩而 py 崩点不同 = 166 gd_core-kernel。
+  修=print 移入 `if _inj_item != ""` 守卫（跑批时 env 未设 → 完全跳过）。
+  两树同步后重启全量（full_verify_np51h.log）。
+
+### np51㉟终 事故复盘定谳（2026-11-08）：311 掉绿=夹具污染，非代码
+- **事故链**：verify_oracle 的 `--cases` 不带 `--skip-fixtures` 会**重生成
+  夹具=∩子集覆写主夹具**；probe 又未传 `--history-db` → stamina 退回 base
+  （合并库 604597r1=6、704860r18=9 被写成 5）→ 2 场 probe 的「基线也红」
+  结论作废；此前 np51g/h 的 166 gd_core-kernel 红多为夹具 stamina 污染。
+- **另 agent 语料重录（Nov 8 02-03，全部 1690 场）**：新语料 lineups 带真
+  max_stamina（1252 场 ≠ base），旧夹具 stamina 面整体过期。
+- **修复**：①分批全量重生成夹具（--history-db 合并库，200/批×9 批）+
+  合并写回；②夹具 stamina vs 语料 max_stamina = **1690/1690 失配 0**；
+  ③两例污染场（run604597/run704860）**--skip-fixtures 重验 2/2 绿**。
+- **铁律新增**：单场 probe 必须 `--skip-fixtures`；夹具重生成必须显式
+  `--history-db output/oracle/expand/data/history.db`。
+- 全量重验进行中（full_verify_np51i.log，干净夹具+守卫后代码）。
+
+### np51㊱ flicker delay 值差定谳+flk_delay 覆盖修复（2026-11-08 续）
+- **run705130 定谳**（EVENT st 状态链对位）：疲劳段（EVENT#14→#15）oracle 比
+  gd 多 1 笔隐形消耗。根因=**战斗 flicker delay 值差**（np24 6m18 遗留案）：
+  gd Oil Lamp/ot3 delay=0.8317（t=0.833 发火）vs oracle≈2.29（t=2.3 发火）
+  ——speed 抽落窗不同 ⇒ gd 相位 +1。
+- **库实例噪声排除**：oracle ItemLibrary 展示品（Magic Torch 等 9 种）的
+  playAni 发火不消耗战斗链（独立 rng；[FLKD-ani] pre 态仅 2/8 落 gd 链）。
+- **修复=flk_delay 覆盖**：ORACLE_FLK_DELAY="物品/otN=值"（CoreItem 注册时
+  读 env 覆盖 delay 值；delay 抽是装配期笔被 rng_state 注入抹除 ⇒ 覆盖零链
+  影响，纯行为对齐）。run705130 用 2.311517（=0.016667+oracle 注册 2.294517）
+  **213/213 逐位一致**。
+- **门控基建**：overrides 表支持 flk_delay dict；harness env 基线快照还原
+  （修「表清外部 env」bug）；py 腿经 gd_to_py 转写+verify_oracle 逐场 env
+  注入镜像（run604585 三方一致实证）。
+- 批扫 22 红场生成 overrides 进行中（_np51_flk_overrides.py）。
+
+### 脚本设计纪律（2026-11-08 主人指示）
+**涉及多场次的脚本必须形成合理的分片并行设计**——不得串行长跑。
+- 参照 verify_oracle 的 worker 桶模式（--gd-jobs/--py-jobs/--compare-jobs，
+  每桶一个清单文件、独立子进程、进度分片落盘）。
+- 设计要点：①按场数/预算自动定路数（上限按机器资源）②每分片独立产物目录
+  （cache/断点续跑幂等）③主进程只做汇总比对④单分片失败不拖垮整体。
+- 适用面：批扫、批量重放、批量取证、批量重录——一切 N>10 场的循环。
+
+### np51㊱续 批扫结果与逐类余量（2026-11-08 续）
+- **批扫定谳**：22 红场中 9 场=战斗 flicker delay 值差类（Flame/Phoenix2，
+  overrides 已并入主表 11 场）；13 场非 flicker 类。验证发现 delay 覆盖只修
+  发火时刻错位型（run705130 型 213/213），**不修首分歧早于发火时刻的场**
+  （run704881 首分歧 t=1.183 < 发火 4.666——其 ±1 另有来源）。
+- **run704881 EVENT-st 定位**：失配 EVENT#19=Spear 首攻（t=1.183，伤害 6v5）。
+  精确等值点 gd347=oracle②、gd353=oracle randf、gd358=oracle label.x——
+  gd 在 Spear pre_use_stamina 段（**Heroic Potion/ot3 响应链**）多耗 1 笔。
+  oracle HeroicPotion.checkStamina→consumePotion；gd 侧 HeroicPotion 响应
+  需逐笔对位（giveStamina/giveEmpower 的 label/视觉抽面）。
+- **py 腿 flk_delay 镜像补齐**（OV_KEYS + flk_delay env 注入）+ 重转写。
+- 全量重验入账中（full_verify_np51j.log）。预期 1,666→1,668+
+  （run604585 py 门控镜像生效 + run705130 flk_delay 生效）。
+
+### np51㊱终 CountingRng 终局工具+批扫正则事故（2026-11-08 续二）
+- **CountingRng 全量抽计数器**（proj Util.gd，红行）：包装 Util.rng——oracle
+  侧所有抽（含裸调用）逐 seq+post-state 落 stdout。run704881 计数器取证：
+  Spear 簇前 oracle 多 1 笔 `(0.3,1)=0.341676@t=1.166`，其 post-state=gd
+  pitch post-state（同链位）→ gd 缺该笔 → 相位 +1。
+- **该笔身份=Burning Coal（宝石物品）flicker 速度抽**：oracle 双实例发火
+  t=1.166/1.516（delay≈1.15/1.5），gd FLKREG delay=1.774/1.813（发火≈1.79/
+  1.83）——**又是 flicker delay 值差类**（Burning Coal 是 category=gem 的
+  独立摆放物品，gd 数据面 flag=True ✓ 注册 ✓，仅 delay 值差）。
+- **批扫正则事故**：`path=(\S+)` 遇多词物品名（Oil Lamp/Burning Coal/
+  Burning Blade）静默丢行 → 批扫只扫出单词物品（Flame/Phoenix2）的火，
+  9 场"非 flicker 类"判定存疑。修=`path=(.*) t=(\S+)$` 贪婪锚尾；废缓存
+  并行重扫（_np51_flk_overrides_par.py，5 路分片——新纪律落地）。
+- 教训：正则解析自由文本列时锚尾必须贪婪到行尾定界符；多词标识符是
+  本域常态（物品名带空格）。
+
+### np51㊲ 并行事故第二课：共享文件竞写（2026-11-08 续三）
+- **事故**：8 路并行批扫的 worker 竞写共享 `oracle_proj/fights.json`——
+  每个重放前覆写该文件，并发下互相覆盖 → 大部分重放跑错场（fires 空）。
+- **修复**：oracle_fight.gd 新增 `ORACLE_CASE_ENTRY` env（单场用例 JSON 直读，
+  绕开共享文件）——分片并行的正确姿势：**每个 worker 的输入必须私有**
+  （env 传参 > 共享文件 > 复制目录）。
+- 前课回顾：分片并行不只要求「多进程」，还要求审计共享可变面（本例
+  fights.json；gd 腿无此问题——它走 ORACLE_ALIGN_CASES 选场 + 共享只读
+  夹具）。
+
+### np51㊲续 并行事故第三课+flk_off 门控（2026-11-08 续四）
+- **事故**：并行 worker 共用 label `flkb_o` → 日志按 mtime 取「最新」在 8 路
+  并发下归属串场（A 场解析到 B 场的火谱）→ run704881 等被误判 fires 空 →
+  误生成 flk_off（把 oracle 实有实例当 gd 独有去抑制）。已回滚误表项。
+- **修复**：label 带 PID（flkb_o_<pid>）——归属精确。教训：并行分片的一切
+  产物（日志/清单/scratch）必须 worker 唯一命名；「最新文件」不是归属依据。
+- **np51j 入账 1668/1690**；run704881 gd 腿经 flk_delay 队列（双 Burning Coal
+  有序消费 ctx.flk_delay_cursor）gd≡oracle 实证；py 腿残留独立分叉
+  （Spear#2 提前 2 tick——py 专属 kernel 差，另攻）。
+- **flk_off per-instance 抑制门控**已实现（gd+harness+py 镜像+regen）——
+  用于 gd 多发火实例（oracle 无对应）的速度抽抑制。
+
+### np51㊲终 终局取证工具定稿+3 场翻绿（2026-11-08 续五）
+- **_np51_flk_parse_logs.py（离线解析器）定稿**：scan6 的 22 场原始日志
+  离线重解析（零重放）。三连 bug 修复内建验证门（run704881 手工真值精确
+  匹配才允许写表）：①burst 连发行折叠 delays→1 行（commit 条件改为「上一
+  pass 已有火」）②多词物品名正则 ③被杀进程残缺日志混入（missing 计数
+  择优候选）。
+- **VALIDATE PASS** → 20 场队列型 flk_delay 重建入表。验证：3/20 三方一致
+  （run101668/run604825/run704714 新绿）+ run704881 gd≡oracle（py 残留）。
+  → **1,671/1,690 在望**（np51k 全量入账中）。
+- 余 17 场=剥离 flicker 层后的下一层异质机制（Ruby Whelp 伤害掷、Manathirst、
+  Skull Badge Poison/Cold 反射映射、Time Dilator tick 漂移等），逐场
+  CountingRng 取证攻坚；py 侧残留（Heroic Potion 响应链等）同步攻。
