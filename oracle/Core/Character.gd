@@ -511,11 +511,19 @@ func takeDamage(damageSource: DamageSource, triggerEvent = null) -> DamageResult
 	
 	var attackEffectCount: = 1
 	
+	# ★ np51㊳终⑨ 双攻面探针（ORACLE_DAEPROBE 门控，零 rng 消耗）
+	if OS.get_environment("ORACLE_DAEPROBE") != "":
+		print("[DAE] t=", Util.time, " item=", String(item.descriptor.identifier) if item != null else "null",
+				" daeChance=", item.doubleAttackEffectChance if item != null else "-")
 	if item != null:
 		attackEffectCount += item.rollDoubleAttackEffect()
 	
 	if damageSource.canMiss():
 		var accuracy = damageSource.accuracy
+		# ★ np51㊳终⑧ 命中面探针（ORACLE_ACCPROBE 门控，零 rng 消耗）
+		if OS.get_environment("ORACLE_ACCPROBE") != "":
+			print("[ACC] t=", Util.time, " item=", String(item.descriptor.identifier) if item != null else "null",
+					" canMiss=", damageSource.canMiss(), " accuracy=", accuracy)
 		damageRes.hit = accuracyRng.rollPercent(accuracy)
 		if damageRes.hit and dodgeStacks > 0:
 			changeDodgeStacks( - 1)

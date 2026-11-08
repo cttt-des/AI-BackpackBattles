@@ -19,6 +19,10 @@ extends Node
 var steamLeaderboard = null        # 恒 null：神谕无 Steam 榜单
 var lobbies = null                 # 恒 null：神谕无休闲大厅
 var rounds = []                    # 保留原版字段（serializeRound 路径不使用）
+# ★ np51㊳终⑥：对齐原版 RunDatabase.gd:45 的 recentOpponentRuns——ORACLE_CASE_ENTRY
+#   重放路径（initHistoryOpponent 的 recent-run 回退分支）会读它；部署 harness
+#   曾以未入库的 +7 行形态携带等价补丁，本行入库即消除 recentOpponentRuns 级联。
+var recentOpponentRuns = []
 var facedNoConnectionDarkReflection: int = 0
 var statisticsMode = false
 

@@ -1319,3 +1319,24 @@ t=0 簇逐候选注入实验战役（每候选 1 次单场重验，候选 ~10 �
   - run704242: SPF 毒 proc tick 271v272（1 tick 早；503 事件全同仅此）
 - 备份：output/_expand/lib_fires_overrides.backup_stale.json +
   case_overrides.backup604635.json（清前快照）。
+
+### np51㊳终③-2 逐窗裸流对位翻绿 ×2：1688/1690（2026-11-09）
+- **基建**：oracle Util.rng 换 BareRngLog（IS-A RandomNumberGenerator，零链影响，
+  ORACLE_BARELOG=1 逐抽 [BARE] 行）；gd BalancedRange.randIntRange 补 GDRAW 可见性
+  （ORACLE_ALIGN_DRAWSEQ 门控）；oracle_fight.gd 部署树修复（三文件同步+stub 补
+  recentOpponentRuns+fights.json 重建 1690 场）——重放 rng_log 与冻结语料 md5 逐字节
+  一等自证。新工具：tools/_np51_oracle_bare.py + tools/_np51_bare_align.py（战斗段
+  锚定=最后一段 ≥8 连 (0.95,1.05)；v2 修 pass 选择）。
+- **run300219 翻绿**：oracle [FLKD-ani] 实测火种=BS@2.35/BC@2.817/Flame×5，
+  旧 flk_delay 值仍真；缺=未发火实例队列补 99.0（post-battle）×2 + flk_off Flame/ot1
+  → 三方绿。
+- **run101354 翻绿**：oracle 火种=Holy Armor 槽2 Burning Coal 宝石 @2.2333；
+  旧 gate 键错（Holy Armor/ot3 应为宝石装配键 Burning Coal/ot3）→ flk_delay
+  BC/ot3=2.2284 → 三方绿。
+- **run604687 深推**：idx55→idx133。OilLamp/ot1=2.279478 ✓ + Flame/ot1 队列
+  5.033871×2+99×6（oracle 火种=双 Flame@5.05）。残差=AOD(Amulet of Darkness)
+  1.45 触发 roll gd True/oracle False（u 0.120825 vs 0.519901，同 chanceRng 态
+  同 target 0.345→全局链该位差 1 笔隐形抽）→ 新增 [CHU] flip-u 探针追。
+- **run704242 未动**：np26fA 相位补偿全局承重（移除→1147/1690 已回滚），其
+  SPF 毒 tick 271v272 另寻手术刀条件。
+- 全量 1688/1690（余 run604687+run704242）。

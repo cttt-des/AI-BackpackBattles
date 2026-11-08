@@ -4389,7 +4389,15 @@ func makeNonRigidBody():
 
 
 func rollChance(chance = getBaseChance()) -> bool:
-	return chanceRng.rollPercent(applyBonusChance(chance, 1))
+	var _target = applyBonusChance(chance, 1)
+	# ★ np51㊳终⑩ chance 面探针（ORACLE_CHPROBE 门控，零 rng 消耗）
+	if OS.get_environment("ORACLE_CHPROBE") != "" and descriptor.identifier == "Hammer":
+		print("[CH] t=", Util.time, " Hammer target=", _target,
+				" ew=", chanceRng.expectedWins, " w=", chanceRng.wins, " lr=", chanceRng.lastResult)
+	var _rc = chanceRng.rollPercent(_target)
+	if OS.get_environment("ORACLE_CHPROBE") != "" and descriptor.identifier == "Hammer":
+		print("[CHR] t=", Util.time, " target=", _target, " res=", _rc)
+	return _rc
 	
 func rollChance2() -> bool:
 	return chanceRng.rollPercent(applyBonusChance(descriptor.chance2, 2))

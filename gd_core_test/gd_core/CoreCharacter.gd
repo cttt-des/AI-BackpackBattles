@@ -579,6 +579,10 @@ func takeDamage(damageSource: CoreDamageSource, triggerEvent = null) -> CoreDama
 	
 	if damageSource.canMiss():
 		var accuracy = damageSource.accuracy
+		# ★ np51㊳终⑧ 命中面探针（GD_ACCPROBE 门控，零 rng 消耗）
+		if OS.get_environment("GD_ACCPROBE") != "":
+			print("[ACC] t=", ctx.time, " item=", String(item.descriptor.identifier) if item != null else "null",
+					" canMiss=", damageSource.canMiss(), " accuracy=", accuracy)
 		damageRes.hit = accuracyRng.rollPercent(accuracy)
 		if damageRes.hit and dodgeStacks > 0:
 			changeDodgeStacks( - 1)

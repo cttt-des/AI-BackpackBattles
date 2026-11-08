@@ -3,7 +3,10 @@ extends Node2D
 var frameCounter = 0
 var time = 0.0
 var clockTime = 0.0
-var rng = RandomNumberGenerator.new()
+var rng = preload("res://Utility/BareRngLog.gd").new()
+# ★ np51㊳终⑦：rng 换成 BareRngLog（IS-A RandomNumberGenerator，行为全等）；
+#   ORACLE_BARELOG=1 时逐抽打 [BARE] 行（含全部裸调），用于 gd/oracle 隐形
+#   抽差定位（run604687 Poison Dagger 窗 2 步差）。默认零输出。
 var file = File.new()
 var translationCache: = {}
 var sharedBitstream: = BitStream.new()
@@ -1096,8 +1099,15 @@ func roll(maximum = 100.0) -> float:
 		print_stack()
 	return rng_trace_range(0, maximum, "roll")
 
+var debug_flip_tag := ""
+
 func flip(chance = 0.5) -> bool:
-	return rng_trace_f() <= chance
+	var _r = rng_trace_f()
+	# ★ np51㊳终⑮ flip u 探针（ORACLE_CHUPROBE 门控，零 rng 消耗）
+	if OS.get_environment("ORACLE_CHUPROBE") != "" and debug_flip_tag != "":
+		print("[CHU] ", debug_flip_tag, " u=", _r, " ch=", chance)
+		debug_flip_tag = ""
+	return _r <= chance
 
 func flipPercent(chance) -> bool:
 	return roll() <= chance

@@ -47,11 +47,17 @@ func roll(maximum: float = 100.0) -> float:
 	return randf_range(0, maximum)
 
 
+var debug_flip_tag := ""
+
 func flip(chance: float = 0.5) -> bool:
 	var r = rng.randf()
 	if oracle_trace:
 		_trace("randf", 0, 0, r)
 	bare_draw_seq("randf", 0, 0, r)
+	# ★ np51㊳终⑮ flip u 探针（GD_CHUPROBE 门控，零 rng 消耗）
+	if OS.get_environment("GD_CHUPROBE") != "" and debug_flip_tag != "":
+		print("[CHU] ", debug_flip_tag, " u=", r, " ch=", chance)
+		debug_flip_tag = ""
 	return r <= chance
 
 
@@ -350,7 +356,11 @@ class BalancedRange extends Reference:
 		#   CoreRng.randi_range 追踪版，使 gd trace 多出伤害行、与语料账本
 		#   不可直比（run862_r18 对位 walk 在 c99/c100 间虚位差 δ 实证）。
 		#   消耗面不变（同一 PCG 同参数），仅账本可见性对齐。
+		# ★ np51㊳终⑫：GDRAW 可见性补齐（ORACLE_ALIGN_DRAWSEQ=1 时逐抽打
+		#   [GDRAW] 行；对位需看见伤害掷点——oracle 侧 [BARE] 可见而 gd
+		#   此前不可见 → 窗口对位虚差一位）。默认零输出零链影响。
 		var rng = _rng.rng.randi_range(from, to)
+		_rng.bare_draw_seq("randi_range", from, to, rng)
 		var expected: float = 0.5 * (from + to)
 		
 		var dif: float = rng - expected

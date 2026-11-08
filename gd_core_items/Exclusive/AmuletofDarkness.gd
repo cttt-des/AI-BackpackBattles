@@ -12,10 +12,18 @@ func onPrepare():
 	connectForCombat(opponent(), "character_attacked", "onOpponentDamaged")
 	
 	for item in getAffectedItems():
+		# ★ np51㊳终⑭ 触发面探针（GD_AODPROBE 门控，零 rng 消耗）
+		if OS.get_environment("GD_AODPROBE") != "":
+			print("[AOD-prep] affected=", String(item.descriptor.identifier))
 		connectForCombat(item, "activated", "onItemActivated")
 
 
 func onItemActivated(event):
+	# ★ np51㊳终⑭ 触发面探针（GD_AODPROBE 门控，零 rng 消耗）
+	if OS.get_environment("GD_AODPROBE") != "":
+		print("[AOD-trig] t=", ctx.time)
+	if OS.get_environment("GD_CHUPROBE") != "":
+		ctx.rng.debug_flip_tag = "AOD t=" + str(ctx.time)
 	if rollChance():
 		var dam = descriptor.minDam
 		var res = dealEffectDamage(dam)

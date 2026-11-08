@@ -8,7 +8,15 @@ func canAffect(item):
 
 
 func onPrepare():
-	for item in getAffectedItems():
+	var _aff = getAffectedItems()
+	# ★ np51㊳终⑪ 增伤面探针（GD_FORTPROBE 门控，零 rng 消耗）
+	if OS.get_environment("GD_FORTPROBE") != "":
+		var _names := ""
+		for _a in _aff:
+			_names += String(_a.descriptor.identifier) + ","
+		print("[FORT] t=prepare bonusChance=", bonusChance, " affected=", _names,
+				" mult=", bonusChancePercent_mult)
+	for item in _aff:
 		item.addBonusChance(bonusChance)
 
 

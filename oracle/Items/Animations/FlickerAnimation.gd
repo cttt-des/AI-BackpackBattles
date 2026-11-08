@@ -17,8 +17,15 @@ func _ready():
 
 
 func onAnimationEnded(aniName):
-	Util.callDelayed(self, "playAni", Util.rng.randf_range(minDist, maxDist))
+	var d = Util.rng.randf_range(minDist, maxDist)
+	# ★ np51㊳终⑤ fire-time 取证探针（ORACLE_FLKPROBE 门控，零 rng 消耗）
+	if OS.get_environment("ORACLE_FLKPROBE") != "":
+		print("[FLKD] path=", get_path(), " delay=", d)
+	Util.callDelayed(self, "playAni", d)
 
 func playAni():
-	playback_speed = Util.rng.randf_range(minSpeed, maxSpeed)
+	var spd = Util.rng.randf_range(minSpeed, maxSpeed)
+	playback_speed = spd
 	play(ani)
+	if OS.get_environment("ORACLE_FLKPROBE") != "":
+		print("[FLKD-ani] path=", get_path(), " t=", Util.time, " pre=", spd)

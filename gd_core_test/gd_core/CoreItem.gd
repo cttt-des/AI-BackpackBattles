@@ -1259,7 +1259,15 @@ func getChance2() -> float:
 func rollChance(chance = null) -> bool:
 	if chance == null:
 		chance = getBaseChance()
-	var _rc = chanceRng.rollPercent(applyBonusChance(chance, 1))
+	var _target = applyBonusChance(chance, 1)
+	# ★ np51㊳终⑩ chance 面探针（GD_CHPROBE 门控，零 rng 消耗）
+	if OS.get_environment("GD_CHPROBE") != "" and descriptor.identifier == "Hammer":
+		print("[CH] t=", ctx.time, " Hammer target=", _target,
+				" ew=", chanceRng.expectedWins, " w=", chanceRng.wins, " lr=", chanceRng.lastResult,
+				" mult=", bonusChancePercent_mult)
+	var _rc = chanceRng.rollPercent(_target)
+	if OS.get_environment("GD_CHPROBE") != "" and descriptor.identifier == "Hammer":
+		print("[CHR] t=", ctx.time, " target=", _target, " res=", _rc)
 	if ctx.rng.oracle_trace and ctx.rng._stacktrace:
 		ctx.rng.trace_diag("ROLLW", String(descriptor.identifier) + "/ot" + str(int(ownerType)),
 				"ch=" + str(applyBonusChance(chance, 1)), "res=" + str(_rc))

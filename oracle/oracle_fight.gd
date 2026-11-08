@@ -913,6 +913,9 @@ func drive_timers(physics_pass: bool, dt: float) -> void :
 		if _dbg_ticks and U.time >= 41.3 and U.time <= 41.9 \
 				and String(timer.get_path()).find("/Character/@") >= 0:
 			print("[timer-tick] pass=%s t=%.4f %s e0=%.4f eng=%.4f stopped=%s" % [str(physics_pass), U.time, timer.get_path(), e[0], timer.get_time_left(), str(timer.is_stopped())])
+		# ★ np51㊳终④ 逐拍 poll 探针（ORACLE_TIMER_POLL 门控）：注册拍定位
+		if poll_timers and String(timer.get_path()).find("PoisonTimer") >= 0:
+			print("[timer-poll] t=%.4f pass=%s e0=%.4f eng=%.4f stopped=%s %s" % [U.time, str(physics_pass), e[0], timer.get_time_left(), str(timer.is_stopped()), timer.get_path()])
 		if timer.is_stopped():
 			e[0] = - 1.0
 			continue
@@ -922,6 +925,10 @@ func drive_timers(physics_pass: bool, dt: float) -> void :
 		if eng != e[1]:
 			if _dbg_ticks and String(timer.get_path()).find("/Character/") >= 0:
 				print("[bt-resync] t=%.4f %s eng=%.4f old_e0=%.4f old_e1=%.4f" % [U.time, timer.get_path(), eng, e[0], e[1]])
+			# ★ np51㊳终④ 注册拍探针（ORACLE_DEBUG 门控，零 rng 消耗）：
+			#   外部 start 同步拍定位（run704242 SPF 毒 271v272 诊断）。
+			if _dbg_ticks and String(timer.get_path()).find("PoisonTimer") >= 0:
+				print("[timer-reg] t=%.4f pass=%s %s e0->%.4f eng=%.4f" % [U.time, str(physics_pass), timer.get_path(), eng, eng])
 			e[0] = eng            # 外部 start()/changeTimer() → 重同步
 		else:
 			e[0] = e[0] - dt
@@ -952,6 +959,7 @@ func drive_timers(physics_pass: bool, dt: float) -> void :
 
 # SceneTreeTimer（Util.callDelayed/setDelayed 注册表）驱动；判胜后不再补发 [M4]
 var _dbg_delayed := OS.get_environment("ORACLE_DEBUG") != ""
+var poll_timers := OS.get_environment("ORACLE_TIMER_POLL") != ""
 var _dbg_ticks := OS.get_environment("ORACLE_DEBUG") != ""
 # ★ SPDT 探针（tick1diff 簇诊断，env 门控零耗）：全物品每 tick 递减后
 #   (triggerTime, getSpeed) 流——速度变更边界两侧对拍（np26 §6m1）。
