@@ -31,6 +31,7 @@ class CoreContext(GodotObject):
 		self.lobbies_mode = False      # 对齐 Game.curMode == Game.Mode.Lobbies
 		self.custom_health_multiplier = 100.0
 		self.flk_delay_cursor = {}
+		self._drawseq_enabled = False
 		self.combat = None
 		self.item_book = None
 		self.sandbag_active = False
@@ -106,6 +107,12 @@ class CoreContext(GodotObject):
 
 	# ★ np51㊱：flicker delay 覆盖队列的消费游标（key → 已消费个数）——
 	#   ORACLE_FLK_DELAY 同 key 多值时按装配序逐实例消费（双 Burning Coal 类）。
+
+		# ★ np51㊳：ORACLE_ALIGN_DRAWSEQ=1 → CoreRng 启用全量抽计数（[GDRAW] 行）
+
+	def set_drawseq_enabled(self, v):
+		self._drawseq_enabled = v
+		self.rng.draw_seq = 0 if v else -1
 
 	def set_custom_health_multiplier(self, v):
 		self.custom_health_multiplier = v

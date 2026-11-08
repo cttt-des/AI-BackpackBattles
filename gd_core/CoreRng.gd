@@ -51,6 +51,7 @@ func flip(chance: float = 0.5) -> bool:
 	var r = rng.randf()
 	if oracle_trace:
 		_trace("randf", 0, 0, r)
+	bare_draw_seq("randf", 0, 0, r)
 	return r <= chance
 
 
@@ -120,10 +121,35 @@ func trace_diag(kind: String, a, b, c = "") -> void :
 		oracle_trace_log.push_back([oracle_trace_log.size(), kind, str(a), str(b), str(c)])
 
 
+# ★ np51㊳：裸抽计数（ORACLE_ALIGN_DRAWSEQ=1 时逐抽打 [GDRAW] 行，含裸调用）。
+#   与 oracle CountingRng 的 [DRAW] 行同构，供双侧全量抽逐笔对位。
+var draw_seq := -1  # -1=未启用；ORACLE_ALIGN_DRAWSEQ=1 时启用
+
+func bare_draw_seq(kind: String, from, to, r) -> void :
+	if draw_seq >= 0:
+		draw_seq += 1
+		print("[GDRAW] ", draw_seq, " ", kind, " ", str(from), " ", str(to), " => ", str(r), " st=", str(rng.get_state()))
+
+func bare_randf_range(from: float, to: float) -> float:
+	var r = rng.randf_range(from, to)
+	bare_draw_seq("randf_range", from, to, r)
+	return r
+
+func bare_randf() -> float:
+	var r = rng.randf()
+	bare_draw_seq("randf", 0, 0, r)
+	return r
+
+func bare_randi_range(from: int, to: int) -> int:
+	var r = rng.randi_range(from, to)
+	bare_draw_seq("randi_range", from, to, r)
+	return r
+
 func randf_range(from: float, to: float, tag: String = "randf_range") -> float:
 	var r = rng.randf_range(from, to)
 	if oracle_trace:
 		_trace(tag, from, to, r)
+	bare_draw_seq(tag, from, to, r)
 	return r
 
 
@@ -131,6 +157,7 @@ func randi_range(from: int, to: int, tag: String = "randi_range") -> int:
 	var r = rng.randi_range(from, to)
 	if oracle_trace:
 		_trace(tag, from, to, r)
+	bare_draw_seq(tag, from, to, r)
 	return r
 
 

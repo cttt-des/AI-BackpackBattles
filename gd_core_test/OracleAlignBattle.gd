@@ -722,6 +722,9 @@ func run_case(c: Dictionary, out_root: String, perm_warm := false, r5_warm := fa
 	#   call_deferred 永不执行——run574 Deck of Cards 卡链零启动实证；
 	#   机理与开关见 gd_core/CoreContext.gd flushDeferred 注）。
 	ctx.deferred_flush_enabled = false
+	# ★ np51㊳：ORACLE_ALIGN_DRAWSEQ=1 → gd 侧全量抽计数（[GDRAW] 行）
+	if OS.get_environment("ORACLE_ALIGN_DRAWSEQ") != "":
+		ctx.set_drawseq_enabled(true)
 	# ★ np25-p5 订正（2026-10-31）：np24「接力死亡镜像」作废——其探针前提
 	#   （旧语料+旧 harness+旧 CoreTimer）已全部换代；新语料 run1119_r6 实证
 	#   录制侧 EB 接力活跃（Battery 开战发射→EB chargeTimer delay=5s 接力

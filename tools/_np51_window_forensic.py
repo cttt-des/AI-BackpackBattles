@@ -42,16 +42,17 @@ def oracle_replay(cid, outdir):
 def gd_replay(cid, outdir):
     d = os.path.join(outdir, cid)
     if os.path.exists(os.path.join(d, 'rng_trace.txt')):
-        return os.path.join(d, 'rng_trace.txt')  # 复用已有 gd 产物
+        return os.path.join(d, 'rng_trace.txt'), None  # 复用已有 gd 产物
     if os.path.isdir(d):
         shutil.rmtree(d)
     env = {'ORACLE_ALIGN_CASES_JSON': os.path.join(ROOT, 'gd_core_test', 'expand_align_cases.json').replace(os.sep, '/'),
            'ORACLE_ALIGN_FIGHTS_ROOT': os.path.join(ROOT, 'output', 'oracle', 'expand', 'fights').replace(os.sep, '/'),
            'ORACLE_ALIGN_OUT': outdir, 'ORACLE_ALIGN_CASES': cid, 'ORACLE_ALIGN_CHUNK': '0',
-           'ORACLE_ALIGN_TRACE': '1', 'ORACLE_ALIGN_STACKTRACE': '1'}
-    rc, _, _ = gh.run(gh.cmd(project=os.path.join(ROOT, 'gd_core_test'), script='OracleAlignBattle.gd'),
-                      label='wf_g_%d' % os.getpid(), env_extra=env, timeout=300)
-    return os.path.join(d, cid, 'rng_trace.txt')
+           'ORACLE_ALIGN_TRACE': '1', 'ORACLE_ALIGN_STACKTRACE': '1',
+           'ORACLE_ALIGN_DRAWSEQ': '1'}
+    rc, _, glog = gh.run(gh.cmd(project=os.path.join(ROOT, 'gd_core_test'), script='OracleAlignBattle.gd'),
+                      label='wf_g_%d' % os.getpid(), env_extra=env, timeout=900)
+    return os.path.join(d, cid, 'rng_trace.txt'), glog
 
 
 def parse_oracle_states(rng_log):
@@ -87,10 +88,14 @@ def main():
         os.makedirs(fdir, exist_ok=True)
         try:
             ora_log, cnt_log = oracle_replay(cid, fdir)
-            gd_trace = gd_replay(cid, fdir)
+            gd_trace, gd_log = gd_replay(cid, fdir)
         except Exception as e:
             print('[wf][FAIL]', cid, e)
             continue
+        if gd_log and os.path.exists(gd_log):
+            gdraws = [l.strip() for l in io.open(gd_log, encoding='utf-8', errors='replace') if l.strip().startswith('[GDRAW]')]
+            with io.open(os.path.join(fdir, 'gdraw.txt'), 'w', encoding='utf-8') as gf:
+                gf.write('\n'.join(gdraws))
         o_evs = parse_oracle_states(ora_log)
         g_evs, g_rows = parse_gd_states(gd_trace)
         n = min(len(o_evs), len(g_evs))

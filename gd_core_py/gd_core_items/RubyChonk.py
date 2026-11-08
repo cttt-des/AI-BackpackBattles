@@ -54,9 +54,9 @@ class RubyChonk_2(_R.C("res://gd_core_items/Weapon.gd")):
 			#   adjustCooldown 之间恰多 8 步（状态前向解算 adv0→adv8），gd trace
 			#   同窗 0 抽（ANIMDBG pc=False as=True——RC 的 activate(res,false)
 			#   playCombatAni 闸本来就不走 ANIM 块，块在 doCooldownEffect 尾）。
-			self.ctx.rng.rng.randf_range(-30.0, 30.0)
-			self.ctx.rng.rng.randf_range(-100.0, 100.0)
-			self.ctx.rng.rng.randf_range(-5.0, 5.0)
+			self.ctx.rng.bare_randf_range(-30.0, 30.0)
+			self.ctx.rng.bare_randf_range(-100.0, 100.0)
+			self.ctx.rng.bare_randf_range(-5.0, 5.0)
 
 
 	def onDealtDamage(self, damageRes):

@@ -178,6 +178,7 @@ class CoreRng(GodotObject):
 		self.oracle_trace = False
 		self.oracle_trace_log = []
 		self._stacktrace = False      # ORACLE_ALIGN_STACKTRACE=1：逐抽附调用栈签名（诊断用）
+		self.draw_seq = -1  # -1=未启用；ORACLE_ALIGN_DRAWSEQ=1 时启用
 		self.globalChainOpen = False
 
 	# =============================================================================
@@ -232,6 +233,7 @@ class CoreRng(GodotObject):
 		r = self.rng.randf()
 		if self.oracle_trace:
 			self._trace("randf", 0, 0, r)
+		self.bare_draw_seq("randf", 0, 0, r)
 		return r <= chance
 
 
@@ -299,10 +301,36 @@ class CoreRng(GodotObject):
 			self.oracle_trace_log.append([len(self.oracle_trace_log), kind, str(a), str(b), str(c)])
 
 
+	# ★ np51㊳：裸抽计数（ORACLE_ALIGN_DRAWSEQ=1 时逐抽打 [GDRAW] 行，含裸调用）。
+	#   与 oracle CountingRng 的 [DRAW] 行同构，供双侧全量抽逐笔对位。
+
+	def bare_draw_seq(self, kind, from_, to, r):
+		if self.draw_seq >= 0:
+			self.draw_seq += 1
+			print("[GDRAW] ", self.draw_seq, " ", kind, " ", str(from_), " ", str(to), " => ", str(r), " st=", str(self.rng.get_state()))
+
+	def bare_randf_range(self, from_, to):
+		r = self.rng.randf_range(from_, to)
+		self.bare_draw_seq("randf_range", from_, to, r)
+		return r
+
+	def bare_randf(self):
+		r = self.rng.randf()
+		self.bare_draw_seq("randf", 0, 0, r)
+		return r
+
+	def bare_randi_range(self, from_, to):
+		from_ = int(from_)
+		to = int(to)
+		r = self.rng.randi_range(from_, to)
+		self.bare_draw_seq("randi_range", from_, to, r)
+		return r
+
 	def randf_range(self, from_, to, tag="randf_range"):
 		r = self.rng.randf_range(from_, to)
 		if self.oracle_trace:
 			self._trace(tag, from_, to, r)
+		self.bare_draw_seq(tag, from_, to, r)
 		return r
 
 
@@ -312,6 +340,7 @@ class CoreRng(GodotObject):
 		r = self.rng.randi_range(from_, to)
 		if self.oracle_trace:
 			self._trace(tag, from_, to, r)
+		self.bare_draw_seq(tag, from_, to, r)
 		return r
 
 

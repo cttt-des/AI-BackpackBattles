@@ -873,7 +873,7 @@ func flickerPlayAni() -> void :
 			if String(off) == _key:
 				return
 	if OS.get_environment("ORACLE_NO_FLKFIRE") == "":
-		ctx.rng.rng.randf_range(descriptor.flickerMinSpeed, descriptor.flickerMaxSpeed)
+		ctx.rng.bare_randf_range(descriptor.flickerMinSpeed, descriptor.flickerMaxSpeed)
 
 
 # ─────────────────────── 触发（对齐 4416-4451） ───────────────────────
@@ -920,7 +920,7 @@ func trigger():
 		_inj_trigger_count += 1
 		if _inj_trigger_count == _inj_trigger_n:
 			print("INJ2_FIRED item=%s n=%d t=%s" % [_inj_item, _inj_trigger_n, str(ctx.time)])
-			ctx.rng.rng.randf_range(0.0, 1.0)
+			ctx.rng.bare_randf_range(0.0, 1.0)
 	iterationCooldown = adjustCooldown()
 	triggerTime += iterationCooldown
 
@@ -1078,10 +1078,10 @@ func activate(damageRes = null, playCombatAni = true, consume = false,
 		ctx.rng.trace_diag("ANIM", String(descriptor.identifier),
 				str(descriptor.animationScene), "hit=" + str(anim_hit))
 	if playCombatAni and descriptor.animationScene:
-		ctx.rng.rng.randf_range(-30.0, 30.0)
-		ctx.rng.rng.randf_range(-100.0, 100.0)
-		ctx.rng.rng.randf_range(-5.0, 5.0)
-		ctx.rng.rng.randf_range(0.8, 1.2)
+		ctx.rng.bare_randf_range(-30.0, 30.0)
+		ctx.rng.bare_randf_range(-100.0, 100.0)
+		ctx.rng.bare_randf_range(-5.0, 5.0)
+		ctx.rng.bare_randf_range(0.8, 1.2)
 	if damageRes != null:
 		var ch = character()
 		if ch != null:

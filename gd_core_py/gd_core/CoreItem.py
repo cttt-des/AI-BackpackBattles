@@ -990,7 +990,7 @@ class CoreItem(GodotObject):
 				if String(off) == _key:
 					return
 		if _os_environ_get("ORACLE_NO_FLKFIRE") == "":
-			self.ctx.rng.rng.randf_range(self.descriptor.flickerMinSpeed, self.descriptor.flickerMaxSpeed)
+			self.ctx.rng.bare_randf_range(self.descriptor.flickerMinSpeed, self.descriptor.flickerMaxSpeed)
 
 
 	# ─────────────────────── 触发（对齐 4416-4451） ───────────────────────
@@ -1038,7 +1038,7 @@ class CoreItem(GodotObject):
 			self._inj_trigger_count += 1
 			if self._inj_trigger_count == self._inj_trigger_n:
 				print(_gd_fmt('INJ2_FIRED item=%s n=%d t=%s', [self._inj_item, self._inj_trigger_n, str(self.ctx.time)]))
-				self.ctx.rng.rng.randf_range(0.0, 1.0)
+				self.ctx.rng.bare_randf_range(0.0, 1.0)
 		self.iterationCooldown = self.adjustCooldown()
 		self.triggerTime += self.iterationCooldown
 
@@ -1199,10 +1199,10 @@ class CoreItem(GodotObject):
 			self.ctx.rng.trace_diag("ANIM", String(self.descriptor.identifier),
 					str(self.descriptor.animationScene), "hit=" + str(anim_hit))
 		if playCombatAni and self.descriptor.animationScene:
-			self.ctx.rng.rng.randf_range(-30.0, 30.0)
-			self.ctx.rng.rng.randf_range(-100.0, 100.0)
-			self.ctx.rng.rng.randf_range(-5.0, 5.0)
-			self.ctx.rng.rng.randf_range(0.8, 1.2)
+			self.ctx.rng.bare_randf_range(-30.0, 30.0)
+			self.ctx.rng.bare_randf_range(-100.0, 100.0)
+			self.ctx.rng.bare_randf_range(-5.0, 5.0)
+			self.ctx.rng.bare_randf_range(0.8, 1.2)
 		if damageRes != None:
 			ch = self.character()
 			if ch != None:
