@@ -927,3 +927,21 @@ t=0 簇逐候选注入实验战役（每候选 1 次单场重验，候选 ~10 �
 - 取证管线定稿：_np51_window_forensic.py（分片并行+断点复用+目录隔离）；
   报告=forensic/<case>/window/window_report.txt（首失配 EVENT+两侧窗全文+
   oracle [DRAW] 全序列）。
+
+### np51㊳续 A 类修正：ROLLW/BALROLL 是零耗桩（2026-11-08 续八）
+- **关键修正**：rollChance 双侧都走 chanceRng（物品独立 BalancedRng，
+  gd CoreItem.gd:216 = ctx.rng.BalancedRng；oracle Item.gd:4391 chanceRng），
+  flip **不耗全局链** → BALROLL/ROLLW 标记=零耗诊断桩，非多耗笔。
+- **A 类真因重定向**：run704990 窗内 gd-extra=**Magic Staff TRIG 时点差**
+  （gd 在疲劳 tick 内触发+pitch+Spicy Banana stamina；oracle 该触发在更早
+  位置）——与 B 类（Time Dilator）同族：**物品触发时刻的 tick 粒度差**。
+- **修正后分类**：
+  - 触发时刻 tick 粒度差族：run704990(Magic Staff)/400013_r11+400051_r10
+    (Time Dilator)/604635(Oil Lamp+Snowmaster)/704849_r17+r18(Djinn Lamp)/
+    100897(Lightsaber)/704504(Flawed Amethyst)/101571(Burning Coal ot7+Corrupted Armor)
+  - 深层相位族：run101354(Ruby Whelp 5v7)/300219(Hammer)/704933/704849_r17
+    (Manathirst 1v2)/604687(Poison Dagger)/101582/101068/100897/704242(内容层)
+  - py 腿族：run704881
+- **下一棒入口**：取一个「触发时刻差」代表场（run704990），对 Magic Staff
+  的 TRIG 时刻做两侧数学（triggerTime 累积 vs tick 边界），定位差 1 tick 的
+  语义源（adjustCooldown u 差=装配层？speed 差？fatigue 交互？）。
