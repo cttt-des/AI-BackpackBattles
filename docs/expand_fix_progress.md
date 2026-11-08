@@ -945,3 +945,17 @@ t=0 簇逐候选注入实验战役（每候选 1 次单场重验，候选 ~10 �
 - **下一棒入口**：取一个「触发时刻差」代表场（run704990），对 Magic Staff
   的 TRIG 时刻做两侧数学（triggerTime 累积 vs tick 边界），定位差 1 tick 的
   语义源（adjustCooldown u 差=装配层？speed 差？fatigue 交互？）。
+
+### np51㊳终 v4 变体验证与定稿（2026-11-08 续九）
+- −dt 变体（gd_delay=D_o−dt）：run705130 保持绿，run704990/run300219 未改善
+  → 回滚 raw（v3 定稿口径）。该两场红属更深层（非 tick 对齐）。
+- **新增根因层（本轮实锤）**：
+  ①宝石 GemSocket flicker：镶在宿主的 Burning Coal 等（路径
+    /GemSocket/<gem>/FlickerAnimation）——ident 须取 /GemSocket/ 后段
+    （gd key=宝石自身 identifier/otN；此前误取宿主名）；
+  ②队列耗尽兜底：实例数>队列值数 → 保留 gd 自身 delay（oracle 多余实例
+    亦在战后发火）——修前取「末位值」致 gd 多发（run704990 第 5 Flame）；
+  ③py 转写器 split(delim, false)→Python maxsplit=0 不切分——去 bool 参
+    （下游 kv.size()==2 过滤兜底）——修后 4 场 py 类全绿（4/4 三方一致）。
+- **当前 1,677/1,690**。余 13 场=深层异质（触发 tick 粒度/伤害值差/内容层），
+  窗口报告 19 份俱在，逐场 CountingRng 取证循环继续。
