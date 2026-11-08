@@ -959,3 +959,18 @@ t=0 簇逐候选注入实验战役（每候选 1 次单场重验，候选 ~10 �
     （下游 kv.size()==2 过滤兜底）——修后 4 场 py 类全绿（4/4 三方一致）。
 - **当前 1,677/1,690**。余 13 场=深层异质（触发 tick 粒度/伤害值差/内容层），
   窗口报告 19 份俱在，逐场 CountingRng 取证循环继续。
+
+### np51㊳续 v3 重取 13 场 triage（2026-11-08 续十）
+- **B'类（gd 多一次激活 pitch，±1 相位）**：
+  - run400051_r12：gd 多 (0.9,1.1)=1.069599（某物品 gd 激活/oracle 未激活）
+  - run704849_r17/r18：Djinn Lamp 窗 gd pitch 值偏±1（上游相位）
+  - run400013_r11/run400051_r10：Time Dilator 窗 gd pitch 值偏（上游相位）
+- **C 类（伤害值差，同抽数同相位层）**：run101354（Ruby Whelp 5v7）、
+  run300219（Hammer 6v5+gd 多 randf(0,0)——acc/crit roll 顺序或额外 acc 翻转）、
+  run604687、run704849_r17（Manathirst 1v2）、run100897、run101068、
+  run704242（内容层）、run604635
+- 取证产物：output/_expand/triage3.txt（19 场 oracle 末 pass 窗内全 [DRAW]）；
+  每场 window_report.txt 可重生成（_np51_window_forensic.py，产物复用）。
+- **下一棒打法**：每场取「gd 多/少的第 1 笔」→ 定位物品与条件 → 对位
+  oracle 同物品语义（激活条件/roll 次序）→ 修内核或 overrides 扩展字段。
+  B'类候选修法：查 gd 激活条件差（stack 阈值/mana 条件/触发序）。
