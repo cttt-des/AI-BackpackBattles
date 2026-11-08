@@ -1091,3 +1091,19 @@ t=0 簇逐候选注入实验战役（每候选 1 次单场重验，候选 ~10 �
   （GDRAW 行含 kind+range+value+state 四列，足够精确对位）。
 - 双层 run300219 残差=装配构造爆炸（本条）+ 注入后链差（待上法定位）。
 - 工具/基建全部已提交（GDRAW 计数、窗口取证、离线 triage、解析器+验证门）。
+
+### np51㊳续⑧ 余场统一残差实锤：crit/acc roll 序（2026-11-09 终七）
+- run300219 Hammer 攻击簇逐抽：gd=①→crit(0.883024 randf)→acc(BALROLL
+  ch=1.125→0.661409)→dmg；oracle=①→acc(0.661409 同值同位!)→crit(0.105288)
+  →dmg——**gd 的 acc roll（BALROLL 平衡后 ch≥1）多耗一笔**：gd BalancedRng.roll
+  的 target≥1 早退检查在**平衡前**、平衡后 ch=1.125≥1 仍走 flip 耗链；
+  oracle 的早退检查点待核（若在平衡后同点则语义同、另有分歧）。
+- 该形状同样出现在 run101354（gd 多 randf(0,0)=0.960293 于 crit 位）。
+- **下一棒第一枪**：核 oracle BalancedRandom.roll 的 target≥1 早退检查位置
+  （BalanceRandom.gd:23-24 = `elif target >= 1: return true` 在平衡前——
+  与 gd 相同！→ 早退语义同 → ch≥1 是**平衡后**才出现，两侧都会耗链——
+  真分歧在 BALROLL ch 值本身：gd 平衡后 ch=1.125 vs oracle 平衡后 ch=?
+  （oracle 窗内 acc roll 值 0.661409 = flip 的 randf 值，ch 未直接可见）
+  → 需 oracle 侧 ORACLE_PROC_DEBUG/平衡器状态桩取 acc chance 计算过程。
+- 修法候选：acc roll 的 applyBonusChance/balancedness 计算两侧逐项对
+  （ew/wins/lastResult 状态 + accuracy 属性值）。
