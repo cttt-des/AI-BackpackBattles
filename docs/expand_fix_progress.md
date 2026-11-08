@@ -1079,3 +1079,15 @@ t=0 簇逐候选注入实验战役（每候选 1 次单场重验，候选 ~10 �
   暴发尾（≈row 500+ 起，0.92232 锚在此区间），逐值对位找首分歧——
  分歧点即「gd 缺/多 1 笔」的精确身份（两侧计数行含 kind+range+value+state）。
 - gd 侧全量抽计数基建已上线（ORACLE_ALIGN_DRAWSEQ=1 → [GDRAW] 逐抽）。
+
+### np51㊳续⑦ GDRAW 全量计数重大发现（2026-11-09 终六；上下文交接）
+- gd 侧全量抽计数上线（ORACLE_ALIGN_DRAWSEQ=1 → [GDRAW]，含裸抽）：
+  run300219 gd 全序=**2×1063 行，且 pass1 的 1063 行全部是 (0.2,-0.2)**！
+  = gd 装配期 chanceRng 构造爆炸（~531 次 vs oracle ~122——**gd 的
+  chanceRng 双重构造 bug 在 56 物品×宝石的规模下放大 ~9.5×/item**）。
+- 注入正常（rng_state_injected=True）；注入后 gd 战斗链仍不出现 0.92232
+  （oracle t=9.083 的锚值）→ 注入后的链仍有别——**下一棒第一枪**：
+  pass1 尾段（注入后 GDRAW 行）vs oracle rng_log 从注入对应行起逐值对位
+  （GDRAW 行含 kind+range+value+state 四列，足够精确对位）。
+- 双层 run300219 残差=装配构造爆炸（本条）+ 注入后链差（待上法定位）。
+- 工具/基建全部已提交（GDRAW 计数、窗口取证、离线 triage、解析器+验证门）。
