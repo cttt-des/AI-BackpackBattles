@@ -1188,3 +1188,18 @@ t=0 簇逐候选注入实验战役（每候选 1 次单场重验，候选 ~10 �
 - 下一棒优先序：run704242（内容层，EVENT 全对）→ run604635（Snowmaster
   roll）→ run604687/run400013_r12（acc/crit 序）→ run101354 → run300219
   （多层叠加，最后攻）。
+
+### np51㊳续⑮ 余 6 场精确定位（2026-11-09 终十六）
+- **run604635**（resisted 字段翻转）：oracle Snowmaster Empower(106) 不抵抗/
+  Mana Potion Mana(105) 抵抗；gd 反转（Empower 抵抗/Mana 不抵抗）→
+  **抵抗 roll 的链位/次序差**。抵抗 roll 机制= buffs[buffType] 的
+  resistChance + critResistanceRng/critRng（Character.gd:1400/Item.gd
+  giveStacks → buffs[type].gainStacks 内部抵抗判定）→ 每次抵抗判定消耗
+  链抽 → 两次抵抗 roll 的次序/u 差。修法=核 rollDoubleAttackEffect/
+  resistance roll 在 dealDamage 调用链的两侧次序。
+- **run704242**（gd 缺 Mana 激活+War Scythe 伤害 6v8）：gd 缺 oracle idx=81
+  的 EVENT 105(Mana) → Mana Orb/类似物品的激活在 gd 缺席（同 Time Dilator
+  激活序族——**激活条件差或触发序差**）。War Scythe 伤害 6v8=damage roll
+  u 相位差（上游激活差导致链位错位）。
+- 修法优先：run604635 的 resisted 翻转（机制明确=抵抗 roll 次序）→
+  run704242 的激活缺席（同 Time Dilator 族）→ 其余。
