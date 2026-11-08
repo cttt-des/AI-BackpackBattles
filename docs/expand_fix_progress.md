@@ -1279,3 +1279,16 @@ t=0 簇逐候选注入实验战役（每候选 1 次单场重验，候选 ~10 �
   Snowmaster roll 条件 / Claws 命中判定 / Time Dilator 激活时差）——
   每场需窗口取证→GDRAW 对位→per-item 语义定位→修→验。
 - 工具链完整定型并提交，每场约 2-3 轮取证+修可破。
+
+### np51㊳续⑳ run604635 装配构造 +1 定谳（2026-11-09 终二十二）
+- GDRAW vs oracle [DRAW] 逐值对位：oracle seq 跳过 138（0.081291 → -0.149402
+  之间无 138），gd 在该间隙多 1 笔 (0.2,-0.2)=-0.142677。
+- = **某物品的 sceneDepth 多 1** → chanceRng 多构造 1 次（(0.2,-0.2) 抽）
+  → 该物品后续所有装配抽 +1 错位 → 注入后仍 +1 → 战斗链全体错位。
+- **修法**：①从装配序确定该物品（construction count ~93 处=装配序 ~25-30 号
+  物品）②查其 enriched_scene_depth 数据 ③修正 sceneDepth 或
+  inflictRandomDebuffs 等模型 ④单场验 → 全量入账。
+- 该类=「装配期 sceneDepth 差」族，可能覆盖余 6 红场中的多场
+  （每场 = 一个或多个物品的 sceneDepth 值差）。
+- 工具已齐：GDRAW 全量计数+oracle [DRAW] 全量计数+对位脚本+窗口取证。
+  下一场取证直接产 report → 对位 → 定物品 → 修。
