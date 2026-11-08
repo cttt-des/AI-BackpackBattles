@@ -986,3 +986,14 @@ t=0 簇逐候选注入实验战役（每候选 1 次单场重验，候选 ~10 �
 - **下一棒第一枪**：对 run400051_r12 取 gd Time Dilator 的 TRIG 桩值
   （tt/cd/spd，窗口报告 644-652 邻域）vs oracle 的 Time Dilator 首发位置，
   推 combatStart 注册序差 → 修激活序/注册序。
+
+### np51㊳续 Time Dilator 铁证（2026-11-08 终）
+- run400051_r12：gd TRIG Time Dilator tt=-0.007459 **cd=1.012541** spd=1.02
+  t=1.0；oracle 装配期 pitch row6=**1.012541**（两侧初始 cd 完全相同）。
+- gd 发火=tick 60（t=1.0，与疲劳同 tick，先疲劳后激活）；oracle 发火=
+  tick 61（t≈1.0167，疲劳之后）→ **Time Dilator 的递减起点差 1 tick**
+  （注册时点的 physics 激活序：gd 逐 items combatStart 序 vs oracle 骨架的
+  activateItems/physics 挂钩时点）。
+- 修法方向：gd 的 Time Dilator（及同注册时点物品族）首次递减推迟 1 tick，
+  或对齐 activateItems 内的物品 physics 激活时点。禁全局改动（1677 绿场
+  的触发 tick 已对齐，全局移位会大规模破坏）——须按「注册时点类」局部修。
