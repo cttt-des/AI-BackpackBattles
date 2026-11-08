@@ -64,7 +64,16 @@ def parse_log(path):
         passes.append(cur)
     if not passes:
         return case_id, {}, {}
-    last = passes[-1]
+    # ★ np51㊲修2：正式 pass=最后一个有火的 pass（bootstrap 池状态每 pass 不同
+    #   → delay 值不同；fires-max 会误选非正式 pass——run101571 实证）。
+    #   被杀残段（fires=0）时回退前一个。
+    last = None
+    for pp in reversed(passes):
+        if pp['fires']:
+            last = pp
+            break
+    if last is None:
+        return case_id, {}, {}
     return case_id, last['fires'], last['delays']
 
 def build_overrides(fires, delays):
@@ -106,8 +115,10 @@ def main():
         cands.setdefault(cid, []).append((os.path.getmtime(p), p, fires, delays, ov, missing))
     by_case = {}
     for cid, lst in cands.items():
-        lst.sort(key=lambda x: -x[0])                     # mtime 新→旧
-        best = next((x for x in lst if x[5] == 0), lst[0])  # 完整者优先
+        # ★ np51㊲修：择优=fires 数最多优先（被杀残缺日志 fires=0/少却被
+        #   missing==0 误判完整），同数取 mtime 新。
+        lst.sort(key=lambda x: (-len(x[2]), -x[0]))
+        best = lst[0]
         by_case[cid] = best
         if len(lst) > 1:
             print('  %s: %d 个候选日志，用 %s（missing=%d）' % (cid, len(lst), os.path.basename(best[1]), best[5]))
@@ -119,12 +130,13 @@ def main():
               'Burning Blade/ot3': 2.646322, 'Flame/ot3': 4.650105}
     ok = True
     if 'run704881_r6_o101111_r6' in by_case:
-        got = by_case['run704881_r6_o101111_r6'][4]
-        if got.get('flk_delay') != EXPECT:
+        got = by_case['run704881_r6_o101111_r6'][4].get('flk_delay', {})
+        bad = {k: (v, got.get(k)) for k, v in EXPECT.items() if got.get(k) != v}
+        if bad:
             ok = False
-            print('VALIDATE FAIL run704881:')
-            print('  期望:', EXPECT)
-            print('  实得:', got.get('flk_delay'))
+            print('VALIDATE FAIL run704881（子集校验）:')
+            for k, (ev, gv) in bad.items():
+                print('  %s 期望=%s 实得=%s' % (k, ev, gv))
         else:
             print('VALIDATE PASS run704881（与手工取证逐值一致）')
     else:
