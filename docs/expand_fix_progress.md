@@ -1301,3 +1301,21 @@ t=0 簇逐候选注入实验战役（每候选 1 次单场重验，候选 ~10 �
 - **候选**：player 后段物品（Snowmaster/Time Melting/Resistor/…——需
   enriched_scene_depth 数据核）或 opponent 的 Twine×4/Sewing Case 等
 - 六场统一打法已入册，下一会话逐场按 sceneDepth 差定位→修→验。
+
+### np51㊳终③ 定谳：余6红根因=lib_fires/flk_delay 旧语料遗留（2026-11-09）
+- **翻案**：续⑳/终② 的「sceneDepth+1」「per-item 语义差」结论是误读——
+  GDRAW(454) vs oracle [DRAW](242) 的构造差来自多 pass 日志混拼；逐-item
+  构造表（rng_trace ITEMREADY 边界）实证 gd 装配=oracle（普物2/宝石3/对手角色+4，零异常）。
+- **真根因**：lib_fires_overrides.json 与 oracle_align_case_overrides.json 的
+  6 场条目是「UI ItemLibrary flicker 污染时代」的产物——语料已于 20:42-43
+  带桩重录（新语料无 lib 发火），gd 仍按旧表发 8-9 笔 lib 速度抽 → 全链错位。
+- **修**：清空 lib_fires 6 场条目 + 移除 6 场 flk_delay/flk_off 门控
+  （gd 自身 delay 抽经注入后与 oracle 天然对齐，无需覆盖）。
+- **验证**：run604635、run400013_r12 单场三方绿；全量 **1686/1690**。
+- 余 4 红口径更新（事件层首分歧）：
+  - run300219: gd 缺 Burning Sword Heat(107)@t70 + 伤害 6v4（内容）
+  - run101354: Hammer gd miss vs oracle hit@t112（acc 面，442v671 事件）
+  - run604687: Poison Dagger gd 多 crit 10v5@t137（内容）
+  - run704242: SPF 毒 proc tick 271v272（1 tick 早；503 事件全同仅此）
+- 备份：output/_expand/lib_fires_overrides.backup_stale.json +
+  case_overrides.backup604635.json（清前快照）。
