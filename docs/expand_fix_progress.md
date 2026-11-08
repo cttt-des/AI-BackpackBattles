@@ -1132,3 +1132,19 @@ t=0 簇逐候选注入实验战役（每候选 1 次单场重验，候选 ~10 �
     结合 window_report.txt 的 ANIM/TRIG/FLKFIRE 标记行定物品归属。
 - 上一轮已知的差形状：gd 在 Hammer 攻击（battle~663 前）多 1 笔 randf(0,0)
   或少 1 笔——分歧点应更早，对位后立现。
+
+### np51㊳续⑪ 总根因实锤：ItemLibrary 库实例战斗内耗链（2026-11-09 终十）
+- run300219 铁证：Library Burning Coal flicker t=0.316667 发火，其速度抽
+  (0.3,1)=0.339808 的 post-state == gd 下一笔的 post-state（同一链位）——
+  **库实例的 flicker 发火在战斗窗内真实消耗全局链**，gd 无库实例 → 缺笔 →
+  全链错位（Burning Sword 命中 v 落空即下游）。
+- 库实例 delay=bootstrap 抽取（每个 case 可不同——库实例逐 pass 以当前链
+  重注册，delay 为 case 种子确定值）→ 发火可落在战斗窗内（这些 case）或
+  战后（1677 绿场）→ 与绿场不矛盾。
+- **完整修法（下一棒实施）**：
+  ①per-case 从 wf 计数重放提取窗内库发火清单（时刻+物品→速度区间，
+    区间表=各 flicker 物品 flicker_min/max_speed，data 面已有）；
+  ②gd CoreContext 加 lib 火候调度器（时刻表→tick 到点 bare 抽
+    randf_range(lo,hi)，rng_log 零痕迹同 oracle）；
+  ③overrides 表新字段 lib_fires=[{t,lo,hi}…]；py 腿镜像（转写器同构）；
+  ④13 红场（现 6 红场）逐场提取→验证→全量入账至 1690。
