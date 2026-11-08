@@ -1059,7 +1059,13 @@ func activate(damageRes = null, playCombatAni = true, consume = false,
 	#     版（harness animationScene=false 覆写，已撤）则链位缺 4 抽。ANIM 标记
 	#     行一并移除（神谕无 ORACLE_STACKTRACE 时无此行，保持日志逐行对位）。
 	#   ③ damageRes 非空时 playActivateAnimation（Character.gd:464-481，见该函数）。
-	playDropSound(-6)
+	# ★ np51㊳：恢复虚调用（kernel_r2c 的直调旁路已过时——生成基类
+	#   gd_core_items/Item.gd 的 playActivationSound 现为真实现
+	#   （playDropSound(-6)），虚分发=非覆写物品行为不变；覆写物品
+	#   （Time Dilator：固定音高 Sound.playSound，无链抽）恢复正确
+	#   零耗语义——此前直调致覆写物品每次激活多耗 1 笔 (0.9,1.1)
+	#   （run400051_r12/r10、run400013_r11/r12 四场实证）。
+	playActivationSound()
 	# ★ np24 诊断（受控）：镜像神谕 playAnimation 标记行（Item.gd:5345-5358，
 	#   hit 语义同 :4710 playAnimation(false) 分支），点名每次 activate 的物品。
 	#   仅 ORACLE_ALIGN_STACKTRACE=1 时写（神谕同门控），正常跑批零影响——

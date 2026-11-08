@@ -30,6 +30,7 @@ class CoreContext(GodotObject):
 		self.label_rng_enabled = True
 		self.lobbies_mode = False      # 对齐 Game.curMode == Game.Mode.Lobbies
 		self.custom_health_multiplier = 100.0
+		self.flk_delay_cursor = {}
 		self.combat = None
 		self.item_book = None
 		self.sandbag_active = False
@@ -102,6 +103,9 @@ class CoreContext(GodotObject):
 	#   位流→倍率的解析在**夹具层**完成（tools/gen_fixture_from_lineup.py，python
 	#   侧 full-fidelity BitStream 语义），内核只消费数值——避免 py 转写面的
 	#   String 位操作垫片问题。缺省/缺字段 = 100.0（零回归）。
+
+	# ★ np51㊱：flicker delay 覆盖队列的消费游标（key → 已消费个数）——
+	#   ORACLE_FLK_DELAY 同 key 多值时按装配序逐实例消费（双 Burning Coal 类）。
 
 	def set_custom_health_multiplier(self, v):
 		self.custom_health_multiplier = v

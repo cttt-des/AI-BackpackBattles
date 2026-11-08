@@ -997,3 +997,15 @@ t=0 簇逐候选注入实验战役（每候选 1 次单场重验，候选 ~10 �
 - 修法方向：gd 的 Time Dilator（及同注册时点物品族）首次递减推迟 1 tick，
   或对齐 activateItems 内的物品 physics 激活时点。禁全局改动（1677 绿场
   的触发 tick 已对齐，全局移位会大规模破坏）——须按「注册时点类」局部修。
+
+### np51㊳终② playActivationSound 虚调用恢复（2026-11-08 终二）
+- **根因**：kernel_r2c（np24 时代）让 activate() 直调 playDropSound(-6)，
+  绕过脚本对 playActivationSound 的覆写——当时生成基类含空壳故须旁路；
+  现生成基类已是真实现（playDropSound(-6)）→ 旁路已过时且有害：
+  Time Dilator 覆写（固定音高 Sound.playSound，无链抽）被旁路 →
+  每次激活多耗 1 笔 (0.9,1.1)（run400051_r12 窗口铁证：gd 647 多一笔）。
+- **修复**：activate() 恢复虚调用 playActivationSound()（dispatch=非覆写
+  物品走基类 playDropSound(-6) 行为不变；Time Dilator 覆写零耗语义恢复）。
+  行为脚本覆写面=仅 Time Dilator 1 个（grep 实证）→ 零绿场风险。
+- **验证**：3/4 三方一致（run400051_r10/r12、run400013_r11 新绿；
+  run400013_r12 残红=自身另一层 Claws of Attack miss@0.48）。

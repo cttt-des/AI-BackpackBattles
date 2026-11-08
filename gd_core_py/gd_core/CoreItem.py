@@ -95,6 +95,9 @@ class CoreItem(GodotObject):
 		self._triggersThisFrame = 0
 		self.triggerTime = 0.0
 		self.iterationCooldown = 0.0
+		self._inj_item = ""
+		self.__inj_trigger_n = 0
+		self.__inj_trigger_count = 0
 		self.itemMetrics = []
 		self.gems = []
 		self._grid = None
@@ -149,6 +152,18 @@ class CoreItem(GodotObject):
 	@triggersThisFrame.setter
 	def triggersThisFrame(self, v):
 		self._triggersThisFrame = int(v)
+	@property
+	def _inj_trigger_n(self):
+		return self.__inj_trigger_n
+	@_inj_trigger_n.setter
+	def _inj_trigger_n(self, v):
+		self.__inj_trigger_n = int(v)
+	@property
+	def _inj_trigger_count(self):
+		return self.__inj_trigger_count
+	@_inj_trigger_count.setter
+	def _inj_trigger_count(self, v):
+		self.__inj_trigger_count = int(v)
 	@property
 	def ownerType(self):
 		return self._ownerType
@@ -219,6 +234,7 @@ class CoreItem(GodotObject):
 	# 实战判定中恒为 null；保留字段与读取点以维持接口一致。
 
 	# 冷却运行态（对齐 Item.gd:464-470）
+	# ★ np51㉛ 定向注入实验状态（用后还原）
 
 	# 统计（对齐 Item.gd:257 itemMetrics）
 
@@ -879,7 +895,28 @@ class CoreItem(GodotObject):
 			#   Djinn jitter 起全链错位）。修复=补 callDelayed 注册（kernel_r6 递减
 			#   驱动对齐 drive_delayed；animation_finished 无帧永不发 ⇒ 每件战斗期
 			#   恰 1 笔），到点派发 flickerPlayAni 走 ctx.rng.rng 裸抽（零痕迹同规）。
-			self.ctx.callDelayed(self, "flickerPlayAni", flicker_delay)
+			# ★ np51㉟：case 级 delay 覆盖（ORACLE_FLK_DELAY="物品/otN=值,…"）。
+			#   delay 抽本身是装配期笔（rng_state 注入抹除）⇒ 覆盖值零链影响，
+			#   纯行为对齐——修 np24 6m18 遗留的「flicker delay 装配链位差」红场。
+			# ★ np51㊱：同 key 多值=有序队列，按装配序逐实例消费（双 Burning Coal
+			#   类：两实例 oracle delay 不同）；游标存 ctx（每场重置）。
+			_flk_delay_use = float(flicker_delay)
+			_flk_ov = _os_environ_get("ORACLE_FLK_DELAY")
+			if _flk_ov != "":
+				_key = String(self.descriptor.identifier) + '/ot' + str(int(self.ownerType))
+				_vals = []
+				for pair in _iter(_flk_ov.split(",")):
+					kv = String(pair).split("=")
+					if len(kv) == 2 and kv[0] == _key:
+						_vals.append(float(kv[1]))
+				if not (not _vals):
+					_cur = int(self.ctx.flk_delay_cursor.get(_key, 0))
+					if _cur < len(_vals):
+						# ★ np51㊳：队列耗尽（实例数>队列值数）→ 保留 gd 自身 delay
+						#   （oracle 多余实例同样在自身 delay 时刻发火，通常在战后）。
+						_flk_delay_use = _vals[_cur]
+						self.ctx.flk_delay_cursor[_key] = _cur + 1
+			self.ctx.callDelayed(self, "flickerPlayAni", _flk_delay_use)
 			# ★ np25 flicker 派发定谳探针（双门控零耗）：与 oracle FLKSTUB 桩对称——
 			#   delay 抽后的链状态快照，供 state→PCG 前向模拟数精确链位。
 			self.ctx.rng.trace_diag("FLKREG", String(self.descriptor.identifier) + "/ot" + str(int(self.ownerType)),
@@ -937,7 +974,22 @@ class CoreItem(GodotObject):
 				str(self.ctx.time), "st=" + str(self.ctx.rng.rng.get_state()))
 		# ★ kernel_r6：oracle FlickerAnimation.gd:16 playAni = Util.rng.randf_range
 		#   裸调（rng_log 零痕迹，与 np24 ItemAnimation 同款）⇒ 裸抽不进 trace。
-		self.ctx.rng.rng.randf_range(self.descriptor.flickerMinSpeed, self.descriptor.flickerMaxSpeed)
+		# ★ np51㉞ 复盘（2026-11-08）：run604585_r6 单场移除实验 693/693 全对齐，
+		#   但全量重验 681 场反弹红 → **flicker 速度抽在语料大多数场存在**（oracle
+		#   侧有消耗），run604585 是特例（其 Oil Lamp=ot3 对手侧，oracle harness
+		#   对手装配不实例化 FlickerAnimation——[FLK-ready] 探针零输出实证）。
+		#   速度抽保留（np24 kernel_r6 口径），特例场由 ORACLE_NO_FLKFIRE 门控
+		#   逐场处理；普适条件待 24 红场清单归纳。
+		# ★ np51㊱：per-instance 抑制（ORACLE_FLK_OFF="物品/otN,…"）——gd 多发火
+		#   实例（oracle 无对应实例）的速度抽整笔跳过（run704933 Burning Sword 型）。
+		_key = String(self.descriptor.identifier) + '/ot' + str(int(self.ownerType))
+		_flk_off = _os_environ_get("ORACLE_FLK_OFF")
+		if _flk_off != "":
+			for off in _iter(_flk_off.split(",")):
+				if String(off) == _key:
+					return
+		if _os_environ_get("ORACLE_NO_FLKFIRE") == "":
+			self.ctx.rng.rng.randf_range(self.descriptor.flickerMinSpeed, self.descriptor.flickerMaxSpeed)
 
 
 	# ─────────────────────── 触发（对齐 4416-4451） ───────────────────────
@@ -970,6 +1022,22 @@ class CoreItem(GodotObject):
 		self.ctx.rng.trace_diag("TRIG", String(self.descriptor.identifier), int(self.ownerType),
 				"tt=" + str(self.triggerTime) + " cd=" + str(self.iterationCooldown)
 				+ " spd=" + str(self.getSpeed()) + " t=" + str(self.ctx.time))
+		# ★ np51㉛ 定向注入（用后还原）：ORACLE_INJ_ITEM=物品名、ORACLE_INJ_TRIGGER_N=N
+		#   ——该物品第 N 次 trigger 后补 1 笔 (0,1) 裸抽（oracle 侧隐形消耗面定位）。
+		if self._inj_item == "":
+			self._inj_item = _os_environ_get("ORACLE_INJ_ITEM")
+			# ★ np51㉟：int("")在 py 侧抛异常（gd 静默 0）——空串守卫保证双腿同构
+			_inj_n_s = _os_environ_get("ORACLE_INJ_TRIGGER_N")
+			self._inj_trigger_n = 0
+			if _inj_n_s != "":
+				self._inj_trigger_n = int(_inj_n_s)
+			if self._inj_item != "":
+				print(_gd_fmt('INJ2_ARM item=[%s] n=%d', [self._inj_item, self._inj_trigger_n]))
+		if self._inj_item != "" and String(self.descriptor.identifier) == self._inj_item:
+			self._inj_trigger_count += 1
+			if self._inj_trigger_count == self._inj_trigger_n:
+				print(_gd_fmt('INJ2_FIRED item=%s n=%d t=%s', [self._inj_item, self._inj_trigger_n, str(self.ctx.time)]))
+				self.ctx.rng.rng.randf_range(0.0, 1.0)
 		self.iterationCooldown = self.adjustCooldown()
 		self.triggerTime += self.iterationCooldown
 
@@ -1112,7 +1180,13 @@ class CoreItem(GodotObject):
 		#     版（harness animationScene=false 覆写，已撤）则链位缺 4 抽。ANIM 标记
 		#     行一并移除（神谕无 ORACLE_STACKTRACE 时无此行，保持日志逐行对位）。
 		#   ③ damageRes 非空时 playActivateAnimation（Character.gd:464-481，见该函数）。
-		self.playDropSound(-6)
+		# ★ np51㊳：恢复虚调用（kernel_r2c 的直调旁路已过时——生成基类
+		#   gd_core_items/Item.gd 的 playActivationSound 现为真实现
+		#   （playDropSound(-6)），虚分发=非覆写物品行为不变；覆写物品
+		#   （Time Dilator：固定音高 Sound.playSound，无链抽）恢复正确
+		#   零耗语义——此前直调致覆写物品每次激活多耗 1 笔 (0.9,1.1)
+		#   （run400051_r12/r10、run400013_r11/r12 四场实证）。
+		self.playActivationSound()
 		# ★ np24 诊断（受控）：镜像神谕 playAnimation 标记行（Item.gd:5345-5358，
 		#   hit 语义同 :4710 playAnimation(false) 分支），点名每次 activate 的物品。
 		#   仅 ORACLE_ALIGN_STACKTRACE=1 时写（神谕同门控），正常跑批零影响——
