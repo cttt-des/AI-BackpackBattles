@@ -1225,3 +1225,17 @@ t=0 簇逐候选注入实验战役（每候选 1 次单场重验，候选 ~10 �
 - **下一棒第一枪**：gd_core grep `BalancedRng.new` 全部调用点 → 排除
   CoreItem._init 装配期（已注入抹除）→ 留下的战斗期构造点 = 修。
   参照 oracle: 战斗启动无 BalancedRng 构造（构造全在装配期，被种子重置）。
+
+### np51㊳续⑱ 全量序列对位定谳（2026-11-09 终十九；上下文交接）
+- run604635 GDRAW vs oracle [DRAW] 全量对位（含装配+战斗）：前 5 笔 (0.2,-0.2)
+  装配构造精确对齐 → 第 6 笔起分歧 → **装配期 chanceRng 构造序/次数差**
+  （gd 多构造或多物品——但注入抹除装配 → **不影响战斗链**）。
+- 注入后链差=另一独立层：gd 注入后首抽=oracle 首抽 ✓（1.04321 两次出现
+  于 GDRAW 135/1198）→ 注入正确。**注入后 ~104 笔内首次分歧**=
+  gd 多/少某笔隐形抽（flicker speed/Mana Orb roll/activate pitch 等候选）。
+- **工具链完整定型**：_np51_window_forensic.py（GDRAW+计数器+EVENT 对位）
+  + _np51_flk_parse_logs.py（验证门）+ gdraw_injected_battle.txt
+  /oracle_battle_draws.txt 对位数据落盘。下一棒用逐笔对位脚本
+  （GDRAW vs DRAW 四元组 kind/from/to/value）找首分歧笔身份即修。
+- 余 6 场=统一打法：①窗口取证+GDRAW ②注入后逐笔对位找首分歧笔
+  ③定物品归属 ④修内核/overrides ⑤单场验 → 全量入账。
