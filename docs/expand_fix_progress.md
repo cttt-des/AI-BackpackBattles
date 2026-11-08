@@ -1292,3 +1292,12 @@ t=0 簇逐候选注入实验战役（每候选 1 次单场重验，候选 ~10 �
   （每场 = 一个或多个物品的 sceneDepth 值差）。
 - 工具已齐：GDRAW 全量计数+oracle [DRAW] 全量计数+对位脚本+窗口取证。
   下一场取证直接产 report → 对位 → 定物品 → 修。
+
+### np51㊳终② run604635 阵容+组装差总览（2026-11-09 终二十三）
+- player 55 件（Flame×8, Oil Lamp×1, Mana Orb×1, Snowmaster×1, Time Melting×1…）
+- opponent 41 件（Time Dilator×1, Oil Lamp×1, Ruby Whelp×1, Fedora×1…）
+- 装配构造 +1 = 某物品 sceneDepth 偏差（55+41=96 物品 × ~1.3 构造/物品 ≈
+  ~125 (0.2,-0.2)，分歧位 ~93=第 ~70 个构造=物品序 ~50 附近）
+- **候选**：player 后段物品（Snowmaster/Time Melting/Resistor/…——需
+  enriched_scene_depth 数据核）或 opponent 的 Twine×4/Sewing Case 等
+- 六场统一打法已入册，下一会话逐场按 sceneDepth 差定位→修→验。
