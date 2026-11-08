@@ -1239,3 +1239,22 @@ t=0 簇逐候选注入实验战役（每候选 1 次单场重验，候选 ~10 �
   （GDRAW vs DRAW 四元组 kind/from/to/value）找首分歧笔身份即修。
 - 余 6 场=统一打法：①窗口取证+GDRAW ②注入后逐笔对位找首分歧笔
   ③定物品归属 ④修内核/overrides ⑤单场验 → 全量入账。
+
+### np51㊳续⑲ 余 6 场精确分歧内容汇总（2026-11-09 终二十；本 session 最终交接待办）
+| 场 | 分歧类型 | 具体内容 |
+|---|---|---|
+| run604635 | 伤害值+resisted 翻转 | Ruby Whelp 6v10; Snowmaster Empower resisted 反转; Mana Potion resisted 反转 |
+| run704242 | 伤害值+缺 Mana 激活 | War Scythe 6v8(同时刻同物品); gd 缺 EVENT 105(Mana) 激活 |
+| run400013_r11 | 内容层(EVENT 全对) | 链已对齐；per-item 语义差（Time Dilator 伤害 roll） |
+| run400013_r12 | 命中判定 | Claws of Attack: oracle miss / gd hit（accuracy roll u 差） |
+| run604687 | 多余 proc | gd 多 Stun 0.5s（锤子眩晕）oracle 无 |
+| run100897 | （同 run400013_r11 族） | |
+| run300219 | 多层 | Flame/ot3 多 2 笔发火+Broom 伤害 5v3+acc/crit 序 |
+- **统一根因**：全部=攻击簇内 crit/acc/damage roll 序或链位差 →
+  修 dealDamage 内的 roll 顺序/条件即可一次修多场。
+- **下一棒第一枪**：核 gd_core dealDamage 链的 roll 次序（crit 先/acc 先）
+  vs oracle Character.takeDamage 链（acc→randDamage→crit）→ 对位修 →
+  一次可能修 4-6 场。
+- **工具链全齐**：_np51_window_forensic.py（GDRAW+计数器）+
+  _np51_triage_windows.py + _np51_flk_parse_logs.py + GDRAW 计数已集成。
+  每场重取证→对位→验证→入账循环不变。
