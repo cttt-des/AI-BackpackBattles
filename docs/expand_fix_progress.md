@@ -1107,3 +1107,17 @@ t=0 簇逐候选注入实验战役（每候选 1 次单场重验，候选 ~10 �
   → 需 oracle 侧 ORACLE_PROC_DEBUG/平衡器状态桩取 acc chance 计算过程。
 - 修法候选：acc roll 的 applyBonusChance/balancedness 计算两侧逐项对
   （ew/wins/lastResult 状态 + accuracy 属性值）。
+
+### np51㊳续⑨ run300219 链位级定谳（2026-11-09 终八）
+- 状态列链位对位（post-state 精确匹配+符号 XOR 约定）：
+  **gd 1438（randf(0,0)=0.883024）与 oracle 884（randf_range(100,160)=152.98）
+  为同一链位**（post-state 仅符号异）→ 双方在 Hammer 攻击簇内 **① 与 crit 的
+  次序互换**（gd=①→crit→acc；oracle=①→acc→crit……精确说是 gd 把 crit 抽
+  放在了 ① 的下一链位，oracle 的该链位是 ① 本身——①/crit 相对次序差）。
+- gd 簇：pitch→①→crit(randf 0.883)→acc(BALROLL 0.661)→dmg
+  oracle 簇：pitch→①→acc/crit(0.661/0.105)→dmg（顺序与 ① 关系待窗内
+  [DRAW] 精读——报告已含该窗全部 [DRAW] 行）。
+- 该族（run300219/101354/604687/400013_r12 的攻击簇 roll 序）修法候选：
+  dealDamage 内 crit roll 与 ①(playCombatAni/activate) 的相对次序对位——
+  对 gd_core Weapon.dealDamage/activate 调用序做逐项核（对 oracle
+  Weapon.gd dealDamage→attack→activate 链）。
