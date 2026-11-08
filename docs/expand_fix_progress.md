@@ -1177,3 +1177,14 @@ t=0 簇逐候选注入实验战役（每候选 1 次单场重验，候选 ~10 �
   或 CoreItemBook 预实例池。下一棒：gd 装配后 dump 全 items 清单比对阵容
   （items 多出的那个=幻影本体）。
 - 该幻影发火 → 后续全链 +1 错位 → Broom 伤害 5v3 等事件分歧。
+
+### np51㊳续⑭ minus-dt 复测（净基线）与现状（2026-11-09 终十五）
+- minus-dt（正确 5 值队列）后 gd Flame/ot3 发火=[4.0667,5.1333,9.0833,9.8167,
+  10.1833]=**精确对齐 oracle** ✓——但 0.92232 锚仍零命中、Broom 1.4167 仍 5v3
+  → **链差另有源头**（非 flicker/fires—— Mana Orb pick/Blood Goobert/
+  acc roll 序 等隐形笔候选）。已回 raw 口径。
+- **当前 1,684/1,690 有效**。余 6 场每场需继续逐层剥离（每层工具已定型：
+  窗口取证→GDRAW/oracle 计数对位→per-item 语义定位→修→验）。
+- 下一棒优先序：run704242（内容层，EVENT 全对）→ run604635（Snowmaster
+  roll）→ run604687/run400013_r12（acc/crit 序）→ run101354 → run300219
+  （多层叠加，最后攻）。
