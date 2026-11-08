@@ -974,3 +974,15 @@ t=0 簇逐候选注入实验战役（每候选 1 次单场重验，候选 ~10 �
 - **下一棒打法**：每场取「gd 多/少的第 1 笔」→ 定位物品与条件 → 对位
   oracle 同物品语义（激活条件/roll 次序）→ 修内核或 overrides 扩展字段。
   B'类候选修法：查 gd 激活条件差（stack 阈值/mana 条件/触发序）。
+
+### np51㊳续 新根因类实锤：Time Dilator 首触发 tick（2026-11-08 续十一）
+- run400051_r12 窗口定谳：gd 的 Time Dilator/ot1 在 t=1.0 激活（EVENT 0+pitch
+  1.069599+ANIM），oracle 同刻无此激活（直接疲劳三元组）→ gd Time Dilator
+  首发火提前。两侧脚本语义一致（slow weapons onPrepare/doCooldownEffect 选
+  最慢 items addSpeed）→ 差在**首次触发 tick**=adjustCooldown 首抽链位
+  （combatStart 注册序/激活序）×speed×tick 累积。
+- 同族：run400051_r10/run400013_r11/run400013_r12（400051/400013 系列
+  玩家或对手侧 Time Dilator）+ 可能部分 Djinn Lamp/Lightsaber/Snowmaster 场。
+- **下一棒第一枪**：对 run400051_r12 取 gd Time Dilator 的 TRIG 桩值
+  （tt/cd/spd，窗口报告 644-652 邻域）vs oracle 的 Time Dilator 首发位置，
+  推 combatStart 注册序差 → 修激活序/注册序。
