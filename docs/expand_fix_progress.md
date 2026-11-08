@@ -912,3 +912,18 @@ t=0 簇逐候选注入实验战役（每候选 1 次单场重验，候选 ~10 �
 - **1,671/1,690 已入账**（np51k，commit 39377f8a）。余 19 场窗口报告
   全出后统一 triage：Skull Badge 反射相位、Pestilence resisted 时刻、
   Mana Orb rollWeighted、Time Dilator 漂移等族。
+
+### np51㊳ 余 19 场窗口报告 triage 总表（2026-11-08 续七；19/19 报告全产）
+| 类 | 场 | gd 窗内标记特征 |
+|---|---|---|
+| A rollWeighted 多耗 | run704990/101582/604687/704504/101571 | gd 多 ROLLW Mana Orb/Amulet flip（oracle 窗内无 roll） |
+| B Time Dilator 时粒 | run400013_r11/400051_r10 | 抽 o=1 g=2，TRIG Time Dilator 提前 |
+| C 伤害值差（同抽数） | run101354(Ruby Whelp)/300219(Hammer)/704933 | 抽数相等、值偏 → 更早层相位 |
+| D gd 多触发实例 | run604635(Oil Lamp+Snowmaster)/704849_r17/r18(Djinn Lamp)/100897(Lightsaber) | gd TRIG+SRC+LABEL 全套多出一套 |
+| E 内容层 | run704242（EVENT 全对）、run704881（py 腿） | |
+- 共性：A/D=gd 侧额外触发或额外 flip（oracle 无对应）；B=触发时粒差；
+  C=更深相位层。修法优先级：A（rollWeighted 语义对位）→ D（多触发抑制/
+  时序）→ B → C。
+- 取证管线定稿：_np51_window_forensic.py（分片并行+断点复用+目录隔离）；
+  报告=forensic/<case>/window/window_report.txt（首失配 EVENT+两侧窗全文+
+  oracle [DRAW] 全序列）。
