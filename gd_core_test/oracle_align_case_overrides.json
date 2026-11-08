@@ -6,20 +6,20 @@
  },
  "run704881_r6_o101111_r6": {
   "flk_delay": {
-   "Burning Coal/ot3": "1.176459,1.530716",
-   "Oil Lamp/ot3": 2.391679,
-   "Burning Blade/ot3": 2.662989,
-   "Flame/ot3": 4.666772
+   "Burning Coal/ot3": "1.159792,1.514049",
+   "Oil Lamp/ot3": 2.375012,
+   "Burning Blade/ot3": 2.646322,
+   "Flame/ot3": 4.650105
   }
  },
  "run704933_r6_o704860_r6": {
   "flk_delay": {
-   "Flame/ot3": "4.639032,4.999057,5.489829"
+   "Flame/ot3": "4.622365,4.982390,5.473162"
   }
  },
  "run704849_r17_o200200_r17": {
   "flk_delay": {
-   "Oil Lamp/ot1": 0.677311
+   "Oil Lamp/ot1": 0.660644
   }
  },
  "run300219_r6_o704614_r6": {
@@ -34,78 +34,75 @@
  },
  "run101582_r9_o704990_r9": {
   "flk_delay": {
-   "Oil Lamp/ot3": 2.612131,
-   "Burning Coal/ot3": 2.723657,
-   "Flame/ot3": "5.707986,11.777725,11.851321,14.835938"
+   "Oil Lamp/ot3": 2.595464,
+   "Burning Coal/ot3": 2.70699,
+   "Flame/ot3": "5.691319,11.761058,11.834654,14.819271"
   }
  },
  "run704714_r9_o604609_r9": {
   "flk_delay": {
-   "Oil Lamp/ot3": 1.92458
+   "Oil Lamp/ot3": 1.907913
   }
  },
  "run101668_r8_o704752_r8": {
   "flk_delay": {
-   "Burning Coal/ot3": 0.349904
+   "Burning Coal/ot3": 0.333237
   }
  },
  "run101068_r18_o100970_r18": {
   "flk_delay": {
-   "Oil Lamp/ot1": 0.434316,
-   "Burning Torch/ot1": 0.637378,
-   "Burning Sword/ot1": 1.055891,
-   "Burning Blade/ot1": 1.545017,
-   "Magic Torch/ot1": 2.383412,
-   "Phoenix2/ot1": 2.503337,
-   "Burning Coal/ot1": 2.578652,
-   "Phoenix/ot1": 2.70736
+   "Oil Lamp/ot1": 0.417649,
+   "Burning Torch/ot1": 0.620711,
+   "Burning Sword/ot1": 1.039224,
+   "Burning Blade/ot1": 1.52835,
+   "Magic Torch/ot1": 2.366745,
+   "Phoenix2/ot1": 2.48667,
+   "Burning Coal/ot1": 2.561985,
+   "Phoenix/ot1": 2.690693
   }
  },
  "run101571_r11_o704580_r11": {
   "flk_delay": {
-   "Burning Coal/ot3": "0.183364,1.293762,2.928804",
-   "Corrupted Armor/ot1": 1.889682,
-   "Oil Lamp/ot3": "2.218763,2.496444",
-   "Flame/ot3": "5.790238,8.111102,8.128056"
-  },
-  "flk_off": [
-   "Burning Coal/ot7"
-  ]
+   "Burning Coal/ot3": "0.166697,1.277095,2.912137",
+   "Corrupted Armor/ot1": 1.873015,
+   "Oil Lamp/ot3": "2.202096,2.479777",
+   "Flame/ot3": "5.773571,8.094435,8.111389"
+  }
  },
  "run704242_r18_o604645_r18": {
   "flk_delay": {
-   "Burning Blade/ot1": 0.255641,
-   "Oil Lamp/ot1": 0.333167,
-   "Phoenix/ot1": 0.709032,
-   "Phoenix2/ot1": 0.798017,
-   "Magic Torch/ot1": 0.855026,
-   "Burning Sword/ot1": 1.912465,
-   "Burning Coal/ot1": 2.522703,
-   "Burning Torch/ot1": 2.546011,
-   "Flame/ot1": 4.884158
+   "Burning Blade/ot1": 0.238974,
+   "Oil Lamp/ot1": 0.3165,
+   "Phoenix/ot1": 0.692365,
+   "Phoenix2/ot1": 0.78135,
+   "Magic Torch/ot1": 0.838359,
+   "Burning Sword/ot1": 1.895798,
+   "Burning Coal/ot1": 2.506036,
+   "Burning Torch/ot1": 2.529344,
+   "Flame/ot1": 4.867491
   }
  },
  "run604825_r9_o704797_r9": {
   "flk_delay": {
-   "Oil Lamp/ot1": 1.390251
+   "Oil Lamp/ot1": 1.373584
   }
  },
  "run400051_r12_o101432_r12": {
   "flk_delay": {
-   "Oil Lamp/ot3": 0.954367
+   "Oil Lamp/ot3": 0.9377
   }
  },
  "run400013_r11_o400051_r11": {
   "flk_delay": {
-   "Burning Torch/ot1": 0.410184,
-   "Magic Torch/ot1": 1.036702,
-   "Burning Sword/ot1": 1.927588,
-   "Phoenix/ot1": 2.133338,
-   "Burning Blade/ot1": 2.201895,
-   "Phoenix2/ot1": 2.264926,
-   "Burning Coal/ot1": 2.609216,
-   "Oil Lamp/ot1": 2.755044,
-   "Flame/ot1": 5.387442
+   "Burning Torch/ot1": 0.393517,
+   "Magic Torch/ot1": 1.020035,
+   "Burning Sword/ot1": 1.910921,
+   "Phoenix/ot1": 2.116671,
+   "Burning Blade/ot1": 2.185228,
+   "Phoenix2/ot1": 2.248259,
+   "Burning Coal/ot1": 2.592549,
+   "Oil Lamp/ot1": 2.738377,
+   "Flame/ot1": 5.370775
   }
  },
  "run705130_r7_o100875_r7": {
@@ -115,15 +112,15 @@
  },
  "run604635_r12_o704668_r12": {
   "flk_delay": {
-   "Oil Lamp/ot1": 1.22316,
-   "Oil Lamp/ot3": 1.88273,
-   "Flame/ot1": "8.124436,8.200043,9.012290,9.369762,10.978275"
+   "Oil Lamp/ot1": 1.206493,
+   "Oil Lamp/ot3": 1.866063,
+   "Flame/ot1": "8.107769,8.183376,8.995623,9.353095,10.961608"
   }
  },
  "run704849_r18_o100846_r18": {
   "flk_delay": {
-   "Oil Lamp/ot3": 1.259717,
-   "Oil Lamp/ot1": 1.384678
+   "Oil Lamp/ot3": 1.24305,
+   "Oil Lamp/ot1": 1.368011
   }
  },
  "run704504_r15_o704283_r15": {
@@ -133,65 +130,55 @@
  },
  "run400013_r12_o101376_r12": {
   "flk_delay": {
-   "Sun Armor/ot3": 0.158487,
-   "Burning Coal/ot3": 0.708364,
-   "Phoenix2/ot3": 2.078848,
-   "Oil Lamp/ot3": 2.850749
-  },
-  "flk_off": [
-   "Burning Coal/ot7"
-  ]
+   "Sun Armor/ot3": 0.14182,
+   "Burning Coal/ot3": 0.691697,
+   "Phoenix2/ot3": 2.062181,
+   "Oil Lamp/ot3": 2.834082
+  }
  },
  "run101354_r14_o101073_r14": {
   "flk_delay": {
-   "Holy Armor/ot3": 2.245067
-  },
-  "flk_off": [
-   "Burning Coal/ot7"
-  ]
+   "Holy Armor/ot3": 2.2284
+  }
  },
  "run704990_r12_o300182_r12": {
   "flk_delay": {
-   "Burning Coal/ot1": 0.243587,
-   "Oil Lamp/ot1": 0.666248,
-   "Obsidian Dragon/ot1": 2.341416,
-   "Flame/ot1": "6.550293,9.103684,9.783312,11.293176",
-   "Flame/ot3": "7.618322,8.078383,10.038786,12.818617"
-  },
-  "flk_off": [
-   "Burning Coal/ot7"
-  ]
+   "Burning Coal/ot1": "0.226920,2.324749",
+   "Oil Lamp/ot1": 0.649581,
+   "Flame/ot1": "6.533626,9.087017,9.766645,11.276509",
+   "Flame/ot3": "7.601655,8.061716,10.022119,12.801950"
+  }
  },
  "run604687_r10_o704291_r10": {
   "flk_delay": {
-   "Oil Lamp/ot1": 2.296145,
-   "Flame/ot1": 5.050538
+   "Oil Lamp/ot1": 2.279478,
+   "Flame/ot1": 5.033871
   }
  },
  "run400051_r10_o705124_r10": {
   "flk_delay": {
-   "Magic Torch/ot1": 0.724956,
-   "Phoenix/ot1": 0.942004,
-   "Burning Sword/ot1": 1.10802,
-   "Burning Blade/ot1": 1.10471,
-   "Phoenix2/ot1": 1.698024,
-   "Burning Torch/ot1": 1.720532,
-   "Burning Coal/ot1": 2.28612,
-   "Oil Lamp/ot1": 2.407656,
-   "Flame/ot1": 14.320034
+   "Magic Torch/ot1": 0.708289,
+   "Phoenix/ot1": 0.925337,
+   "Burning Sword/ot1": 1.091353,
+   "Burning Blade/ot1": 1.088043,
+   "Phoenix2/ot1": 1.681357,
+   "Burning Torch/ot1": 1.703865,
+   "Burning Coal/ot1": 2.269453,
+   "Oil Lamp/ot1": 2.390989,
+   "Flame/ot1": 14.303367
   }
  },
  "run100897_r8_o101005_r8": {
   "flk_delay": {
-   "Burning Sword/ot1": 0.922262,
-   "Oil Lamp/ot1": 1.544961,
-   "Phoenix/ot1": 1.640716,
-   "Burning Blade/ot1": 1.785597,
-   "Burning Coal/ot1": 1.994964,
-   "Phoenix2/ot1": 2.076526,
-   "Magic Torch/ot1": 2.362983,
-   "Burning Torch/ot1": 2.963127,
-   "Flame/ot1": 5.30261
+   "Burning Sword/ot1": 0.905595,
+   "Oil Lamp/ot1": 1.528294,
+   "Phoenix/ot1": 1.624049,
+   "Burning Blade/ot1": 1.76893,
+   "Burning Coal/ot1": 1.978297,
+   "Phoenix2/ot1": 2.059859,
+   "Magic Torch/ot1": 2.346316,
+   "Burning Torch/ot1": 2.94646,
+   "Flame/ot1": 5.285943
   }
  }
 }

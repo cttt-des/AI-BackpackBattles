@@ -14,13 +14,18 @@ LOGDIR = os.path.join(ROOT, 'output', '_recovery', 'godot_logs')
 def ident_from_path(p):
     side = 'ot3' if '/Opponent/' in p else 'ot1'
     seg = p.rstrip('/').split('/FlickerAnimation')[0]
-    name = None
-    for marker in ('/Combat/Opponent/', '/Combat/Player/', '/Main/Player/'):
-        if marker in seg:
-            name = seg.split(marker)[-1].split('/')[0]
-            break
-    if name is None:
-        name = seg.split('/')[-3]
+    # ★ np51㊳：宝石 flicker（镶在宿主 Socket 的 Burning Coal 等）——名字取
+    #   /GemSocket/ 之后段（gd 侧宝石注册 key=宝石自身 identifier/otN）。
+    if '/GemSocket/' in seg:
+        name = seg.split('/GemSocket/')[-1].split('/')[0]
+    else:
+        name = None
+        for marker in ('/Combat/Opponent/', '/Combat/Player/', '/Main/Player/'):
+            if marker in seg:
+                name = seg.split(marker)[-1].split('/')[0]
+                break
+        if name is None:
+            name = seg.split('/')[-3]
     if name.startswith('@') and '@' in name[1:]:
         name = name[1:].split('@')[0]
     return '%s/%s' % (name, side)
@@ -69,10 +74,13 @@ def build_overrides(fires, delays):
     missing = 0
     for p, t in fires.items():
         key = ident_from_path(p)
+        # ★ np51㊳：gd_delay=oracle 原始 delay（不加 CREATED）——oracle 驱动
+        #   「先递减后判零」(created+delay ≤ (k+1)/60 即发火)，gd=ceil(delay·60)，
+        #   raw 值恰使两者同 tick；+CREATED 会晚 1 tick（run704990 Flame 实证）。
         if p in delays:
-            dv = delays[p] + CREATED
+            dv = delays[p]
         else:
-            dv = t
+            dv = t - CREATED
             missing += 1
         per.setdefault(key, []).append((t, dv))
     ov = {'flk_delay': {}}
@@ -106,8 +114,9 @@ def main():
     print('归属到 %d 场' % len(by_case))
 
     # 2) 验证门：run704881 手工取证真值
-    EXPECT = {'Burning Coal/ot3': '1.176459,1.530716', 'Oil Lamp/ot3': 2.391679,
-              'Burning Blade/ot3': 2.662989, 'Flame/ot3': 4.666772}
+    # ★ np51㊳ raw 口径真值（oracle [FLKD] 原始 delay；+CREATED 旧口径会晚 1 tick）
+    EXPECT = {'Burning Coal/ot3': '1.159792,1.514049', 'Oil Lamp/ot3': 2.375012,
+              'Burning Blade/ot3': 2.646322, 'Flame/ot3': 4.650105}
     ok = True
     if 'run704881_r6_o101111_r6' in by_case:
         got = by_case['run704881_r6_o101111_r6'][4]

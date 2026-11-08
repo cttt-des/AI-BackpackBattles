@@ -788,14 +788,17 @@ func _readyInit() -> void :
 		if _flk_ov != "":
 			var _key := String(descriptor.identifier) + "/ot" + str(int(ownerType))
 			var _vals: Array = []
-			for pair in _flk_ov.split(",", false):
+			for pair in _flk_ov.split(","):
 				var kv: PoolStringArray = String(pair).split("=")
 				if kv.size() == 2 and kv[0] == _key:
 					_vals.append(float(kv[1]))
 			if not _vals.empty():
 				var _cur: int = int(ctx.flk_delay_cursor.get(_key, 0))
-				_flk_delay_use = _vals[min(_cur, _vals.size() - 1)]
-				ctx.flk_delay_cursor[_key] = _cur + 1
+				if _cur < _vals.size():
+					# ★ np51㊳：队列耗尽（实例数>队列值数）→ 保留 gd 自身 delay
+					#   （oracle 多余实例同样在自身 delay 时刻发火，通常在战后）。
+					_flk_delay_use = _vals[_cur]
+					ctx.flk_delay_cursor[_key] = _cur + 1
 		ctx.callDelayed(self, "flickerPlayAni", _flk_delay_use)
 		# ★ np25 flicker 派发定谳探针（双门控零耗）：与 oracle FLKSTUB 桩对称——
 		#   delay 抽后的链状态快照，供 state→PCG 前向模拟数精确链位。
@@ -865,7 +868,7 @@ func flickerPlayAni() -> void :
 	var _key := String(descriptor.identifier) + "/ot" + str(int(ownerType))
 	var _flk_off := OS.get_environment("ORACLE_FLK_OFF")
 	if _flk_off != "":
-		for off in _flk_off.split(",", false):
+		for off in _flk_off.split(","):
 			if String(off) == _key:
 				return
 	if OS.get_environment("ORACLE_NO_FLKFIRE") == "":
