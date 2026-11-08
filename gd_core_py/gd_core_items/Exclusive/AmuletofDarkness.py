@@ -34,10 +34,18 @@ class Exclusive__AmuletofDarkness(_R.C("res://gd_core_items/Item.gd")):
 		self.connectForCombat(self.opponent(), "character_attacked", "onOpponentDamaged")
 
 		for item in _iter(self.getAffectedItems()):
+			# ★ np51㊳终⑭ 触发面探针（GD_AODPROBE 门控，零 rng 消耗）
+			if _os_environ_get("GD_AODPROBE") != "":
+				print("[AOD-prep] affected=", String(item.descriptor.identifier))
 			self.connectForCombat(item, "activated", "onItemActivated")
 
 
 	def onItemActivated(self, event):
+		# ★ np51㊳终⑭ 触发面探针（GD_AODPROBE 门控，零 rng 消耗）
+		if _os_environ_get("GD_AODPROBE") != "":
+			print("[AOD-trig] t=", self.ctx.time)
+		if _os_environ_get("GD_CHUPROBE") != "":
+			self.ctx.rng.debug_flip_tag = "AOD t=" + str(self.ctx.time)
 		if self.rollChance():
 			dam = self.descriptor.minDam
 			res = self.dealEffectDamage(dam)

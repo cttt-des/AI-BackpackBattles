@@ -412,7 +412,7 @@ def run_py(cases: List[Dict[str, Any]]) -> int:
         except Exception:
             case_overrides = {}
     _OV_KEYS = ("ORACLE_NO_FLKFIRE", "ORACLE_INJ_ITEM", "ORACLE_INJ_TRIGGER_N",
-                "ORACLE_FLK_DELAY", "ORACLE_FLK_OFF")
+                "ORACLE_FLK_DELAY", "ORACLE_FLK_OFF", "ORACLE_TIMER_NO_PHASE_COMP")
     os.makedirs(PY_OUT, exist_ok=True)
 
     ok = 0
@@ -492,6 +492,8 @@ def run_py(cases: List[Dict[str, Any]]) -> int:
                 os.environ["ORACLE_INJ_TRIGGER_N"] = str(int(_ov.get("inj_trigger_n", 1)))
             if _ov.get("flk_off"):
                 os.environ["ORACLE_FLK_OFF"] = ",".join(_ov["flk_off"])
+            if _ov.get("no_phase_comp"):
+                os.environ["ORACLE_TIMER_NO_PHASE_COMP"] = "1"
             if _ov.get("flk_delay"):
                 _pairs = []
                 for k in sorted(_ov["flk_delay"]):

@@ -1362,3 +1362,14 @@ t=0 簇逐候选注入实验战役（每候选 1 次单场重验，候选 ~10 �
   GD_CHUPROBE 用 CoreRng.debug_flip_tag 槽。全部 env 门控零 rng 消耗。
 - 余 2 红：run604687（上述）、run704242（SPF 毒 tick 271v272；np26fA 补偿
   全局承重不可移，需手术刀条件）。
+
+### np51㊳终④ 1690/1690 全绿达成（2026-11-09）
+- **run604687 翻绿**：oracle 火种终测=Oil Lamp×1 @2.2833 + Flame×1 @5.05
+  （FLKPROBE 复测纠正——此前误把 pass 重复路径当多实例）。终门控：
+  Oil Lamp/ot1='2.279478,99.0'、Flame/ot1='5.033871,99.0×7'。
+- **run704242 翻绿**：新增逐场门控 no_phase_comp → ORACLE_TIMER_NO_PHASE_COMP
+  （CoreTimer np26fA 相位补偿的手术刀开关；三腿贯通：OracleAlignBattle 门控表 /
+  CoreTimer 条件 / verify_oracle py 腿 env + gd_core_py 重生成）。全局补偿
+  保持不动（539 场承重）。
+- **全量验证：1690/1690 三方逐行一致**（--force 全重跑，51.6s）。
+- 目标达成：1690 全语料 oracle ↔ gd_core ↔ gd_core_py 三方 RNG 对齐全绿。

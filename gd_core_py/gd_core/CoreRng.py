@@ -148,7 +148,11 @@ class BalancedRange(GodotObject):
 		#   CoreRng.randi_range 追踪版，使 gd trace 多出伤害行、与语料账本
 		#   不可直比（run862_r18 对位 walk 在 c99/c100 间虚位差 δ 实证）。
 		#   消耗面不变（同一 PCG 同参数），仅账本可见性对齐。
+		# ★ np51㊳终⑫：GDRAW 可见性补齐（ORACLE_ALIGN_DRAWSEQ=1 时逐抽打
+		#   [GDRAW] 行；对位需看见伤害掷点——oracle 侧 [BARE] 可见而 gd
+		#   此前不可见 → 窗口对位虚差一位）。默认零输出零链影响。
 		rng = self._rng.rng.randi_range(from_, to)
+		self._rng.bare_draw_seq("randi_range", from_, to, rng)
 		expected = 0.5 * (from_ + to)
 
 		dif = rng - expected
@@ -175,6 +179,7 @@ class CoreRng(GodotObject):
 	def _init_fields(self):
 		super()._init_fields()
 		self.rng = None
+		self.debug_flip_tag = ""
 		self.oracle_trace = False
 		self.oracle_trace_log = []
 		self._stacktrace = False      # ORACLE_ALIGN_STACKTRACE=1：逐抽附调用栈签名（诊断用）
@@ -229,11 +234,16 @@ class CoreRng(GodotObject):
 		return self.randf_range(0, maximum)
 
 
+
 	def flip(self, chance=0.5):
 		r = self.rng.randf()
 		if self.oracle_trace:
 			self._trace("randf", 0, 0, r)
 		self.bare_draw_seq("randf", 0, 0, r)
+		# ★ np51㊳终⑮ flip u 探针（GD_CHUPROBE 门控，零 rng 消耗）
+		if _os_environ_get("GD_CHUPROBE") != "" and self.debug_flip_tag != "":
+			print("[CHU] ", self.debug_flip_tag, " u=", r, " ch=", chance)
+			self.debug_flip_tag = ""
 		return r <= chance
 
 

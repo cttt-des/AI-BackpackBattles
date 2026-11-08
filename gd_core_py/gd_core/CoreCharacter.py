@@ -635,6 +635,10 @@ class CoreCharacter(GodotObject):
 
 		if damageSource.canMiss():
 			accuracy = damageSource.accuracy
+			# ★ np51㊳终⑧ 命中面探针（GD_ACCPROBE 门控，零 rng 消耗）
+			if _os_environ_get("GD_ACCPROBE") != "":
+				print("[ACC] t=", self.ctx.time, " item=", String(item.descriptor.identifier) if item != None else "null",
+						" canMiss=", damageSource.canMiss(), " accuracy=", accuracy)
 			damageRes.hit = self.accuracyRng.rollPercent(accuracy)
 			if damageRes.hit and self.dodgeStacks > 0:
 				self.changeDodgeStacks( - 1)

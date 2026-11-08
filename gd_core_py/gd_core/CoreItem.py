@@ -1389,7 +1389,15 @@ class CoreItem(GodotObject):
 	def rollChance(self, chance=None):
 		if chance == None:
 			chance = self.getBaseChance()
-		_rc = self.chanceRng.rollPercent(self.applyBonusChance(chance, 1))
+		_target = self.applyBonusChance(chance, 1)
+		# ★ np51㊳终⑩ chance 面探针（GD_CHPROBE 门控，零 rng 消耗）
+		if _os_environ_get("GD_CHPROBE") != "" and self.descriptor.identifier == "Hammer":
+			print("[CH] t=", self.ctx.time, " Hammer target=", _target,
+					" ew=", self.chanceRng.expectedWins, " w=", self.chanceRng.wins, " lr=", self.chanceRng.lastResult,
+					" mult=", self.bonusChancePercent_mult)
+		_rc = self.chanceRng.rollPercent(_target)
+		if _os_environ_get("GD_CHPROBE") != "" and self.descriptor.identifier == "Hammer":
+			print("[CHR] t=", self.ctx.time, " target=", _target, " res=", _rc)
 		if self.ctx.rng.oracle_trace and self.ctx.rng._stacktrace:
 			self.ctx.rng.trace_diag("ROLLW", String(self.descriptor.identifier) + "/ot" + str(int(self.ownerType)),
 					"ch=" + str(self.applyBonusChance(chance, 1)), "res=" + str(_rc))

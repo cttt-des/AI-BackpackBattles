@@ -670,12 +670,17 @@ func run_case(c: Dictionary, out_root: String, perm_warm := false, r5_warm := fa
 	# ★ np51㉞：应用 case 级门控。语义=np51㉟ 修——外部 env（单场实验手工传入）
 	#   是基线，先还原外部基线再叠表（表只升不降；跨场残留以进程启动时快照清）。
 	for k in ["ORACLE_NO_FLKFIRE", "ORACLE_INJ_ITEM", "ORACLE_INJ_TRIGGER_N",
-			"ORACLE_FLK_DELAY", "ORACLE_FLK_OFF"]:
+			"ORACLE_FLK_DELAY", "ORACLE_FLK_OFF", "ORACLE_TIMER_NO_PHASE_COMP"]:
 		OS.set_environment(k, _env_baseline.get(k, ""))
 	if _case_overrides.has(case_id):
 		var ov: Dictionary = _case_overrides[case_id]
 		if bool(ov.get("no_flkfire", false)):
 			OS.set_environment("ORACLE_NO_FLKFIRE", "1")
+		# ★ np51㊳终⑯：multi 计时器相位补偿逐场关（run704242 SPF 毒 271v272：
+		#   oracle 该场登记拍不递减而补偿使其少 1 拍；全局移除→541 场反弹，
+		#   故逐场门控）
+		if bool(ov.get("no_phase_comp", false)):
+			OS.set_environment("ORACLE_TIMER_NO_PHASE_COMP", "1")
 		if String(ov.get("inj_item", "")) != "":
 			OS.set_environment("ORACLE_INJ_ITEM", String(ov["inj_item"]))
 			OS.set_environment("ORACLE_INJ_TRIGGER_N", str(int(ov.get("inj_trigger_n", 1))))

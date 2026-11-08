@@ -156,7 +156,10 @@ func tick(delta: float) -> void :
 		# ★ np26fA 相位补偿：multi start 发生在上一拍 tickTimersPass 之后时，
 		#   本拍（=start 后第一个 tick pass）登记拍照常递减（事件 t 口径差
 		#   1 tick 的吸收，见 _multi_start_time 注）。同拍 start 不补。
-		if multi and _multi_start_time >= 0.0 and _multi_start_time < _utilTime():
+		# ★ np51㊳终⑯：ORACLE_TIMER_NO_PHASE_COMP 逐场关（run704242 SPF 毒
+		#   271v272：该场 oracle 登记拍同样不递减，补偿反成早 1 tick；
+		#   全局移除→541 场反弹，故逐场门控）。
+		if multi and _multi_start_time >= 0.0 and _multi_start_time < _utilTime() 				and OS.get_environment("ORACLE_TIMER_NO_PHASE_COMP") == "":
 			_left = eng - delta
 		_multi_start_time = -1.0
 	else:
