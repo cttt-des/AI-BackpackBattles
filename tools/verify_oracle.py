@@ -500,6 +500,16 @@ def run_py(cases: List[Dict[str, Any]]) -> int:
                 os.environ["ORACLE_FLK_DELAY"] = ",".join(_pairs)
             # ★ np44 清洗落池序键控（镜像 gd 宿主，共用 NO_T0 开关）
             cleanse_biggest_first = (not _no_t0 and case_id in PY_CLEANSE_BIGGEST_FIRST)
+            # ★ np51㊳：库实例发火对位（lib_fires=[t,lo,hi,…] per case）
+            _lf_path = os.path.join(ROOT, "gd_core_test", "lib_fires_overrides.json")
+            if os.path.exists(_lf_path):
+                try:
+                    _lf_all = json.load(io.open(_lf_path, encoding="utf-8"))
+                    eng_kwargs_lib = _lf_all.get(case_id) or []
+                except Exception:
+                    eng_kwargs_lib = []
+            else:
+                eng_kwargs_lib = []
             eng = GDCoreEngine(player, opponent, item_db, character_db,
                                seed=c["seed"], max_time=90.0,
                                probe_bases=(_FightEndGate,),
@@ -529,6 +539,8 @@ def run_py(cases: List[Dict[str, Any]]) -> int:
                                #   ctx.custom_health_multiplier 注入；夹具层解析）
                                custom_health_multiplier=float(
                                    c.get("custom_health_multiplier", 100.0)))
+            # ★ np51㊳：库实例发火对位（transpiled ctx.lib_fires）
+            eng.ctx.lib_fires = [list(map(float, e)) for e in eng_kwargs_lib]
             eng.run()
         except Exception as exc:  # noqa: BLE001 —— 单场失败不拖垮批量，如实记档
             for k, v in _ov_saved.items():

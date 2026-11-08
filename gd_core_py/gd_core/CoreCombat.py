@@ -399,6 +399,7 @@ class CoreCombat(GodotObject):
 		#    advancePhysicsFrame=步骤② 会抢在物品判定链之前）；
 		#    判胜后不再补发（oracle_fight.gd drive_delayed 的 fightEnded continue 语义）。
 		if not self.ctx.fight_ended:
+			self.ctx.lib_fires_tick(self.ctx.PHYSICS_DELTA)
 			self.ctx._flushTimed()
 
 		# 8. 无头保护：超时按原版 forceLoseCombat 语义（超时判负）

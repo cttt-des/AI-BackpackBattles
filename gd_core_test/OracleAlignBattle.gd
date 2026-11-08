@@ -722,6 +722,16 @@ func run_case(c: Dictionary, out_root: String, perm_warm := false, r5_warm := fa
 	#   call_deferred 永不执行——run574 Deck of Cards 卡链零启动实证；
 	#   机理与开关见 gd_core/CoreContext.gd flushDeferred 注）。
 	ctx.deferred_flush_enabled = false
+	# ★ np51㊳：oracle ItemLibrary 库实例战斗窗内发火对位（lib_fires=[t,lo,hi,…]）
+	var _lf = File.new()
+	var _lf_arr: Array = []
+	if _lf.open("res://lib_fires_overrides.json", File.READ) == OK:
+		var _lfv = parse_json(_lf.get_as_text())
+		_lf.close()
+		if typeof(_lfv) == TYPE_DICTIONARY and _lfv.has(case_id):
+			_lf_arr = _lfv[case_id]
+			say("★ lib_fires 应用 %s: %d 笔" % [case_id, _lf_arr.size()])
+	ctx.lib_fires = _lf_arr
 	# ★ np51㊳：ORACLE_ALIGN_DRAWSEQ=1 → gd 侧全量抽计数（[GDRAW] 行）
 	if OS.get_environment("ORACLE_ALIGN_DRAWSEQ") != "":
 		ctx.set_drawseq_enabled(true)

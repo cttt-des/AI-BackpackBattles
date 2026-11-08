@@ -78,6 +78,26 @@ func set_drawseq_enabled(v: bool) -> void :
 	_drawseq_enabled = v
 	rng.draw_seq = 0 if v else -1
 
+# ★ np51㊳：oracle ItemLibrary 库实例 flicker 战斗窗内发火的对位调度器。
+#   条目 [剩余秒, lo, hi]；_flushTimed 同槽递减，到点裸抽 randf_range(lo,hi)
+#   （oracle 侧同为 Util.rng 裸调，rng_log 零痕迹）。
+var lib_fires: Array = []
+
+func lib_fires_tick(delta: float) -> void :
+	if lib_fires.empty():
+		return
+	var keep: Array = []
+	var due: Array = []
+	for e in lib_fires:
+		e[0] = e[0] - delta
+		if e[0] > 0.0:
+			keep.push_back(e)
+		elif not fight_ended:
+			due.push_back(e)
+	lib_fires = keep
+	for e in due:
+		rng.randf_range(float(e[1]), float(e[2]))
+
 func set_custom_health_multiplier(v: float) -> void :
 	custom_health_multiplier = v
 

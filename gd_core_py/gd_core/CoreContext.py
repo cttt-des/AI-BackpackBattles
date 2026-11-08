@@ -32,6 +32,7 @@ class CoreContext(GodotObject):
 		self.custom_health_multiplier = 100.0
 		self.flk_delay_cursor = {}
 		self._drawseq_enabled = False
+		self.lib_fires = []
 		self.combat = None
 		self.item_book = None
 		self.sandbag_active = False
@@ -113,6 +114,25 @@ class CoreContext(GodotObject):
 	def set_drawseq_enabled(self, v):
 		self._drawseq_enabled = v
 		self.rng.draw_seq = 0 if v else -1
+
+	# ★ np51㊳：oracle ItemLibrary 库实例 flicker 战斗窗内发火的对位调度器。
+	#   条目 [剩余秒, lo, hi]；_flushTimed 同槽递减，到点裸抽 randf_range(lo,hi)
+	#   （oracle 侧同为 Util.rng 裸调，rng_log 零痕迹）。
+
+	def lib_fires_tick(self, delta):
+		if (not self.lib_fires):
+			return
+		keep = []
+		due = []
+		for e in _iter(self.lib_fires):
+			e[0] = e[0] - delta
+			if e[0] > 0.0:
+				keep.append(e)
+			elif not self.fight_ended:
+				due.append(e)
+		self.lib_fires = keep
+		for e in _iter(due):
+			self.rng.randf_range(float(e[1]), float(e[2]))
 
 	def set_custom_health_multiplier(self, v):
 		self.custom_health_multiplier = v

@@ -45,8 +45,10 @@ def gd_replay(cid, outdir):
         return os.path.join(d, 'rng_trace.txt'), None  # 复用已有 gd 产物
     if os.path.isdir(d):
         shutil.rmtree(d)
+    # ★ np51㊲修：ORACLE_FIGHTS_ROOT 须指 oracle 子目录（rng_state.txt 注入源
+    #   在该处——子目录隔离后 fdir 根下已无产物，漏指致注入静默失效）。
     env = {'ORACLE_ALIGN_CASES_JSON': os.path.join(ROOT, 'gd_core_test', 'expand_align_cases.json').replace(os.sep, '/'),
-           'ORACLE_ALIGN_FIGHTS_ROOT': os.path.join(ROOT, 'output', 'oracle', 'expand', 'fights').replace(os.sep, '/'),
+           'ORACLE_ALIGN_FIGHTS_ROOT': os.path.join(outdir, 'oracle').replace(os.sep, '/'),
            'ORACLE_ALIGN_OUT': outdir, 'ORACLE_ALIGN_CASES': cid, 'ORACLE_ALIGN_CHUNK': '0',
            'ORACLE_ALIGN_TRACE': '1', 'ORACLE_ALIGN_STACKTRACE': '1',
            'ORACLE_ALIGN_DRAWSEQ': '1'}
