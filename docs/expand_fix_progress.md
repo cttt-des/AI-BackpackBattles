@@ -1121,3 +1121,14 @@ t=0 簇逐候选注入实验战役（每候选 1 次单场重验，候选 ~10 �
   dealDamage 内 crit roll 与 ①(playCombatAni/activate) 的相对次序对位——
   对 gd_core Weapon.dealDamage/activate 调用序做逐项核（对 oracle
   Weapon.gd dealDamage→attack→activate 链）。
+
+### np51㊳续⑩ 注入后链差定位数据落盘（2026-11-09 终九；交接）
+- run300219 注入链路已验证正确：gd 注入后首抽=1.04321=oracle 战斗首抽 ✓。
+- 残差=注入后 ~660 抽内首个分歧（0.92232@battle-663 前 gd 缺该笔）。
+- **对位数据已落盘**（下一棒直接用）：
+  - gd: output/_expand/forensic/run300219_r6_o704614_r6/window/gdraw_injected_battle.txt（注入后战斗全抽）
+  - oracle: 同目录 oracle_battle_draws.txt（战斗全抽）
+  - 对位法：逐行 (kind, from, to, value) 四元组比对，首个不同行=分歧笔；
+    结合 window_report.txt 的 ANIM/TRIG/FLKFIRE 标记行定物品归属。
+- 上一轮已知的差形状：gd 在 Hammer 攻击（battle~663 前）多 1 笔 randf(0,0)
+  或少 1 笔——分歧点应更早，对位后立现。
