@@ -1167,3 +1167,13 @@ t=0 簇逐候选注入实验战役（每候选 1 次单场重验，候选 ~10 �
   + randInBox×2 + EVENT 105×2——两侧 EVENT 对齐但 u 待核）。
 - 取证入口：window_report.txt 已刷新（gdraw.txt 2126 行=注入后完整战斗全抽）
   + oracle_battle_draws.txt；对位脚本法见 np51㊳续⑥。
+
+### np51㊳续⑭ run300219 幻影 Oil Lamp 实锤（2026-11-09 终十四）
+- GDRAW 注入段逐值对位：gd 在战斗序位 105 多抽 (0.3,1)=0.409904（Oil Lamp
+  类 flicker 速度抽），同位 oracle=Hammer 触发 pitch 0.986775——gd 存在
+  **阵容外的幻影 Oil Lamp/ot1**（gd FLKREG Oil Lamp/ot1 1.857924 而阵容
+  player Oil Lamp×0）→ 幻影实例的 flicker 在 t≈1.87 前后发火耗链。
+- 候选源：gd 装配的 phantom item（背包超载掉落位/商店残留/宝石宿主错名）
+  或 CoreItemBook 预实例池。下一棒：gd 装配后 dump 全 items 清单比对阵容
+  （items 多出的那个=幻影本体）。
+- 该幻影发火 → 后续全链 +1 错位 → Broom 伤害 5v3 等事件分歧。
