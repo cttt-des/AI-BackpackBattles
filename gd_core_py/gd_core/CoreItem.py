@@ -858,10 +858,12 @@ class CoreItem(GodotObject):
 	#   物品自身计时器先于其镶嵌宝石计时器（场景树 DFS：宝石是 socket 子节点）。
 	#   由 CoreCombat.physicsTick 步骤⑦按 INVENTORY 装配序逐物品调用。
 	def tickTimersPass(self, delta):
-		self._tickTimers(delta)
+		for t in (self.timers if self.timers.__class__ is list else _iter(self.timers)):
+			t.tick(delta)
 		for gem in (self.gems if self.gems.__class__ is list else _iter(self.gems)):
 			if gem != None:
-				gem._tickTimers(delta)
+				for t in (gem.timers if gem.timers.__class__ is list else _iter(gem.timers)):
+					t.tick(delta)
 
 
 	# ★ np38（run1118_r18 fd@422）：rebuild_timer_registry 的物品侧等价——由

@@ -2689,6 +2689,62 @@ def _d1_seen_set(texts, stat, hit):
     return texts
 
 
+def _f5a_tick_inline(texts, stat, hit):
+    """S5-F5a（有界切片）：tick 计时器链内联——physicsTick→tickTimersPass→
+    _tickTimers 三层派发压平为循环体直发。
+
+    审计（全树 grep）：tickTimersPass/_tickTimers 仅 CoreItem.gd 定义、零覆写；
+    调用点闭合（tickTimersPass 仅 CoreCombat.physicsTick 1 处、_tickTimers 仅
+    tickTimersPass 内 self+gem 两处）——虚派发静态等价。热路径省 ~50 万次
+    方法调用/3场（253k tickTimersPass + 253k self._tickTimers）。
+    方法本体保留（转写保真；热路径不再经过）。锚点计数校验，漂移即抛。
+    """
+    import ast as _ast
+    ti = texts.get("gd_core/CoreItem.gd")
+    if ti is None:
+        raise RuntimeError("F5a: 缺 gd_core/CoreItem.gd 文本——texts 键名漂移")
+    if True:
+        old = ("\tdef tickTimersPass(self, delta):\n"
+               "\t\tself._tickTimers(delta)\n"
+               "\t\tfor gem in (self.gems if self.gems.__class__ is list else _iter(self.gems)):\n"
+               "\t\t\tif gem != None:\n"
+               "\t\t\t\tgem._tickTimers(delta)\n")
+        if ti.count(old) != 1:
+            raise RuntimeError(
+                "F5a: tickTimersPass 锚点计数=%d（需 1）——生成器文本已漂移" % ti.count(old))
+        new = ("\tdef tickTimersPass(self, delta):\n"
+               "\t\tfor t in (self.timers if self.timers.__class__ is list else _iter(self.timers)):\n"
+               "\t\t\tt.tick(delta)\n"
+               "\t\tfor gem in (self.gems if self.gems.__class__ is list else _iter(self.gems)):\n"
+               "\t\t\tif gem != None:\n"
+               "\t\t\t\tfor t in (gem.timers if gem.timers.__class__ is list else _iter(gem.timers)):\n"
+               "\t\t\t\t\tt.tick(delta)\n")
+        ti = ti.replace(old, new, 1)
+        _ast.parse(ti)
+        texts["gd_core/CoreItem.py"] = ti
+    cc = texts.get("gd_core/CoreCombat.gd")
+    if cc is None:
+        raise RuntimeError("F5a: 缺 gd_core/CoreCombat.gd 文本——texts 键名漂移")
+    if True:
+        old = "\t\t\t\titem.tickTimersPass(delta)\n"
+        if cc.count(old) != 1:
+            raise RuntimeError(
+                "F5a: CoreCombat tickTimersPass 调用点计数=%d（需 1）——文本已漂移"
+                % cc.count(old))
+        new = ("\t\t\t\tfor t in (item.timers if item.timers.__class__ is list else _iter__loc(item.timers)):\n"
+               "\t\t\t\t\tt.tick(delta)\n"
+               "\t\t\t\tfor gem in (item.gems if item.gems.__class__ is list else _iter__loc(item.gems)):\n"
+               "\t\t\t\t\tif gem != None:\n"
+               "\t\t\t\t\t\tfor t in (gem.timers if gem.timers.__class__ is list else _iter__loc(gem.timers)):\n"
+               "\t\t\t\t\t\t\tt.tick(delta)\n")
+        cc = cc.replace(old, new, 1)
+        _ast.parse(cc)
+        texts["gd_core/CoreCombat.py"] = cc
+    hit["F5a_tick_inline"] = 2
+    stat["F5a"] = ["CoreItem.tickTimersPass 内联 + CoreCombat 调用点展开"]
+    return texts
+
+
 def write_pkg(order, files_by_rel, by_name, by_path, class_names, stat, hit, write):
     texts = {}
     for rel in order:
@@ -2709,6 +2765,8 @@ def write_pkg(order, files_by_rel, by_name, by_path, class_names, stat, hit, wri
         texts = _hoist_classrefs(texts, order, files_by_rel, stat, hit)
     if "D1" not in _skip:
         texts = _d1_seen_set(texts, stat, hit)
+    if "F5" not in _skip:
+        texts = _f5a_tick_inline(texts, stat, hit)
     if not write:
         return texts
     dirs = {OUT_PKG}

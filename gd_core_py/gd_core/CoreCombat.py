@@ -382,7 +382,12 @@ class CoreCombat(GodotObject):
 			character.tickPhysicsTimers(delta)
 			character.tickBuffs(delta)
 			for item in _iter__loc(character.inventory.getItems()):
-				item.tickTimersPass(delta)
+				for t in (item.timers if item.timers.__class__ is list else _iter__loc(item.timers)):
+					t.tick(delta)
+				for gem in (item.gems if item.gems.__class__ is list else _iter__loc(item.gems)):
+					if gem != None:
+						for t in (gem.timers if gem.timers.__class__ is list else _iter__loc(gem.timers)):
+							t.tick(delta)
 
 		# ⑧ 空闲型 Timer（drive_timers(false)）：疲劳 FatigueStartTimer/FatigueTickTimer
 		#    （CombatTimer.gd，TIMER_PROCESS_IDLE=引擎默认）——在全部物理型 Timer 之后
