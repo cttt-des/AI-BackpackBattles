@@ -2822,6 +2822,34 @@ def _clamp_inline(texts, stat, hit):
     return texts
 
 
+def _hook_strip(texts, stat, hit):
+    """S3-C17b：剥离热路径 no-op 表现钩子调用（hooks.showCooldown，71k/3场）。
+
+    等价性论证：CoreHooks.showCooldown 是空方法（-> void, pass），gd 宿主侧
+    同为空 GDScript 方法——两侧皆 no-op；实参 `1.0 - _div(...)` 纯数学+属性
+    读（无副作用）；56 局基准探针（_BenchProbe）计数
+    fatigue/stun/activation/damage，**不计数 showCooldown**（grep 实证）——
+    剥离对全部验收探针零影响。仅剥热路径 1 处（冷却 per-item-per-tick）；
+    冷路径（showCooldownSmooth/resetZ/Card.py）保留不动。
+    精确锚点 + 计数校验，漂移即抛。
+    """
+    import ast as _ast
+    key = "gd_core/CoreItem.gd"
+    t = texts.get(key)
+    if t is None:
+        raise RuntimeError("C17b: 缺 gd_core/CoreItem.gd 文本——texts 键名漂移")
+    old = ("\t\t\tself.ctx.hooks.showCooldown(self, 1.0 - _div(self.triggerTime, self.iterationCooldown))\n")
+    if t.count(old) != 1:
+        raise RuntimeError(
+            "C17b: showCooldown 热调用锚点计数=%d（需 1）——文本已漂移" % t.count(old))
+    t = t.replace(old, "", 1)
+    _ast.parse(t)
+    texts[key] = t
+    hit["C17b_hook_strip"] = 1
+    stat["C17b"] = ["CoreItem 冷却热路径 hooks.showCooldown 剥离"]
+    return texts
+
+
 def write_pkg(order, files_by_rel, by_name, by_path, class_names, stat, hit, write):
     texts = {}
     for rel in order:
@@ -2846,6 +2874,8 @@ def write_pkg(order, files_by_rel, by_name, by_path, class_names, stat, hit, wri
         texts = _f5a_tick_inline(texts, stat, hit)
     if "C17a" not in _skip:
         texts = _clamp_inline(texts, stat, hit)
+    if "C17b" not in _skip:
+        texts = _hook_strip(texts, stat, hit)
     if not write:
         return texts
     dirs = {OUT_PKG}
