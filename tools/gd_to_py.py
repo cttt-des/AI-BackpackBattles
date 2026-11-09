@@ -2457,6 +2457,7 @@ def _inline_accessors(texts, stat, hit):
     inline_getStacks0 = _only_definer("getStacks", 0, "CoreBuff")
     inline_getStacks1 = _only_definer("getStacks", 1, "CoreCharacter")
     inline_isStunned = _only_definer("isStunned", 0, "CoreCharacter")
+    inline_hasCharacter = _only_definer("hasCharacter", 0, "CoreItem")
     changed = 0
     total = 0
     for rel in list(texts):
@@ -2497,7 +2498,16 @@ def _inline_accessors(texts, stat, hit):
                                                  _span_text(text, a))
             elif (fu.attr == "isStunned" and not node.args and not node.keywords
                     and inline_isStunned):
+                # 双引用模式：接收者限纯表达式（无调用=无副作用，双重求值无害）
+                if any(isinstance(n, _ast.Call) for n in _ast.walk(recv)):
+                    continue
                 new = "(%s.stunnedDuration > 0)" % _span_text(text, recv)
+            elif (fu.attr == "hasCharacter" and not node.args
+                    and not node.keywords and inline_hasCharacter):
+                if any(isinstance(n, _ast.Call) for n in _ast.walk(recv)):
+                    continue
+                new = "(%s.placed and %s.character_ != None)" % (
+                    _span_text(text, recv), _span_text(text, recv))
             else:
                 continue
             reps.append((node.lineno, node.col_offset,

@@ -463,7 +463,7 @@ class CoreItem(GodotObject):
 		if override:
 			return override
 
-		if self.hasCharacter():
+		if (self.placed and self.character_ != None):
 			speed_ = self.speed() + self.getStackSpeedMods()
 			modifiedSpeed = None
 			if speed_ >= 0:
@@ -814,7 +814,7 @@ class CoreItem(GodotObject):
 		#   逐抽对位实证：同 tick 内先抽完全部冷却触发，再依 registry 次序发计时器）。
 		if not self._cooldown_active:
 			return
-		if not (self.character().stunnedDuration > 0):
+		if not self.character().isStunned():
 			self.triggerTime -= delta * self.getSpeed()
 			self.ctx.hooks.showCooldown(self, 1.0 - _div(self.triggerTime, self.iterationCooldown))
 			if self.triggerTime <= 0:
@@ -1262,7 +1262,7 @@ class CoreItem(GodotObject):
 			return override
 
 		minDam = ceil(self.descriptor.minDam + self.bonusMinDam)
-		if self.hasCharacter():
+		if (self.placed and self.character_ != None):
 			if self.canBeEmpowered():
 				minDam = minDam + self.character().getBuffDamageMod()
 
@@ -1283,7 +1283,7 @@ class CoreItem(GodotObject):
 			return override
 
 		maxDam = ceil(self.descriptor.maxDam + self.bonusMaxDam)
-		if self.hasCharacter():
+		if (self.placed and self.character_ != None):
 			if self.canBeEmpowered():
 				maxDam = maxDam + self.character().getBuffDamageMod()
 
@@ -1519,7 +1519,7 @@ class CoreItem(GodotObject):
 	def getAccuracy(self):
 		acc = self.getBaseAccuracy()
 		acc += self.bonusAccuracy
-		if self.hasCharacter():
+		if (self.placed and self.character_ != None):
 			acc += self.character().getBuffAccuracyMod()
 		return acc
 
@@ -1902,7 +1902,7 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:3951-3953
 	def hasOpponent(self):
-		return self.hasCharacter() and self.opponent() != None
+		return (self.placed and self.character_ != None) and self.opponent() != None
 
 
 	# 对齐 Item.gd:1295-1297

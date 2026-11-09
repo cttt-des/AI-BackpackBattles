@@ -1,0 +1,33 @@
+{
+  "stage": "haschar",
+  "machine": "8L, Python 3.14.5",
+  "cmd": "tools/bench_sim.py --n 15 --rounds 2 --label haschar --json output/perf/_haschar.json",
+  "lineups": [
+    "truth_20261001_220653_R19_player.json",
+    "truth_20261001_220653_R19_opponent.json"
+  ],
+  "workers": 1,
+  "n": 30,
+  "p50_ms": 489.7,
+  "p95_ms": 710.9,
+  "min_ms": 289.1,
+  "max_ms": 2036.1,
+  "mean_ticks": 904.8,
+  "ms_per_k_tick": 541.2,
+  "fights_per_s_core": 2.04,
+  "wins_player": 6,
+  "timed_out_n": 0,
+  "round_wall_s": [
+    9.122,
+    7.032
+  ],
+  "round_p50_ms": [
+    481.5,
+    494.2
+  ],
+  "repro_spread_pct": 2.6,
+  "repro_pass_3pct": true,
+  "invariance_delta": [],
+  "invariance_pass": true,
+  "events_bytes_first_seed": 191079
+}
