@@ -60,7 +60,7 @@ class DragonEgg_2(_R.C("res://gd_core_items/Item.gd")):
 
 	def startHatching(self):
 		self.ctx.util.callDelayed(self, "hatch", self.TRANSFORMATION_DUR - 0.1)
-		for shadow in _iter(self.shadows):
+		for shadow in (self.shadows if self.shadows.__class__ is list else _iter(self.shadows)):
 			shadow.offset = Vector2(0, - 138)
 
 

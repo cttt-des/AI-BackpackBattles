@@ -31,7 +31,7 @@ class Exclusive__VampiricCollar(_R.C("res://gd_core_items/RangerCollar.gd")):
 
 
 	def onVampirismChanged(self, amount, event):
-		for item in _iter(self.affectedItems):
+		for item in (self.affectedItems if self.affectedItems.__class__ is list else _iter(self.affectedItems)):
 			item.changeCritChancePercent(amount * self.getChance())
 
 

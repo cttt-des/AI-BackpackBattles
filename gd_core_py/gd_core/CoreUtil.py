@@ -137,7 +137,7 @@ class CoreUtil(GodotObject):
 	# 对齐 Util.gd:974-976
 	@staticmethod
 	def dictAddDict(dict1, dict2):
-		for key in _iter(dict2):
+		for key in (dict2 if dict2.__class__ is list else _iter(dict2)):
 			CoreUtil.dictAdd(dict1, key, dict2[key])
 
 
@@ -266,7 +266,7 @@ class CoreUtil(GodotObject):
 	@staticmethod
 	def invertDictionary(dict):
 		invertedDict = Dictionary()
-		for key in _iter(dict):
+		for key in (dict if dict.__class__ is list else _iter(dict)):
 			invertedDict[dict[key]] = key
 		return invertedDict
 
@@ -277,7 +277,7 @@ class CoreUtil(GodotObject):
 	@staticmethod
 	def filterDuplicates(arr):
 		dict = Dictionary()
-		for a in _iter(arr):
+		for a in (arr if arr.__class__ is list else _iter(arr)):
 			dict[a] = True
 		return list(dict.keys())
 
@@ -294,7 +294,7 @@ class CoreUtil(GodotObject):
 	@staticmethod
 	def flatten(arr):
 		flattened = []
-		for inner in _iter(arr):
+		for inner in (arr if arr.__class__ is list else _iter(arr)):
 			flattened.extend(inner)
 		return flattened
 

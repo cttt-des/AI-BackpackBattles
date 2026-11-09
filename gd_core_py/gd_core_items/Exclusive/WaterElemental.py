@@ -106,7 +106,7 @@ class Exclusive__WaterElemental(_R.C("res://gd_core_items/Weapon.gd")):
 		colors = [self.ctx.util.triggerColor, self.ctx.util.triggerColor, self.ctx.util.triggerColor]
 
 		if self.placed:
-			for i in _iter(self.activeEffects):
+			for i in (self.activeEffects if self.activeEffects.__class__ is list else _iter(self.activeEffects)):
 				colors[i] = self.ctx.util.modifiedColor
 
 		descr = self.getModeDescription(descr, colors, False, wrapInColor)

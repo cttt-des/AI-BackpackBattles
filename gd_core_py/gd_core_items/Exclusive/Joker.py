@@ -29,10 +29,10 @@ class Exclusive__Joker(_R.C("res://gd_core_items/Card.gd")):
 
 		if self.chainPosition > 0:
 			counter = Dictionary()
-			for i in _iter(self.chainPosition):
+			for i in (self.chainPosition if self.chainPosition.__class__ is list else _iter(self.chainPosition)):
 				self.ctx.util.dictAdd(counter, self.deck.cards[i].descriptor)
 
-			for cardType in _iter(counter):
+			for cardType in (counter if counter.__class__ is list else _iter(counter)):
 				self.quads += _div(counter[cardType], 4)
 				rest = _mod(counter[cardType], 4)
 				self.triplets += _div(rest, 3)
@@ -57,7 +57,7 @@ class Exclusive__Joker(_R.C("res://gd_core_items/Card.gd")):
 
 		if self.quads > 0:
 			legitCards = []
-			for i in _iter(self.chainPosition):
+			for i in (self.chainPosition if self.chainPosition.__class__ is list else _iter(self.chainPosition)):
 				if self.deck.cards[i].descriptor != self.descriptor:
 					legitCards.append(self.deck.cards[i])
 

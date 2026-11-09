@@ -56,7 +56,7 @@ class StrongDemonicFlask_2(_R.C("res://gd_core_items/Potion.gd")):
 		# ★ np25 evt12 面 AFFL 探针（双门控零耗链）：SDF 喝毒的 affected[0] 链定谳
 		_aff = self.getAffectedItems()
 		_aff_names = ""
-		for _a in _iter(_aff):
+		for _a in (_aff if _aff.__class__ is list else _iter(_aff)):
 			_aff_names += String(_a.descriptor.identifier) + ","
 		self.ctx.rng.trace_diag("AFFL", String(self.descriptor.identifier), "n=" + str(len(_aff)), _aff_names)
 

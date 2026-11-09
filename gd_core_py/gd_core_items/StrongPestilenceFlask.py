@@ -28,7 +28,7 @@ class StrongPestilenceFlask_2(_R.C("res://gd_core_items/PestilenceFlask.gd")):
 			_rc = self.getCellsForGlobalPositions(_cp)
 			_cc = self.getAffectedCellsInInventory_cached(color)
 			_names = ""
-			for _a in _iter(_r):
+			for _a in (_r if _r.__class__ is list else _iter(_r)):
 				_names += String(_a.descriptor.identifier) + "@" + str(_a.occupiedCells) + ","
 			self.ctx.rng.trace_diag("GRD", String(self.descriptor.identifier),
 					"fd=" + str(self.faceDirection) + " cp=" + str(_cp) + " aff=" + str(_cc), _names + "n=" + str(len(_r)))

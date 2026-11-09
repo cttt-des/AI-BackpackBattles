@@ -222,11 +222,11 @@ class CoreBuff(GodotObject):
 				totalResistChance -= item.getAmplificationChancePercent(self.type)
 
 			if totalResistChance > 0:
-				for i in _iter(amount):
+				for i in (amount if amount.__class__ is list else _iter(amount)):
 					if self.ctx.rng.flipPercent(totalResistChance):
 						resisted += 1
 			elif totalResistChance < 0:
-				for i in _iter(amount):
+				for i in (amount if amount.__class__ is list else _iter(amount)):
 					if self.ctx.rng.flipPercent( - totalResistChance):
 						amount += 1
 
@@ -237,7 +237,7 @@ class CoreBuff(GodotObject):
 			if not self.isBuff:
 
 				if not reflect:
-					for i in _iter(amount):
+					for i in (amount if amount.__class__ is list else _iter(amount)):
 						if self.ctx.rng.flipPercent(self.reflectChancePercent):
 							reflected += 1
 
@@ -373,12 +373,12 @@ class CoreBuff(GodotObject):
 			protected = 0
 
 			if self.cleanseProtectionChancePercent > 0:
-				for i in _iter(amount):
+				for i in (amount if amount.__class__ is list else _iter(amount)):
 					if self.ctx.rng.flipPercent(self.cleanseProtectionChancePercent):
 						protected += 1
 
 			elif self.cleanseProtectionChancePercent < 0:
-				for i in _iter(amount):
+				for i in (amount if amount.__class__ is list else _iter(amount)):
 					if self.ctx.rng.flipPercent( - self.cleanseProtectionChancePercent):
 						protected -= 1
 
@@ -487,7 +487,7 @@ class CoreBuff(GodotObject):
 	def _blnd_snap(self, op, pre):
 		if self.ctx.rng.oracle_trace and self.ctx.rng._stacktrace:
 			_b = ""
-			for ts in _iter(self.temporaryStacks):
+			for ts in (self.temporaryStacks if self.temporaryStacks.__class__ is list else _iter(self.temporaryStacks)):
 				_b += _gd_fmt('(%s@%s)', [str(ts.amount), _substr(str(ts.timeout), 0, 5)])
 			# ★ np25 timeout1t：payload 追加 fr=<frame_counter>（六点全加、双门控
 			#   不变）——rng_trace 行首数字是行号非时间，没有帧号无法读「gain→fire

@@ -23,7 +23,7 @@ class AcornCollar(_R.C("res://gd_core_items/RangerCollar.gd")):
 
 
 	def onLuckyChanged(self, amount, _event):
-		for item in _iter(self.affectedItems):
+		for item in (self.affectedItems if self.affectedItems.__class__ is list else _iter(self.affectedItems)):
 			item.changeCritChancePercent(amount * self.getChance())
 
 	def _readyInit(self):

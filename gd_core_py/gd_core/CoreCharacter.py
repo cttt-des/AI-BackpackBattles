@@ -292,7 +292,7 @@ class CoreCharacter(GodotObject):
 			#   静默失效（联动不触发的根因之二；CoreConst 未内建 eventTypeKeys，
 			#   故就地线性反查，仅初始化一次）
 			_stack_type_name = "unknown"
-			for _k in _iter(_H_12):
+			for _k in (_H_12 if _H_12.__class__ is list else _iter(_H_12)):
 				if _H_12[_k] == stackType:
 					_stack_type_name = _k
 					break
@@ -408,7 +408,7 @@ class CoreCharacter(GodotObject):
 	def combatEnd(self):
 		self.attackMovingForward_reset()
 
-		for buffType in _iter(self.buffs):
+		for buffType in (self.buffs if self.buffs.__class__ is list else _iter(self.buffs)):
 			self.buffs[buffType].combatEnd()
 
 		self._rage_left = 0.0
@@ -439,7 +439,7 @@ class CoreCharacter(GodotObject):
 		self.endStun()
 		self.setBlock(0)
 
-		for buffType in _iter(self.buffs):
+		for buffType in (self.buffs if self.buffs.__class__ is list else _iter(self.buffs)):
 			self.buffs[buffType].reset()
 
 		self.invulnerable = False
@@ -657,7 +657,7 @@ class CoreCharacter(GodotObject):
 		if item != None and damageSource.isAttack():
 			item.preDealDamage_early(damageRes)
 			if item.hasPreDealDamageEarlyEffect:
-				for i in _iter(attackEffectCount):
+				for i in (attackEffectCount if attackEffectCount.__class__ is list else _iter(attackEffectCount)):
 					item._behavior_call("onPreDealDamage_early", [damageRes])
 
 		if damageRes.hit:
@@ -710,7 +710,7 @@ class CoreCharacter(GodotObject):
 			if item != None and damageSource.isAttack():
 				item.preDealDamage_late(damageRes)
 				if item.hasPreDealDamageLateEffect:
-					for i in _iter(attackEffectCount):
+					for i in (attackEffectCount if attackEffectCount.__class__ is list else _iter(attackEffectCount)):
 						item._behavior_call("onPreDealDamage_late", [damageRes])
 
 			self.ctx.bus.emitSignal(self, "pre_take_damage_late", [damageRes])
@@ -772,7 +772,7 @@ class CoreCharacter(GodotObject):
 		if (item != None and 
 			damageSource.isAttack() and 
 			item.hasDealtDamageEffect):
-			for i in _iter(attackEffectCount):
+			for i in (attackEffectCount if attackEffectCount.__class__ is list else _iter(attackEffectCount)):
 				item._behavior_call("onDealtDamage", [damageRes])
 
 		if self.curHealth <= 0:
@@ -1051,7 +1051,7 @@ class CoreCharacter(GodotObject):
 
 	def death(self):
 		self.isDead = True
-		for handler in _iter(self.character_died_handlers):
+		for handler in (self.character_died_handlers if self.character_died_handlers.__class__ is list else _iter(self.character_died_handlers)):
 			handler.call_func()
 
 
@@ -1854,7 +1854,7 @@ class CoreCharacter(GodotObject):
 	# 对齐 Character.gd:1107-1121（INVENTORY.getItems() → 本内核的 items）
 	def getTotalStaminaUsage(self):
 		totalStaminaUse = 0.0
-		for item in _iter(self.items):
+		for item in (self.items if self.items.__class__ is list else _iter(self.items)):
 			staminaUse = item.getStaminaCost()
 			if item.getCooldown() > 0:
 				staminaUse /= item.getCooldown()
@@ -1943,7 +1943,7 @@ class CoreCharacter(GodotObject):
 	def changeTypedDamageFactor(self, damageType, amount):
 		damageType = int(damageType)
 		self.typedDamageFactors[damageType] += amount
-		for item in _iter(self.items):
+		for item in (self.items if self.items.__class__ is list else _iter(self.items)):
 			if item.damageSource != None and item.damageSource.hasType(damageType):
 				self.ctx.combat_log.snapshotItemTooltipStat(item, _H_41)
 				self.ctx.combat_log.snapshotItemTooltipStat(item, _H_42)
@@ -1960,7 +1960,7 @@ class CoreCharacter(GodotObject):
 	def changeEffectDamageFactor(self, amount):
 		self.typedDamageFactors[_H_29] += amount
 		self.typedDamageFactors[_H_30] += amount
-		for item in _iter(self.items):
+		for item in (self.items if self.items.__class__ is list else _iter(self.items)):
 			if item.damageSource != None and item.damageSource.hasType(_H_29):
 				self.ctx.combat_log.snapshotItemTooltipStat(item, _H_41)
 				self.ctx.combat_log.snapshotItemTooltipStat(item, _H_42)
@@ -2128,7 +2128,7 @@ class CoreCharacter(GodotObject):
 
 	# Buff 临时栈超时（对齐 Godot Timer 的物理步进）
 	def tickBuffs(self, delta):
-		for buffType in _iter(self.buffs):
+		for buffType in (self.buffs if self.buffs.__class__ is list else _iter(self.buffs)):
 			self.buffs[buffType]._tick(delta)
 
 
@@ -2148,7 +2148,7 @@ class CoreCharacter(GodotObject):
 			self._invul_eng = 0.0
 		self._invul_left = self._invul_eng
 		self._invul_seen = self._invul_eng
-		for buffType in _iter(self.buffs):
+		for buffType in (self.buffs if self.buffs.__class__ is list else _iter(self.buffs)):
 			self.buffs[buffType].rebuildTimerSeen()
 
 

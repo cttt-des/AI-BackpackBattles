@@ -59,7 +59,7 @@ class CorruptedArmor_2(_R.C("res://gd_core_items/Item.gd")):
 	def doCooldownEffect(self):
 		cleansedDebuffs = self.pickRandomStacks(_H_2.getDebuffs(), self.movedDebuffs, self.character())
 
-		for debuff in _iter(cleansedDebuffs):
+		for debuff in (cleansedDebuffs if cleansedDebuffs.__class__ is list else _iter(cleansedDebuffs)):
 			event = self.character().loseStacks(debuff, cleansedDebuffs[debuff], self)
 			if event:
 				actuallyCleansed = - event.getAmount()

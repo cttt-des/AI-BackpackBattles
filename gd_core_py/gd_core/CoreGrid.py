@@ -75,7 +75,7 @@ class CoreGrid(GodotObject):
 	# 对齐 Inventory.gd:371-375
 	def getItemsAndGems(self):
 		itemsAndGems = _dup(self.items)
-		for item in _iter(self.items):
+		for item in (self.items if self.items.__class__ is list else _iter(self.items)):
 			itemsAndGems.extend(item.getGemsNoNull())
 		return itemsAndGems
 
@@ -93,7 +93,7 @@ class CoreGrid(GodotObject):
 	# 对齐 Inventory.gd:719-724
 	def getEmptyCellsInCells(self, cells):
 		num = 0
-		for cell in _iter(cells):
+		for cell in (cells if cells.__class__ is list else _iter(cells)):
 			if self.isCellEmpty(cell):
 				num += 1
 		return num
@@ -107,7 +107,7 @@ class CoreGrid(GodotObject):
 	# 对齐 Inventory.gd:729-739
 	def getItemsInCells(self, cells):
 		itemsInCells = []
-		for cell in _iter(cells):
+		for cell in (cells if cells.__class__ is list else _iter(cells)):
 			if (cell in self.filledCells):
 				item = self.filledCells[cell]
 				if not item in itemsInCells and item.placed:
@@ -119,7 +119,7 @@ class CoreGrid(GodotObject):
 	# 对齐 Inventory.gd:742-747（Util.dictAdd 记的是「物品 → 命中格数」）
 	def countItemsInCells(self, cells):
 		itemCounter = {}
-		for cell in _iter(cells):
+		for cell in (cells if cells.__class__ is list else _iter(cells)):
 			if (cell in self.filledCells):
 				_H_1.dictAdd(itemCounter, self.filledCells[cell])
 		return itemCounter
@@ -128,7 +128,7 @@ class CoreGrid(GodotObject):
 	# 对齐 Inventory.gd:749-757
 	def getBagsInCells(self, cells):
 		bags = []
-		for cell in _iter(cells):
+		for cell in (cells if cells.__class__ is list else _iter(cells)):
 			if (cell in self.bagCells):
 				bag = self.bagCells[cell]
 				if not bag in bags:
@@ -141,7 +141,7 @@ class CoreGrid(GodotObject):
 	@staticmethod
 	def getCellsInLine(cells, direction, distance=7):
 		lineCells = []
-		for cell in _iter(cells):
+		for cell in (cells if cells.__class__ is list else _iter(cells)):
 			for offset in _iter(_gd_range(1, distance + 1)):
 				neighbor = cell + direction * offset
 
@@ -156,7 +156,7 @@ class CoreGrid(GodotObject):
 	@staticmethod
 	def getAdjacentCells(cells):
 		adjacentCells = []
-		for cell in _iter(cells):
+		for cell in (cells if cells.__class__ is list else _iter(cells)):
 			for offset in _iter([Vector2.RIGHT, Vector2.LEFT, Vector2.UP, Vector2.DOWN]):
 				neighbor = cell + offset
 
@@ -182,7 +182,7 @@ class CoreGrid(GodotObject):
 	# 对齐 Inventory.gd:1295-1297
 	def countSocketedGems(self):
 		numGems = 0
-		for item in _iter(self.items):
+		for item in (self.items if self.items.__class__ is list else _iter(self.items)):
 			numGems += len(item.getGemsNoNull())
 		return numGems
 
@@ -204,10 +204,10 @@ class CoreGrid(GodotObject):
 	# 对齐 Inventory.gd:621-627 —— 只写格子映射
 	def addItemCells(self, item, cells):
 		if item.isBag():
-			for cell in _iter(cells):
+			for cell in (cells if cells.__class__ is list else _iter(cells)):
 				self.bagCells[cell] = item
 		else:
-			for cell in _iter(cells):
+			for cell in (cells if cells.__class__ is list else _iter(cells)):
 				self.filledCells[cell] = item
 
 
@@ -221,7 +221,7 @@ class CoreGrid(GodotObject):
 		item.addToInventory(self, cells, placedByPlayer)
 
 		# emit_signal("item_added", item) —— 所有已登记物品都会收到 onItemAdded
-		for other in _iter(self.items):
+		for other in (self.items if self.items.__class__ is list else _iter(self.items)):
 			other.onItemAdded(item)
 
 
@@ -231,13 +231,13 @@ class CoreGrid(GodotObject):
 		idx = _find(self.items, item)
 		if idx >= 0:
 			_pop_at(self.items, idx)
-		for other in _iter(self.items):
+		for other in (self.items if self.items.__class__ is list else _iter(self.items)):
 			other.onItemRemoved(item)
 
 
 	# 对齐 Inventory.gd:629-636
 	def clearItemCells(self, item):
-		for cell in _iter(item.occupiedCells):
+		for cell in (item.occupiedCells if item.occupiedCells.__class__ is list else _iter(item.occupiedCells)):
 			if item.isBag():
 				if self.bagCells.get(cell, None) == item:
 					_erase(self.bagCells, cell)
@@ -264,7 +264,7 @@ class CoreGrid(GodotObject):
 	# 「任一物品类型变化」→ 全背包物品都收到通知并重建受影响集。
 	# 内核无信号，直接按**同一次序**逐件派发（items 的 push 次序 = 连接次序）。
 	def onItemTypeChanged(self, item):
-		for other in _iter(self.items):
+		for other in (self.items if self.items.__class__ is list else _iter(self.items)):
 			other.onItemTypeChanged(item)
 
 

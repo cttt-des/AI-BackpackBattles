@@ -447,7 +447,7 @@ class CoreItemData(GodotObject):
 		#   getParamModified 里 `descriptor.paramBases[...]` 直接报错（Sandbag 的
 		#   getBuffDur → getP_m("dur") 即此路径）。
 		np = d.get("namedParams", d.get("named_params", {}))
-		for k in _iter(np):
+		for k in (np if np.__class__ is list else _iter(np)):
 			o.addNamedParam(k, np[k])
 		o.gainedStacks = int(d.get("gainedStacks", 0))
 		o.removedStacks = int(d.get("removedStacks", 0))

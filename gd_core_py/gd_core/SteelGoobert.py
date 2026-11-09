@@ -27,7 +27,7 @@ class SteelGoobert(_R.C("res://gd_core_items/Goobert.gd")):
 
 
 	def doCooldownEffect(self):
-		for item in _iter(self.affectedWeapons):
+		for item in (self.affectedWeapons if self.affectedWeapons.__class__ is list else _iter(self.affectedWeapons)):
 			item.addBonusDamage(self.getP2())
 		self.giveBlock()
 

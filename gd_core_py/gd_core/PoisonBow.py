@@ -43,7 +43,7 @@ class PoisonBow(_R.C("res://gd_core_items/Bow.gd")):
 		if damageRes.hasHit():
 
 			attackEffectCount = 1 + self.rollDoubleAttackEffect()
-			for i in _iter(attackEffectCount):
+			for i in (attackEffectCount if attackEffectCount.__class__ is list else _iter(attackEffectCount)):
 				self.damageAcc += damageRes.damage
 
 			self.setState(self.damageAcc, False, damageRes.event)

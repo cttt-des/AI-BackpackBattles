@@ -74,7 +74,7 @@ class Exclusive__Eat_o_matic(_R.C("res://gd_core_items/Item.gd")):
 			self.setState(self.ArmState.Fast)
 			if self.affectedFood != None:
 				self.affectedFood.addSpeed(self.chargedSpeed - self.foodSpeed)
-			for food in _iter(self.otherFood):
+			for food in (self.otherFood if self.otherFood.__class__ is list else _iter(self.otherFood)):
 				food.addSpeed(self.otherSpeed)
 
 
@@ -83,7 +83,7 @@ class Exclusive__Eat_o_matic(_R.C("res://gd_core_items/Item.gd")):
 			self.setState(self.ArmState.Slow)
 			if self.affectedFood != None:
 				self.affectedFood.reduceSpeed(self.chargedSpeed - self.foodSpeed)
-			for food in _iter(self.otherFood):
+			for food in (self.otherFood if self.otherFood.__class__ is list else _iter(self.otherFood)):
 				food.reduceSpeed(self.otherSpeed)
 
 

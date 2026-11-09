@@ -28,7 +28,7 @@ class Exclusive__TimeDilator(_R.C("res://gd_core_items/Item.gd")):
 	def onPrepare(self):
 		self.tickI = 0
 		allItems = self.ctx.player.INVENTORY.getItems() + self.ctx.opponent.INVENTORY.getItems()
-		for item in _iter(allItems):
+		for item in (allItems if allItems.__class__ is list else _iter(allItems)):
 			if item.isWeapon():
 				item.reduceSpeed(self.slow)
 

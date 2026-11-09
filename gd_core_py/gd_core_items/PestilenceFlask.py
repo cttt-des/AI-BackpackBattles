@@ -31,7 +31,7 @@ class PestilenceFlask_2(_R.C("res://gd_core_items/Potion.gd")):
 		#   是否多执行一级）。定谳后可移除或保留（零耗不影响行为）。
 		_aff = self.getAffectedItems()
 		_aff_names = ""
-		for _a in _iter(_aff):
+		for _a in (_aff if _aff.__class__ is list else _iter(_aff)):
 			_aff_names += String(_a.descriptor.identifier) + ","
 		self.ctx.rng.trace_diag("AFFL", String(self.descriptor.identifier), "n=" + str(len(_aff)), _aff_names)
 

@@ -33,7 +33,7 @@ class DeckofCards_2(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def resetChain(self):
-		for card in _iter(self.cards):
+		for card in (self.cards if self.cards.__class__ is list else _iter(self.cards)):
 			card.notifyChainPosition(self, - 1, len(self.cards))
 		self.cards.clear()
 
@@ -41,7 +41,7 @@ class DeckofCards_2(_R.C("res://gd_core_items/Item.gd")):
 
 	def countDuplicates(self, untilCardIndex):
 		descriptors = []
-		for i in _iter(untilCardIndex):
+		for i in (untilCardIndex if untilCardIndex.__class__ is list else _iter(untilCardIndex)):
 			descriptors.append(self.cards[i].descriptor)
 		return self.ctx.util.countDuplicates(descriptors)
 
@@ -61,7 +61,7 @@ class DeckofCards_2(_R.C("res://gd_core_items/Item.gd")):
 
 		chainLength = len(self.cards)
 
-		for i in _iter(chainLength):
+		for i in (chainLength if chainLength.__class__ is list else _iter(chainLength)):
 			self.cards[i].notifyChainPosition(self, i, chainLength)
 
 

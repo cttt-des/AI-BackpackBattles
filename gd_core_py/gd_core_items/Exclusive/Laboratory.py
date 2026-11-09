@@ -53,7 +53,7 @@ class Exclusive__Laboratory(_R.C("res://gd_core_items/Item.gd")):
 	def getDescription(self, wrapInColor=True):
 		descr = self.descriptor.getDescription()
 
-		for param in _iter(self.params):
+		for param in (self.params if self.params.__class__ is list else _iter(self.params)):
 			descr = self.insertParameter(descr, _strv("p_", param), self.params[param], 
 				_H_1, False, wrapInColor)
 

@@ -220,7 +220,7 @@ class CoreCombat(GodotObject):
 			if character.inventory == None:
 				character.inventory = _H_3(character)
 
-		for item in _iter(items):
+		for item in (items if items.__class__ is list else _iter(items)):
 			if item.ctx == None:
 				item.ctx = self.ctx
 			if item.placed:
@@ -234,7 +234,7 @@ class CoreCombat(GodotObject):
 		self.player.prepare()
 		self.opponent.prepare()
 
-		for item in _iter(items):
+		for item in (items if items.__class__ is list else _iter(items)):
 			item.prepare()
 
 
@@ -244,7 +244,7 @@ class CoreCombat(GodotObject):
 		for character in _iter([self.player, self.opponent]):
 			if character.inventory != None:
 				character.inventory.cleanUp()
-			for item in _iter(character.items):
+			for item in (character.items if character.items.__class__ is list else _iter(character.items)):
 				item.placed = False
 				item.consumed = False
 
@@ -266,16 +266,16 @@ class CoreCombat(GodotObject):
 		# （TickTimer 已归角色：Character.combatStart 各自 start(wait 1.0)，
 		#   registry 次序=场景树次序，由 physicsTick 步骤⑦逐角色驱动）
 
-		for item in _iter(items):
+		for item in (items if items.__class__ is list else _iter(items)):
 			item.preCombatStart()
 
 		# np51 逆向注入实验（ORACLE_INJ_AT 阈值注入 + INJ_ARM/INJ_FIRED 打点）
 		# 已按其自述「用后即还原」清除（2026-11-09 S0-G1）：ORACLE_INJ_AT 未设时
 		# 注入分支恒不触发，删除对语料逐位零影响（REG 九场对拍原样）。
-		for item in _iter(items):
+		for item in (items if items.__class__ is list else _iter(items)):
 			item.combatStart()
 
-		for item in _iter(items):
+		for item in (items if items.__class__ is list else _iter(items)):
 			item.postCombatStart()
 
 		self.activated = True
@@ -296,7 +296,7 @@ class CoreCombat(GodotObject):
 		#   start 只登记不递减 → 恒晚 1 拍（Holy Spear BuffTimer wt=3 语料
 		#   ty8@3.0167 同帧 buffEnded，gd 恒晚 1 拍 → spear 冷却 4.0833 早火
 		#   fd@422；战中断 start 的 Crown wt=2 双侧全对不受影响）。
-		for item in _iter(items):
+		for item in (items if items.__class__ is list else _iter(items)):
 			item.rebuildTimerSeen()
 
 		# ★ kernel_r2：对齐 Core/Combat.gd:165-168 onSwitchingToCombat 的
@@ -551,7 +551,7 @@ class CoreCombat(GodotObject):
 			self.opponent.setCurrentHealth(max(1, self.opponent.getCurrentHealth()))
 
 		# 对齐 Game.gd:3327-3328
-		for item in _iter(self.ordered_items):
+		for item in (self.ordered_items if self.ordered_items.__class__ is list else _iter(self.ordered_items)):
 			item.combatEnd()
 
 		# ★ 对齐 Game.gd:3330-3332 —— 战斗收尾必须清空的**跨回合残留状态**。

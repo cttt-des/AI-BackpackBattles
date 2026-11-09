@@ -65,7 +65,7 @@ class Exclusive__Bewitchment(_R.C("res://gd_core_items/Item.gd")):
 			if self.rollChance(self.getChance() * self.typesDict[_H_3]):
 				self.ctx.util.dictAdd(leastStacks, _H_7, self.bonusCold)
 
-			for debuffType in _iter(leastStacks):
+			for debuffType in (leastStacks if leastStacks.__class__ is list else _iter(leastStacks)):
 				self.giveStacks(self.opponent(), debuffType, leastStacks[debuffType], event)
 
 		self.activate()

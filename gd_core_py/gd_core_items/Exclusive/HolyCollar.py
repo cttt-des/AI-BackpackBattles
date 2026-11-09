@@ -23,7 +23,7 @@ class Exclusive__HolyCollar(_R.C("res://gd_core_items/RangerCollar.gd")):
 
 
 	def onPrepare(self):
-		for item in _iter(self.affectedItems):
+		for item in (self.affectedItems if self.affectedItems.__class__ is list else _iter(self.affectedItems)):
 			self.connectForCombat(item, "activated", "onItemActivated")
 
 		if not (not self.affectedItems):
@@ -32,7 +32,7 @@ class Exclusive__HolyCollar(_R.C("res://gd_core_items/RangerCollar.gd")):
 
 
 	def onLuckyOrRegenChanged(self, amount, _event):
-		for item in _iter(self.affectedItems):
+		for item in (self.affectedItems if self.affectedItems.__class__ is list else _iter(self.affectedItems)):
 			item.changeCritChancePercent(amount * self.getChance2())
 
 

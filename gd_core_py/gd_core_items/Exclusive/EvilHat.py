@@ -42,7 +42,7 @@ class Exclusive__EvilHat(_R.C("res://gd_core_items/Item.gd")):
 			event.origin.character() == self.character()):
 
 			regenToGive = 0
-			for i in _iter(amount):
+			for i in (amount if amount.__class__ is list else _iter(amount)):
 				if self.rollChance():
 					regenToGive += self.regen
 

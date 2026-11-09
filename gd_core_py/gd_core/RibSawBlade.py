@@ -28,7 +28,7 @@ class RibSawBlade(_R.C("res://gd_core_items/Weapon.gd")):
 
 	def onPreDealDamage_early(self, damageRes):
 		if damageRes.hasHit():
-			for weapon in _iter(self.opponentWeapons):
+			for weapon in (self.opponentWeapons if self.opponentWeapons.__class__ is list else _iter(self.opponentWeapons)):
 				weapon.purgeDamage(self.removeDam)
 			self.addBonusDamage(self.bonusDam)
 

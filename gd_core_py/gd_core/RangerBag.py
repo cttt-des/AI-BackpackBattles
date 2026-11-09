@@ -21,13 +21,13 @@ class RangerBag(_R.C("res://gd_core_items/Bag.gd")):
 		self.itemsInside = self.getItemsInside()
 		if not (not self.getItemsInside()):
 			self.connectForCombat(self.character(), "character_lucky_changed", "onLuckyChanged")
-		for item in _iter(self.itemsInside):
+		for item in (self.itemsInside if self.itemsInside.__class__ is list else _iter(self.itemsInside)):
 			item.changeCritChancePercent(self.getChance())
 
 
 	def onLuckyChanged(self, amount, event):
 		change = amount * self.getChance2()
-		for item in _iter(self.itemsInside):
+		for item in (self.itemsInside if self.itemsInside.__class__ is list else _iter(self.itemsInside)):
 			item.changeCritChancePercent(change)
 
 

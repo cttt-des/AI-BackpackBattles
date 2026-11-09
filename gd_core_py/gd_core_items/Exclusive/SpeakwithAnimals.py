@@ -64,7 +64,7 @@ class Exclusive__SpeakwithAnimals(_R.C("res://gd_core_items/Item.gd")):
 	def _readyInit(self):
 		super()._readyInit()
 		self.salesChance = _div(self.getP('sale'), 100.0)
-		for pet in _iter(self.pets):
+		for pet in (self.pets if self.pets.__class__ is list else _iter(self.pets)):
 			desc = self.ctx.item_book.getDescriptor(pet)
 			if desc.isReleased():
 				self.petDescriptors[desc.getRarity()].append(desc)

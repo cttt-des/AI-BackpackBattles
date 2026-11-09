@@ -68,7 +68,7 @@ class CoreEventBus(GodotObject):
 		queueDuplicate = _dup(self.signalQueue)
 		self.signalQueue.clear()
 
-		for tuple in _iter(queueDuplicate):
+		for tuple in (queueDuplicate if queueDuplicate.__class__ is list else _iter(queueDuplicate)):
 			self.emitAndLog(tuple[0], tuple[1], tuple[2], tuple[3])
 
 
@@ -126,7 +126,7 @@ class CoreEventBus(GodotObject):
 		_eid2 = "?"
 		if emitter != None and emitter.has_method("isCoreItem"):
 			_eid2 = String(emitter.descriptor.identifier) + '/ot' + str(int(emitter.ownerType))
-		for _bus_pair in _iter(_bus_list):
+		for _bus_pair in (_bus_list if _bus_list.__class__ is list else _iter(_bus_list)):
 			if self._ctx.fight_ended:
 				return
 			if self._ctx.rng.oracle_trace and self._ctx.rng._stacktrace:

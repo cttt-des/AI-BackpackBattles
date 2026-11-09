@@ -547,10 +547,14 @@ def _iter(x):
       的层数就是 `for i in amount:`，amount 是 float（护甲/尖刺按层结算），
       少一轮会让整类层数结算静默偏少。
     """
+    if isinstance(x, list):
+        # ★ S3-C1-lite 分支重排：list 是压倒性最常见的迭代目标（A1 剖面
+        #   _iter 59 万次/3场，大头=微小计时器列表），置于首位省两层 isinstance
+        return x
+    if isinstance(x, (tuple, range, set)):
+        return x
     if isinstance(x, dict):
         return list(x.keys())
-    if isinstance(x, (list, tuple, set, range)):
-        return x
     if isinstance(x, float):
         # 注意顺序：先 float 再 int（bool 是 int 的子类，但 GDScript 里
         # `for i in true` 同样是按 1 迭代，行为一致，无需特判）

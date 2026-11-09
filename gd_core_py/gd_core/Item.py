@@ -400,7 +400,7 @@ class Item(_R.C("res://gd_core/CoreItem.gd")):
 		descr = self.insertParameter(descr, "stamina", self.getStaminaCost(), self.isStaminaModified(), True, wrapInColor)
 		for i in _iter(len(self.descriptor.params)):
 			descr = self.insertParameter(descr, "p" + String(i + 1), self.getP(i), _H_11, True, wrapInColor)
-		for paramName in _iter(self.descriptor.sortedParamNames):
+		for paramName in (self.descriptor.sortedParamNames if self.descriptor.sortedParamNames.__class__ is list else _iter(self.descriptor.sortedParamNames)):
 			descr = self.insertParameter(descr, "p_" + paramName, self.getP(paramName), _H_11, True, wrapInColor)
 
 		if wrapInColor:
@@ -519,7 +519,7 @@ class Item(_R.C("res://gd_core/CoreItem.gd")):
 
 	def playAffectedPlacedAnimation(self, newItemIsAffected):
 		sum = 0
-		for color in _iter(newItemIsAffected):
+		for color in (newItemIsAffected if newItemIsAffected.__class__ is list else _iter(newItemIsAffected)):
 			sum += int(newItemIsAffected[color])
 
 		if sum > 1:
@@ -732,12 +732,12 @@ class Item(_R.C("res://gd_core/CoreItem.gd")):
 		pass
 
 	def activateDragParticles(self):
-		for specificParticles in _iter(self.specificDragParticles):
+		for specificParticles in (self.specificDragParticles if self.specificDragParticles.__class__ is list else _iter(self.specificDragParticles)):
 			specificParticles.activate()
 
 
 	def deactivateDragParticles(self):
-		for specificParticles in _iter(self.specificDragParticles):
+		for specificParticles in (self.specificDragParticles if self.specificDragParticles.__class__ is list else _iter(self.specificDragParticles)):
 			specificParticles.deactivate()
 
 
@@ -835,7 +835,7 @@ class Item(_R.C("res://gd_core/CoreItem.gd")):
 		pass
 
 	def pushDraggedItemsToStorage(self):
-		for item in _iter(self.draggedInsideItems):
+		for item in (self.draggedInsideItems if self.draggedInsideItems.__class__ is list else _iter(self.draggedInsideItems)):
 			item.pushToStorage()
 		self.correctInsideItemFacedirection()
 		self.clearDraggedInsideItems()
@@ -843,14 +843,14 @@ class Item(_R.C("res://gd_core/CoreItem.gd")):
 
 
 	def reparentItemsInside(self):
-		for item in _iter(self.draggedInsideItems):
+		for item in (self.draggedInsideItems if self.draggedInsideItems.__class__ is list else _iter(self.draggedInsideItems)):
 			pass
 		self.correctInsideItemFacedirection()
 		self.clearDraggedInsideItems()
 
 
 	def clearDraggedInsideItems(self):
-		for item in _iter(self.draggedInsideItems):
+		for item in (self.draggedInsideItems if self.draggedInsideItems.__class__ is list else _iter(self.draggedInsideItems)):
 			item.onDraggedWithParentEnd()
 
 
@@ -908,7 +908,7 @@ class Item(_R.C("res://gd_core/CoreItem.gd")):
 		self.removableDam = 0
 		self.bonusDamageFactor = 1.0
 		self.staminaFactor = 1.0
-		for buff in _iter(self.buffPowers):
+		for buff in (self.buffPowers if self.buffPowers.__class__ is list else _iter(self.buffPowers)):
 			self.buffPowers[buff] = 1.0
 			self.buffAmplificationChances[buff] = 0.0
 
@@ -952,7 +952,7 @@ class Item(_R.C("res://gd_core/CoreItem.gd")):
 		if self.isGem():
 			return _H_12
 
-		for bonded in _iter(self.bondedIngredients):
+		for bonded in (self.bondedIngredients if self.bondedIngredients.__class__ is list else _iter(self.bondedIngredients)):
 			if bonded.isGem():
 				return _H_16
 
@@ -977,7 +977,7 @@ class Item(_R.C("res://gd_core/CoreItem.gd")):
 		if self.readyToFuse():
 			self.ctx.util.callDelayed(self, "fuse", delay)
 			self.disablePicking()
-			for bonded in _iter(self.bondedIngredients):
+			for bonded in (self.bondedIngredients if self.bondedIngredients.__class__ is list else _iter(self.bondedIngredients)):
 				if self.curRecipe == None or not self.curRecipe.isNeighborCatalyst(bonded):
 					self.ctx.defer(bonded, "disablePicking", [])
 					bonded.willBeConsumed = True
@@ -1326,7 +1326,7 @@ class Item(_R.C("res://gd_core/CoreItem.gd")):
 
 	def getRecipes(self, checkClassAvailability=True):
 		recipes = []
-		for recipe in _iter(self.descriptor.recipes):
+		for recipe in (self.descriptor.recipes if self.descriptor.recipes.__class__ is list else _iter(self.descriptor.recipes)):
 
 			recipes.append(recipe)
 		return recipes
@@ -1512,7 +1512,7 @@ class Item(_R.C("res://gd_core/CoreItem.gd")):
 		return False
 
 	def typeInIngredients(self, candidate, ingredients):
-		for ingredient in _iter(ingredients):
+		for ingredient in (ingredients if ingredients.__class__ is list else _iter(ingredients)):
 			if candidate.hasType(ingredient):
 				return True
 		return False

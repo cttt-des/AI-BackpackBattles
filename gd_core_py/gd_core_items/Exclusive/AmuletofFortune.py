@@ -28,11 +28,11 @@ class Exclusive__AmuletofFortune(_R.C("res://gd_core_items/Item.gd")):
 		# ★ np51㊳终⑪ 增伤面探针（GD_FORTPROBE 门控，零 rng 消耗）
 		if _os_environ_get("GD_FORTPROBE") != "":
 			_names = ""
-			for _a in _iter(_aff):
+			for _a in (_aff if _aff.__class__ is list else _iter(_aff)):
 				_names += String(_a.descriptor.identifier) + ","
 			print("[FORT] t=prepare bonusChance=", self.bonusChance, " affected=", _names,
 					" mult=", self.bonusChancePercent_mult)
-		for item in _iter(_aff):
+		for item in (_aff if _aff.__class__ is list else _iter(_aff)):
 			item.addBonusChance(self.bonusChance)
 
 

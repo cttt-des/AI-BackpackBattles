@@ -257,7 +257,7 @@ class CoreRng(GodotObject):
 
 	def flipWeighted(self, weights):
 		sum = 0.0
-		for weight in _iter(weights):
+		for weight in (weights if weights.__class__ is list else _iter(weights)):
 			sum += weight
 
 		# ★ np29fG：对齐 oracle Util.gd:1115 `rng_trace_range(0, sum, "flipWeighted")`——

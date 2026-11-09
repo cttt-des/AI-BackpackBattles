@@ -769,7 +769,7 @@ class CoreItem(GodotObject):
 		self.removableDam = 0
 		self.bonusDamageFactor = 1.0
 		self.staminaFactor = 1.0
-		for buff in _iter(self.buffPowers):
+		for buff in (self.buffPowers if self.buffPowers.__class__ is list else _iter(self.buffPowers)):
 			self.buffPowers[buff] = 1.0
 			self.buffAmplificationChances[buff] = 0.0
 
@@ -823,7 +823,7 @@ class CoreItem(GodotObject):
 
 
 	def newItemTimer(self, timerName, method, isMulti=False):
-		for existing in _iter(self.timers):
+		for existing in (self.timers if self.timers.__class__ is list else _iter(self.timers)):
 			if existing.name == timerName:
 				existing.stop()
 				_erase(self.timers, existing)
@@ -837,14 +837,14 @@ class CoreItem(GodotObject):
 
 
 	def getTimer(self, timerName):
-		for t in _iter(self.timers):
+		for t in (self.timers if self.timers.__class__ is list else _iter(self.timers)):
 			if t.name == timerName:
 				return t
 		return None
 
 
 	def _tickTimers(self, delta):
-		for t in _iter(self.timers):
+		for t in (self.timers if self.timers.__class__ is list else _iter(self.timers)):
 			t.tick(delta)
 
 
@@ -853,7 +853,7 @@ class CoreItem(GodotObject):
 	#   由 CoreCombat.physicsTick 步骤⑦按 INVENTORY 装配序逐物品调用。
 	def tickTimersPass(self, delta):
 		self._tickTimers(delta)
-		for gem in _iter(self.gems):
+		for gem in (self.gems if self.gems.__class__ is list else _iter(self.gems)):
 			if gem != None:
 				gem._tickTimers(delta)
 
@@ -866,9 +866,9 @@ class CoreItem(GodotObject):
 	#   （CoreTimer.rebuildSeen 注）；停止态 [0,0] → _seen=_eng=0（stop() 已置）
 	#   零影响。
 	def rebuildTimerSeen(self):
-		for t in _iter(self.timers):
+		for t in (self.timers if self.timers.__class__ is list else _iter(self.timers)):
 			t.rebuildSeen()
-		for gem in _iter(self.gems):
+		for gem in (self.gems if self.gems.__class__ is list else _iter(self.gems)):
 			if gem != None:
 				gem.rebuildTimerSeen()
 
@@ -1239,7 +1239,7 @@ class CoreItem(GodotObject):
 
 	def getTypedDamageFactor(self, damSource):
 		typedDmgFactor = 1.0
-		for type in _iter(damSource.types):
+		for type in (damSource.types if damSource.types.__class__ is list else _iter(damSource.types)):
 			typedDmgFactor += self.character().typedDamageFactors[type]
 
 		return typedDmgFactor
@@ -2359,7 +2359,7 @@ class CoreItem(GodotObject):
 		top_left = self.getTopLeftCell()
 		inv = self.inventory if self.inventory != None else self.getOwnOrPlayerInventory()
 		out = []
-		for c in _iter(cells):
+		for c in (cells if cells.__class__ is list else _iter(cells)):
 			# ★ 逐行单语句：gd_to_py 的方法调用改写器按行解析，跨行续行实参会漏。
 			v = top_left + self._rotVecQuarterTurns(Vector2(c.x, c.y), self.faceDirection) - self.chargeFrame[_mod(self.faceDirection, 4)]
 			hit_cells = inv.getCellsForGlobalPositions([v])
@@ -2663,7 +2663,7 @@ class CoreItem(GodotObject):
 		cleansedDebuffs = self.pickRandomStacks(_H_7.getDebuffs(), numDebuffs, self.character())
 
 		self.ctx.bus.setLoggingMode(_H_41)
-		for debuff in _iter(cleansedDebuffs):
+		for debuff in (cleansedDebuffs if cleansedDebuffs.__class__ is list else _iter(cleansedDebuffs)):
 			self.character().loseStacks(debuff, cleansedDebuffs[debuff], self, triggerEvent)
 
 		self.ctx.bus.flushLoggingQueue()
@@ -2676,7 +2676,7 @@ class CoreItem(GodotObject):
 		pickedDebuffs = self.pickRandomStacksToGive(availableDebuffs, numDebuffs)
 
 		self.ctx.bus.setLoggingMode(_H_41)
-		for debuff in _iter(pickedDebuffs):
+		for debuff in (pickedDebuffs if pickedDebuffs.__class__ is list else _iter(pickedDebuffs)):
 			self.giveStacks(self.opponent(), debuff, pickedDebuffs[debuff], triggerEvent)
 
 		self.ctx.bus.flushLoggingQueue()
@@ -2688,7 +2688,7 @@ class CoreItem(GodotObject):
 	# 对齐 Item.gd:5422-5446
 	def pickRandomStacks(self, stackTypes, numStacks, target, priorityStack=None):
 		stacks = Dictionary()
-		for stackType in _iter(stackTypes):
+		for stackType in (stackTypes if stackTypes.__class__ is list else _iter(stackTypes)):
 			numTargetStacks = target.getStacks(stackType)
 			if numTargetStacks > 0:
 				stacks[stackType] = numTargetStacks
@@ -2724,7 +2724,7 @@ class CoreItem(GodotObject):
 	# 对齐 Item.gd:5530-5554
 	def getLeastStacks(self, numStacks, target, availableStacks):
 		priorStacks = {}
-		for stackType in _iter(availableStacks):
+		for stackType in (availableStacks if availableStacks.__class__ is list else _iter(availableStacks)):
 			priorStacks[stackType] = target.getStacks(stackType)
 
 		pickedStacks = {}
@@ -2732,7 +2732,7 @@ class CoreItem(GodotObject):
 		while numStacks > 0:
 			leastStacksCount = 10000
 			leastStacks = []
-			for stackType in _iter(priorStacks):
+			for stackType in (priorStacks if priorStacks.__class__ is list else _iter(priorStacks)):
 				if priorStacks[stackType] < leastStacksCount:
 					leastStacksCount = priorStacks[stackType]
 					leastStacks.clear()
@@ -2750,12 +2750,12 @@ class CoreItem(GodotObject):
 	# 对齐 Item.gd:5563-5579
 	def getMostStacks(self, target, availableStacks):
 		buffs = Dictionary()
-		for buff in _iter(availableStacks):
+		for buff in (availableStacks if availableStacks.__class__ is list else _iter(availableStacks)):
 			buffs[buff] = target.getStacks(buff)
 
 		maxBuffs = []
 		maxStacks = 0
-		for buff in _iter(buffs):
+		for buff in (buffs if buffs.__class__ is list else _iter(buffs)):
 			if buffs[buff] == maxStacks:
 				maxBuffs.append(buff)
 			elif buffs[buff] > maxStacks:
@@ -2773,7 +2773,7 @@ class CoreItem(GodotObject):
 		sum = 0.0
 		stacksUnlimited = {}
 
-		for buff in _iter(availableStacks):
+		for buff in (availableStacks if availableStacks.__class__ is list else _iter(availableStacks)):
 			prior = target.getStacks(buff)
 
 			withBonus = prior * fraction
@@ -2791,7 +2791,7 @@ class CoreItem(GodotObject):
 		overflow = {}
 		totalGiven = 0
 
-		for buff in _iter(stacksUnlimited):
+		for buff in (stacksUnlimited if stacksUnlimited.__class__ is list else _iter(stacksUnlimited)):
 			limited = stacksUnlimited[buff] * limitFactor
 			guaranteed = int(limited)
 			buffsToGive[buff] = guaranteed
@@ -2812,7 +2812,7 @@ class CoreItem(GodotObject):
 		self.ctx.rng.shuffleEngine(sortedOverflow, 'Items/Item.gd:5642')
 		_sort_custom(sortedOverflow, _H_36.DictSorter(overflow), "sort")
 
-		for buff in _iter(sortedOverflow):
+		for buff in (sortedOverflow if sortedOverflow.__class__ is list else _iter(sortedOverflow)):
 			if overflowBuffs == 0:
 				break
 
@@ -2832,7 +2832,7 @@ class CoreItem(GodotObject):
 			return
 
 		self.ctx.bus.setLoggingMode(_H_41)
-		for buff in _iter(buffsToGive):
+		for buff in (buffsToGive if buffsToGive.__class__ is list else _iter(buffsToGive)):
 			self.giveStacks(self.character(), buff, buffsToGive[buff])
 		self.ctx.bus.flushLoggingQueue()
 
@@ -2847,7 +2847,7 @@ class CoreItem(GodotObject):
 			return
 
 		self.ctx.bus.setLoggingMode(_H_41)
-		for buff in _iter(buffsToRemove):
+		for buff in (buffsToRemove if buffsToRemove.__class__ is list else _iter(buffsToRemove)):
 			self.opponent().loseStacks(buff, buffsToRemove[buff], self, triggerEvent)
 		self.ctx.bus.flushLoggingQueue()
 
@@ -2862,7 +2862,7 @@ class CoreItem(GodotObject):
 			return
 
 		self.ctx.bus.setLoggingMode(_H_41)
-		for buff in _iter(buffsToSteal):
+		for buff in (buffsToSteal if buffsToSteal.__class__ is list else _iter(buffsToSteal)):
 			self.stealStack(buff, buffsToSteal[buff], triggerEvent)
 		self.ctx.bus.flushLoggingQueue()
 
@@ -2877,7 +2877,7 @@ class CoreItem(GodotObject):
 
 		pickedStacks = self.getLeastStacks(numBuffs, target, availableBuffs)
 
-		for buffType in _iter(pickedStacks):
+		for buffType in (pickedStacks if pickedStacks.__class__ is list else _iter(pickedStacks)):
 			self.giveStacks(target, buffType, pickedStacks[buffType], triggerEvent)
 
 
@@ -2928,7 +2928,7 @@ class CoreItem(GodotObject):
 
 		pickedBuffs = self.pickRandomStacksToGive(availableBuffs, numBuffs)
 		self.ctx.bus.setLoggingMode(_H_41)
-		for buff in _iter(pickedBuffs):
+		for buff in (pickedBuffs if pickedBuffs.__class__ is list else _iter(pickedBuffs)):
 			self.giveStacks(target, buff, pickedBuffs[buff], triggerEvent)
 		self.ctx.bus.flushLoggingQueue()
 
@@ -2949,7 +2949,7 @@ class CoreItem(GodotObject):
 
 		events = []
 		self.ctx.bus.setLoggingMode(_H_41)
-		for buff in _iter(pickedBuffs):
+		for buff in (pickedBuffs if pickedBuffs.__class__ is list else _iter(pickedBuffs)):
 			event = self.character().useStacks(buff, pickedBuffs[buff], self, triggerEvent)
 			events.append(event)
 		self.ctx.bus.flushLoggingQueue()
@@ -2960,7 +2960,7 @@ class CoreItem(GodotObject):
 	def removeRandomBuffs(self, numBuffs, triggerEvent=None):
 		removedStacks = self.pickRandomStacks(_H_7.getBuffs(), numBuffs, self.opponent())
 		self.ctx.bus.setLoggingMode(_H_41)
-		for buff in _iter(removedStacks):
+		for buff in (removedStacks if removedStacks.__class__ is list else _iter(removedStacks)):
 			self.opponent().loseStacks(buff, removedStacks[buff], self, triggerEvent)
 		self.ctx.bus.flushLoggingQueue()
 
@@ -2973,7 +2973,7 @@ class CoreItem(GodotObject):
 
 		removedStacks = self.pickRandomStacks(possibleBuffs, numBuffs, self.opponent(), priorityBuff)
 		self.ctx.bus.setLoggingMode(_H_41)
-		for buff in _iter(removedStacks):
+		for buff in (removedStacks if removedStacks.__class__ is list else _iter(removedStacks)):
 			self.opponent().loseStacks(buff, removedStacks[buff], self, triggerEvent)
 
 			self.giveStacks(self.character(), buff, removedStacks[buff], triggerEvent)
@@ -3101,7 +3101,7 @@ class CoreItem(GodotObject):
 
 
 	def hasGems(self):
-		for gem in _iter(self.gems):
+		for gem in (self.gems if self.gems.__class__ is list else _iter(self.gems)):
 			if gem != None:
 				return True
 		return False
@@ -3109,7 +3109,7 @@ class CoreItem(GodotObject):
 
 	def getGemsOfItems(self, items):
 		out = []
-		for item in _iter(items):
+		for item in (items if items.__class__ is list else _iter(items)):
 			out.extend(item.getGemsNoNull())
 		return out
 
@@ -3377,7 +3377,7 @@ class CoreItem(GodotObject):
 
 		affectedTiles = self.getAffectedCellsInInventory_cached(color)
 
-		for cell in _iter(item.occupiedCells):
+		for cell in (item.occupiedCells if item.occupiedCells.__class__ is list else _iter(item.occupiedCells)):
 			if cell in affectedTiles:
 				return True
 		return False
@@ -3440,13 +3440,13 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:1285-1294（扩展格是 TileMap 上的临时涂色，内核里改 affectedTileCells）
 	def activateExtendedAffectedCells(self):
-		for cell in _iter(self.affectedExtensionCells):
+		for cell in (self.affectedExtensionCells if self.affectedExtensionCells.__class__ is list else _iter(self.affectedExtensionCells)):
 			_H_36.dictAppend(self.affectedTileCells, _H_38, cell)
 		self.cacheAffectedCells()
 
 
 	def deactivateExtendedAffectedCells(self):
-		for cell in _iter(self.affectedExtensionCells):
+		for cell in (self.affectedExtensionCells if self.affectedExtensionCells.__class__ is list else _iter(self.affectedExtensionCells)):
 			arr = self.affectedTileCells.get(_H_38, [])
 			if cell in arr:
 				_erase(arr, cell)
@@ -3459,7 +3459,7 @@ class CoreItem(GodotObject):
 
 			affectedCells = self.getAffectedCellsInInventory_cached(color)
 
-			for cell in _iter(affectedCells):
+			for cell in (affectedCells if affectedCells.__class__ is list else _iter(affectedCells)):
 				if item.dragged:
 					if self.inventory.isHovered(cell):
 						return True
@@ -3524,7 +3524,7 @@ class CoreItem(GodotObject):
 		if (not cells):
 			return Vector2.ZERO
 
-		for cell in _iter(cells):
+		for cell in (cells if cells.__class__ is list else _iter(cells)):
 			if cell.x < topLeft.x:
 				topLeft.x = cell.x
 			if cell.y < topLeft.y:
@@ -3541,7 +3541,7 @@ class CoreItem(GodotObject):
 	# 对齐 Item.gd:1247-1254
 	def getTopLeftCell(self):
 		topLeft = Vector2(INF, INF)
-		for cell in _iter(self.occupiedCells):
+		for cell in (self.occupiedCells if self.occupiedCells.__class__ is list else _iter(self.occupiedCells)):
 			topLeft.x = min(cell.x, topLeft.x)
 			topLeft.y = min(cell.y, topLeft.y)
 		return topLeft
@@ -3559,7 +3559,7 @@ class CoreItem(GodotObject):
 			cells = _dup(self.getCollisionCells())
 
 		minimum = Vector2(100, 100)
-		for cell in _iter(cells):
+		for cell in (cells if cells.__class__ is list else _iter(cells)):
 			if cell.y <= minimum.y:
 				if cell.y < minimum.y:
 					minimum.x = cell.x
@@ -3718,9 +3718,9 @@ class CoreItem(GodotObject):
 			return None
 		touchedBags = self.inventory.getBagsInCells(self.occupiedCells)
 		bagCounter = {}
-		for bag in _iter(touchedBags):
+		for bag in (touchedBags if touchedBags.__class__ is list else _iter(touchedBags)):
 			found = False
-			for countedBag in _iter(bagCounter):
+			for countedBag in (bagCounter if bagCounter.__class__ is list else _iter(bagCounter)):
 				if countedBag.descriptor == bag.descriptor:
 					bagCounter[countedBag] += bag.getBagMultiplicity(self)
 					found = True
@@ -3923,7 +3923,7 @@ class CoreItem(GodotObject):
 	def getNeighborItemsAndGems(self):
 		neighbors = self.inventory.getAdjacentItems(self)
 		neighbors.extend(self.getGemsNoNull())
-		for neighbor in _iter(neighbors):
+		for neighbor in (neighbors if neighbors.__class__ is list else _iter(neighbors)):
 			neighborGems = neighbor.getGemsNoNull()
 			neighbors.extend(neighborGems)
 		return neighbors
@@ -3986,10 +3986,10 @@ class CoreItem(GodotObject):
 	# 对齐 Item.gd:6510-6520
 	def countTypes(self, ofItems):
 		typesDict = {}
-		for type in _iter(_H_6):
+		for type in (_H_6 if _H_6.__class__ is list else _iter(_H_6)):
 			typesDict[_H_6[type]] = 0
 
-		for item in _iter(ofItems):
+		for item in (ofItems if ofItems.__class__ is list else _iter(ofItems)):
 			for type in _iter(item.getTypes()):
 				typesDict[type] += 1
 
@@ -4006,7 +4006,7 @@ class CoreItem(GodotObject):
 
 	def getGemsNoNull(self):
 		out = []
-		for gem in _iter(self.gems):
+		for gem in (self.gems if self.gems.__class__ is list else _iter(self.gems)):
 			if gem != None:
 				out.append(gem)
 		return out
@@ -4049,7 +4049,7 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:5702-5705
 	def disconnectCombat(self):
-		for connection in _iter(self.combatConnections):
+		for connection in (self.combatConnections if self.combatConnections.__class__ is list else _iter(self.combatConnections)):
 			connection.destroy()
 		self.combatConnections.clear()
 

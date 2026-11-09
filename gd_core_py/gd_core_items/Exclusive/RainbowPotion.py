@@ -68,9 +68,9 @@ class Exclusive__RainbowPotion(_R.C("res://gd_core_items/Potion.gd")):
 
 
 		potionsToTrigger = []
-		for potion in _iter(allPotions):
+		for potion in (allPotions if allPotions.__class__ is list else _iter(allPotions)):
 			typeExists = False
-			for triggeredPotion in _iter(potionsToTrigger):
+			for triggeredPotion in (potionsToTrigger if potionsToTrigger.__class__ is list else _iter(potionsToTrigger)):
 				if potion.isA(triggeredPotion.descriptor):
 					typeExists = True
 					break
@@ -80,7 +80,7 @@ class Exclusive__RainbowPotion(_R.C("res://gd_core_items/Potion.gd")):
 			if len(potionsToTrigger) == self.numPotions:
 				break
 
-		for potion in _iter(potionsToTrigger):
+		for potion in (potionsToTrigger if potionsToTrigger.__class__ is list else _iter(potionsToTrigger)):
 
 			potion.triggerPotion(event)
 

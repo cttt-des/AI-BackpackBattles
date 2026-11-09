@@ -29,11 +29,11 @@ class Exclusive__EchoingBattlecry(_R.C("res://gd_core_items/Item.gd")):
 		_b = ""
 		_aft = ""
 		if self.ctx.rng.oracle_trace and self.ctx.rng._stacktrace:
-			for _a in _iter(self.affectedItems):
+			for _a in (self.affectedItems if self.affectedItems.__class__ is list else _iter(self.affectedItems)):
 				_b += String(_a.descriptor.identifier) + "@" + str(_a.occupiedCells[0]) + ","
 		self.ctx.rng.shuffleEngine(self.affectedItems, 'Exclusive/EchoingBattlecry.gd:14')
 		if self.ctx.rng.oracle_trace and self.ctx.rng._stacktrace:
-			for _a in _iter(self.affectedItems):
+			for _a in (self.affectedItems if self.affectedItems.__class__ is list else _iter(self.affectedItems)):
 				_aft += String(_a.descriptor.identifier) + "@" + str(_a.occupiedCells[0]) + ","
 			self.ctx.rng.trace_diag("EBARR", "ot" + str(int(self.ownerType)), _b, _aft)
 

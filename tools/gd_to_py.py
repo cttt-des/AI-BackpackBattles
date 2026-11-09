@@ -2308,6 +2308,89 @@ def _span_contains(outer, inner):
            (inner.end_lineno, inner.end_col_offset) <= (outer.end_lineno, outer.end_col_offset)
 
 
+def _iter_inline(texts, stat, hit):
+    """S3-C1-lite：`for v in _iter(ARG):` 对纯名字/属性链 ARG 发射内联守卫。
+
+    动机（A1 剖面 post-C4）：`_iter` 59 万次/3场居首，大头是**微小列表**
+    （_tickTimers 8.8 万次调用各带一个 `_iter`，计时器列表通常 1-3 个元素）。
+    每次调用 = 函数帧 + 2-4 层 isinstance——内联守卫消掉函数调用本身。
+
+    改写：`for v in _iter(ARG):` → `for v in (ARG if ARG.__class__ is list
+    else _iter(ARG)):`。语义等价性：
+      · ARG 限**纯名字或属性链**（无函数调用=无副作用，双重求值无害；
+        EnumDict 等自定义 __getattr__ 亦无副作用，且非 list 落回 _iter 同路）；
+      · 条件表达式在循环开始前求值**一次**（与原 `_iter(ARG)` 同点同次）；
+      · list 精确匹配（__class__ is list）——子类与其它类型一律落回 _iter
+        原分支，字典/float/int 语义逐位不变。
+    """
+    import ast as _ast
+    changed = 0
+    total = 0
+    for rel in list(texts):
+        text = texts[rel]
+        if "_iter(" not in text:
+            continue
+        try:
+            tree = _ast.parse(text)
+        except SyntaxError:
+            continue
+        pmap = {}
+        for p in _ast.walk(tree):
+            for c in _ast.iter_child_nodes(p):
+                pmap[c] = p
+        cands = []
+        for node in _ast.walk(tree):
+            if not isinstance(node, _ast.Call):
+                continue
+            fu = node.func
+            if not (isinstance(fu, _ast.Name) and fu.id == "_iter"
+                    and len(node.args) == 1):
+                continue
+            arg = node.args[0]
+            if not (isinstance(arg, _ast.Name)
+                    or isinstance(arg, _ast.Attribute)):
+                continue
+            # ARG 链上不允许任何 Call（防副作用双重求值）
+            if any(isinstance(n, _ast.Call) for n in _ast.walk(arg)):
+                continue
+            # 只在 For.iter 的直接位置改写
+            p = pmap.get(node)
+            if not (isinstance(p, _ast.For) and p.iter is node):
+                continue
+            cands.append((arg, node))
+        if not cands:
+            continue
+        reps = sorted(((node.lineno, node.col_offset,
+                        node.end_lineno, node.end_col_offset,
+                        _span_text(text, arg))
+                       for arg, node in cands),
+                      key=lambda r: (-r[0], -r[1]))
+        lines = text.split("\n")
+        for l1, c1, l2, c2, arg_src in reps:
+            # ★ 用 __class__ 而非 type()：生成代码里存在局部变量 `type` 遮蔽
+            #   内建（GDScript 常见 `var type`），arg.__class__ 无遮蔽风险
+            new_expr = "(%s if %s.__class__ is list else _iter(%s))" % (
+                arg_src, arg_src, arg_src)
+            if l1 == l2:
+                lines[l1 - 1] = lines[l1 - 1][:c1] + new_expr + lines[l1 - 1][c2:]
+            else:
+                lines[l1 - 1] = lines[l1 - 1][:c1] + new_expr
+                for mid in range(l1, l2 - 1):
+                    lines[mid] = ""
+                lines[l2 - 1] = lines[l2 - 1][c2:]
+            total += 1
+        new_text = "\n".join(lines)
+        try:
+            _ast.parse(new_text)
+        except SyntaxError:
+            continue                      # 安全网：失败保原样
+        texts[rel] = new_text
+        changed += 1
+    hit["C1内联For"] = total
+    stat["C1"] = ["%d 模块 %d 处" % (changed, total)]
+    return texts
+
+
 def write_pkg(order, files_by_rel, by_name, by_path, class_names, stat, hit, write):
     texts = {}
     for rel in order:
@@ -2315,6 +2398,7 @@ def write_pkg(order, files_by_rel, by_name, by_path, class_names, stat, hit, wri
                                     stat, hit, class_names)
     texts = _apply_cooldown_f32(texts)
     texts = _hoist_classrefs(texts, order, files_by_rel, stat, hit)
+    texts = _iter_inline(texts, stat, hit)
     if not write:
         return texts
     dirs = {OUT_PKG}

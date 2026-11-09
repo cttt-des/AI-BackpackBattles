@@ -52,7 +52,7 @@ class ThornBow(_R.C("res://gd_core_items/Bow.gd")):
 	def onWeaponAttacked(self, damageRes):
 		if damageRes.hasHit():
 			attackEffectCount = 1 + self.rollDoubleAttackEffect()
-			for i in _iter(attackEffectCount):
+			for i in (attackEffectCount if attackEffectCount.__class__ is list else _iter(attackEffectCount)):
 				if self.character().getSpikes() > 0:
 					self.bonusCounter += 1
 					self.useSpikes(1, damageRes.event)

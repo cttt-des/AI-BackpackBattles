@@ -55,7 +55,7 @@ class Exclusive__PerpetuumMobile(_R.C("res://gd_core_items/Item.gd")):
 
 	def doCooldownEffect(self):
 
-		for buffType in _iter(self.usedStacks):
+		for buffType in (self.usedStacks if self.usedStacks.__class__ is list else _iter(self.usedStacks)):
 			toRefund = int(round(self.usedStacks[buffType] * self.buffRefund))
 
 			if toRefund > 0:

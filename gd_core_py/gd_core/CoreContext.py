@@ -124,14 +124,14 @@ class CoreContext(GodotObject):
 			return
 		keep = []
 		due = []
-		for e in _iter(self.lib_fires):
+		for e in (self.lib_fires if self.lib_fires.__class__ is list else _iter(self.lib_fires)):
 			e[0] = e[0] - delta
 			if e[0] > 0.0:
 				keep.append(e)
 			elif not self.fight_ended:
 				due.append(e)
 		self.lib_fires = keep
-		for e in _iter(due):
+		for e in (due if due.__class__ is list else _iter(due)):
 			self.rng.randf_range(float(e[1]), float(e[2]))
 
 	def set_custom_health_multiplier(self, v):
@@ -288,7 +288,7 @@ class CoreContext(GodotObject):
 			return
 		due = []
 		keep = []
-		for call in _iter(self._timed):
+		for call in (self._timed if self._timed.__class__ is list else _iter(self._timed)):
 			call[2] = call[2] - self.PHYSICS_DELTA
 			if call[2] > 0.0:
 				keep.append(call)
@@ -298,7 +298,7 @@ class CoreContext(GodotObject):
 			self._timed = keep
 			return
 		self._timed = keep
-		for call in _iter(due):
+		for call in (due if due.__class__ is list else _iter(due)):
 			call[0].callv(call[1], call[3])
 
 
@@ -343,7 +343,7 @@ class CoreContext(GodotObject):
 			return
 		batch = self._deferred
 		self._deferred = []
-		for call in _iter(batch):
+		for call in (batch if batch.__class__ is list else _iter(batch)):
 			obj = call[0]
 			if obj == None:
 				continue

@@ -28,7 +28,7 @@ class PotionBelt_2(_R.C("res://gd_core_items/Bag.gd")):
 		self.numConsumed = 0
 		self.affectedPotions.clear()
 		affectedItems = self.getItemsInside()
-		for item in _iter(affectedItems):
+		for item in (affectedItems if affectedItems.__class__ is list else _iter(affectedItems)):
 			if self.canApplyEffect(item):
 				self.affectedPotions.append(item)
 				self.connectForCombat(item, "potion_emptied", "onPotionEmptied")

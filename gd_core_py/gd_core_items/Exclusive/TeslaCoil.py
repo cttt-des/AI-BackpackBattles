@@ -57,7 +57,7 @@ class Exclusive__TeslaCoil(_R.C("res://gd_core_items/Item.gd")):
 
 	def doCooldownEffect(self):
 		self.collectCharges = False
-		for i in _iter(self.numCollectedCharges):
+		for i in (self.numCollectedCharges if self.numCollectedCharges.__class__ is list else _iter(self.numCollectedCharges)):
 			self.advanceItem()
 
 		self.onStateChanged(None)

@@ -152,12 +152,12 @@ class Exclusive__MagicRing(_R.C("res://gd_core_items/Item.gd")):
 		self.ringTypes.clear()
 
 		effectI = 0
-		for effect in _iter(self.effects):
+		for effect in (self.effects if self.effects.__class__ is list else _iter(self.effects)):
 			effectI += 1
 
 		if not self.isOnlyForDisplay():
 
-			for effect in _iter(self.effects):
+			for effect in (self.effects if self.effects.__class__ is list else _iter(self.effects)):
 				self.ctx.util.dictAppend(self.effectDict, effect.triggerType, effect)
 
 				self.gainedStacks |= 2 << (effect.stackType - _H_2)
@@ -205,7 +205,7 @@ class Exclusive__MagicRing(_R.C("res://gd_core_items/Item.gd")):
 	def randEffects(self, clearIfOnlyDisplay=True):
 		self.effects.clear()
 
-		for i in _iter(self.numEffects):
+		for i in (self.numEffects if self.numEffects.__class__ is list else _iter(self.numEffects)):
 			effect = RingEffect()
 			self.effects.append(effect)
 			effect.triggerType = self.ctx.rng.randi_range(0, 3)
@@ -232,7 +232,7 @@ class Exclusive__MagicRing(_R.C("res://gd_core_items/Item.gd")):
 	#   实测被冲掉），漏植则 np17-A 效果真值静默退化为随机 roll。
 	def setCraftedEffects(self, crafted):
 		self.effects.clear()
-		for e in _iter(crafted):
+		for e in (crafted if crafted.__class__ is list else _iter(crafted)):
 			effect = RingEffect()
 			effect.triggerType = int(e["triggerType"])
 			effect.stackType = int(e["stackType"])
@@ -270,7 +270,7 @@ class Exclusive__MagicRing(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def getDataPersistent(self, bitStream):
-		for effect in _iter(self.effects):
+		for effect in (self.effects if self.effects.__class__ is list else _iter(self.effects)):
 			effect.pushEncoded(bitStream)
 
 
@@ -317,7 +317,7 @@ class Exclusive__MagicRing(_R.C("res://gd_core_items/Item.gd")):
 		self.stones = []
 		self.symbols = []
 		if (not self.stones):
-			for i in _iter(self.numEffects):
+			for i in (self.numEffects if self.numEffects.__class__ is list else _iter(self.numEffects)):
 				pass
 
 		if self.ownerType == _H_21:

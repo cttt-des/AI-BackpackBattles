@@ -50,7 +50,7 @@ class BowandArrow(_R.C("res://gd_core_items/Bow.gd")):
 		if damageRes.hasHit():
 			dmgAdded = False
 			attackEffectCount = 1 + self.rollDoubleAttackEffect()
-			for i in _iter(attackEffectCount):
+			for i in (attackEffectCount if attackEffectCount.__class__ is list else _iter(attackEffectCount)):
 				if self.bonusDmg < self.maxDmg:
 					self.bonusDmg += self.bonusDmgPerHit
 					self.addBonusDamage(self.bonusDmgPerHit)

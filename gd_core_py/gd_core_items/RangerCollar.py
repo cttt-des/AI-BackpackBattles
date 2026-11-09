@@ -23,7 +23,7 @@ class RangerCollar_2(_R.C("res://gd_core_items/Item.gd")):
 		numAces = self.countAllInInventoryOfType(self.acornAceDescriptor)
 		if numAces > 0:
 			staminaReduction = numAces * - self.acornAceDescriptor.getP("stamina")
-			for item in _iter(self.affectedItems):
+			for item in (self.affectedItems if self.affectedItems.__class__ is list else _iter(self.affectedItems)):
 				item.changeStaminaFactor(staminaReduction)
 		super().prepare()
 

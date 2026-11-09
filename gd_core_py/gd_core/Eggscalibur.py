@@ -18,7 +18,7 @@ class Eggscalibur(_R.C("res://gd_core_items/Pan.gd")):
 		if event:
 			affected = self.getAffectedItems()
 			_shuffle(affected)
-			for food in _iter(affected):
+			for food in (affected if affected.__class__ is list else _iter(affected)):
 				food.doCooldownEffect()
 
 

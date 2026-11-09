@@ -36,7 +36,7 @@ class Exclusive__PortableAltar(_R.C("res://gd_core_items/Bag.gd")):
 			return
 
 		if self.locked or not self.placed:
-			for bonded in _iter(self.bondedIngredients):
+			for bonded in (self.bondedIngredients if self.bondedIngredients.__class__ is list else _iter(self.bondedIngredients)):
 				bonded.removeBondedBaseItem()
 			self.removeAllIngredients()
 			return
@@ -57,7 +57,7 @@ class Exclusive__PortableAltar(_R.C("res://gd_core_items/Bag.gd")):
 
 	def getCounterValue(self):
 		gold = 0
-		for item in _iter(self.bondedIngredients):
+		for item in (self.bondedIngredients if self.bondedIngredients.__class__ is list else _iter(self.bondedIngredients)):
 			gold += item.getPrice()
 		return gold
 

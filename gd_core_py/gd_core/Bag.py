@@ -103,7 +103,7 @@ class Bag(_R.C("res://gd_core_items/Item.gd")):
 
 	def getEmptyCells(self):
 		emptyCells = []
-		for cell in _iter(self.occupiedCells):
+		for cell in (self.occupiedCells if self.occupiedCells.__class__ is list else _iter(self.occupiedCells)):
 			if self.inventory.isCellEmpty(cell):
 				emptyCells.append(cell)
 		return emptyCells
@@ -137,7 +137,7 @@ class Bag(_R.C("res://gd_core_items/Item.gd")):
 	def prepare(self):
 		self.cachedInsideItems = self.getItemsInside()
 
-		for item in _iter(self.cachedInsideItems):
+		for item in (self.cachedInsideItems if self.cachedInsideItems.__class__ is list else _iter(self.cachedInsideItems)):
 			if self.canApplyEffect(item):
 				self.cachedAffectedInsideItems.append(item)
 

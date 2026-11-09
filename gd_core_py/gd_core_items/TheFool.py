@@ -23,7 +23,7 @@ class TheFool_2(_R.C("res://gd_core_items/Card.gd")):
 
 	def doRevealEffect(self):
 		bonusSpeed = _div(self.getP('revealspeed'), 100.0)
-		for card in _iter(self.deck.cards):
+		for card in (self.deck.cards if self.deck.cards.__class__ is list else _iter(self.deck.cards)):
 			card.addSpeed(bonusSpeed)
 
 		if self.cardSecondaryEffectActive():
