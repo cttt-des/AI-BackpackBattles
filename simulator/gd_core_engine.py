@@ -630,6 +630,7 @@ class GDCoreEngine:
                  keyed_cleanse_biggest_first: bool = False,
                  p_stats: Optional[Dict[str, float]] = None,
                  o_stats: Optional[Dict[str, float]] = None,
+                 light_log: bool = False,
                  _r5_warm: bool = False,
                  _r5_warm_gate: int = 25000,
                  formal_ev_gate: int = 25000):
@@ -758,6 +759,12 @@ class GDCoreEngine:
         # ── 装配 ──
         probe_cls = _make_probe_class(k["CoreHooks"], k["ET_NAME"], probe_bases)
         self.hooks = probe_cls()
+        # ★ S3-C12（MC 探针轻量）：light_log=True 时实例属性遮蔽 logEvent 为
+        #   no-op——事件物化（params 拷贝/_json_safe/_OriginRef/事件对象）是
+        #   纯旁路开销，logEvent 不消耗 rng、不改任何内核状态，跳过对判定
+        #   链零影响（蒙特卡洛只需胜负；单场/对照工具恒全量探针）。
+        if light_log:
+            self.hooks.logEvent = lambda event: None
         self.log = self.hooks                     # 事件视图即日志视图
         ctx = k["CoreContext"](int(seed), self.hooks)
         # np21-R5：暖场实例打开连接台账（键控默认关，正式/非键控路径零扰动）

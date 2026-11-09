@@ -123,13 +123,19 @@ def save_outputs(eng: "CombatEngine", player_path: str, opponent_path: str,
 
 
 def _mc_worker(job):
-    """蒙特卡洛并行 worker（S1-E1）：进程池任务入口，模块级函数保证可 pickle。
+    """蒙特卡洛并行 worker（S1-E1/C12）：进程池任务入口，模块级函数保证可 pickle。
 
     只回传统计（E3-lite：胜负），不回传事件流——事件对象化的成本留在
-    worker 侧（产品语义不变：胜负判定与 seed→战斗映射与串行路径完全一致）。"""
+    worker 侧（产品语义不变：胜负判定与 seed→战斗映射与串行路径完全一致）。
+    light_log=True：logEvent 旁路化（S3-C12，跳过事件物化；logEvent 不消耗
+    rng、不改内核状态，胜负判定零影响）。"""
+    from simulator.gd_core_engine import GDCoreEngine
+    from .lineup import load_lineup
     seed, player_path, opponent_path, max_time = job
-    eng = simulate_once(player_path, opponent_path, None, None, seed, max_time,
-                        engine=DEFAULT_ENGINE)
+    pl = load_lineup(player_path)
+    op = load_lineup(opponent_path)
+    eng = GDCoreEngine(pl, op, None, None, seed, max_time, light_log=True)
+    eng.run()
     return bool(eng.player_wins())
 
 
