@@ -345,7 +345,11 @@ class CoreCombat(GodotObject):
 
 		# ③ 对手物品 _physics_process（Items/Item.gd:4453-4458，遍历=INVENTORY 装配序）
 		for item in _iter__loc(self.opponent.inventory.getItems()):
-			item.physicsTick(delta)
+			if item._cooldown_active:
+				if not (item.character().stunnedDuration > 0):
+					item.triggerTime -= delta * item.getSpeed()
+					if item.triggerTime <= 0:
+						item.trigger()
 
 		# ④ CombatTimer._physics_process: combatTime += delta（事件时间戳源，
 		#    oracle tick_battle 步骤④：夹在双方物品推进之间）
@@ -357,7 +361,11 @@ class CoreCombat(GodotObject):
 
 		# ⑥ 玩家物品 _physics_process（INVENTORY 装配序）
 		for item in _iter__loc(self.player.inventory.getItems()):
-			item.physicsTick(delta)
+			if item._cooldown_active:
+				if not (item.character().stunnedDuration > 0):
+					item.triggerTime -= delta * item.getSpeed()
+					if item.triggerTime <= 0:
+						item.trigger()
 
 		# ⑦ 物理型 Timer（oracle tick_battle 步骤⑥⑦ drive_timers(true)，registry=场景树
 		#    次序）：逐角色 [TickTimer(onTick) → BattleRageTimer → InvulnerabilityTimer →

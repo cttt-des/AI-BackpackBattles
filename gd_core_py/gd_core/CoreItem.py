@@ -814,7 +814,7 @@ class CoreItem(GodotObject):
 		#   逐抽对位实证：同 tick 内先抽完全部冷却触发，再依 registry 次序发计时器）。
 		if not self._cooldown_active:
 			return
-		if not self.character().isStunned():
+		if not (self.character().stunnedDuration > 0):
 			self.triggerTime -= delta * self.getSpeed()
 			if self.triggerTime <= 0:
 				self.trigger()

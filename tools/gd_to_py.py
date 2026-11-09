@@ -2500,9 +2500,9 @@ def _inline_accessors(texts, stat, hit):
                                                  _span_text(text, a))
             elif (fu.attr == "isStunned" and not node.args and not node.keywords
                     and inline_isStunned):
-                # 双引用模式：接收者限纯表达式（无调用=无副作用，双重求值无害）
-                if any(isinstance(n, _ast.Call) for n in _ast.walk(recv)):
-                    continue
+                # ★ 单引用模式（接收者求值一次）——Call 接收者安全；
+                #   C6c 曾误加双引用纯度守卫，把 self.character().isStunned()
+                #   这类热站点（26k/场）挡在门外，2026-11-10 修正
                 new = "(%s.stunnedDuration > 0)" % _span_text(text, recv)
             elif (fu.attr == "hasCharacter" and not node.args
                     and not node.keywords and inline_hasCharacter):
@@ -2896,6 +2896,37 @@ def _d2_adjcells_seen(texts, stat, hit):
     return texts
 
 
+def _f5b_physick_inline(texts, stat, hit):
+    """S5-F5b（F5 第二切片）：CoreItem.physicsTick 在 CoreCombat 两调用点展开。
+
+    审计：physicsTick 全树仅 CoreItem.gd 定义（零覆写）；调用点仅
+    CoreCombat.physicsTick 双侧循环 2 处；体=冷却门+眩晕门+递减+触发
+    （isStunned 零覆写单行体已审计）。展开后 25.3 万次方法调用/3场清零
+    （其中 ~70% 是非冷却物品的「调用+属性+早退」纯开销）。
+    虚调用保留：character()（Gem 有覆写）、getSpeed()、trigger() 原样转写。
+    精确锚点 + 计数校验，漂移即抛。
+    """
+    import ast as _ast
+    cc = texts.get("gd_core/CoreCombat.gd")
+    if cc is None:
+        raise RuntimeError("F5b: 缺 gd_core/CoreCombat.gd 文本——texts 键名漂移")
+    old = "\t\t\titem.physicsTick(delta)\n"
+    if cc.count(old) != 2:
+        raise RuntimeError(
+            "F5b: physicsTick 调用点计数=%d（需 2）——文本已漂移" % cc.count(old))
+    new = ("\t\t\tif item._cooldown_active:\n"
+           "\t\t\t\tif not (item.character().stunnedDuration > 0):\n"
+           "\t\t\t\t\titem.triggerTime -= delta * item.getSpeed()\n"
+           "\t\t\t\t\tif item.triggerTime <= 0:\n"
+           "\t\t\t\t\t\titem.trigger()\n")
+    cc = cc.replace(old, new, 2)
+    _ast.parse(cc)
+    texts["gd_core/CoreCombat.gd"] = cc
+    hit["F5b_physick_inline"] = 2
+    stat["F5b"] = ["CoreItem.physicsTick 双调用点展开"]
+    return texts
+
+
 def write_pkg(order, files_by_rel, by_name, by_path, class_names, stat, hit, write):
     texts = {}
     for rel in order:
@@ -2918,6 +2949,7 @@ def write_pkg(order, files_by_rel, by_name, by_path, class_names, stat, hit, wri
         texts = _d1_seen_set(texts, stat, hit)
     if "F5" not in _skip:
         texts = _f5a_tick_inline(texts, stat, hit)
+        texts = _f5b_physick_inline(texts, stat, hit)
     if "C17a" not in _skip:
         texts = _clamp_inline(texts, stat, hit)
     if "C17b" not in _skip:
