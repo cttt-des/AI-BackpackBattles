@@ -1138,8 +1138,25 @@ class GodotObject:
 
         ★ 这是 `_behavior` 两级派发的判据：CoreItem 用它决定「物品脚本自己是否
           实现了该回调」。把属性误判成方法会让回落分支去调一个非可调用对象。
+
+        ★ S4-C6 派发矩阵（2026-11-09）：结果按 (类, 名) 缓存——生成代码的
+          方法都是类级（运行期不增删），缓存双守卫保证正确性：
+          ① 实例 __dict__ 含该名（实例级影子）→ 不缓存，逐次现算；
+          ② 类级同名是 property → 不缓存（getattr(实例) 走 getter 返回值，
+             可随实例状态变化）。审计：全树无方法名影子赋值（grep 实证）。
         """
-        return callable(getattr(self, str(name), None))
+        name = str(name)
+        cls = type(self)
+        key = (cls, name)
+        v = _HAS_METHOD_CACHE.get(key)
+        if v is not None:
+            return v
+        a = getattr(self, name, None)
+        ok = callable(a)
+        if (name not in self.__dict__
+                and not isinstance(getattr(cls, name, None), property)):
+            _HAS_METHOD_CACHE[key] = ok
+        return ok
 
     def call(self, name, *args):
         return getattr(self, str(name))(*args)
@@ -1201,6 +1218,9 @@ Object = GodotObject
 Node = GodotObject
 Node2D = GodotObject
 Resource = GodotObject
+
+# S4-C6 has_method 派发矩阵缓存：{(类, 方法名): bool}（双守卫见 has_method 注）
+_HAS_METHOD_CACHE = {}
 
 
 # ═══════════════════════════ ④ RandomNumberGenerator ═══════════════════════════
