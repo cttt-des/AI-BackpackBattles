@@ -1004,7 +1004,7 @@ class CoreCharacter(GodotObject):
 
 
 	def clampStamina(self):
-		self.curStamina = clamp(self.curStamina, 0, self.getMaxStamina())
+		self.curStamina = (0 if self.curStamina < 0 else (self.getMaxStamina() if self.curStamina > self.getMaxStamina() else self.curStamina))
 
 
 	def fillUpStamina(self):

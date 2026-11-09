@@ -471,7 +471,7 @@ class CoreItem(GodotObject):
 			else:
 				modifiedSpeed = _div(1.0, 1.0 - speed_)
 
-			modifiedSpeed = clamp(modifiedSpeed, 0.1, 10.0)
+			modifiedSpeed = (0.1 if modifiedSpeed < 0.1 else (10.0 if modifiedSpeed > 10.0 else modifiedSpeed))
 			return modifiedSpeed
 		else:
 			return 1.0
@@ -1446,7 +1446,7 @@ class CoreItem(GodotObject):
 	# ─────────────────────── 暴击（对齐 3995-4027, 4128-4129） ───────────────────────
 
 	def getCritChancePercent(self):
-		return clamp(self.critChancePercent, 0, 100)
+		return (0 if self.critChancePercent < 0 else (100 if self.critChancePercent > 100 else self.critChancePercent))
 
 
 	def addCritChancePercent(self, amount):

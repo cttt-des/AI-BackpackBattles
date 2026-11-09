@@ -99,7 +99,7 @@ class BalancedRng(GodotObject):
 			return True
 
 		self.accChance += target - self.lastTarget
-		self.extraLuck += clamp(self.accChance, 0, 1) - target
+		self.extraLuck += (0 if self.accChance < 0 else (1 if self.accChance > 1 else self.accChance)) - target
 
 		self.lastTarget = target
 

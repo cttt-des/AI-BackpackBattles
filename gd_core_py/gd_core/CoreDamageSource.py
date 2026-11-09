@@ -146,7 +146,7 @@ class CoreDamageSource(GodotObject):
 
 
 	def getCritChancePercent(self):
-		return clamp(self.critChancePercent, 0.0, 100.0)
+		return (0.0 if self.critChancePercent < 0.0 else (100.0 if self.critChancePercent > 100.0 else self.critChancePercent))
 
 
 	def updateItem(self, item):

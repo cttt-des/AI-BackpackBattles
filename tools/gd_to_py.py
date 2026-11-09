@@ -2760,6 +2760,68 @@ def _f5a_tick_inline(texts, stat, hit):
     return texts
 
 
+def _clamp_inline(texts, stat, hit):
+    """S3-C17a：纯实参的 clamp(...) 调用点内联为三元链（81k 调用/3场，热路径
+    26.5k 集中在 getSpeed）。
+
+    展开式 = _rt.clamp 函数体原样：`lo if v < lo else (hi if v > hi else v)`。
+    安全性：v 出现三次 → 实参 v 限纯表达式（无 Call 节点；属性链幂等，
+    全树 property 仅 CoreBuff.current 纯读——审计）；lo/hi 各出现一次任意
+    形态。NaN 语义与函数逐位一致（两比较均 False → 返回 v）。
+    """
+    import ast as _ast
+    total = 0
+    changed = 0
+    for rel in list(texts):
+        text = texts[rel]
+        if "clamp(" not in text:
+            continue
+        try:
+            tree = _ast.parse(text)
+        except SyntaxError:
+            continue
+        reps = []
+        for node in _ast.walk(tree):
+            if not isinstance(node, _ast.Call):
+                continue
+            fu = node.func
+            if not (isinstance(fu, _ast.Name) and fu.id == "clamp"
+                    and len(node.args) == 3 and not node.keywords):
+                continue
+            v, lo, hi = node.args
+            if any(isinstance(n, _ast.Call) for n in _ast.walk(v)):
+                continue                       # v 三次出现 → 限纯表达式
+            new = "(%s if %s < %s else (%s if %s > %s else %s))" % (
+                _span_text(text, lo), _span_text(text, v), _span_text(text, lo),
+                _span_text(text, hi), _span_text(text, v), _span_text(text, hi),
+                _span_text(text, v))
+            reps.append((node.lineno, node.col_offset,
+                         node.end_lineno, node.end_col_offset, new))
+        if not reps:
+            continue
+        reps.sort(key=lambda r: (-r[0], -r[1]))
+        lines = text.split("\n")
+        for l1, c1, l2, c2, new in reps:
+            if l1 == l2:
+                lines[l1 - 1] = lines[l1 - 1][:c1] + new + lines[l1 - 1][c2:]
+            else:
+                lines[l1 - 1] = lines[l1 - 1][:c1] + new
+                for mid in range(l1, l2 - 1):
+                    lines[mid] = ""
+                lines[l2 - 1] = lines[l2 - 1][c2:]
+            total += 1
+        new_text = "\n".join(lines)
+        try:
+            _ast.parse(new_text)
+        except SyntaxError:
+            continue
+        texts[rel] = new_text
+        changed += 1
+    hit["C17a_clamp内联"] = total
+    stat["C17a"] = ["%d 模块 %d 处" % (changed, total)]
+    return texts
+
+
 def write_pkg(order, files_by_rel, by_name, by_path, class_names, stat, hit, write):
     texts = {}
     for rel in order:
@@ -2782,6 +2844,8 @@ def write_pkg(order, files_by_rel, by_name, by_path, class_names, stat, hit, wri
         texts = _d1_seen_set(texts, stat, hit)
     if "F5" not in _skip:
         texts = _f5a_tick_inline(texts, stat, hit)
+    if "C17a" not in _skip:
+        texts = _clamp_inline(texts, stat, hit)
     if not write:
         return texts
     dirs = {OUT_PKG}

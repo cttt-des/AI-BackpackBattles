@@ -385,7 +385,7 @@ class CoreBuff(GodotObject):
 						protected -= 1
 
 			amount -= protected
-			amount = clamp(amount, 0, self.current)
+			amount = (0 if amount < 0 else (self.current if amount > self.current else amount))
 
 			if amount > 0 and self.resistStacks > 0:
 				protectedByStacks = min(amount, self.resistStacks)
