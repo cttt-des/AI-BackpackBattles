@@ -100,7 +100,14 @@ def f32(x):
     Godot 3 官方构建的 `real_t` 是 float32；`RandomPCG::randf()` 与
     `RandomPCG::random(float,float)` 全程在 float32 上运算，直译成 Python
     的 float64 会在低位分叉，于是冷却/命中/暴击逐场漂移。
+
+    ★ 快路径（2026-11-10）：整数值 float（|x|<2²⁴）在 f32 必精确——
+      24 位尾数覆盖全部 ±2²⁴ 内整数；跳过 struct 往返。时长类实参
+      （Buff/Timer duration 2.0/3.0/5.0…）大幅命中。非整数/越界/
+      nan/inf/bool/int 走原 struct 路（逐位同果）。
     """
+    if x.__class__ is float and -16777216.0 < x < 16777216.0 and x == int(x):
+        return x
     return _F32.unpack(_F32.pack(x))[0]
 
 
