@@ -2656,6 +2656,39 @@ def _shim_locals(texts, stat, hit):
     return texts
 
 
+def _d1_seen_set(texts, stat, hit):
+    """S3-D1：CoreGrid.getItemsInCells 的 O(n²) 列表判重改 seen-set + 顺序追加。
+
+    原式 `if not item in itemsInCells and item.placed:`（列表成员线性扫描，
+    受影响格 × 库内物品数平方级）；改 seen-set 判重、按发现顺序 append——
+    输出逐元素相同（两条件合取、均无副作用，求值次序不影响结果集与顺序，
+    规划 §189 已证安全）。精确锚点 + 出现计数校验，漂移即抛（防重生成
+    静默跳过）。哈希键 = 物品实例（默认 id 哈希，跨场不持久）。
+    """
+    key = "gd_core/CoreGrid.gd"
+    t = texts.get(key)
+    if t is None:
+        return texts
+    old_decl = "\t\titemsInCells = []\n"
+    old_guard = ("\t\t\t\tif not item in itemsInCells and item.placed:\n"
+                 "\t\t\t\t\titemsInCells.append(item)\n")
+    if t.count(old_decl) != 1 or t.count(old_guard) != 1:
+        raise RuntimeError(
+            "D1: CoreGrid.getItemsInCells 锚点计数异常（decl=%d guard=%d）——"
+            "生成器文本已漂移，需人工对位" % (t.count(old_decl), t.count(old_guard)))
+    t = t.replace(old_decl, old_decl + "\t\t_items_seen = {}\n", 1)
+    t = t.replace(old_guard,
+                  "\t\t\t\tif item.placed and item not in _items_seen:\n"
+                  "\t\t\t\t\t_items_seen[item] = True\n"
+                  "\t\t\t\t\titemsInCells.append(item)\n", 1)
+    import ast as _ast
+    _ast.parse(t)
+    texts[key] = t
+    hit["D1_seen_set"] = 1
+    stat["D1"] = ["CoreGrid.getItemsInCells"]
+    return texts
+
+
 def write_pkg(order, files_by_rel, by_name, by_path, class_names, stat, hit, write):
     texts = {}
     for rel in order:
@@ -2674,6 +2707,8 @@ def write_pkg(order, files_by_rel, by_name, by_path, class_names, stat, hit, wri
         texts = _shim_locals(texts, stat, hit)
     if "C4" not in _skip:
         texts = _hoist_classrefs(texts, order, files_by_rel, stat, hit)
+    if "D1" not in _skip:
+        texts = _d1_seen_set(texts, stat, hit)
     if not write:
         return texts
     dirs = {OUT_PKG}

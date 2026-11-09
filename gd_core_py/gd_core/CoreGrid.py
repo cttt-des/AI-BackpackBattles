@@ -107,10 +107,12 @@ class CoreGrid(GodotObject):
 	# 对齐 Inventory.gd:729-739
 	def getItemsInCells(self, cells):
 		itemsInCells = []
+		_items_seen = {}
 		for cell in (cells if cells.__class__ is list else _iter(cells)):
 			if (cell in self.filledCells):
 				item = self.filledCells[cell]
-				if not item in itemsInCells and item.placed:
+				if item.placed and item not in _items_seen:
+					_items_seen[item] = True
 					itemsInCells.append(item)
 
 		return itemsInCells
