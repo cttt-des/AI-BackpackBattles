@@ -336,18 +336,30 @@ class BattleSimulatorGUI:
             wins = 0
             last_eng = None
             start = time.time()
-            for run in range(runs):
-                s = seed + run if seed is not None else None
-                eng = sim.simulate_once(pa, pb, self.item_db, self.char_db, s)
+            if runs > 1:
+                # ── S1-E1/E2/G4：蒙特卡洛走进程池（B9 预热在 initializer）──
+                # 逐 seed 确定性与串行逐场循环全等（seed + run 同映射）。
+                # 进度经 50ms 节流（E4/G4），千场不刷爆 UI 事件队列。
+                import os as _os
+                workers = max(1, min(4, _os.cpu_count() or 1, runs))
+                last_state = {'t': 0.0}
+
+                def _on_progress(done, w):
+                    now = time.time()
+                    if done >= runs or now - last_state['t'] >= 0.05:
+                        last_state['t'] = now
+                        self.root.after(0, self._append_progress, done, runs,
+                                        f'{w}/{done} 胜')
+                wins = sim.run_mc_pool(pa, pb, seed, runs, workers,
+                                       max_time=90.0,
+                                       progress_cb=_on_progress)
+            else:
+                eng = sim.simulate_once(pa, pb, self.item_db, self.char_db, seed)
                 last_eng = eng
                 if eng.player_wins():
                     wins += 1
-                if runs == 1:
-                    self._append_log(sim._log_text(eng, lang))
-                    self.root.after(0, self._show_result, eng, None)
-                else:
-                    self.root.after(0, self._append_progress, run + 1, runs,
-                                    '玩家胜' if eng.player_wins() else '玩家败')
+                self._append_log(sim._log_text(eng, lang))
+                self.root.after(0, self._show_result, eng, None)
             if runs > 1:
                 rate = wins / runs * 100
                 summary = (f'{runs} 场统计：玩家胜率 {rate:.1f}%  ({wins}/{runs})  '

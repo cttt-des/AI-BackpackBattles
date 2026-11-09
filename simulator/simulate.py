@@ -123,15 +123,58 @@ def save_outputs(eng: "CombatEngine", player_path: str, opponent_path: str,
 
 
 def _mc_worker(job):
-    """蒙特卡洛并行 worker（S1-E1）：进程池入口，模块级函数保证可 pickle。
+    """蒙特卡洛并行 worker（S1-E1）：进程池任务入口，模块级函数保证可 pickle。
 
-    只回传统计（E3-lite：胜负 + ticks + 时长），不回传事件流——事件对象化
-    的成本留在 worker 侧（产品语义不变：事件物化发生在计时窗口内，胜负
-    判定与 seed→战斗映射与串行路径完全一致）。"""
+    只回传统计（E3-lite：胜负），不回传事件流——事件对象化的成本留在
+    worker 侧（产品语义不变：胜负判定与 seed→战斗映射与串行路径完全一致）。"""
     seed, player_path, opponent_path, max_time = job
     eng = simulate_once(player_path, opponent_path, None, None, seed, max_time,
                         engine=DEFAULT_ENGINE)
     return bool(eng.player_wins())
+
+
+def _pool_init(player_path, opponent_path, max_time):
+    """S1-B9 worker 预热：进程 initializer——内核装载（B2 分层导入后
+    gd_core 树一次 ≈0.75s）+ 一场热身战斗（解释器/JIT 缓存、_DESCR_CACHE
+    描述符注册表全部就位）。热身用固定种子 1、独立 ctx，不污染任何战斗
+    语义（每场隔离；正式场 seed 从任务传入）。"""
+    try:
+        eng = simulate_once(player_path, opponent_path, None, None, 1,
+                            max_time, engine=DEFAULT_ENGINE)
+        eng.run()
+    except Exception:  # noqa: BLE001 —— 预热失败不挡任务（首轮任务自会装载）
+        pass
+    return True
+
+
+def run_mc_pool(player_path, opponent_path, seed, runs, workers, max_time=90.0,
+                progress_cb=None):
+    """S1-E1/E2：蒙特卡洛进程池统一入口（CLI 与 GUI 共用）。
+
+    · 逐 seed 确定性不变：seed_r = seed + r，与串行循环逐一对应——
+      验收口径 = 逐 seed 胜负与串行全等（G1 门）。
+    · E2 动态批次：seeds 切成 8 场/批交给池（ex.map chunksize=8），worker
+      完成一批即领下一批，长尾场不拖住整块；批内结果聚合回传统计（E3）。
+    · progress_cb(done, wins)：按完成批回报（GUI 侧再 50ms 节流，G4）。
+    返回 wins（玩家胜场数）。
+    """
+    from concurrent.futures import ProcessPoolExecutor
+    import multiprocessing as _mp
+    workers = max(1, min(workers, _mp.cpu_count(), runs))
+    jobs = [(seed + r if seed is not None else None,
+             player_path, opponent_path, max_time)
+            for r in range(runs)]
+    wins = 0
+    done = 0
+    with ProcessPoolExecutor(max_workers=workers,
+                             initializer=_pool_init,
+                             initargs=(player_path, opponent_path, max_time)) as ex:
+        for w in ex.map(_mc_worker, jobs, chunksize=8):
+            wins += bool(w)
+            done += 1
+            if progress_cb is not None:
+                progress_cb(done, wins)
+    return wins
 
 
 def main(argv: Optional[List[str]] = None) -> int:
@@ -173,17 +216,12 @@ def main(argv: Optional[List[str]] = None) -> int:
     t0 = time.time()
     last_eng = None
 
-    # ── 蒙特卡洛并行路径（S1-E1）：--workers>1 且 runs>1 ──
+    # ── 蒙特卡洛并行路径（S1-E1/E2/B9）：--workers>1 且 runs>1 ──
     # 逐 seed 确定性不变：seed = args.seed + run，与串行循环逐一对应，
     # 因此胜负对拍必须逐 seed 全等（验收口径，docs/性能优化执行路径.md S1）。
     if args.workers > 1 and args.runs > 1:
-        from concurrent.futures import ProcessPoolExecutor
-        jobs = [(args.seed + r if args.seed is not None else None,
-                 args.player, args.opponent, args.max_time)
-                for r in range(args.runs)]
-        with ProcessPoolExecutor(max_workers=args.workers) as ex:
-            for w in ex.map(_mc_worker, jobs, chunksize=4):
-                wins += w
+        wins = run_mc_pool(args.player, args.opponent, args.seed, args.runs,
+                           args.workers, args.max_time)
         rate = wins / args.runs * 100
         print(f"\n=== {args.runs} 场统计（workers={args.workers}） ===")
         print(f"  玩家胜率: {rate:.1f}%  ({wins}/{args.runs})  "
