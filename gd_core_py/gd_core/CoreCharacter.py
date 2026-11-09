@@ -292,7 +292,7 @@ class CoreCharacter(GodotObject):
 			#   静默失效（联动不触发的根因之二；CoreConst 未内建 eventTypeKeys，
 			#   故就地线性反查，仅初始化一次）
 			_stack_type_name = "unknown"
-			for _k in (_H_12 if _H_12.__class__ is list else _iter(_H_12)):
+			for _k in _iter(_H_12):
 				if _H_12[_k] == stackType:
 					_stack_type_name = _k
 					break
@@ -734,7 +734,7 @@ class CoreCharacter(GodotObject):
 			elif damageSource.hasType(_H_10):
 				self.spawnLabel_native(_H_20, damageRes.damage, item)
 			elif damageSource.hasType(_H_8):
-				self.spawnLabel_native(_H_18, damageRes.damage, item)
+				self.spawnLabel_native(_H_17, damageRes.damage, item)
 			else:
 				self.spawnLabel_native(_H_45, damageRes.damage, item)
 
@@ -810,7 +810,7 @@ class CoreCharacter(GodotObject):
 			if spikeDam > 0:
 				self.spikeDamageSource.setDamage(spikeDam)
 				self.opponent.takeDamage(self.spikeDamageSource, damageRes.event)
-				self.ctx.hooks.activateBuffCounter(self, _H_18)
+				self.ctx.hooks.activateBuffCounter(self, _H_17)
 
 
 	def applyVampirism(self, damageRes):
@@ -1490,14 +1490,14 @@ class CoreCharacter(GodotObject):
 	def getBuffStacks(self):
 		stacks = 0
 		for buff in _iter(_H_11.getBuffs()):
-			stacks += self.getStacks(buff)
+			stacks += self.buffs[buff]._current
 		return stacks
 
 
 	def getDebuffStacks(self):
 		stacks = 0
 		for debuff in _iter(_H_11.getDebuffs()):
-			stacks += self.getStacks(debuff)
+			stacks += self.buffs[debuff]._current
 		return stacks
 
 
@@ -1508,7 +1508,7 @@ class CoreCharacter(GodotObject):
 
 	def setStacksLogged(self, buffType, amount, item=None, triggerEvent=None):
 		amount = int(amount)
-		curStacks = self.getStacks(buffType)
+		curStacks = self.buffs[buffType]._current
 		if amount < curStacks:
 			self.loseStacks(buffType, curStacks - amount, item, triggerEvent)
 		elif amount > curStacks:
@@ -1549,46 +1549,46 @@ class CoreCharacter(GodotObject):
 
 
 	def getBlock(self):
-		return self.getStacks(_H_17)
+		return self.buffs[_H_18]._current
 
 
 	# 对齐 Character.gd:1182-1183：原版此处写入的是 Spikes（原样保留，不修）
 	def setBlock(self, amount):
 		amount = int(amount)
-		self.setStacks(_H_18, amount)
+		self.setStacks(_H_17, amount)
 
 
 	def gainBlock(self, amount, item=None, triggerEvent=None):
 		amount = int(amount)
-		return self.gainStacks(_H_17, amount, item, triggerEvent)
+		return self.gainStacks(_H_18, amount, item, triggerEvent)
 
 
 	def loseBlock(self, amount, item=None, triggerEvent=None):
-		return self.loseStacks(_H_17, amount, item, triggerEvent)
+		return self.loseStacks(_H_18, amount, item, triggerEvent)
 
 
 	# ── 各栈取值（对齐 1179-1360 的模板） ──
 
 	def getSpikes(self):
-		return self.getStacks(_H_18)
+		return self.buffs[_H_17]._current
 
 
 	def setSpikes(self, amount):
 		amount = int(amount)
-		self.setStacks(_H_18, amount)
+		self.setStacks(_H_17, amount)
 
 
 	def gainSpikes(self, amount, item=None, triggerEvent=None):
 		amount = int(amount)
-		return self.gainStacks(_H_18, amount, item, triggerEvent)
+		return self.gainStacks(_H_17, amount, item, triggerEvent)
 
 
 	def loseSpikes(self, amount, item=None, triggerEvent=None):
-		return self.loseStacks(_H_18, amount, item, triggerEvent)
+		return self.loseStacks(_H_17, amount, item, triggerEvent)
 
 
 	def getVampirism(self):
-		return self.getStacks(_H_19)
+		return self.buffs[_H_19]._current
 
 
 	def setVampirism(self, amount):
@@ -1606,7 +1606,7 @@ class CoreCharacter(GodotObject):
 
 
 	def getPoison(self):
-		return self.getStacks(_H_20)
+		return self.buffs[_H_20]._current
 
 
 	def setPoison(self, amount):
@@ -1632,7 +1632,7 @@ class CoreCharacter(GodotObject):
 
 
 	def getRegeneration(self):
-		return self.getStacks(_H_21)
+		return self.buffs[_H_21]._current
 
 
 	def setRegeneration(self, amount):
@@ -1650,7 +1650,7 @@ class CoreCharacter(GodotObject):
 
 
 	def getLucky(self):
-		return self.getStacks(_H_22)
+		return self.buffs[_H_22]._current
 
 
 	def setLucky(self, amount):
@@ -1668,7 +1668,7 @@ class CoreCharacter(GodotObject):
 
 
 	def getBlind(self):
-		return self.getStacks(_H_23)
+		return self.buffs[_H_23]._current
 
 
 	def setBlind(self, amount):
@@ -1686,7 +1686,7 @@ class CoreCharacter(GodotObject):
 
 
 	def getMana(self):
-		return self.getStacks(_H_24)
+		return self.buffs[_H_24]._current
 
 
 	def setMana(self, amount):
@@ -1704,7 +1704,7 @@ class CoreCharacter(GodotObject):
 
 
 	def getEmpower(self):
-		return self.getStacks(_H_25)
+		return self.buffs[_H_25]._current
 
 
 	def setEmpower(self, amount):
@@ -1722,7 +1722,7 @@ class CoreCharacter(GodotObject):
 
 
 	def getHeat(self):
-		return self.getStacks(_H_26)
+		return self.buffs[_H_26]._current
 
 
 	def setHeat(self, amount):
@@ -1740,7 +1740,7 @@ class CoreCharacter(GodotObject):
 
 
 	def getCold(self):
-		return self.getStacks(_H_27)
+		return self.buffs[_H_27]._current
 
 
 	def setCold(self, amount):
@@ -2053,7 +2053,7 @@ class CoreCharacter(GodotObject):
 	#   每帧在**物品冷却推进之前**执行（oracle tick_battle 步骤②⑤：对手角色先于其
 	#   物品、玩家角色先于其物品）；与物理型 Timer（tickPhysicsTimers）严格分离。
 	def physicsTickCharacter(self, delta):
-		if self.isStunned():
+		if (self.stunnedDuration > 0):
 			self.stunnedDuration -= delta
 			if self.stunnedDuration <= 0.0:
 				self.stunnedDuration = 0.0
@@ -2185,11 +2185,11 @@ try:
 except AttributeError as _he:
     _H_16 = _HoistPending(_he)
 try:
-    _H_17 = _R.C("CoreConst").EventType.Block
+    _H_17 = _R.C("CoreConst").EventType.Spikes
 except AttributeError as _he:
     _H_17 = _HoistPending(_he)
 try:
-    _H_18 = _R.C("CoreConst").EventType.Spikes
+    _H_18 = _R.C("CoreConst").EventType.Block
 except AttributeError as _he:
     _H_18 = _HoistPending(_he)
 try:

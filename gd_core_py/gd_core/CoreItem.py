@@ -2689,7 +2689,7 @@ class CoreItem(GodotObject):
 	def pickRandomStacks(self, stackTypes, numStacks, target, priorityStack=None):
 		stacks = Dictionary()
 		for stackType in (stackTypes if stackTypes.__class__ is list else _iter(stackTypes)):
-			numTargetStacks = target.getStacks(stackType)
+			numTargetStacks = target.buffs[stackType]._current
 			if numTargetStacks > 0:
 				stacks[stackType] = numTargetStacks
 
@@ -2725,7 +2725,7 @@ class CoreItem(GodotObject):
 	def getLeastStacks(self, numStacks, target, availableStacks):
 		priorStacks = {}
 		for stackType in (availableStacks if availableStacks.__class__ is list else _iter(availableStacks)):
-			priorStacks[stackType] = target.getStacks(stackType)
+			priorStacks[stackType] = target.buffs[stackType]._current
 
 		pickedStacks = {}
 
@@ -2751,7 +2751,7 @@ class CoreItem(GodotObject):
 	def getMostStacks(self, target, availableStacks):
 		buffs = Dictionary()
 		for buff in (availableStacks if availableStacks.__class__ is list else _iter(availableStacks)):
-			buffs[buff] = target.getStacks(buff)
+			buffs[buff] = target.buffs[buff]._current
 
 		maxBuffs = []
 		maxStacks = 0
@@ -2774,7 +2774,7 @@ class CoreItem(GodotObject):
 		stacksUnlimited = {}
 
 		for buff in (availableStacks if availableStacks.__class__ is list else _iter(availableStacks)):
-			prior = target.getStacks(buff)
+			prior = target.buffs[buff]._current
 
 			withBonus = prior * fraction
 			stacksUnlimited[buff] = withBonus
@@ -2905,7 +2905,7 @@ class CoreItem(GodotObject):
 		maxBuffs = self.getMostStacks(target, availableBuffs)
 		buffToRemove = self.ctx.rng.pickRandomElement(maxBuffs)
 
-		toRemove = min(numBuffs, target.getStacks(buffToRemove))
+		toRemove = min(numBuffs, target.buffs[buffToRemove]._current)
 		if toRemove == 0:
 			return None
 
@@ -3986,7 +3986,7 @@ class CoreItem(GodotObject):
 	# 对齐 Item.gd:6510-6520
 	def countTypes(self, ofItems):
 		typesDict = {}
-		for type in (_H_6 if _H_6.__class__ is list else _iter(_H_6)):
+		for type in _iter(_H_6):
 			typesDict[_H_6[type]] = 0
 
 		for item in (ofItems if ofItems.__class__ is list else _iter(ofItems)):

@@ -2391,14 +2391,135 @@ def _iter_inline(texts, stat, hit):
     return texts
 
 
+def _inline_accessors(texts, stat, hit):
+    """S3-C6-lite：零覆写单返回访问器在调用点内联（A1 剖面堆栈链 54 万次/3场）。
+
+    全树审计（grep `^func <名>` 于 gd_core/ + gd_core_items/）确认以下方法
+    **无任何子类覆写**（GDScript 方法默认虚分派，零覆写=静态内联安全），
+    且方法体为单表达式（self 只读、无副作用）：
+      · CoreBuff.getStacks()      → self._current（property 存储位直读，
+                                    免 property 描述符 + 免一层调用）
+      · CoreCharacter.getStacks(t) → self.buffs[t]._current（免两层调用）
+      · CoreCharacter.isStunned()  → self.stunnedDuration > 0
+    改写（调用点 Span 替换，接收者表达式原样复用、只出现一次=无双重求值）：
+      E.getStacks()   → E._current
+      E.getStacks(A)  → E.buffs[A]._current
+      E.isStunned()   → (E.stunnedDuration > 0)   # 加括号防优先级错位
+    ★ 守门：REG 九场 + 同 seed tick 等价 + ast_diff 预期面。任何一层将来
+      被子类覆写，本趟必须同步收窄（审计表写死在 _INLINE_ACCESSORS）。
+    """
+    import ast as _ast
+    # ★ 机械审计（替代手工 grep）：同名方法跨类定义数——>1 类定义即弃该模式
+    #   （GDScript 虚分派下接收者类型不可静态判定，盲内联=改错类语义。
+    #   实测：getStacks 同时存在于 CoreBuff/CoreConst/CoreCharacter——
+    #   0-arg 形态弃用，1-arg 形态唯一归 CoreCharacter 保留）。
+    defs_by_name = {}                     # name -> {call_arity: {classes}}
+    for t in texts.values():
+        try:
+            t_tree = _ast.parse(t)
+        except SyntaxError:
+            continue
+        for cd in _ast.walk(t_tree):
+            if not isinstance(cd, _ast.ClassDef):
+                continue
+            for fd in cd.body:
+                if not isinstance(fd, _ast.FunctionDef):
+                    continue
+                # ★ 调用态元数：@staticmethod 无 self 不减（CoreConst.getStacks
+                #   即无参静态方法——首版按「减 self」算错 arities，0-arg 盲内联
+                #   炸出 CoreConst._current）
+                is_static = any(isinstance(d, _ast.Name) and d.id == "staticmethod"
+                                for d in fd.decorator_list)
+                call_arity = len(fd.args.args) - (0 if is_static else 1)
+                defs_by_name.setdefault(fd.name, {}).setdefault(
+                    call_arity, set()).add(cd.name)
+
+    def _only_definer(name, call_arity, cls):
+        # ★ 按调用态元数分派：n-arg 调用只能命中 call_arity==n 的定义，
+        #   其他元数定义与此无关（getStacks 的 0-arg 定义不影响 1-arg 判定）
+        d = defs_by_name.get(name, {})
+        return d.get(call_arity) == {cls}
+
+    inline_getStacks0 = _only_definer("getStacks", 0, "CoreBuff")
+    inline_getStacks1 = _only_definer("getStacks", 1, "CoreCharacter")
+    inline_isStunned = _only_definer("isStunned", 0, "CoreCharacter")
+    changed = 0
+    total = 0
+    for rel in list(texts):
+        text = texts[rel]
+        if ".getStacks(" not in text and ".isStunned(" not in text:
+            continue
+        try:
+            tree = _ast.parse(text)
+        except SyntaxError:
+            continue
+        pmap = {}
+        for p in _ast.walk(tree):
+            for c in _ast.iter_child_nodes(p):
+                pmap[c] = p
+        reps = []
+        for node in _ast.walk(tree):
+            if not isinstance(node, _ast.Call):
+                continue
+            fu = node.func
+            if not isinstance(fu, _ast.Attribute):
+                continue
+            recv = fu.value
+            if recv is None or isinstance(recv, (_ast.Call, _ast.Lambda)):
+                continue                    # 接收者含调用：展开有副作用风险
+            if (fu.attr == "getStacks" and not node.args and not node.keywords
+                    and inline_getStacks0):
+                new = "%s._current" % _span_text(text, recv)
+            elif (fu.attr == "getStacks" and len(node.args) == 1
+                    and not node.keywords and inline_getStacks1):
+                a = node.args[0]
+                if isinstance(a, (_ast.Starred, _ast.Lambda)):
+                    continue
+                new = "%s.buffs[%s]._current" % (_span_text(text, recv),
+                                                 _span_text(text, a))
+            elif (fu.attr == "isStunned" and not node.args and not node.keywords
+                    and inline_isStunned):
+                new = "(%s.stunnedDuration > 0)" % _span_text(text, recv)
+            else:
+                continue
+            reps.append((node.lineno, node.col_offset,
+                         node.end_lineno, node.end_col_offset, new))
+        if not reps:
+            continue
+        reps.sort(key=lambda r: (-r[0], -r[1]))
+        lines = text.split("\n")
+        for l1, c1, l2, c2, new in reps:
+            if l1 == l2:
+                lines[l1 - 1] = lines[l1 - 1][:c1] + new + lines[l1 - 1][c2:]
+            else:
+                lines[l1 - 1] = lines[l1 - 1][:c1] + new
+                for mid in range(l1, l2 - 1):
+                    lines[mid] = ""
+                lines[l2 - 1] = lines[l2 - 1][c2:]
+            total += 1
+        new_text = "\n".join(lines)
+        try:
+            _ast.parse(new_text)
+        except SyntaxError:
+            continue
+        texts[rel] = new_text
+        changed += 1
+    hit["C6内联访问器"] = total
+    stat["C6"] = ["%d 模块 %d 处" % (changed, total)]
+    return texts
+
+
 def write_pkg(order, files_by_rel, by_name, by_path, class_names, stat, hit, write):
     texts = {}
     for rel in order:
         texts[rel] = transform_file(files_by_rel[rel], by_name, by_path,
                                     stat, hit, class_names)
     texts = _apply_cooldown_f32(texts)
-    texts = _hoist_classrefs(texts, order, files_by_rel, stat, hit)
+    # ★ 顺序：C6 内联先行、C4 提升后行——提升绑定块捕获内联后的表达式，
+    #   且死路径哨兵（_HoistPending）对内联后的文本兜底。
+    texts = _inline_accessors(texts, stat, hit)
     texts = _iter_inline(texts, stat, hit)
+    texts = _hoist_classrefs(texts, order, files_by_rel, stat, hit)
     if not write:
         return texts
     dirs = {OUT_PKG}
