@@ -33,7 +33,7 @@ class Exclusive__BustedBlade(_R.C("res://gd_core_items/Greatsword.gd")):
 			self.setState(True)
 			self.baseCooldownOverride = self.getP3()
 			self.updateBaseCooldown()
-			self.ctx.combat_log.snapshotItemTooltipStat(self, _R.C("CoreConst").ItemStat.StaminaCost)
+			self.ctx.combat_log.snapshotItemTooltipStat(self, _H_1)
 
 
 	def onBattleRageEnded(self, _event):
@@ -41,7 +41,7 @@ class Exclusive__BustedBlade(_R.C("res://gd_core_items/Greatsword.gd")):
 			self.setState(False)
 			self.baseCooldownOverride = self.getBaseCooldown()
 			self.updateBaseCooldown()
-			self.ctx.combat_log.snapshotItemTooltipStat(self, _R.C("CoreConst").ItemStat.StaminaCost)
+			self.ctx.combat_log.snapshotItemTooltipStat(self, _H_1)
 
 	def _readyInit(self):
 		super()._readyInit()
@@ -50,3 +50,10 @@ class Exclusive__BustedBlade(_R.C("res://gd_core_items/Greatsword.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/BustedBlade.gd", Exclusive__BustedBlade)
 _R.reg("BustedBlade", Exclusive__BustedBlade)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").ItemStat.StaminaCost
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)

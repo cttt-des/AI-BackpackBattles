@@ -33,14 +33,14 @@ class Exclusive__HeartShield(_R.C("res://gd_core_items/Shield.gd")):
 	def canAffect(self, item):
 		return (item.canBlock() or 
 				item.canHealOrLifesteal() or 
-				item.gainsStack(_R.C("CoreConst").Stack.Regeneration))
+				item.gainsStack(_H_1))
 
 
 	def onPrepare(self):
 		for item in _iter(self.getAffectedItems()):
-			item.giveBuffPower(_R.C("CoreConst").EventType.Block, self.blockFactor)
+			item.giveBuffPower(_H_2, self.blockFactor)
 			item.changeHealAmp(self.healamp)
-			item.changeAmplificiationChancePercent(_R.C("CoreConst").EventType.Regeneration, self.getChance2())
+			item.changeAmplificiationChancePercent(_H_3, self.getChance2())
 
 		self.setState(False)
 		self.connectForCombat(self.character(), "character_regeneration_changed", "onRegenChanged")
@@ -98,3 +98,18 @@ class Exclusive__HeartShield(_R.C("res://gd_core_items/Shield.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/HeartShield.gd", Exclusive__HeartShield)
 _R.reg("HeartShield", Exclusive__HeartShield)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").Stack.Regeneration
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+try:
+    _H_2 = _R.C("CoreConst").EventType.Block
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)
+try:
+    _H_3 = _R.C("CoreConst").EventType.Regeneration
+except AttributeError as _he:
+    _H_3 = _HoistPending(_he)

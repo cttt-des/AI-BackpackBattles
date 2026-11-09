@@ -106,7 +106,7 @@ class CoreItem(GodotObject):
 		self._cooldown_active = False
 		self.dynamicTypes = {}       # 动态类型记账（addDynamicType/removeDynamicType）
 		self.combatConnections = []       # connectForCombat_signal 建立的战斗连接
-		self._ownerType = _R.C("CoreConst").Owner.Undefined   # 由装配层按所属角色写入
+		self._ownerType = _H_3   # 由装配层按所属角色写入
 		self.placedByPlayer = False            # 对齐 Item.gd:386 附近（addToInventory 写入）
 		self.dragged = False                   # 对齐 Item.gd:390（拖拽态；战斗路径恒 false）
 		self.occupiedCells = []           # 该物品占用的库存格（装配层写入）
@@ -126,7 +126,7 @@ class CoreItem(GodotObject):
 		self.timers = []
 		self.buffLabelPositionTimestamps = [0.0, 0.0, 0.0, 0.0, 0.0]
 		self.replacementPending = False
-		self._faceDirection = _R.C("CoreConst").FaceDirection.UP
+		self._faceDirection = _H_4
 		self.rotation = 0.0
 
 	@property
@@ -338,15 +338,15 @@ class CoreItem(GodotObject):
 		for _i in _iter(_gd_range(max(0, int(self.descriptor.sceneDepth) - 2))):
 			self.chanceRng = self.ctx.rng.BalancedRng(self.ctx.rng)
 		self.baseCooldownOverride = _descriptor.cd
-		for buff in _iter(_R.C("CoreConst").getStacks()):
+		for buff in _iter(_H_7.getStacks()):
 			self.buffPowers[buff] = 1.0
 			self.buffAmplificationChances[buff] = 0.0
 		_resize(self.itemMetrics, self.getNumItemMetrics())
 		_fill(self.itemMetrics, 0)
-		_resize(self.statDisplayOverrides, len(_R.C("CoreConst").ItemStat))
+		_resize(self.statDisplayOverrides, len(_H_8))
 		_fill(self.statDisplayOverrides, None)
 		# 对齐 Item.gd:602-603（_ready 里把每个颜色档初始化为空字典）
-		for color in _iter(list(_R.C("CoreConst").Affected.values())):
+		for color in _iter(list(_H_60.values())):
 			self.currentAffectedItems[color] = {}
 		return self
 
@@ -377,7 +377,7 @@ class CoreItem(GodotObject):
 
 
 	def isPlayer(self):
-		return self.character_ != None and self.character_.playerId == _R.C("CoreConst").CharID.PLAYER
+		return self.character_ != None and self.character_.playerId == _H_44
 
 
 	# ─────────────────────── 类型 / 标签（对齐 3594-3601, 5370-5390） ───────────────────────
@@ -431,11 +431,11 @@ class CoreItem(GodotObject):
 	def getTriggerPriority(self):
 		if self._hasBehaviorMethod("getTriggerPriority"):
 			return int(self._behavior_call("getTriggerPriority", []))
-		return _R.C("CoreConst").Priority.Normal
+		return _H_5
 
 
 	def canDamage(self):
-		return self.getBaseMinDamage() > 0 or self.hasTag(_R.C("CoreConst").Tag.Lifesteal)
+		return self.getBaseMinDamage() > 0 or self.hasTag(_H_45)
 
 
 	def canBeEmpowered(self):
@@ -456,7 +456,7 @@ class CoreItem(GodotObject):
 		#   战斗中 statDisplayOverrides 恒为 null，故补回是零行为变化；
 		#   但缺了它，「内核与本函数逐行一致」这句话就不成立。
 		#   由 tools/verify_cooldowns_gd.py 的 A 段守住（该段逐行对照）。
-		override = self.statDisplayOverrides[_R.C("CoreConst").ItemStat.Speed]
+		override = self.statDisplayOverrides[_H_9]
 		if override:
 			return override
 
@@ -516,7 +516,7 @@ class CoreItem(GodotObject):
 
 	# 对齐 Items/Item.gd:3782-3786（含 statDisplayOverrides[CoreConst.ItemStat.BaseCooldown] 覆盖分支）
 	def getCooldown(self):
-		override = self.statDisplayOverrides[_R.C("CoreConst").ItemStat.BaseCooldown]
+		override = self.statDisplayOverrides[_H_10]
 		if override:
 			return override
 
@@ -558,7 +558,7 @@ class CoreItem(GodotObject):
 		#   setGem），挂在对手物品上也不进 0.975 分支；此前按宿主判，对手插座宝石
 		#   被误入 0.975（run570_r18 开战段 3 个链位实证：神谕 0.95 vs 内核 0.975，
 		#   返回值差 ⇒ triggerTime 差 ⇒ 1-tick 触发漂移）。
-		if self.ownerType == _R.C("CoreConst").Owner.Opponent and (self.ctx.below_master or self.ctx.lobbies_mode):
+		if self.ownerType == _H_37 and (self.ctx.below_master or self.ctx.lobbies_mode):
 			adjustedCooldown *= self.ctx.rng.randf_range(0.975, 1.05)
 		else:
 			adjustedCooldown *= self.ctx.rng.randf_range(0.95, 1.05)
@@ -579,8 +579,8 @@ class CoreItem(GodotObject):
 		cdProgress = _div(self.triggerTime, self.iterationCooldown)
 		self.iterationCooldown = self.adjustCooldown()
 		self.triggerTime = cdProgress * self.iterationCooldown
-		self.ctx.combat_log.snapshotItemTooltipStat(self, _R.C("CoreConst").ItemStat.Cooldown)
-		self.ctx.combat_log.snapshotItemTooltipStat(self, _R.C("CoreConst").ItemStat.BaseCooldown)
+		self.ctx.combat_log.snapshotItemTooltipStat(self, _H_11)
+		self.ctx.combat_log.snapshotItemTooltipStat(self, _H_10)
 
 
 	# ─────────────────────── 战斗生命周期（对齐 3356-3440） ───────────────────────
@@ -595,7 +595,7 @@ class CoreItem(GodotObject):
 		# 对齐 Item.gd:3975-3979 —— 原版先查 statDisplayOverrides[CoreConst.ItemStat.StaminaCost]，
 		# 该数组仅由战斗日志回放路径写入（CombatLog.gd:600/612），实战恒为 null，
 		# 故此处保留读取点但不改变判定（Greatsword.gd:15 覆写本函数时同样读取该数组）。
-		override = self.statDisplayOverrides[_R.C("CoreConst").ItemStat.StaminaCost]
+		override = self.statDisplayOverrides[_H_12]
 		if override:
 			return override
 		return self.getBaseStaminaCost() * self.staminaFactor
@@ -607,11 +607,11 @@ class CoreItem(GodotObject):
 
 	def isStatModified(self, statVal):
 		if statVal == 0:
-			return _R.C("CoreConst").StatModified.No
+			return _H_13
 		elif statVal > 0:
-			return _R.C("CoreConst").StatModified.Positive
+			return _H_46
 		else:
-			return _R.C("CoreConst").StatModified.Negative
+			return _H_47
 
 
 	def setStat(self, stat, value):
@@ -624,15 +624,15 @@ class CoreItem(GodotObject):
 		if amount == None:
 			amount = self.getStaminaCost()
 		res = self.character().useStamina(amount)
-		if res == _R.C("CoreConst").StaminaResult.Insufficient:
-			self.addMetric(_R.C("CoreConst").ItemMetrics.OutOfStamina, 1, None, True)
+		if res == _H_14:
+			self.addMetric(_H_48, 1, None, True)
 			event = self.ctx.combat_log.createEvent_OutOfStamina(self, self.character().playerId)
 			self.ctx.bus.logEvent(event)
-			self.ctx.combat_log.snapshotItemTooltipStat(self, _R.C("CoreConst").ItemStat.Cooldown)
+			self.ctx.combat_log.snapshotItemTooltipStat(self, _H_11)
 			self.playOutOfStaminaAnimation()
 		else:
 			self.ctx.bus.emitSignal(self, "used_stamina", [amount])
-			self.staminaChanged(amount, _R.C("CoreConst").StackChangeType.Used_Player, True)
+			self.staminaChanged(amount, _H_49, True)
 		return res
 
 
@@ -652,7 +652,7 @@ class CoreItem(GodotObject):
 	def cacheAffectedItemsForCombat(self):
 		# 对齐 Item.gd:3356-3358 —— 开战前把「受影响物品集」定版。
 		# 战斗期间物品不移动，故 getAffectedItems 之后恒读这份快照。
-		for color in _iter(list(_R.C("CoreConst").Affected.values())):
+		for color in _iter(list(_H_60.values())):
 			self.cachedAffectedItems[color] = list(self.currentAffectedItems[color].keys())
 
 
@@ -665,17 +665,17 @@ class CoreItem(GodotObject):
 		self.placed = True
 		self.inventory = _inventory
 		self.occupiedCells = _occupiedCells
-		if self.ownerType != _R.C("CoreConst").Owner.BuildViewer:
+		if self.ownerType != _H_15:
 			# 原版对比 Game.PLAYER.INVENTORY / Game.OPPONENT.INVENTORY（两个 autoload 全局恒非空）。
 			# 内核里双方由装配层 setup() 注入，未注入时保持原 ownerType（装配早期的正常情形）。
 			if self.ctx.player != None and self.inventory == self.ctx.player.inventory:
-				self.ownerType = _R.C("CoreConst").Owner.PlayerInventory
+				self.ownerType = _H_50
 			elif self.ctx.opponent != None and self.inventory == self.ctx.opponent.inventory:
-				self.ownerType = _R.C("CoreConst").Owner.Opponent
+				self.ownerType = _H_37
 
 		self.cacheAffectedCells()
 
-		for color in _iter(list(_R.C("CoreConst").Affected.values())):
+		for color in _iter(list(_H_60.values())):
 			for item in _iter(self.getAffectedItems(color)):
 				self.currentAffectedItems[color][item] = True
 				self.onAffectedItemAdded(item, color)
@@ -710,7 +710,7 @@ class CoreItem(GodotObject):
 			self.iterationCooldown = self.adjustCooldown()
 			self.triggerTime = self.iterationCooldown
 			self.activateCooldown()
-			self.ctx.combat_log.snapshotItemTooltipStat(self, _R.C("CoreConst").ItemStat.Cooldown)
+			self.ctx.combat_log.snapshotItemTooltipStat(self, _H_11)
 
 		self.onPreCombatStart()
 
@@ -828,7 +828,7 @@ class CoreItem(GodotObject):
 				existing.stop()
 				_erase(self.timers, existing)
 				break
-		t = _R.C("CoreTimer")(self.ctx, self, timerName)
+		t = _H_1(self.ctx, self, timerName)
 		t.multi = isMulti
 		t.one_shot = True
 		t.callback_method = method
@@ -1090,7 +1090,7 @@ class CoreItem(GodotObject):
 		# ★ 表现层链消耗还原（Item.gd:4480 → Util.gd:940-952 → Item.gd:6485-6494）：
 		#   CooldownAdvance 物品标签取位，randInBox 2 抽（早退分支不消耗）。
 		self.getNextFreeLabelPosition()
-		self.ctx.combat_log.snapshotItemTooltipStat(self, _R.C("CoreConst").ItemStat.Cooldown)
+		self.ctx.combat_log.snapshotItemTooltipStat(self, _H_11)
 
 
 	def advanceCooldownSeconds(self, amount):
@@ -1106,7 +1106,7 @@ class CoreItem(GodotObject):
 
 		# ★ 表现层链消耗还原（Item.gd:4492 → Util.gd:940-952 → Item.gd:6485-6494）
 		self.getNextFreeLabelPosition()
-		self.ctx.combat_log.snapshotItemTooltipStat(self, _R.C("CoreConst").ItemStat.Cooldown)
+		self.ctx.combat_log.snapshotItemTooltipStat(self, _H_11)
 
 
 	# 对齐 Item.gd:4667-4668 playActivationSound → :3171-3173 playDropSound（虚链）：
@@ -1137,9 +1137,9 @@ class CoreItem(GodotObject):
 			if not self.isBag():
 				event = self.ctx.combat_log.createEvent_Activation(self)
 				self.ctx.bus.emitEvent(self, "activated", event, [event])
-				self.addMetric(_R.C("CoreConst").ItemMetrics.Activations)
+				self.addMetric(_H_61)
 			if self.hasCooldown():
-				self.ctx.combat_log.snapshotItemTooltipStat(self, _R.C("CoreConst").ItemStat.Cooldown, None, 
+				self.ctx.combat_log.snapshotItemTooltipStat(self, _H_11, None, 
 					False, event)
 
 		if animationOverride != None:
@@ -1249,7 +1249,7 @@ class CoreItem(GodotObject):
 	def getMinDamage(self, damSource=GD_DEFAULT):
 		if damSource is GD_DEFAULT:
 			damSource = self.damageSource
-		override = self.statDisplayOverrides[_R.C("CoreConst").ItemStat.MinDamage]
+		override = self.statDisplayOverrides[_H_16]
 		if override:
 			return override
 
@@ -1270,7 +1270,7 @@ class CoreItem(GodotObject):
 	def getMaxDamage(self, damSource=GD_DEFAULT):
 		if damSource is GD_DEFAULT:
 			damSource = self.damageSource
-		override = self.statDisplayOverrides[_R.C("CoreConst").ItemStat.MaxDamage]
+		override = self.statDisplayOverrides[_H_17]
 		if override:
 			return override
 
@@ -1298,7 +1298,7 @@ class CoreItem(GodotObject):
 	# 对齐 Items/Item.gd:5130-5134（原版无返回类型标注：float 原样透传）
 	def getModifiedEffectDamage(self, baseDamage):
 		modifiedDamage = baseDamage
-		modifiedDamage *= (1.0 + self.character().typedDamageFactors[_R.C("CoreDamageSource").Type.Effect])
+		modifiedDamage *= (1.0 + self.character().typedDamageFactors[_H_51])
 		modifiedDamage *= self.bonusDamageFactor
 		return modifiedDamage
 
@@ -1314,10 +1314,10 @@ class CoreItem(GodotObject):
 			self.bonusMaxDam += damage
 			if removable:
 				self.removableDam += damage
-			self.ctx.combat_log.snapshotItemTooltipStat(self, _R.C("CoreConst").ItemStat.MinDamage)
-			self.ctx.combat_log.snapshotItemTooltipStat(self, _R.C("CoreConst").ItemStat.MaxDamage)
+			self.ctx.combat_log.snapshotItemTooltipStat(self, _H_16)
+			self.ctx.combat_log.snapshotItemTooltipStat(self, _H_17)
 			if removable:
-				self.spawnLabel(_R.C("CoreConst").EventType.DamageBuff, damage)
+				self.spawnLabel(_H_56, damage)
 
 
 	# 对齐 Item.gd:4049-4050：= addBonusDamage(damage, false)（快照照走、无标签）
@@ -1328,13 +1328,13 @@ class CoreItem(GodotObject):
 	# 对齐 Item.gd:4051-4054
 	def addMinDamage(self, damage):
 		self.bonusMinDam += damage
-		self.ctx.combat_log.snapshotItemTooltipStat(self, _R.C("CoreConst").ItemStat.MinDamage)
+		self.ctx.combat_log.snapshotItemTooltipStat(self, _H_16)
 
 
 	# 对齐 Item.gd:4055-4058
 	def addMaxDamage(self, damage):
 		self.bonusMaxDam += damage
-		self.ctx.combat_log.snapshotItemTooltipStat(self, _R.C("CoreConst").ItemStat.MaxDamage)
+		self.ctx.combat_log.snapshotItemTooltipStat(self, _H_17)
 
 
 	def getRemovableDamage(self):
@@ -1370,7 +1370,7 @@ class CoreItem(GodotObject):
 
 	# 对齐 Items/Item.gd:3867-3870
 	def getChance(self):
-		override = self.statDisplayOverrides[_R.C("CoreConst").ItemStat.Chance]
+		override = self.statDisplayOverrides[_H_18]
 		if override:
 			return override
 
@@ -1379,7 +1379,7 @@ class CoreItem(GodotObject):
 
 	# 对齐 Items/Item.gd:3873-3876
 	def getChance2(self):
-		override = self.statDisplayOverrides[_R.C("CoreConst").ItemStat.Chance2]
+		override = self.statDisplayOverrides[_H_19]
 		if override:
 			return override
 
@@ -1410,8 +1410,8 @@ class CoreItem(GodotObject):
 
 	def addBonusChance(self, amount):
 		self.bonusChancePercent_mult += amount
-		self.ctx.combat_log.snapshotItemTooltipStat(self, _R.C("CoreConst").ItemStat.Chance)
-		self.ctx.combat_log.snapshotItemTooltipStat(self, _R.C("CoreConst").ItemStat.Chance2)
+		self.ctx.combat_log.snapshotItemTooltipStat(self, _H_18)
+		self.ctx.combat_log.snapshotItemTooltipStat(self, _H_19)
 
 
 	def addBonusChance_additive(self, amount1, amount2=None):
@@ -1422,10 +1422,10 @@ class CoreItem(GodotObject):
 		else:
 			self.bonusChancePercent_additive2 += amount2
 
-		self.ctx.combat_log.snapshotItemTooltipStat(self, _R.C("CoreConst").ItemStat.Chance)
+		self.ctx.combat_log.snapshotItemTooltipStat(self, _H_18)
 
 		if amount2 != 0:
-			self.ctx.combat_log.snapshotItemTooltipStat(self, _R.C("CoreConst").ItemStat.Chance2)
+			self.ctx.combat_log.snapshotItemTooltipStat(self, _H_19)
 
 
 	def addAccuracy(self, amount):
@@ -1440,17 +1440,17 @@ class CoreItem(GodotObject):
 
 	def addCritChancePercent(self, amount):
 		self.critChancePercent += amount
-		self.ctx.combat_log.snapshotItemTooltipStat(self, _R.C("CoreConst").ItemStat.CritChance)
+		self.ctx.combat_log.snapshotItemTooltipStat(self, _H_20)
 
 
 	def reduceCritChancePercent(self, amount):
 		self.critChancePercent -= amount
-		self.ctx.combat_log.snapshotItemTooltipStat(self, _R.C("CoreConst").ItemStat.CritChance)
+		self.ctx.combat_log.snapshotItemTooltipStat(self, _H_20)
 
 
 	def changeCritChancePercent(self, amount):
 		self.critChancePercent += amount
-		self.ctx.combat_log.snapshotItemTooltipStat(self, _R.C("CoreConst").ItemStat.CritChance)
+		self.ctx.combat_log.snapshotItemTooltipStat(self, _H_20)
 
 
 	def getCritTokens(self):
@@ -1526,12 +1526,12 @@ class CoreItem(GodotObject):
 
 
 	def changeAmplificiationChancePercent_allBuffs(self, chance):
-		for buff in _iter(_R.C("CoreConst").getBuffs()):
+		for buff in _iter(_H_7.getBuffs()):
 			self.changeAmplificiationChancePercent(buff, chance)
 
 
 	def changeAmplificiationChancePercent_allDebuffs(self, chance):
-		for buff in _iter(_R.C("CoreConst").getDebuffs()):
+		for buff in _iter(_H_7.getDebuffs()):
 			self.changeAmplificiationChancePercent(buff, chance)
 
 
@@ -1561,7 +1561,7 @@ class CoreItem(GodotObject):
 		if amount == None:
 			amount = self.getBlock()
 		if amount > 0:
-			event = self.giveStacks(self.character(), _R.C("CoreConst").EventType.Block, amount, triggerEvent)
+			event = self.giveStacks(self.character(), _H_21, amount, triggerEvent)
 			if event != None:
 				if canTriggerEffects:
 					self.ctx.bus.emitSignal(self, "gave_block", [event.getAmount(), event])
@@ -1587,7 +1587,7 @@ class CoreItem(GodotObject):
 
 
 	def useBlock(self, amount, triggerEvent=None):
-		return self.character().useStacks(_R.C("CoreConst").EventType.Block, amount, self, triggerEvent)
+		return self.character().useStacks(_H_21, amount, self, triggerEvent)
 
 
 	def stealStack(self, type, amount, triggerEvent=None):
@@ -1598,47 +1598,47 @@ class CoreItem(GodotObject):
 
 
 	def giveSpikes(self, amount, triggerEvent=None):
-		return self.giveStacks(self.character(), _R.C("CoreConst").EventType.Spikes, amount, triggerEvent)
+		return self.giveStacks(self.character(), _H_22, amount, triggerEvent)
 
 
 	def giveVampirism(self, amount, triggerEvent=None):
-		return self.giveStacks(self.character(), _R.C("CoreConst").EventType.Vampirism, amount, triggerEvent)
+		return self.giveStacks(self.character(), _H_23, amount, triggerEvent)
 
 
 	def inflictPoison(self, amount, triggerEvent=None):
-		return self.giveStacks(self.opponent(), _R.C("CoreConst").EventType.Poison, amount, triggerEvent)
+		return self.giveStacks(self.opponent(), _H_24, amount, triggerEvent)
 
 
 	def selfInflictPoison(self, amount, triggerEvent=None):
-		return self.giveStacks(self.character(), _R.C("CoreConst").EventType.Poison, amount, triggerEvent)
+		return self.giveStacks(self.character(), _H_24, amount, triggerEvent)
 
 
 	def inflictBlind(self, amount, triggerEvent=None):
-		return self.giveStacks(self.opponent(), _R.C("CoreConst").EventType.Blind, amount, triggerEvent)
+		return self.giveStacks(self.opponent(), _H_25, amount, triggerEvent)
 
 
 	def giveRegeneration(self, amount, triggerEvent=None):
-		return self.giveStacks(self.character(), _R.C("CoreConst").EventType.Regeneration, amount, triggerEvent)
+		return self.giveStacks(self.character(), _H_26, amount, triggerEvent)
 
 
 	def giveLucky(self, amount, triggerEvent=None):
-		return self.giveStacks(self.character(), _R.C("CoreConst").EventType.Lucky, amount, triggerEvent)
+		return self.giveStacks(self.character(), _H_27, amount, triggerEvent)
 
 
 	def giveMana(self, amount, triggerEvent=None):
-		return self.giveStacks(self.character(), _R.C("CoreConst").EventType.Mana, amount, triggerEvent)
+		return self.giveStacks(self.character(), _H_28, amount, triggerEvent)
 
 
 	def giveEmpower(self, amount, triggerEvent=None):
-		return self.giveStacks(self.character(), _R.C("CoreConst").EventType.Empower, amount, triggerEvent)
+		return self.giveStacks(self.character(), _H_29, amount, triggerEvent)
 
 
 	def giveHeat(self, amount, triggerEvent=None):
-		return self.giveStacks(self.character(), _R.C("CoreConst").EventType.Heat, amount, triggerEvent)
+		return self.giveStacks(self.character(), _H_30, amount, triggerEvent)
 
 
 	def giveCold(self, amount, triggerEvent=None):
-		return self.giveStacks(self.character(), _R.C("CoreConst").EventType.Cold, amount, triggerEvent)
+		return self.giveStacks(self.character(), _H_31, amount, triggerEvent)
 
 
 	# ─────────────────────── 派发（对齐 4150-4180, 4132-4141） ───────────────────────
@@ -1671,29 +1671,29 @@ class CoreItem(GodotObject):
 
 
 	def countDamage(self, amount):
-		self.addMetric(_R.C("CoreConst").ItemMetrics.Damage, amount)
+		self.addMetric(_H_32, amount)
 
 
 	# ─────────────────────── 统计（对齐 715-724, 4909-4934） ───────────────────────
 
 	@staticmethod
 	def getNumNonStackItemMetrics():
-		return (_R.C("CoreConst").ItemMetrics.Stamina + 
-				(_R.C("CoreConst").ItemMetrics.Block - _R.C("CoreConst").ItemMetrics.Stamina) * len(_R.C("CoreConst").StackChangeType))
+		return (_H_33 + 
+				(_H_62 - _H_33) * len(_H_34))
 
 
 	@staticmethod
 	def getNumItemMetrics():
-		return (_R.C("CoreConst").ItemMetrics.Stamina + 
-				(len(_R.C("CoreConst").ItemMetrics) - _R.C("CoreConst").ItemMetrics.Stamina) * len(_R.C("CoreConst").StackChangeType))
+		return (_H_33 + 
+				(len(_H_63) - _H_33) * len(_H_34))
 
 
 	@staticmethod
 	def getStackMetricIndex(stackChangeType, stackType):
 		stackChangeType = int(stackChangeType)
 		stackType = int(stackType)
-		offsetStackType = stackType - _R.C("CoreConst").EventType.Block
-		changeTypeOffset = stackChangeType * _R.C("CoreConst").numStackTypes()
+		offsetStackType = stackType - _H_21
+		changeTypeOffset = stackChangeType * _H_7.numStackTypes()
 		return CoreItem.getNumNonStackItemMetrics() + changeTypeOffset + offsetStackType
 
 
@@ -1701,9 +1701,9 @@ class CoreItem(GodotObject):
 	def getMultiMetricIndex(stackChangeType, metric):
 		stackChangeType = int(stackChangeType)
 		metric = int(metric)
-		offsetMetric = metric - _R.C("CoreConst").ItemMetrics.Stamina
-		numMultiMetrics = offsetMetric * len(_R.C("CoreConst").StackChangeType)
-		return _R.C("CoreConst").ItemMetrics.Stamina + numMultiMetrics + stackChangeType
+		offsetMetric = metric - _H_33
+		numMultiMetrics = offsetMetric * len(_H_34)
+		return _H_33 + numMultiMetrics + stackChangeType
 
 
 	# 对齐 Item.gd:4186-4188（amount 默认 1；并把指标快照交给钩子）
@@ -1721,12 +1721,12 @@ class CoreItem(GodotObject):
 		amount = int(amount)
 		changeType = None
 		if amount > 0:
-			changeType = _R.C("CoreConst").StackChangeType.Added_Player
+			changeType = _H_35
 		else:
 			if used:
-				changeType = _R.C("CoreConst").StackChangeType.Used_Player
+				changeType = _H_49
 			else:
-				changeType = _R.C("CoreConst").StackChangeType.Removed_Player
+				changeType = _H_52
 
 		if not onPlayer:
 			changeType += 1
@@ -1738,7 +1738,7 @@ class CoreItem(GodotObject):
 
 	def staminaChanged(self, amount, changeType, withNextEvent=False):
 		changeType = int(changeType)
-		index = self.getMultiMetricIndex(changeType, _R.C("CoreConst").ItemMetrics.Stamina)
+		index = self.getMultiMetricIndex(changeType, _H_33)
 		self.addMetric(index, amount, self.character().playerId, withNextEvent)
 
 
@@ -1803,7 +1803,7 @@ class CoreItem(GodotObject):
 	def addDynamicType(self, type, byItem):
 		type = int(type)
 		if not type in self.descriptor.types:
-			_R.C("CoreUtil").dictAppend(self.dynamicTypes, type, byItem.get_instance_id())
+			_H_36.dictAppend(self.dynamicTypes, type, byItem.get_instance_id())
 
 			if len(self.dynamicTypes[type]) == 1:
 				if self.placed:
@@ -1814,7 +1814,7 @@ class CoreItem(GodotObject):
 	def removeDynamicType(self, type, byItem):
 		type = int(type)
 		if self.hasDynamicType(type, byItem):
-			_R.C("CoreUtil").dictErase(self.dynamicTypes, type, byItem.get_instance_id())
+			_H_36.dictErase(self.dynamicTypes, type, byItem.get_instance_id())
 
 			if not type in self.dynamicTypes:
 				if self.placed:
@@ -1855,14 +1855,14 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:964-968
 	def isOwnable(self):
-		return (self.ownerType == _R.C("CoreConst").Owner.Shop or 
-			self.ownerType == _R.C("CoreConst").Owner.PlayerInventory or 
-			self.ownerType == _R.C("CoreConst").Owner.PlayerStorageBox)
+		return (self.ownerType == _H_53 or 
+			self.ownerType == _H_50 or 
+			self.ownerType == _H_54)
 
 
 	# 对齐 Item.gd:969-972
 	def isOwnedByOpponent(self):
-		return self.ownerType == _R.C("CoreConst").Owner.Opponent
+		return self.ownerType == _H_37
 
 
 	# 对齐 Item.gd:984-986（原版 has_method 探测 → 内核的 behavior 探测）
@@ -1878,16 +1878,16 @@ class CoreItem(GodotObject):
 	# 对齐 Item.gd:3566-3580（基类恒 false，由物品行为覆写）
 	def isAffectingDistinct(self, color=GD_DEFAULT):
 		if color is GD_DEFAULT:
-			color = _R.C("CoreConst").Affected.Primary
+			color = _H_38
 		if self._hasBehaviorMethod("isAffectingDistinct"):
-			return _R.C("CoreUtil").truth(self._behavior_call("isAffectingDistinct", [color]))
+			return _H_36.truth(self._behavior_call("isAffectingDistinct", [color]))
 		return False
 
 
 	# 对齐 Item.gd:3540-3543（基类恒 false，由物品行为覆写）
 	def affectsEmpty(self, color):
 		if self._hasBehaviorMethod("affectsEmpty"):
-			return _R.C("CoreUtil").truth(self._behavior_call("affectsEmpty", [color]))
+			return _H_36.truth(self._behavior_call("affectsEmpty", [color]))
 		return False
 
 
@@ -1922,31 +1922,31 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:4836-4867
 	def getStat(self, stat):
-		if stat == _R.C("CoreConst").ItemStat.MaxDamage:
+		if stat == _H_17:
 				if self.getBaseMaxDamage() > 0:
 					return self.getMaxDamage()
 				else:
 					return 0
-		elif stat == _R.C("CoreConst").ItemStat.MinDamage:
+		elif stat == _H_16:
 				if self.getBaseMinDamage() > 0:
 					return self.getMinDamage()
 				else:
 					return 0
-		elif stat == _R.C("CoreConst").ItemStat.Accuracy:
+		elif stat == _H_64:
 				return self.getAccuracy()
-		elif stat == _R.C("CoreConst").ItemStat.CritChance:
+		elif stat == _H_20:
 				return self.getCritChancePercent()
-		elif stat == _R.C("CoreConst").ItemStat.Speed:
+		elif stat == _H_9:
 				return self.getSpeed()
-		elif stat == _R.C("CoreConst").ItemStat.Cooldown:
+		elif stat == _H_11:
 				return self.getCooldownEncoded()
-		elif stat == _R.C("CoreConst").ItemStat.StaminaCost:
+		elif stat == _H_12:
 				return self.getStaminaCost()
-		elif stat == _R.C("CoreConst").ItemStat.Chance:
+		elif stat == _H_18:
 				return self.getChance()
-		elif stat == _R.C("CoreConst").ItemStat.Chance2:
+		elif stat == _H_19:
 				return self.getChance2()
-		elif stat == _R.C("CoreConst").ItemStat.BaseCooldown:
+		elif stat == _H_10:
 				return self.getCooldown()
 
 
@@ -2002,15 +2002,15 @@ class CoreItem(GodotObject):
 		# ★ np25 诊断（受控，双门控零耗链）：速度账本——谁加了多少、现值多少。
 		self.ctx.rng.trace_diag("SPD+", String(self.descriptor.identifier) + "@" + String(self.getTopLeftCell())
 				+ " ot=" + str(int(self.ownerType)), str(amount), "now=" + str(self.speedScale))
-		self.ctx.combat_log.snapshotItemTooltipStat(self, _R.C("CoreConst").ItemStat.Speed)
-		self.ctx.combat_log.snapshotItemTooltipStat(self, _R.C("CoreConst").ItemStat.Cooldown)
+		self.ctx.combat_log.snapshotItemTooltipStat(self, _H_9)
+		self.ctx.combat_log.snapshotItemTooltipStat(self, _H_11)
 
 
 	# 对齐 Item.gd:4877-4881
 	def reduceSpeed(self, amount):
 		self.speedScale -= amount
-		self.ctx.combat_log.snapshotItemTooltipStat(self, _R.C("CoreConst").ItemStat.Speed)
-		self.ctx.combat_log.snapshotItemTooltipStat(self, _R.C("CoreConst").ItemStat.Cooldown)
+		self.ctx.combat_log.snapshotItemTooltipStat(self, _H_9)
+		self.ctx.combat_log.snapshotItemTooltipStat(self, _H_11)
 
 
 	# 对齐 Item.gd:3733-3735
@@ -2087,38 +2087,38 @@ class CoreItem(GodotObject):
 	# 对齐 Item.gd:3544-3546（基类恒 false，由物品行为覆写）
 	def canAffect(self, item):
 		if self._hasBehaviorMethod("canAffect"):
-			return _R.C("CoreUtil").truth(self._behavior_call("canAffect", [item]))
+			return _H_36.truth(self._behavior_call("canAffect", [item]))
 		return False
 
 
 	# 对齐 Item.gd:3547-3549
 	def canAffect_secondary(self, item):
 		if self._hasBehaviorMethod("canAffect_secondary"):
-			return _R.C("CoreUtil").truth(self._behavior_call("canAffect_secondary", [item]))
+			return _H_36.truth(self._behavior_call("canAffect_secondary", [item]))
 		return False
 
 
 	# 对齐 Item.gd:3550-3552
 	def canAffect_tertiary(self, item):
 		if self._hasBehaviorMethod("canAffect_tertiary"):
-			return _R.C("CoreUtil").truth(self._behavior_call("canAffect_tertiary", [item]))
+			return _H_36.truth(self._behavior_call("canAffect_tertiary", [item]))
 		return False
 
 
 	# 对齐 Item.gd:3553-3555
 	def canAffect_lightning(self, item):
 		if self._hasBehaviorMethod("canAffect_lightning"):
-			return _R.C("CoreUtil").truth(self._behavior_call("canAffect_lightning", [item]))
+			return _H_36.truth(self._behavior_call("canAffect_lightning", [item]))
 		return False
 
 
 	# 对齐 Item.gd:3556-3565
 	def canAffect_color(self, item, color):
-		if color == _R.C("CoreConst").Affected.Primary:
+		if color == _H_38:
 			return self.canAffect(item)
-		elif color == _R.C("CoreConst").Affected.Secondary:
+		elif color == _H_55:
 			return self.canAffect_secondary(item)
-		elif color == _R.C("CoreConst").Affected.Tertiary:
+		elif color == _H_65:
 			return self.canAffect_tertiary(item)
 		else:
 			return self.canAffect_lightning(item)
@@ -2153,17 +2153,17 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:5392-5394
 	def gainsBuffs(self):
-		return self.descriptor.gainedStacks & _R.C("CoreConst").Stack.Buff
+		return self.descriptor.gainedStacks & _H_39
 
 
 	# 对齐 Item.gd:5395-5397
 	def usesBuffs(self):
-		return self.descriptor.usedStacks & _R.C("CoreConst").Stack.Buff
+		return self.descriptor.usedStacks & _H_39
 
 
 	# 对齐 Item.gd:5398-5400
 	def inflictsDebuffs(self):
-		return self.descriptor.gainedStacks & _R.C("CoreConst").Stack.Debuff
+		return self.descriptor.gainedStacks & _H_40
 
 
 	# 对齐 Item.gd:5165-5167
@@ -2203,33 +2203,33 @@ class CoreItem(GodotObject):
 	def changeStaminaFactor(self, amount):
 		self.staminaFactor += _div(amount, 100.0)
 		self.staminaFactor = max(0, self.staminaFactor)
-		self.ctx.combat_log.snapshotItemTooltipStat(self, _R.C("CoreConst").ItemStat.StaminaCost)
+		self.ctx.combat_log.snapshotItemTooltipStat(self, _H_12)
 
 
 	# 对齐 Item.gd:4106-4110
 	def addBonusDamageFactor(self, factor):
 		self.bonusDamageFactor += factor
-		self.ctx.combat_log.snapshotItemTooltipStat(self, _R.C("CoreConst").ItemStat.MinDamage)
-		self.ctx.combat_log.snapshotItemTooltipStat(self, _R.C("CoreConst").ItemStat.MaxDamage)
+		self.ctx.combat_log.snapshotItemTooltipStat(self, _H_16)
+		self.ctx.combat_log.snapshotItemTooltipStat(self, _H_17)
 
 
 	# 对齐 Item.gd:4111-4116
 	def reduceBonusDamageFactor(self, factor):
 		self.bonusDamageFactor -= factor
-		self.ctx.combat_log.snapshotItemTooltipStat(self, _R.C("CoreConst").ItemStat.MinDamage)
-		self.ctx.combat_log.snapshotItemTooltipStat(self, _R.C("CoreConst").ItemStat.MaxDamage)
+		self.ctx.combat_log.snapshotItemTooltipStat(self, _H_16)
+		self.ctx.combat_log.snapshotItemTooltipStat(self, _H_17)
 
 
 	# 对齐 Item.gd:4098-4101
 	def reduceMinDamage(self, damage):
 		self.bonusMinDam -= damage
-		self.ctx.combat_log.snapshotItemTooltipStat(self, _R.C("CoreConst").ItemStat.MinDamage)
+		self.ctx.combat_log.snapshotItemTooltipStat(self, _H_16)
 
 
 	# 对齐 Item.gd:4102-4105
 	def reduceMaxDamage(self, damage):
 		self.bonusMaxDam -= damage
-		self.ctx.combat_log.snapshotItemTooltipStat(self, _R.C("CoreConst").ItemStat.MaxDamage)
+		self.ctx.combat_log.snapshotItemTooltipStat(self, _H_17)
 
 
 	# 对齐 Item.gd:4076-4086（尾行 spawnLabel 走钩子）
@@ -2238,11 +2238,11 @@ class CoreItem(GodotObject):
 		self.bonusMaxDam -= damage
 		if removable:
 			self.removableDam -= damage
-		self.ctx.combat_log.snapshotItemTooltipStat(self, _R.C("CoreConst").ItemStat.MinDamage)
-		self.ctx.combat_log.snapshotItemTooltipStat(self, _R.C("CoreConst").ItemStat.MaxDamage)
+		self.ctx.combat_log.snapshotItemTooltipStat(self, _H_16)
+		self.ctx.combat_log.snapshotItemTooltipStat(self, _H_17)
 
 		if showLabel:
-			self.spawnLabel(_R.C("CoreConst").EventType.DamageBuff, - damage)
+			self.spawnLabel(_H_56, - damage)
 
 
 	# 对齐 Item.gd:4087-4097（尾行 spawnLabel 走钩子）
@@ -2252,10 +2252,10 @@ class CoreItem(GodotObject):
 			self.removableDam -= purgable
 			self.bonusMinDam -= purgable
 			self.bonusMaxDam -= purgable
-			self.ctx.combat_log.snapshotItemTooltipStat(self, _R.C("CoreConst").ItemStat.MinDamage)
-			self.ctx.combat_log.snapshotItemTooltipStat(self, _R.C("CoreConst").ItemStat.MaxDamage)
+			self.ctx.combat_log.snapshotItemTooltipStat(self, _H_16)
+			self.ctx.combat_log.snapshotItemTooltipStat(self, _H_17)
 
-			self.spawnLabel(_R.C("CoreConst").EventType.DamageBuff, - purgable)
+			self.spawnLabel(_H_56, - purgable)
 
 
 	# 对齐 Item.gd:4122-4124
@@ -2289,7 +2289,7 @@ class CoreItem(GodotObject):
 			amount = self.getP_m("maxhealth")
 		amount = self.character().applyTemporaryMaxHealthGain(amount)
 		if amount > 0:
-			self.addMetric(_R.C("CoreConst").ItemMetrics.MaxHealth, amount, None, True)
+			self.addMetric(_H_57, amount, None, True)
 			self.character().changeMaxHealthTemporary(amount, self, triggerEvent)
 			# ★ 表现层链消耗还原（Item.gd:4224 spawnLabel → Item.gd:4788-4791
 			#   Item.spawnLabel → Util.spawnLabelOnItem → :6485-6494）：
@@ -2297,7 +2297,7 @@ class CoreItem(GodotObject):
 			#   = 物品身上的浮动标签 randInBox 2 抽，**没有** randDmgNumberPos/Dir
 			#   （阶段1 曾误按 Character.spawnLabel 还原出 3 抽，run1122_r11 逐抽
 			#   对位证伪：神谕在 TMH 事件后恰 2 行 randInBox(-10,10)）。
-			self.spawnLabel(_R.C("CoreConst").EventType.TemporaryMaxHealth, amount)
+			self.spawnLabel(_H_58, amount)
 
 
 	# 对齐 Item.gd:4193-4195
@@ -2520,7 +2520,7 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:5066-5076
 	def giveMana_capped(self, amount, maximum, triggerEvent=None):
-		amount = round(amount * self.buffPowers[_R.C("CoreConst").EventType.Mana])
+		amount = round(amount * self.buffPowers[_H_28])
 		curMana = self.character().getMana()
 		if maximum > curMana:
 			missingMana = maximum - curMana
@@ -2540,7 +2540,7 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:4989-4991
 	def useSpikes(self, amount, triggerEvent=None):
-		return self.character().useStacks(_R.C("CoreConst").EventType.Spikes, amount, self, triggerEvent)
+		return self.character().useStacks(_H_22, amount, self, triggerEvent)
 
 
 	# 对齐 Item.gd:4986-4988
@@ -2555,7 +2555,7 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:4998-5000
 	def useVampirism(self, amount, triggerEvent=None):
-		return self.character().useStacks(_R.C("CoreConst").EventType.Vampirism, amount, self, triggerEvent)
+		return self.character().useStacks(_H_23, amount, self, triggerEvent)
 
 
 	# 对齐 Item.gd:5001-5003
@@ -2577,7 +2577,7 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:5022-5024
 	def selfInflictBlind(self, amount, triggerEvent=None):
-		return self.giveStacks(self.character(), _R.C("CoreConst").EventType.Blind, amount, triggerEvent)
+		return self.giveStacks(self.character(), _H_25, amount, triggerEvent)
 
 
 	# 对齐 Item.gd:5025-5033
@@ -2599,7 +2599,7 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:5040-5042
 	def useRegeneration(self, amount, triggerEvent=None):
-		return self.character().useStacks(_R.C("CoreConst").EventType.Regeneration, amount, self, triggerEvent)
+		return self.character().useStacks(_H_26, amount, self, triggerEvent)
 
 
 	# 对齐 Item.gd:5046-5052
@@ -2623,12 +2623,12 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:5059-5061
 	def useLucky(self, amount, triggerEvent=None):
-		return self.character().useStacks(_R.C("CoreConst").EventType.Lucky, amount, self, triggerEvent)
+		return self.character().useStacks(_H_27, amount, self, triggerEvent)
 
 
 	# 对齐 Item.gd:5094-5096
 	def inflictCold(self, amount, triggerEvent=None):
-		self.giveStacks(self.opponent(), _R.C("CoreConst").EventType.Cold, amount, triggerEvent)
+		self.giveStacks(self.opponent(), _H_31, amount, triggerEvent)
 
 
 	# 对齐 Item.gd:5097-5106
@@ -2650,7 +2650,7 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:5113-5115
 	def useHeat(self, amount, triggerEvent=None):
-		return self.character().useStacks(_R.C("CoreConst").EventType.Heat, amount, self, triggerEvent)
+		return self.character().useStacks(_H_30, amount, self, triggerEvent)
 
 
 	# 对齐 Item.gd:5119-5121
@@ -2660,9 +2660,9 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:5516-5529
 	def cleanseRandomDebuffs(self, numDebuffs, triggerEvent=None):
-		cleansedDebuffs = self.pickRandomStacks(_R.C("CoreConst").getDebuffs(), numDebuffs, self.character())
+		cleansedDebuffs = self.pickRandomStacks(_H_7.getDebuffs(), numDebuffs, self.character())
 
-		self.ctx.bus.setLoggingMode(_R.C("CoreEventBus").LoggingMode.Delayed)
+		self.ctx.bus.setLoggingMode(_H_41)
 		for debuff in _iter(cleansedDebuffs):
 			self.character().loseStacks(debuff, cleansedDebuffs[debuff], self, triggerEvent)
 
@@ -2672,10 +2672,10 @@ class CoreItem(GodotObject):
 	# 对齐 Item.gd:5482-5493
 	def inflictRandomDebuffs(self, numDebuffs, triggerEvent=None, availableDebuffs=None):
 		if availableDebuffs == None:
-			availableDebuffs = _R.C("CoreConst").getDebuffs()
+			availableDebuffs = _H_7.getDebuffs()
 		pickedDebuffs = self.pickRandomStacksToGive(availableDebuffs, numDebuffs)
 
-		self.ctx.bus.setLoggingMode(_R.C("CoreEventBus").LoggingMode.Delayed)
+		self.ctx.bus.setLoggingMode(_H_41)
 		for debuff in _iter(pickedDebuffs):
 			self.giveStacks(self.opponent(), debuff, pickedDebuffs[debuff], triggerEvent)
 
@@ -2700,13 +2700,13 @@ class CoreItem(GodotObject):
 			if pickedPriorityStacks > 0:
 				pickedStacks[priorityStack] = pickedPriorityStacks
 				numStacks -= pickedPriorityStacks
-				_R.C("CoreUtil").dictSub(stacks, priorityStack, pickedPriorityStacks)
+				_H_36.dictSub(stacks, priorityStack, pickedPriorityStacks)
 
 		for i in _iter(_gd_range(numStacks)):
 			if not (not stacks):
 				stackType = self.ctx.rng.pickRandomElement(list(stacks.keys()))
-				_R.C("CoreUtil").dictAdd(pickedStacks, stackType, 1)
-				_R.C("CoreUtil").dictSub(stacks, stackType, 1)
+				_H_36.dictAdd(pickedStacks, stackType, 1)
+				_H_36.dictSub(stacks, stackType, 1)
 
 		return pickedStacks
 
@@ -2716,7 +2716,7 @@ class CoreItem(GodotObject):
 		pickedStacks = Dictionary()
 		for i in _iter(_gd_range(numStacks)):
 			stackType = self.ctx.rng.pickRandomElement(stackTypes)
-			_R.C("CoreUtil").dictAdd(pickedStacks, stackType, 1)
+			_H_36.dictAdd(pickedStacks, stackType, 1)
 
 		return pickedStacks
 
@@ -2740,8 +2740,8 @@ class CoreItem(GodotObject):
 				elif priorStacks[stackType] == leastStacksCount:
 					leastStacks.append(stackType)
 			stackToGive = self.ctx.rng.pickRandomElement(leastStacks)
-			_R.C("CoreUtil").dictAdd(pickedStacks, stackToGive, 1)
-			_R.C("CoreUtil").dictAdd(priorStacks, stackToGive, 1)
+			_H_36.dictAdd(pickedStacks, stackToGive, 1)
+			_H_36.dictAdd(priorStacks, stackToGive, 1)
 			numStacks -= 1
 
 		return pickedStacks
@@ -2810,7 +2810,7 @@ class CoreItem(GodotObject):
 		#   排序保持 Godot sort_custom+DictSorter 原语义。
 		sortedOverflow = list(overflow.keys())
 		self.ctx.rng.shuffleEngine(sortedOverflow, 'Items/Item.gd:5642')
-		_sort_custom(sortedOverflow, _R.C("CoreUtil").DictSorter(overflow), "sort")
+		_sort_custom(sortedOverflow, _H_36.DictSorter(overflow), "sort")
 
 		for buff in _iter(sortedOverflow):
 			if overflowBuffs == 0:
@@ -2826,12 +2826,12 @@ class CoreItem(GodotObject):
 	def multiplyBuffsLimit(self, bonus, limit, availableBuffs=None):
 		limit = int(limit)
 		if availableBuffs == None:
-			availableBuffs = _R.C("CoreConst").getBuffs()
+			availableBuffs = _H_7.getBuffs()
 		buffsToGive = self.getStackFraction(self.character(), bonus, limit, availableBuffs)
 		if buffsToGive == None:
 			return
 
-		self.ctx.bus.setLoggingMode(_R.C("CoreEventBus").LoggingMode.Delayed)
+		self.ctx.bus.setLoggingMode(_H_41)
 		for buff in _iter(buffsToGive):
 			self.giveStacks(self.character(), buff, buffsToGive[buff])
 		self.ctx.bus.flushLoggingQueue()
@@ -2841,12 +2841,12 @@ class CoreItem(GodotObject):
 	def removeBuffsFraction(self, fraction, limit, triggerEvent=None, availableBuffs=None):
 		limit = int(limit)
 		if availableBuffs == None:
-			availableBuffs = _R.C("CoreConst").getBuffs()
+			availableBuffs = _H_7.getBuffs()
 		buffsToRemove = self.getStackFraction(self.opponent(), fraction, limit, availableBuffs)
 		if buffsToRemove == None:
 			return
 
-		self.ctx.bus.setLoggingMode(_R.C("CoreEventBus").LoggingMode.Delayed)
+		self.ctx.bus.setLoggingMode(_H_41)
 		for buff in _iter(buffsToRemove):
 			self.opponent().loseStacks(buff, buffsToRemove[buff], self, triggerEvent)
 		self.ctx.bus.flushLoggingQueue()
@@ -2856,12 +2856,12 @@ class CoreItem(GodotObject):
 	def stealBuffsFraction(self, fraction, limit, triggerEvent=None, availableBuffs=None):
 		limit = int(limit)
 		if availableBuffs == None:
-			availableBuffs = _R.C("CoreConst").getBuffs()
+			availableBuffs = _H_7.getBuffs()
 		buffsToSteal = self.getStackFraction(self.opponent(), fraction, limit, availableBuffs)
 		if buffsToSteal == None:
 			return
 
-		self.ctx.bus.setLoggingMode(_R.C("CoreEventBus").LoggingMode.Delayed)
+		self.ctx.bus.setLoggingMode(_H_41)
 		for buff in _iter(buffsToSteal):
 			self.stealStack(buff, buffsToSteal[buff], triggerEvent)
 		self.ctx.bus.flushLoggingQueue()
@@ -2873,7 +2873,7 @@ class CoreItem(GodotObject):
 		if target == None:
 			target = self.character()
 		if availableBuffs == None:
-			availableBuffs = _R.C("CoreConst").getBuffs()
+			availableBuffs = _H_7.getBuffs()
 
 		pickedStacks = self.getLeastStacks(numBuffs, target, availableBuffs)
 
@@ -2884,7 +2884,7 @@ class CoreItem(GodotObject):
 	# 对齐 Item.gd:5580-5585
 	def giveMostBuffs(self, numBuffs, triggerEvent=None, availableBuffs=None):
 		if availableBuffs == None:
-			availableBuffs = _R.C("CoreConst").getBuffs()
+			availableBuffs = _H_7.getBuffs()
 		maxBuffs = self.getMostStacks(self.character(), availableBuffs)
 		buffToGive = self.ctx.rng.pickRandomElement(maxBuffs)
 		self.giveStacks(self.character(), buffToGive, numBuffs, triggerEvent)
@@ -2893,7 +2893,7 @@ class CoreItem(GodotObject):
 	# 对齐 Item.gd:5586-5609
 	def removeMostBuffs(self, numBuffs, triggerEvent=None, use=False, availableBuffs=None):
 		if availableBuffs == None:
-			availableBuffs = _R.C("CoreConst").getBuffs()
+			availableBuffs = _H_7.getBuffs()
 		target = None
 
 		buffs = Dictionary()
@@ -2922,12 +2922,12 @@ class CoreItem(GodotObject):
 		numBuffs = int(numBuffs)
 
 		if availableBuffs == None:
-			availableBuffs = _R.C("CoreConst").getBuffs()
+			availableBuffs = _H_7.getBuffs()
 		if target == None:
 			target = self.character()
 
 		pickedBuffs = self.pickRandomStacksToGive(availableBuffs, numBuffs)
-		self.ctx.bus.setLoggingMode(_R.C("CoreEventBus").LoggingMode.Delayed)
+		self.ctx.bus.setLoggingMode(_H_41)
 		for buff in _iter(pickedBuffs):
 			self.giveStacks(target, buff, pickedBuffs[buff], triggerEvent)
 		self.ctx.bus.flushLoggingQueue()
@@ -2935,20 +2935,20 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:5464-5468
 	def giveAllBuffs(self, numBuffs=1, triggerEvent=None):
-		for buff in _iter(_R.C("CoreConst").getBuffs()):
+		for buff in _iter(_H_7.getBuffs()):
 			self.giveStacks(self.character(), buff, numBuffs)
 
 
 	# 对齐 Item.gd:5469-5481
 	def useRandomBuffs(self, numBuffs, triggerEvent=None, availableBuffs=None):
 		if availableBuffs == None:
-			availableBuffs = _R.C("CoreConst").getBuffs()
+			availableBuffs = _H_7.getBuffs()
 		pickedBuffs = self.pickRandomStacks(availableBuffs, numBuffs, self.character())
 		if (not pickedBuffs):
 			return None
 
 		events = []
-		self.ctx.bus.setLoggingMode(_R.C("CoreEventBus").LoggingMode.Delayed)
+		self.ctx.bus.setLoggingMode(_H_41)
 		for buff in _iter(pickedBuffs):
 			event = self.character().useStacks(buff, pickedBuffs[buff], self, triggerEvent)
 			events.append(event)
@@ -2958,8 +2958,8 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:5494-5500
 	def removeRandomBuffs(self, numBuffs, triggerEvent=None):
-		removedStacks = self.pickRandomStacks(_R.C("CoreConst").getBuffs(), numBuffs, self.opponent())
-		self.ctx.bus.setLoggingMode(_R.C("CoreEventBus").LoggingMode.Delayed)
+		removedStacks = self.pickRandomStacks(_H_7.getBuffs(), numBuffs, self.opponent())
+		self.ctx.bus.setLoggingMode(_H_41)
 		for buff in _iter(removedStacks):
 			self.opponent().loseStacks(buff, removedStacks[buff], self, triggerEvent)
 		self.ctx.bus.flushLoggingQueue()
@@ -2969,10 +2969,10 @@ class CoreItem(GodotObject):
 	def stealRandomBuff(self, numBuffs, triggerEvent=None, possibleBuffs=None, priorityBuff=None):
 
 		if possibleBuffs == None:
-			possibleBuffs = _R.C("CoreConst").getBuffs()
+			possibleBuffs = _H_7.getBuffs()
 
 		removedStacks = self.pickRandomStacks(possibleBuffs, numBuffs, self.opponent(), priorityBuff)
-		self.ctx.bus.setLoggingMode(_R.C("CoreEventBus").LoggingMode.Delayed)
+		self.ctx.bus.setLoggingMode(_H_41)
 		for buff in _iter(removedStacks):
 			self.opponent().loseStacks(buff, removedStacks[buff], self, triggerEvent)
 
@@ -2982,22 +2982,22 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:5405-5421（把角色 buff 信号接到物品回调）
 	def connectToCharacterBuffs(self, methodName):
-		for buff in _iter(_R.C("CoreConst").getBuffs()):
+		for buff in _iter(_H_7.getBuffs()):
 			self.connectForCombat(self.character(), self.character().buffs[buff].signalName, methodName)
 
 
 	def connectToCharacterDebuffs(self, methodName):
-		for debuff in _iter(_R.C("CoreConst").getDebuffs()):
+		for debuff in _iter(_H_7.getDebuffs()):
 			self.connectForCombat(self.character(), self.character().buffs[debuff].signalName, methodName)
 
 
 	def connectToOpponentDebuffs(self, methodName):
-		for debuff in _iter(_R.C("CoreConst").getDebuffs()):
+		for debuff in _iter(_H_7.getDebuffs()):
 			self.connectForCombat(self.opponent(), self.opponent().buffs[debuff].signalName, methodName)
 
 
 	def connectToOpponentBuffs(self, methodName):
-		for buff in _iter(_R.C("CoreConst").getBuffs()):
+		for buff in _iter(_H_7.getBuffs()):
 			self.connectForCombat(self.opponent(), self.opponent().buffs[buff].signalName, methodName)
 
 
@@ -3151,7 +3151,7 @@ class CoreItem(GodotObject):
 		if socketId >= len(self.gems):
 			print("ohnonononononno")
 		else:
-			gem.ownerType = _R.C("CoreConst").Owner.Socket
+			gem.ownerType = _H_42
 			self.gems[socketId] = gem
 			# 等价于 Gem.addToSocket(self)：那 3 条与战斗相关的语句是
 			# `socket = _socket` / `ownerType = Owner.Socket` / `occupiedCells.clear()`；
@@ -3235,7 +3235,7 @@ class CoreItem(GodotObject):
 	# 内核夹具数组是提取归一序 sorted(x,y)，此处排序镜像 oracle 运行时序（仅序变）。
 	def getAffectedCells_tilemap(self, color=GD_DEFAULT):
 		if color is GD_DEFAULT:
-			color = _R.C("CoreConst").Affected.Primary
+			color = _H_38
 		# ★ np32W2：**透传夹具序**（affectedTileCells=夹具 affected 数组，np32 已
 		#   再生为 tile_data 文件序=涂格真序：extract_grid parse_tscn_grid 保序+
 		#   placement_of 保序变换，cases 的 T 序=oracle fAffC 实测逐位同构）——
@@ -3247,10 +3247,10 @@ class CoreItem(GodotObject):
 	# 对齐 Item.gd:1117-1124
 	def getAffectedCellsAfterRotate(self, rotatedCells, color=GD_DEFAULT):
 		if color is GD_DEFAULT:
-			color = _R.C("CoreConst").Affected.Primary
-		if color == _R.C("CoreConst").Affected.Primary:
+			color = _H_38
+		if color == _H_38:
 			return self.getAffectedCellsAfterRotate_primary(rotatedCells)
-		elif color == _R.C("CoreConst").Affected.Secondary:
+		elif color == _H_55:
 			return self.getAffectedCellsAfterRotate_secondary(rotatedCells)
 		else:
 			return []
@@ -3274,21 +3274,21 @@ class CoreItem(GodotObject):
 	# 在格点上恒等于 collisionCells，故直接代入（见 CoreGrid.gd 文件头推导）。
 	def getAffectedCells_noRotate(self, color=GD_DEFAULT):
 		if color is GD_DEFAULT:
-			color = _R.C("CoreConst").Affected.Primary
+			color = _H_38
 		return self.getAffectedCellsAfterRotate(self.collisionCells, color)
 
 
 	# 对齐 Item.gd:1145-1147
 	def getAffectedPoints(self, color=GD_DEFAULT):
 		if color is GD_DEFAULT:
-			color = _R.C("CoreConst").Affected.Primary
+			color = _H_38
 		return self.getAffectedCells_tilemap(color) + self.getAffectedCells_noRotate(color)
 
 
 	# 对齐 Item.gd:1148-1151
 	def getAffectedCellsInInventory(self, color=GD_DEFAULT):
 		if color is GD_DEFAULT:
-			color = _R.C("CoreConst").Affected.Primary
+			color = _H_38
 		return self.getOwnOrPlayerInventory().getCellsForGlobalPositions(self.getAffectedPoints(color))
 
 
@@ -3299,7 +3299,7 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:1367-1370
 	def cacheAffectedCells(self):
-		for color in _iter(list(_R.C("CoreConst").Affected.values())):
+		for color in _iter(list(_H_60.values())):
 			self.affectedCellsCache[color] = self.getAffectedCellsInInventory(color)
 
 
@@ -3308,7 +3308,7 @@ class CoreItem(GodotObject):
 	def cleanCachedAffectedItems(self):
 		self.affectedCellsCache.clear()
 
-		for color in _iter(list(_R.C("CoreConst").Affected.values())):
+		for color in _iter(list(_H_60.values())):
 			self.currentAffectedItems[color].clear()
 
 
@@ -3325,7 +3325,7 @@ class CoreItem(GodotObject):
 	# 对齐 Item.gd:1161-1174
 	def getAffectedItems(self, color=GD_DEFAULT):
 		if color is GD_DEFAULT:
-			color = _R.C("CoreConst").Affected.Primary
+			color = _H_38
 		if not (not self.cachedAffectedItems):
 			return self.cachedAffectedItems[color]
 
@@ -3339,7 +3339,7 @@ class CoreItem(GodotObject):
 	# 对齐 Item.gd:1175-1181
 	def getAffectedItems_nocache(self, color=GD_DEFAULT):
 		if color is GD_DEFAULT:
-			color = _R.C("CoreConst").Affected.Primary
+			color = _H_38
 		items = []
 		for item in _iter(self.getItemsInAffectedCells(color)):
 			if self.canAffect_color(item, color):
@@ -3350,28 +3350,28 @@ class CoreItem(GodotObject):
 	# 对齐 Item.gd:1155-1157
 	def getItemsInAffectedCells(self, color=GD_DEFAULT):
 		if color is GD_DEFAULT:
-			color = _R.C("CoreConst").Affected.Primary
+			color = _H_38
 		return self.getOwnOrPlayerInventory().getItemsInCells(self.getAffectedCellsInInventory(color))
 
 
 	# 对齐 Item.gd:1152-1154
 	def getItemsInAffectedCells_cached(self, color=GD_DEFAULT):
 		if color is GD_DEFAULT:
-			color = _R.C("CoreConst").Affected.Primary
+			color = _H_38
 		return self.getOwnOrPlayerInventory().getItemsInCells(self.getAffectedCellsInInventory_cached(color))
 
 
 	# 对齐 Item.gd:1158-1160
 	def countItemsInAffectedCells_cached(self, color=GD_DEFAULT):
 		if color is GD_DEFAULT:
-			color = _R.C("CoreConst").Affected.Primary
+			color = _H_38
 		return self.getOwnOrPlayerInventory().countItemsInCells(self.getAffectedCellsInInventory_cached(color))
 
 
 	# 对齐 Item.gd:1182-1192
 	def isItemAffected(self, item, color=GD_DEFAULT):
 		if color is GD_DEFAULT:
-			color = _R.C("CoreConst").Affected.Primary
+			color = _H_38
 		if item.isBag() or not self.canAffect_color(item, color):
 			return False
 
@@ -3386,21 +3386,21 @@ class CoreItem(GodotObject):
 	# 对齐 Item.gd:1193-1195
 	def getNumEmptyAffectedCells(self, color=GD_DEFAULT):
 		if color is GD_DEFAULT:
-			color = _R.C("CoreConst").Affected.Primary
+			color = _H_38
 		return self.inventory.getEmptyCellsInCells(self.getAffectedCellsInInventory(color))
 
 
 	# 对齐 Item.gd:1196-1198
 	def getNumAffectedItems(self, color=GD_DEFAULT):
 		if color is GD_DEFAULT:
-			color = _R.C("CoreConst").Affected.Primary
+			color = _H_38
 		return len(self.getAffectedItems(color))
 
 
 	# 对齐 Item.gd:1199-1204
 	def getFirstAffectedItem(self, color=GD_DEFAULT):
 		if color is GD_DEFAULT:
-			color = _R.C("CoreConst").Affected.Primary
+			color = _H_38
 		_affectedItems = self.getAffectedItems(color)
 		if not (not _affectedItems):
 			return _affectedItems[0]
@@ -3410,7 +3410,7 @@ class CoreItem(GodotObject):
 	# 对齐 Item.gd:1205-1210
 	def getNumAffected_type(self, type, color=GD_DEFAULT):
 		if color is GD_DEFAULT:
-			color = _R.C("CoreConst").Affected.Primary
+			color = _H_38
 		type = int(type)
 		num = 0
 		for item in _iter(self.getAffectedItems(color)):
@@ -3421,7 +3421,7 @@ class CoreItem(GodotObject):
 	# 对齐 Item.gd:3581-3586
 	def getNumDistinctAffectedItems(self, color=GD_DEFAULT):
 		if color is GD_DEFAULT:
-			color = _R.C("CoreConst").Affected.Primary
+			color = _H_38
 		distinctAffectedDescriptors = {}
 		for item in _iter(self.getAffectedItems(color)):
 			distinctAffectedDescriptors[item.descriptor] = True
@@ -3431,7 +3431,7 @@ class CoreItem(GodotObject):
 	# 对齐 Item.gd:1139-1144
 	def getNumAffectedCells(self, color=GD_DEFAULT):
 		if color is GD_DEFAULT:
-			color = _R.C("CoreConst").Affected.Primary
+			color = _H_38
 		if color in self.affectedCellsCache:
 			return len(self.affectedCellsCache[color])
 		else:
@@ -3441,13 +3441,13 @@ class CoreItem(GodotObject):
 	# 对齐 Item.gd:1285-1294（扩展格是 TileMap 上的临时涂色，内核里改 affectedTileCells）
 	def activateExtendedAffectedCells(self):
 		for cell in _iter(self.affectedExtensionCells):
-			_R.C("CoreUtil").dictAppend(self.affectedTileCells, _R.C("CoreConst").Affected.Primary, cell)
+			_H_36.dictAppend(self.affectedTileCells, _H_38, cell)
 		self.cacheAffectedCells()
 
 
 	def deactivateExtendedAffectedCells(self):
 		for cell in _iter(self.affectedExtensionCells):
-			arr = self.affectedTileCells.get(_R.C("CoreConst").Affected.Primary, [])
+			arr = self.affectedTileCells.get(_H_38, [])
 			if cell in arr:
 				_erase(arr, cell)
 		self.cacheAffectedCells()
@@ -3483,11 +3483,11 @@ class CoreItem(GodotObject):
 	# 对齐 Item.gd:1425-1443（背包内新物品加入时刷新受影响集）
 	def onItemAdded(self, item):
 		newItemIsAffected = {}
-		for color in _iter(list(_R.C("CoreConst").Affected.values())):
+		for color in _iter(list(_H_60.values())):
 			newItemIsAffected[color] = (not item in self.currentAffectedItems[color] and 
 										self.isItemAffected(item, color))
 
-		for color in _iter(list(_R.C("CoreConst").Affected.values())):
+		for color in _iter(list(_H_60.values())):
 			if newItemIsAffected[color]:
 				self.currentAffectedItems[color][item] = True
 				self.onAffectedItemAdded(item, color)
@@ -3495,7 +3495,7 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:1446-1452
 	def onItemRemoved(self, item):
-		for color in _iter(list(_R.C("CoreConst").Affected.values())):
+		for color in _iter(list(_H_60.values())):
 			_erase(self.currentAffectedItems[color], item)
 			if self.canAffectDraggedItem(item, color):
 				self.onAffectedItemRemoved(item, color)
@@ -3643,7 +3643,7 @@ class CoreItem(GodotObject):
 	# 对齐 Item.gd:1530-1531（基类恒 true，由物品行为覆写以拒绝被重新纳入受影响集）
 	def reactToItemTypeChange(self, item):
 		if self._hasBehaviorMethod("reactToItemTypeChange"):
-			return _R.C("CoreUtil").truth(self._behavior_call("reactToItemTypeChange", [item]))
+			return _H_36.truth(self._behavior_call("reactToItemTypeChange", [item]))
 		return True
 
 
@@ -3658,7 +3658,7 @@ class CoreItem(GodotObject):
 			return
 
 		addedToAffected = {}
-		for color in _iter(list(_R.C("CoreConst").Affected.values())):
+		for color in _iter(list(_H_60.values())):
 			addedToAffected[color] = False
 
 			if item in self.currentAffectedItems[color]:
@@ -3704,10 +3704,10 @@ class CoreItem(GodotObject):
 			for item in _iter(self.ctx.player.inventory.getItemsAndGems()):
 				if item == None or item.descriptor != descr:
 					continue
-				if item.ownerType == _R.C("CoreConst").Owner.Socket:
+				if item.ownerType == _H_42:
 					count += 1
 				elif (item.placed
-						and item.ownerType == _R.C("CoreConst").Owner.PlayerInventory):
+						and item.ownerType == _H_50):
 					count += 1
 		return count
 
@@ -3821,13 +3821,13 @@ class CoreItem(GodotObject):
 	# 「更新 faceDirection + 通知表现层」：不接按键、不做插值，但字段语义与原版一致，
 	# 以便行为脚本（Scale/SpintoWin 覆写 rotateTo 更新计数器/配色）能正常调用。
 	def rotateRight(self):
-		self.faceDirection = _mod(self.faceDirection + 1, len(_R.C('CoreConst').FaceDirection))
+		self.faceDirection = _mod(self.faceDirection + 1, len(_H_43))
 		self.setFaceDirectionInstant(self.faceDirection)
 		self.ctx.hooks.onItemRotated(self)
 
 
 	def rotateLeft(self):
-		self.faceDirection = _mod(self.faceDirection - 1 + len(_R.C('CoreConst').FaceDirection), len(_R.C('CoreConst').FaceDirection))
+		self.faceDirection = _mod(self.faceDirection - 1 + len(_H_43), len(_H_43))
 		self.setFaceDirectionInstant(self.faceDirection)
 		self.ctx.hooks.onItemRotated(self)
 
@@ -3889,13 +3889,13 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:5284-5296（把冷却进度按朝向折算给 shader；纯表现）
 	def rotateProgress(self, progress):
-		if self.faceDirection == _R.C("CoreConst").FaceDirection.UP:
+		if self.faceDirection == _H_4:
 				progress = 1.0 - progress
-		elif self.faceDirection == _R.C("CoreConst").FaceDirection.RIGHT:
+		elif self.faceDirection == _H_59:
 				progress = 1.0 - progress
-		elif self.faceDirection == _R.C("CoreConst").FaceDirection.LEFT:
+		elif self.faceDirection == _H_66:
 				progress = - progress
-		elif self.faceDirection == _R.C("CoreConst").FaceDirection.DOWN:
+		elif self.faceDirection == _H_67:
 				progress = - progress
 		return progress
 
@@ -3986,8 +3986,8 @@ class CoreItem(GodotObject):
 	# 对齐 Item.gd:6510-6520
 	def countTypes(self, ofItems):
 		typesDict = {}
-		for type in _iter(_R.C("CoreConst").Type):
-			typesDict[_R.C("CoreConst").Type[type]] = 0
+		for type in _iter(_H_6):
+			typesDict[_H_6[type]] = 0
 
 		for item in _iter(ofItems):
 			for type in _iter(item.getTypes()):
@@ -4020,7 +4020,7 @@ class CoreItem(GodotObject):
 	# （Items/Weapon.gd:4-5 `damageSource = DamageSource.new().setItem(self)`）。
 	# 物品行为未移植前，由装配方调用本工厂得到等价对象；行为移植后可直接复写。
 	def buildDamageSource(self, _type=None):
-		self.damageSource = _R.C("CoreDamageSource")()
+		self.damageSource = _H_2()
 		self.damageSource._rng = self.ctx.rng
 		self.damageSource.setItem(self, _type)
 		return self.damageSource
@@ -4083,3 +4083,262 @@ CoreItem.CoreSignalConnection = CoreSignalConnection
 _R.reg("res://gd_core/CoreItem.gd", CoreItem)
 _R.reg("CoreItem", CoreItem)
 _R.reg("CoreItem", CoreItem)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+_H_1 = _R.C("CoreTimer")
+try:
+    _H_10 = _R.C("CoreConst").ItemStat.BaseCooldown
+except AttributeError as _he:
+    _H_10 = _HoistPending(_he)
+try:
+    _H_11 = _R.C("CoreConst").ItemStat.Cooldown
+except AttributeError as _he:
+    _H_11 = _HoistPending(_he)
+try:
+    _H_12 = _R.C("CoreConst").ItemStat.StaminaCost
+except AttributeError as _he:
+    _H_12 = _HoistPending(_he)
+try:
+    _H_13 = _R.C("CoreConst").StatModified.No
+except AttributeError as _he:
+    _H_13 = _HoistPending(_he)
+try:
+    _H_14 = _R.C("CoreConst").StaminaResult.Insufficient
+except AttributeError as _he:
+    _H_14 = _HoistPending(_he)
+try:
+    _H_15 = _R.C("CoreConst").Owner.BuildViewer
+except AttributeError as _he:
+    _H_15 = _HoistPending(_he)
+try:
+    _H_16 = _R.C("CoreConst").ItemStat.MinDamage
+except AttributeError as _he:
+    _H_16 = _HoistPending(_he)
+try:
+    _H_17 = _R.C("CoreConst").ItemStat.MaxDamage
+except AttributeError as _he:
+    _H_17 = _HoistPending(_he)
+try:
+    _H_18 = _R.C("CoreConst").ItemStat.Chance
+except AttributeError as _he:
+    _H_18 = _HoistPending(_he)
+try:
+    _H_19 = _R.C("CoreConst").ItemStat.Chance2
+except AttributeError as _he:
+    _H_19 = _HoistPending(_he)
+_H_2 = _R.C("CoreDamageSource")
+try:
+    _H_20 = _R.C("CoreConst").ItemStat.CritChance
+except AttributeError as _he:
+    _H_20 = _HoistPending(_he)
+try:
+    _H_21 = _R.C("CoreConst").EventType.Block
+except AttributeError as _he:
+    _H_21 = _HoistPending(_he)
+try:
+    _H_22 = _R.C("CoreConst").EventType.Spikes
+except AttributeError as _he:
+    _H_22 = _HoistPending(_he)
+try:
+    _H_23 = _R.C("CoreConst").EventType.Vampirism
+except AttributeError as _he:
+    _H_23 = _HoistPending(_he)
+try:
+    _H_24 = _R.C("CoreConst").EventType.Poison
+except AttributeError as _he:
+    _H_24 = _HoistPending(_he)
+try:
+    _H_25 = _R.C("CoreConst").EventType.Blind
+except AttributeError as _he:
+    _H_25 = _HoistPending(_he)
+try:
+    _H_26 = _R.C("CoreConst").EventType.Regeneration
+except AttributeError as _he:
+    _H_26 = _HoistPending(_he)
+try:
+    _H_27 = _R.C("CoreConst").EventType.Lucky
+except AttributeError as _he:
+    _H_27 = _HoistPending(_he)
+try:
+    _H_28 = _R.C("CoreConst").EventType.Mana
+except AttributeError as _he:
+    _H_28 = _HoistPending(_he)
+try:
+    _H_29 = _R.C("CoreConst").EventType.Empower
+except AttributeError as _he:
+    _H_29 = _HoistPending(_he)
+try:
+    _H_3 = _R.C("CoreConst").Owner.Undefined
+except AttributeError as _he:
+    _H_3 = _HoistPending(_he)
+try:
+    _H_30 = _R.C("CoreConst").EventType.Heat
+except AttributeError as _he:
+    _H_30 = _HoistPending(_he)
+try:
+    _H_31 = _R.C("CoreConst").EventType.Cold
+except AttributeError as _he:
+    _H_31 = _HoistPending(_he)
+try:
+    _H_32 = _R.C("CoreConst").ItemMetrics.Damage
+except AttributeError as _he:
+    _H_32 = _HoistPending(_he)
+try:
+    _H_33 = _R.C("CoreConst").ItemMetrics.Stamina
+except AttributeError as _he:
+    _H_33 = _HoistPending(_he)
+try:
+    _H_34 = _R.C("CoreConst").StackChangeType
+except AttributeError as _he:
+    _H_34 = _HoistPending(_he)
+try:
+    _H_35 = _R.C("CoreConst").StackChangeType.Added_Player
+except AttributeError as _he:
+    _H_35 = _HoistPending(_he)
+_H_36 = _R.C("CoreUtil")
+try:
+    _H_37 = _R.C("CoreConst").Owner.Opponent
+except AttributeError as _he:
+    _H_37 = _HoistPending(_he)
+try:
+    _H_38 = _R.C("CoreConst").Affected.Primary
+except AttributeError as _he:
+    _H_38 = _HoistPending(_he)
+try:
+    _H_39 = _R.C("CoreConst").Stack.Buff
+except AttributeError as _he:
+    _H_39 = _HoistPending(_he)
+try:
+    _H_4 = _R.C("CoreConst").FaceDirection.UP
+except AttributeError as _he:
+    _H_4 = _HoistPending(_he)
+try:
+    _H_40 = _R.C("CoreConst").Stack.Debuff
+except AttributeError as _he:
+    _H_40 = _HoistPending(_he)
+try:
+    _H_41 = _R.C("CoreEventBus").LoggingMode.Delayed
+except AttributeError as _he:
+    _H_41 = _HoistPending(_he)
+try:
+    _H_42 = _R.C("CoreConst").Owner.Socket
+except AttributeError as _he:
+    _H_42 = _HoistPending(_he)
+try:
+    _H_43 = _R.C('CoreConst').FaceDirection
+except AttributeError as _he:
+    _H_43 = _HoistPending(_he)
+try:
+    _H_44 = _R.C("CoreConst").CharID.PLAYER
+except AttributeError as _he:
+    _H_44 = _HoistPending(_he)
+try:
+    _H_45 = _R.C("CoreConst").Tag.Lifesteal
+except AttributeError as _he:
+    _H_45 = _HoistPending(_he)
+try:
+    _H_46 = _R.C("CoreConst").StatModified.Positive
+except AttributeError as _he:
+    _H_46 = _HoistPending(_he)
+try:
+    _H_47 = _R.C("CoreConst").StatModified.Negative
+except AttributeError as _he:
+    _H_47 = _HoistPending(_he)
+try:
+    _H_48 = _R.C("CoreConst").ItemMetrics.OutOfStamina
+except AttributeError as _he:
+    _H_48 = _HoistPending(_he)
+try:
+    _H_49 = _R.C("CoreConst").StackChangeType.Used_Player
+except AttributeError as _he:
+    _H_49 = _HoistPending(_he)
+try:
+    _H_5 = _R.C("CoreConst").Priority.Normal
+except AttributeError as _he:
+    _H_5 = _HoistPending(_he)
+try:
+    _H_50 = _R.C("CoreConst").Owner.PlayerInventory
+except AttributeError as _he:
+    _H_50 = _HoistPending(_he)
+try:
+    _H_51 = _R.C("CoreDamageSource").Type.Effect
+except AttributeError as _he:
+    _H_51 = _HoistPending(_he)
+try:
+    _H_52 = _R.C("CoreConst").StackChangeType.Removed_Player
+except AttributeError as _he:
+    _H_52 = _HoistPending(_he)
+try:
+    _H_53 = _R.C("CoreConst").Owner.Shop
+except AttributeError as _he:
+    _H_53 = _HoistPending(_he)
+try:
+    _H_54 = _R.C("CoreConst").Owner.PlayerStorageBox
+except AttributeError as _he:
+    _H_54 = _HoistPending(_he)
+try:
+    _H_55 = _R.C("CoreConst").Affected.Secondary
+except AttributeError as _he:
+    _H_55 = _HoistPending(_he)
+try:
+    _H_56 = _R.C("CoreConst").EventType.DamageBuff
+except AttributeError as _he:
+    _H_56 = _HoistPending(_he)
+try:
+    _H_57 = _R.C("CoreConst").ItemMetrics.MaxHealth
+except AttributeError as _he:
+    _H_57 = _HoistPending(_he)
+try:
+    _H_58 = _R.C("CoreConst").EventType.TemporaryMaxHealth
+except AttributeError as _he:
+    _H_58 = _HoistPending(_he)
+try:
+    _H_59 = _R.C("CoreConst").FaceDirection.RIGHT
+except AttributeError as _he:
+    _H_59 = _HoistPending(_he)
+try:
+    _H_6 = _R.C("CoreConst").Type
+except AttributeError as _he:
+    _H_6 = _HoistPending(_he)
+try:
+    _H_60 = _R.C("CoreConst").Affected
+except AttributeError as _he:
+    _H_60 = _HoistPending(_he)
+try:
+    _H_61 = _R.C("CoreConst").ItemMetrics.Activations
+except AttributeError as _he:
+    _H_61 = _HoistPending(_he)
+try:
+    _H_62 = _R.C("CoreConst").ItemMetrics.Block
+except AttributeError as _he:
+    _H_62 = _HoistPending(_he)
+try:
+    _H_63 = _R.C("CoreConst").ItemMetrics
+except AttributeError as _he:
+    _H_63 = _HoistPending(_he)
+try:
+    _H_64 = _R.C("CoreConst").ItemStat.Accuracy
+except AttributeError as _he:
+    _H_64 = _HoistPending(_he)
+try:
+    _H_65 = _R.C("CoreConst").Affected.Tertiary
+except AttributeError as _he:
+    _H_65 = _HoistPending(_he)
+try:
+    _H_66 = _R.C("CoreConst").FaceDirection.LEFT
+except AttributeError as _he:
+    _H_66 = _HoistPending(_he)
+try:
+    _H_67 = _R.C("CoreConst").FaceDirection.DOWN
+except AttributeError as _he:
+    _H_67 = _HoistPending(_he)
+_H_7 = _R.C("CoreConst")
+try:
+    _H_8 = _R.C("CoreConst").ItemStat
+except AttributeError as _he:
+    _H_8 = _HoistPending(_he)
+try:
+    _H_9 = _R.C("CoreConst").ItemStat.Speed
+except AttributeError as _he:
+    _H_9 = _HoistPending(_he)

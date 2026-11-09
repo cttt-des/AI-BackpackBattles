@@ -19,10 +19,10 @@ class Exclusive__Bomb(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def doCooldownEffect(self):
-		if self.useStamina() == _R.C("CoreConst").StaminaResult.Sufficient:
+		if self.useStamina() == _H_1:
 			self.ctx.bus.setLoggingMode(self.ctx.bus.LoggingMode.Delayed)
 			removedBuffs = 0
-			for buff in _iter(_R.C("CoreConst").getBuffs()):
+			for buff in _iter(_H_3.getBuffs()):
 				numStacks = self.character().getStacks(buff)
 				removedBuffs += numStacks
 				self.character().useStacks(buff, numStacks, self)
@@ -37,9 +37,18 @@ class Exclusive__Bomb(_R.C("res://gd_core_items/Item.gd")):
 	def _readyInit(self):
 		super()._readyInit()
 		self.damFactor = self.getP("dam")
-		self.damageSource = _R.C("CoreDamageSource")().setItem(self)
+		self.damageSource = _H_2().setItem(self)
 
 
 
 _R.reg("res://gd_core_items/Exclusive/Bomb.gd", Exclusive__Bomb)
 _R.reg("Bomb", Exclusive__Bomb)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").StaminaResult.Sufficient
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+_H_2 = _R.C("CoreDamageSource")
+_H_3 = _R.C("CoreConst")

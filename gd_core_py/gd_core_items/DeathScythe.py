@@ -26,14 +26,14 @@ class DeathScythe_2(_R.C("res://gd_core_items/Weapon.gd")):
 		self._poisonThreshold = int(v)
 
 	def canAffect(self, item):
-		return item.gainsStack(_R.C("CoreConst").Stack.Poison)
+		return item.gainsStack(_H_1)
 
 
 	def onPrepare(self):
 		self.setState(False)
 		self.connectForCombat(self.opponent(), "character_poison_changed", "onOpponentPoisonChanged")
 		for item in _iter(self.getAffectedItems()):
-			item.giveBuffPower(_R.C("CoreConst").EventType.Poison, 1)
+			item.giveBuffPower(_H_2, 1)
 
 
 	def onOpponentPoisonChanged(self, _amount, _event):
@@ -62,3 +62,14 @@ class DeathScythe_2(_R.C("res://gd_core_items/Weapon.gd")):
 
 _R.reg("res://gd_core_items/DeathScythe.gd", DeathScythe_2)
 _R.reg("DeathScythe", DeathScythe_2)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").Stack.Poison
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+try:
+    _H_2 = _R.C("CoreConst").EventType.Poison
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)

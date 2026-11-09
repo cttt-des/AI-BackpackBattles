@@ -53,7 +53,7 @@ class Exclusive__Phoenix(_R.C("res://gd_core_items/Weapon.gd")):
 
 
 	def doCooldownEffect(self):
-		if self.useStamina() == _R.C("CoreConst").StaminaResult.Sufficient:
+		if self.useStamina() == _H_1:
 			if self.character().getCurrentHealth() > self.selfDam:
 				self.character().loseHealth(self.selfDam, self)
 				res = self.dealDamage()
@@ -79,3 +79,10 @@ class Exclusive__Phoenix(_R.C("res://gd_core_items/Weapon.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/Phoenix.gd", Exclusive__Phoenix)
 _R.reg("Phoenix", Exclusive__Phoenix)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").StaminaResult.Sufficient
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)

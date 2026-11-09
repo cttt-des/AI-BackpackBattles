@@ -24,29 +24,29 @@ class CorruptedArmor_2(_R.C("res://gd_core_items/Item.gd")):
 		self._movedDebuffs = int(v)
 
 	def canAffect(self, item):
-		return item.hasType(_R.C("CoreConst").Type.Dark) or item.hasType(_R.C("CoreConst").Type.Holy)
+		return item.hasType(_H_1) or item.hasType(_H_3)
 
 
 
 	def reactToItemTypeChange(self, item):
-		if item in self.currentAffectedItems[_R.C("CoreConst").Affected.Primary]:
+		if item in self.currentAffectedItems[_H_4]:
 
-			if not item.hasType(_R.C("CoreConst").Type.Holy) and item.hasDynamicType(_R.C("CoreConst").Type.Dark, self):
-				_erase(self.currentAffectedItems[_R.C("CoreConst").Affected.Primary], item)
-				self.onAffectedItemRemoved(item, _R.C("CoreConst").Affected.Primary)
+			if not item.hasType(_H_3) and item.hasDynamicType(_H_1, self):
+				_erase(self.currentAffectedItems[_H_4], item)
+				self.onAffectedItemRemoved(item, _H_4)
 				return False
 		return True
 
 
 	def onAffectedItemAdded(self, item, color):
 		color = int(color)
-		if item.hasType(_R.C("CoreConst").Type.Holy) and not item.hasType(_R.C("CoreConst").Type.Dark):
-			item.addDynamicType(_R.C("CoreConst").Type.Dark, self)
+		if item.hasType(_H_3) and not item.hasType(_H_1):
+			item.addDynamicType(_H_1, self)
 
 
 	def onAffectedItemRemoved(self, item, color):
 		color = int(color)
-		item.removeDynamicType(_R.C("CoreConst").Type.Dark, self)
+		item.removeDynamicType(_H_1, self)
 
 
 	def onCombatStart(self):
@@ -57,7 +57,7 @@ class CorruptedArmor_2(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def doCooldownEffect(self):
-		cleansedDebuffs = self.pickRandomStacks(_R.C("CoreConst").getDebuffs(), self.movedDebuffs, self.character())
+		cleansedDebuffs = self.pickRandomStacks(_H_2.getDebuffs(), self.movedDebuffs, self.character())
 
 		for debuff in _iter(cleansedDebuffs):
 			event = self.character().loseStacks(debuff, cleansedDebuffs[debuff], self)
@@ -74,3 +74,19 @@ class CorruptedArmor_2(_R.C("res://gd_core_items/Item.gd")):
 
 _R.reg("res://gd_core_items/CorruptedArmor.gd", CorruptedArmor_2)
 _R.reg("CorruptedArmor", CorruptedArmor_2)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").Type.Dark
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+_H_2 = _R.C("CoreConst")
+try:
+    _H_3 = _R.C("CoreConst").Type.Holy
+except AttributeError as _he:
+    _H_3 = _HoistPending(_he)
+try:
+    _H_4 = _R.C("CoreConst").Affected.Primary
+except AttributeError as _he:
+    _H_4 = _HoistPending(_he)

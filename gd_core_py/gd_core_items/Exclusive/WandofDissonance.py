@@ -35,13 +35,13 @@ class Exclusive__WandofDissonance(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def canAffect(self, item):
-		return item.hasType(_R.C("CoreConst").Type.Dark)
+		return item.hasType(_H_1)
 
 
 	def onPrepare(self):
 		bonusEffectDmg = 0.0
 		for item in _iter(self.getAffectedItems()):
-			if item.hasType(_R.C("CoreConst").Type.Spell):
+			if item.hasType(_H_6):
 				bonusEffectDmg += self.effectDmg * 2.0
 			else:
 				bonusEffectDmg += self.effectDmg
@@ -53,13 +53,37 @@ class Exclusive__WandofDissonance(_R.C("res://gd_core_items/Item.gd")):
 		self.healthUsed = int(self.getP("healtht"))
 		self.effectDmg = _div(self.getP('dam'), 100.0)
 		self.availableBuffs = {
-		_R.C("CoreConst").EventType.Mana: int(self.getP("mana")), 
-		_R.C("CoreConst").EventType.Lucky: int(self.getP("luck")), 
-		_R.C("CoreConst").EventType.Regeneration: int(self.getP("regen"))
+		_H_2: int(self.getP("mana")), 
+		_H_3: int(self.getP("luck")), 
+		_H_4: int(self.getP("regen"))
 	}
-		self.damageSource = _R.C("CoreDamageSource")().setItem(self)
+		self.damageSource = _H_5().setItem(self)
 
 
 
 _R.reg("res://gd_core_items/Exclusive/WandofDissonance.gd", Exclusive__WandofDissonance)
 _R.reg("WandofDissonance", Exclusive__WandofDissonance)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").Type.Dark
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+try:
+    _H_2 = _R.C("CoreConst").EventType.Mana
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)
+try:
+    _H_3 = _R.C("CoreConst").EventType.Lucky
+except AttributeError as _he:
+    _H_3 = _HoistPending(_he)
+try:
+    _H_4 = _R.C("CoreConst").EventType.Regeneration
+except AttributeError as _he:
+    _H_4 = _HoistPending(_he)
+_H_5 = _R.C("CoreDamageSource")
+try:
+    _H_6 = _R.C("CoreConst").Type.Spell
+except AttributeError as _he:
+    _H_6 = _HoistPending(_he)

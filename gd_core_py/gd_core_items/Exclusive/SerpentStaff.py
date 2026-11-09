@@ -24,7 +24,7 @@ class Exclusive__SerpentStaff(_R.C("res://gd_core_items/Weapon.gd")):
 
 	def onPrepare(self):
 		self.manaUseEvents.clear()
-		self.opponent().changeResistChance(_R.C("CoreConst").EventType.Poison, - self.getChance())
+		self.opponent().changeResistChance(_H_1, - self.getChance())
 
 
 	def onPreDealDamage_early(self, damageRes):
@@ -53,3 +53,10 @@ class Exclusive__SerpentStaff(_R.C("res://gd_core_items/Weapon.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/SerpentStaff.gd", Exclusive__SerpentStaff)
 _R.reg("SerpentStaff", Exclusive__SerpentStaff)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").EventType.Poison
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)

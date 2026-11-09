@@ -43,7 +43,7 @@ class ManaPotion(_R.C("res://gd_core_items/Potion.gd")):
 			return
 
 		if (amount < 0 and 
-			isinstance(event.getOrigin(), _R.C("Item")) and 
+			isinstance(event.getOrigin(), _H_1) and 
 			event.getOrigin().character() == self.character()):
 				self.consumePotion(event)
 
@@ -54,3 +54,7 @@ class ManaPotion(_R.C("res://gd_core_items/Potion.gd")):
 
 _R.reg("res://gd_core/ManaPotion.gd", ManaPotion)
 _R.reg("ManaPotion", ManaPotion)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+_H_1 = _R.C("Item")

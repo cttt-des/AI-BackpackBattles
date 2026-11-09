@@ -40,7 +40,7 @@ class Exclusive__Wand(_R.C("res://gd_core_items/Item.gd")):
 
 	def _readyInit(self):
 		super()._readyInit()
-		self.buffs = [_R.C("CoreConst").EventType.Mana, _R.C("CoreConst").EventType.Lucky, _R.C("CoreConst").EventType.Regeneration]
+		self.buffs = [_H_1, _H_2, _H_3]
 		self.manaNeeded = int(self.getP("manat"))
 		self.luckNeeded = int(self.getP("luckt"))
 		self.regenNeeded = int(self.getP("regent"))
@@ -50,3 +50,18 @@ class Exclusive__Wand(_R.C("res://gd_core_items/Item.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/Wand.gd", Exclusive__Wand)
 _R.reg("Wand", Exclusive__Wand)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").EventType.Mana
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+try:
+    _H_2 = _R.C("CoreConst").EventType.Lucky
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)
+try:
+    _H_3 = _R.C("CoreConst").EventType.Regeneration
+except AttributeError as _he:
+    _H_3 = _HoistPending(_he)

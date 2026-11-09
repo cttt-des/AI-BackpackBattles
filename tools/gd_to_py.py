@@ -2112,12 +2112,209 @@ def _apply_cooldown_f32(texts):
     return texts
 
 
+def _hoist_classrefs(texts, order, files_by_rel, stat, hit):
+    """S3-C4：把函数体内的 `_R.C(...)` 类引用提升为模块末常量绑定。
+
+    动机（docs/性能优化执行路径.md S3 批1；A1 剖面实证）：`_R.C` 每调用
+    查注册表 ≈13 万次/场，前四名热点 getHeat/getCold/getSpeed/canAffect_color
+    全是 `_R.C("CoreConst").枚举.成员` 形态——三层开销（函数调用+dict 查找
+    +EnumDict.__getattr__）。提升后热路径只剩一次模块全局名读取。
+
+    安全规则（违者一律保持动态 C()，宁少勿错）：
+      1. 只提升**函数体内**的引用——class 体/模块级/函数签名默认值在导入期
+         求值，先于模块末绑定存在；
+      2. 目标 stem 全树唯一，或目标模块是本模块的 extends 祖先（拓扑序保证
+         已导入）。两树同名（Item/Bag 等 reg() 仲裁名）且非祖先的引用**不提升**
+         ——运行时 C() 拿仲裁终态，模块末提前绑定可能拿到错树的类；
+      3. 目标可解析：gd_core/ 树恒先全量载（load_core/load_all/load_for 皆然），
+         故 gd_core/ 目标恒可提升；items 树目标仅祖先链可提升；
+      4. 提升形态：纯属性链 `_R.C(x).a.b`（链尾不被立即调用）整链提升为常量
+         （枚举成员= int，值稳定）；链被立即调用或非属性链只提升 C() 本身。
+         绑定表达式在模块末重新求值，语义与原位求值一致（注册表此时已含目标）。
+
+    落地方式：AST 定位表达式 Span → 原文精确替换为常量名（注释/缩进/排版
+    全保留）→ 模块末发射绑定块。守门：REG 九场 + ast_diff（预期差异面=
+    Name/Attribute/Call 数量变化 + 文件尾新增 Assign）。
+    """
+    # stem → 模块 rel 清单（跨树同名检测）
+    stem2rels = {}
+    for rel, f in files_by_rel.items():
+        stem2rels.setdefault(_stem_of_rel(rel), []).append(rel)
+
+    def _target_qualifies(arg_src, cur_rel, ancestor_rels):
+        stem = arg_src
+        if stem.startswith("res://"):
+            stem = stem[len("res://"):]
+        if stem.endswith(".gd"):
+            stem = stem[:-3]
+        rels = stem2rels.get(stem)
+        if not rels:
+            return False                      # 不可解析（TYPE_MAP 等已在上游排除）
+        if len(rels) == 1:
+            target = rels[0]
+        else:
+            # 歧义名：仅当解析目标在本模块祖先链（或就是本模块）才提升
+            same = [r for r in rels if r == cur_rel]
+            anc = [r for r in rels if r in ancestor_rels]
+            if same:
+                return True
+            if anc:
+                target = anc[0]
+            else:
+                return False
+        if target == cur_rel:
+            return True
+        if target in ancestor_rels:
+            return True
+        if target.startswith("gd_core/"):
+            return True                       # gd_core 树恒先全量载
+        return False
+
+    import ast as _ast
+
+    changed_total = 0
+    for rel in order:
+        text = texts.get(rel)
+        if not text or "_R.C(" not in text:
+            continue
+        f = files_by_rel[rel]
+        ancestor_rels = {a.rel for a in (f.ancestors or [])}
+        try:
+            tree = _ast.parse(text)
+        except SyntaxError:
+            continue
+        # 父链表
+        pmap = {}
+        for p in _ast.walk(tree):
+            for c in _ast.iter_child_nodes(p):
+                pmap[c] = p
+        # 收集候选 C() 调用（函数体内、单常量参）
+        cands = []
+        for node in _ast.walk(tree):
+            if not isinstance(node, _ast.Call):
+                continue
+            fu = node.func
+            if not (isinstance(fu, _ast.Attribute) and fu.attr == "C"
+                    and isinstance(fu.value, _ast.Name) and fu.value.id == "_R"):
+                continue
+            if (len(node.args) != 1
+                    or not isinstance(node.args[0], _ast.Constant)
+                    or not isinstance(node.args[0].value, str)):
+                continue
+            # 函数体内判定（签名默认值/装饰器/class 体一律排除）
+            cur, ok = node, False
+            while True:
+                p = pmap.get(cur)
+                if p is None:
+                    break
+                if isinstance(p, _ast.FunctionDef):
+                    ok = any(_span_contains(b, node) for b in p.body)
+                    break
+                if isinstance(p, (_ast.ClassDef, _ast.Module)):
+                    break
+                cur = p
+            if not ok:
+                continue
+            # 目标安全判定
+            if not _target_qualifies(node.args[0].value, rel, ancestor_rels):
+                continue
+            # 向上扩展纯属性链（链尾不被立即调用才算整链）
+            span = node
+            while True:
+                p = pmap.get(span)
+                if isinstance(p, _ast.Attribute) and p.value is span:
+                    gp = pmap.get(p)
+                    if isinstance(gp, _ast.Call) and gp.func is p:
+                        break                   # 链被调用：止于当前（C() 本身）
+                    span = p
+                    continue
+                break
+            cands.append((node, span))
+
+        if not cands:
+            continue
+        # 唯一化：同源码表达式共享一个常量；每个候选点独立替换
+        uniq = {}
+        chain_srcs = set()                    # 属性链提升（需惰性哨兵兜底）
+        for _node, span in cands:
+            src = _span_text(text, span)
+            if src not in uniq:
+                uniq[src] = "_H_%d" % (len(uniq) + 1)
+            if span is not _node:             # 非纯 C()：带属性链
+                chain_srcs.add(src)
+        reps = sorted(((span.lineno, span.col_offset,
+                        span.end_lineno, span.end_col_offset,
+                        uniq[_span_text(text, span)])
+                       for _node, span in cands),
+                      key=lambda r: (-r[0], -r[1]))
+        lines = text.split("\n")
+        for l1, c1, l2, c2, name in reps:
+            if l1 == l2:
+                lines[l1 - 1] = lines[l1 - 1][:c1] + name + lines[l1 - 1][c2:]
+            else:
+                lines[l1 - 1] = lines[l1 - 1][:c1] + name
+                for mid in range(l1, l2 - 1):
+                    lines[mid] = ""
+                lines[l2 - 1] = lines[l2 - 1][c2:]
+        # 模块末绑定块
+        # ★ 属性链提升一律 try/except：GDScript 源里存在「引用了别的类上不存在的
+        #   属性」的死路径（如 gd_core/Item.gd:1064 → CoreConst.CraftingPriority，
+        #   该枚举实际在 Item.gd:82——原位求值=调用时 AttributeError，双腿同构）。
+        #   绑定挪到导入期不能把死路径提前炸响，故失败位绑定 _HoistPending
+        #   （_rt 哨兵：首次真实使用在同调用点抛同型异常）。
+        block = ["",
+                 "# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，"
+                 "模块末绑定）──"]
+        for src, name in sorted(uniq.items(), key=lambda kv: kv[1]):
+            if src in chain_srcs:
+                block.append("try:")
+                block.append("    %s = %s" % (name, src))
+                block.append("except AttributeError as _he:")
+                block.append("    %s = _HoistPending(_he)" % name)
+            else:
+                block.append("%s = %s" % (name, src))
+        new_text = "\n".join(lines) + "\n" + "\n".join(block) + "\n"
+        _ast.parse(new_text)                  # 语法自检，破即中止生成
+        texts[rel] = new_text
+        changed_total += 1
+        hit["C4提升常量"] += len(uniq)
+    hit["C4提升模块"] = changed_total
+    stat["C4"] = ["%d 模块" % changed_total]
+    return texts
+
+
+def _stem_of_rel(rel):
+    s = rel.rsplit("/", 1)[-1]
+    if s.endswith(".py"):
+        s = s[:-3]
+    elif s.endswith(".gd"):
+        s = s[:-3]
+    return s
+
+
+def _span_text(text, node):
+    lines = text.split("\n")
+    l1, c1, l2, c2 = node.lineno, node.col_offset, node.end_lineno, node.end_col_offset
+    if l1 == l2:
+        return lines[l1 - 1][c1:c2]
+    parts = [lines[l1 - 1][c1:]]
+    parts += lines[l1:l2 - 1]
+    parts.append(lines[l2 - 1][:c2])
+    return "\n".join(parts)
+
+
+def _span_contains(outer, inner):
+    return (outer.lineno, outer.col_offset) <= (inner.lineno, inner.col_offset) and \
+           (inner.end_lineno, inner.end_col_offset) <= (outer.end_lineno, outer.end_col_offset)
+
+
 def write_pkg(order, files_by_rel, by_name, by_path, class_names, stat, hit, write):
     texts = {}
     for rel in order:
         texts[rel] = transform_file(files_by_rel[rel], by_name, by_path,
                                     stat, hit, class_names)
     texts = _apply_cooldown_f32(texts)
+    texts = _hoist_classrefs(texts, order, files_by_rel, stat, hit)
     if not write:
         return texts
     dirs = {OUT_PKG}

@@ -22,7 +22,7 @@ class Exclusive__Scissorswords(_R.C("res://gd_core_items/Lightsaber.gd")):
 
 	def inflict(self, duration, event):
 		super().inflict(duration, event)
-		self.giveStacksTemporary(self.character(), _R.C("CoreConst").EventType.Blind, 
+		self.giveStacksTemporary(self.character(), _H_1, 
 			self.blind, duration, event)
 
 
@@ -45,3 +45,10 @@ class Exclusive__Scissorswords(_R.C("res://gd_core_items/Lightsaber.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/Scissorswords.gd", Exclusive__Scissorswords)
 _R.reg("Scissorswords", Exclusive__Scissorswords)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").EventType.Blind
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)

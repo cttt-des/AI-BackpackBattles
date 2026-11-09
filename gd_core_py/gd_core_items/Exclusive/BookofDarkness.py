@@ -21,13 +21,13 @@ class Exclusive__BookofDarkness(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def canAffect(self, item):
-		return item.hasType(_R.C("CoreConst").Type.Spell)
+		return item.hasType(_H_1)
 
 
 	def onPrepare(self):
 		speed = 0.0
 		for item in _iter(self.getAffectedItems()):
-			if item.hasType(_R.C("CoreConst").Type.Dark):
+			if item.hasType(_H_2):
 				speed += self.spellSpeed * 2
 			else:
 				speed += self.spellSpeed
@@ -51,3 +51,14 @@ class Exclusive__BookofDarkness(_R.C("res://gd_core_items/Item.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/BookofDarkness.gd", Exclusive__BookofDarkness)
 _R.reg("BookofDarkness", Exclusive__BookofDarkness)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").Type.Spell
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+try:
+    _H_2 = _R.C("CoreConst").Type.Dark
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)

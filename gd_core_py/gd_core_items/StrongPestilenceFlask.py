@@ -19,7 +19,7 @@ class StrongPestilenceFlask_2(_R.C("res://gd_core_items/PestilenceFlask.gd")):
 
 	def getAffectedItems(self, color=GD_DEFAULT):
 		if color is GD_DEFAULT:
-			color = _R.C("CoreConst").Affected.Primary
+			color = _H_1
 		# ★ np25 evt12 面 GRD 探针（双门控零耗）：aff 格级真值——faceDirection/
 		#   collision 全局格/cache 格/命中物品，定 getAffectedItems 错位。
 		_r = super().getAffectedItems(color)
@@ -53,3 +53,10 @@ class StrongPestilenceFlask_2(_R.C("res://gd_core_items/PestilenceFlask.gd")):
 
 _R.reg("res://gd_core_items/StrongPestilenceFlask.gd", StrongPestilenceFlask_2)
 _R.reg("StrongPestilenceFlask", StrongPestilenceFlask_2)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").Affected.Primary
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)

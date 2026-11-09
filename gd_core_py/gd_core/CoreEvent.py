@@ -91,12 +91,12 @@ class CoreEvent(GodotObject):
 
 
 	def getMainActor(self):
-		if isinstance(self.origin, _R.C("CoreItem")):
+		if isinstance(self.origin, _H_1):
 			return self.origin.character().playerId
 		elif self.target:
 			return self.target
 		else:
-			return _R.C("CoreCharacter").ID.PLAYER
+			return _H_2
 
 
 	def getOrigin(self):
@@ -104,7 +104,7 @@ class CoreEvent(GodotObject):
 
 
 	def fromCharacter(self, character):
-		return isinstance(self.origin, _R.C("CoreItem")) and self.origin.character() == character
+		return isinstance(self.origin, _H_1) and self.origin.character() == character
 
 
 	def getDepth(self):
@@ -117,3 +117,11 @@ class CoreEvent(GodotObject):
 _R.reg("res://gd_core/CoreEvent.gd", CoreEvent)
 _R.reg("CoreEvent", CoreEvent)
 _R.reg("CoreEvent", CoreEvent)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+_H_1 = _R.C("CoreItem")
+try:
+    _H_2 = _R.C("CoreCharacter").ID.PLAYER
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)

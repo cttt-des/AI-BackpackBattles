@@ -38,13 +38,13 @@ class Exclusive__Eat_o_matic(_R.C("res://gd_core_items/Item.gd")):
 	FAST_SPEED = 1.0
 
 	def canAffect(self, item):
-		return item.hasType(_R.C("CoreConst").Type.Food)
+		return item.hasType(_H_1)
 
 
 	def canAffect_global(self, item):
-		if not item.hasType(_R.C("CoreConst").Type.Food):
+		if not item.hasType(_H_1):
 			return False
-		if item in self.currentAffectedItems[_R.C("CoreConst").Affected.Primary]:
+		if item in self.currentAffectedItems[_H_2]:
 			return False
 
 		return True
@@ -124,3 +124,14 @@ class Exclusive__Eat_o_matic(_R.C("res://gd_core_items/Item.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/Eat-o-matic.gd", Exclusive__Eat_o_matic)
 _R.reg("Eat-o-matic", Exclusive__Eat_o_matic)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").Type.Food
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+try:
+    _H_2 = _R.C("CoreConst").Affected.Primary
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)

@@ -78,17 +78,17 @@ class CoreDamageResult(GodotObject):
 
 
 	def makeCritical(self):
-		if isinstance(self.damageSource.origin, _R.C("CoreItem")):
+		if isinstance(self.damageSource.origin, _H_1):
 			self.damage *= self.damageSource.origin.getCritSeverity()
 		else:
-			self.damage *= _R.C("CoreItem").BASE_CRIT_SEVERITY
+			self.damage *= _H_2
 		self.critical = True
 
 
 	def applyDamageReduction(self, amount, item):
 		leftOverDmg = max(0, self.damage - self.damageReduction)
 		actualReduction = min(amount, leftOverDmg)
-		item.addMetric(_R.C("CoreConst").ItemMetrics.DamageBlocked, actualReduction)
+		item.addMetric(_H_3, actualReduction)
 
 		self.damageReduction += amount
 
@@ -104,7 +104,7 @@ class CoreDamageResult(GodotObject):
 	def triggerOnMeleeAttacked(self):
 		return (self.hasHit() and 
 				self.canTriggerItems() and 
-				self.damageSource.hasType(_R.C("CoreDamageSource").Type.Melee))
+				self.damageSource.hasType(_H_5))
 
 
 	def triggerOnAttacked(self):
@@ -114,7 +114,7 @@ class CoreDamageResult(GodotObject):
 
 
 	def canTriggerItems(self):
-		return self.damageSource.flags & _R.C("CoreDamageSource").Flags.CanTriggerItems
+		return self.damageSource.flags & _H_4
 
 
 	def canTriggerSpikes(self):
@@ -132,3 +132,23 @@ class CoreDamageResult(GodotObject):
 _R.reg("res://gd_core/CoreDamageResult.gd", CoreDamageResult)
 _R.reg("CoreDamageResult", CoreDamageResult)
 _R.reg("CoreDamageResult", CoreDamageResult)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+_H_1 = _R.C("CoreItem")
+try:
+    _H_2 = _R.C("CoreItem").BASE_CRIT_SEVERITY
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)
+try:
+    _H_3 = _R.C("CoreConst").ItemMetrics.DamageBlocked
+except AttributeError as _he:
+    _H_3 = _HoistPending(_he)
+try:
+    _H_4 = _R.C("CoreDamageSource").Flags.CanTriggerItems
+except AttributeError as _he:
+    _H_4 = _HoistPending(_he)
+try:
+    _H_5 = _R.C("CoreDamageSource").Type.Melee
+except AttributeError as _he:
+    _H_5 = _HoistPending(_he)

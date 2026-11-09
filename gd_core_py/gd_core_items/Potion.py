@@ -32,7 +32,7 @@ class Potion_2(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def canAffect(self, item):
-		return item.hasType(_R.C("CoreConst").Type.Potion)
+		return item.hasType(_H_1)
 
 
 	def isEmpty(self):
@@ -106,7 +106,7 @@ class Potion_2(_R.C("res://gd_core_items/Item.gd")):
 
 
 
-		if self.faceDirection == _R.C("CoreConst").FaceDirection.DOWN:
+		if self.faceDirection == _H_2:
 			return [rotatedCells[1] + Vector2.UP]
 		else:
 			return [rotatedCells[0] + Vector2.UP]
@@ -127,13 +127,13 @@ class Potion_2(_R.C("res://gd_core_items/Item.gd")):
 
 	def onAffectedItemAdded(self, item, color):
 		color = int(color)
-		if color == _R.C("CoreConst").Affected.Primary:
+		if color == _H_3:
 			self.updateConnector()
 
 
 	def onAffectedItemRemoved(self, item, color):
 		color = int(color)
-		if color == _R.C("CoreConst").Affected.Primary:
+		if color == _H_3:
 			self.updateConnector()
 
 
@@ -166,3 +166,18 @@ class Potion_2(_R.C("res://gd_core_items/Item.gd")):
 _R.reg("res://gd_core_items/Potion.gd", Potion_2)
 _R.reg("Potion", Potion_2)
 _R.reg("Potion", Potion_2)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").Type.Potion
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+try:
+    _H_2 = _R.C("CoreConst").FaceDirection.DOWN
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)
+try:
+    _H_3 = _R.C("CoreConst").Affected.Primary
+except AttributeError as _he:
+    _H_3 = _HoistPending(_he)

@@ -21,7 +21,7 @@ class Exclusive__VineweaveBasket(_R.C("res://gd_core_items/Bag.gd")):
 
 
 	def canApplyEffect(self, toItem):
-		return toItem.hasType(_R.C("CoreConst").Type.Nature)
+		return toItem.hasType(_H_1)
 
 
 	def onPrepare(self):
@@ -43,10 +43,21 @@ class Exclusive__VineweaveBasket(_R.C("res://gd_core_items/Bag.gd")):
 		self.salesRound1 = int(self.getP("round1"))
 		self.salesRound2 = int(self.getP("round2"))
 		self.salesChance = _div(self.getP('sales'), 100.0)
-		if self.ownerType == _R.C("CoreConst").Owner.PlayerInventory:
+		if self.ownerType == _H_2:
 			pass
 
 
 
 _R.reg("res://gd_core_items/Exclusive/VineweaveBasket.gd", Exclusive__VineweaveBasket)
 _R.reg("VineweaveBasket", Exclusive__VineweaveBasket)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").Type.Nature
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+try:
+    _H_2 = _R.C("CoreConst").Owner.PlayerInventory
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)

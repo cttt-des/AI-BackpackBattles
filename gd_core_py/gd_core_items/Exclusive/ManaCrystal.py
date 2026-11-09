@@ -43,7 +43,7 @@ class Exclusive__ManaCrystal(_R.C("res://gd_core_items/Item.gd")):
 		if (charge.curChargedItem != None and 
 			charge.curChargedItem != charge.lastChargedItem):
 
-			if charge.curChargedItem.hasType(_R.C("CoreConst").Type.Magic):
+			if charge.curChargedItem.hasType(_H_1):
 				self.giveMana(self.mana2)
 			else:
 				self.giveMana(self.mana1)
@@ -57,3 +57,10 @@ class Exclusive__ManaCrystal(_R.C("res://gd_core_items/Item.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/ManaCrystal.gd", Exclusive__ManaCrystal)
 _R.reg("ManaCrystal", Exclusive__ManaCrystal)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").Type.Magic
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)

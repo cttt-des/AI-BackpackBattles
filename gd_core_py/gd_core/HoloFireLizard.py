@@ -31,9 +31,13 @@ class HoloFireLizard(_R.C("res://gd_core_items/Card.gd")):
 		super()._readyInit()
 		self.damFactor = _div(self.getP('damfactor'), 100.0)
 		self.heat = int(self.getP2())
-		self.damageSource = _R.C("CoreDamageSource")().setItem(self)
+		self.damageSource = _H_1().setItem(self)
 
 
 
 _R.reg("res://gd_core/HoloFireLizard.gd", HoloFireLizard)
 _R.reg("HoloFireLizard", HoloFireLizard)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+_H_1 = _R.C("CoreDamageSource")

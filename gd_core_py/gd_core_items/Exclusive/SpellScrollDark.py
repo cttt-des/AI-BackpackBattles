@@ -31,19 +31,19 @@ class Exclusive__SpellScrollDark(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def canAffect_secondary(self, item):
-		return item.hasType(_R.C("CoreConst").Type.Dark)
+		return item.hasType(_H_1)
 
 
 	def onPrepare(self):
 		self.numActivations = 0
-		self.addSpeed(self.getNumAffectedItems(_R.C("CoreConst").Affected.Secondary) * self.darkSpeed)
+		self.addSpeed(self.getNumAffectedItems(_H_3) * self.darkSpeed)
 
 
 	def doCooldownEffect(self):
 		self.numActivations += 1
 		for item in _iter(self.getAffectedItems()):
 			item.addSpeed(self.speedBonus)
-		self.giveStacks(self.character(), _R.C("CoreConst").EventType.Blind, 1)
+		self.giveStacks(self.character(), _H_2, 1)
 
 		if self.numActivations == self.maxActivations:
 			self.onAfterEffectFinished()
@@ -59,3 +59,18 @@ class Exclusive__SpellScrollDark(_R.C("res://gd_core_items/Item.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/SpellScrollDark.gd", Exclusive__SpellScrollDark)
 _R.reg("SpellScrollDark", Exclusive__SpellScrollDark)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").Type.Dark
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+try:
+    _H_2 = _R.C("CoreConst").EventType.Blind
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)
+try:
+    _H_3 = _R.C("CoreConst").Affected.Secondary
+except AttributeError as _he:
+    _H_3 = _HoistPending(_he)

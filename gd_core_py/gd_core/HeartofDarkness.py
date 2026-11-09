@@ -21,7 +21,7 @@ class HeartofDarkness(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def canAffect(self, item):
-		return item.hasType(_R.C("CoreConst").Type.Dark)
+		return item.hasType(_H_2)
 
 
 	def onPrepare(self):
@@ -31,7 +31,7 @@ class HeartofDarkness(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def doCooldownEffect(self):
-		self.stealRandomBuff(self.numStealedBuffs, None, _R.C("CoreConst").getBuffs(), _R.C("CoreConst").EventType.Regeneration)
+		self.stealRandomBuff(self.numStealedBuffs, None, _H_3.getBuffs(), _H_4)
 		self.activate()
 
 
@@ -49,7 +49,7 @@ class HeartofDarkness(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def getTriggerPriority(self):
-		return _R.C("CoreConst").Priority.High
+		return _H_1
 
 
 	def onStateChanged(self, filled):
@@ -70,3 +70,19 @@ class HeartofDarkness(_R.C("res://gd_core_items/Item.gd")):
 
 _R.reg("res://gd_core/HeartofDarkness.gd", HeartofDarkness)
 _R.reg("HeartofDarkness", HeartofDarkness)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").Priority.High
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+try:
+    _H_2 = _R.C("CoreConst").Type.Dark
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)
+_H_3 = _R.C("CoreConst")
+try:
+    _H_4 = _R.C("CoreConst").EventType.Regeneration
+except AttributeError as _he:
+    _H_4 = _HoistPending(_he)

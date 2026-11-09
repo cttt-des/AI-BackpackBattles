@@ -79,10 +79,18 @@ class ManaOrb(_R.C("res://gd_core_items/Item.gd")):
 		self.mana = int(self.getP1())
 		self.manaNeeded = self.getP2()
 		self.buffs = int(self.getP3())
-		self.stackTypes = _R.C("CoreConst").getBuffs()
-		_erase(self.stackTypes, _R.C("CoreConst").EventType.Mana)
+		self.stackTypes = _H_1.getBuffs()
+		_erase(self.stackTypes, _H_2)
 
 
 
 _R.reg("res://gd_core/ManaOrb.gd", ManaOrb)
 _R.reg("ManaOrb", ManaOrb)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+_H_1 = _R.C("CoreConst")
+try:
+    _H_2 = _R.C("CoreConst").EventType.Mana
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)

@@ -108,7 +108,7 @@ class CoreItemBook(GodotObject):
 		if not (itemName in self.descriptors):
 			# 未注册 → 造一个**只有身份**的占位描述符：数值字段全零，等价于
 			# 「原版资源尚未加载」。调用方只用它做身份比较（isA），不读数值。
-			self.descriptors[itemName] = _R.C("CoreItemData")().fromDict(
+			self.descriptors[itemName] = _H_1().fromDict(
 				{"identifier": itemName, "name": itemName})
 		return self.descriptors[itemName]
 
@@ -155,8 +155,8 @@ class CoreItemBook(GodotObject):
 
 
 	def _inventorySide(self, item):
-		return (item.ownerType == _R.C("CoreConst").Owner.PlayerInventory
-			or item.ownerType == _R.C("CoreConst").Owner.Socket)
+		return (item.ownerType == _H_2
+			or item.ownerType == _H_3)
 
 
 	def _filter(self, descr, opponentSide):
@@ -195,9 +195,9 @@ class CoreItemBook(GodotObject):
 		for item in _iter(self._sideItems(False)):
 			if item == None or item.descriptor != descr:
 				continue
-			if item.ownerType == _R.C("CoreConst").Owner.Socket:
+			if item.ownerType == _H_3:
 				count += 1
-			elif item.ownerType == _R.C("CoreConst").Owner.PlayerInventory and item.placed:
+			elif item.ownerType == _H_2 and item.placed:
 				count += 1
 		return count
 
@@ -215,3 +215,15 @@ class CoreItemBook(GodotObject):
 _R.reg("res://gd_core/CoreItemBook.gd", CoreItemBook)
 _R.reg("CoreItemBook", CoreItemBook)
 _R.reg("CoreItemBook", CoreItemBook)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+_H_1 = _R.C("CoreItemData")
+try:
+    _H_2 = _R.C("CoreConst").Owner.PlayerInventory
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)
+try:
+    _H_3 = _R.C("CoreConst").Owner.Socket
+except AttributeError as _he:
+    _H_3 = _HoistPending(_he)

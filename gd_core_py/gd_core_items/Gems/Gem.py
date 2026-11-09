@@ -154,8 +154,8 @@ class Gem(_R.C("res://gd_core_items/Item.gd")):
 			self.killDropTween()
 			self.movebackSocket = self.socket
 			self.hoveredSocket = self.socket
-			if self.socket.getItem().ownerType == _R.C("CoreConst").Owner.PlayerStorageBox:
-				self.setFaceDirection(_R.C("CoreConst").FaceDirection.UP)
+			if self.socket.getItem().ownerType == _H_1:
+				self.setFaceDirection(_H_2)
 			else:
 				self.faceDirection = self.getGlobalFaceDirection()
 
@@ -305,7 +305,7 @@ class Gem(_R.C("res://gd_core_items/Item.gd")):
 
 	def getNeighborItemsAndGems(self):
 		if self.socket:
-			if self.getItem().ownerType == _R.C("CoreConst").Owner.PlayerStorageBox:
+			if self.getItem().ownerType == _H_1:
 				return []
 
 
@@ -364,3 +364,14 @@ class Gem(_R.C("res://gd_core_items/Item.gd")):
 _R.reg("res://gd_core_items/Gems/Gem.gd", Gem)
 _R.reg("Gem", Gem)
 _R.reg("Gem", Gem)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").Owner.PlayerStorageBox
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+try:
+    _H_2 = _R.C("CoreConst").FaceDirection.UP
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)

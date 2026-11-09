@@ -32,7 +32,7 @@ class Exclusive__Twine(_R.C("res://gd_core_items/Item.gd")):
 
 	def onTriggerItemActivated(self, event):
 		totalChance = self.getBaseChance()
-		totalChance += self.getNumAffectedItems(_R.C("CoreConst").Affected.Secondary) * self.getBaseChance2()
+		totalChance += self.getNumAffectedItems(_H_1) * self.getBaseChance2()
 		if self.rollChance(totalChance):
 			self.giveMaxHealth(self.maxHealth, event)
 			self.activate()
@@ -44,3 +44,10 @@ class Exclusive__Twine(_R.C("res://gd_core_items/Item.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/Twine.gd", Exclusive__Twine)
 _R.reg("Twine", Exclusive__Twine)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").Affected.Secondary
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)

@@ -40,7 +40,7 @@ class Exclusive__Solaris(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def onPrepare(self):
-		self.inventory.changeBuffAmplification_allItems(_R.C("CoreConst").EventType.Heat, self.getChance2())
+		self.inventory.changeBuffAmplification_allItems(_H_1, self.getChance2())
 
 		for item in _iter(self.getAffectedItems()):
 			if item.isA(self.sunShieldDescriptor):
@@ -85,3 +85,10 @@ class Exclusive__Solaris(_R.C("res://gd_core_items/Item.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/Solaris.gd", Exclusive__Solaris)
 _R.reg("Solaris", Exclusive__Solaris)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").EventType.Heat
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)

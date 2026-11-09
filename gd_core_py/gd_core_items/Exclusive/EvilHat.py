@@ -24,12 +24,12 @@ class Exclusive__EvilHat(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def canAffect_secondary(self, item):
-		return item.hasType(_R.C("CoreConst").Type.Dark)
+		return item.hasType(_H_2)
 
 
 	def onPrepare(self):
 		unhealing = _div(self.getP('unhealing'), 100.0)
-		unhealing += _div(self.getNumAffectedItems(_R.C('CoreConst').Affected.Secondary) * self.getP('unhealing2'), 100.0)
+		unhealing += _div(self.getNumAffectedItems(_H_4) * self.getP('unhealing2'), 100.0)
 		self.character().giveUnhealing(unhealing)
 
 		self.connectToCharacterDebuffs("onDebuffsChanged")
@@ -38,7 +38,7 @@ class Exclusive__EvilHat(_R.C("res://gd_core_items/Item.gd")):
 
 	def onDebuffsChanged(self, amount, event):
 		if (amount > 0 and 
-			isinstance(event.origin, _R.C("Item")) and 
+			isinstance(event.origin, _H_1) and 
 			event.origin.character() == self.character()):
 
 			regenToGive = 0
@@ -52,7 +52,7 @@ class Exclusive__EvilHat(_R.C("res://gd_core_items/Item.gd")):
 
 	def onOpponentBuffsChanged(self, amount, event):
 		if (amount < 0 and 
-			isinstance(event.origin, _R.C("Item")) and 
+			isinstance(event.origin, _H_1) and 
 			event.origin.character() == self.character()):
 
 			for item in _iter(self.getAffectedItems()):
@@ -61,7 +61,7 @@ class Exclusive__EvilHat(_R.C("res://gd_core_items/Item.gd")):
 
 	def doCooldownEffect(self):
 		self.giveRandomBuffs(self.selfBuffs)
-		self.giveRandomBuffs(self.opponentBuffs, None, _R.C("CoreConst").getBuffs(), self.opponent())
+		self.giveRandomBuffs(self.opponentBuffs, None, _H_3.getBuffs(), self.opponent())
 		self.activate()
 
 
@@ -85,3 +85,16 @@ class Exclusive__EvilHat(_R.C("res://gd_core_items/Item.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/EvilHat.gd", Exclusive__EvilHat)
 _R.reg("EvilHat", Exclusive__EvilHat)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+_H_1 = _R.C("Item")
+try:
+    _H_2 = _R.C("CoreConst").Type.Dark
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)
+_H_3 = _R.C("CoreConst")
+try:
+    _H_4 = _R.C('CoreConst').Affected.Secondary
+except AttributeError as _he:
+    _H_4 = _HoistPending(_he)

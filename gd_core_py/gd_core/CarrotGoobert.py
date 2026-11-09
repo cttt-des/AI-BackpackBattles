@@ -27,7 +27,7 @@ class CarrotGoobert(_R.C("res://gd_core_items/Goobert.gd")):
 		self.setState(True, True)
 		self.cleanseRandomDebuffs(self.getP2())
 		duration = self.getP_m("dur")
-		self.giveStacksTemporary(self.character(), _R.C("CoreConst").EventType.Empower, 
+		self.giveStacksTemporary(self.character(), _H_1, 
 			self.empower, duration)
 		self.particleTimer.stop()
 		self.particleTimer.start(duration)
@@ -59,3 +59,10 @@ class CarrotGoobert(_R.C("res://gd_core_items/Goobert.gd")):
 
 _R.reg("res://gd_core/CarrotGoobert.gd", CarrotGoobert)
 _R.reg("CarrotGoobert", CarrotGoobert)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").EventType.Empower
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)

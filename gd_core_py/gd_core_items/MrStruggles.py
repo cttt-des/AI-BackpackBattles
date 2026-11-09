@@ -30,7 +30,7 @@ class MrStruggles_2(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def onPrepare(self):
-		for debuff in _iter(_R.C("CoreConst").getDebuffs()):
+		for debuff in _iter(_H_1.getDebuffs()):
 			self.connectForCombat(self.character(), self.character().buffs[debuff].signalName, 
 			"onDebuffed")
 
@@ -89,7 +89,7 @@ class MrStruggles_2(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def getTriggerPriority(self):
-		return _R.C("CoreConst").Priority.High + 3
+		return _H_2 + 3
 
 
 	def getDescription(self, wrapInColor=True):
@@ -125,3 +125,11 @@ class MrStruggles_2(_R.C("res://gd_core_items/Item.gd")):
 
 _R.reg("res://gd_core_items/MrStruggles.gd", MrStruggles_2)
 _R.reg("MrStruggles", MrStruggles_2)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+_H_1 = _R.C("CoreConst")
+try:
+    _H_2 = _R.C("CoreConst").Priority.High
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)

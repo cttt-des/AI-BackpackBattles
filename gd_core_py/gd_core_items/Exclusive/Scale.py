@@ -40,7 +40,7 @@ class Exclusive__Scale(_R.C("res://gd_core_items/Item.gd")):
 
 	def getCounterValue(self, color=GD_DEFAULT):
 		if color is GD_DEFAULT:
-			color = _R.C("CoreConst").Affected.Primary
+			color = _H_1
 		gold = 0
 		if self.placed:
 			for item in _iter(self.getAffectedItems(color)):
@@ -52,7 +52,7 @@ class Exclusive__Scale(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def getCounterValue2(self):
-		return self.getCounterValue(_R.C("CoreConst").Affected.Secondary)
+		return self.getCounterValue(_H_2)
 
 
 	def onPrepare(self):
@@ -62,7 +62,7 @@ class Exclusive__Scale(_R.C("res://gd_core_items/Item.gd")):
 		if abs(c1 - c2) <= self.maxGoldDif:
 			for item in _iter(self.getAffectedItems()):
 				item.addSpeed(self.equilibriumSpeed)
-			for item in _iter(self.getAffectedItems(_R.C("CoreConst").Affected.Secondary)):
+			for item in _iter(self.getAffectedItems(_H_2)):
 				item.addSpeed(self.equilibriumSpeed)
 
 
@@ -138,3 +138,14 @@ class Exclusive__Scale(_R.C("res://gd_core_items/Item.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/Scale.gd", Exclusive__Scale)
 _R.reg("Scale", Exclusive__Scale)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").Affected.Primary
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+try:
+    _H_2 = _R.C("CoreConst").Affected.Secondary
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)

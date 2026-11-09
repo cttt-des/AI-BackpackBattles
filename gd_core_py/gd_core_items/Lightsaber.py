@@ -29,7 +29,7 @@ class Lightsaber_2(_R.C("res://gd_core_items/Weapon.gd")):
 
 
 	def inflict(self, duration, event):
-		self.giveStacksTemporary(self.opponent(), _R.C("CoreConst").EventType.Blind, 
+		self.giveStacksTemporary(self.opponent(), _H_1, 
 				self.blind, duration, event)
 
 
@@ -89,3 +89,10 @@ class Lightsaber_2(_R.C("res://gd_core_items/Weapon.gd")):
 
 _R.reg("res://gd_core_items/Lightsaber.gd", Lightsaber_2)
 _R.reg("Lightsaber", Lightsaber_2)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").EventType.Blind
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)

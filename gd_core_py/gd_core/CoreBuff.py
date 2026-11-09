@@ -155,12 +155,12 @@ class CoreBuff(GodotObject):
 
 	def init(self, _type, _character, _signalName=""):
 		self.type = _type
-		self.isBuff = _R.C("CoreConst").isBuff(self.type)
+		self.isBuff = _H_1.isBuff(self.type)
 		self.character = _character
 		self.signalName = _signalName
 		self.ctx = _character.ctx
 
-		if self.type == _R.C("CoreConst").EventType.Block:
+		if self.type == _H_2:
 			self.MAX_STACKS = 100000
 		else:
 			self.MAX_STACKS = 10000
@@ -392,7 +392,7 @@ class CoreBuff(GodotObject):
 				self.resistStacks -= protectedByStacks
 
 			if (self.isBuff and 
-				self.type != _R.C("CoreConst").EventType.Block and 
+				self.type != _H_2 and 
 				amount > 0 and 
 				self.character.buffProtectStacks > 0):
 
@@ -621,3 +621,11 @@ CoreBuff.TemporaryStacks = TemporaryStacks
 _R.reg("res://gd_core/CoreBuff.gd", CoreBuff)
 _R.reg("CoreBuff", CoreBuff)
 _R.reg("CoreBuff", CoreBuff)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+_H_1 = _R.C("CoreConst")
+try:
+    _H_2 = _R.C("CoreConst").EventType.Block
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)

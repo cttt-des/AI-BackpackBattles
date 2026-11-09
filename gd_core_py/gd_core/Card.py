@@ -54,10 +54,10 @@ class Card(_R.C("res://gd_core_items/Item.gd")):
 	def canAffect(self, item):
 		if self.placed:
 			return (self.deck and 
-				item.hasType(_R.C("CoreConst").Type.Card) and 
+				item.hasType(_H_2) and 
 				(item.chainPosition > self.chainPosition or item.chainPosition == - 1))
 		else:
-			return item.hasType(_R.C("CoreConst").Type.Card) and not item.deck
+			return item.hasType(_H_2) and not item.deck
 
 
 	def prepare(self):
@@ -74,7 +74,7 @@ class Card(_R.C("res://gd_core_items/Item.gd")):
 
 
 		affected = self.getItemsInAffectedCells_cached()
-		if not (not affected) and affected[0].hasType(_R.C("CoreConst").Type.Card):
+		if not (not affected) and affected[0].hasType(_H_2):
 			return affected[0]
 		else:
 			return None
@@ -88,7 +88,7 @@ class Card(_R.C("res://gd_core_items/Item.gd")):
 		self.iterationCooldown = self.getCooldown()
 		self.triggerTime = self.iterationCooldown
 		self.activateCooldown()
-		self.ctx.combat_log.snapshotItemTooltipStat(self, _R.C("CoreConst").ItemStat.Cooldown)
+		self.ctx.combat_log.snapshotItemTooltipStat(self, _H_1)
 
 
 
@@ -179,7 +179,7 @@ class Card(_R.C("res://gd_core_items/Item.gd")):
 
 	def getCardDescription(self, descr):
 		if self.deck:
-			descr += "\n\n" + self.insertParameter(self.ctx.util.tra("CARD_COUNT"), "num", self.chainPosition, _R.C("CoreConst").StatModified.No, False)
+			descr += "\n\n" + self.insertParameter(self.ctx.util.tra("CARD_COUNT"), "num", self.chainPosition, _H_3, False)
 		elif self.placed:
 			descr += "\n\n" + self.ctx.util.wrapInColor(self.ctx.util.tra("CARD_HINT"), self.ctx.util.paramColor)
 
@@ -193,3 +193,18 @@ class Card(_R.C("res://gd_core_items/Item.gd")):
 _R.reg("res://gd_core/Card.gd", Card)
 _R.reg("Card", Card)
 _R.reg("Card", Card)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").ItemStat.Cooldown
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+try:
+    _H_2 = _R.C("CoreConst").Type.Card
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)
+try:
+    _H_3 = _R.C("CoreConst").StatModified.No
+except AttributeError as _he:
+    _H_3 = _HoistPending(_he)

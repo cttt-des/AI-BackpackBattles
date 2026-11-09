@@ -22,7 +22,7 @@ class Exclusive__EnergyConversion(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def canAffect(self, item):
-		return item.hasType(_R.C("CoreConst").Type.Food)
+		return item.hasType(_H_2)
 
 
 	def onPrepare(self):
@@ -30,7 +30,7 @@ class Exclusive__EnergyConversion(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def doCooldownEffect(self):
-		if self.useStamina() == _R.C("CoreConst").StaminaResult.Sufficient:
+		if self.useStamina() == _H_3:
 			if self.character().getHeat() >= self.heatThreshold:
 				self.giveRandomBuffs(self.numBuffs, None, self.stackTypes)
 			else:
@@ -44,10 +44,26 @@ class Exclusive__EnergyConversion(_R.C("res://gd_core_items/Item.gd")):
 		self.heatThreshold = int(self.getP("heatt"))
 		self.numBuffs = int(self.getP("buffs"))
 		self.speedPerFood = _div(self.getP('speed'), 100.0)
-		self.stackTypes = _R.C("CoreConst").getBuffs()
-		_erase(self.stackTypes, _R.C("CoreConst").EventType.Heat)
+		self.stackTypes = _H_1.getBuffs()
+		_erase(self.stackTypes, _H_4)
 
 
 
 _R.reg("res://gd_core_items/Exclusive/EnergyConversion.gd", Exclusive__EnergyConversion)
 _R.reg("EnergyConversion", Exclusive__EnergyConversion)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+_H_1 = _R.C("CoreConst")
+try:
+    _H_2 = _R.C("CoreConst").Type.Food
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)
+try:
+    _H_3 = _R.C("CoreConst").StaminaResult.Sufficient
+except AttributeError as _he:
+    _H_3 = _HoistPending(_he)
+try:
+    _H_4 = _R.C("CoreConst").EventType.Heat
+except AttributeError as _he:
+    _H_4 = _HoistPending(_he)

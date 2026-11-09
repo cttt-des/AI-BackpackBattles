@@ -19,35 +19,35 @@ class Exclusive__Ultima(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def canAffect(self, item):
-		return (item.hasType(_R.C("CoreConst").Type.Nature) or 
-				item.hasType(_R.C("CoreConst").Type.Ice) or 
-				item.hasType(_R.C("CoreConst").Type.Holy) or 
-				item.hasType(_R.C("CoreConst").Type.Dark) or 
-				item.hasType(_R.C("CoreConst").Type.Spell))
+		return (item.hasType(_H_1) or 
+				item.hasType(_H_2) or 
+				item.hasType(_H_3) or 
+				item.hasType(_H_4) or 
+				item.hasType(_H_5))
 
 
 	def onPrepare(self):
 		self.typesDict = self.countTypes(self.getAffectedItems())
 
-		if self.typesDict[_R.C("CoreConst").Type.Spell] > 0:
-			self.addSpeed(self.speedPerSpell * self.typesDict[_R.C("CoreConst").Type.Spell])
+		if self.typesDict[_H_5] > 0:
+			self.addSpeed(self.speedPerSpell * self.typesDict[_H_5])
 
 
 	def doCooldownEffect(self):
 
-		if self.typesDict[_R.C("CoreConst").Type.Nature] > 0:
-			self.giveLucky(self.typesDict[_R.C("CoreConst").Type.Nature] * self.getP("luck"))
-			self.giveSpikes(self.typesDict[_R.C("CoreConst").Type.Nature] * self.getP("spikes"))
+		if self.typesDict[_H_1] > 0:
+			self.giveLucky(self.typesDict[_H_1] * self.getP("luck"))
+			self.giveSpikes(self.typesDict[_H_1] * self.getP("spikes"))
 
-		if self.typesDict[_R.C("CoreConst").Type.Ice] > 0:
-			self.giveBlock(self.typesDict[_R.C("CoreConst").Type.Ice] * self.getBlock())
-			self.inflictCold(self.typesDict[_R.C("CoreConst").Type.Ice] * self.getP("cold"))
+		if self.typesDict[_H_2] > 0:
+			self.giveBlock(self.typesDict[_H_2] * self.getBlock())
+			self.inflictCold(self.typesDict[_H_2] * self.getP("cold"))
 
-		if self.typesDict[_R.C("CoreConst").Type.Holy] > 0:
-			self.giveRegeneration(self.typesDict[_R.C("CoreConst").Type.Holy] * self.getP("regen"))
+		if self.typesDict[_H_3] > 0:
+			self.giveRegeneration(self.typesDict[_H_3] * self.getP("regen"))
 
-		if self.typesDict[_R.C("CoreConst").Type.Dark] > 0:
-			self.stealRandomBuff(self.typesDict[_R.C("CoreConst").Type.Dark])
+		if self.typesDict[_H_4] > 0:
+			self.stealRandomBuff(self.typesDict[_H_4])
 
 		self.onAfterEffectFinished()
 
@@ -64,10 +64,10 @@ class Exclusive__Ultima(_R.C("res://gd_core_items/Item.gd")):
 
 		self.typesDict = self.countTypes(self.getAffectedItems())
 
-		descr = self.insertCounter(descr, "n_nature", self.typesDict[_R.C("CoreConst").Type.Nature])
-		descr = self.insertCounter(descr, "n_ice", self.typesDict[_R.C("CoreConst").Type.Ice])
-		descr = self.insertCounter(descr, "n_holy", self.typesDict[_R.C("CoreConst").Type.Holy])
-		descr = self.insertCounter(descr, "n_dark", self.typesDict[_R.C("CoreConst").Type.Dark])
+		descr = self.insertCounter(descr, "n_nature", self.typesDict[_H_1])
+		descr = self.insertCounter(descr, "n_ice", self.typesDict[_H_2])
+		descr = self.insertCounter(descr, "n_holy", self.typesDict[_H_3])
+		descr = self.insertCounter(descr, "n_dark", self.typesDict[_H_4])
 
 
 		return descr
@@ -79,3 +79,26 @@ class Exclusive__Ultima(_R.C("res://gd_core_items/Item.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/Ultima.gd", Exclusive__Ultima)
 _R.reg("Ultima", Exclusive__Ultima)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").Type.Nature
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+try:
+    _H_2 = _R.C("CoreConst").Type.Ice
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)
+try:
+    _H_3 = _R.C("CoreConst").Type.Holy
+except AttributeError as _he:
+    _H_3 = _HoistPending(_he)
+try:
+    _H_4 = _R.C("CoreConst").Type.Dark
+except AttributeError as _he:
+    _H_4 = _HoistPending(_he)
+try:
+    _H_5 = _R.C("CoreConst").Type.Spell
+except AttributeError as _he:
+    _H_5 = _HoistPending(_he)

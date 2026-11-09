@@ -41,7 +41,7 @@ class Exclusive__FrozenFlame(_R.C("res://gd_core_items/Item.gd")):
 		self._coldPerHeat = int(v)
 
 	def canAffect(self, item):
-		return item.hasType(_R.C("CoreConst").Type.Ice)
+		return item.hasType(_H_1)
 
 
 	def canAffect_secondary(self, item):
@@ -52,7 +52,7 @@ class Exclusive__FrozenFlame(_R.C("res://gd_core_items/Item.gd")):
 		self.heatCounter = 0
 		self.connectForCombat(self.character(), "character_heat_changed", "onHeatChanged")
 
-		self.affected2Item = self.getFirstAffectedItem(_R.C("CoreConst").Affected.Secondary)
+		self.affected2Item = self.getFirstAffectedItem(_H_2)
 		if self.affected2Item:
 			self.connectForCombat(self.opponent(), "character_cold_changed", "onOpponentColdChanged")
 
@@ -104,3 +104,14 @@ class Exclusive__FrozenFlame(_R.C("res://gd_core_items/Item.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/FrozenFlame.gd", Exclusive__FrozenFlame)
 _R.reg("FrozenFlame", Exclusive__FrozenFlame)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").Type.Ice
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+try:
+    _H_2 = _R.C("CoreConst").Affected.Secondary
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)

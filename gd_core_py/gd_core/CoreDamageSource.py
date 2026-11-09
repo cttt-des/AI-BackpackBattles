@@ -89,13 +89,13 @@ class CoreDamageSource(GodotObject):
 		if _type != None:
 			self.types = [_type]
 		else:
-			if item.hasType(_R.C("CoreConst").Type.Ranged):
+			if item.hasType(_H_1):
 				self.types.append(self.Type.Ranged)
 
-			if item.hasType(_R.C("CoreConst").Type.Melee):
+			if item.hasType(_H_2):
 				self.types.append(self.Type.Melee)
 
-			if item.hasType(_R.C("CoreConst").Type.Effect):
+			if item.hasType(_H_3):
 				self.types.append(self.Type.Effect)
 
 			if (not self.types):
@@ -230,3 +230,18 @@ class CoreDamageSource(GodotObject):
 _R.reg("res://gd_core/CoreDamageSource.gd", CoreDamageSource)
 _R.reg("CoreDamageSource", CoreDamageSource)
 _R.reg("CoreDamageSource", CoreDamageSource)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").Type.Ranged
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+try:
+    _H_2 = _R.C("CoreConst").Type.Melee
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)
+try:
+    _H_3 = _R.C("CoreConst").Type.Effect
+except AttributeError as _he:
+    _H_3 = _HoistPending(_he)

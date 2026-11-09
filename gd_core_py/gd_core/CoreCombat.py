@@ -204,7 +204,7 @@ class CoreCombat(GodotObject):
 		self.prepareItems(self.ordered_items)
 
 		# 对齐 Game.gd:3024：COMBAT_DELAY 秒后 activateItems
-		self._activate_countdown = _R.C("CoreContext").COMBAT_DELAY
+		self._activate_countdown = _H_1
 
 
 	# 对齐 Game.gd:3257-3262。原版在**商店/摆放阶段**就把物品放进 INVENTORY 了
@@ -218,7 +218,7 @@ class CoreCombat(GodotObject):
 	def prepareItems(self, items):
 		for character in _iter([self.player, self.opponent]):
 			if character.inventory == None:
-				character.inventory = _R.C("CoreGrid")(character)
+				character.inventory = _H_3(character)
 
 		for item in _iter(items):
 			if item.ctx == None:
@@ -227,7 +227,7 @@ class CoreCombat(GodotObject):
 				continue          # 已在放置期登记过（Inventory.addItem 的等价路径）
 			ch = item.character()
 			if ch != None and ch.inventory == None:
-				ch.inventory = _R.C("CoreGrid")(ch)
+				ch.inventory = _H_3(ch)
 			grid = ch.inventory if ch != None else self.player.inventory
 			grid.addItem(item, item.occupiedCells)
 
@@ -407,13 +407,13 @@ class CoreCombat(GodotObject):
 
 	def run(self):
 		while not self.fight_ended:
-			self.physicsTick(_R.C("CoreContext").PHYSICS_DELTA)
+			self.physicsTick(_H_2)
 
 
 	# ─────────────────────────── 疲劳（对齐 CombatTimer.gd） ───────────────────────────
 
 	def _fatigueTick(self):
-		self.fatigue_next_tick -= _R.C("CoreContext").PHYSICS_DELTA
+		self.fatigue_next_tick -= _H_2
 		if self.fatigue_next_tick > 0:
 			return
 
@@ -478,7 +478,7 @@ class CoreCombat(GodotObject):
 
 	# 对齐 CombatTimer.gd:78-79
 	def getEffectiveTime(self):
-		return _R.C("CoreContext").COMBAT_DELAY + self.combat_time + self.time_advance
+		return _H_1 + self.combat_time + self.time_advance
 
 
 	# ─────────────────────────── 判胜 / 收尾 ───────────────────────────
@@ -589,3 +589,15 @@ CoreCombat.CoreItemSort = CoreItemSort
 _R.reg("res://gd_core/CoreCombat.gd", CoreCombat)
 _R.reg("CoreCombat", CoreCombat)
 _R.reg("CoreCombat", CoreCombat)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreContext").COMBAT_DELAY
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+try:
+    _H_2 = _R.C("CoreContext").PHYSICS_DELTA
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)
+_H_3 = _R.C("CoreGrid")

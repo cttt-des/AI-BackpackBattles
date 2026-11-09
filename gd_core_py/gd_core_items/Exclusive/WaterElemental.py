@@ -35,24 +35,24 @@ class Exclusive__WaterElemental(_R.C("res://gd_core_items/Weapon.gd")):
 		self._manaUsed = int(v)
 
 	def canAffect(self, item):
-		return item.hasType(_R.C("CoreConst").Type.Nature)
+		return item.hasType(_H_1)
 
 
 	def canAffect_secondary(self, item):
-		return item.hasType(_R.C("CoreConst").Type.Ice)
+		return item.hasType(_H_2)
 
 
 	def onPrepare(self):
 		self.connectForCombat(self.character(), "character_mana_changed", "onManaChanged")
 		self.manaUsed = 0
-		self.addSpeed(self.iceSpeed * self.getNumAffectedItems(_R.C("CoreConst").Affected.Secondary))
+		self.addSpeed(self.iceSpeed * self.getNumAffectedItems(_H_5))
 		self.activeEffects = 0
 		self.setState(self.activeEffects)
 
 
 	def onManaChanged(self, amount, event):
 		if (amount < 0 and 
-			event.type == _R.C("CoreConst").EventType.Mana and 
+			event.type == _H_4 and 
 			event.getParam("used", False)):
 
 			self.manaUsed += abs(amount)
@@ -134,7 +134,7 @@ class Exclusive__WaterElemental(_R.C("res://gd_core_items/Weapon.gd")):
 		self.manaNeeded1 = int(self.getP("manat1"))
 		self.manaNeeded2 = int(self.getP("manat2"))
 		self.manaNeeded3 = int(self.getP("manat3"))
-		if self.ownerType == _R.C("CoreConst").Owner.GridStorage:
+		if self.ownerType == _H_3:
 			pass
 		else:
 			pass
@@ -143,3 +143,26 @@ class Exclusive__WaterElemental(_R.C("res://gd_core_items/Weapon.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/WaterElemental.gd", Exclusive__WaterElemental)
 _R.reg("WaterElemental", Exclusive__WaterElemental)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").Type.Nature
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+try:
+    _H_2 = _R.C("CoreConst").Type.Ice
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)
+try:
+    _H_3 = _R.C("CoreConst").Owner.GridStorage
+except AttributeError as _he:
+    _H_3 = _HoistPending(_he)
+try:
+    _H_4 = _R.C("CoreConst").EventType.Mana
+except AttributeError as _he:
+    _H_4 = _HoistPending(_he)
+try:
+    _H_5 = _R.C("CoreConst").Affected.Secondary
+except AttributeError as _he:
+    _H_5 = _HoistPending(_he)

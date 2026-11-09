@@ -20,7 +20,7 @@ class Exclusive__RainbowBadge(_R.C("res://gd_core_items/Item.gd")):
 		pass
 
 	def doCooldownEffect(self):
-		for buff in _iter(_R.C("CoreConst").getBuffs()):
+		for buff in _iter(_H_1.getBuffs()):
 			self.giveStacks(self.character(), buff, 1)
 		self.onAfterEffectFinished()
 
@@ -42,3 +42,7 @@ class Exclusive__RainbowBadge(_R.C("res://gd_core_items/Item.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/RainbowBadge.gd", Exclusive__RainbowBadge)
 _R.reg("RainbowBadge", Exclusive__RainbowBadge)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+_H_1 = _R.C("CoreConst")

@@ -59,9 +59,13 @@ class Exclusive__Gigawatz(_R.C("res://gd_core_items/Item.gd")):
 		self.speedBonus = _div(self.getP('speed'), 100.0)
 		self.damageBonus = self.getP("damincrease")
 		self.blind = int(self.getP("blind"))
-		self.damageSource = _R.C("CoreDamageSource")().setItem(self)
+		self.damageSource = _H_1().setItem(self)
 
 
 
 _R.reg("res://gd_core_items/Exclusive/Gigawatz.gd", Exclusive__Gigawatz)
 _R.reg("Gigawatz", Exclusive__Gigawatz)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+_H_1 = _R.C("CoreDamageSource")

@@ -24,14 +24,14 @@ class Exclusive__IceFlower(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def canAffect_secondary(self, item):
-		return item.hasType(_R.C("CoreConst").Type.Shield) or (item.hasType(_R.C("CoreConst").Type.Armor) and item.canActivate())
+		return item.hasType(_H_1) or (item.hasType(_H_4) and item.canActivate())
 
 
 	def onPrepare(self):
-		for item in _iter(self.getAffectedItems(_R.C("CoreConst").Affected.Primary)):
+		for item in _iter(self.getAffectedItems(_H_2)):
 			self.connectForCombat(item, "attacked", "onWeaponAttacked")
 
-		for item in _iter(self.getAffectedItems(_R.C("CoreConst").Affected.Secondary)):
+		for item in _iter(self.getAffectedItems(_H_3)):
 			self.connectForCombat(item, "activated", "onShieldOrArmorActivated")
 
 
@@ -57,3 +57,22 @@ class Exclusive__IceFlower(_R.C("res://gd_core_items/Item.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/IceFlower.gd", Exclusive__IceFlower)
 _R.reg("IceFlower", Exclusive__IceFlower)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").Type.Shield
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+try:
+    _H_2 = _R.C("CoreConst").Affected.Primary
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)
+try:
+    _H_3 = _R.C("CoreConst").Affected.Secondary
+except AttributeError as _he:
+    _H_3 = _HoistPending(_he)
+try:
+    _H_4 = _R.C("CoreConst").Type.Armor
+except AttributeError as _he:
+    _H_4 = _HoistPending(_he)

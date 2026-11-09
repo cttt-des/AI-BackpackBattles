@@ -34,13 +34,13 @@ class Exclusive__Shielded(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def canAffect(self, item):
-		return item.hasType(_R.C("CoreConst").Type.Shield) or (item.hasType(_R.C("CoreConst").Type.Armor) and item.hasCooldown())
+		return item.hasType(_H_1) or (item.hasType(_H_2) and item.hasCooldown())
 
 
 	def onPrepare(self):
 		for item in _iter(self.getAffectedItems()):
 
-			if item.hasType(_R.C("CoreConst").Type.Shield):
+			if item.hasType(_H_1):
 				item.addBonusChance_additive(self.shieldChance, 0)
 
 			else:
@@ -63,3 +63,14 @@ class Exclusive__Shielded(_R.C("res://gd_core_items/Item.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/Shielded.gd", Exclusive__Shielded)
 _R.reg("Shielded", Exclusive__Shielded)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").Type.Shield
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+try:
+    _H_2 = _R.C("CoreConst").Type.Armor
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)

@@ -15,12 +15,12 @@ class Exclusive__DragonNest(_R.C("res://gd_core_items/Item.gd")):
 	gatedItems = ["Emerald Egg", "Amethyst Egg", "Sapphire Egg"]
 
 	def canAffect(self, item):
-		return isinstance(item, _R.C("DragonEgg")) or item.hasTag(_R.C("CoreConst").Tag.Dragon)
+		return isinstance(item, _R.C("DragonEgg")) or item.hasTag(_H_1)
 
 
 	def onPrepare(self):
 		for item in _iter(self.getAffectedItems()):
-			if item.hasTag(_R.C("CoreConst").Tag.Dragon):
+			if item.hasTag(_H_1):
 				self.connectForCombat(item, "attacked", "onDragonAttacked")
 
 
@@ -48,3 +48,10 @@ class Exclusive__DragonNest(_R.C("res://gd_core_items/Item.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/DragonNest.gd", Exclusive__DragonNest)
 _R.reg("DragonNest", Exclusive__DragonNest)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").Tag.Dragon
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)

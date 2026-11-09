@@ -33,7 +33,7 @@ class Exclusive__MechaBat(_R.C("res://gd_core_items/Item.gd")):
 			self.useLucky(self.luckUsed)
 			numVamp += self.vampirism2
 
-		if self.useStamina() == _R.C("CoreConst").StaminaResult.Sufficient:
+		if self.useStamina() == _H_1:
 			numVamp += self.vampirism1
 
 		if numVamp > 0:
@@ -84,3 +84,10 @@ class Exclusive__MechaBat(_R.C("res://gd_core_items/Item.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/MechaBat.gd", Exclusive__MechaBat)
 _R.reg("MechaBat", Exclusive__MechaBat)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").StaminaResult.Sufficient
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)

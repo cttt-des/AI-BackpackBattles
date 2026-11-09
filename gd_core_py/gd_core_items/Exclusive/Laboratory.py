@@ -55,7 +55,7 @@ class Exclusive__Laboratory(_R.C("res://gd_core_items/Item.gd")):
 
 		for param in _iter(self.params):
 			descr = self.insertParameter(descr, _strv("p_", param), self.params[param], 
-				_R.C("CoreConst").StatModified.No, False, wrapInColor)
+				_H_1, False, wrapInColor)
 
 		return self.insertParameters(descr, wrapInColor)
 
@@ -75,36 +75,36 @@ class Exclusive__Laboratory(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def canAffect(self, item):
-		return (item.hasType(_R.C("CoreConst").Type.Fire) or 
-				item.hasType(_R.C("CoreConst").Type.Nature) or 
-				item.hasType(_R.C("CoreConst").Type.Holy) or 
-				item.hasType(_R.C("CoreConst").Type.Vampiric) or 
-				item.isClassItem(_R.C("CoreConst").Classes_Full.Engineer))
+		return (item.hasType(_H_2) or 
+				item.hasType(_H_3) or 
+				item.hasType(_H_4) or 
+				item.hasType(_H_5) or 
+				item.isClassItem(_H_6))
 
 
 	def doCooldownEffect(self):
 		if self.phase == 1:
 			if self.character().getLucky() >= self.params["luckt"]:
 				event = self.useLucky(self.params["luckt"])
-				numFire = self.typesDict[_R.C("CoreConst").Type.Fire]
+				numFire = self.typesDict[_H_2]
 				self.giveHeat(self.params["heat"] + numFire * self.params["heat_bonus"], event)
 
 		elif self.phase == 2:
 			if self.character().getHeat() >= self.params["heatt"]:
 				event = self.useHeat(self.params["heatt"])
-				numNature = self.typesDict[_R.C("CoreConst").Type.Nature]
+				numNature = self.typesDict[_H_3]
 				self.giveSpikes(self.params["spikes"] + numNature * self.params["spikes_bonus"], event)
 
 		elif self.phase == 3:
 			if self.character().getSpikes() >= self.params["spikest"]:
 				event = self.useSpikes(self.params["spikest"])
-				numHoly = self.typesDict[_R.C("CoreConst").Type.Holy]
+				numHoly = self.typesDict[_H_4]
 				self.giveRegeneration(self.params["regen"] + numHoly * self.params["regen_bonus"], event)
 
 		elif self.phase == 4:
 			if self.character().getRegeneration() >= self.params["regent"]:
 				event = self.useRegeneration(self.params["regent"])
-				numVamp = self.typesDict[_R.C("CoreConst").Type.Vampiric]
+				numVamp = self.typesDict[_H_5]
 				self.giveVampirism(self.params["vampirism"] + numVamp * self.params["vamp_bonus"], event)
 
 		elif self.phase == 5:
@@ -112,7 +112,7 @@ class Exclusive__Laboratory(_R.C("res://gd_core_items/Item.gd")):
 				event = self.useVampirism(self.params["vampt"])
 				numEngineer = 0
 				for item in _iter(self.getAffectedItems()):
-					if item.isClassItem(_R.C("CoreConst").Classes_Full.Engineer):
+					if item.isClassItem(_H_6):
 						numEngineer += 1
 				self.giveEmpower(self.params["empower"] + numEngineer * self.params["empower_bonus"], event)
 
@@ -148,3 +148,30 @@ class Exclusive__Laboratory(_R.C("res://gd_core_items/Item.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/Laboratory.gd", Exclusive__Laboratory)
 _R.reg("Laboratory", Exclusive__Laboratory)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").StatModified.No
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+try:
+    _H_2 = _R.C("CoreConst").Type.Fire
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)
+try:
+    _H_3 = _R.C("CoreConst").Type.Nature
+except AttributeError as _he:
+    _H_3 = _HoistPending(_he)
+try:
+    _H_4 = _R.C("CoreConst").Type.Holy
+except AttributeError as _he:
+    _H_4 = _HoistPending(_he)
+try:
+    _H_5 = _R.C("CoreConst").Type.Vampiric
+except AttributeError as _he:
+    _H_5 = _HoistPending(_he)
+try:
+    _H_6 = _R.C("CoreConst").Classes_Full.Engineer
+except AttributeError as _he:
+    _H_6 = _HoistPending(_he)

@@ -25,8 +25,8 @@ class Exclusive__PoisonShortbow(_R.C("res://gd_core_items/Weapon.gd")):
 
 	def onPreDealDamage_early(self, damageRes):
 		if damageRes.hasHit() and self.rollChance():
-			randomDebuff = self.ctx.util.pickRandomElement(_R.C("CoreConst").getDebuffs())
-			if randomDebuff == _R.C("CoreConst").EventType.Poison:
+			randomDebuff = self.ctx.util.pickRandomElement(_H_1.getDebuffs())
+			if randomDebuff == _H_2:
 				self.inflictPoison(self.poison + 1)
 			else:
 				self.inflictPoison(self.poison)
@@ -39,3 +39,11 @@ class Exclusive__PoisonShortbow(_R.C("res://gd_core_items/Weapon.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/PoisonShortbow.gd", Exclusive__PoisonShortbow)
 _R.reg("PoisonShortbow", Exclusive__PoisonShortbow)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+_H_1 = _R.C("CoreConst")
+try:
+    _H_2 = _R.C("CoreConst").EventType.Poison
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)

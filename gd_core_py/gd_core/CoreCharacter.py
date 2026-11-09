@@ -77,7 +77,7 @@ class CoreCharacter(GodotObject):
 		self.character_died_handlers = []
 		self.poisonDamageSource = None
 		self.spikeDamageSource = None
-		self._characterClass = _R.C("CoreConst").Classes.Ranger
+		self._characterClass = _H_5
 		self.chibi = False
 		self.invulnerabilityItem = None
 		self._invul_left = 0.0
@@ -259,7 +259,7 @@ class CoreCharacter(GodotObject):
 
 		# 背包在角色构造时即存在（对齐原版 Character 场景里的 INVENTORY 节点，
 		# 它在战斗开始前就参与物品放置，而非战斗期才创建）
-		self.inventory = _R.C("CoreGrid")(self)
+		self.inventory = _H_1(self)
 		self.INVENTORY = self.inventory
 
 		# 对齐 Character.gd:158-162（原版写在 _ready 里，与 INVENTORY 同批）。
@@ -270,19 +270,19 @@ class CoreCharacter(GodotObject):
 		#   `Nonexistent function 'setDamage' in base 'Nil'`，且尖刺与中毒两条伤害整条失效
 		#   —— 静默少打伤害，闸门 8 首轮抓出 32 次该报错。
 		#   `_rng` 对应原版 `Util.rng`（DamageSource.gd:171 掷 min~max 伤害）。
-		self.spikeDamageSource = _R.C("CoreDamageSource")()
+		self.spikeDamageSource = _H_2()
 		self.spikeDamageSource._rng = self.ctx.rng
-		self.spikeDamageSource.init(self, _R.C("CoreDamageSource").Type.Spikes, 1)
-		self.spikeDamageSource.flags = (_R.C("CoreDamageSource").chipDamageFlags
-			+ _R.C("CoreDamageSource").Flags.CanCrit)
-		self.poisonDamageSource = _R.C("CoreDamageSource")()
+		self.spikeDamageSource.init(self, _H_8, 1)
+		self.spikeDamageSource.flags = (_H_6
+			+ _H_9)
+		self.poisonDamageSource = _H_2()
 		self.poisonDamageSource._rng = self.ctx.rng
-		self.poisonDamageSource.init(self, _R.C("CoreDamageSource").Type.Poison, 1)
-		self.poisonDamageSource.flags = (_R.C("CoreDamageSource").chipDamageFlags
-			+ _R.C("CoreDamageSource").Flags.CanCrit)
+		self.poisonDamageSource.init(self, _H_10, 1)
+		self.poisonDamageSource.flags = (_H_6
+			+ _H_9)
 
-		for stackType in _iter(_R.C("CoreConst").getStacks()):
-			buff = _R.C("CoreBuff")()
+		for stackType in _iter(_H_11.getStacks()):
+			buff = _H_7()
 			# 对齐原版 Character.gd:168 + Game.gd:512（eventTypeKeys =
 			# invertDictionary(EventType)）：Buff 栈变化信号名 =
 			# "character_" + 类型名.to_lower() + "_changed"。
@@ -292,8 +292,8 @@ class CoreCharacter(GodotObject):
 			#   静默失效（联动不触发的根因之二；CoreConst 未内建 eventTypeKeys，
 			#   故就地线性反查，仅初始化一次）
 			_stack_type_name = "unknown"
-			for _k in _iter(_R.C("CoreConst").EventType):
-				if _R.C("CoreConst").EventType[_k] == stackType:
+			for _k in _iter(_H_12):
+				if _H_12[_k] == stackType:
 					_stack_type_name = _k
 					break
 			buff.init(stackType, self,
@@ -305,7 +305,7 @@ class CoreCharacter(GodotObject):
 		self.curStamina = 0.0
 		self.staminaRegen = self.baseStaminaRegen
 
-		for type in _iter(list(_R.C("CoreDamageSource").Type.values())):
+		for type in _iter(list(_H_37.values())):
 			self.typedDamageFactors[type] = 0.0
 
 
@@ -364,7 +364,7 @@ class CoreCharacter(GodotObject):
 		self.autoRageItem = None
 		hasBattleRageStarter = False
 		for item in _iter(self.inventory.getItems()):
-			if item.hasTag(_R.C("CoreConst").Tag.BattleRage):
+			if item.hasTag(_H_31):
 				hasBattleRageStarter = True
 				break
 
@@ -465,7 +465,7 @@ class CoreCharacter(GodotObject):
 		self.meleeVampirismLimit = 1.0
 		self.rangedVampirismLimit = 0.0
 		self.empowerDamage = 1.0
-		for damageType in _iter(list(_R.C("CoreDamageSource").Type.values())):
+		for damageType in _iter(list(_H_37.values())):
 			self.typedDamageFactors[damageType] = 0.0
 
 		self.poisonDamageSource.critChancePercent = 0
@@ -478,14 +478,14 @@ class CoreCharacter(GodotObject):
 		if _mod(self.tickCounter, 2) == 0:
 			regen = self.getRegeneration()
 			if regen > 0:
-				self.heal(regen, _R.C("CoreConst").EventType.Regeneration)
-				self.ctx.hooks.activateBuffCounter(self, _R.C("CoreConst").EventType.Regeneration)
+				self.heal(regen, _H_21)
+				self.ctx.hooks.activateBuffCounter(self, _H_21)
 		else:
 			poison = self.getPoison()
 			if poison > 0:
 				self.poisonDamageSource.setDamage(poison)
 				self.takeDamage(self.poisonDamageSource)
-				self.ctx.hooks.activateBuffCounter(self, _R.C("CoreConst").EventType.Poison)
+				self.ctx.hooks.activateBuffCounter(self, _H_20)
 
 		self.tickCounter += 1
 
@@ -612,9 +612,9 @@ class CoreCharacter(GodotObject):
 
 	def takeDamage(self, damageSource, triggerEvent=None):
 
-		damageRes = _R.C("CoreDamageResult")()
+		damageRes = _H_3()
 
-		damageSource = _R.C("CoreDamageSource")().fromDamageSource(damageSource)
+		damageSource = _H_2().fromDamageSource(damageSource)
 		# 无头内核的随机源按对象持有（原版为全局 Util.rng），复制出的新实例需补注入；
 		# DamageResult 随机取值路径（randDamage）才会与本场战斗同一随机流。
 		damageSource._rng = self.ctx.rng
@@ -625,7 +625,7 @@ class CoreCharacter(GodotObject):
 			return damageRes
 
 		item = None
-		if isinstance(damageSource.origin, _R.C("CoreItem")):
+		if isinstance(damageSource.origin, _H_4):
 			item = damageSource.origin
 
 		attackEffectCount = 1
@@ -663,7 +663,7 @@ class CoreCharacter(GodotObject):
 		if damageRes.hit:
 			damageRes.damage += damageSource.randDamage()
 
-			if damageSource.hasType(_R.C("CoreDamageSource").Type.Fatigue):
+			if damageSource.hasType(_H_32):
 				damageRes.damage += self.bonusFatigueDamage
 
 			if damageSource.canCrit():
@@ -688,7 +688,7 @@ class CoreCharacter(GodotObject):
 						# randBuffLabelDir 1 抽（Util.gd:909-914）
 						self.randBuffLabelPos()
 						self.randBuffLabelDir()
-						self.ctx.hooks.spawnBuffLabel(_R.C("CoreConst").EventType.CriticalResisted, None)
+						self.ctx.hooks.spawnBuffLabel(_H_44, None)
 					else:
 						damageRes.makeCritical()
 
@@ -728,15 +728,15 @@ class CoreCharacter(GodotObject):
 			self.curHealth -= damageRes.healthDamage
 
 			if damageRes.wasCriticalHit():
-				self.spawnLabel_native(_R.C("CoreConst").EventType.CriticalDamage, damageRes.damage, item)
-			elif damageSource.hasType(_R.C("CoreDamageSource").Type.Fatigue):
-				self.spawnLabel_native(_R.C("CoreConst").EventType.Fatigue, damageRes.damage, item)
-			elif damageSource.hasType(_R.C("CoreDamageSource").Type.Poison):
-				self.spawnLabel_native(_R.C("CoreConst").EventType.Poison, damageRes.damage, item)
-			elif damageSource.hasType(_R.C("CoreDamageSource").Type.Spikes):
-				self.spawnLabel_native(_R.C("CoreConst").EventType.Spikes, damageRes.damage, item)
+				self.spawnLabel_native(_H_38, damageRes.damage, item)
+			elif damageSource.hasType(_H_32):
+				self.spawnLabel_native(_H_43, damageRes.damage, item)
+			elif damageSource.hasType(_H_10):
+				self.spawnLabel_native(_H_20, damageRes.damage, item)
+			elif damageSource.hasType(_H_8):
+				self.spawnLabel_native(_H_18, damageRes.damage, item)
 			else:
-				self.spawnLabel_native(_R.C("CoreConst").EventType.DealDamage, damageRes.damage, item)
+				self.spawnLabel_native(_H_45, damageRes.damage, item)
 
 			# ★ 表现层链消耗还原（Character.gd:616-627）：受击动画播放速度
 			#   randf_range(0.9,1.1)——**1 次调用 = 2 步链**（run1029_r2 语料逐抽对位：
@@ -746,14 +746,14 @@ class CoreCharacter(GodotObject):
 				#   当前动画名），playback_speed 抽取照旧。
 				if damageRes.healthDamage == 0:
 					self.damage_anim_current = "Block"
-				elif damageSource.hasType(_R.C("CoreDamageSource").Type.Fatigue):
+				elif damageSource.hasType(_H_32):
 					self.damage_anim_current = "Fatigue"
 				else:
 					self.damage_anim_current = "Hit"
 				self.ctx.rng.randf_range(0.9, 1.1)
-				self.ctx.hooks.damageAnimation(self, "Fatigue" if damageSource.hasType(_R.C("CoreDamageSource").Type.Fatigue) else "Hit")
+				self.ctx.hooks.damageAnimation(self, "Fatigue" if damageSource.hasType(_H_32) else "Hit")
 		else:
-			self.spawnLabel_native(_R.C("CoreConst").EventType.MissedAttack, 0, item)
+			self.spawnLabel_native(_H_33, 0, item)
 
 		event = None
 		if item != None:
@@ -798,33 +798,33 @@ class CoreCharacter(GodotObject):
 	def applySpikes(self, damageRes):
 		if self.getSpikes() > 0 and damageRes.canTriggerSpikes():
 			spikesLimit = None
-			if damageRes.damageSource.hasType(_R.C("CoreDamageSource").Type.Ranged):
+			if damageRes.damageSource.hasType(_H_34):
 				spikesLimit = self.rangedSpikesLimit
 			else:
 				spikesLimit = self.meleeSpikesLimit
 
-			if damageRes.damageSource.hasType(_R.C("CoreDamageSource").Type.Effect):
+			if damageRes.damageSource.hasType(_H_29):
 				spikesLimit = max(self.effectSpikesLimit, spikesLimit)
 
 			spikeDam = min(self.getSpikes(), round(damageRes.damage * spikesLimit))
 			if spikeDam > 0:
 				self.spikeDamageSource.setDamage(spikeDam)
 				self.opponent.takeDamage(self.spikeDamageSource, damageRes.event)
-				self.ctx.hooks.activateBuffCounter(self, _R.C("CoreConst").EventType.Spikes)
+				self.ctx.hooks.activateBuffCounter(self, _H_18)
 
 
 	def applyVampirism(self, damageRes):
 		if self.getVampirism() > 0 and damageRes.canTriggerVampirism():
 			vampLimit = None
-			if damageRes.damageSource.hasType(_R.C("CoreDamageSource").Type.Ranged):
+			if damageRes.damageSource.hasType(_H_34):
 				vampLimit = self.rangedVampirismLimit
 			else:
 				vampLimit = self.meleeVampirismLimit
 
 			healAmount = min(self.getVampirism(), round(damageRes.damage * vampLimit))
 			if healAmount > 0:
-				self.heal(healAmount, _R.C("CoreConst").EventType.Vampirism, damageRes.event)
-				self.ctx.hooks.activateBuffCounter(self, _R.C("CoreConst").EventType.Vampirism)
+				self.heal(healAmount, _H_19, damageRes.event)
+				self.ctx.hooks.activateBuffCounter(self, _H_19)
 
 
 	# ─────────────────────────── 治疗 / 直接扣血（对齐 739-869） ───────────────────────────
@@ -848,27 +848,27 @@ class CoreCharacter(GodotObject):
 		#   run1122_r11 逐抽对位实证）。
 		self.randHealNumberPos()
 		self.randDmgNumberDir()
-		if origin != None and isinstance(origin, _R.C("CoreItem")):
+		if origin != None and isinstance(origin, _H_4):
 			self.ctx.rng.randf_range(-10.0, 10.0)
 			self.ctx.rng.randf_range(-10.0, 10.0)
-		self.ctx.hooks.spawnLabel_character(self, _R.C("CoreConst").EventType.Health, amount, origin)
+		self.ctx.hooks.spawnLabel_character(self, _H_13, amount, origin)
 
 		event = self.ctx.combat_log.createEvent_Heal(amount, self.playerId, origin, triggerEvent)
 
 		if origin:
-			if isinstance(origin, _R.C("CoreItem")):
-				origin.addMetric(_R.C("CoreConst").ItemMetrics.Heal, amount)
-				origin.addMetric(_R.C("CoreConst").ItemMetrics.Overheal, overheal)
+			if isinstance(origin, _H_4):
+				origin.addMetric(_H_14, amount)
+				origin.addMetric(_H_39, overheal)
 			else:
-				self.ctx.combat_log.snapshotMetric(self.playerId, _R.C("CoreConst").ItemMetrics.Heal, origin, amount)
-				self.ctx.combat_log.snapshotMetric(self.playerId, _R.C("CoreConst").ItemMetrics.Overheal, origin, overheal)
+				self.ctx.combat_log.snapshotMetric(self.playerId, _H_14, origin, amount)
+				self.ctx.combat_log.snapshotMetric(self.playerId, _H_39, origin, overheal)
 
 		self.ctx.bus.emitEvent(self, "character_healed", event, [event.getAmount(), event])
 		if overheal > 0:
 			self.ctx.bus.emitSignal(self, "character_overhealed", [overheal, event])
 
 		if self.getUnhealing() > 0:
-			unhealing = ceil(amount * self.getUnhealing() * (1 + self.typedDamageFactors[_R.C("CoreDamageSource").Type.Unhealing]))
+			unhealing = ceil(amount * self.getUnhealing() * (1 + self.typedDamageFactors[_H_30]))
 			if unhealing > 0:
 				self.ctx.unhealingDamageSource.setDamage(unhealing)
 				self.opponent.takeDamage(self.ctx.unhealingDamageSource, event)
@@ -886,7 +886,7 @@ class CoreCharacter(GodotObject):
 		healAmount = min(self.getMaxHealth(), healAmount)
 		self.setCurrentHealth(healAmount)
 		event = self.ctx.combat_log.createEvent_Reincarnate(item, healAmount, triggerEvent)
-		item.addMetric(_R.C("CoreConst").ItemMetrics.Heal, healAmount)
+		item.addMetric(_H_14, healAmount)
 		self.ctx.bus.emitEvent(self, "reincarnated", event, [event])
 		return event
 
@@ -919,7 +919,7 @@ class CoreCharacter(GodotObject):
 		#   与原版逐位一致。
 		self.randDmgNumberPos()
 		self.randDmgNumberDir()
-		self.ctx.hooks.spawnNumberLabel(_R.C("CoreConst").EventType.LoseHealth, None, None, amount)
+		self.ctx.hooks.spawnNumberLabel(_H_15, None, None, amount)
 		event = None
 		if item:
 			event = self.ctx.combat_log.createEvent_LoseHealth( - amount, self.playerId, item, triggerEvent)
@@ -982,7 +982,7 @@ class CoreCharacter(GodotObject):
 		if item != None:
 			event = self.ctx.combat_log.createEvent_Stamina(amount, item, self.playerId, triggerEvent)
 			self.ctx.bus.logEvent(event)
-			item.staminaChanged(amount, _R.C("CoreConst").StackChangeType.Added_Player)
+			item.staminaChanged(amount, _H_35)
 			# ★ 表现层链消耗还原（Character.gd:805 → Util.gd:940-952 spawnLabelOnItem
 			#   → Item.gd:6485-6494 getNextFreeLabelPosition）：体力物品标签取位，
 			#   Util.spawnLabelOnItem 无设置闸，item 非空即消耗 randInBox 2 抽。
@@ -1033,7 +1033,7 @@ class CoreCharacter(GodotObject):
 		self.curStamina -= drained
 		event = self.ctx.combat_log.createEvent_DrainStamina(drained, item, self.playerId, triggerEvent)
 		self.ctx.bus.logEvent(event)
-		item.staminaChanged(drained, _R.C("CoreConst").StackChangeType.Removed_Opponent)
+		item.staminaChanged(drained, _H_16)
 		return event
 
 
@@ -1063,7 +1063,7 @@ class CoreCharacter(GodotObject):
 			#   randBuffLabelDir（1 抽）——与 Buff 三分支/critResisted 同族。
 			self.randBuffLabelPos()
 			self.randBuffLabelDir()
-			self.ctx.hooks.spawnBuffLabel(_R.C("CoreConst").EventType.StunResisted, None)
+			self.ctx.hooks.spawnBuffLabel(_H_36, None)
 			event = self.ctx.combat_log.createEvent_StunResist(item, self.playerId, triggerEvent)
 			self.ctx.bus.logEvent(event)
 		else:
@@ -1182,7 +1182,7 @@ class CoreCharacter(GodotObject):
 
 
 	def changeAllDebuffsReflectChance(self, amount):
-		for debuff in _iter(_R.C("CoreConst").getDebuffs()):
+		for debuff in _iter(_H_11.getDebuffs()):
 			self.changeReflectChance(debuff, amount)
 
 
@@ -1361,11 +1361,11 @@ class CoreCharacter(GodotObject):
 		elif stat == self.Stat.DamageResistance:
 				return self.damageResistance
 		elif stat == self.Stat.MeleeDmgFactor:
-				return self.typedDamageFactors[_R.C("CoreDamageSource").Type.Melee] * 100
+				return self.typedDamageFactors[_H_28] * 100
 		elif stat == self.Stat.RangedDmgFactor:
-				return self.typedDamageFactors[_R.C("CoreDamageSource").Type.Ranged] * 100
+				return self.typedDamageFactors[_H_34] * 100
 		elif stat == self.Stat.EffectDmgFactor:
-				return self.typedDamageFactors[_R.C("CoreDamageSource").Type.Effect] * 100
+				return self.typedDamageFactors[_H_29] * 100
 		elif stat == self.Stat.Unhealing:
 				return self.getUnhealing() * 100
 		elif stat == self.Stat.MaxHealthGain:
@@ -1489,14 +1489,14 @@ class CoreCharacter(GodotObject):
 
 	def getBuffStacks(self):
 		stacks = 0
-		for buff in _iter(_R.C("CoreConst").getBuffs()):
+		for buff in _iter(_H_11.getBuffs()):
 			stacks += self.getStacks(buff)
 		return stacks
 
 
 	def getDebuffStacks(self):
 		stacks = 0
-		for debuff in _iter(_R.C("CoreConst").getDebuffs()):
+		for debuff in _iter(_H_11.getDebuffs()):
 			stacks += self.getStacks(debuff)
 		return stacks
 
@@ -1540,7 +1540,7 @@ class CoreCharacter(GodotObject):
 
 
 	def changeDebuffResistChances(self, chance):
-		for debuff in _iter(_R.C("CoreConst").getDebuffs()):
+		for debuff in _iter(_H_11.getDebuffs()):
 			self.changeResistChance(debuff, chance)
 
 
@@ -1549,76 +1549,76 @@ class CoreCharacter(GodotObject):
 
 
 	def getBlock(self):
-		return self.getStacks(_R.C("CoreConst").EventType.Block)
+		return self.getStacks(_H_17)
 
 
 	# 对齐 Character.gd:1182-1183：原版此处写入的是 Spikes（原样保留，不修）
 	def setBlock(self, amount):
 		amount = int(amount)
-		self.setStacks(_R.C("CoreConst").EventType.Spikes, amount)
+		self.setStacks(_H_18, amount)
 
 
 	def gainBlock(self, amount, item=None, triggerEvent=None):
 		amount = int(amount)
-		return self.gainStacks(_R.C("CoreConst").EventType.Block, amount, item, triggerEvent)
+		return self.gainStacks(_H_17, amount, item, triggerEvent)
 
 
 	def loseBlock(self, amount, item=None, triggerEvent=None):
-		return self.loseStacks(_R.C("CoreConst").EventType.Block, amount, item, triggerEvent)
+		return self.loseStacks(_H_17, amount, item, triggerEvent)
 
 
 	# ── 各栈取值（对齐 1179-1360 的模板） ──
 
 	def getSpikes(self):
-		return self.getStacks(_R.C("CoreConst").EventType.Spikes)
+		return self.getStacks(_H_18)
 
 
 	def setSpikes(self, amount):
 		amount = int(amount)
-		self.setStacks(_R.C("CoreConst").EventType.Spikes, amount)
+		self.setStacks(_H_18, amount)
 
 
 	def gainSpikes(self, amount, item=None, triggerEvent=None):
 		amount = int(amount)
-		return self.gainStacks(_R.C("CoreConst").EventType.Spikes, amount, item, triggerEvent)
+		return self.gainStacks(_H_18, amount, item, triggerEvent)
 
 
 	def loseSpikes(self, amount, item=None, triggerEvent=None):
-		return self.loseStacks(_R.C("CoreConst").EventType.Spikes, amount, item, triggerEvent)
+		return self.loseStacks(_H_18, amount, item, triggerEvent)
 
 
 	def getVampirism(self):
-		return self.getStacks(_R.C("CoreConst").EventType.Vampirism)
+		return self.getStacks(_H_19)
 
 
 	def setVampirism(self, amount):
 		amount = int(amount)
-		self.setStacks(_R.C("CoreConst").EventType.Vampirism, amount)
+		self.setStacks(_H_19, amount)
 
 
 	def gainVampirism(self, amount, item=None, triggerEvent=None):
 		amount = int(amount)
-		return self.gainStacks(_R.C("CoreConst").EventType.Vampirism, amount, item, triggerEvent)
+		return self.gainStacks(_H_19, amount, item, triggerEvent)
 
 
 	def loseVampirism(self, amount, item=None, triggerEvent=None):
-		return self.loseStacks(_R.C("CoreConst").EventType.Vampirism, amount, item, triggerEvent)
+		return self.loseStacks(_H_19, amount, item, triggerEvent)
 
 
 	def getPoison(self):
-		return self.getStacks(_R.C("CoreConst").EventType.Poison)
+		return self.getStacks(_H_20)
 
 
 	def setPoison(self, amount):
 		amount = int(amount)
-		self.setStacks(_R.C("CoreConst").EventType.Poison, amount)
+		self.setStacks(_H_20, amount)
 
 
 	def gainPoison(self, amount, item=None, triggerEvent=None):
 		amount = int(amount)
 		# 原版 gainPoison 附带受击动画切「Poison」片段（Character.gd:1222-1226）——
 		# 冻结循环里 current 恒停在 Poison，闸住后续 takeDamage 的 playback_speed 抽取
-		event = self.gainStacks(_R.C("CoreConst").EventType.Poison, amount, item, triggerEvent)
+		event = self.gainStacks(_H_20, amount, item, triggerEvent)
 		if amount > 0:
 			# ★ np24：镜像 oracle Character.gd:1233-1234（stop+play("Poison") 改写
 			#   当前动画名，闸住后续 takeDamage 的 playback_speed 抽取直至下个
@@ -1628,133 +1628,133 @@ class CoreCharacter(GodotObject):
 
 
 	def losePoison(self, amount, item=None, triggerEvent=None):
-		return self.loseStacks(_R.C("CoreConst").EventType.Poison, amount, item, triggerEvent)
+		return self.loseStacks(_H_20, amount, item, triggerEvent)
 
 
 	def getRegeneration(self):
-		return self.getStacks(_R.C("CoreConst").EventType.Regeneration)
+		return self.getStacks(_H_21)
 
 
 	def setRegeneration(self, amount):
 		amount = int(amount)
-		self.setStacks(_R.C("CoreConst").EventType.Regeneration, amount)
+		self.setStacks(_H_21, amount)
 
 
 	def gainRegeneration(self, amount, item=None, triggerEvent=None):
 		amount = int(amount)
-		return self.gainStacks(_R.C("CoreConst").EventType.Regeneration, amount, item, triggerEvent)
+		return self.gainStacks(_H_21, amount, item, triggerEvent)
 
 
 	def loseRegeneration(self, amount, item=None, triggerEvent=None):
-		return self.loseStacks(_R.C("CoreConst").EventType.Regeneration, amount, item, triggerEvent)
+		return self.loseStacks(_H_21, amount, item, triggerEvent)
 
 
 	def getLucky(self):
-		return self.getStacks(_R.C("CoreConst").EventType.Lucky)
+		return self.getStacks(_H_22)
 
 
 	def setLucky(self, amount):
 		amount = int(amount)
-		self.setStacks(_R.C("CoreConst").EventType.Lucky, amount)
+		self.setStacks(_H_22, amount)
 
 
 	def gainLucky(self, amount, item=None, triggerEvent=None):
 		amount = int(amount)
-		return self.gainStacks(_R.C("CoreConst").EventType.Lucky, amount, item, triggerEvent)
+		return self.gainStacks(_H_22, amount, item, triggerEvent)
 
 
 	def loseLucky(self, amount, item=None, triggerEvent=None):
-		return self.loseStacks(_R.C("CoreConst").EventType.Lucky, amount, item, triggerEvent)
+		return self.loseStacks(_H_22, amount, item, triggerEvent)
 
 
 	def getBlind(self):
-		return self.getStacks(_R.C("CoreConst").EventType.Blind)
+		return self.getStacks(_H_23)
 
 
 	def setBlind(self, amount):
 		amount = int(amount)
-		self.setStacks(_R.C("CoreConst").EventType.Blind, amount)
+		self.setStacks(_H_23, amount)
 
 
 	def gainBlind(self, amount, item=None, triggerEvent=None):
 		amount = int(amount)
-		return self.gainStacks(_R.C("CoreConst").EventType.Blind, amount, item, triggerEvent)
+		return self.gainStacks(_H_23, amount, item, triggerEvent)
 
 
 	def loseBlind(self, amount, item=None, triggerEvent=None):
-		return self.loseStacks(_R.C("CoreConst").EventType.Blind, amount, item, triggerEvent)
+		return self.loseStacks(_H_23, amount, item, triggerEvent)
 
 
 	def getMana(self):
-		return self.getStacks(_R.C("CoreConst").EventType.Mana)
+		return self.getStacks(_H_24)
 
 
 	def setMana(self, amount):
 		amount = int(amount)
-		self.setStacks(_R.C("CoreConst").EventType.Mana, amount)
+		self.setStacks(_H_24, amount)
 
 
 	def gainMana(self, amount, item=None, triggerEvent=None):
 		amount = int(amount)
-		return self.gainStacks(_R.C("CoreConst").EventType.Mana, amount, item, triggerEvent)
+		return self.gainStacks(_H_24, amount, item, triggerEvent)
 
 
 	def loseMana(self, amount, item=None, triggerEvent=None):
-		return self.loseStacks(_R.C("CoreConst").EventType.Mana, amount, item, triggerEvent)
+		return self.loseStacks(_H_24, amount, item, triggerEvent)
 
 
 	def getEmpower(self):
-		return self.getStacks(_R.C("CoreConst").EventType.Empower)
+		return self.getStacks(_H_25)
 
 
 	def setEmpower(self, amount):
 		amount = int(amount)
-		self.setStacks(_R.C("CoreConst").EventType.Empower, amount)
+		self.setStacks(_H_25, amount)
 
 
 	def gainEmpower(self, amount, item=None, triggerEvent=None):
 		amount = int(amount)
-		return self.gainStacks(_R.C("CoreConst").EventType.Empower, amount, item, triggerEvent)
+		return self.gainStacks(_H_25, amount, item, triggerEvent)
 
 
 	def loseEmpower(self, amount, item=None, triggerEvent=None):
-		return self.loseStacks(_R.C("CoreConst").EventType.Empower, amount, item, triggerEvent)
+		return self.loseStacks(_H_25, amount, item, triggerEvent)
 
 
 	def getHeat(self):
-		return self.getStacks(_R.C("CoreConst").EventType.Heat)
+		return self.getStacks(_H_26)
 
 
 	def setHeat(self, amount):
 		amount = int(amount)
-		self.setStacks(_R.C("CoreConst").EventType.Heat, amount)
+		self.setStacks(_H_26, amount)
 
 
 	def gainHeat(self, amount, item=None, triggerEvent=None):
 		amount = int(amount)
-		return self.gainStacks(_R.C("CoreConst").EventType.Heat, amount, item, triggerEvent)
+		return self.gainStacks(_H_26, amount, item, triggerEvent)
 
 
 	def loseHeat(self, amount, item=None, triggerEvent=None):
-		return self.loseStacks(_R.C("CoreConst").EventType.Heat, amount, item, triggerEvent)
+		return self.loseStacks(_H_26, amount, item, triggerEvent)
 
 
 	def getCold(self):
-		return self.getStacks(_R.C("CoreConst").EventType.Cold)
+		return self.getStacks(_H_27)
 
 
 	def setCold(self, amount):
 		amount = int(amount)
-		self.setStacks(_R.C("CoreConst").EventType.Cold, amount)
+		self.setStacks(_H_27, amount)
 
 
 	def gainCold(self, amount, item=None, triggerEvent=None):
 		amount = int(amount)
-		return self.gainStacks(_R.C("CoreConst").EventType.Cold, amount, item, triggerEvent)
+		return self.gainStacks(_H_27, amount, item, triggerEvent)
 
 
 	def loseCold(self, amount, item=None, triggerEvent=None):
-		return self.loseStacks(_R.C("CoreConst").EventType.Cold, amount, item, triggerEvent)
+		return self.loseStacks(_H_27, amount, item, triggerEvent)
 
 
 	def getBuffDamageMod(self):
@@ -1832,11 +1832,11 @@ class CoreCharacter(GodotObject):
 				event = self.ctx.combat_log.createEvent_TemporaryMaxStamina(item, amount, triggerEvent)
 				self.ctx.bus.logEvent(event)
 				if filled:
-					item.staminaChanged(amount, _R.C("CoreConst").StackChangeType.Added_Player)
+					item.staminaChanged(amount, _H_35)
 				# ★ 表现层链消耗还原（Character.gd:989 → Util.gd:940-952 → Item.gd:6485-6494）：
 				#   临时体力上限物品标签取位，randInBox 2 抽。
 				item.getNextFreeLabelPosition()
-				self.ctx.hooks.spawnLabelOnItem(_R.C("CoreConst").EventType.TemporaryMaxStamina, item, amount)
+				self.ctx.hooks.spawnLabelOnItem(_H_40, item, amount)
 			self.ctx.hooks.onMaxStaminaChangedUI(self)
 
 
@@ -1945,25 +1945,25 @@ class CoreCharacter(GodotObject):
 		self.typedDamageFactors[damageType] += amount
 		for item in _iter(self.items):
 			if item.damageSource != None and item.damageSource.hasType(damageType):
-				self.ctx.combat_log.snapshotItemTooltipStat(item, _R.C("CoreConst").ItemStat.MinDamage)
-				self.ctx.combat_log.snapshotItemTooltipStat(item, _R.C("CoreConst").ItemStat.MaxDamage)
+				self.ctx.combat_log.snapshotItemTooltipStat(item, _H_41)
+				self.ctx.combat_log.snapshotItemTooltipStat(item, _H_42)
 
-		if damageType == _R.C("CoreDamageSource").Type.Melee:
+		if damageType == _H_28:
 				self.ctx.combat_log.snapshotCharacterStat(self, self.Stat.MeleeDmgFactor)
-		elif damageType == _R.C("CoreDamageSource").Type.Ranged:
+		elif damageType == _H_34:
 				self.ctx.combat_log.snapshotCharacterStat(self, self.Stat.RangedDmgFactor)
-		elif damageType == _R.C("CoreDamageSource").Type.Effect:
+		elif damageType == _H_29:
 				self.ctx.combat_log.snapshotCharacterStat(self, self.Stat.EffectDmgFactor)
 
 
 	# 对齐 Character.gd:1509-1517
 	def changeEffectDamageFactor(self, amount):
-		self.typedDamageFactors[_R.C("CoreDamageSource").Type.Effect] += amount
-		self.typedDamageFactors[_R.C("CoreDamageSource").Type.Unhealing] += amount
+		self.typedDamageFactors[_H_29] += amount
+		self.typedDamageFactors[_H_30] += amount
 		for item in _iter(self.items):
-			if item.damageSource != None and item.damageSource.hasType(_R.C("CoreDamageSource").Type.Effect):
-				self.ctx.combat_log.snapshotItemTooltipStat(item, _R.C("CoreConst").ItemStat.MinDamage)
-				self.ctx.combat_log.snapshotItemTooltipStat(item, _R.C("CoreConst").ItemStat.MaxDamage)
+			if item.damageSource != None and item.damageSource.hasType(_H_29):
+				self.ctx.combat_log.snapshotItemTooltipStat(item, _H_41)
+				self.ctx.combat_log.snapshotItemTooltipStat(item, _H_42)
 		self.ctx.combat_log.snapshotCharacterStat(self, self.Stat.EffectDmgFactor)
 
 
@@ -1993,7 +1993,7 @@ class CoreCharacter(GodotObject):
 	# 对齐 Character.gd:1282-1286
 	def useMana(self, amount, item=None, triggerEvent=None):
 		amount = int(amount)
-		event = self.useStacks(_R.C("CoreConst").EventType.Mana, amount, item, triggerEvent)
+		event = self.useStacks(_H_24, amount, item, triggerEvent)
 
 		return event
 
@@ -2005,25 +2005,25 @@ class CoreCharacter(GodotObject):
 
 	# 对齐 Character.gd:1453-1456
 	def changeBuffProtectionChance(self, chance):
-		for buff in _iter(_R.C("CoreConst").getBuffs()):
+		for buff in _iter(_H_11.getBuffs()):
 			self.buffs[buff].changeCleanseProtectionChance(chance)
 
 
 	# 对齐 Character.gd:1446-1449
 	def changeDebuffProtectionChance(self, chance):
-		for debuff in _iter(_R.C("CoreConst").getDebuffs()):
+		for debuff in _iter(_H_11.getDebuffs()):
 			self.buffs[debuff].changeCleanseProtectionChance(chance)
 
 
 	# 对齐 Character.gd:1175-1178
 	def changeBuffNullifyChances(self, chance):
-		for buff in _iter(_R.C("CoreConst").getBuffs()):
+		for buff in _iter(_H_11.getBuffs()):
 			self.changeResistChance(buff, chance)
 
 
 	# 对齐 Character.gd:1179-1182（与上者成对的减益版本；原版以此形状存在）
 	def changeDebuffNullifyChances(self, chance):
-		for debuff in _iter(_R.C("CoreConst").getDebuffs()):
+		for debuff in _iter(_H_11.getDebuffs()):
 			self.changeResistChance(debuff, chance)
 
 
@@ -2155,3 +2155,168 @@ class CoreCharacter(GodotObject):
 _R.reg("res://gd_core/CoreCharacter.gd", CoreCharacter)
 _R.reg("CoreCharacter", CoreCharacter)
 _R.reg("CoreCharacter", CoreCharacter)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+_H_1 = _R.C("CoreGrid")
+try:
+    _H_10 = _R.C("CoreDamageSource").Type.Poison
+except AttributeError as _he:
+    _H_10 = _HoistPending(_he)
+_H_11 = _R.C("CoreConst")
+try:
+    _H_12 = _R.C("CoreConst").EventType
+except AttributeError as _he:
+    _H_12 = _HoistPending(_he)
+try:
+    _H_13 = _R.C("CoreConst").EventType.Health
+except AttributeError as _he:
+    _H_13 = _HoistPending(_he)
+try:
+    _H_14 = _R.C("CoreConst").ItemMetrics.Heal
+except AttributeError as _he:
+    _H_14 = _HoistPending(_he)
+try:
+    _H_15 = _R.C("CoreConst").EventType.LoseHealth
+except AttributeError as _he:
+    _H_15 = _HoistPending(_he)
+try:
+    _H_16 = _R.C("CoreConst").StackChangeType.Removed_Opponent
+except AttributeError as _he:
+    _H_16 = _HoistPending(_he)
+try:
+    _H_17 = _R.C("CoreConst").EventType.Block
+except AttributeError as _he:
+    _H_17 = _HoistPending(_he)
+try:
+    _H_18 = _R.C("CoreConst").EventType.Spikes
+except AttributeError as _he:
+    _H_18 = _HoistPending(_he)
+try:
+    _H_19 = _R.C("CoreConst").EventType.Vampirism
+except AttributeError as _he:
+    _H_19 = _HoistPending(_he)
+_H_2 = _R.C("CoreDamageSource")
+try:
+    _H_20 = _R.C("CoreConst").EventType.Poison
+except AttributeError as _he:
+    _H_20 = _HoistPending(_he)
+try:
+    _H_21 = _R.C("CoreConst").EventType.Regeneration
+except AttributeError as _he:
+    _H_21 = _HoistPending(_he)
+try:
+    _H_22 = _R.C("CoreConst").EventType.Lucky
+except AttributeError as _he:
+    _H_22 = _HoistPending(_he)
+try:
+    _H_23 = _R.C("CoreConst").EventType.Blind
+except AttributeError as _he:
+    _H_23 = _HoistPending(_he)
+try:
+    _H_24 = _R.C("CoreConst").EventType.Mana
+except AttributeError as _he:
+    _H_24 = _HoistPending(_he)
+try:
+    _H_25 = _R.C("CoreConst").EventType.Empower
+except AttributeError as _he:
+    _H_25 = _HoistPending(_he)
+try:
+    _H_26 = _R.C("CoreConst").EventType.Heat
+except AttributeError as _he:
+    _H_26 = _HoistPending(_he)
+try:
+    _H_27 = _R.C("CoreConst").EventType.Cold
+except AttributeError as _he:
+    _H_27 = _HoistPending(_he)
+try:
+    _H_28 = _R.C("CoreDamageSource").Type.Melee
+except AttributeError as _he:
+    _H_28 = _HoistPending(_he)
+try:
+    _H_29 = _R.C("CoreDamageSource").Type.Effect
+except AttributeError as _he:
+    _H_29 = _HoistPending(_he)
+_H_3 = _R.C("CoreDamageResult")
+try:
+    _H_30 = _R.C("CoreDamageSource").Type.Unhealing
+except AttributeError as _he:
+    _H_30 = _HoistPending(_he)
+try:
+    _H_31 = _R.C("CoreConst").Tag.BattleRage
+except AttributeError as _he:
+    _H_31 = _HoistPending(_he)
+try:
+    _H_32 = _R.C("CoreDamageSource").Type.Fatigue
+except AttributeError as _he:
+    _H_32 = _HoistPending(_he)
+try:
+    _H_33 = _R.C("CoreConst").EventType.MissedAttack
+except AttributeError as _he:
+    _H_33 = _HoistPending(_he)
+try:
+    _H_34 = _R.C("CoreDamageSource").Type.Ranged
+except AttributeError as _he:
+    _H_34 = _HoistPending(_he)
+try:
+    _H_35 = _R.C("CoreConst").StackChangeType.Added_Player
+except AttributeError as _he:
+    _H_35 = _HoistPending(_he)
+try:
+    _H_36 = _R.C("CoreConst").EventType.StunResisted
+except AttributeError as _he:
+    _H_36 = _HoistPending(_he)
+try:
+    _H_37 = _R.C("CoreDamageSource").Type
+except AttributeError as _he:
+    _H_37 = _HoistPending(_he)
+try:
+    _H_38 = _R.C("CoreConst").EventType.CriticalDamage
+except AttributeError as _he:
+    _H_38 = _HoistPending(_he)
+try:
+    _H_39 = _R.C("CoreConst").ItemMetrics.Overheal
+except AttributeError as _he:
+    _H_39 = _HoistPending(_he)
+_H_4 = _R.C("CoreItem")
+try:
+    _H_40 = _R.C("CoreConst").EventType.TemporaryMaxStamina
+except AttributeError as _he:
+    _H_40 = _HoistPending(_he)
+try:
+    _H_41 = _R.C("CoreConst").ItemStat.MinDamage
+except AttributeError as _he:
+    _H_41 = _HoistPending(_he)
+try:
+    _H_42 = _R.C("CoreConst").ItemStat.MaxDamage
+except AttributeError as _he:
+    _H_42 = _HoistPending(_he)
+try:
+    _H_43 = _R.C("CoreConst").EventType.Fatigue
+except AttributeError as _he:
+    _H_43 = _HoistPending(_he)
+try:
+    _H_44 = _R.C("CoreConst").EventType.CriticalResisted
+except AttributeError as _he:
+    _H_44 = _HoistPending(_he)
+try:
+    _H_45 = _R.C("CoreConst").EventType.DealDamage
+except AttributeError as _he:
+    _H_45 = _HoistPending(_he)
+try:
+    _H_5 = _R.C("CoreConst").Classes.Ranger
+except AttributeError as _he:
+    _H_5 = _HoistPending(_he)
+try:
+    _H_6 = _R.C("CoreDamageSource").chipDamageFlags
+except AttributeError as _he:
+    _H_6 = _HoistPending(_he)
+_H_7 = _R.C("CoreBuff")
+try:
+    _H_8 = _R.C("CoreDamageSource").Type.Spikes
+except AttributeError as _he:
+    _H_8 = _HoistPending(_he)
+try:
+    _H_9 = _R.C("CoreDamageSource").Flags.CanCrit
+except AttributeError as _he:
+    _H_9 = _HoistPending(_he)

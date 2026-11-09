@@ -34,16 +34,16 @@ class Exclusive__HeavyDrinking(_R.C("res://gd_core_items/Item.gd")):
 
 	def isAffectingDistinct(self, color=GD_DEFAULT):
 		if color is GD_DEFAULT:
-			color = _R.C("CoreConst").Affected.Primary
-		return color == _R.C("CoreConst").Affected.Primary
+			color = _H_1
+		return color == _H_1
 
 
 	def canAffect(self, item):
-		return item.hasType(_R.C("CoreConst").Type.Potion)
+		return item.hasType(_H_2)
 
 
 	def canAffect_global(self, item):
-		return item.hasType(_R.C("CoreConst").Type.Potion)
+		return item.hasType(_H_2)
 
 
 	def onPrepare(self):
@@ -51,7 +51,7 @@ class Exclusive__HeavyDrinking(_R.C("res://gd_core_items/Item.gd")):
 
 		self.allPotions.clear()
 		for item in _iter(self.inventory.getItems()):
-			if item.hasType(_R.C("CoreConst").Type.Potion) and item != self:
+			if item.hasType(_H_2) and item != self:
 				self.allPotions.append(item)
 
 
@@ -68,7 +68,7 @@ class Exclusive__HeavyDrinking(_R.C("res://gd_core_items/Item.gd")):
 		pass
 
 	def onItemRolled(self, descr):
-		if descr.hasType(_R.C("CoreConst").Type.Potion):
+		if descr.hasType(_H_2):
 			self.boostedPotions -= 1
 
 	def _readyInit(self):
@@ -78,3 +78,14 @@ class Exclusive__HeavyDrinking(_R.C("res://gd_core_items/Item.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/HeavyDrinking.gd", Exclusive__HeavyDrinking)
 _R.reg("HeavyDrinking", Exclusive__HeavyDrinking)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").Affected.Primary
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+try:
+    _H_2 = _R.C("CoreConst").Type.Potion
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)

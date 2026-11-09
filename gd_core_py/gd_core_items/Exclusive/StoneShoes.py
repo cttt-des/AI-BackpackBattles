@@ -41,13 +41,13 @@ class Exclusive__StoneShoes(_R.C("res://gd_core_items/Item.gd")):
 			self.giveBlock(self.getBlock(), True, event)
 			self.buffTimer.start(self.getP_m("dur"))
 			self.setState(True)
-			self.opponent().changeTypedDamageFactor(_R.C("CoreDamageSource").Type.Ranged, - self.damReduction)
+			self.opponent().changeTypedDamageFactor(_H_1, - self.damReduction)
 			self.opponent().changeEffectDamageFactor( - self.damReduction)
 			self.consume()
 
 
 	def onBuffTimeout(self):
-		self.opponent().changeTypedDamageFactor(_R.C("CoreDamageSource").Type.Ranged, self.damReduction)
+		self.opponent().changeTypedDamageFactor(_H_1, self.damReduction)
 		self.opponent().changeEffectDamageFactor(self.damReduction)
 		self.setState(False)
 
@@ -68,7 +68,7 @@ class Exclusive__StoneShoes(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def getTriggerPriority(self):
-		return _R.C("CoreConst").Priority.High + 3
+		return _H_2 + 3
 
 	def _readyInit(self):
 		super()._readyInit()
@@ -81,3 +81,14 @@ class Exclusive__StoneShoes(_R.C("res://gd_core_items/Item.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/StoneShoes.gd", Exclusive__StoneShoes)
 _R.reg("StoneShoes", Exclusive__StoneShoes)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreDamageSource").Type.Ranged
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+try:
+    _H_2 = _R.C("CoreConst").Priority.High
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)

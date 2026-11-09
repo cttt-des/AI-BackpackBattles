@@ -192,27 +192,27 @@ class CoreContext(GodotObject):
 
 	def _init(self, _seed=0, _hooks=None):
 		_seed = int(_seed)
-		self.rng = _R.C("CoreRng")(_seed)
-		self.util = _R.C("CoreUtil")(self.rng)
+		self.rng = _H_1(_seed)
+		self.util = _H_2(self.rng)
 		self.util._ctx = self
-		self.hooks = _hooks if _hooks != None else _R.C("CoreHooks")()
-		self.bus = _R.C("CoreEventBus")()
+		self.hooks = _hooks if _hooks != None else _H_7()
+		self.bus = _H_3()
 		self.bus._ctx = self
-		self.combat_log = _R.C("CoreCombatLog")()
+		self.combat_log = _H_4()
 		self.combat_log._ctx = self
-		self.item_book = _R.C("CoreItemBook")()
+		self.item_book = _H_5()
 		self.item_book._ctx = self
 
 		# 对齐 Game.gd:2426-2433
-		self.stealLifeDamageSource = self._newDamageSource(None, _R.C("CoreDamageSource").Type.Effect, 
-			_R.C("CoreDamageSource").effectFlags)
-		self.unhealingDamageSource = self._newDamageSource(None, _R.C("CoreDamageSource").Type.Unhealing, 
-			_R.C("CoreDamageSource").unhealingFlags)
-		self.fatigueDamageSource = self._newDamageSource(self, _R.C("CoreDamageSource").Type.Fatigue, 
-			_R.C("CoreDamageSource").Flags.CanBeBlocked)
+		self.stealLifeDamageSource = self._newDamageSource(None, _H_12, 
+			_H_8)
+		self.unhealingDamageSource = self._newDamageSource(None, _H_13, 
+			_H_9)
+		self.fatigueDamageSource = self._newDamageSource(self, _H_14, 
+			_H_15)
 
 		# 对齐 Game.gd:512 `onready var eventTypeKeys = Util.invertDictionary(EventType)`
-		self.event_type_keys = _R.C("CoreUtil").invertDictionary(_R.C("CoreConst").EventType)
+		self.event_type_keys = _H_2.invertDictionary(_H_10)
 
 
 	# ── RNG state 直注入（转发 CoreRng.set_state） ──
@@ -226,7 +226,7 @@ class CoreContext(GodotObject):
 	def _newDamageSource(self, origin, type, flags):
 		type = int(type)
 		flags = int(flags)
-		src = _R.C("CoreDamageSource")()
+		src = _H_6()
 		src._rng = self.rng
 		src.init(origin, type)
 		src.flags = flags
@@ -235,7 +235,7 @@ class CoreContext(GodotObject):
 
 	def getCharacterFromId(self, playerId):
 		playerId = int(playerId)
-		return self.player if playerId == _R.C("CoreCharacter").ID.PLAYER else self.opponent
+		return self.player if playerId == _H_16 else self.opponent
 
 
 	def otherCharacter(self, character):
@@ -360,10 +360,53 @@ class CoreContext(GodotObject):
 
 	def emptyGrid(self):
 		if self._emptyGrid == None:
-			self._emptyGrid = _R.C("CoreGrid")(None)
+			self._emptyGrid = _H_11(None)
 		return self._emptyGrid
 
 
 _R.reg("res://gd_core/CoreContext.gd", CoreContext)
 _R.reg("CoreContext", CoreContext)
 _R.reg("CoreContext", CoreContext)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+_H_1 = _R.C("CoreRng")
+try:
+    _H_10 = _R.C("CoreConst").EventType
+except AttributeError as _he:
+    _H_10 = _HoistPending(_he)
+_H_11 = _R.C("CoreGrid")
+try:
+    _H_12 = _R.C("CoreDamageSource").Type.Effect
+except AttributeError as _he:
+    _H_12 = _HoistPending(_he)
+try:
+    _H_13 = _R.C("CoreDamageSource").Type.Unhealing
+except AttributeError as _he:
+    _H_13 = _HoistPending(_he)
+try:
+    _H_14 = _R.C("CoreDamageSource").Type.Fatigue
+except AttributeError as _he:
+    _H_14 = _HoistPending(_he)
+try:
+    _H_15 = _R.C("CoreDamageSource").Flags.CanBeBlocked
+except AttributeError as _he:
+    _H_15 = _HoistPending(_he)
+try:
+    _H_16 = _R.C("CoreCharacter").ID.PLAYER
+except AttributeError as _he:
+    _H_16 = _HoistPending(_he)
+_H_2 = _R.C("CoreUtil")
+_H_3 = _R.C("CoreEventBus")
+_H_4 = _R.C("CoreCombatLog")
+_H_5 = _R.C("CoreItemBook")
+_H_6 = _R.C("CoreDamageSource")
+_H_7 = _R.C("CoreHooks")
+try:
+    _H_8 = _R.C("CoreDamageSource").effectFlags
+except AttributeError as _he:
+    _H_8 = _HoistPending(_he)
+try:
+    _H_9 = _R.C("CoreDamageSource").unhealingFlags
+except AttributeError as _he:
+    _H_9 = _HoistPending(_he)

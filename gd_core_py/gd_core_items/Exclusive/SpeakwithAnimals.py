@@ -40,7 +40,7 @@ class Exclusive__SpeakwithAnimals(_R.C("res://gd_core_items/Item.gd")):
 		pass
 
 	def canAffect(self, item):
-		return item.hasType(_R.C("CoreConst").Type.Pet)
+		return item.hasType(_H_1)
 
 
 	def doCooldownEffect(self):
@@ -73,3 +73,10 @@ class Exclusive__SpeakwithAnimals(_R.C("res://gd_core_items/Item.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/SpeakwithAnimals.gd", Exclusive__SpeakwithAnimals)
 _R.reg("SpeakwithAnimals", Exclusive__SpeakwithAnimals)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").Type.Pet
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)

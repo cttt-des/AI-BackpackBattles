@@ -121,7 +121,7 @@ class CoreGrid(GodotObject):
 		itemCounter = {}
 		for cell in _iter(cells):
 			if (cell in self.filledCells):
-				_R.C("CoreUtil").dictAdd(itemCounter, self.filledCells[cell])
+				_H_1.dictAdd(itemCounter, self.filledCells[cell])
 		return itemCounter
 
 
@@ -278,3 +278,7 @@ class CoreGrid(GodotObject):
 _R.reg("res://gd_core/CoreGrid.gd", CoreGrid)
 _R.reg("CoreGrid", CoreGrid)
 _R.reg("CoreGrid", CoreGrid)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+_H_1 = _R.C("CoreUtil")

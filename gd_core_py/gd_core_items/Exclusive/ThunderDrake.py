@@ -36,7 +36,7 @@ class Exclusive__ThunderDrake(_R.C("res://gd_core_items/Weapon.gd")):
 	def onPrepare(self):
 		self.setState(False)
 		self.curHitCount = 0
-		self.lightningMultiplicity = self.countItemsInAffectedCells_cached(_R.C("CoreConst").Affected.Lightning)
+		self.lightningMultiplicity = self.countItemsInAffectedCells_cached(_H_1)
 
 
 	def onDealtDamage(self, damageRes):
@@ -47,12 +47,12 @@ class Exclusive__ThunderDrake(_R.C("res://gd_core_items/Weapon.gd")):
 
 
 				if self.active:
-					for item in _iter(self.getAffectedItems(_R.C("CoreConst").Affected.Lightning)):
+					for item in _iter(self.getAffectedItems(_H_1)):
 						item.chargeLeft(self)
 						self.zapItem(item)
 				else:
 					self.setState(True)
-					for item in _iter(self.getAffectedItems(_R.C("CoreConst").Affected.Lightning)):
+					for item in _iter(self.getAffectedItems(_H_1)):
 						item.addSpeed(self.buffSpeed * self.lightningMultiplicity[item])
 						self.zapItem(item)
 
@@ -77,7 +77,7 @@ class Exclusive__ThunderDrake(_R.C("res://gd_core_items/Weapon.gd")):
 	def onBuffEnded(self):
 		self.setState(False)
 
-		for item in _iter(self.getAffectedItems(_R.C("CoreConst").Affected.Lightning)):
+		for item in _iter(self.getAffectedItems(_H_1)):
 			item.reduceSpeed(self.buffSpeed * self.lightningMultiplicity[item])
 			item.chargeLeft(self)
 
@@ -99,13 +99,13 @@ class Exclusive__ThunderDrake(_R.C("res://gd_core_items/Weapon.gd")):
 
 
 	def getCraftingOffset(self, forDirection):
-		if forDirection == _R.C("CoreConst").FaceDirection.UP:
+		if forDirection == _H_2:
 				return Vector2( - 1, - 1)
-		elif forDirection == _R.C("CoreConst").FaceDirection.DOWN:
+		elif forDirection == _H_3:
 				return Vector2.ZERO
-		elif forDirection == _R.C("CoreConst").FaceDirection.LEFT:
+		elif forDirection == _H_4:
 				return Vector2( - 1, 0)
-		elif forDirection == _R.C("CoreConst").FaceDirection.RIGHT:
+		elif forDirection == _H_5:
 				return Vector2(0, - 1)
 
 	def _readyInit(self):
@@ -117,3 +117,26 @@ class Exclusive__ThunderDrake(_R.C("res://gd_core_items/Weapon.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/ThunderDrake.gd", Exclusive__ThunderDrake)
 _R.reg("ThunderDrake", Exclusive__ThunderDrake)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").Affected.Lightning
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+try:
+    _H_2 = _R.C("CoreConst").FaceDirection.UP
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)
+try:
+    _H_3 = _R.C("CoreConst").FaceDirection.DOWN
+except AttributeError as _he:
+    _H_3 = _HoistPending(_he)
+try:
+    _H_4 = _R.C("CoreConst").FaceDirection.LEFT
+except AttributeError as _he:
+    _H_4 = _HoistPending(_he)
+try:
+    _H_5 = _R.C("CoreConst").FaceDirection.RIGHT
+except AttributeError as _he:
+    _H_5 = _HoistPending(_he)

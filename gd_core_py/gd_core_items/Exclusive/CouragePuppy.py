@@ -22,7 +22,7 @@ class Exclusive__CouragePuppy(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def canAffect(self, item):
-		return item.hasType(_R.C("CoreConst").Type.Pet)
+		return item.hasType(_H_1)
 
 
 	def onPreCombatStart(self):
@@ -35,9 +35,17 @@ class Exclusive__CouragePuppy(_R.C("res://gd_core_items/Item.gd")):
 
 	def _readyInit(self):
 		super()._readyInit()
-		self.damageSource = _R.C("CoreDamageSource")().setItem(self)
+		self.damageSource = _H_2().setItem(self)
 
 
 
 _R.reg("res://gd_core_items/Exclusive/CouragePuppy.gd", Exclusive__CouragePuppy)
 _R.reg("CouragePuppy", Exclusive__CouragePuppy)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").Type.Pet
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+_H_2 = _R.C("CoreDamageSource")

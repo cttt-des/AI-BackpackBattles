@@ -20,7 +20,7 @@ class Exclusive__Cthulhu(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def canAffect(self, item):
-		return item.hasType(_R.C("CoreConst").Type.Food) or item.hasType(_R.C("CoreConst").Type.Dark)
+		return item.hasType(_H_1) or item.hasType(_H_2)
 
 
 
@@ -33,19 +33,19 @@ class Exclusive__Cthulhu(_R.C("res://gd_core_items/Item.gd")):
 
 	def onAffectedItemAdded(self, item, color):
 		color = int(color)
-		if item.hasType(_R.C("CoreConst").Type.Food):
-			item.addDynamicType(_R.C("CoreConst").Type.Dark, self)
+		if item.hasType(_H_1):
+			item.addDynamicType(_H_2, self)
 
 
 	def onAffectedItemRemoved(self, item, color):
 		color = int(color)
-		item.removeDynamicType(_R.C("CoreConst").Type.Dark, self)
+		item.removeDynamicType(_H_2, self)
 
 
 	def onPrepare(self):
 		self.affectedFood.clear()
 		for item in _iter(self.getAffectedItems()):
-			if item.hasType(_R.C("CoreConst").Type.Food):
+			if item.hasType(_H_1):
 				self.affectedFood.append(item)
 
 		self.addSpeed(self.foodSpeed * self.getNumAffectedItems())
@@ -65,3 +65,14 @@ class Exclusive__Cthulhu(_R.C("res://gd_core_items/Item.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/Cthulhu.gd", Exclusive__Cthulhu)
 _R.reg("Cthulhu", Exclusive__Cthulhu)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").Type.Food
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+try:
+    _H_2 = _R.C("CoreConst").Type.Dark
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)

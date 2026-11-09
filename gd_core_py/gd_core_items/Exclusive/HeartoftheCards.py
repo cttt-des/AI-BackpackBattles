@@ -21,7 +21,7 @@ class Exclusive__HeartoftheCards(_R.C("res://gd_core_items/Item.gd")):
 
 	def onPrepare(self):
 		for item in _iter(self.inventory.getItems()):
-			if item.hasType(_R.C("CoreConst").Type.Card):
+			if item.hasType(_H_1):
 				self.connectForCombat(item, "activated", "onCardRevealed")
 
 
@@ -41,3 +41,10 @@ class Exclusive__HeartoftheCards(_R.C("res://gd_core_items/Item.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/HeartoftheCards.gd", Exclusive__HeartoftheCards)
 _R.reg("HeartoftheCards", Exclusive__HeartoftheCards)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").Type.Card
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)

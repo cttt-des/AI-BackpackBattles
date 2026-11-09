@@ -65,7 +65,7 @@ class Exclusive__ChessBoard(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def onPrepare(self):
-		if self.ownerType == _R.C("CoreConst").Owner.PlayerInventory and self.ctx.cur_mode != _R.C("CoreConst").GameMode.History:
+		if self.ownerType == _H_1 and self.ctx.cur_mode != _H_2:
 			pass
 
 		self.activeBlackPieces.clear()
@@ -142,7 +142,7 @@ class Exclusive__ChessBoard(_R.C("res://gd_core_items/Item.gd")):
 									cellToCheck = piece.occupiedCells[0] + i * dir
 
 									itemThere = self.inventory.getItemInCell(cellToCheck)
-									if itemThere != None and itemThere.hasType(_R.C("CoreConst").Type.ChessPiece):
+									if itemThere != None and itemThere.hasType(_H_3):
 
 										score -= 100
 										break
@@ -223,3 +223,18 @@ class Exclusive__ChessBoard(_R.C("res://gd_core_items/Item.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/ChessBoard.gd", Exclusive__ChessBoard)
 _R.reg("ChessBoard", Exclusive__ChessBoard)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").Owner.PlayerInventory
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+try:
+    _H_2 = _R.C("CoreConst").GameMode.History
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)
+try:
+    _H_3 = _R.C("CoreConst").Type.ChessPiece
+except AttributeError as _he:
+    _H_3 = _HoistPending(_he)

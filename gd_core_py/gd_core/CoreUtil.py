@@ -88,7 +88,7 @@ class CoreUtil(GodotObject):
 	# 实现落在零依赖的 CoreConst 上（CoreItemData 也要用它，两处互相引用会成环）。
 	@staticmethod
 	def truth(v):
-		return _R.C("CoreConst").truth(v)
+		return _H_1.truth(v)
 
 
 	# ★ np25 evt105 f09 面：Vector2 的 (y,x) 字典序（Godot Vector2::operator<）。
@@ -345,3 +345,7 @@ CoreUtil.DictSorter = DictSorter
 _R.reg("res://gd_core/CoreUtil.gd", CoreUtil)
 _R.reg("CoreUtil", CoreUtil)
 _R.reg("CoreUtil", CoreUtil)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+_H_1 = _R.C("CoreConst")

@@ -14,8 +14,8 @@ class Exclusive__RandomLoadoutBag(_R.C("res://gd_core_items/Bag.gd")):
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.mainBags = { _R.C("CoreConst").Classes.Ranger: ["Ranger Bag", "Vineweave Basket"], _R.C("CoreConst").Classes.Reaper: ["Storage Coffin", "Relic Case"], _R.C("CoreConst").Classes.Pyromancer: ["Fire Pit", "Portable Altar"], _R.C("CoreConst").Classes.Berserker: ["Berserker Bag", "Toolbox"], _R.C("CoreConst").Classes_Full.Mage: ["Scholar Bag", "Puzzlebox"], _R.C("CoreConst").Classes_Full.Adventurer: ["Bag of Giving", "Sewing Case"], _R.C("CoreConst").Classes_Full.Engineer: ["Engineer Box", "Engineer Bag 2"] }
-		self.compensationValue = { _R.C("CoreConst").Classes.Ranger: [0, 0], _R.C("CoreConst").Classes.Reaper: [1, 0], _R.C("CoreConst").Classes.Pyromancer: [2, 1], _R.C("CoreConst").Classes.Berserker: [1, 0], _R.C("CoreConst").Classes_Full.Mage: [0, 0], _R.C("CoreConst").Classes_Full.Adventurer: [0, 0], _R.C("CoreConst").Classes_Full.Engineer: [0, 0] }
+		self.mainBags = { _H_1: ["Ranger Bag", "Vineweave Basket"], _H_2: ["Storage Coffin", "Relic Case"], _H_3: ["Fire Pit", "Portable Altar"], _H_4: ["Berserker Bag", "Toolbox"], _H_5: ["Scholar Bag", "Puzzlebox"], _H_6: ["Bag of Giving", "Sewing Case"], _H_7: ["Engineer Box", "Engineer Bag 2"] }
+		self.compensationValue = { _H_1: [0, 0], _H_2: [1, 0], _H_3: [2, 1], _H_4: [1, 0], _H_5: [0, 0], _H_6: [0, 0], _H_7: [0, 0] }
 		self.excludeNames = [ "Acorn Collar", "Unstable Recombobulator", "Draconic Orb", "Stone Skin Potion", "Divine Potion" ]
 		self.bagCells = []
 
@@ -37,7 +37,7 @@ class Exclusive__RandomLoadoutBag(_R.C("res://gd_core_items/Bag.gd")):
 		pass
 
 	def prepareParticles(self):
-		if self.ownerType == _R.C("CoreConst").Owner.PlayerInventory:
+		if self.ownerType == _H_8:
 			self.ctx.util.callDelayed(self, "createRevealParticles", 0.4)
 
 
@@ -52,3 +52,38 @@ class Exclusive__RandomLoadoutBag(_R.C("res://gd_core_items/Bag.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/RandomLoadoutBag.gd", Exclusive__RandomLoadoutBag)
 _R.reg("RandomLoadoutBag", Exclusive__RandomLoadoutBag)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").Classes.Ranger
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+try:
+    _H_2 = _R.C("CoreConst").Classes.Reaper
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)
+try:
+    _H_3 = _R.C("CoreConst").Classes.Pyromancer
+except AttributeError as _he:
+    _H_3 = _HoistPending(_he)
+try:
+    _H_4 = _R.C("CoreConst").Classes.Berserker
+except AttributeError as _he:
+    _H_4 = _HoistPending(_he)
+try:
+    _H_5 = _R.C("CoreConst").Classes_Full.Mage
+except AttributeError as _he:
+    _H_5 = _HoistPending(_he)
+try:
+    _H_6 = _R.C("CoreConst").Classes_Full.Adventurer
+except AttributeError as _he:
+    _H_6 = _HoistPending(_he)
+try:
+    _H_7 = _R.C("CoreConst").Classes_Full.Engineer
+except AttributeError as _he:
+    _H_7 = _HoistPending(_he)
+try:
+    _H_8 = _R.C("CoreConst").Owner.PlayerInventory
+except AttributeError as _he:
+    _H_8 = _HoistPending(_he)

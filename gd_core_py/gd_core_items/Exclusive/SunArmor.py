@@ -31,28 +31,28 @@ class Exclusive__SunArmor(_R.C("res://gd_core_items/Item.gd")):
 		self._debuffsCleansed = int(v)
 
 	def canAffect(self, item):
-		return item.hasType(_R.C("CoreConst").Type.Fire) or item.hasType(_R.C("CoreConst").Type.Holy)
+		return item.hasType(_H_1) or item.hasType(_H_2)
 
 
 	def reactToItemTypeChange(self, item):
-		if item in self.currentAffectedItems[_R.C("CoreConst").Affected.Primary]:
+		if item in self.currentAffectedItems[_H_3]:
 
-			if not item.hasType(_R.C("CoreConst").Type.Fire) and item.hasDynamicType(_R.C("CoreConst").Type.Holy, self):
-				_erase(self.currentAffectedItems[_R.C("CoreConst").Affected.Primary], item)
-				self.onAffectedItemRemoved(item, _R.C("CoreConst").Affected.Primary)
+			if not item.hasType(_H_1) and item.hasDynamicType(_H_2, self):
+				_erase(self.currentAffectedItems[_H_3], item)
+				self.onAffectedItemRemoved(item, _H_3)
 				return False
 		return True
 
 
 	def onAffectedItemAdded(self, item, color):
 		color = int(color)
-		if item.hasType(_R.C("CoreConst").Type.Fire):
-			item.addDynamicType(_R.C("CoreConst").Type.Holy, self)
+		if item.hasType(_H_1):
+			item.addDynamicType(_H_2, self)
 
 
 	def onAffectedItemRemoved(self, item, color):
 		color = int(color)
-		item.removeDynamicType(_R.C("CoreConst").Type.Holy, self)
+		item.removeDynamicType(_H_2, self)
 
 
 	def doCooldownEffect(self):
@@ -77,3 +77,18 @@ class Exclusive__SunArmor(_R.C("res://gd_core_items/Item.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/SunArmor.gd", Exclusive__SunArmor)
 _R.reg("SunArmor", Exclusive__SunArmor)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").Type.Fire
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+try:
+    _H_2 = _R.C("CoreConst").Type.Holy
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)
+try:
+    _H_3 = _R.C("CoreConst").Affected.Primary
+except AttributeError as _he:
+    _H_3 = _HoistPending(_he)

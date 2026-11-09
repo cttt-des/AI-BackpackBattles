@@ -277,7 +277,7 @@ class CoreItemData(GodotObject):
 
 
 	def isWeapon(self):
-		return (_R.C("CoreConst").Type.Weapon in self.types)
+		return (_H_2 in self.types)
 
 
 	# ── 对齐 ItemDescriptor.gd:110-166, 299-325（战斗判定读取的描述符访问器） ──
@@ -320,13 +320,13 @@ class CoreItemData(GodotObject):
 
 	# 对齐 ItemDescriptor.gd:160-161
 	def isNeutral(self):
-		return self.classes == _R.C("CoreConst").StuffedClasses.Neutral
+		return self.classes == _H_3
 
 
 	# 对齐 ItemDescriptor.gd:163-165
 	def isClassItem(self):
-		return (self.classes != _R.C("CoreConst").StuffedClasses.Neutral and 
-			self.classes != _R.C("CoreConst").StuffedClasses["None"])
+		return (self.classes != _H_3 and 
+			self.classes != _H_4["None"])
 
 
 	# 对齐 ItemDescriptor.gd:324-325
@@ -350,12 +350,12 @@ class CoreItemData(GodotObject):
 	# 消费方在**战斗路径**上：VillainSword.canAffect / MercuryElemental.canAffect
 	# （决定「近战武器才被加成」）—— 判定失败会静默改变受影响集。
 	def isMeleeWeapon(self):
-		return (_R.C("CoreConst").Type.Melee in self.types) and self.isWeapon()
+		return (_H_5 in self.types) and self.isWeapon()
 
 
 	# 对齐 ItemDescriptor.gd:314-315。消费方：Markswoman.canAffect（远程武器才被加成）。
 	def isRangedWeapon(self):
-		return (_R.C("CoreConst").Type.Ranged in self.types) and self.isWeapon()
+		return (_H_6 in self.types) and self.isWeapon()
 
 
 	# 对齐 ItemDescriptor.gd:337-338
@@ -409,7 +409,7 @@ class CoreItemData(GodotObject):
 		o.cd = float(d.get("cd", 0.0))
 		o.extraCds = d.get("extraCds", [])
 		o.accuracy = float(d.get("accuracy", 100.0))
-		o.canActivate = _R.C("CoreConst").truth(d.get("canActivate", True))
+		o.canActivate = _H_1.truth(d.get("canActivate", True))
 		o.chance = float(d.get("chance", 0.0))
 		o.chance2 = float(d.get("chance2", 0.0))
 		o.shopChance = float(d.get("shopChance", 0.0))
@@ -419,24 +419,24 @@ class CoreItemData(GodotObject):
 		o.rarity = int(d.get("rarity", 0))
 		o.price = int(d.get("price", 0))
 		o.classes = int(d.get("classes", 0))
-		o.randomUniquePool = _R.C("CoreConst").truth(d.get("randomUniquePool", False))
-		o.hasBattleRageEffect = _R.C("CoreConst").truth(d.get("hasBattleRageEffect", False))
+		o.randomUniquePool = _H_1.truth(d.get("randomUniquePool", False))
+		o.hasBattleRageEffect = _H_1.truth(d.get("hasBattleRageEffect", False))
 		o.gatedItems = d.get("gatedItems", [])
 		o.startsSubclass = str(d.get("startsSubclass", ""))
 		# 门控 / 合成来源 / 发行状态（见字段处注释）。键名同时接受 camel 与
 		# ItemBook 表格列名的 snake 形态，装配层从任一来源填都行。
 		o.gateItem = d.get("gateItem", d.get("gate_item", None))
 		o.originatingRecipes = d.get("originatingRecipes", d.get("originating_recipes", []))
-		o.animationScene = _R.C("CoreConst").truth(d.get("animationScene", False))
+		o.animationScene = _H_1.truth(d.get("animationScene", False))
 		# FlickerAnimation 子节点（见字段处注释；键缺省 = 场景无该子节点，零消耗）
-		o.flickerAni = _R.C("CoreConst").truth(d.get("flickerAni", d.get("flicker_animation", False)))
+		o.flickerAni = _H_1.truth(d.get("flickerAni", d.get("flicker_animation", False)))
 		o.flickerMinDist = float(d.get("flickerMinDist", d.get("flicker_min_dist", 0.1)))
 		o.flickerMaxDist = float(d.get("flickerMaxDist", d.get("flicker_max_dist", 3.0)))
 		o.flickerMinSpeed = float(d.get("flickerMinSpeed", d.get("flicker_min_speed", 0.3)))
 		o.flickerMaxSpeed = float(d.get("flickerMaxSpeed", d.get("flicker_max_speed", 1.0)))
-		o.connectorReadyRoll = _R.C("CoreConst").truth(d.get("connectorReadyRoll",
+		o.connectorReadyRoll = _H_1.truth(d.get("connectorReadyRoll",
 				d.get("connector_ready_roll", False)))
-		o.gemRoll = _R.C("CoreConst").truth(d.get("gemRoll", d.get("gem_roll", False)))
+		o.gemRoll = _H_1.truth(d.get("gemRoll", d.get("gem_roll", False)))
 		o.sceneDepth = int(d.get("sceneDepth", d.get("scene_depth", 2)))
 		o.releaseState = int(d.get("releaseState", d.get("release_state", self.ReleaseState.Full)))
 		o.params = d.get("params", [])
@@ -458,3 +458,27 @@ class CoreItemData(GodotObject):
 _R.reg("res://gd_core/CoreItemData.gd", CoreItemData)
 _R.reg("CoreItemData", CoreItemData)
 _R.reg("CoreItemData", CoreItemData)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+_H_1 = _R.C("CoreConst")
+try:
+    _H_2 = _R.C("CoreConst").Type.Weapon
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)
+try:
+    _H_3 = _R.C("CoreConst").StuffedClasses.Neutral
+except AttributeError as _he:
+    _H_3 = _HoistPending(_he)
+try:
+    _H_4 = _R.C("CoreConst").StuffedClasses
+except AttributeError as _he:
+    _H_4 = _HoistPending(_he)
+try:
+    _H_5 = _R.C("CoreConst").Type.Melee
+except AttributeError as _he:
+    _H_5 = _HoistPending(_he)
+try:
+    _H_6 = _R.C("CoreConst").Type.Ranged
+except AttributeError as _he:
+    _H_6 = _HoistPending(_he)

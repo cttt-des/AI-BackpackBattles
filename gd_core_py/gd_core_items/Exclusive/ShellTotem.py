@@ -18,7 +18,7 @@ class Exclusive__ShellTotem(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def canAffect(self, item):
-		return item.hasType(_R.C("CoreConst").Type.Holy)
+		return item.hasType(_H_1)
 
 
 	def onPrepare(self):
@@ -26,7 +26,7 @@ class Exclusive__ShellTotem(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def doCooldownEffect(self):
-		if self.useStamina() == _R.C("CoreConst").StaminaResult.Sufficient:
+		if self.useStamina() == _H_2:
 			if self.character().getRelativeHealth() > self.healthThreshold:
 				self.giveEmpower(1)
 			else:
@@ -40,3 +40,14 @@ class Exclusive__ShellTotem(_R.C("res://gd_core_items/Item.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/ShellTotem.gd", Exclusive__ShellTotem)
 _R.reg("ShellTotem", Exclusive__ShellTotem)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").Type.Holy
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+try:
+    _H_2 = _R.C("CoreConst").StaminaResult.Sufficient
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)

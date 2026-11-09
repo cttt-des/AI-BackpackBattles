@@ -33,11 +33,11 @@ class Exclusive__Reverse(_R.C("res://gd_core_items/Card.gd")):
 	def getCardDescription(self, descr):
 		if self.deck:
 			duplicates = self.deck.countDuplicates(self.chainPosition)
-			state = _R.C("CoreConst").StatModified.No
+			state = _H_1
 			if duplicates == 0:
-				state = _R.C("CoreConst").StatModified.Positive
+				state = _H_2
 			else:
-				state = _R.C("CoreConst").StatModified.Negative
+				state = _H_3
 			descr += "\n" + self.insertParameter(tr("CARD_DUPLICATES"), "num", duplicates, state, False)
 		elif self.placed:
 			descr += "\n" + self.ctx.util.wrapInColor(tr("CARD_HINT"), self.ctx.util.paramColor)
@@ -51,3 +51,18 @@ class Exclusive__Reverse(_R.C("res://gd_core_items/Card.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/Reverse.gd", Exclusive__Reverse)
 _R.reg("Reverse", Exclusive__Reverse)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").StatModified.No
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+try:
+    _H_2 = _R.C("CoreConst").StatModified.Positive
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)
+try:
+    _H_3 = _R.C("CoreConst").StatModified.Negative
+except AttributeError as _he:
+    _H_3 = _HoistPending(_he)

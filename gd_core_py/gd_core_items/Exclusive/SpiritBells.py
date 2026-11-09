@@ -34,12 +34,12 @@ class Exclusive__SpiritBells(_R.C("res://gd_core_items/LeatherHelm.gd")):
 
 	def isAffectingDistinct(self, color=GD_DEFAULT):
 		if color is GD_DEFAULT:
-			color = _R.C("CoreConst").Affected.Primary
-		return color == _R.C("CoreConst").Affected.Primary
+			color = _H_1
+		return color == _H_1
 
 
 	def canAffect(self, item):
-		return item.hasType(_R.C("CoreConst").Type.Pet)
+		return item.hasType(_H_2)
 
 
 	def getBuffDur(self):
@@ -69,3 +69,14 @@ class Exclusive__SpiritBells(_R.C("res://gd_core_items/LeatherHelm.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/SpiritBells.gd", Exclusive__SpiritBells)
 _R.reg("SpiritBells", Exclusive__SpiritBells)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").Affected.Primary
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+try:
+    _H_2 = _R.C("CoreConst").Type.Pet
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)

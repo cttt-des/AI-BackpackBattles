@@ -30,7 +30,7 @@ class Exclusive__Generator(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def doCooldownEffect(self):
-		if self.useStamina() == _R.C("CoreConst").StaminaResult.Sufficient:
+		if self.useStamina() == _H_1:
 			self.emitCharge()
 			self.ctx.bus.emitSignal(self, "charge_emitted", [self])
 
@@ -49,7 +49,7 @@ class Exclusive__Generator(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def getTriggerPriority(self):
-		return _R.C("CoreConst").Priority.High + 5
+		return _H_2 + 5
 
 	def _readyInit(self):
 		super()._readyInit()
@@ -59,3 +59,14 @@ class Exclusive__Generator(_R.C("res://gd_core_items/Item.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/Generator.gd", Exclusive__Generator)
 _R.reg("Generator", Exclusive__Generator)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").StaminaResult.Sufficient
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+try:
+    _H_2 = _R.C("CoreConst").Priority.High
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)

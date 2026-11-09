@@ -21,7 +21,7 @@ class Exclusive__DragonskinBoots(_R.C("res://gd_core_items/Item.gd")):
 		self.hasActivated = False
 		self.connectForCombat(self.character(), "battle_rage_started", "onBattleRageStarted")
 
-		self.character().changeResistChance(_R.C("CoreConst").EventType.Cold, self.getChance())
+		self.character().changeResistChance(_H_1, self.getChance())
 
 
 	def onBattleRageStarted(self, event):
@@ -36,3 +36,10 @@ class Exclusive__DragonskinBoots(_R.C("res://gd_core_items/Item.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/DragonskinBoots.gd", Exclusive__DragonskinBoots)
 _R.reg("DragonskinBoots", Exclusive__DragonskinBoots)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").EventType.Cold
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)

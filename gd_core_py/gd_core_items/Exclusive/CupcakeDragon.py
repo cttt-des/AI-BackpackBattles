@@ -22,7 +22,7 @@ class Exclusive__CupcakeDragon(_R.C("res://gd_core_items/Weapon.gd")):
 	def onPreDealDamage_early(self, damageRes):
 		if damageRes.hasHit():
 			buffsLeft = self.buffRemoval
-			ownMostBuffs = self.getMostStacks(self.character(), _R.C("CoreConst").getBuffs())
+			ownMostBuffs = self.getMostStacks(self.character(), _H_2.getBuffs())
 			self.ctx.rng.shuffleEngine(ownMostBuffs, 'Exclusive/CupcakeDragon.gd:11')
 			for buffType in _iter(ownMostBuffs):
 				cur = self.opponent().getStacks(buffType)
@@ -32,13 +32,13 @@ class Exclusive__CupcakeDragon(_R.C("res://gd_core_items/Weapon.gd")):
 				if buffsLeft == 0:
 					break
 
-			oppoMostBuffs = self.getMostStacks(self.opponent(), _R.C("CoreConst").getBuffs())
+			oppoMostBuffs = self.getMostStacks(self.opponent(), _H_2.getBuffs())
 			self.giveStacks(self.character(), self.ctx.util.pickRandomElement(oppoMostBuffs), 
 				self.buffGain)
 
 
 	def canAffect(self, item):
-		return item.hasType(_R.C("CoreConst").Type.Food)
+		return item.hasType(_H_1)
 
 
 	def onPrepare(self):
@@ -53,3 +53,11 @@ class Exclusive__CupcakeDragon(_R.C("res://gd_core_items/Weapon.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/CupcakeDragon.gd", Exclusive__CupcakeDragon)
 _R.reg("CupcakeDragon", Exclusive__CupcakeDragon)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").Type.Food
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+_H_2 = _R.C("CoreConst")

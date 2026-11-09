@@ -21,7 +21,7 @@ class Exclusive__AmuletofAlchemy(_R.C("res://gd_core_items/Item.gd")):
 	amuletColor = Color(0.266667, 0.309804, 0.960784)
 
 	def canAffect(self, item):
-		return item.hasType(_R.C("CoreConst").Type.Potion)
+		return item.hasType(_H_1)
 
 
 	def onPrepare(self):
@@ -61,3 +61,10 @@ class Exclusive__AmuletofAlchemy(_R.C("res://gd_core_items/Item.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/AmuletofAlchemy.gd", Exclusive__AmuletofAlchemy)
 _R.reg("AmuletofAlchemy", Exclusive__AmuletofAlchemy)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").Type.Potion
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)

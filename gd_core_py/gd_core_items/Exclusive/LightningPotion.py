@@ -19,7 +19,7 @@ class Exclusive__LightningPotion(_R.C("res://gd_core_items/Potion.gd")):
 
 
 	def canAffect_secondary(self, item):
-		return item.hasType(_R.C("CoreConst").Type.Holy)
+		return item.hasType(_H_1)
 
 
 	def onTriggerPotion(self, triggerEvent=None):
@@ -27,10 +27,10 @@ class Exclusive__LightningPotion(_R.C("res://gd_core_items/Potion.gd")):
 		res = self.dealEffectDamage(dam)
 
 
-		self.giveStacksTemporary(self.opponent(), _R.C("CoreConst").EventType.Blind, 
+		self.giveStacksTemporary(self.opponent(), _H_2, 
 			self.blind, self.getP_m("dur_blind"), triggerEvent)
 
-		self.heal(self.getP_m("heal") * self.getNumAffectedItems(_R.C("CoreConst").Affected.Secondary))
+		self.heal(self.getP_m("heal") * self.getNumAffectedItems(_H_4))
 
 
 	def onPrepare(self):
@@ -55,9 +55,25 @@ class Exclusive__LightningPotion(_R.C("res://gd_core_items/Potion.gd")):
 	def _readyInit(self):
 		super()._readyInit()
 		self.blind = int(self.getP("blind"))
-		self.damageSource = _R.C("CoreDamageSource")().setItem(self)
+		self.damageSource = _H_3().setItem(self)
 
 
 
 _R.reg("res://gd_core_items/Exclusive/LightningPotion.gd", Exclusive__LightningPotion)
 _R.reg("LightningPotion", Exclusive__LightningPotion)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").Type.Holy
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+try:
+    _H_2 = _R.C("CoreConst").EventType.Blind
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)
+_H_3 = _R.C("CoreDamageSource")
+try:
+    _H_4 = _R.C("CoreConst").Affected.Secondary
+except AttributeError as _he:
+    _H_4 = _HoistPending(_he)

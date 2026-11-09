@@ -50,7 +50,7 @@ class PoisonBow_2(_R.C("res://gd_core_items/Bow.gd")):
 
 
 	def doCooldownEffect(self):
-		if self.useStamina() == _R.C("CoreConst").StaminaResult.Sufficient:
+		if self.useStamina() == _H_1:
 
 			poisonStacks = _div(self.damageAcc, self.damagePerPoison)
 			poisonEvent = self.inflictPoison(poisonStacks)
@@ -82,3 +82,10 @@ class PoisonBow_2(_R.C("res://gd_core_items/Bow.gd")):
 
 _R.reg("res://gd_core_items/PoisonBow.gd", PoisonBow_2)
 _R.reg("PoisonBow", PoisonBow_2)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").StaminaResult.Sufficient
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)

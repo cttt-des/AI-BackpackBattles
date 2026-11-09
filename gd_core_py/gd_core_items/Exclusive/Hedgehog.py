@@ -55,16 +55,24 @@ class Exclusive__Hedgehog(_R.C("res://gd_core_items/Exclusive/ForestFriend.gd"))
 
 
 	def getTriggerPriority(self):
-		return _R.C("CoreConst").Priority.High + 3
+		return _H_1 + 3
 
 	def _readyInit(self):
 		super()._readyInit()
 		self.spikes = int(self.getP("spikes"))
 		self.damagePerSpike = self.getP("dam_spikes")
 		self.healthThreshold = _div(self.getP('healtht'), 100.0) - 0.0001
-		self.damageSource = _R.C("CoreDamageSource")().setItem(self)
+		self.damageSource = _H_2().setItem(self)
 
 
 
 _R.reg("res://gd_core_items/Exclusive/Hedgehog.gd", Exclusive__Hedgehog)
 _R.reg("Hedgehog", Exclusive__Hedgehog)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").Priority.High
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+_H_2 = _R.C("CoreDamageSource")

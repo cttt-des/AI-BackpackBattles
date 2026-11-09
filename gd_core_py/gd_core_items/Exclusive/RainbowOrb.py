@@ -19,26 +19,26 @@ class Exclusive__RainbowOrb(_R.C("res://gd_core_items/Item.gd")):
 
 	def canAffect(self, item):
 
-		return (item.hasType(_R.C("CoreConst").Type.Vampiric) or 
-				item.hasType(_R.C("CoreConst").Type.Magic) or 
-				item.hasType(_R.C("CoreConst").Type.Holy) or 
-				item.hasType(_R.C("CoreConst").Type.Dark))
+		return (item.hasType(_H_1) or 
+				item.hasType(_H_2) or 
+				item.hasType(_H_3) or 
+				item.hasType(_H_4))
 
 
 	def onCombatStart(self):
 		typesDict = self.countTypes(self.getAffectedItems())
 
-		if typesDict[_R.C("CoreConst").Type.Vampiric] > 0:
-			self.giveVampirism(typesDict[_R.C("CoreConst").Type.Vampiric] * self.getP("vampirism"))
+		if typesDict[_H_1] > 0:
+			self.giveVampirism(typesDict[_H_1] * self.getP("vampirism"))
 
-		if typesDict[_R.C("CoreConst").Type.Magic] > 0:
-			self.giveMana(typesDict[_R.C("CoreConst").Type.Magic] * self.getP("mana"))
+		if typesDict[_H_2] > 0:
+			self.giveMana(typesDict[_H_2] * self.getP("mana"))
 
-		if typesDict[_R.C("CoreConst").Type.Holy] > 0:
-			self.character().addHealingEfficiency(_div(typesDict[_R.C('CoreConst').Type.Holy] * self.getP('healamp'), 100.0))
+		if typesDict[_H_3] > 0:
+			self.character().addHealingEfficiency(_div(typesDict[_H_5] * self.getP('healamp'), 100.0))
 
-		if typesDict[_R.C("CoreConst").Type.Dark] > 0:
-			self.inflictRandomDebuffs(typesDict[_R.C("CoreConst").Type.Dark] * self.getP("debuffs"))
+		if typesDict[_H_4] > 0:
+			self.inflictRandomDebuffs(typesDict[_H_4] * self.getP("debuffs"))
 
 		self.activate()
 
@@ -59,10 +59,10 @@ class Exclusive__RainbowOrb(_R.C("res://gd_core_items/Item.gd")):
 
 		typesDict = self.countTypes(self.getAffectedItems())
 
-		descr = self.insertCounter(descr, "n_magic", typesDict[_R.C("CoreConst").Type.Magic])
-		descr = self.insertCounter(descr, "n_vampiric", typesDict[_R.C("CoreConst").Type.Vampiric])
-		descr = self.insertCounter(descr, "n_holy", typesDict[_R.C("CoreConst").Type.Holy])
-		descr = self.insertCounter(descr, "n_dark", typesDict[_R.C("CoreConst").Type.Dark])
+		descr = self.insertCounter(descr, "n_magic", typesDict[_H_2])
+		descr = self.insertCounter(descr, "n_vampiric", typesDict[_H_1])
+		descr = self.insertCounter(descr, "n_holy", typesDict[_H_3])
+		descr = self.insertCounter(descr, "n_dark", typesDict[_H_4])
 
 		return descr
 
@@ -74,3 +74,26 @@ class Exclusive__RainbowOrb(_R.C("res://gd_core_items/Item.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/RainbowOrb.gd", Exclusive__RainbowOrb)
 _R.reg("RainbowOrb", Exclusive__RainbowOrb)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").Type.Vampiric
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+try:
+    _H_2 = _R.C("CoreConst").Type.Magic
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)
+try:
+    _H_3 = _R.C("CoreConst").Type.Holy
+except AttributeError as _he:
+    _H_3 = _HoistPending(_he)
+try:
+    _H_4 = _R.C("CoreConst").Type.Dark
+except AttributeError as _he:
+    _H_4 = _HoistPending(_he)
+try:
+    _H_5 = _R.C('CoreConst').Type.Holy
+except AttributeError as _he:
+    _H_5 = _HoistPending(_he)

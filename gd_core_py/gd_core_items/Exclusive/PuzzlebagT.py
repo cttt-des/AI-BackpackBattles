@@ -27,7 +27,7 @@ class Exclusive__PuzzlebagT(_R.C("res://gd_core_items/Bag.gd")):
 		self.affectedInside = self.getAffectedItemsInside()
 		if not (not self.affectedInside):
 			self.connectToCharacterBuffs("onBuffChanged")
-			for buff in _iter(_R.C("CoreConst").getBuffs()):
+			for buff in _iter(_H_1.getBuffs()):
 				self.usedStacks[buff] = 0.0
 
 
@@ -57,3 +57,7 @@ class Exclusive__PuzzlebagT(_R.C("res://gd_core_items/Bag.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/PuzzlebagT.gd", Exclusive__PuzzlebagT)
 _R.reg("PuzzlebagT", Exclusive__PuzzlebagT)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+_H_1 = _R.C("CoreConst")

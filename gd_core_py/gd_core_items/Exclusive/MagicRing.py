@@ -28,14 +28,14 @@ class RingEffect(GodotObject):
 		self._stackType = int(v)
 
 	def pushEncoded(self, bitStream):
-		normalizedStack = self.stackType - _R.C("CoreConst").EventType.Lucky
+		normalizedStack = self.stackType - _H_2
 		bitStream.push(self.triggerType, len(TriggerType))
 		bitStream.push(normalizedStack, 16)
 
 
 	def setFromEncoded(self, bitStream):
 		self.triggerType = bitStream.pull(len(TriggerType))
-		self.stackType = bitStream.pull(16) + _R.C("CoreConst").EventType.Lucky
+		self.stackType = bitStream.pull(16) + _H_2
 
 
 
@@ -51,8 +51,8 @@ class Exclusive__MagicRing(_R.C("res://gd_core_items/Item.gd")):
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.stackToTypes = { _R.C("CoreConst").EventType.Lucky: _R.C("CoreConst").Type.Nature, _R.C("CoreConst").EventType.Spikes: _R.C("CoreConst").Type.Nature, _R.C("CoreConst").EventType.Regeneration: _R.C("CoreConst").Type.Holy, _R.C("CoreConst").EventType.Heat: _R.C("CoreConst").Type.Fire, _R.C("CoreConst").EventType.Vampirism: _R.C("CoreConst").Type.Vampiric, _R.C("CoreConst").EventType.Empower: _R.C("CoreConst").Type.Holy, _R.C("CoreConst").EventType.Mana: _R.C("CoreConst").Type.Magic, _R.C("CoreConst").EventType.Blind: _R.C("CoreConst").Type.Dark, _R.C("CoreConst").EventType.Cold: _R.C("CoreConst").Type.Ice, _R.C("CoreConst").EventType.Poison: _R.C("CoreConst").Type.Nature, }
-		self.stackToColor = { _R.C("CoreConst").EventType.Lucky: Color(0.329826, 1, 0.263672), _R.C("CoreConst").EventType.Spikes: Color(0.700867, 1, 0.263672), _R.C("CoreConst").EventType.Regeneration: Color(1, 0.388672, 0.696724), _R.C("CoreConst").EventType.Heat: Color(1.1, 0.44, 0.24), _R.C("CoreConst").EventType.Vampirism: Color(0.900391, 0.04924, 0.04924), _R.C("CoreConst").EventType.Empower: Color(0.955078, 0.665003, 0.341366), _R.C("CoreConst").EventType.Mana: Color(0.257812, 0.330292, 1), _R.C("CoreConst").EventType.Blind: Color(0.569776, 0.196078, 1), _R.C("CoreConst").EventType.Cold: Color(0.196078, 0.952895, 1), _R.C("CoreConst").EventType.Poison: Color(0.008865, 0.648438, 0.176254) }
+		self.stackToTypes = { _H_2: _H_12, _H_3: _H_12, _H_4: _H_13, _H_5: _H_14, _H_6: _H_15, _H_7: _H_13, _H_8: _H_16, _H_9: _H_17, _H_10: _H_18, _H_11: _H_12, }
+		self.stackToColor = { _H_2: Color(0.329826, 1, 0.263672), _H_3: Color(0.700867, 1, 0.263672), _H_4: Color(1, 0.388672, 0.696724), _H_5: Color(1.1, 0.44, 0.24), _H_6: Color(0.900391, 0.04924, 0.04924), _H_7: Color(0.955078, 0.665003, 0.341366), _H_8: Color(0.257812, 0.330292, 1), _H_9: Color(0.569776, 0.196078, 1), _H_10: Color(0.196078, 0.952895, 1), _H_11: Color(0.008865, 0.648438, 0.176254) }
 		self.effects = []
 		self.effectDict = {}
 		self._gainedStacks = 0
@@ -132,7 +132,7 @@ class Exclusive__MagicRing(_R.C("res://gd_core_items/Item.gd")):
 
 	def giveStacksFromEffect(self, effect, triggerEvent=None):
 		target = None
-		if _R.C("CoreConst").isBuff(effect.stackType):
+		if _H_1.isBuff(effect.stackType):
 			target = self.character()
 		else:
 			target = self.opponent()
@@ -160,7 +160,7 @@ class Exclusive__MagicRing(_R.C("res://gd_core_items/Item.gd")):
 			for effect in _iter(self.effects):
 				self.ctx.util.dictAppend(self.effectDict, effect.triggerType, effect)
 
-				self.gainedStacks |= 2 << (effect.stackType - _R.C("CoreConst").EventType.Lucky)
+				self.gainedStacks |= 2 << (effect.stackType - _H_2)
 
 				newType = self.stackToTypes[effect.stackType]
 				if not newType in self.ringTypes:
@@ -191,11 +191,11 @@ class Exclusive__MagicRing(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def gainsBuffs(self):
-		return self.gainedStacks & _R.C("CoreConst").Stack.Buff
+		return self.gainedStacks & _H_19
 
 
 	def inflictsDebuffs(self):
-		return self.gainedStacks & _R.C("CoreConst").Stack.Debuff
+		return self.gainedStacks & _H_20
 
 
 	def getTextEffect(self):
@@ -209,8 +209,8 @@ class Exclusive__MagicRing(_R.C("res://gd_core_items/Item.gd")):
 			effect = RingEffect()
 			self.effects.append(effect)
 			effect.triggerType = self.ctx.rng.randi_range(0, 3)
-			effect.stackType = self.ctx.rng.randi_range(_R.C("CoreConst").EventType.Lucky, 
-				_R.C("CoreConst").EventType.Cold)
+			effect.stackType = self.ctx.rng.randi_range(_H_2, 
+				_H_10)
 
 
 		self.sortEffects()
@@ -245,11 +245,11 @@ class Exclusive__MagicRing(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def isOnlyForDisplay(self):
-		return (self.ownerType == _R.C("CoreConst").Owner.ItemLibrary or 
-			self.ownerType == _R.C("CoreConst").Owner.InfoPanelIcon or 
-			self.ownerType == _R.C("CoreConst").Owner.Tooltip or 
-			self.ownerType == _R.C("CoreConst").Owner.RecipeBook or 
-			self.ownerType == _R.C("CoreConst").Owner.BuildViewerIcon)
+		return (self.ownerType == _H_21 or 
+			self.ownerType == _H_22 or 
+			self.ownerType == _H_23 or 
+			self.ownerType == _H_24 or 
+			self.ownerType == _H_25)
 
 
 	def getDescription(self, wrapInColor=True):
@@ -320,7 +320,7 @@ class Exclusive__MagicRing(_R.C("res://gd_core_items/Item.gd")):
 			for i in _iter(self.numEffects):
 				pass
 
-		if self.ownerType == _R.C("CoreConst").Owner.ItemLibrary:
+		if self.ownerType == _H_21:
 			pass
 		else:
 
@@ -333,3 +333,103 @@ Exclusive__MagicRing.RingEffect = RingEffect
 
 _R.reg("res://gd_core_items/Exclusive/MagicRing.gd", Exclusive__MagicRing)
 _R.reg("MagicRing", Exclusive__MagicRing)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+_H_1 = _R.C("CoreConst")
+try:
+    _H_10 = _R.C("CoreConst").EventType.Cold
+except AttributeError as _he:
+    _H_10 = _HoistPending(_he)
+try:
+    _H_11 = _R.C("CoreConst").EventType.Poison
+except AttributeError as _he:
+    _H_11 = _HoistPending(_he)
+try:
+    _H_12 = _R.C("CoreConst").Type.Nature
+except AttributeError as _he:
+    _H_12 = _HoistPending(_he)
+try:
+    _H_13 = _R.C("CoreConst").Type.Holy
+except AttributeError as _he:
+    _H_13 = _HoistPending(_he)
+try:
+    _H_14 = _R.C("CoreConst").Type.Fire
+except AttributeError as _he:
+    _H_14 = _HoistPending(_he)
+try:
+    _H_15 = _R.C("CoreConst").Type.Vampiric
+except AttributeError as _he:
+    _H_15 = _HoistPending(_he)
+try:
+    _H_16 = _R.C("CoreConst").Type.Magic
+except AttributeError as _he:
+    _H_16 = _HoistPending(_he)
+try:
+    _H_17 = _R.C("CoreConst").Type.Dark
+except AttributeError as _he:
+    _H_17 = _HoistPending(_he)
+try:
+    _H_18 = _R.C("CoreConst").Type.Ice
+except AttributeError as _he:
+    _H_18 = _HoistPending(_he)
+try:
+    _H_19 = _R.C("CoreConst").Stack.Buff
+except AttributeError as _he:
+    _H_19 = _HoistPending(_he)
+try:
+    _H_2 = _R.C("CoreConst").EventType.Lucky
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)
+try:
+    _H_20 = _R.C("CoreConst").Stack.Debuff
+except AttributeError as _he:
+    _H_20 = _HoistPending(_he)
+try:
+    _H_21 = _R.C("CoreConst").Owner.ItemLibrary
+except AttributeError as _he:
+    _H_21 = _HoistPending(_he)
+try:
+    _H_22 = _R.C("CoreConst").Owner.InfoPanelIcon
+except AttributeError as _he:
+    _H_22 = _HoistPending(_he)
+try:
+    _H_23 = _R.C("CoreConst").Owner.Tooltip
+except AttributeError as _he:
+    _H_23 = _HoistPending(_he)
+try:
+    _H_24 = _R.C("CoreConst").Owner.RecipeBook
+except AttributeError as _he:
+    _H_24 = _HoistPending(_he)
+try:
+    _H_25 = _R.C("CoreConst").Owner.BuildViewerIcon
+except AttributeError as _he:
+    _H_25 = _HoistPending(_he)
+try:
+    _H_3 = _R.C("CoreConst").EventType.Spikes
+except AttributeError as _he:
+    _H_3 = _HoistPending(_he)
+try:
+    _H_4 = _R.C("CoreConst").EventType.Regeneration
+except AttributeError as _he:
+    _H_4 = _HoistPending(_he)
+try:
+    _H_5 = _R.C("CoreConst").EventType.Heat
+except AttributeError as _he:
+    _H_5 = _HoistPending(_he)
+try:
+    _H_6 = _R.C("CoreConst").EventType.Vampirism
+except AttributeError as _he:
+    _H_6 = _HoistPending(_he)
+try:
+    _H_7 = _R.C("CoreConst").EventType.Empower
+except AttributeError as _he:
+    _H_7 = _HoistPending(_he)
+try:
+    _H_8 = _R.C("CoreConst").EventType.Mana
+except AttributeError as _he:
+    _H_8 = _HoistPending(_he)
+try:
+    _H_9 = _R.C("CoreConst").EventType.Blind
+except AttributeError as _he:
+    _H_9 = _HoistPending(_he)

@@ -20,7 +20,7 @@ class Exclusive__BowlofTreats(_R.C("res://gd_core_items/Food.gd")):
 
 
 	def canAffect_global(self, item):
-		return item.hasType(_R.C("CoreConst").Type.Pet)
+		return item.hasType(_H_1)
 
 
 	def onPrepare(self):
@@ -45,14 +45,14 @@ class Exclusive__BowlofTreats(_R.C("res://gd_core_items/Food.gd")):
 	def getGatedDescriptor(self, rarity):
 		itemName = None
 
-		if rarity >= _R.C("CoreConst").Rarity.Legendary:
-			rarity = self.ctx.util.pickRandomElement([_R.C("CoreConst").Rarity.Common, _R.C("CoreConst").Rarity.Rare, _R.C("CoreConst").Rarity.Epic])
+		if rarity >= _H_2:
+			rarity = self.ctx.util.pickRandomElement([_H_3, _H_4, _H_5])
 
-		if rarity == _R.C("CoreConst").Rarity.Common:
+		if rarity == _H_3:
 				itemName = "Rat"
-		elif rarity == _R.C("CoreConst").Rarity.Rare:
+		elif rarity == _H_4:
 				itemName = "Squirrel"
-		elif rarity == _R.C("CoreConst").Rarity.Epic:
+		elif rarity == _H_5:
 				itemName = "Hedgehog"
 
 		return self.ctx.item_book.getDescriptor(itemName)
@@ -65,3 +65,26 @@ class Exclusive__BowlofTreats(_R.C("res://gd_core_items/Food.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/BowlofTreats.gd", Exclusive__BowlofTreats)
 _R.reg("BowlofTreats", Exclusive__BowlofTreats)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").Type.Pet
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+try:
+    _H_2 = _R.C("CoreConst").Rarity.Legendary
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)
+try:
+    _H_3 = _R.C("CoreConst").Rarity.Common
+except AttributeError as _he:
+    _H_3 = _HoistPending(_he)
+try:
+    _H_4 = _R.C("CoreConst").Rarity.Rare
+except AttributeError as _he:
+    _H_4 = _HoistPending(_he)
+try:
+    _H_5 = _R.C("CoreConst").Rarity.Epic
+except AttributeError as _he:
+    _H_5 = _HoistPending(_he)

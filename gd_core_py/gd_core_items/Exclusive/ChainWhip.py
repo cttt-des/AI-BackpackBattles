@@ -24,7 +24,7 @@ class Exclusive__ChainWhip(_R.C("res://gd_core_items/Weapon.gd")):
 
 	def onOpponentBuffsChanged(self, amount, event):
 		if amount < 0:
-			if isinstance(event.getOrigin(), _R.C("Item")) and event.getOrigin().character() == self.character():
+			if isinstance(event.getOrigin(), _H_1) and event.getOrigin().character() == self.character():
 				self.buffsPurged += - amount
 				self.addBonusDamage( - amount * self.getP3())
 
@@ -42,3 +42,7 @@ class Exclusive__ChainWhip(_R.C("res://gd_core_items/Weapon.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/ChainWhip.gd", Exclusive__ChainWhip)
 _R.reg("ChainWhip", Exclusive__ChainWhip)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+_H_1 = _R.C("Item")

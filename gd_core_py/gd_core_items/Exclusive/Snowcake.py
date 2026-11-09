@@ -32,9 +32,13 @@ class Exclusive__Snowcake(_R.C("res://gd_core_items/Food.gd")):
 		self.cold = int(self.getP("cold"))
 		self.coldNeeded = int(self.getP("coldt"))
 		self.effectDam = _div(self.getP('damfactor'), 100.0)
-		self.damageSource = _R.C("CoreDamageSource")().setItem(self)
+		self.damageSource = _H_1().setItem(self)
 
 
 
 _R.reg("res://gd_core_items/Exclusive/Snowcake.gd", Exclusive__Snowcake)
 _R.reg("Snowcake", Exclusive__Snowcake)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+_H_1 = _R.C("CoreDamageSource")

@@ -83,10 +83,18 @@ class Exclusive__SunShield(_R.C("res://gd_core_items/Shield.gd")):
 		super()._readyInit()
 		self.damagePerTick = self.getP4()
 		self.blockPerTick = self.getP3()
-		self.damageSource = _R.C("CoreDamageSource")().setItem(self)
-		self.damageSource.unsetFlag(_R.C("CoreDamageSource").Flags.CanCrit)
+		self.damageSource = _H_1().setItem(self)
+		self.damageSource.unsetFlag(_H_2)
 
 
 
 _R.reg("res://gd_core_items/Exclusive/SunShield.gd", Exclusive__SunShield)
 _R.reg("SunShield", Exclusive__SunShield)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+_H_1 = _R.C("CoreDamageSource")
+try:
+    _H_2 = _R.C("CoreDamageSource").Flags.CanCrit
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)

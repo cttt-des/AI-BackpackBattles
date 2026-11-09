@@ -31,7 +31,7 @@ class Exclusive__MoltenGreatsword(_R.C("res://gd_core_items/Greatsword.gd")):
 
 	def getTypeMultiplicity(self, type):
 		type = int(type)
-		if type == _R.C("CoreConst").Type.Fire:
+		if type == _H_1:
 			return self.fireMultiplicity
 		else:
 			return super().getTypeMultiplicity(type)
@@ -45,3 +45,10 @@ class Exclusive__MoltenGreatsword(_R.C("res://gd_core_items/Greatsword.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/MoltenGreatsword.gd", Exclusive__MoltenGreatsword)
 _R.reg("MoltenGreatsword", Exclusive__MoltenGreatsword)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").Type.Fire
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)

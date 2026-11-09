@@ -87,7 +87,7 @@ class Item(_R.C("res://gd_core/CoreItem.gd")):
 
 	def _init_fields(self):
 		super()._init_fields()
-		self.numStackChangeTypes = len(_R.C("CoreConst").StackChangeType)
+		self.numStackChangeTypes = len(_H_1)
 		self.spriteScale = None
 		self.hasSquishySprite = False
 		self.specificDragParticles = []
@@ -156,7 +156,7 @@ class Item(_R.C("res://gd_core/CoreItem.gd")):
 		self.defaultColor = Color.white
 		self.buildIntoRecipesTooltip = None
 		self.owningBuildIntoRecipesTooltip = None
-		self.ownerTypesWithBuildTooltip = { _R.C("CoreConst").Owner.BuildViewer: True, _R.C("CoreConst").Owner.PlayerStorageBox: True, _R.C("CoreConst").Owner.PlayerInventory: True, _R.C("CoreConst").Owner.Opponent: True, _R.C("CoreConst").Owner.GridStorage: True }
+		self.ownerTypesWithBuildTooltip = { _H_5: True, _H_6: True, _H_7: True, _H_8: True, _H_9: True }
 		self.shaderTween = None
 		self.canCancelShaderTween = True
 		self.nonRotatedProgress = 0.0
@@ -277,12 +277,12 @@ class Item(_R.C("res://gd_core/CoreItem.gd")):
 
 	@staticmethod
 	def getNumTooltipStats():
-		return len(_R.C("CoreConst").ItemStat)
+		return len(_H_2)
 
 
 	@staticmethod
 	def getNumStackChangeTypes():
-		return len(_R.C("CoreConst").StackChangeType)
+		return len(_H_1)
 
 
 
@@ -301,7 +301,7 @@ class Item(_R.C("res://gd_core/CoreItem.gd")):
 		pass
 
 	def getShadowOffset(self):
-		if self.ownerType == _R.C("CoreConst").Owner.Shop:
+		if self.ownerType == _H_10:
 			return self.shadowOffset_shop
 		else:
 			return self.shadowOffset_dropped
@@ -396,12 +396,12 @@ class Item(_R.C("res://gd_core/CoreItem.gd")):
 		descr = self.insertParameter(descr, "cd", self.getModifiedCooldown(), self.isCooldownModified(), True, wrapInColor)
 		descr = self.insertParameter(descr, "chance2", self.getChance2(), self.isChance2Modified(), True, wrapInColor)
 		descr = self.insertParameter(descr, "chance", self.getChance(), self.isChance1Modified(), True, wrapInColor)
-		descr = self.insertParameter(descr, "shopchance", self.getShopChance(), _R.C("CoreConst").StatModified.No, True, wrapInColor)
+		descr = self.insertParameter(descr, "shopchance", self.getShopChance(), _H_11, True, wrapInColor)
 		descr = self.insertParameter(descr, "stamina", self.getStaminaCost(), self.isStaminaModified(), True, wrapInColor)
 		for i in _iter(len(self.descriptor.params)):
-			descr = self.insertParameter(descr, "p" + String(i + 1), self.getP(i), _R.C("CoreConst").StatModified.No, True, wrapInColor)
+			descr = self.insertParameter(descr, "p" + String(i + 1), self.getP(i), _H_11, True, wrapInColor)
 		for paramName in _iter(self.descriptor.sortedParamNames):
-			descr = self.insertParameter(descr, "p_" + paramName, self.getP(paramName), _R.C("CoreConst").StatModified.No, True, wrapInColor)
+			descr = self.insertParameter(descr, "p_" + paramName, self.getP(paramName), _H_11, True, wrapInColor)
 
 		if wrapInColor:
 			descr = descr.replace("$block", self.ctx.util.wrapInColor_fixed(String(self.getBlock()), self.ctx.util.paramColor))
@@ -412,7 +412,7 @@ class Item(_R.C("res://gd_core/CoreItem.gd")):
 
 	def insertParameter(self, descr, paramName, value, modified=GD_DEFAULT, checkZero=True, wrapInColor=True):
 		if modified is GD_DEFAULT:
-			modified = _R.C("CoreConst").StatModified.No
+			modified = _H_11
 		value = stepify(value, 0.01)
 		if value != 0 or not checkZero:
 			replacedString = "$" + paramName
@@ -524,13 +524,13 @@ class Item(_R.C("res://gd_core/CoreItem.gd")):
 
 		if sum > 1:
 			pass
-		elif newItemIsAffected[_R.C("CoreConst").Affected.Primary]:
+		elif newItemIsAffected[_H_13]:
 			pass
-		elif newItemIsAffected[_R.C("CoreConst").Affected.Secondary]:
+		elif newItemIsAffected[_H_19]:
 			pass
-		elif newItemIsAffected[_R.C("CoreConst").Affected.Tertiary]:
+		elif newItemIsAffected[_H_20]:
 			pass
-		elif newItemIsAffected[_R.C("CoreConst").Affected.Lightning]:
+		elif newItemIsAffected[_H_22]:
 			pass
 
 
@@ -544,7 +544,7 @@ class Item(_R.C("res://gd_core/CoreItem.gd")):
 
 
 	def liesInStorage(self):
-		return self.ownerType == _R.C("CoreConst").Owner.PlayerStorageBox and not self.dragged
+		return self.ownerType == _H_6 and not self.dragged
 
 
 	def pushToStorage(self, targetPos=None):
@@ -656,9 +656,9 @@ class Item(_R.C("res://gd_core/CoreItem.gd")):
 			return
 
 
-		if (self.ownerType == _R.C("CoreConst").Owner.PlayerInventory or 
-			self.ownerType == _R.C("CoreConst").Owner.Socket or 
-			self.ownerType == _R.C("CoreConst").Owner.Opponent):
+		if (self.ownerType == _H_7 or 
+			self.ownerType == _H_14 or 
+			self.ownerType == _H_8):
 			self.ctx.combat_log.highlightItem(self, False)
 
 
@@ -674,11 +674,11 @@ class Item(_R.C("res://gd_core/CoreItem.gd")):
 
 		effectiveOwner = self.getEffectiveOwnerType()
 
-		if self.ownerType == _R.C("CoreConst").Owner.Tooltip and self.owningBuildIntoRecipesTooltip != None:
+		if self.ownerType == _H_15 and self.owningBuildIntoRecipesTooltip != None:
 			if not self.canShowSubBuildIntoRecipesTooltip():
 				return False
-		elif not (self.ownerType == _R.C("CoreConst").Owner.Shop or 
-				self.ownerType == _R.C("CoreConst").Owner.ItemLibrary or 
+		elif not (self.ownerType == _H_10 or 
+				self.ownerType == _H_21 or 
 				effectiveOwner in self.ownerTypesWithBuildTooltip):
 			return False
 
@@ -867,9 +867,9 @@ class Item(_R.C("res://gd_core/CoreItem.gd")):
 		pass
 
 	def canBeSold(self):
-		return (self.ownerType == _R.C("CoreConst").Owner.PlayerInventory or 
-			self.ownerType == _R.C("CoreConst").Owner.PlayerStorageBox or 
-			self.ownerType == _R.C("CoreConst").Owner.Socket)
+		return (self.ownerType == _H_7 or 
+			self.ownerType == _H_6 or 
+			self.ownerType == _H_14)
 
 
 	def isPickingPossible(self):
@@ -950,13 +950,13 @@ class Item(_R.C("res://gd_core/CoreItem.gd")):
 
 	def getCraftingPriority(self):
 		if self.isGem():
-			return _R.C("CoreConst").CraftingPriority.Gem
+			return _H_12
 
 		for bonded in _iter(self.bondedIngredients):
 			if bonded.isGem():
-				return _R.C("CoreConst").CraftingPriority.Mixed
+				return _H_16
 
-		return _R.C("CoreConst").CraftingPriority.NonGem
+		return _H_3
 
 
 	def addToCraftingQueue(self):
@@ -996,7 +996,7 @@ class Item(_R.C("res://gd_core/CoreItem.gd")):
 
 
 	def getTypeDescription(self, type):
-		return self.ctx.util.tra("TYPE_" + list(_R.C("CoreConst").Type.keys())[type] + "_DESCR")
+		return self.ctx.util.tra("TYPE_" + list(_H_23.keys())[type] + "_DESCR")
 
 
 	def getTranslatedRarity(self):
@@ -1102,7 +1102,7 @@ class Item(_R.C("res://gd_core/CoreItem.gd")):
 		longScale = 1.0 + intensity
 		shortScale = _div(1.0, longScale)
 		scaling = None
-		if self.faceDirection == _R.C("CoreConst").FaceDirection.UP or self.faceDirection == _R.C("CoreConst").FaceDirection.DOWN:
+		if self.faceDirection == _H_17 or self.faceDirection == _H_18:
 			scaling = Vector2(shortScale, longScale)
 		else:
 			scaling = Vector2(longScale, shortScale)
@@ -1584,7 +1584,7 @@ class Item(_R.C("res://gd_core/CoreItem.gd")):
 
 
 	def getShopPriority(self):
-		return _R.C("CoreConst").Priority.Normal
+		return _H_4
 
 
 
@@ -1595,3 +1595,98 @@ Item.SignalConnection = SignalConnection
 _R.reg("res://gd_core/Item.gd", Item)
 _R.reg("Item", Item)
 _R.reg("Item", Item)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").StackChangeType
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+try:
+    _H_10 = _R.C("CoreConst").Owner.Shop
+except AttributeError as _he:
+    _H_10 = _HoistPending(_he)
+try:
+    _H_11 = _R.C("CoreConst").StatModified.No
+except AttributeError as _he:
+    _H_11 = _HoistPending(_he)
+try:
+    _H_12 = _R.C("CoreConst").CraftingPriority.Gem
+except AttributeError as _he:
+    _H_12 = _HoistPending(_he)
+try:
+    _H_13 = _R.C("CoreConst").Affected.Primary
+except AttributeError as _he:
+    _H_13 = _HoistPending(_he)
+try:
+    _H_14 = _R.C("CoreConst").Owner.Socket
+except AttributeError as _he:
+    _H_14 = _HoistPending(_he)
+try:
+    _H_15 = _R.C("CoreConst").Owner.Tooltip
+except AttributeError as _he:
+    _H_15 = _HoistPending(_he)
+try:
+    _H_16 = _R.C("CoreConst").CraftingPriority.Mixed
+except AttributeError as _he:
+    _H_16 = _HoistPending(_he)
+try:
+    _H_17 = _R.C("CoreConst").FaceDirection.UP
+except AttributeError as _he:
+    _H_17 = _HoistPending(_he)
+try:
+    _H_18 = _R.C("CoreConst").FaceDirection.DOWN
+except AttributeError as _he:
+    _H_18 = _HoistPending(_he)
+try:
+    _H_19 = _R.C("CoreConst").Affected.Secondary
+except AttributeError as _he:
+    _H_19 = _HoistPending(_he)
+try:
+    _H_2 = _R.C("CoreConst").ItemStat
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)
+try:
+    _H_20 = _R.C("CoreConst").Affected.Tertiary
+except AttributeError as _he:
+    _H_20 = _HoistPending(_he)
+try:
+    _H_21 = _R.C("CoreConst").Owner.ItemLibrary
+except AttributeError as _he:
+    _H_21 = _HoistPending(_he)
+try:
+    _H_22 = _R.C("CoreConst").Affected.Lightning
+except AttributeError as _he:
+    _H_22 = _HoistPending(_he)
+try:
+    _H_23 = _R.C("CoreConst").Type
+except AttributeError as _he:
+    _H_23 = _HoistPending(_he)
+try:
+    _H_3 = _R.C("CoreConst").CraftingPriority.NonGem
+except AttributeError as _he:
+    _H_3 = _HoistPending(_he)
+try:
+    _H_4 = _R.C("CoreConst").Priority.Normal
+except AttributeError as _he:
+    _H_4 = _HoistPending(_he)
+try:
+    _H_5 = _R.C("CoreConst").Owner.BuildViewer
+except AttributeError as _he:
+    _H_5 = _HoistPending(_he)
+try:
+    _H_6 = _R.C("CoreConst").Owner.PlayerStorageBox
+except AttributeError as _he:
+    _H_6 = _HoistPending(_he)
+try:
+    _H_7 = _R.C("CoreConst").Owner.PlayerInventory
+except AttributeError as _he:
+    _H_7 = _HoistPending(_he)
+try:
+    _H_8 = _R.C("CoreConst").Owner.Opponent
+except AttributeError as _he:
+    _H_8 = _HoistPending(_he)
+try:
+    _H_9 = _R.C("CoreConst").Owner.GridStorage
+except AttributeError as _he:
+    _H_9 = _HoistPending(_he)

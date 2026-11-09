@@ -27,7 +27,7 @@ class Greatsword_2(_R.C("res://gd_core_items/Weapon.gd")):
 
 
 	def getStaminaCost(self):
-		override = self.statDisplayOverrides[_R.C("CoreConst").ItemStat.StaminaCost]
+		override = self.statDisplayOverrides[_H_1]
 		if override:
 			return override
 
@@ -46,12 +46,12 @@ class Greatsword_2(_R.C("res://gd_core_items/Weapon.gd")):
 		if not self.buffed and self.character().getEmpower() >= self.empowerNeeded:
 			self.setState(True)
 			self.setBaseCooldown(self.buffedCooldown)
-			self.ctx.combat_log.snapshotItemTooltipStat(self, _R.C("CoreConst").ItemStat.StaminaCost)
+			self.ctx.combat_log.snapshotItemTooltipStat(self, _H_1)
 
 		elif self.buffed and self.character().getEmpower() < self.empowerNeeded:
 			self.setState(False)
 			self.resetBaseCooldown()
-			self.ctx.combat_log.snapshotItemTooltipStat(self, _R.C("CoreConst").ItemStat.StaminaCost)
+			self.ctx.combat_log.snapshotItemTooltipStat(self, _H_1)
 
 
 	def onShopEntered(self):
@@ -75,3 +75,10 @@ class Greatsword_2(_R.C("res://gd_core_items/Weapon.gd")):
 
 _R.reg("res://gd_core_items/Greatsword.gd", Greatsword_2)
 _R.reg("Greatsword", Greatsword_2)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").ItemStat.StaminaCost
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)

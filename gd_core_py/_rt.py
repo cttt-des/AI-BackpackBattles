@@ -81,7 +81,7 @@ __all__ = [
     # ── ③ 对象模型 ──
     "GodotObject", "Reference", "Object", "Node", "Node2D", "Resource",
     "Signal", "FuncRef", "EnumDict", "Vector2", "Vector3", "Color",
-    "GD_DEFAULT",
+    "GD_DEFAULT", "_HoistPending",
     # ── ④ RNG ──
     "RandomNumberGenerator", "PCG32",
 ]
@@ -319,6 +319,49 @@ class _GdDefault:
 
 
 GD_DEFAULT = _GdDefault()
+
+
+class _HoistPending:
+    """S3-C4 提升位的「首用即抛」哨兵。
+
+    背景：生成器的类引用提升（tools/gd_to_py.py::_hoist_classrefs）把
+    `_R.C(x).a.b` 绑定挪到模块末。个别被提升的属性链在 GDScript 源里本就是
+    **从不被调用的死路径**（如 gd_core/Item.gd:1064 引用 CoreConst 上不存在
+    的 CraftingPriority——该枚举实际定义在 Item.gd:82；原位求值=调用时
+    AttributeError，gd/py 双腿同构）。绑定挪到导入期会让死路径在导入时炸。
+    故属性链提升一律 try/except：失败即绑定本哨兵，首次真实使用在同调用点
+    抛出同型异常——与原位求值错误时机对齐。
+    """
+    __slots__ = ("_e",)
+
+    def __init__(self, e):
+        object.__setattr__(self, "_e", e)
+
+    def _throw(self):
+        raise self._e
+
+    __call__ = _throw
+
+    def __getattr__(self, k):
+        self._throw()
+
+    def __eq__(self, o):
+        self._throw()
+
+    def __ne__(self, o):
+        self._throw()
+
+    def __hash__(self):
+        self._throw()
+
+    def __bool__(self):
+        self._throw()
+
+    def __str__(self):
+        self._throw()
+
+    def __repr__(self):
+        return "<_HoistPending %r>" % (self._e,)
 """默认参数「延迟求值」哨兵。
 
 ★ 为什么需要：GDScript 的默认参数在**每次调用时**求值，所以

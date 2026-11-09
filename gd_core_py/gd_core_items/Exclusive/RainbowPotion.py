@@ -29,11 +29,11 @@ class Exclusive__RainbowPotion(_R.C("res://gd_core_items/Potion.gd")):
 		self._usedBuffs = int(v)
 
 	def canAffect_global(self, item):
-		return item.hasType(_R.C("CoreConst").Type.Potion) and item != self
+		return item.hasType(_H_7) and item != self
 
 
 	def getAffectedCellsAfterRotate_primary(self, rotatedCells):
-		if self.faceDirection == _R.C("CoreConst").FaceDirection.LEFT:
+		if self.faceDirection == _H_1:
 			return [rotatedCells[1] + Vector2.UP]
 		else:
 			return [rotatedCells[0] + Vector2.UP]
@@ -41,16 +41,16 @@ class Exclusive__RainbowPotion(_R.C("res://gd_core_items/Potion.gd")):
 
 	def isAffectingDistinct(self, color=GD_DEFAULT):
 		if color is GD_DEFAULT:
-			color = _R.C("CoreConst").Affected.Primary
-		return color == _R.C("CoreConst").Affected.Secondary or color == _R.C("CoreConst").Affected.Tertiary
+			color = _H_2
+		return color == _H_5 or color == _H_6
 
 
 	def canAffect_secondary(self, item):
-		return item.hasType(_R.C("CoreConst").Type.Book)
+		return item.hasType(_H_3)
 
 
 	def canAffect_tertiary(self, item):
-		return item.hasTag(_R.C("CoreConst").Tag.Staff)
+		return item.hasTag(_H_4)
 
 
 	def onTriggerPotion(self, event=None):
@@ -92,12 +92,12 @@ class Exclusive__RainbowPotion(_R.C("res://gd_core_items/Potion.gd")):
 
 
 	def onCombatStart(self):
-		books = self.getNumDistinctAffectedItems(_R.C("CoreConst").Affected.Secondary)
+		books = self.getNumDistinctAffectedItems(_H_5)
 		if books > 0:
 			self.giveMana(books * self.manaPerBook)
 			self.giveMaxStaminaTemporary(books * self.staminaPerBook)
 
-		staffs = self.getNumDistinctAffectedItems(_R.C("CoreConst").Affected.Tertiary)
+		staffs = self.getNumDistinctAffectedItems(_H_6)
 		if staffs > 0:
 			self.giveRandomBuffs(self.buffsPerStaff * staffs)
 
@@ -143,3 +143,34 @@ class Exclusive__RainbowPotion(_R.C("res://gd_core_items/Potion.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/RainbowPotion.gd", Exclusive__RainbowPotion)
 _R.reg("RainbowPotion", Exclusive__RainbowPotion)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").FaceDirection.LEFT
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+try:
+    _H_2 = _R.C("CoreConst").Affected.Primary
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)
+try:
+    _H_3 = _R.C("CoreConst").Type.Book
+except AttributeError as _he:
+    _H_3 = _HoistPending(_he)
+try:
+    _H_4 = _R.C("CoreConst").Tag.Staff
+except AttributeError as _he:
+    _H_4 = _HoistPending(_he)
+try:
+    _H_5 = _R.C("CoreConst").Affected.Secondary
+except AttributeError as _he:
+    _H_5 = _HoistPending(_he)
+try:
+    _H_6 = _R.C("CoreConst").Affected.Tertiary
+except AttributeError as _he:
+    _H_6 = _HoistPending(_he)
+try:
+    _H_7 = _R.C("CoreConst").Type.Potion
+except AttributeError as _he:
+    _H_7 = _HoistPending(_he)

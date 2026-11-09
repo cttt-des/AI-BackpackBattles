@@ -15,7 +15,7 @@ class Exclusive__AmuletoftheWild(_R.C("res://gd_core_items/Item.gd")):
 	amuletColor = Color(0.470588, 0.952941, 0.2)
 
 	def canAffect(self, item):
-		return item.hasType(_R.C("CoreConst").Type.Pet)
+		return item.hasType(_H_1)
 
 
 	def onPrepare(self):
@@ -40,3 +40,10 @@ class Exclusive__AmuletoftheWild(_R.C("res://gd_core_items/Item.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/AmuletoftheWild.gd", Exclusive__AmuletoftheWild)
 _R.reg("AmuletoftheWild", Exclusive__AmuletoftheWild)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").Type.Pet
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)

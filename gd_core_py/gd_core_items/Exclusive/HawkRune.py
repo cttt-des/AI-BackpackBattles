@@ -20,7 +20,7 @@ class Exclusive__HawkRune(_R.C("res://gd_core_items/Gems/Gem.gd")):
 
 
 	def prepareArmor(self):
-		self.character().changeResistChance(_R.C("CoreConst").EventType.Blind, 
+		self.character().changeResistChance(_H_1, 
 			self.getGemPower() * self.getChance())
 
 
@@ -39,3 +39,10 @@ class Exclusive__HawkRune(_R.C("res://gd_core_items/Gems/Gem.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/HawkRune.gd", Exclusive__HawkRune)
 _R.reg("HawkRune", Exclusive__HawkRune)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").EventType.Blind
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)

@@ -23,12 +23,12 @@ class Exclusive__PerpetuumMobile(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def canAffect(self, item):
-		return item.isClassItem(_R.C("CoreConst").Classes_Full.Engineer)
+		return item.isClassItem(_H_1)
 
 
 	def onPrepare(self):
 		self.connectToCharacterBuffs("onBuffChanged")
-		for buff in _iter(_R.C("CoreConst").getBuffs()):
+		for buff in _iter(_H_2.getBuffs()):
 			self.usedStacks[buff] = 0.0
 
 		self.connectForCombat(self.character(), "character_used_stamina", "onStaminaUsed")
@@ -77,3 +77,11 @@ class Exclusive__PerpetuumMobile(_R.C("res://gd_core_items/Item.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/PerpetuumMobile.gd", Exclusive__PerpetuumMobile)
 _R.reg("PerpetuumMobile", Exclusive__PerpetuumMobile)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").Classes_Full.Engineer
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+_H_2 = _R.C("CoreConst")

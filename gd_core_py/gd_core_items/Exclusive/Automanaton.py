@@ -25,7 +25,7 @@ class Exclusive__Automanaton(_R.C("res://gd_core_items/Weapon.gd")):
 
 
 	def canAffect(self, item):
-		return item.hasCooldown() or item.gainsStack(_R.C("CoreConst").Stack.Mana)
+		return item.hasCooldown() or item.gainsStack(_H_2)
 
 
 	def onPrepare(self):
@@ -40,7 +40,7 @@ class Exclusive__Automanaton(_R.C("res://gd_core_items/Weapon.gd")):
 
 			event = self.useMana(self.manaNeeded, damageRes.event)
 			duration = self.getP_m("dur_blind")
-			self.giveStacksTemporary(self.opponent(), _R.C("CoreConst").EventType.Blind, 
+			self.giveStacksTemporary(self.opponent(), _H_3, 
 				self.blind, duration, event)
 
 			if self.rollChance():
@@ -59,7 +59,7 @@ class Exclusive__Automanaton(_R.C("res://gd_core_items/Weapon.gd")):
 
 			for item in _iter(self.getAffectedItems()):
 				item.addSpeed(self.bonusSpeed)
-				item.changeAmplificiationChancePercent(_R.C("CoreConst").EventType.Mana, self.getChance2())
+				item.changeAmplificiationChancePercent(_H_4, self.getChance2())
 
 			self.dmgReductionTimer.start(self.getP_m("dur_dmgreduction"))
 			self.character().changeDamageResistance(self.damReduction)
@@ -69,7 +69,7 @@ class Exclusive__Automanaton(_R.C("res://gd_core_items/Weapon.gd")):
 
 
 	def getTriggerPriority(self):
-		return _R.C("CoreConst").Priority.High + 2
+		return _H_1 + 2
 
 
 	def onDmgReductionTimerTimeout(self):
@@ -114,3 +114,22 @@ class Exclusive__Automanaton(_R.C("res://gd_core_items/Weapon.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/Automanaton.gd", Exclusive__Automanaton)
 _R.reg("Automanaton", Exclusive__Automanaton)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").Priority.High
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+try:
+    _H_2 = _R.C("CoreConst").Stack.Mana
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)
+try:
+    _H_3 = _R.C("CoreConst").EventType.Blind
+except AttributeError as _he:
+    _H_3 = _HoistPending(_he)
+try:
+    _H_4 = _R.C("CoreConst").EventType.Mana
+except AttributeError as _he:
+    _H_4 = _HoistPending(_he)

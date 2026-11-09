@@ -19,7 +19,7 @@ class Exclusive__Snake(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def canAffect(self, item):
-		return item.hasType(_R.C("CoreConst").Type.Pet)
+		return item.hasType(_H_1)
 
 
 	def onPrepare(self):
@@ -35,7 +35,7 @@ class Exclusive__Snake(_R.C("res://gd_core_items/Item.gd")):
 
 	def onLuckyChanged(self, amount, event):
 		protectChance = amount * self.getChance()
-		self.opponent().changeProtectionChance(_R.C("CoreConst").EventType.Poison, protectChance)
+		self.opponent().changeProtectionChance(_H_2, protectChance)
 
 
 	def doCooldownEffect(self):
@@ -96,3 +96,14 @@ class Exclusive__Snake(_R.C("res://gd_core_items/Item.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/Snake.gd", Exclusive__Snake)
 _R.reg("Snake", Exclusive__Snake)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").Type.Pet
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+try:
+    _H_2 = _R.C("CoreConst").EventType.Poison
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)

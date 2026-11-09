@@ -56,7 +56,7 @@ class Gems__CorruptedCrystal(_R.C("res://gd_core_items/Gems/Gem.gd")):
 
 	def onOpponentDebuffsChanged(self, amount, event):
 		if amount > 0:
-			if isinstance(event.getOrigin(), _R.C("Item")) and event.getOrigin().character() == self.character():
+			if isinstance(event.getOrigin(), _H_1) and event.getOrigin().character() == self.character():
 				self.debuffsInflicted += amount
 				activations = int(_div(self.debuffsInflicted, self.debuffsNeeded))
 				self.debuffsInflicted %= int(self.debuffsNeeded)
@@ -92,3 +92,7 @@ class Gems__CorruptedCrystal(_R.C("res://gd_core_items/Gems/Gem.gd")):
 
 _R.reg("res://gd_core_items/Gems/CorruptedCrystal.gd", Gems__CorruptedCrystal)
 _R.reg("CorruptedCrystal", Gems__CorruptedCrystal)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+_H_1 = _R.C("Item")

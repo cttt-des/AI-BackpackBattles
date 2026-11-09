@@ -19,12 +19,12 @@ class Exclusive__WarScythe(_R.C("res://gd_core_items/Weapon.gd")):
 
 
 	def canAffect(self, item):
-		return item.gainsStack(_R.C("CoreConst").Stack.Poison)
+		return item.gainsStack(_H_1)
 
 
 	def onPrepare(self):
 		for item in _iter(self.getAffectedItems()):
-			item.giveBuffPower(_R.C("CoreConst").EventType.Poison, 1)
+			item.giveBuffPower(_H_2, 1)
 
 
 	def onPreDealDamage_early(self, damageRes):
@@ -42,3 +42,14 @@ class Exclusive__WarScythe(_R.C("res://gd_core_items/Weapon.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/WarScythe.gd", Exclusive__WarScythe)
 _R.reg("WarScythe", Exclusive__WarScythe)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").Stack.Poison
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+try:
+    _H_2 = _R.C("CoreConst").EventType.Poison
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)

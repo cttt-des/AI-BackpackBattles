@@ -57,10 +57,18 @@ class Exclusive__MegaClover(_R.C("res://gd_core_items/Item.gd")):
 		self.sales = _div(self.getP('sales'), 100.0)
 		self.luckNeeded = self.getP("luckneeded")
 		self.numBuffs = self.getP("buffs")
-		self.stackTypes = _R.C("CoreConst").getBuffs()
-		_erase(self.stackTypes, _R.C("CoreConst").EventType.Lucky)
+		self.stackTypes = _H_1.getBuffs()
+		_erase(self.stackTypes, _H_2)
 
 
 
 _R.reg("res://gd_core_items/Exclusive/MegaClover.gd", Exclusive__MegaClover)
 _R.reg("MegaClover", Exclusive__MegaClover)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+_H_1 = _R.C("CoreConst")
+try:
+    _H_2 = _R.C("CoreConst").EventType.Lucky
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)

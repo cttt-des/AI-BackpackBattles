@@ -19,7 +19,7 @@ class StrongHealthPotion(_R.C("res://gd_core_items/HealthPotion.gd")):
 
 
 	def getTriggerPriority(self):
-		return _R.C("CoreConst").Priority.High + 1
+		return _H_1 + 1
 
 	def _readyInit(self):
 		super()._readyInit()
@@ -28,3 +28,10 @@ class StrongHealthPotion(_R.C("res://gd_core_items/HealthPotion.gd")):
 
 _R.reg("res://gd_core/StrongHealthPotion.gd", StrongHealthPotion)
 _R.reg("StrongHealthPotion", StrongHealthPotion)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").Priority.High
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)

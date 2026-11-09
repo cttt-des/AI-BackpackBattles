@@ -37,7 +37,7 @@ class Present_2(_R.C("res://gd_core_items/Item.gd")):
 		pass
 
 	def getShopPriority(self):
-		return _R.C("CoreConst").Priority.Low + 1
+		return _H_1 + 1
 
 	def _readyInit(self):
 		super()._readyInit()
@@ -46,3 +46,10 @@ class Present_2(_R.C("res://gd_core_items/Item.gd")):
 
 _R.reg("res://gd_core_items/Present.gd", Present_2)
 _R.reg("Present", Present_2)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").Priority.Low
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)

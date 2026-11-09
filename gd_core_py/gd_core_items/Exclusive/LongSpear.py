@@ -21,11 +21,11 @@ class Exclusive__LongSpear(_R.C("res://gd_core_items/Weapon.gd")):
 	def addToStorageBox(self, addImpulse=True, tweenBouncyness=True, checkCollisions=True, targetPos=None, speed=1.0, secondCheck=False):
 
 		curDir = self.faceDirection
-		if self.faceDirection == _R.C("CoreConst").FaceDirection.LEFT or self.faceDirection == _R.C("CoreConst").FaceDirection.RIGHT:
-			self.setFaceDirectionInstant(_R.C("CoreConst").FaceDirection.UP)
+		if self.faceDirection == _H_1 or self.faceDirection == _H_2:
+			self.setFaceDirectionInstant(_H_3)
 			super().addToStorageBox(addImpulse, tweenBouncyness, checkCollisions, targetPos, speed, secondCheck)
 			self.setFaceDirectionInstant(curDir)
-			self.setFaceDirection(_R.C("CoreConst").FaceDirection.UP)
+			self.setFaceDirection(_H_3)
 		else:
 			super().addToStorageBox(addImpulse, tweenBouncyness, checkCollisions, targetPos, speed, secondCheck)
 
@@ -56,3 +56,18 @@ class Exclusive__LongSpear(_R.C("res://gd_core_items/Weapon.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/LongSpear.gd", Exclusive__LongSpear)
 _R.reg("LongSpear", Exclusive__LongSpear)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").FaceDirection.LEFT
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+try:
+    _H_2 = _R.C("CoreConst").FaceDirection.RIGHT
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)
+try:
+    _H_3 = _R.C("CoreConst").FaceDirection.UP
+except AttributeError as _he:
+    _H_3 = _HoistPending(_he)

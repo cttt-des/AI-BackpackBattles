@@ -24,13 +24,13 @@ class HeroLongsword_2(_R.C("res://gd_core_items/Weapon.gd")):
 
 
 	def getCraftingOffset(self, forDirection):
-		if forDirection == _R.C("CoreConst").FaceDirection.UP:
+		if forDirection == _H_1:
 				return Vector2(0, - 1)
-		elif forDirection == _R.C("CoreConst").FaceDirection.DOWN:
+		elif forDirection == _H_2:
 				return Vector2.ZERO
-		elif forDirection == _R.C("CoreConst").FaceDirection.LEFT:
+		elif forDirection == _H_3:
 				return Vector2( - 1, 0)
-		elif forDirection == _R.C("CoreConst").FaceDirection.RIGHT:
+		elif forDirection == _H_4:
 				return Vector2.ZERO
 
 	def _readyInit(self):
@@ -40,3 +40,22 @@ class HeroLongsword_2(_R.C("res://gd_core_items/Weapon.gd")):
 
 _R.reg("res://gd_core_items/HeroLongsword.gd", HeroLongsword_2)
 _R.reg("HeroLongsword", HeroLongsword_2)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").FaceDirection.UP
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+try:
+    _H_2 = _R.C("CoreConst").FaceDirection.DOWN
+except AttributeError as _he:
+    _H_2 = _HoistPending(_he)
+try:
+    _H_3 = _R.C("CoreConst").FaceDirection.LEFT
+except AttributeError as _he:
+    _H_3 = _HoistPending(_he)
+try:
+    _H_4 = _R.C("CoreConst").FaceDirection.RIGHT
+except AttributeError as _he:
+    _H_4 = _HoistPending(_he)

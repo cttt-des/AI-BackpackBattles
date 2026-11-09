@@ -23,7 +23,7 @@ class Exclusive__Whetstone3(_R.C("res://gd_core_items/Whetstone.gd")):
 
 	def onPrepare(self):
 		for item in _iter(self.getAffectedItems()):
-			item.giveBuffPower(_R.C("CoreConst").EventType.Block, self.blockFactor)
+			item.giveBuffPower(_H_1, self.blockFactor)
 
 	def _readyInit(self):
 		super()._readyInit()
@@ -32,3 +32,10 @@ class Exclusive__Whetstone3(_R.C("res://gd_core_items/Whetstone.gd")):
 
 _R.reg("res://gd_core_items/Exclusive/Whetstone3.gd", Exclusive__Whetstone3)
 _R.reg("Whetstone3", Exclusive__Whetstone3)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").EventType.Block
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)

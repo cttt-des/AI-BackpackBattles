@@ -52,11 +52,11 @@ class Exclusive__FriendlyFire(_R.C("res://gd_core_items/Item.gd")):
 		self._threshold3 = int(v)
 
 	def canAffect(self, item):
-		return item.hasType(_R.C("CoreConst").Type.Fire)
+		return item.hasType(_H_1)
 
 
 	def onPrepare(self):
-		self.addSpeed(_div(self.getNumAffected_type(_R.C('CoreConst').Type.Fire) * self.getP3(), 100.0))
+		self.addSpeed(_div(self.getNumAffected_type(_H_3) * self.getP3(), 100.0))
 		self.maxHeatReached = 0
 		self.connectForCombat(self.character(), "character_heat_changed", "onHeatChanged")
 
@@ -91,9 +91,21 @@ class Exclusive__FriendlyFire(_R.C("res://gd_core_items/Item.gd")):
 		self.threshold1 = self.getP4()
 		self.threshold2 = self.getP6()
 		self.threshold3 = self.getP8()
-		self.damageSource = _R.C("CoreDamageSource")().setItem(self)
+		self.damageSource = _H_2().setItem(self)
 
 
 
 _R.reg("res://gd_core_items/Exclusive/FriendlyFire.gd", Exclusive__FriendlyFire)
 _R.reg("FriendlyFire", Exclusive__FriendlyFire)
+
+
+# ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
+try:
+    _H_1 = _R.C("CoreConst").Type.Fire
+except AttributeError as _he:
+    _H_1 = _HoistPending(_he)
+_H_2 = _R.C("CoreDamageSource")
+try:
+    _H_3 = _R.C('CoreConst').Type.Fire
+except AttributeError as _he:
+    _H_3 = _HoistPending(_he)
