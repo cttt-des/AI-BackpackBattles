@@ -48,6 +48,9 @@ decompiled_full/**/*.gde
 decompiled_full/**/*.gdc
 
 # ============ 运行输出（全部可再生成，不入库）============
+# 含 output/oracle/expand/（扩样语料/重放/对齐账本）、output/_expand/（取证窗口/
+# 裸流对位产物）、output/_recovery/（godot 日志）——全部可由 verify_oracle.py
+# 与 tools/_np51_* 工具重新生成。
 output/
 
 # ============ 备份文件 ============
@@ -59,6 +62,8 @@ tools/gdre/
 tools/*.exe
 tools/_*
 !tools/_np46_rerecord.py
+!tools/_np51_bare_align.py
+!tools/_np51_oracle_bare.py
 tools/candidates_*.txt
 tools/Combat.gde
 tools/__pycache__/
