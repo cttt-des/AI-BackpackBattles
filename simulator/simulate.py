@@ -23,13 +23,19 @@ from typing import Dict, List, Optional
 from .data import load_items, load_characters
 from .lineup import load_lineup, LineupError, resolve_items
 
-# 战斗内核：默认新引擎 engine/（fail-fast + 惰性日志）；--engine simulator
-# 可回退旧内核（回归对照用）。两引擎 CombatEngine 构造/run/summary/result_json 面一致。
-ENGINES = ("engine", "simulator")
-DEFAULT_ENGINE = "engine"
+# 战斗内核：gd_core（逆向真值 1:1 内核，三方对齐 1690/1690 全绿）自 2026-11-09 起
+# 是唯一默认与唯一 CLI 选项。历史 engine/（自研转译内核，engine/rng.flip 缺失已
+# 不可用）与 simulator/combat.py（旧内核）已下线、文件保留作参考；两者仍可经
+# simulate_once(engine=...) 显式指定（回归对照用）。三内核构造/run/summary/
+# result_json 面一致。
+ENGINES = ("gd_core",)
+DEFAULT_ENGINE = "gd_core"
 
 
 def _get_combat_engine(name: str = DEFAULT_ENGINE):
+    if name == "gd_core":
+        from .gd_core_engine import GDCoreEngine
+        return GDCoreEngine, load_items, load_characters
     if name == "engine":
         from engine.combat import CombatEngine
         from engine.data import load_items as _li, load_characters as _lc
@@ -125,7 +131,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     ap.add_argument('--runs', type=int, default=1, help='模拟场数（>1 为蒙特卡洛，只输出统计）')
     ap.add_argument('--max-time', type=float, default=90.0, help='最大战斗时长（秒）')
     ap.add_argument('--engine', choices=ENGINES, default=DEFAULT_ENGINE,
-                    help='战斗内核：engine=新（默认），simulator=旧（回归对照）')
+                    help='战斗内核：gd_core（唯一默认，逆向真值 1:1）')
     ap.add_argument('--verbose', action='store_true', help='打印详细结果')
     args = ap.parse_args(argv)
 

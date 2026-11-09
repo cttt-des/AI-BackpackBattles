@@ -60,6 +60,12 @@ def build():
         "--hidden-import", "engine.data",
         "--hidden-import", "engine.gen.behaviors",
         "--collect-submodules", "engine",
+        # 唯一默认内核 gd_core（2026-11-09 起）：适配层延迟导入；gd_core_py 的
+        # 673 个转写模块经 _registry（importlib.import_module）动态导入，
+        # 静态分析不可见，必须显式全量收集。数据面 assets/gd_core_runtime.json
+        # 已由上方 --add-data assets 覆盖。
+        "--hidden-import", "simulator.gd_core_engine",
+        "--collect-submodules", "gd_core_py",
         "--hidden-import", "tkinter",
         "--hidden-import", "tkinter.ttk",
         "--hidden-import", "tkinter.scrolledtext",

@@ -8,12 +8,13 @@
 
 为什么要有 --selftest
 ====================
-三个战斗内核（engine/ / simulator/ / gd_core）在 `simulate._get_combat_engine` 里
-**都是延迟导入**的，`gd_core_py` 更是延迟到 `GDCoreEngine.kernel()` 才 import。于是
-「打包漏了某个子包 / 漏了 assets 数据」这件事在 GUI 启动时**完全看不出来** ——
-窗口正常弹出、示例阵容正常列出，点「开始战斗」才炸。
+唯一战斗内核 gd_core 的装配面在 `simulate._get_combat_engine` 里**延迟导入**，
+`gd_core_py` 更是延迟到 `GDCoreEngine.kernel()` 才 import（673 个转写模块 +
+_rt 垫片 + assets/gd_core_runtime.json 数据）。于是「打包漏了某个子包 / 漏了
+assets 数据」这件事在 GUI 启动时**完全看不出来** —— 窗口正常弹出、示例阵容
+正常列出，点「开始战斗」才炸。
 
-`--selftest` 就是那条不依赖界面的验收入口：三个内核各真打一场，把结论写到 exe
+`--selftest` 就是那条不依赖界面的验收入口：内核真打一场，把结论写到 exe
 同目录的 `selftest_report.txt`，并用**退出码**表态。`--windowed` 打包下 stdout
 不可见，故结论以报告文件为准。
 

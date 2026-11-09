@@ -15,6 +15,7 @@ tmp_assets/
 screenshots/
 gh.zip
 gh_tmp/
+selftest_report.txt
 
 # ============ 游戏本体与资源包 ============
 Backpack Battles/
