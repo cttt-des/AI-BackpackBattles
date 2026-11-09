@@ -1930,9 +1930,23 @@ def emit_bootstrap(order, files_by_rel):
            '"""按 extends 依赖拓扑序导入全部模块（基类先注册，与 Godot 加载次序同义）。"""\n\n',
            "from . import _registry  # noqa: F401\n",
            "from . import _rt  # noqa: F401\n\n\n",
-           "def load_all():\n",
-           '    """导入全部 gd 模块。返回导入失败清单（空 = 全部成功）。"""\n',
-           "    failed = []\n"]
+           # ── S2-B2 回归修复配套：stem → 全模块路径全量映射。_registry
+           #    ._lazy_import 用它兜底 items 树的非祖先跨类引用
+           #    （ChessBoard 运行时 isinstance _R.C("ChessPiece")，ChessPiece
+           #    非 ChessBoard 祖先、不在 load_for 闭包 → 此前落占位类，
+           #    isinstance 恒 False=沉默语义死 / 属性访问炸=py 腿缺产物，
+           #    60 场精选集 14 红根因）。load_all 时代「任何 C() 可解析」。
+           "def _stem2mod_rows():\n",
+           "    return [\n"]
+    for rel in order:
+        mod = module_path(files_by_rel[rel])
+        stem = mod.rsplit(".", 1)[-1]
+        out.append("        (%r, %r),\n" % (stem, mod))
+    out.append("    ]\n\n\n")
+    out.append("_STEM2MOD = dict(_stem2mod_rows())\n\n\n")
+    out.append("def load_all():\n")
+    out.append('    """导入全部 gd 模块。返回导入失败清单（空 = 全部成功）。"""\n')
+    out.append("    failed = []\n")
     for rel in order:
         out.append("    try:\n")
         out.append("        import %s  # noqa: F401\n" % module_path(files_by_rel[rel]))

@@ -31,6 +31,12 @@ _PH_BASE = GodotObject
 
 def _placeholder(name):
     """未登记名的占位类（只可能是导入顺序问题，正常流程不会走到）。"""
+    import os as _os
+    if _os.environ.get("GD_DEBUG_PLACEHOLDER") == "1":
+        import sys as _sys
+        import traceback as _tb
+        print("WARN[placeholder] %s" % str(name), file=_sys.stderr)
+        _tb.print_stack(file=_sys.stderr)
     ph = _PH.get(name)
     if ph is None:
         ph = type(str(name).rsplit("/", 1)[-1].rsplit(".", 1)[0] or "Placeholder",
@@ -79,22 +85,45 @@ def _lazy_import(name):
       （如 CoreCharacter 的 classResources 以 `_R.C("CoreConst").Classes.Ranger`
       为键）——这类引用在**导入期**求值，先于 extends 拓扑序里排在后面的
       CoreConst 注册，导致 AttributeError 级联。与其维护脆弱的排序，不如
-      在 C() 未命中时按名找模块导入一次（幂等、防递归）。"""
+      在 C() 未命中时按名找模块导入一次（幂等、防递归）。
+
+    ★ 2026-11-09（B2 分层导入回归修复）：`gd_core/` 树直猜之外，回落
+      `_bootstrap._STEM2MOD`（生成器发射的 stem→全模块路径全量表）——
+      items 树的**非祖先跨类引用**（如 ChessBoard 运行时 isinstance
+      `_R.C("ChessPiece")`，ChessPiece 非 ChessBoard 祖先、不在 load_for
+      闭包）此前落占位类：isinstance 恒 False=沉默语义死，属性访问炸=
+      py 腿缺产物（60 场精选集 14 红的根因，docs/性能优化执行路径.md）。"""
     stem = str(name).rsplit("/", 1)[-1]
     if stem.endswith(".gd"):
         stem = stem[:-3]
-    modname = "gd_core_py.gd_core." + stem
-    if modname in _LAZY_IMPORTING:
-        return None
-    _LAZY_IMPORTING.add(modname)
+    for modname in _lazy_modnames(stem):
+        if modname in _LAZY_IMPORTING:
+            continue
+        _LAZY_IMPORTING.add(modname)
+        try:
+            import importlib
+            importlib.import_module(modname)
+            hit = _REG.get(name)
+            if hit is not None:
+                return hit
+        except Exception:  # noqa: BLE001 —— 找不到模块/循环导入时回落占位类
+            pass
+        finally:
+            _LAZY_IMPORTING.discard(modname)
+    return None
+
+
+def _lazy_modnames(stem):
+    """候选模块路径：gd_core/ 树直猜 + _bootstrap._STEM2MOD 全量映射兜底。"""
+    names = ["gd_core_py.gd_core." + stem]
     try:
-        import importlib
-        mod = importlib.import_module(modname)
-        return _REG.get(name)
-    except Exception:  # noqa: BLE001 —— 找不到模块/循环导入时回落占位类
-        return None
-    finally:
-        _LAZY_IMPORTING.discard(modname)
+        from . import _bootstrap as _b
+        m = getattr(_b, "_STEM2MOD", {}).get(stem)
+        if m and m not in names:
+            names.append(m)
+    except Exception:  # noqa: BLE001 —— bootstrap 未导入时仅直猜
+        pass
+    return names
 
 
 def C(name):

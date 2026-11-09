@@ -1,0 +1,1216 @@
+{
+ "aligned": 1,
+ "total": 15,
+ "match_distribution": {
+  "gdcore≡oracle 但 py 分歧": 13,
+  "三方一致": 1,
+  "py 缺产物": 1
+ },
+ "convention": {
+  "seed": "两侧 gd_core 在任何物品实例创建前以 CoreContext(seed) 注入（≙ oracle_fight.gd:536-537 的 Util.rng.seed=S）",
+  "below_master": "false（np24 簇B：新语料族A 全 +1 tick 实证录制时 isBelowLeague(Master)=假，对手冷却掷 (0.95,1.05)；旧 rng_log 0.975 实证属旧语料，不再适用）",
+  "activation_order": "原版开战 shuffle 走引擎全局链（docs/rng_truth.md §1.4-2）；OracleAlignBattle.gd 用真 Godot seed(S)+shuffle×2+sort_TriggerPriority 复刻终序并直通内核（startBattle preordered）",
+  "judgement": "主判据=engine/log_text.py 渲染战报逐行比对；辅判据=事件 canonical（t 按 1/60s tick 取整、type/side/origin/params/parent-depth 全等）；两者都一致才算通过"
+ },
+ "perCase": [
+  {
+   "caseId": "run704991_r8_o704410_r8",
+   "seed": 1988676920,
+   "lineupPair": "oracle_run704991_r8_o704410_r8_player|oracle_run704991_r8_o704410_r8_opponent",
+   "oracleEvents": 221,
+   "gdcoreEvents": 221,
+   "pyEvents": 215,
+   "winner": {
+    "oracle": "opponent",
+    "gdcore": "opponent",
+    "py": "opponent"
+   },
+   "match": "gdcore≡oracle 但 py 分歧",
+   "firstDivergence": {
+    "pair": "gdcore_vs_py",
+    "kind": "event",
+    "index": 175,
+    "gdcore": {
+     "at_idx": {
+      "t": 345,
+      "type": 105,
+      "actor": "player",
+      "target": 0,
+      "origin": [
+       "item",
+       "Magic Staff"
+      ],
+      "params": {
+       "amount": -3,
+       "used": true,
+       "reflected": false
+      },
+      "parent": -1,
+      "depth": 0
+     },
+     "window": [
+      "{\"t\": 342, \"type\": 107, \"actor\": \"player\", \"target\": 0, \"origin\": [\"item\", \"Energy Conversion\"], \"params\": {\"amount\": 4, \"used\": false, \"reflected\": false}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 342, \"type\": 0, \"actor\": \"player\", \"target\": null, \"origin\": [\"item\", \"Energy Conversion\"], \"params\": {}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 345, \"type\": 105, \"actor\": \"player\", \"target\": 0, \"origin\": [\"item\", \"Magic Staff\"], \"params\": {\"amount\": -3, \"used\": true, \"reflected\": false}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 345, \"type\": 1, \"actor\": \"player\", \"target\": null, \"origin\": [\"item\", \"Magic Staff\"], \"params\": {\"damage\": 27}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 345, \"type\": 0, \"actor\": \"player\", \"target\": null, \"origin\": [\"item\", \"Magic Staff\"], \"params\": {}, \"parent\": -1, \"depth\": 0}"
+     ]
+    },
+    "py": {
+     "at_idx": {
+      "t": 345,
+      "type": 15,
+      "actor": "player",
+      "target": 0,
+      "origin": [
+       "item",
+       "Magic Staff"
+      ],
+      "params": {},
+      "parent": -1,
+      "depth": 0
+     },
+     "window": [
+      "{\"t\": 342, \"type\": 107, \"actor\": \"player\", \"target\": 0, \"origin\": [\"item\", \"Energy Conversion\"], \"params\": {\"amount\": 4, \"used\": false, \"reflected\": false}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 342, \"type\": 0, \"actor\": \"player\", \"target\": null, \"origin\": [\"item\", \"Energy Conversion\"], \"params\": {}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 345, \"type\": 15, \"actor\": \"player\", \"target\": 0, \"origin\": [\"item\", \"Magic Staff\"], \"params\": {}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 345, \"type\": 108, \"actor\": \"opponent\", \"target\": 0, \"origin\": [\"item\", \"Poison Spear\"], \"params\": {\"amount\": 3, \"used\": false, \"reflected\": false}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 345, \"type\": 108, \"actor\": \"opponent\", \"target\": 1, \"origin\": [\"item\", \"Poison Spear\"], \"params\": {\"amount\": 2, \"used\": false, \"reflected\": false}, \"parent\": -1, \"depth\": 0}"
+     ]
+    },
+    "first_line_diff": {
+     "line_index": 116,
+     "gdcore_line": "5.75:  [玩家] 消耗3 魔法 （法杖）。",
+     "py_line": "5.75:  [玩家] 耐力耗尽（法杖）。"
+    }
+   },
+   "judgement": {
+    "event_tuples": {
+     "oracle_gd": true,
+     "gd_py": false
+    },
+    "rendered_lines": {
+     "oracle_gd": true,
+     "gd_py": false
+    }
+   },
+   "localization": "gd_core_py-transpiler",
+   "localizationEvidence": "gd_core(Godot) ≡ 神谕、gd_core_py(Python) 在同 (阵容,seed,激活顺序) 下与之分歧——纯转写层问题"
+  },
+  {
+   "caseId": "run300225_r6_o500231_r6",
+   "seed": 1845297597,
+   "lineupPair": "oracle_run300225_r6_o500231_r6_player|oracle_run300225_r6_o500231_r6_opponent",
+   "oracleEvents": 249,
+   "gdcoreEvents": 249,
+   "pyEvents": 252,
+   "winner": {
+    "oracle": "opponent",
+    "gdcore": "opponent",
+    "py": "opponent"
+   },
+   "match": "gdcore≡oracle 但 py 分歧",
+   "firstDivergence": {
+    "pair": "gdcore_vs_py",
+    "kind": "event",
+    "index": 227,
+    "gdcore": {
+     "at_idx": {
+      "t": 765,
+      "type": 1,
+      "actor": "player",
+      "target": null,
+      "origin": [
+       "item",
+       "Broom"
+      ],
+      "params": {
+       "damage": 4
+      },
+      "parent": -1,
+      "depth": 0
+     },
+     "window": [
+      "{\"t\": 762, \"type\": 106, \"actor\": \"opponent\", \"target\": 1, \"origin\": [\"item\", \"Seal the Deal\"], \"params\": {\"amount\": 2, \"used\": false, \"reflected\": false}, \"parent\": 224, \"depth\": 1}",
+      "{\"t\": 762, \"type\": 0, \"actor\": \"opponent\", \"target\": null, \"origin\": [\"item\", \"Seal the Deal\"], \"params\": {}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 765, \"type\": 1, \"actor\": \"player\", \"target\": null, \"origin\": [\"item\", \"Broom\"], \"params\": {\"damage\": 4}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 765, \"type\": 109, \"actor\": \"player\", \"target\": 1, \"origin\": [\"item\", \"Broom\"], \"params\": {\"amount\": 1, \"used\": false, \"reflected\": false}, \"parent\": 227, \"depth\": 1}",
+      "{\"t\": 765, \"type\": 1, \"actor\": \"opponent\", \"target\": 1, \"origin\": [\"src\", \"spikes\"], \"params\": {\"damage\": 4}, \"parent\": 227, \"depth\": 1}"
+     ]
+    },
+    "py": {
+     "at_idx": {
+      "t": 765,
+      "type": 15,
+      "actor": "player",
+      "target": 0,
+      "origin": [
+       "item",
+       "Broom"
+      ],
+      "params": {},
+      "parent": -1,
+      "depth": 0
+     },
+     "window": [
+      "{\"t\": 762, \"type\": 106, \"actor\": \"opponent\", \"target\": 1, \"origin\": [\"item\", \"Seal the Deal\"], \"params\": {\"amount\": 2, \"used\": false, \"reflected\": false}, \"parent\": 224, \"depth\": 1}",
+      "{\"t\": 762, \"type\": 0, \"actor\": \"opponent\", \"target\": null, \"origin\": [\"item\", \"Seal the Deal\"], \"params\": {}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 765, \"type\": 15, \"actor\": \"player\", \"target\": 0, \"origin\": [\"item\", \"Broom\"], \"params\": {}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 769, \"type\": 108, \"actor\": \"player\", \"target\": 1, \"origin\": [\"item\", \"Fly Agaric\"], \"params\": {\"amount\": 1, \"used\": false, \"reflected\": false}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 769, \"type\": 0, \"actor\": \"player\", \"target\": null, \"origin\": [\"item\", \"Fly Agaric\"], \"params\": {}, \"parent\": -1, \"depth\": 0}"
+     ]
+    },
+    "first_line_diff": {
+     "line_index": 139,
+     "gdcore_line": "12.75:  [玩家] 造成4点伤害（扫把）。",
+     "py_line": "12.75:  [玩家] 耐力耗尽（扫把）。"
+    }
+   },
+   "judgement": {
+    "event_tuples": {
+     "oracle_gd": true,
+     "gd_py": false
+    },
+    "rendered_lines": {
+     "oracle_gd": true,
+     "gd_py": false
+    }
+   },
+   "localization": "gd_core_py-transpiler",
+   "localizationEvidence": "gd_core(Godot) ≡ 神谕、gd_core_py(Python) 在同 (阵容,seed,激活顺序) 下与之分歧——纯转写层问题"
+  },
+  {
+   "caseId": "run101617_r16_o300168_r16",
+   "seed": 95407876,
+   "lineupPair": "oracle_run101617_r16_o300168_r16_player|oracle_run101617_r16_o300168_r16_opponent",
+   "oracleEvents": 2666,
+   "gdcoreEvents": 2666,
+   "pyEvents": 2730,
+   "winner": {
+    "oracle": "opponent",
+    "gdcore": "opponent",
+    "py": "opponent"
+   },
+   "match": "gdcore≡oracle 但 py 分歧",
+   "firstDivergence": {
+    "pair": "gdcore_vs_py",
+    "kind": "event",
+    "index": 140,
+    "gdcore": {
+     "at_idx": {
+      "t": 212,
+      "type": 12,
+      "actor": "player",
+      "target": 0,
+      "origin": [
+       "item",
+       "Spicy Banana"
+      ],
+      "params": {
+       "amount": 1
+      },
+      "parent": -1,
+      "depth": 0
+     },
+     "window": [
+      "{\"t\": 210, \"type\": 107, \"actor\": \"opponent\", \"target\": 1, \"origin\": [\"item\", \"Miss Fortune\"], \"params\": {\"amount\": 3, \"used\": false, \"reflected\": false}, \"parent\": 137, \"depth\": 1}",
+      "{\"t\": 210, \"type\": 0, \"actor\": \"opponent\", \"target\": null, \"origin\": [\"item\", \"Miss Fortune\"], \"params\": {}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 212, \"type\": 12, \"actor\": \"player\", \"target\": 0, \"origin\": [\"item\", \"Spicy Banana\"], \"params\": {\"amount\": 1}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 212, \"type\": 3, \"actor\": \"player\", \"target\": null, \"origin\": [\"item\", \"Hammer\"], \"params\": {}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 212, \"type\": 0, \"actor\": \"player\", \"target\": null, \"origin\": [\"item\", \"Hammer\"], \"params\": {}, \"parent\": -1, \"depth\": 0}"
+     ]
+    },
+    "py": {
+     "at_idx": {
+      "t": 212,
+      "type": 15,
+      "actor": "player",
+      "target": 0,
+      "origin": [
+       "item",
+       "Hammer"
+      ],
+      "params": {},
+      "parent": -1,
+      "depth": 0
+     },
+     "window": [
+      "{\"t\": 210, \"type\": 107, \"actor\": \"opponent\", \"target\": 1, \"origin\": [\"item\", \"Miss Fortune\"], \"params\": {\"amount\": 3, \"used\": false, \"reflected\": false}, \"parent\": 137, \"depth\": 1}",
+      "{\"t\": 210, \"type\": 0, \"actor\": \"opponent\", \"target\": null, \"origin\": [\"item\", \"Miss Fortune\"], \"params\": {}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 212, \"type\": 15, \"actor\": \"player\", \"target\": 0, \"origin\": [\"item\", \"Hammer\"], \"params\": {}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 213, \"type\": 101, \"actor\": \"opponent\", \"target\": 1, \"origin\": [\"item\", \"Miss Fortune\"], \"params\": {\"amount\": -1, \"used\": true, \"reflected\": false}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 213, \"type\": 107, \"actor\": \"opponent\", \"target\": 1, \"origin\": [\"item\", \"Miss Fortune\"], \"params\": {\"amount\": 3, \"used\": false, \"reflected\": false}, \"parent\": 141, \"depth\": 1}"
+     ]
+    },
+    "first_line_diff": {
+     "line_index": 85,
+     "gdcore_line": "3.53:  [玩家] 恢复1点生命值（火辣香蕉）。",
+     "py_line": "3.53:  [玩家] 耐力耗尽（锤子）。"
+    }
+   },
+   "judgement": {
+    "event_tuples": {
+     "oracle_gd": true,
+     "gd_py": false
+    },
+    "rendered_lines": {
+     "oracle_gd": true,
+     "gd_py": false
+    }
+   },
+   "localization": "gd_core_py-transpiler",
+   "localizationEvidence": "gd_core(Godot) ≡ 神谕、gd_core_py(Python) 在同 (阵容,seed,激活顺序) 下与之分歧——纯转写层问题"
+  },
+  {
+   "caseId": "run704847_r17_o704688_r17",
+   "seed": 202314599,
+   "lineupPair": "oracle_run704847_r17_o704688_r17_player|oracle_run704847_r17_o704688_r17_opponent",
+   "oracleEvents": 5077,
+   "gdcoreEvents": 5077,
+   "pyEvents": 3641,
+   "winner": {
+    "oracle": "player",
+    "gdcore": "player",
+    "py": "player"
+   },
+   "match": "gdcore≡oracle 但 py 分歧",
+   "firstDivergence": {
+    "pair": "gdcore_vs_py",
+    "kind": "event",
+    "index": 172,
+    "gdcore": {
+     "at_idx": {
+      "t": 239,
+      "type": 1,
+      "actor": "player",
+      "target": null,
+      "origin": [
+       "item",
+       "Thors Hammer"
+      ],
+      "params": {
+       "damage": 0
+      },
+      "parent": -1,
+      "depth": 0
+     },
+     "window": [
+      "{\"t\": 238, \"type\": 12, \"actor\": \"opponent\", \"target\": 1, \"origin\": [\"item\", \"Spell Scroll Light\"], \"params\": {\"amount\": 12}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 238, \"type\": 0, \"actor\": \"opponent\", \"target\": null, \"origin\": [\"item\", \"Spell Scroll Light\"], \"params\": {}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 239, \"type\": 1, \"actor\": \"player\", \"target\": null, \"origin\": [\"item\", \"Thors Hammer\"], \"params\": {\"damage\": 0}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 239, \"type\": 10, \"actor\": \"player\", \"target\": 1, \"origin\": [\"item\", \"Thors Hammer\"], \"params\": {}, \"parent\": 172, \"depth\": 1}",
+      "{\"t\": 239, \"type\": 105, \"actor\": \"player\", \"target\": 0, \"origin\": [\"item\", \"Thors Hammer\"], \"params\": {\"amount\": -2, \"used\": true, \"reflected\": false}, \"parent\": 172, \"depth\": 1}"
+     ]
+    },
+    "py": {
+     "at_idx": {
+      "t": 239,
+      "type": 15,
+      "actor": "player",
+      "target": 0,
+      "origin": [
+       "item",
+       "Thors Hammer"
+      ],
+      "params": {},
+      "parent": -1,
+      "depth": 0
+     },
+     "window": [
+      "{\"t\": 238, \"type\": 12, \"actor\": \"opponent\", \"target\": 1, \"origin\": [\"item\", \"Spell Scroll Light\"], \"params\": {\"amount\": 12}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 238, \"type\": 0, \"actor\": \"opponent\", \"target\": null, \"origin\": [\"item\", \"Spell Scroll Light\"], \"params\": {}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 239, \"type\": 15, \"actor\": \"player\", \"target\": 0, \"origin\": [\"item\", \"Thors Hammer\"], \"params\": {}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 240, \"type\": 1, \"actor\": \"opponent\", \"target\": 1, \"origin\": [\"src\", \"poison\"], \"params\": {\"damage\": 1}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 243, \"type\": 106, \"actor\": \"player\", \"target\": 0, \"origin\": [\"item\", \"Fanfare\"], \"params\": {\"amount\": 1, \"used\": false, \"reflected\": false, \"resisted\": true}, \"parent\": -1, \"depth\": 0}"
+     ]
+    },
+    "first_line_diff": {
+     "line_index": 107,
+     "gdcore_line": "3.98:  [玩家] 造成0点伤害（['Thor’s Hammer', '雷神之锤']）。",
+     "py_line": "3.98:  [玩家] 耐力耗尽（['Thor’s Hammer', '雷神之锤']）。"
+    }
+   },
+   "judgement": {
+    "event_tuples": {
+     "oracle_gd": true,
+     "gd_py": false
+    },
+    "rendered_lines": {
+     "oracle_gd": true,
+     "gd_py": false
+    }
+   },
+   "localization": "gd_core_py-transpiler",
+   "localizationEvidence": "gd_core(Godot) ≡ 神谕、gd_core_py(Python) 在同 (阵容,seed,激活顺序) 下与之分歧——纯转写层问题"
+  },
+  {
+   "caseId": "run101710_r14_o100993_r14",
+   "seed": 1071916218,
+   "lineupPair": "oracle_run101710_r14_o100993_r14_player|oracle_run101710_r14_o100993_r14_opponent",
+   "oracleEvents": 7662,
+   "gdcoreEvents": 7662,
+   "pyEvents": 6786,
+   "winner": {
+    "oracle": "player",
+    "gdcore": "player",
+    "py": "player"
+   },
+   "match": "gdcore≡oracle 但 py 分歧",
+   "firstDivergence": {
+    "pair": "gdcore_vs_py",
+    "kind": "event",
+    "index": 59,
+    "gdcore": {
+     "at_idx": {
+      "t": 129,
+      "type": 12,
+      "actor": "player",
+      "target": 0,
+      "origin": [
+       "item",
+       "Spicy Banana"
+      ],
+      "params": {
+       "amount": 3
+      },
+      "parent": -1,
+      "depth": 0
+     },
+     "window": [
+      "{\"t\": 120, \"type\": 106, \"actor\": \"opponent\", \"target\": 1, \"origin\": [\"item\", \"Fanfare\"], \"params\": {\"amount\": 1, \"used\": false, \"reflected\": false}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 120, \"type\": 0, \"actor\": \"opponent\", \"target\": null, \"origin\": [\"item\", \"Fanfare\"], \"params\": {}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 129, \"type\": 12, \"actor\": \"player\", \"target\": 0, \"origin\": [\"item\", \"Spicy Banana\"], \"params\": {\"amount\": 3}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 129, \"type\": 3, \"actor\": \"player\", \"target\": null, \"origin\": [\"item\", \"Eggscalibur\"], \"params\": {}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 129, \"type\": 0, \"actor\": \"player\", \"target\": null, \"origin\": [\"item\", \"Eggscalibur\"], \"params\": {}, \"parent\": -1, \"depth\": 0}"
+     ]
+    },
+    "py": {
+     "at_idx": {
+      "t": 129,
+      "type": 15,
+      "actor": "player",
+      "target": 0,
+      "origin": [
+       "item",
+       "Eggscalibur"
+      ],
+      "params": {},
+      "parent": -1,
+      "depth": 0
+     },
+     "window": [
+      "{\"t\": 120, \"type\": 106, \"actor\": \"opponent\", \"target\": 1, \"origin\": [\"item\", \"Fanfare\"], \"params\": {\"amount\": 1, \"used\": false, \"reflected\": false}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 120, \"type\": 0, \"actor\": \"opponent\", \"target\": null, \"origin\": [\"item\", \"Fanfare\"], \"params\": {}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 129, \"type\": 15, \"actor\": \"player\", \"target\": 0, \"origin\": [\"item\", \"Eggscalibur\"], \"params\": {}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 129, \"type\": 15, \"actor\": \"player\", \"target\": 0, \"origin\": [\"item\", \"Wrench\"], \"params\": {}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 135, \"type\": 1, \"actor\": \"opponent\", \"target\": null, \"origin\": [\"item\", \"Eggscalibur\"], \"params\": {\"damage\": 2}, \"parent\": -1, \"depth\": 0}"
+     ]
+    },
+    "first_line_diff": {
+     "line_index": 34,
+     "gdcore_line": "2.15:  [玩家] 恢复3点生命值（火辣香蕉）。",
+     "py_line": "2.15:  [玩家] 耐力耗尽（荷包蛋圣锅）。"
+    }
+   },
+   "judgement": {
+    "event_tuples": {
+     "oracle_gd": true,
+     "gd_py": false
+    },
+    "rendered_lines": {
+     "oracle_gd": true,
+     "gd_py": false
+    }
+   },
+   "localization": "gd_core_py-transpiler",
+   "localizationEvidence": "gd_core(Godot) ≡ 神谕、gd_core_py(Python) 在同 (阵容,seed,激活顺序) 下与之分歧——纯转写层问题"
+  },
+  {
+   "caseId": "run101617_r17_o704297_r17",
+   "seed": 1359600954,
+   "lineupPair": "oracle_run101617_r17_o704297_r17_player|oracle_run101617_r17_o704297_r17_opponent",
+   "oracleEvents": 1872,
+   "gdcoreEvents": 1872,
+   "pyEvents": 2244,
+   "winner": {
+    "oracle": "player",
+    "gdcore": "player",
+    "py": "player"
+   },
+   "match": "gdcore≡oracle 但 py 分歧",
+   "firstDivergence": {
+    "pair": "gdcore_vs_py",
+    "kind": "event",
+    "index": 613,
+    "gdcore": {
+     "at_idx": {
+      "t": 471,
+      "type": 12,
+      "actor": "player",
+      "target": 0,
+      "origin": [
+       "item",
+       "Spicy Banana"
+      ],
+      "params": {
+       "amount": 6
+      },
+      "parent": -1,
+      "depth": 0
+     },
+     "window": [
+      "{\"t\": 470, \"type\": 12, \"actor\": \"player\", \"target\": 0, \"origin\": [\"src\", \"vampirism\"], \"params\": {\"amount\": 10}, \"parent\": 608, \"depth\": 1}",
+      "{\"t\": 470, \"type\": 0, \"actor\": \"player\", \"target\": null, \"origin\": [\"item\", \"Hammer\"], \"params\": {}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 471, \"type\": 12, \"actor\": \"player\", \"target\": 0, \"origin\": [\"item\", \"Spicy Banana\"], \"params\": {\"amount\": 6}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 471, \"type\": 1, \"actor\": \"player\", \"target\": null, \"origin\": [\"item\", \"Eggscalibur\"], \"params\": {\"damage\": 18}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 471, \"type\": 12, \"actor\": \"player\", \"target\": 0, \"origin\": [\"item\", \"Toolbox\"], \"params\": {\"amount\": 10}, \"parent\": 614, \"depth\": 1}"
+     ]
+    },
+    "py": {
+     "at_idx": {
+      "t": 471,
+      "type": 15,
+      "actor": "player",
+      "target": 0,
+      "origin": [
+       "item",
+       "Eggscalibur"
+      ],
+      "params": {},
+      "parent": -1,
+      "depth": 0
+     },
+     "window": [
+      "{\"t\": 470, \"type\": 12, \"actor\": \"player\", \"target\": 0, \"origin\": [\"src\", \"vampirism\"], \"params\": {\"amount\": 10}, \"parent\": 608, \"depth\": 1}",
+      "{\"t\": 470, \"type\": 0, \"actor\": \"player\", \"target\": null, \"origin\": [\"item\", \"Hammer\"], \"params\": {}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 471, \"type\": 15, \"actor\": \"player\", \"target\": 0, \"origin\": [\"item\", \"Eggscalibur\"], \"params\": {}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 474, \"type\": 103, \"actor\": \"opponent\", \"target\": 1, \"origin\": [\"item\", \"Unstable Recombobulator\"], \"params\": {\"amount\": 1, \"used\": false, \"reflected\": false}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 474, \"type\": 0, \"actor\": \"opponent\", \"target\": null, \"origin\": [\"item\", \"Unstable Recombobulator\"], \"params\": {}, \"parent\": -1, \"depth\": 0}"
+     ]
+    },
+    "first_line_diff": {
+     "line_index": 408,
+     "gdcore_line": "7.85:  [玩家] 恢复6点生命值（火辣香蕉）。",
+     "py_line": "7.85:  [玩家] 耐力耗尽（荷包蛋圣锅）。"
+    }
+   },
+   "judgement": {
+    "event_tuples": {
+     "oracle_gd": true,
+     "gd_py": false
+    },
+    "rendered_lines": {
+     "oracle_gd": true,
+     "gd_py": false
+    }
+   },
+   "localization": "gd_core_py-transpiler",
+   "localizationEvidence": "gd_core(Godot) ≡ 神谕、gd_core_py(Python) 在同 (阵容,seed,激活顺序) 下与之分歧——纯转写层问题"
+  },
+  {
+   "caseId": "run101354_r14_o101073_r14",
+   "seed": 1173073774,
+   "lineupPair": "oracle_run101354_r14_o101073_r14_player|oracle_run101354_r14_o101073_r14_opponent",
+   "oracleEvents": 671,
+   "gdcoreEvents": 671,
+   "pyEvents": 671,
+   "winner": {
+    "oracle": "opponent",
+    "gdcore": "opponent",
+    "py": "opponent"
+   },
+   "match": "三方一致",
+   "firstDivergence": null,
+   "judgement": {
+    "event_tuples": {
+     "oracle_gd": true,
+     "gd_py": true
+    },
+    "rendered_lines": {
+     "oracle_gd": true,
+     "gd_py": true
+    }
+   },
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run704752_r14_o604627_r14",
+   "seed": 1147568386,
+   "lineupPair": "oracle_run704752_r14_o604627_r14_player|oracle_run704752_r14_o604627_r14_opponent",
+   "oracleEvents": 1077,
+   "gdcoreEvents": 1077,
+   "pyEvents": 1056,
+   "winner": {
+    "oracle": "player",
+    "gdcore": "player",
+    "py": "player"
+   },
+   "match": "gdcore≡oracle 但 py 分歧",
+   "firstDivergence": {
+    "pair": "gdcore_vs_py",
+    "kind": "event",
+    "index": 527,
+    "gdcore": {
+     "at_idx": {
+      "t": 573,
+      "type": 12,
+      "actor": "player",
+      "target": 0,
+      "origin": [
+       "item",
+       "Spicy Banana"
+      ],
+      "params": {
+       "amount": 6
+      },
+      "parent": -1,
+      "depth": 0
+     },
+     "window": [
+      "{\"t\": 565, \"type\": 100, \"actor\": \"opponent\", \"target\": 1, \"origin\": [\"item\", \"Full Body Protection\"], \"params\": {\"amount\": 10, \"used\": false, \"reflected\": false}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 565, \"type\": 0, \"actor\": \"opponent\", \"target\": null, \"origin\": [\"item\", \"Full Body Protection\"], \"params\": {}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 573, \"type\": 12, \"actor\": \"player\", \"target\": 0, \"origin\": [\"item\", \"Spicy Banana\"], \"params\": {\"amount\": 6}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 573, \"type\": 1, \"actor\": \"player\", \"target\": null, \"origin\": [\"item\", \"Thors Hammer\"], \"params\": {\"damage\": 2}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 573, \"type\": 105, \"actor\": \"player\", \"target\": 0, \"origin\": [\"item\", \"Thors Hammer\"], \"params\": {\"amount\": -2, \"used\": true, \"reflected\": false}, \"parent\": 528, \"depth\": 1}"
+     ]
+    },
+    "py": {
+     "at_idx": {
+      "t": 573,
+      "type": 15,
+      "actor": "player",
+      "target": 0,
+      "origin": [
+       "item",
+       "Thors Hammer"
+      ],
+      "params": {},
+      "parent": -1,
+      "depth": 0
+     },
+     "window": [
+      "{\"t\": 565, \"type\": 100, \"actor\": \"opponent\", \"target\": 1, \"origin\": [\"item\", \"Full Body Protection\"], \"params\": {\"amount\": 10, \"used\": false, \"reflected\": false}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 565, \"type\": 0, \"actor\": \"opponent\", \"target\": null, \"origin\": [\"item\", \"Full Body Protection\"], \"params\": {}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 573, \"type\": 15, \"actor\": \"player\", \"target\": 0, \"origin\": [\"item\", \"Thors Hammer\"], \"params\": {}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 573, \"type\": 101, \"actor\": \"player\", \"target\": 1, \"origin\": [\"item\", \"Mrs Struggles\"], \"params\": {\"amount\": -1, \"used\": false, \"reflected\": false}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 573, \"type\": 102, \"actor\": \"player\", \"target\": 1, \"origin\": [\"item\", \"Mrs Struggles\"], \"params\": {\"amount\": -1, \"used\": false, \"reflected\": false}, \"parent\": -1, \"depth\": 0}"
+     ]
+    },
+    "first_line_diff": {
+     "line_index": 372,
+     "gdcore_line": "9.55:  [玩家] 恢复6点生命值（火辣香蕉）。",
+     "py_line": "9.55:  [玩家] 耐力耗尽（['Thor’s Hammer', '雷神之锤']）。"
+    }
+   },
+   "judgement": {
+    "event_tuples": {
+     "oracle_gd": true,
+     "gd_py": false
+    },
+    "rendered_lines": {
+     "oracle_gd": true,
+     "gd_py": false
+    }
+   },
+   "localization": "gd_core_py-transpiler",
+   "localizationEvidence": "gd_core(Godot) ≡ 神谕、gd_core_py(Python) 在同 (阵容,seed,激活顺序) 下与之分歧——纯转写层问题"
+  },
+  {
+   "caseId": "run101635_r11_o101268_r11",
+   "seed": 1428428081,
+   "lineupPair": "oracle_run101635_r11_o101268_r11_player|oracle_run101635_r11_o101268_r11_opponent",
+   "oracleEvents": 2616,
+   "gdcoreEvents": 2616,
+   "pyEvents": 2600,
+   "winner": {
+    "oracle": "player",
+    "gdcore": "player",
+    "py": "player"
+   },
+   "match": "gdcore≡oracle 但 py 分歧",
+   "firstDivergence": {
+    "pair": "gdcore_vs_py",
+    "kind": "event",
+    "index": 115,
+    "gdcore": {
+     "at_idx": {
+      "t": 232,
+      "type": 12,
+      "actor": "player",
+      "target": 0,
+      "origin": [
+       "item",
+       "Spicy Banana"
+      ],
+      "params": {
+       "amount": 4
+      },
+      "parent": -1,
+      "depth": 0
+     },
+     "window": [
+      "{\"t\": 230, \"type\": 0, \"actor\": \"opponent\", \"target\": null, \"origin\": [\"item\", \"Lightsaber\"], \"params\": {}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 230, \"type\": 105, \"actor\": \"opponent\", \"target\": 1, \"origin\": [\"item\", \"Mana Orb\"], \"params\": {\"amount\": 1, \"used\": false, \"reflected\": false}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 232, \"type\": 12, \"actor\": \"player\", \"target\": 0, \"origin\": [\"item\", \"Spicy Banana\"], \"params\": {\"amount\": 4}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 232, \"type\": 3, \"actor\": \"player\", \"target\": null, \"origin\": [\"item\", \"Hammer\"], \"params\": {}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 232, \"type\": 0, \"actor\": \"player\", \"target\": null, \"origin\": [\"item\", \"Hammer\"], \"params\": {}, \"parent\": -1, \"depth\": 0}"
+     ]
+    },
+    "py": {
+     "at_idx": {
+      "t": 232,
+      "type": 15,
+      "actor": "player",
+      "target": 0,
+      "origin": [
+       "item",
+       "Hammer"
+      ],
+      "params": {},
+      "parent": -1,
+      "depth": 0
+     },
+     "window": [
+      "{\"t\": 230, \"type\": 0, \"actor\": \"opponent\", \"target\": null, \"origin\": [\"item\", \"Lightsaber\"], \"params\": {}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 230, \"type\": 105, \"actor\": \"opponent\", \"target\": 1, \"origin\": [\"item\", \"Mana Orb\"], \"params\": {\"amount\": 1, \"used\": false, \"reflected\": false}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 232, \"type\": 15, \"actor\": \"player\", \"target\": 0, \"origin\": [\"item\", \"Hammer\"], \"params\": {}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 232, \"type\": 12, \"actor\": \"player\", \"target\": 0, \"origin\": [\"item\", \"Spicy Banana\"], \"params\": {\"amount\": 1}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 232, \"type\": 3, \"actor\": \"player\", \"target\": null, \"origin\": [\"item\", \"Eggscalibur\"], \"params\": {}, \"parent\": -1, \"depth\": 0}"
+     ]
+    },
+    "first_line_diff": {
+     "line_index": 70,
+     "gdcore_line": "3.87:  [玩家] 恢复4点生命值（火辣香蕉）。",
+     "py_line": "3.87:  [玩家] 耐力耗尽（锤子）。"
+    }
+   },
+   "judgement": {
+    "event_tuples": {
+     "oracle_gd": true,
+     "gd_py": false
+    },
+    "rendered_lines": {
+     "oracle_gd": true,
+     "gd_py": false
+    }
+   },
+   "localization": "gd_core_py-transpiler",
+   "localizationEvidence": "gd_core(Godot) ≡ 神谕、gd_core_py(Python) 在同 (阵容,seed,激活顺序) 下与之分歧——纯转写层问题"
+  },
+  {
+   "caseId": "run604768_r17_o604707_r17",
+   "seed": 460085997,
+   "lineupPair": "oracle_run604768_r17_o604707_r17_player|oracle_run604768_r17_o604707_r17_opponent",
+   "oracleEvents": 148,
+   "gdcoreEvents": 148,
+   "pyEvents": 223,
+   "winner": {
+    "oracle": "player",
+    "gdcore": "player",
+    "py": "player"
+   },
+   "match": "gdcore≡oracle 但 py 分歧",
+   "firstDivergence": {
+    "pair": "gdcore_vs_py",
+    "kind": "event",
+    "index": 78,
+    "gdcore": {
+     "at_idx": {
+      "t": 0,
+      "type": 102,
+      "actor": "player",
+      "target": 0,
+      "origin": [
+       "item",
+       "Big Bloodthorne"
+      ],
+      "params": {
+       "amount": -3,
+       "used": true,
+       "reflected": false
+      },
+      "parent": -1,
+      "depth": 0
+     },
+     "window": [
+      "{\"t\": 0, \"type\": 104, \"actor\": \"player\", \"target\": 0, \"origin\": [\"item\", \"Bismuth Cube\"], \"params\": {\"amount\": 1, \"used\": false, \"reflected\": false}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 0, \"type\": 104, \"actor\": \"player\", \"target\": 0, \"origin\": [\"item\", \"Big Bloodthorne\"], \"params\": {\"amount\": 8, \"used\": false, \"reflected\": false}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 0, \"type\": 102, \"actor\": \"player\", \"target\": 0, \"origin\": [\"item\", \"Big Bloodthorne\"], \"params\": {\"amount\": -3, \"used\": true, \"reflected\": false}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 0, \"type\": 103, \"actor\": \"player\", \"target\": 0, \"origin\": [\"item\", \"Big Bloodthorne\"], \"params\": {\"amount\": 10, \"used\": false, \"reflected\": false}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 0, \"type\": 101, \"actor\": \"player\", \"target\": 0, \"origin\": [\"item\", \"Bismuth Cube\"], \"params\": {\"amount\": 1, \"used\": false, \"reflected\": false}, \"parent\": -1, \"depth\": 0}"
+     ]
+    },
+    "py": {
+     "at_idx": {
+      "t": 0,
+      "type": 13,
+      "actor": "player",
+      "target": 0,
+      "origin": [
+       "item",
+       "Strong Heroic Potion"
+      ],
+      "params": {
+       "stamina": 4
+      },
+      "parent": -1,
+      "depth": 0
+     },
+     "window": [
+      "{\"t\": 0, \"type\": 104, \"actor\": \"player\", \"target\": 0, \"origin\": [\"item\", \"Bismuth Cube\"], \"params\": {\"amount\": 1, \"used\": false, \"reflected\": false}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 0, \"type\": 104, \"actor\": \"player\", \"target\": 0, \"origin\": [\"item\", \"Big Bloodthorne\"], \"params\": {\"amount\": 8, \"used\": false, \"reflected\": false}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 0, \"type\": 13, \"actor\": \"player\", \"target\": 0, \"origin\": [\"item\", \"Strong Heroic Potion\"], \"params\": {\"stamina\": 4}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 0, \"type\": 106, \"actor\": \"player\", \"target\": 0, \"origin\": [\"item\", \"Strong Heroic Potion\"], \"params\": {\"amount\": 1, \"used\": false, \"reflected\": false}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 0, \"type\": 13, \"actor\": \"player\", \"target\": 0, \"origin\": [\"item\", \"Strong Heroic Potion\"], \"params\": {\"stamina\": 4}, \"parent\": -1, \"depth\": 0}"
+     ]
+    },
+    "first_line_diff": {
+     "line_index": 26,
+     "gdcore_line": "0.00:  [玩家] 消耗3 恢复 （大血棘）。",
+     "py_line": "0.00:  [玩家] 恢复4点耐力（强力英勇魔药）。"
+    }
+   },
+   "judgement": {
+    "event_tuples": {
+     "oracle_gd": true,
+     "gd_py": false
+    },
+    "rendered_lines": {
+     "oracle_gd": true,
+     "gd_py": false
+    }
+   },
+   "localization": "gd_core_py-transpiler",
+   "localizationEvidence": "gd_core(Godot) ≡ 神谕、gd_core_py(Python) 在同 (阵容,seed,激活顺序) 下与之分歧——纯转写层问题"
+  },
+  {
+   "caseId": "run604839_r16_o500204_r16",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run101702_r17_o101027_r17",
+   "seed": 1116357159,
+   "lineupPair": "oracle_run101702_r17_o101027_r17_player|oracle_run101702_r17_o101027_r17_opponent",
+   "oracleEvents": 566,
+   "gdcoreEvents": 566,
+   "pyEvents": 564,
+   "winner": {
+    "oracle": "player",
+    "gdcore": "player",
+    "py": "opponent"
+   },
+   "match": "gdcore≡oracle 但 py 分歧",
+   "firstDivergence": {
+    "pair": "gdcore_vs_py",
+    "kind": "event",
+    "index": 272,
+    "gdcore": {
+     "at_idx": {
+      "t": 352,
+      "type": 103,
+      "actor": "player",
+      "target": 0,
+      "origin": [
+       "item",
+       "Mecha Bat"
+      ],
+      "params": {
+       "amount": 2,
+       "used": false,
+       "reflected": false,
+       "resisted": true
+      },
+      "parent": -1,
+      "depth": 0
+     },
+     "window": [
+      "{\"t\": 344, \"type\": 0, \"actor\": \"opponent\", \"target\": null, \"origin\": [\"item\", \"Evil Cap\"], \"params\": {}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 344, \"type\": 0, \"actor\": \"opponent\", \"target\": null, \"origin\": [\"item\", \"Echoing Battlecry\"], \"params\": {}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 352, \"type\": 103, \"actor\": \"player\", \"target\": 0, \"origin\": [\"item\", \"Mecha Bat\"], \"params\": {\"amount\": 2, \"used\": false, \"reflected\": false, \"resisted\": true}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 352, \"type\": 103, \"actor\": \"player\", \"target\": 0, \"origin\": [\"item\", \"Mecha Bat\"], \"params\": {\"amount\": 4, \"used\": false, \"reflected\": false}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 352, \"type\": 0, \"actor\": \"player\", \"target\": null, \"origin\": [\"item\", \"Mecha Bat\"], \"params\": {}, \"parent\": -1, \"depth\": 0}"
+     ]
+    },
+    "py": {
+     "at_idx": {
+      "t": 352,
+      "type": 13,
+      "actor": "player",
+      "target": 0,
+      "origin": [
+       "item",
+       "Strong Heroic Potion"
+      ],
+      "params": {
+       "stamina": 4
+      },
+      "parent": -1,
+      "depth": 0
+     },
+     "window": [
+      "{\"t\": 344, \"type\": 0, \"actor\": \"opponent\", \"target\": null, \"origin\": [\"item\", \"Evil Cap\"], \"params\": {}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 344, \"type\": 0, \"actor\": \"opponent\", \"target\": null, \"origin\": [\"item\", \"Echoing Battlecry\"], \"params\": {}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 352, \"type\": 13, \"actor\": \"player\", \"target\": 0, \"origin\": [\"item\", \"Strong Heroic Potion\"], \"params\": {\"stamina\": 4}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 352, \"type\": 106, \"actor\": \"player\", \"target\": 0, \"origin\": [\"item\", \"Strong Heroic Potion\"], \"params\": {\"amount\": 1, \"used\": false, \"reflected\": false, \"resisted\": true}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 352, \"type\": 103, \"actor\": \"player\", \"target\": 0, \"origin\": [\"item\", \"Strong Vampiric Potion\"], \"params\": {\"amount\": 1, \"used\": false, \"reflected\": false, \"resisted\": true}, \"parent\": -1, \"depth\": 0}"
+     ]
+    },
+    "first_line_diff": {
+     "line_index": 184,
+     "gdcore_line": "5.87:  [玩家] 2 吸血被无效化（机械蝙蝠）。",
+     "py_line": "5.87:  [玩家] 恢复4点耐力（强力英勇魔药）。"
+    }
+   },
+   "judgement": {
+    "event_tuples": {
+     "oracle_gd": true,
+     "gd_py": false
+    },
+    "rendered_lines": {
+     "oracle_gd": true,
+     "gd_py": false
+    }
+   },
+   "localization": "gd_core_py-transpiler",
+   "localizationEvidence": "gd_core(Godot) ≡ 神谕、gd_core_py(Python) 在同 (阵容,seed,激活顺序) 下与之分歧——纯转写层问题"
+  },
+  {
+   "caseId": "run604796_r8_o300117_r8",
+   "seed": 1865475738,
+   "lineupPair": "oracle_run604796_r8_o300117_r8_player|oracle_run604796_r8_o300117_r8_opponent",
+   "oracleEvents": 140,
+   "gdcoreEvents": 140,
+   "pyEvents": 184,
+   "winner": {
+    "oracle": "player",
+    "gdcore": "player",
+    "py": "player"
+   },
+   "match": "gdcore≡oracle 但 py 分歧",
+   "firstDivergence": {
+    "pair": "gdcore_vs_py",
+    "kind": "event",
+    "index": 92,
+    "gdcore": {
+     "at_idx": {
+      "t": 189,
+      "type": 1,
+      "actor": "player",
+      "target": null,
+      "origin": [
+       "item",
+       "Villain Sword"
+      ],
+      "params": {
+       "damage": 16
+      },
+      "parent": -1,
+      "depth": 0
+     },
+     "window": [
+      "{\"t\": 183, \"type\": 1, \"actor\": \"player\", \"target\": null, \"origin\": [\"item\", \"Hero Sword\"], \"params\": {\"damage\": 0}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 183, \"type\": 0, \"actor\": \"player\", \"target\": null, \"origin\": [\"item\", \"Hero Sword\"], \"params\": {}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 189, \"type\": 1, \"actor\": \"player\", \"target\": null, \"origin\": [\"item\", \"Villain Sword\"], \"params\": {\"damage\": 16}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 189, \"type\": 0, \"actor\": \"player\", \"target\": null, \"origin\": [\"item\", \"Villain Sword\"], \"params\": {}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 193, \"type\": 1, \"actor\": \"player\", \"target\": null, \"origin\": [\"item\", \"Ruby Whelp\"], \"params\": {\"damage\": 10}, \"parent\": -1, \"depth\": 0}"
+     ]
+    },
+    "py": {
+     "at_idx": {
+      "t": 189,
+      "type": 15,
+      "actor": "player",
+      "target": 0,
+      "origin": [
+       "item",
+       "Villain Sword"
+      ],
+      "params": {},
+      "parent": -1,
+      "depth": 0
+     },
+     "window": [
+      "{\"t\": 183, \"type\": 1, \"actor\": \"player\", \"target\": null, \"origin\": [\"item\", \"Hero Sword\"], \"params\": {\"damage\": 0}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 183, \"type\": 0, \"actor\": \"player\", \"target\": null, \"origin\": [\"item\", \"Hero Sword\"], \"params\": {}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 189, \"type\": 15, \"actor\": \"player\", \"target\": 0, \"origin\": [\"item\", \"Villain Sword\"], \"params\": {}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 193, \"type\": 1, \"actor\": \"player\", \"target\": null, \"origin\": [\"item\", \"Ruby Whelp\"], \"params\": {\"damage\": 10}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 193, \"type\": 0, \"actor\": \"player\", \"target\": null, \"origin\": [\"item\", \"Ruby Whelp\"], \"params\": {}, \"parent\": -1, \"depth\": 0}"
+     ]
+    },
+    "first_line_diff": {
+     "line_index": 46,
+     "gdcore_line": "3.15:  [玩家] 造成16点伤害（反派之剑）。",
+     "py_line": "3.15:  [玩家] 耐力耗尽（反派之剑）。"
+    }
+   },
+   "judgement": {
+    "event_tuples": {
+     "oracle_gd": true,
+     "gd_py": false
+    },
+    "rendered_lines": {
+     "oracle_gd": true,
+     "gd_py": false
+    }
+   },
+   "localization": "gd_core_py-transpiler",
+   "localizationEvidence": "gd_core(Godot) ≡ 神谕、gd_core_py(Python) 在同 (阵容,seed,激活顺序) 下与之分歧——纯转写层问题"
+  },
+  {
+   "caseId": "run704388_r14_o704267_r14",
+   "seed": 1798671750,
+   "lineupPair": "oracle_run704388_r14_o704267_r14_player|oracle_run704388_r14_o704267_r14_opponent",
+   "oracleEvents": 1090,
+   "gdcoreEvents": 1090,
+   "pyEvents": 980,
+   "winner": {
+    "oracle": "player",
+    "gdcore": "player",
+    "py": "player"
+   },
+   "match": "gdcore≡oracle 但 py 分歧",
+   "firstDivergence": {
+    "pair": "gdcore_vs_py",
+    "kind": "event",
+    "index": 106,
+    "gdcore": {
+     "at_idx": {
+      "t": 180,
+      "type": 106,
+      "actor": "player",
+      "target": 0,
+      "origin": [
+       "item",
+       "Bionic Armor"
+      ],
+      "params": {
+       "amount": 3,
+       "used": false,
+       "reflected": false
+      },
+      "parent": -1,
+      "depth": 0
+     },
+     "window": [
+      "{\"t\": 172, \"type\": 103, \"actor\": \"opponent\", \"target\": 1, \"origin\": [\"item\", \"Shaman Mask\"], \"params\": {\"amount\": 2, \"used\": false, \"reflected\": false}, \"parent\": 102, \"depth\": 1}",
+      "{\"t\": 172, \"type\": 0, \"actor\": \"opponent\", \"target\": null, \"origin\": [\"item\", \"Shaman Mask\"], \"params\": {}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 180, \"type\": 106, \"actor\": \"player\", \"target\": 0, \"origin\": [\"item\", \"Bionic Armor\"], \"params\": {\"amount\": 3, \"used\": false, \"reflected\": false}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 180, \"type\": 0, \"actor\": \"player\", \"target\": null, \"origin\": [\"item\", \"Bionic Armor\"], \"params\": {}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 180, \"type\": 12, \"actor\": \"opponent\", \"target\": 1, \"origin\": [\"src\", \"regen\"], \"params\": {\"amount\": 4}, \"parent\": -1, \"depth\": 0}"
+     ]
+    },
+    "py": {
+     "at_idx": {
+      "t": 180,
+      "type": 100,
+      "actor": "player",
+      "target": 0,
+      "origin": [
+       "item",
+       "Bionic Armor"
+      ],
+      "params": {
+       "amount": 30,
+       "used": false,
+       "reflected": false
+      },
+      "parent": -1,
+      "depth": 0
+     },
+     "window": [
+      "{\"t\": 172, \"type\": 103, \"actor\": \"opponent\", \"target\": 1, \"origin\": [\"item\", \"Shaman Mask\"], \"params\": {\"amount\": 2, \"used\": false, \"reflected\": false}, \"parent\": 102, \"depth\": 1}",
+      "{\"t\": 172, \"type\": 0, \"actor\": \"opponent\", \"target\": null, \"origin\": [\"item\", \"Shaman Mask\"], \"params\": {}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 180, \"type\": 100, \"actor\": \"player\", \"target\": 0, \"origin\": [\"item\", \"Bionic Armor\"], \"params\": {\"amount\": 30, \"used\": false, \"reflected\": false}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 180, \"type\": 20, \"actor\": \"player\", \"target\": null, \"origin\": [\"item\", \"Bionic Armor\"], \"params\": {\"stamina\": 0.6}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 180, \"type\": 0, \"actor\": \"player\", \"target\": null, \"origin\": [\"item\", \"Bionic Armor\"], \"params\": {}, \"parent\": -1, \"depth\": 0}"
+     ]
+    },
+    "first_line_diff": {
+     "line_index": 66,
+     "gdcore_line": "3.00:  [玩家] 获得3层 充能（魔工护甲）。",
+     "py_line": "3.00:  [玩家] 获得30层 护盾（魔工护甲）。"
+    }
+   },
+   "judgement": {
+    "event_tuples": {
+     "oracle_gd": true,
+     "gd_py": false
+    },
+    "rendered_lines": {
+     "oracle_gd": true,
+     "gd_py": false
+    }
+   },
+   "localization": "gd_core_py-transpiler",
+   "localizationEvidence": "gd_core(Godot) ≡ 神谕、gd_core_py(Python) 在同 (阵容,seed,激活顺序) 下与之分歧——纯转写层问题"
+  },
+  {
+   "caseId": "run704531_r15_o604621_r15",
+   "seed": 1138124762,
+   "lineupPair": "oracle_run704531_r15_o604621_r15_player|oracle_run704531_r15_o604621_r15_opponent",
+   "oracleEvents": 574,
+   "gdcoreEvents": 574,
+   "pyEvents": 623,
+   "winner": {
+    "oracle": "player",
+    "gdcore": "player",
+    "py": "player"
+   },
+   "match": "gdcore≡oracle 但 py 分歧",
+   "firstDivergence": {
+    "pair": "gdcore_vs_py",
+    "kind": "event",
+    "index": 192,
+    "gdcore": {
+     "at_idx": {
+      "t": 241,
+      "type": 1,
+      "actor": "player",
+      "target": null,
+      "origin": [
+       "item",
+       "Manathirst"
+      ],
+      "params": {
+       "damage": 8
+      },
+      "parent": -1,
+      "depth": 0
+     },
+     "window": [
+      "{\"t\": 230, \"type\": 0, \"actor\": \"opponent\", \"target\": null, \"origin\": [\"item\", \"Amulet of Steel\"], \"params\": {}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 230, \"type\": 0, \"actor\": \"opponent\", \"target\": null, \"origin\": [\"item\", \"Vampiric Armor\"], \"params\": {}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 241, \"type\": 1, \"actor\": \"player\", \"target\": null, \"origin\": [\"item\", \"Manathirst\"], \"params\": {\"damage\": 8}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 241, \"type\": 105, \"actor\": \"player\", \"target\": 0, \"origin\": [\"item\", \"Manathirst\"], \"params\": {\"amount\": 4, \"used\": false, \"reflected\": false}, \"parent\": 192, \"depth\": 1}",
+      "{\"t\": 241, \"type\": 100, \"actor\": \"player\", \"target\": 0, \"origin\": [\"gem\", null, -1], \"params\": {\"amount\": 3, \"used\": false, \"reflected\": false}, \"parent\": -1, \"depth\": 0}"
+     ]
+    },
+    "py": {
+     "at_idx": {
+      "t": 241,
+      "type": 15,
+      "actor": "player",
+      "target": 0,
+      "origin": [
+       "item",
+       "Manathirst"
+      ],
+      "params": {},
+      "parent": -1,
+      "depth": 0
+     },
+     "window": [
+      "{\"t\": 230, \"type\": 0, \"actor\": \"opponent\", \"target\": null, \"origin\": [\"item\", \"Amulet of Steel\"], \"params\": {}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 230, \"type\": 0, \"actor\": \"opponent\", \"target\": null, \"origin\": [\"item\", \"Vampiric Armor\"], \"params\": {}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 241, \"type\": 15, \"actor\": \"player\", \"target\": 0, \"origin\": [\"item\", \"Manathirst\"], \"params\": {}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 246, \"type\": 101, \"actor\": \"player\", \"target\": 1, \"origin\": [\"item\", \"Amethyst Whelp\"], \"params\": {\"amount\": -1, \"used\": false, \"reflected\": false}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 246, \"type\": 1, \"actor\": \"player\", \"target\": null, \"origin\": [\"item\", \"Amethyst Whelp\"], \"params\": {\"damage\": 7}, \"parent\": -1, \"depth\": 0}"
+     ]
+    },
+    "first_line_diff": {
+     "line_index": 124,
+     "gdcore_line": "4.02:  [玩家] 造成8点伤害（吸魔剑）。",
+     "py_line": "4.02:  [玩家] 耐力耗尽（吸魔剑）。"
+    }
+   },
+   "judgement": {
+    "event_tuples": {
+     "oracle_gd": true,
+     "gd_py": false
+    },
+    "rendered_lines": {
+     "oracle_gd": true,
+     "gd_py": false
+    }
+   },
+   "localization": "gd_core_py-transpiler",
+   "localizationEvidence": "gd_core(Godot) ≡ 神谕、gd_core_py(Python) 在同 (阵容,seed,激活顺序) 下与之分歧——纯转写层问题"
+  }
+ ],
+ "localization": {
+  "gd_core_py-transpiler": [
+   {
+    "caseId": "run704991_r8_o704410_r8",
+    "evidence": "gd_core(Godot) ≡ 神谕、gd_core_py(Python) 在同 (阵容,seed,激活顺序) 下与之分歧——纯转写层问题"
+   },
+   {
+    "caseId": "run300225_r6_o500231_r6",
+    "evidence": "gd_core(Godot) ≡ 神谕、gd_core_py(Python) 在同 (阵容,seed,激活顺序) 下与之分歧——纯转写层问题"
+   },
+   {
+    "caseId": "run101617_r16_o300168_r16",
+    "evidence": "gd_core(Godot) ≡ 神谕、gd_core_py(Python) 在同 (阵容,seed,激活顺序) 下与之分歧——纯转写层问题"
+   },
+   {
+    "caseId": "run704847_r17_o704688_r17",
+    "evidence": "gd_core(Godot) ≡ 神谕、gd_core_py(Python) 在同 (阵容,seed,激活顺序) 下与之分歧——纯转写层问题"
+   },
+   {
+    "caseId": "run101710_r14_o100993_r14",
+    "evidence": "gd_core(Godot) ≡ 神谕、gd_core_py(Python) 在同 (阵容,seed,激活顺序) 下与之分歧——纯转写层问题"
+   },
+   {
+    "caseId": "run101617_r17_o704297_r17",
+    "evidence": "gd_core(Godot) ≡ 神谕、gd_core_py(Python) 在同 (阵容,seed,激活顺序) 下与之分歧——纯转写层问题"
+   },
+   {
+    "caseId": "run704752_r14_o604627_r14",
+    "evidence": "gd_core(Godot) ≡ 神谕、gd_core_py(Python) 在同 (阵容,seed,激活顺序) 下与之分歧——纯转写层问题"
+   },
+   {
+    "caseId": "run101635_r11_o101268_r11",
+    "evidence": "gd_core(Godot) ≡ 神谕、gd_core_py(Python) 在同 (阵容,seed,激活顺序) 下与之分歧——纯转写层问题"
+   },
+   {
+    "caseId": "run604768_r17_o604707_r17",
+    "evidence": "gd_core(Godot) ≡ 神谕、gd_core_py(Python) 在同 (阵容,seed,激活顺序) 下与之分歧——纯转写层问题"
+   },
+   {
+    "caseId": "run101702_r17_o101027_r17",
+    "evidence": "gd_core(Godot) ≡ 神谕、gd_core_py(Python) 在同 (阵容,seed,激活顺序) 下与之分歧——纯转写层问题"
+   },
+   {
+    "caseId": "run604796_r8_o300117_r8",
+    "evidence": "gd_core(Godot) ≡ 神谕、gd_core_py(Python) 在同 (阵容,seed,激活顺序) 下与之分歧——纯转写层问题"
+   },
+   {
+    "caseId": "run704388_r14_o704267_r14",
+    "evidence": "gd_core(Godot) ≡ 神谕、gd_core_py(Python) 在同 (阵容,seed,激活顺序) 下与之分歧——纯转写层问题"
+   },
+   {
+    "caseId": "run704531_r15_o604621_r15",
+    "evidence": "gd_core(Godot) ≡ 神谕、gd_core_py(Python) 在同 (阵容,seed,激活顺序) 下与之分歧——纯转写层问题"
+   }
+  ]
+ },
+ "fixPlan": [
+  {
+   "goal": "修 gd_core_py 转写孪生与 gd_core(GDScript) 的机械转写偏差",
+   "steps": [
+    "对首分歧事件定位对应 .gd 行号，检查 tools/gd_to_py.py 的转写产物（浮点/数组/字典语义）",
+    "优先手修 gd_core_py 对应 .py 并在转写器登记规则，防下次重转回退"
+   ],
+   "category": "gd_core_py-transpiler",
+   "cases": [
+    "run704991_r8_o704410_r8",
+    "run300225_r6_o500231_r6",
+    "run101617_r16_o300168_r16",
+    "run704847_r17_o704688_r17",
+    "run101710_r14_o100993_r14",
+    "run101617_r17_o704297_r17",
+    "run704752_r14_o604627_r14",
+    "run101635_r11_o101268_r11",
+    "run604768_r17_o604707_r17",
+    "run101702_r17_o101027_r17",
+    "run604796_r8_o300117_r8",
+    "run704388_r14_o704267_r14",
+    "run704531_r15_o604621_r15"
+   ],
+   "case_count": 13
+  }
+ ]
+}

@@ -1,0 +1,98 @@
+{
+ "aligned": 3,
+ "total": 3,
+ "match_distribution": {
+  "三方一致": 3
+ },
+ "convention": {
+  "seed": "两侧 gd_core 在任何物品实例创建前以 CoreContext(seed) 注入（≙ oracle_fight.gd:536-537 的 Util.rng.seed=S）",
+  "below_master": "false（np24 簇B：新语料族A 全 +1 tick 实证录制时 isBelowLeague(Master)=假，对手冷却掷 (0.95,1.05)；旧 rng_log 0.975 实证属旧语料，不再适用）",
+  "activation_order": "原版开战 shuffle 走引擎全局链（docs/rng_truth.md §1.4-2）；OracleAlignBattle.gd 用真 Godot seed(S)+shuffle×2+sort_TriggerPriority 复刻终序并直通内核（startBattle preordered）",
+  "judgement": "主判据=engine/log_text.py 渲染战报逐行比对；辅判据=事件 canonical（t 按 1/60s tick 取整、type/side/origin/params/parent-depth 全等）；两者都一致才算通过"
+ },
+ "perCase": [
+  {
+   "caseId": "run604589_r16_o704359_r16",
+   "seed": 1128146155,
+   "lineupPair": "oracle_run604589_r16_o704359_r16_player|oracle_run604589_r16_o704359_r16_opponent",
+   "oracleEvents": 677,
+   "gdcoreEvents": 677,
+   "pyEvents": 677,
+   "winner": {
+    "oracle": "opponent",
+    "gdcore": "opponent",
+    "py": "opponent"
+   },
+   "match": "三方一致",
+   "firstDivergence": null,
+   "judgement": {
+    "event_tuples": {
+     "oracle_gd": true,
+     "gd_py": true
+    },
+    "rendered_lines": {
+     "oracle_gd": true,
+     "gd_py": true
+    }
+   },
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run101714_r1_o704353_r1",
+   "seed": 1431477137,
+   "lineupPair": "oracle_run101714_r1_o704353_r1_player|oracle_run101714_r1_o704353_r1_opponent",
+   "oracleEvents": 55,
+   "gdcoreEvents": 55,
+   "pyEvents": 55,
+   "winner": {
+    "oracle": "opponent",
+    "gdcore": "opponent",
+    "py": "opponent"
+   },
+   "match": "三方一致",
+   "firstDivergence": null,
+   "judgement": {
+    "event_tuples": {
+     "oracle_gd": true,
+     "gd_py": true
+    },
+    "rendered_lines": {
+     "oracle_gd": true,
+     "gd_py": true
+    }
+   },
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run604498_r16_o101592_r16",
+   "seed": 1537262243,
+   "lineupPair": "oracle_run604498_r16_o101592_r16_player|oracle_run604498_r16_o101592_r16_opponent",
+   "oracleEvents": 152,
+   "gdcoreEvents": 152,
+   "pyEvents": 152,
+   "winner": {
+    "oracle": "opponent",
+    "gdcore": "opponent",
+    "py": "opponent"
+   },
+   "match": "三方一致",
+   "firstDivergence": null,
+   "judgement": {
+    "event_tuples": {
+     "oracle_gd": true,
+     "gd_py": true
+    },
+    "rendered_lines": {
+     "oracle_gd": true,
+     "gd_py": true
+    }
+   },
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  }
+ ],
+ "localization": {},
+ "fixPlan": []
+}

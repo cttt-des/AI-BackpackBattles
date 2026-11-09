@@ -1,0 +1,125 @@
+{
+ "diag": "60 场精选集中 15 场非绿，用原全量夹具复跑",
+ "rows": [
+  {
+   "case_id": "run704991_r8_o704410_r8",
+   "now": "gdcore≡oracle 但 py 分歧",
+   "hist": "三方一致",
+   "oracle": 221,
+   "gd": 221,
+   "py": 215
+  },
+  {
+   "case_id": "run300225_r6_o500231_r6",
+   "now": "gdcore≡oracle 但 py 分歧",
+   "hist": "三方一致",
+   "oracle": 249,
+   "gd": 249,
+   "py": 252
+  },
+  {
+   "case_id": "run101617_r16_o300168_r16",
+   "now": "gdcore≡oracle 但 py 分歧",
+   "hist": "三方一致",
+   "oracle": 2666,
+   "gd": 2666,
+   "py": 2730
+  },
+  {
+   "case_id": "run704847_r17_o704688_r17",
+   "now": "gdcore≡oracle 但 py 分歧",
+   "hist": "三方一致",
+   "oracle": 5077,
+   "gd": 5077,
+   "py": 3641
+  },
+  {
+   "case_id": "run101710_r14_o100993_r14",
+   "now": "gdcore≡oracle 但 py 分歧",
+   "hist": "三方一致",
+   "oracle": 7662,
+   "gd": 7662,
+   "py": 6786
+  },
+  {
+   "case_id": "run101617_r17_o704297_r17",
+   "now": "gdcore≡oracle 但 py 分歧",
+   "hist": "三方一致",
+   "oracle": 1872,
+   "gd": 1872,
+   "py": 2244
+  },
+  {
+   "case_id": "run101354_r14_o101073_r14",
+   "now": "三方一致",
+   "hist": "oracle≠gdcore",
+   "oracle": 671,
+   "gd": 671,
+   "py": 671
+  },
+  {
+   "case_id": "run704752_r14_o604627_r14",
+   "now": "gdcore≡oracle 但 py 分歧",
+   "hist": "三方一致",
+   "oracle": 1077,
+   "gd": 1077,
+   "py": 1056
+  },
+  {
+   "case_id": "run101635_r11_o101268_r11",
+   "now": "gdcore≡oracle 但 py 分歧",
+   "hist": "三方一致",
+   "oracle": 2616,
+   "gd": 2616,
+   "py": 2600
+  },
+  {
+   "case_id": "run604768_r17_o604707_r17",
+   "now": "gdcore≡oracle 但 py 分歧",
+   "hist": "三方一致",
+   "oracle": 148,
+   "gd": 148,
+   "py": 223
+  },
+  {
+   "case_id": "run604839_r16_o500204_r16",
+   "now": "py 缺产物",
+   "hist": "三方一致",
+   "oracle": null,
+   "gd": null,
+   "py": null
+  },
+  {
+   "case_id": "run101702_r17_o101027_r17",
+   "now": "gdcore≡oracle 但 py 分歧",
+   "hist": "三方一致",
+   "oracle": 566,
+   "gd": 566,
+   "py": 564
+  },
+  {
+   "case_id": "run604796_r8_o300117_r8",
+   "now": "gdcore≡oracle 但 py 分歧",
+   "hist": "三方一致",
+   "oracle": 140,
+   "gd": 140,
+   "py": 184
+  },
+  {
+   "case_id": "run704388_r14_o704267_r14",
+   "now": "gdcore≡oracle 但 py 分歧",
+   "hist": "三方一致",
+   "oracle": 1090,
+   "gd": 1090,
+   "py": 980
+  },
+  {
+   "case_id": "run704531_r15_o604621_r15",
+   "now": "gdcore≡oracle 但 py 分歧",
+   "hist": "三方一致",
+   "oracle": 574,
+   "gd": 574,
+   "py": 623
+  }
+ ]
+}

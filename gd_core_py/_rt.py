@@ -52,8 +52,10 @@ from __future__ import annotations
 import builtins
 import copy
 import math
+import os as _os
 import random
 import struct
+import sys as _sys
 
 # `RandomNumberGenerator.randomize()` 是否被触发过 —— 那意味着可复现性已丢失，
 # 闸门应当据此判失败（[0] 是可变单元，避免 global 声明）。
@@ -1234,7 +1236,43 @@ class PCG32:
         self.state = (old * PCG_MULT + self.inc) & MASK64
         xorshifted = (((old >> 18) ^ old) >> 27) & UINT32_MAX
         rot = (old >> 59) & 31
-        return ((xorshifted >> rot) | (xorshifted << ((-rot) & 31))) & UINT32_MAX
+        v = ((xorshifted >> rot) | (xorshifted << ((-rot) & 31))) & UINT32_MAX
+        # ★ 回归取证仪器（GD_DEBUG_RNG=1 时启用；默认零开销不进路径）：
+        #   逐抽记录（序号, 抽后 state, 调用点链），供 py 腿分歧二分。
+        if _RNG_DEBUG:
+            _f = _sys._getframe(1)
+            chain = []
+            for _ in range(5):
+                co = _f.f_code
+                fn = co.co_filename.rsplit("/", 1)[-1].rsplit(chr(92), 1)[-1]
+                if fn.endswith("_rt.py"):
+                    _f = _f.f_back
+                    continue
+                chain.append(f"{fn}:{co.co_firstlineno}:{co.co_name}")
+                _f = _f.f_back
+                if _f is None:
+                    break
+            RNG_TRACE.append((len(RNG_TRACE), self.state, " <- ".join(chain[:3])))
+        return v
+
+
+RNG_TRACE = []
+_RNG_DEBUG = _os.environ.get("GD_DEBUG_RNG") == "1"
+if _RNG_DEBUG:
+    import atexit as _atexit
+    import json as _json
+
+    def _dump_rng_trace():
+        out = _os.environ.get(
+            "GD_DEBUG_RNG_OUT",
+            _os.path.join(_os.getcwd(), "output", "perf", "rng_trace.json"))
+        try:
+            with open(out, "w", encoding="utf-8") as _f:
+                _json.dump(RNG_TRACE, _f)
+        except Exception:  # noqa: BLE001 —— 取证落盘失败不挡流程
+            pass
+
+    _atexit.register(_dump_rng_trace)
 
 
 class RandomNumberGenerator:
