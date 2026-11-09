@@ -160,12 +160,15 @@ class CoreGrid(GodotObject):
 	def getAdjacentCells(cells):
 		_iter__loc = _iter
 		adjacentCells = []
+		_cells_seen = set(cells)
+		_adj_seen = set()
 		for cell in (cells if cells.__class__ is list else _iter__loc(cells)):
 			for offset in _iter__loc([Vector2.RIGHT, Vector2.LEFT, Vector2.UP, Vector2.DOWN]):
 				neighbor = cell + offset
 
-				if (not neighbor in cells and 
-					not neighbor in adjacentCells):
+				if (neighbor not in _cells_seen and 
+					neighbor not in _adj_seen):
+					_adj_seen.add(neighbor)
 					adjacentCells.append(neighbor)
 
 		return adjacentCells

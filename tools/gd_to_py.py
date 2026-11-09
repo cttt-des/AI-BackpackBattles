@@ -2852,6 +2852,50 @@ def _hook_strip(texts, stat, hit):
     return texts
 
 
+def _d2_adjcells_seen(texts, stat, hit):
+    """S4-D2（有界实现）：CoreGrid.getAdjacentCells 邻接格判重 seen-set 化。
+
+    原式双重线性判重（`not neighbor in cells` × O(cells) + `not neighbor in
+    adjacentCells` × O(增长表)）→ 两 set 一次构建、O(1) 成员查询。输出 =
+    发现顺序 append（逐元素相同——getAdjacentItems→getItemsInCells 消费链
+    保序，getNeighborItemsAndGems 邻接序不变，规划 §189 安全口径）。
+    精确锚点 + 计数校验，漂移即抛。
+    """
+    import ast as _ast
+    key = "gd_core/CoreGrid.gd"
+    t = texts.get(key)
+    if t is None:
+        raise RuntimeError("D2: 缺 gd_core/CoreGrid.gd 文本——texts 键名漂移")
+    old = ("\t\tadjacentCells = []\n"
+           "\t\tfor cell in (cells if cells.__class__ is list else _iter__loc(cells)):\n"
+           "\t\t\tfor offset in _iter__loc([Vector2.RIGHT, Vector2.LEFT, Vector2.UP, Vector2.DOWN]):\n"
+           "\t\t\t\tneighbor = cell + offset\n"
+           "\n"
+           "\t\t\t\tif (not neighbor in cells and \n"
+           "\t\t\t\t\tnot neighbor in adjacentCells):\n"
+           "\t\t\t\t\tadjacentCells.append(neighbor)\n")
+    if t.count(old) != 1:
+        raise RuntimeError(
+            "D2: getAdjacentCells 锚点计数=%d（需 1）——文本已漂移" % t.count(old))
+    new = ("\t\tadjacentCells = []\n"
+           "\t\t_cells_seen = set(cells)\n"
+           "\t\t_adj_seen = set()\n"
+           "\t\tfor cell in (cells if cells.__class__ is list else _iter__loc(cells)):\n"
+           "\t\t\tfor offset in _iter__loc([Vector2.RIGHT, Vector2.LEFT, Vector2.UP, Vector2.DOWN]):\n"
+           "\t\t\t\tneighbor = cell + offset\n"
+           "\n"
+           "\t\t\t\tif (neighbor not in _cells_seen and \n"
+           "\t\t\t\t\tneighbor not in _adj_seen):\n"
+           "\t\t\t\t\t_adj_seen.add(neighbor)\n"
+           "\t\t\t\t\tadjacentCells.append(neighbor)\n")
+    t = t.replace(old, new, 1)
+    _ast.parse(t)
+    texts[key] = t
+    hit["D2_adjcells_seen"] = 1
+    stat["D2"] = ["CoreGrid.getAdjacentCells seen-set 化"]
+    return texts
+
+
 def write_pkg(order, files_by_rel, by_name, by_path, class_names, stat, hit, write):
     texts = {}
     for rel in order:
@@ -2878,6 +2922,8 @@ def write_pkg(order, files_by_rel, by_name, by_path, class_names, stat, hit, wri
         texts = _clamp_inline(texts, stat, hit)
     if "C17b" not in _skip:
         texts = _hook_strip(texts, stat, hit)
+    if "D2" not in _skip:
+        texts = _d2_adjcells_seen(texts, stat, hit)
     if not write:
         return texts
     dirs = {OUT_PKG}
