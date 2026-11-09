@@ -1,0 +1,21 @@
+{
+  "stage": "S3 批1+批2a（C4 类引用提升 / C1-lite _iter 内联 / C6-lite 访问器内联）+ S1 完成段（GUI 并行/B9/E2/G4）",
+  "machine": "4P/8L，前日深度节流后部分恢复（绝对值仍存疑），Python 3.14.5",
+  "cmd": "python -X utf8 tools/bench_sim.py --n 15 --rounds 2（worktree 8128f4ed 交错 6 轮）",
+  "p50_ms": 308.4,
+  "p95_ms": null,
+  "ms_per_k_tick": null,
+  "fights_per_s_core": 3.24,
+  "startup_ttfb_s": null,
+  "workers": "MC: min(4,cpu,runs)（GUI 自动 / CLI --workers）",
+  "speedup": "单核累计 1.306x（交错 6/6 全胜，比值 1.241–1.409，方差收敛）；MC 并行对拍口径见 S1",
+  "gates": {
+    "REG_九场": "ALL PASS ×3（C4 后 / C1 后 / C6 后，gd+py 双腿各自独立过闸）",
+    "seed_等价": "seed 20260923≡False/907、seed 42≡False/1042——每项落地后逐位全等",
+    "ast_diff": "C4 面=Name+/Attribute-/Constant-/Assign+/Try+ 零语义节点",
+    "不变性": "全部 bench 运行 winner/ticks/n_events/events_bytes 零漂移",
+    "确定性计数": "_iter 592,247→51,190（C1 消 91.4%）；getStacks×2+current 464,621→0（C6 全消）；isStunned 77,155→72,243（Call 接收者保守排除）"
+  },
+  "events_bytes_delta": 0,
+  "note": "① C4（4efb033e）：_R.C 函数体引用提升为模块末常量，312 模块 812 常量；安全规则=唯一 stem/祖先/gd_core 树 + 属性链 _HoistPending 哨兵（死路径首用同点同型异常，Item.gd:1064→CoreConst.CraftingPriority 案）；交错 A/B 1.11x。② C5 判定不做：GD_DEFAULT 哨兵全树 52 点且热函数零命中（A1 实证），留档跳过。③ C1-lite（3f0b587b）：for-in-_iter 对纯名字/属性链发射 __class__ 内联守卫 201 处（type() 遮蔽踩坑后改 __class__）+ _rt._iter 分支重排；调用计数消 91.4%。④ C6-lite（f13f6b3d）：零覆写单返回访问器内联——机械审计=同名方法按调用态元数分组（@staticmethod 无 self 教训：CoreConst.getStacks 无参静态使 0-arg 形态三树共用，弃用；1-arg 唯一归 CoreCharacter 保留），20 处落点。⑤ S1 完成段（ca6ed4ba）：run_mc_pool 统一入口（CLI/GUI 共用）+ initializer B9 预热 + E2 chunksize=8 动态批次 + GUI 50ms 节流；逐 seed 对拍 9/32≡9/32。⑥ 下一步排序：C15 热函数全局局部化 → F5 tick 单函数化（30% 调用面）→ S5 Cython（设计前提 F5 先行）。⑦ 绝对数字仍建议健康机复测后更新；比值与确定性计数不受机器状态影响。"
+}
