@@ -18,6 +18,7 @@
 
 | 版本 | 文件 | 说明 |
 |------|------|------|
+| **v0.5.1** | [`BackpackSimulator.exe`](https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.5.1/BackpackSimulator.exe) | 战斗模拟器（阵容对战 / 蒙特卡洛胜率 / 物品联动 / 游戏格式战报）——**1690/1690 重跑复验**三方逐行一致；修复体力上限取数链不同源导致的 13 场分歧；新增 60 场确定性精选集 |
 | **v0.5.0** | [`BackpackSimulator.exe`](https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.5.0/BackpackSimulator.exe) | 战斗模拟器（阵容对战 / 蒙特卡洛胜率 / 物品联动 / 游戏格式战报）——1690 场语料三方对齐全绿 |
 | **v0.4.1** | [`BackpackSimulator.exe`](https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.4.1/BackpackSimulator.exe) | 战斗模拟器（阵容对战 / 蒙特卡洛胜率 / 物品联动 / 游戏格式战报） |
 | **v0.3.1** | [`BackpackCombatLog_v0.3.1.exe`](https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.3.1/BackpackCombatLog_v0.3.1.exe) | 战斗日志导出器（游戏内真实战斗 → 游戏同格式战报 + 原始事件 JSON） |
