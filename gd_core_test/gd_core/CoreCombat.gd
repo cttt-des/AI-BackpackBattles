@@ -239,23 +239,13 @@ func activateItems(items: Array) -> void :
 	
 	for item in items:
 		item.preCombatStart()
-	
-	# ★ np51 逆向注入实验（env 驱动阈值，用后即还原）：combatStart 派发序
-	#   第 _inj_at 个物品后注入 +1 裸抽，二分定位 ±1 隐形消耗注入面。
-	# ★ np51㉟：int("")在 py 侧抛异常（gd 静默 0）——空串守卫保证双腿同构
-	var _inj_at := 0
-	var _inj_at_s := OS.get_environment("ORACLE_INJ_AT")
-	if _inj_at_s != "":
-		_inj_at = int(_inj_at_s)
-	var _inj_idx := 0
-	print("INJ_ARM at=%d items=%d" % [_inj_at, items.size()])
+
+	# np51 逆向注入实验（ORACLE_INJ_AT 阈值注入 + INJ_ARM/INJ_FIRED 打点）
+	# 已按其自述「用后即还原」清除（2026-11-09 S0-G1）：ORACLE_INJ_AT 未设时
+	# 注入分支恒不触发，删除对语料逐位零影响（REG 九场对拍原样）。
 	for item in items:
 		item.combatStart()
-		if _inj_at > 0 and _inj_idx == _inj_at:
-			print("INJ_FIRED idx=%d" % _inj_idx)
-			ctx.rng.randf_range(0.0, 1.0)
-		_inj_idx += 1
-	
+
 	for item in items:
 		item.postCombatStart()
 	

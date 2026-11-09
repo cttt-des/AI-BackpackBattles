@@ -1,0 +1,22 @@
+{
+  "stage": "S0（H1/H2骨架/H3/H4/H5/A1/A2-lite/A3/A4/A5/G1 全落地；S1-E1 CLI 提前落地）",
+  "machine": "4P/8L, 功耗受限（本 session 后段出现热漂移 363→403ms）, Python 3.14.5；沙箱拦绑核与 exe 直启",
+  "cmd": "python -X utf8 tools/bench_sim.py --n 20 --rounds 5 --ttfb --label baseline_20261109_postG1 --json output/perf/baseline_20261109.json",
+  "p50_ms": 402.9,
+  "p95_ms": 454.1,
+  "ms_per_k_tick": 448.4,
+  "fights_per_s_core": 2.48,
+  "startup_ttfb_s": 1.33,
+  "workers": "—",
+  "speedup": "—",
+  "gates": {
+    "invariance": "PASS（全部 6 次基线运行：同 seed 跨轮 winner/ticks/n_events/events_bytes 全等）",
+    "repro_p50_across_runs_preG1": "PASS（同条件两次 362.8 vs 362.7 = ±0.03%）",
+    "repro_round_spread_3pct": "FAIL（session 后段 3.17%→21.7%：热漂移+一次自招的并行污染；绑核被沙箱拦截。按 §8 处置：数字只报同机同日，S1 的 before/after 一律 A/B 交错+管理员绑核+降温后测，禁绝对数字对比）",
+    "REG_九场_G1": "PASS（gd 腿 Godot 实跑 9 场 + py 腿 9 场，双判据全绿——INJ_ARM 清除对两棵树逐位零影响）",
+    "gd_to_py_check": "PASS（产物与源码同步）",
+    "ast_diff_selftest": "PASS（恒等 0 差异；preG1 快照 vs 现树精确命中唯一模块 gd_core/CoreCombat.py）"
+  },
+  "events_bytes_delta": 0,
+  "note": "S0 全清单+G1 完成 + S1-E1(CLI)/S2-B2 提前落地。① H1 bench_sim.py（p50/p95/ms·千tick、--workers/--pin/--ttfb/--profile-out、语义不变性探针）。② A1 sys.monitoring 剖面（profile.json）：_registry.C() 391k 次/3场、EnumDict.__getattr__ 381k 次/3场 为 v1 cProfile 未暴露的前二调用大户（佐证 S3-C4 静态绑定优先级）；top10 命中 v1 名单 4/10。③ A4 importtime.txt。④ G1：gd_core+gd_core_test 双镜像删 np51 注入块，REG 九场 gd+py 双腿 ALL PASS。⑤ H2/H3 ast_diff.py（snapshot/diff/白名单判定；自检=恒等 0 差异+preG1 快照精确命中唯一模块）。⑥ H4/H5 PR 模板（.github/PULL_REQUEST_TEMPLATE.md）。⑦ S1-E1 CLI：simulate.py --workers 进程池（E3-lite 只回传统计），逐 seed 胜负对拍全等（9/32≡9/32）；GUI/E2/B9/G4 留 S1 正式段。⑧ S2-B2 分层导入提前落地：gd_to_py emit load_core/load_for+_ITEM_PARENTS（生成期提取 extends 父链），kernel()→load_core（含 gd_core 适配树的行为基类闭包修正），GDCoreEngine.__init__ 按阵容 load_for（失败即抛 fail-fast）；GD_BOOTSTRAP_FULL=1 逃生口回全量。判据 A 违例=0（leaf_audit.json：gd_core 树 159/668，抽样阵容平均 +3 模块，设计口径省 76%）；lazy≡FULL 同 seed 同 ticks（907≡907）；REG 九场 gd+py ALL PASS；subprocess 同条件 A/B 内核装载 lazy 746ms vs FULL 4758ms（比值 6.4x，待健康机复测）。⑨ ★机器事件（13:49 后）：本机进入深度节流（纯 Python 30M 循环 14136ms vs 健康 ~1000ms，12-14x；时钟钉 1600/1800MHz；负载 13%）——13:49 后所有绝对性能数字作废（362.8→402.9→1450ms 的漂移即此所致，非代码回归：同段 REG/不变性/907 ticks 全等证明语义与代码面无恙）；G0 维持『测量环境未达标』判定，全部绝对数字待管理员 shell+绑核+电源策略修复后由 bench_sim 复测重出。"
+}

@@ -147,7 +147,14 @@ def kernel() -> dict:
     from gd_core_py import _bootstrap, _registry as _R
     from gd_core_py._rt import Vector2
 
-    failed = _bootstrap.load_all()
+    # S2-B2 分层导入：默认只载 gd_core/ 树（159 模块），items 树按阵容经
+    # GDCoreEngine.__init__ 的 load_for 补导（实测可省 ≈76% 冷启动导入；
+    # 设计数据 tools/leaf_audit.py，判据 A 全过）。逃生口：GD_BOOTSTRAP_FULL=1
+    # 回到全量导入（调试/对照用）。
+    if os.environ.get("GD_BOOTSTRAP_FULL") == "1":
+        failed = _bootstrap.load_all()
+    else:
+        failed = _bootstrap.load_core()
     if failed:
         raise KernelError("gd_core_py 模块导入失败 %d 个：%s"
                           % (len(failed), [f[0] for f in failed[:5]]))
@@ -697,6 +704,31 @@ class GDCoreEngine:
         self._data = data
         self._K = k
         self.warnings: List[str] = []
+
+        # ── S2-B2 档二：按本场两侧阵容补导物品脚本模块（含宝石） ──
+        # kernel() 只载 gd_core/ 树；此处在装配前把本场引用到的 items 树模块
+        # （连同 _ITEM_PARENTS 祖先闭包）导入。失败即抛（fail-fast，与
+        # _make_item 的 is_registered 闸一致）；幂等，重复场零开销。
+        if os.environ.get("GD_BOOTSTRAP_FULL") != "1":
+            from gd_core_py import _bootstrap as _bs
+            _scripts = []
+            for _lu in (player_lineup, opponent_lineup):
+                for _e in ((_lu.get("backpack") or {}).get("items") or []):
+                    _key = _key_of(_e)
+                    if not _key:
+                        continue
+                    _ent = (data.get("items") or {}).get(_key)
+                    if _ent and _ent.get("script"):
+                        _scripts.append(_ent["script"])
+                    for _g in (_e.get("gems") or []):
+                        _gk = _key_of(_g)
+                        _gent = (data.get("items") or {}).get(_gk) if _gk else None
+                        if _gent and _gent.get("script"):
+                            _scripts.append(_gent["script"])
+            _lf = _bs.load_for(_scripts)
+            if _lf:
+                raise KernelError("load_for 物品模块导入失败 %d 个：%s"
+                                  % (len(_lf), [f[0] for f in _lf[:5]]))
 
         # ── 角色属性 ──
         self._chars = data.get("characters") or character_db or {}

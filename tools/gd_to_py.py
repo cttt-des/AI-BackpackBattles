@@ -1938,6 +1938,96 @@ def emit_bootstrap(order, files_by_rel):
         out.append("        import %s  # noqa: F401\n" % module_path(files_by_rel[rel]))
         out.append("    except Exception as exc:  # noqa: BLE001\n")
         out.append("        failed.append((%r, repr(exc)))\n" % rel)
+    out.append("    return failed\n\n\n")
+
+    # ── S2-B2 分层导入（docs/性能优化执行路径.md；设计数据 tools/leaf_audit.py）──
+    # load_core() = gd_core/ 树全部模块（战斗判定面 + 物品适配层，159 个）；
+    # load_for(scripts) = 按阵容物品脚本路径补导 items 树的祖先闭包
+    # （抽样阵容平均 ~3 个模块，冷启动可省 ≈76% 导入；判据 A
+    # 「leaf 直接基类全部可解析」已由 leaf_audit 全量验证 0 违例）。
+    # ★ 基类必须先于子类导入（class X(_R.C(基类)) 在导入期求值），故
+    #   load_for 沿 _ITEM_PARENTS 先展开闭包、再按 _ITEM_ORDER 拓扑序导入。
+    def _items_edges():
+        parents = {}
+        for rel in order:
+            if not rel.startswith("gd_core_items/"):
+                continue
+            f = files_by_rel[rel]
+            ps = sorted({seg.rel for seg in (f.ancestors or [])
+                         if seg.rel.startswith("gd_core_items/")})
+            parents[rel] = ps
+        return parents
+
+    iparents = _items_edges()
+    item_order = [rel for rel in order if rel.startswith("gd_core_items/")]
+
+    # load_core 地板集修正（判据：gd_core/ 适配树在导入期继承行为基类，
+    # np24-P3-7 双树结构）：gd_core/ 模块的 items 祖先闭包必须随档一导入，
+    # 否则占位类静默顶替（_R.missing() 闸会红）。leaf_audit 抽样口径与此同。
+    need_core = set()
+
+    def _need_transitive(rels):
+        stack = list(rels)
+        while stack:
+            r0 = stack.pop()
+            if r0 in need_core:
+                continue
+            need_core.add(r0)
+            stack.extend(iparents.get(r0, ()))
+
+    for rel in order:
+        if rel.startswith("gd_core/"):
+            for seg in files_by_rel[rel].ancestors or []:
+                if seg.rel.startswith("gd_core_items/"):
+                    _need_transitive([seg.rel])
+
+    out.append("# 物品树 extends 父链（生成期从 GDScript extends 段提取，仅 items 树内父）\n")
+    out.append("_ITEM_PARENTS = {\n")
+    for rel, ps in iparents.items():
+        if ps:
+            out.append("    %r: %r,\n" % (rel, ps))
+    out.append("}\n\n")
+    out.append("# items 树拓扑序（load_all 同序的子序列，基类先于子类）\n")
+    out.append("_ITEM_ORDER = [\n")
+    for rel in item_order:
+        out.append("    %r,\n" % rel)
+    out.append("]\n\n\n")
+
+    out.append("def load_core():\n")
+    out.append('    """档一：gd_core/ 树全部模块 + 其行为基类闭包（战斗判定面）。返回失败清单。"""\n')
+    out.append("    failed = []\n")
+    for rel in order:
+        if not rel.startswith("gd_core/") and rel not in need_core:
+            continue
+        out.append("    try:\n")
+        out.append("        import %s  # noqa: F401\n" % module_path(files_by_rel[rel]))
+        out.append("    except Exception as exc:  # noqa: BLE001\n")
+        out.append("        failed.append((%r, repr(exc)))\n" % rel)
+    out.append("    return failed\n\n\n")
+
+    out.append("def load_for(scripts):\n")
+    out.append('    """档二：按阵容脚本路径补导 items 祖先闭包。幂等；须先 load_core()。"""\n')
+    out.append("    failed = []\n")
+    out.append("    want = set()\n")
+    out.append("    for s in scripts or ():\n")
+    out.append("        stem = str(s).rsplit('/', 1)[-1]\n")
+    out.append("        if stem.endswith('.gd'):\n")
+    out.append("            stem = stem[:-3]\n")
+    out.append("        for rel in _ITEM_ORDER:\n")
+    out.append("            if rel.rsplit('/', 1)[-1][:-3] == stem:\n")
+    out.append("                stack = [rel]\n")
+    out.append("                while stack:\n")
+    out.append("                    r0 = stack.pop()\n")
+    out.append("                    if r0 not in want:\n")
+    out.append("                        want.add(r0)\n")
+    out.append("                        stack.extend(_ITEM_PARENTS.get(r0, ()))\n")
+    out.append("                break\n")
+    for rel in item_order:
+        out.append("    if %r in want:\n" % rel)
+        out.append("        try:\n")
+        out.append("            import %s  # noqa: F401\n" % module_path(files_by_rel[rel]))
+        out.append("        except Exception as exc:  # noqa: BLE001\n")
+        out.append("            failed.append((%r, repr(exc)))\n" % rel)
     out.append("    return failed\n")
     return "".join(out)
 

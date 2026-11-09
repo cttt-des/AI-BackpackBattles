@@ -1,0 +1,586 @@
+{
+ "modules_total": 668,
+ "gd_core_tree": 159,
+ "items_tree": 509,
+ "items_inherited_by_anyone": 505,
+ "load_for_sample_lineup_avg_imports": 161.8,
+ "load_all_imports": 668,
+ "startup_saving_pct": 75.8,
+ "duplicate_stems": {
+  "AceofSpades": [
+   "gd_core/AceofSpades.py",
+   "gd_core_items/AceofSpades.py"
+  ],
+  "AcornCollar": [
+   "gd_core/AcornCollar.py",
+   "gd_core_items/AcornCollar.py"
+  ],
+  "ArtifactStoneCold": [
+   "gd_core/ArtifactStoneCold.py",
+   "gd_core_items/ArtifactStoneCold.py"
+  ],
+  "ArtifactStoneHeat": [
+   "gd_core/ArtifactStoneHeat.py",
+   "gd_core_items/ArtifactStoneHeat.py"
+  ],
+  "Bag": [
+   "gd_core/Bag.py",
+   "gd_core_items/Bag.py"
+  ],
+  "BagofStones": [
+   "gd_core/BagofStones.py",
+   "gd_core_items/BagofStones.py"
+  ],
+  "Banana": [
+   "gd_core/Banana.py",
+   "gd_core_items/Banana.py"
+  ],
+  "BloodAmulet": [
+   "gd_core/BloodAmulet.py",
+   "gd_core_items/BloodAmulet.py"
+  ],
+  "BloodGoobert": [
+   "gd_core/BloodGoobert.py",
+   "gd_core_items/BloodGoobert.py"
+  ],
+  "Bloodthorne": [
+   "gd_core/Bloodthorne.py",
+   "gd_core_items/Bloodthorne.py"
+  ],
+  "BloodyDagger": [
+   "gd_core/BloodyDagger.py",
+   "gd_core_items/BloodyDagger.py"
+  ],
+  "Blueberries": [
+   "gd_core/Blueberries.py",
+   "gd_core_items/Blueberries.py"
+  ],
+  "Bow": [
+   "gd_core/Bow.py",
+   "gd_core_items/Bow.py"
+  ],
+  "BowandArrow": [
+   "gd_core/BowandArrow.py",
+   "gd_core_items/BowandArrow.py"
+  ],
+  "BoxofRiches": [
+   "gd_core/BoxofRiches.py",
+   "gd_core_items/BoxofRiches.py"
+  ],
+  "Broom": [
+   "gd_core/Broom.py",
+   "gd_core_items/Broom.py"
+  ],
+  "BurningCoal": [
+   "gd_core/BurningCoal.py",
+   "gd_core_items/BurningCoal.py"
+  ],
+  "BurningTorch": [
+   "gd_core/BurningTorch.py",
+   "gd_core_items/BurningTorch.py"
+  ],
+  "Card": [
+   "gd_core/Card.py",
+   "gd_core_items/Card.py"
+  ],
+  "Carrot": [
+   "gd_core/Carrot.py",
+   "gd_core_items/Carrot.py"
+  ],
+  "CarrotGoobert": [
+   "gd_core/CarrotGoobert.py",
+   "gd_core_items/CarrotGoobert.py"
+  ],
+  "ClawsofAttack": [
+   "gd_core/ClawsofAttack.py",
+   "gd_core_items/ClawsofAttack.py"
+  ],
+  "CorruptedArmor": [
+   "gd_core/CorruptedArmor.py",
+   "gd_core_items/CorruptedArmor.py"
+  ],
+  "CritwoodStaff": [
+   "gd_core/CritwoodStaff.py",
+   "gd_core_items/CritwoodStaff.py"
+  ],
+  "Crossblades": [
+   "gd_core/Crossblades.py",
+   "gd_core_items/Crossblades.py"
+  ],
+  "Crown": [
+   "gd_core/Crown.py",
+   "gd_core_items/Crown.py"
+  ],
+  "CursedDagger": [
+   "gd_core/CursedDagger.py",
+   "gd_core_items/CursedDagger.py"
+  ],
+  "CursedHairComb": [
+   "gd_core/CursedHairComb.py",
+   "gd_core_items/CursedHairComb.py"
+  ],
+  "CustomerCard": [
+   "gd_core/CustomerCard.py",
+   "gd_core_items/CustomerCard.py"
+  ],
+  "Dagger": [
+   "gd_core/Dagger.py",
+   "gd_core_items/Dagger.py"
+  ],
+  "DancingDragon": [
+   "gd_core/DancingDragon.py",
+   "gd_core_items/DancingDragon.py"
+  ],
+  "DarkestLotus": [
+   "gd_core/DarkestLotus.py",
+   "gd_core_items/DarkestLotus.py"
+  ],
+  "Darksaber": [
+   "gd_core/Darksaber.py",
+   "gd_core_items/Darksaber.py"
+  ],
+  "DeathScythe": [
+   "gd_core/DeathScythe.py",
+   "gd_core_items/DeathScythe.py"
+  ],
+  "DeckofCards": [
+   "gd_core/DeckofCards.py",
+   "gd_core_items/DeckofCards.py"
+  ],
+  "DemonicFlask": [
+   "gd_core/DemonicFlask.py",
+   "gd_core_items/DemonicFlask.py"
+  ],
+  "DjinnLamp": [
+   "gd_core/DjinnLamp.py",
+   "gd_core_items/DjinnLamp.py"
+  ],
+  "DragonEgg": [
+   "gd_core/DragonEgg.py",
+   "gd_core_items/DragonEgg.py"
+  ],
+  "Eggscalibur": [
+   "gd_core/Eggscalibur.py",
+   "gd_core_items/Eggscalibur.py"
+  ],
+  "EvilCap": [
+   "gd_core/EvilCap.py",
+   "gd_core_items/EvilCap.py"
+  ],
+  "FalconBlade": [
+   "gd_core/FalconBlade.py",
+   "gd_core_items/FalconBlade.py"
+  ],
+  "FancyFencingRapier": [
+   "gd_core/FancyFencingRapier.py",
+   "gd_core_items/FancyFencingRapier.py"
+  ],
+  "Fanfare": [
+   "gd_core/Fanfare.py",
+   "gd_core_items/Fanfare.py"
+  ],
+  "FannyPack": [
+   "gd_core/FannyPack.py",
+   "gd_core_items/FannyPack.py"
+  ],
+  "Flute": [
+   "gd_core/Flute.py",
+   "gd_core_items/Flute.py"
+  ],
+  "FlyAgaric": [
+   "gd_core/FlyAgaric.py",
+   "gd_core_items/FlyAgaric.py"
+  ],
+  "Food": [
+   "gd_core/Food.py",
+   "gd_core_items/Food.py"
+  ],
+  "Garlic": [
+   "gd_core/Garlic.py",
+   "gd_core_items/Garlic.py"
+  ],
+  "GingerbreadMan": [
+   "gd_core/GingerbreadMan.py",
+   "gd_core_items/GingerbreadMan.py"
+  ],
+  "GlovesofHaste": [
+   "gd_core/GlovesofHaste.py",
+   "gd_core_items/GlovesofHaste.py"
+  ],
+  "Goobert": [
+   "gd_core/Goobert.py",
+   "gd_core_items/Goobert.py"
+  ],
+  "Greatsword": [
+   "gd_core/Greatsword.py",
+   "gd_core_items/Greatsword.py"
+  ],
+  "Hammer": [
+   "gd_core/Hammer.py",
+   "gd_core_items/Hammer.py"
+  ],
+  "HealingHerbs": [
+   "gd_core/HealingHerbs.py",
+   "gd_core_items/HealingHerbs.py"
+  ],
+  "HealthPotion": [
+   "gd_core/HealthPotion.py",
+   "gd_core_items/HealthPotion.py"
+  ],
+  "HeartContainer": [
+   "gd_core/HeartContainer.py",
+   "gd_core_items/HeartContainer.py"
+  ],
+  "HeartofDarkness": [
+   "gd_core/HeartofDarkness.py",
+   "gd_core_items/HeartofDarkness.py"
+  ],
+  "HeroicPotion": [
+   "gd_core/HeroicPotion.py",
+   "gd_core_items/HeroicPotion.py"
+  ],
+  "HeroLongsword": [
+   "gd_core/HeroLongsword.py",
+   "gd_core_items/HeroLongsword.py"
+  ],
+  "HeroSword": [
+   "gd_core/HeroSword.py",
+   "gd_core_items/HeroSword.py"
+  ],
+  "HoloFireLizard": [
+   "gd_core/HoloFireLizard.py",
+   "gd_core_items/HoloFireLizard.py"
+  ],
+  "HolyArmor": [
+   "gd_core/HolyArmor.py",
+   "gd_core_items/HolyArmor.py"
+  ],
+  "HolySpear": [
+   "gd_core/HolySpear.py",
+   "gd_core_items/HolySpear.py"
+  ],
+  "HungryBlade": [
+   "gd_core/HungryBlade.py",
+   "gd_core_items/HungryBlade.py"
+  ],
+  "Item": [
+   "gd_core/Item.py",
+   "gd_core_items/Item.py"
+  ],
+  "Jynxtorquilla": [
+   "gd_core/Jynxtorquilla.py",
+   "gd_core_items/Jynxtorquilla.py"
+  ],
+  "LeatherArmor": [
+   "gd_core/LeatherArmor.py",
+   "gd_core_items/LeatherArmor.py"
+  ],
+  "LeatherBoots": [
+   "gd_core/LeatherBoots.py",
+   "gd_core_items/LeatherBoots.py"
+  ],
+  "LeatherHelm": [
+   "gd_core/LeatherHelm.py",
+   "gd_core_items/LeatherHelm.py"
+  ],
+  "LightGoobert": [
+   "gd_core/LightGoobert.py",
+   "gd_core_items/LightGoobert.py"
+  ],
+  "Lightsaber": [
+   "gd_core/Lightsaber.py",
+   "gd_core_items/Lightsaber.py"
+  ],
+  "LuckyBow": [
+   "gd_core/LuckyBow.py",
+   "gd_core_items/LuckyBow.py"
+  ],
+  "LuckyClover": [
+   "gd_core/LuckyClover.py",
+   "gd_core_items/LuckyClover.py"
+  ],
+  "LuckyPiggy": [
+   "gd_core/LuckyPiggy.py",
+   "gd_core_items/LuckyPiggy.py"
+  ],
+  "MagicStaff": [
+   "gd_core/MagicStaff.py",
+   "gd_core_items/MagicStaff.py"
+  ],
+  "MagicTorch": [
+   "gd_core/MagicTorch.py",
+   "gd_core_items/MagicTorch.py"
+  ],
+  "ManaOrb": [
+   "gd_core/ManaOrb.py",
+   "gd_core_items/ManaOrb.py"
+  ],
+  "ManaPotion": [
+   "gd_core/ManaPotion.py",
+   "gd_core_items/ManaPotion.py"
+  ],
+  "Manathirst": [
+   "gd_core/Manathirst.py",
+   "gd_core_items/Manathirst.py"
+  ],
+  "MoonShield": [
+   "gd_core/MoonShield.py",
+   "gd_core_items/MoonShield.py"
+  ],
+  "MrStruggles": [
+   "gd_core/MrStruggles.py",
+   "gd_core_items/MrStruggles.py"
+  ],
+  "Pan": [
+   "gd_core/Pan.py",
+   "gd_core_items/Pan.py"
+  ],
+  "Pandamonium": [
+   "gd_core/Pandamonium.py",
+   "gd_core_items/Pandamonium.py"
+  ],
+  "PestilenceFlask": [
+   "gd_core/PestilenceFlask.py",
+   "gd_core_items/PestilenceFlask.py"
+  ],
+  "PiercingArrow": [
+   "gd_core/PiercingArrow.py",
+   "gd_core_items/PiercingArrow.py"
+  ],
+  "Piggybank": [
+   "gd_core/Piggybank.py",
+   "gd_core_items/Piggybank.py"
+  ],
+  "Pineapple": [
+   "gd_core/Pineapple.py",
+   "gd_core_items/Pineapple.py"
+  ],
+  "PlatinCustomerCard": [
+   "gd_core/PlatinCustomerCard.py",
+   "gd_core_items/PlatinCustomerCard.py"
+  ],
+  "PocketSand": [
+   "gd_core/PocketSand.py",
+   "gd_core_items/PocketSand.py"
+  ],
+  "PoisonBow": [
+   "gd_core/PoisonBow.py",
+   "gd_core_items/PoisonBow.py"
+  ],
+  "PoisonDagger": [
+   "gd_core/PoisonDagger.py",
+   "gd_core_items/PoisonDagger.py"
+  ],
+  "PoisonGoobert": [
+   "gd_core/PoisonGoobert.py",
+   "gd_core_items/PoisonGoobert.py"
+  ],
+  "PoisonIvy": [
+   "gd_core/PoisonIvy.py",
+   "gd_core_items/PoisonIvy.py"
+  ],
+  "Potion": [
+   "gd_core/Potion.py",
+   "gd_core_items/Potion.py"
+  ],
+  "PotionBelt": [
+   "gd_core/PotionBelt.py",
+   "gd_core_items/PotionBelt.py"
+  ],
+  "Present": [
+   "gd_core/Present.py",
+   "gd_core_items/Present.py"
+  ],
+  "ProtectivePurse": [
+   "gd_core/ProtectivePurse.py",
+   "gd_core_items/ProtectivePurse.py"
+  ],
+  "Pumpkin": [
+   "gd_core/Pumpkin.py",
+   "gd_core_items/Pumpkin.py"
+  ],
+  "RainbowGoobert": [
+   "gd_core/RainbowGoobert.py",
+   "gd_core_items/RainbowGoobert.py"
+  ],
+  "RainbowGoobertRanger": [
+   "gd_core/RainbowGoobertRanger.py",
+   "gd_core_items/RainbowGoobertRanger.py"
+  ],
+  "RangerBag": [
+   "gd_core/RangerBag.py",
+   "gd_core_items/RangerBag.py"
+  ],
+  "RangerCollar": [
+   "gd_core/RangerCollar.py",
+   "gd_core_items/RangerCollar.py"
+  ],
+  "RibSawBlade": [
+   "gd_core/RibSawBlade.py",
+   "gd_core_items/RibSawBlade.py"
+  ],
+  "RubyChonk": [
+   "gd_core/RubyChonk.py",
+   "gd_core_items/RubyChonk.py"
+  ],
+  "RubyEgg": [
+   "gd_core/RubyEgg.py",
+   "gd_core_items/RubyEgg.py"
+  ],
+  "RubyWhelp": [
+   "gd_core/RubyWhelp.py",
+   "gd_core_items/RubyWhelp.py"
+  ],
+  "Shield": [
+   "gd_core/Shield.py",
+   "gd_core_items/Shield.py"
+  ],
+  "ShieldofValor": [
+   "gd_core/ShieldofValor.py",
+   "gd_core_items/ShieldofValor.py"
+  ],
+  "Shovel": [
+   "gd_core/Shovel.py",
+   "gd_core_items/Shovel.py"
+  ],
+  "Spear": [
+   "gd_core/Spear.py",
+   "gd_core_items/Spear.py"
+  ],
+  "SpectralDagger": [
+   "gd_core/SpectralDagger.py",
+   "gd_core_items/SpectralDagger.py"
+  ],
+  "SpikedShield": [
+   "gd_core/SpikedShield.py",
+   "gd_core_items/SpikedShield.py"
+  ],
+  "StaffofUnhealing": [
+   "gd_core/StaffofUnhealing.py",
+   "gd_core_items/StaffofUnhealing.py"
+  ],
+  "StaminaSack": [
+   "gd_core/StaminaSack.py",
+   "gd_core_items/StaminaSack.py"
+  ],
+  "SteelGoobert": [
+   "gd_core/SteelGoobert.py",
+   "gd_core_items/SteelGoobert.py"
+  ],
+  "Stone": [
+   "gd_core/Stone.py",
+   "gd_core_items/Stone.py"
+  ],
+  "StoneHelm": [
+   "gd_core/StoneHelm.py",
+   "gd_core_items/StoneHelm.py"
+  ],
+  "StoneSkinPotion": [
+   "gd_core/StoneSkinPotion.py",
+   "gd_core_items/StoneSkinPotion.py"
+  ],
+  "StorageCoffin": [
+   "gd_core/StorageCoffin.py",
+   "gd_core_items/StorageCoffin.py"
+  ],
+  "StrongDemonicFlask": [
+   "gd_core/StrongDemonicFlask.py",
+   "gd_core_items/StrongDemonicFlask.py"
+  ],
+  "StrongHealthPotion": [
+   "gd_core/StrongHealthPotion.py",
+   "gd_core_items/StrongHealthPotion.py"
+  ],
+  "StrongPestilenceFlask": [
+   "gd_core/StrongPestilenceFlask.py",
+   "gd_core_items/StrongPestilenceFlask.py"
+  ],
+  "StrongStoneSkinPotion": [
+   "gd_core/StrongStoneSkinPotion.py",
+   "gd_core_items/StrongStoneSkinPotion.py"
+  ],
+  "TheFool": [
+   "gd_core/TheFool.py",
+   "gd_core_items/TheFool.py"
+  ],
+  "TheLovers": [
+   "gd_core/TheLovers.py",
+   "gd_core_items/TheLovers.py"
+  ],
+  "ThornBow": [
+   "gd_core/ThornBow.py",
+   "gd_core_items/ThornBow.py"
+  ],
+  "ThornWhip": [
+   "gd_core/ThornWhip.py",
+   "gd_core_items/ThornWhip.py"
+  ],
+  "Torch": [
+   "gd_core/Torch.py",
+   "gd_core_items/Torch.py"
+  ],
+  "VampiricArmor": [
+   "gd_core/VampiricArmor.py",
+   "gd_core_items/VampiricArmor.py"
+  ],
+  "VampiricGloves": [
+   "gd_core/VampiricGloves.py",
+   "gd_core_items/VampiricGloves.py"
+  ],
+  "VampiricScythe": [
+   "gd_core/VampiricScythe.py",
+   "gd_core_items/VampiricScythe.py"
+  ],
+  "VillainSword": [
+   "gd_core/VillainSword.py",
+   "gd_core_items/VillainSword.py"
+  ],
+  "WalrusTusk": [
+   "gd_core/WalrusTusk.py",
+   "gd_core_items/WalrusTusk.py"
+  ],
+  "Weapon": [
+   "gd_core/Weapon.py",
+   "gd_core_items/Weapon.py"
+  ],
+  "Whetstone": [
+   "gd_core/Whetstone.py",
+   "gd_core_items/Whetstone.py"
+  ],
+  "White_EyesBlueDragon": [
+   "gd_core/White_EyesBlueDragon.py",
+   "gd_core_items/White_EyesBlueDragon.py"
+  ],
+  "Wolpertinger": [
+   "gd_core/Wolpertinger.py",
+   "gd_core_items/Wolpertinger.py"
+  ],
+  "WoodenBuckler": [
+   "gd_core/WoodenBuckler.py",
+   "gd_core_items/WoodenBuckler.py"
+  ],
+  "WoodenSword": [
+   "gd_core/WoodenSword.py",
+   "gd_core_items/WoodenSword.py"
+  ],
+  "YggdrasilLeaf": [
+   "gd_core/YggdrasilLeaf.py",
+   "gd_core_items/YggdrasilLeaf.py"
+  ],
+  "__init__": [
+   "gd_core/__init__.py",
+   "gd_core_items/__init__.py",
+   "gd_core_items/Exclusive/__init__.py",
+   "gd_core_items/Exclusive/Chess/__init__.py",
+   "gd_core_items/Gems/__init__.py"
+  ]
+ },
+ "criteria_A_violations": [],
+ "leaves_sample": [
+  "gd_core_items/Exclusive/Chess/__init__.py",
+  "gd_core_items/Exclusive/__init__.py",
+  "gd_core_items/Gems/__init__.py",
+  "gd_core_items/__init__.py"
+ ],
+ "pass": true
+}

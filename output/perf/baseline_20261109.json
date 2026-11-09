@@ -1,0 +1,44 @@
+{
+  "stage": "baseline_20261109_postG1",
+  "machine": "8L, Python 3.14.5",
+  "cmd": "tools/bench_sim.py --n 20 --rounds 5 --ttfb --label baseline_20261109_postG1 --json output/perf/baseline_20261109.json",
+  "lineups": [
+    "truth_20261001_220653_R19_player.json",
+    "truth_20261001_220653_R19_opponent.json"
+  ],
+  "workers": 1,
+  "n": 100,
+  "p50_ms": 402.9,
+  "p95_ms": 454.1,
+  "min_ms": 241.3,
+  "max_ms": 1097.9,
+  "mean_ticks": 898.5,
+  "ms_per_k_tick": 448.4,
+  "fights_per_s_core": 2.48,
+  "wins_player": 20,
+  "timed_out_n": 0,
+  "round_wall_s": [
+    8.386,
+    7.703,
+    7.618,
+    7.743,
+    8.379
+  ],
+  "round_p50_ms": [
+    399.8,
+    395.8,
+    398.2,
+    393.7,
+    428.6
+  ],
+  "repro_spread_pct": 8.76,
+  "repro_pass_3pct": false,
+  "invariance_delta": [],
+  "invariance_pass": true,
+  "events_bytes_first_seed": 191079,
+  "ttfb": {
+    "ttfb_wall_ms": 1325.9,
+    "first_fight_ms": 1208.0,
+    "exit": 0
+  }
+}

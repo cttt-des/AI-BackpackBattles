@@ -52,7 +52,10 @@ decompiled_full/**/*.gdc
 # 含 output/oracle/expand/（扩样语料/重放/对齐账本）、output/_expand/（取证窗口/
 # 裸流对位产物）、output/_recovery/（godot 日志）——全部可由 verify_oracle.py
 # 与 tools/_np51_* 工具重新生成。
-output/
+output/*
+**/output/*
+# 例外：perf 基线与计分卡入库（docs/性能优化执行路径.md S0 验收要求）
+!output/perf/
 
 # ============ 备份文件 ============
 *.bak*

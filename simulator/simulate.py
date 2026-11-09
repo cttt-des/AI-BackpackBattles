@@ -122,6 +122,18 @@ def save_outputs(eng: "CombatEngine", player_path: str, opponent_path: str,
     return log_json_path, result_path, log_txt_path
 
 
+def _mc_worker(job):
+    """蒙特卡洛并行 worker（S1-E1）：进程池入口，模块级函数保证可 pickle。
+
+    只回传统计（E3-lite：胜负 + ticks + 时长），不回传事件流——事件对象化
+    的成本留在 worker 侧（产品语义不变：事件物化发生在计时窗口内，胜负
+    判定与 seed→战斗映射与串行路径完全一致）。"""
+    seed, player_path, opponent_path, max_time = job
+    eng = simulate_once(player_path, opponent_path, None, None, seed, max_time,
+                        engine=DEFAULT_ENGINE)
+    return bool(eng.player_wins())
+
+
 def main(argv: Optional[List[str]] = None) -> int:
     ap = argparse.ArgumentParser(description='Backpack Battles 战斗模拟器（输入两阵容 JSON）')
     ap.add_argument('player', help='玩家阵容 JSON 文件')
@@ -129,6 +141,9 @@ def main(argv: Optional[List[str]] = None) -> int:
     ap.add_argument('--seed', type=int, default=None, help='随机种子（固定可复现）')
     ap.add_argument('--outdir', default='output', help='输出目录（默认 output/）')
     ap.add_argument('--runs', type=int, default=1, help='模拟场数（>1 为蒙特卡洛，只输出统计）')
+    ap.add_argument('--workers', type=int, default=1,
+                    help='蒙特卡洛并行 worker 数（>1 且 --runs>1 时启用进程池；'
+                         '逐 seed 结果与串行全等）')
     ap.add_argument('--max-time', type=float, default=90.0, help='最大战斗时长（秒）')
     ap.add_argument('--engine', choices=ENGINES, default=DEFAULT_ENGINE,
                     help='战斗内核：gd_core（唯一默认，逆向真值 1:1）')
@@ -157,6 +172,24 @@ def main(argv: Optional[List[str]] = None) -> int:
     wins = 0
     t0 = time.time()
     last_eng = None
+
+    # ── 蒙特卡洛并行路径（S1-E1）：--workers>1 且 runs>1 ──
+    # 逐 seed 确定性不变：seed = args.seed + run，与串行循环逐一对应，
+    # 因此胜负对拍必须逐 seed 全等（验收口径，docs/性能优化执行路径.md S1）。
+    if args.workers > 1 and args.runs > 1:
+        from concurrent.futures import ProcessPoolExecutor
+        jobs = [(args.seed + r if args.seed is not None else None,
+                 args.player, args.opponent, args.max_time)
+                for r in range(args.runs)]
+        with ProcessPoolExecutor(max_workers=args.workers) as ex:
+            for w in ex.map(_mc_worker, jobs, chunksize=4):
+                wins += w
+        rate = wins / args.runs * 100
+        print(f"\n=== {args.runs} 场统计（workers={args.workers}） ===")
+        print(f"  玩家胜率: {rate:.1f}%  ({wins}/{args.runs})  "
+              f"耗时: {time.time() - t0:.1f}s")
+        return 0
+
     for run in range(args.runs):
         seed = args.seed + run if args.seed is not None else None
         eng = simulate_once(args.player, args.opponent, item_db, character_db,
