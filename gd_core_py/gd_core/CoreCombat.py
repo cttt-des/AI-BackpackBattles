@@ -46,7 +46,6 @@ class CoreCombat(GodotObject):
 		self.speed_scale = 1.0            # 对齐 Engine.time_scale（无头恒 1.0，不参与判定）
 		self._activate_countdown = 0.0
 		self.activated = False
-		self._dbg_spdt = _os_environ_get("GD_SPDT") != ""
 		self._tick_timer_left = 0.0
 		self._tick_timer_active = False
 		self.max_time = 180.0
@@ -116,10 +115,6 @@ class CoreCombat(GodotObject):
 	# ── CombatTimer 状态 ──
 
 	# ── 开战延迟（对齐 Util.callDelayed(self, "activateItems", COMBAT_DELAY)） ──
-
-	# ★ SPDT 探针（tick1diff 簇诊断，env 门控零耗）：全物品每 tick 递减后
-	#   (triggerTime, getSpeed) 流——速度变更边界两侧对拍（np26 §6m1，
-	#   oracle 侧同款桩=oracle_fight.gd _dbg_spdt/ORACLE_SPDT）。
 
 	# ── 角色 TickTimer（Character.tscn 的 TickTimer：wait_time=1、循环） ──
 
@@ -351,10 +346,6 @@ class CoreCombat(GodotObject):
 		# ③ 对手物品 _physics_process（Items/Item.gd:4453-4458，遍历=INVENTORY 装配序）
 		for item in _iter__loc(self.opponent.inventory.getItems()):
 			item.physicsTick(delta)
-			if self._dbg_spdt and item._cooldown_active:
-				print("[spdt] t=%.6f _mod(OPP, s) tt=%.6f spd=%.6f" % [self.combat_time,
-						String(item.descriptor.identifier), item.triggerTime,
-						item.getSpeed()])
 
 		# ④ CombatTimer._physics_process: combatTime += delta（事件时间戳源，
 		#    oracle tick_battle 步骤④：夹在双方物品推进之间）
@@ -367,10 +358,6 @@ class CoreCombat(GodotObject):
 		# ⑥ 玩家物品 _physics_process（INVENTORY 装配序）
 		for item in _iter__loc(self.player.inventory.getItems()):
 			item.physicsTick(delta)
-			if self._dbg_spdt and item._cooldown_active:
-				print("[spdt] t=%.6f _mod(PLR, s) tt=%.6f spd=%.6f" % [self.combat_time,
-						String(item.descriptor.identifier), item.triggerTime,
-						item.getSpeed()])
 
 		# ⑦ 物理型 Timer（oracle tick_battle 步骤⑥⑦ drive_timers(true)，registry=场景树
 		#    次序）：逐角色 [TickTimer(onTick) → BattleRageTimer → InvulnerabilityTimer →
