@@ -2636,10 +2636,16 @@ def write_pkg(order, files_by_rel, by_name, by_path, class_names, stat, hit, wri
     texts = _apply_cooldown_f32(texts)
     # ★ 顺序：C6 内联先行、C4 提升后行——提升绑定块捕获内联后的表达式，
     #   且死路径哨兵（_HoistPending）对内联后的文本兜底。
-    texts = _inline_accessors(texts, stat, hit)
-    texts = _iter_inline(texts, stat, hit)
-    texts = _shim_locals(texts, stat, hit)
-    texts = _hoist_classrefs(texts, order, files_by_rel, stat, hit)
+    # ★ GD_SKIP_PASSES=C6,C1,C15,C4（逗号分隔）可按趟关闭——破闸二分用。
+    _skip = set((os.environ.get("GD_SKIP_PASSES") or "").split(",")) - {""}
+    if "C6" not in _skip:
+        texts = _inline_accessors(texts, stat, hit)
+    if "C1" not in _skip:
+        texts = _iter_inline(texts, stat, hit)
+    if "C15" not in _skip:
+        texts = _shim_locals(texts, stat, hit)
+    if "C4" not in _skip:
+        texts = _hoist_classrefs(texts, order, files_by_rel, stat, hit)
     if not write:
         return texts
     dirs = {OUT_PKG}
