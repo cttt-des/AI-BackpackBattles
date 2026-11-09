@@ -1,0 +1,33 @@
+{
+  "stage": "s3c6b",
+  "machine": "8L, Python 3.14.5",
+  "cmd": "tools/bench_sim.py --n 15 --rounds 2 --label s3c6b --json output/perf/_c6b_bench.json",
+  "lineups": [
+    "truth_20261001_220653_R19_player.json",
+    "truth_20261001_220653_R19_opponent.json"
+  ],
+  "workers": 1,
+  "n": 30,
+  "p50_ms": 510.5,
+  "p95_ms": 915.7,
+  "min_ms": 297.2,
+  "max_ms": 1182.0,
+  "mean_ticks": 904.8,
+  "ms_per_k_tick": 564.2,
+  "fights_per_s_core": 1.96,
+  "wins_player": 6,
+  "timed_out_n": 0,
+  "round_wall_s": [
+    9.195,
+    7.453
+  ],
+  "round_p50_ms": [
+    524.2,
+    479.8
+  ],
+  "repro_spread_pct": 8.84,
+  "repro_pass_3pct": false,
+  "invariance_delta": [],
+  "invariance_pass": true,
+  "events_bytes_first_seed": 191079
+}

@@ -23,7 +23,7 @@ class Exclusive__Bomb(_R.C("res://gd_core_items/Item.gd")):
 			self.ctx.bus.setLoggingMode(self.ctx.bus.LoggingMode.Delayed)
 			removedBuffs = 0
 			for buff in _iter(_H_3.getBuffs()):
-				numStacks = self.character().getStacks(buff)
+				numStacks = self.character().buffs[buff]._current
 				removedBuffs += numStacks
 				self.character().useStacks(buff, numStacks, self)
 			self.ctx.bus.flushLoggingQueue()

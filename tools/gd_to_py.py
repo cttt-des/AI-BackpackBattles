@@ -2479,8 +2479,12 @@ def _inline_accessors(texts, stat, hit):
             if not isinstance(fu, _ast.Attribute):
                 continue
             recv = fu.value
-            if recv is None or isinstance(recv, (_ast.Call, _ast.Lambda)):
-                continue                    # 接收者含调用：展开有副作用风险
+            if recv is None or isinstance(recv, _ast.Lambda):
+                continue
+            # ★ 接收者表达式**原样保留、求值一次**（与原 `.method()` 同点同次），
+            #   任何形态（含 Call 接收者如 `self.character().isStunned()`）皆
+            #   无副作用风险——原误判「含调用有风险」已修正（isStunned 72k
+            #   剩余调用全在 Call 接收者上）。
             if (fu.attr == "getStacks" and not node.args and not node.keywords
                     and inline_getStacks0):
                 new = "%s._current" % _span_text(text, recv)
