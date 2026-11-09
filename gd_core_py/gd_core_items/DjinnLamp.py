@@ -41,15 +41,16 @@ class DjinnLamp_2(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def checkStacks(self, changeAmount, event):
+		_div__loc = _div
 		if self.activated:
 			return
 
 		progress = 0.0
-		progress += _div(min(self.character().getBlock(), self.stacksNeeded), float(self.stacksNeeded))
-		progress += _div(min(self.character().getSpikes(), self.stacksNeeded), float(self.stacksNeeded))
-		progress += _div(min(self.character().getMana(), self.stacksNeeded), float(self.stacksNeeded))
-		progress += _div(min(self.character().getLucky(), self.stacksNeeded), float(self.stacksNeeded))
-		progress += _div(min(self.character().getCurrentHealth() - 1, self.healthNeeded), float(self.healthNeeded))
+		progress += _div__loc(min(self.character().getBlock(), self.stacksNeeded), float(self.stacksNeeded))
+		progress += _div__loc(min(self.character().getSpikes(), self.stacksNeeded), float(self.stacksNeeded))
+		progress += _div__loc(min(self.character().getMana(), self.stacksNeeded), float(self.stacksNeeded))
+		progress += _div__loc(min(self.character().getLucky(), self.stacksNeeded), float(self.stacksNeeded))
+		progress += _div__loc(min(self.character().getCurrentHealth() - 1, self.healthNeeded), float(self.healthNeeded))
 		progress /= self.numIngredients
 
 		if changeAmount > 0:

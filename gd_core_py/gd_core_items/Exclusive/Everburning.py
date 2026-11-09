@@ -21,12 +21,13 @@ class Exclusive__Everburning(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def onPrepare(self):
+		_iter__loc = _iter
 		self.numFlames = self.countAllInInventoryOfType(self.ctx.item_book.getDescriptor("Flame"))
 
-		for item in _iter(self.getAllInInventoryOfType(self.burningSwordDescr)):
+		for item in _iter__loc(self.getAllInInventoryOfType(self.burningSwordDescr)):
 			item.changeStaminaFactor(self.staminaReduction)
 
-		for item in _iter(self.getAllInInventoryOfType(self.burningBladeDescr)):
+		for item in _iter__loc(self.getAllInInventoryOfType(self.burningBladeDescr)):
 			item.changeStaminaFactor(self.staminaReduction)
 
 

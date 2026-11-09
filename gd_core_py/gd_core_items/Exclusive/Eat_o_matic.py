@@ -116,10 +116,11 @@ class Exclusive__Eat_o_matic(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def _readyInit(self):
+		_div__loc = _div
 		super()._readyInit()
-		self.foodSpeed = _div(self.getP('speed'), 100.0)
-		self.chargedSpeed = _div(self.getP('speed2'), 100.0)
-		self.otherSpeed = _div(self.getP('speed3'), 100.0)
+		self.foodSpeed = _div__loc(self.getP('speed'), 100.0)
+		self.chargedSpeed = _div__loc(self.getP('speed2'), 100.0)
+		self.otherSpeed = _div__loc(self.getP('speed3'), 100.0)
 
 
 _R.reg("res://gd_core_items/Exclusive/Eat-o-matic.gd", Exclusive__Eat_o_matic)

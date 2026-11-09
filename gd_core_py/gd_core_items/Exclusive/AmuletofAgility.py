@@ -60,10 +60,11 @@ class Exclusive__AmuletofAgility(_R.C("res://gd_core_items/Item.gd")):
 		self.buffTimer.stop()
 
 	def _readyInit(self):
+		_div__loc = _div
 		super()._readyInit()
-		self.bonusSpeed = _div(self.getP('speed'), 100.0)
+		self.bonusSpeed = _div__loc(self.getP('speed'), 100.0)
 		self.buffTimer = self.newItemTimer("BuffTimer", "onBuffTimeout", True)
-		self.refund = _div(self.getP('refund'), 100.0)
+		self.refund = _div__loc(self.getP('refund'), 100.0)
 		pass
 
 

@@ -82,11 +82,12 @@ class Exclusive__ConTrapTron(_R.C("res://gd_core_items/Item.gd")):
 		return Vector2.ZERO
 
 	def _readyInit(self):
+		_div__loc = _div
 		super()._readyInit()
-		self.speedMalus = _div(self.getP('speed'), 100.0)
+		self.speedMalus = _div__loc(self.getP('speed'), 100.0)
 		self.cdAdvanceBase = self.getP("cdadvance_base")
 		self.cdAdvanceBonus = self.getP("cdadvance_bonus")
-		self.healthThreshold = _div(self.getP('healtht'), 100.0) - 0.0001
+		self.healthThreshold = _div__loc(self.getP('healtht'), 100.0) - 0.0001
 
 
 _R.reg("res://gd_core_items/Exclusive/ConTrapTron.gd", Exclusive__ConTrapTron)

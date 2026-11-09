@@ -143,6 +143,7 @@ class CoreCombatLog(GodotObject):
 
 	# ── 栈类（对齐 722-774） ──
 	def createEvent_Stack(self, type, item, amount, playerId, triggerEvent=None, used=False, reflected=False):
+		_iter__loc = _iter
 		type = int(type)
 		amount = int(amount)
 		playerId = int(playerId)
@@ -155,13 +156,13 @@ class CoreCombatLog(GodotObject):
 		self._ctx.hooks.snapshotStack(self._ctx.getCharacterFromId(playerId), type)
 
 		if type == _H_6:
-			for i in _iter(self._ctx.getCharacterFromId(playerId).items):
+			for i in _iter__loc(self._ctx.getCharacterFromId(playerId).items):
 				if i.isWeapon() and i.canBeEmpowered():
 					self._ctx.hooks.snapshotItemTooltipStat(i, _H_32)
 					self._ctx.hooks.snapshotItemTooltipStat(i, _H_33)
 
 		if type == _H_28 or type == _H_29:
-			for i in _iter(self._ctx.getCharacterFromId(playerId).items):
+			for i in _iter__loc(self._ctx.getCharacterFromId(playerId).items):
 				if i.hasCooldown():
 					self._ctx.hooks.snapshotItemTooltipStat(i, _H_34)
 

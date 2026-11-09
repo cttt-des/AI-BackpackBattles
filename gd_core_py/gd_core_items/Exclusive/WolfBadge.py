@@ -65,9 +65,10 @@ class Exclusive__WolfBadge(_R.C("res://gd_core_items/Item.gd")):
 		pass
 
 	def _readyInit(self):
+		_div__loc = _div
 		super()._readyInit()
-		self.healthThreshold = _div(self.getP1(), 100.0) - 0.0001
-		self.battleRageSpeed = _div(self.getP3(), 100.0)
+		self.healthThreshold = _div__loc(self.getP1(), 100.0) - 0.0001
+		self.battleRageSpeed = _div__loc(self.getP3(), 100.0)
 		self.battleRageDamReduction = self.getP4()
 
 

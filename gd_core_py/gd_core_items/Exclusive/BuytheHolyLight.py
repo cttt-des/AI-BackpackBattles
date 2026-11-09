@@ -65,11 +65,12 @@ class Exclusive__BuytheHolyLight(_R.C("res://gd_core_items/Item.gd")):
 		pass
 
 	def _readyInit(self):
+		_div__loc = _div
 		super()._readyInit()
 		self.oilLamp = self.ctx.item_book.getDescriptor("Oil Lamp")
 		self.djinnLamp = self.ctx.item_book.getDescriptor("Djinn Lamp")
-		self.holySpeed = _div(self.getP('speed'), 100.0)
-		self.salesChance = _div(self.getP('sales'), 100.0)
+		self.holySpeed = _div__loc(self.getP('speed'), 100.0)
+		self.salesChance = _div__loc(self.getP('sales'), 100.0)
 
 
 _R.reg("res://gd_core_items/Exclusive/BuytheHolyLight.gd", Exclusive__BuytheHolyLight)

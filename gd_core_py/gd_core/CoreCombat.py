@@ -154,6 +154,7 @@ class CoreCombat(GodotObject):
 	# ─────────────────────────── 开战（对齐 Game.gd:3002-3032） ───────────────────────────
 
 	def startBattle(self, player_items, opponent_items, preordered=False):
+		_sort_custom__loc = _sort_custom
 		self.ctx.fight_ended = False
 		self.fight_ended = False
 		self.result = -1
@@ -191,11 +192,11 @@ class CoreCombat(GodotObject):
 		else:
 			p_items = _dup(player_items)
 			self.ctx.rng.shuffle(p_items)
-			_sort_custom(p_items, CoreItemSort(), "sort_TriggerPriority")
+			_sort_custom__loc(p_items, CoreItemSort(), "sort_TriggerPriority")
 
 			o_items = _dup(opponent_items)
 			self.ctx.rng.shuffle(o_items)
-			_sort_custom(o_items, CoreItemSort(), "sort_TriggerPriority")
+			_sort_custom__loc(o_items, CoreItemSort(), "sort_TriggerPriority")
 
 			self.ordered_items = p_items + o_items
 
@@ -216,11 +217,12 @@ class CoreCombat(GodotObject):
 	#      onItemAdded/onAffectedItemAdded，使受影响集里出现同一物品的两份。
 	# 需要「一场干净的新战斗」时由装配层显式调 resetInventories()。
 	def prepareItems(self, items):
-		for character in _iter([self.player, self.opponent]):
+		_iter__loc = _iter
+		for character in _iter__loc([self.player, self.opponent]):
 			if character.inventory == None:
 				character.inventory = _H_3(character)
 
-		for item in (items if items.__class__ is list else _iter(items)):
+		for item in (items if items.__class__ is list else _iter__loc(items)):
 			if item.ctx == None:
 				item.ctx = self.ctx
 			if item.placed:
@@ -234,23 +236,25 @@ class CoreCombat(GodotObject):
 		self.player.prepare()
 		self.opponent.prepare()
 
-		for item in (items if items.__class__ is list else _iter(items)):
+		for item in (items if items.__class__ is list else _iter__loc(items)):
 			item.prepare()
 
 
 	# 装配层用具：显式把双方背包恢复为空场（物品需各自重新登记）。
 	# 原版没有对应方法——原版一场战斗结束后玩家重新摆放，背包由商店/背包 UI 重建。
 	def resetInventories(self):
-		for character in _iter([self.player, self.opponent]):
+		_iter__loc = _iter
+		for character in _iter__loc([self.player, self.opponent]):
 			if character.inventory != None:
 				character.inventory.cleanUp()
-			for item in (character.items if character.items.__class__ is list else _iter(character.items)):
+			for item in (character.items if character.items.__class__ is list else _iter__loc(character.items)):
 				item.placed = False
 				item.consumed = False
 
 
 	# 对齐 Game.gd:3264-3280
 	def activateItems(self, items):
+		_iter__loc = _iter
 		self.emit_signal("combat_start")
 
 		# combatTimer.start()：combatTime 清零 + fatigueStartTimer.start(FATIGUE_TIME - 3)
@@ -266,16 +270,16 @@ class CoreCombat(GodotObject):
 		# （TickTimer 已归角色：Character.combatStart 各自 start(wait 1.0)，
 		#   registry 次序=场景树次序，由 physicsTick 步骤⑦逐角色驱动）
 
-		for item in (items if items.__class__ is list else _iter(items)):
+		for item in (items if items.__class__ is list else _iter__loc(items)):
 			item.preCombatStart()
 
 		# np51 逆向注入实验（ORACLE_INJ_AT 阈值注入 + INJ_ARM/INJ_FIRED 打点）
 		# 已按其自述「用后即还原」清除（2026-11-09 S0-G1）：ORACLE_INJ_AT 未设时
 		# 注入分支恒不触发，删除对语料逐位零影响（REG 九场对拍原样）。
-		for item in (items if items.__class__ is list else _iter(items)):
+		for item in (items if items.__class__ is list else _iter__loc(items)):
 			item.combatStart()
 
-		for item in (items if items.__class__ is list else _iter(items)):
+		for item in (items if items.__class__ is list else _iter__loc(items)):
 			item.postCombatStart()
 
 		self.activated = True
@@ -296,7 +300,7 @@ class CoreCombat(GodotObject):
 		#   start 只登记不递减 → 恒晚 1 拍（Holy Spear BuffTimer wt=3 语料
 		#   ty8@3.0167 同帧 buffEnded，gd 恒晚 1 拍 → spear 冷却 4.0833 早火
 		#   fd@422；战中断 start 的 Crown wt=2 双侧全对不受影响）。
-		for item in (items if items.__class__ is list else _iter(items)):
+		for item in (items if items.__class__ is list else _iter__loc(items)):
 			item.rebuildTimerSeen()
 
 		# ★ kernel_r2：对齐 Core/Combat.gd:165-168 onSwitchingToCombat 的
@@ -318,6 +322,7 @@ class CoreCombat(GodotObject):
 	def physicsTick(self, delta):
 		# Godot 的 call_deferred 在帧末统一 flush。判胜当帧由本函数末尾 flush；
 		# 此分支兜底处理「外部在帧外触发判胜」的情形。
+		_iter__loc = _iter
 		if self._pending_deferred:
 			self._flushDeferred()
 			return
@@ -344,7 +349,7 @@ class CoreCombat(GodotObject):
 		self.opponent.physicsTickCharacter(delta)
 
 		# ③ 对手物品 _physics_process（Items/Item.gd:4453-4458，遍历=INVENTORY 装配序）
-		for item in _iter(self.opponent.inventory.getItems()):
+		for item in _iter__loc(self.opponent.inventory.getItems()):
 			item.physicsTick(delta)
 			if self._dbg_spdt and item._cooldown_active:
 				print("[spdt] t=%.6f _mod(OPP, s) tt=%.6f spd=%.6f" % [self.combat_time,
@@ -360,7 +365,7 @@ class CoreCombat(GodotObject):
 		self.player.physicsTickCharacter(delta)
 
 		# ⑥ 玩家物品 _physics_process（INVENTORY 装配序）
-		for item in _iter(self.player.inventory.getItems()):
+		for item in _iter__loc(self.player.inventory.getItems()):
 			item.physicsTick(delta)
 			if self._dbg_spdt and item._cooldown_active:
 				print("[spdt] t=%.6f _mod(PLR, s) tt=%.6f spd=%.6f" % [self.combat_time,
@@ -373,10 +378,10 @@ class CoreCombat(GodotObject):
 		#    此前内核把 onTick/tickBuffs 拆成两个双侧循环且玩家在先、把物品计时器混在
 		#    物品冷却循环里——链位全错（run1122_r11 逐抽对位实证：同 tick 双方都触发时
 		#    神谕先抽对手的 adjustCooldown）。
-		for character in _iter([self.opponent, self.player]):
+		for character in _iter__loc([self.opponent, self.player]):
 			character.tickPhysicsTimers(delta)
 			character.tickBuffs(delta)
-			for item in _iter(character.inventory.getItems()):
+			for item in _iter__loc(character.inventory.getItems()):
 				item.tickTimersPass(delta)
 
 		# ⑧ 空闲型 Timer（drive_timers(false)）：疲劳 FatigueStartTimer/FatigueTickTimer

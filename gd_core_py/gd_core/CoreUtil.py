@@ -153,11 +153,12 @@ class CoreUtil(GodotObject):
 	# 对齐 Util.gd:984-989
 	@staticmethod
 	def dictErase(dict, key, valueToErase):
+		_erase__loc = _erase
 		if key in dict:
 			arr = dict[key]
-			_erase(arr, valueToErase)
+			_erase__loc(arr, valueToErase)
 			if (not arr):
-				_erase(dict, key)
+				_erase__loc(dict, key)
 
 
 	# 对齐 Util.gd:1603-1609 —— DictSorter（Util.gd:1649-1650）比较的是

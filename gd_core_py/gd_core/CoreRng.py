@@ -256,8 +256,9 @@ class CoreRng(GodotObject):
 
 
 	def flipWeighted(self, weights):
+		_iter__loc = _iter
 		sum = 0.0
-		for weight in (weights if weights.__class__ is list else _iter(weights)):
+		for weight in (weights if weights.__class__ is list else _iter__loc(weights)):
 			sum += weight
 
 		# ★ np29fG：对齐 oracle Util.gd:1115 `rng_trace_range(0, sum, "flipWeighted")`——
@@ -265,7 +266,7 @@ class CoreRng(GodotObject):
 		#   消耗相同、仅账本可见性差）。Shovel/Robodog onShopEntered 用。
 		val = self.randf_range(0, sum, "flipWeighted")
 		subsum = 0.0
-		for i in _iter(len(weights)):
+		for i in _iter__loc(len(weights)):
 			subsum += weights[i]
 			if subsum >= val:
 				return i

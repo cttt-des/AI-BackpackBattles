@@ -41,11 +41,12 @@ class Exclusive__HogusBogus(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def doCooldownEffect(self):
+		_div__loc = _div
 		if self.phase == 1:
 			curStamina = self.character().getCurrentStamina()
-			step = _div(1.0, self.buffsPerStamina)
+			step = _div__loc(1.0, self.buffsPerStamina)
 			if curStamina >= step:
-				numProccs = floor(_div(curStamina, step))
+				numProccs = floor(_div__loc(curStamina, step))
 				staminaToUse = min(curStamina, min(numProccs * step, self.maxStaminaUsed))
 				self.useStamina(staminaToUse)
 				self.giveRandomBuffs(round(staminaToUse * self.buffsPerStamina))
@@ -58,7 +59,7 @@ class Exclusive__HogusBogus(_R.C("res://gd_core_items/Item.gd")):
 
 		else:
 			curHealth = self.opponent().getCurrentHealth()
-			self.heal(_div(curHealth * self.getP_m('heal'), 100.0))
+			self.heal(_div__loc(curHealth * self.getP_m('heal'), 100.0))
 			self.onAfterEffectFinished()
 
 

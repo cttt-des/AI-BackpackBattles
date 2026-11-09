@@ -43,9 +43,10 @@ class Exclusive__Turtle(_R.C("res://gd_core_items/LeatherHelm.gd")):
 		self.activate()
 
 	def _readyInit(self):
+		_div__loc = _div
 		super()._readyInit()
-		self.extraDamBlock = _div(self.getP('bonus_damblock'), 100.0)
-		self.maxHealthBlock = _div(self.getP('block2'), 100.0)
+		self.extraDamBlock = _div__loc(self.getP('bonus_damblock'), 100.0)
+		self.maxHealthBlock = _div__loc(self.getP('block2'), 100.0)
 
 
 _R.reg("res://gd_core_items/Exclusive/Turtle.gd", Exclusive__Turtle)

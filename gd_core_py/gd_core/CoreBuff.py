@@ -209,6 +209,7 @@ class CoreBuff(GodotObject):
 
 
 	def gainTemporary(self, amount, duration, item=None, triggerEvent=None, reflect=False):
+		_iter__loc = _iter
 		amount = int(amount)
 
 		event = None
@@ -222,11 +223,11 @@ class CoreBuff(GodotObject):
 				totalResistChance -= item.getAmplificationChancePercent(self.type)
 
 			if totalResistChance > 0:
-				for i in (amount if amount.__class__ is list else _iter(amount)):
+				for i in (amount if amount.__class__ is list else _iter__loc(amount)):
 					if self.ctx.rng.flipPercent(totalResistChance):
 						resisted += 1
 			elif totalResistChance < 0:
-				for i in (amount if amount.__class__ is list else _iter(amount)):
+				for i in (amount if amount.__class__ is list else _iter__loc(amount)):
 					if self.ctx.rng.flipPercent( - totalResistChance):
 						amount += 1
 
@@ -237,7 +238,7 @@ class CoreBuff(GodotObject):
 			if not self.isBuff:
 
 				if not reflect:
-					for i in (amount if amount.__class__ is list else _iter(amount)):
+					for i in (amount if amount.__class__ is list else _iter__loc(amount)):
 						if self.ctx.rng.flipPercent(self.reflectChancePercent):
 							reflected += 1
 
@@ -365,6 +366,7 @@ class CoreBuff(GodotObject):
 
 
 	def loseStacks(self, amount, item=None, triggerEvent=None, used=False):
+		_iter__loc = _iter
 		amount = int(amount)
 
 		amount = min(self.current, amount)
@@ -373,12 +375,12 @@ class CoreBuff(GodotObject):
 			protected = 0
 
 			if self.cleanseProtectionChancePercent > 0:
-				for i in (amount if amount.__class__ is list else _iter(amount)):
+				for i in (amount if amount.__class__ is list else _iter__loc(amount)):
 					if self.ctx.rng.flipPercent(self.cleanseProtectionChancePercent):
 						protected += 1
 
 			elif self.cleanseProtectionChancePercent < 0:
-				for i in (amount if amount.__class__ is list else _iter(amount)):
+				for i in (amount if amount.__class__ is list else _iter__loc(amount)):
 					if self.ctx.rng.flipPercent( - self.cleanseProtectionChancePercent):
 						protected -= 1
 
@@ -424,7 +426,7 @@ class CoreBuff(GodotObject):
 
 				farthestTimeout = 0
 				farthestIndex = - 1
-				for i in _iter(len(self.temporaryStacks)):
+				for i in _iter__loc(len(self.temporaryStacks)):
 					stacks = self.temporaryStacks[i]
 					if stacks.timeout > farthestTimeout:
 						farthestTimeout = stacks.timeout

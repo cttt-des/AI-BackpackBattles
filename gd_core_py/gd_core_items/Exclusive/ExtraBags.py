@@ -45,9 +45,10 @@ class Exclusive__ExtraBags(_R.C("res://gd_core_items/Item.gd")):
 		pass
 
 	def _readyInit(self):
+		_div__loc = _div
 		super()._readyInit()
-		self.freeSlotSpeed = _div(self.getP('speed'), 100.0)
-		self.salesChance = _div(self.getP('sales'), 100.0)
+		self.freeSlotSpeed = _div__loc(self.getP('speed'), 100.0)
+		self.salesChance = _div__loc(self.getP('sales'), 100.0)
 		self.bagWeight = self.getP("bagweight")
 
 

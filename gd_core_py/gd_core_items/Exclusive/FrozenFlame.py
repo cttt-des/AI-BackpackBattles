@@ -65,14 +65,15 @@ class Exclusive__FrozenFlame(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def onHeatChanged(self, amount, event):
+		_div__loc = _div
 		if amount > 0:
 			self.heatCounter += amount
-			relHeat = _div(float(self.heatCounter), self.heatNeeded)
+			relHeat = _div__loc(float(self.heatCounter), self.heatNeeded)
 			cold = int(relHeat) * self.coldPerHeat
 			self.heatCounter %= self.heatNeeded
 			if cold > 0:
 				self.inflictCold(cold, event)
-				self.showCooldownSmooth(_div(float(self.heatCounter), self.heatNeeded), True)
+				self.showCooldownSmooth(_div__loc(float(self.heatCounter), self.heatNeeded), True)
 			else:
 				self.showCooldownSmooth(relHeat, False)
 

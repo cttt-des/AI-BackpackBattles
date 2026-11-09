@@ -55,9 +55,10 @@ class Exclusive__TimeDilator(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def _readyInit(self):
+		_div__loc = _div
 		super()._readyInit()
-		self.slow = _div(self.getP('slow'), 100.0)
-		self.speedUp = _div(self.getP('speed'), 100.0)
+		self.slow = _div__loc(self.getP('slow'), 100.0)
+		self.speedUp = _div__loc(self.getP('speed'), 100.0)
 
 
 _R.reg("res://gd_core_items/Exclusive/TimeDilator.gd", Exclusive__TimeDilator)

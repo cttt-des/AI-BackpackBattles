@@ -49,6 +49,7 @@ class Goobert_2(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def onItemActivated(self, event):
+		_div__loc = _div
 		self.activations += 1
 
 		if self.activations == self.getP1():
@@ -60,9 +61,9 @@ class Goobert_2(_R.C("res://gd_core_items/Item.gd")):
 				self.doCooldownEffect()
 				self.activate()
 
-			self.showCooldownSmooth(_div(self.activations, self.activationsToTrigger), True)
+			self.showCooldownSmooth(_div__loc(self.activations, self.activationsToTrigger), True)
 		else:
-			self.showCooldownSmooth(_div(self.activations, self.activationsToTrigger), False)
+			self.showCooldownSmooth(_div__loc(self.activations, self.activationsToTrigger), False)
 
 		self.triggerTime = self.activationsToTrigger - self.activations
 		self.ctx.combat_log.snapshotItemTooltipStat(self, _H_1, None, False, event)

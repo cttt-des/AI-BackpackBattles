@@ -23,17 +23,18 @@ class Exclusive__EchoingBattlecry(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def onPrepare(self):
+		_iter__loc = _iter
 		self.affectedItems = self.getAffectedItems()
 		# ★ np25 evt105 f09 面 EBARR 探针（双门控零耗链）：EB 洗牌输入/输出序定谳
 		#   ——首分歧=EB 首弹弹了不同 Piggybank（全局链 j 值 or 输入序差）。
 		_b = ""
 		_aft = ""
 		if self.ctx.rng.oracle_trace and self.ctx.rng._stacktrace:
-			for _a in (self.affectedItems if self.affectedItems.__class__ is list else _iter(self.affectedItems)):
+			for _a in (self.affectedItems if self.affectedItems.__class__ is list else _iter__loc(self.affectedItems)):
 				_b += String(_a.descriptor.identifier) + "@" + str(_a.occupiedCells[0]) + ","
 		self.ctx.rng.shuffleEngine(self.affectedItems, 'Exclusive/EchoingBattlecry.gd:14')
 		if self.ctx.rng.oracle_trace and self.ctx.rng._stacktrace:
-			for _a in (self.affectedItems if self.affectedItems.__class__ is list else _iter(self.affectedItems)):
+			for _a in (self.affectedItems if self.affectedItems.__class__ is list else _iter__loc(self.affectedItems)):
 				_aft += String(_a.descriptor.identifier) + "@" + str(_a.occupiedCells[0]) + ","
 			self.ctx.rng.trace_diag("EBARR", "ot" + str(int(self.ownerType)), _b, _aft)
 

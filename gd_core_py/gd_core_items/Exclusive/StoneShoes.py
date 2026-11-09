@@ -71,11 +71,12 @@ class Exclusive__StoneShoes(_R.C("res://gd_core_items/Item.gd")):
 		return _H_2 + 3
 
 	def _readyInit(self):
+		_div__loc = _div
 		super()._readyInit()
 		self.luck = self.getP("luck")
 		self.empower = self.getP("empower")
-		self.damReduction = _div(self.getP('damreduction'), 100.0)
-		self.healthThreshold = _div(self.getP1(), 100.0) - 0.0001
+		self.damReduction = _div__loc(self.getP('damreduction'), 100.0)
+		self.healthThreshold = _div__loc(self.getP1(), 100.0) - 0.0001
 		self.buffTimer = self.newItemTimer("BuffTimer", "onBuffTimeout", False)
 
 

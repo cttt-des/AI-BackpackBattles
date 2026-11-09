@@ -51,6 +51,7 @@ class Goobert(_R.C("res://gd_core_items/Item.gd")):
 	def onItemActivated(self, event):
 		# ★ np25 诊断（受控，双门控零耗链）：Goobert 计数器入口——接收者/计数/
 		#   阈值/触发源（对拍 py 侧无 TRIG doCooldownEffect 串扰，run874_r7）。
+		_div__loc = _div
 		_gsrc = "?"
 		if event != None and event.origin != None:
 			_gsrc = String(event.origin.name)
@@ -66,9 +67,9 @@ class Goobert(_R.C("res://gd_core_items/Item.gd")):
 				self.doCooldownEffect()
 				self.activate()
 
-			self.showCooldownSmooth(_div(self.activations, self.activationsToTrigger), True)
+			self.showCooldownSmooth(_div__loc(self.activations, self.activationsToTrigger), True)
 		else:
-			self.showCooldownSmooth(_div(self.activations, self.activationsToTrigger), False)
+			self.showCooldownSmooth(_div__loc(self.activations, self.activationsToTrigger), False)
 
 		self.triggerTime = self.activationsToTrigger - self.activations
 		self.ctx.combat_log.snapshotItemTooltipStat(self, _H_1, None, False, event)

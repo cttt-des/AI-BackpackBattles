@@ -65,11 +65,12 @@ class Exclusive__KnifetoMeetYou(_R.C("res://gd_core_items/Item.gd")):
 		return item.canBeEmpowered()
 
 	def _readyInit(self):
+		_div__loc = _div
 		super()._readyInit()
 		self.daggerDescriptor = self.ctx.item_book.getDescriptor("Dagger")
-		self.daggerSpeed = _div(self.getP('speed'), 100.0)
-		self.damFactor = _div(self.getP('dam'), 100.0)
-		self.speedPerDagger = _div(self.getP('speed2'), 100.0)
+		self.daggerSpeed = _div__loc(self.getP('speed'), 100.0)
+		self.damFactor = _div__loc(self.getP('dam'), 100.0)
+		self.speedPerDagger = _div__loc(self.getP('speed2'), 100.0)
 
 
 _R.reg("res://gd_core_items/Exclusive/KnifetoMeetYou.gd", Exclusive__KnifetoMeetYou)

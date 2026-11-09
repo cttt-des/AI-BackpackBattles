@@ -42,13 +42,14 @@ class Manathirst_2(_R.C("res://gd_core_items/Weapon.gd")):
 		pass
 
 	def onManaChanged(self, amount, event):
+		_div__loc = _div
 		if amount > 0:
 			self.manaGained += amount
 			if self.manaGained >= self.manaNeededForLifesteal:
 				self.manaGained -= self.manaNeededForLifesteal
-				self.stealLife(self.dam + self.character().getVampirism(), _div(self.getP_m('lifesteal'), 100.0), event)
+				self.stealLife(self.dam + self.character().getVampirism(), _div__loc(self.getP_m('lifesteal'), 100.0), event)
 
-			relHeight = _div(self.manaGained, self.manaNeededForLifesteal)
+			relHeight = _div__loc(self.manaGained, self.manaNeededForLifesteal)
 			self.tweenFilling(relHeight)
 
 

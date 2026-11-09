@@ -39,9 +39,10 @@ class Exclusive__Ukulele(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def onPrepare(self):
+		_iter__loc = _iter
 		self.activateIndex = 0
 		self.nonMusicalItems.clear()
-		for item in _iter(self.inventory.getItems()):
+		for item in _iter__loc(self.inventory.getItems()):
 			if ( not item.hasType(_H_1) and 
 				item.hasCooldown()):
 				self.nonMusicalItems.append(item)
@@ -49,14 +50,14 @@ class Exclusive__Ukulele(_R.C("res://gd_core_items/Item.gd")):
 		if not (not self.nonMusicalItems):
 			self.ctx.rng.shuffleEngine(self.nonMusicalItems, 'Exclusive/Ukulele.gd:34')
 
-			for item in _iter(self.getAffectedItems(_H_2)):
+			for item in _iter__loc(self.getAffectedItems(_H_2)):
 				self.connectForCombat(item, "activated", "onItemActivated")
 
 		self.addSpeed(self.speedPerItem * self.getNumAffectedItems())
 
 		self.character().addHealingEfficiency(self.healAmp)
 
-		for item in _iter(self.inventory.getItems()):
+		for item in _iter__loc(self.inventory.getItems()):
 			item.changeAmplificiationChancePercent_allBuffs(self.getChance())
 
 		self.options = [0, 1, 2]
@@ -112,10 +113,11 @@ class Exclusive__Ukulele(_R.C("res://gd_core_items/Item.gd")):
 		# decomp Items/Exclusive/Ukulele.gd:94 Sound.playSound(dropSound, volume - 4, Util.randPitch(0.15))——GDScript 实参求值即消耗：randPitch 1 抽
 		self.ctx.rng.randf_range(0.9, 1.1)
 	def _readyInit(self):
+		_div__loc = _div
 		super()._readyInit()
-		self.speedPerItem = _div(self.getP('speed'), 100.0)
+		self.speedPerItem = _div__loc(self.getP('speed'), 100.0)
 		self.cdAdvance = self.getP("advance")
-		self.healAmp = _div(self.getP('healamp'), 100.0)
+		self.healAmp = _div__loc(self.getP('healamp'), 100.0)
 		self.buffs = int(self.getP("buffs"))
 		self.cold = int(self.getP("cold"))
 

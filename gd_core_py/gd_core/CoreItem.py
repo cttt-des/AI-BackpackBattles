@@ -307,6 +307,9 @@ class CoreItem(GodotObject):
 	# 与 `_init` 同一份初始化体（原 Item.gd 的构造期状态）。
 	# 返回 self 便于链式调用：`var it = SCRIPT.new().setup(ctx, data, chr)`
 	def setup(self, _ctx, _descriptor, _character=None):
+		_iter__loc = _iter
+		_fill__loc = _fill
+		_resize__loc = _resize
 		self.ctx = _ctx
 		self.descriptor = _descriptor
 		self.character_ = _character
@@ -335,18 +338,18 @@ class CoreItem(GodotObject):
 		#   普通物品=2）但内核从未消费 ⇒ 每个宝石类物品装配少 1 抽（run784 五符文
 		#   = 5 抽，第 2 油灯 flicker delay 1.979v0.662 的错位即此所赐）。
 		#   消耗位置 = 第 2 层之后、gemRoll(advance) 之前，与神谕实例化序逐位同构。
-		for _i in _iter(_gd_range(max(0, int(self.descriptor.sceneDepth) - 2))):
+		for _i in _iter__loc(_gd_range(max(0, int(self.descriptor.sceneDepth) - 2))):
 			self.chanceRng = self.ctx.rng.BalancedRng(self.ctx.rng)
 		self.baseCooldownOverride = _descriptor.cd
-		for buff in _iter(_H_7.getStacks()):
+		for buff in _iter__loc(_H_7.getStacks()):
 			self.buffPowers[buff] = 1.0
 			self.buffAmplificationChances[buff] = 0.0
-		_resize(self.itemMetrics, self.getNumItemMetrics())
-		_fill(self.itemMetrics, 0)
-		_resize(self.statDisplayOverrides, len(_H_8))
-		_fill(self.statDisplayOverrides, None)
+		_resize__loc(self.itemMetrics, self.getNumItemMetrics())
+		_fill__loc(self.itemMetrics, 0)
+		_resize__loc(self.statDisplayOverrides, len(_H_8))
+		_fill__loc(self.statDisplayOverrides, None)
 		# 对齐 Item.gd:602-603（_ready 里把每个颜色档初始化为空字典）
-		for color in _iter(list(_H_60.values())):
+		for color in _iter__loc(list(_H_60.values())):
 			self.currentAffectedItems[color] = {}
 		return self
 
@@ -538,12 +541,13 @@ class CoreItem(GodotObject):
 
 
 	def getCooldownEncoded(self):
+		_div__loc = _div
 		if self.iterationCooldown == 0:
 			return - 1
-		relProgress = 1.0 - _div(self.triggerTime, self.iterationCooldown)
+		relProgress = 1.0 - _div__loc(self.triggerTime, self.iterationCooldown)
 		progressPerSecond = None
 		if self.isCooldownActive():
-			progressPerSecond = _div(self.getSpeed(), self.iterationCooldown)
+			progressPerSecond = _div__loc(self.getSpeed(), self.iterationCooldown)
 		else:
 			progressPerSecond = 0
 		value = int(relProgress * self.cdEncodingFactor) << 32
@@ -661,6 +665,7 @@ class CoreItem(GodotObject):
 	#   · CraftingManager.itemAdded / makeGrabbable / 各类 Util.connectIfExists（制作与商店）
 	#   · emit_signal("added_to_inventory")（表现层）
 	def addToInventory(self, _inventory, _occupiedCells, _placedByPlayer):
+		_iter__loc = _iter
 		self.placedByPlayer = _placedByPlayer
 		self.placed = True
 		self.inventory = _inventory
@@ -675,8 +680,8 @@ class CoreItem(GodotObject):
 
 		self.cacheAffectedCells()
 
-		for color in _iter(list(_H_60.values())):
-			for item in _iter(self.getAffectedItems(color)):
+		for color in _iter__loc(list(_H_60.values())):
+			for item in _iter__loc(self.getAffectedItems(color)):
 				self.currentAffectedItems[color][item] = True
 				self.onAffectedItemAdded(item, color)
 
@@ -762,6 +767,7 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:3448-3480+ shopEntered 的战斗态清零
 	def resetCombatState(self):
+		_fill__loc = _fill
 		self.baseCooldownOverride = self.descriptor.cd
 		self.speedScale = 0.0
 		self.bonusMinDam = 0
@@ -785,8 +791,8 @@ class CoreItem(GodotObject):
 		self.paramMult.clear()
 		self.paramAdd.clear()
 		self.numCharges = 0
-		_fill(self.statDisplayOverrides, None)
-		_fill(self.itemMetrics, 0)
+		_fill__loc(self.statDisplayOverrides, None)
+		_fill__loc(self.itemMetrics, 0)
 		self.consumed = False
 		self.lastActivationTime = 0.0
 		self.activationsThisFrame = 0
@@ -866,9 +872,10 @@ class CoreItem(GodotObject):
 	#   （CoreTimer.rebuildSeen 注）；停止态 [0,0] → _seen=_eng=0（stop() 已置）
 	#   零影响。
 	def rebuildTimerSeen(self):
-		for t in (self.timers if self.timers.__class__ is list else _iter(self.timers)):
+		_iter__loc = _iter
+		for t in (self.timers if self.timers.__class__ is list else _iter__loc(self.timers)):
 			t.rebuildSeen()
-		for gem in (self.gems if self.gems.__class__ is list else _iter(self.gems)):
+		for gem in (self.gems if self.gems.__class__ is list else _iter__loc(self.gems)):
 			if gem != None:
 				gem.rebuildTimerSeen()
 
@@ -1020,6 +1027,7 @@ class CoreItem(GodotObject):
 	def trigger(self):
 		# ★ np24 诊断（受控）：镜像神谕 TRIG 取证桩（oracle/Items/Item.gd trigger 段，
 		#   双门控零耗链），对拍逐次触发的 triggerTime/iterationCooldown/speed。
+		_gd_fmt__loc = _gd_fmt
 		self.ctx.rng.trace_diag("TRIG", String(self.descriptor.identifier), int(self.ownerType),
 				"tt=" + str(self.triggerTime) + " cd=" + str(self.iterationCooldown)
 				+ " spd=" + str(self.getSpeed()) + " t=" + str(self.ctx.time))
@@ -1033,11 +1041,11 @@ class CoreItem(GodotObject):
 			if _inj_n_s != "":
 				self._inj_trigger_n = int(_inj_n_s)
 			if self._inj_item != "":
-				print(_gd_fmt('INJ2_ARM item=[%s] n=%d', [self._inj_item, self._inj_trigger_n]))
+				print(_gd_fmt__loc('INJ2_ARM item=[%s] n=%d', [self._inj_item, self._inj_trigger_n]))
 		if self._inj_item != "" and String(self.descriptor.identifier) == self._inj_item:
 			self._inj_trigger_count += 1
 			if self._inj_trigger_count == self._inj_trigger_n:
-				print(_gd_fmt('INJ2_FIRED item=%s n=%d t=%s', [self._inj_item, self._inj_trigger_n, str(self.ctx.time)]))
+				print(_gd_fmt__loc('INJ2_FIRED item=%s n=%d t=%s', [self._inj_item, self._inj_trigger_n, str(self.ctx.time)]))
 				self.ctx.rng.bare_randf_range(0.0, 1.0)
 		self.iterationCooldown = self.adjustCooldown()
 		self.triggerTime += self.iterationCooldown
@@ -1362,10 +1370,11 @@ class CoreItem(GodotObject):
 
 
 	def applyBonusChance(self, toChance, index):
+		_div__loc = _div
 		if index == 1:
-			return (toChance + self.bonusChancePercent_additive1) * _div(100 + self.bonusChancePercent_mult, 100.0)
+			return (toChance + self.bonusChancePercent_additive1) * _div__loc(100 + self.bonusChancePercent_mult, 100.0)
 		else:
-			return (toChance + self.bonusChancePercent_additive2) * _div(100 + self.bonusChancePercent_mult, 100.0)
+			return (toChance + self.bonusChancePercent_additive2) * _div__loc(100 + self.bonusChancePercent_mult, 100.0)
 
 
 	# 对齐 Items/Item.gd:3867-3870
@@ -2020,8 +2029,9 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:3736-3741
 	def isDPSModified(self):
-		baseDPS = _div(self.getBaseAverageDamage(), self.getCooldown())
-		modifiedDPS = _div(self.getAverageDamage(), self.getModifiedCooldown())
+		_div__loc = _div
+		baseDPS = _div__loc(self.getBaseAverageDamage(), self.getCooldown())
+		modifiedDPS = _div__loc(self.getAverageDamage(), self.getModifiedCooldown())
 		return self.isStatModified(modifiedDPS - baseDPS)
 
 
@@ -2687,8 +2697,9 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:5422-5446
 	def pickRandomStacks(self, stackTypes, numStacks, target, priorityStack=None):
+		_iter__loc = _iter
 		stacks = Dictionary()
-		for stackType in (stackTypes if stackTypes.__class__ is list else _iter(stackTypes)):
+		for stackType in (stackTypes if stackTypes.__class__ is list else _iter__loc(stackTypes)):
 			numTargetStacks = target.buffs[stackType]._current
 			if numTargetStacks > 0:
 				stacks[stackType] = numTargetStacks
@@ -2702,7 +2713,7 @@ class CoreItem(GodotObject):
 				numStacks -= pickedPriorityStacks
 				_H_36.dictSub(stacks, priorityStack, pickedPriorityStacks)
 
-		for i in _iter(_gd_range(numStacks)):
+		for i in _iter__loc(_gd_range(numStacks)):
 			if not (not stacks):
 				stackType = self.ctx.rng.pickRandomElement(list(stacks.keys()))
 				_H_36.dictAdd(pickedStacks, stackType, 1)
@@ -2723,8 +2734,9 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:5530-5554
 	def getLeastStacks(self, numStacks, target, availableStacks):
+		_iter__loc = _iter
 		priorStacks = {}
-		for stackType in (availableStacks if availableStacks.__class__ is list else _iter(availableStacks)):
+		for stackType in (availableStacks if availableStacks.__class__ is list else _iter__loc(availableStacks)):
 			priorStacks[stackType] = target.buffs[stackType]._current
 
 		pickedStacks = {}
@@ -2732,7 +2744,7 @@ class CoreItem(GodotObject):
 		while numStacks > 0:
 			leastStacksCount = 10000
 			leastStacks = []
-			for stackType in (priorStacks if priorStacks.__class__ is list else _iter(priorStacks)):
+			for stackType in (priorStacks if priorStacks.__class__ is list else _iter__loc(priorStacks)):
 				if priorStacks[stackType] < leastStacksCount:
 					leastStacksCount = priorStacks[stackType]
 					leastStacks.clear()
@@ -2749,13 +2761,14 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:5563-5579
 	def getMostStacks(self, target, availableStacks):
+		_iter__loc = _iter
 		buffs = Dictionary()
-		for buff in (availableStacks if availableStacks.__class__ is list else _iter(availableStacks)):
+		for buff in (availableStacks if availableStacks.__class__ is list else _iter__loc(availableStacks)):
 			buffs[buff] = target.buffs[buff]._current
 
 		maxBuffs = []
 		maxStacks = 0
-		for buff in (buffs if buffs.__class__ is list else _iter(buffs)):
+		for buff in (buffs if buffs.__class__ is list else _iter__loc(buffs)):
 			if buffs[buff] == maxStacks:
 				maxBuffs.append(buff)
 			elif buffs[buff] > maxStacks:
@@ -2768,12 +2781,13 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:5610-5652（原版 Util.sortDict(overflow, true) → CoreUtil.sortDict(.., ctx.rng, true)）
 	def getStackFraction(self, target, fraction, limit, availableStacks):
+		_iter__loc = _iter
 		limit = int(limit)
 
 		sum = 0.0
 		stacksUnlimited = {}
 
-		for buff in (availableStacks if availableStacks.__class__ is list else _iter(availableStacks)):
+		for buff in (availableStacks if availableStacks.__class__ is list else _iter__loc(availableStacks)):
 			prior = target.buffs[buff]._current
 
 			withBonus = prior * fraction
@@ -2791,7 +2805,7 @@ class CoreItem(GodotObject):
 		overflow = {}
 		totalGiven = 0
 
-		for buff in (stacksUnlimited if stacksUnlimited.__class__ is list else _iter(stacksUnlimited)):
+		for buff in (stacksUnlimited if stacksUnlimited.__class__ is list else _iter__loc(stacksUnlimited)):
 			limited = stacksUnlimited[buff] * limitFactor
 			guaranteed = int(limited)
 			buffsToGive[buff] = guaranteed
@@ -2812,7 +2826,7 @@ class CoreItem(GodotObject):
 		self.ctx.rng.shuffleEngine(sortedOverflow, 'Items/Item.gd:5642')
 		_sort_custom(sortedOverflow, _H_36.DictSorter(overflow), "sort")
 
-		for buff in (sortedOverflow if sortedOverflow.__class__ is list else _iter(sortedOverflow)):
+		for buff in (sortedOverflow if sortedOverflow.__class__ is list else _iter__loc(sortedOverflow)):
 			if overflowBuffs == 0:
 				break
 
@@ -3482,12 +3496,13 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:1425-1443（背包内新物品加入时刷新受影响集）
 	def onItemAdded(self, item):
+		_iter__loc = _iter
 		newItemIsAffected = {}
-		for color in _iter(list(_H_60.values())):
+		for color in _iter__loc(list(_H_60.values())):
 			newItemIsAffected[color] = (not item in self.currentAffectedItems[color] and 
 										self.isItemAffected(item, color))
 
-		for color in _iter(list(_H_60.values())):
+		for color in _iter__loc(list(_H_60.values())):
 			if newItemIsAffected[color]:
 				self.currentAffectedItems[color][item] = True
 				self.onAffectedItemAdded(item, color)
@@ -3552,6 +3567,7 @@ class CoreItem(GodotObject):
 	# ItemLibrary 的展示摆放（Interface/ItemLibrary/ItemLibrary.gd:209/409）——不在战斗
 	# 判定路径上，内核返回 Vector2.ZERO 占位。
 	def getNormalizedCollisionCells(self):
+		_iter__loc = _iter
 		cells = None
 		if self.isBag():
 			cells = _dup(self.getExtensionCells())
@@ -3559,7 +3575,7 @@ class CoreItem(GodotObject):
 			cells = _dup(self.getCollisionCells())
 
 		minimum = Vector2(100, 100)
-		for cell in (cells if cells.__class__ is list else _iter(cells)):
+		for cell in (cells if cells.__class__ is list else _iter__loc(cells)):
 			if cell.y <= minimum.y:
 				if cell.y < minimum.y:
 					minimum.x = cell.x
@@ -3567,7 +3583,7 @@ class CoreItem(GodotObject):
 					minimum.x = min(cell.x, minimum.x)
 				minimum.y = cell.y
 
-		for i in _iter(_gd_range(len(cells))):
+		for i in _iter__loc(_gd_range(len(cells))):
 			cells[i] = cells[i] - minimum
 
 		return [cells, Vector2.ZERO]
@@ -3691,17 +3707,18 @@ class CoreItem(GodotObject):
 	#   要求装配层对同一物品类型复用同一个 CoreItemData 实例（原版共享一份 .tres），
 	#   内核侧的入口是 CoreItemBook.getDescriptor() / register()。
 	def countAllPlacedOfType(self, descr):
+		_iter__loc = _iter
 		count = 0
 		if self.isOwnedByOpponent():
 			if self.ctx.opponent == None:
 				return 0
-			for item in _iter(self.ctx.opponent.inventory.getItemsAndGems()):
+			for item in _iter__loc(self.ctx.opponent.inventory.getItemsAndGems()):
 				if item != None and item.descriptor == descr:
 					count += 1
 			return count
 
 		if self.ctx.player != None:
-			for item in _iter(self.ctx.player.inventory.getItemsAndGems()):
+			for item in _iter__loc(self.ctx.player.inventory.getItemsAndGems()):
 				if item == None or item.descriptor != descr:
 					continue
 				if item.ownerType == _H_42:
@@ -3714,13 +3731,14 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:3066-3085：被自身占格压住的袋子按「描述符」归并计数
 	def getTouchedBagsCounted(self):
+		_iter__loc = _iter
 		if self.isBag() or not self.placed:
 			return None
 		touchedBags = self.inventory.getBagsInCells(self.occupiedCells)
 		bagCounter = {}
-		for bag in (touchedBags if touchedBags.__class__ is list else _iter(touchedBags)):
+		for bag in (touchedBags if touchedBags.__class__ is list else _iter__loc(touchedBags)):
 			found = False
-			for countedBag in (bagCounter if bagCounter.__class__ is list else _iter(bagCounter)):
+			for countedBag in (bagCounter if bagCounter.__class__ is list else _iter__loc(bagCounter)):
 				if countedBag.descriptor == bag.descriptor:
 					bagCounter[countedBag] += bag.getBagMultiplicity(self)
 					found = True
@@ -3939,13 +3957,14 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:5837-5851。isBusy 属制作系统（剥离后恒 false）→ 结果恒为空。
 	def getBusyNeighbors(self):
+		_iter__loc = _iter
 		busyNeighbors = []
 
-		for neighbor in _iter(self.getNeighborItemsAndGems()):
+		for neighbor in _iter__loc(self.getNeighborItemsAndGems()):
 			if neighbor.isBusy():
 				busyNeighbors.append(neighbor)
 
-		for bag in _iter(self.getTouchedBags()):
+		for bag in _iter__loc(self.getTouchedBags()):
 			if bag.isBusy():
 				busyNeighbors.append(bag)
 
@@ -3954,13 +3973,14 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:5823-5836。同上，制作系统剥离后恒为空。
 	def getCraftableNeighbors(self):
+		_iter__loc = _iter
 		craftableNeighbors = []
 
-		for neighbor in _iter(self.getNeighborItemsAndGems()):
+		for neighbor in _iter__loc(self.getNeighborItemsAndGems()):
 			if neighbor.isAvailableForCrafting():
 				craftableNeighbors.append(neighbor)
 
-		for bag in _iter(self.getTouchedBags()):
+		for bag in _iter__loc(self.getTouchedBags()):
 			if bag.isAvailableForCrafting():
 				craftableNeighbors.append(bag)
 
@@ -3985,12 +4005,13 @@ class CoreItem(GodotObject):
 	# 对齐 Item.gd:5783-5785 之外的 isShowCaseItem 见上；
 	# 对齐 Item.gd:6510-6520
 	def countTypes(self, ofItems):
+		_iter__loc = _iter
 		typesDict = {}
-		for type in _iter(_H_6):
+		for type in _iter__loc(_H_6):
 			typesDict[_H_6[type]] = 0
 
-		for item in (ofItems if ofItems.__class__ is list else _iter(ofItems)):
-			for type in _iter(item.getTypes()):
+		for item in (ofItems if ofItems.__class__ is list else _iter__loc(ofItems)):
+			for type in _iter__loc(item.getTypes()):
 				typesDict[type] += 1
 
 		return typesDict

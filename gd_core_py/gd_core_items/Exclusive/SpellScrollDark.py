@@ -51,9 +51,10 @@ class Exclusive__SpellScrollDark(_R.C("res://gd_core_items/Item.gd")):
 			self.activate()
 
 	def _readyInit(self):
+		_div__loc = _div
 		super()._readyInit()
-		self.speedBonus = _div(self.getP('speed'), 100.0)
-		self.darkSpeed = _div(self.getP('speed_dark'), 100.0)
+		self.speedBonus = _div__loc(self.getP('speed'), 100.0)
+		self.darkSpeed = _div__loc(self.getP('speed_dark'), 100.0)
 		self.maxActivations = int(self.getP("max"))
 
 

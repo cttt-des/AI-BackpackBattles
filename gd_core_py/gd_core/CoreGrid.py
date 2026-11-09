@@ -140,9 +140,10 @@ class CoreGrid(GodotObject):
 	# 对齐 Inventory.gd:686-696
 	@staticmethod
 	def getCellsInLine(cells, direction, distance=7):
+		_iter__loc = _iter
 		lineCells = []
-		for cell in (cells if cells.__class__ is list else _iter(cells)):
-			for offset in _iter(_gd_range(1, distance + 1)):
+		for cell in (cells if cells.__class__ is list else _iter__loc(cells)):
+			for offset in _iter__loc(_gd_range(1, distance + 1)):
 				neighbor = cell + direction * offset
 
 				if (not neighbor in cells and 
@@ -155,9 +156,10 @@ class CoreGrid(GodotObject):
 	# 对齐 Inventory.gd:698-709（四邻域去重，排除自身占格）
 	@staticmethod
 	def getAdjacentCells(cells):
+		_iter__loc = _iter
 		adjacentCells = []
-		for cell in (cells if cells.__class__ is list else _iter(cells)):
-			for offset in _iter([Vector2.RIGHT, Vector2.LEFT, Vector2.UP, Vector2.DOWN]):
+		for cell in (cells if cells.__class__ is list else _iter__loc(cells)):
+			for offset in _iter__loc([Vector2.RIGHT, Vector2.LEFT, Vector2.UP, Vector2.DOWN]):
 				neighbor = cell + offset
 
 				if (not neighbor in cells and 
@@ -203,11 +205,12 @@ class CoreGrid(GodotObject):
 
 	# 对齐 Inventory.gd:621-627 —— 只写格子映射
 	def addItemCells(self, item, cells):
+		_iter__loc = _iter
 		if item.isBag():
-			for cell in (cells if cells.__class__ is list else _iter(cells)):
+			for cell in (cells if cells.__class__ is list else _iter__loc(cells)):
 				self.bagCells[cell] = item
 		else:
-			for cell in (cells if cells.__class__ is list else _iter(cells)):
+			for cell in (cells if cells.__class__ is list else _iter__loc(cells)):
 				self.filledCells[cell] = item
 
 
@@ -237,13 +240,14 @@ class CoreGrid(GodotObject):
 
 	# 对齐 Inventory.gd:629-636
 	def clearItemCells(self, item):
+		_erase__loc = _erase
 		for cell in (item.occupiedCells if item.occupiedCells.__class__ is list else _iter(item.occupiedCells)):
 			if item.isBag():
 				if self.bagCells.get(cell, None) == item:
-					_erase(self.bagCells, cell)
+					_erase__loc(self.bagCells, cell)
 			else:
 				if self.filledCells.get(cell, None) == item:
-					_erase(self.filledCells, cell)
+					_erase__loc(self.filledCells, cell)
 
 
 	# 对齐 Inventory.gd:640-646（r4_2 棋族面内核对应物）：

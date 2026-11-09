@@ -14,6 +14,7 @@ class Eggscalibur_2(_R.C("res://gd_core_items/Pan.gd")):
 
 
 	def onDealtDamage(self, damageRes):
+		_iter__loc = _iter
 		event = self.tryUseMana(self.getP2(), damageRes.event)
 		if event:
 			affected = self.getAffectedItems()
@@ -22,10 +23,10 @@ class Eggscalibur_2(_R.C("res://gd_core_items/Pan.gd")):
 			#   供两侧逐抽对位点名。np25棋盘面重建回植（r1_0 改道 shuffleEngine 后
 			#   同位补回；builder 无此手补）。
 			_ids = ""
-			for food in (affected if affected.__class__ is list else _iter(affected)):
+			for food in (affected if affected.__class__ is list else _iter__loc(affected)):
 				_ids += String(food.descriptor.identifier) + "|"
 			self.ctx.rng.trace_diag("ESHUF", str(_ids), "t=" + str(self.ctx.time), "")
-			for food in (affected if affected.__class__ is list else _iter(affected)):
+			for food in (affected if affected.__class__ is list else _iter__loc(affected)):
 				food.doCooldownEffect()
 
 

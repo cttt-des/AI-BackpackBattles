@@ -30,18 +30,19 @@ class Exclusive__PortableAltar(_R.C("res://gd_core_items/Bag.gd")):
 
 
 	def onRecipesUpdated(self):
+		_iter__loc = _iter
 		if self.ownerType != _H_1:
 			return
 		if self.fusing:
 			return
 
 		if self.locked or not self.placed:
-			for bonded in (self.bondedIngredients if self.bondedIngredients.__class__ is list else _iter(self.bondedIngredients)):
+			for bonded in (self.bondedIngredients if self.bondedIngredients.__class__ is list else _iter__loc(self.bondedIngredients)):
 				bonded.removeBondedBaseItem()
 			self.removeAllIngredients()
 			return
 
-		for item in _iter(self.getItemsInside()):
+		for item in _iter__loc(self.getItemsInside()):
 			if item.canStartNewRecipe():
 				self.createBondVisual(item)
 				self.updateBondVisuals()

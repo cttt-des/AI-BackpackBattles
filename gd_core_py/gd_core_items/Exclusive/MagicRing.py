@@ -147,17 +147,18 @@ class Exclusive__MagicRing(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def sortEffects(self):
+		_iter__loc = _iter
 		self.gainedStacks = 0
 		self.effectDict.clear()
 		self.ringTypes.clear()
 
 		effectI = 0
-		for effect in (self.effects if self.effects.__class__ is list else _iter(self.effects)):
+		for effect in (self.effects if self.effects.__class__ is list else _iter__loc(self.effects)):
 			effectI += 1
 
 		if not self.isOnlyForDisplay():
 
-			for effect in (self.effects if self.effects.__class__ is list else _iter(self.effects)):
+			for effect in (self.effects if self.effects.__class__ is list else _iter__loc(self.effects)):
 				self.ctx.util.dictAppend(self.effectDict, effect.triggerType, effect)
 
 				self.gainedStacks |= 2 << (effect.stackType - _H_2)
@@ -310,10 +311,11 @@ class Exclusive__MagicRing(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def _readyInit(self):
+		_div__loc = _div
 		super()._readyInit()
 		self.numEffects = int(self.getP("effects"))
-		self.healthThreshold = _div(self.getP('healtht'), 100.0)
-		self.opponentHealthThreshold = _div(self.getP('healtht_opp'), 100.0)
+		self.healthThreshold = _div__loc(self.getP('healtht'), 100.0)
+		self.opponentHealthThreshold = _div__loc(self.getP('healtht_opp'), 100.0)
 		self.stones = []
 		self.symbols = []
 		if (not self.stones):

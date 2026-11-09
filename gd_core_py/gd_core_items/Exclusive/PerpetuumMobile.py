@@ -68,11 +68,12 @@ class Exclusive__PerpetuumMobile(_R.C("res://gd_core_items/Item.gd")):
 		self.activate()
 
 	def _readyInit(self):
+		_div__loc = _div
 		super()._readyInit()
 		self.stamina = self.getP("stamina")
-		self.buffRefund = _div(self.getP('refund_buffs'), 100.0)
-		self.staminaRefund = _div(self.getP('refund_stamina'), 100.0)
-		self.speed_v = _div(self.getP('speed'), 100.0)
+		self.buffRefund = _div__loc(self.getP('refund_buffs'), 100.0)
+		self.staminaRefund = _div__loc(self.getP('refund_stamina'), 100.0)
+		self.speed_v = _div__loc(self.getP('speed'), 100.0)
 
 
 _R.reg("res://gd_core_items/Exclusive/PerpetuumMobile.gd", Exclusive__PerpetuumMobile)

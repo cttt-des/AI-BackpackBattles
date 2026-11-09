@@ -31,9 +31,10 @@ class Exclusive__Markswoman(_R.C("res://gd_core_items/Item.gd")):
 				item.addAccuracy(self.rangedBonusAcc)
 
 	def _readyInit(self):
+		_div__loc = _div
 		super()._readyInit()
-		self.rangedBonusDam = _div(self.getP('dam'), 100.0)
-		self.rangedBonusSpeed = _div(self.getP('speed'), 100.0)
+		self.rangedBonusDam = _div__loc(self.getP('dam'), 100.0)
+		self.rangedBonusSpeed = _div__loc(self.getP('speed'), 100.0)
 		self.rangedBonusAcc = self.getP("acc")
 
 

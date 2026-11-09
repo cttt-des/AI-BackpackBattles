@@ -100,12 +100,13 @@ class Exclusive__ChessBoard(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def findPieceToCapture(self, activePieces):
-		for piece in (activePieces if activePieces.__class__ is list else _iter(activePieces)):
+		_iter__loc = _iter
+		for piece in (activePieces if activePieces.__class__ is list else _iter__loc(activePieces)):
 			captureCells = piece.getCaptureCells()
 			self.ctx.rng.shuffleEngine(captureCells, 'Exclusive/ChessBoard.gd:100')
 
 
-			for cell in (captureCells if captureCells.__class__ is list else _iter(captureCells)):
+			for cell in (captureCells if captureCells.__class__ is list else _iter__loc(captureCells)):
 				globalCell = piece.occupiedCells[0] + cell
 				itemInCell = self.inventory.getItemInCell(globalCell)
 				if itemInCell != None:
@@ -117,16 +118,17 @@ class Exclusive__ChessBoard(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def findBestPieceToCapture(self, activePieces):
+		_iter__loc = _iter
 		bestMovePiece = None
 		bestMoveCapture = None
 		bestMoveScore = - 10000
 
-		for piece in (activePieces if activePieces.__class__ is list else _iter(activePieces)):
+		for piece in (activePieces if activePieces.__class__ is list else _iter__loc(activePieces)):
 
 			captureCells = piece.getCaptureCells()
 			self.ctx.rng.shuffleEngine(captureCells, 'Exclusive/ChessBoard.gd:121')
 
-			for cell in (captureCells if captureCells.__class__ is list else _iter(captureCells)):
+			for cell in (captureCells if captureCells.__class__ is list else _iter__loc(captureCells)):
 				globalCell = piece.occupiedCells[0] + cell
 				itemInCell = self.inventory.getItemInCell(globalCell)
 				if itemInCell != None and piece.canAffect(itemInCell):
@@ -138,7 +140,7 @@ class Exclusive__ChessBoard(_R.C("res://gd_core_items/Item.gd")):
 							length = max(abs(cell.x), abs(cell.y))
 							if length > 1:
 								dir = _div(cell, length)
-								for i in _iter(_gd_range(1, length)):
+								for i in _iter__loc(_gd_range(1, length)):
 									cellToCheck = piece.occupiedCells[0] + i * dir
 
 									itemThere = self.inventory.getItemInCell(cellToCheck)
@@ -167,12 +169,13 @@ class Exclusive__ChessBoard(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def findSpaceToMove(self, activePieces):
-		for piece in (activePieces if activePieces.__class__ is list else _iter(activePieces)):
+		_iter__loc = _iter
+		for piece in (activePieces if activePieces.__class__ is list else _iter__loc(activePieces)):
 			moveCells = piece.getMoveCells()
 			self.ctx.rng.shuffleEngine(moveCells, 'Exclusive/ChessBoard.gd:164')
 
 
-			for cell in (moveCells if moveCells.__class__ is list else _iter(moveCells)):
+			for cell in (moveCells if moveCells.__class__ is list else _iter__loc(moveCells)):
 				globalCell = piece.occupiedCells[0] + cell
 				if self.inventory.isCellEmpty(globalCell):
 

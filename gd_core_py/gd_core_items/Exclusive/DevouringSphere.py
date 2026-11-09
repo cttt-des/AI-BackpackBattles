@@ -51,10 +51,11 @@ class Exclusive__DevouringSphere(_R.C("res://gd_core_items/Item.gd")):
 		return res
 
 	def _readyInit(self):
+		_div__loc = _div
 		super()._readyInit()
 		self.vampirism = int(self.getP("vampirism"))
-		self.blindSpeed = _div(self.getP('speed_blind'), 100.0)
-		self.coldSpeed = _div(self.getP('speed_cold'), 100.0)
+		self.blindSpeed = _div__loc(self.getP('speed_blind'), 100.0)
+		self.coldSpeed = _div__loc(self.getP('speed_cold'), 100.0)
 		self.dam = self.getP("dam")
 		pass
 

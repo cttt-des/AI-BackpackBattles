@@ -109,10 +109,11 @@ class MrStruggles(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def _readyInit(self):
+		_div__loc = _div
 		super()._readyInit()
 		self.speedbuffTimer = self.newItemTimer("SpeedbuffTimer", "onSpeedbuffTimeout", False)
-		self.healthThreshold = _div(self.getP2(), 100.0) - 0.0001
-		self.bonusSpeed = _div(self.getP3(), 100.0)
+		self.healthThreshold = _div__loc(self.getP2(), 100.0) - 0.0001
+		self.bonusSpeed = _div__loc(self.getP3(), 100.0)
 		self.fatigueDam = int(self.getP1())
 
 

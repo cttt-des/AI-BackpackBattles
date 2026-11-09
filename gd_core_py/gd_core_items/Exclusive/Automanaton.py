@@ -100,13 +100,14 @@ class Exclusive__Automanaton(_R.C("res://gd_core_items/Weapon.gd")):
 		return Vector2.ZERO
 
 	def _readyInit(self):
+		_div__loc = _div
 		super()._readyInit()
 		self.manaNeeded = int(self.getP("manat"))
 		self.blind = int(self.getP("blind"))
 		self.numDebuffs = int(self.getP("cleanse"))
 		self.dmgReductionTimer = self.newItemTimer("DmgReductionTimer", "onDmgReductionTimerTimeout", False)
-		self.healthThreshold = _div(self.getP('healtht'), 100.0) - 0.0001
-		self.bonusSpeed = _div(self.getP('speed'), 100.0)
+		self.healthThreshold = _div__loc(self.getP('healtht'), 100.0) - 0.0001
+		self.bonusSpeed = _div__loc(self.getP('speed'), 100.0)
 		self.damReduction = self.getP("dmgreduction")
 		pass
 

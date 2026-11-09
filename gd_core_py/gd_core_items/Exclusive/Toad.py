@@ -60,17 +60,18 @@ class Exclusive__Toad(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def onBuffsChanged(self, amount, event):
+		_div__loc = _div
 		if event.getOrigin() in self.affectedItemsDict:
 			if amount > 0:
 				self.gainedBuffs += amount
-				ticks = _div(self.gainedBuffs, self.gainedThreshold)
+				ticks = _div__loc(self.gainedBuffs, self.gainedThreshold)
 				if ticks > 0:
 					self.onGainThresholdReached(ticks, event)
 					self.gainedBuffs %= self.gainedThreshold
 			else:
 
 				self.usedBuffs += int(abs(amount))
-				ticks = _div(self.usedBuffs, self.usedThreshold)
+				ticks = _div__loc(self.usedBuffs, self.usedThreshold)
 				if ticks > 0:
 					self.onUseThresholdReached(ticks, event)
 					self.usedBuffs %= self.usedThreshold

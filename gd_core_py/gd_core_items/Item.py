@@ -393,10 +393,11 @@ class Item_2(_R.C("res://gd_core/CoreItem.gd")):
 
 
 	def insertParameters(self, descr, wrapInColor=True):
+		_iter__loc = _iter
 		if self.getBaseMinDamage() > 0 and wrapInColor:
 			descr = descr.replace("$dam", self.ctx.util.wrapInColor_fixed(str(self.descriptor.minDam), self.ctx.util.paramColor))
 
-		for i in _iter(len(self.descriptor.extraCds) + 1):
+		for i in _iter__loc(len(self.descriptor.extraCds) + 1):
 			descr = self.insertParameter(descr, _strv("cd", i + 1), self.getModifiedCooldownIndex(i), 
 				self.isCooldownModified(), True, wrapInColor)
 
@@ -405,9 +406,9 @@ class Item_2(_R.C("res://gd_core/CoreItem.gd")):
 		descr = self.insertParameter(descr, "chance", self.getChance(), self.isChance1Modified(), True, wrapInColor)
 		descr = self.insertParameter(descr, "shopchance", self.getShopChance(), _H_11, True, wrapInColor)
 		descr = self.insertParameter(descr, "stamina", self.getStaminaCost(), self.isStaminaModified(), True, wrapInColor)
-		for i in _iter(len(self.descriptor.params)):
+		for i in _iter__loc(len(self.descriptor.params)):
 			descr = self.insertParameter(descr, "p" + String(i + 1), self.getP(i), _H_11, True, wrapInColor)
-		for paramName in (self.descriptor.sortedParamNames if self.descriptor.sortedParamNames.__class__ is list else _iter(self.descriptor.sortedParamNames)):
+		for paramName in (self.descriptor.sortedParamNames if self.descriptor.sortedParamNames.__class__ is list else _iter__loc(self.descriptor.sortedParamNames)):
 			descr = self.insertParameter(descr, "p_" + paramName, self.getP(paramName), _H_11, True, wrapInColor)
 
 		if wrapInColor:
@@ -905,6 +906,8 @@ class Item_2(_R.C("res://gd_core/CoreItem.gd")):
 
 
 	def shopEntered(self, craft):
+		_iter__loc = _iter
+		_fill__loc = _fill
 		self.baseCooldownOverride = self.descriptor.cd
 		self.speedScale = 0.0
 		self.bonusMinDam = 0
@@ -912,7 +915,7 @@ class Item_2(_R.C("res://gd_core/CoreItem.gd")):
 		self.removableDam = 0
 		self.bonusDamageFactor = 1.0
 		self.staminaFactor = 1.0
-		for buff in (self.buffPowers if self.buffPowers.__class__ is list else _iter(self.buffPowers)):
+		for buff in (self.buffPowers if self.buffPowers.__class__ is list else _iter__loc(self.buffPowers)):
 			self.buffPowers[buff] = 1.0
 			self.buffAmplificationChances[buff] = 0.0
 
@@ -928,14 +931,14 @@ class Item_2(_R.C("res://gd_core/CoreItem.gd")):
 		self.paramMult.clear()
 		self.paramAdd.clear()
 		self.numCharges = 0
-		_fill(self.statDisplayOverrides, None)
-		_fill(self.itemMetrics, 0)
+		_fill__loc(self.statDisplayOverrides, None)
+		_fill__loc(self.itemMetrics, 0)
 		self.consumed = False
 		self.showCooldownSmooth(0)
 
 
 		self.enablePicking()
-		for gem in _iter(self.getGemsNoNull()):
+		for gem in _iter__loc(self.getGemsNoNull()):
 			gem.shopEntered(craft)
 
 		if craft:
@@ -1387,6 +1390,7 @@ class Item_2(_R.C("res://gd_core/CoreItem.gd")):
 
 
 	def considerAsBond(self, neighbor):
+		_div__loc = _div
 		score = 0.0
 		recipe = None
 		if self.curRecipe:
@@ -1395,14 +1399,14 @@ class Item_2(_R.C("res://gd_core/CoreItem.gd")):
 
 			if self.curRecipe.checkNeighbor(self.bondedIngredients, neighbor):
 				progressBefore = self.curRecipe.getProgress(self.bondedIngredients)
-				progressWithNeighbor = _div(len(self.bondedIngredients) + 1, float(self.curRecipe.getNumIngredients()))
+				progressWithNeighbor = _div__loc(len(self.bondedIngredients) + 1, float(self.curRecipe.getNumIngredients()))
 				score = progressWithNeighbor + 0.1 * progressBefore
 				recipe = self.curRecipe
 		else:
 			bestScore = 0.0
 			for r in _iter(self.getRecipes()):
 				if r.checkNeighbor([], neighbor):
-					s = _div(1.0, r.getNumIngredients())
+					s = _div__loc(1.0, r.getNumIngredients())
 					if s > bestScore:
 						bestScore = s
 						recipe = r

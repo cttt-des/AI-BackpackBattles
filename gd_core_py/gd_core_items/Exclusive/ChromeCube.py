@@ -44,9 +44,10 @@ class Exclusive__ChromeCube(_R.C("res://gd_core_items/Exclusive/Cube.gd")):
 			self.consume()
 
 	def _readyInit(self):
+		_div__loc = _div
 		super()._readyInit()
-		self.healthThreshold = _div(self.getP('healtht'), 100.0) - 0.0001
-		self.healReduction = _div(self.getP('healreduction'), 100.0)
+		self.healthThreshold = _div__loc(self.getP('healtht'), 100.0) - 0.0001
+		self.healReduction = _div__loc(self.getP('healreduction'), 100.0)
 
 
 _R.reg("res://gd_core_items/Exclusive/ChromeCube.gd", Exclusive__ChromeCube)

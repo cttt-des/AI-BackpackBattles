@@ -83,9 +83,10 @@ class Gems__CorruptedCrystal(_R.C("res://gd_core_items/Gems/Gem.gd")):
 
 
 	def _readyInit(self):
+		_div__loc = _div
 		super()._readyInit()
-		self.healthThreshold = _div(self.getP1(), 100.0) - 0.0001
-		self.damageFactor = _div(self.getP2(), 100.0)
+		self.healthThreshold = _div__loc(self.getP1(), 100.0) - 0.0001
+		self.damageFactor = _div__loc(self.getP2(), 100.0)
 		self.debuffsNeeded = self.getP3()
 		self.blockGain = self.getP4()
 

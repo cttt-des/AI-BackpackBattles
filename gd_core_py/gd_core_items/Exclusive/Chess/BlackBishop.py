@@ -29,10 +29,11 @@ class Exclusive__Chess__BlackBishop(_R.C("res://gd_core_items/Exclusive/Chess/Ch
 
 
 	def _readyInit(self):
+		_div__loc = _div
 		super()._readyInit()
 		self.debuffs = int(self.getP("debuffs"))
-		self.healReduction = _div(self.getP('healreduction'), 100.0)
-		self.maxHealthReduction = _div(-self.getP('healthreduction'), 100.0)
+		self.healReduction = _div__loc(self.getP('healreduction'), 100.0)
+		self.maxHealthReduction = _div__loc(-self.getP('healthreduction'), 100.0)
 
 
 _R.reg("res://gd_core_items/Exclusive/Chess/BlackBishop.gd", Exclusive__Chess__BlackBishop)

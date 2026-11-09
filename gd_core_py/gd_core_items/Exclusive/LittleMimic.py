@@ -23,12 +23,13 @@ class Exclusive__LittleMimic(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def getCounterValue(self):
+		_iter__loc = _iter
 		gold = 0
 		if self.placed:
-			for item in _iter(self.getAffectedItems()):
+			for item in _iter__loc(self.getAffectedItems()):
 				gold += item.getPrice()
 		else:
-			for item in _iter(self.getAffectedItems_nocache()):
+			for item in _iter__loc(self.getAffectedItems_nocache()):
 				gold += item.getPrice()
 		return gold
 

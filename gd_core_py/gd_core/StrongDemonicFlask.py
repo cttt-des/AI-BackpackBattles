@@ -74,12 +74,13 @@ class StrongDemonicFlask(_R.C("res://gd_core_items/Potion.gd")):
 		self.healingReductionTimer.stop()
 
 	def _readyInit(self):
+		_div__loc = _div
 		super()._readyInit()
 		self.healingReductionTimer = self.newItemTimer("HealingReductionTimer", "healingReductionTimeout", True)
-		self.healingDebuff = _div(self.getP3(), 100.0)
+		self.healingDebuff = _div__loc(self.getP3(), 100.0)
 		self.damPerDebuff = self.getP("dam")
-		self.playerHealthThreshold = _div(self.getP('ownhpt'), 100.0) - 0.0001
-		self.opponentHealthThreshold = _div(self.getP('opphpt'), 100.0) - 0.0001
+		self.playerHealthThreshold = _div__loc(self.getP('ownhpt'), 100.0) - 0.0001
+		self.opponentHealthThreshold = _div__loc(self.getP('opphpt'), 100.0) - 0.0001
 
 
 _R.reg("res://gd_core/StrongDemonicFlask.gd", StrongDemonicFlask)

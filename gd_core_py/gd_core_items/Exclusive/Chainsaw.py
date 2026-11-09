@@ -82,9 +82,10 @@ class Exclusive__Chainsaw(_R.C("res://gd_core_items/Weapon.gd")):
 		pass
 
 	def _readyInit(self):
+		_div__loc = _div
 		super()._readyInit()
-		self.removeBuffs = _div(self.getP('buffs'), 100.0)
-		self.slowdown = _div(self.getP('slow'), 100.0)
+		self.removeBuffs = _div__loc(self.getP('buffs'), 100.0)
+		self.slowdown = _div__loc(self.getP('slow'), 100.0)
 
 
 _R.reg("res://gd_core_items/Exclusive/Chainsaw.gd", Exclusive__Chainsaw)

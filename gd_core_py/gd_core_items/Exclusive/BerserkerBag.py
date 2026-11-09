@@ -57,9 +57,10 @@ class Exclusive__BerserkerBag(_R.C("res://gd_core_items/Bag.gd")):
 		return _H_1 + 10
 
 	def _readyInit(self):
+		_div__loc = _div
 		super()._readyInit()
-		self.healthThreshold = _div(self.getP('healtht'), 100.0) - 0.0001
-		self.battleRageSpeed = _div(self.getP('speed_rage'), 100.0)
+		self.healthThreshold = _div__loc(self.getP('healtht'), 100.0) - 0.0001
+		self.battleRageSpeed = _div__loc(self.getP('speed_rage'), 100.0)
 		self.damageResistance = self.getP("damresistance")
 
 

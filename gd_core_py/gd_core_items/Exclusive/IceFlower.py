@@ -28,10 +28,11 @@ class Exclusive__IceFlower(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def onPrepare(self):
-		for item in _iter(self.getAffectedItems(_H_2)):
+		_iter__loc = _iter
+		for item in _iter__loc(self.getAffectedItems(_H_2)):
 			self.connectForCombat(item, "attacked", "onWeaponAttacked")
 
-		for item in _iter(self.getAffectedItems(_H_3)):
+		for item in _iter__loc(self.getAffectedItems(_H_3)):
 			self.connectForCombat(item, "activated", "onShieldOrArmorActivated")
 
 

@@ -56,9 +56,10 @@ class Exclusive__UniquelyUnique(_R.C("res://gd_core_items/Item.gd")):
 			self.boosted -= 1
 
 	def _readyInit(self):
+		_div__loc = _div
 		super()._readyInit()
-		self.baseSpeed = _div(self.getP('speed'), 100.0)
-		self.bonusSpeed = _div(self.getP('speed2'), 100.0)
+		self.baseSpeed = _div__loc(self.getP('speed'), 100.0)
+		self.bonusSpeed = _div__loc(self.getP('speed2'), 100.0)
 
 
 _R.reg("res://gd_core_items/Exclusive/UniquelyUnique.gd", Exclusive__UniquelyUnique)

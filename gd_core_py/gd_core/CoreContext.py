@@ -120,18 +120,19 @@ class CoreContext(GodotObject):
 	#   （oracle 侧同为 Util.rng 裸调，rng_log 零痕迹）。
 
 	def lib_fires_tick(self, delta):
+		_iter__loc = _iter
 		if (not self.lib_fires):
 			return
 		keep = []
 		due = []
-		for e in (self.lib_fires if self.lib_fires.__class__ is list else _iter(self.lib_fires)):
+		for e in (self.lib_fires if self.lib_fires.__class__ is list else _iter__loc(self.lib_fires)):
 			e[0] = e[0] - delta
 			if e[0] > 0.0:
 				keep.append(e)
 			elif not self.fight_ended:
 				due.append(e)
 		self.lib_fires = keep
-		for e in (due if due.__class__ is list else _iter(due)):
+		for e in (due if due.__class__ is list else _iter__loc(due)):
 			self.rng.randf_range(float(e[1]), float(e[2]))
 
 	def set_custom_health_multiplier(self, v):
@@ -284,11 +285,12 @@ class CoreContext(GodotObject):
 		# ★ kernel_r6：递减驱动语义（对齐 oracle_fight.gd drive_delayed：全部条目
 		#   -= dt，>0 保留，<=0 派发；派发处理基于快照，处理期间新登记不递减）。
 		#   帧末战斗已结束：到期条目按 oracle `if G.fightEnded: continue` 丢弃。
+		_iter__loc = _iter
 		if (not self._timed):
 			return
 		due = []
 		keep = []
-		for call in (self._timed if self._timed.__class__ is list else _iter(self._timed)):
+		for call in (self._timed if self._timed.__class__ is list else _iter__loc(self._timed)):
 			call[2] = call[2] - self.PHYSICS_DELTA
 			if call[2] > 0.0:
 				keep.append(call)
@@ -298,7 +300,7 @@ class CoreContext(GodotObject):
 			self._timed = keep
 			return
 		self._timed = keep
-		for call in (due if due.__class__ is list else _iter(due)):
+		for call in (due if due.__class__ is list else _iter__loc(due)):
 			call[0].callv(call[1], call[3])
 
 

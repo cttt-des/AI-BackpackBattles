@@ -43,14 +43,15 @@ class Exclusive__ShinyMantle(_R.C("res://gd_core_items/Item.gd")):
 		super().onFusingFinished(validBonds)
 
 	def getCounterValue(self):
+		_iter__loc = _iter
 		gold = 0
 		inv = self.inventory if self.placed else self.ctx.player.INVENTORY
-		for item in _iter(inv.getItemsAndGems()):
+		for item in _iter__loc(inv.getItemsAndGems()):
 			if item.isGem():
 				gold += item.getPrice()
 
 		if self.dragged:
-			for gem in _iter(self.getGemsNoNull()):
+			for gem in _iter__loc(self.getGemsNoNull()):
 				gold += gem.getPrice()
 
 		return gold

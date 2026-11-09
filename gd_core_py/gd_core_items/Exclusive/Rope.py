@@ -29,11 +29,12 @@ class Exclusive__Rope(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def onPrepare(self):
-		for item in _iter(self.getAffectedItems(_H_1)):
+		_iter__loc = _iter
+		for item in _iter__loc(self.getAffectedItems(_H_1)):
 			self.speedUpItem = item
 
 		if self.speedUpItem != None:
-			for triggerItem in _iter(self.getAffectedItems()):
+			for triggerItem in _iter__loc(self.getAffectedItems()):
 				self.connectForCombat(triggerItem, "activated", "onTriggerItemActivated")
 
 
@@ -61,10 +62,11 @@ class Exclusive__Rope(_R.C("res://gd_core_items/Item.gd")):
 		self.speedUpItem = None
 
 	def _readyInit(self):
+		_div__loc = _div
 		super()._readyInit()
 		self.speedTimer = self.newItemTimer("SpeedTimer", "onSpeedTimeout", True)
-		self.speedPerTrigger = _div(self.getP('speed'), 100.0)
-		self.maxSpeed = _div(self.getP('max'), 100.0)
+		self.speedPerTrigger = _div__loc(self.getP('speed'), 100.0)
+		self.maxSpeed = _div__loc(self.getP('max'), 100.0)
 
 
 _R.reg("res://gd_core_items/Exclusive/Rope.gd", Exclusive__Rope)

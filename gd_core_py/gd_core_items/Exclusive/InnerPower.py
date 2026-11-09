@@ -65,13 +65,14 @@ class Exclusive__InnerPower(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def _readyInit(self):
+		_div__loc = _div
 		super()._readyInit()
 		self.luck = int(self.getP("luck"))
 		self.empower = int(self.getP("empower"))
-		self.healAmpPerLuck = _div(self.getP('healamp'), 100.0)
-		self.speedPerEmpower = _div(self.getP('speed'), 100.0)
-		self.healAmpMax = _div(self.getP('max1'), 100.0)
-		self.speedMax = _div(self.getP('max2'), 100.0)
+		self.healAmpPerLuck = _div__loc(self.getP('healamp'), 100.0)
+		self.speedPerEmpower = _div__loc(self.getP('speed'), 100.0)
+		self.healAmpMax = _div__loc(self.getP('max1'), 100.0)
+		self.speedMax = _div__loc(self.getP('max2'), 100.0)
 
 
 _R.reg("res://gd_core_items/Exclusive/InnerPower.gd", Exclusive__InnerPower)

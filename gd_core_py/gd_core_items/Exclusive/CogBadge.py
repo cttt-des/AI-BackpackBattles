@@ -63,9 +63,10 @@ class Exclusive__CogBadge(_R.C("res://gd_core_items/Item.gd")):
 		return 3
 
 	def _readyInit(self):
+		_div__loc = _div
 		super()._readyInit()
-		self.flatSpeed = _div(self.getP('speed'), 100)
-		self.speedPerTile = _div(self.getP('speed2'), 100)
+		self.flatSpeed = _div__loc(self.getP('speed'), 100)
+		self.speedPerTile = _div__loc(self.getP('speed2'), 100)
 		self.cogDescriptor = self.ctx.item_book.getDescriptor("Cog")
 
 

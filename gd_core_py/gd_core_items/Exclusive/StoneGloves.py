@@ -40,9 +40,10 @@ class Exclusive__StoneGloves(_R.C("res://gd_core_items/Item.gd")):
 			self.miniActivate()
 
 	def _readyInit(self):
+		_div__loc = _div
 		super()._readyInit()
-		self.speedReduction = _div(self.getP('speedreduction'), 100.0)
-		self.damBonusFactor = _div(self.getP('dambonus'), 100.0)
+		self.speedReduction = _div__loc(self.getP('speedreduction'), 100.0)
+		self.damBonusFactor = _div__loc(self.getP('dambonus'), 100.0)
 
 
 _R.reg("res://gd_core_items/Exclusive/StoneGloves.gd", Exclusive__StoneGloves)

@@ -22,10 +22,11 @@ class Crossblades(_R.C("res://gd_core_items/Weapon.gd")):
 
 
 	def onCombatStart(self):
-		for item in _iter(self.getAffectedItems(_H_2)):
+		_iter__loc = _iter
+		for item in _iter__loc(self.getAffectedItems(_H_2)):
 			item.addBonusDamage(self.getP1())
 
-		for item in _iter(self.getAffectedItems(_H_3)):
+		for item in _iter__loc(self.getAffectedItems(_H_3)):
 			item.addSpeed(_div(self.getP2(), 100.0))
 
 		self.activate(None, False)

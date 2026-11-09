@@ -55,8 +55,9 @@ class Exclusive__RainbowPotion(_R.C("res://gd_core_items/Potion.gd")):
 
 	def onTriggerPotion(self, event=None):
 
+		_iter__loc = _iter
 		allPotions = []
-		for item in _iter(self.inventory.getItems()):
+		for item in _iter__loc(self.inventory.getItems()):
 			if self.canAffect_global(item):
 				allPotions.append(item)
 		self.ctx.rng.shuffleEngine(allPotions, 'Exclusive/RainbowPotion.gd:37')
@@ -68,9 +69,9 @@ class Exclusive__RainbowPotion(_R.C("res://gd_core_items/Potion.gd")):
 
 
 		potionsToTrigger = []
-		for potion in (allPotions if allPotions.__class__ is list else _iter(allPotions)):
+		for potion in (allPotions if allPotions.__class__ is list else _iter__loc(allPotions)):
 			typeExists = False
-			for triggeredPotion in (potionsToTrigger if potionsToTrigger.__class__ is list else _iter(potionsToTrigger)):
+			for triggeredPotion in (potionsToTrigger if potionsToTrigger.__class__ is list else _iter__loc(potionsToTrigger)):
 				if potion.isA(triggeredPotion.descriptor):
 					typeExists = True
 					break
@@ -80,7 +81,7 @@ class Exclusive__RainbowPotion(_R.C("res://gd_core_items/Potion.gd")):
 			if len(potionsToTrigger) == self.numPotions:
 				break
 
-		for potion in (potionsToTrigger if potionsToTrigger.__class__ is list else _iter(potionsToTrigger)):
+		for potion in (potionsToTrigger if potionsToTrigger.__class__ is list else _iter__loc(potionsToTrigger)):
 
 			potion.triggerPotion(event)
 

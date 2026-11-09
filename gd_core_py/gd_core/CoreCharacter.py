@@ -249,6 +249,7 @@ class CoreCharacter(GodotObject):
 
 
 	def _init(self, _ctx, _playerId):
+		_iter__loc = _iter
 		_playerId = int(_playerId)
 		self.ctx = _ctx
 		self.playerId = _playerId
@@ -281,7 +282,7 @@ class CoreCharacter(GodotObject):
 		self.poisonDamageSource.flags = (_H_6
 			+ _H_9)
 
-		for stackType in _iter(_H_11.getStacks()):
+		for stackType in _iter__loc(_H_11.getStacks()):
 			buff = _H_7()
 			# 对齐原版 Character.gd:168 + Game.gd:512（eventTypeKeys =
 			# invertDictionary(EventType)）：Buff 栈变化信号名 =
@@ -292,7 +293,7 @@ class CoreCharacter(GodotObject):
 			#   静默失效（联动不触发的根因之二；CoreConst 未内建 eventTypeKeys，
 			#   故就地线性反查，仅初始化一次）
 			_stack_type_name = "unknown"
-			for _k in _iter(_H_12):
+			for _k in _iter__loc(_H_12):
 				if _H_12[_k] == stackType:
 					_stack_type_name = _k
 					break
@@ -305,7 +306,7 @@ class CoreCharacter(GodotObject):
 		self.curStamina = 0.0
 		self.staminaRegen = self.baseStaminaRegen
 
-		for type in _iter(list(_H_37.values())):
+		for type in _iter__loc(list(_H_37.values())):
 			self.typedDamageFactors[type] = 0.0
 
 
@@ -334,6 +335,7 @@ class CoreCharacter(GodotObject):
 	# ─────────────────────────── 准备 / 开始 / 结束（对齐 294-347） ───────────────────────────
 
 	def prepare(self):
+		_iter__loc = _iter
 		self.staminaRegen = self.baseStaminaRegen
 
 		# ★ np51：存档自定义规则健康倍率（对齐 Character.gd:296-298）——
@@ -363,14 +365,14 @@ class CoreCharacter(GodotObject):
 		# 自动战怒；否则从**含宝石**的物品里随机挑一个 isBattleRageItem() 的。
 		self.autoRageItem = None
 		hasBattleRageStarter = False
-		for item in _iter(self.inventory.getItems()):
+		for item in _iter__loc(self.inventory.getItems()):
 			if item.hasTag(_H_31):
 				hasBattleRageStarter = True
 				break
 
 		if not hasBattleRageStarter:
 			battleRageItems = []
-			for item in _iter(self.inventory.getItemsAndGems()):
+			for item in _iter__loc(self.inventory.getItemsAndGems()):
 				if item.isBattleRageItem():
 					battleRageItems.append(item)
 
@@ -429,6 +431,7 @@ class CoreCharacter(GodotObject):
 
 
 	def cleanse(self):
+		_iter__loc = _iter
 		self.isDead = False
 		self.temporaryMaxHealth = 0
 		self.temporaryMaxHealthGain = 1.0
@@ -439,7 +442,7 @@ class CoreCharacter(GodotObject):
 		self.endStun()
 		self.setBlock(0)
 
-		for buffType in (self.buffs if self.buffs.__class__ is list else _iter(self.buffs)):
+		for buffType in (self.buffs if self.buffs.__class__ is list else _iter__loc(self.buffs)):
 			self.buffs[buffType].reset()
 
 		self.invulnerable = False
@@ -465,7 +468,7 @@ class CoreCharacter(GodotObject):
 		self.meleeVampirismLimit = 1.0
 		self.rangedVampirismLimit = 0.0
 		self.empowerDamage = 1.0
-		for damageType in _iter(list(_H_37.values())):
+		for damageType in _iter__loc(list(_H_37.values())):
 			self.typedDamageFactors[damageType] = 0.0
 
 		self.poisonDamageSource.critChancePercent = 0
@@ -612,6 +615,7 @@ class CoreCharacter(GodotObject):
 
 	def takeDamage(self, damageSource, triggerEvent=None):
 
+		_iter__loc = _iter
 		damageRes = _H_3()
 
 		damageSource = _H_2().fromDamageSource(damageSource)
@@ -657,7 +661,7 @@ class CoreCharacter(GodotObject):
 		if item != None and damageSource.isAttack():
 			item.preDealDamage_early(damageRes)
 			if item.hasPreDealDamageEarlyEffect:
-				for i in (attackEffectCount if attackEffectCount.__class__ is list else _iter(attackEffectCount)):
+				for i in (attackEffectCount if attackEffectCount.__class__ is list else _iter__loc(attackEffectCount)):
 					item._behavior_call("onPreDealDamage_early", [damageRes])
 
 		if damageRes.hit:
@@ -710,7 +714,7 @@ class CoreCharacter(GodotObject):
 			if item != None and damageSource.isAttack():
 				item.preDealDamage_late(damageRes)
 				if item.hasPreDealDamageLateEffect:
-					for i in (attackEffectCount if attackEffectCount.__class__ is list else _iter(attackEffectCount)):
+					for i in (attackEffectCount if attackEffectCount.__class__ is list else _iter__loc(attackEffectCount)):
 						item._behavior_call("onPreDealDamage_late", [damageRes])
 
 			self.ctx.bus.emitSignal(self, "pre_take_damage_late", [damageRes])
@@ -772,7 +776,7 @@ class CoreCharacter(GodotObject):
 		if (item != None and 
 			damageSource.isAttack() and 
 			item.hasDealtDamageEffect):
-			for i in (attackEffectCount if attackEffectCount.__class__ is list else _iter(attackEffectCount)):
+			for i in (attackEffectCount if attackEffectCount.__class__ is list else _iter__loc(attackEffectCount)):
 				item._behavior_call("onDealtDamage", [damageRes])
 
 		if self.curHealth <= 0:
@@ -990,12 +994,13 @@ class CoreCharacter(GodotObject):
 
 
 	def addStamina(self, amount):
+		_gd_fmt__loc = _gd_fmt
 		self.curStamina += amount
 		self.clampStamina()
 		# ★ np25 面②定谳探针（STAM_TRACE 门控零耗）：体力轨迹取证（py 侧同构
 		#   插桩已证 py≡oracle，本侧对位抓 gd 独有分歧源）。
 		if _os_environ_get("STAM_TRACE") != "" and self.ctx.combat != None:
-			print(_gd_fmt('ADD t=%s pid=%d amt=%s cur=%s max=%s', [_gd_fmt('%.6f', self.ctx.combat.combat_time), self.playerId, amount, self.curStamina, self.getMaxStamina()]))
+			print(_gd_fmt__loc('ADD t=%s pid=%d amt=%s cur=%s max=%s', [_gd_fmt__loc('%.6f', self.ctx.combat.combat_time), self.playerId, amount, self.curStamina, self.getMaxStamina()]))
 
 
 	def clampStamina(self):
@@ -1009,12 +1014,13 @@ class CoreCharacter(GodotObject):
 
 
 	def useStamina(self, amount):
+		_gd_fmt__loc = _gd_fmt
 		self.allowStaminaOverflow = True
 		self.ctx.bus.emitSignal(self, "character_pre_use_stamina", [amount])
 		self.allowStaminaOverflow = False
 		# ★ np25 面②定谳探针（STAM_TRACE 门控零耗）：扣体判定快照。
 		if _os_environ_get("STAM_TRACE") != "" and self.ctx.combat != None:
-			print(_gd_fmt('USE t=%s pid=%d amt=%s cur=%s max=%s', [_gd_fmt('%.6f', self.ctx.combat.combat_time), self.playerId, amount, self.curStamina, self.getMaxStamina()]))
+			print(_gd_fmt__loc('USE t=%s pid=%d amt=%s cur=%s max=%s', [_gd_fmt__loc('%.6f', self.ctx.combat.combat_time), self.playerId, amount, self.curStamina, self.getMaxStamina()]))
 
 		if self.curStamina >= amount:
 			self.curStamina = max(self.curStamina - amount, 0)
@@ -1038,8 +1044,9 @@ class CoreCharacter(GodotObject):
 
 
 	def setTemporaryMaxStamina(self, amount):
+		_gd_fmt__loc = _gd_fmt
 		if _os_environ_get("STAM_TRACE") != "" and self.ctx != None and self.ctx.combat != None:
-			print(_gd_fmt('SETTEMP t=%s pid=%d amount=%s prev=%s', [_gd_fmt('%.6f', self.ctx.combat.combat_time), self.playerId, amount, self.temporaryMaxStamina]))
+			print(_gd_fmt__loc('SETTEMP t=%s pid=%d amount=%s prev=%s', [_gd_fmt__loc('%.6f', self.ctx.combat.combat_time), self.playerId, amount, self.temporaryMaxStamina]))
 		self.temporaryMaxStamina = amount
 
 
@@ -1801,8 +1808,9 @@ class CoreCharacter(GodotObject):
 
 	# 对齐 Character.gd:948-952（emit_signal("max_stamina_changed_ui") → 钩子）
 	def setMaxStamina(self, _maxStamina):
+		_gd_fmt__loc = _gd_fmt
 		if _os_environ_get("STAM_TRACE") != "" and self.ctx != None and self.ctx.combat != None:
-			print(_gd_fmt('SETMAX t=%s pid=%d new=%s prev_max=%s prev_cur=%s temp=%s stack=%s', [_gd_fmt('%.6f', self.ctx.combat.combat_time), self.playerId, _maxStamina, self.maxStamina, self.curStamina, self.temporaryMaxStamina, self.maxStamina]))
+			print(_gd_fmt__loc('SETMAX t=%s pid=%d new=%s prev_max=%s prev_cur=%s temp=%s stack=%s', [_gd_fmt__loc('%.6f', self.ctx.combat.combat_time), self.playerId, _maxStamina, self.maxStamina, self.curStamina, self.temporaryMaxStamina, self.maxStamina]))
 		self.maxStamina = _maxStamina
 		self.curStamina = self.maxStamina
 		self.ctx.hooks.onMaxStaminaChangedUI(self)
@@ -1873,6 +1881,7 @@ class CoreCharacter(GodotObject):
 	# staminaSackDescriptor = getDescriptor("Stamina Sack")（ItemBook.gd:1003），
 	# 内核以 descriptor.name 等值比较替代描述符对象同一性比较（取值域相同）。
 	def recalculateMaxStamina(self):
+		_gd_fmt__loc = _gd_fmt
 		self.staminaUpdateQueued = False
 		self.maxStamina = self.getBaseMaxStamina()
 		_sack = 0
@@ -1890,7 +1899,7 @@ class CoreCharacter(GodotObject):
 				_sack += 1
 		self.curStamina = self.maxStamina
 		if _os_environ_get("STAM_TRACE") != "" and self.ctx != None and self.ctx.combat != None:
-			print(_gd_fmt('RECALC t=%s pid=%d base=%s sacks=%d max=%s cur=%s', [_gd_fmt('%.6f', self.ctx.combat.combat_time), self.playerId, self.getBaseMaxStamina(), _sack, self.maxStamina, self.curStamina]))
+			print(_gd_fmt__loc('RECALC t=%s pid=%d base=%s sacks=%d max=%s cur=%s', [_gd_fmt__loc('%.6f', self.ctx.combat.combat_time), self.playerId, self.getBaseMaxStamina(), _sack, self.maxStamina, self.curStamina]))
 		self.ctx.hooks.onMaxStaminaChangedUI(self)
 
 

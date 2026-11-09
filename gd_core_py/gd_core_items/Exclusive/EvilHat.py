@@ -28,8 +28,9 @@ class Exclusive__EvilHat(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def onPrepare(self):
-		unhealing = _div(self.getP('unhealing'), 100.0)
-		unhealing += _div(self.getNumAffectedItems(_H_4) * self.getP('unhealing2'), 100.0)
+		_div__loc = _div
+		unhealing = _div__loc(self.getP('unhealing'), 100.0)
+		unhealing += _div__loc(self.getNumAffectedItems(_H_4) * self.getP('unhealing2'), 100.0)
 		self.character().giveUnhealing(unhealing)
 
 		self.connectToCharacterDebuffs("onDebuffsChanged")

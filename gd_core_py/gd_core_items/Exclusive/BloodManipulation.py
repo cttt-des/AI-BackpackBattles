@@ -38,10 +38,11 @@ class Exclusive__BloodManipulation(_R.C("res://gd_core_items/Item.gd")):
 		pass
 
 	def _readyInit(self):
+		_div__loc = _div
 		super()._readyInit()
-		self.unhealing = _div(self.getP('unhealing'), 100.0)
+		self.unhealing = _div__loc(self.getP('unhealing'), 100.0)
 		self.vampirism = int(self.getP("vampirism"))
-		self.vampiricSpeed = _div(self.getP('speed'), 100.0)
+		self.vampiricSpeed = _div__loc(self.getP('speed'), 100.0)
 		self.bloodAmulet = self.ctx.item_book.getDescriptor("Blood Amulet")
 
 

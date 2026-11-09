@@ -23,21 +23,24 @@ class Exclusive__Joker(_R.C("res://gd_core_items/Card.gd")):
 
 
 	def countChain(self):
+		_div__loc = _div
+		_mod__loc = _mod
+		_iter__loc = _iter
 		self.quads = 0
 		self.triplets = 0
 		self.pairs = 0
 
 		if self.chainPosition > 0:
 			counter = Dictionary()
-			for i in (self.chainPosition if self.chainPosition.__class__ is list else _iter(self.chainPosition)):
+			for i in (self.chainPosition if self.chainPosition.__class__ is list else _iter__loc(self.chainPosition)):
 				self.ctx.util.dictAdd(counter, self.deck.cards[i].descriptor)
 
-			for cardType in (counter if counter.__class__ is list else _iter(counter)):
-				self.quads += _div(counter[cardType], 4)
-				rest = _mod(counter[cardType], 4)
-				self.triplets += _div(rest, 3)
-				rest = _mod(rest, 3)
-				self.pairs += _div(rest, 2)
+			for cardType in (counter if counter.__class__ is list else _iter__loc(counter)):
+				self.quads += _div__loc(counter[cardType], 4)
+				rest = _mod__loc(counter[cardType], 4)
+				self.triplets += _div__loc(rest, 3)
+				rest = _mod__loc(rest, 3)
+				self.pairs += _div__loc(rest, 2)
 
 
 	def notifyChainPosition(self, _deck, _chainPos, chainLength):
@@ -46,23 +49,24 @@ class Exclusive__Joker(_R.C("res://gd_core_items/Card.gd")):
 
 
 	def doRevealEffect(self):
+		_iter__loc = _iter
 		self.giveRandomBuffs(self.getP("buffs"))
 		if self.pairs > 0:
 			self.character().gainCritResistStacks(self.pairs)
 
 		if self.triplets > 0:
-			for item in _iter(self.inventory.getItems()):
+			for item in _iter__loc(self.inventory.getItems()):
 
 				item.changeStaminaFactor( - self.staminaReduction * self.triplets)
 
 		if self.quads > 0:
 			legitCards = []
-			for i in (self.chainPosition if self.chainPosition.__class__ is list else _iter(self.chainPosition)):
+			for i in (self.chainPosition if self.chainPosition.__class__ is list else _iter__loc(self.chainPosition)):
 				if self.deck.cards[i].descriptor != self.descriptor:
 					legitCards.append(self.deck.cards[i])
 
 
-			for i in _iter(self.quads * self.revealsPerQuad):
+			for i in _iter__loc(self.quads * self.revealsPerQuad):
 				if not (not legitCards):
 					revealedCard = self.ctx.util.pickRandomElement(legitCards)
 					revealedCard.doRevealEffect()

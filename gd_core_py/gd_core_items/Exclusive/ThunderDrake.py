@@ -40,6 +40,7 @@ class Exclusive__ThunderDrake(_R.C("res://gd_core_items/Weapon.gd")):
 
 
 	def onDealtDamage(self, damageRes):
+		_iter__loc = _iter
 		if damageRes.hasHit():
 			self.curHitCount += 1
 
@@ -47,12 +48,12 @@ class Exclusive__ThunderDrake(_R.C("res://gd_core_items/Weapon.gd")):
 
 
 				if self.active:
-					for item in _iter(self.getAffectedItems(_H_1)):
+					for item in _iter__loc(self.getAffectedItems(_H_1)):
 						item.chargeLeft(self)
 						self.zapItem(item)
 				else:
 					self.setState(True)
-					for item in _iter(self.getAffectedItems(_H_1)):
+					for item in _iter__loc(self.getAffectedItems(_H_1)):
 						item.addSpeed(self.buffSpeed * self.lightningMultiplicity[item])
 						self.zapItem(item)
 

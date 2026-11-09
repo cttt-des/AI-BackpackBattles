@@ -45,9 +45,10 @@ class Exclusive__SpringLoader(_R.C("res://gd_core_items/Item.gd")):
 		return Vector2.ZERO
 
 	def _readyInit(self):
+		_div__loc = _div
 		super()._readyInit()
-		self.speed1 = _div(self.getP('speed'), 100.0)
-		self.speed2 = _div(self.getP('speed2'), 100.0)
+		self.speed1 = _div__loc(self.getP('speed'), 100.0)
+		self.speed2 = _div__loc(self.getP('speed2'), 100.0)
 		self.cdAdvance = self.getP("cdadvance")
 
 

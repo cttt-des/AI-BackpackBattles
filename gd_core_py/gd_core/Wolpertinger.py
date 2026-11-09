@@ -29,10 +29,11 @@ class Wolpertinger(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def onPrepare(self):
-		self.addSpeed(_div(self.getNumAffectedItems() * self.getP3(), 100.0))
+		_div__loc = _div
+		self.addSpeed(_div__loc(self.getNumAffectedItems() * self.getP3(), 100.0))
 		self.connectToCharacterBuffs("onBuffChanged")
 		baseStaminaRegen = self.character().baseStaminaRegen
-		self.staminaRegenPerBuff = _div(self.getP1() * baseStaminaRegen, 100.0)
+		self.staminaRegenPerBuff = _div__loc(self.getP1() * baseStaminaRegen, 100.0)
 
 
 	def doCooldownEffect(self):

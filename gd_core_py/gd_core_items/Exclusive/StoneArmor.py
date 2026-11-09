@@ -58,12 +58,13 @@ class Exclusive__StoneArmor(_R.C("res://gd_core_items/Item.gd")):
 		return _H_1 + 3
 
 	def _readyInit(self):
+		_div__loc = _div
 		super()._readyInit()
 		self.staminaReduction = self.getP("staminacost")
 		self.spikeRemoval = self.getP("spikes")
 		self.empowerRemoval = self.getP("empower")
-		self.healthThreshold = _div(self.getP('healtht'), 100.0)
-		self.blockPerHealth = _div(self.getP('blockperhealth'), 100.0)
+		self.healthThreshold = _div__loc(self.getP('healtht'), 100.0)
+		self.blockPerHealth = _div__loc(self.getP('blockperhealth'), 100.0)
 
 
 _R.reg("res://gd_core_items/Exclusive/StoneArmor.gd", Exclusive__StoneArmor)

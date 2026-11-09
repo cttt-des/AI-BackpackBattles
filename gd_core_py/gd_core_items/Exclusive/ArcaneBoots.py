@@ -66,13 +66,14 @@ class Exclusive__ArcaneBoots(_R.C("res://gd_core_items/Item.gd")):
 		self.speedTimer.stop()
 
 	def _readyInit(self):
+		_div__loc = _div
 		super()._readyInit()
 		self.speedTimer = self.newItemTimer("SpeedTimer", "onSpeedTimerTimeout", False)
-		self.healthThreshold = _div(self.getP('healtht'), 100.0) - 0.0001
+		self.healthThreshold = _div__loc(self.getP('healtht'), 100.0) - 0.0001
 		self.manaNeeded = int(self.getP("manat"))
 		self.luck = int(self.getP("luck"))
 		self.empower = int(self.getP("empower"))
-		self.bonusSpeed = _div(self.getP('speed'), 100.0)
+		self.bonusSpeed = _div__loc(self.getP('speed'), 100.0)
 
 
 _R.reg("res://gd_core_items/Exclusive/ArcaneBoots.gd", Exclusive__ArcaneBoots)

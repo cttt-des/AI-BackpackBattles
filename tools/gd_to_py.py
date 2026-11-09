@@ -2509,6 +2509,125 @@ def _inline_accessors(texts, stat, hit):
     return texts
 
 
+def _shim_locals(texts, stat, hit):
+    """S3-C15：函数体内的 `_rt` 垫片全局引用提为局部别名（LOAD_GLOBAL→LOAD_FAST）。
+
+    动机（A1 剖面 post-C6）：热函数每次调用多次 LOAD_GLOBAL 垫片名
+    （_iter/_mod/_div/f32/clamp/min/max/int/len…）。模块全局在导入后恒定
+    （生成代码从无再绑定），提为局部是纯读路径优化、零语义面。
+
+    规则：
+      · 只处理 FunctionDef 方法体（嵌套 def 跳过）；引用 ≥2 次的垫片名才提升；
+      · 名字在该函数内被赋值/作形参（遮蔽）→ 跳过该名；
+      · 别名 `原名__loc`（审计函数内与模块级均无占用才用）；
+      · 改写 = 函数首行前插别名赋值 + 体内 Load 态 Name 跨度替换。
+    语义安全：垫片为模块级常量函数/常量，无 global 语句、无运行期重绑定；
+    ast_diff 预期面 = Name 数量变化 + 函数头新增 Assign。
+    """
+    import ast as _ast
+    SHIMS = {"_iter", "_mod", "_div", "f32", "clamp", "_fill", "_erase",
+             "_pop_at", "_find", "_resize", "_sort_custom", "_shuffle",
+             "_get_slice", "_invert", "_hash", "_join", "_pick_random",
+             "_substr", "_gd_fmt", "_gd_range", "_gd_str", "_strv", "stepify",
+             "posmod", "fmod", "snapped", "move_toward", "wrapf", "wrapi",
+             "is_equal_approx", "inverse_lerp", "smoothstep", "lerp", "sign",
+             "deg2rad", "rad2deg", "DB", "GAP"}
+    changed = 0
+    total = 0
+    for rel in list(texts):
+        text = texts[rel]
+        if "def " not in text:
+            continue
+        try:
+            tree = _ast.parse(text)
+        except SyntaxError:
+            continue
+        reps = []                             # (l1,c1,l2,c2,new)
+        inserts = []                          # (lineno, col, assign_lines)
+        seen_funcs = set()
+        for cd in _ast.walk(tree):
+            if not isinstance(cd, _ast.ClassDef):
+                continue
+            for fd in cd.body:
+                if not isinstance(fd, _ast.FunctionDef) or id(fd) in seen_funcs:
+                    continue
+                seen_funcs.add(id(fd))
+                # 收集本函数内（不含嵌套 def/签名默认值/装饰器）的垫片 Load 引用
+                counts = {}
+                shadowed = set()
+                names_used = set()
+                load_nodes = {}               # shim 名 -> [Name 节点]
+                stack = list(fd.body)
+                while stack:
+                    n = stack.pop()
+                    if isinstance(n, _ast.FunctionDef):
+                        continue              # 嵌套函数不处理
+                    if isinstance(n, _ast.Name):
+                        names_used.add(n.id)
+                        if n.id in SHIMS:
+                            if isinstance(n.ctx, _ast.Load):
+                                counts[n.id] = counts.get(n.id, 0) + 1
+                                load_nodes.setdefault(n.id, []).append(n)
+                            else:
+                                shadowed.add(n.id)
+                    stack.extend(_ast.iter_child_nodes(n))
+                for a in fd.args.args:
+                    shadowed.add(a.arg)
+                # 函数体首语句缩进（取首行原文前缀——产物是 TAB 缩进，
+                # 用空格重排会 tab/space 混排触发 SyntaxError）
+                if not fd.body:
+                    continue
+                if fd.body[0].lineno == fd.lineno:
+                    continue                  # 单行 def，无块体可插
+                first_line = text.split("\n")[fd.body[0].lineno - 1]
+                indent = first_line[:fd.body[0].col_offset]
+                hoist = []
+                for name, cnt in counts.items():
+                    if name in shadowed or cnt < 2:
+                        continue
+                    alias = name + "__loc"
+                    if alias in names_used or alias in SHIMS:
+                        continue
+                    hoist.append((name, alias))
+                if not hoist:
+                    continue
+                inserts.append((fd.body[0].lineno, None,
+                                [f"{indent}{a} = {n}"
+                                 for n, a in hoist]))
+                for name, alias in hoist:
+                    for n in load_nodes.get(name, ()):
+                        reps.append((n.lineno, n.col_offset,
+                                     n.end_lineno, n.end_col_offset, alias))
+        if not reps:
+            continue
+        reps.sort(key=lambda r: (-r[0], -r[1]))
+        lines = text.split("\n")
+        for l1, c1, l2, c2, new in reps:
+            if l1 == l2:
+                lines[l1 - 1] = lines[l1 - 1][:c1] + new + lines[l1 - 1][c2:]
+            else:
+                lines[l1 - 1] = lines[l1 - 1][:c1] + new
+                for mid in range(l1, l2 - 1):
+                    lines[mid] = ""
+                lines[l2 - 1] = lines[l2 - 1][c2:]
+        # 头部插入（行号自大而小，倒序插不失效）
+        for lno, col, assign_lines in sorted(inserts, key=lambda x: -x[0]):
+            lines[lno - 1:lno - 1] = assign_lines
+        new_text = "\n".join(lines)
+        try:
+            _ast.parse(new_text)
+        except SyntaxError as _se:
+            hit["C15跳过_SyntaxError"] += 1
+            print("WARN: C15 拼接后语法失败 %s: %s" % (rel, _se))
+            continue
+        texts[rel] = new_text
+        changed += 1
+        total += sum(len(a) for _l, _c, a in inserts)
+    hit["C15局部化"] = total
+    stat["C15"] = ["%d 模块 %d 别名" % (changed, total)]
+    return texts
+
+
 def write_pkg(order, files_by_rel, by_name, by_path, class_names, stat, hit, write):
     texts = {}
     for rel in order:
@@ -2519,6 +2638,7 @@ def write_pkg(order, files_by_rel, by_name, by_path, class_names, stat, hit, wri
     #   且死路径哨兵（_HoistPending）对内联后的文本兜底。
     texts = _inline_accessors(texts, stat, hit)
     texts = _iter_inline(texts, stat, hit)
+    texts = _shim_locals(texts, stat, hit)
     texts = _hoist_classrefs(texts, order, files_by_rel, stat, hit)
     if not write:
         return texts

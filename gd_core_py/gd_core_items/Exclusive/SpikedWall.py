@@ -31,9 +31,10 @@ class Exclusive__SpikedWall(_R.C("res://gd_core_items/SpikedShield.gd")):
 		self.character().giveStaminaRegeneration(self.staminaRegenMalus * baseStaminaRegen)
 
 	def _readyInit(self):
+		_div__loc = _div
 		super()._readyInit()
-		self.spikesLimit = _div(self.getP('spikedam'), 100.0)
-		self.staminaRegenMalus = _div(-self.getP('staminaregen'), 100.0)
+		self.spikesLimit = _div__loc(self.getP('spikedam'), 100.0)
+		self.staminaRegenMalus = _div__loc(-self.getP('staminaregen'), 100.0)
 
 
 _R.reg("res://gd_core_items/Exclusive/SpikedWall.gd", Exclusive__SpikedWall)

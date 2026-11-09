@@ -88,9 +88,10 @@ class Exclusive__HeartShield(_R.C("res://gd_core_items/Shield.gd")):
 			super().preTakeDamage(damageRes)
 
 	def _readyInit(self):
+		_div__loc = _div
 		super()._readyInit()
-		self.healamp = _div(self.getP('healamp'), 100.0)
-		self.blockFactor = _div(self.getP('block'), 100.0)
+		self.healamp = _div__loc(self.getP('healamp'), 100.0)
+		self.blockFactor = _div__loc(self.getP('block'), 100.0)
 		self.regenNeeded = int(self.getP("regent"))
 		self.regenOnBlock = int(self.getP("regen"))
 		self.regenMax = int(self.getP("max_regen"))

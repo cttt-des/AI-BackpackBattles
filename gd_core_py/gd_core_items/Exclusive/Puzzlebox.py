@@ -41,9 +41,10 @@ class Exclusive__Puzzlebox(_R.C("res://gd_core_items/Bag.gd")):
 		return 2
 
 	def _readyInit(self):
+		_div__loc = _div
 		super()._readyInit()
-		self.slowSpeed = _div(self.getP('speed'), 100.0)
-		self.fastSpeed = _div(self.getP('speed2'), 100.0)
+		self.slowSpeed = _div__loc(self.getP('speed'), 100.0)
+		self.fastSpeed = _div__loc(self.getP('speed2'), 100.0)
 
 
 _R.reg("res://gd_core_items/Exclusive/Puzzlebox.gd", Exclusive__Puzzlebox)

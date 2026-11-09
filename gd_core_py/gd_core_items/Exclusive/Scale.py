@@ -39,14 +39,15 @@ class Exclusive__Scale(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def getCounterValue(self, color=GD_DEFAULT):
+		_iter__loc = _iter
 		if color is GD_DEFAULT:
 			color = _H_1
 		gold = 0
 		if self.placed:
-			for item in _iter(self.getAffectedItems(color)):
+			for item in _iter__loc(self.getAffectedItems(color)):
 				gold += item.getPrice()
 		else:
-			for item in _iter(self.getAffectedItems_nocache(color)):
+			for item in _iter__loc(self.getAffectedItems_nocache(color)):
 				gold += item.getPrice()
 		return gold
 
@@ -56,13 +57,14 @@ class Exclusive__Scale(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def onPrepare(self):
+		_iter__loc = _iter
 		c1 = self.getCounterValue()
 		c2 = self.getCounterValue2()
 		self.addSpeed(self.speedPerGold * min(c1, c2))
 		if abs(c1 - c2) <= self.maxGoldDif:
-			for item in _iter(self.getAffectedItems()):
+			for item in _iter__loc(self.getAffectedItems()):
 				item.addSpeed(self.equilibriumSpeed)
-			for item in _iter(self.getAffectedItems(_H_2)):
+			for item in _iter__loc(self.getAffectedItems(_H_2)):
 				item.addSpeed(self.equilibriumSpeed)
 
 
@@ -128,12 +130,13 @@ class Exclusive__Scale(_R.C("res://gd_core_items/Item.gd")):
 		pass
 
 	def _readyInit(self):
+		_div__loc = _div
 		super()._readyInit()
 		self.regen = int(self.getP("regen"))
 		self.mana = int(self.getP("mana"))
-		self.speedPerGold = _div(self.getP('speed'), 100.0)
+		self.speedPerGold = _div__loc(self.getP('speed'), 100.0)
 		self.maxGoldDif = int(self.getP("gold"))
-		self.equilibriumSpeed = _div(self.getP('speed2'), 100.0)
+		self.equilibriumSpeed = _div__loc(self.getP('speed2'), 100.0)
 
 
 _R.reg("res://gd_core_items/Exclusive/Scale.gd", Exclusive__Scale)

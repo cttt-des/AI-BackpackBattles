@@ -52,9 +52,10 @@ class Exclusive__Generator(_R.C("res://gd_core_items/Item.gd")):
 		return _H_2 + 5
 
 	def _readyInit(self):
+		_div__loc = _div
 		super()._readyInit()
-		self.flatSpeed = _div(self.getP('speed'), 100)
-		self.speedPerTile = _div(self.getP('speed2'), 100)
+		self.flatSpeed = _div__loc(self.getP('speed'), 100)
+		self.speedPerTile = _div__loc(self.getP('speed2'), 100)
 
 
 _R.reg("res://gd_core_items/Exclusive/Generator.gd", Exclusive__Generator)

@@ -29,10 +29,11 @@ class Exclusive__Cubert(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def onPrepare(self):
-		for item in _iter(self.getAffectedItems()):
+		_iter__loc = _iter
+		for item in _iter__loc(self.getAffectedItems()):
 			self.connectForCombat(item, "activated", "onItemActivated1")
 
-		for item in _iter(self.getAffectedItems(_H_1)):
+		for item in _iter__loc(self.getAffectedItems(_H_1)):
 			self.connectForCombat(item, "activated", "onItemActivated2")
 
 
