@@ -2736,7 +2736,9 @@ def _f5a_tick_inline(texts, stat, hit):
                "\t\t\t\t\tt.tick(delta)\n")
         ti = ti.replace(old, new, 1)
         _ast.parse(ti)
-        texts["gd_core/CoreItem.py"] = ti
+        # ★ 键必须是 .gd 源 rel——.py 键会生成重复条目，写入循环按插入序
+        #   用陈旧快照覆盖 .gd 的变换结果（C17b 被清掉的真凶）
+        texts["gd_core/CoreItem.gd"] = ti
     cc = texts.get("gd_core/CoreCombat.gd")
     if cc is None:
         raise RuntimeError("F5a: 缺 gd_core/CoreCombat.gd 文本——texts 键名漂移")
@@ -2754,7 +2756,7 @@ def _f5a_tick_inline(texts, stat, hit):
                "\t\t\t\t\t\t\tt.tick(delta)\n")
         cc = cc.replace(old, new, 1)
         _ast.parse(cc)
-        texts["gd_core/CoreCombat.py"] = cc
+        texts["gd_core/CoreCombat.gd"] = cc
     hit["F5a_tick_inline"] = 2
     stat["F5a"] = ["CoreItem.tickTimersPass 内联 + CoreCombat 调用点展开"]
     return texts
@@ -2895,6 +2897,10 @@ def write_pkg(order, files_by_rel, by_name, by_path, class_names, stat, hit, wri
             with io.open(init, "w", encoding="utf-8", newline="\n") as fh:
                 fh.write("")
     for rel, text in texts.items():
+        # ★ 防御断言：texts 键必须是 .gd 源 rel——.py 键 = 重复条目，会以
+        #   陈旧快照覆盖 .gd 的变换结果（C17b 首版被清掉的事故根因）
+        if rel.endswith(".py"):
+            raise RuntimeError("write_pkg: texts 出现 .py 键 %r——趟内赋值键名错误" % rel)
         p = os.path.join(OUT_PKG, *py_file_rel(rel).split("/"))
         with io.open(p, "w", encoding="utf-8", newline="\n") as fh:
             fh.write(text)

@@ -816,7 +816,6 @@ class CoreItem(GodotObject):
 			return
 		if not self.character().isStunned():
 			self.triggerTime -= delta * self.getSpeed()
-			self.ctx.hooks.showCooldown(self, 1.0 - _div(self.triggerTime, self.iterationCooldown))
 			if self.triggerTime <= 0:
 				self.trigger()
 
