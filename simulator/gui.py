@@ -448,9 +448,23 @@ def _safe_path(eng, side):
     return f"lineup_{eng.opponent.display_name()}.json"
 
 
+def _prewarm_kernel():
+    """S2-B7：开窗后台线程预热 gd_core 内核（kernel() = B2 分层导入载
+    gd_core 树 ≈0.75s + runtime JSON 解析）。daemon 线程，异常静默
+    （预热失败时首场战斗自会装载并正常报错）；GIL 下与 UI 线程互不阻塞。"""
+    try:
+        from simulator.gd_core_engine import kernel, runtime_data
+        kernel()
+        runtime_data()
+    except Exception:  # noqa: BLE001 —— 预热失败不挡 GUI（首场自会装载）
+        pass
+
+
 def main():
     root = tk.Tk()
     try:
+        import threading as _threading
+        _threading.Thread(target=_prewarm_kernel, daemon=True).start()
         BattleSimulatorGUI(root)
         root.mainloop()
     except Exception as e:

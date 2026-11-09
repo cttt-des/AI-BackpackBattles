@@ -46,6 +46,18 @@ def build():
     work_dir.mkdir(parents=True, exist_ok=True)
     _clear_old_exe(dist_dir)
 
+    # ── S2-B3：预编译 pyc（docs/性能优化执行路径.md）──
+    # PyInstaller 分析期即编译字节码，compileall 在此保证：①构建用到的
+    # __pycache__ 全新鲜（PyInstaller 直接拾取现成 pyc，构建更快更稳）；
+    # ②开发态 python -m simulator.gui 首启即命中缓存。
+    import compileall
+    print("Precompiling bytecode (compileall) ...")
+    for pkg in ("gd_core_py", "simulator", "engine"):
+        ok = compileall.compile_dir(str(PROJECT_DIR / pkg), quiet=1,
+                                    maxlevels=10, force=True)
+        if not ok:
+            print(f"WARNING: compileall {pkg} 有编译失败项（继续打包，PyInstaller 会自行编译）")
+
     args = [
         PYTHON, "-m", "PyInstaller",
         "--noconfirm",
