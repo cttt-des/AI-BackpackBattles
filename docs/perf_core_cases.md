@@ -33,34 +33,51 @@
 
 这样在覆盖全量语义面的同时，还压住了边界：极短局（0 tick）、极长局（2669 tick）、事件最密集场，以及 39 种职业配对的双方行为差异。
 
-## 3 首次使用就抓到了 14 场回归（重要）
+## 3 首次使用就抓到了 14 场问题 → 已修复（2026-11-09 终局）
 
-把这 60 场第一次跑完三方对齐，结果是 **45 / 60**。用原全量夹具（`gd_core_test/expand_align_cases.json`，非切片）逐场复跑确认：
+第一次跑完三方对齐是 **45 / 60**，14 场非绿。当时怀疑 C 组生成器优化回归，**实验推翻了该前提**（逐趟单关仍红、`GD_SKIP_PASSES` 全关仍红、`cc66ed19` worktree 同红），
+最终定位为**一个真实缺陷 + 一条陈旧账本行**：
 
-| 类别 | 场数 | 含义 |
+| 类别 | 场数 | 真因 |
 |---|---|---|
-| 三方一致 | 45 | 可作绿基线 |
-| `gdcore≡oracle 但 py 分歧` | **13** | **纯转写层回归**：Godot 侧与神谕完全一致，Python 侧跑出不同事件流 |
-| `py 缺产物` | 1 | py 腿未产出该场（`run604839_r16_o500204_r16`） |
-| 历史红本次转绿 | 1 | `run101354_r14_o101073_r14`，历史账本红、本次绿，疑似偶发 |
+| `gdcore≡oracle 但 py 分歧` | 13 | **体力上限不同源**（详见 §3.1） |
+| `py 缺产物` | 1 | `_STEM2MOD` 导入盲区（`c6bd915c` 已修） |
+| 历史红本次转绿 | 1 | 陈旧账本行（方向反转） |
 
-对照历史账本 `output/oracle/expand/alignment_expand.json`（2026-11-08，**1684 / 1690 三方一致**），这 14 场**历史全绿、现在全红**，
-落在 `gd_core_py` 转写层，时间上与 2026-11-09 落地的 C 组生成器优化（C6 内联 / C1 `_iter` 直发 / C15 垫片局部化 / C4 静态绑定）吻合。
+### 3.1 根因：体力上限两条取数链不同源
 
-**结论：精选集有效**——它用 60 场覆盖出了全量抽样（当时 24/24 绿）漏掉的回归，且每场都能指出首个分歧事件。
-**但也说明当前 `gd_core_py` 不是可用的绿基线**：在定位并修复这 14 场之前，精选集只能当「红名单监视器」，不能当作可通过的闸门。
+- **原版侧**（`gd_core_test/OracleAlignBattle.gd::new_character`）读**夹具**的 `side["stamina"]` 与 `side["base_max_stamina"]`；
+  扩样夹具的 `stamina` 由 `tools/expand_gen_fixtures.py` 从 `output/oracle/expand/data/history.db` 的
+  `roundData.stamina` 取数（= 职业 base 5.0 **加 Stamina Sack 等加成**，实测分布 5.0–12.0）。
+- **Python 侧**（`simulator/gd_core_engine.py::character_stats`）只取 `class_modifiers.stamina`，**恒 5.0**。
+- 差值 = 夹具 `stamina − base_max_stamina`，13 场分布 1.0–5.0。长局里 py 体力池整体偏低，先撞 `useStamina` 的
+  `Insufficient` → 多发 `OutofStamina(15)`、少发该次攻击，事件流从此分叉。
 
-红名单与复跑明细：[output/perf/core_cases_redness.json](../output/perf/core_cases_redness.json)
+首个实证场 `run704991_r8_o704410_r8`：tick 345 玩家 `Magic Staff` 在 gd 侧 `Mana -3` + 攻击，py 侧只发 `OutofStamina`；
+插桩显示 py 该 tick 玩家体力 `0.8333 < cost 3.0`，而 py 的 `maxStamina=5.0` vs 夹具 `7.0`。
+把 `maxStamina` 覆盖为夹具真值后，单场事件数 `221 → 221`，与 gd **逐条一致**。
 
-14 场回归名单（可直接喂 `--cases` 做二分）：
+### 3.2 修复（两处，均已入库）
 
-```
-run704991_r8_o704410_r8, run300225_r6_o500231_r6, run101617_r16_o300168_r16,
-run704847_r17_o704688_r17, run101710_r14_o100993_r14, run101617_r17_o704297_r17,
-run704752_r14_o604627_r14, run101635_r11_o101268_r11, run604768_r17_o604707_r17,
-run604839_r16_o500204_r16, run101702_r17_o101027_r17, run604796_r8_o300117_r8,
-run704388_r14_o704267_r14, run704531_r15_o604621_r15
-```
+| 文件 | 改动 |
+|---|---|
+| [simulator/gd_core_engine.py](../simulator/gd_core_engine.py) | `GDCoreEngine.__init__` 新增 `p_stats` / `o_stats`（Optional），装配前把夹具真值写进 `character_stats` 结果；**传 None = 原行为**，产品路径零影响 |
+| [tools/verify_oracle.py](tools/verify_oracle.py) | py 腿构造引擎时传入夹具的 `stamina` / `health` / `regen`（双侧） |
+
+### 3.3 验证证据（2026-11-09 22:12 实测）
+
+| 闸门 | 结果 |
+|---|---|
+| 14 场红名单 | **13/13 三方一致**（13 场；另 1 场由 `c6bd915c` 修） |
+| 60 场精选集 | **60/60 三方一致** |
+| 全量 1690（expand 集） | **1690/1690 三方逐行一致**（gd 腿 523 s + py 腿 1104 s + 比对 92 s） |
+| REG 九场防退步（914 基线） | **9/9 三方一致** |
+
+### 3.4 教训
+
+1. **「全绿」可能是假的**：账本行的可信度取决于它生成时的代码与夹具链，`run101354` 一行的 oracle 事件数（443）与实跑（671）差异足以证明账本会陈旧。
+2. **两条腿的输入必须同源**：gd 读夹具、py 读 class_modifiers 这种「看起来等价」的分叉，会在长局里以体力/蓝量差的形式静默爆发。
+3. **精选集 60 场有效**：它用 60 场就捞出了全量抽样（当时 24/24）漏掉的 14 场。
 
 ## 4 用法
 
@@ -109,4 +126,3 @@ python -X utf8 tools/verify_oracle.py --cases "$IDS" --force --skip-fixtures \
 | [output/perf/coverage_1690.json](../output/perf/coverage_1690.json) | 1690 场全量覆盖抽取（`tools/_perf_extract_cov.py` 产物） |
 | [output/perf/alignment_core_cases.json](../output/perf/alignment_core_cases.json) | 本集最近一次三方对齐账本 |
 | [tools/_perf_extract_cov.py](tools/_perf_extract_cov.py) / [tools/_perf_pick_core.py](tools/_perf_pick_core.py) | 抽取与选取脚本（可重跑复现） |
-

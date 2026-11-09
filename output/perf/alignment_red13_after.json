@@ -1,0 +1,368 @@
+{
+ "aligned": 13,
+ "total": 13,
+ "match_distribution": {
+  "三方一致": 13
+ },
+ "convention": {
+  "seed": "两侧 gd_core 在任何物品实例创建前以 CoreContext(seed) 注入（≙ oracle_fight.gd:536-537 的 Util.rng.seed=S）",
+  "below_master": "false（np24 簇B：新语料族A 全 +1 tick 实证录制时 isBelowLeague(Master)=假，对手冷却掷 (0.95,1.05)；旧 rng_log 0.975 实证属旧语料，不再适用）",
+  "activation_order": "原版开战 shuffle 走引擎全局链（docs/rng_truth.md §1.4-2）；OracleAlignBattle.gd 用真 Godot seed(S)+shuffle×2+sort_TriggerPriority 复刻终序并直通内核（startBattle preordered）",
+  "judgement": "主判据=engine/log_text.py 渲染战报逐行比对；辅判据=事件 canonical（t 按 1/60s tick 取整、type/side/origin/params/parent-depth 全等）；两者都一致才算通过"
+ },
+ "perCase": [
+  {
+   "caseId": "run704991_r8_o704410_r8",
+   "seed": 1988676920,
+   "lineupPair": "oracle_run704991_r8_o704410_r8_player|oracle_run704991_r8_o704410_r8_opponent",
+   "oracleEvents": 221,
+   "gdcoreEvents": 221,
+   "pyEvents": 221,
+   "winner": {
+    "oracle": "opponent",
+    "gdcore": "opponent",
+    "py": "opponent"
+   },
+   "match": "三方一致",
+   "firstDivergence": null,
+   "judgement": {
+    "event_tuples": {
+     "oracle_gd": true,
+     "gd_py": true
+    },
+    "rendered_lines": {
+     "oracle_gd": true,
+     "gd_py": true
+    }
+   },
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run300225_r6_o500231_r6",
+   "seed": 1845297597,
+   "lineupPair": "oracle_run300225_r6_o500231_r6_player|oracle_run300225_r6_o500231_r6_opponent",
+   "oracleEvents": 249,
+   "gdcoreEvents": 249,
+   "pyEvents": 249,
+   "winner": {
+    "oracle": "opponent",
+    "gdcore": "opponent",
+    "py": "opponent"
+   },
+   "match": "三方一致",
+   "firstDivergence": null,
+   "judgement": {
+    "event_tuples": {
+     "oracle_gd": true,
+     "gd_py": true
+    },
+    "rendered_lines": {
+     "oracle_gd": true,
+     "gd_py": true
+    }
+   },
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run101617_r16_o300168_r16",
+   "seed": 95407876,
+   "lineupPair": "oracle_run101617_r16_o300168_r16_player|oracle_run101617_r16_o300168_r16_opponent",
+   "oracleEvents": 2666,
+   "gdcoreEvents": 2666,
+   "pyEvents": 2666,
+   "winner": {
+    "oracle": "opponent",
+    "gdcore": "opponent",
+    "py": "opponent"
+   },
+   "match": "三方一致",
+   "firstDivergence": null,
+   "judgement": {
+    "event_tuples": {
+     "oracle_gd": true,
+     "gd_py": true
+    },
+    "rendered_lines": {
+     "oracle_gd": true,
+     "gd_py": true
+    }
+   },
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run704847_r17_o704688_r17",
+   "seed": 202314599,
+   "lineupPair": "oracle_run704847_r17_o704688_r17_player|oracle_run704847_r17_o704688_r17_opponent",
+   "oracleEvents": 5077,
+   "gdcoreEvents": 5077,
+   "pyEvents": 5077,
+   "winner": {
+    "oracle": "player",
+    "gdcore": "player",
+    "py": "player"
+   },
+   "match": "三方一致",
+   "firstDivergence": null,
+   "judgement": {
+    "event_tuples": {
+     "oracle_gd": true,
+     "gd_py": true
+    },
+    "rendered_lines": {
+     "oracle_gd": true,
+     "gd_py": true
+    }
+   },
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run101710_r14_o100993_r14",
+   "seed": 1071916218,
+   "lineupPair": "oracle_run101710_r14_o100993_r14_player|oracle_run101710_r14_o100993_r14_opponent",
+   "oracleEvents": 7662,
+   "gdcoreEvents": 7662,
+   "pyEvents": 7662,
+   "winner": {
+    "oracle": "player",
+    "gdcore": "player",
+    "py": "player"
+   },
+   "match": "三方一致",
+   "firstDivergence": null,
+   "judgement": {
+    "event_tuples": {
+     "oracle_gd": true,
+     "gd_py": true
+    },
+    "rendered_lines": {
+     "oracle_gd": true,
+     "gd_py": true
+    }
+   },
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run101617_r17_o704297_r17",
+   "seed": 1359600954,
+   "lineupPair": "oracle_run101617_r17_o704297_r17_player|oracle_run101617_r17_o704297_r17_opponent",
+   "oracleEvents": 1872,
+   "gdcoreEvents": 1872,
+   "pyEvents": 1872,
+   "winner": {
+    "oracle": "player",
+    "gdcore": "player",
+    "py": "player"
+   },
+   "match": "三方一致",
+   "firstDivergence": null,
+   "judgement": {
+    "event_tuples": {
+     "oracle_gd": true,
+     "gd_py": true
+    },
+    "rendered_lines": {
+     "oracle_gd": true,
+     "gd_py": true
+    }
+   },
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run704752_r14_o604627_r14",
+   "seed": 1147568386,
+   "lineupPair": "oracle_run704752_r14_o604627_r14_player|oracle_run704752_r14_o604627_r14_opponent",
+   "oracleEvents": 1077,
+   "gdcoreEvents": 1077,
+   "pyEvents": 1077,
+   "winner": {
+    "oracle": "player",
+    "gdcore": "player",
+    "py": "player"
+   },
+   "match": "三方一致",
+   "firstDivergence": null,
+   "judgement": {
+    "event_tuples": {
+     "oracle_gd": true,
+     "gd_py": true
+    },
+    "rendered_lines": {
+     "oracle_gd": true,
+     "gd_py": true
+    }
+   },
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run101635_r11_o101268_r11",
+   "seed": 1428428081,
+   "lineupPair": "oracle_run101635_r11_o101268_r11_player|oracle_run101635_r11_o101268_r11_opponent",
+   "oracleEvents": 2616,
+   "gdcoreEvents": 2616,
+   "pyEvents": 2616,
+   "winner": {
+    "oracle": "player",
+    "gdcore": "player",
+    "py": "player"
+   },
+   "match": "三方一致",
+   "firstDivergence": null,
+   "judgement": {
+    "event_tuples": {
+     "oracle_gd": true,
+     "gd_py": true
+    },
+    "rendered_lines": {
+     "oracle_gd": true,
+     "gd_py": true
+    }
+   },
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run604768_r17_o604707_r17",
+   "seed": 460085997,
+   "lineupPair": "oracle_run604768_r17_o604707_r17_player|oracle_run604768_r17_o604707_r17_opponent",
+   "oracleEvents": 148,
+   "gdcoreEvents": 148,
+   "pyEvents": 148,
+   "winner": {
+    "oracle": "player",
+    "gdcore": "player",
+    "py": "player"
+   },
+   "match": "三方一致",
+   "firstDivergence": null,
+   "judgement": {
+    "event_tuples": {
+     "oracle_gd": true,
+     "gd_py": true
+    },
+    "rendered_lines": {
+     "oracle_gd": true,
+     "gd_py": true
+    }
+   },
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run101702_r17_o101027_r17",
+   "seed": 1116357159,
+   "lineupPair": "oracle_run101702_r17_o101027_r17_player|oracle_run101702_r17_o101027_r17_opponent",
+   "oracleEvents": 566,
+   "gdcoreEvents": 566,
+   "pyEvents": 566,
+   "winner": {
+    "oracle": "player",
+    "gdcore": "player",
+    "py": "player"
+   },
+   "match": "三方一致",
+   "firstDivergence": null,
+   "judgement": {
+    "event_tuples": {
+     "oracle_gd": true,
+     "gd_py": true
+    },
+    "rendered_lines": {
+     "oracle_gd": true,
+     "gd_py": true
+    }
+   },
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run604796_r8_o300117_r8",
+   "seed": 1865475738,
+   "lineupPair": "oracle_run604796_r8_o300117_r8_player|oracle_run604796_r8_o300117_r8_opponent",
+   "oracleEvents": 140,
+   "gdcoreEvents": 140,
+   "pyEvents": 140,
+   "winner": {
+    "oracle": "player",
+    "gdcore": "player",
+    "py": "player"
+   },
+   "match": "三方一致",
+   "firstDivergence": null,
+   "judgement": {
+    "event_tuples": {
+     "oracle_gd": true,
+     "gd_py": true
+    },
+    "rendered_lines": {
+     "oracle_gd": true,
+     "gd_py": true
+    }
+   },
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run704388_r14_o704267_r14",
+   "seed": 1798671750,
+   "lineupPair": "oracle_run704388_r14_o704267_r14_player|oracle_run704388_r14_o704267_r14_opponent",
+   "oracleEvents": 1090,
+   "gdcoreEvents": 1090,
+   "pyEvents": 1090,
+   "winner": {
+    "oracle": "player",
+    "gdcore": "player",
+    "py": "player"
+   },
+   "match": "三方一致",
+   "firstDivergence": null,
+   "judgement": {
+    "event_tuples": {
+     "oracle_gd": true,
+     "gd_py": true
+    },
+    "rendered_lines": {
+     "oracle_gd": true,
+     "gd_py": true
+    }
+   },
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run704531_r15_o604621_r15",
+   "seed": 1138124762,
+   "lineupPair": "oracle_run704531_r15_o604621_r15_player|oracle_run704531_r15_o604621_r15_opponent",
+   "oracleEvents": 574,
+   "gdcoreEvents": 574,
+   "pyEvents": 574,
+   "winner": {
+    "oracle": "player",
+    "gdcore": "player",
+    "py": "player"
+   },
+   "match": "三方一致",
+   "firstDivergence": null,
+   "judgement": {
+    "event_tuples": {
+     "oracle_gd": true,
+     "gd_py": true
+    },
+    "rendered_lines": {
+     "oracle_gd": true,
+     "gd_py": true
+    }
+   },
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  }
+ ],
+ "localization": {},
+ "fixPlan": []
+}

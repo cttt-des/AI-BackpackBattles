@@ -628,6 +628,8 @@ class GDCoreEngine:
                  warmup_time_ticks: int = 0,
                  keyed_stop_clears_seen: bool = False,
                  keyed_cleanse_biggest_first: bool = False,
+                 p_stats: Optional[Dict[str, float]] = None,
+                 o_stats: Optional[Dict[str, float]] = None,
                  _r5_warm: bool = False,
                  _r5_warm_gate: int = 25000,
                  formal_ev_gate: int = 25000):
@@ -734,6 +736,21 @@ class GDCoreEngine:
         self._chars = data.get("characters") or character_db or {}
         ps = character_stats(player_lineup, self._chars)
         os_ = character_stats(opponent_lineup, self._chars)
+        # ★ 2026-11-09：体力上限/上限基数直通夹具真值（神谕对齐路径）。
+        #   原版侧（gd 宿主 OracleAlignBattle.gd::new_character）读的是**夹具**
+        #   的 side["stamina"] / side["base_max_stamina"]——扩样夹具的 stamina
+        #   取自 history.db 的 roundData（= base + Stamina Sack 数），而
+        #   character_stats() 只按 class_modifiers 取 base（恒 5.0）。两者不同源
+        #   时玩家体力池整体偏低 maxStamina 差额（1..5），长局里先撞
+        #   OutofStamina（run704991 tick345 Magic Staff），事件流从这里分叉。
+        #   传 None = 保持原行为（产品路径不传，零影响）。
+        for _key, _ov in (("player", p_stats), ("opponent", o_stats)):
+            if not _ov:
+                continue
+            _st = ps if _key == "player" else os_
+            for _f in ("stamina", "health", "regen"):
+                if _f in _ov and _ov[_f] is not None:
+                    _st[_f] = float(_ov[_f])
         self._ps, self._os = ps, os_
         cls_p = class_id_of(player_lineup, data.get("classes") or {})
         cls_o = class_id_of(opponent_lineup, data.get("classes") or {})

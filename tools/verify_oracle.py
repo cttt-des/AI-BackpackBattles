@@ -537,6 +537,17 @@ def run_py(cases: List[Dict[str, Any]]) -> int:
                                keyed_stop_clears_seen=stop_clears_seen,
                                keyed_cleanse_biggest_first=cleanse_biggest_first,
                                formal_ev_gate=int(PY_NP22_REC_EV_GATE.get(case_id, 25000)),
+                               # ★ 2026-11-09：体力上限直通夹具真值——gd 宿主
+                               #   new_character 读 side["stamina"]/["base_max_stamina"]，
+                               #   扩样夹具 stamina 取 history.db roundData（含宝物/袋
+                               #   加成），而引擎 character_stats 只取 class_modifiers
+                               #   base。不同源 ⇒ py 体力池偏低，长局先 OutofStamina。
+                               p_stats={"stamina": fixture[case_id]["player"].get("stamina"),
+                                        "health": fixture[case_id]["player"].get("health"),
+                                        "regen": fixture[case_id]["player"].get("regen")},
+                               o_stats={"stamina": fixture[case_id]["opponent"].get("stamina"),
+                                        "health": fixture[case_id]["opponent"].get("health"),
+                                        "regen": fixture[case_id]["opponent"].get("regen")},
                                # ★ np51：存档自定义规则健康倍率（镜像 gd 宿主的
                                #   ctx.custom_health_multiplier 注入；夹具层解析）
                                custom_health_multiplier=float(
@@ -1666,6 +1677,19 @@ def main() -> int:
         PY_OUT = os.path.join(ALIGN_DIR, "py")
         RENDER_DIR = os.path.join(ALIGN_DIR, "render")
         LINEUP_OUT = os.path.join(ALIGN_DIR, "lineups")
+        # ★ np51㊳终⑰（2026-11-09）：账本路径与产物根同规则重定向——此前只有
+        #   产物根自动落 align_expand，账本仍写全局默认 output/oracle/alignment.json，
+        #   扩样跑批会把基线账本整本覆盖成扩样结果（1690 覆盖 914 账），而
+        #   alignment_expand.json 停在旧状态——读账人看到「严重回退/红场复现」。
+        #   现规则：扩样模式（给了 --fights-root/--cases-json 且未显式给
+        #   --alignment-out）⇒ 账本自动落 <ALIGN_DIR>/alignment_expand.json；
+        #   显式 --alignment-out 永远优先；基线模式四值全空 ⇒ 逐字节旧行为。
+        if args.alignment_out:
+            print("[alignment-out] 显式指定 %s" % ALIGNMENT_JSON)
+        else:
+            ALIGNMENT_JSON = os.path.join(ALIGN_DIR, "alignment_expand.json")
+            print("[alignment-out] 未指定，随产物根自动落 %s（防覆盖基线账本）"
+                  % ALIGNMENT_JSON)
     if args.cases_json:
         CASES_JSON = os.path.abspath(args.cases_json)
     if args.alignment_out:
