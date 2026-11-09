@@ -2458,6 +2458,8 @@ def _inline_accessors(texts, stat, hit):
     inline_getStacks1 = _only_definer("getStacks", 1, "CoreCharacter")
     inline_isStunned = _only_definer("isStunned", 0, "CoreCharacter")
     inline_hasCharacter = _only_definer("hasCharacter", 0, "CoreItem")
+    inline_speed = _only_definer("speed", 0, "CoreItem")
+    inline_gssm = _only_definer("getStackSpeedMods", 0, "CoreItem")
     changed = 0
     total = 0
     for rel in list(texts):
@@ -2508,6 +2510,19 @@ def _inline_accessors(texts, stat, hit):
                     continue
                 new = "(%s.placed and %s.character_ != None)" % (
                     _span_text(text, recv), _span_text(text, recv))
+            elif (fu.attr == "speed" and not node.args and not node.keywords
+                    and inline_speed):
+                # 单返回体（return speedScale）——接收者单引用，任意形态安全
+                new = "%s.speedScale" % _span_text(text, recv)
+            elif (fu.attr == "getStackSpeedMods" and not node.args
+                    and not node.keywords and inline_gssm):
+                # 体 = (character().getHeat() - character().getCold()) * 0.02
+                # 展开后接收者出现两次 → 接收者限纯表达式（无调用=无副作用）
+                if any(isinstance(n, _ast.Call) for n in _ast.walk(recv)):
+                    continue
+                r = _span_text(text, recv)
+                new = ("(%s.character().getHeat() - %s.character().getCold()) * 0.02"
+                       % (r, r))
             else:
                 continue
             reps.append((node.lineno, node.col_offset,

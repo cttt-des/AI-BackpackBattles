@@ -464,7 +464,7 @@ class CoreItem(GodotObject):
 			return override
 
 		if (self.placed and self.character_ != None):
-			speed_ = self.speed() + self.getStackSpeedMods()
+			speed_ = self.speedScale + (self.character().getHeat() - self.character().getCold()) * 0.02
 			modifiedSpeed = None
 			if speed_ >= 0:
 				modifiedSpeed = 1.0 + speed_
