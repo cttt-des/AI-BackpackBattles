@@ -127,6 +127,7 @@ def _summarize(rows):
     out = {
         "n": len(rows),
         "p50_ms": round(p50, 1),
+        "mean_ms": round(statistics.fmean(ms), 2),
         "p95_ms": round(_pctl(ms, 95), 1),
         "min_ms": round(ms[0], 1),
         "max_ms": round(ms[-1], 1),

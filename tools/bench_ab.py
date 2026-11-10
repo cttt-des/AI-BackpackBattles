@@ -91,6 +91,7 @@ def main() -> int:
 
     arm_a, arm_b = a.arm_a, a.arm_b
     pairs = []
+    mean_pairs = []
     rows_a, rows_b = [], []
     for i in range(a.rounds):
         # 顺序交替：偶数轮 A→B，奇数轮 B→A（抵消轮内漂移）
@@ -102,26 +103,39 @@ def main() -> int:
                                 root=a.root_a if arm == arm_a else a.root_b,
                                 pure_py=a.pure_py)
         pa, pb = got[arm_a]["p50_ms"], got[arm_b]["p50_ms"]
+        ma, mb = got[arm_a]["mean_ms"], got[arm_b]["mean_ms"]
         rows_a.append(pa)
         rows_b.append(pb)
         pairs.append(round(pb / pa, 4) if pa else None)
-        print("[ab] round %d  %s=%.1fms  %s=%.1fms  ratio(%s/%s)=%.3f"
-              % (i + 1, arm_a, pa, arm_b, pb, arm_b, arm_a, pb / pa if pa else 0),
+        # ★ mean_ms 配对（M0v2）：Windows process_time 粒度 15.625ms，单场
+        #   ~320ms 只有 ~20 刻度，n=40 的 p50 全落在刻度整数倍上——一个刻度
+        #   就是 5%，亚刻度效应（M2 各项 0.5-5%）完全被量化淹没。均值把刻度
+        #   噪声摊到 n 上（分辨率 ≈15.6ms/n ≈ 0.1%），是本机唯一可信的
+        #   亚刻度口径；p50 保留作兼容对照。
+        mean_pairs.append(round(mb / ma, 4) if ma else None)
+        print("[ab] round %d  %s=p50 %.1f/mean %.2fms  %s=p50 %.1f/mean %.2fms"
+              "  ratio_mean=%.4f"
+              % (i + 1, arm_a, pa, ma, arm_b, pb, mb, mb / ma if ma else 0),
               flush=True)
 
     ratios = [p for p in pairs if p]
     med_ratio = _median(ratios)
+    mean_ratios = [p for p in mean_pairs if p]
+    med_mean_ratio = _median(mean_ratios)
     spread_a = (max(rows_a) - min(rows_a)) / _median(rows_a) * 100 if len(rows_a) > 1 else 0
     spread_b = (max(rows_b) - min(rows_b)) / _median(rows_b) * 100 if len(rows_b) > 1 else 0
     spread_r = (max(ratios) - min(ratios)) / med_ratio * 100 if len(ratios) > 1 and med_ratio else 0
+    spread_m = ((max(mean_ratios) - min(mean_ratios)) / med_mean_ratio * 100
+                if len(mean_ratios) > 1 and med_mean_ratio else 0)
 
     print()
     print("=" * 64)
     print("A(%s) p50 中位 %.1fms  单臂散布 %.1f%%" % (arm_a, _median(rows_a), spread_a))
     print("B(%s) p50 中位 %.1fms  单臂散布 %.1f%%" % (arm_b, _median(rows_b), spread_b))
-    print("配对比值 B/A: 中位 %.3f   配对散布 %.1f%%" % (med_ratio, spread_r))
-    print("→ 比值口径的散布（%.1f%%）应显著小于单臂（%.1f%% / %.1f%%）"
-          % (spread_r, spread_a, spread_b))
+    print("配对比值(mean, 主口径) B/A: 中位 %.4f   配对散布 %.2f%%"
+          % (med_mean_ratio, spread_m))
+    print("配对比值(p50, 对照)      B/A: 中位 %.3f   配对散布 %.1f%%"
+          % (med_ratio, spread_r))
     print("=" * 64)
 
     out = {
@@ -138,14 +152,17 @@ def main() -> int:
         "spread_a_pct": round(spread_a, 2),
         "spread_b_pct": round(spread_b, 2),
         "spread_ratio_pct": round(spread_r, 2),
-        "verdict": "ratio_ok" if spread_r <= 5.0 else "ratio_unstable",
+        "ratio_mean_b_over_a": mean_pairs,
+        "median_ratio_mean": med_mean_ratio,
+        "spread_ratio_mean_pct": round(spread_m, 2),
+        "verdict": ("ratio_ok" if spread_m <= 5.0 else "ratio_unstable"),
     }
     if a.json:
         os.makedirs(os.path.dirname(a.json), exist_ok=True)
         with io.open(a.json, "w", encoding="utf-8") as fh:
             json.dump(out, fh, ensure_ascii=False, indent=1)
         print("→", a.json)
-    return 0 if spread_r <= 5.0 else 1
+    return 0 if spread_m <= 5.0 else 1
 
 
 if __name__ == "__main__":
