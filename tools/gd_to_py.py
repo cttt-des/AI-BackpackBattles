@@ -3134,101 +3134,147 @@ def _cy_round_alias(texts, stat, hit):
 #   ② 类体无方法名影子赋值；③ 过 seed 双态 + 60 场 + REG9。
 _PXD_WHITELIST = {
     "gd_core/CoreEvent.gd",
+    # ── M1-2b 批（2026-11-10）：数据/计时类 ──
+    "gd_core/CoreDamageResult.gd",
+    "gd_core/CoreDamageSource.gd",
+    "gd_core/CoreTimer.gd",
+    "gd_core/CoreRng.gd",
+    "gd_core/CoreBuff.gd",
+    # ── M1-2c 批：热大类（M1-3 热 8 的 gd_core 树部分） ──
+    "gd_core/CoreGrid.gd",
+    "gd_core/CoreEventBus.gd",      # +引擎补充槽 connect_journal_enabled
+    "gd_core/CoreCombat.gd",
+    "gd_core/CoreContext.gd",       # +引擎补充槽 ×7（装配期动态赋值面）
+    "gd_core/CoreCharacter.gd",
+    "gd_core/CoreItem.gd",
+}
+
+# 引擎侧（simulator/gd_core_engine.py）对内核实例的动态赋值面——cdef 槽化
+# 后必须以补充槽声明，否则编译态 AttributeError。逐项 grep 实证
+# （gd_core_engine.py:945-1041）；生成器收集器只看生成文本，看不见这些。
+_PXD_EXTRA_SLOTS = {
+    "gd_core/CoreContext.gd": {
+        # GDCoreEngine.__init__ 装配期逐个赋值
+        "label_rng_enabled",          # 948 标签视觉抽开关（round19）
+        "below_master",               # 956 np24 对手冷却掷面
+        "custom_health_multiplier",   # 959 np51 存档健康倍率
+        "keyed_stop_clears_seen",     # 961 np43 键控
+        "keyed_cleanse_biggest_first",  # 962 np43 键控
+        "deferred_flush_enabled",     # 966 np24 deferred 冲刷
+        "eb_relay_mirrored",          # 970 EngineerBox 接力死亡镜像
+    },
+    "gd_core/CoreEventBus.gd": {
+        "connect_journal_enabled",    # 945 np21-R5 连接台账（键控默认关）
+    },
 }
 
 
 def _collect_instance_slots(py_text):
-    """从生成的 .py 文本收集 (类名, 基类名, 实例属性槽集合)。
+    """从生成的 .py 文本收集 [(类名, 基类名, 实例属性槽集合), ...]（声明序）。
 
-    槽集 = 类方法体内全部 `self.X =` / `self.X +=` 赋值目标，剔除：
-    类体级赋值（类属性如 Target/resource_path——归类字典，不是槽）与
-    方法名（影子赋值即违规，抛错）。多基类/关键字基类即抛（当前产物
-    全部单基类，漂移说明产物形态变了）。
+    模块含多个顶层类（如 CoreBuff.py 的 TemporaryStacks+CoreBuff、CoreRng.py
+    的 BalancedRng/BalancedRange/CoreRng）时全部收集、全部槽化——辅助类同样
+    被实例化，漏一个就会在运行期 AttributeError。
+    槽集 = 类方法体内全部 `self.X =` / `self.X +=` 赋值目标，剔除：类体级
+    赋值（类属性如 Target/resource_path）、方法名（影子赋值即违规，抛错）、
+    property 名（走 setter，槽是后备字段）。多基类/关键字基类即抛。
     """
     import ast as _ast
     tree = _ast.parse(py_text)
     classes = [n for n in tree.body if isinstance(n, _ast.ClassDef)]
-    if len(classes) != 1:
-        raise RuntimeError("M1-2: 期望单类模块，实得 %d 个类" % len(classes))
-    cls = classes[0]
-    if len(cls.bases) != 1 or not isinstance(cls.bases[0], _ast.Name) \
-            or cls.keywords:
-        raise RuntimeError("M1-2: %s 基类形态漂移（需单 Name 基类）" % cls.name)
-    body_class_attrs = set()
-    for st in cls.body:
-        if isinstance(st, (_ast.Assign, _ast.AnnAssign)):
-            targets = st.targets if isinstance(st, _ast.Assign) else [st.target]
-            for t in targets:
-                if isinstance(t, _ast.Name):
-                    body_class_attrs.add(t.id)
-    methods = {n.name for n in cls.body
-               if isinstance(n, (_ast.FunctionDef, _ast.AsyncFunctionDef))}
-    # property 名不是槽：`self.id = v` 走 setter（cdef class 支持 property，
-    # setter 体内的 self._id 赋值才是槽）。CoreEvent.id = 属性 + _id 后备。
-    # @property 是 Name 装饰器；@x.setter 形态的 Attribute 装饰器一并在内。
-    props = {n.name for n in cls.body if isinstance(n, _ast.FunctionDef)
-             and any((isinstance(d, _ast.Name) and d.id == "property")
-                     or (isinstance(d, _ast.Attribute) and d.attr == "property")
-                     for d in n.decorator_list)}
-    slots = set()
-
-    def _mark_target(t):
-        if isinstance(t, _ast.Name):
-            slots.add(t.id)
-
-    for fn in [n for n in cls.body if isinstance(n, _ast.FunctionDef)]:
-        for node in _ast.walk(fn):
-            if isinstance(node, _ast.Assign):
-                for t in node.targets:
+    if not classes:
+        raise RuntimeError("M1-2: 模块零顶层类")
+    out = []
+    for cls in classes:
+        if len(cls.bases) != 1 or not isinstance(cls.bases[0], _ast.Name) \
+                or cls.keywords:
+            raise RuntimeError("M1-2: %s 基类形态漂移（需单 Name 基类）" % cls.name)
+        body_class_attrs = set()
+        for st in cls.body:
+            if isinstance(st, (_ast.Assign, _ast.AnnAssign)):
+                targets = st.targets if isinstance(st, _ast.Assign) else [st.target]
+                for t in targets:
+                    if isinstance(t, _ast.Name):
+                        body_class_attrs.add(t.id)
+        methods = {n.name for n in cls.body
+                   if isinstance(n, (_ast.FunctionDef, _ast.AsyncFunctionDef))}
+        # property 名不是槽：`self.id = v` 走 setter（cdef class 支持 property，
+        # setter 体内的 self._id 赋值才是槽）。CoreEvent.id = 属性 + _id 后备。
+        # @property 是 Name 装饰器；@x.setter 形态的 Attribute 装饰器一并在内。
+        props = {n.name for n in cls.body if isinstance(n, _ast.FunctionDef)
+                 and any((isinstance(d, _ast.Name) and d.id == "property")
+                         or (isinstance(d, _ast.Attribute) and d.attr == "property")
+                         for d in n.decorator_list)}
+        slots = set()
+        for fn in [n for n in cls.body if isinstance(n, _ast.FunctionDef)]:
+            for node in _ast.walk(fn):
+                if isinstance(node, _ast.Assign):
+                    for t in node.targets:
+                        if isinstance(t, _ast.Attribute) \
+                                and isinstance(t.value, _ast.Name) \
+                                and t.value.id == "self":
+                            slots.add(t.attr)
+                elif isinstance(node, _ast.AugAssign):
+                    t = node.target
                     if isinstance(t, _ast.Attribute) \
                             and isinstance(t.value, _ast.Name) \
                             and t.value.id == "self":
-                        slots.add(t.attr)
-            elif isinstance(node, _ast.AugAssign):
-                t = node.target
-                if isinstance(t, _ast.Attribute) \
-                        and isinstance(t.value, _ast.Name) \
-                        and t.value.id == "self":
-                    _mark_target(t)  # 目标必须是已声明属性，记入待核对集
-    shadow = (slots - props) & methods
-    if shadow:
-        raise RuntimeError("M1-2: %s 实例属性与方法同名影子 %s——产物形态漂移"
-                           % (cls.name, sorted(shadow)))
-    slots -= body_class_attrs
-    slots -= props
-    return cls.name, cls.bases[0].id, slots
+                        slots.add(t.attr)  # 目标必须是已声明属性，记入待核对集
+        shadow = (slots - props) & methods
+        if shadow:
+            raise RuntimeError("M1-2: %s 实例属性与方法同名影子 %s——产物形态漂移"
+                               % (cls.name, sorted(shadow)))
+        slots -= body_class_attrs
+        slots -= props
+        out.append((cls.name, cls.bases[0].id, slots))
+    return out
 
 
-def _emit_pxd(py_text, module_py_rel):
-    """生成伴随 .pxd 文本（object 槽起步；数值 C 类型留待逐类审计）。"""
-    cls_name, base_name, slots = _collect_instance_slots(py_text)
-    if not slots:
-        raise RuntimeError("M1-2: %s 零实例槽——白名单选择有误" % cls_name)
-    if base_name == "GodotObject":
-        base_import = "from gd_core_py._rt cimport GodotObject\n\n\ncdef class %s(GodotObject):\n" % cls_name
-    else:
-        base_mod = module_py_rel.rsplit("/", 1)[0]
-        base_import = ("from gd_core_py.%s.%s cimport %s\n\n\ncdef class %s(%s):\n"
-                       % (base_mod, base_name, base_name, cls_name, base_name))
+def _emit_pxd(py_text, module_py_rel, gd_rel):
+    """生成伴随 .pxd 文本（object 槽起步；数值 C 类型留待逐类审计）。
+
+    多类模块全部槽化（声明序）；引擎补充槽按 gd rel 合并进对应类
+    （当前只有 CoreContext/CoreEventBus 有引擎赋值面）。
+    """
+    collected = _collect_instance_slots(py_text)
+    extra = _PXD_EXTRA_SLOTS.get(gd_rel, set())
     lines = [
         "# -*- coding: utf-8 -*-",
         "# 自动生成，勿手改。生成器：tools/gd_to_py.py（M1-2 实例槽位声明）",
         "#",
-        "# 本文件把 %s 转为 cdef class：实例免 __dict__（每实例一次字典分配）"
-        % cls_name,
-        "# + 未声明属性赋值编译态报错（形态漂移即时暴露）。",
+        "# 本文件把本模块全部顶层类转为 cdef class：实例免 __dict__（每实例",
+        "# 一次字典分配）+ 未声明属性赋值编译态报错（形态漂移即时暴露）。",
         "# 基类链必须全部 cdef（GodotObject 见 _rt.pxd 批A）；白名单外的类",
         "# 保持 plain。全部槽位 object 型起步——数值 C 类型（float/int 槽）",
         "# 须先审计该字段的全部赋值域（None/float 混合即炸），逐类放行。",
+        "# 引擎补充槽（_PXD_EXTRA_SLOTS）= simulator/gd_core_engine.py 对本类",
+        "# 实例的动态赋值面，生成器收集器看不见，必须显式声明。",
         "#",
         "# 修改本类实例属性面（新增 self.X 赋值）后必须重跑生成器同步本文件，",
         "# 否则编译态 AttributeError。tools/gd_to_py.py --check 一并核对。",
         "",
     ]
-    lines.append(base_import)
-    for name in sorted(slots):
-        lines.append("    cdef public object %s" % name)
-    return "\n".join(lines) + "\n"
+    n_slots = 0
+    stem = gd_rel.rsplit("/", 1)[-1][:-3]
+    for cls_name, base_name, slots in collected:
+        if base_name == "GodotObject":
+            lines.append("from gd_core_py._rt cimport GodotObject\n")
+        else:
+            base_mod = module_py_rel.rsplit("/", 1)[0]
+            lines.append("from gd_core_py.%s.%s cimport %s\n"
+                         % (base_mod, base_name, base_name))
+        lines.append("\ncdef class %s(%s):\n" % (cls_name, base_name))
+        use = set(slots)
+        if cls_name == stem:
+            use |= extra           # 引擎装配期对本类的动态赋值面
+        if not use and cls_name == stem:
+            raise RuntimeError("M1-2: %s 零实例槽——白名单选择有误" % cls_name)
+        # 零槽辅助类（如 CoreItemSort 纯函数持有者）合法：cdef 无槽即可
+        for name in sorted(use):
+            lines.append("    cdef public object %s" % name)
+        n_slots += len(use)
+        lines.append("\n")
+    return "\n".join(lines)
 
 
 def _pxd_emission(texts, stat, hit):
@@ -3239,7 +3285,7 @@ def _pxd_emission(texts, stat, hit):
         t = texts.get(rel)
         if t is None:
             raise RuntimeError("M1-2: 白名单 %s 无产物文本" % rel)
-        out[py_rel] = _emit_pxd(t, py_rel)
+        out[py_rel] = _emit_pxd(t, py_rel, rel)
     stat["M1_2_pxd"] = ["%s：%d 槽" % (k, v.count("cdef public"))
                         for k, v in sorted(out.items())]
     hit["M1_2_pxd_emit"] = len(out)
