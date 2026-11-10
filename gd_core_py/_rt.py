@@ -1189,7 +1189,12 @@ class GodotObject:
         self._init(*args, **kwargs)
 
     def _init_fields(self):
-        pass
+        # ★ M1-2 批A：信号连接表从实例 __dict__ 迁到 cdef 槽（_rt.pxd 声明）。
+        #   cdef 实例无 __dict__，连接表必须有名有姓地占槽；普通 Python 子类
+        #   的实例同时有槽和 __dict__（槽优先，语义同前）。
+        #   106/106 个生成类 _init_fields 覆写均首行 super()（grep 实证），
+        #   链路必然经过这里。
+        self._gd_conns = None
 
     def _init(self, *args, **kwargs):
         pass
@@ -1216,7 +1221,11 @@ class GodotObject:
             return v
         a = getattr(self, name, None)
         ok = callable(a)
-        if (name not in self.__dict__
+        # ★ M1-2 批A：cdef 实例无 __dict__（getattr 取到 None）——实例级影子
+        #   对 cdef 槽实例本就不可能（槽外赋值 AttributeError），守卫自然退化
+        #   为「只查 property」；普通子类实例照旧走 __dict__ 检查。
+        d = getattr(self, "__dict__", None)
+        if ((d is None or name not in d)
                 and not isinstance(getattr(cls, name, None), property)):
             _HAS_METHOD_CACHE[key] = ok
         return ok
@@ -1244,9 +1253,12 @@ class GodotObject:
         return None
 
     # ── 信号 ──
+    # ★ M1-2 批A：连接表走 _gd_conns 槽（原实例 __dict__.setdefault——cdef
+    #   实例无 __dict__）。槽初值 None 由 _init_fields 保证（对象槽分配即
+    #   None，双重保险）；普通子类实例同样读槽（语义与原 __dict__ 版一致）。
 
     def emit_signal(self, name, *args):
-        conns = self.__dict__.get("_gd_conns")
+        conns = self._gd_conns
         if not conns:
             return
         for target, method in list(conns.get(str(name), ())):
@@ -1255,12 +1267,15 @@ class GodotObject:
                 cb(*args)
 
     def connect(self, signal, target, method, binds=None):
-        conns = self.__dict__.setdefault("_gd_conns", {})
+        conns = self._gd_conns
+        if conns is None:
+            conns = {}
+            self._gd_conns = conns
         conns.setdefault(str(signal), []).append((target, method))
         return None
 
     def disconnect(self, signal, target, method):
-        conns = self.__dict__.get("_gd_conns")
+        conns = self._gd_conns
         if not conns:
             return
         lst = conns.get(str(signal))
@@ -1269,7 +1284,7 @@ class GodotObject:
         conns[str(signal)] = [c for c in lst if c != (target, method)]
 
     def is_connected(self, signal, target, method):
-        conns = self.__dict__.get("_gd_conns")
+        conns = self._gd_conns
         if not conns:
             return False
         return (target, method) in conns.get(str(signal), ())

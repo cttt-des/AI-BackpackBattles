@@ -24,6 +24,13 @@ cdef unsigned long long MASK64
 cdef unsigned long long UINT32_MAX
 cdef unsigned long long PCG_MULT
 
+# ── M1-2 批A（2026-11-10）：GodotObject 转 cdef 基座 ──
+# 全部生成类的最终基类；转 cdef 后 pxd 槽位对子类可见（普通 Python 子类
+# 仍带 __dict__，实例影子/light_log 机制不受影响——_m12_probe 实测）。
+# _gd_conns：信号连接表（原存实例 __dict__，cdef 化后无处安放 → 正式槽）。
+cdef class GodotObject:
+    cdef public object _gd_conns
+
 cdef class PCG32:
     cdef unsigned long long state
     cdef unsigned long long inc

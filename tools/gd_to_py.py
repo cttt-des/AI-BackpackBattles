@@ -3121,6 +3121,131 @@ def _cy_round_alias(texts, stat, hit):
     return texts
 
 
+# ── M1-2：pxd 槽位声明发射（白名单起步）──────────────────────────────
+# 槽位化前提（_m12_probe 实测，2026-11-10）：
+#   · 伴随 .pxd 声明 cdef class（.py 保持普通 class 体）→ 实例无 __dict__，
+#     未声明属性赋值 AttributeError（编译态强制）；基类链必须全部 cdef
+#     （GodotObject 已在批A 转 cdef，见 _rt.pxd）。
+#   · 普通 Python 子类继承 cdef 基类：自带 __dict__，实例影子/light_log
+#     机制不受影响；探针类（引擎侧 plain）同理。
+#   · cdef 体里允许运行时调用类属性（EnumDict 枚举实测合法）。
+# 白名单外的类保持 plain（实例有 __dict__，行为不变）。扩白名单前必须：
+#   ① 引擎/工具侧对该类实例无未声明属性赋值（grep gd_core_engine.py）；
+#   ② 类体无方法名影子赋值；③ 过 seed 双态 + 60 场 + REG9。
+_PXD_WHITELIST = {
+    "gd_core/CoreEvent.gd",
+}
+
+
+def _collect_instance_slots(py_text):
+    """从生成的 .py 文本收集 (类名, 基类名, 实例属性槽集合)。
+
+    槽集 = 类方法体内全部 `self.X =` / `self.X +=` 赋值目标，剔除：
+    类体级赋值（类属性如 Target/resource_path——归类字典，不是槽）与
+    方法名（影子赋值即违规，抛错）。多基类/关键字基类即抛（当前产物
+    全部单基类，漂移说明产物形态变了）。
+    """
+    import ast as _ast
+    tree = _ast.parse(py_text)
+    classes = [n for n in tree.body if isinstance(n, _ast.ClassDef)]
+    if len(classes) != 1:
+        raise RuntimeError("M1-2: 期望单类模块，实得 %d 个类" % len(classes))
+    cls = classes[0]
+    if len(cls.bases) != 1 or not isinstance(cls.bases[0], _ast.Name) \
+            or cls.keywords:
+        raise RuntimeError("M1-2: %s 基类形态漂移（需单 Name 基类）" % cls.name)
+    body_class_attrs = set()
+    for st in cls.body:
+        if isinstance(st, (_ast.Assign, _ast.AnnAssign)):
+            targets = st.targets if isinstance(st, _ast.Assign) else [st.target]
+            for t in targets:
+                if isinstance(t, _ast.Name):
+                    body_class_attrs.add(t.id)
+    methods = {n.name for n in cls.body
+               if isinstance(n, (_ast.FunctionDef, _ast.AsyncFunctionDef))}
+    # property 名不是槽：`self.id = v` 走 setter（cdef class 支持 property，
+    # setter 体内的 self._id 赋值才是槽）。CoreEvent.id = 属性 + _id 后备。
+    # @property 是 Name 装饰器；@x.setter 形态的 Attribute 装饰器一并在内。
+    props = {n.name for n in cls.body if isinstance(n, _ast.FunctionDef)
+             and any((isinstance(d, _ast.Name) and d.id == "property")
+                     or (isinstance(d, _ast.Attribute) and d.attr == "property")
+                     for d in n.decorator_list)}
+    slots = set()
+
+    def _mark_target(t):
+        if isinstance(t, _ast.Name):
+            slots.add(t.id)
+
+    for fn in [n for n in cls.body if isinstance(n, _ast.FunctionDef)]:
+        for node in _ast.walk(fn):
+            if isinstance(node, _ast.Assign):
+                for t in node.targets:
+                    if isinstance(t, _ast.Attribute) \
+                            and isinstance(t.value, _ast.Name) \
+                            and t.value.id == "self":
+                        slots.add(t.attr)
+            elif isinstance(node, _ast.AugAssign):
+                t = node.target
+                if isinstance(t, _ast.Attribute) \
+                        and isinstance(t.value, _ast.Name) \
+                        and t.value.id == "self":
+                    _mark_target(t)  # 目标必须是已声明属性，记入待核对集
+    shadow = (slots - props) & methods
+    if shadow:
+        raise RuntimeError("M1-2: %s 实例属性与方法同名影子 %s——产物形态漂移"
+                           % (cls.name, sorted(shadow)))
+    slots -= body_class_attrs
+    slots -= props
+    return cls.name, cls.bases[0].id, slots
+
+
+def _emit_pxd(py_text, module_py_rel):
+    """生成伴随 .pxd 文本（object 槽起步；数值 C 类型留待逐类审计）。"""
+    cls_name, base_name, slots = _collect_instance_slots(py_text)
+    if not slots:
+        raise RuntimeError("M1-2: %s 零实例槽——白名单选择有误" % cls_name)
+    if base_name == "GodotObject":
+        base_import = "from gd_core_py._rt cimport GodotObject\n\n\ncdef class %s(GodotObject):\n" % cls_name
+    else:
+        base_mod = module_py_rel.rsplit("/", 1)[0]
+        base_import = ("from gd_core_py.%s.%s cimport %s\n\n\ncdef class %s(%s):\n"
+                       % (base_mod, base_name, base_name, cls_name, base_name))
+    lines = [
+        "# -*- coding: utf-8 -*-",
+        "# 自动生成，勿手改。生成器：tools/gd_to_py.py（M1-2 实例槽位声明）",
+        "#",
+        "# 本文件把 %s 转为 cdef class：实例免 __dict__（每实例一次字典分配）"
+        % cls_name,
+        "# + 未声明属性赋值编译态报错（形态漂移即时暴露）。",
+        "# 基类链必须全部 cdef（GodotObject 见 _rt.pxd 批A）；白名单外的类",
+        "# 保持 plain。全部槽位 object 型起步——数值 C 类型（float/int 槽）",
+        "# 须先审计该字段的全部赋值域（None/float 混合即炸），逐类放行。",
+        "#",
+        "# 修改本类实例属性面（新增 self.X 赋值）后必须重跑生成器同步本文件，",
+        "# 否则编译态 AttributeError。tools/gd_to_py.py --check 一并核对。",
+        "",
+    ]
+    lines.append(base_import)
+    for name in sorted(slots):
+        lines.append("    cdef public object %s" % name)
+    return "\n".join(lines) + "\n"
+
+
+def _pxd_emission(texts, stat, hit):
+    """对白名单模块生成 pxd；返回 {py_rel: pxd_text}。"""
+    out = {}
+    for rel in sorted(_PXD_WHITELIST):
+        py_rel = py_file_rel(rel)
+        t = texts.get(rel)
+        if t is None:
+            raise RuntimeError("M1-2: 白名单 %s 无产物文本" % rel)
+        out[py_rel] = _emit_pxd(t, py_rel)
+    stat["M1_2_pxd"] = ["%s：%d 槽" % (k, v.count("cdef public"))
+                        for k, v in sorted(out.items())]
+    hit["M1_2_pxd_emit"] = len(out)
+    return out
+
+
 def write_pkg(order, files_by_rel, by_name, by_path, class_names, stat, hit, write):
     texts = {}
     for rel in order:
@@ -3154,6 +3279,8 @@ def write_pkg(order, files_by_rel, by_name, by_path, class_names, stat, hit, wri
         texts = _strip_noop_hooks(texts, stat, hit)
     if "CY" not in _skip:
         texts = _cy_round_alias(texts, stat, hit)
+    pxd_texts = {} if "M1_2" in _skip else _pxd_emission(texts, stat, hit)
+    stat["M1_2_pxd_texts"] = pxd_texts    # --check 复用（write=False 时 main 取）
     if not write:
         return texts
     dirs = {OUT_PKG}
@@ -3180,6 +3307,12 @@ def write_pkg(order, files_by_rel, by_name, by_path, class_names, stat, hit, wri
         p = os.path.join(OUT_PKG, *py_file_rel(rel).split("/"))
         with io.open(p, "w", encoding="utf-8", newline="\n") as fh:
             fh.write(text)
+    # ── M1-2：pxd 与 .py 同目录落盘（伴随声明）──
+    for py_rel, ptext in pxd_texts.items():
+        p = os.path.join(OUT_PKG, *py_rel.split("/"))
+        p = p[:-3] + ".pxd"
+        with io.open(p, "w", encoding="utf-8", newline="\n") as fh:
+            fh.write(ptext)
     with io.open(os.path.join(OUT_PKG, "_bootstrap.py"), "w",
                  encoding="utf-8", newline="\n") as fh:
         fh.write(emit_bootstrap(order, files_by_rel,
@@ -3239,6 +3372,14 @@ def main() -> int:
                 old = io.open(p, encoding="utf-8", errors="replace").read()
             if old != text:
                 bad.append(rel)
+        for py_rel, ptext in (stat.get("M1_2_pxd_texts") or {}).items():
+            p = os.path.join(OUT_PKG, *py_rel.split("/"))
+            p = p[:-3] + ".pxd"
+            old = ""
+            if os.path.exists(p):
+                old = io.open(p, encoding="utf-8", errors="replace").read()
+            if old != ptext:
+                bad.append(py_rel + " → .pxd")
         if bad:
             print("\n产物已过期（%d 个）：%s" % (len(bad), bad[:5]))
             return 1
