@@ -17,6 +17,7 @@ from gd_core_py._rt cimport GodotObject
 
 cdef class CoreItemSort(GodotObject):
 
+    pass
 
 
 from gd_core_py._rt cimport GodotObject

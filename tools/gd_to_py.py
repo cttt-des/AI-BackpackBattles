@@ -1797,16 +1797,53 @@ class Emitter:
         return out
 
 
+def _rt_export_names():
+    """从 gd_core_py/_rt.py 源 AST 提取 __all__ 字面量（生成期只读一次）。
+
+    不 import 运行态 _rt（避免把 .pyd 产物状态当真源）。"""
+    import ast as _ast
+    p = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                     "gd_core_py", "_rt.py")
+    tree = _ast.parse(io.open(p, encoding="utf-8").read())
+    for node in tree.body:
+        if isinstance(node, _ast.Assign) and len(node.targets) == 1 \
+                and isinstance(node.targets[0], _ast.Name) \
+                and node.targets[0].id == "__all__":
+            return {elt.value for elt in node.value.elts
+                    if isinstance(elt, _ast.Constant)}
+    raise RuntimeError("M1-2: _rt.py 未找到 __all__ 字面量")
+
+
+_RT_EXPORT_NAMES = _rt_export_names()
+
+
 def transform_file(f, by_name, by_path, stat, hit, class_names):
     # ★ 生成模块在 gd_core/ 或 gd_core_items/[子目录/] 包里，而 _rt/_registry 在
     #   gd_core_py 顶层 —— 必须写足够的上级点数（`.` 会被解析成 gd_core_py.gd_core._rt，
     #   报 "No module named ..."）。depth = 路径段数 - 1（减掉模块自身）。
     depth = len(f.rel[:-3].split("/")) - 1
     dots = "." * (depth + 1)
-    out = [GEN_BANNER,
-           "from %s_rt import *  # noqa: F401,F403\n" % dots,
-           "from %s import _registry as _R\n" % dots,
-           "\n\n"]
+    if f.rel in _PXD_WHITELIST:
+        # ★ M1-2（2026-11-11）：白名单模块伴随 pxd cimport GodotObject——
+        #   编译态模块 dict 预绑该 C type，`from .._rt import *` 重绑即抛
+        #   "Cannot overwrite C type"。故改发**显式具名导入**（剔除
+        #   GodotObject；静态解析保住 Cython 对 f32/_iter 等的识别），
+        #   GodotObject 由 pxd cimport 提供编译态绑定；纯 py 态无 pxd，
+        #   由「条件补绑」行补上。__all__ 清单生成期从 _rt.py 源 AST 提取。
+        names = _RT_EXPORT_NAMES - {"GodotObject"}
+        out = [GEN_BANNER,
+               "from %s_rt import (  # noqa: F401\n" % dots,
+               ",\n".join("    %s" % n for n in sorted(names)),
+               ",\n)\n",
+               "if \"GodotObject\" not in globals():\n"
+               "\tfrom %s_rt import GodotObject  # 纯 py 补绑；编译态 pxd 已预绑\n" % dots,
+               "from %s import _registry as _R\n" % dots,
+               "\n\n"]
+    else:
+        out = [GEN_BANNER,
+               "from %s_rt import *  # noqa: F401,F403\n" % dots,
+               "from %s import _registry as _R\n" % dots,
+               "\n\n"]
     base = resolve_ref(f.extends, by_name, by_path)
     if f.extends is None:
         base_expr = "GodotObject"
@@ -1866,10 +1903,20 @@ def transform_file(f, by_name, by_path, stat, hit, class_names):
     #   注意不能拿 `members` 当判据：collect_class_scope 本就把内嵌类名并入 members
     #   （这样 `_members` 知道它们是名字），那是既有设计，不是冲突。
     _field_names = {fn for fn, _d in fields}
+    # ★ M1-2（2026-11-11）：内嵌类别名原为类型级**创建后**赋值
+    #   （`X.Inner = Inner`）——cdef class（白名单）类型不可变，创建后加
+    #   属性即 TypeError。别名必须保留（instance.Inner 访问面，CoreCharacter
+    #   的 self.ctx.rng.BalancedRng 实证）——白名单模块改发**类体末尾**的
+    #   缩进赋值（type 创建期落 type dict，与 Target=EnumDict 同机制）；
+    #   内嵌类均先于外层类发射（out[_cls_idx] 插入点实证），名字已绑定。
+    #   非白名单模块保持原类型级赋值（plain 类可变）。
     for _nm in em.hoisted_names:
         if _nm in methods or _nm in _field_names:
             stat["内嵌类别名撞名"].append("%s.%s" % (f.py_class, _nm))
-        out.append("%s.%s = %s" % (f.py_class, _nm, _nm))
+        if f.rel in _PXD_WHITELIST:
+            out.append("\t%s = %s" % (_nm, _nm))
+        else:
+            out.append("%s.%s = %s" % (f.py_class, _nm, _nm))
     if em.hoisted_names:
         out.append("")
 
@@ -3272,6 +3319,8 @@ def _emit_pxd(py_text, module_py_rel, gd_rel):
         # 零槽辅助类（如 CoreItemSort 纯函数持有者）合法：cdef 无槽即可
         for name in sorted(use):
             lines.append("    cdef public object %s" % name)
+        if not use:
+            lines.append("    pass")   # cdef 类体不允许为空（Cython 语法）
         n_slots += len(use)
         lines.append("\n")
     return "\n".join(lines)
@@ -3351,6 +3400,13 @@ def write_pkg(order, files_by_rel, by_name, by_path, class_names, stat, hit, wri
         if rel.endswith(".py"):
             raise RuntimeError("write_pkg: texts 出现 .py 键 %r——趟内赋值键名错误" % rel)
         p = os.path.join(OUT_PKG, *py_file_rel(rel).split("/"))
+        # ★ M1-2 卫生（2026-11-11）：内容不变则跳过写盘（保 mtime）——
+        #   build_cython 的 mtime 幂等判定依赖「.py 变了 pyd 才算陈旧」，
+        #   无差别重写会把 664 个未变模块全部标陈旧、触发全量重编。
+        if os.path.exists(p):
+            with io.open(p, encoding="utf-8", newline="") as fh:
+                if fh.read() == text:
+                    continue
         with io.open(p, "w", encoding="utf-8", newline="\n") as fh:
             fh.write(text)
     # ── M1-2：pxd 与 .py 同目录落盘（伴随声明）──

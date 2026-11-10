@@ -131,19 +131,53 @@ def main():
     # ── MSVC 清单模式（S5-F1 续批）：单 bat 内 vcvars 一次 + 逐模块 cl——
     #    首版每模块重调 vcvars（5-8s 纯开销 × 643）不可行。cl 失败的模块无
     #    .pyd 产物 → 回落 .py（幂等重跑只补缺）。──
+    # ★ M0 教训修复（2026-11-11）：幂等跳过原为 `if exist .pyd` —— pyd 存在
+    #   即跳过、**从不看源 mtime**，导致源变更后的「重编」全部空转（M1-1/
+    #   M2/M1-2/M1-4 的 pyd 均未真正进编译态，闸门绿是因为旧 pyd 与新源
+    #   语义等价 + 纯 py 臂单独验证过——两件事凑巧掩盖了同一仪器 bug）。
+    #   现改为 mtime 判定：pyd 存在且晚于 .py 与伴随 .pxd 才跳过。
     if BACKEND == "msvc" and a.list:
         libs_dir = os.path.join(PY_DIR, "libs")
         inc = sysconfig.get_paths()["include"]
+        stale = []
+        for t in targets:
+            base = os.path.splitext(os.path.join(ROOT, t))[0]
+            pyd = base + ".pyd"
+            if not os.path.exists(pyd):
+                stale.append(t)
+                continue
+            pyd_m = os.path.getmtime(pyd)
+            for dep in (base + ".py", base + ".pxd"):
+                if os.path.exists(dep) and os.path.getmtime(dep) > pyd_m:
+                    stale.append(t)
+                    break
+        targets = stale
+        if not targets:
+            print("[msvc-list] 全部目标新鲜（pyd 晚于 .py/.pxd），零重编")
+            return 0
+        # ★ cython 步（源 → .c）：清单模式原直接编既有 .c——源变更后 .c 陈旧
+        #   是与「pyd 存在即跳过」叠加的第二重空转雷。逐模块跑 cython
+        #   （~1-2s/个，清单规模可承受），cl 仍走单 bat 批量。
+        for t in targets:
+            py_path = os.path.relpath(os.path.join(ROOT, t), ROOT)
+            base = os.path.splitext(py_path)[0]
+            r = subprocess.run([sys.executable, "-m", "cython", "-3",
+                                "-X", "binding=False",
+                                py_path, "-o", base + ".c"],
+                               cwd=ROOT, capture_output=True, text=True)
+            if r.returncode != 0:
+                raise RuntimeError(f"cython 失败 {py_path}:\n"
+                                   f"{r.stdout[-800:]}\n{r.stderr[-800:]}")
         bat = os.path.join(ROOT, "tools", "_msvc_list.cmd")
         out = ["@echo off",
                f'call "{MSVC_VCVARS}" >nul 2>&1']
         for t in targets:
             base = os.path.splitext(t)[0]
+            # ★ 目标已在 Python 侧按 mtime 筛过（stale 才进 bat）——bat 内
+            #   不再放 `if exist .pyd goto skip`（就是它把重编吞掉的）
             out.append(
-                f'if exist {base}.pyd goto :skip_{abs(hash(t)) % 10**8}\n'
                 f'cl /O2 /LD /MD /nologo /I "{inc}" {base}.c '
-                f'/link /LIBPATH:"{libs_dir}" python314.lib /OUT:{base}.pyd\n'
-                f':skip_{abs(hash(t)) % 10**8}')
+                f'/link /LIBPATH:"{libs_dir}" python314.lib /OUT:{base}.pyd')
         with io.open(bat, "w", encoding="ascii", newline="") as fh:
             fh.write("\r\n".join(out) + "\r\n")
         r = subprocess.run(["cmd", "/c", bat], cwd=ROOT)
@@ -152,7 +186,7 @@ def main():
                 if not os.path.exists(os.path.join(ROOT, t[:-3] + ".pyd"))]
         for t in miss:
             print(f"  MISS {t}（无 .pyd → 回落 .py）")
-        print(f"[msvc-list] 缺失 {len(miss)} / 目标 {len(targets)}")
+        print(f"[msvc-list] 缺失 {len(miss)} / 重编目标 {len(targets)}")
         return 0
 
     rc = 0

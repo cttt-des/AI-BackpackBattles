@@ -32,5 +32,8 @@ cdef class GodotObject:
     cdef public object _gd_conns
 
 cdef class PCG32:
-    cdef unsigned long long state
-    cdef unsigned long long inc
+    # ★ public（2026-11-11）：plain 类 RandomNumberGenerator 的 state 属性
+    #   与取证工具跨模块 Python 级访问 pcg.state——private C 槽对外即
+    #   AttributeError。写入点全部先 `int(v) & MASK64`（非负），u64 强转安全。
+    cdef public unsigned long long state
+    cdef public unsigned long long inc
