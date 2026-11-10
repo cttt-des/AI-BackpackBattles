@@ -16,8 +16,8 @@ Homepage = "https://github.com/cttt-des/AI-BackpackBattles"
 
 [tool.setuptools.packages.find]
 # 只打包运行内核与模拟器；不含逆向产物/工具/语料
-include = ["simulator*", "gd_core_py*", "engine*"]
-exclude = ["build*", "dist*", "docs*", "tools*", "oracle*", "ai*", "gripper*"]
+include = ["simulator*", "gd_core_py*"]
+exclude = ["build*", "dist*", "docs*", "tools*", "oracle*", "ai*", "gripper*", "engine*"]
 
 [tool.setuptools.package-data]
 "gd_core_py" = ["*.pyd", "*.py"]

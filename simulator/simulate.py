@@ -33,15 +33,16 @@ DEFAULT_ENGINE = "gd_core"
 
 
 def _get_combat_engine(name: str = DEFAULT_ENGINE):
+    """唯一内核 = gd_core。
+
+    历史：engine/（自研转译内核，rng.flip 缺失不可用）与 simulator/combat.py
+    （旧内核）已于 2026-11-10 下线；engine/ 整包删除（判据渲染器迁到
+    simulator/log_text.py），旧内核对照工具随之退场，需要时查 git 历史。
+    """
     if name == "gd_core":
         from .gd_core_engine import GDCoreEngine
         return GDCoreEngine, load_items, load_characters
-    if name == "engine":
-        from engine.combat import CombatEngine
-        from engine.data import load_items as _li, load_characters as _lc
-        return CombatEngine, _li, _lc
-    from .combat import CombatEngine
-    return CombatEngine, load_items, load_characters
+    raise ValueError("未内核 %r：只支持 'gd_core'（旧内核对已下线）" % (name,))
 
 
 def _log_events(eng) -> List[dict]:

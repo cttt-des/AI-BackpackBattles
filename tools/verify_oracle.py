@@ -822,7 +822,7 @@ def _etype_str(num: int) -> str:
 
 
 def render_lines(stream: List[Dict[str, Any]]) -> List[str]:
-    from engine.log_text import render_log
+    from simulator.log_text import render_log
     shims = []
     for e in stream:
         s = _Shim(e)

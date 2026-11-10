@@ -80,8 +80,8 @@ def load_sim_events(player_path, opponent_path, seed):
     o = load_lineup(opponent_path)
     eng = GDCoreEngine(p, o, item_db, char_db, seed=seed, max_time=90.0)
     eng.run()
-    from engine.i18n import t as _t  # noqa: F401  (确保渲染可用)
-    from engine.log_text import render_log
+    from simulator.i18n import zh_names as _t  # noqa: F401  (确保渲染可用)
+    from simulator.log_text import render_log
     out = []
     for e in eng.log.events:
         etype = e.type
@@ -116,7 +116,7 @@ def load_sim_events(player_path, opponent_path, seed):
 def _zh_name(key):
     if key is None:
         return None
-    from engine.i18n import zh_name
+    from simulator.i18n import zh_name
     return zh_name(key)
 
 

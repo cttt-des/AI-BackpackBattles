@@ -80,9 +80,9 @@ PY
 
 - **战斗内核：`gd_core`** —— 原版战斗逻辑的 1:1 移植：运行版 .gde 逆向 → `gd_core/` 无头 GDScript 内核 → `tools/gd_to_py.py` 机械转写为 `gd_core_py/`。已用 56 局 Godot 基准逐字符校验（`tools/check_gd_core_engine.py`）
 - 物品数据来自 `assets/gd_core_runtime.json`（531 件，含四色影响格/参数/转写形状）
-- 输出：事件流 JSON、战斗结果 JSON、**游戏格式战报文本**（中/英，共享渲染层 `engine/log_text.py`）
+- 输出：事件流 JSON、战斗结果 JSON、**游戏格式战报文本**（中/英，共享渲染层 `simulator/log_text.py`）
 - 桌面 GUI（`battle_simulator.py`）：阵容选择、镜像对战、蒙特卡洛胜率、开战前占格重叠预检
-- 历史 `engine/`（自研转译内核）与 `simulator/combat.py` 旧内核已下线，文件保留作参考
+- 历史 `engine/`（自研转译内核，`rng.flip` 缺失不可用）与依赖它的旧内核对照工具已于 **2026-11-10 整包删除**（判据渲染器迁到 `simulator/log_text.py`），需要时查 git 历史
 
 ### ④ 外挂 AI（自动游玩）
 
@@ -208,7 +208,8 @@ core/                       # 外挂 AI 核心（bot/memory_reader/item_reader/g
 ├── recorder.py             # ★ 对局语料记录器（采样/去抖/差分/局边界，纯只读）
 ├── store.py                #   记录写盘：回合分片 + lzma 归档 + 快照
 └── lineup.py               #   ItemInfo → v4 阵容的唯一序列化实现
-engine/                     # 共享渲染层（log_text 游戏格式战报/i18n）+ 历史转译内核（已下线）
+simulator/log_text.py       # 游戏格式战报渲染器（三方对齐主判据口径）
+（engine/ 已于 2026-11-10 删除：渲染层迁入 simulator，旧内核随工具链下线）
 simulator/                  # CLI/GUI 入口（simulate.py 单内核 gd_core）+ 数据管线
 ├── gd_core_engine.py       # gd_core 内核适配层
 ├── extract_linkage.py      # ★ 联动专项提取（四色影响格 + canAffect + 回调，含继承链）

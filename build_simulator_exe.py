@@ -52,7 +52,7 @@ def build():
     # ②开发态 python -m simulator.gui 首启即命中缓存。
     import compileall
     print("Precompiling bytecode (compileall) ...")
-    for pkg in ("gd_core_py", "simulator", "engine"):
+    for pkg in ("gd_core_py", "simulator"):
         ok = compileall.compile_dir(str(PROJECT_DIR / pkg), quiet=1,
                                     maxlevels=10, force=True)
         if not ok:
@@ -66,12 +66,6 @@ def build():
         "--name", APP_NAME,
         # 打包物品/角色数据（data.py 冻结态从 sys._MEIPASS/assets 读取）
         "--add-data", str(PROJECT_DIR / "assets") + ";assets",
-        # v2 引擎（engine/）在 simulate._get_combat_engine 内延迟导入，显式声明
-        "--hidden-import", "engine",
-        "--hidden-import", "engine.combat",
-        "--hidden-import", "engine.data",
-        "--hidden-import", "engine.gen.behaviors",
-        "--collect-submodules", "engine",
         # 唯一默认内核 gd_core（2026-11-09 起）：适配层延迟导入；gd_core_py 的
         # 673 个转写模块经 _registry（importlib.import_module）动态导入，
         # 静态分析不可见，必须显式全量收集。数据面 assets/gd_core_runtime.json

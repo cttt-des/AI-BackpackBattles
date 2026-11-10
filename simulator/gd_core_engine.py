@@ -442,7 +442,7 @@ class _LogMixin:
                  "params": dict(e.params)} for e in self.events]
 
     def to_text(self, lang: Optional[str] = None):
-        from engine.log_text import render_log
+        from .log_text import render_log
         return render_log(self.events, lang or "zh")
 
 
