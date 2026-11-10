@@ -229,6 +229,9 @@ def main():
                     help="用 process_time 计时（排除降频/抢占的墙钟等待）")
     ap.add_argument("--warmup", type=int, default=0,
                     help="先跑 N 场热身并丢弃（抹平 pyc/pyd 冷加载）")
+    ap.add_argument("--no-evidence", action="store_true",
+                    help="跳过语义不变性探针（A/B 臂用：缩短漂移暴露窗口，"
+                         "语义闸由 seed 指纹/60 场账本另行覆盖）")
     args = ap.parse_args()
 
     if args.pin:
@@ -314,9 +317,10 @@ def main():
         out["warmup"] = args.warmup
 
         # ── 语义不变性探针：同 seed 跨轮比对（A 轮 vs 最后一轮） ──
-        subset = args.n if args.n <= 5 else 3
+        subset = 0 if args.no_evidence else (args.n if args.n <= 5 else 3)
         ev_a = [_evidence(pl_str, op_str, args.seed + i) for i in range(subset)]
-        ev_b = [_evidence(pl_str, op_str, args.seed + i) for i in range(subset)]
+        ev_b = ([_evidence(pl_str, op_str, args.seed + i) for i in range(subset)]
+                if not args.no_evidence else ev_a)
         delta = [{"seed": args.seed + i,
                   "field": k, "a": ea[k], "b": eb[k]}
                  for i, (ea, eb) in enumerate(zip(ev_a, ev_b))
@@ -324,7 +328,8 @@ def main():
                            "events_bytes") if ea[k] != eb[k]]
         out["invariance_delta"] = delta
         out["invariance_pass"] = not delta
-        out["events_bytes_first_seed"] = ev_a[0]["events_bytes"]
+        out["events_bytes_first_seed"] = (ev_a[0]["events_bytes"]
+                                          if ev_a else None)
 
     if args.ttfb:
         out["ttfb"] = _ttfb(args.lineup_p, args.lineup_o)

@@ -526,11 +526,23 @@ class _LogMixin:
             else:
                 safe_params[kk if kk.__class__ is str else str(kk)] = _json_safe(vv)
 
+        # target 侧折算（原 self._side 内联——旁路里最后一个转发调用）
+        tgt_v = event.target
+        if tgt_v is None:
+            tgt = None
+        else:
+            try:
+                _t = int(tgt_v)
+            except (TypeError, ValueError):
+                tgt = None
+            else:
+                tgt = "player" if _t == 0 else "opponent"
+
         self.events.append(_EventOut(
             t=float(event.timestamp or 0.0),
             etype=etype,
             actor=actor,
-            target=self._side(event.target),
+            target=tgt,
             origin=oref,
             params=safe_params,
             parent=(getattr(event.parentEvent, "id", None)

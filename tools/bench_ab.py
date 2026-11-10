@@ -30,7 +30,7 @@ ARM_ENV = {"cy": {}, "py": {"GD_PURE_PY": "1"}}
 def _run_arm(arm: str, n: int, seed: int, lineup_p: str, lineup_o: str,
              cpu_time: bool = False, warmup: int = 0,
              root: str = "", pure_py: bool = False) -> dict:
-    """跑一个臂（独立子进程），返回该轮指标。
+    """跑一个臂块（独立子进程），返回该块指标。
 
     root：臂的工作树（默认本仓库根）。跨树 A/B（M2 前后对比）时 A/B 各指
     一棵树——bench_sim 以 __file__ 定位自己的树，imports/lineups 都取臂侧。
@@ -46,7 +46,7 @@ def _run_arm(arm: str, n: int, seed: int, lineup_p: str, lineup_o: str,
     env["PYTHONHASHSEED"] = "0"
     cmd = [sys.executable, "-X", "utf8", bench,
            "--n", str(n), "--rounds", "1", "--seed", str(seed),
-           "--json", out, "--label", "ab_" + arm]
+           "--json", out, "--label", "ab_" + arm, "--no-evidence"]
     if cpu_time:
         cmd.append("--cpu-time")
     if warmup:
@@ -86,6 +86,8 @@ def main() -> int:
     ap.add_argument("--root-b", default="", help="臂 B 的工作树（默认本仓库根）")
     ap.add_argument("--pure-py", action="store_true",
                     help="两臂都强制 GD_PURE_PY=1（跨树源码 A/B 用）")
+    ap.add_argument("--chunks", type=int, default=4,
+                    help="每臂每轮的块数（ABBA 块级交错，抗阵发漂移）")
     ap.add_argument("--json", default="")
     a = ap.parse_args()
 
@@ -93,15 +95,27 @@ def main() -> int:
     pairs = []
     mean_pairs = []
     rows_a, rows_b = [], []
+    chunks = max(2, a.chunks - (a.chunks % 2))   # ABBA 需偶数块
+    chunk_n = max(5, a.n // chunks)
     for i in range(a.rounds):
-        # 顺序交替：偶数轮 A→B，奇数轮 B→A（抵消轮内漂移）
-        order = (arm_a, arm_b) if i % 2 == 0 else (arm_b, arm_a)
-        got = {}
-        for arm in order:
-            got[arm] = _run_arm(arm, a.n, a.seed, a.lineup_p, a.lineup_o,
-                                a.cpu_time, a.warmup,
-                                root=a.root_a if arm == arm_a else a.root_b,
-                                pure_py=a.pure_py)
+        # ABBA 块级交错：偶数轮 A B B A，奇数轮 B A A B——线性漂移被
+        # 镜像抵消，~5s 尺度的阵发漂移也被块配对摊薄（轮级 A→B 抵不掉）。
+        first, second = (arm_a, arm_b) if i % 2 == 0 else (arm_b, arm_a)
+        schedule = [first, second, second, first] * (chunks // 2)
+        sums = {}
+        for arm in schedule:
+            d = _run_arm(arm, chunk_n, a.seed, a.lineup_p, a.lineup_o,
+                         a.cpu_time, a.warmup,
+                         a.root_a if arm == arm_a else a.root_b,
+                         a.pure_py)
+            acc = sums.setdefault(arm, {"p50_ms": [], "mean_ms": [],
+                                        "n": 0})
+            acc["p50_ms"].append(d["p50_ms"])
+            acc["mean_ms"].append(d["mean_ms"])
+            acc["n"] += d["n"]
+        got = {arm: {k: (statistics.fmean(v) if k != "n" else v)
+                     for k, v in acc.items()}
+               for arm, acc in sums.items()}
         pa, pb = got[arm_a]["p50_ms"], got[arm_b]["p50_ms"]
         ma, mb = got[arm_a]["mean_ms"], got[arm_b]["mean_ms"]
         rows_a.append(pa)
