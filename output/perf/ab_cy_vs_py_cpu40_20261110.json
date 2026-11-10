@@ -1,0 +1,36 @@
+{
+ "tool": "bench_ab/v1",
+ "n": 40,
+ "rounds": 5,
+ "seed": 20260923,
+ "arm_a": "cy",
+ "arm_b": "py",
+ "clock": "process_time",
+ "warmup": 2,
+ "p50_a": [
+  312.5,
+  312.5,
+  328.1,
+  328.1,
+  328.1
+ ],
+ "p50_b": [
+  335.9,
+  375.0,
+  343.8,
+  359.4,
+  328.1
+ ],
+ "ratio_b_over_a": [
+  1.0749,
+  1.2,
+  1.0479,
+  1.0954,
+  1.0
+ ],
+ "median_ratio": 1.0749,
+ "spread_a_pct": 4.75,
+ "spread_b_pct": 13.64,
+ "spread_ratio_pct": 18.61,
+ "verdict": "ratio_unstable"
+}

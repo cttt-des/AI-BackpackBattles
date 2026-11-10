@@ -120,3 +120,5 @@ gd_core_test/gd_core_items/
 # ============ Cython 编译产物（tools/build_cython.py 再生） ============
 gd_core_py/**/*.pyd
 gd_core_py/**/*.c
+backpack_battles_sim.egg-info/
+dist/*.whl

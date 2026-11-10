@@ -7,13 +7,33 @@ import os
 import sys
 from typing import Any, Dict, Optional
 
-# 资源目录解析：开发态指向仓库 assets/；冻结态（PyInstaller --onefile）
-# 指向临时解包目录 sys._MEIPASS 下的 assets/。
-if getattr(sys, 'frozen', False):
-    _BASE = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(sys.executable)))
-else:
-    _BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-ASSETS = os.path.join(_BASE, 'assets')
+# 资源目录解析（三种形态都要能找到 assets/）：
+#   ① frozen（PyInstaller --onefile）→ sys._MEIPASS/assets
+#   ② 开发态（仓库根）→ <repo>/assets
+#   ③ pip 安装（wheel）→ 依次尝试 <site-packages>/assets、<sys.prefix>/assets
+#   ④ 显式覆盖：BACKPACK_ASSETS 环境变量（训练脚本可自定义数据目录）
+def _resolve_assets() -> str:
+    cands = []
+    env = os.environ.get("BACKPACK_ASSETS")
+    if env:
+        cands.append(env)
+    if getattr(sys, 'frozen', False):
+        cands.append(os.path.join(
+            getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(sys.executable))),
+            'assets'))
+    _here = os.path.dirname(os.path.abspath(__file__))
+    cands.append(os.path.join(os.path.dirname(_here), 'assets'))      # 开发态
+    cands.append(os.path.join(_here, 'assets'))                       # 包内 assets
+    cands.append(os.path.join(sys.prefix, 'assets'))                  # wheel data-files
+    cands.append(os.path.join(sys.base_prefix, 'assets'))
+    for c in cands:
+        if c and os.path.isdir(c):
+            return c
+    return cands[0] if cands else os.path.join(_here, 'assets')
+
+
+_BASE = os.path.dirname(_resolve_assets())
+ASSETS = _resolve_assets()
 
 
 def _load_json(path: str) -> Dict[str, Any]:

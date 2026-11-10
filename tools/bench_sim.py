@@ -75,15 +75,20 @@ def _pin(cores: str):
 
 # ── 单场（计时窗口内） ──────────────────────────────────────────────
 
-def _fight(pl_str, op_str, seed, max_time=180.0):
-    """返回 (ms, ticks, winner, timed_out, n_events)。JSON 解析在窗口外。"""
+def _fight(pl_str, op_str, seed, max_time=180.0, cpu_time=False):
+    """返回 (ms, ticks, winner, timed_out, n_events)。JSON 解析在窗口外。
+
+    cpu_time=True 时用 process_time 计时（排除被系统抢占/降频等待的墙钟时间），
+    用于在降频机上拿到与频率无关的口径。
+    """
     import json as _j
     from simulator.gd_core_engine import GDCoreEngine
-    t0 = time.perf_counter()
+    _clock = time.process_time if cpu_time else time.perf_counter
+    t0 = _clock()
     eng = GDCoreEngine(_j.loads(pl_str), _j.loads(op_str), {}, {},
                        seed=seed, max_time=max_time)
     eng.run()
-    ms = (time.perf_counter() - t0) * 1000.0
+    ms = (_clock() - t0) * 1000.0
     winner = "player" if eng.player_wins() else "opponent"
     return (ms, int(eng._ticks), winner, bool(eng.timed_out),
             len(eng.log.events))
@@ -212,6 +217,10 @@ def main():
                     help="sys.monitoring 调用计数剖面路径（单进程小 n）")
     ap.add_argument("--label", default="unspecified",
                     help="配置标签（进 JSON，供 A/B 对照）")
+    ap.add_argument("--cpu-time", action="store_true",
+                    help="用 process_time 计时（排除降频/抢占的墙钟等待）")
+    ap.add_argument("--warmup", type=int, default=0,
+                    help="先跑 N 场热身并丢弃（抹平 pyc/pyd 冷加载）")
     args = ap.parse_args()
 
     if args.pin:
@@ -270,9 +279,15 @@ def main():
     else:
         rounds = []
         rows_all = []
+        # 热身：同 seed 跑若干场丢弃，抹平 pyc/pyd 冷加载与首次属性缓存
+        if args.warmup > 0:
+            for i in range(args.warmup):
+                _fight(pl_str, op_str, args.seed + 100000 + i,
+                       cpu_time=args.cpu_time)
         for r in range(args.rounds):
             t0 = time.perf_counter()
-            rows = [_fight(pl_str, op_str, args.seed + i)
+            rows = [_fight(pl_str, op_str, args.seed + i,
+                           cpu_time=args.cpu_time)
                     for i in range(args.n)]
             rounds.append(round(time.perf_counter() - t0, 3))
             rows_all.extend(rows)
@@ -287,6 +302,8 @@ def main():
         out["repro_spread_pct"] = round((max(p50s) - min(p50s)) / med * 100.0,
                                         2) if med > 0 and len(p50s) > 1 else 0.0
         out["repro_pass_3pct"] = bool(out["repro_spread_pct"] <= 3.0)
+        out["clock"] = "process_time" if args.cpu_time else "perf_counter"
+        out["warmup"] = args.warmup
 
         # ── 语义不变性探针：同 seed 跨轮比对（A 轮 vs 最后一轮） ──
         subset = args.n if args.n <= 5 else 3

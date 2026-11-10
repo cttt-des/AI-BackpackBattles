@@ -27,6 +27,37 @@
 
 开发版随每次改动重新打包到 `dist/`（不带版本号）。
 
+### 训练 / 二次开发（Python API）
+
+要用模拟器**训练 AI 或做批量仿真**，请装 wheel 而不是用 exe——exe 只有 GUI，没有可 import 的接口：
+
+```bash
+pip install "https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.5.2/backpack_battles_sim-0.5.2-cp314-cp314-win_amd64.whl"
+
+python - <<'PY'
+from simulator.gd_core_engine import GDCoreEngine
+from simulator.data import load_items, load_characters
+from simulator.lineup import load_lineup
+
+p = load_lineup("truth_20261001_220653_R19_player.json")
+o = load_lineup("truth_20261001_220653_R19_opponent.json")
+eng = GDCoreEngine(p, o, load_items(), load_characters(),
+                   seed=20260923, max_time=90.0)
+eng.run()
+print("winner:", "player" if eng.player_wins() else "opponent",
+      "| ticks:", eng._ticks, "| events:", len(eng.log.events))
+PY
+```
+
+| 要点 | 说明 |
+|---|---|
+| **平台要求** | `cp314-win_amd64`：Python **3.14 x64 + Windows**。标签写死是为了让错误环境直接拒绝安装，而不是悄悄退回纯 Python 腿（慢 40% 且无提示） |
+| **批量蒙特卡洛** | `simulator.simulate.run_mc_pool(player_path, opponent_path, seed, runs, workers)`，进程池并行、逐 seed 确定 |
+| **数据目录** | 默认装在 `<prefix>/assets`；训练想换数据目录就设环境变量 `BACKPACK_ASSETS` |
+| **改内核后重编** | `python -X utf8 tools/build_cython.py --list <清单>` 再 `python -X utf8 tools/build_wheel.py`；.pyd 是构建产物、不进 git（84MB 且与 ABI 绑定） |
+| **纯 Python 腿** | 删掉任一 `.pyd` 即回落纯 Python（仍可跑，用于对照/调试）；或用 `GD_PURE_PY=1` 环境变量在进程内屏蔽扩展加载 |
+
+
 ## 成果总结
 
 ### ① 逆向基础（GDEC 解密 + 全源码可读）

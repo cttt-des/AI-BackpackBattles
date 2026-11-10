@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "backpack-battles-sim"
+version = "0.5.2"
+description = "Backpack Battles 战斗模拟器内核（gd_core 转写版，三方逐位对齐 1690/1690）"
+readme = "README.md"
+requires-python = ">=3.14"
+license = { text = "仅供学习研究使用" }
+authors = [{ name = "cttt-des" }]
+
+[project.urls]
+Homepage = "https://github.com/cttt-des/AI-BackpackBattles"
+
+[tool.setuptools.packages.find]
+# 只打包运行内核与模拟器；不含逆向产物/工具/语料
+include = ["simulator*", "gd_core_py*", "engine*"]
+exclude = ["build*", "dist*", "docs*", "tools*", "oracle*", "ai*", "gripper*"]
+
+[tool.setuptools.package-data]
+"gd_core_py" = ["*.pyd", "*.py"]
+"gd_core_py.gd_core" = ["*.pyd", "*.py"]
+"gd_core_py.gd_core_items" = ["*.pyd", "*.py"]
+"gd_core_py.gd_core_items.Exclusive" = ["*.pyd", "*.py"]
+"gd_core_py.gd_core_items.Exclusive.Chess" = ["*.pyd", "*.py"]
+"gd_core_py.gd_core_items.Gems" = ["*.pyd", "*.py"]
+
+[tool.setuptools.data-files]
+# 运行时数据（assets）+ 示例阵容；装到 <prefix>/assets 与 <prefix>/lineups
+"assets" = [
+  "assets/battle_items.json",
+  "assets/characters.json",
+  "assets/gd_core_runtime.json",
+  "assets/item_db.json",
+  "assets/item_index_map.json",
+  "assets/item_index_map_live.json",
+  "assets/all_official_zh_names.json",
+  "assets/interface_zh_pairs.json",
+  "assets/items_db_sim.json",
+  "assets/items_zh_exact.json",
+  "assets/items_zh_official.json",
+]
