@@ -1925,7 +1925,7 @@ def py_file_rel(rel):
     return "/".join(_sani(p) for p in rel[:-3].split("/")) + ".py"
 
 
-def emit_bootstrap(order, files_by_rel):
+def emit_bootstrap(order, files_by_rel, stripped_hooks=None):
     out = [GEN_BANNER,
            '"""按 extends 依赖拓扑序导入全部模块（基类先注册，与 Godot 加载次序同义）。"""\n\n',
            "from . import _registry  # noqa: F401\n",
@@ -2043,6 +2043,11 @@ def emit_bootstrap(order, files_by_rel):
         out.append("        except Exception as exc:  # noqa: BLE001\n")
         out.append("            failed.append((%r, repr(exc)))\n" % rel)
     out.append("    return failed\n")
+
+    # ── M2-1 空钩子剥离清单（装配期断言数据源，simulator/gd_core_engine
+    #    ._make_probe_class 读它对探针覆写做交集检查）──
+    out.append("\n\n# ── M2-1 空钩子剥离清单（生成器发射；勿手改）──\n")
+    out.append("STRIPPED_HOOKS = %r\n" % (sorted(stripped_hooks or ()),))
     return "".join(out)
 
 
@@ -2854,6 +2859,169 @@ def _hook_strip(texts, stat, hit):
     return texts
 
 
+# ── M2-1 空钩子调用点剥离 ─────────────────────────────────────────────
+# 生成期**保留**（不剥）的钩子：全部来自已知探针覆写，来源逐一 grep 实证。
+# 运行期由 simulator/gd_core_engine._make_probe_class 的装配断言兜底——若未来
+# 出现未列入本表的新覆写，装配期直接抛 KernelError（响亮失败，绝不静默空转）。
+_HOOK_KEEP = {
+    # simulator/gd_core_engine.py::_LogMixin.logEvent —— 事件桥唯一出口，
+    # 剥离=事件流静默变空（判定还全对，本项目最险的一类坑）。
+    "logEvent",
+    # tools/check_gd_core_engine.py::_make_bench_probe —— 56 局取证探针的
+    # 计数面（activations/heal/damage/fatigue/stun），gd 宿主侧同口径对拍。
+    "snapshotItemMetric",
+    "spawnLabel_character",
+    "playFatigueAnimation",
+    "playStunAnimation",
+}
+
+
+def _noop_hook_methods(hooks_text):
+    """从生成的 CoreHooks 模块文本收集「空体」方法名。
+
+    空体 = 方法体仅由 `pass` / `return` / `return None` 构成；允许前缀
+    `x = int(x)` 形态的冗余自转换（addMetric/snapshotItemMetric/
+    snapshotGlobalStat 三处——纯局部变量，无任何可观察效果）。
+    """
+    import ast as _ast
+    tree = _ast.parse(hooks_text)
+    out = {}
+    for cls in [n for n in tree.body if isinstance(n, _ast.ClassDef)]:
+        for fn in [n for n in cls.body if isinstance(n, (_ast.FunctionDef,
+                                                         _ast.AsyncFunctionDef))]:
+            kind = None
+            for st in fn.body:
+                if isinstance(st, _ast.Pass):
+                    kind = kind or "pass"
+                    continue
+                if isinstance(st, _ast.Return) and (
+                        st.value is None
+                        or (isinstance(st.value, _ast.Constant)
+                            and st.value.value is None)):
+                    kind = kind or "return"
+                    continue
+                # 冗余自转换：target 与实参同名、int(...) 直包
+                if (isinstance(st, _ast.Assign) and len(st.targets) == 1
+                        and isinstance(st.targets[0], _ast.Name)
+                        and isinstance(st.value, _ast.Call)
+                        and isinstance(st.value.func, _ast.Name)
+                        and st.value.func.id == "int"
+                        and len(st.value.args) == 1
+                        and isinstance(st.value.args[0], _ast.Name)
+                        and st.value.args[0].id == st.targets[0].id
+                        and not st.value.keywords):
+                    kind = "int_coerce"
+                    continue
+                kind = None
+                break
+            if kind:
+                out[fn.name] = kind
+    return out
+
+
+def _hook_call_name(stmt):
+    """stmt 是 `*.hooks.<name>(...)` 表达式语句时返回 <name>，否则 None。
+
+    匹配面：Expr(Call(func=Attribute(value=Attribute(attr='hooks'), attr=NAME)))。
+    接收者链不限定（self.ctx.hooks / self._ctx.hooks 全覆盖）；
+    仅接受**纯表达式语句**形态——赋值/返回/实参位置的钩子调用一概不剥。
+    """
+    import ast as _ast
+    if not isinstance(stmt, _ast.Expr):
+        return None
+    call = stmt.value
+    if not isinstance(call, _ast.Call):
+        return None
+    fn = call.func
+    if not (isinstance(fn, _ast.Attribute) and fn.attr != "hooks"
+            and isinstance(fn.value, _ast.Attribute)
+            and fn.value.attr == "hooks"):
+        return None
+    return fn.attr
+
+
+def _strip_noop_hooks(texts, stat, hit):
+    """M2-1：剥离空钩子（CoreHooks 全 pass 方法）的全部调用点。
+
+    等价性论证（三层）：
+    ① 方法体空（含冗余 int 自转换）⇒ 调用无可观察效果；实参表达式里的
+       属性链/纯函数求值同样无副作用——CoreHooks.gd 头注已证「钩子不参与
+       判定（全部纯尾部副作用调用）」。
+    ② 语句级删除 + 块安全：调用点是纯 Expr 语句（grep 实证无赋值/返回形），
+       块内全部语句可删时留 1 个 `pass` 占位（if/for/while/try 体语法不破；
+       while 体全删不构成新死循环——空钩子本就不改循环条件，原代码同结局）。
+    ③ 探针安全：_HOOK_KEEP 显式保留全部已知探针覆写；装配期断言
+       （simulator/gd_core_engine._make_probe_class）对未知覆写响亮失败。
+    剥离清单发射进 _bootstrap.STRIPPED_HOOKS，供装配断言与审计工具读取。
+    """
+    import ast as _ast
+    hooks_key = "gd_core/CoreHooks.gd"
+    hooks_text = texts.get(hooks_key)
+    if hooks_text is None:
+        raise RuntimeError("M2: 缺 gd_core/CoreHooks.gd 文本——texts 键名漂移")
+    noop = _noop_hook_methods(hooks_text)
+    unexpected_keep = sorted(set(_HOOK_KEEP) - set(noop))
+    if unexpected_keep:
+        raise RuntimeError(
+            "M2: _HOOK_KEEP 含非空体方法 %s——探针覆写的方法体已变，"
+            "请重审剥离面" % unexpected_keep)
+    strippable = {n for n in noop if n not in _HOOK_KEEP}
+    if not strippable:
+        stat["M2"] = ["无空体方法可剥（CoreHooks 全保留）"]
+        return texts
+
+    total = 0
+    per_file = {}
+    for rel in sorted(texts):
+        t = texts[rel]
+        if ".hooks." not in t:
+            continue
+        tree = _ast.parse(t)
+        # (start, end, pass_at_start) 行区间清单；逆序套用以保持行号有效
+        spans = []
+        for node in _ast.walk(tree):
+            for field in ("body", "orelse", "finalbody"):
+                lst = getattr(node, field, None)
+                if not (isinstance(lst, list) and lst):
+                    continue
+                marks = [(_hook_call_name(st), st) for st in lst]
+                dels = [(nm, st) for nm, st in marks
+                        if nm is not None and nm in strippable]
+                if not dels:
+                    continue
+                whole = len(dels) == len(lst)
+                for i, (nm, st) in enumerate(dels):
+                    spans.append((st.lineno, st.end_lineno,
+                                  whole and i == 0))
+        if not spans:
+            continue
+        lines = t.splitlines(keepends=True)
+        for start, end, as_pass in sorted(spans, reverse=True):
+            if as_pass:
+                indent = re.match(r"[ \t]*", lines[start - 1]).group(0)
+                lines[start - 1] = indent + "pass\n"
+                if end > start:
+                    del lines[start:end]
+            else:
+                del lines[start - 1:end]
+        nt = "".join(lines)
+        _ast.parse(nt)          # 语法闸：漂移即抛
+        texts[rel] = nt
+        per_file[rel] = len(spans)
+        total += len(spans)
+
+    if total == 0:
+        raise RuntimeError("M2: strippable=%d 个方法但零调用点命中——"
+                           "匹配面或文本漂移" % len(strippable))
+    hit["M2_noop_hooks"] = total
+    stat["M2"] = ["剥离 %d 个调用点 / %d 个空方法（保留 %d 个探针覆写）"
+                  % (total, len(strippable), len(_HOOK_KEEP))]
+    stat["M2_stripped_hooks"] = sorted(strippable)
+    stat["M2_per_file"] = ["%s:%d" % (k, v) for k, v in
+                           sorted(per_file.items(), key=lambda kv: -kv[1])]
+    return texts
+
+
 def _d2_adjcells_seen(texts, stat, hit):
     """S4-D2（有界实现）：CoreGrid.getAdjacentCells 邻接格判重 seen-set 化。
 
@@ -2982,6 +3150,8 @@ def write_pkg(order, files_by_rel, by_name, by_path, class_names, stat, hit, wri
         texts = _hook_strip(texts, stat, hit)
     if "D2" not in _skip:
         texts = _d2_adjcells_seen(texts, stat, hit)
+    if "M2" not in _skip:
+        texts = _strip_noop_hooks(texts, stat, hit)
     if "CY" not in _skip:
         texts = _cy_round_alias(texts, stat, hit)
     if not write:
@@ -3012,7 +3182,8 @@ def write_pkg(order, files_by_rel, by_name, by_path, class_names, stat, hit, wri
             fh.write(text)
     with io.open(os.path.join(OUT_PKG, "_bootstrap.py"), "w",
                  encoding="utf-8", newline="\n") as fh:
-        fh.write(emit_bootstrap(order, files_by_rel))
+        fh.write(emit_bootstrap(order, files_by_rel,
+                                stripped_hooks=stat.get("M2_stripped_hooks")))
     return texts
 
 

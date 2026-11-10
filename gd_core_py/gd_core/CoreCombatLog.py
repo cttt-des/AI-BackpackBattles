@@ -56,7 +56,7 @@ class CoreCombatLog(GodotObject):
 				origin, type)
 
 		for character in _iter([self._ctx.player, self._ctx.opponent]):
-			self._ctx.hooks.snapshotCharacterStat(character, _H_18)
+			pass
 
 		return event
 
@@ -88,11 +88,6 @@ class CoreCombatLog(GodotObject):
 			#   null；setTarget 只出现在 createEvent_Damage/OutOfStamina 等事件，
 			#   CombatLog.gd:695+）。此前内核多设 target —— 神谕语料实证：攻击事件
 			#   target=None（run572/573 首分歧即此，Death Scythe 首攻）。
-			self._ctx.hooks.snapshotCharacterStat(attackedCharacter, _H_2)
-			self._ctx.hooks.snapshotStack(attackedCharacter, _H_3)
-			self._ctx.hooks.snapshotDamageDealt(character.playerId,
-				damageRes.damageSource.types[0], damageRes.damage)
-			self._ctx.hooks.updateDamageMeter(character.playerId, event)
 		else:
 			# 对齐 CombatLog.gd:675-676：落空分支只有 createEvent 一句——无 damage
 			# 参数、无 target、无快照（神谕语料 MissedAttack 事件 params={} target=null）。
@@ -113,10 +108,6 @@ class CoreCombatLog(GodotObject):
 		event.setTarget(damagingPlayerId)
 		damagingCharacter = self._ctx.getCharacterFromId(damagingPlayerId)
 		damagedCharacter = damagingCharacter.opponent
-		self._ctx.hooks.snapshotCharacterStat(damagedCharacter, _H_2)
-		self._ctx.hooks.snapshotStack(damagedCharacter, _H_3)
-		self._ctx.hooks.snapshotDamageDealt(damagingPlayerId, damageRes.damageSource.types[0], damageRes.damage)
-		self._ctx.hooks.updateDamageMeter(damagingPlayerId, event)
 		return event
 
 
@@ -127,7 +118,6 @@ class CoreCombatLog(GodotObject):
 		event = self.createEvent(triggerEvent, origin, _H_4)
 		event.setParam("amount", amount)
 		event.setTarget(playerId)
-		self._ctx.hooks.snapshotCharacterStat(self._ctx.getCharacterFromId(playerId), _H_2)
 		return event
 
 
@@ -137,7 +127,6 @@ class CoreCombatLog(GodotObject):
 		event = self.createEvent(triggerEvent, origin, _H_5)
 		event.setParam("amount", amount)
 		event.setTarget(playerId)
-		self._ctx.hooks.snapshotCharacterStat(self._ctx.getCharacterFromId(playerId), _H_2)
 		return event
 
 
@@ -153,18 +142,16 @@ class CoreCombatLog(GodotObject):
 		event.setParam("used", used)
 		event.setParam("reflected", reflected)
 		event.setTarget(playerId)
-		self._ctx.hooks.snapshotStack(self._ctx.getCharacterFromId(playerId), type)
 
 		if type == _H_6:
 			for i in _iter__loc(self._ctx.getCharacterFromId(playerId).items):
 				if i.isWeapon() and i.canBeEmpowered():
-					self._ctx.hooks.snapshotItemTooltipStat(i, _H_32)
-					self._ctx.hooks.snapshotItemTooltipStat(i, _H_33)
+					pass
 
 		if type == _H_28 or type == _H_29:
 			for i in _iter__loc(self._ctx.getCharacterFromId(playerId).items):
 				if i.hasCooldown():
-					self._ctx.hooks.snapshotItemTooltipStat(i, _H_34)
+					pass
 
 		return event
 
@@ -257,16 +244,12 @@ class CoreCombatLog(GodotObject):
 	def createEvent_TemporaryMaxHealth(self, item, amount, triggerEvent=None):
 		event = self.createEvent(triggerEvent, item, _H_15)
 		event.setParam("amount", amount)
-		self._ctx.hooks.snapshotCharacterStat(item.character(), _H_2)
-		self._ctx.hooks.snapshotCharacterStat(item.character(), _H_16)
 		return event
 
 
 	def createEvent_TemporaryMaxStamina(self, item, amount, triggerEvent=None):
 		event = self.createEvent(triggerEvent, item, _H_17)
 		event.setParam("stamina", amount)
-		self._ctx.hooks.snapshotCharacterStat(item.character(), _H_18)
-		self._ctx.hooks.snapshotCharacterStat(item.character(), _H_19)
 		return event
 
 
@@ -287,7 +270,6 @@ class CoreCombatLog(GodotObject):
 		health = int(health)
 		event = self.createEvent(triggerEvent, item, _H_22)
 		event.setParam("health", health)
-		self._ctx.hooks.snapshotCharacterStat(item.character(), _H_2)
 		return event
 
 
@@ -315,7 +297,7 @@ class CoreCombatLog(GodotObject):
 
 	# ── 统计入口（全部走钩子，无判定影响） ──
 	def snapshotMetric(self, playerId, metric, eventType, value):
-		self._ctx.hooks.snapshotMetric(playerId, metric, eventType, value)
+		pass
 
 
 	def snapshotItemMetric(self, item, metricIndex, playerId=None, withNextEvent=False):
@@ -338,27 +320,24 @@ class CoreCombatLog(GodotObject):
 		elif withNextEvent:
 			connectedEventNum += 1
 
-		self._ctx.hooks.snapshotItemTooltipStat(item, statType, playerId, withNextEvent, event)
 
 
 	def snapshotItemState(self, item, state, withNextEvent, event):
 		playerId = item.character().playerId
-		self._ctx.hooks.snapshotItemState(item, state, withNextEvent, event)
 
 
 	def snapshotGlobalStat(self, stat, newValue):
 		stat = int(stat)
-		self._ctx.hooks.snapshotGlobalStat(stat, newValue)
 
 
 	# 对齐 CombatLog.gd:517-518（签名必须 4 参：物品行为与 CoreCharacter 都会带
 	# withNextEvent / event 调用，例如 startBattleRage 里的 snapshotCharacterStat(self, Stat.BattleRage, false, event)）
 	def snapshotCharacterStat(self, character, statType, withNextEvent=False, event=None):
-		self._ctx.hooks.snapshotCharacterStat(character, statType, withNextEvent, event)
+		pass
 
 
 	def snapshotStack(self, character, type):
-		self._ctx.hooks.snapshotStack(character, type)
+		pass
 
 
 _R.reg("res://gd_core/CoreCombatLog.gd", CoreCombatLog)

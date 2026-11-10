@@ -620,7 +620,6 @@ class CoreItem(GodotObject):
 
 	def setStat(self, stat, value):
 		self.statDisplayOverrides[stat] = value
-		self.ctx.hooks.queueTooltipUpdate(self)
 
 
 	# 对齐 Item.gd:4213-4224
@@ -650,7 +649,6 @@ class CoreItem(GodotObject):
 	def playOutOfStaminaAnimation(self):
 		if self.isPlayer():
 			self.ctx.out_of_stamina_count += 1
-		self.ctx.hooks.playOutOfStaminaAnimation(self)
 
 
 	def cacheAffectedItemsForCombat(self):
@@ -1077,7 +1075,6 @@ class CoreItem(GodotObject):
 	#   `showCooldownSmooth` 是纯表现（tween 着色器进度条），按内核约定走空钩子。
 	def onAfterEffectFinished(self, _consume=True):
 		self.deactivateCooldown()
-		self.ctx.hooks.showCooldownSmooth(self, 0, True)
 		if _consume:
 			self.consume()
 
@@ -1152,7 +1149,7 @@ class CoreItem(GodotObject):
 					False, event)
 
 		if animationOverride != None:
-			self.ctx.hooks.playActivationAnimation(self, animationOverride, consume)
+			pass
 		# ★ 表现层链消耗还原（战斗判定链中途的真实 Util.rng 消耗，事件流不可见但
 		#   决定后续每次掷点——docs/alignment_fix_workflow.md §1 表）：
 		#   ① activate() → playActivationSound() → playDropSound(-6) 的落物音高
@@ -1216,7 +1213,6 @@ class CoreItem(GodotObject):
 			ch = self.character()
 			if ch != None:
 				ch.playActivateAnimation()
-		self.ctx.hooks.playActivationSound(self)
 
 		return event
 
@@ -2338,7 +2334,6 @@ class CoreItem(GodotObject):
 		self._chargeEnterCell(CoreElectricalCharge(), 1, inv_cells)
 		# charge.logEvent → CombatLog.logElectricalCharge（CombatLog.gd:1212-1223）：
 		# 表现记录 + 成就计数，不进 events、不消耗 rng
-		self.ctx.hooks.sendCharge(self, cells, _div(chargeDuration, speedFactor), event)
 		# Item.gd:5155 Sound.playSound(chargeSound, Util.rng.randf_range(-12,-5),
 		# Util.randPitch(0.3))——GDScript 实参求值即消耗：randf_range=2 步
 		# （Util.gd:1007-1008；docs/rng_truth.md §2.3）+ randPitch(0.3)
@@ -3044,14 +3039,13 @@ class CoreItem(GodotObject):
 	# 标签恒画——链消耗必须发生；开关剥离但消耗保留）
 	def spawnLabel(self, type, amount):
 		self.getNextFreeLabelPosition()
-		self.ctx.hooks.spawnLabelOnItem(type, self, amount)
 
 
 	# 对齐 Item.gd:4810-4814（Settings 的 buff_labels 开关：同上，语料为开）。
 	# 注意：原版 live 战斗路径不调用本方法（唯一调用点 activateFromEvent 是
 	# CombatLog 回放查看器路径），内核保留同形空转，消耗由调用面决定。
 	def spawnLabel_other(self, type, amount):
-		self.ctx.hooks.spawnLabelOnItem(type, self, amount)
+		pass
 
 
 	# 对齐 Item.gd:4815-4818
@@ -3626,7 +3620,7 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:1457 区间的 z_index 复位。消费方：Bag.gd:80 → 视觉层序 → 走钩子。
 	def resetZ(self):
-		self.ctx.hooks.resetZ(self)
+		pass
 
 
 	# 对齐 Item.gd:1363-1365：商店 gate item 掷骰后交给 shopSceneNode → 商店路径 → 空实现。
@@ -3688,7 +3682,7 @@ class CoreItem(GodotObject):
 				addedToAffected[color] = True
 
 		if item.placedByPlayer:
-			self.ctx.hooks.playAffectedPlacedAnimation(self, addedToAffected)
+			pass
 
 
 	# 对齐 Item.gd:2352-2353
@@ -3816,23 +3810,22 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:4511-4516（仅 animation.play，按 consumed 选动画名）
 	def miniActivate(self):
-		self.ctx.hooks.playActivationAnimation(
-			self, "MiniActivate_consumed" if self.consumed else "MiniActivate", False)
+		pass
 
 
 	# 对齐 Item.gd:1857-1875 区间的预览重绘调用点
 	def previewCellCollision(self):
-		self.ctx.hooks.previewCellCollision(self)
+		pass
 
 
 	# 对齐 Item.gd:2124-2131（预览格着色）
 	def previewCells(self):
-		self.ctx.hooks.previewCells(self)
+		pass
 
 
 	# 对齐 Item.gd:2211（预览是否能影响）
 	def previewCanAffect(self):
-		self.ctx.hooks.previewCanAffect(self)
+		pass
 
 
 	# 对齐 Item.gd:1963-1996。rotateRight/Left 的入口是玩家按键（Item.gd:1843-1856 的
@@ -3842,13 +3835,11 @@ class CoreItem(GodotObject):
 	def rotateRight(self):
 		self.faceDirection = _mod(self.faceDirection + 1, len(_H_43))
 		self.setFaceDirectionInstant(self.faceDirection)
-		self.ctx.hooks.onItemRotated(self)
 
 
 	def rotateLeft(self):
 		self.faceDirection = _mod(self.faceDirection - 1 + len(_H_43), len(_H_43))
 		self.setFaceDirectionInstant(self.faceDirection)
-		self.ctx.hooks.onItemRotated(self)
 
 
 	def rotateTo(self, targetRotation, duration=0.15):
@@ -3858,7 +3849,6 @@ class CoreItem(GodotObject):
 		self.faceDirection = self.getGlobalFaceDirection()
 		self.rotation = targetRotation
 		self.faceDirection = self.getGlobalFaceDirection()
-		self.ctx.hooks.onItemRotated(self)
 
 
 	def rotateToDeferred(self, targetRotation, duration=0.15):
@@ -3933,7 +3923,7 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:4511 一族的回放动画入口（CombatLog.gd:583 在回放事件时触发）
 	def activateFromEvent(self, event):
-		self.ctx.hooks.playActivationAnimation(self, "Activate", False)
+		pass
 
 
 	# ── 邻接 ──

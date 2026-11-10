@@ -24,18 +24,27 @@ import subprocess
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-BENCH = os.path.join(ROOT, "tools", "bench_sim.py")
 ARM_ENV = {"cy": {}, "py": {"GD_PURE_PY": "1"}}
 
 
 def _run_arm(arm: str, n: int, seed: int, lineup_p: str, lineup_o: str,
-             cpu_time: bool = False, warmup: int = 0) -> dict:
-    """跑一个臂（独立子进程），返回该轮指标。"""
+             cpu_time: bool = False, warmup: int = 0,
+             root: str = "", pure_py: bool = False) -> dict:
+    """跑一个臂（独立子进程），返回该轮指标。
+
+    root：臂的工作树（默认本仓库根）。跨树 A/B（M2 前后对比）时 A/B 各指
+    一棵树——bench_sim 以 __file__ 定位自己的树，imports/lineups 都取臂侧。
+    pure_py：两臂都强制 GD_PURE_PY=1（只比源码差异，隔离 .pyd 产物差异）。
+    """
+    arm_root = root or ROOT
+    bench = os.path.join(arm_root, "tools", "bench_sim.py")
     out = os.path.join(ROOT, "output", "perf", "_ab_%s_tmp.json" % arm)
     env = dict(os.environ)
     env.update(ARM_ENV.get(arm, {}))
+    if pure_py:
+        env["GD_PURE_PY"] = "1"
     env["PYTHONHASHSEED"] = "0"
-    cmd = [sys.executable, "-X", "utf8", BENCH,
+    cmd = [sys.executable, "-X", "utf8", bench,
            "--n", str(n), "--rounds", "1", "--seed", str(seed),
            "--json", out, "--label", "ab_" + arm]
     if cpu_time:
@@ -44,7 +53,7 @@ def _run_arm(arm: str, n: int, seed: int, lineup_p: str, lineup_o: str,
         cmd += ["--warmup", str(warmup)]
     if lineup_p:
         cmd += ["--lineup-p", lineup_p, "--lineup-o", lineup_o]
-    r = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True, env=env)
+    r = subprocess.run(cmd, cwd=arm_root, capture_output=True, text=True, env=env)
     if r.returncode != 0:
         raise RuntimeError("arm %s 失败:\n%s\n%s" % (arm, r.stdout[-800:], r.stderr[-800:]))
     with io.open(out, encoding="utf-8") as fh:
@@ -73,6 +82,10 @@ def main() -> int:
                     help="用 process_time 计时（推荐：降频机唯一可信口径）")
     ap.add_argument("--warmup", type=int, default=2,
                     help="每臂热身场数（丢弃）")
+    ap.add_argument("--root-a", default="", help="臂 A 的工作树（默认本仓库根）")
+    ap.add_argument("--root-b", default="", help="臂 B 的工作树（默认本仓库根）")
+    ap.add_argument("--pure-py", action="store_true",
+                    help="两臂都强制 GD_PURE_PY=1（跨树源码 A/B 用）")
     ap.add_argument("--json", default="")
     a = ap.parse_args()
 
@@ -85,7 +98,9 @@ def main() -> int:
         got = {}
         for arm in order:
             got[arm] = _run_arm(arm, a.n, a.seed, a.lineup_p, a.lineup_o,
-                                a.cpu_time, a.warmup)
+                                a.cpu_time, a.warmup,
+                                root=a.root_a if arm == arm_a else a.root_b,
+                                pure_py=a.pure_py)
         pa, pb = got[arm_a]["p50_ms"], got[arm_b]["p50_ms"]
         rows_a.append(pa)
         rows_b.append(pb)
@@ -110,9 +125,11 @@ def main() -> int:
     print("=" * 64)
 
     out = {
-        "tool": "bench_ab/v1",
+        "tool": "bench_ab/v2",
         "n": a.n, "rounds": a.rounds, "seed": a.seed,
         "arm_a": arm_a, "arm_b": arm_b,
+        "root_a": a.root_a or ROOT, "root_b": a.root_b or ROOT,
+        "pure_py": bool(a.pure_py),
         "clock": "process_time" if a.cpu_time else "perf_counter",
         "warmup": a.warmup,
         "p50_a": rows_a, "p50_b": rows_b,

@@ -454,10 +454,31 @@ def _make_probe_class(hooks_base, et_name, extra=()):
         （空实现），排在后面覆写会失效，而且是**静默**失效（日志全空、判定全对）。
       · `extra` 在最前 —— 供取证工具叠加上与 Godot 侧同名同口径的计数钩子
         （见 tools/check_gd_core_engine.py），生产路径不付这份开销。
+
+    ★ M2-1 装配期断言：生成器（tools/gd_to_py.py::_strip_noop_hooks）已把空
+      钩子的调用点从产物里剥掉，`ctx.hooks.<名>` 对剥离名单内的方法**不再
+      派发**。探针若覆写了剥离名单里的方法，其计数会静默归零（判定还全对）
+      ——与 logEvent 覆写失效同类的静默坑。这里对 `_LogMixin` + 全部 extra
+      基类的成员名与 `_bootstrap.STRIPPED_HOOKS` 求交集，非空即抛
+      KernelError（响亮失败）。已知探针覆写的方法由生成器侧 `_HOOK_KEEP`
+      保留不剥；此断言兜住未来的未知覆写。
     """
-    return type("GDCoreHooks", tuple(extra) + (_LogMixin, hooks_base),
-                {"_ET_NAME": et_name,
-                 "resource_path": "gd_core:engine_probe"})
+    cls = type("GDCoreHooks", tuple(extra) + (_LogMixin, hooks_base),
+               {"_ET_NAME": et_name,
+                "resource_path": "gd_core:engine_probe"})
+    from gd_core_py import _bootstrap
+    stripped = getattr(_bootstrap, "STRIPPED_HOOKS", None)
+    if stripped:
+        overrides = set()
+        for b in (_LogMixin,) + tuple(extra):
+            overrides.update(getattr(b, "__dict__", ()) or ())
+        bad = sorted(set(stripped) & overrides)
+        if bad:
+            raise KernelError(
+                "M2-1 钩子剥离清单与探针覆写相交：%s ——这些方法的调用点已被"
+                "剥离，探针计数会静默归零。请在 tools/gd_to_py.py 的 "
+                "_HOOK_KEEP 里保留它们并重转写。" % bad)
+    return cls
 
 
 # ═══════════════════════════ 角色 / 物品视图 ═══════════════════════════

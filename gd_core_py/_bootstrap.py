@@ -7614,3 +7614,7 @@ def load_for(scripts):
         except Exception as exc:  # noqa: BLE001
             failed.append(('gd_core_items/Gems/Topaz.gd', repr(exc)))
     return failed
+
+
+# ── M2-1 空钩子剥离清单（生成器发射；勿手改）──
+STRIPPED_HOOKS = ['activateBuffCounter', 'addMetric', 'applyImpulse', 'damageAnimation', 'onClassChanged', 'onHealthChangedUI', 'onItemRotated', 'onItemTypeChanged', 'onMaxStaminaChangedUI', 'playActivateAnimation', 'playActivationAnimation', 'playActivationSound', 'playAffectedPlacedAnimation', 'playAttackAnimation', 'playBattleRageAnimation', 'playCharacterSound', 'playDropSound', 'playFatigueSound', 'playInvulnerableAnimation', 'playOutOfStaminaAnimation', 'playWinLoseAnimation', 'previewCanAffect', 'previewCellCollision', 'previewCells', 'queueTooltipUpdate', 'resetZ', 'sendCharge', 'showCooldown', 'showCooldownSmooth', 'snapshotCharacterStat', 'snapshotDamageDealt', 'snapshotGlobalStat', 'snapshotItemState', 'snapshotItemTooltipStat', 'snapshotMetric', 'snapshotStack', 'spawnBuffLabel', 'spawnBuffLabel_item', 'spawnLabel', 'spawnLabelOnItem', 'spawnMissLabel', 'spawnNumberLabel', 'spawnProtectedLabel', 'spawnReflectLabel', 'spawnResistedLabel', 'updateDamageMeter']

@@ -443,7 +443,6 @@ class CoreCombat(GodotObject):
 	# 对齐 CombatTimer.gd:153-179
 	def dealFatigueDamage(self):
 		if self.fatigue_counter == 0:
-			self.ctx.hooks.playFatigueSound()
 			self.ctx.bus.emitSignal(self, "fatigue_start")
 
 		if self.combat_time < self.FATIGUE_SLOW_TIME:

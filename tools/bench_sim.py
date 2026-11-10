@@ -40,6 +40,13 @@ ROOT = os.path.dirname(_TOOLS)
 if ROOT not in sys.path:
     sys.path.insert(0, ROOT)
 
+# ★ M0 纯 py 臂接线（bench_ab --pure-py / GD_PURE_PY=1）：装 meta_path finder
+#   屏蔽 gd_core_py 的 .pyd 加载。必须在 simulator/gd_core_engine（惰性导入）
+#   之前——finder 要抢在 ExtensionFileLoader 前插队。之前 bench_ab 只设 env
+#   没接 finder，py 臂实际仍跑 .pyd（1.0749 比值口径已污染，见交接记录）。
+if os.environ.get("GD_PURE_PY") == "1":
+    import tools._purepy_arm  # noqa: F401
+
 DEFAULT_P = os.path.join(ROOT, "lineups", "truth_20261001_220653_R19_player.json")
 DEFAULT_O = os.path.join(ROOT, "lineups", "truth_20261001_220653_R19_opponent.json")
 

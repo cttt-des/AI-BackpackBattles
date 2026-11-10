@@ -482,13 +482,11 @@ class CoreCharacter(GodotObject):
 			regen = self.getRegeneration()
 			if regen > 0:
 				self.heal(regen, _H_21)
-				self.ctx.hooks.activateBuffCounter(self, _H_21)
 		else:
 			poison = self.getPoison()
 			if poison > 0:
 				self.poisonDamageSource.setDamage(poison)
 				self.takeDamage(self.poisonDamageSource)
-				self.ctx.hooks.activateBuffCounter(self, _H_20)
 
 		self.tickCounter += 1
 
@@ -692,7 +690,6 @@ class CoreCharacter(GodotObject):
 						# randBuffLabelDir 1 抽（Util.gd:909-914）
 						self.randBuffLabelPos()
 						self.randBuffLabelDir()
-						self.ctx.hooks.spawnBuffLabel(_H_44, None)
 					else:
 						damageRes.makeCritical()
 
@@ -755,7 +752,6 @@ class CoreCharacter(GodotObject):
 				else:
 					self.damage_anim_current = "Hit"
 				self.ctx.rng.randf_range(0.9, 1.1)
-				self.ctx.hooks.damageAnimation(self, "Fatigue" if damageSource.hasType(_H_32) else "Hit")
 		else:
 			self.spawnLabel_native(_H_33, 0, item)
 
@@ -771,7 +767,6 @@ class CoreCharacter(GodotObject):
 		self.ctx.bus.emitEvent(self, "character_attacked", event, [damageRes])
 		self.ctx.bus.emitSignal(self, "character_damaged", [damageRes.healthDamage, damageRes.event])
 
-		self.ctx.hooks.onHealthChangedUI(self)
 
 		if (item != None and 
 			damageSource.isAttack() and 
@@ -814,7 +809,6 @@ class CoreCharacter(GodotObject):
 			if spikeDam > 0:
 				self.spikeDamageSource.setDamage(spikeDam)
 				self.opponent.takeDamage(self.spikeDamageSource, damageRes.event)
-				self.ctx.hooks.activateBuffCounter(self, _H_17)
 
 
 	def applyVampirism(self, damageRes):
@@ -828,7 +822,6 @@ class CoreCharacter(GodotObject):
 			healAmount = min(self.getVampirism(), gd_round(damageRes.damage * vampLimit))
 			if healAmount > 0:
 				self.heal(healAmount, _H_19, damageRes.event)
-				self.ctx.hooks.activateBuffCounter(self, _H_19)
 
 
 	# ─────────────────────────── 治疗 / 直接扣血（对齐 739-869） ───────────────────────────
@@ -842,7 +835,6 @@ class CoreCharacter(GodotObject):
 		self.curHealth += amount
 		self.curHealth = min(self.curHealth, self.getMaxHealth())
 
-		self.ctx.hooks.onHealthChangedUI(self)
 		# ★ 表现层链消耗还原（Character.gd:749）：治疗数字的位置与方向——
 		#   spawnLabel(Health, amount, origin, randHealNumberPos()) 的实参求值
 		#   randHealNumberPos 2 抽 + direction 默认实参 randDmgNumberDir 1 抽
@@ -880,7 +872,6 @@ class CoreCharacter(GodotObject):
 
 	def healToFull(self):
 		self.curHealth = self.getMaxHealth()
-		self.ctx.hooks.onHealthChangedUI(self)
 
 
 	def reincarnate(self, healAmount, isHeal, item, triggerEvent):
@@ -909,7 +900,6 @@ class CoreCharacter(GodotObject):
 
 	def setCurrentHealth(self, _curHealth):
 		self.curHealth = _curHealth
-		self.ctx.hooks.onHealthChangedUI(self)
 
 
 	def loseHealth(self, amount, item=None, triggerEvent=None):
@@ -923,13 +913,11 @@ class CoreCharacter(GodotObject):
 		#   与原版逐位一致。
 		self.randDmgNumberPos()
 		self.randDmgNumberDir()
-		self.ctx.hooks.spawnNumberLabel(_H_15, None, None, amount)
 		event = None
 		if item:
 			event = self.ctx.combat_log.createEvent_LoseHealth( - amount, self.playerId, item, triggerEvent)
 			self.ctx.bus.emitEvent(self, "character_damaged", event, [event.getAmount(), event])
 
-		self.ctx.hooks.onHealthChangedUI(self)
 
 		if self.curHealth <= 0:
 			self.death()
@@ -940,13 +928,11 @@ class CoreCharacter(GodotObject):
 	def setMaxHealth(self, _maxHealth):
 		self.maxHealth = _maxHealth
 		self.curHealth = self.maxHealth
-		self.ctx.hooks.onHealthChangedUI(self)
 
 
 	def giveMaxHealth(self, amount):
 		self.maxHealth += amount
 		self.curHealth += amount
-		self.ctx.hooks.onHealthChangedUI(self)
 
 
 	def getBaseMaxHealth(self):
@@ -1070,7 +1056,6 @@ class CoreCharacter(GodotObject):
 			#   randBuffLabelDir（1 抽）——与 Buff 三分支/critResisted 同族。
 			self.randBuffLabelPos()
 			self.randBuffLabelDir()
-			self.ctx.hooks.spawnBuffLabel(_H_36, None)
 			event = self.ctx.combat_log.createEvent_StunResist(item, self.playerId, triggerEvent)
 			self.ctx.bus.logEvent(event)
 		else:
@@ -1248,7 +1233,6 @@ class CoreCharacter(GodotObject):
 		event = self.ctx.combat_log.createEvent_BattleRageStart(item, fullDur, triggerEvent)
 		self.ctx.bus.emitEvent(self, "battle_rage_started", event, [event])
 		self.ctx.combat_log.snapshotCharacterStat(self, self.Stat.BattleRage, False, event)
-		self.ctx.hooks.playBattleRageAnimation(self, True)
 		return event
 
 
@@ -1262,7 +1246,6 @@ class CoreCharacter(GodotObject):
 		event = self.ctx.combat_log.createEvent_BattleRageEnd(self.playerId)
 		self.ctx.bus.emitEvent(self, "battle_rage_ended", event, [event])
 		self.ctx.combat_log.snapshotCharacterStat(self, self.Stat.BattleRage, False, event)
-		self.ctx.hooks.playBattleRageAnimation(self, False)
 
 
 	# 对齐 Character.gd:192-196
@@ -1287,7 +1270,6 @@ class CoreCharacter(GodotObject):
 			classResource = self.ctx.class_resources.get(_class, None) if self.ctx.class_resources else None
 		if classResource != None and self.playerId == self.ID.PLAYER:
 			self.setClassResource(classResource)
-		self.ctx.hooks.onClassChanged(self, classResource)
 		self.ctx.bus.emitSignal(self, "class_changed", [])
 
 
@@ -1299,16 +1281,15 @@ class CoreCharacter(GodotObject):
 		self.setMaxHealth(classResource.get("health"))
 		self.baseMaxStamina = classResource.get("stamina")
 		self.setMaxStamina(self.baseMaxStamina)
-		self.ctx.hooks.onClassChanged(self, classResource)
 
 
 	# 对齐 Character.gd:1002-1004 / 1006-1011（胜负表现：粒子 + 动画）
 	def lose(self):
-		self.ctx.hooks.playWinLoseAnimation(self, False)
+		pass
 
 
 	def win(self):
-		self.ctx.hooks.playWinLoseAnimation(self, True)
+		pass
 
 
 	# 对齐 Character.gd:1609-1622（唯一写入口是战斗日志回放的 setStat；
@@ -1325,9 +1306,9 @@ class CoreCharacter(GodotObject):
 		elif stat == self.Stat.Stunned:
 				self.ctx.hooks.playStunAnimation(self, value)
 		elif stat == self.Stat.Invulnerable:
-				self.ctx.hooks.playInvulnerableAnimation(self, value)
+				pass
 		elif stat == self.Stat.BattleRage:
-				self.ctx.hooks.playBattleRageAnimation(self, value)
+				pass
 
 
 	# 对齐 Character.gd:1650-1690（逐分支逐字对应；StaminaRegen/HealEfficiency/
@@ -1393,7 +1374,7 @@ class CoreCharacter(GodotObject):
 
 	# 对齐 Character.gd:1574-1579（表现：粒子/动画/音效）
 	def playBattleRageAnimation(self, rageStart):
-		self.ctx.hooks.playBattleRageAnimation(self, rageStart)
+		pass
 
 
 	# Util.changeTimer 语义：start(t + timeLeft) —— 在**剩余时间**基础上延长。
@@ -1447,7 +1428,6 @@ class CoreCharacter(GodotObject):
 			self._invul_eng = self._f32eng(invuDur)
 			self._invul_active = True
 			self.invulnerable = True
-			self.ctx.hooks.playInvulnerableAnimation(self, True)
 			# ★ np24：无敌音高抽补还原（oracle Character.gd:1050 `Sound.playSound(
 			#   invuSound, 4, Util.randPitch(0.1))`——randPitch(0.1)=rng_trace_range(
 			#   0.9,1.1,"randPitch")，**记帐**抽；tag 同构保证逐抽对位）。此前 gd 漏抽
@@ -1481,7 +1461,6 @@ class CoreCharacter(GodotObject):
 		event = self.ctx.combat_log.createEvent_InvulnerableEnd(self.invulnerabilityItem, self.playerId)
 		self.ctx.bus.emitEvent(self, "character_invulnerable_end", event, [event])
 		self.ctx.combat_log.snapshotCharacterStat(self, self.Stat.Invulnerable)
-		self.ctx.hooks.playInvulnerableAnimation(self, False)
 
 
 	def setInvulnerable(self, active, item=None):
@@ -1813,21 +1792,18 @@ class CoreCharacter(GodotObject):
 			print(_gd_fmt__loc('SETMAX t=%s pid=%d new=%s prev_max=%s prev_cur=%s temp=%s stack=%s', [_gd_fmt__loc('%.6f', self.ctx.combat.combat_time), self.playerId, _maxStamina, self.maxStamina, self.curStamina, self.temporaryMaxStamina, self.maxStamina]))
 		self.maxStamina = _maxStamina
 		self.curStamina = self.maxStamina
-		self.ctx.hooks.onMaxStaminaChangedUI(self)
 
 
 	# 对齐 Character.gd:953-957
 	def giveMaxStamina(self, amount):
 		self.maxStamina += amount
 		self.curStamina += amount
-		self.ctx.hooks.onMaxStaminaChangedUI(self)
 
 
 	# 对齐 Character.gd:958-962
 	def reduceMaxStamina(self, amount):
 		self.maxStamina = max(1, self.maxStamina - amount)
 		self.curStamina = min(self.maxStamina, self.curStamina)
-		self.ctx.hooks.onMaxStaminaChangedUI(self)
 
 
 	# 对齐 Character.gd:979-992（label 走钩子；filled 语义逐字保留）
@@ -1844,8 +1820,6 @@ class CoreCharacter(GodotObject):
 				# ★ 表现层链消耗还原（Character.gd:989 → Util.gd:940-952 → Item.gd:6485-6494）：
 				#   临时体力上限物品标签取位，randInBox 2 抽。
 				item.getNextFreeLabelPosition()
-				self.ctx.hooks.spawnLabelOnItem(_H_40, item, amount)
-			self.ctx.hooks.onMaxStaminaChangedUI(self)
 
 
 	# 对齐 Character.gd:1100-1102
@@ -1900,7 +1874,6 @@ class CoreCharacter(GodotObject):
 		self.curStamina = self.maxStamina
 		if _os_environ_get("STAM_TRACE") != "" and self.ctx != None and self.ctx.combat != None:
 			print(_gd_fmt__loc('RECALC t=%s pid=%d base=%s sacks=%d max=%s cur=%s', [_gd_fmt__loc('%.6f', self.ctx.combat.combat_time), self.playerId, self.getBaseMaxStamina(), _sack, self.maxStamina, self.curStamina]))
-		self.ctx.hooks.onMaxStaminaChangedUI(self)
 
 
 	# ─────────────────────────── 生命上限修正（源码补全，对齐 Character.gd:903-927） ───────────────────────────
@@ -1913,14 +1886,12 @@ class CoreCharacter(GodotObject):
 	# 对齐 Character.gd:910-913
 	def setTemporaryMaxHealth(self, tempHealth):
 		self.temporaryMaxHealth = tempHealth
-		self.ctx.hooks.onHealthChangedUI(self)
 
 
 	# 对齐 Character.gd:923-927
 	def reduceMaxHealth(self, amount):
 		self.maxHealth = max(1, self.maxHealth - amount)
 		self.curHealth = min(self.maxHealth, self.curHealth)
-		self.ctx.hooks.onHealthChangedUI(self)
 
 
 	# 对齐 Character.gd:903-906

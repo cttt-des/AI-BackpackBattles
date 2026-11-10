@@ -175,7 +175,6 @@ class CoreBuff(GodotObject):
 	def setStacks(self, amount):
 		amount = int(amount)
 		self.current = amount
-		self.ctx.hooks.activateBuffCounter(self.character, self.type)
 
 
 	def reset(self):
@@ -266,7 +265,6 @@ class CoreBuff(GodotObject):
 						target = self.character.opponent
 						target.randBuffLabelPos()
 						target.randBuffLabelDir()
-						self.ctx.hooks.spawnReflectLabel(self.type, reflected)
 
 				ownStacksUsed = min(left, self.resistStacks)
 				resisted += ownStacksUsed
@@ -287,7 +285,6 @@ class CoreBuff(GodotObject):
 				#   run570_r18 对位（2026-10-08）证明 pos 照常求值，三分支统一更正。
 				self.character.randBuffLabelPos()
 				self.character.randBuffLabelDir()
-				self.ctx.hooks.spawnResistedLabel(self.type, resisted)
 				resistedEvent = self.ctx.combat_log.createEvent_StackResistOrNullify(self.type,
 							item, resisted, self.character.playerId, triggerEvent, reflect)
 				self.ctx.bus.logEvent(resistedEvent)
@@ -298,7 +295,6 @@ class CoreBuff(GodotObject):
 					return None
 
 				self.current += amount
-				self.ctx.hooks.activateBuffCounter(self.character, self.type)
 
 				if duration < 0:
 					self.permanentStacks += amount
@@ -354,7 +350,6 @@ class CoreBuff(GodotObject):
 					#   浮动标签在事件 emit 之前取位，恒消耗 Util.randInBox 2 抽
 					#   （槽位复用 (10,10) / 兜底 (30,30)；buff_labels 设置神谕语料为开）。
 					item.getNextFreeLabelPosition()
-					self.ctx.hooks.spawnBuffLabel_item(self.type, item, amount, appliedToOpponent)
 
 					self.ctx.bus.emitEvent(self.character, self.signalName, event, [event.getAmount(), event])
 
@@ -409,7 +404,6 @@ class CoreBuff(GodotObject):
 				#   randBuffLabelDir 1 抽。
 				self.character.randBuffLabelPos()
 				self.character.randBuffLabelDir()
-				self.ctx.hooks.spawnProtectedLabel(self.type, protected)
 				protectedEvent = self.ctx.combat_log.createEvent_StackProtect(self.type,
 					item, protected, self.character.playerId, triggerEvent)
 				self.ctx.bus.logEvent(protectedEvent)
@@ -456,7 +450,6 @@ class CoreBuff(GodotObject):
 
 		if change > 0:
 			self.current -= change
-			self.ctx.hooks.activateBuffCounter(self.character, self.type)
 
 			if item:
 				isPlayer = (self.character == self.ctx.player)
@@ -479,7 +472,6 @@ class CoreBuff(GodotObject):
 				#   与 gainStacks 同面，但原版顺序是 **先 emit 事件后取位**（标签在
 				#   事件之后）——顺序即链位，必须保持。
 				item.getNextFreeLabelPosition()
-				self.ctx.hooks.spawnBuffLabel_item(self.type, item, - change, appliedToOpponent)
 
 				return event
 
