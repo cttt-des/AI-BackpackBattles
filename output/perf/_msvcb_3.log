@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\tools\build_cython.py", line 167, in <module>
+    raise SystemExit(main())
+                     ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\tools\build_cython.py", line 136, in main
+    with io.open(bat, "w", encoding="ascii", newline="") as fh:
+         ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'D:\\文件资料\\学习\\自动背包AI\\tools\\_msvc_list.cmd'

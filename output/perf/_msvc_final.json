@@ -1,0 +1,35 @@
+{
+  "stage": "msvc",
+  "machine": "8L, Python 3.14.5",
+  "cmd": "tools/bench_sim.py --n 20 --rounds 3 --label msvc --json output/perf/_msvc_final.json",
+  "lineups": [
+    "truth_20261001_220653_R19_player.json",
+    "truth_20261001_220653_R19_opponent.json"
+  ],
+  "workers": 1,
+  "n": 60,
+  "p50_ms": 235.2,
+  "p95_ms": 371.4,
+  "min_ms": 150.9,
+  "max_ms": 494.4,
+  "mean_ticks": 898.5,
+  "ms_per_k_tick": 261.8,
+  "fights_per_s_core": 4.25,
+  "wins_player": 12,
+  "timed_out_n": 0,
+  "round_wall_s": [
+    4.938,
+    5.699,
+    4.434
+  ],
+  "round_p50_ms": [
+    218.3,
+    267.7,
+    229.5
+  ],
+  "repro_spread_pct": 21.53,
+  "repro_pass_3pct": false,
+  "invariance_delta": [],
+  "invariance_pass": true,
+  "events_bytes_first_seed": 191079
+}
