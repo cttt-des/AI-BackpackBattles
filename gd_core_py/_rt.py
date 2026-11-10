@@ -486,12 +486,34 @@ def OS_has_feature(_feature):
     return False
 
 
+_ENV_SNAPSHOT = None
+
+
+def install_env_snapshot(d):
+    """S3-C17c：按场安装环境快照（dict）。
+
+    背景：np51 门控（ORACLE_FLK_DELAY/ORACLE_NO_FLKFIRE/GD_CHUPROBE 等）被
+    物品脚本/内核热路径逐次 `_os_environ_get`（≈3.1k 次/场，Windows
+    os.environ 每读 4 层帧+str 编码 ≈2µs）。门控值在**单场内恒定**（驱动
+    先设 env 再构造引擎）→ 按场快照为 plain dict，`os.environ._Environ.get`
+    的 4 层帧链变 C dict O(1) 查询。驱动在下一场构造引擎时重装快照——
+    逐场门控语义不变；快照未安装时回落真 os.environ（行为兼容）。
+    """
+    global _ENV_SNAPSHOT
+    _ENV_SNAPSHOT = d
+
+
 def _os_environ_get(name):
     """GDScript `OS.get_environment(name)` → 环境变量值或空串（语义逐字对齐）。
 
     ★ 由 tools/gd_to_py.py 的 `OS.get_environment→垫片` 规则改写（2026-10-08，
       CoreRng._stacktrace 首个用例）；未设置时返回 ""，与 Godot 一致。
+    ★ 读取顺序：按场快照（install_env_snapshot）优先 → 真 os.environ 回落
+      （快照未安装时的兼容行为）。
     """
+    d = _ENV_SNAPSHOT
+    if d is not None:
+        return d.get(name, "")
     import os as _os
     return _os.environ.get(name, "")
 

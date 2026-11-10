@@ -707,6 +707,12 @@ class GDCoreEngine:
         self._data = data
         self._K = k
         self.warnings: List[str] = []
+        # ── S3-C17c：按场环境快照安装（驱动先设本场门控 env 再构造引擎——
+        #    快照捕获逐场门控真值；单场内恒定，np51 门控热读 3.1k 次/场从
+        #    os.environ 4 层帧链变 C dict O(1)）──
+        import os as _os
+        from gd_core_py import _rt as _rtm
+        _rtm.install_env_snapshot(dict(_os.environ))
 
         # ── S2-B2 档二：按本场两侧阵容补导物品脚本模块（含宝石） ──
         # kernel() 只载 gd_core/ 树；此处在装配前把本场引用到的 items 树模块

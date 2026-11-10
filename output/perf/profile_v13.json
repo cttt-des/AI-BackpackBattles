@@ -1,0 +1,214 @@
+{
+  "stage": "unspecified",
+  "machine": "8L, Python 3.14.5",
+  "cmd": "tools/bench_sim.py --n 3 --profile-out output/perf/profile_v13.json",
+  "lineups": [
+    "truth_20261001_220653_R19_player.json",
+    "truth_20261001_220653_R19_opponent.json"
+  ],
+  "workers": 1,
+  "n": 3,
+  "fights": [
+    {
+      "seed": 20260923,
+      "ms": 819.2,
+      "ticks": 907,
+      "winner": "opponent"
+    },
+    {
+      "seed": 20260924,
+      "ms": 589.8,
+      "ticks": 1010,
+      "winner": "opponent"
+    },
+    {
+      "seed": 20260925,
+      "ms": 540.8,
+      "ticks": 992,
+      "winner": "opponent"
+    }
+  ],
+  "top_calls": [
+    {
+      "function": "CoreHooks.snapshotCharacterStat",
+      "file": "CoreHooks.py",
+      "calls": 13605,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "CoreEvent.id",
+      "file": "CoreEvent.py",
+      "calls": 13559,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "Mapping.get",
+      "file": "<frozen _collections_abc>",
+      "calls": 12385,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "_Environ.__getitem__",
+      "file": "<frozen os>",
+      "calls": 12385,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "_create_environ_mapping.<locals>.encodekey",
+      "file": "<frozen os>",
+      "calls": 12385,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "_create_environ_mapping.<locals>.check_str",
+      "file": "<frozen os>",
+      "calls": 12385,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "_LogMixin._side",
+      "file": "gd_core_engine.py",
+      "calls": 11356,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "kernel",
+      "file": "gd_core_engine.py",
+      "calls": 10489,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "CoreDamageResult.damage",
+      "file": "CoreDamageResult.py",
+      "calls": 9642,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "CoreDamageSource.hasType",
+      "file": "CoreDamageSource.py",
+      "calls": 7620,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "_json_safe",
+      "file": "gd_core_engine.py",
+      "calls": 7122,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "CoreEvent.getDepth",
+      "file": "CoreEvent.py",
+      "calls": 6571,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "CoreEvent.setParam",
+      "file": "CoreEvent.py",
+      "calls": 6554,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "Bag_2.isBag",
+      "file": "Bag.py",
+      "calls": 6267,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "Bag_2.getItemsInside",
+      "file": "Bag.py",
+      "calls": 5592,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "Bag_2.onItemAdded",
+      "file": "Bag.py",
+      "calls": 5412,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "CoreHooks.snapshotItemMetric",
+      "file": "CoreHooks.py",
+      "calls": 5144,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "_EventOut.__init__",
+      "file": "gd_core_engine.py",
+      "calls": 5138,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "CoreCombatLog.createEvent",
+      "file": "CoreCombatLog.py",
+      "calls": 5136,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "CoreCombatLog.getTimeStamp",
+      "file": "CoreCombatLog.py",
+      "calls": 5136,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "CoreEvent._init_fields",
+      "file": "CoreEvent.py",
+      "calls": 5136,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "CoreEvent._init",
+      "file": "CoreEvent.py",
+      "calls": 5136,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "_LogMixin.logEvent",
+      "file": "gd_core_engine.py",
+      "calls": 5135,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "_LogMixin._actor_of",
+      "file": "gd_core_engine.py",
+      "calls": 5135,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "_LogMixin._count",
+      "file": "gd_core_engine.py",
+      "calls": 5135,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "_LogMixin._origin_key",
+      "file": "gd_core_engine.py",
+      "calls": 5135,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "_OriginRef.__init__",
+      "file": "gd_core_engine.py",
+      "calls": 5135,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "Goobert_2.activations",
+      "file": "Goobert.py",
+      "calls": 5112,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "CoreCombatLog.snapshotItemTooltipStat",
+      "file": "CoreCombatLog.py",
+      "calls": 3962,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "CoreHooks.snapshotItemTooltipStat",
+      "file": "CoreHooks.py",
+      "calls": 3962,
+      "in_v1_cprofile_top": false
+    }
+  ],
+  "note": "sys.monitoring PY_START 调用计数（非耗时）；与 v1 cProfile 耗时名单互为印证"
+}
