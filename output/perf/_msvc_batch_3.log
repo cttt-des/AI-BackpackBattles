@@ -1,0 +1,3 @@
+usage: build_cython.py [-h] [--all] [--list LIST] [--msvc] [--clean]
+                       [targets ...]
+build_cython.py: error: 需要 targets/--all/--list

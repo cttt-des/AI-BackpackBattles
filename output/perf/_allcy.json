@@ -1,0 +1,35 @@
+{
+  "stage": "allcy",
+  "machine": "8L, Python 3.14.5",
+  "cmd": "tools/bench_sim.py --n 20 --rounds 3 --label allcy --json output/perf/_allcy.json",
+  "lineups": [
+    "truth_20261001_220653_R19_player.json",
+    "truth_20261001_220653_R19_opponent.json"
+  ],
+  "workers": 1,
+  "n": 60,
+  "p50_ms": 407.9,
+  "p95_ms": 708.0,
+  "min_ms": 206.2,
+  "max_ms": 916.2,
+  "mean_ticks": 898.5,
+  "ms_per_k_tick": 454.0,
+  "fights_per_s_core": 2.45,
+  "wins_player": 12,
+  "timed_out_n": 0,
+  "round_wall_s": [
+    9.794,
+    8.583,
+    8.107
+  ],
+  "round_p50_ms": [
+    411.0,
+    421.7,
+    407.9
+  ],
+  "repro_spread_pct": 3.36,
+  "repro_pass_3pct": false,
+  "invariance_delta": [],
+  "invariance_pass": true,
+  "events_bytes_first_seed": 191079
+}

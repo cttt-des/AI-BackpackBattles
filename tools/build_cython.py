@@ -16,6 +16,7 @@ Python 实践兼容。MSVC（winget BuildTools）为后续正式化路径，当�
     python tools/build_cython.py --all          # F1 热 8 模块
 """
 import argparse
+import io
 import os
 import subprocess
 import sys
@@ -24,6 +25,9 @@ import sysconfig
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GCC = r"D:\mingw64\bin\gcc.exe"
 PY_DIR = os.path.dirname(sys.executable)
+MSVC_VCVARS = (r"C:\Program Files (x86)\Microsoft Visual Studio\2022"
+               r"\BuildTools\VC\Auxiliary\Build\vcvars64.bat")
+BACKEND = "mingw"
 
 # F1 热 8 模块（规划顺序：CoreItem → CoreCombat → CoreCharacter → CoreTimer →
 # CoreRng → CoreBuff → CoreGrid → CoreEventBus）；逐一单独上闸
@@ -50,7 +54,6 @@ def build_one(py_path: str) -> str:
     base = os.path.splitext(py_path)[0]          # gd_core_py/gd_core/CoreItem
     c_path = base + ".c"
     pyd_path = base + ".pyd"
-    modname = os.path.basename(base)             # PyInit_<modname>
 
     # ① cython：.py → .c（-3 = Python 3 语言语义；module-name 由文件名推断）
     # ★ 严禁 -2（Py2 语义会把 `/` 变整除——REG9 run1514 ev@71 抓获的正是它）
@@ -60,16 +63,35 @@ def build_one(py_path: str) -> str:
     if r.returncode != 0:
         raise RuntimeError(f"cython 失败 {py_path}:\n{r.stdout[-800:]}\n{r.stderr[-800:]}")
 
-    # ② gcc：.c → .pyd（直链 python314.dll；-O2；-static-libgcc 免带 gcc 运行时 DLL）
+    # ② 编译 .c → .pyd：后端二选一（--msvc 切换）
     inc = sysconfig.get_paths()["include"]
-    r = subprocess.run(
-        [GCC, "-O2", "-shared", "-fno-strict-aliasing", "-static-libgcc",
-         "-I", inc, "-I", os.path.join(PY_DIR, "Include"),
-         "-L", PY_DIR, "-lpython314",
-         "-o", pyd_path, c_path],
-        cwd=ROOT, capture_output=True, text=True)
-    if r.returncode != 0:
-        raise RuntimeError(f"gcc 失败 {py_path}:\n{r.stderr[-1500:]}")
+    if BACKEND == "msvc":
+        # MSVC：经 vcvars64 环境后 cl /O2 /LD /MD（与 Python 同族运行时/官方 ABI）
+        # ★ python314.lib 在 <PY_DIR>\libs（首版 /LIBPATH 少 libs → LNK1181）
+        libs_dir = os.path.join(PY_DIR, "libs")
+        bat = os.path.join(ROOT, "tools", "_msvc_build_one.cmd")
+        cmd_line = (
+            f'call "{MSVC_VCVARS}" >nul 2>&1 && cl /O2 /LD /MD /nologo '
+            f'/I "{inc}" {c_path} '
+            f'/link /LIBPATH:"{libs_dir}" python314.lib '
+            f'/OUT:{pyd_path}')
+        with io.open(bat, "w", encoding="ascii", newline="") as fh:
+            fh.write("@echo off\r\n" + cmd_line + "\r\n")
+        r = subprocess.run(["cmd", "/c", bat], cwd=ROOT,
+                           capture_output=True, text=True,
+                           encoding="gbk", errors="replace")
+        if r.returncode != 0 or not os.path.exists(os.path.join(ROOT, pyd_path)):
+            raise RuntimeError(f"msvc 失败 {py_path}:\n{r.stdout[-1500:]}\n{r.stderr[-500:]}")
+    else:
+        # MinGW：直链 python314.dll；-static-libgcc 免带 gcc 运行时 DLL
+        r = subprocess.run(
+            [GCC, "-O2", "-shared", "-fno-strict-aliasing", "-static-libgcc",
+             "-I", inc, "-I", os.path.join(PY_DIR, "Include"),
+             "-L", PY_DIR, "-lpython314",
+             "-o", pyd_path, c_path],
+            cwd=ROOT, capture_output=True, text=True)
+        if r.returncode != 0:
+            raise RuntimeError(f"gcc 失败 {py_path}:\n{r.stderr[-1500:]}")
     if not os.path.exists(os.path.join(ROOT, pyd_path)):
         raise RuntimeError(f"pyd 未产出: {pyd_path}")
     return pyd_path
@@ -80,15 +102,47 @@ def main():
     ap.add_argument("targets", nargs="*", help="相对 ROOT 的 .py 路径")
     ap.add_argument("--all", action="store_true", help="F1 热 8 模块")
     ap.add_argument("--list", default=None, help="目标清单文件（每行一个相对路径）")
+    ap.add_argument("--msvc", action="store_true",
+                    help="用 MSVC 后端（需 Build Tools；默认 MinGW）")
     ap.add_argument("--clean", action="store_true",
                     help="删除目标 .pyd/.c（回滚手段）")
     a = ap.parse_args()
+    global BACKEND
+    if a.msvc:
+        BACKEND = "msvc"
     targets = HOT8 if a.all else a.targets
     if a.list:
         with open(a.list, encoding="utf-8") as fh:
             targets = [ln.strip() for ln in fh if ln.strip()]
     if not targets:
         ap.error("需要 targets/--all/--list")
+
+    # ── MSVC 清单模式（S5-F1 续批）：单 bat 内 vcvars 一次 + 逐模块 cl——
+    #    首版每模块重调 vcvars（5-8s 纯开销 × 643）不可行。cl 失败的模块无
+    #    .pyd 产物 → 回落 .py（幂等重跑只补缺）。──
+    if BACKEND == "msvc" and a.list:
+        libs_dir = os.path.join(PY_DIR, "libs")
+        inc = sysconfig.get_paths()["include"]
+        bat = os.path.join(ROOT, "tools", "_msvc_list.cmd")
+        out = ["@echo off",
+               f'call "{MSVC_VCVARS}" >nul 2>&1']
+        for t in targets:
+            base = os.path.splitext(t)[0]
+            out.append(
+                f'if exist {base}.pyd goto :skip_{abs(hash(t)) % 10**8}\n'
+                f'cl /O2 /LD /MD /nologo /I "{inc}" {base}.c '
+                f'/link /LIBPATH:"{libs_dir}" python314.lib /OUT:{base}.pyd\n'
+                f':skip_{abs(hash(t)) % 10**8}')
+        with io.open(bat, "w", encoding="ascii", newline="") as fh:
+            fh.write("\r\n".join(out) + "\r\n")
+        r = subprocess.run(["cmd", "/c", bat], cwd=ROOT)
+        print(f"[msvc-list] bat 执行完成 rc={r.returncode}")
+        miss = [t for t in targets
+                if not os.path.exists(os.path.join(ROOT, t[:-3] + ".pyd"))]
+        for t in miss:
+            print(f"  MISS {t}（无 .pyd → 回落 .py）")
+        print(f"[msvc-list] 缺失 {len(miss)} / 目标 {len(targets)}")
+        return 0
 
     rc = 0
     for t in targets:
