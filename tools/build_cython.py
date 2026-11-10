@@ -79,10 +79,12 @@ def build_one(py_path: str) -> str:
         # ★ M1-5（2026-11-10）：/GL+/LTCG 全程序优化（实验）——GD_LTO=1 开启，
         #   默认关。跨翻译单元内联对单 .pyd 边际小（模块内符号为主），且
         #   link 期变慢（每模块 +2-5s）；闸红或无收益即弃。
+        # ★ M4-4（2026-11-11）：/Os 体积优先——GD_OS=1 开启（实验门控）。
         lto = "/GL" if os.environ.get("GD_LTO") == "1" else ""
         ltcg = "/LTCG" if os.environ.get("GD_LTO") == "1" else ""
+        os_flag = "/Os" if os.environ.get("GD_OS") == "1" else ""
         cmd_line = (
-            f'call "{MSVC_VCVARS}" >nul 2>&1 && cl /O2 /LD /MD /nologo '
+            f'call "{MSVC_VCVARS}" >nul 2>&1 && cl /O2 {os_flag} /LD /MD /nologo '
             f'{lto} /I "{inc}" {c_path} '
             f'/link {ltcg} /LIBPATH:"{libs_dir}" python314.lib '
             f'/OUT:{pyd_path}')
