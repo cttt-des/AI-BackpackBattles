@@ -1368,13 +1368,18 @@ class RandomNumberGenerator:
         if (proto_exp_offset == 0) return 0;
         return LDEXPF((float)(rand() | 0x80000001), -32 - CLZ32(proto_exp_offset));
         ```
+
+        ★ 尾位 f32 快路径（2026-11-10）：末次 f32 为恒等——mantissa 已是
+          f32 精确值（24 位尾数），ldexp 幂次移位不改尾数、值域 2^(31-63)
+          远离次正规 → 结果必为 f32 可表示（引擎语义: LDEXPF 返回 float）。
+          proto==0 早退 0.0 同理。逐位验证：REG9+60 场全绿。
         """
         proto = self._pcg.next_u32()
         if proto == 0:
             return 0.0
         clz = 32 - proto.bit_length()
         mantissa = f32(float(self._pcg.next_u32() | 0x80000001))
-        return f32(math.ldexp(mantissa, -32 - clz))
+        return math.ldexp(mantissa, -32 - clz)
 
     def randd(self):
         """double 版：第二个/第三个 rand() 拼 64 位尾数，再 ldexp(-64 - clz)。"""

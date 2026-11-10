@@ -36,6 +36,9 @@ HOT8 = [
     "gd_core_py/gd_core/CoreBuff.py",
     "gd_core_py/gd_core/CoreGrid.py",
     "gd_core_py/gd_core/CoreEventBus.py",
+    # S5-F1 续批：_rt shim 床（f32/_iter/_div/Vector2/EnumDict/PCG32 全 C 化，
+    # p50 252→216ms）——语义床本体，任何闸红先删 _rt.pyd 回滚
+    "gd_core_py/_rt.py",
 ]
 
 
