@@ -374,30 +374,30 @@ _R.reg("CoreContext", CoreContext)
 # ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
 _H_1 = _R.C("CoreRng")
 try:
-    _H_10 = _R.C("CoreConst").EventType
+	_H_10 = _R.C("CoreConst").EventType
 except AttributeError as _he:
-    _H_10 = _HoistPending(_he)
+	_H_10 = _HoistPending(_he)
 _H_11 = _R.C("CoreGrid")
 try:
-    _H_12 = _R.C("CoreDamageSource").Type.Effect
+	_H_12 = _R.C("CoreDamageSource").Type.Effect
 except AttributeError as _he:
-    _H_12 = _HoistPending(_he)
+	_H_12 = _HoistPending(_he)
 try:
-    _H_13 = _R.C("CoreDamageSource").Type.Unhealing
+	_H_13 = _R.C("CoreDamageSource").Type.Unhealing
 except AttributeError as _he:
-    _H_13 = _HoistPending(_he)
+	_H_13 = _HoistPending(_he)
 try:
-    _H_14 = _R.C("CoreDamageSource").Type.Fatigue
+	_H_14 = _R.C("CoreDamageSource").Type.Fatigue
 except AttributeError as _he:
-    _H_14 = _HoistPending(_he)
+	_H_14 = _HoistPending(_he)
 try:
-    _H_15 = _R.C("CoreDamageSource").Flags.CanBeBlocked
+	_H_15 = _R.C("CoreDamageSource").Flags.CanBeBlocked
 except AttributeError as _he:
-    _H_15 = _HoistPending(_he)
+	_H_15 = _HoistPending(_he)
 try:
-    _H_16 = _R.C("CoreCharacter").ID.PLAYER
+	_H_16 = _R.C("CoreCharacter").ID.PLAYER
 except AttributeError as _he:
-    _H_16 = _HoistPending(_he)
+	_H_16 = _HoistPending(_he)
 _H_2 = _R.C("CoreUtil")
 _H_3 = _R.C("CoreEventBus")
 _H_4 = _R.C("CoreCombatLog")
@@ -405,10 +405,10 @@ _H_5 = _R.C("CoreItemBook")
 _H_6 = _R.C("CoreDamageSource")
 _H_7 = _R.C("CoreHooks")
 try:
-    _H_8 = _R.C("CoreDamageSource").effectFlags
+	_H_8 = _R.C("CoreDamageSource").effectFlags
 except AttributeError as _he:
-    _H_8 = _HoistPending(_he)
+	_H_8 = _HoistPending(_he)
 try:
-    _H_9 = _R.C("CoreDamageSource").unhealingFlags
+	_H_9 = _R.C("CoreDamageSource").unhealingFlags
 except AttributeError as _he:
-    _H_9 = _HoistPending(_he)
+	_H_9 = _HoistPending(_he)

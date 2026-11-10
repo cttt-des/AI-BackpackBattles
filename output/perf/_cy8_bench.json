@@ -1,0 +1,35 @@
+{
+  "stage": "cy_hot8",
+  "machine": "8L, Python 3.14.5",
+  "cmd": "tools/bench_sim.py --n 20 --rounds 3 --label cy_hot8 --json output/perf/_cy8_bench.json",
+  "lineups": [
+    "truth_20261001_220653_R19_player.json",
+    "truth_20261001_220653_R19_opponent.json"
+  ],
+  "workers": 1,
+  "n": 60,
+  "p50_ms": 252.4,
+  "p95_ms": 282.6,
+  "min_ms": 147.8,
+  "max_ms": 529.9,
+  "mean_ticks": 898.5,
+  "ms_per_k_tick": 280.9,
+  "fights_per_s_core": 3.96,
+  "wins_player": 12,
+  "timed_out_n": 0,
+  "round_wall_s": [
+    5.141,
+    4.809,
+    4.922
+  ],
+  "round_p50_ms": [
+    259.2,
+    249.9,
+    248.4
+  ],
+  "repro_spread_pct": 4.32,
+  "repro_pass_3pct": false,
+  "invariance_delta": [],
+  "invariance_pass": true,
+  "events_bytes_first_seed": 191079
+}

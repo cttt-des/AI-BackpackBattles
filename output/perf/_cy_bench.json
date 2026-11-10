@@ -1,0 +1,35 @@
+{
+  "stage": "cy_coreitem",
+  "machine": "8L, Python 3.14.5",
+  "cmd": "tools/bench_sim.py --n 20 --rounds 3 --label cy_coreitem --json output/perf/_cy_bench.json",
+  "lineups": [
+    "truth_20261001_220653_R19_player.json",
+    "truth_20261001_220653_R19_opponent.json"
+  ],
+  "workers": 1,
+  "n": 60,
+  "p50_ms": 269.2,
+  "p95_ms": 297.3,
+  "min_ms": 158.0,
+  "max_ms": 580.6,
+  "mean_ticks": 898.5,
+  "ms_per_k_tick": 299.7,
+  "fights_per_s_core": 3.71,
+  "wins_player": 12,
+  "timed_out_n": 0,
+  "round_wall_s": [
+    5.468,
+    5.106,
+    5.241
+  ],
+  "round_p50_ms": [
+    272.4,
+    269.2,
+    264.7
+  ],
+  "repro_spread_pct": 2.86,
+  "repro_pass_3pct": true,
+  "invariance_delta": [],
+  "invariance_pass": true,
+  "events_bytes_first_seed": 191079
+}

@@ -37,7 +37,7 @@ class Exclusive__PuzzlebagT(_R.C("res://gd_core_items/Bag.gd")):
 			used = - amount
 			buffType = event.getType()
 			self.usedStacks[buffType] += used * self.refund
-			toRefund = int(round(self.usedStacks[buffType]))
+			toRefund = int(gd_round(self.usedStacks[buffType]))
 
 			if toRefund > 0:
 				self.usedStacks[buffType] -= toRefund

@@ -116,3 +116,7 @@ gd_core_test/gd_core_items/
 /停止采集.bat
 /gd_core_test/_BusProbe.gd
 /gd_core_test/dump_run_cache.gd
+
+# ============ Cython 编译产物（tools/build_cython.py 再生） ============
+gd_core_py/**/*.pyd
+gd_core_py/**/*.c

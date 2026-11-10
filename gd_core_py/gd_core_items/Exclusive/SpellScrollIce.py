@@ -46,7 +46,7 @@ class Exclusive__SpellScrollIce(_R.C("res://gd_core_items/Item.gd")):
 				if opponentCold > 0:
 					self.activated = True
 					self.opponent().loseCold(opponentCold, self, damageRes.event)
-					self.giveBlock(round(self.getBlock() * opponentCold), True, damageRes.event)
+					self.giveBlock(gd_round(self.getBlock() * opponentCold), True, damageRes.event)
 					self.consume()
 
 
@@ -68,10 +68,10 @@ _R.reg("SpellScrollIce", Exclusive__SpellScrollIce)
 
 # ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
 try:
-    _H_1 = _R.C("CoreConst").Type.Shield
+	_H_1 = _R.C("CoreConst").Type.Shield
 except AttributeError as _he:
-    _H_1 = _HoistPending(_he)
+	_H_1 = _HoistPending(_he)
 try:
-    _H_2 = _R.C("CoreConst").Type.Armor
+	_H_2 = _R.C("CoreConst").Type.Armor
 except AttributeError as _he:
-    _H_2 = _HoistPending(_he)
+	_H_2 = _HoistPending(_he)

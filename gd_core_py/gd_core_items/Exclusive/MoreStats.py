@@ -25,7 +25,7 @@ class Exclusive__MoreStats(_R.C("res://gd_core_items/Item.gd")):
 		for item in _iter(self.inventory.getItems()):
 			if self.canAffect_global(item):
 				item.addBonusDamageFactor(self.damageFactor)
-		self.giveMaxHealth(round(_div(self.getP_m('maxhealth'), 100.0) * self.character().getMaxHealth()))
+		self.giveMaxHealth(gd_round(_div(self.getP_m('maxhealth'), 100.0) * self.character().getMaxHealth()))
 		self.activate()
 
 
@@ -60,6 +60,6 @@ _R.reg("MoreStats", Exclusive__MoreStats)
 
 # ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
 try:
-    _H_1 = _R.C("CoreConst").Priority.Low
+	_H_1 = _R.C("CoreConst").Priority.Low
 except AttributeError as _he:
-    _H_1 = _HoistPending(_he)
+	_H_1 = _HoistPending(_he)

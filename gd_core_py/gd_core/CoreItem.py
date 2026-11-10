@@ -1269,7 +1269,7 @@ class CoreItem(GodotObject):
 
 			minDam *= self.getTypedDamageFactor(damSource)
 
-		minDam = round(minDam * self.bonusDamageFactor)
+		minDam = gd_round(minDam * self.bonusDamageFactor)
 		minDam = max(minDam, 0)
 
 		return minDam
@@ -1290,7 +1290,7 @@ class CoreItem(GodotObject):
 
 			maxDam *= self.getTypedDamageFactor(damSource)
 
-		maxDam = round(maxDam * self.bonusDamageFactor)
+		maxDam = gd_round(maxDam * self.bonusDamageFactor)
 		maxDam = max(maxDam, 0)
 
 		return maxDam
@@ -1556,14 +1556,14 @@ class CoreItem(GodotObject):
 	def giveStacks(self, target, type, amount, triggerEvent=None):
 		type = int(type)
 		if amount > 0:
-			return target.gainStacks(type, round(amount * self.buffPowers[type]), self, triggerEvent)
+			return target.gainStacks(type, gd_round(amount * self.buffPowers[type]), self, triggerEvent)
 		return None
 
 
 	def giveStacksTemporary(self, target, type, amount, duration, triggerEvent=None):
 		type = int(type)
 		if amount > 0:
-			return target.gainStacksTemporary(type, round(amount * self.buffPowers[type]), duration, self, triggerEvent)
+			return target.gainStacksTemporary(type, gd_round(amount * self.buffPowers[type]), duration, self, triggerEvent)
 		return None
 
 
@@ -2476,7 +2476,7 @@ class CoreItem(GodotObject):
 			# ★ 显式实参过类型化形参边界：float 向零截断（GDScript 隐式转换）。
 			#   oracle 探针（f03_probe，events≡语料逐字节）：Badger amt=247=
 			#   trunc(1033×24/100)（run1394_r18）、amt=254=trunc(254.8)（run1023_r18）；
-			#   原转写丢类型致 Variant 直通，CoreCharacter.heal round() 后 frac≥0.5
+			#   原转写丢类型致 Variant 直通，CoreCharacter.heal gd_round() 后 frac≥0.5
 			#   的治疗恒 +1（247.92→248）。
 			amount = int(amount)
 		healed = self.character().heal(amount, self, triggerEvent)
@@ -2531,7 +2531,7 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:5066-5076
 	def giveMana_capped(self, amount, maximum, triggerEvent=None):
-		amount = round(amount * self.buffPowers[_H_28])
+		amount = gd_round(amount * self.buffPowers[_H_28])
 		curMana = self.character().getMana()
 		if maximum > curMana:
 			missingMana = maximum - curMana
@@ -2795,7 +2795,7 @@ class CoreItem(GodotObject):
 			stacksUnlimited[buff] = withBonus
 			sum += withBonus
 
-		sumRounded = round(sum)
+		sumRounded = gd_round(sum)
 		if sumRounded == 0:
 			return None
 
@@ -4110,257 +4110,257 @@ _R.reg("CoreItem", CoreItem)
 # ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
 _H_1 = _R.C("CoreTimer")
 try:
-    _H_10 = _R.C("CoreConst").ItemStat.BaseCooldown
+	_H_10 = _R.C("CoreConst").ItemStat.BaseCooldown
 except AttributeError as _he:
-    _H_10 = _HoistPending(_he)
+	_H_10 = _HoistPending(_he)
 try:
-    _H_11 = _R.C("CoreConst").ItemStat.Cooldown
+	_H_11 = _R.C("CoreConst").ItemStat.Cooldown
 except AttributeError as _he:
-    _H_11 = _HoistPending(_he)
+	_H_11 = _HoistPending(_he)
 try:
-    _H_12 = _R.C("CoreConst").ItemStat.StaminaCost
+	_H_12 = _R.C("CoreConst").ItemStat.StaminaCost
 except AttributeError as _he:
-    _H_12 = _HoistPending(_he)
+	_H_12 = _HoistPending(_he)
 try:
-    _H_13 = _R.C("CoreConst").StatModified.No
+	_H_13 = _R.C("CoreConst").StatModified.No
 except AttributeError as _he:
-    _H_13 = _HoistPending(_he)
+	_H_13 = _HoistPending(_he)
 try:
-    _H_14 = _R.C("CoreConst").StaminaResult.Insufficient
+	_H_14 = _R.C("CoreConst").StaminaResult.Insufficient
 except AttributeError as _he:
-    _H_14 = _HoistPending(_he)
+	_H_14 = _HoistPending(_he)
 try:
-    _H_15 = _R.C("CoreConst").Owner.BuildViewer
+	_H_15 = _R.C("CoreConst").Owner.BuildViewer
 except AttributeError as _he:
-    _H_15 = _HoistPending(_he)
+	_H_15 = _HoistPending(_he)
 try:
-    _H_16 = _R.C("CoreConst").ItemStat.MinDamage
+	_H_16 = _R.C("CoreConst").ItemStat.MinDamage
 except AttributeError as _he:
-    _H_16 = _HoistPending(_he)
+	_H_16 = _HoistPending(_he)
 try:
-    _H_17 = _R.C("CoreConst").ItemStat.MaxDamage
+	_H_17 = _R.C("CoreConst").ItemStat.MaxDamage
 except AttributeError as _he:
-    _H_17 = _HoistPending(_he)
+	_H_17 = _HoistPending(_he)
 try:
-    _H_18 = _R.C("CoreConst").ItemStat.Chance
+	_H_18 = _R.C("CoreConst").ItemStat.Chance
 except AttributeError as _he:
-    _H_18 = _HoistPending(_he)
+	_H_18 = _HoistPending(_he)
 try:
-    _H_19 = _R.C("CoreConst").ItemStat.Chance2
+	_H_19 = _R.C("CoreConst").ItemStat.Chance2
 except AttributeError as _he:
-    _H_19 = _HoistPending(_he)
+	_H_19 = _HoistPending(_he)
 _H_2 = _R.C("CoreDamageSource")
 try:
-    _H_20 = _R.C("CoreConst").ItemStat.CritChance
+	_H_20 = _R.C("CoreConst").ItemStat.CritChance
 except AttributeError as _he:
-    _H_20 = _HoistPending(_he)
+	_H_20 = _HoistPending(_he)
 try:
-    _H_21 = _R.C("CoreConst").EventType.Block
+	_H_21 = _R.C("CoreConst").EventType.Block
 except AttributeError as _he:
-    _H_21 = _HoistPending(_he)
+	_H_21 = _HoistPending(_he)
 try:
-    _H_22 = _R.C("CoreConst").EventType.Spikes
+	_H_22 = _R.C("CoreConst").EventType.Spikes
 except AttributeError as _he:
-    _H_22 = _HoistPending(_he)
+	_H_22 = _HoistPending(_he)
 try:
-    _H_23 = _R.C("CoreConst").EventType.Vampirism
+	_H_23 = _R.C("CoreConst").EventType.Vampirism
 except AttributeError as _he:
-    _H_23 = _HoistPending(_he)
+	_H_23 = _HoistPending(_he)
 try:
-    _H_24 = _R.C("CoreConst").EventType.Poison
+	_H_24 = _R.C("CoreConst").EventType.Poison
 except AttributeError as _he:
-    _H_24 = _HoistPending(_he)
+	_H_24 = _HoistPending(_he)
 try:
-    _H_25 = _R.C("CoreConst").EventType.Blind
+	_H_25 = _R.C("CoreConst").EventType.Blind
 except AttributeError as _he:
-    _H_25 = _HoistPending(_he)
+	_H_25 = _HoistPending(_he)
 try:
-    _H_26 = _R.C("CoreConst").EventType.Regeneration
+	_H_26 = _R.C("CoreConst").EventType.Regeneration
 except AttributeError as _he:
-    _H_26 = _HoistPending(_he)
+	_H_26 = _HoistPending(_he)
 try:
-    _H_27 = _R.C("CoreConst").EventType.Lucky
+	_H_27 = _R.C("CoreConst").EventType.Lucky
 except AttributeError as _he:
-    _H_27 = _HoistPending(_he)
+	_H_27 = _HoistPending(_he)
 try:
-    _H_28 = _R.C("CoreConst").EventType.Mana
+	_H_28 = _R.C("CoreConst").EventType.Mana
 except AttributeError as _he:
-    _H_28 = _HoistPending(_he)
+	_H_28 = _HoistPending(_he)
 try:
-    _H_29 = _R.C("CoreConst").EventType.Empower
+	_H_29 = _R.C("CoreConst").EventType.Empower
 except AttributeError as _he:
-    _H_29 = _HoistPending(_he)
+	_H_29 = _HoistPending(_he)
 try:
-    _H_3 = _R.C("CoreConst").Owner.Undefined
+	_H_3 = _R.C("CoreConst").Owner.Undefined
 except AttributeError as _he:
-    _H_3 = _HoistPending(_he)
+	_H_3 = _HoistPending(_he)
 try:
-    _H_30 = _R.C("CoreConst").EventType.Heat
+	_H_30 = _R.C("CoreConst").EventType.Heat
 except AttributeError as _he:
-    _H_30 = _HoistPending(_he)
+	_H_30 = _HoistPending(_he)
 try:
-    _H_31 = _R.C("CoreConst").EventType.Cold
+	_H_31 = _R.C("CoreConst").EventType.Cold
 except AttributeError as _he:
-    _H_31 = _HoistPending(_he)
+	_H_31 = _HoistPending(_he)
 try:
-    _H_32 = _R.C("CoreConst").ItemMetrics.Damage
+	_H_32 = _R.C("CoreConst").ItemMetrics.Damage
 except AttributeError as _he:
-    _H_32 = _HoistPending(_he)
+	_H_32 = _HoistPending(_he)
 try:
-    _H_33 = _R.C("CoreConst").ItemMetrics.Stamina
+	_H_33 = _R.C("CoreConst").ItemMetrics.Stamina
 except AttributeError as _he:
-    _H_33 = _HoistPending(_he)
+	_H_33 = _HoistPending(_he)
 try:
-    _H_34 = _R.C("CoreConst").StackChangeType
+	_H_34 = _R.C("CoreConst").StackChangeType
 except AttributeError as _he:
-    _H_34 = _HoistPending(_he)
+	_H_34 = _HoistPending(_he)
 try:
-    _H_35 = _R.C("CoreConst").StackChangeType.Added_Player
+	_H_35 = _R.C("CoreConst").StackChangeType.Added_Player
 except AttributeError as _he:
-    _H_35 = _HoistPending(_he)
+	_H_35 = _HoistPending(_he)
 _H_36 = _R.C("CoreUtil")
 try:
-    _H_37 = _R.C("CoreConst").Owner.Opponent
+	_H_37 = _R.C("CoreConst").Owner.Opponent
 except AttributeError as _he:
-    _H_37 = _HoistPending(_he)
+	_H_37 = _HoistPending(_he)
 try:
-    _H_38 = _R.C("CoreConst").Affected.Primary
+	_H_38 = _R.C("CoreConst").Affected.Primary
 except AttributeError as _he:
-    _H_38 = _HoistPending(_he)
+	_H_38 = _HoistPending(_he)
 try:
-    _H_39 = _R.C("CoreConst").Stack.Buff
+	_H_39 = _R.C("CoreConst").Stack.Buff
 except AttributeError as _he:
-    _H_39 = _HoistPending(_he)
+	_H_39 = _HoistPending(_he)
 try:
-    _H_4 = _R.C("CoreConst").FaceDirection.UP
+	_H_4 = _R.C("CoreConst").FaceDirection.UP
 except AttributeError as _he:
-    _H_4 = _HoistPending(_he)
+	_H_4 = _HoistPending(_he)
 try:
-    _H_40 = _R.C("CoreConst").Stack.Debuff
+	_H_40 = _R.C("CoreConst").Stack.Debuff
 except AttributeError as _he:
-    _H_40 = _HoistPending(_he)
+	_H_40 = _HoistPending(_he)
 try:
-    _H_41 = _R.C("CoreEventBus").LoggingMode.Delayed
+	_H_41 = _R.C("CoreEventBus").LoggingMode.Delayed
 except AttributeError as _he:
-    _H_41 = _HoistPending(_he)
+	_H_41 = _HoistPending(_he)
 try:
-    _H_42 = _R.C("CoreConst").Owner.Socket
+	_H_42 = _R.C("CoreConst").Owner.Socket
 except AttributeError as _he:
-    _H_42 = _HoistPending(_he)
+	_H_42 = _HoistPending(_he)
 try:
-    _H_43 = _R.C('CoreConst').FaceDirection
+	_H_43 = _R.C('CoreConst').FaceDirection
 except AttributeError as _he:
-    _H_43 = _HoistPending(_he)
+	_H_43 = _HoistPending(_he)
 try:
-    _H_44 = _R.C("CoreConst").CharID.PLAYER
+	_H_44 = _R.C("CoreConst").CharID.PLAYER
 except AttributeError as _he:
-    _H_44 = _HoistPending(_he)
+	_H_44 = _HoistPending(_he)
 try:
-    _H_45 = _R.C("CoreConst").Tag.Lifesteal
+	_H_45 = _R.C("CoreConst").Tag.Lifesteal
 except AttributeError as _he:
-    _H_45 = _HoistPending(_he)
+	_H_45 = _HoistPending(_he)
 try:
-    _H_46 = _R.C("CoreConst").StatModified.Positive
+	_H_46 = _R.C("CoreConst").StatModified.Positive
 except AttributeError as _he:
-    _H_46 = _HoistPending(_he)
+	_H_46 = _HoistPending(_he)
 try:
-    _H_47 = _R.C("CoreConst").StatModified.Negative
+	_H_47 = _R.C("CoreConst").StatModified.Negative
 except AttributeError as _he:
-    _H_47 = _HoistPending(_he)
+	_H_47 = _HoistPending(_he)
 try:
-    _H_48 = _R.C("CoreConst").ItemMetrics.OutOfStamina
+	_H_48 = _R.C("CoreConst").ItemMetrics.OutOfStamina
 except AttributeError as _he:
-    _H_48 = _HoistPending(_he)
+	_H_48 = _HoistPending(_he)
 try:
-    _H_49 = _R.C("CoreConst").StackChangeType.Used_Player
+	_H_49 = _R.C("CoreConst").StackChangeType.Used_Player
 except AttributeError as _he:
-    _H_49 = _HoistPending(_he)
+	_H_49 = _HoistPending(_he)
 try:
-    _H_5 = _R.C("CoreConst").Priority.Normal
+	_H_5 = _R.C("CoreConst").Priority.Normal
 except AttributeError as _he:
-    _H_5 = _HoistPending(_he)
+	_H_5 = _HoistPending(_he)
 try:
-    _H_50 = _R.C("CoreConst").Owner.PlayerInventory
+	_H_50 = _R.C("CoreConst").Owner.PlayerInventory
 except AttributeError as _he:
-    _H_50 = _HoistPending(_he)
+	_H_50 = _HoistPending(_he)
 try:
-    _H_51 = _R.C("CoreDamageSource").Type.Effect
+	_H_51 = _R.C("CoreDamageSource").Type.Effect
 except AttributeError as _he:
-    _H_51 = _HoistPending(_he)
+	_H_51 = _HoistPending(_he)
 try:
-    _H_52 = _R.C("CoreConst").StackChangeType.Removed_Player
+	_H_52 = _R.C("CoreConst").StackChangeType.Removed_Player
 except AttributeError as _he:
-    _H_52 = _HoistPending(_he)
+	_H_52 = _HoistPending(_he)
 try:
-    _H_53 = _R.C("CoreConst").Owner.Shop
+	_H_53 = _R.C("CoreConst").Owner.Shop
 except AttributeError as _he:
-    _H_53 = _HoistPending(_he)
+	_H_53 = _HoistPending(_he)
 try:
-    _H_54 = _R.C("CoreConst").Owner.PlayerStorageBox
+	_H_54 = _R.C("CoreConst").Owner.PlayerStorageBox
 except AttributeError as _he:
-    _H_54 = _HoistPending(_he)
+	_H_54 = _HoistPending(_he)
 try:
-    _H_55 = _R.C("CoreConst").Affected.Secondary
+	_H_55 = _R.C("CoreConst").Affected.Secondary
 except AttributeError as _he:
-    _H_55 = _HoistPending(_he)
+	_H_55 = _HoistPending(_he)
 try:
-    _H_56 = _R.C("CoreConst").EventType.DamageBuff
+	_H_56 = _R.C("CoreConst").EventType.DamageBuff
 except AttributeError as _he:
-    _H_56 = _HoistPending(_he)
+	_H_56 = _HoistPending(_he)
 try:
-    _H_57 = _R.C("CoreConst").ItemMetrics.MaxHealth
+	_H_57 = _R.C("CoreConst").ItemMetrics.MaxHealth
 except AttributeError as _he:
-    _H_57 = _HoistPending(_he)
+	_H_57 = _HoistPending(_he)
 try:
-    _H_58 = _R.C("CoreConst").EventType.TemporaryMaxHealth
+	_H_58 = _R.C("CoreConst").EventType.TemporaryMaxHealth
 except AttributeError as _he:
-    _H_58 = _HoistPending(_he)
+	_H_58 = _HoistPending(_he)
 try:
-    _H_59 = _R.C("CoreConst").FaceDirection.RIGHT
+	_H_59 = _R.C("CoreConst").FaceDirection.RIGHT
 except AttributeError as _he:
-    _H_59 = _HoistPending(_he)
+	_H_59 = _HoistPending(_he)
 try:
-    _H_6 = _R.C("CoreConst").Type
+	_H_6 = _R.C("CoreConst").Type
 except AttributeError as _he:
-    _H_6 = _HoistPending(_he)
+	_H_6 = _HoistPending(_he)
 try:
-    _H_60 = _R.C("CoreConst").Affected
+	_H_60 = _R.C("CoreConst").Affected
 except AttributeError as _he:
-    _H_60 = _HoistPending(_he)
+	_H_60 = _HoistPending(_he)
 try:
-    _H_61 = _R.C("CoreConst").ItemMetrics.Activations
+	_H_61 = _R.C("CoreConst").ItemMetrics.Activations
 except AttributeError as _he:
-    _H_61 = _HoistPending(_he)
+	_H_61 = _HoistPending(_he)
 try:
-    _H_62 = _R.C("CoreConst").ItemMetrics.Block
+	_H_62 = _R.C("CoreConst").ItemMetrics.Block
 except AttributeError as _he:
-    _H_62 = _HoistPending(_he)
+	_H_62 = _HoistPending(_he)
 try:
-    _H_63 = _R.C("CoreConst").ItemMetrics
+	_H_63 = _R.C("CoreConst").ItemMetrics
 except AttributeError as _he:
-    _H_63 = _HoistPending(_he)
+	_H_63 = _HoistPending(_he)
 try:
-    _H_64 = _R.C("CoreConst").ItemStat.Accuracy
+	_H_64 = _R.C("CoreConst").ItemStat.Accuracy
 except AttributeError as _he:
-    _H_64 = _HoistPending(_he)
+	_H_64 = _HoistPending(_he)
 try:
-    _H_65 = _R.C("CoreConst").Affected.Tertiary
+	_H_65 = _R.C("CoreConst").Affected.Tertiary
 except AttributeError as _he:
-    _H_65 = _HoistPending(_he)
+	_H_65 = _HoistPending(_he)
 try:
-    _H_66 = _R.C("CoreConst").FaceDirection.LEFT
+	_H_66 = _R.C("CoreConst").FaceDirection.LEFT
 except AttributeError as _he:
-    _H_66 = _HoistPending(_he)
+	_H_66 = _HoistPending(_he)
 try:
-    _H_67 = _R.C("CoreConst").FaceDirection.DOWN
+	_H_67 = _R.C("CoreConst").FaceDirection.DOWN
 except AttributeError as _he:
-    _H_67 = _HoistPending(_he)
+	_H_67 = _HoistPending(_he)
 _H_7 = _R.C("CoreConst")
 try:
-    _H_8 = _R.C("CoreConst").ItemStat
+	_H_8 = _R.C("CoreConst").ItemStat
 except AttributeError as _he:
-    _H_8 = _HoistPending(_he)
+	_H_8 = _HoistPending(_he)
 try:
-    _H_9 = _R.C("CoreConst").ItemStat.Speed
+	_H_9 = _R.C("CoreConst").ItemStat.Speed
 except AttributeError as _he:
-    _H_9 = _HoistPending(_he)
+	_H_9 = _HoistPending(_he)

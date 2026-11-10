@@ -44,10 +44,10 @@ _R.reg("ShellTotem", Exclusive__ShellTotem)
 
 # ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
 try:
-    _H_1 = _R.C("CoreConst").Type.Holy
+	_H_1 = _R.C("CoreConst").Type.Holy
 except AttributeError as _he:
-    _H_1 = _HoistPending(_he)
+	_H_1 = _HoistPending(_he)
 try:
-    _H_2 = _R.C("CoreConst").StaminaResult.Sufficient
+	_H_2 = _R.C("CoreConst").StaminaResult.Sufficient
 except AttributeError as _he:
-    _H_2 = _HoistPending(_he)
+	_H_2 = _HoistPending(_he)

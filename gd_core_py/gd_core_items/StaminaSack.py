@@ -41,10 +41,10 @@ _R.reg("StaminaSack", StaminaSack_2)
 
 # ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
 try:
-    _H_1 = _R.C("CoreConst").Owner.PlayerInventory
+	_H_1 = _R.C("CoreConst").Owner.PlayerInventory
 except AttributeError as _he:
-    _H_1 = _HoistPending(_he)
+	_H_1 = _HoistPending(_he)
 try:
-    _H_2 = _R.C("CoreConst").Owner.BuildViewer
+	_H_2 = _R.C("CoreConst").Owner.BuildViewer
 except AttributeError as _he:
-    _H_2 = _HoistPending(_he)
+	_H_2 = _HoistPending(_he)

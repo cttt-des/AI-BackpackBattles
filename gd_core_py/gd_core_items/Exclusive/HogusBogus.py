@@ -49,7 +49,7 @@ class Exclusive__HogusBogus(_R.C("res://gd_core_items/Item.gd")):
 				numProccs = floor(_div__loc(curStamina, step))
 				staminaToUse = min(curStamina, min(numProccs * step, self.maxStaminaUsed))
 				self.useStamina(staminaToUse)
-				self.giveRandomBuffs(round(staminaToUse * self.buffsPerStamina))
+				self.giveRandomBuffs(gd_round(staminaToUse * self.buffsPerStamina))
 			self.activate()
 
 		elif self.phase == 2:

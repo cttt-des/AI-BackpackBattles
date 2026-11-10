@@ -56,7 +56,7 @@ class Exclusive__PerpetuumMobile(_R.C("res://gd_core_items/Item.gd")):
 	def doCooldownEffect(self):
 
 		for buffType in (self.usedStacks if self.usedStacks.__class__ is list else _iter(self.usedStacks)):
-			toRefund = int(round(self.usedStacks[buffType] * self.buffRefund))
+			toRefund = int(gd_round(self.usedStacks[buffType] * self.buffRefund))
 
 			if toRefund > 0:
 				self.usedStacks[buffType] -= toRefund
@@ -82,7 +82,7 @@ _R.reg("PerpetuumMobile", Exclusive__PerpetuumMobile)
 
 # ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
 try:
-    _H_1 = _R.C("CoreConst").Classes_Full.Engineer
+	_H_1 = _R.C("CoreConst").Classes_Full.Engineer
 except AttributeError as _he:
-    _H_1 = _HoistPending(_he)
+	_H_1 = _HoistPending(_he)
 _H_2 = _R.C("CoreConst")

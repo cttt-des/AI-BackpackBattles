@@ -68,7 +68,7 @@ __all__ = [
     #   AttributeError（__all__ 里的名字必须真实存在）；且这几个的语义与
     #   Python 内建一致，直接用内建即可。
     "PI", "TAU", "INF", "NAN", "f32",
-    "floor", "ceil", "round", "clamp", "stepify", "fmod", "posmod", "snapped",
+    "floor", "ceil", "round", "gd_round", "clamp", "stepify", "fmod", "posmod", "snapped",
     "sqrt", "pow", "sign", "lerp", "inverse_lerp", "smoothstep", "move_toward",
     "wrapf", "wrapi", "deg2rad", "rad2deg", "is_equal_approx", "is_instance_valid",
     "OS_has_feature", "_os_environ_get", "randomize", "_gd_str", "_strv",
@@ -133,6 +133,13 @@ def round(x):
     round(2.5)：GDScript 3、Python 2 —— 差一个整点，直接改判定。
     """
     return float(math.floor(x + 0.5) if x >= 0 else -math.floor(-x + 0.5))
+
+
+# ★ Cython 编译伴生（F1）：`round` 是 Cython 内建优化名——实参推断为 C double
+#   时绕过模块全局 shim，取整语义漂移（run1514_r18 伤害 7→6 实证）。
+#   生成器把产物内自由 `round(` 调用改名为 gd_round（本别名，同一函数对象），
+#   Cython 对非内建名走运行期全局解析 → shim 语义保留。CPython 腿同别名零变化。
+gd_round = round
 
 
 def clamp(v, lo, hi):

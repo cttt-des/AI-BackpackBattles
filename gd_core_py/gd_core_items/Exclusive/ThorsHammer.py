@@ -49,10 +49,10 @@ _R.reg("ThorsHammer", Exclusive__ThorsHammer)
 # ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
 _H_1 = _R.C("CoreDamageSource")
 try:
-    _H_2 = _R.C("CoreDamageSource").Type.Effect
+	_H_2 = _R.C("CoreDamageSource").Type.Effect
 except AttributeError as _he:
-    _H_2 = _HoistPending(_he)
+	_H_2 = _HoistPending(_he)
 try:
-    _H_3 = _R.C("CoreConst").EventType.Blind
+	_H_3 = _R.C("CoreConst").EventType.Blind
 except AttributeError as _he:
-    _H_3 = _HoistPending(_he)
+	_H_3 = _HoistPending(_he)

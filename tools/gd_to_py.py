@@ -2281,10 +2281,12 @@ def _hoist_classrefs(texts, order, files_by_rel, stat, hit):
                  "模块末绑定）──"]
         for src, name in sorted(uniq.items(), key=lambda kv: kv[1]):
             if src in chain_srcs:
+                # ★ try/except 体用 TAB 缩进——产物全文件为 tab 缩进，Cython
+                #   词法对 tab/space 混用做全局校验（比 CPython 严），混排即拒编
                 block.append("try:")
-                block.append("    %s = %s" % (name, src))
+                block.append("\t%s = %s" % (name, src))
                 block.append("except AttributeError as _he:")
-                block.append("    %s = _HoistPending(_he)" % name)
+                block.append("\t%s = _HoistPending(_he)" % name)
             else:
                 block.append("%s = %s" % (name, src))
         new_text = "\n".join(lines) + "\n" + "\n".join(block) + "\n"
@@ -2927,6 +2929,30 @@ def _f5b_physick_inline(texts, stat, hit):
     return texts
 
 
+def _cy_round_alias(texts, stat, hit):
+    """F1-Cython 伴生趟：产物内自由 `round(` 调用改名为 gd_round 别名。
+
+    动机：`round` 是 Cython 内建优化名——实参推断为 C double 时绕过模块
+    全局 shim（GDScript 远离零取整），伤害取整语义漂移（run1514_r18
+    gd=7/py=6 实证）。gd_round = _rt 同函数别名（非内建名 → Cython 走
+    运行期全局解析 → shim 保留）。CPython 腿同别名零变化。
+    负向后顾排除 `.round(`（Vector2 方法调用，运行期属性协议本就安全）。
+    """
+    import re as _re
+    pat = _re.compile(r"(?<![.\w])round\(")
+    total = 0
+    for rel in list(texts):
+        t = texts[rel]
+        n = len(pat.findall(t))
+        if not n:
+            continue
+        texts[rel] = pat.sub("gd_round(", t)
+        total += n
+    hit["cy_round_alias"] = total
+    stat["cy_round"] = ["%d 处改名" % total]
+    return texts
+
+
 def write_pkg(order, files_by_rel, by_name, by_path, class_names, stat, hit, write):
     texts = {}
     for rel in order:
@@ -2956,6 +2982,8 @@ def write_pkg(order, files_by_rel, by_name, by_path, class_names, stat, hit, wri
         texts = _hook_strip(texts, stat, hit)
     if "D2" not in _skip:
         texts = _d2_adjcells_seen(texts, stat, hit)
+    if "CY" not in _skip:
+        texts = _cy_round_alias(texts, stat, hit)
     if not write:
         return texts
     dirs = {OUT_PKG}

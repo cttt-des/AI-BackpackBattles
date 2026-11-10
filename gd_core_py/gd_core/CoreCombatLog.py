@@ -369,134 +369,134 @@ _R.reg("CoreCombatLog", CoreCombatLog)
 # ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
 _H_1 = _R.C("CoreEvent")
 try:
-    _H_10 = _R.C("CoreConst").EventType.InvulnerableEnd
+	_H_10 = _R.C("CoreConst").EventType.InvulnerableEnd
 except AttributeError as _he:
-    _H_10 = _HoistPending(_he)
+	_H_10 = _HoistPending(_he)
 try:
-    _H_11 = _R.C("CoreConst").EventType.Stamina
+	_H_11 = _R.C("CoreConst").EventType.Stamina
 except AttributeError as _he:
-    _H_11 = _HoistPending(_he)
+	_H_11 = _HoistPending(_he)
 try:
-    _H_12 = _R.C("CoreConst").EventType.DrainStamina
+	_H_12 = _R.C("CoreConst").EventType.DrainStamina
 except AttributeError as _he:
-    _H_12 = _HoistPending(_he)
+	_H_12 = _HoistPending(_he)
 try:
-    _H_13 = _R.C("CoreConst").EventType.OutofStamina
+	_H_13 = _R.C("CoreConst").EventType.OutofStamina
 except AttributeError as _he:
-    _H_13 = _HoistPending(_he)
+	_H_13 = _HoistPending(_he)
 try:
-    _H_14 = _R.C("CoreConst").EventType.DamageBuff
+	_H_14 = _R.C("CoreConst").EventType.DamageBuff
 except AttributeError as _he:
-    _H_14 = _HoistPending(_he)
+	_H_14 = _HoistPending(_he)
 try:
-    _H_15 = _R.C("CoreConst").EventType.TemporaryMaxHealth
+	_H_15 = _R.C("CoreConst").EventType.TemporaryMaxHealth
 except AttributeError as _he:
-    _H_15 = _HoistPending(_he)
+	_H_15 = _HoistPending(_he)
 try:
-    _H_16 = _R.C("CoreCharacter").Stat.MaxHealth
+	_H_16 = _R.C("CoreCharacter").Stat.MaxHealth
 except AttributeError as _he:
-    _H_16 = _HoistPending(_he)
+	_H_16 = _HoistPending(_he)
 try:
-    _H_17 = _R.C("CoreConst").EventType.TemporaryMaxStamina
+	_H_17 = _R.C("CoreConst").EventType.TemporaryMaxStamina
 except AttributeError as _he:
-    _H_17 = _HoistPending(_he)
+	_H_17 = _HoistPending(_he)
 try:
-    _H_18 = _R.C("CoreCharacter").Stat.Stamina
+	_H_18 = _R.C("CoreCharacter").Stat.Stamina
 except AttributeError as _he:
-    _H_18 = _HoistPending(_he)
+	_H_18 = _HoistPending(_he)
 try:
-    _H_19 = _R.C("CoreCharacter").Stat.MaxStamina
+	_H_19 = _R.C("CoreCharacter").Stat.MaxStamina
 except AttributeError as _he:
-    _H_19 = _HoistPending(_he)
+	_H_19 = _HoistPending(_he)
 try:
-    _H_2 = _R.C("CoreCharacter").Stat.Health
+	_H_2 = _R.C("CoreCharacter").Stat.Health
 except AttributeError as _he:
-    _H_2 = _HoistPending(_he)
+	_H_2 = _HoistPending(_he)
 try:
-    _H_20 = _R.C("CoreConst").EventType.BattleRageStart
+	_H_20 = _R.C("CoreConst").EventType.BattleRageStart
 except AttributeError as _he:
-    _H_20 = _HoistPending(_he)
+	_H_20 = _HoistPending(_he)
 try:
-    _H_21 = _R.C("CoreConst").EventType.BattleRageEnd
+	_H_21 = _R.C("CoreConst").EventType.BattleRageEnd
 except AttributeError as _he:
-    _H_21 = _HoistPending(_he)
+	_H_21 = _HoistPending(_he)
 try:
-    _H_22 = _R.C("CoreConst").EventType.Reincarnate
+	_H_22 = _R.C("CoreConst").EventType.Reincarnate
 except AttributeError as _he:
-    _H_22 = _HoistPending(_he)
+	_H_22 = _HoistPending(_he)
 try:
-    _H_23 = _R.C("CoreConst").EventType.Activation
+	_H_23 = _R.C("CoreConst").EventType.Activation
 except AttributeError as _he:
-    _H_23 = _HoistPending(_he)
+	_H_23 = _HoistPending(_he)
 try:
-    _H_24 = _R.C("CoreDamageSource").Type.SelfDamage
+	_H_24 = _R.C("CoreDamageSource").Type.SelfDamage
 except AttributeError as _he:
-    _H_24 = _HoistPending(_he)
+	_H_24 = _HoistPending(_he)
 try:
-    _H_25 = _R.C("CoreConst").EventType.MissedAttack
+	_H_25 = _R.C("CoreConst").EventType.MissedAttack
 except AttributeError as _he:
-    _H_25 = _HoistPending(_he)
+	_H_25 = _HoistPending(_he)
 try:
-    _H_26 = _R.C("CoreConst").EventType.CriticalDamage
+	_H_26 = _R.C("CoreConst").EventType.CriticalDamage
 except AttributeError as _he:
-    _H_26 = _HoistPending(_he)
+	_H_26 = _HoistPending(_he)
 try:
-    _H_27 = _R.C("CoreConst").EventType.DealDamage
+	_H_27 = _R.C("CoreConst").EventType.DealDamage
 except AttributeError as _he:
-    _H_27 = _HoistPending(_he)
+	_H_27 = _HoistPending(_he)
 try:
-    _H_28 = _R.C("CoreConst").EventType.Heat
+	_H_28 = _R.C("CoreConst").EventType.Heat
 except AttributeError as _he:
-    _H_28 = _HoistPending(_he)
+	_H_28 = _HoistPending(_he)
 try:
-    _H_29 = _R.C("CoreConst").EventType.Cold
+	_H_29 = _R.C("CoreConst").EventType.Cold
 except AttributeError as _he:
-    _H_29 = _HoistPending(_he)
+	_H_29 = _HoistPending(_he)
 try:
-    _H_3 = _R.C("CoreConst").EventType.Block
+	_H_3 = _R.C("CoreConst").EventType.Block
 except AttributeError as _he:
-    _H_3 = _HoistPending(_he)
+	_H_3 = _HoistPending(_he)
 try:
-    _H_30 = _R.C("CoreConst").EventType.DamIncrease
+	_H_30 = _R.C("CoreConst").EventType.DamIncrease
 except AttributeError as _he:
-    _H_30 = _HoistPending(_he)
+	_H_30 = _HoistPending(_he)
 try:
-    _H_31 = _R.C("CoreConst").EventType.DamReduction
+	_H_31 = _R.C("CoreConst").EventType.DamReduction
 except AttributeError as _he:
-    _H_31 = _HoistPending(_he)
+	_H_31 = _HoistPending(_he)
 try:
-    _H_32 = _R.C("CoreConst").ItemStat.MinDamage
+	_H_32 = _R.C("CoreConst").ItemStat.MinDamage
 except AttributeError as _he:
-    _H_32 = _HoistPending(_he)
+	_H_32 = _HoistPending(_he)
 try:
-    _H_33 = _R.C("CoreConst").ItemStat.MaxDamage
+	_H_33 = _R.C("CoreConst").ItemStat.MaxDamage
 except AttributeError as _he:
-    _H_33 = _HoistPending(_he)
+	_H_33 = _HoistPending(_he)
 try:
-    _H_34 = _R.C("CoreConst").ItemStat.Cooldown
+	_H_34 = _R.C("CoreConst").ItemStat.Cooldown
 except AttributeError as _he:
-    _H_34 = _HoistPending(_he)
+	_H_34 = _HoistPending(_he)
 try:
-    _H_4 = _R.C("CoreConst").EventType.Health
+	_H_4 = _R.C("CoreConst").EventType.Health
 except AttributeError as _he:
-    _H_4 = _HoistPending(_he)
+	_H_4 = _HoistPending(_he)
 try:
-    _H_5 = _R.C("CoreConst").EventType.LoseHealth
+	_H_5 = _R.C("CoreConst").EventType.LoseHealth
 except AttributeError as _he:
-    _H_5 = _HoistPending(_he)
+	_H_5 = _HoistPending(_he)
 try:
-    _H_6 = _R.C("CoreConst").EventType.Empower
+	_H_6 = _R.C("CoreConst").EventType.Empower
 except AttributeError as _he:
-    _H_6 = _HoistPending(_he)
+	_H_6 = _HoistPending(_he)
 try:
-    _H_7 = _R.C("CoreConst").EventType.Stun
+	_H_7 = _R.C("CoreConst").EventType.Stun
 except AttributeError as _he:
-    _H_7 = _HoistPending(_he)
+	_H_7 = _HoistPending(_he)
 try:
-    _H_8 = _R.C("CoreConst").EventType.StunResisted
+	_H_8 = _R.C("CoreConst").EventType.StunResisted
 except AttributeError as _he:
-    _H_8 = _HoistPending(_he)
+	_H_8 = _HoistPending(_he)
 try:
-    _H_9 = _R.C("CoreConst").EventType.InvulnerableStart
+	_H_9 = _R.C("CoreConst").EventType.InvulnerableStart
 except AttributeError as _he:
-    _H_9 = _HoistPending(_he)
+	_H_9 = _HoistPending(_he)

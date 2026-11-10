@@ -38,7 +38,7 @@ class Exclusive__InvestmentOpportunity(_R.C("res://gd_core_items/Item.gd")):
 		if event.getOrigin() in self.affectedItemsDict:
 			if amount < 0 and event.getParam("used", False):
 				self.healthAcc += abs(amount) * self.getP_m("maxhealth")
-				health = round(self.healthAcc)
+				health = gd_round(self.healthAcc)
 				self.healthAcc -= health
 				self.giveMaxHealth(health, event)
 				self.miniActivate()
@@ -58,6 +58,6 @@ _R.reg("InvestmentOpportunity", Exclusive__InvestmentOpportunity)
 
 # ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
 try:
-    _H_1 = _R.C("CoreConst").Priority.Lowest
+	_H_1 = _R.C("CoreConst").Priority.Lowest
 except AttributeError as _he:
-    _H_1 = _HoistPending(_he)
+	_H_1 = _HoistPending(_he)

@@ -242,7 +242,7 @@ class Exclusive__MagicRing(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def getScaledParam(self, stackName, paramScale):
-		return round(self.getP(stackName) * paramScale)
+		return gd_round(self.getP(stackName) * paramScale)
 
 
 	def isOnlyForDisplay(self):
@@ -340,98 +340,98 @@ _R.reg("MagicRing", Exclusive__MagicRing)
 # ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
 _H_1 = _R.C("CoreConst")
 try:
-    _H_10 = _R.C("CoreConst").EventType.Cold
+	_H_10 = _R.C("CoreConst").EventType.Cold
 except AttributeError as _he:
-    _H_10 = _HoistPending(_he)
+	_H_10 = _HoistPending(_he)
 try:
-    _H_11 = _R.C("CoreConst").EventType.Poison
+	_H_11 = _R.C("CoreConst").EventType.Poison
 except AttributeError as _he:
-    _H_11 = _HoistPending(_he)
+	_H_11 = _HoistPending(_he)
 try:
-    _H_12 = _R.C("CoreConst").Type.Nature
+	_H_12 = _R.C("CoreConst").Type.Nature
 except AttributeError as _he:
-    _H_12 = _HoistPending(_he)
+	_H_12 = _HoistPending(_he)
 try:
-    _H_13 = _R.C("CoreConst").Type.Holy
+	_H_13 = _R.C("CoreConst").Type.Holy
 except AttributeError as _he:
-    _H_13 = _HoistPending(_he)
+	_H_13 = _HoistPending(_he)
 try:
-    _H_14 = _R.C("CoreConst").Type.Fire
+	_H_14 = _R.C("CoreConst").Type.Fire
 except AttributeError as _he:
-    _H_14 = _HoistPending(_he)
+	_H_14 = _HoistPending(_he)
 try:
-    _H_15 = _R.C("CoreConst").Type.Vampiric
+	_H_15 = _R.C("CoreConst").Type.Vampiric
 except AttributeError as _he:
-    _H_15 = _HoistPending(_he)
+	_H_15 = _HoistPending(_he)
 try:
-    _H_16 = _R.C("CoreConst").Type.Magic
+	_H_16 = _R.C("CoreConst").Type.Magic
 except AttributeError as _he:
-    _H_16 = _HoistPending(_he)
+	_H_16 = _HoistPending(_he)
 try:
-    _H_17 = _R.C("CoreConst").Type.Dark
+	_H_17 = _R.C("CoreConst").Type.Dark
 except AttributeError as _he:
-    _H_17 = _HoistPending(_he)
+	_H_17 = _HoistPending(_he)
 try:
-    _H_18 = _R.C("CoreConst").Type.Ice
+	_H_18 = _R.C("CoreConst").Type.Ice
 except AttributeError as _he:
-    _H_18 = _HoistPending(_he)
+	_H_18 = _HoistPending(_he)
 try:
-    _H_19 = _R.C("CoreConst").Stack.Buff
+	_H_19 = _R.C("CoreConst").Stack.Buff
 except AttributeError as _he:
-    _H_19 = _HoistPending(_he)
+	_H_19 = _HoistPending(_he)
 try:
-    _H_2 = _R.C("CoreConst").EventType.Lucky
+	_H_2 = _R.C("CoreConst").EventType.Lucky
 except AttributeError as _he:
-    _H_2 = _HoistPending(_he)
+	_H_2 = _HoistPending(_he)
 try:
-    _H_20 = _R.C("CoreConst").Stack.Debuff
+	_H_20 = _R.C("CoreConst").Stack.Debuff
 except AttributeError as _he:
-    _H_20 = _HoistPending(_he)
+	_H_20 = _HoistPending(_he)
 try:
-    _H_21 = _R.C("CoreConst").Owner.ItemLibrary
+	_H_21 = _R.C("CoreConst").Owner.ItemLibrary
 except AttributeError as _he:
-    _H_21 = _HoistPending(_he)
+	_H_21 = _HoistPending(_he)
 try:
-    _H_22 = _R.C("CoreConst").Owner.InfoPanelIcon
+	_H_22 = _R.C("CoreConst").Owner.InfoPanelIcon
 except AttributeError as _he:
-    _H_22 = _HoistPending(_he)
+	_H_22 = _HoistPending(_he)
 try:
-    _H_23 = _R.C("CoreConst").Owner.Tooltip
+	_H_23 = _R.C("CoreConst").Owner.Tooltip
 except AttributeError as _he:
-    _H_23 = _HoistPending(_he)
+	_H_23 = _HoistPending(_he)
 try:
-    _H_24 = _R.C("CoreConst").Owner.RecipeBook
+	_H_24 = _R.C("CoreConst").Owner.RecipeBook
 except AttributeError as _he:
-    _H_24 = _HoistPending(_he)
+	_H_24 = _HoistPending(_he)
 try:
-    _H_25 = _R.C("CoreConst").Owner.BuildViewerIcon
+	_H_25 = _R.C("CoreConst").Owner.BuildViewerIcon
 except AttributeError as _he:
-    _H_25 = _HoistPending(_he)
+	_H_25 = _HoistPending(_he)
 try:
-    _H_3 = _R.C("CoreConst").EventType.Spikes
+	_H_3 = _R.C("CoreConst").EventType.Spikes
 except AttributeError as _he:
-    _H_3 = _HoistPending(_he)
+	_H_3 = _HoistPending(_he)
 try:
-    _H_4 = _R.C("CoreConst").EventType.Regeneration
+	_H_4 = _R.C("CoreConst").EventType.Regeneration
 except AttributeError as _he:
-    _H_4 = _HoistPending(_he)
+	_H_4 = _HoistPending(_he)
 try:
-    _H_5 = _R.C("CoreConst").EventType.Heat
+	_H_5 = _R.C("CoreConst").EventType.Heat
 except AttributeError as _he:
-    _H_5 = _HoistPending(_he)
+	_H_5 = _HoistPending(_he)
 try:
-    _H_6 = _R.C("CoreConst").EventType.Vampirism
+	_H_6 = _R.C("CoreConst").EventType.Vampirism
 except AttributeError as _he:
-    _H_6 = _HoistPending(_he)
+	_H_6 = _HoistPending(_he)
 try:
-    _H_7 = _R.C("CoreConst").EventType.Empower
+	_H_7 = _R.C("CoreConst").EventType.Empower
 except AttributeError as _he:
-    _H_7 = _HoistPending(_he)
+	_H_7 = _HoistPending(_he)
 try:
-    _H_8 = _R.C("CoreConst").EventType.Mana
+	_H_8 = _R.C("CoreConst").EventType.Mana
 except AttributeError as _he:
-    _H_8 = _HoistPending(_he)
+	_H_8 = _HoistPending(_he)
 try:
-    _H_9 = _R.C("CoreConst").EventType.Blind
+	_H_9 = _R.C("CoreConst").EventType.Blind
 except AttributeError as _he:
-    _H_9 = _HoistPending(_he)
+	_H_9 = _HoistPending(_he)

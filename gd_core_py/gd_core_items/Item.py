@@ -1611,94 +1611,94 @@ _R.reg("Item", Item_2)
 
 # ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
 try:
-    _H_1 = _R.C("CoreConst").StackChangeType
+	_H_1 = _R.C("CoreConst").StackChangeType
 except AttributeError as _he:
-    _H_1 = _HoistPending(_he)
+	_H_1 = _HoistPending(_he)
 try:
-    _H_10 = _R.C("CoreConst").Owner.Shop
+	_H_10 = _R.C("CoreConst").Owner.Shop
 except AttributeError as _he:
-    _H_10 = _HoistPending(_he)
+	_H_10 = _HoistPending(_he)
 try:
-    _H_11 = _R.C("CoreConst").StatModified.No
+	_H_11 = _R.C("CoreConst").StatModified.No
 except AttributeError as _he:
-    _H_11 = _HoistPending(_he)
+	_H_11 = _HoistPending(_he)
 try:
-    _H_12 = _R.C("CoreConst").CraftingPriority.Gem
+	_H_12 = _R.C("CoreConst").CraftingPriority.Gem
 except AttributeError as _he:
-    _H_12 = _HoistPending(_he)
+	_H_12 = _HoistPending(_he)
 try:
-    _H_13 = _R.C("CoreConst").Affected.Primary
+	_H_13 = _R.C("CoreConst").Affected.Primary
 except AttributeError as _he:
-    _H_13 = _HoistPending(_he)
+	_H_13 = _HoistPending(_he)
 try:
-    _H_14 = _R.C("CoreConst").Owner.Socket
+	_H_14 = _R.C("CoreConst").Owner.Socket
 except AttributeError as _he:
-    _H_14 = _HoistPending(_he)
+	_H_14 = _HoistPending(_he)
 try:
-    _H_15 = _R.C("CoreConst").Owner.Tooltip
+	_H_15 = _R.C("CoreConst").Owner.Tooltip
 except AttributeError as _he:
-    _H_15 = _HoistPending(_he)
+	_H_15 = _HoistPending(_he)
 try:
-    _H_16 = _R.C("CoreConst").CraftingPriority.Mixed
+	_H_16 = _R.C("CoreConst").CraftingPriority.Mixed
 except AttributeError as _he:
-    _H_16 = _HoistPending(_he)
+	_H_16 = _HoistPending(_he)
 try:
-    _H_17 = _R.C("CoreConst").FaceDirection.UP
+	_H_17 = _R.C("CoreConst").FaceDirection.UP
 except AttributeError as _he:
-    _H_17 = _HoistPending(_he)
+	_H_17 = _HoistPending(_he)
 try:
-    _H_18 = _R.C("CoreConst").FaceDirection.DOWN
+	_H_18 = _R.C("CoreConst").FaceDirection.DOWN
 except AttributeError as _he:
-    _H_18 = _HoistPending(_he)
+	_H_18 = _HoistPending(_he)
 try:
-    _H_19 = _R.C("CoreConst").Affected.Secondary
+	_H_19 = _R.C("CoreConst").Affected.Secondary
 except AttributeError as _he:
-    _H_19 = _HoistPending(_he)
+	_H_19 = _HoistPending(_he)
 try:
-    _H_2 = _R.C("CoreConst").ItemStat
+	_H_2 = _R.C("CoreConst").ItemStat
 except AttributeError as _he:
-    _H_2 = _HoistPending(_he)
+	_H_2 = _HoistPending(_he)
 try:
-    _H_20 = _R.C("CoreConst").Affected.Tertiary
+	_H_20 = _R.C("CoreConst").Affected.Tertiary
 except AttributeError as _he:
-    _H_20 = _HoistPending(_he)
+	_H_20 = _HoistPending(_he)
 try:
-    _H_21 = _R.C("CoreConst").Owner.ItemLibrary
+	_H_21 = _R.C("CoreConst").Owner.ItemLibrary
 except AttributeError as _he:
-    _H_21 = _HoistPending(_he)
+	_H_21 = _HoistPending(_he)
 try:
-    _H_22 = _R.C("CoreConst").Affected.Lightning
+	_H_22 = _R.C("CoreConst").Affected.Lightning
 except AttributeError as _he:
-    _H_22 = _HoistPending(_he)
+	_H_22 = _HoistPending(_he)
 try:
-    _H_23 = _R.C("CoreConst").Type
+	_H_23 = _R.C("CoreConst").Type
 except AttributeError as _he:
-    _H_23 = _HoistPending(_he)
+	_H_23 = _HoistPending(_he)
 try:
-    _H_3 = _R.C("CoreConst").CraftingPriority.NonGem
+	_H_3 = _R.C("CoreConst").CraftingPriority.NonGem
 except AttributeError as _he:
-    _H_3 = _HoistPending(_he)
+	_H_3 = _HoistPending(_he)
 try:
-    _H_4 = _R.C("CoreConst").Priority.Normal
+	_H_4 = _R.C("CoreConst").Priority.Normal
 except AttributeError as _he:
-    _H_4 = _HoistPending(_he)
+	_H_4 = _HoistPending(_he)
 try:
-    _H_5 = _R.C("CoreConst").Owner.BuildViewer
+	_H_5 = _R.C("CoreConst").Owner.BuildViewer
 except AttributeError as _he:
-    _H_5 = _HoistPending(_he)
+	_H_5 = _HoistPending(_he)
 try:
-    _H_6 = _R.C("CoreConst").Owner.PlayerStorageBox
+	_H_6 = _R.C("CoreConst").Owner.PlayerStorageBox
 except AttributeError as _he:
-    _H_6 = _HoistPending(_he)
+	_H_6 = _HoistPending(_he)
 try:
-    _H_7 = _R.C("CoreConst").Owner.PlayerInventory
+	_H_7 = _R.C("CoreConst").Owner.PlayerInventory
 except AttributeError as _he:
-    _H_7 = _HoistPending(_he)
+	_H_7 = _HoistPending(_he)
 try:
-    _H_8 = _R.C("CoreConst").Owner.Opponent
+	_H_8 = _R.C("CoreConst").Owner.Opponent
 except AttributeError as _he:
-    _H_8 = _HoistPending(_he)
+	_H_8 = _HoistPending(_he)
 try:
-    _H_9 = _R.C("CoreConst").Owner.GridStorage
+	_H_9 = _R.C("CoreConst").Owner.GridStorage
 except AttributeError as _he:
-    _H_9 = _HoistPending(_he)
+	_H_9 = _HoistPending(_he)

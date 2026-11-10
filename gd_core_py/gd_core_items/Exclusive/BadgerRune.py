@@ -46,7 +46,7 @@ class Exclusive__BadgerRune(_R.C("res://gd_core_items/Gems/Gem.gd")):
 
 	def preTakeDamage(self, damageRes):
 		if damageRes.triggerOnAttacked() and self.character().isBattleRaging():
-			damageRes.applyDamageReduction(round(self.getGemPower() * self.damageReduction), self)
+			damageRes.applyDamageReduction(gd_round(self.getGemPower() * self.damageReduction), self)
 			self.miniActivate()
 
 

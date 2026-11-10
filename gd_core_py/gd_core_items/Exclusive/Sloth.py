@@ -37,7 +37,7 @@ class Exclusive__Sloth(_R.C("res://gd_core_items/Item.gd")):
 	def onCombatStart(self):
 		m = self.getP_m("maxhealth_base")
 		m += self.getNumAffectedItems() * self.getP_m("maxhealth_item")
-		m = round(_div(m, 100.0) * self.character().getMaxHealth())
+		m = gd_round(_div(m, 100.0) * self.character().getMaxHealth())
 		self.giveMaxHealth(m)
 		self.activate()
 

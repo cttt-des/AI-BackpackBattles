@@ -463,22 +463,22 @@ _R.reg("CoreItemData", CoreItemData)
 # ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
 _H_1 = _R.C("CoreConst")
 try:
-    _H_2 = _R.C("CoreConst").Type.Weapon
+	_H_2 = _R.C("CoreConst").Type.Weapon
 except AttributeError as _he:
-    _H_2 = _HoistPending(_he)
+	_H_2 = _HoistPending(_he)
 try:
-    _H_3 = _R.C("CoreConst").StuffedClasses.Neutral
+	_H_3 = _R.C("CoreConst").StuffedClasses.Neutral
 except AttributeError as _he:
-    _H_3 = _HoistPending(_he)
+	_H_3 = _HoistPending(_he)
 try:
-    _H_4 = _R.C("CoreConst").StuffedClasses
+	_H_4 = _R.C("CoreConst").StuffedClasses
 except AttributeError as _he:
-    _H_4 = _HoistPending(_he)
+	_H_4 = _HoistPending(_he)
 try:
-    _H_5 = _R.C("CoreConst").Type.Melee
+	_H_5 = _R.C("CoreConst").Type.Melee
 except AttributeError as _he:
-    _H_5 = _HoistPending(_he)
+	_H_5 = _HoistPending(_he)
 try:
-    _H_6 = _R.C("CoreConst").Type.Ranged
+	_H_6 = _R.C("CoreConst").Type.Ranged
 except AttributeError as _he:
-    _H_6 = _HoistPending(_he)
+	_H_6 = _HoistPending(_he)

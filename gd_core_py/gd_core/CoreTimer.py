@@ -128,7 +128,7 @@ class CoreTimer(GodotObject):
 			#   fire）——Echoing Battlecry 重放 LeatherHelm：oracle 重放 start(3)
 			#   碰撞立即 fire（buffEnded +25/-25 同拍抵消，fW1134 SPKR 890/895 同
 			#   t=6.583 铁证），gd 旧码 _left 直赋冲掉 -1 遗留→正常 3s 后才 fire
-			#   （fd@7.67 DR 残留 25 → spikes 反弹 round(7×0.75)=5 v 语料 7）。
+			#   （fd@7.67 DR 残留 25 → spikes 反弹 gd_round(7×0.75)=5 v 语料 7）。
 			#   _left 交 tick() 的 eng vs _seen 判定：eng==_seen→遗留值递减（立即
 			#   fire）；eng!=_seen→登记分支 _left=eng（f01 首启 _seen=0 恒走此，
 			#   语义不变；np26fA 相位补偿在登记分支，保持）。

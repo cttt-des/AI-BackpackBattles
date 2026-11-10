@@ -29,11 +29,11 @@ class Gems__LumpofCoal(_R.C("res://gd_core_items/Gems/Gem.gd")):
 
 
 	def prepareArmor(self):
-		self.character().changeDebuffResistStacks(round(self.getGemPower()))
+		self.character().changeDebuffResistStacks(gd_round(self.getGemPower()))
 
 
 	def combatStartArmor(self):
-		self.giveBlock(round(self.getGemPower() * self.getBlock()))
+		self.giveBlock(gd_round(self.getGemPower() * self.getBlock()))
 		self.miniActivate()
 
 

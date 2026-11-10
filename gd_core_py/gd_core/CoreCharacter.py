@@ -697,7 +697,7 @@ class CoreCharacter(GodotObject):
 						damageRes.makeCritical()
 
 			activeDmgResi = clamp(_div(self.damageResistance, 100), -10, 1)
-			damageRes.damage = round(damageRes.damage * (1.0 - activeDmgResi))
+			damageRes.damage = gd_round(damageRes.damage * (1.0 - activeDmgResi))
 
 			if damageRes.damageSource.isAttack():
 				damageRes.damage -= self.damageReduction
@@ -810,7 +810,7 @@ class CoreCharacter(GodotObject):
 			if damageRes.damageSource.hasType(_H_29):
 				spikesLimit = max(self.effectSpikesLimit, spikesLimit)
 
-			spikeDam = min(self.getSpikes(), round(damageRes.damage * spikesLimit))
+			spikeDam = min(self.getSpikes(), gd_round(damageRes.damage * spikesLimit))
 			if spikeDam > 0:
 				self.spikeDamageSource.setDamage(spikeDam)
 				self.opponent.takeDamage(self.spikeDamageSource, damageRes.event)
@@ -825,7 +825,7 @@ class CoreCharacter(GodotObject):
 			else:
 				vampLimit = self.meleeVampirismLimit
 
-			healAmount = min(self.getVampirism(), round(damageRes.damage * vampLimit))
+			healAmount = min(self.getVampirism(), gd_round(damageRes.damage * vampLimit))
 			if healAmount > 0:
 				self.heal(healAmount, _H_19, damageRes.event)
 				self.ctx.hooks.activateBuffCounter(self, _H_19)
@@ -835,7 +835,7 @@ class CoreCharacter(GodotObject):
 
 	def heal(self, amount, origin=None, triggerEvent=None):
 		amount *= self.getHealingEfficiency()
-		amount = round(amount)
+		amount = gd_round(amount)
 
 		missingHealth = self.getMaxHealth() - self.curHealth
 		overheal = max(0, amount - missingHealth)
@@ -958,7 +958,7 @@ class CoreCharacter(GodotObject):
 
 
 	def applyTemporaryMaxHealthGain(self, amount):
-		return round(amount * self.temporaryMaxHealthGain)
+		return gd_round(amount * self.temporaryMaxHealthGain)
 
 
 	def changeMaxHealthTemporary(self, amount, item=None, triggerEvent=None):
@@ -2169,163 +2169,163 @@ _R.reg("CoreCharacter", CoreCharacter)
 # ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
 _H_1 = _R.C("CoreGrid")
 try:
-    _H_10 = _R.C("CoreDamageSource").Type.Poison
+	_H_10 = _R.C("CoreDamageSource").Type.Poison
 except AttributeError as _he:
-    _H_10 = _HoistPending(_he)
+	_H_10 = _HoistPending(_he)
 _H_11 = _R.C("CoreConst")
 try:
-    _H_12 = _R.C("CoreConst").EventType
+	_H_12 = _R.C("CoreConst").EventType
 except AttributeError as _he:
-    _H_12 = _HoistPending(_he)
+	_H_12 = _HoistPending(_he)
 try:
-    _H_13 = _R.C("CoreConst").EventType.Health
+	_H_13 = _R.C("CoreConst").EventType.Health
 except AttributeError as _he:
-    _H_13 = _HoistPending(_he)
+	_H_13 = _HoistPending(_he)
 try:
-    _H_14 = _R.C("CoreConst").ItemMetrics.Heal
+	_H_14 = _R.C("CoreConst").ItemMetrics.Heal
 except AttributeError as _he:
-    _H_14 = _HoistPending(_he)
+	_H_14 = _HoistPending(_he)
 try:
-    _H_15 = _R.C("CoreConst").EventType.LoseHealth
+	_H_15 = _R.C("CoreConst").EventType.LoseHealth
 except AttributeError as _he:
-    _H_15 = _HoistPending(_he)
+	_H_15 = _HoistPending(_he)
 try:
-    _H_16 = _R.C("CoreConst").StackChangeType.Removed_Opponent
+	_H_16 = _R.C("CoreConst").StackChangeType.Removed_Opponent
 except AttributeError as _he:
-    _H_16 = _HoistPending(_he)
+	_H_16 = _HoistPending(_he)
 try:
-    _H_17 = _R.C("CoreConst").EventType.Spikes
+	_H_17 = _R.C("CoreConst").EventType.Spikes
 except AttributeError as _he:
-    _H_17 = _HoistPending(_he)
+	_H_17 = _HoistPending(_he)
 try:
-    _H_18 = _R.C("CoreConst").EventType.Block
+	_H_18 = _R.C("CoreConst").EventType.Block
 except AttributeError as _he:
-    _H_18 = _HoistPending(_he)
+	_H_18 = _HoistPending(_he)
 try:
-    _H_19 = _R.C("CoreConst").EventType.Vampirism
+	_H_19 = _R.C("CoreConst").EventType.Vampirism
 except AttributeError as _he:
-    _H_19 = _HoistPending(_he)
+	_H_19 = _HoistPending(_he)
 _H_2 = _R.C("CoreDamageSource")
 try:
-    _H_20 = _R.C("CoreConst").EventType.Poison
+	_H_20 = _R.C("CoreConst").EventType.Poison
 except AttributeError as _he:
-    _H_20 = _HoistPending(_he)
+	_H_20 = _HoistPending(_he)
 try:
-    _H_21 = _R.C("CoreConst").EventType.Regeneration
+	_H_21 = _R.C("CoreConst").EventType.Regeneration
 except AttributeError as _he:
-    _H_21 = _HoistPending(_he)
+	_H_21 = _HoistPending(_he)
 try:
-    _H_22 = _R.C("CoreConst").EventType.Lucky
+	_H_22 = _R.C("CoreConst").EventType.Lucky
 except AttributeError as _he:
-    _H_22 = _HoistPending(_he)
+	_H_22 = _HoistPending(_he)
 try:
-    _H_23 = _R.C("CoreConst").EventType.Blind
+	_H_23 = _R.C("CoreConst").EventType.Blind
 except AttributeError as _he:
-    _H_23 = _HoistPending(_he)
+	_H_23 = _HoistPending(_he)
 try:
-    _H_24 = _R.C("CoreConst").EventType.Mana
+	_H_24 = _R.C("CoreConst").EventType.Mana
 except AttributeError as _he:
-    _H_24 = _HoistPending(_he)
+	_H_24 = _HoistPending(_he)
 try:
-    _H_25 = _R.C("CoreConst").EventType.Empower
+	_H_25 = _R.C("CoreConst").EventType.Empower
 except AttributeError as _he:
-    _H_25 = _HoistPending(_he)
+	_H_25 = _HoistPending(_he)
 try:
-    _H_26 = _R.C("CoreConst").EventType.Heat
+	_H_26 = _R.C("CoreConst").EventType.Heat
 except AttributeError as _he:
-    _H_26 = _HoistPending(_he)
+	_H_26 = _HoistPending(_he)
 try:
-    _H_27 = _R.C("CoreConst").EventType.Cold
+	_H_27 = _R.C("CoreConst").EventType.Cold
 except AttributeError as _he:
-    _H_27 = _HoistPending(_he)
+	_H_27 = _HoistPending(_he)
 try:
-    _H_28 = _R.C("CoreDamageSource").Type.Melee
+	_H_28 = _R.C("CoreDamageSource").Type.Melee
 except AttributeError as _he:
-    _H_28 = _HoistPending(_he)
+	_H_28 = _HoistPending(_he)
 try:
-    _H_29 = _R.C("CoreDamageSource").Type.Effect
+	_H_29 = _R.C("CoreDamageSource").Type.Effect
 except AttributeError as _he:
-    _H_29 = _HoistPending(_he)
+	_H_29 = _HoistPending(_he)
 _H_3 = _R.C("CoreDamageResult")
 try:
-    _H_30 = _R.C("CoreDamageSource").Type.Unhealing
+	_H_30 = _R.C("CoreDamageSource").Type.Unhealing
 except AttributeError as _he:
-    _H_30 = _HoistPending(_he)
+	_H_30 = _HoistPending(_he)
 try:
-    _H_31 = _R.C("CoreConst").Tag.BattleRage
+	_H_31 = _R.C("CoreConst").Tag.BattleRage
 except AttributeError as _he:
-    _H_31 = _HoistPending(_he)
+	_H_31 = _HoistPending(_he)
 try:
-    _H_32 = _R.C("CoreDamageSource").Type.Fatigue
+	_H_32 = _R.C("CoreDamageSource").Type.Fatigue
 except AttributeError as _he:
-    _H_32 = _HoistPending(_he)
+	_H_32 = _HoistPending(_he)
 try:
-    _H_33 = _R.C("CoreConst").EventType.MissedAttack
+	_H_33 = _R.C("CoreConst").EventType.MissedAttack
 except AttributeError as _he:
-    _H_33 = _HoistPending(_he)
+	_H_33 = _HoistPending(_he)
 try:
-    _H_34 = _R.C("CoreDamageSource").Type.Ranged
+	_H_34 = _R.C("CoreDamageSource").Type.Ranged
 except AttributeError as _he:
-    _H_34 = _HoistPending(_he)
+	_H_34 = _HoistPending(_he)
 try:
-    _H_35 = _R.C("CoreConst").StackChangeType.Added_Player
+	_H_35 = _R.C("CoreConst").StackChangeType.Added_Player
 except AttributeError as _he:
-    _H_35 = _HoistPending(_he)
+	_H_35 = _HoistPending(_he)
 try:
-    _H_36 = _R.C("CoreConst").EventType.StunResisted
+	_H_36 = _R.C("CoreConst").EventType.StunResisted
 except AttributeError as _he:
-    _H_36 = _HoistPending(_he)
+	_H_36 = _HoistPending(_he)
 try:
-    _H_37 = _R.C("CoreDamageSource").Type
+	_H_37 = _R.C("CoreDamageSource").Type
 except AttributeError as _he:
-    _H_37 = _HoistPending(_he)
+	_H_37 = _HoistPending(_he)
 try:
-    _H_38 = _R.C("CoreConst").EventType.CriticalDamage
+	_H_38 = _R.C("CoreConst").EventType.CriticalDamage
 except AttributeError as _he:
-    _H_38 = _HoistPending(_he)
+	_H_38 = _HoistPending(_he)
 try:
-    _H_39 = _R.C("CoreConst").ItemMetrics.Overheal
+	_H_39 = _R.C("CoreConst").ItemMetrics.Overheal
 except AttributeError as _he:
-    _H_39 = _HoistPending(_he)
+	_H_39 = _HoistPending(_he)
 _H_4 = _R.C("CoreItem")
 try:
-    _H_40 = _R.C("CoreConst").EventType.TemporaryMaxStamina
+	_H_40 = _R.C("CoreConst").EventType.TemporaryMaxStamina
 except AttributeError as _he:
-    _H_40 = _HoistPending(_he)
+	_H_40 = _HoistPending(_he)
 try:
-    _H_41 = _R.C("CoreConst").ItemStat.MinDamage
+	_H_41 = _R.C("CoreConst").ItemStat.MinDamage
 except AttributeError as _he:
-    _H_41 = _HoistPending(_he)
+	_H_41 = _HoistPending(_he)
 try:
-    _H_42 = _R.C("CoreConst").ItemStat.MaxDamage
+	_H_42 = _R.C("CoreConst").ItemStat.MaxDamage
 except AttributeError as _he:
-    _H_42 = _HoistPending(_he)
+	_H_42 = _HoistPending(_he)
 try:
-    _H_43 = _R.C("CoreConst").EventType.Fatigue
+	_H_43 = _R.C("CoreConst").EventType.Fatigue
 except AttributeError as _he:
-    _H_43 = _HoistPending(_he)
+	_H_43 = _HoistPending(_he)
 try:
-    _H_44 = _R.C("CoreConst").EventType.CriticalResisted
+	_H_44 = _R.C("CoreConst").EventType.CriticalResisted
 except AttributeError as _he:
-    _H_44 = _HoistPending(_he)
+	_H_44 = _HoistPending(_he)
 try:
-    _H_45 = _R.C("CoreConst").EventType.DealDamage
+	_H_45 = _R.C("CoreConst").EventType.DealDamage
 except AttributeError as _he:
-    _H_45 = _HoistPending(_he)
+	_H_45 = _HoistPending(_he)
 try:
-    _H_5 = _R.C("CoreConst").Classes.Ranger
+	_H_5 = _R.C("CoreConst").Classes.Ranger
 except AttributeError as _he:
-    _H_5 = _HoistPending(_he)
+	_H_5 = _HoistPending(_he)
 try:
-    _H_6 = _R.C("CoreDamageSource").chipDamageFlags
+	_H_6 = _R.C("CoreDamageSource").chipDamageFlags
 except AttributeError as _he:
-    _H_6 = _HoistPending(_he)
+	_H_6 = _HoistPending(_he)
 _H_7 = _R.C("CoreBuff")
 try:
-    _H_8 = _R.C("CoreDamageSource").Type.Spikes
+	_H_8 = _R.C("CoreDamageSource").Type.Spikes
 except AttributeError as _he:
-    _H_8 = _HoistPending(_he)
+	_H_8 = _HoistPending(_he)
 try:
-    _H_9 = _R.C("CoreDamageSource").Flags.CanCrit
+	_H_9 = _R.C("CoreDamageSource").Flags.CanCrit
 except AttributeError as _he:
-    _H_9 = _HoistPending(_he)
+	_H_9 = _HoistPending(_he)

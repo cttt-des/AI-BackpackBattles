@@ -83,22 +83,22 @@ _R.reg("Ultima", Exclusive__Ultima)
 
 # ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
 try:
-    _H_1 = _R.C("CoreConst").Type.Nature
+	_H_1 = _R.C("CoreConst").Type.Nature
 except AttributeError as _he:
-    _H_1 = _HoistPending(_he)
+	_H_1 = _HoistPending(_he)
 try:
-    _H_2 = _R.C("CoreConst").Type.Ice
+	_H_2 = _R.C("CoreConst").Type.Ice
 except AttributeError as _he:
-    _H_2 = _HoistPending(_he)
+	_H_2 = _HoistPending(_he)
 try:
-    _H_3 = _R.C("CoreConst").Type.Holy
+	_H_3 = _R.C("CoreConst").Type.Holy
 except AttributeError as _he:
-    _H_3 = _HoistPending(_he)
+	_H_3 = _HoistPending(_he)
 try:
-    _H_4 = _R.C("CoreConst").Type.Dark
+	_H_4 = _R.C("CoreConst").Type.Dark
 except AttributeError as _he:
-    _H_4 = _HoistPending(_he)
+	_H_4 = _HoistPending(_he)
 try:
-    _H_5 = _R.C("CoreConst").Type.Spell
+	_H_5 = _R.C("CoreConst").Type.Spell
 except AttributeError as _he:
-    _H_5 = _HoistPending(_he)
+	_H_5 = _HoistPending(_he)

@@ -56,34 +56,34 @@ _R.reg("RandomLoadoutBag", Exclusive__RandomLoadoutBag)
 
 # ── S3-C4 类引用提升（生成器发射；目标=唯一 stem/祖先/gd_core 树，模块末绑定）──
 try:
-    _H_1 = _R.C("CoreConst").Classes.Ranger
+	_H_1 = _R.C("CoreConst").Classes.Ranger
 except AttributeError as _he:
-    _H_1 = _HoistPending(_he)
+	_H_1 = _HoistPending(_he)
 try:
-    _H_2 = _R.C("CoreConst").Classes.Reaper
+	_H_2 = _R.C("CoreConst").Classes.Reaper
 except AttributeError as _he:
-    _H_2 = _HoistPending(_he)
+	_H_2 = _HoistPending(_he)
 try:
-    _H_3 = _R.C("CoreConst").Classes.Pyromancer
+	_H_3 = _R.C("CoreConst").Classes.Pyromancer
 except AttributeError as _he:
-    _H_3 = _HoistPending(_he)
+	_H_3 = _HoistPending(_he)
 try:
-    _H_4 = _R.C("CoreConst").Classes.Berserker
+	_H_4 = _R.C("CoreConst").Classes.Berserker
 except AttributeError as _he:
-    _H_4 = _HoistPending(_he)
+	_H_4 = _HoistPending(_he)
 try:
-    _H_5 = _R.C("CoreConst").Classes_Full.Mage
+	_H_5 = _R.C("CoreConst").Classes_Full.Mage
 except AttributeError as _he:
-    _H_5 = _HoistPending(_he)
+	_H_5 = _HoistPending(_he)
 try:
-    _H_6 = _R.C("CoreConst").Classes_Full.Adventurer
+	_H_6 = _R.C("CoreConst").Classes_Full.Adventurer
 except AttributeError as _he:
-    _H_6 = _HoistPending(_he)
+	_H_6 = _HoistPending(_he)
 try:
-    _H_7 = _R.C("CoreConst").Classes_Full.Engineer
+	_H_7 = _R.C("CoreConst").Classes_Full.Engineer
 except AttributeError as _he:
-    _H_7 = _HoistPending(_he)
+	_H_7 = _HoistPending(_he)
 try:
-    _H_8 = _R.C("CoreConst").Owner.PlayerInventory
+	_H_8 = _R.C("CoreConst").Owner.PlayerInventory
 except AttributeError as _he:
-    _H_8 = _HoistPending(_he)
+	_H_8 = _HoistPending(_he)
