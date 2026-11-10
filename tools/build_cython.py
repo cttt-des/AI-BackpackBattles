@@ -57,7 +57,13 @@ def build_one(py_path: str) -> str:
 
     # ① cython：.py → .c（-3 = Python 3 语言语义；module-name 由文件名推断）
     # ★ 严禁 -2（Py2 语义会把 `/` 变整除——REG9 run1514 ev@71 抓获的正是它）
+    # ★ M1-4（2026-11-10）：-X binding=False——转写产物零内省依赖，CythonFunction
+    #   机制（绑定方法对象/自省槽）整体旁路（实验：单类模块 C 产物 CyFunction
+    #   引用 260→3）。embedsignature 在 Cython3 默认即 False（无产物差异）；
+    #   freelist 判不可行：模块级指令被语法接受但 C 产物显式 "nofreelists"
+    #   ABI 后缀（3.3.1 不再生成 freelist 池），装饰器形态被拒（class scope）。
     r = subprocess.run([sys.executable, "-m", "cython", "-3",
+                        "-X", "binding=False",
                         py_path, "-o", c_path],
                        cwd=ROOT, capture_output=True, text=True)
     if r.returncode != 0:
