@@ -60,10 +60,10 @@ def build_one(py_path: str) -> str:
     if r.returncode != 0:
         raise RuntimeError(f"cython 失败 {py_path}:\n{r.stdout[-800:]}\n{r.stderr[-800:]}")
 
-    # ② gcc：.c → .pyd（直链 python314.dll；-O2；无 RTTI/异常需求）
+    # ② gcc：.c → .pyd（直链 python314.dll；-O2；-static-libgcc 免带 gcc 运行时 DLL）
     inc = sysconfig.get_paths()["include"]
     r = subprocess.run(
-        [GCC, "-O2", "-shared", "-fno-strict-aliasing",
+        [GCC, "-O2", "-shared", "-fno-strict-aliasing", "-static-libgcc",
          "-I", inc, "-I", os.path.join(PY_DIR, "Include"),
          "-L", PY_DIR, "-lpython314",
          "-o", pyd_path, c_path],
@@ -79,12 +79,16 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("targets", nargs="*", help="相对 ROOT 的 .py 路径")
     ap.add_argument("--all", action="store_true", help="F1 热 8 模块")
+    ap.add_argument("--list", default=None, help="目标清单文件（每行一个相对路径）")
     ap.add_argument("--clean", action="store_true",
                     help="删除目标 .pyd/.c（回滚手段）")
     a = ap.parse_args()
     targets = HOT8 if a.all else a.targets
+    if a.list:
+        with open(a.list, encoding="utf-8") as fh:
+            targets = [ln.strip() for ln in fh if ln.strip()]
     if not targets:
-        ap.error("需要 targets 或 --all")
+        ap.error("需要 targets/--all/--list")
 
     rc = 0
     for t in targets:
