@@ -270,6 +270,30 @@ python battle_simulator.py
 # 输出 *_log.json（事件流）、*_result.json（胜负/统计/HP 曲线）、*_log.txt（游戏格式战报）
 ```
 
+### 批量仿真/训练（Python API，§9.6 训练专项）
+
+```python
+from simulator.simulate import run_mc_mem
+
+# 内存态批量：lineup dict 直传（免每次读盘），只回传统计不落盘
+agg = run_mc_mem(player_dict, opponent_dict, seed=20260923, runs=200,
+                 workers=4, max_time=90.0)
+agg["win_rate"]          # 玩家胜率
+agg["ticks_p50"]         # 中位 tick 数（局长分布，reward shaping 用）
+
+# 要逐场统计（伤害/治疗/暴击/未命中/体力耗尽/激活）时：
+agg = run_mc_mem(player_dict, opponent_dict, seed=S, runs=100,
+                 workers=4, want_stats=True)
+agg["damage_dealt"]      # {"player": …, "opponent": …}（场均）
+agg["records"][0]        # 逐场：{seed, win, ticks, combat_time, reason, …}
+```
+
+**训练推荐配置**（4 物理核/8 逻辑核机型实测）：
+- `workers=物理核数`（进程池扩展受物理核限制，超订无益）
+- 批量对拍基准：`python -X utf8 tools/bench_sim.py --n 128 --workers 4`
+- 确定性口径：`seed_r = seed + r`，逐 seed 与串行/`run_mc_pool` 全等
+- `want_stats=True` 单场变慢（退全量事件探针）；只做 reward 的胜负面用默认 light 口径
+
 ### 三方对齐复现
 
 ```bash

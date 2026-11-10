@@ -190,6 +190,128 @@ def run_mc_pool(player_path, opponent_path, seed, runs, workers, max_time=90.0,
     return wins
 
 
+# ═══════════════════ §9.6 训练场景 API（内存态批量 + 统计回传） ═══════════════════
+# 面向 RL 训练循环：lineup 以内存 dict 直传（免每次读盘+JSON 解析）、
+# 逐场回传统计（ticks/combat_time/damage，供 reward shaping）。
+# 确定性口径与 run_mc_pool 完全一致（seed_r = seed + r，逐 seed 与串行全等）。
+# want_stats=True 时该场退回全量探针（logEvent 计数面）——统计精确、单场变慢；
+# 只要胜负时保持 light_log=True（S3-C12 口径）。
+
+
+def _mc_mem_worker(job):
+    """内存态蒙特卡洛 worker（§9.6）：dict 直传 + 可选统计。模块级可 pickle。"""
+    from simulator.gd_core_engine import GDCoreEngine
+    seed, player, opponent, max_time, want_stats = job
+    light = not want_stats
+    eng = GDCoreEngine(player, opponent, None, None, seed, max_time,
+                       light_log=light)
+    eng.run()
+    rec = {
+        "seed": seed,
+        "win": bool(eng.player_wins()),
+        "ticks": int(eng._ticks),
+        "combat_time": round(float(eng.combat_time), 2),
+        "reason": eng.win_reason,
+    }
+    if want_stats:
+        st = eng.log.stats
+        rec["damage_dealt"] = {"player": st[0]["damage_dealt"],
+                               "opponent": st[1]["damage_dealt"]}
+        rec["healing_done"] = {"player": st[0]["healing_done"],
+                               "opponent": st[1]["healing_done"]}
+        rec["crits"] = {"player": st[0]["crits"], "opponent": st[1]["crits"]}
+        rec["misses"] = {"player": st[0]["misses"], "opponent": st[1]["misses"]}
+        rec["out_of_stamina"] = {"player": st[0]["out_of_stamina"],
+                                 "opponent": st[1]["out_of_stamina"]}
+        rec["activations"] = {"player": st[0]["activations"],
+                              "opponent": st[1]["activations"]}
+    return rec
+
+
+def _agg_p50(xs):
+    import statistics as _stat
+    return round(_stat.median(xs), 1) if xs else None
+
+
+def run_mc_mem(player, opponent, seed, runs, workers=1, max_time=90.0,
+               want_stats=False, progress_cb=None):
+    """内存态批量对战（§9.6 训练 API）。
+
+    player/opponent：lineup dict（与 lineup JSON 同构；GDCoreEngine 直接收）。
+    返回聚合 dict：
+      {runs, wins_player, win_rate, ticks_p50, ticks_mean, combat_time_mean,
+       per-run 逐场明细 records（含 seed 胜负 ticks；want_stats 时加六面统计）}
+    确定性：seed_r = seed + r，与 run_mc_pool/串行循环逐 seed 全等（G1 口径）。
+    """
+    from concurrent.futures import ProcessPoolExecutor
+    import multiprocessing as _mp
+    import statistics as _stat
+    runs = max(1, int(runs))
+    workers = max(1, min(workers, _mp.cpu_count(), runs))
+    jobs = [(seed + r if seed is not None else None,
+             player, opponent, max_time, bool(want_stats))
+            for r in range(runs)]
+    records = []
+    with ProcessPoolExecutor(max_workers=workers,
+                             initializer=_pool_init_mem,
+                             initargs=()) as ex:
+        for i, rec in enumerate(ex.map(_mc_mem_worker, jobs, chunksize=8)):
+            records.append(rec)
+            if progress_cb is not None:
+                progress_cb(i + 1, sum(1 for x in records if x["win"]))
+    ticks = [r["ticks"] for r in records]
+    agg = {
+        "runs": runs,
+        "wins_player": sum(1 for r in records if r["win"]),
+        "win_rate": round(sum(1 for r in records if r["win"]) / runs * 100.0, 2),
+        "ticks_p50": _agg_p50(ticks),
+        "ticks_mean": round(_stat.fmean(ticks), 1) if ticks else None,
+        "combat_time_mean": round(_stat.fmean([r["combat_time"] for r in records]), 2)
+        if records else None,
+        "records": records,
+    }
+    if want_stats:
+        agg["damage_dealt"] = {
+            "player": round(_stat.fmean([r["damage_dealt"]["player"] for r in records]), 1),
+            "opponent": round(_stat.fmean([r["damage_dealt"]["opponent"] for r in records]), 1),
+        }
+        agg["healing_done"] = {
+            "player": round(_stat.fmean([r["healing_done"]["player"] for r in records]), 1),
+            "opponent": round(_stat.fmean([r["healing_done"]["opponent"] for r in records]), 1),
+        }
+        agg["crits"] = {
+            "player": sum(r["crits"]["player"] for r in records),
+            "opponent": sum(r["crits"]["opponent"] for r in records),
+        }
+        agg["misses"] = {
+            "player": sum(r["misses"]["player"] for r in records),
+            "opponent": sum(r["misses"]["opponent"] for r in records),
+        }
+        agg["out_of_stamina"] = {
+            "player": sum(r["out_of_stamina"]["player"] for r in records),
+            "opponent": sum(r["out_of_stamina"]["opponent"] for r in records),
+        }
+        agg["activations"] = {
+            "player": sum(r["activations"]["player"] for r in records),
+            "opponent": sum(r["activations"]["opponent"] for r in records),
+        }
+    return agg
+
+
+def _pool_init_mem():
+    """§9.6 worker 预热（内存态版）：内核装载 + 一场热身（固定种子 1，
+    独立 ctx，不污染战斗语义；与 _pool_init 同口径，入参免读盘）。"""
+    try:
+        from simulator.gd_core_engine import GDCoreEngine
+        eng = GDCoreEngine({"backpack": {"items": []}},
+                           {"backpack": {"items": []}}, {}, {},
+                           seed=1, max_time=1.0)
+        eng.run()
+    except Exception:  # noqa: BLE001 —— 预热失败不挡任务（首轮自会装载）
+        pass
+    return True
+
+
 def main(argv: Optional[List[str]] = None) -> int:
     ap = argparse.ArgumentParser(description='Backpack Battles 战斗模拟器（输入两阵容 JSON）')
     ap.add_argument('player', help='玩家阵容 JSON 文件')
