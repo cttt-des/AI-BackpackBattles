@@ -1,0 +1,5 @@
+gd_core_py/gd_core/CoreBuff.py
+gd_core_py/gd_core/CoreCharacter.py
+gd_core_py/gd_core/CoreCombat.py
+gd_core_py/gd_core/CoreCombatLog.py
+gd_core_py/gd_core/CoreItem.py
