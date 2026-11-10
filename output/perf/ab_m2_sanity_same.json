@@ -1,0 +1,39 @@
+{
+ "tool": "bench_ab/v2",
+ "n": 40,
+ "rounds": 5,
+ "seed": 20260923,
+ "arm_a": "cy",
+ "arm_b": "py",
+ "root_a": "D:\\ab_base_m2",
+ "root_b": "D:\\文件资料\\学习\\自动背包AI",
+ "pure_py": true,
+ "clock": "process_time",
+ "warmup": 2,
+ "p50_a": [
+  281.2,
+  296.9,
+  312.5,
+  312.5,
+  312.5
+ ],
+ "p50_b": [
+  281.2,
+  289.1,
+  312.5,
+  296.9,
+  312.5
+ ],
+ "ratio_b_over_a": [
+  1.0,
+  0.9737,
+  1.0,
+  0.9501,
+  1.0
+ ],
+ "median_ratio": 1.0,
+ "spread_a_pct": 10.02,
+ "spread_b_pct": 10.54,
+ "spread_ratio_pct": 4.99,
+ "verdict": "ratio_ok"
+}

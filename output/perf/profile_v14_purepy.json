@@ -1,0 +1,214 @@
+{
+  "stage": "unspecified",
+  "machine": "8L, Python 3.14.5",
+  "cmd": "tools/bench_sim.py --n 3 --profile-out output/perf/profile_v14_purepy.json",
+  "lineups": [
+    "truth_20261001_220653_R19_player.json",
+    "truth_20261001_220653_R19_opponent.json"
+  ],
+  "workers": 1,
+  "n": 3,
+  "fights": [
+    {
+      "seed": 20260923,
+      "ms": 2836.2,
+      "ticks": 907,
+      "winner": "opponent"
+    },
+    {
+      "seed": 20260924,
+      "ms": 2287.2,
+      "ticks": 1010,
+      "winner": "opponent"
+    },
+    {
+      "seed": 20260925,
+      "ms": 2202.0,
+      "ticks": 992,
+      "winner": "opponent"
+    }
+  ],
+  "top_calls": [
+    {
+      "function": "CoreItem.character",
+      "file": "CoreItem.py",
+      "calls": 245820,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "f32",
+      "file": "_rt.py",
+      "calls": 138806,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "CoreCharacter.getCold",
+      "file": "CoreCharacter.py",
+      "calls": 72057,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "CoreItem.getSpeed",
+      "file": "CoreItem.py",
+      "calls": 71986,
+      "in_v1_cprofile_top": true
+    },
+    {
+      "function": "CoreCharacter.getHeat",
+      "file": "CoreCharacter.py",
+      "calls": 71986,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "CoreBuff._tick",
+      "file": "CoreBuff.py",
+      "calls": 54032,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "_iter",
+      "file": "_rt.py",
+      "calls": 51190,
+      "in_v1_cprofile_top": true
+    },
+    {
+      "function": "PCG32.next_u32",
+      "file": "_rt.py",
+      "calls": 45322,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "CoreItem.isItemAffected",
+      "file": "CoreItem.py",
+      "calls": 32448,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "EnumDict.__getattr__",
+      "file": "_rt.py",
+      "calls": 29854,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "CoreItem.isBag",
+      "file": "CoreItem.py",
+      "calls": 28560,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "CoreItem._hasBehaviorMethod",
+      "file": "CoreItem.py",
+      "calls": 27614,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "CoreItem.canAffect_color",
+      "file": "CoreItem.py",
+      "calls": 26757,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "Vector2.__hash__",
+      "file": "_rt.py",
+      "calls": 24006,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "CoreRng.bare_draw_seq",
+      "file": "CoreRng.py",
+      "calls": 22918,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "RandomNumberGenerator.randf",
+      "file": "_rt.py",
+      "calls": 22083,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "_div",
+      "file": "_rt.py",
+      "calls": 20232,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "Vector2.__eq__",
+      "file": "_rt.py",
+      "calls": 20109,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "RandomNumberGenerator.randf_range",
+      "file": "_rt.py",
+      "calls": 19424,
+      "in_v1_cprofile_top": true
+    },
+    {
+      "function": "CoreRng.randf_range",
+      "file": "CoreRng.py",
+      "calls": 18173,
+      "in_v1_cprofile_top": true
+    },
+    {
+      "function": "CoreTimer.tick",
+      "file": "CoreTimer.py",
+      "calls": 17192,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "CoreCharacter.playerId",
+      "file": "CoreCharacter.py",
+      "calls": 14390,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "CoreEvent.id",
+      "file": "CoreEvent.py",
+      "calls": 13559,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "_os_environ_get",
+      "file": "_rt.py",
+      "calls": 12380,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "CoreEventBus.emitAndLog",
+      "file": "CoreEventBus.py",
+      "calls": 9976,
+      "in_v1_cprofile_top": true
+    },
+    {
+      "function": "CoreGrid.getItems",
+      "file": "CoreGrid.py",
+      "calls": 9902,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "CoreEventBus.emitEvent",
+      "file": "CoreEventBus.py",
+      "calls": 9799,
+      "in_v1_cprofile_top": true
+    },
+    {
+      "function": "_gd_str",
+      "file": "_rt.py",
+      "calls": 9707,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "String",
+      "file": "_rt.py",
+      "calls": 9183,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "CoreDamageResult.damage",
+      "file": "CoreDamageResult.py",
+      "calls": 9129,
+      "in_v1_cprofile_top": false
+    }
+  ],
+  "note": "sys.monitoring PY_START 调用计数（非耗时）；与 v1 cProfile 耗时名单互为印证"
+}

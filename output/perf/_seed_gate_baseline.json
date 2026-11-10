@@ -1,0 +1,14 @@
+{
+ "20260923": {
+  "ticks": 907,
+  "winner": "opponent",
+  "n_events": 1548,
+  "events_bytes": 191079
+ },
+ "42": {
+  "ticks": 1042,
+  "winner": "opponent",
+  "n_events": 1991,
+  "events_bytes": 247251
+ }
+}
