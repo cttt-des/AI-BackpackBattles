@@ -76,10 +76,15 @@ def build_one(py_path: str) -> str:
         # ★ python314.lib 在 <PY_DIR>\libs（首版 /LIBPATH 少 libs → LNK1181）
         libs_dir = os.path.join(PY_DIR, "libs")
         bat = os.path.join(ROOT, "tools", "_msvc_build_one.cmd")
+        # ★ M1-5（2026-11-10）：/GL+/LTCG 全程序优化（实验）——GD_LTO=1 开启，
+        #   默认关。跨翻译单元内联对单 .pyd 边际小（模块内符号为主），且
+        #   link 期变慢（每模块 +2-5s）；闸红或无收益即弃。
+        lto = "/GL" if os.environ.get("GD_LTO") == "1" else ""
+        ltcg = "/LTCG" if os.environ.get("GD_LTO") == "1" else ""
         cmd_line = (
             f'call "{MSVC_VCVARS}" >nul 2>&1 && cl /O2 /LD /MD /nologo '
-            f'/I "{inc}" {c_path} '
-            f'/link /LIBPATH:"{libs_dir}" python314.lib '
+            f'{lto} /I "{inc}" {c_path} '
+            f'/link {ltcg} /LIBPATH:"{libs_dir}" python314.lib '
             f'/OUT:{pyd_path}')
         with io.open(bat, "w", encoding="ascii", newline="") as fh:
             fh.write("@echo off\r\n" + cmd_line + "\r\n")
