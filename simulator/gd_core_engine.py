@@ -350,6 +350,19 @@ class _LogMixin:
     # ── 钩子覆写 ──
 
     def logEvent(self, event):
+        """唯一事件出口（原 `_side`/`_actor_of`/`_origin_key`/`_count` 全内联）。
+
+        ★ M2-4 内联（2026-11-10）：profile v13 该簇 ~5.4 万次调用/3 场
+          （_side 11356 + kernel 10489 + _json_safe 7122 + _actor_of/_count/
+          _origin_key 15405）全是「旁路里的旁路」——每次事件物化付 4-6 个
+          纯转发调用。内联后每事件 1 次 kernel()（进程级缓存 dict 取表）+
+          零转发调用；params 字典按精确类型直通（bool/int/str 免函数调用，
+          float 保留 isfinite 兜底，其余类型走 _json_safe 慢路径）。
+        ★ 语义逐行保持：所有 try/except 回落、`self._ET_NAME`（动态派生类
+          的真实表）读取、`kernel()["ET_NAME"]` 反查、栈事件 actor_is_target
+          改写、_OriginRef 包装全部原样；下方 `_side`/`_actor_of`/`_origin_key`/
+          `_count` 保留不删（取证子类可能调用），logEvent 不再走它们。
+        """
         if event is None:
             return None
         et = int(event.type) if event.type is not None else -1
@@ -371,8 +384,58 @@ class _LogMixin:
             etype = _EVENT_TYPE_MAP.get(name)
             buff_type = None
 
-        actor = self._actor_of(event)
-        self._count(name, actor, params)
+        # ── actor（原 _actor_of 内联；kernel() 此处只调一次，origin 反查共用）──
+        k = kernel()
+        origin = event.origin
+        if isinstance(origin, k["CoreItem"]):
+            ch = origin.character()
+            if ch is not None:
+                pid = ch.playerId
+                if pid is None:
+                    actor = None
+                else:
+                    try:
+                        _pid = int(pid)
+                    except (TypeError, ValueError):
+                        actor = None
+                    else:
+                        actor = "player" if _pid == 0 else "opponent"
+            else:
+                actor = None
+        else:
+            try:
+                mv = event.getMainActor()
+            except Exception:  # noqa: BLE001
+                actor = None
+            else:
+                if mv is None:
+                    actor = None
+                else:
+                    try:
+                        _pid = int(mv)
+                    except (TypeError, ValueError):
+                        actor = None
+                    else:
+                        actor = "player" if _pid == 0 else "opponent"
+
+        # ── stats（原 _count 内联）──
+        side = 0 if actor == "player" else (1 if actor == "opponent" else None)
+        if side is not None:
+            st = self.stats[side]
+            if name == "Activation":
+                st["activations"] += 1
+            elif name in ("DealDamage", "CriticalDamage"):
+                st["damage_dealt"] += float(params.get("damage", 0) or 0)
+                st["n_damage_events"] += 1
+                if name == "CriticalDamage":
+                    st["crits"] += 1
+            elif name == "MissedAttack":
+                st["misses"] += 1
+            elif name == "Health":
+                st["healing_done"] += float(params.get("amount", 0) or 0)
+                st["n_heal_events"] += 1
+            elif name == "OutofStamina":
+                st["out_of_stamina"] += 1
 
         if etype is None:
             return None          # 原版日志里没有这一行
@@ -380,25 +443,96 @@ class _LogMixin:
         # 栈增益的「对自身施加」变体（原版 asText：getMainActor() == target
         # → GAIN_DEBUFF_SELF）：施加方与受方同侧即为 self（如剧毒矛自毒）。
         if etype == "stack_gain" and 100 <= et <= 110:
-            tgt = self._side(event.target)
-            if actor is not None and tgt == actor:
-                params = dict(params)
-                params["actor_is_target"] = True
+            tgt = event.target
+            if tgt is not None:
+                try:
+                    _t = int(tgt)
+                except (TypeError, ValueError):
+                    tgt_side = None
+                else:
+                    tgt_side = "player" if _t == 0 else "opponent"
+                if actor is not None and tgt_side == actor:
+                    params = dict(params)
+                    params["actor_is_target"] = True
 
-        okey = self._origin_key(event.origin)
+        # ── origin（原 _origin_key 内联，共用上面的 k）──
+        if isinstance(origin, k["CoreItem"]):
+            try:
+                ident = str(origin.descriptor.identifier)
+            except Exception:  # noqa: BLE001 —— 只为日志，不因取名失败而中断
+                okey = str(origin.getName())
+            else:
+                # 宝石 origin：附宿主/槽位（_OriginRef 新字段；渲染仍只读 .key）
+                try:
+                    is_gem = bool(origin.isGem())
+                except Exception:  # noqa: BLE001
+                    is_gem = False
+                if is_gem:
+                    host = getattr(origin, "socket", None)
+                    host_key = None
+                    slot = None
+                    if host is not None:
+                        try:
+                            host_key = str(host.descriptor.identifier)
+                        except Exception:  # noqa: BLE001
+                            host_key = None
+                        try:
+                            for i, g in enumerate(list(host.gems)):
+                                if g is origin:
+                                    slot = i
+                                    break
+                        except Exception:  # noqa: BLE001
+                            slot = None
+                    okey = _OriginRef(ident, host_key, slot)
+                else:
+                    okey = _OriginRef(ident)
+        else:
+            # 数字 origin = DamageSource.Type（原版 CombatEvent.asText：
+            # `origin is Item` 为假时走 Game.typeToKeyword(origin)）。
+            # typeToKeyword 1:1：特例 Block→"bl"、Regeneration→"regen"，
+            # 其余 eventTypeKeys[_type].to_lower()（经 ET_NAME 反查现算，
+            # 不写死数字——见 decompiled_full/Core/Game.gd:5663）。
+            # 实际出现的值：Fatigue=99（takeFatigueDamage → fatigueDamageSource）。
+            try:
+                num = int(origin)
+            except (TypeError, ValueError):
+                okey = None
+            else:
+                nm = k["ET_NAME"].get(num)
+                if not nm:
+                    okey = None
+                elif num == k["CoreConst"].EventType.get("Block"):
+                    okey = _OriginRef("bl", damage_source=True)
+                elif num == k["CoreConst"].EventType.get("Regeneration"):
+                    okey = _OriginRef("regen", damage_source=True)
+                else:
+                    okey = _OriginRef(nm.lower(), damage_source=True)
         if okey is None:
             oref = None
         elif isinstance(okey, _OriginRef):
             oref = okey
         else:
             oref = _OriginRef(okey)
+
+        # ── params 净化（M2-3：精确类型直通，其余走 _json_safe 慢路径）──
+        safe_params = {}
+        for kk, vv in params.items():
+            cls = vv.__class__
+            if cls is int or cls is str or cls is bool:
+                safe_params[kk if kk.__class__ is str else str(kk)] = vv
+            elif cls is float:
+                safe_params[kk if kk.__class__ is str else str(kk)] = (
+                    vv if math.isfinite(vv) else 0.0)
+            else:
+                safe_params[kk if kk.__class__ is str else str(kk)] = _json_safe(vv)
+
         self.events.append(_EventOut(
             t=float(event.timestamp or 0.0),
             etype=etype,
             actor=actor,
             target=self._side(event.target),
             origin=oref,
-            params={str(kk): _json_safe(vv) for kk, vv in params.items()},
+            params=safe_params,
             parent=(getattr(event.parentEvent, "id", None)
                     if event.parentEvent is not None else None),
             depth=int(event.getDepth()),

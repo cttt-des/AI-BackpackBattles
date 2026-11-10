@@ -67,12 +67,18 @@ def _out_basename(player_path: str, opponent_path: str) -> str:
 
 def simulate_once(player_path: str, opponent_path: str, item_db, character_db,
                   seed: Optional[int], max_time: float = 90.0,
-                  engine: str = DEFAULT_ENGINE) -> "CombatEngine":
+                  engine: str = DEFAULT_ENGINE,
+                  light_log: bool = False) -> "CombatEngine":
+    """light_log=True：logEvent 旁路化（S3-C12/M2-6，跳过事件物化）。
+
+    logEvent 不消耗 rng、不改内核状态（docs/gd_core_engine.py::_LogMixin），
+    跳过对胜负判定零影响；调用方必须不消费事件流（MC 只取胜负）才可开。
+    单场/对照工具恒 False（默认），零行为变化。"""
     CombatEngine = _get_combat_engine(engine)[0]
     player = load_lineup(player_path)
     opponent = load_lineup(opponent_path)
     eng = CombatEngine(player, opponent, item_db, character_db,
-                       seed=seed, max_time=max_time)
+                       seed=seed, max_time=max_time, light_log=light_log)
     eng.run()
     return eng
 
@@ -237,8 +243,11 @@ def main(argv: Optional[List[str]] = None) -> int:
 
     for run in range(args.runs):
         seed = args.seed + run if args.seed is not None else None
+        # ★ M2-6：串行 MC（runs>1）与并行 _mc_worker 同口径——事件物化旁路化，
+        #   只累加胜负；runs==1 单场路径不变（全量事件+落盘+战报）。
         eng = simulate_once(args.player, args.opponent, item_db, character_db,
-                            seed, args.max_time, engine=args.engine)
+                            seed, args.max_time, engine=args.engine,
+                            light_log=(args.runs > 1))
         last_eng = eng
         if eng.player_wins():
             wins += 1
