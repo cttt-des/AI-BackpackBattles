@@ -58,6 +58,24 @@ def build():
         if not ok:
             print(f"WARNING: compileall {pkg} 有编译失败项（继续打包，PyInstaller 会自行编译）")
 
+    # ── M4-5（docs/性能优化下一步规划.md §4/§9.5）：Cython 编译步固化 ──
+    # 此前 664 pyd 需手工先跑 tools/build_cython.py，漏跑则 exe 带旧 pyd
+    # 甚至纯 py。build_cython --msvc --all 幂等（已编且源未变者跳过），
+    # 全新机全量 ≈30-50 分钟，增量通常 <1 分钟。
+    # 逃生口：GD_EXE_SKIP_CYTHON=1 跳过（已知 pyd 新鲜时的快速重打包）。
+    if os.environ.get("GD_EXE_SKIP_CYTHON") != "1":
+        print("Building Cython pyds (build_cython --msvc --all, idempotent) ...")
+        r = subprocess.run(
+            [PYTHON, "-X", "utf8", str(PROJECT_DIR / "tools" / "build_cython.py"),
+             "--msvc", "--all"],
+            cwd=str(PROJECT_DIR), text=True, encoding="utf-8", errors="replace")
+        if r.returncode != 0:
+            print("ERROR: build_cython --all 失败——中止打包（exe 不能带陈旧 pyd）",
+                  file=sys.stderr)
+            raise SystemExit(2)
+    else:
+        print("SKIP Cython build (GD_EXE_SKIP_CYTHON=1)")
+
     args = [
         PYTHON, "-m", "PyInstaller",
         "--noconfirm",
