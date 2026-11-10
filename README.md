@@ -18,6 +18,7 @@
 
 | 版本 | 文件 | 说明 |
 |------|------|------|
+| **v0.5.2** | [`BackpackSimulator.exe`](https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.5.2/BackpackSimulator.exe) | 战斗模拟器（阵容对战 / 蒙特卡洛胜率 / 物品联动 / 游戏格式战报）——**内核 Cython 化**：664 模块编译为 C 扩展（官方 MSVC 工具链），单场耗时约降 45%（378→207ms 健康段口径），**1690/1690 全量三方逐行一致**复验通过；含蒙特卡洛多进程并行、分层导入加速启动 |
 | **v0.5.1** | [`BackpackSimulator.exe`](https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.5.1/BackpackSimulator.exe) | 战斗模拟器（阵容对战 / 蒙特卡洛胜率 / 物品联动 / 游戏格式战报）——**1690/1690 重跑复验**三方逐行一致；修复体力上限取数链不同源导致的 13 场分歧；新增 60 场确定性精选集 |
 | **v0.5.0** | [`BackpackSimulator.exe`](https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.5.0/BackpackSimulator.exe) | 战斗模拟器（阵容对战 / 蒙特卡洛胜率 / 物品联动 / 游戏格式战报）——1690 场语料三方对齐全绿 |
 | **v0.4.1** | [`BackpackSimulator.exe`](https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.4.1/BackpackSimulator.exe) | 战斗模拟器（阵容对战 / 蒙特卡洛胜率 / 物品联动 / 游戏格式战报） |
