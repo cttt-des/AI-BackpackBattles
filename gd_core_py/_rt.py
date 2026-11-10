@@ -57,6 +57,15 @@ import random
 import struct
 import sys as _sys
 
+# ★ M1-1 类型化注解（docs/性能优化下一步规划.md §4）：`cython.*` 注解在
+#   Cython 编译态生效（_cy 指针被 Cython 拦截、不产生真实 import），纯
+#   Python 运行态注解不求值（PEP 526 局部注解），仅此 import 真跑——
+#   环境里装了 Cython（构建链依赖），缺了也不破运行（except 回落）。
+try:
+    import cython as _cy
+except ImportError:  # pragma: no cover —— 纯 py 态无 Cython 也能跑
+    _cy = None
+
 # `RandomNumberGenerator.randomize()` 是否被触发过 —— 那意味着可复现性已丢失，
 # 闸门应当据此判失败（[0] 是可变单元，避免 global 声明）。
 _RANDOMIZED = [False]
@@ -94,20 +103,28 @@ __all__ = [
 _F32 = struct.Struct("<f")
 
 
-def f32(x):
+def f32(x: float):
     """把 double 舍入到 float32 再取回 double。
 
     Godot 3 官方构建的 `real_t` 是 float32；`RandomPCG::randf()` 与
     `RandomPCG::random(float,float)` 全程在 float32 上运算，直译成 Python
     的 float64 会在低位分叉，于是冷却/命中/暴击逐场漂移。
 
-    ★ 快路径（2026-11-10）：整数值 float（|x|<2²⁴）在 f32 必精确——
+    ★ 快路径（2026-11-10）：整数值（|x|<2²⁴）在 f32 必精确——
       24 位尾数覆盖全部 ±2²⁴ 内整数；跳过 struct 往返。时长类实参
-      （Buff/Timer duration 2.0/3.0/5.0…）大幅命中。非整数/越界/
-      nan/inf/bool/int 走原 struct 路（逐位同果）。
+      （Buff/Timer duration 2.0/3.0/5.0…）大幅命中。
+    ★ M1-1（2026-11-10）：签名 `x: float`——Cython3 annotation_typing 下
+      编译为 C double（int/bool 在调用边界转换），纯 Python 运行时注解
+      为 no-op。积分性判断 `x == math.floor(x)`：编译态 math.floor 优化为
+      C floor（double），纯 py 态返回 int——两侧比较结果一致。
+      `+ 0.0`：int 实参在纯 py 态快路径命中时转 float（对齐原 struct 路
+      的 float 返回类型；编译态 double+0.0 同值零成本）。
+
+    逐位同果性：非整数/越界/nan/inf 走原 struct 路（不变）；int/bool 实参
+    两侧都产出同值 float（原 pack(int) ≡ double→float32）。
     """
-    if x.__class__ is float and -16777216.0 < x < 16777216.0 and x == int(x):
-        return x
+    if -16777216.0 < x < 16777216.0 and x == int(x):
+        return x + 0.0
     return _F32.unpack(_F32.pack(x))[0]
 
 
@@ -541,13 +558,19 @@ def _div(a, b):
     ★ 两个 int → **截断整除**（C 语义，向零取整）；任一是 float → 真除。
       直译成 Python 会得到真除：`activations / activationsToTrigger` 从 0 变成
       0.333…，触发次数判定整体失真，且不报任何错。
+    ★ M1-1（2026-11-10）：int 分支局部注解 `cython.longlong`（编译态 C long
+      long，纯 py 态注解不求值、no-op）——abs 形式下两侧模式语义恒等（非负
+      数 C 截断 ≡ Python floor ≡ 精确商），编译态全程 C 运算免对象大整数。
+      GDScript int 域 = i64，abs(ia)//abs(ib) 不越界。
     """
     if isinstance(a, bool) or isinstance(b, bool):
         return a / b
     if isinstance(a, int) and isinstance(b, int):
         if b == 0:
             raise ZeroDivisionError("integer division by zero")
-        q = abs(a) // abs(b)
+        ia: _cy.longlong = a
+        ib: _cy.longlong = b
+        q = abs(ia) // abs(ib)
         return -q if (a < 0) != (b < 0) else q
     return a / b
 
@@ -558,11 +581,15 @@ def _mod(a, b):
     ★ 两个 int → **符号随被除数**（C 的 `%`）；Python 的 `%` 符号随除数：
       `-5 % 2` 在 GDScript 是 -1、Python 是 1。凡是「轮转取余」的判定都会反向。
       float → `Math::fmod` 语义。
+    ★ M1-1：局部注解 `cython.longlong` 同 _div（非负数两侧模式语义恒等，
+      编译态 C 运算）。
     """
     if isinstance(a, int) and isinstance(b, int):
         if b == 0:
             raise ZeroDivisionError("integer modulo by zero")
-        r = abs(a) % abs(b)
+        ia: _cy.longlong = a
+        ib: _cy.longlong = b
+        r = abs(ia) % abs(ib)
         return -r if a < 0 else r
     return math.fmod(a, b)
 
@@ -1288,7 +1315,13 @@ class PCG32:
         return self
 
     def next_u32(self):
-        old = self.state
+        # ★ M1-1（2026-11-10）：old 显式注解 cython.ulonglong——state/inc 已是
+        #   cdef C 槽（_rt.pxd），PCG_MULT/MASK64/UINT32_MAX 是模块级 C 变量，
+        #   乘加掩移全程 C u64：无符号环绕 ≡ Python bigint & MASK64（乘法
+        #   环同态），逐位同果且免 4 次对象大整数运算（45322 次/3 场主项）。
+        #   xorshifted/rot/v 自 C 操作数推断为 C，零对象转换。
+        #   纯 py 态注解不求值，old=self.state 对象运算原语义不变。
+        old: _cy.ulonglong = self.state
         self.state = (old * PCG_MULT + self.inc) & MASK64
         xorshifted = (((old >> 18) ^ old) >> 27) & UINT32_MAX
         rot = (old >> 59) & 31
