@@ -1,0 +1,37 @@
+{
+ "tool": "l1q/v1",
+ "method": "pre-L1 worktree(ec1560b6,673 pyd plain+13cdef 全量重编) vs 当前(ff755e0c,510 items cdef);light_log=True 中和事件路径;process_time;交错各3轮取中位",
+ "getspeed": {
+  "post_us": 0.5781,
+  "pre_us": 0.5781,
+  "speedup": 1.0,
+  "note": "两次驱动运行中位全等;1M 次量化±3%"
+ },
+ "phystick": {
+  "post_us": 1.25,
+  "pre_us": 1.25,
+  "speedup": 1.0,
+  "note": "两次驱动运行中位全等;200k 次量化±6%"
+ },
+ "gainstacks": {
+  "post_us": 0.4492,
+  "pre_us": 0.4297,
+  "speedup": 0.96,
+  "runs_800k": [
+   [
+    0.3906,
+    0.3711
+   ],
+   [
+    0.4492,
+    0.4297
+   ],
+   [
+    0.4688,
+    0.5078
+   ]
+  ],
+  "note": "200k 时 0.39/0.47µs 跳动=单刻度噪声(15.6ms/200k=0.078µs);800k 三对交错 speedup 0.95/0.96/1.08"
+ },
+ "verdict": "三点全 <1.1x → §13.3 规则:L1 属形态改善(510 模块免 __dict__/7 处潜伏 NameError 修复),单点热路径无 ≥1.1x 收益;L3/P2/P3 全部放弃,转 §13.4 第2项(打包)"
+}
