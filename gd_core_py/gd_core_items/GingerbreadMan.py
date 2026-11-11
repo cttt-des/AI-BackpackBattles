@@ -38,6 +38,8 @@ from .._rt import (  # noqa: F401
     _gd_str,
     _get_slice,
     _gid,
+    _has_behavior_cache_get,
+    _has_behavior_cache_put,
     _hash,
     _invert,
     _iter,
@@ -128,9 +130,10 @@ class GingerbreadMan_2(_base_cls_GingerbreadMan_2):
 
 
 	def doCooldownEffect(self):
-		if self.character().getLucky() >= self.luckNeeded:
-			if self.character().getHeat() >= self.heatNeeded:
-				if self.character().getMana() >= self.manaNeeded:
+		_ch = self.character()
+		if _ch.getLucky() >= self.luckNeeded:
+			if _ch.getHeat() >= self.heatNeeded:
+				if _ch.getMana() >= self.manaNeeded:
 
 					self.ctx.bus.setLoggingMode(self.ctx.bus.LoggingMode.Delayed)
 					self.useLucky(self.luckNeeded)

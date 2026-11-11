@@ -38,6 +38,8 @@ from ..._rt import (  # noqa: F401
     _gd_str,
     _get_slice,
     _gid,
+    _has_behavior_cache_get,
+    _has_behavior_cache_put,
     _hash,
     _invert,
     _iter,
@@ -108,12 +110,13 @@ class Exclusive__SpikedWall(_base_cls_Exclusive__SpikedWall):
 
 
 	def onPrepare(self):
+		_ch = self.character()
 		super().onPrepare()
-		self.character().addBattleRageDuration(self.getP_m("dur_rage"))
-		self.character().changeRangedSpikesLimit(self.spikesLimit)
-		self.character().changeMeleeSpikesLimit(self.spikesLimit)
-		baseStaminaRegen = self.character().baseStaminaRegen
-		self.character().giveStaminaRegeneration(self.staminaRegenMalus * baseStaminaRegen)
+		_ch.addBattleRageDuration(self.getP_m("dur_rage"))
+		_ch.changeRangedSpikesLimit(self.spikesLimit)
+		_ch.changeMeleeSpikesLimit(self.spikesLimit)
+		baseStaminaRegen = _ch.baseStaminaRegen
+		_ch.giveStaminaRegeneration(self.staminaRegenMalus * baseStaminaRegen)
 
 	def _readyInit(self):
 		_div__loc = _div

@@ -38,6 +38,8 @@ from ..._rt import (  # noqa: F401
     _gd_str,
     _get_slice,
     _gid,
+    _has_behavior_cache_get,
+    _has_behavior_cache_put,
     _hash,
     _invert,
     _iter,
@@ -117,8 +119,9 @@ class Exclusive__Thornbloom(_base_cls_Exclusive__Thornbloom):
 		self._empower = int(v)
 
 	def onPrepare(self):
-		self.connectForCombat(self.character(), "character_empower_changed", "onEmpowerChanged")
-		self.connectForCombat(self.character(), "character_spikes_changed", "onSpikesChanged")
+		_ch = self.character()
+		self.connectForCombat(_ch, "character_empower_changed", "onEmpowerChanged")
+		self.connectForCombat(_ch, "character_spikes_changed", "onSpikesChanged")
 
 
 	def onSpikesChanged(self, amount, _event):

@@ -38,6 +38,8 @@ from .._rt import (  # noqa: F401
     _gd_str,
     _get_slice,
     _gid,
+    _has_behavior_cache_get,
+    _has_behavior_cache_put,
     _hash,
     _invert,
     _iter,
@@ -110,8 +112,9 @@ class LeatherHelm_2(_base_cls_LeatherHelm_2):
 
 
 	def onPrepare(self):
-		self.character().changeCritResistance(self.getChance())
-		self.character().changeStunResistance(self.getStunProtectChance())
+		_ch = self.character()
+		_ch.changeCritResistance(self.getChance())
+		_ch.changeStunResistance(self.getStunProtectChance())
 
 
 	def onPreCombatStart(self):

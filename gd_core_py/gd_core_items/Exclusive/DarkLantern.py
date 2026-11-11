@@ -38,6 +38,8 @@ from ..._rt import (  # noqa: F401
     _gd_str,
     _get_slice,
     _gid,
+    _has_behavior_cache_get,
+    _has_behavior_cache_put,
     _hash,
     _invert,
     _iter,
@@ -135,7 +137,8 @@ class Exclusive__DarkLantern(_base_cls_Exclusive__DarkLantern):
 
 
 	def onCombatStart(self):
-		self.character().loseHealth(_div(self.getP1(), 100.0) * self.character().getMaxHealth(), self)
+		_ch = self.character()
+		_ch.loseHealth(_div(self.getP1(), 100.0) * _ch.getMaxHealth(), self)
 
 
 		self.activate()

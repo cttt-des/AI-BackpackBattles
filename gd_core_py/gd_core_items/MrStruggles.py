@@ -38,6 +38,8 @@ from .._rt import (  # noqa: F401
     _gd_str,
     _get_slice,
     _gid,
+    _has_behavior_cache_get,
+    _has_behavior_cache_put,
     _hash,
     _invert,
     _iter,
@@ -115,8 +117,9 @@ class MrStruggles_2(_base_cls_MrStruggles_2):
 
 
 	def onPrepare(self):
+		_ch = self.character()
 		for debuff in _iter(_H_1.getDebuffs()):
-			self.connectForCombat(self.character(), self.character().buffs[debuff].signalName, 
+			self.connectForCombat(_ch, _ch.buffs[debuff].signalName, 
 			"onDebuffed")
 
 

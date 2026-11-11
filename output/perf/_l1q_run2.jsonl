@@ -1,0 +1,67 @@
+[r1] post getspeed   0.5000 us
+[r1] post phystick   1.4062 us
+[r1] post gainstacks 0.4688 us
+[r1] pre getspeed   0.6094 us
+[r1] pre phystick   1.4844 us
+[r1] pre gainstacks 0.4688 us
+[r2] pre getspeed   0.5781 us
+[r2] pre phystick   1.2500 us
+[r2] pre gainstacks 0.4688 us
+[r2] post getspeed   0.5781 us
+[r2] post phystick   1.2500 us
+[r2] post gainstacks 0.4688 us
+[r3] post getspeed   0.5938 us
+[r3] post phystick   1.1719 us
+[r3] post gainstacks 0.4688 us
+[r3] pre getspeed   0.5625 us
+[r3] pre phystick   1.2500 us
+[r3] pre gainstacks 0.3906 us
+{
+ "tool": "l1q/v1",
+ "rounds": 3,
+ "getspeed": {
+  "post_us": 0.5781,
+  "pre_us": 0.5781,
+  "speedup": 1.0,
+  "post_runs": [
+   0.5,
+   0.5781,
+   0.5938
+  ],
+  "pre_runs": [
+   0.6094,
+   0.5781,
+   0.5625
+  ]
+ },
+ "phystick": {
+  "post_us": 1.25,
+  "pre_us": 1.25,
+  "speedup": 1.0,
+  "post_runs": [
+   1.4062,
+   1.25,
+   1.1719
+  ],
+  "pre_runs": [
+   1.4844,
+   1.25,
+   1.25
+  ]
+ },
+ "gainstacks": {
+  "post_us": 0.4688,
+  "pre_us": 0.4688,
+  "speedup": 1.0,
+  "post_runs": [
+   0.4688,
+   0.4688,
+   0.4688
+  ],
+  "pre_runs": [
+   0.4688,
+   0.4688,
+   0.3906
+  ]
+ }
+}

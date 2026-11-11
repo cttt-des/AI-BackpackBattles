@@ -38,6 +38,8 @@ from ..._rt import (  # noqa: F401
     _gd_str,
     _get_slice,
     _gid,
+    _has_behavior_cache_get,
+    _has_behavior_cache_put,
     _hash,
     _invert,
     _iter,
@@ -104,9 +106,10 @@ class Exclusive__AmuletoftheWild(_base_cls_Exclusive__AmuletoftheWild):
 
 
 	def onPrepare(self):
+		_ch = self.character()
 		spikesLimit = _div(self.getP('spikedam'), 100.0)
-		self.character().changeRangedSpikesLimit(spikesLimit)
-		self.character().changeMeleeSpikesLimit(spikesLimit)
+		_ch.changeRangedSpikesLimit(spikesLimit)
+		_ch.changeMeleeSpikesLimit(spikesLimit)
 
 
 	def doCooldownEffect(self):

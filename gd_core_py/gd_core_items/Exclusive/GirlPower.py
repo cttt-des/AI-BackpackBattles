@@ -38,6 +38,8 @@ from ..._rt import (  # noqa: F401
     _gd_str,
     _get_slice,
     _gid,
+    _has_behavior_cache_get,
+    _has_behavior_cache_put,
     _hash,
     _invert,
     _iter,
@@ -119,8 +121,9 @@ class Exclusive__GirlPower(_base_cls_Exclusive__GirlPower):
 
 
 	def doCooldownEffect(self):
-		curEmpower = self.character().getEmpower()
-		curRegen = self.character().getRegeneration()
+		_ch = self.character()
+		curEmpower = _ch.getEmpower()
+		curRegen = _ch.getRegeneration()
 
 		if curRegen < curEmpower:
 			self.giveRegeneration(self.regen)

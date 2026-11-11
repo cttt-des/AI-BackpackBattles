@@ -38,6 +38,8 @@ from ..._rt import (  # noqa: F401
     _gd_str,
     _get_slice,
     _gid,
+    _has_behavior_cache_get,
+    _has_behavior_cache_put,
     _hash,
     _invert,
     _iter,
@@ -103,8 +105,9 @@ class Exclusive__SpikedCollar(_base_cls_Exclusive__SpikedCollar):
 
 
 	def onPrepare(self):
-		self.connectForCombat(self.character(), "battle_rage_started", "onBattleRageStarted")
-		self.character().addBattleRageDuration(self.getP_m("dur_rage"))
+		_ch = self.character()
+		self.connectForCombat(_ch, "battle_rage_started", "onBattleRageStarted")
+		_ch.addBattleRageDuration(self.getP_m("dur_rage"))
 
 
 	def onBattleRageStarted(self, event):

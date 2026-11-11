@@ -38,6 +38,8 @@ from .._rt import (  # noqa: F401
     _gd_str,
     _get_slice,
     _gid,
+    _has_behavior_cache_get,
+    _has_behavior_cache_put,
     _hash,
     _invert,
     _iter,
@@ -157,9 +159,10 @@ class DjinnLamp_2(_base_cls_DjinnLamp_2):
 
 
 	def doCooldownEffect(self):
-		numLucky = self.character().getLucky()
-		numSpikes = self.character().getSpikes()
-		numMana = self.character().getMana()
+		_ch = self.character()
+		numLucky = _ch.getLucky()
+		numSpikes = _ch.getSpikes()
+		numMana = _ch.getMana()
 
 		if numLucky < numSpikes:
 			if numLucky < numMana:

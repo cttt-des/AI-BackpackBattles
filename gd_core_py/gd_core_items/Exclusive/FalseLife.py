@@ -38,6 +38,8 @@ from ..._rt import (  # noqa: F401
     _gd_str,
     _get_slice,
     _gid,
+    _has_behavior_cache_get,
+    _has_behavior_cache_put,
     _hash,
     _invert,
     _iter,
@@ -111,8 +113,9 @@ class Exclusive__FalseLife(_base_cls_Exclusive__FalseLife):
 
 
 	def onPrepare(self):
-		self.character().changeMaxHealthGain(self.maxHealthAmp)
-		self.connectForCombat(self.character(), "character_overhealed", "onOverheal")
+		_ch = self.character()
+		_ch.changeMaxHealthGain(self.maxHealthAmp)
+		self.connectForCombat(_ch, "character_overhealed", "onOverheal")
 
 
 	def doCooldownEffect(self):

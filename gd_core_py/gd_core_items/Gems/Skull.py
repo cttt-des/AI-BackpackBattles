@@ -38,6 +38,8 @@ from ..._rt import (  # noqa: F401
     _gd_str,
     _get_slice,
     _gid,
+    _has_behavior_cache_get,
+    _has_behavior_cache_put,
     _hash,
     _invert,
     _iter,
@@ -129,8 +131,9 @@ class Gems__Skull(_base_cls_Gems__Skull):
 
 
 	def prepareArmor(self):
-		self.character().changeDebuffResistChances(self.getGemPower() * self.getChance())
-		self.character().changeCritResistance(self.getGemPower() * self.getChance())
+		_ch = self.character()
+		_ch.changeDebuffResistChances(self.getGemPower() * self.getChance())
+		_ch.changeCritResistance(self.getGemPower() * self.getChance())
 
 
 	def hasCooldown(self):

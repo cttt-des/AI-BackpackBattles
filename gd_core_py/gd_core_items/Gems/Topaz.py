@@ -38,6 +38,8 @@ from ..._rt import (  # noqa: F401
     _gd_str,
     _get_slice,
     _gid,
+    _has_behavior_cache_get,
+    _has_behavior_cache_put,
     _hash,
     _invert,
     _iter,
@@ -108,8 +110,9 @@ class Gems__Topaz(_base_cls_Gems__Topaz):
 
 
 	def prepareArmor(self):
-		self.character().changeStunResistance(self.getGemPower() * self.getChance())
-		self.character().changeCritResistance(self.getGemPower() * self.getChance2())
+		_ch = self.character()
+		_ch.changeStunResistance(self.getGemPower() * self.getChance())
+		_ch.changeCritResistance(self.getGemPower() * self.getChance2())
 
 	def _readyInit(self):
 		super()._readyInit()

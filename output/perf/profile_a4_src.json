@@ -1,0 +1,214 @@
+{
+  "stage": "unspecified",
+  "machine": "8L, Python 3.14.5",
+  "cmd": "tools/bench_sim.py --n 3 --profile-out output/perf/profile_a4_src.json",
+  "lineups": [
+    "truth_20261001_220653_R19_player.json",
+    "truth_20261001_220653_R19_opponent.json"
+  ],
+  "workers": 1,
+  "n": 3,
+  "fights": [
+    {
+      "seed": 20260923,
+      "ms": 5687.9,
+      "ticks": 907,
+      "winner": "opponent"
+    },
+    {
+      "seed": 20260924,
+      "ms": 6273.9,
+      "ticks": 1010,
+      "winner": "opponent"
+    },
+    {
+      "seed": 20260925,
+      "ms": 5592.8,
+      "ticks": 992,
+      "winner": "opponent"
+    }
+  ],
+  "top_calls": [
+    {
+      "function": "_EventOut.__init__",
+      "file": "gd_core_engine.py",
+      "calls": 1659428,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "kernel",
+      "file": "gd_core_engine.py",
+      "calls": 5138,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "_LogMixin.logEvent",
+      "file": "gd_core_engine.py",
+      "calls": 5135,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "_OriginRef.__init__",
+      "file": "gd_core_engine.py",
+      "calls": 5135,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "_LogMixin.events",
+      "file": "gd_core_engine.py",
+      "calls": 2912,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "_verbose_message",
+      "file": "<frozen importlib._bootstrap>",
+      "calls": 1225,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "_ImportLockContext.__enter__",
+      "file": "<frozen importlib._bootstrap>",
+      "calls": 974,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "_ImportLockContext.__exit__",
+      "file": "<frozen importlib._bootstrap>",
+      "calls": 974,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "C",
+      "file": "_registry.py",
+      "calls": 893,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "_call_with_frames_removed",
+      "file": "<frozen importlib._bootstrap>",
+      "calls": 731,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "GDCoreEngine._descriptor",
+      "file": "gd_core_engine.py",
+      "calls": 648,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "ModuleSpec.parent",
+      "file": "<frozen importlib._bootstrap>",
+      "calls": 638,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "_path_join",
+      "file": "<frozen importlib._bootstrap_external>",
+      "calls": 531,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "_path_stat",
+      "file": "<frozen importlib._bootstrap_external>",
+      "calls": 520,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "reg",
+      "file": "_registry.py",
+      "calls": 506,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "_key_of",
+      "file": "gd_core_engine.py",
+      "calls": 354,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "GDCoreEngine._place",
+      "file": "gd_core_engine.py",
+      "calls": 324,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "_place_of",
+      "file": "gd_core_engine.py",
+      "calls": 324,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "GDCoreEngine._make_item",
+      "file": "gd_core_engine.py",
+      "calls": 324,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "is_registered",
+      "file": "_registry.py",
+      "calls": 324,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "_ItemView.__init__",
+      "file": "gd_core_engine.py",
+      "calls": 309,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "_is_dunder",
+      "file": "typing.py",
+      "calls": 301,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "_BaseGenericAlias.__setattr__",
+      "file": "typing.py",
+      "calls": 291,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "_Environ.__getitem__",
+      "file": "<frozen os>",
+      "calls": 281,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "_create_environ_mapping.<locals>.encodekey",
+      "file": "<frozen os>",
+      "calls": 281,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "_create_environ_mapping.<locals>.check_str",
+      "file": "<frozen os>",
+      "calls": 281,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "_get_module_lock",
+      "file": "<frozen importlib._bootstrap>",
+      "calls": 262,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "_ModuleLock.acquire",
+      "file": "<frozen importlib._bootstrap>",
+      "calls": 262,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "_BlockingOnManager.__init__",
+      "file": "<frozen importlib._bootstrap>",
+      "calls": 262,
+      "in_v1_cprofile_top": false
+    },
+    {
+      "function": "_BlockingOnManager.__enter__",
+      "file": "<frozen importlib._bootstrap>",
+      "calls": 262,
+      "in_v1_cprofile_top": false
+    }
+  ],
+  "note": "sys.monitoring PY_START 调用计数（非耗时）；与 v1 cProfile 耗时名单互为印证"
+}

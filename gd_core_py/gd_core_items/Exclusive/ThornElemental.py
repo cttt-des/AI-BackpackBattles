@@ -38,6 +38,8 @@ from ..._rt import (  # noqa: F401
     _gd_str,
     _get_slice,
     _gid,
+    _has_behavior_cache_get,
+    _has_behavior_cache_put,
     _hash,
     _invert,
     _iter,
@@ -108,9 +110,10 @@ class Exclusive__ThornElemental(_base_cls_Exclusive__ThornElemental):
 
 
 	def onPrepare(self):
-		self.character().changeEffectSpikesLimit(self.spikesLimit)
-		self.character().changeRangedSpikesLimit(self.spikesLimit)
-		self.character().changeSpikesCritChancePercent(self.getChance() * self.getNumAffectedItems())
+		_ch = self.character()
+		_ch.changeEffectSpikesLimit(self.spikesLimit)
+		_ch.changeRangedSpikesLimit(self.spikesLimit)
+		_ch.changeSpikesCritChancePercent(self.getChance() * self.getNumAffectedItems())
 
 
 	def doCooldownEffect(self):

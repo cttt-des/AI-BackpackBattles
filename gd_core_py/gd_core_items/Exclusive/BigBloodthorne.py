@@ -38,6 +38,8 @@ from ..._rt import (  # noqa: F401
     _gd_str,
     _get_slice,
     _gid,
+    _has_behavior_cache_get,
+    _has_behavior_cache_put,
     _hash,
     _invert,
     _iter,
@@ -106,9 +108,10 @@ class Exclusive__BigBloodthorne(_base_cls_Exclusive__BigBloodthorne):
 
 
 	def onPrepare(self):
+		_ch = self.character()
 		super().onPrepare()
-		self.connectForCombat(self.character(), "character_vampirism_changed", "onVampirismChanged")
-		self.connectForCombat(self.character(), "character_spikes_changed", "onSpikesChanged")
+		self.connectForCombat(_ch, "character_vampirism_changed", "onVampirismChanged")
+		self.connectForCombat(_ch, "character_spikes_changed", "onSpikesChanged")
 
 
 	def onVampirismChanged(self, amount, _event):
