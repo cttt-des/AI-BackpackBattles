@@ -18,4 +18,7 @@ cdef class CoreEvent(GodotObject):
     cdef public object target
     cdef public object timestamp
     cdef public object type
+    cpdef long long getType(self)
+    cpdef long long getMainActor(self)
+    cpdef long long getDepth(self)
 

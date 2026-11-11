@@ -84,4 +84,27 @@ cdef class CoreCharacter(GodotObject):
     cdef public object tickCounter
     cdef public object typedDamageFactors
     cdef public object unhealingAmount
+    cpdef bint isPlayer(self)
+    cpdef long long getMissingHealth(self)
+    cpdef bint isStunned(self)
+    cpdef bint critResisted(self)
+    cpdef bint stunResisted(self)
+    cpdef long long getCritTokens(self)
+    cpdef long long getBonusFatigueDamage(self)
+    cpdef long long getClass(self)
+    cpdef bint isBattleRaging(self)
+    cpdef long long getBuffStacks(self)
+    cpdef long long getDebuffStacks(self)
+    cpdef long long getBlock(self)
+    cpdef long long getSpikes(self)
+    cpdef long long getVampirism(self)
+    cpdef long long getPoison(self)
+    cpdef long long getRegeneration(self)
+    cpdef long long getLucky(self)
+    cpdef long long getBlind(self)
+    cpdef long long getMana(self)
+    cpdef long long getEmpower(self)
+    cpdef long long getHeat(self)
+    cpdef long long getCold(self)
+    cpdef bint isFullStamina(self)
 

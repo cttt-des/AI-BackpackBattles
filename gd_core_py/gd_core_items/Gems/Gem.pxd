@@ -20,4 +20,12 @@ cdef class Gem(_base_cls_Gem):
     cdef public object quantizedRotation
     cdef public object socket
     cdef public object socketDetectionArea
+    cpdef bint isOwnable(self)
+    cpdef bint isOwnedByOpponent(self)
+    cpdef long long getEffectiveOwnerType(self)
+    cpdef bint isPlaced(self)
+    cpdef bint isInInventory(self)
+    cpdef bint canModifyChance(self)
+    cpdef bint canCombine(self)
+    cpdef bint isMovingBack(self)
 

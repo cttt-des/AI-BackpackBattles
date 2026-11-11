@@ -38,4 +38,5 @@ cdef class CoreBuff(GodotObject):
     cdef public object resistChancePercent
     cdef public object signalName
     cdef public object temporaryStacks
+    cpdef bint isTimerActive(self)
 

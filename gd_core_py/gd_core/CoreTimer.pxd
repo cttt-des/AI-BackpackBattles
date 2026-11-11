@@ -26,4 +26,6 @@ cdef class CoreTimer(GodotObject):
     cdef public object one_shot
     cdef public object timestamps
     cdef public object wait_time
+    cpdef bint is_stopped(self)
+    cpdef bint isFinished(self)
 

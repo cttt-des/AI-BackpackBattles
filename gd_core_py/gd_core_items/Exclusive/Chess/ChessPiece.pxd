@@ -16,4 +16,5 @@ cdef class ChessPiece(_base_cls_ChessPiece):
     cdef public object captured
     cdef public object moveCells
     cdef public object noBoardMark
+    cpdef bint canBeBlocked(self)
 

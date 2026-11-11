@@ -18,4 +18,11 @@ cdef class CoreDamageSource(GodotObject):
     cdef public object flags
     cdef public object origin
     cdef public object types
+    cpdef bint canMiss(self)
+    cpdef bint canBeBlocked(self)
+    cpdef bint canCrit(self)
+    cpdef bint isAttack(self)
+    cpdef bint isEffectDamage(self)
+    cpdef bint isAttackOrEffect(self)
+    cpdef bint canApplyLifesteal(self)
 

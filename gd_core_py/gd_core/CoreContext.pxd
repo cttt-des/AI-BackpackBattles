@@ -50,4 +50,5 @@ cdef class CoreContext(GodotObject):
     cdef public object unhealingDamageSource
     cdef public object util
     cdef public object warn_unknown_api
+    cpdef bint hasDeferred(self)
 

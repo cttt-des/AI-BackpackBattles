@@ -38,4 +38,6 @@ cdef class CoreCombat(GodotObject):
     cdef public object speed_scale
     cdef public object time_advance
     cdef public object timed_out
+    cpdef bint hasFatigueStarted(self)
+    cpdef bint playerWins(self)
 

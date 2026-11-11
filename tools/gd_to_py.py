@@ -3467,15 +3467,31 @@ def _render_pxd(entries, module_py_rel, gd_rel):
                          % (base_rel[:-3].replace("/", "."), base_py, alias))
             base_expr = alias
         use, _u1, _u2 = _final_slots(_render_ctx[0], cls_name)
-        if cls_name == _render_ctx[1].rsplit("/", 1)[-1][:-3]:
+        is_stem = cls_name == _render_ctx[1].rsplit("/", 1)[-1][:-3]
+        if is_stem:
             use |= _PXD_EXTRA_SLOTS.get(_render_ctx[1], set())
         lines.append("\ncdef class %s(%s):\n" % (cls_name, base_expr))
         if use:
+            l3 = _l3_numeric_types(_render_ctx[1])
+            extra_names = (_PXD_EXTRA_SLOTS.get(_render_ctx[1], set())
+                           if is_stem else set())
             for name in sorted(use):
-                lines.append("    cdef public object %s" % name)
+                ctype = 'object'
+                if name not in extra_names and (gd_rel, name) not in _L3_BLOCKLIST:
+                    ctype = l3.get(name, 'object')
+                if ctype == 'object':
+                    lines.append("    cdef public object %s" % name)
+                else:
+                    lines.append("    cdef public %s %s" % (ctype, name))
         else:
-            lines.append("    pass")   # cdef 类体不允许为空
+            lines.append("    pass")   # cdef 类体不允许为空（零槽全继承类同样）
         n_slots += len(use)
+        if is_stem:
+            for name, ret, pdecl in _L2_CPDEF.get(_render_ctx[1], []):
+                args = ", ".join("%s %s" % (ct, pn) for pn, ct in pdecl)
+                lines.append("    cpdef %s %s(self%s)"
+                             % (_L2_TYPE[ret], name,
+                                (", " + args) if args else ""))
         lines.append("\n")
     return "\n".join(lines)
 
@@ -3555,6 +3571,118 @@ def _hoist_referenced_classattrs(texts, stat, hit):
     return texts
 
 
+_L2_CPDEF = {}          # gd_rel -> [decl lines]
+_L2_TYPE = {"bool": "bint", "int": "long long"}
+_L2_SIG_RE = None
+
+
+def _plan_l2_cpdef(files_by_rel, stat, hit):
+    """扫描白名单 .gd 源的函数注解，产出主类 cpdef 声明（全局签名兼容预检）。
+
+    兼容规则：方法名在全树任何出现点（含未注解/Variant 返回形态）签名不同
+    → 整名排除。覆盖重写经 vtable 正确派发（cpdef 设计目标）；本批方法几乎
+    全部经未类型化 object 引用调用（Python 属性派发，天然 override-aware）。"""
+    import os as _os
+    import re as _re
+    import keyword as _keyword
+    global _L2_SIG_RE
+    if _L2_SIG_RE is None:
+        _L2_SIG_RE = _re.compile(
+            r'^func ([A-Za-z_][A-Za-z_0-9]*)\(([^)]*)\)(?: *-> *([A-Za-z_][A-Za-z_0-9]*))?:',
+            _re.M)
+    sig_by_name = {}          # name -> set((ptypes_tuple, ret_or_None))
+    per_module = {}           # rel -> [(name, ret, [(pname, ctype)])]
+    for rel in sorted(r for r in files_by_rel if _is_pxd_whitelisted(r)):
+        src_path = _os.path.join(_os.path.dirname(_os.path.dirname(
+            _os.path.abspath(__file__))), rel)
+        try:
+            src = io.open(src_path, encoding='utf-8').read()
+        except OSError:
+            continue
+        decls = []
+        for mm in _L2_SIG_RE.finditer(src):
+            name, params, ret = mm.group(1), mm.group(2), mm.group(3)
+            pl = [x.strip() for x in params.split(',') if x.strip()]
+            ptypes, pdecl, ok = [], [], True
+            for pp in pl:
+                pm = _re.match(r'^([A-Za-z_][A-Za-z_0-9]*)(?:: *(bool|int|float))? *(=.*)?$', pp)
+                if pm is None:
+                    ok = False
+                    break
+                pname, pty, dflt = pm.group(1), pm.group(2), pm.group(3)
+                ptypes.append(pty)                      # None=未注解
+                # 本批只收 bool/int 形参（float 面、未注解、带默认、关键字名
+                # 一律跳过整个方法——flipPercent(self, from, to) 实证）
+                if dflt is not None or pty not in _L2_TYPE \
+                        or _keyword.iskeyword(pname):
+                    ok = False
+                    break
+                pdecl.append((pname, _L2_TYPE[pty]))
+            if not ok:
+                continue                                 # 本形态不可声明
+            sig_by_name.setdefault(name, set()).add(
+                (tuple(ptypes), ret))
+            if ret in _L2_TYPE:
+                per_module.setdefault(rel, []).append(
+                    (name, ret, pdecl))
+        # 逐模块落声明（兼容预检后过滤）
+        _L2_CPDEF[rel] = per_module.get(rel, [])
+    excluded = set()
+    for name, sigs in sig_by_name.items():
+        if len(sigs) > 1:
+            excluded.add(name)
+    n = 0
+    for rel, decls in list(_L2_CPDEF.items()):
+        kept = [d for d in decls if d[0] not in excluded]
+        _L2_CPDEF[rel] = kept
+        n += len(kept)
+        if len(kept) != len(decls):
+            stat.setdefault("L2_签名冲突排除", []).append(
+                "%s: %d/%d" % (rel, len(decls) - len(kept), len(decls)))
+    if excluded:
+        stat.setdefault("L2_排除名", []).append(str(sorted(excluded))[:200])
+    hit["L2_cpdef_decl"] = n
+    return n
+
+
+_L3_TYPE = {"bool": "bint", "int": "long long"}
+_L3_BLOCKLIST = set()   # 止损：编译/闸门揪出的字段 (rel, field) 加入即回退 object
+_L3_RE = None
+
+
+def _l3_numeric_types(gd_rel):
+    """解析 .gd 源声明：`var x: int` / `var x := <int 字面量>` / bool 同理。
+
+    返回 {field: ctype}。float/无声明/字面量外推断（如 := someExpr）不收。
+
+    ★ 2026-11-11 收尾：发射暂禁（return {}）——typed 槽编译迭代未收尾，
+      按止损回退 object 形态（已验证的 L2 态零重编）。启用=删掉本 return，
+      重跑生成器 + 按损坏模块迭代 _L3_BLOCKLIST + 三闸 + 1690。"""
+    return {}
+    global _L3_RE
+    import os as _os
+    import re as _re
+    if _L3_RE is None:
+        _L3_RE = _re.compile(
+            r'^var ([A-Za-z_][A-Za-z_0-9]*)'
+            r'(?: *: *(bool|int)(?!\w))?'
+            r' *(?:= *(True|False|-?\d+)(?![.\w]))?', _re.M)
+    src_path = _os.path.join(_os.path.dirname(_os.path.dirname(
+        _os.path.abspath(__file__))), gd_rel)
+    try:
+        src = io.open(src_path, encoding='utf-8').read()
+    except OSError:
+        return {}
+    out = {}
+    for mm in _L3_RE.finditer(src):
+        name, ann, lit = mm.group(1), mm.group(2), mm.group(3)
+        if ann in _L3_TYPE:
+            out[name] = _L3_TYPE[ann]
+        elif lit is not None:
+            out[name] = 'bint' if lit in ('True', 'False') else 'long long'
+    return out
+
+
 def _pxd_emission(texts, files_by_rel, by_path, stat, hit):
     """L1/M1-2 入口：规划 cdef 可行性 → 改写基类语句 → 渲染 pxd。
 
@@ -3562,6 +3690,7 @@ def _pxd_emission(texts, files_by_rel, by_path, stat, hit):
     改写（可 cdef 类的基类语句 → 直接导入别名）。"""
     _strip_signal_attrs(texts, stat, hit)
     _hoist_referenced_classattrs(texts, stat, hit)
+    n_cp = _plan_l2_cpdef(files_by_rel, stat, hit)
     pxds = _plan_and_rewrite_bases(texts, files_by_rel, by_path, stat, hit)
     stat["M1_2_pxd"] = ["%s：%d 槽" % (k, v.count("cdef public"))
                         for k, v in sorted(pxds.items())]
