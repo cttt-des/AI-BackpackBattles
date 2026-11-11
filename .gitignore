@@ -122,3 +122,10 @@ gd_core_py/**/*.pyd
 gd_core_py/**/*.c
 backpack_battles_sim.egg-info/
 dist/*.whl
+
+# ============ 构建副产物(2026-11-12 起不入库;历史已剥离) ============
+/*.obj
+/*.lib
+/*.exp
+/*.pyd.mingw-bak
+oracle_chunk_*.err.log
