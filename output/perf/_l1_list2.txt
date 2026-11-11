@@ -1,0 +1,4 @@
+gd_core_py/gd_core/CoreItem.py
+gd_core_py/gd_core_items/Item.py
+gd_core_py/gd_core_items/Card.py
+gd_core_py/gd_core_items/AceofSpades.py

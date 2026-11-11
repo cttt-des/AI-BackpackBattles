@@ -1,0 +1,5 @@
+gd_core_py/gd_core/CoreDamageResult.py
+gd_core_py/gd_core/CoreDamageSource.py
+gd_core_py/gd_core/CoreTimer.py
+gd_core_py/gd_core/CoreRng.py
+gd_core_py/gd_core/CoreBuff.py

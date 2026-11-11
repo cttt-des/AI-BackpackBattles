@@ -1823,8 +1823,8 @@ def transform_file(f, by_name, by_path, stat, hit, class_names):
     #   报 "No module named ..."）。depth = 路径段数 - 1（减掉模块自身）。
     depth = len(f.rel[:-3].split("/")) - 1
     dots = "." * (depth + 1)
-    if f.rel in _PXD_WHITELIST:
-        # ★ M1-2（2026-11-11）：白名单模块伴随 pxd cimport GodotObject——
+    if _is_pxd_whitelisted(f.rel):
+        # ★ M1-2/L1：白名单模块伴随 pxd cimport GodotObject——
         #   编译态模块 dict 预绑该 C type，`from .._rt import *` 重绑即抛
         #   "Cannot overwrite C type"。故改发**显式具名导入**（剔除
         #   GodotObject；静态解析保住 Cython 对 f32/_iter 等的识别），
@@ -1913,7 +1913,7 @@ def transform_file(f, by_name, by_path, stat, hit, class_names):
     for _nm in em.hoisted_names:
         if _nm in methods or _nm in _field_names:
             stat["内嵌类别名撞名"].append("%s.%s" % (f.py_class, _nm))
-        if f.rel in _PXD_WHITELIST:
+        if _is_pxd_whitelisted(f.rel):
             out.append("\t%s = %s" % (_nm, _nm))
         else:
             out.append("%s.%s = %s" % (f.py_class, _nm, _nm))
@@ -3194,7 +3194,18 @@ _PXD_WHITELIST = {
     "gd_core/CoreContext.gd",       # +引擎补充槽 ×7（装配期动态赋值面）
     "gd_core/CoreCharacter.gd",
     "gd_core/CoreItem.gd",
+    # ── L1 试点（§11.3，2026-11-11）：items 树基类是 _R.C() 运行时解析——
+    #    cdef 类要求基类编译期可知，白名单 items 模块改发**直接导入**基类
+    #    （extends 拓扑序保证基模块先导入；_R.reg 注册不受影响）。
+    #    试点链：Item_2(适配层) → Card_2 → AceofSpades_2，全绿再扩 141。
+    "gd_core/Item.gd",                     # 适配层 A（Exclusive 链根）
 }
+
+# 白名单判定（含前缀规则——L1 全量扩批时把 gd_core_items/ 整树纳入）
+def _is_pxd_whitelisted(rel):
+    if rel in _PXD_WHITELIST:
+        return True
+    return rel.startswith("gd_core_items/")   # L1 全量：items 整树槽位化
 
 # 引擎侧（simulator/gd_core_engine.py）对内核实例的动态赋值面——cdef 槽化
 # 后必须以补充槽声明，否则编译态 AttributeError。逐项 grep 实证
@@ -3217,14 +3228,14 @@ _PXD_EXTRA_SLOTS = {
 
 
 def _collect_instance_slots(py_text):
-    """从生成的 .py 文本收集 [(类名, 基类名, 实例属性槽集合), ...]（声明序）。
+    """从生成的 .py 文本收集 [(类名, 基类形态, 实例属性槽集合), ...]（声明序）。
 
-    模块含多个顶层类（如 CoreBuff.py 的 TemporaryStacks+CoreBuff、CoreRng.py
-    的 BalancedRng/BalancedRange/CoreRng）时全部收集、全部槽化——辅助类同样
-    被实例化，漏一个就会在运行期 AttributeError。
+    基类形态三分类（L1：items 树基类是 `_R.C("res://...")` 运行时解析）：
+      ("godot", None)   —— Name 基类 GodotObject
+      ("call", res_str) —— `_R.C("res://...")` 单常量实参（跨文件基类）
+      ("plain", None)   —— 其余（多基类/关键字/未知 Name/怪形态）→ 保持 plain
     槽集 = 类方法体内全部 `self.X =` / `self.X +=` 赋值目标，剔除：类体级
-    赋值（类属性如 Target/resource_path）、方法名（影子赋值即违规，抛错）、
-    property 名（走 setter，槽是后备字段）。多基类/关键字基类即抛。
+    赋值、方法名（影子赋值即违规，抛错）、property 名（走 setter）。
     """
     import ast as _ast
     tree = _ast.parse(py_text)
@@ -3233,9 +3244,25 @@ def _collect_instance_slots(py_text):
         raise RuntimeError("M1-2: 模块零顶层类")
     out = []
     for cls in classes:
-        if len(cls.bases) != 1 or not isinstance(cls.bases[0], _ast.Name) \
-                or cls.keywords:
-            raise RuntimeError("M1-2: %s 基类形态漂移（需单 Name 基类）" % cls.name)
+        base_kind, base_ref = "plain", None
+        if len(cls.bases) == 1 and not cls.keywords:
+            b = cls.bases[0]
+            if isinstance(b, _ast.Name):
+                if b.id == "GodotObject":
+                    base_kind, base_ref = "godot", None
+                else:
+                    base_kind, base_ref = "plain", None   # 本地别名基类（罕见）
+            elif (isinstance(b, _ast.Call)
+                  and ((isinstance(b.func, _ast.Name) and b.func.id == "_R.C")
+                       or (isinstance(b.func, _ast.Attribute)
+                           and b.func.attr == "C"
+                           and isinstance(b.func.value, _ast.Name)
+                           and b.func.value.id == "_R"))
+                  and len(b.args) == 1
+                  and isinstance(b.args[0], _ast.Constant)
+                  and isinstance(b.args[0].value, str)
+                  and not b.keywords):
+                base_kind, base_ref = "call", b.args[0].value
         body_class_attrs = set()
         for st in cls.body:
             if isinstance(st, (_ast.Assign, _ast.AnnAssign)):
@@ -3261,84 +3288,285 @@ def _collect_instance_slots(py_text):
                                 and isinstance(t.value, _ast.Name) \
                                 and t.value.id == "self":
                             slots.add(t.attr)
-                elif isinstance(node, _ast.AugAssign):
-                    t = node.target
-                    if isinstance(t, _ast.Attribute) \
-                            and isinstance(t.value, _ast.Name) \
-                            and t.value.id == "self":
-                        slots.add(t.attr)  # 目标必须是已声明属性，记入待核对集
         shadow = (slots - props) & methods
         if shadow:
             raise RuntimeError("M1-2: %s 实例属性与方法同名影子 %s——产物形态漂移"
                                % (cls.name, sorted(shadow)))
         slots -= body_class_attrs
         slots -= props
-        out.append((cls.name, cls.bases[0].id, slots))
+        out.append((cls.name, base_kind, base_ref, slots, props))
     return out
 
 
-def _emit_pxd(py_text, module_py_rel, gd_rel):
-    """生成伴随 .pxd 文本（object 槽起步；数值 C 类型留待逐类审计）。
+# ── L1 cdef 可行性规划（文本后置两遍式）────────────────────────────────
+# 流程：transform 产出文本（类语句保持 _R.C 原形态）→ 本函数从文本收集
+# 类/基类/槽 + 沿 extends DAG 传播 cdef 可行性 → 改写可 cdef 类的基类为
+# 直接导入别名 → 发 pxd（仅可 cdef 类）。
+# 可行性规则：godot 基类→可；call 基类→目标模块在白名单且其主类可才可；
+# 其余形态→不可（连带派生类不可）。
+_CDEF_PLAN = {}
+_SLOTSETS = {}          # (rel, cls) -> (own_final, inherited_union, inherited_props)
 
-    多类模块全部槽化（声明序）；引擎补充槽按 gd rel 合并进对应类
-    （当前只有 CoreContext/CoreEventBus 有引擎赋值面）。
-    """
-    collected = _collect_instance_slots(py_text)
-    extra = _PXD_EXTRA_SLOTS.get(gd_rel, set())
+
+def _final_slots(rel, cls_name):
+    """该类最终 own 槽集（剔除祖先已声明【槽与 property】名）+ 祖先并集。
+
+    property 必须一并剔除：派生槽会遮蔽基 property，令基模块编译态直读
+    （self.x on typed base）与派生槽写分裂成两个存储（CTNONE 实证）。"""
+    key = (rel, cls_name)
+    if key in _SLOTSETS:
+        return _SLOTSETS[key]
+    e = next((x for x in (_CDEF_PLAN.get(rel) or []) if x[0] == cls_name), None)
+    if e is None or not e[4]:
+        _SLOTSETS[key] = (set(), set(), set())
+        return _SLOTSETS[key]
+    inherited = set()
+    inherited_props = set()
+    if e[5] is not None:
+        base_rel, base_cls = e[5]
+        own_b, union_b, props_b = _final_slots(base_rel, base_cls)
+        inherited |= union_b
+        inherited_props |= props_b
+    # 祖先本类 property 名（跨模块取基类条目）
+    bprops = set()
+    if e[5] is not None:
+        base_rel, base_cls = e[5]
+        be = next((x for x in (_CDEF_PLAN.get(base_rel) or [])
+                   if x[0] == base_cls), None)
+        if be is not None:
+            bprops = be[6]
+    own = set(e[3]) - inherited - inherited_props - bprops
+    _SLOTSETS[key] = (own, own | inherited, inherited_props | bprops)
+    return _SLOTSETS[key]
+
+
+def _plan_and_rewrite_bases(texts, files_by_rel, by_path, stat, hit):
+    """返回 {py_rel: pxd_text}；就地改写 texts 中可 cdef 类的基类语句。"""
+    _CDEF_PLAN.clear()
+    memo = {}
+
+    for rel in sorted(r for r in files_by_rel if _is_pxd_whitelisted(r)):
+        t = texts.get(rel)
+        if t is None:
+            continue
+        try:
+            recs = _collect_instance_slots(t)
+        except Exception as e:  # noqa: BLE001 —— 形态漂移：整模块保持 plain
+            stat.setdefault("L1_保留plain", []).append("%s: %s" % (rel, e))
+            _CDEF_PLAN[rel] = []
+            continue
+        _CDEF_PLAN[rel] = [list(r[:4]) + [None, None, r[4]] for r in recs]
+        # 记录结构：[0]名 [1]kind [2]ref [3]slots [4]cdef_able [5](base_rel,base_cls)
+        #           [6]本类 property 名集（供派生类槽排除——防遮蔽基 property）
+
+    def _able(rel, cls_name):
+        key = (rel, cls_name)
+        if key in memo:
+            return memo[key]
+        memo[key] = False                       # 环路防御（extends 为 DAG）
+        for e in (_CDEF_PLAN.get(rel) or []):
+            if e[0] != cls_name:
+                continue
+            kind, ref = e[1], e[2]
+            if kind == "godot":
+                ok = True
+            elif kind == "call":
+                bf = by_path.get(ref)
+                ok = (bf is not None and _is_pxd_whitelisted(bf.rel)
+                      and _able(bf.rel, bf.py_class))
+                if ok:
+                    e[5] = (bf.rel, bf.py_class)
+            else:
+                ok = False
+            memo[key] = ok
+            e[4] = ok
+            return ok
+        return False
+
+    n_rewrite = 0
+    pxds = {}
+    for rel in sorted(_CDEF_PLAN):
+        entries = _CDEF_PLAN[rel]
+        if not entries:
+            continue
+        f = files_by_rel[rel]
+        _able(rel, f.py_class)
+        for e in entries:
+            _able(rel, e[0])
+        t = texts[rel]
+        depth = len(rel[:-3].split("/")) - 1
+        dots = "." * (depth + 1)
+        inserts = []
+        for e in entries:
+            if not e[4]:
+                continue
+            cls_name = e[0]
+            if e[5] is not None:
+                base_rel, base_cls = e[5]
+                alias = "_base_cls_%s" % cls_name
+                bpkg = base_rel[:-3].split("/")        # 全段含 stem=模块路径
+                fpkg = rel[:-3].split("/")[:-1]        # 包段（剔 stem）
+                common = 0
+                while common < min(len(bpkg), len(fpkg)) \
+                        and bpkg[common] == fpkg[common]:
+                    common += 1
+                rdots = "." * (len(fpkg) - common + 1)
+                suffix = ".".join(bpkg[common:])
+                # ★ 条件补绑（GodotObject 同款机制）：编译态 pxd 以
+                #   `cimport <Base> as <alias>` 预绑 C 名（globals 已含），
+                #   运行态重复绑定即 "Assignment to non-lvalue"——故 .py 侧
+                #   只在 globals 缺名时导入；纯 py 态无 pxd，恒绑定。
+                imports = ("if \"%s\" not in globals():\n"
+                           "\tfrom %s%s import %s as %s"
+                           % (alias, rdots, suffix, base_cls, alias))
+                old_stmt = "class %s(_R.C(\"%s\")):" % (cls_name, e[2])
+                if t.count(old_stmt) != 1:
+                    raise RuntimeError(
+                        "L1: %s 基类语句锚点漂移（%r）" % (cls_name, old_stmt))
+                t = t.replace(old_stmt, "class %s(%s):" % (cls_name, alias))
+                inserts.append(imports)
+                n_rewrite += 1
+        if inserts:
+            anchor = "from %s import _registry as _R\n" % dots
+            idx = t.index(anchor) + len(anchor)
+            t = t[:idx] + "".join(ln + "\n" for ln in inserts) + "\n" + t[idx:]
+            texts[rel] = t
+        # pxd：仅可 cdef 类；own 槽剔除祖先已声明名（防派生槽遮蔽基槽劈 ABI）
+        for e in entries:
+            if e[4]:
+                _final_slots(rel, e[0])
+        pxds[py_file_rel(rel)] = _render_pxd(entries, module_py_rel=py_file_rel(rel),
+                                             gd_rel=rel)
+    hit["L1_base_rewrite"] = n_rewrite
+    return pxds
+
+
+def _render_pxd(entries, module_py_rel, gd_rel):
+    _render_ctx = (gd_rel, gd_rel)   # (有效 rel, gd_rel)——final 槽查询键
     lines = [
         "# -*- coding: utf-8 -*-",
-        "# 自动生成，勿手改。生成器：tools/gd_to_py.py（M1-2 实例槽位声明）",
+        "# 自动生成，勿手改。生成器：tools/gd_to_py.py（M1-2/L1 实例槽位声明）",
         "#",
-        "# 本文件把本模块全部顶层类转为 cdef class：实例免 __dict__（每实例",
-        "# 一次字典分配）+ 未声明属性赋值编译态报错（形态漂移即时暴露）。",
-        "# 基类链必须全部 cdef（GodotObject 见 _rt.pxd 批A）；白名单外的类",
-        "# 保持 plain。全部槽位 object 型起步——数值 C 类型（float/int 槽）",
-        "# 须先审计该字段的全部赋值域（None/float 混合即炸），逐类放行。",
-        "# 引擎补充槽（_PXD_EXTRA_SLOTS）= simulator/gd_core_engine.py 对本类",
-        "# 实例的动态赋值面，生成器收集器看不见，必须显式声明。",
-        "#",
-        "# 修改本类实例属性面（新增 self.X 赋值）后必须重跑生成器同步本文件，",
-        "# 否则编译态 AttributeError。tools/gd_to_py.py --check 一并核对。",
+        "# 仅收录本模块「可 cdef」的类（基类链全 cdef）；keep-plain 类（运行时",
+        "# 基类/辅助形态）不在此声明，.py 里保持 plain class——同模块混布合法。",
+        "# 槽位 object 型起步；引擎补充槽见 tools/gd_to_py.py _PXD_EXTRA_SLOTS。",
         "",
     ]
     n_slots = 0
-    stem = gd_rel.rsplit("/", 1)[-1][:-3]
-    for cls_name, base_name, slots in collected:
-        if base_name == "GodotObject":
+    for e in entries:
+        if not e[4]:
+            continue
+        cls_name, base_cls = e[0], e[5]
+        if base_cls is None:
             lines.append("from gd_core_py._rt cimport GodotObject\n")
+            base_expr = "GodotObject"
         else:
-            base_mod = module_py_rel.rsplit("/", 1)[0]
-            lines.append("from gd_core_py.%s.%s cimport %s\n"
-                         % (base_mod, base_name, base_name))
-        lines.append("\ncdef class %s(%s):\n" % (cls_name, base_name))
-        use = set(slots)
-        if cls_name == stem:
-            use |= extra           # 引擎装配期对本类的动态赋值面
-        if not use and cls_name == stem:
-            raise RuntimeError("M1-2: %s 零实例槽——白名单选择有误" % cls_name)
-        # 零槽辅助类（如 CoreItemSort 纯函数持有者）合法：cdef 无槽即可
-        for name in sorted(use):
-            lines.append("    cdef public object %s" % name)
-        if not use:
-            lines.append("    pass")   # cdef 类体不允许为空（Cython 语法）
+            base_rel, base_py = base_cls
+            alias = "_base_cls_%s" % cls_name
+            lines.append("from gd_core_py.%s cimport %s as %s\n"
+                         % (base_rel[:-3].replace("/", "."), base_py, alias))
+            base_expr = alias
+        use, _u1, _u2 = _final_slots(_render_ctx[0], cls_name)
+        if cls_name == _render_ctx[1].rsplit("/", 1)[-1][:-3]:
+            use |= _PXD_EXTRA_SLOTS.get(_render_ctx[1], set())
+        lines.append("\ncdef class %s(%s):\n" % (cls_name, base_expr))
+        if use:
+            for name in sorted(use):
+                lines.append("    cdef public object %s" % name)
+        else:
+            lines.append("    pass")   # cdef 类体不允许为空
         n_slots += len(use)
         lines.append("\n")
     return "\n".join(lines)
 
 
-def _pxd_emission(texts, stat, hit):
-    """对白名单模块生成 pxd；返回 {py_rel: pxd_text}。"""
-    out = {}
-    for rel in sorted(_PXD_WHITELIST):
-        py_rel = py_file_rel(rel)
-        t = texts.get(rel)
-        if t is None:
-            raise RuntimeError("M1-2: 白名单 %s 无产物文本" % rel)
-        out[py_rel] = _emit_pxd(t, py_rel, rel)
+def _strip_signal_attrs(texts, stat, hit):
+    """白名单模块剥离类体级 `X = Signal("...")` 属性（GDScript `signal X` 转写形）。
+
+    依据：全树零消费（grep emit/connect/type 级访问 0 命中；GodotObject.emit_signal
+    走 _gd_conns 连接表，不读 Signal 类属性）。cdef 类的非描述符类型属性对实例
+    只读，会阻断同名实例槽（var hovered 与 signal hovered 同名共存的原版语义 =
+    实例读 var）——剥离后同名实例槽接管，语义保持。"""
+    import re as _re
+    pat = _re.compile(r'^\t[A-Za-z_][A-Za-z_0-9]* = Signal\("[^"]*"\)\n', _re.M)
+    total = 0
+    for rel in sorted(r for r in texts if _is_pxd_whitelisted(r)):
+        t2 = texts[rel]
+        n = len(pat.findall(t2))
+        if n:
+            texts[rel] = pat.sub('', t2)
+            total += n
+    if total:
+        hit["L1_signal_strip"] = total
+        stat["L1_signal_strip"] = ["%d 处 Signal 类属性剥离（装饰性，零消费）" % total]
+    return texts
+
+
+def _hoist_referenced_classattrs(texts, stat, hit):
+    """白名单模块：跨类裸引用的类体属性 → 模块级别名（TriggerType 实证）。
+
+    扫描每个白名单模块：收集各类**类体级**赋值名（含 EnumDict 枚举/嵌套类
+    别名）；扫描全部方法体的裸 Name 引用；`引用名 ∈ 类体属性名 且 非模块级
+    已有名` → 模块尾补 `<名> = <属主类>.<名>`。局部名遮蔽不受影响（局部
+    优先）；plain 模式的潜伏 NameError 顺带修复。"""
+    import ast as _ast
+    total = 0
+    for rel in sorted(r for r in texts if _is_pxd_whitelisted(r)):
+        t2 = texts[rel]
+        try:
+            tree = _ast.parse(t2)
+        except SyntaxError:
+            continue
+        module_names = {n.targets[0].id for n in tree.body
+                        if isinstance(n, _ast.Assign)
+                        and isinstance(n.targets[0], _ast.Name)}
+        module_names |= {n.name for n in tree.body
+                         if isinstance(n, _ast.ClassDef)}   # cdef 类名不可再赋值
+        class_attrs = {}          # 名 -> 首个属主类名
+        for cls in [n for n in tree.body if isinstance(n, _ast.ClassDef)]:
+            for st in cls.body:
+                if isinstance(st, _ast.Assign):
+                    for tg in st.targets:
+                        if isinstance(tg, _ast.Name) \
+                                and tg.id not in class_attrs:
+                            class_attrs[tg.id] = cls.name
+        if not class_attrs:
+            continue
+        referenced = set()
+        for cls in [n for n in tree.body if isinstance(n, _ast.ClassDef)]:
+            for fn_ in [n for n in cls.body
+                        if isinstance(n, _ast.FunctionDef)]:
+                for node in _ast.walk(fn_):
+                    if isinstance(node, _ast.Name) \
+                            and isinstance(node.ctx, _ast.Load) \
+                            and node.id in class_attrs \
+                            and node.id not in module_names:
+                        referenced.add(node.id)
+        need = sorted(referenced)
+        if not need:
+            continue
+        alias_lines = "".join(
+            "%s = %s.%s\n" % (nm, class_attrs[nm], nm) for nm in need)
+        texts[rel] = t2 + "\n\n# ── L1 跨类裸引用类属性提升（生成器发射）──\n" + alias_lines
+        total += len(need)
+    if total:
+        hit["L1_classattr_alias"] = total
+        stat["L1_classattr_alias"] = ["%d 处类体属性模块级别名（跨类裸引用）" % total]
+    return texts
+
+
+def _pxd_emission(texts, files_by_rel, by_path, stat, hit):
+    """L1/M1-2 入口：规划 cdef 可行性 → 改写基类语句 → 渲染 pxd。
+
+    返回 {py_rel: pxd_text}。keep-plain 类不进 pxd；白名单模块文本被就地
+    改写（可 cdef 类的基类语句 → 直接导入别名）。"""
+    _strip_signal_attrs(texts, stat, hit)
+    _hoist_referenced_classattrs(texts, stat, hit)
+    pxds = _plan_and_rewrite_bases(texts, files_by_rel, by_path, stat, hit)
     stat["M1_2_pxd"] = ["%s：%d 槽" % (k, v.count("cdef public"))
-                        for k, v in sorted(out.items())]
-    hit["M1_2_pxd_emit"] = len(out)
-    return out
+                        for k, v in sorted(pxds.items())]
+    hit["M1_2_pxd_emit"] = len(pxds)
+    return pxds
 
 
 def write_pkg(order, files_by_rel, by_name, by_path, class_names, stat, hit, write):
@@ -3374,7 +3602,7 @@ def write_pkg(order, files_by_rel, by_name, by_path, class_names, stat, hit, wri
         texts = _strip_noop_hooks(texts, stat, hit)
     if "CY" not in _skip:
         texts = _cy_round_alias(texts, stat, hit)
-    pxd_texts = {} if "M1_2" in _skip else _pxd_emission(texts, stat, hit)
+    pxd_texts = {} if "M1_2" in _skip else _pxd_emission(texts, files_by_rel, by_path, stat, hit)
     stat["M1_2_pxd_texts"] = pxd_texts    # --check 复用（write=False 时 main 取）
     if not write:
         return texts

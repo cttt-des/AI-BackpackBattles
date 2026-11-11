@@ -265,7 +265,10 @@ class _LogMixin:
 
     def _init_fields(self):
         super()._init_fields()
-        self.events: List[_EventOut] = []
+        # ★ M2-7′（§12.1 新 P1，2026-11-11）：事件改平行元组行存储——logEvent
+        #   热路径不再构造 _EventOut 堆对象（每场 ~1548 个分配），消费点
+        #   （to_dict/to_text/len）按需物化。events 属性改为按需构建。
+        self._event_rows: list = []
         self.warnings: List[str] = []
         self._pending_crafted = None  # np24 crafted 实例真值（_place 前 set）
         self.stats = {0: _new_stats(), 1: _new_stats()}
@@ -538,19 +541,12 @@ class _LogMixin:
             else:
                 tgt = "player" if _t == 0 else "opponent"
 
-        self.events.append(_EventOut(
-            t=float(event.timestamp or 0.0),
-            etype=etype,
-            actor=actor,
-            target=tgt,
-            origin=oref,
-            params=safe_params,
-            parent=(getattr(event.parentEvent, "id", None)
-                    if event.parentEvent is not None else None),
-            depth=int(event.getDepth()),
-            buff_type=buff_type,
-            eid=int(event.id),
-        ))
+        self._event_rows.append((
+            float(event.timestamp or 0.0), etype, actor, tgt, oref,
+            safe_params,
+            (getattr(event.parentEvent, "id", None)
+             if event.parentEvent is not None else None),
+            int(event.getDepth()), buff_type, int(event.id)))
         return None
 
     def _count(self, name, actor, params):
@@ -576,12 +572,21 @@ class _LogMixin:
     # ── 收尾（合成原版的 Win/Loss 行） ──
 
     def emit_combat_end(self, t: float, winner: str, reason: str):
-        self.events.append(_EventOut(
-            t=float(t), etype="combat_end", actor=None, target=None, origin=None,
-            params={"winner": winner, "reason": reason}, parent=None, depth=0,
-            buff_type=None, eid=-1))
+        self._event_rows.append((
+            float(t), "combat_end", None, None, None,
+            {"winner": winner, "reason": reason}, None, 0, None, -1))
 
     # ── 对外视图（对齐 `engine/events.py::CombatLog`） ──
+
+    @property
+    def events(self) -> List[_EventOut]:
+        """M2-7′：按需物化 _EventOut 视图（消费点少且一次性，免缓存）。
+
+        行序即 append 序——物化顺序与旧 list 语义逐元素一致。"""
+        return [_EventOut(t=r[0], etype=r[1], actor=r[2], target=r[3],
+                          origin=r[4], params=r[5], parent=r[6], depth=r[7],
+                          buff_type=r[8], eid=r[9])
+                for r in self._event_rows]
 
     def to_dict(self):
         return [{"t": e.t, "type": e.type, "actor": e.actor, "target": e.target,

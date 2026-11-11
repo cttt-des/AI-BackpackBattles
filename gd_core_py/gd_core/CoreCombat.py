@@ -103,11 +103,8 @@ class CoreCombat(GodotObject):
 
 
 
-	combat_start = Signal("combat_start")
 
-	combat_end = Signal("combat_end")
 
-	round_result = Signal("round_result")
 
 
 
