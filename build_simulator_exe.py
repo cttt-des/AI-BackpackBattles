@@ -101,6 +101,29 @@ def build():
         str(Path(sys.base_prefix) / "DLLs" / "_tkinter.pyd") + ";.",
         "--add-data",
         str(Path(sys.base_prefix) / "tcl") + ";tcl",
+        # ── M4-4′（§12.2 新 P4，2026-11-11）：剔确认未用的标准库 ──
+        #   对照构建开关：GD_NO_EXCLUDE=1 时跳过（量化 exclude 自身收益）
+        #   逐一 grep 打包面（battle_simulator.py/launcher.py/simulator/
+        #   gd_core_py/）零 import 命中才列入；pickle 不剔（multiprocessing
+        #   依赖，simulate.py 在用）。命中保留：logging/argparse/csv/
+        #   ctypes/multiprocessing。
+        *([] if os.environ.get("GD_NO_EXCLUDE") == "1" else [
+            "--exclude-module", "unittest",
+            "--exclude-module", "pydoc",
+            "--exclude-module", "doctest",
+            "--exclude-module", "xml",
+            "--exclude-module", "xmlrpc",
+            "--exclude-module", "email",
+            "--exclude-module", "http",
+            "--exclude-module", "urllib",
+            "--exclude-module", "sqlite3",
+            "--exclude-module", "profile",
+            "--exclude-module", "pstats",
+            "--exclude-module", "lib2to3",
+            "--exclude-module", "py_compile",
+            "--exclude-module", "tabnanny",
+            "--exclude-module", "symtable",
+        ]),
         "--distpath", str(dist_dir),
         "--workpath", str(work_dir),
         "--specpath", str(work_dir),

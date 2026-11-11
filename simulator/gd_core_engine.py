@@ -121,9 +121,18 @@ def runtime_data() -> dict:
     if _DATA is None:
         path = os.path.join(_BASE, _DATA_NAME)
         if not os.path.exists(path):
-            raise RuntimeError(
-                "缺少 gd_core 运行时数据：%s\n"
-                "请先跑 `python tools/gen_gd_core_data.py` 生成，再重新打包。" % path)
+            # ★ v0.5.3（2026-11-11）：wheel 安装回退——pip 把 wheel 的
+            #   .data/data/assets 装到 sys.prefix（而非 site-packages），开发态
+            #   _BASE=site-packages 时找不到；回退按 sys.prefix 再找一次。
+            #   开发/exe 路径主查找命中，本分支零影响（仅 wheel 安装态生效）。
+            alt = os.path.join(sys.prefix, _DATA_NAME)
+            if os.path.exists(alt):
+                path = alt
+            else:
+                raise RuntimeError(
+                    "缺少 gd_core 运行时数据：%s（回退 %s 亦缺）\n"
+                    "请先跑 `python tools/gen_gd_core_data.py` 生成，再重新打包。"
+                    % (path, alt))
         with open(path, encoding="utf-8") as f:
             _DATA = json.load(f)
     return _DATA

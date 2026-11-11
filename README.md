@@ -32,7 +32,7 @@
 要用模拟器**训练 AI 或做批量仿真**，请装 wheel 而不是用 exe——exe 只有 GUI，没有可 import 的接口：
 
 ```bash
-pip install "https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.5.2/backpack_battles_sim-0.5.2-cp314-cp314-win_amd64.whl"
+pip install "https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.5.3/backpack_battles_sim-0.5.3-cp314-cp314-win_amd64.whl"  # URL 待 v0.5.3 release 发布后生效
 
 python - <<'PY'
 from simulator.gd_core_engine import GDCoreEngine
