@@ -365,7 +365,11 @@ func speed() -> float:
 
 
 func getStackSpeedMods() -> float:
-	return (character().getHeat() - character().getCold()) * 0.02
+	# ★ A-1（§C-2，2026-11-11）：本地绑定 character()——两次调用之间无任何
+	#   状态改变语句，必返回同一实例（纯读属性链）；省 1 次虚派发+属性链
+	#   （§C-1: getStackSpeedMods 7.2 万次/3 场 × 每次 2 次 character()）。
+	var ch = character()
+	return (ch.getHeat() - ch.getCold()) * 0.02
 
 
 func hasCooldown() -> bool:

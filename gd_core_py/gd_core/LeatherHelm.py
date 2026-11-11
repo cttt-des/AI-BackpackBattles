@@ -25,8 +25,9 @@ class LeatherHelm(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def onPrepare(self):
-		self.character().changeCritResistance(self.getChance())
-		self.character().changeStunResistance(self.getStunProtectChance())
+		_ch = self.character()
+		_ch.changeCritResistance(self.getChance())
+		_ch.changeStunResistance(self.getStunProtectChance())
 
 
 	def onPreCombatStart(self):

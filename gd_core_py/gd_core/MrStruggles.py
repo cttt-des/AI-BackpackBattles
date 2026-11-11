@@ -30,8 +30,9 @@ class MrStruggles(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def onPrepare(self):
+		_ch = self.character()
 		for debuff in _iter(_H_1.getDebuffs()):
-			self.connectForCombat(self.character(), self.character().buffs[debuff].signalName, 
+			self.connectForCombat(_ch, _ch.buffs[debuff].signalName, 
 			"onDebuffed")
 
 

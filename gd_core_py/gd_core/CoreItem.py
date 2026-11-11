@@ -564,7 +564,11 @@ class CoreItem(GodotObject):
 
 
 	def getStackSpeedMods(self):
-		return (self.character().getHeat() - self.character().getCold()) * 0.02
+		# ★ A-1（§C-2，2026-11-11）：本地绑定 character()——两次调用之间无任何
+		#   状态改变语句，必返回同一实例（纯读属性链）；省 1 次虚派发+属性链
+		#   （§C-1: getStackSpeedMods 7.2 万次/3 场 × 每次 2 次 character()）。
+		ch = self.character()
+		return (ch.getHeat() - ch.getCold()) * 0.02
 
 
 	def hasCooldown(self):
@@ -2561,9 +2565,10 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:5122-5129
 	def healthToBlock(self, health, block, triggerEvent=None):
-		clampedHealth = min(health, self.character().getCurrentHealth() - 1)
+		_ch = self.character()
+		clampedHealth = min(health, _ch.getCurrentHealth() - 1)
 		if clampedHealth > 0:
-			self.character().loseHealth(clampedHealth, self, triggerEvent)
+			_ch.loseHealth(clampedHealth, self, triggerEvent)
 
 			block = ceil(_div(clampedHealth, health) * block)
 			self.giveBlock(block, True, triggerEvent)
@@ -2608,12 +2613,13 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:5066-5076
 	def giveMana_capped(self, amount, maximum, triggerEvent=None):
+		_ch = self.character()
 		amount = gd_round(amount * self.buffPowers[_H_28])
-		curMana = self.character().getMana()
+		curMana = _ch.getMana()
 		if maximum > curMana:
 			missingMana = maximum - curMana
 			manaGiven = min(amount, missingMana)
-			self.character().gainMana(manaGiven, self, triggerEvent)
+			_ch.gainMana(manaGiven, self, triggerEvent)
 			return amount - manaGiven
 		else:
 			return amount
@@ -2975,11 +2981,12 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:5580-5585
 	def giveMostBuffs(self, numBuffs, triggerEvent=None, availableBuffs=None):
+		_ch = self.character()
 		if availableBuffs == None:
 			availableBuffs = _H_7.getBuffs()
-		maxBuffs = self.getMostStacks(self.character(), availableBuffs)
+		maxBuffs = self.getMostStacks(_ch, availableBuffs)
 		buffToGive = self.ctx.rng.pickRandomElement(maxBuffs)
-		self.giveStacks(self.character(), buffToGive, numBuffs, triggerEvent)
+		self.giveStacks(_ch, buffToGive, numBuffs, triggerEvent)
 
 
 	# 对齐 Item.gd:5586-5609
@@ -3074,13 +3081,15 @@ class CoreItem(GodotObject):
 
 	# 对齐 Item.gd:5405-5421（把角色 buff 信号接到物品回调）
 	def connectToCharacterBuffs(self, methodName):
+		_ch = self.character()
 		for buff in _iter(_H_7.getBuffs()):
-			self.connectForCombat(self.character(), self.character().buffs[buff].signalName, methodName)
+			self.connectForCombat(_ch, _ch.buffs[buff].signalName, methodName)
 
 
 	def connectToCharacterDebuffs(self, methodName):
+		_ch = self.character()
 		for debuff in _iter(_H_7.getDebuffs()):
-			self.connectForCombat(self.character(), self.character().buffs[debuff].signalName, methodName)
+			self.connectForCombat(_ch, _ch.buffs[debuff].signalName, methodName)
 
 
 	def connectToOpponentDebuffs(self, methodName):
@@ -3104,9 +3113,10 @@ class CoreItem(GodotObject):
 	#   开战后前 5 次走槽位分支。坐标本身无判定意义，链消耗面必须逐位一致。
 
 	def getNextFreeLabelPosition(self):
+		_ch = self.character()
 		# ★ np24 诊断（受控）：镜像神谕 LABEL 行（Item.gd:6505-6510）。
 		self.ctx.rng.trace_diag("LABEL", String(self.descriptor.identifier), int(self.ownerType),
-				str(self.character() != None and self.character().playerId))
+				str(_ch != None and _ch.playerId))
 		for i in _iter(len(self.buffLabelPositionTimestamps)):
 			if self.ctx.time >= self.buffLabelPositionTimestamps[i]:
 				self.buffLabelPositionTimestamps[i] = self.ctx.time + 0.5

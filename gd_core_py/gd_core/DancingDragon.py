@@ -18,8 +18,9 @@ class DancingDragon(_R.C("res://gd_core_items/Weapon.gd")):
 
 
 	def onPrepare(self):
-		self.connectForCombat(self.character(), "character_heat_changed", "onHeatChanged")
-		self.connectForCombat(self.character(), "character_lucky_changed", "onLuckyChanged")
+		_ch = self.character()
+		self.connectForCombat(_ch, "character_heat_changed", "onHeatChanged")
+		self.connectForCombat(_ch, "character_lucky_changed", "onLuckyChanged")
 
 
 	def onCombatStart(self):

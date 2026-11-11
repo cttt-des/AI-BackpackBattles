@@ -72,9 +72,10 @@ class DjinnLamp(_R.C("res://gd_core_items/Item.gd")):
 
 
 	def doCooldownEffect(self):
-		numLucky = self.character().getLucky()
-		numSpikes = self.character().getSpikes()
-		numMana = self.character().getMana()
+		_ch = self.character()
+		numLucky = _ch.getLucky()
+		numSpikes = _ch.getSpikes()
+		numMana = _ch.getMana()
 
 		if numLucky < numSpikes:
 			if numLucky < numMana:

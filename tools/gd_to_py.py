@@ -2987,6 +2987,66 @@ def _hook_call_name(stmt):
     return fn.attr
 
 
+def _char_bind(texts, stat, hit):
+    """A-2（§C-2，2026-11-11）：同函数内 2+ 次 `.character()` 局部绑定。
+
+    守卫（保守第一，判定不了不改）：
+      ① 接收者恒为字面 self（obj.character() 不动——obj 可能是任意物品）；
+      ② 函数体含 try → 整函数放弃；
+      ③ 函数体含任何 self.X 属性赋值（= / +=）→ 放弃（可能间接改 gemMode）；
+      ④ 函数体含 mutator 形调用（set*/add*/gain*/lose*/activate*/…）→ 放弃；
+      ⑤ 排除名：character/setCharacter/_init/_init_fields/_process。
+    命中：首次调用前插 `\t\t_ch = self.character()`，后续 `self.character()`
+    改 `_ch`（限 self 接收者）。纯文本变换 + 逐文件 ast.parse 语法闸。
+    """
+    import ast as _ast
+    import re as _re
+    mutator = _re.compile(
+        r'self\.(?:set|add|remove|clear|activate|deactivate|gain|lose|apply|take'
+        r'|use|reset|consume|destroy|place|move)[A-Za-z_0-9]*\(')
+    excluded = ('character', 'setCharacter', '_init', '_init_fields', '_process')
+    pat_fn = _re.compile(
+        r'(?P<head>\tdef (?P<name>[A-Za-z_][A-Za-z_0-9]*)\(self[^\n]*\n)'
+        r'(?P<body>(?:\t\t.*\n)*)')
+    total = 0
+    for rel in sorted(texts):
+        t2 = texts[rel]
+        if '.character()' not in t2:
+            continue
+        n_file = 0
+
+        def _sub(m):
+            nonlocal n_file
+            name, body = m.group('name'), m.group('body')
+            if name in excluded or 'try:' in body:
+                return m.group(0)
+            calls = body.count('self.character()')
+            if calls < 2:
+                return m.group(0)
+            if _re.search(r'self\.[A-Za-z_][A-Za-z_0-9]* *(\+=|=[^=])', body):
+                return m.group(0)
+            if mutator.search(body):
+                return m.group(0)
+            new_body = body.replace('self.character()', '_ch')
+            head_indent = '\t\t'
+            new_body = head_indent + '_ch = self.character()\n' + new_body
+            n_file += 1
+            return m.group('head') + new_body
+
+        nt = pat_fn.sub(_sub, t2)
+        if n_file:
+            try:
+                _ast.parse(nt)
+            except SyntaxError:
+                raise RuntimeError('A-2: %s 语法闸失败' % rel)
+            texts[rel] = nt
+            total += n_file
+    if total:
+        hit['A2_char_bind'] = total
+        stat['A2'] = ['%d 个函数 character() 局部绑定' % total]
+    return texts
+
+
 def _strip_noop_hooks(texts, stat, hit):
     """M2-1：剥离空钩子（CoreHooks 全 pass 方法）的全部调用点。
 
@@ -3729,6 +3789,8 @@ def write_pkg(order, files_by_rel, by_name, by_path, class_names, stat, hit, wri
         texts = _d2_adjcells_seen(texts, stat, hit)
     if "M2" not in _skip:
         texts = _strip_noop_hooks(texts, stat, hit)
+    if "A2" not in _skip:
+        texts = _char_bind(texts, stat, hit)
     if "CY" not in _skip:
         texts = _cy_round_alias(texts, stat, hit)
     pxd_texts = {} if "M1_2" in _skip else _pxd_emission(texts, files_by_rel, by_path, stat, hit)

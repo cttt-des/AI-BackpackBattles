@@ -20,8 +20,9 @@ class Bloodthorne(_R.C("res://gd_core_items/Weapon.gd")):
 
 
 	def onPrepare(self):
-		self.connectForCombat(self.character(), "character_vampirism_changed", "onVampirismChanged")
-		self.connectForCombat(self.character(), "character_spikes_changed", "onSpikesChanged")
+		_ch = self.character()
+		self.connectForCombat(_ch, "character_vampirism_changed", "onVampirismChanged")
+		self.connectForCombat(_ch, "character_spikes_changed", "onSpikesChanged")
 
 
 	def onVampirismChanged(self, amount, _event):
