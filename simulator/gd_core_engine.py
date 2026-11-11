@@ -591,11 +591,21 @@ class _LogMixin:
     def events(self) -> List[_EventOut]:
         """M2-7′：按需物化 _EventOut 视图（消费点少且一次性，免缓存）。
 
-        行序即 append 序——物化顺序与旧 list 语义逐元素一致。"""
+        行序即 append 序——物化顺序与旧 list 语义逐元素一致。
+
+        ★ 2026-11-11 修订（性能回归修复）：run 主循环曾用 `len(self.log.events) > gate`
+          做每 tick 事件数判定——**每次访问都会全量物化**（1548 事件 × 907 tick
+          ≈ 140 万次 _EventOut 构造/场，profile 实测 1,659,428/3 场）。
+          计数一律走 `event_count`（O(1)），只有真正需要事件对象时才取 `events`。"""
         return [_EventOut(t=r[0], etype=r[1], actor=r[2], target=r[3],
                           origin=r[4], params=r[5], parent=r[6], depth=r[7],
                           buff_type=r[8], eid=r[9])
                 for r in self._event_rows]
+
+    @property
+    def event_count(self) -> int:
+        """事件条数（O(1)，不物化）。等价于 `len(self.events)` 但无构造成本。"""
+        return len(self._event_rows)
 
     def to_dict(self):
         return [{"t": e.t, "type": e.type, "actor": e.actor, "target": e.target,
@@ -1411,7 +1421,8 @@ class GDCoreEngine:
         while not self.combat.fight_ended and ticks < MAX_TICKS:
             self.combat.physicsTick(d)
             ticks += 1
-            if len(self.log.events) > _gate:
+            # ★ 用 O(1) 计数：此处每 tick 判定一次，取 .events 会全量物化（见 events 注释）
+            if self.log.event_count > _gate:
                 break
         self._ticks = ticks
         self.fight_ended = bool(self.combat.fight_ended)
@@ -1475,7 +1486,7 @@ class GDCoreEngine:
                 "winner": s["winner"],
                 "reason": s["reason"],
                 "fatigue_counter": s["fatigue_counter"],
-                "num_events": len(self.log.events),
+                "num_events": self.log.event_count,
                 "ticks": self._ticks,
             },
             "player": s["player"],

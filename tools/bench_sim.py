@@ -98,7 +98,8 @@ def _fight(pl_str, op_str, seed, max_time=180.0, cpu_time=False):
     ms = (_clock() - t0) * 1000.0
     winner = "player" if eng.player_wins() else "opponent"
     return (ms, int(eng._ticks), winner, bool(eng.timed_out),
-            len(eng.log.events))
+            # ★ O(1) 计数：取 .events 会全量物化（1548 事件/场），此处只要条数
+            eng.log.event_count)
 
 
 # ── 计时窗外取证（不变性探针用） ────────────────────────────────────
@@ -114,7 +115,7 @@ def _evidence(pl_str, op_str, seed, max_time=180.0):
     return {"ms": None, "ticks": int(eng._ticks),
             "winner": "player" if eng.player_wins() else "opponent",
             "timed_out": bool(eng.timed_out),
-            "n_events": len(eng.log.events),
+            "n_events": eng.log.event_count,
             "events_bytes": len(json.dumps(eng.log.to_dict(),
                                            ensure_ascii=False).encode("utf-8"))}
 
