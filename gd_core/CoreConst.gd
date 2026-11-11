@@ -208,24 +208,35 @@ static func truth(v) -> bool:
 	return false
 
 
+# ★ A-4（§C-2，2026-11-11）：静态方法里的 EventType.* 点号访问改为局部常量
+#   ——枚举值恒定（EventType 在 _init_fields 前求值一次），点号访问走
+#   EnumDict.__getattr__（29,854 次/3 场 = §C-1 表 A-4 项主体），改为
+#   const 缓存后零 getattr。GDScript const 语义 = 模块加载期求值一次。
+const EV_BLOCK = 100  # EventType.Block
+const EV_LUCKY = 101  # EventType.Lucky
+const EV_HEAT = 107   # EventType.Heat
+const EV_POISON = 108 # EventType.Poison
+const EV_COLD = 110   # EventType.Cold
+
+
 # 对齐 Game.gd:5643-5644
 static func getStacks() -> Array:
-	return [EventType.Block] + getBuffs() + getDebuffs()
+	return [EV_BLOCK] + getBuffs() + getDebuffs()
 
 
 # 对齐 Game.gd:5647-5648
 static func getBuffs() -> Array:
-	return range(EventType.Lucky, EventType.Heat + 1)
+	return range(EV_LUCKY, EV_HEAT + 1)
 
 
 # 对齐 Game.gd:5650-5651
 static func getDebuffs() -> Array:
-	return range(EventType.Poison, EventType.Cold + 1)
+	return range(EV_POISON, EV_COLD + 1)
 
 
 # 对齐 Game.gd:5654-5655
 static func isBuff(_type) -> bool:
-	return _type >= EventType.Block and _type <= EventType.Heat
+	return _type >= EV_BLOCK and _type <= EV_HEAT
 
 
 # 对齐 Game.gd:5657-5658

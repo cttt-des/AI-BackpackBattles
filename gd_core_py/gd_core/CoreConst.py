@@ -128,28 +128,39 @@ class CoreConst(GodotObject):
 		return False
 
 
+	# ★ A-4（§C-2，2026-11-11）：静态方法里的 EventType.* 点号访问改为局部常量
+	#   ——枚举值恒定（EventType 在 _init_fields 前求值一次），点号访问走
+	#   EnumDict.__getattr__（29,854 次/3 场 = §C-1 表 A-4 项主体），改为
+	#   const 缓存后零 getattr。GDScript const 语义 = 模块加载期求值一次。
+	EV_BLOCK = 100# EventType.Block
+	EV_LUCKY = 101# EventType.Lucky
+	EV_HEAT = 107# EventType.Heat
+	EV_POISON = 108# EventType.Poison
+	EV_COLD = 110# EventType.Cold
+
+
 	# 对齐 Game.gd:5643-5644
 	@staticmethod
 	def getStacks():
-		return [CoreConst.EventType.Block] + CoreConst.getBuffs() + CoreConst.getDebuffs()
+		return [CoreConst.EV_BLOCK] + CoreConst.getBuffs() + CoreConst.getDebuffs()
 
 
 	# 对齐 Game.gd:5647-5648
 	@staticmethod
 	def getBuffs():
-		return _gd_range(CoreConst.EventType.Lucky, CoreConst.EventType.Heat + 1)
+		return _gd_range(CoreConst.EV_LUCKY, CoreConst.EV_HEAT + 1)
 
 
 	# 对齐 Game.gd:5650-5651
 	@staticmethod
 	def getDebuffs():
-		return _gd_range(CoreConst.EventType.Poison, CoreConst.EventType.Cold + 1)
+		return _gd_range(CoreConst.EV_POISON, CoreConst.EV_COLD + 1)
 
 
 	# 对齐 Game.gd:5654-5655
 	@staticmethod
 	def isBuff(_type):
-		return _type >= CoreConst.EventType.Block and _type <= CoreConst.EventType.Heat
+		return _type >= CoreConst.EV_BLOCK and _type <= CoreConst.EV_HEAT
 
 
 	# 对齐 Game.gd:5657-5658

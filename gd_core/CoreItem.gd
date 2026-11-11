@@ -3905,9 +3905,20 @@ class CoreSignalConnection extends Reference:
 
 # 行为存在性探测（两级派发，见文件头部 SELF_BEHAVIOR_METHODS 的说明）
 func _hasBehaviorMethod(methodName: String) -> bool:
+	# ★ A-5（§C-2，2026-11-11）：(类, 方法名) 缓存——生产路径  恒为
+	#   null（注入面=合成测试 Smoke/GridSmoke 专属），回落分支结果按类稳定；
+	#   注入发生时走直查、不读写缓存。SELF_BEHAVIOR_METHODS 是类常量。
+	#   C6 派发矩阵同款双守卫：实例级影子赋值（grep 全树零命中）或类级
+	#   property 时不缓存。注入路径与方法名缓存分离：_behavior 判定在缓存
+	#   查询之后，任何注入行为都不被旧缓存吞掉。
+	var cached = _has_behavior_cache_get(self, methodName)
+	if cached != null:
+		return cached
 	if _behavior != null:
 		return _behavior.hasBehavior(self, methodName)
-	return methodName in SELF_BEHAVIOR_METHODS and has_method(methodName)
+	var ok = methodName in SELF_BEHAVIOR_METHODS and has_method(methodName)
+	_has_behavior_cache_put(self, methodName, ok)
+	return ok
 
 
 # 行为接缝派发：**必须回传返回值**——canAffect / getTriggerPriority / onCombatStart

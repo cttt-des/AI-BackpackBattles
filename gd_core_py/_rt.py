@@ -87,6 +87,7 @@ __all__ = [
     "typeof", "tr", "TYPE_VECTOR2", "get_stack", "PoolStringArray",
     # ── ② 容器/语义垫片 ──
     "_div", "_mod", "_iter", "_dup", "_erase", "_pop_at", "_find", "_resize",
+    "_has_behavior_cache_get", "_has_behavior_cache_put",
     "_sort_custom", "_shuffle", "_get_slice", "_invert", "_hash", "_join",
     "_load", "_gid", "_fill", "_pick_random", "_substr", "_bind_battle",
     # ── ③ 对象模型 ──
@@ -1299,6 +1300,31 @@ Resource = GodotObject
 
 # S4-C6 has_method 派发矩阵缓存：{(类, 方法名): bool}（双守卫见 has_method 注）
 _HAS_METHOD_CACHE = {}
+
+# ★ A-5（§C-2，2026-11-11）：_hasBehaviorMethod 的 (类, 方法名)→bool 缓存。
+#   值语义用三态（None=未缓存 / True / False）：GDScript 侧 `cached != null`
+#   判命中。写入方守双卫（实例影子/类 property 不写）——与 C6 _HAS_METHOD_CACHE
+#   同款；set_script 为 no-op（_rt.py），不产生方法面变化，无需清表；
+#   全树无实例级方法面写入（grep 实证）。
+_HAS_BEHAVIOR_CACHE = {}
+
+
+def _has_behavior_cache_get(item, method_name):
+    v = _HAS_BEHAVIOR_CACHE.get((type(item), str(method_name)))
+    return v
+
+
+def _has_behavior_cache_put(item, method_name, ok):
+    cls = type(item)
+    name = str(method_name)
+    # cdef 实例（L1 槽位化后 items 树全 cdef）无 __dict__——getattr 容错；
+    # plain 实例照旧查实例字典（实例级影子不缓存）。
+    d = getattr(item, '__dict__', None)
+    if d is not None and name in d:
+        return
+    if isinstance(getattr(cls, name, None), property):
+        return
+    _HAS_BEHAVIOR_CACHE[(cls, name)] = bool(ok)
 
 
 # ═══════════════════════════ ④ RandomNumberGenerator ═══════════════════════════

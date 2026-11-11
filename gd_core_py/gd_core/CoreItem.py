@@ -38,6 +38,8 @@ from .._rt import (  # noqa: F401
     _gd_str,
     _get_slice,
     _gid,
+    _has_behavior_cache_get,
+    _has_behavior_cache_put,
     _hash,
     _invert,
     _iter,
@@ -4159,9 +4161,20 @@ class CoreItem(GodotObject):
 
 
 	def _hasBehaviorMethod(self, methodName):
+		# ★ A-5（§C-2，2026-11-11）：(类, 方法名) 缓存——生产路径  恒为
+		#   null（注入面=合成测试 Smoke/GridSmoke 专属），回落分支结果按类稳定；
+		#   注入发生时走直查、不读写缓存。SELF_BEHAVIOR_METHODS 是类常量。
+		#   C6 派发矩阵同款双守卫：实例级影子赋值（grep 全树零命中）或类级
+		#   property 时不缓存。注入路径与方法名缓存分离：_behavior 判定在缓存
+		#   查询之后，任何注入行为都不被旧缓存吞掉。
+		cached = _has_behavior_cache_get(self, methodName)
+		if cached != None:
+			return cached
 		if self._behavior != None:
 			return self._behavior.hasBehavior(self, methodName)
-		return methodName in self.SELF_BEHAVIOR_METHODS and self.has_method(methodName)
+		ok = methodName in self.SELF_BEHAVIOR_METHODS and self.has_method(methodName)
+		_has_behavior_cache_put(self, methodName, ok)
+		return ok
 
 
 	# 行为接缝派发：**必须回传返回值**——canAffect / getTriggerPriority / onCombatStart
