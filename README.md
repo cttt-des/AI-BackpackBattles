@@ -18,6 +18,7 @@
 
 | 版本 | 文件 | 说明 |
 |------|------|------|
+| **v0.5.3** | [`BackpackSimulator.exe`](https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.5.3/BackpackSimulator.exe) · [`whl`](https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.5.3/backpack_battles_sim-0.5.3-cp314-cp314-win_amd64.whl) | 战斗模拟器——**items 行为树 510 模块 cdef 槽位化**（实例免 `__dict__`，顺带修复 7 处潜伏 NameError）；事件路径剥离/内联/数组化（调用数 −7.2 万/3 场）；新增训练 API `run_mc_mem`（内存态阵容批量+统计回传）；修复 wheel 安装态 assets 路径（v0.5.2 同病）；exe 剔除 15 个未用标准库；**确定性 1690/1690 全量三方逐行一致**（发布前重跑）。单点热路径微基准 1.00x（L1-Q 判定，详见 docs/性能优化下一步规划.md） |
 | **v0.5.2** | [`BackpackSimulator.exe`](https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.5.2/BackpackSimulator.exe) | 战斗模拟器（阵容对战 / 蒙特卡洛胜率 / 物品联动 / 游戏格式战报）——**内核 Cython 化**：664 模块编译为 C 扩展（官方 MSVC 工具链），单场耗时约降 45%（378→207ms 健康段口径），**1690/1690 全量三方逐行一致**复验通过；含蒙特卡洛多进程并行、分层导入加速启动 |
 | **v0.5.1** | [`BackpackSimulator.exe`](https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.5.1/BackpackSimulator.exe) | 战斗模拟器（阵容对战 / 蒙特卡洛胜率 / 物品联动 / 游戏格式战报）——**1690/1690 重跑复验**三方逐行一致；修复体力上限取数链不同源导致的 13 场分歧；新增 60 场确定性精选集 |
 | **v0.5.0** | [`BackpackSimulator.exe`](https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.5.0/BackpackSimulator.exe) | 战斗模拟器（阵容对战 / 蒙特卡洛胜率 / 物品联动 / 游戏格式战报）——1690 场语料三方对齐全绿 |
@@ -32,7 +33,7 @@
 要用模拟器**训练 AI 或做批量仿真**，请装 wheel 而不是用 exe——exe 只有 GUI，没有可 import 的接口：
 
 ```bash
-pip install "https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.5.3/backpack_battles_sim-0.5.3-cp314-cp314-win_amd64.whl"  # URL 待 v0.5.3 release 发布后生效
+pip install "https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.5.3/backpack_battles_sim-0.5.3-cp314-cp314-win_amd64.whl"
 
 python - <<'PY'
 from simulator.gd_core_engine import GDCoreEngine
