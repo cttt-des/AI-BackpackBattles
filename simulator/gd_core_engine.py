@@ -963,6 +963,19 @@ class GDCoreEngine:
         if light_log:
             self.hooks.logEvent = lambda event: None
         self.log = self.hooks                     # 事件视图即日志视图
+        # ★ 6.1 同进程跨场状态泄漏修复（docs/引擎跨场状态泄漏修复.md §3）：
+        #   `_bind_battle` 此前只在 activation_order 分支（startBattle 前）被调，
+        #   常规战斗路径 `_MATH_BIND`/`_GID_CUR` 恒空——全局 Math 流与 gid 台账
+        #   回落进程级单例（`_MATH_RNG` 自 DEFAULT_SEED 起步跨场累积 / `_GID_MAP`
+        #   只增不减），同 (阵容, seed) 同进程连跑每场结果都不同。此处**无条件**
+        #   以本场 seed 重绑一次。链起点判定（该文件 §4）：候选 A=`self._seed`
+        #   与 activation_order 分支及 oracle_fight 装配段「每场 seed(S) 播种
+        #   全局链」语义一致（CoreRng.py:470-473 注），60 例实测全绿，故取 A。
+        #   硬约束：必须早于 CoreContext 创建与任何物品构造——物品脚本可能消耗
+        #   全局链（CoreItem.py:2912 shuffleEngine），先消耗再绑定即无效。
+        #   activation_order 分支随后的重绑+补两条 shuffle 语义不变（重绑抹掉
+        #   装配期消耗，战斗期链状态与修复前逐位一致）。
+        _rtm._bind_battle(int(self._seed))
         ctx = k["CoreContext"](int(seed), self.hooks)
         # np21-R5：暖场实例打开连接台账（键控默认关，正式/非键控路径零扰动）
         if _r5_warm:
