@@ -285,7 +285,19 @@ def main():
                 fh.write("\r\n".join(lines) + "\r\n")
             return path
 
-        n_shards = 1 if jobs <= 1 else min(jobs, len(targets))
+        # ── 自适应分片（2026-11-13 扫参）──────────────────────────────
+        # 实测 60 模块 cl 段：jobs=2 → 161.3s / 4 → 79.2s / 6 → 86.8s / 8 → 81.0s
+        #   ⇒ cl 的拐点在 4，再往上不再变快（每分片一次 vcvars ≈5s 固定开销，
+        #     且本机 4 物理核）。而 cython 段是 26.5 / 16.6 / 12.4 / 10.0s
+        #   ⇒ cython 偏好更多进程（纯 Python 侧，不吃满核也会让出时间片）。
+        #
+        # 因此分片数不能死等 jobs：**小任务分太碎会让 vcvars 开销占主导**
+        # （10 模块切 8 片时，固定开销 > 编译本身）。规则：
+        #     n_shards = clamp(ceil(N / MIN_PER_SHARD), 1, min(jobs, N))
+        # MIN_PER_SHARD=12：60 模块 → 5 片，30 模块 → 3 片，10 模块 → 1 片。
+        MIN_PER_SHARD = 12
+        want = -(-len(targets) // MIN_PER_SHARD)          # ceil
+        n_shards = 1 if jobs <= 1 else max(1, min(jobs, len(targets), want))
         shards = [targets[i::n_shards] for i in range(n_shards)]
         bats = [(_bat_for(part, i), i) for i, part in enumerate(shards)]
         payloads = [(i, p) for p, i in bats]
