@@ -18,6 +18,9 @@ Python 实践兼容。MSVC（winget BuildTools）为后续正式化路径，当�
 import argparse
 import io
 import os
+import time
+import multiprocessing as _mp
+from concurrent.futures import ProcessPoolExecutor
 import subprocess
 import sys
 import sysconfig
@@ -35,6 +38,38 @@ BACKEND = "mingw"
 #    （实测 1575 个 / 143 MB，每次打包重来一遍）。逐模块显式 /Fo /Fd /
 #    /link /IMPLIB 指到 build/ 下（该目录已 .gitignore，双保险）。
 OBJ_DIR = os.path.join(ROOT, "build", "cython_objs")
+
+
+# ── 并行编译（2026-11-13）────────────────────────────────────────────
+# 动机：单模块 cython 实测 4–8.5 s（大模块更久），串行 668 模块 ≈ 45–90 min，
+# 是修复回路的主要瓶颈。实测 4 进程 2.87x、8 进程 2.59x（4 物理核已饱和）。
+# cl 步本身很快（~0.5 s/模块），但原先挤在一个 bat 里串行 —— 同样分片并行。
+#
+# 并行化的三条约束（都不改语义）：
+#   ① 只并行「编译」这个纯函数步骤，mtime 筛选 / MISS 统计 / 错误汇报仍由主进程做；
+#   ② 每个子进程只写自己的 .c 或 .pyd，无共享写；
+#   ③ 失败要能定位到模块（子进程返回 (rel, rc, 错误尾部)）。
+
+
+def _cython_one(rel: str):
+    """子进程：单个模块 .py → .c。返回 (rel, rc, err_tail)。"""
+    base = os.path.splitext(os.path.join(ROOT, rel))[0]
+    r = subprocess.run([sys.executable, "-m", "cython", "-3",
+                        "-X", "binding=False", rel, "-o", base + ".c"],
+                       cwd=ROOT, capture_output=True, text=True)
+    if r.returncode != 0:
+        return (rel, r.returncode,
+                (r.stdout or "")[-600:] + (r.stderr or "")[-600:])
+    return (rel, 0, "")
+
+
+def _cl_shard(payload):
+    """子进程：跑一个分片 bat（内含 vcvars + 若干 cl）。返回 (shard_id, rc, tail)。"""
+    sid, bat_path = payload
+    r = subprocess.run(["cmd", "/c", bat_path], cwd=ROOT,
+                       capture_output=True, text=True,
+                       encoding="gbk", errors="replace")
+    return (sid, r.returncode, (r.stdout or "")[-800:] + (r.stderr or "")[-400:])
 
 
 def artifact_paths(rel_base: str) -> dict:
@@ -115,8 +150,9 @@ def build_one(py_path: str) -> str:
             f'/link {ltcg} /IMPLIB:"{ap["lib"]}" '
             f'/LIBPATH:"{libs_dir}" python314.lib '
             f'/OUT:{pyd_path}')
-        with io.open(bat, "w", encoding="gbk", newline="") as fh:
-            fh.write("@echo off\r\n" + cmd_line + "\r\n")
+        # ★ 同清单模式：cmd 代码页 65001 ⇒ bat 用 utf-8 写 + 首行 chcp（否则中文路径乱码）
+        with io.open(bat, "w", encoding="utf-8", newline="") as fh:
+            fh.write("@echo off\r\nchcp 65001 >nul\r\n" + cmd_line + "\r\n")
         r = subprocess.run(["cmd", "/c", bat], cwd=ROOT,
                            capture_output=True, text=True,
                            encoding="gbk", errors="replace")
@@ -146,6 +182,8 @@ def main():
                     help="用 MSVC 后端（需 Build Tools；默认 MinGW）")
     ap.add_argument("--clean", action="store_true",
                     help="删除目标 .pyd/.c（回滚手段）")
+    ap.add_argument("--jobs", type=int, default=0,
+                    help="并行进程数（0=物理核数；1=旧串行行为）")
     a = ap.parse_args()
     global BACKEND
     if a.msvc:
@@ -187,33 +225,69 @@ def main():
         # ★ cython 步（源 → .c）：清单模式原直接编既有 .c——源变更后 .c 陈旧
         #   是与「pyd 存在即跳过」叠加的第二重空转雷。逐模块跑 cython
         #   （~1-2s/个，清单规模可承受），cl 仍走单 bat 批量。
-        for t in targets:
-            py_path = os.path.relpath(os.path.join(ROOT, t), ROOT)
-            base = os.path.splitext(py_path)[0]
-            r = subprocess.run([sys.executable, "-m", "cython", "-3",
-                                "-X", "binding=False",
-                                py_path, "-o", base + ".c"],
-                               cwd=ROOT, capture_output=True, text=True)
-            if r.returncode != 0:
-                raise RuntimeError(f"cython 失败 {py_path}:\n"
-                                   f"{r.stdout[-800:]}\n{r.stderr[-800:]}")
-        bat = os.path.join(ROOT, "tools", "_msvc_list.cmd")
-        out = ["@echo off",
-               f'call "{MSVC_VCVARS}" >nul 2>&1']
-        for t in targets:
-            base = os.path.splitext(t)[0]
-            # ★ 目标已在 Python 侧按 mtime 筛过（stale 才进 bat）——bat 内
-            #   不再放 `if exist .pyd goto skip`（就是它把重编吞掉的）
-            ap = artifact_paths(base)
-            out.append(
-                f'cl /O2 /LD /MD /nologo /I "{inc}" {base}.c '
-                f'/Fo"{ap["obj"]}" /Fd"{ap["pdb"]}" '
-                f'/link /IMPLIB:"{ap["lib"]}" '
-                f'/LIBPATH:"{libs_dir}" python314.lib /OUT:{base}.pyd')
-        with io.open(bat, "w", encoding="gbk", newline="") as fh:
-            fh.write("\r\n".join(out) + "\r\n")
-        r = subprocess.run(["cmd", "/c", bat], cwd=ROOT)
-        print(f"[msvc-list] bat 执行完成 rc={r.returncode}")
+        # 并行 cython（--jobs；默认物理核数，实测 4 进程 2.87x）
+        jobs = a.jobs if a.jobs > 0 else max(1, (_mp.cpu_count() or 4) // 2)
+        rels = [os.path.relpath(os.path.join(ROOT, t), ROOT) for t in targets]
+        if jobs <= 1 or len(rels) <= 1:
+            for rel in rels:
+                rc, err = _cython_one(rel)[1:]
+                if rc != 0:
+                    raise RuntimeError(f"cython 失败 {rel}:\n{err}")
+        else:
+            t0 = time.perf_counter()
+            fails = []
+            with ProcessPoolExecutor(max_workers=jobs) as ex:
+                for rel, rc, err in ex.map(_cython_one, rels, chunksize=4):
+                    if rc != 0:
+                        fails.append((rel, err))
+            if fails:
+                raise RuntimeError(
+                    "cython 失败 %d 个（首个 %s）：\n%s"
+                    % (len(fails), fails[0][0], fails[0][1]))
+            print(f"[msvc-list] cython 并行 {len(rels)} 模块 / {jobs} 进程 "
+                  f"耗时 {time.perf_counter() - t0:.1f}s")
+        # cl 分片并行：每个分片一个 bat（各自 vcvars 一次），并行跑。
+        # cl 单模块 ~0.5s，但 668 个串行仍有分钟级；分片后与 cython 阶段同量级。
+        def _bat_for(part, idx):
+            # ★ 编码坑（2026-11-13 实测）：本机 cmd 代码页是 65001（UTF-8），
+            #   而 bat 曾按 gbk 写 ⇒ cl 收到乱码中文路径（"锟斤拷"），
+            #   /Fo 目标打不开 → 全部 MISS。修法：bat 用 utf-8 写 + 首行 chcp 65001。
+            lines = ["@echo off",
+                     "chcp 65001 >nul",
+                     f'call "{MSVC_VCVARS}" >nul 2>&1']
+            for t in part:
+                base = os.path.splitext(t)[0]
+                # ★ 目标已在 Python 侧按 mtime 筛过（stale 才进 bat）——bat 内
+                #   不再放 `if exist .pyd goto skip`（就是它把重编吞掉的）
+                ap = artifact_paths(base)
+                lines.append(
+                    f'cl /O2 /LD /MD /nologo /I "{inc}" {base}.c '
+                    f'/Fo"{ap["obj"]}" /Fd"{ap["pdb"]}" '
+                    f'/link /IMPLIB:"{ap["lib"]}" '
+                    f'/LIBPATH:"{libs_dir}" python314.lib /OUT:{base}.pyd')
+            path = os.path.join(ROOT, "tools", f"_msvc_list_{idx}.cmd")
+            with io.open(path, "w", encoding="utf-8", newline="") as fh:
+                fh.write("\r\n".join(lines) + "\r\n")
+            return path
+
+        n_shards = 1 if jobs <= 1 else min(jobs, len(targets))
+        shards = [targets[i::n_shards] for i in range(n_shards)]
+        bats = [(_bat_for(part, i), i) for i, part in enumerate(shards)]
+        payloads = [(i, p) for p, i in bats]
+        t0 = time.perf_counter()
+        if n_shards <= 1:
+            rc, tail = _cl_shard(payloads[0])[1:]
+            print(f"[msvc-list] bat 执行完成 rc={rc}")
+        else:
+            rcs = []
+            with ProcessPoolExecutor(max_workers=n_shards) as ex:
+                for sid, rc, tail in ex.map(_cl_shard, payloads):
+                    rcs.append((sid, rc))
+                    if rc != 0:
+                        print(f"  shard{sid} rc={rc} 尾部：{tail[-300:]}")
+            print(f"[msvc-list] cl 并行 {n_shards} 分片 / {len(targets)} 模块 "
+                  f"耗时 {time.perf_counter() - t0:.1f}s，"
+                  f"非零 rc 分片 {sum(1 for _, rc in rcs if rc)}")
         miss = [t for t in targets
                 if not os.path.exists(os.path.join(ROOT, t[:-3] + ".pyd"))]
         for t in miss:
