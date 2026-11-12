@@ -51,16 +51,23 @@ OBJ_DIR = os.path.join(ROOT, "build", "cython_objs")
 #   ③ 失败要能定位到模块（子进程返回 (rel, rc, 错误尾部)）。
 
 
-def _cython_one(rel: str):
-    """子进程：单个模块 .py → .c。返回 (rel, rc, err_tail)。"""
-    base = os.path.splitext(os.path.join(ROOT, rel))[0]
+def _cython_batch(rels):
+    """子进程：**一批**模块 .py → .c（单次 cython CLI 多文件）。
+
+    ★ 2026-11-13 实测：每模块单起一个 cython 进程要付 Cython 自身 import
+      开销（~2-3 s/次，占单模块 4-8.5 s 的一大半）。改成一次 CLI 传整批后：
+        24 模块 单批 15.0s（5.67x）/ 4 分片 × 4 进程 8.2s（**10.44x**）
+      输出仍按源目录落各自 .c（cython 多文件模式的默认行为）。
+
+    返回 (rels, rc, err_tail)。
+    """
     r = subprocess.run([sys.executable, "-m", "cython", "-3",
-                        "-X", "binding=False", rel, "-o", base + ".c"],
+                        "-X", "binding=False"] + list(rels),
                        cwd=ROOT, capture_output=True, text=True)
     if r.returncode != 0:
-        return (rel, r.returncode,
-                (r.stdout or "")[-600:] + (r.stderr or "")[-600:])
-    return (rel, 0, "")
+        return (list(rels), r.returncode,
+                (r.stdout or "")[-1200:] + (r.stderr or "")[-1200:])
+    return (list(rels), 0, "")
 
 
 def _cl_shard(payload):
@@ -228,24 +235,32 @@ def main():
         # 并行 cython（--jobs；默认物理核数，实测 4 进程 2.87x）
         jobs = a.jobs if a.jobs > 0 else max(1, (_mp.cpu_count() or 4) // 2)
         rels = [os.path.relpath(os.path.join(ROOT, t), ROOT) for t in targets]
-        if jobs <= 1 or len(rels) <= 1:
-            for rel in rels:
-                rc, err = _cython_one(rel)[1:]
+        # 分批 + 并行：每批一次 cython CLI（省 import 开销）× N 进程
+        # 实测 24 模块：逐模块 85.3s → 单批 15.0s（5.67x）→ 4×4 8.2s（10.44x）
+        BATCH = 12 if len(rels) > 48 else max(1, len(rels))
+        shards = [rels[i::jobs] for i in range(min(jobs, len(rels)))]
+        batches = []
+        for sh in shards:
+            for i in range(0, len(sh), BATCH):
+                batches.append(sh[i:i + BATCH])
+        t0 = time.perf_counter()
+        fails = []
+        if jobs <= 1 or len(batches) <= 1:
+            for b in batches:
+                _, rc, err = _cython_batch(b)
                 if rc != 0:
-                    raise RuntimeError(f"cython 失败 {rel}:\n{err}")
+                    fails.append((b, err))
         else:
-            t0 = time.perf_counter()
-            fails = []
             with ProcessPoolExecutor(max_workers=jobs) as ex:
-                for rel, rc, err in ex.map(_cython_one, rels, chunksize=4):
+                for got, rc, err in ex.map(_cython_batch, batches, chunksize=1):
                     if rc != 0:
-                        fails.append((rel, err))
-            if fails:
-                raise RuntimeError(
-                    "cython 失败 %d 个（首个 %s）：\n%s"
-                    % (len(fails), fails[0][0], fails[0][1]))
-            print(f"[msvc-list] cython 并行 {len(rels)} 模块 / {jobs} 进程 "
-                  f"耗时 {time.perf_counter() - t0:.1f}s")
+                        fails.append((got, err))
+        if fails:
+            raise RuntimeError(
+                "cython 失败 %d 批（首个含 %s）：\n%s"
+                % (len(fails), fails[0][0][:2], fails[0][1]))
+        print(f"[msvc-list] cython {len(rels)} 模块 / {len(batches)} 批 / "
+              f"{min(jobs, len(rels))} 进程 耗时 {time.perf_counter() - t0:.1f}s")
         # cl 分片并行：每个分片一个 bat（各自 vcvars 一次），并行跑。
         # cl 单模块 ~0.5s，但 668 个串行仍有分钟级；分片后与 cython 阶段同量级。
         def _bat_for(part, idx):
