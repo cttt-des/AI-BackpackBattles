@@ -149,6 +149,21 @@ def _pool_worker(args):
     return _fight(pl_str, op_str, seed)
 
 
+def _pool_affinity_init(cpus):
+    """§3.2（2026-11-12）：worker 逐个绑物理核（_identity 序）。
+
+    失败静默——绑核是吞吐优化不是正确性依赖。psutil 缺失时跳过。"""
+    try:
+        import multiprocessing as _mp
+        import psutil
+        proc = _mp.current_process()
+        ident = getattr(proc, "_identity", None)
+        idx = (ident[0] - 1) % len(cpus) if ident else 0
+        psutil.Process().cpu_affinity([cpus[idx]])
+    except Exception:  # noqa: BLE001
+        pass
+
+
 # ── TTFB（冷启动到首场结果） ────────────────────────────────────────
 
 def _ttfb(pl_path, op_path):
@@ -222,6 +237,8 @@ def main():
     ap.add_argument("--json", default=None, help="结果 JSON 落盘路径")
     ap.add_argument("--ttfb", action="store_true", help="附测冷启动 TTFB")
     ap.add_argument("--pin", default=None, help="绑核，如 0,1,2,3")
+    ap.add_argument("--worker-affinity", default=None,
+                    help="§3.2：worker 池逐个绑核，如 0,1,2,3（--workers>1 时生效）")
     ap.add_argument("--profile-out", default=None,
                     help="sys.monitoring 调用计数剖面路径（单进程小 n）")
     ap.add_argument("--label", default="unspecified",
@@ -278,8 +295,13 @@ def main():
             print("WARN: 并行基准 N<128，按 §10.4 只报趋势", file=sys.stderr)
         args.rounds = 1
         jobs = [(args.seed + i, pl_str, op_str) for i in range(args.n)]
+        cpus = ([int(x) for x in args.worker_affinity.split(",")]
+                if args.worker_affinity else None)
         t0 = time.perf_counter()
-        with ProcessPoolExecutor(max_workers=args.workers) as ex:
+        with ProcessPoolExecutor(
+                max_workers=args.workers,
+                initializer=_pool_affinity_init if cpus else None,
+                initargs=(cpus,) if cpus else ()) as ex:
             rows = list(ex.map(_pool_worker, jobs, chunksize=4))
         wall = (time.perf_counter() - t0) * 1000.0
         s = _summarize(rows)
