@@ -66,7 +66,7 @@
  "Artifact Stone Cold": {
   "key": "ArtifactStoneCold",
   "gd": "res://Items/ArtifactStoneCold.gd",
-  "zh": "遗迹石：寒冷",
+  "zh": "Artifact Stone Cold",
   "is_bag": false,
   "cell_px": [
    [
@@ -96,7 +96,7 @@
  "Artifact Stone Heat": {
   "key": "ArtifactStoneHeat",
   "gd": "res://Items/ArtifactStoneHeat.gd",
-  "zh": "遗迹石：火焰",
+  "zh": "Artifact Stone Heat",
   "is_bag": false,
   "cell_px": [
    [
@@ -701,7 +701,7 @@
  "Coins": {
   "key": "Coins",
   "gd": "",
-  "zh": "一堆金币",
+  "zh": "Coins",
   "is_bag": false,
   "cell_px": [
    [
@@ -1555,7 +1555,7 @@
  "Amethyst Whelp": {
   "key": "AmethystWhelp",
   "gd": "res://Items/Exclusive/AmethystWhelp.gd",
-  "zh": "紫水晶幼龙",
+  "zh": "Amethyst Whelp",
   "is_bag": false,
   "cell_px": [
    [
@@ -1634,7 +1634,7 @@
  "Amulet of Alchemy": {
   "key": "AmuletofAlchemy",
   "gd": "res://Items/Exclusive/AmuletofAlchemy.gd",
-  "zh": "炼金护符",
+  "zh": "Amulet of Alchemy",
   "is_bag": false,
   "cell_px": [
    [
@@ -1664,7 +1664,7 @@
  "Amulet of Darkness": {
   "key": "AmuletofDarkness",
   "gd": "res://Items/Exclusive/AmuletofDarkness.gd",
-  "zh": "黑暗护符",
+  "zh": "Amulet of Darkness",
   "is_bag": false,
   "cell_px": [
    [
@@ -1694,7 +1694,7 @@
  "Amulet of Feasting": {
   "key": "AmuletofFeasting",
   "gd": "res://Items/Exclusive/AmuletofFeasting.gd",
-  "zh": "食物护符",
+  "zh": "Amulet of Feasting",
   "is_bag": false,
   "cell_px": [
    [
@@ -1754,7 +1754,7 @@
  "Amulet of Life": {
   "key": "AmuletofLife",
   "gd": "res://Items/Exclusive/AmuletofLife.gd",
-  "zh": "生命护符",
+  "zh": "Amulet of Life",
   "is_bag": false,
   "cell_px": [
    [
@@ -1814,7 +1814,7 @@
  "Amulet of Steel": {
   "key": "AmuletofSteel",
   "gd": "res://Items/Exclusive/AmuletofSteel.gd",
-  "zh": "钢之护符",
+  "zh": "Amulet of Steel",
   "is_bag": false,
   "cell_px": [
    [
@@ -1844,7 +1844,7 @@
  "Amulet of the Wild": {
   "key": "AmuletoftheWild",
   "gd": "res://Items/Exclusive/AmuletoftheWild.gd",
-  "zh": "自然护符",
+  "zh": "Amulet of the Wild",
   "is_bag": false,
   "cell_px": [
    [
@@ -2050,7 +2050,7 @@
  "Armored Courage Puppy": {
   "key": "ArmoredCouragePuppy",
   "gd": "res://Items/Exclusive/ArmoredCouragePuppy.gd",
-  "zh": "护甲勇敢狼崽",
+  "zh": "Armored Courage Puppy",
   "is_bag": false,
   "cell_px": [
    [
@@ -2084,7 +2084,7 @@
  "Armored Power Puppy": {
   "key": "ArmoredPowerPuppy",
   "gd": "res://Items/Exclusive/ArmoredPowerPuppy.gd",
-  "zh": "护甲全能狼崽",
+  "zh": "Armored Power Puppy",
   "is_bag": false,
   "cell_px": [
    [
@@ -2118,7 +2118,7 @@
  "Armored Wisdom Puppy": {
   "key": "ArmoredWisdomPuppy",
   "gd": "res://Items/Exclusive/ArmoredWisdomPuppy.gd",
-  "zh": "护甲睿智狼崽",
+  "zh": "Armored Wisdom Puppy",
   "is_bag": false,
   "cell_px": [
    [
@@ -2152,7 +2152,7 @@
  "Artifact Stone Death": {
   "key": "ArtifactStoneDeath",
   "gd": "res://Items/Exclusive/ArtifactStoneDeath.gd",
-  "zh": "遗迹石：死亡",
+  "zh": "Artifact Stone Death",
   "is_bag": false,
   "cell_px": [
    [
@@ -2230,7 +2230,7 @@
    67.02,
    159.98
   ],
-  "layers": 9,
+  "layers": 6,
   "layer_meta": [
    {
     "tex": "Automanaton_Armor",
@@ -2247,13 +2247,6 @@
     "alpha": 1.0
    },
    {
-    "tex": "Automanaton_mask1",
-    "x": 71.22,
-    "y": 78.08,
-    "rot": 0.0,
-    "alpha": 1.0
-   },
-   {
     "tex": "Automanaton_Boot2",
     "x": 91.02,
     "y": 257.9,
@@ -2261,23 +2254,9 @@
     "alpha": 1.0
    },
    {
-    "tex": "Automanaton_mask2",
-    "x": 91.02,
-    "y": 234.98,
-    "rot": 0.0,
-    "alpha": 1.0
-   },
-   {
     "tex": "Automanaton_Boot1",
     "x": 41.58,
     "y": 253.77,
-    "rot": 0.0,
-    "alpha": 1.0
-   },
-   {
-    "tex": "Automanaton_mask3",
-    "x": 45.02,
-    "y": 229.98,
     "rot": 0.0,
     "alpha": 1.0
    },
@@ -2379,7 +2358,7 @@
  "Badger Spirit": {
   "key": "BadgerSpirit",
   "gd": "res://Items/Exclusive/BadgerSpirit.gd",
-  "zh": "幽灵獾",
+  "zh": "Badger Spirit",
   "is_bag": false,
   "cell_px": [
    [
@@ -2814,7 +2793,7 @@
  "Blood Manipulation": {
   "key": "BloodManipulation",
   "gd": "res://Items/Exclusive/BloodManipulation.gd",
-  "zh": "鲜血支配",
+  "zh": "Blood Manipulation",
   "is_bag": false,
   "cell_px": [
    [
@@ -3108,7 +3087,7 @@
  "Bowl of Treats": {
   "key": "BowlofTreats",
   "gd": "res://Items/Exclusive/BowlofTreats.gd",
-  "zh": "一碗零食",
+  "zh": "Bowl of Treats",
   "is_bag": false,
   "cell_px": [
    [
@@ -3142,7 +3121,7 @@
  "Box of Prosperity": {
   "key": "BoxofProsperity",
   "gd": "res://Items/Exclusive/BoxofProsperity.gd",
-  "zh": "财富之盒",
+  "zh": "Box of Prosperity",
   "is_bag": true,
   "cell_px": [
    [
@@ -3340,7 +3319,7 @@
  "Burning Banner": {
   "key": "BurningBanner",
   "gd": "res://Items/Exclusive/BurningBanner.gd",
-  "zh": "燃烧旗帜",
+  "zh": "Burning Banner",
   "is_bag": false,
   "cell_px": [
    [
@@ -3374,7 +3353,7 @@
  "Burning Blade": {
   "key": "BurningBlade",
   "gd": "res://Items/Exclusive/BurningBlade.gd",
-  "zh": "火焰剑",
+  "zh": "Burning Blade",
   "is_bag": false,
   "cell_px": [
    [
@@ -3456,7 +3435,7 @@
  "Burning Sword": {
   "key": "BurningSword",
   "gd": "res://Items/Exclusive/BurningSword.gd",
-  "zh": "火焰短剑",
+  "zh": "Burning Sword",
   "is_bag": false,
   "cell_px": [
    [
@@ -3504,7 +3483,7 @@
  "Busted Blade": {
   "key": "BustedBlade",
   "gd": "res://Items/Exclusive/BustedBlade.gd",
-  "zh": "锻造巨剑",
+  "zh": "Busted Blade",
   "is_bag": false,
   "cell_px": [
    [
@@ -3573,7 +3552,7 @@
  "Buy the Holy Light": {
   "key": "BuytheHolyLight",
   "gd": "res://Items/Exclusive/BuytheHolyLight.gd",
-  "zh": "神圣特卖",
+  "zh": "Buy the Holy Light",
   "is_bag": false,
   "cell_px": [
    [
@@ -3651,7 +3630,7 @@
  "Cat Spirit": {
   "key": "CatSpirit",
   "gd": "res://Items/Exclusive/CatSpirit.gd",
-  "zh": "幽灵猫",
+  "zh": "Cat Spirit",
   "is_bag": false,
   "cell_px": [
    [
@@ -3784,7 +3763,7 @@
  "Chain Whip": {
   "key": "ChainWhip",
   "gd": "res://Items/Exclusive/ChainWhip.gd",
-  "zh": "锁链鞭",
+  "zh": "Chain Whip",
   "is_bag": false,
   "cell_px": [
    [
@@ -3901,7 +3880,7 @@
  "Cheese Goobert": {
   "key": "CheeseGoobert",
   "gd": "res://Items/Exclusive/CheeseGoobert.gd",
-  "zh": "奶酪黏黏",
+  "zh": "Cheese Goobert",
   "is_bag": false,
   "cell_px": [
    [
@@ -4363,7 +4342,7 @@
  "Chili Goobert": {
   "key": "ChiliGoobert",
   "gd": "res://Items/Exclusive/ChiliGoobert.gd",
-  "zh": "辣椒黏黏",
+  "zh": "Chili Goobert",
   "is_bag": false,
   "cell_px": [
    [
@@ -5291,7 +5270,7 @@
  "Divine Potion": {
   "key": "DivinePotion",
   "gd": "res://Items/Exclusive/DivinePotion.gd",
-  "zh": "神圣魔药",
+  "zh": "Divine Potion",
   "is_bag": false,
   "cell_px": [
    [
@@ -5506,7 +5485,7 @@
  "Dragon Claws": {
   "key": "DragonClaws",
   "gd": "res://Items/Exclusive/DragonClaws.gd",
-  "zh": "龙爪",
+  "zh": "Dragon Claws",
   "is_bag": false,
   "cell_px": [
    [
@@ -5597,7 +5576,7 @@
  "Dragon Nest": {
   "key": "DragonNest",
   "gd": "res://Items/Exclusive/DragonNest.gd",
-  "zh": "龙的巢穴",
+  "zh": "Dragon Nest",
   "is_bag": false,
   "cell_px": [
    [
@@ -5639,7 +5618,7 @@
  "Dragonscale Armor": {
   "key": "DragonscaleArmor",
   "gd": "res://Items/Exclusive/DragonscaleArmor.gd",
-  "zh": "龙鳞护甲",
+  "zh": "Dragonscale Armor",
   "is_bag": false,
   "cell_px": [
    [
@@ -5726,7 +5705,7 @@
  "Dragonskin Boots": {
   "key": "DragonskinBoots",
   "gd": "res://Items/Exclusive/DragonskinBoots.gd",
-  "zh": "龙鳞靴",
+  "zh": "Dragonskin Boots",
   "is_bag": false,
   "cell_px": [
    [
@@ -5842,7 +5821,7 @@
  "Echoing Battlecry": {
   "key": "EchoingBattlecry",
   "gd": "res://Items/Exclusive/EchoingBattlecry.gd",
-  "zh": "回响战嚎",
+  "zh": "Echoing Battlecry",
   "is_bag": false,
   "cell_px": [
    [
@@ -5978,7 +5957,7 @@
  "Emerald Whelp": {
   "key": "EmeraldWhelp",
   "gd": "res://Items/Exclusive/EmeraldWhelp.gd",
-  "zh": "翡翠幼龙",
+  "zh": "Emerald Whelp",
   "is_bag": false,
   "cell_px": [
    [
@@ -6084,7 +6063,7 @@
  "Enchanted Weapons": {
   "key": "EnchantedWeapons",
   "gd": "res://Items/Exclusive/EnchantedWeapons.gd",
-  "zh": "附魔武器",
+  "zh": "Enchanted Weapons",
   "is_bag": false,
   "cell_px": [
    [
@@ -6252,7 +6231,7 @@
  "Everburning": {
   "key": "Everburning",
   "gd": "res://Items/Exclusive/Everburning.gd",
-  "zh": "永燃之火",
+  "zh": "Everburning",
   "is_bag": false,
   "cell_px": [
    [
@@ -6589,7 +6568,7 @@
  "Flame Badge": {
   "key": "FlameBadge",
   "gd": "res://Items/Exclusive/FlameBadge.gd",
-  "zh": "火焰徽章",
+  "zh": "Flame Badge",
   "is_bag": false,
   "cell_px": [
    [
@@ -6736,7 +6715,7 @@
  "Forging Hammer": {
   "key": "ForgingHammer",
   "gd": "res://Items/Exclusive/ForgingHammer.gd",
-  "zh": "锻造锤",
+  "zh": "Forging Hammer",
   "is_bag": false,
   "cell_px": [
    [
@@ -6777,7 +6756,7 @@
  "Fortunas Kiss": {
   "key": "FortunasKiss",
   "gd": "res://Items/Exclusive/FortunasKiss.gd",
-  "zh": "财富之吻",
+  "zh": "Fortunas Kiss",
   "is_bag": false,
   "cell_px": [
    [
@@ -6807,7 +6786,7 @@
  "Friendly Fire": {
   "key": "FriendlyFire",
   "gd": "res://Items/Exclusive/FriendlyFire.gd",
-  "zh": "快乐小火",
+  "zh": "Friendly Fire",
   "is_bag": false,
   "cell_px": [
    [
@@ -6897,7 +6876,7 @@
  "Frostbite": {
   "key": "Frostbite",
   "gd": "res://Items/Exclusive/Frostbite.gd",
-  "zh": "霜冻之剑",
+  "zh": "Frostbite",
   "is_bag": false,
   "cell_px": [
    [
@@ -6991,7 +6970,7 @@
  "Frozen Flame": {
   "key": "FrozenFlame",
   "gd": "res://Items/Exclusive/FrozenFlame.gd",
-  "zh": "永冻之火",
+  "zh": "Frozen Flame",
   "is_bag": false,
   "cell_px": [
    [
@@ -7025,7 +7004,7 @@
  "Full Body Protection": {
   "key": "FullBodyProtection",
   "gd": "res://Items/Exclusive/FullBodyProtection.gd",
-  "zh": "全身防护",
+  "zh": "Full Body Protection",
   "is_bag": false,
   "cell_px": [
    [
@@ -7055,7 +7034,7 @@
  "Furcifer Prime": {
   "key": "FurciferPrime",
   "gd": "res://Items/Exclusive/FurciferPrime.gd",
-  "zh": "福西法超级会员",
+  "zh": "Furcifer Prime",
   "is_bag": false,
   "cell_px": [
    [
@@ -7119,7 +7098,7 @@
  "Ghost": {
   "key": "Ghost",
   "gd": "res://Items/Exclusive/Ghost.gd",
-  "zh": "里面都是鬼故事。",
+  "zh": "Ghost",
   "is_bag": false,
   "cell_px": [
    [
@@ -7417,7 +7396,7 @@
  "Hawk Rune": {
   "key": "HawkRune",
   "gd": "res://Items/Exclusive/HawkRune.gd",
-  "zh": "全能狼崽",
+  "zh": "猎鹰符文",
   "is_bag": false,
   "cell_px": [
    [
@@ -7447,7 +7426,7 @@
  "Heart of the Cards": {
   "key": "HeartoftheCards",
   "gd": "res://Items/Exclusive/HeartoftheCards.gd",
-  "zh": "卡牌之心",
+  "zh": "Heart of the Cards",
   "is_bag": false,
   "cell_px": [
    [
@@ -7534,7 +7513,7 @@
  "Heavy Drinking": {
   "key": "HeavyDrinking",
   "gd": "res://Items/Exclusive/HeavyDrinking.gd",
-  "zh": "开怀畅饮",
+  "zh": "Heavy Drinking",
   "is_bag": false,
   "cell_px": [
    [
@@ -7564,7 +7543,7 @@
  "Hedgehog": {
   "key": "Hedgehog",
   "gd": "res://Items/Exclusive/Hedgehog.gd",
-  "zh": "刺猬",
+  "zh": "Hedgehog",
   "is_bag": false,
   "cell_px": [
    [
@@ -8032,7 +8011,7 @@
  "Investment Opportunity": {
   "key": "InvestmentOpportunity",
   "gd": "res://Items/Exclusive/InvestmentOpportunity.gd",
-  "zh": "投资机会",
+  "zh": "Investment Opportunity",
   "is_bag": false,
   "cell_px": [
    [
@@ -8277,7 +8256,7 @@
  "King Goobert": {
   "key": "KingGoobert",
   "gd": "res://Items/Exclusive/KingGoobert.gd",
-  "zh": "国王黏黏",
+  "zh": "King Goobert",
   "is_bag": false,
   "cell_px": [
    [
@@ -8364,7 +8343,7 @@
  "Knife to Meet You": {
   "key": "KnifetoMeetYou",
   "gd": "res://Items/Exclusive/KnifetoMeetYou.gd",
-  "zh": "刀刀见血",
+  "zh": "Knife to Meet You",
   "is_bag": false,
   "cell_px": [
    [
@@ -8439,7 +8418,7 @@
  "Leaf Badge": {
   "key": "LeafBadge",
   "gd": "res://Items/Exclusive/LeafBadge.gd",
-  "zh": "绿叶徽章",
+  "zh": "Leaf Badge",
   "is_bag": false,
   "cell_px": [
    [
@@ -8709,7 +8688,7 @@
  "Long Spear": {
   "key": "LongSpear",
   "gd": "res://Items/Exclusive/LongSpear.gd",
-  "zh": "超长矛",
+  "zh": "Long Spear",
   "is_bag": false,
   "cell_px": [
    [
@@ -9206,7 +9185,7 @@
  "Mana Mastery": {
   "key": "ManaMastery",
   "gd": "res://Items/Exclusive/ManaMastery.gd",
-  "zh": "魔法大师",
+  "zh": "Mana Mastery",
   "is_bag": false,
   "cell_px": [
    [
@@ -9457,7 +9436,7 @@
  "Miss Fortune": {
   "key": "MissFortune",
   "gd": "res://Items/Exclusive/MissFortune.gd",
-  "zh": "命运小姐",
+  "zh": "Miss Fortune",
   "is_bag": false,
   "cell_px": [
    [
@@ -9573,32 +9552,25 @@
   ],
   "slot_px": [],
   "sprite": "MoltenGreatsword.png",
-  "img_w": 286,
-  "img_h": 415,
+  "img_w": 144,
+  "img_h": 323,
   "origin_px": [
-   101.05,
-   313.67
+   33.0,
+   221.25
   ],
-  "layers": 3,
+  "layers": 2,
   "layer_meta": [
    {
     "tex": "MoltenGreatsword",
-    "x": 140.05,
-    "y": 253.67,
+    "x": 72.0,
+    "y": 161.25,
     "rot": 0.0,
     "alpha": 1.0
    },
    {
-    "tex": "Flame",
-    "x": 142.89,
-    "y": 184.78,
-    "rot": -0.3019,
-    "alpha": 1.0
-   },
-   {
     "tex": "Socket",
-    "x": 105.05,
-    "y": 137.67,
+    "x": 37.0,
+    "y": 45.25,
     "rot": 0.0,
     "alpha": 1.0
    }
@@ -9607,7 +9579,7 @@
  "Molten Spear": {
   "key": "MoltenSpear",
   "gd": "res://Items/Exclusive/MoltenSpear.gd",
-  "zh": "炽热长矛",
+  "zh": "Molten Spear",
   "is_bag": false,
   "cell_px": [
    [
@@ -9685,39 +9657,32 @@
   ],
   "slot_px": [],
   "sprite": "MoltenSpear2.png",
-  "img_w": 112,
-  "img_h": 403,
+  "img_w": 78,
+  "img_h": 352,
   "origin_px": [
-   55.39,
-   207.5
+   36.25,
+   192.63
   ],
-  "layers": 4,
+  "layers": 3,
   "layer_meta": [
    {
     "tex": "BlazingSpear",
-    "x": 60.39,
-    "y": 207.5,
+    "x": 41.25,
+    "y": 192.63,
     "rot": 0.0,
     "alpha": 1.0
    },
    {
     "tex": "TorchLight",
-    "x": 57.39,
-    "y": 93.5,
+    "x": 38.25,
+    "y": 78.63,
     "rot": 0.0,
     "alpha": 0.78
    },
    {
     "tex": "Socket",
-    "x": 64.39,
-    "y": 128.5,
-    "rot": 0.0,
-    "alpha": 1.0
-   },
-   {
-    "tex": "Flame",
-    "x": 55.95,
-    "y": 201.46,
+    "x": 45.25,
+    "y": 113.63,
     "rot": 0.0,
     "alpha": 1.0
    }
@@ -9813,7 +9778,7 @@
  "Mrs Struggles": {
   "key": "MrsStruggles",
   "gd": "res://Items/Exclusive/MrsStruggles.gd",
-  "zh": "贴贴女士",
+  "zh": "Mrs Struggles",
   "is_bag": false,
   "cell_px": [
    [
@@ -9847,7 +9812,7 @@
  "Mushroom Farm": {
   "key": "MushroomFarm",
   "gd": "res://Items/Exclusive/MushroomFarm.gd",
-  "zh": "蘑菇农场",
+  "zh": "Mushroom Farm",
   "is_bag": false,
   "cell_px": [
    [
@@ -9877,7 +9842,7 @@
  "No Rush Please": {
   "key": "NoRushPlease",
   "gd": "res://Items/Exclusive/NoRushPlease.gd",
-  "zh": "别着急",
+  "zh": "No Rush Please",
   "is_bag": false,
   "cell_px": [
    [
@@ -9952,7 +9917,7 @@
  "Obsidian Dragon": {
   "key": "ObsidianDragon",
   "gd": "res://Items/Exclusive/ObsidianDragon.gd",
-  "zh": "黑晶龙",
+  "zh": "Obsidian Dragon",
   "is_bag": false,
   "cell_px": [
    [
@@ -10091,7 +10056,7 @@
  "Owl Spirit": {
   "key": "OwlSpirit",
   "gd": "res://Items/Exclusive/OwlSpirit.gd",
-  "zh": "幽灵猫头鹰",
+  "zh": "Owl Spirit",
   "is_bag": false,
   "cell_px": [
    [
@@ -10125,7 +10090,7 @@
  "Paradise Birb": {
   "key": "ParadiseBirb",
   "gd": "res://Items/Exclusive/ParadiseBirb.gd",
-  "zh": "极乐小鸟",
+  "zh": "Paradise Birb",
   "is_bag": false,
   "cell_px": [
    [
@@ -10291,38 +10256,31 @@
   ],
   "slot_px": [],
   "sprite": "Phoenix2.png",
-  "img_w": 338,
-  "img_h": 338,
+  "img_w": 329,
+  "img_h": 329,
   "origin_px": [
    167.5,
-   169.5
+   160.5
   ],
-  "layers": 4,
+  "layers": 3,
   "layer_meta": [
    {
     "tex": "Phoenix2",
     "x": 167.5,
-    "y": 169.5,
+    "y": 160.5,
     "rot": 0.0,
     "alpha": 1.0
    },
    {
     "tex": "Socket",
     "x": 98.5,
-    "y": 172.5,
+    "y": 163.5,
     "rot": 0.0,
     "alpha": 1.0
    },
    {
     "tex": "DivingPhoenixLight",
     "x": 164.5,
-    "y": 173.5,
-    "rot": 0.0,
-    "alpha": 1.0
-   },
-   {
-    "tex": "DivingPhoenixLight",
-    "x": 173.5,
     "y": 164.5,
     "rot": 0.0,
     "alpha": 1.0
@@ -10583,7 +10541,7 @@
  "Poison Spear": {
   "key": "PoisonSpear",
   "gd": "res://Items/Exclusive/PoisonSpear.gd",
-  "zh": "剧毒矛",
+  "zh": "Poison Spear",
   "is_bag": false,
   "cell_px": [
    [
@@ -10772,7 +10730,7 @@
  "Power of the Moon": {
   "key": "PoweroftheMoon",
   "gd": "res://Items/Exclusive/PoweroftheMoon.gd",
-  "zh": "月亮之力",
+  "zh": "Power of the Moon",
   "is_bag": false,
   "cell_px": [
    [
@@ -10836,7 +10794,7 @@
  "Prismatic Sword": {
   "key": "PrismaticSword",
   "gd": "res://Items/Exclusive/PrismaticSword.gd",
-  "zh": "彩虹剑",
+  "zh": "Prismatic Sword",
   "is_bag": false,
   "cell_px": [
    [
@@ -11675,7 +11633,7 @@
  "Repeater": {
   "key": "Repeater",
   "gd": "res://Items/Exclusive/Repeater.gd",
-  "zh": "重复触发器",
+  "zh": "Repeater",
   "is_bag": false,
   "cell_px": [
    [
@@ -11735,7 +11693,7 @@
  "Reverse": {
   "key": "Reverse",
   "gd": "res://Items/Exclusive/Reverse.gd",
-  "zh": "反弹！",
+  "zh": "Reverse",
   "is_bag": false,
   "cell_px": [
    [
@@ -11925,7 +11883,7 @@
  "Sapphire Whelp": {
   "key": "SapphireWhelp",
   "gd": "res://Items/Exclusive/SapphireWhelp.gd",
-  "zh": "蓝宝石幼龙",
+  "zh": "Sapphire Whelp",
   "is_bag": false,
   "cell_px": [
    [
@@ -12160,7 +12118,7 @@
  "Serpent Staff": {
   "key": "SerpentStaff",
   "gd": "res://Items/Exclusive/SerpentStaff.gd",
-  "zh": "剧毒蛇杖",
+  "zh": "Serpent Staff",
   "is_bag": false,
   "cell_px": [
    [
@@ -12361,7 +12319,7 @@
  "Shepherds Crook": {
   "key": "ShepherdsCrook",
   "gd": "res://Items/Exclusive/ShepherdsCrook.gd",
-  "zh": "牧羊人的曲柄杖",
+  "zh": "Shepherds Crook",
   "is_bag": false,
   "cell_px": [
    [
@@ -12407,7 +12365,7 @@
  "Shielded": {
   "key": "Shielded",
   "gd": "res://Items/Exclusive/Shielded.gd",
-  "zh": "护盾加强",
+  "zh": "Shielded",
   "is_bag": false,
   "cell_px": [
    [
@@ -12494,7 +12452,7 @@
  "Shiny Shell": {
   "key": "ShinyShell",
   "gd": "res://Items/Exclusive/ShinyShell.gd",
-  "zh": "闪光蜗牛壳",
+  "zh": "Shiny Shell",
   "is_bag": false,
   "cell_px": [
    [
@@ -12655,7 +12613,7 @@
  "Slime Time": {
   "key": "SlimeTime",
   "gd": "res://Items/Exclusive/SlimeTime.gd",
-  "zh": "黏黏派对",
+  "zh": "Slime Time",
   "is_bag": false,
   "cell_px": [
    [
@@ -12757,7 +12715,7 @@
  "Smithing For Dummies": {
   "key": "SmithingForDummies",
   "gd": "res://Items/Exclusive/SmithingForDummies.gd",
-  "zh": "铁匠入门指南",
+  "zh": "Smithing For Dummies",
   "is_bag": false,
   "cell_px": [
    [
@@ -12829,7 +12787,7 @@
  "Snowball": {
   "key": "Snowball",
   "gd": "res://Items/Exclusive/Snowball.gd",
-  "zh": "雪球",
+  "zh": "Snowball",
   "is_bag": false,
   "cell_px": [
    [
@@ -12901,7 +12859,7 @@
  "Snowman": {
   "key": "Snowman",
   "gd": "res://Items/Exclusive/Snowman.gd",
-  "zh": "摇晃雪人",
+  "zh": "Snowman",
   "is_bag": false,
   "cell_px": [
    [
@@ -13078,7 +13036,7 @@
  "Spell Scroll Dark": {
   "key": "SpellScrollDark",
   "gd": "res://Items/Exclusive/SpellScrollDark.gd",
-  "zh": "魔法卷轴：黑暗爆发",
+  "zh": "Spell Scroll Dark",
   "is_bag": false,
   "cell_px": [
    [
@@ -13112,7 +13070,7 @@
  "Spell Scroll Frostbolt": {
   "key": "SpellScrollFrostbolt",
   "gd": "res://Items/Exclusive/SpellScrollFrostbolt.gd",
-  "zh": "魔法卷轴：冰霜箭",
+  "zh": "Spell Scroll Frostbolt",
   "is_bag": false,
   "cell_px": [
    [
@@ -13146,7 +13104,7 @@
  "Spell Scroll Ice": {
   "key": "SpellScrollIce",
   "gd": "res://Items/Exclusive/SpellScrollIce.gd",
-  "zh": "魔法卷轴：冰墙",
+  "zh": "Spell Scroll Ice",
   "is_bag": false,
   "cell_px": [
    [
@@ -13248,7 +13206,7 @@
  "Spicy Banana": {
   "key": "SpicyBanana",
   "gd": "res://Items/Exclusive/SpicyBanana.gd",
-  "zh": "火辣香蕉",
+  "zh": "Spicy Banana",
   "is_bag": false,
   "cell_px": [
    [
@@ -13617,7 +13575,7 @@
  "Stable Recombobulator": {
   "key": "StableRecombobulator",
   "gd": "res://Items/Exclusive/Recombobulator.gd",
-  "zh": "稳定重组器",
+  "zh": "Stable Recombobulator",
   "is_bag": false,
   "cell_px": [
    [
@@ -13647,7 +13605,7 @@
  "Staff of Fire": {
   "key": "StaffofFire",
   "gd": "res://Items/Exclusive/StaffofFire.gd",
-  "zh": "烈火之杖",
+  "zh": "Staff of Fire",
   "is_bag": false,
   "cell_px": [
    [
@@ -13703,7 +13661,7 @@
  "Star of Courage": {
   "key": "StarofCourage",
   "gd": "res://Items/Exclusive/StarofCourage.gd",
-  "zh": "勇气之星",
+  "zh": "Star of Courage",
   "is_bag": false,
   "cell_px": [
    [
@@ -13854,7 +13812,7 @@
  "Stone Badge": {
   "key": "StoneBadge",
   "gd": "res://Items/Exclusive/StoneBadge.gd",
-  "zh": "石头徽章",
+  "zh": "Stone Badge",
   "is_bag": false,
   "cell_px": [
    [
@@ -13997,7 +13955,7 @@
  "Stone Shoes": {
   "key": "StoneShoes",
   "gd": "res://Items/Exclusive/StoneShoes.gd",
-  "zh": "石靴",
+  "zh": "Stone Shoes",
   "is_bag": false,
   "cell_px": [
    [
@@ -14038,7 +13996,7 @@
  "Strong Divine Potion": {
   "key": "StrongDivinePotion",
   "gd": "res://Items/Exclusive/StrongDivinePotion.gd",
-  "zh": "强力神圣魔药",
+  "zh": "Strong Divine Potion",
   "is_bag": false,
   "cell_px": [
    [
@@ -14079,7 +14037,7 @@
  "Strong Mana Potion": {
   "key": "StrongManaPotion",
   "gd": "res://Items/ManaPotion.gd",
-  "zh": "强力魔法魔药",
+  "zh": "Strong Mana Potion",
   "is_bag": false,
   "cell_px": [
    [
@@ -14120,7 +14078,7 @@
  "Strong Vampiric Potion": {
   "key": "StrongVampiricPotion",
   "gd": "res://Items/Exclusive/StrongVampiricPotion.gd",
-  "zh": "强力吸血魔药",
+  "zh": "Strong Vampiric Potion",
   "is_bag": false,
   "cell_px": [
    [
@@ -14442,7 +14400,7 @@
  "Thornburst": {
   "key": "Thornburst",
   "gd": "res://Items/Exclusive/Thornburst.gd",
-  "zh": "尖刺爆发",
+  "zh": "Thornburst",
   "is_bag": false,
   "cell_px": [
    [
@@ -14569,7 +14527,7 @@
  "Thors Hammer": {
   "key": "ThorsHammer",
   "gd": "res://Items/Exclusive/ThorsHammer.gd",
-  "zh": "雷神之锤",
+  "zh": "Thors Hammer",
   "is_bag": false,
   "cell_px": [
    [
@@ -14712,7 +14670,7 @@
  "Time Dilator": {
   "key": "TimeDilator",
   "gd": "res://Items/Exclusive/TimeDilator.gd",
-  "zh": "时间扩大器",
+  "zh": "Time Dilator",
   "is_bag": false,
   "cell_px": [
    [
@@ -14742,7 +14700,7 @@
  "Time Melting": {
   "key": "TimeMelting",
   "gd": "res://Items/Exclusive/TimeMelting.gd",
-  "zh": "时间融化",
+  "zh": "Time Melting",
   "is_bag": false,
   "cell_px": [
    [
@@ -15168,7 +15126,7 @@
  "Unstable Recombobulator": {
   "key": "UnstableRecombobulator",
   "gd": "res://Items/Exclusive/Recombobulator.gd",
-  "zh": "不稳定重组器",
+  "zh": "Unstable Recombobulator",
   "is_bag": false,
   "cell_px": [
    [
@@ -15228,7 +15186,7 @@
  "Vampiric Potion": {
   "key": "VampiricPotion",
   "gd": "res://Items/Exclusive/VampiricPotion.gd",
-  "zh": "吸血魔药",
+  "zh": "Vampiric Potion",
   "is_bag": false,
   "cell_px": [
    [
@@ -15579,7 +15537,7 @@
  "Winged Boots": {
   "key": "WingedBoots",
   "gd": "res://Items/Exclusive/WingedBoots.gd",
-  "zh": "飞鞋",
+  "zh": "Winged Boots",
   "is_bag": false,
   "cell_px": [
    [
@@ -15883,7 +15841,7 @@
  "Fanfare": {
   "key": "Fanfare",
   "gd": "res://Items/Fanfare.gd",
-  "zh": "Fanfare",
+  "zh": "号角",
   "is_bag": false,
   "cell_px": [
    [
@@ -16061,7 +16019,7 @@
  "Burning Coal": {
   "key": "BurningCoal",
   "gd": "res://Items/BurningCoal.gd",
-  "zh": "Burning Coal",
+  "zh": "燃烧煤炭",
   "is_bag": false,
   "cell_px": [
    [
@@ -16098,7 +16056,7 @@
  "Chipped Amethyst": {
   "key": "ChippedAmethyst",
   "gd": "res://Items/Gems/Amethyst.gd",
-  "zh": "Chipped Amethyst",
+  "zh": "紫水晶碎片",
   "is_bag": false,
   "cell_px": [
    [
@@ -16128,7 +16086,7 @@
  "Chipped Emerald": {
   "key": "ChippedEmerald",
   "gd": "res://Items/Gems/Emerald.gd",
-  "zh": "Chipped Emerald",
+  "zh": "翡翠碎片",
   "is_bag": false,
   "cell_px": [
    [
@@ -16158,7 +16116,7 @@
  "Chipped Ruby": {
   "key": "ChippedRuby",
   "gd": "res://Items/Gems/Ruby.gd",
-  "zh": "Chipped Ruby",
+  "zh": "红宝石碎片",
   "is_bag": false,
   "cell_px": [
    [
@@ -16188,7 +16146,7 @@
  "Chipped Sapphire": {
   "key": "ChippedSapphire",
   "gd": "res://Items/Gems/Sapphire.gd",
-  "zh": "Chipped Sapphire",
+  "zh": "蓝宝石碎片",
   "is_bag": false,
   "cell_px": [
    [
@@ -16218,7 +16176,7 @@
  "Chipped Topaz": {
   "key": "ChippedTopaz",
   "gd": "res://Items/Gems/Topaz.gd",
-  "zh": "劣质紫水晶",
+  "zh": "黄宝石碎片",
   "is_bag": false,
   "cell_px": [
    [
@@ -16248,7 +16206,7 @@
  "Corrupted Crystal": {
   "key": "CorruptedCrystal",
   "gd": "res://Items/Gems/CorruptedCrystal.gd",
-  "zh": "Corrupted Crystal",
+  "zh": "腐败水晶",
   "is_bag": false,
   "cell_px": [
    [
@@ -16278,7 +16236,7 @@
  "Flawed Amethyst": {
   "key": "FlawedAmethyst",
   "gd": "res://Items/Gems/Amethyst.gd",
-  "zh": "Flawed Amethyst",
+  "zh": "劣质紫水晶",
   "is_bag": false,
   "cell_px": [
    [
@@ -16308,7 +16266,7 @@
  "Flawed Emerald": {
   "key": "FlawedEmerald",
   "gd": "res://Items/Gems/Emerald.gd",
-  "zh": "Flawed Emerald",
+  "zh": "劣质翡翠",
   "is_bag": false,
   "cell_px": [
    [
@@ -16338,7 +16296,7 @@
  "Flawed Ruby": {
   "key": "FlawedRuby",
   "gd": "res://Items/Gems/Ruby.gd",
-  "zh": "Flawed Ruby",
+  "zh": "劣质红宝石",
   "is_bag": false,
   "cell_px": [
    [
@@ -16368,7 +16326,7 @@
  "Flawed Sapphire": {
   "key": "FlawedSapphire",
   "gd": "res://Items/Gems/Sapphire.gd",
-  "zh": "Flawed Sapphire",
+  "zh": "劣质蓝宝石",
   "is_bag": false,
   "cell_px": [
    [
@@ -16428,7 +16386,7 @@
  "Flawless Amethyst": {
   "key": "FlawlessAmethyst",
   "gd": "res://Items/Gems/Amethyst.gd",
-  "zh": "Flawless Amethyst",
+  "zh": "优质紫水晶",
   "is_bag": false,
   "cell_px": [
    [
@@ -16458,7 +16416,7 @@
  "Flawless Emerald": {
   "key": "FlawlessEmerald",
   "gd": "res://Items/Gems/Emerald.gd",
-  "zh": "Flawless Emerald",
+  "zh": "优质翡翠",
   "is_bag": false,
   "cell_px": [
    [
@@ -16488,7 +16446,7 @@
  "Flawless Ruby": {
   "key": "FlawlessRuby",
   "gd": "res://Items/Gems/Ruby.gd",
-  "zh": "Flawless Ruby",
+  "zh": "优质红宝石",
   "is_bag": false,
   "cell_px": [
    [
@@ -16518,7 +16476,7 @@
  "Flawless Sapphire": {
   "key": "FlawlessSapphire",
   "gd": "res://Items/Gems/Sapphire.gd",
-  "zh": "Flawless Sapphire",
+  "zh": "优质蓝宝石",
   "is_bag": false,
   "cell_px": [
    [
@@ -16548,7 +16506,7 @@
  "Flawless Topaz": {
   "key": "FlawlessTopaz",
   "gd": "res://Items/Gems/Topaz.gd",
-  "zh": "普通黄宝石",
+  "zh": "优质黄宝石",
   "is_bag": false,
   "cell_px": [
    [
@@ -16578,7 +16536,7 @@
  "Lump of Coal": {
   "key": "LumpofCoal",
   "gd": "res://Items/Gems/LumpofCoal.gd",
-  "zh": "治疗草药",
+  "zh": "一坨煤炭",
   "is_bag": false,
   "cell_px": [
    [
@@ -16608,7 +16566,7 @@
  "Perfect Amethyst": {
   "key": "PerfectAmethyst",
   "gd": "res://Items/Gems/Amethyst.gd",
-  "zh": "Perfect Amethyst",
+  "zh": "完美紫水晶",
   "is_bag": false,
   "cell_px": [
    [
@@ -16638,7 +16596,7 @@
  "Perfect Emerald": {
   "key": "PerfectEmerald",
   "gd": "res://Items/Gems/Emerald.gd",
-  "zh": "Perfect Emerald",
+  "zh": "完美翡翠",
   "is_bag": false,
   "cell_px": [
    [
@@ -16668,7 +16626,7 @@
  "Perfect Ruby": {
   "key": "PerfectRuby",
   "gd": "res://Items/Gems/Ruby.gd",
-  "zh": "Perfect Ruby",
+  "zh": "完美红宝石",
   "is_bag": false,
   "cell_px": [
    [
@@ -16698,7 +16656,7 @@
  "Perfect Sapphire": {
   "key": "PerfectSapphire",
   "gd": "res://Items/Gems/Sapphire.gd",
-  "zh": "Perfect Sapphire",
+  "zh": "完美蓝宝石",
   "is_bag": false,
   "cell_px": [
    [
@@ -16728,7 +16686,7 @@
  "Perfect Topaz": {
   "key": "PerfectTopaz",
   "gd": "res://Items/Gems/Topaz.gd",
-  "zh": "荷包蛋圣锅",
+  "zh": "完美黄宝石",
   "is_bag": false,
   "cell_px": [
    [
@@ -16758,7 +16716,7 @@
  "Regular Amethyst": {
   "key": "RegularAmethyst",
   "gd": "res://Items/Gems/Amethyst.gd",
-  "zh": "Regular Amethyst",
+  "zh": "普通紫水晶",
   "is_bag": false,
   "cell_px": [
    [
@@ -16788,7 +16746,7 @@
  "Regular Emerald": {
   "key": "RegularEmerald",
   "gd": "res://Items/Gems/Emerald.gd",
-  "zh": "Regular Emerald",
+  "zh": "普通翡翠",
   "is_bag": false,
   "cell_px": [
    [
@@ -16818,7 +16776,7 @@
  "Regular Ruby": {
   "key": "RegularRuby",
   "gd": "res://Items/Gems/Ruby.gd",
-  "zh": "紫水晶碎片",
+  "zh": "普通红宝石",
   "is_bag": false,
   "cell_px": [
    [
@@ -16848,7 +16806,7 @@
  "Regular Sapphire": {
   "key": "RegularSapphire",
   "gd": "res://Items/Gems/Sapphire.gd",
-  "zh": "Regular Sapphire",
+  "zh": "普通蓝宝石",
   "is_bag": false,
   "cell_px": [
    [
@@ -16878,7 +16836,7 @@
  "Regular Topaz": {
   "key": "RegularTopaz",
   "gd": "res://Items/Gems/Topaz.gd",
-  "zh": "幸运存钱罐",
+  "zh": "普通黄宝石",
   "is_bag": false,
   "cell_px": [
    [
@@ -16938,7 +16896,7 @@
  "Gingerbread Man": {
   "key": "GingerbreadMan",
   "gd": "res://Items/GingerbreadMan.gd",
-  "zh": "姜饼杰瑞",
+  "zh": "Gingerbread Man",
   "is_bag": false,
   "cell_px": [
    [
@@ -18403,7 +18361,7 @@
  "Mr Struggles": {
   "key": "MrStruggles",
   "gd": "res://Items/MrStruggles.gd",
-  "zh": "抱抱先生",
+  "zh": "Mr Struggles",
   "is_bag": false,
   "cell_px": [
    [
@@ -18674,7 +18632,7 @@
  "Platin Customer Card": {
   "key": "PlatinCustomerCard",
   "gd": "res://Items/PlatinCustomerCard.gd",
-  "zh": "白金会员卡",
+  "zh": "Platin Customer Card",
   "is_bag": false,
   "cell_px": [
    [
@@ -19197,7 +19155,7 @@
  "Rib Saw Blade": {
   "key": "RibSawBlade",
   "gd": "res://Items/RibSawBlade.gd",
-  "zh": "锯刃",
+  "zh": "Rib Saw Blade",
   "is_bag": false,
   "cell_px": [
    [

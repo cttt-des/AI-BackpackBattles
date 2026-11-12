@@ -296,6 +296,18 @@ def collect_layers(nodes, tex_map):
         img_path = res_to_file(res)
         if img_path is None:
             continue
+        mod = _color(p.get("modulate"))
+        # ★ shader 发光层排除：modulate RGB 远超 1 是给**自定义火焰/光环
+        #   shader** 的亮度倍率（MoltenGreatsword/MoltenSpear2/Phoenix2 的
+        #   Icon/Flames Color(3,3,3,1)、Automanaton 的 Aura Color(5,5,5,1)）。
+        #   这些层的实际观感由 shader 动画决定，静态合成无法复现；按普通
+        #   alpha 混合乘上 HDR 倍率会被裁剪成**不透明白块**把本体盖住。
+        #   判据：RGB>2.05 且 alpha>0.9 —— 3x/5x 的色调范围一半以上被裁剪，
+        #   必然白块；而 1.2~1.5 的轻度高光（ManathirstInner 1.2、
+        #   Halberd/SteelDragon/Whetstone3 的 Shine 1.5+低alpha、
+        #   PrismaticSword 玻璃 4x+alpha0.2）合成正常，全部保留。
+        if max(mod[0], mod[1], mod[2]) > 2.05 and mod[3] > 0.9:
+            continue
         try:
             img = Image.open(img_path).convert("RGBA")
         except Exception:
@@ -305,7 +317,7 @@ def collect_layers(nodes, tex_map):
             "tex": res,
             "img": img,
             "m": mats.get(path, ID),
-            "mod": _color(p.get("modulate")),
+            "mod": mod,
             "centered": p.get("centered", "true") != "false",
             "offset": _vec2(p.get("offset")),
             "flip_h": p.get("flip_h") == "true",
@@ -492,32 +504,75 @@ _ALIAS_TO_KEY = {
 
 
 # ======================= 主流程 =======================
+def _read_csv_zh(path: Path, out: dict, overwrite: bool) -> int:
+    """读一个官方 CSV 的 en→zh_Hans_CN 列。overwrite=False 时只补缺。"""
+    n = 0
+    try:
+        import csv as _csv
+        with path.open(encoding="utf-8-sig", newline="") as fp:
+            rd = _csv.reader(fp)
+            header = next(rd, None) or []
+            try:
+                i_en = header.index("en")
+                i_zh = header.index("zh_Hans_CN")
+            except ValueError:
+                return 0
+            for row in rd:
+                if len(row) > max(i_en, i_zh):
+                    en, zh = row[i_en].strip(), row[i_zh].strip()
+                    if en and zh and (overwrite or en not in out):
+                        out[en] = zh
+                        n += 1
+    except Exception:  # noqa: BLE001
+        pass
+    return n
+
+
 def load_zh_map():
-    """中文名：优先游戏内 Sheets/CSV/Full.csv（官方翻译真值），再叠旧库与补充表。"""
+    """中文名映射。优先级（高→低）：
+      1. 官方 CSV（Sheets/CSV/*.csv）——Items.csv 是物品名全量表（含全部
+         宝石/ Exclusive 物品），必须参与且优先于 Full.csv（后者只覆盖
+         122 个名字）；ItemBook 用它，游戏内名称即此。
+      2. item_zh_official.json —— 从运行版 pck 的 .translation 提取
+         （tools/gen_zh_supplement.py），同为官方数据。
+      3. 旧 item_db.json / items_zh_official.json / zh_pairs.json ——
+         仅兜底补缺。
+
+    ★ 历史教训：旧实现只读 Full.csv，且旧 item_db.json 的 zh 经
+      setdefault 反压官方表——旧库里宝石一族的中文名整体错位
+      （Chipped Topaz 拿到「劣质紫水晶」、Regular Ruby 拿到
+      「紫水晶碎片」、Perfect Topaz 拿到「荷包蛋圣锅」…），GUI 标签
+      与贴图对不上（贴图本身是对的）。
+    """
     out = {}
-    csv = SRC_ROOT / ".assets" / "Sheets" / "CSV" / "Full.csv"
-    if not csv.exists():
-        csv = FALLBACK_ROOT / ".assets" / "Sheets" / "CSV" / "Full.csv"
-    if csv.exists():
+    # 1) 官方 CSV：低优先级先读、高优先级后读（后读覆盖）。
+    #    Items.csv = 物品名全量表（最高优先）；Full.csv 只覆盖部分名字。
+    csv_dir = SRC_ROOT / ".assets" / "Sheets" / "CSV"
+    if not csv_dir.exists():
+        csv_dir = FALLBACK_ROOT / ".assets" / "Sheets" / "CSV"
+    if csv_dir.exists():
+        for name in ("Flavor.csv", "Keywords.csv", "Interface.csv",
+                     "Full.csv", "Items.csv"):
+            p = csv_dir / name
+            if p.exists():
+                _read_csv_zh(p, out, overwrite=True)
+    # 2) 官方翻译提取表（setdefault，不覆盖 CSV）
+    for name in ("item_zh_official.json",):
+        p = OUT_DIR / name
+        if not p.exists():
+            continue
         try:
-            import csv as _csv
-            with csv.open(encoding="utf-8-sig", newline="") as fp:
-                rd = _csv.reader(fp)
-                header = next(rd, None) or []
-                try:
-                    i_en = header.index("en")
-                    i_zh = header.index("zh_Hans_CN")
-                except ValueError:
-                    i_en, i_zh = 1, 3
-                for row in rd:
-                    if len(row) > max(i_en, i_zh):
-                        en, zh = row[i_en].strip(), row[i_zh].strip()
-                        if en and zh:
-                            out[en] = zh
+            d = json.loads(p.read_text(encoding="utf-8"))
         except Exception:
-            pass
-    for name in ("item_db.json", "item_zh_official.json",
-                 "items_zh_official.json", "zh_pairs.json"):
+            continue
+        if isinstance(d, dict) and "names" in d:
+            d = d["names"]
+        if isinstance(d, dict):
+            for k, v in d.items():
+                if isinstance(v, str) and v:
+                    out.setdefault(k, v)
+    # 3) 旧库 / 旧补充表（最后，只补缺；★绝不允许反压上面两级）
+    for name in ("items_zh_official.json", "zh_pairs.json", "item_db.json"):
         p = OUT_DIR / name
         if not p.exists():
             continue

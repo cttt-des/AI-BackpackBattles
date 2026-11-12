@@ -129,3 +129,4 @@ dist/*.whl
 /*.exp
 /*.pyd.mingw-bak
 oracle_chunk_*.err.log
+assets/_audit/
