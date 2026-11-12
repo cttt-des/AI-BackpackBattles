@@ -14,6 +14,6 @@ cdef class Exclusive__Bazooka(_base_cls_Exclusive__Bazooka):
     cdef public object heatNeeded
     cdef public object luck
     cdef public object luckNeeded
-    cdef public object stunResistActive
+    cdef public bint stunResistActive
     cdef public object uses
 

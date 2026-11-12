@@ -10,7 +10,7 @@ from gd_core_py.gd_core_items.Exclusive.SpiritCompanion cimport SpiritCompanion 
 
 cdef class Exclusive__BadgerSpirit(_base_cls_Exclusive__BadgerSpirit):
 
-    cdef public object activated
+    cdef public bint activated
     cdef public object healthThreshold
     cdef public object manaNeeded
 

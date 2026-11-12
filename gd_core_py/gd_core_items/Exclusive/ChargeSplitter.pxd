@@ -10,7 +10,7 @@ from gd_core_py.gd_core_items.Item cimport Item_2 as _base_cls_Exclusive__Charge
 
 cdef class Exclusive__ChargeSplitter(_base_cls_Exclusive__ChargeSplitter):
 
-    cdef public object hasActivated
+    cdef public bint hasActivated
     cdef public object heatNeeded
     cdef public object luck
 

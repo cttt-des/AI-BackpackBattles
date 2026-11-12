@@ -3715,18 +3715,18 @@ def _l3_numeric_types(gd_rel):
 
     返回 {field: ctype}。float/无声明/字面量外推断（如 := someExpr）不收。
 
-    ★ 2026-11-11 收尾：发射暂禁（return {}）——typed 槽编译迭代未收尾，
-      按止损回退 object 形态（已验证的 L2 态零重编）。启用=删掉本 return，
-      重跑生成器 + 按损坏模块迭代 _L3_BLOCKLIST + 三闸 + 1690。"""
-    return {}
+    ★ 2026-11-12 重开（§H-5，撤回 §B-2 判否）：object 槽 vs 数值槽微基准差
+      13-40x（§H-2），PCG32 u64 先例 1.9x——机制启用。
+    ★ 安全面收窄（§H-5 步骤 3）：只收【显式注解】`: bool` / `: int`——
+      GDScript 注解是强制类型；字面量推断（var x = 5）是动态 Variant，
+      运行期可被赋 None/float，不收。float 面不收（f32 语义敏感）。"""
     global _L3_RE
     import os as _os
     import re as _re
     if _L3_RE is None:
         _L3_RE = _re.compile(
             r'^var ([A-Za-z_][A-Za-z_0-9]*)'
-            r'(?: *: *(bool|int)(?!\w))?'
-            r' *(?:= *(True|False|-?\d+)(?![.\w]))?', _re.M)
+            r' *: *(bool|int)(?!\w)', _re.M)
     src_path = _os.path.join(_os.path.dirname(_os.path.dirname(
         _os.path.abspath(__file__))), gd_rel)
     try:
@@ -3735,11 +3735,8 @@ def _l3_numeric_types(gd_rel):
         return {}
     out = {}
     for mm in _L3_RE.finditer(src):
-        name, ann, lit = mm.group(1), mm.group(2), mm.group(3)
-        if ann in _L3_TYPE:
-            out[name] = _L3_TYPE[ann]
-        elif lit is not None:
-            out[name] = 'bint' if lit in ('True', 'False') else 'long long'
+        name, ann = mm.group(1), mm.group(2)
+        out[name] = _L3_TYPE[ann]
     return out
 
 

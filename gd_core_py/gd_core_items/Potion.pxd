@@ -18,6 +18,6 @@ cdef class Potion_2(_base_cls_Potion_2):
     cdef public object fluidGradient
     cdef public object fluidGradientTex
     cdef public object fluidTween
-    cdef public object isFull
+    cdef public bint isFull
     cdef public object potionColor
 

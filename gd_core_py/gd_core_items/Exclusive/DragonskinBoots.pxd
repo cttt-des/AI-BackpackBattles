@@ -10,5 +10,5 @@ from gd_core_py.gd_core_items.Item cimport Item_2 as _base_cls_Exclusive__Dragon
 
 cdef class Exclusive__DragonskinBoots(_base_cls_Exclusive__DragonskinBoots):
 
-    cdef public object hasActivated
+    cdef public bint hasActivated
 

@@ -12,7 +12,7 @@ cdef class Exclusive__ArcaneBoots(_base_cls_Exclusive__ArcaneBoots):
 
     cdef public object bonusSpeed
     cdef public object empower
-    cdef public object hasActivated
+    cdef public bint hasActivated
     cdef public object healthThreshold
     cdef public object luck
     cdef public object manaNeeded

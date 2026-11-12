@@ -14,7 +14,7 @@ cdef class Exclusive__Automanaton(_base_cls_Exclusive__Automanaton):
     cdef public object bonusSpeed
     cdef public object damReduction
     cdef public object dmgReductionTimer
-    cdef public object hasActivated
+    cdef public bint hasActivated
     cdef public object healthThreshold
     cdef public object manaNeeded
     cdef public object numDebuffs

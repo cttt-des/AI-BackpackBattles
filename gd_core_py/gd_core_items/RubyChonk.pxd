@@ -11,7 +11,7 @@ from gd_core_py.gd_core_items.Weapon cimport Weapon_2 as _base_cls_RubyChonk_2
 cdef class RubyChonk_2(_base_cls_RubyChonk_2):
 
     cdef public object activationParticles
-    cdef public object hasStunned
+    cdef public bint hasStunned
     cdef public object heatThreshold
-    cdef public object heatThresholdReached
+    cdef public bint heatThresholdReached
 

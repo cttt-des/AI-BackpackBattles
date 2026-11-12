@@ -10,11 +10,11 @@ from gd_core_py.gd_core_items.Weapon cimport Weapon_2 as _base_cls_Exclusive__St
 
 cdef class Exclusive__StoneGolem(_base_cls_Exclusive__StoneGolem):
 
-    cdef public object activated
+    cdef public bint activated
     cdef public object activationParticles1
     cdef public object activationParticles2
     cdef public object bagOfStonesDescriptor
     cdef public object empower
-    cdef public object hasStunned
+    cdef public bint hasStunned
     cdef public object regenThreshold
 

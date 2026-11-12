@@ -12,7 +12,7 @@ cdef class ManaOrb_2(_base_cls_ManaOrb_2):
 
     cdef public object _bonusBuffs
     cdef public object _manaNeeded
-    cdef public object activated
+    cdef public bint activated
     cdef public object buffs
     cdef public object light
     cdef public object mana

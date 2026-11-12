@@ -12,7 +12,7 @@ cdef class Exclusive__ConTrapTron(_base_cls_Exclusive__ConTrapTron):
 
     cdef public object cdAdvanceBase
     cdef public object cdAdvanceBonus
-    cdef public object hasActivated
+    cdef public bint hasActivated
     cdef public object healthThreshold
     cdef public object speedMalus
 

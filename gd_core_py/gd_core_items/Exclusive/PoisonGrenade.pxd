@@ -15,7 +15,7 @@ cdef class Exclusive__PoisonGrenade(_base_cls_Exclusive__PoisonGrenade):
     cdef public object lightAni
     cdef public object luckNeeded
     cdef public object poison
-    cdef public object poisonCritActive
+    cdef public bint poisonCritActive
     cdef public object selfPoison
     cdef public object tween
 

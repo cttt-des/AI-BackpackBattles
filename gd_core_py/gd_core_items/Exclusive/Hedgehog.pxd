@@ -11,7 +11,7 @@ from gd_core_py.gd_core_items.Exclusive.ForestFriend cimport Exclusive__ForestFr
 cdef class Exclusive__Hedgehog(_base_cls_Exclusive__Hedgehog):
 
     cdef public object damagePerSpike
-    cdef public object hasActivated
+    cdef public bint hasActivated
     cdef public object healthThreshold
     cdef public object spikes
 

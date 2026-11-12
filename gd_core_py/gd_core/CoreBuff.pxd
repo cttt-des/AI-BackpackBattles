@@ -25,7 +25,7 @@ cdef class CoreBuff(GodotObject):
     cdef public object _nextTemporaryTimeout
     cdef public object _permanentStacks
     cdef public object _resistStacks
-    cdef public object _timer_active
+    cdef public bint _timer_active
     cdef public object _timer_eng
     cdef public object _timer_left
     cdef public object _timer_seen
@@ -33,7 +33,7 @@ cdef class CoreBuff(GodotObject):
     cdef public object character
     cdef public object cleanseProtectionChancePercent
     cdef public object ctx
-    cdef public object isBuff
+    cdef public bint isBuff
     cdef public object reflectChancePercent
     cdef public object resistChancePercent
     cdef public object signalName

@@ -14,7 +14,7 @@ cdef class Exclusive__Stoned(_base_cls_Exclusive__Stoned):
     cdef public object boostedStones
     cdef public object damReduction
     cdef public object damReductionGiven
-    cdef public object protectionActive
+    cdef public bint protectionActive
     cdef public object stoneArmorDescriptor
     cdef public object stoneDescriptor
     cdef public object stoneGolemDescriptor

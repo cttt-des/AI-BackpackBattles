@@ -11,7 +11,7 @@ from gd_core_py.gd_core_items.Item cimport Item_2 as _base_cls_Exclusive__SpellS
 cdef class Exclusive__SpellScrollIce(_base_cls_Exclusive__SpellScrollIce):
 
     cdef public object _coldInflicted
-    cdef public object activated
+    cdef public bint activated
     cdef public object cold
     cdef public object maxCold
 

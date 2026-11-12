@@ -13,6 +13,6 @@ cdef class Exclusive__WingedBoots(_base_cls_Exclusive__WingedBoots):
     cdef public object debuffs
     cdef public object dodges
     cdef public object empower
-    cdef public object hasActivated
+    cdef public bint hasActivated
     cdef public object healthThreshold
 

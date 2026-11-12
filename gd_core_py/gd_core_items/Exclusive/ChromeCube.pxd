@@ -10,7 +10,7 @@ from gd_core_py.gd_core_items.Exclusive.Cube cimport Cube as _base_cls_Exclusive
 
 cdef class Exclusive__ChromeCube(_base_cls_Exclusive__ChromeCube):
 
-    cdef public object hasActivated
+    cdef public bint hasActivated
     cdef public object healReduction
     cdef public object healthThreshold
 

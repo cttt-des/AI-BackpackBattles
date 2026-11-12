@@ -12,7 +12,7 @@ cdef class Gems__CorruptedCrystal(_base_cls_Gems__CorruptedCrystal):
 
     cdef public object _debuffsInflicted
     cdef public object blockGain
-    cdef public object damageBonusApplied
+    cdef public bint damageBonusApplied
     cdef public object damageFactor
     cdef public object debuffsNeeded
     cdef public object healthThreshold

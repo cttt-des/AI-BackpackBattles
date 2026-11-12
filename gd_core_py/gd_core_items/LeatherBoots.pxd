@@ -10,6 +10,6 @@ from gd_core_py.gd_core_items.Item cimport Item_2 as _base_cls_LeatherBoots_2
 
 cdef class LeatherBoots_2(_base_cls_LeatherBoots_2):
 
-    cdef public object hasActivated
+    cdef public bint hasActivated
     cdef public object healthThreshold
 

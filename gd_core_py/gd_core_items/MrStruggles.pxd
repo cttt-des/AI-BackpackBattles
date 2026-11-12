@@ -13,7 +13,7 @@ cdef class MrStruggles_2(_base_cls_MrStruggles_2):
     cdef public object activationParticles
     cdef public object bonusSpeed
     cdef public object fatigueDam
-    cdef public object hasActivated
+    cdef public bint hasActivated
     cdef public object healthThreshold
     cdef public object speedBuffParticles1
     cdef public object speedBuffParticles2

@@ -12,7 +12,7 @@ cdef class Exclusive__MegaClover(_base_cls_Exclusive__MegaClover):
 
     cdef public object _luckNeeded
     cdef public object _numBuffs
-    cdef public object activated
+    cdef public bint activated
     cdef public object sales
     cdef public object stackTypes
 

@@ -11,5 +11,5 @@ from gd_core_py.gd_core_items.Stone cimport Stone_2 as _base_cls_ArtifactStoneHe
 cdef class ArtifactStoneHeat_2(_base_cls_ArtifactStoneHeat_2):
 
     cdef public object activationParticles
-    cdef public object dmgBonusActive
+    cdef public bint dmgBonusActive
 

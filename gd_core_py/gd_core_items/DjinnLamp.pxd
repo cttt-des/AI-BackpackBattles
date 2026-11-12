@@ -10,7 +10,7 @@ from gd_core_py.gd_core_items.Item cimport Item_2 as _base_cls_DjinnLamp_2
 
 cdef class DjinnLamp_2(_base_cls_DjinnLamp_2):
 
-    cdef public object activated
+    cdef public bint activated
     cdef public object activationParticles
     cdef public object affectedWeapon
     cdef public object healthNeeded

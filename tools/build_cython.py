@@ -29,6 +29,29 @@ MSVC_VCVARS = (r"C:\Program Files (x86)\Microsoft Visual Studio\2022"
                r"\BuildTools\VC\Auxiliary\Build\vcvars64.bat")
 BACKEND = "mingw"
 
+#: MSVC 中间产物（.obj / .lib / .exp / .pdb）落点。
+#  ★ 2026-11-12：cl **只给 /OUT:**（最终 .pyd）时，中间产物按 cwd 落盘——而
+#    本脚本两处 cl 都是 cwd=ROOT，等于把 525 模块 × 3 类文件全砸进仓库根目录
+#    （实测 1575 个 / 143 MB，每次打包重来一遍）。逐模块显式 /Fo /Fd /
+#    /link /IMPLIB 指到 build/ 下（该目录已 .gitignore，双保险）。
+OBJ_DIR = os.path.join(ROOT, "build", "cython_objs")
+
+
+def artifact_paths(rel_base: str) -> dict:
+    """按模块相对路径（不含扩展名）给出 MSVC 中间产物的绝对路径。
+
+    stem 扁平化（"gd_core_py/gd_core/CoreItem" → "gd_core_py_gd_core_CoreItem"），
+    平铺在 build/cython_objs/ 下：① 同名模块不同目录也不会互相覆盖；
+    ② 不建深层目录树，便于整体删除回滚。
+    """
+    stem = rel_base.replace("/", "_").replace("\\", "_").replace(":", "_")
+    os.makedirs(OBJ_DIR, exist_ok=True)
+    return {
+        "obj": os.path.join(OBJ_DIR, stem + ".obj"),
+        "pdb": os.path.join(OBJ_DIR, stem + ".pdb"),
+        "lib": os.path.join(OBJ_DIR, stem + ".lib"),
+    }
+
 # F1 热 8 模块（规划顺序：CoreItem → CoreCombat → CoreCharacter → CoreTimer →
 # CoreRng → CoreBuff → CoreGrid → CoreEventBus）；逐一单独上闸
 HOT8 = [
@@ -83,12 +106,16 @@ def build_one(py_path: str) -> str:
         lto = "/GL" if os.environ.get("GD_LTO") == "1" else ""
         ltcg = "/LTCG" if os.environ.get("GD_LTO") == "1" else ""
         os_flag = "/Os" if os.environ.get("GD_OS") == "1" else ""
+        # ★ 中间产物显式重定向（否则 .obj/.lib/.exp/.pdb 全落 cwd=ROOT）
+        ap = artifact_paths(base)
         cmd_line = (
             f'call "{MSVC_VCVARS}" >nul 2>&1 && cl /O2 {os_flag} /LD /MD /nologo '
             f'{lto} /I "{inc}" {c_path} '
-            f'/link {ltcg} /LIBPATH:"{libs_dir}" python314.lib '
+            f'/Fo"{ap["obj"]}" /Fd"{ap["pdb"]}" '
+            f'/link {ltcg} /IMPLIB:"{ap["lib"]}" '
+            f'/LIBPATH:"{libs_dir}" python314.lib '
             f'/OUT:{pyd_path}')
-        with io.open(bat, "w", encoding="ascii", newline="") as fh:
+        with io.open(bat, "w", encoding="gbk", newline="") as fh:
             fh.write("@echo off\r\n" + cmd_line + "\r\n")
         r = subprocess.run(["cmd", "/c", bat], cwd=ROOT,
                            capture_output=True, text=True,
@@ -177,10 +204,13 @@ def main():
             base = os.path.splitext(t)[0]
             # ★ 目标已在 Python 侧按 mtime 筛过（stale 才进 bat）——bat 内
             #   不再放 `if exist .pyd goto skip`（就是它把重编吞掉的）
+            ap = artifact_paths(base)
             out.append(
                 f'cl /O2 /LD /MD /nologo /I "{inc}" {base}.c '
-                f'/link /LIBPATH:"{libs_dir}" python314.lib /OUT:{base}.pyd')
-        with io.open(bat, "w", encoding="ascii", newline="") as fh:
+                f'/Fo"{ap["obj"]}" /Fd"{ap["pdb"]}" '
+                f'/link /IMPLIB:"{ap["lib"]}" '
+                f'/LIBPATH:"{libs_dir}" python314.lib /OUT:{base}.pyd')
+        with io.open(bat, "w", encoding="gbk", newline="") as fh:
             fh.write("\r\n".join(out) + "\r\n")
         r = subprocess.run(["cmd", "/c", bat], cwd=ROOT)
         print(f"[msvc-list] bat 执行完成 rc={r.returncode}")

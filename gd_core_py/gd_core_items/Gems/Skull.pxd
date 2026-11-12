@@ -10,6 +10,6 @@ from gd_core_py.gd_core_items.Gems.Gem cimport Gem as _base_cls_Gems__Skull
 
 cdef class Gems__Skull(_base_cls_Gems__Skull):
 
-    cdef public object activated
+    cdef public bint activated
     cdef public object healthThreshold
 

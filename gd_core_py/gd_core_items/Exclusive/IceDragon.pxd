@@ -13,5 +13,5 @@ cdef class Exclusive__IceDragon(_base_cls_Exclusive__IceDragon):
     cdef public object _coldOnHit
     cdef public object _coldThreshold
     cdef public object damReduction
-    cdef public object gaveBlock
+    cdef public bint gaveBlock
 

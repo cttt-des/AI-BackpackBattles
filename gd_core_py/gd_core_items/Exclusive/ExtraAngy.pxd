@@ -10,6 +10,6 @@ from gd_core_py.gd_core_items.Item cimport Item_2 as _base_cls_Exclusive__ExtraA
 
 cdef class Exclusive__ExtraAngy(_base_cls_Exclusive__ExtraAngy):
 
-    cdef public object activated
+    cdef public bint activated
     cdef public object battleRageDur
 

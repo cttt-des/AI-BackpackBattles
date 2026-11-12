@@ -12,6 +12,6 @@ cdef class DeckofCards_2(_base_cls_DeckofCards_2):
 
     cdef public object cardActivations
     cdef public object cards
-    cdef public object chainStarted
+    cdef public bint chainStarted
     cdef public object connector
 

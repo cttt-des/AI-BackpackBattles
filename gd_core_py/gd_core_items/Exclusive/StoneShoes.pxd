@@ -14,7 +14,7 @@ cdef class Exclusive__StoneShoes(_base_cls_Exclusive__StoneShoes):
     cdef public object buffTimer
     cdef public object damReduction
     cdef public object empower
-    cdef public object hasActivated
+    cdef public bint hasActivated
     cdef public object healthThreshold
     cdef public object luck
 

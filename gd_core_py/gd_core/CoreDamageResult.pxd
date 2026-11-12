@@ -14,8 +14,8 @@ cdef class CoreDamageResult(GodotObject):
     cdef public object _damage
     cdef public object _damageReduction
     cdef public object _healthDamage
-    cdef public object critical
+    cdef public bint critical
     cdef public object damageSource
     cdef public object event
-    cdef public object hit
+    cdef public bint hit
 

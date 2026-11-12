@@ -10,7 +10,7 @@ from gd_core_py.gd_core_items.Item cimport Item_2 as _base_cls_Exclusive__Furcif
 
 cdef class Exclusive__FurciferPrime(_base_cls_Exclusive__FurciferPrime):
 
-    cdef public object active
+    cdef public bint active
     cdef public object goldCost
     cdef public object salesChance
 

@@ -11,7 +11,7 @@ from gd_core_py.gd_core_items.Weapon cimport Weapon_2 as _base_cls_Exclusive__Th
 cdef class Exclusive__ThunderDrake(_base_cls_Exclusive__ThunderDrake):
 
     cdef public object _curHitCount
-    cdef public object active
+    cdef public bint active
     cdef public object buffParticles
     cdef public object buffSpeed
     cdef public object buffTimer

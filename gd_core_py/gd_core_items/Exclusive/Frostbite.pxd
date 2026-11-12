@@ -12,6 +12,6 @@ cdef class Exclusive__Frostbite(_base_cls_Exclusive__Frostbite):
 
     cdef public object coldNeeded
     cdef public object damagePerCold
-    cdef public object gaveVampirism
+    cdef public bint gaveVampirism
     cdef public object vampirism
 

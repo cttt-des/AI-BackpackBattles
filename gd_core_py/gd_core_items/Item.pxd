@@ -25,7 +25,7 @@ cdef class Item_2(_base_cls_Item_2):
     cdef public object _pickupFaceDirection
     cdef public object _pickupFrame
     cdef public object affectedCellsActive
-    cdef public object affordable
+    cdef public bint affordable
     cdef public object animation
     cdef public object averagedPosition
     cdef public object baseBounce
@@ -65,7 +65,7 @@ cdef class Item_2(_base_cls_Item_2):
     cdef public object hovered
     cdef public object impactSoundReadyTime
     cdef public object impactSoundVolume
-    cdef public object initialized
+    cdef public bint initialized
     cdef public object insideRotationNode
     cdef public object lastCollider
     cdef public object lastCollisionPos
@@ -88,17 +88,17 @@ cdef class Item_2(_base_cls_Item_2):
     cdef public object pickupPosition
     cdef public object pickupRotation
     cdef public object pickupTopLeftCell
-    cdef public object pooled
+    cdef public bint pooled
     cdef public object progressMaterial
     cdef public object rotationMomentum
     cdef public object rotationTween
-    cdef public object sameOrientationAsPickup
+    cdef public bint sameOrientationAsPickup
     cdef public object shaderTween
     cdef public object shadowOffset
     cdef public object shadowTween
     cdef public object shadows
     cdef public object sockets
-    cdef public object sold
+    cdef public bint sold
     cdef public object specificDragParticles
     cdef public object spotlight
     cdef public object sprite

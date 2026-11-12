@@ -13,7 +13,7 @@ cdef class ChessPiece(_base_cls_ChessPiece):
     cdef public object _numCaptures
     cdef public object _pieceColor
     cdef public object board
-    cdef public object captured
+    cdef public bint captured
     cdef public object moveCells
     cdef public object noBoardMark
     cpdef bint canBeBlocked(self)

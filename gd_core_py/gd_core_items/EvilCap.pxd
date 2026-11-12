@@ -14,5 +14,5 @@ cdef class EvilCap_2(_base_cls_EvilCap_2):
     cdef public object buffTimer
     cdef public object buffsActive
     cdef public object damReduction
-    cdef public object nullifyApplied
+    cdef public bint nullifyApplied
 
