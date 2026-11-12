@@ -233,32 +233,9 @@ def _agg_p50(xs):
     return round(_stat.median(xs), 1) if xs else None
 
 
-def run_mc_mem(player, opponent, seed, runs, workers=1, max_time=90.0,
-               want_stats=False, progress_cb=None):
-    """内存态批量对战（§9.6 训练 API）。
-
-    player/opponent：lineup dict（与 lineup JSON 同构；GDCoreEngine 直接收）。
-    返回聚合 dict：
-      {runs, wins_player, win_rate, ticks_p50, ticks_mean, combat_time_mean,
-       per-run 逐场明细 records（含 seed 胜负 ticks；want_stats 时加六面统计）}
-    确定性：seed_r = seed + r，与 run_mc_pool/串行循环逐 seed 全等（G1 口径）。
-    """
-    from concurrent.futures import ProcessPoolExecutor
-    import multiprocessing as _mp
+def _mc_mem_agg(records, runs, want_stats):
+    """§9.6 聚合助手（run_mc_mem 与 MCPool 共用）；records 为逐场明细。"""
     import statistics as _stat
-    runs = max(1, int(runs))
-    workers = max(1, min(workers, _mp.cpu_count(), runs))
-    jobs = [(seed + r if seed is not None else None,
-             player, opponent, max_time, bool(want_stats))
-            for r in range(runs)]
-    records = []
-    with ProcessPoolExecutor(max_workers=workers,
-                             initializer=_pool_init_mem,
-                             initargs=()) as ex:
-        for i, rec in enumerate(ex.map(_mc_mem_worker, jobs, chunksize=8)):
-            records.append(rec)
-            if progress_cb is not None:
-                progress_cb(i + 1, sum(1 for x in records if x["win"]))
     ticks = [r["ticks"] for r in records]
     agg = {
         "runs": runs,
@@ -296,6 +273,133 @@ def run_mc_mem(player, opponent, seed, runs, workers=1, max_time=90.0,
             "opponent": sum(r["activations"]["opponent"] for r in records),
         }
     return agg
+
+
+class MCPool:
+    """§8.4 第 1 项：常驻进程池——跨 run_mc_mem 调用复用同一批 worker。
+
+    动机（§8.3 实测）：run_mc_mem 每次调用新建进程池，固定启动 1.9-2.4 s
+    （kernel 305ms+items 补导 125ms+数据 45ms+进程创建），runs=8 时启动占
+    ~78% → 只有 3.3 场/s；常驻后小批量回到 8-9 场/s。
+
+    用法（Windows spawn：调用方脚本需 `if __name__ == '__main__':` 守卫，
+    且不可从 stdin 运行——spawn 会尝试重导 stdin 主模块而失败）：
+
+        with MCPool(workers=4) as pool:
+            for batch in batches:
+                agg = pool.run_mc_mem(p, o, seed, runs=16)
+
+    语义保证：
+      · 确定性：worker 每场独立 GDCoreEngine(seed)，无跨场状态（§8.2 修复
+        `_bind_battle` 常规路径后已由指纹回归守住）；
+      · 逐 seed 与 run_mc_mem/串行全等（同一 worker 函数 `_mc_mem_worker`）。
+    """
+
+    def __init__(self, workers=None, max_time=90.0,
+                 max_pool_fights=20000, chunksize=8):
+        import multiprocessing as _mp
+        self.workers = max(1, min(workers or _mp.cpu_count(),
+                                  _mp.cpu_count()))
+        self.max_time = max_time
+        self.max_pool_fights = max_pool_fights   # 超过即透明重建（防内存累积）
+        self.chunksize = chunksize
+        self._ex = None
+        self._fights = 0                         # 本池生命周期已完成场数
+
+    def _ensure(self):
+        if self._ex is None:
+            from concurrent.futures import ProcessPoolExecutor
+            self._ex = ProcessPoolExecutor(
+                max_workers=self.workers,
+                initializer=_pool_init_mem, initargs=())
+        return self._ex
+
+    def rebuild(self):
+        """显式重建 worker（内存累积治理；§8.5 要点 2）。"""
+        self.close()
+
+    def close(self):
+        if self._ex is not None:
+            self._ex.shutdown(wait=True)
+            self._ex = None
+
+    def __enter__(self):
+        self._ensure()
+        return self
+
+    def __exit__(self, *exc):
+        self.close()
+        return False
+
+    def run_mc_mem(self, player, opponent, seed, runs,
+                   want_stats=False, progress_cb=None):
+        """常驻池批量对战；聚合形状与 run_mc_mem 完全一致。
+
+        崩溃恢复：块级提交，BrokenProcessPool 时重建池并原块重投
+        （逐 seed 确定性 ⇒ 重投结果恒同，无重复无丢失）；连坏 3 次向上抛。
+        内存治理：累计场数达 max_pool_fights 在块边界透明重建。
+        """
+        from concurrent.futures import ProcessPoolExecutor
+        from concurrent.futures.process import BrokenProcessPool
+        runs = max(1, int(runs))
+        jobs = [(seed + r if seed is not None else None,
+                 player, opponent, self.max_time, bool(want_stats))
+                for r in range(runs)]
+        records = []
+        done = wins = 0
+        attempts = 0
+        i = 0
+        while i < len(jobs):
+            if self._fights >= self.max_pool_fights:
+                self.rebuild()
+            chunk_jobs = jobs[i:i + self.chunksize]
+            try:
+                ex = self._ensure()
+                chunk = list(ex.map(_mc_mem_worker, chunk_jobs))
+            except BrokenProcessPool:
+                attempts += 1
+                if attempts > 3:
+                    raise
+                self.close()
+                continue          # 原块重投（i 不前进）
+            records.extend(chunk)
+            self._fights += len(chunk)
+            done += len(chunk)
+            wins += sum(1 for r in chunk if r["win"])
+            i += len(chunk_jobs)
+            if progress_cb is not None:
+                progress_cb(done, wins)
+        return _mc_mem_agg(records, runs, want_stats)
+
+
+def run_mc_mem(player, opponent, seed, runs, workers=1, max_time=90.0,
+               want_stats=False, progress_cb=None):
+    """内存态批量对战（§9.6 训练 API）——一次性进程池。
+
+    常驻复用请改用 `MCPool`（省每次调用 1.9-2.4 s 的池启动，runs=8~32
+    小批量场景 2.4x）。本函数保持原语义：单调用独立池，用完即收。
+    player/opponent：lineup dict（与 lineup JSON 同构；GDCoreEngine 直接收）。
+    返回聚合 dict：
+      {runs, wins_player, win_rate, ticks_p50, ticks_mean, combat_time_mean,
+       per-run 逐场明细 records（含 seed 胜负 ticks；want_stats 时加六面统计）}
+    确定性：seed_r = seed + r，与 run_mc_pool/串行循环逐 seed 全等（G1 口径）。
+    """
+    from concurrent.futures import ProcessPoolExecutor
+    import multiprocessing as _mp
+    runs = max(1, int(runs))
+    workers = max(1, min(workers, _mp.cpu_count(), runs))
+    jobs = [(seed + r if seed is not None else None,
+             player, opponent, max_time, bool(want_stats))
+            for r in range(runs)]
+    records = []
+    with ProcessPoolExecutor(max_workers=workers,
+                             initializer=_pool_init_mem,
+                             initargs=()) as ex:
+        for i, rec in enumerate(ex.map(_mc_mem_worker, jobs, chunksize=8)):
+            records.append(rec)
+            if progress_cb is not None:
+                progress_cb(i + 1, sum(1 for x in records if x["win"]))
+    return _mc_mem_agg(records, runs, want_stats)
 
 
 def _pool_init_mem():
