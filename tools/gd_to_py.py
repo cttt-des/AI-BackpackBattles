@@ -3705,21 +3705,17 @@ def _plan_l2_cpdef(files_by_rel, stat, hit):
     return n
 
 
-_L3_TYPE = {"bool": "bint", "int": "long long"}
+_L3_TYPE = {"bool": "bint", "int": "long long"}  # §3.1 判定后:float 面回退 object(实测复合路径 -9~-24%,见 §3.1 判读)
 _L3_BLOCKLIST = set()   # 止损：编译/闸门揪出的字段 (rel, field) 加入即回退 object
 _L3_RE = None
 
 
 def _l3_numeric_types(gd_rel):
-    """解析 .gd 源声明：`var x: int` / `var x := <int 字面量>` / bool 同理。
-
-    返回 {field: ctype}。float/无声明/字面量外推断（如 := someExpr）不收。
-
-    ★ 2026-11-12 重开（§H-5，撤回 §B-2 判否）：object 槽 vs 数值槽微基准差
-      13-40x（§H-2），PCG32 u64 先例 1.9x——机制启用。
-    ★ 安全面收窄（§H-5 步骤 3）：只收【显式注解】`: bool` / `: int`——
-      GDScript 注解是强制类型；字面量推断（var x = 5）是动态 Variant，
-      运行期可被赋 None/float，不收。float 面不收（f32 语义敏感）。"""
+    # ★ 2026-11-12 重开（§H-5，撤回 §B-2 判否）：object 槽 vs 数值槽微基准差
+    #   13-40x（§H-2），PCG32 u64 先例 1.9x——机制启用。§3.1：float 面重开
+    #   （GDScript float=64 位与 double 同宽；f32 只来自显式 f32() 垫片，
+    #   double 槽+显式 f32(x) ≡ object 槽+f32(x) 逐位相同）；字段被赋 None →
+    #   编译态 TypeError 立刻炸（不静默，止损走 _L3_BLOCKLIST）。
     global _L3_RE
     import os as _os
     import re as _re
