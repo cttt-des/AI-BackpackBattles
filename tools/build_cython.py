@@ -337,11 +337,17 @@ def main():
         bats = [(_bat_for(part, i), i) for i, part in enumerate(shards)]
         payloads = [(i, p) for p, i in bats]
         t0 = time.perf_counter()
+        rcs = []          # ★ 2026-11-14：提到分支外，供后面的失败判据统一读取
         if n_shards <= 1:
             rc, tail = _cl_shard(payloads[0])[1:]
             print(f"[msvc-list] bat 执行完成 rc={rc}")
+            # ★ 2026-11-14 修：此前单分片只打印 rc 不检查，而 miss 判据看的是
+            #   「pyd 存在」——旧 pyd 还在 ⇒ cl 失败被静默吞掉、跑的是上一版
+            #   二进制（假成功）。与 §1「编译态结论必须证明 pyd 比源新」同源。
+            rcs.append((0, rc))
+            if rc != 0:
+                print(f"  shard0 rc={rc} 尾部：{tail[-1200:]}")
         else:
-            rcs = []
             with ProcessPoolExecutor(max_workers=n_shards) as ex:
                 for sid, rc, tail in ex.map(_cl_shard, payloads):
                     rcs.append((sid, rc))
@@ -355,6 +361,13 @@ def main():
         for t in miss:
             print(f"  MISS {t}（无 .pyd → 回落 .py）")
         print(f"[msvc-list] 缺失 {len(miss)} / 重编目标 {len(targets)}")
+        # ★ 2026-11-14：rc 非零也必须让调用方失败。「缺失 0」只说明 .pyd 存在，
+        #   旧产物照旧存在 ⇒ cl 失败被静默吞掉、跑的是上一版二进制（假成功）。
+        #   与 §1「编译态结论必须证明 pyd 比源新」同源。
+        bad_rc = [sid for sid, rc0 in rcs if rc0]
+        if bad_rc:
+            print(f"[msvc-list] 失败：非零 rc 分片 {bad_rc}（缺失 {len(miss)}）")
+            return 1
         return 0
 
     rc = 0

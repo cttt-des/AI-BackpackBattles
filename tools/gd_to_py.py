@@ -2803,6 +2803,11 @@ def _f5a_tick_inline(texts, stat, hit):
             raise RuntimeError(
                 "F5a: tickTimersPass 锚点计数=%d（需 1）——生成器文本已漂移" % ti.count(old))
         new = ("\tdef tickTimersPass(self, delta):\n"
+               # ★ 2026-11-14 试过并回退：加「timers 空且无 gem 则早返回」（94.2% 的
+               #   物品 timers 为空）。语义零风险、seed 双态全绿，但 **pyd 级交错 A/B
+               #   4 轮全部为正 = 新版本慢 6.3%**（中位 1.063，轮间 stdev 13%）。
+               #   原因：C 层空循环几乎免费，而多出来的元组真值判断 + 循环 + 分支
+               #   是净成本，还增大了 i-cache 占用。⇒ 「空遍历」不是可兑现的优化面。
                "\t\tfor t in (self.timers if self.timers.__class__ is list else _iter(self.timers)):\n"
                "\t\t\tt.tick(delta)\n"
                "\t\tfor gem in (self.gems if self.gems.__class__ is list else _iter(self.gems)):\n"
