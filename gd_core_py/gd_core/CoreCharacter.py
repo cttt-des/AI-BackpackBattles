@@ -1527,7 +1527,8 @@ class CoreCharacter(GodotObject):
 		#   activateItems 末尾）+ 三变量值，定位「激活期 start 是否被 rebuild 锚定」。
 		#   lt/gt=dur 对字面量 3.1 的 ULP 方位（run1069_r15 定谳用：D 在 186dt 浮点
 		#   边界上时 1 ULP 决定 fire@186/187）。
-		self.ctx.rng.trace_diag("INVU", "make p" + str(self.playerId) + (" first" if not self.invulnerable else " ext") + " dur=" + str(invuDur) + " lt3.1=" + str(invuDur < 3.1) + " gt3.1=" + str(invuDur > 3.1) + " eng=" + str(self._invul_eng) + " left=" + str(self._invul_left), "act=" + str(self._invul_active) + " fr=" + str(self.ctx.frame_counter))
+		if self.ctx.rng.oracle_trace and self.ctx.rng._stacktrace:
+			self.ctx.rng.trace_diag("INVU", "make p" + str(self.playerId) + (" first" if not self.invulnerable else " ext") + " dur=" + str(invuDur) + " lt3.1=" + str(invuDur < 3.1) + " gt3.1=" + str(invuDur > 3.1) + " eng=" + str(self._invul_eng) + " left=" + str(self._invul_left), "act=" + str(self._invul_active) + " fr=" + str(self.ctx.frame_counter))
 
 		event = self.ctx.combat_log.createEvent_InvulnerableStart(item, invuDur, self.playerId, triggerEvent)
 		self.ctx.bus.emitEvent(self, "character_invulnerable_start", event, [event])
@@ -2169,7 +2170,8 @@ class CoreCharacter(GodotObject):
 				self._invul_active = False
 				self._invul_eng = 0.0          # :910 stop()；_invul_left 保留发火值
 				# ★ np25 timeout1t 诊断（双门控零耗）：INVU fire 行读三变量终值。
-				self.ctx.rng.trace_diag("INVU", "fire p" + str(self.playerId) + " left=" + str(self._invul_left) + " eng=" + str(self._invul_eng) + " seen=" + str(self._invul_seen), "fr=" + str(self.ctx.frame_counter))
+				if self.ctx.rng.oracle_trace and self.ctx.rng._stacktrace:
+					self.ctx.rng.trace_diag("INVU", "fire p" + str(self.playerId) + " left=" + str(self._invul_left) + " eng=" + str(self._invul_eng) + " seen=" + str(self._invul_seen), "fr=" + str(self.ctx.frame_counter))
 				self.invulnerabilityEnded()
 				if self._invul_active:         # :915-917 处理器重启了（start(x)→time_left=x）
 					self._invul_left = self._invul_eng

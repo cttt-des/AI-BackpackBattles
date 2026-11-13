@@ -145,7 +145,8 @@ class StrongDemonicFlask_2(_base_cls_StrongDemonicFlask_2):
 		_aff_names = ""
 		for _a in (_aff if _aff.__class__ is list else _iter(_aff)):
 			_aff_names += String(_a.descriptor.identifier) + ","
-		self.ctx.rng.trace_diag("AFFL", String(self.descriptor.identifier), "n=" + str(len(_aff)), _aff_names)
+		if self.ctx.rng.oracle_trace and self.ctx.rng._stacktrace:
+			self.ctx.rng.trace_diag("AFFL", String(self.descriptor.identifier), "n=" + str(len(_aff)), _aff_names)
 
 		self.drink()
 

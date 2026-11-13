@@ -151,10 +151,11 @@ class MrStruggles_2(_base_cls_MrStruggles_2):
 		# ★ np24 诊断（受控）：镜像神谕 MSROLL 行（oracle/Items/MrStruggles.gd 取证桩
 		#   同位），逐次记录掷点前的 BalancedRng 状态与 chance 修正，供两侧对位。
 		#   np25棋盘面重建回植（builder 无此手补，chessfix 重建实测被冲掉）。
-		self.ctx.rng.trace_diag("MSROLL", String(self.descriptor.identifier), int(self.ownerType),
-				"type=" + str(event.type) + " amt=" + str(amount)
-				+ " ew=" + str(self.chanceRng.expectedWins) + " w=" + str(self.chanceRng.wins)
-				+ " lr=" + str(self.chanceRng.lastResult))
+		if self.ctx.rng.oracle_trace and self.ctx.rng._stacktrace:
+			self.ctx.rng.trace_diag("MSROLL", String(self.descriptor.identifier), int(self.ownerType),
+					"type=" + str(event.type) + " amt=" + str(amount)
+					+ " ew=" + str(self.chanceRng.expectedWins) + " w=" + str(self.chanceRng.wins)
+					+ " lr=" + str(self.chanceRng.lastResult))
 		if self.checkTriggerCount(10):
 			if self.rollChance():
 				debuffType = event.type

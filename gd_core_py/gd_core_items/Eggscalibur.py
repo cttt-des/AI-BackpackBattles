@@ -112,7 +112,8 @@ class Eggscalibur_2(_base_cls_Eggscalibur_2):
 			_ids = ""
 			for food in (affected if affected.__class__ is list else _iter__loc(affected)):
 				_ids += String(food.descriptor.identifier) + "|"
-			self.ctx.rng.trace_diag("ESHUF", str(_ids), "t=" + str(self.ctx.time), "")
+			if self.ctx.rng.oracle_trace and self.ctx.rng._stacktrace:
+				self.ctx.rng.trace_diag("ESHUF", str(_ids), "t=" + str(self.ctx.time), "")
 			for food in (affected if affected.__class__ is list else _iter__loc(affected)):
 				food.doCooldownEffect()
 

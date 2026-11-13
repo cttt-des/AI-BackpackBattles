@@ -205,11 +205,13 @@ class CoreEventBus(GodotObject):
 			_eid = "?"
 			if emitter != None and emitter.has_method("isCoreItem"):
 				_eid = String(emitter.descriptor.identifier) + '/ot' + str(int(emitter.ownerType))
-			self._ctx.rng.trace_diag("BUS", String(signalName), str(len(_bus_list)), "emitter=" + _eid)
+			if self._ctx.rng.oracle_trace and self._ctx.rng._stacktrace:
+				self._ctx.rng.trace_diag("BUS", String(signalName), str(len(_bus_list)), "emitter=" + _eid)
 		_bus_i = 0
-		_eid2 = "?"
-		if emitter != None and emitter.has_method("isCoreItem"):
-			_eid2 = String(emitter.descriptor.identifier) + '/ot' + str(int(emitter.ownerType))
+		# ★ A2 门控外提（2026-11-14）：_eid2 只被 BUSD 探针消费——构造（has_method
+		#   鸭子探测 + String 拼接，3027 次/场 ≈ 0.9 ms）原在门控外每事件执行，
+		#   移进 BUSD 门控块内。探针层变换：门开时构造序不变，门关（跑批常态）时
+		#   纯求值跳过——事件序列/RNG 零影响。
 		for _bus_pair in (_bus_list if _bus_list.__class__ is list else _iter(_bus_list)):
 			if self._ctx.fight_ended:
 				return
@@ -218,11 +220,16 @@ class CoreEventBus(GodotObject):
 				_recv = _bus_pair[1]
 				if _recv != None and _recv.has_method("isCoreItem"):
 					_rid = String(_recv.descriptor.identifier) + '/ot' + str(int(_recv.ownerType))
-				self._ctx.rng.trace_diag("BUSL", String(signalName), str(_bus_i), _rid)
+				if self._ctx.rng.oracle_trace and self._ctx.rng._stacktrace:
+					self._ctx.rng.trace_diag("BUSL", String(signalName), str(_bus_i), _rid)
 			_bus_i += 1
 			_bus_pair[0].call_funcv(arguments)
 		if self._ctx.rng.oracle_trace and self._ctx.rng._stacktrace:
-			self._ctx.rng.trace_diag("BUSD", String(signalName), str(_bus_i), "emitter=" + _eid2)
+			_eid2 = "?"
+			if emitter != None and emitter.has_method("isCoreItem"):
+				_eid2 = String(emitter.descriptor.identifier) + '/ot' + str(int(emitter.ownerType))
+			if self._ctx.rng.oracle_trace and self._ctx.rng._stacktrace:
+				self._ctx.rng.trace_diag("BUSD", String(signalName), str(_bus_i), "emitter=" + _eid2)
 
 
 	def connectEvent(self, emitter, signalName, receiver, method):

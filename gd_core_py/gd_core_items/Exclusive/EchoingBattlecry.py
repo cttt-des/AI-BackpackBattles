@@ -123,7 +123,8 @@ class Exclusive__EchoingBattlecry(_base_cls_Exclusive__EchoingBattlecry):
 		if self.ctx.rng.oracle_trace and self.ctx.rng._stacktrace:
 			for _a in (self.affectedItems if self.affectedItems.__class__ is list else _iter__loc(self.affectedItems)):
 				_aft += String(_a.descriptor.identifier) + "@" + str(_a.occupiedCells[0]) + ","
-			self.ctx.rng.trace_diag("EBARR", "ot" + str(int(self.ownerType)), _b, _aft)
+			if self.ctx.rng.oracle_trace and self.ctx.rng._stacktrace:
+				self.ctx.rng.trace_diag("EBARR", "ot" + str(int(self.ownerType)), _b, _aft)
 
 		self.addSpeed(self.speedPerItem * len(self.affectedItems))
 

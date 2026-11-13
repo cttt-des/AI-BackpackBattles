@@ -117,8 +117,9 @@ class StrongPestilenceFlask_2(_base_cls_StrongPestilenceFlask_2):
 			_names = ""
 			for _a in (_r if _r.__class__ is list else _iter(_r)):
 				_names += String(_a.descriptor.identifier) + "@" + str(_a.occupiedCells) + ","
-			self.ctx.rng.trace_diag("GRD", String(self.descriptor.identifier),
-					"fd=" + str(self.faceDirection) + " cp=" + str(_cp) + " aff=" + str(_cc), _names + "n=" + str(len(_r)))
+			if self.ctx.rng.oracle_trace and self.ctx.rng._stacktrace:
+				self.ctx.rng.trace_diag("GRD", String(self.descriptor.identifier),
+						"fd=" + str(self.faceDirection) + " cp=" + str(_cp) + " aff=" + str(_cc), _names + "n=" + str(len(_r)))
 		return _r
 
 	def onTriggerPotion(self, triggerEvent=None):

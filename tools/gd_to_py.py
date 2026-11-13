@@ -3147,6 +3147,68 @@ def _typed_hot_loops(texts, stat, hit):
     return texts
 
 
+def _a2_diag_gating(texts, stat, hit):
+    """§4.3/A2（2026-11-14）：trace_diag 诊断探针调用点门控外提。
+
+    trace_diag 函数体内检查 oracle_trace and _stacktrace（跑批常态恒 False），
+    但**参数表达式在调用点已构造**——String(self.descriptor.identifier)+str(...)
+    等每次都付（全树 21 处；String 2680 + _gd_str 2824 次/场 ≈ 1.7 ms）。
+    本 pass 给每个 `X.trace_diag(` 语句包 `if X.oracle_trace and X._stacktrace:`
+    （与函数体门控完全同式，零新增状态）。参数全部纯求值（String/str/int 及
+    get_state()/getTopLeftCell() 纯读）⇒ 门关时跳过零语义面；门开（诊断会话）
+    时构造序逐字不变。_eid2 特例已在 CoreEventBus.gd 源级处理。
+    """
+    import ast as _ast
+    import re as _re
+    total = 0
+    for rel in sorted(texts):
+        t = texts[rel]
+        if ".trace_diag(" not in t:
+            continue
+        lines = t.split("\n")
+        out = []
+        i = 0
+        n_file = 0
+        while i < len(lines):
+            line = lines[i]
+            m = _re.match(r"^(\t+)([A-Za-z_][A-Za-z_0-9\.\[\]]*\.rng)\.trace_diag\(", line)
+            if not m:
+                out.append(line)
+                i += 1
+                continue
+            indent, recv = m.group(1), m.group(2)
+            # 括号配平找语句结束行
+            depth = 0
+            j = i
+            while j < len(lines):
+                seg = lines[j]
+                for ch in seg:
+                    if ch == "(":
+                        depth += 1
+                    elif ch == ")":
+                        depth -= 1
+                if depth <= 0:
+                    break
+                j += 1
+            stmt = lines[i:j + 1]
+            out.append(f"{indent}if {recv}.oracle_trace and {recv}._stacktrace:")
+            out.extend("\t" + s for s in stmt)
+            n_file += 1
+            i = j + 1
+        if n_file:
+            nt = "\n".join(out)
+            try:
+                _ast.parse(nt)
+            except SyntaxError as e:
+                raise RuntimeError("A2G: %s 语法闸失败: %s" % (rel, e))
+            texts[rel] = nt
+            total += n_file
+    if total:
+        hit['A2G_diag_gates'] = total
+        stat['A2G'] = ['%d 个 trace_diag 调用点门控外提' % total]
+    return texts
+
+
 def _strip_noop_hooks(texts, stat, hit):
     """M2-1：剥离空钩子（CoreHooks 全 pass 方法）的全部调用点。
 
@@ -3901,6 +3963,8 @@ def write_pkg(order, files_by_rel, by_name, by_path, class_names, stat, hit, wri
         texts = _strip_noop_hooks(texts, stat, hit)
     if "A2" not in _skip:
         texts = _char_bind(texts, stat, hit)
+    if "A2G" not in _skip:
+        texts = _a2_diag_gating(texts, stat, hit)
     if "D1T" not in _skip:
         texts = _typed_hot_loops(texts, stat, hit)
     if "CY" not in _skip:

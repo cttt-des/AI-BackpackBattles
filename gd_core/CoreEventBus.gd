@@ -108,9 +108,10 @@ func emitAndLog(emitter, signalName: String, event, arguments: Array):
 			_eid = String(emitter.descriptor.identifier) + "/ot" + str(int(emitter.ownerType))
 		_ctx.rng.trace_diag("BUS", String(signalName), str(_bus_list.size()), "emitter=" + _eid)
 	var _bus_i = 0
-	var _eid2 = "?"
-	if emitter != null and emitter.has_method("isCoreItem"):
-		_eid2 = String(emitter.descriptor.identifier) + "/ot" + str(int(emitter.ownerType))
+	# ★ A2 门控外提（2026-11-14）：_eid2 只被 BUSD 探针消费——构造（has_method
+	#   鸭子探测 + String 拼接，3027 次/场 ≈ 0.9 ms）原在门控外每事件执行，
+	#   移进 BUSD 门控块内。探针层变换：门开时构造序不变，门关（跑批常态）时
+	#   纯求值跳过——事件序列/RNG 零影响。
 	for _bus_pair in _bus_list:
 		if _ctx.fight_ended:
 			return
@@ -123,6 +124,9 @@ func emitAndLog(emitter, signalName: String, event, arguments: Array):
 		_bus_i += 1
 		_bus_pair[0].call_funcv(arguments)
 	if _ctx.rng.oracle_trace and _ctx.rng._stacktrace:
+		var _eid2 = "?"
+		if emitter != null and emitter.has_method("isCoreItem"):
+			_eid2 = String(emitter.descriptor.identifier) + "/ot" + str(int(emitter.ownerType))
 		_ctx.rng.trace_diag("BUSD", String(signalName), str(_bus_i), "emitter=" + _eid2)
 
 

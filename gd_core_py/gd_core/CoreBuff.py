@@ -427,8 +427,9 @@ class CoreBuff(GodotObject):
 
 					appliedToOpponent = (self.character != item.character())
 					# ★ np24 诊断（受控）：镜像神谕 SRC gain_label 行（Buff.gd:192-197）。
-					self.ctx.rng.trace_diag("SRC", "gain_label",
-							String(item.descriptor.identifier), str(self.type))
+					if self.ctx.rng.oracle_trace and self.ctx.rng._stacktrace:
+						self.ctx.rng.trace_diag("SRC", "gain_label",
+								String(item.descriptor.identifier), str(self.type))
 					# ★ 表现层链消耗还原（Buff.gd:194 → Util.gd:975-983 spawnBuffLabel_item
 					#   → Item.gd:6485-6494 getNextFreeLabelPosition）：物品身上的 buff
 					#   浮动标签在事件 emit 之前取位，恒消耗 Util.randInBox 2 抽
@@ -570,7 +571,8 @@ class CoreBuff(GodotObject):
 			# ★ np25 timeout1t：payload 追加 fr=<frame_counter>（六点全加、双门控
 			#   不变）——rng_trace 行首数字是行号非时间，没有帧号无法读「gain→fire
 			#   间隔 = K 或 K-1 次递减」这一决定性读数（验收门，见守门方案3）。
-			self.ctx.rng.trace_diag('BLND', 'p' + str(self.character.playerId) + ' ty' + str(self.type) + ' ' + op + ' ' + pre, 'len=' + str(len(self.temporaryStacks)) + ' ntp=' + str(self.nextTemporaryTimeout) + ' tm=' + str(self._timer_active) + '/' + str(self._timer_left) + '/e' + str(self._timer_eng) + '/s' + str(self._timer_seen) + ' fr=' + str(self.ctx.frame_counter), _b)
+			if self.ctx.rng.oracle_trace and self.ctx.rng._stacktrace:
+				self.ctx.rng.trace_diag('BLND', 'p' + str(self.character.playerId) + ' ty' + str(self.type) + ' ' + op + ' ' + pre, 'len=' + str(len(self.temporaryStacks)) + ' ntp=' + str(self.nextTemporaryTimeout) + ' tm=' + str(self._timer_active) + '/' + str(self._timer_left) + '/e' + str(self._timer_eng) + '/s' + str(self._timer_seen) + ' fr=' + str(self.ctx.frame_counter), _b)
 
 	def onTimeout(self):
 		self._blnd_snap("fire", str(self.nextTemporaryTimeout))

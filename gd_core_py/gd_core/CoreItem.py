@@ -1014,8 +1014,9 @@ class CoreItem(GodotObject):
 			self.ctx.callDelayed(self, "flickerPlayAni", _flk_delay_use)
 			# ★ np25 flicker 派发定谳探针（双门控零耗）：与 oracle FLKSTUB 桩对称——
 			#   delay 抽后的链状态快照，供 state→PCG 前向模拟数精确链位。
-			self.ctx.rng.trace_diag("FLKREG", String(self.descriptor.identifier) + "/ot" + str(int(self.ownerType)),
-					str(flicker_delay), "st=" + str(self.ctx.rng.rng.get_state()))
+			if self.ctx.rng.oracle_trace and self.ctx.rng._stacktrace:
+				self.ctx.rng.trace_diag("FLKREG", String(self.descriptor.identifier) + "/ot" + str(int(self.ownerType)),
+						str(flicker_delay), "st=" + str(self.ctx.rng.rng.get_state()))
 
 		# ★ 连接器 _ready 抽（阶段2）：Potion._ready 动态挂 PotionConnector
 		#（Potion.gd:22-28）/场景内嵌 CardConnector——两者 _ready 均为
@@ -1051,8 +1052,9 @@ class CoreItem(GodotObject):
 		self.initSockets()
 		# ★ np25 flicker 派发定谳探针（双门控零耗）：物品就绪边界链状态快照，
 		#   与 oracle Item.gd _ready 入口的 itemready 行同构对位。
-		self.ctx.rng.trace_diag("ITEMREADY", String(self.descriptor.identifier) + "/ot" + str(int(self.ownerType)),
-				"", "st=" + str(self.ctx.rng.rng.get_state()))
+		if self.ctx.rng.oracle_trace and self.ctx.rng._stacktrace:
+			self.ctx.rng.trace_diag("ITEMREADY", String(self.descriptor.identifier) + "/ot" + str(int(self.ownerType)),
+					"", "st=" + str(self.ctx.rng.rng.get_state()))
 
 
 	# FlickerAnimation.playAni（Items/Animations/FlickerAnimation.gd:17-19）：
@@ -1065,8 +1067,9 @@ class CoreItem(GodotObject):
 	def flickerPlayAni(self):
 		# ★ np25 flicker 派发定谳探针（双门控零耗）：开火时战斗时刻+链状态快照
 		#（裸抽前），与 oracle FLKSTUB fire 行同规对位。
-		self.ctx.rng.trace_diag("FLKFIRE", String(self.descriptor.identifier) + "/ot" + str(int(self.ownerType)),
-				str(self.ctx.time), "st=" + str(self.ctx.rng.rng.get_state()))
+		if self.ctx.rng.oracle_trace and self.ctx.rng._stacktrace:
+			self.ctx.rng.trace_diag("FLKFIRE", String(self.descriptor.identifier) + "/ot" + str(int(self.ownerType)),
+					str(self.ctx.time), "st=" + str(self.ctx.rng.rng.get_state()))
 		# ★ kernel_r6：oracle FlickerAnimation.gd:16 playAni = Util.rng.randf_range
 		#   裸调（rng_log 零痕迹，与 np24 ItemAnimation 同款）⇒ 裸抽不进 trace。
 		# ★ np51㉞ 复盘（2026-11-08）：run604585_r6 单场移除实验 693/693 全对齐，
@@ -1115,9 +1118,10 @@ class CoreItem(GodotObject):
 		# ★ np24 诊断（受控）：镜像神谕 TRIG 取证桩（oracle/Items/Item.gd trigger 段，
 		#   双门控零耗链），对拍逐次触发的 triggerTime/iterationCooldown/speed。
 		_gd_fmt__loc = _gd_fmt
-		self.ctx.rng.trace_diag("TRIG", String(self.descriptor.identifier), int(self.ownerType),
-				"tt=" + str(self.triggerTime) + " cd=" + str(self.iterationCooldown)
-				+ " spd=" + str(self.getSpeed()) + " t=" + str(self.ctx.time))
+		if self.ctx.rng.oracle_trace and self.ctx.rng._stacktrace:
+			self.ctx.rng.trace_diag("TRIG", String(self.descriptor.identifier), int(self.ownerType),
+					"tt=" + str(self.triggerTime) + " cd=" + str(self.iterationCooldown)
+					+ " spd=" + str(self.getSpeed()) + " t=" + str(self.ctx.time))
 		# ★ np51㉛ 定向注入（用后还原）：ORACLE_INJ_ITEM=物品名、ORACLE_INJ_TRIGGER_N=N
 		#   ——该物品第 N 次 trigger 后补 1 笔 (0,1) 裸抽（oracle 侧隐形消耗面定位）。
 		if self._inj_item == "":
@@ -1147,8 +1151,9 @@ class CoreItem(GodotObject):
 	def doCooldownEffect(self):
 		# ★ np25 诊断（受控，双门控零耗链）：效果执行者——每个 doCooldownEffect
 		#   落一行（trigger 路径必有前置 TRIG 行；无 TRIG 的 CDX=异常调用路径）。
-		self.ctx.rng.trace_diag("CDX", String(self.descriptor.identifier) + "/ot" + str(int(self.ownerType)),
-				"t=" + str(self.ctx.time), "")
+		if self.ctx.rng.oracle_trace and self.ctx.rng._stacktrace:
+			self.ctx.rng.trace_diag("CDX", String(self.descriptor.identifier) + "/ot" + str(int(self.ownerType)),
+					"t=" + str(self.ctx.time), "")
 		self._behavior_call("doCooldownEffect")
 
 
@@ -1290,8 +1295,9 @@ class CoreItem(GodotObject):
 			anim_hit = True
 			if damageRes != None and not damageRes.hasHit():
 				anim_hit = False
-			self.ctx.rng.trace_diag("ANIM", String(self.descriptor.identifier),
-					str(self.descriptor.animationScene), "hit=" + str(anim_hit))
+			if self.ctx.rng.oracle_trace and self.ctx.rng._stacktrace:
+				self.ctx.rng.trace_diag("ANIM", String(self.descriptor.identifier),
+						str(self.descriptor.animationScene), "hit=" + str(anim_hit))
 		if playCombatAni and self.descriptor.animationScene:
 			self.ctx.rng.bare_randf_range(-30.0, 30.0)
 			self.ctx.rng.bare_randf_range(-100.0, 100.0)
@@ -1493,8 +1499,9 @@ class CoreItem(GodotObject):
 		if _os_environ_get("GD_CHPROBE") != "" and self.descriptor.identifier == "Hammer":
 			print("[CHR] t=", self.ctx.time, " target=", _target, " res=", _rc)
 		if self.ctx.rng.oracle_trace and self.ctx.rng._stacktrace:
-			self.ctx.rng.trace_diag("ROLLW", String(self.descriptor.identifier) + "/ot" + str(int(self.ownerType)),
-					"ch=" + str(self.applyBonusChance(chance, 1)), "res=" + str(_rc))
+			if self.ctx.rng.oracle_trace and self.ctx.rng._stacktrace:
+				self.ctx.rng.trace_diag("ROLLW", String(self.descriptor.identifier) + "/ot" + str(int(self.ownerType)),
+						"ch=" + str(self.applyBonusChance(chance, 1)), "res=" + str(_rc))
 		return _rc
 
 
@@ -2094,8 +2101,9 @@ class CoreItem(GodotObject):
 	def addSpeed(self, amount):
 		self.speedScale += amount
 		# ★ np25 诊断（受控，双门控零耗链）：速度账本——谁加了多少、现值多少。
-		self.ctx.rng.trace_diag("SPD+", String(self.descriptor.identifier) + "@" + String(self.getTopLeftCell())
-				+ " ot=" + str(int(self.ownerType)), str(amount), "now=" + str(self.speedScale))
+		if self.ctx.rng.oracle_trace and self.ctx.rng._stacktrace:
+			self.ctx.rng.trace_diag("SPD+", String(self.descriptor.identifier) + "@" + String(self.getTopLeftCell())
+					+ " ot=" + str(int(self.ownerType)), str(amount), "now=" + str(self.speedScale))
 		self.ctx.combat_log.snapshotItemTooltipStat(self, _H_9)
 		self.ctx.combat_log.snapshotItemTooltipStat(self, _H_11)
 
@@ -2525,14 +2533,15 @@ class CoreItem(GodotObject):
 		newVal = previousVal + valPerTile
 		# ★ np25 诊断（受控，双门控零耗链）：电荷命中面——发射者@左上格/格序/
 		#   前后持电物品（含其左上格）/增减值。对拍电荷路径漏格（P3-3）。
-		self.ctx.rng.trace_diag("CHRG",
-				String(self.descriptor.identifier) + "@" + String(self.getTopLeftCell()),
-				int(cellIndex),
-				"last=" + (String(charge.lastChargedItem.descriptor.identifier)
-						if charge.lastChargedItem != None else "null")
-				+ " cur=" + (String(charge.curChargedItem.descriptor.identifier)
-						if charge.curChargedItem != None else "null")
-				+ " del=" + str(- previousVal) + " add=" + str(newVal))
+		if self.ctx.rng.oracle_trace and self.ctx.rng._stacktrace:
+			self.ctx.rng.trace_diag("CHRG",
+					String(self.descriptor.identifier) + "@" + String(self.getTopLeftCell()),
+					int(cellIndex),
+					"last=" + (String(charge.lastChargedItem.descriptor.identifier)
+							if charge.lastChargedItem != None else "null")
+					+ " cur=" + (String(charge.curChargedItem.descriptor.identifier)
+							if charge.curChargedItem != None else "null")
+					+ " del=" + str(- previousVal) + " add=" + str(newVal))
 
 		if charge.lastChargedItem != None:
 			if charge.curChargedItem == None:
@@ -3117,8 +3126,9 @@ class CoreItem(GodotObject):
 	def getNextFreeLabelPosition(self):
 		_ch = self.character()
 		# ★ np24 诊断（受控）：镜像神谕 LABEL 行（Item.gd:6505-6510）。
-		self.ctx.rng.trace_diag("LABEL", String(self.descriptor.identifier), int(self.ownerType),
-				str(_ch != None and _ch.playerId))
+		if self.ctx.rng.oracle_trace and self.ctx.rng._stacktrace:
+			self.ctx.rng.trace_diag("LABEL", String(self.descriptor.identifier), int(self.ownerType),
+					str(_ch != None and _ch.playerId))
 		for i in _iter(len(self.buffLabelPositionTimestamps)):
 			if self.ctx.time >= self.buffLabelPositionTimestamps[i]:
 				self.buffLabelPositionTimestamps[i] = self.ctx.time + 0.5

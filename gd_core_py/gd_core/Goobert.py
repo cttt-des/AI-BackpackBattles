@@ -55,7 +55,8 @@ class Goobert(_R.C("res://gd_core_items/Item.gd")):
 		_gsrc = "?"
 		if event != None and event.origin != None:
 			_gsrc = String(event.origin.name)
-		self.ctx.rng.trace_diag('GACT', String(self.descriptor.identifier) + '/ot' + str(int(self.ownerType)), str(self.activations + 1) + '/' + str(self.getP1()), 'src=' + _gsrc)
+		if self.ctx.rng.oracle_trace and self.ctx.rng._stacktrace:
+			self.ctx.rng.trace_diag('GACT', String(self.descriptor.identifier) + '/ot' + str(int(self.ownerType)), str(self.activations + 1) + '/' + str(self.getP1()), 'src=' + _gsrc)
 		self.activations += 1
 
 		if self.activations == self.getP1():
