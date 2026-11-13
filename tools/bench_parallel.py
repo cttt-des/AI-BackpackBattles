@@ -88,7 +88,14 @@ def main() -> int:
     print(json.dumps(base, ensure_ascii=False), flush=True)
 
     workers = [args.workers] if args.workers else [1, 2, 4]
-    affs = [tuple(int(x) for x in a.split(",")) for a in args.aff] or [None]
+    # §12.5/P2：`--aff none` 显式给不绑核基线行，使 none/集合 A/集合 B 同进程内
+    # 连续可比（不给 --aff 时默认仍只有 none）。
+    affs = []
+    for a in args.aff:
+        if a.strip().lower() == "none":
+            affs.append(None)
+        else:
+            affs.append(tuple(int(x) for x in a.split(",")))
     for w in workers:
         for cpus in affs:
             if w == 1 and cpus:
