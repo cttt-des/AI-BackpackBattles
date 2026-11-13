@@ -2052,6 +2052,25 @@ def emit_bootstrap(order, files_by_rel, stripped_hooks=None):
     out.append("_ITEM_ORDER = [\n")
     for rel in item_order:
         out.append("    %r,\n" % rel)
+    out.append("]\n\n")
+    # ★ 档二性能：load_for 原先对每个阵容脚本线性扫 _ITEM_ORDER 全表
+    #   （108 脚本 × 505 项 = 5.5 万次 rsplit，实测 7.5 ms/场，占装配 24%）。
+    #   items 树 stem 无重名（生成期断言下方），故可索引化到 O(1) 查找。
+    _stems = {}
+    for rel in item_order:
+        _stem = rel.rsplit("/", 1)[-1][:-3]
+        assert _stem not in _stems, ("items 树 stem 重名：%r ↔ %r"
+                                     % (_stems.get(_stem), rel))
+        _stems[_stem] = rel
+    out.append("# items 树 stem → rel（生成期断言无重名；load_for 的 O(1) 索引）\n")
+    out.append("_ITEM_STEM = {\n")
+    for _stem, rel in _stems.items():
+        out.append("    %r: %r,\n" % (_stem, rel))
+    out.append("}\n\n")
+    out.append("# items 树 (rel, 模块路径)，拓扑序——load_for 按需循环导入\n")
+    out.append("_ITEM_MODULES = [\n")
+    for rel in item_order:
+        out.append("    (%r, %r),\n" % (rel, module_path(files_by_rel[rel])))
     out.append("]\n\n\n")
 
     out.append("def load_core():\n")
@@ -2074,21 +2093,23 @@ def emit_bootstrap(order, files_by_rel, stripped_hooks=None):
     out.append("        stem = str(s).rsplit('/', 1)[-1]\n")
     out.append("        if stem.endswith('.gd'):\n")
     out.append("            stem = stem[:-3]\n")
-    out.append("        for rel in _ITEM_ORDER:\n")
-    out.append("            if rel.rsplit('/', 1)[-1][:-3] == stem:\n")
-    out.append("                stack = [rel]\n")
-    out.append("                while stack:\n")
-    out.append("                    r0 = stack.pop()\n")
-    out.append("                    if r0 not in want:\n")
-    out.append("                        want.add(r0)\n")
-    out.append("                        stack.extend(_ITEM_PARENTS.get(r0, ()))\n")
-    out.append("                break\n")
-    for rel in item_order:
-        out.append("    if %r in want:\n" % rel)
-        out.append("        try:\n")
-        out.append("            import %s  # noqa: F401\n" % module_path(files_by_rel[rel]))
-        out.append("        except Exception as exc:  # noqa: BLE001\n")
-        out.append("            failed.append((%r, repr(exc)))\n" % rel)
+    out.append("        rel = _ITEM_STEM.get(stem)\n")
+    out.append("        if rel is None:\n")
+    out.append("            continue\n")
+    out.append("        stack = [rel]\n")
+    out.append("        while stack:\n")
+    out.append("            r0 = stack.pop()\n")
+    out.append("            if r0 not in want:\n")
+    out.append("                want.add(r0)\n")
+    out.append("                stack.extend(_ITEM_PARENTS.get(r0, ()))\n")
+    out.append("    # 拓扑序逐项导入（与原先静态 if 链同序，仅保留「按需」约束）\n")
+    out.append("    for rel, mod in _ITEM_MODULES:\n")
+    out.append("        if rel not in want:\n")
+    out.append("            continue\n")
+    out.append("        try:\n")
+    out.append("            __import__(mod)\n")
+    out.append("        except Exception as exc:  # noqa: BLE001\n")
+    out.append("            failed.append((rel, repr(exc)))\n")
     out.append("    return failed\n")
 
     # ── M2-1 空钩子剥离清单（装配期断言数据源，simulator/gd_core_engine
