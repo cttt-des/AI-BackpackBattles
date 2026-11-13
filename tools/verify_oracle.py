@@ -568,6 +568,10 @@ def run_py(cases: List[Dict[str, Any]]) -> int:
                            "event_count": 0, "events": []}, fh,
                           ensure_ascii=False, indent=1)
             print("  [py][FAIL] %s：%s: %s" % (case_id, type(exc).__name__, exc))
+            # ★ 2026-11-13:py 腿崩溃保留全栈——本次 §11.4 闭环排查若非此处
+            #   print_exc,62 场崩因(super cell)将无从定位;一行式信息不足。
+            import traceback as _tb
+            _tb.print_exc()
             continue
         for k, v in _ov_saved.items():
             if v is None:
