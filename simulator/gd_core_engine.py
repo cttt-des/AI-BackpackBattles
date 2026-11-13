@@ -757,6 +757,9 @@ def _key_of(x):
     return (x.get("id") or x.get("key")) if isinstance(x, dict) else x
 
 
+_GEO_CACHE = {}     # (key, rot%360) → 解析后的**未平移**几何（不可变 tuple）
+
+
 def _place_of(data: dict, key: str, row: int, col: int, rot: int) -> dict:
     """锚点系几何 → 实际摆位（坐标约定见 `tools/gen_gd_core_data.py` 文件头）。
 
@@ -764,27 +767,41 @@ def _place_of(data: dict, key: str, row: int, col: int, rot: int) -> dict:
       `collision` 上再加 row/col —— 那样是平移两次，第 n 列落成第 2n 列，物品
       间距被整体拉大（相邻联动判定随之全错），而且只错一格以上的摆位、错得很安静。
       参考实现：`tools/gen_lineup_fixture.py::placement_of`（`rotated` 是锚点系原序）。
+
+    ★ §12.4/P1（2026-11-12）：解析结果按 (key, rot) 缓存为**不可变 tuple**
+      （runtime `data` 进程级静态，仅首次真解析）——同阵容 MC 复跑/训练循环
+      里重复装配同 (key, rot) 时免去 rot 字典查找、affected 字典重建与
+      occupied 的 set+sorted（→ 平移保序，直接逐元组平移）。
     """
-    ent = data["items"].get(key)
-    if ent is None:
-        raise _MissingItem("物品 %s 不在可装配清单里（无转译脚本）" % key)
-    r = ent["rot"][str(int(rot) % 360)]
-    anchor = r["collision"]                     # 锚点系，min 已归一化到 (0,0)
-    collision = [[c[0] + col, c[1] + row] for c in anchor]
-    affected = {int(color): [[c[0] + col, c[1] + row] for c in cells]
-                for color, cells in r["affected"].items()}
-    # ★ occupied 必须与 collision/affected 同一坐标系（Vector2(x=col, y=row)，
-    #   见 tools/gen_gd_core_data.py 文件头）。此前写成 (c[1]+row, c[0]+col)
-    #   （行、列互换）→ filledCells 的键与 affected 查询格错位，1×1 物品
-    #   的邻接联动（getAffectedItems）恒空且零报错——Magic Ring/Mana Orb/
-    #   Amulet of Darkness 等受影响格联动全部静默失效。
-    occupied = sorted({(c[0] + col, c[1] + row) for c in anchor})
+    ck = (key, int(rot) % 360)
+    cached = _GEO_CACHE.get(ck)
+    if cached is None:
+        ent = data["items"].get(key)
+        if ent is None:
+            raise _MissingItem("物品 %s 不在可装配清单里（无转译脚本）" % key)
+        r = ent["rot"][str(ck[1])]
+        cached = (
+            ent["script"],
+            int(ent["sockets"]),
+            ent["descr"],
+            tuple(r.get("charge_frame") or (0, 0)),
+            # 锚点系 collision，min 已归一化到 (0,0)——tuple of (x, y)
+            tuple((int(c[0]), int(c[1])) for c in r["collision"]),
+            # affected：tuple of (color, tuple-of-(x, y))
+            tuple((int(color), tuple((int(c[0]), int(c[1])) for c in cells))
+                  for color, cells in r["affected"].items()),
+            # occupied：锚点系去重排序（平移保序，平移后无需再排序）
+            tuple(sorted({(int(c[0]), int(c[1])) for c in r["collision"]})),
+        )
+        _GEO_CACHE[ck] = cached
+    script, sockets, descr, cf, anchor, affected_t, occupied_t = cached
+    collision = [[x + col, y + row] for x, y in anchor]
+    affected = {color: [[x + col, y + row] for x, y in cells]
+                for color, cells in affected_t}
+    occupied = [(x + col, y + row) for x, y in occupied_t]
     return {"occupied": occupied, "collision": collision, "affected": affected,
-            "script": ent["script"], "sockets": int(ent["sockets"]),
-            "descr": ent["descr"],
-            # ★ np25 P3-3：该朝向的 rotmin（旋转后碰撞包围盒 min）——
-            #   电荷格→背包格映射的减项（CoreItem._chargeInventoryCells 消费）
-            "charge_frame": tuple(r.get("charge_frame") or (0, 0))}
+            "script": script, "sockets": sockets,
+            "descr": descr, "charge_frame": cf}
 
 
 # ★ 模块级 = 原版脚本级 var，跨对局复用。见文件头「描述符必须全局唯一」。
