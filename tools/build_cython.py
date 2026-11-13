@@ -164,14 +164,18 @@ def build_one(py_path: str) -> str:
         #   默认关。跨翻译单元内联对单 .pyd 边际小（模块内符号为主），且
         #   link 期变慢（每模块 +2-5s）；闸红或无收益即弃。
         # ★ M4-4（2026-11-11）：/Os 体积优先——GD_OS=1 开启（实验门控）。
+        # ★ §4.3/D6（2026-11-13）：/arch:AVX2——GD_AVX2=1 开启（i5-8265U 支持
+        #   AVX2）。不动 /fp:（确定性红线 ⛔）；浮点归约顺序不变（编译器只在
+        #   显式向量化且无 /fp:fast 时保序……保守起见闸+判据与 D5/D8 同批判）。
         lto = "/GL" if os.environ.get("GD_LTO") == "1" else ""
         ltcg = "/LTCG" if os.environ.get("GD_LTO") == "1" else ""
         os_flag = "/Os" if os.environ.get("GD_OS") == "1" else ""
+        avx2 = "/arch:AVX2" if os.environ.get("GD_AVX2") == "1" else ""
         # ★ 中间产物显式重定向（否则 .obj/.lib/.exp/.pdb 全落 cwd=ROOT）
         ap = artifact_paths(base)
         cmd_line = (
             f'call "{MSVC_VCVARS}" >nul 2>&1 && cl /O2 {os_flag} /LD /MD /nologo '
-            f'{lto} /I "{inc}" {c_path} '
+            f'{lto} {avx2} /I "{inc}" {c_path} '
             f'/Fo"{ap["obj"]}" /Fd"{ap["pdb"]}" '
             f'/link {ltcg} /IMPLIB:"{ap["lib"]}" '
             f'/LIBPATH:"{libs_dir}" python314.lib '

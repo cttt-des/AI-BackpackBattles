@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 # 自动生成，勿手改。生成器：tools/gd_to_py.py
 
+# cython: annotation_typing=True
+from .CoreItem import CoreItem  # noqa: F401  D1 注解式类型化（纯 py 零开销）
+from .CoreCharacter import CoreCharacter  # noqa: F401  D1 同上
+
 from .._rt import (  # noqa: F401
 
     Color,
@@ -425,9 +429,13 @@ class CoreCombat(GodotObject):
 		self.opponent.physicsTickCharacter(delta)
 
 		# ③ 对手物品 _physics_process（Items/Item.gd:4453-4458，遍历=INVENTORY 装配序）
+		# D1（§4.2）：循环变量 C 类型化——注解式，纯 py 臂零开销；
+		# character() 虚派发保留（每 item-tick 恰一次），仅类型化返回值。
+		item: CoreItem
 		for item in _iter__loc(self.opponent.inventory.getItems()):
 			if item._cooldown_active:
-				if not (item.character().stunnedDuration > 0):
+				ch_: CoreCharacter = item.character()
+				if not (ch_.stunnedDuration > 0):
 					item.triggerTime -= delta * item.getSpeed()
 					if item.triggerTime <= 0:
 						item.trigger()
@@ -441,9 +449,13 @@ class CoreCombat(GodotObject):
 		self.player.physicsTickCharacter(delta)
 
 		# ⑥ 玩家物品 _physics_process（INVENTORY 装配序）
+		# D1（§4.2）：循环变量 C 类型化——注解式，纯 py 臂零开销；
+		# character() 虚派发保留（每 item-tick 恰一次），仅类型化返回值。
+		item: CoreItem
 		for item in _iter__loc(self.player.inventory.getItems()):
 			if item._cooldown_active:
-				if not (item.character().stunnedDuration > 0):
+				ch_: CoreCharacter = item.character()
+				if not (ch_.stunnedDuration > 0):
 					item.triggerTime -= delta * item.getSpeed()
 					if item.triggerTime <= 0:
 						item.trigger()

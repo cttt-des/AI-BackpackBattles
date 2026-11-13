@@ -3068,6 +3068,80 @@ def _char_bind(texts, stat, hit):
     return texts
 
 
+def _typed_hot_loops(texts, stat, hit):
+    """§4.2/D1（2026-11-13）：CoreCombat.physicsTick 双侧物品冷却循环 C 类型化。
+
+    形态＝注解式（模块指令 `annotation_typing=True` + PEP 526 局部注解）：
+      - 纯 py 臂零开销：CPython 对函数内局部注解**不求值不存表**，.py 保持
+        可被 GD_PURE_PY 臂源码导入（无 cimport / 无 cython 模块依赖）；
+      - `item: CoreItem` → `_cooldown_active`（bint）/`triggerTime`（double）
+        槽位 C 读写、`getSpeed()`（cpdef double）C 直调；每次迭代付一次
+        isinstance 收窄（参战物品全在 CoreItem 继承链上，§4.2 风险 1 已确认；
+        违反时 TypeError 响亮失败，不静默）；
+      - `character()` **虚派发保留**（§2.1 红线 ⛔ 内联）：每 item-tick 仍恰好
+        调用一次，仅对返回值变量类型化 → `stunnedDuration` 走 C double 槽读。
+        帧内调用集合与调用次数不变（无 §2.1 事件驱动调度问题）。
+    微基准锚：tools/typed_loop_probe（typed 0.008 vs untyped 0.272 µs/item-tick，
+    仅属性访问段 35.8x；整场预期 −8~12%，判据 mean_ms ≥3%）。
+    """
+    import ast as _ast
+    key = "gd_core/CoreCombat.gd"
+    t = texts.get(key)
+    if t is None or "_cooldown_active" not in t:
+        return texts
+
+    # 模块头：指令 + 姊妹模块导入（相对导入，与 Item.py 的基类导入同约定）
+    old_head = ("# 自动生成，勿手改。生成器：tools/gd_to_py.py\n"
+                "\n"
+                "from .._rt import (  # noqa: F401\n")
+    new_head = ("# 自动生成，勿手改。生成器：tools/gd_to_py.py\n"
+                "\n"
+                "# cython: annotation_typing=True\n"
+                "from .CoreItem import CoreItem  # noqa: F401  D1 注解式类型化（纯 py 零开销）\n"
+                "from .CoreCharacter import CoreCharacter  # noqa: F401  D1 同上\n"
+                "\n"
+                "from .._rt import (  # noqa: F401\n")
+    if t.count(old_head) != 1:
+        raise RuntimeError("D1T: CoreCombat 模块头锚点漂移（count=%d）"
+                           % t.count(old_head))
+    t = t.replace(old_head, new_head)
+
+    n_loops = 0
+    for side in ("opponent", "player"):
+        old = (
+            "\t\tfor item in _iter__loc(self.%s.inventory.getItems()):\n"
+            "\t\t\tif item._cooldown_active:\n"
+            "\t\t\t\tif not (item.character().stunnedDuration > 0):\n"
+            "\t\t\t\t\titem.triggerTime -= delta * item.getSpeed()\n"
+            "\t\t\t\t\tif item.triggerTime <= 0:\n"
+            "\t\t\t\t\t\titem.trigger()\n" % side)
+        new = (
+            "\t\t# D1（§4.2）：循环变量 C 类型化——注解式，纯 py 臂零开销；\n"
+            "\t\t# character() 虚派发保留（每 item-tick 恰一次），仅类型化返回值。\n"
+            "\t\titem: CoreItem\n"
+            "\t\tfor item in _iter__loc(self.%s.inventory.getItems()):\n"
+            "\t\t\tif item._cooldown_active:\n"
+            "\t\t\t\tch_: CoreCharacter = item.character()\n"
+            "\t\t\t\tif not (ch_.stunnedDuration > 0):\n"
+            "\t\t\t\t\titem.triggerTime -= delta * item.getSpeed()\n"
+            "\t\t\t\t\tif item.triggerTime <= 0:\n"
+            "\t\t\t\t\t\titem.trigger()\n" % side)
+        if t.count(old) != 1:
+            raise RuntimeError("D1T: %s 冷却循环锚点漂移（count=%d）"
+                               % (side, t.count(old)))
+        t = t.replace(old, new)
+        n_loops += 1
+
+    try:
+        _ast.parse(t)
+    except SyntaxError as e:
+        raise RuntimeError("D1T: CoreCombat 语法闸失败: %s" % e)
+    texts[key] = t
+    hit['D1T_typed_loops'] = n_loops
+    stat['D1T'] = ['physicsTick 双侧冷却循环类型化（item/ch_ 注解式）']
+    return texts
+
+
 def _strip_noop_hooks(texts, stat, hit):
     """M2-1：剥离空钩子（CoreHooks 全 pass 方法）的全部调用点。
 
@@ -3815,6 +3889,8 @@ def write_pkg(order, files_by_rel, by_name, by_path, class_names, stat, hit, wri
         texts = _strip_noop_hooks(texts, stat, hit)
     if "A2" not in _skip:
         texts = _char_bind(texts, stat, hit)
+    if "D1T" not in _skip:
+        texts = _typed_hot_loops(texts, stat, hit)
     if "CY" not in _skip:
         texts = _cy_round_alias(texts, stat, hit)
     pxd_texts = {} if "M1_2" in _skip else _pxd_emission(texts, files_by_rel, by_path, stat, hit)
