@@ -50,6 +50,21 @@ OBJ_DIR = os.path.join(ROOT, "build", "cython_objs")
 #   ② 每个子进程只写自己的 .c 或 .pyd，无共享写；
 #   ③ 失败要能定位到模块（子进程返回 (rel, rc, 错误尾部)）。
 
+# ★ 编译指令包（2026-11-13）：GD_CY_DIRECTIVES="boundscheck=False,wraparound=False"。
+#   默认空前缀，产物与历史逐字节等价（指令包是实验开关，不进默认路径）。
+#   安全性前提已全树验证：gd_core(159) + gd_core_items(509) 共 668 模块里
+#   **没有一处 `except IndexError`、没有一处裸 `except:`** ⇒ 关闭越界检查不会
+#   把「靠异常做控制流」的路径改静默。nonecheck 关掉后 None 属性访问从
+#   AttributeError 变 C 层访问（本树无此路径，但该项仍单独可关）。
+_CY_DIR_ENV = os.environ.get("GD_CY_DIRECTIVES", "").strip()
+_CY_FLAGS = []
+if _CY_DIR_ENV:
+    for _d in _CY_DIR_ENV.split(","):
+        _d = _d.strip()
+        if _d:
+            _CY_FLAGS += ["-X", _d]
+
+
 
 def _cython_batch(rels):
     """子进程：**一批**模块 .py → .c（单次 cython CLI 多文件）。
@@ -62,7 +77,7 @@ def _cython_batch(rels):
     返回 (rels, rc, err_tail)。
     """
     r = subprocess.run([sys.executable, "-m", "cython", "-3",
-                        "-X", "binding=True"] + list(rels),
+                        "-X", "binding=True"] + _CY_FLAGS + list(rels),
                        cwd=ROOT, capture_output=True, text=True)
     if r.returncode != 0:
         return (list(rels), r.returncode,
@@ -132,7 +147,7 @@ def build_one(py_path: str) -> str:
     #   freelist 判不可行：模块级指令被语法接受但 C 产物显式 "nofreelists"
     #   ABI 后缀（3.3.1 不再生成 freelist 池），装饰器形态被拒（class scope）。
     r = subprocess.run([sys.executable, "-m", "cython", "-3",
-                        "-X", "binding=True",
+                        "-X", "binding=True"] + _CY_FLAGS + [
                         py_path, "-o", c_path],
                        cwd=ROOT, capture_output=True, text=True)
     if r.returncode != 0:
