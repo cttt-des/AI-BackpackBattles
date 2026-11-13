@@ -89,6 +89,10 @@ def build():
         # 静态分析不可见，必须显式全量收集。数据面 assets/gd_core_runtime.json
         # 已由上方 --add-data assets 覆盖。
         "--hidden-import", "simulator.gd_core_engine",
+        # ★ v0.5.4：simulator.behavior 以 __import__("simulator.damage"/"simulator.buff")
+        #   字符串动态导入两个模块（静态分析不可见）——v0.5.4 selftest 抓出
+        #   ModuleNotFoundError 后补。与 gd_core_py 同理：动态导入必须显式收集。
+        "--collect-submodules", "simulator",
         "--collect-submodules", "gd_core_py",
         "--hidden-import", "tkinter",
         "--hidden-import", "tkinter.ttk",
