@@ -11,6 +11,6 @@ from gd_core_py.gd_core_items.Weapon cimport Weapon_2 as _base_cls_Exclusive__Po
 cdef class Exclusive__Pop(_base_cls_Exclusive__Pop):
 
     cdef public object maxSpeedBonus
-    cdef public object previousSpeedBonus
+    cdef public double previousSpeedBonus
     cdef public object speedPerMana
 

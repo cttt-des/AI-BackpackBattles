@@ -12,5 +12,5 @@ cdef class Exclusive__FlameWhip(_base_cls_Exclusive__FlameWhip):
 
     cdef public object _heatGain
     cdef public object _spikesNeeded
-    cdef public object bonusDamage
+    cdef public double bonusDamage
 

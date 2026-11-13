@@ -12,20 +12,22 @@ cdef class CoreTimer(GodotObject):
 
     cdef public object _ctx
     cdef public object _dbg
-    cdef public object _eng
-    cdef public object _left
-    cdef public object _multi_start_time
+    cdef public double _eng
+    cdef public double _left
+    cdef public double _multi_start_time
     cdef public object _owner
-    cdef public object _seen
-    cdef public object _started_frame
-    cdef public object _stopped
+    cdef public double _seen
+    cdef public long long _started_frame
+    cdef public bint _stopped
     cdef public object callback_method
-    cdef public object fire_count
-    cdef public object multi
+    cdef public long long fire_count
+    cdef public bint multi
     cdef public object name
-    cdef public object one_shot
+    cdef public bint one_shot
     cdef public object timestamps
-    cdef public object wait_time
+    cdef public double wait_time
     cpdef bint is_stopped(self)
+    cpdef double get_time_left(self)
     cpdef bint isFinished(self)
+    cpdef double _utilTime(self)
 

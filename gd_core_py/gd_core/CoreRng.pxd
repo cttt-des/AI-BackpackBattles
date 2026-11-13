@@ -34,11 +34,14 @@ from gd_core_py._rt cimport GodotObject
 
 cdef class CoreRng(GodotObject):
 
-    cdef public object _stacktrace
+    cdef public bint _stacktrace
     cdef public object debug_flip_tag
-    cdef public object draw_seq
-    cdef public object globalChainOpen
-    cdef public object oracle_trace
+    cdef public long long draw_seq
+    cdef public bint globalChainOpen
+    cdef public bint oracle_trace
     cdef public object oracle_trace_log
     cdef public object rng
+    cpdef bint flipPercent(self, double chance)
+    cpdef long long flipRound(self, double chance)
+    cpdef double bare_randf(self)
 

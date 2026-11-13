@@ -11,5 +11,5 @@ from gd_core_py.gd_core_items.Item cimport Item_2 as _base_cls_Exclusive__Invest
 cdef class Exclusive__InvestmentOpportunity(_base_cls_Exclusive__InvestmentOpportunity):
 
     cdef public object affectedItemsDict
-    cdef public object healthAcc
+    cdef public double healthAcc
 

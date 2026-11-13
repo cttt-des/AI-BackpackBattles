@@ -11,11 +11,11 @@ from gd_core_py.gd_core_items.Item cimport Item_2 as _base_cls_Exclusive__InnerP
 cdef class Exclusive__InnerPower(_base_cls_Exclusive__InnerPower):
 
     cdef public object empower
-    cdef public object healAmpAcc
+    cdef public double healAmpAcc
     cdef public object healAmpMax
     cdef public object healAmpPerLuck
     cdef public object luck
-    cdef public object speedAcc
+    cdef public double speedAcc
     cdef public object speedMax
     cdef public object speedPerEmpower
 

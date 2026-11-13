@@ -25,6 +25,7 @@ cdef class Gem(_base_cls_Gem):
     cpdef long long getEffectiveOwnerType(self)
     cpdef bint isPlaced(self)
     cpdef bint isInInventory(self)
+    cpdef double getGemPower(self)
     cpdef bint canModifyChance(self)
     cpdef bint canCombine(self)
     cpdef bint isMovingBack(self)

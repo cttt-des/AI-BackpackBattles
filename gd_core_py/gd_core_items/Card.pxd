@@ -16,7 +16,7 @@ cdef class Card_2(_base_cls_Card_2):
     cdef public object cardAnimation
     cdef public object chainPosition
     cdef public object connector
-    cdef public object curActivationDelay
+    cdef public double curActivationDelay
     cdef public object deck
     cdef public object faceUp
     cdef public object front

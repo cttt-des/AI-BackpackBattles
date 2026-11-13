@@ -11,8 +11,8 @@ from gd_core_py._rt cimport GodotObject
 cdef class CoreCharacter(GodotObject):
 
     cdef public object INVENTORY
-    cdef public object _autoRage_active
-    cdef public object _autoRage_left
+    cdef public bint _autoRage_active
+    cdef public double _autoRage_left
     cdef public object _bonusFatigueDamage
     cdef public object _buffProtectStacks
     cdef public object _characterClass
@@ -22,73 +22,77 @@ cdef class CoreCharacter(GodotObject):
     cdef public object _debuffReflectStacks
     cdef public object _debuffResistStacks
     cdef public object _dodgeStacks
-    cdef public object _invul_active
-    cdef public object _invul_eng
-    cdef public object _invul_left
-    cdef public object _invul_seen
+    cdef public bint _invul_active
+    cdef public double _invul_eng
+    cdef public double _invul_left
+    cdef public double _invul_seen
     cdef public object _playerId
-    cdef public object _rage_active
-    cdef public object _rage_eng
-    cdef public object _rage_left
-    cdef public object _rage_seen
-    cdef public object _tick_timer_active
-    cdef public object _tick_timer_left
+    cdef public bint _rage_active
+    cdef public double _rage_eng
+    cdef public double _rage_left
+    cdef public double _rage_seen
+    cdef public bint _tick_timer_active
+    cdef public double _tick_timer_left
     cdef public object accuracyRng
-    cdef public object allowStaminaOverflow
-    cdef public object attack_moving_forward
+    cdef public bint allowStaminaOverflow
+    cdef public bint attack_moving_forward
     cdef public object attack_sound_ready_time
     cdef public object autoRageItem
-    cdef public object baseMaxStamina
-    cdef public object baseStaminaRegen
+    cdef public double baseMaxStamina
+    cdef public double baseStaminaRegen
     cdef public object battleRageAura
-    cdef public object battleRageBonusDur
-    cdef public object blindingLightActive
+    cdef public double battleRageBonusDur
+    cdef public bint blindingLightActive
     cdef public object buffs
     cdef public object character_died_handlers
-    cdef public object chibi
-    cdef public object critResistance
+    cdef public bint chibi
+    cdef public double critResistance
     cdef public object critResistanceRng
     cdef public object critRng
-    cdef public object critTokensUsed
+    cdef public long long critTokensUsed
     cdef public object ctx
-    cdef public object curHealth
-    cdef public object curStamina
-    cdef public object damageResistance
+    cdef public double curHealth
+    cdef public double curStamina
+    cdef public double damageResistance
     cdef public object damage_anim_current
-    cdef public object effectSpikesLimit
-    cdef public object empowerDamage
-    cdef public object healingEfficiency
+    cdef public double effectSpikesLimit
+    cdef public double empowerDamage
+    cdef public double healingEfficiency
     cdef public object inventory
     cdef public object invulnerabilityItem
-    cdef public object invulnerable
-    cdef public object isDead
+    cdef public bint invulnerable
+    cdef public bint isDead
     cdef public object items
-    cdef public object maxHealth
-    cdef public object maxStamina
-    cdef public object meleeSpikesLimit
-    cdef public object meleeVampirismLimit
+    cdef public double maxHealth
+    cdef public double maxStamina
+    cdef public double meleeSpikesLimit
+    cdef public double meleeVampirismLimit
     cdef public object opponent
     cdef public object poisonDamageSource
-    cdef public object rangedSpikesLimit
-    cdef public object rangedVampirismLimit
+    cdef public double rangedSpikesLimit
+    cdef public double rangedVampirismLimit
     cdef public object spikeDamageSource
-    cdef public object staminaRegen
-    cdef public object staminaUpdateQueued
+    cdef public double staminaRegen
+    cdef public bint staminaUpdateQueued
     cdef public object statsDisplay
-    cdef public object stunResistance
+    cdef public double stunResistance
     cdef public object stunResistanceRng
-    cdef public object stunnedDuration
-    cdef public object temporaryMaxHealth
-    cdef public object temporaryMaxHealthGain
-    cdef public object temporaryMaxStamina
-    cdef public object tickCounter
+    cdef public double stunnedDuration
+    cdef public double temporaryMaxHealth
+    cdef public double temporaryMaxHealthGain
+    cdef public double temporaryMaxStamina
+    cdef public long long tickCounter
     cdef public object typedDamageFactors
-    cdef public object unhealingAmount
+    cdef public double unhealingAmount
     cpdef bint isPlayer(self)
     cpdef long long getMissingHealth(self)
+    cpdef double getBaseMaxHealth(self)
+    cpdef double getMaxHealth(self)
+    cpdef double getMaxStamina(self)
     cpdef bint isStunned(self)
     cpdef bint critResisted(self)
     cpdef bint stunResisted(self)
+    cpdef double getUnhealing(self)
     cpdef long long getCritTokens(self)
     cpdef long long getBonusFatigueDamage(self)
     cpdef long long getClass(self)
@@ -106,5 +110,10 @@ cdef class CoreCharacter(GodotObject):
     cpdef long long getEmpower(self)
     cpdef long long getHeat(self)
     cpdef long long getCold(self)
+    cpdef double getBuffDamageMod(self)
+    cpdef double getBaseMaxStamina(self)
+    cpdef double getMaxBaseStamina(self)
+    cpdef double getCurrentStamina(self)
+    cpdef double getMissingStamina(self)
     cpdef bint isFullStamina(self)
 

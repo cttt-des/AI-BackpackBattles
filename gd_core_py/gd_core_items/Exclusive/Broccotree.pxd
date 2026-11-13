@@ -13,5 +13,5 @@ cdef class Exclusive__Broccotree(_base_cls_Exclusive__Broccotree):
     cdef public object luck
     cdef public object luckNeeded
     cdef public object regen
-    cdef public object staminaPerRegen
+    cdef public double staminaPerRegen
 

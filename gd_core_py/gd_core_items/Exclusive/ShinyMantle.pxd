@@ -14,7 +14,7 @@ cdef class Exclusive__ShinyMantle(_base_cls_Exclusive__ShinyMantle):
     cdef public object activationParticles
     cdef public object blind
     cdef public object buffTimer
-    cdef public object gemDurFactor
+    cdef public double gemDurFactor
     cdef public object manaCostIncrease
     cdef public object manaNeeded
     cdef public object manaNeeded_base

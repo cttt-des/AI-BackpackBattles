@@ -18,26 +18,27 @@ from gd_core_py._rt cimport GodotObject
 
 cdef class CoreCombat(GodotObject):
 
-    cdef public object _activate_countdown
-    cdef public object _pending_deferred
+    cdef public double _activate_countdown
+    cdef public bint _pending_deferred
     cdef public object _result
-    cdef public object _tick_timer_active
-    cdef public object _tick_timer_left
-    cdef public object activated
-    cdef public object combat_time
+    cdef public bint _tick_timer_active
+    cdef public double _tick_timer_left
+    cdef public bint activated
+    cdef public double combat_time
     cdef public object ctx
-    cdef public object fatigue_counter
-    cdef public object fatigue_interval
-    cdef public object fatigue_next_tick
-    cdef public object fatigue_started
-    cdef public object fight_ended
-    cdef public object max_time
+    cdef public long long fatigue_counter
+    cdef public double fatigue_interval
+    cdef public double fatigue_next_tick
+    cdef public bint fatigue_started
+    cdef public bint fight_ended
+    cdef public double max_time
     cdef public object opponent
     cdef public object ordered_items
     cdef public object player
-    cdef public object speed_scale
-    cdef public object time_advance
-    cdef public object timed_out
+    cdef public double speed_scale
+    cdef public double time_advance
+    cdef public bint timed_out
     cpdef bint hasFatigueStarted(self)
+    cpdef double getEffectiveTime(self)
     cpdef bint playerWins(self)
 

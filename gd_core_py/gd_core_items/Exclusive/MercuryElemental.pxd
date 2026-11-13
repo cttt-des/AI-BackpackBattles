@@ -13,7 +13,7 @@ cdef class Exclusive__MercuryElemental(_base_cls_Exclusive__MercuryElemental):
     cdef public object distortion
     cdef public object poison
     cdef public object selfPoison
-    cdef public object staminaRegen
+    cdef public double staminaRegen
     cdef public object staminaThreshold
-    cdef public object staminaUsed
+    cdef public double staminaUsed
 

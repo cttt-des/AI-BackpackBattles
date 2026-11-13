@@ -10,7 +10,7 @@ from gd_core_py.gd_core_items.Exclusive.VampiricPotion cimport Exclusive__Vampir
 
 cdef class Exclusive__StrongVampiricPotion(_base_cls_Exclusive__StrongVampiricPotion):
 
-    cdef public object curLifesteal
+    cdef public double curLifesteal
     cdef public object lifestealGiven
     cdef public object lifestealPerTrigger
     cdef public object lifestealTimer

@@ -13,8 +13,8 @@ cdef class CoreDamageSource(GodotObject):
     cdef public object _maxDamage
     cdef public object _minDamage
     cdef public object _rng
-    cdef public object accuracy
-    cdef public object critChancePercent
+    cdef public double accuracy
+    cdef public double critChancePercent
     cdef public object flags
     cdef public object origin
     cdef public object types

@@ -12,6 +12,6 @@ cdef class Exclusive__SpellScrollNature(_base_cls_Exclusive__SpellScrollNature):
 
     cdef public object manaNeeded
     cdef public object stamina
-    cdef public object staminaAcc
+    cdef public double staminaAcc
     cdef public object staminaNeeded
 

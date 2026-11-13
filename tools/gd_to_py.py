@@ -3632,7 +3632,7 @@ def _hoist_referenced_classattrs(texts, stat, hit):
 
 
 _L2_CPDEF = {}          # gd_rel -> [decl lines]
-_L2_TYPE = {"bool": "bint", "int": "long long"}
+_L2_TYPE = {"bool": "bint", "int": "long long", "float": "double"}  # §11.4 链 1: getSpeed 等访问器 cpdef double
 _L2_SIG_RE = None
 
 
@@ -3651,6 +3651,9 @@ def _plan_l2_cpdef(files_by_rel, stat, hit):
             r'^func ([A-Za-z_][A-Za-z_0-9]*)\(([^)]*)\)(?: *-> *([A-Za-z_][A-Za-z_0-9]*))?:',
             _re.M)
     sig_by_name = {}          # name -> set((ptypes_tuple, ret_or_None))
+    # §11.4 止损:闸门红揪出「某路径 return None」的函数名 → _L2_BLOCKLIST
+    # (文件头常量)即退回 def;不要 try/except 兜。
+    _l2_block = _L2_BLOCKLIST
     per_module = {}           # rel -> [(name, ret, [(pname, ctype)])]
     for rel in sorted(r for r in files_by_rel if _is_pxd_whitelisted(r)):
         src_path = _os.path.join(_os.path.dirname(_os.path.dirname(
@@ -3682,7 +3685,7 @@ def _plan_l2_cpdef(files_by_rel, stat, hit):
                 continue                                 # 本形态不可声明
             sig_by_name.setdefault(name, set()).add(
                 (tuple(ptypes), ret))
-            if ret in _L2_TYPE:
+            if ret in _L2_TYPE and name not in _L2_BLOCKLIST:
                 per_module.setdefault(rel, []).append(
                     (name, ret, pdecl))
         # 逐模块落声明（兼容预检后过滤）
@@ -3705,7 +3708,8 @@ def _plan_l2_cpdef(files_by_rel, stat, hit):
     return n
 
 
-_L3_TYPE = {"bool": "bint", "int": "long long"}  # §3.1 判定后:float 面回退 object(实测复合路径 -9~-24%,见 §3.1 判读)
+_L2_BLOCKLIST = set()   # §11.4 止损位(见 _plan_l2_cpdef)
+_L3_TYPE = {"bool": "bint", "int": "long long", "float": "double"}  # §11.4 链: float 面(整链 C 化闭环实验)  # §3.1 判定后:float 面回退 object(实测复合路径 -9~-24%,见 §3.1 判读)
 _L3_BLOCKLIST = set()   # 止损：编译/闸门揪出的字段 (rel, field) 加入即回退 object
 _L3_RE = None
 
@@ -3722,7 +3726,8 @@ def _l3_numeric_types(gd_rel):
     if _L3_RE is None:
         _L3_RE = _re.compile(
             r'^var ([A-Za-z_][A-Za-z_0-9]*)'
-            r' *: *(bool|int)(?!\w)', _re.M)
+            r'(?: *: *(bool|int|float)(?!\w)'
+            r'| *:= *(True|False|true|false|[-+]?\d+(?:\.\d+)?))(?![.\w])', _re.M)
     src_path = _os.path.join(_os.path.dirname(_os.path.dirname(
         _os.path.abspath(__file__))), gd_rel)
     try:
@@ -3731,8 +3736,13 @@ def _l3_numeric_types(gd_rel):
         return {}
     out = {}
     for mm in _L3_RE.finditer(src):
-        name, ann = mm.group(1), mm.group(2)
-        out[name] = _L3_TYPE[ann]
+        name, ann, lit = mm.group(1), mm.group(2), mm.group(3)
+        if ann is not None:
+            out[name] = _L3_TYPE[ann]
+        elif lit is not None:
+            # `:=` 静态推断(GDScript 锁定类型):false/true→bint,整数→ll,小数→double
+            out[name] = 'bint' if lit in ('True', 'False', 'true', 'false') else (
+                'double' if '.' in lit else 'long long')
     return out
 
 

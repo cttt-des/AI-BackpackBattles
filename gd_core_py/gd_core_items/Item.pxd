@@ -28,8 +28,8 @@ cdef class Item_2(_base_cls_Item_2):
     cdef public bint affordable
     cdef public object animation
     cdef public object averagedPosition
-    cdef public object baseBounce
-    cdef public object baseFriction
+    cdef public double baseBounce
+    cdef public double baseFriction
     cdef public object bondVisuals
     cdef public object bondedBaseItem
     cdef public object bondedIngredients
@@ -43,7 +43,7 @@ cdef class Item_2(_base_cls_Item_2):
     cdef public object collisionMap
     cdef public object collisionShape
     cdef public object crafted_instance
-    cdef public object craftingAniReadyTime
+    cdef public double craftingAniReadyTime
     cdef public object craftingLabel
     cdef public object curRecipe
     cdef public object defaultColor
@@ -64,7 +64,7 @@ cdef class Item_2(_base_cls_Item_2):
     cdef public object hoverResponseEnabled
     cdef public object hovered
     cdef public object impactSoundReadyTime
-    cdef public object impactSoundVolume
+    cdef public double impactSoundVolume
     cdef public bint initialized
     cdef public object insideRotationNode
     cdef public object lastCollider
@@ -75,18 +75,18 @@ cdef class Item_2(_base_cls_Item_2):
     cdef public object locked
     cdef public object me
     cdef public object momentum
-    cdef public object momentumStrength
+    cdef public double momentumStrength
     cdef public object mouseIsOverItem
-    cdef public object mouseWheelRotationReadyTime
+    cdef public double mouseWheelRotationReadyTime
     cdef public object movebackTween
     cdef public object nonRotatedProgress
-    cdef public object notEnoughGoldLabelReadyTime
+    cdef public double notEnoughGoldLabelReadyTime
     cdef public object numStackChangeTypes
     cdef public object ownerTypesWithBuildTooltip
     cdef public object owningBuildIntoRecipesTooltip
     cdef public object pickingEnabled
     cdef public object pickupPosition
-    cdef public object pickupRotation
+    cdef public double pickupRotation
     cdef public object pickupTopLeftCell
     cdef public bint pooled
     cdef public object progressMaterial
@@ -108,7 +108,7 @@ cdef class Item_2(_base_cls_Item_2):
     cdef public object tooltipEnabled
     cdef public object tooltipMargin
     cdef public object tooltipUpdateQueued
-    cdef public object totalWeight
+    cdef public double totalWeight
     cdef public object wasJustCrafted
     cdef public object willBeConsumed
 

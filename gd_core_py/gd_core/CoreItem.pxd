@@ -34,7 +34,7 @@ cdef class CoreItem(GodotObject):
     cdef public object __inj_trigger_n
     cdef public object _activationsThisFrame
     cdef public object _behavior
-    cdef public object _cooldown_active
+    cdef public bint _cooldown_active
     cdef public object _critTokens
     cdef public object _faceDirection
     cdef public object _grid
@@ -45,14 +45,14 @@ cdef class CoreItem(GodotObject):
     cdef public object affectedCellsCache
     cdef public object affectedExtensionCells
     cdef public object affectedTileCells
-    cdef public object baseCooldownOverride
-    cdef public object bonusAccuracy
-    cdef public object bonusChancePercent_additive1
-    cdef public object bonusChancePercent_additive2
-    cdef public object bonusChancePercent_mult
-    cdef public object bonusDamageFactor
-    cdef public object bonusMaxDam
-    cdef public object bonusMinDam
+    cdef public double baseCooldownOverride
+    cdef public double bonusAccuracy
+    cdef public double bonusChancePercent_additive1
+    cdef public double bonusChancePercent_additive2
+    cdef public double bonusChancePercent_mult
+    cdef public double bonusDamageFactor
+    cdef public double bonusMaxDam
+    cdef public double bonusMinDam
     cdef public object buffAmplificationChances
     cdef public object buffLabelPositionTimestamps
     cdef public object buffPowers
@@ -62,45 +62,45 @@ cdef class CoreItem(GodotObject):
     cdef public object chargeFrame
     cdef public object collisionCells
     cdef public object combatConnections
-    cdef public object consumed
-    cdef public object critChancePercent
-    cdef public object critSeverity
+    cdef public bint consumed
+    cdef public double critChancePercent
+    cdef public double critSeverity
     cdef public object ctx
     cdef public object currentAffectedItems
     cdef public object damageRangeRng
     cdef public object damageSource
     cdef public object descriptor
-    cdef public object doubleActivationChance
-    cdef public object doubleAttackEffectChance
-    cdef public object dragged
+    cdef public double doubleActivationChance
+    cdef public double doubleAttackEffectChance
+    cdef public bint dragged
     cdef public object dynamicTypes
     cdef public object extensionCells
-    cdef public object flk_suppress_fire
+    cdef public bint flk_suppress_fire
     cdef public object gems
-    cdef public object hasDealtDamageEffect
-    cdef public object hasOnChargeLeftEffect
-    cdef public object hasOnChargeReceivedEffect
-    cdef public object hasPreDealDamageEarlyEffect
-    cdef public object hasPreDealDamageLateEffect
+    cdef public bint hasDealtDamageEffect
+    cdef public bint hasOnChargeLeftEffect
+    cdef public bint hasOnChargeReceivedEffect
+    cdef public bint hasPreDealDamageEarlyEffect
+    cdef public bint hasPreDealDamageLateEffect
     cdef public object inventory
     cdef public object itemMetrics
-    cdef public object iterationCooldown
-    cdef public object lastActivationTime
-    cdef public object lastTriggerTime
+    cdef public double iterationCooldown
+    cdef public double lastActivationTime
+    cdef public double lastTriggerTime
     cdef public object name
     cdef public object occupiedCells
     cdef public object paramAdd
     cdef public object paramMult
-    cdef public object placed
-    cdef public object placedByPlayer
-    cdef public object removableDam
-    cdef public object replacementPending
-    cdef public object rotation
-    cdef public object speedScale
-    cdef public object staminaFactor
+    cdef public bint placed
+    cdef public bint placedByPlayer
+    cdef public double removableDam
+    cdef public bint replacementPending
+    cdef public double rotation
+    cdef public double speedScale
+    cdef public double staminaFactor
     cdef public object statDisplayOverrides
     cdef public object timers
-    cdef public object triggerTime
+    cdef public double triggerTime
     cpdef bint hasCharacter(self)
     cpdef bint isPlaced(self)
     cpdef bint isCoreItem(self)
@@ -111,19 +111,40 @@ cdef class CoreItem(GodotObject):
     cpdef bint canDamage(self)
     cpdef bint canBeEmpowered(self)
     cpdef bint canActivate(self)
+    cpdef double getSpeed(self)
+    cpdef double speed(self)
+    cpdef double getStackSpeedMods(self)
     cpdef bint isCooldownActive(self)
+    cpdef double getBaseCooldown(self)
+    cpdef double getBaseCooldownIndex(self, long long index)
+    cpdef double getCooldown(self)
+    cpdef double getCooldownIndex(self, long long index)
+    cpdef double getModifiedCooldown(self)
+    cpdef double getBaseStaminaCost(self)
+    cpdef double getStaminaCost(self)
     cpdef long long isStaminaModified(self)
     cpdef bint hasStartofBattle(self)
     cpdef bint checkTriggerCount(self, long long limit)
     cpdef bint checkActivationLimit(self)
     cpdef long long getBaseMinDamage(self)
     cpdef long long getBaseMaxDamage(self)
+    cpdef double getBaseAverageDamage(self)
+    cpdef double getAverageDamage(self)
+    cpdef double getRemovableDamage(self)
+    cpdef double getBaseChance(self)
+    cpdef double getBaseChance2(self)
+    cpdef double getChance(self)
+    cpdef double getChance2(self)
     cpdef bint rollChance2(self)
     cpdef long long getCritTokens(self)
+    cpdef double getCritSeverity(self)
     cpdef long long rollDoubleAttackEffect(self)
+    cpdef double getBaseAccuracy(self)
+    cpdef double getAccuracy(self)
     cpdef long long getBlock(self)
     cpdef long long getIndex(self)
     cpdef long long getRarity(self)
+    cpdef double getShopChance(self)
     cpdef long long getMainType(self)
     cpdef long long getNumStaticTypes(self)
     cpdef bint isNeutral(self)
@@ -137,12 +158,25 @@ cdef class CoreItem(GodotObject):
     cpdef long long getEffectiveOwnerType(self)
     cpdef bint isBusy(self)
     cpdef bint isBoundAsIngredient(self)
+    cpdef double getP1(self)
+    cpdef double getP2(self)
+    cpdef double getP3(self)
+    cpdef double getP4(self)
+    cpdef double getP5(self)
+    cpdef double getP6(self)
+    cpdef double getP7(self)
+    cpdef double getP8(self)
+    cpdef double getP9(self)
+    cpdef double getP10(self)
+    cpdef double getDPS(self)
     cpdef long long isDPSModified(self)
     cpdef long long isCooldownModified(self)
     cpdef long long isAccuracyModified(self)
     cpdef long long isChance1Modified(self)
     cpdef long long isChance2Modified(self)
     cpdef long long isDamageModified(self)
+    cpdef double getBaseStaminaPerSecond(self)
+    cpdef double getStaminaPerSecond(self)
     cpdef long long isStaminaPerSecondModified(self)
     cpdef bint canHealOrLifesteal(self)
     cpdef bint canModifyChance(self)

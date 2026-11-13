@@ -15,5 +15,5 @@ cdef class Exclusive__SpicyBanana(_base_cls_Exclusive__SpicyBanana):
     cdef public object heatPerActivation
     cdef public object manananaDescriptor
     cdef public object staminaForHeal
-    cdef public object staminaUsed
+    cdef public double staminaUsed
 

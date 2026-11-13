@@ -10,7 +10,7 @@ from gd_core_py.gd_core_items.Gems.Gem cimport Gem as _base_cls_Exclusive__Eleph
 
 cdef class Exclusive__ElephantRune(_base_cls_Exclusive__ElephantRune):
 
-    cdef public object debuffResistChance
+    cdef public double debuffResistChance
     cdef public object debuffResistTimer
     cdef public object stunCd
     cdef public object stunReadyTime
