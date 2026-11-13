@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "backpack-battles-sim"
-version = "0.5.3"
+version = "0.5.4"
 description = "Backpack Battles 战斗模拟器内核（gd_core 转写版，三方逐位对齐 1690/1690）"
 readme = "README.md"
 requires-python = ">=3.14"
