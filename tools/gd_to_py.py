@@ -3803,7 +3803,14 @@ def _plan_l2_cpdef(files_by_rel, stat, hit):
     return n
 
 
-_L2_BLOCKLIST = set()   # §11.4 止损位(见 _plan_l2_cpdef)
+_L2_BLOCKLIST = {
+    # §7 事故（2026-11-13 晚）：cpdef double getStaminaCost + plain 子类
+    # （Greatsword_2）def 覆写 + 零参 super() 三元组合，Cython 3.3.1 编译态
+    # 62 场崩（super(): __class__ cell not found；纯 py 臂全绿；binding=True
+    # 不救）。退 plain def 动态派发（§11.7 闭环已判 1.07x 不划算——让微收益
+    # 换正确性）。
+    "getStaminaCost",
+}   # §11.4 止损位(见 _plan_l2_cpdef)
 _L3_TYPE = {"bool": "bint", "int": "long long", "float": "double"}  # §11.4 链: float 面(整链 C 化闭环实验)  # §3.1 判定后:float 面回退 object(实测复合路径 -9~-24%,见 §3.1 判读)
 _L3_BLOCKLIST = set()   # 止损：编译/闸门揪出的字段 (rel, field) 加入即回退 object
 _L3_RE = None

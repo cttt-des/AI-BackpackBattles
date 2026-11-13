@@ -225,6 +225,18 @@ def main():
     if not targets:
         ap.error("需要 targets/--all/--list")
 
+    # ★ §7 事故护栏（2026-11-13 晚）：包根手写辅助模块**禁止编译成 pyd**。
+    #   加载器 ExtensionFileLoader 优先于源码——这些模块一旦产出 .pyd 就遮蔽
+    #   纯 .py 语义（_registry.pyd 曾致全树导入段错误，674 模块被迫整树回退）。
+    #   它们是基础设施不是转译产物（无对应 .gd），必须保持纯 py。
+    _FORBID = ("gd_core_py/_registry.py", "gd_core_py/_bootstrap.py",
+               "gd_core_py/_colors.py", "gd_core_py/__init__.py")
+    bad = [t for t in targets if t.replace("\\", "/") in _FORBID]
+    if bad:
+        raise SystemExit(
+            "[guard] 包根辅助模块禁止编译（会以 pyd 遮蔽纯 py 语义，"
+            "§7 事故）：\n  " + "\n  ".join(bad))
+
     # ── MSVC 清单模式（S5-F1 续批）：单 bat 内 vcvars 一次 + 逐模块 cl——
     #    首版每模块重调 vcvars（5-8s 纯开销 × 643）不可行。cl 失败的模块无
     #    .pyd 产物 → 回落 .py（幂等重跑只补缺）。──
