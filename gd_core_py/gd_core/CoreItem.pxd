@@ -121,7 +121,12 @@ cdef class CoreItem(GodotObject):
     cpdef double getCooldownIndex(self, long long index)
     cpdef double getModifiedCooldown(self)
     cpdef double getBaseStaminaCost(self)
-    cpdef double getStaminaCost(self)
+    # cpdef double getStaminaCost(self)  # ← §8.3 事故回退（2026-11-13 晚）：
+    #   cpdef double + plain 子类(Greatsword_2) def 覆写 + 零参 super() 三元组合
+    #   在 Cython 3.3.1 下 62 场崩（super(): __class__ cell not found，纯 py 臂
+    #   1/1 全绿——纯编译层回归）。与 binding=False 事故同指纹；binding=True
+    #   不救（实证 2026-11-13 晚，双臂+重编复现）。退 plain def 动态派发。
+    #   §11.7 闭环已判 1.07-1.10x 不划算，此处让收益换正确性。
     cpdef long long isStaminaModified(self)
     cpdef bint hasStartofBattle(self)
     cpdef bint checkTriggerCount(self, long long limit)
