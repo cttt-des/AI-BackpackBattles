@@ -189,6 +189,25 @@ def kernel() -> dict:
     return _K
 
 
+# ★ §4.3/A1（2026-11-14）：logEvent 热路径的 kernel 常量进程级预解析——
+#   kernel() 是进程级 dict，但每事件的 kernel() 调用 + 3-4 次键查找
+#   （1493 次/场）可在首场引擎构造时一次性提到模块全局（LOAD_GLOBAL 最快）。
+_LK_ITEM: Optional[type] = None
+_LK_ETNAME: Optional[dict] = None
+_LK_EV_BLOCK: Optional[int] = None
+_LK_EV_REGEN: Optional[int] = None
+
+
+def _warm_log_kernel() -> None:
+    """装载 logEvent 用的 kernel 常量（GDCoreEngine.__init__ 调一次）。"""
+    global _LK_ITEM, _LK_ETNAME, _LK_EV_BLOCK, _LK_EV_REGEN
+    k = kernel()
+    _LK_ITEM = k["CoreItem"]
+    _LK_ETNAME = k["ET_NAME"]
+    _LK_EV_BLOCK = k["CoreConst"].EventType.get("Block")
+    _LK_EV_REGEN = k["CoreConst"].EventType.get("Regeneration")
+
+
 # ═══════════════════════════ 事件桥 ═══════════════════════════
 
 class _OriginRef:
@@ -281,6 +300,13 @@ class _LogMixin:
         self.warnings: List[str] = []
         self._pending_crafted = None  # np24 crafted 实例真值（_place 前 set）
         self.stats = {0: _new_stats(), 1: _new_stats()}
+        # ★ §4.3/A1（2026-11-14）：origin 解析缓存——oref 是不可变数据且只含
+        #   identifier/host/slot（同名物品实例的 oref 值相等，共享实例逐位等价）。
+        #   1493 事件/场 vs ~108 物品实例 ⇒ 非宝石 origin 缓存命中率 >90%；
+        #   宝石（含 host/slot 扫描）与数字源走各自键缓存。同引擎实例生命周期
+        #   = 一场，天然隔离。
+        self._oref_cache = {}
+        self._num_oref_cache = {}
 
     # ── 工具 ──
 
@@ -396,10 +422,15 @@ class _LogMixin:
             etype = _EVENT_TYPE_MAP.get(name)
             buff_type = None
 
-        # ── actor（原 _actor_of 内联；kernel() 此处只调一次，origin 反查共用）──
-        k = kernel()
+        # ── actor + origin（原 _actor_of/_origin_key 内联，A1 合并）──
+        # ★ A1（2026-11-14）：两段对同一 origin 的 isinstance/character()/
+        #   identifier 解析原本各付一次（actor 段 + origin 段），合并为一次；
+        #   kernel 常量走进程级预解析全局（_warm_log_kernel），每事件免
+        #   kernel() 调用与键查找（原 1493 次/场）；oref 走实例级缓存
+        #   （不可变数据共享，同名实例值相等 ⇒ 逐位等价）。
         origin = event.origin
-        if isinstance(origin, k["CoreItem"]):
+        is_item = isinstance(origin, _LK_ITEM)
+        if is_item:
             ch = origin.character()
             if ch is not None:
                 pid = ch.playerId
@@ -467,14 +498,18 @@ class _LogMixin:
                     params = dict(params)
                     params["actor_is_target"] = True
 
-        # ── origin（原 _origin_key 内联，共用上面的 k）──
-        if isinstance(origin, k["CoreItem"]):
+        # ── origin（原 _origin_key 内联；A1：判定/解析与 actor 段共享，oref 缓存）──
+        if is_item:
             try:
                 ident = str(origin.descriptor.identifier)
             except Exception:  # noqa: BLE001 —— 只为日志，不因取名失败而中断
                 okey = str(origin.getName())
             else:
-                # 宝石 origin：附宿主/槽位（_OriginRef 新字段；渲染仍只读 .key）
+                # ★ A1 修复（2026-11-14）：is_gem 判定必须**先于**缓存查询——
+                #   宝石实例的 descriptor.identifier 与宿主同值（实测 run704847
+                #   13 个宝石事件被缓存污染成宿主 item oref，60 场闸 6 红）。
+                #   宝石走 gem 分支且**不缓存**（量少，host/slot 语义面大）；
+                #   非宝石才进 ident 键缓存。
                 try:
                     is_gem = bool(origin.isGem())
                 except Exception:  # noqa: BLE001
@@ -497,7 +532,10 @@ class _LogMixin:
                             slot = None
                     okey = _OriginRef(ident, host_key, slot)
                 else:
-                    okey = _OriginRef(ident)
+                    okey = self._oref_cache.get(ident)
+                    if okey is None:
+                        okey = _OriginRef(ident)
+                        self._oref_cache[ident] = okey
         else:
             # 数字 origin = DamageSource.Type（原版 CombatEvent.asText：
             # `origin is Item` 为假时走 Game.typeToKeyword(origin)）。
@@ -510,15 +548,18 @@ class _LogMixin:
             except (TypeError, ValueError):
                 okey = None
             else:
-                nm = k["ET_NAME"].get(num)
-                if not nm:
-                    okey = None
-                elif num == k["CoreConst"].EventType.get("Block"):
-                    okey = _OriginRef("bl", damage_source=True)
-                elif num == k["CoreConst"].EventType.get("Regeneration"):
-                    okey = _OriginRef("regen", damage_source=True)
-                else:
-                    okey = _OriginRef(nm.lower(), damage_source=True)
+                okey = self._num_oref_cache.get(num)
+                if okey is None:
+                    nm = _LK_ETNAME.get(num)
+                    if not nm:
+                        okey = None
+                    elif num == _LK_EV_BLOCK:
+                        okey = _OriginRef("bl", damage_source=True)
+                    elif num == _LK_EV_REGEN:
+                        okey = _OriginRef("regen", damage_source=True)
+                    else:
+                        okey = _OriginRef(nm.lower(), damage_source=True)
+                    self._num_oref_cache[num] = okey
         if okey is None:
             oref = None
         elif isinstance(okey, _OriginRef):
@@ -914,6 +955,8 @@ class GDCoreEngine:
         data = runtime_data()
         self._data = data
         self._K = k
+        # ★ §4.3/A1：logEvent 的 kernel 常量进程级预解析（幂等，首个引擎装载）。
+        _warm_log_kernel()
         # ★ §4.1/D3-1（装配局部化）：`_R`/`Vector2` 是引擎级常量，此前
         #   `_make_item`/`_place` 每物品付 `self._K` + 两级 dict 查找（108 物品
         #   × 每物品 3 层）；上提到实例属性，每物品只付一次 attr 读。
