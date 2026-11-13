@@ -914,6 +914,11 @@ class GDCoreEngine:
         data = runtime_data()
         self._data = data
         self._K = k
+        # ★ §4.1/D3-1（装配局部化）：`_R`/`Vector2` 是引擎级常量，此前
+        #   `_make_item`/`_place` 每物品付 `self._K` + 两级 dict 查找（108 物品
+        #   × 每物品 3 层）；上提到实例属性，每物品只付一次 attr 读。
+        self._R = k["_R"]
+        self._vec = k["Vector2"]
         self.warnings: List[str] = []
         # ── S3-C17c：按场环境快照安装（驱动先设本场门控 env 再构造引擎——
         #    快照捕获逐场门控真值；单场内恒定，np51 门控热读 3.1k 次/场从
@@ -1339,16 +1344,18 @@ class GDCoreEngine:
         return ctx.item_book.register(made)
 
     def _make_item(self, ctx, chr_, key, script, sockets, collision, affected):
-        k = self._K
-        R = k["_R"]
+        R = self._R          # D3-1：实例级常量（__init__ 预解析），免两级 dict 查找
         if not R.is_registered(script):
             raise _MissingItem("物品 %s 的脚本未转译：%s" % (key, script))
-        vec = k["Vector2"]
+        vec = self._vec      # D3-1：同上（collisionCells/affectedTileCells 推导用）
         it = R.C(script)()
         # ★ np24：crafted 实例真值在 setup（含 addToInventory→半径增量入账）
         #   前注入；run871 Anvil numCraftd 定谳。经 _pending_crafted 传递。
-        if getattr(self, "_pending_crafted", None) is not None:
-            it.crafted_instance = 1 if self._pending_crafted else 0
+        #   D3-1：__init__（self._pending_crafted = None）恒已初始化，
+        #   getattr(self, ..., None) 兜底是纯浪费 → 平读（语义同：None 判定）。
+        pc = self._pending_crafted
+        if pc is not None:
+            it.crafted_instance = 1 if pc else 0
             self._pending_crafted = None
         it.setup(ctx, self._descriptor(ctx, key), chr_)
         # 插座数组按 socket 数建等长（原版 sockets = $Icon/Sockets.get_children()）
@@ -1362,8 +1369,7 @@ class GDCoreEngine:
 
     def _place(self, ctx, chr_, key, row, col, rot, owner_type, ready=True,
                sockets=None):
-        k = self._K
-        vec = k["Vector2"]
+        vec = self._vec     # D3-1：实例级常量，免 self._K + dict 两级查找
         pl = _place_of(self._data, key, row, col, rot)
         # np24 簇A①：sockets 显式传入时以传入值为准（= 神谕实例真值
         # len(lineup gems)，见 _build_side 注）；缺省回落夹具容量（宝石自身的
@@ -1391,6 +1397,9 @@ class GDCoreEngine:
 
     def _build_side(self, ctx, chr_, lineup, owner_type, gem_lens=None):
         out = []
+        out_append = out.append          # D3-1：每物品 3 个绑定查找上提
+        place = self._place
+        add_item = chr_.inventory.addItem
         _gi = 0
         for sec in ("backpack", "storage"):
             if sec == "storage":
@@ -1408,11 +1417,11 @@ class GDCoreEngine:
                 _gi += 1
                 # np24：crafted 实例真值经 pending 传入（addItem 前注入）
                 self._pending_crafted = bool(e["crafted"]) if "crafted" in e else None
-                it = self._place(ctx, chr_, key, int(e.get("row") or 0),
-                                 int(e.get("col") or 0),
-                                 int(e.get("rotation") or 0), owner_type,
-                                 sockets=_sock)
-                chr_.inventory.addItem(it, it.occupiedCells)
+                it = place(ctx, chr_, key, int(e.get("row") or 0),
+                           int(e.get("col") or 0),
+                           int(e.get("rotation") or 0), owner_type,
+                           sockets=_sock)
+                add_item(it, it.occupiedCells)
                 # ★ r34 crafted 效果真值覆写（对齐重放元组覆写点）：_ready_init 的
                 #   roll 照常消耗链位（与神谕重放同序），随后用史真值覆写（零 rng）。
                 #   仅 MagicRing 族有此方法；effects 缺省/None 跳过。
@@ -1424,9 +1433,9 @@ class GDCoreEngine:
                     gkey = _key_of(g)
                     if not gkey:
                         continue
-                    gem = self._place(ctx, chr_, gkey, 0, 0, 0, owner_type)
+                    gem = place(ctx, chr_, gkey, 0, 0, 0, owner_type)
                     it.setGem(gi, gem)
-                out.append(it)
+                out_append(it)
         return out
 
     # ── 运行 ──
