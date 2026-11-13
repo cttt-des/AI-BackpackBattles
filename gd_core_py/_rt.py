@@ -1419,6 +1419,9 @@ class RandomNumberGenerator:
     def __init__(self, p_seed=None, p_inc=None):
         object.__setattr__(self, "_inc", self.DEFAULT_INC if p_inc is None else p_inc)
         object.__setattr__(self, "_pcg", PCG32(0, self._inc))
+        # ★ §4.4/A6：randf_range 端点 f32 缓存（键 (from_, to) → (ft, ff, d)）。
+        #   缓存的是纯函数结果，与 rng 状态无关——srandom 重播不影响正确性。
+        object.__setattr__(self, "_rf_cache", {})
         self.seed = self.DEFAULT_SEED if p_seed is None else p_seed
 
     # ── seed / state ──
@@ -1493,10 +1496,23 @@ class RandomNumberGenerator:
 
         real_t 是 float32，与 float 重载精确匹配（无需 promotion），故整条链
         都在 float32 上运算 —— 每步都要重新舍入。
+
+        ★ §4.4/A6（2026-11-14）：端点 f32 化按 (from_, to) 键缓存——转译内核
+          的调用点端点恒定（0.95/1.05、0.975/1.05 等少数几组），原实现每次
+          付 f32(to)+f32(from_)+f32(差) 三次 struct 往返（~37k 次/场）。
+          缓存值 = 原纯函数结果（逐位等价）；链位零变化（缓存不消耗 rng）。
+          每调用 5 次 f32 → 2 次（rf*d 与 +ff 依赖随机 rf，不可缓存）。
         """
+        key = (from_, to)
+        cached = self._rf_cache.get(key)
+        if cached is None:
+            ft = f32(to)
+            ff = f32(from_)
+            cached = (ft, ff, f32(ft - ff))
+            self._rf_cache[key] = cached
+        ft, ff, d = cached
         rf = self.randf()
-        d = f32(f32(to) - f32(from_))
-        return f32(f32(rf * d) + f32(from_))
+        return f32(f32(rf * d) + ff)
 
     def randfn(self, mean=0.0, deviation=1.0):
         """Box-Muller（Godot 实现）。
