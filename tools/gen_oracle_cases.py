@@ -140,7 +140,10 @@ def load_profiles(db_path: str):
             "rounds": round_id,          # 回合从 1 连续（已全库核验无空洞）
             "result_last": result,
             "health": health,
-            "stamina": stamina,
+            # ★ A2 修复（2026-11-15）：stamina 改用位流内嵌真值（与 oracle_fight.gd
+            #   :619 的 setMaxStamina(p_deser["stamina"]) 同源——db 明文列写入语义
+            #   混杂，23% 侧与真实游戏序列化值分歧；解码失败回退明文列）。
+            "stamina": (decoded["stamina"] if decoded else stamina),
             "item_count": len(items) if decoded else None,
             "decode_ok": decoded is not None,
             "dragon_knight": DRAGON_KNIGHT in names,

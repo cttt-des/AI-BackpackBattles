@@ -170,6 +170,38 @@ queued=True`——囊的 deferred 重算（Character.gd:979，仅 PLAYER 分支�
   若要让语料贴合真实游戏，需改 oracle 取数（位流 stamina）并全量重录——
   基准重定，待用户决策，未擅自改动。
 
+### 8.5 用户定案与执行（2026-11-15）：oracle 改贴游戏真值 + 全量重录
+
+用户决策：「oracle 本身就应该贴合游戏真值，按方案执行」。已实施：
+
+1. **oracle_fight.gd:619**：玩家开战 stamina 改 `setMaxStamina(p_deser["stamina"])`
+   （= 同一 decode 产物里的位流内嵌值，与物品元组同源同版本；单场验证
+   run100786_r15：`[SETMAX] side=0 new=6 old=5`、`[PMAX-O] max=6 cur=6`）。
+2. **夹具生成器同步**：`tools/gen_fixture_from_lineup.py::_history_round_stamina`
+   与 `tools/gen_oracle_cases.py` 的 stamina 改位流解码（`decode_build_info`，
+   解码失败回退明文列）。
+3. **全量重录**：914 + 1690（语料保护性拷贝于 `output/_backup_pre_stamina_rerecord/`，
+   代码改动 push 于 commit 77bf6a90 之后的 stamina-fix 提交）。
+
+### 8.6 其它 oracle-vs-游戏本体偏差排查（用户随附指令）
+
+逐项核查 harness 的 [M1]-[M14] 修改与残留语义，按影响分级：
+
+| 项 | 性质 | 影响面 | 处置 |
+|---|---|---|---|
+| **战斗期 call_deferred 不执行**（[M11] 阻塞循环无帧） | 🔴 语义级 | **Deck of Cards 204 个侧**（startActivation 卡链永不启动——真实游戏下一帧即启动）；DragonEgg/Card 语料 0 侧 | **结构性，未修**：修复需 harness 改帧驱动（yield 每帧），会重引入墙钟依赖（idle 型 Timer 的 delta 计时随 vsync 抖动），与 [M2]/[M6] 的确定性设计冲突。已量化待用户决策 |
+| **AnimationSpeedTimer 停用**（[M6]） | 🟡 链消耗级 | 真实游戏每 2-5s 消耗 4 步链（Character.gd:1562-1564 `randAnimationSpeed`）；其相位依赖会话帧历史，**不可复现** | **维持 [M6]**：无单一真值目标（相位≠任何确定值）；harness 停用=双方约定。已记录 |
+| ItemLibrary UI 实例 flicker 抽（np51㊳ 跳过） | ✅ 已定谳 | 冷启动期抽耗被 per-case set_seed 抹平；战斗期 UI 库不参战 | 无动作 |
+| [M5] UI/音频 rng 按原版保留 | ✅ 保留 | — | 无动作 |
+| [M6b] 池清空 / [M13] 跨场归零 | ✅ 等价冷启动/全新 CoreContext | — | 无动作 |
+| [M2] Timer 读数注册表 / [M1] callDelayed 登记 | ✅ 阻塞循环等价实现 | — | 无动作 |
+| 对手装配 initHistoryOpponent | ✅ 原版函数本体（含显式 recalculate） | — | 无动作 |
+| sus-run 预检（RunData.deserializeRound 校验） | ✅ 用位流内嵌值校验（5+囊数） | — | 无动作 |
+
+**遗留决策点**（未擅动）：战斗期 deferred 语义（Deck of Cards 204 侧）若要
+贴合真实游戏，需要「帧驱动 harness」重设计——收益是 204 侧卡链真实化，代价是
+录制确定性与空闲型 Timer 的墙钟依赖。待用户另案决策。
+
 ## 9 B 阶段结果（C++ 内核 1690/1690）
 
 | 项 | 修复前 | 修复后 |

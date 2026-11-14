@@ -210,12 +210,16 @@ def set_history_db(path: str) -> None:
 
 
 def _history_round_stamina(run_id: int, round_id: int):
-    """语料 run 史的玩家回合开局 stamina 真值（oracle/data/history.db 明文列）。
+    """语料 run 史的玩家回合开局 stamina 真值——**buildInfo 位流内嵌值**。
 
-    oracle_fight.gd:608 G.PLAYER.setMaxStamina(p_round.stamina)——玩家战斗
-    开局 max=cur=史记录值，实测分布 5..10（run910_r5=6、run813_r12=5，
-    两者阵容画像同含 1 袋：证伪「恒 base」与「恒 base+袋」两个模型）。
-    缺库/缺行返回 None（调用方退回 base）。"""
+    ★ A2 修复（2026-11-15，用户定案「oracle 必须贴合游戏真值」）：旧取数 = db
+    明文列 row["stamina"]——该列写入语义混杂（正常对局 = BuildHistoryDB
+    addRoundEntry 战斗结束 maxStamina；合成历史 createPreviousRoundsHistory =
+    类 base 常量 5），全量 3380 侧中 23% 与位流真值分歧（玩家侧袋内有
+    Stamina Sack 而列=5 的族）。位流内嵌值 = RunData.serializeRound 推入的
+    getMaxBaseStamina()（=真实游戏序列化时刻的 maxStamina），全量
+    3377/3380（99.9%）= 5+囊数。oracle_fight.gd:619 玩家侧已同步改用位流值
+    （setMaxStamina(p_deser["stamina"])）。解码失败回退明文列。"""
     key = (run_id, round_id)
     if key not in _round_stamina_cache:
         val = None
@@ -224,10 +228,18 @@ def _history_round_stamina(run_id: int, round_id: int):
             con = sqlite3.connect("file:%s?mode=ro" % _HISTORY_DB.replace("\\", "/"), uri=True)
             try:
                 row = con.execute(
-                    "SELECT stamina FROM roundData WHERE runID=? AND roundID=?",
+                    "SELECT stamina, buildInfo FROM roundData WHERE runID=? AND roundID=?",
                     (run_id, round_id)).fetchone()
                 if row is not None:
                     val = float(row[0])
+                    if row[1]:
+                        try:
+                            from core.build_history import decode_build_info, _find_map
+                            d = decode_build_info(row[1], _find_map())
+                            if isinstance(d, dict) and d.get("stamina") is not None:
+                                val = float(d["stamina"])
+                        except Exception:
+                            pass
             finally:
                 con.close()
         except Exception:

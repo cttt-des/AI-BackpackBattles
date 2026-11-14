@@ -616,7 +616,16 @@ func run_case(c: Dictionary, warmup := false) -> Dictionary :
 	var p_tuples = p_deser["items"]
 	G.PLAYER.INVENTORY.createFromItemTuples(p_tuples, ItemScript.Owner.PlayerInventory)
 	G.PLAYER.setMaxHealth(p_round.health)
-	G.PLAYER.setMaxStamina(p_round.stamina)
+	# ★ A2 修复（2026-11-15，用户定案「oracle 必须贴合游戏真值」）：玩家开战
+	#   stamina 改用 **buildInfo 位流内嵌真值**（p_deser["stamina"] =
+	#   RunData.serializeRound 推入的 getMaxBaseStamina()=maxStamina——真实游戏
+	#   序列化时刻的开战上限）。旧取数 = db 明文列 row["stamina"]：该列写入语义
+	#   混杂（正常对局=战斗结束 maxStamina、合成历史 createPreviousRoundsHistory
+	#   =类 base 常量 5），全量 3380 侧中 23% 与位流真值分歧（玩家侧袋内有
+	#   Stamina Sack 而列=5 的族）。位流真值 = 5+囊数 3377/3380（99.9%）实证。
+	#   对手侧不动：initHistoryOpponent 显式 recalculateMaxStamina（=5+囊数，
+	#   原版函数本体，与真实游戏一致）。
+	G.PLAYER.setMaxStamina(p_deser["stamina"])
 	G.initRoundResults()
 
 	# ── 对手实例化（原版 finishSwitchingToCombat @ Game.gd:2581-2588）──────
