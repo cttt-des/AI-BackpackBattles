@@ -1065,8 +1065,12 @@ static void run_one_internal(
     //   给了就按它重排（不洗牌、不排序，零 RNG 消耗），与 py 腿
     //   combat.startBattle([items[i] for i in order], ...) 同位同义。
     if (player_side.n_activation_order > 0 || opponent_side.n_activation_order > 0) {
-        auto reorder = [&](gd::GdArr* arr, const PackedSide& side) {
-            if (side.n_activation_order <= 0) return;
+        // ★ 只重排「传给 startBattle 的副本」——p_items/o_items 是 inventory 内容，
+        //   就地改它会把 inventory 顺序也改掉。py 腿 prepareItems 里 `if item.placed:
+        //   continue` ⇒ 物品装配期已 addItem，inventory 恒为装配序；activation_order
+        //   只影响 ordered_items（activateItems 的遍历序）。
+        auto reorder_copy = [&](gd::GdArr* arr, const PackedSide& side) -> gd::GdArr* {
+            if (side.n_activation_order <= 0) return arr;
             gd::GdArr* tmp = gd::GdArr::create(battle.arena, arr->len);
             for (int32_t k = 0; k < side.n_activation_order; ++k) {
                 int32_t src = side.activation_order[k];
@@ -1074,12 +1078,11 @@ static void run_one_internal(
                     tmp->push_back(battle.arena, arr->data[src]);
                 }
             }
-            for (uint32_t k = 0; k < tmp->len; ++k) arr->data[k] = tmp->data[k];
-            arr->len = tmp->len;
+            return tmp;
         };
-        reorder(p_items, player_side);
-        reorder(o_items, opponent_side);
-        gd::GdVal sb_args[3] = {gd::GdVal::from_arr(p_items), gd::GdVal::from_arr(o_items), gd::GdVal::from_bool(true)};
+        gd::GdArr* p_ordered = reorder_copy(p_items, player_side);
+        gd::GdArr* o_ordered = reorder_copy(o_items, opponent_side);
+        gd::GdVal sb_args[3] = {gd::GdVal::from_arr(p_ordered), gd::GdVal::from_arr(o_ordered), gd::GdVal::from_bool(true)};
         combat_obj->fn_startBattle(sb_args, 3);
     } else if (opts.native_activation_order) {
         battle.bind_battle(opts.seed);
