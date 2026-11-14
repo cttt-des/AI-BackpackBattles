@@ -207,8 +207,16 @@ python -X utf8 tools/_cpp30_v2.py
 
 ## 7 一句话
 
-> **18/30 已对齐，全部四类根因都在「调用方传参」而非 C++ 内核。**
-> 剩余 12 场里有 **7 场是「同 tick 发出不同事件」**，最强线索是 `Fedora` 的
-> `stealRandomBuff` 随机选择结果不同 —— 它走 `ctx.rng.pickRandomElement(list(stacks.keys()))`，
-> 键序或 `_current` 值任一不同都会导致偷到不同的 buff。
-> 建议从**路径 A（keys 迭代序）**入手，半天内可验证。
+> **18/30 已对齐，四类根因全部在「调用方传参」而非 C++ 内核。**
+>
+> 剩余 12 场里 **7 场是「同 tick 发出不同事件」**——同样的时刻，两侧选了不同的 buff/伤害类型。
+> 最强的单点线索是 **`Fedora` 出现 2 次**，两次都是「C++ 发 102/104、py 发 106」，
+> 而它的 `doCooldownEffect` 走 `stealRandomBuff` → `pickRandomStacks` →
+>`ctx.rng.pickRandomElement(list(stacks.keys()))`。
+>
+> **键序已排除**（`GdDict::keys()` 严格按插入序）；剩下的候选是
+> ① `Delayed` 日志队列的 flush 顺序（路径 B）② `buffs._current` 的值差异（路径 C）。
+> 建议从**路径 B** 入手。
+>
+> **不要再用 `ticks` 当判据**——神谕 `result.txt` 是 730、py 腿同场 881，
+> 但两者事件数 30/30 完全一致。只认事件流。
