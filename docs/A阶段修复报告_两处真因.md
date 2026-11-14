@@ -202,6 +202,35 @@ queued=True`——囊的 deferred 重算（Character.gd:979，仅 PLAYER 分支�
 贴合真实游戏，需要「帧驱动 harness」重设计——收益是 204 侧卡链真实化，代价是
 录制确定性与空闲型 Timer 的墙钟依赖。待用户另案决策。
 
+### 8.7 重录结果与第二轮修复（2026-11-15）
+
+**重录**：expand 1690/1690（0 剔除；149 场事件变化、11 场胜负翻转——体力真值
+改变了贴墙的战斗）+ 914/914（中途 4 进程并行 OOM 崩溃两轮，改 1 串行后完成；
+run1374_r18 首录遭 OOM 截断 status=lockup，单场重录恢复 status=ok 37968 事件）。
+
+**第二轮修复**（914 首验 910/914 → 914/914）：run695/run726/run942 三行是
+**旧版本位流（1.1.5/1.1.6）**，python `decode_build_info` 直接失败 → 回退明文列
+→ 又落回错误源（oracle 装配=6、夹具=5）。终修复：`_battle_start_stamina`
+玩家侧**优先取 oracle 自身装配 dump 的 `max_stamina`**（dump_lineups 写
+chr.maxStamina = setMaxStamina 设入的真值——版本无关、零解码歧义），
+位流解码与明文列降级为次选/兜底。
+
+**验收（游戏真值 stamina 语料）**：
+
+| 语料 | 判据 | 结果 |
+|---|---|---|
+| expand 1690 | 三方逐行一致 | **1690/1690**（perCase 审计 0 非一致，`output/perf/alignment_1690_truth2.json`） |
+| 914 | 三方逐行一致 | **914/914**（`output/oracle/alignment_914_truth.json`） |
+| C++（expand） | event_count 差 −1 且 winner 一致 | **1690/1690 = 100%**（`output/perf/_cpp1690_truth2.json`） |
+| 种子双态 | ticks/events 基线 | FAILS=0 |
+
+闸表核对：expand 新语料 0 场超 25000 事件（闸表零影响）；键控补偿表
+（PERM_STACK/WARM_LATCH/R5_DUAL/WARMUP/STOP_SEEN/CLEANSE）在 np46 净化重录时
+已清空，本次重录沿用同一隔离 harness，无需再动。
+
+**语料备份**：`output/_backup_pre_stamina_rerecord/`（重录前全量 1.4GB；
+重录可由 `git checkout 80c4cd3b -- oracle/oracle_fight.gd` + 重跑驱动复现）。
+
 ## 9 B 阶段结果（C++ 内核 1690/1690）
 
 | 项 | 修复前 | 修复后 |

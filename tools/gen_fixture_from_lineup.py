@@ -320,8 +320,16 @@ def _battle_start_stamina(lu_side: dict, entries: list, is_player: bool,
     """→ (battle_start_stamina, base_stamina)。依据见文件头「战斗起始体力约定」。"""
     base = float(lu_side.get("base_max_stamina", 5.0))
     if is_player:
-        # r33 真值注入：battle-start = 语料史 roundData.stamina（setMaxStamina
-        # 同设 cur，Character.gd:951-956）。缺真值退回 base（旧口径）。
+        # ★ A2 修复第二轮（2026-11-15）：优先用 **oracle 自身装配 dump 的
+        #   max_stamina**（dump_lineups 写 chr.maxStamina = setMaxStamina 设入的
+        #   位流内嵌真值——版本无关、零解码歧义）。第一轮的位流 python 解码
+        #   （decode_build_info）对旧版本（1.1.5/1.1.6）行直接失败 → 回退明文列
+        #   → 又落回错误源（run695/run726/run942 实证：oracle 装配=6、夹具=5，
+        #   三方对齐 910/914 的根因）。
+        v = lu_side.get("max_stamina")
+        if v is not None:
+            return float(v), base
+        # 次选：位流解码（与 oracle_fight.gd:619 同语义）；再次：明文列。
         if run_id is not None and round_id is not None:
             v = _history_round_stamina(run_id, round_id)
             if v is not None:
