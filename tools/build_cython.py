@@ -348,12 +348,15 @@ def main():
                 mod_pgd = os.path.join(ROOT, "build", "pgo",
                                        os.path.basename(base) + ".pgd")
                 if _pgo == "gen":
+                    # ★ LNK1264 教训：/GENPROFILE 链接要求 obj 为 /GL 生成——
+                    #   编译行必须带 /GL（单模块路径有、分片路径曾漏）。
                     extra_c, extra_l = (
-                        '', f' /GENPROFILE /PGD:"{mod_pgd}"')
+                        ' /GL', ' /LTCG /GENPROFILE /PGD:"' + mod_pgd + '"')
                     os.makedirs(os.path.join(ROOT, "build", "pgo"),
                                 exist_ok=True)
                 elif _pgo == "use":
-                    extra_c, extra_l = '', f' /USEPROFILE /PGD:"{mod_pgd}"'
+                    extra_c, extra_l = (
+                        ' /GL', ' /LTCG /USEPROFILE /PGD:"' + mod_pgd + '"')
                 else:
                     extra_c = f' {_lto} {_avx2}'.replace('  ', ' ').strip()
                     extra_c = (' ' + extra_c) if extra_c else ''
