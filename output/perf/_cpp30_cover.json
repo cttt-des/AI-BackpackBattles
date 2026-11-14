@@ -1,0 +1,302 @@
+[
+ {
+  "case": "run100875_r5_o100892_r5",
+  "cpp_n": 149,
+  "no_cover_n": 157,
+  "py_n": 150,
+  "first_diff": null,
+  "n_type_diff": 0,
+  "cpp_win": 0,
+  "py_win": "opponent"
+ },
+ {
+  "case": "run101354_r14_o101073_r14",
+  "cpp_n": 441,
+  "no_cover_n": 656,
+  "py_n": 671,
+  "first_diff": 73,
+  "n_type_diff": 322,
+  "cpp_win": 0,
+  "py_win": "opponent"
+ },
+ {
+  "case": "run101490_r12_o704664_r12",
+  "cpp_n": 1504,
+  "no_cover_n": 1504,
+  "py_n": 1765,
+  "first_diff": 765,
+  "n_type_diff": 611,
+  "cpp_win": 1,
+  "py_win": "player"
+ },
+ {
+  "case": "run101490_r3_o704722_r3",
+  "cpp_n": 135,
+  "no_cover_n": 135,
+  "py_n": 195,
+  "first_diff": null,
+  "n_type_diff": 0,
+  "cpp_win": 1,
+  "py_win": "player"
+ },
+ {
+  "case": "run101490_r5_o704639_r5",
+  "cpp_n": 803,
+  "no_cover_n": 803,
+  "py_n": 930,
+  "first_diff": 606,
+  "n_type_diff": 153,
+  "cpp_win": 1,
+  "py_win": "player"
+ },
+ {
+  "case": "run101490_r6_o500242_r6",
+  "cpp_n": 387,
+  "no_cover_n": 387,
+  "py_n": 527,
+  "first_diff": 219,
+  "n_type_diff": 124,
+  "cpp_win": 1,
+  "py_win": "player"
+ },
+ {
+  "case": "run101490_r8_o101571_r8",
+  "cpp_n": 383,
+  "no_cover_n": 383,
+  "py_n": 504,
+  "first_diff": 220,
+  "n_type_diff": 139,
+  "cpp_win": 1,
+  "py_win": "player"
+ },
+ {
+  "case": "run101490_r9_o101423_r9",
+  "cpp_n": 562,
+  "no_cover_n": 562,
+  "py_n": 663,
+  "first_diff": 249,
+  "n_type_diff": 186,
+  "cpp_win": 1,
+  "py_win": "player"
+ },
+ {
+  "case": "run101571_r11_o704580_r11",
+  "cpp_n": 924,
+  "no_cover_n": 1025,
+  "py_n": 919,
+  "first_diff": 157,
+  "n_type_diff": 605,
+  "cpp_win": 0,
+  "py_win": "opponent"
+ },
+ {
+  "case": "run101582_r9_o704990_r9",
+  "cpp_n": 517,
+  "no_cover_n": 458,
+  "py_n": 490,
+  "first_diff": 49,
+  "n_type_diff": 361,
+  "cpp_win": 0,
+  "py_win": "opponent"
+ },
+ {
+  "case": "run101635_r15_o101655_r15",
+  "cpp_n": 1829,
+  "no_cover_n": 1736,
+  "py_n": 1921,
+  "first_diff": 181,
+  "n_type_diff": 1372,
+  "cpp_win": 1,
+  "py_win": "player"
+ },
+ {
+  "case": "run101668_r7_o604708_r7",
+  "cpp_n": 390,
+  "no_cover_n": 388,
+  "py_n": 391,
+  "first_diff": null,
+  "n_type_diff": 0,
+  "cpp_win": 1,
+  "py_win": "player"
+ },
+ {
+  "case": "run101668_r8_o704752_r8",
+  "cpp_n": 375,
+  "no_cover_n": 471,
+  "py_n": 376,
+  "first_diff": 127,
+  "n_type_diff": 17,
+  "cpp_win": 0,
+  "py_win": "opponent"
+ },
+ {
+  "case": "run300219_r6_o704614_r6",
+  "cpp_n": 196,
+  "no_cover_n": 188,
+  "py_n": 172,
+  "first_diff": 48,
+  "n_type_diff": 73,
+  "cpp_win": 0,
+  "py_win": "opponent"
+ },
+ {
+  "case": "run400051_r12_o101432_r12",
+  "cpp_n": 490,
+  "no_cover_n": 440,
+  "py_n": 491,
+  "first_diff": null,
+  "n_type_diff": 0,
+  "cpp_win": 0,
+  "py_win": "opponent"
+ },
+ {
+  "case": "run604585_r6_o704454_r6",
+  "cpp_n": 149,
+  "no_cover_n": 98,
+  "py_n": 150,
+  "first_diff": null,
+  "n_type_diff": 0,
+  "cpp_win": 1,
+  "py_win": "player"
+ },
+ {
+  "case": "run604687_r10_o704291_r10",
+  "cpp_n": 128,
+  "no_cover_n": 155,
+  "py_n": 164,
+  "first_diff": 55,
+  "n_type_diff": 42,
+  "cpp_win": 1,
+  "py_win": "player"
+ },
+ {
+  "case": "run604702_r8_o704578_r8",
+  "cpp_n": 296,
+  "no_cover_n": 204,
+  "py_n": 297,
+  "first_diff": null,
+  "n_type_diff": 0,
+  "cpp_win": 0,
+  "py_win": "opponent"
+ },
+ {
+  "case": "run604799_r6_o101061_r6",
+  "cpp_n": 215,
+  "no_cover_n": 241,
+  "py_n": 216,
+  "first_diff": null,
+  "n_type_diff": 0,
+  "cpp_win": 1,
+  "py_win": "player"
+ },
+ {
+  "case": "run604807_r15_o604822_r15",
+  "cpp_n": 387,
+  "no_cover_n": 322,
+  "py_n": 358,
+  "first_diff": 125,
+  "n_type_diff": 197,
+  "cpp_win": 1,
+  "py_win": "player"
+ },
+ {
+  "case": "run604825_r9_o704797_r9",
+  "cpp_n": 272,
+  "no_cover_n": 288,
+  "py_n": 284,
+  "first_diff": 40,
+  "n_type_diff": 208,
+  "cpp_win": 0,
+  "py_win": "opponent"
+ },
+ {
+  "case": "run704504_r15_o704283_r15",
+  "cpp_n": 991,
+  "no_cover_n": 714,
+  "py_n": 982,
+  "first_diff": 145,
+  "n_type_diff": 733,
+  "cpp_win": 0,
+  "py_win": "opponent"
+ },
+ {
+  "case": "run704714_r9_o604609_r9",
+  "cpp_n": 2095,
+  "no_cover_n": 2132,
+  "py_n": 1822,
+  "first_diff": 57,
+  "n_type_diff": 1297,
+  "cpp_win": 1,
+  "py_win": "player"
+ },
+ {
+  "case": "run704864_r5_o704519_r5",
+  "cpp_n": 311,
+  "no_cover_n": 390,
+  "py_n": 349,
+  "first_diff": 22,
+  "n_type_diff": 231,
+  "cpp_win": 1,
+  "py_win": "player"
+ },
+ {
+  "case": "run704879_r14_o704504_r14",
+  "cpp_n": 1880,
+  "no_cover_n": 2744,
+  "py_n": 2269,
+  "first_diff": 264,
+  "n_type_diff": 1348,
+  "cpp_win": 1,
+  "py_win": "player"
+ },
+ {
+  "case": "run704881_r6_o101111_r6",
+  "cpp_n": 175,
+  "no_cover_n": 167,
+  "py_n": 172,
+  "first_diff": 31,
+  "n_type_diff": 113,
+  "cpp_win": 0,
+  "py_win": "opponent"
+ },
+ {
+  "case": "run704933_r6_o704860_r6",
+  "cpp_n": 179,
+  "no_cover_n": 171,
+  "py_n": 200,
+  "first_diff": 116,
+  "n_type_diff": 43,
+  "cpp_win": 1,
+  "py_win": "player"
+ },
+ {
+  "case": "run704990_r12_o300182_r12",
+  "cpp_n": 581,
+  "no_cover_n": 625,
+  "py_n": 653,
+  "first_diff": 227,
+  "n_type_diff": 266,
+  "cpp_win": 1,
+  "py_win": "player"
+ },
+ {
+  "case": "run705018_r6_o604708_r6",
+  "cpp_n": 197,
+  "no_cover_n": 170,
+  "py_n": 198,
+  "first_diff": null,
+  "n_type_diff": 0,
+  "cpp_win": 1,
+  "py_win": "player"
+ },
+ {
+  "case": "run705130_r7_o100875_r7",
+  "cpp_n": 212,
+  "no_cover_n": 208,
+  "py_n": 213,
+  "first_diff": null,
+  "n_type_diff": 0,
+  "cpp_win": 0,
+  "py_win": "opponent"
+ }
+]
