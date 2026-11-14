@@ -171,13 +171,35 @@ def build_one(py_path: str) -> str:
         ltcg = "/LTCG" if os.environ.get("GD_LTO") == "1" else ""
         os_flag = "/Os" if os.environ.get("GD_OS") == "1" else ""
         avx2 = "/arch:AVX2" if os.environ.get("GD_AVX2") == "1" else ""
+        # ★ §4.3/G3（2026-11-14）：PGO 两阶段——GD_PGO=gen 时编译插桩版
+        #   （/GL + 链接 /LTCG /GENPROFILE；跑代表性场景后每模块产出
+        #   <mod>.pgc）；GD_PGO=use 时链接 /LTCG /USEPROFILE 消费 profile。
+        #   ★ /PGD 必须指向**每模块的 .pgd 文件**（不是目录——C1301 实证）；
+        #     编译行**不能**传 -GENPROFILE（D9002 忽略——它只是链接选项）。
+        pgo = os.environ.get("GD_PGO", "")
+        pgc_dir = os.path.join(ROOT, "build", "pgo")
+        mod_pgd = os.path.join(pgc_dir, os.path.basename(base) + ".pgd")
+        if pgo == "gen":
+            lto = "/GL"
+            ltcg = "/LTCG"
+            os.makedirs(pgc_dir, exist_ok=True)
+            pgo_cflags = ''
+            pgo_ldflags = f' /GENPROFILE /PGD:"{mod_pgd}"'
+        elif pgo == "use":
+            lto = "/GL"
+            ltcg = "/LTCG"
+            pgo_cflags = ''
+            pgo_ldflags = f' /USEPROFILE /PGD:"{mod_pgd}"'
+        else:
+            pgo_cflags = ''
+            pgo_ldflags = ''
         # ★ 中间产物显式重定向（否则 .obj/.lib/.exp/.pdb 全落 cwd=ROOT）
         ap = artifact_paths(base)
         cmd_line = (
             f'call "{MSVC_VCVARS}" >nul 2>&1 && cl /O2 {os_flag} /LD /MD /nologo '
-            f'{lto} {avx2} /I "{inc}" {c_path} '
+            f'{lto} {avx2}{pgo_cflags} /I "{inc}" {c_path} '
             f'/Fo"{ap["obj"]}" /Fd"{ap["pdb"]}" '
-            f'/link {ltcg} /IMPLIB:"{ap["lib"]}" '
+            f'/link {ltcg}{pgo_ldflags} /IMPLIB:"{ap["lib"]}" '
             f'/LIBPATH:"{libs_dir}" python314.lib '
             f'/OUT:{pyd_path}')
         # ★ 同清单模式：cmd 代码页 65001 ⇒ bat 用 utf-8 写 + 首行 chcp（否则中文路径乱码）
@@ -307,6 +329,14 @@ def main():
             # ★ 编码坑（2026-11-13 实测）：本机 cmd 代码页是 65001（UTF-8），
             #   而 bat 曾按 gbk 写 ⇒ cl 收到乱码中文路径（"锟斤拷"），
             #   /Fo 目标打不开 → 全部 MISS。修法：bat 用 utf-8 写 + 首行 chcp 65001。
+            # ★ 2026-11-14 仪器级修复：分片 bat 此前**硬编码裸 cl**——GD_AVX2/
+            #   GD_LTO/GD_PGO 从未进入清单模式产物（单模块模式有旗标、清单模式
+            #   没有）⇒ D6/D8 的首轮「判否」测的是同一棵无旗标树，读数无效，
+            #   已重测。旗标在此统一从 env 读取，与单模块路径同源。
+            _lto = "/GL" if os.environ.get("GD_LTO") == "1" else ""
+            _ltcg = "/LTCG" if os.environ.get("GD_LTO") == "1" else ""
+            _avx2 = "/arch:AVX2" if os.environ.get("GD_AVX2") == "1" else ""
+            _pgo = os.environ.get("GD_PGO", "")
             lines = ["@echo off",
                      "chcp 65001 >nul",
                      f'call "{MSVC_VCVARS}" >nul 2>&1']
@@ -315,10 +345,24 @@ def main():
                 # ★ 目标已在 Python 侧按 mtime 筛过（stale 才进 bat）——bat 内
                 #   不再放 `if exist .pyd goto skip`（就是它把重编吞掉的）
                 ap = artifact_paths(base)
+                mod_pgd = os.path.join(ROOT, "build", "pgo",
+                                       os.path.basename(base) + ".pgd")
+                if _pgo == "gen":
+                    extra_c, extra_l = (
+                        '', f' /GENPROFILE /PGD:"{mod_pgd}"')
+                    os.makedirs(os.path.join(ROOT, "build", "pgo"),
+                                exist_ok=True)
+                elif _pgo == "use":
+                    extra_c, extra_l = '', f' /USEPROFILE /PGD:"{mod_pgd}"'
+                else:
+                    extra_c = f' {_lto} {_avx2}'.replace('  ', ' ').strip()
+                    extra_c = (' ' + extra_c) if extra_c else ''
+                    extra_l = f' {_ltcg}'.replace('  ', ' ').strip()
+                    extra_l = (' ' + extra_l) if extra_l else ''
                 lines.append(
-                    f'cl /O2 /LD /MD /nologo /I "{inc}" {base}.c '
+                    f'cl /O2 /LD /MD /nologo{extra_c} /I "{inc}" {base}.c '
                     f'/Fo"{ap["obj"]}" /Fd"{ap["pdb"]}" '
-                    f'/link /IMPLIB:"{ap["lib"]}" '
+                    f'/link{extra_l} /IMPLIB:"{ap["lib"]}" '
                     f'/LIBPATH:"{libs_dir}" python314.lib /OUT:{base}.pyd')
             path = os.path.join(ROOT, "tools", f"_msvc_list_{idx}.cmd")
             with io.open(path, "w", encoding="utf-8", newline="") as fh:
