@@ -1,0 +1,18 @@
+{
+  "n": 12,
+  "rounds": 7,
+  "assemble_p50_ms": 44.23,
+  "assemble_cumulative_ms": 42.95,
+  "run_p50_ms": 208.17,
+  "asm_share_pct": 17.5,
+  "all_rounds": [
+    41.79,
+    42.1,
+    42.34,
+    42.95,
+    46.21,
+    46.98,
+    47.16
+  ],
+  "load_for_ms": 0.1157
+}

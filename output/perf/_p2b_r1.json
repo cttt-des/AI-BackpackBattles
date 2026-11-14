@@ -1,0 +1,52 @@
+{
+  "core_fps": 5.988,
+  "rows": [
+    {
+      "workers": 1,
+      "affinity": "none",
+      "n": 16,
+      "p50_cpu_ms": 156.2,
+      "total_cpu_s": 2.672,
+      "wall_s": 2.691,
+      "tput": 5.94,
+      "cores_eff": 0.99,
+      "role": "single"
+    },
+    {
+      "workers": 4,
+      "affinity": "none",
+      "n": 256,
+      "p50_cpu_ms": 234.4,
+      "total_cpu_s": 61.938,
+      "wall_s": 16.211,
+      "tput": 15.79,
+      "cores_eff": 3.82,
+      "pool_eff": 0.659,
+      "core_fps_basis": 5.988
+    },
+    {
+      "workers": 4,
+      "affinity": "0,2,4,6",
+      "n": 256,
+      "p50_cpu_ms": 250.0,
+      "total_cpu_s": 64.797,
+      "wall_s": 17.321,
+      "tput": 14.78,
+      "cores_eff": 3.74,
+      "pool_eff": 0.617,
+      "core_fps_basis": 5.988
+    },
+    {
+      "workers": 4,
+      "affinity": "4,5,6,7",
+      "n": 256,
+      "p50_cpu_ms": 343.8,
+      "total_cpu_s": 87.828,
+      "wall_s": 23.035,
+      "tput": 11.11,
+      "cores_eff": 3.81,
+      "pool_eff": 0.464,
+      "core_fps_basis": 5.988
+    }
+  ]
+}

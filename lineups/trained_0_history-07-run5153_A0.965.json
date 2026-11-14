@@ -1,0 +1,473 @@
+{
+ "version": 4,
+ "name": "trained_0_history-07-run5153_A0.965",
+ "character": "Adventurer",
+ "round": 18,
+ "grid": [
+  7,
+  9
+ ],
+ "items": [
+  {
+   "id": "Fanny Pack",
+   "at": [
+    3,
+    8
+   ],
+   "r": 90
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    3,
+    7
+   ],
+   "r": 90
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    3,
+    6
+   ],
+   "r": 90
+  },
+  {
+   "id": "Engineer Box",
+   "at": [
+    0,
+    5
+   ],
+   "r": 90
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    5,
+    7
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    5,
+    5
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    0,
+    3
+   ],
+   "r": 0
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    4,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Protective Purse",
+   "at": [
+    0,
+    8
+   ],
+   "r": 0
+  },
+  {
+   "id": "Stamina Sack",
+   "at": [
+    1,
+    0
+   ],
+   "r": 90
+  },
+  {
+   "id": "Stamina Sack",
+   "at": [
+    0,
+    0
+   ],
+   "r": 90
+  },
+  {
+   "id": "Holy Spear",
+   "at": [
+    4,
+    5
+   ],
+   "r": 270
+  },
+  {
+   "id": "Spring Loader",
+   "at": [
+    5,
+    7
+   ],
+   "r": 0
+  },
+  {
+   "id": "Charge Splitter",
+   "at": [
+    1,
+    5
+   ],
+   "r": 90
+  },
+  {
+   "id": "Battery",
+   "at": [
+    0,
+    3
+   ],
+   "r": 90
+  },
+  {
+   "id": "Resistor",
+   "at": [
+    0,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Battery",
+   "at": [
+    1,
+    3
+   ],
+   "r": 90
+  },
+  {
+   "id": "Resistor",
+   "at": [
+    1,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Charge Splitter",
+   "at": [
+    1,
+    7
+   ],
+   "r": 90
+  },
+  {
+   "id": "Time Pendant",
+   "at": [
+    4,
+    4
+   ],
+   "r": 270
+  },
+  {
+   "id": "Thornburst",
+   "at": [
+    6,
+    6
+   ],
+   "r": 0
+  },
+  {
+   "id": "Spring Loader",
+   "at": [
+    2,
+    4
+   ],
+   "r": 180
+  },
+  {
+   "id": "Djinn Lamp",
+   "at": [
+    2,
+    6
+   ],
+   "r": 90
+  },
+  {
+   "id": "Extra Bags",
+   "at": [
+    5,
+    5
+   ],
+   "r": 0
+  },
+  {
+   "id": "Djinn Lamp",
+   "at": [
+    2,
+    8
+   ],
+   "r": 90
+  },
+  {
+   "id": "Chrome Cube",
+   "at": [
+    3,
+    7
+   ],
+   "r": 180
+  },
+  {
+   "id": "Mana Orb",
+   "at": [
+    2,
+    7
+   ],
+   "r": 0
+  },
+  {
+   "id": "Amulet of Alchemy",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Mana Potion",
+   "at": [
+    0,
+    1
+   ],
+   "r": 90
+  },
+  {
+   "id": "Mana Potion",
+   "at": [
+    1,
+    0
+   ],
+   "r": 90
+  },
+  {
+   "id": "Bismuth Cube",
+   "at": [
+    1,
+    8
+   ],
+   "r": 180
+  },
+  {
+   "id": "Charge Splitter",
+   "at": [
+    1,
+    6
+   ],
+   "r": 270
+  },
+  {
+   "id": "Charge Splitter",
+   "at": [
+    0,
+    5
+   ],
+   "r": 0
+  },
+  {
+   "id": "Coil",
+   "at": [
+    0,
+    6
+   ],
+   "r": 0
+  },
+  {
+   "id": "Battery",
+   "at": [
+    0,
+    8
+   ],
+   "r": 270
+  },
+  {
+   "id": "Sloth",
+   "at": [
+    5,
+    2
+   ],
+   "r": 270
+  },
+  {
+   "id": "Plastic Cube",
+   "at": [
+    6,
+    4
+   ],
+   "r": 270
+  },
+  {
+   "id": "Gold Cube",
+   "at": [
+    6,
+    0
+   ],
+   "r": 90
+  },
+  {
+   "id": "Snowball",
+   "at": [
+    5,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Crown",
+   "at": [
+    4,
+    1
+   ],
+   "r": 90
+  },
+  {
+   "id": "King Crown",
+   "at": [
+    2,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Snowball",
+   "at": [
+    0,
+    7
+   ],
+   "r": 0
+  },
+  {
+   "id": "Lucky Cat",
+   "at": [
+    3,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Lucky Cat",
+   "at": [
+    3,
+    3
+   ],
+   "r": 0
+  },
+  {
+   "id": "Evil Cap",
+   "at": [
+    2,
+    2
+   ],
+   "r": 90
+  },
+  {
+   "id": "Snowball",
+   "at": [
+    1,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Snowball",
+   "at": [
+    6,
+    1
+   ],
+   "r": 0
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    6,
+    3
+   ],
+   "r": 180
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    1,
+    8
+   ],
+   "r": 90
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    2,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    4,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Stamina Sack",
+   "at": [
+    6,
+    0
+   ],
+   "r": 90
+  },
+  {
+   "id": "Protective Purse",
+   "at": [
+    5,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    4,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Holdall",
+   "at": [
+    2,
+    2
+   ],
+   "r": 180
+  },
+  {
+   "id": "Stamina Sack",
+   "at": [
+    2,
+    5
+   ],
+   "r": 90
+  },
+  {
+   "id": "Protective Purse",
+   "at": [
+    3,
+    5
+   ],
+   "r": 0
+  }
+ ],
+ "storage": [],
+ "class_modifiers": {
+  "stamina": 9
+ },
+ "health_override": 350
+}

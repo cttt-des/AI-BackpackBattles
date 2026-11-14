@@ -1,0 +1,2284 @@
+{
+ "case_id": "run100875_r5_o100892_r5",
+ "seed": 933090683,
+ "below_master": true,
+ "preordered": true,
+ "reseeded_after_player_character": true,
+ "post_seed_draws": 0,
+ "rng_state_injected": true,
+ "winner": "opponent",
+ "combat_time": 11.933333333333506,
+ "ticks": 867,
+ "player_hp": 0.0,
+ "player_max_hp": 70.0,
+ "opponent_hp": 12.0,
+ "opponent_max_hp": 70.0,
+ "event_count": 150,
+ "events": [
+  {
+   "id": 1,
+   "type": 100,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Leather Armor",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 45,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 2,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Leather Armor",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 3,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Whetstone3",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 4,
+   "type": 102,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Healing Herbs",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 2,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 5,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Healing Herbs",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 6,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Whetstone",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 7,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Whetstone",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 8,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Piggybank",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 9,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Piggybank",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 10,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Whetstone",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 11,
+   "type": 100,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Holy Armor",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 65,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 12,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Holy Armor",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 13,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Whetstone3",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 14,
+   "type": 107,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Oil Lamp",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 2,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 15,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Oil Lamp",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 16,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 1.0000000000000013,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "regen"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 2
+   }
+  },
+  {
+   "id": 17,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 1.7999999999999985,
+   "origin": {
+    "kind": "item",
+    "identifier": "Hammer",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 13
+   }
+  },
+  {
+   "id": 18,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 1.7999999999999985,
+   "origin": {
+    "kind": "item",
+    "identifier": "Hammer",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 19,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 1.7999999999999985,
+   "origin": {
+    "kind": "item",
+    "identifier": "Hammer",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 13
+   }
+  },
+  {
+   "id": 20,
+   "type": 9,
+   "type_name": "stun",
+   "timestamp": 1.7999999999999985,
+   "origin": {
+    "kind": "item",
+    "identifier": "Hammer",
+    "owner_type": 3
+   },
+   "target": 0,
+   "parent_id": 19,
+   "params": {
+    "duration": 0.5
+   }
+  },
+  {
+   "id": 21,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 1.7999999999999985,
+   "origin": {
+    "kind": "item",
+    "identifier": "Dagger",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": 20,
+   "params": {
+    "damage": 7
+   }
+  },
+  {
+   "id": 22,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 1.7999999999999985,
+   "origin": {
+    "kind": "item",
+    "identifier": "Dagger",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 23,
+   "type": 108,
+   "type_name": "stack_gain",
+   "timestamp": 1.7999999999999985,
+   "origin": {
+    "kind": "gem",
+    "host": {
+     "kind": "unknown",
+     "str": "GemSocket2"
+    },
+    "socket_index": -1
+   },
+   "target": 0,
+   "parent_id": 19,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false,
+    "resisted": true
+   }
+  },
+  {
+   "id": 24,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 1.7999999999999985,
+   "origin": {
+    "kind": "item",
+    "identifier": "Hammer",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 25,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 2.1499999999999972,
+   "origin": {
+    "kind": "item",
+    "identifier": "Holy Armor",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 26,
+   "type": 100,
+   "type_name": "stack_lose",
+   "timestamp": 2.3499999999999965,
+   "origin": {
+    "kind": "item",
+    "identifier": "Stone",
+    "owner_type": 3
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": -4,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 27,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 2.3499999999999965,
+   "origin": {
+    "kind": "item",
+    "identifier": "Stone",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 4
+   }
+  },
+  {
+   "id": 28,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 2.3499999999999965,
+   "origin": {
+    "kind": "item",
+    "identifier": "Stone",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 29,
+   "type": 3,
+   "type_name": "missed",
+   "timestamp": 2.3999999999999964,
+   "origin": {
+    "kind": "item",
+    "identifier": "Stone",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 30,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 2.3999999999999964,
+   "origin": {
+    "kind": "item",
+    "identifier": "Stone",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 31,
+   "type": 3,
+   "type_name": "missed",
+   "timestamp": 2.933333333333328,
+   "origin": {
+    "kind": "item",
+    "identifier": "Stone",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 32,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 2.933333333333328,
+   "origin": {
+    "kind": "item",
+    "identifier": "Stone",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 33,
+   "type": 100,
+   "type_name": "stack_lose",
+   "timestamp": 2.9999999999999942,
+   "origin": {
+    "kind": "item",
+    "identifier": "Stone",
+    "owner_type": 1
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": -4,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 34,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 2.9999999999999942,
+   "origin": {
+    "kind": "item",
+    "identifier": "Stone",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 4
+   }
+  },
+  {
+   "id": 35,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 2.9999999999999942,
+   "origin": {
+    "kind": "item",
+    "identifier": "Stone",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 36,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 2.9999999999999942,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "regen"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 2
+   }
+  },
+  {
+   "id": 37,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 3.299999999999993,
+   "origin": {
+    "kind": "item",
+    "identifier": "Dagger",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 5
+   }
+  },
+  {
+   "id": 38,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 3.299999999999993,
+   "origin": {
+    "kind": "item",
+    "identifier": "Dagger",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 39,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 3.3166666666666598,
+   "origin": {
+    "kind": "item",
+    "identifier": "Oil Lamp",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 40,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 3.399999999999993,
+   "origin": {
+    "kind": "item",
+    "identifier": "Forging Hammer",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 3
+   }
+  },
+  {
+   "id": 41,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 3.399999999999993,
+   "origin": {
+    "kind": "item",
+    "identifier": "Forging Hammer",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 42,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 3.6166666666666587,
+   "origin": {
+    "kind": "item",
+    "identifier": "Hammer",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 17
+   }
+  },
+  {
+   "id": 43,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 3.6166666666666587,
+   "origin": {
+    "kind": "item",
+    "identifier": "Hammer",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 44,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 4.083333333333324,
+   "origin": {
+    "kind": "item",
+    "identifier": "Hammer",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 14
+   }
+  },
+  {
+   "id": 45,
+   "type": 9,
+   "type_name": "stun",
+   "timestamp": 4.083333333333324,
+   "origin": {
+    "kind": "item",
+    "identifier": "Hammer",
+    "owner_type": 1
+   },
+   "target": 1,
+   "parent_id": 44,
+   "params": {
+    "duration": 0.5
+   }
+  },
+  {
+   "id": 46,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 4.083333333333324,
+   "origin": {
+    "kind": "item",
+    "identifier": "Dagger",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 45,
+   "params": {
+    "damage": 5
+   }
+  },
+  {
+   "id": 47,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 4.083333333333324,
+   "origin": {
+    "kind": "item",
+    "identifier": "Dagger",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 48,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 4.083333333333324,
+   "origin": {
+    "kind": "item",
+    "identifier": "Hammer",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 49,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 4.099999999999991,
+   "origin": {
+    "kind": "item",
+    "identifier": "Dagger",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 6
+   }
+  },
+  {
+   "id": 50,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 4.099999999999991,
+   "origin": {
+    "kind": "item",
+    "identifier": "Dagger",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 51,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 4.099999999999991,
+   "origin": {
+    "kind": "item",
+    "identifier": "Forging Hammer",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 7
+   }
+  },
+  {
+   "id": 52,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 4.099999999999991,
+   "origin": {
+    "kind": "item",
+    "identifier": "Forging Hammer",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 53,
+   "type": 105,
+   "type_name": "stack_gain",
+   "timestamp": 4.183333333333324,
+   "origin": {
+    "kind": "item",
+    "identifier": "Blueberries",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 54,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 4.183333333333324,
+   "origin": {
+    "kind": "item",
+    "identifier": "Blueberries",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 55,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 4.416666666666656,
+   "origin": {
+    "kind": "item",
+    "identifier": "Cog Badge",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 56,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 4.849999999999988,
+   "origin": {
+    "kind": "item",
+    "identifier": "Holy Armor",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 57,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 4.999999999999988,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "regen"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 2
+   }
+  },
+  {
+   "id": 58,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 5.199999999999987,
+   "origin": {
+    "kind": "item",
+    "identifier": "Banana",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 4
+   }
+  },
+  {
+   "id": 59,
+   "type": 13,
+   "type_name": "stamina_gain",
+   "timestamp": 5.199999999999987,
+   "origin": {
+    "kind": "item",
+    "identifier": "Banana",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "stamina": 1.0
+   }
+  },
+  {
+   "id": 60,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 5.199999999999987,
+   "origin": {
+    "kind": "item",
+    "identifier": "Banana",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 61,
+   "type": 3,
+   "type_name": "missed",
+   "timestamp": 5.33333333333332,
+   "origin": {
+    "kind": "item",
+    "identifier": "Stone",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 62,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 5.33333333333332,
+   "origin": {
+    "kind": "item",
+    "identifier": "Stone",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 63,
+   "type": 3,
+   "type_name": "missed",
+   "timestamp": 5.366666666666653,
+   "origin": {
+    "kind": "item",
+    "identifier": "Stone",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 64,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 5.366666666666653,
+   "origin": {
+    "kind": "item",
+    "identifier": "Stone",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 65,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 5.366666666666653,
+   "origin": {
+    "kind": "item",
+    "identifier": "Stone",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 4
+   }
+  },
+  {
+   "id": 66,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 5.366666666666653,
+   "origin": {
+    "kind": "item",
+    "identifier": "Stone",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 67,
+   "type": 100,
+   "type_name": "stack_lose",
+   "timestamp": 5.583333333333319,
+   "origin": {
+    "kind": "item",
+    "identifier": "Stone",
+    "owner_type": 1
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": -4,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 68,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 5.583333333333319,
+   "origin": {
+    "kind": "item",
+    "identifier": "Stone",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 6
+   }
+  },
+  {
+   "id": 69,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 5.583333333333319,
+   "origin": {
+    "kind": "item",
+    "identifier": "Stone",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 70,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 5.699999999999985,
+   "origin": {
+    "kind": "item",
+    "identifier": "Hammer",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 16
+   }
+  },
+  {
+   "id": 71,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 5.699999999999985,
+   "origin": {
+    "kind": "item",
+    "identifier": "Hammer",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 72,
+   "type": 102,
+   "type_name": "stack_lose",
+   "timestamp": 5.749999999999985,
+   "origin": {
+    "kind": "item",
+    "identifier": "Seal the Deal",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": -2,
+    "used": true,
+    "reflected": false
+   }
+  },
+  {
+   "id": 73,
+   "type": 103,
+   "type_name": "stack_gain",
+   "timestamp": 5.749999999999985,
+   "origin": {
+    "kind": "item",
+    "identifier": "Seal the Deal",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": 72,
+   "params": {
+    "amount": 3,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 74,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 5.749999999999985,
+   "origin": {
+    "kind": "item",
+    "identifier": "Seal the Deal",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 75,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 5.866666666666651,
+   "origin": {
+    "kind": "item",
+    "identifier": "Hammer",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 14
+   }
+  },
+  {
+   "id": 76,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 5.866666666666651,
+   "origin": {
+    "kind": "item",
+    "identifier": "Hammer",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 77,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 7.016666666666647,
+   "origin": {
+    "kind": "item",
+    "identifier": "Oil Lamp",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 78,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 7.066666666666647,
+   "origin": {
+    "kind": "item",
+    "identifier": "Holy Armor",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 79,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 7.19999999999998,
+   "origin": {
+    "kind": "item",
+    "identifier": "Dagger",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 8
+   }
+  },
+  {
+   "id": 80,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 7.19999999999998,
+   "origin": {
+    "kind": "item",
+    "identifier": "Dagger",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 81,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 7.349999999999979,
+   "origin": {
+    "kind": "item",
+    "identifier": "Forging Hammer",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 5
+   }
+  },
+  {
+   "id": 82,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 7.349999999999979,
+   "origin": {
+    "kind": "item",
+    "identifier": "Forging Hammer",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 83,
+   "type": 15,
+   "type_name": "out_of_stamina",
+   "timestamp": 7.433333333333312,
+   "origin": {
+    "kind": "item",
+    "identifier": "Hammer",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 84,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 7.666666666666645,
+   "origin": {
+    "kind": "item",
+    "identifier": "Dagger",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 5
+   }
+  },
+  {
+   "id": 85,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 7.666666666666645,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "vampirism"
+   },
+   "target": 0,
+   "parent_id": 84,
+   "params": {
+    "amount": 3
+   }
+  },
+  {
+   "id": 86,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 7.666666666666645,
+   "origin": {
+    "kind": "item",
+    "identifier": "Dagger",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 87,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 7.683333333333311,
+   "origin": {
+    "kind": "item",
+    "identifier": "Forging Hammer",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 9
+   }
+  },
+  {
+   "id": 88,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 7.683333333333311,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "vampirism"
+   },
+   "target": 0,
+   "parent_id": 87,
+   "params": {
+    "amount": 3
+   }
+  },
+  {
+   "id": 89,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 7.683333333333311,
+   "origin": {
+    "kind": "item",
+    "identifier": "Forging Hammer",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 90,
+   "type": 15,
+   "type_name": "out_of_stamina",
+   "timestamp": 7.699999999999978,
+   "origin": {
+    "kind": "item",
+    "identifier": "Hammer",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 91,
+   "type": 3,
+   "type_name": "missed",
+   "timestamp": 7.783333333333311,
+   "origin": {
+    "kind": "item",
+    "identifier": "Stone",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 92,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 7.783333333333311,
+   "origin": {
+    "kind": "item",
+    "identifier": "Stone",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 93,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 7.816666666666644,
+   "origin": {
+    "kind": "item",
+    "identifier": "Stone",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 5
+   }
+  },
+  {
+   "id": 94,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 7.816666666666644,
+   "origin": {
+    "kind": "item",
+    "identifier": "Stone",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 95,
+   "type": 105,
+   "type_name": "stack_gain",
+   "timestamp": 7.833333333333311,
+   "origin": {
+    "kind": "item",
+    "identifier": "Blueberries",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 96,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 7.833333333333311,
+   "origin": {
+    "kind": "item",
+    "identifier": "Blueberries",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 97,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 7.833333333333311,
+   "origin": {
+    "kind": "item",
+    "identifier": "Stone",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 6
+   }
+  },
+  {
+   "id": 98,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 7.833333333333311,
+   "origin": {
+    "kind": "item",
+    "identifier": "Stone",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 99,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 8.166666666666652,
+   "origin": {
+    "kind": "item",
+    "identifier": "Stone",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 5
+   }
+  },
+  {
+   "id": 100,
+   "type": 21,
+   "type_name": "battle_rage_start",
+   "timestamp": 8.166666666666652,
+   "origin": {
+    "kind": "item",
+    "identifier": "Berserker Bag",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": 99,
+   "params": {
+    "duration": 5.5
+   }
+  },
+  {
+   "id": 101,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 8.166666666666652,
+   "origin": {
+    "kind": "item",
+    "identifier": "Stone",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 102,
+   "type": 3,
+   "type_name": "missed",
+   "timestamp": 9.100000000000032,
+   "origin": {
+    "kind": "item",
+    "identifier": "Hammer",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 103,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 9.100000000000032,
+   "origin": {
+    "kind": "item",
+    "identifier": "Hammer",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 104,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 9.183333333333369,
+   "origin": {
+    "kind": "item",
+    "identifier": "Hammer",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 17
+   }
+  },
+  {
+   "id": 105,
+   "type": 21,
+   "type_name": "battle_rage_start",
+   "timestamp": 9.183333333333369,
+   "origin": {
+    "kind": "item",
+    "identifier": "Berserker Bag",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 104,
+   "params": {
+    "duration": 5.5
+   }
+  },
+  {
+   "id": 106,
+   "type": 9,
+   "type_name": "stun",
+   "timestamp": 9.183333333333369,
+   "origin": {
+    "kind": "item",
+    "identifier": "Hammer",
+    "owner_type": 3
+   },
+   "target": 0,
+   "parent_id": 104,
+   "params": {
+    "duration": 0.5
+   }
+  },
+  {
+   "id": 107,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 9.183333333333369,
+   "origin": {
+    "kind": "item",
+    "identifier": "Dagger",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": 106,
+   "params": {
+    "damage": 4
+   }
+  },
+  {
+   "id": 108,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 9.183333333333369,
+   "origin": {
+    "kind": "item",
+    "identifier": "Dagger",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 109,
+   "type": 108,
+   "type_name": "stack_gain",
+   "timestamp": 9.183333333333369,
+   "origin": {
+    "kind": "gem",
+    "host": {
+     "kind": "unknown",
+     "str": "GemSocket2"
+    },
+    "socket_index": -1
+   },
+   "target": 0,
+   "parent_id": 104,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false,
+    "resisted": true
+   }
+  },
+  {
+   "id": 110,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 9.183333333333369,
+   "origin": {
+    "kind": "item",
+    "identifier": "Hammer",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 111,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 9.266666666666707,
+   "origin": {
+    "kind": "item",
+    "identifier": "Holy Armor",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 112,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 9.666666666666726,
+   "origin": {
+    "kind": "item",
+    "identifier": "Stone",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 4
+   }
+  },
+  {
+   "id": 113,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 9.666666666666726,
+   "origin": {
+    "kind": "item",
+    "identifier": "Stone",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 114,
+   "type": 3,
+   "type_name": "missed",
+   "timestamp": 9.783333333333399,
+   "origin": {
+    "kind": "item",
+    "identifier": "Stone",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 115,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 9.783333333333399,
+   "origin": {
+    "kind": "item",
+    "identifier": "Stone",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 116,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 9.983333333333409,
+   "origin": {
+    "kind": "item",
+    "identifier": "Dagger",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 5
+   }
+  },
+  {
+   "id": 117,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 9.983333333333409,
+   "origin": {
+    "kind": "item",
+    "identifier": "Dagger",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 118,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 10.433333333333431,
+   "origin": {
+    "kind": "item",
+    "identifier": "Banana",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 4
+   }
+  },
+  {
+   "id": 119,
+   "type": 13,
+   "type_name": "stamina_gain",
+   "timestamp": 10.433333333333431,
+   "origin": {
+    "kind": "item",
+    "identifier": "Banana",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "stamina": 1.0
+   }
+  },
+  {
+   "id": 120,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 10.433333333333431,
+   "origin": {
+    "kind": "item",
+    "identifier": "Banana",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 121,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 10.433333333333431,
+   "origin": {
+    "kind": "item",
+    "identifier": "Oil Lamp",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 122,
+   "type": 15,
+   "type_name": "out_of_stamina",
+   "timestamp": 10.583333333333439,
+   "origin": {
+    "kind": "item",
+    "identifier": "Hammer",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 123,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 10.683333333333444,
+   "origin": {
+    "kind": "item",
+    "identifier": "Forging Hammer",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 2
+   }
+  },
+  {
+   "id": 124,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 10.683333333333444,
+   "origin": {
+    "kind": "item",
+    "identifier": "Forging Hammer",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 125,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 10.833333333333451,
+   "origin": {
+    "kind": "item",
+    "identifier": "Stone",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 4
+   }
+  },
+  {
+   "id": 126,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 10.833333333333451,
+   "origin": {
+    "kind": "item",
+    "identifier": "Stone",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 127,
+   "type": 3,
+   "type_name": "missed",
+   "timestamp": 10.950000000000124,
+   "origin": {
+    "kind": "item",
+    "identifier": "Hammer",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 128,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 10.950000000000124,
+   "origin": {
+    "kind": "item",
+    "identifier": "Hammer",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 129,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 11.183333333333469,
+   "origin": {
+    "kind": "item",
+    "identifier": "Forging Hammer",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 6
+   }
+  },
+  {
+   "id": 130,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 11.183333333333469,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "vampirism"
+   },
+   "target": 0,
+   "parent_id": 129,
+   "params": {
+    "amount": 3
+   }
+  },
+  {
+   "id": 131,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 11.183333333333469,
+   "origin": {
+    "kind": "item",
+    "identifier": "Forging Hammer",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 132,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 11.200000000000136,
+   "origin": {
+    "kind": "item",
+    "identifier": "Stone",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 4
+   }
+  },
+  {
+   "id": 133,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 11.200000000000136,
+   "origin": {
+    "kind": "item",
+    "identifier": "Stone",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 134,
+   "type": 105,
+   "type_name": "stack_lose",
+   "timestamp": 11.233333333333471,
+   "origin": {
+    "kind": "item",
+    "identifier": "Seal the Deal",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": -2,
+    "used": true,
+    "reflected": false
+   }
+  },
+  {
+   "id": 135,
+   "type": 106,
+   "type_name": "stack_gain",
+   "timestamp": 11.233333333333471,
+   "origin": {
+    "kind": "item",
+    "identifier": "Seal the Deal",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": 134,
+   "params": {
+    "amount": 2,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 136,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 11.233333333333471,
+   "origin": {
+    "kind": "item",
+    "identifier": "Seal the Deal",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 137,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 11.233333333333471,
+   "origin": {
+    "kind": "item",
+    "identifier": "Dagger",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 6
+   }
+  },
+  {
+   "id": 138,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 11.233333333333471,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "vampirism"
+   },
+   "target": 0,
+   "parent_id": 137,
+   "params": {
+    "amount": 3
+   }
+  },
+  {
+   "id": 139,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 11.233333333333471,
+   "origin": {
+    "kind": "item",
+    "identifier": "Dagger",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 140,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 11.466666666666816,
+   "origin": {
+    "kind": "item",
+    "identifier": "Stone",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 5
+   }
+  },
+  {
+   "id": 141,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 11.466666666666816,
+   "origin": {
+    "kind": "item",
+    "identifier": "Stone",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 142,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 11.466666666666816,
+   "origin": {
+    "kind": "item",
+    "identifier": "Holy Armor",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 143,
+   "type": 3,
+   "type_name": "missed",
+   "timestamp": 11.566666666666821,
+   "origin": {
+    "kind": "item",
+    "identifier": "Stone",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 144,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 11.566666666666821,
+   "origin": {
+    "kind": "item",
+    "identifier": "Stone",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 145,
+   "type": 105,
+   "type_name": "stack_gain",
+   "timestamp": 11.833333333333501,
+   "origin": {
+    "kind": "item",
+    "identifier": "Blueberries",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 146,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 11.833333333333501,
+   "origin": {
+    "kind": "item",
+    "identifier": "Blueberries",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 147,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 11.916666666666838,
+   "origin": {
+    "kind": "item",
+    "identifier": "Hammer",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 14
+   }
+  },
+  {
+   "id": 148,
+   "type": 9,
+   "type_name": "stun",
+   "timestamp": 11.916666666666838,
+   "origin": {
+    "kind": "item",
+    "identifier": "Hammer",
+    "owner_type": 3
+   },
+   "target": 0,
+   "parent_id": 147,
+   "params": {
+    "duration": 0.5
+   }
+  },
+  {
+   "id": 149,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 11.916666666666838,
+   "origin": {
+    "kind": "item",
+    "identifier": "Dagger",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": 148,
+   "params": {
+    "damage": 5
+   }
+  },
+  {
+   "id": -1,
+   "type": 112,
+   "type_name": "combat_end",
+   "timestamp": 11.933333333333506,
+   "origin": 112,
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  }
+ ]
+}

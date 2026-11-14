@@ -1,0 +1,128 @@
+{
+ "version": 4,
+ "name": "probe_R01_Berserker",
+ "character": "Berserker",
+ "round": 1,
+ "grid": [
+  7,
+  9
+ ],
+ "items": [
+  {
+   "id": "Berserker Bag",
+   "at": [
+    3,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    1,
+    1
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    1,
+    3
+   ],
+   "r": 0
+  },
+  {
+   "id": "Piggybank",
+   "at": [
+    2,
+    1
+   ],
+   "r": 0
+  },
+  {
+   "id": "Health Potion",
+   "at": [
+    1,
+    3
+   ],
+   "r": 90
+  },
+  {
+   "id": "Garlic",
+   "at": [
+    2,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Wooden Sword",
+   "at": [
+    2,
+    3
+   ],
+   "r": 0
+  },
+  {
+   "id": "Forging Hammer",
+   "at": [
+    4,
+    3
+   ],
+   "r": 90
+  },
+  {
+   "id": "Stone",
+   "at": [
+    1,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Stone Badge",
+   "at": [
+    3,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Wooden Buckler",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Pan",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Wooden Buckler",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  }
+ ],
+ "meta": {
+  "cap": 14,
+  "need": 23,
+  "overfill": 0.1,
+  "injected": [
+   "Wooden Buckler",
+   "Pan",
+   "Wooden Buckler"
+  ],
+  "baseline_name": "probe_R01_Berserker_base",
+  "seed": 6
+ }
+}

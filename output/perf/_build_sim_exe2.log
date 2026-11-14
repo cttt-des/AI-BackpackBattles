@@ -1,0 +1,127 @@
+OK  gd_core_py/gd_core/CoreItem.py → gd_core_py\gd_core\CoreItem.pyd  (1244 KB)
+OK  gd_core_py/gd_core/CoreCombat.py → gd_core_py\gd_core\CoreCombat.pyd  (194 KB)
+OK  gd_core_py/gd_core/CoreCharacter.py → gd_core_py\gd_core\CoreCharacter.pyd  (682 KB)
+OK  gd_core_py/gd_core/CoreTimer.py → gd_core_py\gd_core\CoreTimer.pyd  (103 KB)
+OK  gd_core_py/gd_core/CoreRng.py → gd_core_py\gd_core\CoreRng.pyd  (196 KB)
+OK  gd_core_py/gd_core/CoreBuff.py → gd_core_py\gd_core\CoreBuff.pyd  (205 KB)
+OK  gd_core_py/gd_core/CoreGrid.py → gd_core_py\gd_core\CoreGrid.pyd  (143 KB)
+OK  gd_core_py/gd_core/CoreEventBus.py → gd_core_py\gd_core\CoreEventBus.pyd  (114 KB)
+OK  gd_core_py/_rt.py → gd_core_py\_rt.pyd  (496 KB)
+332 INFO: PyInstaller: 6.15.0, contrib hooks: 2026.9
+333 INFO: Python: 3.14.5
+381 INFO: Platform: Windows-10-10.0.19045-SP0
+381 INFO: Python environment: C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64
+382 INFO: wrote D:\文件资料\学习\自动背包AI\build\BackpackSimulator.spec
+8698 INFO: Module search paths (PYTHONPATH):
+['D:\\文件资料\\学习\\自动背包AI',
+ 'C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\python314.zip',
+ 'C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\DLLs',
+ 'C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib',
+ 'C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64',
+ 'C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages',
+ 'D:\\文件资料\\学习\\自动背包AI']
+9954 INFO: Appending 'binaries' from .spec
+9955 INFO: Appending 'datas' from .spec
+10462 INFO: checking Analysis
+10630 INFO: Building because hiddenimports changed
+10630 INFO: Running Analysis Analysis-00.toc
+10630 INFO: Target bytecode optimization level: 0
+10630 INFO: Initializing module dependency graph...
+10635 INFO: Initializing module graph hook caches...
+10684 INFO: Analyzing modules for base_library.zip ...
+14804 INFO: Processing standard module hook 'hook-encodings.py' from 'C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks'
+15802 INFO: Processing standard module hook 'hook-pickle.py' from 'C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks'
+16512 INFO: Processing standard module hook 'hook-difflib.py' from 'C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks'
+16546 INFO: Processing standard module hook 'hook-heapq.py' from 'C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks'
+21566 INFO: Caching module dependency graph...
+21644 INFO: Looking for Python shared library...
+21693 INFO: Using Python shared library: C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\python314.dll
+21693 INFO: Analyzing D:\文件资料\学习\自动背包AI\battle_simulator.py
+23661 INFO: Processing standard module hook 'hook-platform.py' from 'C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks'
+23794 INFO: Processing standard module hook 'hook-sysconfig.py' from 'C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks'
+23811 INFO: Processing standard module hook 'hook-_ctypes.py' from 'C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks'
+32513 INFO: Processing pre-safe-import-module hook 'hook-distutils.py' from 'C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+32516 INFO: SetuptoolsInfo: initializing cached setuptools info...
+34478 INFO: Processing standard module hook 'hook-setuptools.py' from 'C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks'
+34703 INFO: Processing pre-safe-import-module hook 'hook-jaraco.functools.py' from 'C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+34704 INFO: Setuptools: 'jaraco.functools' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.jaraco.functools'!
+34743 INFO: Processing pre-safe-import-module hook 'hook-more_itertools.py' from 'C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+34744 INFO: Setuptools: 'more_itertools' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.more_itertools'!
+35220 INFO: Processing standard module hook 'hook-_osx_support.py' from 'C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks'
+35234 INFO: Processing pre-safe-import-module hook 'hook-typing_extensions.py' from 'C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+36803 INFO: Processing standard module hook 'hook-multiprocessing.util.py' from 'C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks'
+38960 INFO: Processing pre-safe-import-module hook 'hook-packaging.py' from 'C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+39897 INFO: Processing pre-safe-import-module hook 'hook-jaraco.text.py' from 'C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+39898 INFO: Setuptools: 'jaraco.text' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.jaraco.text'!
+39930 INFO: Processing standard module hook 'hook-setuptools._vendor.jaraco.text.py' from 'C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks'
+39936 INFO: Processing pre-safe-import-module hook 'hook-importlib_resources.py' from 'C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+39940 INFO: Processing pre-safe-import-module hook 'hook-jaraco.context.py' from 'C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+39941 INFO: Setuptools: 'jaraco.context' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.jaraco.context'!
+41466 INFO: Processing pre-safe-import-module hook 'hook-tomli.py' from 'C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+41468 INFO: Setuptools: 'tomli' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.tomli'!
+43108 INFO: Processing pre-safe-import-module hook 'hook-wheel.py' from 'C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+43109 INFO: Setuptools: 'wheel' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.wheel'!
+44156 INFO: Processing standard module hook 'hook-numpy.py' from 'C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks'
+46751 INFO: Processing standard module hook 'hook-psutil.py' from 'C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+50532 INFO: Processing standard module hook 'hook-charset_normalizer.py' from 'C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+60270 INFO: Processing pre-find-module-path hook 'hook-tkinter.py' from 'C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks\\pre_find_module_path'
+60272 INFO: TclTkInfo: initializing cached Tcl/Tk info...
+61356 INFO: Processing standard module hook 'hook-_tkinter.py' from 'C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks'
+61597 INFO: Analyzing hidden import 'simulator.buff'
+62309 INFO: Analyzing hidden import 'simulator.build_data'
+62374 INFO: Analyzing hidden import 'simulator.combat'
+62423 INFO: Analyzing hidden import 'simulator.enrich_types'
+62437 INFO: Analyzing hidden import 'simulator.extract_grid'
+62456 INFO: Analyzing hidden import 'simulator.extract_items'
+62628 INFO: Analyzing hidden import 'simulator.extract_linkage'
+62700 INFO: Analyzing hidden import 'simulator.extract_translations'
+62728 INFO: Analyzing hidden import 'tkinter.__main__'
+62731 INFO: Analyzing hidden import 'tkinter.colorchooser'
+62739 INFO: Analyzing hidden import 'tkinter.dnd'
+62772 INFO: Analyzing hidden import 'tkinter.font'
+62798 INFO: Processing module hooks (post-graph stage)...
+63012 INFO: Processing standard module hook 'hook-_tkinter.py' from 'C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks'
+63088 INFO: Performing binary vs. data reclassification (2516 entries)
+64422 INFO: Looking for ctypes DLLs
+64685 INFO: Analyzing run-time hooks ...
+64697 INFO: Including run-time hook 'pyi_rth_pkgutil.py' from 'C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+64709 INFO: Including run-time hook 'pyi_rth_multiprocessing.py' from 'C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+64719 INFO: Including run-time hook 'pyi_rth_inspect.py' from 'C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+64726 INFO: Including run-time hook 'pyi_rth_setuptools.py' from 'C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+64729 INFO: Including run-time hook 'pyi_rth__tkinter.py' from 'C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+64933 INFO: Creating base_library.zip...
+65042 INFO: Looking for dynamic libraries
+67570 INFO: Extra DLL search directories (AddDllDirectory): ['C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages\\numpy.libs']
+67570 INFO: Extra DLL search directories (PATH): []
+86129 INFO: Warnings written to D:\文件资料\学习\自动背包AI\build\BackpackSimulator\warn-BackpackSimulator.txt
+86327 INFO: Graph cross-reference written to D:\文件资料\学习\自动背包AI\build\BackpackSimulator\xref-BackpackSimulator.html
+86560 INFO: checking PYZ
+86574 INFO: Building because toc changed
+86574 INFO: Building PYZ (ZlibArchive) D:\文件资料\学习\自动背包AI\build\BackpackSimulator\PYZ-00.pyz
+88282 INFO: Building PYZ (ZlibArchive) D:\文件资料\学习\自动背包AI\build\BackpackSimulator\PYZ-00.pyz completed successfully.
+88526 INFO: checking PKG
+88623 INFO: Building because toc changed
+88623 INFO: Building PKG (CArchive) BackpackSimulator.pkg
+109324 INFO: Building PKG (CArchive) BackpackSimulator.pkg completed successfully.
+109466 INFO: Bootloader C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\PyInstaller\bootloader\Windows-64bit-intel\runw.exe
+109466 INFO: checking EXE
+109541 INFO: Rebuilding EXE-00.toc because BackpackSimulator.exe missing
+109541 INFO: Building EXE from EXE-00.toc
+109542 INFO: Copying bootloader EXE to D:\文件资料\学习\自动背包AI\dist\BackpackSimulator.exe
+109561 INFO: Copying icon to EXE
+109574 INFO: Copying 0 resources to EXE
+109574 INFO: Embedding manifest in EXE
+109588 INFO: Appending PKG archive to EXE
+109694 INFO: Fixing EXE headers
+110367 INFO: Building EXE from EXE-00.toc completed successfully.
+110811 INFO: Build complete! The results are available in: D:\文件资料\学习\自动背包AI\dist
+Precompiling bytecode (compileall) ...
+Building Cython pyds (build_cython --msvc --all, idempotent) ...
+Running PyInstaller for BackpackSimulator ...
+已复制示例阵容到: D:\文件资料\学习\自动背包AI\dist\lineups
+
+==================================================
+BUILD OK: D:\文件资料\学习\自动背包AI\dist\BackpackSimulator.exe
+Size: 75.9 MB
+将 lineups/ 文件夹（含阵容 JSON）放在 exe 同目录下即可使用。
+==================================================

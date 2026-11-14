@@ -1,0 +1,1139 @@
+[
+ {
+  "case": "run100875_r5_o100892_r5",
+  "delta": 7,
+  "cpp_n": 157,
+  "py_n": 150,
+  "win_cpp": "player",
+  "win_oracle": "opponent",
+  "stage": "开头(0-20)",
+  "first_idx": 17,
+  "cpp": {
+   "type": 108,
+   "type_name": "Poison",
+   "parent": "17",
+   "origin": "o:item:Chipped Emerald#7",
+   "params": "d:{amount=i:1,reflected=b:0,resisted=b:1,used=b:0}"
+  },
+  "py": {
+   "type": 0,
+   "type_name": "item_activate",
+   "parent": -1,
+   "origin": "Hammer"
+  },
+  "ctx_cpp": [
+   0,
+   12,
+   1,
+   108,
+   0,
+   1
+  ],
+  "ctx_py": [
+   0,
+   12,
+   1,
+   0,
+   1,
+   9
+  ]
+ },
+ {
+  "case": "run101354_r14_o101073_r14",
+  "delta": -15,
+  "cpp_n": 656,
+  "py_n": 671,
+  "win_cpp": "opponent",
+  "win_oracle": "opponent",
+  "stage": "开头(0-20)",
+  "first_idx": 4,
+  "cpp": {
+   "type": 101,
+   "type_name": "Lucky",
+   "parent": "4",
+   "origin": "o:item:Holy Collar#1",
+   "params": "d:{amount=i:1,reflected=b:0,used=b:0}"
+  },
+  "py": {
+   "type": 0,
+   "type_name": "item_activate",
+   "parent": -1,
+   "origin": "Battery"
+  },
+  "ctx_cpp": [
+   0,
+   0,
+   0,
+   101,
+   102,
+   0
+  ],
+  "ctx_py": [
+   0,
+   0,
+   0,
+   0,
+   107,
+   100
+  ]
+ },
+ {
+  "case": "run101490_r12_o704664_r12",
+  "delta": -261,
+  "cpp_n": 1504,
+  "py_n": 1765,
+  "win_cpp": "player",
+  "win_oracle": "player",
+  "stage": "中后段",
+  "first_idx": 765,
+  "cpp": {
+   "type": 21,
+   "type_name": "BattleRageStart",
+   "parent": "765",
+   "origin": "o:item:Berserker Bag#3",
+   "params": "d:{duration=f:4026333333333334}"
+  },
+  "py": {
+   "type": 1,
+   "type_name": "attack",
+   "parent": 765,
+   "origin": "damage_source"
+  },
+  "ctx_cpp": [
+   107,
+   12,
+   1,
+   21,
+   1,
+   12
+  ],
+  "ctx_py": [
+   107,
+   12,
+   1,
+   1,
+   12,
+   0
+  ]
+ },
+ {
+  "case": "run101490_r3_o704722_r3",
+  "delta": -60,
+  "cpp_n": 135,
+  "py_n": 195,
+  "win_cpp": "player",
+  "win_oracle": "player",
+  "stage": "前缀全一致（尾部长度差）",
+  "first_idx": null
+ },
+ {
+  "case": "run101490_r5_o704639_r5",
+  "delta": -127,
+  "cpp_n": 803,
+  "py_n": 930,
+  "win_cpp": "player",
+  "win_oracle": "player",
+  "stage": "中后段",
+  "first_idx": 606,
+  "cpp": {
+   "type": 108,
+   "type_name": "Poison",
+   "parent": "605",
+   "origin": "o:item:Strong Health Potion#1",
+   "params": "d:{amount=i:-3,reflected=b:0,used=b:0}"
+  },
+  "py": {
+   "type": 13,
+   "type_name": "stamina_gain",
+   "parent": -1,
+   "origin": "Banana"
+  },
+  "ctx_cpp": [
+   1,
+   1,
+   12,
+   108,
+   102,
+   0
+  ],
+  "ctx_py": [
+   1,
+   1,
+   12,
+   13,
+   0,
+   12
+  ]
+ },
+ {
+  "case": "run101490_r6_o500242_r6",
+  "delta": -140,
+  "cpp_n": 387,
+  "py_n": 527,
+  "win_cpp": "player",
+  "win_oracle": "player",
+  "stage": "中后段",
+  "first_idx": 219,
+  "cpp": {
+   "type": 102,
+   "type_name": "Regeneration",
+   "parent": "217",
+   "origin": "o:item:Strong Health Potion#1",
+   "params": "d:{amount=i:4,reflected=b:0,used=b:0}"
+  },
+  "py": {
+   "type": 0,
+   "type_name": "item_activate",
+   "parent": -1,
+   "origin": "Hammer"
+  },
+  "ctx_cpp": [
+   1,
+   12,
+   12,
+   102,
+   0,
+   9
+  ],
+  "ctx_py": [
+   1,
+   12,
+   12,
+   0,
+   0,
+   1
+  ]
+ },
+ {
+  "case": "run101490_r8_o101571_r8",
+  "delta": -121,
+  "cpp_n": 383,
+  "py_n": 504,
+  "win_cpp": "player",
+  "win_oracle": "player",
+  "stage": "中后段",
+  "first_idx": 220,
+  "cpp": {
+   "type": 12,
+   "type_name": "Health",
+   "parent": "220",
+   "origin": "o:item:Strong Health Potion#3",
+   "params": "d:{amount=i:14}"
+  },
+  "py": {
+   "type": 1,
+   "type_name": "attack",
+   "parent": 220,
+   "origin": "damage_source"
+  },
+  "ctx_cpp": [
+   107,
+   12,
+   1,
+   12,
+   102,
+   106
+  ],
+  "ctx_py": [
+   107,
+   12,
+   1,
+   1,
+   12,
+   0
+  ]
+ },
+ {
+  "case": "run101490_r9_o101423_r9",
+  "delta": -101,
+  "cpp_n": 562,
+  "py_n": 663,
+  "win_cpp": "player",
+  "win_oracle": "player",
+  "stage": "中后段",
+  "first_idx": 347,
+  "cpp": {
+   "type": 7,
+   "type_name": "InvulnerableStart",
+   "parent": "347",
+   "origin": "o:item:Dark Lantern#3",
+   "params": "d:{duration=f:3ff4cccccccccccd}"
+  },
+  "py": {
+   "type": 0,
+   "type_name": "item_activate",
+   "parent": -1,
+   "origin": "Flame Whip"
+  },
+  "ctx_cpp": [
+   1,
+   0,
+   1,
+   7,
+   23,
+   1
+  ],
+  "ctx_py": [
+   1,
+   0,
+   1,
+   0,
+   0,
+   100
+  ]
+ },
+ {
+  "case": "run101571_r11_o704580_r11",
+  "delta": 106,
+  "cpp_n": 1025,
+  "py_n": 919,
+  "win_cpp": "opponent",
+  "win_oracle": "opponent",
+  "stage": "开头(0-20)",
+  "first_idx": 8,
+  "cpp": {
+   "type": 104,
+   "type_name": "Spikes",
+   "parent": "-1",
+   "origin": "o:item:Bismuth Cube#1",
+   "params": "d:{amount=i:1,reflected=b:0,used=b:0}"
+  },
+  "py": {
+   "type": 105,
+   "type_name": "stack_gain",
+   "parent": -1,
+   "origin": "Bismuth Cube"
+  },
+  "ctx_cpp": [
+   107,
+   0,
+   107,
+   104,
+   0,
+   107
+  ],
+  "ctx_py": [
+   107,
+   0,
+   107,
+   105,
+   0,
+   107
+  ]
+ },
+ {
+  "case": "run101582_r9_o704990_r9",
+  "delta": -32,
+  "cpp_n": 458,
+  "py_n": 490,
+  "win_cpp": "opponent",
+  "win_oracle": "opponent",
+  "stage": "前段(20-100)",
+  "first_idx": 35,
+  "cpp": {
+   "type": 107,
+   "type_name": "Heat",
+   "parent": "-1",
+   "origin": "o:item:Flame#3",
+   "params": "d:{amount=i:1,reflected=b:0,used=b:0}"
+  },
+  "py": {
+   "type": 105,
+   "type_name": "stack_gain",
+   "parent": -1,
+   "origin": "Mana Orb"
+  },
+  "ctx_cpp": [
+   19,
+   100,
+   0,
+   107,
+   0,
+   106
+  ],
+  "ctx_py": [
+   19,
+   100,
+   0,
+   105,
+   102,
+   19
+  ]
+ },
+ {
+  "case": "run101635_r15_o101655_r15",
+  "delta": -185,
+  "cpp_n": 1736,
+  "py_n": 1921,
+  "win_cpp": "player",
+  "win_oracle": "player",
+  "stage": "前段(20-100)",
+  "first_idx": 44,
+  "cpp": {
+   "type": 105,
+   "type_name": "Mana",
+   "parent": "-1",
+   "origin": "o:item:Mana Orb#1",
+   "params": "d:{amount=i:1,reflected=b:0,used=b:0}"
+  },
+  "py": {
+   "type": 101,
+   "type_name": "stack_gain",
+   "parent": -1,
+   "origin": "Djinn Lamp"
+  },
+  "ctx_cpp": [
+   1,
+   0,
+   105,
+   105,
+   101,
+   0
+  ],
+  "ctx_py": [
+   1,
+   0,
+   105,
+   101,
+   0,
+   100
+  ]
+ },
+ {
+  "case": "run101668_r7_o604708_r7",
+  "delta": -3,
+  "cpp_n": 388,
+  "py_n": 391,
+  "win_cpp": "player",
+  "win_oracle": "player",
+  "stage": "开头(0-20)",
+  "first_idx": 1,
+  "cpp": {
+   "type": 1,
+   "type_name": "DealDamage",
+   "parent": "-1",
+   "origin": "o:item:Amulet of Darkness#1",
+   "params": "d:{damage=i:5}"
+  },
+  "py": {
+   "type": 102,
+   "type_name": "stack_gain",
+   "parent": -1,
+   "origin": "Healing Herbs"
+  },
+  "ctx_cpp": [
+   0,
+   1,
+   0,
+   102
+  ],
+  "ctx_py": [
+   0,
+   102,
+   0,
+   103
+  ]
+ },
+ {
+  "case": "run101668_r8_o704752_r8",
+  "delta": 95,
+  "cpp_n": 471,
+  "py_n": 376,
+  "win_cpp": "opponent",
+  "win_oracle": "opponent",
+  "stage": "开头(0-20)",
+  "first_idx": 9,
+  "cpp": {
+   "type": 103,
+   "type_name": "Vampirism",
+   "parent": "-1",
+   "origin": "o:item:Amulet of Alchemy#1",
+   "params": "d:{amount=i:2,reflected=b:0,used=b:0}"
+  },
+  "py": {
+   "type": 102,
+   "type_name": "stack_gain",
+   "parent": -1,
+   "origin": "Amulet of Alchemy"
+  },
+  "ctx_cpp": [
+   0,
+   0,
+   101,
+   103,
+   0,
+   19
+  ],
+  "ctx_py": [
+   0,
+   0,
+   101,
+   102,
+   0,
+   19
+  ]
+ },
+ {
+  "case": "run300219_r6_o704614_r6",
+  "delta": 16,
+  "cpp_n": 188,
+  "py_n": 172,
+  "win_cpp": "opponent",
+  "win_oracle": "opponent",
+  "stage": "前段(20-100)",
+  "first_idx": 48,
+  "cpp": {
+   "type": 1,
+   "type_name": "DealDamage",
+   "parent": "-1",
+   "origin": "o:item:Burning Sword#3",
+   "params": "d:{damage=i:6}"
+  },
+  "py": {
+   "type": 107,
+   "type_name": "stack_gain",
+   "parent": -1,
+   "origin": "Burning Sword"
+  },
+  "ctx_cpp": [
+   107,
+   0,
+   12,
+   1,
+   0,
+   12
+  ],
+  "ctx_py": [
+   107,
+   0,
+   12,
+   107,
+   1,
+   0
+  ]
+ },
+ {
+  "case": "run400051_r12_o101432_r12",
+  "delta": -51,
+  "cpp_n": 440,
+  "py_n": 491,
+  "win_cpp": "opponent",
+  "win_oracle": "opponent",
+  "stage": "前段(20-100)",
+  "first_idx": 40,
+  "cpp": {
+   "type": 110,
+   "type_name": "Cold",
+   "parent": "-1",
+   "origin": "o:item:Skull Badge#3",
+   "params": "d:{amount=i:1,reflected=b:1,used=b:0}"
+  },
+  "py": {
+   "type": 108,
+   "type_name": "stack_gain",
+   "parent": -1,
+   "origin": "Skull Badge"
+  },
+  "ctx_cpp": [
+   0,
+   0,
+   12,
+   110,
+   0,
+   0
+  ],
+  "ctx_py": [
+   0,
+   0,
+   12,
+   108,
+   0,
+   0
+  ]
+ },
+ {
+  "case": "run604585_r6_o704454_r6",
+  "delta": -52,
+  "cpp_n": 98,
+  "py_n": 150,
+  "win_cpp": "player",
+  "win_oracle": "player",
+  "stage": "开头(0-20)",
+  "first_idx": 19,
+  "cpp": {
+   "type": 9,
+   "type_name": "Stun",
+   "parent": "19",
+   "origin": "o:item:Hammer#1",
+   "params": "d:{duration=f:3fe0000000000000}"
+  },
+  "py": {
+   "type": 12,
+   "type_name": "heal",
+   "parent": 19,
+   "origin": "damage_source"
+  },
+  "ctx_cpp": [
+   0,
+   1,
+   1,
+   9,
+   3,
+   0
+  ],
+  "ctx_py": [
+   0,
+   1,
+   1,
+   12,
+   0,
+   1
+  ]
+ },
+ {
+  "case": "run604687_r10_o704291_r10",
+  "delta": -9,
+  "cpp_n": 155,
+  "py_n": 164,
+  "win_cpp": "player",
+  "win_oracle": "player",
+  "stage": "开头(0-20)",
+  "first_idx": 19,
+  "cpp": {
+   "type": 107,
+   "type_name": "Heat",
+   "parent": "-1",
+   "origin": "o:item:Flame#1",
+   "params": "d:{amount=i:1,reflected=b:0,used=b:0}"
+  },
+  "py": {
+   "type": 1,
+   "type_name": "attack",
+   "parent": -1,
+   "origin": "Amulet of Darkness"
+  },
+  "ctx_cpp": [
+   106,
+   107,
+   0,
+   107,
+   0,
+   107
+  ],
+  "ctx_py": [
+   106,
+   107,
+   0,
+   1,
+   0,
+   107
+  ]
+ },
+ {
+  "case": "run604702_r8_o704578_r8",
+  "delta": -93,
+  "cpp_n": 204,
+  "py_n": 297,
+  "win_cpp": "opponent",
+  "win_oracle": "opponent",
+  "stage": "前段(20-100)",
+  "first_idx": 42,
+  "cpp": {
+   "type": 14,
+   "type_name": "DrainStamina",
+   "parent": "42",
+   "origin": "o:item:Hero Shield#3",
+   "params": "d:{stamina=f:3fd999999999999a}"
+  },
+  "py": {
+   "type": 105,
+   "type_name": "stack_gain",
+   "parent": 42,
+   "origin": "gem"
+  },
+  "ctx_cpp": [
+   0,
+   102,
+   1,
+   14,
+   0,
+   0
+  ],
+  "ctx_py": [
+   0,
+   102,
+   1,
+   105,
+   110,
+   0
+  ]
+ },
+ {
+  "case": "run604799_r6_o101061_r6",
+  "delta": 25,
+  "cpp_n": 241,
+  "py_n": 216,
+  "win_cpp": "player",
+  "win_oracle": "player",
+  "stage": "前段(20-100)",
+  "first_idx": 27,
+  "cpp": {
+   "type": 1,
+   "type_name": "DealDamage",
+   "parent": "-1",
+   "origin": "o:item:Bloodthorne#3",
+   "params": "d:{damage=i:7}"
+  },
+  "py": {
+   "type": 104,
+   "type_name": "stack_gain",
+   "parent": -1,
+   "origin": "Spiked Shield"
+  },
+  "ctx_cpp": [
+   19,
+   0,
+   12,
+   1,
+   0,
+   1
+  ],
+  "ctx_py": [
+   19,
+   0,
+   12,
+   104,
+   1,
+   14
+  ]
+ },
+ {
+  "case": "run604807_r15_o604822_r15",
+  "delta": -36,
+  "cpp_n": 322,
+  "py_n": 358,
+  "win_cpp": "player",
+  "win_oracle": "player",
+  "stage": "开头(0-20)",
+  "first_idx": 5,
+  "cpp": {
+   "type": 110,
+   "type_name": "Cold",
+   "parent": "5",
+   "origin": "o:item:Mr Struggles#3",
+   "params": "d:{amount=i:1,reflected=b:0,resisted=b:1,used=b:0}"
+  },
+  "py": {
+   "type": 0,
+   "type_name": "item_activate",
+   "parent": -1,
+   "origin": "Snowball"
+  },
+  "ctx_cpp": [
+   110,
+   0,
+   110,
+   110,
+   110,
+   0
+  ],
+  "ctx_py": [
+   110,
+   0,
+   110,
+   0,
+   0,
+   0
+  ]
+ },
+ {
+  "case": "run604825_r9_o704797_r9",
+  "delta": 4,
+  "cpp_n": 288,
+  "py_n": 284,
+  "win_cpp": "opponent",
+  "win_oracle": "opponent",
+  "stage": "前段(20-100)",
+  "first_idx": 38,
+  "cpp": {
+   "type": 105,
+   "type_name": "Mana",
+   "parent": "-1",
+   "origin": "o:item:Mana Orb#3",
+   "params": "d:{amount=i:1,reflected=b:0,used=b:0}"
+  },
+  "py": {
+   "type": 0,
+   "type_name": "item_activate",
+   "parent": -1,
+   "origin": "Chess Board"
+  },
+  "ctx_cpp": [
+   0,
+   103,
+   0,
+   105,
+   0,
+   102
+  ],
+  "ctx_py": [
+   0,
+   103,
+   0,
+   0,
+   105,
+   102
+  ]
+ },
+ {
+  "case": "run704504_r15_o704283_r15",
+  "delta": -268,
+  "cpp_n": 714,
+  "py_n": 982,
+  "win_cpp": "player",
+  "win_oracle": "opponent",
+  "stage": "前段(20-100)",
+  "first_idx": 48,
+  "cpp": {
+   "type": 1,
+   "type_name": "DealDamage",
+   "parent": "-1",
+   "origin": "o:item:Hammer#1",
+   "params": "d:{damage=i:14}"
+  },
+  "py": {
+   "type": 12,
+   "type_name": "heal",
+   "parent": -1,
+   "origin": "damage_source"
+  },
+  "ctx_cpp": [
+   19,
+   0,
+   100,
+   1,
+   0,
+   105
+  ],
+  "ctx_py": [
+   19,
+   0,
+   100,
+   12,
+   1,
+   100
+  ]
+ },
+ {
+  "case": "run704714_r9_o604609_r9",
+  "delta": 310,
+  "cpp_n": 2132,
+  "py_n": 1822,
+  "win_cpp": "player",
+  "win_oracle": "player",
+  "stage": "前段(20-100)",
+  "first_idx": 34,
+  "cpp": {
+   "type": 12,
+   "type_name": "Health",
+   "parent": "-1",
+   "origin": "o:item:Goobert#3",
+   "params": "d:{amount=i:11}"
+  },
+  "py": {
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "parent": 34,
+   "origin": "Twine"
+  },
+  "ctx_cpp": [
+   0,
+   19,
+   0,
+   12,
+   0,
+   19
+  ],
+  "ctx_py": [
+   0,
+   19,
+   0,
+   19,
+   0,
+   19
+  ]
+ },
+ {
+  "case": "run704864_r5_o704519_r5",
+  "delta": 41,
+  "cpp_n": 390,
+  "py_n": 349,
+  "win_cpp": "player",
+  "win_oracle": "player",
+  "stage": "前段(20-100)",
+  "first_idx": 22,
+  "cpp": {
+   "type": 1,
+   "type_name": "DealDamage",
+   "parent": "-1",
+   "origin": "o:item:Hammer#1",
+   "params": "d:{damage=i:13}"
+  },
+  "py": {
+   "type": 3,
+   "type_name": "missed",
+   "parent": -1,
+   "origin": "Hammer"
+  },
+  "ctx_cpp": [
+   100,
+   1,
+   0,
+   1,
+   9,
+   0
+  ],
+  "ctx_py": [
+   100,
+   1,
+   0,
+   3,
+   0,
+   19
+  ]
+ },
+ {
+  "case": "run704879_r14_o704504_r14",
+  "delta": 475,
+  "cpp_n": 2744,
+  "py_n": 2269,
+  "win_cpp": "player",
+  "win_oracle": "player",
+  "stage": "开头(0-20)",
+  "first_idx": 13,
+  "cpp": {
+   "type": 105,
+   "type_name": "Mana",
+   "parent": "-1",
+   "origin": "o:item:Mana Orb#3",
+   "params": "d:{amount=i:1,reflected=b:0,used=b:0}"
+  },
+  "py": {
+   "type": 100,
+   "type_name": "stack_gain",
+   "parent": -1,
+   "origin": "Hardwood"
+  },
+  "ctx_cpp": [
+   101,
+   0,
+   0,
+   105,
+   100,
+   0
+  ],
+  "ctx_py": [
+   101,
+   0,
+   0,
+   100,
+   0,
+   100
+  ]
+ },
+ {
+  "case": "run704881_r6_o101111_r6",
+  "delta": -5,
+  "cpp_n": 167,
+  "py_n": 172,
+  "win_cpp": "opponent",
+  "win_oracle": "opponent",
+  "stage": "前段(20-100)",
+  "first_idx": 23,
+  "cpp": {
+   "type": 3,
+   "type_name": "MissedAttack",
+   "parent": "-1",
+   "origin": "o:item:Hammer#1",
+   "params": "d:{}"
+  },
+  "py": {
+   "type": 1,
+   "type_name": "attack",
+   "parent": -1,
+   "origin": "Hammer"
+  },
+  "ctx_cpp": [
+   0,
+   3,
+   0,
+   3,
+   0,
+   102
+  ],
+  "ctx_py": [
+   0,
+   3,
+   0,
+   1,
+   12,
+   0
+  ]
+ },
+ {
+  "case": "run704933_r6_o704860_r6",
+  "delta": -29,
+  "cpp_n": 171,
+  "py_n": 200,
+  "win_cpp": "player",
+  "win_oracle": "player",
+  "stage": "前段(20-100)",
+  "first_idx": 23,
+  "cpp": {
+   "type": 1,
+   "type_name": "DealDamage",
+   "parent": "-1",
+   "origin": "o:item:Hammer#3",
+   "params": "d:{damage=i:16}"
+  },
+  "py": {
+   "type": 104,
+   "type_name": "stack_gain",
+   "parent": -1,
+   "origin": "Spiked Shield"
+  },
+  "ctx_cpp": [
+   1,
+   109,
+   0,
+   1,
+   0,
+   3
+  ],
+  "ctx_py": [
+   1,
+   109,
+   0,
+   104,
+   1,
+   14
+  ]
+ },
+ {
+  "case": "run704990_r12_o300182_r12",
+  "delta": -28,
+  "cpp_n": 625,
+  "py_n": 653,
+  "win_cpp": "player",
+  "win_oracle": "player",
+  "stage": "开头(0-20)",
+  "first_idx": 6,
+  "cpp": {
+   "type": 102,
+   "type_name": "Regeneration",
+   "parent": "6",
+   "origin": "o:item:Amulet of Light#1",
+   "params": "d:{amount=i:1,reflected=b:0,used=b:0}"
+  },
+  "py": {
+   "type": 105,
+   "type_name": "stack_gain",
+   "parent": -1,
+   "origin": "Mana Orb"
+  },
+  "ctx_cpp": [
+   19,
+   100,
+   0,
+   102,
+   19,
+   0
+  ],
+  "ctx_py": [
+   19,
+   100,
+   0,
+   105,
+   0,
+   107
+  ]
+ },
+ {
+  "case": "run705018_r6_o604708_r6",
+  "delta": -28,
+  "cpp_n": 170,
+  "py_n": 198,
+  "win_cpp": "player",
+  "win_oracle": "player",
+  "stage": "前段(20-100)",
+  "first_idx": 36,
+  "cpp": {
+   "type": 108,
+   "type_name": "Poison",
+   "parent": "-1",
+   "origin": "o:item:Poison Spear#1",
+   "params": "d:{amount=i:3,reflected=b:0,used=b:0}"
+  },
+  "py": {
+   "type": 107,
+   "type_name": "stack_gain",
+   "parent": -1,
+   "origin": "Energy Conversion"
+  },
+  "ctx_cpp": [
+   0,
+   1,
+   1,
+   108,
+   108,
+   100
+  ],
+  "ctx_py": [
+   0,
+   1,
+   1,
+   107,
+   0,
+   108
+  ]
+ },
+ {
+  "case": "run705130_r7_o100875_r7",
+  "delta": -5,
+  "cpp_n": 208,
+  "py_n": 213,
+  "win_cpp": "opponent",
+  "win_oracle": "opponent",
+  "stage": "开头(0-20)",
+  "first_idx": 17,
+  "cpp": {
+   "type": 9,
+   "type_name": "Stun",
+   "parent": "17",
+   "origin": "o:item:Hammer#3",
+   "params": "d:{duration=f:3fe0000000000000}"
+  },
+  "py": {
+   "type": 0,
+   "type_name": "item_activate",
+   "parent": -1,
+   "origin": "Hammer"
+  },
+  "ctx_cpp": [
+   0,
+   12,
+   1,
+   9,
+   1,
+   0
+  ],
+  "ctx_py": [
+   0,
+   12,
+   1,
+   0,
+   1,
+   9
+  ]
+ }
+]

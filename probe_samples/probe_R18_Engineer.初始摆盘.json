@@ -1,0 +1,421 @@
+{
+ "version": 4,
+ "name": "probe_R18_Engineer_init",
+ "character": "Engineer",
+ "round": 18,
+ "grid": [
+  7,
+  9
+ ],
+ "items": [
+  {
+   "id": "Leather Bag",
+   "at": [
+    0,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    2,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Lightning Staff",
+   "at": [
+    0,
+    4
+   ],
+   "r": 180
+  },
+  {
+   "id": "Spring Loader",
+   "at": [
+    5,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Mana Orb",
+   "at": [
+    3,
+    5
+   ],
+   "r": 0
+  },
+  {
+   "id": "Mana Mastery",
+   "at": [
+    2,
+    3
+   ],
+   "r": 0
+  },
+  {
+   "id": "Mana Crystal",
+   "at": [
+    4,
+    5
+   ],
+   "r": 0
+  },
+  {
+   "id": "Wand",
+   "at": [
+    0,
+    5
+   ],
+   "r": 90
+  },
+  {
+   "id": "Engineer Bag 2",
+   "at": [
+    4,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    0,
+    6
+   ],
+   "r": 0
+  },
+  {
+   "id": "Protective Purse",
+   "at": [
+    6,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    3,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    2,
+    4
+   ],
+   "r": 180
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    1,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    2,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    0,
+    4
+   ],
+   "r": 180
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    5,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    5,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    4,
+    3
+   ],
+   "r": 180
+  },
+  {
+   "id": "Stamina Sack",
+   "at": [
+    4,
+    0
+   ],
+   "r": 90
+  },
+  {
+   "id": "Automanaton",
+   "at": [
+    3,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Stamina Sack",
+   "at": [
+    3,
+    8
+   ],
+   "r": 0
+  },
+  {
+   "id": "Stamina Sack",
+   "at": [
+    2,
+    7
+   ],
+   "r": 0
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    2,
+    6
+   ],
+   "r": 270
+  },
+  {
+   "id": "Stamina Sack",
+   "at": [
+    0,
+    8
+   ],
+   "r": 0
+  },
+  {
+   "id": "Thunder Drake",
+   "at": [
+    3,
+    6
+   ],
+   "r": 180
+  },
+  {
+   "id": "Robodog",
+   "at": [
+    2,
+    6
+   ],
+   "r": 0
+  },
+  {
+   "id": "Magic Badge",
+   "at": [
+    2,
+    5
+   ],
+   "r": 270
+  },
+  {
+   "id": "Owl Spirit",
+   "at": [
+    1,
+    5
+   ],
+   "r": 270
+  },
+  {
+   "id": "Generator",
+   "at": [
+    1,
+    7
+   ],
+   "r": 270
+  },
+  {
+   "id": "Generator",
+   "at": [
+    0,
+    7
+   ],
+   "r": 270
+  },
+  {
+   "id": "Generator",
+   "at": [
+    4,
+    0
+   ],
+   "r": 90
+  },
+  {
+   "id": "Generator",
+   "at": [
+    5,
+    0
+   ],
+   "r": 90
+  },
+  {
+   "id": "Spectral Dagger",
+   "at": [
+    3,
+    0
+   ],
+   "r": 90
+  },
+  {
+   "id": "Blueberries",
+   "at": [
+    0,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Spring Loader",
+   "at": [
+    0,
+    0
+   ],
+   "r": 90
+  },
+  {
+   "id": "Mananana",
+   "at": [
+    1,
+    2
+   ],
+   "r": 90
+  },
+  {
+   "id": "Blueberries",
+   "at": [
+    0,
+    3
+   ],
+   "r": 0
+  },
+  {
+   "id": "Battery",
+   "at": [
+    6,
+    1
+   ],
+   "r": 0
+  },
+  {
+   "id": "Mana Orb",
+   "at": [
+    5,
+    6
+   ],
+   "r": 0
+  },
+  {
+   "id": "Perpetuum Mobile",
+   "at": [
+    6,
+    7
+   ],
+   "r": 0
+  },
+  {
+   "id": "Rainbow Orb",
+   "at": [
+    2,
+    1
+   ],
+   "r": 0
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    6,
+    7
+   ],
+   "r": 0
+  },
+  {
+   "id": "Amulet of Fortune",
+   "at": [
+    6,
+    6
+   ],
+   "r": 0
+  },
+  {
+   "id": "Battery",
+   "at": [
+    5,
+    8
+   ],
+   "r": 270
+  },
+  {
+   "id": "Full Body Protection",
+   "at": [
+    6,
+    8
+   ],
+   "r": 0
+  },
+  {
+   "id": "Blueberries",
+   "at": [
+    2,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Battery",
+   "at": [
+    6,
+    0
+   ],
+   "r": 0
+  }
+ ],
+ "meta": {
+  "h_name": "probe_R18_Engineer",
+  "placed": [
+   "Full Body Protection",
+   "Blueberries",
+   "Battery"
+  ],
+  "unplaced": [
+   "Cap of Brilliance",
+   "Magic Torch",
+   "Thornbloom"
+  ],
+  "analytic": {
+   "A": 97.8,
+   "B": 80.0
+  }
+ }
+}

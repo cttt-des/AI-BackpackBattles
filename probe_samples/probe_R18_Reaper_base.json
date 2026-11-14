@@ -1,0 +1,397 @@
+{
+ "version": 4,
+ "name": "probe_R18_Reaper_base",
+ "character": "Reaper",
+ "round": 18,
+ "grid": [
+  7,
+  9
+ ],
+ "items": [
+  {
+   "id": "Storage Coffin",
+   "at": [
+    1,
+    1
+   ],
+   "r": 0
+  },
+  {
+   "id": "Stamina Sack",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    0,
+    1
+   ],
+   "r": 0
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    3,
+    0
+   ],
+   "r": 90
+  },
+  {
+   "id": "Death Scythe",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    5,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Snake",
+   "at": [
+    3,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    2,
+    3
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    2,
+    5
+   ],
+   "r": 0
+  },
+  {
+   "id": "Poison Frog",
+   "at": [
+    2,
+    1
+   ],
+   "r": 0
+  },
+  {
+   "id": "Poison Frog",
+   "at": [
+    2,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Rat",
+   "at": [
+    4,
+    2
+   ],
+   "r": 270
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    0,
+    3
+   ],
+   "r": 90
+  },
+  {
+   "id": "Stamina Sack",
+   "at": [
+    6,
+    2
+   ],
+   "r": 270
+  },
+  {
+   "id": "Dark Ritual",
+   "at": [
+    6,
+    0
+   ],
+   "r": 90
+  },
+  {
+   "id": "Stamina Sack",
+   "at": [
+    5,
+    2
+   ],
+   "r": 270
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    0,
+    4
+   ],
+   "r": 270
+  },
+  {
+   "id": "Potion Belt",
+   "at": [
+    0,
+    7
+   ],
+   "r": 180
+  },
+  {
+   "id": "Carrot Goobert",
+   "at": [
+    2,
+    6
+   ],
+   "r": 0
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    4,
+    3
+   ],
+   "r": 0
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    0,
+    5
+   ],
+   "r": 270
+  },
+  {
+   "id": "Lightsaber",
+   "at": [
+    0,
+    3
+   ],
+   "r": 270,
+   "gems": [
+    "Corrupted Crystal"
+   ]
+  },
+  {
+   "id": "Badger Spirit",
+   "at": [
+    3,
+    3
+   ],
+   "r": 0
+  },
+  {
+   "id": "Poison Frog",
+   "at": [
+    3,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    0,
+    6
+   ],
+   "r": 270
+  },
+  {
+   "id": "Stamina Sack",
+   "at": [
+    4,
+    5
+   ],
+   "r": 0
+  },
+  {
+   "id": "Stamina Sack",
+   "at": [
+    4,
+    6
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    5,
+    7
+   ],
+   "r": 0
+  },
+  {
+   "id": "Banana",
+   "at": [
+    4,
+    6
+   ],
+   "r": 180
+  },
+  {
+   "id": "Goobling",
+   "at": [
+    1,
+    1
+   ],
+   "r": 270
+  },
+  {
+   "id": "Rat Chef",
+   "at": [
+    4,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Rat",
+   "at": [
+    4,
+    3
+   ],
+   "r": 90
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    4,
+    7
+   ],
+   "r": 0
+  },
+  {
+   "id": "Blueberries",
+   "at": [
+    2,
+    3
+   ],
+   "r": 0
+  },
+  {
+   "id": "Serpent Staff",
+   "at": [
+    1,
+    2
+   ],
+   "r": 270
+  },
+  {
+   "id": "Rat",
+   "at": [
+    2,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Snowmaster",
+   "at": [
+    1,
+    8
+   ],
+   "r": 0
+  },
+  {
+   "id": "Pineapple",
+   "at": [
+    3,
+    8
+   ],
+   "r": 0
+  },
+  {
+   "id": "Garlic",
+   "at": [
+    6,
+    7
+   ],
+   "r": 270
+  },
+  {
+   "id": "Banana",
+   "at": [
+    5,
+    4
+   ],
+   "r": 270
+  },
+  {
+   "id": "Fly Agaric",
+   "at": [
+    5,
+    6
+   ],
+   "r": 0
+  },
+  {
+   "id": "Speak with Animals",
+   "at": [
+    6,
+    3
+   ],
+   "r": 270
+  },
+  {
+   "id": "Fly Agaric",
+   "at": [
+    3,
+    5
+   ],
+   "r": 0
+  },
+  {
+   "id": "Garlic",
+   "at": [
+    5,
+    1
+   ],
+   "r": 0
+  },
+  {
+   "id": "Shelly",
+   "at": [
+    1,
+    6
+   ],
+   "r": 0
+  },
+  {
+   "id": "Stamina Sack",
+   "at": [
+    1,
+    8
+   ],
+   "r": 0
+  },
+  {
+   "id": "Protective Purse",
+   "at": [
+    0,
+    8
+   ],
+   "r": 0
+  }
+ ],
+ "meta": {
+  "h_name": "probe_R18_Reaper",
+  "corpus_rk": "run_id:9827cea1-2810-44bd-b1a1-8d57139a3e6e",
+  "rating": 276.34313,
+  "bucket": "Platinum"
+ }
+}

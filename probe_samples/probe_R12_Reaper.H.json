@@ -1,0 +1,336 @@
+{
+ "version": 4,
+ "name": "probe_R12_Reaper",
+ "character": "Reaper",
+ "round": 12,
+ "grid": [
+  7,
+  9
+ ],
+ "items": [
+  {
+   "id": "Leather Bag",
+   "at": [
+    4,
+    5
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    2,
+    5
+   ],
+   "r": 0
+  },
+  {
+   "id": "Amulet of Light",
+   "at": [
+    3,
+    6
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    4,
+    7
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    2,
+    7
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    0,
+    7
+   ],
+   "r": 0
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    1,
+    5
+   ],
+   "r": 0
+  },
+  {
+   "id": "Oil Lamp",
+   "at": [
+    0,
+    7
+   ],
+   "r": 180
+  },
+  {
+   "id": "Stamina Sack",
+   "at": [
+    6,
+    6
+   ],
+   "r": 90
+  },
+  {
+   "id": "Potion Belt",
+   "at": [
+    0,
+    3
+   ],
+   "r": 90
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    1,
+    3
+   ],
+   "r": 0
+  },
+  {
+   "id": "Storage Coffin",
+   "at": [
+    3,
+    3
+   ],
+   "r": 0
+  },
+  {
+   "id": "Bewitchment",
+   "at": [
+    4,
+    6
+   ],
+   "r": 0
+  },
+  {
+   "id": "Cursed Dagger",
+   "at": [
+    5,
+    3
+   ],
+   "r": 0
+  },
+  {
+   "id": "Dagger",
+   "at": [
+    5,
+    4
+   ],
+   "r": 180
+  },
+  {
+   "id": "Garlic",
+   "at": [
+    2,
+    4
+   ],
+   "r": 90
+  },
+  {
+   "id": "Strong Heroic Potion",
+   "at": [
+    0,
+    3
+   ],
+   "r": 0
+  },
+  {
+   "id": "Hammer",
+   "at": [
+    0,
+    4
+   ],
+   "r": 90
+  },
+  {
+   "id": "Piggybank",
+   "at": [
+    3,
+    3
+   ],
+   "r": 90
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    3,
+    1
+   ],
+   "r": 0
+  },
+  {
+   "id": "Piggybank",
+   "at": [
+    3,
+    2
+   ],
+   "r": 90
+  },
+  {
+   "id": "Evil Cap",
+   "at": [
+    3,
+    1
+   ],
+   "r": 0
+  },
+  {
+   "id": "Gold Armor",
+   "at": [
+    4,
+    7
+   ],
+   "r": 0
+  },
+  {
+   "id": "More Stats",
+   "at": [
+    3,
+    7
+   ],
+   "r": 0
+  },
+  {
+   "id": "Heroic Potion",
+   "at": [
+    0,
+    4
+   ],
+   "r": 90
+  },
+  {
+   "id": "Dagger",
+   "at": [
+    3,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Toad",
+   "at": [
+    2,
+    7
+   ],
+   "r": 0
+  },
+  {
+   "id": "Protective Purse",
+   "at": [
+    6,
+    5
+   ],
+   "r": 0
+  },
+  {
+   "id": "Manathirst",
+   "at": [
+    0,
+    8
+   ],
+   "r": 0
+  },
+  {
+   "id": "Stamina Sack",
+   "at": [
+    0,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Piggybank",
+   "at": [
+    2,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Crown",
+   "at": [
+    3,
+    5
+   ],
+   "r": 90
+  },
+  {
+   "id": "Protective Purse",
+   "at": [
+    5,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Wolpertinger",
+   "at": [
+    5,
+    5
+   ],
+   "r": 0
+  },
+  {
+   "id": "Fly Agaric",
+   "at": [
+    0,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Protective Purse",
+   "at": [
+    6,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Vampiric Armor",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Strong Health Potion",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Fly Agaric",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  }
+ ],
+ "meta": {
+  "cap": 51,
+  "need": 58,
+  "overfill": 0.1,
+  "injected": [
+   "Vampiric Armor",
+   "Strong Health Potion",
+   "Fly Agaric"
+  ],
+  "baseline_name": "probe_R12_Reaper_base",
+  "seed": 202
+ }
+}

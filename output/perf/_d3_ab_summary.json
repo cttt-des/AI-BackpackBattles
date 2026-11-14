@@ -1,0 +1,105 @@
+{
+ "S": [
+  {
+   "n": 12,
+   "rounds": 5,
+   "assemble_p50_ms": 32.89,
+   "assemble_cumulative_ms": 39.61,
+   "run_p50_ms": 142.76,
+   "asm_share_pct": 18.7,
+   "all_rounds": [
+    34.85,
+    35.67,
+    39.61,
+    40.1,
+    41.97
+   ],
+   "load_for_ms": 0.1192
+  },
+  {
+   "n": 12,
+   "rounds": 5,
+   "assemble_p50_ms": 42.98,
+   "assemble_cumulative_ms": 34.86,
+   "run_p50_ms": 190.74,
+   "asm_share_pct": 18.4,
+   "all_rounds": [
+    33.81,
+    34.47,
+    34.86,
+    38.73,
+    42.47
+   ],
+   "load_for_ms": 0.1138
+  },
+  {
+   "n": 12,
+   "rounds": 5,
+   "assemble_p50_ms": 35.51,
+   "assemble_cumulative_ms": 34.78,
+   "run_p50_ms": 169.62,
+   "asm_share_pct": 17.3,
+   "all_rounds": [
+    33.25,
+    33.57,
+    34.78,
+    37.32,
+    43.15
+   ],
+   "load_for_ms": 0.1042
+  }
+ ],
+ "B": [
+  {
+   "n": 12,
+   "rounds": 5,
+   "assemble_p50_ms": 39.26,
+   "assemble_cumulative_ms": 37.88,
+   "run_p50_ms": 174.5,
+   "asm_share_pct": 18.4,
+   "all_rounds": [
+    34.93,
+    36.42,
+    37.88,
+    39.17,
+    42.55
+   ],
+   "load_for_ms": 0.1039
+  },
+  {
+   "n": 12,
+   "rounds": 5,
+   "assemble_p50_ms": 34.87,
+   "assemble_cumulative_ms": 35.33,
+   "run_p50_ms": 164.57,
+   "asm_share_pct": 17.5,
+   "all_rounds": [
+    35.19,
+    35.29,
+    35.33,
+    37.61,
+    40.05
+   ],
+   "load_for_ms": 0.1019
+  },
+  {
+   "n": 12,
+   "rounds": 5,
+   "assemble_p50_ms": 35.68,
+   "assemble_cumulative_ms": 36.76,
+   "run_p50_ms": 153.5,
+   "asm_share_pct": 18.9,
+   "all_rounds": [
+    33.55,
+    34.12,
+    36.76,
+    38.41,
+    38.79
+   ],
+   "load_for_ms": 0.1021
+  }
+ ],
+ "S_median": 35.67,
+ "B_median": 36.76,
+ "ratio": 1.031
+}

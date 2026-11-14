@@ -1,0 +1,265 @@
+{
+ "args": {
+  "rounds": "1,18",
+  "per_round": 3,
+  "pool": 100,
+  "seeds": 2,
+  "max_iters": 6,
+  "n_cands": 6,
+  "topk": 3,
+  "accept": 0.02,
+  "confirm": 2,
+  "patience": 6,
+  "inject": 3,
+  "workers": 8,
+  "arms": "control,swap_heavy,drop_heavy"
+ },
+ "arms": {
+  "R1": {
+   "control": {
+    "results": [
+     {
+      "base": "history-07.db:run5135:R1",
+      "items": 11,
+      "n_extra": 3,
+      "base_wr": 0.56,
+      "final_wr": 0.57,
+      "steps": [
+       {
+        "iter": 1,
+        "delta": 0.0275,
+        "wr": 0.57,
+        "action": "act_drop_item"
+       }
+      ],
+      "accepted_actions": [
+       "act_drop_item"
+      ]
+     },
+     {
+      "base": "history-07.db:run5153:R1",
+      "items": 10,
+      "n_extra": 3,
+      "base_wr": 0.38,
+      "final_wr": 0.38,
+      "steps": [],
+      "accepted_actions": []
+     },
+     {
+      "base": "history-07.db:run5030:R1",
+      "items": 9,
+      "n_extra": 3,
+      "base_wr": 0.15,
+      "final_wr": 0.15,
+      "steps": [],
+      "accepted_actions": []
+     }
+    ],
+    "mean_gain": 0.0033333333333332993,
+    "mean_final": 0.36666666666666664,
+    "n_accepts": 1,
+    "action_dist": {
+     "act_drop_item": 1
+    }
+   },
+   "swap_heavy": {
+    "results": [
+     {
+      "base": "history-07.db:run5135:R1",
+      "items": 11,
+      "n_extra": 3,
+      "base_wr": 0.56,
+      "final_wr": 0.56,
+      "steps": [],
+      "accepted_actions": []
+     },
+     {
+      "base": "history-07.db:run5153:R1",
+      "items": 10,
+      "n_extra": 3,
+      "base_wr": 0.38,
+      "final_wr": 0.38,
+      "steps": [],
+      "accepted_actions": []
+     },
+     {
+      "base": "history-07.db:run5030:R1",
+      "items": 9,
+      "n_extra": 3,
+      "base_wr": 0.15,
+      "final_wr": 0.225,
+      "steps": [
+       {
+        "iter": 1,
+        "delta": 0.0925,
+        "wr": 0.225,
+        "action": "act_swap_bag_H"
+       }
+      ],
+      "accepted_actions": [
+       "act_swap_bag_H"
+      ]
+     }
+    ],
+    "mean_gain": 0.025000000000000005,
+    "mean_final": 0.38833333333333336,
+    "n_accepts": 1,
+    "action_dist": {
+     "act_swap_bag_H": 1
+    }
+   },
+   "drop_heavy": {
+    "results": [
+     {
+      "base": "history-07.db:run5135:R1",
+      "items": 11,
+      "n_extra": 3,
+      "base_wr": 0.56,
+      "final_wr": 0.56,
+      "steps": [],
+      "accepted_actions": []
+     },
+     {
+      "base": "history-07.db:run5153:R1",
+      "items": 10,
+      "n_extra": 3,
+      "base_wr": 0.38,
+      "final_wr": 0.38,
+      "steps": [],
+      "accepted_actions": []
+     },
+     {
+      "base": "history-07.db:run5030:R1",
+      "items": 9,
+      "n_extra": 3,
+      "base_wr": 0.15,
+      "final_wr": 0.15,
+      "steps": [],
+      "accepted_actions": []
+     }
+    ],
+    "mean_gain": 0.0,
+    "mean_final": 0.36333333333333334,
+    "n_accepts": 0,
+    "action_dist": {}
+   }
+  },
+  "R18": {
+   "control": {
+    "results": [
+     {
+      "base": "history-07.db:run5153:R18",
+      "items": 57,
+      "n_extra": 3,
+      "base_wr": 1.0,
+      "final_wr": 1.0,
+      "steps": [],
+      "accepted_actions": []
+     },
+     {
+      "base": "history-07.db:run5030:R18",
+      "items": 59,
+      "n_extra": 3,
+      "base_wr": 0.9,
+      "final_wr": 0.9,
+      "steps": [],
+      "accepted_actions": []
+     },
+     {
+      "base": "history-07.db:run5066:R18",
+      "items": 54,
+      "n_extra": 3,
+      "base_wr": 0.555,
+      "final_wr": 0.555,
+      "steps": [],
+      "accepted_actions": []
+     }
+    ],
+    "mean_gain": 0.0,
+    "mean_final": 0.8183333333333334,
+    "n_accepts": 0,
+    "action_dist": {}
+   },
+   "swap_heavy": {
+    "results": [
+     {
+      "base": "history-07.db:run5153:R18",
+      "items": 57,
+      "n_extra": 3,
+      "base_wr": 1.0,
+      "final_wr": 1.0,
+      "steps": [],
+      "accepted_actions": []
+     },
+     {
+      "base": "history-07.db:run5030:R18",
+      "items": 59,
+      "n_extra": 3,
+      "base_wr": 0.9,
+      "final_wr": 0.9,
+      "steps": [],
+      "accepted_actions": []
+     },
+     {
+      "base": "history-07.db:run5066:R18",
+      "items": 54,
+      "n_extra": 3,
+      "base_wr": 0.555,
+      "final_wr": 0.555,
+      "steps": [],
+      "accepted_actions": []
+     }
+    ],
+    "mean_gain": 0.0,
+    "mean_final": 0.8183333333333334,
+    "n_accepts": 0,
+    "action_dist": {}
+   },
+   "drop_heavy": {
+    "results": [
+     {
+      "base": "history-07.db:run5153:R18",
+      "items": 57,
+      "n_extra": 3,
+      "base_wr": 1.0,
+      "final_wr": 1.0,
+      "steps": [],
+      "accepted_actions": []
+     },
+     {
+      "base": "history-07.db:run5030:R18",
+      "items": 59,
+      "n_extra": 3,
+      "base_wr": 0.9,
+      "final_wr": 0.9,
+      "steps": [],
+      "accepted_actions": []
+     },
+     {
+      "base": "history-07.db:run5066:R18",
+      "items": 54,
+      "n_extra": 3,
+      "base_wr": 0.555,
+      "final_wr": 0.555,
+      "steps": [],
+      "accepted_actions": []
+     }
+    ],
+    "mean_gain": 0.0,
+    "mean_final": 0.8183333333333334,
+    "n_accepts": 0,
+    "action_dist": {}
+   }
+  }
+ },
+ "verdict": {
+  "R1": {
+   "swap_minus_control": 0.0217,
+   "pass": true
+  },
+  "R18": {
+   "swap_minus_control": 0.0,
+   "pass": false
+  }
+ }
+}

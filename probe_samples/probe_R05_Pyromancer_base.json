@@ -1,0 +1,206 @@
+{
+ "version": 4,
+ "name": "probe_R05_Pyromancer_base",
+ "character": "Pyromancer",
+ "round": 5,
+ "grid": [
+  7,
+  9
+ ],
+ "items": [
+  {
+   "id": "Leather Bag",
+   "at": [
+    2,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    3,
+    6
+   ],
+   "r": 0
+  },
+  {
+   "id": "Flame",
+   "at": [
+    3,
+    7
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    1,
+    6
+   ],
+   "r": 0
+  },
+  {
+   "id": "Flame",
+   "at": [
+    1,
+    6
+   ],
+   "r": 0
+  },
+  {
+   "id": "Flame",
+   "at": [
+    1,
+    7
+   ],
+   "r": 0
+  },
+  {
+   "id": "Piggybank",
+   "at": [
+    2,
+    6
+   ],
+   "r": 0
+  },
+  {
+   "id": "King of the Bling",
+   "at": [
+    3,
+    4
+   ],
+   "r": 270
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    4,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Flame",
+   "at": [
+    2,
+    5
+   ],
+   "r": 0
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    3,
+    3
+   ],
+   "r": 270
+  },
+  {
+   "id": "Rib Saw Blade",
+   "at": [
+    4,
+    3
+   ],
+   "r": 270,
+   "gems": [
+    "Lump of Coal",
+    "Chipped Topaz"
+   ]
+  },
+  {
+   "id": "Magic Ring",
+   "at": [
+    3,
+    3
+   ],
+   "r": 0
+  },
+  {
+   "id": "Amulet of Light",
+   "at": [
+    2,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Portable Altar",
+   "at": [
+    1,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Customer Card",
+   "at": [
+    5,
+    5
+   ],
+   "r": 0
+  },
+  {
+   "id": "Pestilence Flask",
+   "at": [
+    1,
+    2
+   ],
+   "r": 270
+  },
+  {
+   "id": "Whetstone",
+   "at": [
+    3,
+    5
+   ],
+   "r": 0
+  },
+  {
+   "id": "Flame",
+   "at": [
+    4,
+    7
+   ],
+   "r": 0
+  },
+  {
+   "id": "Flame",
+   "at": [
+    5,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Star of Courage",
+   "at": [
+    2,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Mana Orb",
+   "at": [
+    2,
+    3
+   ],
+   "r": 0
+  },
+  {
+   "id": "Flame",
+   "at": [
+    3,
+    6
+   ],
+   "r": 0
+  }
+ ],
+ "meta": {
+  "h_name": "probe_R05_Pyromancer",
+  "corpus_rk": "run_id:49ae26fa-907e-4b01-877d-ebba3fd85181",
+  "rating": 406.128181,
+  "bucket": "Master"
+ }
+}

@@ -1,0 +1,606 @@
+{
+ "args": {
+  "rounds": "1,5,12,18",
+  "per_round": 3,
+  "pool": 100,
+  "seeds": 2,
+  "max_iters": 6,
+  "n_cands": 6,
+  "topk": 3,
+  "accept": 0.02,
+  "confirm": 2,
+  "patience": 6,
+  "workers": 8
+ },
+ "round": 5,
+ "results": [
+  {
+   "base": "history-07.db:run5135:R5",
+   "rating": null,
+   "items": 23,
+   "base_wr": 0.7,
+   "final_wr": 0.7,
+   "steps": [],
+   "accepted_actions": [],
+   "final_lineup": {
+    "version": 4,
+    "name": "history-07.db:run5135:R5",
+    "character": "Engineer",
+    "round": 5,
+    "grid": [
+     7,
+     9
+    ],
+    "items": [
+     {
+      "id": "Fanny Pack",
+      "at": [
+       2,
+       5
+      ],
+      "r": 180
+     },
+     {
+      "id": "Leather Bag",
+      "at": [
+       3,
+       5
+      ],
+      "r": 0
+     },
+     {
+      "id": "Leather Bag",
+      "at": [
+       1,
+       7
+      ],
+      "r": 90
+     },
+     {
+      "id": "Thorn Whip",
+      "at": [
+       1,
+       6
+      ],
+      "r": 90
+     },
+     {
+      "id": "Piggybank",
+      "at": [
+       3,
+       1
+      ],
+      "r": 90
+     },
+     {
+      "id": "Magic Ring",
+      "at": [
+       4,
+       2
+      ],
+      "r": 0
+     },
+     {
+      "id": "Battery",
+      "at": [
+       2,
+       1
+      ],
+      "r": 90
+     },
+     {
+      "id": "Magic Ring",
+      "at": [
+       5,
+       2
+      ],
+      "r": 0
+     },
+     {
+      "id": "King of the Bling",
+      "at": [
+       5,
+       1
+      ],
+      "r": 90
+     },
+     {
+      "id": "Battery",
+      "at": [
+       2,
+       2
+      ],
+      "r": 90
+     },
+     {
+      "id": "Resistor",
+      "at": [
+       2,
+       3
+      ],
+      "r": 0
+     },
+     {
+      "id": "Battery",
+      "at": [
+       3,
+       2
+      ],
+      "r": 90
+     },
+     {
+      "id": "Engineer Box",
+      "at": [
+       2,
+       1
+      ],
+      "r": 180
+     },
+     {
+      "id": "Leather Bag",
+      "at": [
+       2,
+       3
+      ],
+      "r": 0
+     },
+     {
+      "id": "Leather Bag",
+      "at": [
+       4,
+       3
+      ],
+      "r": 0
+     },
+     {
+      "id": "Leather Bag",
+      "at": [
+       5,
+       1
+      ],
+      "r": 0
+     },
+     {
+      "id": "Pot",
+      "at": [
+       2,
+       4
+      ],
+      "r": 270
+     },
+     {
+      "id": "Garlic",
+      "at": [
+       4,
+       5
+      ],
+      "r": 270
+     },
+     {
+      "id": "Piggybank",
+      "at": [
+       6,
+       1
+      ],
+      "r": 0
+     },
+     {
+      "id": "Blueberries",
+      "at": [
+       5,
+       4
+      ],
+      "r": 0
+     },
+     {
+      "id": "Cog",
+      "at": [
+       1,
+       7
+      ],
+      "r": 0
+     },
+     {
+      "id": "Cog",
+      "at": [
+       3,
+       3
+      ],
+      "r": 0
+     },
+     {
+      "id": "Banana",
+      "at": [
+       4,
+       3
+      ],
+      "r": 90
+     }
+    ],
+    "storage": [],
+    "health_override": 70,
+    "class_modifiers": {
+     "stamina": 5
+    },
+    "_rank": 630.9850003748847
+   }
+  },
+  {
+   "base": "history-07.db:run5153:R5",
+   "rating": null,
+   "items": 24,
+   "base_wr": 1.0,
+   "final_wr": 1.0,
+   "steps": [],
+   "accepted_actions": [],
+   "final_lineup": {
+    "version": 4,
+    "name": "history-07.db:run5153:R5",
+    "character": "Engineer",
+    "round": 5,
+    "grid": [
+     7,
+     9
+    ],
+    "items": [
+     {
+      "id": "Lightning Staff",
+      "at": [
+       3,
+       3
+      ],
+      "r": 0
+     },
+     {
+      "id": "Hero Sword",
+      "at": [
+       3,
+       4
+      ],
+      "r": 90
+     },
+     {
+      "id": "Extra Bags",
+      "at": [
+       2,
+       2
+      ],
+      "r": 0
+     },
+     {
+      "id": "Leather Bag",
+      "at": [
+       1,
+       0
+      ],
+      "r": 0
+     },
+     {
+      "id": "Fanny Pack",
+      "at": [
+       5,
+       2
+      ],
+      "r": 180
+     },
+     {
+      "id": "Fanny Pack",
+      "at": [
+       6,
+       2
+      ],
+      "r": 180
+     },
+     {
+      "id": "Leather Bag",
+      "at": [
+       2,
+       4
+      ],
+      "r": 0
+     },
+     {
+      "id": "Cog",
+      "at": [
+       2,
+       4
+      ],
+      "r": 0
+     },
+     {
+      "id": "Fanny Pack",
+      "at": [
+       4,
+       2
+      ],
+      "r": 0
+     },
+     {
+      "id": "Engineer Box",
+      "at": [
+       1,
+       2
+      ],
+      "r": 180
+     },
+     {
+      "id": "Leather Bag",
+      "at": [
+       0,
+       4
+      ],
+      "r": 0
+     },
+     {
+      "id": "Protective Purse",
+      "at": [
+       0,
+       3
+      ],
+      "r": 0
+     },
+     {
+      "id": "Piggybank",
+      "at": [
+       1,
+       4
+      ],
+      "r": 0
+     },
+     {
+      "id": "Mana Potion",
+      "at": [
+       0,
+       3
+      ],
+      "r": 180
+     },
+     {
+      "id": "Blueberries",
+      "at": [
+       1,
+       1
+      ],
+      "r": 0
+     },
+     {
+      "id": "Piggybank",
+      "at": [
+       0,
+       4
+      ],
+      "r": 180
+     },
+     {
+      "id": "Stamina Sack",
+      "at": [
+       3,
+       1
+      ],
+      "r": 0
+     },
+     {
+      "id": "Piggybank",
+      "at": [
+       5,
+       2
+      ],
+      "r": 90
+     },
+     {
+      "id": "Banana",
+      "at": [
+       3,
+       1
+      ],
+      "r": 0
+     },
+     {
+      "id": "Customer Card",
+      "at": [
+       5,
+       1
+      ],
+      "r": 0
+     },
+     {
+      "id": "Leather Bag",
+      "at": [
+       4,
+       4
+      ],
+      "r": 0
+     },
+     {
+      "id": "Resistor",
+      "at": [
+       4,
+       5
+      ],
+      "r": 0
+     },
+     {
+      "id": "Box of Riches",
+      "at": [
+       1,
+       0
+      ],
+      "r": 90
+     },
+     {
+      "id": "Star of Courage",
+      "at": [
+       2,
+       5
+      ],
+      "r": 0
+     }
+    ],
+    "storage": [],
+    "health_override": 70,
+    "class_modifiers": {
+     "stamina": 6
+    },
+    "_rank": 629.3550969485523
+   }
+  },
+  {
+   "base": "history-07.db:run5030:R5",
+   "rating": null,
+   "items": 16,
+   "base_wr": 0.665,
+   "final_wr": 0.665,
+   "steps": [],
+   "accepted_actions": [],
+   "final_lineup": {
+    "version": 4,
+    "name": "history-07.db:run5030:R5",
+    "character": "Engineer",
+    "round": 5,
+    "grid": [
+     7,
+     9
+    ],
+    "items": [
+     {
+      "id": "Stamina Sack",
+      "at": [
+       4,
+       2
+      ],
+      "r": 90
+     },
+     {
+      "id": "Holy Spear",
+      "at": [
+       3,
+       5
+      ],
+      "r": 270
+     },
+     {
+      "id": "Fanny Pack",
+      "at": [
+       3,
+       8
+      ],
+      "r": 90
+     },
+     {
+      "id": "Stamina Sack",
+      "at": [
+       3,
+       5
+      ],
+      "r": 270
+     },
+     {
+      "id": "Stamina Sack",
+      "at": [
+       4,
+       5
+      ],
+      "r": 90
+     },
+     {
+      "id": "Leather Bag",
+      "at": [
+       5,
+       7
+      ],
+      "r": 0
+     },
+     {
+      "id": "Piggybank",
+      "at": [
+       6,
+       7
+      ],
+      "r": 180
+     },
+     {
+      "id": "Spring Loader",
+      "at": [
+       4,
+       7
+      ],
+      "r": 0
+     },
+     {
+      "id": "Engineer Box",
+      "at": [
+       2,
+       2
+      ],
+      "r": 90
+     },
+     {
+      "id": "Leather Bag",
+      "at": [
+       3,
+       0
+      ],
+      "r": 0
+     },
+     {
+      "id": "Battery",
+      "at": [
+       3,
+       4
+      ],
+      "r": 90
+     },
+     {
+      "id": "Customer Card",
+      "at": [
+       4,
+       1
+      ],
+      "r": 0
+     },
+     {
+      "id": "Double Rainbow",
+      "at": [
+       4,
+       4
+      ],
+      "r": 0
+     },
+     {
+      "id": "Strong Health Potion",
+      "at": [
+       4,
+       5
+      ],
+      "r": 90
+     },
+     {
+      "id": "Amulet of Darkness",
+      "at": [
+       2,
+       4
+      ],
+      "r": 180
+     },
+     {
+      "id": "Customer Card",
+      "at": [
+       4,
+       2
+      ],
+      "r": 0
+     }
+    ],
+    "storage": [],
+    "health_override": 70,
+    "class_modifiers": {
+     "stamina": 8
+    },
+    "_rank": 628.9054230887618
+   }
+  }
+ ],
+ "mean_gain": 0.0,
+ "n_accepts": 0,
+ "action_dist": {}
+}

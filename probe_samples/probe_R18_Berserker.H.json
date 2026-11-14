@@ -1,0 +1,432 @@
+{
+ "version": 4,
+ "name": "probe_R18_Berserker",
+ "character": "Berserker",
+ "round": 18,
+ "grid": [
+  7,
+  9
+ ],
+ "items": [
+  {
+   "id": "Berserker Bag",
+   "at": [
+    3,
+    1
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    3,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    3,
+    6
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    1,
+    3
+   ],
+   "r": 0
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    1,
+    5
+   ],
+   "r": 270
+  },
+  {
+   "id": "Falcon Blade",
+   "at": [
+    3,
+    2
+   ],
+   "r": 270,
+   "gems": [
+    "Flawed Emerald",
+    "Flawed Sapphire"
+   ]
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    5,
+    6
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    5,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Forging Hammer",
+   "at": [
+    1,
+    4
+   ],
+   "r": 90
+  },
+  {
+   "id": "Oil Lamp",
+   "at": [
+    2,
+    5
+   ],
+   "r": 0
+  },
+  {
+   "id": "Stamina Sack",
+   "at": [
+    4,
+    8
+   ],
+   "r": 0
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    3,
+    0
+   ],
+   "r": 90
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    1,
+    0
+   ],
+   "r": 90
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    1,
+    1
+   ],
+   "r": 0
+  },
+  {
+   "id": "Cheese",
+   "at": [
+    1,
+    2
+   ],
+   "r": 90
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    5,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    1,
+    6
+   ],
+   "r": 270
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    5,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Stamina Sack",
+   "at": [
+    0,
+    7
+   ],
+   "r": 0
+  },
+  {
+   "id": "Halberd",
+   "at": [
+    4,
+    4
+   ],
+   "r": 90,
+   "gems": [
+    "Flawed Emerald",
+    "Chipped Sapphire",
+    "Flawed Sapphire"
+   ]
+  },
+  {
+   "id": "Gold Armor",
+   "at": [
+    5,
+    3
+   ],
+   "r": 90,
+   "gems": [
+    "Chipped Emerald",
+    "Chipped Amethyst"
+   ]
+  },
+  {
+   "id": "Echoing Battlecry",
+   "at": [
+    4,
+    3
+   ],
+   "r": 0
+  },
+  {
+   "id": "Rainbow Orb",
+   "at": [
+    3,
+    1
+   ],
+   "r": 0
+  },
+  {
+   "id": "False Life",
+   "at": [
+    2,
+    6
+   ],
+   "r": 0
+  },
+  {
+   "id": "Wolf Emblem",
+   "at": [
+    2,
+    4
+   ],
+   "r": 90
+  },
+  {
+   "id": "Mana Orb",
+   "at": [
+    2,
+    1
+   ],
+   "r": 0
+  },
+  {
+   "id": "Blueberries",
+   "at": [
+    3,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Banana",
+   "at": [
+    1,
+    0
+   ],
+   "r": 90
+  },
+  {
+   "id": "Potion Belt",
+   "at": [
+    0,
+    8
+   ],
+   "r": 0
+  },
+  {
+   "id": "Stamina Sack",
+   "at": [
+    0,
+    4
+   ],
+   "r": 90
+  },
+  {
+   "id": "Blood Amulet",
+   "at": [
+    3,
+    6
+   ],
+   "r": 0
+  },
+  {
+   "id": "Djinn Lamp",
+   "at": [
+    1,
+    3
+   ],
+   "r": 90
+  },
+  {
+   "id": "Rainbow Orb",
+   "at": [
+    4,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Stone Armor",
+   "at": [
+    5,
+    0
+   ],
+   "r": 270
+  },
+  {
+   "id": "Wolpertinger",
+   "at": [
+    0,
+    7
+   ],
+   "r": 0
+  },
+  {
+   "id": "Heroic Potion",
+   "at": [
+    0,
+    6
+   ],
+   "r": 0
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    0,
+    2
+   ],
+   "r": 180
+  },
+  {
+   "id": "Crown",
+   "at": [
+    4,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Heart of Darkness",
+   "at": [
+    2,
+    7
+   ],
+   "r": 0
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    0,
+    0
+   ],
+   "r": 180
+  },
+  {
+   "id": "Shelly",
+   "at": [
+    0,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Armored Power Puppy",
+   "at": [
+    0,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Box of Riches",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Molten Dagger",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Amulet of Agility",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Customer Card",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Divine Potion",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Spiked Collar",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Corrupted Armor",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  }
+ ],
+ "meta": {
+  "cap": 63,
+  "need": 71,
+  "overfill": 0.1,
+  "injected": [
+   "Molten Dagger",
+   "Amulet of Agility",
+   "Customer Card",
+   "Divine Potion",
+   "Spiked Collar",
+   "Corrupted Armor"
+  ],
+  "baseline_name": "probe_R18_Berserker_base",
+  "seed": 306
+ }
+}

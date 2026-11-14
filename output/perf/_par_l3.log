@@ -1,0 +1,5 @@
+serial {"workers": 1, "affinity": "None", "p50_cpu_ms": 625.0, "mean_cpu_ms": 635.7, "total_cpu_s": 20.34, "wall_s": 26.38, "tput": 1.21, "cores_eff": 0.77}
+w4_free {"workers": 4, "affinity": "None", "p50_cpu_ms": 687.5, "mean_cpu_ms": 752.0, "total_cpu_s": 24.06, "wall_s": 13.47, "tput": 2.38, "cores_eff": 1.79}
+w4_p0123 {"workers": 4, "affinity": "[0, 1, 2, 3]", "p50_cpu_ms": 609.4, "mean_cpu_ms": 669.4, "total_cpu_s": 21.42, "wall_s": 15.06, "tput": 2.12, "cores_eff": 1.42}
+w4_p0246 {"workers": 4, "affinity": "[0, 2, 4, 6]", "p50_cpu_ms": 593.8, "mean_cpu_ms": 666.0, "total_cpu_s": 21.31, "wall_s": 13.05, "tput": 2.45, "cores_eff": 1.63}
+w2_p01 {"workers": 2, "affinity": "[0, 1]", "p50_cpu_ms": 625.0, "mean_cpu_ms": 642.1, "total_cpu_s": 20.55, "wall_s": 22.53, "tput": 1.42, "cores_eff": 0.91}

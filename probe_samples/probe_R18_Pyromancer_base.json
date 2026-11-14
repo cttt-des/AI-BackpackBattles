@@ -1,0 +1,319 @@
+{
+ "version": 4,
+ "name": "probe_R18_Pyromancer_base",
+ "character": "Pyromancer",
+ "round": 18,
+ "grid": [
+  7,
+  9
+ ],
+ "items": [
+  {
+   "id": "Leather Bag",
+   "at": [
+    2,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    5,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    0,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Portable Altar",
+   "at": [
+    0,
+    6
+   ],
+   "r": 0
+  },
+  {
+   "id": "Vampiric Gloves",
+   "at": [
+    4,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Dragon Nest",
+   "at": [
+    2,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Wolpertinger",
+   "at": [
+    0,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Emerald Whelp",
+   "at": [
+    3,
+    6
+   ],
+   "r": 0
+  },
+  {
+   "id": "Oil Lamp",
+   "at": [
+    6,
+    0
+   ],
+   "r": 90
+  },
+  {
+   "id": "Protective Purse",
+   "at": [
+    6,
+    5
+   ],
+   "r": 0
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    5,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    5,
+    6
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    4,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    4,
+    6
+   ],
+   "r": 0
+  },
+  {
+   "id": "Emerald Whelp",
+   "at": [
+    1,
+    6
+   ],
+   "r": 0
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    1,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Stamina Sack",
+   "at": [
+    6,
+    2
+   ],
+   "r": 90
+  },
+  {
+   "id": "Obsidian Dragon",
+   "at": [
+    3,
+    2
+   ],
+   "r": 180
+  },
+  {
+   "id": "Amethyst Whelp",
+   "at": [
+    1,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    2,
+    6
+   ],
+   "r": 90
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    2,
+    7
+   ],
+   "r": 90
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    3,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    1,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    2,
+    3
+   ],
+   "r": 90
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    2,
+    2
+   ],
+   "r": 90
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    4,
+    2
+   ],
+   "r": 180
+  },
+  {
+   "id": "Molten Greatsword",
+   "at": [
+    2,
+    0
+   ],
+   "r": 180,
+   "gems": [
+    "Corrupted Crystal",
+    "Corrupted Crystal",
+    "Corrupted Crystal"
+   ]
+  },
+  {
+   "id": "Stamina Sack",
+   "at": [
+    0,
+    1
+   ],
+   "r": 90
+  },
+  {
+   "id": "Crown",
+   "at": [
+    6,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Oil Lamp",
+   "at": [
+    1,
+    0
+   ],
+   "r": 270
+  },
+  {
+   "id": "Evil Cap",
+   "at": [
+    0,
+    1
+   ],
+   "r": 270
+  },
+  {
+   "id": "False Life",
+   "at": [
+    0,
+    3
+   ],
+   "r": 0
+  },
+  {
+   "id": "Fanfare",
+   "at": [
+    5,
+    5
+   ],
+   "r": 180
+  },
+  {
+   "id": "Protective Purse",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Flame",
+   "at": [
+    5,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Blueberries",
+   "at": [
+    6,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Chili Pepper",
+   "at": [
+    6,
+    5
+   ],
+   "r": 270
+  }
+ ],
+ "meta": {
+  "h_name": "probe_R18_Pyromancer",
+  "corpus_rk": "run_id:6da8358a-ca3e-476c-bff0-1b2ece8d3dac",
+  "rating": 59.961771,
+  "bucket": "Silver"
+ }
+}

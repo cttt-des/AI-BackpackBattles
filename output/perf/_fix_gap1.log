@@ -1,0 +1,34 @@
+[alignment-out] 显式指定 D:\文件资料\学习\自动背包AI\output\oracle\alignment.json
+[cases] 神谕语料可用 1 场（--limit=0，--cases=1 场）
+[force] 已删 1 场的 gdcore/py 重放产物（神谕语料只读，未触碰）
+[cases] 夹具可用 1 场
+[godot] 串行（jobs=1）
+[godot] 第 1 轮：退出码 0，完成 1/1
+[gh] provenance pid=21612 label=gd_r0 lpDesktop='WinSta0\\dsh_godot_hidden_21612' deskHandle=488 winsta=?
+Godot Engine v3.6.stable.official.de2f0f147 - https://godotengine.org
+OpenGL ES 3.0 Renderer: NVIDIA GeForce MX130/PCIe/SSE2
+Async. shader compilation: OFF
+ 
+ORACLE-ALIGN(gd_core): 受控神谕三方对齐——gd_core 侧批量重放（无头）
+★ case 门控表：22 场 → D:/文件资料/学习/自动背包AI/gd_core_test/oracle_align_case_overrides.json
+★ 定向：ORACLE_ALIGN_CASES → 1 场
+用例 1 场（resume 跳过 0，本进程待跑 1）
+  [   1/1] run101668_r12_o704449_r12 ok       ticks= 704 t=  9.22 ev=  280   1088 ms
+  [selfcheck] run101668_r12_o704449_r12 同种子复跑逐字节一致 
+
+ORACLE-ALIGN(gd_core): PASS（实跑 1 场，跳过 0，用时 7.2s（selfcheck 已消耗一次复跑））
+ERROR: Condition "_first != nullptr" is true.
+   at: ~List (./core/self_list.h:108)
+ERROR: Condition "_first != nullptr" is true.
+   at: ~List (./core/self_list.h:108)
+WARNING: ObjectDB instances leaked at exit (run with --verbose for details).
+     at: cleanup (core/object.cpp:2074)
+ERROR: Resources still in use at exit (run with --verbose for details).
+   at: clear (core/resource.cpp:417)
+[py] 串行（jobs=1）
+[py] 完成 1/1 场
+  [compare] 1/1（三方一致 1）
+
+=== 三方对齐结果：1/1 场逐行一致 ===
+  三方一致                     1
+alignment.json → D:\文件资料\学习\自动背包AI\output\perf\_fix_gap1.json

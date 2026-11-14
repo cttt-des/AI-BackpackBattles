@@ -1,0 +1,14 @@
+cases=1690 账本=1690 aligned=1690/1690
+  300/1690 win_ok=299 win_fail=1 det_fail=0 32s
+  600/1690 win_ok=599 win_fail=1 det_fail=0 69s
+  900/1690 win_ok=899 win_fail=1 det_fail=0 109s
+  1200/1690 win_ok=1199 win_fail=1 det_fail=0 147s
+  1500/1690 win_ok=1498 win_fail=2 det_fail=0 184s
+
+=== 结果（1690 场，206.5 s，8.2 场/s）===
+stats: {'det_ok': 1690, 'win_ok': 1688, 'win_fail': 2}
+事件差值分布（C++ - oracle）: {-1: 1660, -5: 2, -28: 2, 7: 1, -15: 1, -261: 1, -60: 1, -127: 1}
+
+winner 不一致样本（前10）：
+   ('run100875_r5_o100892_r5', 'player/opponent')
+   ('run704504_r15_o704283_r15', 'player/opponent')

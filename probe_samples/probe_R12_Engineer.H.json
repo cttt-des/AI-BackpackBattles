@@ -1,0 +1,394 @@
+{
+ "version": 4,
+ "name": "probe_R12_Engineer",
+ "character": "Engineer",
+ "round": 12,
+ "grid": [
+  7,
+  9
+ ],
+ "items": [
+  {
+   "id": "Engineer Box",
+   "at": [
+    0,
+    4
+   ],
+   "r": 270
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    0,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    0,
+    7
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    4,
+    7
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    4,
+    5
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    2,
+    7
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    2,
+    5
+   ],
+   "r": 0
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    4,
+    4
+   ],
+   "r": 90
+  },
+  {
+   "id": "Djinn Lamp",
+   "at": [
+    2,
+    8
+   ],
+   "r": 90
+  },
+  {
+   "id": "Bismuth Cube",
+   "at": [
+    1,
+    7
+   ],
+   "r": 90
+  },
+  {
+   "id": "Plastic Cube",
+   "at": [
+    1,
+    8
+   ],
+   "r": 180
+  },
+  {
+   "id": "Holy Spear",
+   "at": [
+    4,
+    5
+   ],
+   "r": 270,
+   "gems": [
+    "Burning Coal"
+   ]
+  },
+  {
+   "id": "Mana Orb",
+   "at": [
+    3,
+    7
+   ],
+   "r": 0
+  },
+  {
+   "id": "Battery",
+   "at": [
+    1,
+    0
+   ],
+   "r": 90
+  },
+  {
+   "id": "Coil",
+   "at": [
+    1,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Resistor",
+   "at": [
+    1,
+    1
+   ],
+   "r": 0
+  },
+  {
+   "id": "Coil",
+   "at": [
+    1,
+    3
+   ],
+   "r": 0
+  },
+  {
+   "id": "Resistor",
+   "at": [
+    1,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Battery",
+   "at": [
+    1,
+    5
+   ],
+   "r": 270
+  },
+  {
+   "id": "Battery",
+   "at": [
+    1,
+    6
+   ],
+   "r": 270
+  },
+  {
+   "id": "Battery",
+   "at": [
+    0,
+    0
+   ],
+   "r": 90
+  },
+  {
+   "id": "Charge Splitter",
+   "at": [
+    0,
+    1
+   ],
+   "r": 90
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    3,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    4,
+    0
+   ],
+   "r": 180
+  },
+  {
+   "id": "Mana Potion",
+   "at": [
+    0,
+    7
+   ],
+   "r": 90
+  },
+  {
+   "id": "Mana Potion",
+   "at": [
+    0,
+    5
+   ],
+   "r": 90
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    2,
+    4
+   ],
+   "r": 90
+  },
+  {
+   "id": "Lucky Cat",
+   "at": [
+    3,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Chrome Cube",
+   "at": [
+    3,
+    5
+   ],
+   "r": 180
+  },
+  {
+   "id": "Crown",
+   "at": [
+    3,
+    3
+   ],
+   "r": 90
+  },
+  {
+   "id": "Health Potion",
+   "at": [
+    5,
+    4
+   ],
+   "r": 90
+  },
+  {
+   "id": "Gold Cube",
+   "at": [
+    2,
+    7
+   ],
+   "r": 90
+  },
+  {
+   "id": "Health Potion",
+   "at": [
+    2,
+    4
+   ],
+   "r": 90
+  },
+  {
+   "id": "Djinn Lamp",
+   "at": [
+    2,
+    6
+   ],
+   "r": 90
+  },
+  {
+   "id": "Djinn Lamp",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Smithing For Dummies",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Power of the Moon",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Boots",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Cog",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Smelly Barrier",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Bloodthorne",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Vampiric Gloves",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Resistor",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Moon Armor",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  }
+ ],
+ "meta": {
+  "cap": 44,
+  "need": 54,
+  "overfill": 0.1,
+  "injected": [
+   "Djinn Lamp",
+   "Smithing For Dummies",
+   "Power of the Moon",
+   "Leather Boots",
+   "Cog",
+   "Smelly Barrier",
+   "Bloodthorne",
+   "Vampiric Gloves",
+   "Resistor",
+   "Moon Armor"
+  ],
+  "baseline_name": "probe_R12_Engineer_base",
+  "seed": 205
+ }
+}

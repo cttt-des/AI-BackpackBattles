@@ -1,0 +1,29 @@
+docs: 新增《C++版对齐差异报告_30场》——可直接交给 native_sim 作者
+
+用户要求「把那 30 场分歧都查一遍，总结成文档发给作者」，已完成。
+
+报告要点（docs/C++版对齐差异报告_30场.md，190 行）：
+  结论：C++ 版自洽确定性满分（1690/1690 逐位相等），与神谕一致 1688/1690（99.88%）；
+        2 场胜负不同、30 场事件数偏差（1.8%）。
+
+  核心发现：30 场首个分歧点之前的事件序列完全一致，之后只是顺序交换——
+           不是「算错了」，是「同样的事发得早/晚一点」。
+           按 C++ 抢发的事件类型分三类：
+             A 栈事件(100-110) 抢在 item_activate 前 —— 15 场（占一半，优先查）
+             B DealDamage 抢发 —— 6 场
+             C 其他状态事件先行 —— 8 场
+
+  已排除 7 个假设（避免作者白查）：
+    activation_order 完全一致（player 25/opponent 21）
+    below_master 是真问题但属参数（false→92.1%，true→99.88%）
+    缺键 get_index、gd_iter_seq(int)、takeDamage 实现均等价
+    prepareArmor 未执行是对的（Emerald 挂 Hammer 武器上，getGemMode 非 Armor）
+    gem origin 序列化两条腿一致
+
+  给出可观测性缺口（C++ 只导 6 个接口无 RNG 追踪、该 case 无 rng_log、GdVal 定义不在 bundle）
+  与建议排查顺序（先 below_master、再 idx=1 的最小复现场、重点查 CoreEventBus 里
+  logEvent 与 emitSignal 两条路径的时序）。
+
+技术修正：临时脚本里的事件类型映射表把 101 写成 Regeneration，
+  实际 101=Lucky/102=Regeneration/103=Vampirism/104=Spikes/105=Mana/106=Empower。
+  已改为从 CoreConst.EventType 动态取，报告中的类型名是真实值。

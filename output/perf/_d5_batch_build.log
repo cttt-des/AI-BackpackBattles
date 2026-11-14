@@ -1,0 +1,3 @@
+[msvc-list] cython 512 模块 / 44 批 / 4 进程 耗时 157.8s
+[msvc-list] cl 并行 4 分片 / 512 模块 耗时 1222.2s，非零 rc 分片 0
+[msvc-list] 缺失 0 / 重编目标 512

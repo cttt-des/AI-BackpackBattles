@@ -1,0 +1,451 @@
+{
+ "aligned": 0,
+ "total": 62,
+ "match_distribution": {
+  "py 缺产物": 62
+ },
+ "convention": {
+  "seed": "两侧 gd_core 在任何物品实例创建前以 CoreContext(seed) 注入（≙ oracle_fight.gd:536-537 的 Util.rng.seed=S）",
+  "below_master": "false（np24 簇B：新语料族A 全 +1 tick 实证录制时 isBelowLeague(Master)=假，对手冷却掷 (0.95,1.05)；旧 rng_log 0.975 实证属旧语料，不再适用）",
+  "activation_order": "原版开战 shuffle 走引擎全局链（docs/rng_truth.md §1.4-2）；OracleAlignBattle.gd 用真 Godot seed(S)+shuffle×2+sort_TriggerPriority 复刻终序并直通内核（startBattle preordered）",
+  "judgement": "主判据=engine/log_text.py 渲染战报逐行比对；辅判据=事件 canonical（t 按 1/60s tick 取整、type/side/origin/params/parent-depth 全等）；两者都一致才算通过"
+ },
+ "perCase": [
+  {
+   "caseId": "run101668_r12_o704449_r12",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run705031_r15_o704686_r15",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run101617_r18_o604474_r18",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run704991_r12_o704508_r12",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run704781_r17_o705022_r17",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run704812_r16_o100914_r16",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run704812_r17_o704332_r17",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run604768_r12_o704345_r12",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run604839_r13_o604474_r13",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run704507_r15_o604806_r15",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run101496_r18_o704726_r18",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run704911_r18_o604610_r18",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run704256_r15_o101472_r15",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run704227_r17_o604697_r17",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run704232_r17_o101590_r17",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run705031_r10_o101102_r11",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run101157_r16_o101329_r16",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run101329_r14_o100873_r14",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run604616_r17_o604514_r17",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run100907_r13_o101102_r13",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run101102_r8_o101329_r8",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run101305_r13_o101329_r13",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run101376_r16_o101450_r16",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run101581_r11_o101329_r11",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run200232_r14_o100907_r14",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run604610_r14_o101102_r14",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run604687_r10_o704291_r10",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run704697_r11_o704421_r11",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run101697_r6_o400041_r6",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run300135_r10_o101329_r10",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run400041_r7_o101102_r7",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run604688_r8_o101615_r8",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run604798_r9_o101329_r9",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run101525_r12_o101329_r12",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run200194_r15_o101329_r15",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run300128_r17_o101329_r17",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run500167_r17_o101376_r17",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run604683_r18_o101376_r18",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run704726_r11_o500276_r10",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run704887_r13_o101376_r13",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run200225_r11_o101615_r11",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run500242_r10_o704726_r10",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run604571_r18_o101311_r18",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run604616_r18_o400020_r18",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run704726_r12_o704579_r12",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run704726_r13_o604703_r13",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run704726_r14_o704697_r14",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run100864_r15_o100870_r15",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run100971_r9_o100893_r9",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run200203_r11_o101305_r11",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run604574_r12_o101615_r12",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run604610_r15_o300135_r15",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run604610_r16_o704268_r16",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run604610_r17_o704697_r17",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run704697_r12_o604616_r12",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run704697_r13_o704806_r13",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run704697_r16_o704726_r16",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run704847_r11_o704887_r11",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run704887_r10_o704697_r10",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run704887_r12_o100870_r12",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run705151_r14_o100864_r14",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  },
+  {
+   "caseId": "run101102_r6_o100893_r6",
+   "match": "py 缺产物",
+   "firstDivergence": null,
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  }
+ ],
+ "localization": {},
+ "fixPlan": []
+}

@@ -1,0 +1,342 @@
+{
+ "args": {
+  "rounds": "1,5,12,18",
+  "per_round": 3,
+  "pool": 100,
+  "seeds": 2,
+  "max_iters": 6,
+  "n_cands": 6,
+  "topk": 3,
+  "accept": 0.02,
+  "confirm": 2,
+  "patience": 6,
+  "workers": 8
+ },
+ "round": 1,
+ "results": [
+  {
+   "base": "history-07.db:run5135:R1",
+   "rating": null,
+   "items": 11,
+   "base_wr": 0.555,
+   "final_wr": 0.555,
+   "steps": [],
+   "accepted_actions": [],
+   "final_lineup": {
+    "version": 4,
+    "name": "history-07.db:run5135:R1",
+    "character": "Engineer",
+    "round": 1,
+    "grid": [
+     7,
+     9
+    ],
+    "items": [
+     {
+      "id": "Engineer Box",
+      "at": [
+       2,
+       1
+      ],
+      "r": 0
+     },
+     {
+      "id": "Leather Bag",
+      "at": [
+       2,
+       3
+      ],
+      "r": 0
+     },
+     {
+      "id": "Wooden Sword",
+      "at": [
+       2,
+       2
+      ],
+      "r": 270
+     },
+     {
+      "id": "Whetstone",
+      "at": [
+       3,
+       2
+      ],
+      "r": 180
+     },
+     {
+      "id": "Battery",
+      "at": [
+       2,
+       1
+      ],
+      "r": 90
+     },
+     {
+      "id": "Pan",
+      "at": [
+       3,
+       1
+      ],
+      "r": 90
+     },
+     {
+      "id": "Leather Bag",
+      "at": [
+       4,
+       3
+      ],
+      "r": 90
+     },
+     {
+      "id": "Star of Courage",
+      "at": [
+       5,
+       4
+      ],
+      "r": 90
+     },
+     {
+      "id": "Piggybank",
+      "at": [
+       3,
+       3
+      ],
+      "r": 270
+     },
+     {
+      "id": "Walrus Tusk",
+      "at": [
+       2,
+       4
+      ],
+      "r": 0
+     },
+     {
+      "id": "Pocket Sand",
+      "at": [
+       4,
+       4
+      ],
+      "r": 0
+     }
+    ],
+    "storage": [],
+    "health_override": 25,
+    "class_modifiers": {
+     "stamina": 5
+    },
+    "_rank": 630.9850003748847
+   }
+  },
+  {
+   "base": "history-07.db:run5153:R1",
+   "rating": null,
+   "items": 10,
+   "base_wr": 0.37,
+   "final_wr": 0.37,
+   "steps": [],
+   "accepted_actions": [],
+   "final_lineup": {
+    "version": 4,
+    "name": "history-07.db:run5153:R1",
+    "character": "Engineer",
+    "round": 1,
+    "grid": [
+     7,
+     9
+    ],
+    "items": [
+     {
+      "id": "Engineer Box",
+      "at": [
+       2,
+       1
+      ],
+      "r": 0
+     },
+     {
+      "id": "Whetstone",
+      "at": [
+       3,
+       1
+      ],
+      "r": 0
+     },
+     {
+      "id": "Mana Orb",
+      "at": [
+       3,
+       2
+      ],
+      "r": 0
+     },
+     {
+      "id": "Wooden Sword",
+      "at": [
+       4,
+       1
+      ],
+      "r": 90
+     },
+     {
+      "id": "Fanny Pack",
+      "at": [
+       2,
+       3
+      ],
+      "r": 90
+     },
+     {
+      "id": "Leather Bag",
+      "at": [
+       2,
+       4
+      ],
+      "r": 0
+     },
+     {
+      "id": "Broom",
+      "at": [
+       2,
+       1
+      ],
+      "r": 90
+     },
+     {
+      "id": "Stone",
+      "at": [
+       3,
+       3
+      ],
+      "r": 0
+     },
+     {
+      "id": "Piggybank",
+      "at": [
+       2,
+       5
+      ],
+      "r": 90
+     },
+     {
+      "id": "Star of Courage",
+      "at": [
+       3,
+       4
+      ],
+      "r": 0
+     }
+    ],
+    "storage": [],
+    "health_override": 25,
+    "class_modifiers": {
+     "stamina": 5
+    },
+    "_rank": 629.3550969485523
+   }
+  },
+  {
+   "base": "history-07.db:run5030:R1",
+   "rating": null,
+   "items": 9,
+   "base_wr": 0.12,
+   "final_wr": 0.12,
+   "steps": [],
+   "accepted_actions": [],
+   "final_lineup": {
+    "version": 4,
+    "name": "history-07.db:run5030:R1",
+    "character": "Engineer",
+    "round": 1,
+    "grid": [
+     7,
+     9
+    ],
+    "items": [
+     {
+      "id": "Leather Bag",
+      "at": [
+       2,
+       3
+      ],
+      "r": 0
+     },
+     {
+      "id": "Stamina Sack",
+      "at": [
+       2,
+       5
+      ],
+      "r": 0
+     },
+     {
+      "id": "Customer Card",
+      "at": [
+       4,
+       5
+      ],
+      "r": 0
+     },
+     {
+      "id": "Customer Card",
+      "at": [
+       2,
+       5
+      ],
+      "r": 0
+     },
+     {
+      "id": "Engineer Box",
+      "at": [
+       2,
+       0
+      ],
+      "r": 90
+     },
+     {
+      "id": "Slice of Bread",
+      "at": [
+       3,
+       2
+      ],
+      "r": 90
+     },
+     {
+      "id": "Broom",
+      "at": [
+       2,
+       1
+      ],
+      "r": 90
+     },
+     {
+      "id": "Piggybank",
+      "at": [
+       2,
+       0
+      ],
+      "r": 90
+     },
+     {
+      "id": "Healing Herbs",
+      "at": [
+       3,
+       1
+      ],
+      "r": 0
+     }
+    ],
+    "storage": [],
+    "health_override": 25,
+    "class_modifiers": {
+     "stamina": 6
+    },
+    "_rank": 628.9054230887618
+   }
+  }
+ ],
+ "mean_gain": 0.0,
+ "n_accepts": 0,
+ "action_dist": {}
+}

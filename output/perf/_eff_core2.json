@@ -1,0 +1,34 @@
+{
+  "stage": "eff_w1",
+  "machine": "8L, Python 3.14.5",
+  "cmd": "tools/bench_sim.py --n 32 --workers 1 --rounds 1 --label eff_w1 --cpu-time --json output/perf/_eff_core2.json",
+  "lineups": [
+    "truth_20261001_220653_R19_player.json",
+    "truth_20261001_220653_R19_opponent.json"
+  ],
+  "workers": 1,
+  "n": 32,
+  "p50_ms": 328.1,
+  "mean_ms": 333.01,
+  "p95_ms": 420.3,
+  "min_ms": 203.1,
+  "max_ms": 812.5,
+  "mean_ticks": 908.9,
+  "ms_per_k_tick": 361.0,
+  "fights_per_s_core": 3.05,
+  "wins_player": 5,
+  "timed_out_n": 0,
+  "round_wall_s": [
+    11.065
+  ],
+  "round_p50_ms": [
+    328.1
+  ],
+  "repro_spread_pct": 0.0,
+  "repro_pass_3pct": true,
+  "clock": "process_time",
+  "warmup": 0,
+  "invariance_delta": [],
+  "invariance_pass": true,
+  "events_bytes_first_seed": 191079
+}

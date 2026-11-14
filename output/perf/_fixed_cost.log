@@ -1,0 +1,6 @@
+基线（纯 py 臂）: 551.249 us/tick
+physicsTickCharacter     no-op →  545.729 us/tick  (省 5.520,  1.0%)
+tickPhysicsTimers        no-op → 1297.352 us/tick  (省 -746.103, -135.3%)
+tickBuffs                no-op →  379.156 us/tick  (省 172.093, 31.2%)
+tickTimersPass           no-op →  285.896 us/tick  (省 265.353, 48.1%)
+physicsTick              no-op →  296.739 us/tick  (省 254.510, 46.2%)

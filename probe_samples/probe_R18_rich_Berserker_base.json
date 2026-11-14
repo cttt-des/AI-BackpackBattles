@@ -1,0 +1,376 @@
+{
+ "version": 4,
+ "name": "probe_R18_rich_Berserker_base",
+ "character": "Berserker",
+ "round": 18,
+ "grid": [
+  7,
+  9
+ ],
+ "items": [
+  {
+   "id": "Berserker Bag",
+   "at": [
+    0,
+    0
+   ],
+   "r": 90
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    0,
+    2
+   ],
+   "r": 270
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    0,
+    3
+   ],
+   "r": 0
+  },
+  {
+   "id": "Katana",
+   "at": [
+    0,
+    0
+   ],
+   "r": 90,
+   "gems": [
+    "Elephant Rune",
+    "Elephant Rune",
+    "Elephant Rune"
+   ]
+  },
+  {
+   "id": "Whetstone3",
+   "at": [
+    0,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Whetstone3",
+   "at": [
+    1,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Amulet of Alchemy",
+   "at": [
+    2,
+    1
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    5,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Stamina Sack",
+   "at": [
+    4,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Potion Belt",
+   "at": [
+    3,
+    1
+   ],
+   "r": 180
+  },
+  {
+   "id": "Potion Belt",
+   "at": [
+    3,
+    0
+   ],
+   "r": 180
+  },
+  {
+   "id": "Strong Stone Skin Potion",
+   "at": [
+    3,
+    0
+   ],
+   "r": 270
+  },
+  {
+   "id": "Strong Pestilence Flask",
+   "at": [
+    4,
+    0
+   ],
+   "r": 270
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    2,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    0,
+    5
+   ],
+   "r": 0
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    2,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    3,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "War Scythe",
+   "at": [
+    1,
+    0
+   ],
+   "r": 90,
+   "gems": [
+    "Badger Rune",
+    "Hawk Rune",
+    "Hawk Rune",
+    "Hawk Rune"
+   ]
+  },
+  {
+   "id": "Shelly",
+   "at": [
+    4,
+    2
+   ],
+   "r": 90
+  },
+  {
+   "id": "Shaman Mask",
+   "at": [
+    2,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Stone Helm",
+   "at": [
+    0,
+    5
+   ],
+   "r": 0
+  },
+  {
+   "id": "Crown",
+   "at": [
+    6,
+    3
+   ],
+   "r": 0
+  },
+  {
+   "id": "Investment Opportunity",
+   "at": [
+    2,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Stamina Sack",
+   "at": [
+    4,
+    6
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    0,
+    7
+   ],
+   "r": 0
+  },
+  {
+   "id": "Cheese",
+   "at": [
+    0,
+    7
+   ],
+   "r": 0
+  },
+  {
+   "id": "Garlic",
+   "at": [
+    1,
+    7
+   ],
+   "r": 90
+  },
+  {
+   "id": "Blueberries",
+   "at": [
+    3,
+    5
+   ],
+   "r": 0
+  },
+  {
+   "id": "Garlic",
+   "at": [
+    2,
+    4
+   ],
+   "r": 270
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    2,
+    6
+   ],
+   "r": 270
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    2,
+    7
+   ],
+   "r": 0
+  },
+  {
+   "id": "Pineapple",
+   "at": [
+    0,
+    6
+   ],
+   "r": 0
+  },
+  {
+   "id": "Cheese",
+   "at": [
+    3,
+    6
+   ],
+   "r": 0
+  },
+  {
+   "id": "Blueberries",
+   "at": [
+    2,
+    7
+   ],
+   "r": 0
+  },
+  {
+   "id": "Heart of Darkness",
+   "at": [
+    4,
+    3
+   ],
+   "r": 0,
+   "gems": [
+    "Badger Rune"
+   ]
+  },
+  {
+   "id": "Buy the Holy Light",
+   "at": [
+    6,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Heroic Potion",
+   "at": [
+    5,
+    0
+   ],
+   "r": 270
+  },
+  {
+   "id": "Mana Potion",
+   "at": [
+    6,
+    0
+   ],
+   "r": 270
+  },
+  {
+   "id": "Amulet of Life",
+   "at": [
+    2,
+    8
+   ],
+   "r": 0
+  },
+  {
+   "id": "Amulet of Life",
+   "at": [
+    3,
+    8
+   ],
+   "r": 0
+  },
+  {
+   "id": "Stamina Sack",
+   "at": [
+    4,
+    5
+   ],
+   "r": 0
+  },
+  {
+   "id": "Divine Potion",
+   "at": [
+    4,
+    5
+   ],
+   "r": 270
+  },
+  {
+   "id": "Skull Badge",
+   "at": [
+    3,
+    4
+   ],
+   "r": 0
+  }
+ ],
+ "meta": {
+  "h_name": "probe_R18_rich_Berserker",
+  "corpus_rk": "run_id:7a3b781a-334b-4a55-b3b9-2aa4fc1f1dcb",
+  "rating": 227.620332,
+  "bucket": "Platinum"
+ }
+}

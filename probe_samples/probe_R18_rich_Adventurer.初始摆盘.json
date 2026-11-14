@@ -1,0 +1,429 @@
+{
+ "version": 4,
+ "name": "probe_R18_rich_Adventurer_init",
+ "character": "Adventurer",
+ "round": 18,
+ "grid": [
+  7,
+  9
+ ],
+ "items": [
+  {
+   "id": "Fanny Pack",
+   "at": [
+    4,
+    0
+   ],
+   "r": 180
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    3,
+    0
+   ],
+   "r": 180
+  },
+  {
+   "id": "Puzzlebag S",
+   "at": [
+    4,
+    3
+   ],
+   "r": 0
+  },
+  {
+   "id": "Puzzlebag J",
+   "at": [
+    5,
+    5
+   ],
+   "r": 0
+  },
+  {
+   "id": "Puzzlebag J",
+   "at": [
+    5,
+    6
+   ],
+   "r": 180
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    2,
+    1
+   ],
+   "r": 0
+  },
+  {
+   "id": "Puzzlebag J",
+   "at": [
+    0,
+    1
+   ],
+   "r": 0
+  },
+  {
+   "id": "Puzzlebag J",
+   "at": [
+    0,
+    2
+   ],
+   "r": 180
+  },
+  {
+   "id": "Puzzlebag Z",
+   "at": [
+    2,
+    3
+   ],
+   "r": 180
+  },
+  {
+   "id": "Bag of Giving",
+   "at": [
+    1,
+    5
+   ],
+   "r": 0
+  },
+  {
+   "id": "Stamina Sack",
+   "at": [
+    0,
+    5
+   ],
+   "r": 90
+  },
+  {
+   "id": "Puzzlebag J",
+   "at": [
+    3,
+    6
+   ],
+   "r": 180
+  },
+  {
+   "id": "Puzzlebag T",
+   "at": [
+    3,
+    2
+   ],
+   "r": 90
+  },
+  {
+   "id": "Puzzlebag Z",
+   "at": [
+    5,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Hedgehog",
+   "at": [
+    0,
+    1
+   ],
+   "r": 0
+  },
+  {
+   "id": "Courage Puppy",
+   "at": [
+    3,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Paradise Birb",
+   "at": [
+    2,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Power Puppy",
+   "at": [
+    1,
+    2
+   ],
+   "r": 90
+  },
+  {
+   "id": "Badger Spirit",
+   "at": [
+    0,
+    3
+   ],
+   "r": 90
+  },
+  {
+   "id": "Amulet of Light",
+   "at": [
+    2,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Puzzle Badge",
+   "at": [
+    2,
+    3
+   ],
+   "r": 180
+  },
+  {
+   "id": "Scale",
+   "at": [
+    4,
+    3
+   ],
+   "r": 0
+  },
+  {
+   "id": "Frostbite",
+   "at": [
+    1,
+    5
+   ],
+   "r": 90
+  },
+  {
+   "id": "Null Blade",
+   "at": [
+    3,
+    5
+   ],
+   "r": 90
+  },
+  {
+   "id": "Whetstone3",
+   "at": [
+    2,
+    7
+   ],
+   "r": 0
+  },
+  {
+   "id": "Devouring Sphere",
+   "at": [
+    0,
+    5
+   ],
+   "r": 0
+  },
+  {
+   "id": "Electric Torch",
+   "at": [
+    0,
+    4
+   ],
+   "r": 180
+  },
+  {
+   "id": "Protective Purse",
+   "at": [
+    4,
+    6
+   ],
+   "r": 0
+  },
+  {
+   "id": "Protective Purse",
+   "at": [
+    4,
+    7
+   ],
+   "r": 0
+  },
+  {
+   "id": "Protective Purse",
+   "at": [
+    3,
+    3
+   ],
+   "r": 0
+  },
+  {
+   "id": "Protective Purse",
+   "at": [
+    6,
+    3
+   ],
+   "r": 0
+  },
+  {
+   "id": "Strong Heroic Potion",
+   "at": [
+    6,
+    5
+   ],
+   "r": 90
+  },
+  {
+   "id": "Whetstone3",
+   "at": [
+    0,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Rainbow Orb",
+   "at": [
+    2,
+    6
+   ],
+   "r": 0
+  },
+  {
+   "id": "Mana Orb",
+   "at": [
+    2,
+    5
+   ],
+   "r": 0
+  },
+  {
+   "id": "Uniquely Unique",
+   "at": [
+    3,
+    4
+   ],
+   "r": 90
+  },
+  {
+   "id": "Stamina Sack",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Mananana",
+   "at": [
+    5,
+    7
+   ],
+   "r": 270
+  },
+  {
+   "id": "Pop",
+   "at": [
+    4,
+    6
+   ],
+   "r": 0
+  },
+  {
+   "id": "Djinn Lamp",
+   "at": [
+    4,
+    5
+   ],
+   "r": 270
+  },
+  {
+   "id": "Winged Boots",
+   "at": [
+    5,
+    1
+   ],
+   "r": 180
+  },
+  {
+   "id": "Snowmaster",
+   "at": [
+    4,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Spell Scroll Light",
+   "at": [
+    0,
+    6
+   ],
+   "r": 0
+  },
+  {
+   "id": "Forging Hammer",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Molten Dagger",
+   "at": [
+    3,
+    8
+   ],
+   "r": 0
+  },
+  {
+   "id": "Snowball",
+   "at": [
+    2,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Cupcake",
+   "at": [
+    4,
+    1
+   ],
+   "r": 0
+  },
+  {
+   "id": "Twine",
+   "at": [
+    5,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Regular Amethyst",
+   "at": [
+    6,
+    3
+   ],
+   "r": 0
+  }
+ ],
+ "meta": {
+  "h_name": "probe_R18_rich_Adventurer",
+  "placed": [
+   "Spell Scroll Light",
+   "Forging Hammer",
+   "Molten Dagger",
+   "Snowball",
+   "Cupcake",
+   "Twine",
+   "Regular Amethyst"
+  ],
+  "unplaced": [
+   "Spell Scroll Light",
+   "Pumpkin",
+   "Lightning Staff",
+   "Hammer",
+   "Heavy Drinking",
+   "Hogus Bogus",
+   "Heart of Darkness"
+  ],
+  "analytic": {
+   "A": 114.6,
+   "B": 40.0
+  }
+ }
+}

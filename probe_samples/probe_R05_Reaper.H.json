@@ -1,0 +1,154 @@
+{
+ "version": 4,
+ "name": "probe_R05_Reaper",
+ "character": "Reaper",
+ "round": 5,
+ "grid": [
+  7,
+  9
+ ],
+ "items": [
+  {
+   "id": "Leather Bag",
+   "at": [
+    1,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Spiked Shield",
+   "at": [
+    1,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Storage Coffin",
+   "at": [
+    3,
+    1
+   ],
+   "r": 90
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    3,
+    7
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    3,
+    5
+   ],
+   "r": 0
+  },
+  {
+   "id": "Fly Agaric",
+   "at": [
+    4,
+    2
+   ],
+   "r": 90
+  },
+  {
+   "id": "Toad",
+   "at": [
+    4,
+    1
+   ],
+   "r": 0
+  },
+  {
+   "id": "Smelly Barrier",
+   "at": [
+    4,
+    8
+   ],
+   "r": 0
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    3,
+    0
+   ],
+   "r": 90
+  },
+  {
+   "id": "Spear",
+   "at": [
+    3,
+    0
+   ],
+   "r": 90
+  },
+  {
+   "id": "Dagger",
+   "at": [
+    4,
+    4
+   ],
+   "r": 90
+  },
+  {
+   "id": "Blueberries",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Banana",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Broom",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Hero Sword",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Magic Torch",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  }
+ ],
+ "meta": {
+  "cap": 22,
+  "need": 26,
+  "overfill": 0.1,
+  "injected": [
+   "Blueberries",
+   "Banana",
+   "Broom",
+   "Hero Sword",
+   "Magic Torch"
+  ],
+  "baseline_name": "probe_R05_Reaper_base",
+  "seed": 102
+ }
+}

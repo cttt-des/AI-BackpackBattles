@@ -1,0 +1,212 @@
+[
+ {
+  "case": "run100875_r5_o100892_r5",
+  "delta": 7,
+  "cpp_win": "player",
+  "oracle_win": "opponent",
+  "cpp_ticks": 962
+ },
+ {
+  "case": "run101354_r14_o101073_r14",
+  "delta": -15,
+  "cpp_win": "opponent",
+  "oracle_win": "opponent",
+  "cpp_ticks": 1079
+ },
+ {
+  "case": "run101490_r12_o704664_r12",
+  "delta": -261,
+  "cpp_win": "player",
+  "oracle_win": "player",
+  "cpp_ticks": 1101
+ },
+ {
+  "case": "run101490_r3_o704722_r3",
+  "delta": -60,
+  "cpp_win": "player",
+  "oracle_win": "player",
+  "cpp_ticks": 853
+ },
+ {
+  "case": "run101490_r5_o704639_r5",
+  "delta": -127,
+  "cpp_win": "player",
+  "oracle_win": "player",
+  "cpp_ticks": 2067
+ },
+ {
+  "case": "run101490_r6_o500242_r6",
+  "delta": -140,
+  "cpp_win": "player",
+  "oracle_win": "player",
+  "cpp_ticks": 1094
+ },
+ {
+  "case": "run101490_r8_o101571_r8",
+  "delta": -121,
+  "cpp_win": "player",
+  "oracle_win": "player",
+  "cpp_ticks": 681
+ },
+ {
+  "case": "run101490_r9_o101423_r9",
+  "delta": -101,
+  "cpp_win": "player",
+  "oracle_win": "player",
+  "cpp_ticks": 739
+ },
+ {
+  "case": "run101571_r11_o704580_r11",
+  "delta": 106,
+  "cpp_win": "opponent",
+  "oracle_win": "opponent",
+  "cpp_ticks": 2312
+ },
+ {
+  "case": "run101582_r9_o704990_r9",
+  "delta": -32,
+  "cpp_win": "opponent",
+  "oracle_win": "opponent",
+  "cpp_ticks": 1111
+ },
+ {
+  "case": "run101635_r15_o101655_r15",
+  "delta": -185,
+  "cpp_win": "player",
+  "oracle_win": "player",
+  "cpp_ticks": 792
+ },
+ {
+  "case": "run101668_r7_o604708_r7",
+  "delta": -3,
+  "cpp_win": "player",
+  "oracle_win": "player",
+  "cpp_ticks": 1238
+ },
+ {
+  "case": "run101668_r8_o704752_r8",
+  "delta": 95,
+  "cpp_win": "opponent",
+  "oracle_win": "opponent",
+  "cpp_ticks": 991
+ },
+ {
+  "case": "run300219_r6_o704614_r6",
+  "delta": 16,
+  "cpp_win": "opponent",
+  "oracle_win": "opponent",
+  "cpp_ticks": 933
+ },
+ {
+  "case": "run400051_r12_o101432_r12",
+  "delta": -51,
+  "cpp_win": "opponent",
+  "oracle_win": "opponent",
+  "cpp_ticks": 991
+ },
+ {
+  "case": "run604585_r6_o704454_r6",
+  "delta": -52,
+  "cpp_win": "player",
+  "oracle_win": "player",
+  "cpp_ticks": 529
+ },
+ {
+  "case": "run604687_r10_o704291_r10",
+  "delta": -9,
+  "cpp_win": "player",
+  "oracle_win": "player",
+  "cpp_ticks": 507
+ },
+ {
+  "case": "run604702_r8_o704578_r8",
+  "delta": -93,
+  "cpp_win": "opponent",
+  "oracle_win": "opponent",
+  "cpp_ticks": 525
+ },
+ {
+  "case": "run604799_r6_o101061_r6",
+  "delta": 25,
+  "cpp_win": "player",
+  "oracle_win": "player",
+  "cpp_ticks": 1111
+ },
+ {
+  "case": "run604807_r15_o604822_r15",
+  "delta": -36,
+  "cpp_win": "player",
+  "oracle_win": "player",
+  "cpp_ticks": 648
+ },
+ {
+  "case": "run604825_r9_o704797_r9",
+  "delta": 4,
+  "cpp_win": "opponent",
+  "oracle_win": "opponent",
+  "cpp_ticks": 699
+ },
+ {
+  "case": "run704504_r15_o704283_r15",
+  "delta": -268,
+  "cpp_win": "player",
+  "oracle_win": "opponent",
+  "cpp_ticks": 801
+ },
+ {
+  "case": "run704714_r9_o604609_r9",
+  "delta": 310,
+  "cpp_win": "player",
+  "oracle_win": "player",
+  "cpp_ticks": 2139
+ },
+ {
+  "case": "run704864_r5_o704519_r5",
+  "delta": 41,
+  "cpp_win": "player",
+  "oracle_win": "player",
+  "cpp_ticks": 1592
+ },
+ {
+  "case": "run704879_r14_o704504_r14",
+  "delta": 475,
+  "cpp_win": "player",
+  "oracle_win": "player",
+  "cpp_ticks": 1325
+ },
+ {
+  "case": "run704881_r6_o101111_r6",
+  "delta": -5,
+  "cpp_win": "opponent",
+  "oracle_win": "opponent",
+  "cpp_ticks": 781
+ },
+ {
+  "case": "run704933_r6_o704860_r6",
+  "delta": -29,
+  "cpp_win": "player",
+  "oracle_win": "player",
+  "cpp_ticks": 633
+ },
+ {
+  "case": "run704990_r12_o300182_r12",
+  "delta": -28,
+  "cpp_win": "player",
+  "oracle_win": "player",
+  "cpp_ticks": 927
+ },
+ {
+  "case": "run705018_r6_o604708_r6",
+  "delta": -28,
+  "cpp_win": "player",
+  "oracle_win": "player",
+  "cpp_ticks": 754
+ },
+ {
+  "case": "run705130_r7_o100875_r7",
+  "delta": -5,
+  "cpp_win": "opponent",
+  "oracle_win": "opponent",
+  "cpp_ticks": 1038
+ }
+]

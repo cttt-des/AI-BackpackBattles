@@ -1,0 +1,34 @@
+{
+  "n": 6,
+  "rounds": 3,
+  "assemble_p50_ms": 30.83,
+  "assemble_cumulative_ms": 28.1,
+  "run_p50_ms": 118.73,
+  "asm_share_pct": 20.6,
+  "all_rounds": [
+    26.84,
+    28.1,
+    29.17
+  ],
+  "load_for_ms": 0.1114
+}
+
+    tottime/场     cumtime   calls  func
+        15.55       26.50       2  _build_side @ gd_core_engine.py:1441
+         8.36       36.20       1  __init__ @ gd_core_engine.py:857
+         7.32        7.77     108  _make_item @ gd_core_engine.py:1389
+         2.52       10.74     108  _place @ gd_core_engine.py:1413
+         0.40        0.45     108  _place_of @ gd_core_engine.py:804
+         0.30        0.35     216  _descriptor @ gd_core_engine.py:1333
+         0.24        0.45       1  load_for @ _bootstrap.py:6092
+         0.17        0.17       2  _make_character @ gd_core_engine.py:1313
+         0.07        0.07     103  __init__ @ gd_core_engine.py:740
+         0.06        0.09     118  _key_of @ gd_core_engine.py:797
+         0.04        0.04       1  _make_probe_class @ gd_core_engine.py:660
+         0.01        0.02       2  character_stats @ gd_core_engine.py:752
+         0.01        0.01       2  class_id_of @ gd_core_engine.py:782
+         0.01        0.01       1  _init_fields @ gd_core_engine.py:294
+         0.00        0.01       3  _handle_fromlist @ <frozen importlib._bootstrap>:1409
+         0.00        0.01       2  _lineup_name @ gd_core_engine.py:1308
+         0.00        0.00       1  _warm_log_kernel @ gd_core_engine.py:201
+         0.00        0.00       2  _new_stats @ gd_core_engine.py:271

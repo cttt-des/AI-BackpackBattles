@@ -1,0 +1,44 @@
+[
+  {
+    "items": 8,
+    "ticks": 1532,
+    "ms_per_ktick": 10.199086161879896,
+    "spread_pct": 2800.0
+  },
+  {
+    "items": 12,
+    "ticks": 1532,
+    "ms_per_ktick": 10.199086161879896,
+    "spread_pct": 100.0
+  },
+  {
+    "items": 16,
+    "ticks": 1532,
+    "ms_per_ktick": 10.199086161879896,
+    "spread_pct": 100.0
+  },
+  {
+    "items": 20,
+    "ticks": 1532,
+    "ms_per_ktick": 20.39817232375979,
+    "spread_pct": 100.0
+  },
+  {
+    "items": 24,
+    "ticks": 1592,
+    "ms_per_ktick": 19.62939698492462,
+    "spread_pct": 50.0
+  },
+  {
+    "items": 28,
+    "ticks": 1652,
+    "ms_per_ktick": 18.916464891041162,
+    "spread_pct": 0.0
+  },
+  {
+    "items": 32,
+    "ticks": 1652,
+    "ms_per_ktick": 28.374697336561745,
+    "spread_pct": 33.3
+  }
+]

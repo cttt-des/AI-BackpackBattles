@@ -1,0 +1,531 @@
+{
+ "version": 4,
+ "name": "probe_R18_rich_Mage",
+ "character": "Mage",
+ "round": 18,
+ "grid": [
+  7,
+  9
+ ],
+ "items": [
+  {
+   "id": "Fanny Pack",
+   "at": [
+    2,
+    6
+   ],
+   "r": 270
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    4,
+    6
+   ],
+   "r": 90
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    0,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    2,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    6,
+    1
+   ],
+   "r": 0
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    2,
+    4
+   ],
+   "r": 90
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    2,
+    5
+   ],
+   "r": 90
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    0,
+    7
+   ],
+   "r": 0
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    2,
+    7
+   ],
+   "r": 180
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    3,
+    7
+   ],
+   "r": 0
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    4,
+    7
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    5,
+    7
+   ],
+   "r": 0
+  },
+  {
+   "id": "Potion Belt",
+   "at": [
+    6,
+    3
+   ],
+   "r": 270
+  },
+  {
+   "id": "Scholar Bag",
+   "at": [
+    4,
+    3
+   ],
+   "r": 0
+  },
+  {
+   "id": "Moon Armor",
+   "at": [
+    3,
+    5
+   ],
+   "r": 90
+  },
+  {
+   "id": "Ice Flower",
+   "at": [
+    4,
+    3
+   ],
+   "r": 270
+  },
+  {
+   "id": "Water Elemental",
+   "at": [
+    5,
+    5
+   ],
+   "r": 0
+  },
+  {
+   "id": "Ice Flower",
+   "at": [
+    5,
+    3
+   ],
+   "r": 270
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    5,
+    1
+   ],
+   "r": 0
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    4,
+    1
+   ],
+   "r": 180
+  },
+  {
+   "id": "Protective Purse",
+   "at": [
+    6,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    4,
+    0
+   ],
+   "r": 90
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    2,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Blueberries",
+   "at": [
+    3,
+    8
+   ],
+   "r": 0
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    0,
+    4
+   ],
+   "r": 90
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    0,
+    5
+   ],
+   "r": 0
+  },
+  {
+   "id": "Hyper Hedgehog",
+   "at": [
+    2,
+    2
+   ],
+   "r": 90
+  },
+  {
+   "id": "Blueberries",
+   "at": [
+    1,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Heart of Darkness",
+   "at": [
+    5,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Frozen Buckler",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Fancy Fencing Rapier",
+   "at": [
+    3,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Cat Spirit",
+   "at": [
+    2,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Crown",
+   "at": [
+    2,
+    7
+   ],
+   "r": 180
+  },
+  {
+   "id": "Magic Mirror",
+   "at": [
+    4,
+    8
+   ],
+   "r": 180
+  },
+  {
+   "id": "Blood Amulet",
+   "at": [
+    6,
+    8
+   ],
+   "r": 0
+  },
+  {
+   "id": "Djinn Lamp",
+   "at": [
+    6,
+    3
+   ],
+   "r": 180
+  },
+  {
+   "id": "Rainbow Orb",
+   "at": [
+    2,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Rat Chef",
+   "at": [
+    1,
+    5
+   ],
+   "r": 180
+  },
+  {
+   "id": "Blueberries",
+   "at": [
+    1,
+    7
+   ],
+   "r": 0
+  },
+  {
+   "id": "Light Flower",
+   "at": [
+    1,
+    6
+   ],
+   "r": 0
+  },
+  {
+   "id": "Power of the Moon",
+   "at": [
+    1,
+    8
+   ],
+   "r": 0
+  },
+  {
+   "id": "Lucky Cat",
+   "at": [
+    3,
+    3
+   ],
+   "r": 270
+  },
+  {
+   "id": "Prismatic Wand",
+   "at": [
+    5,
+    7
+   ],
+   "r": 0
+  },
+  {
+   "id": "Devouring Sphere",
+   "at": [
+    4,
+    1
+   ],
+   "r": 0
+  },
+  {
+   "id": "Blueberries",
+   "at": [
+    0,
+    6
+   ],
+   "r": 0
+  },
+  {
+   "id": "Paradise Birb",
+   "at": [
+    0,
+    2
+   ],
+   "r": 90
+  },
+  {
+   "id": "Speak with Animals",
+   "at": [
+    2,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Light Flower",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Customer Card",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Book of Ice",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Book of Light",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Spell Scroll Ice",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Book of Basics",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Rainbow Potion",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Wand of Dissonance",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Blueberries",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Rainbow Orb",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Blueberries",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Mana Orb",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Book of Basics",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Claws of Attack",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  }
+ ],
+ "meta": {
+  "cap": 63,
+  "need": 82,
+  "overfill": 0.3,
+  "injected": [
+   "Light Flower",
+   "Customer Card",
+   "Book of Ice",
+   "Book of Light",
+   "Spell Scroll Ice",
+   "Book of Basics",
+   "Rainbow Potion",
+   "Wand of Dissonance",
+   "Blueberries",
+   "Rainbow Orb",
+   "Blueberries",
+   "Mana Orb",
+   "Book of Basics",
+   "Claws of Attack"
+  ],
+  "baseline_name": "probe_R18_rich_Mage_base",
+  "seed": 404
+ }
+}

@@ -1,0 +1,121 @@
+{
+ "version": 4,
+ "name": "probe_R01_Adventurer_init",
+ "character": "Adventurer",
+ "round": 1,
+ "grid": [
+  7,
+  9
+ ],
+ "items": [
+  {
+   "id": "Sewing Case",
+   "at": [
+    2,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    3,
+    1
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    3,
+    5
+   ],
+   "r": 0
+  },
+  {
+   "id": "Broom",
+   "at": [
+    2,
+    2
+   ],
+   "r": 270
+  },
+  {
+   "id": "Shiny Shell",
+   "at": [
+    3,
+    3
+   ],
+   "r": 180
+  },
+  {
+   "id": "Flame Badge",
+   "at": [
+    3,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Stone",
+   "at": [
+    3,
+    6
+   ],
+   "r": 0
+  },
+  {
+   "id": "Twine",
+   "at": [
+    3,
+    2
+   ],
+   "r": 180
+  },
+  {
+   "id": "Wooden Sword",
+   "at": [
+    3,
+    1
+   ],
+   "r": 0
+  },
+  {
+   "id": "Twine",
+   "at": [
+    4,
+    2
+   ],
+   "r": 180
+  },
+  {
+   "id": "Stone",
+   "at": [
+    3,
+    5
+   ],
+   "r": 0
+  },
+  {
+   "id": "Stone",
+   "at": [
+    4,
+    5
+   ],
+   "r": 0
+  }
+ ],
+ "meta": {
+  "h_name": "probe_R01_Adventurer",
+  "placed": [],
+  "unplaced": [
+   "Wooden Buckler",
+   "Dagger",
+   "Wooden Sword"
+  ],
+  "analytic": {
+   "A": 19.0,
+   "B": 0.0
+  }
+ }
+}

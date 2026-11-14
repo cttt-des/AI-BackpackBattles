@@ -1,0 +1,32 @@
+docs: §4.9 C++ 版 1690 全量确定性实测——自洽确定性 1690/1690，与神谕 1688/1690(99.88%)
+
+用户要求用 C++ 版跑 1690 全量验证确定性。结果：
+  自洽确定性（同输入跑两遍逐位相等）：1690/1690 全过
+  winner 与神谕一致：1688/1690 = 99.88%（2 场稳定分歧）
+  事件数差 = -1：1660 场（98.2%）——我方 run() 末尾多一条 emit_combat_end，口径差
+  吞吐：206.5s / 1690 场 = 8.2 场/s（单线程，边跑边自校验）
+
+那 2 场（连跑 3 次都一样，稳定错非抖动）：
+  run100875_r5_o100892_r5  神谕 opponent/150  C++ player/157  ticks=962
+  run704504_r15_o704283_r15 神谕 opponent/982  C++ player/714  ticks=801
+已排除「是我参数传错」：用主仓 verify_oracle 跑这两场判为 2/2 三方一致，
+分歧出在 C++ 版一侧。
+
+测量中踩的三个坑（都已修正）：
+  1. 漏传 below_master=True —— 首轮一致率只有 92.1%（134 场假失败），
+     事件差散布 -261~+189。账本 convention 写的 below_master:false 是陈旧记载；
+     check_three_gates.py:291 注释明确 verify_oracle py 腿硬编码 True。补上后 99.88%。
+  2. 直接传 cases 的 player/opponent —— py 与 C++ 双方都跑出 ticks=1532（超时上限）
+     events=14。cases 的 side dict 不是引擎可直用 lineup，须走 verify_oracle 夹具
+     （gem_lens/activation_order/rng_state/p_stats 等十几项 case 级覆盖）。
+  3. 用自带 test_parity.py 对拍 —— 20/20 全红、ticks 差上百。该 bundle 是 0.5.0 抽出的，
+     其 Python 参考腿与本仓库版本不匹配，且缺 backpack_ai / simulator.godot_order。
+     它的对拍结论对本仓库无效，但判据口径（对齐神谕）可用。
+
+三条启示：
+  N5 C++ 重写不保证语义 100% 等价（它 99.88%，我方 1690/1690）
+     => 做 C 化改造时逐位对齐闸必须每批都跑，不能「一次性重写再验收」
+  N6 口径参数（below_master 等）比实现更易错：漏一个 bool，一致率掉 7.8 个百分点
+  N7 事件数差 -1 可作为「是否同局」的快速判据（1660/1690 命中）
+
+结论：「换 C++ 更确定」不成立。它的价值在速度（§4.8），不在确定性。

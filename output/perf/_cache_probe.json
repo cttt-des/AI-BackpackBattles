@@ -1,0 +1,44 @@
+[
+  {
+    "keep_each": 4,
+    "items": 8,
+    "ticks": 1532,
+    "sec": 0.0312,
+    "ms_per_ktick": 20.4
+  },
+  {
+    "keep_each": 8,
+    "items": 16,
+    "ticks": 1532,
+    "sec": 0.0312,
+    "ms_per_ktick": 20.4
+  },
+  {
+    "keep_each": 12,
+    "items": 24,
+    "ticks": 1592,
+    "sec": 0.0469,
+    "ms_per_ktick": 29.44
+  },
+  {
+    "keep_each": 20,
+    "items": 40,
+    "ticks": 1652,
+    "sec": 0.0781,
+    "ms_per_ktick": 47.29
+  },
+  {
+    "keep_each": 30,
+    "items": 60,
+    "ticks": 1575,
+    "sec": 0.1406,
+    "ms_per_ktick": 89.29
+  },
+  {
+    "keep_each": 40,
+    "items": 80,
+    "ticks": 440,
+    "sec": 0.0781,
+    "ms_per_ktick": 177.56
+  }
+]

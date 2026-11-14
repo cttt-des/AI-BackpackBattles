@@ -97,10 +97,6 @@ var triggersThisFrame: int = 0
 var triggerTime: float = 0.0
 var iterationCooldown: float = 0.0
 # ★ np51㉛ 定向注入实验状态（用后还原）
-var flk_suppress_fire := false
-var _inj_item: String = ""
-var _inj_trigger_n: int = 0
-var _inj_trigger_count: int = 0
 
 # 统计（对齐 Item.gd:257 itemMetrics）
 var itemMetrics: Array = []
@@ -213,18 +209,25 @@ func setup(_ctx, _descriptor: CoreItemData, _character = null):
 	#   ItemScript.new()=2 步、Items/Item.tscn.instance()=2 步、
 	#   Items/Exclusive/PortableAltar.tscn.instance()=4 步——差值即覆盖重绑定；
 	#   全量 917 场装配步数与「4/实例 + 2/Flicker 项 + 8/对手角色」模型零残差。
-	# 故内核物品构造消耗 = 2×BalancedRng.new = 4 步/实例（宝石同，Gem 场景同构）。
+	# 故内核物品构造消耗 = sceneDepth×BalancedRng.new（宝石同，Gem 场景同构）。
+	# ★ A 阶段普适性修复（2026-11-14，run101354_r14 oracle [BARE]+[ITEMINIT]
+	#   全裸流逐抽实证）：深度语义 = **脚本重绑定次数**，不是场景嵌套层数——
+	#   继承场景只有根节点写了 `script = ExtResource(n)` 时成员初始化器才在该层
+	#   重跑。Coins.tscn 只换贴图/粒子、不覆盖根脚本 ⇒ 装配期只抽 **1** 笔 ctor
+	#   （oracle draw70 单笔 + 单次 [ITEMINIT]，Coins/ot1 实测），旧模型恒 2 抽
+	#   ⇒ 含 Coins 的场装配链位整体后移 2 步，flicker delay 抽值错位（22 场
+	#   开关里 20 场 flk_delay 的根因）。sceneDepth=1 的物品只抽 1 笔。
 	chanceRng = ctx.rng.BalancedRng.new(ctx.rng)
 	damageRangeRng = ctx.rng.BalancedRange.new(ctx.rng)
-	chanceRng = ctx.rng.BalancedRng.new(ctx.rng)   # 覆盖脚本重绑定：成员初始化器重跑
 	# ★ np25 sceneDepth 面（run784_r13 state 快照定谳）：三层覆盖链
 	#   （Item.tscn → Gem.tscn → <gem>.tscn，如 HawkRune）成员初始化器跑
 	#   sceneDepth 遍——第 3 层的 chanceRng 才是幸存实例（战斗期平衡器状态源）。
 	#   夹具/宿主/引擎描述符早传 sceneDepth（enrich_scene_depth.py，宝石类=3、
-	#   普通物品=2）但内核从未消费 ⇒ 每个宝石类物品装配少 1 抽（run784 五符文
-	#   = 5 抽，第 2 油灯 flicker delay 1.979v0.662 的错位即此所赐）。
-	#   消耗位置 = 第 2 层之后、gemRoll(advance) 之前，与神谕实例化序逐位同构。
-	for _i in range(max(0, int(descriptor.sceneDepth) - 2)):
+	#   普通物品=2、无根脚本覆盖件=1）但内核从未消费 ⇒ 每个宝石类物品装配少
+	#   1 抽（run784 五符文 = 5 抽，第 2 油灯 flicker delay 1.979v0.662 的错位
+	#   即此所赐）。消耗位置 = 第 2 层之后、gemRoll(advance) 之前，与神谕
+	#   实例化序逐位同构。
+	for _i in range(max(0, int(descriptor.sceneDepth) - 1)):
 		chanceRng = ctx.rng.BalancedRng.new(ctx.rng)
 	baseCooldownOverride = _descriptor.cd
 	for buff in CoreConst.getStacks():
@@ -783,28 +786,12 @@ func _readyInit() -> void :
 		#   Djinn jitter 起全链错位）。修复=补 callDelayed 注册（kernel_r6 递减
 		#   驱动对齐 drive_delayed；animation_finished 无帧永不发 ⇒ 每件战斗期
 		#   恰 1 笔），到点派发 flickerPlayAni 走 ctx.rng.rng 裸抽（零痕迹同规）。
-		# ★ np51㉟：case 级 delay 覆盖（ORACLE_FLK_DELAY="物品/otN=值,…"）。
-		#   delay 抽本身是装配期笔（rng_state 注入抹除）⇒ 覆盖值零链影响，
-		#   纯行为对齐——修 np24 6m18 遗留的「flicker delay 装配链位差」红场。
-		# ★ np51㊱：同 key 多值=有序队列，按装配序逐实例消费（双 Burning Coal
-		#   类：两实例 oracle delay 不同）；游标存 ctx（每场重置）。
-		var _flk_delay_use: float = float(flicker_delay)
-		var _flk_ov := OS.get_environment("ORACLE_FLK_DELAY")
-		if _flk_ov != "":
-			var _key := String(descriptor.identifier) + "/ot" + str(int(ownerType))
-			var _vals: Array = []
-			for pair in _flk_ov.split(","):
-				var kv: PoolStringArray = String(pair).split("=")
-				if kv.size() == 2 and kv[0] == _key:
-					_vals.append(float(kv[1]))
-			if not _vals.empty():
-				var _cur: int = int(ctx.flk_delay_cursor.get(_key, 0))
-				if _cur < _vals.size():
-					# ★ np51㊳：队列耗尽（实例数>队列值数）→ 保留 gd 自身 delay
-					#   （oracle 多余实例同样在自身 delay 时刻发火，通常在战后）。
-					_flk_delay_use = _vals[_cur]
-					ctx.flk_delay_cursor[_key] = _cur + 1
-		ctx.callDelayed(self, "flickerPlayAni", _flk_delay_use)
+		# ★ A 阶段普适性修复（2026-11-14）：np51㉟ 的 case 级 delay 覆盖
+		#   （ORACLE_FLK_DELAY）与 np51㊱ 的同 key 队列游标（ctx.flk_delay_cursor）
+		#   **整段移除**——20 场 flk_delay 的真因 = Coins 类无根脚本覆盖场景
+		#   的装配多抽（见 setup() 的 sceneDepth 语义修复），链位对齐后装配期
+		#   抽出的 delay 与神谕逐位一致（run101354 Burning Coal=2.2284 复现）。
+		ctx.callDelayed(self, "flickerPlayAni", float(flicker_delay))
 		# ★ np25 flicker 派发定谳探针（双门控零耗）：与 oracle FLKSTUB 桩对称——
 		#   delay 抽后的链状态快照，供 state→PCG 前向模拟数精确链位。
 		ctx.rng.trace_diag("FLKREG", String(descriptor.identifier) + "/ot" + str(int(ownerType)),
@@ -862,22 +849,12 @@ func flickerPlayAni() -> void :
 			str(ctx.time), "st=" + str(ctx.rng.rng.get_state()))
 	# ★ kernel_r6：oracle FlickerAnimation.gd:16 playAni = Util.rng.randf_range
 	#   裸调（rng_log 零痕迹，与 np24 ItemAnimation 同款）⇒ 裸抽不进 trace。
-	# ★ np51㉞ 复盘（2026-11-08）：run604585_r6 单场移除实验 693/693 全对齐，
-	#   但全量重验 681 场反弹红 → **flicker 速度抽在语料大多数场存在**（oracle
-	#   侧有消耗），run604585 是特例（其 Oil Lamp=ot3 对手侧，oracle harness
-	#   对手装配不实例化 FlickerAnimation——[FLK-ready] 探针零输出实证）。
-	#   速度抽保留（np24 kernel_r6 口径），特例场由 ORACLE_NO_FLKFIRE 门控
-	#   逐场处理；普适条件待 24 红场清单归纳。
-	# ★ np51㊱：per-instance 抑制（ORACLE_FLK_OFF="物品/otN,…"）——gd 多发火
-	#   实例（oracle 无对应实例）的速度抽整笔跳过（run704933 Burning Sword 型）。
-	var _key := String(descriptor.identifier) + "/ot" + str(int(ownerType))
-	var _flk_off := OS.get_environment("ORACLE_FLK_OFF")
-	if _flk_off != "":
-		for off in _flk_off.split(","):
-			if String(off) == _key:
-				return
-	if OS.get_environment("ORACLE_NO_FLKFIRE") == "":
-		ctx.rng.bare_randf_range(descriptor.flickerMinSpeed, descriptor.flickerMaxSpeed)
+	# ★ A 阶段普适性修复（2026-11-14）：np51㉞ 的 ORACLE_NO_FLKFIRE（整场抑制）
+	#   与 np51㊱ 的 ORACLE_FLK_OFF（per-instance 抑制）**整段移除**——
+	#   run604585「对手侧 Oil Lamp 速度抽多一笔」与 run300219「Flame/ot1 多发火」
+	#   的真因同样是 Coins 装配多抽（见 setup() 的 sceneDepth 语义修复），
+	#   链位对齐后 playAni 发火窗与神谕逐位一致，速度抽恒保留。
+	ctx.rng.bare_randf_range(descriptor.flickerMinSpeed, descriptor.flickerMaxSpeed)
 
 
 # ─────────────────────── 触发（对齐 4416-4451） ───────────────────────
@@ -909,22 +886,11 @@ func trigger():
 	ctx.rng.trace_diag("TRIG", String(descriptor.identifier), int(ownerType),
 			"tt=" + str(triggerTime) + " cd=" + str(iterationCooldown)
 			+ " spd=" + str(getSpeed()) + " t=" + str(ctx.time))
-	# ★ np51㉛ 定向注入（用后还原）：ORACLE_INJ_ITEM=物品名、ORACLE_INJ_TRIGGER_N=N
-	#   ——该物品第 N 次 trigger 后补 1 笔 (0,1) 裸抽（oracle 侧隐形消耗面定位）。
-	if _inj_item == "":
-		_inj_item = OS.get_environment("ORACLE_INJ_ITEM")
-		# ★ np51㉟：int("")在 py 侧抛异常（gd 静默 0）——空串守卫保证双腿同构
-		var _inj_n_s := OS.get_environment("ORACLE_INJ_TRIGGER_N")
-		_inj_trigger_n = 0
-		if _inj_n_s != "":
-			_inj_trigger_n = int(_inj_n_s)
-		if _inj_item != "":
-			print("INJ2_ARM item=[%s] n=%d" % [_inj_item, _inj_trigger_n])
-	if _inj_item != "" and String(descriptor.identifier) == _inj_item:
-		_inj_trigger_count += 1
-		if _inj_trigger_count == _inj_trigger_n:
-			print("INJ2_FIRED item=%s n=%d t=%s" % [_inj_item, _inj_trigger_n, str(ctx.time)])
-			ctx.rng.bare_randf_range(0.0, 1.0)
+	# ★ A 阶段普适性修复（2026-11-14）：np51㉛ 的定向注入（ORACLE_INJ_ITEM/
+	#   ORACLE_INJ_TRIGGER_N——Bloody Dagger 第 N 次 trigger 后补 1 笔 (0,1)
+	#   裸抽）**整段移除**。run604585 的「缺一笔」真因 = Coins 装配多抽把链位
+	#   后移（见 setup() 的 sceneDepth 语义修复）；no_flkfire 一减 + inj 一补
+	#   恰好抵消正是链位移位的症状，链位对齐后两块都不再需要。
 	iterationCooldown = adjustCooldown()
 	triggerTime += iterationCooldown
 

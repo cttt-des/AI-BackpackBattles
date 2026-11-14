@@ -252,14 +252,17 @@ class CoreTimer(GodotObject):
 		eng = self._eng
 		if eng != self._seen:
 			self._left = eng
-			# ★ np26fA 相位补偿：multi start 发生在上一拍 tickTimersPass 之后时，
-			#   本拍（=start 后第一个 tick pass）登记拍照常递减（事件 t 口径差
-			#   1 tick 的吸收，见 _multi_start_time 注）。同拍 start 不补。
-			# ★ np51㊳终⑯：ORACLE_TIMER_NO_PHASE_COMP 逐场关（run704242 SPF 毒
-			#   271v272：该场 oracle 登记拍同样不递减，补偿反成早 1 tick；
-			#   全局移除→541 场反弹，故逐场门控）。
-			if self.multi and self._multi_start_time >= 0.0 and self._multi_start_time < self._utilTime() 				and _os_environ_get("ORACLE_TIMER_NO_PHASE_COMP") == "":
-				self._left = eng - delta
+			# ★ A 阶段普适性修复（2026-11-14）：np26fA 相位补偿**整段移除**。
+			#   oracle harness drive_timers（oracle_fight.gd:897-905）的登记拍
+			#   语义是均匀的：eng != e[1] ⇒ e[0]=eng，**一律不递减**；递减恒从
+			#   下一拍开始（run583_r11 [timer-reg] t=2.0000 → 首减 2.0167 →
+			#   210 次递减后 f64 尘埃 k=211 发火 5.5167；run704242 同构实证）。
+			#   补偿把登记拍多减 1 delta ⇒ 一切「start 后隔拍登记」的 multi 计时器
+			#   恒早 1 tick（run704242 SPF 毒 271v272 即此）。np26fA 时代的
+			#   「541 场反弹」实为 **Coins 装配多抽**（enrich_scene_depth 深度
+			#   语义修复，见 CoreItem.setup）造成的链位漂移被补偿掩盖——Coins
+			#   修复后 22 场开关场无补偿全对齐（本会话实测），补偿再无正例。
+			# ★ np51㊳终⑯ 的 ORACLE_TIMER_NO_PHASE_COMP 逐场门控随补偿一并删除。
 			self._multi_start_time = -1.0
 		else:
 			self._left = self._left - delta

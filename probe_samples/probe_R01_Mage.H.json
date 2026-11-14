@@ -1,0 +1,144 @@
+{
+ "version": 4,
+ "name": "probe_R01_Mage",
+ "character": "Mage",
+ "round": 1,
+ "grid": [
+  7,
+  9
+ ],
+ "items": [
+  {
+   "id": "Scholar Bag",
+   "at": [
+    4,
+    3
+   ],
+   "r": 0
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    3,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    1,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Book of Basics",
+   "at": [
+    1,
+    4
+   ],
+   "r": 180
+  },
+  {
+   "id": "Wand",
+   "at": [
+    3,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Piggybank",
+   "at": [
+    4,
+    3
+   ],
+   "r": 90
+  },
+  {
+   "id": "Stamina Sack",
+   "at": [
+    1,
+    6
+   ],
+   "r": 0
+  },
+  {
+   "id": "Pan",
+   "at": [
+    1,
+    5
+   ],
+   "r": 270
+  },
+  {
+   "id": "Garlic",
+   "at": [
+    2,
+    5
+   ],
+   "r": 180
+  },
+  {
+   "id": "Star of Courage",
+   "at": [
+    3,
+    6
+   ],
+   "r": 90
+  },
+  {
+   "id": "Bag of Stones",
+   "at": [
+    5,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Stone",
+   "at": [
+    4,
+    5
+   ],
+   "r": 0
+  },
+  {
+   "id": "Healing Herbs",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Banana",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Wand",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  }
+ ],
+ "meta": {
+  "cap": 15,
+  "need": 21,
+  "overfill": 0.1,
+  "injected": [
+   "Healing Herbs",
+   "Banana",
+   "Wand"
+  ],
+  "baseline_name": "probe_R01_Mage_base",
+  "seed": 4
+ }
+}

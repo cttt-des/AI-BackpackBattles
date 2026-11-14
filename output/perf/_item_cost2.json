@@ -1,0 +1,32 @@
+[
+  {
+    "items": 8,
+    "us_per_tick": 10.539055700609225,
+    "spread_pct": 46.8,
+    "total_cpu_s": 60.0
+  },
+  {
+    "items": 16,
+    "us_per_tick": 11.558964316797214,
+    "spread_pct": 27.9,
+    "total_cpu_s": 60.0
+  },
+  {
+    "items": 24,
+    "us_per_tick": 13.413421273031826,
+    "spread_pct": 9.8,
+    "total_cpu_s": 60.0
+  },
+  {
+    "items": 32,
+    "us_per_tick": 20.492836965294593,
+    "spread_pct": 13.8,
+    "total_cpu_s": 60.0
+  },
+  {
+    "items": 40,
+    "us_per_tick": 21.91157183212268,
+    "spread_pct": 19.4,
+    "total_cpu_s": 60.0
+  }
+]

@@ -1,0 +1,126 @@
+{
+ "aligned": 0,
+ "total": 1,
+ "match_distribution": {
+  "gdcore≡oracle 但 py 分歧": 1
+ },
+ "convention": {
+  "seed": "两侧 gd_core 在任何物品实例创建前以 CoreContext(seed) 注入（≙ oracle_fight.gd:536-537 的 Util.rng.seed=S）",
+  "below_master": "false（np24 簇B：新语料族A 全 +1 tick 实证录制时 isBelowLeague(Master)=假，对手冷却掷 (0.95,1.05)；旧 rng_log 0.975 实证属旧语料，不再适用）",
+  "activation_order": "原版开战 shuffle 走引擎全局链（docs/rng_truth.md §1.4-2）；OracleAlignBattle.gd 用真 Godot seed(S)+shuffle×2+sort_TriggerPriority 复刻终序并直通内核（startBattle preordered）",
+  "judgement": "主判据=engine/log_text.py 渲染战报逐行比对；辅判据=事件 canonical（t 按 1/60s tick 取整、type/side/origin/params/parent-depth 全等）；两者都一致才算通过"
+ },
+ "perCase": [
+  {
+   "caseId": "run704847_r17_o704688_r17",
+   "seed": 202314599,
+   "lineupPair": "oracle_run704847_r17_o704688_r17_player|oracle_run704847_r17_o704688_r17_opponent",
+   "oracleEvents": 5077,
+   "gdcoreEvents": 5077,
+   "pyEvents": 5077,
+   "winner": {
+    "oracle": "player",
+    "gdcore": "player",
+    "py": "player"
+   },
+   "match": "gdcore≡oracle 但 py 分歧",
+   "firstDivergence": {
+    "pair": "gdcore_vs_py",
+    "kind": "event",
+    "index": 510,
+    "gdcore": {
+     "at_idx": {
+      "t": 475,
+      "type": 107,
+      "actor": "player",
+      "target": 0,
+      "origin": [
+       "gem",
+       null,
+       -1
+      ],
+      "params": {
+       "amount": 1,
+       "used": false,
+       "reflected": false
+      },
+      "parent": -1,
+      "depth": 0
+     },
+     "window": [
+      "{\"t\": 470, \"type\": 0, \"actor\": \"player\", \"target\": null, \"origin\": [\"item\", \"Carrot\"], \"params\": {}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 470, \"type\": 105, \"actor\": \"player\", \"target\": 0, \"origin\": [\"item\", \"Mana Orb\"], \"params\": {\"amount\": 1, \"used\": false, \"reflected\": false}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 475, \"type\": 107, \"actor\": \"player\", \"target\": 0, \"origin\": [\"gem\", null, -1], \"params\": {\"amount\": 1, \"used\": false, \"reflected\": false}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 475, \"type\": 1, \"actor\": \"player\", \"target\": null, \"origin\": [\"item\", \"Eggscalibur\"], \"params\": {\"damage\": 0}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 475, \"type\": 105, \"actor\": \"player\", \"target\": 0, \"origin\": [\"item\", \"Eggscalibur\"], \"params\": {\"amount\": -11, \"used\": true, \"reflected\": false}, \"parent\": 511, \"depth\": 1}"
+     ]
+    },
+    "py": {
+     "at_idx": {
+      "t": 475,
+      "type": 107,
+      "actor": "player",
+      "target": 0,
+      "origin": [
+       "item",
+       "Burning Coal"
+      ],
+      "params": {
+       "amount": 1,
+       "used": false,
+       "reflected": false
+      },
+      "parent": -1,
+      "depth": 0
+     },
+     "window": [
+      "{\"t\": 470, \"type\": 0, \"actor\": \"player\", \"target\": null, \"origin\": [\"item\", \"Carrot\"], \"params\": {}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 470, \"type\": 105, \"actor\": \"player\", \"target\": 0, \"origin\": [\"item\", \"Mana Orb\"], \"params\": {\"amount\": 1, \"used\": false, \"reflected\": false}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 475, \"type\": 107, \"actor\": \"player\", \"target\": 0, \"origin\": [\"item\", \"Burning Coal\"], \"params\": {\"amount\": 1, \"used\": false, \"reflected\": false}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 475, \"type\": 1, \"actor\": \"player\", \"target\": null, \"origin\": [\"item\", \"Eggscalibur\"], \"params\": {\"damage\": 0}, \"parent\": -1, \"depth\": 0}",
+      "{\"t\": 475, \"type\": 105, \"actor\": \"player\", \"target\": 0, \"origin\": [\"item\", \"Eggscalibur\"], \"params\": {\"amount\": -11, \"used\": true, \"reflected\": false}, \"parent\": 511, \"depth\": 1}"
+     ]
+    },
+    "first_line_diff": {
+     "line_index": 308,
+     "gdcore_line": "7.92:  [玩家] 获得1层 狂热。",
+     "py_line": "7.92:  [玩家] 获得1层 狂热（燃烧煤炭）。"
+    }
+   },
+   "judgement": {
+    "event_tuples": {
+     "oracle_gd": true,
+     "gd_py": false
+    },
+    "rendered_lines": {
+     "oracle_gd": true,
+     "gd_py": false
+    }
+   },
+   "localization": "gd_core_py-transpiler",
+   "localizationEvidence": "gd_core(Godot) ≡ 神谕、gd_core_py(Python) 在同 (阵容,seed,激活顺序) 下与之分歧——纯转写层问题"
+  }
+ ],
+ "localization": {
+  "gd_core_py-transpiler": [
+   {
+    "caseId": "run704847_r17_o704688_r17",
+    "evidence": "gd_core(Godot) ≡ 神谕、gd_core_py(Python) 在同 (阵容,seed,激活顺序) 下与之分歧——纯转写层问题"
+   }
+  ]
+ },
+ "fixPlan": [
+  {
+   "goal": "修 gd_core_py 转写孪生与 gd_core(GDScript) 的机械转写偏差",
+   "steps": [
+    "对首分歧事件定位对应 .gd 行号，检查 tools/gd_to_py.py 的转写产物（浮点/数组/字典语义）",
+    "优先手修 gd_core_py 对应 .py 并在转写器登记规则，防下次重转回退"
+   ],
+   "category": "gd_core_py-transpiler",
+   "cases": [
+    "run704847_r17_o704688_r17"
+   ],
+   "case_count": 1
+  }
+ ]
+}

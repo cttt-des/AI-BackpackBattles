@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\tools\build_cython.py", line 393, in <module>
+    raise SystemExit(main())
+                     ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\tools\build_cython.py", line 294, in main
+    raise RuntimeError(
+        "cython 失败 %d 批（首个含 %s）：\n%s"
+        % (len(fails), fails[0][0][:2], fails[0][1]))
+RuntimeError: cython 失败 56 批（首个含 ['gd_core_py\\gd_core\\AceofSpades.py', 'gd_core_py\\gd_core\\Bag.py']）：
+C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\cython.py: No such file or directory: 'gd_core_py\gd_core\AceofSpades.py'
+

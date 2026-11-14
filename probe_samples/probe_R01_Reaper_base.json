@@ -1,0 +1,74 @@
+{
+ "version": 4,
+ "name": "probe_R01_Reaper_base",
+ "character": "Reaper",
+ "round": 1,
+ "grid": [
+  7,
+  9
+ ],
+ "items": [
+  {
+   "id": "Relic Case",
+   "at": [
+    1,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    1,
+    3
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    3,
+    3
+   ],
+   "r": 0
+  },
+  {
+   "id": "Pan",
+   "at": [
+    3,
+    2
+   ],
+   "r": 180
+  },
+  {
+   "id": "Wooden Sword",
+   "at": [
+    1,
+    2
+   ],
+   "r": 90
+  },
+  {
+   "id": "Garlic",
+   "at": [
+    2,
+    2
+   ],
+   "r": 90
+  },
+  {
+   "id": "Broom",
+   "at": [
+    1,
+    4
+   ],
+   "r": 0
+  }
+ ],
+ "meta": {
+  "h_name": "probe_R01_Reaper",
+  "corpus_rk": "run_id:aea1ef3a-26bd-4d23-a2f0-fc00dc802df7",
+  "rating": 48.60527,
+  "bucket": "Bronze"
+ }
+}

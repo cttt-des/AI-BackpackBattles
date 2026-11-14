@@ -1,0 +1,40 @@
+         174734 function calls (174474 primitive calls) in 1.229 seconds
+   Ordered by: internal time
+   List reduced from 207 to 36 due to restriction <36>
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        6    0.656    0.109    0.757    0.126 D:\文件资料\学习\自动背包AI\simulator\gd_core_engine.py:1486(run)
+       12    0.092    0.008    0.159    0.013 D:\文件资料\学习\自动背包AI\simulator\gd_core_engine.py:1441(_build_side)
+      506    0.089    0.000    0.089    0.000 {built-in method nt.stat}
+      236    0.082    0.000    0.082    0.000 {built-in method _imp.create_dynamic}
+     8806    0.080    0.000    0.098    0.000 D:\文件资料\学习\自动背包AI\simulator\gd_core_engine.py:390(logEvent)
+      648    0.044    0.000    0.047    0.000 D:\文件资料\学习\自动背包AI\simulator\gd_core_engine.py:1389(_make_item)
+  236/222    0.042    0.000    0.061    0.000 {built-in method _imp.exec_dynamic}
+        6    0.018    0.003    0.472    0.079 D:\文件资料\学习\自动背包AI\simulator\gd_core_engine.py:857(__init__)
+        1    0.016    0.016    0.016    0.016 C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\json\decoder.py:351(raw_decode)
+      648    0.015    0.000    0.066    0.000 D:\文件资料\学习\自动背包AI\simulator\gd_core_engine.py:1413(_place)
+    46147    0.012    0.000    0.012    0.000 {method 'get' of 'dict' objects}
+      517    0.004    0.000    0.006    0.000 <frozen importlib._bootstrap_external>:101(_path_join)
+    21768    0.004    0.000    0.004    0.000 {built-in method builtins.isinstance}
+    12066    0.004    0.000    0.004    0.000 {method 'append' of 'list' objects}
+     1296    0.003    0.000    0.004    0.000 D:\文件资料\学习\自动背包AI\simulator\gd_core_engine.py:1333(_descriptor)
+      648    0.003    0.000    0.004    0.000 D:\文件资料\学习\自动背包AI\simulator\gd_core_engine.py:804(_place_of)
+        5    0.003    0.001    0.007    0.001 <frozen importlib._bootstrap_external>:1408(_fill_cache)
+      244    0.003    0.000    0.108    0.000 <frozen importlib._bootstrap_external>:1357(find_spec)
+     9531    0.003    0.000    0.003    0.000 {method 'items' of 'dict' objects}
+      242    0.002    0.000    0.116    0.000 <frozen importlib._bootstrap>:1243(_find_spec)
+     5332    0.002    0.000    0.004    0.000 D:\文件资料\学习\自动背包AI\simulator\gd_core_engine.py:646(event_count)
+        5    0.002    0.000    0.002    0.000 {built-in method nt.listdir}
+     7359    0.002    0.000    0.002    0.000 {built-in method builtins.len}
+  242/219    0.002    0.000    0.256    0.001 <frozen importlib._bootstrap>:1308(_find_and_load_unlocked)
+  242/219    0.002    0.000    0.266    0.001 <frozen importlib._bootstrap>:1360(_find_and_load)
+        6    0.002    0.000    0.066    0.011 D:\文件资料\学习\自动背包AI\gd_core_py\_bootstrap.py:6092(load_for)
+     4275    0.001    0.000    0.001    0.000 {built-in method builtins.getattr}
+      242    0.001    0.000    0.004    0.000 <frozen importlib._bootstrap>:304(acquire)
+       12    0.001    0.000    0.001    0.000 D:\文件资料\学习\自动背包AI\simulator\gd_core_engine.py:1313(_make_character)
+     5092    0.001    0.000    0.001    0.000 {method 'lower' of 'str' objects}
+      242    0.001    0.000    0.002    0.000 <frozen importlib._bootstrap>:429(_get_module_lock)
+      241    0.001    0.000    0.003    0.000 <frozen importlib._bootstrap_external>:560(spec_from_file_location)
+  242/223    0.001    0.000    0.147    0.001 <frozen importlib._bootstrap>:914(_load_unlocked)
+        5    0.001    0.000    0.001    0.000 {built-in method marshal.loads}
+      242    0.001    0.000    0.001    0.000 <frozen importlib._bootstrap>:372(release)
+      242    0.001    0.000    0.002    0.000 <frozen importlib._bootstrap>:736(_init_module_attrs)

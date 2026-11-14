@@ -1,0 +1,445 @@
+{
+ "version": 4,
+ "name": "probe_R12_Mage",
+ "character": "Mage",
+ "round": 12,
+ "grid": [
+  7,
+  9
+ ],
+ "items": [
+  {
+   "id": "Leather Bag",
+   "at": [
+    2,
+    6
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    0,
+    3
+   ],
+   "r": 0
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    0,
+    0
+   ],
+   "r": 90
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    0,
+    1
+   ],
+   "r": 0
+  },
+  {
+   "id": "Healing Herbs",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Wand",
+   "at": [
+    1,
+    0
+   ],
+   "r": 90
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    0,
+    5
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    4,
+    0
+   ],
+   "r": 90
+  },
+  {
+   "id": "Stamina Sack",
+   "at": [
+    4,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    4,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Potion Belt",
+   "at": [
+    6,
+    0
+   ],
+   "r": 90
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    4,
+    5
+   ],
+   "r": 0
+  },
+  {
+   "id": "Potion Belt",
+   "at": [
+    6,
+    5
+   ],
+   "r": 270
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    4,
+    7
+   ],
+   "r": 0
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    2,
+    5
+   ],
+   "r": 90
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    2,
+    3
+   ],
+   "r": 90
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    2,
+    4
+   ],
+   "r": 90
+  },
+  {
+   "id": "Falcon Blade",
+   "at": [
+    2,
+    3
+   ],
+   "r": 90,
+   "gems": [
+    "Flawed Ruby",
+    "Flawless Sapphire"
+   ]
+  },
+  {
+   "id": "Null Blade",
+   "at": [
+    3,
+    3
+   ],
+   "r": 90,
+   "gems": [
+    "Flawed Ruby",
+    "Flawless Topaz"
+   ]
+  },
+  {
+   "id": "Scholar Bag",
+   "at": [
+    2,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Angel Crystal",
+   "at": [
+    4,
+    2
+   ],
+   "r": 90
+  },
+  {
+   "id": "Shiny Mantle",
+   "at": [
+    5,
+    3
+   ],
+   "r": 90,
+   "gems": [
+    "Chipped Topaz",
+    "Regular Amethyst",
+    "Flawed Ruby",
+    "Flawless Amethyst",
+    "Regular Emerald",
+    "Flawed Emerald"
+   ]
+  },
+  {
+   "id": "Spell Scroll Light",
+   "at": [
+    5,
+    2
+   ],
+   "r": 90
+  },
+  {
+   "id": "Shelly",
+   "at": [
+    3,
+    6
+   ],
+   "r": 90
+  },
+  {
+   "id": "Piggy Pinata",
+   "at": [
+    2,
+    2
+   ],
+   "r": 180
+  },
+  {
+   "id": "Shield of Valor",
+   "at": [
+    2,
+    0
+   ],
+   "r": 180,
+   "gems": [
+    "Regular Ruby",
+    "Flawed Sapphire"
+   ]
+  },
+  {
+   "id": "Chipped Emerald",
+   "at": [
+    0,
+    1
+   ],
+   "r": 0
+  },
+  {
+   "id": "Banana",
+   "at": [
+    0,
+    5
+   ],
+   "r": 270
+  },
+  {
+   "id": "Badger Spirit",
+   "at": [
+    2,
+    6
+   ],
+   "r": 180
+  },
+  {
+   "id": "Star of Courage",
+   "at": [
+    3,
+    7
+   ],
+   "r": 90
+  },
+  {
+   "id": "Garlic",
+   "at": [
+    0,
+    4
+   ],
+   "r": 90
+  },
+  {
+   "id": "Blueberries",
+   "at": [
+    1,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Banana",
+   "at": [
+    0,
+    2
+   ],
+   "r": 180
+  },
+  {
+   "id": "Mana Orb",
+   "at": [
+    3,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Wooden Buckler",
+   "at": [
+    5,
+    6
+   ],
+   "r": 0
+  },
+  {
+   "id": "Buy the Holy Light",
+   "at": [
+    4,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Shiny Shell",
+   "at": [
+    4,
+    5
+   ],
+   "r": 0
+  },
+  {
+   "id": "Potion Belt",
+   "at": [
+    0,
+    8
+   ],
+   "r": 0
+  },
+  {
+   "id": "Protective Purse",
+   "at": [
+    1,
+    7
+   ],
+   "r": 0
+  },
+  {
+   "id": "Book of Ice",
+   "at": [
+    2,
+    8
+   ],
+   "r": 0
+  },
+  {
+   "id": "Box of Riches",
+   "at": [
+    1,
+    7
+   ],
+   "r": 0
+  },
+  {
+   "id": "Box of Riches",
+   "at": [
+    4,
+    7
+   ],
+   "r": 0
+  },
+  {
+   "id": "Chipped Ruby",
+   "at": [
+    5,
+    1
+   ],
+   "r": 0
+  },
+  {
+   "id": "Chipped Topaz",
+   "at": [
+    6,
+    1
+   ],
+   "r": 0
+  },
+  {
+   "id": "Chipped Topaz",
+   "at": [
+    6,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Box of Riches",
+   "at": [
+    5,
+    8
+   ],
+   "r": 90
+  },
+  {
+   "id": "Piggybank",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Book of Ice",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Mana Orb",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Vampiric Armor",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  }
+ ],
+ "meta": {
+  "cap": 62,
+  "need": 70,
+  "overfill": 0.1,
+  "injected": [
+   "Piggybank",
+   "Book of Ice",
+   "Mana Orb",
+   "Vampiric Armor"
+  ],
+  "baseline_name": "probe_R12_Mage_base",
+  "seed": 204
+ }
+}

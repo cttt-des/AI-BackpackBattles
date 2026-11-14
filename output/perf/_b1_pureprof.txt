@@ -1,0 +1,48 @@
+         3035360 function calls (3018943 primitive calls) in 2.786 seconds
+
+   Ordered by: internal time
+   List reduced from 1735 to 40 due to restriction <40>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+     3808    0.334    0.000    1.796    0.000 D:\文件资料\学习\自动背包AI\gd_core_py\gd_core\CoreCombat.py:402(physicsTick)
+    93318    0.169    0.000    0.244    0.000 D:\文件资料\学习\自动背包AI\gd_core_py\gd_core\CoreItem.py:538(getSpeed)
+   178518    0.111    0.000    0.166    0.000 D:\文件资料\学习\自动背包AI\gd_core_py\_rt.py:107(f32)
+      480    0.079    0.000    0.079    0.000 {built-in method nt._path_isdir}
+     6602    0.068    0.000    0.092    0.000 D:\文件资料\学习\自动背包AI\simulator\gd_core_engine.py:390(logEvent)
+    58309    0.066    0.000    0.066    0.000 D:\文件资料\学习\自动背包AI\gd_core_py\_rt.py:1358(next_u32)
+    28393    0.064    0.000    0.182    0.000 D:\文件资料\学习\自动背包AI\gd_core_py\_rt.py:1459(randf)
+        9    0.063    0.007    0.063    0.007 {built-in method builtins.compile}
+    24983    0.054    0.000    0.341    0.000 D:\文件资料\学习\自动背包AI\gd_core_py\_rt.py:1491(randf_range)
+      251    0.053    0.000    0.053    0.000 {method 'read' of '_io.BufferedReader' objects}
+      241    0.052    0.000    0.052    0.000 {built-in method nt._path_exists}
+      251    0.050    0.000    0.050    0.000 {built-in method _io.open_code}
+   315856    0.050    0.000    0.050    0.000 D:\文件资料\学习\自动背包AI\gd_core_py\gd_core\CoreItem.py:447(character)
+      283    0.050    0.000    0.050    0.000 {built-in method nt.stat}
+    10816    0.047    0.000    0.191    0.000 D:\文件资料\学习\自动背包AI\gd_core_py\gd_core\CoreItem.py:3597(onItemAdded)
+   240815    0.041    0.000    0.041    0.000 {built-in method builtins.isinstance}
+    67238    0.039    0.000    0.059    0.000 D:\文件资料\学习\自动背包AI\gd_core_py\_rt.py:598(_iter)
+   126065    0.035    0.000    0.035    0.000 {method 'get' of 'dict' objects}
+    43264    0.034    0.000    0.129    0.000 D:\文件资料\学习\自动背包AI\gd_core_py\gd_core\CoreItem.py:3485(isItemAffected)
+  704/572    0.029    0.000    0.289    0.001 D:\文件资料\学习\自动背包AI\gd_core_py\gd_core\CoreCharacter.py:698(takeDamage)
+   106326    0.028    0.000    0.028    0.000 {method 'unpack' of '_struct.Struct' objects}
+12824/8721    0.028    0.000    0.592    0.000 D:\文件资料\学习\自动背包AI\gd_core_py\gd_core\CoreEventBus.py:177(emitAndLog)
+     6408    0.027    0.000    0.060    0.000 D:\文件资料\学习\自动背包AI\gd_core_py\gd_core\CoreCharacter.py:2196(tickBuffs)
+   106326    0.026    0.000    0.026    0.000 {method 'pack' of '_struct.Struct' objects}
+    36702    0.025    0.000    0.034    0.000 D:\文件资料\学习\自动背包AI\gd_core_py\_rt.py:1312(_has_behavior_cache_get)
+    27157    0.023    0.000    0.037    0.000 D:\文件资料\学习\自动背包AI\gd_core_py\_rt.py:556(_div)
+     9096    0.022    0.000    0.051    0.000 D:\文件资料\学习\自动背包AI\gd_core_py\gd_core\CoreGrid.py:192(getItemsInCells)
+    23372    0.022    0.000    0.348    0.000 D:\文件资料\学习\自动背包AI\gd_core_py\gd_core\CoreRng.py:424(randf_range)
+10439/6856    0.021    0.000    0.514    0.000 D:\文件资料\学习\自动背包AI\gd_core_py\_rt.py:986(call_funcv)
+    35676    0.020    0.000    0.085    0.000 D:\文件资料\学习\自动背包AI\gd_core_py\gd_core\CoreItem.py:2219(canAffect_color)
+1270/1259    0.019    0.000    0.222    0.000 D:\文件资料\学习\自动背包AI\gd_core_py\gd_core\CoreBuff.py:294(gainTemporary)
+10389/10213    0.019    0.000    0.098    0.000 D:\文件资料\学习\自动背包AI\gd_core_py\_rt.py:1188(__init__)
+     6603    0.018    0.000    0.053    0.000 D:\文件资料\学习\自动背包AI\gd_core_py\gd_core\CoreCombatLog.py:52(createEvent)
+    93318    0.018    0.000    0.018    0.000 D:\文件资料\学习\自动背包AI\gd_core_py\gd_core\CoreCharacter.py:1795(getHeat)
+      432    0.017    0.000    0.028    0.000 D:\文件资料\学习\自动背包AI\gd_core_py\gd_core_items\Item.py:169(_init_fields)
+      237    0.017    0.000    0.017    0.000 {built-in method marshal.loads}
+    93407    0.017    0.000    0.017    0.000 D:\文件资料\学习\自动背包AI\gd_core_py\gd_core\CoreCharacter.py:1813(getCold)
+        1    0.017    0.017    0.017    0.017 C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\json\decoder.py:351(raw_decode)
+2474/1234    0.017    0.000    0.541    0.000 D:\文件资料\学习\自动背包AI\gd_core_py\gd_core\CoreItem.py:1225(activate)
+    36702    0.016    0.000    0.052    0.000 D:\文件资料\学习\自动背包AI\gd_core_py\gd_core\CoreItem.py:4173(_hasBehaviorMethod)
+
+

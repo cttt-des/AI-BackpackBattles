@@ -1,0 +1,64 @@
+[alignment-out] 显式指定 D:\文件资料\学习\自动背包AI\output\oracle\alignment.json
+[cases] 神谕语料可用 1 场（--limit=0，--cases=1 场）
+[force] 已删 1 场的 gdcore/py 重放产物（神谕语料只读，未触碰）
+[cases] 夹具可用 1 场
+[godot] 串行（jobs=1）
+[godot] 第 1 轮：退出码 0，完成 1/1
+[gh] provenance pid=20540 label=gd_r0 lpDesktop='WinSta0\\dsh_godot_hidden_20540' deskHandle=440 winsta=?
+Godot Engine v3.6.stable.official.de2f0f147 - https://godotengine.org
+OpenGL ES 3.0 Renderer: NVIDIA GeForce MX130/PCIe/SSE2
+Async. shader compilation: OFF
+ 
+ORACLE-ALIGN(gd_core): 受控神谕三方对齐——gd_core 侧批量重放（无头）
+★ case 门控表：22 场 → D:/文件资料/学习/自动背包AI/gd_core_test/oracle_align_case_overrides.json
+★ 定向：ORACLE_ALIGN_CASES → 1 场
+用例 1 场（resume 跳过 0，本进程待跑 1）
+  [   1/1] run101668_r12_o704449_r12 ok       ticks= 704 t=  9.22 ev=  280    885 ms
+  [selfcheck] run101668_r12_o704449_r12 同种子复跑逐字节一致 
+
+ORACLE-ALIGN(gd_core): PASS（实跑 1 场，跳过 0，用时 6.3s（selfcheck 已消耗一次复跑））
+ERROR: Condition "_first != nullptr" is true.
+   at: ~List (./core/self_list.h:108)
+ERROR: Condition "_first != nullptr" is true.
+   at: ~List (./core/self_list.h:108)
+WARNING: ObjectDB instances leaked at exit (run with --verbose for details).
+     at: cleanup (core/object.cpp:2074)
+ERROR: Resources still in use at exit (run with --verbose for details).
+   at: clear (core/resource.cpp:417)
+[py] 串行（jobs=1）
+[DIV0] a=-5.549778780398621 (float) b=0.0 (float)
+Traceback (most recent call last):
+  File "tools/verify_oracle.py", line 557, in run_py
+    eng.run()
+    ~~~~~~~^^
+  File "D:\文件资料\学习\自动背包AI\simulator\gd_core_engine.py", line 1461, in run
+    self.combat.physicsTick(d)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "gd_core_py/gd_core/CoreCombat.py", line 470, in gd_core_py.gd_core.CoreCombat.CoreCombat.physicsTick
+    character.tickPhysicsTimers(delta)
+  File "gd_core_py/gd_core/CoreCharacter.py", line 2157, in gd_core_py.gd_core.CoreCharacter.CoreCharacter.tickPhysicsTimers
+    self.endBattleRage()
+  File "gd_core_py/gd_core/CoreCharacter.py", line 1331, in gd_core_py.gd_core.CoreCharacter.CoreCharacter.endBattleRage
+    self.ctx.bus.emitEvent(self, "battle_rage_ended", event, [event])
+  File "gd_core_py/gd_core/CoreEventBus.py", line 167, in gd_core_py.gd_core.CoreEventBus.CoreEventBus.emitEvent
+    self.emitAndLog(emitter, signalName, event, arguments)
+  File "gd_core_py/gd_core/CoreEventBus.py", line 223, in gd_core_py.gd_core.CoreEventBus.CoreEventBus.emitAndLog
+    _bus_pair[0].call_funcv(arguments)
+  File "gd_core_py/_rt.py", line 987, in gd_core_py._rt.FuncRef.call_funcv
+    return getattr(self._instance, str(self._method))(*(list(args) + self._binds))
+  File "gd_core_py/gd_core_items/Exclusive/BustedBlade.py", line 130, in gd_core_py.gd_core_items.Exclusive.BustedBlade.Exclusive__BustedBlade.onBattleRageEnded
+    self.updateBaseCooldown()
+  File "gd_core_py/gd_core/CoreItem.py", line 671, in gd_core_py.gd_core.CoreItem.CoreItem.updateBaseCooldown
+    cdProgress = _div(self.triggerTime, self.iterationCooldown)
+  File "<string>", line 10, in probe_div
+    return _orig(a, b)
+  File "gd_core_py/_rt.py", line 576, in gd_core_py._rt._div
+    return a / b
+ZeroDivisionError: division by zero
+  [py][FAIL] run101668_r12_o704449_r12：ZeroDivisionError: division by zero
+[py] 完成 0/1 场
+  [compare] 1/1（三方一致 0）
+
+=== 三方对齐结果：0/1 场逐行一致 ===
+  py 缺产物                   1
+alignment.json → D:\文件资料\学习\自动背包AI\output\perf\_d1_gap1.json

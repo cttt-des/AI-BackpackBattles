@@ -52,23 +52,40 @@ def main() -> int:
     memo = {}
 
     def base_scene(path):
+        """返回 (基场景路径, 根节点是否覆盖脚本)。深度语义 = 脚本重绑定次数：
+        继承场景只有当根节点写了 `script = ExtResource(n)`（覆盖基场景根脚本）
+        时，成员初始化器才在该层重跑一遍（+1）；无覆盖（如 Coins.tscn 只换
+        贴图/粒子）则沿用基脚本绑定，不加层。
+
+        ★ A 阶段普适性修复（2026-11-14，run101354_r14 oracle [BARE]+[ITEMINIT]
+        逐抽实证）：Coins 装配期只抽 1 笔 ctor（Item.gd 单绑定），旧模型按
+        场景嵌套深度恒记 2 ⇒ py/gd 内核每件 Coins 多抽 1 笔（2 PCG 步），
+        装配链位整体后移，flicker delay 抽值错位（20 场 flk_delay 开关的根因）。
+        """
         txt = io.open(path, encoding="utf-8", errors="replace").read()
         ext = {}
         for m in re.finditer(r'\[ext_resource path="([^"]+)" type="PackedScene" id=(\d+)\]', txt):
             ext[m.group(2)] = m.group(1)
         m = re.search(r'\[node name=[^\]]+ instance=ExtResource\( ?(\d+) ?\)\]', txt)
-        return ext.get(m.group(1)) if m else None
+        if not m:
+            return None, False
+        base = ext.get(m.group(1))
+        # 根节点段 = 第一个 node 声明到下一个 node 之间
+        seg_end = txt.find("[node", m.end())
+        seg = txt[m.start():seg_end if seg_end > 0 else len(txt)]
+        overridden = re.search(r'script = ExtResource\( ?(\d+) ?\)', seg) is not None
+        return base, overridden
 
     def depth(path):
         if path in memo:
             return memo[path]
         memo[path] = 1
         d = 1
-        b = base_scene(path)
+        b, overridden = base_scene(path)
         if b:
             rp = os.path.join(args.root, b.replace("res://", ""))
             if os.path.exists(rp):
-                d = 1 + depth(rp)
+                d = (1 if overridden else 0) + depth(rp)
         memo[path] = d
         return d
 

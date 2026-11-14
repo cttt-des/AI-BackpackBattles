@@ -1,0 +1,544 @@
+{
+ "version": 3,
+ "meta": {
+  "name": "truth_20261001_220653_R19_opponent",
+  "source": "combatlog:CombatLog_20261001_220653_R19_Win.Opponent.json"
+ },
+ "character": "Adventurer",
+ "round": 19,
+ "class_modifiers": {},
+ "health_override": null,
+ "backpack": {
+  "grid": {
+   "rows": 7,
+   "cols": 9
+  },
+  "items": [
+   {
+    "id": "Fanny Pack",
+    "row": 4,
+    "col": 2,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Fanny Pack",
+    "row": 3,
+    "col": 2,
+    "rotation": 180,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Fanny Pack",
+    "row": 2,
+    "col": 2,
+    "rotation": 180,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Leather Bag",
+    "row": 0,
+    "col": 0,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Leather Bag",
+    "row": 0,
+    "col": 2,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Leather Bag",
+    "row": 0,
+    "col": 4,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Leather Bag",
+    "row": 2,
+    "col": 5,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Leather Bag",
+    "row": 2,
+    "col": 7,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Leather Bag",
+    "row": 0,
+    "col": 6,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Leather Bag",
+    "row": 5,
+    "col": 2,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Leather Bag",
+    "row": 5,
+    "col": 0,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Potion Belt",
+    "row": 6,
+    "col": 5,
+    "rotation": 90,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Protective Purse",
+    "row": 2,
+    "col": 4,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Protective Purse",
+    "row": 0,
+    "col": 8,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Protective Purse",
+    "row": 1,
+    "col": 8,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Protective Purse",
+    "row": 2,
+    "col": 0,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Protective Purse",
+    "row": 4,
+    "col": 0,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Protective Purse",
+    "row": 3,
+    "col": 0,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Sewing Case",
+    "row": 3,
+    "col": 4,
+    "rotation": 270,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Stamina Sack",
+    "row": 4,
+    "col": 6,
+    "rotation": 90,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Stamina Sack",
+    "row": 5,
+    "col": 6,
+    "rotation": 90,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Stamina Sack",
+    "row": 2,
+    "col": 1,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Acorn Collar",
+    "row": 5,
+    "col": 4,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Badger Spirit",
+    "row": 5,
+    "col": 1,
+    "rotation": 270,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Blueberries",
+    "row": 4,
+    "col": 5,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Cheese",
+    "row": 1,
+    "col": 0,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Chili Goobert",
+    "row": 0,
+    "col": 4,
+    "rotation": 90,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Customer Card",
+    "row": 2,
+    "col": 0,
+    "rotation": 90,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Dragon Knight",
+    "row": 2,
+    "col": 3,
+    "rotation": 180,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Dual Wielding",
+    "row": 0,
+    "col": 1,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Falcon Blade",
+    "row": 6,
+    "col": 4,
+    "rotation": 90,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": [
+     {
+      "id": "Corrupted Crystal"
+     }
+    ]
+   },
+   {
+    "id": "Fedora",
+    "row": 3,
+    "col": 6,
+    "rotation": 90,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Goobling",
+    "row": 2,
+    "col": 6,
+    "rotation": 90,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Holy Collar",
+    "row": 4,
+    "col": 1,
+    "rotation": 270,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Light Goobert",
+    "row": 0,
+    "col": 2,
+    "rotation": 90,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Lucky Cat",
+    "row": 2,
+    "col": 1,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Mana Orb",
+    "row": 2,
+    "col": 7,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Oil Lamp",
+    "row": 4,
+    "col": 2,
+    "rotation": 180,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Piggybank",
+    "row": 3,
+    "col": 0,
+    "rotation": 90,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Piggybank",
+    "row": 2,
+    "col": 8,
+    "rotation": 90,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Pumpkin",
+    "row": 5,
+    "col": 7,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Rainbow Badge",
+    "row": 6,
+    "col": 2,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Rat",
+    "row": 0,
+    "col": 8,
+    "rotation": 90,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Rope",
+    "row": 5,
+    "col": 3,
+    "rotation": 270,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Shelly",
+    "row": 0,
+    "col": 7,
+    "rotation": 90,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Snowmaster",
+    "row": 0,
+    "col": 6,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Speak with Animals",
+    "row": 5,
+    "col": 5,
+    "rotation": 270,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Toad",
+    "row": 4,
+    "col": 8,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Twine",
+    "row": 2,
+    "col": 5,
+    "rotation": 180,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Twine",
+    "row": 3,
+    "col": 5,
+    "rotation": 270,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Twine",
+    "row": 2,
+    "col": 2,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   },
+   {
+    "id": "Twine",
+    "row": 3,
+    "col": 2,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "gems": []
+   }
+  ]
+ },
+ "storage": []
+}

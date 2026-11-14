@@ -1,0 +1,112 @@
+{
+ "version": 4,
+ "name": "probe_R01_Ranger",
+ "character": "Ranger",
+ "round": 1,
+ "grid": [
+  7,
+  9
+ ],
+ "items": [
+  {
+   "id": "Vineweave Basket",
+   "at": [
+    2,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    3,
+    5
+   ],
+   "r": 0
+  },
+  {
+   "id": "Healing Herbs",
+   "at": [
+    2,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Broom",
+   "at": [
+    4,
+    2
+   ],
+   "r": 90
+  },
+  {
+   "id": "Whetstone",
+   "at": [
+    3,
+    2
+   ],
+   "r": 180
+  },
+  {
+   "id": "Piggybank",
+   "at": [
+    2,
+    3
+   ],
+   "r": 90
+  },
+  {
+   "id": "Banana",
+   "at": [
+    3,
+    5
+   ],
+   "r": 180
+  },
+  {
+   "id": "Walrus Tusk",
+   "at": [
+    2,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Banana",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Wooden Sword",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Whetstone",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  }
+ ],
+ "meta": {
+  "cap": 13,
+  "need": 19,
+  "overfill": 0.1,
+  "injected": [
+   "Banana",
+   "Wooden Sword",
+   "Whetstone"
+  ],
+  "baseline_name": "probe_R01_Ranger_base",
+  "seed": 0
+ }
+}

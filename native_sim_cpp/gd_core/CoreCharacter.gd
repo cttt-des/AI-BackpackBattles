@@ -1,0 +1,2070 @@
+# =============================================================================
+# CoreCharacter.gd — 无头战斗内核：角色（伤害链 / 体力 / 栈宿主）
+# =============================================================================
+# 对齐源码：Core/Character.gd（全文 1700 行）
+#
+# 逐字保留（本内核的判定主体）：
+#   takeDamage 全链 17 步（Character.gd:495-653，顺序即真值）：
+#     isDead 短路 → attackEffectCount=1+rollDoubleAttackEffect → 命中(accuracyRng/闪避栈)
+#     → preDealDamage_early × count → randDamage（含疲劳加成）→ 暴击（critRng → 攻方
+#       critTokens → 守方 critTokens 代打 → critResisted）→ 抗性 clamp(-10,1) 后 round
+#     → isAttack 才减 damageReduction → invulnerable 归零 → pre_take_damage 信号
+#       （盾牌挂钩）→ 减 damageReduction 并 max(0) → preDealDamage_late × count
+#     → pre_take_damage_late → 格挡（先扣 block，healthDamage=0 或扣血）→ 扣血
+#     → 事件 → character_attacked / character_damaged → onDealtDamage × count
+#     → 死亡判定 → applySpikes
+#   dealDamage / applyVampirism / applySpikes / heal（healingEfficiency + Unhealing 反噬）
+#   loseHealth（不吃减伤）/ useStamina（allowStaminaOverflow 窗口）/ addStamina /
+#   gainStamina / drainStamina / onTick（偶数秒再生、奇数秒毒伤）/ stun / critResisted /
+#   onTick 与疲劳伤害入口 takeFatigueDamage / getMaxHealth / changeMaxHealthTemporary
+#
+# 保真保留的原版疑点（不修）：
+#   · `setBlock(amount)` 实际写入的是 **Spikes** 栈（Character.gd:1182-1183 原样如此）
+#   · `gainStacks(buffType, ..., reflect)` 忽略 reflect，直接转发 buffs[buffType].gainStacks
+#   · `setCurrentHealth` 不做 clamp
+#
+# 剥离内容：动画 / 音效 / 伤害数字与 buff 标签 / 立绘 / 相机 / HUD 信号
+#   → 全部改走 ctx.hooks；伤害数字坐标（randDmgNumberPos 等）整体删除（纯表现）
+#
+# 本期未实现、以接缝占位：
+#   · 战怒（AUTO_RAGE 5s/4s）—— 需要 isBattleRageItem 的物品行为判定，随物品行为一起接
+#   · invulnerabilityTimer / 自动 rage 计时器 —— 需要内核计时驱动，接入点已留（`_tick`）
+# =============================================================================
+extends Reference
+class_name CoreCharacter
+
+
+enum ID{
+	PLAYER = 0, 
+	OPPONENT = 1
+}
+
+enum Stat{
+	Health, 
+	MaxHealth, 
+	Stamina, 
+	MaxStamina, 
+	Invulnerable, 
+	Stunned, 
+	BattleRage, 
+	ReflectStacks, 
+	DebuffResistStacks, 
+	CritStacks, 
+	DodgeStacks, 
+	CritResistStacks, 
+	CritResistance, 
+	StunResistance, 
+	HealEfficiency, 
+	DamageResistance, 
+	MeleeDmgFactor, 
+	RangedDmgFactor, 
+	EffectDmgFactor, 
+	Unhealing, 
+	StaminaRegen, 
+	MaxHealthGain
+}
+
+const AUTO_RAGE_DELAY = 5.0
+const AUTO_RAGE_DUR = 4.0
+
+var ctx
+var playerId: int
+var opponent = null
+var isDead := false
+var buffs: Dictionary = {}
+
+var maxHealth: float = 30.0
+var curHealth: float
+var temporaryMaxHealth: float = 0.0
+var temporaryMaxHealthGain: float = 1.0
+
+var baseMaxStamina: float
+var maxStamina: float = 5.0
+var curStamina: float
+var temporaryMaxStamina: float = 0.0
+var baseStaminaRegen: float = 1.0
+var staminaRegen: float = 0.0
+var allowStaminaOverflow := false
+var staminaUpdateQueued := false   # 对齐 Character.gd:971
+
+var statsDisplay: Array = []      # 仅统计出口
+
+# 战斗修正量（对齐 Character.gd:64+）
+var damageResistance: float = 0.0
+var damageReduction: int = 0
+var invulnerable := false
+var dodgeStacks: int = 0
+var critResistance: float = 0.0
+var critResistStacks: int = 0
+var critTokens: int = 0
+var stunResistance: float = 0.0
+var unhealingAmount: float = 0.0
+var healingEfficiency: float = 1.0
+var critTokensUsed := 0
+var debuffResistStacks: int = 0
+var debuffReflectStacks: int = 0
+var buffProtectStacks: int = 0
+var bonusFatigueDamage: int = 0
+var empowerDamage: float = 1.0
+var blindingLightActive := false
+var stunnedDuration: float = 0.0
+var tickCounter := 0
+
+# 伤害类型系数（对齐 cleanse 里 typedDamageFactors 的初始化：全部 0.0）
+var typedDamageFactors: Dictionary = {}
+
+# 近战/远程/效果 尖刺与吸血上限（对齐 Character.gd:389-393）
+var meleeSpikesLimit: float = 1.0
+var rangedSpikesLimit: float = 0.0
+var effectSpikesLimit: float = 0.0
+var meleeVampirismLimit: float = 1.0
+var rangedVampirismLimit: float = 0.0
+
+var battleRageAura = null         # 表现
+var battleRageBonusDur: float = 0.0
+
+# 四类平衡随机源（对齐 Character.gd:299-302）
+var accuracyRng                 # CoreRng.BalancedRng
+var critRng
+var critResistanceRng
+var stunResistanceRng
+
+var items: Array = []             # 该角色的参战物品（替代 INVENTORY.getItems()）
+var inventory                     # CoreGrid（替代 Character.INVENTORY）
+# ★ 原版 `Character.INVENTORY`（Character.gd:49 声明、:145 由 inventoryScene 实例化）
+#   这个**大写**名字被物品行为直接引用，共 5 处，全在判定路径上：
+#     BagofStones.gd:13  ctx.player.INVENTORY.getCellsInLine(...)   ← 受影响格覆写
+#     ShinyMantle.gd:25  inventory if placed else ctx.player.INVENTORY
+#     TimeDilator.gd:8   ctx.player.INVENTORY.getItems() + ctx.opponent.INVENTORY.getItems()
+#     RibSawBlade.gd:8   opponent().INVENTORY.getItems()
+#     Bag.gd:55          ctx.player.INVENTORY.canAddBag(self)       ← 只在 _process（拖拽态）里，
+#                                                                     无头内核不调用 _process，故
+#                                                                     CoreGrid 不提供 canAddBag
+#   故内核必须暴露同名属性（与 inventory 同一对象），否则上述物品一上场即
+#   `Invalid get index 'INVENTORY'`。由 _init 与 inventory 同步赋值。
+var INVENTORY
+
+# 战斗事件信号（对齐 Character.tscn 的 connect）
+var character_died_handlers: Array = []
+
+# 角色自带伤害源（对齐 Character.tscn 上的 Poison / Spikes / Unhealing DamageSource 节点）
+var poisonDamageSource          # CoreDamageSource，types=[Poison]
+var spikeDamageSource           # CoreDamageSource，types=[Spikes]
+
+# 职业（对齐 Character.gd:51 / 53）
+# ★ 战斗相关：setClassResource 用职业资源设 maxHealth / baseMaxStamina / maxStamina。
+#   默认 Ranger=0（对齐 Character.gd:51 `var characterClass = Game.Classes.Ranger`）。
+var characterClass: int = CoreConst.Classes.Ranger
+var chibi := false
+
+# 无敌计时（对齐 invulnerabilityTimer，物理帧步进）
+var invulnerabilityItem = null
+var _invul_left: float = 0.0
+var _invul_active := false
+
+# 战怒计时（对齐 Character.tscn 的 BattleRageTimer / AutoRageTimer，均为 one_shot）
+#   BattleRageTimer.timeout → endBattleRage()
+#   AutoRageTimer.timeout   → startAutoRage()
+var autoRageItem = null           # 对齐 Character.gd:110（prepare 时从未带 BattleRage 标签的物品里随机选一个）
+var _rage_left: float = 0.0
+var _rage_active := false
+var _autoRage_left: float = 0.0
+var _autoRage_active := false
+# ★ np25 timeout1t：严格三变量模型（与 CoreBuff._timer_* 同案，逐位映射
+#   oracle_fight.gd drive_timers 注册表 :880-924）：
+#     _rage_left/_invul_left   ≡ 注册表 e[0]（自记剩余；fire 后保留 ≤0 发火值）
+#     _rage_eng/_invul_eng     ≡ Godot Timer.time_left（start(t)/changeTimer 只
+#                                改写它——**绝不能直赋 _*_left**，同值重启的
+#                                「遗留值继续减 → 立即 fire」原版怪癖靠它保真）
+#     _rage_seen/_invul_seen   ≡ 注册表 e[1]（上一 tick 的 eng 采样）
+#   中途 (re)start/延长当 tick：eng != seen → 重同步不递减（修「gd 早 1 tick」，
+#   evt8=InvulnerableEnd 全族）；赋值点 _setRageTimer/makeInvulnerable 的延长
+#   基准用 _*_left（e[0]）——对齐 Util.changeTimer=start(t+oracleLeft)
+#   （Util.gd:1677-1683 oracleLeft 优先语义）。autoRage 不在红族且激活帧启动
+#   首递减天然在下一帧，不加。
+var _rage_seen: float = 0.0
+var _invul_seen: float = 0.0
+var _rage_eng: float = 0.0
+var _invul_eng: float = 0.0
+
+
+func _init(_ctx, _playerId: int) -> void :
+	ctx = _ctx
+	playerId = _playerId
+	accuracyRng = ctx.rng.BalancedRng.new(ctx.rng)
+	critRng = ctx.rng.BalancedRng.new(ctx.rng)
+	critResistanceRng = ctx.rng.BalancedRng.new(ctx.rng)
+	stunResistanceRng = ctx.rng.BalancedRng.new(ctx.rng)
+	
+	# 背包在角色构造时即存在（对齐原版 Character 场景里的 INVENTORY 节点，
+	# 它在战斗开始前就参与物品放置，而非战斗期才创建）
+	inventory = CoreGrid.new(self)
+	INVENTORY = inventory
+	
+	# 对齐 Character.gd:158-162（原版写在 _ready 里，与 INVENTORY 同批）。
+	# ★ 这两个是**角色自带**的伤害源（不是 Game 级的 stealLife/unhealing/fatigue）：
+	#     spikeDamageSource  → applySpikes（:524）尖刺反弹
+	#     poisonDamageSource → tickBuffEffects（:348）中毒跳伤
+	#   漏建的直接后果：`spikeDamageSource.setDamage(...)` 报
+	#   `Nonexistent function 'setDamage' in base 'Nil'`，且尖刺与中毒两条伤害整条失效
+	#   —— 静默少打伤害，闸门 8 首轮抓出 32 次该报错。
+	#   `_rng` 对应原版 `Util.rng`（DamageSource.gd:171 掷 min~max 伤害）。
+	spikeDamageSource = CoreDamageSource.new()
+	spikeDamageSource._rng = ctx.rng
+	spikeDamageSource.init(self, CoreDamageSource.Type.Spikes, 1)
+	spikeDamageSource.flags = (CoreDamageSource.chipDamageFlags
+		+ CoreDamageSource.Flags.CanCrit)
+	poisonDamageSource = CoreDamageSource.new()
+	poisonDamageSource._rng = ctx.rng
+	poisonDamageSource.init(self, CoreDamageSource.Type.Poison, 1)
+	poisonDamageSource.flags = (CoreDamageSource.chipDamageFlags
+		+ CoreDamageSource.Flags.CanCrit)
+	
+	for stackType in CoreConst.getStacks():
+		var buff = CoreBuff.new()
+		# 对齐原版 Character.gd:168 + Game.gd:512（eventTypeKeys =
+		# invertDictionary(EventType)）：Buff 栈变化信号名 =
+		# "character_" + 类型名.to_lower() + "_changed"。
+		# ★ 物品脚本（ManaOrb/Crown/DjinnLamp/Pop/WaterElemental/Sapphire/
+		#   HolySpear 等）订阅 "character_mana_changed" 等名字 —— 此前内核写
+		#   "_stacks_changed_%d" 无任何订阅者，全部 character_*_changed 订阅
+		#   静默失效（联动不触发的根因之二；CoreConst 未内建 eventTypeKeys，
+		#   故就地线性反查，仅初始化一次）
+		var _stack_type_name = "unknown"
+		for _k in CoreConst.EventType:
+			if CoreConst.EventType[_k] == stackType:
+				_stack_type_name = _k
+				break
+		buff.init(stackType, self,
+			"character_" + _stack_type_name.to_lower() + "_changed")
+		buffs[stackType] = buff
+	
+	curHealth = maxHealth
+	baseMaxStamina = maxStamina
+	curStamina = 0.0
+	staminaRegen = baseStaminaRegen
+	
+	for type in CoreDamageSource.Type.values():
+		typedDamageFactors[type] = 0.0
+
+
+func setOpponent(_opponent) -> void :
+	opponent = _opponent
+
+
+func isPlayer() -> bool:
+	return playerId == ID.PLAYER
+
+
+func getName() -> String:
+	return ["Player", "Opponent"][playerId]
+
+
+func registerCharacterDied(handler) -> void :
+	character_died_handlers.push_back(handler)
+
+
+# 原版仅有一对 connect（Game.gd:2549 / 2986）。重复 setup 时先清空，
+# 避免同一 handler 被注册多次导致 endCombat 重入判定被跳过之外的副作用。
+func clearCharacterDiedHandlers() -> void :
+	character_died_handlers.clear()
+
+
+# ─────────────────────────── 准备 / 开始 / 结束（对齐 294-347） ───────────────────────────
+
+func prepare() -> void :
+	staminaRegen = baseStaminaRegen
+
+	# ★ np51：存档自定义规则健康倍率（对齐 Character.gd:296-298）——
+	#   bonusHealth = getMaxHealth() × (mult−100)/100，经 changeMaxHealthTemporary
+	#   落地（item=null ⇒ 不发事件，静默改写后续全部 max/cur 基线）。
+	#   实证：run101490 系列（mult=200）Dark Lantern 自伤 -130 vs gd -65；
+	#   run705064_r15 Sloth 临时体上限 522 vs 262（该 run custom 为空 ⇒ 录制批
+	#   CustomRules 单例跨场残留所致，见 docs/expand_fix_progress.md np51⑤）。
+	var bonusHealth = getMaxHealth() * ((ctx.custom_health_multiplier - 100.0) / 100.0)
+	changeMaxHealthTemporary(bonusHealth)
+
+	accuracyRng.reset()
+	critRng.reset()
+	critResistanceRng.reset()
+	stunResistanceRng.reset()
+	
+	# 对齐 Character.gd:304-310：低于大师或大厅模式，玩家 -0.2、对手 +0.2
+	if ctx.below_master or ctx.lobbies_mode:
+		if playerId == ID.PLAYER:
+			accuracyRng.setBias( - 0.2)
+			critRng.setBias( - 0.2)
+		else:
+			accuracyRng.setBias(0.2)
+			critRng.setBias(0.2)
+	
+	# 自动战怒选品（对齐 Character.gd:312-326）：背包里有带 BattleRage 标签的物品时不启用
+	# 自动战怒；否则从**含宝石**的物品里随机挑一个 isBattleRageItem() 的。
+	autoRageItem = null
+	var hasBattleRageStarter = false
+	for item in inventory.getItems():
+		if item.hasTag(CoreConst.Tag.BattleRage):
+			hasBattleRageStarter = true
+			break
+
+	if not hasBattleRageStarter:
+		var battleRageItems = []
+		for item in inventory.getItemsAndGems():
+			if item.isBattleRageItem():
+				battleRageItems.push_back(item)
+
+		if not battleRageItems.empty():
+			# ★ np29fD 定谳（run947 fd@6）：oracle Character.gd:327 用**引擎内建
+			#   Array.pick_random()**——消耗 seed(S) 种子化的引擎全局链（与
+			#   playerItems.shuffle() 同流，oracle_fight.gd:595；gd harness 同样
+			#   seed(S)，OracleAlignBattle.gd:523），**主链零消耗**。早年注释
+			#   「改用注入 rng 以保证同种子可复现」的前提（全局链不可复现）已被
+			#   harness 全局链播种机制推翻。此前误用 ctx.rng.pickRandomElement
+			#   （主链 1 步/次×双方）→ 开局冷却批整体晚 2 步 → 批内物品-抖动值
+			#   错位一件 → Rainbow Potion giveRandomBuffs 掷块错位 → 选型
+			#   dict 3 型 v 4 型（fd@6，早簇 962/1427/1499/1534/1536/1545 同域）。
+			#   修复=pickRandomEngine（array.pick_random()，全局链同流零主链耗）。
+			autoRageItem = ctx.rng.pickRandomEngine(battleRageItems, "Character.gd:327")
+
+
+# 对齐 Character.gd:328-337
+func combatStart() -> void :
+	stunnedDuration = 0.0
+	tickCounter = 0
+	
+	if autoRageItem != null:
+		_autoRage_left = AUTO_RAGE_DELAY
+		_autoRage_active = true
+	
+	# ★ TickTimer 归角色（Character.tscn:1632，wait 1.0 循环，TIMER_PROCESS_PHYSICS）：
+	#   每角色一个，registry 次序=场景树次序（对手先于玩家）——由
+	#   CoreCombat.physicsTick 步骤⑦逐角色驱动。
+	_tick_timer_left = 1.0
+	_tick_timer_active = true
+
+
+# 对齐 Character.gd:339-349（三个一次性计时器全部 stop）
+func combatEnd() -> void :
+	attackMovingForward_reset()
+	
+	for buffType in buffs:
+		buffs[buffType].combatEnd()
+	
+	_rage_left = 0.0
+	_rage_active = false
+	_rage_eng = 0.0
+	_rage_seen = 0.0
+	_autoRage_left = 0.0
+	_autoRage_active = false
+	_invul_left = 0.0
+	_invul_active = false
+	_invul_eng = 0.0
+	_invul_seen = 0.0
+
+
+# 原版是动画 tween 复位；无头下只需清标志
+func attackMovingForward_reset() -> void :
+	pass
+
+
+func cleanse() -> void :
+	isDead = false
+	temporaryMaxHealth = 0
+	temporaryMaxHealthGain = 1.0
+	staminaRegen = baseStaminaRegen
+	healToFull()
+	setTemporaryMaxStamina(0)
+	fillUpStamina()
+	endStun()
+	setBlock(0)
+	
+	for buffType in buffs:
+		buffs[buffType].reset()
+	
+	invulnerable = false
+	
+	damageResistance = 0.0
+	damageReduction = 0
+	dodgeStacks = 0
+	critResistance = 0.0
+	critResistStacks = 0
+	stunResistance = 0.0
+	unhealingAmount = 0.0
+	healingEfficiency = 1.0
+	critTokens = 0
+	debuffResistStacks = 0
+	debuffReflectStacks = 0
+	buffProtectStacks = 0
+	battleRageBonusDur = 0.0
+	bonusFatigueDamage = 0
+	blindingLightActive = false
+	meleeSpikesLimit = 1.0
+	rangedSpikesLimit = 0.0
+	effectSpikesLimit = 0.0
+	meleeVampirismLimit = 1.0
+	rangedVampirismLimit = 0.0
+	empowerDamage = 1.0
+	for damageType in CoreDamageSource.Type.values():
+		typedDamageFactors[damageType] = 0.0
+	
+	poisonDamageSource.critChancePercent = 0
+	spikeDamageSource.critChancePercent = 0
+
+
+# ─────────────────────────── 每秒 Tick（对齐 401-414） ───────────────────────────
+
+func onTick() -> void :
+	if tickCounter % 2 == 0:
+		var regen = getRegeneration()
+		if regen > 0:
+			heal(regen, CoreConst.EventType.Regeneration)
+			ctx.hooks.activateBuffCounter(self, CoreConst.EventType.Regeneration)
+	else:
+		var poison = getPoison()
+		if poison > 0:
+			poisonDamageSource.setDamage(poison)
+			takeDamage(poisonDamageSource)
+			ctx.hooks.activateBuffCounter(self, CoreConst.EventType.Poison)
+	
+	tickCounter += 1
+
+
+# ─────────────────────────── 伤害主链（对齐 482-653） ───────────────────────────
+
+# ── 表现层链状态（战斗判定链中途的真实 Util.rng 消耗面，Character.gd:445-481）──
+# ★ 受控神谕在阻塞 tick 循环里 tween 从不推进 → attackMovingBack 的 tween 回调
+#   永不触发 → attackMovingForward 一旦置真便**闩死**（原版真机 ~0.3s 后复位；
+#   run1160_r18 rng_log 实证：(100,160)×90 恒出现而挥击音 pickRandomElement
+#   的 randi_range(0,2) 只在链首出现过一次，此后消失——闩死语义）。两侧模拟器同约定。
+var attack_moving_forward := false
+# 对齐 Character.gd:108 attackSoundReadyTime（0.1s 职业攻击音时闸；-1.0 = 神谕
+# 约定下角色首战必过闸的等价初始化，见 playAttackAnimation 注释③）
+var attack_sound_ready_time := - 1.0
+# TickTimer（Character.tscn:1632，wait 1.0 循环、物理步进）——每角色独立
+var _tick_timer_left := 0.0
+var _tick_timer_active := false
+# damageAnimation.current_animation 的「Poison」闸（Character.gd:616-627）：冻结
+# 循环里动画不前进，play("Poison") 后 current 恒为 "Poison" 直到下一次非毒分支
+# 的 stop+play；闸只判 "!= Poison"，用布尔等价建模。
+# ★ np24：受击动画状态镜像——oracle 的闸=damageAnimation.current_animation
+#   （Character.gd:617 `!= "Poison"`，运行时动画名、播完仍保持），布尔闩非等价
+#   （oracle 的 Block/Fatigue/Hit 播放会清除 Poison 态、后续毒 tick 照常抽取；
+#   布尔闩则把后续毒 tick 全部闸死 ⇒ gd 多抽/少抽。镜像=字符串状态，写入点
+#   与 oracle 播放点一一对应：takeDamage 门=Block/Fatigue/Hit、gainPoison=Poison；
+#   Win/Lose/LevelUp（:1010/:1014/:1030）在单场战斗内不发生，不镜像）。
+var damage_anim_current := ""
+
+
+# 对齐 Character.gd:445-462 playAttackAnimation。每次 dealDamage 调用：
+#   ① 默认实参 distance = randf_range(100,160)（GDScript 默认实参**先于**早退
+#     判定求值，Character.gd:445）——2 抽，恒消耗；
+#   ② 未闩死时：两段动画时长 randf_range(0.9,1.1)×2（:451-452）+ 攻击挥击音
+#     pickRandomElement(attackSounds)=randi_range(0,2)（:459，attackSounds 恒
+#     3 元素，Character.gd:437-441）+ 音高 randf_range(0.8,1.2)（:459）；
+#   ③ 职业攻击音（:460-462）：0.1s 时闸（Util.clockTime > attackSoundReadyTime），
+#     通过时 getAttackSound()=Util.pickRandomElement(职业 attackSounds)——1 抽
+#     （run1029_r2 语料逐抽对位实证：Pyromancer 攻击多一行 pickRandomElement(0,4)）。
+#     职业音效数按 1.1.8 Assets/Sound/<Class>/Attack* 实数（去 .import）。
+#     神谕约定下角色首战必过闸（clockTime 跨场累计 > 0.1 ≥ fresh readyTime），
+#     内核 ready_time 初始化 -1.0 等价复刻（ctx.time 从 0 起跑）。
+func playAttackAnimation() -> void :
+	ctx.rng.randf_range(100.0, 160.0)
+	if attack_moving_forward:
+		return
+	ctx.rng.randf_range(0.9, 1.1)
+	ctx.rng.randf_range(0.9, 1.1)
+	ctx.rng.randi_range(0, 2)
+	ctx.rng.randf_range(0.8, 1.2)
+	if ctx.time > attack_sound_ready_time:
+		ctx.rng.randi_range(0, classAttackSoundCount() - 1)
+		attack_sound_ready_time = ctx.time + 0.1
+	attack_moving_forward = true
+
+
+# 职业音效文件数（1.1.8 Assets/Sound/<Class>/ 实测，去 .import）：
+# Attack* / WinRound* / LoseRound*。备用锁定职业一并收录，缺类 fail-fast。
+const CLASS_SOUND_COUNTS := {
+	CoreConst.Classes.Ranger: { "attack": 3, "win": 6, "lose": 6 },
+	CoreConst.Classes.Reaper: { "attack": 3, "win": 2, "lose": 4 },
+	CoreConst.Classes.Berserker: { "attack": 3, "win": 4, "lose": 6 },
+	CoreConst.Classes.Pyromancer: { "attack": 5, "win": 4, "lose": 4 },
+	CoreConst.Classes_Full.Mage: { "attack": 3, "win": 6, "lose": 5 },
+	CoreConst.Classes_Full.Adventurer: { "attack": 4, "win": 7, "lose": 6 },
+	CoreConst.Classes_Full.Engineer: { "attack": 6, "win": 5, "lose": 8 },
+}
+
+func classAttackSoundCount() -> int :
+	if not CLASS_SOUND_COUNTS.has(characterClass):
+		assert(false, "未知职业音效表：%s" % str(characterClass))
+	return CLASS_SOUND_COUNTS[characterClass]["attack"]
+
+
+# 对齐 Game.endCombat 的胜负音效抽取（getWinRoundSound/getLoseRoundSound = 
+# Util.pickRandomElement(职业 winRoundSounds/loseRoundSounds)，1 抽）
+func classRoundSoundCount(win: bool) -> int :
+	if not CLASS_SOUND_COUNTS.has(characterClass):
+		assert(false, "未知职业音效表：%s" % str(characterClass))
+	return CLASS_SOUND_COUNTS[characterClass]["win" if win else "lose"]
+
+
+# 对齐 Character.gd:464-481 playActivateAnimation（无默认实参抽取）
+func playActivateAnimation() -> void :
+	if attack_moving_forward:
+		return
+	ctx.rng.randf_range(0.9, 1.1)
+	ctx.rng.randf_range(0.9, 1.1)
+	attack_moving_forward = true
+
+
+# 对齐 Character.gd:688-691 randBuffLabelPos（标签位置抖动：2 抽）
+func randBuffLabelPos() -> void :
+	ctx.rng.randf_range(-60.0, 60.0)
+	ctx.rng.randf_range(-40.0, 40.0)
+
+
+# 对齐 Utility/Util.gd:868-869 randBuffLabelDir（1 抽）
+func randBuffLabelDir() -> void :
+	ctx.rng.randf_range(-75.0, -120.0)
+
+
+# 对齐 Character.gd:665-668 randDmgNumberPos（伤害数字位置：2 抽，
+# DMG_NUM_OFFSET=(50,70)）
+func randDmgNumberPos() -> void :
+	ctx.rng.randf_range(-50.0, 50.0)
+	ctx.rng.randf_range(-70.0, 70.0)
+
+
+# 对齐 Character.gd:679-685 randDmgNumberDir（伤害数字方向：1 抽，
+# deg2rad(-21)..deg2rad(-3)）
+func randDmgNumberDir() -> void :
+	ctx.rng.randf_range(-0.3665191429188092, -0.05235987755982988)
+
+
+# 对齐 Character.gd:670-673 randHealNumberPos（治疗数字位置：2 抽，
+# 偏移同 DMG_NUM_OFFSET）
+func randHealNumberPos() -> void :
+	ctx.rng.randf_range(-50.0, 50.0)
+	ctx.rng.randf_range(-70.0, 70.0)
+
+
+func dealDamage(damageSource: CoreDamageSource, triggerEvent = null) -> CoreDamageResult:
+	playAttackAnimation()
+	var res = opponent.takeDamage(damageSource, triggerEvent)
+	applyVampirism(res)
+	return res
+
+
+func takeDamage(damageSource: CoreDamageSource, triggerEvent = null) -> CoreDamageResult:
+	
+	var damageRes = CoreDamageResult.new()
+	
+	damageSource = CoreDamageSource.new().fromDamageSource(damageSource)
+	# 无头内核的随机源按对象持有（原版为全局 Util.rng），复制出的新实例需补注入；
+	# DamageResult 随机取值路径（randDamage）才会与本场战斗同一随机流。
+	damageSource._rng = ctx.rng
+	damageRes.damageSource = damageSource
+	damageRes.reset()
+	
+	if isDead:
+		return damageRes
+	
+	var item = null
+	if damageSource.origin is CoreItem:
+		item = damageSource.origin
+	
+	var attackEffectCount: = 1
+	
+	if item != null:
+		attackEffectCount += item.rollDoubleAttackEffect()
+	
+	if damageSource.canMiss():
+		var accuracy = damageSource.accuracy
+		# ★ np51㊳终⑧ 命中面探针（GD_ACCPROBE 门控，零 rng 消耗）
+		if OS.get_environment("GD_ACCPROBE") != "":
+			print("[ACC] t=", ctx.time, " item=", String(item.descriptor.identifier) if item != null else "null",
+					" canMiss=", damageSource.canMiss(), " accuracy=", accuracy)
+		damageRes.hit = accuracyRng.rollPercent(accuracy)
+		if damageRes.hit and dodgeStacks > 0:
+			changeDodgeStacks( - 1)
+			damageRes.hit = false
+	else:
+		damageRes.hit = true
+
+	# ★ 表现层链消耗还原（Character.gd:524-525）：伤害飘字的位置与方向
+	#   randDmgNumberPos（DMG_NUM_OFFSET=(50,70)→2 抽）+ randDmgNumberDir
+	#   （deg2rad(-21)..deg2rad(-3)→1 抽）——命中/落空都消耗（原版在 hit 分支
+	#   之前无条件求值）。
+	ctx.rng.randf_range(-50.0, 50.0)
+	ctx.rng.randf_range(-70.0, 70.0)
+	ctx.rng.randf_range(-0.3665191429188092, -0.05235987755982988)
+	
+	if item != null and damageSource.isAttack():
+		item.preDealDamage_early(damageRes)
+		if item.hasPreDealDamageEarlyEffect:
+			for i in attackEffectCount:
+				item._behavior_call("onPreDealDamage_early", [damageRes])
+	
+	if damageRes.hit:
+		damageRes.damage += damageSource.randDamage()
+		
+		if damageSource.hasType(CoreDamageSource.Type.Fatigue):
+			damageRes.damage += bonusFatigueDamage
+		
+		if damageSource.canCrit():
+			var critical = false
+			
+			var critChancePercent = damageSource.getCritChancePercent()
+			if critChancePercent > 0 and critRng.rollPercent(critChancePercent):
+				critical = true
+			
+			if not damageRes.critical and item != null and item.getCritTokens() > 0:
+				item.useCritToken()
+				critical = true
+			
+			if not damageRes.critical and opponent.getCritTokens() > 0:
+				opponent.useCritToken()
+				critical = true
+
+			if critical:
+				if critResisted():
+					# 原版 Util.spawnBuffLabel(CriticalResisted, randBuffLabelPos())
+					#（Character.gd:571）：位置实参求值 2 抽 + spawnBuffLabel 内
+					# randBuffLabelDir 1 抽（Util.gd:909-914）
+					randBuffLabelPos()
+					randBuffLabelDir()
+					ctx.hooks.spawnBuffLabel(CoreConst.EventType.CriticalResisted, null)
+				else:
+					damageRes.makeCritical()
+		
+		var activeDmgResi = clamp(damageResistance / 100, - 10, 1)
+		damageRes.damage = round(damageRes.damage * (1.0 - activeDmgResi))
+		
+		if damageRes.damageSource.isAttack():
+			damageRes.damage -= damageReduction
+		
+		if invulnerable:
+			damageRes.damage = 0
+		
+		ctx.bus.emitSignal(self, "pre_take_damage", [damageRes])
+		
+		damageRes.damage -= damageRes.damageReduction
+		
+		damageRes.damage = max(0, damageRes.damage)
+		
+		if item != null and damageSource.isAttack():
+			item.preDealDamage_late(damageRes)
+			if item.hasPreDealDamageLateEffect:
+				for i in attackEffectCount:
+					item._behavior_call("onPreDealDamage_late", [damageRes])
+		
+		ctx.bus.emitSignal(self, "pre_take_damage_late", [damageRes])
+		damageRes.healthDamage = damageRes.damage
+		
+		if damageSource.canBeBlocked():
+			var curBlock = getBlock()
+			if damageRes.damage > curBlock:
+				damageRes.healthDamage -= curBlock
+				loseBlock(curBlock)
+			else:
+				loseBlock(damageRes.damage)
+				damageRes.healthDamage = 0
+		
+		curHealth -= damageRes.healthDamage
+
+		if damageRes.wasCriticalHit():
+			spawnLabel_native(CoreConst.EventType.CriticalDamage, damageRes.damage, item)
+		elif damageSource.hasType(CoreDamageSource.Type.Fatigue):
+			spawnLabel_native(CoreConst.EventType.Fatigue, damageRes.damage, item)
+		elif damageSource.hasType(CoreDamageSource.Type.Poison):
+			spawnLabel_native(CoreConst.EventType.Poison, damageRes.damage, item)
+		elif damageSource.hasType(CoreDamageSource.Type.Spikes):
+			spawnLabel_native(CoreConst.EventType.Spikes, damageRes.damage, item)
+		else:
+			spawnLabel_native(CoreConst.EventType.DealDamage, damageRes.damage, item)
+
+		# ★ 表现层链消耗还原（Character.gd:616-627）：受击动画播放速度
+		#   randf_range(0.9,1.1)——**1 次调用 = 2 步链**（run1029_r2 语料逐抽对位：
+		#   每 takeDamage 恰 1 行 (0.9,1.1)）；「Poison」闸（:616）见 damage_anim_is_poison。
+		if damage_anim_current != "Poison":
+			# ★ np24：镜像 oracle Character.gd:618-626 的动画分支（stop+play 改写
+			#   当前动画名），playback_speed 抽取照旧。
+			if damageRes.healthDamage == 0:
+				damage_anim_current = "Block"
+			elif damageSource.hasType(CoreDamageSource.Type.Fatigue):
+				damage_anim_current = "Fatigue"
+			else:
+				damage_anim_current = "Hit"
+			ctx.rng.randf_range(0.9, 1.1)
+			ctx.hooks.damageAnimation(self, "Fatigue" if damageSource.hasType(CoreDamageSource.Type.Fatigue) else "Hit")
+	else:
+		spawnLabel_native(CoreConst.EventType.MissedAttack, 0, item)
+	
+	var event
+	if item != null:
+		event = ctx.combat_log.createEvent_Attack(damageRes, triggerEvent)
+		ctx.bus.emitSignal(item, "dealt_damage_signal_placeholder", [damageRes])
+		item.dealtDamage(damageRes)
+	else:
+		event = ctx.combat_log.createEvent_Damage(damageRes, opponent.playerId, triggerEvent)
+	
+	damageRes.event = event
+	ctx.bus.emitEvent(self, "character_attacked", event, [damageRes])
+	ctx.bus.emitSignal(self, "character_damaged", [damageRes.healthDamage, damageRes.event])
+	
+	ctx.hooks.onHealthChangedUI(self)
+	
+	if (item != null and 
+		damageSource.isAttack() and 
+		item.hasDealtDamageEffect):
+		for i in attackEffectCount:
+			item._behavior_call("onDealtDamage", [damageRes])
+	
+	if curHealth <= 0:
+		death()
+	
+	applySpikes(damageRes)
+	
+	return damageRes
+
+
+func spawnLabel_native(type: int, damage: int, item = null) -> void :
+	# ★ 表现层链消耗还原（Character.gd:693-711 → Item.gd:4788-4791 → :6485-6494）：
+	#   物品身上的浮动标签位置 getNextFreeLabelPosition 恒消耗 Util.randInBox
+	#   2 抽（槽位复用 randInBox(10,10) / 兜底 randInBox(30,30)，抽数相同）。
+	if item != null:
+		ctx.rng.randf_range(-10.0, 10.0)
+		ctx.rng.randf_range(-10.0, 10.0)
+	ctx.hooks.spawnLabel_character(self, type, damage, item)
+
+
+func applySpikes(damageRes: CoreDamageResult) -> void :
+	if getSpikes() > 0 and damageRes.canTriggerSpikes():
+		var spikesLimit: float
+		if damageRes.damageSource.hasType(CoreDamageSource.Type.Ranged):
+			spikesLimit = rangedSpikesLimit
+		else:
+			spikesLimit = meleeSpikesLimit
+		
+		if damageRes.damageSource.hasType(CoreDamageSource.Type.Effect):
+			spikesLimit = max(effectSpikesLimit, spikesLimit)
+		
+		var spikeDam = min(getSpikes(), round(damageRes.damage * spikesLimit))
+		if spikeDam > 0:
+			spikeDamageSource.setDamage(spikeDam)
+			opponent.takeDamage(spikeDamageSource, damageRes.event)
+			ctx.hooks.activateBuffCounter(self, CoreConst.EventType.Spikes)
+
+
+func applyVampirism(damageRes: CoreDamageResult) -> void :
+	if getVampirism() > 0 and damageRes.canTriggerVampirism():
+		var vampLimit: float
+		if damageRes.damageSource.hasType(CoreDamageSource.Type.Ranged):
+			vampLimit = rangedVampirismLimit
+		else:
+			vampLimit = meleeVampirismLimit
+		
+		var healAmount = min(getVampirism(), round(damageRes.damage * vampLimit))
+		if healAmount > 0:
+			heal(healAmount, CoreConst.EventType.Vampirism, damageRes.event)
+			ctx.hooks.activateBuffCounter(self, CoreConst.EventType.Vampirism)
+
+
+# ─────────────────────────── 治疗 / 直接扣血（对齐 739-869） ───────────────────────────
+
+func heal(amount, origin = null, triggerEvent = null) -> void :
+	amount *= getHealingEfficiency()
+	amount = round(amount)
+	
+	var missingHealth = getMaxHealth() - curHealth
+	var overheal = max(0, amount - missingHealth)
+	curHealth += amount
+	curHealth = min(curHealth, getMaxHealth())
+
+	ctx.hooks.onHealthChangedUI(self)
+	# ★ 表现层链消耗还原（Character.gd:749）：治疗数字的位置与方向——
+	#   spawnLabel(Health, amount, origin, randHealNumberPos()) 的实参求值
+	#   randHealNumberPos 2 抽 + direction 默认实参 randDmgNumberDir 1 抽
+	#   （默认实参即便调用点未显式给出也必求值）；origin 为 **Item 实例** 时
+	#   物品身上的浮动标签再消耗 randInBox 2 抽（Character.gd:707
+	#   `if item != null and item is Item`——再生等枚举 origin 不取物品标签，
+	#   run1122_r11 逐抽对位实证）。
+	randHealNumberPos()
+	randDmgNumberDir()
+	if origin != null and origin is CoreItem:
+		ctx.rng.randf_range(-10.0, 10.0)
+		ctx.rng.randf_range(-10.0, 10.0)
+	ctx.hooks.spawnLabel_character(self, CoreConst.EventType.Health, amount, origin)
+	
+	var event = ctx.combat_log.createEvent_Heal(amount, playerId, origin, triggerEvent)
+	
+	if origin:
+		if origin is CoreItem:
+			origin.addMetric(CoreConst.ItemMetrics.Heal, amount)
+			origin.addMetric(CoreConst.ItemMetrics.Overheal, overheal)
+		else:
+			ctx.combat_log.snapshotMetric(playerId, CoreConst.ItemMetrics.Heal, origin, amount)
+			ctx.combat_log.snapshotMetric(playerId, CoreConst.ItemMetrics.Overheal, origin, overheal)
+	
+	ctx.bus.emitEvent(self, "character_healed", event, [event.getAmount(), event])
+	if overheal > 0:
+		ctx.bus.emitSignal(self, "character_overhealed", [overheal, event])
+	
+	if getUnhealing() > 0:
+		var unhealing = ceil(amount * getUnhealing() * (1 + typedDamageFactors[CoreDamageSource.Type.Unhealing]))
+		if unhealing > 0:
+			ctx.unhealingDamageSource.setDamage(unhealing)
+			opponent.takeDamage(ctx.unhealingDamageSource, event)
+
+
+func healToFull() -> void :
+	curHealth = getMaxHealth()
+	ctx.hooks.onHealthChangedUI(self)
+
+
+func reincarnate(healAmount: int, isHeal: bool, item, triggerEvent):
+	setCurrentHealth(0)
+	
+	healAmount = min(getMaxHealth(), healAmount)
+	setCurrentHealth(healAmount)
+	var event = ctx.combat_log.createEvent_Reincarnate(item, healAmount, triggerEvent)
+	item.addMetric(CoreConst.ItemMetrics.Heal, healAmount)
+	ctx.bus.emitEvent(self, "reincarnated", event, [event])
+	return event
+
+
+func getCurrentHealth():
+	return curHealth
+
+
+func getRelativeHealth() -> float:
+	return getCurrentHealth() / getMaxHealth()
+
+
+func getMissingHealth() -> int:
+	return int(ceil(getMaxHealth() - getCurrentHealth()))
+
+
+func setCurrentHealth(_curHealth) -> void :
+	curHealth = _curHealth
+	ctx.hooks.onHealthChangedUI(self)
+
+
+func loseHealth(amount, item = null, triggerEvent = null):
+	curHealth -= amount
+	# ★ 表现层链消耗还原（Character.gd:859-861）：loseHealth 在事件发射前
+	#   无条件抽伤害飘字位置（randDmgNumberPos 2 抽）+ 方向（randDmgNumberDir
+	#   1 抽）——无 item 也不豁免（三行位于 `if item:` 之前）。np25 定谳：
+	#   run572_r9 gd trace 相对 oracle rng_log 每处 EVENT 5 恰缺该三元组
+	#   （7 处共少 21 uniform）。pos/direction 仅喂视觉标签（gd_core 无头
+	#   版 spawnNumberLabel 为 no-op hook），故不保留返回值，抽数与顺序
+	#   与原版逐位一致。
+	randDmgNumberPos()
+	randDmgNumberDir()
+	ctx.hooks.spawnNumberLabel(CoreConst.EventType.LoseHealth, null, null, amount)
+	var event = null
+	if item:
+		event = ctx.combat_log.createEvent_LoseHealth( - amount, playerId, item, triggerEvent)
+		ctx.bus.emitEvent(self, "character_damaged", event, [event.getAmount(), event])
+	
+	ctx.hooks.onHealthChangedUI(self)
+	
+	if curHealth <= 0:
+		death()
+	
+	return event
+
+
+func setMaxHealth(_maxHealth) -> void :
+	maxHealth = _maxHealth
+	curHealth = maxHealth
+	ctx.hooks.onHealthChangedUI(self)
+
+
+func giveMaxHealth(amount) -> void :
+	maxHealth += amount
+	curHealth += amount
+	ctx.hooks.onHealthChangedUI(self)
+
+
+func getBaseMaxHealth() -> float:
+	return maxHealth
+
+
+func getMaxHealth() -> float:
+	return maxHealth + temporaryMaxHealth
+
+
+func applyTemporaryMaxHealthGain(amount):
+	return round(amount * temporaryMaxHealthGain)
+
+
+func changeMaxHealthTemporary(amount, item = null, triggerEvent = null) -> void :
+	if amount != 0:
+		temporaryMaxHealth += amount
+		
+		curHealth += amount
+		if item != null:
+			var event = ctx.combat_log.createEvent_TemporaryMaxHealth(item, amount, triggerEvent)
+			ctx.bus.emitEvent(self, "temporary_max_health_changed", event, [event])
+
+
+# ─────────────────────────── 体力（对齐 791-848） ───────────────────────────
+
+func getMaxStamina() -> float:
+	return maxStamina + temporaryMaxStamina
+
+
+func gainStamina(amount, item = null, triggerEvent = null) -> void :
+	curStamina += amount
+	
+	if not allowStaminaOverflow:
+		clampStamina()
+	
+	if item != null:
+		var event = ctx.combat_log.createEvent_Stamina(amount, item, playerId, triggerEvent)
+		ctx.bus.logEvent(event)
+		item.staminaChanged(amount, CoreConst.StackChangeType.Added_Player)
+		# ★ 表现层链消耗还原（Character.gd:805 → Util.gd:940-952 spawnLabelOnItem
+		#   → Item.gd:6485-6494 getNextFreeLabelPosition）：体力物品标签取位，
+		#   Util.spawnLabelOnItem 无设置闸，item 非空即消耗 randInBox 2 抽。
+		item.getNextFreeLabelPosition()
+
+
+func addStamina(amount) -> void :
+	curStamina += amount
+	clampStamina()
+	# ★ np25 面②定谳探针（STAM_TRACE 门控零耗）：体力轨迹取证（py 侧同构
+	#   插桩已证 py≡oracle，本侧对位抓 gd 独有分歧源）。
+	if OS.get_environment("STAM_TRACE") != "" and ctx.combat != null:
+		print("ADD t=%s pid=%d amt=%s cur=%s max=%s" % ["%.6f" % ctx.combat.combat_time, playerId, amount, curStamina, getMaxStamina()])
+
+
+func clampStamina() -> void :
+	curStamina = clamp(curStamina, 0, getMaxStamina())
+
+
+func fillUpStamina() -> void :
+	addStamina(maxStamina)
+
+
+enum StaminaResult{
+	Sufficient, 
+	Insufficient
+}
+
+
+func useStamina(amount):
+	allowStaminaOverflow = true
+	ctx.bus.emitSignal(self, "character_pre_use_stamina", [amount])
+	allowStaminaOverflow = false
+	# ★ np25 面②定谳探针（STAM_TRACE 门控零耗）：扣体判定快照。
+	if OS.get_environment("STAM_TRACE") != "" and ctx.combat != null:
+		print("USE t=%s pid=%d amt=%s cur=%s max=%s" % ["%.6f" % ctx.combat.combat_time, playerId, amount, curStamina, getMaxStamina()])
+
+	if curStamina >= amount:
+		curStamina = max(curStamina - amount, 0)
+		clampStamina()
+		ctx.bus.emitSignal(self, "character_used_stamina", [amount])
+		
+		return StaminaResult.Sufficient
+	else:
+		clampStamina()
+		
+		return StaminaResult.Insufficient
+
+
+func drainStamina(amount, item, triggerEvent = null):
+	var drained = min(curStamina, amount)
+	curStamina -= drained
+	var event = ctx.combat_log.createEvent_DrainStamina(drained, item, playerId, triggerEvent)
+	ctx.bus.logEvent(event)
+	item.staminaChanged(drained, CoreConst.StackChangeType.Removed_Opponent)
+	return event
+
+
+func setTemporaryMaxStamina(amount) -> void :
+	if OS.get_environment("STAM_TRACE") != "" and ctx != null and ctx.combat != null:
+		print("SETTEMP t=%s pid=%d amount=%s prev=%s" % ["%.6f" % ctx.combat.combat_time, playerId, amount, temporaryMaxStamina])
+	temporaryMaxStamina = amount
+
+
+func setTemporaryMaxHealthGain(amount) -> void :
+	temporaryMaxHealthGain = amount
+
+
+# ─────────────────────────── 死亡 / 眩晕 / 抗性（对齐 997-1083, 1390-1408） ───────────────────────────
+
+func death() -> void :
+	isDead = true
+	for handler in character_died_handlers:
+		handler.call_func()
+
+
+func stun(duration, item = null, triggerEvent = null) -> void :
+	if stunResisted():
+		# ★ 表现层链消耗（Character.gd:1074 → Util.gd:909-914）：
+		#   Util.spawnBuffLabel(StunResisted, randBuffLabelPos(), duration) 的
+		#   pos 实参（randBuffLabelPos 2 抽）+ spawnBuffLabel 内部
+		#   randBuffLabelDir（1 抽）——与 Buff 三分支/critResisted 同族。
+		randBuffLabelPos()
+		randBuffLabelDir()
+		ctx.hooks.spawnBuffLabel(CoreConst.EventType.StunResisted, null)
+		var event = ctx.combat_log.createEvent_StunResist(item, playerId, triggerEvent)
+		ctx.bus.logEvent(event)
+	else:
+		stunnedDuration = max(stunnedDuration, duration)
+		var event = ctx.combat_log.createEvent_Stun(item, duration, playerId, triggerEvent)
+		# 对齐原版 Character.gd:1080：emitEvent = 记日志 + 定向派发，
+		# 订阅方 Dagger.onStun 等靠它触发；此前误写成 logEvent（只记不派发）
+		# → 眩晕触发型物品全部静默失效。
+		ctx.bus.emitEvent(self, "character_stunned", event, [event])
+		# ★ 表现层链消耗（Character.gd:1091-1096 playStunAnimation）：duration>0
+		#   时 Util.spawnBuffLabel(Stun, randBuffLabelPos(), duration) = pos 2 抽
+		#   + 内部 randBuffLabelDir 1 抽；endStun 的 duration=0 分支无消耗。
+		if duration > 0:
+			randBuffLabelPos()
+			randBuffLabelDir()
+		ctx.hooks.playStunAnimation(self, duration)
+
+
+func endStun() -> void :
+	stunnedDuration = 0.0
+	ctx.combat_log.snapshotCharacterStat(self, Stat.Stunned)
+
+
+func isStunned() -> bool:
+	return stunnedDuration > 0
+
+
+func changeDodgeStacks(amount: int) -> void :
+	dodgeStacks = int(max(0, dodgeStacks + amount))
+	ctx.combat_log.snapshotCharacterStat(self, Stat.DodgeStacks)
+
+
+func changeCritResistance(amount: float) -> void :
+	critResistance += amount
+	ctx.combat_log.snapshotCharacterStat(self, Stat.CritResistance)
+
+
+func critResisted() -> bool:
+	var resisted = critResistanceRng.rollPercent(critResistance)
+	if not resisted:
+		if critResistStacks > 0:
+			critResistStacks -= 1
+			ctx.combat_log.snapshotCharacterStat(self, Stat.CritResistStacks)
+			return true
+	return resisted
+
+
+func gainCritResistStacks(num: int) -> void :
+	critResistStacks += num
+	ctx.combat_log.snapshotCharacterStat(self, Stat.CritResistStacks)
+
+
+func changeStunResistance(amount: float) -> void :
+	stunResistance += amount
+
+
+func stunResisted() -> bool:
+	return stunResistanceRng.rollPercent(stunResistance)
+
+
+func giveUnhealing(amount: float) -> void :
+	unhealingAmount += amount
+	ctx.combat_log.snapshotCharacterStat(self, Stat.Unhealing)
+
+
+func reduceUnhealing(amount: float) -> void :
+	unhealingAmount = max(0.0, unhealingAmount - amount)
+	ctx.combat_log.snapshotCharacterStat(self, Stat.Unhealing)
+
+
+func getUnhealing() -> float:
+	return unhealingAmount
+
+
+# 对齐 Character.gd:1421-1422（原版无返回类型标注）
+func getHealingEfficiency():
+	return max(0.0, healingEfficiency)
+
+
+func addHealingEfficiency(amount: float) -> void :
+	healingEfficiency += amount
+	ctx.combat_log.snapshotCharacterStat(self, Stat.HealEfficiency)
+
+
+func reduceHealingEfficiency(amount: float) -> void :
+	healingEfficiency -= amount
+	ctx.combat_log.snapshotCharacterStat(self, Stat.HealEfficiency)
+
+
+func getCritTokens() -> int:
+	return critTokens
+
+
+func gainCritTokens(amount) -> void :
+	critTokens += amount
+
+
+func changeDebuffResistStacks(amount) -> void :
+	debuffResistStacks += amount
+	ctx.combat_log.snapshotCharacterStat(self, Stat.DebuffResistStacks)
+
+
+func changeDebuffReflectStacks(amount) -> void :
+	debuffReflectStacks += amount
+	ctx.combat_log.snapshotCharacterStat(self, Stat.ReflectStacks)
+
+
+func changeBuffProtectStacks(amount) -> void :
+	buffProtectStacks += amount
+
+
+func changeReflectChance(debuff, amount) -> void :
+	buffs[debuff].changeReflectChance(amount)
+
+
+func changeAllDebuffsReflectChance(amount) -> void :
+	for debuff in CoreConst.getDebuffs():
+		changeReflectChance(debuff, amount)
+
+
+func changeMeleeSpikesLimit(amount) -> void :
+	meleeSpikesLimit += amount
+
+
+func changeRangedSpikesLimit(amount) -> void :
+	rangedSpikesLimit += amount
+
+
+func changeEffectSpikesLimit(amount) -> void :
+	effectSpikesLimit += amount
+
+
+func changeMeleeVampirismLimit(amount) -> void :
+	meleeVampirismLimit += amount
+
+
+func changeRangedVampirismLimit(amount) -> void :
+	rangedVampirismLimit += amount
+
+
+func getBonusFatigueDamage() -> int:
+	return bonusFatigueDamage
+
+
+func addFatigueDamage(amount) -> void :
+	bonusFatigueDamage += amount
+	ctx.bus.emitSignal(self, "fatigue_damage_changed")
+
+
+func takeFatigueDamage(item = null) -> void :
+	takeDamage(ctx.fatigueDamageSource)
+
+
+func startBlindingLight() -> void :
+	blindingLightActive = true
+
+
+func endBlindingLight(event = null) -> void :
+	blindingLightActive = false
+	ctx.bus.emitSignal(self, "blinding_light_ended", [event])
+
+
+# 对齐 Character.gd:1556-1571。★ 签名必须与原版逐字一致——物品行为直接这样调：
+#   BerserkerBag.gd:21 / WolfBadge.gd:27  character().startBattleRage(self, getP_m("dur_rage"), event)
+#   ExtraAngy.gd:28                       character().startBattleRage(self, dur, null, false)
+#   Toolbox.gd:35                         character().startBattleRage(self, getP_m("dur_rage"))
+func startBattleRage(item, duration, triggerEvent = null, applyBonus = true):
+	var fullDur = duration
+	if applyBonus:
+		fullDur += battleRageBonusDur
+	_setRageTimer(fullDur)
+	
+	var event = ctx.combat_log.createEvent_BattleRageStart(item, fullDur, triggerEvent)
+	ctx.bus.emitEvent(self, "battle_rage_started", event, [event])
+	ctx.combat_log.snapshotCharacterStat(self, Stat.BattleRage, false, event)
+	ctx.hooks.playBattleRageAnimation(self, true)
+	return event
+
+
+# 对齐 Character.gd:1567-1572（原版由 Character.tscn 的
+#   [connection signal="timeout" from="BattleRageTimer" to="." method="endBattleRage"]
+# 驱动；内核改为物理帧步进，超时点在本类 physicsTick 里触发同一方法。）
+func endBattleRage():
+	# ★ np25 timeout1t：fire 后 _rage_left 保留 ≤0 发火值（e[0] 遗留，同值重启
+	#   怪癖依赖）、_rage_eng 已在 tick 驱动块 stop 归零——此处不再清 _rage_left。
+	_rage_active = false
+	var event = ctx.combat_log.createEvent_BattleRageEnd(playerId)
+	ctx.bus.emitEvent(self, "battle_rage_ended", event, [event])
+	ctx.combat_log.snapshotCharacterStat(self, Stat.BattleRage, false, event)
+	ctx.hooks.playBattleRageAnimation(self, false)
+
+
+# 对齐 Character.gd:192-196
+func getClass() -> int:
+	return characterClass
+
+
+# 对齐 Character.gd:195-196。★ 原版反编译文本写作 `func isChibi() -> int:`，但函数体
+# 返回的是 bool 字段 chibi —— 该 `-> int` 是反编译器补出来的标注（原版源码不可能编译
+# 通过一个返回 bool 的 -> int 函数），故内核去掉返回类型标注，只保留取值语义。
+func isChibi():
+	return chibi
+
+
+# 对齐 Character.gd:198-209。表现部分（nameBanner 贴图 / setSprite / class_changed 信号）
+# 走 hooks 与 ctx.bus；对对手分支原版只调 setSprite（同样走 hooks）——内核两者等价。
+func setClass(_class: int, _chibi: bool, classResource = null):
+	characterClass = _class
+	chibi = _chibi
+	if classResource == null:
+		classResource = ctx.class_resources.get(_class, null) if ctx.class_resources else null
+	if classResource != null and playerId == ID.PLAYER:
+		setClassResource(classResource)
+	ctx.hooks.onClassChanged(self, classResource)
+	ctx.bus.emitSignal(self, "class_changed", [])
+
+
+# 对齐 Character.gd:211-215。setSprite 是表现 → 剥离。职业资源的字段读取用 .get(key)，
+# 同时兼容 Resource（Object.get）与 Dictionary（Dictionary.get）。
+func setClassResource(classResource):
+	if classResource == null:
+		return
+	setMaxHealth(classResource.get("health"))
+	baseMaxStamina = classResource.get("stamina")
+	setMaxStamina(baseMaxStamina)
+	ctx.hooks.onClassChanged(self, classResource)
+
+
+# 对齐 Character.gd:1002-1004 / 1006-1011（胜负表现：粒子 + 动画）
+func lose():
+	ctx.hooks.playWinLoseAnimation(self, false)
+
+
+func win():
+	ctx.hooks.playWinLoseAnimation(self, true)
+
+
+# 对齐 Character.gd:1609-1622（唯一写入口是战斗日志回放的 setStat；
+# 各分支的表现调用统一走 hooks）
+func setStat(stat, value):
+	match stat:
+		Stat.Health:
+			setCurrentHealth(value)
+		Stat.MaxHealth:
+			setTemporaryMaxHealth(value)
+		Stat.Stamina:
+			setCurrentStamina(value)
+		Stat.MaxStamina:
+			setTemporaryMaxStamina(value - maxStamina)
+		Stat.Stunned:
+			ctx.hooks.playStunAnimation(self, value)
+		Stat.Invulnerable:
+			ctx.hooks.playInvulnerableAnimation(self, value)
+		Stat.BattleRage:
+			ctx.hooks.playBattleRageAnimation(self, value)
+
+
+# 对齐 Character.gd:1650-1690（逐分支逐字对应；StaminaRegen/HealEfficiency/
+# Unhealing/MaxHealthGain 都是「显示用百分比」，原版就带 *100/(x-1) 换算，照抄）
+func getStat(stat):
+	match stat:
+		Stat.StaminaRegen:
+			return (getStaminaRegeneration() - 1) * 100.0
+		Stat.Health:
+			return getCurrentHealth()
+		Stat.MaxHealth:
+			return getTemporaryMaxHealth()
+		Stat.Stamina:
+			return getCurrentStamina()
+		Stat.MaxStamina:
+			return getMaxStamina()
+		Stat.Stunned:
+			return stunnedDuration
+		Stat.Invulnerable:
+			return invulnerable
+		Stat.BattleRage:
+			return isBattleRaging()
+		Stat.ReflectStacks:
+			return debuffReflectStacks
+		Stat.DebuffResistStacks:
+			return debuffResistStacks
+		Stat.CritStacks:
+			return getCritTokens()
+		Stat.DodgeStacks:
+			return dodgeStacks
+		Stat.CritResistStacks:
+			return critResistStacks
+		Stat.CritResistance:
+			return critResistance
+		Stat.StunResistance:
+			return stunResistance
+		Stat.HealEfficiency:
+			return (getHealingEfficiency() - 1) * 100
+		Stat.DamageResistance:
+			return damageResistance
+		Stat.MeleeDmgFactor:
+			return typedDamageFactors[CoreDamageSource.Type.Melee] * 100
+		Stat.RangedDmgFactor:
+			return typedDamageFactors[CoreDamageSource.Type.Ranged] * 100
+		Stat.EffectDmgFactor:
+			return typedDamageFactors[CoreDamageSource.Type.Effect] * 100
+		Stat.Unhealing:
+			return getUnhealing() * 100
+		Stat.MaxHealthGain:
+			return (temporaryMaxHealthGain - 1.0) * 100
+	return null
+
+
+# 对齐 Character.gd:1552-1553（battleRageTimer 一次性计时器是否在跑）
+func isBattleRaging() -> bool:
+	return _rage_active
+
+
+# 对齐 Character.gd:1588-1589（AutoRageTimer.timeout → startAutoRage）
+func startAutoRage():
+	# 原版 startAutoRage 不传 applyBonus → 走默认 true（吃到 battleRageBonusDur）
+	startBattleRage(autoRageItem, AUTO_RAGE_DUR)
+
+
+# 对齐 Character.gd:1574-1579（表现：粒子/动画/音效）
+func playBattleRageAnimation(rageStart):
+	ctx.hooks.playBattleRageAnimation(self, rageStart)
+
+
+# Util.changeTimer 语义：start(t + timeLeft) —— 在**剩余时间**基础上延长。
+# ★ np25 timeout1t：只改写引擎读数 _rage_eng（=Timer.start(t)），_rage_left
+#   （e[0]）不动。延长分支基准=_rage_left（e[0]）——对齐 Util.gd:1677-1683
+#   changeTimer 的 oracleLeft 优先语义（start(t + oracleLeft)）。
+# ★ np25w_f04：eng 写入点一律先过 _f32eng —— Godot 3.6 Timer 的 wait_time/
+#   time_left 是 real_t(float32) 存储（引擎探针 F32Probe：start(3.1) 后
+#   get_time_left() 的读数 ≠ 3.1 的 float64 且 <3.1）；oracle_fight.gd:897
+#   `eng = timer.get_time_left()` 每帧读的正是该 f32 值 → 注册表 e[0] 重同步
+#   基准=f32(dur)。3.1：f32 穿零 186 帧 v f64 187 帧（语料 run616_r18
+#   ty7@318→ty8@504=186 ✓）；1.2：f32 73 v f64 72（run942/948/676 dt=-1 ✓）；
+#   2.0/2.5/3.0 等 f32 精确值恒等式零影响（timeout1t「2.0 边界 121 间隔全
+#   PASS」即此类）。
+func _setRageTimer(t: float) -> void :
+	# Original Character.startBattleRage calls Timer.start(fullDur), not
+	# Util.changeTimer. See tools/check_backpack_timer_contract.py: source-extracted
+	# start + recorder driver, executed with a real Godot Timer.
+	_rage_eng = _f32eng(t)
+	_rage_active = true
+
+
+# ★ np25w_f04：引擎 real_t(float32) 存储镜像。gd 侧无 f32 cast，用
+#   PoolRealArray 单元素写读实现（round-to-nearest）；三行模板走 gd_to_py
+#   op11（→ return f32(x)，_rt.f32=struct round-trip）。
+static func _f32eng(x: float) -> float :
+	var pa = PoolRealArray()
+	pa.append(x)
+	return pa[0]
+
+
+# ── 无敌（对齐 Character.gd:1037-1062，Timer 改为物理帧步进） ──
+
+func makeInvulnerable(invuDur, item, triggerEvent = null):
+	invulnerabilityItem = item
+	
+	# 对齐 Character.gd:1038-1044：首次 start(invuDur)；已无敌时 Util.changeTimer
+	# （= start(t + timeLeft)，在**剩余时间**上加）→ 所以是延长而非覆盖。
+	# ★ np25 timeout1t：只改写引擎读数 _invul_eng（=Timer.start(t)），_invul_left
+	#   （e[0]）不动。
+	# ★ np34（run921_r18 定谳）：oracle 的 Util.changeTimer 是 **harness 补丁版**
+	#   （oracle/Utility/Util.gd:1680-1686；decompiled 版 ：1591-1593 无补丁）——
+	#   base=oracleTimeLeft(timer)（注册表 e[0]）**仅当 ≥0**；<0（停走遗留/同拍
+	#   start 尚未经 drive pass 登记）回落 timer.get_time_left()（引擎冻结读数=
+	#   最后一次 start 写入值）。语料铁证：run921_r18 King Goobert start(1.5)
+	#   同拍 Frog Prince extend(2.5)——oracle 复跑 [bt-resync] eng=4.0000
+	#   old_e0=-1.0000 old_e1=1.5000（fallback=eng 1.5）→ 语料 END@598；旧码恒
+	#   用 _invul_left=-0.033333（发火遗留）→ eng=2.4667 → fire@506 ⇒ FD@452
+	#   （gd 多弹两条 invulnerable_end）。oLeft≥0 的延长（run1116/1264 全部 8 例，
+	#   e[0]=逐拍递减活余量）基准不变，逐位已对齐勿动。
+	if not invulnerable:
+		_invul_eng = _f32eng(invuDur)
+		_invul_active = true
+		invulnerable = true
+		ctx.hooks.playInvulnerableAnimation(self, true)
+		# ★ np24：无敌音高抽补还原（oracle Character.gd:1050 `Sound.playSound(
+		#   invuSound, 4, Util.randPitch(0.1))`——randPitch(0.1)=rng_trace_range(
+		#   0.9,1.1,"randPitch")，**记帐**抽；tag 同构保证逐抽对位）。此前 gd 漏抽
+		#   ⇒ 每次 makeInvulnerable 首分支链位 -1（run576_r14 King Goobert 无敌
+		#   首分支实证：oracle 探针 O536 randPitch(0.9,1.1)=>1.073782 缺失）。
+		ctx.rng.randf_range(0.9, 1.1, "randPitch")
+	else:
+		var _invul_base = _invul_left
+		if _invul_base < 0.0:
+			_invul_base = _invul_eng
+		_invul_eng = _f32eng(invuDur + _invul_base)
+	# ★ np25 timeout1t 诊断（双门控零耗）：INVU 行读 make 时序（fr vs rebuild 的
+	#   activateItems 末尾）+ 三变量值，定位「激活期 start 是否被 rebuild 锚定」。
+	#   lt/gt=dur 对字面量 3.1 的 ULP 方位（run1069_r15 定谳用：D 在 186dt 浮点
+	#   边界上时 1 ULP 决定 fire@186/187）。
+	ctx.rng.trace_diag("INVU", "make p" + str(playerId) + (" first" if not invulnerable else " ext") + " dur=" + str(invuDur) + " lt3.1=" + str(invuDur < 3.1) + " gt3.1=" + str(invuDur > 3.1) + " eng=" + str(_invul_eng) + " left=" + str(_invul_left), "act=" + str(_invul_active) + " fr=" + str(ctx.frame_counter))
+	
+	var event = ctx.combat_log.createEvent_InvulnerableStart(item, invuDur, playerId, triggerEvent)
+	ctx.bus.emitEvent(self, "character_invulnerable_start", event, [event])
+	ctx.combat_log.snapshotCharacterStat(self, Stat.Invulnerable)
+	return event
+
+
+func makeVulnerable(item, triggerEvent = null) -> void :
+	pass
+
+
+# 对齐 Character.gd:1051-1056（原版由 InvulnerabilityTimer.timeout 驱动）
+func invulnerabilityEnded() -> void :
+	invulnerable = false
+	var event = ctx.combat_log.createEvent_InvulnerableEnd(invulnerabilityItem, playerId)
+	ctx.bus.emitEvent(self, "character_invulnerable_end", event, [event])
+	ctx.combat_log.snapshotCharacterStat(self, Stat.Invulnerable)
+	ctx.hooks.playInvulnerableAnimation(self, false)
+
+
+func setInvulnerable(active: bool, item = null) -> void :
+	invulnerable = active
+
+
+# ─────────────────────────── 栈宿主（对齐 1122-1200+） ───────────────────────────
+
+func getStacks(buffType) -> int:
+	return buffs[buffType].getStacks()
+
+
+func getBuffStacks() -> int:
+	var stacks = 0
+	for buff in CoreConst.getBuffs():
+		stacks += getStacks(buff)
+	return stacks
+
+
+func getDebuffStacks() -> int:
+	var stacks = 0
+	for debuff in CoreConst.getDebuffs():
+		stacks += getStacks(debuff)
+	return stacks
+
+
+func setStacks(buffType, amount: int) -> void :
+	buffs[buffType].setStacks(amount)
+
+
+func setStacksLogged(buffType, amount: int, item = null, triggerEvent = null) -> void :
+	var curStacks = getStacks(buffType)
+	if amount < curStacks:
+		loseStacks(buffType, curStacks - amount, item, triggerEvent)
+	elif amount > curStacks:
+		gainStacks(buffType, amount - curStacks, item, triggerEvent)
+
+
+func gainStacks(buffType, amount: int, item = null, triggerEvent = null, 
+	reflect: bool = false):
+	return buffs[buffType].gainStacks(amount, item, triggerEvent)
+
+
+func gainStacksTemporary(buffType, amount: int, duration, item = null, 
+	triggerEvent = null, reflect: bool = false):
+	return buffs[buffType].gainTemporary(amount, duration, item, triggerEvent, reflect)
+
+
+func loseStacks(buffType, amount: int, item = null, triggerEvent = null):
+	return buffs[buffType].loseStacks(amount, item, triggerEvent)
+
+
+func useStacks(buffType, amount: int, item = null, triggerEvent = null):
+	return buffs[buffType].loseStacks(amount, item, triggerEvent, true)
+
+
+func changeResistChance(buffType, chance) -> void :
+	buffs[buffType].changeResistChance(chance)
+
+
+func changeDebuffResistChances(chance) -> void :
+	for debuff in CoreConst.getDebuffs():
+		changeResistChance(debuff, chance)
+
+
+func changeResistStacks(buffType, amount) -> void :
+	buffs[buffType].changeResistStacks(amount)
+
+
+func getBlock() -> int:
+	return getStacks(CoreConst.EventType.Block)
+
+
+# 对齐 Character.gd:1182-1183：原版此处写入的是 Spikes（原样保留，不修）
+func setBlock(amount: int) -> void :
+	setStacks(CoreConst.EventType.Spikes, amount)
+
+
+func gainBlock(amount: int, item = null, triggerEvent = null):
+	return gainStacks(CoreConst.EventType.Block, amount, item, triggerEvent)
+
+
+func loseBlock(amount, item = null, triggerEvent = null):
+	return loseStacks(CoreConst.EventType.Block, amount, item, triggerEvent)
+
+
+# ── 各栈取值（对齐 1179-1360 的模板） ──
+
+func getSpikes() -> int:
+	return getStacks(CoreConst.EventType.Spikes)
+
+
+func setSpikes(amount: int) -> void :
+	setStacks(CoreConst.EventType.Spikes, amount)
+
+
+func gainSpikes(amount: int, item = null, triggerEvent = null):
+	return gainStacks(CoreConst.EventType.Spikes, amount, item, triggerEvent)
+
+
+func loseSpikes(amount, item = null, triggerEvent = null):
+	return loseStacks(CoreConst.EventType.Spikes, amount, item, triggerEvent)
+
+
+func getVampirism() -> int:
+	return getStacks(CoreConst.EventType.Vampirism)
+
+
+func setVampirism(amount: int) -> void :
+	setStacks(CoreConst.EventType.Vampirism, amount)
+
+
+func gainVampirism(amount: int, item = null, triggerEvent = null):
+	return gainStacks(CoreConst.EventType.Vampirism, amount, item, triggerEvent)
+
+
+func loseVampirism(amount, item = null, triggerEvent = null):
+	return loseStacks(CoreConst.EventType.Vampirism, amount, item, triggerEvent)
+
+
+func getPoison() -> int:
+	return getStacks(CoreConst.EventType.Poison)
+
+
+func setPoison(amount: int) -> void :
+	setStacks(CoreConst.EventType.Poison, amount)
+
+
+func gainPoison(amount: int, item = null, triggerEvent = null):
+	# 原版 gainPoison 附带受击动画切「Poison」片段（Character.gd:1222-1226）——
+	# 冻结循环里 current 恒停在 Poison，闸住后续 takeDamage 的 playback_speed 抽取
+	var event = gainStacks(CoreConst.EventType.Poison, amount, item, triggerEvent)
+	if amount > 0:
+		# ★ np24：镜像 oracle Character.gd:1233-1234（stop+play("Poison") 改写
+		#   当前动画名，闸住后续 takeDamage 的 playback_speed 抽取直至下个
+		#   非 Poison 动画）。
+		damage_anim_current = "Poison"
+	return event
+
+
+func losePoison(amount, item = null, triggerEvent = null):
+	return loseStacks(CoreConst.EventType.Poison, amount, item, triggerEvent)
+
+
+func getRegeneration() -> int:
+	return getStacks(CoreConst.EventType.Regeneration)
+
+
+func setRegeneration(amount: int) -> void :
+	setStacks(CoreConst.EventType.Regeneration, amount)
+
+
+func gainRegeneration(amount: int, item = null, triggerEvent = null):
+	return gainStacks(CoreConst.EventType.Regeneration, amount, item, triggerEvent)
+
+
+func loseRegeneration(amount, item = null, triggerEvent = null):
+	return loseStacks(CoreConst.EventType.Regeneration, amount, item, triggerEvent)
+
+
+func getLucky() -> int:
+	return getStacks(CoreConst.EventType.Lucky)
+
+
+func setLucky(amount: int) -> void :
+	setStacks(CoreConst.EventType.Lucky, amount)
+
+
+func gainLucky(amount: int, item = null, triggerEvent = null):
+	return gainStacks(CoreConst.EventType.Lucky, amount, item, triggerEvent)
+
+
+func loseLucky(amount, item = null, triggerEvent = null):
+	return loseStacks(CoreConst.EventType.Lucky, amount, item, triggerEvent)
+
+
+func getBlind() -> int:
+	return getStacks(CoreConst.EventType.Blind)
+
+
+func setBlind(amount: int) -> void :
+	setStacks(CoreConst.EventType.Blind, amount)
+
+
+func gainBlind(amount: int, item = null, triggerEvent = null):
+	return gainStacks(CoreConst.EventType.Blind, amount, item, triggerEvent)
+
+
+func loseBlind(amount, item = null, triggerEvent = null):
+	return loseStacks(CoreConst.EventType.Blind, amount, item, triggerEvent)
+
+
+func getMana() -> int:
+	return getStacks(CoreConst.EventType.Mana)
+
+
+func setMana(amount: int) -> void :
+	setStacks(CoreConst.EventType.Mana, amount)
+
+
+func gainMana(amount: int, item = null, triggerEvent = null):
+	return gainStacks(CoreConst.EventType.Mana, amount, item, triggerEvent)
+
+
+func loseMana(amount, item = null, triggerEvent = null):
+	return loseStacks(CoreConst.EventType.Mana, amount, item, triggerEvent)
+
+
+func getEmpower() -> int:
+	return getStacks(CoreConst.EventType.Empower)
+
+
+func setEmpower(amount: int) -> void :
+	setStacks(CoreConst.EventType.Empower, amount)
+
+
+func gainEmpower(amount: int, item = null, triggerEvent = null):
+	return gainStacks(CoreConst.EventType.Empower, amount, item, triggerEvent)
+
+
+func loseEmpower(amount, item = null, triggerEvent = null):
+	return loseStacks(CoreConst.EventType.Empower, amount, item, triggerEvent)
+
+
+func getHeat() -> int:
+	return getStacks(CoreConst.EventType.Heat)
+
+
+func setHeat(amount: int) -> void :
+	setStacks(CoreConst.EventType.Heat, amount)
+
+
+func gainHeat(amount: int, item = null, triggerEvent = null):
+	return gainStacks(CoreConst.EventType.Heat, amount, item, triggerEvent)
+
+
+func loseHeat(amount, item = null, triggerEvent = null):
+	return loseStacks(CoreConst.EventType.Heat, amount, item, triggerEvent)
+
+
+func getCold() -> int:
+	return getStacks(CoreConst.EventType.Cold)
+
+
+func setCold(amount: int) -> void :
+	setStacks(CoreConst.EventType.Cold, amount)
+
+
+func gainCold(amount: int, item = null, triggerEvent = null):
+	return gainStacks(CoreConst.EventType.Cold, amount, item, triggerEvent)
+
+
+func loseCold(amount, item = null, triggerEvent = null):
+	return loseStacks(CoreConst.EventType.Cold, amount, item, triggerEvent)
+
+
+func getBuffDamageMod() -> float:
+	return getEmpower() * empowerDamage
+
+
+# 对齐 Character.gd:1353-1354（原版无返回类型标注：int 运算结果原样返回）
+func getBuffAccuracyMod():
+	return (getLucky() - getBlind()) * 5
+
+
+# ─────────────────────────── 体力（源码补全，对齐 Character.gd:928-992, 1100-1121） ───────────────────────────
+# 面向物品行为 API 面：Items/*.gd 通过 character().<这些> 读写体力。
+
+# 对齐 Character.gd:935-938
+func getBaseMaxStamina() -> float:
+	return baseMaxStamina
+
+
+# 对齐 Character.gd:939-941
+func getMaxBaseStamina() -> float:
+	return maxStamina
+
+
+# 对齐 Character.gd:928-930
+func getCurrentStamina() -> float:
+	return curStamina
+
+
+# 对齐 Character.gd:931-934
+func setCurrentStamina(stamina: float):
+	curStamina = stamina
+
+
+# 对齐 Character.gd:942-944
+func getMissingStamina() -> float:
+	return getMaxStamina() - getCurrentStamina()
+
+
+# 对齐 Character.gd:945-947
+func isFullStamina() -> bool:
+	return getMissingStamina() <= 0
+
+
+# 对齐 Character.gd:948-952（emit_signal("max_stamina_changed_ui") → 钩子）
+func setMaxStamina(_maxStamina):
+	if OS.get_environment("STAM_TRACE") != "" and ctx != null and ctx.combat != null:
+		print("SETMAX t=%s pid=%d new=%s prev_max=%s prev_cur=%s temp=%s stack=%s" % ["%.6f" % ctx.combat.combat_time, playerId, _maxStamina, maxStamina, curStamina, temporaryMaxStamina, maxStamina])
+	maxStamina = _maxStamina
+	curStamina = maxStamina
+	ctx.hooks.onMaxStaminaChangedUI(self)
+
+
+# 对齐 Character.gd:953-957
+func giveMaxStamina(amount):
+	maxStamina += amount
+	curStamina += amount
+	ctx.hooks.onMaxStaminaChangedUI(self)
+
+
+# 对齐 Character.gd:958-962
+func reduceMaxStamina(amount):
+	maxStamina = max(1, maxStamina - amount)
+	curStamina = min(maxStamina, curStamina)
+	ctx.hooks.onMaxStaminaChangedUI(self)
+
+
+# 对齐 Character.gd:979-992（label 走钩子；filled 语义逐字保留）
+func gainMaxStaminaTemporary(amount, item, triggerEvent, filled: bool = true):
+	if amount != 0:
+		temporaryMaxStamina += amount
+		if filled and amount > 0:
+			curStamina += amount
+		if item != null:
+			var event = ctx.combat_log.createEvent_TemporaryMaxStamina(item, amount, triggerEvent)
+			ctx.bus.logEvent(event)
+			if filled:
+				item.staminaChanged(amount, CoreConst.StackChangeType.Added_Player)
+			# ★ 表现层链消耗还原（Character.gd:989 → Util.gd:940-952 → Item.gd:6485-6494）：
+			#   临时体力上限物品标签取位，randInBox 2 抽。
+			item.getNextFreeLabelPosition()
+			ctx.hooks.spawnLabelOnItem(CoreConst.EventType.TemporaryMaxStamina, item, amount)
+		ctx.hooks.onMaxStaminaChangedUI(self)
+
+
+# 对齐 Character.gd:1100-1102
+func getStaminaRegeneration():
+	return staminaRegen
+
+
+# 对齐 Character.gd:1103-1106
+func giveStaminaRegeneration(amount):
+	staminaRegen += amount
+	ctx.combat_log.snapshotCharacterStat(self, Stat.StaminaRegen)
+
+
+# 对齐 Character.gd:1107-1121（INVENTORY.getItems() → 本内核的 items）
+func getTotalStaminaUsage():
+	var totalStaminaUse = 0.0
+	for item in items:
+		var staminaUse = item.getStaminaCost()
+		if item.getCooldown() > 0:
+			staminaUse /= item.getCooldown()
+		totalStaminaUse += staminaUse
+	return totalStaminaUse
+
+
+# 对齐 Character.gd:963-969（call_deferred → ctx.defer，帧末 flush）
+func changeBaseMaxStamina():
+	if playerId == ID.PLAYER and not staminaUpdateQueued:
+		staminaUpdateQueued = true
+		ctx.defer(self, "recalculateMaxStamina")
+
+
+# 对齐 Character.gd:970-978
+# staminaSackDescriptor = getDescriptor("Stamina Sack")（ItemBook.gd:1003），
+# 内核以 descriptor.name 等值比较替代描述符对象同一性比较（取值域相同）。
+func recalculateMaxStamina():
+	staminaUpdateQueued = false
+	maxStamina = getBaseMaxStamina()
+	var _sack := 0
+	# ★ np25 面②修复（run784_r13 STAM_TRACE 定谳）：原版数袋遍历
+	#   INVENTORY.getItems()（Character.gd:978-980）——本内核误遍历 `items`
+	#   （「参战物品」成员，全工程**零填充死数组**）⇒ sacks 恒 0 ⇒ 对手
+	#   recalculateMaxStamina（OracleAlignBattle.gd:816 尾部显式调用，镜像
+	#   initHistoryOpponent）恒得 base：max=5.0 v 神谕/py 6.0（=5+1 袋），
+	#   体力池差 1.0 静默无事件 ⇒ run784 ev@767 Falcon Blade OutofStamina
+	#   （py cur=1.7333 v gd 0.7333<cost 1.0）。修复=改遍历 inventory.getItems()
+	#   （CoreGrid 真背包，即 INVENTORY.getItems() 的内核镜像）。
+	for item in inventory.getItems():
+		if item.descriptor.name == "Stamina Sack":
+			maxStamina += 1
+			_sack += 1
+	curStamina = maxStamina
+	if OS.get_environment("STAM_TRACE") != "" and ctx != null and ctx.combat != null:
+		print("RECALC t=%s pid=%d base=%s sacks=%d max=%s cur=%s" % ["%.6f" % ctx.combat.combat_time, playerId, getBaseMaxStamina(), _sack, maxStamina, curStamina])
+	ctx.hooks.onMaxStaminaChangedUI(self)
+
+
+# ─────────────────────────── 生命上限修正（源码补全，对齐 Character.gd:903-927） ───────────────────────────
+
+# 对齐 Character.gd:907-909
+func getTemporaryMaxHealth():
+	return temporaryMaxHealth
+
+
+# 对齐 Character.gd:910-913
+func setTemporaryMaxHealth(tempHealth):
+	temporaryMaxHealth = tempHealth
+	ctx.hooks.onHealthChangedUI(self)
+
+
+# 对齐 Character.gd:923-927
+func reduceMaxHealth(amount):
+	maxHealth = max(1, maxHealth - amount)
+	curHealth = min(maxHealth, curHealth)
+	ctx.hooks.onHealthChangedUI(self)
+
+
+# 对齐 Character.gd:903-906
+func changeMaxHealthGain(amount):
+	temporaryMaxHealthGain += amount
+	ctx.combat_log.snapshotCharacterStat(self, Stat.MaxHealthGain)
+
+
+# ─────────────────────────── 伤害修正量（源码补全，对齐 Character.gd:1369-1517） ───────────────────────────
+
+# 对齐 Character.gd:1379-1381
+func changeDamageReduction(amount: int):
+	damageReduction += amount
+
+
+# 对齐 Character.gd:1369-1378
+func changeDamageResistance(amount: float, item = null, duration = null, 
+	triggerEvent = null):
+	
+	damageResistance += amount
+	ctx.combat_log.snapshotCharacterStat(self, Stat.DamageResistance)
+	if item != null:
+		var event = ctx.combat_log.createEvent_DamChange(item, - amount, 
+			true, duration, null, triggerEvent)
+		ctx.bus.logEvent(event)
+
+
+# 对齐 Character.gd:1494-1508（INVENTORY.getItems() → items）
+func changeTypedDamageFactor(damageType: int, amount):
+	typedDamageFactors[damageType] += amount
+	for item in items:
+		if item.damageSource != null and item.damageSource.hasType(damageType):
+			ctx.combat_log.snapshotItemTooltipStat(item, CoreConst.ItemStat.MinDamage)
+			ctx.combat_log.snapshotItemTooltipStat(item, CoreConst.ItemStat.MaxDamage)
+	
+	match damageType:
+		CoreDamageSource.Type.Melee:
+			ctx.combat_log.snapshotCharacterStat(self, Stat.MeleeDmgFactor)
+		CoreDamageSource.Type.Ranged:
+			ctx.combat_log.snapshotCharacterStat(self, Stat.RangedDmgFactor)
+		CoreDamageSource.Type.Effect:
+			ctx.combat_log.snapshotCharacterStat(self, Stat.EffectDmgFactor)
+
+
+# 对齐 Character.gd:1509-1517
+func changeEffectDamageFactor(amount):
+	typedDamageFactors[CoreDamageSource.Type.Effect] += amount
+	typedDamageFactors[CoreDamageSource.Type.Unhealing] += amount
+	for item in items:
+		if item.damageSource != null and item.damageSource.hasType(CoreDamageSource.Type.Effect):
+			ctx.combat_log.snapshotItemTooltipStat(item, CoreConst.ItemStat.MinDamage)
+			ctx.combat_log.snapshotItemTooltipStat(item, CoreConst.ItemStat.MaxDamage)
+	ctx.combat_log.snapshotCharacterStat(self, Stat.EffectDmgFactor)
+
+
+# 对齐 Character.gd:1490-1493
+func changeEmpowerDamage(amount):
+	empowerDamage += amount
+
+
+# ─────────────────────────── 暴击 / 保护 / 抵消（源码补全，对齐 Character.gd:1175-1456） ───────────────────────────
+
+# 对齐 Character.gd:1231-1233
+func changePoisonCritChancePercent(amount):
+	poisonDamageSource.addCritChancePercent(amount)
+
+
+# 对齐 Character.gd:1234-1236
+func changeSpikesCritChancePercent(amount):
+	spikeDamageSource.addCritChancePercent(amount)
+
+
+# 对齐 Character.gd:1439-1442
+func useCritToken():
+	critTokens -= 1
+	ctx.combat_log.snapshotCharacterStat(self, Stat.CritStacks)
+
+
+# 对齐 Character.gd:1282-1286
+func useMana(amount: int, item = null, triggerEvent = null):
+	var event = useStacks(CoreConst.EventType.Mana, amount, item, triggerEvent)
+	
+	return event
+
+
+# 对齐 Character.gd:1450-1452
+func changeProtectionChance(buffType, chance):
+	buffs[buffType].changeCleanseProtectionChance(chance)
+
+
+# 对齐 Character.gd:1453-1456
+func changeBuffProtectionChance(chance):
+	for buff in CoreConst.getBuffs():
+		buffs[buff].changeCleanseProtectionChance(chance)
+
+
+# 对齐 Character.gd:1446-1449
+func changeDebuffProtectionChance(chance):
+	for debuff in CoreConst.getDebuffs():
+		buffs[debuff].changeCleanseProtectionChance(chance)
+
+
+# 对齐 Character.gd:1175-1178
+func changeBuffNullifyChances(chance):
+	for buff in CoreConst.getBuffs():
+		changeResistChance(buff, chance)
+
+
+# 对齐 Character.gd:1179-1182（与上者成对的减益版本；原版以此形状存在）
+func changeDebuffNullifyChances(chance):
+	for debuff in CoreConst.getDebuffs():
+		changeResistChance(debuff, chance)
+
+
+# ─────────────────────────── 战怒 / 无敌查询（源码补全） ───────────────────────────
+
+# 对齐 Character.gd:1585-1587
+func addBattleRageDuration(dur):
+	battleRageBonusDur += dur
+
+
+# 对齐 Character.gd:655-664
+func isVulnerable():
+	return not invulnerable
+
+
+# ─────────────────────────── 每帧驱动 ───────────────────────────
+
+# 对齐 Character.gd:1029-1035（眩晕倒计时递减 + 体力再生）。
+# 追加三个一次性计时器的物理帧步进：原版由 Character.tscn 里的 Godot Timer 节点驱动
+# （InvulnerabilityTimer / BattleRageTimer / AutoRageTimer，均 one_shot=true）：
+#   InvulnerabilityTimer.timeout → invulnerabilityEnded()
+#   BattleRageTimer.timeout      → endBattleRage()
+#   AutoRageTimer.timeout        → startAutoRage()
+# 内核无 Timer 节点，改为在 60Hz 固定步长里递减，超时点触发**同一个方法**，
+# 因此事件与状态迁移次序与原版一致（唯一差别是计时精度来自定步长，见 gd_core_truth 第 6 节）。
+# ★ 角色 _physics_process（Character.gd:1029-1034：眩晕倒计时 + 体力再生）——
+#   每帧在**物品冷却推进之前**执行（oracle tick_battle 步骤②⑤：对手角色先于其
+#   物品、玩家角色先于其物品）；与物理型 Timer（tickPhysicsTimers）严格分离。
+func physicsTickCharacter(delta: float) -> void :
+	if isStunned():
+		stunnedDuration -= delta
+		if stunnedDuration <= 0.0:
+			stunnedDuration = 0.0
+			endStun()
+	
+	addStamina(staminaRegen * delta)
+
+
+# ★ 物理型 Timer 块（oracle tick_battle 步骤⑦ drive_timers(true)，registry 次序
+#   = Character.tscn 节点序：TickTimer(:1632) → BattleRageTimer(:1635) →
+#   InvulnerabilityTimer(:1639) → AutoRageTimer(:1643)），由 CoreCombat 在双方
+#   物品冷却推进之后逐角色驱动（对手整块先于玩家整块）。
+func tickPhysicsTimers(delta: float) -> void :
+	if _tick_timer_active:
+		_tick_timer_left -= delta
+		if _tick_timer_left <= 0.0:
+			onTick()
+			_tick_timer_left += 1.0
+	
+	# registry 次序：BattleRageTimer 先于 InvulnerabilityTimer（tscn :1635/:1639）
+	# ★ np25 timeout1t：两链均严格三变量驱动（对齐 drive_timers :895-910）。
+	# ★ np25w_f04：fire 后补 :915-917「处理器重启了」当拍重同步——timeout 处理器
+	#   里重挂（如 run725_r18 fr=300 King Goobert 无敌结束→character_invulnerable_end
+	#   →另一 Crown onInvuEnded→checkTrigger→makeInvulnerable 同拍 start）时，
+	#   oracle 在同一 drive pass 内 e[0]=e[1]=新 eng（resync@300→fire@421）；
+	#   gd 原版漏此块→下一拍才 resync（→fire@422 恰晚 1）。CoreBuff._tick 的
+	#   `if _timer_active:` 重挂块（timeout1t 已入）同构。
+	if _rage_active:
+		if _rage_eng == _rage_seen:
+			_rage_left -= delta       # :901（遗留值继续减=同值重启立即 fire 怪癖）
+		else:
+			_rage_left = _rage_eng    # :899 重同步（不递减）
+		_rage_seen = _rage_eng        # :902 e[1]=eng
+		if _rage_left <= 0.0:
+			_rage_active = false
+			_rage_eng = 0.0           # :910 stop() 引擎读数归零；_rage_left 保留发火值
+			endBattleRage()
+			if _rage_active:          # :915-917 处理器重启了（start(x)→time_left=x）
+				_rage_left = _rage_eng
+				_rage_seen = _rage_eng
+
+	if _invul_active:
+		if _invul_eng == _invul_seen:
+			_invul_left -= delta
+		else:
+			_invul_left = _invul_eng
+		_invul_seen = _invul_eng
+		if _invul_left <= 0.0:
+			_invul_active = false
+			_invul_eng = 0.0          # :910 stop()；_invul_left 保留发火值
+			# ★ np25 timeout1t 诊断（双门控零耗）：INVU fire 行读三变量终值。
+			ctx.rng.trace_diag("INVU", "fire p" + str(playerId) + " left=" + str(_invul_left) + " eng=" + str(_invul_eng) + " seen=" + str(_invul_seen), "fr=" + str(ctx.frame_counter))
+			invulnerabilityEnded()
+			if _invul_active:         # :915-917 处理器重启了（start(x)→time_left=x）
+				_invul_left = _invul_eng
+				_invul_seen = _invul_eng
+	else:
+		# ★ np34：oracle_fight.gd:898-900 停走分支——is_stopped() 时注册表
+		#   e[0] **每拍刷新为 -1.0**（发火遗留值不驻留）。旧码漏此 else →
+		#   停走期 _invul_left 停在发火遗留（或 rebuild 初值 0.0），同拍
+		#   start+extend 形（run921_r18 King Goobert+Frog Prince）的延长
+		#   fallback 判别（left<0 → 用 eng）会误读 0.0 走 e[0] 基准。
+		_invul_left = -1.0
+
+	if _autoRage_active:
+		_autoRage_left -= delta
+		if _autoRage_left <= 0.0:
+			_autoRage_left = 0.0
+			_autoRage_active = false
+			startAutoRage()
+
+
+# Buff 临时栈超时（对齐 Godot Timer 的物理步进）
+func tickBuffs(delta: float) -> void :
+	for buffType in buffs:
+		buffs[buffType]._tick(delta)
+
+
+# ★ np25 timeout1t：rebuild_timer_registry 等价（oracle_fight.gd:690/:972-987）
+#   的角色侧半步，由 CoreCombat.activateItems 末尾（activated=true 之后、首
+#   tick 前）逐角色调用——oracle 在 G.activateItems() 之后、手动 tick 循环之前
+#   把 Main 树下全部 Timer 以 [left,left]=[eng,eng] 重入册（停止态读数=0）。
+#   rage/invul 激活期 start 的 → e[0]=e[1]=eng → 战斗首帧即递减；buffs 全量
+#   委托 CoreBuff.rebuildTimerSeen。autoRage/_tick_timer 无影子（激活帧启动、
+#   激活帧无 step⑦，首递减天然在下一帧 = oracle rebuild [dur,dur] 首帧递减，一致）。
+func rebuildTimerSeen() -> void :
+	if not _rage_active:
+		_rage_eng = 0.0
+	_rage_left = _rage_eng
+	_rage_seen = _rage_eng
+	if not _invul_active:
+		_invul_eng = 0.0
+	_invul_left = _invul_eng
+	_invul_seen = _invul_eng
+	for buffType in buffs:
+		buffs[buffType].rebuildTimerSeen()

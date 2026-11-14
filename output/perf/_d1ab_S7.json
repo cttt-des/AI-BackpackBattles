@@ -1,0 +1,42 @@
+{
+  "stage": "unspecified",
+  "machine": "8L, Python 3.14.5",
+  "cmd": "tools/bench_sim.py --n 40 --workers 1 --cpu-time --json output/perf/_d1ab_S7.json",
+  "lineups": [
+    "truth_20261001_220653_R19_player.json",
+    "truth_20261001_220653_R19_opponent.json"
+  ],
+  "workers": 1,
+  "n": 200,
+  "p50_ms": 312.5,
+  "mean_ms": 308.98,
+  "p95_ms": 406.2,
+  "min_ms": 156.2,
+  "max_ms": 734.4,
+  "mean_ticks": 902.4,
+  "ms_per_k_tick": 346.3,
+  "fights_per_s_core": 3.2,
+  "wins_player": 40,
+  "timed_out_n": 0,
+  "round_wall_s": [
+    12.442,
+    12.367,
+    12.547,
+    12.658,
+    13.381
+  ],
+  "round_p50_ms": [
+    296.9,
+    312.5,
+    312.5,
+    312.5,
+    328.1
+  ],
+  "repro_spread_pct": 9.98,
+  "repro_pass_3pct": false,
+  "clock": "process_time",
+  "warmup": 0,
+  "invariance_delta": [],
+  "invariance_pass": true,
+  "events_bytes_first_seed": 191079
+}

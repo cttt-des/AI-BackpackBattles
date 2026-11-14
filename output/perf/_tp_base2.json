@@ -1,0 +1,25 @@
+{
+  "stage": "unspecified",
+  "machine": "8L, Python 3.14.5",
+  "cmd": "tools/bench_sim.py --n 128 --workers 4 --json output/perf/_tp_base2.json",
+  "lineups": [
+    "truth_20261001_220653_R19_player.json",
+    "truth_20261001_220653_R19_opponent.json"
+  ],
+  "workers": 4,
+  "n": 128,
+  "p50_ms": 420.8,
+  "mean_ms": 447.45,
+  "p95_ms": 547.9,
+  "min_ms": 249.3,
+  "max_ms": 1580.2,
+  "mean_ticks": 903.7,
+  "ms_per_k_tick": 465.6,
+  "fights_per_s_core": 2.38,
+  "wins_player": 25,
+  "timed_out_n": 0,
+  "wall_ms": 15336.4,
+  "throughput_fights_per_s": 8.35,
+  "round_p50_ms": null,
+  "repro_spread_pct": null
+}

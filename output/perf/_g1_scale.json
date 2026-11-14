@@ -1,0 +1,100 @@
+[
+  {
+    "case": "run100875_r1_o101099_r1",
+    "items": 17,
+    "ticks": 601,
+    "sec": 0.0156,
+    "ms_per_ktick": 26.0
+  },
+  {
+    "case": "run100999_r1_o100907_r1",
+    "items": 15,
+    "ticks": 470,
+    "sec": 0.0156,
+    "ms_per_ktick": 33.24
+  },
+  {
+    "case": "run100881_r1_o101388_r1",
+    "items": 21,
+    "ticks": 401,
+    "sec": 0.0156,
+    "ms_per_ktick": 38.97
+  },
+  {
+    "case": "run100892_r1_o100867_r1",
+    "items": 21,
+    "ticks": 770,
+    "sec": 0.0156,
+    "ms_per_ktick": 20.29
+  },
+  {
+    "case": "run100856_r7_o100871_r7",
+    "items": 51,
+    "ticks": 519,
+    "sec": 0.0312,
+    "ms_per_ktick": 60.21
+  },
+  {
+    "case": "run100875_r5_o100892_r5",
+    "items": 46,
+    "ticks": 837,
+    "sec": 0.0312,
+    "ms_per_ktick": 37.34
+  },
+  {
+    "case": "run100795_r12_o101464_r12",
+    "items": 74,
+    "ticks": 871,
+    "sec": 0.0625,
+    "ms_per_ktick": 71.76
+  },
+  {
+    "case": "run100829_r10_o101020_r10",
+    "items": 78,
+    "ticks": 304,
+    "sec": 0.0312,
+    "ms_per_ktick": 102.8
+  },
+  {
+    "case": "run100786_r10_o604537_r10",
+    "items": 81,
+    "ticks": 1601,
+    "sec": 0.0938,
+    "ms_per_ktick": 58.56
+  },
+  {
+    "case": "run100786_r15_o101593_r15",
+    "items": 94,
+    "ticks": 897,
+    "sec": 0.0781,
+    "ms_per_ktick": 87.1
+  },
+  {
+    "case": "run100804_r16_o101308_r16",
+    "items": 107,
+    "ticks": 760,
+    "sec": 0.0781,
+    "ms_per_ktick": 102.8
+  },
+  {
+    "case": "run100808_r17_o101341_r17",
+    "items": 113,
+    "ticks": 1130,
+    "sec": 0.125,
+    "ms_per_ktick": 110.62
+  },
+  {
+    "case": "run100900_r15_o100932_r15",
+    "items": 124,
+    "ticks": 724,
+    "sec": 0.0938,
+    "ms_per_ktick": 129.49
+  },
+  {
+    "case": "run101277_r18_o101337_r18",
+    "items": 121,
+    "ticks": 1020,
+    "sec": 0.125,
+    "ms_per_ktick": 122.55
+  }
+]

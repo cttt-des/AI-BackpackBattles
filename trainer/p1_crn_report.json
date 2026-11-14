@@ -1,0 +1,109 @@
+{
+ "args": {
+  "target": 450.0,
+  "opp": 100,
+  "perturbs": 6,
+  "bases": 3,
+  "workers": 8
+ },
+ "results": [
+  {
+   "base": "history-07.db:run4155",
+   "items": 60,
+   "round": 19,
+   "probe": {
+    "n_perturb": 6,
+    "n_valid_perturb": 5,
+    "n_dropped_none": 1,
+    "n_opp": 100,
+    "n_seedsets": 2,
+    "noise_paired_mean": 0.03200000000000003,
+    "noise_paired_max": 0.050000000000000044,
+    "noise_unpaired_mean": 0.024000000000000042,
+    "noise_unpaired_max": 0.06000000000000005,
+    "delta_paired_s0": [
+     0.030000000000000027,
+     0.010000000000000009,
+     0.010000000000000009,
+     -0.010000000000000009,
+     0.010000000000000009
+    ],
+    "delta_paired_s1": [
+     0.0,
+     -0.020000000000000018,
+     -0.010000000000000009,
+     -0.040000000000000036,
+     -0.040000000000000036
+    ],
+    "base_wr_mean": 0.58
+   },
+   "verdict": "FAIL",
+   "crn_gain": 0.7500000000000007
+  },
+  {
+   "base": "history-07.db:run4158",
+   "items": 55,
+   "round": 19,
+   "probe": {
+    "n_perturb": 6,
+    "n_valid_perturb": 4,
+    "n_dropped_none": 2,
+    "n_opp": 100,
+    "n_seedsets": 2,
+    "noise_paired_mean": 0.0025000000000000022,
+    "noise_paired_max": 0.010000000000000009,
+    "noise_unpaired_mean": 0.010000000000000009,
+    "noise_unpaired_max": 0.010000000000000009,
+    "delta_paired_s0": [
+     -0.009999999999999953,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "delta_paired_s1": [
+     -0.019999999999999962,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "base_wr_mean": 0.41
+   },
+   "verdict": "PASS",
+   "crn_gain": 4.0
+  },
+  {
+   "base": "history-07.db:run4160",
+   "items": 55,
+   "round": 19,
+   "probe": {
+    "n_perturb": 6,
+    "n_valid_perturb": 5,
+    "n_dropped_none": 1,
+    "n_opp": 100,
+    "n_seedsets": 2,
+    "noise_paired_mean": 0.018000000000000006,
+    "noise_paired_max": 0.040000000000000036,
+    "noise_unpaired_mean": 0.02200000000000002,
+    "noise_unpaired_max": 0.030000000000000027,
+    "delta_paired_s0": [
+     -0.040000000000000036,
+     -0.040000000000000036,
+     -0.08000000000000002,
+     -0.040000000000000036,
+     -0.04999999999999999
+    ],
+    "delta_paired_s1": [
+     0.0,
+     -0.010000000000000009,
+     -0.08000000000000002,
+     -0.030000000000000027,
+     -0.040000000000000036
+    ],
+    "base_wr_mean": 0.51
+   },
+   "verdict": "PASS",
+   "crn_gain": 1.222222222222223
+  }
+ ],
+ "pass_count": 2
+}

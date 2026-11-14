@@ -1,0 +1,276 @@
+# 性能优化台账（2026-11-13 定稿 · 唯一现行版）
+
+> 本版把 791 行（§0–§13，含 §8/§9/§10/§11 多轮转折）压缩为**结论 + 下一步 + 证据指针**。
+> 完整过程（失败路径、每次判否与翻案、事故复盘）见归档：
+> [_archive_台账_20261113_791行.md](_archive_台账_20261113_791行.md)、
+> [_archive_台账_20261112_527行.md](_archive_台账_20261112_527行.md)、
+> [_archive_性能优化台账_20261111_957行.md](_archive_性能优化台账_20261111_957行.md)。
+>
+> **§4 是唯一要读的部分**：做什么、按什么顺序、判据是什么。其余是背景与证据。
+
+## 0 现状速览
+
+| 指标 | 实测 | 判读 |
+|---|---|---|
+| 确定性全量 | **1690/1690** 三方逐行一致 | `output/oracle/expand/alignment_expand.json` |
+| 确定性快闸 | **60/60** | `output/perf/alignment_core_cases.json` |
+| REG 九场 / RNG | 9/9；1440/1440 | `verify_godot_rng.py` |
+| seed 双态 | **907 tick/1548 事件**、**1042 tick/1991 事件** | `tools/_seed_dual.py`（本轮重建） |
+| 单场（R19，51 件） | mean **212.5 ms** / p50 218.8 ms | 负载 16%，`bench_sim --n 40 --cpu-time` |
+| 单场（trained_0，57 件） | p50 **155 ms** | 历史读数 |
+| 耗时构成 | `physicsTick` **~84%** / `logEvent` ~11% / 其余 <1% | cProfile 编译态 |
+| **装配占比** | **28.6 ms / 约 11%** | `tools/bench_assemble.py`（`perf_counter` 累计口径） |
+| 槽形态 | 169 个数值槽已落地（bool/int/部分 double） | 见 §2 的 float 判否 |
+| 编译态 | 664 pyd，`--check` 同步 | `build_cython --list` 报「全部目标新鲜」 |
+| 吞吐 | **有证据收口**（见 §2.3） | `pool_eff` 0.53–0.66 = 进程间缓存争用物理上限 |
+
+### 0.1 判定阈值（本轮修正，**取代旧的 10% 门**）
+
+旧台账用「整场 p50 降 ≥10%」当有效性判据。实测噪声地板（同配置 n=40 重复 6 次）：
+
+| 口径 | 极差 | stdev | SEM | **3σ 可辨** |
+|---|---|---|---|---|
+| `mean_ms` | 3.49% | 1.25% | 0.51% | **1.52%** |
+| `p50_ms` | 7.18% | 3.71% | 1.51% | 4.54% |
+
+**`p50` 的读数落在 `process_time` 15.62 ms 刻度的整数倍上**（实测一半 203.1、一半 218.8），
+它的散布一半是量化噪声。⇒ **10% 那道门不是太高，而是用错了口径**：
+
+| 场景 | 判据 |
+|---|---|
+| **整场改动** | `mean_ms` 降 **≥2%**（3σ=1.52%，留余量）；拿 `p50` 报 2% 级结论一律无效 |
+| **微基准（日常）** | **≥1.05x**；≥1.3x 只留给「要不要换语言」这种量级决策 |
+| **<2% 的改动** | 进「待累积清单」，凑够 ≥2% 合并测一次（见 §4.4） |
+| **零收益但零风险且降复杂度** | **免收益判据**直接合（`load_for` 属此类） |
+| 判据本身（`canonical_stream`/`render_lines`/语料） | **永远不许改** |
+
+## 1 纪律（血泪条款）
+
+| 纪律 | 为什么 |
+|---|---|
+| 账本 mtime 与代码提交时间相近 | 曾出现「声称晚于提交，实际差 1.5 小时」 |
+| 编译态结论必须证明 pyd 比源新 | `build_cython` 曾「pyd 存在即跳过」，多轮「重编」空转 |
+| **吞吐结论必须附负载，或用 `cores_eff` 归一化** | 同命令场/s 可差 2 倍（5.5–11.7），历史上据此得出的「4w 饱和」「绑核无收益」全被污染过 |
+| **改编译期类型/pxd 后必须全量重编** | 只重编热点模块 → `Item size changed, expected 576, got 24`，21 模块崩（本轮实证） |
+| 单点微基准要加大 n | 200k 次时跳动是刻度噪声；800k–1M 才收敛 |
+| 看剖面要看总量，不只 top30 名单 | 事件计数回归就是 top1，按名单看永远看不出 |
+| `@property` 惰性视图的计数必须 O(1) | 每 tick 访问聚合视图 = 全量物化 |
+| 不许重生成夹具 | 会造出 13 场假红 |
+| `--force` 不可与 `--skip-godot` 同用；`--cases-json` 不可传全量夹具 | 假阳性 / 脚本写回覆盖 |
+| 大文档禁止「读局部 → 整体写回」 | 曾因此截掉 45 行 |
+| 判否前先确认判据测的是不是同一件事 | 「object 槽无收益」被用来否定「数值槽」，是循环论证 |
+| **进程池不能从 stdin 跑** | Windows spawn 重导主模块；探针必须落文件 + `if __name__ == "__main__"` |
+
+**三闸**：seed 双态 → REG 九场 → 60 场；1690 走里程碑。
+
+## 2 已判否（含证据；标 ⛔ 者永久）
+
+### 2.1 语义红线 ⛔（永久不可修）
+
+| 项 | 为什么 |
+|---|---|
+| `character()` 内联 | Gem 覆写，虚派发必须保留 |
+| **事件驱动调度（只 tick 到期物品）** | 改帧内调用集合 = 换内核。**惰性触发/跳 tick 已预研永久判否**：循环外有 ≥6 类写入方（`advanceCooldownPercent`/`advanceCooldownSeconds`/`addSpeed`/`reduceSpeed`/`updateBaseCooldown`/`trigger` 重臂），且角色 heat-cold 栈也改速度；实证扰动 **280–320 次/场 = 平均每 3–4 tick 一次**，任何 >4 tick 跳窗必然跨扰动 |
+| 双侧循环合并 / 跳过死方 tick | 改帧内求值次序 |
+| `f32` 换 float64 / 降 tick 频率 / `/fp:fast` | 直接破确定性 |
+| Godot 无头当产品运行时 | GDScript VM 更慢、打包更重 |
+
+### 2.2 实测证伪（有数字）
+
+| 项 | 证据 |
+|---|---|
+| Cython 纯编译（无类型化） | 编译臂 vs 源码臂 **1.075x** |
+| items 树 object 槽位化（510 模块） | 三个热函数全 **1.00x** |
+| L2 cpdef 签名（131 处） | `hasType` 0.117 = 0.117 µs |
+| L4 死代码消除 | `.gd` 源里 `if false:`/`if true:` **0 处** |
+| B-1 装配整场复用 | deepcopy **1.889x 贵于重建** |
+| **L3 float→`double` 全树** | **−9~−24% 回归**，已回退。机理：复合表达式里 C double 槽与 `object` 值混算，每次都装/拆箱 |
+| **整链 C 化闭环（§11.4 实验）** | **1.07–1.10x**（`physicsTick` 1.25→1.17 µs / `getSpeed` 1.09x / `gainStacks` 1.10x），判定门 <1.1x |
+| **换语言 C++/Rust** | ❌ **有证据关闭**：整链 C 化只有 1.07–1.10x，残余是算法本身而非 PyObject 常数因子 |
+| **GPU 化** | 单 tick 并行宽度仅 **103**、tick 严格串行、浮点归约破逐位确定性；MX130 ~0.5 TFLOPS/2GB |
+| `character()` 缓存（tick 热循环） | 单次 **0.07 µs**，102 万次 72→79 ms，**0.907x（缓存反而慢）**，折算单场 3.2 ms ≈ **1.2%** |
+| **GC 调优** | 单场只触发 gen0 约 10 次（`get_count` 0→444）；`gc.disable()` 两臂读数重叠在噪声内 |
+| 装配整场 deepcopy 复用 | 见 B-1 |
+| 全库「对全表线性扫描」类优化 | 已全量 grep：仅 `load_for` 一处，已修（§3） |
+
+### 2.3 条件关闭（触发条件写死）
+
+| 项 | 状态 | 重开/依据 |
+|---|---|---|
+| **吞吐线（绑核 / chunksize / 常驻池）** | ❌ **有证据收口** | §12.8 绑核 4 轮重测：`0,2,4,6` vs `none` **+2.2%（噪声内）**；SMT 兄弟集 `4,5,6,7` 稳定 **−22~30%**（有害）。`pool_eff` 0.53–0.66 是进程间缓存/带宽争用，属物理上限。`MCPool` 常驻池已落地 3.45x；chunksize 8/4 已扫最优 |
+| **Python 层** | ❌ 见底 | 纯 Python 帧合计约 24 ms / 单场 = **13%**，且大半必要；`logEvent` 旁路上限仅 7.1% |
+| nogil 并行 | 条件关闭 | ①对象图全 C 化 ②训练侧 <8 场/s 且需 ≥20 ③单场 p50 ≤150ms |
+| 子解释器 | 条件关闭 | Cython 模块级全局态不支持 |
+| `getSpeed` 整函数缓存 | 条件关闭 | 热/寒变动频繁 |
+
+## 3 已完成（附提交锚点）
+
+| 阶段 | 内容 | 结果 |
+|---|---|---|
+| S0 基座 | `bench_sim`（p50/p95/ms·千tick/交错 A/B/CPU 计时）、`bench_ab`、`GD_PURE_PY` 双臂屏蔽 | 墙钟散布 68% → CPU 口径可控 |
+| S1 并行 | 进程池 + 动态批次 + 预热 | 4w ≈2.0x，逐 seed 对拍一致 |
+| S2 启动 | 分层导入、预编译 pyc、GUI 预热 | 冷启动改善 |
+| S3 纯 py | `_iter` 直发 / 类引用绑定 / 访问器内联 / 垫片局部化 / 热剥离 / seen-set / tick 链压平 | **top30 调用面 −49.3%** |
+| F1 Cython | 664 模块 MSVC 编译 + `_rt` 类型化 + 编译旗标 | PCG32 单点 **1.9x** |
+| M2 事件路径 | 空钩子剥离（87 处/46 方法）、`logEvent` 全内联、事件数组化 | 调用数 −7.2 万/3 场 |
+| M1/L1 槽位化 | gd_core 12 模块 + items 510 模块 cdef | 形态改善（免 `__dict__`、修 7 处潜伏 NameError） |
+| A 算法层 | heat/cold 合并、`character()` 局部绑定、枚举常量化、派发缓存 | 达标（A-2 −20%、A-4 −35%） |
+| L3 数值槽 | bool→`bint`、int→`long long`；后扩至 169 槽（含部分 double） | 零回归（float 面回退，见 §2.2） |
+| 事件计数回归修复 | `events` 改 `@property` 后 run 循环每 tick 全量物化 | top30 **2,814,015 → 30,603（−98.9%）** |
+| 跨场状态泄漏修复 | `_bind_battle` 只在一条分支调用，常规路径回落进程级 RNG | 同池连跑 4 次由「4 个不同指纹」→ 一致（`58b78f35`） |
+| 常驻进程池 `MCPool` | 块级提交 / `BrokenProcessPool` 重建 / 透明重建 / 上下文管理器 | runs=8 **3.22 → 11.12 场/s（3.45x）** |
+| **`load_for` 索引化** | 108 脚本 × 505 项线性扫描 → `_ITEM_STEM` O(1) 查表 + 按需循环导入 | **7.5 → 0.18 ms/场（41x）**，装配 −3 ms；`_bootstrap.py` 7620→6121 行（`5e092dde`） |
+| 编译工具链 | `build_cython` 分批+并行+自适应分片；`GD_CY_DIRECTIVES` 指令包开关 | 30 模块 229 s → 66 s（3.5x）；全量外推 ~20–26 min |
+| 架构收敛 | 删除 `engine/` 整包，判据渲染器迁入 `simulator/log_text.py` | 单内核、单判据链 |
+
+## 4 下一步：做什么、什么顺序
+
+> 模拟器侧**单场延迟线与吞吐线都已收口**（§2.2/§2.3）。本节的每一项都是**在收口之后仍存在的确定性收益**，
+> 按「预期收益 ÷ 成本」排序。成本：S ≤0.5 天，M 1–2 天，L ≥3 天。
+
+### 4.1 第二批的排头兵：D1 热循环类型化（**预期最大**）
+
+**问题**（本轮实测）：`gd_core_py/gd_core/CoreCombat.py` **一条 `cimport` 都没有**，物品循环变量是纯 PyObject：
+
+```python
+for item in _iter__loc(self.opponent.inventory.getItems()):    # 纯 PyObject
+    if item._cooldown_active:                          # PyObject_GetAttr
+        if not (item.character().stunnedDuration > 0):  # 属性 + 调用 + 属性
+            item.triggerTime -= delta * item.getSpeed() # 属性 + cpdef 调用
+```
+
+每 item-tick 约 **8–10 次 `PyObject_GetAttr`**，**93k item-ticks/场**。
+
+**微基准**（`tools/typed_loop_probe/`，103 物品 × 100k 轮 = 10.3M item-ticks，MSVC `/O2`）：
+
+| 写法 | µs/item-tick |
+|---|---|
+| untyped（现状） | **0.272** |
+| typed（`cdef Base item` + `<Base>items[i]`） | **0.008** |
+| | **35.8x（仅该段）** |
+
+**边界（必须写清）**：真实内核每 item-tick 是 **1.8 µs**，而基准里 untyped 只有 0.272 µs——
+差的 1.5 µs 是 `trigger()` 触发链与真实计算，**类型化动不了**。
+正确预期是「属性访问这一段」快 35.8x，**折合单场上限约 24 ms（−8~12%）**，
+不是「physicsTick 167 ms → 5 ms」。
+
+**做什么**：生成器给 `CoreCombat.py` 发射 `cimport`（`CoreItem`/`CoreCharacter`）+ 循环首行 `cdef CoreItem item`；
+`item.character()` 返回类型需要能从 C 侧强转。
+
+**判据**：`mean_ms` 降 **≥3%**（预期 8–12%）；三闸全绿；1690 走里程碑。
+
+**风险（两条，都已实证）**：
+1. **类型不匹配**：物品可能是 Gem 等子类，强转失败会抛 `TypeError`（安全失败，不静默）——
+   需先确认所有参战物品的类都在 `CoreItem` 继承链上（已确认：`Exclusive__BerserkerBag → Bag_2 → Item_2 → CoreItem`）。
+2. **ABI 级联**：`CoreItem.pxd` 被 **240 个模块** cimport。本轮我只重编 3 个热点模块，
+   就撞上 `ValueError: CoreItem size changed, expected 576, got 24`，21 个模块导入失败。
+   ⇒ **必须全量重编**（约 20–26 min），且要等并行会话未提交的 `.pxd` 定稿。
+
+### 4.2 与 D1 同批执行（一次重编全吃）
+
+| 序 | 方向 | 做什么 | 预期 | 判据 | 风险 |
+|---|---|---|---|---|---|
+| **D2** | cimport 收敛 | D1 的前置：补 `CoreCombat`→`CoreItem`/`CoreCharacter` 的 cimport | — | `size changed` 类错误为 0 | 中（全量重编） |
+| **D5** | Cython 指令包 | 开关已加：`GD_CY_DIRECTIVES="boundscheck=False,wraparound=False,initializedcheck=False"` | 1–5% | `mean_ms` ≥2% | **低**：668 模块**零 `except IndexError`、零裸 `except:`**（已全量 grep），越界检查不承担控制流 |
+| **D6** | `/arch:AVX2` | MSVC 加 `-arch:AVX2`（i5-8265U 支持） | 0–3% | 同 D5 | 低（不动 `/fp:`）；但指针追逐向量化机会少，**预期偏低** |
+| **D8** | LTO（`/GL`+`/LTCG`） | 开关早已存在（`GD_LTO=1`），台账标 🧪 **从未实测** | 2–5% | 同 D5 | 低；跨 TU 内联对单 `.pyd` 边际小 |
+
+> **为什么捆一批**：D1/D2/D5/D6/D8 都要全量重编（20–26 min）。分开做要付 5 次重编成本，捆一批只付一次。
+> 判读原则：**先只上 D1+D2**测总收益；若 `mean_ms` 已降 ≥3%，再叠加 D5/D6/D8 看增量——
+> 否则无法归因（一次改 5 项，收益混在一起就再也分不开了）。
+
+### 4.3 第一批：D3 装配（不需要重编，随时可做）
+
+装配实测 **28.6 ms / 约 11%**，`cProfile` 拆解（每场摊销）：
+
+| 位置 | tottime | 判读 |
+|---|---|---|
+| `_build_side` 自身 | **16.13 ms** | 纯 Python 循环：108 物品 × 每物品 0.15 ms |
+| `_make_item` | **8.18 ms** | `R.C(script)()` + `setup()` + 三组 Vector2 推导 |
+| `_place` | 2.26 ms | 几何 + `_readyInit` |
+| `_place_of` | 0.82 ms | 每次重建 `collision`/`affected`/`occupied` |
+| `load_for` | 0.30 ms | ✅ 已消（7.5→0.18） |
+
+**三项零语义风险改动**：
+1. `_build_side` 把 `self._K` / `k["_R"]` / `k["Vector2"]` / `getattr(self,"_pending_crafted",None)` 提到循环外做局部绑定。
+2. `_place_of` 里 `ent["rot"][str(rot)]` 只依赖 `(key, rot)` ⇒ 缓存「未平移」的 anchor/affected/occupied，再叠加 `(row,col)` 平移。
+3. `chargeFrame = [vec(...)] * 4` 四项同值 ⇒ 共享同一不可变实例。
+
+**判据**：`bench_assemble.py` 同口径 **28.6 → ≤22 ms（≥20% 降）**；三闸全绿。
+
+### 4.4 累积清单（<2% 的改动先攒着）
+
+单点收益 <2% 的改动**不合**，记在这里；凑够 ≥2% 后合并测一次总效果（用 `mean_ms`，n≥40，≥3 轮）。
+
+| 项 | 预期 | 状态 |
+|---|---|---|
+| — | — | （空） |
+
+### 4.5 只在 D1 不达预期时才投
+
+| 序 | 方向 | 为什么排后面 | 成本 |
+|---|---|---|---|
+| **D7** | **PGO**（`/GENPROFILE` → 跑代表性场景 → `/USEPROFILE`） | 预期 5–15%，但要**两遍全量重编 40–52 min + 训练跑一轮**。前提假设「分支密集所以 PGO 收益大」**在本内核从未验证**——§2.2 刚证明是「调用/属性链主导」，那恰是 PGO 最帮不上忙的形态 | L |
+| **D10** | 对象图 SoA（热字段抽并行数组） | 需重写 tick 循环，收益未知；D1 兑现后可能已吃掉大半 | L |
+| **D11** | C++/FFI | **已有证据关闭**（1.07–1.10x）。除非 D1–D8 全收口后仍有 ≥2x 缺口，不再重开 | XL |
+
+### 4.6 一句话执行顺序
+
+```
+① D3 装配三项            （不需重编，当天可收，判据 28.6→≤22 ms）
+② D1+D2 循环类型化       （等 .pxd 定稿 → 全量重编；判据 mean_ms ≥3%）
+③ 若 ② 达标 → 叠加 D5+D6+D8（同一次重编内测增量）
+④ 若 ② 不达预期 → 才考虑 D7 PGO
+⑤ 不启动：D10 / D11（已有证据或撞红线）；D9 惰性触发已永久判否
+```
+
+**训练侧不在此台账**（用户明确：只管模拟器）。训练规划见 [训练路径规划.md](训练路径规划.md)、
+[trainer/训练初步报告.md](../trainer/训练初步报告.md)。
+
+## 5 接班启动
+
+```bash
+cd "D:/文件资料/学习/自动背包AI"
+
+# ① 环境与新鲜度（30 秒）
+python -X utf8 tools/gd_to_py.py --check
+printf '%s\n' gd_core_py/gd_core/CoreCombat.py > /tmp/one.txt
+python -X utf8 tools/build_cython.py --list /tmp/one.txt --msvc   # 应报「全部目标新鲜」
+
+# ② 确定性快闸（约 1 分钟）
+IDS="$(cat output/perf/core_cases.txt)"
+python -X utf8 tools/verify_oracle.py --cases "$IDS" --force --skip-fixtures \
+  --fights-root output/oracle/expand/fights --align-root output/oracle/align_expand \
+  --cases-json gd_core_test/expand_align_cases.json \
+  --alignment-out output/perf/alignment_core_cases.json
+
+# ③ seed 双态（应输出 907/1548 与 1042/1991）
+python -X utf8 tools/_seed_dual.py
+```
+
+**改了什么就跑哪个**：
+
+| 改的东西 | 必跑 |
+|---|---|
+| 任意内核/装配代码 | ①②③ |
+| `tools/gd_to_py.py` 的档二导入 | `python -X utf8 tools/check_loadfor.py`（判据 `FAILS=0`） |
+| 装配相关 | `python -X utf8 tools/bench_assemble.py --n 12 --rounds 7` |
+| 并行/吞吐相关 | `python -X utf8 tools/bench_parallel.py --n 32`（看 `pool_eff`，不看裸场/s） |
+| 编译期类型/pxd | **全量重编** + ①②③；只重编热点模块会撞 `size changed` |
+
+## 6 证据索引
+
+| 主题 | 文件 |
+|---|---|
+| 归档台账（791 行，含 §8–§13 全部转折） | [_archive_台账_20261113_791行.md](_archive_台账_20261113_791行.md) |
+| 再早两份 | `_archive_台账_20261112_527行.md`、`_archive_性能优化台账_20261111_957行.md` |
+| 原始候选池（67 条判定） | `docs/性能优化规划.md` |
+| 执行路径 S0–S5 | `docs/性能优化执行路径.md` |
+| 确定性精选集（60 场） | `docs/perf_core_cases.md` |
+| 编译工具用法 | [build_cython_用法.md](build_cython_用法.md) |
+| 装配基准 / 并行基准 / load_for 校验 | `tools/bench_assemble.py`、`tools/bench_parallel.py`、`tools/check_loadfor.py` |
+| 类型化微基准 | `tools/typed_loop_probe/`（`looptest.pyx` + `build.py`） |
+| 对齐账本 | `output/oracle/expand/alignment_expand.json` |
+| 噪声地板原始数据 | `output/perf/_noise_floor.json` |
+| 微基准与 A/B 原始数据 | `output/perf/ab_*.json`、`l1q_verdict.json`、`profile_*.json` |
+

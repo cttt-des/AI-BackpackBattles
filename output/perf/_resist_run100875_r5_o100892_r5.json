@@ -1,0 +1,90 @@
+[
+ {
+  "type": 100,
+  "amount": 45,
+  "resistChance": 0.0,
+  "amp": 0.0,
+  "isBuff": true,
+  "reflectChance": 0.0
+ },
+ {
+  "type": 102,
+  "amount": 2,
+  "resistChance": 0.0,
+  "amp": 0.0,
+  "isBuff": true,
+  "reflectChance": 0.0
+ },
+ {
+  "type": 100,
+  "amount": 65,
+  "resistChance": 0.0,
+  "amp": 0.0,
+  "isBuff": true,
+  "reflectChance": 0.0
+ },
+ {
+  "type": 107,
+  "amount": 2,
+  "resistChance": 0.0,
+  "amp": 0.0,
+  "isBuff": true,
+  "reflectChance": 0.0
+ },
+ {
+  "type": 108,
+  "amount": 1,
+  "resistChance": 0.0,
+  "amp": 0.0,
+  "isBuff": false,
+  "reflectChance": 0.0
+ },
+ {
+  "type": 105,
+  "amount": 1,
+  "resistChance": 0.0,
+  "amp": 0.0,
+  "isBuff": true,
+  "reflectChance": 0.0
+ },
+ {
+  "type": 103,
+  "amount": 3,
+  "resistChance": 0.0,
+  "amp": 0.0,
+  "isBuff": true,
+  "reflectChance": 0.0
+ },
+ {
+  "type": 105,
+  "amount": 1,
+  "resistChance": 0.0,
+  "amp": 0.0,
+  "isBuff": true,
+  "reflectChance": 0.0
+ },
+ {
+  "type": 108,
+  "amount": 1,
+  "resistChance": 0.0,
+  "amp": 0.0,
+  "isBuff": false,
+  "reflectChance": 0.0
+ },
+ {
+  "type": 106,
+  "amount": 2,
+  "resistChance": 0.0,
+  "amp": 0.0,
+  "isBuff": true,
+  "reflectChance": 0.0
+ },
+ {
+  "type": 105,
+  "amount": 1,
+  "resistChance": 0.0,
+  "amp": 0.0,
+  "isBuff": true,
+  "reflectChance": 0.0
+ }
+]

@@ -1,0 +1,12 @@
+{
+  "py_light_ms": 203.1,
+  "py_full_ms": 234.4,
+  "py_asm_ms": 46.9,
+  "py_run_ms": 156.2,
+  "cpp_ms": 109.4,
+  "ratio_single_core_light": 1.86,
+  "ratio_single_core_full": 2.14,
+  "ratio_run_only": 1.43,
+  "asm_share_of_py_pct": 23.1,
+  "ticks_same": true
+}

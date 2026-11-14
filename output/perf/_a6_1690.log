@@ -1,0 +1,28 @@
+[alignment-out] 显式指定 D:\文件资料\学习\自动背包AI\output\oracle\alignment.json
+[cases] 神谕语料可用 1690 场（--limit=0）
+[force] 已删 1690 场的 gdcore/py 重放产物（神谕语料只读，未触碰）
+[cases] 夹具可用 1690 场
+[legs] 流水线：gd 3 路交错，py 分片批跟随（py 最多 2 路/批）
+[legs] gd 分桶负载（MB）：99.5, 99.5, 99.5
+[legs] gd 片 0 完成（563 场 rc=0，累计 354s）——py 接手该片
+[legs] gd 片 1 完成（563 场 rc=0，累计 360s）——py 接手该片
+[legs] py 片 0_0 完成（282 场 rc=0，累计 416s）
+[legs] py 片 0_1 完成（281 场 rc=0，累计 416s）
+[legs] gd 片 2 完成（564 场 rc=0，累计 416s）——py 接手该片
+[legs] py 片 1_0 完成（282 场 rc=0，累计 473s）
+[legs] py 片 1_1 完成（281 场 rc=0，累计 473s）
+[legs] py 片 2_0 完成（282 场 rc=0，累计 528s）
+[legs] py 片 2_1 完成（282 场 rc=0，累计 528s）
+[legs] py 共 6 片完成（失败 0）
+[legs] 流水线完成，总墙钟 528s
+  [compare] 并行 5 路，分桶负载（MB）：59.7, 59.7, 59.7, 59.7, 59.7
+  [compare] 分片 0 完成（338 场，累计 43.0s）
+  [compare] 分片 1 完成（337 场，累计 43.3s）
+  [compare] 分片 2 完成（338 场，累计 43.6s）
+  [compare] 分片 3 完成（339 场，累计 43.6s）
+  [compare] 分片 4 完成（338 场，累计 43.7s）
+  [compare] 1690/1690（三方一致 1690，43.7s）
+
+=== 三方对齐结果：1690/1690 场逐行一致 ===
+  三方一致                     1690
+alignment.json → D:\文件资料\学习\自动背包AI\output\perf\_a6_1690.json

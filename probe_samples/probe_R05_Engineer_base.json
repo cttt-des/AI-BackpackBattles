@@ -1,0 +1,157 @@
+{
+ "version": 4,
+ "name": "probe_R05_Engineer_base",
+ "character": "Engineer",
+ "round": 5,
+ "grid": [
+  7,
+  9
+ ],
+ "items": [
+  {
+   "id": "Engineer Box",
+   "at": [
+    2,
+    3
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    3,
+    5
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    3,
+    1
+   ],
+   "r": 0
+  },
+  {
+   "id": "Stone",
+   "at": [
+    2,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    1,
+    5
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    1,
+    1
+   ],
+   "r": 0
+  },
+  {
+   "id": "Spiked Shield",
+   "at": [
+    1,
+    1
+   ],
+   "r": 0
+  },
+  {
+   "id": "Wooden Sword",
+   "at": [
+    2,
+    5
+   ],
+   "r": 0,
+   "gems": [
+    "Chipped Topaz"
+   ]
+  },
+  {
+   "id": "Banana",
+   "at": [
+    3,
+    3
+   ],
+   "r": 270
+  },
+  {
+   "id": "Battery",
+   "at": [
+    3,
+    2
+   ],
+   "r": 90
+  },
+  {
+   "id": "Resistor",
+   "at": [
+    3,
+    3
+   ],
+   "r": 0
+  },
+  {
+   "id": "Magic Staff",
+   "at": [
+    1,
+    6
+   ],
+   "r": 0
+  },
+  {
+   "id": "Stamina Sack",
+   "at": [
+    1,
+    7
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    0,
+    3
+   ],
+   "r": 0
+  },
+  {
+   "id": "Whetstone",
+   "at": [
+    4,
+    5
+   ],
+   "r": 0
+  },
+  {
+   "id": "Magic Ring",
+   "at": [
+    2,
+    3
+   ],
+   "r": 0
+  },
+  {
+   "id": "King of the Bling",
+   "at": [
+    1,
+    3
+   ],
+   "r": 270
+  }
+ ],
+ "meta": {
+  "h_name": "probe_R05_Engineer",
+  "corpus_rk": "run_id:db421109-be59-4579-bafd-bdf82f3f90a9",
+  "rating": 154.495222,
+  "bucket": "Gold"
+ }
+}

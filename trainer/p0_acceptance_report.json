@@ -1,0 +1,92 @@
+{
+ "corpus": {
+  "sampled": 1000,
+  "legal": 935,
+  "rate": 0.935,
+  "fail_codes": {
+   "GID_UNMAPPED": 65
+  },
+  "fail_samples": {}
+ },
+ "history": {
+  "history-01.db": {
+   "runs": 953,
+   "legal": 869,
+   "rate": 0.9119,
+   "codes": {
+    "DECODE_NONE": 84
+   }
+  },
+  "history-06.db": {
+   "runs": 523,
+   "legal": 499,
+   "rate": 0.9541,
+   "codes": {
+    "DECODE_NONE": 24
+   }
+  },
+  "history-07.db": {
+   "runs": 950,
+   "legal": 909,
+   "rate": 0.9568,
+   "codes": {
+    "DECODE_NONE": 41
+   }
+  }
+ },
+ "history_examples": [
+  {
+   "db": "history-01.db",
+   "run": 782,
+   "n_items": 26,
+   "score": {
+    "A": 62.0,
+    "B": 10.5,
+    "A_detail": {
+     "heal": 17.0,
+     "stamina_reg": 15.0
+    },
+    "B_edges": {
+     "charge_amp": 5,
+     "speed": 1
+    }
+   }
+  },
+  {
+   "db": "history-01.db",
+   "run": 783,
+   "n_items": 40,
+   "score": {
+    "A": 54.0,
+    "B": 50.5,
+    "A_detail": {
+     "heal": 33.0,
+     "luck": 10.0,
+     "mana": 10.0
+    },
+    "B_edges": {
+     "charge_amp": 5,
+     "speed": 6
+    }
+   }
+  },
+  {
+   "db": "history-01.db",
+   "run": 784,
+   "n_items": 38,
+   "score": {
+    "A": 190.8,
+    "B": 40.5,
+    "A_detail": {
+     "luck": 1.0,
+     "heal": 72.0,
+     "stamina_reg": 50.0
+    },
+    "B_edges": {
+     "speed": 5,
+     "potion_amp": 1
+    }
+   }
+  }
+ ]
+}

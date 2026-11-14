@@ -1,0 +1,4 @@
+[msvc-list] cython 2 模块 / 2 批 / 2 进程 耗时 12.0s
+[msvc-list] bat 执行完成 rc=0
+  MISS gd_core_py/gd_core/CoreItem.py（无 .pyd → 回落 .py）
+[msvc-list] 缺失 1 / 重编目标 2

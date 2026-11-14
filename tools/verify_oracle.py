@@ -401,18 +401,12 @@ def run_py(cases: List[Dict[str, Any]]) -> int:
     fixture = {c["case_id"]: c for c in
                json.load(io.open(CASES_JSON, encoding="utf-8"))["cases"]}
     cases_by_id = fixture
-    # ★ np51㉟：case 级门控表镜像（gd 宿主 gd_core_test/oracle_align_case_overrides.json
-    #   同表同语义）：表内条目经 os.environ 注入（转写内核 _os_environ_get 直读），
-    #   逐场 set/restore——与 OracleAlignBattle.gd run_case 开头的门控应用对位。
-    case_overrides = {}
-    _ovp = os.path.join(ROOT, "gd_core_test", "oracle_align_case_overrides.json")
-    if os.path.exists(_ovp):
-        try:
-            case_overrides = json.load(io.open(_ovp, encoding="utf-8"))
-        except Exception:
-            case_overrides = {}
-    _OV_KEYS = ("ORACLE_NO_FLKFIRE", "ORACLE_INJ_ITEM", "ORACLE_INJ_TRIGGER_N",
-                "ORACLE_FLK_DELAY", "ORACLE_FLK_OFF", "ORACLE_TIMER_NO_PHASE_COMP")
+    # ★ A 阶段普适性修复（2026-11-14）：np51㉟ 的 case 级门控表
+    #   （gd_core_test/oracle_align_case_overrides.json）与 _OV_KEYS 逐场
+    #   set/pop 机制**整段移除**——22 场开关的真因 = Coins 类场景装配多抽
+    #   （CoreItem.setup 的 sceneDepth 语义）+ CoreTimer 相位补偿，两者已在
+    #   内核层修复，表恒空、机制成死代码（run101354 等 22 场无开关三方一致
+    #   实证，见 output/_a1/alignment_22_nocomp_fixed2.json）。
     os.makedirs(PY_OUT, exist_ok=True)
 
     ok = 0
@@ -452,7 +446,6 @@ def run_py(cases: List[Dict[str, Any]]) -> int:
         # 2026-11-14 修：_ov_saved 原在 try 内部定义，而 except 分支会引用它；
         # 若 load_lineup / 夹具读取在它之前抛异常，except 会变成
         # UnboundLocalError（掩盖真异常，实测卡在这里排查了两轮）。
-        _ov_saved = {}          # 兜底：未走到门控快照时也能安全还原
         try:
             player = load_lineup(os.path.join(LINEUP_OUT,
                                               "oracle_%s_player.json" % case_id))
@@ -484,26 +477,6 @@ def run_py(cases: List[Dict[str, Any]]) -> int:
                 warmup_ticks = int(PY_WARMUP_TIME_TICKS[case_id])
             # ★ np43 Buff 清空 stop seen 清除键控（镜像 gd 宿主，共用 NO_T0 开关）
             stop_clears_seen = (not _no_t0 and case_id in PY_BUFF_STOP_CLEARS_SEEN)
-            # ★ np51㉟：应用 case 门控（先清残留 → 按表设 → finally 恢复）
-            _ov_saved = {k: os.environ.get(k) for k in _OV_KEYS}
-            for k in _OV_KEYS:
-                os.environ.pop(k, None)
-            _ov = case_overrides.get(case_id) or {}
-            if _ov.get("no_flkfire"):
-                os.environ["ORACLE_NO_FLKFIRE"] = "1"
-            if str(_ov.get("inj_item", "")) != "":
-                os.environ["ORACLE_INJ_ITEM"] = str(_ov["inj_item"])
-                os.environ["ORACLE_INJ_TRIGGER_N"] = str(int(_ov.get("inj_trigger_n", 1)))
-            if _ov.get("flk_off"):
-                os.environ["ORACLE_FLK_OFF"] = ",".join(_ov["flk_off"])
-            if _ov.get("no_phase_comp"):
-                os.environ["ORACLE_TIMER_NO_PHASE_COMP"] = "1"
-            if _ov.get("flk_delay"):
-                _pairs = []
-                for k in sorted(_ov["flk_delay"]):
-                    for v in str(_ov["flk_delay"][k]).split(","):
-                        _pairs.append("%s=%s" % (k, v))
-                os.environ["ORACLE_FLK_DELAY"] = ",".join(_pairs)
             # ★ np44 清洗落池序键控（镜像 gd 宿主，共用 NO_T0 开关）
             cleanse_biggest_first = (not _no_t0 and case_id in PY_CLEANSE_BIGGEST_FIRST)
             # ★ np51㊳：库实例发火对位（lib_fires=[t,lo,hi,…] per case）
@@ -560,11 +533,6 @@ def run_py(cases: List[Dict[str, Any]]) -> int:
             eng.ctx.lib_fires = [list(map(float, e)) for e in eng_kwargs_lib]
             eng.run()
         except Exception as exc:  # noqa: BLE001 —— 单场失败不拖垮批量，如实记档
-            for k, v in _ov_saved.items():
-                if v is None:
-                    os.environ.pop(k, None)
-                else:
-                    os.environ[k] = v
             os.makedirs(out_dir, exist_ok=True)
             with io.open(out_path, "w", encoding="utf-8", newline="\n") as fh:
                 json.dump({"case_id": case_id, "seed": c["seed"],
@@ -577,11 +545,6 @@ def run_py(cases: List[Dict[str, Any]]) -> int:
             import traceback as _tb
             _tb.print_exc()
             continue
-        for k, v in _ov_saved.items():
-            if v is None:
-                os.environ.pop(k, None)
-            else:
-                os.environ[k] = v
         payload = _py_payload(case_id, c["seed"], eng, et_names,
                                rng_state is not None)
         os.makedirs(out_dir, exist_ok=True)

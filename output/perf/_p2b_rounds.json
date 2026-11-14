@@ -1,0 +1,210 @@
+{
+ "rows": [
+  {
+   "workers": 1,
+   "affinity": "none",
+   "n": 16,
+   "p50_cpu_ms": 156.2,
+   "total_cpu_s": 2.594,
+   "wall_s": 2.632,
+   "tput": 6.08,
+   "cores_eff": 0.99
+  },
+  {
+   "workers": 4,
+   "affinity": "none",
+   "n": 256,
+   "p50_cpu_ms": 250.0,
+   "total_cpu_s": 64.922,
+   "wall_s": 17.092,
+   "tput": 14.98,
+   "cores_eff": 3.8,
+   "pool_eff": 0.607,
+   "core_fps_basis": 6.168
+  },
+  {
+   "workers": 4,
+   "affinity": "0,2,4,6",
+   "n": 256,
+   "p50_cpu_ms": 265.6,
+   "total_cpu_s": 68.062,
+   "wall_s": 18.196,
+   "tput": 14.07,
+   "cores_eff": 3.74,
+   "pool_eff": 0.57,
+   "core_fps_basis": 6.168
+  },
+  {
+   "workers": 4,
+   "affinity": "4,5,6,7",
+   "n": 256,
+   "p50_cpu_ms": 375.0,
+   "total_cpu_s": 93.438,
+   "wall_s": 24.396,
+   "tput": 10.49,
+   "cores_eff": 3.83,
+   "pool_eff": 0.425,
+   "core_fps_basis": 6.168
+  },
+  {
+   "workers": 1,
+   "affinity": "none",
+   "n": 16,
+   "p50_cpu_ms": 156.2,
+   "total_cpu_s": 2.672,
+   "wall_s": 2.691,
+   "tput": 5.94,
+   "cores_eff": 0.99
+  },
+  {
+   "workers": 4,
+   "affinity": "none",
+   "n": 256,
+   "p50_cpu_ms": 234.4,
+   "total_cpu_s": 61.938,
+   "wall_s": 16.211,
+   "tput": 15.79,
+   "cores_eff": 3.82,
+   "pool_eff": 0.659,
+   "core_fps_basis": 5.988
+  },
+  {
+   "workers": 4,
+   "affinity": "0,2,4,6",
+   "n": 256,
+   "p50_cpu_ms": 250.0,
+   "total_cpu_s": 64.797,
+   "wall_s": 17.321,
+   "tput": 14.78,
+   "cores_eff": 3.74,
+   "pool_eff": 0.617,
+   "core_fps_basis": 5.988
+  },
+  {
+   "workers": 4,
+   "affinity": "4,5,6,7",
+   "n": 256,
+   "p50_cpu_ms": 343.8,
+   "total_cpu_s": 87.828,
+   "wall_s": 23.035,
+   "tput": 11.11,
+   "cores_eff": 3.81,
+   "pool_eff": 0.464,
+   "core_fps_basis": 5.988
+  },
+  {
+   "workers": 1,
+   "affinity": "none",
+   "n": 16,
+   "p50_cpu_ms": 156.2,
+   "total_cpu_s": 2.672,
+   "wall_s": 2.683,
+   "tput": 5.96,
+   "cores_eff": 1.0
+  },
+  {
+   "workers": 4,
+   "affinity": "none",
+   "n": 256,
+   "p50_cpu_ms": 312.5,
+   "total_cpu_s": 77.719,
+   "wall_s": 20.245,
+   "tput": 12.65,
+   "cores_eff": 3.84,
+   "pool_eff": 0.528,
+   "core_fps_basis": 5.988
+  },
+  {
+   "workers": 4,
+   "affinity": "0,2,4,6",
+   "n": 256,
+   "p50_cpu_ms": 250.0,
+   "total_cpu_s": 63.078,
+   "wall_s": 16.691,
+   "tput": 15.34,
+   "cores_eff": 3.78,
+   "pool_eff": 0.64,
+   "core_fps_basis": 5.988
+  },
+  {
+   "workers": 4,
+   "affinity": "4,5,6,7",
+   "n": 256,
+   "p50_cpu_ms": 343.8,
+   "total_cpu_s": 87.203,
+   "wall_s": 22.911,
+   "tput": 11.17,
+   "cores_eff": 3.81,
+   "pool_eff": 0.466,
+   "core_fps_basis": 5.988
+  },
+  {
+   "workers": 1,
+   "affinity": "none",
+   "n": 16,
+   "p50_cpu_ms": 156.2,
+   "total_cpu_s": 2.594,
+   "wall_s": 2.605,
+   "tput": 6.14,
+   "cores_eff": 1.0
+  },
+  {
+   "workers": 4,
+   "affinity": "none",
+   "n": 256,
+   "p50_cpu_ms": 296.9,
+   "total_cpu_s": 75.797,
+   "wall_s": 19.735,
+   "tput": 12.97,
+   "cores_eff": 3.84,
+   "pool_eff": 0.526,
+   "core_fps_basis": 6.168
+  },
+  {
+   "workers": 4,
+   "affinity": "0,2,4,6",
+   "n": 256,
+   "p50_cpu_ms": 265.6,
+   "total_cpu_s": 69.188,
+   "wall_s": 18.558,
+   "tput": 13.79,
+   "cores_eff": 3.73,
+   "pool_eff": 0.559,
+   "core_fps_basis": 6.168
+  },
+  {
+   "workers": 4,
+   "affinity": "4,5,6,7",
+   "n": 256,
+   "p50_cpu_ms": 359.4,
+   "total_cpu_s": 91.938,
+   "wall_s": 24.296,
+   "tput": 10.54,
+   "cores_eff": 3.78,
+   "pool_eff": 0.427,
+   "core_fps_basis": 6.168
+  }
+ ],
+ "loads": [
+  {
+   "round": 0,
+   "load_before": 20,
+   "load_after": 21
+  },
+  {
+   "round": 1,
+   "load_before": 18,
+   "load_after": 11
+  },
+  {
+   "round": 2,
+   "load_before": 20,
+   "load_after": 2
+  },
+  {
+   "round": 3,
+   "load_before": 2,
+   "load_after": 8
+  }
+ ]
+}

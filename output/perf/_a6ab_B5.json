@@ -1,0 +1,42 @@
+{
+  "stage": "unspecified",
+  "machine": "8L, Python 3.14.5",
+  "cmd": "tools/bench_sim.py --n 40 --workers 1 --cpu-time --json output/perf/_a6ab_B5.json",
+  "lineups": [
+    "truth_20261001_220653_R19_player.json",
+    "truth_20261001_220653_R19_opponent.json"
+  ],
+  "workers": 1,
+  "n": 200,
+  "p50_ms": 156.2,
+  "mean_ms": 146.72,
+  "p95_ms": 171.9,
+  "min_ms": 78.1,
+  "max_ms": 406.2,
+  "mean_ticks": 902.4,
+  "ms_per_k_tick": 173.1,
+  "fights_per_s_core": 6.4,
+  "wins_player": 40,
+  "timed_out_n": 0,
+  "round_wall_s": [
+    6.007,
+    5.841,
+    5.846,
+    5.775,
+    5.88
+  ],
+  "round_p50_ms": [
+    156.2,
+    148.4,
+    156.2,
+    156.2,
+    156.2
+  ],
+  "repro_spread_pct": 4.99,
+  "repro_pass_3pct": false,
+  "clock": "process_time",
+  "warmup": 0,
+  "invariance_delta": [],
+  "invariance_pass": true,
+  "events_bytes_first_seed": 191079
+}

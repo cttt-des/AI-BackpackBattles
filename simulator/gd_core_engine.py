@@ -1042,6 +1042,12 @@ class GDCoreEngine:
         #   装配期消耗，战斗期链状态与修复前逐位一致）。
         _rtm._bind_battle(int(self._seed))
         ctx = k["CoreContext"](int(seed), self.hooks)
+        # ★ np51㊳ py 腿补线（镜像 gd 宿主 OracleAlignBattle.gd:740-741 的
+        #   ORACLE_ALIGN_DRAWSEQ=1 → [GDRAW] 全量逐抽计数）：gd 侧由宿主
+        #   env 直开，py 侧此前无接线。必须在任何装配抽之前开启（此处紧跟
+        #   ctx 构造），否则装配期（flicker delay/ctor 抽）不可见。
+        if os.environ.get("ORACLE_ALIGN_DRAWSEQ") == "1":
+            ctx.set_drawseq_enabled(True)
         # np21-R5：暖场实例打开连接台账（键控默认关，正式/非键控路径零扰动）
         if _r5_warm:
             ctx.bus.connect_journal_enabled = True

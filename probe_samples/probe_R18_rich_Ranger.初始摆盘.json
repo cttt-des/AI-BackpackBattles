@@ -1,0 +1,428 @@
+{
+ "version": 4,
+ "name": "probe_R18_rich_Ranger_init",
+ "character": "Ranger",
+ "round": 18,
+ "grid": [
+  7,
+  9
+ ],
+ "items": [
+  {
+   "id": "Leather Bag",
+   "at": [
+    4,
+    0
+   ],
+   "r": 270
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    2,
+    0
+   ],
+   "r": 270
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    2,
+    2
+   ],
+   "r": 270
+  },
+  {
+   "id": "Potion Belt",
+   "at": [
+    6,
+    3
+   ],
+   "r": 270
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    3,
+    3
+   ],
+   "r": 0
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    2,
+    3
+   ],
+   "r": 180
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    0,
+    3
+   ],
+   "r": 270
+  },
+  {
+   "id": "Stamina Sack",
+   "at": [
+    1,
+    0
+   ],
+   "r": 270
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    4,
+    5
+   ],
+   "r": 270
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    3,
+    5
+   ],
+   "r": 180
+  },
+  {
+   "id": "Stamina Sack",
+   "at": [
+    0,
+    0
+   ],
+   "r": 270
+  },
+  {
+   "id": "Crossblades",
+   "at": [
+    2,
+    2
+   ],
+   "r": 90
+  },
+  {
+   "id": "Heroic Potion",
+   "at": [
+    3,
+    0
+   ],
+   "r": 270
+  },
+  {
+   "id": "Heart Container",
+   "at": [
+    0,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Health Potion",
+   "at": [
+    2,
+    0
+   ],
+   "r": 270
+  },
+  {
+   "id": "Furcifer Prime",
+   "at": [
+    2,
+    4
+   ],
+   "r": 90
+  },
+  {
+   "id": "Jynx torquilla",
+   "at": [
+    4,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Poison Dagger",
+   "at": [
+    6,
+    3
+   ],
+   "r": 270
+  },
+  {
+   "id": "Djinn Lamp",
+   "at": [
+    6,
+    5
+   ],
+   "r": 180
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    2,
+    7
+   ],
+   "r": 0
+  },
+  {
+   "id": "Ranger Bag",
+   "at": [
+    4,
+    2
+   ],
+   "r": 270
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    2,
+    5
+   ],
+   "r": 0
+  },
+  {
+   "id": "Holdall",
+   "at": [
+    0,
+    6
+   ],
+   "r": 180
+  },
+  {
+   "id": "Fanny Pack",
+   "at": [
+    0,
+    5
+   ],
+   "r": 270
+  },
+  {
+   "id": "Forest Dragon",
+   "at": [
+    1,
+    5
+   ],
+   "r": 180
+  },
+  {
+   "id": "Pineapple",
+   "at": [
+    1,
+    8
+   ],
+   "r": 0
+  },
+  {
+   "id": "Protective Purse",
+   "at": [
+    4,
+    8
+   ],
+   "r": 0
+  },
+  {
+   "id": "Oil Lamp",
+   "at": [
+    5,
+    3
+   ],
+   "r": 90
+  },
+  {
+   "id": "Regular Ruby",
+   "at": [
+    4,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Stamina Sack",
+   "at": [
+    6,
+    0
+   ],
+   "r": 90
+  },
+  {
+   "id": "Heavy Drinking",
+   "at": [
+    4,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Flawed Topaz",
+   "at": [
+    5,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Stamina Sack",
+   "at": [
+    4,
+    7
+   ],
+   "r": 0
+  },
+  {
+   "id": "Protective Purse",
+   "at": [
+    5,
+    8
+   ],
+   "r": 0
+  },
+  {
+   "id": "Banana",
+   "at": [
+    0,
+    4
+   ],
+   "r": 90
+  },
+  {
+   "id": "Protective Purse",
+   "at": [
+    6,
+    8
+   ],
+   "r": 0
+  },
+  {
+   "id": "Pineapple",
+   "at": [
+    0,
+    6
+   ],
+   "r": 270
+  },
+  {
+   "id": "Garlic",
+   "at": [
+    4,
+    5
+   ],
+   "r": 0
+  },
+  {
+   "id": "Squirrel",
+   "at": [
+    4,
+    6
+   ],
+   "r": 0
+  },
+  {
+   "id": "Ruby Whelp",
+   "at": [
+    0,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Blueberries",
+   "at": [
+    1,
+    5
+   ],
+   "r": 0
+  },
+  {
+   "id": "Bowl of Treats",
+   "at": [
+    4,
+    8
+   ],
+   "r": 270
+  },
+  {
+   "id": "Garlic",
+   "at": [
+    2,
+    7
+   ],
+   "r": 0
+  },
+  {
+   "id": "Hedgehog",
+   "at": [
+    6,
+    7
+   ],
+   "r": 270
+  },
+  {
+   "id": "Bloody Dagger",
+   "at": [
+    6,
+    1
+   ],
+   "r": 270
+  },
+  {
+   "id": "Amulet of Feasting",
+   "at": [
+    4,
+    7
+   ],
+   "r": 270
+  },
+  {
+   "id": "Acorn Collar",
+   "at": [
+    2,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Lucky Clover",
+   "at": [
+    4,
+    0
+   ],
+   "r": 0
+  },
+  {
+   "id": "Vampiric Collar",
+   "at": [
+    6,
+    0
+   ],
+   "r": 0
+  }
+ ],
+ "meta": {
+  "h_name": "probe_R18_rich_Ranger",
+  "placed": [
+   "Acorn Collar",
+   "Lucky Clover",
+   "Vampiric Collar"
+  ],
+  "unplaced": [
+   "Platin Customer Card",
+   "Wisp",
+   "Banana",
+   "Blood Goobert",
+   "Slice of Toast",
+   "Evil Cap",
+   "Rat",
+   "Strong Heroic Potion",
+   "Snowmaster",
+   "Enchanted Weapons"
+  ],
+  "analytic": {
+   "A": 82.0,
+   "B": 56.8
+  }
+ }
+}

@@ -1,0 +1,38 @@
+docs: §4.10 C++ 版那 2 场修复尝试——未修成，但定位到具体事件差异(108 的 parent/origin)
+
+用户问能否修复那 2 场。做了一轮完整定位，没修成，但把差异缩到了具体事件。
+
+定位结果（run100875_r5_o100892_r5，首个分歧第 18 条事件 t=1.8，type=108 Poison）：
+  C++      : 第 18 条，parent=17（第一发 Hammer DealDamage），origin=item:Chipped Emerald#7
+  神谕/py腿: 第 23 条，parent=19（第二发 Hammer DealDamage），origin=gem(GemSocket2,-1)
+
+关键事实：
+  1. py 腿与 gdcore 腿完全一致 ⇒ 我方无疑，C++ 侧有偏差（此前我把两条腿搞混，误判过一次）
+  2. activation_order 完全一致（player 25 / opponent 21）⇒ 装配与开战排序没问题
+  3. 全 1690 场只有 2 场胜负不同、30 场事件数偏差 ⇒ 局部事件归属/时机问题，非系统性崩溃
+  4. type=108 神谕有 2 次(t=1.8/9.18)，C++ 只有 1 次且位置提前
+
+已排除的假设（8 项，都查过）：
+  below_master 参数错（已修，这是真问题但属我的测量参数）
+  缺键→get_index 返回 null（C++ setup 按 getStacks 全填 0.0，与 py 一致）
+  gd_iter_seq(int) 语义（C++ 返回 0..n-1，与 GDScript for i in amount 等价）
+  prepareArmor 未执行（py 侧 changeResistChance 一次没调用——Emerald 挂在 Hammer 武器上，
+    getGemMode() 不是 Armor，prepareArmor 本就不该跑；py 是对的）
+  takeDamage 实现（C++ 生成代码与 py 逐行同构）
+  logEvent 的 DealDamage 闸、事件序列化 gem→None（均排除）
+
+卡在哪（诚实说明）：
+  根因应在 inflictPoison(getP1(), damageRes.event) 的 damageRes.event 指向哪一发，
+  但该值依赖 attacked 信号派发时机与 Emerald onAttack 调用次数，而：
+    · C++ 库只导出 6 个接口（无 RNG 状态、无逐抽追踪）
+    · 该 case 神谕侧只有 events.json，无 rng_log
+    · GdVal 完整定义不在 bundle 内
+  要继续需要：C++ 侧加 RNG 追踪 / 神谕 rng_log / 完整源码。
+
+副产品：修了 verify_oracle 一个真 bug——run_py 的 except 分支引用 _ov_saved，
+  而它在 try 内才定义 ⇒ eng 构造前抛异常时变成 UnboundLocalError 掩盖真异常，
+  本轮排查被它误导两轮（真凶是 LINEUP_OUT 路径常量）。已在 try 前加兜底。
+
+结论：在当前 bundle 的可观测性下这 2 场修不了，但已证明不是「我方错了」。
+  影响面：1690 场里 2 场胜负分歧(0.12%)、30 场事件数偏差(1.8%)。
+  => 采用 C++ 版时不应把它当「等价实现」，只能当「快但不完全等价」。

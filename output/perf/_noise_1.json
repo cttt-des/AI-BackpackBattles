@@ -1,0 +1,34 @@
+{
+  "stage": "noise1",
+  "machine": "8L, Python 3.14.5",
+  "cmd": "tools/bench_sim.py --n 40 --rounds 1 --cpu-time --no-evidence --json output/perf/_noise_1.json --label noise1",
+  "lineups": [
+    "truth_20261001_220653_R19_player.json",
+    "truth_20261001_220653_R19_opponent.json"
+  ],
+  "workers": 1,
+  "n": 40,
+  "p50_ms": 218.8,
+  "mean_ms": 210.55,
+  "p95_ms": 252.3,
+  "min_ms": 109.4,
+  "max_ms": 546.9,
+  "mean_ticks": 902.4,
+  "ms_per_k_tick": 242.4,
+  "fights_per_s_core": 4.57,
+  "wins_player": 8,
+  "timed_out_n": 0,
+  "round_wall_s": [
+    8.47
+  ],
+  "round_p50_ms": [
+    218.8
+  ],
+  "repro_spread_pct": 0.0,
+  "repro_pass_3pct": true,
+  "clock": "process_time",
+  "warmup": 0,
+  "invariance_delta": [],
+  "invariance_pass": true,
+  "events_bytes_first_seed": null
+}

@@ -1,0 +1,10 @@
+{
+  "n": 20,
+  "mismatches": 20,
+  "cpp_s": 1.01,
+  "py_s": 2.72,
+  "cpp_ms_per_fight": 50.55,
+  "py_ms_per_fight": 135.81,
+  "speedup": 2.69,
+  "n_threads": 4
+}

@@ -1,0 +1,25 @@
+{
+  "stage": "eff_w4",
+  "machine": "8L, Python 3.14.5",
+  "cmd": "tools/bench_sim.py --n 128 --workers 4 --rounds 1 --label eff_w4 --worker-affinity 0,1,2,3 --json output/perf/_eff_par1.json",
+  "lineups": [
+    "truth_20261001_220653_R19_player.json",
+    "truth_20261001_220653_R19_opponent.json"
+  ],
+  "workers": 4,
+  "n": 128,
+  "p50_ms": 642.4,
+  "mean_ms": 688.79,
+  "p95_ms": 992.1,
+  "min_ms": 308.6,
+  "max_ms": 1951.7,
+  "mean_ticks": 903.7,
+  "ms_per_k_tick": 710.9,
+  "fights_per_s_core": 1.56,
+  "wins_player": 25,
+  "timed_out_n": 0,
+  "wall_ms": 23614.4,
+  "throughput_fights_per_s": 5.42,
+  "round_p50_ms": null,
+  "repro_spread_pct": null
+}

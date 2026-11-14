@@ -1,0 +1,18 @@
+Processing .\.
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: backpack-battles-sim
+  Building wheel for backpack-battles-sim (pyproject.toml): started
+  Building wheel for backpack-battles-sim (pyproject.toml): finished with status 'done'
+  Created wheel for backpack-battles-sim: filename=backpack_battles_sim-0.5.4-cp314-cp314-win_amd64.whl size=35228687 sha256=3ba041cdc73616b3017a81a0f542774764c28a061b1e8ca62c29ae73920645b3
+  Stored in directory: C:\Users\Windows\AppData\Local\Temp\pip-ephem-wheel-cache-mjrxs1gk\wheels\a7\59\75\784d2e8c98f814c3a2cf473d418cb0633a6aada03afd4c10f0
+Successfully built backpack-battles-sim
+
+[notice] A new release of pip is available: 26.1.1 -> 26.3
+[notice] To update, run: C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\python.exe -m pip install --upgrade pip
+[wheel] 源码 673 个 .py / 现有 670 个 .pyd
+[wheel] C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\python.exe -m pip wheel . --no-deps --no-build-isolation -w D:\文件资料\学习\自动背包AI\dist
+============================================================
+WHEEL OK: D:\文件资料\学习\自动背包AI\dist\backpack_battles_sim-0.5.4-cp314-cp314-win_amd64.whl  (33.6 MB)
+install:  pip install backpack_battles_sim-0.5.4-cp314-cp314-win_amd64.whl
+============================================================

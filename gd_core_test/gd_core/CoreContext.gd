@@ -69,7 +69,6 @@ var custom_health_multiplier := 100.0
 
 # ★ np51㊱：flicker delay 覆盖队列的消费游标（key → 已消费个数）——
 #   ORACLE_FLK_DELAY 同 key 多值时按装配序逐实例消费（双 Burning Coal 类）。
-var flk_delay_cursor := {}
 
 	# ★ np51㊳：ORACLE_ALIGN_DRAWSEQ=1 → CoreRng 启用全量抽计数（[GDRAW] 行）
 var _drawseq_enabled := false

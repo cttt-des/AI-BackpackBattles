@@ -114,7 +114,6 @@ class CoreContext(GodotObject):
 		self.label_rng_enabled = True
 		self.lobbies_mode = False      # 对齐 Game.curMode == Game.Mode.Lobbies
 		self.custom_health_multiplier = 100.0
-		self.flk_delay_cursor = {}
 		self._drawseq_enabled = False
 		self.lib_fires = []
 		self.combat = None

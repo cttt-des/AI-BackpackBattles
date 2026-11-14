@@ -1,0 +1,42 @@
+{
+  "stage": "unspecified",
+  "machine": "8L, Python 3.14.5",
+  "cmd": "tools/bench_sim.py --n 16 --workers 1 --json output/perf/_d3_clockcheck.json",
+  "lineups": [
+    "truth_20261001_220653_R19_player.json",
+    "truth_20261001_220653_R19_opponent.json"
+  ],
+  "workers": 1,
+  "n": 80,
+  "p50_ms": 221.0,
+  "mean_ms": 223.77,
+  "p95_ms": 269.3,
+  "min_ms": 122.0,
+  "max_ms": 625.3,
+  "mean_ticks": 909.2,
+  "ms_per_k_tick": 243.1,
+  "fights_per_s_core": 4.52,
+  "wins_player": 15,
+  "timed_out_n": 0,
+  "round_wall_s": [
+    3.947,
+    3.642,
+    3.514,
+    3.418,
+    3.392
+  ],
+  "round_p50_ms": [
+    229.5,
+    227.9,
+    218.5,
+    215.3,
+    211.5
+  ],
+  "repro_spread_pct": 8.24,
+  "repro_pass_3pct": false,
+  "clock": "perf_counter",
+  "warmup": 0,
+  "invariance_delta": [],
+  "invariance_pass": true,
+  "events_bytes_first_seed": 191079
+}

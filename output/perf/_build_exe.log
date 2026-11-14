@@ -1,0 +1,21 @@
+2319 INFO: PyInstaller: 6.15.0, contrib hooks: 2026.9
+2321 INFO: Python: 3.14.5
+2402 INFO: Platform: Windows-10-10.0.19045-SP0
+2403 INFO: Python environment: C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64
+2406 INFO: wrote C:\Users\Windows\AppData\Local\Temp\bb_backpackai_build_1794590427974\BackpackAI.spec
+2431 INFO: Module search paths (PYTHONPATH):
+['D:\\文件资料\\学习\\自动背包AI',
+ 'C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\python314.zip',
+ 'C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\DLLs',
+ 'C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib',
+ 'C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64',
+ 'C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib\\site-packages',
+ 'D:\\文件资料\\学习\\自动背包AI']
+3917 INFO: Appending 'datas' from .spec
+4118 INFO: checking Analysis
+4118 INFO: Building Analysis because Analysis-00.toc is non existent
+4119 INFO: Running Analysis Analysis-00.toc
+4119 INFO: Target bytecode optimization level: 0
+4119 INFO: Initializing module dependency graph...
+4126 INFO: Initializing module graph hook caches...
+4252 INFO: Analyzing modules for base_library.zip ...

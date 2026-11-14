@@ -1,0 +1,26 @@
+docs: 新增 30 场差异的独立复现包（352KB，作者只需 native_sim_cpp 即可自校验）
+
+用户要求「打包」，产出 docs/repro_cpp_alignment.zip + docs/repro_cpp_alignment/。
+
+包内容：
+  cases.json       30 场完整输入（case_id/seed/round_id/player/opponent）
+  expected_py.json 参考事件流（主仓库 py 腿，已与神谕逐行一致），已精简至 1.1MB
+  actual_cpp.json  我这边用 libgdcore.dll 跑出的结果（canonical 行），已抽样自检
+                   8/8 与重跑逐位一致，作者可直接比对不必先跑
+  verify.py        校验脚本，只 import native_sim，不依赖主仓库
+  table.md         30 场差异一览
+  README.md        用法 + 口径说明 + 三类共性 + 排查顺序
+
+体积：4.4MB JSON -> 352KB zip。
+
+verify.py 已在「解压到全新目录 + 同级放 bundle」条件下实测可用：
+  python verify.py                                  # 30 场，退出码 0=一致 1=有分歧
+  python verify.py --case <id> --ctx 6              # 单场并排打印分歧前后
+
+README 里把三个坑写清楚了：
+  1. below_master=True 是必须的（convention 里写的 false 是陈旧记载，
+     漏传会让一致率从 99.88% 掉到 92.1%、134 场假失败）
+  2. delta==-1 是正常口径差（主仓库 run() 末尾多一条 emit_combat_end）
+  3. 事件行格式与参考侧精简格式的对应关系
+
+报告 §7.5 已加复现包入口。

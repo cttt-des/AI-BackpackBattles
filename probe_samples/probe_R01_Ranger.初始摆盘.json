@@ -1,0 +1,89 @@
+{
+ "version": 4,
+ "name": "probe_R01_Ranger_init",
+ "character": "Ranger",
+ "round": 1,
+ "grid": [
+  7,
+  9
+ ],
+ "items": [
+  {
+   "id": "Vineweave Basket",
+   "at": [
+    2,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    3,
+    5
+   ],
+   "r": 0
+  },
+  {
+   "id": "Healing Herbs",
+   "at": [
+    2,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Broom",
+   "at": [
+    4,
+    2
+   ],
+   "r": 90
+  },
+  {
+   "id": "Whetstone",
+   "at": [
+    3,
+    2
+   ],
+   "r": 180
+  },
+  {
+   "id": "Piggybank",
+   "at": [
+    2,
+    3
+   ],
+   "r": 90
+  },
+  {
+   "id": "Banana",
+   "at": [
+    3,
+    5
+   ],
+   "r": 180
+  },
+  {
+   "id": "Walrus Tusk",
+   "at": [
+    2,
+    4
+   ],
+   "r": 0
+  }
+ ],
+ "meta": {
+  "h_name": "probe_R01_Ranger",
+  "placed": [],
+  "unplaced": [
+   "Banana",
+   "Wooden Sword",
+   "Whetstone"
+  ],
+  "analytic": {
+   "A": 7.0,
+   "B": 0.0
+  }
+ }
+}

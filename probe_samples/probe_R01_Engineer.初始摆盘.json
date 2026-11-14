@@ -1,0 +1,89 @@
+{
+ "version": 4,
+ "name": "probe_R01_Engineer_init",
+ "character": "Engineer",
+ "round": 1,
+ "grid": [
+  7,
+  9
+ ],
+ "items": [
+  {
+   "id": "Engineer Bag 2",
+   "at": [
+    1,
+    2
+   ],
+   "r": 0
+  },
+  {
+   "id": "Leather Bag",
+   "at": [
+    4,
+    3
+   ],
+   "r": 0
+  },
+  {
+   "id": "Cog",
+   "at": [
+    1,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Slice of Bread",
+   "at": [
+    3,
+    4
+   ],
+   "r": 0
+  },
+  {
+   "id": "Battery",
+   "at": [
+    1,
+    3
+   ],
+   "r": 0
+  },
+  {
+   "id": "Broom",
+   "at": [
+    2,
+    2
+   ],
+   "r": 270
+  },
+  {
+   "id": "Skull Badge",
+   "at": [
+    3,
+    3
+   ],
+   "r": 0
+  },
+  {
+   "id": "Wooden Buckler",
+   "at": [
+    4,
+    3
+   ],
+   "r": 0
+  }
+ ],
+ "meta": {
+  "h_name": "probe_R01_Engineer",
+  "placed": [],
+  "unplaced": [
+   "Resistor",
+   "Star of Courage",
+   "Stone Badge"
+  ],
+  "analytic": {
+   "A": 4.0,
+   "B": 0.0
+  }
+ }
+}

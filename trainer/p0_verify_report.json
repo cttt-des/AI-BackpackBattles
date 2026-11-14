@@ -1,0 +1,1385 @@
+{
+ "bag_pool_size": 26,
+ "R1": [
+  {
+   "bag": "Bag of Giving",
+   "tscn": "oracle\\Items\\Exclusive\\BagofGiving.tscn",
+   "runtime_collision_cells": {
+    "0": 6,
+    "90": 6,
+    "180": 6,
+    "270": 6
+   },
+   "tscn_extension": 6,
+   "tscn_collision": 0,
+   "tscn_ext_cells": [
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "tscn_col_cells": [],
+   "match": true
+  },
+  {
+   "bag": "Berserker Bag",
+   "tscn": "oracle\\Items\\Exclusive\\BerserkerBag.tscn",
+   "runtime_collision_cells": {
+    "0": 6,
+    "90": 6,
+    "180": 6,
+    "270": 6
+   },
+   "tscn_extension": 6,
+   "tscn_collision": 0,
+   "tscn_ext_cells": [
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "tscn_col_cells": [],
+   "match": true
+  },
+  {
+   "bag": "Box of Prosperity",
+   "tscn": "oracle\\Items\\Exclusive\\BoxofProsperity.tscn",
+   "runtime_collision_cells": {
+    "0": 4,
+    "90": 4,
+    "180": 4,
+    "270": 4
+   },
+   "tscn_extension": 4,
+   "tscn_collision": 0,
+   "tscn_ext_cells": [
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ]
+   ],
+   "tscn_col_cells": [],
+   "match": true
+  },
+  {
+   "bag": "Engineer Bag 2",
+   "tscn": "oracle\\Items\\Exclusive\\EngineerBag2.tscn",
+   "runtime_collision_cells": {
+    "0": 8,
+    "90": 8,
+    "180": 8,
+    "270": 8
+   },
+   "tscn_extension": 8,
+   "tscn_collision": 0,
+   "tscn_ext_cells": [
+    [
+     -2,
+     0
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "tscn_col_cells": [],
+   "match": true
+  },
+  {
+   "bag": "Engineer Box",
+   "tscn": "oracle\\Items\\Exclusive\\EngineerBox.tscn",
+   "runtime_collision_cells": {
+    "0": 6,
+    "90": 6,
+    "180": 6,
+    "270": 6
+   },
+   "tscn_extension": 6,
+   "tscn_collision": 0,
+   "tscn_ext_cells": [
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "tscn_col_cells": [],
+   "match": true
+  },
+  {
+   "bag": "Fanny Pack",
+   "tscn": "oracle\\Items\\FannyPack.tscn",
+   "runtime_collision_cells": {
+    "0": 2,
+    "90": 2,
+    "180": 2,
+    "270": 2
+   },
+   "tscn_extension": 2,
+   "tscn_collision": 0,
+   "tscn_ext_cells": [
+    [
+     -1,
+     -1
+    ],
+    [
+     0,
+     -1
+    ]
+   ],
+   "tscn_col_cells": [],
+   "match": true
+  },
+  {
+   "bag": "Fire Pit",
+   "tscn": "oracle\\Items\\Exclusive\\FirePit.tscn",
+   "runtime_collision_cells": {
+    "0": 9,
+    "90": 9,
+    "180": 9,
+    "270": 9
+   },
+   "tscn_extension": 9,
+   "tscn_collision": 0,
+   "tscn_ext_cells": [
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ]
+   ],
+   "tscn_col_cells": [],
+   "match": true
+  },
+  {
+   "bag": "Holdall",
+   "tscn": "oracle\\Items\\Exclusive\\Holdall.tscn",
+   "runtime_collision_cells": {
+    "0": 6,
+    "90": 6,
+    "180": 6,
+    "270": 6
+   },
+   "tscn_extension": 6,
+   "tscn_collision": 0,
+   "tscn_ext_cells": [
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "tscn_col_cells": [],
+   "match": true
+  },
+  {
+   "bag": "Portable Altar",
+   "tscn": "oracle\\Items\\Exclusive\\PortableAltar.tscn",
+   "runtime_collision_cells": {
+    "0": 4,
+    "90": 4,
+    "180": 4,
+    "270": 4
+   },
+   "tscn_extension": 4,
+   "tscn_collision": 0,
+   "tscn_ext_cells": [
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ]
+   ],
+   "tscn_col_cells": [],
+   "match": true
+  },
+  {
+   "bag": "Potion Belt",
+   "tscn": "oracle\\Items\\PotionBelt.tscn",
+   "runtime_collision_cells": {
+    "0": 4,
+    "90": 4,
+    "180": 4,
+    "270": 4
+   },
+   "tscn_extension": 4,
+   "tscn_collision": 0,
+   "tscn_ext_cells": [
+    [
+     0,
+     -2
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "tscn_col_cells": [],
+   "match": true
+  },
+  {
+   "bag": "Protective Purse",
+   "tscn": "oracle\\Items\\ProtectivePurse.tscn",
+   "runtime_collision_cells": {
+    "0": 1,
+    "90": 1,
+    "180": 1,
+    "270": 1
+   },
+   "tscn_extension": 1,
+   "tscn_collision": 0,
+   "tscn_ext_cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "tscn_col_cells": [],
+   "match": true
+  },
+  {
+   "bag": "Puzzlebag J",
+   "tscn": "oracle\\Items\\Exclusive\\PuzzlebagJ.tscn",
+   "runtime_collision_cells": {
+    "0": 4,
+    "90": 4,
+    "180": 4,
+    "270": 4
+   },
+   "tscn_extension": 4,
+   "tscn_collision": 0,
+   "tscn_ext_cells": [
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "tscn_col_cells": [],
+   "match": true
+  },
+  {
+   "bag": "Puzzlebag L",
+   "tscn": "oracle\\Items\\Exclusive\\PuzzlebagL.tscn",
+   "runtime_collision_cells": {
+    "0": 4,
+    "90": 4,
+    "180": 4,
+    "270": 4
+   },
+   "tscn_extension": 4,
+   "tscn_collision": 0,
+   "tscn_ext_cells": [
+    [
+     -1,
+     0
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "tscn_col_cells": [],
+   "match": true
+  },
+  {
+   "bag": "Puzzlebag S",
+   "tscn": "oracle\\Items\\Exclusive\\PuzzlebagS.tscn",
+   "runtime_collision_cells": {
+    "0": 4,
+    "90": 4,
+    "180": 4,
+    "270": 4
+   },
+   "tscn_extension": 4,
+   "tscn_collision": 0,
+   "tscn_ext_cells": [
+    [
+     -1,
+     0
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     -1
+    ]
+   ],
+   "tscn_col_cells": [],
+   "match": true
+  },
+  {
+   "bag": "Puzzlebag T",
+   "tscn": "oracle\\Items\\Exclusive\\PuzzlebagT.tscn",
+   "runtime_collision_cells": {
+    "0": 4,
+    "90": 4,
+    "180": 4,
+    "270": 4
+   },
+   "tscn_extension": 4,
+   "tscn_collision": 0,
+   "tscn_ext_cells": [
+    [
+     -1,
+     0
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "tscn_col_cells": [],
+   "match": true
+  },
+  {
+   "bag": "Puzzlebag Z",
+   "tscn": "oracle\\Items\\Exclusive\\PuzzlebagZ.tscn",
+   "runtime_collision_cells": {
+    "0": 4,
+    "90": 4,
+    "180": 4,
+    "270": 4
+   },
+   "tscn_extension": 4,
+   "tscn_collision": 0,
+   "tscn_ext_cells": [
+    [
+     -1,
+     -1
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "tscn_col_cells": [],
+   "match": true
+  },
+  {
+   "bag": "Puzzlebox",
+   "tscn": "oracle\\Items\\Exclusive\\Puzzlebox.tscn",
+   "runtime_collision_cells": {
+    "0": 6,
+    "90": 6,
+    "180": 6,
+    "270": 6
+   },
+   "tscn_extension": 6,
+   "tscn_collision": 0,
+   "tscn_ext_cells": [
+    [
+     -1,
+     0
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "tscn_col_cells": [],
+   "match": true
+  },
+  {
+   "bag": "Random Loadout Bag",
+   "tscn": "oracle\\Items\\Exclusive\\RandomLoadoutBag.tscn",
+   "runtime_collision_cells": {
+    "0": 4,
+    "90": 4,
+    "180": 4,
+    "270": 4
+   },
+   "tscn_extension": 4,
+   "tscn_collision": 0,
+   "tscn_ext_cells": [
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ]
+   ],
+   "tscn_col_cells": [],
+   "match": true
+  },
+  {
+   "bag": "Ranger Bag",
+   "tscn": "oracle\\Items\\RangerBag.tscn",
+   "runtime_collision_cells": {
+    "0": 6,
+    "90": 6,
+    "180": 6,
+    "270": 6
+   },
+   "tscn_extension": 6,
+   "tscn_collision": 0,
+   "tscn_ext_cells": [
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "tscn_col_cells": [],
+   "match": true
+  },
+  {
+   "bag": "Relic Case",
+   "tscn": "oracle\\Items\\Exclusive\\RelicCase.tscn",
+   "runtime_collision_cells": {
+    "0": 4,
+    "90": 4,
+    "180": 4,
+    "270": 4
+   },
+   "tscn_extension": 4,
+   "tscn_collision": 0,
+   "tscn_ext_cells": [
+    [
+     0,
+     -2
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "tscn_col_cells": [],
+   "match": true
+  },
+  {
+   "bag": "Scholar Bag",
+   "tscn": "oracle\\Items\\Exclusive\\ScholarBag.tscn",
+   "runtime_collision_cells": {
+    "0": 6,
+    "90": 6,
+    "180": 6,
+    "270": 6
+   },
+   "tscn_extension": 6,
+   "tscn_collision": 0,
+   "tscn_ext_cells": [
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "tscn_col_cells": [],
+   "match": true
+  },
+  {
+   "bag": "Sewing Case",
+   "tscn": "oracle\\Items\\Exclusive\\SewingCase.tscn",
+   "runtime_collision_cells": {
+    "0": 6,
+    "90": 6,
+    "180": 6,
+    "270": 6
+   },
+   "tscn_extension": 6,
+   "tscn_collision": 0,
+   "tscn_ext_cells": [
+    [
+     -2,
+     -1
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     -1
+    ]
+   ],
+   "tscn_col_cells": [],
+   "match": true
+  },
+  {
+   "bag": "Stamina Sack",
+   "tscn": "oracle\\Items\\StaminaSack.tscn",
+   "runtime_collision_cells": {
+    "0": 3,
+    "90": 3,
+    "180": 3,
+    "270": 3
+   },
+   "tscn_extension": 3,
+   "tscn_collision": 0,
+   "tscn_ext_cells": [
+    [
+     0,
+     -2
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ]
+   ],
+   "tscn_col_cells": [],
+   "match": true
+  },
+  {
+   "bag": "Storage Coffin",
+   "tscn": "oracle\\Items\\StorageCoffin.tscn",
+   "runtime_collision_cells": {
+    "0": 8,
+    "90": 8,
+    "180": 8,
+    "270": 8
+   },
+   "tscn_extension": 8,
+   "tscn_collision": 0,
+   "tscn_ext_cells": [
+    [
+     -1,
+     -2
+    ],
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     0,
+     -2
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "tscn_col_cells": [],
+   "match": true
+  },
+  {
+   "bag": "Toolbox",
+   "tscn": "oracle\\Items\\Exclusive\\Toolbox.tscn",
+   "runtime_collision_cells": {
+    "0": 8,
+    "90": 8,
+    "180": 8,
+    "270": 8
+   },
+   "tscn_extension": 8,
+   "tscn_collision": 0,
+   "tscn_ext_cells": [
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ]
+   ],
+   "tscn_col_cells": [],
+   "match": true
+  },
+  {
+   "bag": "Vineweave Basket",
+   "tscn": "oracle\\Items\\Exclusive\\VineweaveBasket.tscn",
+   "runtime_collision_cells": {
+    "0": 9,
+    "90": 9,
+    "180": 9,
+    "270": 9
+   },
+   "tscn_extension": 9,
+   "tscn_collision": 0,
+   "tscn_ext_cells": [
+    [
+     -1,
+     -1
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     -1,
+     1
+    ],
+    [
+     0,
+     -1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     -1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ]
+   ],
+   "tscn_col_cells": [],
+   "match": true
+  }
+ ],
+ "R2": {
+  "doc_run_found": true,
+  "doc_run_dups_at_9_6": [
+   [
+    9,
+    6,
+    24,
+    10
+   ]
+  ],
+  "distinct_gid_per_cell_hist": [
+   [
+    1,
+    11495360
+   ],
+   [
+    2,
+    3993614
+   ],
+   [
+    3,
+    61975
+   ],
+   [
+    4,
+    161
+   ],
+   [
+    5,
+    8
+   ],
+   [
+    6,
+    1
+   ],
+   [
+    8,
+    3
+   ]
+  ]
+ },
+ "R3": {
+  "rarity_dist": {
+   "0": 32,
+   "1": 67,
+   "2": 73,
+   "3": 96,
+   "4": 101,
+   "5": 150
+  },
+  "code_evidence": {
+   "oracle/Utility/ItemPool.gd": [],
+   "oracle/Core/Game.gd": [
+    "func leaveLobbyFromShop():",
+    "func titleToShop():",
+    "func isShopActive() -> bool:",
+    "func switchToShop():",
+    "func playShopBGM():",
+    "func sort_ShopPriority(item1: Item, item2: Item):"
+   ]
+  },
+  "bag_rarity_classes": {
+   "Bag of Giving": {
+    "rarity": 5,
+    "classes": 32
+   },
+   "Berserker Bag": {
+    "rarity": 5,
+    "classes": 4
+   },
+   "Box of Prosperity": {
+    "rarity": 2,
+    "classes": 127
+   },
+   "Engineer Bag 2": {
+    "rarity": 5,
+    "classes": 64
+   },
+   "Engineer Box": {
+    "rarity": 5,
+    "classes": 64
+   },
+   "Fanny Pack": {
+    "rarity": 1,
+    "classes": 127
+   },
+   "Fire Pit": {
+    "rarity": 5,
+    "classes": 8
+   },
+   "Holdall": {
+    "rarity": 2,
+    "classes": 127
+   },
+   "Portable Altar": {
+    "rarity": 5,
+    "classes": 8
+   },
+   "Potion Belt": {
+    "rarity": 3,
+    "classes": 127
+   },
+   "Protective Purse": {
+    "rarity": 4,
+    "classes": 127
+   },
+   "Puzzlebag J": {
+    "rarity": 4,
+    "classes": 16
+   },
+   "Puzzlebag L": {
+    "rarity": 0,
+    "classes": 16
+   },
+   "Puzzlebag S": {
+    "rarity": 1,
+    "classes": 16
+   },
+   "Puzzlebag T": {
+    "rarity": 3,
+    "classes": 16
+   },
+   "Puzzlebag Z": {
+    "rarity": 2,
+    "classes": 16
+   },
+   "Puzzlebox": {
+    "rarity": 5,
+    "classes": 16
+   },
+   "Random Loadout Bag": {
+    "rarity": 5,
+    "classes": 127
+   },
+   "Ranger Bag": {
+    "rarity": 5,
+    "classes": 1
+   },
+   "Relic Case": {
+    "rarity": 5,
+    "classes": 2
+   },
+   "Scholar Bag": {
+    "rarity": 5,
+    "classes": 16
+   },
+   "Sewing Case": {
+    "rarity": 5,
+    "classes": 32
+   },
+   "Stamina Sack": {
+    "rarity": 2,
+    "classes": 127
+   },
+   "Storage Coffin": {
+    "rarity": 5,
+    "classes": 2
+   },
+   "Toolbox": {
+    "rarity": 5,
+    "classes": 4
+   },
+   "Vineweave Basket": {
+    "rarity": 5,
+    "classes": 1
+   }
+  }
+ },
+ "R4": [
+  {
+   "bag": "Bag of Giving",
+   "module": "gd_core_py\\gd_core_items\\Exclusive\\BagofGiving.py",
+   "hooks": [
+    "canApplyEffect"
+   ],
+   "canApplyEffect_body": [
+    "return toItem.isClassItem()"
+   ]
+  },
+  {
+   "bag": "Berserker Bag",
+   "module": "gd_core_py\\gd_core_items\\Exclusive\\BerserkerBag.py",
+   "hooks": [
+    "canApplyEffect"
+   ],
+   "canApplyEffect_body": [
+    "return toItem.hasCooldown()"
+   ]
+  },
+  {
+   "bag": "Box of Prosperity",
+   "module": "gd_core_py\\gd_core_items\\Exclusive\\BoxofProsperity.py",
+   "hooks": [
+    "canApplyEffect",
+    "onAffectedItemInsideAdded"
+   ],
+   "canApplyEffect_body": [
+    "return toItem.getRarity() >= _H_1"
+   ]
+  },
+  {
+   "bag": "Engineer Bag 2",
+   "module": "gd_core_py\\gd_core_items\\Exclusive\\EngineerBag2.py",
+   "hooks": []
+  },
+  {
+   "bag": "Engineer Box",
+   "module": "gd_core_py\\gd_core_items\\Exclusive\\EngineerBox.py",
+   "hooks": [
+    "onCombatEnd",
+    "canApplyEffect"
+   ],
+   "canApplyEffect_body": [
+    "return toItem.has_method(\"emitCharge\")"
+   ]
+  },
+  {
+   "bag": "Fanny Pack",
+   "module": "gd_core_py\\gd_core_items\\FannyPack.py",
+   "hooks": [
+    "onCombatStart",
+    "canApplyEffect"
+   ],
+   "canApplyEffect_body": [
+    "return toItem.hasCooldown() and not toItem.isBag()"
+   ]
+  },
+  {
+   "bag": "Fire Pit",
+   "module": "gd_core_py\\gd_core_items\\Exclusive\\FirePit.py",
+   "hooks": [
+    "canApplyEffect"
+   ],
+   "canApplyEffect_body": [
+    "return toItem.hasType(_H_1)"
+   ]
+  },
+  {
+   "bag": "Holdall",
+   "module": "gd_core_py\\gd_core_items\\Exclusive\\Holdall.py",
+   "hooks": [
+    "canApplyEffect",
+    "onCombatStart"
+   ],
+   "canApplyEffect_body": [
+    "return toItem.isNeutral()"
+   ]
+  },
+  {
+   "bag": "Portable Altar",
+   "module": "gd_core_py\\gd_core_items\\Exclusive\\PortableAltar.py",
+   "hooks": [
+    "onCombatStart"
+   ]
+  },
+  {
+   "bag": "Potion Belt",
+   "module": "gd_core_py\\gd_core_items\\PotionBelt.py",
+   "hooks": [
+    "canApplyEffect"
+   ],
+   "canApplyEffect_body": [
+    "return toItem.hasType(_H_1)"
+   ]
+  },
+  {
+   "bag": "Protective Purse",
+   "module": "gd_core_py\\gd_core_items\\ProtectivePurse.py",
+   "hooks": [
+    "onCombatStart"
+   ]
+  },
+  {
+   "bag": "Puzzlebag J",
+   "module": "gd_core_py\\gd_core_items\\Exclusive\\PuzzlebagJ.py",
+   "hooks": [
+    "canApplyEffect"
+   ],
+   "canApplyEffect_body": [
+    "return toItem.hasInventoryDuration()"
+   ]
+  },
+  {
+   "bag": "Puzzlebag L",
+   "module": "gd_core_py\\gd_core_items\\Exclusive\\PuzzlebagL.py",
+   "hooks": [
+    "canApplyEffect",
+    "onCombatStart"
+   ],
+   "canApplyEffect_body": [
+    "return toItem.canHealOrLifesteal()"
+   ]
+  },
+  {
+   "bag": "Puzzlebag S",
+   "module": "gd_core_py\\gd_core_items\\Exclusive\\PuzzlebagS.py",
+   "hooks": [
+    "canApplyEffect"
+   ],
+   "canApplyEffect_body": [
+    "return toItem.gainsBuffs()"
+   ]
+  },
+  {
+   "bag": "Puzzlebag T",
+   "module": "gd_core_py\\gd_core_items\\Exclusive\\PuzzlebagT.py",
+   "hooks": [
+    "canApplyEffect"
+   ],
+   "canApplyEffect_body": [
+    "return toItem.usesBuffs()"
+   ]
+  },
+  {
+   "bag": "Puzzlebag Z",
+   "module": "gd_core_py\\gd_core_items\\Exclusive\\PuzzlebagZ.py",
+   "hooks": [
+    "canApplyEffect"
+   ],
+   "canApplyEffect_body": [
+    "return toItem.inflictsDebuffs()"
+   ]
+  },
+  {
+   "bag": "Puzzlebox",
+   "module": "gd_core_py\\gd_core_items\\Exclusive\\Puzzlebox.py",
+   "hooks": [
+    "canApplyEffect"
+   ],
+   "canApplyEffect_body": [
+    "return toItem.hasCooldown()"
+   ]
+  },
+  {
+   "bag": "Random Loadout Bag",
+   "module": "gd_core_py\\gd_core_items\\Exclusive\\RandomLoadoutBag.py",
+   "hooks": []
+  },
+  {
+   "bag": "Ranger Bag",
+   "module": "gd_core_py\\gd_core_items\\RangerBag.py",
+   "hooks": [
+    "canApplyEffect"
+   ],
+   "canApplyEffect_body": [
+    "return toItem.canDamage()"
+   ]
+  },
+  {
+   "bag": "Relic Case",
+   "module": "gd_core_py\\gd_core_items\\Exclusive\\RelicCase.py",
+   "hooks": [
+    "canApplyEffect"
+   ],
+   "canApplyEffect_body": [
+    "return toItem.isWeapon()"
+   ]
+  },
+  {
+   "bag": "Scholar Bag",
+   "module": "gd_core_py\\gd_core_items\\Exclusive\\ScholarBag.py",
+   "hooks": [
+    "canApplyEffect",
+    "onCombatStart"
+   ],
+   "canApplyEffect_body": [
+    "return toItem.gainsStack(_H_1)"
+   ]
+  },
+  {
+   "bag": "Sewing Case",
+   "module": "gd_core_py\\gd_core_items\\Exclusive\\SewingCase.py",
+   "hooks": [
+    "canApplyEffect"
+   ],
+   "canApplyEffect_body": [
+    "return toItem.isCrafted() and (toItem.hasCooldown() or toItem.gainsBuffs())"
+   ]
+  },
+  {
+   "bag": "Stamina Sack",
+   "module": "gd_core_py\\gd_core_items\\StaminaSack.py",
+   "hooks": []
+  },
+  {
+   "bag": "Storage Coffin",
+   "module": "gd_core_py\\gd_core_items\\StorageCoffin.py",
+   "hooks": [
+    "canApplyEffect"
+   ],
+   "canApplyEffect_body": [
+    "return toItem.canActivate() and not toItem.isBag()"
+   ]
+  },
+  {
+   "bag": "Toolbox",
+   "module": "gd_core_py\\gd_core_items\\Exclusive\\Toolbox.py",
+   "hooks": [
+    "canApplyEffect",
+    "onCombatStart"
+   ],
+   "canApplyEffect_body": [
+    "return toItem.canBeEmpowered()"
+   ]
+  },
+  {
+   "bag": "Vineweave Basket",
+   "module": "gd_core_py\\gd_core_items\\Exclusive\\VineweaveBasket.py",
+   "hooks": [
+    "canApplyEffect"
+   ],
+   "canApplyEffect_body": [
+    "return toItem.hasType(_H_1)"
+   ]
+  }
+ ],
+ "R5": {
+  "CoreGrid.getItemsInCells": "# 对齐 Inventory.gd:726-727\n\tdef getItemInCell(self, cell):\n\t\treturn self.filledCells.get(cell, None)\n\n\n\t# 对齐 Inventory.gd:729-739\n\tdef getItemsInCells(self, cells):\n\t\titemsInCells = []\n\t\t_items_seen = {}\n\t\tfor cell in (cells if cells.__class__ is list else _iter(cells)):\n\t\t\tif (cell in self.filledCells):\n\t\t\t\titem = self.filledCells[cell]\n\t\t\t\tif item.placed and item not in _items_seen:\n\t\t\t\t\t_items_seen[item] = True\n\t\t\t\t\titemsInCells.append(item)\n\n\t\treturn itemsInCells\n\n\n\t# 对齐 Inventory.gd:742-747（Util.dictAdd 记的是「物品 → 命中格数」）",
+  "Bag.getItemsInside": "def getTopLeftGlobal(self):\n\t\treturn Vector2.ZERO\n\n\tdef getBottomRightGlobal(self):\n\t\treturn Vector2.ZERO\n\n\tdef isEmpty(self):\n\t\treturn (not self.getItemsInside())\n\n\n\tdef getItemsInside(self):\n\t\tif not (not self.cachedInsideItems):\n\t\t\treturn self.cachedInsideItems\n\n\t\treturn self.inventory.getItemsInCells(self.occupiedCells)\n\n\n\tdef getEmptyCells(self):\n\t\temptyCells = []"
+ }
+}

@@ -1,0 +1,3 @@
+[alignment-out] 显式指定 D:\文件资料\学习\自动背包AI\output\oracle\alignment.json
+  [py][FAIL] run101668_r12_o704449_r12：RuntimeError: super(): __class__ cell not found
+[py] 完成 0/1 场

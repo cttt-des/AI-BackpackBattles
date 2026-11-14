@@ -1,0 +1,12 @@
+纯 py 臂：12 场, 907.6 ms/场, 892 tick
+组件                       调用/场         累计占比    自身 ms/场     us/次
+item.getSpeed           21930        10.8%      97.66    4.453
+character.buffs          1483         8.5%      76.82   51.779
+buff._tick              16320         3.3%      29.95    1.835
+timer.tick               5192         1.7%      15.62    3.009
+character.timers         1483         1.3%      11.72    7.899
+character.tick           1483         0.6%       5.21    3.510
+item.timers                 0         0.0%       0.00    0.000
+
+注：getSpeed 的耗时已被 item.timers 等调用者包含，不可相加；
+    要看「互斥块」请读 physicsTick 内部结构。
