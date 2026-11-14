@@ -1082,6 +1082,22 @@ static void run_one_internal(
         };
         gd::GdArr* p_ordered = reorder_copy(p_items, player_side);
         gd::GdArr* o_ordered = reorder_copy(o_items, opponent_side);
+        // ★ 全局 Math 流对齐（真源 py gd_core_engine.py:1273-1278）：
+        //   ① py 在装配完成之后调 _bind_battle(seed) 重置 Godot 全局链，
+        //      抹掉装配期（物品脚本 shuffleEngine 等）对全局链的消耗；
+        //      本函数入口的 reset_for_battle() 在装配之前，两者不等价。
+        //   ② 原版装配段每个 side 的 items 下标数组各消耗一条 Array.shuffle()
+        //      （Fisher-Yates 自后向前 n-1 抽）；结果弃置，仅对齐链状态。
+        //      战斗期物品脚本的裸 arr.shuffle()（Eggscalibur.onDealtDamage 的
+        //      affected.shuffle()）消费的就是这条链。
+        //   ★ 用 battle.math_rng（Math::default_pcg 全局链），
+        //     不是 ctx.rng（CoreRng）—— 两者是独立随机流。
+        battle.bind_battle(opts.seed);
+        for (uint32_t _n : {p_ordered->len, o_ordered->len}) {
+            for (int64_t _i = static_cast<int64_t>(_n) - 1; _i > 0; --_i) {
+                (void)(battle.math_rng.randi() % static_cast<uint32_t>(_i + 1));
+            }
+        }
         gd::GdVal sb_args[3] = {gd::GdVal::from_arr(p_ordered), gd::GdVal::from_arr(o_ordered), gd::GdVal::from_bool(true)};
         combat_obj->fn_startBattle(sb_args, 3);
     } else if (opts.native_activation_order) {

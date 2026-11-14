@@ -7,8 +7,7 @@
   "first_diff": null,
   "cpp_win": "opponent",
   "py_win": "opponent",
-  "aligned": true,
-  "mult": 100.0
+  "aligned": true
  },
  {
   "case": "run101354_r14_o101073_r14",
@@ -18,8 +17,7 @@
   "first_diff": 73,
   "cpp_win": "opponent",
   "py_win": "opponent",
-  "aligned": false,
-  "mult": 100.0
+  "aligned": false
  },
  {
   "case": "run101490_r12_o704664_r12",
@@ -29,8 +27,7 @@
   "first_diff": null,
   "cpp_win": "player",
   "py_win": "player",
-  "aligned": true,
-  "mult": 200.0
+  "aligned": true
  },
  {
   "case": "run101490_r3_o704722_r3",
@@ -40,8 +37,7 @@
   "first_diff": null,
   "cpp_win": "player",
   "py_win": "player",
-  "aligned": true,
-  "mult": 200.0
+  "aligned": true
  },
  {
   "case": "run101490_r5_o704639_r5",
@@ -51,8 +47,7 @@
   "first_diff": null,
   "cpp_win": "player",
   "py_win": "player",
-  "aligned": true,
-  "mult": 200.0
+  "aligned": true
  },
  {
   "case": "run101490_r6_o500242_r6",
@@ -62,8 +57,7 @@
   "first_diff": null,
   "cpp_win": "player",
   "py_win": "player",
-  "aligned": true,
-  "mult": 200.0
+  "aligned": true
  },
  {
   "case": "run101490_r8_o101571_r8",
@@ -73,19 +67,17 @@
   "first_diff": null,
   "cpp_win": "player",
   "py_win": "player",
-  "aligned": true,
-  "mult": 200.0
+  "aligned": true
  },
  {
   "case": "run101490_r9_o101423_r9",
   "cpp_n": 662,
   "py_n": 663,
   "delta": -1,
-  "first_diff": 249,
+  "first_diff": null,
   "cpp_win": "player",
   "py_win": "player",
-  "aligned": false,
-  "mult": 200.0
+  "aligned": true
  },
  {
   "case": "run101571_r11_o704580_r11",
@@ -95,8 +87,7 @@
   "first_diff": 157,
   "cpp_win": "opponent",
   "py_win": "opponent",
-  "aligned": false,
-  "mult": 100.0
+  "aligned": false
  },
  {
   "case": "run101582_r9_o704990_r9",
@@ -106,19 +97,17 @@
   "first_diff": 49,
   "cpp_win": "opponent",
   "py_win": "opponent",
-  "aligned": false,
-  "mult": 100.0
+  "aligned": false
  },
  {
   "case": "run101635_r15_o101655_r15",
-  "cpp_n": 1829,
+  "cpp_n": 1920,
   "py_n": 1921,
-  "delta": -92,
-  "first_diff": 181,
+  "delta": -1,
+  "first_diff": null,
   "cpp_win": "player",
   "py_win": "player",
-  "aligned": false,
-  "mult": 100.0
+  "aligned": true
  },
  {
   "case": "run101668_r7_o604708_r7",
@@ -128,8 +117,7 @@
   "first_diff": null,
   "cpp_win": "player",
   "py_win": "player",
-  "aligned": true,
-  "mult": 100.0
+  "aligned": true
  },
  {
   "case": "run101668_r8_o704752_r8",
@@ -139,19 +127,17 @@
   "first_diff": 127,
   "cpp_win": "opponent",
   "py_win": "opponent",
-  "aligned": false,
-  "mult": 100.0
+  "aligned": false
  },
  {
   "case": "run300219_r6_o704614_r6",
-  "cpp_n": 196,
+  "cpp_n": 174,
   "py_n": 172,
-  "delta": 24,
+  "delta": 2,
   "first_diff": 48,
   "cpp_win": "opponent",
   "py_win": "opponent",
-  "aligned": false,
-  "mult": 100.0
+  "aligned": false
  },
  {
   "case": "run400051_r12_o101432_r12",
@@ -161,8 +147,7 @@
   "first_diff": null,
   "cpp_win": "opponent",
   "py_win": "opponent",
-  "aligned": true,
-  "mult": 100.0
+  "aligned": true
  },
  {
   "case": "run604585_r6_o704454_r6",
@@ -172,8 +157,7 @@
   "first_diff": null,
   "cpp_win": "player",
   "py_win": "player",
-  "aligned": true,
-  "mult": 100.0
+  "aligned": true
  },
  {
   "case": "run604687_r10_o704291_r10",
@@ -183,8 +167,7 @@
   "first_diff": 55,
   "cpp_win": "player",
   "py_win": "player",
-  "aligned": false,
-  "mult": 100.0
+  "aligned": false
  },
  {
   "case": "run604702_r8_o704578_r8",
@@ -194,8 +177,7 @@
   "first_diff": null,
   "cpp_win": "opponent",
   "py_win": "opponent",
-  "aligned": true,
-  "mult": 100.0
+  "aligned": true
  },
  {
   "case": "run604799_r6_o101061_r6",
@@ -205,30 +187,27 @@
   "first_diff": null,
   "cpp_win": "player",
   "py_win": "player",
-  "aligned": true,
-  "mult": 100.0
+  "aligned": true
  },
  {
   "case": "run604807_r15_o604822_r15",
-  "cpp_n": 387,
+  "cpp_n": 357,
   "py_n": 358,
-  "delta": 29,
-  "first_diff": 125,
+  "delta": -1,
+  "first_diff": null,
   "cpp_win": "player",
   "py_win": "player",
-  "aligned": false,
-  "mult": 100.0
+  "aligned": true
  },
  {
   "case": "run604825_r9_o704797_r9",
-  "cpp_n": 272,
+  "cpp_n": 317,
   "py_n": 284,
-  "delta": -12,
-  "first_diff": 40,
+  "delta": 33,
+  "first_diff": 50,
   "cpp_win": "opponent",
   "py_win": "opponent",
-  "aligned": false,
-  "mult": 100.0
+  "aligned": false
  },
  {
   "case": "run704504_r15_o704283_r15",
@@ -238,8 +217,7 @@
   "first_diff": 145,
   "cpp_win": "opponent",
   "py_win": "opponent",
-  "aligned": false,
-  "mult": 100.0
+  "aligned": false
  },
  {
   "case": "run704714_r9_o604609_r9",
@@ -249,30 +227,27 @@
   "first_diff": 57,
   "cpp_win": "player",
   "py_win": "player",
-  "aligned": false,
-  "mult": 100.0
+  "aligned": false
  },
  {
   "case": "run704864_r5_o704519_r5",
-  "cpp_n": 311,
+  "cpp_n": 348,
   "py_n": 349,
-  "delta": -38,
-  "first_diff": 22,
+  "delta": -1,
+  "first_diff": null,
   "cpp_win": "player",
   "py_win": "player",
-  "aligned": false,
-  "mult": 100.0
+  "aligned": true
  },
  {
   "case": "run704879_r14_o704504_r14",
-  "cpp_n": 1880,
+  "cpp_n": 2268,
   "py_n": 2269,
-  "delta": -389,
-  "first_diff": 264,
+  "delta": -1,
+  "first_diff": null,
   "cpp_win": "player",
   "py_win": "player",
-  "aligned": false,
-  "mult": 100.0
+  "aligned": true
  },
  {
   "case": "run704881_r6_o101111_r6",
@@ -282,8 +257,7 @@
   "first_diff": 31,
   "cpp_win": "opponent",
   "py_win": "opponent",
-  "aligned": false,
-  "mult": 100.0
+  "aligned": false
  },
  {
   "case": "run704933_r6_o704860_r6",
@@ -293,19 +267,17 @@
   "first_diff": 116,
   "cpp_win": "player",
   "py_win": "player",
-  "aligned": false,
-  "mult": 100.0
+  "aligned": false
  },
  {
   "case": "run704990_r12_o300182_r12",
-  "cpp_n": 581,
+  "cpp_n": 637,
   "py_n": 653,
-  "delta": -72,
-  "first_diff": 227,
+  "delta": -16,
+  "first_diff": 304,
   "cpp_win": "player",
   "py_win": "player",
-  "aligned": false,
-  "mult": 100.0
+  "aligned": false
  },
  {
   "case": "run705018_r6_o604708_r6",
@@ -315,8 +287,7 @@
   "first_diff": null,
   "cpp_win": "player",
   "py_win": "player",
-  "aligned": true,
-  "mult": 100.0
+  "aligned": true
  },
  {
   "case": "run705130_r7_o100875_r7",
@@ -326,7 +297,6 @@
   "first_diff": null,
   "cpp_win": "opponent",
   "py_win": "opponent",
-  "aligned": true,
-  "mult": 100.0
+  "aligned": true
  }
 ]
