@@ -449,6 +449,10 @@ def run_py(cases: List[Dict[str, Any]]) -> int:
                 if ln.startswith("state="):
                     rng_state = int(ln.strip()[6:])
                     break
+        # 2026-11-14 修：_ov_saved 原在 try 内部定义，而 except 分支会引用它；
+        # 若 load_lineup / 夹具读取在它之前抛异常，except 会变成
+        # UnboundLocalError（掩盖真异常，实测卡在这里排查了两轮）。
+        _ov_saved = {}          # 兜底：未走到门控快照时也能安全还原
         try:
             player = load_lineup(os.path.join(LINEUP_OUT,
                                               "oracle_%s_player.json" % case_id))
