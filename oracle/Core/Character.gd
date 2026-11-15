@@ -976,7 +976,10 @@ func reduceMaxStamina(amount):
 func changeBaseMaxStamina():
 	if playerId == ID.PLAYER and not staminaUpdateQueued:
 		staminaUpdateQueued = true
-		call_deferred("recalculateMaxStamina")
+		# ★ A3/M15（2026-11-15）：帧末重算入帧末队列——真实游戏帧末执行（战斗中囊被转化/移除时，
+	#   Stable Recombobulator 等转化类的 removeItem 会触发本排队）；阻塞录制循环不冲刷引擎队列
+	#   ⇒ 旧语料 max/cur 与真实游戏分歧。登记 oracleFrameEndCalls，由 oracle_fight.gd 冲刷。
+		Util.oracleFrameEndCalls.push_back([self, "recalculateMaxStamina", []])
 
 var staminaUpdateQueued = false
 
