@@ -1068,10 +1068,14 @@ class GDCoreEngine:
         # ★ np43 键控（py 腿镜像，见 __init__ 签名注）：Buff 清空 stop seen 清除
         ctx.keyed_stop_clears_seen = bool(self._keyed_stop_clears_seen)
         ctx.keyed_cleanse_biggest_first = bool(self._keyed_cleanse_biggest_first)
-        # ★ np24：deferred 冲刷关闭（与 gd 宿主 OracleAlignBattle.gd 同位；录制
-        #   [M11]：阻塞循环无帧，战斗内 call_deferred 永不执行——Deck of Cards
-        #   卡链零启动实证）。py 腿此前靠装配期缓存陈旧而偶然一致（deck cards=0）。
-        ctx.deferred_flush_enabled = False
+        # ★ A3（2026-11-15，用户定案「卡链必须逐一激活」）：deferred 冲刷开启。
+        #   np24 时代关闭的理由是旧录制 harness 阻塞循环无帧、call_deferred 整场
+        #   不执行（Deck of Cards 卡链零启动实证）；harness 已按同一语义补帧末
+        #   冲刷（[M15]：oracle_fight.gd flush_frame_end_calls——activateItems 后
+        #   与每 tick 末，oracle/Utility/Util.gd oracleFrameEndCalls），四腿同点
+        #   同批语义。冲刷面 rng 中性（ready_deferred/checkState 零 rng；卡链
+        #   点火 getCooldown 零 rng），战斗语义面 = 卡链真实化。
+        ctx.deferred_flush_enabled = True
         # ★ np24：EngineerBox 接力死亡镜像（与 gd 宿主 OracleAlignBattle.gd 同位；
         #   录制侧 EB ChargeTimer 首弹 1 次/侧、队列不推进，接力重发射=0）。
         # np25-p5 订正：接力镜像作废（见 OracleAlignBattle.gd 同注），EB 接力恢复

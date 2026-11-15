@@ -960,7 +960,9 @@ static void run_one_internal(
     ctx_obj->f_below_master = gd::GdVal::from_bool(opts.below_master != 0);
     ctx_obj->f_custom_health_multiplier = gd::GdVal::from_float(opts.custom_health_multiplier);
     ctx_obj->f_label_rng_enabled = gd::GdVal::from_bool(opts.label_rng_enabled != 0);
-    ctx_obj->f_deferred_flush_enabled = gd::GdVal::from_bool(false);
+    // ★ A3（2026-11-15）：deferred 冲刷开启——与 harness [M15] 帧末冲刷同点同批
+    //  （activateItems 后 + 每 tick 末），卡链真实化；冲刷面 rng 中性。
+    ctx_obj->f_deferred_flush_enabled = gd::GdVal::from_bool(true);
     ctx_obj->f_eb_relay_mirrored = gd::GdVal::from_bool(false);
     ctx_obj->f_cur_round = gd::GdVal::from_int(opts.round_id);
 

@@ -133,6 +133,19 @@ def _patch_bare_stack():
                                 '\titerationCooldown = adjustCooldown()' % (nl, nl, nl, nl), 1)
                 break
         io.open(p4, 'w', encoding='utf-8', newline='').write(s4)
+    # Card.startActivation 入口打 [CHAIN]（ORACLE_CHAINMARK）——卡链点火取证
+    p5 = os.path.join(PROJ_DST, 'Items', 'Card.gd')
+    s5 = io.open(p5, encoding='utf-8', newline='').read()
+    if 'ORACLE_CHAINMARK' not in s5:
+        for nl in ('\r\n', '\n'):
+            anchor = 'func startActivation():%s\tif activating or faceUp: return' % nl
+            if anchor in s5:
+                s5 = s5.replace(anchor, 'func startActivation():%s'
+                                '\tif OS.get_environment("ORACLE_CHAINMARK") != "":%s'
+                                '\t\tprint("[CHAIN] t=", Util.time, " ", get_path())%s'
+                                '\tif activating or faceUp: return' % (nl, nl, nl), 1)
+                break
+        io.open(p5, 'w', encoding='utf-8', newline='').write(s5)
 
 
 def main():
@@ -155,7 +168,8 @@ def main():
                'ORACLE_FLKPROBE': '1',
                'ORACLE_TIMER_POLL': os.environ.get('A1_TIMER_POLL', ''),
                'ORACLE_DEBUG': os.environ.get('A1_TIMER_DEBUG', ''),
-               'ORACLE_TRIGMARK': os.environ.get('A1_TRIGMARK', '')}
+               'ORACLE_TRIGMARK': os.environ.get('A1_TRIGMARK', ''),
+               'ORACLE_CHAINMARK': os.environ.get('A1_CHAINMARK', '')}
         rc, out, log = gh.run(gh.cmd(project=proj, script='oracle_fight.gd'),
                               label='a1o_%s' % cid[:20], env_extra=env, timeout=1200)
         stdout_path = os.path.join(ROOT, 'output', '_a1', 'bare_stdout_%s.log' % cid)

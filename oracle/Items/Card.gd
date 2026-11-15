@@ -149,7 +149,7 @@ func notifyChainPosition(_deck, _chainPos, chainLength):
 	
 	updateTexture()
 	
-	connector.call_deferred("checkState")
+	connector.checkState()
 
 func getDescription(wrapInColor = true) -> String:
 	var descr = .getDescription(wrapInColor)

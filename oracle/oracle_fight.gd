@@ -704,6 +704,8 @@ func run_case(c: Dictionary, warmup := false) -> Dictionary :
 	# [M4] 原版 call_deferred(prepareItems) + callDelayed(activateItems, 2.5s)：
 	# 延迟期间无 rng 消耗、无事件，顺序调用逐 tick 等价
 	G.activateItems(playerItems + opponentItems)
+	# ★ A3：activateItems 同帧末——卡链点火点（onCombatStart 排队的 startActivation）
+	flush_frame_end_calls()
 
 	# 装配后阵容 dump（保留装配顺序）
 	dump_lineups(dir, res)
@@ -897,12 +899,33 @@ func tick_battle(dt: float, n := 0) -> void :
 	# ⑧ SceneTreeTimer（Util.callDelayed 注册表；判胜即冻结）
 	var s_timers = U.rng.get_state() if _dbg_ticks else 0
 	drive_delayed(dt)
+	# ★ A3：帧末冲刷（真实游戏每帧尾泵 MessageQueue）
+	flush_frame_end_calls()
 	if _dbg_ticks:
 		var s1 = U.rng.get_state()
 		if s1 != s0:
 			print("[rng-eat] t=%.3f itemphase=%s timerphase=%s delayedphase=%s"
 					% [U.time, str(s_items != s0), str(s_timers != s_items),
 					str(s1 != s_timers)])
+
+
+# ★ A3 卡链忠实化（2026-11-15）：帧末冲刷——真实游戏每帧尾泵 MessageQueue
+#   （call_deferred 语义，60fps 下帧:tick≈1:1），阻塞录制循环无帧 ⇒ 队列在整场
+#   战斗内从不执行（Deck of Cards 的 startActivation 点火即此 ⇒ 语料卡链全灭）。
+#   语义：一次冲刷一批，冲刷期间新入队留到下一批（与内核 flushDeferred 同规）；
+#   判胜后不再冲刷（与 drive_delayed 的 fightEnded continue 语义一致）。
+func flush_frame_end_calls() -> void :
+	if G.fightEnded:
+		U.oracleFrameEndCalls.clear()
+		return
+	var batch: Array = U.oracleFrameEndCalls
+	if batch.empty():
+		return
+	U.oracleFrameEndCalls = []
+	for call_entry in batch:
+		if OS.get_environment("ORACLE_CHAINMARK") != "":
+			print("[DRAIN] n=", batch.size())
+		call_entry[0].callv(call_entry[1], call_entry[2])
 
 
 # Timer 节点驱动：引擎侧 get_time_left() 在阻塞循环里冻结，故注册表自记剩余；
@@ -1391,6 +1414,7 @@ func harness_notes() -> Array :
 		"- [M11] 进程配额 ORACLE_FIGHT_CHUNK（外层驱动续跑）：阻塞循环下 MessageQueue 只能帧末 flush，跨场累积至溢出会逐条刷陈旧目标错误；配额退出=干净 flush，resume 幂等续接",
 		"- [M12] 兜底三闸（每 tick 检查）：单 tick 墙钟>5s(lockup)/单场墙钟>1200s/事件数>200000（np46 抬闸，见 [M14]）——2.7 万事件级战斗每事件排队数十条 Control 布局消息，约 90 万条触发 MessageQueue 溢出 dump（3.5GB）；被截断的战斗照常 dump 已产生事件，status 如实标 timeout",
 		"- [M14] np46 事件闸全长（台账 §6m83，ORACLE_NOLIMIT 语义=200000，np22 抬闸版同形）：重录给全部场抬 recording 事件闸 25000→200000、墙钟闸 60s→1200s——「语料截断·严格前缀」簇（§6m77-81 五场）即旧闸 25000 所截，全长录制后自然终局事件（type=111/112+winner）齐备",
+		"- [M15] A3 卡链忠实化（2026-11-15，用户定案「卡链必须逐一激活」）：战斗语义的 call_deferred 改经 U.oracleFrameEndCalls 帧末列表，由 flush_frame_end_calls 在 activateItems 后与每 tick 末冲刷（真实游戏每帧尾泵 MessageQueue，60fps 下帧:tick≈1:1——阻塞录制循环无帧，旧语料 Deck of Cards 卡链零启动）。冲刷面 rng 中性；Card/DeckofCards 的 connector checkState（纯视觉）改直调不入列", 
 		"- [M13] np46 逐案隔离（台账 §6m82）：每场开战前跨案/跨执行累积态归零（T0 绝对钟 Util.time/clockTime/frameCounter=0、EventBus.disconnectAll、oracleTimerLefts/oracleDelayedTimers 清、ropeSpeedups/cubeAdvanced/sandbagActive/fatigueCounter/fatigueDamageSource 归零、双侧角色 attackMovingForward=false+attackSoundReadyTime=-1+damageAnimation stop 复位+全 buff permanentStacks=0+物品 buffLabelPositionTimestamps/usedStacks 清）——初态=gd_core 全新 CoreContext，零 rng 消耗",
 		"- [M5] UI/音频照常调用但入虚空；其 Util.rng 消耗按原版保留（docs/rng_truth.md §1.4-4）",
 		"- 隔离：config/name=BackpackBattlesOracle；history.db 用本地快照副本（原快照只读）",

@@ -757,6 +757,14 @@ func callDelayed_process(target, methodName, delay, binds = []):
 #      oracleTimeLeft() 供战斗路径读剩余时以注册表为准（changeTimer /
 #      CombatTimer.advanceTime / Buff 三处调用点）。
 #   正常（非神谕）运行时两个容器恒空，全部行为与原版逐位一致。
+var oracleFrameEndCalls: Array = []      # ★ A3 卡链忠实化（2026-11-15）：
+                                         #    call_deferred 的 harness 等价物——真实游戏在帧末
+                                         #    泵 MessageQueue（60fps 下帧:tick≈1:1），阻塞录制循环
+                                         #    无帧 ⇒ Deck of Cards 的 startActivation（唯一战斗语义
+                                         #    deferred 点）永不执行 ⇒ 语料卡链全灭。改登记于此，
+                                         #    由 oracle_fight.gd 在 activateItems 后与每 tick 末冲刷。
+                                         #    冲刷语义与内核 flushDeferred 一致：一次一批，冲刷期间
+                                         #    新入队留到下一批。
 var oracleDelayedTimers: Array = []      # [[SceneTreeTimer, 剩余秒], …]
 var oracleTimerLefts: Dictionary = {}    # Timer → [注册表剩余秒, 上次引擎读数]
 

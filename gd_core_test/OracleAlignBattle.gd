@@ -697,10 +697,10 @@ func run_case(c: Dictionary, out_root: String, perm_warm := false, r5_warm := fa
 	#   custom_health_multiplier（数值）；缺省/缺字段 = 100 零回归。
 	ctx.custom_health_multiplier = float(c.get("custom_health_multiplier", 100.0))
 	probe.gate_ctx = ctx
-	# ★ np24：deferred 冲刷关闭（对位录制 [M11]：阻塞循环无帧，战斗内
-	#   call_deferred 永不执行——run574 Deck of Cards 卡链零启动实证；
-	#   机理与开关见 gd_core/CoreContext.gd flushDeferred 注）。
-	ctx.deferred_flush_enabled = false
+	# ★ A3（2026-11-15，用户定案「卡链必须逐一激活」）：deferred 冲刷开启——
+	#   harness 已按同一语义补帧末冲刷（[M15] oracle_fight.gd
+	#   flush_frame_end_calls），四腿同点同批。冲刷面 rng 中性。
+	ctx.deferred_flush_enabled = true
 	# ★ np51㊳：oracle ItemLibrary 库实例战斗窗内发火对位（lib_fires=[t,lo,hi,…]）
 	var _lf = File.new()
 	var _lf_arr: Array = []

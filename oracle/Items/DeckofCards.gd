@@ -18,7 +18,7 @@ func onAddToInventory():
 func onRemoveFromInventory():
 	resetChain()
 	connector.disappear()
-	connector.call_deferred("checkState")
+	connector.checkState()
 
 func resetChain():
 	for card in cards:
@@ -38,7 +38,7 @@ func updateCards():
 	if not affected.empty():
 		cards.push_back(affected[0])
 		connector.appear()
-		connector.call_deferred("checkState")
+		connector.checkState()
 		
 		var nextCard = cards[0].getNextCard()
 		while (nextCard and not nextCard in cards):
@@ -46,7 +46,7 @@ func updateCards():
 			nextCard = nextCard.getNextCard()
 	else:
 		connector.disappear()
-		connector.call_deferred("checkState")
+		connector.checkState()
 
 	var chainLength = cards.size()
 	
@@ -73,7 +73,12 @@ func onCombatStart():
 		cardActivations = 0
 		if not cards.empty():
 			
-			cards[0].call_deferred("startActivation")
+			# ★ A3 卡链忠实化：真实游戏在帧末冲刷本 deferred（activateItems
+			#   同帧尾）。阻塞录制循环无法冲刷引擎队列，改登记帧末列表，
+			#   由 oracle_fight.gd 冲刷（activateItems 后 + 每 tick 末）。
+			Util.oracleFrameEndCalls.push_back([cards[0], "startActivation", []])
+			if OS.get_environment("ORACLE_CHAINMARK") != "":
+				print("[KICKQ] t=", Util.time, " cards=", cards.size())
 	activate()
 
 func notifyActivation():
