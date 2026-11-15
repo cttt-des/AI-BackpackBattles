@@ -826,7 +826,12 @@ func oracleTimeLeft(timer: Timer) -> float:
 
 
 func callNextFrame(target, methodName, arguments = []):
-	get_tree().connect("idle_frame", target, methodName, arguments, CONNECT_ONESHOT)
+	# ★ A3/M15（2026-11-15）：帧末单发 = 卡链同族语义。阻塞录制循环无帧，
+	#   idle_frame 永不发出（Lightsaber.onBlindingLightTimeout 的
+	#   endBlindingLight 即此——blindingLightActive 锁死，blind 再循环被抑制）。
+	#   改登记帧末列表，由 oracle_fight.gd flush_frame_end_calls 冲刷
+	#   （CONNECT_ONESHOT 语义 = 登记一次执行一次，天然等价）。
+	oracleFrameEndCalls.push_back([target, methodName, arguments])
 
 func finishTimer(timer: Timer):
 	if not timer.is_stopped():
