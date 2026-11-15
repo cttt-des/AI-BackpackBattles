@@ -277,3 +277,52 @@ C.1 三前提全部满足：
 | 旧语料 vs 扩样语料 | 旧 914 场在 oracle/fights.json（历史库=oracle/data/history.db），扩样场需隔离副本+换库；两者用例键名不同 |
 | 生成代码修补 | C++ 生成代码的 env 门控被转译期常量折叠（""==""恒真）——「行为对齐」不能只看源码字面，要核折叠后的真值 |
 | 验收判据 | 「pcg 推进步数闭合」（seed→state 反推）是装配链对齐的最强单指标：步数不等必分歧，步数相等+事件流一致≈链位逐位一致 |
+
+
+## 11 A3 卡链忠实化专项（2026-11-15，用户定案「卡链必须逐一激活」）
+
+### 11.1 修复全集（三处战斗语义帧依赖点）
+
+| 点 | 机制 | 修复 |
+|---|---|---|
+| Deck of Cards 卡链点火 | `cards[0].call_deferred("startActivation")` | [M15] `Util.oracleFrameEndCalls` 帧末列表 + `flush_frame_end_calls`（activateItems 后 + 每 tick 末冲刷，一次一批） |
+| Lightsaber 关灯 | `Util.callNextFrame("endBlindingLight")`——idle_frame 单发，blindingLightActive 锁死、blind 再循环被抑制 | `callNextFrame` 整体改登记帧末队列（内核本就是 ctx.defer ✓） |
+| 玩家体力帧末重算 | 战斗中囊被转化时 `recalculateMaxStamina` 排队——引擎队列不冲刷（已验证：Recombobulator 转化全在商店期 shopEntered，战斗期 defer 从不排队，修复对语料零影响、纯真值补齐） | Character.gd 改登记帧末队列 |
+
+另：Card/DeckofCards 的 connector checkState（纯视觉）改直调——消除旧 harness
+5.6GB「Object was deleted」错误风暴源。
+
+### 11.2 重录与验收
+
+| 语料 | 结果 |
+|---|---|
+| expand 1690（卡链+关灯+splash 三修复齐备） | 1680/1690 = **99.41%** |
+| 914（同） | **914/914 全绿**（`output/oracle/alignment_914_chain2.json`） |
+| C++（对 py 腿） | **1690/1690 = 100%**（三内核互洽，`output/perf/_cpp1690_chain.json`） |
+| 种子双态 | FAILS=0 |
+
+胜负分布变化：player 959→968 / opponent 731→722——卡链真实化翻转了约 18 场。
+
+### 11.3 剩余 10 场分歧（expand）——根因已定位，待专项
+
+10 场（run500274/run604768×2/run704388×3/run101179×2/run101322/run101135/run1492 等）
+共同画像：**Lightsaber blinding light 周期链**。逐抽对拍（run604768）证明：
+
+- 两侧 PCG 链**逐位同步**（公共子序列上全部数值一致，无一数值分叉）；
+- 分歧是**状态面**：`buffLabelPositionTimestamps` 节流槽位状态差
+  （label 节流 randInBox(30,30) vs (10,10)——纯视觉路径的槽位判定不同时刻）
+  + t=0.15 窗口 Amulet of Agility 的 regen 给予 **resist roll 结果不同**
+  （gd resisted:true → Amulet of Light 的 t19 临时生命 ×3 不触发；
+  oracle 未 resist → t19 ×3 触发）→ Lightsaber 循环共振数不同
+  （oracle 战斗段比 gd 多 ~1143 笔纯视觉/label 抽）。
+
+即：blinding light 的「关灯」在两侧都能执行，但**执行批次相位**存在残差，
+引发 Lightsaber 循环次数差，进而 Amulet of Light/label 节流链式放大。
+这不是简单的一处 deferred 点，而是「Timer fire → 帧末回调 → regen 信号 →
+label 节流」整条链的相位对齐专项。
+
+**如实声明**：规划 A 阶段目标「1690/1690 零开关」当前为 1680/1690（99.41%），
+差 10 场（0.6%）。剩余专项（blinding light 相位对齐）已明确根因与入口，
+建议另开一轮完成；备选方案：gd 内核的 blindingLightTimer 到期拍**同步**
+调用 endBlindingLight（不经帧末队列，等价真实游戏 Timer timeout 同帧处理）——
+单点改动，四腿镜像，重录仅需重录含 Lightsaber 的场。
