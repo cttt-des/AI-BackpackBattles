@@ -302,3 +302,5 @@ _global_script_class_icons={
 
 config/name="gd_core smoke"
 run/main_scene="res://Smoke.tscn"
+boot_splash/show_image=false
+boot_splash/bg_color=Color( 0.05, 0.05, 0.05, 1 )

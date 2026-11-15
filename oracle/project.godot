@@ -461,6 +461,7 @@ run/main_scene="res://oracle_blank.tscn"
 run/flush_stdout_on_print=true
 run/low_processor_mode_sleep_usec=33000
 boot_splash/image="res://Assets/Splashscreen.png"
+boot_splash/show_image=false
 config/icon="res://ClientIcon_256.png"
 
 [audio]
