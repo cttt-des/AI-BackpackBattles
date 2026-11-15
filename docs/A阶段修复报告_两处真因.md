@@ -326,3 +326,19 @@ label 节流」整条链的相位对齐专项。
 建议另开一轮完成；备选方案：gd 内核的 blindingLightTimer 到期拍**同步**
 调用 endBlindingLight（不经帧末队列，等价真实游戏 Timer timeout 同帧处理）——
 单点改动，四腿镜像，重录仅需重录含 Lightsaber 的场。
+
+### 11.4 resist roll 输入取证补充（2026-11-16）
+
+双侧 Buff.gainTemporary 的 resist roll 探针（[RESIST]/[RESIST-G]）实证：
+**roll 输入完全一致**（type=102 chance=15 amt=1，t=0/0.15 两侧同型同量），
+但事件面相反（oracle=成功加栈事件、gd=resisted 事件）——同输入同 chance
+同链（数值同步）下结果必同，矛盾指向「数值同步」的贪婪对齐结论不完整
+（真实链位差被单侧 label 变体吞噬），或 flipPercent 底层 randf_range 的
+映射存在 1ulp 级实现差（恰在 0.15 判定边界翻转）。取证通道当日间歇挂死
+（ItemLibrary 预实例化风暴，与探针无关，机器状态问题），st 级实证未完成。
+
+**遗留清单**（下轮专项入口）：
+1. resist roll 的 st 级对拍（取证通道恢复后跑 run604768，RESIST 探针已就位）
+2. 10 场 blinding light 相位对齐（方案见 §11.3 备选）
+3. gd_core randf_range vs Godot 3.6 的映射 1ulp 差核查（rng_truth P1 闸门
+   当年验证过 set_state/N 步链态，未专项验证 randf_range 的浮点映射）

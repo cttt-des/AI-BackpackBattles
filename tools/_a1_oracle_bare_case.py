@@ -146,6 +146,22 @@ def _patch_bare_stack():
                                 '\tif activating or faceUp: return' % (nl, nl, nl), 1)
                 break
         io.open(p5, 'w', encoding='utf-8', newline='').write(s5)
+    # Buff.gainTemporary 的 resist roll 处打 [RESIST]（ORACLE_RESISTMARK）——
+    # resist chance/amount 输入取证（regen 信号链分歧定位）
+    p6 = os.path.join(PROJ_DST, 'Core', 'Buff.gd')
+    s6 = io.open(p6, encoding='utf-8', newline='').read()
+    if 'ORACLE_RESISTMARK' not in s6:
+        for nl in ('\r\n', '\n'):
+            a6 = ('\t\tif totalResistChance > 0:%s'
+                  '\t\t\tfor i in amount:%s'
+                  '\t\t\t\tif Util.flipPercent(totalResistChance):%s'
+                  '\t\t\t\t\tresisted += 1') % (nl, nl, nl)
+            if a6 in s6:
+                s6 = s6.replace(a6, a6 + '%s'
+                                '\t\t\tif OS.get_environment("ORACLE_RESISTMARK") != "":%s'
+                                '\t\t\t\tprint("[RESIST] type=", type, " chance=", totalResistChance, " amt=", amount, " t=", Util.time, " st=", U.rng.get_state())' % (nl, nl), 1)
+                break
+        io.open(p6, 'w', encoding='utf-8', newline='').write(s6)
 
 
 def main():
@@ -169,7 +185,8 @@ def main():
                'ORACLE_TIMER_POLL': os.environ.get('A1_TIMER_POLL', ''),
                'ORACLE_DEBUG': os.environ.get('A1_TIMER_DEBUG', ''),
                'ORACLE_TRIGMARK': os.environ.get('A1_TRIGMARK', ''),
-               'ORACLE_CHAINMARK': os.environ.get('A1_CHAINMARK', '')}
+               'ORACLE_CHAINMARK': os.environ.get('A1_CHAINMARK', ''),
+               'ORACLE_RESISTMARK': os.environ.get('A1_RESISTMARK', '')}
         rc, out, log = gh.run(gh.cmd(project=proj, script='oracle_fight.gd'),
                               label='a1o_%s' % cid[:20], env_extra=env, timeout=1200)
         stdout_path = os.path.join(ROOT, 'output', '_a1', 'bare_stdout_%s.log' % cid)
