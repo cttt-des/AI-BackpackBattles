@@ -342,3 +342,20 @@ label 节流」整条链的相位对齐专项。
 2. 10 场 blinding light 相位对齐（方案见 §11.3 备选）
 3. gd_core randf_range vs Godot 3.6 的映射 1ulp 差核查（rng_truth P1 闸门
    当年验证过 set_state/N 步链态，未专项验证 randf_range 的浮点映射）
+
+### 11.5 deferNextFrame 实验回退（2026-11-16）
+
+次帧末队列实验（callNextFrame 延迟一拍执行）已实现并小样验证——对剩余
+10 场**无修复效果**（run604768 分歧签名不变），且使已验证的 1680/1690
+状态进入未验证区。已全量回退（py/gd/C++ 三腿 + sym_ids），恢复至
+「1680/1690 已验证态」并重新跑完三腿最终验证锁定数字：
+
+| 库 | 最终验证 |
+|---|---|
+| 914 | **914/914 三方逐行一致**（alignment_914_final.json） |
+| expand 1690 | **1680/1690**（alignment_1690_final.json；10 场分歧见 §11.3） |
+| C++ 对 py | **1690/1690 = 100%**（_cpp1690_final.json） |
+| 种子双态 | FAILS=0 |
+
+实验代码保留在 git 历史（deferNextFrame 提交系列），下轮 blinding light
+专项若需「次帧末」语义可直接找回。
