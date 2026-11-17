@@ -390,6 +390,16 @@ pre_use_stamina——需对拍两瓶的 `connectForCombat(pre_use_stamina)` 连�
 状态与 isEmpty 门控次序（内核 Potion 转写忠实，嫌疑在信号连接时机/
 `affected[0].triggerPotion()` 连锁的完成度）。
 
+**体力流水反转表象（[USE-O]/[ADD-O] 实证）**：oracle 侧 t=0.15 **同样喝了药**
+（`ADD-O side=0 amt=10` = cur 0→10 回满；tick1-6 玩家 USE 2×6 耗空 →
+pre_use_stamina → SHP 喝药）。即两侧**都喝了**，分歧在**药效事件的呈现**：
+gd 发 t13（Stamina +4）×2 + t106 ×2，oracle 喝药但**无 t13/t106 事件**
+（事件组装层差异，非行为差）。「oracle 不喝药」的早期判断被流水证伪。
+
+**下轮入口修正**：定位「oracle 喝药后 t13/t106 事件缺失」的组装层差异
+（HeroicPotion.onTriggerPotion → giveStamina/giveEmpower → createEvent_*
+链的两侧逐行核对），配合双瓶 isEmpty 时序。
+
 **现状定格**：914 全绿、expand 1680/1690（99.41%）、C++ 1690/1690、
 三内核互洽。语料可用于训练。本节完整材料（双侧探针、事件 diff、
 resist roll 输入一致铁证）即下轮专项的全部输入。
