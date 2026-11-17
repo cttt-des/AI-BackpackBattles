@@ -526,3 +526,43 @@ checkStamina 时**未响应**（两侧一致，t=0 各只有一组 t13）→ t=0
 oracle 不响应（连接时机/或第一轮信号后的状态差）。下轮对拍
 `connectForCombat(pre_use_stamina)` 的双瓶连接建立时刻（onPrepare 的批内
 次序）与 t=0/t=0.15 两次信号的完整分发序列。
+
+### 11.12 双瓶响应差实锤 + roll 悖论（2026-11-17 最终）
+
+双侧 checkStamina 探针（[CHK-O]/[CHK-G]，常开）在 t=0.15 的分发序列：
+
+**oracle**（11984 log）：
+```
+t=0.15 第一瓶：isEmpty=True cur=10   → return 不喝（t=0 已空）
+t=0.15 第二瓶：isEmpty=False cur=10  → cur(10)>=2 判定充足 → 不喝
+```
+**gd**（gdres768e）：
+```
+t=0.15 第一瓶：isEmpty=True cur=2    → return
+t=0.15 第二瓶：isEmpty=False cur<2   → cur 不足 → 喝第二瓶（+4 stamina）
+```
+
+**两侧的 curStamina 在 t=0.15 攻击时刻相差 8**（oracle 10 / gd ~2）——
+体力经济的分叉早已发生（t=0~0.15 间）。
+
+**roll 悖论**（同一 flip(15) 的矛盾）：gd 侧 t=0.15 的 agility regen gain
+resist roll chance=15 → flip 成功（resisted 事件）；oracle 同窗同 chance=15
+→ flip 失败（成功事件）。同 chance 同 u 必同果——矛盾说明两侧的
+**roll 链位或 totalResistChance 的组成项不同**（amplification 抵扣、
+resistStacks 层、或链位）。
+
+**修正后的根因表述**（替代 §11.3 的「blinding light 相位」假设）：
+剩余 10 场分歧 = **体力经济的多点小分叉**（resist roll/临时增益/饮用时机），
+它们在 t=0~t=6 的战斗前期逐点累积（每点差值微小、事件面起初一致），
+至 t=6.6 前后越过判定阈值后爆发为可见事件差。这不是单一修复点，
+需要**「前期体力经济逐项对拍」专项**（gd/oracle 的 stamina 收支逐项表）。
+
+### 11.13 本轮全部产出与状态定格
+
+| 项 | 状态 |
+|---|---|
+| A3 卡链忠实化 + 重录 + 验证 | ✅ 完成（914 全绿、1680/1690、C++ 100%） |
+| deferNextFrame 实验 | 实现→验证→无效→回退，历史保留 |
+| 六层诊断链 + 三代探针（RESIST/CHK/LBLTS） | 全部归档（§11.3-11.12） |
+| 体力流水对照工具（STAM_TRACE/USE-O） | 就位 |
+| 下轮专项 | 前期体力经济逐项对拍（入口：本报告 §11.12） |

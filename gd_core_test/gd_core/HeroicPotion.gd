@@ -10,6 +10,8 @@ func onPrepare():
 
 
 func checkStamina(amount):
+	if OS.get_environment("GD_CHK_PROBE") != "":
+		print("[CHK-G] t=", ctx.time, " amt=", amount, " isEmpty=", isEmpty(), " cur=", character().getCurrentStamina())
 	if isEmpty(): return
 	
 	if character().getCurrentStamina() < amount:
