@@ -400,6 +400,16 @@ gd 发 t13（Stamina +4）×2 + t106 ×2，oracle 喝药但**无 t13/t106 事件
 （HeroicPotion.onTriggerPotion → giveStamina/giveEmpower → createEvent_*
 链的两侧逐行核对），配合双瓶 isEmpty 时序。
 
+**体力流水补注（最后一层实证）**：oracle 的 `ADD-O side=0 amt=10` 走的是
+`addStamina`（直加 curStamina，**无事件**）；gd 独有的 t13（`{"stamina": 4,
+resisted:true}`）实为 **resist 事件**（createEvent_StackResistOrNullify 同
+type 输出）。即：**两侧在 t=0.15 都处理了 SHP 饮用 + agility 的 regen gain
+被 resist roll 判定，但判定路径/结果不同**——oracle 的药水体力恢复走
+addStamina 直加（事件面干净），gd 的走 gainStamina→resist roll（事件面多出
+resisted 行）。resist roll 的判定输入（chance=15/amount）两侧一致、
+链位一致性受贪婪对齐限制未能完全锁定——下一轮的第一个动作是
+**st 级对拍**（探针已就位：gd [RESIST-G] 带 st_pre、oracle [RESIST-O] 常开带 st）。
+
 **现状定格**：914 全绿、expand 1680/1690（99.41%）、C++ 1690/1690、
 三内核互洽。语料可用于训练。本节完整材料（双侧探针、事件 diff、
 resist roll 输入一致铁证）即下轮专项的全部输入。
