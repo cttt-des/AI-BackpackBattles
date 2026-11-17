@@ -467,3 +467,41 @@ gd_core 的 `EvilCap.onCombatStart`（或 CoreCombat.combatStart 批序）中，
   默认关；修复了两次注入缺陷：print 截断、`rng`→`ctx.rng.rng` 作用域）
 - oracle 正式副本探针常开（下轮前需还原或继续保留——仅打印，零 rng）
 - `_st_chain_diff.py`：st 链逐笔对拍器（同 rng_state 起点的消耗步数序列 diff）
+
+### 11.10 t=0.15 触发序差的最终定性（2026-11-17 收尾）
+
+st 链对拍器（`output/_a1/_st_chain_diff.py`）的最终结论：
+
+- **冷却批锚（t=0 的 adjustCooldown 首抽 0.95/1.05）之后至 idx277**，两侧
+  rng 链**逐笔同步**（签名+步数完全一致，277 笔无一分叉）；
+- **idx277**：`getNextFreeLabelPosition` 槽位判定分支——oracle `randInBox(30,30)`
+  vs gd `randInBox(10,10)`（步数同为 2，链位不分叉，纯槽位状态差）；
+- **事件流分叉**（idx217）：gd 同 tick 先处理 Strong Heroic Potion 饮用
+  （t13 stamina+4 ×2）后处理 Bloodthorne 攻击（伤害 73）；oracle 先
+  Bloodthorne（70）后 Potion 饮用——**同 tick 内动作集合相同、处理次序不同**；
+- 体力流水（gd STAM_TRACE vs oracle [USE-O]）实证：**两侧都喝了双瓶药水**
+  （gd t=0.15 cur 2→8.15→6.15；oracle cur→10 回满），饮用行为一致，
+  **事件组装差异**（gd 的 t13/t106 事件 vs oracle 的 addStamina 直加无事件）
+  为呈现层差异；
+- ADD-O +10 的 `addStamina(maxStamina)` = **战斗后 [M6c] cleanse 段的
+  fillUpStamina**（Character.gd:828，非战斗内行为）——流水对拍含
+  teardown 噪声，通道不可用。
+
+**定性**：剩余 10 场 = 「同 tick 内信号驱动动作（药水饮用）与冷却驱动动作
+（武器攻击）的**处理次序**」语义差。oracle harness 的 tick 步骤③⑥（冷却
+物品遍历）与 useStamina 信号（攻击流程内**同步**触发药水）交错；gd_core 的
+对应交错点有细微差（或药水饮用信号在 gd 的到达时点略早）。修复需对
+`useStamina → pre_use_stamina → checkStamina` 的调用栈位置做两侧
+逐行核对（Bloodthorne.doCooldownEffect 内 use_stamina 与 CoreCombat
+步骤⑥的相对位置），工作量约半天（含重录）。
+
+### 11.11 当前交付定格
+
+| 项 | 数字 | 状态 |
+|---|---|---|
+| 914 | 914/914 三方逐行一致 | ✅ |
+| expand 1690 | 1680/1690（99.41%） | 10 场 = §11.10 专项 |
+| C++ 对 py | 1690/1690 = 100% | 三内核互洽 |
+| 卡链忠实化 | 逐张激活已落地（400+ 场-侧） | ✅ 用户核心需求已满足 |
+| 开屏图 | 源头关闭 | ✅ |
+| 备份链 | 三级（体力前/卡链前/当前） | ✅ 可回滚 |

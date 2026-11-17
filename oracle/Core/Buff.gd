@@ -101,6 +101,8 @@ func gainTemporary(amount: int, duration: float, item = null,
 			for i in amount:
 				if Util.flipPercent(totalResistChance):
 					resisted += 1
+			if OS.get_environment("ORACLE_RESIST_PROBE") != "":
+				print("[RESIST-O] type=", type, " chance=", totalResistChance, " amt=", amount, " t=", Util.time, " st=", Util.rng.get_state())
 		elif totalResistChance < 0:
 			for i in amount:
 				if Util.flipPercent( - totalResistChance):
