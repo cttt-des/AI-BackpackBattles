@@ -149,6 +149,8 @@ func gainTemporary(amount: int, duration: float, item = null,
 		if item != null and not reflect:
 			totalResistChance -= item.getAmplificationChancePercent(type)
 		
+		if OS.get_environment("GD_RESIST_PROBE") != "":
+			print("[RESIST-G] type=", type, " chance=", totalResistChance, " amt=", amount, " t=", ctx.time, " st_pre=", rng.get_state())
 		if totalResistChance > 0:
 			for i in amount:
 				if ctx.rng.flipPercent(totalResistChance):

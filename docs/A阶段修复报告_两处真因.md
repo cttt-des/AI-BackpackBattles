@@ -359,3 +359,37 @@ label 节流」整条链的相位对齐专项。
 
 实验代码保留在 git 历史（deferNextFrame 提交系列），下轮 blinding light
 专项若需「次帧末」语义可直接找回。
+
+
+### 11.6 run604768 深挖（2026-11-17）：精确分歧入口已钉到双瓶 SHP 交互
+
+事件多重集 diff（当前 oracle 230 vs gd 233）给出干净的两簇：
+
+- **oracle 独有**：Amulet of Light t19 +3 ×3、Angel Crystal t19 +4、
+  Agility regen **成功**（t102 无 resisted）、Bloodthorne 伤害 70/stamina 6
+- **gd 独有**：Agility regen **被抗**（t102 resisted:true）、
+  Strong Heroic Potion 饮用套件 ×2（t13 stamina+4、t106 empower、t0 activate）、
+  Fedora lucky resisted ×2、Oil Lamp heat resisted ×2、Bloodthorne 伤害 73/stamina 7
+
+机制链（六层，全部源码定谳）：
+
+```
+Big Bloodthorne 第二次攻击（t=0.15, tick 9）useStamina
+  → character_pre_use_stamina 信号
+  → 双瓶 Strong Heroic Potion 的 checkStamina：
+      oracle：第一瓶 t=0 已空（isEmpty → return 不喝），第二瓶不响应 →
+              攻击用现有 stamina 6 → 伤害 70
+      gd：  第二瓶喝了（+4 stamina）→ 伤害 73 → 后续
+            Fedora/Oil Lamp/Agility 的 lucky/heat/regen gain 全部走
+            Evil Cap nullify(15%) 的 resist roll → 部分被抗
+  → Amulet of Light/Angel Crystal 的 t19 临时生命（regen 响应）两侧分歧
+```
+
+双瓶交互的精确问题（下一轮第一个实验）：oracle 第二瓶在 t=0.15 **不响应**
+pre_use_stamina——需对拍两瓶的 `connectForCombat(pre_use_stamina)` 连接
+状态与 isEmpty 门控次序（内核 Potion 转写忠实，嫌疑在信号连接时机/
+`affected[0].triggerPotion()` 连锁的完成度）。
+
+**现状定格**：914 全绿、expand 1680/1690（99.41%）、C++ 1690/1690、
+三内核互洽。语料可用于训练。本节完整材料（双侧探针、事件 diff、
+resist roll 输入一致铁证）即下轮专项的全部输入。
