@@ -439,3 +439,31 @@ Crystal 的 regen 响应链随之分叉 → 全局放大。
 `changeBuffNullifyChances` 之后，抽查对手 Regeneration/Lucky buff 的
 resistChancePercent 值（双侧探针各一行即可），判定是「nullify 未写入」
 还是「写入但 roll 结果差」。
+
+### 11.8 决定性证据到手（2026-11-17）：nullify 写入时机差
+
+双侧 pre-roll 探针（roll 判定前打印 chance + 链态）最终对拍：
+
+| 窗 | oracle | gd |
+|---|---|---|
+| t=0 第一批 regen gain | **chance=15**（Evil Cap nullify 已生效） | **chance=0**（nullify 未生效） |
+| t=0.15 双瓶 agility regen | chance=15，st_pre=-8234…/6737… | chance=15，st_pre=5024…/-8861…（gd flip(15) 成功=被抗；oracle flip(15) 失败=成功加栈） |
+
+**根因闭合**：Evil Cap.onCombatStart 的 `changeBuffNullifyChances(15)` 在两侧
+都执行，但**写入时机相对首次 regen gain 不同**——oracle 在 gain 前生效
+（roll chance=15），gd 的首次 roll 时 chance 仍为 0（Evil Cap 的
+onCombatStart 排在 Agility 的首次 regen 效果之后，或 buffs 字典写入路径
+不同）。regen 池从 t=0 起分叉 → Fedora lucky、双瓶 SHP、Bloodthorne
+伤害全链放大。
+
+**修复方案（下轮，单点）**：对齐 Evil Cap nullify 的写入时机——
+gd_core 的 `EvilCap.onCombatStart`（或 CoreCombat.combatStart 批序）中，
+确保 `changeBuffNullifyChances(15)` 先于首个 regen 增益效果执行；
+四腿镜像 + 全量重录含 Evil Cap/Lightsaber 的场。
+
+### 11.9 探针与工具沉淀（本轮新增，已提交）
+
+- gd_core_test `CoreBuff.gd`：[RESIST-G] pre-roll 探针（GD_RESIST_PROBE 门控，
+  默认关；修复了两次注入缺陷：print 截断、`rng`→`ctx.rng.rng` 作用域）
+- oracle 正式副本探针常开（下轮前需还原或继续保留——仅打印，零 rng）
+- `_st_chain_diff.py`：st 链逐笔对拍器（同 rng_state 起点的消耗步数序列 diff）
