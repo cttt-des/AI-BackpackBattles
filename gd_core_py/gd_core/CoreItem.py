@@ -3086,6 +3086,8 @@ class CoreItem(GodotObject):
 		if self.ctx.rng.oracle_trace and self.ctx.rng._stacktrace:
 			self.ctx.rng.trace_diag("LABEL", String(self.descriptor.identifier), int(self.ownerType),
 					str(_ch != None and _ch.playerId))
+		if _os_environ_get("GD_LABEL_TS") != "" :
+			print("[LBLTS-G] t=", self.ctx.time, " ", self.descriptor.identifier, " ts=", self.buffLabelPositionTimestamps)
 		for i in _iter(len(self.buffLabelPositionTimestamps)):
 			if self.ctx.time >= self.buffLabelPositionTimestamps[i]:
 				self.buffLabelPositionTimestamps[i] = self.ctx.time + 0.5

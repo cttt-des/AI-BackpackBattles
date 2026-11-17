@@ -959,7 +959,7 @@ func useStamina(amount):
 	allowStaminaOverflow = false
 	# ★ np25 面②定谳探针（STAM_TRACE 门控零耗）：扣体判定快照。
 	if OS.get_environment("STAM_TRACE") != "" and ctx.combat != null:
-		print("USE t=%s pid=%d amt=%s cur=%s max=%s" % ["%.6f" % ctx.combat.combat_time, playerId, amount, curStamina, getMaxStamina()])
+		print("USE t=%s pid=%d amt=%s cur=%s max=%s" % ["%.6f" % ctx.combat_time, playerId, amount, curStamina, getMaxStamina()])
 
 	if curStamina >= amount:
 		curStamina = max(curStamina - amount, 0)

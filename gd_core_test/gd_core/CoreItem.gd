@@ -2842,6 +2842,8 @@ func getNextFreeLabelPosition() -> void :
 	# ★ np24 诊断（受控）：镜像神谕 LABEL 行（Item.gd:6505-6510）。
 	ctx.rng.trace_diag("LABEL", String(descriptor.identifier), int(ownerType),
 			str(character() != null and character().playerId))
+	if OS.get_environment("GD_LABEL_TS") != "":
+		print("[LBLTS-G] t=", ctx.time, " ", descriptor.identifier, " ts=", buffLabelPositionTimestamps)
 	for i in buffLabelPositionTimestamps.size():
 		if ctx.time >= buffLabelPositionTimestamps[i]:
 			buffLabelPositionTimestamps[i] = ctx.time + 0.5
