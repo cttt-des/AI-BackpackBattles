@@ -505,3 +505,24 @@ st 链对拍器（`output/_a1/_st_chain_diff.py`）的最终结论：
 | 卡链忠实化 | 逐张激活已落地（400+ 场-侧） | ✅ 用户核心需求已满足 |
 | 开屏图 | 源头关闭 | ✅ |
 | 备份链 | 三级（体力前/卡链前/当前） | ✅ 可回滚 |
+
+### 11.11 补：LBLTS 槽位快照实锤（双瓶响应差直接可见）
+
+oracle（常开探针）与 gd（GD_LABEL_TS）在 t=0.15 窗的槽位快照对照：
+
+| 物品 | oracle ts | gd ts |
+|---|---|---|
+| Amulet of Agility | [0.5×5] 全忙 | [0.5×5] 全忙 ✓ |
+| Amulet of Light ×3 | [0.5×5] 全忙 | [0.5×5] 全忙 ✓ |
+| Angel Crystal | [0.5×5] 全忙 | [0.5×5] 全忙 ✓ |
+| Big Bloodthorne | [0.5×5] 全忙 | [0.5×5] 全忙 ✓ |
+| **Strong Heroic Potion 第一瓶** | [0.5, 0, 0, 0, 0] | [0.5, 0.5, 0, 0, 0] |
+
+**gd 的 SHP 槽 1 多了一个 0.5 占用** = **gd 的第二瓶 SHP 多打了一次 label = 多一次 buff 增益**——与事件面（gd t13×2 vs oracle t13 缺失）完全互证。
+
+**推定机制**：双瓶 SHP 都 connect 了 pre_use_stamina → t=0 的攻击第二瓶
+checkStamina 时**未响应**（两侧一致，t=0 各只有一组 t13）→ t=0.15 的攻击
+第二瓶响应差：gd 响应并喝（+4→resist roll 被 Evil Cap 抗→resisted 事件）、
+oracle 不响应（连接时机/或第一轮信号后的状态差）。下轮对拍
+`connectForCombat(pre_use_stamina)` 的双瓶连接建立时刻（onPrepare 的批内
+次序）与 t=0/t=0.15 两次信号的完整分发序列。
