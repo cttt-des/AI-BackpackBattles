@@ -413,3 +413,29 @@ resisted 行）。resist roll 的判定输入（chance=15/amount）两侧一致�
 **现状定格**：914 全绿、expand 1680/1690（99.41%）、C++ 1690/1690、
 三内核互洽。语料可用于训练。本节完整材料（双侧探针、事件 diff、
 resist roll 输入一致铁证）即下轮专项的全部输入。
+
+
+### 11.7 Fedora lucky 分发次数差（2026-11-17，最新证据）
+
+当前语料（230 版）run604768 的 t101 Fedora 事件对照：
+
+- **gd**：`amount=1 (resisted=True)` → `amount=5`（两次分发，第一次被 Evil Cap
+  的 15% nullify 抗掉）
+- **oracle**：`amount=6`（一次分发、全部成功，= 1+5 合并）
+
+即两侧的 **lucky 分发次数不同**（gd 两次、oracle 一次）。同时 gd 侧
+type=102 的 resist roll 输入为 **chance=0**（探针 38 行全 chance=0——
+gd 的 Regeneration resistChancePercent 恒 0，从不真正 resist）——
+此前「gd resisted:true」的 t102 事件实为 **Fedora lucky(1) 的 resist 事件
+被误读**（resist 事件与 stack 事件同 type 输出）。
+
+**修正后的分歧画像**： Evil Cap（双方阵容各一顶）onCombatStart 给对手全部
+buff 加 nullify 15% → 玩家的 Fedora lucky(1) 在 gd 被（对手 Evil Cap 的）
+nullify 抗掉、lucky(5) 成功；**oracle 侧 Fedora 的 lucky(1) 未被抗**
+（oracle 的 roll 结果/或 nullify 生效面不同）→ Amulet of Light/Angel
+Crystal 的 regen 响应链随之分叉 → 全局放大。
+
+**下轮第一动作**：对拍两侧 Evil Cap nullify 的生效面——
+`changeBuffNullifyChances` 之后，抽查对手 Regeneration/Lucky buff 的
+resistChancePercent 值（双侧探针各一行即可），判定是「nullify 未写入」
+还是「写入但 roll 结果差」。
