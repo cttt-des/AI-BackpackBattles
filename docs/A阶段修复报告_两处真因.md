@@ -566,3 +566,49 @@ resistStacks 层、或链位）。
 | 六层诊断链 + 三代探针（RESIST/CHK/LBLTS） | 全部归档（§11.3-11.12） |
 | 体力流水对照工具（STAM_TRACE/USE-O） | 就位 |
 | 下轮专项 | 前期体力经济逐项对拍（入口：本报告 §11.12） |
+
+## 12 C++ 逐事件验收（handoff10 30 场，2026-11-17）
+
+### 12.1 工具
+
+`tools/_cpp_verify_events.py`（可复跑）：
+```
+python tools/_cpp_verify_events.py     --cases-json gd_core_test/expand_align_cases.json     --case-ids output/_handoff10/original_order/cases.json     --fights-root output/_handoff10/original_order/fights     --align-root output/_handoff10/original_order/align     --dll native_sim_cpp/native_sim/libgdcore.dll     --out output/_timing_four_way/cpp_baseline
+```
+输入装配：夹具（expand 1690 的 30 条）→ `pack_side`（gem_lens / activation_order
+直通 / stamina·health·regen）+ `rng_state` 注入 + `below_master=false`（handoff10
+族口径，对手冷却掷 0.95-1.05）+ `native_activation_order=True`。逐事件比较
+复用 `_cmp_events.py` 的 canonical 与 origin 归一，新增分层比较器
+（浮点 1ulp = 表示差异；其余 = 语义差异）。现有入口（`_cmp_events.py`、
+`_full1690.py`）未改动。
+
+### 12.2 验收结果（30 场）
+
+| 项 | 结果 |
+|---|---|
+| 逐事件通过 | **0/30** |
+| battle_semantic（真实语义差） | 30 |
+| 胜负一致 | 28/30 四方一致（2 场 winner_match 待查） |
+| C++ event_count 与 gd 一致 | 3/30（其余差 1~50+） |
+
+**C++ 与 GDScript 的实现差清单**（首分歧样本定性）：
+
+1. **效果量整数化缺失**（最普遍）：GDScript 效果事件发整数
+   （Anvil 伤害 `i:7`、Fire Pit 临时生命 `i:35`），C++ 发浮点
+   （`f:7.5`、`f:34.375`）——**GDScript 的效果计算含整数化
+   （floor/round/整型运算），C++ 保留浮点**。首分歧普遍在 idx 0-46
+   （开局效果期），事件数差随战斗时长放大。
+2. **lucky 分发次数差**（run604768）：gd 的 Fedora lucky 拆两次
+   （amount=1 被 Evil Cap nullify 抗 + amount=5 成功），oracle/C++
+   合一次 amount=6 全成。
+3. **体力经济差**：双瓶 SHP 饮用响应差（§11.6-11.11，前轮已定位）。
+
+### 12.3 与旧结论的关系
+
+- `tools/_full1690.py` 口径（event_count 差 −1 + winner 一致）下 C++ 是
+  1690/1690=100%——**该口径掩盖了事件级的上述差异**；
+- 旧 REG9 三闸「C++ vs GDScript 逐位一致」的场与本轮 30 场不同（REG9
+  是旧语料族 below_master=true 口径）；
+- **结论修正**：C++ 内核在「判定性事件流」的忠实度上与 GDScript 存在
+  系统性差距（效果量整数化、nullify 生效面、药水饮用时序），
+  四方逐事件对齐尚未达成。
