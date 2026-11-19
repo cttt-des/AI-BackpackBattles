@@ -9,6 +9,7 @@
 | 战斗帧调度 | `CoreCombat::physicsTick` 每帧经通用接口读取上下文、调用角色和库存方法 | 对内核构建的具体对象直接访问字段并调用方法 | 保留双方计时器、疲劳、冷却、空闲回调和宿主 RNG 的顺序 |
 | 角色计时和体力回复 | 每帧重建计时掩码、调用体力上限查询并分配调试守卫用的空字符串 | 直接计算掩码，对浮点体力值使用等价的加法与夹取，其他类型使用原运算 | 每次触发前重新读掩码，保留夹取比较顺序和计时回调 |
 | 局部链接时优化 | 跨编译单元的运行时辅助函数与战斗帧调度反复调用 | 对采样中的六个热点编译单元启用 LTO | 保留浮点编译选项、全部 22 个 `gd_sim_*` ABI 符号和逐场事件哈希 |
+| 基于样本的编译优化 | 热路径上的调用和分支缺少实际频率信息 | 用原版回放和训练批量入口采集计数，对热点编译单元启用 PGO | 输入、编译浮点选项和 ABI 一致，用逐事件语料验证生成的 DLL |
 
 优化脚本会检查待替换的生成代码和相关方法声明。原始 C++、生成代码和 DLL 已备份到远端 `codex/native-perf50-baseline`（`cd9dfad4`），角色数值路径改动前另在远端 `codex/native-perf50-frames` 保存了入包和调度候选（`811813ec`）。
 
@@ -30,10 +31,32 @@
 
 含角色计时和体力优化的常规链接版本，四线程原版回放三轮为 59.74、75.54 和 69.26 场/秒，中位数为 **69.26 场/秒**，胜负、终局和完整结果哈希与单线程相同。
 
-局部链接时优化版本已安装到本地默认训练运行时 `dist/native_1_1_10`。同一批回放的三轮交替测试中，单线程中位数由 28.00 升到 **29.53 场/秒**，200 场 CPU 时间由 6.75 降至 6.30 秒。所有记录均为电池供电。该 DLL 通过原版 2,604 场逐事件核验，逐场 C++ 事件流水 SHA-256 全部等于基线。
+局部链接时优化的首轮三组交替测试中，单线程中位数由 28.00 升到 **29.53 场/秒**，200 场 CPU 时间由 6.75 降至 6.30 秒。该 DLL 通过原版 2,604 场逐事件核验，逐场 C++ 事件流水 SHA-256 全部等于基线。
 
 另行评估了 295 处物品自身方法派发。加入角色版本后的两轮为 27.43 和 27.05 场/秒，角色版本同轮为 26.96 和 27.86 场/秒，样本未显示稳定收益。
 
-[A/B 记录](../output/_v1110/native_perf50_battery_ab.json) · [链接时优化与四线程记录](../output/_v1110/native_perf50_lto_ab.json) · [全量验收](../output/_v1110/native_perf50_lto_full_gate.json) · [事件哈希比对](../output/_v1110/native_perf50_lto_event_hashes.json)
+使用同一批平均 16.11 秒的 200 场回放交替比较 LTO 和 PGO，供电始终为电池。每一轮均通过原版胜负和自然终局检查，各组完整结果哈希相同。
 
-[入包优化](../output/_v1110/optimize_native_placement.py) · [逐帧优化](../output/_v1110/optimize_native_frames.py) · [LTO 构建](../output/_v1110/build_native_hot_lto.py) · [训练基准](../output/_v1110/bench_native_hot_path.py) · [平均时长基准](../output/_v1110/bench_native_corpus.py)
+| 构建 | 线程数 | 三轮中位数（场/秒） | 三轮范围（场/秒） |
+| --- | ---: | ---: | ---: |
+| 局部 LTO | 1 | 29.89 | 28.96–30.29 |
+| 局部 LTO | 4 | 78.67 | 77.92–79.13 |
+| 局部 LTO + PGO | 1 | **31.76** | 29.11–32.65 |
+| 局部 LTO + PGO | 4 | **88.29** | 85.05–89.54 |
+
+最终 PGO DLL 已装入本地默认训练运行时 `dist/native_1_1_10`。基准 914 场和扩展 1,690 场全部通过严格逐事件核验，原版胜负无差异，2,604 份 C++ 事件流水哈希与本轮优化前的 DLL 完全相同。按四线程总吞吐，三轮均超过 30、40 和 50 场/秒。单线程中位数超过 30 场/秒，最慢一轮为 29.11 场/秒。
+
+## 本机构建与复测
+
+在仓库根目录运行以下命令。PGO 采样复用本地验收夹具和两套基准的种子数据。
+
+```powershell
+$stage = 'output/_v1110'
+$native = "$stage/sim_native/native_sim_cpp/native_sim"
+python "$stage/build_native_hot_lto.py" $native --pgo --out "$stage/native_perf50/rebuilt-pgo.dll"
+python "$stage/bench_native_corpus.py" --dll "$stage/native_perf50/rebuilt-pgo.dll" --workers 4 --out "$stage/native_perf50/rebuilt-perf.json"
+```
+
+[首轮 A/B](../output/_v1110/native_perf50_battery_ab.json) · [LTO 对照](../output/_v1110/native_perf50_lto_ab.json) · [最终性能记录](../output/_v1110/native_perf50_final_benchmark.json) · [全量验收](../output/_v1110/native_perf50_pgo_full_gate.json) · [事件哈希比对](../output/_v1110/native_perf50_pgo_event_hashes.json)
+
+[入包优化](../output/_v1110/optimize_native_placement.py) · [逐帧优化](../output/_v1110/optimize_native_frames.py) · [LTO 和 PGO 构建](../output/_v1110/build_native_hot_lto.py) · [训练基准](../output/_v1110/bench_native_hot_path.py) · [平均时长基准](../output/_v1110/bench_native_corpus.py)
