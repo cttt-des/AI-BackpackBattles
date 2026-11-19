@@ -19,12 +19,16 @@ ap.add_argument("--out", default="native_kernel_baseline")
 ap.add_argument("--limit", type=int, default=100)
 ap.add_argument("--prepare-only", action="store_true")
 ap.add_argument("--reuse-inputs", action="store_true")
+ap.add_argument("--dll", type=Path, help="Use a separate candidate DLL")
+ap.add_argument("--strict-item-origins", action="store_true", help="Require ordinary item identifiers and board cells")
 legs = ap.add_mutually_exclusive_group()
 legs.add_argument("--cpp-only", action="store_true", help="Reuse GD/Py results only when their recorded source hashes still match")
 legs.add_argument("--direct-cpp", action="store_true", help="Check C++ against native events without running GD, Py or Oracle")
 legs.add_argument("--core-only", action="store_true", help="Run GD/Py and leave C++ pending while the DLL builds")
 args = ap.parse_args()
 assert not args.cpp_only or args.reuse_inputs
+if args.strict_item_origins and not args.direct_cpp:
+    ap.error("--strict-item-origins requires --direct-cpp")
 reference = stage / args.source
 out = stage / args.out
 sim = stage / "sim_native"
@@ -143,12 +147,14 @@ else:
 if args.core_only:
     (out / "status.json").write_text(json.dumps(status, indent=2) + "\n", encoding="utf8")
     raise SystemExit(status["three_core_exit"])
-status["dll_sha256"] = hashlib.sha256((sim / "native_sim_cpp/native_sim/libgdcore.dll").read_bytes()).hexdigest()
+dll = args.dll.resolve() if args.dll else sim / "native_sim_cpp/native_sim/libgdcore.dll"
+status["dll_sha256"] = hashlib.sha256(dll.read_bytes()).hexdigest()
 with (out / "cpp.log").open("wb") as log:
     status["cpp_exit"] = subprocess.run([
         sys.executable, "-u", "-X", "utf8", "tools/_cpp_verify_events.py", *common,
         "--case-ids", str(out / "cases.json"), "--strict-gem-origins", "--original-dir", str(reference),
-        "--out", str(out / "cpp"), *(["--native-only"] if args.direct_cpp else [])],
+        "--out", str(out / "cpp"), "--dll", str(dll), *(["--native-only"] if args.direct_cpp else []),
+        *(["--strict-item-origins"] if args.strict_item_origins else [])],
         cwd=sim, stdout=log, stderr=subprocess.STDOUT).returncode
 (out / "status.json").write_text(json.dumps(status, indent=2) + "\n", encoding="utf8")
 print(json.dumps({key: value for key, value in status.items() if key != "kernel_sha256"}, indent=2))

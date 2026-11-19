@@ -99,6 +99,30 @@ def compare_gem_origins(getter, native_rows, recordings):
     return missing, None
 
 
+def compare_item_origins(getter, native_rows, original_rows):
+    missing = set()
+    first = None
+    identifier = ctypes.c_char_p()
+    cell = (ctypes.c_int32 * 3)()
+    for i, (native_row, row) in enumerate(zip(native_rows, original_rows)):
+        origin = row.get("origin")
+        expected = None
+        if isinstance(origin, dict) and origin.get("kind") == "item":
+            location = origin.get("top_left") or {}
+            expected = (origin.get("identifier"), origin.get("owner_type"), location.get("x"), location.get("y"))
+            if not all(value is not None for value in expected) or not expected[0]:
+                missing.add("original")
+                continue
+        state = getter(i, ctypes.byref(identifier), cell)
+        if state < 0 or (state == 0 and native_row["origin"].startswith("o:item:")):
+            missing.add("cpp")
+            continue
+        actual = (identifier.value.decode("utf8"), *cell) if state == 1 else None
+        if first is None and actual != expected:
+            first = {"index": i, "original": expected, "cpp": actual}
+    return sorted(missing), first
+
+
 def first_difference(left, right):
     first = next((i for i, (a, b) in enumerate(zip(left, right))
                   if canonical_fields(a) != canonical_fields(b)), None)
@@ -169,7 +193,7 @@ def native_debug_lines(lib):
             for i in range(lib.gd_sim_dbg_event_count())]
 
 
-def compare_native_case(sim, gem_origin, args, fx, cid):
+def compare_native_case(sim, gem_origin, item_origin, args, fx, cid):
     rec = {"caseId": cid, "category": "missing_product", "missing_fields": [], "notes": []}
     original = args.original_dir / cid
     inputs = Path(args.fights_root) / cid
@@ -223,7 +247,8 @@ def compare_native_case(sim, gem_origin, args, fx, cid):
         return rec
     lines = native_debug_lines(sim.lib)
     expected = [CE.py_row_canonical(row) for row in original_rows]
-    first = first_tuple_difference(canonical_parent_indices(lines), canonical_parent_indices(expected))
+    canonical_cpp = canonical_parent_indices(lines)
+    first = first_tuple_difference(canonical_cpp, canonical_parent_indices(expected))
     missing, gem_first = compare_gem_origins(gem_origin, lines, {"original": original_rows})
     winner = "player" if result.player_wins else "opponent"
     rec["winner"] = {"cpp": winner, "original": doc["winner"]}
@@ -239,12 +264,19 @@ def compare_native_case(sim, gem_origin, args, fx, cid):
         "original_row": expected[first] if first is not None and first < len(expected) else None,
     }
     rec["original_events_sha256"] = hashlib.sha256(event_bytes).hexdigest()
+    rec["cpp_events_sha256"] = hashlib.sha256("\n".join(lines).encode("utf8")).hexdigest()
     rec["reference_manifest_sha256"] = hashlib.sha256(proof.read_bytes()).hexdigest()
     rec["strict_gem_first"] = gem_first
     rec["missing_fields"] = [f"{leg} gem identity" for leg in missing]
-    if missing:
+    item_first = None
+    if item_origin is not None:
+        missing_items, item_first = compare_item_origins(item_origin, canonical_cpp, original_rows)
+        rec["strict_item_first"] = item_first
+        rec["missing_fields"].extend(f"{leg} item identity" for leg in missing_items)
+    if rec["missing_fields"]:
         rec["category"] = "missing_event_metadata"
-    elif first is None and gem_first is None and rec["winner_match"] and rec["natural_ending_match"]:
+    elif (first is None and gem_first is None and item_first is None
+          and rec["winner_match"] and rec["natural_ending_match"]):
         rec["category"] = "pass"
     else:
         rec["category"] = "battle_semantic"
@@ -271,11 +303,15 @@ def main() -> int:
     ap.add_argument('--timeout', type=int, default=600, help='单场 wall clock 秒')
     ap.add_argument('--strict-gem-origins', action='store_true',
                     help='Require gem type, host item, owner, cell and socket index in all four streams')
+    ap.add_argument('--strict-item-origins', action='store_true',
+                    help='Require the original item identifier, owner and final board cell in native-only mode')
     args = ap.parse_args()
     if args.native_only:
         if not args.original_dir:
             ap.error("--native-only requires --original-dir")
         args.strict_gem_origins = True
+    elif args.strict_item_origins:
+        ap.error("--strict-item-origins requires --native-only")
 
     gdcore_dir = Path(args.gdcore_dir or (Path(args.align_root) / 'gdcore'))
     py_dir = Path(args.py_dir or (Path(args.align_root) / 'py'))
@@ -308,6 +344,18 @@ def main() -> int:
         gem_origin.argtypes = [ctypes.c_int32, ctypes.POINTER(ctypes.c_char_p),
                                ctypes.POINTER(ctypes.c_char_p), ctypes.POINTER(ctypes.c_int32)]
         gem_origin.restype = ctypes.c_int32
+    item_origin = None
+    if args.strict_item_origins:
+        try:
+            set_item_export = lib.gd_sim_set_dbg_item_origins
+            item_origin = lib.gd_sim_dbg_event_item_origin
+        except AttributeError:
+            ap.error("--strict-item-origins requires a DLL with item origin export")
+        set_item_export.argtypes = [ctypes.c_int32]
+        set_item_export.restype = None
+        set_item_export(1)
+        item_origin.argtypes = [ctypes.c_int32, ctypes.POINTER(ctypes.c_char_p), ctypes.POINTER(ctypes.c_int32)]
+        item_origin.restype = ctypes.c_int32
 
     results = []
     event_names = _et_names()
@@ -323,7 +371,7 @@ def main() -> int:
             continue
 
         if args.native_only:
-            rec = compare_native_case(sim, gem_origin, args, fx, cid)
+            rec = compare_native_case(sim, gem_origin, item_origin, args, fx, cid)
             results.append(rec)
             difference = rec.get("events_cpp_vs_original", {}).get("first_divergence")
             print(f"[{n}/{len(ids)}] {cid} {rec['category']} | first={difference}")
@@ -495,7 +543,8 @@ def main() -> int:
                      for k in set(r['category'] for r in results)},
         'winner_mismatch': win_diff,
         'winner_unavailable': sum(1 for r in results if "winner_match" not in r),
-        'cases_with_coarse_gem_origin': sum(1 for r in results if r["missing_fields"]),
+        'cases_with_coarse_gem_origin': sum(
+            any("gem" in field for field in r["missing_fields"]) for r in results),
         'strict_gem_origins': args.strict_gem_origins,
         'original_dir': str(args.original_dir) if args.original_dir else None,
         'first_divergences': [{'caseId': r['caseId'],
@@ -512,9 +561,14 @@ def main() -> int:
         'wall_total_s': round(time.time() - t_all, 1),
     }
     if args.native_only:
+        summary['strict_item_origins'] = args.strict_item_origins
         summary['dll_sha256'] = hashlib.sha256(Path(args.dll).read_bytes()).hexdigest()
         summary['fixtures_sha256'] = hashlib.sha256(Path(args.cases_json).read_bytes()).hexdigest()
+        payload = json.dumps(sim.data, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+        summary['runtime_data_sha256'] = hashlib.sha256(payload.encode("utf8")).hexdigest()
         for item, row in zip(summary['first_divergences'], (r for r in results if r['category'] != 'pass')):
+            if args.strict_item_origins:
+                item['first_item'] = row.get('strict_item_first')
             if (difference := row.get('events_cpp_vs_original')) is not None:
                 item.update(difference)
                 item['first'] = difference['first_divergence']
