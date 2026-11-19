@@ -17,6 +17,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--baseline", type=Path, required=True)
 parser.add_argument("--out", type=Path, required=True)
 parser.add_argument("--jobs", type=int, default=1)
+parser.add_argument("--native-hot-path", action="store_true")
 args = parser.parse_args()
 if args.jobs < 1:
     parser.error("--jobs must be positive")
@@ -38,6 +39,8 @@ for name in ("float", "cooldowns", "buff_timers", "item_timers"):
     generate(stage / f"optimize_native_{name}.py", stage)
 if "gd_sim_run_one_replay_host_phases" in (native / "engine_wrapper.cpp").read_text("utf8"):
     generate(stage / "stage_native_host_idle_phase.py", stage, "--generated-only")
+if args.native_hot_path:
+    generate(stage / "optimize_native_hot_path.py", stage)
 for path, (body, atime, mtime) in previous.items():
     if path.exists() and path.read_bytes() == body:
         os.utime(path, ns=(atime, mtime))
