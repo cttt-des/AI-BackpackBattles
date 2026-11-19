@@ -10,6 +10,7 @@ from pathlib import Path
 import sys
 import subprocess
 import hashlib
+import re
 
 repo = Path.cwd()
 sys.path.insert(0, str(repo))
@@ -26,6 +27,8 @@ parser.add_argument("--rng-probe", action="store_true")
 parser.add_argument("--restore-ambient-timers", action="store_true")
 parser.add_argument("--restore-flickers", action="store_true")
 parser.add_argument("--advance-character-tweens", action="store_true")
+parser.add_argument("--advance-charge-tweens", action="store_true")
+parser.add_argument("--opening-tween-pass", action="store_true")
 parser.add_argument("--native-delta", action="store_true")
 parser.add_argument("--source-fatigue-mode", action="store_true")
 parser.add_argument("--snapshot-active-timers", action="store_true")
@@ -40,6 +43,8 @@ variant += "_tweens" if args.advance_character_tweens else ""
 variant += "_f32dt" if args.native_delta else ""
 variant += "_fatigue" if args.source_fatigue_mode else ""
 variant += "_active" if args.snapshot_active_timers else ""
+variant += "_charges" if args.advance_charge_tweens else ""
+variant += "_opening" if args.opening_tween_pass else ""
 out = stage / "native_boundary_comparison" / args.reference / variant
 out.mkdir(parents=True, exist_ok=True)
 source = (repo / "oracle/oracle_fight.gd").read_text("utf8")
@@ -102,14 +107,14 @@ source = source.replace("\tG.activateItems(playerItems + opponentItems)\n",
                         + ("\t\tU.rng.recording = true\n" if args.rng_probe else "")
                         + "\tG.activateItems(playerItems + opponentItems)\n")
 if args.restore_flickers:
-    source = source.replace("extends SceneTree\n", "extends SceneTree\n\nvar _native_visual_players := []\n", 1)
+    source = source.replace("extends SceneTree\n", "extends SceneTree\n\nvar _native_visual_players := []\nvar _native_visual_orphans := []\n", 1)
     source = source.replace("\t\tU.rng.set_state(%s)\n" % data["before_activate"]["state"],
                             "\t\t_restore_native_visuals(%s)\n" % json.dumps(data["flicker_states"], ensure_ascii=False)
                             + "\t\tU.rng.set_state(%s)\n" % data["before_activate"]["state"])
     anchor = "\tdrive_delayed(dt)\n"
     assert source.count(anchor) == 1
     source = source.replace(anchor, '''\tfor animation in _native_visual_players:
-		if is_instance_valid(animation) and animation.is_playing():
+		if is_instance_valid(animation) and animation.is_inside_tree() and animation.is_playing():
 			animation.advance(dt)
 ''' + anchor)
     source += '''
@@ -138,6 +143,9 @@ func _restore_native_visuals(snapshots):
 			keep.append(entry)
 	U.oracleDelayedTimers = keep
 	_native_visual_players = []
+	for orphan in _native_visual_orphans:
+		orphan.free()
+	_native_visual_orphans = []
 	for snapshot in snapshots:
 		var animation = null
 		if snapshot["identity"] != null:
@@ -146,6 +154,11 @@ func _restore_native_visuals(snapshots):
 				animation = host.get_node_or_null(snapshot["identity"]["relative_path"])
 		else:
 			animation = root.get_node_or_null(snapshot["path"])
+		if animation == null and not snapshot["inside_tree"] and snapshot["identity"] != null:
+			# Preserve the original scene's exported flicker limits without entering the tree.
+			var orphan = IB.getDescriptor(snapshot["identity"]["name"]).instantiate()
+			_native_visual_orphans.append(orphan)
+			animation = orphan.get_node_or_null(snapshot["identity"]["relative_path"])
 		assert(animation != null, "Missing native visual source " + str(snapshot))
 		_native_visual_players.append(animation)
 		animation.stop()
@@ -156,13 +169,51 @@ func _restore_native_visuals(snapshots):
 		for pending in snapshot["pending"]:
 			U.callDelayed(animation, pending["method"], float(pending["left"]))
 '''
-if args.advance_character_tweens:
+if args.advance_character_tweens and not args.advance_charge_tweens:
     anchor = "\tdrive_delayed(dt)\n"
     assert source.count(anchor) == 1
     source = source.replace(anchor, anchor + '''\tfor character in [G.OPPONENT, G.PLAYER]:
 		if is_instance_valid(character.attackTween) and character.attackTween.is_valid():
 			character.attackTween.custom_step(dt)
 ''')
+if args.advance_charge_tweens:
+    anchor = "\tdrive_delayed(dt)\n"
+    assert source.count(anchor) == 1
+    source = source.replace(anchor, anchor + "\t_advance_native_tweens(dt)\n")
+    source += '''
+
+func _collect_charge_tweens(node, found):
+	if node.get_script() != null and node.get_script().resource_path.ends_with("/ElectricalCharge.gd"):
+		if is_instance_valid(node.tween) and node.tween.is_valid():
+			found.append(node.tween)
+	for child in node.get_children():
+		_collect_charge_tweens(child, found)
+
+func _native_tween_created_before(left, right):
+	return left.get_instance_id() < right.get_instance_id()
+
+func _advance_native_tweens(delta):
+	var tweens := []
+	_collect_charge_tweens(root, tweens)
+'''
+    if args.advance_character_tweens:
+        source += '''	for character in [G.OPPONENT, G.PLAYER]:
+		if is_instance_valid(character.attackTween) and character.attackTween.is_valid():
+			tweens.append(character.attackTween)
+'''
+    source += '''	tweens.sort_custom(self, "_native_tween_created_before")
+	for tween in tweens:
+		if is_instance_valid(tween) and tween.is_valid():
+			tween.custom_step(delta)
+'''
+    if args.opening_tween_pass:
+        # Activation runs in a SceneTreeTimer callback. Its newly-created Tweens
+        # therefore receive the native idle Tween pass before the next physics tick.
+        anchor = "\trebuild_timer_registry()\n"
+        assert source.count(anchor) == 1
+        source = source.replace(anchor, anchor + "\t_advance_native_tweens(DT)\n")
+elif args.opening_tween_pass:
+    parser.error("--opening-tween-pass requires --advance-charge-tweens")
 if args.rng_probe:
     source = source.replace("\tdump_events(events, dir, res)\n", '''\tdump_events(events, dir, res)
 	if not warmup:
@@ -191,6 +242,7 @@ if args.restore_ambient_timers:
 ''' % json.dumps(timers, ensure_ascii=False))
 script = out / "oracle_fight.gd"
 script.write_text(source, encoding="utf8")
+oracle_diagnostics = None
 if not args.compare_only:
     p, log, handle = gh.spawn(gh.cmd(project=str(stage / "full_corpus/expand/project"), script=str(script)),
                          label="native_boundary_compare", tag="native_boundary_compare",
@@ -208,6 +260,16 @@ if not args.compare_only:
         handle.close()
     if rc:
         raise SystemExit(rc)
+    log_text = Path(log).read_text("utf8", errors="replace")
+    errors = re.findall(r"SCRIPT ERROR: ([^\r\n]+)\s+at: ([^\r\n]+)", log_text)
+    oracle_diagnostics = {"log": str(log), "script_errors": len(errors),
+                          "sites": sorted(set(site for _, site in errors)),
+                          "scope": "Skeleton UI startup/teardown errors are retained; this is not a clean native-scene run"}
+    (out / "oracle_diagnostics.json").write_text(json.dumps(oracle_diagnostics, indent=2) + "\n", encoding="utf8")
+    fatal = [(message, site) for message, site in errors
+             if any(location in site for location in (str(script), "_native_", "_restore_native_visuals", "/ElectricalCharge.gd", "/FlickerAnimation.gd"))]
+    if fatal or "Debugger Break" in log_text:
+        raise SystemExit("Oracle candidate has a scheduler/visual script error; inspect " + str(log))
 paths = [reference / "events.json", out / "fights" / args.case_id / "events.json"]
 documents = [json.loads(path.read_text("utf8")) for path in paths]
 streams = [canonical_stream(str(path), _et_names()) for path in paths]
@@ -238,6 +300,7 @@ result = {"case_id": args.case_id, "counts": list(map(len, streams)), "first": f
           "strict_gem_missing": gem_missing, "strict_gem_first": gem_first,
           "rng": rng_comparison, "controls": vars(args),
           "oracle_script_sha256": hashlib.sha256(script.read_bytes()).hexdigest(),
+          "oracle_diagnostics": oracle_diagnostics,
           "native": streams[0][first] if first is not None else None,
           "oracle": streams[1][first] if first is not None else None,
           "scope": "Recovered-source native reference; imported initial states only; all listed events independently computed"}

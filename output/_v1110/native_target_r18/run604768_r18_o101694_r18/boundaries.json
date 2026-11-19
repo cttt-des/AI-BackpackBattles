@@ -1,0 +1,1716 @@
+{
+  "startup": {
+    "pooling_index": 518,
+    "descriptor_count": 519,
+    "physics_frames": 519
+  },
+  "prepare": {
+    "seed": "-4443138177844854747",
+    "state": "-7572186763598224352",
+    "order": [
+      {
+        "name": "Battery",
+        "owner": 1,
+        "top_left": [
+          0,
+          5
+        ]
+      },
+      {
+        "name": "Battery",
+        "owner": 1,
+        "top_left": [
+          0,
+          6
+        ]
+      },
+      {
+        "name": "Battery",
+        "owner": 1,
+        "top_left": [
+          5,
+          6
+        ]
+      },
+      {
+        "name": "Battery",
+        "owner": 1,
+        "top_left": [
+          1,
+          0
+        ]
+      },
+      {
+        "name": "Battery",
+        "owner": 1,
+        "top_left": [
+          2,
+          0
+        ]
+      },
+      {
+        "name": "Heart of Darkness",
+        "owner": 1,
+        "top_left": [
+          4,
+          1
+        ]
+      },
+      {
+        "name": "Charge Splitter",
+        "owner": 1,
+        "top_left": [
+          1,
+          5
+        ]
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 1,
+        "top_left": [
+          2,
+          1
+        ]
+      },
+      {
+        "name": "Coil",
+        "owner": 1,
+        "top_left": [
+          2,
+          6
+        ]
+      },
+      {
+        "name": "Gold Cube",
+        "owner": 1,
+        "top_left": [
+          4,
+          0
+        ]
+      },
+      {
+        "name": "Protective Purse",
+        "owner": 1,
+        "top_left": [
+          6,
+          1
+        ]
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 1,
+        "top_left": [
+          0,
+          4
+        ]
+      },
+      {
+        "name": "Cog",
+        "owner": 1,
+        "top_left": [
+          5,
+          0
+        ]
+      },
+      {
+        "name": "Amulet of Alchemy",
+        "owner": 1,
+        "top_left": [
+          6,
+          0
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "top_left": [
+          2,
+          5
+        ]
+      },
+      {
+        "name": "Protective Purse",
+        "owner": 1,
+        "top_left": [
+          7,
+          0
+        ]
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 1,
+        "top_left": [
+          0,
+          2
+        ]
+      },
+      {
+        "name": "Stone Skin Potion",
+        "owner": 1,
+        "top_left": [
+          8,
+          3
+        ]
+      },
+      {
+        "name": "Chrome Cube",
+        "owner": 1,
+        "top_left": [
+          0,
+          1
+        ]
+      },
+      {
+        "name": "Plastic Cube",
+        "owner": 1,
+        "top_left": [
+          3,
+          3
+        ]
+      },
+      {
+        "name": "Charge Splitter",
+        "owner": 1,
+        "top_left": [
+          2,
+          5
+        ]
+      },
+      {
+        "name": "Amulet of Light",
+        "owner": 1,
+        "top_left": [
+          6,
+          6
+        ]
+      },
+      {
+        "name": "Stamina Sack",
+        "owner": 1,
+        "top_left": [
+          4,
+          4
+        ]
+      },
+      {
+        "name": "Evil Cap",
+        "owner": 1,
+        "top_left": [
+          8,
+          5
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "top_left": [
+          4,
+          0
+        ]
+      },
+      {
+        "name": "Stamina Sack",
+        "owner": 1,
+        "top_left": [
+          8,
+          0
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "top_left": [
+          0,
+          5
+        ]
+      },
+      {
+        "name": "Protective Purse",
+        "owner": 1,
+        "top_left": [
+          6,
+          0
+        ]
+      },
+      {
+        "name": "Coil",
+        "owner": 1,
+        "top_left": [
+          4,
+          5
+        ]
+      },
+      {
+        "name": "Stamina Sack",
+        "owner": 1,
+        "top_left": [
+          7,
+          2
+        ]
+      },
+      {
+        "name": "Potion Belt",
+        "owner": 1,
+        "top_left": [
+          8,
+          3
+        ]
+      },
+      {
+        "name": "Amulet of Light",
+        "owner": 1,
+        "top_left": [
+          5,
+          4
+        ]
+      },
+      {
+        "name": "Amulet of Agility",
+        "owner": 1,
+        "top_left": [
+          0,
+          3
+        ]
+      },
+      {
+        "name": "Big Bloodthorne",
+        "owner": 1,
+        "top_left": [
+          1,
+          1
+        ]
+      },
+      {
+        "name": "Resistor",
+        "owner": 1,
+        "top_left": [
+          3,
+          5
+        ]
+      },
+      {
+        "name": "Stamina Sack",
+        "owner": 1,
+        "top_left": [
+          4,
+          2
+        ]
+      },
+      {
+        "name": "Cog",
+        "owner": 1,
+        "top_left": [
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Gloves of Haste",
+        "owner": 1,
+        "top_left": [
+          3,
+          4
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "top_left": [
+          6,
+          5
+        ]
+      },
+      {
+        "name": "Amulet of Agility",
+        "owner": 1,
+        "top_left": [
+          0,
+          2
+        ]
+      },
+      {
+        "name": "Strong Heroic Potion",
+        "owner": 1,
+        "top_left": [
+          7,
+          0
+        ]
+      },
+      {
+        "name": "Amulet of Light",
+        "owner": 1,
+        "top_left": [
+          5,
+          5
+        ]
+      },
+      {
+        "name": "Strong Heroic Potion",
+        "owner": 1,
+        "top_left": [
+          8,
+          1
+        ]
+      },
+      {
+        "name": "Resistor",
+        "owner": 1,
+        "top_left": [
+          1,
+          6
+        ]
+      },
+      {
+        "name": "Stamina Sack",
+        "owner": 1,
+        "top_left": [
+          4,
+          3
+        ]
+      },
+      {
+        "name": "Protective Purse",
+        "owner": 1,
+        "top_left": [
+          7,
+          1
+        ]
+      },
+      {
+        "name": "Platin Customer Card",
+        "owner": 1,
+        "top_left": [
+          3,
+          0
+        ]
+      },
+      {
+        "name": "Potion Belt",
+        "owner": 1,
+        "top_left": [
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 1,
+        "top_left": [
+          0,
+          1
+        ]
+      },
+      {
+        "name": "Twine Badge",
+        "owner": 1,
+        "top_left": [
+          3,
+          2
+        ]
+      },
+      {
+        "name": "Angel Crystal",
+        "owner": 1,
+        "top_left": [
+          4,
+          3
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "top_left": [
+          4,
+          5
+        ]
+      },
+      {
+        "name": "Coil",
+        "owner": 1,
+        "top_left": [
+          3,
+          6
+        ]
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 1,
+        "top_left": [
+          0,
+          3
+        ]
+      },
+      {
+        "name": "Platin Customer Card",
+        "owner": 1,
+        "top_left": [
+          3,
+          1
+        ]
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 1,
+        "top_left": [
+          2,
+          4
+        ]
+      },
+      {
+        "name": "Rainbow Orb",
+        "owner": 1,
+        "top_left": [
+          6,
+          5
+        ]
+      },
+      {
+        "name": "Gold Armor",
+        "owner": 1,
+        "top_left": [
+          6,
+          2
+        ]
+      },
+      {
+        "name": "Shiny Shell",
+        "owner": 1,
+        "top_left": [
+          7,
+          1
+        ]
+      },
+      {
+        "name": "Coil",
+        "owner": 1,
+        "top_left": [
+          4,
+          6
+        ]
+      },
+      {
+        "name": "Lucky Cat",
+        "owner": 1,
+        "top_left": [
+          7,
+          5
+        ]
+      },
+      {
+        "name": "Shiny Shell",
+        "owner": 1,
+        "top_left": [
+          6,
+          1
+        ]
+      },
+      {
+        "name": "Bismuth Cube",
+        "owner": 1,
+        "top_left": [
+          0,
+          4
+        ]
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 1,
+        "top_left": [
+          2,
+          3
+        ]
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 1,
+        "top_left": [
+          2,
+          2
+        ]
+      },
+      {
+        "name": "Fedora",
+        "owner": 3,
+        "top_left": [
+          6,
+          4
+        ]
+      },
+      {
+        "name": "Leather Boots",
+        "owner": 3,
+        "top_left": [
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Shelly",
+        "owner": 3,
+        "top_left": [
+          5,
+          1
+        ]
+      },
+      {
+        "name": "Snowmaster",
+        "owner": 3,
+        "top_left": [
+          1,
+          6
+        ]
+      },
+      {
+        "name": "Amulet of Darkness",
+        "owner": 3,
+        "top_left": [
+          6,
+          3
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "top_left": [
+          2,
+          5
+        ]
+      },
+      {
+        "name": "Mrs Struggles",
+        "owner": 3,
+        "top_left": [
+          1,
+          0
+        ]
+      },
+      {
+        "name": "Protective Purse",
+        "owner": 3,
+        "top_left": [
+          0,
+          1
+        ]
+      },
+      {
+        "name": "Twine",
+        "owner": 3,
+        "top_left": [
+          2,
+          3
+        ]
+      },
+      {
+        "name": "Dragonskin Boots",
+        "owner": 3,
+        "top_left": [
+          7,
+          0
+        ]
+      },
+      {
+        "name": "Rope",
+        "owner": 3,
+        "top_left": [
+          1,
+          1
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "top_left": [
+          7,
+          0
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "top_left": [
+          0,
+          3
+        ]
+      },
+      {
+        "name": "Dragonskin Boots",
+        "owner": 3,
+        "top_left": [
+          7,
+          1
+        ]
+      },
+      {
+        "name": "Falcon Blade",
+        "owner": 3,
+        "top_left": [
+          1,
+          2
+        ]
+      },
+      {
+        "name": "Light Goobert",
+        "owner": 3,
+        "top_left": [
+          4,
+          4
+        ]
+      },
+      {
+        "name": "Sewing Case",
+        "owner": 3,
+        "top_left": [
+          0,
+          1
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "top_left": [
+          7,
+          3
+        ]
+      },
+      {
+        "name": "Protective Purse",
+        "owner": 3,
+        "top_left": [
+          6,
+          5
+        ]
+      },
+      {
+        "name": "Twine",
+        "owner": 3,
+        "top_left": [
+          5,
+          3
+        ]
+      },
+      {
+        "name": "Goobling",
+        "owner": 3,
+        "top_left": [
+          5,
+          6
+        ]
+      },
+      {
+        "name": "Time Pendant",
+        "owner": 3,
+        "top_left": [
+          0,
+          3
+        ]
+      },
+      {
+        "name": "Evil Cap",
+        "owner": 3,
+        "top_left": [
+          7,
+          2
+        ]
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 3,
+        "top_left": [
+          4,
+          0
+        ]
+      },
+      {
+        "name": "Repeater",
+        "owner": 3,
+        "top_left": [
+          7,
+          4
+        ]
+      },
+      {
+        "name": "Snowmaster",
+        "owner": 3,
+        "top_left": [
+          3,
+          6
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "top_left": [
+          7,
+          5
+        ]
+      },
+      {
+        "name": "Cap of Brilliance",
+        "owner": 3,
+        "top_left": [
+          8,
+          5
+        ]
+      },
+      {
+        "name": "Stable Recombobulator",
+        "owner": 3,
+        "top_left": [
+          6,
+          2
+        ]
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 3,
+        "top_left": [
+          4,
+          2
+        ]
+      },
+      {
+        "name": "Lucky Cat",
+        "owner": 3,
+        "top_left": [
+          0,
+          5
+        ]
+      },
+      {
+        "name": "Oil Lamp",
+        "owner": 3,
+        "top_left": [
+          3,
+          0
+        ]
+      },
+      {
+        "name": "Healing Herbs",
+        "owner": 3,
+        "top_left": [
+          0,
+          2
+        ]
+      },
+      {
+        "name": "Protective Purse",
+        "owner": 3,
+        "top_left": [
+          6,
+          6
+        ]
+      },
+      {
+        "name": "Twine",
+        "owner": 3,
+        "top_left": [
+          2,
+          2
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "top_left": [
+          5,
+          0
+        ]
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 3,
+        "top_left": [
+          3,
+          0
+        ]
+      },
+      {
+        "name": "Sandbag",
+        "owner": 3,
+        "top_left": [
+          8,
+          2
+        ]
+      },
+      {
+        "name": "Chili Goobert",
+        "owner": 3,
+        "top_left": [
+          2,
+          4
+        ]
+      },
+      {
+        "name": "Dragon Knight",
+        "owner": 3,
+        "top_left": [
+          3,
+          1
+        ]
+      },
+      {
+        "name": "Stamina Sack",
+        "owner": 3,
+        "top_left": [
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "top_left": [
+          5,
+          3
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "top_left": [
+          4,
+          5
+        ]
+      },
+      {
+        "name": "Twine",
+        "owner": 3,
+        "top_left": [
+          5,
+          2
+        ]
+      },
+      {
+        "name": "Speak with Animals",
+        "owner": 3,
+        "top_left": [
+          0,
+          4
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "top_left": [
+          0,
+          5
+        ]
+      },
+      {
+        "name": "Potion Belt",
+        "owner": 3,
+        "top_left": [
+          5,
+          2
+        ]
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 3,
+        "top_left": [
+          2,
+          3
+        ]
+      },
+      {
+        "name": "Stamina Sack",
+        "owner": 3,
+        "top_left": [
+          2,
+          4
+        ]
+      }
+    ]
+  },
+  "before_activate": {
+    "seed": "1609557398860011337",
+    "state": "1213505509692821876"
+  },
+  "combat_start": {
+    "seed": "1609557398860011337",
+    "state": "1213505509692821876",
+    "player_stamina": 10,
+    "opponent_stamina": 7,
+    "util_time": "11.15000058151781600",
+    "clock_time": "12.65000065974891200"
+  },
+  "idle_animation_timers": [
+    {
+      "owner": 1,
+      "left": 1.768865,
+      "left_precise": "1.76886498928070070",
+      "wait_time": 3.285532,
+      "process_mode": 1,
+      "stopped": false
+    },
+    {
+      "owner": 0,
+      "left": 2.123377,
+      "left_precise": "2.12337684631347660",
+      "wait_time": 4.423377,
+      "process_mode": 1,
+      "stopped": false
+    }
+  ],
+  "flicker_states": [
+    {
+      "identity": {
+        "name": "Burning Coal",
+        "owner": 7,
+        "top_left": [
+          -999,
+          -999
+        ],
+        "relative_path": "Icon/TorchLight/FlickerAnimation"
+      },
+      "pending": [
+
+      ],
+      "playing": true,
+      "position": 0.271716,
+      "speed": 0.45286,
+      "animation": "Flicker",
+      "length": 0.3,
+      "loop": false,
+      "inside_tree": true,
+      "path": "/root/Main/Combat/Opponent/Cap of Brilliance/Icon/Sockets/GemSocket/Burning Coal/Icon/TorchLight/FlickerAnimation"
+    },
+    {
+      "identity": {
+        "name": "Oil Lamp",
+        "owner": 3,
+        "top_left": [
+          3,
+          0
+        ],
+        "relative_path": "Icon/TorchLight/FlickerAnimation"
+      },
+      "pending": [
+
+      ],
+      "playing": true,
+      "position": 0.184419,
+      "speed": 0.582375,
+      "animation": "Flicker",
+      "length": 0.3,
+      "loop": false,
+      "inside_tree": true,
+      "path": "/root/Main/Combat/Opponent/Oil Lamp/Icon/TorchLight/FlickerAnimation"
+    },
+    {
+      "identity": {
+        "name": "Flame",
+        "owner": 8,
+        "top_left": [
+          -999,
+          -999
+        ],
+        "relative_path": "Icon/TorchLight/FlickerAnimation"
+      },
+      "pending": [
+        {
+          "left": "3.11193418502807620",
+          "method": "playAni"
+        }
+      ],
+      "playing": false,
+      "position": 0,
+      "speed": 1,
+      "animation": "Flicker",
+      "length": 0.3,
+      "loop": false,
+      "inside_tree": false,
+      "path": "off-tree"
+    }
+  ],
+  "activated": {
+    "seed": "4560956823089431303",
+    "state": "4135289797074469850",
+    "items": [
+      {
+        "name": "Protective Purse",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Stamina Sack",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Stamina Sack",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Stamina Sack",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Stamina Sack",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Protective Purse",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Protective Purse",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Stamina Sack",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Protective Purse",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Potion Belt",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Potion Belt",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Amulet of Light",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Evil Cap",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Shiny Shell",
+        "owner": 1,
+        "trigger_time": 5.085314,
+        "speed": 1.14
+      },
+      {
+        "name": "Charge Splitter",
+        "owner": 1,
+        "trigger_time": 5.139653,
+        "speed": 1.14
+      },
+      {
+        "name": "Strong Heroic Potion",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Battery",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Resistor",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Coil",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Gold Cube",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Cog",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Cog",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Lucky Cat",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Amulet of Alchemy",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Rainbow Orb",
+        "owner": 1,
+        "trigger_time": 8.176413,
+        "speed": 1.29
+      },
+      {
+        "name": "Platin Customer Card",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Platin Customer Card",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Amulet of Light",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Amulet of Light",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Plastic Cube",
+        "owner": 1,
+        "trigger_time": 7.86221,
+        "speed": 1.39
+      },
+      {
+        "name": "Twine Badge",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Big Bloodthorne",
+        "owner": 1,
+        "trigger_time": 0.93466,
+        "speed": 4.84
+      },
+      {
+        "name": "Heart of Darkness",
+        "owner": 1,
+        "trigger_time": 3.917019,
+        "speed": 1.49
+      },
+      {
+        "name": "Shiny Shell",
+        "owner": 1,
+        "trigger_time": 5.163726,
+        "speed": 1.14
+      },
+      {
+        "name": "Gloves of Haste",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Battery",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Battery",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Resistor",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.24
+      },
+      {
+        "name": "Coil",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Coil",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Coil",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.24
+      },
+      {
+        "name": "Battery",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Amulet of Agility",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Amulet of Agility",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Battery",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Charge Splitter",
+        "owner": 1,
+        "trigger_time": 5.044772,
+        "speed": 1.24
+      },
+      {
+        "name": "Chrome Cube",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Bismuth Cube",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Strong Heroic Potion",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Gold Armor",
+        "owner": 1,
+        "trigger_time": 2.173234,
+        "speed": 1.49
+      },
+      {
+        "name": "Angel Crystal",
+        "owner": 1,
+        "trigger_time": 6.857113,
+        "speed": 1.29
+      },
+      {
+        "name": "Stone Skin Potion",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Protective Purse",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Potion Belt",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Protective Purse",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Stamina Sack",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Protective Purse",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Stamina Sack",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Sewing Case",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Leather Boots",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Sandbag",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Cap of Brilliance",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Mrs Struggles",
+        "owner": 3,
+        "trigger_time": 4.713502,
+        "speed": 1.14
+      },
+      {
+        "name": "Dragonskin Boots",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Dragonskin Boots",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Lucky Cat",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Stable Recombobulator",
+        "owner": 3,
+        "trigger_time": 2.519759,
+        "speed": 1.14
+      },
+      {
+        "name": "Amulet of Darkness",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Evil Cap",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Repeater",
+        "owner": 3,
+        "trigger_time": 12.217102,
+        "speed": 1.14
+      },
+      {
+        "name": "Time Pendant",
+        "owner": 3,
+        "trigger_time": 2.046163,
+        "speed": 1.54
+      },
+      {
+        "name": "Healing Herbs",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Shelly",
+        "owner": 3,
+        "trigger_time": 13.537882,
+        "speed": 1.14
+      },
+      {
+        "name": "Dragon Knight",
+        "owner": 3,
+        "trigger_time": 1.203146,
+        "speed": 2.29
+      },
+      {
+        "name": "Twine",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Twine",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Fedora",
+        "owner": 3,
+        "trigger_time": 3.151588,
+        "speed": 1.14
+      },
+      {
+        "name": "Goobling",
+        "owner": 3,
+        "trigger_time": 2,
+        "speed": 1.14
+      },
+      {
+        "name": "Falcon Blade",
+        "owner": 3,
+        "trigger_time": 1.710108,
+        "speed": 1.29
+      },
+      {
+        "name": "Chili Goobert",
+        "owner": 3,
+        "trigger_time": 5,
+        "speed": 1.14
+      },
+      {
+        "name": "Light Goobert",
+        "owner": 3,
+        "trigger_time": 4,
+        "speed": 1.14
+      },
+      {
+        "name": "Snowmaster",
+        "owner": 3,
+        "trigger_time": 1.415261,
+        "speed": 1.24
+      },
+      {
+        "name": "Snowmaster",
+        "owner": 3,
+        "trigger_time": 1.40596,
+        "speed": 1.24
+      },
+      {
+        "name": "Rope",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Twine",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Twine",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.14
+      },
+      {
+        "name": "Speak with Animals",
+        "owner": 3,
+        "trigger_time": 3.035897,
+        "speed": 1.54
+      },
+      {
+        "name": "Oil Lamp",
+        "owner": 3,
+        "trigger_time": 3.368864,
+        "speed": 1.34
+      }
+    ]
+  }
+}
