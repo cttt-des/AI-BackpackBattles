@@ -1,0 +1,159 @@
+{
+ "version": 3,
+ "meta": {
+  "name": "oracle_run101207_r1_o604707_r1_opponent",
+  "source": "oracle:run101207_r1_o604707_r1"
+ },
+ "character": "Adventurer",
+ "round": 1,
+ "health_override": 25,
+ "class_modifiers": {
+  "stamina": 5.0
+ },
+ "base_max_stamina": 5.0,
+ "backpack": {
+  "grid": {
+   "rows": 7,
+   "cols": 10
+  },
+  "items": [
+   {
+    "id": "Sewing Case",
+    "row": 3,
+    "col": 2,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Leather Bag",
+    "row": 1,
+    "col": 2,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Fanny Pack",
+    "row": 2,
+    "col": 4,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Wooden Sword",
+    "row": 2,
+    "col": 5,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": [
+     null
+    ]
+   },
+   {
+    "id": "Star of Courage",
+    "row": 4,
+    "col": 3,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Pan",
+    "row": 2,
+    "col": 2,
+    "rotation": 90,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": [
+     null
+    ]
+   },
+   {
+    "id": "Twine",
+    "row": 2,
+    "col": 4,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Pocket Sand",
+    "row": 1,
+    "col": 2,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Whetstone",
+    "row": 3,
+    "col": 4,
+    "rotation": 90,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Wolf Badge",
+    "row": 4,
+    "col": 4,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Garlic",
+    "row": 1,
+    "col": 3,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   }
+  ]
+ },
+ "storage": []
+}

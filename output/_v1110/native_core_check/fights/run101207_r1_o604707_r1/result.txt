@@ -1,0 +1,35 @@
+受控神谕单场结果
+status=ok
+case_id=run101207_r1_o604707_r1
+seed=765678070
+run_id=101207 round_id=1
+opp_run_id=604707 opp_round_id=1
+winner=player
+combat_time=18.00
+ticks=1080 (dt=1/60, 上限 5400)
+event_count=160
+godot_script=oracle/oracle_fight.gd (1.1.8 反编译全量工程)
+version=1.1.10
+player_hp=42/25 opponent_hp=0/25 fatigue=0
+modifications=
+- [桩] SilentWolf/RunDatabase/CrazySDK/Steam autoload 空实现（oracle_stubs/，禁网，见各文件头）
+- [桩] Main.tscn 不加载；根下 Main 为 oracle_bootstrap.gd 程序化战斗骨架（含 [M3] 疲劳链连接）
+- [桩] Game.buildHistory 只读假体（isOpen=false；markedOpponent* 程序化写入）
+- [桩] Game.SELLBOX/STORAGEBOX/ItemLibrary 最小桩/原版件（oracle_bootstrap.gd #8/#8b）
+- [M1] Util.callDelayed/setDelayed 系追加 SceneTreeTimer 登记（oracle_fight 驱动）
+- [M2] Util.changeTimer/CombatTimer.advanceTime/Buff 读计时器剩余时以注册表为准（Util.oracleTimeLeft）
+- [M4] 开战 UI 过场压缩为顺序调用；combatTime 事件戳从 0 起（gd_core 同约定）
+- [M6] 战斗中停用 Character 待机动画随机化计时器（AnimationSpeedTimer，纯视觉；跨场链漂移根源）
+- [M6b] 每场装配前清空 ObjectPool.instances 与 ItemBook 预实例化缓存（池内容随启动帧数变化，不可复现）
+- [M6c] 每场收尾补 Character.cleanse（等价原版 CombatToShop 过场），防临时状态跨场泄漏
+- [M7] 暖场一场丢弃（不计批量不落盘），冲洗进程冷启动一次性状态；确定性自证=紧邻复跑+批尾复跑逐字节比对
+- [M8] _reset_combat_log 补齐原版 clear() 的节点归还半段（close/activeLine/日志行容器→ObjectPool）；不直接调 clear()，其 scrollEnabled 行因 3.6 属性名差异会打断后半段
+- [M9] 防泄漏三件套：池孤儿逐个 free（原仅丢引用）、场末清扫 ItemAnimations/Labels 瞬态节点、[M2] 基础上每 tick 墙钟/单 tick 尖峰双闸（5s/120s）止损失控场
+- [M10] 长战斗每 60 tick 清扫 Labels/ItemAnimations（>400 子节点归还池/释放）——纯视觉节点，防 2.7 万事件级战斗 tick 成本爬升触墙钟闸
+- [M11] 进程配额 ORACLE_FIGHT_CHUNK（外层驱动续跑）：阻塞循环下 MessageQueue 只能帧末 flush，跨场累积至溢出会逐条刷陈旧目标错误；配额退出=干净 flush，resume 幂等续接
+- [M12] 兜底三闸（每 tick 检查）：单 tick 墙钟>5s(lockup)/单场墙钟>1200s/事件数>200000（np46 抬闸，见 [M14]）——2.7 万事件级战斗每事件排队数十条 Control 布局消息，约 90 万条触发 MessageQueue 溢出 dump（3.5GB）；被截断的战斗照常 dump 已产生事件，status 如实标 timeout
+- [M14] np46 事件闸全长（台账 §6m83，ORACLE_NOLIMIT 语义=200000，np22 抬闸版同形）：重录给全部场抬 recording 事件闸 25000→200000、墙钟闸 60s→1200s——「语料截断·严格前缀」簇（§6m77-81 五场）即旧闸 25000 所截，全长录制后自然终局事件（type=111/112+winner）齐备
+- [M15] A3 卡链忠实化（2026-11-15，用户定案「卡链必须逐一激活」）：战斗语义的 call_deferred 改经 U.oracleFrameEndCalls 帧末列表，由 flush_frame_end_calls 在 activateItems 后与每 tick 末冲刷（真实游戏每帧尾泵 MessageQueue，60fps 下帧:tick≈1:1——阻塞录制循环无帧，旧语料 Deck of Cards 卡链零启动）。冲刷面 rng 中性；Card/DeckofCards 的 connector checkState（纯视觉）改直调不入列
+- [M13] np46 逐案隔离（台账 §6m82）：每场开战前跨案/跨执行累积态归零（T0 绝对钟 Util.time/clockTime/frameCounter=0、EventBus.disconnectAll、oracleTimerLefts/oracleDelayedTimers 清、ropeSpeedups/cubeAdvanced/sandbagActive/fatigueCounter/fatigueDamageSource 归零、双侧角色 attackMovingForward=false+attackSoundReadyTime=-1+damageAnimation stop 复位+全 buff permanentStacks=0+物品 buffLabelPositionTimestamps/usedStacks 清）——初态=gd_core 全新 CoreContext，零 rng 消耗
+- [M5] UI/音频照常调用但入虚空；其 Util.rng 消耗按原版保留（docs/rng_truth.md §1.4-4）
+- 隔离：config/name=BackpackBattlesOracle；history.db 用本地快照副本（原快照只读）

@@ -1,0 +1,2525 @@
+{
+ "case_id": "run101207_r1_o604707_r1",
+ "seed": 765678070,
+ "below_master": true,
+ "preordered": true,
+ "custom_health_multiplier": 100.0,
+ "replay_initial": {
+  "activation_rng_state": "-9179488375276124531",
+  "idle_left": [
+   "0.91454672813415530",
+   "1.45010960102081300"
+  ]
+ },
+ "reseeded_after_player_character": true,
+ "post_seed_draws": 0,
+ "rng_state_injected": true,
+ "winner": "player",
+ "combat_time": 18.000000938773155,
+ "ticks": 1230,
+ "player_hp": 42.0,
+ "player_max_hp": 49.0,
+ "opponent_hp": 0.0,
+ "opponent_max_hp": 43.0,
+ "event_count": 160,
+ "events": [
+  {
+   "id": 1,
+   "type": 100,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Steel",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 30,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 2,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Steel",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 3,
+   "type": 105,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Scholar Bag",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 5,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 4,
+   "type": 109,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Pocket Sand",
+    "owner_type": 3
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 5,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Pocket Sand",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 6,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Whetstone",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 7,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.9166667144745588,
+   "origin": {
+    "kind": "item",
+    "identifier": "Chess Board",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 8,
+   "type": 102,
+   "type_name": "stack_gain",
+   "timestamp": 0.9166667144745588,
+   "origin": {
+    "kind": "item",
+    "identifier": "White Pawn",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 2,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 9,
+   "type": 108,
+   "type_name": "stack_gain",
+   "timestamp": 0.9166667144745588,
+   "origin": {
+    "kind": "item",
+    "identifier": "Black Pawn",
+    "owner_type": 1
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 2,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 10,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 0.9833333846181631,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "regen"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 2
+   }
+  },
+  {
+   "id": 11,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 1.2500000651925802,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 1
+   }
+  },
+  {
+   "id": 12,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 1.2500000651925802,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 13,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 1.3166667353361845,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 4
+   }
+  },
+  {
+   "id": 14,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 1.3166667353361845,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 15,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 1.9833334367722273,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "poison"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "damage": 2
+   }
+  },
+  {
+   "id": 16,
+   "type": 3,
+   "type_name": "missed",
+   "timestamp": 2.200000114738941,
+   "origin": {
+    "kind": "item",
+    "identifier": "Pan",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 17,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 2.200000114738941,
+   "origin": {
+    "kind": "item",
+    "identifier": "Pan",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 18,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 2.5666668005287647,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 3
+   }
+  },
+  {
+   "id": 19,
+   "type": 108,
+   "type_name": "stack_gain",
+   "timestamp": 2.5666668005287647,
+   "origin": {
+    "kind": "gem",
+    "host": {
+     "kind": "unknown",
+     "str": "GemSocket2"
+    },
+    "socket_index": -1,
+    "identity": [
+     "Chipped Emerald",
+     "Wooden Sword",
+     1,
+     5,
+     3,
+     0
+    ]
+   },
+   "target": 1,
+   "parent_id": 18,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 20,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 2.5666668005287647,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 21,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 2.583333468064666,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 2
+   }
+  },
+  {
+   "id": 22,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 2.583333468064666,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 23,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 2.583333468064666,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": 22,
+   "params": {
+    "amount": 2.0
+   }
+  },
+  {
+   "id": 24,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 2.583333468064666,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 25,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 2.9833334889262915,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "regen"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 2
+   }
+  },
+  {
+   "id": 26,
+   "type": 101,
+   "type_name": "stack_gain",
+   "timestamp": 3.1833334993571043,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wand",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 27,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 3.1833334993571043,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wand",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 28,
+   "type": 100,
+   "type_name": "stack_gain",
+   "timestamp": 3.866666868329048,
+   "origin": {
+    "kind": "item",
+    "identifier": "Garlic",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 3,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 29,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 3.866666868329048,
+   "origin": {
+    "kind": "item",
+    "identifier": "Garlic",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 30,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 3.8833335358649492,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 2
+   }
+  },
+  {
+   "id": 31,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 3.8833335358649492,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 32,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 3.9166668709367514,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 2
+   }
+  },
+  {
+   "id": 33,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 3.9166668709367514,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 34,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 3.9166668709367514,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": 33,
+   "params": {
+    "amount": 2.0
+   }
+  },
+  {
+   "id": 35,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 3.9166668709367514,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 36,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 3.9833335410803556,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "poison"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "damage": 3
+   }
+  },
+  {
+   "id": 37,
+   "type": 100,
+   "type_name": "stack_gain",
+   "timestamp": 4.033333543688059,
+   "origin": {
+    "kind": "item",
+    "identifier": "Garlic",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 3,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 38,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 4.033333543688059,
+   "origin": {
+    "kind": "item",
+    "identifier": "Garlic",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 39,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 4.383333561941981,
+   "origin": {
+    "kind": "item",
+    "identifier": "Pan",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 8
+   }
+  },
+  {
+   "id": 40,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 4.383333561941981,
+   "origin": {
+    "kind": "item",
+    "identifier": "Pan",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 41,
+   "type": 105,
+   "type_name": "stack_lose",
+   "timestamp": 4.583333572372794,
+   "origin": {
+    "kind": "item",
+    "identifier": "Book of Basics",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": -1,
+    "used": true,
+    "reflected": false
+   }
+  },
+  {
+   "id": 42,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 4.583333572372794,
+   "origin": {
+    "kind": "item",
+    "identifier": "Book of Basics",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 41,
+   "params": {
+    "amount": 8.0
+   }
+  },
+  {
+   "id": 43,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 4.583333572372794,
+   "origin": {
+    "kind": "item",
+    "identifier": "Book of Basics",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 44,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 4.98333359323442,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "regen"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 2
+   }
+  },
+  {
+   "id": 45,
+   "type": 3,
+   "type_name": "missed",
+   "timestamp": 5.1500002685934305,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 46,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 5.1500002685934305,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 47,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 5.216666938737035,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 3
+   }
+  },
+  {
+   "id": 48,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 5.216666938737035,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 49,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 5.983333645388484,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "poison"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "damage": 3
+   }
+  },
+  {
+   "id": 50,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 6.38333366625011,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 2
+   }
+  },
+  {
+   "id": 51,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 6.38333366625011,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 52,
+   "type": 101,
+   "type_name": "stack_gain",
+   "timestamp": 6.483333671465516,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wand",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 53,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 6.483333671465516,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wand",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 54,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 6.483333671465516,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 4
+   }
+  },
+  {
+   "id": 55,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 6.483333671465516,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 56,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 6.483333671465516,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": 55,
+   "params": {
+    "amount": 2.0
+   }
+  },
+  {
+   "id": 57,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 6.483333671465516,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 58,
+   "type": 15,
+   "type_name": "out_of_stamina",
+   "timestamp": 6.616667011752725,
+   "origin": {
+    "kind": "item",
+    "identifier": "Pan",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 59,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 6.983333697542548,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "regen"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 2
+   }
+  },
+  {
+   "id": 60,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 7.616667063906789,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 3
+   }
+  },
+  {
+   "id": 61,
+   "type": 21,
+   "type_name": "battle_rage_start",
+   "timestamp": 7.616667063906789,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wolf Badge",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": 60,
+   "params": {
+    "duration": 5.5
+   }
+  },
+  {
+   "id": 62,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 7.616667063906789,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wolf Badge",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 63,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 7.616667063906789,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 64,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 7.700000401586294,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 2
+   }
+  },
+  {
+   "id": 65,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 7.700000401586294,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 66,
+   "type": 100,
+   "type_name": "stack_gain",
+   "timestamp": 7.850000409409404,
+   "origin": {
+    "kind": "item",
+    "identifier": "Garlic",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 3,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 67,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 7.850000409409404,
+   "origin": {
+    "kind": "item",
+    "identifier": "Garlic",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 68,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 7.983333749696612,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "poison"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "damage": 2
+   }
+  },
+  {
+   "id": 69,
+   "type": 100,
+   "type_name": "stack_gain",
+   "timestamp": 8.033333752304316,
+   "origin": {
+    "kind": "item",
+    "identifier": "Garlic",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 3,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 70,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 8.033333752304316,
+   "origin": {
+    "kind": "item",
+    "identifier": "Garlic",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 71,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 8.550000445917249,
+   "origin": {
+    "kind": "item",
+    "identifier": "Pan",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 7
+   }
+  },
+  {
+   "id": 72,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 8.550000445917249,
+   "origin": {
+    "kind": "item",
+    "identifier": "Pan",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 73,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 8.700000453740358,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 4
+   }
+  },
+  {
+   "id": 74,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 8.700000453740358,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 75,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 8.700000453740358,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": 74,
+   "params": {
+    "amount": 2.0
+   }
+  },
+  {
+   "id": 76,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 8.700000453740358,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 77,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 8.850000461563468,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 1
+   }
+  },
+  {
+   "id": 78,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 8.850000461563468,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 79,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 8.983333801850677,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "regen"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 2
+   }
+  },
+  {
+   "id": 80,
+   "type": 105,
+   "type_name": "stack_lose",
+   "timestamp": 9.116667142137885,
+   "origin": {
+    "kind": "item",
+    "identifier": "Book of Basics",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": -1,
+    "used": true,
+    "reflected": false
+   }
+  },
+  {
+   "id": 81,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 9.116667142137885,
+   "origin": {
+    "kind": "item",
+    "identifier": "Book of Basics",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 80,
+   "params": {
+    "amount": 8.0
+   }
+  },
+  {
+   "id": 82,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 9.116667142137885,
+   "origin": {
+    "kind": "item",
+    "identifier": "Book of Basics",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 83,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 9.66666717082262,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 3
+   }
+  },
+  {
+   "id": 84,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 9.66666717082262,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 85,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 9.66666717082262,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": 84,
+   "params": {
+    "amount": 2.0
+   }
+  },
+  {
+   "id": 86,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 9.66666717082262,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 87,
+   "type": 101,
+   "type_name": "stack_gain",
+   "timestamp": 9.950000518932939,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wand",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 88,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 9.950000518932939,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wand",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 89,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 9.98333385400474,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "poison"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "damage": 2
+   }
+  },
+  {
+   "id": 90,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 10.100000526756048,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 2
+   }
+  },
+  {
+   "id": 91,
+   "type": 108,
+   "type_name": "stack_gain",
+   "timestamp": 10.100000526756048,
+   "origin": {
+    "kind": "gem",
+    "host": {
+     "kind": "unknown",
+     "str": "GemSocket2"
+    },
+    "socket_index": -1,
+    "identity": [
+     "Chipped Emerald",
+     "Wooden Sword",
+     1,
+     5,
+     3,
+     0
+    ]
+   },
+   "target": 1,
+   "parent_id": 90,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 92,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 10.100000526756048,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 93,
+   "type": 15,
+   "type_name": "out_of_stamina",
+   "timestamp": 10.250000534579158,
+   "origin": {
+    "kind": "item",
+    "identifier": "Pan",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 94,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 10.683333890512586,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 2
+   }
+  },
+  {
+   "id": 95,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 10.683333890512586,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 96,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 10.683333890512586,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": 95,
+   "params": {
+    "amount": 2.0
+   }
+  },
+  {
+   "id": 97,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 10.683333890512586,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 98,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 10.983333906158805,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "regen"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 2
+   }
+  },
+  {
+   "id": 99,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 11.350000591948628,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 2
+   }
+  },
+  {
+   "id": 100,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 11.350000591948628,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 101,
+   "type": 3,
+   "type_name": "missed",
+   "timestamp": 11.633333940058947,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 102,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 11.633333940058947,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 103,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 11.633333940058947,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": 102,
+   "params": {
+    "amount": 2.0
+   }
+  },
+  {
+   "id": 104,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 11.633333940058947,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 105,
+   "type": 100,
+   "type_name": "stack_gain",
+   "timestamp": 11.70000061020255,
+   "origin": {
+    "kind": "item",
+    "identifier": "Garlic",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 3,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 106,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 11.70000061020255,
+   "origin": {
+    "kind": "item",
+    "identifier": "Garlic",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 107,
+   "type": 15,
+   "type_name": "out_of_stamina",
+   "timestamp": 11.916667288169265,
+   "origin": {
+    "kind": "item",
+    "identifier": "Pan",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 108,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 11.983333958312869,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "poison"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "damage": 3
+   }
+  },
+  {
+   "id": 109,
+   "type": 100,
+   "type_name": "stack_gain",
+   "timestamp": 12.016667293384671,
+   "origin": {
+    "kind": "item",
+    "identifier": "Garlic",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 3,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 110,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 12.016667293384671,
+   "origin": {
+    "kind": "item",
+    "identifier": "Garlic",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 111,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 12.566667322069407,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 2
+   }
+  },
+  {
+   "id": 112,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 12.566667322069407,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 113,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 12.600000657141209,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 4
+   }
+  },
+  {
+   "id": 114,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 12.600000657141209,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 115,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 12.983334010466933,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "regen"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 2
+   }
+  },
+  {
+   "id": 116,
+   "type": 22,
+   "type_name": "battle_rage_end",
+   "timestamp": 13.10000068321824,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "battlerageend"
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 117,
+   "type": 102,
+   "type_name": "stack_gain",
+   "timestamp": 13.333334028720856,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wand",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 118,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 13.333334028720856,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wand",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 119,
+   "type": 105,
+   "type_name": "stack_lose",
+   "timestamp": 13.750000717118382,
+   "origin": {
+    "kind": "item",
+    "identifier": "Book of Basics",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": -1,
+    "used": true,
+    "reflected": false
+   }
+  },
+  {
+   "id": 120,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 13.750000717118382,
+   "origin": {
+    "kind": "item",
+    "identifier": "Book of Basics",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 119,
+   "params": {
+    "amount": 8.0
+   }
+  },
+  {
+   "id": 121,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 13.750000717118382,
+   "origin": {
+    "kind": "item",
+    "identifier": "Book of Basics",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 122,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 13.766667384654284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 3
+   }
+  },
+  {
+   "id": 123,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 13.766667384654284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 124,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 13.783334052190185,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 1
+   }
+  },
+  {
+   "id": 125,
+   "type": 108,
+   "type_name": "stack_gain",
+   "timestamp": 13.783334052190185,
+   "origin": {
+    "kind": "gem",
+    "host": {
+     "kind": "unknown",
+     "str": "GemSocket2"
+    },
+    "socket_index": -1,
+    "identity": [
+     "Chipped Emerald",
+     "Wooden Sword",
+     1,
+     5,
+     3,
+     0
+    ]
+   },
+   "target": 1,
+   "parent_id": 124,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 126,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 13.783334052190185,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 127,
+   "type": 15,
+   "type_name": "out_of_stamina",
+   "timestamp": 13.783334052190185,
+   "origin": {
+    "kind": "item",
+    "identifier": "Pan",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 128,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 13.983334062620997,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "poison"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "damage": 5
+   }
+  },
+  {
+   "id": 129,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 14.983334114775062,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "regen"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 3
+   }
+  },
+  {
+   "id": 130,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 15.016667449846864,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 3
+   }
+  },
+  {
+   "id": 131,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 15.016667449846864,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 132,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 15.016667449846864,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": 131,
+   "params": {
+    "amount": 2.0
+   }
+  },
+  {
+   "id": 133,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 15.016667449846864,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 134,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 15.050000784918666,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 2
+   }
+  },
+  {
+   "id": 135,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 15.050000784918666,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 136,
+   "type": 100,
+   "type_name": "stack_gain",
+   "timestamp": 15.75000082142651,
+   "origin": {
+    "kind": "item",
+    "identifier": "Garlic",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 3,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 137,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 15.75000082142651,
+   "origin": {
+    "kind": "item",
+    "identifier": "Garlic",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 138,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 15.983334166929126,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "poison"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "damage": 5
+   }
+  },
+  {
+   "id": 139,
+   "type": 15,
+   "type_name": "out_of_stamina",
+   "timestamp": 16.016667502000928,
+   "origin": {
+    "kind": "item",
+    "identifier": "Pan",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 140,
+   "type": 100,
+   "type_name": "stack_gain",
+   "timestamp": 16.133334174752235,
+   "origin": {
+    "kind": "item",
+    "identifier": "Garlic",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 3,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 141,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 16.133334174752235,
+   "origin": {
+    "kind": "item",
+    "identifier": "Garlic",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 142,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 16.283334182575345,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 2
+   }
+  },
+  {
+   "id": 143,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 16.283334182575345,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 144,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 16.35000085271895,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 3
+   }
+  },
+  {
+   "id": 145,
+   "type": 108,
+   "type_name": "stack_gain",
+   "timestamp": 16.35000085271895,
+   "origin": {
+    "kind": "gem",
+    "host": {
+     "kind": "unknown",
+     "str": "GemSocket2"
+    },
+    "socket_index": -1,
+    "identity": [
+     "Chipped Emerald",
+     "Wooden Sword",
+     1,
+     5,
+     3,
+     0
+    ]
+   },
+   "target": 1,
+   "parent_id": 144,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 146,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 16.35000085271895,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 147,
+   "type": 105,
+   "type_name": "stack_gain",
+   "timestamp": 16.68333420343697,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wand",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 2,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 148,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 16.68333420343697,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wand",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 149,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 16.98333421908319,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "fatigue"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "damage": 1
+   }
+  },
+  {
+   "id": 150,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 16.98333421908319,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "fatigue"
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "damage": 1
+   }
+  },
+  {
+   "id": 151,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 16.98333421908319,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "regen"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 3
+   }
+  },
+  {
+   "id": 152,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 17.566667582839727,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 3
+   }
+  },
+  {
+   "id": 153,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 17.566667582839727,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 154,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 17.566667582839727,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": 153,
+   "params": {
+    "amount": 2.0
+   }
+  },
+  {
+   "id": 155,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 17.566667582839727,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 156,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 17.60000091791153,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 1
+   }
+  },
+  {
+   "id": 157,
+   "type": 108,
+   "type_name": "stack_gain",
+   "timestamp": 17.60000091791153,
+   "origin": {
+    "kind": "gem",
+    "host": {
+     "kind": "unknown",
+     "str": "GemSocket2"
+    },
+    "socket_index": -1,
+    "identity": [
+     "Chipped Emerald",
+     "Wooden Sword",
+     1,
+     5,
+     3,
+     0
+    ]
+   },
+   "target": 1,
+   "parent_id": 156,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 158,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 17.60000091791153,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wooden Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 159,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 17.983334271237254,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "poison"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "damage": 7
+   }
+  },
+  {
+   "id": -1,
+   "type": 111,
+   "type_name": "combat_end",
+   "timestamp": 18.000000938773155,
+   "origin": 111,
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  }
+ ]
+}

@@ -1,0 +1,42 @@
+{
+  "case_id": "run101207_r1_o604707_r1",
+  "iterations_per_round": 100,
+  "rounds": 3,
+  "timing": "single process CPU seconds, ctypes overhead included; no file logging or event serialization",
+  "scope": "one previously five-way-verified round-1 case; no comparative speedup claim",
+  "modes": {
+    "debug_events_off": {
+      "cpu_round_seconds": [
+        3.984375,
+        3.375,
+        3.484375
+      ],
+      "median_cpu_ms_per_battle": 34.84375,
+      "battles_per_cpu_second": 28.699551569506728,
+      "result_signature": [
+        1,
+        1230,
+        159,
+        42.0,
+        0.0
+      ]
+    },
+    "debug_events_on": {
+      "cpu_round_seconds": [
+        3.40625,
+        3.3125,
+        3.78125
+      ],
+      "median_cpu_ms_per_battle": 34.0625,
+      "battles_per_cpu_second": 29.357798165137613,
+      "result_signature": [
+        1,
+        1230,
+        159,
+        42.0,
+        0.0
+      ]
+    }
+  },
+  "packing_us_per_pair": 1250.0
+}

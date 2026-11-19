@@ -1,0 +1,11 @@
+{
+  "scope": "isolated five-way first-case candidate, not promoted to defaults",
+  "sha256": {
+    "gd_core/CoreCharacter.gd": "091dadf70e6be285d075fda8240b4d8ee06f20c107229c21070393ab3e73966e",
+    "gd_core/CoreCombat.gd": "0cfe6832b8b3ace400689439fcd3d3c0d7ee757f4473eaf3a1bca6e37e08bb0f",
+    "gd_core/CoreContext.gd": "1f16e29672be12b60026fde1c1d2806fd83d63e7a45607022c31ac5f2960ab9f",
+    "native_sim_cpp/native_sim/engine_wrapper.cpp": "8da6da0a26246a96c26b8f9ab3431926212b3bd791bb8717146e2620a805d461",
+    "native_sim_cpp/native_sim/sim.py": "d25bdc19cf547fe5853285083b0d603c46df14631be63edf88209f18a9488749",
+    "native_sim_cpp/native_sim/libgdcore.dll": "145556530ce7c90f3b01a58f48e4c2375be36c48f69d8e698a15790f122433c9"
+  }
+}

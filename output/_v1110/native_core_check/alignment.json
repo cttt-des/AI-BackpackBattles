@@ -1,0 +1,45 @@
+{
+ "aligned": 1,
+ "total": 1,
+ "match_distribution": {
+  "三方一致": 1
+ },
+ "convention": {
+  "seed": "两侧 gd_core 在任何物品实例创建前以 CoreContext(seed) 注入（≙ oracle_fight.gd:536-537 的 Util.rng.seed=S）",
+  "below_master": "逐场读取夹具 replay_controls.below_master；新快照记录原版实际档位，历史快照缺失时沿用兼容默认 true；比较器核对三路产物与夹具输入",
+  "custom_health_multiplier": "逐场读取夹具 replay_controls.custom_health_multiplier；新快照记录实际值，旧快照可从 --history-db 补全",
+  "activation_order": "原版开战 shuffle 走引擎全局链（docs/rng_truth.md §1.4-2）；OracleAlignBattle.gd 用真 Godot seed(S)+shuffle×2+sort_TriggerPriority 复刻终序并直通内核（startBattle preordered）",
+  "judgement": "主判据=engine/log_text.py 渲染战报逐行比对；辅判据=事件 canonical（t 按 1/60s tick 取整、type/side/origin/params/parent-depth 全等）；两者都一致才算通过"
+ },
+ "perCase": [
+  {
+   "caseId": "run101207_r1_o604707_r1",
+   "seed": 765678070,
+   "lineupPair": "oracle_run101207_r1_o604707_r1_player|oracle_run101207_r1_o604707_r1_opponent",
+   "oracleEvents": 160,
+   "gdcoreEvents": 160,
+   "pyEvents": 160,
+   "winner": {
+    "oracle": "player",
+    "gdcore": "player",
+    "py": "player"
+   },
+   "match": "三方一致",
+   "firstDivergence": null,
+   "judgement": {
+    "event_tuples": {
+     "oracle_gd": true,
+     "gd_py": true
+    },
+    "rendered_lines": {
+     "oracle_gd": true,
+     "gd_py": true
+    }
+   },
+   "localization": "aligned",
+   "localizationEvidence": "三方逐行一致"
+  }
+ ],
+ "localization": {},
+ "fixPlan": []
+}

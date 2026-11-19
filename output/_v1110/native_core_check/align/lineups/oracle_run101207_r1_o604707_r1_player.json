@@ -1,0 +1,159 @@
+{
+ "version": 3,
+ "meta": {
+  "name": "oracle_run101207_r1_o604707_r1_player",
+  "source": "oracle:run101207_r1_o604707_r1"
+ },
+ "character": "Mage",
+ "round": 1,
+ "health_override": 25,
+ "class_modifiers": {
+  "stamina": 5.0
+ },
+ "base_max_stamina": 5.0,
+ "backpack": {
+  "grid": {
+   "rows": 7,
+   "cols": 10
+  },
+  "items": [
+   {
+    "id": "Scholar Bag",
+    "row": 4,
+    "col": 4,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Fanny Pack",
+    "row": 3,
+    "col": 4,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Leather Bag",
+    "row": 2,
+    "col": 6,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Wooden Sword",
+    "row": 3,
+    "col": 5,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": [
+     {
+      "id": "Chipped Emerald"
+     }
+    ]
+   },
+   {
+    "id": "White Pawn",
+    "row": 2,
+    "col": 7,
+    "rotation": 270,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Black Pawn",
+    "row": 3,
+    "col": 6,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Amulet of Steel",
+    "row": 3,
+    "col": 7,
+    "rotation": 270,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Chess Board",
+    "row": 2,
+    "col": 6,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Garlic",
+    "row": 5,
+    "col": 4,
+    "rotation": 270,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Book of Basics",
+    "row": 3,
+    "col": 4,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Wand",
+    "row": 4,
+    "col": 6,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   }
+  ]
+ },
+ "storage": []
+}
