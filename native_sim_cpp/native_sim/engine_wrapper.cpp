@@ -61,6 +61,7 @@ struct WrapperSyms {
     gd::SymId ownerType = 0;
     gd::SymId descriptor = 0;
     gd::SymId identifier = 0;
+    gd::SymId socket = 0;
     const gd::GdStr* s_damage = nullptr;
     const gd::GdStr* s_amount = nullptr;
     const gd::GdStr* s_health = nullptr;
@@ -148,7 +149,16 @@ static CharProto g_chars[8];
 // 格式: ts=<f:hexbits>|type=<i>|id=<i>|tgt=<i|-999null>|parent=<i>|origin=<...>|params=<...>
 //   值编码: n=null b:0/1 i:<int64> f:<16位hex的双精度位型> s:<文本> v:[f,f]
 //           a:[...] d:{k=v,...}键名字典序 o:item:<identifier>#<ownerType> / o:cls:<类名>
-struct DbgEv { double ts; int32_t type; std::string line; };
+struct DbgGemOrigin {
+    bool is_gem = false;
+    std::string gem;
+    std::string host;
+    int32_t host_owner = -1;
+    int32_t x = 0;
+    int32_t y = 0;
+    int32_t slot = -1;
+};
+struct DbgEv { double ts; int32_t type; std::string line; DbgGemOrigin gem_origin; };
 static std::vector<DbgEv> g_dbg_events;
 // ★ 记录开关（默认关）：缓冲非线程安全，run_batch 多线程绝不写；
 //   仅单线程对拍路径先调 gd_sim_set_dbg_events(1) 再 run_one。
@@ -241,6 +251,46 @@ static void dbg_serialize_val(gd::BattleCtx& battle, const gd::GdVal& v, std::st
     }
 }
 
+static std::string dbg_item_identifier(gd::GdObj* item) {
+    gd::GdVal descriptor, identifier;
+    if (item->get_prop(g_syms.descriptor, descriptor) &&
+        descriptor.kind == gd::GdVal::Kind::Obj && descriptor.obj &&
+        descriptor.obj->get_prop(g_syms.identifier, identifier) &&
+        identifier.kind == gd::GdVal::Kind::Str && identifier.str) {
+        return {identifier.str->data, identifier.str->len};
+    }
+    return {};
+}
+
+static DbgGemOrigin dbg_gem_origin(const gd::GdVal& origin) {
+    DbgGemOrigin result;
+    if (origin.kind != gd::GdVal::Kind::Obj || !origin.obj) return result;
+    auto* gem = dynamic_cast<Gd__gd_core__CoreItem*>(origin.obj);
+    if (!gem || gem->f_ownerType.as_int() != 7) return result;
+    result.is_gem = true;
+    gd::GdVal socket;
+    if (!gem->get_prop(g_syms.socket, socket) || socket.kind != gd::GdVal::Kind::Obj || !socket.obj)
+        return result;
+    auto* host = dynamic_cast<Gd__gd_core__CoreItem*>(socket.obj);
+    if (!host || host->f_gems.kind != gd::GdVal::Kind::Arr || !host->f_gems.arr) return result;
+    for (uint32_t i = 0; i < host->f_gems.arr->len; ++i) {
+        const auto& equipped = host->f_gems.arr->data[i];
+        if (equipped.kind == gd::GdVal::Kind::Obj && equipped.obj == gem) {
+            result.slot = static_cast<int32_t>(i);
+            break;
+        }
+    }
+    result.gem = dbg_item_identifier(gem);
+    result.host = dbg_item_identifier(host);
+    auto pos = host->fn_getTopLeftCell(nullptr, 0);
+    if (pos.kind == gd::GdVal::Kind::Vec2) {
+        result.host_owner = static_cast<int32_t>(host->f_ownerType.as_int());
+        result.x = static_cast<int32_t>(pos.v2.x);
+        result.y = static_cast<int32_t>(pos.v2.y);
+    }
+    return result;
+}
+
 static void dbg_record_event(gd::BattleCtx& battle, gd::GdObj* ev) {
     if (!g_dbg_enabled.load(std::memory_order_relaxed)) return;
     double ts = 0.0;
@@ -286,7 +336,7 @@ static void dbg_record_event(gd::BattleCtx& battle, gd::GdObj* ev) {
         dbg_serialize_dict(battle, pvv.dict, line);
     else
         line += "d:{}";
-    g_dbg_events.push_back(DbgEv{ts, type, std::move(line)});
+    g_dbg_events.push_back(DbgEv{ts, type, std::move(line), dbg_gem_origin(ov)});
 }
 
 // ─────────────────────────── Hooks Subclass ───────────────────────────
@@ -566,6 +616,7 @@ void gd_sim_init() {
         g_syms.ownerType = gd::intern_sym("ownerType");
         g_syms.descriptor = gd::intern_sym("descriptor");
         g_syms.identifier = gd::intern_sym("identifier");
+        g_syms.socket = gd::intern_sym("socket");
         g_syms.s_damage = gd::make_static_str("damage");
         g_syms.s_amount = gd::make_static_str("amount");
         g_syms.s_health = gd::make_static_str("health");
@@ -1215,6 +1266,24 @@ int32_t gd_sim_dbg_event_count() {
 const char* gd_sim_dbg_event_line(int32_t idx) {
     if (idx < 0 || static_cast<size_t>(idx) >= g_dbg_events.size()) return nullptr;
     return g_dbg_events[static_cast<size_t>(idx)].line.c_str();
+}
+
+// Strings remain valid until the next replay or debug buffer reset.
+// Returns 0 for a non-gem event, 1 for complete metadata and -1 otherwise.
+int32_t gd_sim_dbg_event_gem_origin(int32_t idx, const char** gem, const char** host,
+                                    int32_t* coordinates) {
+    if (idx < 0 || static_cast<size_t>(idx) >= g_dbg_events.size()) return -1;
+    const auto& origin = g_dbg_events[static_cast<size_t>(idx)].gem_origin;
+    if (!origin.is_gem) return 0;
+    if (origin.host_owner < 0 || origin.slot < 0 || origin.gem.empty() || origin.host.empty())
+        return -1;
+    *gem = origin.gem.c_str();
+    *host = origin.host.c_str();
+    coordinates[0] = origin.host_owner;
+    coordinates[1] = origin.x;
+    coordinates[2] = origin.y;
+    coordinates[3] = origin.slot;
+    return 1;
 }
 
 // 调试导出：最近一次 native_activation_order 战斗的 shuffle 后/排序后终序

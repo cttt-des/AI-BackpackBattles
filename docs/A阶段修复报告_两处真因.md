@@ -569,6 +569,8 @@ resistStacks 层、或链位）。
 
 ## 12 C++ 逐事件验收（handoff10 30 场，2026-11-17）
 
+> **复核更正（2026-11-18）**。本节保留首次验收记录。首次验收使用了不同于实际 GDScript 回放的冷却档和激活顺序，并将等值的整数与浮点表示判成分歧。按记录的 `below_master`、预排序、同一阵容数据及三方规范化规则复跑，30/30 场的四方事件流、终局和胜负均通过。首次记录中的两场胜负差在输入一致后消失。Anvil 和 Fire Pit 的原始示例分别为 `7.0` 与 `7`、`35.0` 与 `35`，按相同数值处理。复验结果位于 `output/_timing_four_way/cpp_baseline_checked/`，更新后的入口为 `tools/_cpp_verify_events.py`。
+
 ### 12.1 工具
 
 `tools/_cpp_verify_events.py`（可复跑）：
