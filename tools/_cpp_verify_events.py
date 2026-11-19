@@ -219,6 +219,7 @@ def compare_native_case(sim, gem_origin, item_origin, args, fx, cid):
     below_master = fx.get("below_master")
     controls = prepared["replay_controls"]
     original_controls = lineup["replay_controls"]
+    util_time = (fx.get("replay_initial") or {}).get("util_time")
     original_rows, end = event_rows(doc)
     if (any(key not in doc or doc[key] != lineup.get(key) or doc[key] != prepared.get(key)
             for key in identity_fields)
@@ -226,6 +227,7 @@ def compare_native_case(sim, gem_origin, item_origin, args, fx, cid):
             or any(prepared[side] != lineup[side] for side in ("player", "opponent"))
             or rng_state != int(boundaries["prepare"]["state"]) & ((1 << 64) - 1)
             or controls["replay_initial"] != fx.get("replay_initial")
+            or (util_time is not None and util_time != boundaries.get("combat_start", {}).get("util_time"))
             or controls["native_activation_order"] != order
             or any(sorted(order.get(side) or []) != list(range(len(fx[side]["items"])))
                    for side in ("player", "opponent"))

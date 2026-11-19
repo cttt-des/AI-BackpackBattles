@@ -35,7 +35,7 @@ def prepare(root, cid):
                           p_stats=stats[0], o_stats=stats[1], custom_health_multiplier=case["custom_health_multiplier"])
     data = case["replay_initial"]
     engine.ctx.setReplayInitial(data["activation_rng_state"], data["idle_left"], data["flickers"], data.get("buff_state"),
-                                data.get("engine_rng"), data.get("native_scene_delays", False))
+                                data.get("engine_rng"), data.get("native_scene_delays", False), float(data.get("util_time", 0.0)))
     return engine, case
 
 

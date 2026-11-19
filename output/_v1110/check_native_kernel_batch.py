@@ -7,6 +7,7 @@ from pathlib import Path
 import argparse
 import hashlib
 import json
+import math
 import shutil
 import subprocess
 import sys
@@ -21,6 +22,7 @@ ap.add_argument("--prepare-only", action="store_true")
 ap.add_argument("--reuse-inputs", action="store_true")
 ap.add_argument("--dll", type=Path, help="Use a separate candidate DLL")
 ap.add_argument("--strict-item-origins", action="store_true", help="Require ordinary item identifiers and board cells")
+ap.add_argument("--native-util-clock", action="store_true", help="Use the original process clock recorded at combat activation")
 legs = ap.add_mutually_exclusive_group()
 legs.add_argument("--cpp-only", action="store_true", help="Reuse GD/Py results only when their recorded source hashes still match")
 legs.add_argument("--direct-cpp", action="store_true", help="Check C++ against native events without running GD, Py or Oracle")
@@ -72,6 +74,10 @@ if not args.reuse_inputs:
                 flicker["limits"] = [descriptor["flicker" + key] for key in ("MinDist", "MaxDist", "MinSpeed", "MaxSpeed")]
         lineups["replay_controls"]["replay_initial"] = {
             "activation_rng_state": boundaries["before_activate"]["state"], "idle_left": idle, "flickers": flickers}
+        if args.native_util_clock:
+            util_time = boundaries["combat_start"]["util_time"]
+            assert math.isfinite(float(util_time)) and float(util_time) >= 0, cid
+            lineups["replay_controls"]["replay_initial"]["util_time"] = util_time
         if "opening_idle_delta" in boundaries:
             lineups["replay_controls"]["replay_initial"]["native_scene_delays"] = True
         if "buff_state" in boundaries["before_activate"]:
