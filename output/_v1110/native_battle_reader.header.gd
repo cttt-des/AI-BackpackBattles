@@ -277,9 +277,18 @@ func on_prepare(items) -> void:
 		order.append({"name": item.getName(), "owner": item.ownerType,
 			"top_left": [cell.x, cell.y]})
 	observations["prepare"] = {"seed": str(U.rng.get_seed()), "state": str(U.rng.get_state()), "order": order}
+	var engine_seed = OS.get_environment("NATIVE_BATTLE_ENGINE_SEED")
+	if not engine_seed.empty():
+		seed(int(engine_seed))
+		observations["prepare"]["engine_seed"] = engine_seed
 
 func on_activate(_items) -> void:
 	observations["before_activate"] = {"seed": str(U.rng.get_seed()), "state": str(U.rng.get_state())}
+	var engine_seed = OS.get_environment("NATIVE_BATTLE_ENGINE_SEED")
+	if not engine_seed.empty():
+		var activation_seed = int(engine_seed) + 1
+		seed(activation_seed)
+		observations["before_activate"]["engine_seed"] = str(activation_seed)
 	if "recording" in U.rng:
 		U.rng.recording = true
 

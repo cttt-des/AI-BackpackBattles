@@ -7,7 +7,7 @@ var _native_timer_cache_connected := false
 func _native_timer_tree_changed():
 	_native_timer_cache_dirty = true
 
-func _native_install_timers(node):
+func _native_install_timers(node, collect := false):
 	if _native_plain_timer_script == null:
 		_native_plain_timer_script = load("D:/文件资料/学习/自动背包AI/output/_v1110/native_oracle_timer.gd")
 		var file = File.new()
@@ -28,10 +28,10 @@ func _native_install_timers(node):
 		else:
 			assert(false, "Unsupported Timer script: " + node.get_script().resource_path)
 		node.native_bind_current()
-	if node is Timer:
+	if collect and node is Timer:
 		_native_timer_cache.append(node)
 	for child in node.get_children():
-		_native_install_timers(child)
+		_native_install_timers(child, collect)
 
 func drive_timers(physics_pass: bool, dt: float) -> void:
 	if not _native_timer_cache_connected:
@@ -40,7 +40,7 @@ func drive_timers(physics_pass: bool, dt: float) -> void:
 		_native_timer_cache_connected = true
 	if _native_timer_cache_dirty:
 		_native_timer_cache.clear()
-		_native_install_timers(root)
+		_native_install_timers(root, true)
 		_native_timer_cache_dirty = false
 	var active := []
 	for timer in _native_timer_cache:

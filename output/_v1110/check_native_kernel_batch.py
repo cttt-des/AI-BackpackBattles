@@ -19,7 +19,9 @@ ap.add_argument("--out", default="native_kernel_baseline")
 ap.add_argument("--limit", type=int, default=100)
 ap.add_argument("--prepare-only", action="store_true")
 ap.add_argument("--reuse-inputs", action="store_true")
-ap.add_argument("--cpp-only", action="store_true", help="Reuse GD/Py results only when their recorded source hashes still match")
+legs = ap.add_mutually_exclusive_group()
+legs.add_argument("--cpp-only", action="store_true", help="Reuse GD/Py results only when their recorded source hashes still match")
+legs.add_argument("--core-only", action="store_true", help="Run GD/Py and leave C++ pending while the DLL builds")
 args = ap.parse_args()
 assert not args.cpp_only or args.reuse_inputs
 reference = stage / args.source
@@ -81,8 +83,9 @@ else:
 
 status = {"scope": "Native-frame reference versus GD/pure Python/C++; Oracle leg NOT run", "cases": len(selected),
           "reference": str(reference), "kernel_sha256": {}}
-for path in (sim / "gd_core").glob("*.gd"):
-    status["kernel_sha256"][path.name] = hashlib.sha256(path.read_bytes()).hexdigest()
+for folder in ("gd_core", "gd_core_items"):
+    for path in sorted((sim / folder).rglob("*.gd")):
+        status["kernel_sha256"][path.relative_to(sim).as_posix()] = hashlib.sha256(path.read_bytes()).hexdigest()
 status["runtime_data_sha256"] = hashlib.sha256((sim / "assets/gd_core_runtime.json").read_bytes()).hexdigest()
 if args.prepare_only:
     (out / "status.json").write_text(json.dumps(status, indent=2) + "\n", encoding="utf8")
@@ -102,6 +105,9 @@ else:
             sys.executable, "-u", "-X", "utf8", "tools/verify_oracle.py", *common,
             "--alignment-out", str(out / "alignment.json"), "--gd-jobs", "1", "--py-jobs", "1", "--compare-jobs", "1", "--force"],
             cwd=sim, stdout=log, stderr=subprocess.STDOUT).returncode
+if args.core_only:
+    (out / "status.json").write_text(json.dumps(status, indent=2) + "\n", encoding="utf8")
+    raise SystemExit(status["three_core_exit"])
 status["dll_sha256"] = hashlib.sha256((sim / "native_sim_cpp/native_sim/libgdcore.dll").read_bytes()).hexdigest()
 with (out / "cpp.log").open("wb") as log:
     status["cpp_exit"] = subprocess.run([

@@ -16,10 +16,16 @@ ap.add_argument("--out",default="native_settled")
 ap.add_argument("--timeout",type=int,default=240)
 ap.add_argument("--disable-render-loop", action="store_true")
 ap.add_argument("--rng-probe", action="store_true")
+ap.add_argument("--engine-seed", type=int, help="Set controlled Godot global RNG inputs for experiments; use a separate output and project")
 ap.add_argument("--cohort", choices=("expand", "base"), default="expand")
 ap.add_argument("--project-name", default="native_reference")
 ap.add_argument("--reuse-prepared", action="store_true", help="Use a frozen previously prepared project")
 args=ap.parse_args()
+if args.engine_seed is not None:
+    if not 0 <= args.engine_seed < 2**63 - 1:
+        ap.error("Engine seed is outside the supported signed 64-bit range")
+    if not args.out.startswith("native_controlled_") or not args.project_name.startswith("native_controlled_"):
+        ap.error("Controlled inputs require separate native_controlled_ project and output names")
 if bool(args.case_id) == bool(args.case_ids):
     ap.error("Supply either case_id or --case-ids")
 if args.case_ids:
@@ -49,7 +55,8 @@ if args.rng_probe:
     command.append("--debug")  # Godot exposes get_stack() only with a debugger.
 command[0]=str(project/"runtime/Godot_v3.6-stable_win64.exe")
 p,log,h=gh.spawn(command,label="native_settled",tag="native_settled",
-                 env_extra={"NATIVE_BATTLE_CASE":",".join(case_ids),"NATIVE_BATTLE_OUT":str(stage/args.out)})
+                 env_extra={"NATIVE_BATTLE_CASE":",".join(case_ids),"NATIVE_BATTLE_OUT":str(stage/args.out),
+                            "NATIVE_BATTLE_ENGINE_SEED": "" if args.engine_seed is None else str(args.engine_seed)})
 print("pid",p.pid,"log",log,flush=True)
 try:
     rc=p.wait(timeout=args.timeout)
@@ -82,5 +89,17 @@ if not rc:
                 print("Reference recording rejected: missing natural terminal for",cid,flush=True)
                 rc=1
                 break
-            shutil.copyfile(project/"reference_manifest.json",target/"reference_manifest.json")
+            if args.engine_seed is None:
+                shutil.copyfile(project/"reference_manifest.json",target/"reference_manifest.json")
+            else:
+                boundaries = json.loads((target / "boundaries.json").read_text("utf8"))
+                observed = [boundaries[key].get("engine_seed") for key in ("prepare", "before_activate")]
+                if observed != [str(args.engine_seed), str(args.engine_seed + 1)]:
+                    print("Reference recording rejected: engine RNG experiment inputs differ for", cid, flush=True)
+                    rc = 1
+                    break
+                experiment = json.loads((project / "reference_manifest.json").read_text("utf8"))
+                experiment["controlled_engine_seeds"] = observed
+                experiment["scope"] = "Recovered-source reference with controlled global RNG at preparation and activation"
+                (target / "reference_manifest.json").write_text(json.dumps(experiment, indent=2) + "\n", encoding="utf8")
 raise SystemExit(rc)

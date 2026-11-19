@@ -1,0 +1,150 @@
+{
+  "total": 3,
+  "passed": 1,
+  "cases": [
+    {
+      "case_id": "run704968_r3_o704364_r3",
+      "match": true,
+      "counts": [
+        195,
+        195
+      ],
+      "first": null,
+      "gems_match": true,
+      "inputs_match": true,
+      "ending_match": true,
+      "native": null,
+      "oracle": null
+    },
+    {
+      "case_id": "run100900_r15_o100932_r15",
+      "match": false,
+      "counts": [
+        569,
+        533
+      ],
+      "first": 63,
+      "gems_match": false,
+      "inputs_match": true,
+      "ending_match": false,
+      "native": [
+        88,
+        103,
+        "player",
+        0,
+        [
+          "item",
+          "Black Knight"
+        ],
+        [
+          [
+            "amount",
+            3
+          ],
+          [
+            "reflected",
+            false
+          ],
+          [
+            "used",
+            false
+          ]
+        ],
+        -1,
+        0
+      ],
+      "oracle": [
+        88,
+        110,
+        "player",
+        1,
+        [
+          "item",
+          "Black Bishop"
+        ],
+        [
+          [
+            "amount",
+            1
+          ],
+          [
+            "reflected",
+            false
+          ],
+          [
+            "used",
+            false
+          ]
+        ],
+        -1,
+        0
+      ]
+    },
+    {
+      "case_id": "run705109_r12_o101487_r12",
+      "match": false,
+      "counts": [
+        344,
+        323
+      ],
+      "first": 151,
+      "gems_match": false,
+      "inputs_match": true,
+      "ending_match": false,
+      "native": [
+        196,
+        101,
+        "player",
+        1,
+        [
+          "item",
+          "Black Queen"
+        ],
+        [
+          [
+            "amount",
+            -1
+          ],
+          [
+            "reflected",
+            false
+          ],
+          [
+            "used",
+            false
+          ]
+        ],
+        -1,
+        0
+      ],
+      "oracle": [
+        196,
+        108,
+        "player",
+        1,
+        [
+          "item",
+          "Black Bishop"
+        ],
+        [
+          [
+            "amount",
+            3
+          ],
+          [
+            "reflected",
+            false
+          ],
+          [
+            "used",
+            false
+          ]
+        ],
+        -1,
+        0
+      ]
+    }
+  ],
+  "scope": "Independent source Oracle; native initial states and activation order only; no expected events passed to the engine",
+  "script_sha256": "016bdaa06ee4d0ab52a3eca275fd664e361e386819105d4e48c39831e2808364"
+}

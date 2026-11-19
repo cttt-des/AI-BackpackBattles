@@ -86,7 +86,15 @@ if args.native_delta:
 if args.source_fatigue_mode:
     anchor = "\tCT.initialize()\n"
     assert source.count(anchor) == 1
-    source = source.replace(anchor, anchor + "\tCT.fatigueStartTimer.process_mode = Timer.TIMER_PROCESS_PHYSICS\n\tCT.fatigueTickTimer.process_mode = Timer.TIMER_PROCESS_PHYSICS\n")
+    source = source.replace(anchor, anchor + '''\tCT.fatigueStartTimer.process_mode = Timer.TIMER_PROCESS_PHYSICS
+\tCT.fatigueTickTimer.process_mode = Timer.TIMER_PROCESS_PHYSICS
+\tif not G.combatSceneNode.has_method("advanceTime"):
+\t\tassert(G.combatSceneNode.get_script() == null)
+\t\tvar combat_bridge := GDScript.new()
+\t\tcombat_bridge.source_code = "extends Node2D\\nfunc advanceTime(time):\\n\\t\\tget_node(\\\"/root/Game\\\").combatTimer.advanceTime(time)\\n"
+\t\tassert(combat_bridge.reload() == OK)
+\t\tG.combatSceneNode.set_script(combat_bridge)
+''')
 if args.snapshot_active_timers and not args.native_timers:
     anchor = "\tvar reg: Dictionary = U.oracleTimerLefts\n"
     assert source.count(anchor) == 1
@@ -131,12 +139,16 @@ before_prepare = '''
 		opponentItems = ordered_opponent
 		U.rng.set_state(%s)
 ''' % (json.dumps(data["prepare"]["order"], ensure_ascii=False), data["prepare"]["state"])
+if "engine_seed" in data["prepare"]:
+    engine_seed = int(data["prepare"]["engine_seed"])
+    before_prepare += "\t\tseed(%d)\n" % engine_seed
 if args.rng_probe:
     before_prepare = before_prepare.replace("\tif not warmup:\n", '\tif not warmup:\n\t\tU.rng = load("%s").new()\n' % (stage / "native_rng_observer.gd").as_posix(), 1)
 source = source.replace("\tG.prepareItems(playerItems + opponentItems)\n",
                         before_prepare + "\tG.prepareItems(playerItems + opponentItems)\n")
 source = source.replace("\tG.activateItems(playerItems + opponentItems)\n",
                         "\tif not warmup:\n\t\tU.rng.set_state(%s)\n" % data["before_activate"]["state"]
+                        + ("\t\tseed(%d)\n" % int(data["before_activate"]["engine_seed"]) if "engine_seed" in data["before_activate"] else "")
                         + ("\t\tU.rng.recording = true\n" if args.rng_probe else "")
                         + "\tG.activateItems(playerItems + opponentItems)\n")
 if args.restore_flickers:

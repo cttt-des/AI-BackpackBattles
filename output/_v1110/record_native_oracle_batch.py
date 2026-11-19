@@ -19,6 +19,7 @@ repo = Path(__file__).resolve().parents[2]
 stage = repo / "output/_v1110"
 ap = argparse.ArgumentParser()
 ap.add_argument("--source", default="native_corpus/expand")
+ap.add_argument("--project", default="full_corpus/expand/project", help="Isolated Oracle project under the stage directory")
 ap.add_argument("--cases", default="native_kernel_baseline/cases.json")
 ap.add_argument("--out", default="native_oracle_timer_batch")
 ap.add_argument("--chunk", type=int, default=8)
@@ -27,6 +28,8 @@ ap.add_argument("--prepare-only", action="store_true")
 args = ap.parse_args()
 os.chdir(repo)
 reference = stage / args.source
+project = (stage / args.project).resolve()
+assert project.is_relative_to(stage) and (project / "project.godot").is_file(), project
 out = stage / args.out
 out.mkdir(parents=True, exist_ok=True)
 cases = json.loads((stage / args.cases).read_text("utf8"))["cases"]
@@ -66,6 +69,11 @@ replace_once("var native_order = " + json.dumps(data["prepare"]["order"], ensure
              'var native_order = native_input["prepare"]["order"]')
 replace_once("U.rng.set_state(%s)" % data["prepare"]["state"], 'U.rng.set_state(int(native_input["prepare"]["state"]))')
 replace_once("U.rng.set_state(%s)" % data["before_activate"]["state"], 'U.rng.set_state(int(native_input["before_activate"]["state"]))')
+for boundary in ("prepare", "before_activate"):
+    rng_set = 'U.rng.set_state(int(native_input["%s"]["state"]))' % boundary
+    if "engine_seed" in data[boundary]:
+        replace_once(rng_set + "\n\t\tseed(%d)" % int(data[boundary]["engine_seed"]), rng_set)
+    replace_once(rng_set, rng_set + '\n\t\tif native_input["%s"].has("engine_seed"):\n\t\t\tseed(int(native_input["%s"]["engine_seed"]))' % (boundary, boundary))
 replace_once("_restore_native_visuals(%s)" % json.dumps(data["flicker_states"], ensure_ascii=False),
              '_restore_native_visuals(native_input["flicker_states"])')
 replace_once("for snapshot in %s:" % json.dumps(namespace["timers"], ensure_ascii=False),
@@ -92,6 +100,8 @@ manifest = {"scope": "Independent source Oracle; native initial states and activ
             "inputs_sha256": hashlib.sha256(input_file.read_bytes()).hexdigest(), "cases": len(cases),
             "support_sha256": {name: hashlib.sha256((stage / name).read_bytes()).hexdigest()
                                for name in ("native_oracle_timer.gd", "native_oracle_timers.gd.inc")}}
+manifest["support_sha256"].update({name: hashlib.sha256((project / name).read_bytes()).hexdigest() for name in
+                                   ("project.godot", "Core/Game.gd", "Core/CombatLog.gd", "Items/Exclusive/ChessBoard.gd")})
 (out / "build_manifest.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf8")
 if args.prepare_only:
     print("Prepared independent Oracle batch", len(cases), out)
@@ -128,7 +138,7 @@ while True:
     round_number += 1
     selected = pending[:args.chunk]
     started = time.time()
-    child, log, handle = gh.spawn(gh.cmd(project=str(stage / "full_corpus/expand/project"), script=str(script)),
+    child, log, handle = gh.spawn(gh.cmd(project=str(project), script=str(script)),
                                   label="native_oracle_batch", tag="native_oracle_batch",
                                   env_extra={"ORACLE_ONLY_CASES": ",".join(selected), "ORACLE_FIGHTS_ROOT": str(out / "fights"),
                                              "ORACLE_REQUIRE_TERMINAL": "1", "ORACLE_FIGHT_CHUNK": str(args.chunk)})

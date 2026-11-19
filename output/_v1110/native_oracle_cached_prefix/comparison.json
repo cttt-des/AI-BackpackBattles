@@ -1,0 +1,224 @@
+{
+  "total": 8,
+  "passed": 6,
+  "cases": [
+    {
+      "case_id": "run604589_r16_o704359_r16",
+      "match": true,
+      "counts": [
+        863,
+        863
+      ],
+      "first": null,
+      "gems_match": true,
+      "inputs_match": true,
+      "ending_match": true,
+      "native": null,
+      "oracle": null
+    },
+    {
+      "case_id": "run101714_r1_o704353_r1",
+      "match": true,
+      "counts": [
+        53,
+        53
+      ],
+      "first": null,
+      "gems_match": true,
+      "inputs_match": true,
+      "ending_match": true,
+      "native": null,
+      "oracle": null
+    },
+    {
+      "case_id": "run604498_r16_o101592_r16",
+      "match": true,
+      "counts": [
+        160,
+        160
+      ],
+      "first": null,
+      "gems_match": true,
+      "inputs_match": true,
+      "ending_match": true,
+      "native": null,
+      "oracle": null
+    },
+    {
+      "case_id": "run100900_r15_o100932_r15",
+      "match": false,
+      "counts": [
+        650,
+        649
+      ],
+      "first": 64,
+      "gems_match": false,
+      "inputs_match": true,
+      "ending_match": false,
+      "native": [
+        87,
+        103,
+        "player",
+        0,
+        [
+          "item",
+          "Black Knight"
+        ],
+        [
+          [
+            "amount",
+            1
+          ],
+          [
+            "reflected",
+            false
+          ],
+          [
+            "resisted",
+            true
+          ],
+          [
+            "used",
+            false
+          ]
+        ],
+        -1,
+        0
+      ],
+      "oracle": [
+        87,
+        109,
+        "player",
+        1,
+        [
+          "item",
+          "Black Bishop"
+        ],
+        [
+          [
+            "amount",
+            3
+          ],
+          [
+            "reflected",
+            false
+          ],
+          [
+            "used",
+            false
+          ]
+        ],
+        -1,
+        0
+      ]
+    },
+    {
+      "case_id": "run300180_r1_o100914_r1",
+      "match": true,
+      "counts": [
+        141,
+        141
+      ],
+      "first": null,
+      "gems_match": true,
+      "inputs_match": true,
+      "ending_match": true,
+      "native": null,
+      "oracle": null
+    },
+    {
+      "case_id": "run100947_r17_o704359_r17",
+      "match": false,
+      "counts": [
+        624,
+        611
+      ],
+      "first": 257,
+      "gems_match": false,
+      "inputs_match": true,
+      "ending_match": false,
+      "native": [
+        302,
+        102,
+        "player",
+        0,
+        [
+          "item",
+          "White Pawn"
+        ],
+        [
+          [
+            "amount",
+            2
+          ],
+          [
+            "reflected",
+            false
+          ],
+          [
+            "used",
+            false
+          ]
+        ],
+        -1,
+        0
+      ],
+      "oracle": [
+        302,
+        108,
+        "player",
+        0,
+        [
+          "item",
+          "White Bishop"
+        ],
+        [
+          [
+            "amount",
+            -2
+          ],
+          [
+            "reflected",
+            false
+          ],
+          [
+            "used",
+            false
+          ]
+        ],
+        -1,
+        0
+      ]
+    },
+    {
+      "case_id": "run101757_r1_o500111_r1",
+      "match": true,
+      "counts": [
+        37,
+        37
+      ],
+      "first": null,
+      "gems_match": true,
+      "inputs_match": true,
+      "ending_match": true,
+      "native": null,
+      "oracle": null
+    },
+    {
+      "case_id": "run704860_r18_o101003_r18",
+      "match": true,
+      "counts": [
+        223,
+        223
+      ],
+      "first": null,
+      "gems_match": true,
+      "inputs_match": true,
+      "ending_match": true,
+      "native": null,
+      "oracle": null
+    }
+  ],
+  "scope": "Independent source Oracle; native initial states and activation order only; no expected events passed to the engine",
+  "script_sha256": "d796106846a65e7e1ab22ea4f501f1f15e674b86ae40423a1892e8062c6f8966"
+}

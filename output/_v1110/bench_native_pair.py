@@ -16,8 +16,10 @@ from native_sim.sim import NativeSimulator
 ap = argparse.ArgumentParser()
 ap.add_argument("--before", default="native_kernel_baseline")
 ap.add_argument("--after", default="native_kernel_timers")
+ap.add_argument("--before-dll", type=Path, help="Override the baseline DLL path")
 ap.add_argument("--rounds", type=int, default=5)
 ap.add_argument("--iterations", type=int, default=5)
+ap.add_argument("--samples", type=int, default=3)
 args = ap.parse_args()
 roots = [stage / name for name in (args.before, args.after)]
 summaries = [json.loads((root / "cpp/summary.json").read_text("utf8")) for root in roots]
@@ -27,16 +29,17 @@ assert all(len(rows) == summary["total"] for rows, summary in zip(reports, summa
 maps = [{row["caseId"]: row for row in report} for report in reports]
 eligible = [cid for cid, row in maps[0].items()
             if row["category"] == "pass" and maps[1][cid]["category"] == "pass"]
-assert eligible and args.rounds >= 3 and args.iterations > 0
+assert eligible and args.rounds >= 3 and args.iterations > 0 and args.samples >= 2
 ranked = sorted(eligible, key=lambda cid: len(json.loads((roots[1] / "fights" / cid / "events.json").read_text("utf8"))["events"]))
-selected = list(dict.fromkeys([ranked[0], ranked[len(ranked) // 2], ranked[-1]]))
-dlls = [roots[0] / "bin/libgdcore.dll", sim_root / "native_sim_cpp/native_sim/libgdcore.dll"]
+selected = list(dict.fromkeys(ranked[round(i * (len(ranked) - 1) / (args.samples - 1))] for i in range(args.samples)))
+dlls = [args.before_dll or roots[0] / "bin/libgdcore.dll", sim_root / "native_sim_cpp/native_sim/libgdcore.dll"]
+dlls = [path.resolve() for path in dlls]
 engines = [NativeSimulator(path) for path in dlls]
 for engine in engines:
     engine.lib.gd_sim_set_dbg_events.argtypes = [ctypes.c_int32]
     engine.lib.gd_sim_set_dbg_events.restype = None
 fixtures = {row["case_id"]: row for row in json.loads((roots[1] / "fixtures.json").read_text("utf8"))["cases"]}
-result = {"scope": "Three event-count quantiles among cases passing strict native/GD/Py/C++ checks in both builds; Oracle is a separate audit",
+result = {"scope": "Event-count quantiles among cases passing strict native/GD/Py/C++ checks in both builds; Oracle is a separate audit",
           "timing": "interleaved single-process CPU time, setup/combat/teardown and ctypes included; packing, JSON and file I/O excluded",
           "dll_sha256": [hashlib.sha256(path.read_bytes()).hexdigest() for path in dlls],
           "rounds": args.rounds, "iterations_per_block": args.iterations, "cases": []}

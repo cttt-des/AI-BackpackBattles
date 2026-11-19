@@ -1,10 +1,16 @@
 """Compact, hashed evidence for a fixed native-reference timer comparison."""
 from pathlib import Path
+import argparse
 import hashlib
 import json
 
 stage = Path(__file__).resolve().parent
-roots = [stage / name for name in ("native_kernel_baseline", "native_kernel_timers")]
+parser = argparse.ArgumentParser()
+parser.add_argument("--before", default="native_kernel_baseline")
+parser.add_argument("--after", default="native_kernel_timers")
+parser.add_argument("--before-dll", type=Path)
+args = parser.parse_args()
+roots = [stage / name for name in (args.before, args.after)]
 alignments = [json.loads((root / "alignment.json").read_text("utf8")) for root in roots]
 cpp = [json.loads((root / "cpp/summary.json").read_text("utf8")) for root in roots]
 maps = [{row["caseId"]: row for row in alignment["perCase"]} for alignment in alignments]
@@ -40,10 +46,13 @@ result = {"scope": "Recovered native 1.1.10 versus GD/pure Python/C++; the indep
           "regressed": [row["case_id"] for row in cases if row["before_pass"] and not row["after_pass"]],
           "gd_py_cpp_event_match": 100, "details": cases,
           "cpp_summary_sha256": [sha(root / "cpp/summary.json") for root in roots],
-          "dll_sha256": [sha(roots[0] / "bin/libgdcore.dll"), sha(stage / "sim_native/native_sim_cpp/native_sim/libgdcore.dll")],
+          "dll_sha256": [sha(args.before_dll or roots[0] / "bin/libgdcore.dll"), sha(stage / "sim_native/native_sim_cpp/native_sim/libgdcore.dll")],
           "gd_core_source_lines": {name: {"v1": len((stage / "sim/gd_core" / name).read_text("utf8").splitlines()),
                                           "candidate": len((stage / "sim_native/gd_core" / name).read_text("utf8").splitlines())}
                                    for name in ("CoreTimer.gd", "CoreBuff.gd", "CoreCharacter.gd")},
           "recipe_sha256": {name: sha(stage / name) for name in ("stage_native_core.py", "stage_native_metadata.py", "stage_native_timers.py", "optimize_native_float.py")}}
+if args.after == "native_kernel_fatigue":
+    for name in ("stage_native_fatigue.py", "stage_native_skip_cooldown_ui.py"):
+        result["recipe_sha256"][name] = sha(stage / name)
 (roots[1] / "compact_report.json").write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf8")
 print(json.dumps({key: value for key, value in result.items() if key not in ("details", "recipe_sha256")}, ensure_ascii=False, indent=2))
