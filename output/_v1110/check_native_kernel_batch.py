@@ -18,6 +18,7 @@ ap = argparse.ArgumentParser()
 ap.add_argument("--source", default="native_corpus/expand")
 ap.add_argument("--out", default="native_kernel_baseline")
 ap.add_argument("--limit", type=int, default=100)
+ap.add_argument("--case-ids", type=Path, help="JSON list of recorded case IDs to check")
 ap.add_argument("--prepare-only", action="store_true")
 ap.add_argument("--reuse-inputs", action="store_true")
 ap.add_argument("--dll", type=Path, help="Use a separate candidate DLL")
@@ -28,6 +29,8 @@ legs.add_argument("--cpp-only", action="store_true", help="Reuse GD/Py results o
 legs.add_argument("--direct-cpp", action="store_true", help="Check C++ against native events without running GD, Py or Oracle")
 legs.add_argument("--core-only", action="store_true", help="Run GD/Py and leave C++ pending while the DLL builds")
 args = ap.parse_args()
+if args.case_ids and args.reuse_inputs:
+    ap.error("--case-ids selects new inputs and cannot be used with --reuse-inputs")
 assert not args.cpp_only or args.reuse_inputs
 if args.strict_item_origins and not args.direct_cpp:
     ap.error("--strict-item-origins requires --direct-cpp")
@@ -38,6 +41,18 @@ out.mkdir(parents=True, exist_ok=True)
 
 if not args.reuse_inputs:
     source_cases = json.loads((reference / "cases.json").read_text("utf8"))["cases"]
+    if args.case_ids:
+        requested = json.loads(args.case_ids.read_bytes())
+        if (not isinstance(requested, list) or not requested
+                or not all(isinstance(cid, str) for cid in requested)
+                or len(set(requested)) != len(requested)):
+            ap.error("--case-ids requires a nonempty, unique list of case IDs")
+        by_id = {case["case_id"]: case for case in source_cases}
+        missing = [cid for cid in requested if cid not in by_id
+                   or not (reference / cid / "reference_manifest.json").is_file()]
+        if missing:
+            ap.error("Requested cases have no complete source recording: " + ", ".join(missing[:10]))
+        source_cases = [by_id[cid] for cid in requested]
     runtime = json.loads((sim / "assets/gd_core_runtime.json").read_text("utf8"))["items"]
     selected = []
     for case in source_cases:
@@ -100,7 +115,7 @@ if not args.reuse_inputs:
         (target / "rng_state.txt").write_text("seed=%s\nstate=%s\n" % (boundaries["prepare"]["seed"], boundaries["prepare"]["state"]), encoding="utf8")
         shutil.copyfile(source / "events.json", target / "events.json")
         selected.append(case)
-        if args.limit and len(selected) >= args.limit:
+        if not args.case_ids and args.limit and len(selected) >= args.limit:
             break
     assert selected
     (out / "cases.json").write_text(json.dumps({"cases": selected}, ensure_ascii=False, indent=2) + "\n", encoding="utf8")

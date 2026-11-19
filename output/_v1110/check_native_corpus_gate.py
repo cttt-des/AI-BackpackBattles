@@ -67,8 +67,6 @@ def load_receipts(directories, dll_hash):
             raise ValueError(f"Receipt mode, identity checks or candidate hash differs in {folder}")
         runtime_hashes.add(summary["runtime_data_sha256"])
         source = Path(summary["original_dir"]).resolve().relative_to(STAGE).as_posix()
-        if source in by_reference:
-            raise ValueError(f"Multiple reports supplied for {source}")
         receipts = {}
         for path in folder.glob("run*.json"):
             row = read_json(path)
@@ -77,7 +75,10 @@ def load_receipts(directories, dll_hash):
             receipts[row["caseId"]] = row
         if len(receipts) != summary["total"]:
             raise ValueError(f"Receipt count differs from the summary in {folder}")
-        by_reference[source] = receipts
+        previous = by_reference.setdefault(source, {})
+        if previous.keys() & receipts.keys():
+            raise ValueError(f"Two reports cover the same case in {source}")
+        previous.update(receipts)
     if len(runtime_hashes) != 1:
         raise ValueError("The reports use different runtime data")
     return by_reference, next(iter(runtime_hashes))
@@ -125,7 +126,7 @@ def check_cohort(index, reports):
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--dll", type=Path, required=True)
-    ap.add_argument("--report", type=Path, nargs="+", required=True, help="One strict C++ output directory per reference source")
+    ap.add_argument("--report", type=Path, nargs="+", required=True, help="Disjoint strict C++ result directories")
     ap.add_argument("--out", type=Path)
     args = ap.parse_args()
     dll_hash = digest(args.dll)
