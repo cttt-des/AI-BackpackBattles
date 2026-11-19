@@ -175,9 +175,15 @@ func on_start() -> void:
 			var cell = host.getTopLeftCell() if not host.occupiedCells.empty() else Vector2(-999, -999)
 			identity = {"name": host.descriptor.identifier, "owner": host.ownerType,
 				"top_left": [cell.x, cell.y], "relative_path": str(host.get_path_to(target))}
+			var origin = _jsonable(host)
+			if origin is Dictionary and origin.get("kind") == "gem":
+				identity["gem_identity"] = origin.get("identity")
 		var animation = target.get_animation(target.ani)
 		flicker_states.append({"identity": identity, "pending": pending,
 			"playing": target.is_playing(), "position": target.current_animation_position,
+			"position_precise": "%.17f" % target.current_animation_position,
+			"speed_precise": "%.17f" % target.playback_speed,
+			"limits": [target.minDist, target.maxDist, target.minSpeed, target.maxSpeed],
 			"speed": target.playback_speed, "animation": target.ani, "length": animation.length,
 			"loop": animation.loop, "inside_tree": target.is_inside_tree(),
 			"path": str(target.get_path()) if target.is_inside_tree() else "off-tree"})

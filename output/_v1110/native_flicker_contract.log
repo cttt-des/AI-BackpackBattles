@@ -1,0 +1,14 @@
+
+Godot Engine v3.6.stable.official.de2f0f147 - https://godotengine.org
+OpenGL ES 3.0 Renderer: NVIDIA GeForce MX130/PCIe/SSE2
+Async. shader compilation: OFF
+
+[FLICKER-PASS] 4 variants x 5000 frames: exact positions, speed, play state and RNG
+ERROR: Condition "_first != nullptr" is true.
+   at: ~List (./core/self_list.h:108)
+ERROR: Condition "_first != nullptr" is true.
+   at: ~List (./core/self_list.h:108)
+WARNING: ObjectDB instances leaked at exit (run with --verbose for details).
+     at: cleanup (core/object.cpp:2074)
+ERROR: Resources still in use at exit (run with --verbose for details).
+   at: clear (core/resource.cpp:417)

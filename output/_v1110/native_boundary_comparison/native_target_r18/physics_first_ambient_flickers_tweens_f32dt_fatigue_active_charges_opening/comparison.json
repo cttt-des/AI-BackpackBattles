@@ -31,9 +31,10 @@
     "native_delta": true,
     "source_fatigue_mode": true,
     "snapshot_active_timers": true,
-    "compare_only": false
+    "compare_only": true
   },
   "oracle_script_sha256": "ae64ad681ef91949c875742bfbd8212943c7dc6f2a5bd20070639d9abf7ab2e9",
+  "script_matches_current_generator": false,
   "oracle_diagnostics": {
     "log": "D:\\文件资料\\学习\\自动背包AI\\output\\_recovery\\godot_logs\\native_boundary_compare_15108_1.log",
     "script_errors": 214,

@@ -38,10 +38,13 @@ var idle_timer_initial: Array = []
 var timer_pass_epoch := 0
 var in_physics_timer_pass := false
 
-func setReplayInitial(activation_state, idle_left: Array) -> void:
+func setReplayInitial(activation_state, idle_left: Array, flickers = null) -> void:
 	activation_rng_state = activation_state
 	idle_timer_initial = idle_left
+	flicker_initial = flickers
 '''
+context += (stage / "native_motion_queue.gd.inc").read_text("utf8")
+context += "\n\n" + (stage / "native_flicker_model.gd.inc").read_text("utf8")
 save("CoreContext.gd", context)
 
 character = load("CoreCharacter.gd")
@@ -92,6 +95,63 @@ body = body.replace("\telse:\n\t\t# ★ np34", "\telif not _invul_active:\n\t\t#
 character = character[:begin] + body + character[end:]
 save("CoreCharacter.gd", character)
 
+item = load("CoreItem.gd")
+begin = item.index("# 电荷体：ElectricalCharge")
+end = item.index("func sendCharge(", begin)
+item = item[:begin] + '''# ElectricalCharge's path and occupancy state; no scene or particles.
+class CoreElectricalCharge:
+	var lastChargedItem = null
+	var curChargedItem = null
+	var inventoryCells: Array = []
+	var callbackDelays: Array = []
+	var elapsed := 0.0
+	var nextCell := 2
+	var active := true
+
+
+''' + item[end:]
+anchor = "\t_chargeEnterCell(CoreElectricalCharge.new(), 1, inv_cells)\n"
+assert item.count(anchor) == 1
+item = item.replace(anchor, '''	var charge = CoreElectricalCharge.new()
+	charge.inventoryCells = inv_cells
+	var half_cell_duration = 0.5 * (chargeDuration / speedFactor) / (cells.size() - 1)
+	var delay := 0.0
+	for i in cells.size() - 1:
+		delay += half_cell_duration
+		delay += half_cell_duration
+		charge.callbackDelays.append(_f32eng(delay))
+	# Registration precedes synchronous entry: a receiver may emit another charge.
+	ctx.registerMotion(1, self, charge)
+	_chargeEnterCell(charge, 1, inv_cells)
+''')
+item += '''
+static func _f32eng(value: float) -> float:
+	var packed := PoolRealArray()
+	packed.append(value)
+	return packed[0]
+
+func _tickChargePath(charge, delta: float) -> void:
+	charge.elapsed = _f32eng(charge.elapsed + delta)
+	while charge.nextCell <= charge.inventoryCells.size():
+		if charge.elapsed < charge.callbackDelays[charge.nextCell - 2]:
+			return
+		_chargeEnterCell(charge, charge.nextCell, charge.inventoryCells)
+		charge.nextCell += 1
+	charge.active = false
+	charge.lastChargedItem = null
+	charge.curChargedItem = null
+'''
+save("CoreItem.gd", item)
+# The Python source intentionally calls generator-provided cache helpers. Native
+# GD/C++ mirrors use the original dispatch body; preserve both existing paths.
+for area in (dest / "gd_core_test", dest / "native_sim_cpp"):
+    mirror_source = (src / area.name / "gd_core/CoreItem.gd").read_text("utf8")
+    start = mirror_source.index("func _hasBehaviorMethod(")
+    stop = mirror_source.index("func _behavior_call(", start)
+    dispatch = mirror_source[start:stop].rstrip()
+    target = area / "gd_core/CoreItem.gd"
+    target.write_text(function(item, "_hasBehaviorMethod", dispatch), encoding="utf8", newline="\n")
+
 combat = load("CoreCombat.gd")
 anchor = "func activateItems(items: Array) -> void :\n"
 assert combat.count(anchor) == 1
@@ -100,6 +160,8 @@ combat = combat.replace(anchor, anchor + '''	if ctx.activation_rng_state != null
 	if ctx.idle_timer_initial.size() == 2:
 		player._idle_animation_left = float(ctx.idle_timer_initial[0])
 		opponent._idle_animation_left = float(ctx.idle_timer_initial[1])
+	if ctx.flicker_initial != null:
+		ctx.restoreFlickers()
 ''')
 begin = combat.index("\tfor character in [opponent, player]:\n", combat.index("func physicsTick("))
 end = combat.index("\t# ⑧ 空闲型 Timer", begin)
@@ -115,10 +177,13 @@ combat = combat.replace(anchor, '''	ctx.timer_pass_epoch += 1
 	_tickCharacterTimers(player, delta)
 	ctx.in_physics_timer_pass = false
 ''' + anchor)
-combat = combat.replace("\t_fatigueTick()\n\tctx.flushDeferred()\n", "\topponent.tickIdleAnimation(delta)\n\tplayer.tickIdleAnimation(delta)\n\tctx.flushDeferred()\n")
+combat = combat.replace("\t_fatigueTick()\n\tctx.flushDeferred()\n", "\topponent.tickIdleAnimation(delta)\n\tplayer.tickIdleAnimation(delta)\n\tctx.tickFlickers(delta)\n\tctx.flushDeferred()\n")
 anchor = "\t\tctx._flushTimed()\n"
 assert combat.count(anchor) == 1
-combat = combat.replace(anchor, anchor + "\t\topponent.tickVisualMotion(delta)\n\t\tplayer.tickVisualMotion(delta)\n")
+combat = combat.replace(anchor, anchor + "\t\tctx.tickMotion(delta)\n")
+anchor = "\t\t\tactivateItems(ordered_items)\n"
+assert combat.count(anchor) == 1
+combat = combat.replace(anchor, anchor + "\t\t\tctx.tickMotion(delta)\n")
 combat += '''
 func _tickCharacterTimers(character, delta: float) -> void:
 	character.tickPhysicsTimers(delta)
@@ -145,11 +210,11 @@ assert harness.count(anchor) == 1
 harness = harness.replace(anchor, anchor + '''	if c.get("native_activation_order") != null:
 		order = c["native_activation_order"]
 	if c.get("replay_initial") != null:
-		ctx.setReplayInitial(c["replay_initial"].get("activation_rng_state"), c["replay_initial"].get("idle_left", []))
+		ctx.setReplayInitial(c["replay_initial"].get("activation_rng_state"), c["replay_initial"].get("idle_left", []), c["replay_initial"].get("flickers"))
 ''')
 anchor = '\t\t"custom_health_multiplier": ctx.custom_health_multiplier,\n'
 assert harness.count(anchor) == 1
-harness = harness.replace(anchor, anchor + '\t\t"replay_initial": {"activation_rng_state": ctx.activation_rng_state, "idle_left": ctx.idle_timer_initial} if ctx.activation_rng_state != null else null,\n')
+harness = harness.replace(anchor, anchor + '\t\t"replay_initial": {"activation_rng_state": ctx.activation_rng_state, "idle_left": ctx.idle_timer_initial, "flickers": ctx.flicker_initial} if ctx.activation_rng_state != null else null,\n')
 harness_path.write_text(harness, encoding="utf8", newline="\n")
 
 verifier_path = dest / "tools/verify_oracle.py"
@@ -158,12 +223,12 @@ anchor = '            eng.ctx.lib_fires = [list(map(float, e)) for e in eng_kwar
 assert verifier.count(anchor) == 1
 verifier = verifier.replace(anchor, anchor + '''            native_initial = fixture[case_id].get("replay_initial")
             if native_initial is not None:
-                eng.ctx.setReplayInitial(native_initial.get("activation_rng_state"), native_initial.get("idle_left", []))
+                eng.ctx.setReplayInitial(native_initial.get("activation_rng_state"), native_initial.get("idle_left", []), native_initial.get("flickers"))
 ''')
 anchor = '        "custom_health_multiplier": float(eng.ctx.custom_health_multiplier),\n'
 assert verifier.count(anchor) == 1
 verifier = verifier.replace(anchor, anchor + '''        "replay_initial": {"activation_rng_state": eng.ctx.activation_rng_state,
-                           "idle_left": list(eng.ctx.idle_timer_initial)} if eng.ctx.activation_rng_state is not None else None,
+                           "idle_left": list(eng.ctx.idle_timer_initial), "flickers": eng.ctx.flicker_initial} if eng.ctx.activation_rng_state is not None else None,
 ''')
 verifier_path.write_text(verifier, encoding="utf8", newline="\n")
 
@@ -180,6 +245,14 @@ cpp_verifier = cpp_verifier.replace(anchor, "                          label_rng
 (dest / "tools/_cpp_verify_events.py").write_text(cpp_verifier, encoding="utf8", newline="\n")
 
 generator = (src / "tools/gd_to_py.py").read_text("utf8")
+anchor = '    text += \'_R.reg("%s", %s)\\n\' % (f.res_path, f.py_class)\n'
+assert generator.count(anchor) == 1
+generator = generator.replace(anchor, '''    _native_float = _T2 + "packed = PoolRealArray()" + chr(10) + _T2 + "packed.append(value)" + chr(10) + _T2 + "return packed[0]"
+    n_native_float = text.count(_native_float)
+    if n_native_float:
+        text = text.replace(_native_float, _T2 + "return f32(value)")
+        hit["PoolRealArray→rt.f32"] = hit.get("PoolRealArray→rt.f32", 0) + n_native_float
+''' + anchor)
 anchor = '        old = "\\t\\t\\t\\titem.tickTimersPass(delta)\\n"\n'
 assert generator.count(anchor) == 1
 generator = generator.replace(anchor, anchor + '''        helper_call = "\\t\\t\\titem.tickTimersPass(delta)\\n"

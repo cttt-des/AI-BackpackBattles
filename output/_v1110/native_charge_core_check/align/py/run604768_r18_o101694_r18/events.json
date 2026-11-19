@@ -1,0 +1,6525 @@
+{
+ "case_id": "run604768_r18_o101694_r18",
+ "seed": 1672180149,
+ "below_master": true,
+ "preordered": true,
+ "custom_health_multiplier": 100.0,
+ "replay_initial": {
+  "activation_rng_state": "1213505509692821876",
+  "idle_left": [
+   "2.12337684631347660",
+   "1.76886498928070070"
+  ],
+  "flickers": [
+   {
+    "identity": {
+     "name": "Burning Coal",
+     "owner": 7,
+     "top_left": [
+      -999,
+      -999
+     ],
+     "relative_path": "Icon/TorchLight/FlickerAnimation"
+    },
+    "pending": [],
+    "playing": true,
+    "position": 0.271716,
+    "speed": 0.45286,
+    "animation": "Flicker",
+    "length": 0.3,
+    "loop": false,
+    "inside_tree": true,
+    "path": "/root/Main/Combat/Opponent/Cap of Brilliance/Icon/Sockets/GemSocket/Burning Coal/Icon/TorchLight/FlickerAnimation",
+    "limits": [
+     0.1,
+     3.0,
+     0.3,
+     1.0
+    ]
+   },
+   {
+    "identity": {
+     "name": "Oil Lamp",
+     "owner": 3,
+     "top_left": [
+      3,
+      0
+     ],
+     "relative_path": "Icon/TorchLight/FlickerAnimation"
+    },
+    "pending": [],
+    "playing": true,
+    "position": 0.184419,
+    "speed": 0.582375,
+    "animation": "Flicker",
+    "length": 0.3,
+    "loop": false,
+    "inside_tree": true,
+    "path": "/root/Main/Combat/Opponent/Oil Lamp/Icon/TorchLight/FlickerAnimation",
+    "limits": [
+     0.1,
+     3.0,
+     0.3,
+     1.0
+    ]
+   },
+   {
+    "identity": {
+     "name": "Flame",
+     "owner": 8,
+     "top_left": [
+      -999,
+      -999
+     ],
+     "relative_path": "Icon/TorchLight/FlickerAnimation"
+    },
+    "pending": [
+     {
+      "left": "3.11193418502807620",
+      "method": "playAni"
+     }
+    ],
+    "playing": false,
+    "position": 0,
+    "speed": 1,
+    "animation": "Flicker",
+    "length": 0.3,
+    "loop": false,
+    "inside_tree": false,
+    "path": "off-tree",
+    "limits": [
+     4.0,
+     16.0,
+     0.3,
+     0.8
+    ]
+   }
+  ]
+ },
+ "reseeded_after_player_character": true,
+ "post_seed_draws": 0,
+ "rng_state_injected": true,
+ "winner": "player",
+ "combat_time": 2.1000001095235348,
+ "ticks": 276,
+ "player_hp": 1282.0,
+ "player_max_hp": 1282.0,
+ "opponent_hp": 0.0,
+ "opponent_max_hp": 382.0,
+ "event_count": 379,
+ "events": [
+  {
+   "id": 1,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Platin Customer Card",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 2,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Platin Customer Card",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 3,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Battery",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 4,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Charge Splitter",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 5,
+   "type": 107,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Resistor",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 4,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 6,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Battery",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 7,
+   "type": 107,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Resistor",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 3,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 8,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Battery",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 9,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Battery",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 10,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Battery",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 11,
+   "type": 100,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Protective Purse",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 15,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 12,
+   "type": 100,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Cog",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 5,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 13,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Cog",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 14,
+   "type": 102,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Alchemy",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 17,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 14,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 18,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 14,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 19,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 14,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 20,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Angel Crystal",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 14,
+   "params": {
+    "amount": 4.0
+   }
+  },
+  {
+   "id": 21,
+   "type": 103,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Bismuth Cube",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 15,
+   "type": 103,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Alchemy",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 16,
+   "type": 101,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Alchemy",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 22,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Alchemy",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 23,
+   "type": 100,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Protective Purse",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 15,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 24,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Evil Cap",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 25,
+   "type": 102,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": 24,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 26,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 25,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 27,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 25,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 28,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 25,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 29,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Angel Crystal",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 25,
+   "params": {
+    "amount": 4.0
+   }
+  },
+  {
+   "id": 30,
+   "type": 100,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Protective Purse",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 15,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 31,
+   "type": 5,
+   "type_name": "lose_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Stone Skin Potion",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": -15
+   }
+  },
+  {
+   "id": 32,
+   "type": 100,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Stone Skin Potion",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 30,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 33,
+   "type": 13,
+   "type_name": "stamina_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Strong Heroic Potion",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "stamina": 4.0
+   }
+  },
+  {
+   "id": 34,
+   "type": 106,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Strong Heroic Potion",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 35,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Stone Skin Potion",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 36,
+   "type": 102,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Potion Belt",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 37,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 36,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 38,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 36,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 39,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 36,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 40,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Angel Crystal",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 36,
+   "params": {
+    "amount": 4.0
+   }
+  },
+  {
+   "id": 41,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Agility",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 42,
+   "type": 100,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Cog",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 5,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 43,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Cog",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 44,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Gloves of Haste",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 45,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Agility",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 46,
+   "type": 100,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Protective Purse",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 15,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 47,
+   "type": 102,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Angel Crystal",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 17,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 48,
+   "type": 102,
+   "type_name": "stack_lose",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Heart of Darkness",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": 47,
+   "params": {
+    "amount": -7,
+    "used": true,
+    "reflected": false
+   }
+  },
+  {
+   "id": 49,
+   "type": 102,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Agility",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": 48,
+   "params": {
+    "amount": 2,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 50,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 49,
+   "params": {
+    "amount": 6.0
+   }
+  },
+  {
+   "id": 51,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 49,
+   "params": {
+    "amount": 6.0
+   }
+  },
+  {
+   "id": 52,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 49,
+   "params": {
+    "amount": 6.0
+   }
+  },
+  {
+   "id": 53,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Angel Crystal",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 49,
+   "params": {
+    "amount": 8.0
+   }
+  },
+  {
+   "id": 54,
+   "type": 102,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Bismuth Cube",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 55,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 54,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 56,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 54,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 57,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 54,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 58,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Angel Crystal",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 54,
+   "params": {
+    "amount": 4.0
+   }
+  },
+  {
+   "id": 59,
+   "type": 102,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Agility",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": 48,
+   "params": {
+    "amount": 2,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 60,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 59,
+   "params": {
+    "amount": 6.0
+   }
+  },
+  {
+   "id": 61,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 59,
+   "params": {
+    "amount": 6.0
+   }
+  },
+  {
+   "id": 62,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 59,
+   "params": {
+    "amount": 6.0
+   }
+  },
+  {
+   "id": 63,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Angel Crystal",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 59,
+   "params": {
+    "amount": 8.0
+   }
+  },
+  {
+   "id": 64,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Heart of Darkness",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 47,
+   "params": {
+    "amount": 100.0
+   }
+  },
+  {
+   "id": 65,
+   "type": 106,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Heart of Darkness",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": 47,
+   "params": {
+    "amount": 5,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 66,
+   "type": 103,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Bismuth Cube",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 67,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 47,
+   "params": {
+    "amount": 51.0
+   }
+  },
+  {
+   "id": 68,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 47,
+   "params": {
+    "amount": 51.0
+   }
+  },
+  {
+   "id": 69,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 47,
+   "params": {
+    "amount": 51.0
+   }
+  },
+  {
+   "id": 70,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Angel Crystal",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 47,
+   "params": {
+    "amount": 68.0
+   }
+  },
+  {
+   "id": 71,
+   "type": 102,
+   "type_name": "stack_lose",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Big Bloodthorne",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": -3,
+    "used": true,
+    "reflected": false
+   }
+  },
+  {
+   "id": 72,
+   "type": 102,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Agility",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": 71,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 73,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 72,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 74,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 72,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 75,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 72,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 76,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Angel Crystal",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 72,
+   "params": {
+    "amount": 4.0
+   }
+  },
+  {
+   "id": 77,
+   "type": 107,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Bismuth Cube",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 78,
+   "type": 102,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Agility",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": 71,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 79,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 78,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 80,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 78,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 81,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 78,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 82,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Angel Crystal",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 78,
+   "params": {
+    "amount": 4.0
+   }
+  },
+  {
+   "id": 83,
+   "type": 103,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Big Bloodthorne",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 8,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 84,
+   "type": 103,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Bismuth Cube",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 85,
+   "type": 104,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Big Bloodthorne",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 6,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 86,
+   "type": 102,
+   "type_name": "stack_lose",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Big Bloodthorne",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": -3,
+    "used": true,
+    "reflected": false
+   }
+  },
+  {
+   "id": 87,
+   "type": 103,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Big Bloodthorne",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 8,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 88,
+   "type": 104,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Bismuth Cube",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 89,
+   "type": 104,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Big Bloodthorne",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 6,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 90,
+   "type": 101,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Bismuth Cube",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 91,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Big Bloodthorne",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 29
+   }
+  },
+  {
+   "id": 92,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "vampirism"
+   },
+   "target": 0,
+   "parent_id": 91,
+   "params": {
+    "amount": 20
+   }
+  },
+  {
+   "id": 93,
+   "type": 105,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "gem",
+    "host": {
+     "kind": "unknown",
+     "str": "GemSocket2"
+    },
+    "socket_index": -1,
+    "identity": [
+     "Perfect Sapphire",
+     "Big Bloodthorne",
+     1,
+     1,
+     1,
+     0
+    ]
+   },
+   "target": 0,
+   "parent_id": 91,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 94,
+   "type": 110,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "gem",
+    "host": {
+     "kind": "unknown",
+     "str": "GemSocket2"
+    },
+    "socket_index": -1,
+    "identity": [
+     "Perfect Sapphire",
+     "Big Bloodthorne",
+     1,
+     1,
+     1,
+     0
+    ]
+   },
+   "target": 0,
+   "parent_id": 91,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": true
+   }
+  },
+  {
+   "id": 95,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Big Bloodthorne",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 96,
+   "type": 105,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Bismuth Cube",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 97,
+   "type": 102,
+   "type_name": "stack_lose",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Big Bloodthorne",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": -3,
+    "used": true,
+    "reflected": false
+   }
+  },
+  {
+   "id": 98,
+   "type": 102,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Agility",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": 97,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 99,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 98,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 100,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 98,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 101,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 98,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 102,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Angel Crystal",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 98,
+   "params": {
+    "amount": 4.0
+   }
+  },
+  {
+   "id": 103,
+   "type": 102,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Agility",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": 97,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 104,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 103,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 105,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 103,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 106,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 103,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 107,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Angel Crystal",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 103,
+   "params": {
+    "amount": 4.0
+   }
+  },
+  {
+   "id": 108,
+   "type": 103,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Big Bloodthorne",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 9,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 109,
+   "type": 105,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Bismuth Cube",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 110,
+   "type": 104,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Big Bloodthorne",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 6,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 111,
+   "type": 103,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Bismuth Cube",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 112,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Big Bloodthorne",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 36
+   }
+  },
+  {
+   "id": 113,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "vampirism"
+   },
+   "target": 0,
+   "parent_id": 112,
+   "params": {
+    "amount": 30
+   }
+  },
+  {
+   "id": 114,
+   "type": 105,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "gem",
+    "host": {
+     "kind": "unknown",
+     "str": "GemSocket2"
+    },
+    "socket_index": -1,
+    "identity": [
+     "Perfect Sapphire",
+     "Big Bloodthorne",
+     1,
+     1,
+     1,
+     0
+    ]
+   },
+   "target": 0,
+   "parent_id": 112,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 115,
+   "type": 110,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "gem",
+    "host": {
+     "kind": "unknown",
+     "str": "GemSocket2"
+    },
+    "socket_index": -1,
+    "identity": [
+     "Perfect Sapphire",
+     "Big Bloodthorne",
+     1,
+     1,
+     1,
+     0
+    ]
+   },
+   "target": 0,
+   "parent_id": 112,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": true
+   }
+  },
+  {
+   "id": 116,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Big Bloodthorne",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 117,
+   "type": 104,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Bismuth Cube",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 118,
+   "type": 102,
+   "type_name": "stack_lose",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Big Bloodthorne",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": -3,
+    "used": true,
+    "reflected": false
+   }
+  },
+  {
+   "id": 119,
+   "type": 102,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Agility",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": 118,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 120,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 119,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 121,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 119,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 122,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 119,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 123,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Angel Crystal",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 119,
+   "params": {
+    "amount": 4.0
+   }
+  },
+  {
+   "id": 124,
+   "type": 102,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Agility",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": 118,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 125,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 124,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 126,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 124,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 127,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 124,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 128,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Angel Crystal",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 124,
+   "params": {
+    "amount": 4.0
+   }
+  },
+  {
+   "id": 129,
+   "type": 103,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Big Bloodthorne",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 8,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 130,
+   "type": 101,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Bismuth Cube",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 131,
+   "type": 104,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Big Bloodthorne",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 9,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 132,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Big Bloodthorne",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 48
+   }
+  },
+  {
+   "id": 133,
+   "type": 101,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Leather Boots",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": 132,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 134,
+   "type": 106,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Leather Boots",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": 132,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 135,
+   "type": 100,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Leather Boots",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": 132,
+   "params": {
+    "amount": 15,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 136,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Leather Boots",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 137,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "vampirism"
+   },
+   "target": 0,
+   "parent_id": 132,
+   "params": {
+    "amount": 38
+   }
+  },
+  {
+   "id": 138,
+   "type": 105,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "gem",
+    "host": {
+     "kind": "unknown",
+     "str": "GemSocket2"
+    },
+    "socket_index": -1,
+    "identity": [
+     "Perfect Sapphire",
+     "Big Bloodthorne",
+     1,
+     1,
+     1,
+     0
+    ]
+   },
+   "target": 0,
+   "parent_id": 132,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 139,
+   "type": 110,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "gem",
+    "host": {
+     "kind": "unknown",
+     "str": "GemSocket2"
+    },
+    "socket_index": -1,
+    "identity": [
+     "Perfect Sapphire",
+     "Big Bloodthorne",
+     1,
+     1,
+     1,
+     0
+    ]
+   },
+   "target": 1,
+   "parent_id": 132,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false,
+    "resisted": true
+   }
+  },
+  {
+   "id": 140,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Big Bloodthorne",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 141,
+   "type": 102,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": 140,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 142,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 141,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 143,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 141,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 144,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 141,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 145,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Angel Crystal",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 141,
+   "params": {
+    "amount": 4.0
+   }
+  },
+  {
+   "id": 146,
+   "type": 106,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Bismuth Cube",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 147,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Big Bloodthorne",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 46
+   }
+  },
+  {
+   "id": 148,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "vampirism"
+   },
+   "target": 0,
+   "parent_id": 147,
+   "params": {
+    "amount": 38
+   }
+  },
+  {
+   "id": 149,
+   "type": 105,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "gem",
+    "host": {
+     "kind": "unknown",
+     "str": "GemSocket2"
+    },
+    "socket_index": -1,
+    "identity": [
+     "Perfect Sapphire",
+     "Big Bloodthorne",
+     1,
+     1,
+     1,
+     0
+    ]
+   },
+   "target": 0,
+   "parent_id": 147,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 150,
+   "type": 110,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "gem",
+    "host": {
+     "kind": "unknown",
+     "str": "GemSocket2"
+    },
+    "socket_index": -1,
+    "identity": [
+     "Perfect Sapphire",
+     "Big Bloodthorne",
+     1,
+     1,
+     1,
+     0
+    ]
+   },
+   "target": 1,
+   "parent_id": 147,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false,
+    "resisted": true
+   }
+  },
+  {
+   "id": 151,
+   "type": 107,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Bismuth Cube",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 152,
+   "type": 106,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Bismuth Cube",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 153,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Angel Crystal",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 154,
+   "type": 108,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Rainbow Orb",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": true
+   }
+  },
+  {
+   "id": 155,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Rainbow Orb",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 156,
+   "type": 102,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": 155,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 157,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 156,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 158,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 156,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 159,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 156,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 160,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Angel Crystal",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 156,
+   "params": {
+    "amount": 4.0
+   }
+  },
+  {
+   "id": 161,
+   "type": 102,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Gold Armor",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 20,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 162,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 161,
+   "params": {
+    "amount": 60.0
+   }
+  },
+  {
+   "id": 163,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 161,
+   "params": {
+    "amount": 60.0
+   }
+  },
+  {
+   "id": 164,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 161,
+   "params": {
+    "amount": 60.0
+   }
+  },
+  {
+   "id": 165,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Angel Crystal",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 161,
+   "params": {
+    "amount": 80.0
+   }
+  },
+  {
+   "id": 166,
+   "type": 100,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Gold Armor",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 120,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 167,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Gold Armor",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 168,
+   "type": 102,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": 167,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 169,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 168,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 170,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 168,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 171,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 168,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 172,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Angel Crystal",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 168,
+   "params": {
+    "amount": 4.0
+   }
+  },
+  {
+   "id": 173,
+   "type": 101,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Fedora",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 6,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 174,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Fedora",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 175,
+   "type": 100,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Protective Purse",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 15,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 176,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Falcon Blade",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 177,
+   "type": 100,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Protective Purse",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 15,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 178,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Evil Cap",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 179,
+   "type": 100,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "gem",
+    "host": {
+     "kind": "unknown",
+     "str": "GemSocket2"
+    },
+    "socket_index": -1,
+    "identity": [
+     "Burning Coal",
+     "Cap of Brilliance",
+     3,
+     8,
+     5,
+     0
+    ]
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 12,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 180,
+   "type": 105,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Cap of Brilliance",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false,
+    "resisted": true
+   }
+  },
+  {
+   "id": 181,
+   "type": 105,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Cap of Brilliance",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 182,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Cap of Brilliance",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 183,
+   "type": 107,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Oil Lamp",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 2,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 184,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Oil Lamp",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 185,
+   "type": 102,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Healing Herbs",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 2,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 186,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Healing Herbs",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 187,
+   "type": 100,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Protective Purse",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 15,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 188,
+   "type": 109,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Sandbag",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 3,
+    "used": false,
+    "reflected": true
+   }
+  },
+  {
+   "id": 189,
+   "type": 109,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Sandbag",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 2,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 190,
+   "type": 109,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Sandbag",
+    "owner_type": 3
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": true
+   }
+  },
+  {
+   "id": 191,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Sandbag",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 192,
+   "type": 107,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Dragon Knight",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 5,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 193,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Dragon Knight",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 194,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": 193,
+   "params": {
+    "amount": 2.0
+   }
+  },
+  {
+   "id": 195,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 196,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": 193,
+   "params": {
+    "amount": 2.0
+   }
+  },
+  {
+   "id": 197,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 198,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": 193,
+   "params": {
+    "amount": 2.0
+   }
+  },
+  {
+   "id": 199,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 200,
+   "type": 102,
+   "type_name": "stack_lose",
+   "timestamp": 0.20000001043081284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Big Bloodthorne",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": -3,
+    "used": true,
+    "reflected": false
+   }
+  },
+  {
+   "id": 201,
+   "type": 102,
+   "type_name": "stack_gain",
+   "timestamp": 0.20000001043081284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Agility",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": 200,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 202,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.20000001043081284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 201,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 203,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.20000001043081284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 201,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 204,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.20000001043081284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 201,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 205,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.20000001043081284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Angel Crystal",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 201,
+   "params": {
+    "amount": 4.0
+   }
+  },
+  {
+   "id": 206,
+   "type": 102,
+   "type_name": "stack_gain",
+   "timestamp": 0.20000001043081284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Agility",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": 200,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 207,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.20000001043081284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 206,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 208,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.20000001043081284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 206,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 209,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.20000001043081284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 206,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 210,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.20000001043081284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Angel Crystal",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 206,
+   "params": {
+    "amount": 4.0
+   }
+  },
+  {
+   "id": 211,
+   "type": 103,
+   "type_name": "stack_gain",
+   "timestamp": 0.20000001043081284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Big Bloodthorne",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 7,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 212,
+   "type": 104,
+   "type_name": "stack_gain",
+   "timestamp": 0.20000001043081284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Big Bloodthorne",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 7,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 213,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 0.20000001043081284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Big Bloodthorne",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 55
+   }
+  },
+  {
+   "id": 214,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.20000001043081284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Chrome Cube",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 215,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 0.20000001043081284,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "vampirism"
+   },
+   "target": 0,
+   "parent_id": 213,
+   "params": {
+    "amount": 50
+   }
+  },
+  {
+   "id": 216,
+   "type": 105,
+   "type_name": "stack_gain",
+   "timestamp": 0.20000001043081284,
+   "origin": {
+    "kind": "gem",
+    "host": {
+     "kind": "unknown",
+     "str": "GemSocket2"
+    },
+    "socket_index": -1,
+    "identity": [
+     "Perfect Sapphire",
+     "Big Bloodthorne",
+     1,
+     1,
+     1,
+     0
+    ]
+   },
+   "target": 0,
+   "parent_id": 213,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 217,
+   "type": 110,
+   "type_name": "stack_gain",
+   "timestamp": 0.20000001043081284,
+   "origin": {
+    "kind": "gem",
+    "host": {
+     "kind": "unknown",
+     "str": "GemSocket2"
+    },
+    "socket_index": -1,
+    "identity": [
+     "Perfect Sapphire",
+     "Big Bloodthorne",
+     1,
+     1,
+     1,
+     0
+    ]
+   },
+   "target": 1,
+   "parent_id": 213,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false,
+    "resisted": true
+   }
+  },
+  {
+   "id": 218,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.20000001043081284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Big Bloodthorne",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 219,
+   "type": 13,
+   "type_name": "stamina_gain",
+   "timestamp": 0.4333333559334278,
+   "origin": {
+    "kind": "item",
+    "identifier": "Strong Heroic Potion",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "stamina": 4.0
+   }
+  },
+  {
+   "id": 220,
+   "type": 106,
+   "type_name": "stack_gain",
+   "timestamp": 0.4333333559334278,
+   "origin": {
+    "kind": "item",
+    "identifier": "Strong Heroic Potion",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 221,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.4333333559334278,
+   "origin": {
+    "kind": "item",
+    "identifier": "Strong Heroic Potion",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 222,
+   "type": 102,
+   "type_name": "stack_lose",
+   "timestamp": 0.4333333559334278,
+   "origin": {
+    "kind": "item",
+    "identifier": "Big Bloodthorne",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": -3,
+    "used": true,
+    "reflected": false
+   }
+  },
+  {
+   "id": 223,
+   "type": 103,
+   "type_name": "stack_gain",
+   "timestamp": 0.4333333559334278,
+   "origin": {
+    "kind": "item",
+    "identifier": "Big Bloodthorne",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 7,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 224,
+   "type": 104,
+   "type_name": "stack_gain",
+   "timestamp": 0.4333333559334278,
+   "origin": {
+    "kind": "item",
+    "identifier": "Big Bloodthorne",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 6,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 225,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 0.4333333559334278,
+   "origin": {
+    "kind": "item",
+    "identifier": "Big Bloodthorne",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 60
+   }
+  },
+  {
+   "id": 226,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 0.4333333559334278,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "vampirism"
+   },
+   "target": 0,
+   "parent_id": 225,
+   "params": {
+    "amount": 58
+   }
+  },
+  {
+   "id": 227,
+   "type": 105,
+   "type_name": "stack_gain",
+   "timestamp": 0.4333333559334278,
+   "origin": {
+    "kind": "gem",
+    "host": {
+     "kind": "unknown",
+     "str": "GemSocket2"
+    },
+    "socket_index": -1,
+    "identity": [
+     "Perfect Sapphire",
+     "Big Bloodthorne",
+     1,
+     1,
+     1,
+     0
+    ]
+   },
+   "target": 0,
+   "parent_id": 225,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 228,
+   "type": 110,
+   "type_name": "stack_gain",
+   "timestamp": 0.4333333559334278,
+   "origin": {
+    "kind": "gem",
+    "host": {
+     "kind": "unknown",
+     "str": "GemSocket2"
+    },
+    "socket_index": -1,
+    "identity": [
+     "Perfect Sapphire",
+     "Big Bloodthorne",
+     1,
+     1,
+     1,
+     0
+    ]
+   },
+   "target": 1,
+   "parent_id": 225,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false,
+    "resisted": true
+   }
+  },
+  {
+   "id": 229,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.4333333559334278,
+   "origin": {
+    "kind": "item",
+    "identifier": "Big Bloodthorne",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 230,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 0.5166666936129332,
+   "origin": {
+    "kind": "item",
+    "identifier": "Dragon Knight",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 3
+   }
+  },
+  {
+   "id": 231,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 0.5166666936129332,
+   "origin": {
+    "kind": "item",
+    "identifier": "Dragon Knight",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": 230,
+   "params": {
+    "amount": 4
+   }
+  },
+  {
+   "id": 232,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.5166666936129332,
+   "origin": {
+    "kind": "item",
+    "identifier": "Dragon Knight",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 233,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 0.5166666936129332,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Darkness",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 4
+   }
+  },
+  {
+   "id": 234,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.5166666936129332,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Darkness",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 235,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.5166666936129332,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": 232,
+   "params": {
+    "amount": 2.0
+   }
+  },
+  {
+   "id": 236,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.5166666936129332,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 237,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.5166666936129332,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": 232,
+   "params": {
+    "amount": 2.0
+   }
+  },
+  {
+   "id": 238,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.5166666936129332,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 239,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.5166666936129332,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": 232,
+   "params": {
+    "amount": 2.0
+   }
+  },
+  {
+   "id": 240,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.5166666936129332,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 241,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.5166666936129332,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": 232,
+   "params": {
+    "amount": 2.0
+   }
+  },
+  {
+   "id": 242,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.5166666936129332,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 243,
+   "type": 102,
+   "type_name": "stack_lose",
+   "timestamp": 0.8333333767950535,
+   "origin": {
+    "kind": "item",
+    "identifier": "Big Bloodthorne",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": -3,
+    "used": true,
+    "reflected": false
+   }
+  },
+  {
+   "id": 244,
+   "type": 102,
+   "type_name": "stack_gain",
+   "timestamp": 0.8333333767950535,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Agility",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": 243,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 245,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.8333333767950535,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 244,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 246,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.8333333767950535,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 244,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 247,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.8333333767950535,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 244,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 248,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.8333333767950535,
+   "origin": {
+    "kind": "item",
+    "identifier": "Angel Crystal",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 244,
+   "params": {
+    "amount": 4.0
+   }
+  },
+  {
+   "id": 249,
+   "type": 102,
+   "type_name": "stack_gain",
+   "timestamp": 0.8333333767950535,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Agility",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": 243,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false,
+    "resisted": true
+   }
+  },
+  {
+   "id": 250,
+   "type": 103,
+   "type_name": "stack_gain",
+   "timestamp": 0.8333333767950535,
+   "origin": {
+    "kind": "item",
+    "identifier": "Big Bloodthorne",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 6,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 251,
+   "type": 104,
+   "type_name": "stack_gain",
+   "timestamp": 0.8333333767950535,
+   "origin": {
+    "kind": "item",
+    "identifier": "Big Bloodthorne",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 6,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 252,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 0.8333333767950535,
+   "origin": {
+    "kind": "item",
+    "identifier": "Big Bloodthorne",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 66
+   }
+  },
+  {
+   "id": 253,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 0.8333333767950535,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "vampirism"
+   },
+   "target": 0,
+   "parent_id": 252,
+   "params": {
+    "amount": 65
+   }
+  },
+  {
+   "id": 254,
+   "type": 105,
+   "type_name": "stack_gain",
+   "timestamp": 0.8333333767950535,
+   "origin": {
+    "kind": "gem",
+    "host": {
+     "kind": "unknown",
+     "str": "GemSocket2"
+    },
+    "socket_index": -1,
+    "identity": [
+     "Perfect Sapphire",
+     "Big Bloodthorne",
+     1,
+     1,
+     1,
+     0
+    ]
+   },
+   "target": 0,
+   "parent_id": 252,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 255,
+   "type": 110,
+   "type_name": "stack_gain",
+   "timestamp": 0.8333333767950535,
+   "origin": {
+    "kind": "gem",
+    "host": {
+     "kind": "unknown",
+     "str": "GemSocket2"
+    },
+    "socket_index": -1,
+    "identity": [
+     "Perfect Sapphire",
+     "Big Bloodthorne",
+     1,
+     1,
+     1,
+     0
+    ]
+   },
+   "target": 1,
+   "parent_id": 252,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false,
+    "resisted": true
+   }
+  },
+  {
+   "id": 256,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.8333333767950535,
+   "origin": {
+    "kind": "item",
+    "identifier": "Big Bloodthorne",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 257,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 0.9000000469386578,
+   "origin": {
+    "kind": "item",
+    "identifier": "Dragon Knight",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 6
+   }
+  },
+  {
+   "id": 258,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 0.9000000469386578,
+   "origin": {
+    "kind": "item",
+    "identifier": "Dragon Knight",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": 257,
+   "params": {
+    "amount": 4
+   }
+  },
+  {
+   "id": 259,
+   "type": 101,
+   "type_name": "stack_lose",
+   "timestamp": 0.9000000469386578,
+   "origin": {
+    "kind": "gem",
+    "host": {
+     "kind": "unknown",
+     "str": "GemSocket2"
+    },
+    "socket_index": -1,
+    "identity": [
+     "Chipped Amethyst",
+     "Dragon Knight",
+     3,
+     3,
+     1,
+     1
+    ]
+   },
+   "target": 0,
+   "parent_id": 257,
+   "params": {
+    "amount": -1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 260,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.9000000469386578,
+   "origin": {
+    "kind": "item",
+    "identifier": "Dragon Knight",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 261,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.9000000469386578,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": 260,
+   "params": {
+    "amount": 2.0
+   }
+  },
+  {
+   "id": 262,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.9000000469386578,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 263,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.9000000469386578,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": 260,
+   "params": {
+    "amount": 2.0
+   }
+  },
+  {
+   "id": 264,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.9000000469386578,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 265,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 0.9000000469386578,
+   "origin": {
+    "kind": "item",
+    "identifier": "Light Goobert",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 15
+   }
+  },
+  {
+   "id": 266,
+   "type": 109,
+   "type_name": "stack_gain",
+   "timestamp": 0.9000000469386578,
+   "origin": {
+    "kind": "item",
+    "identifier": "Light Goobert",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 7,
+    "used": false,
+    "reflected": true,
+    "duration": 3.0
+   }
+  },
+  {
+   "id": 267,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.9000000469386578,
+   "origin": {
+    "kind": "item",
+    "identifier": "Light Goobert",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 268,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 0.9000000469386578,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Darkness",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 4
+   }
+  },
+  {
+   "id": 269,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.9000000469386578,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Darkness",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 270,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.9000000469386578,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": 260,
+   "params": {
+    "amount": 2.0
+   }
+  },
+  {
+   "id": 271,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.9000000469386578,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 272,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.9000000469386578,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": 260,
+   "params": {
+    "amount": 2.0
+   }
+  },
+  {
+   "id": 273,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.9000000469386578,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 274,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 0.9833333846181631,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "regen"
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 1
+   }
+  },
+  {
+   "id": 275,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 0.9833333846181631,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "regen"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 32
+   }
+  },
+  {
+   "id": 276,
+   "type": 110,
+   "type_name": "stack_gain",
+   "timestamp": 1.1333333924412727,
+   "origin": {
+    "kind": "item",
+    "identifier": "Snowmaster",
+    "owner_type": 3
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 277,
+   "type": 109,
+   "type_name": "stack_lose",
+   "timestamp": 1.1333333924412727,
+   "origin": {
+    "kind": "item",
+    "identifier": "Snowmaster",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": -2,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 278,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 1.1333333924412727,
+   "origin": {
+    "kind": "item",
+    "identifier": "Snowmaster",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 279,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 1.1333333924412727,
+   "origin": {
+    "kind": "item",
+    "identifier": "Chili Goobert",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 10
+   }
+  },
+  {
+   "id": 280,
+   "type": 107,
+   "type_name": "stack_gain",
+   "timestamp": 1.1333333924412727,
+   "origin": {
+    "kind": "item",
+    "identifier": "Chili Goobert",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 2,
+    "used": false,
+    "reflected": false,
+    "resisted": true
+   }
+  },
+  {
+   "id": 281,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 1.1333333924412727,
+   "origin": {
+    "kind": "item",
+    "identifier": "Chili Goobert",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 282,
+   "type": 110,
+   "type_name": "stack_gain",
+   "timestamp": 1.1333333924412727,
+   "origin": {
+    "kind": "item",
+    "identifier": "Snowmaster",
+    "owner_type": 3
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 283,
+   "type": 109,
+   "type_name": "stack_lose",
+   "timestamp": 1.1333333924412727,
+   "origin": {
+    "kind": "item",
+    "identifier": "Snowmaster",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": -1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 284,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 1.1333333924412727,
+   "origin": {
+    "kind": "item",
+    "identifier": "Snowmaster",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 285,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 1.2666667327284813,
+   "origin": {
+    "kind": "item",
+    "identifier": "Dragon Knight",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 4
+   }
+  },
+  {
+   "id": 286,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 1.2666667327284813,
+   "origin": {
+    "kind": "item",
+    "identifier": "Dragon Knight",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": 285,
+   "params": {
+    "amount": 4
+   }
+  },
+  {
+   "id": 287,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 1.2666667327284813,
+   "origin": {
+    "kind": "item",
+    "identifier": "Dragon Knight",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 288,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 1.2666667327284813,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": 287,
+   "params": {
+    "amount": 2.0
+   }
+  },
+  {
+   "id": 289,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 1.2666667327284813,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 290,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 1.2666667327284813,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": 287,
+   "params": {
+    "amount": 2.0
+   }
+  },
+  {
+   "id": 291,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 1.2666667327284813,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 292,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 1.2666667327284813,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": 287,
+   "params": {
+    "amount": 2.0
+   }
+  },
+  {
+   "id": 293,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 1.2666667327284813,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 294,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 1.2666667327284813,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Darkness",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 4
+   }
+  },
+  {
+   "id": 295,
+   "type": 109,
+   "type_name": "stack_gain",
+   "timestamp": 1.2666667327284813,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Darkness",
+    "owner_type": 3
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 296,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 1.2666667327284813,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Darkness",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 297,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 1.3166667353361845,
+   "origin": {
+    "kind": "item",
+    "identifier": "Speak with Animals",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 298,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 1.3166667353361845,
+   "origin": {
+    "kind": "item",
+    "identifier": "Time Pendant",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 299,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 1.3166667353361845,
+   "origin": {
+    "kind": "item",
+    "identifier": "Falcon Blade",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 3
+   }
+  },
+  {
+   "id": 300,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 1.3166667353361845,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "spikes"
+   },
+   "target": 0,
+   "parent_id": 299,
+   "params": {
+    "damage": 1
+   }
+  },
+  {
+   "id": 301,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 1.3166667353361845,
+   "origin": {
+    "kind": "gem",
+    "host": {
+     "kind": "unknown",
+     "str": "GemSocket2"
+    },
+    "socket_index": -1,
+    "identity": [
+     "Flawed Ruby",
+     "Falcon Blade",
+     3,
+     1,
+     2,
+     1
+    ]
+   },
+   "target": 1,
+   "parent_id": 299,
+   "params": {
+    "amount": 1
+   }
+  },
+  {
+   "id": 302,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 1.3166667353361845,
+   "origin": {
+    "kind": "item",
+    "identifier": "Falcon Blade",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 303,
+   "type": 3,
+   "type_name": "missed",
+   "timestamp": 1.3166667353361845,
+   "origin": {
+    "kind": "item",
+    "identifier": "Falcon Blade",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 304,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 1.3166667353361845,
+   "origin": {
+    "kind": "item",
+    "identifier": "Falcon Blade",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 305,
+   "type": 13,
+   "type_name": "stamina_gain",
+   "timestamp": 1.433333408087492,
+   "origin": {
+    "kind": "item",
+    "identifier": "Strong Heroic Potion",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "stamina": 4.0
+   }
+  },
+  {
+   "id": 306,
+   "type": 106,
+   "type_name": "stack_gain",
+   "timestamp": 1.433333408087492,
+   "origin": {
+    "kind": "item",
+    "identifier": "Strong Heroic Potion",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 307,
+   "type": 13,
+   "type_name": "stamina_gain",
+   "timestamp": 1.433333408087492,
+   "origin": {
+    "kind": "item",
+    "identifier": "Strong Heroic Potion",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "stamina": 4.0
+   }
+  },
+  {
+   "id": 308,
+   "type": 106,
+   "type_name": "stack_gain",
+   "timestamp": 1.433333408087492,
+   "origin": {
+    "kind": "item",
+    "identifier": "Strong Heroic Potion",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 309,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 1.433333408087492,
+   "origin": {
+    "kind": "item",
+    "identifier": "Strong Heroic Potion",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 310,
+   "type": 102,
+   "type_name": "stack_lose",
+   "timestamp": 1.433333408087492,
+   "origin": {
+    "kind": "item",
+    "identifier": "Big Bloodthorne",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": -3,
+    "used": true,
+    "reflected": false
+   }
+  },
+  {
+   "id": 311,
+   "type": 102,
+   "type_name": "stack_gain",
+   "timestamp": 1.433333408087492,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Agility",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": 310,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false,
+    "resisted": true
+   }
+  },
+  {
+   "id": 312,
+   "type": 102,
+   "type_name": "stack_gain",
+   "timestamp": 1.433333408087492,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Agility",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": 310,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 313,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 1.433333408087492,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 312,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 314,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 1.433333408087492,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 312,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 315,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 1.433333408087492,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 312,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 316,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 1.433333408087492,
+   "origin": {
+    "kind": "item",
+    "identifier": "Angel Crystal",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 312,
+   "params": {
+    "amount": 4.0
+   }
+  },
+  {
+   "id": 317,
+   "type": 103,
+   "type_name": "stack_gain",
+   "timestamp": 1.433333408087492,
+   "origin": {
+    "kind": "item",
+    "identifier": "Big Bloodthorne",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 7,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 318,
+   "type": 104,
+   "type_name": "stack_gain",
+   "timestamp": 1.433333408087492,
+   "origin": {
+    "kind": "item",
+    "identifier": "Big Bloodthorne",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 8,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 319,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 1.433333408087492,
+   "origin": {
+    "kind": "item",
+    "identifier": "Big Bloodthorne",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 74
+   }
+  },
+  {
+   "id": 320,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 1.433333408087492,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "vampirism"
+   },
+   "target": 0,
+   "parent_id": 319,
+   "params": {
+    "amount": 73
+   }
+  },
+  {
+   "id": 321,
+   "type": 105,
+   "type_name": "stack_gain",
+   "timestamp": 1.433333408087492,
+   "origin": {
+    "kind": "gem",
+    "host": {
+     "kind": "unknown",
+     "str": "GemSocket2"
+    },
+    "socket_index": -1,
+    "identity": [
+     "Perfect Sapphire",
+     "Big Bloodthorne",
+     1,
+     1,
+     1,
+     0
+    ]
+   },
+   "target": 0,
+   "parent_id": 319,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 322,
+   "type": 110,
+   "type_name": "stack_gain",
+   "timestamp": 1.433333408087492,
+   "origin": {
+    "kind": "gem",
+    "host": {
+     "kind": "unknown",
+     "str": "GemSocket2"
+    },
+    "socket_index": -1,
+    "identity": [
+     "Perfect Sapphire",
+     "Big Bloodthorne",
+     1,
+     1,
+     1,
+     0
+    ]
+   },
+   "target": 1,
+   "parent_id": 319,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false,
+    "resisted": true
+   }
+  },
+  {
+   "id": 323,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 1.433333408087492,
+   "origin": {
+    "kind": "item",
+    "identifier": "Big Bloodthorne",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 324,
+   "type": 108,
+   "type_name": "stack_lose",
+   "timestamp": 1.4833334106951952,
+   "origin": {
+    "kind": "item",
+    "identifier": "Gold Armor",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": -1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 325,
+   "type": 109,
+   "type_name": "stack_lose",
+   "timestamp": 1.4833334106951952,
+   "origin": {
+    "kind": "item",
+    "identifier": "Gold Armor",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": -2,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 326,
+   "type": 110,
+   "type_name": "stack_lose",
+   "timestamp": 1.4833334106951952,
+   "origin": {
+    "kind": "item",
+    "identifier": "Gold Armor",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": -2,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 327,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 1.4833334106951952,
+   "origin": {
+    "kind": "item",
+    "identifier": "Gold Armor",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 328,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 1.7333334237337112,
+   "origin": {
+    "kind": "item",
+    "identifier": "Dragon Knight",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 5
+   }
+  },
+  {
+   "id": 329,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 1.7333334237337112,
+   "origin": {
+    "kind": "item",
+    "identifier": "Dragon Knight",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": 328,
+   "params": {
+    "amount": 4
+   }
+  },
+  {
+   "id": 330,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 1.7333334237337112,
+   "origin": {
+    "kind": "item",
+    "identifier": "Dragon Knight",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 331,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 1.7333334237337112,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": 330,
+   "params": {
+    "amount": 2.0
+   }
+  },
+  {
+   "id": 332,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 1.7333334237337112,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 333,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 1.7333334237337112,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": 330,
+   "params": {
+    "amount": 2.0
+   }
+  },
+  {
+   "id": 334,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 1.7333334237337112,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 335,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 2.0000001043081284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Charge Splitter",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 336,
+   "type": 102,
+   "type_name": "stack_gain",
+   "timestamp": 2.0000001043081284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": 335,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 337,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 2.0000001043081284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 336,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 338,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 2.0000001043081284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 336,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 339,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 2.0000001043081284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 336,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 340,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 2.0000001043081284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Angel Crystal",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 336,
+   "params": {
+    "amount": 4.0
+   }
+  },
+  {
+   "id": 341,
+   "type": 101,
+   "type_name": "stack_lose",
+   "timestamp": 2.0000001043081284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Coil",
+    "owner_type": 1
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": -1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 342,
+   "type": 101,
+   "type_name": "stack_gain",
+   "timestamp": 2.0000001043081284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Coil",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 343,
+   "type": 106,
+   "type_name": "stack_lose",
+   "timestamp": 2.0000001043081284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Coil",
+    "owner_type": 1
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": -1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 344,
+   "type": 106,
+   "type_name": "stack_gain",
+   "timestamp": 2.0000001043081284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Coil",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 345,
+   "type": 105,
+   "type_name": "stack_lose",
+   "timestamp": 2.0000001043081284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Coil",
+    "owner_type": 1
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": -1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 346,
+   "type": 105,
+   "type_name": "stack_gain",
+   "timestamp": 2.0000001043081284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Coil",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 347,
+   "type": 107,
+   "type_name": "stack_lose",
+   "timestamp": 2.0000001043081284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Coil",
+    "owner_type": 1
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": -1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 348,
+   "type": 107,
+   "type_name": "stack_gain",
+   "timestamp": 2.0000001043081284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Coil",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 349,
+   "type": 101,
+   "type_name": "stack_lose",
+   "timestamp": 2.0000001043081284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Coil",
+    "owner_type": 1
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": -1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 350,
+   "type": 101,
+   "type_name": "stack_gain",
+   "timestamp": 2.0000001043081284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Coil",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 351,
+   "type": 102,
+   "type_name": "stack_lose",
+   "timestamp": 2.0000001043081284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Coil",
+    "owner_type": 1
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": -1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 352,
+   "type": 102,
+   "type_name": "stack_gain",
+   "timestamp": 2.0000001043081284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Coil",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 2,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 353,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 2.0000001043081284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 352,
+   "params": {
+    "amount": 6.0
+   }
+  },
+  {
+   "id": 354,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 2.0000001043081284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 352,
+   "params": {
+    "amount": 6.0
+   }
+  },
+  {
+   "id": 355,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 2.0000001043081284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 352,
+   "params": {
+    "amount": 6.0
+   }
+  },
+  {
+   "id": 356,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 2.0000001043081284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Angel Crystal",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 352,
+   "params": {
+    "amount": 8.0
+   }
+  },
+  {
+   "id": 357,
+   "type": 102,
+   "type_name": "stack_lose",
+   "timestamp": 2.0000001043081284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Coil",
+    "owner_type": 1
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": -1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 358,
+   "type": 102,
+   "type_name": "stack_gain",
+   "timestamp": 2.0000001043081284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Coil",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 361,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 2.0000001043081284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 358,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 362,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 2.0000001043081284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 358,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 363,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 2.0000001043081284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 358,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 364,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 2.0000001043081284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Angel Crystal",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 358,
+   "params": {
+    "amount": 4.0
+   }
+  },
+  {
+   "id": 359,
+   "type": 107,
+   "type_name": "stack_lose",
+   "timestamp": 2.0000001043081284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Coil",
+    "owner_type": 1
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": -1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 360,
+   "type": 107,
+   "type_name": "stack_gain",
+   "timestamp": 2.0000001043081284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Coil",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 365,
+   "type": 102,
+   "type_name": "stack_lose",
+   "timestamp": 2.1000001095235348,
+   "origin": {
+    "kind": "item",
+    "identifier": "Big Bloodthorne",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": -3,
+    "used": true,
+    "reflected": false
+   }
+  },
+  {
+   "id": 366,
+   "type": 102,
+   "type_name": "stack_gain",
+   "timestamp": 2.1000001095235348,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Agility",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": 365,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 367,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 2.1000001095235348,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 366,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 368,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 2.1000001095235348,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 366,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 369,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 2.1000001095235348,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 366,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 370,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 2.1000001095235348,
+   "origin": {
+    "kind": "item",
+    "identifier": "Angel Crystal",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 366,
+   "params": {
+    "amount": 4.0
+   }
+  },
+  {
+   "id": 371,
+   "type": 102,
+   "type_name": "stack_gain",
+   "timestamp": 2.1000001095235348,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Agility",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": 365,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 372,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 2.1000001095235348,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 371,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 373,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 2.1000001095235348,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 371,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 374,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 2.1000001095235348,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 371,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 375,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 2.1000001095235348,
+   "origin": {
+    "kind": "item",
+    "identifier": "Angel Crystal",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 371,
+   "params": {
+    "amount": 4.0
+   }
+  },
+  {
+   "id": 376,
+   "type": 103,
+   "type_name": "stack_gain",
+   "timestamp": 2.1000001095235348,
+   "origin": {
+    "kind": "item",
+    "identifier": "Big Bloodthorne",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 7,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 377,
+   "type": 104,
+   "type_name": "stack_gain",
+   "timestamp": 2.1000001095235348,
+   "origin": {
+    "kind": "item",
+    "identifier": "Big Bloodthorne",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 6,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 378,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 2.1000001095235348,
+   "origin": {
+    "kind": "item",
+    "identifier": "Big Bloodthorne",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 83
+   }
+  },
+  {
+   "id": -1,
+   "type": 111,
+   "type_name": "combat_end",
+   "timestamp": 2.1000001095235348,
+   "origin": 111,
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  }
+ ]
+}

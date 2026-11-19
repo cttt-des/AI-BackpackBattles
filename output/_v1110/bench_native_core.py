@@ -5,6 +5,8 @@ import json
 import statistics
 import sys
 import time
+import argparse
+import hashlib
 
 repo = Path(__file__).resolve().parents[2]
 stage = repo / "output/_v1110"
@@ -12,7 +14,11 @@ sim_root = stage / "sim_native"
 sys.path[:0] = [str(sim_root), str(sim_root / "native_sim_cpp")]
 from native_sim.sim import NativeSimulator
 
-out = stage / "native_core_check"
+ap = argparse.ArgumentParser()
+ap.add_argument("--fixtures", default="native_core_check")
+ap.add_argument("--report", default="performance.json")
+args = ap.parse_args()
+out = stage / args.fixtures
 case = json.loads((out / "fixtures.json").read_text("utf8"))["cases"][0]
 cid = case["case_id"]
 gd = out / "align/lineups"
@@ -38,7 +44,8 @@ options = dict(seed=case["seed"], round_id=case["round_id"], below_master=case["
                custom_health_multiplier=case["custom_health_multiplier"], replay_initial=case["replay_initial"])
 iterations, rounds = 100, 3
 result = {"case_id": cid, "iterations_per_round": iterations, "rounds": rounds,
-          "timing": "single process CPU seconds, ctypes overhead included; no file logging or event serialization",
+          "dll_sha256": hashlib.sha256((sim_root / "native_sim_cpp/native_sim/libgdcore.dll").read_bytes()).hexdigest(),
+          "timing": "single process CPU seconds for native setup+combat+teardown; ctypes overhead included, input packing excluded; no file logging or event serialization",
           "scope": "one previously five-way-verified round-1 case; no comparative speedup claim",
           "modes": {}}
 start = time.process_time()
@@ -64,5 +71,5 @@ for debug in (False, True):
         "cpu_round_seconds": elapsed, "median_cpu_ms_per_battle": seconds * 1000,
         "battles_per_cpu_second": 1 / seconds, "result_signature": list(signatures.pop())}
 sim.lib.gd_sim_set_dbg_events(0)
-(out / "performance.json").write_text(json.dumps(result, indent=2) + "\n", encoding="utf8")
+(out / args.report).write_text(json.dumps(result, indent=2) + "\n", encoding="utf8")
 print(json.dumps(result, indent=2), flush=True)

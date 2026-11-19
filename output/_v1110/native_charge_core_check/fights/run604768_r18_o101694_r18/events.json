@@ -1,0 +1,8279 @@
+{
+  "seed": 1672180149,
+  "run_id": 604768,
+  "round_id": 18,
+  "opp_run_id": 101694,
+  "opp_round_id": 18,
+  "combat_time": 2.1,
+  "ticks": 126,
+  "winner": "player",
+  "event_count": 379,
+  "events": [
+    {
+      "id": 0,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Platin Customer Card",
+        "identifier": "Platin Customer Card",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 0
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 1,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Platin Customer Card",
+        "identifier": "Platin Customer Card",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 1
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 2,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Battery",
+        "identifier": "Battery",
+        "owner_type": 1,
+        "top_left": {
+          "x": 0,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 3,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Charge Splitter",
+        "identifier": "Charge Splitter",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 4,
+      "type": 107,
+      "type_name": "107",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Resistor",
+        "identifier": "Resistor",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 6
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 4,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 5,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Battery",
+        "identifier": "Battery",
+        "owner_type": 1,
+        "top_left": {
+          "x": 0,
+          "y": 6
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 6,
+      "type": 107,
+      "type_name": "107",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Resistor",
+        "identifier": "Resistor",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 6
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 3,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 7,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Battery",
+        "identifier": "Battery",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 6
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 8,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Battery",
+        "identifier": "Battery",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 0
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 9,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Battery",
+        "identifier": "Battery",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 0
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 10,
+      "type": 100,
+      "type_name": "100",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Protective Purse",
+        "identifier": "Protective Purse",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 1
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 15,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 11,
+      "type": 100,
+      "type_name": "100",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Cog",
+        "identifier": "Cog",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 0
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 5,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 12,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Cog",
+        "identifier": "Cog",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 0
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 13,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Alchemy",
+        "identifier": "Amulet of Alchemy",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 0
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 16,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 6
+        }
+      },
+      "target": null,
+      "parent_id": 13,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 17,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": 13,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 18,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": 13,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 19,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Angel Crystal",
+        "identifier": "Angel Crystal",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": 13,
+      "params": {
+        "amount": 4
+      }
+    },
+    {
+      "id": 20,
+      "type": 103,
+      "type_name": "103",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Bismuth Cube",
+        "identifier": "Bismuth Cube",
+        "owner_type": 1,
+        "top_left": {
+          "x": 0,
+          "y": 4
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 14,
+      "type": 103,
+      "type_name": "103",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Alchemy",
+        "identifier": "Amulet of Alchemy",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 0
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 15,
+      "type": 101,
+      "type_name": "101",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Alchemy",
+        "identifier": "Amulet of Alchemy",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 0
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 21,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Alchemy",
+        "identifier": "Amulet of Alchemy",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 0
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 22,
+      "type": 100,
+      "type_name": "100",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Protective Purse",
+        "identifier": "Protective Purse",
+        "owner_type": 1,
+        "top_left": {
+          "x": 7,
+          "y": 0
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 15,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 23,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Evil Cap",
+        "identifier": "Evil Cap",
+        "owner_type": 1,
+        "top_left": {
+          "x": 8,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 24,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 5
+        }
+      },
+      "target": 0,
+      "parent_id": 23,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 25,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 6
+        }
+      },
+      "target": null,
+      "parent_id": 24,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 26,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": 24,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 27,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": 24,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 28,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Angel Crystal",
+        "identifier": "Angel Crystal",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": 24,
+      "params": {
+        "amount": 4
+      }
+    },
+    {
+      "id": 29,
+      "type": 100,
+      "type_name": "100",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Protective Purse",
+        "identifier": "Protective Purse",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 0
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 15,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 30,
+      "type": 5,
+      "type_name": "5",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Stone Skin Potion",
+        "identifier": "Stone Skin Potion",
+        "owner_type": 1,
+        "top_left": {
+          "x": 8,
+          "y": 3
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": -15
+      }
+    },
+    {
+      "id": 31,
+      "type": 100,
+      "type_name": "100",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Stone Skin Potion",
+        "identifier": "Stone Skin Potion",
+        "owner_type": 1,
+        "top_left": {
+          "x": 8,
+          "y": 3
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 30,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 32,
+      "type": 13,
+      "type_name": "13",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Strong Heroic Potion",
+        "identifier": "Strong Heroic Potion",
+        "owner_type": 1,
+        "top_left": {
+          "x": 8,
+          "y": 1
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "stamina": 4
+      }
+    },
+    {
+      "id": 33,
+      "type": 106,
+      "type_name": "106",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Strong Heroic Potion",
+        "identifier": "Strong Heroic Potion",
+        "owner_type": 1,
+        "top_left": {
+          "x": 8,
+          "y": 1
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 34,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Stone Skin Potion",
+        "identifier": "Stone Skin Potion",
+        "owner_type": 1,
+        "top_left": {
+          "x": 8,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 35,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Potion Belt",
+        "identifier": "Potion Belt",
+        "owner_type": 1,
+        "top_left": {
+          "x": 8,
+          "y": 3
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 36,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 6
+        }
+      },
+      "target": null,
+      "parent_id": 35,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 37,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": 35,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 38,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": 35,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 39,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Angel Crystal",
+        "identifier": "Angel Crystal",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": 35,
+      "params": {
+        "amount": 4
+      }
+    },
+    {
+      "id": 40,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Agility",
+        "identifier": "Amulet of Agility",
+        "owner_type": 1,
+        "top_left": {
+          "x": 0,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 41,
+      "type": 100,
+      "type_name": "100",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Cog",
+        "identifier": "Cog",
+        "owner_type": 1,
+        "top_left": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 5,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 42,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Cog",
+        "identifier": "Cog",
+        "owner_type": 1,
+        "top_left": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 43,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Gloves of Haste",
+        "identifier": "Gloves of Haste",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 44,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Agility",
+        "identifier": "Amulet of Agility",
+        "owner_type": 1,
+        "top_left": {
+          "x": 0,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 45,
+      "type": 100,
+      "type_name": "100",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Protective Purse",
+        "identifier": "Protective Purse",
+        "owner_type": 1,
+        "top_left": {
+          "x": 7,
+          "y": 1
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 15,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 46,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Angel Crystal",
+        "identifier": "Angel Crystal",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 3
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 17,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 47,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Heart of Darkness",
+        "identifier": "Heart of Darkness",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 1
+        }
+      },
+      "target": 0,
+      "parent_id": 46,
+      "params": {
+        "amount": -7,
+        "used": true,
+        "reflected": false
+      }
+    },
+    {
+      "id": 48,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Agility",
+        "identifier": "Amulet of Agility",
+        "owner_type": 1,
+        "top_left": {
+          "x": 0,
+          "y": 3
+        }
+      },
+      "target": 0,
+      "parent_id": 47,
+      "params": {
+        "amount": 2,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 49,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 6
+        }
+      },
+      "target": null,
+      "parent_id": 48,
+      "params": {
+        "amount": 6
+      }
+    },
+    {
+      "id": 50,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": 48,
+      "params": {
+        "amount": 6
+      }
+    },
+    {
+      "id": 51,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": 48,
+      "params": {
+        "amount": 6
+      }
+    },
+    {
+      "id": 52,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Angel Crystal",
+        "identifier": "Angel Crystal",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": 48,
+      "params": {
+        "amount": 8
+      }
+    },
+    {
+      "id": 53,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Bismuth Cube",
+        "identifier": "Bismuth Cube",
+        "owner_type": 1,
+        "top_left": {
+          "x": 0,
+          "y": 4
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 54,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 6
+        }
+      },
+      "target": null,
+      "parent_id": 53,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 55,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": 53,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 56,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": 53,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 57,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Angel Crystal",
+        "identifier": "Angel Crystal",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": 53,
+      "params": {
+        "amount": 4
+      }
+    },
+    {
+      "id": 58,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Agility",
+        "identifier": "Amulet of Agility",
+        "owner_type": 1,
+        "top_left": {
+          "x": 0,
+          "y": 2
+        }
+      },
+      "target": 0,
+      "parent_id": 47,
+      "params": {
+        "amount": 2,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 59,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 6
+        }
+      },
+      "target": null,
+      "parent_id": 58,
+      "params": {
+        "amount": 6
+      }
+    },
+    {
+      "id": 60,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": 58,
+      "params": {
+        "amount": 6
+      }
+    },
+    {
+      "id": 61,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": 58,
+      "params": {
+        "amount": 6
+      }
+    },
+    {
+      "id": 62,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Angel Crystal",
+        "identifier": "Angel Crystal",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": 58,
+      "params": {
+        "amount": 8
+      }
+    },
+    {
+      "id": 63,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Heart of Darkness",
+        "identifier": "Heart of Darkness",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 1
+        }
+      },
+      "target": null,
+      "parent_id": 46,
+      "params": {
+        "amount": 100
+      }
+    },
+    {
+      "id": 64,
+      "type": 106,
+      "type_name": "106",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Heart of Darkness",
+        "identifier": "Heart of Darkness",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 1
+        }
+      },
+      "target": 0,
+      "parent_id": 46,
+      "params": {
+        "amount": 5,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 65,
+      "type": 103,
+      "type_name": "103",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Bismuth Cube",
+        "identifier": "Bismuth Cube",
+        "owner_type": 1,
+        "top_left": {
+          "x": 0,
+          "y": 4
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 66,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 6
+        }
+      },
+      "target": null,
+      "parent_id": 46,
+      "params": {
+        "amount": 51
+      }
+    },
+    {
+      "id": 67,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": 46,
+      "params": {
+        "amount": 51
+      }
+    },
+    {
+      "id": 68,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": 46,
+      "params": {
+        "amount": 51
+      }
+    },
+    {
+      "id": 69,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Angel Crystal",
+        "identifier": "Angel Crystal",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": 46,
+      "params": {
+        "amount": 68
+      }
+    },
+    {
+      "id": 70,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Big Bloodthorne",
+        "identifier": "Big Bloodthorne",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": -3,
+        "used": true,
+        "reflected": false
+      }
+    },
+    {
+      "id": 71,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Agility",
+        "identifier": "Amulet of Agility",
+        "owner_type": 1,
+        "top_left": {
+          "x": 0,
+          "y": 3
+        }
+      },
+      "target": 0,
+      "parent_id": 70,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 72,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 6
+        }
+      },
+      "target": null,
+      "parent_id": 71,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 73,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": 71,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 74,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": 71,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 75,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Angel Crystal",
+        "identifier": "Angel Crystal",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": 71,
+      "params": {
+        "amount": 4
+      }
+    },
+    {
+      "id": 76,
+      "type": 107,
+      "type_name": "107",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Bismuth Cube",
+        "identifier": "Bismuth Cube",
+        "owner_type": 1,
+        "top_left": {
+          "x": 0,
+          "y": 4
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 77,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Agility",
+        "identifier": "Amulet of Agility",
+        "owner_type": 1,
+        "top_left": {
+          "x": 0,
+          "y": 2
+        }
+      },
+      "target": 0,
+      "parent_id": 70,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 78,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 6
+        }
+      },
+      "target": null,
+      "parent_id": 77,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 79,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": 77,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 80,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": 77,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 81,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Angel Crystal",
+        "identifier": "Angel Crystal",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": 77,
+      "params": {
+        "amount": 4
+      }
+    },
+    {
+      "id": 82,
+      "type": 103,
+      "type_name": "103",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Big Bloodthorne",
+        "identifier": "Big Bloodthorne",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 8,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 83,
+      "type": 103,
+      "type_name": "103",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Bismuth Cube",
+        "identifier": "Bismuth Cube",
+        "owner_type": 1,
+        "top_left": {
+          "x": 0,
+          "y": 4
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 84,
+      "type": 104,
+      "type_name": "104",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Big Bloodthorne",
+        "identifier": "Big Bloodthorne",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 6,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 85,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Big Bloodthorne",
+        "identifier": "Big Bloodthorne",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": -3,
+        "used": true,
+        "reflected": false
+      }
+    },
+    {
+      "id": 86,
+      "type": 103,
+      "type_name": "103",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Big Bloodthorne",
+        "identifier": "Big Bloodthorne",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 8,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 87,
+      "type": 104,
+      "type_name": "104",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Bismuth Cube",
+        "identifier": "Bismuth Cube",
+        "owner_type": 1,
+        "top_left": {
+          "x": 0,
+          "y": 4
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 88,
+      "type": 104,
+      "type_name": "104",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Big Bloodthorne",
+        "identifier": "Big Bloodthorne",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 6,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 89,
+      "type": 101,
+      "type_name": "101",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Bismuth Cube",
+        "identifier": "Bismuth Cube",
+        "owner_type": 1,
+        "top_left": {
+          "x": 0,
+          "y": 4
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 90,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Big Bloodthorne",
+        "identifier": "Big Bloodthorne",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 29
+      }
+    },
+    {
+      "id": 91,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 0,
+      "origin": 103,
+      "target": 0,
+      "parent_id": 90,
+      "params": {
+        "amount": 20
+      }
+    },
+    {
+      "id": 92,
+      "type": 105,
+      "type_name": "105",
+      "timestamp": 0,
+      "origin": {
+        "kind": "gem",
+        "host": {
+          "kind": "unknown",
+          "str": "GemSocket"
+        },
+        "socket_index": -1,
+        "identity": [
+          "Perfect Sapphire",
+          "Big Bloodthorne",
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      "target": 0,
+      "parent_id": 90,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 93,
+      "type": 110,
+      "type_name": "110",
+      "timestamp": 0,
+      "origin": {
+        "kind": "gem",
+        "host": {
+          "kind": "unknown",
+          "str": "GemSocket"
+        },
+        "socket_index": -1,
+        "identity": [
+          "Perfect Sapphire",
+          "Big Bloodthorne",
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      "target": 0,
+      "parent_id": 90,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": true
+      }
+    },
+    {
+      "id": 94,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Big Bloodthorne",
+        "identifier": "Big Bloodthorne",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 95,
+      "type": 105,
+      "type_name": "105",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Bismuth Cube",
+        "identifier": "Bismuth Cube",
+        "owner_type": 1,
+        "top_left": {
+          "x": 0,
+          "y": 4
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 96,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Big Bloodthorne",
+        "identifier": "Big Bloodthorne",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": -3,
+        "used": true,
+        "reflected": false
+      }
+    },
+    {
+      "id": 97,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Agility",
+        "identifier": "Amulet of Agility",
+        "owner_type": 1,
+        "top_left": {
+          "x": 0,
+          "y": 3
+        }
+      },
+      "target": 0,
+      "parent_id": 96,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 98,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 6
+        }
+      },
+      "target": null,
+      "parent_id": 97,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 99,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": 97,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 100,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": 97,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 101,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Angel Crystal",
+        "identifier": "Angel Crystal",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": 97,
+      "params": {
+        "amount": 4
+      }
+    },
+    {
+      "id": 102,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Agility",
+        "identifier": "Amulet of Agility",
+        "owner_type": 1,
+        "top_left": {
+          "x": 0,
+          "y": 2
+        }
+      },
+      "target": 0,
+      "parent_id": 96,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 103,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 6
+        }
+      },
+      "target": null,
+      "parent_id": 102,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 104,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": 102,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 105,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": 102,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 106,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Angel Crystal",
+        "identifier": "Angel Crystal",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": 102,
+      "params": {
+        "amount": 4
+      }
+    },
+    {
+      "id": 107,
+      "type": 103,
+      "type_name": "103",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Big Bloodthorne",
+        "identifier": "Big Bloodthorne",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 9,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 108,
+      "type": 105,
+      "type_name": "105",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Bismuth Cube",
+        "identifier": "Bismuth Cube",
+        "owner_type": 1,
+        "top_left": {
+          "x": 0,
+          "y": 4
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 109,
+      "type": 104,
+      "type_name": "104",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Big Bloodthorne",
+        "identifier": "Big Bloodthorne",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 6,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 110,
+      "type": 103,
+      "type_name": "103",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Bismuth Cube",
+        "identifier": "Bismuth Cube",
+        "owner_type": 1,
+        "top_left": {
+          "x": 0,
+          "y": 4
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 111,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Big Bloodthorne",
+        "identifier": "Big Bloodthorne",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 36
+      }
+    },
+    {
+      "id": 112,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 0,
+      "origin": 103,
+      "target": 0,
+      "parent_id": 111,
+      "params": {
+        "amount": 30
+      }
+    },
+    {
+      "id": 113,
+      "type": 105,
+      "type_name": "105",
+      "timestamp": 0,
+      "origin": {
+        "kind": "gem",
+        "host": {
+          "kind": "unknown",
+          "str": "GemSocket"
+        },
+        "socket_index": -1,
+        "identity": [
+          "Perfect Sapphire",
+          "Big Bloodthorne",
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      "target": 0,
+      "parent_id": 111,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 114,
+      "type": 110,
+      "type_name": "110",
+      "timestamp": 0,
+      "origin": {
+        "kind": "gem",
+        "host": {
+          "kind": "unknown",
+          "str": "GemSocket"
+        },
+        "socket_index": -1,
+        "identity": [
+          "Perfect Sapphire",
+          "Big Bloodthorne",
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      "target": 0,
+      "parent_id": 111,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": true
+      }
+    },
+    {
+      "id": 115,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Big Bloodthorne",
+        "identifier": "Big Bloodthorne",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 116,
+      "type": 104,
+      "type_name": "104",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Bismuth Cube",
+        "identifier": "Bismuth Cube",
+        "owner_type": 1,
+        "top_left": {
+          "x": 0,
+          "y": 4
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 117,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Big Bloodthorne",
+        "identifier": "Big Bloodthorne",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": -3,
+        "used": true,
+        "reflected": false
+      }
+    },
+    {
+      "id": 118,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Agility",
+        "identifier": "Amulet of Agility",
+        "owner_type": 1,
+        "top_left": {
+          "x": 0,
+          "y": 3
+        }
+      },
+      "target": 0,
+      "parent_id": 117,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 119,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 6
+        }
+      },
+      "target": null,
+      "parent_id": 118,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 120,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": 118,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 121,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": 118,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 122,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Angel Crystal",
+        "identifier": "Angel Crystal",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": 118,
+      "params": {
+        "amount": 4
+      }
+    },
+    {
+      "id": 123,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Agility",
+        "identifier": "Amulet of Agility",
+        "owner_type": 1,
+        "top_left": {
+          "x": 0,
+          "y": 2
+        }
+      },
+      "target": 0,
+      "parent_id": 117,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 124,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 6
+        }
+      },
+      "target": null,
+      "parent_id": 123,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 125,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": 123,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 126,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": 123,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 127,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Angel Crystal",
+        "identifier": "Angel Crystal",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": 123,
+      "params": {
+        "amount": 4
+      }
+    },
+    {
+      "id": 128,
+      "type": 103,
+      "type_name": "103",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Big Bloodthorne",
+        "identifier": "Big Bloodthorne",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 8,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 129,
+      "type": 101,
+      "type_name": "101",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Bismuth Cube",
+        "identifier": "Bismuth Cube",
+        "owner_type": 1,
+        "top_left": {
+          "x": 0,
+          "y": 4
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 130,
+      "type": 104,
+      "type_name": "104",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Big Bloodthorne",
+        "identifier": "Big Bloodthorne",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 9,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 131,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Big Bloodthorne",
+        "identifier": "Big Bloodthorne",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 48
+      }
+    },
+    {
+      "id": 132,
+      "type": 101,
+      "type_name": "101",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Leather Boots",
+        "identifier": "Leather Boots",
+        "owner_type": 3,
+        "top_left": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "target": 1,
+      "parent_id": 131,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 133,
+      "type": 106,
+      "type_name": "106",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Leather Boots",
+        "identifier": "Leather Boots",
+        "owner_type": 3,
+        "top_left": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "target": 1,
+      "parent_id": 131,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 134,
+      "type": 100,
+      "type_name": "100",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Leather Boots",
+        "identifier": "Leather Boots",
+        "owner_type": 3,
+        "top_left": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "target": 1,
+      "parent_id": 131,
+      "params": {
+        "amount": 15,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 135,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Leather Boots",
+        "identifier": "Leather Boots",
+        "owner_type": 3,
+        "top_left": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 136,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 0,
+      "origin": 103,
+      "target": 0,
+      "parent_id": 131,
+      "params": {
+        "amount": 38
+      }
+    },
+    {
+      "id": 137,
+      "type": 105,
+      "type_name": "105",
+      "timestamp": 0,
+      "origin": {
+        "kind": "gem",
+        "host": {
+          "kind": "unknown",
+          "str": "GemSocket"
+        },
+        "socket_index": -1,
+        "identity": [
+          "Perfect Sapphire",
+          "Big Bloodthorne",
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      "target": 0,
+      "parent_id": 131,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 138,
+      "type": 110,
+      "type_name": "110",
+      "timestamp": 0,
+      "origin": {
+        "kind": "gem",
+        "host": {
+          "kind": "unknown",
+          "str": "GemSocket"
+        },
+        "socket_index": -1,
+        "identity": [
+          "Perfect Sapphire",
+          "Big Bloodthorne",
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      "target": 1,
+      "parent_id": 131,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false,
+        "resisted": true
+      }
+    },
+    {
+      "id": 139,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Big Bloodthorne",
+        "identifier": "Big Bloodthorne",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 140,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 4
+        }
+      },
+      "target": 0,
+      "parent_id": 139,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 141,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 6
+        }
+      },
+      "target": null,
+      "parent_id": 140,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 142,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": 140,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 143,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": 140,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 144,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Angel Crystal",
+        "identifier": "Angel Crystal",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": 140,
+      "params": {
+        "amount": 4
+      }
+    },
+    {
+      "id": 145,
+      "type": 106,
+      "type_name": "106",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Bismuth Cube",
+        "identifier": "Bismuth Cube",
+        "owner_type": 1,
+        "top_left": {
+          "x": 0,
+          "y": 4
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 146,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Big Bloodthorne",
+        "identifier": "Big Bloodthorne",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 46
+      }
+    },
+    {
+      "id": 147,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 0,
+      "origin": 103,
+      "target": 0,
+      "parent_id": 146,
+      "params": {
+        "amount": 38
+      }
+    },
+    {
+      "id": 148,
+      "type": 105,
+      "type_name": "105",
+      "timestamp": 0,
+      "origin": {
+        "kind": "gem",
+        "host": {
+          "kind": "unknown",
+          "str": "GemSocket"
+        },
+        "socket_index": -1,
+        "identity": [
+          "Perfect Sapphire",
+          "Big Bloodthorne",
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      "target": 0,
+      "parent_id": 146,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 149,
+      "type": 110,
+      "type_name": "110",
+      "timestamp": 0,
+      "origin": {
+        "kind": "gem",
+        "host": {
+          "kind": "unknown",
+          "str": "GemSocket"
+        },
+        "socket_index": -1,
+        "identity": [
+          "Perfect Sapphire",
+          "Big Bloodthorne",
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      "target": 1,
+      "parent_id": 146,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false,
+        "resisted": true
+      }
+    },
+    {
+      "id": 150,
+      "type": 107,
+      "type_name": "107",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Bismuth Cube",
+        "identifier": "Bismuth Cube",
+        "owner_type": 1,
+        "top_left": {
+          "x": 0,
+          "y": 4
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 151,
+      "type": 106,
+      "type_name": "106",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Bismuth Cube",
+        "identifier": "Bismuth Cube",
+        "owner_type": 1,
+        "top_left": {
+          "x": 0,
+          "y": 4
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 152,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Angel Crystal",
+        "identifier": "Angel Crystal",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 153,
+      "type": 108,
+      "type_name": "108",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Rainbow Orb",
+        "identifier": "Rainbow Orb",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 5
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": true
+      }
+    },
+    {
+      "id": 154,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Rainbow Orb",
+        "identifier": "Rainbow Orb",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 155,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 4
+        }
+      },
+      "target": 0,
+      "parent_id": 154,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 156,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 6
+        }
+      },
+      "target": null,
+      "parent_id": 155,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 157,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": 155,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 158,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": 155,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 159,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Angel Crystal",
+        "identifier": "Angel Crystal",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": 155,
+      "params": {
+        "amount": 4
+      }
+    },
+    {
+      "id": 160,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Gold Armor",
+        "identifier": "Gold Armor",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 2
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 20,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 161,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 6
+        }
+      },
+      "target": null,
+      "parent_id": 160,
+      "params": {
+        "amount": 60
+      }
+    },
+    {
+      "id": 162,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": 160,
+      "params": {
+        "amount": 60
+      }
+    },
+    {
+      "id": 163,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": 160,
+      "params": {
+        "amount": 60
+      }
+    },
+    {
+      "id": 164,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Angel Crystal",
+        "identifier": "Angel Crystal",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": 160,
+      "params": {
+        "amount": 80
+      }
+    },
+    {
+      "id": 165,
+      "type": 100,
+      "type_name": "100",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Gold Armor",
+        "identifier": "Gold Armor",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 2
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 120,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 166,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Gold Armor",
+        "identifier": "Gold Armor",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 167,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 6
+        }
+      },
+      "target": 0,
+      "parent_id": 166,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 168,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 6
+        }
+      },
+      "target": null,
+      "parent_id": 167,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 169,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": 167,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 170,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": 167,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 171,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Angel Crystal",
+        "identifier": "Angel Crystal",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": 167,
+      "params": {
+        "amount": 4
+      }
+    },
+    {
+      "id": 172,
+      "type": 101,
+      "type_name": "101",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Fedora",
+        "identifier": "Fedora",
+        "owner_type": 3,
+        "top_left": {
+          "x": 6,
+          "y": 4
+        }
+      },
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": 6,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 173,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Fedora",
+        "identifier": "Fedora",
+        "owner_type": 3,
+        "top_left": {
+          "x": 6,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 174,
+      "type": 100,
+      "type_name": "100",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Protective Purse",
+        "identifier": "Protective Purse",
+        "owner_type": 3,
+        "top_left": {
+          "x": 0,
+          "y": 1
+        }
+      },
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": 15,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 175,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Falcon Blade",
+        "identifier": "Falcon Blade",
+        "owner_type": 3,
+        "top_left": {
+          "x": 1,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 176,
+      "type": 100,
+      "type_name": "100",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Protective Purse",
+        "identifier": "Protective Purse",
+        "owner_type": 3,
+        "top_left": {
+          "x": 6,
+          "y": 5
+        }
+      },
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": 15,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 177,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Evil Cap",
+        "identifier": "Evil Cap",
+        "owner_type": 3,
+        "top_left": {
+          "x": 7,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 178,
+      "type": 100,
+      "type_name": "100",
+      "timestamp": 0,
+      "origin": {
+        "kind": "gem",
+        "host": {
+          "kind": "unknown",
+          "str": "GemSocket"
+        },
+        "socket_index": -1,
+        "identity": [
+          "Burning Coal",
+          "Cap of Brilliance",
+          3,
+          8,
+          5,
+          0
+        ]
+      },
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": 12,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 179,
+      "type": 105,
+      "type_name": "105",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Cap of Brilliance",
+        "identifier": "Cap of Brilliance",
+        "owner_type": 3,
+        "top_left": {
+          "x": 8,
+          "y": 5
+        }
+      },
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false,
+        "resisted": true
+      }
+    },
+    {
+      "id": 180,
+      "type": 105,
+      "type_name": "105",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Cap of Brilliance",
+        "identifier": "Cap of Brilliance",
+        "owner_type": 3,
+        "top_left": {
+          "x": 8,
+          "y": 5
+        }
+      },
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 181,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Cap of Brilliance",
+        "identifier": "Cap of Brilliance",
+        "owner_type": 3,
+        "top_left": {
+          "x": 8,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 182,
+      "type": 107,
+      "type_name": "107",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Oil Lamp",
+        "identifier": "Oil Lamp",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 0
+        }
+      },
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": 2,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 183,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Oil Lamp",
+        "identifier": "Oil Lamp",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 0
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 184,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Healing Herbs",
+        "identifier": "Healing Herbs",
+        "owner_type": 3,
+        "top_left": {
+          "x": 0,
+          "y": 2
+        }
+      },
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": 2,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 185,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Healing Herbs",
+        "identifier": "Healing Herbs",
+        "owner_type": 3,
+        "top_left": {
+          "x": 0,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 186,
+      "type": 100,
+      "type_name": "100",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Protective Purse",
+        "identifier": "Protective Purse",
+        "owner_type": 3,
+        "top_left": {
+          "x": 6,
+          "y": 6
+        }
+      },
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": 15,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 187,
+      "type": 109,
+      "type_name": "109",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Sandbag",
+        "identifier": "Sandbag",
+        "owner_type": 3,
+        "top_left": {
+          "x": 8,
+          "y": 2
+        }
+      },
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": 3,
+        "used": false,
+        "reflected": true
+      }
+    },
+    {
+      "id": 188,
+      "type": 109,
+      "type_name": "109",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Sandbag",
+        "identifier": "Sandbag",
+        "owner_type": 3,
+        "top_left": {
+          "x": 8,
+          "y": 2
+        }
+      },
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": 2,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 189,
+      "type": 109,
+      "type_name": "109",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Sandbag",
+        "identifier": "Sandbag",
+        "owner_type": 3,
+        "top_left": {
+          "x": 8,
+          "y": 2
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": true
+      }
+    },
+    {
+      "id": 190,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Sandbag",
+        "identifier": "Sandbag",
+        "owner_type": 3,
+        "top_left": {
+          "x": 8,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 191,
+      "type": 107,
+      "type_name": "107",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Dragon Knight",
+        "identifier": "Dragon Knight",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 1
+        }
+      },
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": 5,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 192,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Dragon Knight",
+        "identifier": "Dragon Knight",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 1
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 193,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 5,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": 192,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 194,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 5,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 195,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": 192,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 196,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 197,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 5,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": 192,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 198,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 5,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 199,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 0.2,
+      "origin": {
+        "kind": "item",
+        "name": "Big Bloodthorne",
+        "identifier": "Big Bloodthorne",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": -3,
+        "used": true,
+        "reflected": false
+      }
+    },
+    {
+      "id": 200,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 0.2,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Agility",
+        "identifier": "Amulet of Agility",
+        "owner_type": 1,
+        "top_left": {
+          "x": 0,
+          "y": 3
+        }
+      },
+      "target": 0,
+      "parent_id": 199,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 201,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0.2,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 6
+        }
+      },
+      "target": null,
+      "parent_id": 200,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 202,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0.2,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": 200,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 203,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0.2,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": 200,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 204,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0.2,
+      "origin": {
+        "kind": "item",
+        "name": "Angel Crystal",
+        "identifier": "Angel Crystal",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": 200,
+      "params": {
+        "amount": 4
+      }
+    },
+    {
+      "id": 205,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 0.2,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Agility",
+        "identifier": "Amulet of Agility",
+        "owner_type": 1,
+        "top_left": {
+          "x": 0,
+          "y": 2
+        }
+      },
+      "target": 0,
+      "parent_id": 199,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 206,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0.2,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 6
+        }
+      },
+      "target": null,
+      "parent_id": 205,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 207,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0.2,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": 205,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 208,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0.2,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": 205,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 209,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0.2,
+      "origin": {
+        "kind": "item",
+        "name": "Angel Crystal",
+        "identifier": "Angel Crystal",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": 205,
+      "params": {
+        "amount": 4
+      }
+    },
+    {
+      "id": 210,
+      "type": 103,
+      "type_name": "103",
+      "timestamp": 0.2,
+      "origin": {
+        "kind": "item",
+        "name": "Big Bloodthorne",
+        "identifier": "Big Bloodthorne",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 7,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 211,
+      "type": 104,
+      "type_name": "104",
+      "timestamp": 0.2,
+      "origin": {
+        "kind": "item",
+        "name": "Big Bloodthorne",
+        "identifier": "Big Bloodthorne",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 7,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 212,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 0.2,
+      "origin": {
+        "kind": "item",
+        "name": "Big Bloodthorne",
+        "identifier": "Big Bloodthorne",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 55
+      }
+    },
+    {
+      "id": 213,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0.2,
+      "origin": {
+        "kind": "item",
+        "name": "Chrome Cube",
+        "identifier": "Chrome Cube",
+        "owner_type": 1,
+        "top_left": {
+          "x": 0,
+          "y": 1
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 214,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 0.2,
+      "origin": 103,
+      "target": 0,
+      "parent_id": 212,
+      "params": {
+        "amount": 50
+      }
+    },
+    {
+      "id": 215,
+      "type": 105,
+      "type_name": "105",
+      "timestamp": 0.2,
+      "origin": {
+        "kind": "gem",
+        "host": {
+          "kind": "unknown",
+          "str": "GemSocket"
+        },
+        "socket_index": -1,
+        "identity": [
+          "Perfect Sapphire",
+          "Big Bloodthorne",
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      "target": 0,
+      "parent_id": 212,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 216,
+      "type": 110,
+      "type_name": "110",
+      "timestamp": 0.2,
+      "origin": {
+        "kind": "gem",
+        "host": {
+          "kind": "unknown",
+          "str": "GemSocket"
+        },
+        "socket_index": -1,
+        "identity": [
+          "Perfect Sapphire",
+          "Big Bloodthorne",
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      "target": 1,
+      "parent_id": 212,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false,
+        "resisted": true
+      }
+    },
+    {
+      "id": 217,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0.2,
+      "origin": {
+        "kind": "item",
+        "name": "Big Bloodthorne",
+        "identifier": "Big Bloodthorne",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 218,
+      "type": 13,
+      "type_name": "13",
+      "timestamp": 0.433333,
+      "origin": {
+        "kind": "item",
+        "name": "Strong Heroic Potion",
+        "identifier": "Strong Heroic Potion",
+        "owner_type": 1,
+        "top_left": {
+          "x": 7,
+          "y": 0
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "stamina": 4
+      }
+    },
+    {
+      "id": 219,
+      "type": 106,
+      "type_name": "106",
+      "timestamp": 0.433333,
+      "origin": {
+        "kind": "item",
+        "name": "Strong Heroic Potion",
+        "identifier": "Strong Heroic Potion",
+        "owner_type": 1,
+        "top_left": {
+          "x": 7,
+          "y": 0
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 220,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0.433333,
+      "origin": {
+        "kind": "item",
+        "name": "Strong Heroic Potion",
+        "identifier": "Strong Heroic Potion",
+        "owner_type": 1,
+        "top_left": {
+          "x": 7,
+          "y": 0
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 221,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 0.433333,
+      "origin": {
+        "kind": "item",
+        "name": "Big Bloodthorne",
+        "identifier": "Big Bloodthorne",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": -3,
+        "used": true,
+        "reflected": false
+      }
+    },
+    {
+      "id": 222,
+      "type": 103,
+      "type_name": "103",
+      "timestamp": 0.433333,
+      "origin": {
+        "kind": "item",
+        "name": "Big Bloodthorne",
+        "identifier": "Big Bloodthorne",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 7,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 223,
+      "type": 104,
+      "type_name": "104",
+      "timestamp": 0.433333,
+      "origin": {
+        "kind": "item",
+        "name": "Big Bloodthorne",
+        "identifier": "Big Bloodthorne",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 6,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 224,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 0.433333,
+      "origin": {
+        "kind": "item",
+        "name": "Big Bloodthorne",
+        "identifier": "Big Bloodthorne",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 60
+      }
+    },
+    {
+      "id": 225,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 0.433333,
+      "origin": 103,
+      "target": 0,
+      "parent_id": 224,
+      "params": {
+        "amount": 58
+      }
+    },
+    {
+      "id": 226,
+      "type": 105,
+      "type_name": "105",
+      "timestamp": 0.433333,
+      "origin": {
+        "kind": "gem",
+        "host": {
+          "kind": "unknown",
+          "str": "GemSocket"
+        },
+        "socket_index": -1,
+        "identity": [
+          "Perfect Sapphire",
+          "Big Bloodthorne",
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      "target": 0,
+      "parent_id": 224,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 227,
+      "type": 110,
+      "type_name": "110",
+      "timestamp": 0.433333,
+      "origin": {
+        "kind": "gem",
+        "host": {
+          "kind": "unknown",
+          "str": "GemSocket"
+        },
+        "socket_index": -1,
+        "identity": [
+          "Perfect Sapphire",
+          "Big Bloodthorne",
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      "target": 1,
+      "parent_id": 224,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false,
+        "resisted": true
+      }
+    },
+    {
+      "id": 228,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0.433333,
+      "origin": {
+        "kind": "item",
+        "name": "Big Bloodthorne",
+        "identifier": "Big Bloodthorne",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 229,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 0.516667,
+      "origin": {
+        "kind": "item",
+        "name": "Dragon Knight",
+        "identifier": "Dragon Knight",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 1
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 3
+      }
+    },
+    {
+      "id": 230,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 0.516667,
+      "origin": {
+        "kind": "item",
+        "name": "Dragon Knight",
+        "identifier": "Dragon Knight",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 1
+        }
+      },
+      "target": 1,
+      "parent_id": 229,
+      "params": {
+        "amount": 4
+      }
+    },
+    {
+      "id": 231,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0.516667,
+      "origin": {
+        "kind": "item",
+        "name": "Dragon Knight",
+        "identifier": "Dragon Knight",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 1
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 232,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 0.516667,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Darkness",
+        "identifier": "Amulet of Darkness",
+        "owner_type": 3,
+        "top_left": {
+          "x": 6,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 4
+      }
+    },
+    {
+      "id": 233,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0.516667,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Darkness",
+        "identifier": "Amulet of Darkness",
+        "owner_type": 3,
+        "top_left": {
+          "x": 6,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 234,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0.516667,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": 231,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 235,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0.516667,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 236,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0.516667,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 5,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": 231,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 237,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0.516667,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 5,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 238,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0.516667,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": 231,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 239,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0.516667,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 240,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0.516667,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 5,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": 231,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 241,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0.516667,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 5,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 242,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 0.833333,
+      "origin": {
+        "kind": "item",
+        "name": "Big Bloodthorne",
+        "identifier": "Big Bloodthorne",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": -3,
+        "used": true,
+        "reflected": false
+      }
+    },
+    {
+      "id": 243,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 0.833333,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Agility",
+        "identifier": "Amulet of Agility",
+        "owner_type": 1,
+        "top_left": {
+          "x": 0,
+          "y": 3
+        }
+      },
+      "target": 0,
+      "parent_id": 242,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 244,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0.833333,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 6
+        }
+      },
+      "target": null,
+      "parent_id": 243,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 245,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0.833333,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": 243,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 246,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0.833333,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": 243,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 247,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0.833333,
+      "origin": {
+        "kind": "item",
+        "name": "Angel Crystal",
+        "identifier": "Angel Crystal",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": 243,
+      "params": {
+        "amount": 4
+      }
+    },
+    {
+      "id": 248,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 0.833333,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Agility",
+        "identifier": "Amulet of Agility",
+        "owner_type": 1,
+        "top_left": {
+          "x": 0,
+          "y": 2
+        }
+      },
+      "target": 0,
+      "parent_id": 242,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false,
+        "resisted": true
+      }
+    },
+    {
+      "id": 249,
+      "type": 103,
+      "type_name": "103",
+      "timestamp": 0.833333,
+      "origin": {
+        "kind": "item",
+        "name": "Big Bloodthorne",
+        "identifier": "Big Bloodthorne",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 6,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 250,
+      "type": 104,
+      "type_name": "104",
+      "timestamp": 0.833333,
+      "origin": {
+        "kind": "item",
+        "name": "Big Bloodthorne",
+        "identifier": "Big Bloodthorne",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 6,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 251,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 0.833333,
+      "origin": {
+        "kind": "item",
+        "name": "Big Bloodthorne",
+        "identifier": "Big Bloodthorne",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 66
+      }
+    },
+    {
+      "id": 252,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 0.833333,
+      "origin": 103,
+      "target": 0,
+      "parent_id": 251,
+      "params": {
+        "amount": 65
+      }
+    },
+    {
+      "id": 253,
+      "type": 105,
+      "type_name": "105",
+      "timestamp": 0.833333,
+      "origin": {
+        "kind": "gem",
+        "host": {
+          "kind": "unknown",
+          "str": "GemSocket"
+        },
+        "socket_index": -1,
+        "identity": [
+          "Perfect Sapphire",
+          "Big Bloodthorne",
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      "target": 0,
+      "parent_id": 251,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 254,
+      "type": 110,
+      "type_name": "110",
+      "timestamp": 0.833333,
+      "origin": {
+        "kind": "gem",
+        "host": {
+          "kind": "unknown",
+          "str": "GemSocket"
+        },
+        "socket_index": -1,
+        "identity": [
+          "Perfect Sapphire",
+          "Big Bloodthorne",
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      "target": 1,
+      "parent_id": 251,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false,
+        "resisted": true
+      }
+    },
+    {
+      "id": 255,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0.833333,
+      "origin": {
+        "kind": "item",
+        "name": "Big Bloodthorne",
+        "identifier": "Big Bloodthorne",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 256,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 0.9,
+      "origin": {
+        "kind": "item",
+        "name": "Dragon Knight",
+        "identifier": "Dragon Knight",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 1
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 6
+      }
+    },
+    {
+      "id": 257,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 0.9,
+      "origin": {
+        "kind": "item",
+        "name": "Dragon Knight",
+        "identifier": "Dragon Knight",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 1
+        }
+      },
+      "target": 1,
+      "parent_id": 256,
+      "params": {
+        "amount": 4
+      }
+    },
+    {
+      "id": 258,
+      "type": 101,
+      "type_name": "101",
+      "timestamp": 0.9,
+      "origin": {
+        "kind": "gem",
+        "host": {
+          "kind": "unknown",
+          "str": "GemSocket2"
+        },
+        "socket_index": -1,
+        "identity": [
+          "Chipped Amethyst",
+          "Dragon Knight",
+          3,
+          3,
+          1,
+          1
+        ]
+      },
+      "target": 0,
+      "parent_id": 256,
+      "params": {
+        "amount": -1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 259,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0.9,
+      "origin": {
+        "kind": "item",
+        "name": "Dragon Knight",
+        "identifier": "Dragon Knight",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 1
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 260,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0.9,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": 259,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 261,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0.9,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 262,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0.9,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 5,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": 259,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 263,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0.9,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 5,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 264,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 0.9,
+      "origin": {
+        "kind": "item",
+        "name": "Light Goobert",
+        "identifier": "Light Goobert",
+        "owner_type": 3,
+        "top_left": {
+          "x": 4,
+          "y": 4
+        }
+      },
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": 15
+      }
+    },
+    {
+      "id": 265,
+      "type": 109,
+      "type_name": "109",
+      "timestamp": 0.9,
+      "origin": {
+        "kind": "item",
+        "name": "Light Goobert",
+        "identifier": "Light Goobert",
+        "owner_type": 3,
+        "top_left": {
+          "x": 4,
+          "y": 4
+        }
+      },
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": 7,
+        "used": false,
+        "reflected": true,
+        "duration": 3
+      }
+    },
+    {
+      "id": 266,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0.9,
+      "origin": {
+        "kind": "item",
+        "name": "Light Goobert",
+        "identifier": "Light Goobert",
+        "owner_type": 3,
+        "top_left": {
+          "x": 4,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 267,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 0.9,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Darkness",
+        "identifier": "Amulet of Darkness",
+        "owner_type": 3,
+        "top_left": {
+          "x": 6,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 4
+      }
+    },
+    {
+      "id": 268,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0.9,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Darkness",
+        "identifier": "Amulet of Darkness",
+        "owner_type": 3,
+        "top_left": {
+          "x": 6,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 269,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0.9,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": 259,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 270,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0.9,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 271,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0.9,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 5,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": 259,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 272,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0.9,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 5,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 273,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 0.983333,
+      "origin": 102,
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": 1
+      }
+    },
+    {
+      "id": 274,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 0.983333,
+      "origin": 102,
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 32
+      }
+    },
+    {
+      "id": 275,
+      "type": 110,
+      "type_name": "110",
+      "timestamp": 1.133333,
+      "origin": {
+        "kind": "item",
+        "name": "Snowmaster",
+        "identifier": "Snowmaster",
+        "owner_type": 3,
+        "top_left": {
+          "x": 1,
+          "y": 6
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 276,
+      "type": 109,
+      "type_name": "109",
+      "timestamp": 1.133333,
+      "origin": {
+        "kind": "item",
+        "name": "Snowmaster",
+        "identifier": "Snowmaster",
+        "owner_type": 3,
+        "top_left": {
+          "x": 1,
+          "y": 6
+        }
+      },
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": -2,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 277,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 1.133333,
+      "origin": {
+        "kind": "item",
+        "name": "Snowmaster",
+        "identifier": "Snowmaster",
+        "owner_type": 3,
+        "top_left": {
+          "x": 1,
+          "y": 6
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 278,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 1.133333,
+      "origin": {
+        "kind": "item",
+        "name": "Chili Goobert",
+        "identifier": "Chili Goobert",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": 10
+      }
+    },
+    {
+      "id": 279,
+      "type": 107,
+      "type_name": "107",
+      "timestamp": 1.133333,
+      "origin": {
+        "kind": "item",
+        "name": "Chili Goobert",
+        "identifier": "Chili Goobert",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": 2,
+        "used": false,
+        "reflected": false,
+        "resisted": true
+      }
+    },
+    {
+      "id": 280,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 1.133333,
+      "origin": {
+        "kind": "item",
+        "name": "Chili Goobert",
+        "identifier": "Chili Goobert",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 281,
+      "type": 110,
+      "type_name": "110",
+      "timestamp": 1.133333,
+      "origin": {
+        "kind": "item",
+        "name": "Snowmaster",
+        "identifier": "Snowmaster",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 6
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 282,
+      "type": 109,
+      "type_name": "109",
+      "timestamp": 1.133333,
+      "origin": {
+        "kind": "item",
+        "name": "Snowmaster",
+        "identifier": "Snowmaster",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 6
+        }
+      },
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": -1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 283,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 1.133333,
+      "origin": {
+        "kind": "item",
+        "name": "Snowmaster",
+        "identifier": "Snowmaster",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 6
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 284,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 1.266667,
+      "origin": {
+        "kind": "item",
+        "name": "Dragon Knight",
+        "identifier": "Dragon Knight",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 1
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 4
+      }
+    },
+    {
+      "id": 285,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 1.266667,
+      "origin": {
+        "kind": "item",
+        "name": "Dragon Knight",
+        "identifier": "Dragon Knight",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 1
+        }
+      },
+      "target": 1,
+      "parent_id": 284,
+      "params": {
+        "amount": 4
+      }
+    },
+    {
+      "id": 286,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 1.266667,
+      "origin": {
+        "kind": "item",
+        "name": "Dragon Knight",
+        "identifier": "Dragon Knight",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 1
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 287,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 1.266667,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": 286,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 288,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 1.266667,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 289,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 1.266667,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 5,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": 286,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 290,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 1.266667,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 5,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 291,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 1.266667,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 5,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": 286,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 292,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 1.266667,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 5,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 293,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 1.266667,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Darkness",
+        "identifier": "Amulet of Darkness",
+        "owner_type": 3,
+        "top_left": {
+          "x": 6,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 4
+      }
+    },
+    {
+      "id": 294,
+      "type": 109,
+      "type_name": "109",
+      "timestamp": 1.266667,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Darkness",
+        "identifier": "Amulet of Darkness",
+        "owner_type": 3,
+        "top_left": {
+          "x": 6,
+          "y": 3
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 295,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 1.266667,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Darkness",
+        "identifier": "Amulet of Darkness",
+        "owner_type": 3,
+        "top_left": {
+          "x": 6,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 296,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 1.316667,
+      "origin": {
+        "kind": "item",
+        "name": "Speak with Animals",
+        "identifier": "Speak with Animals",
+        "owner_type": 3,
+        "top_left": {
+          "x": 0,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 297,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 1.316667,
+      "origin": {
+        "kind": "item",
+        "name": "Time Pendant",
+        "identifier": "Time Pendant",
+        "owner_type": 3,
+        "top_left": {
+          "x": 0,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 298,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 1.316667,
+      "origin": {
+        "kind": "item",
+        "name": "Falcon Blade",
+        "identifier": "Falcon Blade",
+        "owner_type": 3,
+        "top_left": {
+          "x": 1,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 3
+      }
+    },
+    {
+      "id": 299,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 1.316667,
+      "origin": 104,
+      "target": 0,
+      "parent_id": 298,
+      "params": {
+        "damage": 1
+      }
+    },
+    {
+      "id": 300,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 1.316667,
+      "origin": {
+        "kind": "gem",
+        "host": {
+          "kind": "unknown",
+          "str": "GemSocket2"
+        },
+        "socket_index": -1,
+        "identity": [
+          "Flawed Ruby",
+          "Falcon Blade",
+          3,
+          1,
+          2,
+          1
+        ]
+      },
+      "target": 1,
+      "parent_id": 298,
+      "params": {
+        "amount": 1
+      }
+    },
+    {
+      "id": 301,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 1.316667,
+      "origin": {
+        "kind": "item",
+        "name": "Falcon Blade",
+        "identifier": "Falcon Blade",
+        "owner_type": 3,
+        "top_left": {
+          "x": 1,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 302,
+      "type": 3,
+      "type_name": "3",
+      "timestamp": 1.316667,
+      "origin": {
+        "kind": "item",
+        "name": "Falcon Blade",
+        "identifier": "Falcon Blade",
+        "owner_type": 3,
+        "top_left": {
+          "x": 1,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 303,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 1.316667,
+      "origin": {
+        "kind": "item",
+        "name": "Falcon Blade",
+        "identifier": "Falcon Blade",
+        "owner_type": 3,
+        "top_left": {
+          "x": 1,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 304,
+      "type": 13,
+      "type_name": "13",
+      "timestamp": 1.433333,
+      "origin": {
+        "kind": "item",
+        "name": "Strong Heroic Potion",
+        "identifier": "Strong Heroic Potion",
+        "owner_type": 1,
+        "top_left": {
+          "x": 8,
+          "y": 1
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "stamina": 4
+      }
+    },
+    {
+      "id": 305,
+      "type": 106,
+      "type_name": "106",
+      "timestamp": 1.433333,
+      "origin": {
+        "kind": "item",
+        "name": "Strong Heroic Potion",
+        "identifier": "Strong Heroic Potion",
+        "owner_type": 1,
+        "top_left": {
+          "x": 8,
+          "y": 1
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 306,
+      "type": 13,
+      "type_name": "13",
+      "timestamp": 1.433333,
+      "origin": {
+        "kind": "item",
+        "name": "Strong Heroic Potion",
+        "identifier": "Strong Heroic Potion",
+        "owner_type": 1,
+        "top_left": {
+          "x": 7,
+          "y": 0
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "stamina": 4
+      }
+    },
+    {
+      "id": 307,
+      "type": 106,
+      "type_name": "106",
+      "timestamp": 1.433333,
+      "origin": {
+        "kind": "item",
+        "name": "Strong Heroic Potion",
+        "identifier": "Strong Heroic Potion",
+        "owner_type": 1,
+        "top_left": {
+          "x": 7,
+          "y": 0
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 308,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 1.433333,
+      "origin": {
+        "kind": "item",
+        "name": "Strong Heroic Potion",
+        "identifier": "Strong Heroic Potion",
+        "owner_type": 1,
+        "top_left": {
+          "x": 8,
+          "y": 1
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 309,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 1.433333,
+      "origin": {
+        "kind": "item",
+        "name": "Big Bloodthorne",
+        "identifier": "Big Bloodthorne",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": -3,
+        "used": true,
+        "reflected": false
+      }
+    },
+    {
+      "id": 310,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 1.433333,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Agility",
+        "identifier": "Amulet of Agility",
+        "owner_type": 1,
+        "top_left": {
+          "x": 0,
+          "y": 3
+        }
+      },
+      "target": 0,
+      "parent_id": 309,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false,
+        "resisted": true
+      }
+    },
+    {
+      "id": 311,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 1.433333,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Agility",
+        "identifier": "Amulet of Agility",
+        "owner_type": 1,
+        "top_left": {
+          "x": 0,
+          "y": 2
+        }
+      },
+      "target": 0,
+      "parent_id": 309,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 312,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 1.433333,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 6
+        }
+      },
+      "target": null,
+      "parent_id": 311,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 313,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 1.433333,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": 311,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 314,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 1.433333,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": 311,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 315,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 1.433333,
+      "origin": {
+        "kind": "item",
+        "name": "Angel Crystal",
+        "identifier": "Angel Crystal",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": 311,
+      "params": {
+        "amount": 4
+      }
+    },
+    {
+      "id": 316,
+      "type": 103,
+      "type_name": "103",
+      "timestamp": 1.433333,
+      "origin": {
+        "kind": "item",
+        "name": "Big Bloodthorne",
+        "identifier": "Big Bloodthorne",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 7,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 317,
+      "type": 104,
+      "type_name": "104",
+      "timestamp": 1.433333,
+      "origin": {
+        "kind": "item",
+        "name": "Big Bloodthorne",
+        "identifier": "Big Bloodthorne",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 8,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 318,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 1.433333,
+      "origin": {
+        "kind": "item",
+        "name": "Big Bloodthorne",
+        "identifier": "Big Bloodthorne",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 74
+      }
+    },
+    {
+      "id": 319,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 1.433333,
+      "origin": 103,
+      "target": 0,
+      "parent_id": 318,
+      "params": {
+        "amount": 73
+      }
+    },
+    {
+      "id": 320,
+      "type": 105,
+      "type_name": "105",
+      "timestamp": 1.433333,
+      "origin": {
+        "kind": "gem",
+        "host": {
+          "kind": "unknown",
+          "str": "GemSocket"
+        },
+        "socket_index": -1,
+        "identity": [
+          "Perfect Sapphire",
+          "Big Bloodthorne",
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      "target": 0,
+      "parent_id": 318,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 321,
+      "type": 110,
+      "type_name": "110",
+      "timestamp": 1.433333,
+      "origin": {
+        "kind": "gem",
+        "host": {
+          "kind": "unknown",
+          "str": "GemSocket"
+        },
+        "socket_index": -1,
+        "identity": [
+          "Perfect Sapphire",
+          "Big Bloodthorne",
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      "target": 1,
+      "parent_id": 318,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false,
+        "resisted": true
+      }
+    },
+    {
+      "id": 322,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 1.433333,
+      "origin": {
+        "kind": "item",
+        "name": "Big Bloodthorne",
+        "identifier": "Big Bloodthorne",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 323,
+      "type": 108,
+      "type_name": "108",
+      "timestamp": 1.483333,
+      "origin": {
+        "kind": "item",
+        "name": "Gold Armor",
+        "identifier": "Gold Armor",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 2
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": -1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 324,
+      "type": 109,
+      "type_name": "109",
+      "timestamp": 1.483333,
+      "origin": {
+        "kind": "item",
+        "name": "Gold Armor",
+        "identifier": "Gold Armor",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 2
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": -2,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 325,
+      "type": 110,
+      "type_name": "110",
+      "timestamp": 1.483333,
+      "origin": {
+        "kind": "item",
+        "name": "Gold Armor",
+        "identifier": "Gold Armor",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 2
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": -2,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 326,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 1.483333,
+      "origin": {
+        "kind": "item",
+        "name": "Gold Armor",
+        "identifier": "Gold Armor",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 327,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 1.733333,
+      "origin": {
+        "kind": "item",
+        "name": "Dragon Knight",
+        "identifier": "Dragon Knight",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 1
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 5
+      }
+    },
+    {
+      "id": 328,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 1.733333,
+      "origin": {
+        "kind": "item",
+        "name": "Dragon Knight",
+        "identifier": "Dragon Knight",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 1
+        }
+      },
+      "target": 1,
+      "parent_id": 327,
+      "params": {
+        "amount": 4
+      }
+    },
+    {
+      "id": 329,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 1.733333,
+      "origin": {
+        "kind": "item",
+        "name": "Dragon Knight",
+        "identifier": "Dragon Knight",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 1
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 330,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 1.733333,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 5,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": 329,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 331,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 1.733333,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 5,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 332,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 1.733333,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 5,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": 329,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 333,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 1.733333,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 5,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 334,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 2,
+      "origin": {
+        "kind": "item",
+        "name": "Charge Splitter",
+        "identifier": "Charge Splitter",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 335,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 2,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 5
+        }
+      },
+      "target": 0,
+      "parent_id": 334,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 336,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 2,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 6
+        }
+      },
+      "target": null,
+      "parent_id": 335,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 337,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 2,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": 335,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 338,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 2,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": 335,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 339,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 2,
+      "origin": {
+        "kind": "item",
+        "name": "Angel Crystal",
+        "identifier": "Angel Crystal",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": 335,
+      "params": {
+        "amount": 4
+      }
+    },
+    {
+      "id": 340,
+      "type": 101,
+      "type_name": "101",
+      "timestamp": 2,
+      "origin": {
+        "kind": "item",
+        "name": "Coil",
+        "identifier": "Coil",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 6
+        }
+      },
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": -1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 341,
+      "type": 101,
+      "type_name": "101",
+      "timestamp": 2,
+      "origin": {
+        "kind": "item",
+        "name": "Coil",
+        "identifier": "Coil",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 6
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 342,
+      "type": 106,
+      "type_name": "106",
+      "timestamp": 2,
+      "origin": {
+        "kind": "item",
+        "name": "Coil",
+        "identifier": "Coil",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 6
+        }
+      },
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": -1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 343,
+      "type": 106,
+      "type_name": "106",
+      "timestamp": 2,
+      "origin": {
+        "kind": "item",
+        "name": "Coil",
+        "identifier": "Coil",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 6
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 344,
+      "type": 105,
+      "type_name": "105",
+      "timestamp": 2,
+      "origin": {
+        "kind": "item",
+        "name": "Coil",
+        "identifier": "Coil",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 6
+        }
+      },
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": -1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 345,
+      "type": 105,
+      "type_name": "105",
+      "timestamp": 2,
+      "origin": {
+        "kind": "item",
+        "name": "Coil",
+        "identifier": "Coil",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 6
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 346,
+      "type": 107,
+      "type_name": "107",
+      "timestamp": 2,
+      "origin": {
+        "kind": "item",
+        "name": "Coil",
+        "identifier": "Coil",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 6
+        }
+      },
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": -1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 347,
+      "type": 107,
+      "type_name": "107",
+      "timestamp": 2,
+      "origin": {
+        "kind": "item",
+        "name": "Coil",
+        "identifier": "Coil",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 6
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 348,
+      "type": 101,
+      "type_name": "101",
+      "timestamp": 2,
+      "origin": {
+        "kind": "item",
+        "name": "Coil",
+        "identifier": "Coil",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 6
+        }
+      },
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": -1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 349,
+      "type": 101,
+      "type_name": "101",
+      "timestamp": 2,
+      "origin": {
+        "kind": "item",
+        "name": "Coil",
+        "identifier": "Coil",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 6
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 350,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 2,
+      "origin": {
+        "kind": "item",
+        "name": "Coil",
+        "identifier": "Coil",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 6
+        }
+      },
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": -1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 351,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 2,
+      "origin": {
+        "kind": "item",
+        "name": "Coil",
+        "identifier": "Coil",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 6
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 2,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 352,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 2,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 6
+        }
+      },
+      "target": null,
+      "parent_id": 351,
+      "params": {
+        "amount": 6
+      }
+    },
+    {
+      "id": 353,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 2,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": 351,
+      "params": {
+        "amount": 6
+      }
+    },
+    {
+      "id": 354,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 2,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": 351,
+      "params": {
+        "amount": 6
+      }
+    },
+    {
+      "id": 355,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 2,
+      "origin": {
+        "kind": "item",
+        "name": "Angel Crystal",
+        "identifier": "Angel Crystal",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": 351,
+      "params": {
+        "amount": 8
+      }
+    },
+    {
+      "id": 356,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 2,
+      "origin": {
+        "kind": "item",
+        "name": "Coil",
+        "identifier": "Coil",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 6
+        }
+      },
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": -1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 357,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 2,
+      "origin": {
+        "kind": "item",
+        "name": "Coil",
+        "identifier": "Coil",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 6
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 360,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 2,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 6
+        }
+      },
+      "target": null,
+      "parent_id": 357,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 361,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 2,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": 357,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 362,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 2,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": 357,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 363,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 2,
+      "origin": {
+        "kind": "item",
+        "name": "Angel Crystal",
+        "identifier": "Angel Crystal",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": 357,
+      "params": {
+        "amount": 4
+      }
+    },
+    {
+      "id": 358,
+      "type": 107,
+      "type_name": "107",
+      "timestamp": 2,
+      "origin": {
+        "kind": "item",
+        "name": "Coil",
+        "identifier": "Coil",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 6
+        }
+      },
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": -1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 359,
+      "type": 107,
+      "type_name": "107",
+      "timestamp": 2,
+      "origin": {
+        "kind": "item",
+        "name": "Coil",
+        "identifier": "Coil",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 6
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 364,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 2.1,
+      "origin": {
+        "kind": "item",
+        "name": "Big Bloodthorne",
+        "identifier": "Big Bloodthorne",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": -3,
+        "used": true,
+        "reflected": false
+      }
+    },
+    {
+      "id": 365,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 2.1,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Agility",
+        "identifier": "Amulet of Agility",
+        "owner_type": 1,
+        "top_left": {
+          "x": 0,
+          "y": 3
+        }
+      },
+      "target": 0,
+      "parent_id": 364,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 366,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 2.1,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 6
+        }
+      },
+      "target": null,
+      "parent_id": 365,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 367,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 2.1,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": 365,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 368,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 2.1,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": 365,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 369,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 2.1,
+      "origin": {
+        "kind": "item",
+        "name": "Angel Crystal",
+        "identifier": "Angel Crystal",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": 365,
+      "params": {
+        "amount": 4
+      }
+    },
+    {
+      "id": 370,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 2.1,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Agility",
+        "identifier": "Amulet of Agility",
+        "owner_type": 1,
+        "top_left": {
+          "x": 0,
+          "y": 2
+        }
+      },
+      "target": 0,
+      "parent_id": 364,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 371,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 2.1,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 6
+        }
+      },
+      "target": null,
+      "parent_id": 370,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 372,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 2.1,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": 370,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 373,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 2.1,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": 370,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 374,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 2.1,
+      "origin": {
+        "kind": "item",
+        "name": "Angel Crystal",
+        "identifier": "Angel Crystal",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": 370,
+      "params": {
+        "amount": 4
+      }
+    },
+    {
+      "id": 375,
+      "type": 103,
+      "type_name": "103",
+      "timestamp": 2.1,
+      "origin": {
+        "kind": "item",
+        "name": "Big Bloodthorne",
+        "identifier": "Big Bloodthorne",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 7,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 376,
+      "type": 104,
+      "type_name": "104",
+      "timestamp": 2.1,
+      "origin": {
+        "kind": "item",
+        "name": "Big Bloodthorne",
+        "identifier": "Big Bloodthorne",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 6,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 377,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 2.1,
+      "origin": {
+        "kind": "item",
+        "name": "Big Bloodthorne",
+        "identifier": "Big Bloodthorne",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 1
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 83
+      }
+    },
+    {
+      "id": 379,
+      "type": 111,
+      "type_name": "111",
+      "timestamp": 2.1,
+      "origin": 111,
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    }
+  ]
+}

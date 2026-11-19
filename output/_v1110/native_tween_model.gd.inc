@@ -16,9 +16,12 @@ var _visual_back := 0.0
 var _visual_elapsed := 0.0
 var _visual_kind := 0
 var _visual_stage := 0
+var _visual_generation := 0
 var _idle_animation_left := 1.0
 
 func _beginVisualMotion(kind: int, to_x: float, to_y: float, forward: float, back: float) -> void:
+	_visual_generation += 1
+	ctx.registerMotion(0, self, _visual_generation)
 	_visual_from_x = _visual_x
 	_visual_from_y = _visual_y
 	_visual_to_x = to_x

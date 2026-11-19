@@ -1,0 +1,41 @@
+{
+  "scope": "two recovered-source native cases plus Oracle/GD/pure Python/C++; no default promotion; Cython pending",
+  "event_export": "strict gem host+slot, natural terminal required",
+  "candidate_sha256": {
+    "gd_core/CoreCharacter.gd": "e447d0da26950f65853b710993962fda9cb81f506508202be2545659f84f7d20",
+    "gd_core/CoreCombat.gd": "9f5b3673c1e15d0d207f0501838376084b334c37a48f1737b1b985344f7e60c6",
+    "gd_core/CoreContext.gd": "10239dccdabbd5e15b78296f38178a79e0291ed357e2c155ff2b606603eeb6c9",
+    "gd_core/CoreItem.gd": "a9f529904db1b5bd6df27dc783f6fb836edfcaecf20867018398bbec5bf4b9ab",
+    "native_sim_cpp/native_sim/engine_wrapper.cpp": "fdceaf20bdd1c2f3d39fcc7a6427ac7abf44a6dd5886f3679b15e8084575c34c",
+    "native_sim_cpp/native_sim/sim.py": "cd02420237a68ea9332366b6ba8083c72f312cd2d4f30bbaaef02f4549d10896",
+    "native_sim_cpp/native_sim/libgdcore.dll": "f07adbbd2f4570db72008928a3d1908a793447819a59de706e011a8cbf294af2",
+    "assets/gd_core_runtime.json": "2f445bbc1b66985702767d33cd1d9b5af2377988ccb01bab9fdb74536ddae2d3"
+  },
+  "recipe_sha256": {
+    "stage_native_core.py": "99113940a8cd0da02f59b58b702ba284ed98f430be6f2d8464e30acb0f2f2827",
+    "stage_native_binding.py": "6adf7824c0645e0e9b6a0fdc3bcd419131b0e36d5185332d1d4067a7c397f4eb",
+    "check_native_core.py": "16e72e0a5949d04c1c8e12f827ef853fb671d49648f775a5f7eef05cf714c06d",
+    "bench_native_core.py": "f5546a96067fc0274ab9c5266ce622b10880d183043ebfe200c26195acdd4690",
+    "optimize_native_float.py": "6c5fc0e74b2dd507b56fe3c8eeb157da69ef01b34223a9790d6d874d64e49edb",
+    "native_tween_model.gd.inc": "f7c311067ddea50f2841c977daa3e071e81d211844746d66b900d24e504756ce",
+    "native_motion_queue.gd.inc": "f51000f83cf5b172fce99231ae84a212b4c8af4405cd7305420822c8648bcdbc",
+    "native_flicker_model.gd.inc": "7ecc785256a4f5d66db2b244ffe19a96e2ef701408575adf4eeaf6ab0372c0f5",
+    "native_flicker_contract.gd": "f9566573237e87e64a9f61e4d717ab781b7a50e7eaa92a6f38b6d6ddcdac3ea9",
+    "compare_native_boundaries.py": "e20995058c49260d1219867654e442f502ba29a347071650c28f0a4e2ae729ee",
+    "native_battle_reader.header.gd": "5c0ef34bdd83635e093f023c9c00cd8d5802d2ec798ae03c82f8fc159ab406e6"
+  },
+  "checks": [
+    {
+      "folder": "native_motion_regression",
+      "three_way": 1,
+      "five_way": 1,
+      "reference": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_visual_state"
+    },
+    {
+      "folder": "native_charge_core_check",
+      "three_way": 1,
+      "five_way": 1,
+      "reference": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_target_r18"
+    }
+  ]
+}

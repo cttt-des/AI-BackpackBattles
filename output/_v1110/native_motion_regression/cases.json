@@ -1,0 +1,26 @@
+{
+  "cases": [
+    {
+      "case_id": "run101207_r1_o604707_r1",
+      "seed": 765678070,
+      "run_id": 101207,
+      "round_id": 1,
+      "opp_run_id": 604707,
+      "opp_round_id": 1,
+      "player_class": "Mage",
+      "player_class_id": 4,
+      "opp_class": "Adventurer",
+      "opp_class_id": 5,
+      "player_version": "1.1.7",
+      "opp_version": "1.1.7",
+      "player_stage": "1",
+      "player_items": 11,
+      "opp_items": 11,
+      "player_src_run": 1207,
+      "opp_src_run": 4707,
+      "select_reason": "bucket:4/1",
+      "opp_reuse": 1,
+      "batch": "main"
+    }
+  ]
+}

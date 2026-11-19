@@ -124,7 +124,8 @@ func _native_find_host(node, identity):
 		if node.descriptor.identifier == identity["name"] and node.ownerType == int(identity["owner"]):
 			var cell = node.getTopLeftCell() if not node.occupiedCells.empty() else Vector2(-999, -999)
 			if cell == Vector2(identity["top_left"][0], identity["top_left"][1]):
-				return node
+				if not identity.has("gem_identity") or _jsonable(node).get("identity") == identity["gem_identity"]:
+					return node
 	for child in node.get_children():
 		var found = _native_find_host(child, identity)
 		if found != null:
@@ -162,10 +163,10 @@ func _restore_native_visuals(snapshots):
 		assert(animation != null, "Missing native visual source " + str(snapshot))
 		_native_visual_players.append(animation)
 		animation.stop()
-		animation.playback_speed = float(snapshot["speed"])
+		animation.playback_speed = float(snapshot.get("speed_precise", snapshot["speed"]))
 		if snapshot["playing"]:
 			animation.play(snapshot["animation"])
-			animation.seek(float(snapshot["position"]), true)
+			animation.seek(float(snapshot.get("position_precise", snapshot["position"])), true)
 		for pending in snapshot["pending"]:
 			U.callDelayed(animation, pending["method"], float(pending["left"]))
 '''
@@ -241,8 +242,27 @@ if args.restore_ambient_timers:
 				U.oracleTimerLefts[timer] = [float(snapshot["left"]), timer.get_time_left()]
 ''' % json.dumps(timers, ensure_ascii=False))
 script = out / "oracle_fight.gd"
-script.write_text(source, encoding="utf8")
 oracle_diagnostics = None
+if args.compare_only:
+    if not script.is_file():
+        archive = out / "oracle_script.json"
+        if not archive.is_file():
+            raise SystemExit("Missing recorded candidate script: " + str(script))
+        stored = json.loads(archive.read_text("utf8"))
+        payload = "".join(stored["lines"]).encode("utf8")
+        if hashlib.sha256(payload).hexdigest() != stored["sha256"]:
+            raise SystemExit("Recorded candidate script archive is corrupt: " + str(archive))
+        script.write_bytes(payload)
+    report = out / "comparison.json"
+    if report.is_file():
+        recorded_hash = json.loads(report.read_text("utf8")).get("oracle_script_sha256")
+        if recorded_hash and recorded_hash != hashlib.sha256(script.read_bytes()).hexdigest():
+            raise SystemExit("Recorded candidate script changed; rerun the Oracle instead of comparing stale events")
+    diagnostics = out / "oracle_diagnostics.json"
+    if diagnostics.is_file():
+        oracle_diagnostics = json.loads(diagnostics.read_text("utf8"))
+else:
+    script.write_text(source, encoding="utf8")
 if not args.compare_only:
     p, log, handle = gh.spawn(gh.cmd(project=str(stage / "full_corpus/expand/project"), script=str(script)),
                          label="native_boundary_compare", tag="native_boundary_compare",
@@ -300,6 +320,7 @@ result = {"case_id": args.case_id, "counts": list(map(len, streams)), "first": f
           "strict_gem_missing": gem_missing, "strict_gem_first": gem_first,
           "rng": rng_comparison, "controls": vars(args),
           "oracle_script_sha256": hashlib.sha256(script.read_bytes()).hexdigest(),
+          "script_matches_current_generator": script.read_text("utf8") == source,
           "oracle_diagnostics": oracle_diagnostics,
           "native": streams[0][first] if first is not None else None,
           "oracle": streams[1][first] if first is not None else None,

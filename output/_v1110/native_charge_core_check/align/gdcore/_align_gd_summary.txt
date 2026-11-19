@@ -1,0 +1,6 @@
+ORACLE-ALIGN(gd_core): 受控神谕三方对齐——gd_core 侧批量重放（无头）
+用例 1 场（resume 跳过 0，本进程待跑 1）
+  [   1/1] run604768_r18_o101694_r18 ok       ticks= 276 t=  2.10 ev=  379   1009 ms
+  [selfcheck] run604768_r18_o101694_r18 同种子复跑逐字节一致 ✓
+
+ORACLE-ALIGN(gd_core): PASS（实跑 1 场，跳过 0，用时 1.6s（selfcheck 已消耗一次复跑））

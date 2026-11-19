@@ -1,0 +1,831 @@
+{
+ "version": 3,
+ "meta": {
+  "name": "oracle_run604768_r18_o101694_r18_player",
+  "source": "oracle:run604768_r18_o101694_r18"
+ },
+ "character": "Engineer",
+ "round": 18,
+ "health_override": 350,
+ "class_modifiers": {
+  "stamina": 10.0
+ },
+ "base_max_stamina": 5.0,
+ "backpack": {
+  "grid": {
+   "rows": 7,
+   "cols": 10
+  },
+  "items": [
+   {
+    "id": "Protective Purse",
+    "row": 0,
+    "col": 6,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Fanny Pack",
+    "row": 4,
+    "col": 2,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Stamina Sack",
+    "row": 4,
+    "col": 4,
+    "rotation": 90,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Stamina Sack",
+    "row": 3,
+    "col": 4,
+    "rotation": 90,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Stamina Sack",
+    "row": 2,
+    "col": 4,
+    "rotation": 90,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Stamina Sack",
+    "row": 2,
+    "col": 7,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Leather Bag",
+    "row": 0,
+    "col": 4,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Protective Purse",
+    "row": 1,
+    "col": 6,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Protective Purse",
+    "row": 1,
+    "col": 7,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Stamina Sack",
+    "row": 0,
+    "col": 8,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Protective Purse",
+    "row": 0,
+    "col": 7,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Potion Belt",
+    "row": 3,
+    "col": 8,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Leather Bag",
+    "row": 5,
+    "col": 6,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Leather Bag",
+    "row": 5,
+    "col": 4,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Leather Bag",
+    "row": 5,
+    "col": 2,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Leather Bag",
+    "row": 5,
+    "col": 0,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Potion Belt",
+    "row": 0,
+    "col": 0,
+    "rotation": 90,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Fanny Pack",
+    "row": 3,
+    "col": 2,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Fanny Pack",
+    "row": 2,
+    "col": 2,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Fanny Pack",
+    "row": 1,
+    "col": 2,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Fanny Pack",
+    "row": 4,
+    "col": 0,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Fanny Pack",
+    "row": 3,
+    "col": 0,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Fanny Pack",
+    "row": 2,
+    "col": 0,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Fanny Pack",
+    "row": 1,
+    "col": 0,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Amulet of Light",
+    "row": 6,
+    "col": 6,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Evil Cap",
+    "row": 5,
+    "col": 8,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": true,
+    "gems": [
+     null
+    ]
+   },
+   {
+    "id": "Shiny Shell",
+    "row": 1,
+    "col": 7,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Charge Splitter",
+    "row": 5,
+    "col": 2,
+    "rotation": 90,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Strong Heroic Potion",
+    "row": 1,
+    "col": 8,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": true,
+    "gems": []
+   },
+   {
+    "id": "Battery",
+    "row": 6,
+    "col": 5,
+    "rotation": 270,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Resistor",
+    "row": 5,
+    "col": 3,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Coil",
+    "row": 5,
+    "col": 4,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Gold Cube",
+    "row": 0,
+    "col": 4,
+    "rotation": 180,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Cog",
+    "row": 0,
+    "col": 5,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Cog",
+    "row": 0,
+    "col": 0,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Lucky Cat",
+    "row": 5,
+    "col": 7,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Amulet of Alchemy",
+    "row": 0,
+    "col": 6,
+    "rotation": 90,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Rainbow Orb",
+    "row": 5,
+    "col": 6,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Platin Customer Card",
+    "row": 0,
+    "col": 3,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": true,
+    "gems": []
+   },
+   {
+    "id": "Platin Customer Card",
+    "row": 1,
+    "col": 3,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": true,
+    "gems": []
+   },
+   {
+    "id": "Amulet of Light",
+    "row": 5,
+    "col": 5,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Amulet of Light",
+    "row": 4,
+    "col": 5,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Plastic Cube",
+    "row": 3,
+    "col": 3,
+    "rotation": 90,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Twine Badge",
+    "row": 2,
+    "col": 3,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Big Bloodthorne",
+    "row": 1,
+    "col": 1,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": true,
+    "gems": [
+     {
+      "id": "Perfect Sapphire"
+     },
+     {
+      "id": "Flawed Topaz"
+     },
+     {
+      "id": "Flawed Topaz"
+     },
+     {
+      "id": "Regular Topaz"
+     },
+     {
+      "id": "Flawed Topaz"
+     }
+    ]
+   },
+   {
+    "id": "Heart of Darkness",
+    "row": 1,
+    "col": 4,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": true,
+    "gems": [
+     null
+    ]
+   },
+   {
+    "id": "Shiny Shell",
+    "row": 1,
+    "col": 6,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Gloves of Haste",
+    "row": 4,
+    "col": 3,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Battery",
+    "row": 0,
+    "col": 1,
+    "rotation": 180,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Battery",
+    "row": 6,
+    "col": 0,
+    "rotation": 90,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Resistor",
+    "row": 6,
+    "col": 1,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Coil",
+    "row": 6,
+    "col": 2,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Coil",
+    "row": 6,
+    "col": 3,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Coil",
+    "row": 6,
+    "col": 4,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Battery",
+    "row": 0,
+    "col": 2,
+    "rotation": 180,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Amulet of Agility",
+    "row": 2,
+    "col": 0,
+    "rotation": 90,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Amulet of Agility",
+    "row": 3,
+    "col": 0,
+    "rotation": 90,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Battery",
+    "row": 5,
+    "col": 0,
+    "rotation": 90,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Charge Splitter",
+    "row": 5,
+    "col": 1,
+    "rotation": 90,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Chrome Cube",
+    "row": 1,
+    "col": 0,
+    "rotation": 90,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Bismuth Cube",
+    "row": 4,
+    "col": 0,
+    "rotation": 90,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Strong Heroic Potion",
+    "row": 0,
+    "col": 7,
+    "rotation": 90,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": true,
+    "gems": []
+   },
+   {
+    "id": "Gold Armor",
+    "row": 2,
+    "col": 6,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": true,
+    "gems": [
+     {
+      "id": "Regular Ruby"
+     },
+     {
+      "id": "Chipped Ruby"
+     },
+     null
+    ]
+   },
+   {
+    "id": "Angel Crystal",
+    "row": 3,
+    "col": 4,
+    "rotation": 90,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   },
+   {
+    "id": "Stone Skin Potion",
+    "row": 3,
+    "col": 8,
+    "rotation": 0,
+    "quantity": 1,
+    "container": false,
+    "contents": [],
+    "effects": null,
+    "crafted": false,
+    "gems": []
+   }
+  ]
+ },
+ "storage": []
+}

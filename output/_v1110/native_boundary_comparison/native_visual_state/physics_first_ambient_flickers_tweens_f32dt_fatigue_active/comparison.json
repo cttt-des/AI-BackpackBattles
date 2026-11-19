@@ -26,12 +26,16 @@
     "restore_ambient_timers": true,
     "restore_flickers": true,
     "advance_character_tweens": true,
+    "advance_charge_tweens": false,
+    "opening_tween_pass": false,
     "native_delta": true,
     "source_fatigue_mode": true,
     "snapshot_active_timers": true,
     "compare_only": true
   },
   "oracle_script_sha256": "0f8a2437e73841f23ebf8849ee23abbd4923813f3057fd2d09c294c5237f1322",
+  "script_matches_current_generator": false,
+  "oracle_diagnostics": null,
   "native": null,
   "oracle": null,
   "scope": "Recovered-source native reference; imported initial states only; all listed events independently computed"

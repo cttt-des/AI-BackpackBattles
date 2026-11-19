@@ -1,0 +1,43 @@
+{
+  "case_id": "run101207_r1_o604707_r1",
+  "iterations_per_round": 100,
+  "rounds": 3,
+  "dll_sha256": "f07adbbd2f4570db72008928a3d1908a793447819a59de706e011a8cbf294af2",
+  "timing": "single process CPU seconds for native setup+combat+teardown; ctypes overhead included, input packing excluded; no file logging or event serialization",
+  "scope": "one previously five-way-verified round-1 case; no comparative speedup claim",
+  "modes": {
+    "debug_events_off": {
+      "cpu_round_seconds": [
+        3.21875,
+        2.765625,
+        2.71875
+      ],
+      "median_cpu_ms_per_battle": 27.65625,
+      "battles_per_cpu_second": 36.15819209039548,
+      "result_signature": [
+        1,
+        1230,
+        159,
+        42.0,
+        0.0
+      ]
+    },
+    "debug_events_on": {
+      "cpu_round_seconds": [
+        2.453125,
+        2.515625,
+        2.328125
+      ],
+      "median_cpu_ms_per_battle": 24.53125,
+      "battles_per_cpu_second": 40.76433121019108,
+      "result_signature": [
+        1,
+        1230,
+        159,
+        42.0,
+        0.0
+      ]
+    }
+  },
+  "packing_us_per_pair": 937.5
+}
