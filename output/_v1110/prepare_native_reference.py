@@ -136,6 +136,7 @@ for relative in combat_files:
     "adaptations": ["Offline Steam, leaderboard, SDK and plugin service stubs",
                     "Recovered plaintext table and full-version runtime DLL discovery",
                     "Preparation, activation and pending visual timer observers; no manual combat tick",
+                    "Global engine PCG position observed and restored at preparation and activation",
                     "Batches return through the source history menu; adapter selects records and resets its UI fight guard",
                     "Read-only RNG call observer enabled" if rng_probe else "Native RNG object unchanged"],
     "scope": "Independent recovered-source reference, not the installed shipping EXE"

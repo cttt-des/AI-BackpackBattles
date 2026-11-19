@@ -281,6 +281,8 @@ func on_prepare(items) -> void:
 	if not engine_seed.empty():
 		seed(int(engine_seed))
 		observations["prepare"]["engine_seed"] = engine_seed
+	else:
+		observe_engine_rng(observations["prepare"])
 
 func on_activate(_items) -> void:
 	observations["before_activate"] = {"seed": str(U.rng.get_seed()), "state": str(U.rng.get_state())}
@@ -290,8 +292,38 @@ func on_activate(_items) -> void:
 		var activation_seed = int(engine_seed) + 1
 		seed(activation_seed)
 		observations["before_activate"]["engine_seed"] = str(activation_seed)
+	else:
+		observe_engine_rng(observations["before_activate"])
+	var settings = get_tree().root.get_node("Settings")
+	observations["before_activate"]["damage_number_mode"] = int(settings.getVal(settings.Setting.damage_numbers))
+	observations["before_activate"]["visible_combat_shakes"] = 0
+	for number in get_tree().get_nodes_in_group("CombatLabel"):
+		var label = number.get_node_or_null("Label")
+		if label is RichTextLabel and label.is_visible_in_tree() and "[shake" in label.bbcode_text:
+			observations["before_activate"]["visible_combat_shakes"] += 1
 	if "recording" in U.rng:
 		U.rng.recording = true
+
+func observe_engine_rng(boundary: Dictionary) -> void:
+	# record_one seeded the global PCG before entering history. Identify the
+	# next two outputs and restore its exact position before returning to Game.
+	var boundary_seed := int(case_result["seed"])
+	var actual_first := randi()
+	var actual_second := randi()
+	var observer := RandomNumberGenerator.new()
+	observer.seed = boundary_seed
+	var first := observer.randi()
+	for offset in range(8192):
+		var second := observer.randi()
+		if first == actual_first and second == actual_second:
+			seed(boundary_seed)
+			for i in range(offset):
+				randi()
+			boundary["engine_seed"] = str(boundary_seed)
+			boundary["engine_offset"] = offset
+			return
+		first = second
+	fail("Could not identify and restore the original global PCG at a replay boundary")
 
 func on_end(result) -> void:
 	observations["terminal_buff_state"] = observe_buff_state()

@@ -1,0 +1,197 @@
+{
+  "scope": "Three controlled recovered-source probes, a stock Godot 3.6 timing contract, and three unscripted source replay RNG observations",
+  "reference_case": "run100900_r15_o100932_r15",
+  "source_ab": {
+    "stock_labels": {
+      "periodic_draws_per_step": [
+        2
+      ],
+      "steps_before_first_shuffle": [
+        [
+          0.666667,
+          "physics boundary",
+          0,
+          2
+        ],
+        [
+          0.716667,
+          "physics boundary",
+          2,
+          4
+        ],
+        [
+          0.766667,
+          "physics boundary",
+          4,
+          6
+        ],
+        [
+          0.816667,
+          "physics boundary",
+          6,
+          8
+        ]
+      ]
+    },
+    "character_shake_removed": {
+      "periodic_draws_per_step": [
+        1
+      ],
+      "steps_before_first_shuffle": [
+        [
+          0.616667,
+          "physics boundary",
+          0,
+          1
+        ],
+        [
+          0.666667,
+          "physics boundary",
+          1,
+          2
+        ],
+        [
+          0.716667,
+          "physics boundary",
+          2,
+          3
+        ],
+        [
+          0.766667,
+          "physics boundary",
+          3,
+          4
+        ],
+        [
+          0.816667,
+          "physics boundary",
+          4,
+          5
+        ],
+        [
+          0.866667,
+          "physics boundary",
+          5,
+          6
+        ],
+        [
+          0.916667,
+          "physics boundary",
+          6,
+          7
+        ]
+      ]
+    },
+    "both_shakes_removed": {
+      "periodic_draws_per_step": [],
+      "steps_before_first_shuffle": []
+    }
+  },
+  "schedule_contract": {
+    "frames": 300,
+    "draws": 164,
+    "item_idle_passes": [
+      2,
+      5,
+      8,
+      11,
+      14,
+      17,
+      20,
+      23,
+      26,
+      29,
+      32,
+      35,
+      38,
+      41
+    ],
+    "character_idle_passes": [
+      2,
+      5,
+      8,
+      11,
+      14,
+      17,
+      20,
+      23,
+      26,
+      29,
+      32,
+      35,
+      38,
+      41,
+      44,
+      47,
+      50,
+      53,
+      56,
+      59,
+      62,
+      65
+    ],
+    "animation_end_frames_after_spawn": [
+      [
+        0,
+        42
+      ],
+      [
+        1,
+        67
+      ],
+      [
+        0,
+        42
+      ],
+      [
+        0,
+        42
+      ],
+      [
+        0,
+        42
+      ],
+      [
+        1,
+        67
+      ],
+      [
+        1,
+        67
+      ],
+      [
+        1,
+        67
+      ],
+      [
+        1,
+        67
+      ]
+    ],
+    "mismatches": []
+  },
+  "observed_boundaries": {
+    "run100900_r15_o100932_r15": {
+      "engine_seed": "986324308",
+      "prepare_offset": 122,
+      "activation_offset": 130,
+      "damage_number_mode": 0,
+      "initial_visible_critical_shakes": 0
+    },
+    "run705109_r12_o101487_r12": {
+      "engine_seed": "49628743",
+      "prepare_offset": 94,
+      "activation_offset": 94,
+      "damage_number_mode": 0,
+      "initial_visible_critical_shakes": 0
+    },
+    "run604768_r18_o101694_r18": {
+      "engine_seed": "1672180149",
+      "prepare_offset": 112,
+      "activation_offset": 113,
+      "damage_number_mode": 0,
+      "initial_visible_critical_shakes": 0
+    }
+  },
+  "schedule_sha256": "d85acdc4223276eaeb5b3ec039670afc0235ee273b3bff6192c7f198ba5a34f3"
+}
