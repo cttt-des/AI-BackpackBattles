@@ -69,6 +69,8 @@ if not args.reuse_inputs:
         assert all(value is not None for value in idle), cid
         flickers = boundaries["flicker_states"]
         for flicker in flickers:
+            if flicker["inside_tree"] and flicker.get("path", "").startswith("/root/Main/Combat/Opponent/"):
+                flicker["native_opponent"] = True
             if "limits" not in flicker:
                 descriptor = runtime[flicker["identity"]["name"]]["descr"]
                 flicker["limits"] = [descriptor["flicker" + key] for key in ("MinDist", "MaxDist", "MinSpeed", "MaxSpeed")]
