@@ -3405,6 +3405,7 @@ gd::GdVal Gd__gd_core__CoreItem::fn_isStaminaPerSecondModified(const gd::GdVal* 
     return gd::GdVal::null();
 }
 gd::GdVal Gd__gd_core__CoreItem::fn_canAffect(const gd::GdVal* _args, int _argc) {
+    if (this->f__behavior.is_null()) return gd::GdVal::from_bool(false);
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
     gd::GdVal lv_item = (_argc > 0) ? _args[0] : gd::GdVal::null();
     if (gd::gd_truth(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[45])}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN__hasBehaviorMethod_503, _ca, 1); })())) {
@@ -3414,6 +3415,7 @@ gd::GdVal Gd__gd_core__CoreItem::fn_canAffect(const gd::GdVal* _args, int _argc)
     return gd::GdVal::null();
 }
 gd::GdVal Gd__gd_core__CoreItem::fn_canAffect_secondary(const gd::GdVal* _args, int _argc) {
+    if (this->f__behavior.is_null()) return gd::GdVal::from_bool(false);
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
     gd::GdVal lv_item = (_argc > 0) ? _args[0] : gd::GdVal::null();
     if (gd::gd_truth(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[46])}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN__hasBehaviorMethod_503, _ca, 1); })())) {
@@ -3423,6 +3425,7 @@ gd::GdVal Gd__gd_core__CoreItem::fn_canAffect_secondary(const gd::GdVal* _args, 
     return gd::GdVal::null();
 }
 gd::GdVal Gd__gd_core__CoreItem::fn_canAffect_tertiary(const gd::GdVal* _args, int _argc) {
+    if (this->f__behavior.is_null()) return gd::GdVal::from_bool(false);
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
     gd::GdVal lv_item = (_argc > 0) ? _args[0] : gd::GdVal::null();
     if (gd::gd_truth(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[47])}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN__hasBehaviorMethod_503, _ca, 1); })())) {
@@ -3432,6 +3435,7 @@ gd::GdVal Gd__gd_core__CoreItem::fn_canAffect_tertiary(const gd::GdVal* _args, i
     return gd::GdVal::null();
 }
 gd::GdVal Gd__gd_core__CoreItem::fn_canAffect_lightning(const gd::GdVal* _args, int _argc) {
+    if (this->f__behavior.is_null()) return gd::GdVal::from_bool(false);
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
     gd::GdVal lv_item = (_argc > 0) ? _args[0] : gd::GdVal::null();
     if (gd::gd_truth(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[48])}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN__hasBehaviorMethod_503, _ca, 1); })())) {
@@ -4916,11 +4920,17 @@ gd::GdVal Gd__gd_core__CoreItem::fn_getAffectedCellsInInventory(const gd::GdVal*
     return ([&]() { gd::GdVal _ca[] = {([&]() { gd::GdVal _ca[] = {lv_color}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getAffectedPoints_413, _ca, 1); })()}; return gd::call_method(gd_ctx, gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getOwnOrPlayerInventory_400, nullptr, 0), SYM_GEN_getCellsForGlobalPositions_401, _ca, 1); })();
     return gd::GdVal::null();
 }
-gd::GdVal Gd__gd_core__CoreItem::fn_getAffectedCellsInInventory_cached(const gd::GdVal* _args, int _argc) {
-    gd::BattleCtx& gd_ctx = *this->rt_ctx_;
-    gd::GdVal lv_color = (_argc > 0) ? _args[0] : gd::GdVal::null();
-    return ([&]() { gd::GdVal _ca[] = {lv_color, gd::GdVal::from_arr(gd::GdArr::from_init(gd_ctx.arena, {}))}; return gd::call_method(gd_ctx, this->f_affectedCellsCache, gd::SYM_get, _ca, 2); })();
-    return gd::GdVal::null();
+gd::GdVal Gd__gd_core__CoreItem::fn_getAffectedCellsInInventory_cached(const gd::GdVal* args, int argc) {
+    auto& ctx = *this->rt_ctx_;
+    const auto color = argc > 0 ? args[0] : gd::GdVal::null();
+    const auto cache = this->f_affectedCellsCache;
+    if (cache.kind == gd::GdVal::Kind::Dict && cache.dict) {
+        const auto index = cache.dict->find_index(color);
+        if (index >= 0) return cache.dict->entries[index].val;
+        return gd::GdVal::from_arr(gd::GdArr::from_init(ctx.arena, {}));
+    }
+    const gd::GdVal query[] = {color, gd::GdVal::from_arr(gd::GdArr::from_init(ctx.arena, {}))};
+    return gd::call_method(ctx, cache, gd::SYM_get, query, 2);
 }
 gd::GdVal Gd__gd_core__CoreItem::fn_cacheAffectedCells(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
@@ -5015,27 +5025,23 @@ gd::GdVal Gd__gd_core__CoreItem::fn_countItemsInAffectedCells_cached(const gd::G
     return ([&]() { gd::GdVal _ca[] = {([&]() { gd::GdVal _ca[] = {lv_color}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getAffectedCellsInInventory_cached_415, _ca, 1); })()}; return gd::call_method(gd_ctx, gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getOwnOrPlayerInventory_400, nullptr, 0), SYM_GEN_countItemsInCells_1609, _ca, 1); })();
     return gd::GdVal::null();
 }
-gd::GdVal Gd__gd_core__CoreItem::fn_isItemAffected(const gd::GdVal* _args, int _argc) {
-    gd::BattleCtx& gd_ctx = *this->rt_ctx_;
-    gd::GdVal lv_item = (_argc > 0) ? _args[0] : gd::GdVal::null();
-    gd::GdVal lv_color = (_argc > 1) ? _args[1] : (gd::GdVal::from_int(0LL));
-    if (gd::gd_truth((gd::gd_truth(gd::call_method(gd_ctx, lv_item, SYM_GEN_isBag_83, nullptr, 0)) ? gd::GdVal::from_bool(true) : gd::GdVal::from_bool(gd::gd_truth(gd::GdVal::from_bool(!gd::gd_truth(([&]() { gd::GdVal _ca[] = {lv_item, lv_color}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_canAffect_color_290, _ca, 2); })()))))))) {
+gd::GdVal Gd__gd_core__CoreItem::fn_isItemAffected(const gd::GdVal* args, int argc) {
+    auto& ctx = *this->rt_ctx_;
+    const gd::GdVal query[] = {
+        argc > 0 ? args[0] : gd::GdVal::null(),
+        argc > 1 ? args[1] : gd::GdVal::from_int(0),
+    };
+    if (gd::gd_truth(gd::call_method(ctx, query[0], SYM_GEN_isBag_83, nullptr, 0))
+            || !gd::gd_truth(this->fn_canAffect_color(query, 2))) {
         return gd::GdVal::from_bool(false);
     }
-    gd::GdVal lv_affectedTiles = ([&]() { gd::GdVal _ca[] = {lv_color}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getAffectedCellsInInventory_cached_415, _ca, 1); })();
-    {
-        gd::GdVal _t217 = gd::gd_iter_seq(gd_ctx.arena, gd::get_prop(gd_ctx, lv_item, SYM_GEN_occupiedCells_52));
-        gd::GdArr* _t218 = (_t217.kind == gd::GdVal::Kind::Arr) ? _t217.arr : nullptr;
-        uint32_t _len__t219 = _t218 ? _t218->len : 0u;
-        for (uint32_t _t219 = 0; _t219 < _len__t219; ++_t219) {
-            gd::GdVal lv_cell = _t218->data[_t219];
-            if (gd::gd_truth(gd::gd_in(lv_cell, lv_affectedTiles))) {
-                return gd::GdVal::from_bool(true);
-            }
-        }
+    const auto tiles = this->fn_getAffectedCellsInInventory_cached(query + 1, 1);
+    const auto cells = gd::gd_iter_seq(ctx.arena, gd::get_prop(ctx, query[0], SYM_GEN_occupiedCells_52));
+    const auto* occupied = cells.kind == gd::GdVal::Kind::Arr ? cells.arr : nullptr;
+    for (uint32_t i = 0, count = occupied ? occupied->len : 0; i < count; ++i) {
+        if (gd::gd_truth(gd::gd_in(occupied->data[i], tiles))) return gd::GdVal::from_bool(true);
     }
     return gd::GdVal::from_bool(false);
-    return gd::GdVal::null();
 }
 gd::GdVal Gd__gd_core__CoreItem::fn_getNumEmptyAffectedCells(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
@@ -5177,30 +5183,26 @@ gd::GdVal Gd__gd_core__CoreItem::fn_onAffectedItemRemoved(const gd::GdVal* _args
     lv_color = gd::gd_coerce_int(lv_color);
     return gd::GdVal::null();
 }
-gd::GdVal Gd__gd_core__CoreItem::fn_onItemAdded(const gd::GdVal* _args, int _argc) {
-    gd::BattleCtx& gd_ctx = *this->rt_ctx_;
-    gd::GdVal lv_item = (_argc > 0) ? _args[0] : gd::GdVal::null();
-    gd::GdVal lv_newItemIsAffected = gd::GdVal::from_dict(gd::GdDict::create(gd_ctx.arena));
-    {
-        gd::GdVal _t237 = gd::gd_iter_seq(gd_ctx.arena, gd::call_method(gd_ctx, gd::get_prop(gd_ctx, gd::GdVal::from_cls(&META_Gd__gd_core__CoreConst), SYM_GEN_Affected_867), gd::SYM_values, nullptr, 0));
-        gd::GdArr* _t238 = (_t237.kind == gd::GdVal::Kind::Arr) ? _t237.arr : nullptr;
-        uint32_t _len__t239 = _t238 ? _t238->len : 0u;
-        for (uint32_t _t239 = 0; _t239 < _len__t239; ++_t239) {
-            gd::GdVal lv_color = _t238->data[_t239];
-            { gd::GdVal _t240 = lv_newItemIsAffected; gd::GdVal _t241 = lv_color; gd::set_index(gd_ctx, _t240, _t241, (gd::gd_truth(gd::GdVal::from_bool(!gd::gd_truth(gd::gd_in(lv_item, gd::get_index(gd_ctx, this->f_currentAffectedItems, lv_color))))) ? gd::GdVal::from_bool(gd::gd_truth(([&]() { gd::GdVal _ca[] = {lv_item, lv_color}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_isItemAffected_425, _ca, 2); })())) : gd::GdVal::from_bool(false))); }
+gd::GdVal Gd__gd_core__CoreItem::fn_onItemAdded(const gd::GdVal* args, int argc) {
+    auto& ctx = *this->rt_ctx_;
+    const auto item = argc > 0 ? args[0] : gd::GdVal::null();
+    constexpr int color_count = 4;
+    bool affected[color_count]{};
+    // Complete every query before invoking any callback. A callback may change
+    // the inventory or affected sets before the next color is committed.
+    for (int color = 0; color < color_count; ++color) {
+        const gd::GdVal query[] = {item, gd::GdVal::from_int(color)};
+        const auto current = gd::get_index(ctx, this->f_currentAffectedItems, query[1]);
+        if (!gd::gd_truth(gd::gd_in(item, current))) {
+            affected[color] = gd::gd_truth(this->fn_isItemAffected(query, 2));
         }
     }
-    {
-        gd::GdVal _t242 = gd::gd_iter_seq(gd_ctx.arena, gd::call_method(gd_ctx, gd::get_prop(gd_ctx, gd::GdVal::from_cls(&META_Gd__gd_core__CoreConst), SYM_GEN_Affected_867), gd::SYM_values, nullptr, 0));
-        gd::GdArr* _t243 = (_t242.kind == gd::GdVal::Kind::Arr) ? _t242.arr : nullptr;
-        uint32_t _len__t244 = _t243 ? _t243->len : 0u;
-        for (uint32_t _t244 = 0; _t244 < _len__t244; ++_t244) {
-            gd::GdVal lv_color = _t243->data[_t244];
-            if (gd::gd_truth(gd::get_index(gd_ctx, lv_newItemIsAffected, lv_color))) {
-                { gd::GdVal _t245 = gd::get_index(gd_ctx, this->f_currentAffectedItems, lv_color); gd::GdVal _t246 = lv_item; gd::set_index(gd_ctx, _t245, _t246, gd::GdVal::from_bool(true)); }
-                (void)([&]() { gd::GdVal _ca[] = {lv_item, lv_color}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_onAffectedItemAdded_435, _ca, 2); })();
-            }
-        }
+    for (int color = 0; color < color_count; ++color) {
+        if (!affected[color]) continue;
+        const gd::GdVal event[] = {item, gd::GdVal::from_int(color)};
+        auto current = gd::get_index(ctx, this->f_currentAffectedItems, event[1]);
+        gd::set_index(ctx, current, item, gd::GdVal::from_bool(true));
+        gd::call_method(ctx, gd::GdVal::from_obj(this), SYM_GEN_onAffectedItemAdded_435, event, 2);
     }
     return gd::GdVal::null();
 }

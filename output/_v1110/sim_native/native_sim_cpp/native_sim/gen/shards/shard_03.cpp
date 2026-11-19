@@ -1,5 +1,6 @@
 #pragma STDC FP_CONTRACT OFF
 
+#include "../hdrs/Gd__gd_core__CoreContext.hpp"
 #include "../hdrs/Gd__gd_core__CoreGrid.hpp"
 #include "../hdrs/Gd__gd_core__CoreCharacter.hpp"
 #include "../hdrs/Gd__gd_core__CoreItem.hpp"
@@ -730,10 +731,14 @@ gd::GdVal Gd__gd_core__CoreCombat::fn_activateTraining(const gd::GdVal* _args, i
 }
 gd::GdVal Gd__gd_core__CoreCombat::fn_physicsTick(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
+    // The native battle constructs exact CoreContext and CoreCharacter objects.
+    const auto context = [this] { return static_cast<Gd__gd_core__CoreContext*>(this->f_ctx.obj); };
+    const auto opponent = [this] { return static_cast<Gd__gd_core__CoreCharacter*>(this->f_opponent.obj); };
+    const auto player = [this] { return static_cast<Gd__gd_core__CoreCharacter*>(this->f_player.obj); };
     gd::GdVal lv_delta = (_argc > 0) ? _args[0] : gd::GdVal::null();
     lv_delta = gd::gd_coerce_float(lv_delta);
     if (gd::gd_truth(this->f__pending_deferred)) {
-        (void)gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN__flushDeferred_1334, nullptr, 0);
+        (void)this->fn__flushDeferred(nullptr, 0);
         return gd::GdVal::null();
     }
     if (gd::gd_truth(this->f_fight_ended)) {
@@ -741,48 +746,48 @@ gd::GdVal Gd__gd_core__CoreCombat::fn_physicsTick(const gd::GdVal* _args, int _a
     }
     if (gd::gd_truth(gd::GdVal::from_bool(!gd::gd_truth(this->f_activated)))) {
         if (gd::gd_truth(this->f__track_hidden_log)) {
-            (void)([&]() { gd::GdVal _ca[] = {gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_combat_log_1410), gd::GdVal::from_str(&battle_string_literals[9])}; return gd::call_method(gd_ctx, this->f_ctx, SYM_GEN_defer_1482, _ca, 2); })();
+            (void)([&]() { gd::GdVal _ca[] = {context()->f_combat_log, gd::GdVal::from_str(&battle_string_literals[9])}; return context()->fn_defer(_ca, 2); })();
         }
-        (void)gd::call_method(gd_ctx, this->f_ctx, SYM_GEN_flushDeferred_1484, nullptr, 0);
-        (void)gd::call_method(gd_ctx, this->f_ctx, SYM_GEN_flushIdleFrameCalls_1486, nullptr, 0);
-        (void)gd::call_method(gd_ctx, this->f_ctx, SYM_GEN_flushDeferred_1484, nullptr, 0);
-        if (gd::gd_truth(gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_training_start_1452))) {
-            (void)([&]() { gd::GdVal _ca[] = {lv_delta}; return gd::call_method(gd_ctx, this->f_ctx, SYM_GEN_advancePhysicsFrame_1478, _ca, 1); })();
-            (void)gd::call_method(gd_ctx, this->f_ctx, SYM_GEN_beginCriticalShakeFrame_1496, nullptr, 0);
-            (void)([&]() { gd::GdVal _ca[] = {lv_delta}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_stepCharacterIdle_1339, _ca, 1); })();
-            (void)gd::call_method(gd_ctx, this->f_ctx, SYM_GEN_flushDeferred_1484, nullptr, 0);
-            (void)gd::call_method(gd_ctx, this->f_ctx, SYM_GEN__flushTimed_1481, nullptr, 0);
-            (void)([&]() { gd::GdVal _ca[] = {lv_delta}; return gd::call_method(gd_ctx, this->f_ctx, SYM_GEN_tickMotion_1501, _ca, 1); })();
-            (void)gd::call_method(gd_ctx, this->f_ctx, SYM_GEN_flushDeferred_1484, nullptr, 0);
+        (void)context()->fn_flushDeferred(nullptr, 0);
+        (void)context()->fn_flushIdleFrameCalls(nullptr, 0);
+        (void)context()->fn_flushDeferred(nullptr, 0);
+        if (gd::gd_truth(context()->f_training_start)) {
+            (void)([&]() { gd::GdVal _ca[] = {lv_delta}; return context()->fn_advancePhysicsFrame(_ca, 1); })();
+            (void)context()->fn_beginCriticalShakeFrame(nullptr, 0);
+            (void)([&]() { gd::GdVal _ca[] = {lv_delta}; return this->fn_stepCharacterIdle(_ca, 1); })();
+            (void)context()->fn_flushDeferred(nullptr, 0);
+            (void)context()->fn__flushTimed(nullptr, 0);
+            (void)([&]() { gd::GdVal _ca[] = {lv_delta}; return context()->fn_tickMotion(_ca, 1); })();
+            (void)context()->fn_flushDeferred(nullptr, 0);
             return gd::GdVal::null();
         }
         this->f__activate_countdown = gd::gd_sub(this->f__activate_countdown, lv_delta);
         if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_le(this->f__activate_countdown, gd::GdVal::from_float(0.0))))) {
-            (void)([&]() { gd::GdVal _ca[] = {this->f_ordered_items}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_activateItems_1322, _ca, 1); })();
+            (void)([&]() { gd::GdVal _ca[] = {this->f_ordered_items}; return this->fn_activateItems(_ca, 1); })();
             if (_argc > 1) replay_host_before_idle(
                 _args[1].as_int(), this->f_ctx.obj, this->f_combat_time.as_float());
-            (void)gd::call_method(gd_ctx, this->f_ctx, SYM_GEN_runOpeningSceneDelays_1506, nullptr, 0);
-            (void)([&]() { gd::GdVal _ca[] = {lv_delta}; return gd::call_method(gd_ctx, this->f_ctx, SYM_GEN_tickMotion_1501, _ca, 1); })();
+            (void)context()->fn_runOpeningSceneDelays(nullptr, 0);
+            (void)([&]() { gd::GdVal _ca[] = {lv_delta}; return context()->fn_tickMotion(_ca, 1); })();
         }
-        (void)gd::call_method(gd_ctx, this->f_ctx, SYM_GEN_flushDeferred_1484, nullptr, 0);
+        (void)context()->fn_flushDeferred(nullptr, 0);
         return gd::GdVal::null();
     }
-    if (gd::gd_truth(gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_native_frame_rng_1450))) {
-        (void)gd::call_method(gd_ctx, this->f_ctx, SYM_GEN_beginCriticalShakeFrame_1496, nullptr, 0);
+    if (gd::gd_truth(context()->f_native_frame_rng)) {
+        (void)context()->fn_beginCriticalShakeFrame(nullptr, 0);
     }
-    gd::set_prop(gd_ctx, this->f_ctx, SYM_GEN_timer_pass_epoch_1445, gd::gd_add(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_timer_pass_epoch_1445), gd::GdVal::from_int(1LL)));
-    gd::set_prop(gd_ctx, this->f_ctx, SYM_GEN_in_physics_timer_pass_1446, gd::GdVal::from_bool(true));
-    (void)gd::call_method(gd_ctx, this->f_opponent, SYM_GEN_snapshotPhysicsTimers_1295, nullptr, 0);
-    (void)gd::call_method(gd_ctx, this->f_player, SYM_GEN_snapshotPhysicsTimers_1295, nullptr, 0);
-    (void)([&]() { gd::GdVal _ca[] = {this->f_opponent, lv_delta}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN__tickCharacterTimers_1338, _ca, 2); })();
-    (void)gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN__fatigueTick_1326, nullptr, 0);
-    (void)([&]() { gd::GdVal _ca[] = {this->f_player, lv_delta}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN__tickCharacterTimers_1338, _ca, 2); })();
-    gd::set_prop(gd_ctx, this->f_ctx, SYM_GEN_in_physics_timer_pass_1446, gd::GdVal::from_bool(false));
-    (void)([&]() { gd::GdVal _ca[] = {lv_delta}; return gd::call_method(gd_ctx, this->f_ctx, SYM_GEN_advancePhysicsFrame_1478, _ca, 1); })();
-    gd::set_prop(gd_ctx, this->f_ctx, SYM_GEN_in_item_physics_pass_1447, gd::GdVal::from_bool(true));
-    (void)([&]() { gd::GdVal _ca[] = {lv_delta}; return gd::call_method(gd_ctx, this->f_opponent, SYM_GEN_physicsTickCharacter_1292, _ca, 1); })();
+    context()->f_timer_pass_epoch = gd::gd_add(gd_ctx, context()->f_timer_pass_epoch, gd::GdVal::from_int(1LL));
+    context()->f_in_physics_timer_pass = gd::GdVal::from_bool(true);
+    (void)opponent()->fn_snapshotPhysicsTimers(nullptr, 0);
+    (void)player()->fn_snapshotPhysicsTimers(nullptr, 0);
+    (void)([&]() { gd::GdVal _ca[] = {this->f_opponent, lv_delta}; return this->fn__tickCharacterTimers(_ca, 2); })();
+    (void)this->fn__fatigueTick(nullptr, 0);
+    (void)([&]() { gd::GdVal _ca[] = {this->f_player, lv_delta}; return this->fn__tickCharacterTimers(_ca, 2); })();
+    context()->f_in_physics_timer_pass = gd::GdVal::from_bool(false);
+    (void)([&]() { gd::GdVal _ca[] = {lv_delta}; return context()->fn_advancePhysicsFrame(_ca, 1); })();
+    context()->f_in_item_physics_pass = gd::GdVal::from_bool(true);
+    (void)([&]() { gd::GdVal _ca[] = {lv_delta}; return opponent()->fn_physicsTickCharacter(_ca, 1); })();
     {
-        gd::GdVal _t756 = gd::gd_iter_seq(gd_ctx.arena, gd::call_method(gd_ctx, gd::get_prop(gd_ctx, this->f_opponent, SYM_GEN_inventory_5), SYM_GEN_getItems_1603, nullptr, 0));
+        gd::GdVal _t756 = gd::gd_iter_seq(gd_ctx.arena, static_cast<Gd__gd_core__CoreGrid*>(opponent()->f_inventory.obj)->f_items);
         gd::GdArr* _t757 = (_t756.kind == gd::GdVal::Kind::Arr) ? _t756.arr : nullptr;
         uint32_t _len__t758 = _t757 ? _t757->len : 0u;
         for (uint32_t _t758 = 0; _t758 < _len__t758; ++_t758) {
@@ -795,7 +800,7 @@ gd::GdVal Gd__gd_core__CoreCombat::fn_physicsTick(const gd::GdVal* _args, int _a
                 uint32_t _len__t761 = _t760 ? _t760->len : 0u;
                 for (uint32_t _t761 = 0; _t761 < _len__t761; ++_t761) {
                     gd::GdVal lv_gem = _t760->data[_t761];
-                    if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_ne(lv_gem, gd::GdVal::null())))) {
+                    if (!lv_gem.is_null()) {
                         auto* cooldown_gem = static_cast<Gd__gd_core__CoreItem*>(lv_gem.obj);
                         if (gd::gd_truth(cooldown_gem->f__cooldown_active)) cooldown_gem->fn_physicsTick(&lv_delta, 1);
                     }
@@ -804,10 +809,10 @@ gd::GdVal Gd__gd_core__CoreCombat::fn_physicsTick(const gd::GdVal* _args, int _a
         }
     }
     this->f_combat_time = gd::gd_add(gd_ctx, this->f_combat_time, lv_delta);
-    gd::set_prop(gd_ctx, this->f_ctx, SYM_GEN_combat_time_1306, this->f_combat_time);
-    (void)([&]() { gd::GdVal _ca[] = {lv_delta}; return gd::call_method(gd_ctx, this->f_player, SYM_GEN_physicsTickCharacter_1292, _ca, 1); })();
+    context()->f_combat_time = this->f_combat_time;
+    (void)([&]() { gd::GdVal _ca[] = {lv_delta}; return player()->fn_physicsTickCharacter(_ca, 1); })();
     {
-        gd::GdVal _t762 = gd::gd_iter_seq(gd_ctx.arena, gd::call_method(gd_ctx, gd::get_prop(gd_ctx, this->f_player, SYM_GEN_inventory_5), SYM_GEN_getItems_1603, nullptr, 0));
+        gd::GdVal _t762 = gd::gd_iter_seq(gd_ctx.arena, static_cast<Gd__gd_core__CoreGrid*>(player()->f_inventory.obj)->f_items);
         gd::GdArr* _t763 = (_t762.kind == gd::GdVal::Kind::Arr) ? _t762.arr : nullptr;
         uint32_t _len__t764 = _t763 ? _t763->len : 0u;
         for (uint32_t _t764 = 0; _t764 < _len__t764; ++_t764) {
@@ -820,7 +825,7 @@ gd::GdVal Gd__gd_core__CoreCombat::fn_physicsTick(const gd::GdVal* _args, int _a
                 uint32_t _len__t767 = _t766 ? _t766->len : 0u;
                 for (uint32_t _t767 = 0; _t767 < _len__t767; ++_t767) {
                     gd::GdVal lv_gem = _t766->data[_t767];
-                    if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_ne(lv_gem, gd::GdVal::null())))) {
+                    if (!lv_gem.is_null()) {
                         auto* cooldown_gem = static_cast<Gd__gd_core__CoreItem*>(lv_gem.obj);
                         if (gd::gd_truth(cooldown_gem->f__cooldown_active)) cooldown_gem->fn_physicsTick(&lv_delta, 1);
                     }
@@ -828,41 +833,41 @@ gd::GdVal Gd__gd_core__CoreCombat::fn_physicsTick(const gd::GdVal* _args, int _a
             }
         }
     }
-    gd::set_prop(gd_ctx, this->f_ctx, SYM_GEN_in_item_physics_pass_1447, gd::GdVal::from_bool(false));
+    context()->f_in_item_physics_pass = gd::GdVal::from_bool(false);
     if (gd::gd_truth(this->f__track_hidden_log)) {
-        (void)([&]() { gd::GdVal _ca[] = {gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_combat_log_1410), gd::GdVal::from_str(&battle_string_literals[9])}; return gd::call_method(gd_ctx, this->f_ctx, SYM_GEN_defer_1482, _ca, 2); })();
+        (void)([&]() { gd::GdVal _ca[] = {context()->f_combat_log, gd::GdVal::from_str(&battle_string_literals[9])}; return context()->fn_defer(_ca, 2); })();
     }
-    (void)gd::call_method(gd_ctx, this->f_ctx, SYM_GEN_flushDeferred_1484, nullptr, 0);
-    (void)gd::call_method(gd_ctx, this->f_ctx, SYM_GEN_flushIdleFrameCalls_1486, nullptr, 0);
+    (void)context()->fn_flushDeferred(nullptr, 0);
+    (void)context()->fn_flushIdleFrameCalls(nullptr, 0);
     if (_argc > 1) replay_host_before_idle(
         _args[1].as_int(), this->f_ctx.obj, this->f_combat_time.as_float());
-    (void)([&]() { gd::GdVal _ca[] = {lv_delta}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_stepCharacterIdle_1339, _ca, 1); })();
-    (void)gd::call_method(gd_ctx, this->f_ctx, SYM_GEN_flushDeferred_1484, nullptr, 0);
-    if (gd::gd_truth(gd::GdVal::from_bool(!gd::gd_truth(gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_fight_ended_1305))))) {
-        (void)([&]() { gd::GdVal _ca[] = {gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_PHYSICS_DELTA_1404)}; return gd::call_method(gd_ctx, this->f_ctx, SYM_GEN_lib_fires_tick_1473, _ca, 1); })();
-        (void)gd::call_method(gd_ctx, this->f_ctx, SYM_GEN__flushTimed_1481, nullptr, 0);
-        (void)([&]() { gd::GdVal _ca[] = {lv_delta}; return gd::call_method(gd_ctx, this->f_ctx, SYM_GEN_tickMotion_1501, _ca, 1); })();
+    (void)([&]() { gd::GdVal _ca[] = {lv_delta}; return this->fn_stepCharacterIdle(_ca, 1); })();
+    (void)context()->fn_flushDeferred(nullptr, 0);
+    if (gd::gd_truth(gd::GdVal::from_bool(!gd::gd_truth(context()->f_fight_ended)))) {
+        (void)([&]() { gd::GdVal _ca[] = {Gd__gd_core__CoreContext::get_static_const_or_enum(gd_ctx, SYM_GEN_PHYSICS_DELTA_1404)}; return context()->fn_lib_fires_tick(_ca, 1); })();
+        (void)context()->fn__flushTimed(nullptr, 0);
+        (void)([&]() { gd::GdVal _ca[] = {lv_delta}; return context()->fn_tickMotion(_ca, 1); })();
     }
     if (gd::gd_truth((gd::gd_truth(gd::GdVal::from_bool(!gd::gd_truth(this->f_fight_ended))) ? gd::GdVal::from_bool(gd::gd_truth(gd::GdVal::from_bool(gd::gd_gt(this->f_combat_time, this->f_max_time)))) : gd::GdVal::from_bool(false)))) {
         this->f_timed_out = gd::GdVal::from_bool(true);
-        (void)gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_forceLoseCombat_1333, nullptr, 0);
+        (void)this->fn_forceLoseCombat(nullptr, 0);
     }
     if (gd::gd_truth(this->f__pending_deferred)) {
-        (void)gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN__flushDeferred_1334, nullptr, 0);
+        (void)this->fn__flushDeferred(nullptr, 0);
     }
-    (void)gd::call_method(gd_ctx, this->f_ctx, SYM_GEN_flushDeferred_1484, nullptr, 0);
+    (void)context()->fn_flushDeferred(nullptr, 0);
     return gd::GdVal::null();
 }
 gd::GdVal Gd__gd_core__CoreCombat::fn_run(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
     while (gd::gd_truth(gd::GdVal::from_bool(!gd::gd_truth(this->f_fight_ended)))) {
-        (void)([&]() { gd::GdVal _ca[] = {gd::get_prop(gd_ctx, gd::GdVal::from_cls(&META_Gd__gd_core__CoreContext), SYM_GEN_PHYSICS_DELTA_1404)}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_physicsTick_134, _ca, 1); })();
+        (void)([&]() { gd::GdVal _ca[] = {Gd__gd_core__CoreContext::get_static_const_or_enum(gd_ctx, SYM_GEN_PHYSICS_DELTA_1404)}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_physicsTick_134, _ca, 1); })();
     }
     return gd::GdVal::null();
 }
 gd::GdVal Gd__gd_core__CoreCombat::fn__fatigueTick(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
-    this->f_fatigue_next_tick = gd::gd_sub(this->f_fatigue_next_tick, gd::get_prop(gd_ctx, gd::GdVal::from_cls(&META_Gd__gd_core__CoreContext), SYM_GEN_PHYSICS_DELTA_1404));
+    this->f_fatigue_next_tick = gd::gd_sub(this->f_fatigue_next_tick, Gd__gd_core__CoreContext::get_static_const_or_enum(gd_ctx, SYM_GEN_PHYSICS_DELTA_1404));
     if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_ge(this->f_fatigue_next_tick, gd::GdVal::from_float(0.0))))) {
         return gd::GdVal::null();
     }
@@ -1038,14 +1043,18 @@ gd::GdVal Gd__gd_core__CoreCombat::fn__tickCharacterTimers(const gd::GdVal* args
 }
 gd::GdVal Gd__gd_core__CoreCombat::fn_stepCharacterIdle(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
+    // The native battle constructs exact CoreContext and CoreCharacter objects.
+    const auto context = [this] { return static_cast<Gd__gd_core__CoreContext*>(this->f_ctx.obj); };
+    const auto opponent = [this] { return static_cast<Gd__gd_core__CoreCharacter*>(this->f_opponent.obj); };
+    const auto player = [this] { return static_cast<Gd__gd_core__CoreCharacter*>(this->f_player.obj); };
     gd::GdVal lv_delta = (_argc > 0) ? _args[0] : gd::GdVal::null();
     lv_delta = gd::gd_coerce_float(lv_delta);
-    (void)([&]() { gd::GdVal _ca[] = {lv_delta}; return gd::call_method(gd_ctx, this->f_opponent, SYM_GEN_tickIdleAnimation_1138, _ca, 1); })();
-    (void)([&]() { gd::GdVal _ca[] = {lv_delta}; return gd::call_method(gd_ctx, this->f_ctx, SYM_GEN_tickOpponentFlickers_1507, _ca, 1); })();
-    (void)([&]() { gd::GdVal _ca[] = {lv_delta}; return gd::call_method(gd_ctx, this->f_player, SYM_GEN_tickIdleAnimation_1138, _ca, 1); })();
-    (void)([&]() { gd::GdVal _ca[] = {lv_delta}; return gd::call_method(gd_ctx, this->f_ctx, SYM_GEN_tickFlickers_1508, _ca, 1); })();
-    if (gd::gd_truth(gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_native_frame_rng_1450))) {
-        (void)gd::call_method(gd_ctx, this->f_ctx, SYM_GEN_stepCriticalShake_1498, nullptr, 0);
+    (void)([&]() { gd::GdVal _ca[] = {lv_delta}; return opponent()->fn_tickIdleAnimation(_ca, 1); })();
+    (void)([&]() { gd::GdVal _ca[] = {lv_delta}; return context()->fn_tickOpponentFlickers(_ca, 1); })();
+    (void)([&]() { gd::GdVal _ca[] = {lv_delta}; return player()->fn_tickIdleAnimation(_ca, 1); })();
+    (void)([&]() { gd::GdVal _ca[] = {lv_delta}; return context()->fn_tickFlickers(_ca, 1); })();
+    if (gd::gd_truth(context()->f_native_frame_rng)) {
+        (void)context()->fn_stepCriticalShake(nullptr, 0);
     }
     return gd::GdVal::null();
 }
