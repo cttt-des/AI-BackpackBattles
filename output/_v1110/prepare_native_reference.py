@@ -12,6 +12,7 @@ parser.add_argument("stage", nargs="?", default="output/_v1110")
 parser.add_argument("--rng-probe", action="store_true")
 parser.add_argument("--cohort", choices=("expand", "base"), default="expand")
 parser.add_argument("--project-name", default="native_reference")
+parser.add_argument("--shipping-engine", action="store_true", help="Run the recovered project on the copied shipping EXE")
 args = parser.parse_args()
 stage = Path(args.stage).resolve()
 source = stage / "decompiled"
@@ -64,7 +65,12 @@ for name in ("requestOpponentPoolAccessCheck", "_startModUpdateChecks"):
 (dest / "Core/Game.gd").write_text(game, encoding="utf8")
 runtime = dest / "runtime"
 runtime.mkdir(exist_ok=True)
-shutil.copyfile(root / "output/godot36/Godot_v3.6-stable_win64.exe", runtime / "Godot_v3.6-stable_win64.exe")
+executable = (stage / "source/BackpackBattles.exe" if args.shipping_engine
+              else root / "output/godot36/Godot_v3.6-stable_win64.exe")
+exe_sha256 = hashlib.sha256(executable.read_bytes()).hexdigest()
+if args.shipping_engine and exe_sha256 != manifest["sha256"]["BackpackBattles.exe"]["sha256"]:
+    raise ValueError("Copied shipping EXE differs from the 1.1.10 source manifest")
+shutil.copyfile(executable, runtime / "Godot_v3.6-stable_win64.exe")
 for name in ("libgdsqlite.dll", "steam_api64.dll"):
     shutil.copyfile(stage / "source" / name, runtime / name)
 project = (source / "project.godot").read_text("utf8")
@@ -131,7 +137,10 @@ for relative in combat_files:
     "case_list_sha256": hashlib.sha256(case_list.read_bytes()).hexdigest(),
     "history_snapshot_sha256": hashlib.sha256(history.read_bytes()).hexdigest(),
     "reader_sha256": hashlib.sha256((dest / "native_battle_reader.gd").read_bytes()).hexdigest(),
-    "engine": "vanilla Godot 3.6; full recovered Main scene; native frame scheduling",
+    "engine": ("Shipping BackpackBattles.exe; full recovered Main scene; native frame scheduling" if args.shipping_engine
+               else "vanilla Godot 3.6; full recovered Main scene; native frame scheduling"),
+    "engine_sha256": exe_sha256,
+    "shipping_engine": args.shipping_engine,
     "battle_script_sha256": hashes,
     "adaptations": ["Offline Steam, leaderboard, SDK and plugin service stubs",
                     "Recovered plaintext table and full-version runtime DLL discovery",
@@ -139,6 +148,7 @@ for relative in combat_files:
                     "Global engine PCG position observed and restored at preparation and activation",
                     "Batches return through the source history menu; adapter selects records and resets its UI fight guard",
                     "Read-only RNG call observer enabled" if rng_probe else "Native RNG object unchanged"],
-    "scope": "Independent recovered-source reference, not the installed shipping EXE"
+    "scope": ("Shipping executable cross-check loading the recovered source project" if args.shipping_engine
+              else "Independent recovered-source reference, not the installed shipping EXE")
 }, ensure_ascii=False, indent=2) + "\n", encoding="utf8")
 print(dest)

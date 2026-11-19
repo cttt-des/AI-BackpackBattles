@@ -1,4 +1,5 @@
 import argparse
+import hashlib
 import json
 import shutil
 from pathlib import Path
@@ -20,6 +21,7 @@ ap.add_argument("--engine-seed", type=int, help="Set controlled Godot global RNG
 ap.add_argument("--cohort", choices=("expand", "base"), default="expand")
 ap.add_argument("--project-name", default="native_reference")
 ap.add_argument("--reuse-prepared", action="store_true", help="Use a frozen previously prepared project")
+ap.add_argument("--shipping-engine", action="store_true", help="Use the copied shipping EXE with this recovered project")
 args=ap.parse_args()
 if args.engine_seed is not None:
     if not 0 <= args.engine_seed < 2**63 - 1:
@@ -43,17 +45,21 @@ if project.parent != stage.resolve():
 if not args.reuse_prepared:
     subprocess.run([sys.executable,"-u","-X","utf8",str(stage/"prepare_native_reference.py"),str(stage),
                     "--cohort",args.cohort,"--project-name",args.project_name,
-                    *(["--rng-probe"] if args.rng_probe else [])],check=True)
-else:
-    manifest=json.loads((project/"reference_manifest.json").read_text("utf8"))
-    if manifest.get("cohort") != args.cohort or manifest.get("version") != "1.1.10":
-        ap.error("Prepared project version or cohort differs from this recording")
+                    *(["--rng-probe"] if args.rng_probe else []),
+                    *(["--shipping-engine"] if args.shipping_engine else [])],check=True)
+manifest = json.loads((project / "reference_manifest.json").read_text("utf8"))
+if (manifest.get("cohort") != args.cohort or manifest.get("version") != "1.1.10"
+        or bool(manifest.get("shipping_engine")) != args.shipping_engine):
+    ap.error("Prepared project version, cohort or executable differs from this recording")
+executable = project / "runtime/Godot_v3.6-stable_win64.exe"
+if "engine_sha256" in manifest and hashlib.sha256(executable.read_bytes()).hexdigest() != manifest["engine_sha256"]:
+    raise SystemExit("The executable differs from the reference manifest")
 command=gh.cmd("--fixed-fps","60",project=str(project))
 if args.disable_render_loop:
     command.append("--disable-render-loop")
 if args.rng_probe:
     command.append("--debug")  # Godot exposes get_stack() only with a debugger.
-command[0]=str(project/"runtime/Godot_v3.6-stable_win64.exe")
+command[0]=str(executable)
 p,log,h=gh.spawn(command,label="native_settled",tag="native_settled",
                  env_extra={"NATIVE_BATTLE_CASE":",".join(case_ids),"NATIVE_BATTLE_OUT":str(stage/args.out),
                             "NATIVE_BATTLE_ENGINE_SEED": "" if args.engine_seed is None else str(args.engine_seed)})
