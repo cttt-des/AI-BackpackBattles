@@ -13,7 +13,7 @@ func check_flickers():
 	var script = GDScript.new()
 	script.source_code = original.replace("extends AnimationPlayer", "extends AnimationPlayer\nvar context").replace("Util.rng", "context.rng").replace("Util.callDelayed", "context.callDelayed")
 	assert(script.reload() == OK)
-	for variant in 4:
+	for variant in 5:
 		var native_context = CoreContext.new(771 + variant)
 		var model_context = CoreContext.new(771 + variant)
 		var native = script.new()
@@ -28,9 +28,15 @@ func check_flickers():
 		native.playback_speed = 0.7
 		native.play("Flicker")
 		native.seek(0.1)
+		var pending := []
+		if variant == 4:
+			# Both callbacks play the current clip before it can finish.
+			for delay in [0.12, 0.23]:
+				native_context.callDelayed(native, "playAni", delay)
+				pending.append({"left": delay, "method": "playAni"})
 		model_context.flicker_initial = [{"limits": [native.minDist, native.maxDist, native.minSpeed, native.maxSpeed],
 			"position": 0.1, "speed": 0.7, "length": 0.3, "playing": true,
-			"inside_tree": variant != 3, "loop": variant == 2, "pending": []}]
+			"inside_tree": variant != 3, "loop": variant == 2, "pending": pending}]
 		model_context.restoreFlickers()
 		var model = model_context._flickers[0]
 		for frame in 5000:
@@ -43,8 +49,20 @@ func check_flickers():
 				print("[FLICKER-FAIL] variant=", variant, " frame=", frame,
 					" native_pos=", native.current_animation_position, " model_pos=", model.position,
 					" native_playing=", native.is_playing(), " model_playing=", model.playing)
+				release_variant(native, native_context, model_context)
 				quit(1)
 				return
-		native.free()
-	print("[FLICKER-PASS] 4 variants x 5000 frames: exact positions, speed, play state and RNG")
+		release_variant(native, native_context, model_context)
+	print("[FLICKER-PASS] 5 variants x 5000 frames: exact positions, speed, play state and RNG")
 	quit()
+
+func release_variant(native, native_context, model_context) -> void:
+	native.free()
+	for context in [native_context, model_context]:
+		context._timed.clear()
+		context._flickers.clear()
+		context.util._ctx = null
+		context.bus._ctx = null
+		context.combat_log._ctx = null
+		context.item_book._ctx = null
+		context.fatigueDamageSource = null
