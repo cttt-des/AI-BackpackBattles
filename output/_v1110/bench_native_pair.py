@@ -18,6 +18,7 @@ ap.add_argument("--before", default="native_kernel_baseline")
 ap.add_argument("--after", default="native_kernel_timers")
 ap.add_argument("--before-dll", type=Path, help="Override the baseline DLL path")
 ap.add_argument("--after-dll", type=Path, help="Override the candidate DLL path")
+ap.add_argument("--before-results", type=Path, help="Baseline verification directory with the same inputs")
 ap.add_argument("--after-results", type=Path, help="Candidate verification directory with the same inputs")
 ap.add_argument("--report", type=Path)
 ap.add_argument("--rounds", type=int, default=5)
@@ -25,7 +26,7 @@ ap.add_argument("--iterations", type=int, default=5)
 ap.add_argument("--samples", type=int, default=3)
 args = ap.parse_args()
 roots = [stage / name for name in (args.before, args.after)]
-verified = [roots[0] / "cpp", args.after_results or roots[1] / "cpp"]
+verified = [args.before_results or roots[0] / "cpp", args.after_results or roots[1] / "cpp"]
 summaries = [json.loads((root / "summary.json").read_text("utf8")) for root in verified]
 # Read the per-case files; the summary only includes a prefix of failures.
 reports = [[json.loads(path.read_text("utf8")) for path in root.glob("run*.json")] for root in verified]
@@ -38,7 +39,7 @@ ranked = sorted(eligible, key=lambda cid: len(json.loads((roots[1] / "fights" / 
 selected = list(dict.fromkeys(ranked[round(i * (len(ranked) - 1) / (args.samples - 1))] for i in range(args.samples)))
 dlls = [args.before_dll or roots[0] / "bin/libgdcore.dll", args.after_dll or sim_root / "native_sim_cpp/native_sim/libgdcore.dll"]
 dlls = [path.resolve() for path in dlls]
-if args.after_results is not None:
+if args.after_results is not None and "dll_sha256" not in summaries[1]:
     assert Path(summaries[1]["dll"]).resolve() == dlls[1], "Verification used a different candidate DLL"
 dll_hashes = [hashlib.sha256(path.read_bytes()).hexdigest() for path in dlls]
 for summary, digest in zip(summaries, dll_hashes):
@@ -49,7 +50,10 @@ if all(row.get("reference_mode") == "native-only" for row in summaries):
     assert all(row["fixtures_sha256"] == fixture_digest for row in summaries), "Verification used different inputs"
     assert all(maps[0][cid]["original_events_sha256"] == maps[1][cid]["original_events_sha256"] for cid in selected)
 engines = [NativeSimulator(path) for path in dlls]
-for engine in engines:
+for engine, receipt in zip(engines, summaries):
+    if "runtime_data_sha256" in receipt:
+        payload = json.dumps(engine.data, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+        assert hashlib.sha256(payload.encode("utf8")).hexdigest() == receipt["runtime_data_sha256"], "Verification used different runtime data"
     engine.lib.gd_sim_set_dbg_events.argtypes = [ctypes.c_int32]
     engine.lib.gd_sim_set_dbg_events.restype = None
 fixtures = {row["case_id"]: row for row in json.loads((roots[1] / "fixtures.json").read_text("utf8"))["cases"]}
