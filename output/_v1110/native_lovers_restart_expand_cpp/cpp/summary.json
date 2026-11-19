@@ -1,0 +1,618 @@
+{
+ "total": 881,
+ "passed": 862,
+ "reference_mode": "native-only",
+ "category": {
+  "battle_semantic": 19,
+  "pass": 862
+ },
+ "winner_mismatch": 0,
+ "winner_unavailable": 0,
+ "cases_with_coarse_gem_origin": 0,
+ "strict_gem_origins": true,
+ "original_dir": "D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_shipping_expand_live\\expand",
+ "first_divergences": [
+  {
+   "caseId": "run704950_r17_o500205_r17",
+   "first": 404,
+   "rows_cpp": 1144,
+   "rows_gd": null,
+   "o_row": null,
+   "g_row": null,
+   "first_gem": {
+    "index": 440,
+    "original": [
+     "Flawless Sapphire",
+     "Lightsaber",
+     1,
+     6,
+     3,
+     0
+    ],
+    "cpp": null
+   },
+   "first_original": null,
+   "first_item": {
+    "index": 404,
+    "original": [
+     "Mana Orb",
+     1,
+     7,
+     2
+    ],
+    "cpp": [
+     "Amulet of Light",
+     1,
+     4,
+     5
+    ]
+   },
+   "rows_original": 1254,
+   "first_divergence": 404,
+   "cpp_row": "ts=f:401a66667d800000|type=102|id=405|tgt=0|parent=404|origin=o:item:Amulet of Light#1|params=d:{amount=i:1,reflected=b:0,used=b:0}",
+   "original_row": "ts=f:401a666666666666|type=105|id=404|tgt=0|parent=-1|origin=o:item:Mana Orb#1|params=d:{amount=i:1,reflected=b:0,used=b:0}"
+  },
+  {
+   "caseId": "run101582_r9_o704990_r9",
+   "first": 209,
+   "rows_cpp": 624,
+   "rows_gd": null,
+   "o_row": null,
+   "g_row": null,
+   "first_gem": {
+    "index": 210,
+    "original": [
+     "Perfect Amethyst",
+     "Poison Spear",
+     1,
+     0,
+     3,
+     0
+    ],
+    "cpp": null
+   },
+   "first_original": null,
+   "first_item": {
+    "index": 210,
+    "original": null,
+    "cpp": [
+     "Poison Spear",
+     1,
+     0,
+     3
+    ]
+   },
+   "rows_original": 603,
+   "first_divergence": 209,
+   "cpp_row": "ts=f:401aaaaac2000000|type=102|id=210|tgt=1|parent=207|origin=o:item:Perfect Amethyst#7|params=d:{amount=i:-2,reflected=b:0,used=b:0}",
+   "original_row": "ts=f:401aaaaac1094a2c|type=107|id=209|tgt=1|parent=206|origin=o:gem|params=d:{amount=i:-1,reflected=b:0,used=b:0}"
+  },
+  {
+   "caseId": "run101571_r12_o200222_r12",
+   "first": 256,
+   "rows_cpp": 617,
+   "rows_gd": null,
+   "o_row": null,
+   "g_row": null,
+   "first_gem": null,
+   "first_original": null,
+   "first_item": {
+    "index": 263,
+    "original": [
+     "Spiked Shield",
+     3,
+     0,
+     0
+    ],
+    "cpp": [
+     "Thorn Whip",
+     1,
+     3,
+     2
+    ]
+   },
+   "rows_original": 608,
+   "first_divergence": 256,
+   "cpp_row": "ts=f:401bbbbbd4000000|type=106|id=257|tgt=1|parent=-1|origin=o:item:White King#3|params=d:{amount=i:1,reflected=b:0,used=b:0}",
+   "original_row": "ts=f:401bbbbbe878fabe|type=104|id=256|tgt=1|parent=-1|origin=o:item:White King#3|params=d:{amount=i:1,reflected=b:0,used=b:0}"
+  },
+  {
+   "caseId": "run704993_r18_o101755_r18",
+   "first": 1469,
+   "rows_cpp": 1471,
+   "rows_gd": null,
+   "o_row": null,
+   "g_row": null,
+   "first_gem": null,
+   "first_original": null,
+   "first_item": {
+    "index": 1470,
+    "original": [
+     "Moon Shield",
+     1,
+     7,
+     4
+    ],
+    "cpp": [
+     "Dragon Knight",
+     3,
+     3,
+     2
+    ]
+   },
+   "rows_original": 1473,
+   "first_divergence": 1469,
+   "cpp_row": "ts=f:4037044458680000|type=2|id=1470|tgt=-999|parent=-1|origin=o:item:Dragon Knight#3|params=d:{damage=i:36}",
+   "original_row": "ts=f:403704445aa2e3c5|type=2|id=1469|tgt=-999|parent=-1|origin=o:item:Dragon Knight#3|params=d:{damage=i:22}"
+  },
+  {
+   "caseId": "run300225_r6_o500231_r6",
+   "first": 189,
+   "rows_cpp": 221,
+   "rows_gd": null,
+   "o_row": null,
+   "g_row": null,
+   "first_gem": null,
+   "first_original": null,
+   "first_item": null,
+   "rows_original": 214,
+   "first_divergence": 189,
+   "cpp_row": "ts=f:40244cccde900000|type=1|id=190|tgt=-999|parent=-1|origin=o:item:Stone#3|params=d:{damage=i:7}",
+   "original_row": "ts=f:40244cccee5abc0e|type=1|id=189|tgt=-999|parent=-1|origin=o:item:Stone#3|params=d:{damage=i:8}"
+  },
+  {
+   "caseId": "run705059_r11_o604523_r11",
+   "first": 70,
+   "rows_cpp": 370,
+   "rows_gd": null,
+   "o_row": null,
+   "g_row": null,
+   "first_gem": {
+    "index": 75,
+    "original": null,
+    "cpp": [
+     "Perfect Emerald",
+     "Poison Spear",
+     1,
+     5,
+     6,
+     0
+    ]
+   },
+   "first_original": null,
+   "first_item": {
+    "index": 72,
+    "original": [
+     "Storage Coffin",
+     1,
+     5,
+     3
+    ],
+    "cpp": [
+     "Poison Spear",
+     1,
+     5,
+     6
+    ]
+   },
+   "rows_original": 350,
+   "first_divergence": 70,
+   "cpp_row": "ts=f:3ff9ddddf4800000|type=1|id=71|tgt=-999|parent=-1|origin=o:item:Ruby Whelp#1|params=d:{damage=i:8}",
+   "original_row": "ts=f:3ff9ddde37585be2|type=1|id=70|tgt=-999|parent=-1|origin=o:item:Ruby Whelp#1|params=d:{damage=i:9}"
+  },
+  {
+   "caseId": "run604648_r11_o101432_r11",
+   "first": 398,
+   "rows_cpp": 426,
+   "rows_gd": null,
+   "o_row": null,
+   "g_row": null,
+   "first_gem": null,
+   "first_original": null,
+   "first_item": {
+    "index": 398,
+    "original": [
+     "Thors Hammer",
+     3,
+     1,
+     2
+    ],
+    "cpp": [
+     "Friendly Fire",
+     1,
+     4,
+     3
+    ]
+   },
+   "rows_original": 422,
+   "first_divergence": 398,
+   "cpp_row": "ts=f:40226eeeff100000|type=105|id=399|tgt=0|parent=-1|origin=o:item:Friendly Fire#1|params=d:{amount=i:-1,reflected=b:0,used=b:1}",
+   "original_row": "ts=f:402255556084a516|type=109|id=398|tgt=0|parent=-1|origin=o:item:Thors Hammer#3|params=d:{amount=i:-2,reflected=b:0,timeout=b:1,used=b:0}"
+  },
+  {
+   "caseId": "run604857_r8_o704267_r8",
+   "first": 73,
+   "rows_cpp": 168,
+   "rows_gd": null,
+   "o_row": null,
+   "g_row": null,
+   "first_gem": {
+    "index": 132,
+    "original": [
+     "Regular Sapphire",
+     "Double Axe",
+     1,
+     2,
+     4,
+     0
+    ],
+    "cpp": null
+   },
+   "first_original": null,
+   "first_item": {
+    "index": 115,
+    "original": [
+     "Forging Hammer",
+     3,
+     5,
+     3
+    ],
+    "cpp": [
+     "Banana",
+     3,
+     3,
+     3
+    ]
+   },
+   "rows_original": 157,
+   "first_divergence": 73,
+   "cpp_row": "ts=f:4018eeef04c00000|type=1|id=74|tgt=-999|parent=-1|origin=o:item:Double Axe#1|params=d:{damage=i:42}",
+   "original_row": "ts=f:4018eeef1bac2df1|type=1|id=73|tgt=-999|parent=-1|origin=o:item:Double Axe#1|params=d:{damage=i:45}"
+  },
+  {
+   "caseId": "run704304_r11_o604610_r11",
+   "first": 29,
+   "rows_cpp": 122,
+   "rows_gd": null,
+   "o_row": null,
+   "g_row": null,
+   "first_gem": {
+    "index": 58,
+    "original": null,
+    "cpp": [
+     "Chipped Emerald",
+     "Obsidian Dragon",
+     3,
+     5,
+     1,
+     0
+    ]
+   },
+   "first_original": null,
+   "first_item": {
+    "index": 32,
+    "original": [
+     "Fancy Fencing Rapier",
+     3,
+     5,
+     0
+    ],
+    "cpp": null
+   },
+   "rows_original": 113,
+   "first_divergence": 29,
+   "cpp_row": "ts=f:3ff3777788800000|type=1|id=30|tgt=-999|parent=-1|origin=o:item:Phoenix2#3|params=d:{damage=i:14}",
+   "original_row": "ts=f:3ff37777d0f1f57b|type=2|id=29|tgt=-999|parent=-1|origin=o:item:Phoenix2#3|params=d:{damage=i:30}"
+  },
+  {
+   "caseId": "run704467_r9_o500276_r9",
+   "first": 44,
+   "rows_cpp": 237,
+   "rows_gd": null,
+   "o_row": null,
+   "g_row": null,
+   "first_gem": null,
+   "first_original": null,
+   "first_item": {
+    "index": 56,
+    "original": [
+     "False Life",
+     1,
+     5,
+     1
+    ],
+    "cpp": [
+     "Cauldron",
+     1,
+     3,
+     3
+    ]
+   },
+   "rows_original": 239,
+   "first_divergence": 44,
+   "cpp_row": "ts=f:4001777786c00000|type=2|id=45|tgt=-999|parent=-1|origin=o:item:Spear#3|params=d:{damage=i:20}",
+   "original_row": "ts=f:400177774aba3876|type=1|id=44|tgt=-999|parent=-1|origin=o:item:Spear#3|params=d:{damage=i:9}"
+  },
+  {
+   "caseId": "run704514_r14_o500247_r14",
+   "first": 79,
+   "rows_cpp": 209,
+   "rows_gd": null,
+   "o_row": null,
+   "g_row": null,
+   "first_gem": null,
+   "first_original": null,
+   "first_item": {
+    "index": 81,
+    "original": [
+     "Cauldron",
+     3,
+     2,
+     3
+    ],
+    "cpp": [
+     "Sapphire Whelp",
+     1,
+     5,
+     0
+    ]
+   },
+   "rows_original": 194,
+   "first_divergence": 79,
+   "cpp_row": "ts=f:3ff7333347800000|type=12|id=80|tgt=1|parent=-1|origin=o:item:Cauldron#3|params=d:{amount=i:14}",
+   "original_row": "ts=f:3ff7333333333333|type=105|id=79|tgt=1|parent=-1|origin=o:item:Cauldron#3|params=d:{amount=i:2,reflected=b:0,resisted=b:1,used=b:0}"
+  },
+  {
+   "caseId": "run704709_r11_o704267_r11",
+   "first": 53,
+   "rows_cpp": 180,
+   "rows_gd": null,
+   "o_row": null,
+   "g_row": null,
+   "first_gem": {
+    "index": 67,
+    "original": [
+     "Wisp",
+     "Thorn Bow",
+     1,
+     5,
+     0,
+     0
+    ],
+    "cpp": null
+   },
+   "first_original": null,
+   "first_item": {
+    "index": 56,
+    "original": [
+     "Thorn Bow",
+     1,
+     5,
+     0
+    ],
+    "cpp": null
+   },
+   "rows_original": 137,
+   "first_divergence": 53,
+   "cpp_row": "ts=f:3ff5ddddf1000000|type=2|id=54|tgt=-999|parent=-1|origin=o:item:Hero Longsword#1|params=d:{damage=i:5}",
+   "original_row": "ts=f:3ff5ddde37585be2|type=1|id=53|tgt=-999|parent=-1|origin=o:item:Hero Longsword#1|params=d:{damage=i:0}"
+  },
+  {
+   "caseId": "run704758_r6_o604625_r6",
+   "first": 55,
+   "rows_cpp": 129,
+   "rows_gd": null,
+   "o_row": null,
+   "g_row": null,
+   "first_gem": {
+    "index": 116,
+    "original": null,
+    "cpp": [
+     "Chipped Ruby",
+     "Double Axe",
+     3,
+     3,
+     2,
+     0
+    ]
+   },
+   "first_original": null,
+   "first_item": {
+    "index": 100,
+    "original": [
+     "Double Axe",
+     3,
+     3,
+     2
+    ],
+    "cpp": [
+     "Hero Sword",
+     1,
+     2,
+     3
+    ]
+   },
+   "rows_original": 137,
+   "first_divergence": 55,
+   "cpp_row": "ts=f:400fddddf9c00000|type=1|id=56|tgt=-999|parent=-1|origin=o:item:Hero Sword#1|params=d:{damage=i:3}",
+   "original_row": "ts=f:400fddde37585be2|type=1|id=55|tgt=-999|parent=-1|origin=o:item:Hero Sword#1|params=d:{damage=i:2}"
+  },
+  {
+   "caseId": "run704842_r15_o604595_r15",
+   "first": 266,
+   "rows_cpp": 1595,
+   "rows_gd": null,
+   "o_row": null,
+   "g_row": null,
+   "first_gem": null,
+   "first_original": null,
+   "first_item": {
+    "index": 268,
+    "original": [
+     "Stone",
+     1,
+     5,
+     4
+    ],
+    "cpp": [
+     "Chili Pepper",
+     3,
+     6,
+     3
+    ]
+   },
+   "rows_original": 1476,
+   "first_divergence": 266,
+   "cpp_row": "ts=f:401866667bc00000|type=3|id=267|tgt=-999|parent=-1|origin=o:item:Stone#1|params=d:{}",
+   "original_row": "ts=f:4018666666666666|type=100|id=266|tgt=1|parent=-1|origin=o:item:Stone#1|params=d:{amount=i:-4,reflected=b:0,used=b:0}"
+  },
+  {
+   "caseId": "run604775_r12_o200195_r12",
+   "first": 1901,
+   "rows_cpp": 2702,
+   "rows_gd": null,
+   "o_row": null,
+   "g_row": null,
+   "first_gem": null,
+   "first_original": null,
+   "first_item": {
+    "index": 1902,
+    "original": null,
+    "cpp": [
+     "Heart Shield",
+     1,
+     2,
+     4
+    ]
+   },
+   "rows_original": 2742,
+   "first_divergence": 1901,
+   "cpp_row": "ts=f:403f04445f680000|type=1|id=1902|tgt=-999|parent=-1|origin=o:item:Thunder Drake#3|params=d:{damage=i:0}",
+   "original_row": "ts=f:403f04445aa2e3c5|type=1|id=1901|tgt=-999|parent=-1|origin=o:item:Thunder Drake#3|params=d:{damage=i:18}"
+  },
+  {
+   "caseId": "run704896_r16_o101394_r16",
+   "first": 108,
+   "rows_cpp": 303,
+   "rows_gd": null,
+   "o_row": null,
+   "g_row": null,
+   "first_gem": {
+    "index": 174,
+    "original": null,
+    "cpp": [
+     "Elephant Rune",
+     "Spiked Staff",
+     3,
+     2,
+     3,
+     0
+    ]
+   },
+   "first_original": null,
+   "first_item": {
+    "index": 112,
+    "original": null,
+    "cpp": [
+     "Frostbite",
+     1,
+     4,
+     1
+    ]
+   },
+   "rows_original": 404,
+   "first_divergence": 108,
+   "cpp_row": "ts=f:3ff7333347800000|type=1|id=109|tgt=-999|parent=-1|origin=o:item:Frostbite#1|params=d:{damage=i:28}",
+   "original_row": "ts=f:3ff7333333333333|type=1|id=108|tgt=-999|parent=-1|origin=o:item:Frostbite#1|params=d:{damage=i:29}"
+  },
+  {
+   "caseId": "run704896_r17_o101360_r17",
+   "first": 537,
+   "rows_cpp": 733,
+   "rows_gd": null,
+   "o_row": null,
+   "g_row": null,
+   "first_gem": null,
+   "first_original": null,
+   "first_item": {
+    "index": 542,
+    "original": [
+     "Death Lotus",
+     1,
+     0,
+     4
+    ],
+    "cpp": [
+     "Rat",
+     3,
+     2,
+     4
+    ]
+   },
+   "rows_original": 700,
+   "first_divergence": 537,
+   "cpp_row": "ts=f:401d11112a800000|type=102|id=538|tgt=1|parent=-1|origin=o:item:Death Lotus#1|params=d:{amount=i:-2,reflected=b:0,used=b:0}",
+   "original_row": "ts=f:401d1111276fb092|type=102|id=537|tgt=1|parent=-1|origin=o:item:Death Lotus#1|params=d:{amount=i:-1,reflected=b:0,used=b:0}"
+  },
+  {
+   "caseId": "run101127_r8_o101282_r8",
+   "first": 35,
+   "rows_cpp": 196,
+   "rows_gd": null,
+   "o_row": null,
+   "g_row": null,
+   "first_gem": null,
+   "first_original": null,
+   "first_item": {
+    "index": 41,
+    "original": null,
+    "cpp": [
+     "Burning Torch",
+     1,
+     3,
+     4
+    ]
+   },
+   "rows_original": 193,
+   "first_divergence": 35,
+   "cpp_row": "ts=f:3ffc8888a1800000|type=1|id=36|tgt=-999|parent=-1|origin=o:item:Hero Sword#3|params=d:{damage=i:5}",
+   "original_row": "ts=f:3ffc88882f0e0a85|type=1|id=35|tgt=-999|parent=-1|origin=o:item:Hero Sword#3|params=d:{damage=i:6}"
+  },
+  {
+   "caseId": "run101360_r16_o400073_r16",
+   "first": 520,
+   "rows_cpp": 632,
+   "rows_gd": null,
+   "o_row": null,
+   "g_row": null,
+   "first_gem": null,
+   "first_original": null,
+   "first_item": {
+    "index": 520,
+    "original": [
+     "Falcon Blade",
+     1,
+     4,
+     2
+    ],
+    "cpp": [
+     "Pine Protector",
+     3,
+     6,
+     0
+    ]
+   },
+   "rows_original": 600,
+   "first_divergence": 520,
+   "cpp_row": "ts=f:40209999a8200000|type=104|id=521|tgt=1|parent=-1|origin=o:item:Pine Protector#3|params=d:{amount=i:1,reflected=b:0,used=b:0}",
+   "original_row": "ts=f:402099999999999a|type=1|id=520|tgt=-999|parent=-1|origin=o:item:Falcon Blade#1|params=d:{damage=i:52}"
+  }
+ ],
+ "below_master_override": null,
+ "dll": "D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_lovers_rng_restart.dll",
+ "wall_total_s": 91.1,
+ "strict_item_origins": true,
+ "dll_sha256": "0a782a1e90b52e422629660d59d5749605f53881b123fdb08c816a24f8b7cac7",
+ "fixtures_sha256": "87ce6228a0a6c8c74e4c15f5efe870146679148def062466f8b0678d259e6f1c",
+ "runtime_data_sha256": "55bdd068cf3308547de78b45abbed4bf4f57e8253fbec82313a99578defa00ae"
+}
