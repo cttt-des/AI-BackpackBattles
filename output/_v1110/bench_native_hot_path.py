@@ -58,7 +58,7 @@ def main():
         "timed_out": sum(result.timed_out for result in outcomes),
         "wall_s": wall, "fights_per_second": len(outcomes) / wall, "cpu_s": cpu,
         "kernel_wall_s": kernel_wall, "kernel_cpu_s": kernel_cpu,
-        "peak_working_set_bytes": memory.peak_wset, "private_working_bytes": memory.private,
+        "peak_working_set_bytes": memory.peak_wset, "private_commit_bytes": memory.private,
         "load_pct_before": before_load, "load_pct_after": after_load,
     }
     args.out.write_text(json.dumps(report, indent=2) + "\n", encoding="utf8")
