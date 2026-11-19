@@ -308,13 +308,14 @@ def load_history_lineups_at_round(db: str, round_no, limit: int,
         if not row or not row[0]:
             continue
         try:
-            dec = decode_build_info(row[0], hmap)
+            dec = decode_build_info(row[0], hmap, preserve_sockets=True)
         except Exception:
             continue
         if not dec:
             continue
+        items = [it for it in dec["items"] if it["at"][0] < ROWS and it["at"][1] < COLS]
         ents = [{"id": it["id"], "rot": it["r"], "row": it["at"][0], "col": it["at"][1]}
-                for it in dec["items"] if it["at"][0] < ROWS and it["at"][1] < COLS]
+                for it in items]
         if not check_layout(idx, ents)[0] or len(ents) < min_items:
             continue
         run_row = cur.execute(
@@ -327,12 +328,13 @@ def load_history_lineups_at_round(db: str, round_no, limit: int,
         lineup = {"version": 4, "name": f"{db}:run{run_id}:R{rnd}",
                   "character": cls,
                   "round": rnd, "grid": [ROWS, COLS],
-                  "items": [{"id": e["id"], "at": [e["row"], e["col"]], "r": e["rot"]}
-                            for e in ents],
+                  "items": items,
                   "storage": [],
                   "health_override": dec["health"],
                   "class_modifiers": {"stamina": dec["stamina"]},
                   "_rank": rank}
+        if dec["stamina"]:
+            lineup["base_max_stamina"] = max(1, dec["stamina"] - sum(item["id"] == "Stamina Sack" for item in items))
         out.append(lineup)
         if len(out) >= limit:
             break

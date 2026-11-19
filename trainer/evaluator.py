@@ -28,6 +28,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
 
 from trainer.layout_rules import ItemIndex, check_layout, COLS, ROWS  # noqa: E402
+from core.build_history import RING_EFFECT_COUNTS, decode_ring_effects  # noqa: E402
 
 FACE_TO_ROT = {0: 0, 1: 90, 2: 180, 3: 270}
 
@@ -62,12 +63,12 @@ class OpponentPool:
         con = sqlite3.connect("file:" + self.db, uri=True)
         try:
             rows = con.execute(
-                "SELECT gid, x, y, face, gems_json FROM corpus_items "
+                "SELECT gid, x, y, face, gems_json, pd FROM corpus_items "
                 "WHERE record_key=? AND round_no=? ORDER BY seq", (rk, last)).fetchall()
         finally:
             con.close()
         items = []
-        for gid, x, y, face, gems in rows:
+        for gid, x, y, face, gems, saved in rows:
             name = self.i2n.get(gid)
             if name is None:
                 return None
@@ -75,16 +76,21 @@ class OpponentPool:
                 continue  # 储物箱 / 异常
             ent = {"id": name, "at": [y, x], "r": FACE_TO_ROT.get(face or 0, 0)}
             if gems:
-                gn = [self.g2n[g] for g in json.loads(gems)
-                      if isinstance(g, int) and 0 <= g < len(self.g2n)]
-                if gn:
-                    ent["gems"] = gn
+                ent["gems"] = [self.g2n[g] if isinstance(g, int) and 0 <= g < len(self.g2n) else None
+                               for g in json.loads(gems)]
+            if saved and name in RING_EFFECT_COUNTS:
+                try:
+                    ent["effects"] = decode_ring_effects(saved, RING_EFFECT_COUNTS[name])
+                except ValueError:
+                    return None
             items.append(ent)
         lineup = {"version": 4, "name": rk, "character": class_name or "Adventurer",
                   "round": last, "grid": [ROWS, COLS], "items": items,
                   "storage": [],
                   "health_override": int(health or 0),
                   "class_modifiers": {"stamina": int(stamina or 0)}}
+        if stamina:
+            lineup["base_max_stamina"] = max(1, stamina - sum(item["id"] == "Stamina Sack" for item in items))
         ents = [{"id": e["id"], "rot": e["r"], "row": e["at"][0], "col": e["at"][1]}
                 for e in items]
         good, _diags = check_layout(self.index, ents)
@@ -195,7 +201,10 @@ def _to_engine_form(lu: dict) -> dict:
         at = it.get("at") or [0, 0]
         e = {"id": it.get("id"), "row": int(at[0]), "col": int(at[1]),
              "rotation": int(it.get("r", 0) or 0) % 360,
-             "gems": [{"id": g} for g in (it.get("gems") or [])]}
+             "gems": [g if isinstance(g, dict) else ({"id": g} if g else None)
+                      for g in (it.get("gems") or [])]}
+        if "effects" in it:
+            e["effects"] = it["effects"]
         if it.get("in") is not None:
             e["in"] = it["in"]
         items.append(e)
@@ -231,8 +240,13 @@ SIMS_TOTAL = {"count": 0}   # 引擎对局账面（P3 双臂同预算对照用�
 def _run_jobs(jobs, workers: int) -> List[int]:
     from concurrent.futures import ProcessPoolExecutor
     import multiprocessing as mp
+    from trainer.native_backend import run_jobs, runtime_directory
+
     workers = max(1, min(workers, mp.cpu_count()))
     SIMS_TOTAL["count"] += len(jobs)
+    native = runtime_directory()
+    if native is not None:
+        return run_jobs(native, jobs, workers)
     with ProcessPoolExecutor(max_workers=workers, initializer=_pool_init) as ex:
         return list(ex.map(_battle, jobs, chunksize=4))
 

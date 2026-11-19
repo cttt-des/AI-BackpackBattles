@@ -88,6 +88,9 @@ def main():
     for root in (SIM, SIM / "native_sim_cpp"):
         context = root / "gd_core/CoreContext.gd"
         source = context.read_text("utf8")
+        training = "var native_frame_rng" in source
+        bursts = BURSTS.replace("if replay_engine_rng == null:", "if not native_frame_rng:") if training else BURSTS
+        particle_enabled = "ctx.native_frame_rng" if training else "ctx.replay_engine_rng != null"
         if "# Births observed at 60 Hz." in source:
             start = source.index("# Births observed at 60 Hz.")
         else:
@@ -95,7 +98,7 @@ def main():
         end = source.index("func resetCriticalShake()", start)
         suffix = (source[end:].replace("_mega_clover_draw_cursor", "particle_draw_frame")
                   .replace("_mega_clover_", "_particle_").replace("stepMegaCloverParticleDraws()", "stepParticleDraws()"))
-        changes[context] = source[:start] + BURSTS + suffix
+        changes[context] = source[:start] + bursts + suffix
 
         clover = root / "gd_core_items/Exclusive/MegaClover.gd"
         clover_text = clover.read_text("utf8")
@@ -107,7 +110,7 @@ def main():
         source = lovers.read_text("utf8")
         if "var heartParticles\n" not in source:
             source = source[:source.index("var particle_draw_frame")] + "var heartParticles\n" + source[source.index("var healAmp"):]
-            start = source.index("\t\tif ctx.replay_engine_rng")
+            start = source.index(f"\t\tif {particle_enabled}")
             end = source.index("\n\tactivate()", start)
             source = source[:start] + source[end:]
             start = source.index("func prepare():")
@@ -124,7 +127,7 @@ var particle_hidden_at := 0
 
 func _readyInit():""")
         anchor = "\t\tgiveRegeneration(regen)\n"
-        changes[lovers] = replace_one(source, anchor, anchor + """\t\tif ctx.replay_engine_rng != null:
+        changes[lovers] = replace_one(source, anchor, anchor + f"""\t\tif {particle_enabled}:
 \t\t\tvar next_idle: int = ctx.frame_counter + (1 if ctx._critical_shake_after_idle else 0)
 \t\t\tparticle_start_phase = ctx.restartLoversParticleDraws(particle_draw_frame, particle_start_phase,
 \t\t\t\t\tnext_idle < particle_hidden_at)

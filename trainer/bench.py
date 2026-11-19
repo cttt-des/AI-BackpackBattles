@@ -28,6 +28,7 @@ if _ROOT not in sys.path:
     sys.path.insert(0, _ROOT)
 
 from trainer.evaluator import OpponentPool, eval_vs_pool  # noqa: E402
+from trainer.native_backend import runtime_directory  # noqa: E402
 
 
 def _load_pct() -> float:
@@ -95,24 +96,30 @@ def main() -> int:
     import threading
     stop_evt = threading.Event()
     acc = []
-    th = threading.Thread(target=_cores_sampler, args=(stop_evt, acc),
-                          daemon=True)
-    th.start()
+    native = runtime_directory() is not None
+    th = None
+    if not native:
+        th = threading.Thread(target=_cores_sampler, args=(stop_evt, acc), daemon=True)
+        th.start()
 
     load_before = _load_pct()
+    cpu_start = time.process_time()
     t0 = time.perf_counter()
     r = eval_vs_pool(pool[0], pool[:n_opp], seeds_per_opp=args.seeds,
                      base_seed=2026_11_11, workers=args.workers)
     wall = time.perf_counter() - t0
+    native_cpu = time.process_time() - cpu_start
     load_after = _load_pct()
-    stop_evt.set()
-    th.join(timeout=2)
+    if th is not None:
+        stop_evt.set()
+        th.join(timeout=2)
 
-    children_cpu = sum(acc)
+    cpu_seconds = native_cpu if native else sum(acc)
     tput = jobs_total / wall
-    cores_eff = children_cpu / wall if wall > 0 else 0.0
+    cores_eff = cpu_seconds / wall if wall > 0 else 0.0
     out = {
         "fights": jobs_total, "workers": args.workers,
+        "backend": "native" if native else "python",
         "wall_s": round(wall, 2),
         "tput": round(tput, 2),
         "load_pct_before": load_before, "load_pct_after": load_after,

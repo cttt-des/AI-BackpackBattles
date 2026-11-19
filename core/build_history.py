@@ -34,8 +34,7 @@ FACE_TO_ROT = {0: 0, 1: 90, 2: 180, 3: 270}
 MAX_HEALTH = 999
 MAX_STAMINA = 999
 INV_MAX = 10
-MAGIC_RING = "Magic Ring"
-MAGIC_RING_PD_BITS = 12        # numEffects=2 × (2+4)（MagicRing.gd:291）
+RING_EFFECT_COUNTS = {"Magic Ring": 2, "Superior Ring": 3}
 
 
 def _find_map() -> Dict[str, Any]:
@@ -270,7 +269,27 @@ class _BitReader:
         return self.pull_bitsize(n)
 
 
-def decode_build_info(s: str, imap: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+def _read_ring_effects(reader: _BitReader, count: int) -> list[dict[str, int]]:
+    if reader.bits_left() < 6 * count:
+        raise ValueError("Incomplete saved ring effects")
+    effects = []
+    for _ in range(count):
+        trigger, stack = reader.pull(4), reader.pull(16)
+        if stack > 9:
+            raise ValueError("Invalid saved ring stack type")
+        effects.append({"triggerType": trigger, "stackType": 101 + stack})
+    return effects
+
+
+def decode_ring_effects(payload: str, count: int) -> list[dict[str, int]]:
+    """Decode the saved trigger and stack types of a Magic or Superior Ring."""
+    reader = _BitReader(payload)
+    if reader.bits_left() != 6 * count:
+        raise ValueError("Invalid saved ring length")
+    return _read_ring_effects(reader, count)
+
+
+def decode_build_info(s: str, imap: Dict[str, Any], *, preserve_sockets: bool = False) -> Optional[Dict[str, Any]]:
     """解码 buildInfo 位流 → {health, stamina, items: [{id, row, col, rot, gems}]}。
 
     对齐 RunData.deserializeStream；任一字段非法返回 None（与游戏端一致）。
@@ -282,9 +301,6 @@ def decode_build_info(s: str, imap: Dict[str, Any]) -> Optional[Dict[str, Any]]:
     total_gems = int(imap["total_num_gems_ceil"])
     empty_id = int(imap["empty_socket_id"])
     gem_bits = int(math.log2(total_gems)) if total_gems > 1 else 1
-    ring_index = next((int(k) for k, v in index_to_name.items()
-                       if v == MAGIC_RING), -1)
-
     br = _BitReader(s)
     health = br.pull(MAX_HEALTH)
     stamina = br.pull(MAX_STAMINA)
@@ -304,7 +320,7 @@ def decode_build_info(s: str, imap: Dict[str, Any]) -> Optional[Dict[str, Any]]:
         name = index_to_name.get(idx)
         if name is None:
             return None
-        gems: List[str] = []
+        gems: List[Optional[str]] = []
         ns = int(num_sockets.get(name, 0))
         if ns > 0:
             has_gems = br.pull(2)
@@ -313,16 +329,21 @@ def decode_build_info(s: str, imap: Dict[str, Any]) -> Optional[Dict[str, Any]]:
                     g = br.pull_bitsize(gem_bits)
                     if g < 0:
                         return None
-                    if g != empty_id and g < len(gem_order):
-                        gems.append(gem_order[g])
-        if idx == ring_index:
-            br.pull_bitsize(MAGIC_RING_PD_BITS)
-        items.append({
+                    gem = gem_order[g] if g != empty_id and g < len(gem_order) else None
+                    if gem is not None or preserve_sockets:
+                        gems.append(gem)
+        item = {
             "id": name,
             "at": [int(row), int(col)],
             "r": FACE_TO_ROT.get(face, 0) % 360,
             "gems": gems,
-        })
+        }
+        if name in RING_EFFECT_COUNTS:
+            try:
+                item["effects"] = _read_ring_effects(br, RING_EFFECT_COUNTS[name])
+            except ValueError:
+                return None
+        items.append(item)
     return {"health": health, "stamina": stamina, "items": items}
 
 

@@ -49,10 +49,9 @@ def _write_back(lineup: dict, entries: Sequence[dict]) -> dict:
         e = by_idx.get(i)
         if e is None:
             continue  # 该物品被动作移除
-        nit = {"id": e.get("id") or it["id"],
-               "at": [e["row"], e["col"]], "r": e.get("rot", 0)}
-        if it.get("gems"):
-            nit["gems"] = it["gems"]
+        item_id = e.get("id") or it["id"]
+        nit = dict(it) if item_id == it["id"] else {"id": item_id}
+        nit.update(at=[e["row"], e["col"]], r=e.get("rot", 0))
         new_items.append(nit)
     for e in added:
         new_items.append({"id": e["id"], "at": [e["row"], e["col"]], "r": e.get("rot", 0)})

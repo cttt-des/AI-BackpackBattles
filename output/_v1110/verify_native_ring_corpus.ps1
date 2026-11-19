@@ -1,11 +1,14 @@
 param(
     [Parameter(Mandatory=$true)][string]$Python,
-    [int]$CpuLimit = 75
+    [int]$CpuLimit = 75,
+    [string]$Dll = 'native_ring_placement.dll',
+    [string]$ReportPrefix = 'native_ring_',
+    [string]$GateName = 'native_ring_placement_full_gate.json'
 )
 
 $ErrorActionPreference = 'Stop'
 $stage = $PSScriptRoot
-$dll = Join-Path $stage 'native_ring_placement.dll'
+$dll = Join-Path $stage $Dll
 $verifier = Join-Path $stage 'sim_native/tools/_cpp_verify_events.py'
 $observations = Join-Path $stage 'native_controlled_prismatic_run948_placement'
 $jobs = @(Get-Content -Raw (Join-Path $stage 'native_host_phases_reuse_plan.json') | ConvertFrom-Json)
@@ -18,7 +21,7 @@ foreach ($job in $jobs) {
         $cpu = (Get-CimInstance Win32_PerfFormattedData_PerfOS_Processor -Filter "Name='_Total'").PercentProcessorTime
         if ($cpu -ge $CpuLimit) { Start-Sleep -Seconds 15 }
     } while ($cpu -ge $CpuLimit)
-    $report = Join-Path $stage ($job.name -replace '^native_', 'native_ring_')
+    $report = Join-Path $stage ($job.name -replace '^native_', $ReportPrefix)
     $reports += $report
     $inputs = Join-Path $stage ($job.name + '_cpp')
     $source = Join-Path $stage $job.source
@@ -49,5 +52,5 @@ foreach ($job in $jobs) {
 
 & $Python -u -X utf8 (Join-Path $stage 'check_native_corpus_gate.py') --dll $dll --report @reports `
     --host-observed-plan (Join-Path $stage 'native_host_observed_reference_plan.json') `
-    --ring-placement-observations $observations --out (Join-Path $stage 'native_ring_placement_full_gate.json')
+    --ring-placement-observations $observations --out (Join-Path $stage $GateName)
 exit $LASTEXITCODE
