@@ -43,6 +43,14 @@ def reference_index():
         raise ValueError("Expanded reference groups do not partition the fixed 1690-case table")
     if case_ids(STAGE / expand / "cases.json", 881) != new:
         raise ValueError("Expanded recorder case table differs from the reference plan")
+    rules = STAGE / "native_shipping_expand_runtime_overrides.json"
+    if rules.is_file():
+        for cid, entry in read_json(rules).items():
+            previous = entry["previous"]
+            if (retained.get(cid) != previous
+                    or digest(STAGE / previous["path"] / cid / "events.json") != previous["events_sha256"]):
+                raise ValueError(f"Original retained reference differs for {cid}")
+            retained[cid] = entry["reference"]
     return {
         "base": {cid: {"path": base_tail if cid in tail_ids else base} for cid in base_ids},
         "expand": retained | {cid: {"path": expand} for cid in new},
@@ -84,6 +92,10 @@ def check_cohort(index, reports):
         if not marker.is_file():
             pending[cid] = "recording_pending"
             continue
+        if "engine_sha256" in expected:
+            manifest = read_json(marker)
+            if manifest.get("engine_sha256") != expected["engine_sha256"] or not manifest.get("shipping_engine"):
+                raise ValueError(f"Replacement recording uses a different executable for {cid}")
         counts["recorded"] += 1
         raw_hash = digest(root / "events.json")
         if expected.get("events_sha256", raw_hash) != raw_hash:

@@ -1,0 +1,14 @@
+{
+  "run704585_r12_o704770_r12": {
+    "previous": {
+      "path": "native_corpus/expand",
+      "events_sha256": "411d89a00ccf129ca5b32ab57d628e578aa54a0a4c3c162cd74d70e3144c3697"
+    },
+    "reference": {
+      "path": "native_shipping_round_reference",
+      "engine_sha256": "4522a5f2b71fe2aa5f7f730a2bd71f66f4f8112609164bcef39c110f047ad577",
+      "events_sha256": "65311780d170e71a86b3108753cd4d71acabeb109e6d1819c5abc8e2811953e1"
+    },
+    "reason": "The original Windows executable and vanilla Godot return different values just below a rounding midpoint."
+  }
+}
