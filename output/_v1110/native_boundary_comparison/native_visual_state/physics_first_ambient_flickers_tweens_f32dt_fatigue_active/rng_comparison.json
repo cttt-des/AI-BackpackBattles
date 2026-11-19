@@ -1,0 +1,8 @@
+{
+  "case_id": "run101207_r1_o604707_r1",
+  "calls_native": 987,
+  "calls_oracle": 987,
+  "different_calls": 0,
+  "first_difference": null,
+  "scope": "Full sequence of observed RNG method, bounds and PCG state; no values injected"
+}

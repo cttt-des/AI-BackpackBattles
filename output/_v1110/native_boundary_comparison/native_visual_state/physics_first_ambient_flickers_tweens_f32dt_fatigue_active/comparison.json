@@ -1,0 +1,38 @@
+{
+  "case_id": "run101207_r1_o604707_r1",
+  "counts": [
+    160,
+    160
+  ],
+  "first": null,
+  "match": true,
+  "inputs_match": true,
+  "natural_ending_match": true,
+  "strict_gem_missing": [],
+  "strict_gem_first": null,
+  "rng": {
+    "counts": [
+      987,
+      987
+    ],
+    "first": null,
+    "match": true
+  },
+  "controls": {
+    "case_id": "run101207_r1_o604707_r1",
+    "reference": "native_visual_state",
+    "physics_first": true,
+    "rng_probe": true,
+    "restore_ambient_timers": true,
+    "restore_flickers": true,
+    "advance_character_tweens": true,
+    "native_delta": true,
+    "source_fatigue_mode": true,
+    "snapshot_active_timers": true,
+    "compare_only": true
+  },
+  "oracle_script_sha256": "0f8a2437e73841f23ebf8849ee23abbd4923813f3057fd2d09c294c5237f1322",
+  "native": null,
+  "oracle": null,
+  "scope": "Recovered-source native reference; imported initial states only; all listed events independently computed"
+}

@@ -1,0 +1,360 @@
+{
+  "startup": {
+    "pooling_index": 518,
+    "descriptor_count": 519,
+    "physics_frames": 519
+  },
+  "prepare": {
+    "seed": "394148877037658072",
+    "state": "-2315007488211778665",
+    "order": [
+      {
+        "name": "Fanny Pack",
+        "owner": 1,
+        "top_left": [
+          4,
+          3
+        ]
+      },
+      {
+        "name": "Chess Board",
+        "owner": 1,
+        "top_left": [
+          6,
+          2
+        ]
+      },
+      {
+        "name": "White Pawn",
+        "owner": 1,
+        "top_left": [
+          7,
+          2
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "top_left": [
+          6,
+          2
+        ]
+      },
+      {
+        "name": "Black Pawn",
+        "owner": 1,
+        "top_left": [
+          6,
+          3
+        ]
+      },
+      {
+        "name": "Garlic",
+        "owner": 1,
+        "top_left": [
+          4,
+          5
+        ]
+      },
+      {
+        "name": "Amulet of Steel",
+        "owner": 1,
+        "top_left": [
+          7,
+          3
+        ]
+      },
+      {
+        "name": "Wand",
+        "owner": 1,
+        "top_left": [
+          6,
+          4
+        ]
+      },
+      {
+        "name": "Scholar Bag",
+        "owner": 1,
+        "top_left": [
+          4,
+          4
+        ]
+      },
+      {
+        "name": "Wooden Sword",
+        "owner": 1,
+        "top_left": [
+          5,
+          3
+        ]
+      },
+      {
+        "name": "Book of Basics",
+        "owner": 1,
+        "top_left": [
+          4,
+          3
+        ]
+      },
+      {
+        "name": "Wolf Badge",
+        "owner": 3,
+        "top_left": [
+          4,
+          4
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "top_left": [
+          2,
+          1
+        ]
+      },
+      {
+        "name": "Sewing Case",
+        "owner": 3,
+        "top_left": [
+          2,
+          3
+        ]
+      },
+      {
+        "name": "Wooden Sword",
+        "owner": 3,
+        "top_left": [
+          5,
+          2
+        ]
+      },
+      {
+        "name": "Pocket Sand",
+        "owner": 3,
+        "top_left": [
+          2,
+          1
+        ]
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 3,
+        "top_left": [
+          4,
+          2
+        ]
+      },
+      {
+        "name": "Garlic",
+        "owner": 3,
+        "top_left": [
+          3,
+          1
+        ]
+      },
+      {
+        "name": "Pan",
+        "owner": 3,
+        "top_left": [
+          2,
+          2
+        ]
+      },
+      {
+        "name": "Twine",
+        "owner": 3,
+        "top_left": [
+          4,
+          2
+        ]
+      },
+      {
+        "name": "Whetstone",
+        "owner": 3,
+        "top_left": [
+          4,
+          3
+        ]
+      },
+      {
+        "name": "Star of Courage",
+        "owner": 3,
+        "top_left": [
+          3,
+          4
+        ]
+      }
+    ]
+  },
+  "before_activate": {
+    "seed": "4466062802733398118",
+    "state": "-9179488375276124531"
+  },
+  "combat_start": {
+    "seed": "4466062802733398118",
+    "state": "-9179488375276124531",
+    "player_stamina": 5,
+    "opponent_stamina": 5,
+    "util_time": "11.15000058151781600",
+    "clock_time": "12.65000065974891200"
+  },
+  "idle_animation_timers": [
+    {
+      "owner": 1,
+      "left": 1.45011,
+      "left_precise": "1.45010960102081300",
+      "wait_time": 2.966776,
+      "process_mode": 1,
+      "stopped": false
+    },
+    {
+      "owner": 0,
+      "left": 0.914547,
+      "left_precise": "0.91454672813415530",
+      "wait_time": 3.514547,
+      "process_mode": 1,
+      "stopped": false
+    }
+  ],
+  "flicker_states": [
+
+  ],
+  "activated": {
+    "seed": "4901325990954527678",
+    "state": "-4547027524808297211",
+    "items": [
+      {
+        "name": "Scholar Bag",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Wooden Sword",
+        "owner": 1,
+        "trigger_time": 1.365906,
+        "speed": 1.1
+      },
+      {
+        "name": "White Pawn",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Black Pawn",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Amulet of Steel",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Chess Board",
+        "owner": 1,
+        "trigger_time": 0.912873,
+        "speed": 1
+      },
+      {
+        "name": "Garlic",
+        "owner": 1,
+        "trigger_time": 3.862175,
+        "speed": 1
+      },
+      {
+        "name": "Book of Basics",
+        "owner": 1,
+        "trigger_time": 5.039251,
+        "speed": 1.1
+      },
+      {
+        "name": "Wand",
+        "owner": 1,
+        "trigger_time": 3.172054,
+        "speed": 1
+      },
+      {
+        "name": "Sewing Case",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Wooden Sword",
+        "owner": 3,
+        "trigger_time": 1.465792,
+        "speed": 1.1
+      },
+      {
+        "name": "Star of Courage",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Pan",
+        "owner": 3,
+        "trigger_time": 2.2037,
+        "speed": 1
+      },
+      {
+        "name": "Twine",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Pocket Sand",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Whetstone",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Wolf Badge",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Garlic",
+        "owner": 3,
+        "trigger_time": 4.0431,
+        "speed": 1
+      }
+    ]
+  }
+}

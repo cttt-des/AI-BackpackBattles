@@ -1,0 +1,19 @@
+{
+  "version": "1.1.10",
+  "source_provenance": "installed_1.1.10_with_user_plugin",
+  "engine": "vanilla Godot 3.6; full recovered Main scene; native frame scheduling",
+  "battle_script_sha256": {
+    "Core/Character.gd": "d567f4b1eec5c6734d12153a2ff6e53ec4a0b2d8c7f18185959c54a61d6960eb",
+    "Core/Buff.gd": "3efabb72eb0b337e30ebc924347aba40bd1039a3c5f718b761b0ee78b48ab8bb",
+    "Core/CombatLog.gd": "502ba9802874c189798001a59c4135ca6591efaec80b007559760b12dc0bf638",
+    "Items/Item.gd": "d98ce12b6e5fafb3715db069898e23d4063c9e6ec819edfdd2926cc3d5659369",
+    "Interface/CombatTimer/CombatTimer.gd": "3e1bb3ac33ae78b399d98cfd7bdd6ddb35a337d3afa9f3347af660757cd3b7fd"
+  },
+  "adaptations": [
+    "Offline Steam, leaderboard, SDK and plugin service stubs",
+    "Recovered plaintext table and full-version runtime DLL discovery",
+    "Preparation, activation and pending visual timer observers; no manual combat tick",
+    "Read-only RNG call observer enabled"
+  ],
+  "scope": "Independent recovered-source reference, not the installed shipping EXE"
+}

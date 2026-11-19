@@ -9,10 +9,11 @@ var activated := false
 var ended := false
 var winner := ""
 var out_dir := ""
-var res := {}
+var case_result := {}
 var boot_ready := false
 var observed_physics := 0
 var observations := {}
+var observed_delayed := []
 
 func _physics_process(_delta) -> void:
 	observed_physics += 1
@@ -43,9 +44,30 @@ func record_one() -> void:
 		return
 	for _i in range(180):
 		yield(tree, "idle_frame")
+	# ItemBook prepares two pooled instances per descriptor on each idle frame.
+	# Beginning while that startup work is active consumes the combat RNG stream.
+	# Wait for the source's preload to finish; do not disable or rewrite it.
+	var item_book = tree.root.get_node("ItemBook")
+	for _i in range(1800):
+		if item_book.itemPoolingIndex >= item_book.descriptorList.size() - 1:
+			break
+		yield(tree, "idle_frame")
+	if item_book.itemPoolingIndex < item_book.descriptorList.size() - 1:
+		fail("Original item preload did not finish")
+		return
+	observations["startup"] = {"pooling_index": item_book.itemPoolingIndex,
+		"descriptor_count": item_book.descriptorList.size(), "physics_frames": observed_physics}
 	print("[NATIVE] Main scene initialization completed")
 	if tree.current_scene == null or tree.current_scene.filename != "res://Core/Main.tscn":
 		fail("Original Main scene is not loaded")
+		return
+	# BuildHistory is instanced off-tree by the source until the menu is opened.
+	# Its real fight entry requires _ready() and the opening animation to finish.
+	G.buildHistory.open()
+	for _i in range(90):
+		yield(tree, "idle_frame")
+	if not G.buildHistory.is_inside_tree() or G.buildHistory.animation == null:
+		fail("Original history menu failed to initialize")
 		return
 
 	var case_id = OS.get_environment("NATIVE_BATTLE_CASE")
@@ -77,16 +99,20 @@ func record_one() -> void:
 		fail("Cannot create " + out_dir)
 		return
 	var seed_value = int(c["seed"])
-	res = {"seed": seed_value, "run_id": run_id, "round_id": round_id,
+	case_result = {"seed": seed_value, "run_id": run_id, "round_id": round_id,
 		"opp_run_id": opp_run_id, "opp_round_id": opp_round_id, "case_id": case_id}
 	G.connect("combat_start", self, "on_start", [], CONNECT_ONESHOT)
 	G.connect("combat_end", self, "on_end", [], CONNECT_ONESHOT)
 	G.buildHistory.markedOpponentData = runs[opp_run_id]
 	G.buildHistory.markedOpponentRound = opp_round_id
 	G.instanceCharacter(runs[run_id].classI)
+	G.buildHistory.curData = runs[run_id]
+	G.buildHistory.curRoundNum = round_id
 	U.rng.set_seed(seed_value)
 	seed(seed_value)
-	G.startHistoryRun(runs[run_id], round_id)
+	# Use the source UI entry. It also clears the title's falling items;
+	# calling startHistoryRun alone leaves their impact RNG active in combat.
+	G.buildHistory.fightBuild()
 	var elapsed := 0
 	while not ended and elapsed < 5700:
 		yield(tree, "physics_frame")
@@ -95,10 +121,17 @@ func record_one() -> void:
 		fail("No natural game terminal, activation=" + str(activated))
 		return
 
-	res["winner"] = winner
-	res["combat_time"] = G.combatTimer.combatTime
-	res["ticks"] = int(round(G.combatTimer.combatTime * 60.0))
-	dump_events(G.combatLog.events, out_dir, res)
+	case_result["winner"] = winner
+	case_result["combat_time"] = G.combatTimer.combatTime
+	case_result["ticks"] = int(round(G.combatTimer.combatTime * 60.0))
+	dump_events(G.combatLog.events, out_dir, case_result)
+	if "draws" in U.rng:
+		var rng_file = File.new()
+		if rng_file.open(out_dir.plus_file("rng_draws.json"), File.WRITE) != OK:
+			fail("Cannot write RNG observations")
+			return
+		rng_file.store_string(JSON.print(U.rng.draws, "  ") + "\n")
+		rng_file.close()
 	var diagnostics = File.new()
 	if diagnostics.open(out_dir.plus_file("boundaries.json"), File.WRITE) != OK:
 		fail("Cannot write preparation observations")
@@ -110,10 +143,56 @@ func record_one() -> void:
 
 func on_start() -> void:
 	activated = true
-	dump_lineups(out_dir, res)
+	dump_lineups(out_dir, case_result)
 	observations["combat_start"] = {"seed": str(U.rng.get_seed()), "state": str(U.rng.get_state()),
-		"player_stamina": G.PLAYER.curStamina, "opponent_stamina": G.OPPONENT.curStamina}
+		"player_stamina": G.PLAYER.curStamina, "opponent_stamina": G.OPPONENT.curStamina,
+		"util_time": "%.17f" % U.time, "clock_time": "%.17f" % U.clockTime}
+	var animations := []
+	for character in [G.OPPONENT, G.PLAYER]:
+		var timer = character.idleAniSpeedTimer
+		animations.append({"owner": character.playerId, "left": timer.get_time_left(),
+			"left_precise": "%.17f" % timer.get_time_left(),
+			"wait_time": timer.wait_time, "process_mode": timer.process_mode,
+			"stopped": timer.is_stopped()})
+	observations["idle_animation_timers"] = animations
+	var flickers := {}
+	collect_flickers(get_tree().root, flickers)
+	for entry in observed_delayed:
+		var target = entry[1].get_ref()
+		if is_instance_valid(target) and entry[0].time_left > 0:
+			flickers[target] = true
+	var flicker_states := []
+	for target in flickers:
+		var pending := []
+		for entry in observed_delayed:
+			if entry[1].get_ref() == target and entry[0].time_left > 0:
+				pending.append({"left": "%.17f" % entry[0].time_left, "method": entry[2]})
+		var host = target
+		while host != null and not ("descriptor" in host and "ownerType" in host):
+			host = host.get_parent()
+		var identity = null
+		if host != null:
+			var cell = host.getTopLeftCell() if not host.occupiedCells.empty() else Vector2(-999, -999)
+			identity = {"name": host.descriptor.identifier, "owner": host.ownerType,
+				"top_left": [cell.x, cell.y], "relative_path": str(host.get_path_to(target))}
+		var animation = target.get_animation(target.ani)
+		flicker_states.append({"identity": identity, "pending": pending,
+			"playing": target.is_playing(), "position": target.current_animation_position,
+			"speed": target.playback_speed, "animation": target.ani, "length": animation.length,
+			"loop": animation.loop, "inside_tree": target.is_inside_tree(),
+			"path": str(target.get_path()) if target.is_inside_tree() else "off-tree"})
+	observations["flicker_states"] = flicker_states
 	call_deferred("on_started")
+
+func on_delayed_timer(timer, target, method_name) -> void:
+	if is_instance_valid(target) and target.get_script() != null and target.get_script().resource_path.ends_with("/FlickerAnimation.gd"):
+		observed_delayed.append([timer, weakref(target), method_name])
+
+func collect_flickers(node, found) -> void:
+	if node.get_script() != null and node.get_script().resource_path.ends_with("/FlickerAnimation.gd"):
+		found[node] = true
+	for child in node.get_children():
+		collect_flickers(child, found)
 
 func on_started() -> void:
 	var state := {"seed": str(U.rng.get_seed()), "state": str(U.rng.get_state()), "items": []}
@@ -133,6 +212,8 @@ func on_prepare(items) -> void:
 
 func on_activate(_items) -> void:
 	observations["before_activate"] = {"seed": str(U.rng.get_seed()), "state": str(U.rng.get_state())}
+	if "recording" in U.rng:
+		U.rng.recording = true
 
 func on_end(result) -> void:
 	winner = "player" if result == G.RoundResult.Win else "opponent"

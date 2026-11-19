@@ -8,6 +8,7 @@ import sys
 root = Path.cwd()
 stage = Path(sys.argv[1] if len(sys.argv) > 1 else "output/_v1110").resolve()
 source = stage / "decompiled"
+rng_probe = "--rng-probe" in sys.argv[2:]
 dest = stage / "native_reference"
 manifest = json.loads((stage / "source_manifest.json").read_text("utf8"))
 if manifest.get("version") != "1.1.10":
@@ -24,6 +25,20 @@ encrypted_load = 'Table.new().loadFromCsv("res://Sheets/CSV/ItemData_e.csv", she
 assert item_book.count(encrypted_load) == 1
 item_book = item_book.replace(encrypted_load, 'Table.new().loadFromCsv("res://Sheets/CSV/ItemData.csv")')
 (dest / "Sheets/ItemBook.gd").write_text(item_book, encoding="utf8")
+util = (source / "Utility/Util.gd").read_text("utf8")
+for function, process in (("callDelayed", "false"), ("callDelayed_process", "true")):
+    anchor = f"func {function}(target, methodName, delay, binds = []):\n\tvar timer = get_tree().create_timer(delay, {process})\n"
+    assert util.count(anchor) == 1
+    util = util.replace(anchor, anchor + '''\tvar observer = get_tree().root.get_node_or_null("NativeBattleReader")
+	if observer != null:
+		observer.on_delayed_timer(timer, target, methodName)
+''')
+if rng_probe:
+    anchor = "var rng = RandomNumberGenerator.new()"
+    assert util.count(anchor) == 1
+    util = util.replace(anchor, 'var rng = preload("res://native_rng_observer.gd").new()')
+    shutil.copyfile(stage / "native_rng_observer.gd", dest / "native_rng_observer.gd")
+(dest / "Utility/Util.gd").write_text(util, encoding="utf8")
 game = (source / "Core/Game.gd").read_text("utf8")
 game = game.replace('var EDITOR = OS.has_feature("editor")', 'var EDITOR = false')
 # Read-only observations at the source's preparation and activation boundaries.
@@ -51,11 +66,16 @@ stubs = {"Steam": "SteamStub", "SilentWolf": "SilentWolfStub",
 for autoload, file in stubs.items():
     shutil.copyfile(root / "oracle/oracle_stubs" / f"{file}.gd", dst_stubs / f"{file}.gd")
     if autoload == "Steam":
+        steam = (dst_stubs / f"{file}.gd").read_text("utf8")
+        for name in ("storeStats", "showFloatingGamepadTextInput"):
+            steam, count = re.subn(rf"(func {name}\([^\n]*\)) -> void:\n\tpass", r"\1 -> bool:\n\treturn false", steam)
+            assert count == 1
+        (dst_stubs / f"{file}.gd").write_text(steam, encoding="utf8")
         with (dst_stubs / f"{file}.gd").open("a", encoding="utf8") as stream:
             stream.write("\nsignal current_stats_received(game, results, user)\n")
     elif autoload == "RunDatabase":
         text = (dst_stubs / f"{file}.gd").read_text("utf8")
-        text = text.replace("var lobbies = null", "class OfflineLobby:\n\textends Reference\n\tsignal all_end_results_received\n\nvar lobbies = OfflineLobby.new()")
+        text = text.replace("var lobbies = null", "class OfflineLobby:\n\textends Reference\n\tsignal all_end_results_received\n\tfunc isInLobby() -> bool:\n\t\treturn false\n\nvar lobbies = OfflineLobby.new()")
         (dst_stubs / f"{file}.gd").write_text(text, encoding="utf8")
     line = f'{autoload}="*res://oracle_stubs/{file}.gd"'
     if autoload == "Steam":
@@ -100,7 +120,8 @@ for relative in combat_files:
     "battle_script_sha256": hashes,
     "adaptations": ["Offline Steam, leaderboard, SDK and plugin service stubs",
                     "Recovered plaintext table and full-version runtime DLL discovery",
-                    "Preparation and activation observers; no manual combat tick"],
+                    "Preparation, activation and pending visual timer observers; no manual combat tick",
+                    "Read-only RNG call observer enabled" if rng_probe else "Native RNG object unchanged"],
     "scope": "Independent recovered-source reference, not the installed shipping EXE"
 }, ensure_ascii=False, indent=2) + "\n", encoding="utf8")
 print(dest)

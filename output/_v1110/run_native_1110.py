@@ -14,12 +14,16 @@ ap.add_argument("case_id")
 ap.add_argument("--out",default="native_settled")
 ap.add_argument("--timeout",type=int,default=240)
 ap.add_argument("--disable-render-loop", action="store_true")
+ap.add_argument("--rng-probe", action="store_true")
 args=ap.parse_args()
 stage=repo/"output/_v1110"
-subprocess.run([sys.executable,"-u","-X","utf8",str(stage/"prepare_native_reference.py"),str(stage)],check=True)
+subprocess.run([sys.executable,"-u","-X","utf8",str(stage/"prepare_native_reference.py"),str(stage),
+                *(["--rng-probe"] if args.rng_probe else [])],check=True)
 command=gh.cmd("--fixed-fps","60",project=str(stage/"native_reference"))
 if args.disable_render_loop:
     command.append("--disable-render-loop")
+if args.rng_probe:
+    command.append("--debug")  # Godot exposes get_stack() only with a debugger.
 command[0]=str(stage/"native_reference/runtime/Godot_v3.6-stable_win64.exe")
 p,log,h=gh.spawn(command,label="native_settled",tag="native_settled",
                  env_extra={"NATIVE_BATTLE_CASE":args.case_id,"NATIVE_BATTLE_OUT":str(stage/args.out)})
@@ -36,10 +40,13 @@ selected=[s for s in lines if any(x in s for x in ("SCRIPT ERROR","[NATIVE]","VE
 print("\n".join(selected[:12]+selected[-8:]),flush=True)
 print("return",rc,flush=True)
 if not rc:
-    errors=[s for s in lines if "SCRIPT ERROR" in s]
+    errors=[s for s in lines if "SCRIPT ERROR" in s or "Debugger Break" in s]
     target=stage/args.out/args.case_id
     if errors:
         print("Reference recording rejected because of script errors:", "\n".join(errors), flush=True)
+        rc=1
+    elif not any(f"[NATIVE] Recorded {args.case_id} " in s for s in lines):
+        print("Reference recording rejected: no current-run completion marker", flush=True)
         rc=1
     elif not all((target/name).is_file() for name in ("events.json", "lineups.json", "boundaries.json")):
         print("Reference recording rejected: missing output", flush=True)
