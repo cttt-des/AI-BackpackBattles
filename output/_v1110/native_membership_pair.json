@@ -1,0 +1,177 @@
+{
+  "scope": "Event-count quantiles among cases passing the recorded strict replay checks in both builds",
+  "timing": "interleaved single-process CPU time, setup/combat/teardown and ctypes included; packing, JSON and file I/O excluded",
+  "dll_sha256": [
+    "fe2e6b2091a1a5014685881972a03f9c5d5750416d7a37d0805586a27c35beb4",
+    "1780c4457412cb251b5a38fcbc3608955d26c870b8b9a32ed7aa9229b37904bc"
+  ],
+  "rounds": 5,
+  "iterations_per_block": 20,
+  "cases": [
+    {
+      "case_id": "run101191_r1_o704421_r1",
+      "modes": {
+        "debug_off": {
+          "before_ms": [
+            17.1875,
+            22.65625,
+            24.21875,
+            21.875,
+            25.0
+          ],
+          "after_ms": [
+            18.75,
+            20.3125,
+            19.53125,
+            21.875,
+            21.09375
+          ],
+          "median_ms": [
+            22.65625,
+            20.3125
+          ],
+          "after_over_before": 0.896551724137931,
+          "signature": [
+            1,
+            416,
+            20,
+            23.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "run101414_r1_o101302_r1",
+      "modes": {
+        "debug_off": {
+          "before_ms": [
+            67.1875,
+            65.625,
+            60.9375,
+            71.09375,
+            66.40625
+          ],
+          "after_ms": [
+            61.71875,
+            63.28125,
+            57.03125,
+            54.6875,
+            54.6875
+          ],
+          "median_ms": [
+            66.40625,
+            57.03125
+          ],
+          "after_over_before": 0.8588235294117647,
+          "signature": [
+            0,
+            1350,
+            137,
+            0.0,
+            10.0
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "run704991_r6_o400081_r6",
+      "modes": {
+        "debug_off": {
+          "before_ms": [
+            122.65625,
+            118.75,
+            120.3125,
+            121.09375,
+            132.03125
+          ],
+          "after_ms": [
+            124.21875,
+            114.84375,
+            114.84375,
+            107.03125,
+            95.3125
+          ],
+          "median_ms": [
+            121.09375,
+            114.84375
+          ],
+          "after_over_before": 0.9483870967741935,
+          "signature": [
+            1,
+            916,
+            235,
+            89.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "run101655_r6_o101402_r6",
+      "modes": {
+        "debug_off": {
+          "before_ms": [
+            161.71875,
+            121.09375,
+            148.4375,
+            128.90625,
+            128.90625
+          ],
+          "after_ms": [
+            131.25,
+            119.53125,
+            119.53125,
+            114.84375,
+            125.78125000000001
+          ],
+          "median_ms": [
+            128.90625,
+            119.53125
+          ],
+          "after_over_before": 0.9272727272727272,
+          "signature": [
+            0,
+            1830,
+            410,
+            0.0,
+            60.0
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "run101710_r15_o704658_r15",
+      "modes": {
+        "debug_off": {
+          "before_ms": [
+            447.65625,
+            397.65625,
+            414.0625,
+            402.34375,
+            308.59375
+          ],
+          "after_ms": [
+            450.78125,
+            380.46875,
+            357.8125,
+            378.90625,
+            300.0
+          ],
+          "median_ms": [
+            402.34375,
+            378.90625
+          ],
+          "after_over_before": 0.941747572815534,
+          "signature": [
+            1,
+            1892,
+            4442,
+            1720.0,
+            0.0
+          ]
+        }
+      }
+    }
+  ]
+}

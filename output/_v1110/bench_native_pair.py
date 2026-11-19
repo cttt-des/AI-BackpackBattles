@@ -34,7 +34,7 @@ reports = [[json.loads(path.read_text("utf8")) for path in root.glob("run*.json"
 assert all(len(rows) == summary["total"] for rows, summary in zip(reports, summaries))
 maps = [{row["caseId"]: row for row in report} for report in reports]
 eligible = [cid for cid, row in maps[0].items()
-            if row["category"] == "pass" and maps[1][cid]["category"] == "pass"]
+            if row["category"] == "pass" and cid in maps[1] and maps[1][cid]["category"] == "pass"]
 assert eligible and args.rounds >= 3 and args.iterations > 0 and args.samples >= 2
 ranked = sorted(eligible, key=lambda cid: len(json.loads((roots[1] / "fights" / cid / "events.json").read_text("utf8"))["events"]))
 selected = list(dict.fromkeys(ranked[round(i * (len(ranked) - 1) / (args.samples - 1))] for i in range(args.samples)))
