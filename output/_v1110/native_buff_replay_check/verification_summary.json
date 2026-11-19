@@ -1,0 +1,22 @@
+{
+  "continued_case": "run705039_r18_o704909_r18",
+  "observed_buff_state": [
+    [
+      [
+        107,
+        0,
+        23,
+        0
+      ]
+    ],
+    []
+  ],
+  "native_oracle_gd_py_events_including_terminal": 638,
+  "cpp_combat_events": 637,
+  "natural_terminal_and_gem_origins": true,
+  "fixed_cases_without_buff_state": 100,
+  "unchanged_gd_and_py_rows_and_cpp_receipts": 100,
+  "native_strict_match_fixed": 67,
+  "native_winner_mismatch_fixed": 1,
+  "dll_sha256": "65185739d6dbf7142f6e29d614731faa56cec1e5b13518397c3ce1acf66f7b25"
+}

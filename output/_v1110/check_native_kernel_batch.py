@@ -67,6 +67,10 @@ if not args.reuse_inputs:
                 flicker["limits"] = [descriptor["flicker" + key] for key in ("MinDist", "MaxDist", "MinSpeed", "MaxSpeed")]
         lineups["replay_controls"]["replay_initial"] = {
             "activation_rng_state": boundaries["before_activate"]["state"], "idle_left": idle, "flickers": flickers}
+        if "buff_state" in boundaries["before_activate"]:
+            buff_state = boundaries["before_activate"]["buff_state"]
+            assert len(buff_state) == 2 and all(row[3] == 0 for side in buff_state for row in side), cid
+            lineups["replay_controls"]["replay_initial"]["buff_state"] = buff_state
         lineups["replay_controls"]["native_activation_order"] = order
         target = out / "fights" / cid
         target.mkdir(parents=True, exist_ok=True)
