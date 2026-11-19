@@ -1,0 +1,33 @@
+{
+  "cases": [
+    {
+      "case_id": "run100900_r15_o100932_r15",
+      "event_count": 616,
+      "winner": "player"
+    },
+    {
+      "case_id": "run705109_r12_o101487_r12",
+      "event_count": 332,
+      "winner": "player"
+    },
+    {
+      "case_id": "run604768_r18_o101694_r18",
+      "event_count": 407,
+      "winner": "player"
+    }
+  ],
+  "total": 3,
+  "passed": 3,
+  "fixtures_sha256": "cd339a62c3cb6939b5227918429b538b4175874e548618332519bce7414605eb",
+  "compiled_modules_sha256": {
+    "gd_core_py/_rt.pyd": "c421f51ca02d35490b779bbc256ef34ed104132933c40939a1d62a95f9d4c3dd",
+    "gd_core_py/gd_core/CoreTimer.pyd": "5259e107cd80928e406c5a32ba52922cf0c351cedb1500751c14776cd7322ab7",
+    "gd_core_py/gd_core/CoreEventBus.pyd": "5fd74cc6a188b7685d741396f79ebb1d099a2511796c817e6b7ba474505ede90",
+    "gd_core_py/gd_core/CoreItem.pyd": "d2fc3efe0bdd3ecf647ae33e53b2164a464124a4b03ad64a7afb1a5918209d5f",
+    "gd_core_py/gd_core/CoreBuff.pyd": "0ac7886ad7f45ff9ff4d4d8118943ee8712eb36dab499ab9250005a1b38e59d1",
+    "gd_core_py/gd_core/CoreGrid.pyd": "f655cf6885bcb53805e4487de268428107581dce776c27ecab6fe8968e754881",
+    "gd_core_py/gd_core/CoreCharacter.pyd": "143c317e426c872236a92b19b58ed9894885a42fb23ba53e6de0fa176f46c178",
+    "gd_core_py/gd_core/CoreRng.pyd": "cf6990e4d725322c8bab2320831c67b7ab19b5465ab24689eb91fbdb17520b42",
+    "gd_core_py/gd_core/CoreCombat.pyd": "d8773f1dae13fe4af55a3b93cba933bec48f1c0eff3384565c382e8abae94033"
+  }
+}

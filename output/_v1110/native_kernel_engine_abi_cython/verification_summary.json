@@ -1,0 +1,518 @@
+{
+  "cases": [
+    {
+      "case_id": "run604589_r16_o704359_r16",
+      "event_count": 863,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run101714_r1_o704353_r1",
+      "event_count": 53,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run604498_r16_o101592_r16",
+      "event_count": 160,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run100900_r15_o100932_r15",
+      "event_count": 649,
+      "winner": "player"
+    },
+    {
+      "case_id": "run300180_r1_o100914_r1",
+      "event_count": 141,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run100947_r17_o704359_r17",
+      "event_count": 611,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run101757_r1_o500111_r1",
+      "event_count": 37,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run704860_r18_o101003_r18",
+      "event_count": 223,
+      "winner": "player"
+    },
+    {
+      "case_id": "run604597_r1_o604680_r1",
+      "event_count": 135,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run604734_r18_o101585_r18",
+      "event_count": 727,
+      "winner": "player"
+    },
+    {
+      "case_id": "run604550_r1_o101113_r1",
+      "event_count": 35,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run101275_r18_o101516_r18",
+      "event_count": 591,
+      "winner": "player"
+    },
+    {
+      "case_id": "run604793_r1_o704794_r1",
+      "event_count": 26,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run704507_r18_o101208_r18",
+      "event_count": 1160,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run704890_r15_o704618_r15",
+      "event_count": 871,
+      "winner": "player"
+    },
+    {
+      "case_id": "run101188_r10_o100935_r10",
+      "event_count": 523,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run604756_r7_o705018_r7",
+      "event_count": 271,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run704987_r1_o704880_r1",
+      "event_count": 69,
+      "winner": "player"
+    },
+    {
+      "case_id": "run705074_r3_o101090_r3",
+      "event_count": 282,
+      "winner": "player"
+    },
+    {
+      "case_id": "run101742_r6_o300100_r6",
+      "event_count": 385,
+      "winner": "player"
+    },
+    {
+      "case_id": "run101626_r9_o604493_r9",
+      "event_count": 358,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run704946_r12_o604825_r12",
+      "event_count": 208,
+      "winner": "player"
+    },
+    {
+      "case_id": "run705005_r14_o704970_r14",
+      "event_count": 240,
+      "winner": "player"
+    },
+    {
+      "case_id": "run101171_r18_o101582_r18",
+      "event_count": 243,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run101700_r1_o100996_r1",
+      "event_count": 40,
+      "winner": "player"
+    },
+    {
+      "case_id": "run101737_r3_o101416_r3",
+      "event_count": 176,
+      "winner": "player"
+    },
+    {
+      "case_id": "run101620_r6_o101273_r6",
+      "event_count": 224,
+      "winner": "player"
+    },
+    {
+      "case_id": "run705104_r9_o704510_r9",
+      "event_count": 252,
+      "winner": "player"
+    },
+    {
+      "case_id": "run705078_r12_o101367_r12",
+      "event_count": 773,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run704944_r15_o704957_r15",
+      "event_count": 867,
+      "winner": "player"
+    },
+    {
+      "case_id": "run705089_r18_o704278_r18",
+      "event_count": 999,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run101730_r1_o101037_r1",
+      "event_count": 43,
+      "winner": "player"
+    },
+    {
+      "case_id": "run101749_r3_o604542_r3",
+      "event_count": 130,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run101712_r6_o704327_r6",
+      "event_count": 194,
+      "winner": "player"
+    },
+    {
+      "case_id": "run705008_r8_o604759_r8",
+      "event_count": 158,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run101668_r12_o704449_r12",
+      "event_count": 231,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run705031_r15_o704686_r15",
+      "event_count": 626,
+      "winner": "player"
+    },
+    {
+      "case_id": "run101710_r18_o101315_r18",
+      "event_count": 512,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run704972_r1_o101115_r1",
+      "event_count": 140,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run101532_r3_o101655_r3",
+      "event_count": 306,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run705018_r6_o604708_r6",
+      "event_count": 213,
+      "winner": "player"
+    },
+    {
+      "case_id": "run101670_r8_o101300_r8",
+      "event_count": 124,
+      "winner": "player"
+    },
+    {
+      "case_id": "run101699_r12_o500223_r12",
+      "event_count": 315,
+      "winner": "player"
+    },
+    {
+      "case_id": "run705018_r15_o100968_r15",
+      "event_count": 844,
+      "winner": "player"
+    },
+    {
+      "case_id": "run101779_r18_o604702_r18",
+      "event_count": 521,
+      "winner": "player"
+    },
+    {
+      "case_id": "run101664_r1_o101151_r1",
+      "event_count": 74,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run704968_r3_o704364_r3",
+      "event_count": 195,
+      "winner": "player"
+    },
+    {
+      "case_id": "run101677_r6_o604734_r6",
+      "event_count": 208,
+      "winner": "player"
+    },
+    {
+      "case_id": "run704950_r9_o101367_r9",
+      "event_count": 266,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run704995_r12_o101334_r12",
+      "event_count": 411,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run101527_r14_o704341_r14",
+      "event_count": 343,
+      "winner": "player"
+    },
+    {
+      "case_id": "run604868_r17_o101770_r17",
+      "event_count": 999,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run705134_r1_o101082_r1",
+      "event_count": 56,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run101704_r3_o704467_r3",
+      "event_count": 250,
+      "winner": "player"
+    },
+    {
+      "case_id": "run101490_r6_o500242_r6",
+      "event_count": 453,
+      "winner": "player"
+    },
+    {
+      "case_id": "run101654_r9_o300110_r9",
+      "event_count": 320,
+      "winner": "player"
+    },
+    {
+      "case_id": "run101653_r11_o101325_r11",
+      "event_count": 418,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run704961_r15_o604851_r15",
+      "event_count": 551,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run101772_r18_o705149_r18",
+      "event_count": 562,
+      "winner": "player"
+    },
+    {
+      "case_id": "run101593_r1_o100847_r1",
+      "event_count": 113,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run101535_r3_o101452_r3",
+      "event_count": 304,
+      "winner": "player"
+    },
+    {
+      "case_id": "run101533_r6_o101089_r6",
+      "event_count": 219,
+      "winner": "player"
+    },
+    {
+      "case_id": "run101592_r8_o704346_r8",
+      "event_count": 182,
+      "winner": "player"
+    },
+    {
+      "case_id": "run704945_r12_o604790_r12",
+      "event_count": 401,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run704970_r15_o704359_r15",
+      "event_count": 647,
+      "winner": "player"
+    },
+    {
+      "case_id": "run705153_r17_o604713_r17",
+      "event_count": 493,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run704936_r1_o100855_r1",
+      "event_count": 43,
+      "winner": "player"
+    },
+    {
+      "case_id": "run101669_r3_o101360_r3",
+      "event_count": 152,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run101750_r6_o101414_r6",
+      "event_count": 234,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run101742_r9_o704410_r9",
+      "event_count": 688,
+      "winner": "player"
+    },
+    {
+      "case_id": "run101734_r11_o604508_r11",
+      "event_count": 315,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run704993_r15_o705106_r15",
+      "event_count": 421,
+      "winner": "player"
+    },
+    {
+      "case_id": "run705116_r17_o604720_r17",
+      "event_count": 1774,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run101607_r1_o100864_r1",
+      "event_count": 135,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run101713_r3_o704580_r3",
+      "event_count": 85,
+      "winner": "player"
+    },
+    {
+      "case_id": "run101607_r6_o704809_r6",
+      "event_count": 222,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run101614_r9_o101316_r9",
+      "event_count": 214,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run705058_r12_o604734_r12",
+      "event_count": 420,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run705085_r15_o500204_r15",
+      "event_count": 663,
+      "winner": "player"
+    },
+    {
+      "case_id": "run705151_r18_o704991_r18",
+      "event_count": 339,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run101710_r1_o100915_r1",
+      "event_count": 108,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run500276_r3_o704876_r3",
+      "event_count": 110,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run704955_r5_o604526_r5",
+      "event_count": 223,
+      "winner": "player"
+    },
+    {
+      "case_id": "run705102_r9_o704957_r9",
+      "event_count": 215,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run705008_r12_o604515_r12",
+      "event_count": 269,
+      "winner": "player"
+    },
+    {
+      "case_id": "run705102_r15_o101334_r15",
+      "event_count": 381,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run101617_r18_o604474_r18",
+      "event_count": 1475,
+      "winner": "player"
+    },
+    {
+      "case_id": "run101779_r1_o100933_r1",
+      "event_count": 60,
+      "winner": "player"
+    },
+    {
+      "case_id": "run705016_r3_o101310_r3",
+      "event_count": 123,
+      "winner": "player"
+    },
+    {
+      "case_id": "run101671_r6_o101277_r6",
+      "event_count": 360,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run705041_r9_o500250_r9",
+      "event_count": 710,
+      "winner": "player"
+    },
+    {
+      "case_id": "run704991_r12_o704508_r12",
+      "event_count": 296,
+      "winner": "player"
+    },
+    {
+      "case_id": "run704972_r15_o705093_r15",
+      "event_count": 715,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run705039_r18_o704909_r18",
+      "event_count": 884,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run604864_r1_o100952_r1",
+      "event_count": 92,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run101616_r3_o101007_r3",
+      "event_count": 237,
+      "winner": "player"
+    },
+    {
+      "case_id": "run704933_r6_o704860_r6",
+      "event_count": 195,
+      "winner": "player"
+    },
+    {
+      "case_id": "run101761_r9_o100993_r9",
+      "event_count": 687,
+      "winner": "player"
+    },
+    {
+      "case_id": "run705109_r12_o101487_r12",
+      "event_count": 354,
+      "winner": "opponent"
+    },
+    {
+      "case_id": "run705011_r15_o604695_r15",
+      "event_count": 541,
+      "winner": "opponent"
+    }
+  ],
+  "total": 100,
+  "passed": 100,
+  "fixtures_sha256": "2e5a8bad10dff0a1fe5204d1cbf8d9c25d673c1f8d9a65fd200a6379e31d57e8",
+  "compiled_modules_sha256": {
+    "gd_core_py/_rt.pyd": "c421f51ca02d35490b779bbc256ef34ed104132933c40939a1d62a95f9d4c3dd",
+    "gd_core_py/gd_core/CoreTimer.pyd": "5259e107cd80928e406c5a32ba52922cf0c351cedb1500751c14776cd7322ab7",
+    "gd_core_py/gd_core/CoreEventBus.pyd": "5fd74cc6a188b7685d741396f79ebb1d099a2511796c817e6b7ba474505ede90",
+    "gd_core_py/gd_core/CoreItem.pyd": "d2fc3efe0bdd3ecf647ae33e53b2164a464124a4b03ad64a7afb1a5918209d5f",
+    "gd_core_py/gd_core/CoreBuff.pyd": "0ac7886ad7f45ff9ff4d4d8118943ee8712eb36dab499ab9250005a1b38e59d1",
+    "gd_core_py/gd_core/CoreGrid.pyd": "f655cf6885bcb53805e4487de268428107581dce776c27ecab6fe8968e754881",
+    "gd_core_py/gd_core/CoreCharacter.pyd": "143c317e426c872236a92b19b58ed9894885a42fb23ba53e6de0fa176f46c178",
+    "gd_core_py/gd_core/CoreRng.pyd": "cf6990e4d725322c8bab2320831c67b7ab19b5465ab24689eb91fbdb17520b42",
+    "gd_core_py/gd_core/CoreCombat.pyd": "d8773f1dae13fe4af55a3b93cba933bec48f1c0eff3384565c382e8abae94033"
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "scope": "Strict event-passing fixtures. CPU time includes assembly and battle, with event materialization off and warm imports.",
+  "rounds": 5,
+  "iterations_per_block": 4,
+  "cases": {
+    "run705109_r12_o101487_r12": {
+      "pure_ms": [
+        464.84375,
+        445.3125,
+        480.46875,
+        476.5625,
+        472.65625
+      ],
+      "cython_ms": [
+        300.78125,
+        292.96875,
+        289.0625,
+        285.15625,
+        308.59375
+      ],
+      "median_ms": [
+        472.65625,
+        292.96875
+      ],
+      "signature": [
+        true,
+        669,
+        226.0,
+        0.0
+      ]
+    },
+    "run100900_r15_o100932_r15": {
+      "pure_ms": [
+        628.90625,
+        644.53125,
+        648.4375,
+        695.3125,
+        675.78125
+      ],
+      "cython_ms": [
+        460.9375,
+        449.21875,
+        464.84375,
+        449.21875,
+        460.9375
+      ],
+      "median_ms": [
+        648.4375,
+        460.9375
+      ],
+      "signature": [
+        true,
+        718,
+        267.0,
+        0.0
+      ]
+    }
+  },
+  "compiled_modules": [
+    "gd_core_py._rt",
+    "gd_core_py.gd_core.CoreBuff",
+    "gd_core_py.gd_core.CoreCharacter",
+    "gd_core_py.gd_core.CoreCombat",
+    "gd_core_py.gd_core.CoreEventBus",
+    "gd_core_py.gd_core.CoreGrid",
+    "gd_core_py.gd_core.CoreItem",
+    "gd_core_py.gd_core.CoreRng",
+    "gd_core_py.gd_core.CoreTimer"
+  ]
+}
