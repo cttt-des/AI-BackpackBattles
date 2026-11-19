@@ -1,0 +1,34 @@
+{
+  "version": "1.1.10",
+  "source_provenance": "installed_1.1.10_with_user_plugin",
+  "cohort": "base",
+  "case_list_sha256": "021131ae53ba81ea56c345d920a7e808f5762ac442860803e366b4ef2065035b",
+  "history_snapshot_sha256": "343334b3b0c5eb62afc5f6b27d0a41438d9cb9605d096cf167048c39cbdbc412",
+  "reader_sha256": "8f8a43c0440b01171529b95068d86136bc9b79a2e3040f8206a650b468bc381c",
+  "engine": "Shipping BackpackBattles.exe; full recovered Main scene; native frame scheduling",
+  "engine_sha256": "4522a5f2b71fe2aa5f7f730a2bd71f66f4f8112609164bcef39c110f047ad577",
+  "shipping_engine": true,
+  "battle_script_sha256": {
+    "Core/Character.gd": "d567f4b1eec5c6734d12153a2ff6e53ec4a0b2d8c7f18185959c54a61d6960eb",
+    "Core/Buff.gd": "3efabb72eb0b337e30ebc924347aba40bd1039a3c5f718b761b0ee78b48ab8bb",
+    "Core/CombatLog.gd": "502ba9802874c189798001a59c4135ca6591efaec80b007559760b12dc0bf638",
+    "Items/Item.gd": "d98ce12b6e5fafb3715db069898e23d4063c9e6ec819edfdd2926cc3d5659369",
+    "Interface/CombatTimer/CombatTimer.gd": "3e1bb3ac33ae78b399d98cfd7bdd6ddb35a337d3afa9f3347af660757cd3b7fd",
+    "Items/Exclusive/PrismaticSword.gd": "7b6cce2045a17f3dc3433927f1bfcd0b2c2b5aff98270e5a8e57a831cdbf371b",
+    "Items/Exclusive/MagicRing.gd": "04834673b82f88d05ddc6765c13252a615037fb17c24bd3c4abf02c3bce91953"
+  },
+  "adaptations": [
+    "Offline Steam, leaderboard, SDK and plugin service stubs",
+    "Recovered plaintext table and full-version runtime DLL discovery",
+    "Preparation, activation and pending visual timer observers; no manual combat tick",
+    "Global engine PCG position observed and restored at preparation and activation",
+    "Batches return through the source history menu; adapter selects records and resets its UI fight guard",
+    "Read-only RNG call observer enabled",
+    "Restore RNG, process clocks, carried buff balances and idle timers from the recorded activation boundary",
+    "Read-only Prismatic Sword affected types and first-roll observer",
+    "Read-only Prismatic Sword affected types and first-roll observer",
+    "Read-only initial ring rolls recorded before saved effects are loaded"
+  ],
+  "scope": "Controlled activation diagnostic on recovered source",
+  "diagnostic_original_sha256": "32ae16d209fb7075dfca1ff9179708dc7e2e7d76cb3abde18861f17cd9a5099a"
+}

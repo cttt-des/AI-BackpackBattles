@@ -1,0 +1,1878 @@
+{
+  "seed": 7507225,
+  "run_id": 948,
+  "round_id": 18,
+  "opp_run_id": 948,
+  "opp_round_id": 18,
+  "phase": "assembled",
+  "snapshot": 3,
+  "replay_controls": {
+    "below_master": true,
+    "custom_health_multiplier": 100
+  },
+  "assembly_order_note": "items 数组即装配（实例创建）顺序：buildInfo 反序列化流顺序经原版 sort_BagOrder 后的顺序，两侧模拟器按此顺序重建",
+  "player": {
+    "class": 4,
+    "class_name": "Mage",
+    "max_health": 350,
+    "current_health": 350,
+    "base_max_stamina": 5,
+    "max_stamina": 7,
+    "items": [
+      {
+        "name": "Leather Bag",
+        "identifier": "Leather Bag",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 5
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Stamina Sack",
+        "identifier": "Stamina Sack",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 0
+        },
+        "face_direction": 1,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Leather Bag",
+        "identifier": "Leather Bag",
+        "owner_type": 1,
+        "top_left": {
+          "x": 0,
+          "y": 3
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Stamina Sack",
+        "identifier": "Stamina Sack",
+        "owner_type": 1,
+        "top_left": {
+          "x": 7,
+          "y": 4
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Potion Belt",
+        "identifier": "Potion Belt",
+        "owner_type": 1,
+        "top_left": {
+          "x": 8,
+          "y": 2
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Leather Bag",
+        "identifier": "Leather Bag",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 1
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Protective Purse",
+        "identifier": "Protective Purse",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 3
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Fanny Pack",
+        "identifier": "Fanny Pack",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 3
+        },
+        "face_direction": 3,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Leather Bag",
+        "identifier": "Leather Bag",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 5
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Leather Bag",
+        "identifier": "Leather Bag",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 5
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Fanny Pack",
+        "identifier": "Fanny Pack",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 1
+        },
+        "face_direction": 1,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Puzzlebag Z",
+        "identifier": "Puzzlebag Z",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 2
+        },
+        "face_direction": 1,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Leather Bag",
+        "identifier": "Leather Bag",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 0
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Puzzlebox",
+        "identifier": "Puzzlebox",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 1
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Fanny Pack",
+        "identifier": "Fanny Pack",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 3
+        },
+        "face_direction": 1,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Amulet of Life",
+        "identifier": "Amulet of Life",
+        "owner_type": 1,
+        "top_left": {
+          "x": 7,
+          "y": 6
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Customer Card",
+        "identifier": "Customer Card",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 2
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Superior Ring",
+        "identifier": "Superior Ring",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 2
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+          {
+            "triggerType": 3,
+            "stackType": 104
+          },
+          {
+            "triggerType": 1,
+            "stackType": 101
+          },
+          {
+            "triggerType": 1,
+            "stackType": 101
+          }
+        ],
+        "placement_effects": [
+          {
+            "triggerType": 0,
+            "stackType": 105
+          },
+          {
+            "triggerType": 1,
+            "stackType": 105
+          },
+          {
+            "triggerType": 1,
+            "stackType": 105
+          }
+        ],
+        "crafted": true
+      },
+      {
+        "name": "Amulet of Fortune",
+        "identifier": "Amulet of Fortune",
+        "owner_type": 1,
+        "top_left": {
+          "x": 7,
+          "y": 5
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Prismatic Sword",
+        "identifier": "Prismatic Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 4
+        },
+        "face_direction": 1,
+        "gems": [
+          null,
+          null
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": true
+      },
+      {
+        "name": "Magic Ring",
+        "identifier": "Magic Ring",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 3
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+          {
+            "triggerType": 0,
+            "stackType": 101
+          },
+          {
+            "triggerType": 1,
+            "stackType": 107
+          }
+        ],
+        "placement_effects": [
+          {
+            "triggerType": 1,
+            "stackType": 106
+          },
+          {
+            "triggerType": 3,
+            "stackType": 102
+          }
+        ],
+        "crafted": false
+      },
+      {
+        "name": "Shelly",
+        "identifier": "Shelly",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 1
+        },
+        "face_direction": 3,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": true
+      },
+      {
+        "name": "Badger Spirit",
+        "identifier": "Badger Spirit",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 1
+        },
+        "face_direction": 2,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Magic Ring",
+        "identifier": "Magic Ring",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 3
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+          {
+            "triggerType": 2,
+            "stackType": 107
+          },
+          {
+            "triggerType": 1,
+            "stackType": 106
+          }
+        ],
+        "placement_effects": [
+          {
+            "triggerType": 1,
+            "stackType": 103
+          },
+          {
+            "triggerType": 3,
+            "stackType": 109
+          }
+        ],
+        "crafted": false
+      },
+      {
+        "name": "King of the Bling",
+        "identifier": "King of the Bling",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 3
+        },
+        "face_direction": 1,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Snowball",
+        "identifier": "Snowball",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 0
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Snowball",
+        "identifier": "Snowball",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 0
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Blueberries",
+        "identifier": "Blueberries",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 0
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Corrupted Armor",
+        "identifier": "Corrupted Armor",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 1
+        },
+        "face_direction": 1,
+        "gems": [
+          "Corrupted Crystal",
+          "Corrupted Crystal",
+          null
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": true
+      },
+      {
+        "name": "Shiny Mantle",
+        "identifier": "Shiny Mantle",
+        "owner_type": 1,
+        "top_left": {
+          "x": 7,
+          "y": 2
+        },
+        "face_direction": 0,
+        "gems": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Superior Ring",
+        "identifier": "Superior Ring",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 3
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+          {
+            "triggerType": 1,
+            "stackType": 102
+          },
+          {
+            "triggerType": 1,
+            "stackType": 104
+          },
+          {
+            "triggerType": 2,
+            "stackType": 103
+          }
+        ],
+        "placement_effects": [
+          {
+            "triggerType": 2,
+            "stackType": 104
+          },
+          {
+            "triggerType": 3,
+            "stackType": 108
+          },
+          {
+            "triggerType": 2,
+            "stackType": 110
+          }
+        ],
+        "crafted": true
+      },
+      {
+        "name": "False Life",
+        "identifier": "False Life",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 4
+        },
+        "face_direction": 1,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Lucky Cat",
+        "identifier": "Lucky Cat",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 5
+        },
+        "face_direction": 2,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 3
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Blueberries",
+        "identifier": "Blueberries",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 4
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 5
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Blueberries",
+        "identifier": "Blueberries",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 6
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Wolpertinger",
+        "identifier": "Wolpertinger",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 5
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Snowball",
+        "identifier": "Snowball",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 6
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Snowball",
+        "identifier": "Snowball",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 6
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Snowball",
+        "identifier": "Snowball",
+        "owner_type": 1,
+        "top_left": {
+          "x": 0,
+          "y": 3
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Snowball",
+        "identifier": "Snowball",
+        "owner_type": 1,
+        "top_left": {
+          "x": 0,
+          "y": 4
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 3
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Superior Ring",
+        "identifier": "Superior Ring",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 5
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+          {
+            "triggerType": 1,
+            "stackType": 109
+          },
+          {
+            "triggerType": 1,
+            "stackType": 102
+          },
+          {
+            "triggerType": 2,
+            "stackType": 102
+          }
+        ],
+        "placement_effects": [
+          {
+            "triggerType": 0,
+            "stackType": 101
+          },
+          {
+            "triggerType": 1,
+            "stackType": 101
+          },
+          {
+            "triggerType": 3,
+            "stackType": 102
+          }
+        ],
+        "crafted": true
+      },
+      {
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 5
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      }
+    ]
+  },
+  "opponent": {
+    "class": 4,
+    "class_name": "Mage",
+    "max_health": 350,
+    "current_health": 350,
+    "base_max_stamina": 5,
+    "max_stamina": 7,
+    "items": [
+      {
+        "name": "Leather Bag",
+        "identifier": "Leather Bag",
+        "owner_type": 3,
+        "top_left": {
+          "x": 1,
+          "y": 5
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Stamina Sack",
+        "identifier": "Stamina Sack",
+        "owner_type": 3,
+        "top_left": {
+          "x": 5,
+          "y": 0
+        },
+        "face_direction": 1,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Leather Bag",
+        "identifier": "Leather Bag",
+        "owner_type": 3,
+        "top_left": {
+          "x": 0,
+          "y": 3
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Stamina Sack",
+        "identifier": "Stamina Sack",
+        "owner_type": 3,
+        "top_left": {
+          "x": 7,
+          "y": 4
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Potion Belt",
+        "identifier": "Potion Belt",
+        "owner_type": 3,
+        "top_left": {
+          "x": 8,
+          "y": 2
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Leather Bag",
+        "identifier": "Leather Bag",
+        "owner_type": 3,
+        "top_left": {
+          "x": 1,
+          "y": 1
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Protective Purse",
+        "identifier": "Protective Purse",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 3
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Fanny Pack",
+        "identifier": "Fanny Pack",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 3
+        },
+        "face_direction": 3,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Leather Bag",
+        "identifier": "Leather Bag",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 5
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Leather Bag",
+        "identifier": "Leather Bag",
+        "owner_type": 3,
+        "top_left": {
+          "x": 5,
+          "y": 5
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Fanny Pack",
+        "identifier": "Fanny Pack",
+        "owner_type": 3,
+        "top_left": {
+          "x": 6,
+          "y": 1
+        },
+        "face_direction": 1,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Puzzlebag Z",
+        "identifier": "Puzzlebag Z",
+        "owner_type": 3,
+        "top_left": {
+          "x": 6,
+          "y": 2
+        },
+        "face_direction": 1,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Leather Bag",
+        "identifier": "Leather Bag",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 0
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Puzzlebox",
+        "identifier": "Puzzlebox",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 1
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Fanny Pack",
+        "identifier": "Fanny Pack",
+        "owner_type": 3,
+        "top_left": {
+          "x": 5,
+          "y": 3
+        },
+        "face_direction": 1,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Amulet of Life",
+        "identifier": "Amulet of Life",
+        "owner_type": 3,
+        "top_left": {
+          "x": 7,
+          "y": 6
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Customer Card",
+        "identifier": "Customer Card",
+        "owner_type": 3,
+        "top_left": {
+          "x": 1,
+          "y": 2
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Superior Ring",
+        "identifier": "Superior Ring",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 2
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+          {
+            "triggerType": 3,
+            "stackType": 104
+          },
+          {
+            "triggerType": 1,
+            "stackType": 101
+          },
+          {
+            "triggerType": 1,
+            "stackType": 101
+          }
+        ],
+        "placement_effects": [
+          {
+            "triggerType": 0,
+            "stackType": 109
+          },
+          {
+            "triggerType": 1,
+            "stackType": 102
+          },
+          {
+            "triggerType": 3,
+            "stackType": 106
+          }
+        ],
+        "crafted": true
+      },
+      {
+        "name": "Amulet of Fortune",
+        "identifier": "Amulet of Fortune",
+        "owner_type": 3,
+        "top_left": {
+          "x": 7,
+          "y": 5
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Prismatic Sword",
+        "identifier": "Prismatic Sword",
+        "owner_type": 3,
+        "top_left": {
+          "x": 4,
+          "y": 4
+        },
+        "face_direction": 1,
+        "gems": [
+          null,
+          null
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": true
+      },
+      {
+        "name": "Magic Ring",
+        "identifier": "Magic Ring",
+        "owner_type": 3,
+        "top_left": {
+          "x": 1,
+          "y": 3
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+          {
+            "triggerType": 0,
+            "stackType": 101
+          },
+          {
+            "triggerType": 1,
+            "stackType": 107
+          }
+        ],
+        "placement_effects": [
+          {
+            "triggerType": 1,
+            "stackType": 102
+          },
+          {
+            "triggerType": 3,
+            "stackType": 106
+          }
+        ],
+        "crafted": false
+      },
+      {
+        "name": "Shelly",
+        "identifier": "Shelly",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 1
+        },
+        "face_direction": 3,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": true
+      },
+      {
+        "name": "Badger Spirit",
+        "identifier": "Badger Spirit",
+        "owner_type": 3,
+        "top_left": {
+          "x": 1,
+          "y": 1
+        },
+        "face_direction": 2,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Magic Ring",
+        "identifier": "Magic Ring",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 3
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+          {
+            "triggerType": 2,
+            "stackType": 107
+          },
+          {
+            "triggerType": 1,
+            "stackType": 106
+          }
+        ],
+        "placement_effects": [
+          {
+            "triggerType": 0,
+            "stackType": 104
+          },
+          {
+            "triggerType": 1,
+            "stackType": 103
+          }
+        ],
+        "crafted": false
+      },
+      {
+        "name": "King of the Bling",
+        "identifier": "King of the Bling",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 3
+        },
+        "face_direction": 1,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Snowball",
+        "identifier": "Snowball",
+        "owner_type": 3,
+        "top_left": {
+          "x": 4,
+          "y": 0
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Snowball",
+        "identifier": "Snowball",
+        "owner_type": 3,
+        "top_left": {
+          "x": 5,
+          "y": 0
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Blueberries",
+        "identifier": "Blueberries",
+        "owner_type": 3,
+        "top_left": {
+          "x": 6,
+          "y": 0
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Corrupted Armor",
+        "identifier": "Corrupted Armor",
+        "owner_type": 3,
+        "top_left": {
+          "x": 4,
+          "y": 1
+        },
+        "face_direction": 1,
+        "gems": [
+          "Corrupted Crystal",
+          "Corrupted Crystal",
+          null
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": true
+      },
+      {
+        "name": "Shiny Mantle",
+        "identifier": "Shiny Mantle",
+        "owner_type": 3,
+        "top_left": {
+          "x": 7,
+          "y": 2
+        },
+        "face_direction": 0,
+        "gems": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Superior Ring",
+        "identifier": "Superior Ring",
+        "owner_type": 3,
+        "top_left": {
+          "x": 5,
+          "y": 3
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+          {
+            "triggerType": 1,
+            "stackType": 102
+          },
+          {
+            "triggerType": 1,
+            "stackType": 104
+          },
+          {
+            "triggerType": 2,
+            "stackType": 103
+          }
+        ],
+        "placement_effects": [
+          {
+            "triggerType": 1,
+            "stackType": 102
+          },
+          {
+            "triggerType": 3,
+            "stackType": 109
+          },
+          {
+            "triggerType": 3,
+            "stackType": 101
+          }
+        ],
+        "crafted": true
+      },
+      {
+        "name": "False Life",
+        "identifier": "False Life",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 4
+        },
+        "face_direction": 1,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Lucky Cat",
+        "identifier": "Lucky Cat",
+        "owner_type": 3,
+        "top_left": {
+          "x": 5,
+          "y": 5
+        },
+        "face_direction": 2,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 3,
+        "top_left": {
+          "x": 6,
+          "y": 3
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Blueberries",
+        "identifier": "Blueberries",
+        "owner_type": 3,
+        "top_left": {
+          "x": 1,
+          "y": 4
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 5
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Blueberries",
+        "identifier": "Blueberries",
+        "owner_type": 3,
+        "top_left": {
+          "x": 6,
+          "y": 6
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Wolpertinger",
+        "identifier": "Wolpertinger",
+        "owner_type": 3,
+        "top_left": {
+          "x": 1,
+          "y": 5
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Snowball",
+        "identifier": "Snowball",
+        "owner_type": 3,
+        "top_left": {
+          "x": 4,
+          "y": 6
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Snowball",
+        "identifier": "Snowball",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 6
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Snowball",
+        "identifier": "Snowball",
+        "owner_type": 3,
+        "top_left": {
+          "x": 0,
+          "y": 3
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Snowball",
+        "identifier": "Snowball",
+        "owner_type": 3,
+        "top_left": {
+          "x": 0,
+          "y": 4
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 3,
+        "top_left": {
+          "x": 4,
+          "y": 3
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      },
+      {
+        "name": "Superior Ring",
+        "identifier": "Superior Ring",
+        "owner_type": 3,
+        "top_left": {
+          "x": 4,
+          "y": 5
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+          {
+            "triggerType": 1,
+            "stackType": 109
+          },
+          {
+            "triggerType": 1,
+            "stackType": 102
+          },
+          {
+            "triggerType": 2,
+            "stackType": 102
+          }
+        ],
+        "placement_effects": [
+          {
+            "triggerType": 1,
+            "stackType": 106
+          },
+          {
+            "triggerType": 0,
+            "stackType": 107
+          },
+          {
+            "triggerType": 2,
+            "stackType": 106
+          }
+        ],
+        "crafted": true
+      },
+      {
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 3,
+        "top_left": {
+          "x": 6,
+          "y": 5
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "placement_effects": null,
+        "crafted": false
+      }
+    ]
+  }
+}

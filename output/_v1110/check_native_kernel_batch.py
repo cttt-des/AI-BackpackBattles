@@ -12,6 +12,8 @@ import shutil
 import subprocess
 import sys
 
+from native_ring_placement_input import read_placement_input
+
 repo = Path(__file__).resolve().parents[2]
 stage = repo / "output/_v1110"
 ap = argparse.ArgumentParser()
@@ -24,6 +26,7 @@ ap.add_argument("--reuse-inputs", action="store_true")
 ap.add_argument("--dll", type=Path, help="Use a separate candidate DLL")
 ap.add_argument("--strict-item-origins", action="store_true", help="Require ordinary item identifiers and board cells")
 ap.add_argument("--native-util-clock", action="store_true", help="Use the original process clock recorded at combat activation")
+ap.add_argument("--ring-placement-observations", type=Path, help="Supplement unchanged recordings with observed pre-placement ring rolls")
 legs = ap.add_mutually_exclusive_group()
 legs.add_argument("--cpp-only", action="store_true", help="Reuse GD/Py results only when their recorded source hashes still match")
 legs.add_argument("--direct-cpp", action="store_true", help="Check C++ against native events without running GD, Py or Oracle")
@@ -34,6 +37,8 @@ if args.case_ids and args.reuse_inputs:
 assert not args.cpp_only or args.reuse_inputs
 if args.strict_item_origins and not args.direct_cpp:
     ap.error("--strict-item-origins requires --direct-cpp")
+if args.ring_placement_observations and not args.direct_cpp:
+    ap.error("--ring-placement-observations requires --direct-cpp")
 reference = stage / args.source
 out = stage / args.out
 sim = stage / "sim_native"
@@ -67,6 +72,10 @@ if not args.reuse_inputs:
         assert len(rows) == events["event_count"] and rows[-1]["type"] == {"player": 111, "opponent": 112}[events["winner"]], cid
         assert round(rows[-1]["timestamp"] * 60) == round(events["combat_time"] * 60), cid
         lineups = json.loads((source / "lineups.json").read_text("utf8"))
+        if args.ring_placement_observations:
+            observed = args.ring_placement_observations / cid
+            if observed.is_dir():
+                lineups, _ = read_placement_input(source, observed)
         assert all(events[key] == lineups[key] for key in ("seed", "run_id", "round_id", "opp_run_id", "opp_round_id")), cid
         boundaries = json.loads((source / "boundaries.json").read_text("utf8"))
         order = {"player": [], "opponent": []}
@@ -189,6 +198,8 @@ with (out / "cpp.log").open("wb") as log:
         sys.executable, "-u", "-X", "utf8", "tools/_cpp_verify_events.py", *common,
         "--case-ids", str(out / "cases.json"), "--strict-gem-origins", "--original-dir", str(reference),
         "--out", str(out / "cpp"), "--dll", str(dll), *(["--native-only"] if args.direct_cpp else []),
+        *(["--ring-placement-observations", str(args.ring_placement_observations.resolve())]
+          if args.ring_placement_observations else []),
         *(["--strict-item-origins"] if args.strict_item_origins else [])],
         cwd=sim, stdout=log, stderr=subprocess.STDOUT).returncode
 (out / "status.json").write_text(json.dumps(status, indent=2) + "\n", encoding="utf8")

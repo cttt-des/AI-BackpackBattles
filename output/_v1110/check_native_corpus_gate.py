@@ -5,6 +5,8 @@ import hashlib
 import json
 from pathlib import Path
 
+from native_ring_placement_input import read_placement_input
+
 
 STAGE = Path(__file__).resolve().parent
 
@@ -105,7 +107,7 @@ def load_receipts(directories, dll_hash):
     return by_reference, next(iter(runtime_hashes))
 
 
-def check_cohort(index, reports):
+def check_cohort(index, reports, placement_hashes):
     counts = Counter(expected=len(index))
     pending = {}
     for cid, expected in sorted(index.items()):
@@ -134,6 +136,7 @@ def check_cohort(index, reports):
             continue
         if (row.get("original_events_sha256") != raw_hash
                 or row.get("reference_manifest_sha256") != digest(marker)
+                or row.get("ring_placement_lineups_sha256") != placement_hashes.get(cid)
                 or (boundary_hash is not None and row.get("original_boundaries_sha256") != boundary_hash)):
             pending[cid] = "receipt_source_mismatch"
             continue
@@ -156,15 +159,28 @@ def main():
     ap.add_argument("--dll", type=Path, required=True)
     ap.add_argument("--report", type=Path, nargs="+", required=True, help="Disjoint strict C++ result directories")
     ap.add_argument("--host-observed-plan", type=Path, help="Use the preregistered host-observed reference recordings")
+    ap.add_argument("--ring-placement-observations", type=Path, help="Require verified original ring placement observations")
     ap.add_argument("--out", type=Path)
     args = ap.parse_args()
     dll_hash = digest(args.dll)
     reports, runtime_hash = load_receipts(args.report, dll_hash)
-    cohorts = {name: check_cohort(index, reports) for name, index in reference_index(args.host_observed_plan).items()}
+    index = reference_index(args.host_observed_plan)
+    placement_hashes = {}
+    if args.ring_placement_observations:
+        references = {cid: expected["path"] for cohort in index.values() for cid, expected in cohort.items()}
+        observed = sorted(args.ring_placement_observations.glob("run*/lineups.json"))
+        if not observed:
+            ap.error("No ring placement observations found")
+        for file in observed:
+            cid = file.parent.name
+            _, placement_hashes[cid] = read_placement_input(STAGE / references[cid] / cid, file.parent)
+    cohorts = {name: check_cohort(refs, reports, placement_hashes) for name, refs in index.items()}
     complete = all(result["passed"] == result["expected"] for result in cohorts.values())
     data = {"complete": complete, "dll_sha256": dll_hash, "runtime_data_sha256": runtime_hash, "cohorts": cohorts}
     if args.host_observed_plan is not None:
         data["host_observed_plan_sha256"] = digest(args.host_observed_plan)
+    if placement_hashes:
+        data["ring_placement_lineups_sha256"] = placement_hashes
     if args.out:
         args.out.write_text(json.dumps(data, indent=2) + "\n", encoding="utf8")
     for name, result in cohorts.items():
