@@ -24,6 +24,7 @@ ap.add_argument("--report", type=Path)
 ap.add_argument("--rounds", type=int, default=5)
 ap.add_argument("--iterations", type=int, default=5)
 ap.add_argument("--samples", type=int, default=3)
+ap.add_argument("--debug", choices=("both", "off", "on"), default="both")
 args = ap.parse_args()
 roots = [stage / name for name in (args.before, args.after)]
 verified = [args.before_results or roots[0] / "cpp", args.after_results or roots[1] / "cpp"]
@@ -79,7 +80,7 @@ for cid in selected:
                    native_activation_order=False, rng_state=rng_state, formal_ev_gate=500000, max_time=90.0,
                    custom_health_multiplier=case["custom_health_multiplier"], replay_initial=case["replay_initial"])
     row = {"case_id": cid, "modes": {}}
-    for debug in (False, True):
+    for debug in (False, True) if args.debug == "both" else (args.debug == "on",):
         for engine, handles in zip(engines, packed):
             engine.lib.gd_sim_set_dbg_events(int(debug))
             for _ in range(3):

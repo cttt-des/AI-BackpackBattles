@@ -19,9 +19,14 @@ ap = argparse.ArgumentParser()
 ap.add_argument("--chunk", type=int, default=12)
 ap.add_argument("--cohort", choices=("both", "expand", "base"), default="both")
 ap.add_argument("--output-root", default="native_corpus", help="Separate output and status directory under the 1.1.10 stage")
+ap.add_argument("--project-prefix", default="native_corpus_project", help="Use a separate frozen project for the selected cohort")
+ap.add_argument("--case-ids", type=Path, help="Record this JSON list of case IDs within one cohort")
+ap.add_argument("--shipping-engine", action="store_true", help="Use the copied 1.1.10 shipping EXE")
 args = ap.parse_args()
 if args.chunk < 1:
     ap.error("chunk must be positive")
+if args.case_ids and args.cohort == "both":
+    ap.error("--case-ids requires one cohort")
 root = (stage / args.output_root).resolve()
 if root.parent != stage:
     ap.error("output root must be a direct child of the version stage")
@@ -56,14 +61,16 @@ if status_path.is_file():
     if previous.get("phase") not in ("complete", "failed") and live(previous.get("pid", 0)):
         raise SystemExit("Another native recorder is still live: " + str(previous["pid"]))
 status = {"pid": os.getpid(), "phase": "starting", "cohorts": {},
-          "scope": "Recovered 1.1.10 source plus vanilla Godot 3.6; installation EXE cross-check pending"}
+          "scope": ("Recovered 1.1.10 source on the copied shipping executable" if args.shipping_engine
+                    else "Recovered 1.1.10 source on vanilla Godot 3.6")}
 write_status(status)
 
 def accepted(folder, cid, expected):
     case = folder / cid
     try:
         manifest = json.loads((case / "reference_manifest.json").read_text("utf8"))
-        for key in ("version", "cohort", "battle_script_sha256", "reader_sha256", "case_list_sha256", "history_snapshot_sha256"):
+        for key in ("version", "cohort", "engine_sha256", "battle_script_sha256", "reader_sha256",
+                    "case_list_sha256", "history_snapshot_sha256"):
             if manifest.get(key) != expected.get(key):
                 return False
         doc = json.loads((case / "events.json").read_text("utf8"))
@@ -82,21 +89,35 @@ cohorts = ("expand", "base") if args.cohort == "both" else (args.cohort,)
 for cohort in cohorts:
     folder = root / cohort
     folder.mkdir(exist_ok=True)
-    project_name = "native_corpus_project_" + cohort
-    project = stage / project_name
+    project_name = args.project_prefix + "_" + cohort
+    project = (stage / project_name).resolve()
+    if project.parent != stage:
+        ap.error("The cohort project must be a direct child of the version stage")
+    engine_args = ["--shipping-engine"] if args.shipping_engine else []
     status["phase"] = "preparing"
     status["cohort"] = cohort
     write_status(status)
     if not (project / "reference_manifest.json").is_file():
         with (folder / "prepare.log").open("ab") as log:
             subprocess.run([sys.executable, "-u", "-X", "utf8", str(stage / "prepare_native_reference.py"),
-                            str(stage), "--cohort", cohort, "--project-name", project_name],
+                            str(stage), "--cohort", cohort, "--project-name", project_name, *engine_args],
                            cwd=repo, stdout=log, stderr=subprocess.STDOUT, check=True)
     expected = json.loads((project / "reference_manifest.json").read_text("utf8"))
+    if expected["cohort"] != cohort or bool(expected.get("shipping_engine")) != args.shipping_engine:
+        raise SystemExit("The frozen project uses a different cohort or executable")
     cases = json.loads((project / "fights.json").read_text("utf8"))["cases"]
     assert len(cases) == (1690 if cohort == "expand" else 914)
     ids = [case["case_id"] for case in cases]
     assert len(ids) == len(set(ids))
+    if args.case_ids:
+        selected_ids = json.loads(args.case_ids.read_bytes())
+        if (not isinstance(selected_ids, list) or not selected_ids or not all(isinstance(cid, str) for cid in selected_ids)
+                or len(selected_ids) != len(set(selected_ids))
+                or not set(selected_ids).issubset(ids)):
+            ap.error("Expected nonempty unique case IDs belonging to the selected cohort")
+        by_id = {case["case_id"]: case for case in cases}
+        cases = [by_id[cid] for cid in selected_ids]
+        ids = selected_ids
     # Front-load actual auto-rage cases missed by the old all-false metadata.
     priority = ["run101621_r3_o705060_r3", "run101697_r6_o400041_r6", "run400041_r7_o101102_r7", "run101098_r5_o101130_r5"]
     ids = [cid for cid in priority if cid in ids] + [cid for cid in ids if cid not in priority]
@@ -118,7 +139,8 @@ for cohort in cohorts:
             child = subprocess.Popen([sys.executable, "-u", "-X", "utf8", str(stage / "run_native_1110.py"),
                                       "--case-ids", str(batch_file), "--cohort", cohort,
                                       "--project-name", project_name, "--reuse-prepared", "--disable-render-loop",
-                                      "--out", root.name + "/" + cohort, "--timeout", str(max(300, len(selected) * 120))],
+                                      "--out", root.name + "/" + cohort, "--timeout", str(max(300, len(selected) * 120)),
+                                      *engine_args],
                                      cwd=repo, stdout=log, stderr=subprocess.STDOUT)
             status["child_pid"] = child.pid
             write_status(status)
