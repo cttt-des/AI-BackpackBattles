@@ -61,6 +61,7 @@ func record_one() -> void:
 	var metadata := {}
 	for descriptor in item_book.descriptorList:
 		metadata[descriptor.identifier] = {"translated_name": descriptor.getTranslatedName(),
+			"classes": descriptor.classes,
 			"has_battle_rage_effect": descriptor.hasBattleRageEffect,
 			"description_mentions_rage": descriptor.getDescription().find("$rage[") != -1}
 	var metadata_root = OS.get_environment("NATIVE_BATTLE_OUT")
