@@ -104,7 +104,8 @@ if not args.reuse_inputs:
                 assert 0 <= tick < (1 << 31) and (not schedule or tick >= schedule[-1][0]), (cid, draw)
                 for state in ("before", "after"):
                     assert -(1 << 63) <= int(draw[state]) < (1 << 63), (cid, draw)
-                schedule.append([tick, draw["before"], draw["after"]])
+                phase = 0 if draw["kind"] == "process_timer" else 1
+                schedule.append([tick, phase, draw["before"], draw["after"]])
             lineups["replay_controls"]["replay_initial"]["host_rng_draws"] = schedule
         if "opening_idle_delta" in boundaries:
             lineups["replay_controls"]["replay_initial"]["native_scene_delays"] = True

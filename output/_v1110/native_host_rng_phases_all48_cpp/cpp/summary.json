@@ -1,0 +1,63 @@
+{
+ "total": 48,
+ "passed": 47,
+ "reference_mode": "native-only",
+ "category": {
+  "battle_semantic": 1,
+  "pass": 47
+ },
+ "winner_mismatch": 0,
+ "winner_unavailable": 0,
+ "cases_with_coarse_gem_origin": 0,
+ "strict_gem_origins": true,
+ "original_dir": "D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_base_short_retry\\base",
+ "first_divergences": [
+  {
+   "caseId": "run989_r18",
+   "first": 435,
+   "rows_cpp": 19368,
+   "rows_gd": null,
+   "o_row": null,
+   "g_row": null,
+   "first_gem": {
+    "index": 450,
+    "original": null,
+    "cpp": [
+     "Corrupted Crystal",
+     "King Goobert",
+     3,
+     3,
+     2,
+     0
+    ]
+   },
+   "first_original": null,
+   "first_item": {
+    "index": 435,
+    "original": [
+     "Light Goobert",
+     1,
+     4,
+     5
+    ],
+    "cpp": [
+     "Light Flower",
+     1,
+     1,
+     3
+    ]
+   },
+   "rows_original": 19183,
+   "first_divergence": 435,
+   "cpp_row": "ts=f:401b77778f800000|type=105|id=436|tgt=0|parent=-1|origin=o:item:Light Flower#1|params=d:{amount=i:-1,reflected=b:0,used=b:1}",
+   "original_row": "ts=f:401b666666666666|type=109|id=435|tgt=1|parent=-1|origin=o:item:Light Goobert#1|params=d:{amount=i:-1,reflected=b:0,timeout=b:1,used=b:0}"
+  }
+ ],
+ "below_master_override": null,
+ "dll": "D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_host_rng_phases.dll",
+ "wall_total_s": 13.0,
+ "strict_item_origins": true,
+ "dll_sha256": "e3b606bf6f2dde180f054891ada87d80e90caf51b46a4b1edfe1bdf8609690e8",
+ "fixtures_sha256": "10cf7424320d0273355c6f45c88dbcf983e4ec33cde9616992a2de212cb091bf",
+ "runtime_data_sha256": "55bdd068cf3308547de78b45abbed4bf4f57e8253fbec82313a99578defa00ae"
+}

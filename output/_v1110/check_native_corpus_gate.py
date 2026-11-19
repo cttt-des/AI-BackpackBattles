@@ -26,7 +26,7 @@ def case_ids(path, expected):
     return ids
 
 
-def reference_index():
+def reference_index(host_observed_plan=None):
     base = "native_shipping_base_pilot/base"
     base_tail = "native_shipping_base_tail/base"
     expand = "native_shipping_expand_live/expand"
@@ -51,10 +51,31 @@ def reference_index():
                     or digest(STAGE / previous["path"] / cid / "events.json") != previous["events_sha256"]):
                 raise ValueError(f"Original retained reference differs for {cid}")
             retained[cid] = entry["reference"]
-    return {
+    index = {
         "base": {cid: {"path": base_tail if cid in tail_ids else base} for cid in base_ids},
         "expand": retained | {cid: {"path": expand} for cid in new},
     }
+    if host_observed_plan is not None:
+        baseline_path = STAGE / "native_lovers_restart_full_corpus_gate.json"
+        plan = read_json(host_observed_plan)
+        if plan["baseline_gate_sha256"] != digest(baseline_path):
+            raise ValueError("Host capture plan differs from its frozen full-corpus baseline")
+        baseline = read_json(baseline_path)
+        for cohort, refs in index.items():
+            rows = plan["cases"][cohort]
+            by_id = {row["case_id"]: row for row in rows}
+            pending = baseline["cohorts"][cohort]["pending"]
+            if len(rows) != len(by_id) or by_id.keys() != pending.keys():
+                raise ValueError(f"Host capture plan must include all the previously nonpassing {cohort} cases")
+            engine = read_json(STAGE / f"native_shipping_full_{cohort}" / "reference_manifest.json")
+            for cid, row in by_id.items():
+                previous = refs[cid]["path"]
+                if (row["previous_reference"] != previous or row["previous_category"] != pending[cid]
+                        or row["previous_events_sha256"] != digest(STAGE / previous / cid / "events.json")):
+                    raise ValueError(f"Original reference changed for host capture case {cid}")
+                refs[cid] = {"path": f"native_host_observed_{cohort}/{cohort}",
+                             "engine_sha256": engine["engine_sha256"], "host_rng_observed": True}
+    return index
 
 
 def load_receipts(directories, dll_hash):
@@ -97,6 +118,12 @@ def check_cohort(index, reports):
             manifest = read_json(marker)
             if manifest.get("engine_sha256") != expected["engine_sha256"] or not manifest.get("shipping_engine"):
                 raise ValueError(f"Replacement recording uses a different executable for {cid}")
+        boundary_hash = None
+        if expected.get("host_rng_observed"):
+            boundaries = root / "boundaries.json"
+            if not manifest.get("host_rng_game_sha256") or not isinstance(read_json(boundaries).get("host_rng_draws"), list):
+                raise ValueError(f"Reference lacks the host observation for {cid}")
+            boundary_hash = digest(boundaries)
         counts["recorded"] += 1
         raw_hash = digest(root / "events.json")
         if expected.get("events_sha256", raw_hash) != raw_hash:
@@ -106,7 +133,8 @@ def check_cohort(index, reports):
             pending[cid] = "verification_pending"
             continue
         if (row.get("original_events_sha256") != raw_hash
-                or row.get("reference_manifest_sha256") != digest(marker)):
+                or row.get("reference_manifest_sha256") != digest(marker)
+                or (boundary_hash is not None and row.get("original_boundaries_sha256") != boundary_hash)):
             pending[cid] = "receipt_source_mismatch"
             continue
         counts["verified"] += 1
@@ -127,13 +155,16 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--dll", type=Path, required=True)
     ap.add_argument("--report", type=Path, nargs="+", required=True, help="Disjoint strict C++ result directories")
+    ap.add_argument("--host-observed-plan", type=Path, help="Use the preregistered host-observed reference recordings")
     ap.add_argument("--out", type=Path)
     args = ap.parse_args()
     dll_hash = digest(args.dll)
     reports, runtime_hash = load_receipts(args.report, dll_hash)
-    cohorts = {name: check_cohort(index, reports) for name, index in reference_index().items()}
+    cohorts = {name: check_cohort(index, reports) for name, index in reference_index(args.host_observed_plan).items()}
     complete = all(result["passed"] == result["expected"] for result in cohorts.values())
     data = {"complete": complete, "dll_sha256": dll_hash, "runtime_data_sha256": runtime_hash, "cohorts": cohorts}
+    if args.host_observed_plan is not None:
+        data["host_observed_plan_sha256"] = digest(args.host_observed_plan)
     if args.out:
         args.out.write_text(json.dumps(data, indent=2) + "\n", encoding="utf8")
     for name, result in cohorts.items():

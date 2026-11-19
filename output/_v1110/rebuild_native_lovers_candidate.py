@@ -26,8 +26,8 @@ if baseline == args.out.resolve():
 assert (objects / "libgdcore.dll").read_bytes() == baseline.read_bytes()
 assert (native / "libgdcore.dll").read_bytes() == baseline.read_bytes()
 
-def generate(script, cwd):
-    subprocess.run([sys.executable, "-u", str(script)], cwd=cwd, check=True)
+def generate(script, cwd, *arguments):
+    subprocess.run([sys.executable, "-u", str(script), *arguments], cwd=cwd, check=True)
 
 generated = native / "gen"
 previous = {p: (p.read_bytes(), p.stat().st_atime_ns, p.stat().st_mtime_ns)
@@ -36,6 +36,8 @@ generate(stage / "stage_native_lovers_rng.py", stage)
 generate(cpp / "tools/gd_to_cpp.py", cpp)
 for name in ("float", "cooldowns", "buff_timers", "item_timers"):
     generate(stage / f"optimize_native_{name}.py", stage)
+if "gd_sim_run_one_replay_host_phases" in (native / "engine_wrapper.cpp").read_text("utf8"):
+    generate(stage / "stage_native_host_idle_phase.py", stage, "--generated-only")
 for path, (body, atime, mtime) in previous.items():
     if path.exists() and path.read_bytes() == body:
         os.utime(path, ns=(atime, mtime))
