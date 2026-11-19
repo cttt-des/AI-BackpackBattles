@@ -14,7 +14,7 @@ assert observed["version"] == "1.1.10" and observed["locale"] == "en"
 assert observed["count"] == len(observed["items"]) == 519
 assert all(isinstance(row["translated_name"], str) and row["has_battle_rage_effect"] == row["description_mentions_rage"]
            for row in observed["items"].values())
-old_runtime = json.loads((sim / "assets/gd_core_runtime.json").read_text("utf8"))
+old_runtime = json.loads((stage / "sim/assets/gd_core_runtime.json").read_text("utf8"))
 database = json.loads((stage / "sim/assets/battle_items.json").read_text("utf8"))
 assert database["items"].keys() == observed["items"].keys()
 for key, entry in database["items"].items():

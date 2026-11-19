@@ -1,0 +1,195 @@
+{
+  "scope": "Three event-count quantiles among cases passing strict native/GD/Py/C++ checks in both builds; Oracle is a separate audit",
+  "timing": "interleaved single-process CPU time, setup/combat/teardown and ctypes included; packing, JSON and file I/O excluded",
+  "dll_sha256": [
+    "fff59311d4f82979b57888150b6a9f26a83b9e1d6e091a9f293e1a1bf8ac99bb",
+    "82dd61b8e630458e8bd20ed6bb3b89d0d03ee7754c33f9e2e5fab15221f40da0"
+  ],
+  "rounds": 5,
+  "iterations_per_block": 5,
+  "cases": [
+    {
+      "case_id": "run604793_r1_o704794_r1",
+      "modes": {
+        "debug_off": {
+          "before_ms": [
+            18.75,
+            15.625,
+            18.75,
+            9.375,
+            18.75
+          ],
+          "after_ms": [
+            15.625,
+            18.75,
+            12.5,
+            18.75,
+            15.625
+          ],
+          "median_ms": [
+            18.75,
+            15.625
+          ],
+          "after_over_before": 0.8333333333333334,
+          "signature": [
+            0,
+            446,
+            25,
+            0.0,
+            13.0
+          ]
+        },
+        "debug_on": {
+          "before_ms": [
+            15.625,
+            15.625,
+            15.625,
+            15.625,
+            15.625
+          ],
+          "after_ms": [
+            15.625,
+            18.75,
+            15.625,
+            15.625,
+            15.625
+          ],
+          "median_ms": [
+            15.625,
+            15.625
+          ],
+          "after_over_before": 1.0,
+          "signature": [
+            0,
+            446,
+            25,
+            0.0,
+            13.0
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "run101712_r6_o704327_r6",
+      "modes": {
+        "debug_off": {
+          "before_ms": [
+            71.875,
+            62.5,
+            71.875,
+            65.625,
+            71.875
+          ],
+          "after_ms": [
+            68.75,
+            75.0,
+            71.875,
+            81.25,
+            78.125
+          ],
+          "median_ms": [
+            71.875,
+            75.0
+          ],
+          "after_over_before": 1.0434782608695652,
+          "signature": [
+            1,
+            698,
+            193,
+            53.0,
+            0.0
+          ]
+        },
+        "debug_on": {
+          "before_ms": [
+            81.25,
+            62.5,
+            68.75,
+            71.875,
+            59.375
+          ],
+          "after_ms": [
+            81.25,
+            68.75,
+            71.875,
+            71.875,
+            56.25
+          ],
+          "median_ms": [
+            68.75,
+            71.875
+          ],
+          "after_over_before": 1.0454545454545454,
+          "signature": [
+            1,
+            698,
+            193,
+            53.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "run101772_r18_o705149_r18",
+      "modes": {
+        "debug_off": {
+          "before_ms": [
+            118.75,
+            128.125,
+            112.5,
+            128.125,
+            137.5
+          ],
+          "after_ms": [
+            125.0,
+            128.125,
+            115.625,
+            134.375,
+            118.75
+          ],
+          "median_ms": [
+            128.125,
+            125.0
+          ],
+          "after_over_before": 0.975609756097561,
+          "signature": [
+            1,
+            497,
+            561,
+            218.0,
+            0.0
+          ]
+        },
+        "debug_on": {
+          "before_ms": [
+            131.25,
+            103.125,
+            112.5,
+            125.0,
+            140.625
+          ],
+          "after_ms": [
+            109.375,
+            115.625,
+            118.75,
+            131.25,
+            128.125
+          ],
+          "median_ms": [
+            125.0,
+            118.75
+          ],
+          "after_over_before": 0.95,
+          "signature": [
+            1,
+            497,
+            561,
+            218.0,
+            0.0
+          ]
+        }
+      }
+    }
+  ]
+}

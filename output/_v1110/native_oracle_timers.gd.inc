@@ -1,5 +1,11 @@
 var _native_plain_timer_script
 var _native_multi_timer_script
+var _native_timer_cache := []
+var _native_timer_cache_dirty := true
+var _native_timer_cache_connected := false
+
+func _native_timer_tree_changed():
+	_native_timer_cache_dirty = true
 
 func _native_install_timers(node):
 	if _native_plain_timer_script == null:
@@ -22,20 +28,25 @@ func _native_install_timers(node):
 		else:
 			assert(false, "Unsupported Timer script: " + node.get_script().resource_path)
 		node.native_bind_current()
+	if node is Timer:
+		_native_timer_cache.append(node)
 	for child in node.get_children():
 		_native_install_timers(child)
 
-func _native_collect_active_timers(node, physics_pass, found):
-	if node is Timer and node.native_running and not node.paused:
-		if (node.process_mode == Timer.TIMER_PROCESS_PHYSICS) == physics_pass:
-			found.append(node)
-	for child in node.get_children():
-		_native_collect_active_timers(child, physics_pass, found)
-
 func drive_timers(physics_pass: bool, dt: float) -> void:
-	_native_install_timers(root)
+	if not _native_timer_cache_connected:
+		assert(has_signal("tree_changed"))
+		assert(connect("tree_changed", self, "_native_timer_tree_changed") == OK)
+		_native_timer_cache_connected = true
+	if _native_timer_cache_dirty:
+		_native_timer_cache.clear()
+		_native_install_timers(root)
+		_native_timer_cache_dirty = false
 	var active := []
-	_native_collect_active_timers(root, physics_pass, active)
+	for timer in _native_timer_cache:
+		if is_instance_valid(timer) and timer.is_inside_tree() and timer.native_running and not timer.paused:
+			if (timer.process_mode == Timer.TIMER_PROCESS_PHYSICS) == physics_pass:
+				active.append(timer)
 	for timer in active:
 		if is_instance_valid(timer) and timer.is_inside_tree():
 			timer.native_step(dt)

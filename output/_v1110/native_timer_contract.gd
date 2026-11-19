@@ -69,6 +69,7 @@ func start_contract():
 
 func on_timeout(timers, index):
 	if index == 0 and frame < 50:
+		timers[1].stop()
 		timers[1].start(0.05)
 		timers[2].start(0.05)
 		if frame < 20:

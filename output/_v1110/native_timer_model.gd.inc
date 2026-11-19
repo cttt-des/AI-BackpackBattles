@@ -5,7 +5,7 @@ extends Reference
 var _ctx = null
 var _owner = null
 var name := ""
-var wait_time := 1.0 setget set_wait_time
+var wait_time := 1.0
 var one_shot := true
 var multi := false
 var callback_method := ""
@@ -14,6 +14,7 @@ var fire_count := 0
 var _left := -1.0
 var _stopped := true
 var _first_pass := 0
+var _member_epoch := -1
 
 func _init(ctx = null, owner = null, timerName: String = "") -> void:
 	_ctx = ctx
@@ -44,6 +45,8 @@ func start(duration = -1.0) -> void:
 	_left = wait_time
 	if _stopped:
 		_first_pass = _ctx.timer_pass_epoch + 1 if _ctx != null else 0
+		if _ctx != null and _ctx.in_physics_timer_pass and _member_epoch == _ctx.timer_pass_epoch:
+			_first_pass = _ctx.timer_pass_epoch
 	_stopped = false
 
 func stop() -> void:
@@ -51,6 +54,9 @@ func stop() -> void:
 	stopCountdownForTimeout()
 
 func stopCountdownForTimeout() -> void:
+	_member_epoch = -1
+	if _ctx != null and _ctx.in_physics_timer_pass and not _stopped and _first_pass <= _ctx.timer_pass_epoch:
+		_member_epoch = _ctx.timer_pass_epoch
 	_stopped = true
 	_left = -1.0
 
