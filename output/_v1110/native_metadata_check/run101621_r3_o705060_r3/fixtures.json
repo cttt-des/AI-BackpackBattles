@@ -1,0 +1,1717 @@
+{
+ "format": "oracle-align-cases/1",
+ "generated_by": "tools/gen_fixture_from_lineup.py --oracle",
+ "note": "items 数组即装配顺序（原版 sort_BagOrder 后）；激活顺序由 OracleAlignBattle.gd 用真 Godot 全局链 seed(S)+shuffle+sort_TriggerPriority 现场复刻",
+ "cases": [
+  {
+   "case_id": "run101621_r3_o705060_r3",
+   "seed": 202360743,
+   "round_id": 3,
+   "custom_health_multiplier": 100.0,
+   "below_master": true,
+   "replay_initial": {
+    "activation_rng_state": "2472867483733691088",
+    "idle_left": [
+     "0.41262316703796390",
+     "0.79149639606475830"
+    ],
+    "flickers": [
+     {
+      "identity": {
+       "name": "Burning Sword",
+       "owner": 1,
+       "top_left": [
+        4,
+        4
+       ],
+       "relative_path": "Icon/TorchLight/FlickerAnimation"
+      },
+      "pending": [],
+      "playing": true,
+      "position": 0.012267,
+      "position_precise": "0.01226671598851680",
+      "speed_precise": "0.73600292205810550",
+      "limits": [
+       0.1,
+       3,
+       0.3,
+       0.8
+      ],
+      "speed": 0.736003,
+      "animation": "Flicker",
+      "length": 0.3,
+      "loop": false,
+      "inside_tree": true,
+      "path": "/root/Main/Player/Burning Sword/Icon/TorchLight/FlickerAnimation"
+     }
+    ]
+   },
+   "native_activation_order": {
+    "player": [
+     13,
+     14,
+     16,
+     9,
+     10,
+     2,
+     15,
+     3,
+     17,
+     5,
+     6,
+     12,
+     0,
+     7,
+     4,
+     11,
+     8,
+     1
+    ],
+    "opponent": [
+     13,
+     17,
+     8,
+     12,
+     3,
+     15,
+     16,
+     9,
+     2,
+     5,
+     10,
+     1,
+     4,
+     7,
+     14,
+     6,
+     11,
+     0
+    ]
+   },
+   "player": {
+    "class": 5,
+    "health": 45,
+    "stamina": 6.0,
+    "base_max_stamina": 5.0,
+    "regen": 1.0,
+    "items": [
+     {
+      "key": "Stamina Sack",
+      "script": "res://gd_core_items/StaminaSack.gd",
+      "occupied": [
+       [
+        4,
+        1
+       ],
+       [
+        4,
+        2
+       ],
+       [
+        4,
+        3
+       ]
+      ],
+      "collision": [
+       [
+        4,
+        1
+       ],
+       [
+        4,
+        2
+       ],
+       [
+        4,
+        3
+       ]
+      ],
+      "affected": {},
+      "rotation": 0,
+      "gems": [],
+      "effects": null,
+      "crafted": false
+     },
+     {
+      "key": "Fanny Pack",
+      "script": "res://gd_core_items/FannyPack.gd",
+      "occupied": [
+       [
+        3,
+        4
+       ],
+       [
+        4,
+        4
+       ]
+      ],
+      "collision": [
+       [
+        3,
+        4
+       ],
+       [
+        4,
+        4
+       ]
+      ],
+      "affected": {},
+      "rotation": 0,
+      "gems": [],
+      "effects": null,
+      "crafted": false
+     },
+     {
+      "key": "Leather Bag",
+      "script": "res://gd_core_items/Bag.gd",
+      "occupied": [
+       [
+        7,
+        4
+       ],
+       [
+        7,
+        5
+       ],
+       [
+        8,
+        4
+       ],
+       [
+        8,
+        5
+       ]
+      ],
+      "collision": [
+       [
+        7,
+        4
+       ],
+       [
+        8,
+        4
+       ],
+       [
+        7,
+        5
+       ],
+       [
+        8,
+        5
+       ]
+      ],
+      "affected": {},
+      "rotation": 0,
+      "gems": [],
+      "effects": null,
+      "crafted": false
+     },
+     {
+      "key": "Bag of Giving",
+      "script": "res://gd_core_items/Exclusive/BagofGiving.gd",
+      "occupied": [
+       [
+        5,
+        3
+       ],
+       [
+        5,
+        4
+       ],
+       [
+        5,
+        5
+       ],
+       [
+        6,
+        3
+       ],
+       [
+        6,
+        4
+       ],
+       [
+        6,
+        5
+       ]
+      ],
+      "collision": [
+       [
+        6,
+        3
+       ],
+       [
+        6,
+        4
+       ],
+       [
+        6,
+        5
+       ],
+       [
+        5,
+        3
+       ],
+       [
+        5,
+        4
+       ],
+       [
+        5,
+        5
+       ]
+      ],
+      "affected": {},
+      "rotation": 90,
+      "gems": [],
+      "effects": null,
+      "crafted": false
+     },
+     {
+      "key": "Leather Bag",
+      "script": "res://gd_core_items/Bag.gd",
+      "occupied": [
+       [
+        3,
+        5
+       ],
+       [
+        3,
+        6
+       ],
+       [
+        4,
+        5
+       ],
+       [
+        4,
+        6
+       ]
+      ],
+      "collision": [
+       [
+        3,
+        5
+       ],
+       [
+        4,
+        5
+       ],
+       [
+        3,
+        6
+       ],
+       [
+        4,
+        6
+       ]
+      ],
+      "affected": {},
+      "rotation": 0,
+      "gems": [],
+      "effects": null,
+      "crafted": false
+     },
+     {
+      "key": "Dragonskin Boots",
+      "script": "res://gd_core_items/Exclusive/DragonskinBoots.gd",
+      "occupied": [
+       [
+        5,
+        3
+       ],
+       [
+        6,
+        3
+       ]
+      ],
+      "collision": [
+       [
+        6,
+        3
+       ],
+       [
+        5,
+        3
+       ]
+      ],
+      "affected": {},
+      "rotation": 90,
+      "gems": [
+       null
+      ],
+      "effects": null,
+      "crafted": true
+     },
+     {
+      "key": "Piggy of Riches",
+      "script": "res://gd_core_items/Exclusive/PiggyofRiches.gd",
+      "occupied": [
+       [
+        3,
+        6
+       ],
+       [
+        4,
+        6
+       ]
+      ],
+      "collision": [
+       [
+        3,
+        6
+       ],
+       [
+        4,
+        6
+       ]
+      ],
+      "affected": {},
+      "rotation": 0,
+      "gems": [],
+      "effects": null,
+      "crafted": true
+     },
+     {
+      "key": "Rat",
+      "script": "res://gd_core_items/Exclusive/Rat.gd",
+      "occupied": [
+       [
+        6,
+        4
+       ],
+       [
+        7,
+        4
+       ]
+      ],
+      "collision": [
+       [
+        6,
+        4
+       ],
+       [
+        7,
+        4
+       ]
+      ],
+      "affected": {
+       "0": [
+        [
+         6,
+         3
+        ],
+        [
+         7,
+         3
+        ],
+        [
+         5,
+         4
+        ],
+        [
+         8,
+         4
+        ],
+        [
+         6,
+         5
+        ],
+        [
+         7,
+         5
+        ]
+       ]
+      },
+      "rotation": 0,
+      "gems": [],
+      "effects": null,
+      "crafted": false
+     },
+     {
+      "key": "Investment Opportunity",
+      "script": "res://gd_core_items/Exclusive/InvestmentOpportunity.gd",
+      "occupied": [
+       [
+        7,
+        5
+       ]
+      ],
+      "collision": [
+       [
+        7,
+        5
+       ]
+      ],
+      "affected": {
+       "0": [
+        [
+         3,
+         5
+        ],
+        [
+         3,
+         1
+        ],
+        [
+         4,
+         5
+        ],
+        [
+         4,
+         2
+        ],
+        [
+         5,
+         5
+        ],
+        [
+         5,
+         3
+        ],
+        [
+         6,
+         5
+        ],
+        [
+         6,
+         4
+        ],
+        [
+         7,
+         4
+        ],
+        [
+         7,
+         3
+        ],
+        [
+         7,
+         2
+        ],
+        [
+         7,
+         1
+        ],
+        [
+         7,
+         0
+        ]
+       ]
+      },
+      "rotation": 270,
+      "gems": [],
+      "effects": null,
+      "crafted": false
+     },
+     {
+      "key": "Piggybank",
+      "script": "res://gd_core_items/Piggybank.gd",
+      "occupied": [
+       [
+        8,
+        4
+       ],
+       [
+        8,
+        5
+       ]
+      ],
+      "collision": [
+       [
+        8,
+        4
+       ],
+       [
+        8,
+        5
+       ]
+      ],
+      "affected": {
+       "0": [
+        [
+         9,
+         4
+        ],
+        [
+         9,
+         5
+        ],
+        [
+         7,
+         4
+        ],
+        [
+         7,
+         5
+        ]
+       ]
+      },
+      "rotation": 90,
+      "gems": [],
+      "effects": null,
+      "crafted": false
+     },
+     {
+      "key": "Blueberries",
+      "script": "res://gd_core_items/Blueberries.gd",
+      "occupied": [
+       [
+        6,
+        5
+       ]
+      ],
+      "collision": [
+       [
+        6,
+        5
+       ]
+      ],
+      "affected": {
+       "0": [
+        [
+         6,
+         4
+        ],
+        [
+         5,
+         5
+        ],
+        [
+         7,
+         5
+        ],
+        [
+         6,
+         6
+        ]
+       ]
+      },
+      "rotation": 0,
+      "gems": [],
+      "effects": null,
+      "crafted": false
+     },
+     {
+      "key": "Amulet of Light",
+      "script": "res://gd_core_items/Exclusive/AmuletofLight.gd",
+      "occupied": [
+       [
+        5,
+        4
+       ]
+      ],
+      "collision": [
+       [
+        5,
+        4
+       ]
+      ],
+      "affected": {
+       "0": [
+        [
+         5,
+         1
+        ],
+        [
+         3,
+         2
+        ],
+        [
+         5,
+         2
+        ],
+        [
+         7,
+         2
+        ],
+        [
+         4,
+         3
+        ],
+        [
+         5,
+         3
+        ],
+        [
+         6,
+         3
+        ],
+        [
+         2,
+         4
+        ],
+        [
+         3,
+         4
+        ],
+        [
+         4,
+         4
+        ],
+        [
+         6,
+         4
+        ],
+        [
+         7,
+         4
+        ],
+        [
+         8,
+         4
+        ],
+        [
+         4,
+         5
+        ],
+        [
+         5,
+         5
+        ],
+        [
+         6,
+         5
+        ],
+        [
+         3,
+         6
+        ],
+        [
+         5,
+         6
+        ],
+        [
+         7,
+         6
+        ],
+        [
+         5,
+         7
+        ]
+       ]
+      },
+      "rotation": 0,
+      "gems": [],
+      "effects": null,
+      "crafted": false
+     },
+     {
+      "key": "Resistor",
+      "script": "res://gd_core_items/Exclusive/Resistor.gd",
+      "occupied": [
+       [
+        4,
+        3
+       ]
+      ],
+      "collision": [
+       [
+        4,
+        3
+       ]
+      ],
+      "affected": {},
+      "rotation": 0,
+      "gems": [],
+      "effects": null,
+      "crafted": false
+     },
+     {
+      "key": "Battery",
+      "script": "res://gd_core_items/Exclusive/Battery.gd",
+      "occupied": [
+       [
+        4,
+        1
+       ]
+      ],
+      "collision": [
+       [
+        4,
+        1
+       ]
+      ],
+      "affected": {
+       "3": [
+        [
+         4,
+         5
+        ],
+        [
+         4,
+         4
+        ],
+        [
+         4,
+         3
+        ],
+        [
+         4,
+         2
+        ]
+       ]
+      },
+      "rotation": 180,
+      "gems": [],
+      "effects": null,
+      "crafted": false
+     },
+     {
+      "key": "Battery",
+      "script": "res://gd_core_items/Exclusive/Battery.gd",
+      "occupied": [
+       [
+        4,
+        2
+       ]
+      ],
+      "collision": [
+       [
+        4,
+        2
+       ]
+      ],
+      "affected": {
+       "3": [
+        [
+         4,
+         6
+        ],
+        [
+         4,
+         5
+        ],
+        [
+         4,
+         4
+        ],
+        [
+         4,
+         3
+        ]
+       ]
+      },
+      "rotation": 180,
+      "gems": [],
+      "effects": null,
+      "crafted": false
+     },
+     {
+      "key": "Twine",
+      "script": "res://gd_core_items/Exclusive/Twine.gd",
+      "occupied": [
+       [
+        5,
+        5
+       ]
+      ],
+      "collision": [
+       [
+        5,
+        5
+       ]
+      ],
+      "affected": {
+       "0": [
+        [
+         4,
+         5
+        ]
+       ],
+       "1": [
+        [
+         8,
+         5
+        ],
+        [
+         7,
+         5
+        ],
+        [
+         6,
+         5
+        ]
+       ]
+      },
+      "rotation": 180,
+      "gems": [],
+      "effects": null,
+      "crafted": false
+     },
+     {
+      "key": "Shortbow",
+      "script": "res://gd_core_items/Weapon.gd",
+      "occupied": [
+       [
+        3,
+        4
+       ],
+       [
+        3,
+        5
+       ]
+      ],
+      "collision": [
+       [
+        3,
+        4
+       ],
+       [
+        3,
+        5
+       ]
+      ],
+      "affected": {},
+      "rotation": 0,
+      "gems": [
+       null
+      ],
+      "effects": null,
+      "crafted": false
+     },
+     {
+      "key": "Burning Sword",
+      "script": "res://gd_core_items/Exclusive/BurningSword.gd",
+      "occupied": [
+       [
+        4,
+        4
+       ],
+       [
+        4,
+        5
+       ]
+      ],
+      "collision": [
+       [
+        4,
+        4
+       ],
+       [
+        4,
+        5
+       ]
+      ],
+      "affected": {
+       "0": [
+        [
+         4,
+         3
+        ],
+        [
+         3,
+         4
+        ],
+        [
+         5,
+         4
+        ],
+        [
+         3,
+         5
+        ],
+        [
+         5,
+         5
+        ],
+        [
+         4,
+         6
+        ]
+       ]
+      },
+      "rotation": 0,
+      "gems": [
+       null
+      ],
+      "effects": null,
+      "crafted": true
+     }
+    ]
+   },
+   "opponent": {
+    "class": 4,
+    "health": 45,
+    "stamina": 5.0,
+    "base_max_stamina": 5.0,
+    "regen": 1.0,
+    "items": [
+     {
+      "key": "Puzzlebox",
+      "script": "res://gd_core_items/Exclusive/Puzzlebox.gd",
+      "occupied": [
+       [
+        3,
+        3
+       ],
+       [
+        4,
+        3
+       ],
+       [
+        4,
+        4
+       ],
+       [
+        4,
+        5
+       ],
+       [
+        5,
+        2
+       ],
+       [
+        5,
+        3
+       ]
+      ],
+      "collision": [
+       [
+        5,
+        2
+       ],
+       [
+        3,
+        3
+       ],
+       [
+        4,
+        3
+       ],
+       [
+        5,
+        3
+       ],
+       [
+        4,
+        4
+       ],
+       [
+        4,
+        5
+       ]
+      ],
+      "affected": {},
+      "rotation": 0,
+      "gems": [],
+      "effects": null,
+      "crafted": false
+     },
+     {
+      "key": "Leather Bag",
+      "script": "res://gd_core_items/Bag.gd",
+      "occupied": [
+       [
+        5,
+        4
+       ],
+       [
+        5,
+        5
+       ],
+       [
+        6,
+        4
+       ],
+       [
+        6,
+        5
+       ]
+      ],
+      "collision": [
+       [
+        5,
+        4
+       ],
+       [
+        6,
+        4
+       ],
+       [
+        5,
+        5
+       ],
+       [
+        6,
+        5
+       ]
+      ],
+      "affected": {},
+      "rotation": 0,
+      "gems": [],
+      "effects": null,
+      "crafted": false
+     },
+     {
+      "key": "Puzzlebag S",
+      "script": "res://gd_core_items/Exclusive/PuzzlebagS.gd",
+      "occupied": [
+       [
+        2,
+        3
+       ],
+       [
+        2,
+        4
+       ],
+       [
+        3,
+        4
+       ],
+       [
+        3,
+        5
+       ]
+      ],
+      "collision": [
+       [
+        3,
+        4
+       ],
+       [
+        3,
+        5
+       ],
+       [
+        2,
+        3
+       ],
+       [
+        2,
+        4
+       ]
+      ],
+      "affected": {},
+      "rotation": 90,
+      "gems": [],
+      "effects": null,
+      "crafted": false
+     },
+     {
+      "key": "Puzzlebag L",
+      "script": "res://gd_core_items/Exclusive/PuzzlebagL.gd",
+      "occupied": [
+       [
+        2,
+        2
+       ],
+       [
+        3,
+        2
+       ],
+       [
+        4,
+        1
+       ],
+       [
+        4,
+        2
+       ]
+      ],
+      "collision": [
+       [
+        4,
+        1
+       ],
+       [
+        2,
+        2
+       ],
+       [
+        3,
+        2
+       ],
+       [
+        4,
+        2
+       ]
+      ],
+      "affected": {},
+      "rotation": 0,
+      "gems": [],
+      "effects": null,
+      "crafted": false
+     },
+     {
+      "key": "Leather Bag",
+      "script": "res://gd_core_items/Bag.gd",
+      "occupied": [
+       [
+        7,
+        4
+       ],
+       [
+        7,
+        5
+       ],
+       [
+        8,
+        4
+       ],
+       [
+        8,
+        5
+       ]
+      ],
+      "collision": [
+       [
+        7,
+        4
+       ],
+       [
+        8,
+        4
+       ],
+       [
+        7,
+        5
+       ],
+       [
+        8,
+        5
+       ]
+      ],
+      "affected": {},
+      "rotation": 0,
+      "gems": [],
+      "effects": null,
+      "crafted": false
+     },
+     {
+      "key": "Leather Bag",
+      "script": "res://gd_core_items/Bag.gd",
+      "occupied": [
+       [
+        0,
+        3
+       ],
+       [
+        0,
+        4
+       ],
+       [
+        1,
+        3
+       ],
+       [
+        1,
+        4
+       ]
+      ],
+      "collision": [
+       [
+        0,
+        3
+       ],
+       [
+        1,
+        3
+       ],
+       [
+        0,
+        4
+       ],
+       [
+        1,
+        4
+       ]
+      ],
+      "affected": {},
+      "rotation": 0,
+      "gems": [],
+      "effects": null,
+      "crafted": false
+     },
+     {
+      "key": "Piggybank",
+      "script": "res://gd_core_items/Piggybank.gd",
+      "occupied": [
+       [
+        7,
+        4
+       ],
+       [
+        7,
+        5
+       ]
+      ],
+      "collision": [
+       [
+        7,
+        5
+       ],
+       [
+        7,
+        4
+       ]
+      ],
+      "affected": {
+       "0": [
+        [
+         6,
+         5
+        ],
+        [
+         6,
+         4
+        ],
+        [
+         8,
+         5
+        ],
+        [
+         8,
+         4
+        ]
+       ]
+      },
+      "rotation": 270,
+      "gems": [],
+      "effects": null,
+      "crafted": false
+     },
+     {
+      "key": "Piggybank",
+      "script": "res://gd_core_items/Piggybank.gd",
+      "occupied": [
+       [
+        6,
+        4
+       ],
+       [
+        6,
+        5
+       ]
+      ],
+      "collision": [
+       [
+        6,
+        5
+       ],
+       [
+        6,
+        4
+       ]
+      ],
+      "affected": {
+       "0": [
+        [
+         5,
+         5
+        ],
+        [
+         5,
+         4
+        ],
+        [
+         7,
+         5
+        ],
+        [
+         7,
+         4
+        ]
+       ]
+      },
+      "rotation": 270,
+      "gems": [],
+      "effects": null,
+      "crafted": false
+     },
+     {
+      "key": "Smithing For Dummies",
+      "script": "res://gd_core_items/Exclusive/SmithingForDummies.gd",
+      "occupied": [
+       [
+        4,
+        2
+       ]
+      ],
+      "collision": [
+       [
+        4,
+        2
+       ]
+      ],
+      "affected": {
+       "0": [
+        [
+         4,
+         0
+        ],
+        [
+         4,
+         1
+        ],
+        [
+         2,
+         2
+        ],
+        [
+         3,
+         2
+        ],
+        [
+         5,
+         2
+        ],
+        [
+         6,
+         2
+        ],
+        [
+         4,
+         3
+        ],
+        [
+         4,
+         4
+        ]
+       ]
+      },
+      "rotation": 0,
+      "gems": [],
+      "effects": null,
+      "crafted": false
+     },
+     {
+      "key": "Stone",
+      "script": "res://gd_core_items/Stone.gd",
+      "occupied": [
+       [
+        2,
+        3
+       ]
+      ],
+      "collision": [
+       [
+        2,
+        3
+       ]
+      ],
+      "affected": {},
+      "rotation": 0,
+      "gems": [],
+      "effects": null,
+      "crafted": false
+     },
+     {
+      "key": "Chess Board",
+      "script": "res://gd_core_items/Exclusive/ChessBoard.gd",
+      "occupied": [
+       [
+        1,
+        4
+       ]
+      ],
+      "collision": [
+       [
+        1,
+        4
+       ]
+      ],
+      "affected": {},
+      "rotation": 0,
+      "gems": [],
+      "effects": null,
+      "crafted": false
+     },
+     {
+      "key": "White Pawn",
+      "script": "res://gd_core_items/Exclusive/Chess/WhitePawn.gd",
+      "occupied": [
+       [
+        1,
+        3
+       ]
+      ],
+      "collision": [
+       [
+        1,
+        3
+       ]
+      ],
+      "affected": {
+       "0": [
+        [
+         0,
+         2
+        ],
+        [
+         2,
+         2
+        ]
+       ]
+      },
+      "rotation": 0,
+      "gems": [],
+      "effects": null,
+      "crafted": false
+     },
+     {
+      "key": "Black Pawn",
+      "script": "res://gd_core_items/Exclusive/Chess/BlackPawn.gd",
+      "occupied": [
+       [
+        2,
+        4
+       ]
+      ],
+      "collision": [
+       [
+        2,
+        4
+       ]
+      ],
+      "affected": {
+       "0": [
+        [
+         1,
+         3
+        ],
+        [
+         3,
+         3
+        ]
+       ]
+      },
+      "rotation": 0,
+      "gems": [],
+      "effects": null,
+      "crafted": false
+     },
+     {
+      "key": "Shelly",
+      "script": "res://gd_core_items/Exclusive/Shelly.gd",
+      "occupied": [
+       [
+        3,
+        2
+       ],
+       [
+        3,
+        3
+       ]
+      ],
+      "collision": [
+       [
+        3,
+        3
+       ],
+       [
+        3,
+        2
+       ]
+      ],
+      "affected": {
+       "0": [
+        [
+         4,
+         4
+        ],
+        [
+         4,
+         3
+        ],
+        [
+         4,
+         2
+        ],
+        [
+         4,
+         1
+        ]
+       ]
+      },
+      "rotation": 270,
+      "gems": [],
+      "effects": null,
+      "crafted": true
+     },
+     {
+      "key": "Piggybank",
+      "script": "res://gd_core_items/Piggybank.gd",
+      "occupied": [
+       [
+        8,
+        4
+       ],
+       [
+        8,
+        5
+       ]
+      ],
+      "collision": [
+       [
+        8,
+        4
+       ],
+       [
+        8,
+        5
+       ]
+      ],
+      "affected": {
+       "0": [
+        [
+         9,
+         4
+        ],
+        [
+         9,
+         5
+        ],
+        [
+         7,
+         4
+        ],
+        [
+         7,
+         5
+        ]
+       ]
+      },
+      "rotation": 90,
+      "gems": [],
+      "effects": null,
+      "crafted": false
+     },
+     {
+      "key": "Wand",
+      "script": "res://gd_core_items/Exclusive/Wand.gd",
+      "occupied": [
+       [
+        3,
+        5
+       ],
+       [
+        4,
+        5
+       ]
+      ],
+      "collision": [
+       [
+        4,
+        5
+       ],
+       [
+        3,
+        5
+       ]
+      ],
+      "affected": {},
+      "rotation": 90,
+      "gems": [],
+      "effects": null,
+      "crafted": false
+     },
+     {
+      "key": "Book of Basics",
+      "script": "res://gd_core_items/Exclusive/BookofBasics.gd",
+      "occupied": [
+       [
+        3,
+        4
+       ],
+       [
+        4,
+        4
+       ]
+      ],
+      "collision": [
+       [
+        4,
+        4
+       ],
+       [
+        3,
+        4
+       ]
+      ],
+      "affected": {
+       "0": [
+        [
+         5,
+         4
+        ],
+        [
+         4,
+         3
+        ],
+        [
+         4,
+         5
+        ],
+        [
+         3,
+         3
+        ],
+        [
+         3,
+         5
+        ],
+        [
+         2,
+         4
+        ]
+       ]
+      },
+      "rotation": 90,
+      "gems": [],
+      "effects": null,
+      "crafted": false
+     },
+     {
+      "key": "Broom",
+      "script": "res://gd_core_items/Broom.gd",
+      "occupied": [
+       [
+        5,
+        2
+       ],
+       [
+        5,
+        3
+       ],
+       [
+        5,
+        4
+       ],
+       [
+        5,
+        5
+       ]
+      ],
+      "collision": [
+       [
+        5,
+        2
+       ],
+       [
+        5,
+        3
+       ],
+       [
+        5,
+        4
+       ],
+       [
+        5,
+        5
+       ]
+      ],
+      "affected": {},
+      "rotation": 0,
+      "gems": [
+       null
+      ],
+      "effects": null,
+      "crafted": false
+     }
+    ]
+   },
+   "label_rng": true
+  }
+ ]
+}

@@ -1,0 +1,365 @@
+{
+  "startup": {
+    "pooling_index": 518,
+    "descriptor_count": 519,
+    "physics_frames": 519
+  },
+  "batch_index": 0,
+  "prepare": {
+    "seed": "2369683832117426288",
+    "state": "7743346669668515407",
+    "order": [
+      {
+        "name": "Battery",
+        "owner": 1,
+        "top_left": [
+          6,
+          4
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "top_left": [
+          7,
+          3
+        ]
+      },
+      {
+        "name": "Walrus Tusk",
+        "owner": 1,
+        "top_left": [
+          8,
+          3
+        ]
+      },
+      {
+        "name": "Piggybank",
+        "owner": 1,
+        "top_left": [
+          7,
+          3
+        ]
+      },
+      {
+        "name": "Healing Herbs",
+        "owner": 1,
+        "top_left": [
+          6,
+          3
+        ]
+      },
+      {
+        "name": "Wooden Sword",
+        "owner": 1,
+        "top_left": [
+          2,
+          3
+        ]
+      },
+      {
+        "name": "Garlic",
+        "owner": 1,
+        "top_left": [
+          4,
+          3
+        ]
+      },
+      {
+        "name": "Broom",
+        "owner": 1,
+        "top_left": [
+          2,
+          4
+        ]
+      },
+      {
+        "name": "Engineer Box",
+        "owner": 1,
+        "top_left": [
+          2,
+          3
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "top_left": [
+          5,
+          3
+        ]
+      },
+      {
+        "name": "Star of Courage",
+        "owner": 3,
+        "top_left": [
+          6,
+          4
+        ]
+      },
+      {
+        "name": "Twine",
+        "owner": 3,
+        "top_left": [
+          3,
+          4
+        ]
+      },
+      {
+        "name": "Box of Riches",
+        "owner": 3,
+        "top_left": [
+          4,
+          4
+        ]
+      },
+      {
+        "name": "Piggybank",
+        "owner": 3,
+        "top_left": [
+          5,
+          4
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "top_left": [
+          4,
+          4
+        ]
+      },
+      {
+        "name": "Twine",
+        "owner": 3,
+        "top_left": [
+          3,
+          5
+        ]
+      },
+      {
+        "name": "Wooden Sword",
+        "owner": 3,
+        "top_left": [
+          2,
+          4
+        ]
+      },
+      {
+        "name": "Healing Herbs",
+        "owner": 3,
+        "top_left": [
+          6,
+          5
+        ]
+      },
+      {
+        "name": "Sewing Case",
+        "owner": 3,
+        "top_left": [
+          6,
+          3
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "top_left": [
+          2,
+          4
+        ]
+      }
+    ]
+  },
+  "before_activate": {
+    "seed": "-437148369718534",
+    "state": "-5309083940357652847"
+  },
+  "combat_start": {
+    "seed": "-437148369718534",
+    "state": "-5309083940357652847",
+    "player_stamina": 5,
+    "opponent_stamina": 5,
+    "util_time": "11.15000058151781600",
+    "clock_time": "12.65000065974891200"
+  },
+  "idle_animation_timers": [
+    {
+      "owner": 1,
+      "left": 2.633953,
+      "left_precise": "2.63395333290100100",
+      "wait_time": 4.15062,
+      "process_mode": 1,
+      "stopped": false
+    },
+    {
+      "owner": 0,
+      "left": 2.279006,
+      "left_precise": "2.27900576591491700",
+      "wait_time": 4.729006,
+      "process_mode": 1,
+      "stopped": false
+    }
+  ],
+  "flicker_states": [
+    {
+      "identity": {
+        "name": "Flame",
+        "owner": 8,
+        "top_left": [
+          -999,
+          -999
+        ],
+        "relative_path": "Icon/TorchLight/FlickerAnimation"
+      },
+      "pending": [
+        {
+          "left": "4.42137002944946290",
+          "method": "playAni"
+        }
+      ],
+      "playing": false,
+      "position": 0,
+      "position_precise": "0.00000000000000000",
+      "speed_precise": "1.00000000000000000",
+      "limits": [
+        4,
+        16,
+        0.3,
+        0.8
+      ],
+      "speed": 1,
+      "animation": "Flicker",
+      "length": 0.3,
+      "loop": false,
+      "inside_tree": false,
+      "path": "off-tree"
+    }
+  ],
+  "activated": {
+    "seed": "6918818040201047564",
+    "state": "-4801373551447159109",
+    "items": [
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Engineer Box",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Broom",
+        "owner": 1,
+        "trigger_time": 1.782036,
+        "speed": 1.1
+      },
+      {
+        "name": "Battery",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Wooden Sword",
+        "owner": 1,
+        "trigger_time": 1.350802,
+        "speed": 1
+      },
+      {
+        "name": "Piggybank",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Walrus Tusk",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Healing Herbs",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Garlic",
+        "owner": 1,
+        "trigger_time": 4.098747,
+        "speed": 1
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Sewing Case",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Wooden Sword",
+        "owner": 3,
+        "trigger_time": 1.397348,
+        "speed": 1
+      },
+      {
+        "name": "Twine",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Twine",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Star of Courage",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Healing Herbs",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Piggybank",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Box of Riches",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      }
+    ]
+  }
+}

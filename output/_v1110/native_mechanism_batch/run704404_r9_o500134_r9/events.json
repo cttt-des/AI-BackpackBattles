@@ -1,0 +1,2842 @@
+{
+  "seed": 625266216,
+  "run_id": 704404,
+  "round_id": 9,
+  "opp_run_id": 500134,
+  "opp_round_id": 9,
+  "combat_time": 9.5,
+  "ticks": 570,
+  "winner": "opponent",
+  "event_count": 138,
+  "events": [
+    {
+      "id": 0,
+      "type": 16,
+      "type_name": "16",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Anvil",
+        "identifier": "Anvil",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 2
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "item": "Hammer",
+        "damage": 2
+      }
+    },
+    {
+      "id": 1,
+      "type": 16,
+      "type_name": "16",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Anvil",
+        "identifier": "Anvil",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 2
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "item": "Axe",
+        "damage": 2
+      }
+    },
+    {
+      "id": 2,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Anvil",
+        "identifier": "Anvil",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 3,
+      "type": 16,
+      "type_name": "16",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Anvil",
+        "identifier": "Anvil",
+        "owner_type": 3,
+        "top_left": {
+          "x": 5,
+          "y": 2
+        }
+      },
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "item": "Double Axe",
+        "damage": 5
+      }
+    },
+    {
+      "id": 4,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Anvil",
+        "identifier": "Anvil",
+        "owner_type": 3,
+        "top_left": {
+          "x": 5,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 5,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Shepherds Crook",
+        "identifier": "Shepherds Crook",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 1
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 6,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Whetstone3",
+        "identifier": "Whetstone3",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 7,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Whetstone3",
+        "identifier": "Whetstone3",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 8,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Leather Helm",
+        "identifier": "Leather Helm",
+        "owner_type": 3,
+        "top_left": {
+          "x": 0,
+          "y": 1
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 9,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Whetstone",
+        "identifier": "Whetstone",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 10,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Piggybank",
+        "identifier": "Piggybank",
+        "owner_type": 3,
+        "top_left": {
+          "x": 1,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "amount": 6
+      }
+    },
+    {
+      "id": 11,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Piggybank",
+        "identifier": "Piggybank",
+        "owner_type": 3,
+        "top_left": {
+          "x": 1,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 12,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Piggybank",
+        "identifier": "Piggybank",
+        "owner_type": 3,
+        "top_left": {
+          "x": 0,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 13,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Piggybank",
+        "identifier": "Piggybank",
+        "owner_type": 3,
+        "top_left": {
+          "x": 0,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 14,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 2.05,
+      "origin": {
+        "kind": "item",
+        "name": "Double Axe",
+        "identifier": "Double Axe",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 1
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 21
+      }
+    },
+    {
+      "id": 15,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 2.05,
+      "origin": {
+        "kind": "item",
+        "name": "Double Axe",
+        "identifier": "Double Axe",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 1
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 16,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 2.116667,
+      "origin": {
+        "kind": "item",
+        "name": "Axe",
+        "identifier": "Axe",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 11
+      }
+    },
+    {
+      "id": 17,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 2.116667,
+      "origin": {
+        "kind": "item",
+        "name": "Axe",
+        "identifier": "Axe",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 18,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 2.183333,
+      "origin": {
+        "kind": "item",
+        "name": "Stone",
+        "identifier": "Stone",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 5
+      }
+    },
+    {
+      "id": 19,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 2.183333,
+      "origin": {
+        "kind": "item",
+        "name": "Stone",
+        "identifier": "Stone",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 20,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 2.233333,
+      "origin": {
+        "kind": "item",
+        "name": "Stone",
+        "identifier": "Stone",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 5
+      }
+    },
+    {
+      "id": 21,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 2.233333,
+      "origin": {
+        "kind": "item",
+        "name": "Stone",
+        "identifier": "Stone",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 22,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 2.5,
+      "origin": {
+        "kind": "item",
+        "name": "Crown",
+        "identifier": "Crown",
+        "owner_type": 3,
+        "top_left": {
+          "x": 6,
+          "y": 0
+        }
+      },
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": 5
+      }
+    },
+    {
+      "id": 23,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 2.5,
+      "origin": {
+        "kind": "item",
+        "name": "Crown",
+        "identifier": "Crown",
+        "owner_type": 3,
+        "top_left": {
+          "x": 6,
+          "y": 0
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 24,
+      "type": 3,
+      "type_name": "3",
+      "timestamp": 2.616667,
+      "origin": {
+        "kind": "item",
+        "name": "Hammer",
+        "identifier": "Hammer",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 25,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 2.616667,
+      "origin": {
+        "kind": "item",
+        "name": "Hammer",
+        "identifier": "Hammer",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 26,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 3.516667,
+      "origin": {
+        "kind": "item",
+        "name": "Dagger",
+        "identifier": "Dagger",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 5
+      }
+    },
+    {
+      "id": 27,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 3.516667,
+      "origin": {
+        "kind": "item",
+        "name": "Dagger",
+        "identifier": "Dagger",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 28,
+      "type": 104,
+      "type_name": "104",
+      "timestamp": 3.666667,
+      "origin": {
+        "kind": "item",
+        "name": "Spiked Shield",
+        "identifier": "Spiked Shield",
+        "owner_type": 3,
+        "top_left": {
+          "x": 4,
+          "y": 0
+        }
+      },
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 29,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 3.666667,
+      "origin": {
+        "kind": "item",
+        "name": "Dagger",
+        "identifier": "Dagger",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 0
+      }
+    },
+    {
+      "id": 30,
+      "type": 14,
+      "type_name": "14",
+      "timestamp": 3.666667,
+      "origin": {
+        "kind": "item",
+        "name": "Spiked Shield",
+        "identifier": "Spiked Shield",
+        "owner_type": 3,
+        "top_left": {
+          "x": 4,
+          "y": 0
+        }
+      },
+      "target": 0,
+      "parent_id": 29,
+      "params": {
+        "stamina": 0.3
+      }
+    },
+    {
+      "id": 31,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 3.666667,
+      "origin": {
+        "kind": "item",
+        "name": "Spiked Shield",
+        "identifier": "Spiked Shield",
+        "owner_type": 3,
+        "top_left": {
+          "x": 4,
+          "y": 0
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 32,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 3.666667,
+      "origin": {
+        "kind": "item",
+        "name": "Dagger",
+        "identifier": "Dagger",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 33,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 3.983334,
+      "origin": {
+        "kind": "item",
+        "name": "Double Axe",
+        "identifier": "Double Axe",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 1
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 24
+      }
+    },
+    {
+      "id": 34,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 3.983334,
+      "origin": {
+        "kind": "item",
+        "name": "Double Axe",
+        "identifier": "Double Axe",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 1
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 35,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 4.3,
+      "origin": {
+        "kind": "item",
+        "name": "Axe",
+        "identifier": "Axe",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 16
+      }
+    },
+    {
+      "id": 36,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 4.3,
+      "origin": 104,
+      "target": 1,
+      "parent_id": 35,
+      "params": {
+        "damage": 1
+      }
+    },
+    {
+      "id": 37,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 4.3,
+      "origin": {
+        "kind": "item",
+        "name": "Axe",
+        "identifier": "Axe",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 38,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 4.383334,
+      "origin": {
+        "kind": "item",
+        "name": "Stone",
+        "identifier": "Stone",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 8
+      }
+    },
+    {
+      "id": 39,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 4.383334,
+      "origin": {
+        "kind": "item",
+        "name": "Stone",
+        "identifier": "Stone",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 40,
+      "type": 3,
+      "type_name": "3",
+      "timestamp": 4.466667,
+      "origin": {
+        "kind": "item",
+        "name": "Stone",
+        "identifier": "Stone",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 41,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 4.466667,
+      "origin": {
+        "kind": "item",
+        "name": "Stone",
+        "identifier": "Stone",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 42,
+      "type": 21,
+      "type_name": "21",
+      "timestamp": 4.95,
+      "origin": {
+        "kind": "item",
+        "name": "Toolbox",
+        "identifier": "Toolbox",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "duration": 5.5
+      }
+    },
+    {
+      "id": 43,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 4.966667,
+      "origin": {
+        "kind": "item",
+        "name": "Crown",
+        "identifier": "Crown",
+        "owner_type": 3,
+        "top_left": {
+          "x": 6,
+          "y": 0
+        }
+      },
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": 5
+      }
+    },
+    {
+      "id": 44,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 4.966667,
+      "origin": {
+        "kind": "item",
+        "name": "Crown",
+        "identifier": "Crown",
+        "owner_type": 3,
+        "top_left": {
+          "x": 6,
+          "y": 0
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 45,
+      "type": 21,
+      "type_name": "21",
+      "timestamp": 5.183334,
+      "origin": {
+        "kind": "item",
+        "name": "Toolbox",
+        "identifier": "Toolbox",
+        "owner_type": 3,
+        "top_left": {
+          "x": 0,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "duration": 5.5
+      }
+    },
+    {
+      "id": 46,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 5.183334,
+      "origin": {
+        "kind": "item",
+        "name": "Double Axe",
+        "identifier": "Double Axe",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 1
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 29
+      }
+    },
+    {
+      "id": 47,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 5.183334,
+      "origin": {
+        "kind": "item",
+        "name": "Toolbox",
+        "identifier": "Toolbox",
+        "owner_type": 3,
+        "top_left": {
+          "x": 0,
+          "y": 2
+        }
+      },
+      "target": 1,
+      "parent_id": 46,
+      "params": {
+        "amount": 11
+      }
+    },
+    {
+      "id": 48,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 5.183334,
+      "origin": {
+        "kind": "item",
+        "name": "Health Potion",
+        "identifier": "Health Potion",
+        "owner_type": 1,
+        "top_left": {
+          "x": 0,
+          "y": 1
+        }
+      },
+      "target": 0,
+      "parent_id": 46,
+      "params": {
+        "amount": 12
+      }
+    },
+    {
+      "id": 49,
+      "type": 13,
+      "type_name": "13",
+      "timestamp": 5.183334,
+      "origin": {
+        "kind": "item",
+        "name": "Strong Heroic Potion",
+        "identifier": "Strong Heroic Potion",
+        "owner_type": 1,
+        "top_left": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "stamina": 4
+      }
+    },
+    {
+      "id": 50,
+      "type": 106,
+      "type_name": "106",
+      "timestamp": 5.183334,
+      "origin": {
+        "kind": "item",
+        "name": "Strong Heroic Potion",
+        "identifier": "Strong Heroic Potion",
+        "owner_type": 1,
+        "top_left": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 51,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 5.183334,
+      "origin": {
+        "kind": "item",
+        "name": "Health Potion",
+        "identifier": "Health Potion",
+        "owner_type": 1,
+        "top_left": {
+          "x": 0,
+          "y": 1
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 52,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 5.183334,
+      "origin": {
+        "kind": "item",
+        "name": "Double Axe",
+        "identifier": "Double Axe",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 1
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 53,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 5.233334,
+      "origin": {
+        "kind": "item",
+        "name": "Hammer",
+        "identifier": "Hammer",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 29
+      }
+    },
+    {
+      "id": 54,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 5.233334,
+      "origin": {
+        "kind": "item",
+        "name": "Toolbox",
+        "identifier": "Toolbox",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 2
+        }
+      },
+      "target": 0,
+      "parent_id": 53,
+      "params": {
+        "amount": 11
+      }
+    },
+    {
+      "id": 55,
+      "type": 9,
+      "type_name": "9",
+      "timestamp": 5.233334,
+      "origin": {
+        "kind": "item",
+        "name": "Hammer",
+        "identifier": "Hammer",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 2
+        }
+      },
+      "target": 1,
+      "parent_id": 53,
+      "params": {
+        "duration": 0.5
+      }
+    },
+    {
+      "id": 56,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 5.233334,
+      "origin": {
+        "kind": "item",
+        "name": "Dagger",
+        "identifier": "Dagger",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": 55,
+      "params": {
+        "damage": 5
+      }
+    },
+    {
+      "id": 57,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 5.233334,
+      "origin": {
+        "kind": "item",
+        "name": "Toolbox",
+        "identifier": "Toolbox",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 2
+        }
+      },
+      "target": 0,
+      "parent_id": 56,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 58,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 5.233334,
+      "origin": 104,
+      "target": 1,
+      "parent_id": 56,
+      "params": {
+        "damage": 1
+      }
+    },
+    {
+      "id": 59,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 5.233334,
+      "origin": {
+        "kind": "item",
+        "name": "Dagger",
+        "identifier": "Dagger",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 60,
+      "type": 104,
+      "type_name": "104",
+      "timestamp": 5.233334,
+      "origin": {
+        "kind": "item",
+        "name": "Spiked Shield",
+        "identifier": "Spiked Shield",
+        "owner_type": 3,
+        "top_left": {
+          "x": 4,
+          "y": 0
+        }
+      },
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 61,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 5.233334,
+      "origin": {
+        "kind": "item",
+        "name": "Dagger",
+        "identifier": "Dagger",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": 55,
+      "params": {
+        "damage": 0
+      }
+    },
+    {
+      "id": 62,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 5.233334,
+      "origin": {
+        "kind": "item",
+        "name": "Toolbox",
+        "identifier": "Toolbox",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 2
+        }
+      },
+      "target": 0,
+      "parent_id": 61,
+      "params": {
+        "amount": 0
+      }
+    },
+    {
+      "id": 63,
+      "type": 14,
+      "type_name": "14",
+      "timestamp": 5.233334,
+      "origin": {
+        "kind": "item",
+        "name": "Spiked Shield",
+        "identifier": "Spiked Shield",
+        "owner_type": 3,
+        "top_left": {
+          "x": 4,
+          "y": 0
+        }
+      },
+      "target": 0,
+      "parent_id": 61,
+      "params": {
+        "stamina": 0.3
+      }
+    },
+    {
+      "id": 64,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 5.233334,
+      "origin": {
+        "kind": "item",
+        "name": "Spiked Shield",
+        "identifier": "Spiked Shield",
+        "owner_type": 3,
+        "top_left": {
+          "x": 4,
+          "y": 0
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 65,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 5.233334,
+      "origin": {
+        "kind": "item",
+        "name": "Dagger",
+        "identifier": "Dagger",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 66,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 5.233334,
+      "origin": 104,
+      "target": 1,
+      "parent_id": 53,
+      "params": {
+        "damage": 2
+      }
+    },
+    {
+      "id": 67,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 5.233334,
+      "origin": {
+        "kind": "item",
+        "name": "Hammer",
+        "identifier": "Hammer",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 68,
+      "type": 3,
+      "type_name": "3",
+      "timestamp": 6.083334,
+      "origin": {
+        "kind": "item",
+        "name": "Axe",
+        "identifier": "Axe",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 69,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 6.083334,
+      "origin": {
+        "kind": "item",
+        "name": "Axe",
+        "identifier": "Axe",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 70,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 6.25,
+      "origin": {
+        "kind": "item",
+        "name": "Double Axe",
+        "identifier": "Double Axe",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 1
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 27
+      }
+    },
+    {
+      "id": 71,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 6.25,
+      "origin": {
+        "kind": "item",
+        "name": "Toolbox",
+        "identifier": "Toolbox",
+        "owner_type": 3,
+        "top_left": {
+          "x": 0,
+          "y": 2
+        }
+      },
+      "target": 1,
+      "parent_id": 70,
+      "params": {
+        "amount": 10
+      }
+    },
+    {
+      "id": 72,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 6.25,
+      "origin": {
+        "kind": "item",
+        "name": "Double Axe",
+        "identifier": "Double Axe",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 1
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 73,
+      "type": 9,
+      "type_name": "9",
+      "timestamp": 6.666667,
+      "origin": {
+        "kind": "item",
+        "name": "Thornburst",
+        "identifier": "Thornburst",
+        "owner_type": 3,
+        "top_left": {
+          "x": 7,
+          "y": 4
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "duration": 0.3
+      }
+    },
+    {
+      "id": 74,
+      "type": 104,
+      "type_name": "104",
+      "timestamp": 6.666667,
+      "origin": {
+        "kind": "item",
+        "name": "Thornburst",
+        "identifier": "Thornburst",
+        "owner_type": 3,
+        "top_left": {
+          "x": 7,
+          "y": 4
+        }
+      },
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": 2,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 75,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 6.666667,
+      "origin": {
+        "kind": "item",
+        "name": "Thornburst",
+        "identifier": "Thornburst",
+        "owner_type": 3,
+        "top_left": {
+          "x": 7,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 76,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 7.033334,
+      "origin": {
+        "kind": "item",
+        "name": "Stone",
+        "identifier": "Stone",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 9
+      }
+    },
+    {
+      "id": 77,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 7.033334,
+      "origin": {
+        "kind": "item",
+        "name": "Toolbox",
+        "identifier": "Toolbox",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 2
+        }
+      },
+      "target": 0,
+      "parent_id": 76,
+      "params": {
+        "amount": 4
+      }
+    },
+    {
+      "id": 78,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 7.033334,
+      "origin": {
+        "kind": "item",
+        "name": "Stone",
+        "identifier": "Stone",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 79,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 7.066667,
+      "origin": {
+        "kind": "item",
+        "name": "Stone",
+        "identifier": "Stone",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 9
+      }
+    },
+    {
+      "id": 80,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 7.066667,
+      "origin": {
+        "kind": "item",
+        "name": "Toolbox",
+        "identifier": "Toolbox",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 2
+        }
+      },
+      "target": 0,
+      "parent_id": 79,
+      "params": {
+        "amount": 4
+      }
+    },
+    {
+      "id": 81,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 7.066667,
+      "origin": {
+        "kind": "item",
+        "name": "Health Potion",
+        "identifier": "Health Potion",
+        "owner_type": 3,
+        "top_left": {
+          "x": 6,
+          "y": 3
+        }
+      },
+      "target": 1,
+      "parent_id": 79,
+      "params": {
+        "amount": 12
+      }
+    },
+    {
+      "id": 82,
+      "type": 105,
+      "type_name": "105",
+      "timestamp": 7.066667,
+      "origin": {
+        "kind": "item",
+        "name": "Mana Potion",
+        "identifier": "Mana Potion",
+        "owner_type": 3,
+        "top_left": {
+          "x": 6,
+          "y": 2
+        }
+      },
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": 4,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 83,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 7.066667,
+      "origin": {
+        "kind": "item",
+        "name": "Mana Potion",
+        "identifier": "Mana Potion",
+        "owner_type": 3,
+        "top_left": {
+          "x": 6,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "amount": 18
+      }
+    },
+    {
+      "id": 84,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 7.066667,
+      "origin": {
+        "kind": "item",
+        "name": "Health Potion",
+        "identifier": "Health Potion",
+        "owner_type": 3,
+        "top_left": {
+          "x": 6,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 85,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 7.066667,
+      "origin": {
+        "kind": "item",
+        "name": "Stone",
+        "identifier": "Stone",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 86,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 7.433334,
+      "origin": {
+        "kind": "item",
+        "name": "Dagger",
+        "identifier": "Dagger",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 8
+      }
+    },
+    {
+      "id": 87,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 7.433334,
+      "origin": {
+        "kind": "item",
+        "name": "Toolbox",
+        "identifier": "Toolbox",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 2
+        }
+      },
+      "target": 0,
+      "parent_id": 86,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 88,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 7.433334,
+      "origin": 104,
+      "target": 1,
+      "parent_id": 86,
+      "params": {
+        "damage": 4
+      }
+    },
+    {
+      "id": 89,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 7.433334,
+      "origin": {
+        "kind": "item",
+        "name": "Dagger",
+        "identifier": "Dagger",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 90,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 7.5,
+      "origin": {
+        "kind": "item",
+        "name": "Dagger",
+        "identifier": "Dagger",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 8
+      }
+    },
+    {
+      "id": 91,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 7.5,
+      "origin": {
+        "kind": "item",
+        "name": "Toolbox",
+        "identifier": "Toolbox",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 2
+        }
+      },
+      "target": 0,
+      "parent_id": 90,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 92,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 7.5,
+      "origin": 104,
+      "target": 1,
+      "parent_id": 90,
+      "params": {
+        "damage": 4
+      }
+    },
+    {
+      "id": 93,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 7.5,
+      "origin": {
+        "kind": "item",
+        "name": "Dagger",
+        "identifier": "Dagger",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 94,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 7.633334,
+      "origin": {
+        "kind": "item",
+        "name": "Double Axe",
+        "identifier": "Double Axe",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 1
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 39
+      }
+    },
+    {
+      "id": 95,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 7.633334,
+      "origin": {
+        "kind": "item",
+        "name": "Toolbox",
+        "identifier": "Toolbox",
+        "owner_type": 3,
+        "top_left": {
+          "x": 0,
+          "y": 2
+        }
+      },
+      "target": 1,
+      "parent_id": 94,
+      "params": {
+        "amount": 14
+      }
+    },
+    {
+      "id": 96,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 7.633334,
+      "origin": {
+        "kind": "item",
+        "name": "Double Axe",
+        "identifier": "Double Axe",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 1
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 97,
+      "type": 104,
+      "type_name": "104",
+      "timestamp": 7.883334,
+      "origin": {
+        "kind": "item",
+        "name": "Spiked Shield",
+        "identifier": "Spiked Shield",
+        "owner_type": 3,
+        "top_left": {
+          "x": 4,
+          "y": 0
+        }
+      },
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 98,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 7.883334,
+      "origin": {
+        "kind": "item",
+        "name": "Axe",
+        "identifier": "Axe",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 10
+      }
+    },
+    {
+      "id": 99,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 7.883334,
+      "origin": {
+        "kind": "item",
+        "name": "Toolbox",
+        "identifier": "Toolbox",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 2
+        }
+      },
+      "target": 0,
+      "parent_id": 98,
+      "params": {
+        "amount": 4
+      }
+    },
+    {
+      "id": 100,
+      "type": 14,
+      "type_name": "14",
+      "timestamp": 7.883334,
+      "origin": {
+        "kind": "item",
+        "name": "Spiked Shield",
+        "identifier": "Spiked Shield",
+        "owner_type": 3,
+        "top_left": {
+          "x": 4,
+          "y": 0
+        }
+      },
+      "target": 0,
+      "parent_id": 98,
+      "params": {
+        "stamina": 0.3
+      }
+    },
+    {
+      "id": 101,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 7.883334,
+      "origin": {
+        "kind": "item",
+        "name": "Spiked Shield",
+        "identifier": "Spiked Shield",
+        "owner_type": 3,
+        "top_left": {
+          "x": 4,
+          "y": 0
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 102,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 7.883334,
+      "origin": 104,
+      "target": 1,
+      "parent_id": 98,
+      "params": {
+        "damage": 5
+      }
+    },
+    {
+      "id": 103,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 7.883334,
+      "origin": {
+        "kind": "item",
+        "name": "Axe",
+        "identifier": "Axe",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 104,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 7.95,
+      "origin": {
+        "kind": "item",
+        "name": "Crown",
+        "identifier": "Crown",
+        "owner_type": 3,
+        "top_left": {
+          "x": 6,
+          "y": 0
+        }
+      },
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": 5
+      }
+    },
+    {
+      "id": 105,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 7.95,
+      "origin": {
+        "kind": "item",
+        "name": "Crown",
+        "identifier": "Crown",
+        "owner_type": 3,
+        "top_left": {
+          "x": 6,
+          "y": 0
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 106,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 8.1,
+      "origin": {
+        "kind": "item",
+        "name": "Hammer",
+        "identifier": "Hammer",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 25
+      }
+    },
+    {
+      "id": 107,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 8.1,
+      "origin": {
+        "kind": "item",
+        "name": "Toolbox",
+        "identifier": "Toolbox",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 2
+        }
+      },
+      "target": 0,
+      "parent_id": 106,
+      "params": {
+        "amount": 9
+      }
+    },
+    {
+      "id": 108,
+      "type": 105,
+      "type_name": "105",
+      "timestamp": 8.1,
+      "origin": {
+        "kind": "item",
+        "name": "Mana Potion",
+        "identifier": "Mana Potion",
+        "owner_type": 3,
+        "top_left": {
+          "x": 6,
+          "y": 2
+        }
+      },
+      "target": 1,
+      "parent_id": 106,
+      "params": {
+        "amount": 4,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 109,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 8.1,
+      "origin": {
+        "kind": "item",
+        "name": "Mana Potion",
+        "identifier": "Mana Potion",
+        "owner_type": 3,
+        "top_left": {
+          "x": 6,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "amount": 18
+      }
+    },
+    {
+      "id": 110,
+      "type": 13,
+      "type_name": "13",
+      "timestamp": 8.1,
+      "origin": {
+        "kind": "item",
+        "name": "Strong Heroic Potion",
+        "identifier": "Strong Heroic Potion",
+        "owner_type": 3,
+        "top_left": {
+          "x": 6,
+          "y": 1
+        }
+      },
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "stamina": 4
+      }
+    },
+    {
+      "id": 111,
+      "type": 106,
+      "type_name": "106",
+      "timestamp": 8.1,
+      "origin": {
+        "kind": "item",
+        "name": "Strong Heroic Potion",
+        "identifier": "Strong Heroic Potion",
+        "owner_type": 3,
+        "top_left": {
+          "x": 6,
+          "y": 1
+        }
+      },
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 112,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 8.1,
+      "origin": {
+        "kind": "item",
+        "name": "Mana Potion",
+        "identifier": "Mana Potion",
+        "owner_type": 3,
+        "top_left": {
+          "x": 6,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 113,
+      "type": 9,
+      "type_name": "9",
+      "timestamp": 8.1,
+      "origin": {
+        "kind": "item",
+        "name": "Hammer",
+        "identifier": "Hammer",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 2
+        }
+      },
+      "target": 1,
+      "parent_id": 106,
+      "params": {
+        "duration": 0.5
+      }
+    },
+    {
+      "id": 114,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 8.1,
+      "origin": {
+        "kind": "item",
+        "name": "Dagger",
+        "identifier": "Dagger",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": 113,
+      "params": {
+        "damage": 5
+      }
+    },
+    {
+      "id": 115,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 8.1,
+      "origin": {
+        "kind": "item",
+        "name": "Toolbox",
+        "identifier": "Toolbox",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 2
+        }
+      },
+      "target": 0,
+      "parent_id": 114,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 116,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 8.1,
+      "origin": 104,
+      "target": 1,
+      "parent_id": 114,
+      "params": {
+        "damage": 5
+      }
+    },
+    {
+      "id": 117,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 8.1,
+      "origin": {
+        "kind": "item",
+        "name": "Dagger",
+        "identifier": "Dagger",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 118,
+      "type": 104,
+      "type_name": "104",
+      "timestamp": 8.1,
+      "origin": {
+        "kind": "item",
+        "name": "Spiked Shield",
+        "identifier": "Spiked Shield",
+        "owner_type": 3,
+        "top_left": {
+          "x": 4,
+          "y": 0
+        }
+      },
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 119,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 8.1,
+      "origin": {
+        "kind": "item",
+        "name": "Dagger",
+        "identifier": "Dagger",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": 113,
+      "params": {
+        "damage": 0
+      }
+    },
+    {
+      "id": 120,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 8.1,
+      "origin": {
+        "kind": "item",
+        "name": "Toolbox",
+        "identifier": "Toolbox",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 2
+        }
+      },
+      "target": 0,
+      "parent_id": 119,
+      "params": {
+        "amount": 0
+      }
+    },
+    {
+      "id": 121,
+      "type": 14,
+      "type_name": "14",
+      "timestamp": 8.1,
+      "origin": {
+        "kind": "item",
+        "name": "Spiked Shield",
+        "identifier": "Spiked Shield",
+        "owner_type": 3,
+        "top_left": {
+          "x": 4,
+          "y": 0
+        }
+      },
+      "target": 0,
+      "parent_id": 119,
+      "params": {
+        "stamina": 0.3
+      }
+    },
+    {
+      "id": 122,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 8.1,
+      "origin": {
+        "kind": "item",
+        "name": "Spiked Shield",
+        "identifier": "Spiked Shield",
+        "owner_type": 3,
+        "top_left": {
+          "x": 4,
+          "y": 0
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 123,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 8.1,
+      "origin": {
+        "kind": "item",
+        "name": "Dagger",
+        "identifier": "Dagger",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 124,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 8.1,
+      "origin": 104,
+      "target": 1,
+      "parent_id": 106,
+      "params": {
+        "damage": 6
+      }
+    },
+    {
+      "id": 125,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 8.1,
+      "origin": {
+        "kind": "item",
+        "name": "Hammer",
+        "identifier": "Hammer",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 126,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 9.266667,
+      "origin": {
+        "kind": "item",
+        "name": "Stone",
+        "identifier": "Stone",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 8
+      }
+    },
+    {
+      "id": 127,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 9.266667,
+      "origin": {
+        "kind": "item",
+        "name": "Toolbox",
+        "identifier": "Toolbox",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 2
+        }
+      },
+      "target": 0,
+      "parent_id": 126,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 128,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 9.266667,
+      "origin": {
+        "kind": "item",
+        "name": "Stone",
+        "identifier": "Stone",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 129,
+      "type": 3,
+      "type_name": "3",
+      "timestamp": 9.35,
+      "origin": {
+        "kind": "item",
+        "name": "Stone",
+        "identifier": "Stone",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 130,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 9.35,
+      "origin": {
+        "kind": "item",
+        "name": "Stone",
+        "identifier": "Stone",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 131,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 9.4,
+      "origin": {
+        "kind": "item",
+        "name": "Axe",
+        "identifier": "Axe",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 19
+      }
+    },
+    {
+      "id": 132,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 9.4,
+      "origin": {
+        "kind": "item",
+        "name": "Toolbox",
+        "identifier": "Toolbox",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 2
+        }
+      },
+      "target": 0,
+      "parent_id": 131,
+      "params": {
+        "amount": 7
+      }
+    },
+    {
+      "id": 133,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 9.4,
+      "origin": 104,
+      "target": 1,
+      "parent_id": 131,
+      "params": {
+        "damage": 6
+      }
+    },
+    {
+      "id": 134,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 9.4,
+      "origin": {
+        "kind": "item",
+        "name": "Axe",
+        "identifier": "Axe",
+        "owner_type": 1,
+        "top_left": {
+          "x": 1,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 135,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 9.483334,
+      "origin": {
+        "kind": "item",
+        "name": "Double Axe",
+        "identifier": "Double Axe",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 1
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 42
+      }
+    },
+    {
+      "id": 136,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 9.483334,
+      "origin": {
+        "kind": "item",
+        "name": "Toolbox",
+        "identifier": "Toolbox",
+        "owner_type": 3,
+        "top_left": {
+          "x": 0,
+          "y": 2
+        }
+      },
+      "target": 1,
+      "parent_id": 135,
+      "params": {
+        "amount": 15
+      }
+    },
+    {
+      "id": 137,
+      "type": 112,
+      "type_name": "112",
+      "timestamp": 9.5,
+      "origin": 112,
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    }
+  ]
+}

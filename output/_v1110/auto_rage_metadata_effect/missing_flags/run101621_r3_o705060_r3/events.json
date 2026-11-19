@@ -1,0 +1,6022 @@
+{
+ "case_id": "run101621_r3_o705060_r3",
+ "seed": 202360743,
+ "below_master": true,
+ "preordered": true,
+ "custom_health_multiplier": 100.0,
+ "replay_initial": {
+  "activation_rng_state": "2472867483733691088",
+  "idle_left": [
+   "0.41262316703796390",
+   "0.79149639606475830"
+  ],
+  "flickers": [
+   {
+    "identity": {
+     "name": "Burning Sword",
+     "owner": 1,
+     "top_left": [
+      4,
+      4
+     ],
+     "relative_path": "Icon/TorchLight/FlickerAnimation"
+    },
+    "pending": [],
+    "playing": true,
+    "position": 0.012267,
+    "position_precise": "0.01226671598851680",
+    "speed_precise": "0.73600292205810550",
+    "limits": [
+     0.1,
+     3,
+     0.3,
+     0.8
+    ],
+    "speed": 0.736003,
+    "animation": "Flicker",
+    "length": 0.3,
+    "loop": false,
+    "inside_tree": true,
+    "path": "/root/Main/Player/Burning Sword/Icon/TorchLight/FlickerAnimation"
+   }
+  ]
+ },
+ "reseeded_after_player_character": true,
+ "post_seed_draws": 0,
+ "rng_state_injected": true,
+ "winner": "player",
+ "combat_time": 27.000001408159733,
+ "ticks": 1770,
+ "player_hp": 12.0,
+ "player_max_hp": 101.0,
+ "opponent_hp": 0.0,
+ "opponent_max_hp": 116.0,
+ "event_count": 386,
+ "events": [
+  {
+   "id": 1,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Battery",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 2,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Battery",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 3,
+   "type": 107,
+   "type_name": "stack_gain",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Resistor",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 3,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 4,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Piggybank",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 5,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Piggy of Riches",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 6,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Smithing For Dummies",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 7,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Puzzlebag L",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "amount": 7.0
+   }
+  },
+  {
+   "id": 8,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Piggybank",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "amount": 2.0
+   }
+  },
+  {
+   "id": 9,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Piggybank",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 10,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Piggybank",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "amount": 2.0
+   }
+  },
+  {
+   "id": 11,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Piggybank",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 12,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Piggybank",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "amount": 4.0
+   }
+  },
+  {
+   "id": 13,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 0.0,
+   "origin": {
+    "kind": "item",
+    "identifier": "Piggybank",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 14,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 1.450000075623393,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 2
+   }
+  },
+  {
+   "id": 15,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 1.450000075623393,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 16,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 1.450000075623393,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 15,
+   "params": {
+    "amount": 2.0
+   }
+  },
+  {
+   "id": 17,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 1.450000075623393,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 18,
+   "type": 20,
+   "type_name": "temporary_max_stamina",
+   "timestamp": 1.450000075623393,
+   "origin": {
+    "kind": "item",
+    "identifier": "Bag of Giving",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 17,
+   "params": {
+    "stamina": 0.1
+   }
+  },
+  {
+   "id": 19,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 1.4666667431592941,
+   "origin": {
+    "kind": "item",
+    "identifier": "Shortbow",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 2
+   }
+  },
+  {
+   "id": 20,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 1.4666667431592941,
+   "origin": {
+    "kind": "item",
+    "identifier": "Shortbow",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 21,
+   "type": 107,
+   "type_name": "stack_gain",
+   "timestamp": 2.0000001043081284,
+   "origin": {
+    "kind": "item",
+    "identifier": "Resistor",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 3,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 22,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 2.0333334393799305,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 4
+   }
+  },
+  {
+   "id": 23,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 2.0333334393799305,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 24,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 2.5666668005287647,
+   "origin": {
+    "kind": "item",
+    "identifier": "Stone",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 3
+   }
+  },
+  {
+   "id": 25,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 2.5666668005287647,
+   "origin": {
+    "kind": "item",
+    "identifier": "Stone",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 26,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 2.583333468064666,
+   "origin": {
+    "kind": "item",
+    "identifier": "Rat",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 5
+   }
+  },
+  {
+   "id": 27,
+   "type": 108,
+   "type_name": "stack_gain",
+   "timestamp": 2.583333468064666,
+   "origin": {
+    "kind": "item",
+    "identifier": "Rat",
+    "owner_type": 1
+   },
+   "target": 1,
+   "parent_id": 26,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 28,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 2.583333468064666,
+   "origin": {
+    "kind": "item",
+    "identifier": "Rat",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 29,
+   "type": 20,
+   "type_name": "temporary_max_stamina",
+   "timestamp": 2.583333468064666,
+   "origin": {
+    "kind": "item",
+    "identifier": "Bag of Giving",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 28,
+   "params": {
+    "stamina": 0.1
+   }
+  },
+  {
+   "id": 30,
+   "type": 107,
+   "type_name": "stack_gain",
+   "timestamp": 2.7333334758877754,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 31,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 2.7333334758877754,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 5
+   }
+  },
+  {
+   "id": 32,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 2.7333334758877754,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 33,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 2.883333483710885,
+   "origin": {
+    "kind": "item",
+    "identifier": "Shortbow",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 4
+   }
+  },
+  {
+   "id": 34,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 2.883333483710885,
+   "origin": {
+    "kind": "item",
+    "identifier": "Shortbow",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 35,
+   "type": 105,
+   "type_name": "stack_gain",
+   "timestamp": 3.300000172108412,
+   "origin": {
+    "kind": "item",
+    "identifier": "Blueberries",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 36,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 3.300000172108412,
+   "origin": {
+    "kind": "item",
+    "identifier": "Blueberries",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 37,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 3.550000185146928,
+   "origin": {
+    "kind": "item",
+    "identifier": "Chess Board",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 38,
+   "type": 105,
+   "type_name": "stack_gain",
+   "timestamp": 3.550000185146928,
+   "origin": {
+    "kind": "item",
+    "identifier": "Black Pawn",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 3,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 39,
+   "type": 101,
+   "type_name": "stack_gain",
+   "timestamp": 3.550000185146928,
+   "origin": {
+    "kind": "item",
+    "identifier": "White Pawn",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 40,
+   "type": 107,
+   "type_name": "stack_gain",
+   "timestamp": 3.9000002034008503,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 41,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 3.9000002034008503,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 4
+   }
+  },
+  {
+   "id": 42,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 3.9000002034008503,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 43,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 3.9000002034008503,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 42,
+   "params": {
+    "amount": 2.0
+   }
+  },
+  {
+   "id": 44,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 3.9000002034008503,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 45,
+   "type": 20,
+   "type_name": "temporary_max_stamina",
+   "timestamp": 3.9000002034008503,
+   "origin": {
+    "kind": "item",
+    "identifier": "Bag of Giving",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 44,
+   "params": {
+    "stamina": 0.1
+   }
+  },
+  {
+   "id": 46,
+   "type": 102,
+   "type_name": "stack_gain",
+   "timestamp": 3.9000002034008503,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": 44,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 47,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 3.9000002034008503,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 46,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 48,
+   "type": 102,
+   "type_name": "stack_gain",
+   "timestamp": 3.9333335384726524,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wand",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 49,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 3.9333335384726524,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wand",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 50,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 3.9833335410803556,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "poison"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "damage": 1
+   }
+  },
+  {
+   "id": 51,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 4.133333548903465,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 3
+   }
+  },
+  {
+   "id": 52,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 4.133333548903465,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 53,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 4.250000221654773,
+   "origin": {
+    "kind": "item",
+    "identifier": "Shortbow",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 3
+   }
+  },
+  {
+   "id": 54,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 4.250000221654773,
+   "origin": {
+    "kind": "item",
+    "identifier": "Shortbow",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 55,
+   "type": 102,
+   "type_name": "stack_gain",
+   "timestamp": 4.250000221654773,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": 54,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 56,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 4.250000221654773,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 55,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 57,
+   "type": 107,
+   "type_name": "stack_gain",
+   "timestamp": 4.850000252947211,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 58,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 4.850000252947211,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 3
+   }
+  },
+  {
+   "id": 59,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 4.850000252947211,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 60,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 4.850000252947211,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 59,
+   "params": {
+    "amount": 2.0
+   }
+  },
+  {
+   "id": 61,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 4.850000252947211,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 62,
+   "type": 20,
+   "type_name": "temporary_max_stamina",
+   "timestamp": 4.850000252947211,
+   "origin": {
+    "kind": "item",
+    "identifier": "Bag of Giving",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 61,
+   "params": {
+    "stamina": 0.1
+   }
+  },
+  {
+   "id": 63,
+   "type": 102,
+   "type_name": "stack_gain",
+   "timestamp": 4.850000252947211,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": 59,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 64,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 4.850000252947211,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 63,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 65,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 4.98333359323442,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "regen"
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 1
+   }
+  },
+  {
+   "id": 66,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 4.98333359323442,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "regen"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 3
+   }
+  },
+  {
+   "id": 67,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 5.200000271201134,
+   "origin": {
+    "kind": "item",
+    "identifier": "Rat",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 5
+   }
+  },
+  {
+   "id": 68,
+   "type": 108,
+   "type_name": "stack_gain",
+   "timestamp": 5.200000271201134,
+   "origin": {
+    "kind": "item",
+    "identifier": "Rat",
+    "owner_type": 1
+   },
+   "target": 1,
+   "parent_id": 67,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 69,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 5.200000271201134,
+   "origin": {
+    "kind": "item",
+    "identifier": "Rat",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 70,
+   "type": 20,
+   "type_name": "temporary_max_stamina",
+   "timestamp": 5.200000271201134,
+   "origin": {
+    "kind": "item",
+    "identifier": "Bag of Giving",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 69,
+   "params": {
+    "stamina": 0.1
+   }
+  },
+  {
+   "id": 71,
+   "type": 105,
+   "type_name": "stack_lose",
+   "timestamp": 5.516666954383254,
+   "origin": {
+    "kind": "item",
+    "identifier": "Book of Basics",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": -1,
+    "used": true,
+    "reflected": false
+   }
+  },
+  {
+   "id": 72,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 5.516666954383254,
+   "origin": {
+    "kind": "item",
+    "identifier": "Book of Basics",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": 71,
+   "params": {
+    "amount": 8.0
+   }
+  },
+  {
+   "id": 73,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 5.516666954383254,
+   "origin": {
+    "kind": "item",
+    "identifier": "Book of Basics",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 74,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 5.600000292062759,
+   "origin": {
+    "kind": "item",
+    "identifier": "Shortbow",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 4
+   }
+  },
+  {
+   "id": 75,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 5.600000292062759,
+   "origin": {
+    "kind": "item",
+    "identifier": "Shortbow",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 76,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 5.600000292062759,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 2
+   }
+  },
+  {
+   "id": 77,
+   "type": 109,
+   "type_name": "stack_gain",
+   "timestamp": 5.600000292062759,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": 0,
+   "parent_id": 76,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 78,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 5.600000292062759,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 79,
+   "type": 3,
+   "type_name": "missed",
+   "timestamp": 5.783333634957671,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 80,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 5.783333634957671,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 81,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 5.783333634957671,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 80,
+   "params": {
+    "amount": 2.0
+   }
+  },
+  {
+   "id": 82,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 5.783333634957671,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 83,
+   "type": 20,
+   "type_name": "temporary_max_stamina",
+   "timestamp": 5.783333634957671,
+   "origin": {
+    "kind": "item",
+    "identifier": "Bag of Giving",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 82,
+   "params": {
+    "stamina": 0.1
+   }
+  },
+  {
+   "id": 84,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 5.983333645388484,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "poison"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "damage": 2
+   }
+  },
+  {
+   "id": 85,
+   "type": 105,
+   "type_name": "stack_gain",
+   "timestamp": 6.283333661034703,
+   "origin": {
+    "kind": "item",
+    "identifier": "Blueberries",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 86,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 6.283333661034703,
+   "origin": {
+    "kind": "item",
+    "identifier": "Blueberries",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 87,
+   "type": 101,
+   "type_name": "stack_gain",
+   "timestamp": 6.516667006537318,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wand",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 88,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 6.516667006537318,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wand",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 89,
+   "type": 107,
+   "type_name": "stack_gain",
+   "timestamp": 6.783333687111735,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 90,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 6.783333687111735,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 5
+   }
+  },
+  {
+   "id": 91,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 6.783333687111735,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 92,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 6.783333687111735,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 91,
+   "params": {
+    "amount": 2.0
+   }
+  },
+  {
+   "id": 93,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 6.783333687111735,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 94,
+   "type": 20,
+   "type_name": "temporary_max_stamina",
+   "timestamp": 6.783333687111735,
+   "origin": {
+    "kind": "item",
+    "identifier": "Bag of Giving",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 93,
+   "params": {
+    "stamina": 0.1
+   }
+  },
+  {
+   "id": 95,
+   "type": 102,
+   "type_name": "stack_gain",
+   "timestamp": 6.783333687111735,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": 93,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 96,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 6.783333687111735,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 95,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 97,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 6.783333687111735,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 4
+   }
+  },
+  {
+   "id": 98,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 6.783333687111735,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 99,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 6.950000362470746,
+   "origin": {
+    "kind": "item",
+    "identifier": "Shortbow",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 4
+   }
+  },
+  {
+   "id": 100,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 6.950000362470746,
+   "origin": {
+    "kind": "item",
+    "identifier": "Shortbow",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 101,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 6.983333697542548,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "regen"
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 1
+   }
+  },
+  {
+   "id": 102,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 6.983333697542548,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "regen"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 4
+   }
+  },
+  {
+   "id": 103,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 7.716667069122195,
+   "origin": {
+    "kind": "item",
+    "identifier": "Rat",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 5
+   }
+  },
+  {
+   "id": 104,
+   "type": 108,
+   "type_name": "stack_gain",
+   "timestamp": 7.716667069122195,
+   "origin": {
+    "kind": "item",
+    "identifier": "Rat",
+    "owner_type": 1
+   },
+   "target": 1,
+   "parent_id": 103,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 105,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 7.716667069122195,
+   "origin": {
+    "kind": "item",
+    "identifier": "Rat",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 106,
+   "type": 20,
+   "type_name": "temporary_max_stamina",
+   "timestamp": 7.716667069122195,
+   "origin": {
+    "kind": "item",
+    "identifier": "Bag of Giving",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 105,
+   "params": {
+    "stamina": 0.1
+   }
+  },
+  {
+   "id": 107,
+   "type": 3,
+   "type_name": "missed",
+   "timestamp": 7.800000406801701,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 108,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 7.800000406801701,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 109,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 7.800000406801701,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 108,
+   "params": {
+    "amount": 2.0
+   }
+  },
+  {
+   "id": 110,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 7.800000406801701,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 111,
+   "type": 20,
+   "type_name": "temporary_max_stamina",
+   "timestamp": 7.800000406801701,
+   "origin": {
+    "kind": "item",
+    "identifier": "Bag of Giving",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 110,
+   "params": {
+    "stamina": 0.1
+   }
+  },
+  {
+   "id": 112,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 7.883333744481206,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 6
+   }
+  },
+  {
+   "id": 113,
+   "type": 109,
+   "type_name": "stack_gain",
+   "timestamp": 7.883333744481206,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": 0,
+   "parent_id": 112,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 114,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 7.883333744481206,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 115,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 7.983333749696612,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "poison"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "damage": 3
+   }
+  },
+  {
+   "id": 116,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 8.200000427663326,
+   "origin": {
+    "kind": "item",
+    "identifier": "Shortbow",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 3
+   }
+  },
+  {
+   "id": 117,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 8.200000427663326,
+   "origin": {
+    "kind": "item",
+    "identifier": "Shortbow",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 118,
+   "type": 102,
+   "type_name": "stack_gain",
+   "timestamp": 8.700000453740358,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wand",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 2,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 119,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 8.700000453740358,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wand",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 120,
+   "type": 105,
+   "type_name": "stack_lose",
+   "timestamp": 8.900000464171171,
+   "origin": {
+    "kind": "item",
+    "identifier": "Book of Basics",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": -1,
+    "used": true,
+    "reflected": false
+   }
+  },
+  {
+   "id": 121,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 8.900000464171171,
+   "origin": {
+    "kind": "item",
+    "identifier": "Book of Basics",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": 120,
+   "params": {
+    "amount": 8.0
+   }
+  },
+  {
+   "id": 122,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 8.900000464171171,
+   "origin": {
+    "kind": "item",
+    "identifier": "Book of Basics",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 123,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 8.983333801850677,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "regen"
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 3
+   }
+  },
+  {
+   "id": 124,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 8.983333801850677,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "regen"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 4
+   }
+  },
+  {
+   "id": 125,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 9.000000469386578,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 3
+   }
+  },
+  {
+   "id": 126,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 9.000000469386578,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 127,
+   "type": 3,
+   "type_name": "missed",
+   "timestamp": 9.03333380445838,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 128,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 9.03333380445838,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 129,
+   "type": 105,
+   "type_name": "stack_gain",
+   "timestamp": 9.100000474601984,
+   "origin": {
+    "kind": "item",
+    "identifier": "Blueberries",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 130,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 9.100000474601984,
+   "origin": {
+    "kind": "item",
+    "identifier": "Blueberries",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 131,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 9.533333830535412,
+   "origin": {
+    "kind": "item",
+    "identifier": "Shortbow",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 3
+   }
+  },
+  {
+   "id": 132,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 9.533333830535412,
+   "origin": {
+    "kind": "item",
+    "identifier": "Shortbow",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 133,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 9.98333385400474,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "poison"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "damage": 3
+   }
+  },
+  {
+   "id": 134,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 10.11666719429195,
+   "origin": {
+    "kind": "item",
+    "identifier": "Rat",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 5
+   }
+  },
+  {
+   "id": 135,
+   "type": 108,
+   "type_name": "stack_gain",
+   "timestamp": 10.11666719429195,
+   "origin": {
+    "kind": "item",
+    "identifier": "Rat",
+    "owner_type": 1
+   },
+   "target": 1,
+   "parent_id": 134,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 136,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 10.11666719429195,
+   "origin": {
+    "kind": "item",
+    "identifier": "Rat",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 137,
+   "type": 20,
+   "type_name": "temporary_max_stamina",
+   "timestamp": 10.11666719429195,
+   "origin": {
+    "kind": "item",
+    "identifier": "Bag of Giving",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 136,
+   "params": {
+    "stamina": 0.1
+   }
+  },
+  {
+   "id": 138,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 10.183333864435554,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 4
+   }
+  },
+  {
+   "id": 139,
+   "type": 109,
+   "type_name": "stack_gain",
+   "timestamp": 10.183333864435554,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": 0,
+   "parent_id": 138,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 140,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 10.183333864435554,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 141,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 10.233333867043257,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 5
+   }
+  },
+  {
+   "id": 142,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 10.233333867043257,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 143,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 10.233333867043257,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 142,
+   "params": {
+    "amount": 2.0
+   }
+  },
+  {
+   "id": 144,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 10.233333867043257,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 145,
+   "type": 20,
+   "type_name": "temporary_max_stamina",
+   "timestamp": 10.233333867043257,
+   "origin": {
+    "kind": "item",
+    "identifier": "Bag of Giving",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 144,
+   "params": {
+    "stamina": 0.1
+   }
+  },
+  {
+   "id": 146,
+   "type": 102,
+   "type_name": "stack_gain",
+   "timestamp": 10.233333867043257,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": 144,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 147,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 10.233333867043257,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 146,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 148,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 10.783333895727992,
+   "origin": {
+    "kind": "item",
+    "identifier": "Shortbow",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 4
+   }
+  },
+  {
+   "id": 149,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 10.783333895727992,
+   "origin": {
+    "kind": "item",
+    "identifier": "Shortbow",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 150,
+   "type": 108,
+   "type_name": "stack_lose",
+   "timestamp": 10.800000563263893,
+   "origin": {
+    "kind": "item",
+    "identifier": "Shelly",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": -4,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 151,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 10.800000563263893,
+   "origin": {
+    "kind": "item",
+    "identifier": "Shelly",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 48
+   }
+  },
+  {
+   "id": 152,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 10.800000563263893,
+   "origin": {
+    "kind": "item",
+    "identifier": "Shelly",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 153,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 10.983333906158805,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "regen"
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 3
+   }
+  },
+  {
+   "id": 154,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 10.983333906158805,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "regen"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 5
+   }
+  },
+  {
+   "id": 155,
+   "type": 105,
+   "type_name": "stack_gain",
+   "timestamp": 10.983333906158805,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wand",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 156,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 10.983333906158805,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wand",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 157,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 11.300000589340925,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 3
+   }
+  },
+  {
+   "id": 158,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 11.300000589340925,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 159,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 11.51666726730764,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 3
+   }
+  },
+  {
+   "id": 160,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 11.51666726730764,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 161,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 11.51666726730764,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 160,
+   "params": {
+    "amount": 2.0
+   }
+  },
+  {
+   "id": 162,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 11.51666726730764,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 163,
+   "type": 20,
+   "type_name": "temporary_max_stamina",
+   "timestamp": 11.51666726730764,
+   "origin": {
+    "kind": "item",
+    "identifier": "Bag of Giving",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 162,
+   "params": {
+    "stamina": 0.1
+   }
+  },
+  {
+   "id": 164,
+   "type": 105,
+   "type_name": "stack_gain",
+   "timestamp": 11.900000620633364,
+   "origin": {
+    "kind": "item",
+    "identifier": "Blueberries",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 165,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 11.900000620633364,
+   "origin": {
+    "kind": "item",
+    "identifier": "Blueberries",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 166,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 12.050000628456473,
+   "origin": {
+    "kind": "item",
+    "identifier": "Shortbow",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 4
+   }
+  },
+  {
+   "id": 167,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 12.050000628456473,
+   "origin": {
+    "kind": "item",
+    "identifier": "Shortbow",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 168,
+   "type": 105,
+   "type_name": "stack_lose",
+   "timestamp": 12.383333979174495,
+   "origin": {
+    "kind": "item",
+    "identifier": "Book of Basics",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": -1,
+    "used": true,
+    "reflected": false
+   }
+  },
+  {
+   "id": 169,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 12.383333979174495,
+   "origin": {
+    "kind": "item",
+    "identifier": "Book of Basics",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": 168,
+   "params": {
+    "amount": 8.0
+   }
+  },
+  {
+   "id": 170,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 12.383333979174495,
+   "origin": {
+    "kind": "item",
+    "identifier": "Book of Basics",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 171,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 12.433333981782198,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 4
+   }
+  },
+  {
+   "id": 172,
+   "type": 109,
+   "type_name": "stack_gain",
+   "timestamp": 12.433333981782198,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": 0,
+   "parent_id": 171,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 173,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 12.433333981782198,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 174,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 12.550000654533505,
+   "origin": {
+    "kind": "item",
+    "identifier": "Rat",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 5
+   }
+  },
+  {
+   "id": 175,
+   "type": 108,
+   "type_name": "stack_gain",
+   "timestamp": 12.550000654533505,
+   "origin": {
+    "kind": "item",
+    "identifier": "Rat",
+    "owner_type": 1
+   },
+   "target": 1,
+   "parent_id": 174,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 176,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 12.550000654533505,
+   "origin": {
+    "kind": "item",
+    "identifier": "Rat",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 177,
+   "type": 20,
+   "type_name": "temporary_max_stamina",
+   "timestamp": 12.550000654533505,
+   "origin": {
+    "kind": "item",
+    "identifier": "Bag of Giving",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 176,
+   "params": {
+    "stamina": 0.1
+   }
+  },
+  {
+   "id": 178,
+   "type": 107,
+   "type_name": "stack_gain",
+   "timestamp": 12.716667329892516,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 179,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 12.716667329892516,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 4
+   }
+  },
+  {
+   "id": 180,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 12.716667329892516,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 181,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 12.716667329892516,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 180,
+   "params": {
+    "amount": 2.0
+   }
+  },
+  {
+   "id": 182,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 12.716667329892516,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 183,
+   "type": 20,
+   "type_name": "temporary_max_stamina",
+   "timestamp": 12.716667329892516,
+   "origin": {
+    "kind": "item",
+    "identifier": "Bag of Giving",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 182,
+   "params": {
+    "stamina": 0.1
+   }
+  },
+  {
+   "id": 184,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 12.983334010466933,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "regen"
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 3
+   }
+  },
+  {
+   "id": 185,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 12.983334010466933,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "regen"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 5
+   }
+  },
+  {
+   "id": 186,
+   "type": 105,
+   "type_name": "stack_gain",
+   "timestamp": 13.183334020897746,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wand",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 187,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 13.183334020897746,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wand",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 188,
+   "type": 3,
+   "type_name": "missed",
+   "timestamp": 13.383334031328559,
+   "origin": {
+    "kind": "item",
+    "identifier": "Shortbow",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 189,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 13.383334031328559,
+   "origin": {
+    "kind": "item",
+    "identifier": "Shortbow",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 190,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 13.583334041759372,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 6
+   }
+  },
+  {
+   "id": 191,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 13.583334041759372,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 192,
+   "type": 107,
+   "type_name": "stack_gain",
+   "timestamp": 13.933334060013294,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 193,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 13.933334060013294,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 5
+   }
+  },
+  {
+   "id": 194,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 13.933334060013294,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 195,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 13.933334060013294,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 194,
+   "params": {
+    "amount": 2.0
+   }
+  },
+  {
+   "id": 196,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 13.933334060013294,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 197,
+   "type": 20,
+   "type_name": "temporary_max_stamina",
+   "timestamp": 13.933334060013294,
+   "origin": {
+    "kind": "item",
+    "identifier": "Bag of Giving",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 196,
+   "params": {
+    "stamina": 0.1
+   }
+  },
+  {
+   "id": 198,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 13.983334062620997,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "poison"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "damage": 1
+   }
+  },
+  {
+   "id": 199,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 14.716667434200644,
+   "origin": {
+    "kind": "item",
+    "identifier": "Shortbow",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 3
+   }
+  },
+  {
+   "id": 200,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 14.716667434200644,
+   "origin": {
+    "kind": "item",
+    "identifier": "Shortbow",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 201,
+   "type": 105,
+   "type_name": "stack_gain",
+   "timestamp": 14.750000769272447,
+   "origin": {
+    "kind": "item",
+    "identifier": "Blueberries",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 202,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 14.750000769272447,
+   "origin": {
+    "kind": "item",
+    "identifier": "Blueberries",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 203,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 14.750000769272447,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 2
+   }
+  },
+  {
+   "id": 204,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 14.750000769272447,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 205,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 14.983334114775062,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "regen"
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 3
+   }
+  },
+  {
+   "id": 206,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 14.983334114775062,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "regen"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 5
+   }
+  },
+  {
+   "id": 207,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 15.000000782310963,
+   "origin": {
+    "kind": "item",
+    "identifier": "Rat",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 5
+   }
+  },
+  {
+   "id": 208,
+   "type": 108,
+   "type_name": "stack_gain",
+   "timestamp": 15.000000782310963,
+   "origin": {
+    "kind": "item",
+    "identifier": "Rat",
+    "owner_type": 1
+   },
+   "target": 1,
+   "parent_id": 207,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 209,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 15.000000782310963,
+   "origin": {
+    "kind": "item",
+    "identifier": "Rat",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 210,
+   "type": 20,
+   "type_name": "temporary_max_stamina",
+   "timestamp": 15.000000782310963,
+   "origin": {
+    "kind": "item",
+    "identifier": "Bag of Giving",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 209,
+   "params": {
+    "stamina": 0.1
+   }
+  },
+  {
+   "id": 211,
+   "type": 102,
+   "type_name": "stack_gain",
+   "timestamp": 15.000000782310963,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": 209,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 212,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 15.000000782310963,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 211,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 213,
+   "type": 3,
+   "type_name": "missed",
+   "timestamp": 15.133334122598171,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 214,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 15.133334122598171,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 215,
+   "type": 105,
+   "type_name": "stack_gain",
+   "timestamp": 15.450000805780292,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wand",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 216,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 15.450000805780292,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wand",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 217,
+   "type": 105,
+   "type_name": "stack_lose",
+   "timestamp": 15.666667483747005,
+   "origin": {
+    "kind": "item",
+    "identifier": "Book of Basics",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": -1,
+    "used": true,
+    "reflected": false
+   }
+  },
+  {
+   "id": 218,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 15.666667483747005,
+   "origin": {
+    "kind": "item",
+    "identifier": "Book of Basics",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": 217,
+   "params": {
+    "amount": 8.0
+   }
+  },
+  {
+   "id": 219,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 15.666667483747005,
+   "origin": {
+    "kind": "item",
+    "identifier": "Book of Basics",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 220,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 15.933334164321423,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 6
+   }
+  },
+  {
+   "id": 221,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 15.933334164321423,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 222,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 15.983334166929126,
+   "origin": {
+    "kind": "item",
+    "identifier": "Shortbow",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 4
+   }
+  },
+  {
+   "id": 223,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 15.983334166929126,
+   "origin": {
+    "kind": "item",
+    "identifier": "Shortbow",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 224,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 15.983334166929126,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "poison"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "damage": 2
+   }
+  },
+  {
+   "id": 225,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 16.283334182575345,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 3
+   }
+  },
+  {
+   "id": 226,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 16.283334182575345,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 227,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 16.283334182575345,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 226,
+   "params": {
+    "amount": 2.0
+   }
+  },
+  {
+   "id": 228,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 16.283334182575345,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 229,
+   "type": 20,
+   "type_name": "temporary_max_stamina",
+   "timestamp": 16.283334182575345,
+   "origin": {
+    "kind": "item",
+    "identifier": "Bag of Giving",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 228,
+   "params": {
+    "stamina": 0.1
+   }
+  },
+  {
+   "id": 230,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 16.98333421908319,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "regen"
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 3
+   }
+  },
+  {
+   "id": 231,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 16.98333421908319,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "fatigue"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "damage": 1
+   }
+  },
+  {
+   "id": 232,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 16.98333421908319,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "fatigue"
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "damage": 1
+   }
+  },
+  {
+   "id": 233,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 16.98333421908319,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "regen"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 6
+   }
+  },
+  {
+   "id": 234,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 17.033334221690893,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 2
+   }
+  },
+  {
+   "id": 235,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 17.033334221690893,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 236,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 17.28333423472941,
+   "origin": {
+    "kind": "item",
+    "identifier": "Rat",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 5
+   }
+  },
+  {
+   "id": 237,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 17.28333423472941,
+   "origin": {
+    "kind": "item",
+    "identifier": "Rat",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 238,
+   "type": 20,
+   "type_name": "temporary_max_stamina",
+   "timestamp": 17.28333423472941,
+   "origin": {
+    "kind": "item",
+    "identifier": "Bag of Giving",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 237,
+   "params": {
+    "stamina": 0.1
+   }
+  },
+  {
+   "id": 239,
+   "type": 3,
+   "type_name": "missed",
+   "timestamp": 17.30000090226531,
+   "origin": {
+    "kind": "item",
+    "identifier": "Shortbow",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 240,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 17.30000090226531,
+   "origin": {
+    "kind": "item",
+    "identifier": "Shortbow",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 241,
+   "type": 15,
+   "type_name": "out_of_stamina",
+   "timestamp": 17.516667580232024,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 242,
+   "type": 105,
+   "type_name": "stack_gain",
+   "timestamp": 17.550000915303826,
+   "origin": {
+    "kind": "item",
+    "identifier": "Blueberries",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 243,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 17.550000915303826,
+   "origin": {
+    "kind": "item",
+    "identifier": "Blueberries",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 244,
+   "type": 101,
+   "type_name": "stack_gain",
+   "timestamp": 17.650000920519233,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wand",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 245,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 17.650000920519233,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wand",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 246,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 17.983334271237254,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "poison"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "damage": 2
+   }
+  },
+  {
+   "id": 247,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 17.983334271237254,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "fatigue"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "damage": 2
+   }
+  },
+  {
+   "id": 248,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 17.983334271237254,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "fatigue"
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "damage": 2
+   }
+  },
+  {
+   "id": 249,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 18.183334281668067,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 6
+   }
+  },
+  {
+   "id": 250,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 18.183334281668067,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 251,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 18.583334302529693,
+   "origin": {
+    "kind": "item",
+    "identifier": "Shortbow",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 3
+   }
+  },
+  {
+   "id": 252,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 18.583334302529693,
+   "origin": {
+    "kind": "item",
+    "identifier": "Shortbow",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 253,
+   "type": 3,
+   "type_name": "missed",
+   "timestamp": 18.700000975281,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 254,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 18.700000975281,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 255,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 18.700000975281,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 254,
+   "params": {
+    "amount": 2.0
+   }
+  },
+  {
+   "id": 256,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 18.700000975281,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 257,
+   "type": 20,
+   "type_name": "temporary_max_stamina",
+   "timestamp": 18.700000975281,
+   "origin": {
+    "kind": "item",
+    "identifier": "Bag of Giving",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 256,
+   "params": {
+    "stamina": 0.1
+   }
+  },
+  {
+   "id": 258,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 18.98333432339132,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "regen"
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 3
+   }
+  },
+  {
+   "id": 259,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 18.98333432339132,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "fatigue"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "damage": 3
+   }
+  },
+  {
+   "id": 260,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 18.98333432339132,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "fatigue"
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "damage": 3
+   }
+  },
+  {
+   "id": 261,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 18.98333432339132,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "regen"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 6
+   }
+  },
+  {
+   "id": 262,
+   "type": 105,
+   "type_name": "stack_lose",
+   "timestamp": 19.100000996142626,
+   "origin": {
+    "kind": "item",
+    "identifier": "Book of Basics",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": -1,
+    "used": true,
+    "reflected": false
+   }
+  },
+  {
+   "id": 263,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 19.100000996142626,
+   "origin": {
+    "kind": "item",
+    "identifier": "Book of Basics",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": 262,
+   "params": {
+    "amount": 8.0
+   }
+  },
+  {
+   "id": 264,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 19.100000996142626,
+   "origin": {
+    "kind": "item",
+    "identifier": "Book of Basics",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 265,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 19.30000100657344,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 5
+   }
+  },
+  {
+   "id": 266,
+   "type": 109,
+   "type_name": "stack_gain",
+   "timestamp": 19.30000100657344,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": 0,
+   "parent_id": 265,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 267,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 19.30000100657344,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 268,
+   "type": 108,
+   "type_name": "stack_lose",
+   "timestamp": 19.533334352076054,
+   "origin": {
+    "kind": "item",
+    "identifier": "Shelly",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": -2,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 269,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 19.533334352076054,
+   "origin": {
+    "kind": "item",
+    "identifier": "Shelly",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 48
+   }
+  },
+  {
+   "id": 270,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 19.533334352076054,
+   "origin": {
+    "kind": "item",
+    "identifier": "Shelly",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 271,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 19.65000102482736,
+   "origin": {
+    "kind": "item",
+    "identifier": "Rat",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 5
+   }
+  },
+  {
+   "id": 272,
+   "type": 108,
+   "type_name": "stack_gain",
+   "timestamp": 19.65000102482736,
+   "origin": {
+    "kind": "item",
+    "identifier": "Rat",
+    "owner_type": 1
+   },
+   "target": 1,
+   "parent_id": 271,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 273,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 19.65000102482736,
+   "origin": {
+    "kind": "item",
+    "identifier": "Rat",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 274,
+   "type": 20,
+   "type_name": "temporary_max_stamina",
+   "timestamp": 19.65000102482736,
+   "origin": {
+    "kind": "item",
+    "identifier": "Bag of Giving",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 273,
+   "params": {
+    "stamina": 0.1
+   }
+  },
+  {
+   "id": 275,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 19.866667702794075,
+   "origin": {
+    "kind": "item",
+    "identifier": "Shortbow",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 4
+   }
+  },
+  {
+   "id": 276,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 19.866667702794075,
+   "origin": {
+    "kind": "item",
+    "identifier": "Shortbow",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 277,
+   "type": 15,
+   "type_name": "out_of_stamina",
+   "timestamp": 19.93333437293768,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 278,
+   "type": 105,
+   "type_name": "stack_gain",
+   "timestamp": 19.96666770800948,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wand",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 279,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 19.96666770800948,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wand",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 280,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 19.983334375545382,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "poison"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "damage": 1
+   }
+  },
+  {
+   "id": 281,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 19.983334375545382,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "fatigue"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "damage": 4
+   }
+  },
+  {
+   "id": 282,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 19.983334375545382,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "fatigue"
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "damage": 4
+   }
+  },
+  {
+   "id": 283,
+   "type": 105,
+   "type_name": "stack_gain",
+   "timestamp": 20.2500010561198,
+   "origin": {
+    "kind": "item",
+    "identifier": "Blueberries",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 284,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 20.2500010561198,
+   "origin": {
+    "kind": "item",
+    "identifier": "Blueberries",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 285,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 20.43333439901471,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 2
+   }
+  },
+  {
+   "id": 286,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 20.43333439901471,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 287,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 20.983334427699447,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "regen"
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 3
+   }
+  },
+  {
+   "id": 288,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 20.983334427699447,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "fatigue"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "damage": 5
+   }
+  },
+  {
+   "id": 289,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 20.983334427699447,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "fatigue"
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "damage": 5
+   }
+  },
+  {
+   "id": 290,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 20.983334427699447,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "regen"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 6
+   }
+  },
+  {
+   "id": 291,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 21.100001100450754,
+   "origin": {
+    "kind": "item",
+    "identifier": "Shortbow",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 3
+   }
+  },
+  {
+   "id": 292,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 21.100001100450754,
+   "origin": {
+    "kind": "item",
+    "identifier": "Shortbow",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 293,
+   "type": 107,
+   "type_name": "stack_gain",
+   "timestamp": 21.18333443813026,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 294,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 21.18333443813026,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 4
+   }
+  },
+  {
+   "id": 295,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 21.18333443813026,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 296,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 21.18333443813026,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 295,
+   "params": {
+    "amount": 2.0
+   }
+  },
+  {
+   "id": 297,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 21.18333443813026,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 298,
+   "type": 20,
+   "type_name": "temporary_max_stamina",
+   "timestamp": 21.18333443813026,
+   "origin": {
+    "kind": "item",
+    "identifier": "Bag of Giving",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 297,
+   "params": {
+    "stamina": 0.1
+   }
+  },
+  {
+   "id": 299,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 21.566667791455984,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 2
+   }
+  },
+  {
+   "id": 300,
+   "type": 109,
+   "type_name": "stack_gain",
+   "timestamp": 21.566667791455984,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": 0,
+   "parent_id": 299,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 301,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 21.566667791455984,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 302,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 21.98333447985351,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "poison"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "damage": 1
+   }
+  },
+  {
+   "id": 303,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 21.98333447985351,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "fatigue"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "damage": 6
+   }
+  },
+  {
+   "id": 304,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 21.98333447985351,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "fatigue"
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "damage": 6
+   }
+  },
+  {
+   "id": 305,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 22.050001149997115,
+   "origin": {
+    "kind": "item",
+    "identifier": "Rat",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 5
+   }
+  },
+  {
+   "id": 306,
+   "type": 108,
+   "type_name": "stack_gain",
+   "timestamp": 22.050001149997115,
+   "origin": {
+    "kind": "item",
+    "identifier": "Rat",
+    "owner_type": 1
+   },
+   "target": 1,
+   "parent_id": 305,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 307,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 22.050001149997115,
+   "origin": {
+    "kind": "item",
+    "identifier": "Rat",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 308,
+   "type": 20,
+   "type_name": "temporary_max_stamina",
+   "timestamp": 22.050001149997115,
+   "origin": {
+    "kind": "item",
+    "identifier": "Bag of Giving",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 307,
+   "params": {
+    "stamina": 0.1
+   }
+  },
+  {
+   "id": 309,
+   "type": 105,
+   "type_name": "stack_gain",
+   "timestamp": 22.233334492892027,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wand",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 2,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 310,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 22.233334492892027,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wand",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 311,
+   "type": 3,
+   "type_name": "missed",
+   "timestamp": 22.400001168251038,
+   "origin": {
+    "kind": "item",
+    "identifier": "Shortbow",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 312,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 22.400001168251038,
+   "origin": {
+    "kind": "item",
+    "identifier": "Shortbow",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 313,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 22.41666783578694,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 4
+   }
+  },
+  {
+   "id": 314,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 22.41666783578694,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 315,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 22.41666783578694,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 314,
+   "params": {
+    "amount": 2.0
+   }
+  },
+  {
+   "id": 316,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 22.41666783578694,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 317,
+   "type": 20,
+   "type_name": "temporary_max_stamina",
+   "timestamp": 22.41666783578694,
+   "origin": {
+    "kind": "item",
+    "identifier": "Bag of Giving",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 316,
+   "params": {
+    "stamina": 0.1
+   }
+  },
+  {
+   "id": 318,
+   "type": 105,
+   "type_name": "stack_lose",
+   "timestamp": 22.41666783578694,
+   "origin": {
+    "kind": "item",
+    "identifier": "Book of Basics",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": -1,
+    "used": true,
+    "reflected": false
+   }
+  },
+  {
+   "id": 319,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 22.41666783578694,
+   "origin": {
+    "kind": "item",
+    "identifier": "Book of Basics",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": 318,
+   "params": {
+    "amount": 8.0
+   }
+  },
+  {
+   "id": 320,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 22.41666783578694,
+   "origin": {
+    "kind": "item",
+    "identifier": "Book of Basics",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 321,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 22.716667851433158,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 6
+   }
+  },
+  {
+   "id": 322,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 22.716667851433158,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 323,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 22.983334532007575,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "regen"
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 3
+   }
+  },
+  {
+   "id": 324,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 22.983334532007575,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "fatigue"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "damage": 7
+   }
+  },
+  {
+   "id": 325,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 22.983334532007575,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "fatigue"
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "damage": 7
+   }
+  },
+  {
+   "id": 326,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 22.983334532007575,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "regen"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 6
+   }
+  },
+  {
+   "id": 327,
+   "type": 105,
+   "type_name": "stack_gain",
+   "timestamp": 23.116667872294784,
+   "origin": {
+    "kind": "item",
+    "identifier": "Blueberries",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 328,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 23.116667872294784,
+   "origin": {
+    "kind": "item",
+    "identifier": "Blueberries",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 329,
+   "type": 3,
+   "type_name": "missed",
+   "timestamp": 23.583334563300014,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 330,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 23.583334563300014,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 331,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 23.583334563300014,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 330,
+   "params": {
+    "amount": 2.0
+   }
+  },
+  {
+   "id": 332,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 23.583334563300014,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 333,
+   "type": 20,
+   "type_name": "temporary_max_stamina",
+   "timestamp": 23.583334563300014,
+   "origin": {
+    "kind": "item",
+    "identifier": "Bag of Giving",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 332,
+   "params": {
+    "stamina": 0.1
+   }
+  },
+  {
+   "id": 334,
+   "type": 102,
+   "type_name": "stack_gain",
+   "timestamp": 23.583334563300014,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": 332,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 335,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 23.583334563300014,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 334,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 336,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 23.70000123605132,
+   "origin": {
+    "kind": "item",
+    "identifier": "Shortbow",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 4
+   }
+  },
+  {
+   "id": 337,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 23.70000123605132,
+   "origin": {
+    "kind": "item",
+    "identifier": "Shortbow",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 338,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 23.900001246482134,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 4
+   }
+  },
+  {
+   "id": 339,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 23.900001246482134,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 340,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 23.98333458416164,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "poison"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "damage": 2
+   }
+  },
+  {
+   "id": 341,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 23.98333458416164,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "fatigue"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "damage": 8
+   }
+  },
+  {
+   "id": 342,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 23.98333458416164,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "fatigue"
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "damage": 8
+   }
+  },
+  {
+   "id": 343,
+   "type": 105,
+   "type_name": "stack_gain",
+   "timestamp": 24.383334605023265,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wand",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 2,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 344,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 24.383334605023265,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wand",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 345,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 24.45000127516687,
+   "origin": {
+    "kind": "item",
+    "identifier": "Rat",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 5
+   }
+  },
+  {
+   "id": 346,
+   "type": 108,
+   "type_name": "stack_gain",
+   "timestamp": 24.45000127516687,
+   "origin": {
+    "kind": "item",
+    "identifier": "Rat",
+    "owner_type": 1
+   },
+   "target": 1,
+   "parent_id": 345,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 347,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 24.45000127516687,
+   "origin": {
+    "kind": "item",
+    "identifier": "Rat",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 348,
+   "type": 20,
+   "type_name": "temporary_max_stamina",
+   "timestamp": 24.45000127516687,
+   "origin": {
+    "kind": "item",
+    "identifier": "Bag of Giving",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 347,
+   "params": {
+    "stamina": 0.1
+   }
+  },
+  {
+   "id": 349,
+   "type": 3,
+   "type_name": "missed",
+   "timestamp": 24.80000129342079,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 350,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 24.80000129342079,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 351,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 24.80000129342079,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 350,
+   "params": {
+    "amount": 2.0
+   }
+  },
+  {
+   "id": 352,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 24.80000129342079,
+   "origin": {
+    "kind": "item",
+    "identifier": "Twine",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 353,
+   "type": 20,
+   "type_name": "temporary_max_stamina",
+   "timestamp": 24.80000129342079,
+   "origin": {
+    "kind": "item",
+    "identifier": "Bag of Giving",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 352,
+   "params": {
+    "stamina": 0.1
+   }
+  },
+  {
+   "id": 354,
+   "type": 15,
+   "type_name": "out_of_stamina",
+   "timestamp": 24.9166679661721,
+   "origin": {
+    "kind": "item",
+    "identifier": "Shortbow",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 355,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 24.983334636315703,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "regen"
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 3
+   }
+  },
+  {
+   "id": 356,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 24.983334636315703,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "fatigue"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "damage": 9
+   }
+  },
+  {
+   "id": 357,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 24.983334636315703,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "fatigue"
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "damage": 9
+   }
+  },
+  {
+   "id": 358,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 24.983334636315703,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "regen"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 7
+   }
+  },
+  {
+   "id": 359,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 25.000001303851604,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 6
+   }
+  },
+  {
+   "id": 360,
+   "type": 109,
+   "type_name": "stack_gain",
+   "timestamp": 25.000001303851604,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": 0,
+   "parent_id": 359,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 361,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 25.000001303851604,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 362,
+   "type": 105,
+   "type_name": "stack_lose",
+   "timestamp": 25.70000134035945,
+   "origin": {
+    "kind": "item",
+    "identifier": "Book of Basics",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": -1,
+    "used": true,
+    "reflected": false
+   }
+  },
+  {
+   "id": 363,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 25.70000134035945,
+   "origin": {
+    "kind": "item",
+    "identifier": "Book of Basics",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": 362,
+   "params": {
+    "amount": 8.0
+   }
+  },
+  {
+   "id": 364,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 25.70000134035945,
+   "origin": {
+    "kind": "item",
+    "identifier": "Book of Basics",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 365,
+   "type": 3,
+   "type_name": "missed",
+   "timestamp": 25.950001353397965,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 366,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 25.950001353397965,
+   "origin": {
+    "kind": "item",
+    "identifier": "Burning Sword",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 367,
+   "type": 105,
+   "type_name": "stack_gain",
+   "timestamp": 25.983334688469768,
+   "origin": {
+    "kind": "item",
+    "identifier": "Blueberries",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 368,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 25.983334688469768,
+   "origin": {
+    "kind": "item",
+    "identifier": "Blueberries",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 369,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 25.983334688469768,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "poison"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "damage": 3
+   }
+  },
+  {
+   "id": 370,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 25.983334688469768,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "fatigue"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "damage": 10
+   }
+  },
+  {
+   "id": 371,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 25.983334688469768,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "fatigue"
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "damage": 10
+   }
+  },
+  {
+   "id": 372,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 26.15000136382878,
+   "origin": {
+    "kind": "item",
+    "identifier": "Shortbow",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 4
+   }
+  },
+  {
+   "id": 373,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 26.15000136382878,
+   "origin": {
+    "kind": "item",
+    "identifier": "Shortbow",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 374,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 26.15000136382878,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 4
+   }
+  },
+  {
+   "id": 375,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 26.15000136382878,
+   "origin": {
+    "kind": "item",
+    "identifier": "Broom",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 376,
+   "type": 101,
+   "type_name": "stack_gain",
+   "timestamp": 26.66666805744171,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wand",
+    "owner_type": 3
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 377,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 26.66666805744171,
+   "origin": {
+    "kind": "item",
+    "identifier": "Wand",
+    "owner_type": 3
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 378,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 26.900001402944326,
+   "origin": {
+    "kind": "item",
+    "identifier": "Rat",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {
+    "damage": 5
+   }
+  },
+  {
+   "id": 379,
+   "type": 108,
+   "type_name": "stack_gain",
+   "timestamp": 26.900001402944326,
+   "origin": {
+    "kind": "item",
+    "identifier": "Rat",
+    "owner_type": 1
+   },
+   "target": 1,
+   "parent_id": 378,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 380,
+   "type": 0,
+   "type_name": "item_activate",
+   "timestamp": 26.900001402944326,
+   "origin": {
+    "kind": "item",
+    "identifier": "Rat",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  },
+  {
+   "id": 381,
+   "type": 20,
+   "type_name": "temporary_max_stamina",
+   "timestamp": 26.900001402944326,
+   "origin": {
+    "kind": "item",
+    "identifier": "Bag of Giving",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 380,
+   "params": {
+    "stamina": 0.1
+   }
+  },
+  {
+   "id": 382,
+   "type": 102,
+   "type_name": "stack_gain",
+   "timestamp": 26.900001402944326,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": 0,
+   "parent_id": 380,
+   "params": {
+    "amount": 1,
+    "used": false,
+    "reflected": false
+   }
+  },
+  {
+   "id": 383,
+   "type": 19,
+   "type_name": "temporary_max_health",
+   "timestamp": 26.900001402944326,
+   "origin": {
+    "kind": "item",
+    "identifier": "Amulet of Light",
+    "owner_type": 1
+   },
+   "target": null,
+   "parent_id": 382,
+   "params": {
+    "amount": 3.0
+   }
+  },
+  {
+   "id": 384,
+   "type": 12,
+   "type_name": "heal",
+   "timestamp": 26.98333474062383,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "regen"
+   },
+   "target": 1,
+   "parent_id": -1,
+   "params": {
+    "amount": 3
+   }
+  },
+  {
+   "id": 385,
+   "type": 1,
+   "type_name": "attack",
+   "timestamp": 26.98333474062383,
+   "origin": {
+    "kind": "damage_source",
+    "keyword": "fatigue"
+   },
+   "target": 0,
+   "parent_id": -1,
+   "params": {
+    "damage": 12
+   }
+  },
+  {
+   "id": -1,
+   "type": 111,
+   "type_name": "combat_end",
+   "timestamp": 27.000001408159733,
+   "origin": 111,
+   "target": null,
+   "parent_id": -1,
+   "params": {}
+  }
+ ]
+}

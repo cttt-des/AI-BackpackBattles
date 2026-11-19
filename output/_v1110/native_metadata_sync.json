@@ -1,0 +1,748 @@
+{
+  "version": "1.1.10",
+  "locale": "en",
+  "items": 519,
+  "original_metadata_sha256": "5a87917af81869e694b5e120554dc28733a13ed8190809dd504550ea38b92594",
+  "changes": [
+    {
+      "item": "Amulet Unidentified",
+      "field": "name",
+      "before": "Amulet Unidentified",
+      "after": "Unidentified Amulet"
+    },
+    {
+      "item": "Amulet of Agility",
+      "field": "name",
+      "before": "Amulet of Agility",
+      "after": "Amulet of Energy"
+    },
+    {
+      "item": "Arcane Intellect",
+      "field": "name",
+      "before": "Arcane Intellect",
+      "after": "Arcane Vision"
+    },
+    {
+      "item": "Artifact Stone Cold",
+      "field": "name",
+      "before": "Artifact Stone Cold",
+      "after": "Artifact Stone: Cold"
+    },
+    {
+      "item": "Artifact Stone Death",
+      "field": "name",
+      "before": "Artifact Stone Death",
+      "after": "Artifact Stone: Death"
+    },
+    {
+      "item": "Artifact Stone Heat",
+      "field": "name",
+      "before": "Artifact Stone Heat",
+      "after": "Artifact Stone: Heat"
+    },
+    {
+      "item": "Badger Rune",
+      "field": "hasBattleRageEffect",
+      "before": false,
+      "after": true
+    },
+    {
+      "item": "Badger Spirit",
+      "field": "name",
+      "before": "Badger Spirit",
+      "after": "Badger Spirit Companion"
+    },
+    {
+      "item": "Bazooka",
+      "field": "name",
+      "before": "Bazooka",
+      "after": "Stuff-Throwinator"
+    },
+    {
+      "item": "Berserker Bag",
+      "field": "name",
+      "before": "Berserker Bag",
+      "after": "Duffle Bag"
+    },
+    {
+      "item": "Berserker Bag",
+      "field": "hasBattleRageEffect",
+      "before": false,
+      "after": true
+    },
+    {
+      "item": "Big Bloodthorne",
+      "field": "name",
+      "before": "Big Bloodthorne",
+      "after": "Impractically Large Bloodthorne"
+    },
+    {
+      "item": "Bionic Armor",
+      "field": "name",
+      "before": "Bionic Armor",
+      "after": "Mecha Armor"
+    },
+    {
+      "item": "Bomb",
+      "field": "name",
+      "before": "Bomb",
+      "after": "Happy Bomb"
+    },
+    {
+      "item": "Book of Basics",
+      "field": "name",
+      "before": "Book of Basics",
+      "after": "Magic For Dummies"
+    },
+    {
+      "item": "Book of Darkness",
+      "field": "name",
+      "before": "Book of Darkness",
+      "after": "Encyclopspedia of Darkness"
+    },
+    {
+      "item": "Book of Ice",
+      "field": "name",
+      "before": "Book of Ice",
+      "after": "Frieren’s Guide to Ice"
+    },
+    {
+      "item": "Book of Ice New",
+      "field": "name",
+      "before": "Book of Ice New",
+      "after": ""
+    },
+    {
+      "item": "Book of Light",
+      "field": "name",
+      "before": "Book of Light",
+      "after": "Scripture of Light "
+    },
+    {
+      "item": "Book of Nature",
+      "field": "name",
+      "before": "Book of Nature",
+      "after": "Nature Chronicles: Trees"
+    },
+    {
+      "item": "Bowl of Treats",
+      "field": "name",
+      "before": "Bowl of Treats",
+      "after": "Big Bowl of Treats"
+    },
+    {
+      "item": "Brass Knuckles",
+      "field": "hasBattleRageEffect",
+      "before": false,
+      "after": true
+    },
+    {
+      "item": "Burning Spikes",
+      "field": "name",
+      "before": "Burning Spikes",
+      "after": "Thermal Thorns"
+    },
+    {
+      "item": "Busted Blade",
+      "field": "hasBattleRageEffect",
+      "before": false,
+      "after": true
+    },
+    {
+      "item": "Cat Spirit",
+      "field": "name",
+      "before": "Cat Spirit",
+      "after": "Cat Spirit Companion"
+    },
+    {
+      "item": "Chain Whip",
+      "field": "hasBattleRageEffect",
+      "before": false,
+      "after": true
+    },
+    {
+      "item": "Chrome Cube",
+      "field": "name",
+      "before": "Chrome Cube",
+      "after": "Chromium Cube"
+    },
+    {
+      "item": "Coins",
+      "field": "name",
+      "before": "Coins",
+      "after": "Bunch of Coins"
+    },
+    {
+      "item": "Crown",
+      "field": "name",
+      "before": "Crown",
+      "after": "Glowing Crown"
+    },
+    {
+      "item": "Cupcake Dragon",
+      "field": "name",
+      "before": "Cupcake Dragon",
+      "after": "Cupdrake"
+    },
+    {
+      "item": "Cursed Hair Comb",
+      "field": "name",
+      "before": "Cursed Hair Comb",
+      "after": "Nocturnal Lock Lifter"
+    },
+    {
+      "item": "Deer Totem",
+      "field": "name",
+      "before": "Deer Totem",
+      "after": "Deerwood Guardian"
+    },
+    {
+      "item": "Deer Totem",
+      "field": "hasBattleRageEffect",
+      "before": false,
+      "after": true
+    },
+    {
+      "item": "Double Axe",
+      "field": "hasBattleRageEffect",
+      "before": false,
+      "after": true
+    },
+    {
+      "item": "Dragon Claws",
+      "field": "hasBattleRageEffect",
+      "before": false,
+      "after": true
+    },
+    {
+      "item": "Dragon Set",
+      "field": "hasBattleRageEffect",
+      "before": false,
+      "after": true
+    },
+    {
+      "item": "Dragonscale Armor",
+      "field": "hasBattleRageEffect",
+      "before": false,
+      "after": true
+    },
+    {
+      "item": "Dragonskin Boots",
+      "field": "hasBattleRageEffect",
+      "before": false,
+      "after": true
+    },
+    {
+      "item": "Engineer Bag 2",
+      "field": "name",
+      "before": "Engineer Bag 2",
+      "after": "Box of Cogs"
+    },
+    {
+      "item": "Engineer Box",
+      "field": "name",
+      "before": "Engineer Box",
+      "after": "Port-O-Charger"
+    },
+    {
+      "item": "Evil Cap",
+      "field": "name",
+      "before": "Evil Cap",
+      "after": "Cap of Discomfort"
+    },
+    {
+      "item": "Evil Hat",
+      "field": "name",
+      "before": "Evil Hat",
+      "after": "Harold, the Hateful Hat"
+    },
+    {
+      "item": "Extra Angy",
+      "field": "hasBattleRageEffect",
+      "before": false,
+      "after": true
+    },
+    {
+      "item": "Extra Bags",
+      "field": "name",
+      "before": "Extra Bags",
+      "after": "Superspacious"
+    },
+    {
+      "item": "Fire Shelly",
+      "field": "name",
+      "before": "Fire Shelly",
+      "after": "Turbo-Shelly"
+    },
+    {
+      "item": "Fortunas Kiss",
+      "field": "name",
+      "before": "Fortunas Kiss",
+      "after": "Fortuna’s Kiss"
+    },
+    {
+      "item": "Furcifer Prime",
+      "field": "name",
+      "before": "Furcifer Prime",
+      "after": "Furcifer Prime Subscription"
+    },
+    {
+      "item": "Ghost",
+      "field": "name",
+      "before": "Ghost",
+      "after": "Unsettling Presence"
+    },
+    {
+      "item": "Gingerbread Man",
+      "field": "name",
+      "before": "Gingerbread Man",
+      "after": "Gingerbread Jerry"
+    },
+    {
+      "item": "Greatsword",
+      "field": "name",
+      "before": "Greatsword",
+      "after": "Impractically Large Greatsword"
+    },
+    {
+      "item": "Holy Collar",
+      "field": "name",
+      "before": "Holy Collar",
+      "after": "White Lily Collar"
+    },
+    {
+      "item": "Joker",
+      "field": "name",
+      "before": "Joker",
+      "after": "Jimbo"
+    },
+    {
+      "item": "Leather Helm",
+      "field": "name",
+      "before": "Leather Helm",
+      "after": "Cap of Resilience"
+    },
+    {
+      "item": "Light Flower",
+      "field": "name",
+      "before": "Light Flower",
+      "after": "Lantern Berry"
+    },
+    {
+      "item": "Lightning Potion",
+      "field": "name",
+      "before": "Lightning Potion",
+      "after": "Lightning in a Bottle"
+    },
+    {
+      "item": "Little Mimic",
+      "field": "name",
+      "before": "Little Mimic",
+      "after": "Lil Chestnut"
+    },
+    {
+      "item": "Long Spear",
+      "field": "name",
+      "before": "Long Spear",
+      "after": "Very Long Spear"
+    },
+    {
+      "item": "Lootbox",
+      "field": "name",
+      "before": "Lootbox",
+      "after": "Treasure Chest"
+    },
+    {
+      "item": "Lucky Bow",
+      "field": "name",
+      "before": "Lucky Bow",
+      "after": "Fortuna's Grace"
+    },
+    {
+      "item": "Lucky Cat",
+      "field": "name",
+      "before": "Lucky Cat",
+      "after": "Maneki-neko"
+    },
+    {
+      "item": "Lucky Shortbow",
+      "field": "name",
+      "before": "Lucky Shortbow",
+      "after": "Fortuna's Hope"
+    },
+    {
+      "item": "Magic Collar",
+      "field": "name",
+      "before": "Magic Collar",
+      "after": "Blue Sage Collar"
+    },
+    {
+      "item": "Magic Mirror",
+      "field": "name",
+      "before": "Magic Mirror",
+      "after": "Cold Mirror"
+    },
+    {
+      "item": "Molten Spear2",
+      "field": "name",
+      "before": "Molten Spear2",
+      "after": "Blazing Spear"
+    },
+    {
+      "item": "Mr Struggles",
+      "field": "name",
+      "before": "Mr Struggles",
+      "after": "Mr. Struggles"
+    },
+    {
+      "item": "Mrs Struggles",
+      "field": "name",
+      "before": "Mrs Struggles",
+      "after": "Mrs. Struggles"
+    },
+    {
+      "item": "Onion Cutter",
+      "field": "name",
+      "before": "Onion Cutter",
+      "after": "Stankus’ Toothpick"
+    },
+    {
+      "item": "Owl Spirit",
+      "field": "name",
+      "before": "Owl Spirit",
+      "after": "Owl Spirit Companion"
+    },
+    {
+      "item": "Phoenix2",
+      "field": "name",
+      "before": "Phoenix2",
+      "after": "Enraged Phoenix"
+    },
+    {
+      "item": "Piggy Pinata",
+      "field": "name",
+      "before": "Piggy Pinata",
+      "after": "Piggy Piñata"
+    },
+    {
+      "item": "Platin Customer Card",
+      "field": "name",
+      "before": "Platin Customer Card",
+      "after": "Platinum Customer Card"
+    },
+    {
+      "item": "Poison Bow",
+      "field": "name",
+      "before": "Poison Bow",
+      "after": "Belladonna's Whisper"
+    },
+    {
+      "item": "Poison Shortbow",
+      "field": "name",
+      "before": "Poison Shortbow",
+      "after": "Belladonna's Shade"
+    },
+    {
+      "item": "Portable Altar",
+      "field": "name",
+      "before": "Portable Altar",
+      "after": "Offering Bowl"
+    },
+    {
+      "item": "Pot",
+      "field": "name",
+      "before": "Pot",
+      "after": "Boiling Pot"
+    },
+    {
+      "item": "Puzzlebag J",
+      "field": "name",
+      "before": "Puzzlebag J",
+      "after": "Puzzlebag of Endurance"
+    },
+    {
+      "item": "Puzzlebag L",
+      "field": "name",
+      "before": "Puzzlebag L",
+      "after": "Puzzlebag of Love"
+    },
+    {
+      "item": "Puzzlebag S",
+      "field": "name",
+      "before": "Puzzlebag S",
+      "after": "Puzzlebag of Improvement"
+    },
+    {
+      "item": "Puzzlebag T",
+      "field": "name",
+      "before": "Puzzlebag T",
+      "after": "Puzzlebag of Energy"
+    },
+    {
+      "item": "Puzzlebag Z",
+      "field": "name",
+      "before": "Puzzlebag Z",
+      "after": "Puzzlebag of Ruin"
+    },
+    {
+      "item": "Rainbow Goobert",
+      "field": "name",
+      "before": "Rainbow Goobert",
+      "after": "Rainbow Goobert Omegaooze Primeslime"
+    },
+    {
+      "item": "Rainbow Goobert Adventurer",
+      "field": "name",
+      "before": "Rainbow Goobert Adventurer",
+      "after": "Rainbow Goobert Gigabrocolomega "
+    },
+    {
+      "item": "Rainbow Goobert Berserker",
+      "field": "name",
+      "before": "Rainbow Goobert Berserker",
+      "after": "Rainbow Goobert Deathslushy Mansquisher"
+    },
+    {
+      "item": "Rainbow Goobert Engineer",
+      "field": "name",
+      "before": "Rainbow Goobert Engineer",
+      "after": "Rainbow Goobert Fluffyloaf Prismacrust"
+    },
+    {
+      "item": "Rainbow Goobert Mage",
+      "field": "name",
+      "before": "Rainbow Goobert Mage",
+      "after": "Rainbow Goobert Omnicolor Sugargoo "
+    },
+    {
+      "item": "Rainbow Goobert Pyromancer",
+      "field": "name",
+      "before": "Rainbow Goobert Pyromancer",
+      "after": "Rainbow Goobert Epicglob Uberviscous"
+    },
+    {
+      "item": "Rainbow Goobert Ranger",
+      "field": "name",
+      "before": "Rainbow Goobert Ranger",
+      "after": "Rainbow Goobert Megasludge Alphapuddle"
+    },
+    {
+      "item": "Rainbow Orb",
+      "field": "name",
+      "before": "Rainbow Orb",
+      "after": "Prismatic Orb"
+    },
+    {
+      "item": "Random Loadout Bag",
+      "field": "name",
+      "before": "Random Loadout Bag",
+      "after": "Sack of Surprises"
+    },
+    {
+      "item": "Reverse",
+      "field": "name",
+      "before": "Reverse",
+      "after": "Reverse!"
+    },
+    {
+      "item": "Rib Saw Blade",
+      "field": "name",
+      "before": "Rib Saw Blade",
+      "after": "Ripsaw Blade"
+    },
+    {
+      "item": "Robodog",
+      "field": "name",
+      "before": "Robodog",
+      "after": "Shovel-B01 3000"
+    },
+    {
+      "item": "Sandbag",
+      "field": "name",
+      "before": "Sandbag",
+      "after": "Sir Sand"
+    },
+    {
+      "item": "Shepherds Crook",
+      "field": "name",
+      "before": "Shepherds Crook",
+      "after": "Shepherd’s Crook"
+    },
+    {
+      "item": "Skull",
+      "field": "name",
+      "before": "Skull",
+      "after": "Tim"
+    },
+    {
+      "item": "Slime Time",
+      "field": "name",
+      "before": "Slime Time",
+      "after": "It’s Slime Time!"
+    },
+    {
+      "item": "Smelly Barrier",
+      "field": "name",
+      "before": "Smelly Barrier",
+      "after": "Smelly Wall"
+    },
+    {
+      "item": "Snowman",
+      "field": "name",
+      "before": "Snowman",
+      "after": "Wonky Snowman"
+    },
+    {
+      "item": "Spell Scroll Dark",
+      "field": "name",
+      "before": "Spell Scroll Dark",
+      "after": "Spell Scroll: Dark Frenzy"
+    },
+    {
+      "item": "Spell Scroll Frostbolt",
+      "field": "name",
+      "before": "Spell Scroll Frostbolt",
+      "after": "Spell Scroll: Frostbolt"
+    },
+    {
+      "item": "Spell Scroll Ice",
+      "field": "name",
+      "before": "Spell Scroll Ice",
+      "after": "Spell Scroll: Ice Block "
+    },
+    {
+      "item": "Spell Scroll Light",
+      "field": "name",
+      "before": "Spell Scroll Light",
+      "after": "Spell Scroll: Blessing of Purity"
+    },
+    {
+      "item": "Spell Scroll Nature",
+      "field": "name",
+      "before": "Spell Scroll Nature",
+      "after": "Spell Scroll: Regrowth"
+    },
+    {
+      "item": "Spiked Collar",
+      "field": "hasBattleRageEffect",
+      "before": false,
+      "after": true
+    },
+    {
+      "item": "Spiked Staff",
+      "field": "hasBattleRageEffect",
+      "before": false,
+      "after": true
+    },
+    {
+      "item": "Spiked Wall",
+      "field": "hasBattleRageEffect",
+      "before": false,
+      "after": true
+    },
+    {
+      "item": "Steel Dragon",
+      "field": "name",
+      "before": "Steel Dragon",
+      "after": "Panzer Dragon"
+    },
+    {
+      "item": "Stone Gloves",
+      "field": "name",
+      "before": "Stone Gloves",
+      "after": "Gloves of Power"
+    },
+    {
+      "item": "Thorn Bow",
+      "field": "name",
+      "before": "Thorn Bow",
+      "after": "Tusk Piercer"
+    },
+    {
+      "item": "Thorn Shortbow",
+      "field": "name",
+      "before": "Thorn Shortbow",
+      "after": "Tusk Poker"
+    },
+    {
+      "item": "Thors Hammer",
+      "field": "name",
+      "before": "Thors Hammer",
+      "after": "Thor’s Hammer"
+    },
+    {
+      "item": "Toolbox",
+      "field": "name",
+      "before": "Toolbox",
+      "after": "Utility Pouch"
+    },
+    {
+      "item": "Toolbox",
+      "field": "hasBattleRageEffect",
+      "before": false,
+      "after": true
+    },
+    {
+      "item": "Ultima",
+      "field": "name",
+      "before": "Ultima",
+      "after": "Ultima Ascension"
+    },
+    {
+      "item": "Vampiric Collar",
+      "field": "name",
+      "before": "Vampiric Collar",
+      "after": "Red Orchid Collar"
+    },
+    {
+      "item": "Vampiric Scythe",
+      "field": "name",
+      "before": "Vampiric Scythe",
+      "after": "Blood Harvester"
+    },
+    {
+      "item": "Wand",
+      "field": "name",
+      "before": "Wand",
+      "after": "Wand of Equilibrium"
+    },
+    {
+      "item": "Whetstone2",
+      "field": "name",
+      "before": "Whetstone2",
+      "after": "Improved Whetstone"
+    },
+    {
+      "item": "Whetstone3",
+      "field": "name",
+      "before": "Whetstone3",
+      "after": "Essence of Steel"
+    },
+    {
+      "item": "Wolf Badge",
+      "field": "hasBattleRageEffect",
+      "before": false,
+      "after": true
+    }
+  ],
+  "battle_rage_items": [
+    "Badger Rune",
+    "Berserker Bag",
+    "Brass Knuckles",
+    "Busted Blade",
+    "Chain Whip",
+    "Deer Totem",
+    "Double Axe",
+    "Dragon Claws",
+    "Dragon Set",
+    "Dragonscale Armor",
+    "Dragonskin Boots",
+    "Extra Angy",
+    "Spiked Collar",
+    "Spiked Staff",
+    "Spiked Wall",
+    "Toolbox",
+    "Wolf Badge"
+  ],
+  "scope": "Original descriptor fields; numeric stats, grids and socket data unchanged"
+}

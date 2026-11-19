@@ -33,6 +33,10 @@ parser.add_argument("--native-delta", action="store_true")
 parser.add_argument("--source-fatigue-mode", action="store_true")
 parser.add_argument("--snapshot-active-timers", action="store_true")
 parser.add_argument("--compare-only", action="store_true")
+parser.add_argument("--case-subdir", action="store_true", help="Keep independent candidate script/report for each batch case")
+parser.add_argument("--native-translations", action="store_true", help="Load valid installed English translations instead of the editor's missing Unreleased tables")
+parser.add_argument("--native-timers", action="store_true", help="Replace frozen-engine polling with native Timer start/stop and pass membership")
+parser.add_argument("--timeout", type=int, default=600, help="Oracle process deadline including warmup and determinism rerun")
 args = parser.parse_args()
 stage = repo / "output/_v1110"
 reference = stage / args.reference / args.case_id
@@ -45,9 +49,37 @@ variant += "_fatigue" if args.source_fatigue_mode else ""
 variant += "_active" if args.snapshot_active_timers else ""
 variant += "_charges" if args.advance_charge_tweens else ""
 variant += "_opening" if args.opening_tween_pass else ""
+variant += "_locale" if args.native_translations else ""
+variant += "_timers" if args.native_timers else ""
 out = stage / "native_boundary_comparison" / args.reference / variant
+if args.case_subdir:
+    out = out / args.case_id
 out.mkdir(parents=True, exist_ok=True)
 source = (repo / "oracle/oracle_fight.gd").read_text("utf8")
+if args.native_translations:
+    anchor = "\tG.prepareItems(playerItems + opponentItems)\n"
+    assert source.count(anchor) == 1
+    source = source.replace(anchor, "\t_load_native_translations()\n" + anchor)
+    source += '''
+
+var _native_translations_loaded := false
+
+func _load_native_translations():
+	if _native_translations_loaded:
+		return
+	_native_translations_loaded = true
+	TranslationServer.clear()
+	for sheet in ["Keywords", "Items", "ExclusiveItems", "Interface", "Full", "Flavor", "Dialog"]:
+		var translation = load("res://Sheets/CSV/" + sheet + ".en.translation")
+		assert(translation != null)
+		TranslationServer.add_translation(translation)
+	TranslationServer.set_locale("en")
+	U.translationCache.clear()
+	# This original ItemBook field is derived from localized description text.
+	# Recompute it after repairing the editor-only null translation resources.
+	for descriptor in IB.items.values():
+		descriptor.hasBattleRageEffect = descriptor.getDescription().find("$rage[") != -1
+'''
 if args.native_delta:
     assert source.count("const DT := 1.0 / 60.0") == 1
     source = source.replace("const DT := 1.0 / 60.0", "const DT := 0.01666666753590107")
@@ -55,7 +87,7 @@ if args.source_fatigue_mode:
     anchor = "\tCT.initialize()\n"
     assert source.count(anchor) == 1
     source = source.replace(anchor, anchor + "\tCT.fatigueStartTimer.process_mode = Timer.TIMER_PROCESS_PHYSICS\n\tCT.fatigueTickTimer.process_mode = Timer.TIMER_PROCESS_PHYSICS\n")
-if args.snapshot_active_timers:
+if args.snapshot_active_timers and not args.native_timers:
     anchor = "\tvar reg: Dictionary = U.oracleTimerLefts\n"
     assert source.count(anchor) == 1
     source = source.replace(anchor, anchor + '''\tvar active_timers := {}
@@ -71,8 +103,9 @@ if args.physics_first:
     source = source.replace("\tdrive_timers(true, dt)\n", "")
     source = source.replace("func tick_battle(dt: float, n := 0) -> void :\n",
                             "func tick_battle(dt: float, n := 0) -> void :\n\tdrive_timers(true, dt)\n")
-    assert source.count("\t\t\te[0] = eng            #") == 1
-    source = source.replace("\t\t\te[0] = eng            #", "\t\t\te[0] = eng - dt if physics_pass else eng  #")
+    if not args.native_timers:
+        assert source.count("\t\t\te[0] = eng            #") == 1
+        source = source.replace("\t\t\te[0] = eng            #", "\t\t\te[0] = eng - dt if physics_pass else eng  #")
 assert source.count("\tG.prepareItems(playerItems + opponentItems)\n") == 1
 before_prepare = '''
 	if not warmup:
@@ -242,6 +275,17 @@ if args.restore_ambient_timers:
 				U.oracleTimerLefts[timer] = [float(snapshot["left"]), timer.get_time_left()]
 ''' % json.dumps(timers, ensure_ascii=False))
 script = out / "oracle_fight.gd"
+if args.native_timers:
+    start = source.index("func drive_timers(")
+    signature_end = source.index("\n", start)
+    following = re.search(r"(?m)^[^ \t\r\n]", source[signature_end + 1:])
+    assert following is not None
+    end = signature_end + 1 + following.start()
+    source = source[:start] + source[end:]
+    source += "\n\n" + (stage / "native_oracle_timers.gd.inc").read_text("utf8")
+    anchor = "\tG.prepareItems(playerItems + opponentItems)\n"
+    assert source.count(anchor) == 1
+    source = source.replace(anchor, "\t_native_install_timers(root)\n" + anchor)
 oracle_diagnostics = None
 if args.compare_only:
     if not script.is_file():
@@ -271,7 +315,7 @@ if not args.compare_only:
                                     "ORACLE_REQUIRE_TERMINAL": "1", "ORACLE_FIGHT_CHUNK": "1"})
     print("pid", p.pid, "log", log, flush=True)
     try:
-        rc = p.wait(timeout=240)
+        rc = p.wait(timeout=args.timeout)
     except subprocess.TimeoutExpired:
         p.kill()
         p.wait()
@@ -287,10 +331,18 @@ if not args.compare_only:
                           "scope": "Skeleton UI startup/teardown errors are retained; this is not a clean native-scene run"}
     (out / "oracle_diagnostics.json").write_text(json.dumps(oracle_diagnostics, indent=2) + "\n", encoding="utf8")
     fatal = [(message, site) for message, site in errors
-             if any(location in site for location in (str(script), "_native_", "_restore_native_visuals", "/ElectricalCharge.gd", "/FlickerAnimation.gd"))]
+             if "Parse Error" in message or any(location in site for location in (
+                 "oracle_fight.gd:", "_native_", "_restore_native_visuals", "native_oracle_timer.gd:",
+                 "/ElectricalCharge.gd", "/FlickerAnimation.gd"))]
     if fatal or "Debugger Break" in log_text:
         raise SystemExit("Oracle candidate has a scheduler/visual script error; inspect " + str(log))
 paths = [reference / "events.json", out / "fights" / args.case_id / "events.json"]
+if not args.compare_only:
+    required = [paths[1], paths[1].with_name("lineups.json"), paths[1].with_name("result.txt")]
+    if args.rng_probe:
+        required.append(paths[1].with_name("rng_draws.json"))
+    if any(not path.is_file() or path.stat().st_mtime_ns < script.stat().st_mtime_ns for path in required):
+        raise SystemExit("Missing or stale current-run Oracle output; inspect " + str(log))
 documents = [json.loads(path.read_text("utf8")) for path in paths]
 streams = [canonical_stream(str(path), _et_names()) for path in paths]
 first = next((i for i, (a, b) in enumerate(zip(*streams)) if _tuple_of(a) != _tuple_of(b)), None)

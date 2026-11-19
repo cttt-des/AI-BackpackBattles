@@ -1,0 +1,44 @@
+{
+ "caseId": "run101727_r6_o705103_r6",
+ "category": "pass",
+ "missing_fields": [],
+ "notes": [],
+ "below_master": true,
+ "cpp": {
+  "event_count": 770,
+  "winner": "player",
+  "ticks": 2370
+ },
+ "gd": {
+  "event_count": 771,
+  "winner": "player"
+ },
+ "py": {
+  "event_count": 771,
+  "winner": "player"
+ },
+ "oracle": {
+  "event_count": 771,
+  "winner": "player"
+ },
+ "winner": {
+  "cpp": "player",
+  "gd": "player",
+  "py": "player",
+  "oracle": "player",
+  "original": "player"
+ },
+ "winner_match": true,
+ "natural_ending_match": true,
+ "events_cpp_vs_gd": {
+  "rows_cpp": 770,
+  "rows_gd": 770,
+  "first_divergence": null,
+  "o_row": null,
+  "g_row": null
+ },
+ "events_original_vs_oracle_first": null,
+ "events_oracle_vs_gd_first": null,
+ "events_py_vs_gd_first": null,
+ "strict_gem_first": null
+}

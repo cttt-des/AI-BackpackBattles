@@ -1,0 +1,739 @@
+{
+  "startup": {
+    "pooling_index": 518,
+    "descriptor_count": 519,
+    "physics_frames": 519
+  },
+  "batch_index": 1,
+  "prepare": {
+    "seed": "-3935597030726785024",
+    "state": "-3534786395282437473",
+    "order": [
+      {
+        "name": "Health Potion",
+        "owner": 1,
+        "top_left": [
+          0,
+          1
+        ]
+      },
+      {
+        "name": "Axe",
+        "owner": 1,
+        "top_left": [
+          1,
+          2
+        ]
+      },
+      {
+        "name": "Dragon Claws",
+        "owner": 1,
+        "top_left": [
+          2,
+          1
+        ]
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 1,
+        "top_left": [
+          3,
+          5
+        ]
+      },
+      {
+        "name": "Stone",
+        "owner": 1,
+        "top_left": [
+          4,
+          5
+        ]
+      },
+      {
+        "name": "Stone",
+        "owner": 1,
+        "top_left": [
+          3,
+          5
+        ]
+      },
+      {
+        "name": "Shepherds Crook",
+        "owner": 1,
+        "top_left": [
+          4,
+          1
+        ]
+      },
+      {
+        "name": "Bag of Stones",
+        "owner": 1,
+        "top_left": [
+          3,
+          6
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "top_left": [
+          2,
+          0
+        ]
+      },
+      {
+        "name": "Strong Heroic Potion",
+        "owner": 1,
+        "top_left": [
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "top_left": [
+          1,
+          4
+        ]
+      },
+      {
+        "name": "Whetstone3",
+        "owner": 1,
+        "top_left": [
+          4,
+          4
+        ]
+      },
+      {
+        "name": "Hammer",
+        "owner": 1,
+        "top_left": [
+          4,
+          2
+        ]
+      },
+      {
+        "name": "Toolbox",
+        "owner": 1,
+        "top_left": [
+          3,
+          2
+        ]
+      },
+      {
+        "name": "Anvil",
+        "owner": 1,
+        "top_left": [
+          3,
+          2
+        ]
+      },
+      {
+        "name": "Stamina Sack",
+        "owner": 1,
+        "top_left": [
+          2,
+          6
+        ]
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 1,
+        "top_left": [
+          1,
+          2
+        ]
+      },
+      {
+        "name": "Dagger",
+        "owner": 1,
+        "top_left": [
+          1,
+          4
+        ]
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 1,
+        "top_left": [
+          4,
+          1
+        ]
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 1,
+        "top_left": [
+          2,
+          2
+        ]
+      },
+      {
+        "name": "Whetstone3",
+        "owner": 1,
+        "top_left": [
+          3,
+          4
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "top_left": [
+          6,
+          2
+        ]
+      },
+      {
+        "name": "Dagger",
+        "owner": 1,
+        "top_left": [
+          1,
+          5
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "top_left": [
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Potion Belt",
+        "owner": 1,
+        "top_left": [
+          5,
+          1
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "top_left": [
+          6,
+          4
+        ]
+      },
+      {
+        "name": "Health Potion",
+        "owner": 3,
+        "top_left": [
+          6,
+          3
+        ]
+      },
+      {
+        "name": "Spiked Shield",
+        "owner": 3,
+        "top_left": [
+          4,
+          0
+        ]
+      },
+      {
+        "name": "Thornburst",
+        "owner": 3,
+        "top_left": [
+          7,
+          4
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "top_left": [
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Leather Helm",
+        "owner": 3,
+        "top_left": [
+          0,
+          1
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "top_left": [
+          4,
+          2
+        ]
+      },
+      {
+        "name": "Crown",
+        "owner": 3,
+        "top_left": [
+          6,
+          0
+        ]
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 3,
+        "top_left": [
+          3,
+          0
+        ]
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 3,
+        "top_left": [
+          3,
+          2
+        ]
+      },
+      {
+        "name": "Whetstone",
+        "owner": 3,
+        "top_left": [
+          2,
+          2
+        ]
+      },
+      {
+        "name": "Strong Heroic Potion",
+        "owner": 3,
+        "top_left": [
+          6,
+          1
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "top_left": [
+          6,
+          0
+        ]
+      },
+      {
+        "name": "Mana Potion",
+        "owner": 3,
+        "top_left": [
+          6,
+          2
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "top_left": [
+          6,
+          2
+        ]
+      },
+      {
+        "name": "Piggybank",
+        "owner": 3,
+        "top_left": [
+          1,
+          2
+        ]
+      },
+      {
+        "name": "Piggybank",
+        "owner": 3,
+        "top_left": [
+          0,
+          3
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "top_left": [
+          3,
+          4
+        ]
+      },
+      {
+        "name": "Stamina Sack",
+        "owner": 3,
+        "top_left": [
+          5,
+          4
+        ]
+      },
+      {
+        "name": "Dragon Claws",
+        "owner": 3,
+        "top_left": [
+          5,
+          4
+        ]
+      },
+      {
+        "name": "Anvil",
+        "owner": 3,
+        "top_left": [
+          5,
+          2
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "top_left": [
+          4,
+          0
+        ]
+      },
+      {
+        "name": "Double Axe",
+        "owner": 3,
+        "top_left": [
+          2,
+          1
+        ]
+      },
+      {
+        "name": "Toolbox",
+        "owner": 3,
+        "top_left": [
+          0,
+          2
+        ]
+      }
+    ]
+  },
+  "before_activate": {
+    "seed": "-2170727470674087066",
+    "state": "-6165925363786685043"
+  },
+  "combat_start": {
+    "seed": "-2170727470674087066",
+    "state": "-6165925363786685043",
+    "player_stamina": 6,
+    "opponent_stamina": 6,
+    "util_time": "33.65000175498426000",
+    "clock_time": "35.96666854247450800"
+  },
+  "idle_animation_timers": [
+    {
+      "owner": 1,
+      "left": 1.815358,
+      "left_precise": "1.81535804271698000",
+      "wait_time": 3.332025,
+      "process_mode": 1,
+      "stopped": false
+    },
+    {
+      "owner": 0,
+      "left": 0.566272,
+      "left_precise": "0.56627213954925540",
+      "wait_time": 3.282939,
+      "process_mode": 1,
+      "stopped": false
+    }
+  ],
+  "flicker_states": [
+
+  ],
+  "activated": {
+    "seed": "-2179675270931967490",
+    "state": "-6910575042821837243",
+    "items": [
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Stamina Sack",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Potion Belt",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Toolbox",
+        "owner": 1,
+        "trigger_time": 4.93762,
+        "speed": 1
+      },
+      {
+        "name": "Strong Heroic Potion",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Health Potion",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Axe",
+        "owner": 1,
+        "trigger_time": 1.914471,
+        "speed": 0.909091
+      },
+      {
+        "name": "Shepherds Crook",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Dragon Claws",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Hammer",
+        "owner": 1,
+        "trigger_time": 2.001532,
+        "speed": 0.769231
+      },
+      {
+        "name": "Stone",
+        "owner": 1,
+        "trigger_time": 2.453749,
+        "speed": 1.1
+      },
+      {
+        "name": "Stone",
+        "owner": 1,
+        "trigger_time": 2.400067,
+        "speed": 1.1
+      },
+      {
+        "name": "Whetstone3",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Whetstone3",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Dagger",
+        "owner": 1,
+        "trigger_time": 3.509933,
+        "speed": 1
+      },
+      {
+        "name": "Dagger",
+        "owner": 1,
+        "trigger_time": 3.65948,
+        "speed": 1
+      },
+      {
+        "name": "Bag of Stones",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Anvil",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Stamina Sack",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Toolbox",
+        "owner": 3,
+        "trigger_time": 5.189018,
+        "speed": 1
+      },
+      {
+        "name": "Mana Potion",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Crown",
+        "owner": 3,
+        "trigger_time": 2.509998,
+        "speed": 1
+      },
+      {
+        "name": "Health Potion",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Piggybank",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Leather Helm",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Piggybank",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Thornburst",
+        "owner": 3,
+        "trigger_time": 6.781243,
+        "speed": 1
+      },
+      {
+        "name": "Whetstone",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Dragon Claws",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Strong Heroic Potion",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Double Axe",
+        "owner": 3,
+        "trigger_time": 1.865849,
+        "speed": 0.909091
+      },
+      {
+        "name": "Spiked Shield",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Anvil",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      }
+    ]
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "cases": [
+    {
+      "case_id": "run604618_r9_o604622_r9",
+      "seed": 347585050,
+      "run_id": 604618,
+      "round_id": 9,
+      "opp_run_id": 604622,
+      "opp_round_id": 9,
+      "player_class": "Berserker",
+      "player_class_id": 2,
+      "opp_class": "Berserker",
+      "opp_class_id": 2,
+      "player_version": "1.1.6",
+      "opp_version": "1.1.6",
+      "player_stage": "7-9",
+      "player_items": 25,
+      "opp_items": 24,
+      "select_reason": "targeted:Courage Puppy,Power Puppy,Toolbox,Vampiric Armor",
+      "batch": "targeted"
+    }
+  ]
+}

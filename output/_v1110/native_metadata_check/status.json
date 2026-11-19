@@ -1,0 +1,58 @@
+[
+  {
+    "case_id": "run101207_r1_o604707_r1",
+    "reference": "native_visual_state",
+    "variant": "physics_first_ambient_flickers_tweens_f32dt_fatigue_active",
+    "out": "native_metadata_check/run101207_r1_o604707_r1",
+    "three_way_exit": 0,
+    "five_way_exit": 0
+  },
+  {
+    "case_id": "run604768_r18_o101694_r18",
+    "reference": "native_target_r18",
+    "variant": "physics_first_ambient_flickers_tweens_f32dt_fatigue_active_charges_opening",
+    "out": "native_metadata_check/run604768_r18_o101694_r18",
+    "three_way_exit": 0,
+    "five_way_exit": 0
+  },
+  {
+    "case_id": "run101165_r1_o604673_r1",
+    "reference": "native_mechanism_batch",
+    "variant": "physics_first_ambient_flickers_tweens_f32dt_fatigue_active_charges_opening/run101165_r1_o604673_r1",
+    "out": "native_metadata_check/run101165_r1_o604673_r1",
+    "three_way_exit": 0,
+    "five_way_exit": 0
+  },
+  {
+    "case_id": "run704404_r9_o500134_r9",
+    "reference": "native_mechanism_batch",
+    "variant": "physics_first_ambient_flickers_tweens_f32dt_fatigue_active_charges_opening_locale/run704404_r9_o500134_r9",
+    "out": "native_metadata_check/run704404_r9_o500134_r9",
+    "three_way_exit": 0,
+    "five_way_exit": 0
+  },
+  {
+    "case_id": "run604618_r9_o604622_r9",
+    "reference": "native_mechanism_batch",
+    "variant": "physics_first_ambient_flickers_tweens_f32dt_fatigue_active_charges_opening/run604618_r9_o604622_r9",
+    "out": "native_metadata_check/run604618_r9_o604622_r9",
+    "three_way_exit": 0,
+    "five_way_exit": 0
+  },
+  {
+    "case_id": "run101727_r6_o705103_r6",
+    "reference": "native_long_timer_batch",
+    "variant": "physics_first_ambient_flickers_tweens_f32dt_fatigue_active_charges_opening_locale/run101727_r6_o705103_r6",
+    "out": "native_metadata_check/run101727_r6_o705103_r6",
+    "three_way_exit": 0,
+    "five_way_exit": 0
+  },
+  {
+    "case_id": "run101621_r3_o705060_r3",
+    "reference": "native_corpus/expand",
+    "variant": "physics_first_ambient_flickers_tweens_f32dt_fatigue_active_charges_opening_locale/run101621_r3_o705060_r3",
+    "out": "native_metadata_check/run101621_r3_o705060_r3",
+    "three_way_exit": 0,
+    "five_way_exit": 0
+  }
+]

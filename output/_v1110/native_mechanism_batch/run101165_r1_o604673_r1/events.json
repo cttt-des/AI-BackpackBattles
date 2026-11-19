@@ -1,0 +1,3672 @@
+{
+  "seed": 721155366,
+  "run_id": 101165,
+  "round_id": 1,
+  "opp_run_id": 604673,
+  "opp_round_id": 1,
+  "combat_time": 20.000001,
+  "ticks": 1200,
+  "winner": "player",
+  "event_count": 189,
+  "events": [
+    {
+      "id": 0,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Battery",
+        "identifier": "Battery",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 1,
+      "type": 104,
+      "type_name": "104",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Walrus Tusk",
+        "identifier": "Walrus Tusk",
+        "owner_type": 1,
+        "top_left": {
+          "x": 8,
+          "y": 3
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 2,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Walrus Tusk",
+        "identifier": "Walrus Tusk",
+        "owner_type": 1,
+        "top_left": {
+          "x": 8,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 3,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Piggybank",
+        "identifier": "Piggybank",
+        "owner_type": 1,
+        "top_left": {
+          "x": 7,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "amount": 6
+      }
+    },
+    {
+      "id": 4,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Piggybank",
+        "identifier": "Piggybank",
+        "owner_type": 1,
+        "top_left": {
+          "x": 7,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 5,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Healing Herbs",
+        "identifier": "Healing Herbs",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 3
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 2,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 6,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Healing Herbs",
+        "identifier": "Healing Herbs",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 7,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Piggybank",
+        "identifier": "Piggybank",
+        "owner_type": 3,
+        "top_left": {
+          "x": 5,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 8,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Piggybank",
+        "identifier": "Piggybank",
+        "owner_type": 3,
+        "top_left": {
+          "x": 5,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 9,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Healing Herbs",
+        "identifier": "Healing Herbs",
+        "owner_type": 3,
+        "top_left": {
+          "x": 6,
+          "y": 5
+        }
+      },
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": 2,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 10,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Healing Herbs",
+        "identifier": "Healing Herbs",
+        "owner_type": 3,
+        "top_left": {
+          "x": 6,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 11,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 0.983333,
+      "origin": 102,
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 12,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 0.983333,
+      "origin": 102,
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 13,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 1.366667,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 1
+      }
+    },
+    {
+      "id": 14,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 1.366667,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 15,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 1.383333,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 1
+      }
+    },
+    {
+      "id": 16,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 1.383333,
+      "origin": 104,
+      "target": 0,
+      "parent_id": 15,
+      "params": {
+        "damage": 1
+      }
+    },
+    {
+      "id": 17,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 1.383333,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 18,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 1.383333,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": 17,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 19,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 1.383333,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 20,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 1.383333,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": 17,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 21,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 1.383333,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 22,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 1.633333,
+      "origin": {
+        "kind": "item",
+        "name": "Broom",
+        "identifier": "Broom",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 5
+      }
+    },
+    {
+      "id": 23,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 1.633333,
+      "origin": {
+        "kind": "item",
+        "name": "Broom",
+        "identifier": "Broom",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 24,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 2.816667,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 2
+      }
+    },
+    {
+      "id": 25,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 2.816667,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 26,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 2.816667,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 2
+      }
+    },
+    {
+      "id": 27,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 2.816667,
+      "origin": 104,
+      "target": 0,
+      "parent_id": 26,
+      "params": {
+        "damage": 1
+      }
+    },
+    {
+      "id": 28,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 2.816667,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 29,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 2.816667,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": 28,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 30,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 2.816667,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 31,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 2.983333,
+      "origin": 102,
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 32,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 2.983333,
+      "origin": 102,
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 33,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 3.15,
+      "origin": {
+        "kind": "item",
+        "name": "Broom",
+        "identifier": "Broom",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 3
+      }
+    },
+    {
+      "id": 34,
+      "type": 109,
+      "type_name": "109",
+      "timestamp": 3.15,
+      "origin": {
+        "kind": "item",
+        "name": "Broom",
+        "identifier": "Broom",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": 1,
+      "parent_id": 33,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 35,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 3.15,
+      "origin": {
+        "kind": "item",
+        "name": "Broom",
+        "identifier": "Broom",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 36,
+      "type": 100,
+      "type_name": "100",
+      "timestamp": 4.1,
+      "origin": {
+        "kind": "item",
+        "name": "Garlic",
+        "identifier": "Garlic",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 3
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 3,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 37,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 4.1,
+      "origin": {
+        "kind": "item",
+        "name": "Garlic",
+        "identifier": "Garlic",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 38,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 4.166667,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 3
+      }
+    },
+    {
+      "id": 39,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 4.166667,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 40,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 4.183334,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 3
+      }
+    },
+    {
+      "id": 41,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 4.183334,
+      "origin": 104,
+      "target": 0,
+      "parent_id": 40,
+      "params": {
+        "damage": 1
+      }
+    },
+    {
+      "id": 42,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 4.183334,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 43,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 4.183334,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": 42,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 44,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 4.183334,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 45,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 4.6,
+      "origin": {
+        "kind": "item",
+        "name": "Broom",
+        "identifier": "Broom",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 5
+      }
+    },
+    {
+      "id": 46,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 4.6,
+      "origin": {
+        "kind": "item",
+        "name": "Broom",
+        "identifier": "Broom",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 47,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 4.983334,
+      "origin": 102,
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 48,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 4.983334,
+      "origin": 102,
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 49,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 5.55,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 1
+      }
+    },
+    {
+      "id": 50,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 5.55,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 51,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 5.633334,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 3
+      }
+    },
+    {
+      "id": 52,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 5.633334,
+      "origin": 104,
+      "target": 0,
+      "parent_id": 51,
+      "params": {
+        "damage": 1
+      }
+    },
+    {
+      "id": 53,
+      "type": 108,
+      "type_name": "108",
+      "timestamp": 5.633334,
+      "origin": {
+        "kind": "gem",
+        "host": {
+          "kind": "unknown",
+          "str": "GemSocket"
+        },
+        "socket_index": -1,
+        "identity": [
+          "Chipped Emerald",
+          "Wooden Sword",
+          3,
+          2,
+          4,
+          0
+        ]
+      },
+      "target": 0,
+      "parent_id": 51,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 54,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 5.633334,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 55,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 5.633334,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": 54,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 56,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 5.633334,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 57,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 5.633334,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": 54,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 58,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 5.633334,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 59,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 5.983334,
+      "origin": 108,
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "damage": 1
+      }
+    },
+    {
+      "id": 60,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 6,
+      "origin": {
+        "kind": "item",
+        "name": "Broom",
+        "identifier": "Broom",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 2
+      }
+    },
+    {
+      "id": 61,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 6,
+      "origin": {
+        "kind": "item",
+        "name": "Broom",
+        "identifier": "Broom",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 62,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 6.983334,
+      "origin": 102,
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 63,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 6.983334,
+      "origin": 102,
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 64,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 7,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 2
+      }
+    },
+    {
+      "id": 65,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 7,
+      "origin": {
+        "kind": "gem",
+        "host": {
+          "kind": "unknown",
+          "str": "GemSocket"
+        },
+        "socket_index": -1,
+        "identity": [
+          "Chipped Amethyst",
+          "Wooden Sword",
+          1,
+          2,
+          3,
+          0
+        ]
+      },
+      "target": 1,
+      "parent_id": 64,
+      "params": {
+        "amount": -1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 66,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 7,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 67,
+      "type": 3,
+      "type_name": "3",
+      "timestamp": 7.033334,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 68,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 7.033334,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 69,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 7.033334,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": 68,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 70,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 7.033334,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 71,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 7.033334,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": 68,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 72,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 7.033334,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 73,
+      "type": 15,
+      "type_name": "15",
+      "timestamp": 7.316667,
+      "origin": {
+        "kind": "item",
+        "name": "Broom",
+        "identifier": "Broom",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 74,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 7.983334,
+      "origin": 108,
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "damage": 1
+      }
+    },
+    {
+      "id": 75,
+      "type": 100,
+      "type_name": "100",
+      "timestamp": 8.25,
+      "origin": {
+        "kind": "item",
+        "name": "Garlic",
+        "identifier": "Garlic",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 3
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 3,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 76,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 8.25,
+      "origin": {
+        "kind": "item",
+        "name": "Garlic",
+        "identifier": "Garlic",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 77,
+      "type": 3,
+      "type_name": "3",
+      "timestamp": 8.383334,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 78,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 8.383334,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 79,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 8.433334,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 1
+      }
+    },
+    {
+      "id": 80,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 8.433334,
+      "origin": 104,
+      "target": 0,
+      "parent_id": 79,
+      "params": {
+        "damage": 1
+      }
+    },
+    {
+      "id": 81,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 8.433334,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 82,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 8.433334,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": 81,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 83,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 8.433334,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 84,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 8.433334,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": 81,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 85,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 8.433334,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 86,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 8.8,
+      "origin": {
+        "kind": "item",
+        "name": "Broom",
+        "identifier": "Broom",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 5
+      }
+    },
+    {
+      "id": 87,
+      "type": 109,
+      "type_name": "109",
+      "timestamp": 8.8,
+      "origin": {
+        "kind": "item",
+        "name": "Broom",
+        "identifier": "Broom",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": 1,
+      "parent_id": 86,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 88,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 8.8,
+      "origin": {
+        "kind": "item",
+        "name": "Broom",
+        "identifier": "Broom",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 89,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 8.983334,
+      "origin": 102,
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": 1
+      }
+    },
+    {
+      "id": 90,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 8.983334,
+      "origin": 102,
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 91,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 9.783334,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 2
+      }
+    },
+    {
+      "id": 92,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 9.783334,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 93,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 9.883334,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 1
+      }
+    },
+    {
+      "id": 94,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 9.883334,
+      "origin": 104,
+      "target": 0,
+      "parent_id": 93,
+      "params": {
+        "damage": 1
+      }
+    },
+    {
+      "id": 95,
+      "type": 108,
+      "type_name": "108",
+      "timestamp": 9.883334,
+      "origin": {
+        "kind": "gem",
+        "host": {
+          "kind": "unknown",
+          "str": "GemSocket"
+        },
+        "socket_index": -1,
+        "identity": [
+          "Chipped Emerald",
+          "Wooden Sword",
+          3,
+          2,
+          4,
+          0
+        ]
+      },
+      "target": 0,
+      "parent_id": 93,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 96,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 9.883334,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 97,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 9.883334,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": 96,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 98,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 9.883334,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 99,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 9.983334,
+      "origin": 108,
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "damage": 2
+      }
+    },
+    {
+      "id": 100,
+      "type": 15,
+      "type_name": "15",
+      "timestamp": 10.433334,
+      "origin": {
+        "kind": "item",
+        "name": "Broom",
+        "identifier": "Broom",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 101,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 10.983334,
+      "origin": 102,
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": 1
+      }
+    },
+    {
+      "id": 102,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 10.983334,
+      "origin": 102,
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 103,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 11.250001,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 2
+      }
+    },
+    {
+      "id": 104,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 11.250001,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 105,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 11.333334,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 3
+      }
+    },
+    {
+      "id": 106,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 11.333334,
+      "origin": 104,
+      "target": 0,
+      "parent_id": 105,
+      "params": {
+        "damage": 1
+      }
+    },
+    {
+      "id": 107,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 11.333334,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 108,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 11.333334,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": 107,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 109,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 11.333334,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 110,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 11.333334,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": 107,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 111,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 11.333334,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 112,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 11.983334,
+      "origin": 108,
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "damage": 2
+      }
+    },
+    {
+      "id": 113,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 12.100001,
+      "origin": {
+        "kind": "item",
+        "name": "Broom",
+        "identifier": "Broom",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 3
+      }
+    },
+    {
+      "id": 114,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 12.100001,
+      "origin": {
+        "kind": "item",
+        "name": "Broom",
+        "identifier": "Broom",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 115,
+      "type": 100,
+      "type_name": "100",
+      "timestamp": 12.150001,
+      "origin": {
+        "kind": "item",
+        "name": "Garlic",
+        "identifier": "Garlic",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 3
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 3,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 116,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 12.150001,
+      "origin": {
+        "kind": "item",
+        "name": "Garlic",
+        "identifier": "Garlic",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 117,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 12.583334,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 3
+      }
+    },
+    {
+      "id": 118,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 12.583334,
+      "origin": {
+        "kind": "gem",
+        "host": {
+          "kind": "unknown",
+          "str": "GemSocket"
+        },
+        "socket_index": -1,
+        "identity": [
+          "Chipped Amethyst",
+          "Wooden Sword",
+          1,
+          2,
+          3,
+          0
+        ]
+      },
+      "target": 1,
+      "parent_id": 117,
+      "params": {
+        "amount": -1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 119,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 12.583334,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 120,
+      "type": 3,
+      "type_name": "3",
+      "timestamp": 12.716667,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 121,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 12.716667,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 122,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 12.716667,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": 121,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 123,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 12.716667,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 124,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 12.716667,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": 121,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 125,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 12.716667,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 126,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 12.983334,
+      "origin": 102,
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 127,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 13.783334,
+      "origin": {
+        "kind": "item",
+        "name": "Broom",
+        "identifier": "Broom",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 7
+      }
+    },
+    {
+      "id": 128,
+      "type": 109,
+      "type_name": "109",
+      "timestamp": 13.783334,
+      "origin": {
+        "kind": "item",
+        "name": "Broom",
+        "identifier": "Broom",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": 1,
+      "parent_id": 127,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 129,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 13.783334,
+      "origin": {
+        "kind": "item",
+        "name": "Broom",
+        "identifier": "Broom",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 130,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 13.983334,
+      "origin": 108,
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "damage": 2
+      }
+    },
+    {
+      "id": 131,
+      "type": 15,
+      "type_name": "15",
+      "timestamp": 14.033334,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 3
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 132,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 14.133334,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 2
+      }
+    },
+    {
+      "id": 133,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 14.133334,
+      "origin": 104,
+      "target": 0,
+      "parent_id": 132,
+      "params": {
+        "damage": 1
+      }
+    },
+    {
+      "id": 134,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 14.133334,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 135,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 14.133334,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": 134,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 136,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 14.133334,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 137,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 14.133334,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": 134,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 138,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 14.133334,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 139,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 14.983334,
+      "origin": 102,
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 140,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 15.483334,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 3
+      }
+    },
+    {
+      "id": 141,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 15.483334,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 142,
+      "type": 15,
+      "type_name": "15",
+      "timestamp": 15.516667,
+      "origin": {
+        "kind": "item",
+        "name": "Broom",
+        "identifier": "Broom",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 143,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 15.566667,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 1
+      }
+    },
+    {
+      "id": 144,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 15.566667,
+      "origin": 104,
+      "target": 0,
+      "parent_id": 143,
+      "params": {
+        "damage": 1
+      }
+    },
+    {
+      "id": 145,
+      "type": 108,
+      "type_name": "108",
+      "timestamp": 15.566667,
+      "origin": {
+        "kind": "gem",
+        "host": {
+          "kind": "unknown",
+          "str": "GemSocket"
+        },
+        "socket_index": -1,
+        "identity": [
+          "Chipped Emerald",
+          "Wooden Sword",
+          3,
+          2,
+          4,
+          0
+        ]
+      },
+      "target": 0,
+      "parent_id": 143,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 146,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 15.566667,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 147,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 15.566667,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": 146,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 148,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 15.566667,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 149,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 15.566667,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": 146,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 150,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 15.566667,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 151,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 15.983334,
+      "origin": 108,
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "damage": 3
+      }
+    },
+    {
+      "id": 152,
+      "type": 100,
+      "type_name": "100",
+      "timestamp": 16.233334,
+      "origin": {
+        "kind": "item",
+        "name": "Garlic",
+        "identifier": "Garlic",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 3
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 3,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 153,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 16.233334,
+      "origin": {
+        "kind": "item",
+        "name": "Garlic",
+        "identifier": "Garlic",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 154,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 16.883334,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 1
+      }
+    },
+    {
+      "id": 155,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 16.883334,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 156,
+      "type": 3,
+      "type_name": "3",
+      "timestamp": 16.950001,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 157,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 16.950001,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 158,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 16.983334,
+      "origin": 99,
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "damage": 1
+      }
+    },
+    {
+      "id": 159,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 16.983334,
+      "origin": 99,
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "damage": 1
+      }
+    },
+    {
+      "id": 160,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 16.983334,
+      "origin": 102,
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 161,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 17.266668,
+      "origin": {
+        "kind": "item",
+        "name": "Broom",
+        "identifier": "Broom",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 6
+      }
+    },
+    {
+      "id": 162,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 17.266668,
+      "origin": {
+        "kind": "item",
+        "name": "Broom",
+        "identifier": "Broom",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 163,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 17.983334,
+      "origin": 99,
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "damage": 2
+      }
+    },
+    {
+      "id": 164,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 17.983334,
+      "origin": 99,
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "damage": 2
+      }
+    },
+    {
+      "id": 165,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 17.983334,
+      "origin": 108,
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "damage": 3
+      }
+    },
+    {
+      "id": 166,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 18.233334,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 3
+      }
+    },
+    {
+      "id": 167,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 18.233334,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 168,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 18.383334,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 2
+      }
+    },
+    {
+      "id": 169,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 18.383334,
+      "origin": 104,
+      "target": 0,
+      "parent_id": 168,
+      "params": {
+        "damage": 1
+      }
+    },
+    {
+      "id": 170,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 18.383334,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 171,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 18.383334,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": 170,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 172,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 18.383334,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 173,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 18.383334,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": 170,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 174,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 18.383334,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 175,
+      "type": 15,
+      "type_name": "15",
+      "timestamp": 18.983334,
+      "origin": {
+        "kind": "item",
+        "name": "Broom",
+        "identifier": "Broom",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 176,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 18.983334,
+      "origin": 99,
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "damage": 3
+      }
+    },
+    {
+      "id": 177,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 18.983334,
+      "origin": 99,
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "damage": 3
+      }
+    },
+    {
+      "id": 178,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 18.983334,
+      "origin": 102,
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 179,
+      "type": 3,
+      "type_name": "3",
+      "timestamp": 19.616668,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 180,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 19.616668,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 181,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 19.833334,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 3
+      }
+    },
+    {
+      "id": 182,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 19.833334,
+      "origin": 104,
+      "target": 0,
+      "parent_id": 181,
+      "params": {
+        "damage": 1
+      }
+    },
+    {
+      "id": 183,
+      "type": 108,
+      "type_name": "108",
+      "timestamp": 19.833334,
+      "origin": {
+        "kind": "gem",
+        "host": {
+          "kind": "unknown",
+          "str": "GemSocket"
+        },
+        "socket_index": -1,
+        "identity": [
+          "Chipped Emerald",
+          "Wooden Sword",
+          3,
+          2,
+          4,
+          0
+        ]
+      },
+      "target": 0,
+      "parent_id": 181,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 184,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 19.833334,
+      "origin": {
+        "kind": "item",
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 185,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 19.833334,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": 184,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 186,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 19.833334,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 187,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 19.983334,
+      "origin": 99,
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "damage": 4
+      }
+    },
+    {
+      "id": 190,
+      "type": 111,
+      "type_name": "111",
+      "timestamp": 20.000001,
+      "origin": 111,
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    }
+  ]
+}

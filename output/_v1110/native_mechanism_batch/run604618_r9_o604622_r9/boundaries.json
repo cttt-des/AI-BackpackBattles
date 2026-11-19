@@ -1,0 +1,809 @@
+{
+  "startup": {
+    "pooling_index": 518,
+    "descriptor_count": 519,
+    "physics_frames": 519
+  },
+  "batch_index": 2,
+  "prepare": {
+    "seed": "8495260982307078082",
+    "state": "6663467076672517561",
+    "order": [
+      {
+        "name": "Dragon Claws",
+        "owner": 1,
+        "top_left": [
+          0,
+          2
+        ]
+      },
+      {
+        "name": "Wolf Emblem",
+        "owner": 1,
+        "top_left": [
+          2,
+          3
+        ]
+      },
+      {
+        "name": "Customer Card",
+        "owner": 1,
+        "top_left": [
+          3,
+          3
+        ]
+      },
+      {
+        "name": "Vampiric Armor",
+        "owner": 1,
+        "top_left": [
+          4,
+          2
+        ]
+      },
+      {
+        "name": "Poison Spear",
+        "owner": 1,
+        "top_left": [
+          0,
+          1
+        ]
+      },
+      {
+        "name": "Armored Courage Puppy",
+        "owner": 1,
+        "top_left": [
+          2,
+          4
+        ]
+      },
+      {
+        "name": "Courage Puppy",
+        "owner": 1,
+        "top_left": [
+          2,
+          2
+        ]
+      },
+      {
+        "name": "Piggybank",
+        "owner": 1,
+        "top_left": [
+          2,
+          6
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "top_left": [
+          2,
+          5
+        ]
+      },
+      {
+        "name": "Toolbox",
+        "owner": 1,
+        "top_left": [
+          3,
+          0
+        ]
+      },
+      {
+        "name": "Echoing Battlecry",
+        "owner": 1,
+        "top_left": [
+          5,
+          1
+        ]
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 1,
+        "top_left": [
+          1,
+          0
+        ]
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 1,
+        "top_left": [
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Box of Riches",
+        "owner": 1,
+        "top_left": [
+          6,
+          3
+        ]
+      },
+      {
+        "name": "Gloves of Haste",
+        "owner": 1,
+        "top_left": [
+          1,
+          2
+        ]
+      },
+      {
+        "name": "Whetstone3",
+        "owner": 1,
+        "top_left": [
+          4,
+          1
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "top_left": [
+          0,
+          2
+        ]
+      },
+      {
+        "name": "Piggybank",
+        "owner": 1,
+        "top_left": [
+          2,
+          5
+        ]
+      },
+      {
+        "name": "Stamina Sack",
+        "owner": 1,
+        "top_left": [
+          4,
+          2
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "top_left": [
+          0,
+          4
+        ]
+      },
+      {
+        "name": "Stamina Sack",
+        "owner": 1,
+        "top_left": [
+          2,
+          0
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "top_left": [
+          2,
+          3
+        ]
+      },
+      {
+        "name": "Power Puppy",
+        "owner": 1,
+        "top_left": [
+          0,
+          4
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "top_left": [
+          5,
+          3
+        ]
+      },
+      {
+        "name": "Lightsaber",
+        "owner": 1,
+        "top_left": [
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "top_left": [
+          2,
+          5
+        ]
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 3,
+        "top_left": [
+          2,
+          4
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "top_left": [
+          2,
+          0
+        ]
+      },
+      {
+        "name": "Stone Gloves",
+        "owner": 3,
+        "top_left": [
+          5,
+          2
+        ]
+      },
+      {
+        "name": "Potion Belt",
+        "owner": 3,
+        "top_left": [
+          7,
+          2
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "top_left": [
+          5,
+          1
+        ]
+      },
+      {
+        "name": "Box of Riches",
+        "owner": 3,
+        "top_left": [
+          1,
+          4
+        ]
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 3,
+        "top_left": [
+          4,
+          1
+        ]
+      },
+      {
+        "name": "Toolbox",
+        "owner": 3,
+        "top_left": [
+          4,
+          3
+        ]
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 3,
+        "top_left": [
+          2,
+          2
+        ]
+      },
+      {
+        "name": "Halberd",
+        "owner": 3,
+        "top_left": [
+          3,
+          2
+        ]
+      },
+      {
+        "name": "Mana Potion",
+        "owner": 3,
+        "top_left": [
+          0,
+          4
+        ]
+      },
+      {
+        "name": "Oil Lamp",
+        "owner": 3,
+        "top_left": [
+          2,
+          2
+        ]
+      },
+      {
+        "name": "Wolf Emblem",
+        "owner": 3,
+        "top_left": [
+          5,
+          4
+        ]
+      },
+      {
+        "name": "Spear",
+        "owner": 3,
+        "top_left": [
+          7,
+          2
+        ]
+      },
+      {
+        "name": "Banana",
+        "owner": 3,
+        "top_left": [
+          2,
+          0
+        ]
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 3,
+        "top_left": [
+          2,
+          3
+        ]
+      },
+      {
+        "name": "Spicy Banana",
+        "owner": 3,
+        "top_left": [
+          6,
+          3
+        ]
+      },
+      {
+        "name": "Box of Riches",
+        "owner": 3,
+        "top_left": [
+          2,
+          6
+        ]
+      },
+      {
+        "name": "Armored Courage Puppy",
+        "owner": 3,
+        "top_left": [
+          4,
+          4
+        ]
+      },
+      {
+        "name": "Piggybank",
+        "owner": 3,
+        "top_left": [
+          2,
+          4
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "top_left": [
+          0,
+          4
+        ]
+      },
+      {
+        "name": "Courage Puppy",
+        "owner": 3,
+        "top_left": [
+          6,
+          4
+        ]
+      },
+      {
+        "name": "Whetstone3",
+        "owner": 3,
+        "top_left": [
+          5,
+          3
+        ]
+      }
+    ]
+  },
+  "before_activate": {
+    "seed": "-6605054937342886702",
+    "state": "-462655863868202615"
+  },
+  "combat_start": {
+    "seed": "-6605054937342886702",
+    "state": "-462655863868202615",
+    "player_stamina": 7,
+    "opponent_stamina": 5,
+    "util_time": "45.65000238083303000",
+    "clock_time": "48.78333587758243100"
+  },
+  "idle_animation_timers": [
+    {
+      "owner": 1,
+      "left": 0.590077,
+      "left_precise": "0.59007680416107180",
+      "wait_time": 2.106744,
+      "process_mode": 1,
+      "stopped": false
+    },
+    {
+      "owner": 0,
+      "left": 0.86419,
+      "left_precise": "0.86418980360031130",
+      "wait_time": 2.130857,
+      "process_mode": 1,
+      "stopped": false
+    }
+  ],
+  "flicker_states": [
+    {
+      "identity": {
+        "name": "Oil Lamp",
+        "owner": 3,
+        "top_left": [
+          2,
+          2
+        ],
+        "relative_path": "Icon/TorchLight/FlickerAnimation"
+      },
+      "pending": [
+
+      ],
+      "playing": true,
+      "position": 0.07319,
+      "position_precise": "0.07318992912769320",
+      "speed_precise": "0.39921784400939940",
+      "limits": [
+        0.1,
+        3,
+        0.3,
+        1
+      ],
+      "speed": 0.399218,
+      "animation": "Flicker",
+      "length": 0.3,
+      "loop": false,
+      "inside_tree": true,
+      "path": "/root/Main/Combat/Opponent/Oil Lamp/Icon/TorchLight/FlickerAnimation"
+    },
+    {
+      "identity": {
+        "name": "Burning Coal",
+        "owner": 7,
+        "top_left": [
+          -999,
+          -999
+        ],
+        "relative_path": "Icon/TorchLight/FlickerAnimation",
+        "gem_identity": [
+          "Burning Coal",
+          "Halberd",
+          3,
+          3,
+          2,
+          2
+        ]
+      },
+      "pending": [
+        {
+          "left": "0.46968430280685430",
+          "method": "playAni"
+        }
+      ],
+      "playing": false,
+      "position": 0,
+      "position_precise": "0.00000000000000000",
+      "speed_precise": "1.00000000000000000",
+      "limits": [
+        0.1,
+        3,
+        0.3,
+        1
+      ],
+      "speed": 1,
+      "animation": "Flicker",
+      "length": 0.3,
+      "loop": false,
+      "inside_tree": true,
+      "path": "/root/Main/Combat/Opponent/Halberd/Icon/Sockets/GemSocket3/Burning Coal/Icon/TorchLight/FlickerAnimation"
+    }
+  ],
+  "activated": {
+    "seed": "624736550265197750",
+    "state": "3086093693803262109",
+    "items": [
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Stamina Sack",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Toolbox",
+        "owner": 1,
+        "trigger_time": 4.843788,
+        "speed": 1
+      },
+      {
+        "name": "Stamina Sack",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Wolf Emblem",
+        "owner": 1,
+        "trigger_time": 2.484449,
+        "speed": 1
+      },
+      {
+        "name": "Echoing Battlecry",
+        "owner": 1,
+        "trigger_time": 14.12521,
+        "speed": 2.3
+      },
+      {
+        "name": "Power Puppy",
+        "owner": 1,
+        "trigger_time": 3.047758,
+        "speed": 1.3
+      },
+      {
+        "name": "Box of Riches",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Customer Card",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Armored Courage Puppy",
+        "owner": 1,
+        "trigger_time": 3.423251,
+        "speed": 1
+      },
+      {
+        "name": "Courage Puppy",
+        "owner": 1,
+        "trigger_time": 3.614927,
+        "speed": 0.769231
+      },
+      {
+        "name": "Whetstone3",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Piggybank",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Vampiric Armor",
+        "owner": 1,
+        "trigger_time": 2.889645,
+        "speed": 1
+      },
+      {
+        "name": "Gloves of Haste",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Piggybank",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Dragon Claws",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Poison Spear",
+        "owner": 1,
+        "trigger_time": 1.521963,
+        "speed": 1.1
+      },
+      {
+        "name": "Lightsaber",
+        "owner": 1,
+        "trigger_time": 1.548315,
+        "speed": 1
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.04
+      },
+      {
+        "name": "Potion Belt",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.04
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.04
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.04
+      },
+      {
+        "name": "Toolbox",
+        "owner": 3,
+        "trigger_time": 5.021347,
+        "speed": 1.04
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.04
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.04
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.04
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.04
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.04
+      },
+      {
+        "name": "Box of Riches",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.04
+      },
+      {
+        "name": "Whetstone3",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.04
+      },
+      {
+        "name": "Spicy Banana",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.04
+      },
+      {
+        "name": "Wolf Emblem",
+        "owner": 3,
+        "trigger_time": 2.587737,
+        "speed": 1.04
+      },
+      {
+        "name": "Banana",
+        "owner": 3,
+        "trigger_time": 5.065076,
+        "speed": 1.04
+      },
+      {
+        "name": "Spear",
+        "owner": 3,
+        "trigger_time": 1.480212,
+        "speed": 0.943396
+      },
+      {
+        "name": "Courage Puppy",
+        "owner": 3,
+        "trigger_time": 3.614214,
+        "speed": 0.793651
+      },
+      {
+        "name": "Box of Riches",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.04
+      },
+      {
+        "name": "Piggybank",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.04
+      },
+      {
+        "name": "Mana Potion",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.04
+      },
+      {
+        "name": "Oil Lamp",
+        "owner": 3,
+        "trigger_time": 3.489302,
+        "speed": 1.24
+      },
+      {
+        "name": "Stone Gloves",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1.04
+      },
+      {
+        "name": "Armored Courage Puppy",
+        "owner": 3,
+        "trigger_time": 3.522402,
+        "speed": 0.793651
+      },
+      {
+        "name": "Halberd",
+        "owner": 3,
+        "trigger_time": 1.974583,
+        "speed": 1.19
+      }
+    ]
+  }
+}

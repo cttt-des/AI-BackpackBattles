@@ -1,0 +1,41 @@
+{
+  "case_id": "run101621_r3_o705060_r3",
+  "scope": "Paired pure Python replay, identical observed inputs; only hasBattleRageEffect flags disabled in the control; files and DLL unchanged",
+  "modes": {
+    "missing_flags": {
+      "winner": "player",
+      "combat_time": 27.000001408159733,
+      "event_count": 386,
+      "player_hp": 12.0,
+      "opponent_hp": 0.0,
+      "rage_events": []
+    },
+    "observed": {
+      "winner": "player",
+      "combat_time": 10.166667196899652,
+      "event_count": 147,
+      "player_hp": 69.0,
+      "opponent_hp": 0.0,
+      "rage_events": [
+        {
+          "type": 21,
+          "timestamp": 4.98333359323442,
+          "origin": {
+            "kind": "item",
+            "identifier": "Dragonskin Boots",
+            "owner_type": 1
+          }
+        },
+        {
+          "type": 22,
+          "timestamp": 8.983333801850677,
+          "origin": {
+            "kind": "damage_source",
+            "keyword": "battlerageend"
+          }
+        }
+      ]
+    }
+  },
+  "winner_changed": false
+}

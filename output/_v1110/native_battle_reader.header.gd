@@ -56,7 +56,22 @@ func record_one() -> void:
 		fail("Original item preload did not finish")
 		return
 	observations["startup"] = {"pooling_index": item_book.itemPoolingIndex,
-		"descriptor_count": item_book.descriptorList.size(), "physics_frames": observed_physics}
+		"descriptor_count": item_book.descriptorList.size(), "physics_frames": observed_physics,
+		"locale": TranslationServer.get_locale()}
+	var metadata := {}
+	for descriptor in item_book.descriptorList:
+		metadata[descriptor.identifier] = {"translated_name": descriptor.getTranslatedName(),
+			"has_battle_rage_effect": descriptor.hasBattleRageEffect,
+			"description_mentions_rage": descriptor.getDescription().find("$rage[") != -1}
+	var metadata_root = OS.get_environment("NATIVE_BATTLE_OUT")
+	Directory.new().make_dir_recursive(metadata_root)
+	var metadata_file = File.new()
+	if metadata_file.open(metadata_root.plus_file("descriptor_metadata.json"), File.WRITE) != OK:
+		fail("Cannot write original descriptor metadata")
+		return
+	metadata_file.store_string(JSON.print({"version": G.VERSION, "locale": TranslationServer.get_locale(),
+		"count": metadata.size(), "items": metadata}, "  ") + "\n")
+	metadata_file.close()
 	print("[NATIVE] Main scene initialization completed")
 	if tree.current_scene == null or tree.current_scene.filename != "res://Core/Main.tscn":
 		fail("Original Main scene is not loaded")
@@ -70,39 +85,84 @@ func record_one() -> void:
 		fail("Original history menu failed to initialize")
 		return
 
-	var case_id = OS.get_environment("NATIVE_BATTLE_CASE")
+	var requested = OS.get_environment("NATIVE_BATTLE_CASE").split(",", false)
 	var f = File.new()
 	if f.open("res://fights.json", File.READ) != OK:
 		fail("Cannot read case list")
 		return
 	var table = JSON.parse(f.get_as_text()).result
 	f.close()
-	var c = null
+	var cases := {}
 	for candidate in table["cases"]:
-		if candidate["case_id"] == case_id:
-			c = candidate
-			break
-	if c == null:
-		fail("Unknown case " + case_id)
+		cases[candidate["case_id"]] = candidate
+	if requested.empty():
+		fail("No native cases selected")
 		return
+	for case_id in requested:
+		if not cases.has(case_id):
+			fail("Unknown case " + case_id)
+			return
 	var runs = load_history_runs()
+	var startup = observations["startup"].duplicate()
+	for index in requested.size():
+		if index > 0:
+			# Use the source button path: the menu's opened callback calls
+			# Game.endHistoryRun(), clears combat state and frees the opponent.
+			G.combatSceneNode.switchBackToBuildHistory()
+			for _i in range(240):
+				yield(tree, "idle_frame")
+				if G.curHistoryData == null and G.state == G.State.Title and G.buildHistory.is_inside_tree():
+					break
+			if G.curHistoryData != null or G.state != G.State.Title or not G.buildHistory.is_inside_tree():
+				fail("Original history return did not finish")
+				return
+			for _i in range(30):
+				yield(tree, "idle_frame")
+		var outcome = record_case(cases[requested[index]], runs, startup, index)
+		if outcome is GDScriptFunctionState:
+			outcome = yield(outcome, "completed")
+		if outcome != true:
+			return
+	print("[NATIVE-BATCH] completed=", requested.size())
+	tree.quit()
+
+func record_case(c, runs, startup, index):
+	var tree = get_tree()
+	var case_id = c["case_id"]
+	activated = false
+	ended = false
+	winner = ""
+	observations = {"startup": startup, "batch_index": index}
+	var pending := []
+	for entry in observed_delayed:
+		if is_instance_valid(entry[1].get_ref()) and entry[0].time_left > 0:
+			pending.append(entry)
+	observed_delayed = pending
+	if "draws" in U.rng:
+		U.rng.recording = false
+		U.rng.draws.clear()
 	var run_id = int(c["run_id"])
 	var round_id = int(c["round_id"])
 	var opp_run_id = int(c.get("opp_run_id", run_id))
 	var opp_round_id = int(c.get("opp_round_id", round_id))
 	if not runs.has(run_id) or not runs.has(opp_run_id):
 		fail("Missing history runs " + str(batch_failures))
-		return
+		return false
 
 	out_dir = OS.get_environment("NATIVE_BATTLE_OUT").plus_file(case_id)
 	if Directory.new().make_dir_recursive(out_dir) != OK and not Directory.new().dir_exists(out_dir):
 		fail("Cannot create " + out_dir)
-		return
+		return false
 	var seed_value = int(c["seed"])
 	case_result = {"seed": seed_value, "run_id": run_id, "round_id": round_id,
 		"opp_run_id": opp_run_id, "opp_round_id": opp_round_id, "case_id": case_id}
 	G.connect("combat_start", self, "on_start", [], CONNECT_ONESHOT)
 	G.connect("combat_end", self, "on_end", [], CONNECT_ONESHOT)
+	# The selected record is supplied by the batch adapter, as in the single
+	# recorder. Reset only the UI selection guard after the previous history run
+	# has naturally ended; no combat state or random values are patched here.
+	G.buildHistory.curRunId = run_id
+	G.buildHistory.fighting = false
 	G.buildHistory.markedOpponentData = runs[opp_run_id]
 	G.buildHistory.markedOpponentRound = opp_round_id
 	G.instanceCharacter(runs[run_id].classI)
@@ -119,7 +179,7 @@ func record_one() -> void:
 		elapsed += 1
 	if not ended:
 		fail("No natural game terminal, activation=" + str(activated))
-		return
+		return false
 
 	case_result["winner"] = winner
 	case_result["combat_time"] = G.combatTimer.combatTime
@@ -135,11 +195,13 @@ func record_one() -> void:
 	var diagnostics = File.new()
 	if diagnostics.open(out_dir.plus_file("boundaries.json"), File.WRITE) != OK:
 		fail("Cannot write preparation observations")
-		return
+		return false
 	diagnostics.store_string(JSON.print(observations, "  ") + "\n")
 	diagnostics.close()
+	if "recording" in U.rng:
+		U.rng.recording = false
 	print("[NATIVE] Recorded ", case_id, " ", winner, " events=", G.combatLog.events.size())
-	tree.quit()
+	return true
 
 func on_start() -> void:
 	activated = true

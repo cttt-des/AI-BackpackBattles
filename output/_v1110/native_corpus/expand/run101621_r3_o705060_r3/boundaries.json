@@ -1,0 +1,587 @@
+{
+  "startup": {
+    "pooling_index": 518,
+    "descriptor_count": 519,
+    "physics_frames": 519,
+    "locale": "en"
+  },
+  "batch_index": 0,
+  "prepare": {
+    "seed": "4623947486003903163",
+    "state": "-7248089486350640514",
+    "order": [
+      {
+        "name": "Battery",
+        "owner": 1,
+        "top_left": [
+          4,
+          1
+        ]
+      },
+      {
+        "name": "Battery",
+        "owner": 1,
+        "top_left": [
+          4,
+          2
+        ]
+      },
+      {
+        "name": "Shortbow",
+        "owner": 1,
+        "top_left": [
+          3,
+          4
+        ]
+      },
+      {
+        "name": "Piggybank",
+        "owner": 1,
+        "top_left": [
+          8,
+          4
+        ]
+      },
+      {
+        "name": "Blueberries",
+        "owner": 1,
+        "top_left": [
+          6,
+          5
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "top_left": [
+          7,
+          4
+        ]
+      },
+      {
+        "name": "Twine",
+        "owner": 1,
+        "top_left": [
+          5,
+          5
+        ]
+      },
+      {
+        "name": "Bag of Giving",
+        "owner": 1,
+        "top_left": [
+          5,
+          3
+        ]
+      },
+      {
+        "name": "Burning Sword",
+        "owner": 1,
+        "top_left": [
+          4,
+          4
+        ]
+      },
+      {
+        "name": "Dragonskin Boots",
+        "owner": 1,
+        "top_left": [
+          5,
+          3
+        ]
+      },
+      {
+        "name": "Piggy of Riches",
+        "owner": 1,
+        "top_left": [
+          3,
+          6
+        ]
+      },
+      {
+        "name": "Resistor",
+        "owner": 1,
+        "top_left": [
+          4,
+          3
+        ]
+      },
+      {
+        "name": "Stamina Sack",
+        "owner": 1,
+        "top_left": [
+          4,
+          1
+        ]
+      },
+      {
+        "name": "Rat",
+        "owner": 1,
+        "top_left": [
+          6,
+          4
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "top_left": [
+          3,
+          5
+        ]
+      },
+      {
+        "name": "Amulet of Light",
+        "owner": 1,
+        "top_left": [
+          5,
+          4
+        ]
+      },
+      {
+        "name": "Investment Opportunity",
+        "owner": 1,
+        "top_left": [
+          7,
+          5
+        ]
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 1,
+        "top_left": [
+          3,
+          4
+        ]
+      },
+      {
+        "name": "Shelly",
+        "owner": 3,
+        "top_left": [
+          3,
+          2
+        ]
+      },
+      {
+        "name": "Broom",
+        "owner": 3,
+        "top_left": [
+          5,
+          2
+        ]
+      },
+      {
+        "name": "Smithing For Dummies",
+        "owner": 3,
+        "top_left": [
+          4,
+          2
+        ]
+      },
+      {
+        "name": "Black Pawn",
+        "owner": 3,
+        "top_left": [
+          2,
+          4
+        ]
+      },
+      {
+        "name": "Puzzlebag L",
+        "owner": 3,
+        "top_left": [
+          2,
+          1
+        ]
+      },
+      {
+        "name": "Wand",
+        "owner": 3,
+        "top_left": [
+          3,
+          5
+        ]
+      },
+      {
+        "name": "Book of Basics",
+        "owner": 3,
+        "top_left": [
+          3,
+          4
+        ]
+      },
+      {
+        "name": "Stone",
+        "owner": 3,
+        "top_left": [
+          2,
+          3
+        ]
+      },
+      {
+        "name": "Puzzlebag S",
+        "owner": 3,
+        "top_left": [
+          2,
+          3
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "top_left": [
+          0,
+          3
+        ]
+      },
+      {
+        "name": "Chess Board",
+        "owner": 3,
+        "top_left": [
+          1,
+          4
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "top_left": [
+          5,
+          4
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "top_left": [
+          7,
+          4
+        ]
+      },
+      {
+        "name": "Piggybank",
+        "owner": 3,
+        "top_left": [
+          6,
+          4
+        ]
+      },
+      {
+        "name": "Piggybank",
+        "owner": 3,
+        "top_left": [
+          8,
+          4
+        ]
+      },
+      {
+        "name": "Piggybank",
+        "owner": 3,
+        "top_left": [
+          7,
+          4
+        ]
+      },
+      {
+        "name": "White Pawn",
+        "owner": 3,
+        "top_left": [
+          1,
+          3
+        ]
+      },
+      {
+        "name": "Puzzlebox",
+        "owner": 3,
+        "top_left": [
+          3,
+          2
+        ]
+      }
+    ]
+  },
+  "before_activate": {
+    "seed": "3403539277502312341",
+    "state": "2472867483733691088"
+  },
+  "combat_start": {
+    "seed": "3403539277502312341",
+    "state": "2472867483733691088",
+    "player_stamina": 6,
+    "opponent_stamina": 5,
+    "util_time": "11.15000058151781600",
+    "clock_time": "12.65000065974891200"
+  },
+  "idle_animation_timers": [
+    {
+      "owner": 1,
+      "left": 0.791496,
+      "left_precise": "0.79149639606475830",
+      "wait_time": 2.308163,
+      "process_mode": 1,
+      "stopped": false
+    },
+    {
+      "owner": 0,
+      "left": 0.412623,
+      "left_precise": "0.41262316703796390",
+      "wait_time": 3.97929,
+      "process_mode": 1,
+      "stopped": false
+    }
+  ],
+  "flicker_states": [
+    {
+      "identity": {
+        "name": "Burning Sword",
+        "owner": 1,
+        "top_left": [
+          4,
+          4
+        ],
+        "relative_path": "Icon/TorchLight/FlickerAnimation"
+      },
+      "pending": [
+
+      ],
+      "playing": true,
+      "position": 0.012267,
+      "position_precise": "0.01226671598851680",
+      "speed_precise": "0.73600292205810550",
+      "limits": [
+        0.1,
+        3,
+        0.3,
+        0.8
+      ],
+      "speed": 0.736003,
+      "animation": "Flicker",
+      "length": 0.3,
+      "loop": false,
+      "inside_tree": true,
+      "path": "/root/Main/Player/Burning Sword/Icon/TorchLight/FlickerAnimation"
+    }
+  ],
+  "activated": {
+    "seed": "2579824381618290913",
+    "state": "3060822328560830764",
+    "items": [
+      {
+        "name": "Stamina Sack",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.06
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.06
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.06
+      },
+      {
+        "name": "Bag of Giving",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.06
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.06
+      },
+      {
+        "name": "Dragonskin Boots",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.06
+      },
+      {
+        "name": "Piggy of Riches",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.06
+      },
+      {
+        "name": "Rat",
+        "owner": 1,
+        "trigger_time": 3.143968,
+        "speed": 1.21
+      },
+      {
+        "name": "Investment Opportunity",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.06
+      },
+      {
+        "name": "Piggybank",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.06
+      },
+      {
+        "name": "Blueberries",
+        "owner": 1,
+        "trigger_time": 3.578923,
+        "speed": 1.06
+      },
+      {
+        "name": "Amulet of Light",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.06
+      },
+      {
+        "name": "Resistor",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.16
+      },
+      {
+        "name": "Battery",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.06
+      },
+      {
+        "name": "Battery",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.16
+      },
+      {
+        "name": "Twine",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1.06
+      },
+      {
+        "name": "Shortbow",
+        "owner": 1,
+        "trigger_time": 1.687229,
+        "speed": 1.16
+      },
+      {
+        "name": "Burning Sword",
+        "owner": 1,
+        "trigger_time": 1.671702,
+        "speed": 1.16
+      },
+      {
+        "name": "Puzzlebox",
+        "owner": 3,
+        "trigger_time": 4.885691,
+        "speed": 1
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Puzzlebag S",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Puzzlebag L",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Piggybank",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Piggybank",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Smithing For Dummies",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Stone",
+        "owner": 3,
+        "trigger_time": 2.573949,
+        "speed": 1
+      },
+      {
+        "name": "Chess Board",
+        "owner": 3,
+        "trigger_time": 0.882666,
+        "speed": 1
+      },
+      {
+        "name": "White Pawn",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Black Pawn",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Shelly",
+        "owner": 3,
+        "trigger_time": 12.951929,
+        "speed": 0.833333
+      },
+      {
+        "name": "Piggybank",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Wand",
+        "owner": 3,
+        "trigger_time": 3.287197,
+        "speed": 0.833333
+      },
+      {
+        "name": "Book of Basics",
+        "owner": 3,
+        "trigger_time": 5.031021,
+        "speed": 0.833333
+      },
+      {
+        "name": "Broom",
+        "owner": 3,
+        "trigger_time": 1.707978,
+        "speed": 0.833333
+      }
+    ]
+  }
+}

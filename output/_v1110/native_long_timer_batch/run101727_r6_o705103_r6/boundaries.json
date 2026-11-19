@@ -1,0 +1,827 @@
+{
+  "startup": {
+    "pooling_index": 518,
+    "descriptor_count": 519,
+    "physics_frames": 519
+  },
+  "batch_index": 0,
+  "prepare": {
+    "seed": "3959370373434801851",
+    "state": "1421508676718431870",
+    "order": [
+      {
+        "name": "Strong Health Potion",
+        "owner": 1,
+        "top_left": [
+          7,
+          0
+        ]
+      },
+      {
+        "name": "White Pawn",
+        "owner": 1,
+        "top_left": [
+          1,
+          1
+        ]
+      },
+      {
+        "name": "Customer Card",
+        "owner": 1,
+        "top_left": [
+          2,
+          5
+        ]
+      },
+      {
+        "name": "Piggybank",
+        "owner": 1,
+        "top_left": [
+          3,
+          2
+        ]
+      },
+      {
+        "name": "Book of Basics",
+        "owner": 1,
+        "top_left": [
+          4,
+          5
+        ]
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 1,
+        "top_left": [
+          4,
+          4
+        ]
+      },
+      {
+        "name": "Owl Spirit",
+        "owner": 1,
+        "top_left": [
+          6,
+          1
+        ]
+      },
+      {
+        "name": "Blueberries",
+        "owner": 1,
+        "top_left": [
+          4,
+          0
+        ]
+      },
+      {
+        "name": "Scholar Bag",
+        "owner": 1,
+        "top_left": [
+          4,
+          0
+        ]
+      },
+      {
+        "name": "Investment Opportunity",
+        "owner": 1,
+        "top_left": [
+          8,
+          1
+        ]
+      },
+      {
+        "name": "Black Pawn",
+        "owner": 1,
+        "top_left": [
+          2,
+          0
+        ]
+      },
+      {
+        "name": "Amulet of Light",
+        "owner": 1,
+        "top_left": [
+          4,
+          2
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "top_left": [
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "top_left": [
+          2,
+          4
+        ]
+      },
+      {
+        "name": "Banana",
+        "owner": 1,
+        "top_left": [
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Book of Basics",
+        "owner": 1,
+        "top_left": [
+          6,
+          3
+        ]
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 1,
+        "top_left": [
+          3,
+          6
+        ]
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 1,
+        "top_left": [
+          6,
+          2
+        ]
+      },
+      {
+        "name": "Piggybank",
+        "owner": 1,
+        "top_left": [
+          5,
+          0
+        ]
+      },
+      {
+        "name": "Chess Board",
+        "owner": 1,
+        "top_left": [
+          4,
+          3
+        ]
+      },
+      {
+        "name": "Hammer",
+        "owner": 1,
+        "top_left": [
+          2,
+          4
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "top_left": [
+          7,
+          0
+        ]
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 1,
+        "top_left": [
+          7,
+          2
+        ]
+      },
+      {
+        "name": "Mage Hat",
+        "owner": 1,
+        "top_left": [
+          2,
+          0
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "top_left": [
+          2,
+          0
+        ]
+      },
+      {
+        "name": "Wand",
+        "owner": 1,
+        "top_left": [
+          7,
+          1
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "top_left": [
+          3,
+          2
+        ]
+      },
+      {
+        "name": "Blueberries",
+        "owner": 1,
+        "top_left": [
+          5,
+          1
+        ]
+      },
+      {
+        "name": "Berserker Bag",
+        "owner": 3,
+        "top_left": [
+          2,
+          3
+        ]
+      },
+      {
+        "name": "Spicy Banana",
+        "owner": 3,
+        "top_left": [
+          3,
+          5
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "top_left": [
+          1,
+          1
+        ]
+      },
+      {
+        "name": "Hammer",
+        "owner": 3,
+        "top_left": [
+          0,
+          3
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "top_left": [
+          3,
+          0
+        ]
+      },
+      {
+        "name": "Bag of Stones",
+        "owner": 3,
+        "top_left": [
+          1,
+          1
+        ]
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 3,
+        "top_left": [
+          5,
+          4
+        ]
+      },
+      {
+        "name": "Piggybank",
+        "owner": 3,
+        "top_left": [
+          2,
+          6
+        ]
+      },
+      {
+        "name": "Amulet of the Wild",
+        "owner": 3,
+        "top_left": [
+          6,
+          2
+        ]
+      },
+      {
+        "name": "Banana",
+        "owner": 3,
+        "top_left": [
+          4,
+          4
+        ]
+      },
+      {
+        "name": "Banana",
+        "owner": 3,
+        "top_left": [
+          2,
+          2
+        ]
+      },
+      {
+        "name": "Pocket Sand",
+        "owner": 3,
+        "top_left": [
+          1,
+          2
+        ]
+      },
+      {
+        "name": "Piggybank",
+        "owner": 3,
+        "top_left": [
+          3,
+          0
+        ]
+      },
+      {
+        "name": "Pan",
+        "owner": 3,
+        "top_left": [
+          4,
+          2
+        ]
+      },
+      {
+        "name": "Amulet of Light",
+        "owner": 3,
+        "top_left": [
+          3,
+          4
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "top_left": [
+          2,
+          5
+        ]
+      },
+      {
+        "name": "Banana",
+        "owner": 3,
+        "top_left": [
+          6,
+          3
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "top_left": [
+          5,
+          2
+        ]
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 3,
+        "top_left": [
+          0,
+          4
+        ]
+      },
+      {
+        "name": "Blueberries",
+        "owner": 3,
+        "top_left": [
+          4,
+          4
+        ]
+      },
+      {
+        "name": "Piggybank",
+        "owner": 3,
+        "top_left": [
+          8,
+          3
+        ]
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "top_left": [
+          7,
+          3
+        ]
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 3,
+        "top_left": [
+          3,
+          2
+        ]
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 3,
+        "top_left": [
+          4,
+          5
+        ]
+      },
+      {
+        "name": "Banana",
+        "owner": 3,
+        "top_left": [
+          3,
+          1
+        ]
+      }
+    ]
+  },
+  "before_activate": {
+    "seed": "7105592051311235989",
+    "state": "-4533604308972069168"
+  },
+  "combat_start": {
+    "seed": "7105592051311235989",
+    "state": "-4533604308972069168",
+    "player_stamina": 5,
+    "opponent_stamina": 5,
+    "util_time": "11.15000058151781600",
+    "clock_time": "12.65000065974891200"
+  },
+  "idle_animation_timers": [
+    {
+      "owner": 1,
+      "left": 0.64182,
+      "left_precise": "0.64182007312774660",
+      "wait_time": 2.158487,
+      "process_mode": 1,
+      "stopped": false
+    },
+    {
+      "owner": 0,
+      "left": 1.980735,
+      "left_precise": "1.98073458671569820",
+      "wait_time": 3.380735,
+      "process_mode": 1,
+      "stopped": false
+    }
+  ],
+  "flicker_states": [
+    {
+      "identity": {
+        "name": "Flame",
+        "owner": 8,
+        "top_left": [
+          -999,
+          -999
+        ],
+        "relative_path": "Icon/TorchLight/FlickerAnimation"
+      },
+      "pending": [
+        {
+          "left": "3.62681317329406740",
+          "method": "playAni"
+        }
+      ],
+      "playing": false,
+      "position": 0,
+      "position_precise": "0.00000000000000000",
+      "speed_precise": "1.00000000000000000",
+      "limits": [
+        4,
+        16,
+        0.3,
+        0.8
+      ],
+      "speed": 1,
+      "animation": "Flicker",
+      "length": 0.3,
+      "loop": false,
+      "inside_tree": false,
+      "path": "off-tree"
+    }
+  ],
+  "activated": {
+    "seed": "-709940147387267665",
+    "state": "-5653964531107343518",
+    "items": [
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Scholar Bag",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Hammer",
+        "owner": 1,
+        "trigger_time": 1.963446,
+        "speed": 1.2
+      },
+      {
+        "name": "Book of Basics",
+        "owner": 1,
+        "trigger_time": 5.19725,
+        "speed": 1.2
+      },
+      {
+        "name": "Banana",
+        "owner": 1,
+        "trigger_time": 5.152776,
+        "speed": 1
+      },
+      {
+        "name": "Piggybank",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Strong Health Potion",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Piggybank",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Customer Card",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Investment Opportunity",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Chess Board",
+        "owner": 1,
+        "trigger_time": 0.888345,
+        "speed": 1
+      },
+      {
+        "name": "White Pawn",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Black Pawn",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Book of Basics",
+        "owner": 1,
+        "trigger_time": 5.002939,
+        "speed": 1.2
+      },
+      {
+        "name": "Wand",
+        "owner": 1,
+        "trigger_time": 3.23688,
+        "speed": 1.1
+      },
+      {
+        "name": "Owl Spirit",
+        "owner": 1,
+        "trigger_time": 3.160769,
+        "speed": 1.1
+      },
+      {
+        "name": "Amulet of Light",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Blueberries",
+        "owner": 1,
+        "trigger_time": 3.438636,
+        "speed": 1
+      },
+      {
+        "name": "Blueberries",
+        "owner": 1,
+        "trigger_time": 3.338732,
+        "speed": 1
+      },
+      {
+        "name": "Mage Hat",
+        "owner": 1,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Berserker Bag",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Leather Bag",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Fanny Pack",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Amulet of the Wild",
+        "owner": 3,
+        "trigger_time": 5.025296,
+        "speed": 1
+      },
+      {
+        "name": "Piggybank",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Bag of Stones",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Piggybank",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Pocket Sand",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Banana",
+        "owner": 3,
+        "trigger_time": 4.900859,
+        "speed": 1.1
+      },
+      {
+        "name": "Piggybank",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Blueberries",
+        "owner": 3,
+        "trigger_time": 3.449017,
+        "speed": 1.1
+      },
+      {
+        "name": "Banana",
+        "owner": 3,
+        "trigger_time": 4.908104,
+        "speed": 1.3
+      },
+      {
+        "name": "Hammer",
+        "owner": 3,
+        "trigger_time": 1.992999,
+        "speed": 1.1
+      },
+      {
+        "name": "Amulet of Light",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Spicy Banana",
+        "owner": 3,
+        "trigger_time": 0,
+        "speed": 1
+      },
+      {
+        "name": "Banana",
+        "owner": 3,
+        "trigger_time": 4.951726,
+        "speed": 1.1
+      },
+      {
+        "name": "Banana",
+        "owner": 3,
+        "trigger_time": 4.938788,
+        "speed": 1.1
+      },
+      {
+        "name": "Pan",
+        "owner": 3,
+        "trigger_time": 2.302474,
+        "speed": 1
+      }
+    ]
+  }
+}

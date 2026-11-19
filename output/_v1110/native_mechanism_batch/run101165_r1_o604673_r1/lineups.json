@@ -1,0 +1,374 @@
+{
+  "seed": 721155366,
+  "run_id": 101165,
+  "round_id": 1,
+  "opp_run_id": 604673,
+  "opp_round_id": 1,
+  "phase": "assembled",
+  "snapshot": 3,
+  "replay_controls": {
+    "below_master": true,
+    "custom_health_multiplier": 100
+  },
+  "assembly_order_note": "items 数组即装配（实例创建）顺序：buildInfo 反序列化流顺序经原版 sort_BagOrder 后的顺序，两侧模拟器按此顺序重建",
+  "player": {
+    "class": 6,
+    "class_name": "Engineer",
+    "max_health": 25,
+    "current_health": 25,
+    "base_max_stamina": 5,
+    "max_stamina": 5,
+    "items": [
+      {
+        "name": "Leather Bag",
+        "identifier": "Leather Bag",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 3
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "crafted": false
+      },
+      {
+        "name": "Engineer Box",
+        "identifier": "Engineer Box",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 3
+        },
+        "face_direction": 1,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "crafted": false
+      },
+      {
+        "name": "Leather Bag",
+        "identifier": "Leather Bag",
+        "owner_type": 1,
+        "top_left": {
+          "x": 7,
+          "y": 3
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "crafted": false
+      },
+      {
+        "name": "Broom",
+        "identifier": "Broom",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        },
+        "face_direction": 1,
+        "gems": [
+          "Lump of Coal"
+        ],
+        "effects": [
+
+        ],
+        "crafted": false
+      },
+      {
+        "name": "Battery",
+        "identifier": "Battery",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 4
+        },
+        "face_direction": 3,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "crafted": false
+      },
+      {
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 2,
+          "y": 3
+        },
+        "face_direction": 1,
+        "gems": [
+          "Chipped Amethyst"
+        ],
+        "effects": [
+
+        ],
+        "crafted": false
+      },
+      {
+        "name": "Piggybank",
+        "identifier": "Piggybank",
+        "owner_type": 1,
+        "top_left": {
+          "x": 7,
+          "y": 3
+        },
+        "face_direction": 1,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "crafted": false
+      },
+      {
+        "name": "Walrus Tusk",
+        "identifier": "Walrus Tusk",
+        "owner_type": 1,
+        "top_left": {
+          "x": 8,
+          "y": 3
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "crafted": false
+      },
+      {
+        "name": "Healing Herbs",
+        "identifier": "Healing Herbs",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 3
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "crafted": false
+      },
+      {
+        "name": "Garlic",
+        "identifier": "Garlic",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 3
+        },
+        "face_direction": 1,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "crafted": false
+      }
+    ]
+  },
+  "opponent": {
+    "class": 5,
+    "class_name": "Adventurer",
+    "max_health": 25,
+    "current_health": 25,
+    "base_max_stamina": 5,
+    "max_stamina": 5,
+    "items": [
+      {
+        "name": "Leather Bag",
+        "identifier": "Leather Bag",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "crafted": false
+      },
+      {
+        "name": "Leather Bag",
+        "identifier": "Leather Bag",
+        "owner_type": 3,
+        "top_left": {
+          "x": 4,
+          "y": 4
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "crafted": false
+      },
+      {
+        "name": "Sewing Case",
+        "identifier": "Sewing Case",
+        "owner_type": 3,
+        "top_left": {
+          "x": 6,
+          "y": 3
+        },
+        "face_direction": 1,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "crafted": false
+      },
+      {
+        "name": "Wooden Sword",
+        "identifier": "Wooden Sword",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 4
+        },
+        "face_direction": 0,
+        "gems": [
+          "Chipped Emerald"
+        ],
+        "effects": [
+
+        ],
+        "crafted": false
+      },
+      {
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 4
+        },
+        "face_direction": 2,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "crafted": false
+      },
+      {
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 5
+        },
+        "face_direction": 2,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "crafted": false
+      },
+      {
+        "name": "Star of Courage",
+        "identifier": "Star of Courage",
+        "owner_type": 3,
+        "top_left": {
+          "x": 6,
+          "y": 4
+        },
+        "face_direction": 1,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "crafted": false
+      },
+      {
+        "name": "Healing Herbs",
+        "identifier": "Healing Herbs",
+        "owner_type": 3,
+        "top_left": {
+          "x": 6,
+          "y": 5
+        },
+        "face_direction": 0,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "crafted": false
+      },
+      {
+        "name": "Piggybank",
+        "identifier": "Piggybank",
+        "owner_type": 3,
+        "top_left": {
+          "x": 5,
+          "y": 4
+        },
+        "face_direction": 1,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "crafted": false
+      },
+      {
+        "name": "Box of Riches",
+        "identifier": "Box of Riches",
+        "owner_type": 3,
+        "top_left": {
+          "x": 4,
+          "y": 4
+        },
+        "face_direction": 1,
+        "gems": [
+
+        ],
+        "effects": [
+
+        ],
+        "crafted": false
+      }
+    ]
+  }
+}

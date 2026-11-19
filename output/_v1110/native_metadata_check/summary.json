@@ -1,0 +1,65 @@
+{
+  "passed": 7,
+  "total": 7,
+  "candidate": "isolated 1.1.10, pure Python; default promotion and Cython pending",
+  "cases": [
+    {
+      "case_id": "run101207_r1_o604707_r1",
+      "events_including_terminal": 160,
+      "cpp_events": 159,
+      "winner_match": true,
+      "natural_ending_match": true,
+      "strict_gem_origins": true
+    },
+    {
+      "case_id": "run604768_r18_o101694_r18",
+      "events_including_terminal": 379,
+      "cpp_events": 378,
+      "winner_match": true,
+      "natural_ending_match": true,
+      "strict_gem_origins": true
+    },
+    {
+      "case_id": "run101165_r1_o604673_r1",
+      "events_including_terminal": 189,
+      "cpp_events": 188,
+      "winner_match": true,
+      "natural_ending_match": true,
+      "strict_gem_origins": true
+    },
+    {
+      "case_id": "run704404_r9_o500134_r9",
+      "events_including_terminal": 138,
+      "cpp_events": 137,
+      "winner_match": true,
+      "natural_ending_match": true,
+      "strict_gem_origins": true
+    },
+    {
+      "case_id": "run604618_r9_o604622_r9",
+      "events_including_terminal": 87,
+      "cpp_events": 86,
+      "winner_match": true,
+      "natural_ending_match": true,
+      "strict_gem_origins": true
+    },
+    {
+      "case_id": "run101727_r6_o705103_r6",
+      "events_including_terminal": 771,
+      "cpp_events": 770,
+      "winner_match": true,
+      "natural_ending_match": true,
+      "strict_gem_origins": true
+    },
+    {
+      "case_id": "run101621_r3_o705060_r3",
+      "events_including_terminal": 147,
+      "cpp_events": 146,
+      "winner_match": true,
+      "natural_ending_match": true,
+      "strict_gem_origins": true
+    }
+  ],
+  "dll_sha256": "fff59311d4f82979b57888150b6a9f26a83b9e1d6e091a9f293e1a1bf8ac99bb",
+  "runtime_data_sha256": "87dfe56b2ad52fc331482d1066927d2f83419b3c13d34a3800ea4406f52c3261"
+}

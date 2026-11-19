@@ -10,23 +10,46 @@ sys.path.insert(0,str(repo))
 from tools import godot_headless as gh
 
 ap=argparse.ArgumentParser()
-ap.add_argument("case_id")
+ap.add_argument("case_id", nargs="?", help="One case ID or a comma-separated list")
+ap.add_argument("--case-ids", type=Path, help="JSON list or a cases table; preserve listed order")
 ap.add_argument("--out",default="native_settled")
 ap.add_argument("--timeout",type=int,default=240)
 ap.add_argument("--disable-render-loop", action="store_true")
 ap.add_argument("--rng-probe", action="store_true")
+ap.add_argument("--cohort", choices=("expand", "base"), default="expand")
+ap.add_argument("--project-name", default="native_reference")
+ap.add_argument("--reuse-prepared", action="store_true", help="Use a frozen previously prepared project")
 args=ap.parse_args()
+if bool(args.case_id) == bool(args.case_ids):
+    ap.error("Supply either case_id or --case-ids")
+if args.case_ids:
+    selected=json.loads(args.case_ids.read_text("utf8"))
+    selected=selected["cases"] if isinstance(selected,dict) else selected
+    case_ids=[case if isinstance(case,str) else case["case_id"] for case in selected]
+else:
+    case_ids=[case.strip() for case in args.case_id.split(",") if case.strip()]
+if not case_ids or len(case_ids) != len(set(case_ids)):
+    ap.error("Case IDs must be nonempty and unique within a batch")
 stage=repo/"output/_v1110"
-subprocess.run([sys.executable,"-u","-X","utf8",str(stage/"prepare_native_reference.py"),str(stage),
-                *(["--rng-probe"] if args.rng_probe else [])],check=True)
-command=gh.cmd("--fixed-fps","60",project=str(stage/"native_reference"))
+project = (stage/args.project_name).resolve()
+if project.parent != stage.resolve():
+    ap.error("The isolated project must be a direct child of the stage directory")
+if not args.reuse_prepared:
+    subprocess.run([sys.executable,"-u","-X","utf8",str(stage/"prepare_native_reference.py"),str(stage),
+                    "--cohort",args.cohort,"--project-name",args.project_name,
+                    *(["--rng-probe"] if args.rng_probe else [])],check=True)
+else:
+    manifest=json.loads((project/"reference_manifest.json").read_text("utf8"))
+    if manifest.get("cohort") != args.cohort or manifest.get("version") != "1.1.10":
+        ap.error("Prepared project version or cohort differs from this recording")
+command=gh.cmd("--fixed-fps","60",project=str(project))
 if args.disable_render_loop:
     command.append("--disable-render-loop")
 if args.rng_probe:
     command.append("--debug")  # Godot exposes get_stack() only with a debugger.
-command[0]=str(stage/"native_reference/runtime/Godot_v3.6-stable_win64.exe")
+command[0]=str(project/"runtime/Godot_v3.6-stable_win64.exe")
 p,log,h=gh.spawn(command,label="native_settled",tag="native_settled",
-                 env_extra={"NATIVE_BATTLE_CASE":args.case_id,"NATIVE_BATTLE_OUT":str(stage/args.out)})
+                 env_extra={"NATIVE_BATTLE_CASE":",".join(case_ids),"NATIVE_BATTLE_OUT":str(stage/args.out)})
 print("pid",p.pid,"log",log,flush=True)
 try:
     rc=p.wait(timeout=args.timeout)
@@ -41,21 +64,23 @@ print("\n".join(selected[:12]+selected[-8:]),flush=True)
 print("return",rc,flush=True)
 if not rc:
     errors=[s for s in lines if "SCRIPT ERROR" in s or "Debugger Break" in s]
-    target=stage/args.out/args.case_id
     if errors:
         print("Reference recording rejected because of script errors:", "\n".join(errors), flush=True)
         rc=1
-    elif not any(f"[NATIVE] Recorded {args.case_id} " in s for s in lines):
-        print("Reference recording rejected: no current-run completion marker", flush=True)
-        rc=1
-    elif not all((target/name).is_file() for name in ("events.json", "lineups.json", "boundaries.json")):
-        print("Reference recording rejected: missing output", flush=True)
+    elif not all(any(f"[NATIVE] Recorded {cid} " in s for s in lines) for cid in case_ids):
+        print("Reference recording rejected: missing a current-run completion marker", flush=True)
         rc=1
     else:
-        events=json.loads((target/"events.json").read_text("utf8"))
-        if events.get("event_count") != len(events.get("events",[])) or not events["events"] or events["events"][-1]["type"] not in (111,112):
-            print("Reference recording rejected: missing natural terminal", flush=True)
-            rc=1
-        else:
-            shutil.copyfile(stage/"native_reference/reference_manifest.json",target/"reference_manifest.json")
+        for cid in case_ids:
+            target=stage/args.out/cid
+            if not all((target/name).is_file() for name in ("events.json", "lineups.json", "boundaries.json")):
+                print("Reference recording rejected: missing output for",cid,flush=True)
+                rc=1
+                break
+            events=json.loads((target/"events.json").read_text("utf8"))
+            if events.get("event_count") != len(events.get("events",[])) or not events["events"] or events["events"][-1]["type"] not in (111,112):
+                print("Reference recording rejected: missing natural terminal for",cid,flush=True)
+                rc=1
+                break
+            shutil.copyfile(project/"reference_manifest.json",target/"reference_manifest.json")
 raise SystemExit(rc)

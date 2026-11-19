@@ -1,0 +1,26 @@
+{
+  "cases": [
+    {
+      "case_id": "run101727_r6_o705103_r6",
+      "seed": 259401831,
+      "run_id": 101727,
+      "round_id": 6,
+      "opp_run_id": 705103,
+      "opp_round_id": 6,
+      "player_class": "Mage",
+      "player_class_id": 4,
+      "opp_class": "Berserker",
+      "opp_class_id": 2,
+      "player_version": "1.1.9",
+      "opp_version": "1.1.9",
+      "player_stage": "4-6",
+      "player_items": 28,
+      "opp_items": 25,
+      "player_src_run": 1727,
+      "opp_src_run": 5103,
+      "select_reason": "bucket:4/4-6",
+      "opp_reuse": 1,
+      "batch": "main"
+    }
+  ]
+}

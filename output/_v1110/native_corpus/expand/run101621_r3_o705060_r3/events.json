@@ -1,0 +1,3052 @@
+{
+  "seed": 202360743,
+  "run_id": 101621,
+  "round_id": 3,
+  "opp_run_id": 705060,
+  "opp_round_id": 3,
+  "combat_time": 10.166667,
+  "ticks": 610,
+  "winner": "player",
+  "event_count": 147,
+  "events": [
+    {
+      "id": 0,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Battery",
+        "identifier": "Battery",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 1
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 1,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Battery",
+        "identifier": "Battery",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 2,
+      "type": 107,
+      "type_name": "107",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Resistor",
+        "identifier": "Resistor",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 3
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 3,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 3,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Piggybank",
+        "identifier": "Piggybank",
+        "owner_type": 1,
+        "top_left": {
+          "x": 8,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 4,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Piggy of Riches",
+        "identifier": "Piggy of Riches",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 6
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 5,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Smithing For Dummies",
+        "identifier": "Smithing For Dummies",
+        "owner_type": 3,
+        "top_left": {
+          "x": 4,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 6,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Puzzlebag L",
+        "identifier": "Puzzlebag L",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 1
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "amount": 7
+      }
+    },
+    {
+      "id": 7,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Piggybank",
+        "identifier": "Piggybank",
+        "owner_type": 3,
+        "top_left": {
+          "x": 6,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 8,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Piggybank",
+        "identifier": "Piggybank",
+        "owner_type": 3,
+        "top_left": {
+          "x": 6,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 9,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Piggybank",
+        "identifier": "Piggybank",
+        "owner_type": 3,
+        "top_left": {
+          "x": 8,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 10,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Piggybank",
+        "identifier": "Piggybank",
+        "owner_type": 3,
+        "top_left": {
+          "x": 8,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 11,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Piggybank",
+        "identifier": "Piggybank",
+        "owner_type": 3,
+        "top_left": {
+          "x": 7,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "amount": 4
+      }
+    },
+    {
+      "id": 12,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 0,
+      "origin": {
+        "kind": "item",
+        "name": "Piggybank",
+        "identifier": "Piggybank",
+        "owner_type": 3,
+        "top_left": {
+          "x": 7,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 13,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 1.45,
+      "origin": {
+        "kind": "item",
+        "name": "Burning Sword",
+        "identifier": "Burning Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 2
+      }
+    },
+    {
+      "id": 14,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 1.45,
+      "origin": {
+        "kind": "item",
+        "name": "Burning Sword",
+        "identifier": "Burning Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 15,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 1.45,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": 14,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 16,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 1.45,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 17,
+      "type": 20,
+      "type_name": "20",
+      "timestamp": 1.45,
+      "origin": {
+        "kind": "item",
+        "name": "Bag of Giving",
+        "identifier": "Bag of Giving",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": 16,
+      "params": {
+        "stamina": 0.1
+      }
+    },
+    {
+      "id": 18,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 1.466667,
+      "origin": {
+        "kind": "item",
+        "name": "Shortbow",
+        "identifier": "Shortbow",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 2
+      }
+    },
+    {
+      "id": 19,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 1.466667,
+      "origin": {
+        "kind": "item",
+        "name": "Shortbow",
+        "identifier": "Shortbow",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 20,
+      "type": 107,
+      "type_name": "107",
+      "timestamp": 2,
+      "origin": {
+        "kind": "item",
+        "name": "Resistor",
+        "identifier": "Resistor",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 3
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 3,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 21,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 2.033333,
+      "origin": {
+        "kind": "item",
+        "name": "Broom",
+        "identifier": "Broom",
+        "owner_type": 3,
+        "top_left": {
+          "x": 5,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 4
+      }
+    },
+    {
+      "id": 22,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 2.033333,
+      "origin": {
+        "kind": "item",
+        "name": "Broom",
+        "identifier": "Broom",
+        "owner_type": 3,
+        "top_left": {
+          "x": 5,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 23,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 2.566667,
+      "origin": {
+        "kind": "item",
+        "name": "Stone",
+        "identifier": "Stone",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 3
+      }
+    },
+    {
+      "id": 24,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 2.566667,
+      "origin": {
+        "kind": "item",
+        "name": "Stone",
+        "identifier": "Stone",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 25,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 2.583333,
+      "origin": {
+        "kind": "item",
+        "name": "Rat",
+        "identifier": "Rat",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 5
+      }
+    },
+    {
+      "id": 26,
+      "type": 108,
+      "type_name": "108",
+      "timestamp": 2.583333,
+      "origin": {
+        "kind": "item",
+        "name": "Rat",
+        "identifier": "Rat",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 4
+        }
+      },
+      "target": 1,
+      "parent_id": 25,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 27,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 2.583333,
+      "origin": {
+        "kind": "item",
+        "name": "Rat",
+        "identifier": "Rat",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 28,
+      "type": 20,
+      "type_name": "20",
+      "timestamp": 2.583333,
+      "origin": {
+        "kind": "item",
+        "name": "Bag of Giving",
+        "identifier": "Bag of Giving",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": 27,
+      "params": {
+        "stamina": 0.1
+      }
+    },
+    {
+      "id": 29,
+      "type": 107,
+      "type_name": "107",
+      "timestamp": 2.733333,
+      "origin": {
+        "kind": "item",
+        "name": "Burning Sword",
+        "identifier": "Burning Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 4
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 30,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 2.733333,
+      "origin": {
+        "kind": "item",
+        "name": "Burning Sword",
+        "identifier": "Burning Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 5
+      }
+    },
+    {
+      "id": 31,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 2.733333,
+      "origin": {
+        "kind": "item",
+        "name": "Burning Sword",
+        "identifier": "Burning Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 32,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 2.883333,
+      "origin": {
+        "kind": "item",
+        "name": "Shortbow",
+        "identifier": "Shortbow",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 4
+      }
+    },
+    {
+      "id": 33,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 2.883333,
+      "origin": {
+        "kind": "item",
+        "name": "Shortbow",
+        "identifier": "Shortbow",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 34,
+      "type": 105,
+      "type_name": "105",
+      "timestamp": 3.3,
+      "origin": {
+        "kind": "item",
+        "name": "Blueberries",
+        "identifier": "Blueberries",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 5
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 35,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 3.3,
+      "origin": {
+        "kind": "item",
+        "name": "Blueberries",
+        "identifier": "Blueberries",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 36,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 3.55,
+      "origin": {
+        "kind": "item",
+        "name": "Chess Board",
+        "identifier": "Chess Board",
+        "owner_type": 3,
+        "top_left": {
+          "x": 1,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 37,
+      "type": 105,
+      "type_name": "105",
+      "timestamp": 3.55,
+      "origin": {
+        "kind": "item",
+        "name": "Black Pawn",
+        "identifier": "Black Pawn",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 2
+        }
+      },
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": 3,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 38,
+      "type": 101,
+      "type_name": "101",
+      "timestamp": 3.55,
+      "origin": {
+        "kind": "item",
+        "name": "White Pawn",
+        "identifier": "White Pawn",
+        "owner_type": 3,
+        "top_left": {
+          "x": 2,
+          "y": 2
+        }
+      },
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 39,
+      "type": 107,
+      "type_name": "107",
+      "timestamp": 3.9,
+      "origin": {
+        "kind": "item",
+        "name": "Burning Sword",
+        "identifier": "Burning Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 4
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 40,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 3.9,
+      "origin": {
+        "kind": "item",
+        "name": "Burning Sword",
+        "identifier": "Burning Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 4
+      }
+    },
+    {
+      "id": 41,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 3.9,
+      "origin": {
+        "kind": "item",
+        "name": "Burning Sword",
+        "identifier": "Burning Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 42,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 3.9,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": 41,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 43,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 3.9,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 44,
+      "type": 20,
+      "type_name": "20",
+      "timestamp": 3.9,
+      "origin": {
+        "kind": "item",
+        "name": "Bag of Giving",
+        "identifier": "Bag of Giving",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": 43,
+      "params": {
+        "stamina": 0.1
+      }
+    },
+    {
+      "id": 45,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 3.9,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 4
+        }
+      },
+      "target": 0,
+      "parent_id": 43,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 46,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 3.9,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": 45,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 47,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 3.933334,
+      "origin": {
+        "kind": "item",
+        "name": "Wand",
+        "identifier": "Wand",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 5
+        }
+      },
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 48,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 3.933334,
+      "origin": {
+        "kind": "item",
+        "name": "Wand",
+        "identifier": "Wand",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 49,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 3.983334,
+      "origin": 108,
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "damage": 1
+      }
+    },
+    {
+      "id": 50,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 4.133334,
+      "origin": {
+        "kind": "item",
+        "name": "Broom",
+        "identifier": "Broom",
+        "owner_type": 3,
+        "top_left": {
+          "x": 5,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 3
+      }
+    },
+    {
+      "id": 51,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 4.133334,
+      "origin": {
+        "kind": "item",
+        "name": "Broom",
+        "identifier": "Broom",
+        "owner_type": 3,
+        "top_left": {
+          "x": 5,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 52,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 4.25,
+      "origin": {
+        "kind": "item",
+        "name": "Shortbow",
+        "identifier": "Shortbow",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 3
+      }
+    },
+    {
+      "id": 53,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 4.25,
+      "origin": {
+        "kind": "item",
+        "name": "Shortbow",
+        "identifier": "Shortbow",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 54,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 4.25,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 4
+        }
+      },
+      "target": 0,
+      "parent_id": 53,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 55,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 4.25,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": 54,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 56,
+      "type": 107,
+      "type_name": "107",
+      "timestamp": 4.85,
+      "origin": {
+        "kind": "item",
+        "name": "Burning Sword",
+        "identifier": "Burning Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 4
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 57,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 4.85,
+      "origin": {
+        "kind": "item",
+        "name": "Burning Sword",
+        "identifier": "Burning Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 3
+      }
+    },
+    {
+      "id": 58,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 4.85,
+      "origin": {
+        "kind": "item",
+        "name": "Burning Sword",
+        "identifier": "Burning Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 59,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 4.85,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": 58,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 60,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 4.85,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 61,
+      "type": 20,
+      "type_name": "20",
+      "timestamp": 4.85,
+      "origin": {
+        "kind": "item",
+        "name": "Bag of Giving",
+        "identifier": "Bag of Giving",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": 60,
+      "params": {
+        "stamina": 0.1
+      }
+    },
+    {
+      "id": 62,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 4.85,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 4
+        }
+      },
+      "target": 0,
+      "parent_id": 58,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 63,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 4.85,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": 62,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 64,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 4.983334,
+      "origin": 102,
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": 1
+      }
+    },
+    {
+      "id": 65,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 4.983334,
+      "origin": 102,
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 66,
+      "type": 21,
+      "type_name": "21",
+      "timestamp": 4.983334,
+      "origin": {
+        "kind": "item",
+        "name": "Dragonskin Boots",
+        "identifier": "Dragonskin Boots",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "duration": 4
+      }
+    },
+    {
+      "id": 67,
+      "type": 106,
+      "type_name": "106",
+      "timestamp": 4.983334,
+      "origin": {
+        "kind": "item",
+        "name": "Dragonskin Boots",
+        "identifier": "Dragonskin Boots",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 3
+        }
+      },
+      "target": 0,
+      "parent_id": 66,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 68,
+      "type": 100,
+      "type_name": "100",
+      "timestamp": 4.983334,
+      "origin": {
+        "kind": "item",
+        "name": "Dragonskin Boots",
+        "identifier": "Dragonskin Boots",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 3
+        }
+      },
+      "target": 0,
+      "parent_id": 66,
+      "params": {
+        "amount": 25,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 69,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 5.2,
+      "origin": {
+        "kind": "item",
+        "name": "Rat",
+        "identifier": "Rat",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 5
+      }
+    },
+    {
+      "id": 70,
+      "type": 108,
+      "type_name": "108",
+      "timestamp": 5.2,
+      "origin": {
+        "kind": "item",
+        "name": "Rat",
+        "identifier": "Rat",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 4
+        }
+      },
+      "target": 1,
+      "parent_id": 69,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 71,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 5.2,
+      "origin": {
+        "kind": "item",
+        "name": "Rat",
+        "identifier": "Rat",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 72,
+      "type": 20,
+      "type_name": "20",
+      "timestamp": 5.2,
+      "origin": {
+        "kind": "item",
+        "name": "Bag of Giving",
+        "identifier": "Bag of Giving",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": 71,
+      "params": {
+        "stamina": 0.1
+      }
+    },
+    {
+      "id": 73,
+      "type": 105,
+      "type_name": "105",
+      "timestamp": 5.516667,
+      "origin": {
+        "kind": "item",
+        "name": "Book of Basics",
+        "identifier": "Book of Basics",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 4
+        }
+      },
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": -1,
+        "used": true,
+        "reflected": false
+      }
+    },
+    {
+      "id": 74,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 5.516667,
+      "origin": {
+        "kind": "item",
+        "name": "Book of Basics",
+        "identifier": "Book of Basics",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": 73,
+      "params": {
+        "amount": 8
+      }
+    },
+    {
+      "id": 75,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 5.516667,
+      "origin": {
+        "kind": "item",
+        "name": "Book of Basics",
+        "identifier": "Book of Basics",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 76,
+      "type": 3,
+      "type_name": "3",
+      "timestamp": 5.6,
+      "origin": {
+        "kind": "item",
+        "name": "Shortbow",
+        "identifier": "Shortbow",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 77,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 5.6,
+      "origin": {
+        "kind": "item",
+        "name": "Shortbow",
+        "identifier": "Shortbow",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 78,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 5.6,
+      "origin": {
+        "kind": "item",
+        "name": "Broom",
+        "identifier": "Broom",
+        "owner_type": 3,
+        "top_left": {
+          "x": 5,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 5
+      }
+    },
+    {
+      "id": 79,
+      "type": 109,
+      "type_name": "109",
+      "timestamp": 5.6,
+      "origin": {
+        "kind": "item",
+        "name": "Broom",
+        "identifier": "Broom",
+        "owner_type": 3,
+        "top_left": {
+          "x": 5,
+          "y": 2
+        }
+      },
+      "target": 0,
+      "parent_id": 78,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 80,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 5.6,
+      "origin": {
+        "kind": "item",
+        "name": "Broom",
+        "identifier": "Broom",
+        "owner_type": 3,
+        "top_left": {
+          "x": 5,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 81,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 5.783334,
+      "origin": {
+        "kind": "item",
+        "name": "Burning Sword",
+        "identifier": "Burning Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 6
+      }
+    },
+    {
+      "id": 82,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 5.783334,
+      "origin": {
+        "kind": "item",
+        "name": "Burning Sword",
+        "identifier": "Burning Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 83,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 5.783334,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": 82,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 84,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 5.783334,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 85,
+      "type": 20,
+      "type_name": "20",
+      "timestamp": 5.783334,
+      "origin": {
+        "kind": "item",
+        "name": "Bag of Giving",
+        "identifier": "Bag of Giving",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": 84,
+      "params": {
+        "stamina": 0.1
+      }
+    },
+    {
+      "id": 86,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 5.783334,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 4
+        }
+      },
+      "target": 0,
+      "parent_id": 82,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 87,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 5.783334,
+      "origin": {
+        "kind": "item",
+        "name": "Amulet of Light",
+        "identifier": "Amulet of Light",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": 86,
+      "params": {
+        "amount": 3
+      }
+    },
+    {
+      "id": 88,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 5.983334,
+      "origin": 108,
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "damage": 2
+      }
+    },
+    {
+      "id": 89,
+      "type": 105,
+      "type_name": "105",
+      "timestamp": 6.283334,
+      "origin": {
+        "kind": "item",
+        "name": "Blueberries",
+        "identifier": "Blueberries",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 5
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 90,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 6.283334,
+      "origin": {
+        "kind": "item",
+        "name": "Blueberries",
+        "identifier": "Blueberries",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 91,
+      "type": 101,
+      "type_name": "101",
+      "timestamp": 6.516667,
+      "origin": {
+        "kind": "item",
+        "name": "Wand",
+        "identifier": "Wand",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 5
+        }
+      },
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 92,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 6.516667,
+      "origin": {
+        "kind": "item",
+        "name": "Wand",
+        "identifier": "Wand",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 93,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 6.75,
+      "origin": {
+        "kind": "item",
+        "name": "Broom",
+        "identifier": "Broom",
+        "owner_type": 3,
+        "top_left": {
+          "x": 5,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 3
+      }
+    },
+    {
+      "id": 94,
+      "type": 109,
+      "type_name": "109",
+      "timestamp": 6.75,
+      "origin": {
+        "kind": "item",
+        "name": "Broom",
+        "identifier": "Broom",
+        "owner_type": 3,
+        "top_left": {
+          "x": 5,
+          "y": 2
+        }
+      },
+      "target": 0,
+      "parent_id": 93,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 95,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 6.75,
+      "origin": {
+        "kind": "item",
+        "name": "Broom",
+        "identifier": "Broom",
+        "owner_type": 3,
+        "top_left": {
+          "x": 5,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 96,
+      "type": 107,
+      "type_name": "107",
+      "timestamp": 6.766667,
+      "origin": {
+        "kind": "item",
+        "name": "Burning Sword",
+        "identifier": "Burning Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 4
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 97,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 6.766667,
+      "origin": {
+        "kind": "item",
+        "name": "Burning Sword",
+        "identifier": "Burning Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 4
+      }
+    },
+    {
+      "id": 98,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 6.766667,
+      "origin": {
+        "kind": "item",
+        "name": "Burning Sword",
+        "identifier": "Burning Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 99,
+      "type": 3,
+      "type_name": "3",
+      "timestamp": 6.966667,
+      "origin": {
+        "kind": "item",
+        "name": "Shortbow",
+        "identifier": "Shortbow",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 100,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 6.966667,
+      "origin": {
+        "kind": "item",
+        "name": "Shortbow",
+        "identifier": "Shortbow",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 101,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 6.983334,
+      "origin": 102,
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": 1
+      }
+    },
+    {
+      "id": 102,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 6.983334,
+      "origin": 102,
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 4
+      }
+    },
+    {
+      "id": 103,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 7.75,
+      "origin": {
+        "kind": "item",
+        "name": "Rat",
+        "identifier": "Rat",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 5
+      }
+    },
+    {
+      "id": 104,
+      "type": 108,
+      "type_name": "108",
+      "timestamp": 7.75,
+      "origin": {
+        "kind": "item",
+        "name": "Rat",
+        "identifier": "Rat",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 4
+        }
+      },
+      "target": 1,
+      "parent_id": 103,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 105,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 7.75,
+      "origin": {
+        "kind": "item",
+        "name": "Rat",
+        "identifier": "Rat",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 106,
+      "type": 20,
+      "type_name": "20",
+      "timestamp": 7.75,
+      "origin": {
+        "kind": "item",
+        "name": "Bag of Giving",
+        "identifier": "Bag of Giving",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": 105,
+      "params": {
+        "stamina": 0.1
+      }
+    },
+    {
+      "id": 107,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 7.766667,
+      "origin": {
+        "kind": "item",
+        "name": "Burning Sword",
+        "identifier": "Burning Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 6
+      }
+    },
+    {
+      "id": 108,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 7.766667,
+      "origin": {
+        "kind": "item",
+        "name": "Burning Sword",
+        "identifier": "Burning Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 109,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 7.766667,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": 108,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 110,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 7.766667,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 111,
+      "type": 20,
+      "type_name": "20",
+      "timestamp": 7.766667,
+      "origin": {
+        "kind": "item",
+        "name": "Bag of Giving",
+        "identifier": "Bag of Giving",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": 110,
+      "params": {
+        "stamina": 0.1
+      }
+    },
+    {
+      "id": 112,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 7.866667,
+      "origin": {
+        "kind": "item",
+        "name": "Broom",
+        "identifier": "Broom",
+        "owner_type": 3,
+        "top_left": {
+          "x": 5,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 4
+      }
+    },
+    {
+      "id": 113,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 7.866667,
+      "origin": {
+        "kind": "item",
+        "name": "Broom",
+        "identifier": "Broom",
+        "owner_type": 3,
+        "top_left": {
+          "x": 5,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 114,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 7.983334,
+      "origin": 108,
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "damage": 3
+      }
+    },
+    {
+      "id": 115,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 8.316667,
+      "origin": {
+        "kind": "item",
+        "name": "Shortbow",
+        "identifier": "Shortbow",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 5
+      }
+    },
+    {
+      "id": 116,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 8.316667,
+      "origin": {
+        "kind": "item",
+        "name": "Shortbow",
+        "identifier": "Shortbow",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 117,
+      "type": 102,
+      "type_name": "102",
+      "timestamp": 8.8,
+      "origin": {
+        "kind": "item",
+        "name": "Wand",
+        "identifier": "Wand",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 5
+        }
+      },
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 118,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 8.8,
+      "origin": {
+        "kind": "item",
+        "name": "Wand",
+        "identifier": "Wand",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 119,
+      "type": 105,
+      "type_name": "105",
+      "timestamp": 8.866667,
+      "origin": {
+        "kind": "item",
+        "name": "Book of Basics",
+        "identifier": "Book of Basics",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 4
+        }
+      },
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": -1,
+        "used": true,
+        "reflected": false
+      }
+    },
+    {
+      "id": 120,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 8.866667,
+      "origin": {
+        "kind": "item",
+        "name": "Book of Basics",
+        "identifier": "Book of Basics",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": 119,
+      "params": {
+        "amount": 8
+      }
+    },
+    {
+      "id": 121,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 8.866667,
+      "origin": {
+        "kind": "item",
+        "name": "Book of Basics",
+        "identifier": "Book of Basics",
+        "owner_type": 3,
+        "top_left": {
+          "x": 3,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 122,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 8.983334,
+      "origin": {
+        "kind": "item",
+        "name": "Burning Sword",
+        "identifier": "Burning Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 5
+      }
+    },
+    {
+      "id": 123,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 8.983334,
+      "origin": {
+        "kind": "item",
+        "name": "Burning Sword",
+        "identifier": "Burning Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 124,
+      "type": 19,
+      "type_name": "19",
+      "timestamp": 8.983334,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": 123,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 125,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 8.983334,
+      "origin": {
+        "kind": "item",
+        "name": "Twine",
+        "identifier": "Twine",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 126,
+      "type": 20,
+      "type_name": "20",
+      "timestamp": 8.983334,
+      "origin": {
+        "kind": "item",
+        "name": "Bag of Giving",
+        "identifier": "Bag of Giving",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": 125,
+      "params": {
+        "stamina": 0.1
+      }
+    },
+    {
+      "id": 127,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 8.983334,
+      "origin": 102,
+      "target": 1,
+      "parent_id": -1,
+      "params": {
+        "amount": 2
+      }
+    },
+    {
+      "id": 128,
+      "type": 12,
+      "type_name": "12",
+      "timestamp": 8.983334,
+      "origin": 102,
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 4
+      }
+    },
+    {
+      "id": 129,
+      "type": 22,
+      "type_name": "22",
+      "timestamp": 8.983334,
+      "origin": 22,
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 130,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 9,
+      "origin": {
+        "kind": "item",
+        "name": "Broom",
+        "identifier": "Broom",
+        "owner_type": 3,
+        "top_left": {
+          "x": 5,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 4
+      }
+    },
+    {
+      "id": 131,
+      "type": 109,
+      "type_name": "109",
+      "timestamp": 9,
+      "origin": {
+        "kind": "item",
+        "name": "Broom",
+        "identifier": "Broom",
+        "owner_type": 3,
+        "top_left": {
+          "x": 5,
+          "y": 2
+        }
+      },
+      "target": 0,
+      "parent_id": 130,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 132,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 9,
+      "origin": {
+        "kind": "item",
+        "name": "Broom",
+        "identifier": "Broom",
+        "owner_type": 3,
+        "top_left": {
+          "x": 5,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 133,
+      "type": 105,
+      "type_name": "105",
+      "timestamp": 9.083334,
+      "origin": {
+        "kind": "item",
+        "name": "Blueberries",
+        "identifier": "Blueberries",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 5
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 134,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 9.083334,
+      "origin": {
+        "kind": "item",
+        "name": "Blueberries",
+        "identifier": "Blueberries",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 5
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 135,
+      "type": 3,
+      "type_name": "3",
+      "timestamp": 9.650001,
+      "origin": {
+        "kind": "item",
+        "name": "Shortbow",
+        "identifier": "Shortbow",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 136,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 9.650001,
+      "origin": {
+        "kind": "item",
+        "name": "Shortbow",
+        "identifier": "Shortbow",
+        "owner_type": 1,
+        "top_left": {
+          "x": 3,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 137,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 9.983334,
+      "origin": 108,
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "damage": 3
+      }
+    },
+    {
+      "id": 138,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 10.116667,
+      "origin": {
+        "kind": "item",
+        "name": "Broom",
+        "identifier": "Broom",
+        "owner_type": 3,
+        "top_left": {
+          "x": 5,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 5
+      }
+    },
+    {
+      "id": 139,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 10.116667,
+      "origin": {
+        "kind": "item",
+        "name": "Broom",
+        "identifier": "Broom",
+        "owner_type": 3,
+        "top_left": {
+          "x": 5,
+          "y": 2
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 140,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 10.133334,
+      "origin": {
+        "kind": "item",
+        "name": "Rat",
+        "identifier": "Rat",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 5
+      }
+    },
+    {
+      "id": 141,
+      "type": 108,
+      "type_name": "108",
+      "timestamp": 10.133334,
+      "origin": {
+        "kind": "item",
+        "name": "Rat",
+        "identifier": "Rat",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 4
+        }
+      },
+      "target": 1,
+      "parent_id": 140,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 142,
+      "type": 0,
+      "type_name": "0",
+      "timestamp": 10.133334,
+      "origin": {
+        "kind": "item",
+        "name": "Rat",
+        "identifier": "Rat",
+        "owner_type": 1,
+        "top_left": {
+          "x": 6,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    },
+    {
+      "id": 143,
+      "type": 20,
+      "type_name": "20",
+      "timestamp": 10.133334,
+      "origin": {
+        "kind": "item",
+        "name": "Bag of Giving",
+        "identifier": "Bag of Giving",
+        "owner_type": 1,
+        "top_left": {
+          "x": 5,
+          "y": 3
+        }
+      },
+      "target": null,
+      "parent_id": 142,
+      "params": {
+        "stamina": 0.1
+      }
+    },
+    {
+      "id": 144,
+      "type": 107,
+      "type_name": "107",
+      "timestamp": 10.166667,
+      "origin": {
+        "kind": "item",
+        "name": "Burning Sword",
+        "identifier": "Burning Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 4
+        }
+      },
+      "target": 0,
+      "parent_id": -1,
+      "params": {
+        "amount": 1,
+        "used": false,
+        "reflected": false
+      }
+    },
+    {
+      "id": 145,
+      "type": 1,
+      "type_name": "1",
+      "timestamp": 10.166667,
+      "origin": {
+        "kind": "item",
+        "name": "Burning Sword",
+        "identifier": "Burning Sword",
+        "owner_type": 1,
+        "top_left": {
+          "x": 4,
+          "y": 4
+        }
+      },
+      "target": null,
+      "parent_id": -1,
+      "params": {
+        "damage": 6
+      }
+    },
+    {
+      "id": 146,
+      "type": 111,
+      "type_name": "111",
+      "timestamp": 10.166667,
+      "origin": 111,
+      "target": null,
+      "parent_id": -1,
+      "params": {
+
+      }
+    }
+  ]
+}

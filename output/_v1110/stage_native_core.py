@@ -152,6 +152,16 @@ for area in (dest / "gd_core_test", dest / "native_sim_cpp"):
     target = area / "gd_core/CoreItem.gd"
     target.write_text(function(item, "_hasBehaviorMethod", dispatch), encoding="utf8", newline="\n")
 
+combat_log = load("CoreCombatLog.gd")
+combat_log = function(combat_log, "createEvent_DamageBuff", '''func createEvent_DamageBuff(item, buffedItem, damage, playerId, triggerEvent = null):
+	var event = createEvent(triggerEvent, item, CoreConst.EventType.DamageBuff)
+	event.setTarget(playerId)
+	event.setParam("item", buffedItem.descriptor.getTranslatedName())
+	event.setParam("damage", damage)
+	return event
+''')
+save("CoreCombatLog.gd", combat_log)
+
 combat = load("CoreCombat.gd")
 anchor = "func activateItems(items: Array) -> void :\n"
 assert combat.count(anchor) == 1

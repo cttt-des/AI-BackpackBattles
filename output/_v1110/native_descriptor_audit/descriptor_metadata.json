@@ -1,0 +1,2602 @@
+{
+  "version": "1.1.10",
+  "locale": "en",
+  "count": 519,
+  "items": {
+    "Stone": {
+      "translated_name": "Stone",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Wooden Sword": {
+      "translated_name": "Wooden Sword",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Pan": {
+      "translated_name": "Pan",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Broom": {
+      "translated_name": "Broom",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Wooden Buckler": {
+      "translated_name": "Wooden Buckler",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Banana": {
+      "translated_name": "Banana",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Garlic": {
+      "translated_name": "Garlic",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Healing Herbs": {
+      "translated_name": "Healing Herbs",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Walrus Tusk": {
+      "translated_name": "Walrus Tusk",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Piggybank": {
+      "translated_name": "Piggybank",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Whetstone": {
+      "translated_name": "Whetstone",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Leather Bag": {
+      "translated_name": "Leather Bag",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Hammer": {
+      "translated_name": "Hammer",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Bag of Stones": {
+      "translated_name": "Bag of Stones",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Spear": {
+      "translated_name": "Spear",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Dagger": {
+      "translated_name": "Dagger",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Spiked Shield": {
+      "translated_name": "Spiked Shield",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Leather Armor": {
+      "translated_name": "Leather Armor",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Gloves of Haste": {
+      "translated_name": "Gloves of Haste",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Health Potion": {
+      "translated_name": "Health Potion",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Pocket Sand": {
+      "translated_name": "Pocket Sand",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Fly Agaric": {
+      "translated_name": "Fly Agaric",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Blueberries": {
+      "translated_name": "Blueberries",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Goobert": {
+      "translated_name": "Goobert",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Lucky Clover": {
+      "translated_name": "Lucky Clover",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Customer Card": {
+      "translated_name": "Customer Card",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Fanny Pack": {
+      "translated_name": "Fanny Pack",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Thorn Whip": {
+      "translated_name": "Thorn Whip",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Hungry Blade": {
+      "translated_name": "Hungry Blade",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Hero Sword": {
+      "translated_name": "Hero Sword",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Poison Dagger": {
+      "translated_name": "Poison Dagger",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Bow and Arrow": {
+      "translated_name": "Bow and Arrow",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Magic Staff": {
+      "translated_name": "Magic Staff",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Critwood Staff": {
+      "translated_name": "Critwood Staff",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Leather Boots": {
+      "translated_name": "Leather Boots",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Strong Health Potion": {
+      "translated_name": "Strong Health Potion",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Pestilence Flask": {
+      "translated_name": "Pestilence Flask",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Stone Skin Potion": {
+      "translated_name": "Stone Skin Potion",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Poison Goobert": {
+      "translated_name": "Poison Goobert",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Acorn Collar": {
+      "translated_name": "Acorn Collar",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Flute": {
+      "translated_name": "Flute",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Mana Orb": {
+      "translated_name": "Mana Orb",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Stamina Sack": {
+      "translated_name": "Stamina Sack",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Rib Saw Blade": {
+      "translated_name": "Ripsaw Blade",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Death Scythe": {
+      "translated_name": "Death Scythe",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Bloody Dagger": {
+      "translated_name": "Bloody Dagger",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Strong Stone Skin Potion": {
+      "translated_name": "Strong Stone Skin Potion",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Bloodthorne": {
+      "translated_name": "Bloodthorne",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Blood Amulet": {
+      "translated_name": "Blood Amulet",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Vampiric Gloves": {
+      "translated_name": "Vampiric Gloves",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Vampiric Armor": {
+      "translated_name": "Vampiric Armor",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Shield of Valor": {
+      "translated_name": "Shield of Valor",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Steel Goobert": {
+      "translated_name": "Steel Goobert",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Light Goobert": {
+      "translated_name": "Light Goobert",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Blood Goobert": {
+      "translated_name": "Blood Goobert",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Strong Heroic Potion": {
+      "translated_name": "Strong Heroic Potion",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Staff of Unhealing": {
+      "translated_name": "Staff of Unhealing",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Book of Light": {
+      "translated_name": "Scripture of Light ",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Holy Armor": {
+      "translated_name": "Holy Armor",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Heroic Potion": {
+      "translated_name": "Heroic Potion",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Pineapple": {
+      "translated_name": "Pineapple",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Fanfare": {
+      "translated_name": "Fanfare",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Ruby Egg": {
+      "translated_name": "Ruby Egg",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Lightsaber": {
+      "translated_name": "Lightsaber",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Ruby Whelp": {
+      "translated_name": "Ruby Whelp",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Demonic Flask": {
+      "translated_name": "Demonic Flask",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Protective Purse": {
+      "translated_name": "Protective Purse",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Ranger Bag": {
+      "translated_name": "Ranger Bag",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Storage Coffin": {
+      "translated_name": "Storage Coffin",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Manathirst": {
+      "translated_name": "Manathirst",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Spectral Dagger": {
+      "translated_name": "Spectral Dagger",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Fancy Fencing Rapier": {
+      "translated_name": "Fancy Fencing Rapier",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Darksaber": {
+      "translated_name": "Darksaber",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Djinn Lamp": {
+      "translated_name": "Djinn Lamp",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Rainbow Goobert": {
+      "translated_name": "Rainbow Goobert Omegaooze Primeslime",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Deck of Cards": {
+      "translated_name": "Deck of Cards",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Ace of Spades": {
+      "translated_name": "Ace of Spades",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "The Lovers": {
+      "translated_name": "The Lovers",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "White-Eyes Blue Dragon": {
+      "translated_name": "White-Eyes Blue Dragon",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Holo Fire Lizard": {
+      "translated_name": "Holo Fire Lizard",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Darkest Lotus": {
+      "translated_name": "Darkest Lotus",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Jynx torquilla": {
+      "translated_name": "Jynx torquilla",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Hero Longsword": {
+      "translated_name": "Hero Longsword",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Falcon Blade": {
+      "translated_name": "Falcon Blade",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Crossblades": {
+      "translated_name": "Crossblades",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Potion Belt": {
+      "translated_name": "Potion Belt",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Chipped Ruby": {
+      "translated_name": "Chipped Ruby",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Flawed Ruby": {
+      "translated_name": "Flawed Ruby",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Regular Ruby": {
+      "translated_name": "Regular Ruby",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Flawless Ruby": {
+      "translated_name": "Flawless Ruby",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Perfect Ruby": {
+      "translated_name": "Perfect Ruby",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Chipped Sapphire": {
+      "translated_name": "Chipped Sapphire",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Flawed Sapphire": {
+      "translated_name": "Flawed Sapphire",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Regular Sapphire": {
+      "translated_name": "Regular Sapphire",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Flawless Sapphire": {
+      "translated_name": "Flawless Sapphire",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Perfect Sapphire": {
+      "translated_name": "Perfect Sapphire",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Chipped Topaz": {
+      "translated_name": "Chipped Topaz",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Flawed Topaz": {
+      "translated_name": "Flawed Topaz",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Regular Topaz": {
+      "translated_name": "Regular Topaz",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Flawless Topaz": {
+      "translated_name": "Flawless Topaz",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Perfect Topaz": {
+      "translated_name": "Perfect Topaz",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Chipped Emerald": {
+      "translated_name": "Chipped Emerald",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Flawed Emerald": {
+      "translated_name": "Flawed Emerald",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Regular Emerald": {
+      "translated_name": "Regular Emerald",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Flawless Emerald": {
+      "translated_name": "Flawless Emerald",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Perfect Emerald": {
+      "translated_name": "Perfect Emerald",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Chipped Amethyst": {
+      "translated_name": "Chipped Amethyst",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Flawed Amethyst": {
+      "translated_name": "Flawed Amethyst",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Regular Amethyst": {
+      "translated_name": "Regular Amethyst",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Flawless Amethyst": {
+      "translated_name": "Flawless Amethyst",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Perfect Amethyst": {
+      "translated_name": "Perfect Amethyst",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Ruby Chonk": {
+      "translated_name": "Ruby Chonk",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Box of Riches": {
+      "translated_name": "Box of Riches",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Fire Pit": {
+      "translated_name": "Fire Pit",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Flame": {
+      "translated_name": "Flame",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Phoenix": {
+      "translated_name": "Phoenix",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Burning Blade": {
+      "translated_name": "Burning Blade",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Chili Pepper": {
+      "translated_name": "Chili Pepper",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Claws of Attack": {
+      "translated_name": "Claws of Attack",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Lucky Piggy": {
+      "translated_name": "Lucky Piggy",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Draconic Orb": {
+      "translated_name": "Draconic Orb",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Staff of Fire": {
+      "translated_name": "Staff of Fire",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Flame Whip": {
+      "translated_name": "Flame Whip",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Obsidian Dragon": {
+      "translated_name": "Obsidian Dragon",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Carrot": {
+      "translated_name": "Carrot",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Eggscalibur": {
+      "translated_name": "Eggscalibur",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Coins": {
+      "translated_name": "Bunch of Coins",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Leather Helm": {
+      "translated_name": "Cap of Resilience",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Greatsword": {
+      "translated_name": "Impractically Large Greatsword",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Berserker Bag": {
+      "translated_name": "Duffle Bag",
+      "has_battle_rage_effect": true,
+      "description_mentions_rage": true
+    },
+    "Forging Hammer": {
+      "translated_name": "Forging Hammer",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Spiked Collar": {
+      "translated_name": "Spiked Collar",
+      "has_battle_rage_effect": true,
+      "description_mentions_rage": true
+    },
+    "Axe": {
+      "translated_name": "Axe",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Double Axe": {
+      "translated_name": "Double Axe",
+      "has_battle_rage_effect": true,
+      "description_mentions_rage": true
+    },
+    "Chain Whip": {
+      "translated_name": "Chain Whip",
+      "has_battle_rage_effect": true,
+      "description_mentions_rage": true
+    },
+    "Dragonscale Armor": {
+      "translated_name": "Dragonscale Armor",
+      "has_battle_rage_effect": true,
+      "description_mentions_rage": true
+    },
+    "Dragon Claws": {
+      "translated_name": "Dragon Claws",
+      "has_battle_rage_effect": true,
+      "description_mentions_rage": true
+    },
+    "Wolf Emblem": {
+      "translated_name": "Wolf Emblem",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Artifact Stone Cold": {
+      "translated_name": "Artifact Stone: Cold",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Vampiric Scythe": {
+      "translated_name": "Blood Harvester",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Villain Sword": {
+      "translated_name": "Villain Sword",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Piercing Arrow": {
+      "translated_name": "Piercing Arrow",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Yggdrasil Leaf": {
+      "translated_name": "Yggdrasil Leaf",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Cursed Hair Comb": {
+      "translated_name": "Nocturnal Lock Lifter",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Mr Struggles": {
+      "translated_name": "Mr. Struggles",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Poison Ivy": {
+      "translated_name": "Poison Ivy",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Cursed Dagger": {
+      "translated_name": "Cursed Dagger",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Anvil": {
+      "translated_name": "Anvil",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Deer Totem": {
+      "translated_name": "Deerwood Guardian",
+      "has_battle_rage_effect": true,
+      "description_mentions_rage": true
+    },
+    "Courage Puppy": {
+      "translated_name": "Courage Puppy",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Wisdom Puppy": {
+      "translated_name": "Wisdom Puppy",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Power Puppy": {
+      "translated_name": "Power Puppy",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Busted Blade": {
+      "translated_name": "Busted Blade",
+      "has_battle_rage_effect": true,
+      "description_mentions_rage": true
+    },
+    "Dragonskin Boots": {
+      "translated_name": "Dragonskin Boots",
+      "has_battle_rage_effect": true,
+      "description_mentions_rage": true
+    },
+    "Friendly Fire": {
+      "translated_name": "Friendly Fire",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Burning Banner": {
+      "translated_name": "Burning Banner",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Skull": {
+      "translated_name": "Tim",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Pumpkin": {
+      "translated_name": "Pumpkin",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Dark Lantern": {
+      "translated_name": "Dark Lantern",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Mega Clover": {
+      "translated_name": "Mega Clover",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Corrupted Crystal": {
+      "translated_name": "Corrupted Crystal",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Pandamonium": {
+      "translated_name": "Pandamonium",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Bowl of Treats": {
+      "translated_name": "Big Bowl of Treats",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Rat": {
+      "translated_name": "Rat",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Squirrel": {
+      "translated_name": "Squirrel",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Hedgehog": {
+      "translated_name": "Hedgehog",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Snake": {
+      "translated_name": "Snake",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Cauldron": {
+      "translated_name": "Cauldron",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Carrot Goobert": {
+      "translated_name": "Carrot Goobert",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Rainbow Goobert Ranger": {
+      "translated_name": "Rainbow Goobert Megasludge Alphapuddle",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Strong Pestilence Flask": {
+      "translated_name": "Strong Pestilence Flask",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Strong Demonic Flask": {
+      "translated_name": "Strong Demonic Flask",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Mana Potion": {
+      "translated_name": "Mana Potion",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Strong Mana Potion": {
+      "translated_name": "Strong Mana Potion",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Vampiric Potion": {
+      "translated_name": "Vampiric Potion",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Strong Vampiric Potion": {
+      "translated_name": "Strong Vampiric Potion",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Divine Potion": {
+      "translated_name": "Divine Potion",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Strong Divine Potion": {
+      "translated_name": "Strong Divine Potion",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Spell Scroll Frostbolt": {
+      "translated_name": "Spell Scroll: Frostbolt",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Book of Ice": {
+      "translated_name": "Frieren’s Guide to Ice",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Ice Armor": {
+      "translated_name": "Ice Armor",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Frozen Buckler": {
+      "translated_name": "Frozen Buckler",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Shortbow": {
+      "translated_name": "Shortbow",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Shovel": {
+      "translated_name": "Shovel",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Frostbite": {
+      "translated_name": "Frostbite",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Frozen Flame": {
+      "translated_name": "Frozen Flame",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Shaman Mask": {
+      "translated_name": "Shaman Mask",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Badger Rune": {
+      "translated_name": "Badger Rune",
+      "has_battle_rage_effect": true,
+      "description_mentions_rage": true
+    },
+    "Elephant Rune": {
+      "translated_name": "Elephant Rune",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Hawk Rune": {
+      "translated_name": "Hawk Rune",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Tiger Rune": {
+      "translated_name": "Tiger Rune",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Lump of Coal": {
+      "translated_name": "Lump of Coal",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Thorn Bow": {
+      "translated_name": "Tusk Piercer",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Lucky Bow": {
+      "translated_name": "Fortuna's Grace",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Poison Bow": {
+      "translated_name": "Belladonna's Whisper",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Dragon Nest": {
+      "translated_name": "Dragon Nest",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Emerald Egg": {
+      "translated_name": "Emerald Egg",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Emerald Whelp": {
+      "translated_name": "Emerald Whelp",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Sapphire Egg": {
+      "translated_name": "Sapphire Egg",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Sapphire Whelp": {
+      "translated_name": "Sapphire Whelp",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Amethyst Egg": {
+      "translated_name": "Amethyst Egg",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Amethyst Whelp": {
+      "translated_name": "Amethyst Whelp",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Brass Knuckles": {
+      "translated_name": "Brass Knuckles",
+      "has_battle_rage_effect": true,
+      "description_mentions_rage": true
+    },
+    "Cheese": {
+      "translated_name": "Cheese",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Cheese Goobert": {
+      "translated_name": "Cheese Goobert",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Chili Goobert": {
+      "translated_name": "Chili Goobert",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Evil Cap": {
+      "translated_name": "Cap of Discomfort",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Burning Coal": {
+      "translated_name": "Burning Coal",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Torch": {
+      "translated_name": "Torch",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Burning Torch": {
+      "translated_name": "Burning Torch",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Artifact Stone Heat": {
+      "translated_name": "Artifact Stone: Heat",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Molten Dagger": {
+      "translated_name": "Molten Dagger",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Molten Spear": {
+      "translated_name": "Molten Spear",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Present": {
+      "translated_name": "Present",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Gingerbread Man": {
+      "translated_name": "Gingerbread Jerry",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Magic Torch": {
+      "translated_name": "Magic Torch",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Platin Customer Card": {
+      "translated_name": "Platinum Customer Card",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Crown": {
+      "translated_name": "Glowing Crown",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Holy Spear": {
+      "translated_name": "Holy Spear",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Rainbow Goobert Pyromancer": {
+      "translated_name": "Rainbow Goobert Epicglob Uberviscous",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Rainbow Goobert Berserker": {
+      "translated_name": "Rainbow Goobert Deathslushy Mansquisher",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Armored Courage Puppy": {
+      "translated_name": "Armored Courage Puppy",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Armored Wisdom Puppy": {
+      "translated_name": "Armored Wisdom Puppy",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Armored Power Puppy": {
+      "translated_name": "Armored Power Puppy",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Sun Armor": {
+      "translated_name": "Sun Armor",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Sun Shield": {
+      "translated_name": "Sun Shield",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Moon Armor": {
+      "translated_name": "Moon Armor",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Moon Shield": {
+      "translated_name": "Moon Shield",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Burning Sword": {
+      "translated_name": "Burning Sword",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Corrupted Armor": {
+      "translated_name": "Corrupted Armor",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Dancing Dragon": {
+      "translated_name": "Dancing Dragon",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Wolpertinger": {
+      "translated_name": "Wolpertinger",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Heart Container": {
+      "translated_name": "Heart Container",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Thorn Shortbow": {
+      "translated_name": "Tusk Poker",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Lucky Shortbow": {
+      "translated_name": "Fortuna's Hope",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Poison Shortbow": {
+      "translated_name": "Belladonna's Shade",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Ice Dragon": {
+      "translated_name": "Ice Dragon",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Stone Armor": {
+      "translated_name": "Stone Armor",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Stone Helm": {
+      "translated_name": "Stone Helm",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Stone Gloves": {
+      "translated_name": "Gloves of Power",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "The Fool": {
+      "translated_name": "The Fool",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Reverse": {
+      "translated_name": "Reverse!",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Mrs Struggles": {
+      "translated_name": "Mrs. Struggles",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Miss Fortune": {
+      "translated_name": "Miss Fortune",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Heart of Darkness": {
+      "translated_name": "Heart of Darkness",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Joker": {
+      "translated_name": "Jimbo",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Leaf Badge": {
+      "translated_name": "Leaf Badge",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Skull Badge": {
+      "translated_name": "Skull Badge",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Wolf Badge": {
+      "translated_name": "Wolf Badge",
+      "has_battle_rage_effect": true,
+      "description_mentions_rage": true
+    },
+    "Flame Badge": {
+      "translated_name": "Flame Badge",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Rainbow Badge": {
+      "translated_name": "Rainbow Badge",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Stone Badge": {
+      "translated_name": "Stone Badge",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Vineweave Basket": {
+      "translated_name": "Vineweave Basket",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Relic Case": {
+      "translated_name": "Relic Case",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Portable Altar": {
+      "translated_name": "Offering Bowl",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Toolbox": {
+      "translated_name": "Utility Pouch",
+      "has_battle_rage_effect": true,
+      "description_mentions_rage": true
+    },
+    "Cubert": {
+      "translated_name": "Cubert",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Prismatic Sword": {
+      "translated_name": "Prismatic Sword",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Serpent Staff": {
+      "translated_name": "Serpent Staff",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Spiked Staff": {
+      "translated_name": "Spiked Staff",
+      "has_battle_rage_effect": true,
+      "description_mentions_rage": true
+    },
+    "Thornbloom": {
+      "translated_name": "Thornbloom",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "King Crown": {
+      "translated_name": "King Crown",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "King Goobert": {
+      "translated_name": "King Goobert",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Amulet Unidentified": {
+      "translated_name": "Unidentified Amulet",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Amulet of Life": {
+      "translated_name": "Amulet of Life",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Amulet of Steel": {
+      "translated_name": "Amulet of Steel",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Amulet of Feasting": {
+      "translated_name": "Amulet of Feasting",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Amulet of Darkness": {
+      "translated_name": "Amulet of Darkness",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Amulet of Agility": {
+      "translated_name": "Amulet of Energy",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Amulet of the Wild": {
+      "translated_name": "Amulet of the Wild",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Amulet of Alchemy": {
+      "translated_name": "Amulet of Alchemy",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Stone Golem": {
+      "translated_name": "Stone Golem",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Rainbow Orb": {
+      "translated_name": "Prismatic Orb",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Lucky Cat": {
+      "translated_name": "Maneki-neko",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Toad": {
+      "translated_name": "Toad",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Shiny Shell": {
+      "translated_name": "Shiny Shell",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Shell Totem": {
+      "translated_name": "Shell Totem",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Oil Lamp": {
+      "translated_name": "Oil Lamp",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Box of Prosperity": {
+      "translated_name": "Box of Prosperity",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Stable Recombobulator": {
+      "translated_name": "Stable Recombobulator",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Unstable Recombobulator": {
+      "translated_name": "Unstable Recombobulator",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Random Loadout Bag": {
+      "translated_name": "Sack of Surprises",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Star of Courage": {
+      "translated_name": "Star of Courage",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Artifact Stone Death": {
+      "translated_name": "Artifact Stone: Death",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Ghost": {
+      "translated_name": "Unsettling Presence",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Time Dilator": {
+      "translated_name": "Time Dilator",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Acorn Ace": {
+      "translated_name": "Acorn Ace",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Spicy Banana": {
+      "translated_name": "Spicy Banana",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Smelly Barrier": {
+      "translated_name": "Smelly Wall",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Mushroom Farm": {
+      "translated_name": "Mushroom Farm",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Piggy Pinata": {
+      "translated_name": "Piggy Piñata",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Investment Opportunity": {
+      "translated_name": "Investment Opportunity",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Extra Bags": {
+      "translated_name": "Superspacious",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Extra Angy": {
+      "translated_name": "Extra Angy",
+      "has_battle_rage_effect": true,
+      "description_mentions_rage": true
+    },
+    "Markswoman": {
+      "translated_name": "Markswoman",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Doom Cap": {
+      "translated_name": "Doom Cap",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Goobling": {
+      "translated_name": "Goobling",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Slime Time": {
+      "translated_name": "It’s Slime Time!",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Everburning": {
+      "translated_name": "Everburning",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Shielded": {
+      "translated_name": "Shielded",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Stoned": {
+      "translated_name": "Stoned",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Hardwood": {
+      "translated_name": "Hardwood",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Solaris": {
+      "translated_name": "Solaris",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Dragon Set": {
+      "translated_name": "Dragon Set",
+      "has_battle_rage_effect": true,
+      "description_mentions_rage": true
+    },
+    "Dark Ritual": {
+      "translated_name": "Dark Ritual",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Mana Mastery": {
+      "translated_name": "Mana Mastery",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Power of the Moon": {
+      "translated_name": "Power of the Moon",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Smithing For Dummies": {
+      "translated_name": "Smithing For Dummies",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Pop": {
+      "translated_name": "Pop",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Cthulhu": {
+      "translated_name": "Cthulhu",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Squirrel Archer": {
+      "translated_name": "Squirrel Archer",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Rat Chef": {
+      "translated_name": "Rat Chef",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Chess Board": {
+      "translated_name": "Chess Board",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "White Pawn": {
+      "translated_name": "White Pawn",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Black Pawn": {
+      "translated_name": "Black Pawn",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "White Knight": {
+      "translated_name": "White Knight",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Black Knight": {
+      "translated_name": "Black Knight",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "White Bishop": {
+      "translated_name": "White Bishop",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Black Bishop": {
+      "translated_name": "Black Bishop",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "White Rook": {
+      "translated_name": "White Rook",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Black Rook": {
+      "translated_name": "Black Rook",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "White Queen": {
+      "translated_name": "White Queen",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Black Queen": {
+      "translated_name": "Black Queen",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "White King": {
+      "translated_name": "White King",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Black King": {
+      "translated_name": "Black King",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Spell Scroll Ice": {
+      "translated_name": "Spell Scroll: Ice Block ",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Spell Scroll Nature": {
+      "translated_name": "Spell Scroll: Regrowth",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Spell Scroll Light": {
+      "translated_name": "Spell Scroll: Blessing of Purity",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Spell Scroll Dark": {
+      "translated_name": "Spell Scroll: Dark Frenzy",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Book of Nature": {
+      "translated_name": "Nature Chronicles: Trees",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Book of Darkness": {
+      "translated_name": "Encyclopspedia of Darkness",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Book of Ice New": {
+      "translated_name": "",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Magic Mirror": {
+      "translated_name": "Cold Mirror",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Ice Flower": {
+      "translated_name": "Ice Flower",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Light Flower": {
+      "translated_name": "Lantern Berry",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Death Lotus": {
+      "translated_name": "Death Lotus",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Cat Spirit": {
+      "translated_name": "Cat Spirit Companion",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Owl Spirit": {
+      "translated_name": "Owl Spirit Companion",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Badger Spirit": {
+      "translated_name": "Badger Spirit Companion",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Cupcake": {
+      "translated_name": "Cupcake",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Cupcake Goobert": {
+      "translated_name": "Cupcake Goobert",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Mage Hat": {
+      "translated_name": "Mage Hat",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Shiny Mantle": {
+      "translated_name": "Shiny Mantle",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Spirit Bells": {
+      "translated_name": "Spirit Bells",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Water Elemental": {
+      "translated_name": "Water Elemental",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Evil Hat": {
+      "translated_name": "Harold, the Hateful Hat",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Rainbow Potion": {
+      "translated_name": "Rainbow Potion",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Scholar Bag": {
+      "translated_name": "Scholar Bag",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Null Blade": {
+      "translated_name": "Null Blade",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Cupcake Staff": {
+      "translated_name": "Cupcake Staff",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Magic Badge": {
+      "translated_name": "Magic Badge",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Shepherds Crook": {
+      "translated_name": "Shepherd’s Crook",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Snowball": {
+      "translated_name": "Snowball",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Snowman": {
+      "translated_name": "Wonky Snowman",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Stone Shoes": {
+      "translated_name": "Stone Shoes",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Katana": {
+      "translated_name": "Katana",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Heavy Drinking": {
+      "translated_name": "Heavy Drinking",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Buy the Holy Light": {
+      "translated_name": "Buy the Holy Light",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Heart of the Cards": {
+      "translated_name": "Heart of the Cards",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Girl Power": {
+      "translated_name": "Girl Power",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Blood Manipulation": {
+      "translated_name": "Blood Manipulation",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Bagtacular": {
+      "translated_name": "Bagtacular",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Just Stats": {
+      "translated_name": "Just Stats",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "More Stats": {
+      "translated_name": "More Stats",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Uniquely Unique": {
+      "translated_name": "Uniquely Unique",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Thornburst": {
+      "translated_name": "Thornburst",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Snow Stick": {
+      "translated_name": "Snow Stick",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Snowcake": {
+      "translated_name": "Snowcake",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Bag of Giving": {
+      "translated_name": "Bag of Giving",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Dig Deeper": {
+      "translated_name": "Dig Deeper",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Knife to Meet You": {
+      "translated_name": "Knife to Meet You",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Little Mimic": {
+      "translated_name": "Lil Chestnut",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Holdall": {
+      "translated_name": "Holdall",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Poison Spear": {
+      "translated_name": "Poison Spear",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Shelly": {
+      "translated_name": "Shelly",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Fedora": {
+      "translated_name": "Fedora",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Scale": {
+      "translated_name": "Scale",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Mercury Elemental": {
+      "translated_name": "Mercury Elemental",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Turtle": {
+      "translated_name": "Turtle",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Ukulele": {
+      "translated_name": "Ukulele",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Twine": {
+      "translated_name": "Twine",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Rope": {
+      "translated_name": "Rope",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Time Melting": {
+      "translated_name": "Time Melting",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Echoing Battlecry": {
+      "translated_name": "Echoing Battlecry",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Winged Boots": {
+      "translated_name": "Winged Boots",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Enchanted Weapons": {
+      "translated_name": "Enchanted Weapons",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "No Rush Please": {
+      "translated_name": "No Rush Please",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Bomb": {
+      "translated_name": "Happy Bomb",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Double Rainbow": {
+      "translated_name": "Double Rainbow",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Full Body Protection": {
+      "translated_name": "Full Body Protection",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "False Life": {
+      "translated_name": "False Life",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Sandbag": {
+      "translated_name": "Sir Sand",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Paradise Birb": {
+      "translated_name": "Paradise Birb",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Repeater": {
+      "translated_name": "Repeater",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Big Bloodthorne": {
+      "translated_name": "Impractically Large Bloodthorne",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Boomerang": {
+      "translated_name": "Boomerang",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Piggy of Riches": {
+      "translated_name": "Piggy of Riches",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Heart Shield": {
+      "translated_name": "Heart Shield",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Dragon Knight": {
+      "translated_name": "Dragon Knight",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Broccoli": {
+      "translated_name": "Broccoli",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Broccoli Goobert": {
+      "translated_name": "Broccoli Goobert",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Rainbow Goobert Adventurer": {
+      "translated_name": "Rainbow Goobert Gigabrocolomega ",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Scissorswords": {
+      "translated_name": "Scissorswords",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Puzzlebox": {
+      "translated_name": "Puzzlebox",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Puzzlebag L": {
+      "translated_name": "Puzzlebag of Love",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Puzzlebag S": {
+      "translated_name": "Puzzlebag of Improvement",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Puzzlebag Z": {
+      "translated_name": "Puzzlebag of Ruin",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Puzzlebag T": {
+      "translated_name": "Puzzlebag of Energy",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Puzzlebag J": {
+      "translated_name": "Puzzlebag of Endurance",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Puzzle Badge": {
+      "translated_name": "Puzzle Badge",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Sewing Case": {
+      "translated_name": "Sewing Case",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Twine Badge": {
+      "translated_name": "Twine Badge",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Level Up": {
+      "translated_name": "Level Up",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Dual Wielding": {
+      "translated_name": "Dual Wielding",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Arcane Intellect": {
+      "translated_name": "Arcane Vision",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Ultima": {
+      "translated_name": "Ultima Ascension",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Rainbow Goobert Mage": {
+      "translated_name": "Rainbow Goobert Omnicolor Sugargoo ",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Long Spear": {
+      "translated_name": "Very Long Spear",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Daggerang": {
+      "translated_name": "Daggerang",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Jynx Staff": {
+      "translated_name": "Jynx Staff",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Devouring Sphere": {
+      "translated_name": "Devouring Sphere",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Crow": {
+      "translated_name": "Crow",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Wand": {
+      "translated_name": "Wand of Equilibrium",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Hyper Hedgehog": {
+      "translated_name": "Hyper Hedgehog",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Snowmaster": {
+      "translated_name": "Snowmaster",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Molten Greatsword": {
+      "translated_name": "Molten Greatsword",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Fire Shelly": {
+      "translated_name": "Turbo-Shelly",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Poison Frog": {
+      "translated_name": "Poison Frog",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Spiked Wall": {
+      "translated_name": "Spiked Wall",
+      "has_battle_rage_effect": true,
+      "description_mentions_rage": true
+    },
+    "Vampiric Collar": {
+      "translated_name": "Red Orchid Collar",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Magic Collar": {
+      "translated_name": "Blue Sage Collar",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Holy Collar": {
+      "translated_name": "White Lily Collar",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Lootbox": {
+      "translated_name": "Treasure Chest",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Employee Uniform": {
+      "translated_name": "Employee Uniform",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Hero Shield": {
+      "translated_name": "Hero Shield",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Book of Basics": {
+      "translated_name": "Magic For Dummies",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Prismatic Wand": {
+      "translated_name": "Prismatic Wand",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Amulet of Fortune": {
+      "translated_name": "Amulet of Fortune",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Fortunas Kiss": {
+      "translated_name": "Fortuna’s Kiss",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Unidentified Skill": {
+      "translated_name": "Unidentified Skill",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Engineer Box": {
+      "translated_name": "Port-O-Charger",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Engineer Bag 2": {
+      "translated_name": "Box of Cogs",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Battery": {
+      "translated_name": "Battery",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Resistor": {
+      "translated_name": "Resistor",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Cog": {
+      "translated_name": "Cog",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Coil": {
+      "translated_name": "Coil",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Charge Splitter": {
+      "translated_name": "Charge Splitter",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Wrench": {
+      "translated_name": "Wrench",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Electric Torch": {
+      "translated_name": "Electric Torch",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Robodog": {
+      "translated_name": "Shovel-B01 3000",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Mecha Bat": {
+      "translated_name": "Mecha Bat",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Tesla Coil": {
+      "translated_name": "Tesla Coil",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Mana Crystal": {
+      "translated_name": "Mana Crystal",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Bionic Armor": {
+      "translated_name": "Mecha Armor",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Laboratory": {
+      "translated_name": "Laboratory",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Hypercube": {
+      "translated_name": "Hypercube",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Gold Cube": {
+      "translated_name": "Gold Cube",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Bismuth Cube": {
+      "translated_name": "Bismuth Cube",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Chrome Cube": {
+      "translated_name": "Chromium Cube",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Plastic Cube": {
+      "translated_name": "Plastic Cube",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Cap of Brilliance": {
+      "translated_name": "Cap of Brilliance",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Magitecc Armor": {
+      "translated_name": "Magitecc Armor",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Arcane Boots": {
+      "translated_name": "Arcane Boots",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Thors Hammer": {
+      "translated_name": "Thor’s Hammer",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Automanaton": {
+      "translated_name": "Automanaton",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Mananana": {
+      "translated_name": "Mananana",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Slice of Bread": {
+      "translated_name": "Slice of Bread",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Slice of Toast": {
+      "translated_name": "Slice of Toast",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Toast Goobert": {
+      "translated_name": "Toast Goobert",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Rainbow Goobert Engineer": {
+      "translated_name": "Rainbow Goobert Fluffyloaf Prismacrust",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Bazooka": {
+      "translated_name": "Stuff-Throwinator",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Lightning Staff": {
+      "translated_name": "Lightning Staff",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Generator": {
+      "translated_name": "Generator",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Chainsaw": {
+      "translated_name": "Chainsaw",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Poison Grenade": {
+      "translated_name": "Poison Grenade",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Con-Trap-Tron": {
+      "translated_name": "Con-Trap-Tron",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Spring Loader": {
+      "translated_name": "Spring Loader",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Eat-o-matic": {
+      "translated_name": "Eat-o-matic",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Gigawatz": {
+      "translated_name": "Gigawatz",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Perpetuum Mobile": {
+      "translated_name": "Perpetuum Mobile",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Critical Poison": {
+      "translated_name": "Critical Poison",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Burning Spikes": {
+      "translated_name": "Thermal Thorns",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Hogus Bogus": {
+      "translated_name": "Hogus Bogus",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Spin to Win": {
+      "translated_name": "Spin to Win",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Energy Conversion": {
+      "translated_name": "Energy Conversion",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Inner Power": {
+      "translated_name": "Inner Power",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Bewitchment": {
+      "translated_name": "Bewitchment",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Furcifer Prime": {
+      "translated_name": "Furcifer Prime Subscription",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Angel Crystal": {
+      "translated_name": "Angel Crystal",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Thorn Elemental": {
+      "translated_name": "Thorn Elemental",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Lightning Potion": {
+      "translated_name": "Lightning in a Bottle",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Sloth": {
+      "translated_name": "Sloth",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Chess Master": {
+      "translated_name": "Chess Master",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Speak with Animals": {
+      "translated_name": "Speak with Animals",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Seal the Deal": {
+      "translated_name": "Seal the Deal",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Wisp": {
+      "translated_name": "Wisp",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Forest Dragon": {
+      "translated_name": "Forest Dragon",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "War Scythe": {
+      "translated_name": "War Scythe",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Frog Prince": {
+      "translated_name": "Frog Prince",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Molten Spear2": {
+      "translated_name": "Blazing Spear",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Phoenix2": {
+      "translated_name": "Enraged Phoenix",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Whetstone2": {
+      "translated_name": "Improved Whetstone",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Whetstone3": {
+      "translated_name": "Essence of Steel",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Steel Dragon": {
+      "translated_name": "Panzer Dragon",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Halberd": {
+      "translated_name": "Halberd",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Magic Ring": {
+      "translated_name": "Magic Ring",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Superior Ring": {
+      "translated_name": "Superior Ring",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Broccotree": {
+      "translated_name": "Broccotree",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Cupcake Dragon": {
+      "translated_name": "Cupdrake",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Wand of Dissonance": {
+      "translated_name": "Wand of Dissonance",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Amulet of Light": {
+      "translated_name": "Amulet of Light",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Gold Armor": {
+      "translated_name": "Gold Armor",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Pine Protector": {
+      "translated_name": "Pine Protector",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Onion Cutter": {
+      "translated_name": "Stankus’ Toothpick",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Pot": {
+      "translated_name": "Boiling Pot",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Cog Badge": {
+      "translated_name": "Cog Badge",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Thunder Drake": {
+      "translated_name": "Thunder Drake",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "King of the Bling": {
+      "translated_name": "King of the Bling",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    },
+    "Time Pendant": {
+      "translated_name": "Time Pendant",
+      "has_battle_rage_effect": false,
+      "description_mentions_rage": false
+    }
+  }
+}

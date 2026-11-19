@@ -1,0 +1,30 @@
+{
+  "scope": "Seven native/Oracle/GD/pure Python/C++ strict-event cases; Timer model only a prototype; default promotion and Cython pending",
+  "recipe_sha256": {
+    "compare_native_boundaries.py": "ab2ce71b1dbb8cc25f32db1e5e45e0eb7fee66ae3a90b15289d6e8b45a5acfe6",
+    "native_battle_reader.header.gd": "6fee2f800f7b1a5580256d50fbb2f00a2f60e3da1b2420818d5ac3424289dbc0",
+    "prepare_native_reference.py": "4c8e0cf83a69c80c7c483dd7cae18ec5c15390a62ce8479e1d0f887ada3a0aa7",
+    "run_native_1110.py": "d1c444fc40637954fba599cc3186fd32ff4d730dc92544c9442ae1e20dc287a5",
+    "stage_native_core.py": "87f55666be6dbd6f64de73252111f796ff8f172585a5231c4521bdd2de93f791",
+    "stage_native_metadata.py": "46cf96961024e425b77676e2c45d52f559f1d2e3a713e9b6e14080ad235aa64d",
+    "record_native_corpus.py": "a821cf15d791a922a107aaee4523b096e9c570d250f8292eb0351dc175164d46",
+    "measure_rage_metadata.py": "323443500bae904ec7233ca086d051f6bd7ff9cfcca72819154694dcddd1947a",
+    "native_timer_model.gd.inc": "963a56d8afe6a1083a26fdd0ba4be530f9501941ae76806aa876b444b2c5a8bc",
+    "native_timer_contract.gd": "6cb843ff6fe17214f6c61e5e02fcba88f9b16410ffbde4e4a1746a378d825d42",
+    "native_oracle_timer.gd": "3f2d2d8f367875237d14504bb981885a61e751c38fd79dbe00dbf947962b6e7e",
+    "native_oracle_timers.gd.inc": "960c28f3e81a380e0c962225922d1e2be5a7e0bffe8c8136cc6e3c91a4b35ef0"
+  },
+  "candidate_sha256": {
+    "gd_core/CoreCombatLog.gd": "19392c92b264292b4feb205e65b4470d7aa48090a5c2cda8ea5a879283e3d227",
+    "gd_core/CoreItem.gd": "a9f529904db1b5bd6df27dc783f6fb836edfcaecf20867018398bbec5bf4b9ab",
+    "gd_core/CoreCharacter.gd": "e447d0da26950f65853b710993962fda9cb81f506508202be2545659f84f7d20",
+    "gd_core/CoreCombat.gd": "9f5b3673c1e15d0d207f0501838376084b334c37a48f1737b1b985344f7e60c6",
+    "gd_core/CoreContext.gd": "10239dccdabbd5e15b78296f38178a79e0291ed357e2c155ff2b606603eeb6c9",
+    "assets/gd_core_runtime.json": "87dfe56b2ad52fc331482d1066927d2f83419b3c13d34a3800ea4406f52c3261",
+    "assets/battle_items.json": "074511e1ebbacb712e1d423362215943a45b2aa59a0132866f34d09c7a3e13a1",
+    "native_sim_cpp/native_sim/libgdcore.dll": "fff59311d4f82979b57888150b6a9f26a83b9e1d6e091a9f293e1a1bf8ac99bb",
+    "native_sim_cpp/native_sim/engine_wrapper.cpp": "fdceaf20bdd1c2f3d39fcc7a6427ac7abf44a6dd5886f3679b15e8084575c34c",
+    "native_sim_cpp/native_sim/sim.py": "cd02420237a68ea9332366b6ba8083c72f312cd2d4f30bbaaef02f4549d10896",
+    "tools/gen_lineup_fixture.py": "c93efc250f3d09927708ab76c695d58589de88445b49a9e8ee19404395919c58"
+  }
+}

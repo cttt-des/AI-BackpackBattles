@@ -4,12 +4,21 @@ from pathlib import Path
 import re
 import shutil
 import sys
+import argparse
 
 root = Path.cwd()
-stage = Path(sys.argv[1] if len(sys.argv) > 1 else "output/_v1110").resolve()
+parser = argparse.ArgumentParser()
+parser.add_argument("stage", nargs="?", default="output/_v1110")
+parser.add_argument("--rng-probe", action="store_true")
+parser.add_argument("--cohort", choices=("expand", "base"), default="expand")
+parser.add_argument("--project-name", default="native_reference")
+args = parser.parse_args()
+stage = Path(args.stage).resolve()
 source = stage / "decompiled"
-rng_probe = "--rng-probe" in sys.argv[2:]
-dest = stage / "native_reference"
+rng_probe = args.rng_probe
+dest = (stage / args.project_name).resolve()
+if dest.parent != stage:
+    parser.error("The isolated project must be a direct child of the stage directory")
 manifest = json.loads((stage / "source_manifest.json").read_text("utf8"))
 if manifest.get("version") != "1.1.10":
     raise SystemExit("Expected the installed 1.1.10 source")
@@ -59,7 +68,7 @@ shutil.copyfile(root / "output/godot36/Godot_v3.6-stable_win64.exe", runtime / "
 for name in ("libgdsqlite.dll", "steam_api64.dll"):
     shutil.copyfile(stage / "source" / name, runtime / name)
 project = (source / "project.godot").read_text("utf8")
-project = re.sub(r'(?m)^config/name=.*$', 'config/name="BackpackBattlesNativeReference"', project)
+project = re.sub(r'(?m)^config/name=.*$', 'config/name="BackpackBattlesNative_' + args.project_name + '"', project)
 stubs = {"Steam": "SteamStub", "SilentWolf": "SilentWolfStub",
          "RunDatabase": "RunDatabaseStub", "CrazySDK": "CrazySDKStub"}
 (dst_stubs := dest / "oracle_stubs").mkdir(exist_ok=True)
@@ -87,8 +96,10 @@ for autoload, file in stubs.items():
 project = project.replace("\n[debug]", '\nNativeBattleReader="*res://native_battle_reader.gd"\n\n[debug]', 1)
 (dest / "project.godot").write_text(project,encoding="utf8")
 (dst_db := dest / "data").mkdir(exist_ok=True)
-shutil.copyfile(root / "output/oracle/expand/data/history.db", dst_db / "history.db")
-shutil.copyfile(root / "output/oracle/expand/cases.json", dest / "fights.json")
+history = root / ("output/oracle/expand/data/history.db" if args.cohort == "expand" else "oracle/data/history.db")
+case_list = root / ("output/oracle/expand/cases.json" if args.cohort == "expand" else "oracle/fights.json")
+shutil.copyfile(history, dst_db / "history.db")
+shutil.copyfile(case_list, dest / "fights.json")
 for src in (root / "oracle/addons/godot-sqlite").rglob("*.dll"):
     dst = dest / src.relative_to(root / "oracle")
     if not dst.exists():
@@ -116,11 +127,16 @@ for relative in combat_files:
     hashes[relative] = hashlib.sha256(original_bytes).hexdigest()
 (dest / "reference_manifest.json").write_text(json.dumps({
     "version": manifest["version"], "source_provenance": manifest.get("provenance"),
+    "cohort": args.cohort,
+    "case_list_sha256": hashlib.sha256(case_list.read_bytes()).hexdigest(),
+    "history_snapshot_sha256": hashlib.sha256(history.read_bytes()).hexdigest(),
+    "reader_sha256": hashlib.sha256((dest / "native_battle_reader.gd").read_bytes()).hexdigest(),
     "engine": "vanilla Godot 3.6; full recovered Main scene; native frame scheduling",
     "battle_script_sha256": hashes,
     "adaptations": ["Offline Steam, leaderboard, SDK and plugin service stubs",
                     "Recovered plaintext table and full-version runtime DLL discovery",
                     "Preparation, activation and pending visual timer observers; no manual combat tick",
+                    "Batches return through the source history menu; adapter selects records and resets its UI fight guard",
                     "Read-only RNG call observer enabled" if rng_probe else "Native RNG object unchanged"],
     "scope": "Independent recovered-source reference, not the installed shipping EXE"
 }, ensure_ascii=False, indent=2) + "\n", encoding="utf8")

@@ -1,0 +1,23 @@
+{
+  "cases": [
+    {
+      "case_id": "run704404_r9_o500134_r9",
+      "seed": 625266216,
+      "run_id": 704404,
+      "round_id": 9,
+      "opp_run_id": 500134,
+      "opp_round_id": 9,
+      "player_class": "Engineer",
+      "player_class_id": 6,
+      "opp_class": "Berserker",
+      "opp_class_id": 2,
+      "player_version": "1.1.5",
+      "opp_version": "1.1.6",
+      "player_stage": "7-9",
+      "player_items": 26,
+      "opp_items": 23,
+      "select_reason": "targeted:Anvil,Hammer,Toolbox",
+      "batch": "targeted"
+    }
+  ]
+}

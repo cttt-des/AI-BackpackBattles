@@ -1,0 +1,978 @@
+[
+  [
+    36,
+    "run101621_r3_o705060_r3",
+    28.016667,
+    [
+      [
+        "player",
+        [
+          "Dragonskin Boots"
+        ]
+      ]
+    ]
+  ],
+  [
+    38,
+    "run101697_r6_o400041_r6",
+    23.016667,
+    [
+      [
+        "opponent",
+        [
+          "Dragonscale Armor"
+        ]
+      ]
+    ]
+  ],
+  [
+    38,
+    "run400041_r7_o101102_r7",
+    10.8,
+    [
+      [
+        "player",
+        [
+          "Dragonscale Armor"
+        ]
+      ]
+    ]
+  ],
+  [
+    39,
+    "run101098_r5_o101130_r5",
+    15.9,
+    [
+      [
+        "opponent",
+        [
+          "Chain Whip"
+        ]
+      ]
+    ]
+  ],
+  [
+    41,
+    "run101490_r3_o704722_r3",
+    16.216667,
+    [
+      [
+        "player",
+        [
+          "Dragonscale Armor"
+        ]
+      ]
+    ]
+  ],
+  [
+    42,
+    "run101130_r6_o101047_r6",
+    20,
+    [
+      [
+        "player",
+        [
+          "Chain Whip"
+        ]
+      ]
+    ]
+  ],
+  [
+    42,
+    "run604680_r6_o400043_r6",
+    17.066667,
+    [
+      [
+        "opponent",
+        [
+          "Dragonscale Armor"
+        ]
+      ]
+    ]
+  ],
+  [
+    46,
+    "run400082_r7_o300117_r7",
+    20.083333,
+    [
+      [
+        "player",
+        [
+          "Dragonskin Boots"
+        ]
+      ]
+    ]
+  ],
+  [
+    51,
+    "run400041_r8_o101560_r8",
+    12.466667,
+    [
+      [
+        "player",
+        [
+          "Dragonscale Armor"
+        ]
+      ]
+    ]
+  ],
+  [
+    52,
+    "run101090_r7_o101130_r7",
+    12,
+    [
+      [
+        "opponent",
+        [
+          "Chain Whip"
+        ]
+      ]
+    ]
+  ],
+  [
+    52,
+    "run101621_r5_o300192_r5",
+    14.433333,
+    [
+      [
+        "player",
+        [
+          "Dragonskin Boots"
+        ]
+      ]
+    ]
+  ],
+  [
+    52,
+    "run101621_r6_o704684_r6",
+    12.8,
+    [
+      [
+        "player",
+        [
+          "Dragonskin Boots"
+        ]
+      ]
+    ]
+  ],
+  [
+    52,
+    "run604796_r9_o400071_r9",
+    9.233333,
+    [
+      [
+        "opponent",
+        [
+          "Chain Whip"
+        ]
+      ]
+    ]
+  ],
+  [
+    53,
+    "run400043_r10_o100873_r10",
+    8,
+    [
+      [
+        "player",
+        [
+          "Dragon Claws",
+          "Dragonskin Boots",
+          "Dragonscale Armor"
+        ]
+      ]
+    ]
+  ],
+  [
+    54,
+    "run704274_r6_o704305_r6",
+    18.416667,
+    [
+      [
+        "player",
+        [
+          "Dragonskin Boots"
+        ]
+      ]
+    ]
+  ],
+  [
+    55,
+    "run101746_r7_o704274_r7",
+    12,
+    [
+      [
+        "opponent",
+        [
+          "Dragonskin Boots"
+        ]
+      ]
+    ]
+  ],
+  [
+    57,
+    "run704610_r8_o400082_r8",
+    16.366667,
+    [
+      [
+        "opponent",
+        [
+          "Dragonskin Boots"
+        ]
+      ]
+    ]
+  ],
+  [
+    58,
+    "run101571_r6_o100954_r6",
+    29.016667,
+    [
+      [
+        "opponent",
+        [
+          "Dragonskin Boots"
+        ]
+      ]
+    ]
+  ],
+  [
+    59,
+    "run101490_r5_o704639_r5",
+    34.65,
+    [
+      [
+        "player",
+        [
+          "Dragonscale Armor"
+        ]
+      ]
+    ]
+  ],
+  [
+    60,
+    "run101490_r6_o500242_r6",
+    19.433333,
+    [
+      [
+        "player",
+        [
+          "Dragonscale Armor"
+        ]
+      ]
+    ]
+  ],
+  [
+    61,
+    "run604756_r7_o705018_r7",
+    8.5,
+    [
+      [
+        "player",
+        [
+          "Dragonskin Boots"
+        ]
+      ]
+    ]
+  ],
+  [
+    62,
+    "run100873_r12_o400043_r12",
+    10,
+    [
+      [
+        "opponent",
+        [
+          "Dragonscale Armor",
+          "Dragonskin Boots",
+          "Dragon Claws"
+        ]
+      ]
+    ]
+  ],
+  [
+    62,
+    "run400064_r11_o400025_r11",
+    17.716667,
+    [
+      [
+        "player",
+        [
+          "Spiked Collar",
+          "Double Axe"
+        ]
+      ],
+      [
+        "opponent",
+        [
+          "Badger Rune"
+        ]
+      ]
+    ]
+  ],
+  [
+    62,
+    "run500267_r7_o101490_r7",
+    13.066667,
+    [
+      [
+        "opponent",
+        [
+          "Dragonskin Boots",
+          "Dragonscale Armor"
+        ]
+      ]
+    ]
+  ],
+  [
+    63,
+    "run400079_r10_o500127_r10",
+    13.766667,
+    [
+      [
+        "player",
+        [
+          "Dragonskin Boots"
+        ]
+      ]
+    ]
+  ],
+  [
+    65,
+    "run400082_r9_o101535_r9",
+    13.15,
+    [
+      [
+        "player",
+        [
+          "Dragonskin Boots"
+        ]
+      ]
+    ]
+  ],
+  [
+    65,
+    "run604475_r10_o400071_r10",
+    18.4,
+    [
+      [
+        "opponent",
+        [
+          "Chain Whip"
+        ]
+      ]
+    ]
+  ],
+  [
+    66,
+    "run101621_r7_o101376_r7",
+    15.133333,
+    [
+      [
+        "player",
+        [
+          "Dragonskin Boots"
+        ]
+      ]
+    ]
+  ],
+  [
+    68,
+    "run101582_r8_o100981_r8",
+    8,
+    [
+      [
+        "opponent",
+        [
+          "Double Axe"
+        ]
+      ]
+    ]
+  ],
+  [
+    68,
+    "run500127_r11_o400079_r11",
+    8.183333,
+    [
+      [
+        "opponent",
+        [
+          "Spiked Wall",
+          "Dragonskin Boots"
+        ]
+      ]
+    ]
+  ],
+  [
+    69,
+    "run400025_r10_o101639_r10",
+    10.25,
+    [
+      [
+        "player",
+        [
+          "Badger Rune"
+        ]
+      ]
+    ]
+  ],
+  [
+    70,
+    "run604581_r10_o400082_r10",
+    26,
+    [
+      [
+        "opponent",
+        [
+          "Badger Rune",
+          "Dragonskin Boots"
+        ]
+      ]
+    ]
+  ],
+  [
+    71,
+    "run704752_r9_o704462_r9",
+    12,
+    [
+      [
+        "player",
+        [
+          "Dragonskin Boots"
+        ]
+      ]
+    ]
+  ],
+  [
+    72,
+    "run101653_r9_o101428_r9",
+    27.3,
+    [
+      [
+        "player",
+        [
+          "Dragon Claws"
+        ]
+      ]
+    ]
+  ],
+  [
+    72,
+    "run101654_r10_o101349_r10",
+    11.716667,
+    [
+      [
+        "player",
+        [
+          "Chain Whip"
+        ]
+      ]
+    ]
+  ],
+  [
+    72,
+    "run400021_r12_o400043_r11",
+    22,
+    [
+      [
+        "opponent",
+        [
+          "Dragonscale Armor",
+          "Dragonskin Boots",
+          "Dragon Claws"
+        ]
+      ]
+    ]
+  ],
+  [
+    72,
+    "run400043_r14_o200229_r14",
+    22.783333,
+    [
+      [
+        "player",
+        [
+          "Dragonscale Armor",
+          "Dragonskin Boots",
+          "Dragon Claws"
+        ]
+      ]
+    ]
+  ],
+  [
+    73,
+    "run100981_r9_o101587_r9",
+    9.85,
+    [
+      [
+        "player",
+        [
+          "Double Axe"
+        ]
+      ]
+    ]
+  ],
+  [
+    73,
+    "run400035_r14_o400043_r13",
+    29.883333,
+    [
+      [
+        "player",
+        [
+          "Dragonskin Boots"
+        ]
+      ],
+      [
+        "opponent",
+        [
+          "Dragonscale Armor",
+          "Dragonskin Boots",
+          "Dragon Claws"
+        ]
+      ]
+    ]
+  ],
+  [
+    74,
+    "run101654_r9_o300110_r9",
+    11.3,
+    [
+      [
+        "player",
+        [
+          "Chain Whip"
+        ]
+      ]
+    ]
+  ],
+  [
+    75,
+    "run400043_r15_o200229_r15",
+    21.183333,
+    [
+      [
+        "player",
+        [
+          "Dragonscale Armor",
+          "Dragonskin Boots",
+          "Dragon Claws"
+        ]
+      ]
+    ]
+  ],
+  [
+    77,
+    "run100873_r13_o400035_r13",
+    13.016667,
+    [
+      [
+        "opponent",
+        [
+          "Dragonskin Boots"
+        ]
+      ]
+    ]
+  ],
+  [
+    77,
+    "run300119_r12_o400025_r12",
+    15.133333,
+    [
+      [
+        "opponent",
+        [
+          "Badger Rune"
+        ]
+      ]
+    ]
+  ],
+  [
+    78,
+    "run101576_r12_o101157_r12",
+    9.35,
+    [
+      [
+        "opponent",
+        [
+          "Spiked Staff"
+        ]
+      ]
+    ]
+  ],
+  [
+    78,
+    "run400086_r11_o200195_r11",
+    20.016667,
+    [
+      [
+        "player",
+        [
+          "Chain Whip"
+        ]
+      ]
+    ]
+  ],
+  [
+    80,
+    "run101490_r9_o101423_r9",
+    9.733333,
+    [
+      [
+        "player",
+        [
+          "Dragonskin Boots"
+        ]
+      ]
+    ]
+  ],
+  [
+    80,
+    "run200239_r16_o400043_r16",
+    11.6,
+    [
+      [
+        "opponent",
+        [
+          "Dragonscale Armor",
+          "Dragonskin Boots",
+          "Dragon Claws"
+        ]
+      ]
+    ]
+  ],
+  [
+    80,
+    "run400020_r16_o400057_r16",
+    15.366667,
+    [
+      [
+        "opponent",
+        [
+          "Dragon Claws"
+        ]
+      ]
+    ]
+  ],
+  [
+    81,
+    "run101490_r8_o101571_r8",
+    10.866667,
+    [
+      [
+        "player",
+        [
+          "Dragonskin Boots"
+        ]
+      ]
+    ]
+  ],
+  [
+    81,
+    "run400021_r14_o200206_r14",
+    13.916667,
+    [
+      [
+        "player",
+        [
+          "Spiked Collar"
+        ]
+      ]
+    ]
+  ],
+  [
+    82,
+    "run400065_r15_o400073_r15",
+    36.183333,
+    [
+      [
+        "player",
+        [
+          "Badger Rune"
+        ]
+      ]
+    ]
+  ],
+  [
+    83,
+    "run400025_r13_o400010_r13",
+    14.6,
+    [
+      [
+        "player",
+        [
+          "Badger Rune"
+        ]
+      ]
+    ]
+  ],
+  [
+    83,
+    "run705104_r12_o704867_r12",
+    8.733333,
+    [
+      [
+        "opponent",
+        [
+          "Dragonskin Boots"
+        ]
+      ]
+    ]
+  ],
+  [
+    85,
+    "run400086_r16_o500134_r16",
+    10.883333,
+    [
+      [
+        "player",
+        [
+          "Chain Whip"
+        ]
+      ]
+    ]
+  ],
+  [
+    88,
+    "run400071_r15_o300117_r15",
+    12.8,
+    [
+      [
+        "player",
+        [
+          "Chain Whip"
+        ]
+      ]
+    ]
+  ],
+  [
+    88,
+    "run400087_r17_o400086_r17",
+    32.883333,
+    [
+      [
+        "opponent",
+        [
+          "Spiked Collar",
+          "Chain Whip"
+        ]
+      ]
+    ]
+  ],
+  [
+    89,
+    "run400026_r16_o101621_r16",
+    11.2,
+    [
+      [
+        "player",
+        [
+          "Spiked Collar"
+        ]
+      ],
+      [
+        "opponent",
+        [
+          "Dragonskin Boots"
+        ]
+      ]
+    ]
+  ],
+  [
+    89,
+    "run604836_r15_o100845_r15",
+    20.966667,
+    [
+      [
+        "opponent",
+        [
+          "Spiked Wall"
+        ]
+      ]
+    ]
+  ],
+  [
+    90,
+    "run101372_r15_o101157_r15",
+    10.116667,
+    [
+      [
+        "opponent",
+        [
+          "Spiked Staff"
+        ]
+      ]
+    ]
+  ],
+  [
+    92,
+    "run101653_r11_o101325_r11",
+    8.85,
+    [
+      [
+        "player",
+        [
+          "Dragon Claws",
+          "Dragon Claws"
+        ]
+      ]
+    ]
+  ],
+  [
+    93,
+    "run101490_r12_o704664_r12",
+    15.5,
+    [
+      [
+        "player",
+        [
+          "Dragonskin Boots"
+        ]
+      ]
+    ]
+  ],
+  [
+    93,
+    "run101621_r11_o604566_r11",
+    8.35,
+    [
+      [
+        "player",
+        [
+          "Dragonskin Boots"
+        ]
+      ]
+    ]
+  ],
+  [
+    94,
+    "run704806_r11_o101176_r11",
+    17.266667,
+    [
+      [
+        "opponent",
+        [
+          "Spiked Wall"
+        ]
+      ]
+    ]
+  ],
+  [
+    95,
+    "run704752_r14_o604627_r14",
+    14.666667,
+    [
+      [
+        "player",
+        [
+          "Dragonskin Boots"
+        ]
+      ]
+    ]
+  ],
+  [
+    97,
+    "run101689_r18_o101178_r18",
+    10.933333,
+    [
+      [
+        "player",
+        [
+          "Spiked Staff"
+        ]
+      ]
+    ]
+  ],
+  [
+    101,
+    "run101621_r12_o101355_r12",
+    12.516667,
+    [
+      [
+        "player",
+        [
+          "Dragonskin Boots"
+        ]
+      ]
+    ]
+  ],
+  [
+    101,
+    "run705016_r14_o101621_r14",
+    13.466667,
+    [
+      [
+        "opponent",
+        [
+          "Dragonskin Boots"
+        ]
+      ]
+    ]
+  ],
+  [
+    105,
+    "run704752_r13_o705153_r13",
+    14,
+    [
+      [
+        "player",
+        [
+          "Dragonskin Boots"
+        ]
+      ]
+    ]
+  ],
+  [
+    106,
+    "run704847_r17_o704688_r17",
+    33.333333,
+    [
+      [
+        "opponent",
+        [
+          "Dragonskin Boots"
+        ]
+      ]
+    ]
+  ],
+  [
+    107,
+    "run100828_r18_o604808_r18",
+    14.25,
+    [
+      [
+        "player",
+        [
+          "Dragonskin Boots"
+        ]
+      ]
+    ]
+  ],
+  [
+    109,
+    "run101621_r15_o704992_r15",
+    12.016667,
+    [
+      [
+        "player",
+        [
+          "Dragonskin Boots"
+        ]
+      ]
+    ]
+  ],
+  [
+    109,
+    "run500291_r18_o704297_r18",
+    12.233333,
+    [
+      [
+        "player",
+        [
+          "Dragon Claws",
+          "Dragon Claws",
+          "Double Axe"
+        ]
+      ]
+    ]
+  ]
+]

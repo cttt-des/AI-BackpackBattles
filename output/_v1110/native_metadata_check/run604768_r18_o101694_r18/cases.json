@@ -1,0 +1,26 @@
+{
+  "cases": [
+    {
+      "case_id": "run604768_r18_o101694_r18",
+      "seed": 1672180149,
+      "run_id": 604768,
+      "round_id": 18,
+      "opp_run_id": 101694,
+      "opp_round_id": 18,
+      "player_class": "Engineer",
+      "player_class_id": 6,
+      "opp_class": "Adventurer",
+      "opp_class_id": 5,
+      "player_version": "1.1.7",
+      "opp_version": "1.1.9",
+      "player_stage": "16-18",
+      "player_items": 65,
+      "opp_items": 49,
+      "player_src_run": 4768,
+      "opp_src_run": 1694,
+      "select_reason": "bucket:6/16-18",
+      "opp_reuse": 1,
+      "batch": "main"
+    }
+  ]
+}
