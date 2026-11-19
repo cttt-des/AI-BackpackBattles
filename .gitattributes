@@ -1,0 +1,3 @@
+# Preserve the exact bytes used by the native runtime SHA-256 manifest.
+backpack_native/sim.py -text
+backpack_native/gd_core_runtime.json -text

@@ -28,6 +28,7 @@ def main():
                     '--specpath', 'build', '--add-binary', str(stage / 'backpack_native/libgdcore.dll') + ';backpack_native',
                     '--add-data', str(stage / 'backpack_native/gd_core_runtime.json') + ';backpack_native',
                     '--add-data', str(stage / 'backpack_native/manifest.json') + ';backpack_native',
+                    '--add-data', str(stage / 'backpack_native/sim.py') + ';backpack_native',
                     '--add-data', str(stage / 'backpack_native/selftest_case.json') + ';backpack_native',
                     'native_simulator.py'], cwd=stage, check=True)
 

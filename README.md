@@ -39,10 +39,13 @@ print(result["win_rate"])
 
 ```bash
 python tools/build_native_release.py
+python tools/verify_native_release.py
 BackpackSimulator.exe --selftest selftest_report.json
 ```
 
 构建前将已验收的 `native_hot_path.dll` 放入 `backpack_native/libgdcore.dll`，与 `manifest.json` 的 SHA-256 一致。构建需要 setuptools、wheel 和 PyInstaller。发布 EXE 和 wheel 均包含 DLL。
+
+验证脚本检查两个发布包的完整性清单，并在临时目录中分别运行隔离安装的 wheel 和 EXE 自检；结果见 [发布包验收记录](docs/release_v0.6.0_verification.json)。
 
 ## 工作区和历史版本
 
