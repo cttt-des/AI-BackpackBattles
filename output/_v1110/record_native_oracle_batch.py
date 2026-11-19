@@ -74,6 +74,12 @@ for boundary in ("prepare", "before_activate"):
     if "engine_seed" in data[boundary]:
         replace_once(rng_set + "\n\t\tseed(%d)" % int(data[boundary]["engine_seed"]), rng_set)
     replace_once(rng_set, rng_set + '\n\t\tif native_input["%s"].has("engine_seed"):\n\t\t\tseed(int(native_input["%s"]["engine_seed"]))' % (boundary, boundary))
+if "buff_state" in data["before_activate"]:
+    replace_once('_native_restore_buff_state(%s)' % json.dumps(data["before_activate"]["buff_state"]),
+                 '_native_restore_buff_state(native_input["before_activate"].get("buff_state"))')
+else:
+    anchor = "\tG.activateItems(playerItems + opponentItems)\n"
+    replace_once(anchor, '\t\t_native_restore_buff_state(native_input["before_activate"].get("buff_state"))\n' + anchor)
 replace_once("_restore_native_visuals(%s)" % json.dumps(data["flicker_states"], ensure_ascii=False),
              '_restore_native_visuals(native_input["flicker_states"])')
 replace_once("for snapshot in %s:" % json.dumps(namespace["timers"], ensure_ascii=False),

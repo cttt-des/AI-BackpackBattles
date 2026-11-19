@@ -1,0 +1,19 @@
+{
+  "total": 100,
+  "passed": 100,
+  "failures": [],
+  "comparison": "Cython versus pure Python with canonical and strict gem identity checks, natural end and initial replay metadata",
+  "native_passes_in_shared_build": 67,
+  "fixtures_sha256": "2e5a8bad10dff0a1fe5204d1cbf8d9c25d673c1f8d9a65fd200a6379e31d57e8",
+  "compiled_sha256": {
+    "gd_core_py/_rt.pyd": "1cfb32037367f099f4422a97841eb80379b1abfff43c81540c5023e97706cc0b",
+    "gd_core_py/gd_core/CoreBuff.pyd": "8e5a929eedbed102515661bd03b5c242740afd8addd2cb5d3ac3ea3bb45cc73f",
+    "gd_core_py/gd_core/CoreCharacter.pyd": "7568b9c8a5ab29d601ccb5e523ad5ac03ced9d8e7166fe829376fcba250a8da8",
+    "gd_core_py/gd_core/CoreCombat.pyd": "5b125585951ef65e9b39a572fc255c9782861b8d6c0139cb19e9cd8681261475",
+    "gd_core_py/gd_core/CoreEventBus.pyd": "c50205ae4bccd5942dbad12238ff640fc5a995016d9c805fa7222ba14ce63227",
+    "gd_core_py/gd_core/CoreGrid.pyd": "f60c0c63ea36b513784e0b2f9b20ec2d1f0ccf43326b15316f5d23634236a844",
+    "gd_core_py/gd_core/CoreItem.pyd": "c3911ba9c7466b9eae5323a31daed390c70611e9f6b2adf535bd40f0fe87d38a",
+    "gd_core_py/gd_core/CoreRng.pyd": "15080890fc577d9c947a3d518141c94cae9a5f050db2b89da0db5d1676f71661",
+    "gd_core_py/gd_core/CoreTimer.pyd": "4ee48da483893161e9193ed26bc49e9cccef42f0b3d365febc85304c4e955d07"
+  }
+}

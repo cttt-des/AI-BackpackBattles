@@ -1,0 +1,70 @@
+{
+  "total": 2,
+  "passed": 1,
+  "cases": [
+    {
+      "case_id": "run704972_r15_o705093_r15",
+      "match": false,
+      "counts": [
+        776,
+        712
+      ],
+      "first": 98,
+      "gems_match": false,
+      "inputs_match": true,
+      "ending_match": false,
+      "native": [
+        51,
+        2,
+        "player",
+        null,
+        [
+          "item",
+          "Obsidian Dragon"
+        ],
+        [
+          [
+            "damage",
+            42
+          ]
+        ],
+        -1,
+        0
+      ],
+      "oracle": [
+        51,
+        2,
+        "player",
+        null,
+        [
+          "item",
+          "Obsidian Dragon"
+        ],
+        [
+          [
+            "damage",
+            47
+          ]
+        ],
+        -1,
+        0
+      ]
+    },
+    {
+      "case_id": "run705039_r18_o704909_r18",
+      "match": true,
+      "counts": [
+        638,
+        638
+      ],
+      "first": null,
+      "gems_match": true,
+      "inputs_match": true,
+      "ending_match": true,
+      "native": null,
+      "oracle": null
+    }
+  ],
+  "scope": "Independent source Oracle; native initial states and activation order only; no expected events passed to the engine",
+  "script_sha256": "91d9f38316566bb5706a6e65bd87a6da1b6766f2d9c1049a4dc7e76a38a6a741"
+}

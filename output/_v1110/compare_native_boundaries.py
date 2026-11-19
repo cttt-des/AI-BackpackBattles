@@ -153,8 +153,24 @@ source = source.replace("\tG.prepareItems(playerItems + opponentItems)\n",
 source = source.replace("\tG.activateItems(playerItems + opponentItems)\n",
                         "\tif not warmup:\n\t\tU.rng.set_state(%s)\n" % data["before_activate"]["state"]
                         + ("\t\tseed(%d)\n" % int(data["before_activate"]["engine_seed"]) if "engine_seed" in data["before_activate"] else "")
+                        + ("\t\t_native_restore_buff_state(%s)\n" % json.dumps(data["before_activate"]["buff_state"])
+                           if "buff_state" in data["before_activate"] else "")
                         + ("\t\tU.rng.recording = true\n" if args.rng_probe else "")
                         + "\tG.activateItems(playerItems + opponentItems)\n")
+source += '''
+
+func _native_restore_buff_state(state):
+	if state == null:
+		return
+	assert(state.size() == 2)
+	var characters = [G.PLAYER, G.OPPONENT]
+	for side in range(2):
+		for row in state[side]:
+			var buff = characters[side].buffs[int(row[0])]
+			assert(buff.current == int(row[1]))
+			assert(int(row[3]) == 0 and buff.temporaryStacks.empty())
+			buff.permanentStacks = int(row[2])
+'''
 if args.restore_flickers:
     source = source.replace("extends SceneTree\n", "extends SceneTree\n\nvar _native_visual_players := []\nvar _native_visual_orphans := []\n", 1)
     source = source.replace("\t\tU.rng.set_state(%s)\n" % data["before_activate"]["state"],

@@ -1,0 +1,96 @@
+{
+  "scope": "Three strict event-passing fixtures. CPU time includes assembly and battle, with event materialization off and warm imports.",
+  "rounds": 5,
+  "iterations_per_block": 3,
+  "cases": {
+    "run604793_r1_o704794_r1": {
+      "pure_ms": [
+        41.666666666666664,
+        36.458333333333336,
+        36.458333333333336,
+        46.875,
+        41.666666666666664
+      ],
+      "cython_ms": [
+        31.25,
+        31.25,
+        26.041666666666668,
+        26.041666666666668,
+        20.833333333333332
+      ],
+      "median_ms": [
+        41.666666666666664,
+        26.041666666666668
+      ],
+      "signature": [
+        false,
+        446,
+        0.0,
+        13.0
+      ]
+    },
+    "run101533_r6_o101089_r6": {
+      "pure_ms": [
+        229.16666666666666,
+        151.04166666666666,
+        156.25,
+        166.66666666666666,
+        187.5
+      ],
+      "cython_ms": [
+        161.45833333333334,
+        109.375,
+        93.75,
+        88.54166666666667,
+        114.58333333333333
+      ],
+      "median_ms": [
+        166.66666666666666,
+        109.375
+      ],
+      "signature": [
+        true,
+        812,
+        54.0,
+        0.0
+      ]
+    },
+    "run705116_r17_o604720_r17": {
+      "pure_ms": [
+        953.125,
+        833.3333333333334,
+        682.2916666666666,
+        854.1666666666666,
+        1015.625
+      ],
+      "cython_ms": [
+        546.875,
+        494.7916666666667,
+        406.25,
+        484.375,
+        526.0416666666666
+      ],
+      "median_ms": [
+        854.1666666666666,
+        494.7916666666667
+      ],
+      "signature": [
+        false,
+        2130,
+        0.0,
+        992.0
+      ]
+    }
+  },
+  "compiled_modules": [
+    "gd_core_py._rt",
+    "gd_core_py.gd_core.CoreBuff",
+    "gd_core_py.gd_core.CoreCharacter",
+    "gd_core_py.gd_core.CoreCombat",
+    "gd_core_py.gd_core.CoreEventBus",
+    "gd_core_py.gd_core.CoreGrid",
+    "gd_core_py.gd_core.CoreItem",
+    "gd_core_py.gd_core.CoreRng",
+    "gd_core_py.gd_core.CoreTimer"
+  ]
+}
