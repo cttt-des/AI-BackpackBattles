@@ -5,6 +5,9 @@ import shutil
 from pathlib import Path
 import subprocess
 import sys
+import time
+
+from native_recording_products import check_completed_products
 
 repo=Path.cwd()
 sys.path.insert(0,str(repo))
@@ -60,6 +63,7 @@ if args.disable_render_loop:
 if args.rng_probe:
     command.append("--debug")  # Godot exposes get_stack() only with a debugger.
 command[0]=str(executable)
+started_ns = time.time_ns()
 p,log,h=gh.spawn(command,label="native_settled",tag="native_settled",
                  env_extra={"NATIVE_BATTLE_CASE":",".join(case_ids),"NATIVE_BATTLE_OUT":str(stage/args.out),
                             "NATIVE_BATTLE_ENGINE_SEED": "" if args.engine_seed is None else str(args.engine_seed)})
@@ -76,25 +80,17 @@ selected=[s for s in lines if any(x in s for x in ("SCRIPT ERROR","[NATIVE]","VE
 print("\n".join(selected[:12]+selected[-8:]),flush=True)
 print("return",rc,flush=True)
 if not rc:
-    errors=[s for s in lines if "SCRIPT ERROR" in s or "Debugger Break" in s]
-    if errors:
-        print("Reference recording rejected because of script errors:", "\n".join(errors), flush=True)
-        rc=1
-    elif not all(any(f"[NATIVE] Recorded {cid} " in s for s in lines) for cid in case_ids):
-        print("Reference recording rejected: missing a current-run completion marker", flush=True)
-        rc=1
+    try:
+        cases = json.loads((project / "fights.json").read_bytes())["cases"]
+        missing = check_completed_products(stage / args.out, case_ids, lines, started_ns, cases)
+    except (OSError, ValueError, KeyError, TypeError) as error:
+        print("Reference recording rejected:", error, flush=True)
+        rc = 1
     else:
+        if missing:
+            print("Validated fresh products and batch completion for", missing, flush=True)
         for cid in case_ids:
             target=stage/args.out/cid
-            if not all((target/name).is_file() for name in ("events.json", "lineups.json", "boundaries.json")):
-                print("Reference recording rejected: missing output for",cid,flush=True)
-                rc=1
-                break
-            events=json.loads((target/"events.json").read_text("utf8"))
-            if events.get("event_count") != len(events.get("events",[])) or not events["events"] or events["events"][-1]["type"] not in (111,112):
-                print("Reference recording rejected: missing natural terminal for",cid,flush=True)
-                rc=1
-                break
             if args.engine_seed is None:
                 shutil.copyfile(project/"reference_manifest.json",target/"reference_manifest.json")
             else:
