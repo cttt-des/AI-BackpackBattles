@@ -1,0 +1,14 @@
+{
+  "scope": "The same fixed fixtures and native reference snapshot, strict gem origins and canonical events compared across both builds",
+  "total": 100,
+  "identical_gd_py_cpp_before_after": 100,
+  "native_strict_match": 67,
+  "native_winner_mismatch": 1,
+  "contract": {
+    "godot_tween_frames": 2000,
+    "motions_started": 247,
+    "new_charge_waits_for_next_pass": true
+  },
+  "candidate_dll_sha256": "f2dff4c0e46a64b716d8fde4ec259072bb12502d4136cf517ed863079009d1d4",
+  "before_dll_sha256": "a304797fc5f73e8e57f2fe0f69cb242993b310b55f5a98a186e163a295d418d6"
+}
