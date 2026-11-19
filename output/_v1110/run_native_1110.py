@@ -7,7 +7,7 @@ import subprocess
 import sys
 import time
 
-from native_recording_products import check_completed_products
+from native_recording_products import check_battle_products, check_completed_products
 
 repo=Path.cwd()
 sys.path.insert(0,str(repo))
@@ -68,9 +68,11 @@ p,log,h=gh.spawn(command,label="native_settled",tag="native_settled",
                  env_extra={"NATIVE_BATTLE_CASE":",".join(case_ids),"NATIVE_BATTLE_OUT":str(stage/args.out),
                             "NATIVE_BATTLE_ENGINE_SEED": "" if args.engine_seed is None else str(args.engine_seed)})
 print("pid",p.pid,"log",log,flush=True)
+timed_out = False
 try:
     rc=p.wait(timeout=args.timeout)
 except subprocess.TimeoutExpired:
+    timed_out = True
     p.kill()
     rc=p.wait()
 finally:
@@ -104,4 +106,24 @@ if not rc:
                 experiment["controlled_engine_seeds"] = observed
                 experiment["scope"] = "Recovered-source reference with controlled global RNG at preparation and activation"
                 (target / "reference_manifest.json").write_text(json.dumps(experiment, indent=2) + "\n", encoding="utf8")
+elif timed_out and args.engine_seed is None and not any(
+        "SCRIPT ERROR" in line or "Debugger Break" in line for line in lines):
+    recorded = {cid for cid in case_ids if any(f"[NATIVE] Recorded {cid} " in line for line in lines)}
+    if recorded:
+        cases = {row["case_id"]: row for row in json.loads((project / "fights.json").read_bytes())["cases"]}
+        folder = stage / args.out
+        recovered = []
+        for cid in case_ids:
+            if cid not in recorded:
+                continue
+            try:
+                check_battle_products(folder, cid, cases[cid], started_ns)
+            except (OSError, ValueError, KeyError, TypeError, IndexError) as error:
+                print("Timed-out reference rejected:", cid, error, flush=True)
+                continue
+            shutil.copyfile(project / "reference_manifest.json", folder / cid / "reference_manifest.json")
+            recovered.append(cid)
+        print("Validated completed cases before recorder timeout:", recovered, flush=True)
+        if len(recovered) == len(case_ids):
+            rc = 0
 raise SystemExit(rc)

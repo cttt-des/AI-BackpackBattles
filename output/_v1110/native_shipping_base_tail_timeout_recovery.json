@@ -1,0 +1,28 @@
+{
+  "runner_pid": 26256,
+  "engine_sha256": "4522a5f2b71fe2aa5f7f730a2bd71f66f4f8112609164bcef39c110f047ad577",
+  "log": "_recovery\\godot_logs\\native_settled_26256_1.log",
+  "log_sha256": "5c056902c363cba80c7fb7235984b16a624d33196b2f1a4a780b9322053a002c",
+  "batch_started_ns_lower_bound": 1795083570268742100,
+  "batch_ended_ns_upper_bound": 1795084078452838912,
+  "recovered": {
+    "run1371_r18": {
+      "events.json": "5ee29eed2bdb5313b88c07cf263543ed7af4fd35aa87e93c422c3a58703b3eb5",
+      "lineups.json": "f327bcd64e4ef57c4bb949bb224a1ed953dda76ad713e3805ee3332ea93d8ee3",
+      "boundaries.json": "40a2886748ee7312e1d04cf5c7c408e924eb89777b0a31a611755d1d98e7d273"
+    },
+    "run1372_r18": {
+      "events.json": "c4e5c71029c839af0efd1735251ed86034216c12b6359f7bbd63dcdf9ee5378a",
+      "lineups.json": "41f3a5257845e888433f71be4053a0719af8a170501a92acd3bddc378193a5dc",
+      "boundaries.json": "45babddad6e85768a8866101cb1bde6ee858bfc875af16134c3e7f653f185557"
+    },
+    "run1373_r11": {
+      "events.json": "06119f5b3ffdbbe8ff745cb3675c37c6209e99da5b05bf9dc5f85ffe7a831e4b",
+      "lineups.json": "9eb74c51a150030cedf22ba66444f88170303e5a7c87da1c2e43dbcaf9b5fd2f",
+      "boundaries.json": "1f89ad65d793a5d5e3755b28d34a8df338296fd748ceac8f2e10c4b28fad8b20"
+    }
+  },
+  "unacknowledged": [
+    "run1374_r18"
+  ]
+}
