@@ -28,8 +28,14 @@ def case_ids(path, expected):
 
 def reference_index():
     base = "native_shipping_base_pilot/base"
+    base_tail = "native_shipping_base_tail/base"
     expand = "native_shipping_expand_live/expand"
-    base_ids = case_ids(STAGE / base / "cases.json", 914)
+    base_ids = case_ids(STAGE / "native_shipping_full_base/fights.json", 914)
+    base_tail_plan = STAGE / "native_shipping_base_tail_work.json"
+    tail = read_json(base_tail_plan) if base_tail_plan.is_file() else []
+    tail_ids = set(tail)
+    if len(tail) != len(tail_ids) or not tail_ids <= base_ids:
+        raise ValueError("Base tail contains cases outside the fixed 914-case table")
     expand_ids = case_ids(STAGE / "native_shipping_full_expand/fights.json", 1690)
     retained = read_json(STAGE / "native_shipping_expand_retained.json")
     new = set(read_json(STAGE / "native_shipping_expand_work.json"))
@@ -38,7 +44,7 @@ def reference_index():
     if case_ids(STAGE / expand / "cases.json", 881) != new:
         raise ValueError("Expanded recorder case table differs from the reference plan")
     return {
-        "base": {cid: {"path": base} for cid in base_ids},
+        "base": {cid: {"path": base_tail if cid in tail_ids else base} for cid in base_ids},
         "expand": retained | {cid: {"path": expand} for cid in new},
     }
 
