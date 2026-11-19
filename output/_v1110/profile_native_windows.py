@@ -90,19 +90,33 @@ def main():
     parser.add_argument("--runtime", type=Path, required=True)
     parser.add_argument("--nm", default="D:/mingw64/bin/nm.exe")
     parser.add_argument("--out", type=Path, required=True)
+    parser.add_argument("--corpus", action="store_true", help="Sample the 200 duration-stratified original replays")
     args = parser.parse_args()
     runtime = args.runtime.resolve()
     sim = load_native(runtime)
     size, by_offset = symbols(runtime / "libgdcore.dll", args.nm)
     offsets = sorted(by_offset)
-    pool = OpponentPool().sample((450, 650), 50, seed=42)[:25]
-    assert len(pool) == 25
-    sides = [sim.pack_side(lineup, strict=True) for lineup in pool]
-    player = sides[0]
-    jobs = [(player, opp, sim.make_options(round_id=player.round_id, seed=2026_11_11 + i * 10000 + k,
-                                          formal_ev_gate=500000, max_time=90.0))
-            for i, opp in enumerate(sides) for k in range(8)]
-    sim.run_batch(jobs[:8], n_threads=1, training=True)
+    if args.corpus:
+        import hashlib
+        from bench_native_corpus import prepare, select_cases
+
+        jobs = list(prepare(sim, select_cases(200), hashlib.sha256()))
+
+        def run(selected):
+            return [sim.run_one(*sides, **options) for _, sides, options, _, _ in selected]
+    else:
+        pool = OpponentPool().sample((450, 650), 50, seed=42)[:25]
+        assert len(pool) == 25
+        sides = [sim.pack_side(lineup, strict=True) for lineup in pool]
+        player = sides[0]
+        jobs = [(player, opp, sim.make_options(round_id=player.round_id, seed=2026_11_11 + i * 10000 + k,
+                                              formal_ev_gate=500000, max_time=90.0))
+                for i, opp in enumerate(sides) for k in range(8)]
+
+        def run(selected):
+            return sim.run_batch(selected, n_threads=1, training=True)
+
+    run(jobs[:8])
     kernel = ct.WinDLL("kernel32", use_last_error=True)
     current_thread = func(kernel, "GetCurrentThreadId", wt.DWORD)
     open_thread = func(kernel, "OpenThread", wt.HANDLE, wt.DWORD, wt.BOOL, wt.DWORD)
@@ -116,7 +130,7 @@ def main():
     thread.start()
     try:
         start = time.perf_counter()
-        results = sim.run_batch(jobs, n_threads=1, training=True)
+        results = run(jobs)
         wall = time.perf_counter() - start
     finally:
         done.set()
@@ -136,7 +150,8 @@ def main():
             inclusive[name] += count
         for pair in set(zip(names[1:], names)):
             callers[" -> ".join(pair)] += count
-    report = {"samples": stacks.total(), "sampled_wall_s": wall, "leaf": leaf.most_common(45),
+    report = {"workload": "original_replays" if args.corpus else "training", "samples": stacks.total(),
+              "sampled_wall_s": wall, "leaf": leaf.most_common(45),
               "inclusive": inclusive.most_common(45), "callers": callers.most_common(45)}
     args.out.write_text(json.dumps(report, indent=2) + "\n", encoding="utf8")
     for key in ("leaf", "inclusive", "callers"):
