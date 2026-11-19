@@ -242,16 +242,13 @@ verifier = verifier.replace(anchor, anchor + '''        "replay_initial": {"acti
 ''')
 verifier_path.write_text(verifier, encoding="utf8", newline="\n")
 
-cpp_verifier = (src / "tools/_cpp_verify_events.py").read_text("utf8")
+cpp_verifier = (repo / "tools/_cpp_verify_events.py").read_text("utf8")
 anchor = '        below_master = gd_doc.get("below_master")\n'
 assert cpp_verifier.count(anchor) == 1
 cpp_verifier = cpp_verifier.replace(anchor, '''        if fx.get("replay_initial") is not None and any(doc.get("replay_initial") != fx["replay_initial"] for doc in (gd_doc, pyd)):
             rec["category"] = "input_mismatch"
             rec["notes"].append("Initial activation or idle timer state differs from fixture")
 ''' + anchor)
-anchor = "                          label_rng_enabled=bool(fx.get('label_rng', True)))\n"
-assert cpp_verifier.count(anchor) == 1
-cpp_verifier = cpp_verifier.replace(anchor, "                          label_rng_enabled=bool(fx.get('label_rng', True)),\n                          **({'replay_initial': fx['replay_initial']} if fx.get('replay_initial') is not None else {}))\n")
 (dest / "tools/_cpp_verify_events.py").write_text(cpp_verifier, encoding="utf8", newline="\n")
 
 generator = (src / "tools/gd_to_py.py").read_text("utf8")

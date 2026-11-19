@@ -40,14 +40,22 @@ dlls = [args.before_dll or roots[0] / "bin/libgdcore.dll", args.after_dll or sim
 dlls = [path.resolve() for path in dlls]
 if args.after_results is not None:
     assert Path(summaries[1]["dll"]).resolve() == dlls[1], "Verification used a different candidate DLL"
+dll_hashes = [hashlib.sha256(path.read_bytes()).hexdigest() for path in dlls]
+for summary, digest in zip(summaries, dll_hashes):
+    if "dll_sha256" in summary:
+        assert summary["dll_sha256"] == digest, "Verification used a different DLL"
+if all(row.get("reference_mode") == "native-only" for row in summaries):
+    fixture_digest = hashlib.sha256((roots[1] / "fixtures.json").read_bytes()).hexdigest()
+    assert all(row["fixtures_sha256"] == fixture_digest for row in summaries), "Verification used different inputs"
+    assert all(maps[0][cid]["original_events_sha256"] == maps[1][cid]["original_events_sha256"] for cid in selected)
 engines = [NativeSimulator(path) for path in dlls]
 for engine in engines:
     engine.lib.gd_sim_set_dbg_events.argtypes = [ctypes.c_int32]
     engine.lib.gd_sim_set_dbg_events.restype = None
 fixtures = {row["case_id"]: row for row in json.loads((roots[1] / "fixtures.json").read_text("utf8"))["cases"]}
-result = {"scope": "Event-count quantiles among cases passing strict native/GD/Py/C++ checks in both builds; Oracle is a separate audit",
+result = {"scope": "Event-count quantiles among cases passing the recorded strict replay checks in both builds",
           "timing": "interleaved single-process CPU time, setup/combat/teardown and ctypes included; packing, JSON and file I/O excluded",
-          "dll_sha256": [hashlib.sha256(path.read_bytes()).hexdigest() for path in dlls],
+          "dll_sha256": dll_hashes,
           "rounds": args.rounds, "iterations_per_block": args.iterations, "cases": []}
 for cid in selected:
     case = fixtures[cid]

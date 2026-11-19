@@ -15,6 +15,7 @@ with updated recordings and the supplemental DLL export.
 """
 import argparse
 import ctypes
+import hashlib
 import json
 import re
 import struct
@@ -111,6 +112,18 @@ def first_tuple_difference(left, right):
     return min(len(left), len(right)) if first is None and len(left) != len(right) else first
 
 
+def canonical_parent_indices(lines):
+    ids = [int(line.split("|", 3)[2][3:]) for line in lines]
+    indices = {event_id: index for index, event_id in enumerate(ids)}
+    if len(indices) != len(ids):
+        raise ValueError("Duplicate event IDs in a replay")
+    rows = [canonical_fields(line) for line in lines]
+    for row in rows:
+        parent = int(row["parent"])
+        row["parent"] = indices.get(parent, ("unexported", parent - ids[0])) if parent >= 0 else parent
+    return rows
+
+
 def load_case_ids(spec: str) -> list:
     p = Path(spec)
     if p.exists() and p.suffix == '.json':
@@ -130,6 +143,114 @@ def read_rng_state(fights_root: Path, cid: str):
     return None
 
 
+def run_cpp_fixture(sim, fx, player_path, opponent_path, order, below_master, rng_state):
+    packed = []
+    for side, path in (("player", player_path), ("opponent", opponent_path)):
+        with io_open(path) as file:
+            lineup = json.load(file)
+        for field in ("stamina", "health", "regen"):
+            if fx[side].get(field) is not None:
+                lineup[field] = fx[side][field]
+        gems = [len(item.get("gems") or []) for item in fx[side]["items"]]
+        packed.append(sim.pack_side(lineup, gem_lens=gems, activation_order=order[side]))
+    sim.lib.gd_sim_set_dbg_events(1)
+    initial = fx.get("replay_initial")
+    return sim.run_one(*packed, seed=int(fx["seed"]), round_id=int(fx.get("round_id", 1)),
+                       below_master=below_master, native_activation_order=False,
+                       reseed_after_player_character=True, formal_ev_gate=500000,
+                       max_time=90.0, rng_state=rng_state,
+                       custom_health_multiplier=float(fx.get("custom_health_multiplier", 100.0)),
+                       label_rng_enabled=bool(fx.get("label_rng", True)),
+                       **({"replay_initial": initial} if initial is not None else {}))
+
+
+def native_debug_lines(lib):
+    return [(lib.gd_sim_dbg_event_line(i) or b"").decode("utf-8")
+            for i in range(lib.gd_sim_dbg_event_count())]
+
+
+def compare_native_case(sim, gem_origin, args, fx, cid):
+    rec = {"caseId": cid, "category": "missing_product", "missing_fields": [], "notes": []}
+    original = args.original_dir / cid
+    inputs = Path(args.fights_root) / cid
+    path = original / "events.json"
+    lineup_path = original / "lineups.json"
+    proof = original / "reference_manifest.json"
+    player_path = Path(args.align_root) / "lineups" / f"oracle_{cid}_player.json"
+    opponent_path = Path(args.align_root) / "lineups" / f"oracle_{cid}_opponent.json"
+    for required in (path, lineup_path, proof, original / "boundaries.json", inputs / "lineups.json",
+                     inputs / "rng_state.txt", player_path, opponent_path):
+        if not required.is_file():
+            rec["notes"].append(str(required))
+    if rec["notes"]:
+        return rec
+    event_bytes = path.read_bytes()
+    doc = json.loads(event_bytes)
+    lineup = json.loads(lineup_path.read_bytes())
+    prepared = json.loads((inputs / "lineups.json").read_bytes())
+    boundaries = json.loads((original / "boundaries.json").read_bytes())
+    identity_fields = ("seed", "run_id", "round_id", "opp_run_id", "opp_round_id")
+    rng_state = read_rng_state(inputs.parent, cid)
+    order = fx.get("native_activation_order") or {}
+    below_master = fx.get("below_master")
+    controls = prepared["replay_controls"]
+    original_controls = lineup["replay_controls"]
+    original_rows, end = event_rows(doc)
+    if (any(key not in doc or doc[key] != lineup.get(key) or doc[key] != prepared.get(key)
+            for key in identity_fields)
+            or int(doc["seed"]) != int(fx["seed"]) or int(doc["round_id"]) != int(fx["round_id"])
+            or any(prepared[side] != lineup[side] for side in ("player", "opponent"))
+            or rng_state != int(boundaries["prepare"]["state"]) & ((1 << 64) - 1)
+            or controls["replay_initial"] != fx.get("replay_initial")
+            or controls["native_activation_order"] != order
+            or any(sorted(order.get(side) or []) != list(range(len(fx[side]["items"])))
+                   for side in ("player", "opponent"))
+            or not isinstance(below_master, bool) or below_master != original_controls["below_master"]
+            or float(fx["custom_health_multiplier"]) != float(original_controls["custom_health_multiplier"])
+            or (args.below_master is not None and below_master != args.below_master)):
+        rec["category"] = "input_mismatch"
+        rec["notes"].append("Recording, prepared inputs or fixture disagree")
+        return rec
+    if end is None or len(doc["events"]) != doc["event_count"] or any(
+            row["type"] in (111, 112) for row in original_rows):
+        rec["category"] = "invalid_original_terminal"
+        return rec
+    started = time.perf_counter()
+    result = run_cpp_fixture(sim, fx, player_path, opponent_path, order, below_master, rng_state)
+    rec["wall_s"] = time.perf_counter() - started
+    if result.timed_out or result.formal_ev_capped or rec["wall_s"] > args.timeout:
+        rec["category"] = "timeout"
+        return rec
+    lines = native_debug_lines(sim.lib)
+    expected = [CE.py_row_canonical(row) for row in original_rows]
+    first = first_tuple_difference(canonical_parent_indices(lines), canonical_parent_indices(expected))
+    missing, gem_first = compare_gem_origins(gem_origin, lines, {"original": original_rows})
+    winner = "player" if result.player_wins else "opponent"
+    rec["winner"] = {"cpp": winner, "original": doc["winner"]}
+    rec["winner_match"] = winner == doc["winner"]
+    expected_end = 111 if result.player_wins else 112
+    terminal_tick = round(float(result.combat_time) * 60)
+    rec["natural_ending_match"] = (end["type"] == expected_end
+                                   and round(float(end["timestamp"]) * 60) == terminal_tick
+                                   and round(float(doc["combat_time"]) * 60) == terminal_tick)
+    rec["events_cpp_vs_original"] = {
+        "rows_cpp": len(lines), "rows_original": len(expected), "first_divergence": first,
+        "cpp_row": lines[first] if first is not None and first < len(lines) else None,
+        "original_row": expected[first] if first is not None and first < len(expected) else None,
+    }
+    rec["original_events_sha256"] = hashlib.sha256(event_bytes).hexdigest()
+    rec["reference_manifest_sha256"] = hashlib.sha256(proof.read_bytes()).hexdigest()
+    rec["strict_gem_first"] = gem_first
+    rec["missing_fields"] = [f"{leg} gem identity" for leg in missing]
+    if missing:
+        rec["category"] = "missing_event_metadata"
+    elif first is None and gem_first is None and rec["winner_match"] and rec["natural_ending_match"]:
+        rec["category"] = "pass"
+    else:
+        rec["category"] = "battle_semantic"
+    return rec
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description='C++ 逐事件验收（四方对齐）')
     ap.add_argument('--cases-json', default=str(ROOT / 'gd_core_test' / 'expand_align_cases.json'))
@@ -141,6 +262,8 @@ def main() -> int:
     ap.add_argument('--oracle-dir', default=None, help='默认 <fights-root>')
     ap.add_argument('--original-dir', type=Path,
                     help='Require an independent original native-frame events.json for each case')
+    ap.add_argument('--native-only', action='store_true',
+                    help='Check C++ directly against original recordings using native-derived fixtures')
     ap.add_argument('--dll', default=str(ROOT / 'native_sim_cpp' / 'native_sim' / 'libgdcore.dll'))
     ap.add_argument('--out', default=str(ROOT / 'output' / '_timing_four_way' / 'cpp_baseline'))
     ap.add_argument("--below-master", action=argparse.BooleanOptionalAction, default=None,
@@ -149,6 +272,10 @@ def main() -> int:
     ap.add_argument('--strict-gem-origins', action='store_true',
                     help='Require gem type, host item, owner, cell and socket index in all four streams')
     args = ap.parse_args()
+    if args.native_only:
+        if not args.original_dir:
+            ap.error("--native-only requires --original-dir")
+        args.strict_gem_origins = True
 
     gdcore_dir = Path(args.gdcore_dir or (Path(args.align_root) / 'gdcore'))
     py_dir = Path(args.py_dir or (Path(args.align_root) / 'py'))
@@ -161,6 +288,8 @@ def main() -> int:
     all_cases = {c['case_id']: c for c in json.load(
         io_open(args.cases_json, encoding='utf-8'))['cases']}
     ids = load_case_ids(args.case_ids)
+    if not ids or len(set(ids)) != len(ids):
+        ap.error("Expected a nonempty list of unique case IDs")
     print('场次 %d：夹具=%s below_master=%s' % (len(ids), args.cases_json, args.below_master))
 
     sim = NativeSimulator(lib_path=args.dll)
@@ -191,6 +320,13 @@ def main() -> int:
             rec['notes'].append('夹具缺该 case_id')
             results.append(rec)
             print('[%d/%d] %s input_mismatch（夹具缺）' % (n, len(ids), cid))
+            continue
+
+        if args.native_only:
+            rec = compare_native_case(sim, gem_origin, args, fx, cid)
+            results.append(rec)
+            difference = rec.get("events_cpp_vs_original", {}).get("first_divergence")
+            print(f"[{n}/{len(ids)}] {cid} {rec['category']} | first={difference}")
             continue
 
         # ── 输入核对：三份回放产物 + rng_state + activation_order ──
@@ -255,26 +391,7 @@ def main() -> int:
 
         # ── C++ 装配 + 运行 ──
         t0 = time.time()
-        player = json.load(io_open(player_path))
-        opponent = json.load(io_open(opponent_path))
-        for side, lineup in (("player", player), ("opponent", opponent)):
-            for field in ("stamina", "health", "regen"):
-                if fx[side].get(field) is not None:
-                    lineup[field] = fx[side][field]
-        pg = [len(item.get("gems") or []) for item in fx["player"]["items"]]
-        og = [len(item.get("gems") or []) for item in fx["opponent"]["items"]]
-        hp = sim.pack_side(player, gem_lens=pg, activation_order=order["player"])
-        ho = sim.pack_side(opponent, gem_lens=og, activation_order=order["opponent"])
-        lib.gd_sim_set_dbg_events(1)
-        res = sim.run_one(hp, ho, seed=int(fx['seed']),
-                          round_id=int(fx.get('round_id', 1)),
-                          below_master=below_master,
-                          native_activation_order=False,
-                          reseed_after_player_character=True,
-                          formal_ev_gate=500000, max_time=90.0,
-                          rng_state=rng_state,
-                          custom_health_multiplier=health_multiplier,
-                          label_rng_enabled=bool(fx.get('label_rng', True)))
+        res = run_cpp_fixture(sim, fx, player_path, opponent_path, order, below_master, rng_state)
         cpp_wall = time.time() - t0
         if res.timed_out or cpp_wall > args.timeout:
             rec['category'] = 'timeout'
@@ -283,11 +400,7 @@ def main() -> int:
             continue
 
         # ── 三方事件流 ──
-        n_lines = lib.gd_sim_dbg_event_count()
-        nat_lines = []
-        for i in range(n_lines):
-            s = lib.gd_sim_dbg_event_line(i)
-            nat_lines.append(s.decode('utf-8', 'replace') if s else '')
+        nat_lines = native_debug_lines(lib)
 
         def coarse_seg(line):
             a = line.index('|origin=') + len('|origin=')
@@ -377,6 +490,7 @@ def main() -> int:
     win_diff = sum(1 for r in results if r.get("winner_match") is False)
     summary = {
         'total': len(results), 'passed': passed,
+        'reference_mode': 'native-only' if args.native_only else 'multi-leg',
         'category': {k: sum(1 for r in results if r['category'] == k)
                      for k in set(r['category'] for r in results)},
         'winner_mismatch': win_diff,
@@ -397,6 +511,13 @@ def main() -> int:
         'dll': args.dll,
         'wall_total_s': round(time.time() - t_all, 1),
     }
+    if args.native_only:
+        summary['dll_sha256'] = hashlib.sha256(Path(args.dll).read_bytes()).hexdigest()
+        summary['fixtures_sha256'] = hashlib.sha256(Path(args.cases_json).read_bytes()).hexdigest()
+        for item, row in zip(summary['first_divergences'], (r for r in results if r['category'] != 'pass')):
+            if (difference := row.get('events_cpp_vs_original')) is not None:
+                item.update(difference)
+                item['first'] = difference['first_divergence']
     io_open(out_dir / 'summary.json', 'w', encoding='utf-8').write(
         json.dumps(summary, ensure_ascii=False, indent=1))
     print('== 汇总 ==')

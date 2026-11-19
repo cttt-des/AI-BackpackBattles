@@ -27,6 +27,7 @@ ap.add_argument("--limit", type=int, default=0)
 ap.add_argument("--prepare-only", action="store_true")
 ap.add_argument("--track-charge-tweens", action="store_true")
 ap.add_argument("--critical-shake", action="store_true")
+ap.add_argument("--native-scene-delays", action="store_true")
 args = ap.parse_args()
 os.chdir(repo)
 reference = stage / args.source
@@ -58,6 +59,8 @@ try:
         sys.argv.append("--track-charge-tweens")
     if args.critical_shake:
         sys.argv.append("--critical-shake")
+    if args.native_scene_delays:
+        sys.argv.append("--native-scene-delays")
     with contextlib.redirect_stdout(io.StringIO()):
         exec(compile(prefix, str(generator), "exec"), namespace)
 finally:
@@ -147,14 +150,18 @@ def complete(cid):
     except (OSError, ValueError, KeyError, IndexError):
         return False
 
-logs = []
-round_number = 0
+log_path = out / "logs.json"
+logs = json.loads(log_path.read_text("utf8")) if log_path.is_file() else []
+round_number = len(logs)
+batch_limit = args.chunk
+rejected = {}
 while True:
-    pending = [case["case_id"] for case in cases if not complete(case["case_id"])]
+    pending = [case["case_id"] for case in cases
+               if case["case_id"] not in rejected and not complete(case["case_id"])]
     if not pending:
         break
     round_number += 1
-    selected = pending[:args.chunk]
+    selected = pending[:batch_limit]
     started = time.time()
     # The Godot script uses terminal events as its own resume check. Record to
     # a fresh attempt so it cannot skip an older result with different inputs.
@@ -170,7 +177,7 @@ while True:
     except subprocess.TimeoutExpired:
         child.kill()
         child.wait()
-        raise
+        result = "timeout"
     finally:
         handle.close()
     text = gh.read_log(log)
@@ -179,9 +186,16 @@ while True:
         item in site for item in ("oracle_fight.gd:", "_native_", "native_oracle_timer.gd:", "/ElectricalCharge.gd", "/FlickerAnimation.gd"))]
     logs.append({"log": str(log), "exit": result, "script_errors": len(errors), "fatal": fatal,
                  "cases": selected, "script_sha256": manifest["script_sha256"], "support_sha256": manifest["support_sha256"]})
-    (out / "logs.json").write_text(json.dumps(logs, ensure_ascii=False, indent=2) + "\n", encoding="utf8")
+    log_path.write_text(json.dumps(logs, ensure_ascii=False, indent=2) + "\n", encoding="utf8")
     if result or fatal:
-        raise SystemExit("Source Oracle batch failed; inspect " + str(log))
+        if len(selected) > 1:
+            batch_limit = max(1, len(selected) // 2)
+            print("Retrying failed Oracle batch in smaller groups:", batch_limit, log, flush=True)
+        else:
+            rejected[selected[0]] = {"exit": result, "fatal": fatal, "log": str(log)}
+            batch_limit = args.chunk
+            print("Oracle case rejected:", selected[0], log, flush=True)
+        continue
     for cid in selected:
         observed = attempt / cid
         products = [observed / name for name in ("events.json", "lineups.json", "rng_state.txt")]
@@ -205,10 +219,14 @@ while True:
         os.replace(marker, folder / marker.name)
         if not complete(cid):
             raise SystemExit("Invalid Oracle terminal or provenance: " + cid)
+    batch_limit = args.chunk
 
 reports = []
 for case in cases:
     cid = case["case_id"]
+    if cid in rejected:
+        reports.append({"case_id": cid, "match": False, "rejected": rejected[cid]})
+        continue
     paths = [reference / cid / "events.json", out / "fights" / cid / "events.json"]
     docs = [json.loads(path.read_text("utf8")) for path in paths]
     streams = [list(map(_tuple_of, canonical_stream(str(path), _et_names()))) for path in paths]
@@ -227,7 +245,7 @@ for case in cases:
                     "native": streams[0][first_diff] if first_diff is not None and first_diff < len(streams[0]) else None,
                     "oracle": streams[1][first_diff] if first_diff is not None and first_diff < len(streams[1]) else None})
 summary = {"total": len(reports), "passed": sum(row["match"] for row in reports), "cases": reports,
-           "scope": manifest["scope"], "script_sha256": manifest["script_sha256"]}
+           "unrecorded": len(rejected), "scope": manifest["scope"], "script_sha256": manifest["script_sha256"]}
 (out / "comparison.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf8")
 print("Native versus independent Oracle:", summary["passed"], "/", summary["total"], flush=True)
 raise SystemExit(0 if summary["passed"] == summary["total"] else 1)

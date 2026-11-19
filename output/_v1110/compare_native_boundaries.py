@@ -36,6 +36,7 @@ parser.add_argument("--compare-only", action="store_true")
 parser.add_argument("--case-subdir", action="store_true", help="Keep independent candidate script/report for each batch case")
 parser.add_argument("--native-translations", action="store_true", help="Load valid installed English translations instead of the editor's missing Unreleased tables")
 parser.add_argument("--native-timers", action="store_true", help="Replace frozen-engine polling with native Timer start/stop and pass membership")
+parser.add_argument("--native-scene-delays", action="store_true", help="Use native SceneTreeTimer precision and opening pass")
 parser.add_argument("--track-charge-tweens", action="store_true", help="Track active scene charges by node entry and exit")
 parser.add_argument("--critical-shake", action="store_true", help="Model global RNG draws from critical labels at 60 Hz")
 parser.add_argument("--oracle-project", default="full_corpus/expand/project", help="Isolated Oracle project under the stage directory")
@@ -62,6 +63,7 @@ variant += "_charges" if args.advance_charge_tweens else ""
 variant += "_opening" if args.opening_tween_pass else ""
 variant += "_locale" if args.native_translations else ""
 variant += "_timers" if args.native_timers else ""
+variant += "_scene_delays" if args.native_scene_delays else ""
 variant += "_charge_registry" if args.track_charge_tweens else ""
 variant += "_shake" if args.critical_shake else ""
 if args.variant_name:
@@ -314,6 +316,52 @@ func _advance_native_tweens(delta):
         source = source.replace(anchor, anchor + "\t_advance_native_tweens(DT)\n")
 elif args.opening_tween_pass:
     parser.error("--opening-tween-pass requires --advance-charge-tweens")
+if args.native_scene_delays:
+    if not args.restore_flickers or not args.opening_tween_pass or not args.native_delta:
+        parser.error("--native-scene-delays requires the restored Flickers, opening Tween pass and native delta")
+    source, n = re.subn(r"(?ms)^func drive_delayed\(dt: float\) -> void :\n.*?(?=^\S)", '''func drive_delayed(dt: float) -> void :
+	var pending = U.oracleDelayedTimers
+	U.oracleDelayedTimers = []
+	var survivors := []
+	for entry in pending:
+		var left = PoolRealArray([entry[1]])[0]
+		entry[1] = PoolRealArray([left - dt])[0]
+		if entry[1] >= 0.0:
+			survivors.append(entry)
+		elif not G.fightEnded and is_instance_valid(entry[0]):
+			entry[0].emit_signal("timeout")
+	survivors.append_array(U.oracleDelayedTimers)
+	U.oracleDelayedTimers = survivors
+
+''', source)
+    assert n == 1
+    source = source.replace("var _native_visual_players := []\n", "var _native_visual_players := []\nvar _native_opening_due := []\n", 1)
+    anchor = '\tfor snapshot in snapshots:\n'
+    assert source.count(anchor) == 1
+    source = source.replace(anchor, '\t_native_opening_due.clear()\n\tvar restored_delays := []\n' + anchor)
+    anchor = '\t\t\tU.callDelayed(animation, pending["method"], float(pending["left"]))\n'
+    assert source.count(anchor) == 1
+    source = source.replace(anchor, '''			restored_delays.append([pending.get("order", restored_delays.size()), animation, pending["method"],
+					float(pending.get("left_at_first_physics", pending["left"]))])
+	restored_delays.sort_custom(self, "_native_delay_created_before")
+	for entry in restored_delays:
+		if entry[3] < 0.0:
+			_native_opening_due.append(entry)
+		else:
+			U.callDelayed(entry[1], entry[2], entry[3])
+
+func _native_delay_created_before(left, right):
+	return left[0] < right[0]
+
+func _native_run_opening_delays():
+	for entry in _native_opening_due:
+		if is_instance_valid(entry[1]):
+			entry[1].call(entry[2])
+	_native_opening_due.clear()
+''')
+    anchor = '\t_advance_native_tweens(DT)\n'
+    assert source.count(anchor) == 1
+    source = source.replace(anchor, '\t_native_run_opening_delays()\n' + anchor)
 if args.rng_probe:
     source = source.replace("\tdump_events(events, dir, res)\n", '''\tdump_events(events, dir, res)
 	if not warmup:

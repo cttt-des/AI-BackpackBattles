@@ -21,6 +21,7 @@ ap.add_argument("--prepare-only", action="store_true")
 ap.add_argument("--reuse-inputs", action="store_true")
 legs = ap.add_mutually_exclusive_group()
 legs.add_argument("--cpp-only", action="store_true", help="Reuse GD/Py results only when their recorded source hashes still match")
+legs.add_argument("--direct-cpp", action="store_true", help="Check C++ against native events without running GD, Py or Oracle")
 legs.add_argument("--core-only", action="store_true", help="Run GD/Py and leave C++ pending while the DLL builds")
 args = ap.parse_args()
 assert not args.cpp_only or args.reuse_inputs
@@ -67,6 +68,8 @@ if not args.reuse_inputs:
                 flicker["limits"] = [descriptor["flicker" + key] for key in ("MinDist", "MaxDist", "MinSpeed", "MaxSpeed")]
         lineups["replay_controls"]["replay_initial"] = {
             "activation_rng_state": boundaries["before_activate"]["state"], "idle_left": idle, "flickers": flickers}
+        if "opening_idle_delta" in boundaries:
+            lineups["replay_controls"]["replay_initial"]["native_scene_delays"] = True
         if "buff_state" in boundaries["before_activate"]:
             buff_state = boundaries["before_activate"]["buff_state"]
             assert len(buff_state) == 2 and all(row[3] == 0 for side in buff_state for row in side), cid
@@ -103,7 +106,28 @@ if args.prepare_only:
     print("Prepared native inputs", len(selected), out)
     raise SystemExit(0)
 common = ["--fights-root", str(out / "fights"), "--align-root", str(out / "align"), "--cases-json", str(out / "fixtures.json")]
-if args.cpp_only:
+if args.direct_cpp:
+    status["scope"] = "Original native-frame recordings versus C++"
+    # Use the shared lineup generator directly. Pass the case list through a
+    # file so the Windows command line can also carry the full corpus.
+    generate = '''
+import json
+from pathlib import Path
+import sys
+sys.path.insert(0, "tools")
+from gen_fixture_from_lineup import oracle_mode
+out = Path(sys.argv[1])
+ids = [row["case_id"] for row in json.loads((out / "cases.json").read_text("utf8"))["cases"]]
+raise SystemExit(oracle_mode([str(out / "fights" / cid) for cid in ids],
+                            str(out / "align/lineups"), str(out / "fixtures.json")))
+'''
+    with (out / "fixture.log").open("wb") as log:
+        status["fixture_exit"] = subprocess.run([sys.executable, "-u", "-X", "utf8", "-c", generate, str(out)],
+                                               cwd=sim, stdout=log, stderr=subprocess.STDOUT).returncode
+    if status["fixture_exit"]:
+        (out / "status.json").write_text(json.dumps(status, indent=2) + "\n", encoding="utf8")
+        raise SystemExit("Could not assemble every original replay fixture. See " + str(out / "fixture.log"))
+elif args.cpp_only:
     previous = json.loads((out / "status.json").read_text("utf8"))
     for key in ("kernel_sha256", "runtime_data_sha256", "cases", "reference"):
         assert previous[key] == status[key], ("GD/Py source or case provenance changed", key)
@@ -124,7 +148,8 @@ with (out / "cpp.log").open("wb") as log:
     status["cpp_exit"] = subprocess.run([
         sys.executable, "-u", "-X", "utf8", "tools/_cpp_verify_events.py", *common,
         "--case-ids", str(out / "cases.json"), "--strict-gem-origins", "--original-dir", str(reference),
-        "--out", str(out / "cpp")], cwd=sim, stdout=log, stderr=subprocess.STDOUT).returncode
+        "--out", str(out / "cpp"), *(["--native-only"] if args.direct_cpp else [])],
+        cwd=sim, stdout=log, stderr=subprocess.STDOUT).returncode
 (out / "status.json").write_text(json.dumps(status, indent=2) + "\n", encoding="utf8")
 print(json.dumps({key: value for key, value in status.items() if key != "kernel_sha256"}, indent=2))
-raise SystemExit(0 if not status["three_core_exit"] and not status["cpp_exit"] else 1)
+raise SystemExit(0 if not status.get("three_core_exit") and not status["cpp_exit"] else 1)

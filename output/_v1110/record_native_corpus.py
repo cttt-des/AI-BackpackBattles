@@ -18,10 +18,13 @@ stage = repo / "output/_v1110"
 ap = argparse.ArgumentParser()
 ap.add_argument("--chunk", type=int, default=12)
 ap.add_argument("--cohort", choices=("both", "expand", "base"), default="both")
+ap.add_argument("--output-root", default="native_corpus", help="Separate output and status directory under the 1.1.10 stage")
 args = ap.parse_args()
 if args.chunk < 1:
     ap.error("chunk must be positive")
-root = stage / "native_corpus"
+root = (stage / args.output_root).resolve()
+if root.parent != stage:
+    ap.error("output root must be a direct child of the version stage")
 root.mkdir(exist_ok=True)
 status_path = root / "status.json"
 
@@ -99,8 +102,8 @@ for cohort in cohorts:
     ids = [cid for cid in priority if cid in ids] + [cid for cid in ids if cid not in priority]
     (folder / "cases.json").write_text(json.dumps({"cases": cases}, ensure_ascii=False, indent=2) + "\n", encoding="utf8")
     batch_number = 0
+    pending = [cid for cid in ids if not accepted(folder, cid, expected)]
     while True:
-        pending = [cid for cid in ids if not accepted(folder, cid, expected)]
         status["cohorts"][cohort] = {"total": len(ids), "completed": len(ids) - len(pending), "remaining": len(pending)}
         if not pending:
             write_status(status)
@@ -115,7 +118,7 @@ for cohort in cohorts:
             child = subprocess.Popen([sys.executable, "-u", "-X", "utf8", str(stage / "run_native_1110.py"),
                                       "--case-ids", str(batch_file), "--cohort", cohort,
                                       "--project-name", project_name, "--reuse-prepared", "--disable-render-loop",
-                                      "--out", "native_corpus/" + cohort, "--timeout", str(max(300, len(selected) * 120))],
+                                      "--out", root.name + "/" + cohort, "--timeout", str(max(300, len(selected) * 120))],
                                      cwd=repo, stdout=log, stderr=subprocess.STDOUT)
             status["child_pid"] = child.pid
             write_status(status)
@@ -132,6 +135,7 @@ for cohort in cohorts:
             status["failure"] = {"descriptor_count": metadata["count"], "locale": metadata["locale"]}
             write_status(status)
             raise SystemExit("Unexpected native descriptor table or locale")
+        del pending[:len(selected)]
         print(cohort, "batch", batch_number, "accepted", len(selected), flush=True)
 status["phase"] = "complete"
 write_status(status)

@@ -135,7 +135,7 @@ func record_case(c, runs, startup, index):
 	observations = {"startup": startup, "batch_index": index}
 	var pending := []
 	for entry in observed_delayed:
-		if is_instance_valid(entry[1].get_ref()) and entry[0].time_left > 0:
+		if is_instance_valid(entry[1].get_ref()) and entry[0].time_left >= 0:
 			pending.append(entry)
 	observed_delayed = pending
 	if "draws" in U.rng:
@@ -221,14 +221,18 @@ func on_start() -> void:
 	collect_flickers(get_tree().root, flickers)
 	for entry in observed_delayed:
 		var target = entry[1].get_ref()
-		if is_instance_valid(target) and entry[0].time_left > 0:
+		if is_instance_valid(target) and entry[0].time_left >= 0:
 			flickers[target] = true
 	var flicker_states := []
+	var opening_delays := []
 	for target in flickers:
 		var pending := []
 		for entry in observed_delayed:
-			if entry[1].get_ref() == target and entry[0].time_left > 0:
-				pending.append({"left": "%.17f" % entry[0].time_left, "method": entry[2]})
+			if entry[1].get_ref() == target and entry[0].time_left >= 0:
+				var timer = entry[0]
+				var row := {"left": "%.17f" % timer.time_left, "method": entry[2], "order": timer.get_instance_id()}
+				pending.append(row)
+				opening_delays.append([timer, row])
 		var host = target
 		while host != null and not ("descriptor" in host and "ownerType" in host):
 			host = host.get_parent()
@@ -250,7 +254,13 @@ func on_start() -> void:
 			"loop": animation.loop, "inside_tree": target.is_inside_tree(),
 			"path": str(target.get_path()) if target.is_inside_tree() else "off-tree"})
 	observations["flicker_states"] = flicker_states
+	get_tree().connect("physics_frame", self, "on_opening_delays", [opening_delays], CONNECT_ONESHOT)
 	call_deferred("on_started")
+
+func on_opening_delays(delays: Array) -> void:
+	for pair in delays:
+		pair[1]["left_at_first_physics"] = "%.17f" % pair[0].time_left
+	observations["opening_idle_delta"] = "%.17f" % get_process_delta_time()
 
 func on_delayed_timer(timer, target, method_name) -> void:
 	if is_instance_valid(target) and target.get_script() != null and target.get_script().resource_path.ends_with("/FlickerAnimation.gd"):
