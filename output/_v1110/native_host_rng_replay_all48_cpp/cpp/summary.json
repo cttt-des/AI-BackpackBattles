@@ -1,0 +1,93 @@
+{
+ "total": 48,
+ "passed": 46,
+ "reference_mode": "native-only",
+ "category": {
+  "pass": 46,
+  "battle_semantic": 1,
+  "replay_control_mismatch": 1
+ },
+ "winner_mismatch": 0,
+ "winner_unavailable": 0,
+ "cases_with_coarse_gem_origin": 0,
+ "strict_gem_origins": true,
+ "original_dir": "D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_base_short_retry\\base",
+ "first_divergences": [
+  {
+   "caseId": "run1025_r18",
+   "first": 5233,
+   "rows_cpp": 5334,
+   "rows_gd": null,
+   "o_row": null,
+   "g_row": null,
+   "first_gem": null,
+   "first_original": null,
+   "first_item": {
+    "index": 5233,
+    "original": [
+     "Pine Protector",
+     3,
+     2,
+     2
+    ],
+    "cpp": [
+     "Amulet of Light",
+     3,
+     6,
+     5
+    ]
+   },
+   "rows_original": 5333,
+   "first_divergence": 5233,
+   "cpp_row": "ts=f:403895556ad80000|type=102|id=5234|tgt=1|parent=5233|origin=o:item:Amulet of Light#3|params=d:{amount=i:2,reflected=b:0,used=b:0}",
+   "original_row": "ts=f:40389555714b9cb7|type=12|id=5233|tgt=1|parent=-1|origin=o:item:Pine Protector#3|params=d:{amount=i:0}"
+  },
+  {
+   "caseId": "run989_r18",
+   "first": 435,
+   "rows_cpp": 19368,
+   "rows_gd": null,
+   "o_row": null,
+   "g_row": null,
+   "first_gem": {
+    "index": 450,
+    "original": null,
+    "cpp": [
+     "Corrupted Crystal",
+     "King Goobert",
+     3,
+     3,
+     2,
+     0
+    ]
+   },
+   "first_original": null,
+   "first_item": {
+    "index": 435,
+    "original": [
+     "Light Goobert",
+     1,
+     4,
+     5
+    ],
+    "cpp": [
+     "Light Flower",
+     1,
+     1,
+     3
+    ]
+   },
+   "rows_original": 19183,
+   "first_divergence": 435,
+   "cpp_row": "ts=f:401b77778f800000|type=105|id=436|tgt=0|parent=-1|origin=o:item:Light Flower#1|params=d:{amount=i:-1,reflected=b:0,used=b:1}",
+   "original_row": "ts=f:401b666666666666|type=109|id=435|tgt=1|parent=-1|origin=o:item:Light Goobert#1|params=d:{amount=i:-1,reflected=b:0,timeout=b:1,used=b:0}"
+  }
+ ],
+ "below_master_override": null,
+ "dll": "D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_host_rng_replay.dll",
+ "wall_total_s": 8.6,
+ "strict_item_origins": true,
+ "dll_sha256": "a7e74a948b3048611e147816b20687a113a2a712af3e4d418ad233f27d4e6266",
+ "fixtures_sha256": "d7a496aec6546ff73a839e7396ba59d75c448fcb669b6e0310f172193a4cf749",
+ "runtime_data_sha256": "55bdd068cf3308547de78b45abbed4bf4f57e8253fbec82313a99578defa00ae"
+}

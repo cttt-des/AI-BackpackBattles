@@ -1,0 +1,1068 @@
+{
+  "baseline_gate_sha256": "0be5a3391f9f349eae1def163025bd8c55a2db70b3a8b0b1a0903301735ccc73",
+  "selection": "All nonpassing cases in the complete frozen C++ baseline, selected before recording",
+  "recording": "Recovered 1.1.10 Main on the shipping executable; observe host RNG state without changing callbacks",
+  "cases": {
+    "base": [
+      {
+        "case_id": "run1023_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": true,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "90ddcdbe88779f6a34d75a006413f402a0496f4540338379aba6b66c833078bd"
+      },
+      {
+        "case_id": "run1032_r2",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": true,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "6a3242ba8f3abef0f54a377bed97e3b9238462de2727633a11cc32800d635bc1"
+      },
+      {
+        "case_id": "run1042_r12",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": true,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "87779b64f0805d35f7ce7589182bc4e1f3456c00f3a0031ee993e89cf93a2555"
+      },
+      {
+        "case_id": "run1047_r1",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": true,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "ef468dd0374c9f1c1a6d3ec86e825323c94088e3f0924e287d8b7b5cd29a3c81"
+      },
+      {
+        "case_id": "run1049_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": true,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "a1dfce0766fefc5475d85e8df3d87600c230c7d5625189b02962f5a7d07d0093"
+      },
+      {
+        "case_id": "run1056_r14",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": true,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "ff3ac26b1164c62e33ef4f57fdcdc3ea34cc22253054391c4c320d0d9aface4d"
+      },
+      {
+        "case_id": "run1063_r13",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": true,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "c1977e6327ea5deb13587d93b3543b257b214827d5927740f579e4dbfc9b5d43"
+      },
+      {
+        "case_id": "run1068_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": true,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "fdc45a0bd048d45f1db9c51125937da8be4c5ea249c3eb96caf3d4416fcf6dc8"
+      },
+      {
+        "case_id": "run1161_r3",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": true,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "5a63529e1354286a1c42f68af2db23b6b95da247d685f019979660ffd0bd4c79"
+      },
+      {
+        "case_id": "run1166_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": true,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "34c5885ed2a4b6c1cd83ff82d11cd860326cc7a4585bc14f7ae657d3f2024da9"
+      },
+      {
+        "case_id": "run1169_r11",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": true,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "fb61dabc64231ece78bbe84d9ccd2699fd2339a22f9d905e85215f8ded2fc278"
+      },
+      {
+        "case_id": "run1172_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": true,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "6a44664c4d4e47c96522883938a22ff5724a5a992e8358b57581689fc4a6ff97"
+      },
+      {
+        "case_id": "run1179_r11",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": true,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "7bace4e47137483b8e03af838a030147911e65893703fee6f256635fc04b35c8"
+      },
+      {
+        "case_id": "run1234_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": true,
+        "previous_reference": "native_shipping_base_tail/base",
+        "previous_events_sha256": "293e2e61f00f7a421b17fb1032367912407b352e9e3af0f1ac057285b1766de5"
+      },
+      {
+        "case_id": "run1236_r11",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": true,
+        "previous_reference": "native_shipping_base_tail/base",
+        "previous_events_sha256": "34833771f1a49093615e5f033644ffc1c282cbebe1e83dba7a64b7ce61249a32"
+      },
+      {
+        "case_id": "run1237_r6",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": true,
+        "previous_reference": "native_shipping_base_tail/base",
+        "previous_events_sha256": "c0d01a8095b562995430bd18d5d4c8bca543d030ba7880578e9f9a284b07c386"
+      },
+      {
+        "case_id": "run1243_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": true,
+        "previous_reference": "native_shipping_base_tail/base",
+        "previous_events_sha256": "c884794a2428852ee0738e4405a50b2e1142c1ba842a0b9f639bbe610425bdee"
+      },
+      {
+        "case_id": "run1257_r7",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": true,
+        "previous_reference": "native_shipping_base_tail/base",
+        "previous_events_sha256": "7da5351af7a9a502033027d480c8eab02a697d6d35b7b039f29be55ac8f9cc9d"
+      },
+      {
+        "case_id": "run1287_r13",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": true,
+        "previous_reference": "native_shipping_base_tail/base",
+        "previous_events_sha256": "f3db8f12cd06d61e866a765eef2e2a067cfe45f724c9207b068591aefa2ddd6f"
+      },
+      {
+        "case_id": "run1347_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": true,
+        "previous_reference": "native_shipping_base_tail/base",
+        "previous_events_sha256": "162ab844909e16147a5f356fc388983d768b3549ac4d17962c338cb91d9a348e"
+      },
+      {
+        "case_id": "run571_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": true,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "a743f5d09ccde7998a6c500673885f6c858c5412533313ef2a37399e3f9eb517"
+      },
+      {
+        "case_id": "run750_r11",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": true,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "180f0f836f8c269f5f333103f3ab273ee7bb78f44f941e2067d724ad9b197f7f"
+      },
+      {
+        "case_id": "run754_r15",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": true,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "e8a387d2167441cdf72bd69268f6607420e8546093fd46719e797392f004cd7f"
+      },
+      {
+        "case_id": "run755_r9",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": true,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "a500ec48fdc4af78f4bfae457412f1e961c9566963328e30143e74a9f354a866"
+      },
+      {
+        "case_id": "run758_r15",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": true,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "125e46d08c3de38f4218ec55cd9bc66c319fe7fe7fa0a52bb2881d33beba3614"
+      },
+      {
+        "case_id": "run759_r11",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": true,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "909335b572d67fcabd6be1c48f4a3c7f636561cfe0bb99c03a73224ced300385"
+      },
+      {
+        "case_id": "run824_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": true,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "b610b665fcdea9c4fa3e6b465c66ee25eb91eb156d13c792a828af269558c87b"
+      },
+      {
+        "case_id": "run826_r10",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": true,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "f2a4e63ba6b6998c4cb9de5adec5b19a012916d3bb7ddd83b439ddf0c943d1c6"
+      },
+      {
+        "case_id": "run829_r15",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": true,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "fe8e6f1009472618c59c9b7081f0bdf74fb26575b68c394054fc75a8a74efb91"
+      },
+      {
+        "case_id": "run922_r13",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": true,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "3a25a981cc660e61f074ac4ca9c495b54385133ea6a8de92c3b138cc49674a93"
+      },
+      {
+        "case_id": "run925_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": true,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "82eb5407022725ebca27a3edd64183cd9c3168825cfa16930f7e3ebaa9d0a7ae"
+      },
+      {
+        "case_id": "run926_r11",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": true,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "2f4edbe1705127ebd702c50b262e8bb9b6137da972e847d092431601104344c2"
+      },
+      {
+        "case_id": "run958_r7",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": true,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "faf8904904e30f5a12a59ae82b84a8fae5e6a04c4e81b2862d7b150418e52682"
+      },
+      {
+        "case_id": "run987_r6",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": true,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "d4085afbc2ffb20c29b62a3dc702f5a27ed20583db22085f954ae565418be4b7"
+      },
+      {
+        "case_id": "run998_r12",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": true,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "1a9256933a9da5c4d057c19b8acb8bea0e9f61d6eef279a5838f56b4532fb8ff"
+      },
+      {
+        "case_id": "run1015_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "3af93daf644831f3ec730fe4672cb8cb42279d4b452d15e6d30c6da69969be94"
+      },
+      {
+        "case_id": "run1018_r11",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "d8b54b88ab92ab9acda9da7765f2f4970565b231c6525073dbdc094af13cc519"
+      },
+      {
+        "case_id": "run1019_r11",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "b12eef1f08b0cbf19a4c701e65e2425cf8d4ddbd2d0b1ae5f269f0ded3001a13"
+      },
+      {
+        "case_id": "run1020_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "fd8daf93ff93f7ca13033590f8ba59bda5cbef35b804aab9b640d4fb87a69c2b"
+      },
+      {
+        "case_id": "run1022_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "b64aa10969d720bb8a79b03e780a8a58d8b914dde1ffd59486eb3c6fcf4216ce"
+      },
+      {
+        "case_id": "run1024_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "84682ac940ace4c5903a175997f77e449218923a124b3e8d6522179955095278"
+      },
+      {
+        "case_id": "run1025_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "3451cb4def8e371579e936b9d1fd44dfbeaf7e89f1a81ca789dfcfe513e15fb4"
+      },
+      {
+        "case_id": "run1026_r2",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "b92d4bd76cdc410e4189f023955a523611577da65bcc52b12cc4c38e48a67d57"
+      },
+      {
+        "case_id": "run1036_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "2a2c21723ced534523f74f9c491ec10ab22fb9d24ed0a57dedbb5fb464d75707"
+      },
+      {
+        "case_id": "run1045_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "593f682299bba5d80c9a55c637bb9d14647b3c2b1e848ba3a05d41230e8face2"
+      },
+      {
+        "case_id": "run1048_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "33074e6e96bbef9a51489f42e8df83a3433411985f7ede436f6c5523f3ca1db3"
+      },
+      {
+        "case_id": "run1050_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "266f6f14f3e3e49deca3ff752ad8eca71d4b59741c5fc9d3c9948420355de491"
+      },
+      {
+        "case_id": "run1051_r6",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "4ccef0e755e94c47f5fe34b6c941e0df0c933bc935e413c106409bf74436d009"
+      },
+      {
+        "case_id": "run1053_r7",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "3fe86facb1ef890cb0895604ec866362c7719d82cd712abc142ef10ac911609b"
+      },
+      {
+        "case_id": "run1055_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "c18338cf1905c4b08771448571ff058e8431d81baccea6b0865fd51ed67db13d"
+      },
+      {
+        "case_id": "run1061_r12",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "3e62b47bff4e7110c21d72363cf508a16cbc2aadc128182d1c64513ee3ea5ea9"
+      },
+      {
+        "case_id": "run1062_r9",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "b46e7ecb83fd8cfc05b778224ca57ab780d15f93937123d3a5f24a89bda9e803"
+      },
+      {
+        "case_id": "run1065_r7",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "6289cb01397c0e755773792b7b407b354f54d0651a80ca0f767f23fd35a34e92"
+      },
+      {
+        "case_id": "run1070_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "46d078749180e0022f1a3ac37f2fc105a4423a7598a6ee737c468f0d0357cd19"
+      },
+      {
+        "case_id": "run1071_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "c779451880bd03b883b0c900f910bcabe39e96ff3f8c4fca08cf50c2b5a5f961"
+      },
+      {
+        "case_id": "run1072_r12",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "887b619913dabab279f2523f514f06d18a71e5352085eb1200092f07b23ee653"
+      },
+      {
+        "case_id": "run1073_r12",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "f0644fec15303080b34ce2b7f4f8364225fb27b30728f526283b0ac436499bcd"
+      },
+      {
+        "case_id": "run1074_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "6fa3c4be0d7e3cd9f91de5ecb82def65ce68680e4e750ac7ecdf53290a379627"
+      },
+      {
+        "case_id": "run1075_r9",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "a25f5aee7adffdd4ef2942d31429faafc2141440ec40bc2d3d522a095d7bfd53"
+      },
+      {
+        "case_id": "run1076_r10",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "c0a85c723072301f091308a1f41586bee8580e8b094069775cb38df692db17f6"
+      },
+      {
+        "case_id": "run1143_r13",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "88a5235fc556552c7a351623114d9b5209aa22b89ecd40e9720150eb5d17f36a"
+      },
+      {
+        "case_id": "run1160_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "9697280d7cf99aba4c51885c997bcfbcd777a5e9fd9512e9bf8c5040f88f9040"
+      },
+      {
+        "case_id": "run1162_r7",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "4e3aa7c96a9a1ff64482189526dc2ca9ba5a2083f177d3403cec9ca0ec795517"
+      },
+      {
+        "case_id": "run1165_r7",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "ecbb9938df3233c94aa9046f6eb1d6cd095d1893e7633cd1b1b3b6e1e555798e"
+      },
+      {
+        "case_id": "run1167_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "edc5f90a82b0f2e0e8d21015d33b368c40a5a2cc17a34a74a15cb2e16bbb10ab"
+      },
+      {
+        "case_id": "run1168_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "ad851c5e359b22ea4f6e3b7ab893cbc1f829efdb67f6f27c81cf633dbe5eef71"
+      },
+      {
+        "case_id": "run1170_r11",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "61ad105f42606d6c1773898294c8a4526ca603ed24ab8b7ceb114295420dea15"
+      },
+      {
+        "case_id": "run1171_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "2dc53989d2778e10de24c2681a4f950c46d5c1859907707e056bf423cc58010f"
+      },
+      {
+        "case_id": "run1173_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "85e36e21213bb0016e2dc8c9cc9f7dbe815f0a9650c0597a622535b600d42db8"
+      },
+      {
+        "case_id": "run1174_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "a20acb3f697f6254477612a8ac340659a663870d2eb71ee9cad90de5c2ef948c"
+      },
+      {
+        "case_id": "run1175_r11",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "9d02ce4766d8621d3cd035c2fdd72b090fa76f15c4abeae3be37e9a26106cda5"
+      },
+      {
+        "case_id": "run1176_r11",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "4e009cf5dcd03f9eb4fb88be199bab2bf9451c1f4fd95052c798346671bf2ded"
+      },
+      {
+        "case_id": "run1177_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "f6cb7eeed891babdb5ee31f3a1ae86a53ccd70f99b876449cbecc84a48223da6"
+      },
+      {
+        "case_id": "run1178_r13",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "d846cbd841d27c56b2ddfd9303d80691609fe44a8a48008a1d63e0a9cde7349e"
+      },
+      {
+        "case_id": "run1180_r11",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "9001e3ba872ca43183de92181e51a101e5fdebe1be2c383de6ee0c81aa3bcba9"
+      },
+      {
+        "case_id": "run1233_r14",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_tail/base",
+        "previous_events_sha256": "2e0e8da33a7e95b5740bfd4ac1ad9823263246a2d7ac2fda32ccc0c7589d38d6"
+      },
+      {
+        "case_id": "run1235_r7",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_tail/base",
+        "previous_events_sha256": "f725b9b47a77e669a2af954c706e0d558e7ac9f9d96cd484c245501fa9b62b55"
+      },
+      {
+        "case_id": "run1238_r15",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_tail/base",
+        "previous_events_sha256": "842c145c139660136161e504261f3b49d827a11cf692a77a15bc08ce18aa2622"
+      },
+      {
+        "case_id": "run1239_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_tail/base",
+        "previous_events_sha256": "a5c7ebff02ad06efccb638e7b08c64cb4b7f0d363216699577ca8e24264c19a4"
+      },
+      {
+        "case_id": "run1240_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_tail/base",
+        "previous_events_sha256": "28d4bbe0764eb4971d5e6fb79f5ae279596bb7e69ae8fb9f6e61486bf6200e06"
+      },
+      {
+        "case_id": "run1241_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_tail/base",
+        "previous_events_sha256": "32af02e28d77154c02877fa7def443bcb8820a85c1c5cd8bb46312cd52b5db68"
+      },
+      {
+        "case_id": "run1242_r12",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_tail/base",
+        "previous_events_sha256": "70aeded27b648d1b42440190e039633fdf39aff6048717868c9a355b29f51ce8"
+      },
+      {
+        "case_id": "run1244_r14",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_tail/base",
+        "previous_events_sha256": "e3034332b47ac9debbc65db4d2b2ced344646f4f41d5f16ff5250d4f7c57e27c"
+      },
+      {
+        "case_id": "run1245_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_tail/base",
+        "previous_events_sha256": "f857a36f1ee400c8d8068c2b5f5e95be285535846e50e4e906552dd394f2735e"
+      },
+      {
+        "case_id": "run1246_r11",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_tail/base",
+        "previous_events_sha256": "f61858fb6798e1798ad289af1d1b82189d7fdf2c69b74c9623b63e37250ba865"
+      },
+      {
+        "case_id": "run1247_r7",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_tail/base",
+        "previous_events_sha256": "51a8e289dfc5292080dd6128f5c19f952d02d9887f0e81712491454e4bfbb9be"
+      },
+      {
+        "case_id": "run1259_r6",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_tail/base",
+        "previous_events_sha256": "f3bd422fc3237a9d8e92ab9590faee0140725d67e4126f25bbc245556d297239"
+      },
+      {
+        "case_id": "run1260_r11",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_tail/base",
+        "previous_events_sha256": "976be1de7f29659d32dcd15c628c1f0248a3f0f1355697bcf2793b6ec980b66b"
+      },
+      {
+        "case_id": "run1261_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_tail/base",
+        "previous_events_sha256": "58b33d1d777e8eedfe0401f329df9c43731da82185e2432e59bdfa98a518260d"
+      },
+      {
+        "case_id": "run1262_r15",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_tail/base",
+        "previous_events_sha256": "92cbc0f43a83b973cbe2ee9575bea221f30c01ee683b3275c7efd51bb0ea8bd6"
+      },
+      {
+        "case_id": "run1263_r10",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_tail/base",
+        "previous_events_sha256": "c15ad7d3b68164585c5098524e683e42d273f0ae8fea026c5815c170e96b4307"
+      },
+      {
+        "case_id": "run1264_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_tail/base",
+        "previous_events_sha256": "b80beae745225d2ea8d77f96940f5ca477588a44d52a201f47cad543361b8845"
+      },
+      {
+        "case_id": "run1265_r9",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_tail/base",
+        "previous_events_sha256": "e12e3a80e7c8c4746cc4e76767b835317a83ac4ec728abb488b97b53aae7a48f"
+      },
+      {
+        "case_id": "run1267_r12",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_tail/base",
+        "previous_events_sha256": "9f6d7edebf7c96fbe8838b9a4880f32865b5c03577fe860497c9aa4a8af3367a"
+      },
+      {
+        "case_id": "run1286_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_tail/base",
+        "previous_events_sha256": "d2091f4c38b13a40b476e03a3103bf38d7347db3ab70ad559723f840ec42aafe"
+      },
+      {
+        "case_id": "run1288_r6",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_tail/base",
+        "previous_events_sha256": "a497b4435a9e5e80c129a5af658823f2d4900974bc2bf531246b33a5d576230a"
+      },
+      {
+        "case_id": "run1308_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_tail/base",
+        "previous_events_sha256": "30a52d4ba8834880a66eed7ed9ea1a50cb7f538afe532023d3224278023d79b8"
+      },
+      {
+        "case_id": "run1309_r5",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_tail/base",
+        "previous_events_sha256": "a7c054ce8431eaa93a8faed4c6f11d2265b41d8dad58cbaa17fe248c368d074f"
+      },
+      {
+        "case_id": "run1328_r15",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_tail/base",
+        "previous_events_sha256": "2c3f0a9d4ed0d1ab84fa0d854dd58631cffd9799a7542912a652014e6f1ffdb8"
+      },
+      {
+        "case_id": "run1329_r12",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_tail/base",
+        "previous_events_sha256": "d6dc3a4432cb35257bed4e5167925ffb21cee61f0cfa210f89617e94ff9b6fc1"
+      },
+      {
+        "case_id": "run1346_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_tail/base",
+        "previous_events_sha256": "6625a0aa3e06e1a9df7b7396016f0db6c8b6476ead6b9911f1e4ae802e01c411"
+      },
+      {
+        "case_id": "run1348_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_tail/base",
+        "previous_events_sha256": "679f0aa7ec5170e14dbefc220a6d1011ca6f21c9c2d8b923f0a4de0df81fb734"
+      },
+      {
+        "case_id": "run1349_r11",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_tail/base",
+        "previous_events_sha256": "897419d7eac731bc5f98e3e8fe578379b883bc7b8bd3b5b140011aa98ebf5a1c"
+      },
+      {
+        "case_id": "run1492_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_tail/base",
+        "previous_events_sha256": "2159006c793379ffde09b0fe08cd843c278053653ec6f7cff5396647ec0565ad"
+      },
+      {
+        "case_id": "run572_r9",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "f3fca59293e5ef9b1f29d831327528e069e4e3d207361b5c04136c2c0cb7236c"
+      },
+      {
+        "case_id": "run747_r14",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "59470677d7fb25133beca8fe83404ead74b596dbe71fbbca693435f82f74610d"
+      },
+      {
+        "case_id": "run752_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "6dab782bafa2fdb7b20d0e58bd9ee408aa0a293dd00a10b8d08bb648f6605b5b"
+      },
+      {
+        "case_id": "run757_r12",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "668177202d5a716e65a577f25f1cb529b072ca4dd0e61b901156902e6df6817a"
+      },
+      {
+        "case_id": "run760_r11",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "d3470b544e81c19918ead41a253b8f85284279392d890a6a99e740689592d066"
+      },
+      {
+        "case_id": "run761_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "031f3e0b1c5b35c5eff13340bc7e46866a85e426a173baa5ecaf1f22b501af3e"
+      },
+      {
+        "case_id": "run822_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "bf33d9452a30d10e7c1530da0c06f20efec9ea0a10e3bec03da44e0dd1c539e0"
+      },
+      {
+        "case_id": "run823_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "529952e810668296195c0c80ec259f4d2aed73434bb9a97c59200cd1c4698ad8"
+      },
+      {
+        "case_id": "run825_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "3de59476b61fafdaa84248a63988c1c8e9e349edb94c7f36b4a6acd2eefe7b17"
+      },
+      {
+        "case_id": "run828_r11",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "f6814d51e772acd2649b9e7d7f98d8ae43baadfd6aee6116f4c24e2d99a9a23e"
+      },
+      {
+        "case_id": "run923_r11",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "738628bfc9dfe1a8794f8b033b06886b7c6b04c51de94bd0faa41d3c6ff26053"
+      },
+      {
+        "case_id": "run924_r15",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "3b147840cef9fa329ddc6f5fc9275ca2760e18e88e989bde727fda1f7c13767a"
+      },
+      {
+        "case_id": "run927_r11",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "7c212a0316e7de19f318bb4d91017deb47df008c086a1c3e85def2f809899c94"
+      },
+      {
+        "case_id": "run928_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "aacb39d2b77a3e99e2828a1f172cfa8e991130054b77029d20163732adf75b5d"
+      },
+      {
+        "case_id": "run948_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "1642c9d42fc1c5164a250e3c18de8b7b1b595051e6685216443c367d48a65eb2"
+      },
+      {
+        "case_id": "run953_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "ac2ba56008e7ba25fae8b32a6e1e60e0900739d0b6d1eb0ca47e7f01980cc060"
+      },
+      {
+        "case_id": "run956_r7",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "dac65d2c742683dd63e2ebf57058089ebc08e3a3e7aa5ed736ac5679b5181f04"
+      },
+      {
+        "case_id": "run962_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "cb58497b8df574120e54314fb47e829bc1822a3f65e5087881ccf0cffad7e7c0"
+      },
+      {
+        "case_id": "run966_r15",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "5d68b368c6715afdbb2e3a2bd03a830e722087347cd4a6d9b86d33cedadff81e"
+      },
+      {
+        "case_id": "run967_r7",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "6a69c4b8d9a8bcc80014a13674564fd3fe352caae30cc61771c7039def6b15f9"
+      },
+      {
+        "case_id": "run985_r12",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "016e1e64c5cbde075db53e7e3b33bd1802fa0942302ce3005e1a7bcae1d87328"
+      },
+      {
+        "case_id": "run986_r12",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "5b75e2716cd2b83f1f83f3395487e42161e4a804c068590b0a99d3d1ec7de7d2"
+      },
+      {
+        "case_id": "run988_r15",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "208228234cee66ff3040bbf97baf088b8d6bbf639be161e1e50ec2501c7b4f59"
+      },
+      {
+        "case_id": "run989_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "c10dbcada7163d14f7f5af6b46c9111a7a61b532194420a1f132a88eee13fc30"
+      },
+      {
+        "case_id": "run991_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "dfa6a074426bf24a80714bcbf8ef16e164187342d8972f514e53abbe6cc14354"
+      },
+      {
+        "case_id": "run995_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "a2da74b73f0f48ef6b06e6f79d9c88f3d5fae8cf080350cedb097548e4425ec0"
+      },
+      {
+        "case_id": "run996_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "d37f76f4887de21245b9f21d1fbb780bb073f800a8cfd2e87bc9a15131935449"
+      },
+      {
+        "case_id": "run997_r11",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_base_pilot/base",
+        "previous_events_sha256": "7ec6a80c4c254548f58f20f93bebd5e32586d78babbbeea4dc4a8a4b87b6c8cc"
+      }
+    ],
+    "expand": [
+      {
+        "case_id": "run101127_r8_o101282_r8",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_expand_live/expand",
+        "previous_events_sha256": "31599e03fdf169eff2431640d16ea5d64e5cd5b104ea47c253bc747946681b79"
+      },
+      {
+        "case_id": "run101360_r16_o400073_r16",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_expand_live/expand",
+        "previous_events_sha256": "ec195215b23ae84fcef2273787a8fdfdbf65c94137d80441e1631ef19f988cb1"
+      },
+      {
+        "case_id": "run101571_r12_o200222_r12",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_expand_live/expand",
+        "previous_events_sha256": "7b1a7a20b8f87d0205aeb6cb6ebe826f1c38da7282c351951aca22769b65ee66"
+      },
+      {
+        "case_id": "run101582_r9_o704990_r9",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_expand_live/expand",
+        "previous_events_sha256": "9893b8b43cbee7eab0bfd63a04313d9b72bc3d159d58d78d35ea4e18e9c1bcf1"
+      },
+      {
+        "case_id": "run300225_r6_o500231_r6",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_expand_live/expand",
+        "previous_events_sha256": "8707f40f7f93e3d99617cd691e804700a426c705fb61826f8716aef41352b5ff"
+      },
+      {
+        "case_id": "run604648_r11_o101432_r11",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_expand_live/expand",
+        "previous_events_sha256": "39b2d8f8a207a2193d89ebdabf117a0ee7719c248b9ba9c6e8edb3a2f4fa1eb0"
+      },
+      {
+        "case_id": "run604775_r12_o200195_r12",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_expand_live/expand",
+        "previous_events_sha256": "6653de80b162ddd0633b583cd052f5d3e2cdf57aa291d3cd5b8302ec79bfb326"
+      },
+      {
+        "case_id": "run604857_r8_o704267_r8",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_expand_live/expand",
+        "previous_events_sha256": "bf769dc91655c63851c874bc3eb1841b8c36e3ccd82e3d0aaa031dcde3fd7bb5"
+      },
+      {
+        "case_id": "run704304_r11_o604610_r11",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_expand_live/expand",
+        "previous_events_sha256": "580d3c5b3fdcd0486d9c58618f5a3aca362e51a7d7b4aa5b8265f3b5177e8860"
+      },
+      {
+        "case_id": "run704467_r9_o500276_r9",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_expand_live/expand",
+        "previous_events_sha256": "605278545b8b0e8b97c63b324c3ab9e4f065d9aed5499875b51aa0fdb6bcad7f"
+      },
+      {
+        "case_id": "run704514_r14_o500247_r14",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_expand_live/expand",
+        "previous_events_sha256": "7ae33694cce80423e934ca3a796051e8d4e60a8d0ac4dcdbbf8e11bc80379c2a"
+      },
+      {
+        "case_id": "run704709_r11_o704267_r11",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_expand_live/expand",
+        "previous_events_sha256": "a4704fac855126bd913163a02a338ef409492a9fd3fc7c9592488a511b10a63d"
+      },
+      {
+        "case_id": "run704758_r6_o604625_r6",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_expand_live/expand",
+        "previous_events_sha256": "dfc0232c1c09cd9f339261a0d6e680205e8407da5aefdb222a31842ce626068e"
+      },
+      {
+        "case_id": "run704842_r15_o604595_r15",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_expand_live/expand",
+        "previous_events_sha256": "d8557df5e6694f11495ef4e0eac5e014755d4f095bc5ea850ce189b76bdfccfe"
+      },
+      {
+        "case_id": "run704896_r16_o101394_r16",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_expand_live/expand",
+        "previous_events_sha256": "0d69a7eb875eb4475cb9ee1af9851769cfc3d08df4dd79da45f380e047e67fbc"
+      },
+      {
+        "case_id": "run704896_r17_o101360_r17",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_expand_live/expand",
+        "previous_events_sha256": "60ae7576bb5ffb40d2b12c348dd143ea1b3ebed410071090d23bdb9c73048091"
+      },
+      {
+        "case_id": "run704950_r17_o500205_r17",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_expand_live/expand",
+        "previous_events_sha256": "206d025f5e71d37635f08fa46b9acdf4bd7e68faca3d4d4663cbcad561e60078"
+      },
+      {
+        "case_id": "run704993_r18_o101755_r18",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_expand_live/expand",
+        "previous_events_sha256": "fd126245c82eb6b2515df60ce409913d640ffa1330acb8d2061a201e22351934"
+      },
+      {
+        "case_id": "run705059_r11_o604523_r11",
+        "previous_category": "battle_semantic",
+        "winner_mismatch": false,
+        "previous_reference": "native_shipping_expand_live/expand",
+        "previous_events_sha256": "a7f42dab28ce0a73f67ff64cad2b5ad7fb5f85b575f6fe1369cc6a10fdb90d65"
+      }
+    ]
+  }
+}

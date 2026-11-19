@@ -91,10 +91,21 @@ if not args.reuse_inputs:
                 flicker["limits"] = [descriptor["flicker" + key] for key in ("MinDist", "MaxDist", "MinSpeed", "MaxSpeed")]
         lineups["replay_controls"]["replay_initial"] = {
             "activation_rng_state": boundaries["before_activate"]["state"], "idle_left": idle, "flickers": flickers}
-        if args.native_util_clock:
+        host_draws = boundaries.get("host_rng_draws")
+        if args.native_util_clock or host_draws:
             util_time = boundaries["combat_start"]["util_time"]
             assert math.isfinite(float(util_time)) and float(util_time) >= 0, cid
             lineups["replay_controls"]["replay_initial"]["util_time"] = util_time
+        if host_draws:
+            schedule = []
+            for draw in host_draws:
+                assert draw["kind"] in ("focus_out", "process_timer"), (cid, draw)
+                tick = round(float(draw["combat_time"]) * 60)
+                assert 0 <= tick < (1 << 31) and (not schedule or tick >= schedule[-1][0]), (cid, draw)
+                for state in ("before", "after"):
+                    assert -(1 << 63) <= int(draw[state]) < (1 << 63), (cid, draw)
+                schedule.append([tick, draw["before"], draw["after"]])
+            lineups["replay_controls"]["replay_initial"]["host_rng_draws"] = schedule
         if "opening_idle_delta" in boundaries:
             lineups["replay_controls"]["replay_initial"]["native_scene_delays"] = True
         if "buff_state" in boundaries["before_activate"]:
