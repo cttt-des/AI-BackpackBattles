@@ -22,7 +22,12 @@ def main():
     wheel = ROOT / 'dist/backpack_battles_sim-0.6.0-cp314-cp314-win_amd64.whl'
     manifest = json.loads((ROOT / 'backpack_native/manifest.json').read_bytes())
     expected = json.loads((ROOT / 'backpack_native/selftest_case.json').read_bytes())['expected']
-    gate = json.loads((ROOT / 'output/_v1110/native_hot_path_full_gate.json').read_bytes())
+    gate_bytes = (ROOT / 'output/_v1110/native_hot_path_full_gate.json').read_bytes()
+    gate = json.loads(gate_bytes)
+    assert manifest['gate_sha256'] == digest(gate_bytes)
+    runtime = json.loads((ROOT / 'backpack_native/gd_core_runtime.json').read_bytes())
+    canonical = json.dumps(runtime, ensure_ascii=False, sort_keys=True, separators=(',', ':'))
+    assert digest(canonical.encode('utf8')) == gate['runtime_data_sha256']
     assert manifest['sha256']['libgdcore.dll'] == gate['dll_sha256']
     assert gate['complete']
     archive = CArchiveReader(str(exe))
