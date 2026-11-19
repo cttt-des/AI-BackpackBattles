@@ -1,0 +1,24 @@
+{
+  "installed_runtime": "D:\\文件资料\\学习\\自动背包AI\\dist\\native_1_1_10",
+  "official_raw_cpp_event_digests_unchanged": 2604,
+  "raw_event_digest_changes_among_verified_fights": [],
+  "changed_legal_layout": true,
+  "real_evaluation_completed": 12,
+  "reference_win_flags": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "candidate_win_flags": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "identical_layout_win_delta": 0.0
+}

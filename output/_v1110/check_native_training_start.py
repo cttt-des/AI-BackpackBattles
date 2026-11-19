@@ -22,7 +22,7 @@ def main():
     simulator = NativeSimulator(args.dll.resolve())
     cases = {
         "native_ring_placement_target3": ("run1143_r13", "run1492_r18", "run948_r18"),
-        "native_host_phases_observed_base_current_cpp": ("run989_r18",),
+        "native_host_phases_observed_base_last_cpp": ("run989_r18",),
     }
     seeds = (0, 1, 42, (1 << 64) - 1)
     jobs = []

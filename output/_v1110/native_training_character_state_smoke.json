@@ -1,0 +1,126 @@
+{
+  "verified_fights": 17,
+  "threads": 2,
+  "dll_sha256": "c48ba362d4cfc81f1daa3fbcb8d88c614a24c94ce800fc9636b72deb890d4945",
+  "cases": [
+    {
+      "id": "run1143_r13",
+      "seed": 0,
+      "player_wins": false,
+      "events": 410,
+      "ticks": 1330
+    },
+    {
+      "id": "run1143_r13",
+      "seed": 1,
+      "player_wins": true,
+      "events": 319,
+      "ticks": 1111
+    },
+    {
+      "id": "run1143_r13",
+      "seed": 42,
+      "player_wins": false,
+      "events": 366,
+      "ticks": 1231
+    },
+    {
+      "id": "run1143_r13",
+      "seed": 18446744073709551615,
+      "player_wins": false,
+      "events": 375,
+      "ticks": 1251
+    },
+    {
+      "id": "run1492_r18",
+      "seed": 0,
+      "player_wins": false,
+      "events": 785,
+      "ticks": 811
+    },
+    {
+      "id": "run1492_r18",
+      "seed": 1,
+      "player_wins": false,
+      "events": 737,
+      "ticks": 776
+    },
+    {
+      "id": "run1492_r18",
+      "seed": 42,
+      "player_wins": true,
+      "events": 742,
+      "ticks": 767
+    },
+    {
+      "id": "run1492_r18",
+      "seed": 18446744073709551615,
+      "player_wins": false,
+      "events": 770,
+      "ticks": 795
+    },
+    {
+      "id": "run948_r18",
+      "seed": 0,
+      "player_wins": true,
+      "events": 2659,
+      "ticks": 2551
+    },
+    {
+      "id": "run948_r18",
+      "seed": 1,
+      "player_wins": true,
+      "events": 2696,
+      "ticks": 2679
+    },
+    {
+      "id": "run948_r18",
+      "seed": 42,
+      "player_wins": true,
+      "events": 2527,
+      "ticks": 2434
+    },
+    {
+      "id": "run948_r18",
+      "seed": 18446744073709551615,
+      "player_wins": true,
+      "events": 3194,
+      "ticks": 3271
+    },
+    {
+      "id": "run989_r18",
+      "seed": 0,
+      "player_wins": true,
+      "events": 19832,
+      "ticks": 3804
+    },
+    {
+      "id": "run989_r18",
+      "seed": 1,
+      "player_wins": true,
+      "events": 18711,
+      "ticks": 3684
+    },
+    {
+      "id": "run989_r18",
+      "seed": 42,
+      "player_wins": true,
+      "events": 19307,
+      "ticks": 3776
+    },
+    {
+      "id": "run989_r18",
+      "seed": 18446744073709551615,
+      "player_wins": true,
+      "events": 20374,
+      "ticks": 3869
+    },
+    {
+      "id": "run1143_r13",
+      "seed": 0,
+      "player_wins": false,
+      "events": 410,
+      "ticks": 1330
+    }
+  ]
+}

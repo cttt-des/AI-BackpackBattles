@@ -1,0 +1,102 @@
+{
+  "scope": "Trainer evaluation path, fixed SQLite opponent pool and eight seeds per opponent, one worker per batch",
+  "dll_sha256": "c48ba362d4cfc81f1daa3fbcb8d88c614a24c94ce800fc9636b72deb890d4945",
+  "fights_per_run": 200,
+  "samples": {
+    "native": [
+      {
+        "fights": 200,
+        "workers": 1,
+        "backend": "native",
+        "wall_s": 10.95,
+        "tput": 18.26,
+        "load_pct_before": 23.3,
+        "load_pct_after": 11.1,
+        "cores_eff": 0.99,
+        "cores_eff_ratio": 0.992,
+        "sim_errors": 0,
+        "mean_wr": 0.6
+      },
+      {
+        "fights": 200,
+        "workers": 1,
+        "backend": "native",
+        "wall_s": 11.78,
+        "tput": 16.97,
+        "load_pct_before": 24.1,
+        "load_pct_after": 18.6,
+        "cores_eff": 1.0,
+        "cores_eff_ratio": 0.996,
+        "sim_errors": 0,
+        "mean_wr": 0.6
+      },
+      {
+        "fights": 200,
+        "workers": 1,
+        "backend": "native",
+        "wall_s": 11.45,
+        "tput": 17.46,
+        "load_pct_before": 21.0,
+        "load_pct_after": 32.8,
+        "cores_eff": 1.0,
+        "cores_eff_ratio": 0.996,
+        "sim_errors": 0,
+        "mean_wr": 0.6
+      }
+    ],
+    "python": [
+      {
+        "fights": 200,
+        "workers": 1,
+        "backend": "python",
+        "wall_s": 23.08,
+        "tput": 8.67,
+        "load_pct_before": 40.4,
+        "load_pct_after": 39.6,
+        "cores_eff": 0.97,
+        "cores_eff_ratio": 0.965,
+        "sim_errors": 0,
+        "mean_wr": 0.625
+      },
+      {
+        "fights": 200,
+        "workers": 1,
+        "backend": "python",
+        "wall_s": 23.23,
+        "tput": 8.61,
+        "load_pct_before": 25.4,
+        "load_pct_after": 24.2,
+        "cores_eff": 0.99,
+        "cores_eff_ratio": 0.985,
+        "sim_errors": 0,
+        "mean_wr": 0.625
+      },
+      {
+        "fights": 200,
+        "workers": 1,
+        "backend": "python",
+        "wall_s": 23.12,
+        "tput": 8.65,
+        "load_pct_before": 21.8,
+        "load_pct_after": 22.3,
+        "cores_eff": 0.98,
+        "cores_eff_ratio": 0.982,
+        "sim_errors": 0,
+        "mean_wr": 0.625
+      }
+    ]
+  },
+  "medians": {
+    "native": {
+      "wall_s": 11.45,
+      "tput": 17.46,
+      "cores_eff_ratio": 0.996
+    },
+    "python": {
+      "wall_s": 23.12,
+      "tput": 8.65,
+      "cores_eff_ratio": 0.982
+    }
+  },
+  "native_speed_ratio": 2.0184971098265896
+}

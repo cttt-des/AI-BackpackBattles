@@ -13,7 +13,7 @@
     - pull(rangeMax) = ceil(log2(rangeMax)) 位；pullBitsize(n) = 固定 n 位
     - 顺序：health(999) stamina(999) → 每物品
       [index(totalNumItems) col(10) row(10) face(4) (hasGems(2→1bit) gems×sockets
-      (totalNumGems=64→6bit)) (MagicRing 持久段 12bit)]
+      (totalNumGems=64→6bit)) (Magic Ring 持久段 12bit / Superior Ring 持久段 18bit)]
   * faceDirection → 旋转：UP/RIGHT/DOWN/LEFT → 0/90/180/270（correction 表顺序）
   * 物品索引映射：assets/item_index_map.json（tools/gen_item_index_map.py 生成）
 """
