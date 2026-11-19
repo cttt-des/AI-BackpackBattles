@@ -1,0 +1,118 @@
+{
+  "archive_root": "_archive/20261119",
+  "entries": [
+    {
+      "original": "output/_backup_pre_deckchain",
+      "archived": "_archive/20261119/output/_backup_pre_deckchain"
+    },
+    {
+      "original": "output/_backup_pre_stamina_rerecord",
+      "archived": "_archive/20261119/output/_backup_pre_stamina_rerecord"
+    },
+    {
+      "original": "output/_timing_four_way",
+      "archived": "_archive/20261119/output/_timing_four_way"
+    },
+    {
+      "original": "output/oracle",
+      "archived": "_archive/20261119/output/oracle"
+    },
+    {
+      "original": "output/_v1110/full_corpus",
+      "archived": "_archive/20261119/output/_v1110/full_corpus"
+    },
+    {
+      "original": "output/_re_extract",
+      "archived": "_archive/20261119/output/_re_extract"
+    },
+    {
+      "original": "output/_a1",
+      "archived": "_archive/20261119/output/_a1"
+    },
+    {
+      "original": "output/_handoff10",
+      "archived": "_archive/20261119/output/_handoff10"
+    },
+    {
+      "original": "output/_oldsrc",
+      "archived": "_archive/20261119/output/_oldsrc"
+    },
+    {
+      "original": "output/_newsrc",
+      "archived": "_archive/20261119/output/_newsrc"
+    },
+    {
+      "original": "output/_v1110/native_fresh_expand_rng_project",
+      "archived": "_archive/20261119/output/_v1110/native_fresh_expand_rng_project"
+    },
+    {
+      "original": "output/_v1110/native_damage_rng_project",
+      "archived": "_archive/20261119/output/_v1110/native_damage_rng_project"
+    },
+    {
+      "original": "output/_v1110/native_opening_delay_probe_project",
+      "archived": "_archive/20261119/output/_v1110/native_opening_delay_probe_project"
+    },
+    {
+      "original": "output/_v1110/native_remaining_rng_probe_project",
+      "archived": "_archive/20261119/output/_v1110/native_remaining_rng_probe_project"
+    },
+    {
+      "original": "output/_v1110/native_egg_probe",
+      "archived": "_archive/20261119/output/_v1110/native_egg_probe"
+    },
+    {
+      "original": "output/_v1110/native_amulet_rng_project",
+      "archived": "_archive/20261119/output/_v1110/native_amulet_rng_project"
+    },
+    {
+      "original": "output/_v1110/native_engine_boundary_probe_project",
+      "archived": "_archive/20261119/output/_v1110/native_engine_boundary_probe_project"
+    },
+    {
+      "original": "output/_v1110/native_buff_carry_project",
+      "archived": "_archive/20261119/output/_v1110/native_buff_carry_project"
+    },
+    {
+      "original": "output/_v1110/native_training_release_probe",
+      "archived": "_archive/20261119/output/_v1110/native_training_release_probe"
+    },
+    {
+      "original": "output/_v1110/sim_native_cython",
+      "archived": "_archive/20261119/output/_v1110/sim_native_cython"
+    },
+    {
+      "original": "output/_v1110/sim_native_cython_engine_rng",
+      "archived": "_archive/20261119/output/_v1110/sim_native_cython_engine_rng"
+    },
+    {
+      "original": "output/_v1110/sim_native_pure_holy",
+      "archived": "_archive/20261119/output/_v1110/sim_native_pure_holy"
+    },
+    {
+      "original": "dist/backpack_battles_sim-0.5.2-cp314-cp314-win_amd64.whl",
+      "archived": "_archive/20261119/dist/backpack_battles_sim-0.5.2-cp314-cp314-win_amd64.whl"
+    },
+    {
+      "original": "dist/backpack_battles_sim-0.5.3-cp314-cp314-win_amd64.whl",
+      "archived": "_archive/20261119/dist/backpack_battles_sim-0.5.3-cp314-cp314-win_amd64.whl"
+    },
+    {
+      "original": "dist/BackpackSimulator.exe",
+      "archived": "_archive/20261119/dist/BackpackSimulator.exe"
+    },
+    {
+      "original": "probe2.obj.exp",
+      "archived": "_archive/20261119/probe2.obj.exp"
+    },
+    {
+      "original": "probe2.obj.lib",
+      "archived": "_archive/20261119/probe2.obj.lib"
+    }
+  ],
+  "preserved_tracked_receipts": [
+    "output/_v1110/full_corpus/expand/alignment.json",
+    "output/_v1110/full_corpus/expand/cpp/summary.json",
+    "output/_v1110/full_corpus/expand/fights/_batch_summary.json"
+  ]
+}

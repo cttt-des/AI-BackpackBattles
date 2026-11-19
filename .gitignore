@@ -48,7 +48,7 @@ decompiled_full/**/*.md5
 decompiled_full/**/*.gde
 decompiled_full/**/*.gdc
 
-# ============ 运行输出（全部可再生成，不入库）============
+# ============ 本地运行输出（含冻结录制，清理前核对依赖并归档）============
 # 含 output/oracle/expand/（扩样语料/重放/对齐账本）、output/_expand/（取证窗口/
 # 裸流对位产物）、output/_recovery/（godot 日志）——全部可由 verify_oracle.py
 # 与 tools/_np51_* 工具重新生成。
@@ -130,3 +130,7 @@ dist/*.whl
 /*.pyd.mingw-bak
 oracle_chunk_*.err.log
 assets/_audit/
+
+# Local historical projects, recordings and old release assets.
+/_archive/
+/backpack_native/*.dll

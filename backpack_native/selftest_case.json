@@ -1,0 +1,1505 @@
+{
+  "player": {
+    "version": 3,
+    "meta": {
+      "name": "oracle_run948_r18_player",
+      "source": "oracle:run948_r18"
+    },
+    "character": "Mage",
+    "round": 18,
+    "health_override": 350,
+    "class_modifiers": {
+      "stamina": 7.0
+    },
+    "base_max_stamina": 5.0,
+    "backpack": {
+      "grid": {
+        "rows": 7,
+        "cols": 10
+      },
+      "items": [
+        {
+          "id": "Leather Bag",
+          "row": 5,
+          "col": 1,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Stamina Sack",
+          "row": 0,
+          "col": 5,
+          "rotation": 90,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Leather Bag",
+          "row": 3,
+          "col": 0,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Stamina Sack",
+          "row": 4,
+          "col": 7,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Potion Belt",
+          "row": 2,
+          "col": 8,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Leather Bag",
+          "row": 1,
+          "col": 1,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Protective Purse",
+          "row": 3,
+          "col": 2,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Fanny Pack",
+          "row": 3,
+          "col": 3,
+          "rotation": 270,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Leather Bag",
+          "row": 5,
+          "col": 3,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Leather Bag",
+          "row": 5,
+          "col": 5,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Fanny Pack",
+          "row": 1,
+          "col": 6,
+          "rotation": 90,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Puzzlebag Z",
+          "row": 2,
+          "col": 6,
+          "rotation": 90,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Leather Bag",
+          "row": 0,
+          "col": 3,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Puzzlebox",
+          "row": 1,
+          "col": 3,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Fanny Pack",
+          "row": 3,
+          "col": 5,
+          "rotation": 90,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Amulet of Life",
+          "row": 6,
+          "col": 7,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Customer Card",
+          "row": 2,
+          "col": 1,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Superior Ring",
+          "row": 2,
+          "col": 2,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": [
+            {
+              "triggerType": 3,
+              "stackType": 104
+            },
+            {
+              "triggerType": 1,
+              "stackType": 101
+            },
+            {
+              "triggerType": 1,
+              "stackType": 101
+            }
+          ],
+          "placement_effects": [
+            {
+              "triggerType": 0,
+              "stackType": 105
+            },
+            {
+              "triggerType": 1,
+              "stackType": 105
+            },
+            {
+              "triggerType": 1,
+              "stackType": 105
+            }
+          ],
+          "crafted": true,
+          "gems": []
+        },
+        {
+          "id": "Amulet of Fortune",
+          "row": 5,
+          "col": 7,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Prismatic Sword",
+          "row": 4,
+          "col": 4,
+          "rotation": 90,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": true,
+          "gems": [
+            null,
+            null
+          ]
+        },
+        {
+          "id": "Magic Ring",
+          "row": 3,
+          "col": 1,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": [
+            {
+              "triggerType": 0,
+              "stackType": 101
+            },
+            {
+              "triggerType": 1,
+              "stackType": 107
+            }
+          ],
+          "placement_effects": [
+            {
+              "triggerType": 1,
+              "stackType": 106
+            },
+            {
+              "triggerType": 3,
+              "stackType": 102
+            }
+          ],
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Shelly",
+          "row": 1,
+          "col": 3,
+          "rotation": 270,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": true,
+          "gems": []
+        },
+        {
+          "id": "Badger Spirit",
+          "row": 1,
+          "col": 1,
+          "rotation": 180,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Magic Ring",
+          "row": 3,
+          "col": 3,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": [
+            {
+              "triggerType": 2,
+              "stackType": 107
+            },
+            {
+              "triggerType": 1,
+              "stackType": 106
+            }
+          ],
+          "placement_effects": [
+            {
+              "triggerType": 1,
+              "stackType": 103
+            },
+            {
+              "triggerType": 3,
+              "stackType": 109
+            }
+          ],
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "King of the Bling",
+          "row": 3,
+          "col": 2,
+          "rotation": 90,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Snowball",
+          "row": 0,
+          "col": 4,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Snowball",
+          "row": 0,
+          "col": 5,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Blueberries",
+          "row": 0,
+          "col": 6,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Corrupted Armor",
+          "row": 1,
+          "col": 4,
+          "rotation": 90,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": true,
+          "gems": [
+            {
+              "id": "Corrupted Crystal"
+            },
+            {
+              "id": "Corrupted Crystal"
+            },
+            null
+          ]
+        },
+        {
+          "id": "Shiny Mantle",
+          "row": 2,
+          "col": 7,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "Superior Ring",
+          "row": 3,
+          "col": 5,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": [
+            {
+              "triggerType": 1,
+              "stackType": 102
+            },
+            {
+              "triggerType": 1,
+              "stackType": 104
+            },
+            {
+              "triggerType": 2,
+              "stackType": 103
+            }
+          ],
+          "placement_effects": [
+            {
+              "triggerType": 2,
+              "stackType": 104
+            },
+            {
+              "triggerType": 3,
+              "stackType": 108
+            },
+            {
+              "triggerType": 2,
+              "stackType": 110
+            }
+          ],
+          "crafted": true,
+          "gems": []
+        },
+        {
+          "id": "False Life",
+          "row": 4,
+          "col": 3,
+          "rotation": 90,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Lucky Cat",
+          "row": 5,
+          "col": 5,
+          "rotation": 180,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Amulet of Light",
+          "row": 3,
+          "col": 6,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Blueberries",
+          "row": 4,
+          "col": 1,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Amulet of Light",
+          "row": 5,
+          "col": 3,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Blueberries",
+          "row": 6,
+          "col": 6,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Wolpertinger",
+          "row": 5,
+          "col": 1,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Snowball",
+          "row": 6,
+          "col": 4,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Snowball",
+          "row": 6,
+          "col": 3,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Snowball",
+          "row": 3,
+          "col": 0,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Snowball",
+          "row": 4,
+          "col": 0,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Amulet of Light",
+          "row": 3,
+          "col": 4,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Superior Ring",
+          "row": 5,
+          "col": 4,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": [
+            {
+              "triggerType": 1,
+              "stackType": 109
+            },
+            {
+              "triggerType": 1,
+              "stackType": 102
+            },
+            {
+              "triggerType": 2,
+              "stackType": 102
+            }
+          ],
+          "placement_effects": [
+            {
+              "triggerType": 0,
+              "stackType": 101
+            },
+            {
+              "triggerType": 1,
+              "stackType": 101
+            },
+            {
+              "triggerType": 3,
+              "stackType": 102
+            }
+          ],
+          "crafted": true,
+          "gems": []
+        },
+        {
+          "id": "Amulet of Light",
+          "row": 5,
+          "col": 6,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        }
+      ]
+    },
+    "storage": []
+  },
+  "opponent": {
+    "version": 3,
+    "meta": {
+      "name": "oracle_run948_r18_opponent",
+      "source": "oracle:run948_r18"
+    },
+    "character": "Mage",
+    "round": 18,
+    "health_override": 350,
+    "class_modifiers": {
+      "stamina": 7.0
+    },
+    "base_max_stamina": 5.0,
+    "backpack": {
+      "grid": {
+        "rows": 7,
+        "cols": 10
+      },
+      "items": [
+        {
+          "id": "Leather Bag",
+          "row": 5,
+          "col": 1,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Stamina Sack",
+          "row": 0,
+          "col": 5,
+          "rotation": 90,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Leather Bag",
+          "row": 3,
+          "col": 0,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Stamina Sack",
+          "row": 4,
+          "col": 7,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Potion Belt",
+          "row": 2,
+          "col": 8,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Leather Bag",
+          "row": 1,
+          "col": 1,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Protective Purse",
+          "row": 3,
+          "col": 2,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Fanny Pack",
+          "row": 3,
+          "col": 3,
+          "rotation": 270,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Leather Bag",
+          "row": 5,
+          "col": 3,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Leather Bag",
+          "row": 5,
+          "col": 5,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Fanny Pack",
+          "row": 1,
+          "col": 6,
+          "rotation": 90,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Puzzlebag Z",
+          "row": 2,
+          "col": 6,
+          "rotation": 90,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Leather Bag",
+          "row": 0,
+          "col": 3,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Puzzlebox",
+          "row": 1,
+          "col": 3,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Fanny Pack",
+          "row": 3,
+          "col": 5,
+          "rotation": 90,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Amulet of Life",
+          "row": 6,
+          "col": 7,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Customer Card",
+          "row": 2,
+          "col": 1,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Superior Ring",
+          "row": 2,
+          "col": 2,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": [
+            {
+              "triggerType": 3,
+              "stackType": 104
+            },
+            {
+              "triggerType": 1,
+              "stackType": 101
+            },
+            {
+              "triggerType": 1,
+              "stackType": 101
+            }
+          ],
+          "placement_effects": [
+            {
+              "triggerType": 0,
+              "stackType": 109
+            },
+            {
+              "triggerType": 1,
+              "stackType": 102
+            },
+            {
+              "triggerType": 3,
+              "stackType": 106
+            }
+          ],
+          "crafted": true,
+          "gems": []
+        },
+        {
+          "id": "Amulet of Fortune",
+          "row": 5,
+          "col": 7,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Prismatic Sword",
+          "row": 4,
+          "col": 4,
+          "rotation": 90,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": true,
+          "gems": [
+            null,
+            null
+          ]
+        },
+        {
+          "id": "Magic Ring",
+          "row": 3,
+          "col": 1,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": [
+            {
+              "triggerType": 0,
+              "stackType": 101
+            },
+            {
+              "triggerType": 1,
+              "stackType": 107
+            }
+          ],
+          "placement_effects": [
+            {
+              "triggerType": 1,
+              "stackType": 102
+            },
+            {
+              "triggerType": 3,
+              "stackType": 106
+            }
+          ],
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Shelly",
+          "row": 1,
+          "col": 3,
+          "rotation": 270,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": true,
+          "gems": []
+        },
+        {
+          "id": "Badger Spirit",
+          "row": 1,
+          "col": 1,
+          "rotation": 180,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Magic Ring",
+          "row": 3,
+          "col": 3,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": [
+            {
+              "triggerType": 2,
+              "stackType": 107
+            },
+            {
+              "triggerType": 1,
+              "stackType": 106
+            }
+          ],
+          "placement_effects": [
+            {
+              "triggerType": 0,
+              "stackType": 104
+            },
+            {
+              "triggerType": 1,
+              "stackType": 103
+            }
+          ],
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "King of the Bling",
+          "row": 3,
+          "col": 2,
+          "rotation": 90,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Snowball",
+          "row": 0,
+          "col": 4,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Snowball",
+          "row": 0,
+          "col": 5,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Blueberries",
+          "row": 0,
+          "col": 6,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Corrupted Armor",
+          "row": 1,
+          "col": 4,
+          "rotation": 90,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": true,
+          "gems": [
+            {
+              "id": "Corrupted Crystal"
+            },
+            {
+              "id": "Corrupted Crystal"
+            },
+            null
+          ]
+        },
+        {
+          "id": "Shiny Mantle",
+          "row": 2,
+          "col": 7,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "Superior Ring",
+          "row": 3,
+          "col": 5,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": [
+            {
+              "triggerType": 1,
+              "stackType": 102
+            },
+            {
+              "triggerType": 1,
+              "stackType": 104
+            },
+            {
+              "triggerType": 2,
+              "stackType": 103
+            }
+          ],
+          "placement_effects": [
+            {
+              "triggerType": 1,
+              "stackType": 102
+            },
+            {
+              "triggerType": 3,
+              "stackType": 109
+            },
+            {
+              "triggerType": 3,
+              "stackType": 101
+            }
+          ],
+          "crafted": true,
+          "gems": []
+        },
+        {
+          "id": "False Life",
+          "row": 4,
+          "col": 3,
+          "rotation": 90,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Lucky Cat",
+          "row": 5,
+          "col": 5,
+          "rotation": 180,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Amulet of Light",
+          "row": 3,
+          "col": 6,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Blueberries",
+          "row": 4,
+          "col": 1,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Amulet of Light",
+          "row": 5,
+          "col": 3,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Blueberries",
+          "row": 6,
+          "col": 6,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Wolpertinger",
+          "row": 5,
+          "col": 1,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Snowball",
+          "row": 6,
+          "col": 4,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Snowball",
+          "row": 6,
+          "col": 3,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Snowball",
+          "row": 3,
+          "col": 0,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Snowball",
+          "row": 4,
+          "col": 0,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Amulet of Light",
+          "row": 3,
+          "col": 4,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        },
+        {
+          "id": "Superior Ring",
+          "row": 5,
+          "col": 4,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": [
+            {
+              "triggerType": 1,
+              "stackType": 109
+            },
+            {
+              "triggerType": 1,
+              "stackType": 102
+            },
+            {
+              "triggerType": 2,
+              "stackType": 102
+            }
+          ],
+          "placement_effects": [
+            {
+              "triggerType": 1,
+              "stackType": 106
+            },
+            {
+              "triggerType": 0,
+              "stackType": 107
+            },
+            {
+              "triggerType": 2,
+              "stackType": 106
+            }
+          ],
+          "crafted": true,
+          "gems": []
+        },
+        {
+          "id": "Amulet of Light",
+          "row": 5,
+          "col": 6,
+          "rotation": 0,
+          "quantity": 1,
+          "container": false,
+          "contents": [],
+          "effects": null,
+          "placement_effects": null,
+          "crafted": false,
+          "gems": []
+        }
+      ]
+    },
+    "storage": []
+  },
+  "expected": {
+    "version": "0.6.0",
+    "game_version": "1.1.10",
+    "runs": 2,
+    "wins": 1,
+    "win_rate": 0.5,
+    "results": [
+      {
+        "seed": 42,
+        "player_wins": true,
+        "combat_time": 40.266668766736984,
+        "events": 2628,
+        "timed_out": false
+      },
+      {
+        "seed": 43,
+        "player_wins": false,
+        "combat_time": 51.00000265985727,
+        "events": 3236,
+        "timed_out": false
+      }
+    ]
+  }
+}

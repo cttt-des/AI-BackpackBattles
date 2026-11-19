@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "backpack-battles-sim"
-version = "0.5.4"
-description = "Backpack Battles 战斗模拟器内核（gd_core 转写版，三方逐位对齐 1690/1690）"
+version = "0.6.0"
+description = "Backpack Battles 1.1.10 native C++ simulator with 2604 per-event verified fights"
 readme = "README.md"
 requires-python = ">=3.14"
 license = { text = "仅供学习研究使用" }
@@ -16,10 +16,11 @@ Homepage = "https://github.com/cttt-des/AI-BackpackBattles"
 
 [tool.setuptools.packages.find]
 # 只打包运行内核与模拟器；不含逆向产物/工具/语料
-include = ["simulator*", "gd_core_py*"]
+include = ["simulator*", "gd_core_py*", "backpack_native*"]
 exclude = ["build*", "dist*", "docs*", "tools*", "oracle*", "ai*", "gripper*", "engine*"]
 
 [tool.setuptools.package-data]
+"backpack_native" = ["*.dll", "*.json"]
 "gd_core_py" = ["*.pyd", "*.py"]
 "gd_core_py.gd_core" = ["*.pyd", "*.py"]
 "gd_core_py.gd_core_items" = ["*.pyd", "*.py"]
