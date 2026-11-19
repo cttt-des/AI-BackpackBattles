@@ -71,6 +71,13 @@ if not args.reuse_inputs:
             buff_state = boundaries["before_activate"]["buff_state"]
             assert len(buff_state) == 2 and all(row[3] == 0 for side in buff_state for row in side), cid
             lineups["replay_controls"]["replay_initial"]["buff_state"] = buff_state
+        activation = boundaries["before_activate"]
+        preparation = boundaries["prepare"]
+        if "damage_number_mode" in activation and "engine_seed" in preparation and "engine_seed" in activation:
+            assert activation["visible_combat_shakes"] == 0, (cid, "Live pre-activation critical label")
+            lineups["replay_controls"]["replay_initial"]["engine_rng"] = [
+                preparation["engine_seed"], preparation.get("engine_offset", 0),
+                activation["engine_seed"], activation.get("engine_offset", 0), activation["damage_number_mode"]]
         lineups["replay_controls"]["native_activation_order"] = order
         target = out / "fights" / cid
         target.mkdir(parents=True, exist_ok=True)

@@ -1,0 +1,35 @@
+{
+  "source_scope": "Recovered 1.1.10 original source, native Godot 3.6 loop with observed initial state; installation EXE check pending",
+  "five_way": [
+    {
+      "case_id": "run100900_r15_o100932_r15",
+      "source_oracle_gd_py_events": 616,
+      "cpp_battle_events": 615,
+      "winner": "player"
+    },
+    {
+      "case_id": "run705109_r12_o101487_r12",
+      "source_oracle_gd_py_events": 332,
+      "cpp_battle_events": 331,
+      "winner": "player"
+    }
+  ],
+  "unchanged_legacy_fixtures": 100,
+  "legacy_native_strict_pass": 67,
+  "oracle_gem_slot_case": {
+    "case_id": "run705005_r14_o704970_r14",
+    "source_and_oracle_events": 240
+  },
+  "fresh_winner_targets_direct": {
+    "total": 6,
+    "strict_pass": 3,
+    "winner_mismatch": 0
+  },
+  "candidate_dll_sha256": "eab9f812897d71cf7ef9d7ed08f62679e46612296b256dc96949d8ee8c9fc20e",
+  "independent_oracle_sha256": "6943dda22cf0e9bae6e51272171573232d9a277f6b6e889248c22a64d4293740",
+  "cpp_performance_fixture": "run705109_r12_o101487_r12",
+  "cpp_cpu_median_ms_debug_off": [
+    153.64583333333334,
+    148.4375
+  ]
+}

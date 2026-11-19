@@ -36,9 +36,20 @@ parser.add_argument("--compare-only", action="store_true")
 parser.add_argument("--case-subdir", action="store_true", help="Keep independent candidate script/report for each batch case")
 parser.add_argument("--native-translations", action="store_true", help="Load valid installed English translations instead of the editor's missing Unreleased tables")
 parser.add_argument("--native-timers", action="store_true", help="Replace frozen-engine polling with native Timer start/stop and pass membership")
+parser.add_argument("--track-charge-tweens", action="store_true", help="Track active scene charges by node entry and exit")
+parser.add_argument("--critical-shake", action="store_true", help="Model global RNG draws from critical labels at 60 Hz")
+parser.add_argument("--oracle-project", default="full_corpus/expand/project", help="Isolated Oracle project under the stage directory")
+parser.add_argument("--variant-name", help="Short output directory name for Windows path-length limits")
 parser.add_argument("--timeout", type=int, default=600, help="Oracle process deadline including warmup and determinism rerun")
 args = parser.parse_args()
 stage = repo / "output/_v1110"
+project = (stage / args.oracle_project).resolve()
+if not project.is_relative_to(stage) or not (project / "project.godot").is_file():
+    parser.error("Oracle project must be an existing project inside the stage directory")
+if args.track_charge_tweens and not args.advance_charge_tweens:
+    parser.error("--track-charge-tweens requires --advance-charge-tweens")
+if args.critical_shake and (not args.native_delta or "var oracleNativeCriticalShake" not in (project / "Utility/Util.gd").read_text("utf8")):
+    parser.error("--critical-shake requires --native-delta and a project from prepare_native_oracle_shake.py")
 reference = stage / args.reference / args.case_id
 data = json.loads((reference / "boundaries.json").read_text("utf8"))
 variant = ("physics_first" if args.physics_first else "current") + ("_ambient" if args.restore_ambient_timers else "")
@@ -51,6 +62,12 @@ variant += "_charges" if args.advance_charge_tweens else ""
 variant += "_opening" if args.opening_tween_pass else ""
 variant += "_locale" if args.native_translations else ""
 variant += "_timers" if args.native_timers else ""
+variant += "_charge_registry" if args.track_charge_tweens else ""
+variant += "_shake" if args.critical_shake else ""
+if args.variant_name:
+    if not re.fullmatch(r"[a-zA-Z0-9_-]+", args.variant_name):
+        parser.error("Variant name must be a single directory name")
+    variant = args.variant_name
 out = stage / "native_boundary_comparison" / args.reference / variant
 if args.case_subdir:
     out = out / args.case_id
@@ -140,8 +157,7 @@ before_prepare = '''
 		U.rng.set_state(%s)
 ''' % (json.dumps(data["prepare"]["order"], ensure_ascii=False), data["prepare"]["state"])
 if "engine_seed" in data["prepare"]:
-    engine_seed = int(data["prepare"]["engine_seed"])
-    before_prepare += "\t\tseed(%d)\n" % engine_seed
+    before_prepare += "\t\t_restore_native_engine(%d, %d)\n" % (int(data["prepare"]["engine_seed"]), data["prepare"].get("engine_offset", 0))
 if args.rng_probe:
     before_prepare = before_prepare.replace("\tif not warmup:\n", '\tif not warmup:\n\t\tU.rng = load("%s").new()\n' % (stage / "native_rng_observer.gd").as_posix(), 1)
 source = source.replace("\tG.prepareItems(playerItems + opponentItems)\n",
@@ -152,12 +168,18 @@ source = source.replace("\tG.prepareItems(playerItems + opponentItems)\n",
 ''')
 source = source.replace("\tG.activateItems(playerItems + opponentItems)\n",
                         "\tif not warmup:\n\t\tU.rng.set_state(%s)\n" % data["before_activate"]["state"]
-                        + ("\t\tseed(%d)\n" % int(data["before_activate"]["engine_seed"]) if "engine_seed" in data["before_activate"] else "")
+                        + ("\t\t_restore_native_engine(%d, %d)\n" % (int(data["before_activate"]["engine_seed"]), data["before_activate"].get("engine_offset", 0))
+                           if "engine_seed" in data["before_activate"] else "")
                         + ("\t\t_native_restore_buff_state(%s)\n" % json.dumps(data["before_activate"]["buff_state"])
                            if "buff_state" in data["before_activate"] else "")
                         + ("\t\tU.rng.recording = true\n" if args.rng_probe else "")
                         + "\tG.activateItems(playerItems + opponentItems)\n")
 source += '''
+
+func _restore_native_engine(engine_seed: int, offset: int) -> void:
+	seed(engine_seed)
+	for i in range(offset):
+		randi()
 
 func _native_restore_buff_state(state):
 	if state == null:
@@ -189,13 +211,25 @@ func _native_find_host(node, identity):
 		if node.descriptor.identifier == identity["name"] and node.ownerType == int(identity["owner"]):
 			var cell = node.getTopLeftCell() if not node.occupiedCells.empty() else Vector2(-999, -999)
 			if cell == Vector2(identity["top_left"][0], identity["top_left"][1]):
-				if not identity.has("gem_identity") or _jsonable(node).get("identity") == identity["gem_identity"]:
-					return node
+				return node
 	for child in node.get_children():
 		var found = _native_find_host(child, identity)
 		if found != null:
 			return found
 	return null
+
+func _native_find_visual_host(identity):
+	if not identity.has("gem_identity"):
+		return _native_find_host(root, identity)
+	var key = identity["gem_identity"]
+	var item = _native_find_host(root, {"name": key[1], "owner": key[2], "top_left": [key[3], key[4]]})
+	var slot := int(key[5])
+	if item == null or slot < 0 or slot >= item.sockets.size():
+		return null
+	var gem = item.sockets[slot].getGem()
+	if gem == null or gem.descriptor.identifier != key[0]:
+		return null
+	return gem
 
 func _restore_native_visuals(snapshots):
 	var keep := []
@@ -215,7 +249,7 @@ func _restore_native_visuals(snapshots):
 	for snapshot in snapshots:
 		var animation = null
 		if snapshot["identity"] != null:
-			var host = _native_find_host(root, snapshot["identity"])
+			var host = _native_find_visual_host(snapshot["identity"])
 			if host != null:
 				animation = host.get_node_or_null(snapshot["identity"]["relative_path"])
 		else:
@@ -318,6 +352,48 @@ if args.native_timers:
     anchor = "\tG.prepareItems(playerItems + opponentItems)\n"
     assert source.count(anchor) == 1
     source = source.replace(anchor, "\t_native_install_timers(root)\n" + anchor)
+if args.track_charge_tweens:
+    start = source.index("func _collect_charge_tweens(")
+    end = source.index("func _native_tween_created_before(", start)
+    source = source[:start] + '''var _native_charge_nodes := {}
+
+func _native_charge_entered(node):
+	if node.filename == "res://Items/ElectricalCharge.tscn":
+		_native_charge_nodes[node] = true
+
+func _native_charge_exited(node):
+	_native_charge_nodes.erase(node)
+
+func _native_install_charge_registry():
+	if not is_connected("node_added", self, "_native_charge_entered"):
+		connect("node_added", self, "_native_charge_entered")
+		connect("node_removed", self, "_native_charge_exited")
+
+''' + source[end:]
+    anchor = "\t_collect_charge_tweens(root, tweens)\n"
+    assert source.count(anchor) == 1
+    source = source.replace(anchor, '''\tfor node in _native_charge_nodes:
+\t\tif is_instance_valid(node.tween) and node.tween.is_valid():
+\t\t\ttweens.append(node.tween)
+''')
+    anchor = "\tG.prepareItems(playerItems + opponentItems)\n"
+    assert source.count(anchor) == 1
+    source = source.replace(anchor, "\t_native_install_charge_registry()\n" + anchor)
+if args.critical_shake:
+    anchor = "\tG.activateItems(playerItems + opponentItems)\n"
+    assert source.count(anchor) == 1
+    activation = data["before_activate"]
+    assert activation.get("visible_combat_shakes", 0) == 0, "Existing critical labels require their own boundary state"
+    mode = activation.get("damage_number_mode", 0)
+    source = source.replace(anchor, "\tU.resetCriticalShake()\n\tU.oracleNativeCriticalShake = true\n"
+                            "\tvar settings = root.get_node(\"Settings\")\n"
+                            "\tsettings.settings[settings.Setting.damage_numbers] = %d\n" % mode + anchor)
+    anchor = "\tdrive_delayed(dt)\n"
+    assert source.count(anchor) == 1
+    source = source.replace(anchor, "\tU.stepCriticalShake()\n" + anchor)
+    anchor = "func tick_battle(dt: float, n := 0) -> void :\n"
+    assert source.count(anchor) == 1
+    source = source.replace(anchor, anchor + "\tU.beginCriticalShakeFrame()\n")
 oracle_diagnostics = None
 if args.compare_only:
     if not script.is_file():
@@ -340,7 +416,7 @@ if args.compare_only:
 else:
     script.write_text(source, encoding="utf8")
 if not args.compare_only:
-    p, log, handle = gh.spawn(gh.cmd(project=str(stage / "full_corpus/expand/project"), script=str(script)),
+    p, log, handle = gh.spawn(gh.cmd(project=str(project), script=str(script)),
                          label="native_boundary_compare", tag="native_boundary_compare",
                          env_extra={"ORACLE_ONLY_CASES": args.case_id,
                                     "ORACLE_FIGHTS_ROOT": str(out / "fights"),

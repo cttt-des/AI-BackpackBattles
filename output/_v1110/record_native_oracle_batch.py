@@ -25,6 +25,8 @@ ap.add_argument("--out", default="native_oracle_timer_batch")
 ap.add_argument("--chunk", type=int, default=8)
 ap.add_argument("--limit", type=int, default=0)
 ap.add_argument("--prepare-only", action="store_true")
+ap.add_argument("--track-charge-tweens", action="store_true")
+ap.add_argument("--critical-shake", action="store_true")
 args = ap.parse_args()
 os.chdir(repo)
 reference = stage / args.source
@@ -50,7 +52,12 @@ try:
     sys.argv = [str(generator), first, "--reference", args.source, "--case-subdir", "--physics-first",
                 "--restore-ambient-timers", "--restore-flickers", "--advance-character-tweens",
                 "--advance-charge-tweens", "--opening-tween-pass", "--native-delta",
-                "--source-fatigue-mode", "--snapshot-active-timers", "--native-translations", "--native-timers"]
+                "--source-fatigue-mode", "--snapshot-active-timers", "--native-translations", "--native-timers",
+                "--oracle-project", args.project]
+    if args.track_charge_tweens:
+        sys.argv.append("--track-charge-tweens")
+    if args.critical_shake:
+        sys.argv.append("--critical-shake")
     with contextlib.redirect_stdout(io.StringIO()):
         exec(compile(prefix, str(generator), "exec"), namespace)
 finally:
@@ -72,8 +79,9 @@ replace_once("U.rng.set_state(%s)" % data["before_activate"]["state"], 'U.rng.se
 for boundary in ("prepare", "before_activate"):
     rng_set = 'U.rng.set_state(int(native_input["%s"]["state"]))' % boundary
     if "engine_seed" in data[boundary]:
-        replace_once(rng_set + "\n\t\tseed(%d)" % int(data[boundary]["engine_seed"]), rng_set)
-    replace_once(rng_set, rng_set + '\n\t\tif native_input["%s"].has("engine_seed"):\n\t\t\tseed(int(native_input["%s"]["engine_seed"]))' % (boundary, boundary))
+        static = "\n\t\t_restore_native_engine(%d, %d)" % (int(data[boundary]["engine_seed"]), data[boundary].get("engine_offset", 0))
+        replace_once(rng_set + static, rng_set)
+    replace_once(rng_set, rng_set + '\n\t\tvar engine_boundary = native_input["%s"]\n\t\tif engine_boundary.has("engine_seed"):\n\t\t\t_restore_native_engine(int(engine_boundary["engine_seed"]), int(engine_boundary.get("engine_offset", 0)))' % boundary)
 if "buff_state" in data["before_activate"]:
     replace_once('_native_restore_buff_state(%s)' % json.dumps(data["before_activate"]["buff_state"]),
                  '_native_restore_buff_state(native_input["before_activate"].get("buff_state"))')
@@ -84,6 +92,10 @@ replace_once("_restore_native_visuals(%s)" % json.dumps(data["flicker_states"], 
              '_restore_native_visuals(native_input["flicker_states"])')
 replace_once("for snapshot in %s:" % json.dumps(namespace["timers"], ensure_ascii=False),
              'for snapshot in native_input["idle_animation_timers"]:')
+if args.critical_shake:
+    assert all(boundaries["before_activate"].get("visible_combat_shakes", 0) == 0 for boundaries in inputs.values())
+    replace_once('settings.settings[settings.Setting.damage_numbers] = %d' % data["before_activate"].get("damage_number_mode", 0),
+                 'settings.settings[settings.Setting.damage_numbers] = int(native_input["before_activate"].get("damage_number_mode", 0))')
 # The native getter is float, recorded precisely as a string alongside its JSON number.
 source = source.replace('float(snapshot["left"])', 'float(snapshot.get("left_precise", snapshot["left"]))')
 source += '''
@@ -107,7 +119,7 @@ manifest = {"scope": "Independent source Oracle; native initial states and activ
             "support_sha256": {name: hashlib.sha256((stage / name).read_bytes()).hexdigest()
                                for name in ("native_oracle_timer.gd", "native_oracle_timers.gd.inc")}}
 manifest["support_sha256"].update({name: hashlib.sha256((project / name).read_bytes()).hexdigest() for name in
-                                   ("project.godot", "Core/Game.gd", "Core/CombatLog.gd", "Items/Exclusive/ChessBoard.gd")})
+                                   ("project.godot", "Core/Game.gd", "Core/CombatLog.gd", "Utility/Util.gd", "Items/Exclusive/ChessBoard.gd")})
 (out / "build_manifest.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf8")
 if args.prepare_only:
     print("Prepared independent Oracle batch", len(cases), out)
@@ -144,9 +156,13 @@ while True:
     round_number += 1
     selected = pending[:args.chunk]
     started = time.time()
+    # The Godot script uses terminal events as its own resume check. Record to
+    # a fresh attempt so it cannot skip an older result with different inputs.
+    attempt = out / "_attempts" / f"{manifest['script_sha256'][:12]}_{time.time_ns()}"
+    attempt.mkdir(parents=True)
     child, log, handle = gh.spawn(gh.cmd(project=str(project), script=str(script)),
                                   label="native_oracle_batch", tag="native_oracle_batch",
-                                  env_extra={"ORACLE_ONLY_CASES": ",".join(selected), "ORACLE_FIGHTS_ROOT": str(out / "fights"),
+                                  env_extra={"ORACLE_ONLY_CASES": ",".join(selected), "ORACLE_FIGHTS_ROOT": str(attempt),
                                              "ORACLE_REQUIRE_TERMINAL": "1", "ORACLE_FIGHT_CHUNK": str(args.chunk)})
     print("Oracle batch", round_number, "cases", len(selected), "pid", child.pid, "log", log, flush=True)
     try:
@@ -167,15 +183,26 @@ while True:
     if result or fatal:
         raise SystemExit("Source Oracle batch failed; inspect " + str(log))
     for cid in selected:
-        folder = out / "fights" / cid
-        products = [folder / name for name in ("events.json", "lineups.json", "rng_state.txt")]
+        observed = attempt / cid
+        products = [observed / name for name in ("events.json", "lineups.json", "rng_state.txt")]
         if not all(path.is_file() and path.stat().st_mtime >= started for path in products):
             raise SystemExit("Missing current-run Oracle products: " + cid)
+        doc = json.loads(products[0].read_text("utf8"))
+        terminal = doc["events"][-1]
+        if (len(doc["events"]) != doc["event_count"] or terminal["type"] != {"player": 111, "opponent": 112}.get(doc["winner"])
+                or round(terminal["timestamp"] * 60) != round(doc["combat_time"] * 60)):
+            raise SystemExit("Invalid current-run Oracle ending: " + cid)
         proof = {"script_sha256": manifest["script_sha256"], "support_sha256": manifest["support_sha256"],
                  "native_boundary_sha256": hashlib.sha256((reference / cid / "boundaries.json").read_bytes()).hexdigest(),
                  "products_sha256": {path.name: hashlib.sha256(path.read_bytes()).hexdigest() for path in products},
                  "log": str(log)}
-        (folder / "oracle_manifest.json").write_text(json.dumps(proof, indent=2) + "\n", encoding="utf8")
+        folder = out / "fights" / cid
+        folder.mkdir(parents=True, exist_ok=True)
+        for path in products:
+            os.replace(path, folder / path.name)
+        marker = observed / "oracle_manifest.json"
+        marker.write_text(json.dumps(proof, indent=2) + "\n", encoding="utf8")
+        os.replace(marker, folder / marker.name)
         if not complete(cid):
             raise SystemExit("Invalid Oracle terminal or provenance: " + cid)
 

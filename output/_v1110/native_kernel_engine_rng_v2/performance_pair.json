@@ -1,0 +1,73 @@
+{
+  "scope": "Event-count quantiles among cases passing strict native/GD/Py/C++ checks in both builds; Oracle is a separate audit",
+  "timing": "interleaved single-process CPU time, setup/combat/teardown and ctypes included; packing, JSON and file I/O excluded",
+  "dll_sha256": [
+    "70e20b94689f8901752c7eea4e10a60a90252f4d24932ff6af708a9cd34c16cb",
+    "eab9f812897d71cf7ef9d7ed08f62679e46612296b256dc96949d8ee8c9fc20e"
+  ],
+  "rounds": 5,
+  "iterations_per_block": 6,
+  "cases": [
+    {
+      "case_id": "run705109_r12_o101487_r12",
+      "modes": {
+        "debug_off": {
+          "before_ms": [
+            143.22916666666666,
+            143.22916666666666,
+            153.64583333333334,
+            158.85416666666666,
+            153.64583333333334
+          ],
+          "after_ms": [
+            148.4375,
+            151.04166666666666,
+            143.22916666666666,
+            140.625,
+            151.04166666666666
+          ],
+          "median_ms": [
+            153.64583333333334,
+            148.4375
+          ],
+          "after_over_before": 0.9661016949152542,
+          "signature": [
+            1,
+            669,
+            331,
+            226.0,
+            0.0
+          ]
+        },
+        "debug_on": {
+          "before_ms": [
+            145.83333333333334,
+            158.85416666666666,
+            156.25,
+            164.0625,
+            143.22916666666666
+          ],
+          "after_ms": [
+            148.4375,
+            158.85416666666666,
+            174.47916666666666,
+            158.85416666666666,
+            138.02083333333334
+          ],
+          "median_ms": [
+            156.25,
+            158.85416666666666
+          ],
+          "after_over_before": 1.0166666666666666,
+          "signature": [
+            1,
+            669,
+            331,
+            226.0,
+            0.0
+          ]
+        }
+      }
+    }
+  ]
+}
