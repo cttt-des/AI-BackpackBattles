@@ -17,4 +17,3 @@ for cohort in ("expand", "base"):
     statuses[cohort] = result.returncode
     print(f"{cohort} exit={result.returncode}", flush=True)
 raise SystemExit(max(statuses.values()))
-

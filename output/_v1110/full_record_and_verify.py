@@ -37,4 +37,3 @@ for cohort in ("expand","base"):
     (stage/"full_status.json").write_text(json.dumps(report,indent=2),encoding="utf8")
     print(cohort,report[cohort],flush=True)
 print("Both recording cohorts processed",flush=True)
-

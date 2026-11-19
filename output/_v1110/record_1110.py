@@ -31,7 +31,7 @@ if args.cohort == "expand":
 else:
     case_list = repo/"oracle/fights.json"
     db = repo/"oracle/data/history.db"
-    
+
 project = out/"project"
 if not project.exists():
     shutil.copytree(stage / "oracle_project", project)
@@ -42,4 +42,3 @@ sys.argv = ["expand_run_oracle.py","--cases",str(case_file),"--db",str(db),
             "--root",str(out/"fights"),"--jobs",str(args.jobs),"--chunk",str(args.chunk),
             "--smoke",str(args.smoke),"--max-rounds","50","--require-terminal"]
 raise SystemExit(runner.main())
-

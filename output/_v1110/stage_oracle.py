@@ -80,4 +80,3 @@ for name in ("requestOpponentPoolAccessCheck", "_startModUpdateChecks"):
     game = game[:start.end()] + "\t# Plugin services are omitted in offline replay.\n\treturn\n\n" + game[end:]
 game_path.write_text(game, encoding="utf8")
 print("Staged Oracle project", target, flush=True)
-

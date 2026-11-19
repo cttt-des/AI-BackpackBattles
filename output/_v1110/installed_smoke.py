@@ -22,4 +22,3 @@ with (out/"verification.log").open("wb") as log:
                       cwd=sim,stdout=log,stderr=subprocess.STDOUT).returncode
 print("Installed 1.1.10 smoke exit",rc,flush=True)
 raise SystemExit(rc)
-

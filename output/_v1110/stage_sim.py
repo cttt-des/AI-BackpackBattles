@@ -67,4 +67,3 @@ if not link_items.exists():
     shutil.copytree(stage / "decompiled/Items", link_items, dirs_exist_ok=True,
                     ignore=shutil.ignore_patterns("*.png", "*.mp3", "*.ogg", "*.wav"))
 print("Staged GDScript, Python conversion input and C++ conversion input",sim)
-

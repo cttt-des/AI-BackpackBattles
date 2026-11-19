@@ -52,4 +52,3 @@ path = out / "gd_core_runtime.json"
 path.write_text(json.dumps(result,ensure_ascii=False,separators=(",",":")),encoding="utf8")
 print(f"Updated balance from {len(changes)} items, {len(log)} reported changes")
 print(f"Runtime item descriptors: {len(result['items'])}")
-
