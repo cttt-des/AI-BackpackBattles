@@ -1771,9 +1771,10 @@ def main() -> int:
         "convention": {
             "seed": "两侧 gd_core 在任何物品实例创建前以 CoreContext(seed) 注入"
                     "（≙ oracle_fight.gd:536-537 的 Util.rng.seed=S）",
-            "below_master": "false（np24 簇B：新语料族A 全 +1 tick 实证录制时"
-                            " isBelowLeague(Master)=假，对手冷却掷 (0.95,1.05)；"
-                            "旧 rng_log 0.975 实证属旧语料，不再适用）",
+            "below_master": "逐场读取夹具 replay_controls.below_master；新快照记录原版实际档位，"
+                            "历史快照缺失时沿用兼容默认 true；比较器核对三路产物与夹具输入",
+            "custom_health_multiplier": "逐场读取夹具 replay_controls.custom_health_multiplier；"
+                                        "新快照记录实际值，旧快照可从 --history-db 补全",
             "activation_order": "原版开战 shuffle 走引擎全局链（docs/rng_truth.md §1.4-2）；"
                                 "OracleAlignBattle.gd 用真 Godot seed(S)+shuffle×2+"
                                 "sort_TriggerPriority 复刻终序并直通内核（startBattle preordered）",

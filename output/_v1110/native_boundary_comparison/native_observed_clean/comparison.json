@@ -1,0 +1,43 @@
+{
+  "case_id": "run101207_r1_o604707_r1",
+  "counts": [
+    159,
+    125
+  ],
+  "first": 10,
+  "native": {
+    "id": 10,
+    "parent": -1,
+    "depth": 0,
+    "t_tick": 77,
+    "t": 1.283333,
+    "type": 1,
+    "actor": "player",
+    "target": null,
+    "origin": [
+      "item",
+      "Wooden Sword"
+    ],
+    "params": {
+      "damage": 3
+    }
+  },
+  "oracle": {
+    "id": 10,
+    "parent": -1,
+    "depth": 0,
+    "t_tick": 77,
+    "t": 1.283333,
+    "type": 1,
+    "actor": "player",
+    "target": null,
+    "origin": [
+      "item",
+      "Wooden Sword"
+    ],
+    "params": {
+      "damage": 1
+    }
+  },
+  "scope": "Imported native preparation and activation states and permutation"
+}
