@@ -8,6 +8,7 @@
 | 受影响物品判定 | `isItemAffected`、`canAffect_color` 和基类行为探测反复走动态派发 | 直接调用无覆写的内部方法，基类仅在注入行为存在时探测对应方法 | 保留具体物品的虚派发、格集合遍历顺序和注入行为 |
 | 战斗帧调度 | `CoreCombat::physicsTick` 每帧经通用接口读取上下文、调用角色和库存方法 | 对内核构建的具体对象直接访问字段并调用方法 | 保留双方计时器、疲劳、冷却、空闲回调和宿主 RNG 的顺序 |
 | 角色计时和体力回复 | 每帧重建计时掩码、调用体力上限查询并分配调试守卫用的空字符串 | 直接计算掩码，对浮点体力值使用等价的加法与夹取，其他类型使用原运算 | 每次触发前重新读掩码，保留夹取比较顺序和计时回调 |
+| 局部链接时优化 | 跨编译单元的运行时辅助函数与战斗帧调度反复调用 | 对采样中的六个热点编译单元启用 LTO | 保留浮点编译选项、全部 22 个 `gd_sim_*` ABI 符号和逐场事件哈希 |
 
 优化脚本会检查待替换的生成代码和相关方法声明。原始 C++、生成代码和 DLL 已备份到远端 `codex/native-perf50-baseline`（`cd9dfad4`），角色数值路径改动前另在远端 `codex/native-perf50-frames` 保存了入包和调度候选（`811813ec`）。
 
@@ -27,10 +28,12 @@
 | 入包判定和帧调度 | 26.82 | 26.35–28.52 | 7.00 秒 |
 | 再加角色计时和体力优化 | 28.28 | 27.95–28.91 | 6.73 秒 |
 
-角色计时和体力版本已安装到本地默认训练运行时 `dist/native_1_1_10`。该 DLL 通过原版 2,604 场逐事件核验，逐场 C++ 事件流水 SHA-256 全部等于基线。四线程原版回放首轮为 **59.74 场/秒**，胜负、终局和完整结果哈希与单线程相同。
+含角色计时和体力优化的常规链接版本，四线程原版回放三轮为 59.74、75.54 和 69.26 场/秒，中位数为 **69.26 场/秒**，胜负、终局和完整结果哈希与单线程相同。
+
+局部链接时优化版本已安装到本地默认训练运行时 `dist/native_1_1_10`。同一批回放的三轮交替测试中，单线程中位数由 28.00 升到 **29.53 场/秒**，200 场 CPU 时间由 6.75 降至 6.30 秒。所有记录均为电池供电。该 DLL 通过原版 2,604 场逐事件核验，逐场 C++ 事件流水 SHA-256 全部等于基线。
 
 另行评估了 295 处物品自身方法派发。加入角色版本后的两轮为 27.43 和 27.05 场/秒，角色版本同轮为 26.96 和 27.86 场/秒，样本未显示稳定收益。
 
-[A/B 记录](../output/_v1110/native_perf50_battery_ab.json) · [全量验收](../output/_v1110/native_perf50_character_full_gate.json) · [事件哈希比对](../output/_v1110/native_perf50_character_event_hashes.json) · [四线程基准](../output/_v1110/native_perf50_character_workers4.json)
+[A/B 记录](../output/_v1110/native_perf50_battery_ab.json) · [链接时优化与四线程记录](../output/_v1110/native_perf50_lto_ab.json) · [全量验收](../output/_v1110/native_perf50_lto_full_gate.json) · [事件哈希比对](../output/_v1110/native_perf50_lto_event_hashes.json)
 
-[入包优化](../output/_v1110/optimize_native_placement.py) · [逐帧优化](../output/_v1110/optimize_native_frames.py) · [训练基准](../output/_v1110/bench_native_hot_path.py) · [平均时长基准](../output/_v1110/bench_native_corpus.py)
+[入包优化](../output/_v1110/optimize_native_placement.py) · [逐帧优化](../output/_v1110/optimize_native_frames.py) · [LTO 构建](../output/_v1110/build_native_hot_lto.py) · [训练基准](../output/_v1110/bench_native_hot_path.py) · [平均时长基准](../output/_v1110/bench_native_corpus.py)
