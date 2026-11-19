@@ -54,5 +54,8 @@ result = {"scope": "Recovered native 1.1.10 versus GD/pure Python/C++; the indep
 if args.after == "native_kernel_fatigue":
     for name in ("stage_native_fatigue.py", "stage_native_skip_cooldown_ui.py"):
         result["recipe_sha256"][name] = sha(stage / name)
+elif args.after == "native_kernel_holy":
+    for name in ("stage_native_fatigue.py", "stage_native_skip_cooldown_ui.py", "stage_native_holy_lamps.py"):
+        result["recipe_sha256"][name] = sha(stage / name)
 (roots[1] / "compact_report.json").write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf8")
 print(json.dumps({key: value for key, value in result.items() if key not in ("details", "recipe_sha256")}, ensure_ascii=False, indent=2))

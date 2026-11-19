@@ -284,6 +284,7 @@ func on_prepare(items) -> void:
 
 func on_activate(_items) -> void:
 	observations["before_activate"] = {"seed": str(U.rng.get_seed()), "state": str(U.rng.get_state())}
+	observations["before_activate"]["buff_state"] = observe_buff_state()
 	var engine_seed = OS.get_environment("NATIVE_BATTLE_ENGINE_SEED")
 	if not engine_seed.empty():
 		var activation_seed = int(engine_seed) + 1
@@ -293,8 +294,20 @@ func on_activate(_items) -> void:
 		U.rng.recording = true
 
 func on_end(result) -> void:
+	observations["terminal_buff_state"] = observe_buff_state()
 	winner = "player" if result == G.RoundResult.Win else "opponent"
 	ended = true
+
+func observe_buff_state() -> Array:
+	var state := []
+	for character in [G.PLAYER, G.OPPONENT]:
+		var rows := []
+		for type in character.buffs:
+			var buff = character.buffs[type]
+			if buff.current != 0 or buff.permanentStacks != 0 or not buff.temporaryStacks.empty():
+				rows.append([type, buff.current, buff.permanentStacks, buff.temporaryStacks.size()])
+		state.append(rows)
+	return state
 
 func fail(message: String) -> void:
 	printerr("[NATIVE] ", message)

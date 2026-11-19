@@ -145,7 +145,11 @@ if "engine_seed" in data["prepare"]:
 if args.rng_probe:
     before_prepare = before_prepare.replace("\tif not warmup:\n", '\tif not warmup:\n\t\tU.rng = load("%s").new()\n' % (stage / "native_rng_observer.gd").as_posix(), 1)
 source = source.replace("\tG.prepareItems(playerItems + opponentItems)\n",
-                        before_prepare + "\tG.prepareItems(playerItems + opponentItems)\n")
+                        before_prepare + '''\tfor item in playerItems + opponentItems:
+\t\tif item.descriptor.identifier == "Buy the Holy Light":
+\t\t\titem.onAddToInventory_deferred()
+\tG.prepareItems(playerItems + opponentItems)
+''')
 source = source.replace("\tG.activateItems(playerItems + opponentItems)\n",
                         "\tif not warmup:\n\t\tU.rng.set_state(%s)\n" % data["before_activate"]["state"]
                         + ("\t\tseed(%d)\n" % int(data["before_activate"]["engine_seed"]) if "engine_seed" in data["before_activate"] else "")

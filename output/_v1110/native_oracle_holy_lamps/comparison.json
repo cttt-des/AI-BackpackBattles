@@ -1,0 +1,80 @@
+{
+  "total": 1,
+  "passed": 0,
+  "cases": [
+    {
+      "case_id": "run705039_r18_o704909_r18",
+      "match": false,
+      "counts": [
+        884,
+        884
+      ],
+      "first": 585,
+      "gems_match": true,
+      "inputs_match": true,
+      "ending_match": true,
+      "native": [
+        299,
+        109,
+        "opponent",
+        0,
+        [
+          "item",
+          "Lightning Potion"
+        ],
+        [
+          [
+            "amount",
+            -3
+          ],
+          [
+            "reflected",
+            false
+          ],
+          [
+            "timeout",
+            true
+          ],
+          [
+            "used",
+            false
+          ]
+        ],
+        -1,
+        0
+      ],
+      "oracle": [
+        299,
+        109,
+        "opponent",
+        0,
+        [
+          "item",
+          "Lightning Potion"
+        ],
+        [
+          [
+            "amount",
+            -2
+          ],
+          [
+            "reflected",
+            false
+          ],
+          [
+            "timeout",
+            true
+          ],
+          [
+            "used",
+            false
+          ]
+        ],
+        -1,
+        0
+      ]
+    }
+  ],
+  "scope": "Independent source Oracle; native initial states and activation order only; no expected events passed to the engine",
+  "script_sha256": "cc59dee8f354127df41489e5ea40a538666e427b4daa109580f854b28e275347"
+}

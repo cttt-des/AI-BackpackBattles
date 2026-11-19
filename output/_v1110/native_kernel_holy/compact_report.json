@@ -1,0 +1,2660 @@
+{
+  "scope": "Recovered native 1.1.10 versus GD/pure Python/C++; the independent Oracle batch is separate, installation EXE cross-check pending",
+  "cases": 100,
+  "native_strict_event_passes": [
+    67,
+    67
+  ],
+  "native_winner_mismatches": [
+    2,
+    1
+  ],
+  "fixed": [],
+  "regressed": [],
+  "gd_py_cpp_event_match": 100,
+  "details": [
+    {
+      "case_id": "run604589_r16_o704359_r16",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 863,
+      "before_event_count": 863,
+      "after_event_count": 863,
+      "inputs_identical": true,
+      "native_event_sha256": "2fb8fadadfabd95cf57e2550ecddef2eb9e033d2898e8b99bd8c83f8a4bcf416",
+      "native_boundary_sha256": "2b8cb4bf0ebe91ffa3fd387bca96eab23a8b3c650b888170dade82ad253ba06e"
+    },
+    {
+      "case_id": "run101714_r1_o704353_r1",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 53,
+      "before_event_count": 53,
+      "after_event_count": 53,
+      "inputs_identical": true,
+      "native_event_sha256": "abb9db45fb6c10f5c47cabd680fee2e126cb20d92de3f3d0c0a2c42c1e0909ac",
+      "native_boundary_sha256": "a59ef1a1252c58b3aa730ea15845787144acf2f47b36e01b4329d95d6f7329d2"
+    },
+    {
+      "case_id": "run604498_r16_o101592_r16",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 160,
+      "before_event_count": 160,
+      "after_event_count": 160,
+      "inputs_identical": true,
+      "native_event_sha256": "d79797246714f53a28d537460dda39850454b9b560d6cc739778062e83100425",
+      "native_boundary_sha256": "3425b4dc90e2825ea826bee00b5ae5bc3fe25784f118e930b7db1aeadd5c8189"
+    },
+    {
+      "case_id": "run100900_r15_o100932_r15",
+      "before_pass": false,
+      "after_pass": false,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 650,
+      "before_event_count": 649,
+      "after_event_count": 649,
+      "inputs_identical": true,
+      "native_event_sha256": "d2a887cdf961593cbbf6533019d47f7b9ca312b4cf908f991610560bac5ab8a9",
+      "native_boundary_sha256": "9b568aee0157333148d200dfe77fcecbdf26842eaefd3ef0ba5a3dd7e2ca1edc",
+      "first": {
+        "index": 64,
+        "pair": "oracle_vs_gdcore",
+        "native": {
+          "t": 87,
+          "type": 103,
+          "actor": "player",
+          "target": 0,
+          "origin": [
+            "item",
+            "Black Knight"
+          ],
+          "params": {
+            "amount": 1,
+            "used": false,
+            "reflected": false,
+            "resisted": true
+          },
+          "parent": -1,
+          "depth": 0
+        },
+        "core": {
+          "t": 87,
+          "type": 109,
+          "actor": "player",
+          "target": 1,
+          "origin": [
+            "item",
+            "Black Bishop"
+          ],
+          "params": {
+            "amount": 3,
+            "used": false,
+            "reflected": false
+          },
+          "parent": -1,
+          "depth": 0
+        }
+      }
+    },
+    {
+      "case_id": "run300180_r1_o100914_r1",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 141,
+      "before_event_count": 141,
+      "after_event_count": 141,
+      "inputs_identical": true,
+      "native_event_sha256": "7f92b4d117357442f9230054532bbb01a468130d99985c5026c7a5b4c96c8a26",
+      "native_boundary_sha256": "5501d263c6962269a3569218cb8d5174ad68ce5c170ca88e1759b37403a44d89"
+    },
+    {
+      "case_id": "run100947_r17_o704359_r17",
+      "before_pass": false,
+      "after_pass": false,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 624,
+      "before_event_count": 611,
+      "after_event_count": 611,
+      "inputs_identical": true,
+      "native_event_sha256": "3a3504062fdb1e458f45e6bd9526a5b5907bfa29bfa8b74a808813a167a20788",
+      "native_boundary_sha256": "5b04bbcec4c82bfa96c3af0b8a46e773cc375a7c72eb92e8cda2a004cd3f5683",
+      "first": {
+        "index": 257,
+        "pair": "oracle_vs_gdcore",
+        "native": {
+          "t": 302,
+          "type": 102,
+          "actor": "player",
+          "target": 0,
+          "origin": [
+            "item",
+            "White Pawn"
+          ],
+          "params": {
+            "amount": 2,
+            "used": false,
+            "reflected": false
+          },
+          "parent": -1,
+          "depth": 0
+        },
+        "core": {
+          "t": 302,
+          "type": 108,
+          "actor": "player",
+          "target": 0,
+          "origin": [
+            "item",
+            "White Bishop"
+          ],
+          "params": {
+            "amount": -2,
+            "used": false,
+            "reflected": false
+          },
+          "parent": -1,
+          "depth": 0
+        }
+      }
+    },
+    {
+      "case_id": "run101757_r1_o500111_r1",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 37,
+      "before_event_count": 37,
+      "after_event_count": 37,
+      "inputs_identical": true,
+      "native_event_sha256": "db942949bd6d172b1fc307a24bce1b19391ca6bb708371fce8c1eae55fa8ae87",
+      "native_boundary_sha256": "f203f41971136612a66eba0df233f73336c2649154166c83fae863b403e5d6f3"
+    },
+    {
+      "case_id": "run704860_r18_o101003_r18",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 223,
+      "before_event_count": 223,
+      "after_event_count": 223,
+      "inputs_identical": true,
+      "native_event_sha256": "cd6a5a173accb9f596d0fdadeee0641a426b4271c333d10a58d4583560f0258c",
+      "native_boundary_sha256": "4daa72b33d03ec657c5aa2174c7c9c575510704cb5a71656a6205bc983354c61"
+    },
+    {
+      "case_id": "run604597_r1_o604680_r1",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 135,
+      "before_event_count": 135,
+      "after_event_count": 135,
+      "inputs_identical": true,
+      "native_event_sha256": "7729b8d67869531539df77f56093f02e29d0188b32ed2dded97283911ce0ad52",
+      "native_boundary_sha256": "01ec9d83840cccf8170dea2c714c31c08ce1305dfc70f225d0e1466a0c0cc438"
+    },
+    {
+      "case_id": "run604734_r18_o101585_r18",
+      "before_pass": false,
+      "after_pass": false,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 834,
+      "before_event_count": 727,
+      "after_event_count": 727,
+      "inputs_identical": true,
+      "native_event_sha256": "976010234515b09043eae0a75dc63be0e56309383ccc7fb26bd15ae4d89eb937",
+      "native_boundary_sha256": "7894ab556e5e52e80e8bcf03f6fe63bd2aa737c64886d1cfbbd43c739cd71c6c",
+      "first": {
+        "index": 148,
+        "pair": "oracle_vs_gdcore",
+        "native": {
+          "t": 148,
+          "type": 110,
+          "actor": "player",
+          "target": 0,
+          "origin": [
+            "item",
+            "White Bishop"
+          ],
+          "params": {
+            "amount": -9,
+            "used": false,
+            "reflected": false
+          },
+          "parent": -1,
+          "depth": 0
+        },
+        "core": {
+          "t": 148,
+          "type": 104,
+          "actor": "player",
+          "target": 0,
+          "origin": [
+            "item",
+            "White King"
+          ],
+          "params": {
+            "amount": 1,
+            "used": false,
+            "reflected": false,
+            "resisted": true
+          },
+          "parent": -1,
+          "depth": 0
+        }
+      }
+    },
+    {
+      "case_id": "run604550_r1_o101113_r1",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 35,
+      "before_event_count": 35,
+      "after_event_count": 35,
+      "inputs_identical": true,
+      "native_event_sha256": "4619c222bf76db9f3367fb9ab0dc41e06adce350515e162e51557a456c40ad9e",
+      "native_boundary_sha256": "63a15f7d1f620e6995817794f9910acc5896829cd26025c38fe2da740a69340b"
+    },
+    {
+      "case_id": "run101275_r18_o101516_r18",
+      "before_pass": false,
+      "after_pass": false,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 588,
+      "before_event_count": 591,
+      "after_event_count": 591,
+      "inputs_identical": true,
+      "native_event_sha256": "a5cf5606b8adb660279631d03b8857624643d8ff8b834cfc59ed9186e61cab0f",
+      "native_boundary_sha256": "f16941d900565022e8e9d29663db06fb5d62cd2c497b9da56757fa25d1c1f2dd",
+      "first": {
+        "index": 263,
+        "pair": "oracle_vs_gdcore",
+        "native": {
+          "t": 180,
+          "type": 100,
+          "actor": "player",
+          "target": 0,
+          "origin": [
+            "item",
+            "White Rook"
+          ],
+          "params": {
+            "amount": 35,
+            "used": false,
+            "reflected": false
+          },
+          "parent": -1,
+          "depth": 0
+        },
+        "core": {
+          "t": 180,
+          "type": 9,
+          "actor": "player",
+          "target": 1,
+          "origin": [
+            "item",
+            "Black Queen"
+          ],
+          "params": {
+            "duration": 1.3
+          },
+          "parent": -1,
+          "depth": 0
+        }
+      }
+    },
+    {
+      "case_id": "run604793_r1_o704794_r1",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 26,
+      "before_event_count": 26,
+      "after_event_count": 26,
+      "inputs_identical": true,
+      "native_event_sha256": "09651f16178b32f63eba51c3b48b1345450ca8a2c753f4c9cfdf035753817d38",
+      "native_boundary_sha256": "5d3fee24d9e9937a4f87cb850f680bc28b68d8c4e94c77bced6f0b253585c717"
+    },
+    {
+      "case_id": "run704507_r18_o101208_r18",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 1160,
+      "before_event_count": 1160,
+      "after_event_count": 1160,
+      "inputs_identical": true,
+      "native_event_sha256": "74900f453391f1795a044c7f212b82de0889d3c1a7dd41ba99c6db97e1ca68cc",
+      "native_boundary_sha256": "ff6bf4af8f4d92914659c5f88cc1f459405b2470e33bad986b3f025993bc9b88"
+    },
+    {
+      "case_id": "run704890_r15_o704618_r15",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 871,
+      "before_event_count": 871,
+      "after_event_count": 871,
+      "inputs_identical": true,
+      "native_event_sha256": "d85e0baec4008177fb7fbf43708445043a37d881c825950c04464aa804e91990",
+      "native_boundary_sha256": "4c7889e526848183b1b4b9b5432e1e14e3a2b9b5d4738979e37612520bb3b959"
+    },
+    {
+      "case_id": "run101188_r10_o100935_r10",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 523,
+      "before_event_count": 523,
+      "after_event_count": 523,
+      "inputs_identical": true,
+      "native_event_sha256": "7a5941cb84bde0c6497075dfc2760a3db365ae151140e846c82157f3d3058331",
+      "native_boundary_sha256": "d383f3d2895e62ac9376ddedc7ed81a8ae99bc2da2b207b23f2a3dfee343b284"
+    },
+    {
+      "case_id": "run604756_r7_o705018_r7",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 271,
+      "before_event_count": 271,
+      "after_event_count": 271,
+      "inputs_identical": true,
+      "native_event_sha256": "a9645eff3882290e588ab5f11f99cae5a67ba94eb5a5b93508179279431eef9b",
+      "native_boundary_sha256": "5375f3540ba56aa3ed2f596d6ebaef47662697655079d5a09e026be5d88a54ff"
+    },
+    {
+      "case_id": "run704987_r1_o704880_r1",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 69,
+      "before_event_count": 69,
+      "after_event_count": 69,
+      "inputs_identical": true,
+      "native_event_sha256": "f776907ae94e3562eace042350601474d50b061085769e8e11de6ba4148bc319",
+      "native_boundary_sha256": "d81a6dba1a053dcac26bf07e89fff1879562cd8720c8994d34af2f815bf29855"
+    },
+    {
+      "case_id": "run705074_r3_o101090_r3",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 282,
+      "before_event_count": 282,
+      "after_event_count": 282,
+      "inputs_identical": true,
+      "native_event_sha256": "2480e7f591d285ad51f9835eb8df44c32292086fc19afbd6049eaefaaadc90d7",
+      "native_boundary_sha256": "e6011df7de9f2ca2efc7b1e0ece827e13f13fc829bdfe2e018f79f51c938d4a7"
+    },
+    {
+      "case_id": "run101742_r6_o300100_r6",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 385,
+      "before_event_count": 385,
+      "after_event_count": 385,
+      "inputs_identical": true,
+      "native_event_sha256": "1f188d94c53ddfd4306c4345df8067f57db47e25b55d7eb206dcaec6fb9bda63",
+      "native_boundary_sha256": "e9b5759a72c7180bf497c6513ab6b1237ae0a18e19788d9e801697fbcfde9b3d"
+    },
+    {
+      "case_id": "run101626_r9_o604493_r9",
+      "before_pass": false,
+      "after_pass": false,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 444,
+      "before_event_count": 358,
+      "after_event_count": 358,
+      "inputs_identical": true,
+      "native_event_sha256": "e3f731bd977e0fc4e6b1aab58bfd56fb596cbeadc5bdd457078275c45c86805d",
+      "native_boundary_sha256": "072a0186f0f14d17a2664ec626dab471346e6b4c97ee97c27bdd3ee9c19f8d20",
+      "first": {
+        "index": 162,
+        "pair": "oracle_vs_gdcore",
+        "native": {
+          "t": 291,
+          "type": 19,
+          "actor": "player",
+          "target": null,
+          "origin": [
+            "gem",
+            null,
+            -1
+          ],
+          "params": {
+            "amount": 60
+          },
+          "parent": -1,
+          "depth": 0
+        },
+        "core": {
+          "t": 295,
+          "type": 100,
+          "actor": "player",
+          "target": 1,
+          "origin": [
+            "item",
+            "Stone"
+          ],
+          "params": {
+            "amount": -4,
+            "used": false,
+            "reflected": false
+          },
+          "parent": -1,
+          "depth": 0
+        }
+      }
+    },
+    {
+      "case_id": "run704946_r12_o604825_r12",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 208,
+      "before_event_count": 208,
+      "after_event_count": 208,
+      "inputs_identical": true,
+      "native_event_sha256": "da6891ba824ad16807890846f7cb04cb63ac0c06dc0e17f092d418c1adf316df",
+      "native_boundary_sha256": "b3229643d481306211bd7b8f73f47bb6d3674c4b95e4b3c72b2106a00d461c9c"
+    },
+    {
+      "case_id": "run705005_r14_o704970_r14",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 240,
+      "before_event_count": 240,
+      "after_event_count": 240,
+      "inputs_identical": true,
+      "native_event_sha256": "4e42341607c61dad8ab1783114c17ad37462ad7da16b599c86a2863608222671",
+      "native_boundary_sha256": "7bc9fc7696bc278e199f8c8d08ee8596614a19661f3336989d80498c5f87cb5e"
+    },
+    {
+      "case_id": "run101171_r18_o101582_r18",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 243,
+      "before_event_count": 243,
+      "after_event_count": 243,
+      "inputs_identical": true,
+      "native_event_sha256": "2845b29b9a0da98b9fa1bafa6592ac2b2c7a2a195d751367fb03ec72df1c1dbd",
+      "native_boundary_sha256": "c6cf6ad285401fc43f153ea9e98311c835bf58ec684e2e78c73eb9701a34ab12"
+    },
+    {
+      "case_id": "run101700_r1_o100996_r1",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 40,
+      "before_event_count": 40,
+      "after_event_count": 40,
+      "inputs_identical": true,
+      "native_event_sha256": "37b9a829d625a8e3ca769c171d3197ca7d8bfcac5e7d9ac8761ef11a58260aef",
+      "native_boundary_sha256": "7dfdbcc979925424f4bdec680d3fc48a9e3bd7c4fb56b12b646b27c130997157"
+    },
+    {
+      "case_id": "run101737_r3_o101416_r3",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 176,
+      "before_event_count": 176,
+      "after_event_count": 176,
+      "inputs_identical": true,
+      "native_event_sha256": "76ef9470a18477f538c012c071d59c5c4f2501302489ba6577312e50635689fa",
+      "native_boundary_sha256": "45c2e9f846adc830df4132287e80c80b3c2b2fd512c352250513160ce02c4aa9"
+    },
+    {
+      "case_id": "run101620_r6_o101273_r6",
+      "before_pass": false,
+      "after_pass": false,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 228,
+      "before_event_count": 224,
+      "after_event_count": 224,
+      "inputs_identical": true,
+      "native_event_sha256": "f2903910c76c075e3dc9e21163309f1abddbb62b741e88f80fb877796891713f",
+      "native_boundary_sha256": "869272d62a65b00e6c6c45bcabc0d8d57bde9ce4ae38e399032b837bbdbee535",
+      "first": {
+        "index": 60,
+        "pair": "oracle_vs_gdcore",
+        "native": {
+          "t": 179,
+          "type": 12,
+          "actor": "opponent",
+          "target": 1,
+          "origin": [
+            "src",
+            "regen"
+          ],
+          "params": {
+            "amount": 3
+          },
+          "parent": -1,
+          "depth": 0
+        },
+        "core": {
+          "t": 179,
+          "type": 1,
+          "actor": "player",
+          "target": null,
+          "origin": [
+            "item",
+            "The Lovers"
+          ],
+          "params": {
+            "damage": 7
+          },
+          "parent": -1,
+          "depth": 0
+        }
+      }
+    },
+    {
+      "case_id": "run705104_r9_o704510_r9",
+      "before_pass": false,
+      "after_pass": false,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 250,
+      "before_event_count": 252,
+      "after_event_count": 252,
+      "inputs_identical": true,
+      "native_event_sha256": "cd283d4eab491b39ede8ea2734ea00aa249876eba5ebdc752a6f38889936e090",
+      "native_boundary_sha256": "d7f43ed05215eee030db3ea9d8e37668ee9dee7e380c735ac2f2d6aab3312397",
+      "first": {
+        "index": 67,
+        "pair": "oracle_vs_gdcore",
+        "native": {
+          "t": 155,
+          "type": 100,
+          "actor": "player",
+          "target": 0,
+          "origin": [
+            "item",
+            "White-Eyes Blue Dragon"
+          ],
+          "params": {
+            "amount": 18,
+            "used": false,
+            "reflected": false
+          },
+          "parent": -1,
+          "depth": 0
+        },
+        "core": {
+          "t": 154,
+          "type": 100,
+          "actor": "player",
+          "target": 0,
+          "origin": [
+            "item",
+            "White-Eyes Blue Dragon"
+          ],
+          "params": {
+            "amount": 18,
+            "used": false,
+            "reflected": false
+          },
+          "parent": -1,
+          "depth": 0
+        }
+      }
+    },
+    {
+      "case_id": "run705078_r12_o101367_r12",
+      "before_pass": false,
+      "after_pass": false,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 710,
+      "before_event_count": 773,
+      "after_event_count": 773,
+      "inputs_identical": true,
+      "native_event_sha256": "83945e2e32e0f7aea1efc6ba6e11222f7823a7392d7a4f4828e781cdf6111c43",
+      "native_boundary_sha256": "d6c84f2684f83f90243fd9394be1733b405a819957c20630f15ae3683a6e77b6",
+      "first": {
+        "index": 248,
+        "pair": "oracle_vs_gdcore",
+        "native": {
+          "t": 197,
+          "type": 109,
+          "actor": "player",
+          "target": 1,
+          "origin": [
+            "item",
+            "Black Bishop"
+          ],
+          "params": {
+            "amount": 2,
+            "used": false,
+            "reflected": false
+          },
+          "parent": -1,
+          "depth": 0
+        },
+        "core": {
+          "t": 197,
+          "type": 103,
+          "actor": "player",
+          "target": 0,
+          "origin": [
+            "item",
+            "Black Knight"
+          ],
+          "params": {
+            "amount": 3,
+            "used": false,
+            "reflected": false
+          },
+          "parent": -1,
+          "depth": 0
+        }
+      }
+    },
+    {
+      "case_id": "run704944_r15_o704957_r15",
+      "before_pass": false,
+      "after_pass": false,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 940,
+      "before_event_count": 867,
+      "after_event_count": 867,
+      "inputs_identical": true,
+      "native_event_sha256": "c90414144d5bbc5a32162089f9372f1ee93a71947795a9d45da74d8a354ac488",
+      "native_boundary_sha256": "b40df93562f06133d32fe38e2065a8188b10cb6cda2460297f688a8d2905fc68",
+      "first": {
+        "index": 131,
+        "pair": "oracle_vs_gdcore",
+        "native": {
+          "t": 229,
+          "type": 3,
+          "actor": "opponent",
+          "target": null,
+          "origin": [
+            "item",
+            "Bloodthorne"
+          ],
+          "params": {},
+          "parent": -1,
+          "depth": 0
+        },
+        "core": {
+          "t": 229,
+          "type": 102,
+          "actor": "opponent",
+          "target": 1,
+          "origin": [
+            "item",
+            "Bloodthorne"
+          ],
+          "params": {
+            "amount": -1,
+            "used": true,
+            "reflected": false
+          },
+          "parent": -1,
+          "depth": 0
+        }
+      }
+    },
+    {
+      "case_id": "run705089_r18_o704278_r18",
+      "before_pass": false,
+      "after_pass": false,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 986,
+      "before_event_count": 999,
+      "after_event_count": 999,
+      "inputs_identical": true,
+      "native_event_sha256": "bd9e8107e615e2a46450f981683fa30b841fd5d8cf3b3b819ca41defb31695ff",
+      "native_boundary_sha256": "35505a7ef437a3bfdd921b6535a0eec4ce59f797c343bda34bc5b710952d395e",
+      "first": {
+        "index": 437,
+        "pair": "oracle_vs_gdcore",
+        "native": {
+          "t": 351,
+          "type": 109,
+          "actor": "opponent",
+          "target": 0,
+          "origin": [
+            "item",
+            "Light Goobert"
+          ],
+          "params": {
+            "amount": -7,
+            "used": false,
+            "reflected": false,
+            "timeout": true
+          },
+          "parent": -1,
+          "depth": 0
+        },
+        "core": {
+          "t": 351,
+          "type": 109,
+          "actor": "opponent",
+          "target": 0,
+          "origin": [
+            "item",
+            "Light Goobert"
+          ],
+          "params": {
+            "amount": -5,
+            "used": false,
+            "reflected": false,
+            "timeout": true
+          },
+          "parent": -1,
+          "depth": 0
+        }
+      }
+    },
+    {
+      "case_id": "run101730_r1_o101037_r1",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 43,
+      "before_event_count": 43,
+      "after_event_count": 43,
+      "inputs_identical": true,
+      "native_event_sha256": "2322b849ac1098863184af2e1ac407022924ee681846dd341d32f10e7495e482",
+      "native_boundary_sha256": "51e2c91db2fb88aa9685f2ec4452850501386bc9394a3f7cad7122fc80d5585b"
+    },
+    {
+      "case_id": "run101749_r3_o604542_r3",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 130,
+      "before_event_count": 130,
+      "after_event_count": 130,
+      "inputs_identical": true,
+      "native_event_sha256": "b130151c2a1e3e1312861dfa7929a23b308e73f597852a7d1b92df75c6f00613",
+      "native_boundary_sha256": "e9705432ead7e3e9d69d63033a7327cc99e65d55bfccc6d5ad3a0a92ba700b28"
+    },
+    {
+      "case_id": "run101712_r6_o704327_r6",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 194,
+      "before_event_count": 194,
+      "after_event_count": 194,
+      "inputs_identical": true,
+      "native_event_sha256": "c552afdd1c5965b60e24d0cfda242896b9f4b6b422527e5f31776bc90f415756",
+      "native_boundary_sha256": "ed45ea780a1557397b2275917f6de2c9a6aa90540c63d60c58a84bcb4a2d7ec9"
+    },
+    {
+      "case_id": "run705008_r8_o604759_r8",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 158,
+      "before_event_count": 158,
+      "after_event_count": 158,
+      "inputs_identical": true,
+      "native_event_sha256": "94cc34dba4cb1d30a03999ef5ebc506168dae5d4659a822f70cc3b352dca3c36",
+      "native_boundary_sha256": "592c9c789f88208d5860170ceaebe930430e2b673e0137d0db1b59f300e31437"
+    },
+    {
+      "case_id": "run101668_r12_o704449_r12",
+      "before_pass": false,
+      "after_pass": false,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 231,
+      "before_event_count": 231,
+      "after_event_count": 231,
+      "inputs_identical": true,
+      "native_event_sha256": "638cd2cd20fbd989ef261ec2c32c7fa37955ce20ebcb91c3902dbf7ed814afd8",
+      "native_boundary_sha256": "eed999d2afb49806857fcedbdbbc280040d739a086009e7d9099fa82c29a4192",
+      "first": {
+        "index": 220,
+        "pair": "oracle_vs_gdcore",
+        "native": {
+          "t": 456,
+          "type": 107,
+          "actor": "player",
+          "target": 0,
+          "origin": [
+            "item",
+            "Dragon Set"
+          ],
+          "params": {
+            "amount": 1,
+            "used": false,
+            "reflected": false
+          },
+          "parent": -1,
+          "depth": 0
+        },
+        "core": {
+          "t": 455,
+          "type": 107,
+          "actor": "player",
+          "target": 0,
+          "origin": [
+            "item",
+            "Dragon Set"
+          ],
+          "params": {
+            "amount": 1,
+            "used": false,
+            "reflected": false
+          },
+          "parent": -1,
+          "depth": 0
+        }
+      }
+    },
+    {
+      "case_id": "run705031_r15_o704686_r15",
+      "before_pass": false,
+      "after_pass": false,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 578,
+      "before_event_count": 626,
+      "after_event_count": 626,
+      "inputs_identical": true,
+      "native_event_sha256": "5a434a5828dfe96ca858e1421b25d1dfa816535585cb837e092f590c651a08d7",
+      "native_boundary_sha256": "669510efb01f4a78b6021ba27389e3db3ef9d9244c4671779354f284e04f6905",
+      "first": {
+        "index": 378,
+        "pair": "oracle_vs_gdcore",
+        "native": {
+          "t": 488,
+          "type": 103,
+          "actor": "opponent",
+          "target": 1,
+          "origin": [
+            "item",
+            "Mana Orb"
+          ],
+          "params": {
+            "amount": 1,
+            "used": false,
+            "reflected": false
+          },
+          "parent": 377,
+          "depth": 3
+        },
+        "core": {
+          "t": 488,
+          "type": 106,
+          "actor": "opponent",
+          "target": 1,
+          "origin": [
+            "item",
+            "Mana Orb"
+          ],
+          "params": {
+            "amount": 7,
+            "used": false,
+            "reflected": false
+          },
+          "parent": 377,
+          "depth": 3
+        }
+      }
+    },
+    {
+      "case_id": "run101710_r18_o101315_r18",
+      "before_pass": false,
+      "after_pass": false,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 512,
+      "before_event_count": 512,
+      "after_event_count": 512,
+      "inputs_identical": true,
+      "native_event_sha256": "b826be0255635634b9dbca7451b22fdacf172abcc1dbf69fb5476c80742b76c0",
+      "native_boundary_sha256": "d76f9efda2cf327ad9787f7fcfce8050eff6ca0bb2f97d6b249be00f8c9fc85d",
+      "first": {
+        "index": 422,
+        "pair": "oracle_vs_gdcore",
+        "native": {
+          "t": 419,
+          "type": 12,
+          "actor": "opponent",
+          "target": 1,
+          "origin": [
+            "src",
+            "regen"
+          ],
+          "params": {
+            "amount": 5
+          },
+          "parent": -1,
+          "depth": 0
+        },
+        "core": {
+          "t": 419,
+          "type": 12,
+          "actor": "player",
+          "target": 0,
+          "origin": [
+            "item",
+            "Deer Totem"
+          ],
+          "params": {
+            "amount": 9
+          },
+          "parent": -1,
+          "depth": 0
+        }
+      }
+    },
+    {
+      "case_id": "run704972_r1_o101115_r1",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 140,
+      "before_event_count": 140,
+      "after_event_count": 140,
+      "inputs_identical": true,
+      "native_event_sha256": "9014663c05078ccb17ddc2ef70dc7c9ee55fe25dad04b80abf2cc823957f24a9",
+      "native_boundary_sha256": "db8da719c107f588264247992f3c636069c225faf582007c3548be9ca66d09d4"
+    },
+    {
+      "case_id": "run101532_r3_o101655_r3",
+      "before_pass": false,
+      "after_pass": false,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 308,
+      "before_event_count": 306,
+      "after_event_count": 306,
+      "inputs_identical": true,
+      "native_event_sha256": "31128673acdb7f6cf4941985c5634deb877fe64c1f3a3edbed2912048bc6e663",
+      "native_boundary_sha256": "c89c61661313101f93b2c546df0b9694c55f07ba603597d7eab673839bb93710",
+      "first": {
+        "index": 47,
+        "pair": "oracle_vs_gdcore",
+        "native": {
+          "t": 181,
+          "type": 1,
+          "actor": "opponent",
+          "target": null,
+          "origin": [
+            "item",
+            "Broom"
+          ],
+          "params": {
+            "damage": 4
+          },
+          "parent": -1,
+          "depth": 0
+        },
+        "core": {
+          "t": 181,
+          "type": 1,
+          "actor": "opponent",
+          "target": null,
+          "origin": [
+            "item",
+            "Broom"
+          ],
+          "params": {
+            "damage": 2
+          },
+          "parent": -1,
+          "depth": 0
+        }
+      }
+    },
+    {
+      "case_id": "run705018_r6_o604708_r6",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 213,
+      "before_event_count": 213,
+      "after_event_count": 213,
+      "inputs_identical": true,
+      "native_event_sha256": "a4c43f40a70dceb033c9b36fa1897e0a4c7eefa366c71646e6902bdd6304c661",
+      "native_boundary_sha256": "7f0cb4b80b2e08e6d81879782b1580e6c3bde88332870c5c1bacd00f133e7d4f"
+    },
+    {
+      "case_id": "run101670_r8_o101300_r8",
+      "before_pass": false,
+      "after_pass": false,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 124,
+      "before_event_count": 124,
+      "after_event_count": 124,
+      "inputs_identical": true,
+      "native_event_sha256": "b349cfc6e0421b1be8a646dfdded7c70498c5efab747f4a855a70b0e003680a2",
+      "native_boundary_sha256": "55b9c37a3e7155b1f580ca5617b91bc351dfa06431fc4c6b7cb2226e4e07eab2",
+      "first": {
+        "index": 89,
+        "pair": "oracle_vs_gdcore",
+        "native": {
+          "t": 194,
+          "type": 2,
+          "actor": "opponent",
+          "target": null,
+          "origin": [
+            "item",
+            "Poison Spear"
+          ],
+          "params": {
+            "damage": 30
+          },
+          "parent": -1,
+          "depth": 0
+        },
+        "core": {
+          "t": 194,
+          "type": 2,
+          "actor": "opponent",
+          "target": null,
+          "origin": [
+            "item",
+            "Poison Spear"
+          ],
+          "params": {
+            "damage": 32
+          },
+          "parent": -1,
+          "depth": 0
+        }
+      }
+    },
+    {
+      "case_id": "run101699_r12_o500223_r12",
+      "before_pass": false,
+      "after_pass": false,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 316,
+      "before_event_count": 315,
+      "after_event_count": 315,
+      "inputs_identical": true,
+      "native_event_sha256": "77cfc572a4aadf192d293fe15422bc774239755e1caf3424ac450e4a222a3815",
+      "native_boundary_sha256": "74eaad4e84c70e48e5dc4921b03a7c5db18aff91125299254da3599b4d07051f",
+      "first": {
+        "index": 249,
+        "pair": "oracle_vs_gdcore",
+        "native": {
+          "t": 407,
+          "type": 100,
+          "actor": "opponent",
+          "target": 1,
+          "origin": [
+            "item",
+            "Garlic"
+          ],
+          "params": {
+            "amount": 3,
+            "used": false,
+            "reflected": false
+          },
+          "parent": -1,
+          "depth": 0
+        },
+        "core": {
+          "t": 407,
+          "type": 107,
+          "actor": "opponent",
+          "target": 1,
+          "origin": [
+            "item",
+            "Chili Pepper"
+          ],
+          "params": {
+            "amount": 1,
+            "used": false,
+            "reflected": false
+          },
+          "parent": -1,
+          "depth": 0
+        }
+      }
+    },
+    {
+      "case_id": "run705018_r15_o100968_r15",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 844,
+      "before_event_count": 844,
+      "after_event_count": 844,
+      "inputs_identical": true,
+      "native_event_sha256": "a3619c64d8a6d8928cd636ad37de18a9a44f10d20087cf4f6f86fbb169638843",
+      "native_boundary_sha256": "3b1471bef196c511aa05fd07f7e18c9978c341b7092a3d4c85729f5e1c23658e"
+    },
+    {
+      "case_id": "run101779_r18_o604702_r18",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 521,
+      "before_event_count": 521,
+      "after_event_count": 521,
+      "inputs_identical": true,
+      "native_event_sha256": "9e6a72765c2bf349b6c693499ef2438324fb2e4269c9da742501971521f2bcda",
+      "native_boundary_sha256": "fad43943234ccd87d7b2f3ab9149bab99d54c76f21d41916b5b36465af14bc5c"
+    },
+    {
+      "case_id": "run101664_r1_o101151_r1",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 74,
+      "before_event_count": 74,
+      "after_event_count": 74,
+      "inputs_identical": true,
+      "native_event_sha256": "0455b4f1f6436d7c02e2b0d54d63e05cc64d0217e62c4688b8dd77eb97c40133",
+      "native_boundary_sha256": "9e0160bc2e63fb2006dc719e1053484d962216c43e21975e1e4972318cbce45d"
+    },
+    {
+      "case_id": "run704968_r3_o704364_r3",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 195,
+      "before_event_count": 195,
+      "after_event_count": 195,
+      "inputs_identical": true,
+      "native_event_sha256": "a2ee5690be02750a8d8e2f530a6cce562611129a641e4d7bba2a64eaa998e14b",
+      "native_boundary_sha256": "7d0bb5253e8f1d5d2989850f233a816ec57e330fb26d8aaefab1f3c17d1caefb"
+    },
+    {
+      "case_id": "run101677_r6_o604734_r6",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 208,
+      "before_event_count": 208,
+      "after_event_count": 208,
+      "inputs_identical": true,
+      "native_event_sha256": "a9f852d3b7c0954880cd32087d826a8d593ef9c46128349ed69dc46ac658538d",
+      "native_boundary_sha256": "82eb7fb0a877ffae6a57cf30f74ff62ebb484be0b6ee17455da7fb8e9b6f2f77"
+    },
+    {
+      "case_id": "run704950_r9_o101367_r9",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 266,
+      "before_event_count": 266,
+      "after_event_count": 266,
+      "inputs_identical": true,
+      "native_event_sha256": "cfd6c74c32cea6ae1245687b224e83719acba4666013f160cf20f4e043028714",
+      "native_boundary_sha256": "efdc1d6baddb8b1a6777da7eb2cd95514c443f6b79aab89e03688254f9d2696f"
+    },
+    {
+      "case_id": "run704995_r12_o101334_r12",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 411,
+      "before_event_count": 411,
+      "after_event_count": 411,
+      "inputs_identical": true,
+      "native_event_sha256": "911eb380290bfda1071fdab38d71364cd31d9a5ef7040b9f934251ceeb7beb8f",
+      "native_boundary_sha256": "2c12dda5fdbabb5d29d420f7024b6161e371e49f87a15cefe7f45c539b766c17"
+    },
+    {
+      "case_id": "run101527_r14_o704341_r14",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 343,
+      "before_event_count": 343,
+      "after_event_count": 343,
+      "inputs_identical": true,
+      "native_event_sha256": "425e33053c848e5d2fcc52300c00b892c74e7a4aefe9820aa393ce31320e40fc",
+      "native_boundary_sha256": "eb51c9aece4c219c2859df31adc89de76db2ec0f28349623559ee541767ac936"
+    },
+    {
+      "case_id": "run604868_r17_o101770_r17",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 999,
+      "before_event_count": 999,
+      "after_event_count": 999,
+      "inputs_identical": true,
+      "native_event_sha256": "57e9acf3e06a86f8112c39d3aa807df2865344a88fea18a872b6edbbdc74e413",
+      "native_boundary_sha256": "3ee7bb373c14f9dc05260accb65ccfd7b13d188cb9409e40165055a6a429a157"
+    },
+    {
+      "case_id": "run705134_r1_o101082_r1",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 56,
+      "before_event_count": 56,
+      "after_event_count": 56,
+      "inputs_identical": true,
+      "native_event_sha256": "5bee50980d5f89de971f5ca3ee5a4f4386ed5d1003749a3e8a7ef46abcd53bc0",
+      "native_boundary_sha256": "9c0306cb9e33fd6bc49accf9c3ec60a20a8e3a2fe2f7704abd94a11e775a1d7c"
+    },
+    {
+      "case_id": "run101704_r3_o704467_r3",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 250,
+      "before_event_count": 250,
+      "after_event_count": 250,
+      "inputs_identical": true,
+      "native_event_sha256": "44e8caf1910769f6b723c7091fc6c14c8596fc08170b130f66a8cdd2ccb83620",
+      "native_boundary_sha256": "73ec6f34d9cd65b3bacc68cc0c2b131c5850999cd2b9b62287dc43a06bb2b8e5"
+    },
+    {
+      "case_id": "run101490_r6_o500242_r6",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 453,
+      "before_event_count": 453,
+      "after_event_count": 453,
+      "inputs_identical": true,
+      "native_event_sha256": "6ed93010077ff75ee351843bc8218d4200cd42ce3a5b4cccfc2179ac4c91c003",
+      "native_boundary_sha256": "0fc5c3279c4a1e16134fa2a15c1cc85b0130bc782653e29d2252041787979341"
+    },
+    {
+      "case_id": "run101654_r9_o300110_r9",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 320,
+      "before_event_count": 320,
+      "after_event_count": 320,
+      "inputs_identical": true,
+      "native_event_sha256": "db2b412650711c4e985d95060faccd1805b733f75cb60b21ca570f44a16d1797",
+      "native_boundary_sha256": "753c47054339ed4d4f137a436499374af09b56ab8e2ffca6d3bd495a2367495e"
+    },
+    {
+      "case_id": "run101653_r11_o101325_r11",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 418,
+      "before_event_count": 418,
+      "after_event_count": 418,
+      "inputs_identical": true,
+      "native_event_sha256": "2e3c713781ba96570a82bd027be951e92eaa94643b45fa28ac43dd48a9499bd6",
+      "native_boundary_sha256": "f64bd9ca0a85544bebff693a66014a3ab251fb8479b852b5ba3b011338d7e0d9"
+    },
+    {
+      "case_id": "run704961_r15_o604851_r15",
+      "before_pass": false,
+      "after_pass": false,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 511,
+      "before_event_count": 551,
+      "after_event_count": 551,
+      "inputs_identical": true,
+      "native_event_sha256": "1bad19aca4c177a346aaef694950cc06b9b2b6ed2a93770d70479837b0ed1d04",
+      "native_boundary_sha256": "07388228971e8b464bd967aed076bf9ef9ce6a2a26cc8a309f3536f08d28650f",
+      "first": {
+        "index": 135,
+        "pair": "oracle_vs_gdcore",
+        "native": {
+          "t": 115,
+          "type": 0,
+          "actor": "player",
+          "target": null,
+          "origin": [
+            "item",
+            "Dragon Knight"
+          ],
+          "params": {},
+          "parent": -1,
+          "depth": 0
+        },
+        "core": {
+          "t": 115,
+          "type": 106,
+          "actor": "opponent",
+          "target": 1,
+          "origin": [
+            "gem",
+            null,
+            -1
+          ],
+          "params": {
+            "amount": -1,
+            "used": false,
+            "reflected": false
+          },
+          "parent": 131,
+          "depth": 1
+        }
+      }
+    },
+    {
+      "case_id": "run101772_r18_o705149_r18",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 562,
+      "before_event_count": 562,
+      "after_event_count": 562,
+      "inputs_identical": true,
+      "native_event_sha256": "e749b8597176f487d57c2321fc16041bb8b3fb45514f00d8e8d1cfb5fb0b73bf",
+      "native_boundary_sha256": "11cf244bd98082ac874d018a80d81ee0996ed6fbd10d9780d14c3b1e42398697"
+    },
+    {
+      "case_id": "run101593_r1_o100847_r1",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 113,
+      "before_event_count": 113,
+      "after_event_count": 113,
+      "inputs_identical": true,
+      "native_event_sha256": "e3631707fe7d88f8b502292a99eb08a11dcd24255cdb0a0c647418809ebbd4ac",
+      "native_boundary_sha256": "814281570d78ca79d7322c31d5d0c6b428dee90e0185365decea9b1ae76828f9"
+    },
+    {
+      "case_id": "run101535_r3_o101452_r3",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 304,
+      "before_event_count": 304,
+      "after_event_count": 304,
+      "inputs_identical": true,
+      "native_event_sha256": "2e0d5c82f1f2f70b2187a072640fdfb656c298cee4505782fb34829b29290c3f",
+      "native_boundary_sha256": "9fac921bd591a5fbb9a19712d4bf1d049f9d01db9ddbf8b17378295ea89e6356"
+    },
+    {
+      "case_id": "run101533_r6_o101089_r6",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 219,
+      "before_event_count": 219,
+      "after_event_count": 219,
+      "inputs_identical": true,
+      "native_event_sha256": "d14c5bb876ba1bf8aa171e2cce997336f6391364a0af739dd888ee08bca12925",
+      "native_boundary_sha256": "aa635d4181c0c3aadfb666c71e6e54c8597c24d90f06365b555c3ec64ec8e890"
+    },
+    {
+      "case_id": "run101592_r8_o704346_r8",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 182,
+      "before_event_count": 182,
+      "after_event_count": 182,
+      "inputs_identical": true,
+      "native_event_sha256": "26ba324f96329e9ff0a740c5abc20155f0272d55afa17cc0e36b2ab2871065a0",
+      "native_boundary_sha256": "5ed7ccb05e26342b32f5aab273fd6e42fbe3ad2365f860f82159f7e4763a23d8"
+    },
+    {
+      "case_id": "run704945_r12_o604790_r12",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 401,
+      "before_event_count": 401,
+      "after_event_count": 401,
+      "inputs_identical": true,
+      "native_event_sha256": "fb51bd363f0b8ea66362437f5b3b4520a638264fd5900c550e3ff9b192d674b6",
+      "native_boundary_sha256": "110bc76d61d944c405939f64eaa629533132431796890596695d5f806336e0a9"
+    },
+    {
+      "case_id": "run704970_r15_o704359_r15",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 647,
+      "before_event_count": 647,
+      "after_event_count": 647,
+      "inputs_identical": true,
+      "native_event_sha256": "dd65cdd3e1e932dad02cd54f9e3698660bb587b6cc00f6c175cf6d14c4277cbc",
+      "native_boundary_sha256": "13ea5001c879047a6edd08a6273553da28e23f8b98f5ea5fca99f7bb4805508d"
+    },
+    {
+      "case_id": "run705153_r17_o604713_r17",
+      "before_pass": false,
+      "after_pass": false,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 598,
+      "before_event_count": 493,
+      "after_event_count": 493,
+      "inputs_identical": true,
+      "native_event_sha256": "6e90077532ff3bd14047101b70b7a5b9aeb8c30cc8c02f327caeaf948b8a4312",
+      "native_boundary_sha256": "da3fe3302cafb962d4cb0d05d601fabf715e1984219da20a441a4273e6ee51b1",
+      "first": {
+        "index": 87,
+        "pair": "oracle_vs_gdcore",
+        "native": {
+          "t": 117,
+          "type": 101,
+          "actor": "opponent",
+          "target": 1,
+          "origin": [
+            "item",
+            "White King"
+          ],
+          "params": {
+            "amount": 1,
+            "used": false,
+            "reflected": false
+          },
+          "parent": -1,
+          "depth": 0
+        },
+        "core": {
+          "t": 117,
+          "type": 104,
+          "actor": "opponent",
+          "target": 1,
+          "origin": [
+            "item",
+            "White King"
+          ],
+          "params": {
+            "amount": 1,
+            "used": false,
+            "reflected": false
+          },
+          "parent": -1,
+          "depth": 0
+        }
+      }
+    },
+    {
+      "case_id": "run704936_r1_o100855_r1",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 43,
+      "before_event_count": 43,
+      "after_event_count": 43,
+      "inputs_identical": true,
+      "native_event_sha256": "eb475df5465f71b8c5c225b83d5bded8ccf7f009a67ce7f39b908f4c7c6a50b0",
+      "native_boundary_sha256": "070b986dcdef0c6a5a632a15701c2c97370caa965c0f445823b5d0cdc24cd851"
+    },
+    {
+      "case_id": "run101669_r3_o101360_r3",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 152,
+      "before_event_count": 152,
+      "after_event_count": 152,
+      "inputs_identical": true,
+      "native_event_sha256": "ed46340d61e7e52ae786a2b75ea0d5543f740d8adb73c5bd8886fda4a42dda46",
+      "native_boundary_sha256": "0cc49cb7bd6591204f5652105297a869ffa65552a6c05bd7427de4e9d4f87462"
+    },
+    {
+      "case_id": "run101750_r6_o101414_r6",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 234,
+      "before_event_count": 234,
+      "after_event_count": 234,
+      "inputs_identical": true,
+      "native_event_sha256": "15693caf336612e0fa27c1ed11726c87b52bb1005accdd05b4e1699f362c921c",
+      "native_boundary_sha256": "bee935cc9067ca34c6093cdc3a13f930c28d3e8a7f3570486b845aaea3d8a2a5"
+    },
+    {
+      "case_id": "run101742_r9_o704410_r9",
+      "before_pass": false,
+      "after_pass": false,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 673,
+      "before_event_count": 688,
+      "after_event_count": 688,
+      "inputs_identical": true,
+      "native_event_sha256": "8d84c69796d88c495bb22f366235fdfb6c49f79f896d8b542c03fc03b33e0b71",
+      "native_boundary_sha256": "8539b15eb77c41bd607343a8f183ef14efb51cc70c4e5beab5bd008e46102254",
+      "first": {
+        "index": 164,
+        "pair": "oracle_vs_gdcore",
+        "native": {
+          "t": 349,
+          "type": 105,
+          "actor": "opponent",
+          "target": 1,
+          "origin": [
+            "item",
+            "Black Pawn"
+          ],
+          "params": {
+            "amount": 3,
+            "used": false,
+            "reflected": false
+          },
+          "parent": -1,
+          "depth": 0
+        },
+        "core": {
+          "t": 349,
+          "type": 103,
+          "actor": "opponent",
+          "target": 1,
+          "origin": [
+            "item",
+            "Black Knight"
+          ],
+          "params": {
+            "amount": 4,
+            "used": false,
+            "reflected": false
+          },
+          "parent": -1,
+          "depth": 0
+        }
+      }
+    },
+    {
+      "case_id": "run101734_r11_o604508_r11",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 315,
+      "before_event_count": 315,
+      "after_event_count": 315,
+      "inputs_identical": true,
+      "native_event_sha256": "d96ff6ae063aef70366d33ccd344101365ccce218e27ef92fe115dd76f72c124",
+      "native_boundary_sha256": "e55f0ff3e805a8dcf75b0647941d693009bac99922ab8c48c0ce5324c5bc8073"
+    },
+    {
+      "case_id": "run704993_r15_o705106_r15",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 421,
+      "before_event_count": 421,
+      "after_event_count": 421,
+      "inputs_identical": true,
+      "native_event_sha256": "2e545f060cddd0cca907f3e0097c0c9a3cd11ccec2c1f7fa30c319f6e4748cf2",
+      "native_boundary_sha256": "f6490c8f71fcc1b6682b72a1f997b7bcaa48b69e95c6ff2519da8a8e4ab5c0f7"
+    },
+    {
+      "case_id": "run705116_r17_o604720_r17",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 1774,
+      "before_event_count": 1774,
+      "after_event_count": 1774,
+      "inputs_identical": true,
+      "native_event_sha256": "651cbd734c25699bb3a68e27e68586b3b7f1b6667ad6762870f50a9d6c12a9dd",
+      "native_boundary_sha256": "4551d69b5dc97e05b2d87f09462ff95f4be539fa02aa58e1527706fd04391b4a"
+    },
+    {
+      "case_id": "run101607_r1_o100864_r1",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 135,
+      "before_event_count": 135,
+      "after_event_count": 135,
+      "inputs_identical": true,
+      "native_event_sha256": "14f74f2666daf4b357a53db745252ca782d5e9aa5713ab44e1da65d36c37a2a4",
+      "native_boundary_sha256": "6a96aa5f6e4c0b3c354ce7327c06b973d3969f851d86bc5cb83efc02165c75c9"
+    },
+    {
+      "case_id": "run101713_r3_o704580_r3",
+      "before_pass": false,
+      "after_pass": false,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 85,
+      "before_event_count": 85,
+      "after_event_count": 85,
+      "inputs_identical": true,
+      "native_event_sha256": "761c3d691b0ac18664a66246cbd4bdae9473044ed1f3219818dbbde627f8820c",
+      "native_boundary_sha256": "61cfe465fffde6e33c77bd6c5b3fee98ed9d17d7da5c9e88bb8cf13d1010f7c5",
+      "first": {
+        "index": 41,
+        "pair": "oracle_vs_gdcore",
+        "native": {
+          "t": 179,
+          "type": 12,
+          "actor": "player",
+          "target": 0,
+          "origin": [
+            "src",
+            "regen"
+          ],
+          "params": {
+            "amount": 2
+          },
+          "parent": -1,
+          "depth": 0
+        },
+        "core": {
+          "t": 179,
+          "type": 101,
+          "actor": "player",
+          "target": 0,
+          "origin": [
+            "item",
+            "Ace of Spades"
+          ],
+          "params": {
+            "amount": 2,
+            "used": false,
+            "reflected": false
+          },
+          "parent": -1,
+          "depth": 0
+        }
+      }
+    },
+    {
+      "case_id": "run101607_r6_o704809_r6",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 222,
+      "before_event_count": 222,
+      "after_event_count": 222,
+      "inputs_identical": true,
+      "native_event_sha256": "1599f2490f350d02060cf57e8d93bde20a8a3d7981ca9778d71bd40afedb883b",
+      "native_boundary_sha256": "718fca8502f9069fb78bdb75375a370487e84e232cbbbe2bf845361d14b56e3e"
+    },
+    {
+      "case_id": "run101614_r9_o101316_r9",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 214,
+      "before_event_count": 214,
+      "after_event_count": 214,
+      "inputs_identical": true,
+      "native_event_sha256": "48c1628631671a80700208f63e680c64c8bd1afdb9db1dd378787fd4d288306b",
+      "native_boundary_sha256": "746f804b9757e74fcc32d5d96e62b247df21e9884798e554d5c511d661a2299e"
+    },
+    {
+      "case_id": "run705058_r12_o604734_r12",
+      "before_pass": false,
+      "after_pass": false,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 470,
+      "before_event_count": 420,
+      "after_event_count": 420,
+      "inputs_identical": true,
+      "native_event_sha256": "8bd2fa95d6ada3ea305387d7a5ceada26dc1a8e6eafb5b61ab26d5fe50cc5dce",
+      "native_boundary_sha256": "168016520e48358cb36a178b66d2c27294fd1ce0e63d75cfbf806d442d0793c7",
+      "first": {
+        "index": 159,
+        "pair": "oracle_vs_gdcore",
+        "native": {
+          "t": 239,
+          "type": 108,
+          "actor": "opponent",
+          "target": 0,
+          "origin": [
+            "item",
+            "Black Bishop"
+          ],
+          "params": {
+            "amount": 1,
+            "used": false,
+            "reflected": false
+          },
+          "parent": -1,
+          "depth": 0
+        },
+        "core": {
+          "t": 239,
+          "type": 103,
+          "actor": "opponent",
+          "target": 1,
+          "origin": [
+            "item",
+            "Black Knight"
+          ],
+          "params": {
+            "amount": 3,
+            "used": false,
+            "reflected": false
+          },
+          "parent": -1,
+          "depth": 0
+        }
+      }
+    },
+    {
+      "case_id": "run705085_r15_o500204_r15",
+      "before_pass": false,
+      "after_pass": false,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 700,
+      "before_event_count": 663,
+      "after_event_count": 663,
+      "inputs_identical": true,
+      "native_event_sha256": "6b2e24dca8e65a2cff959d0c568b15760457fba032baf14fcacc77551154cccd",
+      "native_boundary_sha256": "a87d90714823402847f6465a346369fdf3b0808967b31a90f836eb136764a684",
+      "first": {
+        "index": 94,
+        "pair": "oracle_vs_gdcore",
+        "native": {
+          "t": 128,
+          "type": 1,
+          "actor": "player",
+          "target": null,
+          "origin": [
+            "item",
+            "Crossblades"
+          ],
+          "params": {
+            "damage": 9
+          },
+          "parent": -1,
+          "depth": 0
+        },
+        "core": {
+          "t": 128,
+          "type": 1,
+          "actor": "player",
+          "target": null,
+          "origin": [
+            "item",
+            "Crossblades"
+          ],
+          "params": {
+            "damage": 0
+          },
+          "parent": -1,
+          "depth": 0
+        }
+      }
+    },
+    {
+      "case_id": "run705151_r18_o704991_r18",
+      "before_pass": false,
+      "after_pass": false,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 295,
+      "before_event_count": 339,
+      "after_event_count": 339,
+      "inputs_identical": true,
+      "native_event_sha256": "145d37654926772ac29a25e800a4d6db359166a47e9e58301cd745efac0a71fb",
+      "native_boundary_sha256": "4421219d4a50641ad05263eb8365bf15075c616fa74349599509ada57b96790d",
+      "first": {
+        "index": 156,
+        "pair": "oracle_vs_gdcore",
+        "native": {
+          "t": 218,
+          "type": 105,
+          "actor": "opponent",
+          "target": 1,
+          "origin": [
+            "item",
+            "Blueberries"
+          ],
+          "params": {
+            "amount": 1,
+            "used": false,
+            "reflected": false
+          },
+          "parent": -1,
+          "depth": 0
+        },
+        "core": {
+          "t": 218,
+          "type": 1,
+          "actor": "player",
+          "target": null,
+          "origin": [
+            "item",
+            "Holo Fire Lizard"
+          ],
+          "params": {
+            "damage": 4
+          },
+          "parent": -1,
+          "depth": 0
+        }
+      }
+    },
+    {
+      "case_id": "run101710_r1_o100915_r1",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 108,
+      "before_event_count": 108,
+      "after_event_count": 108,
+      "inputs_identical": true,
+      "native_event_sha256": "ab43280dff57756d0e0ce011f0e3eeadc0b5ef88825b272652d79589db53c4f5",
+      "native_boundary_sha256": "34ca1473b18aa856703144c7e2249a8785b555d0e39d68cc9eafc783a1e5753a"
+    },
+    {
+      "case_id": "run500276_r3_o704876_r3",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 110,
+      "before_event_count": 110,
+      "after_event_count": 110,
+      "inputs_identical": true,
+      "native_event_sha256": "9a15800f8146043cf83cd410538b197cc4872bd931f1c8bdf0d9fb9572ef0d99",
+      "native_boundary_sha256": "384edfd1acbc2cd80e27ccd4e31ed310a4b90a2960508a44c45b545864a58450"
+    },
+    {
+      "case_id": "run704955_r5_o604526_r5",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 223,
+      "before_event_count": 223,
+      "after_event_count": 223,
+      "inputs_identical": true,
+      "native_event_sha256": "6c92b0e0d2a9b7b61b0dd6ed98a3be7197558784e9e188da3499a6d2a870fca5",
+      "native_boundary_sha256": "cc7e3364dda452af18686aa46da87b19c9ae4c0e9269767e2c8cfb1670c5b87c"
+    },
+    {
+      "case_id": "run705102_r9_o704957_r9",
+      "before_pass": false,
+      "after_pass": false,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 199,
+      "before_event_count": 215,
+      "after_event_count": 215,
+      "inputs_identical": true,
+      "native_event_sha256": "b4d74e17d228d5412be5851f53219d1c85852d9b5fd6bcdeb205a9b40b0a9691",
+      "native_boundary_sha256": "6c60659a64494c587cf5513e740adfe762eeff5f0fc472f929e2dc0e39d548c9",
+      "first": {
+        "index": 131,
+        "pair": "oracle_vs_gdcore",
+        "native": {
+          "t": 273,
+          "type": 104,
+          "actor": "opponent",
+          "target": 1,
+          "origin": [
+            "item",
+            "Bloodthorne"
+          ],
+          "params": {
+            "amount": 2,
+            "used": false,
+            "reflected": false
+          },
+          "parent": 129,
+          "depth": 1
+        },
+        "core": {
+          "t": 273,
+          "type": 104,
+          "actor": "opponent",
+          "target": 1,
+          "origin": [
+            "item",
+            "Bloodthorne"
+          ],
+          "params": {
+            "amount": 1,
+            "used": false,
+            "reflected": false
+          },
+          "parent": 129,
+          "depth": 1
+        }
+      }
+    },
+    {
+      "case_id": "run705008_r12_o604515_r12",
+      "before_pass": false,
+      "after_pass": false,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 260,
+      "before_event_count": 269,
+      "after_event_count": 269,
+      "inputs_identical": true,
+      "native_event_sha256": "313d135f138097a036c899b89c4529c707613470b744781c4f5993c54eb8cb55",
+      "native_boundary_sha256": "d7d315ff5d0b2980daed2062b57c4d023dcd7f521a7595c7995b3ac95c316699",
+      "first": {
+        "index": 36,
+        "pair": "oracle_vs_gdcore",
+        "native": {
+          "t": 114,
+          "type": 103,
+          "actor": "opponent",
+          "target": 1,
+          "origin": [
+            "item",
+            "Black Knight"
+          ],
+          "params": {
+            "amount": 3,
+            "used": false,
+            "reflected": false
+          },
+          "parent": -1,
+          "depth": 0
+        },
+        "core": {
+          "t": 114,
+          "type": 110,
+          "actor": "opponent",
+          "target": 1,
+          "origin": [
+            "item",
+            "Black Bishop"
+          ],
+          "params": {
+            "amount": 5,
+            "used": false,
+            "reflected": true
+          },
+          "parent": -1,
+          "depth": 0
+        }
+      }
+    },
+    {
+      "case_id": "run705102_r15_o101334_r15",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 381,
+      "before_event_count": 381,
+      "after_event_count": 381,
+      "inputs_identical": true,
+      "native_event_sha256": "27104990cb1451c321d3a2bdaf645fcd1fc36722d4cf7430335ff07239b73f70",
+      "native_boundary_sha256": "412fee3e4365868d8e3857152328b19ad31f8b180a0b1903c09c44ce826d7bda"
+    },
+    {
+      "case_id": "run101617_r18_o604474_r18",
+      "before_pass": false,
+      "after_pass": false,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 1222,
+      "before_event_count": 1475,
+      "after_event_count": 1475,
+      "inputs_identical": true,
+      "native_event_sha256": "86e818760e76c0fb73b50abdc30f9c3eb5ecf520f54f5b0d8031d09f702efe5c",
+      "native_boundary_sha256": "fd5a325de547df011c7565c413e6b650301f2e2b59e1fc591df179793db548f5",
+      "first": {
+        "index": 208,
+        "pair": "oracle_vs_gdcore",
+        "native": {
+          "t": 283,
+          "type": 102,
+          "actor": "opponent",
+          "target": 1,
+          "origin": [
+            "item",
+            "Big Bloodthorne"
+          ],
+          "params": {
+            "amount": -3,
+            "used": true,
+            "reflected": false
+          },
+          "parent": -1,
+          "depth": 0
+        },
+        "core": {
+          "t": 275,
+          "type": 105,
+          "actor": "player",
+          "target": 0,
+          "origin": [
+            "item",
+            "Mana Orb"
+          ],
+          "params": {
+            "amount": 1,
+            "used": false,
+            "reflected": false
+          },
+          "parent": -1,
+          "depth": 0
+        }
+      }
+    },
+    {
+      "case_id": "run101779_r1_o100933_r1",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 60,
+      "before_event_count": 60,
+      "after_event_count": 60,
+      "inputs_identical": true,
+      "native_event_sha256": "9cee6f9cc21a61cd95f9cad120f452cca11ff8da79b5d75783b63cebec38c34c",
+      "native_boundary_sha256": "985faba68bb4ca9d087170a47d49e2db24dc1b9d7a3cc5e41a2bfd5dab098a2c"
+    },
+    {
+      "case_id": "run705016_r3_o101310_r3",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 123,
+      "before_event_count": 123,
+      "after_event_count": 123,
+      "inputs_identical": true,
+      "native_event_sha256": "21b098f144820cdea89c3a897bbd54fb62f5588f11f28da232048466d520d600",
+      "native_boundary_sha256": "a6017289acfb286290591be4db07f11be8365ed93a26084ea2d6ecd312ac85da"
+    },
+    {
+      "case_id": "run101671_r6_o101277_r6",
+      "before_pass": false,
+      "after_pass": false,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 349,
+      "before_event_count": 360,
+      "after_event_count": 360,
+      "inputs_identical": true,
+      "native_event_sha256": "4fd2d09c6a53fbdace3c49dfac9c55fe8ff321932a0caa95b1a9c61cd30c6baf",
+      "native_boundary_sha256": "8fdedce079ca9183eb70d296b9c0bd3be6e5d3b5315c16a7546ac2061e4c121b",
+      "first": {
+        "index": 144,
+        "pair": "oracle_vs_gdcore",
+        "native": {
+          "t": 373,
+          "type": 1,
+          "actor": "opponent",
+          "target": null,
+          "origin": [
+            "item",
+            "Dagger"
+          ],
+          "params": {
+            "damage": 13
+          },
+          "parent": -1,
+          "depth": 0
+        },
+        "core": {
+          "t": 355,
+          "type": 105,
+          "actor": "player",
+          "target": 0,
+          "origin": [
+            "item",
+            "Mana Orb"
+          ],
+          "params": {
+            "amount": 1,
+            "used": false,
+            "reflected": false
+          },
+          "parent": -1,
+          "depth": 0
+        }
+      }
+    },
+    {
+      "case_id": "run705041_r9_o500250_r9",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 710,
+      "before_event_count": 710,
+      "after_event_count": 710,
+      "inputs_identical": true,
+      "native_event_sha256": "a30c373981612703f5c72a2bb77ad523da8fc8ed1955820545589fd40b220555",
+      "native_boundary_sha256": "97598030a996e00f2ba3b90558e929169854cd6591afbb4f2d4b27575c11b117"
+    },
+    {
+      "case_id": "run704991_r12_o704508_r12",
+      "before_pass": false,
+      "after_pass": false,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 297,
+      "before_event_count": 296,
+      "after_event_count": 296,
+      "inputs_identical": true,
+      "native_event_sha256": "1c7cfeec31eb9ef7069eabd26f3b9d80cefeb6640ad2d5773c63a8749321449c",
+      "native_boundary_sha256": "8cd3c90729036e5ca687b3894b03593182a96e19e50f7888072f88b703435663",
+      "first": {
+        "index": 80,
+        "pair": "oracle_vs_gdcore",
+        "native": {
+          "t": 78,
+          "type": 1,
+          "actor": "player",
+          "target": null,
+          "origin": [
+            "item",
+            "Ruby Whelp"
+          ],
+          "params": {
+            "damage": 8
+          },
+          "parent": -1,
+          "depth": 0
+        },
+        "core": {
+          "t": 78,
+          "type": 1,
+          "actor": "player",
+          "target": null,
+          "origin": [
+            "item",
+            "Ruby Whelp"
+          ],
+          "params": {
+            "damage": 11
+          },
+          "parent": -1,
+          "depth": 0
+        }
+      }
+    },
+    {
+      "case_id": "run704972_r15_o705093_r15",
+      "before_pass": false,
+      "after_pass": false,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 686,
+      "before_event_count": 715,
+      "after_event_count": 715,
+      "inputs_identical": true,
+      "native_event_sha256": "4ba12a7d61301bd7290159d80568c4840434fadc0462aec3b874864efcd425b6",
+      "native_boundary_sha256": "93738361e2ad3f53ff18d9eabc4e5aedb44082c3a9b53205ed0ec12f59cde4ad",
+      "first": {
+        "index": 359,
+        "pair": "oracle_vs_gdcore",
+        "native": {
+          "t": 217,
+          "type": 1,
+          "actor": "opponent",
+          "target": null,
+          "origin": [
+            "item",
+            "Dragon Knight"
+          ],
+          "params": {
+            "damage": 5
+          },
+          "parent": -1,
+          "depth": 0
+        },
+        "core": {
+          "t": 217,
+          "type": 1,
+          "actor": "opponent",
+          "target": null,
+          "origin": [
+            "item",
+            "Dragon Knight"
+          ],
+          "params": {
+            "damage": 7
+          },
+          "parent": -1,
+          "depth": 0
+        }
+      }
+    },
+    {
+      "case_id": "run705039_r18_o704909_r18",
+      "before_pass": false,
+      "after_pass": false,
+      "native_winner": "opponent",
+      "before_winner": "player",
+      "after_winner": "opponent",
+      "native_event_count": 884,
+      "before_event_count": 559,
+      "after_event_count": 884,
+      "inputs_identical": true,
+      "native_event_sha256": "7c1409da6d0897841ed7f47d9408c53cf4de4e424079094397ad199a67fbe657",
+      "native_boundary_sha256": "08800bee019046526f059558bcf0cd3c9e58e7d7b0dd162ddfff988e35454754",
+      "first": {
+        "index": 585,
+        "pair": "oracle_vs_gdcore",
+        "native": {
+          "t": 299,
+          "type": 109,
+          "actor": "opponent",
+          "target": 0,
+          "origin": [
+            "item",
+            "Lightning Potion"
+          ],
+          "params": {
+            "amount": -3,
+            "used": false,
+            "reflected": false,
+            "timeout": true
+          },
+          "parent": -1,
+          "depth": 0
+        },
+        "core": {
+          "t": 299,
+          "type": 109,
+          "actor": "opponent",
+          "target": 0,
+          "origin": [
+            "item",
+            "Lightning Potion"
+          ],
+          "params": {
+            "amount": -2,
+            "used": false,
+            "reflected": false,
+            "timeout": true
+          },
+          "parent": -1,
+          "depth": 0
+        }
+      }
+    },
+    {
+      "case_id": "run604864_r1_o100952_r1",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 92,
+      "before_event_count": 92,
+      "after_event_count": 92,
+      "inputs_identical": true,
+      "native_event_sha256": "728c2bed6559cf155819b1d4b99e66e478e964ad3e2ddd7168063f5fcf843fd2",
+      "native_boundary_sha256": "3146ef2e227278b359c371eb64f633dbfc22c4d47ca91f1ab85cb01e08f91690"
+    },
+    {
+      "case_id": "run101616_r3_o101007_r3",
+      "before_pass": false,
+      "after_pass": false,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 259,
+      "before_event_count": 237,
+      "after_event_count": 237,
+      "inputs_identical": true,
+      "native_event_sha256": "e3a69d2f8d4765e2e57f24897a022aac3265d7083ee5bd7de50b8fd92646e1de",
+      "native_boundary_sha256": "970f6c8903bd6a69ed661479afb61d83b81b1e8e33eb6b10a0fb9b1d91a1970b",
+      "first": {
+        "index": 27,
+        "pair": "oracle_vs_gdcore",
+        "native": {
+          "t": 109,
+          "type": 1,
+          "actor": "player",
+          "target": null,
+          "origin": [
+            "item",
+            "Broom"
+          ],
+          "params": {
+            "damage": 4
+          },
+          "parent": -1,
+          "depth": 0
+        },
+        "core": {
+          "t": 109,
+          "type": 1,
+          "actor": "player",
+          "target": null,
+          "origin": [
+            "item",
+            "Broom"
+          ],
+          "params": {
+            "damage": 3
+          },
+          "parent": -1,
+          "depth": 0
+        }
+      }
+    },
+    {
+      "case_id": "run704933_r6_o704860_r6",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 195,
+      "before_event_count": 195,
+      "after_event_count": 195,
+      "inputs_identical": true,
+      "native_event_sha256": "39bf19cd2b0d474f0648b20d8b50b2ce0fbe73d85d9864596b6b69a968cda41b",
+      "native_boundary_sha256": "8a7e1816686c889a80287171727d8a4094426f6cd02a34003ad1fc9ef8dc4067"
+    },
+    {
+      "case_id": "run101761_r9_o100993_r9",
+      "before_pass": false,
+      "after_pass": false,
+      "native_winner": "player",
+      "before_winner": "player",
+      "after_winner": "player",
+      "native_event_count": 692,
+      "before_event_count": 687,
+      "after_event_count": 687,
+      "inputs_identical": true,
+      "native_event_sha256": "0a2667620967146e09b8600306bea11a2430f4f3dc624fd42e1173347b519f1e",
+      "native_boundary_sha256": "0bda7ecc125ef73b080db0f539ac69feb0d555a220e5d36a95e9a8bb6f621ca2",
+      "first": {
+        "index": 290,
+        "pair": "oracle_vs_gdcore",
+        "native": {
+          "t": 628,
+          "type": 105,
+          "actor": "opponent",
+          "target": 1,
+          "origin": [
+            "item",
+            "Blueberries"
+          ],
+          "params": {
+            "amount": 1,
+            "used": false,
+            "reflected": false
+          },
+          "parent": -1,
+          "depth": 0
+        },
+        "core": {
+          "t": 628,
+          "type": 107,
+          "actor": "opponent",
+          "target": 1,
+          "origin": [
+            "item",
+            "Chili Pepper"
+          ],
+          "params": {
+            "amount": 1,
+            "used": false,
+            "reflected": false
+          },
+          "parent": -1,
+          "depth": 0
+        }
+      }
+    },
+    {
+      "case_id": "run705109_r12_o101487_r12",
+      "before_pass": false,
+      "after_pass": false,
+      "native_winner": "player",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 336,
+      "before_event_count": 354,
+      "after_event_count": 354,
+      "inputs_identical": true,
+      "native_event_sha256": "b25d912727cfc2742846cd4849cac5e6ca2e0bb2c4999fa109bda53c496a78df",
+      "native_boundary_sha256": "ca6d112236f0e8d5f3d339bcd8a247a44ff2a8bd52fcae568e1d2ff33021fa80",
+      "first": {
+        "index": 84,
+        "pair": "oracle_vs_gdcore",
+        "native": {
+          "t": 98,
+          "type": 107,
+          "actor": "player",
+          "target": 1,
+          "origin": [
+            "item",
+            "Black Queen"
+          ],
+          "params": {
+            "amount": -2,
+            "used": false,
+            "reflected": false
+          },
+          "parent": -1,
+          "depth": 0
+        },
+        "core": {
+          "t": 98,
+          "type": 110,
+          "actor": "player",
+          "target": 1,
+          "origin": [
+            "item",
+            "Black Bishop"
+          ],
+          "params": {
+            "amount": 2,
+            "used": false,
+            "reflected": false
+          },
+          "parent": -1,
+          "depth": 0
+        }
+      }
+    },
+    {
+      "case_id": "run705011_r15_o604695_r15",
+      "before_pass": true,
+      "after_pass": true,
+      "native_winner": "opponent",
+      "before_winner": "opponent",
+      "after_winner": "opponent",
+      "native_event_count": 541,
+      "before_event_count": 541,
+      "after_event_count": 541,
+      "inputs_identical": true,
+      "native_event_sha256": "c1f245d301fe1f9f9e6148cdef6a96357ccb4ddffaba6747a827ea682c3afbe5",
+      "native_boundary_sha256": "462fbc340a53e4f140183501d4d0daa8fa5463596eac3e953223e607dd6ce2bb"
+    }
+  ],
+  "cpp_summary_sha256": [
+    "223bd19de921a4eb17e8b64e7ddf7879d70a904a475f2b82838b99473fd0681d",
+    "69562ade13d77c9a9fd38edbfbc45d4aea283f23e3ed46ef30779059ab7a1d2a"
+  ],
+  "dll_sha256": [
+    "df493916476528e60bcb1a82af95004f3e7544741040756a2e522c8c478e02c5",
+    "a304797fc5f73e8e57f2fe0f69cb242993b310b55f5a98a186e163a295d418d6"
+  ],
+  "gd_core_source_lines": {
+    "CoreTimer.gd": {
+      "v1": 235,
+      "candidate": 97
+    },
+    "CoreBuff.gd": {
+      "v1": 537,
+      "candidate": 484
+    },
+    "CoreCharacter.gd": {
+      "v1": 2070,
+      "candidate": 2023
+    }
+  },
+  "recipe_sha256": {
+    "stage_native_core.py": "87f55666be6dbd6f64de73252111f796ff8f172585a5231c4521bdd2de93f791",
+    "stage_native_metadata.py": "0db680a0e7f5c62a9293af095e92dca3a3181cebdb857fe12d7cd6e935a17895",
+    "stage_native_timers.py": "7ddf4bdf0ea110f167490b88d22e4e502bc291f78a59c6c5e2b21dbaee8838df",
+    "optimize_native_float.py": "6c5fc0e74b2dd507b56fe3c8eeb157da69ef01b34223a9790d6d874d64e49edb",
+    "stage_native_fatigue.py": "8d2f05663095d56eaf413c98b8a4e71efa0fcd9c141c252d3594eee415f0ad5e",
+    "stage_native_skip_cooldown_ui.py": "0b0570b26ac7cd24ac231df4a425a4866db77726a63e371aabcd602c681faedb",
+    "stage_native_holy_lamps.py": "ed6bc1efe3da6bf6dee6abed0b3b117adadac930938fe436315bfd9179a5b2b9"
+  }
+}

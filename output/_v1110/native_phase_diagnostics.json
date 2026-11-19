@@ -1,0 +1,631 @@
+{
+  "scope": "Recovered source and Godot 3.6, controlled probes kept separate from accepted corpus cases",
+  "expanded": {
+    "total": 352,
+    "native_pass": 200,
+    "winner_mismatch": 9,
+    "mutual_core_event_pass": 352,
+    "cpp_summary_sha256": "c31ff8e1ef3dcfa49f3a099624531cb1c24a6f36a12bc2d0ed0d04ae184fd372",
+    "winner_cases": [
+      {
+        "case_id": "run101571_r11_o704580_r11",
+        "winner": {
+          "cpp": "opponent",
+          "gd": "opponent",
+          "py": "opponent",
+          "oracle": "player",
+          "original": "player"
+        },
+        "first": null
+      },
+      {
+        "case_id": "run101668_r15_o704273_r15",
+        "winner": {
+          "cpp": "opponent",
+          "gd": "opponent",
+          "py": "opponent",
+          "oracle": "player",
+          "original": "player"
+        },
+        "first": null
+      },
+      {
+        "case_id": "run101777_r3_o101407_r3",
+        "winner": {
+          "cpp": "player",
+          "gd": "player",
+          "py": "player",
+          "oracle": "opponent",
+          "original": "opponent"
+        },
+        "first": null
+      },
+      {
+        "case_id": "run704864_r3_o101148_r3",
+        "winner": {
+          "cpp": "opponent",
+          "gd": "opponent",
+          "py": "opponent",
+          "oracle": "player",
+          "original": "player"
+        },
+        "first": null
+      },
+      {
+        "case_id": "run704968_r1_o400089_r1",
+        "winner": {
+          "cpp": "opponent",
+          "gd": "opponent",
+          "py": "opponent",
+          "oracle": "player",
+          "original": "player"
+        },
+        "first": null
+      },
+      {
+        "case_id": "run705039_r18_o704909_r18",
+        "winner": {
+          "cpp": "player",
+          "gd": "player",
+          "py": "player",
+          "oracle": "opponent",
+          "original": "opponent"
+        },
+        "first": null
+      },
+      {
+        "case_id": "run705074_r6_o704829_r6",
+        "winner": {
+          "cpp": "opponent",
+          "gd": "opponent",
+          "py": "opponent",
+          "oracle": "player",
+          "original": "player"
+        },
+        "first": null
+      },
+      {
+        "case_id": "run705109_r12_o101487_r12",
+        "winner": {
+          "cpp": "opponent",
+          "gd": "opponent",
+          "py": "opponent",
+          "oracle": "player",
+          "original": "player"
+        },
+        "first": null
+      },
+      {
+        "case_id": "run705122_r12_o101348_r12",
+        "winner": {
+          "cpp": "player",
+          "gd": "player",
+          "py": "player",
+          "oracle": "opponent",
+          "original": "opponent"
+        },
+        "first": null
+      }
+    ]
+  },
+  "chess": {
+    "case_id": "run100900_r15_o100932_r15",
+    "activation_engine_seed": 11602,
+    "native": {
+      "before": [
+        54,
+        1,
+        "(8, 3)",
+        "activePieces:80:before",
+        "",
+        [
+          [
+            "White King",
+            "(0, 6)"
+          ],
+          [
+            "White Knight",
+            "(8, 4)"
+          ],
+          [
+            "White Rook",
+            "(4, 2)"
+          ],
+          [
+            "White Knight",
+            "(5, 4)"
+          ],
+          [
+            "White Bishop",
+            "(5, 1)"
+          ],
+          [
+            "White Bishop",
+            "(6, 0)"
+          ],
+          [
+            "White Bishop",
+            "(3, 3)"
+          ],
+          [
+            "White Bishop",
+            "(2, 4)"
+          ],
+          [
+            "White King",
+            "(0, 0)"
+          ],
+          [
+            "White King",
+            "(0, 1)"
+          ],
+          [
+            "White King",
+            "(0, 3)"
+          ]
+        ]
+      ],
+      "after": [
+        54,
+        1,
+        "(8, 3)",
+        "activePieces:80:after",
+        "",
+        [
+          [
+            "White Knight",
+            "(5, 4)"
+          ],
+          [
+            "White Bishop",
+            "(2, 4)"
+          ],
+          [
+            "White Rook",
+            "(4, 2)"
+          ],
+          [
+            "White Bishop",
+            "(3, 3)"
+          ],
+          [
+            "White King",
+            "(0, 0)"
+          ],
+          [
+            "White King",
+            "(0, 6)"
+          ],
+          [
+            "White Bishop",
+            "(5, 1)"
+          ],
+          [
+            "White Knight",
+            "(8, 4)"
+          ],
+          [
+            "White King",
+            "(0, 1)"
+          ],
+          [
+            "White Bishop",
+            "(6, 0)"
+          ],
+          [
+            "White King",
+            "(0, 3)"
+          ]
+        ]
+      ],
+      "matching_offsets": [
+        10
+      ]
+    },
+    "oracle": {
+      "before": [
+        54,
+        1,
+        "(8, 3)",
+        "activePieces:80:before",
+        "",
+        [
+          [
+            "White King",
+            "(0, 6)"
+          ],
+          [
+            "White Knight",
+            "(8, 4)"
+          ],
+          [
+            "White Rook",
+            "(4, 2)"
+          ],
+          [
+            "White Knight",
+            "(5, 4)"
+          ],
+          [
+            "White Bishop",
+            "(5, 1)"
+          ],
+          [
+            "White Bishop",
+            "(6, 0)"
+          ],
+          [
+            "White Bishop",
+            "(3, 3)"
+          ],
+          [
+            "White Bishop",
+            "(2, 4)"
+          ],
+          [
+            "White King",
+            "(0, 0)"
+          ],
+          [
+            "White King",
+            "(0, 1)"
+          ],
+          [
+            "White King",
+            "(0, 3)"
+          ]
+        ]
+      ],
+      "after": [
+        54,
+        1,
+        "(8, 3)",
+        "activePieces:80:after",
+        "",
+        [
+          [
+            "White King",
+            "(0, 6)"
+          ],
+          [
+            "White Knight",
+            "(5, 4)"
+          ],
+          [
+            "White Knight",
+            "(8, 4)"
+          ],
+          [
+            "White Bishop",
+            "(3, 3)"
+          ],
+          [
+            "White Bishop",
+            "(5, 1)"
+          ],
+          [
+            "White Bishop",
+            "(6, 0)"
+          ],
+          [
+            "White King",
+            "(0, 1)"
+          ],
+          [
+            "White King",
+            "(0, 3)"
+          ],
+          [
+            "White King",
+            "(0, 0)"
+          ],
+          [
+            "White Bishop",
+            "(2, 4)"
+          ],
+          [
+            "White Rook",
+            "(4, 2)"
+          ]
+        ]
+      ],
+      "matching_offsets": [
+        0
+      ]
+    },
+    "native_cursor_changes": [
+      [
+        0.666667,
+        "physics boundary",
+        0,
+        2
+      ],
+      [
+        0.716667,
+        "physics boundary",
+        2,
+        4
+      ],
+      [
+        0.766667,
+        "physics boundary",
+        4,
+        6
+      ],
+      [
+        0.816667,
+        "physics boundary",
+        6,
+        8
+      ],
+      [
+        0.866667,
+        "idle boundary",
+        8,
+        123
+      ],
+      [
+        0.866667,
+        "physics boundary",
+        123,
+        125
+      ],
+      [
+        0.916667,
+        "physics boundary",
+        125,
+        127
+      ],
+      [
+        0.966667,
+        "physics boundary",
+        127,
+        129
+      ]
+    ],
+    "native_cursor_changes_with_particle_suppression": [
+      [
+        0.65,
+        "physics boundary",
+        0,
+        2
+      ],
+      [
+        0.7,
+        "physics boundary",
+        2,
+        4
+      ],
+      [
+        0.75,
+        "physics boundary",
+        4,
+        6
+      ],
+      [
+        0.8,
+        "physics boundary",
+        6,
+        8
+      ],
+      [
+        0.85,
+        "physics boundary",
+        8,
+        10
+      ],
+      [
+        0.9,
+        "physics boundary",
+        10,
+        12
+      ],
+      [
+        0.916667,
+        "idle boundary",
+        12,
+        30
+      ],
+      [
+        0.95,
+        "physics boundary",
+        30,
+        32
+      ]
+    ]
+  },
+  "buff_state_shape": "[type,current,permanent,temporary_count], arrays ordered player then opponent",
+  "two_native_cases_in_same_process": [
+    {
+      "case_id": "run704972_r15_o705093_r15",
+      "before_activate": [
+        [],
+        []
+      ],
+      "terminal": [
+        [
+          [
+            107,
+            23,
+            23,
+            0
+          ],
+          [
+            109,
+            8,
+            0,
+            2
+          ]
+        ],
+        [
+          [
+            100,
+            77,
+            77,
+            0
+          ],
+          [
+            101,
+            5,
+            5,
+            0
+          ],
+          [
+            102,
+            4,
+            4,
+            0
+          ],
+          [
+            103,
+            1,
+            1,
+            0
+          ],
+          [
+            104,
+            2,
+            2,
+            0
+          ],
+          [
+            105,
+            1,
+            1,
+            0
+          ],
+          [
+            106,
+            9,
+            9,
+            0
+          ],
+          [
+            107,
+            13,
+            13,
+            0
+          ]
+        ]
+      ],
+      "boundary_sha256": "a6b2a9d8790826da88371c14ac129396b4148665062c358a3144838b2a9f0cb3"
+    },
+    {
+      "case_id": "run705039_r18_o704909_r18",
+      "before_activate": [
+        [
+          [
+            107,
+            0,
+            23,
+            0
+          ]
+        ],
+        []
+      ],
+      "terminal": [
+        [
+          [
+            100,
+            8,
+            8,
+            0
+          ],
+          [
+            101,
+            51,
+            51,
+            0
+          ],
+          [
+            102,
+            31,
+            31,
+            0
+          ],
+          [
+            103,
+            15,
+            15,
+            0
+          ],
+          [
+            104,
+            17,
+            17,
+            0
+          ],
+          [
+            105,
+            14,
+            14,
+            0
+          ],
+          [
+            106,
+            26,
+            26,
+            0
+          ],
+          [
+            107,
+            56,
+            79,
+            0
+          ]
+        ],
+        [
+          [
+            101,
+            4,
+            4,
+            0
+          ],
+          [
+            102,
+            8,
+            8,
+            0
+          ],
+          [
+            103,
+            2,
+            2,
+            0
+          ],
+          [
+            104,
+            6,
+            6,
+            0
+          ],
+          [
+            105,
+            4,
+            4,
+            0
+          ],
+          [
+            106,
+            3,
+            3,
+            0
+          ],
+          [
+            107,
+            9,
+            9,
+            0
+          ],
+          [
+            110,
+            4,
+            4,
+            0
+          ]
+        ]
+      ],
+      "boundary_sha256": "9b1c128200998ef93868aa3eabf32430816589ac1348d203b8458b5aa8168c51"
+    }
+  ]
+}

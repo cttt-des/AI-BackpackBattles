@@ -17,14 +17,18 @@ ap = argparse.ArgumentParser()
 ap.add_argument("--before", default="native_kernel_baseline")
 ap.add_argument("--after", default="native_kernel_timers")
 ap.add_argument("--before-dll", type=Path, help="Override the baseline DLL path")
+ap.add_argument("--after-dll", type=Path, help="Override the candidate DLL path")
+ap.add_argument("--after-results", type=Path, help="Candidate verification directory with the same inputs")
+ap.add_argument("--report", type=Path)
 ap.add_argument("--rounds", type=int, default=5)
 ap.add_argument("--iterations", type=int, default=5)
 ap.add_argument("--samples", type=int, default=3)
 args = ap.parse_args()
 roots = [stage / name for name in (args.before, args.after)]
-summaries = [json.loads((root / "cpp/summary.json").read_text("utf8")) for root in roots]
+verified = [roots[0] / "cpp", args.after_results or roots[1] / "cpp"]
+summaries = [json.loads((root / "summary.json").read_text("utf8")) for root in verified]
 # Read the per-case files; the summary only includes a prefix of failures.
-reports = [[json.loads(path.read_text("utf8")) for path in (root / "cpp").glob("run*.json")] for root in roots]
+reports = [[json.loads(path.read_text("utf8")) for path in root.glob("run*.json")] for root in verified]
 assert all(len(rows) == summary["total"] for rows, summary in zip(reports, summaries))
 maps = [{row["caseId"]: row for row in report} for report in reports]
 eligible = [cid for cid, row in maps[0].items()
@@ -32,8 +36,10 @@ eligible = [cid for cid, row in maps[0].items()
 assert eligible and args.rounds >= 3 and args.iterations > 0 and args.samples >= 2
 ranked = sorted(eligible, key=lambda cid: len(json.loads((roots[1] / "fights" / cid / "events.json").read_text("utf8"))["events"]))
 selected = list(dict.fromkeys(ranked[round(i * (len(ranked) - 1) / (args.samples - 1))] for i in range(args.samples)))
-dlls = [args.before_dll or roots[0] / "bin/libgdcore.dll", sim_root / "native_sim_cpp/native_sim/libgdcore.dll"]
+dlls = [args.before_dll or roots[0] / "bin/libgdcore.dll", args.after_dll or sim_root / "native_sim_cpp/native_sim/libgdcore.dll"]
 dlls = [path.resolve() for path in dlls]
+if args.after_results is not None:
+    assert Path(summaries[1]["dll"]).resolve() == dlls[1], "Verification used a different candidate DLL"
 engines = [NativeSimulator(path) for path in dlls]
 for engine in engines:
     engine.lib.gd_sim_set_dbg_events.argtypes = [ctypes.c_int32]
@@ -83,4 +89,5 @@ for cid in selected:
             "after_over_before": medians[1] / medians[0], "signature": list(signatures[0].pop())}
     result["cases"].append(row)
     print(cid, row["modes"], flush=True)
-(roots[1] / "performance_pair.json").write_text(json.dumps(result, indent=2) + "\n", encoding="utf8")
+report = args.report or roots[1] / "performance_pair.json"
+report.write_text(json.dumps(result, indent=2) + "\n", encoding="utf8")
