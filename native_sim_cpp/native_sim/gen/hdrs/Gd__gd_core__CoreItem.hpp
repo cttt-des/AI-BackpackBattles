@@ -44,10 +44,6 @@ struct Gd__gd_core__CoreItem : public gd::GdObj {
     gd::GdVal f_triggersThisFrame;
     gd::GdVal f_triggerTime;
     gd::GdVal f_iterationCooldown;
-    gd::GdVal f_flk_suppress_fire;
-    gd::GdVal f__inj_item;
-    gd::GdVal f__inj_trigger_n;
-    gd::GdVal f__inj_trigger_count;
     gd::GdVal f_itemMetrics;
     gd::GdVal f_gems;
     gd::GdVal f__grid;

@@ -367,7 +367,7 @@ def _v3_lineup(case_id: str, side: str, lu_side: dict, entries: list,
                                 "effects": e["effects"],
                                 # ★ np24：crafted 实例真值（py 侧同注入）
                                 "crafted": e["crafted"],
-                                "gems": [{"id": g} for g in e["gems"] if g]}
+                                "gems": [{"id": g} if g else None for g in e["gems"]]}
                                for e in entries]},
         "storage": [],
     }
@@ -478,15 +478,8 @@ def oracle_mode(case_dirs: list, lineup_out: str, batch_out: str) -> int:
                 "items": items_gd,
             }
             # v3 阵容的 gems 也要走同一截断口径（两侧阵容变换一致）
-            if sides[side]["backpack"]["items"]:
-                v3i = sides[side]["backpack"]["items"]
-                gi = 0
-                for e in entries:
-                    gems = e["gems"]
-                    if len(gems) > int(table_items[e["key"]]["sockets"]):
-                        gems = gems[:int(table_items[e["key"]]["sockets"])]
-                    v3i[gi]["gems"] = [{"id": g} for g in gems if g]
-                    gi += 1
+            for v3_item, gd_item in zip(sides[side]["backpack"]["items"], items_gd, strict=True):
+                v3_item["gems"] = [{"id": g["key"]} if g else None for g in gd_item["gems"]]
         if bad:
             continue
         for w in warnings:
@@ -498,15 +491,20 @@ def oracle_mode(case_dirs: list, lineup_out: str, batch_out: str) -> int:
                 json.dump(sides[side], fh, ensure_ascii=False, indent=1)
                 fh.write("\n")
 
-        # ★ np51：player_run 自定义规则 → 夹具 case 级 custom_health_multiplier
-        #   （位流在夹具层解析为数值）→ gd/py 腿 ctx 复原 prepare() 健康倍率。
-        m_case = re.match(r"run(\d+)_r\d+(?:_o\d+_r\d+)?$", case_id)
+        # New capture uses the engine's effective rules. Older snapshots need
+        # the history database decoder and retain the historical league default.
+        controls = lu.get("replay_controls") or {}
+        health_multiplier = controls.get("custom_health_multiplier")
+        if health_multiplier is None:
+            m_case = re.match(r"run(\d+)_r\d+(?:_o\d+_r\d+)?$", case_id)
+            health_multiplier = custom_health_multiplier_of(
+                _history_run_custom(int(m_case.group(1)) if m_case else None))
         cases.append({
             "case_id": case_id,
             "seed": int(lu["seed"]),
             "round_id": round_id,
-            "custom_health_multiplier": custom_health_multiplier_of(
-                _history_run_custom(int(m_case.group(1)) if m_case else None)),
+            "custom_health_multiplier": float(health_multiplier),
+            "below_master": controls.get("below_master", True),
             "player": batch_sides["player"],
             "opponent": batch_sides["opponent"],
         })

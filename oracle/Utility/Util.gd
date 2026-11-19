@@ -757,14 +757,8 @@ func callDelayed_process(target, methodName, delay, binds = []):
 #      oracleTimeLeft() 供战斗路径读剩余时以注册表为准（changeTimer /
 #      CombatTimer.advanceTime / Buff 三处调用点）。
 #   正常（非神谕）运行时两个容器恒空，全部行为与原版逐位一致。
-var oracleFrameEndCalls: Array = []      # ★ A3 卡链忠实化（2026-11-15）：
-                                         #    call_deferred 的 harness 等价物——真实游戏在帧末
-                                         #    泵 MessageQueue（60fps 下帧:tick≈1:1），阻塞录制循环
-                                         #    无帧 ⇒ Deck of Cards 的 startActivation（唯一战斗语义
-                                         #    deferred 点）永不执行 ⇒ 语料卡链全灭。改登记于此，
-                                         #    由 oracle_fight.gd 在 activateItems 后与每 tick 末冲刷。
-                                         #    冲刷语义与内核 flushDeferred 一致：一次一批，冲刷期间
-                                         #    新入队留到下一批。
+var oracleFrameEndCalls: Array = []  # Engine call_deferred equivalents.
+var oracleIdleFrameCalls: Array = []  # One-shot idle_frame connections.
 var oracleDelayedTimers: Array = []      # [[SceneTreeTimer, 剩余秒], …]
 var oracleTimerLefts: Dictionary = {}    # Timer → [注册表剩余秒, 上次引擎读数]
 
@@ -818,20 +812,29 @@ func rng_trace_i():
 	return r
 
 
+func startTrackedTimer(timer: Timer, duration: float) -> void:
+	timer.start(duration)
+	if oracleTimerLefts.has(timer):
+		# The next pass must observe a restart even when start() wrote the old value.
+		oracleTimerLefts[timer][1] = -1.0
+
+
 func oracleTimeLeft(timer: Timer) -> float:
 	if oracleTimerLefts.has(timer):
-		return oracleTimerLefts[timer][0]
+		var entry = oracleTimerLefts[timer]
+		if entry[1] < 0.0:
+			return timer.get_time_left()
+		return entry[0]
 	return - 1.0
 # ══════════════════════════════════════════════════════════════════════
 
 
 func callNextFrame(target, methodName, arguments = []):
-	# ★ A3/M15（2026-11-15）：帧末单发 = 卡链同族语义。阻塞录制循环无帧，
-	#   idle_frame 永不发出（Lightsaber.onBlindingLightTimeout 的
-	#   endBlindingLight 即此——blindingLightActive 锁死，blind 再循环被抑制）。
-	#   改登记帧末列表，由 oracle_fight.gd flush_frame_end_calls 冲刷
-	#   （CONNECT_ONESHOT 语义 = 登记一次执行一次，天然等价）。
-	oracleFrameEndCalls.push_back([target, methodName, arguments])
+	# Mirror an idle_frame CONNECT_ONESHOT. Duplicate connections are ignored.
+	for entry in oracleIdleFrameCalls:
+		if entry[0] == target and entry[1] == methodName:
+			return
+	oracleIdleFrameCalls.push_back([target, methodName, arguments])
 
 func finishTimer(timer: Timer):
 	if not timer.is_stopped():

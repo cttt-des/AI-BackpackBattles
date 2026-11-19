@@ -30,6 +30,7 @@ struct Gd__gd_core__CoreTimer : public gd::GdObj {
     gd::GdVal fn_isFinished(const gd::GdVal* _args, int _argc);
     gd::GdVal fn_tick(const gd::GdVal* _args, int _argc);
     gd::GdVal fn__onTimeout(const gd::GdVal* _args, int _argc);
+    gd::GdVal fn__emitTimeout(const gd::GdVal* _args, int _argc);
     gd::GdVal fn__utilTime(const gd::GdVal* _args, int _argc);
     gd::GdVal fn_rebuildSeen(const gd::GdVal* _args, int _argc);
     static gd::GdVal sf__f32eng(gd::BattleCtx& gd_ctx, const gd::GdVal* _args, int _argc);

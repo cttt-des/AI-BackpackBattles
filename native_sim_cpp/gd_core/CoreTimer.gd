@@ -18,10 +18,6 @@
 #   start(t)：已停止 → 正常启动；否则 → 把 `Util.time + t` 压入 timestamps
 #   stop()：清 timestamps 并停止
 #   onTimeout()：先发信号，再取下一个时间戳；差值 > 0.05 则重新 start，否则立即递归
-#   ★ np25w_f01 订正：以上 onTimeout 的「取下一时间戳/递归」在神谕 harness 下
-#     不可达——oracle_fight.gd drive_timers 到点段先 `timer.stop()`（清排队）
-#     再 emit。内核 _onTimeout 已按此对齐（见该函数注释），叠加排队只活到
-#     首个到期拍。
 #   内核把 `Util.time` 换成 `ctx.time`（同一物理帧累加量），把 `emit_signal("multi_timeout")`
 #   换成 tscn 连接的等价物：直接调用目标方法（全部 43 条连接都是 `to="."`，即物品自身）。
 #
@@ -173,40 +169,31 @@ func tick(delta: float) -> void :
 	_onTimeout()
 
 
-# 对齐 MultiTimer.gd:27-38
-# ★ np25w_f01 定谳（run583_r11 SPF 毒批首分歧@120：gd 3 发 v 语料 2 发）：
-#   到点序列必须对齐 oracle_fight.gd drive_timers 到点段（:908-912）——引擎侧
-#   `timer.stop()` 先于 `emit_signal("timeout")`。MultiTimer.stop()
-#   （oracle/Utility/MultiTimer.gd:20-22）清 timestamps ⇒ start() 在运行中
-#   排队的叠加到期（timestamps.push_back）在首个到期拍**全部丢弃**。
-#   实证链：1.9833 拍两侧 canonical 逐行全等 ⇒ 双侧同为 3 次 start
-#   （瓶1 own+chain 叠加、瓶2 own）；语料 fire=2（瓶1 叠加被 stop 清掉），
-#   gd 旧 pop/递归语义 fire=3。处理器内再 start(x)（refresh 语义）因
-#   先已 _stopped=true 走重启动分支（push 分支不触发），与 harness emit 后
-#   `is_stopped()==false → e[0]=time_left` 同构。
+# Native one-shot expiry stops the countdown without invoking MultiTimer.stop().
 func _onTimeout() -> void :
+	_stopped = true
+	_left = 0.0
+	_emitTimeout()
+	if multi:
+		while not timestamps.empty():
+			var delay = timestamps.pop_front() - _utilTime()
+			if delay > 0.05:
+				start(delay)
+				break
+			_emitTimeout()
+
+	if not _stopped:
+		_left = _eng
+		_seen = _eng
+
+
+func _emitTimeout() -> void :
 	if _dbg:
 		print("[tfire] %s wt=%.6f left=%.6f t=%.6f n=%d" % [name, wait_time,
 				_left, _utilTime(), fire_count])
-	_stopped = true
-	_left = 0.0
-	if multi:
-		timestamps.clear()
 	fire_count += 1
 	if _owner != null and callback_method != "":
 		_owner.call(callback_method)
-
-	if _stopped:
-		return          # 处理器未重启：叠加排队已清、one_shot 恒停（=harness e[0]=-1）
-	if multi:
-		return          # multi 重启走 start() 的 timestamps 路径（f01 语义）
-	# ★ post-emit 重挂（harness :915-919）：处理器重启 ⇒ e[0]=e[1]=eng 无条件
-	#   （含同值）；循环计时器无重启 ⇒ harness 代 start(w) 兜底续接，同式。
-	#   ★ np29fB 三值一律过 f32：harness e[0]/e[1] 的源是引擎读数
-	#   get_time_left()（real_t=float32 存储）——见本文件 _f32eng 注。
-	_left = _f32eng(wait_time)
-	_seen = _f32eng(wait_time)
-	_eng = _f32eng(wait_time)
 
 
 # 对齐 Util.time（无 ctx 时的兜底，便于独立单测）

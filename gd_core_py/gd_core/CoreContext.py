@@ -131,6 +131,7 @@ class CoreContext(GodotObject):
 		self.out_of_stamina_count = 0  # 对齐 Game.numTimesOutOfStamina
 		self.warn_unknown_api = True
 		self._deferred = []
+		self._idle_frame_calls = []
 		self._timed = []
 		self.deferred_flush_enabled = True
 		self.eb_relay_mirrored = False
@@ -270,8 +271,8 @@ class CoreContext(GodotObject):
 	# ── 延迟调用队列（替代原版的 call_deferred） ──
 	# 原版散落 6 处 call_deferred（Character.gd:968 重算体力上限、Item.gd:2035 旋转落位、
 	# Item.gd:1544 等）。语义都是「当前帧末执行」。内核不依赖场景树，故用一个显式队列
-	# 在帧末 flush（CoreCombat.physicsTick 的最后一步），次序与原版 SceneTree 的
-	# call_deferred 一致（同一帧内按入队顺序执行）。
+	# Godot drains nested deferred calls within the same flush.
+	# Calls queued during a flush join its FIFO tail.
 
 
 	def _init(self, _seed=0, _hooks=None):
@@ -396,7 +397,7 @@ class CoreContext(GodotObject):
 		return not (not self._deferred)
 
 
-	# 帧末 flush。执行期间新入队的调用留到下一帧（与 SceneTree 语义一致）。
+	# Godot drains nested deferred calls within the same flush.
 	# ★ np24 harness：deferred_flush_enabled=false 时本函数直接返回——对位神谕
 	#   录制 harness 的 [M11] 语义（oracle_fight.gd:236-239）：阻塞 tick 循环无帧，
 	#   MessageQueue（call_deferred）在整场战斗内**从不冲刷**（跨场累积至配额退出
@@ -424,15 +425,33 @@ class CoreContext(GodotObject):
 	def flushDeferred(self):
 		if not self.deferred_flush_enabled:
 			return
-		if (not self._deferred):
+		while not (not self._deferred):
+			batch = self._deferred
+			self._deferred = []
+			for call in (batch if batch.__class__ is list else _iter(batch)):
+				obj = call[0]
+				if obj != None:
+					obj.callv(call[1], call[2])
+
+
+	def connectIdleFrameOnce(self, obj, methodName, args=[]):
+		for call in (self._idle_frame_calls if self._idle_frame_calls.__class__ is list else _iter(self._idle_frame_calls)):
+			if call[0] == obj and call[1] == methodName:
+				return
+		self._idle_frame_calls.append([obj, methodName, args])
+
+
+	def flushIdleFrameCalls(self):
+		if not self.deferred_flush_enabled:
 			return
-		batch = self._deferred
-		self._deferred = []
+		batch = self._idle_frame_calls
+		self._idle_frame_calls = []
+		if self.fight_ended:
+			return
 		for call in (batch if batch.__class__ is list else _iter(batch)):
 			obj = call[0]
-			if obj == None:
-				continue
-			obj.callv(call[1], call[2])
+			if obj != None:
+				obj.callv(call[1], call[2])
 
 
 	# ── 空背包回落（对齐「Game.PLAYER.INVENTORY 恒非空」） ──

@@ -32,6 +32,11 @@ func stop():
 
 
 
+# Simulate the engine's one-shot expiry without clearing MultiTimer's queue.
+func stopCountdownForTimeout() -> void:
+	.stop()
+
+
 func isFinished() -> bool:
 	return timestamps.empty()
 

@@ -163,9 +163,10 @@ var warn_unknown_api := true
 # ── 延迟调用队列（替代原版的 call_deferred） ──
 # 原版散落 6 处 call_deferred（Character.gd:968 重算体力上限、Item.gd:2035 旋转落位、
 # Item.gd:1544 等）。语义都是「当前帧末执行」。内核不依赖场景树，故用一个显式队列
-# 在帧末 flush（CoreCombat.physicsTick 的最后一步），次序与原版 SceneTree 的
-# call_deferred 一致（同一帧内按入队顺序执行）。
+# Godot drains nested deferred calls within the same flush.
+# Calls queued during a flush join its FIFO tail.
 var _deferred: Array = []
+var _idle_frame_calls: Array = []
 
 
 func _init(_seed: int = 0, _hooks = null) -> void :
@@ -283,7 +284,7 @@ func hasDeferred() -> bool:
 	return not _deferred.empty()
 
 
-# 帧末 flush。执行期间新入队的调用留到下一帧（与 SceneTree 语义一致）。
+# Godot drains nested deferred calls within the same flush.
 # ★ np24 harness：deferred_flush_enabled=false 时本函数直接返回——对位神谕
 #   录制 harness 的 [M11] 语义（oracle_fight.gd:236-239）：阻塞 tick 循环无帧，
 #   MessageQueue（call_deferred）在整场战斗内**从不冲刷**（跨场累积至配额退出
@@ -315,15 +316,33 @@ var keyed_cleanse_biggest_first := false
 func flushDeferred() -> void :
 	if not deferred_flush_enabled:
 		return
-	if _deferred.empty():
+	while not _deferred.empty():
+		var batch = _deferred
+		_deferred = []
+		for call in batch:
+			var obj = call[0]
+			if obj != null:
+				obj.callv(call[1], call[2])
+
+
+func connectIdleFrameOnce(obj, methodName: String, args: Array = []) -> void :
+	for call in _idle_frame_calls:
+		if call[0] == obj and call[1] == methodName:
+			return
+	_idle_frame_calls.push_back([obj, methodName, args])
+
+
+func flushIdleFrameCalls() -> void :
+	if not deferred_flush_enabled:
 		return
-	var batch = _deferred
-	_deferred = []
+	var batch = _idle_frame_calls
+	_idle_frame_calls = []
+	if fight_ended:
+		return
 	for call in batch:
 		var obj = call[0]
-		if obj == null:
-			continue
-		obj.callv(call[1], call[2])
+		if obj != null:
+			obj.callv(call[1], call[2])
 
 
 # ── 空背包回落（对齐「Game.PLAYER.INVENTORY 恒非空」） ──

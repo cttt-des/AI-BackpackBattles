@@ -221,14 +221,30 @@ class _OriginRef:
     ★ damage_source（对齐路径附加字段）：origin 为数字伤害源（DamageSource.Type，
       经 typeToKeyword 化的 keyword）时置 True——神谕 dump 里这类 origin 是裸数字，
       物品/宝石是 dict，工具层据此还原形状。"""
-    __slots__ = ("key", "gem_host", "gem_slot", "damage_source")
+    __slots__ = ("key", "gem_host", "gem_slot", "damage_source", "gem_identity")
 
     def __init__(self, key: str, gem_host: Optional[str] = None,
-                 gem_slot: Optional[int] = None, damage_source: bool = False):
+                 gem_slot: Optional[int] = None, damage_source: bool = False,
+                 gem_identity: Optional[tuple] = None):
         self.key = key
         self.gem_host = gem_host
         self.gem_slot = gem_slot
         self.damage_source = damage_source
+        self.gem_identity = gem_identity
+
+    @classmethod
+    def from_gem(cls, key, gem):
+        host = getattr(gem, "socket", None)
+        if host is None:
+            return cls(key)
+        try:
+            host_key = str(host.descriptor.identifier)
+            slot = next((i for i, equipped in enumerate(host.gems) if equipped is gem), -1)
+            cell = host.getTopLeftCell()
+            identity = (key, host_key, int(host.ownerType), int(cell.x), int(cell.y), slot)
+        except (AttributeError, TypeError, ValueError):
+            return cls(key, getattr(getattr(host, "descriptor", None), "identifier", None))
+        return cls(key, host_key, slot, gem_identity=identity)
 
     def __repr__(self):
         return "<%s>" % self.key
@@ -334,22 +350,7 @@ class _LogMixin:
             except Exception:  # noqa: BLE001
                 is_gem = False
             if is_gem:
-                host = getattr(origin, "socket", None)
-                host_key = None
-                slot = None
-                if host is not None:
-                    try:
-                        host_key = str(host.descriptor.identifier)
-                    except Exception:  # noqa: BLE001
-                        host_key = None
-                    try:
-                        for i, g in enumerate(list(host.gems)):
-                            if g is origin:
-                                slot = i
-                                break
-                    except Exception:  # noqa: BLE001
-                        slot = None
-                return _OriginRef(ident, host_key, slot)
+                return _OriginRef.from_gem(ident, origin)
             return _OriginRef(ident)
         # 数字 origin = DamageSource.Type（原版 CombatEvent.asText：
         # `origin is Item` 为假时走 Game.typeToKeyword(origin)）。
@@ -515,22 +516,7 @@ class _LogMixin:
                 except Exception:  # noqa: BLE001
                     is_gem = False
                 if is_gem:
-                    host = getattr(origin, "socket", None)
-                    host_key = None
-                    slot = None
-                    if host is not None:
-                        try:
-                            host_key = str(host.descriptor.identifier)
-                        except Exception:  # noqa: BLE001
-                            host_key = None
-                        try:
-                            for i, g in enumerate(list(host.gems)):
-                                if g is origin:
-                                    slot = i
-                                    break
-                        except Exception:  # noqa: BLE001
-                            slot = None
-                    okey = _OriginRef(ident, host_key, slot)
+                    okey = _OriginRef.from_gem(ident, origin)
                 else:
                     okey = self._oref_cache.get(ident)
                     if okey is None:

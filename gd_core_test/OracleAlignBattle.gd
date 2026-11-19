@@ -324,9 +324,12 @@ class CaptureProbe extends CoreHooks:
 				return a
 		var sock = o.get("socket")
 		if sock != null:
+			var cell = sock.getTopLeftCell()
 			return {"kind": "gem",
 					"host": {"kind": "unknown", "str": "GemSocket2"},
-					"socket_index": -1}
+					"socket_index": -1,
+					"identity": [String(o.descriptor.identifier), String(sock.descriptor.identifier),
+							int(sock.ownerType), int(cell.x), int(cell.y), sock.gems.find(o)]}
 		# （上分支 host.str="GemSocket2" 为占位字面：真值=录制工程 socket 节点
 		#   自动名、双层不消费——实证注释见本文件 _j 上方 ★ gem origin 转录块。）
 		if o.has_method("getTopLeftCell") and "descriptor" in o:
@@ -731,7 +734,7 @@ func run_case(c: Dictionary, out_root: String, perm_warm := false, r5_warm := fa
 	#   tick ⇒ 映射应 (0.95,1.05)」的推断被证伪：同 J₀ 下 gd FFR 速度 1.06 而
 	#   oracle 实测需 ~1.07（1.4·0.985024/(78/60)），±1 tick 的真根源是对手
 	#   速度面差（族A 同签名），非冷却映射；±0.2 命中/暴击偏置随本开关在位。
-	ctx.below_master = true
+	ctx.below_master = bool(c.get("below_master", true))
 	ctx.cur_round = int(c["round_id"])
 
 	# ★ 装配期链约定（对齐 oracle_fight.gd:505-537 的实证语义）：
@@ -1188,7 +1191,8 @@ func run_case(c: Dictionary, out_root: String, perm_warm := false, r5_warm := fa
 	var fh = File.new()
 	var payload = {
 		"case_id": case_id, "seed": seed_value, "round_id": int(c["round_id"]),
-		"below_master": true, "preordered": true,
+		"below_master": ctx.below_master, "preordered": true,
+		"custom_health_multiplier": ctx.custom_health_multiplier,
 		"rng_state_injected": not no_inject,
 		"no_inject": no_inject,
 		"combat_time": res["combat_time"], "ticks": res["ticks"],

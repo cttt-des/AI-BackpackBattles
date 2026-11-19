@@ -94,9 +94,9 @@ enum GenClsId : gd::ClsId {
     CLS_Gd__gd_core__HealthPotion,
     CLS_Gd__gd_core__HeartContainer,
     CLS_Gd__gd_core__HeartofDarkness,
+    CLS_Gd__gd_core__HeroicPotion,
     CLS_Gd__gd_core__HeroLongsword,
     CLS_Gd__gd_core__HeroSword,
-    CLS_Gd__gd_core__HeroicPotion,
     CLS_Gd__gd_core__HoloFireLizard,
     CLS_Gd__gd_core__HolyArmor,
     CLS_Gd__gd_core__HolySpear,
@@ -227,7 +227,6 @@ enum GenClsId : gd::ClsId {
     CLS_Gd__gd_core_items__Exclusive__AcornAce,
     CLS_Gd__gd_core_items__Exclusive__AmethystEgg,
     CLS_Gd__gd_core_items__Exclusive__AmethystWhelp,
-    CLS_Gd__gd_core_items__Exclusive__AmuletUnidentified,
     CLS_Gd__gd_core_items__Exclusive__AmuletofAgility,
     CLS_Gd__gd_core_items__Exclusive__AmuletofAlchemy,
     CLS_Gd__gd_core_items__Exclusive__AmuletofDarkness,
@@ -237,6 +236,7 @@ enum GenClsId : gd::ClsId {
     CLS_Gd__gd_core_items__Exclusive__AmuletofLight,
     CLS_Gd__gd_core_items__Exclusive__AmuletofSteel,
     CLS_Gd__gd_core_items__Exclusive__AmuletoftheWild,
+    CLS_Gd__gd_core_items__Exclusive__AmuletUnidentified,
     CLS_Gd__gd_core_items__Exclusive__AngelCrystal,
     CLS_Gd__gd_core_items__Exclusive__Anvil,
     CLS_Gd__gd_core_items__Exclusive__ArcaneBoots,
@@ -287,8 +287,8 @@ enum GenClsId : gd::ClsId {
     CLS_Gd__gd_core_items__Exclusive__CapofBrilliance,
     CLS_Gd__gd_core_items__Exclusive__CatSpirit,
     CLS_Gd__gd_core_items__Exclusive__Cauldron,
-    CLS_Gd__gd_core_items__Exclusive__ChainWhip,
     CLS_Gd__gd_core_items__Exclusive__Chainsaw,
+    CLS_Gd__gd_core_items__Exclusive__ChainWhip,
     CLS_Gd__gd_core_items__Exclusive__ChargeSplitter,
     CLS_Gd__gd_core_items__Exclusive__Cheese,
     CLS_Gd__gd_core_items__Exclusive__CheeseGoobert,
@@ -338,8 +338,8 @@ enum GenClsId : gd::ClsId {
     CLS_Gd__gd_core_items__RubyWhelp,
     CLS_Gd__gd_core_items__Exclusive__DragonKnight,
     CLS_Gd__gd_core_items__Exclusive__DragonNest,
-    CLS_Gd__gd_core_items__Exclusive__DragonSet,
     CLS_Gd__gd_core_items__Exclusive__DragonscaleArmor,
+    CLS_Gd__gd_core_items__Exclusive__DragonSet,
     CLS_Gd__gd_core_items__Exclusive__DragonskinBoots,
     CLS_Gd__gd_core_items__Exclusive__DualWielding,
     CLS_Gd__gd_core_items__Exclusive__Eat_o_matic,
@@ -388,8 +388,8 @@ enum GenClsId : gd::ClsId {
     CLS_Gd__gd_core_items__Exclusive__Halberd,
     CLS_Gd__gd_core_items__Exclusive__Hardwood,
     CLS_Gd__gd_core_items__Exclusive__HawkRune,
-    CLS_Gd__gd_core_items__Exclusive__HeartShield,
     CLS_Gd__gd_core_items__Exclusive__HeartoftheCards,
+    CLS_Gd__gd_core_items__Exclusive__HeartShield,
     CLS_Gd__gd_core_items__Exclusive__HeavyDrinking,
     CLS_Gd__gd_core_items__Exclusive__Hedgehog,
     CLS_Gd__gd_core_items__WoodenBuckler,
@@ -397,8 +397,8 @@ enum GenClsId : gd::ClsId {
     CLS_Gd__gd_core_items__Exclusive__HogusBogus,
     CLS_Gd__gd_core_items__Exclusive__Holdall,
     CLS_Gd__gd_core_items__Exclusive__HolyCollar,
-    CLS_Gd__gd_core_items__Exclusive__HyperHedgehog,
     CLS_Gd__gd_core_items__Exclusive__Hypercube,
+    CLS_Gd__gd_core_items__Exclusive__HyperHedgehog,
     CLS_Gd__gd_core_items__Exclusive__IceArmor,
     CLS_Gd__gd_core_items__Exclusive__IceDragon,
     CLS_Gd__gd_core_items__Exclusive__IceFlower,
@@ -457,8 +457,8 @@ enum GenClsId : gd::ClsId {
     CLS_Gd__gd_core_items__Exclusive__PerpetuumMobile,
     CLS_Gd__gd_core_items__Exclusive__Phoenix,
     CLS_Gd__gd_core_items__Exclusive__Phoenix2,
-    CLS_Gd__gd_core_items__Exclusive__PiggyPinata,
     CLS_Gd__gd_core_items__Exclusive__PiggyofRiches,
+    CLS_Gd__gd_core_items__Exclusive__PiggyPinata,
     CLS_Gd__gd_core_items__SpikedShield,
     CLS_Gd__gd_core_items__Exclusive__PineProtector,
     CLS_Gd__gd_core_items__Exclusive__PlasticCube,
@@ -521,11 +521,11 @@ enum GenClsId : gd::ClsId {
     CLS_Gd__gd_core_items__Exclusive__SmellyBarrier,
     CLS_Gd__gd_core_items__Exclusive__SmithingForDummies,
     CLS_Gd__gd_core_items__Exclusive__Snake,
-    CLS_Gd__gd_core_items__Exclusive__SnowStick,
     CLS_Gd__gd_core_items__Exclusive__Snowball,
     CLS_Gd__gd_core_items__Exclusive__Snowcake,
     CLS_Gd__gd_core_items__Exclusive__Snowman,
     CLS_Gd__gd_core_items__Exclusive__Snowmaster,
+    CLS_Gd__gd_core_items__Exclusive__SnowStick,
     CLS_Gd__gd_core_items__Exclusive__Solaris,
     CLS_Gd__gd_core_items__Exclusive__SpeakwithAnimals,
     CLS_Gd__gd_core_items__Exclusive__SpellScrollDark,
@@ -547,20 +547,20 @@ enum GenClsId : gd::ClsId {
     CLS_Gd__gd_core_items__Exclusive__SteelDragon,
     CLS_Gd__gd_core_items__Exclusive__StoneArmor,
     CLS_Gd__gd_core_items__Exclusive__StoneBadge,
+    CLS_Gd__gd_core_items__Exclusive__Stoned,
     CLS_Gd__gd_core_items__Exclusive__StoneGloves,
     CLS_Gd__gd_core_items__Exclusive__StoneGolem,
     CLS_Gd__gd_core_items__Exclusive__StoneShoes,
-    CLS_Gd__gd_core_items__Exclusive__Stoned,
     CLS_Gd__gd_core_items__Exclusive__StrongDivinePotion,
     CLS_Gd__gd_core_items__Exclusive__VampiricPotion,
     CLS_Gd__gd_core_items__Exclusive__StrongVampiricPotion,
     CLS_Gd__gd_core_items__Exclusive__SunArmor,
     CLS_Gd__gd_core_items__Exclusive__SunShield,
     CLS_Gd__gd_core_items__Exclusive__TeslaCoil,
-    CLS_Gd__gd_core_items__Exclusive__ThornElemental,
-    CLS_Gd__gd_core_items__Exclusive__ThornShortbow,
     CLS_Gd__gd_core_items__Exclusive__Thornbloom,
     CLS_Gd__gd_core_items__Exclusive__Thornburst,
+    CLS_Gd__gd_core_items__Exclusive__ThornElemental,
+    CLS_Gd__gd_core_items__Exclusive__ThornShortbow,
     CLS_Gd__gd_core_items__Exclusive__ThorsHammer,
     CLS_Gd__gd_core_items__Exclusive__ThunderDrake,
     CLS_Gd__gd_core_items__Exclusive__TigerRune,
@@ -610,9 +610,9 @@ enum GenClsId : gd::ClsId {
     CLS_Gd__gd_core_items__HealingHerbs,
     CLS_Gd__gd_core_items__HeartContainer,
     CLS_Gd__gd_core_items__HeartofDarkness,
+    CLS_Gd__gd_core_items__HeroicPotion,
     CLS_Gd__gd_core_items__HeroLongsword,
     CLS_Gd__gd_core_items__HeroSword,
-    CLS_Gd__gd_core_items__HeroicPotion,
     CLS_Gd__gd_core_items__HoloFireLizard,
     CLS_Gd__gd_core_items__HolyArmor,
     CLS_Gd__gd_core_items__HolySpear,
@@ -768,9 +768,9 @@ extern const gd::GdClassMeta META_Gd__gd_core__HealingHerbs;
 extern const gd::GdClassMeta META_Gd__gd_core__HealthPotion;
 extern const gd::GdClassMeta META_Gd__gd_core__HeartContainer;
 extern const gd::GdClassMeta META_Gd__gd_core__HeartofDarkness;
+extern const gd::GdClassMeta META_Gd__gd_core__HeroicPotion;
 extern const gd::GdClassMeta META_Gd__gd_core__HeroLongsword;
 extern const gd::GdClassMeta META_Gd__gd_core__HeroSword;
-extern const gd::GdClassMeta META_Gd__gd_core__HeroicPotion;
 extern const gd::GdClassMeta META_Gd__gd_core__HoloFireLizard;
 extern const gd::GdClassMeta META_Gd__gd_core__HolyArmor;
 extern const gd::GdClassMeta META_Gd__gd_core__HolySpear;
@@ -901,7 +901,6 @@ extern const gd::GdClassMeta META_Gd__gd_core_items__EvilCap;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__AcornAce;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__AmethystEgg;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__AmethystWhelp;
-extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__AmuletUnidentified;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__AmuletofAgility;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__AmuletofAlchemy;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__AmuletofDarkness;
@@ -911,6 +910,7 @@ extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__AmuletofLife;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__AmuletofLight;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__AmuletofSteel;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__AmuletoftheWild;
+extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__AmuletUnidentified;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__AngelCrystal;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__Anvil;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__ArcaneBoots;
@@ -961,8 +961,8 @@ extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__BuytheHolyLight;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__CapofBrilliance;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__CatSpirit;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__Cauldron;
-extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__ChainWhip;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__Chainsaw;
+extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__ChainWhip;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__ChargeSplitter;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__Cheese;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__CheeseGoobert;
@@ -1012,8 +1012,8 @@ extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__DragonClaws;
 extern const gd::GdClassMeta META_Gd__gd_core_items__RubyWhelp;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__DragonKnight;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__DragonNest;
-extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__DragonSet;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__DragonscaleArmor;
+extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__DragonSet;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__DragonskinBoots;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__DualWielding;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__Eat_o_matic;
@@ -1062,8 +1062,8 @@ extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__GoldCube;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__Halberd;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__Hardwood;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__HawkRune;
-extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__HeartShield;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__HeartoftheCards;
+extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__HeartShield;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__HeavyDrinking;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__Hedgehog;
 extern const gd::GdClassMeta META_Gd__gd_core_items__WoodenBuckler;
@@ -1071,8 +1071,8 @@ extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__HeroShield;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__HogusBogus;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__Holdall;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__HolyCollar;
-extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__HyperHedgehog;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__Hypercube;
+extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__HyperHedgehog;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__IceArmor;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__IceDragon;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__IceFlower;
@@ -1131,8 +1131,8 @@ extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__ParadiseBirb;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__PerpetuumMobile;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__Phoenix;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__Phoenix2;
-extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__PiggyPinata;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__PiggyofRiches;
+extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__PiggyPinata;
 extern const gd::GdClassMeta META_Gd__gd_core_items__SpikedShield;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__PineProtector;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__PlasticCube;
@@ -1195,11 +1195,11 @@ extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__Sloth;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__SmellyBarrier;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__SmithingForDummies;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__Snake;
-extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__SnowStick;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__Snowball;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__Snowcake;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__Snowman;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__Snowmaster;
+extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__SnowStick;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__Solaris;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__SpeakwithAnimals;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__SpellScrollDark;
@@ -1221,20 +1221,20 @@ extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__StarofCourage;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__SteelDragon;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__StoneArmor;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__StoneBadge;
+extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__Stoned;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__StoneGloves;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__StoneGolem;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__StoneShoes;
-extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__Stoned;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__StrongDivinePotion;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__VampiricPotion;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__StrongVampiricPotion;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__SunArmor;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__SunShield;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__TeslaCoil;
-extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__ThornElemental;
-extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__ThornShortbow;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__Thornbloom;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__Thornburst;
+extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__ThornElemental;
+extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__ThornShortbow;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__ThorsHammer;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__ThunderDrake;
 extern const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__TigerRune;
@@ -1284,9 +1284,9 @@ extern const gd::GdClassMeta META_Gd__gd_core_items__Hammer;
 extern const gd::GdClassMeta META_Gd__gd_core_items__HealingHerbs;
 extern const gd::GdClassMeta META_Gd__gd_core_items__HeartContainer;
 extern const gd::GdClassMeta META_Gd__gd_core_items__HeartofDarkness;
+extern const gd::GdClassMeta META_Gd__gd_core_items__HeroicPotion;
 extern const gd::GdClassMeta META_Gd__gd_core_items__HeroLongsword;
 extern const gd::GdClassMeta META_Gd__gd_core_items__HeroSword;
-extern const gd::GdClassMeta META_Gd__gd_core_items__HeroicPotion;
 extern const gd::GdClassMeta META_Gd__gd_core_items__HoloFireLizard;
 extern const gd::GdClassMeta META_Gd__gd_core_items__HolyArmor;
 extern const gd::GdClassMeta META_Gd__gd_core_items__HolySpear;

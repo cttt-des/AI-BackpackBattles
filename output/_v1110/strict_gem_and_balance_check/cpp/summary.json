@@ -1,0 +1,16 @@
+{
+ "total": 8,
+ "passed": 8,
+ "category": {
+  "pass": 8
+ },
+ "winner_mismatch": 0,
+ "winner_unavailable": 0,
+ "cases_with_coarse_gem_origin": 0,
+ "strict_gem_origins": true,
+ "original_dir": null,
+ "first_divergences": [],
+ "below_master_override": null,
+ "dll": "D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\sim\\native_sim_cpp\\native_sim\\libgdcore.dll",
+ "wall_total_s": 1.2
+}

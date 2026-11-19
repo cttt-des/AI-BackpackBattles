@@ -202,6 +202,8 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true",
                     help="只校验是否与源数据同步，不写文件")
+    ap.add_argument("--gd-item-fixture", nargs="?", const=GF.OUT_ITEMS_JSON,
+                    help="Generate or check the GDScript item table from the same data")
     args = ap.parse_args()
 
     data = build()
@@ -217,20 +219,32 @@ def main() -> int:
 
     body = json.dumps(data, ensure_ascii=False, sort_keys=False,
                       separators=(",", ":"))
+    outputs = {OUT_PATH: body}
+    if args.gd_item_fixture:
+        if os.path.abspath(args.gd_item_fixture) == os.path.abspath(OUT_PATH):
+            ap.error("The GDScript item table needs a separate output path")
+        table = GF.build_item_table()
+        gd_items = table["items"]
+        runtime_items = data["items"]
+        if gd_items.keys() != runtime_items.keys() or any(
+            gd_items[key]["descr"] != entry["descr"] or gd_items[key]["sockets"] != entry["sockets"]
+            for key, entry in runtime_items.items()
+        ):
+            print("GDScript and runtime item descriptors differ")
+            return 1
+        outputs[args.gd_item_fixture] = json.dumps(
+            table, ensure_ascii=False, sort_keys=True, separators=(",", ":")) + "\n"
 
-    if args.check:
-        if not os.path.exists(OUT_PATH):
-            print("产物不存在：%s\nGEN_GD_CORE_DATA: FAIL" % OUT_PATH)
-            return 1
-        old = io.open(OUT_PATH, encoding="utf-8").read()
-        if old != body:
-            print("产物与源数据不同步：%s\nGEN_GD_CORE_DATA: FAIL" % OUT_PATH)
-            return 1
-        print("产物与源数据同步 ✓")
-    else:
-        io.open(OUT_PATH, "w", encoding="utf-8", newline="\n").write(body)
-        print("已写出 %s（%.2f MB）"
-              % (OUT_PATH, len(body.encode("utf-8")) / 1024.0 / 1024.0))
+    for path, text in outputs.items():
+        if args.check:
+            if not os.path.exists(path) or io.open(path, encoding="utf-8").read() != text:
+                print("产物与源数据不同步：%s\nGEN_GD_CORE_DATA: FAIL" % path)
+                return 1
+            print("产物与源数据同步：%s" % path)
+        else:
+            with io.open(path, "w", encoding="utf-8", newline="\n") as stream:
+                stream.write(text)
+            print("已写出 %s（%.2f MB）" % (path, len(text.encode("utf-8")) / 1024.0 / 1024.0))
 
     c = data["counts"]
     print("物品库 %d 件 → 可装配 %d 件 / 无转译脚本 %d 件"

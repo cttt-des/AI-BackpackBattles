@@ -391,17 +391,9 @@ class CoreBuff(GodotObject):
 						self._startTimer(duration)
 						self.nextTemporaryTimeout = 0
 					else:
-						# ★ np35：oracle 重启分支基准=注册表 e[0]（≥0 优先），<0 回落引擎
-						#   读数（oracle/Core/Buff.gd:178-182）。引擎读数 real_t(f32) 存储
-						#   → f32(dur) 可严格大于 dur 本身（引擎实测 f32(4.65)=4.6500000953
-						#   >4.65）——同帧同 dur 双 gain 时 oracle 第二笔走重启+nTT=size-1
-						#   （run977_r18@497：同拍超时序 MS 先/LG 后的 [BEXPIRE] nTT=1/0
-						#   铁证）；gd 旧码只比 _timer_left（同帧场景=−1 遗留）→ 永不重启
-						#   → LG 先 → 同拍超时序差=FD。fallback 值=_timer_eng（≡最后一次
-						#   start 的 f32 读数，np25w_f04 既有镜像），f32 精确 dur（3.0 等）
-						#   恒等式零影响，≥0 遗留值路径不变。
 						timerLeft = self._timer_left
-						if timerLeft < 0.0:
+						# Before the next timer pass, read the value just written by start().
+						if timerLeft < 0.0 or self._timer_seen < 0.0:
 							timerLeft = self._timer_eng
 						if duration < timerLeft:
 							self._stopTimer()
@@ -616,17 +608,9 @@ class CoreBuff(GodotObject):
 	# ── 内核计时器（语义等价于 Godot Timer(one_shot, TIMER_PROCESS_PHYSICS)） ──
 
 	def _startTimer(self, duration):
-		# ★ np25 timeout1t：对齐 Timer.start(t)——**只改写引擎读数**，_timer_left
-		#   （≡e[0]）不动：oracle 注册表 e[0] 停留遗留值（fire 后 -1），同值重启
-		#   （eng==e[1]）时走 :901 从遗留值继续减 → ≤0 当 tick 立即 fire。若在这里
-		#   直赋 _timer_left=duration（初版 timeout1t 的写法），遗留值被冲掉 →
-		#   重同步不递减 → 比 oracle 晚 1 tick 起（run599_r10 Blind 393/574 铁证）。
-		# ★ np25w_f04：oracle 侧 Buff 的 timer 是真 Godot Timer 节点
-		#   （oracle/Core/Buff.gd:32 timer=Timer.new()、:162/:173 start(duration)），
-		#   wait_time/time_left 为 real_t(float32) 存储 → 注册表 eng=f32(duration)
-		#   （引擎探针 F32Probe：start(3.1)→get_time_left()≠3.1f64；穿零 186 v 187
-		#   帧=run616_r18 定谳）。f32 精确的 duration（2.0/3.0/3.25）恒等式零影响。
 		self._timer_eng = self._f32eng(duration)
+		# A negative seen value marks a pending restart, including identical durations.
+		self._timer_seen = -1.0
 		self._timer_active = True
 
 
@@ -669,10 +653,10 @@ class CoreBuff(GodotObject):
 			return
 		# ★ np25 timeout1t：逐行对齐 drive_timers :895-904。
 		if self._timer_eng == self._timer_seen:
-			self._timer_left -= delta       # :901 eng==e[1] → e[0]-=dt（遗留值继续减=
-		else:                          #   同值重启当 tick 立即 fire 的原版怪癖）
-			self._timer_left = self._timer_eng   # :899 eng!=e[1] → e[0]=eng 重同步（不递减）
-		self._timer_seen = self._timer_eng       # :902 e[1]=eng（每 pass 更新，先于 fire 判定）
+			self._timer_left -= delta
+		else:
+			self._timer_left = self._timer_eng
+		self._timer_seen = self._timer_eng
 		if self._timer_left > 0.0:          # :903-904
 			return
 		self._timer_active = False          # :910 one_shot 自停先于派发

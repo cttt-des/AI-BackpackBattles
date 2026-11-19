@@ -240,8 +240,10 @@ def select_cases(limit: int) -> List[Dict[str, Any]]:
     return out
 
 
-def gen_fixtures(cases: List[Dict[str, Any]]) -> int:
-    from gen_fixture_from_lineup import oracle_mode  # tools/ 已在 sys.path
+def gen_fixtures(cases: List[Dict[str, Any]], history_db: str = "") -> int:
+    from gen_fixture_from_lineup import oracle_mode, set_history_db  # tools/ 已在 sys.path
+    if history_db:
+        set_history_db(history_db)
     case_dirs = [c["dir"] for c in cases]
     rc = oracle_mode(case_dirs, LINEUP_OUT, CASES_JSON)
     # oracle_mode 对个别不可装配用例返回 1——夹具里只含可跑场，管线继续
@@ -400,7 +402,6 @@ def run_py(cases: List[Dict[str, Any]]) -> int:
 
     fixture = {c["case_id"]: c for c in
                json.load(io.open(CASES_JSON, encoding="utf-8"))["cases"]}
-    cases_by_id = fixture
     # ★ A 阶段普适性修复（2026-11-14）：np51㉟ 的 case 级门控表
     #   （gd_core_test/oracle_align_case_overrides.json）与 _OV_KEYS 逐场
     #   set/pop 机制**整段移除**——22 场开关的真因 = Coins 类场景装配多抽
@@ -425,6 +426,7 @@ def run_py(cases: List[Dict[str, Any]]) -> int:
             print("  [py][skip] %s 缺 gd_core 侧产物（激活顺序来源）" % case_id)
             continue
         order = json.load(io.open(gd_path, encoding="utf-8"))["activation_order"]
+        replay = fixture[case_id]
         # ★ rng_state 注入（round9，与 gd_core_test/OracleAlignBattle.gd:433-446
         #   同语义）：gd 侧在装配完成、startBattle 之前把神谕导出的 Util.rng
         #   state（output/oracle/fights/<case>/rng_state.txt 的 state= 行）直灌
@@ -492,7 +494,7 @@ def run_py(cases: List[Dict[str, Any]]) -> int:
             eng = GDCoreEngine(player, opponent, item_db, character_db,
                                seed=c["seed"], max_time=90.0,
                                probe_bases=(_FightEndGate,),
-                               below_master=True,
+                               below_master=bool(replay.get("below_master", True)),
                                # ★ np24 簇A①：实例槽真值 = cases json 条目 gems
                                #   数组长度（含 null 空槽；v3 lineup 生成链丢了
                                #   null，长度不可用）。与 v3 items 装配序 1:1。
@@ -505,8 +507,7 @@ def run_py(cases: List[Dict[str, Any]]) -> int:
                                reseed_after_player_character=True,
                                post_seed_draws=0,
                                rng_state=rng_state,
-                               label_rng_enabled=bool(
-                                   cases_by_id.get(case_id, {}).get("label_rng", True)),
+                               label_rng_enabled=bool(replay.get("label_rng", True)),
                                warm_latch=warm_latch,
                                perm_stack_override=perm_override,
                                r5_dual_exec=r5_dual,
@@ -528,7 +529,7 @@ def run_py(cases: List[Dict[str, Any]]) -> int:
                                # ★ np51：存档自定义规则健康倍率（镜像 gd 宿主的
                                #   ctx.custom_health_multiplier 注入；夹具层解析）
                                custom_health_multiplier=float(
-                                   c.get("custom_health_multiplier", 100.0)))
+                                   replay.get("custom_health_multiplier", 100.0)))
             # ★ np51㊳：库实例发火对位（transpiled ctx.lib_fires）
             eng.ctx.lib_fires = [list(map(float, e)) for e in eng_kwargs_lib]
             eng.run()
@@ -611,6 +612,9 @@ def _py_payload(case_id: str, seed: int, eng, et_names: Dict[int, str],
             oj = {"kind": "gem",
                   "host": {"kind": "unknown", "str": "GemSocket2"},
                   "socket_index": -1}
+            identity = getattr(origin, "gem_identity", None)
+            if identity is not None:
+                oj["identity"] = identity
         else:
             owner = _owner_num(e.actor)
             oj = {"kind": "item", "identifier": origin.key}
@@ -633,7 +637,8 @@ def _py_payload(case_id: str, seed: int, eng, et_names: Dict[int, str],
         })
     return {
         "case_id": case_id, "seed": int(seed),
-        "below_master": True, "preordered": True,
+        "below_master": bool(eng.ctx.below_master), "preordered": True,
+        "custom_health_multiplier": float(eng.ctx.custom_health_multiplier),
         "reseeded_after_player_character": True, "post_seed_draws": 0,
         "rng_state_injected": rng_state_injected,
         "winner": "player" if eng.player_wins() else "opponent",
@@ -1596,6 +1601,8 @@ def main() -> int:
     ap.add_argument("--force", action="store_true",
                     help="先删两侧重放产物再模拟（改码后必用，防幂等跳过验证陈旧结果）")
     ap.add_argument("--skip-fixtures", action="store_true", help="复用已有 oracle_align_cases.json")
+    ap.add_argument("--history-db", default="",
+                    help="Read custom rules and fallback stamina for older snapshots from this database")
     ap.add_argument("--skip-godot", action="store_true", help="跳过 gd_core(Godot) 重放")
     ap.add_argument("--skip-py", action="store_true", help="跳过 gd_core_py 重放")
     ap.add_argument("--compare-only", action="store_true", help="只重跑比对（复用全部重放产物）")
@@ -1630,6 +1637,8 @@ def main() -> int:
     ap.add_argument("--py-worker", default=None, metavar="LIST_JSON",
                     help=argparse.SUPPRESS)
     args = ap.parse_args()
+    if args.history_db and not os.path.isfile(args.history_db):
+        ap.error(f"History database does not exist: {args.history_db}")
 
     # ── ★ 四参数重绑全局（必须在 worker 分发之前：worker 子进程同样经此处
     #    重绑后才有正确口径；基线模式四值全空 ⇒ 全局不动 ⇒ 逐字节旧行为）──
@@ -1709,7 +1718,7 @@ def main() -> int:
 
     if not args.compare_only:
         if not args.skip_fixtures:
-            gen_fixtures(cases)
+            gen_fixtures(cases, args.history_db)
         fixture_ids = set(fixture_case_ids())
         cases = [c for c in cases if c["case_id"] in fixture_ids]
         print("[cases] 夹具可用 %d 场" % len(cases))

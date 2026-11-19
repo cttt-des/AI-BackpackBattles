@@ -202,11 +202,9 @@ static func changeTimer(timer, t: float) -> void :
 	timer.start(t + timeLeft)
 
 
-# 对齐 Util.gd:734-735 —— `get_tree().connect("idle_frame", target, method, args, ONESHOT)`
-# 即「本帧末调用一次」。内核无场景树，等价物是 ctx 的帧末队列（CoreCombat 物理帧
-# 末尾 flush），入队次序 = 原版同一帧内 connect 的次序。
+# idle_frame is emitted after physics deferred calls and before idle timers.
 func callNextFrame(target, methodName: String, arguments: Array = []) -> void :
-	_ctx.defer(target, methodName, arguments)
+	_ctx.connectIdleFrameOnce(target, methodName, arguments)
 
 
 # 对齐 Util.gd:725-727 —— `get_tree().create_timer(delay, false)` + timeout → method。

@@ -15,7 +15,7 @@
   4) ORACLE_FIGHT_CHUNK 必须小（默认 60）：MessageQueue 跨场累积，约 116 场后
      单场可劣化到 500s+。
 
-resume 幂等：<fights_root>/<case_id>/events.json 存在且 event_count>0 即视为完成。
+默认按非空事件流续跑。正式重录用 --require-terminal，仅接受成功落盘的自然终局。
 
 用法：
     python -X utf8 tools/expand_run_oracle.py --smoke            # 前 20 场冒烟
@@ -98,14 +98,30 @@ def load_cases(path: str):
     return doc, [c["case_id"] for c in doc["cases"]]
 
 
-def case_done(root: str, cid: str) -> bool:
-    ev = os.path.join(root, cid, "events.json")
+def case_done(root: str, cid: str, require_terminal: bool = False) -> bool:
+    case_dir = os.path.join(root, cid)
+    ev = os.path.join(case_dir, "events.json")
     if not os.path.exists(ev):
         return False
     try:
         with open(ev, encoding="utf-8") as f:
-            return int(json.load(f).get("event_count", 0)) > 0
-    except Exception:
+            recording = json.load(f)
+        event_count = int(recording.get("event_count", 0))
+        if event_count <= 0 or not require_terminal:
+            return event_count > 0
+        winner_type = {"player": 111, "opponent": 112}.get(recording.get("winner"))
+        events = recording.get("events")
+        if winner_type is None or not isinstance(events, list) or len(events) != event_count:
+            return False
+        terminal = events[-1]
+        if (terminal.get("type") != winner_type or
+                round(float(terminal["timestamp"]) * 60) != round(float(recording["combat_time"]) * 60)):
+            return False
+        if not all(os.path.isfile(os.path.join(case_dir, f)) for f in ("rng_state.txt", "lineups.json")):
+            return False
+        with open(os.path.join(case_dir, "result.txt"), encoding="utf-8") as f:
+            return any(line.strip() == "status=ok" for line in f)
+    except (OSError, ValueError, OverflowError, AttributeError, KeyError, TypeError):
         return False
 
 
@@ -120,9 +136,9 @@ def dropped_ids(root: str) -> set:
         return set()
 
 
-def pending(root: str, all_ids):
+def pending(root: str, all_ids, require_terminal: bool = False):
     dropped = dropped_ids(root)
-    return [cid for cid in all_ids if cid not in dropped and not case_done(root, cid)]
+    return [cid for cid in all_ids if cid not in dropped and not case_done(root, cid, require_terminal)]
 
 
 def auto_jobs(n_cases: int, req: int) -> int:
@@ -145,12 +161,16 @@ def main() -> int:
     ap.add_argument("--smoke", type=int, default=0, help="只跑前 N 场（冒烟）")
     ap.add_argument("--max-rounds", type=int, default=40)
     ap.add_argument("--rebuild-proj", action="store_true", help="强制重复制工程副本")
+    ap.add_argument("--require-terminal", action="store_true",
+                    help="Only resume complete natural endings and fail if any case is incomplete")
     args = ap.parse_args()
 
+    doc, all_ids = load_cases(args.cases)
+    if args.require_terminal and (not all_ids or len(set(all_ids)) != len(all_ids)):
+        ap.error("--require-terminal needs a nonempty case list with unique IDs")
     root = os.path.abspath(args.root) if args.root else ROOT_DEFAULT
     os.makedirs(root, exist_ok=True)
     proj = ensure_project(args.cases, args.db, rebuild=args.rebuild_proj)
-    doc, all_ids = load_cases(args.cases)
     if args.smoke:
         # 冒烟挑分布最散的前 N 场：等距抽样，避免全是高稀有长场
         step = max(1, len(all_ids) // args.smoke)
@@ -163,10 +183,12 @@ def main() -> int:
 
     no_progress = 0
     for rnd in range(1, args.max_rounds + 1):
-        pend = pending(root, all_ids)
+        pend = pending(root, all_ids, args.require_terminal)
         if not pend:
-            print("DRIVER: all cases done", flush=True)
-            print_summary(root, doc, all_ids)
+            complete = print_summary(root, doc, all_ids, args.require_terminal)
+            if args.require_terminal and not complete:
+                return 2
+            print("DRIVER: no remaining runnable cases", flush=True)
             return 0
         jobs = auto_jobs(len(pend), args.jobs)
         buckets = [pend[i::jobs] for i in range(jobs)]
@@ -184,6 +206,7 @@ def main() -> int:
                 label="expand_r%d_s%d" % (rnd, i), tag="exp%d" % i,
                 env_extra={"ORACLE_FIGHT_CHUNK": args.chunk,
                            "ORACLE_ONLY_CASES": ",".join(shard),
+                           "ORACLE_REQUIRE_TERMINAL": "1" if args.require_terminal else "",
                            "ORACLE_FIGHTS_ROOT": root})
             procs.append((i, len(shard), p, fh, log_path))
         rcs = []
@@ -202,31 +225,33 @@ def main() -> int:
                         if ln.strip() and not gh.is_noise(ln)][-4:]
                 for t in tail:
                     print("      " + t[:160], flush=True)
-        after = len(pending(root, all_ids))
+        after = len(pending(root, all_ids, args.require_terminal))
         print("[%s] round %d done: wall=%.0fs pending %d -> %d"
               % (time.strftime("%H:%M:%S"), rnd, time.time() - t0, before, after), flush=True)
         if after == 0:
-            print("DRIVER: all cases done", flush=True)
-            print_summary(root, doc, all_ids)
+            complete = print_summary(root, doc, all_ids, args.require_terminal)
+            if args.require_terminal and not complete:
+                return 2
+            print("DRIVER: no remaining runnable cases", flush=True)
             return 0
         if after >= before:
             no_progress += 1
             print("DRIVER: no progress this round (%d)" % no_progress, flush=True)
             if no_progress >= 2:
                 print("DRIVER: 连续两轮无进展，停止待人工排查", flush=True)
-                print_summary(root, doc, all_ids)
+                print_summary(root, doc, all_ids, args.require_terminal)
                 return 2
         else:
             no_progress = 0
 
-    print("DRIVER: max rounds reached, pending=%d" % len(pending(root, all_ids)), flush=True)
-    print_summary(root, doc, all_ids)
+    print("DRIVER: max rounds reached, pending=%d" % len(pending(root, all_ids, args.require_terminal)), flush=True)
+    print_summary(root, doc, all_ids, args.require_terminal)
     return 1
 
 
-def print_summary(root: str, doc, all_ids) -> None:
-    done = [cid for cid in all_ids if case_done(root, cid)]
-    dropped = dropped_ids(root)
+def print_summary(root: str, doc, all_ids, require_terminal: bool = False) -> bool:
+    done = {cid for cid in all_ids if case_done(root, cid, require_terminal)}
+    dropped = dropped_ids(root).intersection(all_ids)
     rows = []
     winners = {"player": 0, "opponent": 0, "draw": 0, "-": 0}
     for cid in all_ids:
@@ -252,6 +277,8 @@ def print_summary(root: str, doc, all_ids) -> None:
         "cases_total": len(all_ids),
         "cases_done": len(done),
         "cases_missing": len(all_ids) - len(done),
+        "incomplete_cases": [cid for cid in all_ids if cid not in done],
+        "require_terminal": require_terminal,
         "preflight_dropped": sorted(dropped),
         "winners": winners,
         "rows": rows,
@@ -267,6 +294,7 @@ def print_summary(root: str, doc, all_ids) -> None:
         f.write("\n".join(txt) + "\n")
     print("[summary] done=%d/%d dropped=%d winners=%s"
           % (len(done), len(all_ids), len(dropped), winners), flush=True)
+    return len(done) == len(all_ids)
 
 
 if __name__ == "__main__":

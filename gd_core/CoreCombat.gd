@@ -295,6 +295,9 @@ func physicsTick(delta: float) -> void :
 	#    （对齐 Util.callDelayed 用 Timer 计时；该期间 combatTimer 尚未 start，
 	#      combatTime 不增长，故事件时间戳仍从 0 开始）
 	if not activated:
+		ctx.flushDeferred()
+		ctx.flushIdleFrameCalls()
+		ctx.flushDeferred()
 		_activate_countdown -= delta
 		if _activate_countdown <= 0.0:
 			activateItems(ordered_items)
@@ -339,7 +342,10 @@ func physicsTick(delta: float) -> void :
 	
 	# ⑧ 空闲型 Timer（drive_timers(false)）：疲劳 FatigueStartTimer/FatigueTickTimer
 	#    （CombatTimer.gd，TIMER_PROCESS_IDLE=引擎默认）——在全部物理型 Timer 之后
+	ctx.flushDeferred()
+	ctx.flushIdleFrameCalls()
 	_fatigueTick()
+	ctx.flushDeferred()
 	
 	# ⑨ SceneTreeTimer（ctx.callDelayed 系：FlickerAnimation.playAni、龙蛋孵化、
 	#    RandomLoadoutBag 揭示…）——对齐 oracle_fight.gd tick_battle 步骤⑧：

@@ -22,7 +22,6 @@ struct Gd__gd_core__CoreContext : public gd::GdObj {
     gd::GdVal f_label_rng_enabled;
     gd::GdVal f_lobbies_mode;
     gd::GdVal f_custom_health_multiplier;
-    gd::GdVal f_flk_delay_cursor;
     gd::GdVal f__drawseq_enabled;
     gd::GdVal f_lib_fires;
     gd::GdVal f_combat;
@@ -40,6 +39,7 @@ struct Gd__gd_core__CoreContext : public gd::GdObj {
     gd::GdVal f_out_of_stamina_count;
     gd::GdVal f_warn_unknown_api;
     gd::GdVal f__deferred;
+    gd::GdVal f__idle_frame_calls;
     gd::GdVal f__timed;
     gd::GdVal f_deferred_flush_enabled;
     gd::GdVal f_eb_relay_mirrored;
@@ -60,6 +60,8 @@ struct Gd__gd_core__CoreContext : public gd::GdObj {
     gd::GdVal fn_defer(const gd::GdVal* _args, int _argc);
     gd::GdVal fn_hasDeferred(const gd::GdVal* _args, int _argc);
     gd::GdVal fn_flushDeferred(const gd::GdVal* _args, int _argc);
+    gd::GdVal fn_connectIdleFrameOnce(const gd::GdVal* _args, int _argc);
+    gd::GdVal fn_flushIdleFrameCalls(const gd::GdVal* _args, int _argc);
     gd::GdVal fn_emptyGrid(const gd::GdVal* _args, int _argc);
     const gd::GdClassMeta* meta() const override;
     void init_fields(gd::BattleCtx& gd_ctx) override;

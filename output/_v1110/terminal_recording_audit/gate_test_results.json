@@ -1,0 +1,23 @@
+{
+  "python": {
+    "valid": true,
+    "interrupted": false,
+    "wrong_winner": false,
+    "wrong_tick": false,
+    "failed_status": false,
+    "without_snapshot": false,
+    "without_rng": false,
+    "without_result": false
+  },
+  "godot": {
+    "valid": true,
+    "interrupted": false,
+    "wrong_winner": false,
+    "wrong_tick": false,
+    "failed_status": false,
+    "without_snapshot": false,
+    "without_rng": false,
+    "without_result": false
+  },
+  "preflight_result": 2
+}

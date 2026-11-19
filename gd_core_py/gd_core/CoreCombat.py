@@ -414,6 +414,9 @@ class CoreCombat(GodotObject):
 		#    （对齐 Util.callDelayed 用 Timer 计时；该期间 combatTimer 尚未 start，
 		#      combatTime 不增长，故事件时间戳仍从 0 开始）
 		if not self.activated:
+			self.ctx.flushDeferred()
+			self.ctx.flushIdleFrameCalls()
+			self.ctx.flushDeferred()
 			self._activate_countdown -= delta
 			if self._activate_countdown <= 0.0:
 				self.activateItems(self.ordered_items)
@@ -479,7 +482,10 @@ class CoreCombat(GodotObject):
 
 		# ⑧ 空闲型 Timer（drive_timers(false)）：疲劳 FatigueStartTimer/FatigueTickTimer
 		#    （CombatTimer.gd，TIMER_PROCESS_IDLE=引擎默认）——在全部物理型 Timer 之后
+		self.ctx.flushDeferred()
+		self.ctx.flushIdleFrameCalls()
 		self._fatigueTick()
+		self.ctx.flushDeferred()
 
 		# ⑨ SceneTreeTimer（ctx.callDelayed 系：FlickerAnimation.playAni、龙蛋孵化、
 		#    RandomLoadoutBag 揭示…）——对齐 oracle_fight.gd tick_battle 步骤⑧：

@@ -431,14 +431,12 @@ func lineups_snapshot_done(case_id: String) -> bool :
 
 
 # 断点续跑判据（任务书约定 1）：events.json 已存在且事件非空（event_count>0）
-# ★ 阶段1 追加：还要求 rng_state.txt 已导出——老批量（无 state 导出）的场次
-#   视为未完成，自动重跑补导出（events 因逐场确定性应逐字节不变）。
+# 独立发布版重录还会核对自然终局和成功状态，截断的回放可以续跑。
 func case_events_done(case_id: String) -> bool :
-	var p = out_root.plus_file(case_id).plus_file("events.json")
+	var case_dir = out_root.plus_file(case_id)
 	var fh = File.new()
-	if not fh.file_exists(p):
+	if fh.open(case_dir.plus_file("events.json"), File.READ) != OK:
 		return false
-	fh.open(p, File.READ)
 	var txt = fh.get_as_text()
 	fh.close()
 	if txt.empty():
@@ -446,9 +444,32 @@ func case_events_done(case_id: String) -> bool :
 	var parsed = parse_json(txt)
 	if typeof(parsed) != TYPE_DICTIONARY:
 		return false
-	if int(parsed.get("event_count", 0)) <= 0:
+	var count = int(parsed.get("event_count", 0))
+	if count <= 0 or not fh.file_exists(case_dir.plus_file("rng_state.txt")):
 		return false
-	return fh.file_exists(out_root.plus_file(case_id).plus_file("rng_state.txt"))
+	if OS.get_environment("ORACLE_REQUIRE_TERMINAL") != "1":
+		return true
+	var winner = parsed.get("winner")
+	var events = parsed.get("events")
+	if (winner != "player" and winner != "opponent") or typeof(events) != TYPE_ARRAY or events.size() != count:
+		return false
+	var terminal = events.back()
+	if typeof(terminal) != TYPE_DICTIONARY or terminal.get("type") != (111 if winner == "player" else 112):
+		return false
+	if not terminal.has("timestamp") or not parsed.has("combat_time"):
+		return false
+	if round(float(terminal["timestamp"]) * 60.0) != round(float(parsed["combat_time"]) * 60.0):
+		return false
+	if not fh.file_exists(case_dir.plus_file("lineups.json")):
+		return false
+	if fh.open(case_dir.plus_file("result.txt"), File.READ) != OK:
+		return false
+	var result_lines = fh.get_as_text().split("\n")
+	fh.close()
+	for line in result_lines:
+		if line.strip_edges() == "status=ok":
+			return true
+	return false
 
 
 # 预检：该 (run, round) 用原版 BuildHistoryData.getRoundData +
@@ -700,7 +721,14 @@ func run_case(c: Dictionary, warmup := false) -> Dictionary :
 		rsf.store_string("seed=%d\nstate=%d\n" % [U.rng.get_seed(), U.rng.get_state()])
 		rsf.close()
 
+	# The original queues the stamina recalculation during inventory assembly,
+	# sets the history stamina synchronously, then defers prepareItems
+	# (StaminaSack.gd:addToInventory, Game.gd:startHistoryRun and finishSwitchingToCombat).
+	flush_frame_end_calls()
 	G.prepareItems(playerItems + opponentItems)
+	flush_frame_end_calls()
+	flush_idle_frame_calls()
+	flush_frame_end_calls()
 	# [M4] 原版 call_deferred(prepareItems) + callDelayed(activateItems, 2.5s)：
 	# 延迟期间无 rng 消耗、无事件，顺序调用逐 tick 等价
 	G.activateItems(playerItems + opponentItems)
@@ -895,7 +923,10 @@ func tick_battle(dt: float, n := 0) -> void :
 	# ⑥⑦ Timer 节点（先物理型后空闲型——引擎两个 pass 的先后次序）
 	var s_items = U.rng.get_state() if _dbg_ticks else 0
 	drive_timers(true, dt)
+	flush_frame_end_calls()
+	flush_idle_frame_calls()
 	drive_timers(false, dt)
+	flush_frame_end_calls()
 	# ⑧ SceneTreeTimer（Util.callDelayed 注册表；判胜即冻结）
 	var s_timers = U.rng.get_state() if _dbg_ticks else 0
 	drive_delayed(dt)
@@ -909,23 +940,30 @@ func tick_battle(dt: float, n := 0) -> void :
 					str(s1 != s_timers)])
 
 
-# ★ A3 卡链忠实化（2026-11-15）：帧末冲刷——真实游戏每帧尾泵 MessageQueue
-#   （call_deferred 语义，60fps 下帧:tick≈1:1），阻塞录制循环无帧 ⇒ 队列在整场
-#   战斗内从不执行（Deck of Cards 的 startActivation 点火即此 ⇒ 语料卡链全灭）。
-#   语义：一次冲刷一批，冲刷期间新入队留到下一批（与内核 flushDeferred 同规）；
-#   判胜后不再冲刷（与 drive_delayed 的 fightEnded continue 语义一致）。
+# Godot 3.6 drains deferred calls queued during the same flush. idle_frame
+# is a distinct signal between the physics and idle timer passes.
 func flush_frame_end_calls() -> void :
-	if G.fightEnded:
-		U.oracleFrameEndCalls.clear()
-		return
-	var batch: Array = U.oracleFrameEndCalls
-	if batch.empty():
-		return
-	U.oracleFrameEndCalls = []
-	for call_entry in batch:
+	while not U.oracleFrameEndCalls.empty():
+		if G.fightEnded:
+			U.oracleFrameEndCalls.clear()
+			return
+		var batch: Array = U.oracleFrameEndCalls
+		U.oracleFrameEndCalls = []
 		if OS.get_environment("ORACLE_CHAINMARK") != "":
 			print("[DRAIN] n=", batch.size())
-		call_entry[0].callv(call_entry[1], call_entry[2])
+		for entry in batch:
+			if is_instance_valid(entry[0]):
+				entry[0].callv(entry[1], entry[2])
+
+
+func flush_idle_frame_calls() -> void :
+	var batch: Array = U.oracleIdleFrameCalls
+	U.oracleIdleFrameCalls = []
+	if G.fightEnded:
+		return
+	for entry in batch:
+		if is_instance_valid(entry[0]):
+			entry[0].callv(entry[1], entry[2])
 
 
 # Timer 节点驱动：引擎侧 get_time_left() 在阻塞循环里冻结，故注册表自记剩余；
@@ -933,8 +971,8 @@ func flush_frame_end_calls() -> void :
 # 到点次序复刻原版 Timer::_process：one_shot 先自停再派发 timeout；循环计时器
 # 若处理器未重启则按 wait_time 续接（Godot 3.6 Timer::start(t) 会 set_wait_time(t)
 # 并写 time_left → 处理器重启与否以 emit 后引擎读数/停走状态判定，阻塞循环下
-# 引擎读数只被 start()/stop() 改写，判定是精确的——唯一歧义「start(与旧值同秒)」
-# 通过先 stop() 归零消解：restart 的 start() 总会把 time_left 从 0 改成新值）。
+# 引擎 Timer 在阻塞循环里不自动扣时，start()/stop() 写入新的读数。
+# 同秒重启由各调用点更新注册表，或在到期回调结束后重新读取。
 func drive_timers(physics_pass: bool, dt: float) -> void :
 	var reg: Dictionary = U.oracleTimerLefts
 	for timer in reg.keys():
@@ -972,7 +1010,10 @@ func drive_timers(physics_pass: bool, dt: float) -> void :
 			if String(timer.get_path()).find("BuffTimer") >= 0 or String(timer.get_path()).find("Invulnerability") >= 0:
 				print("[timer-fire-dbg] t=%.4f %s e0=%.6f eng=%.6f" % [U.time, timer.get_path(), e[0], timer.get_time_left()])
 			print("[timer-fire] t=%.3f %s" % [U.time, timer.get_path()])
-		timer.stop()
+		if timer.has_method("stopCountdownForTimeout"):
+			timer.stopCountdownForTimeout()
+		else:
+			timer.stop()
 		timer.emit_signal("timeout")
 		if not is_instance_valid(timer):
 			reg.erase(timer)
@@ -1106,6 +1147,7 @@ func teardown_case() -> void :
 					stray.free()
 	U.oracleTimerLefts.clear()
 	U.oracleDelayedTimers.clear()
+	U.oracleIdleFrameCalls.clear()
 	_flush_queued(root)
 
 
@@ -1458,8 +1500,15 @@ func _jsonable_impl(o, depth: int):
 				if gs[i] == o:
 					sid = i
 					break
-		return {"kind": "gem", "host": _jsonable_impl(sock, depth + 1),
+		var gem_origin = {"kind": "gem", "host": _jsonable_impl(sock, depth + 1),
 				"socket_index": sid}
+		var host = sock.getItem()
+		if is_instance_valid(host):
+			var cell = host.getTopLeftCell()
+			gem_origin["identity"] = [String(o.descriptor.identifier),
+					String(host.descriptor.identifier), int(host.ownerType),
+					int(cell.x), int(cell.y), host.sockets.find(sock)]
+		return gem_origin
 	# GDScript 的 `is` 不接受脚本变量，改用鸭子判据：物品必有 getTopLeftCell 与
 	# descriptor；角色（Character）没有 descriptor。
 	if o.has_method("getTopLeftCell") and "descriptor" in o:
@@ -1525,6 +1574,10 @@ func dump_lineups(dir: String, res: Dictionary) -> void :
 		#   此字段（gems 恒空）——lineups-only 批量的 resume 判据用。
 		#   3 = +crafted 物品效果真值（r34，MagicRing 族 effects 数组）。
 		"snapshot": 3,
+		"replay_controls": {
+			"below_master": G.isBelowLeague(G.Leagues.Master),
+			"custom_health_multiplier": G.get_node("/root/CustomRules").getHealthMultiplier(),
+		},
 		"assembly_order_note": "items 数组即装配（实例创建）顺序：buildInfo 反序列化流顺序经原版 sort_BagOrder 后的顺序，两侧模拟器按此顺序重建",
 		"player": p, "opponent": o}, "  "))
 	fh.close()

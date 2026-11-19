@@ -1,0 +1,37 @@
+{
+  "version": "1.1.10",
+  "steam_build": "26640819",
+  "steam_source": "D:\\Steam\\steamapps\\common\\Backpack Battles",
+  "sha256": {
+    "BackpackBattles.exe": {
+      "size": 33476608,
+      "sha256": "4522a5f2b71fe2aa5f7f730a2bd71f66f4f8112609164bcef39c110f047ad577"
+    },
+    "BackpackBattles.pck": {
+      "size": 314600889,
+      "sha256": "8fbd0690d0109f5880fc4f71ace2050a4e536e99fe5ae746870b608217d94bb1"
+    },
+    "libgdsqlite.dll": {
+      "size": 6967067,
+      "sha256": "23dad7df122ff7b24ececdf492b3156a02fc77e5fe33494f546f7584c5b2e2aa"
+    },
+    "steam_api64.dll": {
+      "size": 301928,
+      "sha256": "dcfaa13aa419a0641917205957dbe15aa472e7cf09a28cf8d3cf429598e67799"
+    }
+  },
+  "raw_count": 9396,
+  "decrypted_scripts": 820,
+  "missing_scripts": [],
+  "gd_count": 821,
+  "tscn_count": 1029,
+  "steam_depot_match": false,
+  "provenance": "installed_1.1.10_with_user_plugin",
+  "depot_id": 2427701,
+  "manifest_id": "1997482182772518083",
+  "installed_pck_sha1": "cd82eb9cb928c251550487d3b0bc73c561596387",
+  "expected_pck_sha1": "8993aad97e155d38b3e055c303e24e4d9d758d92",
+  "expected_pck_size": 312836256,
+  "user_confirmed_plugin": true,
+  "source_policy": "Use installed game mechanics and data. Depot hashes are provenance."
+}

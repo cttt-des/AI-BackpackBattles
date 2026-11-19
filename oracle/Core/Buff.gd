@@ -172,7 +172,7 @@ func gainTemporary(amount: int, duration: float, item = null,
 				print("[BGAIN] t=", Util.time, " type=", type, " side=", character.playerId, " amt=", amount, " dur=", duration, " to=", timeout)
 				
 				if timer.is_stopped():
-					timer.start(duration)
+					Util.startTrackedTimer(timer, duration)
 					nextTemporaryTimeout = 0
 				else:
 					# ★ ORACLE HARNESS：神谕手动 tick 下引擎读数冻结，以注册表剩余为准
@@ -183,7 +183,7 @@ func gainTemporary(amount: int, duration: float, item = null,
 						timerLeft = oracleLeft
 					if duration < timerLeft:
 						timer.stop()
-						timer.start(duration)
+						Util.startTrackedTimer(timer, duration)
 						nextTemporaryTimeout = temporaryStacks.size() - 1
 			
 			
@@ -367,7 +367,7 @@ func onTimeout():
 		if delay <= 0.01:
 			onTimeout()
 		else:
-			timer.start(delay)
+			Util.startTrackedTimer(timer, delay)
 
 func combatEnd():
 	timer.stop()
