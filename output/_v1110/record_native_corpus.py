@@ -13,6 +13,8 @@ import subprocess
 import sys
 from ctypes import wintypes
 
+from native_recording_products import check_battle_products
+
 repo = Path(__file__).resolve().parents[2]
 stage = repo / "output/_v1110"
 ap = argparse.ArgumentParser()
@@ -22,9 +24,13 @@ ap.add_argument("--output-root", default="native_corpus", help="Separate output 
 ap.add_argument("--project-prefix", default="native_corpus_project", help="Use a separate frozen project for the selected cohort")
 ap.add_argument("--case-ids", type=Path, help="Record this JSON list of case IDs within one cohort")
 ap.add_argument("--shipping-engine", action="store_true", help="Use the copied 1.1.10 shipping EXE")
+ap.add_argument("--min-batch-timeout", type=int, default=300,
+                help="Minimum seconds allowed for a batch before the recorder is stopped")
 args = ap.parse_args()
 if args.chunk < 1:
     ap.error("chunk must be positive")
+if args.min_batch_timeout < 1:
+    ap.error("min-batch-timeout must be positive")
 if args.case_ids and args.cohort == "both":
     ap.error("--case-ids requires one cohort")
 root = (stage / args.output_root).resolve()
@@ -65,7 +71,7 @@ status = {"pid": os.getpid(), "phase": "starting", "cohorts": {},
                     else "Recovered 1.1.10 source on vanilla Godot 3.6")}
 write_status(status)
 
-def accepted(folder, cid, expected):
+def accepted(folder, cid, expected, case_row):
     case = folder / cid
     try:
         manifest = json.loads((case / "reference_manifest.json").read_text("utf8"))
@@ -73,16 +79,9 @@ def accepted(folder, cid, expected):
                     "case_list_sha256", "history_snapshot_sha256"):
             if manifest.get(key) != expected.get(key):
                 return False
-        doc = json.loads((case / "events.json").read_text("utf8"))
-        boundaries = json.loads((case / "boundaries.json").read_text("utf8"))
-        lineup = json.loads((case / "lineups.json").read_text("utf8"))
-        events = doc.get("events", [])
-        winner = {"player": 111, "opponent": 112}.get(doc.get("winner"))
-        return (bool(events) and len(events) == doc["event_count"] and events[-1]["type"] == winner
-                and round(float(events[-1]["timestamp"]) * 60) == round(float(doc["combat_time"]) * 60)
-                and all(doc[key] == lineup[key] for key in ("seed", "run_id", "round_id", "opp_run_id", "opp_round_id"))
-                and all(key in boundaries for key in ("prepare", "before_activate", "idle_animation_timers", "flicker_states")))
-    except (OSError, ValueError, KeyError, TypeError):
+        check_battle_products(folder, cid, case_row)
+        return True
+    except (OSError, ValueError, KeyError, TypeError, IndexError):
         return False
 
 cohorts = ("expand", "base") if args.cohort == "both" else (args.cohort,)
@@ -109,13 +108,13 @@ for cohort in cohorts:
     assert len(cases) == (1690 if cohort == "expand" else 914)
     ids = [case["case_id"] for case in cases]
     assert len(ids) == len(set(ids))
+    by_id = {case["case_id"]: case for case in cases}
     if args.case_ids:
         selected_ids = json.loads(args.case_ids.read_bytes())
         if (not isinstance(selected_ids, list) or not selected_ids or not all(isinstance(cid, str) for cid in selected_ids)
                 or len(selected_ids) != len(set(selected_ids))
                 or not set(selected_ids).issubset(ids)):
             ap.error("Expected nonempty unique case IDs belonging to the selected cohort")
-        by_id = {case["case_id"]: case for case in cases}
         cases = [by_id[cid] for cid in selected_ids]
         ids = selected_ids
     # Front-load actual auto-rage cases missed by the old all-false metadata.
@@ -123,7 +122,7 @@ for cohort in cohorts:
     ids = [cid for cid in priority if cid in ids] + [cid for cid in ids if cid not in priority]
     (folder / "cases.json").write_text(json.dumps({"cases": cases}, ensure_ascii=False, indent=2) + "\n", encoding="utf8")
     batch_number = 0
-    pending = [cid for cid in ids if not accepted(folder, cid, expected)]
+    pending = [cid for cid in ids if not accepted(folder, cid, expected, by_id[cid])]
     while True:
         status["cohorts"][cohort] = {"total": len(ids), "completed": len(ids) - len(pending), "remaining": len(pending)}
         if not pending:
@@ -133,20 +132,22 @@ for cohort in cohorts:
         selected = pending[:min(args.chunk, 4 if batch_number == 1 else args.chunk)]
         batch_file = folder / "current_batch.json"
         batch_file.write_text(json.dumps(selected, indent=2) + "\n", encoding="utf8")
+        timeout = max(args.min_batch_timeout, len(selected) * 120)
         status["phase"] = "recording"
         status["batch"] = selected
+        status["batch_timeout_seconds"] = timeout
         with (folder / "driver.log").open("ab") as log:
             child = subprocess.Popen([sys.executable, "-u", "-X", "utf8", str(stage / "run_native_1110.py"),
                                       "--case-ids", str(batch_file), "--cohort", cohort,
                                       "--project-name", project_name, "--reuse-prepared", "--disable-render-loop",
-                                      "--out", root.name + "/" + cohort, "--timeout", str(max(300, len(selected) * 120)),
+                                      "--out", root.name + "/" + cohort, "--timeout", str(timeout),
                                       *engine_args],
                                      cwd=repo, stdout=log, stderr=subprocess.STDOUT)
             status["child_pid"] = child.pid
             write_status(status)
             print(cohort, "batch", batch_number, "cases", len(selected), "child", child.pid, flush=True)
             result = child.wait()
-        if result or any(not accepted(folder, cid, expected) for cid in selected):
+        if result or any(not accepted(folder, cid, expected, by_id[cid]) for cid in selected):
             status["phase"] = "failed"
             status["failure"] = {"exit": result, "cases": selected}
             write_status(status)
