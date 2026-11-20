@@ -1,0 +1,32 @@
+{
+  "diagnostic_only": true,
+  "baseline_dll_sha256": "1be75dced83e9e90fdbe61dd86f91bc27e19bb44acf9449d295849e928d9cec5",
+  "diagnostic_dll_sha256": "9f2b0cf25c9bdabd92ec46a239e138ed9736ca11c340e83ba50c1a91bebb74e7",
+  "recompiled": [
+    "shard_02",
+    "shard_03"
+  ],
+  "baseline_object_sha256": {
+    "gd_rt": "7fe58ef47b2260610554e3b9383590c77bb60c1b96d362bb98162a9784cb0ecc",
+    "engine_wrapper": "84b5a0ef99bb8879f49de09c5a263d5db0842e116eec7e6ef5495737dc76d091",
+    "sym_ids": "35b0d562d93f7e48a8863ad0cea81c5e1ea58ef709ae0b47ffd4e0f423652678",
+    "register_all": "87aa32f2f9350de3823d2587f56c1a10c2b7f77e125e1ba01206854af046d6f8",
+    "shard_00": "740c92d4763b39f66390f91ea473e04939fcd51aa5700b84e18ab0eafc88772e",
+    "shard_01": "f7cf71bd8cdc53d39d8b1f3980c3740e65d6a6ea968dfad555343f6ccc2adb06",
+    "shard_02": "394fb6e54fdde403133e54dfcae05598e36e958816b0aa39f0ce7c2ae861fa69",
+    "shard_03": "832fd71b8fd47d871f37fa49a71ef9c28354543abc10bbb91a39bcddc00598e4",
+    "shard_04": "74487421fe890650d8af5d2cba46fa90c8f42a2d04b73b744fe49ae08eae4365",
+    "shard_05": "b12d0a02f9941d1cb909048e549479f8b0b105fed2a8bb7ce9839834c252b3f3",
+    "shard_06": "a353366d68071711ac906920b76ad2c1faa6e61582d5eb790c54439303afd797",
+    "shard_07": "78bf3bb1ba94be42ff5657e717814bfa8f9dd044768477f561f8851982c0bfca",
+    "shard_08": "8a1d3c3acf542ad48e5d28341fe1ba39a75146846e79be4ef95f1a5368ae05da",
+    "shard_09": "ded4a94b61b9c150d734a9545c012effa1f60f054d67f5e32b2fa2e253c92723",
+    "shard_10": "37f8f7f4fd4e9dcb8ddfa321abc7c253de7d01280829aa759ba6306c9283d684",
+    "shard_11": "603d9f6ce4e63de3c888290137d84b40f80e1ed21b4a0c2d292ad945403443e6",
+    "shard_12": "0e59246d7ddb6de570c1a6680f6ba8e33702b1696efd501af0e05488b107be8d",
+    "shard_13": "4fb3a7728f004400485a1e31def350065f89caad6326e0e85232ab2adb3d04c0",
+    "shard_14": "da659d1fa08853ec80cca3829bf2735824e6755fbd446b272e403e9c469855f4",
+    "shard_15": "bbbb29f7d1ceda089ea13ebf6bee60b1ff52572dd9d2b63fe12d471a97a5f8fb"
+  },
+  "formal_timing_forbidden": true
+}

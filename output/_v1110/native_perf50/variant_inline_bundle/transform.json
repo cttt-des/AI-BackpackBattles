@@ -1,0 +1,54 @@
+{
+  "baseline_dll_sha256": "1be75dced83e9e90fdbe61dd86f91bc27e19bb44acf9449d295849e928d9cec5",
+  "container_lanes": {
+    "array": [
+      "size",
+      "empty",
+      "has",
+      "front",
+      "back"
+    ],
+    "dictionary": [
+      "size",
+      "empty",
+      "has",
+      "get"
+    ]
+  },
+  "static_lane": "ClassRef non-new: call original static function once; false/null callback returns original Null, never a second fallback",
+  "preserved": [
+    "null receivers",
+    "argument counts/defaults",
+    "object user methods before builtins",
+    "new constructor path",
+    "native flag disabled path",
+    "original bodies/binds/math/RNG/order"
+  ],
+  "object_and_context_layout_changed": false,
+  "full_rebuild_required": true,
+  "diagnostic_counts": [
+    "array_size",
+    "array_empty",
+    "array_has",
+    "array_front",
+    "array_back",
+    "dict_size",
+    "dict_empty",
+    "dict_has",
+    "dict_get",
+    "class_lane"
+  ],
+  "diagnostic_overhead": "Out-of-line TLS hit only with existing native_resolved_collect; performance collection disabled",
+  "original_branch_guards": [
+    "case SYM_size: return GdVal::from_int(a->len);",
+    "case SYM_empty: return GdVal::from_bool(a->len == 0);",
+    "case SYM_has: return GdVal::from_bool(argc >= 1 && a->has_val(args[0]));",
+    "case SYM_front: return a->len > 0 ? a->data[0] : GdVal::null();",
+    "case SYM_back: return a->len > 0 ? a->data[a->len - 1] : GdVal::null();",
+    "case SYM_size: return GdVal::from_int(d->len);",
+    "case SYM_empty: return GdVal::from_bool(d->len == 0);",
+    "case SYM_has: return GdVal::from_bool(argc >= 1 && d->has(args[0]));",
+    "return argc >= 1 ? d->get(args[0], argc >= 2 ? args[1] : GdVal::null()) : GdVal::null();",
+    "if (recv.cls->call_static_fn(ctx, m, args, argc, out)) return out;"
+  ]
+}

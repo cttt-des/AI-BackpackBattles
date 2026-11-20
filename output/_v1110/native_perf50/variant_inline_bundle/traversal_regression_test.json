@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "dll_sha256": "8bdcd96dcdf1d35819db619d635c726b72166dcee706558cca91e1ba1b3709af",
+  "output": "Timer traversal, repaired future placeholder, replacement, append, disable, array swap, gem insertion and captured-length shrink passed\n",
+  "compiled_against_candidate_headers": true
+}

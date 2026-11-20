@@ -1,0 +1,20 @@
+{
+  "baseline_dll_sha256": "1be75dced83e9e90fdbe61dd86f91bc27e19bb44acf9449d295849e928d9cec5",
+  "bundle": [
+    "Pure container queries in the accepted inline wrapper",
+    "Original ClassRef static callback invoked once; constructor path unchanged"
+  ],
+  "comparison": {
+    "fights": 200,
+    "workers": 1,
+    "groups": 3,
+    "pairs_per_group": 8,
+    "warmup_seconds": 120,
+    "order": "alternating AB/BA; reverse initial/load order across groups",
+    "quiet": true
+  },
+  "decision": "Assess bundle paired CPU/wall and summed times, retaining all samples; no group unanimity, single-component significance, or positive-CI-lower-bound gate. Independently investigate inconclusive or opposing results.",
+  "semantic_gate": "targeted regression, original914+1690 strict events, event hashes against currently deployed6e232391, zero exact-type mismatches",
+  "release": "24 consecutive raw batches all>=50 fights/s, AC/load reported; bounded separate20-percent-load calibration; deployment only after all required checks",
+  "hypothesis": "Expose pure builtin and static-call cases to constant method IDs and direct return; measure full package, no addition of prior percentages."
+}
