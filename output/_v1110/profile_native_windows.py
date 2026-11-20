@@ -103,6 +103,7 @@ def main():
         parser.error("--min-samples must be nonnegative")
     if not 1 <= args.max_depth <= 256:
         parser.error("--max-depth must be between one and 256")
+    args.out.parent.mkdir(parents=True, exist_ok=True)
     if args.dll:
         from bench_native_corpus import load_simulator
 

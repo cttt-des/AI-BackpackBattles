@@ -521,3 +521,17 @@ CoreItem 从 1,696 字节、8 字节对齐改为 1,792 字节、64 字节对齐�
 完整源码生成流程在隔离目录运行两遍，702 份源码／构建文件与编译候选一致，重复字节与修改时间不变；对未修改类头文件添加未知编辑时，准备和应用阶段均在写入前拒绝。版本受限源码变换保存 22 份必要文件，运行时默认生成器已切换到新库存。[全链路生成](../output/_v1110/native_perf50/dispatch_array_bundle/full_regeneration_test.json) · [编辑保护](../output/_v1110/native_perf50/dispatch_array_bundle/regeneration_test.json)
 
 已部署到默认训练运行时，旧版留在 `dist/native_1_1_10_before_dispatch_array_20261121`。DLL、门槛报告、运行时清单 SHA 一致；正常训练入口 12 场零错误，另 12 场固定种子胜负与旧版一致。下一轮重新采样已部署候选，继续从高频调用和战斗推进中选择兼容的小组合；本轮不拆分否定单项收益。[部署与训练检查](../output/_v1110/native_perf50/dispatch_array_bundle/bundle_installation.json)
+
+此部署检查点已提交 `f8b19bbe`，推送至 `codex/native-perf50-verified` 的 `611d698f`，702 份生产源码、DLL 及已打包报告／清单均核对远端原始字节一致。
+
+### 基础值比较与数组写入（小幅迹象，保留继续组合）
+
+对 `0904c29d…` 重采样取得 **6,005 栈**、其中 5,996 栈包含回放根。CoreItem.call_method 叶节点从上轮 177 降至 61；新的主要叶节点为 CoreCombat.physicsTick 743、CoreItem.physicsTick 386、通用调用克隆 300／275，相等比较 141、索引写入 99。包含样本仍不能相加为预期收益。首次采样在写报告时因输出目录未创建而失败；补上目录创建后重跑，只有第二次生成的完整报告用于分析。[部署版新采样](../output/_v1110/native_perf50/post_dispatch_array_profile/profile_depth64.json)
+
+下一隔离候选合并两项：958 处基础值相等／不等比较，仅在双方同为 Null、Bool、Int、Float 时内联原比较；110 处 Array＋Int 写入内联原负索引、越界与数据赋值。其余比较及写入仍回到原实现，尤其保留混合数值转换及数组递归相等。未触碰大小比较、算术、FMA、帧顺序或 RNG。修改前核对远端 `611d698f` 的 702 份源码与当前 DLL，全部 20 单元重建、18 热点 PGO，候选为 `464add2e…`。[实现](../output/_v1110/prototype_native_scalar_array_bundle.py) · [变换](../output/_v1110/native_perf50/scalar_array_bundle/transform.json)
+
+841 对相等／不等比较、78 组写入差分用例覆盖 NaN、正负零、极值整数、超过 2^53 的混合整数／浮点、容器相等、未知对象 setter 及接收者自身被覆盖时的别名；全部通过。既有 RNG、计时器、覆写、复制、回调与容器回归也通过，固定 200 场结果哈希一致、类型不匹配零。完整源码生成两遍得到 703 份一致源码／配置，字节与修改时间稳定，未知编辑保护通过。本候选**尚未跑 2,604 场及发布 24 批，也未部署**。[差分检查](../output/_v1110/native_perf50/scalar_array_bundle/scalar_array_test.json) · [生成流程](../output/_v1110/native_perf50/scalar_array_bundle/full_regeneration_test.json)
+
+三组各八对隔离 AB／BA 的 CPU 中位降幅为 **0.66%、0%、1.32%**，墙钟为 **0.67%、−0.03%、0.99%**。完整 24 对 CPU 中位 **0%**，11 对更快、9 对持平、4 对更慢，累计 CPU 时间减少 **0.44%**；墙钟中位减少 **0.70%**、累计减少 **0.35%**、17 对更快。去掉某一组后 CPU 累计约 −0.08%，体现幅度较小，不能宣称稳定的 1% CPU 提升。但两项没有因此被淘汰：保留这份候选，继续与兼容改动组合，比较更大组合相对当前部署版的净效果。[全部 24 对](../output/_v1110/native_perf50/scalar_array_bundle/ab_assessment.json) · [继续组合的决定与源码审计](../output/_v1110/native_perf50/scalar_array_bundle/composition_decision.json)
+
+后续组合方向为：空值与非空值比较直接给出原实现的 false；对精确已知生成类型的 has_method／get_instance_id，跳过已证明不会命中的用户方法派发链，进入原内建实现。已审计全部 674 份派发器及父回退均为纯生成分支，目标内建方法没有生成覆写。未知 C++ 类型必须继续回退，FuncRef 原来没有这些内建语义，不能因复用快速路径而新增行为；必须补上自定义覆写、缺参／非法参数、ID 顺序与 epoch 的差分测试。此扩展目前只有设计和源码审计，尚未实现。当前默认运行时保持已验收的 `0904c29d…`，目标继续进行。
