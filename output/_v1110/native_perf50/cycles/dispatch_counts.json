@@ -1,0 +1,1011 @@
+{
+  "dll_sha256": "221b38a5754490bde6755536eadde0e156b31eb34838eeca1d43101cd79088af",
+  "inputs_sha256": "d94b16d42cc88e9a3850a77c9360b9c4c4fdd676cb252e463044a903db2a5fef",
+  "results_sha256": "2e74b45caa87f7ee6ac72ffc35d98cc8db140b47031614d26542e183cef5d2c9",
+  "methods": [
+    {
+      "symbol": "empty",
+      "id": 16,
+      "calls": 1379695
+    },
+    {
+      "symbol": "randf_range",
+      "id": 74,
+      "calls": 1250894
+    },
+    {
+      "symbol": "tick",
+      "id": 1617,
+      "calls": 1022970
+    },
+    {
+      "symbol": "size",
+      "id": 15,
+      "calls": 980777
+    },
+    {
+      "symbol": "character",
+      "id": 175,
+      "calls": 747843
+    },
+    {
+      "symbol": "bare_draw_seq",
+      "id": 1843,
+      "calls": 746765
+    },
+    {
+      "symbol": "has",
+      "id": 17,
+      "calls": 668070
+    },
+    {
+      "symbol": "snapshotCharacterStat",
+      "id": 1488,
+      "calls": 439665
+    },
+    {
+      "symbol": "getStacks",
+      "id": 1124,
+      "calls": 383456
+    },
+    {
+      "symbol": "isBag",
+      "id": 184,
+      "calls": 372673
+    },
+    {
+      "symbol": "logEvent",
+      "id": 1458,
+      "calls": 357825
+    },
+    {
+      "symbol": "push_back",
+      "id": 19,
+      "calls": 344779
+    },
+    {
+      "symbol": "_tickChargePath",
+      "id": 607,
+      "calls": 320482
+    },
+    {
+      "symbol": "has_method",
+      "id": 83,
+      "calls": 317834
+    },
+    {
+      "symbol": "onItemAdded",
+      "id": 538,
+      "calls": 295405
+    },
+    {
+      "symbol": "get",
+      "id": 40,
+      "calls": 283318
+    },
+    {
+      "symbol": "new",
+      "id": 95,
+      "calls": 271751
+    },
+    {
+      "symbol": "canAffect",
+      "id": 387,
+      "calls": 270352
+    },
+    {
+      "symbol": "getItemsInCells",
+      "id": 1709,
+      "calls": 259983
+    },
+    {
+      "symbol": "canAffect_lightning",
+      "id": 390,
+      "calls": 253458
+    },
+    {
+      "symbol": "canAffect_secondary",
+      "id": 388,
+      "calls": 253199
+    },
+    {
+      "symbol": "hasType",
+      "id": 180,
+      "calls": 253068
+    },
+    {
+      "symbol": "setParam",
+      "id": 1675,
+      "calls": 252807
+    },
+    {
+      "symbol": "canAffect_tertiary",
+      "id": 389,
+      "calls": 252369
+    },
+    {
+      "symbol": "getGemMode",
+      "id": 1073,
+      "calls": 235524
+    },
+    {
+      "symbol": "snapshotItemTooltipStat",
+      "id": 1485,
+      "calls": 227318
+    },
+    {
+      "symbol": "getGemsNoNull",
+      "id": 598,
+      "calls": 216134
+    },
+    {
+      "symbol": "trace_diag",
+      "id": 1842,
+      "calls": 212400
+    },
+    {
+      "symbol": "call_funcv",
+      "id": 82,
+      "calls": 202021
+    },
+    {
+      "symbol": "getItemsInside",
+      "id": 1025,
+      "calls": 183576
+    },
+    {
+      "symbol": "addMetric",
+      "id": 331,
+      "calls": 177303
+    },
+    {
+      "symbol": "snapshotItemMetric",
+      "id": 1484,
+      "calls": 177303
+    },
+    {
+      "symbol": "getTimeStamp",
+      "id": 1454,
+      "calls": 175144
+    },
+    {
+      "symbol": "createEvent",
+      "id": 1455,
+      "calls": 175144
+    },
+    {
+      "symbol": "emitEvent",
+      "id": 1694,
+      "calls": 167159
+    },
+    {
+      "symbol": "get_instance_id",
+      "id": 90,
+      "calls": 152071
+    },
+    {
+      "symbol": "emitSignal",
+      "id": 1693,
+      "calls": 146318
+    },
+    {
+      "symbol": "append_array",
+      "id": 22,
+      "calls": 140019
+    },
+    {
+      "symbol": "getOwnOrPlayerInventory",
+      "id": 501,
+      "calls": 134962
+    },
+    {
+      "symbol": "_step_native_delays",
+      "id": 1581,
+      "calls": 132161
+    },
+    {
+      "symbol": "getCharacterFromId",
+      "id": 1577,
+      "calls": 112295
+    },
+    {
+      "symbol": "playActivationSound",
+      "id": 249,
+      "calls": 111402
+    },
+    {
+      "symbol": "isWeapon",
+      "id": 183,
+      "calls": 108446
+    },
+    {
+      "symbol": "setTarget",
+      "id": 1674,
+      "calls": 100294
+    },
+    {
+      "symbol": "roll",
+      "id": 1835,
+      "calls": 99500
+    },
+    {
+      "symbol": "gainStacks",
+      "id": 1131,
+      "calls": 95555
+    },
+    {
+      "symbol": "tickVisualMotion",
+      "id": 1238,
+      "calls": 92629
+    },
+    {
+      "symbol": "getAffectedItems",
+      "id": 521,
+      "calls": 91626
+    },
+    {
+      "symbol": "hasCooldown",
+      "id": 196,
+      "calls": 91602
+    },
+    {
+      "symbol": "randi_range",
+      "id": 71,
+      "calls": 91390
+    },
+    {
+      "symbol": "getAmount",
+      "id": 1677,
+      "calls": 89003
+    },
+    {
+      "symbol": "_nativeF32",
+      "id": 1603,
+      "calls": 88491
+    },
+    {
+      "symbol": "hasHit",
+      "id": 1624,
+      "calls": 86623
+    },
+    {
+      "symbol": "snapshotStack",
+      "id": 1489,
+      "calls": 79107
+    },
+    {
+      "symbol": "getNextFreeLabelPosition",
+      "id": 479,
+      "calls": 78937
+    },
+    {
+      "symbol": "getAffectedCellsInInventory_cached",
+      "id": 516,
+      "calls": 77643
+    },
+    {
+      "symbol": "getItemsInAffectedCells_cached",
+      "id": 524,
+      "calls": 77588
+    },
+    {
+      "symbol": "getP",
+      "id": 289,
+      "calls": 73500
+    },
+    {
+      "symbol": "activateBuffCounter",
+      "id": 1724,
+      "calls": 73279
+    },
+    {
+      "symbol": "getItem",
+      "id": 490,
+      "calls": 69735
+    },
+    {
+      "symbol": "hasCharacter",
+      "id": 174,
+      "calls": 67691
+    },
+    {
+      "symbol": "keys",
+      "id": 32,
+      "calls": 66369
+    },
+    {
+      "symbol": "values",
+      "id": 33,
+      "calls": 63688
+    },
+    {
+      "symbol": "createEvent_Stack",
+      "id": 1463,
+      "calls": 63158
+    },
+    {
+      "symbol": "getCellsForGlobalPositions",
+      "id": 502,
+      "calls": 61801
+    },
+    {
+      "symbol": "stackChanged",
+      "id": 333,
+      "calls": 59977
+    },
+    {
+      "symbol": "numStackTypes",
+      "id": 1495,
+      "calls": 59977
+    },
+    {
+      "symbol": "spawnBuffLabel_item",
+      "id": 1736,
+      "calls": 59977
+    },
+    {
+      "symbol": "_hasBehaviorMethod",
+      "id": 604,
+      "calls": 57618
+    },
+    {
+      "symbol": "getAffectedCells_tilemap",
+      "id": 509,
+      "calls": 57197
+    },
+    {
+      "symbol": "getAffectedCellsAfterRotate",
+      "id": 510,
+      "calls": 56966
+    },
+    {
+      "symbol": "getAffectedCells_noRotate",
+      "id": 513,
+      "calls": 56966
+    },
+    {
+      "symbol": "getAffectedPoints",
+      "id": 514,
+      "calls": 56966
+    },
+    {
+      "symbol": "getAffectedCellsInInventory",
+      "id": 515,
+      "calls": 56966
+    },
+    {
+      "symbol": "isAttack",
+      "id": 1661,
+      "calls": 56313
+    },
+    {
+      "symbol": "activate",
+      "id": 251,
+      "calls": 55820
+    },
+    {
+      "symbol": "checkActivationLimit",
+      "id": 252,
+      "calls": 55820
+    },
+    {
+      "symbol": "playDropSound",
+      "id": 250,
+      "calls": 55701
+    },
+    {
+      "symbol": "flipPercent",
+      "id": 1837,
+      "calls": 54078
+    },
+    {
+      "symbol": "createEvent_Activation",
+      "id": 1481,
+      "calls": 53182
+    },
+    {
+      "symbol": "flip",
+      "id": 1836,
+      "calls": 50520
+    },
+    {
+      "symbol": "randf",
+      "id": 72,
+      "calls": 50206
+    },
+    {
+      "symbol": "getHeat",
+      "id": 1352,
+      "calls": 50068
+    },
+    {
+      "symbol": "getP_check",
+      "id": 363,
+      "calls": 50059
+    },
+    {
+      "symbol": "gainTemporary",
+      "id": 1132,
+      "calls": 49858
+    },
+    {
+      "symbol": "reset",
+      "id": 1126,
+      "calls": 49588
+    },
+    {
+      "symbol": "getAmplificationChancePercent",
+      "id": 296,
+      "calls": 49496
+    },
+    {
+      "symbol": "applyBonusChance",
+      "id": 271,
+      "calls": 47577
+    },
+    {
+      "symbol": "giveStacks",
+      "id": 302,
+      "calls": 47077
+    },
+    {
+      "symbol": "clear",
+      "id": 39,
+      "calls": 45569
+    },
+    {
+      "symbol": "rollPercent",
+      "id": 1861,
+      "calls": 45422
+    },
+    {
+      "symbol": "doCooldownEffect",
+      "id": 245,
+      "calls": 45269
+    },
+    {
+      "symbol": "onHealthChangedUI",
+      "id": 1742,
+      "calls": 44007
+    },
+    {
+      "symbol": "getCooldown",
+      "id": 203,
+      "calls": 42923
+    },
+    {
+      "symbol": "adjustCooldown",
+      "id": 208,
+      "calls": 42863
+    },
+    {
+      "symbol": "bare_randf_range",
+      "id": 1844,
+      "calls": 42108
+    },
+    {
+      "symbol": "spawnLabel_character",
+      "id": 1732,
+      "calls": 41466
+    },
+    {
+      "symbol": "getBaseChance",
+      "id": 269,
+      "calls": 40730
+    },
+    {
+      "symbol": "resize",
+      "id": 38,
+      "calls": 39956
+    },
+    {
+      "symbol": "getCold",
+      "id": 1355,
+      "calls": 38436
+    }
+  ],
+  "methods_total": 21441305,
+  "properties": [
+    {
+      "symbol": "rng",
+      "id": 1507,
+      "calls": 1726340
+    },
+    {
+      "symbol": "hooks",
+      "id": 1510,
+      "calls": 1344345
+    },
+    {
+      "symbol": "oracle_trace",
+      "id": 1830,
+      "calls": 738359
+    },
+    {
+      "symbol": "nextCell",
+      "id": 1753,
+      "calls": 651690
+    },
+    {
+      "symbol": "elapsed",
+      "id": 1752,
+      "calls": 643344
+    },
+    {
+      "symbol": "combat_log",
+      "id": 1511,
+      "calls": 490386
+    },
+    {
+      "symbol": "fight_ended",
+      "id": 1406,
+      "calls": 433125
+    },
+    {
+      "symbol": "Stat",
+      "id": 971,
+      "calls": 412405
+    },
+    {
+      "symbol": "time",
+      "id": 1512,
+      "calls": 364937
+    },
+    {
+      "symbol": "bus",
+      "id": 1509,
+      "calls": 350704
+    },
+    {
+      "symbol": "Stamina",
+      "id": 2774,
+      "calls": 350454
+    },
+    {
+      "symbol": "callbackDelays",
+      "id": 1751,
+      "calls": 326878
+    },
+    {
+      "symbol": "inventoryCells",
+      "id": 1750,
+      "calls": 326046
+    },
+    {
+      "symbol": "active",
+      "id": 1754,
+      "calls": 320482
+    },
+    {
+      "symbol": "playerId",
+      "id": 1147,
+      "calls": 300200
+    },
+    {
+      "symbol": "identifier",
+      "id": 1774,
+      "calls": 282995
+    },
+    {
+      "symbol": "player",
+      "id": 1403,
+      "calls": 266469
+    },
+    {
+      "symbol": "descriptor",
+      "id": 103,
+      "calls": 248097
+    },
+    {
+      "symbol": "timer_pass_epoch",
+      "id": 1546,
+      "calls": 238951
+    },
+    {
+      "symbol": "opponent",
+      "id": 176,
+      "calls": 208727
+    },
+    {
+      "symbol": "placed",
+      "id": 107,
+      "calls": 203861
+    },
+    {
+      "symbol": "_visual_kind",
+      "id": 1224,
+      "calls": 185258
+    },
+    {
+      "symbol": "combat_time",
+      "id": 1407,
+      "calls": 175144
+    },
+    {
+      "symbol": "damage",
+      "id": 1619,
+      "calls": 168238
+    },
+    {
+      "symbol": "EventType",
+      "id": 1496,
+      "calls": 149800
+    },
+    {
+      "symbol": "types",
+      "id": 1645,
+      "calls": 119484
+    },
+    {
+      "symbol": "ID",
+      "id": 1398,
+      "calls": 112295
+    },
+    {
+      "symbol": "PLAYER",
+      "id": 2738,
+      "calls": 112295
+    },
+    {
+      "symbol": "Type",
+      "id": 956,
+      "calls": 111780
+    },
+    {
+      "symbol": "animationScene",
+      "id": 1796,
+      "calls": 108850
+    },
+    {
+      "symbol": "cd",
+      "id": 1780,
+      "calls": 105632
+    },
+    {
+      "symbol": "StackChangeType",
+      "id": 972,
+      "calls": 103177
+    },
+    {
+      "symbol": "_visual_generation",
+      "id": 1226,
+      "calls": 93953
+    },
+    {
+      "symbol": "x",
+      "id": 1,
+      "calls": 79984
+    },
+    {
+      "symbol": "y",
+      "id": 2,
+      "calls": 79984
+    },
+    {
+      "symbol": "damageSource",
+      "id": 125,
+      "calls": 73345
+    },
+    {
+      "symbol": "origin",
+      "id": 1647,
+      "calls": 64862
+    },
+    {
+      "symbol": "Affected",
+      "id": 968,
+      "calls": 63288
+    },
+    {
+      "symbol": "healthDamage",
+      "id": 1620,
+      "calls": 60630
+    },
+    {
+      "symbol": "Fatigue",
+      "id": 2882,
+      "calls": 58276
+    },
+    {
+      "symbol": "id",
+      "id": 1667,
+      "calls": 55308
+    },
+    {
+      "symbol": "Health",
+      "id": 2888,
+      "calls": 51222
+    },
+    {
+      "symbol": "params",
+      "id": 1671,
+      "calls": 50059
+    },
+    {
+      "symbol": "chance",
+      "id": 1782,
+      "calls": 40730
+    },
+    {
+      "symbol": "accuracy",
+      "id": 1646,
+      "calls": 39738
+    },
+    {
+      "symbol": "occupiedCells",
+      "id": 153,
+      "calls": 38864
+    },
+    {
+      "symbol": "ownerType",
+      "id": 150,
+      "calls": 34305
+    },
+    {
+      "symbol": "name",
+      "id": 108,
+      "calls": 33864
+    },
+    {
+      "symbol": "BalancedRng",
+      "id": 1850,
+      "calls": 32472
+    },
+    {
+      "symbol": "minDam",
+      "id": 1776,
+      "calls": 29824
+    },
+    {
+      "symbol": "event",
+      "id": 1618,
+      "calls": 29236
+    },
+    {
+      "symbol": "hit",
+      "id": 1621,
+      "calls": 28366
+    },
+    {
+      "symbol": "curChargedItem",
+      "id": 1749,
+      "calls": 27101
+    },
+    {
+      "symbol": "paramBases",
+      "id": 1813,
+      "calls": 25971
+    },
+    {
+      "symbol": "inventory",
+      "id": 106,
+      "calls": 24497
+    },
+    {
+      "symbol": "flags",
+      "id": 1648,
+      "calls": 23487
+    },
+    {
+      "symbol": "below_master",
+      "id": 1515,
+      "calls": 20665
+    },
+    {
+      "symbol": "lastChargedItem",
+      "id": 1748,
+      "calls": 19917
+    },
+    {
+      "symbol": "typedDamageFactors",
+      "id": 1181,
+      "calls": 18769
+    },
+    {
+      "symbol": "ctx",
+      "id": 104,
+      "calls": 18520
+    },
+    {
+      "symbol": "minDamage",
+      "id": 1643,
+      "calls": 18249
+    },
+    {
+      "symbol": "critChancePercent",
+      "id": 116,
+      "calls": 18122
+    },
+    {
+      "symbol": "maxDamage",
+      "id": 1644,
+      "calls": 18122
+    },
+    {
+      "symbol": "native_frame_rng",
+      "id": 1551,
+      "calls": 18091
+    },
+    {
+      "symbol": "items",
+      "id": 1193,
+      "calls": 17218
+    },
+    {
+      "symbol": "damageReduction",
+      "id": 1164,
+      "calls": 15949
+    },
+    {
+      "symbol": "FaceDirection",
+      "id": 964,
+      "calls": 15269
+    },
+    {
+      "symbol": "UP",
+      "id": 12,
+      "calls": 14976
+    },
+    {
+      "symbol": "ItemMetrics",
+      "id": 1497,
+      "calls": 14933
+    },
+    {
+      "symbol": "ItemStat",
+      "id": 1499,
+      "calls": 14933
+    },
+    {
+      "symbol": "flickerAni",
+      "id": 1797,
+      "calls": 14933
+    },
+    {
+      "symbol": "connectorReadyRoll",
+      "id": 1802,
+      "calls": 14933
+    },
+    {
+      "symbol": "gemRoll",
+      "id": 1803,
+      "calls": 14933
+    },
+    {
+      "symbol": "sceneDepth",
+      "id": 1804,
+      "calls": 14933
+    },
+    {
+      "symbol": "BalancedRange",
+      "id": 1851,
+      "calls": 14933
+    },
+    {
+      "symbol": "Poison",
+      "id": 2765,
+      "calls": 13632
+    },
+    {
+      "symbol": "chance2",
+      "id": 1783,
+      "calls": 12786
+    },
+    {
+      "symbol": "Spikes",
+      "id": 2763,
+      "calls": 12694
+    },
+    {
+      "symbol": "hasBattleRageEffect",
+      "id": 1791,
+      "calls": 12679
+    },
+    {
+      "symbol": "staminaCost",
+      "id": 1778,
+      "calls": 11133
+    },
+    {
+      "symbol": "MaxHealth",
+      "id": 2785,
+      "calls": 10563
+    },
+    {
+      "symbol": "LoggingMode",
+      "id": 1700,
+      "calls": 10431
+    },
+    {
+      "symbol": "Delayed",
+      "id": 2787,
+      "calls": 10431
+    },
+    {
+      "symbol": "hasPreDealDamageEarlyEffect",
+      "id": 163,
+      "calls": 10262
+    },
+    {
+      "symbol": "hasDealtDamageEffect",
+      "id": 165,
+      "calls": 10262
+    },
+    {
+      "symbol": "item_book",
+      "id": 1522,
+      "calls": 10115
+    },
+    {
+      "symbol": "canActivate",
+      "id": 192,
+      "calls": 9864
+    },
+    {
+      "symbol": "maxDam",
+      "id": 1777,
+      "calls": 9173
+    },
+    {
+      "symbol": "damageRangeRng",
+      "id": 133,
+      "calls": 8726
+    },
+    {
+      "symbol": "SelfDamage",
+      "id": 2938,
+      "calls": 8726
+    },
+    {
+      "symbol": "in_item_physics_pass",
+      "id": 1548,
+      "calls": 8502
+    },
+    {
+      "symbol": "in_physics_timer_pass",
+      "id": 1547,
+      "calls": 8460
+    },
+    {
+      "symbol": "placedByPlayer",
+      "id": 151,
+      "calls": 8453
+    },
+    {
+      "symbol": "hasPreDealDamageLateEffect",
+      "id": 164,
+      "calls": 8128
+    },
+    {
+      "symbol": "Ranged",
+      "id": 2887,
+      "calls": 7644
+    },
+    {
+      "symbol": "debuffResistStacks",
+      "id": 1173,
+      "calls": 6658
+    },
+    {
+      "symbol": "debuffReflectStacks",
+      "id": 1174,
+      "calls": 6468
+    },
+    {
+      "symbol": "Flags",
+      "id": 1666,
+      "calls": 6370
+    },
+    {
+      "symbol": "CanTriggerItems",
+      "id": 2797,
+      "calls": 5366
+    },
+    {
+      "symbol": "timeout",
+      "id": 1143,
+      "calls": 5120
+    }
+  ],
+  "properties_total": 13435977
+}
