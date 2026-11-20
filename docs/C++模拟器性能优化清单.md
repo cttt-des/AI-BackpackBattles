@@ -499,3 +499,25 @@ CoreItem 从 1,696 字节、8 字节对齐改为 1,792 字节、64 字节对齐�
 默认性能再生成流程已更新，新增完整源码库存保护，避免未修改分片中出现新覆写时仍沿用旧表。完整 GDScript 转译及既有性能处理在隔离副本中连续运行两次，**701 份源码／配置与已编译候选一致，重复字节及修改时间不变**；未知未修改分片的编辑会在应用变换前被拒绝。本轮没有为此额外编译 DLL，完整源文本验证与先前候选全量编译配合使用。[完整再生成检查](../output/_v1110/native_perf50/resolved_dispatch_a/full_regeneration_test.json) · [全库存保护](../output/_v1110/native_perf50/resolved_dispatch_a/regeneration_test.json)
 
 新源码及 DLL 已原子部署到训练运行时，旧版保留在 `dist/native_1_1_10_before_resolved_20261121`。验收报告、运行时清单与 DLL SHA 一致；正常训练入口 12 场零错误，另 12 场固定种子结果与基线一致。下一轮继续基于新部署版重新采样并组合优化，目标保持进行中。[部署及训练](../output/_v1110/native_perf50/resolved_dispatch_a/resolved_installation.json)
+
+部署版再采样取得 6,043 个包含回放根的栈，主要叶节点仍为逐帧 CoreCombat（719）、CoreItem（371）及通用调用克隆（289／255）。独立诊断 DLL 只在 gd_rt 单元增加未覆盖方法计数，头文件布局和其余源码均与缓存一致，复用 19 个已验收对象；只用于定位，不作吞吐成绩，也未替换运行 DLL。固定 200 场结果哈希保持一致。发现目前还有 **8,931,122** 次未覆盖调用，最频繁的是 tick 1,022,970、isBag 372,673、getStacks 368,123，继而是 has_method、randf_range 与影响区域查询；此前按包含耗时及静态站点挑选的方法，遗漏了高频但短小的调用。[新采样](../output/_v1110/native_perf50/post_resolved_profile/profile_depth64.json) · [诊断实现](../output/_v1110/native_perf50/post_resolved_profile/probe_dispatch_misses.py) · [未覆盖频次](../output/_v1110/native_perf50/post_resolved_profile/uncovered_method_counts.json)
+
+下一组合据此保留原 48 方法，再加入 64 个具有生成实例实现的高频方法，并评估 Array／Int 索引的等价内联路径。新增的方法名在该批次出现约 **703 万次**，这不是快速路径命中承诺：部分调用接收者是自定义 NativeBattleHooks 等 C++ 类型，仍须回退并以诊断确认实际覆盖。112 个槽位仍在有符号 8 位索引范围内；预计 665 份只读行、约 596 KiB 函数指针，也可能增加缓存成本，须整体 A/B，不能按调用次数直接折算收益。数组路径需保留负索引、越界、空数组与非整数／非数组回退，数学及 RNG 保持原实现。本组合目前仅完成选择和解析，尚未构建；已部署版仍为 `6e232391…`，修改前备份为 `75f025d5`。[下一组合选择](../output/_v1110/native_perf50/post_resolved_profile/next_bundle_selection.json)
+
+### 高频短方法与数组索引组合（已部署）
+
+已把上述两项作为一个候选包实现，未要求每一笔先独立达到可见收益。修改前核对远端 `75f025d5` 的 701 份源码及当前运行 DLL；方法表扩展到 112 槽、665 行，精确类型、继承覆写、静态遮蔽与自定义 C++ 回退规则保持不变。459 处生成索引调用使用 Array＋Int 的等价内联路径，其余键／接收者仍调用原实现；保留参数表达式和求值方式，不新增逐次索引计数。全量 20 单元编译、18 热点单元 PGO，浮点选项不变。正式候选为 `0904c29d…`。[实现](../output/_v1110/prototype_native_dispatch_array_bundle.py) · [完整变换](../output/_v1110/native_perf50/dispatch_array_bundle/transform.json) · [固定测量方案](../output/_v1110/native_perf50/dispatch_array_bundle/evaluation_plan.json)
+
+定向检查通过：512 次 RNG 逐位及状态比较、32 次计时器推进、280 个索引差分用例、负索引及整数边界、空／非整数／非数组回退、getter 调用次数、引用别名，以及既有覆写、复制、FuncRef、回调、分配与容器回归。固定 200 场方法表实际命中普通方法 **9,300,441** 次、FuncRef **100,900** 次，类型不匹配零；200 个未知 C++ 类型和 233,004 次选中但不支持的方法仍回退，不以命中次数宣称收益。[索引边界](../output/_v1110/native_perf50/dispatch_array_bundle/array_index_test.json) · [RNG／计时器／覆写](../output/_v1110/native_perf50/dispatch_array_bundle/expanded_dispatch_test.json) · [正式候选诊断](../output/_v1110/native_perf50/dispatch_array_bundle/release_audit.json)
+
+三组各八对固定 200 场单线程隔离 AB／BA，均先交替预热 120 秒。第一组 CPU／墙钟耗时降幅 **−1.11%／−0.24%**，第二组 **4.97%／5.07%**，第三组 **5.45%／5.07%**。完整 24 对成对中位降幅为 **4.94% CPU、4.92% 墙钟**，累计总时间降幅 **4.33%／4.11%**，分别 18／19 对更快；全程接电，观测后台负载 **1.65%–29.83%**。保留第一组反向数据，未按组间必须全正淘汰，也不把两项旧收益相加或声称各项都有效。[完整组合对照](../output/_v1110/native_perf50/dispatch_array_bundle/ab_assessment.json)
+
+914 + 1,690 场原版严格逐事件核验通过；2,604 场 C++ 事件哈希分别与当前部署 `6e232391…` 及早期 `58383a11…` 完全一致，根仍为 `b8066c92…`。全量新路径普通调用 142,269,767 次、FuncRef 2,143,020 次，类型不匹配零，旧事件内核审计也为零。正式测速关闭计数和审计。[全量真值](../output/_v1110/native_perf50/dispatch_array_bundle/bundle_full_gate.json) · [相对当前运行版事件哈希](../output/_v1110/native_perf50/dispatch_array_bundle/bundle_vs_deployed_hashes.json) · [全量类型审计](../output/_v1110/native_perf50/dispatch_array_bundle/full_type_audit.json)
+
+正式连续 24 批全部通过原始门槛：中位 **153.90 场/秒**、最慢 **127.12 场/秒**，全程接电，后台负载 **1.63%–17.79%**。另行受控校准覆盖 **6.59%–28.64%**，24 批中位 **138.67**、最慢 **100.47 场/秒**；20% 拟合为 **119.97 场/秒**，R² **0.892**，留出耗时误差中位 **4.43%**、P90 **6.54%**。如实保留该拟合及较低原始吞吐，不用它宣称 125 或 140 达标，也不重跑到出现较好数字。[发布原始吞吐](../output/_v1110/native_perf50/dispatch_array_bundle/bundle_serial.json) · [独立校准](../output/_v1110/native_perf50/dispatch_array_bundle/bundle_load_calibration.json) · [20% 估计](../output/_v1110/native_perf50/dispatch_array_bundle/bundle_load20.json)
+
+因本次独立 20% 拟合低于上轮约 124.77，而主要 A/B 为正，追加一组**共享受控负载**的新旧版直接对照，保留为不同协议，不混入主要 24 对。两条低优先级后台任务在 20%／85% 占空比之间切换、最长 240 秒，DLL 仍各自单线程、正常优先级，交替预热 120 秒后运行 16 对。CPU 耗时中位下降 **4.32%**、墙钟下降 **4.07%**，分别 11／10 对更快；累计 CPU 仅减少 **0.79%**、累计墙钟仅减少 **0.08%**，说明较大的负向波动抵消了多数对的改善，不能将中位数解读为稳定的高负载总吞吐提升。全程接电，负载 **7.68%–29.87%**。主要 A/B 的累计与中位证据仍为正，本组保留幅度不稳的判断，也不能把跨时段独立模型之差直接当成同条件代码退化证据；当前绝对 20% 成绩仍按本次约 120 记录，目标继续进行。[共享负载协议](../output/_v1110/native_perf50/dispatch_array_bundle/shared_load_protocol.json) · [对照](../output/_v1110/native_perf50/dispatch_array_bundle/shared_load_assessment.json)
+
+完整源码生成流程在隔离目录运行两遍，702 份源码／构建文件与编译候选一致，重复字节与修改时间不变；对未修改类头文件添加未知编辑时，准备和应用阶段均在写入前拒绝。版本受限源码变换保存 22 份必要文件，运行时默认生成器已切换到新库存。[全链路生成](../output/_v1110/native_perf50/dispatch_array_bundle/full_regeneration_test.json) · [编辑保护](../output/_v1110/native_perf50/dispatch_array_bundle/regeneration_test.json)
+
+已部署到默认训练运行时，旧版留在 `dist/native_1_1_10_before_dispatch_array_20261121`。DLL、门槛报告、运行时清单 SHA 一致；正常训练入口 12 场零错误，另 12 场固定种子胜负与旧版一致。下一轮重新采样已部署候选，继续从高频调用和战斗推进中选择兼容的小组合；本轮不拆分否定单项收益。[部署与训练检查](../output/_v1110/native_perf50/dispatch_array_bundle/bundle_installation.json)

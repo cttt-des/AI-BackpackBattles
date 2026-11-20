@@ -1,0 +1,19 @@
+{
+  "baseline_dll_sha256": "6e232391806268a9e77dde1ba5d89a96320453fe82bacd9d092e355a56c67a5b",
+  "bundle": [
+    "112 exact-type resolved methods selected using measured frequency",
+    "459 Array/Int inline index sites; all other cases unchanged"
+  ],
+  "comparison": {
+    "fights": 200,
+    "workers": 1,
+    "groups": 3,
+    "pairs_per_group": 8,
+    "warmup_seconds": 120,
+    "order": "alternating AB/BA; reverse initial/load order across groups",
+    "quiet": true
+  },
+  "decision": "Assess bundle paired CPU/wall and summed times, retaining all samples; no group unanimity, single-component significance, or positive-CI-lower-bound gate. Independently investigate inconclusive or opposing results.",
+  "semantic_gate": "targeted regression, original914+1690 strict events, event hashes against currently deployed6e232391, zero exact-type mismatches",
+  "release": "24 consecutive raw batches all>=50 fights/s, AC/load reported; bounded separate20-percent-load calibration; deployment only after all required checks"
+}

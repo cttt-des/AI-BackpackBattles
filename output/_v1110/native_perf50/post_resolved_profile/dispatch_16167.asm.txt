@@ -1,0 +1,112 @@
+
+libgdcore.dll:     file format pei-x86-64
+
+
+Disassembly of section .text:
+
+00000002d47be8d0 <_ZN2gd28try_native_resolved_dispatchERNS_9BattleCtxEPNS_5GdObjEjPKNS_5GdValEiRS4_j>:
+   2d47be8d0:	56                   	push   %rsi
+   2d47be8d1:	53                   	push   %rbx
+   2d47be8d2:	48 83 ec 58          	sub    $0x58,%rsp
+   2d47be8d6:	0f b6 99 d0 00 00 00 	movzbl 0xd0(%rcx),%ebx
+   2d47be8dd:	49 89 ca             	mov    %rcx,%r10
+   2d47be8e0:	4d 89 cb             	mov    %r9,%r11
+   2d47be8e3:	84 db                	test   %bl,%bl
+   2d47be8e5:	0f 84 9d 00 00 00    	je     2d47be988 <_ZN2gd28try_native_resolved_dispatchERNS_9BattleCtxEPNS_5GdObjEjPKNS_5GdValEiRS4_j+0xb8>
+   2d47be8eb:	48 85 d2             	test   %rdx,%rdx
+   2d47be8ee:	0f 94 c0             	sete   %al
+   2d47be8f1:	41 81 f8 a3 0b 00 00 	cmp    $0xba3,%r8d
+   2d47be8f8:	0f 97 c1             	seta   %cl
+   2d47be8fb:	08 c8                	or     %cl,%al
+   2d47be8fd:	75 14                	jne    2d47be913 <_ZN2gd28try_native_resolved_dispatchERNS_9BattleCtxEPNS_5GdObjEjPKNS_5GdValEiRS4_j+0x43>
+   2d47be8ff:	48 8b 0d 7a e4 1a 00 	mov    0x1ae47a(%rip),%rcx        # 2d496cd80 <.refptr._ZN2gdL21native_resolved_slotsE.lto_priv.0>
+   2d47be906:	44 89 c0             	mov    %r8d,%eax
+   2d47be909:	44 0f b6 04 01       	movzbl (%rcx,%rax,1),%r8d
+   2d47be90e:	45 84 c0             	test   %r8b,%r8b
+   2d47be911:	79 09                	jns    2d47be91c <_ZN2gd28try_native_resolved_dispatchERNS_9BattleCtxEPNS_5GdObjEjPKNS_5GdValEiRS4_j+0x4c>
+   2d47be913:	31 c0                	xor    %eax,%eax
+   2d47be915:	48 83 c4 58          	add    $0x58,%rsp
+   2d47be919:	5b                   	pop    %rbx
+   2d47be91a:	5e                   	pop    %rsi
+   2d47be91b:	c3                   	ret
+   2d47be91c:	4c 8b 4a 28          	mov    0x28(%rdx),%r9
+   2d47be920:	4d 85 c9             	test   %r9,%r9
+   2d47be923:	74 67                	je     2d47be98c <_ZN2gd28try_native_resolved_dispatchERNS_9BattleCtxEPNS_5GdObjEjPKNS_5GdValEiRS4_j+0xbc>
+   2d47be925:	41 80 ba d1 00 00 00 	cmpb   $0x0,0xd1(%r10)
+   2d47be92c:	00 
+   2d47be92d:	0f 85 c5 00 00 00    	jne    2d47be9f8 <_ZN2gd28try_native_resolved_dispatchERNS_9BattleCtxEPNS_5GdObjEjPKNS_5GdValEiRS4_j+0x128>
+   2d47be933:	4b 8b 04 c1          	mov    (%r9,%r8,8),%rax
+   2d47be937:	48 85 c0             	test   %rax,%rax
+   2d47be93a:	48 89 c6             	mov    %rax,%rsi
+   2d47be93d:	41 0f b6 82 d2 00 00 	movzbl 0xd2(%r10),%eax
+   2d47be944:	00 
+   2d47be945:	0f 84 03 01 00 00    	je     2d47bea4e <_ZN2gd28try_native_resolved_dispatchERNS_9BattleCtxEPNS_5GdObjEjPKNS_5GdValEiRS4_j+0x17e>
+   2d47be94b:	84 c0                	test   %al,%al
+   2d47be94d:	0f 85 0f 01 00 00    	jne    2d47bea62 <_ZN2gd28try_native_resolved_dispatchERNS_9BattleCtxEPNS_5GdObjEjPKNS_5GdValEiRS4_j+0x192>
+   2d47be953:	44 8b 8c 24 90 00 00 	mov    0x90(%rsp),%r9d
+   2d47be95a:	00 
+   2d47be95b:	48 8d 4c 24 30       	lea    0x30(%rsp),%rcx
+   2d47be960:	4d 89 d8             	mov    %r11,%r8
+   2d47be963:	ff d6                	call   *%rsi
+   2d47be965:	c5 fa 6f 44 24 30    	vmovdqu 0x30(%rsp),%xmm0
+   2d47be96b:	48 8b 84 24 98 00 00 	mov    0x98(%rsp),%rax
+   2d47be972:	00 
+   2d47be973:	48 8b 94 24 98 00 00 	mov    0x98(%rsp),%rdx
+   2d47be97a:	00 
+   2d47be97b:	c5 fa 7f 00          	vmovdqu %xmm0,(%rax)
+   2d47be97f:	48 8b 44 24 40       	mov    0x40(%rsp),%rax
+   2d47be984:	48 89 42 10          	mov    %rax,0x10(%rdx)
+   2d47be988:	89 d8                	mov    %ebx,%eax
+   2d47be98a:	eb 89                	jmp    2d47be915 <_ZN2gd28try_native_resolved_dispatchERNS_9BattleCtxEPNS_5GdObjEjPKNS_5GdValEiRS4_j+0x45>
+   2d47be98c:	48 89 d1             	mov    %rdx,%rcx
+   2d47be98f:	4c 89 9c 24 88 00 00 	mov    %r11,0x88(%rsp)
+   2d47be996:	00 
+   2d47be997:	4c 89 54 24 70       	mov    %r10,0x70(%rsp)
+   2d47be99c:	44 88 44 24 27       	mov    %r8b,0x27(%rsp)
+   2d47be9a1:	48 89 54 24 78       	mov    %rdx,0x78(%rsp)
+   2d47be9a6:	e8 d5 00 00 00       	call   2d47bea80 <_ZN2gdL25native_resolved_exact_rowEPKNS_5GdObjE.lto_priv.0>
+   2d47be9ab:	4c 8b 54 24 70       	mov    0x70(%rsp),%r10
+   2d47be9b0:	48 8b 54 24 78       	mov    0x78(%rsp),%rdx
+   2d47be9b5:	44 0f b6 44 24 27    	movzbl 0x27(%rsp),%r8d
+   2d47be9bb:	4c 8b 9c 24 88 00 00 	mov    0x88(%rsp),%r11
+   2d47be9c2:	00 
+   2d47be9c3:	49 89 c1             	mov    %rax,%r9
+   2d47be9c6:	41 80 ba d2 00 00 00 	cmpb   $0x0,0xd2(%r10)
+   2d47be9cd:	00 
+   2d47be9ce:	48 89 42 28          	mov    %rax,0x28(%rdx)
+   2d47be9d2:	0f 84 4d ff ff ff    	je     2d47be925 <_ZN2gd28try_native_resolved_dispatchERNS_9BattleCtxEPNS_5GdObjEjPKNS_5GdValEiRS4_j+0x55>
+   2d47be9d8:	49 ff 82 e8 00 00 00 	incq   0xe8(%r10)
+   2d47be9df:	48 3b 05 8a e3 1a 00 	cmp    0x1ae38a(%rip),%rax        # 2d496cd70 <.refptr._ZN2gdL21native_resolved_emptyE.lto_priv.0>
+   2d47be9e6:	0f 85 39 ff ff ff    	jne    2d47be925 <_ZN2gd28try_native_resolved_dispatchERNS_9BattleCtxEPNS_5GdObjEjPKNS_5GdValEiRS4_j+0x55>
+   2d47be9ec:	49 ff 82 f0 00 00 00 	incq   0xf0(%r10)
+   2d47be9f3:	e9 2d ff ff ff       	jmp    2d47be925 <_ZN2gd28try_native_resolved_dispatchERNS_9BattleCtxEPNS_5GdObjEjPKNS_5GdValEiRS4_j+0x55>
+   2d47be9f8:	48 89 d1             	mov    %rdx,%rcx
+   2d47be9fb:	4c 89 9c 24 88 00 00 	mov    %r11,0x88(%rsp)
+   2d47bea02:	00 
+   2d47bea03:	4c 89 54 24 70       	mov    %r10,0x70(%rsp)
+   2d47bea08:	4c 89 4c 24 28       	mov    %r9,0x28(%rsp)
+   2d47bea0d:	44 88 44 24 27       	mov    %r8b,0x27(%rsp)
+   2d47bea12:	48 89 54 24 78       	mov    %rdx,0x78(%rsp)
+   2d47bea17:	e8 64 00 00 00       	call   2d47bea80 <_ZN2gdL25native_resolved_exact_rowEPKNS_5GdObjE.lto_priv.0>
+   2d47bea1c:	4c 8b 4c 24 28       	mov    0x28(%rsp),%r9
+   2d47bea21:	48 8b 54 24 78       	mov    0x78(%rsp),%rdx
+   2d47bea26:	44 0f b6 44 24 27    	movzbl 0x27(%rsp),%r8d
+   2d47bea2c:	4c 8b 54 24 70       	mov    0x70(%rsp),%r10
+   2d47bea31:	49 39 c1             	cmp    %rax,%r9
+   2d47bea34:	4c 8b 9c 24 88 00 00 	mov    0x88(%rsp),%r11
+   2d47bea3b:	00 
+   2d47bea3c:	0f 84 f1 fe ff ff    	je     2d47be933 <_ZN2gd28try_native_resolved_dispatchERNS_9BattleCtxEPNS_5GdObjEjPKNS_5GdValEiRS4_j+0x63>
+   2d47bea42:	49 ff 82 f8 00 00 00 	incq   0xf8(%r10)
+   2d47bea49:	e9 c5 fe ff ff       	jmp    2d47be913 <_ZN2gd28try_native_resolved_dispatchERNS_9BattleCtxEPNS_5GdObjEjPKNS_5GdValEiRS4_j+0x43>
+   2d47bea4e:	84 c0                	test   %al,%al
+   2d47bea50:	0f 84 bf fe ff ff    	je     2d47be915 <_ZN2gd28try_native_resolved_dispatchERNS_9BattleCtxEPNS_5GdObjEjPKNS_5GdValEiRS4_j+0x45>
+   2d47bea56:	49 ff 82 00 01 00 00 	incq   0x100(%r10)
+   2d47bea5d:	e9 b1 fe ff ff       	jmp    2d47be913 <_ZN2gd28try_native_resolved_dispatchERNS_9BattleCtxEPNS_5GdObjEjPKNS_5GdValEiRS4_j+0x43>
+   2d47bea62:	31 c0                	xor    %eax,%eax
+   2d47bea64:	83 bc 24 a0 00 00 00 	cmpl   $0x1,0xa0(%rsp)
+   2d47bea6b:	01 
+   2d47bea6c:	0f 94 c0             	sete   %al
+   2d47bea6f:	49 ff 84 c2 d8 00 00 	incq   0xd8(%r10,%rax,8)
+   2d47bea76:	00 
+   2d47bea77:	e9 d7 fe ff ff       	jmp    2d47be953 <_ZN2gd28try_native_resolved_dispatchERNS_9BattleCtxEPNS_5GdObjEjPKNS_5GdValEiRS4_j+0x83>
+   2d47bea7c:	0f 1f 40 00          	nopl   0x0(%rax)
