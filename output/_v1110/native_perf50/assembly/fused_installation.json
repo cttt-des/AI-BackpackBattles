@@ -1,0 +1,61 @@
+{
+  "dll_sha256": "747d52d526ff017f632ffcd3462fdfb34a163ce957d02a99853cf1a017531eb4",
+  "gate_sha256": "3d7b13e807985d5666bd16d7822ab7ec8d65bd36036734ce3db2c9f88545b12d",
+  "speed_report_sha256": "2ac2fec5f7e942de22b1f88c285cad8ede4ca3b2b1c15ff391433a3b75d9501a",
+  "training_outcomes": [
+    1,
+    1,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "training_matched_baseline": 12,
+  "training_evaluation": {
+    "mean_wr": 0.16666666666666666,
+    "std_opp": 0.28867513459481287,
+    "worst_wr": 0.0,
+    "per_opp": [
+      {
+        "rating": 450.385037,
+        "n_items": 57,
+        "wr": 0.6666666666666666,
+        "errs": 0
+      },
+      {
+        "rating": 527.013755,
+        "n_items": 47,
+        "wr": 0.0,
+        "errs": 0
+      },
+      {
+        "rating": 464.089676,
+        "n_items": 47,
+        "wr": 0.0,
+        "errs": 0
+      },
+      {
+        "rating": 457.699621,
+        "n_items": 61,
+        "wr": 0.0,
+        "errs": 0
+      }
+    ],
+    "n_opp": 4,
+    "seeds": 3,
+    "total_sims": 12,
+    "sim_errors": 0
+  },
+  "runtime": "dist/native_1_1_10",
+  "backup_runtime": "dist/native_1_1_10_before_assembly",
+  "changed_native_files": [
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/gen/shards/shard_00.cpp",
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/libgdcore.dll"
+  ]
+}

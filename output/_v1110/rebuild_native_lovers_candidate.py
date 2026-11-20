@@ -49,6 +49,7 @@ if args.native_perf50:
     generate(stage / "optimize_native_event_bus.py", stage, str(native))
     for part in ("enums", "diagnostics"):
         generate(stage / "optimize_native_serial_paths.py", stage, str(native), "--part", part)
+    generate(stage / "optimize_native_assembly.py", stage, str(native), "--fused")
 for path, (body, atime, mtime) in previous.items():
     if path.exists() and path.read_bytes() == body:
         os.utime(path, ns=(atime, mtime))

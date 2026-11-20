@@ -5045,7 +5045,17 @@ gd::GdVal Gd__gd_core__CoreItem::fn_isItemAffected(const gd::GdVal* args, int ar
             || !gd::gd_truth(this->fn_canAffect_color(query, 2))) {
         return gd::GdVal::from_bool(false);
     }
-    const auto tiles = this->fn_getAffectedCellsInInventory_cached(query + 1, 1);
+    gd::GdVal tiles;
+    const auto cache = this->f_affectedCellsCache;
+    if (cache.kind == gd::GdVal::Kind::Dict && cache.dict) {
+        const auto index = cache.dict->find_index(query[1]);
+        if (index < 0) return gd::GdVal::from_bool(false);
+        tiles = cache.dict->entries[index].val;
+    } else {
+        tiles = this->fn_getAffectedCellsInInventory_cached(query + 1, 1);
+    }
+    if (tiles.kind == gd::GdVal::Kind::Arr && tiles.arr && tiles.arr->len == 0)
+        return gd::GdVal::from_bool(false);
     const auto cells = gd::gd_iter_seq(ctx.arena, gd::get_prop(ctx, query[0], SYM_GEN_occupiedCells_52));
     const auto* occupied = cells.kind == gd::GdVal::Kind::Arr ? cells.arr : nullptr;
     for (uint32_t i = 0, count = occupied ? occupied->len : 0; i < count; ++i) {
@@ -5196,6 +5206,27 @@ gd::GdVal Gd__gd_core__CoreItem::fn_onAffectedItemRemoved(const gd::GdVal* _args
 gd::GdVal Gd__gd_core__CoreItem::fn_onItemAdded(const gd::GdVal* args, int argc) {
     auto& ctx = *this->rt_ctx_;
     const auto item = argc > 0 ? args[0] : gd::GdVal::null();
+    if (gd::gd_truth(gd::call_method(ctx, item, SYM_GEN_isBag_83, nullptr, 0)))
+        return gd::GdVal::null();
+    const auto affected_query = [&](const gd::GdVal* query) {
+        if (!gd::gd_truth(this->fn_canAffect_color(query, 2))) return false;
+        gd::GdVal tiles;
+        const auto cache = this->f_affectedCellsCache;
+        if (cache.kind == gd::GdVal::Kind::Dict && cache.dict) {
+            const auto index = cache.dict->find_index(query[1]);
+            if (index < 0) return false;
+            tiles = cache.dict->entries[index].val;
+        } else {
+            tiles = this->fn_getAffectedCellsInInventory_cached(query + 1, 1);
+        }
+        if (tiles.kind == gd::GdVal::Kind::Arr && tiles.arr && tiles.arr->len == 0) return false;
+        const auto cells = gd::gd_iter_seq(ctx.arena, gd::get_prop(ctx, item, SYM_GEN_occupiedCells_52));
+        const auto* occupied = cells.kind == gd::GdVal::Kind::Arr ? cells.arr : nullptr;
+        for (uint32_t i = 0, count = occupied ? occupied->len : 0; i < count; ++i) {
+            if (gd::gd_truth(gd::gd_in(occupied->data[i], tiles))) return true;
+        }
+        return false;
+    };
     constexpr int color_count = 4;
     bool affected[color_count]{};
     // Complete every query before invoking any callback. A callback may change
@@ -5204,7 +5235,7 @@ gd::GdVal Gd__gd_core__CoreItem::fn_onItemAdded(const gd::GdVal* args, int argc)
         const gd::GdVal query[] = {item, gd::GdVal::from_int(color)};
         const auto current = gd::get_index(ctx, this->f_currentAffectedItems, query[1]);
         if (!gd::gd_truth(gd::gd_in(item, current))) {
-            affected[color] = gd::gd_truth(this->fn_isItemAffected(query, 2));
+            affected[color] = affected_query(query);
         }
     }
     for (int color = 0; color < color_count; ++color) {
