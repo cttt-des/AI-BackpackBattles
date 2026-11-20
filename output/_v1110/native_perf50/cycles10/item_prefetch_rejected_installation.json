@@ -1,0 +1,7 @@
+{
+  "kind": "rejected_performance_candidate",
+  "runtime_unchanged": true,
+  "dll_sha256": "9ffe3242ea2d2996b19ddda6ddc6f269afca4c5439b858059b03e029c03f1899",
+  "changed_native_files": [],
+  "previous_archive_commit": "bd73c3a5c3f9906449725ae2987f8b8314f77140"
+}

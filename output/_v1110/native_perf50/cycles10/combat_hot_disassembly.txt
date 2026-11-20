@@ -1,0 +1,1308 @@
+
+C:\Users\Windows\AppData\Local\Temp\native-combat-disasm-y9rc_cr2\active.dll:     file format pei-x86-64
+
+
+Disassembly of section .text:
+
+00000001c4d67e40 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)>:
+   1c4d67e40:	41 57                	push   %r15
+   1c4d67e42:	41 56                	push   %r14
+   1c4d67e44:	41 55                	push   %r13
+   1c4d67e46:	41 54                	push   %r12
+   1c4d67e48:	55                   	push   %rbp
+   1c4d67e49:	57                   	push   %rdi
+   1c4d67e4a:	56                   	push   %rsi
+   1c4d67e4b:	53                   	push   %rbx
+   1c4d67e4c:	48 81 ec a8 02 00 00 	sub    $0x2a8,%rsp
+   1c4d67e53:	c5 f8 29 b4 24 80 02 	vmovaps %xmm6,0x280(%rsp)
+   1c4d67e5a:	00 00
+   1c4d67e5c:	c5 f8 29 bc 24 90 02 	vmovaps %xmm7,0x290(%rsp)
+   1c4d67e63:	00 00
+   1c4d67e65:	c5 c8 57 f6          	vxorps %xmm6,%xmm6,%xmm6
+   1c4d67e69:	48 8b 42 08          	mov    0x8(%rdx),%rax
+   1c4d67e6d:	4c 89 84 24 00 03 00 	mov    %r8,0x300(%rsp)
+   1c4d67e74:	00
+   1c4d67e75:	48 89 ce             	mov    %rcx,%rsi
+   1c4d67e78:	48 89 d7             	mov    %rdx,%rdi
+   1c4d67e7b:	44 89 8c 24 08 03 00 	mov    %r9d,0x308(%rsp)
+   1c4d67e82:	00
+   1c4d67e83:	48 89 44 24 48       	mov    %rax,0x48(%rsp)
+   1c4d67e88:	45 85 c9             	test   %r9d,%r9d
+   1c4d67e8b:	0f 8e 85 30 00 00    	jle    1c4d6af16 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x30d6>
+   1c4d67e91:	c4 c1 7a 6f 18       	vmovdqu (%r8),%xmm3
+   1c4d67e96:	49 8b 50 10          	mov    0x10(%r8),%rdx
+   1c4d67e9a:	c5 f9 7f 5c 24 30    	vmovdqa %xmm3,0x30(%rsp)
+   1c4d67ea0:	0f b6 44 24 30       	movzbl 0x30(%rsp),%eax
+   1c4d67ea5:	48 89 94 24 a0 00 00 	mov    %rdx,0xa0(%rsp)
+   1c4d67eac:	00
+   1c4d67ead:	c5 f9 7f 9c 24 90 00 	vmovdqa %xmm3,0x90(%rsp)
+   1c4d67eb4:	00 00
+   1c4d67eb6:	3c 03                	cmp    $0x3,%al
+   1c4d67eb8:	0f 85 13 28 00 00    	jne    1c4d6a6d1 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x2891>
+   1c4d67ebe:	80 bf 08 02 00 00 08 	cmpb   $0x8,0x208(%rdi)
+   1c4d67ec5:	c5 fb 10 bc 24 98 00 	vmovsd 0x98(%rsp),%xmm7
+   1c4d67ecc:	00 00
+   1c4d67ece:	0f 87 b9 1f 00 00    	ja     1c4d69e8d <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x204d>
+   1c4d67ed4:	0f b6 87 08 02 00 00 	movzbl 0x208(%rdi),%eax
+   1c4d67edb:	48 8d 15 16 ef 0b 00 	lea    0xbef16(%rip),%rdx        # 1c4e26df8 <.rdata+0xd8>
+   1c4d67ee2:	48 63 04 82          	movslq (%rdx,%rax,4),%rax
+   1c4d67ee6:	48 01 d0             	add    %rdx,%rax
+   1c4d67ee9:	ff e0                	jmp    *%rax
+   1c4d67eeb:	80 bf 10 02 00 00 00 	cmpb   $0x0,0x210(%rdi)
+   1c4d67ef2:	0f 85 95 1f 00 00    	jne    1c4d69e8d <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x204d>
+   1c4d67ef8:	80 bf a0 00 00 00 08 	cmpb   $0x8,0xa0(%rdi)
+   1c4d67eff:	0f 87 49 07 00 00    	ja     1c4d6864e <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x80e>
+   1c4d67f05:	0f b6 87 a0 00 00 00 	movzbl 0xa0(%rdi),%eax
+   1c4d67f0c:	48 8d 15 09 ef 0b 00 	lea    0xbef09(%rip),%rdx        # 1c4e26e1c <.rdata+0xfc>
+   1c4d67f13:	48 63 04 82          	movslq (%rdx,%rax,4),%rax
+   1c4d67f17:	48 01 d0             	add    %rdx,%rax
+   1c4d67f1a:	ff e0                	jmp    *%rax
+   1c4d67f1c:	80 bf a8 00 00 00 00 	cmpb   $0x0,0xa8(%rdi)
+   1c4d67f23:	0f 85 25 07 00 00    	jne    1c4d6864e <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x80e>
+   1c4d67f29:	80 bf 78 01 00 00 08 	cmpb   $0x8,0x178(%rdi)
+   1c4d67f30:	77 24                	ja     1c4d67f56 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x116>
+   1c4d67f32:	0f b6 87 78 01 00 00 	movzbl 0x178(%rdi),%eax
+   1c4d67f39:	48 8d 15 00 ef 0b 00 	lea    0xbef00(%rip),%rdx        # 1c4e26e40 <.rdata+0x120>
+   1c4d67f40:	48 63 04 82          	movslq (%rdx,%rax,4),%rax
+   1c4d67f44:	48 01 d0             	add    %rdx,%rax
+   1c4d67f47:	ff e0                	jmp    *%rax
+   1c4d67f49:	80 bf 80 01 00 00 00 	cmpb   $0x0,0x180(%rdi)
+   1c4d67f50:	0f 84 fb 18 00 00    	je     1c4d69851 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x1a11>
+   1c4d67f56:	48 8b 5f 30          	mov    0x30(%rdi),%rbx
+   1c4d67f5a:	48 8d 87 08 02 00 00 	lea    0x208(%rdi),%rax
+   1c4d67f61:	48 89 44 24 50       	mov    %rax,0x50(%rsp)
+   1c4d67f66:	48 8d 87 a0 00 00 00 	lea    0xa0(%rdi),%rax
+   1c4d67f6d:	80 bb a8 04 00 00 08 	cmpb   $0x8,0x4a8(%rbx)
+   1c4d67f74:	48 89 44 24 58       	mov    %rax,0x58(%rsp)
+   1c4d67f79:	77 24                	ja     1c4d67f9f <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x15f>
+   1c4d67f7b:	0f b6 83 a8 04 00 00 	movzbl 0x4a8(%rbx),%eax
+   1c4d67f82:	48 8d 15 db ee 0b 00 	lea    0xbeedb(%rip),%rdx        # 1c4e26e64 <.rdata+0x144>
+   1c4d67f89:	48 63 04 82          	movslq (%rdx,%rax,4),%rax
+   1c4d67f8d:	48 01 d0             	add    %rdx,%rax
+   1c4d67f90:	ff e0                	jmp    *%rax
+   1c4d67f92:	80 bb b0 04 00 00 00 	cmpb   $0x0,0x4b0(%rbx)
+   1c4d67f99:	0f 84 49 08 00 00    	je     1c4d687e8 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x9a8>
+   1c4d67f9f:	0f b6 83 e0 05 00 00 	movzbl 0x5e0(%rbx),%eax
+   1c4d67fa6:	8d 50 ff             	lea    -0x1(%rax),%edx
+   1c4d67fa9:	80 fa 02             	cmp    $0x2,%dl
+   1c4d67fac:	77 1e                	ja     1c4d67fcc <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x18c>
+   1c4d67fae:	3c 03                	cmp    $0x3,%al
+   1c4d67fb0:	0f 85 09 08 00 00    	jne    1c4d687bf <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x97f>
+   1c4d67fb6:	c5 fb 10 83 e8 05 00 	vmovsd 0x5e8(%rbx),%xmm0
+   1c4d67fbd:	00
+   1c4d67fbe:	c5 f1 57 c9          	vxorpd %xmm1,%xmm1,%xmm1
+   1c4d67fc2:	c5 f9 2f c1          	vcomisd %xmm1,%xmm0
+   1c4d67fc6:	0f 87 18 2c 00 00    	ja     1c4d6abe4 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x2da4>
+   1c4d67fcc:	48 8d 84 24 50 02 00 	lea    0x250(%rsp),%rax
+   1c4d67fd3:	00
+   1c4d67fd4:	48 89 da             	mov    %rbx,%rdx
+   1c4d67fd7:	48 89 44 24 40       	mov    %rax,0x40(%rsp)
+   1c4d67fdc:	c6 83 80 05 00 00 01 	movb   $0x1,0x580(%rbx)
+   1c4d67fe3:	48 c7 83 88 05 00 00 	movq   $0x0,0x588(%rbx)
+   1c4d67fea:	00 00 00 00
+   1c4d67fee:	0f b6 82 30 04 00 00 	movzbl 0x430(%rdx),%eax
+   1c4d67ff5:	3c 02                	cmp    $0x2,%al
+   1c4d67ff7:	0f 85 85 06 00 00    	jne    1c4d68682 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x842>
+   1c4d67ffd:	48 8b 84 24 e0 00 00 	mov    0xe0(%rsp),%rax
+   1c4d68004:	00
+   1c4d68005:	48 8b 5f 60          	mov    0x60(%rdi),%rbx
+   1c4d68009:	c6 84 24 d0 00 00 00 	movb   $0x1,0xd0(%rsp)
+   1c4d68010:	01
+   1c4d68011:	48 c7 84 24 d8 00 00 	movq   $0x1,0xd8(%rsp)
+   1c4d68018:	00 01 00 00 00
+   1c4d6801d:	48 ff 82 38 04 00 00 	incq   0x438(%rdx)
+   1c4d68024:	48 8d 8b b8 06 00 00 	lea    0x6b8(%rbx),%rcx
+   1c4d6802b:	48 89 82 58 04 00 00 	mov    %rax,0x458(%rdx)
+   1c4d68032:	c5 f9 6f 84 24 d0 00 	vmovdqa 0xd0(%rsp),%xmm0
+   1c4d68039:	00 00
+   1c4d6803b:	c5 fa 7f 82 48 04 00 	vmovdqu %xmm0,0x448(%rdx)
+   1c4d68042:	00
+   1c4d68043:	e8 d8 7d f8 ff       	call   1c4cefe20 <gd::gd_truth(gd::GdVal const&)>
+   1c4d68048:	48 8d 8b f8 05 00 00 	lea    0x5f8(%rbx),%rcx
+   1c4d6804f:	44 0f b6 e8          	movzbl %al,%r13d
+   1c4d68053:	e8 c8 7d f8 ff       	call   1c4cefe20 <gd::gd_truth(gd::GdVal const&)>
+   1c4d68058:	48 8d 8b b0 05 00 00 	lea    0x5b0(%rbx),%rcx
+   1c4d6805f:	89 c5                	mov    %eax,%ebp
+   1c4d68061:	e8 ba 7d f8 ff       	call   1c4cefe20 <gd::gd_truth(gd::GdVal const&)>
+   1c4d68066:	40 0f b6 d5          	movzbl %bpl,%edx
+   1c4d6806a:	48 8d 8b 28 06 00 00 	lea    0x628(%rbx),%rcx
+   1c4d68071:	0f b6 c0             	movzbl %al,%eax
+   1c4d68074:	01 d2                	add    %edx,%edx
+   1c4d68076:	c1 e0 02             	shl    $0x2,%eax
+   1c4d68079:	09 d0                	or     %edx,%eax
+   1c4d6807b:	89 c5                	mov    %eax,%ebp
+   1c4d6807d:	e8 9e 7d f8 ff       	call   1c4cefe20 <gd::gd_truth(gd::GdVal const&)>
+   1c4d68082:	44 09 ed             	or     %r13d,%ebp
+   1c4d68085:	c6 83 20 08 00 00 02 	movb   $0x2,0x820(%rbx)
+   1c4d6808c:	4c 8b 6f 48          	mov    0x48(%rdi),%r13
+   1c4d68090:	0f b6 c0             	movzbl %al,%eax
+   1c4d68093:	c1 e0 03             	shl    $0x3,%eax
+   1c4d68096:	49 8d 8d b8 06 00 00 	lea    0x6b8(%r13),%rcx
+   1c4d6809d:	09 e8                	or     %ebp,%eax
+   1c4d6809f:	48 89 83 28 08 00 00 	mov    %rax,0x828(%rbx)
+   1c4d680a6:	e8 75 7d f8 ff       	call   1c4cefe20 <gd::gd_truth(gd::GdVal const&)>
+   1c4d680ab:	49 8d 8d f8 05 00 00 	lea    0x5f8(%r13),%rcx
+   1c4d680b2:	44 0f b6 f0          	movzbl %al,%r14d
+   1c4d680b6:	e8 65 7d f8 ff       	call   1c4cefe20 <gd::gd_truth(gd::GdVal const&)>
+   1c4d680bb:	49 8d 8d b0 05 00 00 	lea    0x5b0(%r13),%rcx
+   1c4d680c2:	0f b6 e8             	movzbl %al,%ebp
+   1c4d680c5:	e8 56 7d f8 ff       	call   1c4cefe20 <gd::gd_truth(gd::GdVal const&)>
+   1c4d680ca:	01 ed                	add    %ebp,%ebp
+   1c4d680cc:	49 8d 8d 28 06 00 00 	lea    0x628(%r13),%rcx
+   1c4d680d3:	0f b6 c0             	movzbl %al,%eax
+   1c4d680d6:	c1 e0 02             	shl    $0x2,%eax
+   1c4d680d9:	09 c5                	or     %eax,%ebp
+   1c4d680db:	e8 40 7d f8 ff       	call   1c4cefe20 <gd::gd_truth(gd::GdVal const&)>
+   1c4d680e0:	44 09 f5             	or     %r14d,%ebp
+   1c4d680e3:	41 c6 85 20 08 00 00 	movb   $0x2,0x820(%r13)
+   1c4d680ea:	02
+   1c4d680eb:	0f b6 c0             	movzbl %al,%eax
+   1c4d680ee:	c1 e0 03             	shl    $0x3,%eax
+   1c4d680f1:	09 e8                	or     %ebp,%eax
+   1c4d680f3:	49 89 85 28 08 00 00 	mov    %rax,0x828(%r13)
+   1c4d680fa:	c5 f9 6f a4 24 90 00 	vmovdqa 0x90(%rsp),%xmm4
+   1c4d68101:	00 00
+   1c4d68103:	48 8b 94 24 a0 00 00 	mov    0xa0(%rsp),%rdx
+   1c4d6810a:	00
+   1c4d6810b:	0f b6 84 24 90 00 00 	movzbl 0x90(%rsp),%eax
+   1c4d68112:	00
+   1c4d68113:	48 89 94 24 78 02 00 	mov    %rdx,0x278(%rsp)
+   1c4d6811a:	00
+   1c4d6811b:	48 89 94 24 40 02 00 	mov    %rdx,0x240(%rsp)
+   1c4d68122:	00
+   1c4d68123:	c5 fa 7f a4 24 68 02 	vmovdqu %xmm4,0x268(%rsp)
+   1c4d6812a:	00 00
+   1c4d6812c:	c5 f9 7f a4 24 30 02 	vmovdqa %xmm4,0x230(%rsp)
+   1c4d68133:	00 00
+   1c4d68135:	3c 03                	cmp    $0x3,%al
+   1c4d68137:	0f 85 ba 26 00 00    	jne    1c4d6a7f7 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x29b7>
+   1c4d6813d:	c5 fb 10 bc 24 38 02 	vmovsd 0x238(%rsp),%xmm7
+   1c4d68144:	00 00
+   1c4d68146:	48 8d 94 24 b0 01 00 	lea    0x1b0(%rsp),%rdx
+   1c4d6814d:	00
+   1c4d6814e:	48 89 d9             	mov    %rbx,%rcx
+   1c4d68151:	c6 84 24 b0 01 00 00 	movb   $0x3,0x1b0(%rsp)
+   1c4d68158:	03
+   1c4d68159:	c5 fb 11 bc 24 b8 01 	vmovsd %xmm7,0x1b8(%rsp)
+   1c4d68160:	00 00
+   1c4d68162:	e8 19 17 02 00       	call   1c4d89880 <Gd__gd_core__CoreCharacter::fn_tickPhysicsTimers(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]>
+   1c4d68167:	c6 84 24 30 02 00 00 	movb   $0x3,0x230(%rsp)
+   1c4d6816e:	03
+   1c4d6816f:	c5 fb 11 bc 24 38 02 	vmovsd %xmm7,0x238(%rsp)
+   1c4d68176:	00 00
+   1c4d68178:	48 8b 93 90 00 00 00 	mov    0x90(%rbx),%rdx
+   1c4d6817f:	8b 42 08             	mov    0x8(%rdx),%eax
+   1c4d68182:	85 c0                	test   %eax,%eax
+   1c4d68184:	74 45                	je     1c4d681cb <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x38b>
+   1c4d68186:	41 89 c6             	mov    %eax,%r14d
+   1c4d68189:	48 8b 2a             	mov    (%rdx),%rbp
+   1c4d6818c:	4d 6b f6 38          	imul   $0x38,%r14,%r14
+   1c4d68190:	48 83 c5 20          	add    $0x20,%rbp
+   1c4d68194:	49 01 ee             	add    %rbp,%r14
+   1c4d68197:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
+   1c4d6819e:	00 00
+   1c4d681a0:	4c 8b 65 00          	mov    0x0(%rbp),%r12
+   1c4d681a4:	41 80 bc 24 78 01 00 	cmpb   $0x1,0x178(%r12)
+   1c4d681ab:	00 01
+   1c4d681ad:	0f 85 8c 19 00 00    	jne    1c4d69b3f <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x1cff>
+   1c4d681b3:	41 80 bc 24 80 01 00 	cmpb   $0x0,0x180(%r12)
+   1c4d681ba:	00 00
+   1c4d681bc:	0f 85 92 19 00 00    	jne    1c4d69b54 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x1d14>
+   1c4d681c2:	48 83 c5 38          	add    $0x38,%rbp
+   1c4d681c6:	4c 39 f5             	cmp    %r14,%rbp
+   1c4d681c9:	75 d5                	jne    1c4d681a0 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x360>
+   1c4d681cb:	48 8b 83 e0 04 00 00 	mov    0x4e0(%rbx),%rax
+   1c4d681d2:	4c 8b 78 60          	mov    0x60(%rax),%r15
+   1c4d681d6:	41 8b 57 08          	mov    0x8(%r15),%edx
+   1c4d681da:	85 d2                	test   %edx,%edx
+   1c4d681dc:	0f 84 dd 24 00 00    	je     1c4d6a6bf <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x287f>
+   1c4d681e2:	48 8d 2c 52          	lea    (%rdx,%rdx,2),%rbp
+   1c4d681e6:	48 8d 84 24 10 02 00 	lea    0x210(%rsp),%rax
+   1c4d681ed:	00
+   1c4d681ee:	48 89 b4 24 f0 02 00 	mov    %rsi,0x2f0(%rsp)
+   1c4d681f5:	00
+   1c4d681f6:	31 db                	xor    %ebx,%ebx
+   1c4d681f8:	48 c1 e5 03          	shl    $0x3,%rbp
+   1c4d681fc:	48 89 44 24 30       	mov    %rax,0x30(%rsp)
+   1c4d68201:	4c 8d b4 24 30 02 00 	lea    0x230(%rsp),%r14
+   1c4d68208:	00
+   1c4d68209:	48 89 bc 24 f8 02 00 	mov    %rdi,0x2f8(%rsp)
+   1c4d68210:	00
+   1c4d68211:	48 89 ee             	mov    %rbp,%rsi
+   1c4d68214:	eb 17                	jmp    1c4d6822d <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x3ed>
+   1c4d68216:	66 2e 0f 1f 84 00 00 	cs nopw 0x0(%rax,%rax,1)
+   1c4d6821d:	00 00 00
+   1c4d68220:	48 83 c3 18          	add    $0x18,%rbx
+   1c4d68224:	48 39 f3             	cmp    %rsi,%rbx
+   1c4d68227:	0f 84 7b 07 00 00    	je     1c4d689a8 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0xb68>
+   1c4d6822d:	49 8b 17             	mov    (%r15),%rdx
+   1c4d68230:	4c 8b 64 1a 08       	mov    0x8(%rdx,%rbx,1),%r12
+   1c4d68235:	49 8b 94 24 30 06 00 	mov    0x630(%r12),%rdx
+   1c4d6823c:	00
+   1c4d6823d:	8b 42 08             	mov    0x8(%rdx),%eax
+   1c4d68240:	85 c0                	test   %eax,%eax
+   1c4d68242:	0f 85 b8 05 00 00    	jne    1c4d68800 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x9c0>
+   1c4d68248:	4d 8b ac 24 d8 03 00 	mov    0x3d8(%r12),%r13
+   1c4d6824f:	00
+   1c4d68250:	45 8b 65 08          	mov    0x8(%r13),%r12d
+   1c4d68254:	45 85 e4             	test   %r12d,%r12d
+   1c4d68257:	74 c7                	je     1c4d68220 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x3e0>
+   1c4d68259:	49 8b 55 00          	mov    0x0(%r13),%rdx
+   1c4d6825d:	80 3a 09             	cmpb   $0x9,(%rdx)
+   1c4d68260:	0f 84 02 07 00 00    	je     1c4d68968 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0xb28>
+   1c4d68266:	41 83 fc 01          	cmp    $0x1,%r12d
+   1c4d6826a:	74 b4                	je     1c4d68220 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x3e0>
+   1c4d6826c:	bd 01 00 00 00       	mov    $0x1,%ebp
+   1c4d68271:	bf 18 00 00 00       	mov    $0x18,%edi
+   1c4d68276:	48 8d 04 3a          	lea    (%rdx,%rdi,1),%rax
+   1c4d6827a:	80 38 09             	cmpb   $0x9,(%rax)
+   1c4d6827d:	74 14                	je     1c4d68293 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x453>
+   1c4d6827f:	ff c5                	inc    %ebp
+   1c4d68281:	44 39 e5             	cmp    %r12d,%ebp
+   1c4d68284:	74 9a                	je     1c4d68220 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x3e0>
+   1c4d68286:	48 83 c7 18          	add    $0x18,%rdi
+   1c4d6828a:	48 8d 04 3a          	lea    (%rdx,%rdi,1),%rax
+   1c4d6828e:	80 38 09             	cmpb   $0x9,(%rax)
+   1c4d68291:	75 ec                	jne    1c4d6827f <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x43f>
+   1c4d68293:	48 8b 48 08          	mov    0x8(%rax),%rcx
+   1c4d68297:	48 85 c9             	test   %rcx,%rcx
+   1c4d6829a:	74 1b                	je     1c4d682b7 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x477>
+   1c4d6829c:	48 8b 81 30 06 00 00 	mov    0x630(%rcx),%rax
+   1c4d682a3:	8b 40 08             	mov    0x8(%rax),%eax
+   1c4d682a6:	85 c0                	test   %eax,%eax
+   1c4d682a8:	74 d5                	je     1c4d6827f <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x43f>
+   1c4d682aa:	48 8d 94 24 b0 01 00 	lea    0x1b0(%rsp),%rdx
+   1c4d682b1:	00
+   1c4d682b2:	e8 69 c6 04 00       	call   1c4db4920 <Gd__gd_core__CoreItem::fn__tickTimers(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]>
+   1c4d682b7:	ff c5                	inc    %ebp
+   1c4d682b9:	44 39 e5             	cmp    %r12d,%ebp
+   1c4d682bc:	0f 84 5e ff ff ff    	je     1c4d68220 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x3e0>
+   1c4d682c2:	49 8b 55 00          	mov    0x0(%r13),%rdx
+   1c4d682c6:	48 83 c7 18          	add    $0x18,%rdi
+   1c4d682ca:	eb aa                	jmp    1c4d68276 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x436>
+   1c4d682cc:	0f 1f 40 00          	nopl   0x0(%rax)
+   1c4d682d0:	80 bb 20 04 00 00 00 	cmpb   $0x0,0x420(%rbx)
+   1c4d682d7:	74 0b                	je     1c4d682e4 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x4a4>
+   1c4d682d9:	4c 89 f2             	mov    %r14,%rdx
+   1c4d682dc:	48 89 d9             	mov    %rbx,%rcx
+   1c4d682df:	e8 bc 38 02 00       	call   1c4d8bba0 <Gd__gd_core__CoreItem::fn_physicsTick(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]>
+   1c4d682e4:	80 bb d0 03 00 00 07 	cmpb   $0x7,0x3d0(%rbx)
+   1c4d682eb:	48 8b 83 d8 03 00 00 	mov    0x3d8(%rbx),%rax
+   1c4d682f2:	75 10                	jne    1c4d68304 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x4c4>
+   1c4d682f4:	48 85 c0             	test   %rax,%rax
+   1c4d682f7:	74 0b                	je     1c4d68304 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x4c4>
+   1c4d682f9:	8b 58 08             	mov    0x8(%rax),%ebx
+   1c4d682fc:	85 db                	test   %ebx,%ebx
+   1c4d682fe:	0f 85 9c 0f 00 00    	jne    1c4d692a0 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x1460>
+   1c4d68304:	49 83 c4 18          	add    $0x18,%r12
+   1c4d68308:	49 39 f4             	cmp    %rsi,%r12
+   1c4d6830b:	0f 85 5f 0f 00 00    	jne    1c4d69270 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x1430>
+   1c4d68311:	48 8b b4 24 f0 02 00 	mov    0x2f0(%rsp),%rsi
+   1c4d68318:	00
+   1c4d68319:	48 8b 5f 30          	mov    0x30(%rdi),%rbx
+   1c4d6831d:	48 8d 8f 90 01 00 00 	lea    0x190(%rdi),%rcx
+   1c4d68324:	c6 83 60 04 00 00 01 	movb   $0x1,0x460(%rbx)
+   1c4d6832b:	48 c7 83 68 04 00 00 	movq   $0x0,0x468(%rbx)
+   1c4d68332:	00 00 00 00
+   1c4d68336:	e8 e5 7a f8 ff       	call   1c4cefe20 <gd::gd_truth(gd::GdVal const&)>
+   1c4d6833b:	84 c0                	test   %al,%al
+   1c4d6833d:	0f 85 59 2c 00 00    	jne    1c4d6af9c <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x315c>
+   1c4d68343:	48 89 da             	mov    %rbx,%rdx
+   1c4d68346:	4c 89 e9             	mov    %r13,%rcx
+   1c4d68349:	e8 f2 2f 00 00       	call   1c4d6b340 <Gd__gd_core__CoreContext::fn_flushDeferred(gd::GdVal const*, int) [clone .constprop.0]>
+   1c4d6834e:	48 8b 57 30          	mov    0x30(%rdi),%rdx
+   1c4d68352:	4c 89 e9             	mov    %r13,%rcx
+   1c4d68355:	e8 16 44 00 00       	call   1c4d6c770 <Gd__gd_core__CoreContext::fn_flushIdleFrameCalls(gd::GdVal const*, int) [clone .constprop.0]>
+   1c4d6835a:	83 bc 24 08 03 00 00 	cmpl   $0x1,0x308(%rsp)
+   1c4d68361:	01
+   1c4d68362:	0f 8f 8f 2c 00 00    	jg     1c4d6aff7 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x31b7>
+   1c4d68368:	c5 f9 6f ac 24 90 00 	vmovdqa 0x90(%rsp),%xmm5
+   1c4d6836f:	00 00
+   1c4d68371:	48 8b 84 24 a0 00 00 	mov    0xa0(%rsp),%rax
+   1c4d68378:	00
+   1c4d68379:	0f b6 94 24 90 00 00 	movzbl 0x90(%rsp),%edx
+   1c4d68380:	00
+   1c4d68381:	48 89 84 24 c0 00 00 	mov    %rax,0xc0(%rsp)
+   1c4d68388:	00
+   1c4d68389:	48 89 84 24 80 01 00 	mov    %rax,0x180(%rsp)
+   1c4d68390:	00
+   1c4d68391:	c5 f9 7f ac 24 b0 00 	vmovdqa %xmm5,0xb0(%rsp)
+   1c4d68398:	00 00
+   1c4d6839a:	c5 f9 7f ac 24 70 01 	vmovdqa %xmm5,0x170(%rsp)
+   1c4d683a1:	00 00
+   1c4d683a3:	80 fa 03             	cmp    $0x3,%dl
+   1c4d683a6:	0f 85 72 24 00 00    	jne    1c4d6a81e <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x29de>
+   1c4d683ac:	c6 84 24 70 01 00 00 	movb   $0x3,0x170(%rsp)
+   1c4d683b3:	03
+   1c4d683b4:	c5 fb 10 bc 24 78 01 	vmovsd 0x178(%rsp),%xmm7
+   1c4d683bb:	00 00
+   1c4d683bd:	48 8b 5f 60          	mov    0x60(%rdi),%rbx
+   1c4d683c1:	0f b6 83 08 08 00 00 	movzbl 0x808(%rbx),%eax
+   1c4d683c8:	8d 50 ff             	lea    -0x1(%rax),%edx
+   1c4d683cb:	80 fa 02             	cmp    $0x2,%dl
+   1c4d683ce:	0f 87 5a 27 00 00    	ja     1c4d6ab2e <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x2cee>
+   1c4d683d4:	48 8b 6b 08          	mov    0x8(%rbx),%rbp
+   1c4d683d8:	3c 03                	cmp    $0x3,%al
+   1c4d683da:	0f 85 e9 24 00 00    	jne    1c4d6a8c9 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x2a89>
+   1c4d683e0:	c5 fb 10 83 10 08 00 	vmovsd 0x810(%rbx),%xmm0
+   1c4d683e7:	00
+   1c4d683e8:	c6 83 08 08 00 00 03 	movb   $0x3,0x808(%rbx)
+   1c4d683ef:	c5 fb 5c c7          	vsubsd %xmm7,%xmm0,%xmm0
+   1c4d683f3:	c5 f9 d6 83 10 08 00 	vmovq  %xmm0,0x810(%rbx)
+   1c4d683fa:	00
+   1c4d683fb:	c5 f1 57 c9          	vxorpd %xmm1,%xmm1,%xmm1
+   1c4d683ff:	c5 f9 2f c8          	vcomisd %xmm0,%xmm1
+   1c4d68403:	0f 87 e9 24 00 00    	ja     1c4d6a8f2 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x2ab2>
+   1c4d68409:	4c 8b 47 30          	mov    0x30(%rdi),%r8
+   1c4d6840d:	48 8b 4c 24 30       	mov    0x30(%rsp),%rcx
+   1c4d68412:	49 8b 58 08          	mov    0x8(%r8),%rbx
+   1c4d68416:	49 81 c0 40 06 00 00 	add    $0x640,%r8
+   1c4d6841d:	48 89 da             	mov    %rbx,%rdx
+   1c4d68420:	e8 7b 94 f8 ff       	call   1c4cf18a0 <gd::gd_iter_seq(gd::BattleArena&, gd::GdVal const&)>
+   1c4d68425:	80 bc 24 10 02 00 00 	cmpb   $0x7,0x210(%rsp)
+   1c4d6842c:	07
+   1c4d6842d:	75 1a                	jne    1c4d68449 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x609>
+   1c4d6842f:	4c 8b b4 24 18 02 00 	mov    0x218(%rsp),%r14
+   1c4d68436:	00
+   1c4d68437:	4d 85 f6             	test   %r14,%r14
+   1c4d6843a:	74 0d                	je     1c4d68449 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x609>
+   1c4d6843c:	45 8b 66 08          	mov    0x8(%r14),%r12d
+   1c4d68440:	45 85 e4             	test   %r12d,%r12d
+   1c4d68443:	0f 85 ae 12 00 00    	jne    1c4d696f7 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x18b7>
+   1c4d68449:	48 8b 5f 48          	mov    0x48(%rdi),%rbx
+   1c4d6844d:	c4 e1 f9 7e fd       	vmovq  %xmm7,%rbp
+   1c4d68452:	0f b6 83 08 08 00 00 	movzbl 0x808(%rbx),%eax
+   1c4d68459:	8d 50 ff             	lea    -0x1(%rax),%edx
+   1c4d6845c:	80 fa 02             	cmp    $0x2,%dl
+   1c4d6845f:	0f 87 b4 26 00 00    	ja     1c4d6ab19 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x2cd9>
+   1c4d68465:	4c 8b 63 08          	mov    0x8(%rbx),%r12
+   1c4d68469:	3c 03                	cmp    $0x3,%al
+   1c4d6846b:	0f 85 8c 25 00 00    	jne    1c4d6a9fd <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x2bbd>
+   1c4d68471:	c5 fb 10 83 10 08 00 	vmovsd 0x810(%rbx),%xmm0
+   1c4d68478:	00
+   1c4d68479:	c5 fb 5c c7          	vsubsd %xmm7,%xmm0,%xmm0
+   1c4d6847d:	c5 f1 57 c9          	vxorpd %xmm1,%xmm1,%xmm1
+   1c4d68481:	c6 83 08 08 00 00 03 	movb   $0x3,0x808(%rbx)
+   1c4d68488:	c5 f9 2f c8          	vcomisd %xmm0,%xmm1
+   1c4d6848c:	c5 fb 11 83 10 08 00 	vmovsd %xmm0,0x810(%rbx)
+   1c4d68493:	00
+   1c4d68494:	0f 87 79 25 00 00    	ja     1c4d6aa13 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x2bd3>
+   1c4d6849a:	c5 f9 6f 84 24 70 01 	vmovdqa 0x170(%rsp),%xmm0
+   1c4d684a1:	00 00
+   1c4d684a3:	4c 8b 47 30          	mov    0x30(%rdi),%r8
+   1c4d684a7:	48 8b 84 24 80 01 00 	mov    0x180(%rsp),%rax
+   1c4d684ae:	00
+   1c4d684af:	48 8b 4c 24 30       	mov    0x30(%rsp),%rcx
+   1c4d684b4:	c5 f9 7f 84 24 90 01 	vmovdqa %xmm0,0x190(%rsp)
+   1c4d684bb:	00 00
+   1c4d684bd:	49 8b 58 08          	mov    0x8(%r8),%rbx
+   1c4d684c1:	49 81 c0 28 06 00 00 	add    $0x628,%r8
+   1c4d684c8:	48 89 ac 24 98 01 00 	mov    %rbp,0x198(%rsp)
+   1c4d684cf:	00
+   1c4d684d0:	48 89 da             	mov    %rbx,%rdx
+   1c4d684d3:	48 89 84 24 a0 01 00 	mov    %rax,0x1a0(%rsp)
+   1c4d684da:	00
+   1c4d684db:	48 89 84 24 c0 01 00 	mov    %rax,0x1c0(%rsp)
+   1c4d684e2:	00
+   1c4d684e3:	c5 f9 6f 84 24 90 01 	vmovdqa 0x190(%rsp),%xmm0
+   1c4d684ea:	00 00
+   1c4d684ec:	c5 f9 7f 84 24 b0 01 	vmovdqa %xmm0,0x1b0(%rsp)
+   1c4d684f3:	00 00
+   1c4d684f5:	e8 a6 93 f8 ff       	call   1c4cf18a0 <gd::gd_iter_seq(gd::BattleArena&, gd::GdVal const&)>
+   1c4d684fa:	80 bc 24 10 02 00 00 	cmpb   $0x7,0x210(%rsp)
+   1c4d68501:	07
+   1c4d68502:	75 1a                	jne    1c4d6851e <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x6de>
+   1c4d68504:	4c 8b b4 24 18 02 00 	mov    0x218(%rsp),%r14
+   1c4d6850b:	00
+   1c4d6850c:	4d 85 f6             	test   %r14,%r14
+   1c4d6850f:	74 0d                	je     1c4d6851e <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x6de>
+   1c4d68511:	45 8b 66 08          	mov    0x8(%r14),%r12d
+   1c4d68515:	45 85 e4             	test   %r12d,%r12d
+   1c4d68518:	0f 85 e6 10 00 00    	jne    1c4d69604 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x17c4>
+   1c4d6851e:	48 8b 5f 30          	mov    0x30(%rdi),%rbx
+   1c4d68522:	48 8d 8b a8 04 00 00 	lea    0x4a8(%rbx),%rcx
+   1c4d68529:	e8 f2 78 f8 ff       	call   1c4cefe20 <gd::gd_truth(gd::GdVal const&)>
+   1c4d6852e:	48 89 da             	mov    %rbx,%rdx
+   1c4d68531:	4c 89 e9             	mov    %r13,%rcx
+   1c4d68534:	84 c0                	test   %al,%al
+   1c4d68536:	74 0c                	je     1c4d68544 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x704>
+   1c4d68538:	e8 f3 dd 03 00       	call   1c4da6330 <Gd__gd_core__CoreContext::fn_stepCriticalShake(gd::GdVal const*, int) [clone .constprop.0]>
+   1c4d6853d:	48 8b 57 30          	mov    0x30(%rdi),%rdx
+   1c4d68541:	4c 89 e9             	mov    %r13,%rcx
+   1c4d68544:	e8 f7 2d 00 00       	call   1c4d6b340 <Gd__gd_core__CoreContext::fn_flushDeferred(gd::GdVal const*, int) [clone .constprop.0]>
+   1c4d68549:	48 8b 5f 30          	mov    0x30(%rdi),%rbx
+   1c4d6854d:	48 8d 8b d0 00 00 00 	lea    0xd0(%rbx),%rcx
+   1c4d68554:	e8 c7 78 f8 ff       	call   1c4cefe20 <gd::gd_truth(gd::GdVal const&)>
+   1c4d68559:	84 c0                	test   %al,%al
+   1c4d6855b:	75 6a                	jne    1c4d685c7 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x787>
+   1c4d6855d:	4c 8b 74 24 40       	mov    0x40(%rsp),%r14
+   1c4d68562:	48 8b 05 4f ee 0b 00 	mov    0xbee4f(%rip),%rax        # 1c4e273b8 <.rdata+0x698>
+   1c4d68569:	41 b9 01 00 00 00    	mov    $0x1,%r9d
+   1c4d6856f:	48 89 da             	mov    %rbx,%rdx
+   1c4d68572:	4c 89 e9             	mov    %r13,%rcx
+   1c4d68575:	c6 84 24 50 02 00 00 	movb   $0x3,0x250(%rsp)
+   1c4d6857c:	03
+   1c4d6857d:	4d 89 f0             	mov    %r14,%r8
+   1c4d68580:	48 89 84 24 58 02 00 	mov    %rax,0x258(%rsp)
+   1c4d68587:	00
+   1c4d68588:	e8 23 64 02 00       	call   1c4d8e9b0 <Gd__gd_core__CoreContext::fn_lib_fires_tick(gd::GdVal const*, int)>
+   1c4d6858d:	48 8b 57 30          	mov    0x30(%rdi),%rdx
+   1c4d68591:	4c 89 e9             	mov    %r13,%rcx
+   1c4d68594:	e8 a7 6a 02 00       	call   1c4d8f040 <Gd__gd_core__CoreContext::fn__flushTimed(gd::GdVal const*, int) [clone .constprop.0]>
+   1c4d68599:	c5 f9 6f 84 24 90 00 	vmovdqa 0x90(%rsp),%xmm0
+   1c4d685a0:	00 00
+   1c4d685a2:	48 8b 84 24 a0 00 00 	mov    0xa0(%rsp),%rax
+   1c4d685a9:	00
+   1c4d685aa:	4c 89 f2             	mov    %r14,%rdx
+   1c4d685ad:	48 8b 4f 30          	mov    0x30(%rdi),%rcx
+   1c4d685b1:	48 89 84 24 60 02 00 	mov    %rax,0x260(%rsp)
+   1c4d685b8:	00
+   1c4d685b9:	c5 f9 7f 84 24 50 02 	vmovdqa %xmm0,0x250(%rsp)
+   1c4d685c0:	00 00
+   1c4d685c2:	e8 99 e8 01 00       	call   1c4d86e60 <Gd__gd_core__CoreContext::fn_tickMotion(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]>
+   1c4d685c7:	48 8b 4c 24 58       	mov    0x58(%rsp),%rcx
+   1c4d685cc:	e8 4f 78 f8 ff       	call   1c4cefe20 <gd::gd_truth(gd::GdVal const&)>
+   1c4d685d1:	84 c0                	test   %al,%al
+   1c4d685d3:	75 5b                	jne    1c4d68630 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x7f0>
+   1c4d685d5:	0f b6 97 d8 01 00 00 	movzbl 0x1d8(%rdi),%edx
+   1c4d685dc:	8d 42 ff             	lea    -0x1(%rdx),%eax
+   1c4d685df:	3c 02                	cmp    $0x2,%al
+   1c4d685e1:	0f 87 5e 2c 00 00    	ja     1c4d6b245 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x3405>
+   1c4d685e7:	0f b6 87 b8 00 00 00 	movzbl 0xb8(%rdi),%eax
+   1c4d685ee:	8d 48 ff             	lea    -0x1(%rax),%ecx
+   1c4d685f1:	80 f9 02             	cmp    $0x2,%cl
+   1c4d685f4:	77 3a                	ja     1c4d68630 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x7f0>
+   1c4d685f6:	80 fa 02             	cmp    $0x2,%dl
+   1c4d685f9:	0f 85 a1 0f 00 00    	jne    1c4d695a0 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x1760>
+   1c4d685ff:	c4 e1 cb 2a 87 e0 01 	vcvtsi2sdq 0x1e0(%rdi),%xmm6,%xmm0
+   1c4d68606:	00 00
+   1c4d68608:	3c 03                	cmp    $0x3,%al
+   1c4d6860a:	0f 84 a9 0f 00 00    	je     1c4d695b9 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x1779>
+   1c4d68610:	3c 01                	cmp    $0x1,%al
+   1c4d68612:	0f 84 29 2b 00 00    	je     1c4d6b141 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x3301>
+   1c4d68618:	c4 e1 cb 2a b7 c0 00 	vcvtsi2sdq 0xc0(%rdi),%xmm6,%xmm6
+   1c4d6861f:	00 00
+   1c4d68621:	c5 f9 2f f0          	vcomisd %xmm0,%xmm6
+   1c4d68625:	0f 97 c0             	seta   %al
+   1c4d68628:	84 c0                	test   %al,%al
+   1c4d6862a:	0f 85 6f 2b 00 00    	jne    1c4d6b19f <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x335f>
+   1c4d68630:	48 8b 4c 24 50       	mov    0x50(%rsp),%rcx
+   1c4d68635:	e8 e6 77 f8 ff       	call   1c4cefe20 <gd::gd_truth(gd::GdVal const&)>
+   1c4d6863a:	84 c0                	test   %al,%al
+   1c4d6863c:	0f 85 b1 2a 00 00    	jne    1c4d6b0f3 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x32b3>
+   1c4d68642:	48 8b 57 30          	mov    0x30(%rdi),%rdx
+   1c4d68646:	4c 89 e9             	mov    %r13,%rcx
+   1c4d68649:	e8 f2 2c 00 00       	call   1c4d6b340 <Gd__gd_core__CoreContext::fn_flushDeferred(gd::GdVal const*, int) [clone .constprop.0]>
+   1c4d6864e:	c6 06 00             	movb   $0x0,(%rsi)
+   1c4d68651:	48 89 f0             	mov    %rsi,%rax
+   1c4d68654:	48 c7 46 08 00 00 00 	movq   $0x0,0x8(%rsi)
+   1c4d6865b:	00
+   1c4d6865c:	c5 f8 28 b4 24 80 02 	vmovaps 0x280(%rsp),%xmm6
+   1c4d68663:	00 00
+   1c4d68665:	c5 f8 28 bc 24 90 02 	vmovaps 0x290(%rsp),%xmm7
+   1c4d6866c:	00 00
+   1c4d6866e:	48 81 c4 a8 02 00 00 	add    $0x2a8,%rsp
+   1c4d68675:	5b                   	pop    %rbx
+   1c4d68676:	5e                   	pop    %rsi
+   1c4d68677:	5f                   	pop    %rdi
+   1c4d68678:	5d                   	pop    %rbp
+   1c4d68679:	41 5c                	pop    %r12
+   1c4d6867b:	41 5d                	pop    %r13
+   1c4d6867d:	41 5e                	pop    %r14
+   1c4d6867f:	41 5f                	pop    %r15
+   1c4d68681:	c3                   	ret
+   1c4d68682:	8d 48 ff             	lea    -0x1(%rax),%ecx
+   1c4d68685:	80 f9 02             	cmp    $0x2,%cl
+   1c4d68688:	0f 87 0d 15 00 00    	ja     1c4d69b9b <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x1d5b>
+   1c4d6868e:	3c 03                	cmp    $0x3,%al
+   1c4d68690:	0f 85 73 2a 00 00    	jne    1c4d6b109 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x32c9>
+   1c4d68696:	c5 fb 10 82 38 04 00 	vmovsd 0x438(%rdx),%xmm0
+   1c4d6869d:	00
+   1c4d6869e:	c5 fb 10 0d 72 ed 0b 	vmovsd 0xbed72(%rip),%xmm1        # 1c4e27418 <.rdata+0x6f8>
+   1c4d686a5:	00
+   1c4d686a6:	c5 fb 58 c1          	vaddsd %xmm1,%xmm0,%xmm0
+   1c4d686aa:	b8 03 00 00 00       	mov    $0x3,%eax
+   1c4d686af:	c6 84 24 d0 00 00 00 	movb   $0x1,0xd0(%rsp)
+   1c4d686b6:	01
+   1c4d686b7:	48 8b 5f 60          	mov    0x60(%rdi),%rbx
+   1c4d686bb:	48 c7 84 24 d8 00 00 	movq   $0x1,0xd8(%rsp)
+   1c4d686c2:	00 01 00 00 00
+   1c4d686c7:	88 82 30 04 00 00    	mov    %al,0x430(%rdx)
+   1c4d686cd:	48 8b 84 24 e0 00 00 	mov    0xe0(%rsp),%rax
+   1c4d686d4:	00
+   1c4d686d5:	48 8d 8b b8 06 00 00 	lea    0x6b8(%rbx),%rcx
+   1c4d686dc:	c5 f9 d6 82 38 04 00 	vmovq  %xmm0,0x438(%rdx)
+   1c4d686e3:	00
+   1c4d686e4:	48 89 82 58 04 00 00 	mov    %rax,0x458(%rdx)
+   1c4d686eb:	c5 f9 6f 84 24 d0 00 	vmovdqa 0xd0(%rsp),%xmm0
+   1c4d686f2:	00 00
+   1c4d686f4:	c5 fa 7f 82 48 04 00 	vmovdqu %xmm0,0x448(%rdx)
+   1c4d686fb:	00
+   1c4d686fc:	e8 1f 77 f8 ff       	call   1c4cefe20 <gd::gd_truth(gd::GdVal const&)>
+   1c4d68701:	48 8d 8b f8 05 00 00 	lea    0x5f8(%rbx),%rcx
+   1c4d68708:	44 0f b6 e8          	movzbl %al,%r13d
+   1c4d6870c:	e8 0f 77 f8 ff       	call   1c4cefe20 <gd::gd_truth(gd::GdVal const&)>
+   1c4d68711:	48 8d 8b b0 05 00 00 	lea    0x5b0(%rbx),%rcx
+   1c4d68718:	89 c5                	mov    %eax,%ebp
+   1c4d6871a:	e8 01 77 f8 ff       	call   1c4cefe20 <gd::gd_truth(gd::GdVal const&)>
+   1c4d6871f:	40 0f b6 d5          	movzbl %bpl,%edx
+   1c4d68723:	48 8d 8b 28 06 00 00 	lea    0x628(%rbx),%rcx
+   1c4d6872a:	0f b6 c0             	movzbl %al,%eax
+   1c4d6872d:	01 d2                	add    %edx,%edx
+   1c4d6872f:	c1 e0 02             	shl    $0x2,%eax
+   1c4d68732:	09 d0                	or     %edx,%eax
+   1c4d68734:	89 c5                	mov    %eax,%ebp
+   1c4d68736:	e8 e5 76 f8 ff       	call   1c4cefe20 <gd::gd_truth(gd::GdVal const&)>
+   1c4d6873b:	44 09 ed             	or     %r13d,%ebp
+   1c4d6873e:	c6 83 20 08 00 00 02 	movb   $0x2,0x820(%rbx)
+   1c4d68745:	0f b6 c0             	movzbl %al,%eax
+   1c4d68748:	c1 e0 03             	shl    $0x3,%eax
+   1c4d6874b:	09 e8                	or     %ebp,%eax
+   1c4d6874d:	48 8b 6f 48          	mov    0x48(%rdi),%rbp
+   1c4d68751:	48 89 83 28 08 00 00 	mov    %rax,0x828(%rbx)
+   1c4d68758:	48 8d 8d b8 06 00 00 	lea    0x6b8(%rbp),%rcx
+   1c4d6875f:	e8 bc 76 f8 ff       	call   1c4cefe20 <gd::gd_truth(gd::GdVal const&)>
+   1c4d68764:	48 8d 8d f8 05 00 00 	lea    0x5f8(%rbp),%rcx
+   1c4d6876b:	44 0f b6 f0          	movzbl %al,%r14d
+   1c4d6876f:	e8 ac 76 f8 ff       	call   1c4cefe20 <gd::gd_truth(gd::GdVal const&)>
+   1c4d68774:	48 8d 8d b0 05 00 00 	lea    0x5b0(%rbp),%rcx
+   1c4d6877b:	41 89 c5             	mov    %eax,%r13d
+   1c4d6877e:	e8 9d 76 f8 ff       	call   1c4cefe20 <gd::gd_truth(gd::GdVal const&)>
+   1c4d68783:	41 0f b6 d5          	movzbl %r13b,%edx
+   1c4d68787:	48 8d 8d 28 06 00 00 	lea    0x628(%rbp),%rcx
+   1c4d6878e:	0f b6 c0             	movzbl %al,%eax
+   1c4d68791:	01 d2                	add    %edx,%edx
+   1c4d68793:	c1 e0 02             	shl    $0x2,%eax
+   1c4d68796:	09 d0                	or     %edx,%eax
+   1c4d68798:	41 89 c5             	mov    %eax,%r13d
+   1c4d6879b:	e8 80 76 f8 ff       	call   1c4cefe20 <gd::gd_truth(gd::GdVal const&)>
+   1c4d687a0:	45 09 f5             	or     %r14d,%r13d
+   1c4d687a3:	c6 85 20 08 00 00 02 	movb   $0x2,0x820(%rbp)
+   1c4d687aa:	0f b6 c0             	movzbl %al,%eax
+   1c4d687ad:	c1 e0 03             	shl    $0x3,%eax
+   1c4d687b0:	44 09 e8             	or     %r13d,%eax
+   1c4d687b3:	48 89 85 28 08 00 00 	mov    %rax,0x828(%rbp)
+   1c4d687ba:	e9 3b f9 ff ff       	jmp    1c4d680fa <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x2ba>
+   1c4d687bf:	3c 01                	cmp    $0x1,%al
+   1c4d687c1:	0f 84 10 24 00 00    	je     1c4d6abd7 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x2d97>
+   1c4d687c7:	c4 e1 cb 2a 83 e8 05 	vcvtsi2sdq 0x5e8(%rbx),%xmm6,%xmm0
+   1c4d687ce:	00 00
+   1c4d687d0:	e9 e9 f7 ff ff       	jmp    1c4d67fbe <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x17e>
+   1c4d687d5:	48 83 bb b0 04 00 00 	cmpq   $0x0,0x4b0(%rbx)
+   1c4d687dc:	00
+   1c4d687dd:	0f 95 c0             	setne  %al
+   1c4d687e0:	84 c0                	test   %al,%al
+   1c4d687e2:	0f 85 b7 f7 ff ff    	jne    1c4d67f9f <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x15f>
+   1c4d687e8:	48 8d 84 24 50 02 00 	lea    0x250(%rsp),%rax
+   1c4d687ef:	00
+   1c4d687f0:	48 89 da             	mov    %rbx,%rdx
+   1c4d687f3:	48 89 44 24 40       	mov    %rax,0x40(%rsp)
+   1c4d687f8:	e9 f1 f7 ff ff       	jmp    1c4d67fee <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x1ae>
+   1c4d687fd:	0f 1f 00             	nopl   (%rax)
+   1c4d68800:	48 8b 94 24 c0 01 00 	mov    0x1c0(%rsp),%rdx
+   1c4d68807:	00
+   1c4d68808:	4d 8b 6c 24 08       	mov    0x8(%r12),%r13
+   1c4d6880d:	4d 8d 84 24 28 06 00 	lea    0x628(%r12),%r8
+   1c4d68814:	00
+   1c4d68815:	48 8d 8c 24 f0 01 00 	lea    0x1f0(%rsp),%rcx
+   1c4d6881c:	00
+   1c4d6881d:	c5 f9 6f 84 24 b0 01 	vmovdqa 0x1b0(%rsp),%xmm0
+   1c4d68824:	00 00
+   1c4d68826:	48 89 94 24 e0 01 00 	mov    %rdx,0x1e0(%rsp)
+   1c4d6882d:	00
+   1c4d6882e:	4c 89 ea             	mov    %r13,%rdx
+   1c4d68831:	c5 f9 7f 84 24 d0 01 	vmovdqa %xmm0,0x1d0(%rsp)
+   1c4d68838:	00 00
+   1c4d6883a:	c6 84 24 d0 01 00 00 	movb   $0x3,0x1d0(%rsp)
+   1c4d68841:	03
+   1c4d68842:	e8 59 90 f8 ff       	call   1c4cf18a0 <gd::gd_iter_seq(gd::BattleArena&, gd::GdVal const&)>
+   1c4d68847:	80 bc 24 f0 01 00 00 	cmpb   $0x7,0x1f0(%rsp)
+   1c4d6884e:	07
+   1c4d6884f:	0f 85 f3 f9 ff ff    	jne    1c4d68248 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x408>
+   1c4d68855:	48 8b bc 24 f8 01 00 	mov    0x1f8(%rsp),%rdi
+   1c4d6885c:	00
+   1c4d6885d:	48 85 ff             	test   %rdi,%rdi
+   1c4d68860:	0f 84 e2 f9 ff ff    	je     1c4d68248 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x408>
+   1c4d68866:	8b 6f 08             	mov    0x8(%rdi),%ebp
+   1c4d68869:	85 ed                	test   %ebp,%ebp
+   1c4d6886b:	0f 84 d7 f9 ff ff    	je     1c4d68248 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x408>
+   1c4d68871:	48 8b 17             	mov    (%rdi),%rdx
+   1c4d68874:	4c 8b 44 24 30       	mov    0x30(%rsp),%r8
+   1c4d68879:	41 b9 51 06 00 00    	mov    $0x651,%r9d
+   1c4d6887f:	48 8d 8c 24 10 01 00 	lea    0x110(%rsp),%rcx
+   1c4d68886:	00
+   1c4d68887:	c5 fa 6f 02          	vmovdqu (%rdx),%xmm0
+   1c4d6888b:	c5 f9 7f 84 24 10 02 	vmovdqa %xmm0,0x210(%rsp)
+   1c4d68892:	00 00
+   1c4d68894:	c5 f9 6f 84 24 d0 01 	vmovdqa 0x1d0(%rsp),%xmm0
+   1c4d6889b:	00 00
+   1c4d6889d:	48 8b 52 10          	mov    0x10(%rdx),%rdx
+   1c4d688a1:	4c 89 74 24 20       	mov    %r14,0x20(%rsp)
+   1c4d688a6:	c5 f9 7f 84 24 30 02 	vmovdqa %xmm0,0x230(%rsp)
+   1c4d688ad:	00 00
+   1c4d688af:	48 89 94 24 20 02 00 	mov    %rdx,0x220(%rsp)
+   1c4d688b6:	00
+   1c4d688b7:	48 8b 94 24 e0 01 00 	mov    0x1e0(%rsp),%rdx
+   1c4d688be:	00
+   1c4d688bf:	48 89 94 24 40 02 00 	mov    %rdx,0x240(%rsp)
+   1c4d688c6:	00
+   1c4d688c7:	4c 89 ea             	mov    %r13,%rdx
+   1c4d688ca:	e8 c1 c5 f7 ff       	call   1c4ce4e90 <gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.1]>
+   1c4d688cf:	83 fd 01             	cmp    $0x1,%ebp
+   1c4d688d2:	0f 84 70 f9 ff ff    	je     1c4d68248 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x408>
+   1c4d688d8:	8d 55 fe             	lea    -0x2(%rbp),%edx
+   1c4d688db:	bd 18 00 00 00       	mov    $0x18,%ebp
+   1c4d688e0:	48 8d 14 52          	lea    (%rdx,%rdx,2),%rdx
+   1c4d688e4:	48 8d 04 d5 30 00 00 	lea    0x30(,%rdx,8),%rax
+   1c4d688eb:	00
+   1c4d688ec:	48 89 44 24 60       	mov    %rax,0x60(%rsp)
+   1c4d688f1:	48 8b 17             	mov    (%rdi),%rdx
+   1c4d688f4:	4c 8b 44 24 30       	mov    0x30(%rsp),%r8
+   1c4d688f9:	41 b9 51 06 00 00    	mov    $0x651,%r9d
+   1c4d688ff:	48 8d 8c 24 10 01 00 	lea    0x110(%rsp),%rcx
+   1c4d68906:	00
+   1c4d68907:	c5 fa 6f 04 2a       	vmovdqu (%rdx,%rbp,1),%xmm0
+   1c4d6890c:	c5 f9 7f 84 24 10 02 	vmovdqa %xmm0,0x210(%rsp)
+   1c4d68913:	00 00
+   1c4d68915:	c5 f9 6f 84 24 d0 01 	vmovdqa 0x1d0(%rsp),%xmm0
+   1c4d6891c:	00 00
+   1c4d6891e:	48 8b 54 2a 10       	mov    0x10(%rdx,%rbp,1),%rdx
+   1c4d68923:	4c 89 74 24 20       	mov    %r14,0x20(%rsp)
+   1c4d68928:	48 83 c5 18          	add    $0x18,%rbp
+   1c4d6892c:	c5 f9 7f 84 24 30 02 	vmovdqa %xmm0,0x230(%rsp)
+   1c4d68933:	00 00
+   1c4d68935:	48 89 94 24 20 02 00 	mov    %rdx,0x220(%rsp)
+   1c4d6893c:	00
+   1c4d6893d:	48 8b 94 24 e0 01 00 	mov    0x1e0(%rsp),%rdx
+   1c4d68944:	00
+   1c4d68945:	48 89 94 24 40 02 00 	mov    %rdx,0x240(%rsp)
+   1c4d6894c:	00
+   1c4d6894d:	4c 89 ea             	mov    %r13,%rdx
+   1c4d68950:	e8 3b c5 f7 ff       	call   1c4ce4e90 <gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.1]>
+   1c4d68955:	48 3b 6c 24 60       	cmp    0x60(%rsp),%rbp
+   1c4d6895a:	75 95                	jne    1c4d688f1 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0xab1>
+   1c4d6895c:	e9 e7 f8 ff ff       	jmp    1c4d68248 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x408>
+   1c4d68961:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
+   1c4d68968:	48 8b 4a 08          	mov    0x8(%rdx),%rcx
+   1c4d6896c:	48 85 c9             	test   %rcx,%rcx
+   1c4d6896f:	74 20                	je     1c4d68991 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0xb51>
+   1c4d68971:	4c 8b 81 30 06 00 00 	mov    0x630(%rcx),%r8
+   1c4d68978:	41 8b 40 08          	mov    0x8(%r8),%eax
+   1c4d6897c:	85 c0                	test   %eax,%eax
+   1c4d6897e:	0f 84 e2 f8 ff ff    	je     1c4d68266 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x426>
+   1c4d68984:	48 8d 94 24 b0 01 00 	lea    0x1b0(%rsp),%rdx
+   1c4d6898b:	00
+   1c4d6898c:	e8 8f bf 04 00       	call   1c4db4920 <Gd__gd_core__CoreItem::fn__tickTimers(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]>
+   1c4d68991:	41 83 fc 01          	cmp    $0x1,%r12d
+   1c4d68995:	0f 84 85 f8 ff ff    	je     1c4d68220 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x3e0>
+   1c4d6899b:	49 8b 55 00          	mov    0x0(%r13),%rdx
+   1c4d6899f:	e9 c8 f8 ff ff       	jmp    1c4d6826c <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x42c>
+   1c4d689a4:	0f 1f 40 00          	nopl   0x0(%rax)
+   1c4d689a8:	48 8b b4 24 f0 02 00 	mov    0x2f0(%rsp),%rsi
+   1c4d689af:	00
+   1c4d689b0:	48 8b bc 24 f8 02 00 	mov    0x2f8(%rsp),%rdi
+   1c4d689b7:	00
+   1c4d689b8:	0f b6 87 00 01 00 00 	movzbl 0x100(%rdi),%eax
+   1c4d689bf:	48 8b 5f 08          	mov    0x8(%rdi),%rbx
+   1c4d689c3:	8d 50 ff             	lea    -0x1(%rax),%edx
+   1c4d689c6:	80 fa 02             	cmp    $0x2,%dl
+   1c4d689c9:	0f 87 87 1e 00 00    	ja     1c4d6a856 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x2a16>
+   1c4d689cf:	3c 03                	cmp    $0x3,%al
+   1c4d689d1:	0f 85 6c 21 00 00    	jne    1c4d6ab43 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x2d03>
+   1c4d689d7:	c5 fb 10 87 08 01 00 	vmovsd 0x108(%rdi),%xmm0
+   1c4d689de:	00
+   1c4d689df:	c5 fb 5c 05 d1 e9 0b 	vsubsd 0xbe9d1(%rip),%xmm0,%xmm0        # 1c4e273b8 <.rdata+0x698>
+   1c4d689e6:	00
+   1c4d689e7:	c5 f1 57 c9          	vxorpd %xmm1,%xmm1,%xmm1
+   1c4d689eb:	c5 f9 d6 87 08 01 00 	vmovq  %xmm0,0x108(%rdi)
+   1c4d689f2:	00
+   1c4d689f3:	c5 f9 2f c1          	vcomisd %xmm1,%xmm0
+   1c4d689f7:	0f 82 6a 1e 00 00    	jb     1c4d6a867 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x2a27>
+   1c4d689fd:	4c 8d 6c 24 70       	lea    0x70(%rsp),%r13
+   1c4d68a02:	c5 f9 6f ac 24 90 00 	vmovdqa 0x90(%rsp),%xmm5
+   1c4d68a09:	00 00
+   1c4d68a0b:	48 8b 84 24 a0 00 00 	mov    0xa0(%rsp),%rax
+   1c4d68a12:	00
+   1c4d68a13:	0f b6 94 24 90 00 00 	movzbl 0x90(%rsp),%edx
+   1c4d68a1a:	00
+   1c4d68a1b:	48 8b 6f 48          	mov    0x48(%rdi),%rbp
+   1c4d68a1f:	48 89 84 24 78 02 00 	mov    %rax,0x278(%rsp)
+   1c4d68a26:	00
+   1c4d68a27:	48 89 84 24 40 02 00 	mov    %rax,0x240(%rsp)
+   1c4d68a2e:	00
+   1c4d68a2f:	c5 fa 7f ac 24 68 02 	vmovdqu %xmm5,0x268(%rsp)
+   1c4d68a36:	00 00
+   1c4d68a38:	c5 f9 7f ac 24 30 02 	vmovdqa %xmm5,0x230(%rsp)
+   1c4d68a3f:	00 00
+   1c4d68a41:	80 fa 03             	cmp    $0x3,%dl
+   1c4d68a44:	0f 85 03 1d 00 00    	jne    1c4d6a74d <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x290d>
+   1c4d68a4a:	c5 fb 10 bc 24 38 02 	vmovsd 0x238(%rsp),%xmm7
+   1c4d68a51:	00 00
+   1c4d68a53:	48 8d 94 24 b0 01 00 	lea    0x1b0(%rsp),%rdx
+   1c4d68a5a:	00
+   1c4d68a5b:	48 89 e9             	mov    %rbp,%rcx
+   1c4d68a5e:	c6 84 24 b0 01 00 00 	movb   $0x3,0x1b0(%rsp)
+   1c4d68a65:	03
+   1c4d68a66:	c5 fb 11 bc 24 b8 01 	vmovsd %xmm7,0x1b8(%rsp)
+   1c4d68a6d:	00 00
+   1c4d68a6f:	e8 0c 0e 02 00       	call   1c4d89880 <Gd__gd_core__CoreCharacter::fn_tickPhysicsTimers(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]>
+   1c4d68a74:	c6 84 24 30 02 00 00 	movb   $0x3,0x230(%rsp)
+   1c4d68a7b:	03
+   1c4d68a7c:	c5 fb 11 bc 24 38 02 	vmovsd %xmm7,0x238(%rsp)
+   1c4d68a83:	00 00
+   1c4d68a85:	48 8b 95 90 00 00 00 	mov    0x90(%rbp),%rdx
+   1c4d68a8c:	8b 42 08             	mov    0x8(%rdx),%eax
+   1c4d68a8f:	85 c0                	test   %eax,%eax
+   1c4d68a91:	74 3d                	je     1c4d68ad0 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0xc90>
+   1c4d68a93:	48 6b c0 38          	imul   $0x38,%rax,%rax
+   1c4d68a97:	48 8b 1a             	mov    (%rdx),%rbx
+   1c4d68a9a:	48 83 c3 20          	add    $0x20,%rbx
+   1c4d68a9e:	4c 8d 24 18          	lea    (%rax,%rbx,1),%r12
+   1c4d68aa2:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+   1c4d68aa8:	4c 8b 33             	mov    (%rbx),%r14
+   1c4d68aab:	41 80 be 78 01 00 00 	cmpb   $0x1,0x178(%r14)
+   1c4d68ab2:	01
+   1c4d68ab3:	0f 85 b0 10 00 00    	jne    1c4d69b69 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x1d29>
+   1c4d68ab9:	41 80 be 80 01 00 00 	cmpb   $0x0,0x180(%r14)
+   1c4d68ac0:	00
+   1c4d68ac1:	0f 85 b6 10 00 00    	jne    1c4d69b7d <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x1d3d>
+   1c4d68ac7:	48 83 c3 38          	add    $0x38,%rbx
+   1c4d68acb:	4c 39 e3             	cmp    %r12,%rbx
+   1c4d68ace:	75 d8                	jne    1c4d68aa8 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0xc68>
+   1c4d68ad0:	48 8b 85 e0 04 00 00 	mov    0x4e0(%rbp),%rax
+   1c4d68ad7:	4c 8b 78 60          	mov    0x60(%rax),%r15
+   1c4d68adb:	41 8b 57 08          	mov    0x8(%r15),%edx
+   1c4d68adf:	85 d2                	test   %edx,%edx
+   1c4d68ae1:	0f 84 a1 02 00 00    	je     1c4d68d88 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0xf48>
+   1c4d68ae7:	48 8d 2c 52          	lea    (%rdx,%rdx,2),%rbp
+   1c4d68aeb:	48 89 b4 24 f0 02 00 	mov    %rsi,0x2f0(%rsp)
+   1c4d68af2:	00
+   1c4d68af3:	31 db                	xor    %ebx,%ebx
+   1c4d68af5:	48 c1 e5 03          	shl    $0x3,%rbp
+   1c4d68af9:	48 89 bc 24 f8 02 00 	mov    %rdi,0x2f8(%rsp)
+   1c4d68b00:	00
+   1c4d68b01:	48 89 ee             	mov    %rbp,%rsi
+   1c4d68b04:	eb 17                	jmp    1c4d68b1d <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0xcdd>
+   1c4d68b06:	66 2e 0f 1f 84 00 00 	cs nopw 0x0(%rax,%rax,1)
+   1c4d68b0d:	00 00 00
+   1c4d68b10:	48 83 c3 18          	add    $0x18,%rbx
+   1c4d68b14:	48 39 f3             	cmp    %rsi,%rbx
+   1c4d68b17:	0f 84 5b 02 00 00    	je     1c4d68d78 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0xf38>
+   1c4d68b1d:	49 8b 17             	mov    (%r15),%rdx
+   1c4d68b20:	4c 8b 64 1a 08       	mov    0x8(%rdx,%rbx,1),%r12
+   1c4d68b25:	49 8b 94 24 30 06 00 	mov    0x630(%r12),%rdx
+   1c4d68b2c:	00
+   1c4d68b2d:	44 8b 52 08          	mov    0x8(%rdx),%r10d
+   1c4d68b31:	45 85 d2             	test   %r10d,%r10d
+   1c4d68b34:	0f 85 86 00 00 00    	jne    1c4d68bc0 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0xd80>
+   1c4d68b3a:	4d 8b b4 24 d8 03 00 	mov    0x3d8(%r12),%r14
+   1c4d68b41:	00
+   1c4d68b42:	45 8b 66 08          	mov    0x8(%r14),%r12d
+   1c4d68b46:	45 85 e4             	test   %r12d,%r12d
+   1c4d68b49:	74 c5                	je     1c4d68b10 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0xcd0>
+   1c4d68b4b:	49 8b 16             	mov    (%r14),%rdx
+   1c4d68b4e:	80 3a 09             	cmpb   $0x9,(%rdx)
+   1c4d68b51:	0f 84 e1 01 00 00    	je     1c4d68d38 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0xef8>
+   1c4d68b57:	41 83 fc 01          	cmp    $0x1,%r12d
+   1c4d68b5b:	74 b3                	je     1c4d68b10 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0xcd0>
+   1c4d68b5d:	bd 01 00 00 00       	mov    $0x1,%ebp
+   1c4d68b62:	bf 18 00 00 00       	mov    $0x18,%edi
+   1c4d68b67:	48 8d 04 3a          	lea    (%rdx,%rdi,1),%rax
+   1c4d68b6b:	80 38 09             	cmpb   $0x9,(%rax)
+   1c4d68b6e:	74 14                	je     1c4d68b84 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0xd44>
+   1c4d68b70:	ff c5                	inc    %ebp
+   1c4d68b72:	44 39 e5             	cmp    %r12d,%ebp
+   1c4d68b75:	74 99                	je     1c4d68b10 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0xcd0>
+   1c4d68b77:	48 83 c7 18          	add    $0x18,%rdi
+   1c4d68b7b:	48 8d 04 3a          	lea    (%rdx,%rdi,1),%rax
+   1c4d68b7f:	80 38 09             	cmpb   $0x9,(%rax)
+   1c4d68b82:	75 ec                	jne    1c4d68b70 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0xd30>
+   1c4d68b84:	48 8b 48 08          	mov    0x8(%rax),%rcx
+   1c4d68b88:	48 85 c9             	test   %rcx,%rcx
+   1c4d68b8b:	74 1d                	je     1c4d68baa <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0xd6a>
+   1c4d68b8d:	48 8b 81 30 06 00 00 	mov    0x630(%rcx),%rax
+   1c4d68b94:	44 8b 40 08          	mov    0x8(%rax),%r8d
+   1c4d68b98:	45 85 c0             	test   %r8d,%r8d
+   1c4d68b9b:	74 d3                	je     1c4d68b70 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0xd30>
+   1c4d68b9d:	48 8d 94 24 b0 01 00 	lea    0x1b0(%rsp),%rdx
+   1c4d68ba4:	00
+   1c4d68ba5:	e8 76 bd 04 00       	call   1c4db4920 <Gd__gd_core__CoreItem::fn__tickTimers(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]>
+   1c4d68baa:	ff c5                	inc    %ebp
+   1c4d68bac:	44 39 e5             	cmp    %r12d,%ebp
+   1c4d68baf:	0f 84 5b ff ff ff    	je     1c4d68b10 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0xcd0>
+   1c4d68bb5:	49 8b 16             	mov    (%r14),%rdx
+   1c4d68bb8:	48 83 c7 18          	add    $0x18,%rdi
+   1c4d68bbc:	eb a9                	jmp    1c4d68b67 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0xd27>
+   1c4d68bbe:	66 90                	xchg   %ax,%ax
+   1c4d68bc0:	48 8b 94 24 c0 01 00 	mov    0x1c0(%rsp),%rdx
+   1c4d68bc7:	00
+   1c4d68bc8:	4d 8b 74 24 08       	mov    0x8(%r12),%r14
+   1c4d68bcd:	4d 8d 84 24 28 06 00 	lea    0x628(%r12),%r8
+   1c4d68bd4:	00
+   1c4d68bd5:	48 8d 8c 24 f0 01 00 	lea    0x1f0(%rsp),%rcx
+   1c4d68bdc:	00
+   1c4d68bdd:	c5 f9 6f 84 24 b0 01 	vmovdqa 0x1b0(%rsp),%xmm0
+   1c4d68be4:	00 00
+   1c4d68be6:	48 89 94 24 e0 01 00 	mov    %rdx,0x1e0(%rsp)
+   1c4d68bed:	00
+   1c4d68bee:	4c 89 f2             	mov    %r14,%rdx
+   1c4d68bf1:	c5 f9 7f 84 24 d0 01 	vmovdqa %xmm0,0x1d0(%rsp)
+   1c4d68bf8:	00 00
+   1c4d68bfa:	c6 84 24 d0 01 00 00 	movb   $0x3,0x1d0(%rsp)
+   1c4d68c01:	03
+   1c4d68c02:	e8 99 8c f8 ff       	call   1c4cf18a0 <gd::gd_iter_seq(gd::BattleArena&, gd::GdVal const&)>
+   1c4d68c07:	80 bc 24 f0 01 00 00 	cmpb   $0x7,0x1f0(%rsp)
+   1c4d68c0e:	07
+   1c4d68c0f:	0f 85 25 ff ff ff    	jne    1c4d68b3a <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0xcfa>
+   1c4d68c15:	48 8b bc 24 f8 01 00 	mov    0x1f8(%rsp),%rdi
+   1c4d68c1c:	00
+   1c4d68c1d:	48 85 ff             	test   %rdi,%rdi
+   1c4d68c20:	0f 84 14 ff ff ff    	je     1c4d68b3a <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0xcfa>
+   1c4d68c26:	8b 6f 08             	mov    0x8(%rdi),%ebp
+   1c4d68c29:	85 ed                	test   %ebp,%ebp
+   1c4d68c2b:	0f 84 09 ff ff ff    	je     1c4d68b3a <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0xcfa>
+   1c4d68c31:	48 8b 17             	mov    (%rdi),%rdx
+   1c4d68c34:	48 8d 84 24 30 02 00 	lea    0x230(%rsp),%rax
+   1c4d68c3b:	00
+   1c4d68c3c:	4c 8b 44 24 30       	mov    0x30(%rsp),%r8
+   1c4d68c41:	41 b9 51 06 00 00    	mov    $0x651,%r9d
+   1c4d68c47:	48 8d 8c 24 30 01 00 	lea    0x130(%rsp),%rcx
+   1c4d68c4e:	00
+   1c4d68c4f:	c5 fa 6f 02          	vmovdqu (%rdx),%xmm0
+   1c4d68c53:	c5 f9 7f 84 24 10 02 	vmovdqa %xmm0,0x210(%rsp)
+   1c4d68c5a:	00 00
+   1c4d68c5c:	c5 f9 6f 84 24 d0 01 	vmovdqa 0x1d0(%rsp),%xmm0
+   1c4d68c63:	00 00
+   1c4d68c65:	48 8b 52 10          	mov    0x10(%rdx),%rdx
+   1c4d68c69:	48 89 44 24 20       	mov    %rax,0x20(%rsp)
+   1c4d68c6e:	c5 f9 7f 84 24 30 02 	vmovdqa %xmm0,0x230(%rsp)
+   1c4d68c75:	00 00
+   1c4d68c77:	48 89 94 24 20 02 00 	mov    %rdx,0x220(%rsp)
+   1c4d68c7e:	00
+   1c4d68c7f:	48 8b 94 24 e0 01 00 	mov    0x1e0(%rsp),%rdx
+   1c4d68c86:	00
+   1c4d68c87:	48 89 94 24 40 02 00 	mov    %rdx,0x240(%rsp)
+   1c4d68c8e:	00
+   1c4d68c8f:	4c 89 f2             	mov    %r14,%rdx
+   1c4d68c92:	e8 f9 c1 f7 ff       	call   1c4ce4e90 <gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.1]>
+   1c4d68c97:	83 fd 01             	cmp    $0x1,%ebp
+   1c4d68c9a:	0f 84 9a fe ff ff    	je     1c4d68b3a <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0xcfa>
+   1c4d68ca0:	8d 55 fe             	lea    -0x2(%rbp),%edx
+   1c4d68ca3:	bd 18 00 00 00       	mov    $0x18,%ebp
+   1c4d68ca8:	48 8d 14 52          	lea    (%rdx,%rdx,2),%rdx
+   1c4d68cac:	48 8d 04 d5 30 00 00 	lea    0x30(,%rdx,8),%rax
+   1c4d68cb3:	00
+   1c4d68cb4:	48 89 44 24 60       	mov    %rax,0x60(%rsp)
+   1c4d68cb9:	48 8b 17             	mov    (%rdi),%rdx
+   1c4d68cbc:	48 8d 84 24 30 02 00 	lea    0x230(%rsp),%rax
+   1c4d68cc3:	00
+   1c4d68cc4:	4c 8b 44 24 30       	mov    0x30(%rsp),%r8
+   1c4d68cc9:	41 b9 51 06 00 00    	mov    $0x651,%r9d
+   1c4d68ccf:	48 8d 8c 24 30 01 00 	lea    0x130(%rsp),%rcx
+   1c4d68cd6:	00
+   1c4d68cd7:	c5 fa 6f 04 2a       	vmovdqu (%rdx,%rbp,1),%xmm0
+   1c4d68cdc:	c5 f9 7f 84 24 10 02 	vmovdqa %xmm0,0x210(%rsp)
+   1c4d68ce3:	00 00
+   1c4d68ce5:	c5 f9 6f 84 24 d0 01 	vmovdqa 0x1d0(%rsp),%xmm0
+   1c4d68cec:	00 00
+   1c4d68cee:	48 8b 54 2a 10       	mov    0x10(%rdx,%rbp,1),%rdx
+   1c4d68cf3:	48 89 44 24 20       	mov    %rax,0x20(%rsp)
+   1c4d68cf8:	48 83 c5 18          	add    $0x18,%rbp
+   1c4d68cfc:	c5 f9 7f 84 24 30 02 	vmovdqa %xmm0,0x230(%rsp)
+   1c4d68d03:	00 00
+   1c4d68d05:	48 89 94 24 20 02 00 	mov    %rdx,0x220(%rsp)
+   1c4d68d0c:	00
+   1c4d68d0d:	48 8b 94 24 e0 01 00 	mov    0x1e0(%rsp),%rdx
+   1c4d68d14:	00
+   1c4d68d15:	48 89 94 24 40 02 00 	mov    %rdx,0x240(%rsp)
+   1c4d68d1c:	00
+   1c4d68d1d:	4c 89 f2             	mov    %r14,%rdx
+   1c4d68d20:	e8 6b c1 f7 ff       	call   1c4ce4e90 <gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.1]>
+   1c4d68d25:	48 3b 6c 24 60       	cmp    0x60(%rsp),%rbp
+   1c4d68d2a:	75 8d                	jne    1c4d68cb9 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0xe79>
+   1c4d68d2c:	e9 09 fe ff ff       	jmp    1c4d68b3a <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0xcfa>
+   1c4d68d31:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
+   1c4d68d38:	48 8b 4a 08          	mov    0x8(%rdx),%rcx
+   1c4d68d3c:	48 85 c9             	test   %rcx,%rcx
+   1c4d68d3f:	74 21                	je     1c4d68d62 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0xf22>
+   1c4d68d41:	4c 8b 81 30 06 00 00 	mov    0x630(%rcx),%r8
+   1c4d68d48:	45 8b 48 08          	mov    0x8(%r8),%r9d
+   1c4d68d4c:	45 85 c9             	test   %r9d,%r9d
+   1c4d68d4f:	0f 84 02 fe ff ff    	je     1c4d68b57 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0xd17>
+   1c4d68d55:	48 8d 94 24 b0 01 00 	lea    0x1b0(%rsp),%rdx
+   1c4d68d5c:	00
+   1c4d68d5d:	e8 be bb 04 00       	call   1c4db4920 <Gd__gd_core__CoreItem::fn__tickTimers(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]>
+   1c4d68d62:	41 83 fc 01          	cmp    $0x1,%r12d
+   1c4d68d66:	0f 84 a4 fd ff ff    	je     1c4d68b10 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0xcd0>
+   1c4d68d6c:	49 8b 16             	mov    (%r14),%rdx
+   1c4d68d6f:	e9 e9 fd ff ff       	jmp    1c4d68b5d <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0xd1d>
+   1c4d68d74:	0f 1f 40 00          	nopl   0x0(%rax)
+   1c4d68d78:	48 8b b4 24 f0 02 00 	mov    0x2f0(%rsp),%rsi
+   1c4d68d7f:	00
+   1c4d68d80:	48 8b bc 24 f8 02 00 	mov    0x2f8(%rsp),%rdi
+   1c4d68d87:	00
+   1c4d68d88:	48 8b 5f 30          	mov    0x30(%rdi),%rbx
+   1c4d68d8c:	c5 f9 6f 9c 24 90 00 	vmovdqa 0x90(%rsp),%xmm3
+   1c4d68d93:	00 00
+   1c4d68d95:	48 8b 84 24 a0 00 00 	mov    0xa0(%rsp),%rax
+   1c4d68d9c:	00
+   1c4d68d9d:	0f b6 8c 24 90 00 00 	movzbl 0x90(%rsp),%ecx
+   1c4d68da4:	00
+   1c4d68da5:	c6 83 48 04 00 00 01 	movb   $0x1,0x448(%rbx)
+   1c4d68dac:	48 8b 53 08          	mov    0x8(%rbx),%rdx
+   1c4d68db0:	48 c7 83 50 04 00 00 	movq   $0x0,0x450(%rbx)
+   1c4d68db7:	00 00 00 00
+   1c4d68dbb:	48 89 84 24 40 02 00 	mov    %rax,0x240(%rsp)
+   1c4d68dc2:	00
+   1c4d68dc3:	48 89 84 24 60 02 00 	mov    %rax,0x260(%rsp)
+   1c4d68dca:	00
+   1c4d68dcb:	c5 f9 7f 9c 24 30 02 	vmovdqa %xmm3,0x230(%rsp)
+   1c4d68dd2:	00 00
+   1c4d68dd4:	c5 f9 7f 9c 24 50 02 	vmovdqa %xmm3,0x250(%rsp)
+   1c4d68ddb:	00 00
+   1c4d68ddd:	80 f9 03             	cmp    $0x3,%cl
+   1c4d68de0:	0f 85 8e 19 00 00    	jne    1c4d6a774 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x2934>
+   1c4d68de6:	0f b6 83 18 01 00 00 	movzbl 0x118(%rbx),%eax
+   1c4d68ded:	3c 02                	cmp    $0x2,%al
+   1c4d68def:	0f 85 d8 07 00 00    	jne    1c4d695cd <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x178d>
+   1c4d68df5:	48 8b 83 20 01 00 00 	mov    0x120(%rbx),%rax
+   1c4d68dfc:	b9 02 00 00 00       	mov    $0x2,%ecx
+   1c4d68e01:	48 ff c0             	inc    %rax
+   1c4d68e04:	88 8b 18 01 00 00    	mov    %cl,0x118(%rbx)
+   1c4d68e0a:	4c 8b 4c 24 40       	mov    0x40(%rsp),%r9
+   1c4d68e0f:	4c 8d 83 e8 00 00 00 	lea    0xe8(%rbx),%r8
+   1c4d68e16:	4c 89 e9             	mov    %r13,%rcx
+   1c4d68e19:	48 89 83 20 01 00 00 	mov    %rax,0x120(%rbx)
+   1c4d68e20:	e8 3b 87 f8 ff       	call   1c4cf1560 <gd::gd_add(gd::BattleCtx&, gd::GdVal const&, gd::GdVal const&)>
+   1c4d68e25:	c5 fa 6f 44 24 70    	vmovdqu 0x70(%rsp),%xmm0
+   1c4d68e2b:	48 8b 94 24 00 01 00 	mov    0x100(%rsp),%rdx
+   1c4d68e32:	00
+   1c4d68e33:	c6 84 24 f0 00 00 00 	movb   $0x1,0xf0(%rsp)
+   1c4d68e3a:	01
+   1c4d68e3b:	c5 f9 6f ac 24 90 00 	vmovdqa 0x90(%rsp),%xmm5
+   1c4d68e42:	00 00
+   1c4d68e44:	48 8b 6f 60          	mov    0x60(%rdi),%rbp
+   1c4d68e48:	48 c7 84 24 f8 00 00 	movq   $0x1,0xf8(%rsp)
+   1c4d68e4f:	00 01 00 00 00
+   1c4d68e54:	c5 fa 7f 83 e8 00 00 	vmovdqu %xmm0,0xe8(%rbx)
+   1c4d68e5b:	00
+   1c4d68e5c:	48 8b 84 24 80 00 00 	mov    0x80(%rsp),%rax
+   1c4d68e63:	00
+   1c4d68e64:	c5 f9 7f ac 24 f0 01 	vmovdqa %xmm5,0x1f0(%rsp)
+   1c4d68e6b:	00 00
+   1c4d68e6d:	c5 f9 6f 84 24 f0 00 	vmovdqa 0xf0(%rsp),%xmm0
+   1c4d68e74:	00 00
+   1c4d68e76:	48 89 83 f8 00 00 00 	mov    %rax,0xf8(%rbx)
+   1c4d68e7d:	48 8b 47 30          	mov    0x30(%rdi),%rax
+   1c4d68e81:	48 89 90 70 04 00 00 	mov    %rdx,0x470(%rax)
+   1c4d68e88:	0f b6 94 24 90 00 00 	movzbl 0x90(%rsp),%edx
+   1c4d68e8f:	00
+   1c4d68e90:	c5 fa 7f 80 60 04 00 	vmovdqu %xmm0,0x460(%rax)
+   1c4d68e97:	00
+   1c4d68e98:	48 8b 84 24 a0 00 00 	mov    0xa0(%rsp),%rax
+   1c4d68e9f:	00
+   1c4d68ea0:	c5 f9 7f ac 24 10 02 	vmovdqa %xmm5,0x210(%rsp)
+   1c4d68ea7:	00 00
+   1c4d68ea9:	48 89 84 24 00 02 00 	mov    %rax,0x200(%rsp)
+   1c4d68eb0:	00
+   1c4d68eb1:	48 89 84 24 20 02 00 	mov    %rax,0x220(%rsp)
+   1c4d68eb8:	00
+   1c4d68eb9:	80 fa 03             	cmp    $0x3,%dl
+   1c4d68ebc:	0f 85 64 18 00 00    	jne    1c4d6a726 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x28e6>
+   1c4d68ec2:	c5 fb 10 bc 24 18 02 	vmovsd 0x218(%rsp),%xmm7
+   1c4d68ec9:	00 00
+   1c4d68ecb:	c6 84 24 10 02 00 00 	movb   $0x3,0x210(%rsp)
+   1c4d68ed2:	03
+   1c4d68ed3:	c5 fb 11 bc 24 18 02 	vmovsd %xmm7,0x218(%rsp)
+   1c4d68eda:	00 00
+   1c4d68edc:	0f b6 85 70 03 00 00 	movzbl 0x370(%rbp),%eax
+   1c4d68ee3:	8d 50 ff             	lea    -0x1(%rax),%edx
+   1c4d68ee6:	80 fa 02             	cmp    $0x2,%dl
+   1c4d68ee9:	77 27                	ja     1c4d68f12 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x10d2>
+   1c4d68eeb:	3c 03                	cmp    $0x3,%al
+   1c4d68eed:	0f 84 15 06 00 00    	je     1c4d69508 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x16c8>
+   1c4d68ef3:	3c 01                	cmp    $0x1,%al
+   1c4d68ef5:	0f 84 ff 22 00 00    	je     1c4d6b1fa <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x33ba>
+   1c4d68efb:	c5 f1 57 c9          	vxorpd %xmm1,%xmm1,%xmm1
+   1c4d68eff:	c4 e1 cb 2a 85 78 03 	vcvtsi2sdq 0x378(%rbp),%xmm6,%xmm0
+   1c4d68f06:	00 00
+   1c4d68f08:	c5 f9 2f c1          	vcomisd %xmm1,%xmm0
+   1c4d68f0c:	0f 87 0c 06 00 00    	ja     1c4d6951e <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x16de>
+   1c4d68f12:	0f b6 8d 78 01 00 00 	movzbl 0x178(%rbp),%ecx
+   1c4d68f19:	48 8b 55 08          	mov    0x8(%rbp),%rdx
+   1c4d68f1d:	8d 41 ff             	lea    -0x1(%rcx),%eax
+   1c4d68f20:	3c 02                	cmp    $0x2,%al
+   1c4d68f22:	0f 87 e4 22 00 00    	ja     1c4d6b20c <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x33cc>
+   1c4d68f28:	0f b6 85 30 01 00 00 	movzbl 0x130(%rbp),%eax
+   1c4d68f2f:	80 f9 03             	cmp    $0x3,%cl
+   1c4d68f32:	0f 85 f0 0b 00 00    	jne    1c4d69b28 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x1ce8>
+   1c4d68f38:	c5 fb 10 85 80 01 00 	vmovsd 0x180(%rbp),%xmm0
+   1c4d68f3f:	00
+   1c4d68f40:	c5 c3 59 c0          	vmulsd %xmm0,%xmm7,%xmm0
+   1c4d68f44:	48 c7 84 24 40 02 00 	movq   $0x0,0x240(%rsp)
+   1c4d68f4b:	00 00 00 00 00
+   1c4d68f50:	3c 03                	cmp    $0x3,%al
+   1c4d68f52:	0f 85 f4 1f 00 00    	jne    1c4d6af4c <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x310c>
+   1c4d68f58:	0f b6 8d 18 01 00 00 	movzbl 0x118(%rbp),%ecx
+   1c4d68f5f:	80 f9 03             	cmp    $0x3,%cl
+   1c4d68f62:	0f 85 e4 1f 00 00    	jne    1c4d6af4c <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x310c>
+   1c4d68f68:	80 bd 48 01 00 00 03 	cmpb   $0x3,0x148(%rbp)
+   1c4d68f6f:	0f 85 dc 1f 00 00    	jne    1c4d6af51 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x3111>
+   1c4d68f75:	c5 fb 58 85 38 01 00 	vaddsd 0x138(%rbp),%xmm0,%xmm0
+   1c4d68f7c:	00
+   1c4d68f7d:	c5 e9 57 d2          	vxorpd %xmm2,%xmm2,%xmm2
+   1c4d68f81:	c5 fb 10 8d 20 01 00 	vmovsd 0x120(%rbp),%xmm1
+   1c4d68f88:	00
+   1c4d68f89:	c5 f3 58 8d 50 01 00 	vaddsd 0x150(%rbp),%xmm1,%xmm1
+   1c4d68f90:	00
+   1c4d68f91:	c5 f9 2f d0          	vcomisd %xmm0,%xmm2
+   1c4d68f95:	0f 87 4f 21 00 00    	ja     1c4d6b0ea <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x32aa>
+   1c4d68f9b:	c5 f3 5d c0          	vminsd %xmm0,%xmm1,%xmm0
+   1c4d68f9f:	c6 85 30 01 00 00 03 	movb   $0x3,0x130(%rbp)
+   1c4d68fa6:	c5 fb 11 85 38 01 00 	vmovsd %xmm0,0x138(%rbp)
+   1c4d68fad:	00
+   1c4d68fae:	48 8b 47 60          	mov    0x60(%rdi),%rax
+   1c4d68fb2:	48 8b 54 24 48       	mov    0x48(%rsp),%rdx
+   1c4d68fb7:	48 8b 4c 24 40       	mov    0x40(%rsp),%rcx
+   1c4d68fbc:	4c 8b 80 e0 04 00 00 	mov    0x4e0(%rax),%r8
+   1c4d68fc3:	49 83 c0 58          	add    $0x58,%r8
+   1c4d68fc7:	e8 d4 88 f8 ff       	call   1c4cf18a0 <gd::gd_iter_seq(gd::BattleArena&, gd::GdVal const&)>
+   1c4d68fcc:	80 bc 24 50 02 00 00 	cmpb   $0x7,0x250(%rsp)
+   1c4d68fd3:	07
+   1c4d68fd4:	0f 85 d8 16 00 00    	jne    1c4d6a6b2 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x2872>
+   1c4d68fda:	4c 8b a4 24 58 02 00 	mov    0x258(%rsp),%r12
+   1c4d68fe1:	00
+   1c4d68fe2:	4d 85 e4             	test   %r12,%r12
+   1c4d68fe5:	0f 84 c7 16 00 00    	je     1c4d6a6b2 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x2872>
+   1c4d68feb:	41 8b 54 24 08       	mov    0x8(%r12),%edx
+   1c4d68ff0:	85 d2                	test   %edx,%edx
+   1c4d68ff2:	0f 84 ba 16 00 00    	je     1c4d6a6b2 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x2872>
+   1c4d68ff8:	4c 8d 04 52          	lea    (%rdx,%rdx,2),%r8
+   1c4d68ffc:	48 89 b4 24 f0 02 00 	mov    %rsi,0x2f0(%rsp)
+   1c4d69003:	00
+   1c4d69004:	4d 89 e7             	mov    %r12,%r15
+   1c4d69007:	4c 8d b4 24 90 00 00 	lea    0x90(%rsp),%r14
+   1c4d6900e:	00
+   1c4d6900f:	48 8d 2d 72 de 0b 00 	lea    0xbde72(%rip),%rbp        # 1c4e26e88 <.rdata+0x168>
+   1c4d69016:	4a 8d 34 c5 00 00 00 	lea    0x0(,%r8,8),%rsi
+   1c4d6901d:	00
+   1c4d6901e:	45 31 e4             	xor    %r12d,%r12d
+   1c4d69021:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
+   1c4d69028:	49 8b 07             	mov    (%r15),%rax
+   1c4d6902b:	4a 8b 5c 20 08       	mov    0x8(%rax,%r12,1),%rbx
+   1c4d69030:	80 bb 18 04 00 00 08 	cmpb   $0x8,0x418(%rbx)
+   1c4d69037:	77 20                	ja     1c4d69059 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x1219>
+   1c4d69039:	0f b6 83 18 04 00 00 	movzbl 0x418(%rbx),%eax
+   1c4d69040:	48 63 44 85 00       	movslq 0x0(%rbp,%rax,4),%rax
+   1c4d69045:	48 01 e8             	add    %rbp,%rax
+   1c4d69048:	ff e0                	jmp    *%rax
+   1c4d6904a:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+   1c4d69050:	80 bb 20 04 00 00 00 	cmpb   $0x0,0x420(%rbx)
+   1c4d69057:	74 0b                	je     1c4d69064 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x1224>
+   1c4d69059:	4c 89 f2             	mov    %r14,%rdx
+   1c4d6905c:	48 89 d9             	mov    %rbx,%rcx
+   1c4d6905f:	e8 3c 2b 02 00       	call   1c4d8bba0 <Gd__gd_core__CoreItem::fn_physicsTick(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]>
+   1c4d69064:	80 bb d0 03 00 00 07 	cmpb   $0x7,0x3d0(%rbx)
+   1c4d6906b:	48 8b 83 d8 03 00 00 	mov    0x3d8(%rbx),%rax
+   1c4d69072:	75 10                	jne    1c4d69084 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x1244>
+   1c4d69074:	48 85 c0             	test   %rax,%rax
+   1c4d69077:	74 0b                	je     1c4d69084 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x1244>
+   1c4d69079:	8b 58 08             	mov    0x8(%rax),%ebx
+   1c4d6907c:	85 db                	test   %ebx,%ebx
+   1c4d6907e:	0f 85 94 02 00 00    	jne    1c4d69318 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x14d8>
+   1c4d69084:	49 83 c4 18          	add    $0x18,%r12
+   1c4d69088:	49 39 f4             	cmp    %rsi,%r12
+   1c4d6908b:	75 9b                	jne    1c4d69028 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x11e8>
+   1c4d6908d:	48 8b b4 24 f0 02 00 	mov    0x2f0(%rsp),%rsi
+   1c4d69094:	00
+   1c4d69095:	48 8b 54 24 48       	mov    0x48(%rsp),%rdx
+   1c4d6909a:	4d 89 f1             	mov    %r14,%r9
+   1c4d6909d:	4c 8d 87 b8 00 00 00 	lea    0xb8(%rdi),%r8
+   1c4d690a4:	4c 89 e9             	mov    %r13,%rcx
+   1c4d690a7:	e8 b4 84 f8 ff       	call   1c4cf1560 <gd::gd_add(gd::BattleCtx&, gd::GdVal const&, gd::GdVal const&)>
+   1c4d690ac:	c5 fa 6f 44 24 70    	vmovdqu 0x70(%rsp),%xmm0
+   1c4d690b2:	c5 f9 6f a4 24 90 00 	vmovdqa 0x90(%rsp),%xmm4
+   1c4d690b9:	00 00
+   1c4d690bb:	48 8b 6f 48          	mov    0x48(%rdi),%rbp
+   1c4d690bf:	c5 fa 7f 87 b8 00 00 	vmovdqu %xmm0,0xb8(%rdi)
+   1c4d690c6:	00
+   1c4d690c7:	48 8b 84 24 80 00 00 	mov    0x80(%rsp),%rax
+   1c4d690ce:	00
+   1c4d690cf:	c5 f9 7f a4 24 f0 01 	vmovdqa %xmm4,0x1f0(%rsp)
+   1c4d690d6:	00 00
+   1c4d690d8:	48 89 87 c8 00 00 00 	mov    %rax,0xc8(%rdi)
+   1c4d690df:	48 8b 47 30          	mov    0x30(%rdi),%rax
+   1c4d690e3:	c5 fa 7f 80 30 01 00 	vmovdqu %xmm0,0x130(%rax)
+   1c4d690ea:	00
+   1c4d690eb:	48 8b 97 c8 00 00 00 	mov    0xc8(%rdi),%rdx
+   1c4d690f2:	48 89 90 40 01 00 00 	mov    %rdx,0x140(%rax)
+   1c4d690f9:	48 8b 84 24 a0 00 00 	mov    0xa0(%rsp),%rax
+   1c4d69100:	00
+   1c4d69101:	0f b6 94 24 90 00 00 	movzbl 0x90(%rsp),%edx
+   1c4d69108:	00
+   1c4d69109:	c5 f9 7f a4 24 10 02 	vmovdqa %xmm4,0x210(%rsp)
+   1c4d69110:	00 00
+   1c4d69112:	48 89 84 24 00 02 00 	mov    %rax,0x200(%rsp)
+   1c4d69119:	00
+   1c4d6911a:	48 89 84 24 20 02 00 	mov    %rax,0x220(%rsp)
+   1c4d69121:	00
+   1c4d69122:	80 fa 03             	cmp    $0x3,%dl
+   1c4d69125:	0f 85 81 16 00 00    	jne    1c4d6a7ac <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x296c>
+   1c4d6912b:	0f b6 85 70 03 00 00 	movzbl 0x370(%rbp),%eax
+   1c4d69132:	c5 fb 10 bc 24 18 02 	vmovsd 0x218(%rsp),%xmm7
+   1c4d69139:	00 00
+   1c4d6913b:	8d 50 ff             	lea    -0x1(%rax),%edx
+   1c4d6913e:	80 fa 02             	cmp    $0x2,%dl
+   1c4d69141:	77 27                	ja     1c4d6916a <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x132a>
+   1c4d69143:	3c 03                	cmp    $0x3,%al
+   1c4d69145:	0f 84 26 03 00 00    	je     1c4d69471 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x1631>
+   1c4d6914b:	3c 01                	cmp    $0x1,%al
+   1c4d6914d:	0f 84 e0 20 00 00    	je     1c4d6b233 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x33f3>
+   1c4d69153:	c5 f1 57 c9          	vxorpd %xmm1,%xmm1,%xmm1
+   1c4d69157:	c4 e1 cb 2a 85 78 03 	vcvtsi2sdq 0x378(%rbp),%xmm6,%xmm0
+   1c4d6915e:	00 00
+   1c4d69160:	c5 f9 2f c1          	vcomisd %xmm1,%xmm0
+   1c4d69164:	0f 87 1d 03 00 00    	ja     1c4d69487 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x1647>
+   1c4d6916a:	0f b6 8d 78 01 00 00 	movzbl 0x178(%rbp),%ecx
+   1c4d69171:	48 8b 55 08          	mov    0x8(%rbp),%rdx
+   1c4d69175:	8d 41 ff             	lea    -0x1(%rcx),%eax
+   1c4d69178:	3c 02                	cmp    $0x2,%al
+   1c4d6917a:	0f 87 d4 1f 00 00    	ja     1c4d6b154 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x3314>
+   1c4d69180:	0f b6 85 30 01 00 00 	movzbl 0x130(%rbp),%eax
+   1c4d69187:	80 f9 03             	cmp    $0x3,%cl
+   1c4d6918a:	0f 85 1a 09 00 00    	jne    1c4d69aaa <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x1c6a>
+   1c4d69190:	c5 c3 59 8d 80 01 00 	vmulsd 0x180(%rbp),%xmm7,%xmm1
+   1c4d69197:	00
+   1c4d69198:	48 c7 84 24 40 02 00 	movq   $0x0,0x240(%rsp)
+   1c4d6919f:	00 00 00 00 00
+   1c4d691a4:	3c 03                	cmp    $0x3,%al
+   1c4d691a6:	0f 85 2d 09 00 00    	jne    1c4d69ad9 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x1c99>
+   1c4d691ac:	0f b6 8d 18 01 00 00 	movzbl 0x118(%rbp),%ecx
+   1c4d691b3:	80 f9 03             	cmp    $0x3,%cl
+   1c4d691b6:	0f 85 18 09 00 00    	jne    1c4d69ad4 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x1c94>
+   1c4d691bc:	80 bd 48 01 00 00 03 	cmpb   $0x3,0x148(%rbp)
+   1c4d691c3:	0f 85 10 09 00 00    	jne    1c4d69ad9 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x1c99>
+   1c4d691c9:	c5 f3 58 8d 38 01 00 	vaddsd 0x138(%rbp),%xmm1,%xmm1
+   1c4d691d0:	00
+   1c4d691d1:	c5 e9 57 d2          	vxorpd %xmm2,%xmm2,%xmm2
+   1c4d691d5:	c5 fb 10 85 20 01 00 	vmovsd 0x120(%rbp),%xmm0
+   1c4d691dc:	00
+   1c4d691dd:	c6 85 30 01 00 00 03 	movb   $0x3,0x130(%rbp)
+   1c4d691e4:	c5 fb 58 85 50 01 00 	vaddsd 0x150(%rbp),%xmm0,%xmm0
+   1c4d691eb:	00
+   1c4d691ec:	c5 f9 2f d1          	vcomisd %xmm1,%xmm2
+   1c4d691f0:	0f 87 4b 1e 00 00    	ja     1c4d6b041 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x3201>
+   1c4d691f6:	c5 fb 5d c1          	vminsd %xmm1,%xmm0,%xmm0
+   1c4d691fa:	c5 fb 11 85 38 01 00 	vmovsd %xmm0,0x138(%rbp)
+   1c4d69201:	00
+   1c4d69202:	48 8b 47 48          	mov    0x48(%rdi),%rax
+   1c4d69206:	48 8b 54 24 48       	mov    0x48(%rsp),%rdx
+   1c4d6920b:	48 8b 4c 24 40       	mov    0x40(%rsp),%rcx
+   1c4d69210:	4c 8b 80 e0 04 00 00 	mov    0x4e0(%rax),%r8
+   1c4d69217:	49 83 c0 58          	add    $0x58,%r8
+   1c4d6921b:	e8 80 86 f8 ff       	call   1c4cf18a0 <gd::gd_iter_seq(gd::BattleArena&, gd::GdVal const&)>
+   1c4d69220:	80 bc 24 50 02 00 00 	cmpb   $0x7,0x250(%rsp)
+   1c4d69227:	07
+   1c4d69228:	0f 85 eb f0 ff ff    	jne    1c4d68319 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x4d9>
+   1c4d6922e:	4c 8b a4 24 58 02 00 	mov    0x258(%rsp),%r12
+   1c4d69235:	00
+   1c4d69236:	4d 85 e4             	test   %r12,%r12
+   1c4d69239:	0f 84 da f0 ff ff    	je     1c4d68319 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x4d9>
+   1c4d6923f:	41 8b 54 24 08       	mov    0x8(%r12),%edx
+   1c4d69244:	85 d2                	test   %edx,%edx
+   1c4d69246:	0f 84 cd f0 ff ff    	je     1c4d68319 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x4d9>
+   1c4d6924c:	4c 8d 04 52          	lea    (%rdx,%rdx,2),%r8
+   1c4d69250:	48 89 b4 24 f0 02 00 	mov    %rsi,0x2f0(%rsp)
+   1c4d69257:	00
+   1c4d69258:	4d 89 e7             	mov    %r12,%r15
+   1c4d6925b:	48 8d 2d 4a dc 0b 00 	lea    0xbdc4a(%rip),%rbp        # 1c4e26eac <.rdata+0x18c>
+   1c4d69262:	4a 8d 34 c5 00 00 00 	lea    0x0(,%r8,8),%rsi
+   1c4d69269:	00
+   1c4d6926a:	45 31 e4             	xor    %r12d,%r12d
+   1c4d6926d:	0f 1f 00             	nopl   (%rax)
+   1c4d69270:	49 8b 07             	mov    (%r15),%rax
+   1c4d69273:	4a 8b 5c 20 08       	mov    0x8(%rax,%r12,1),%rbx
+   1c4d69278:	80 bb 18 04 00 00 08 	cmpb   $0x8,0x418(%rbx)
+   1c4d6927f:	0f 87 54 f0 ff ff    	ja     1c4d682d9 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x499>
+   1c4d69285:	0f b6 83 18 04 00 00 	movzbl 0x418(%rbx),%eax
+   1c4d6928c:	48 63 44 85 00       	movslq 0x0(%rbp,%rax,4),%rax
+   1c4d69291:	48 01 e8             	add    %rbp,%rax
+   1c4d69294:	ff e0                	jmp    *%rax
+   1c4d69296:	66 2e 0f 1f 84 00 00 	cs nopw 0x0(%rax,%rax,1)
+   1c4d6929d:	00 00 00
+   1c4d692a0:	48 8b 10             	mov    (%rax),%rdx
+   1c4d692a3:	80 3a 00             	cmpb   $0x0,(%rdx)
+   1c4d692a6:	0f 85 e4 00 00 00    	jne    1c4d69390 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x1550>
+   1c4d692ac:	83 fb 01             	cmp    $0x1,%ebx
+   1c4d692af:	0f 84 4f f0 ff ff    	je     1c4d68304 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x4c4>
+   1c4d692b5:	8d 4b fe             	lea    -0x2(%rbx),%ecx
+   1c4d692b8:	bb 18 00 00 00       	mov    $0x18,%ebx
+   1c4d692bd:	48 8d 0c 49          	lea    (%rcx,%rcx,2),%rcx
+   1c4d692c1:	4c 8d 0c cd 30 00 00 	lea    0x30(,%rcx,8),%r9
+   1c4d692c8:	00
+   1c4d692c9:	48 8d 0c 1a          	lea    (%rdx,%rbx,1),%rcx
+   1c4d692cd:	80 39 00             	cmpb   $0x0,(%rcx)
+   1c4d692d0:	75 16                	jne    1c4d692e8 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x14a8>
+   1c4d692d2:	48 83 c3 18          	add    $0x18,%rbx
+   1c4d692d6:	49 39 d9             	cmp    %rbx,%r9
+   1c4d692d9:	0f 84 25 f0 ff ff    	je     1c4d68304 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x4c4>
+   1c4d692df:	48 8d 0c 1a          	lea    (%rdx,%rbx,1),%rcx
+   1c4d692e3:	80 39 00             	cmpb   $0x0,(%rcx)
+   1c4d692e6:	74 ea                	je     1c4d692d2 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x1492>
+   1c4d692e8:	48 8b 49 08          	mov    0x8(%rcx),%rcx
+   1c4d692ec:	80 b9 18 04 00 00 08 	cmpb   $0x8,0x418(%rcx)
+   1c4d692f3:	0f 87 14 05 00 00    	ja     1c4d6980d <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x19cd>
+   1c4d692f9:	44 0f b6 81 18 04 00 	movzbl 0x418(%rcx),%r8d
+   1c4d69300:	00
+   1c4d69301:	4c 8d 1d c8 db 0b 00 	lea    0xbdbc8(%rip),%r11        # 1c4e26ed0 <.rdata+0x1b0>
+   1c4d69308:	4f 63 04 83          	movslq (%r11,%r8,4),%r8
+   1c4d6930c:	4d 01 d8             	add    %r11,%r8
+   1c4d6930f:	41 ff e0             	jmp    *%r8
+   1c4d69312:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+   1c4d69318:	48 8b 10             	mov    (%rax),%rdx
+   1c4d6931b:	80 3a 00             	cmpb   $0x0,(%rdx)
+   1c4d6931e:	0f 85 cc 00 00 00    	jne    1c4d693f0 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x15b0>
+   1c4d69324:	83 fb 01             	cmp    $0x1,%ebx
+   1c4d69327:	0f 84 57 fd ff ff    	je     1c4d69084 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x1244>
+   1c4d6932d:	8d 4b fe             	lea    -0x2(%rbx),%ecx
+   1c4d69330:	bb 18 00 00 00       	mov    $0x18,%ebx
+   1c4d69335:	48 8d 0c 49          	lea    (%rcx,%rcx,2),%rcx
+   1c4d69339:	4c 8d 0c cd 30 00 00 	lea    0x30(,%rcx,8),%r9
+   1c4d69340:	00
+   1c4d69341:	48 8d 0c 1a          	lea    (%rdx,%rbx,1),%rcx
+   1c4d69345:	80 39 00             	cmpb   $0x0,(%rcx)
+   1c4d69348:	75 16                	jne    1c4d69360 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x1520>
+   1c4d6934a:	48 83 c3 18          	add    $0x18,%rbx
+   1c4d6934e:	4c 39 cb             	cmp    %r9,%rbx
+   1c4d69351:	0f 84 2d fd ff ff    	je     1c4d69084 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x1244>
+   1c4d69357:	48 8d 0c 1a          	lea    (%rdx,%rbx,1),%rcx
+   1c4d6935b:	80 39 00             	cmpb   $0x0,(%rcx)
+   1c4d6935e:	74 ea                	je     1c4d6934a <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x150a>
+   1c4d69360:	48 8b 49 08          	mov    0x8(%rcx),%rcx
+   1c4d69364:	80 b9 18 04 00 00 08 	cmpb   $0x8,0x418(%rcx)
+   1c4d6936b:	0f 87 97 0b 00 00    	ja     1c4d69f08 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x20c8>
+   1c4d69371:	0f b6 91 18 04 00 00 	movzbl 0x418(%rcx),%edx
+   1c4d69378:	4c 8d 05 75 db 0b 00 	lea    0xbdb75(%rip),%r8        # 1c4e26ef4 <.rdata+0x1d4>
+   1c4d6937f:	49 63 14 90          	movslq (%r8,%rdx,4),%rdx
+   1c4d69383:	4c 01 c2             	add    %r8,%rdx
+   1c4d69386:	ff e2                	jmp    *%rdx
+   1c4d69388:	0f 1f 84 00 00 00 00 	nopl   0x0(%rax,%rax,1)
+   1c4d6938f:	00
+   1c4d69390:	48 8b 4a 08          	mov    0x8(%rdx),%rcx
+   1c4d69394:	80 b9 18 04 00 00 08 	cmpb   $0x8,0x418(%rcx)
+   1c4d6939b:	77 26                	ja     1c4d693c3 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x1583>
+   1c4d6939d:	44 0f b6 89 18 04 00 	movzbl 0x418(%rcx),%r9d
+   1c4d693a4:	00
+   1c4d693a5:	4c 8d 15 6c db 0b 00 	lea    0xbdb6c(%rip),%r10        # 1c4e26f18 <.rdata+0x1f8>
+   1c4d693ac:	4f 63 0c 8a          	movslq (%r10,%r9,4),%r9
+   1c4d693b0:	4d 01 d1             	add    %r10,%r9
+   1c4d693b3:	41 ff e1             	jmp    *%r9
+   1c4d693b6:	80 b9 20 04 00 00 00 	cmpb   $0x0,0x420(%rcx)
+   1c4d693bd:	0f 84 e9 fe ff ff    	je     1c4d692ac <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0x146c>
+   1c4d693c3:	4c 89 f2             	mov    %r14,%rdx
+   1c4d693c6:	48 89 44 24 48       	mov    %rax,0x48(%rsp)
+   1c4d693cb:	e8 d0 27 02 00       	call   1c4d8bba0 <Gd__gd_core__CoreItem::fn_physicsTick(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]>
+   1c4d693d0:	48 8b 44 24 48       	mov    0x48(%rsp),%rax
+   1c4d693d5:	83 fb 01             	cmp    $0x1,%ebx
+   1c4d693d8:	0f                   	.byte 0xf
+   1c4d693d9:	84 26                	test   %ah,(%rsi)
