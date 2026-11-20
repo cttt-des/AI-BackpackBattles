@@ -1,0 +1,56 @@
+{
+  "baseline_dll_sha256": "1be75dced83e9e90fdbe61dd86f91bc27e19bb44acf9449d295849e928d9cec5",
+  "baseline_archive_commit": "4f57fdd262a78941a88a5c6ba0c8cdad041eb805",
+  "profile_samples": 6010,
+  "profile_root_samples": 6008,
+  "generic_call_leaf_samples": 336,
+  "previous_generic_call_leaf_samples": 766,
+  "independent_set_index_leaf_samples": 0,
+  "profile_interpretation": "Leaf redistribution and inlining affect function boundaries; use paired time measurements for gains, not a percentage inferred from sample differences.",
+  "next_bundle_candidates": [
+    {
+      "name": "Pure array/dictionary queries in existing call-site wrapper",
+      "methods": [
+        "size",
+        "empty",
+        "has",
+        "front",
+        "back",
+        "get"
+      ],
+      "proof": "Copy original receiver, null, argument and return rules. Fixed container kinds have no custom object override. Keep native-dispatch flag gating and original single fallback.",
+      "tests": [
+        "null array/dictionary pointer",
+        "empty/full containers",
+        "missing arguments and defaults",
+        "mixed key types and numeric aliases",
+        "object with the same method symbol remains original dispatch",
+        "disabled path and mutation/alias parity"
+      ]
+    },
+    {
+      "name": "Static class-reference call lane",
+      "proof": "For a non-null ClassRef and method other than new, use original call_static_fn once; true returns out, false returns Null directly. Preserve new construction fallback and native flag.",
+      "tests": [
+        "custom metadata callback side effects exactly once on success/false",
+        "callback writes out then returns false => original Null",
+        "null callback/class",
+        "class new still original constructor",
+        "generated static override and inherited static dispatch",
+        "argument/bind/RNG and return payload parity"
+      ]
+    }
+  ],
+  "fallback_direction": {
+    "name": "Quantify active Buff/item timer and cooldown scans before a structural index",
+    "reason": "CoreCombat physics still847leaf samples, but includes inlined child work. Count actual inactive proportions and state changes first.",
+    "lower_risk_prototype": "Short-circuit chunked inactive Buff prefilter, falling back to original ordered loop when any member may be active. Stop checking at first active/non-Bool member so callbacks can still alter future entries, and preserve captured entries/count."
+  },
+  "implementation_status": "Selection and source review only; no next-bundle implementation yet",
+  "deployment_and_goal": {
+    "current_dll_sha256": "1be75dced83e9e90fdbe61dd86f91bc27e19bb44acf9449d295849e928d9cec5",
+    "normalized20_fights_per_second": 139.94005093151384,
+    "goal140_still_active": true,
+    "raw24_min_fights_per_second": 165.95697930420593
+  }
+}
