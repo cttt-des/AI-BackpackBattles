@@ -1,0 +1,10 @@
+{
+  "source_only": true,
+  "changed_build_script_sha256": "5a16b545a7be7823a12f325add41aec774c4309d8787d77d94904a9833ce4274",
+  "changed_pipeline_sha256": "2e318bd90c9cec35c2569ed02032e08a75a5b4a9b8f82ff9b34d22617074fd9d",
+  "compiler_flags_unchanged": true,
+  "all_cpp_hpp_unchanged": 698,
+  "generator_bytes_and_mtime_idempotent": true,
+  "active_dll_sha256_unchanged": "58383a1158e951d7aae8b4d4c34df4d52332446156946d31a488f5dff323ec39",
+  "failed_optimizer_option_not_enabled": true
+}

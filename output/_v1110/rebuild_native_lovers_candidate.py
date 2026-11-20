@@ -55,6 +55,7 @@ if args.native_perf50:
     generate(stage / "optimize_native_atomic_symbols.py", stage, str(native))
     generate(stage / "optimize_native_noop_snapshots.py", stage, str(native))
     generate(stage / "optimize_native_inline_timers.py", stage, str(native))
+    generate(stage / "optimize_native_build_config_dependencies.py", stage, str(native))
 for path, (body, atime, mtime) in previous.items():
     if path.exists() and path.read_bytes() == body:
         os.utime(path, ns=(atime, mtime))

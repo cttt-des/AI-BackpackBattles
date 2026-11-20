@@ -406,3 +406,14 @@ CoreItem 从 1,696 字节、8 字节对齐改为 1,792 字节、64 字节对齐�
 914 + 1,690 场原版严格逐事件验收全部通过，2,604 场 C++ 事件哈希全部与部署版相同，汇总根仍为 `b8066c92…`。[全量验收](../output/_v1110/native_perf50/cycles18/reverse_stack_names_full_gate.json) · [事件哈希](../output/_v1110/native_perf50/cycles18/reverse_stack_names_event_hashes.json)
 
 随后连续 24 批原始吞吐 **未通过发布条件**：中位数 **62.59 场/秒**、最慢 **43.40 场/秒**。供电全程接电，估算后台负载 **20.9%–52.8%**，最慢为第一批，负载 52.8%、主线程 CPU 3.828 秒、墙钟 4.608 秒。所有终局及完整结果哈希仍相同。由于每一批至少 50 场/秒的门槛未通过，没有部署、没有接入默认生成流程，当前运行 DLL 仍为 `58383a11…`；不丢弃首批，也不重复同一候选测试直到通过。20% 超出观测范围，拟合工具明确拒绝外推。保留此版本作为已通过语义和 A/B 的独立实验基线，后续候选仍须独立验证并重新通过全部发布门槛。[原始 24 批](../output/_v1110/native_perf50/cycles18/reverse_stack_names_serial.json) · [拒绝外推](../output/_v1110/native_perf50/cycles18/reverse_stack_names_load20_rejected.json) · [未部署记录](../output/_v1110/native_perf50/cycles18/reverse_stack_names_installation.json)
+
+
+### 第十九轮（淘汰链接优化选项，保留构建缓存修复）
+
+先核对远端备份 `76847e3b`：第十八轮隔离候选 DLL `7213d946…` 的原始字节已备份，699 份源码／构建文件通过 Git 原始对象逐一核对，角色单元使用该候选已备份的源码，其余沿用已验收源码。部署版仍为 `58383a11…`。本轮以第十八轮候选为实验基线，仅新增 GCC 的 `-fdevirtualize-at-ltrans`，全部 C++／头文件字节相同，保留浮点设置。全部 20 个单元重建、18 个热点单元重新训练 PGO；本地查询该选项默认关闭，GCC 文档说明它会为链接阶段的去虚拟化传递额外信息。[构建与备份核对](../output/_v1110/native_perf50/cycles19/ltrans_devirt_baseline_archive.json) · [配置](../output/_v1110/native_perf50/cycles19/ltrans_devirt_design.json) · [GCC 16.1 文档](https://gcc.gnu.org/onlinedocs/gcc-16.1.0/gcc/Optimize-Options.html#index-fdevirtualize-at-ltrans)
+
+候选通过全部旧回归，含外部自定义上下文、共享基础 metadata 的钩子、回调替换及同帧变更；401 组查询、9 组完整构造、三场严格逐事件和 22 个 C ABI 检查通过。[定向结果](../output/_v1110/native_perf50/cycles19/ltrans_devirt_boundary_test.json) · [ABI](../output/_v1110/native_perf50/cycles19/ltrans_devirt_abi.json)
+
+两轮各八组、120 秒预热、静默隔离 AB／BA，CPU 耗时增加 **0.54%、12.44%**，墙钟增加 **1.22%、14.18%**；第二组全部 8 对更慢。达到预先记录的早停排除条件，保留全部 16 对，不合入该选项，不运行后续累计对照、2,604 场及 24 批发布门槛，也不启用第十八轮尚未通过发布门槛的运行 DLL。[判定条件](../output/_v1110/native_perf50/cycles19/ltrans_devirt_trial_policy.json) · [首测](../output/_v1110/native_perf50/cycles19/ltrans_devirt_ab.json) · [反转复测](../output/_v1110/native_perf50/cycles19/ltrans_devirt_ab_repeat.json) · [汇总](../output/_v1110/native_perf50/cycles19/ltrans_devirt_ab_pooled.json)
+
+单独修复 Windows 构建脚本未追踪自身配置修改的问题：将 build_windows.py 本身列为对象依赖，脚本内编译参数变化后重新编译。真实编译器与五个单元复现，仅改宏参数时旧脚本编译 0/5、仍返回旧值 0；修复后编译 5/5、返回 1；未改动再编译 0/5，随后再次仅改参数则编译 5/5、返回 2，C++ 源码始终未改。生产修复单独提取、复验，已接入默认性能重建流程，字节和修改时间幂等。698 份 C++／头文件及现有 DLL 均未变，编译参数也未变，没有启用失败的链接选项。下一轮继续检查 61 处已确认所有者和成员的 ClassRef 静态枚举读取，以第十八轮隔离候选为实验基线。[生产修复脚本](../output/_v1110/optimize_native_build_config_dependencies.py) · [真实编译验证](../output/_v1110/native_perf50/cycles19/build_config_dependency_test_production.json) · [源码修复记录](../output/_v1110/native_perf50/cycles19/build_config_fix_installation.json) · [本轮记录](../output/_v1110/native_perf50/cycles19/ltrans_devirt_installation.json)

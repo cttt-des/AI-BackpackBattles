@@ -57,6 +57,7 @@ def build(force: bool = False) -> Path:
         *sorted((ROOT / "gen" / "shards").glob("*.cpp")),
     ]
     hdr_deps = [
+        ROOT / "build_windows.py",
         *sorted(ROOT.glob("*.hpp")),
         ROOT / "gen" / "sym_ids.hpp",
         ROOT / "gen" / "class_metas.hpp",
