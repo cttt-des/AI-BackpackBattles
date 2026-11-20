@@ -1,3 +1,4 @@
+#include <cstddef>
 #pragma once
 // C++20 GDScript 3.6 Headless Runtime for Backpack Battles (Apple M4 / arm64)
 // Matches gd_core_py/_rt.py bit-for-bit (IEEE-754 rounding, PCG32, Godot 3.6 containers & math).
@@ -82,6 +83,10 @@ public:
         while (cur_ < blocks_.size()) {
             ArenaBlock& b = blocks_[cur_];
             size_t off = (b.used + (align - 1)) & ~(align - 1);
+            if (align > alignof(std::max_align_t)) {
+                const auto base = reinterpret_cast<uintptr_t>(b.ptr);
+                off = ((base + b.used + (align - 1)) & ~(uintptr_t(align) - 1)) - base;
+            }
             if (off + bytes <= b.cap) {
                 b.used = off + bytes;
                 return b.ptr + off;
@@ -89,13 +94,19 @@ public:
             cur_++;
         }
         size_t sz = bytes > block_bytes_ ? (bytes + align) : block_bytes_;
+        if (align > alignof(std::max_align_t) && bytes + align - 1 > sz) sz = bytes + align - 1;
         ArenaBlock nb;
         nb.ptr = new uint8_t[sz];
         nb.cap = sz;
-        nb.used = bytes;
+        size_t initial_offset = 0;
+        if (align > alignof(std::max_align_t)) {
+            const auto base = reinterpret_cast<uintptr_t>(nb.ptr);
+            initial_offset = ((base + (align - 1)) & ~(uintptr_t(align) - 1)) - base;
+        }
+        nb.used = initial_offset + bytes;
         blocks_.push_back(nb);
         cur_ = blocks_.size() - 1;
-        return nb.ptr;
+        return nb.ptr + initial_offset;
     }
 
     template <typename T, typename... Args>
@@ -108,6 +119,18 @@ public:
     T* alloc_array(size_t count) {
         if (count == 0) return nullptr;
         return static_cast<T*>(alloc_raw(sizeof(T) * count, alignof(T)));
+    }
+
+    bool owns_storage(const void* pointer, size_t bytes) const {
+        std::unique_lock<std::mutex> lk;
+        if (mtx_) lk = std::unique_lock<std::mutex>(*mtx_);
+        const auto address = reinterpret_cast<uintptr_t>(pointer);
+        for (const auto& block : blocks_) {
+            const auto base = reinterpret_cast<uintptr_t>(block.ptr);
+            if (address >= base && address - base <= block.used &&
+                    bytes <= block.used - (address - base)) return true;
+        }
+        return false;
     }
 
 private:
@@ -564,9 +587,14 @@ struct BattleCtx {
     int32_t player_misses = 0;
     int32_t opponent_misses = 0;
 
+    // Internal bridge opt-in: item objects and their first timer arrays share arena lifetime.
+    // Outside the bridge, independent arena headers preserve escaped array references.
+    bool native_inline_timer_headers = false;
+
     explicit BattleCtx(size_t arena_bytes = (1u << 20)) : arena(arena_bytes) {}
 
     void reset_for_battle(uint64_t seed) {
+        native_inline_timer_headers = false;
         arena.reset();
         bind_battle(seed);
         event_count = 0;

@@ -70,7 +70,9 @@ struct Gd__gd_core__CoreItem : public gd::GdObj {
     gd::GdVal f_hasDealtDamageEffect;
     gd::GdVal f_hasOnChargeReceivedEffect;
     gd::GdVal f_hasOnChargeLeftEffect;
-    gd::GdVal f_timers;
+    alignas(64) gd::GdVal f_timers;
+    gd::GdArr native_timer_header_;
+    bool native_timer_header_used_ = false;
     gd::GdVal f_buffLabelPositionTimestamps;
     gd::GdVal f_replacementPending;
     gd::GdVal f_faceDirection;

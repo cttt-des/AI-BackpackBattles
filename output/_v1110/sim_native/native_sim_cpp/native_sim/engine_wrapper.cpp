@@ -1101,6 +1101,7 @@ static void run_one_internal(
 ) {
     std::memset(&out, 0, sizeof(BattleResult));
     battle.reset_for_battle(opts.seed);
+    battle.native_inline_timer_headers = true;
     if (g_dbg_enabled.load(std::memory_order_relaxed)) g_dbg_events.clear();  // 逐场清空（仅单线程语义）
 
     auto* hooks = battle.arena.make<NativeBattleHooks>(&battle);

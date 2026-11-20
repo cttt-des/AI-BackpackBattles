@@ -300,7 +300,14 @@ void Gd__gd_core__CoreItem::init_fields(gd::BattleCtx& gd_ctx) {
     this->f_hasDealtDamageEffect = gd::GdVal::from_bool(false);
     this->f_hasOnChargeReceivedEffect = gd::GdVal::from_bool(false);
     this->f_hasOnChargeLeftEffect = gd::GdVal::from_bool(false);
-    this->f_timers = gd::GdVal::from_arr(gd::GdArr::from_init(gd_ctx.arena, {}));
+    // Native bridge items live until the battle arena resets. Other contexts keep arena headers.
+    if (gd_ctx.native_inline_timer_headers && !this->native_timer_header_used_ &&
+            gd_ctx.arena.owns_storage(this, sizeof(*this))) {
+        this->native_timer_header_used_ = true;
+        this->f_timers = gd::GdVal::from_arr(&this->native_timer_header_);
+    } else {
+        this->f_timers = gd::GdVal::from_arr(gd::GdArr::from_init(gd_ctx.arena, {}));
+    }
     this->f_buffLabelPositionTimestamps = gd::GdVal::from_arr(gd::GdArr::from_init(gd_ctx.arena, {gd::GdVal::from_float(0.0), gd::GdVal::from_float(0.0), gd::GdVal::from_float(0.0), gd::GdVal::from_float(0.0), gd::GdVal::from_float(0.0)}));
     this->f_replacementPending = gd::GdVal::from_bool(false);
     this->f_faceDirection = gd::gd_coerce_int(gd::get_prop(gd_ctx, gd::get_prop(gd_ctx, gd::GdVal::from_cls(&META_Gd__gd_core__CoreConst), SYM_GEN_FaceDirection_863), gd::SYM_UP));

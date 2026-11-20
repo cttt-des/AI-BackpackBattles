@@ -1,0 +1,21 @@
+{
+  "main_thread_cpu_s": {
+    "median_reduction_pct": 1.6290238836967785,
+    "candidate_wins": 16,
+    "baseline_wins": 7,
+    "range_reduction_pct": [
+      -25.688073394495415,
+      14.173228346456689
+    ]
+  },
+  "wall_s": {
+    "median_reduction_pct": 2.0849009798262985,
+    "candidate_wins": 17,
+    "baseline_wins": 7,
+    "range_reduction_pct": [
+      -23.013414717781245,
+      20.50028361206955
+    ]
+  },
+  "pairs": 24
+}
