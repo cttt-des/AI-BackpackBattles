@@ -1020,6 +1020,12 @@ int32_t GdDict::find_index(const GdVal& key, uint64_t h) const {
 }
 
 GdVal GdDict::get(const GdVal& key, const GdVal& def) const {
+    // A matching stored integer key proves the entry without a bucket lookup.
+    // The unsigned bound also sends negative and large integers to the original path.
+    if (key.kind == GdVal::Kind::Int && static_cast<uint64_t>(key.i) < len) {
+        const auto& entry=entries[static_cast<uint32_t>(key.i)];
+        if (entry.key.kind == GdVal::Kind::Int && entry.key.i == key.i) return entry.val;
+    }
     int32_t idx = find_index(key);
     return idx >= 0 ? entries[idx].val : def;
 }

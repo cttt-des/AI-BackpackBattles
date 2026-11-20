@@ -1,0 +1,13 @@
+{
+  "decision": "advance_to_full_validation_as_retained_bundle",
+  "automatic_metric_classification": "inconclusive_retained",
+  "reason": "Four wall-time group medians positive; 24/32 paired wall wins; pooled wall median +1.31%, summed wall +0.64%, summed CPU +0.43%. CPU paired median zero and quantized/tied values mean CPU gain remains uncertain. Do not reject individual components or demand group unanimity.",
+  "not_claimed": "A precise CPU benefit or independently useful components",
+  "next_requirements": [
+    "2604 strict truth and per-case hashes",
+    "cumulative fixed200 comparison versus deployed runtime",
+    "continuous raw24, fitted20 in observed range, training and SHA-verified deployment"
+  ],
+  "measurement_policy_changed": false,
+  "raw_samples_removed": 0
+}

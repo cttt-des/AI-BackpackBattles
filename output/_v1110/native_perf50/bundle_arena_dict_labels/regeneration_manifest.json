@@ -1,0 +1,96 @@
+{
+  "candidate_dll_sha256": "486dfce912d83a24cb4b4943b3b7a4aba5df68879caca2d71943eb98c4f73508",
+  "files": [
+    {
+      "path": "engine_wrapper.cpp",
+      "before_canonical_sha256": "1dd69d3aa317890b1be03e1e65acb837322ce8ca0c4cbdcbacf85a8aabd45a88",
+      "after_canonical_sha256": "640432f61fc2e0c3e867dca6540ed1f00a622ed1c927e68cb437afb40a6ad426",
+      "after_raw_sha256": "640432f61fc2e0c3e867dca6540ed1f00a622ed1c927e68cb437afb40a6ad426",
+      "runtime": true
+    },
+    {
+      "path": "gd_rt.cpp",
+      "before_canonical_sha256": "63dc2c0e53827722349a306430930caef50640d334fc527764ad1ae0dddac8ac",
+      "after_canonical_sha256": "45765a24e508ad7fa470f93e805402ae05f5d0b7eb0dca34df8c73857852d790",
+      "after_raw_sha256": "45765a24e508ad7fa470f93e805402ae05f5d0b7eb0dca34df8c73857852d790",
+      "runtime": true
+    },
+    {
+      "path": "gd_rt.hpp",
+      "before_canonical_sha256": "bf6ee43ba5c5a40ced3b217602b01444b5324ecabd4977ba42e13266c52903e0",
+      "after_canonical_sha256": "dfbb991c222c47f218c338d4314dea5e2dfda21a192955ad3d4c5eb056ebe846",
+      "after_raw_sha256": "dfbb991c222c47f218c338d4314dea5e2dfda21a192955ad3d4c5eb056ebe846",
+      "runtime": true
+    },
+    {
+      "path": "gen/shards/shard_00.cpp",
+      "before_canonical_sha256": "e39d297289c832f5237609815630ba3cc4bd435345572c04114bfb42e2d1bced",
+      "after_canonical_sha256": "ed5965171e8da553d745f528b8a8ede987d88a73b80610067e118dc377fa40f2",
+      "after_raw_sha256": "ed5965171e8da553d745f528b8a8ede987d88a73b80610067e118dc377fa40f2",
+      "runtime": false
+    },
+    {
+      "path": "gen/shards/shard_02.cpp",
+      "before_canonical_sha256": "f8696da573e296e8cfaee470d29d36e309f3d84ce77d4cfd0c5942fd611bee8f",
+      "after_canonical_sha256": "5043ab54441d834c956e2fe088f4c422c363d92eb9d0a7626c332db8b3fcdb67",
+      "after_raw_sha256": "5043ab54441d834c956e2fe088f4c422c363d92eb9d0a7626c332db8b3fcdb67",
+      "runtime": false
+    },
+    {
+      "path": "gen/shards/shard_04.cpp",
+      "before_canonical_sha256": "5f0fd2cf032e9d08e99c0d936ccbec7ce6b3c93667f3f05764009203219255a9",
+      "after_canonical_sha256": "68422d13cffdb7331f1322fcee71fe122569c70ba895377519aa7db366c53541",
+      "after_raw_sha256": "68422d13cffdb7331f1322fcee71fe122569c70ba895377519aa7db366c53541",
+      "runtime": false
+    },
+    {
+      "path": "gen/shards/shard_05.cpp",
+      "before_canonical_sha256": "db203275f7dbeb876a3221215e3e151b1e19d719c9ed14072f27a7cb13d2ed69",
+      "after_canonical_sha256": "1e543653b8f23b1e28f39e3b6cb5bb5afda6a5665ffd5f8a1125f0821fefc6b3",
+      "after_raw_sha256": "1e543653b8f23b1e28f39e3b6cb5bb5afda6a5665ffd5f8a1125f0821fefc6b3",
+      "runtime": false
+    },
+    {
+      "path": "gen/shards/shard_07.cpp",
+      "before_canonical_sha256": "74fa1fb251cd966f2813c3de00a68dc0246e2742e5cc9c6ee3c817a1007ba2ec",
+      "after_canonical_sha256": "9be7ab58c49dae8f996fbf86c48565241d307334d7ab47a5ce0790a9275cb576",
+      "after_raw_sha256": "9be7ab58c49dae8f996fbf86c48565241d307334d7ab47a5ce0790a9275cb576",
+      "runtime": false
+    },
+    {
+      "path": "gen/shards/shard_09.cpp",
+      "before_canonical_sha256": "5c3fb4a5e91d471e99b49dcae6dbf19d003346f38c401a24b1fabdfeec425d62",
+      "after_canonical_sha256": "66040031e59a937d3b6308272e101145b2b613375948762cf0e0a5a6494e3f5a",
+      "after_raw_sha256": "66040031e59a937d3b6308272e101145b2b613375948762cf0e0a5a6494e3f5a",
+      "runtime": false
+    },
+    {
+      "path": "gen/shards/shard_10.cpp",
+      "before_canonical_sha256": "050439117292ae981adc58bb26a62adcacf4bb35631a2db7d8196486529ab158",
+      "after_canonical_sha256": "7c159771b89661d84ff660a3828516a0e5b850c4196200f8c61aa4c566fa8d1a",
+      "after_raw_sha256": "7c159771b89661d84ff660a3828516a0e5b850c4196200f8c61aa4c566fa8d1a",
+      "runtime": false
+    },
+    {
+      "path": "gen/shards/shard_11.cpp",
+      "before_canonical_sha256": "46a6d01c6972bbebb6c8ceba2d9625e1e61a0d618da64f76688aae44d6e1552e",
+      "after_canonical_sha256": "b01cfdb03c407885c5f49abd23c241352faa97facc3b7ba625caba3ed1910159",
+      "after_raw_sha256": "b01cfdb03c407885c5f49abd23c241352faa97facc3b7ba625caba3ed1910159",
+      "runtime": false
+    },
+    {
+      "path": "gen/shards/shard_12.cpp",
+      "before_canonical_sha256": "d7c9fc972c2cc8240b0fe59ba99231836e25185cba9a0b89f91fdbec675c6713",
+      "after_canonical_sha256": "af0d54fecd988ba2df49a3e745a48b020bbf74ea5f2e75ae5ac58a1188c946b0",
+      "after_raw_sha256": "af0d54fecd988ba2df49a3e745a48b020bbf74ea5f2e75ae5ac58a1188c946b0",
+      "runtime": false
+    },
+    {
+      "path": "native_event_kernel.hpp",
+      "before_canonical_sha256": null,
+      "after_canonical_sha256": "1ca3fa1478c4e59cf95b1616b79007daf09e74b637483f3c5a41dc237b6c747e",
+      "after_raw_sha256": "1ca3fa1478c4e59cf95b1616b79007daf09e74b637483f3c5a41dc237b6c747e",
+      "runtime": false
+    }
+  ]
+}

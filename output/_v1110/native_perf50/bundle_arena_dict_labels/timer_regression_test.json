@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "dll_sha256": "486dfce912d83a24cb4b4943b3b7a4aba5df68879caca2d71943eb98c4f73508",
+  "output": "Timer start, stop, restart, first epoch, append, replacement, timeout, truth and generic context cases passed\n",
+  "compiled_against_candidate_headers": true
+}

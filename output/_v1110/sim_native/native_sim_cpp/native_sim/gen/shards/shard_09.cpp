@@ -1,3 +1,4 @@
+#include "../../native_event_kernel.hpp"
 #pragma STDC FP_CONTRACT OFF
 
 #include "../hdrs/Gd__gd_core__ArtifactStoneHeat.hpp"
@@ -460,11 +461,25 @@ gd::GdVal Gd__gd_core__CoreDamageResult::fn_hasHit(const gd::GdVal* _args, int _
 }
 gd::GdVal Gd__gd_core__CoreDamageResult::fn_wasCriticalHit(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
+    if (gd_ctx.native_event_kernel) {
+    return (gd::gd_truth(this->fn_hasHit(nullptr, 0)) ? gd::GdVal::from_bool(gd::gd_truth(this->f_critical)) : gd::GdVal::from_bool(false));
+    return gd::GdVal::null();
+    }
     return (gd::gd_truth(gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_hasHit_1523, nullptr, 0)) ? gd::GdVal::from_bool(gd::gd_truth(this->f_critical)) : gd::GdVal::from_bool(false));
     return gd::GdVal::null();
 }
 gd::GdVal Gd__gd_core__CoreDamageResult::fn_makeCritical(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
+    if (gd_ctx.native_event_kernel) {
+    if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_is_type(native_event_get<Gd__gd_core__CoreDamageSource, &Gd__gd_core__CoreDamageSource::f_origin>(gd_ctx, this->f_damageSource, SYM_GEN_origin_1546), &META_Gd__gd_core__CoreItem)))) {
+        this->f_damage = gd::gd_coerce_int(gd::gd_mul(this->f_damage, gd::call_method(gd_ctx, native_event_get<Gd__gd_core__CoreDamageSource, &Gd__gd_core__CoreDamageSource::f_origin>(gd_ctx, this->f_damageSource, SYM_GEN_origin_1546), SYM_GEN_getCritSeverity_186, nullptr, 0)));
+    }
+    else {
+        this->f_damage = gd::gd_coerce_int(gd::gd_mul(this->f_damage, gd::get_prop(gd_ctx, gd::GdVal::from_cls(&META_Gd__gd_core__CoreItem), SYM_GEN_BASE_CRIT_SEVERITY_0)));
+    }
+    this->f_critical = gd::gd_coerce_bool(gd::GdVal::from_bool(true));
+    return gd::GdVal::null();
+    }
     if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_is_type(gd::get_prop(gd_ctx, this->f_damageSource, SYM_GEN_origin_1546), &META_Gd__gd_core__CoreItem)))) {
         this->f_damage = gd::gd_coerce_int(gd::gd_mul(this->f_damage, gd::call_method(gd_ctx, gd::get_prop(gd_ctx, this->f_damageSource, SYM_GEN_origin_1546), SYM_GEN_getCritSeverity_186, nullptr, 0)));
     }
@@ -486,36 +501,64 @@ gd::GdVal Gd__gd_core__CoreDamageResult::fn_applyDamageReduction(const gd::GdVal
 }
 gd::GdVal Gd__gd_core__CoreDamageResult::fn_triggerOnHit(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
+    if (gd_ctx.native_event_kernel) {
+    return (gd::gd_truth(this->fn_hasHit(nullptr, 0)) ? gd::GdVal::from_bool(gd::gd_truth(this->fn_canTriggerItems(nullptr, 0))) : gd::GdVal::from_bool(false));
+    return gd::GdVal::null();
+    }
     return (gd::gd_truth(gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_hasHit_1523, nullptr, 0)) ? gd::GdVal::from_bool(gd::gd_truth(gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_canTriggerItems_1531, nullptr, 0))) : gd::GdVal::from_bool(false));
     return gd::GdVal::null();
 }
 gd::GdVal Gd__gd_core__CoreDamageResult::fn_triggerOnDamaged(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
+    if (gd_ctx.native_event_kernel) {
+    return (gd::gd_truth(gd::GdVal::from_bool(gd::gd_gt(this->fn_getDamage(nullptr, 0), gd::GdVal::from_int(0LL)))) ? gd::GdVal::from_bool(gd::gd_truth(this->fn_canTriggerItems(nullptr, 0))) : gd::GdVal::from_bool(false));
+    return gd::GdVal::null();
+    }
     return (gd::gd_truth(gd::GdVal::from_bool(gd::gd_gt(gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getDamage_1522, nullptr, 0), gd::GdVal::from_int(0LL)))) ? gd::GdVal::from_bool(gd::gd_truth(gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_canTriggerItems_1531, nullptr, 0))) : gd::GdVal::from_bool(false));
     return gd::GdVal::null();
 }
 gd::GdVal Gd__gd_core__CoreDamageResult::fn_triggerOnMeleeAttacked(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
+    if (gd_ctx.native_event_kernel) {
+    return (gd::gd_truth((gd::gd_truth(this->fn_hasHit(nullptr, 0)) ? gd::GdVal::from_bool(gd::gd_truth(this->fn_canTriggerItems(nullptr, 0))) : gd::GdVal::from_bool(false))) ? gd::GdVal::from_bool(gd::gd_truth(([&]() { gd::GdVal _ca[] = {gd::get_prop(gd_ctx, gd::get_prop(gd_ctx, gd::GdVal::from_cls(&META_Gd__gd_core__CoreDamageSource), SYM_GEN_Type_855), SYM_GEN_Melee_2808)}; return native_event_call<Gd__gd_core__CoreDamageSource, &Gd__gd_core__CoreDamageSource::fn_hasType>(gd_ctx, this->f_damageSource, SYM_GEN_hasType_79, _ca, 1); })())) : gd::GdVal::from_bool(false));
+    return gd::GdVal::null();
+    }
     return (gd::gd_truth((gd::gd_truth(gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_hasHit_1523, nullptr, 0)) ? gd::GdVal::from_bool(gd::gd_truth(gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_canTriggerItems_1531, nullptr, 0))) : gd::GdVal::from_bool(false))) ? gd::GdVal::from_bool(gd::gd_truth(([&]() { gd::GdVal _ca[] = {gd::get_prop(gd_ctx, gd::get_prop(gd_ctx, gd::GdVal::from_cls(&META_Gd__gd_core__CoreDamageSource), SYM_GEN_Type_855), SYM_GEN_Melee_2808)}; return gd::call_method(gd_ctx, this->f_damageSource, SYM_GEN_hasType_79, _ca, 1); })())) : gd::GdVal::from_bool(false));
     return gd::GdVal::null();
 }
 gd::GdVal Gd__gd_core__CoreDamageResult::fn_triggerOnAttacked(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
+    if (gd_ctx.native_event_kernel) {
+    return (gd::gd_truth((gd::gd_truth(this->fn_hasHit(nullptr, 0)) ? gd::GdVal::from_bool(gd::gd_truth(this->fn_canTriggerItems(nullptr, 0))) : gd::GdVal::from_bool(false))) ? gd::GdVal::from_bool(gd::gd_truth(native_event_call<Gd__gd_core__CoreDamageSource, &Gd__gd_core__CoreDamageSource::fn_isAttack>(gd_ctx, this->f_damageSource, SYM_GEN_isAttack_1560, nullptr, 0))) : gd::GdVal::from_bool(false));
+    return gd::GdVal::null();
+    }
     return (gd::gd_truth((gd::gd_truth(gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_hasHit_1523, nullptr, 0)) ? gd::GdVal::from_bool(gd::gd_truth(gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_canTriggerItems_1531, nullptr, 0))) : gd::GdVal::from_bool(false))) ? gd::GdVal::from_bool(gd::gd_truth(gd::call_method(gd_ctx, this->f_damageSource, SYM_GEN_isAttack_1560, nullptr, 0))) : gd::GdVal::from_bool(false));
     return gd::GdVal::null();
 }
 gd::GdVal Gd__gd_core__CoreDamageResult::fn_canTriggerItems(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
+    if (gd_ctx.native_event_kernel) {
+    return gd::gd_bitand(native_event_get<Gd__gd_core__CoreDamageSource, &Gd__gd_core__CoreDamageSource::f_flags>(gd_ctx, this->f_damageSource, SYM_GEN_flags_1547), gd::get_prop(gd_ctx, gd::get_prop(gd_ctx, gd::GdVal::from_cls(&META_Gd__gd_core__CoreDamageSource), SYM_GEN_Flags_1565), SYM_GEN_CanTriggerItems_2696));
+    return gd::GdVal::null();
+    }
     return gd::gd_bitand(gd::get_prop(gd_ctx, this->f_damageSource, SYM_GEN_flags_1547), gd::get_prop(gd_ctx, gd::get_prop(gd_ctx, gd::GdVal::from_cls(&META_Gd__gd_core__CoreDamageSource), SYM_GEN_Flags_1565), SYM_GEN_CanTriggerItems_2696));
     return gd::GdVal::null();
 }
 gd::GdVal Gd__gd_core__CoreDamageResult::fn_canTriggerSpikes(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
+    if (gd_ctx.native_event_kernel) {
+    return (gd::gd_truth((gd::gd_truth(this->fn_hasHit(nullptr, 0)) ? gd::GdVal::from_bool(gd::gd_truth(gd::GdVal::from_bool(gd::gd_gt(this->fn_getDamage(nullptr, 0), gd::GdVal::from_int(0LL))))) : gd::GdVal::from_bool(false))) ? gd::GdVal::from_bool(gd::gd_truth(native_event_call<Gd__gd_core__CoreDamageSource, &Gd__gd_core__CoreDamageSource::fn_canTriggerSpikes>(gd_ctx, this->f_damageSource, SYM_GEN_canTriggerSpikes_1532, nullptr, 0))) : gd::GdVal::from_bool(false));
+    return gd::GdVal::null();
+    }
     return (gd::gd_truth((gd::gd_truth(gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_hasHit_1523, nullptr, 0)) ? gd::GdVal::from_bool(gd::gd_truth(gd::GdVal::from_bool(gd::gd_gt(gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getDamage_1522, nullptr, 0), gd::GdVal::from_int(0LL))))) : gd::GdVal::from_bool(false))) ? gd::GdVal::from_bool(gd::gd_truth(gd::call_method(gd_ctx, this->f_damageSource, SYM_GEN_canTriggerSpikes_1532, nullptr, 0))) : gd::GdVal::from_bool(false));
     return gd::GdVal::null();
 }
 gd::GdVal Gd__gd_core__CoreDamageResult::fn_canTriggerVampirism(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
+    if (gd_ctx.native_event_kernel) {
+    return (gd::gd_truth((gd::gd_truth(this->fn_hasHit(nullptr, 0)) ? gd::GdVal::from_bool(gd::gd_truth(gd::GdVal::from_bool(gd::gd_gt(this->fn_getDamage(nullptr, 0), gd::GdVal::from_int(0LL))))) : gd::GdVal::from_bool(false))) ? gd::GdVal::from_bool(gd::gd_truth(native_event_call<Gd__gd_core__CoreDamageSource, &Gd__gd_core__CoreDamageSource::fn_canTriggerVampirism>(gd_ctx, this->f_damageSource, SYM_GEN_canTriggerVampirism_1533, nullptr, 0))) : gd::GdVal::from_bool(false));
+    return gd::GdVal::null();
+    }
     return (gd::gd_truth((gd::gd_truth(gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_hasHit_1523, nullptr, 0)) ? gd::GdVal::from_bool(gd::gd_truth(gd::GdVal::from_bool(gd::gd_gt(gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getDamage_1522, nullptr, 0), gd::GdVal::from_int(0LL))))) : gd::GdVal::from_bool(false))) ? gd::GdVal::from_bool(gd::gd_truth(gd::call_method(gd_ctx, this->f_damageSource, SYM_GEN_canTriggerVampirism_1533, nullptr, 0))) : gd::GdVal::from_bool(false));
     return gd::GdVal::null();
 }

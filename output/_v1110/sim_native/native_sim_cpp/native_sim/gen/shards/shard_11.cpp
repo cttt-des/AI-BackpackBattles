@@ -1,3 +1,4 @@
+#include "../../native_event_kernel.hpp"
 #pragma STDC FP_CONTRACT OFF
 
 #include "../hdrs/Gd__gd_core__BagofStones.hpp"
@@ -492,6 +493,15 @@ gd::GdVal Gd__gd_core__CoreEvent::fn_fromCharacter(const gd::GdVal* _args, int _
 }
 gd::GdVal Gd__gd_core__CoreEvent::fn_getDepth(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
+    if (gd_ctx.native_event_kernel) {
+    if (gd::gd_truth(this->f_parentEvent)) {
+        return gd::gd_add(gd_ctx, native_event_call<Gd__gd_core__CoreEvent, &Gd__gd_core__CoreEvent::fn_getDepth>(gd_ctx, this->f_parentEvent, SYM_GEN_getDepth_1582, nullptr, 0), gd::GdVal::from_int(1LL));
+    }
+    else {
+        return gd::GdVal::from_int(0LL);
+    }
+    return gd::GdVal::null();
+    }
     if (gd::gd_truth(this->f_parentEvent)) {
         return gd::gd_add(gd_ctx, gd::call_method(gd_ctx, this->f_parentEvent, SYM_GEN_getDepth_1582, nullptr, 0), gd::GdVal::from_int(1LL));
     }

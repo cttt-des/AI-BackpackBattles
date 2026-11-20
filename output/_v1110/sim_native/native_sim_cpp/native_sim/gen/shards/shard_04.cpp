@@ -1,3 +1,4 @@
+#include "../../native_event_kernel.hpp"
 #pragma STDC FP_CONTRACT OFF
 
 #include "../hdrs/Gd__gd_core__RangerCollar.hpp"
@@ -497,6 +498,12 @@ gd::GdVal Gd__gd_core__CoreRng__INNER__BalancedRng::fn_setBias(const gd::GdVal* 
 }
 gd::GdVal Gd__gd_core__CoreRng__INNER__BalancedRng::fn_rollPercent(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
+    if (gd_ctx.native_event_kernel) {
+    gd::GdVal lv_target = (_argc > 0) ? _args[0] : gd::GdVal::null();
+    lv_target = gd::gd_coerce_float(lv_target);
+    return ([&]() { gd::GdVal _ca[] = {gd::gd_div(gd_ctx, lv_target, gd::GdVal::from_float(100.0))}; return this->fn_roll(_ca, 1); })();
+    return gd::GdVal::null();
+    }
     gd::GdVal lv_target = (_argc > 0) ? _args[0] : gd::GdVal::null();
     lv_target = gd::gd_coerce_float(lv_target);
     return ([&]() { gd::GdVal _ca[] = {gd::gd_div(gd_ctx, lv_target, gd::GdVal::from_float(100.0))}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_roll_1734, _ca, 1); })();

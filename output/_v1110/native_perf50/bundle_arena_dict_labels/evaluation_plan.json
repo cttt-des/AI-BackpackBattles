@@ -1,0 +1,31 @@
+{
+  "baseline_dll_sha256": "2b48ccf3526da880ce905f163b771d84462a90c52cc83f7ada181c7c8e62f521",
+  "bundle": [
+    "arena allocation outline",
+    "integer dictionary lookup",
+    "label integer iterator"
+  ],
+  "scope": "Evaluate combined benefit; no independent-performance gate for each edit.",
+  "initial_groups": 3,
+  "pairs_per_group": 8,
+  "warmup_seconds": 120,
+  "workers": 1,
+  "worker_priority": "NORMAL",
+  "affinity": "all logical CPUs",
+  "orders": [
+    "candidate-first",
+    "candidate-load-first",
+    "candidate-first"
+  ],
+  "analysis": "All pairs pooled by identical DLL hashes; report median paired CPU/wall reductions, summed-time differences, group variation, win/tie counts. No group unanimity or positive CI lower bound requirement.",
+  "positive_evidence": "Pooled CPU and wall reductions positive: advance the bundle to full semantic and deployment checks even if some independent groups reverse. Report uncertainty, not a precise guaranteed gain.",
+  "unclear_evidence": "Retain as inconclusive when signs conflict or effect is small versus variation; allow one bounded extra independent group or later composition, rather than discard individual edits.",
+  "clear_regression": "Consistent CPU and wall slowdown across complete groups and pooled evidence: keep source and data as lower-priority, without treating this as proof each component is ineffective.",
+  "no_concurrent_work_during_throughput": true,
+  "hard_gates": [
+    "2604 strict original per-event and unchanged C++ event hashes",
+    "continuous24 each>=50 raw fights/s before deployment",
+    "same DLL SHA, training entry and runtime manifest"
+  ],
+  "target": "100/125/140 fights per second at observed-range 20% background load; fitted value cannot replace raw gates"
+}

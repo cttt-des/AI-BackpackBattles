@@ -1,3 +1,4 @@
+#include "../../native_event_kernel.hpp"
 #pragma STDC FP_CONTRACT OFF
 
 #include "../hdrs/Gd__gd_core__Bag.hpp"
@@ -1386,6 +1387,41 @@ gd::GdVal Gd__gd_core__CoreDamageSource::fn_fromDamageSource(const gd::GdVal* _a
 }
 gd::GdVal Gd__gd_core__CoreDamageSource::fn_setItem(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
+    if (gd_ctx.native_event_kernel) {
+    gd::GdVal lv_item = (_argc > 0) ? _args[0] : gd::GdVal::null();
+    gd::GdVal lv__type = (_argc > 1) ? _args[1] : (gd::GdVal::null());
+    if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_ne(lv__type, gd::GdVal::null())))) {
+        this->f_types = gd::GdVal::from_arr(gd::GdArr::from_init(gd_ctx.arena, {lv__type}));
+    }
+    else {
+        if (gd::gd_truth(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_int(20LL)}; return gd::call_method(gd_ctx, lv_item, SYM_GEN_hasType_79, _ca, 1); })())) {
+            (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_int(1LL)}; return gd::call_method(gd_ctx, this->f_types, gd::SYM_push_back, _ca, 1); })();
+        }
+        if (gd::gd_truth(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_int(19LL)}; return gd::call_method(gd_ctx, lv_item, SYM_GEN_hasType_79, _ca, 1); })())) {
+            (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_int(0LL)}; return gd::call_method(gd_ctx, this->f_types, gd::SYM_push_back, _ca, 1); })();
+        }
+        if (gd::gd_truth(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_int(21LL)}; return gd::call_method(gd_ctx, lv_item, SYM_GEN_hasType_79, _ca, 1); })())) {
+            (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_int(2LL)}; return gd::call_method(gd_ctx, this->f_types, gd::SYM_push_back, _ca, 1); })();
+        }
+        if (gd::gd_truth(gd::call_method(gd_ctx, this->f_types, gd::SYM_empty, nullptr, 0))) {
+            (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_int(2LL)}; return gd::call_method(gd_ctx, this->f_types, gd::SYM_push_back, _ca, 1); })();
+        }
+    }
+    if (gd::gd_truth(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_int(0LL)}; return this->fn_hasType(_ca, 1); })())) {
+        this->f_flags = Gd__gd_core__CoreDamageSource::get_static_const_or_enum(gd_ctx, SYM_GEN_meleeFlags_1537);
+    }
+    else if (gd::gd_truth(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_int(1LL)}; return this->fn_hasType(_ca, 1); })())) {
+        this->f_flags = Gd__gd_core__CoreDamageSource::get_static_const_or_enum(gd_ctx, SYM_GEN_rangedFlags_1538);
+    }
+    else if (gd::gd_truth(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_int(3LL)}; return this->fn_hasType(_ca, 1); })())) {
+        this->f_flags = Gd__gd_core__CoreDamageSource::get_static_const_or_enum(gd_ctx, SYM_GEN_selfDamageFlags_1541);
+    }
+    else {
+        this->f_flags = Gd__gd_core__CoreDamageSource::get_static_const_or_enum(gd_ctx, SYM_GEN_effectFlags_1539);
+    }
+    return ([&]() { gd::GdVal _ca[] = {lv_item, this->f_types, gd::call_method(gd_ctx, lv_item, SYM_GEN_getMinDamage_156, nullptr, 0), gd::call_method(gd_ctx, lv_item, SYM_GEN_getMaxDamage_157, nullptr, 0), gd::call_method(gd_ctx, lv_item, SYM_GEN_getAccuracy_194, nullptr, 0)}; return this->fn_init(_ca, 5); })();
+    return gd::GdVal::null();
+    }
     gd::GdVal lv_item = (_argc > 0) ? _args[0] : gd::GdVal::null();
     gd::GdVal lv__type = (_argc > 1) ? _args[1] : (gd::GdVal::null());
     if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_ne(lv__type, gd::GdVal::null())))) {
@@ -1422,6 +1458,24 @@ gd::GdVal Gd__gd_core__CoreDamageSource::fn_setItem(const gd::GdVal* _args, int 
 }
 gd::GdVal Gd__gd_core__CoreDamageSource::fn_init(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
+    if (gd_ctx.native_event_kernel) {
+    gd::GdVal lv__origin = (_argc > 0) ? _args[0] : (gd::GdVal::null());
+    gd::GdVal lv__type = (_argc > 1) ? _args[1] : (gd::GdVal::from_int(2LL));
+    gd::GdVal lv__minDamage = (_argc > 2) ? _args[2] : (gd::GdVal::from_int(0LL));
+    gd::GdVal lv__maxDamage = (_argc > 3) ? _args[3] : (gd::GdVal::null());
+    gd::GdVal lv__accuracy = (_argc > 4) ? _args[4] : (gd::GdVal::from_int(100LL));
+    this->f_origin = lv__origin;
+    if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_is_builtin(lv__type, 19)))) {
+        this->f_types = lv__type;
+    }
+    else {
+        this->f_types = gd::GdVal::from_arr(gd::GdArr::from_init(gd_ctx.arena, {lv__type}));
+    }
+    (void)([&]() { gd::GdVal _ca[] = {lv__minDamage, lv__maxDamage}; return this->fn_setDamage(_ca, 2); })();
+    this->f_accuracy = gd::gd_coerce_float(lv__accuracy);
+    return gd::GdVal::from_obj(this);
+    return gd::GdVal::null();
+    }
     gd::GdVal lv__origin = (_argc > 0) ? _args[0] : (gd::GdVal::null());
     gd::GdVal lv__type = (_argc > 1) ? _args[1] : (gd::GdVal::from_int(2LL));
     gd::GdVal lv__minDamage = (_argc > 2) ? _args[2] : (gd::GdVal::from_int(0LL));
@@ -1479,6 +1533,14 @@ gd::GdVal Gd__gd_core__CoreDamageSource::fn_updateItem(const gd::GdVal* _args, i
 }
 gd::GdVal Gd__gd_core__CoreDamageSource::fn_updateEffect(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
+    if (gd_ctx.native_event_kernel) {
+    gd::GdVal lv_item = (_argc > 0) ? _args[0] : gd::GdVal::null();
+    gd::GdVal lv_damage = (_argc > 1) ? _args[1] : gd::GdVal::null();
+    this->f_origin = lv_item;
+    (void)([&]() { gd::GdVal _ca[] = {([&]() { gd::GdVal _ca[] = {lv_damage}; return gd::call_method(gd_ctx, lv_item, SYM_GEN_getModifiedEffectDamage_160, _ca, 1); })()}; return this->fn_setDamage(_ca, 1); })();
+    this->f_critChancePercent = gd::gd_coerce_float(gd::call_method(gd_ctx, lv_item, SYM_GEN_getCritChancePercent_178, nullptr, 0));
+    return gd::GdVal::null();
+    }
     gd::GdVal lv_item = (_argc > 0) ? _args[0] : gd::GdVal::null();
     gd::GdVal lv_damage = (_argc > 1) ? _args[1] : gd::GdVal::null();
     this->f_origin = lv_item;
@@ -1531,31 +1593,64 @@ gd::GdVal Gd__gd_core__CoreDamageSource::fn_canCrit(const gd::GdVal* _args, int 
 }
 gd::GdVal Gd__gd_core__CoreDamageSource::fn_isAttack(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
+    if (gd_ctx.native_event_kernel) {
+    return (gd::gd_truth(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_int(0LL)}; return this->fn_hasType(_ca, 1); })()) ? gd::GdVal::from_bool(true) : gd::GdVal::from_bool(gd::gd_truth(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_int(1LL)}; return this->fn_hasType(_ca, 1); })())));
+    return gd::GdVal::null();
+    }
     return (gd::gd_truth(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_int(0LL)}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_hasType_79, _ca, 1); })()) ? gd::GdVal::from_bool(true) : gd::GdVal::from_bool(gd::gd_truth(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_int(1LL)}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_hasType_79, _ca, 1); })())));
     return gd::GdVal::null();
 }
 gd::GdVal Gd__gd_core__CoreDamageSource::fn_isEffectDamage(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
+    if (gd_ctx.native_event_kernel) {
+    return (gd::gd_truth(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_int(2LL)}; return this->fn_hasType(_ca, 1); })()) ? gd::GdVal::from_bool(true) : gd::GdVal::from_bool(gd::gd_truth(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_int(98LL)}; return this->fn_hasType(_ca, 1); })())));
+    return gd::GdVal::null();
+    }
     return (gd::gd_truth(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_int(2LL)}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_hasType_79, _ca, 1); })()) ? gd::GdVal::from_bool(true) : gd::GdVal::from_bool(gd::gd_truth(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_int(98LL)}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_hasType_79, _ca, 1); })())));
     return gd::GdVal::null();
 }
 gd::GdVal Gd__gd_core__CoreDamageSource::fn_isAttackOrEffect(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
+    if (gd_ctx.native_event_kernel) {
+    return (gd::gd_truth(this->fn_isAttack(nullptr, 0)) ? gd::GdVal::from_bool(true) : gd::GdVal::from_bool(gd::gd_truth(this->fn_isEffectDamage(nullptr, 0))));
+    return gd::GdVal::null();
+    }
     return (gd::gd_truth(gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_isAttack_1560, nullptr, 0)) ? gd::GdVal::from_bool(true) : gd::GdVal::from_bool(gd::gd_truth(gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_isEffectDamage_1561, nullptr, 0))));
     return gd::GdVal::null();
 }
 gd::GdVal Gd__gd_core__CoreDamageSource::fn_canApplyLifesteal(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
+    if (gd_ctx.native_event_kernel) {
+    return (gd::gd_truth(this->fn_isAttack(nullptr, 0)) ? gd::GdVal::from_bool(true) : gd::GdVal::from_bool(gd::gd_truth(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_int(2LL)}; return this->fn_hasType(_ca, 1); })())));
+    return gd::GdVal::null();
+    }
     return (gd::gd_truth(gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_isAttack_1560, nullptr, 0)) ? gd::GdVal::from_bool(true) : gd::GdVal::from_bool(gd::gd_truth(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_int(2LL)}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_hasType_79, _ca, 1); })())));
     return gd::GdVal::null();
 }
 gd::GdVal Gd__gd_core__CoreDamageSource::fn_makeSpectral(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
+    if (gd_ctx.native_event_kernel) {
+    (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_int(1LL)}; return this->fn_unsetFlag(_ca, 1); })();
+    return gd::GdVal::null();
+    }
     (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_int(1LL)}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_unsetFlag_1556, _ca, 1); })();
     return gd::GdVal::null();
 }
 gd::GdVal Gd__gd_core__CoreDamageSource::fn_randDamage(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
+    if (gd_ctx.native_event_kernel) {
+    if (gd::gd_truth((gd::gd_truth(gd::GdVal::from_bool(gd::gd_ne(this->f_origin, gd::GdVal::null()))) ? gd::GdVal::from_bool(gd::gd_truth(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[4])}; return gd::call_method(gd_ctx, this->f_origin, gd::SYM_has_method, _ca, 1); })())) : gd::GdVal::from_bool(false)))) {
+        this->f_critChancePercent = gd::gd_coerce_float(gd::call_method(gd_ctx, this->f_origin, SYM_GEN_getCritChancePercent_178, nullptr, 0));
+        if (gd::gd_truth(this->fn_isAttack(nullptr, 0))) {
+            (void)([&]() { gd::GdVal _ca[] = {([&]() { gd::GdVal _ca[] = {gd::GdVal::from_obj(this)}; return gd::call_method(gd_ctx, this->f_origin, SYM_GEN_getMinDamage_156, _ca, 1); })(), ([&]() { gd::GdVal _ca[] = {gd::GdVal::from_obj(this)}; return gd::call_method(gd_ctx, this->f_origin, SYM_GEN_getMaxDamage_157, _ca, 1); })()}; return this->fn_setDamage(_ca, 2); })();
+        }
+        return ([&]() { gd::GdVal _ca[] = {this->f_minDamage, this->f_maxDamage}; return gd::call_method(gd_ctx, gd::get_prop(gd_ctx, this->f_origin, SYM_GEN_damageRangeRng_32), SYM_GEN_randIntRange_1764, _ca, 2); })();
+    }
+    else {
+        return ([&]() { gd::GdVal _ca[] = {this->f_minDamage, this->f_maxDamage}; return native_event_call<Gd__gd_core__CoreRng, &Gd__gd_core__CoreRng::fn_randi_range>(gd_ctx, this->f__rng, gd::SYM_randi_range, _ca, 2); })();
+    }
+    return gd::GdVal::null();
+    }
     if (gd::gd_truth((gd::gd_truth(gd::GdVal::from_bool(gd::gd_ne(this->f_origin, gd::GdVal::null()))) ? gd::GdVal::from_bool(gd::gd_truth(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[4])}; return gd::call_method(gd_ctx, this->f_origin, gd::SYM_has_method, _ca, 1); })())) : gd::GdVal::from_bool(false)))) {
         this->f_critChancePercent = gd::gd_coerce_float(gd::call_method(gd_ctx, this->f_origin, SYM_GEN_getCritChancePercent_178, nullptr, 0));
         if (gd::gd_truth(gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_isAttack_1560, nullptr, 0))) {

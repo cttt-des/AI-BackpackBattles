@@ -1,0 +1,12 @@
+{
+  "fights": 2604,
+  "coverage": {
+    "event_bus": 5598805,
+    "take_damage": 318534,
+    "temporary_buff": 857051,
+    "create_event": 3079126,
+    "type_mismatch": 0
+  },
+  "candidate_dll_sha256": "486dfce912d83a24cb4b4943b3b7a4aba5df68879caca2d71943eb98c4f73508",
+  "all_audited": true
+}

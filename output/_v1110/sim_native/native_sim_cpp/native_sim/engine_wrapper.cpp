@@ -1102,6 +1102,7 @@ static void run_one_internal(
     std::memset(&out, 0, sizeof(BattleResult));
     battle.reset_for_battle(opts.seed);
     battle.native_inline_timer_headers = true;
+    battle.native_event_kernel = true;
     if (g_dbg_enabled.load(std::memory_order_relaxed)) g_dbg_events.clear();  // 逐场清空（仅单线程语义）
 
     auto* hooks = battle.arena.make<NativeBattleHooks>(&battle);
@@ -1709,3 +1710,15 @@ bool gd_native_character_snapshots_are_noop(const gd::GdVal& context) {
     return hooks.kind == gd::GdVal::Kind::Obj && hooks.obj &&
         &typeid(*hooks.obj) == &typeid(NativeBattleHooks);
 }
+
+gd::GdVal gd_native_event_hooks_call(gd::BattleCtx& ctx,const gd::GdVal& hooks,gd::SymId method,const gd::GdVal* args,int argc) {
+    if(hooks.kind!=gd::GdVal::Kind::Obj || !hooks.obj)return gd::call_method(ctx,hooks,method,args,argc);
+    if(ctx.native_event_audit && &typeid(*hooks.obj)!=&typeid(NativeBattleHooks)) {
+        ++ctx.native_event_counts[4];return gd::call_method(ctx,hooks,method,args,argc);
+    }
+    gd::GdVal out=gd::GdVal::null();
+    static_cast<NativeBattleHooks*>(hooks.obj)->NativeBattleHooks::call_method(ctx,method,args,argc,out);
+    return out;
+}
+extern "C" uint64_t gd_diag_native_event_stat(unsigned field) {return field<5?tl_battle_ctx.native_event_counts[field]:0;}
+extern "C" void gd_diag_native_event_audit(int enabled) {tl_battle_ctx.native_event_audit=enabled!=0;}

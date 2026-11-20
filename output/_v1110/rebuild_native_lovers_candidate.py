@@ -35,6 +35,12 @@ def generate(script, cwd, *arguments):
 generated = native / "gen"
 previous = {p: (p.read_bytes(), p.stat().st_atime_ns, p.stat().st_mtime_ns)
             for p in generated.rglob("*") if p.suffix in (".cpp", ".hpp")}
+if args.native_perf50:
+    for name in ("gd_rt.hpp", "gd_rt.cpp", "engine_wrapper.cpp", "native_event_kernel.hpp"):
+        path = native / name
+        if path.exists():
+            previous[path] = (path.read_bytes(), path.stat().st_atime_ns, path.stat().st_mtime_ns)
+    generate(stage / "optimize_native_verified_bundle.py", stage, str(native), "--prepare")
 generate(stage / "stage_native_lovers_rng.py", stage)
 generate(cpp / "tools/gd_to_cpp.py", cpp)
 for name in ("float", "cooldowns", "buff_timers", "item_timers"):
@@ -56,6 +62,7 @@ if args.native_perf50:
     generate(stage / "optimize_native_noop_snapshots.py", stage, str(native))
     generate(stage / "optimize_native_inline_timers.py", stage, str(native))
     generate(stage / "optimize_native_build_config_dependencies.py", stage, str(native))
+    generate(stage / "optimize_native_verified_bundle.py", stage, str(native))
 for path, (body, atime, mtime) in previous.items():
     if path.exists() and path.read_bytes() == body:
         os.utime(path, ns=(atime, mtime))

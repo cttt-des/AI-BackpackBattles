@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "inline_timer_and_build_dependency_passes_compose": true,
+  "output_matches_validated_candidate_files": 700,
+  "full_transpiler_rerun": false
+}
