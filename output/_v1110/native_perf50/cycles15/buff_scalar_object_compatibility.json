@@ -1,0 +1,7 @@
+{
+  "baseline_objects": "C:\\Users\\Windows\\AppData\\Local\\Temp\\native-inline-timers-27gq5ac7",
+  "all_headers_unchanged": true,
+  "generator_idempotent_bytes_and_mtime": true,
+  "only_changed_cpp": "shard_00",
+  "fresh_pgo_for_changed_unit": true
+}
