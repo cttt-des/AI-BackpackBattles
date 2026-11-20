@@ -69,6 +69,8 @@ def main():
             for load, elapsed in rows
         ],
     }
+    if "background_calibration" in report:
+        data["background_calibration"] = report["background_calibration"]
     args.out.write_text(json.dumps(data, indent=2) + "\n", encoding="utf8")
     print(json.dumps(data, indent=2))
 

@@ -95,6 +95,7 @@ def main():
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--corpus", action="store_true", help="Sample the 200 duration-stratified original replays")
     parser.add_argument("--min-samples", type=int, default=0, help="Repeat the workload until this many native stacks are collected")
+    parser.add_argument("--instruction-locations", action="store_true", help="Include sampled leaf instruction offsets for disassembly")
     args = parser.parse_args()
     if args.min_samples < 0:
         parser.error("--min-samples must be nonnegative")
@@ -186,6 +187,15 @@ def main():
               "inputs_sha256": inputs_digest.hexdigest() if inputs_digest else None,
               "sampled_wall_s": wall, "leaf": leaf.most_common(45),
               "inclusive": inclusive.most_common(45), "callers": callers.most_common(45)}
+    if args.instruction_locations:
+        locations = Counter()
+        for stack, count in stacks.items():
+            locations[stack[0]] += count
+        report["instruction_locations"] = [
+            {"offset": offset, "function": resolve(offset),
+             "offset_in_function": offset - offsets[bisect_right(offsets, offset) - 1], "samples": count}
+            for offset, count in locations.most_common(500)
+        ]
     args.out.write_text(json.dumps(report, indent=2) + "\n", encoding="utf8")
     for key in ("leaf", "inclusive", "callers"):
         print(key, *report[key][:12], sep="\n")
