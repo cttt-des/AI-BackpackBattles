@@ -395,3 +395,14 @@ CoreItem 从 1,696 字节、8 字节对齐改为 1,792 字节、64 字节对齐�
 三轮各八组、120 秒预热、静默隔离 AB／BA，CPU 降幅 **−3.50%、2.04%、5.62%**，墙钟 **−1.97%、0.33%、3.49%**。首测反向，未满足测速前记录的各独立组方向一致条件；保留全部 24 对，不以合计中位数替代预设条件，不合入，不进入 2,604 场及 24 批发布门槛。[条件](../output/_v1110/native_perf50/cycles17/shared_speed_trial_policy.json) · [首测](../output/_v1110/native_perf50/cycles17/shared_speed_ab.json) · [复测](../output/_v1110/native_perf50/cycles17/shared_speed_ab_repeat.json) · [第三组](../output/_v1110/native_perf50/cycles17/shared_speed_ab_confirm.json) · [汇总](../output/_v1110/native_perf50/cycles17/shared_speed_ab_pooled.json) · [未部署记录](../output/_v1110/native_perf50/cycles17/shared_speed_installation.json)
 
 采样工具新增可选完整输出，保留全部函数、直接叶节点调用者和解析后的栈。补采当前版得到 **6,124** 个有效栈、29 批固定回放；采样与低优先级编译并行，仅用于热点归属，不作吞吐成绩。字符串格式化的来源包括 addSpeed 91 个包含样本、readyInit 38 个；GdEnum::get 的来源包括角色初始化 22 个。源码显示每种 Buff 初始化会分配 EventType 的全部键，再反复按字符串找值以反查名称。下一轮优先验证该静态反向映射，可在保留未知值原路径的条件下跳过数组和重复查找；随后再评估剩余诊断参数。[完整采样](../output/_v1110/native_perf50/cycles17/baseline_profile_full.json) · [采样条件](../output/_v1110/native_perf50/cycles17/baseline_profile_conditions.json)
+
+
+### 第十八轮（正确性与 A/B 通过，吞吐发布门槛未通过）
+
+仍以部署版 `58383a11…` 为起点，先核对远端备份 `445ddf7f` 的 DLL 原始字节及 699 份源码／构建文件。完整采样指出角色初始化反复枚举 EventType 的全部键，并按字符串逐一找值以反查 Buff 名称。对已验证的 40 个常量整数值生成反向映射，保留最先出现的名称；非整数及未知整数继续原循环。保留 Buff 创建位置、外层遍历、to_lower、信号名拼接、Buff.init、RNG 与事件来源。只改 shard_02，全部头文件与已验收缓存一致，重新训练该单元的 PGO，未接入失败的冷却缓存或稀疏索引。[实现](../output/_v1110/optimize_native_reverse_stack_names.py) · [常量与语义约束](../output/_v1110/native_perf50/cycles18/reverse_stack_names_design.json) · [备份核对](../output/_v1110/native_perf50/cycles18/verified_baseline.json)
+
+401 组查询及 9 组完整角色构造对照通过，含布尔、浮点、NaN、未知整数、极值及全部已知名称；名称、对象 ID、RNG 汇总与基线相同。旧回归、三场严格逐事件、22 个 C ABI 检查通过。三轮各八组隔离 AB／BA，CPU 降幅 **1.94%、4.51%、8.75%**，墙钟 **0.66%、7.07%、11.43%**，满足测速前记录的条件。全部 24 对合计 CPU 中位降幅 **5.21%**、墙钟 **5.82%**，两项均 18/24 对降低；第三组波动较大，原始极端样本全部保留，合计值不代表固定条件下的精确收益。[定向对照](../output/_v1110/native_perf50/cycles18/reverse_stack_names_boundary_test.json) · [判定条件](../output/_v1110/native_perf50/cycles18/reverse_stack_names_trial_policy.json) · [A/B 汇总](../output/_v1110/native_perf50/cycles18/reverse_stack_names_ab_pooled.json)
+
+914 + 1,690 场原版严格逐事件验收全部通过，2,604 场 C++ 事件哈希全部与部署版相同，汇总根仍为 `b8066c92…`。[全量验收](../output/_v1110/native_perf50/cycles18/reverse_stack_names_full_gate.json) · [事件哈希](../output/_v1110/native_perf50/cycles18/reverse_stack_names_event_hashes.json)
+
+随后连续 24 批原始吞吐 **未通过发布条件**：中位数 **62.59 场/秒**、最慢 **43.40 场/秒**。供电全程接电，估算后台负载 **20.9%–52.8%**，最慢为第一批，负载 52.8%、主线程 CPU 3.828 秒、墙钟 4.608 秒。所有终局及完整结果哈希仍相同。由于每一批至少 50 场/秒的门槛未通过，没有部署、没有接入默认生成流程，当前运行 DLL 仍为 `58383a11…`；不丢弃首批，也不重复同一候选测试直到通过。20% 超出观测范围，拟合工具明确拒绝外推。保留此版本作为已通过语义和 A/B 的独立实验基线，后续候选仍须独立验证并重新通过全部发布门槛。[原始 24 批](../output/_v1110/native_perf50/cycles18/reverse_stack_names_serial.json) · [拒绝外推](../output/_v1110/native_perf50/cycles18/reverse_stack_names_load20_rejected.json) · [未部署记录](../output/_v1110/native_perf50/cycles18/reverse_stack_names_installation.json)

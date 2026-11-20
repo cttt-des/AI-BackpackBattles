@@ -1,0 +1,9 @@
+{
+  "candidate_dll_sha256": "7213d9466543beda9903471cc2ed381fb240d896abe739479e6c9029eb7bd560",
+  "reference_load_pct": 20,
+  "minimum_load_pct": 20.918671449615005,
+  "maximum_load_pct": 52.815416074455186,
+  "reason": "20% is outside the observed range; extrapolation refused",
+  "fitter_exit_code": 2,
+  "fitter_message": "usage: fit_native_serial_load.py [-h] --out OUT\n                                 [--reference-load REFERENCE_LOAD]\n                                 report\nfit_native_serial_load.py: error: The reference load must fall within the observed range"
+}
