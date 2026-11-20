@@ -362,3 +362,14 @@ CoreItem 从 1,696 字节、8 字节对齐改为 1,792 字节、64 字节对齐�
 前三轮各八组隔离 AB／BA，CPU 降幅 **2.20%、3.67%、1.48%**，墙钟 **2.06%、3.49%、−1.42%**。前三轮 24 对合计 CPU **2.20%**、墙钟 **1.69%**；第三组墙钟反向，因此在最终独立试验前记录接受条件：四组 CPU 中位数均降低，至少三组墙钟降低，合计均降低，随后仍须完整发布门槛。[前三轮汇总](../output/_v1110/native_perf50/cycles14/arena_split_ab_pooled_24.json) · [预先记录的最终判定](../output/_v1110/native_perf50/cycles14/arena_split_final_trial_policy.json)
 
 914 + 1,690 场严格逐事件验收全部通过，逐场 C++ 事件哈希 2,604 场全部与基线一致，汇总根仍为 `b8066c92…`。随后最终独立八组反转加载顺序，CPU **增加 3.00%**、墙钟 **增加 2.73%**，未通过预先记录的条件。四轮共 32 对全部保留，不以合计中位数掩盖复测反向，故不合入；未运行发布用 24 批，不部署，默认重建及运行 DLL 保持第十一轮。下一轮检查 CoreBuff.gainTemporary 中已被强制转换为整数／布尔的局部值，减少通用值封装，继续保留所有运算、RNG 次数及回调次序。[全量验收](../output/_v1110/native_perf50/cycles14/arena_split_full_gate.json) · [事件哈希](../output/_v1110/native_perf50/cycles14/arena_split_event_hashes.json) · [最终复测](../output/_v1110/native_perf50/cycles14/arena_split_ab_final.json) · [32 对汇总](../output/_v1110/native_perf50/cycles14/arena_split_ab_pooled.json) · [未部署记录](../output/_v1110/native_perf50/cycles14/arena_split_installation.json)
+
+
+### 第十五轮（未替换运行时）
+
+仍以第十一轮 `58383a11…` 为基线，先核对远端备份 `79dbf3b2` 的 DLL 原始字节，并核对 699 份源码／构建文件。热点沿用当前运行版的 6,038 栈采样，CoreBuff.gainTemporary 包含样本仍支持对该链提出局部优化假设。[备份核对](../output/_v1110/native_perf50/cycles15/verified_baseline.json)
+
+候选仅修改 CoreBuff.gainTemporary 的 amount、reflect 两个局部变量存储：前者入口和所有后续赋值原本均已强制转换为 Int，后者入口转换为 Bool 且后续无赋值。改为 8 字节整数／1 字节布尔局部包装，在通用 API 边界重建原类型 GdVal；保留原强制转换、数值运算辅助函数、浮点表达式、RNG 循环及全部回调次序。只简化已证明为 Int 的零值相等判断及 Bool 取反。生成脚本校验完整方法散列、转换函数实现，支持严格逆变换及字节／修改时间幂等。没有改头文件和对象布局，核对全部头文件与已验收对象缓存相同，仅重编译并重新训练改动的 shard_00，未混用布局不同的试验缓存。[候选脚本](../output/_v1110/optimize_native_buff_scalar_locals.py) · [类型约束](../output/_v1110/native_perf50/cycles15/buff_scalar_invariants.json) · [对象兼容核对](../output/_v1110/native_perf50/cycles15/buff_scalar_object_compatibility.json)
+
+基线与候选的 441 组参数转换／临时计时器／状态／RNG 边界测试完全相同，含空值、布尔、字符串、浮点、NaN、int64 极值、分数抵抗层数、反射真假及负零时长；状态及 RNG 汇总值相同，共 130 次 RNG 调用。抵抗过程替换 RNG 对象、放大时仍按初始次数循环、反射概率同帧变化等回归通过；原有计时器和别名回归、三场原版严格逐事件检查及 22 个 C ABI 检查通过。[边界测试源码](../output/_v1110/test_native_buff_scalar_locals.cpp) · [两版边界对照](../output/_v1110/native_perf50/cycles15/buff_scalar_boundary_test.json) · [RNG 回归](../output/_v1110/native_perf50/cycles15/buff_rng_regression_test.json) · [ABI](../output/_v1110/native_perf50/cycles15/buff_scalar_locals_abi.json)
+
+在测速前记录判定条件。两轮各八组、120 秒预热、静默隔离 AB／BA，CPU 耗时分别增加 **1.01%、1.04%**，墙钟降幅 **0.41%、−1.83%**。两轮均未减少主线程 CPU，达到预先记录的早停排除条件；保留全部 16 对，不合入，不进入 2,604 场和 24 批发布门槛，运行时保持第十一轮。下一轮从该基线重新检查高频 Buff 方法中的上下文属性读取，先明确原生调用域及上下文对象生命周期，保留外部 getter 与回调替换的可观察行为。[试验判定](../output/_v1110/native_perf50/cycles15/buff_scalar_trial_policy.json) · [首测](../output/_v1110/native_perf50/cycles15/buff_scalar_locals_ab.json) · [反转复测](../output/_v1110/native_perf50/cycles15/buff_scalar_locals_ab_repeat.json) · [汇总](../output/_v1110/native_perf50/cycles15/buff_scalar_locals_ab_pooled.json) · [未部署记录](../output/_v1110/native_perf50/cycles15/buff_scalar_locals_installation.json)

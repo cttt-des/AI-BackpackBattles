@@ -1,0 +1,29 @@
+{
+  "baseline_dll_sha256": "58383a1158e951d7aae8b4d4c34df4d52332446156946d31a488f5dff323ec39",
+  "candidate_dll_sha256": "84f98c175b43b3168fff7cfd6c35c14c01d92b85d0a8483fae192549fb388d13",
+  "pairs": 16,
+  "source_reports": [
+    "buff_scalar_locals_ab.json",
+    "buff_scalar_locals_ab_repeat.json"
+  ],
+  "main_thread_cpu_s": {
+    "median_reduction_pct": -1.0102040816326596,
+    "candidate_wins": 6,
+    "baseline_wins": 9,
+    "range_reduction_pct": [
+      -10.752688172043001,
+      6.000000000000005
+    ]
+  },
+  "wall_s": {
+    "median_reduction_pct": 0.17588760719799978,
+    "candidate_wins": 9,
+    "baseline_wins": 7,
+    "range_reduction_pct": [
+      -14.54249526785867,
+      4.3361415908046546
+    ]
+  },
+  "all_samples_retained": true,
+  "early_reject_reason": "Both initial groups increased main-thread CPU time, satisfying the predeclared futility condition"
+}

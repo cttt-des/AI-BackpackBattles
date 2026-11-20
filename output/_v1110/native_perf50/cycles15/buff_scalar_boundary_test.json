@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "dll_sha256": "84f98c175b43b3168fff7cfd6c35c14c01d92b85d0a8483fae192549fb388d13",
+  "differential_results": {
+    "baseline": {
+      "cases": 441,
+      "state_and_rng_digest": 12427152703670633983,
+      "rng_draws": 130,
+      "coercions_int64_limits_fractional_resistance_and_temporary_timers": true
+    },
+    "candidate": {
+      "cases": 441,
+      "state_and_rng_digest": 12427152703670633983,
+      "rng_draws": 130,
+      "coercions_int64_limits_fractional_resistance_and_temporary_timers": true
+    }
+  }
+}
