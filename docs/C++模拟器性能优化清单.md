@@ -373,3 +373,12 @@ CoreItem 从 1,696 字节、8 字节对齐改为 1,792 字节、64 字节对齐�
 基线与候选的 441 组参数转换／临时计时器／状态／RNG 边界测试完全相同，含空值、布尔、字符串、浮点、NaN、int64 极值、分数抵抗层数、反射真假及负零时长；状态及 RNG 汇总值相同，共 130 次 RNG 调用。抵抗过程替换 RNG 对象、放大时仍按初始次数循环、反射概率同帧变化等回归通过；原有计时器和别名回归、三场原版严格逐事件检查及 22 个 C ABI 检查通过。[边界测试源码](../output/_v1110/test_native_buff_scalar_locals.cpp) · [两版边界对照](../output/_v1110/native_perf50/cycles15/buff_scalar_boundary_test.json) · [RNG 回归](../output/_v1110/native_perf50/cycles15/buff_rng_regression_test.json) · [ABI](../output/_v1110/native_perf50/cycles15/buff_scalar_locals_abi.json)
 
 在测速前记录判定条件。两轮各八组、120 秒预热、静默隔离 AB／BA，CPU 耗时分别增加 **1.01%、1.04%**，墙钟降幅 **0.41%、−1.83%**。两轮均未减少主线程 CPU，达到预先记录的早停排除条件；保留全部 16 对，不合入，不进入 2,604 场和 24 批发布门槛，运行时保持第十一轮。下一轮从该基线重新检查高频 Buff 方法中的上下文属性读取，先明确原生调用域及上下文对象生命周期，保留外部 getter 与回调替换的可观察行为。[试验判定](../output/_v1110/native_perf50/cycles15/buff_scalar_trial_policy.json) · [首测](../output/_v1110/native_perf50/cycles15/buff_scalar_locals_ab.json) · [反转复测](../output/_v1110/native_perf50/cycles15/buff_scalar_locals_ab_repeat.json) · [汇总](../output/_v1110/native_perf50/cycles15/buff_scalar_locals_ab_pooled.json) · [未部署记录](../output/_v1110/native_perf50/cycles15/buff_scalar_locals_installation.json)
+
+
+### 第十六轮（未替换运行时）
+
+仍以第十一轮 `58383a11…` 为基线，已核对远端备份 `c7b62a28` 的 DLL 和 699 份源码／构建文件。候选仅改两个 C++ 单元：在原生回放入口建立可嵌套、异常安全的调用域，在 CoreBuff.gainTemporary 首次实际读取上下文时确认精确 CoreContext 类型；15 处属性读取改为直接读取六个当前字段。每次仍检查接收者身份，回调替换上下文后恢复原 getter，不缓存字段值，外部 C++ 调用继续原路径。未改头文件、浮点表达式、RNG 或回调顺序；重新训练两个改动单元的 PGO。[候选脚本](../output/_v1110/optimize_native_buff_context.py) · [设计约束](../output/_v1110/native_perf50/cycles16/buff_context_design.json) · [备份核对](../output/_v1110/native_perf50/cycles16/verified_baseline.json)
+
+基线与候选 444 组转换、计时器、状态、RNG 及 getter 顺序对照相同，共 133 次 RNG 调用；覆盖 getter 内替换上下文、无效上下文在零值／上限提前返回路径不应被访问、外部自定义 getter。原有回归、三场严格逐事件检查和 22 个 C ABI 检查通过。[边界测试](../output/_v1110/native_perf50/cycles16/buff_context_boundary_test.json) · [ABI](../output/_v1110/native_perf50/cycles16/buff_context_abi.json)
+
+两轮各八组、120 秒预热、静默隔离 AB／BA，CPU 耗时分别增加 **3.07%、0.53%**，墙钟降幅 **−2.02%、0.17%**，触发预先记录的早停排除条件。保留全部 16 对，不合入，不进入 2,604 场及 24 批发布门槛，也未接入默认生成流程。下一轮先计数冷却阶段中相同角色加速／减速层数的重复计算，核对回调之间的有效复用区间，再决定是否值得缓存。[试验条件](../output/_v1110/native_perf50/cycles16/buff_context_trial_policy.json) · [首测](../output/_v1110/native_perf50/cycles16/buff_context_ab.json) · [反转复测](../output/_v1110/native_perf50/cycles16/buff_context_ab_repeat.json) · [汇总](../output/_v1110/native_perf50/cycles16/buff_context_ab_pooled.json) · [未部署记录](../output/_v1110/native_perf50/cycles16/buff_context_installation.json)

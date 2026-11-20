@@ -1,0 +1,39 @@
+{
+  "sites": 15,
+  "fields": [
+    [
+      "SYM_GEN_bus_1408",
+      "bus"
+    ],
+    [
+      "SYM_GEN_combat_log_1410",
+      "combat_log"
+    ],
+    [
+      "SYM_GEN_hooks_1409",
+      "hooks"
+    ],
+    [
+      "SYM_GEN_player_1302",
+      "player"
+    ],
+    [
+      "SYM_GEN_rng_1406",
+      "rng"
+    ],
+    [
+      "SYM_GEN_time_1411",
+      "time"
+    ]
+  ],
+  "bridge_scope": "Common run_one_internal RAII, thread-local nesting restoration, cleared on returns/exceptions",
+  "validation": "Lazy at first original context read; active native BattleCtx and exact CoreContext RTTI",
+  "lifetime": "Bridge arena objects survive until whole-battle reset; no early object destruction",
+  "live_values": "Read current field at each original site; never cache field values",
+  "fallback": "External C++ calls, nonexact contexts and changed receiver pointers use original gd::get_prop",
+  "floating_rng_callback_order": "Unchanged expressions and call placement",
+  "all_headers_unchanged": true,
+  "standalone_transform_roundtrip_and_idempotence": true,
+  "original_method_sha256": "06caa727976b8903fa12ccd0c5f9bb5e1b2e5ca935aa3d36b1d7abb758d6962c",
+  "candidate_method_sha256": "7da6f83dbde9a85ff38873d096f8ffb19ee433bbef841619714dac89a2b3a6ad"
+}

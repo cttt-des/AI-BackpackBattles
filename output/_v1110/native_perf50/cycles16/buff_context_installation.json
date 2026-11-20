@@ -1,0 +1,13 @@
+{
+  "kind": "rejected_candidate_runtime_unchanged",
+  "dll_sha256": "58383a1158e951d7aae8b4d4c34df4d52332446156946d31a488f5dff323ec39",
+  "candidate_dll_sha256": "781176d0012d0b08c9da8e28874a16ea52546911b734a8b2260c47a8d4a8d8f5",
+  "changed_native_files": [],
+  "reason": "Both initial groups increased main-thread CPU time, satisfying the predeclared futility condition",
+  "boundary_cases_matched": 444,
+  "rng_draws_matched": 133,
+  "full_2604_gate_run": false,
+  "raw_24_gate_run": false,
+  "deployed": false,
+  "default_generator_wired": false
+}
