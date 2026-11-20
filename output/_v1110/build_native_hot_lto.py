@@ -15,7 +15,7 @@ HOT_UNITS = {"gd_rt", "engine_wrapper", *(f"shard_{index:02d}" for index in rang
 LTO = "-flto=2"
 
 
-def build_dll(native, out, jobs, profile_flags=(), *, hot_units=HOT_UNITS):
+def build_dll(native, out, jobs, profile_flags=(), *, hot_units=HOT_UNITS, link_flags=()):
     module = runpy.run_path(str(native / "build_windows.py"))
     standard_flags = tuple(module["COMMON"])
     hot_flags = (*standard_flags, LTO, *profile_flags)
@@ -39,7 +39,8 @@ def build_dll(native, out, jobs, profile_flags=(), *, hot_units=HOT_UNITS):
         max_workers=min(jobs, max_workers),
     )
     namespace["OUT_LIB"] = out
-    module["COMMON"].extend((LTO, *profile_flags))
+    # Compile flags above are frozen; optional export/link policy stays link-only.
+    module["COMMON"].extend((LTO, *profile_flags, *link_flags))
     return build()
 
 

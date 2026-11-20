@@ -1,0 +1,16 @@
+{
+  "status": "inconclusive_retained_not_deployed",
+  "baseline_dll_sha256": "1be75dced83e9e90fdbe61dd86f91bc27e19bb44acf9449d295849e928d9cec5",
+  "candidate_dll_sha256": "8bdcd96dcdf1d35819db619d635c726b72166dcee706558cca91e1ba1b3709af",
+  "all_pairs": 24,
+  "main_thread_cpu_median_time_reduction_pct": 0.0,
+  "main_thread_cpu_sum_time_reduction_pct": 0.8055235903337121,
+  "wall_median_time_reduction_pct": -0.31635165793981734,
+  "wall_sum_time_reduction_pct": 0.3149082873704856,
+  "decision": "Keep the container and static-call components available for composition. The complete paired observations do not yet establish a repeatable net benefit; do not deploy or reject the components individually.",
+  "measurement_policy": "Individually small changes may be combined before measurement. Measure the entire combination against the deployed baseline, keep all observations, and do not add old percentages. Positive combined evidence establishes the package benefit, not each component's contribution; use removal comparisons only if attribution is useful.",
+  "next_direction": "Quantify inactive Buff and item-timer scans before choosing another compatible component. Preserve original traversal order, captured collection semantics and callback visibility within the same frame.",
+  "validation_completed": ["targeted differential regressions", "fixed200 input/result signatures", "full704 source regeneration twice", "three groups of eight isolated AB/BA pairs"],
+  "validation_not_run": ["2604 strict original per-event gate", "release24 consecutive batches"],
+  "runtime_unchanged": true
+}

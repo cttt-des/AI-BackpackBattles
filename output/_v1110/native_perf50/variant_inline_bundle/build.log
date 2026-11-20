@@ -1,0 +1,19 @@
+Added nine pure container query cases and one single-callback static lane; no layout changes
+Backed-up deployment and704 sources verified; full20/PGO18, max2 jobs
+D:/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/bin/ld.exe: error: export ordinal too large: 68509
+collect2.exe: error: ld returned 1 exit status
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\variant_inline_bundle\build_bundle.py", line 61, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\variant_inline_bundle\build_bundle.py", line 51, in main
+    instrumented=build_dll(src,objects/'instrumented.dll',2,(f'-fprofile-generate={profile.as_posix()}',),hot_units=HOT_UNITS)
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\build_native_hot_lto.py", line 43, in build_dll
+    return build()
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\variant_inline_bundle\bundle_src\build_windows.py", line 101, in build
+    subprocess.run(link, check=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['D:/mingw64/bin/g++.exe', '-O3', '-std=c++20', '-march=native', '-ffp-contract=off', '-Wall', '-Wno-unused-variable', '-Wno-unused-but-set-variable', '-I', 'D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_perf50\\variant_inline_bundle\\bundle_src', '-flto=2', '-fprofile-generate=C:/Users/Windows/AppData/Local/Temp/native-variant-inline-3dhzic3j/pgo', '-shared', '-static', '-o', 'C:\\Users\\Windows\\AppData\\Local\\Temp\\native-variant-inline-3dhzic3j\\libgdcore.dll', 'C:\\Users\\Windows\\AppData\\Local\\Temp\\native-variant-inline-3dhzic3j\\gd_rt.o', 'C:\\Users\\Windows\\AppData\\Local\\Temp\\native-variant-inline-3dhzic3j\\engine_wrapper.o', 'C:\\Users\\Windows\\AppData\\Local\\Temp\\native-variant-inline-3dhzic3j\\sym_ids.o', 'C:\\Users\\Windows\\AppData\\Local\\Temp\\native-variant-inline-3dhzic3j\\register_all.o', 'C:\\Users\\Windows\\AppData\\Local\\Temp\\native-variant-inline-3dhzic3j\\shard_00.o', 'C:\\Users\\Windows\\AppData\\Local\\Temp\\native-variant-inline-3dhzic3j\\shard_01.o', 'C:\\Users\\Windows\\AppData\\Local\\Temp\\native-variant-inline-3dhzic3j\\shard_02.o', 'C:\\Users\\Windows\\AppData\\Local\\Temp\\native-variant-inline-3dhzic3j\\shard_03.o', 'C:\\Users\\Windows\\AppData\\Local\\Temp\\native-variant-inline-3dhzic3j\\shard_04.o', 'C:\\Users\\Windows\\AppData\\Local\\Temp\\native-variant-inline-3dhzic3j\\shard_05.o', 'C:\\Users\\Windows\\AppData\\Local\\Temp\\native-variant-inline-3dhzic3j\\shard_06.o', 'C:\\Users\\Windows\\AppData\\Local\\Temp\\native-variant-inline-3dhzic3j\\shard_07.o', 'C:\\Users\\Windows\\AppData\\Local\\Temp\\native-variant-inline-3dhzic3j\\shard_08.o', 'C:\\Users\\Windows\\AppData\\Local\\Temp\\native-variant-inline-3dhzic3j\\shard_09.o', 'C:\\Users\\Windows\\AppData\\Local\\Temp\\native-variant-inline-3dhzic3j\\shard_10.o', 'C:\\Users\\Windows\\AppData\\Local\\Temp\\native-variant-inline-3dhzic3j\\shard_11.o', 'C:\\Users\\Windows\\AppData\\Local\\Temp\\native-variant-inline-3dhzic3j\\shard_12.o', 'C:\\Users\\Windows\\AppData\\Local\\Temp\\native-variant-inline-3dhzic3j\\shard_13.o', 'C:\\Users\\Windows\\AppData\\Local\\Temp\\native-variant-inline-3dhzic3j\\shard_14.o', 'C:\\Users\\Windows\\AppData\\Local\\Temp\\native-variant-inline-3dhzic3j\\shard_15.o']' returned non-zero exit status 1.
