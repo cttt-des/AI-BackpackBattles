@@ -1,0 +1,14 @@
+{
+  "diagnostic_only": true,
+  "audit": true,
+  "dll_sha256": "2b48ccf3526da880ce905f163b771d84462a90c52cc83f7ada181c7c8e62f521",
+  "inputs_sha256": "d94b16d42cc88e9a3850a77c9360b9c4c4fdd676cb252e463044a903db2a5fef",
+  "results_sha256": "2e74b45caa87f7ee6ac72ffc35d98cc8db140b47031614d26542e183cef5d2c9",
+  "coverage": {
+    "event_bus": 321462,
+    "take_damage": 18122,
+    "temporary_buff": 49858,
+    "create_event": 175144,
+    "type_mismatch": 0
+  }
+}

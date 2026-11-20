@@ -1,0 +1,33 @@
+{
+  "candidate": "event_kernel.dll",
+  "candidate_sha256": "2b48ccf3526da880ce905f163b771d84462a90c52cc83f7ada181c7c8e62f521",
+  "primary_baseline": "cycles18/reverse_stack_names.dll",
+  "primary_baseline_sha256": "7213d9466543beda9903471cc2ed381fb240d896abe739479e6c9029eb7bd560",
+  "deployed_baseline_sha256": "58383a1158e951d7aae8b4d4c34df4d52332446156946d31a488f5dff323ec39",
+  "policy": "same prospective AB/BA policy as previous trials; no further micro-optimization cycling",
+  "primary_trials": {
+    "pairs_per_group": 8,
+    "warmup_seconds": 120,
+    "workers": 1,
+    "affinity": "all 8 logical CPUs",
+    "worker_priority": "NORMAL",
+    "quiet": true,
+    "orders": [
+      "candidate-first",
+      "candidate-load-first",
+      "candidate-first"
+    ],
+    "early_reject": "Both initial groups increase CPU time or both increase wall time",
+    "accept": "All three groups lower CPU and wall time and pooled comparison positive",
+    "one_fourth_group": "Only when all first three CPU reductions positive and exactly two wall reductions positive; require all four CPU and >=3 wall reductions positive and pooled positive"
+  },
+  "architecture_target": "Aim for >=20% total main-thread CPU reduction before expanding this architecture; report actual gains without treating source size as performance progress",
+  "measurement_isolation": "No compiler, profiler, git operation, disassembler or extra file writes during throughput",
+  "subsequent_gates": [
+    "cumulative 8-pair versus deployed cycle11",
+    "2604 strict original per-event and unchanged C++ case hashes; audit every typed receiver assumption",
+    "24 continuous raw batches, all >=50 fights/s; report power and observed load",
+    "training, deployment SHA and report hash verification"
+  ],
+  "deployment_state": "unchanged until all gates pass"
+}

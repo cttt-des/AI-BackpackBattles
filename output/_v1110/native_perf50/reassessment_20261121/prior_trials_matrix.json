@@ -1,0 +1,3952 @@
+{
+  "scope": "Existing structured fixed200 paired records in followup, assembly and all cycles through native event kernel. Older small training-throughput observations are contextual only.",
+  "method": "Time reduction, not throughput increase; pool only identical baseline and candidate SHA; retain every pair; do not mix pooled reports back into raw data. Different protocol strata remain listed and are not proof of a universal gain.",
+  "timing_reports": 97,
+  "unique_baseline_candidate_comparisons": 41,
+  "raw_pairs": 776,
+  "new_measurements_run": false,
+  "rows": [
+    {
+      "baseline_sha256": "a2556667fb9a461d62a77f3687a01636e362ea220a1f23f75035c828f53fd9b7",
+      "candidate_sha256": "747d52d526ff017f632ffcd3462fdfb34a163ce957d02a99853cf1a017531eb4",
+      "same_dll_control": false,
+      "historically_deployed": true,
+      "all_saved_pairs": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 2.355394712629577,
+          "candidate_wins": 17,
+          "ties": 0,
+          "pairs": 24,
+          "sum_time_reduction_pct": 2.9920212765957466
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 2.9648839390269632,
+          "candidate_wins": 17,
+          "ties": 0,
+          "pairs": 24,
+          "sum_time_reduction_pct": 2.986428956677467
+        }
+      },
+      "without_explicitly_contaminated_reports": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 2.355394712629577,
+          "candidate_wins": 17,
+          "ties": 0,
+          "pairs": 24,
+          "sum_time_reduction_pct": 2.9920212765957466
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 2.9648839390269632,
+          "candidate_wins": 17,
+          "ties": 0,
+          "pairs": 24,
+          "sum_time_reduction_pct": 2.986428956677467
+        }
+      },
+      "reports": [
+        {
+          "path": "assembly/fused_ab.json",
+          "sha256": "f1c6c506a4bdb110a7e0e35269cd0879be5497a6b1c0d0962fbe5c25e9f1f274",
+          "cpu_median_reduction_pct": 3.917967554331192,
+          "wall_median_reduction_pct": 4.639947522617982,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "legacy in-process comparison",
+          "minimum_warmup_seconds": null,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        },
+        {
+          "path": "assembly/fused_ab_confirm.json",
+          "sha256": "e8bca20ce907d4dc7ff2d4f964b9fb3f74097f31dd8d442154d15d31aaaf93e3",
+          "cpu_median_reduction_pct": 3.5028541774779542,
+          "wall_median_reduction_pct": 3.4508399274635115,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "legacy in-process comparison",
+          "minimum_warmup_seconds": null,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        },
+        {
+          "path": "assembly/fused_ab_repeat.json",
+          "sha256": "91800da4f6ea5c96ef70e8c762c45d5f93ee8929cdfa836a8e405bfae712b1f0",
+          "cpu_median_reduction_pct": 1.5222409382993352,
+          "wall_median_reduction_pct": 0.8157954655745647,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "legacy in-process comparison",
+          "minimum_warmup_seconds": null,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        }
+      ]
+    },
+    {
+      "baseline_sha256": "a2556667fb9a461d62a77f3687a01636e362ea220a1f23f75035c828f53fd9b7",
+      "candidate_sha256": "3f63021d8f0212c2f02de77c8c7397b94850e70c8bb4f0176eaff8048dc767c6",
+      "same_dll_control": false,
+      "historically_deployed": false,
+      "all_saved_pairs": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 1.6129032258064502,
+          "candidate_wins": 8,
+          "ties": 1,
+          "pairs": 16,
+          "sum_time_reduction_pct": 4.080675422138835
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 1.432295826664609,
+          "candidate_wins": 10,
+          "ties": 0,
+          "pairs": 16,
+          "sum_time_reduction_pct": 4.502230322408041
+        }
+      },
+      "without_explicitly_contaminated_reports": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 1.6129032258064502,
+          "candidate_wins": 8,
+          "ties": 1,
+          "pairs": 16,
+          "sum_time_reduction_pct": 4.080675422138835
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 1.432295826664609,
+          "candidate_wins": 10,
+          "ties": 0,
+          "pairs": 16,
+          "sum_time_reduction_pct": 4.502230322408041
+        }
+      },
+      "reports": [
+        {
+          "path": "assembly/placement_ab.json",
+          "sha256": "c8757c1cd71f7e0511a32f169dc3ae20a86702166e6dcb0f57bb4a8a9c94d1a6",
+          "cpu_median_reduction_pct": -0.8547008547008517,
+          "wall_median_reduction_pct": 0.2586513187222028,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "legacy in-process comparison",
+          "minimum_warmup_seconds": null,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        },
+        {
+          "path": "assembly/placement_ab_repeat.json",
+          "sha256": "c893743a2aa077e67ca85171551d87fb1b3178a6647acff4c53bdd4c8abf22d5",
+          "cpu_median_reduction_pct": 5.316159250585484,
+          "wall_median_reduction_pct": 5.114227855724007,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "legacy in-process comparison",
+          "minimum_warmup_seconds": null,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        }
+      ]
+    },
+    {
+      "baseline_sha256": "747d52d526ff017f632ffcd3462fdfb34a163ce957d02a99853cf1a017531eb4",
+      "candidate_sha256": "329bd6ad7fafe86b159d660c33c198b35dfe9868a732afec92d2cba43fcaa87a",
+      "same_dll_control": false,
+      "historically_deployed": false,
+      "all_saved_pairs": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 2.37931034482759,
+          "candidate_wins": 15,
+          "ties": 2,
+          "pairs": 24,
+          "sum_time_reduction_pct": 2.2463589237225356
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 1.3613189300174688,
+          "candidate_wins": 14,
+          "ties": 0,
+          "pairs": 24,
+          "sum_time_reduction_pct": 2.7215798919374423
+        }
+      },
+      "without_explicitly_contaminated_reports": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 2.37931034482759,
+          "candidate_wins": 15,
+          "ties": 2,
+          "pairs": 24,
+          "sum_time_reduction_pct": 2.2463589237225356
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 1.3613189300174688,
+          "candidate_wins": 14,
+          "ties": 0,
+          "pairs": 24,
+          "sum_time_reduction_pct": 2.7215798919374423
+        }
+      },
+      "reports": [
+        {
+          "path": "cycles/behavior_constants_ab.json",
+          "sha256": "cce9ae38cdc2da971ed28fb4cfaf8113ebc1881d308268d5d8d49864e9d911fc",
+          "cpu_median_reduction_pct": 4.31034482758621,
+          "wall_median_reduction_pct": -0.09835738392998117,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "legacy in-process comparison",
+          "minimum_warmup_seconds": null,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        },
+        {
+          "path": "cycles/behavior_constants_ab_confirm.json",
+          "sha256": "636cd74d6d22bd7c259ef24f38e415386ab31a5a2d124deffe5222e255f7c195",
+          "cpu_median_reduction_pct": 1.7314230208839265,
+          "wall_median_reduction_pct": 0.7148882865447348,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "legacy in-process comparison",
+          "minimum_warmup_seconds": null,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        },
+        {
+          "path": "cycles/behavior_constants_ab_repeat.json",
+          "sha256": "40ec559ba8751b1f1303af38d790dcaeaeb79232ead3f1852ee55b5824a778c4",
+          "cpu_median_reduction_pct": 3.1582733812949626,
+          "wall_median_reduction_pct": 3.4205247357702584,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "legacy in-process comparison",
+          "minimum_warmup_seconds": null,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        }
+      ]
+    },
+    {
+      "baseline_sha256": "747d52d526ff017f632ffcd3462fdfb34a163ce957d02a99853cf1a017531eb4",
+      "candidate_sha256": "15fdd91a4b8e0f7d1e7e2bd1c5d04564ee9f52aaf2c1f45c948b49accca92e9d",
+      "same_dll_control": false,
+      "historically_deployed": false,
+      "all_saved_pairs": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": -8.482758620689657,
+          "candidate_wins": 2,
+          "ties": 0,
+          "pairs": 8,
+          "sum_time_reduction_pct": -5.632716049382713
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": -7.963459438591224,
+          "candidate_wins": 2,
+          "ties": 0,
+          "pairs": 8,
+          "sum_time_reduction_pct": -7.211701504873269
+        }
+      },
+      "without_explicitly_contaminated_reports": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": -8.482758620689657,
+          "candidate_wins": 2,
+          "ties": 0,
+          "pairs": 8,
+          "sum_time_reduction_pct": -5.632716049382713
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": -7.963459438591224,
+          "candidate_wins": 2,
+          "ties": 0,
+          "pairs": 8,
+          "sum_time_reduction_pct": -7.211701504873269
+        }
+      },
+      "reports": [
+        {
+          "path": "cycles/buff_ab.json",
+          "sha256": "1d7c0ff6f128a2cc53ebff986c672e7c7419dbe4040e8f600164f9cc2d34db72",
+          "cpu_median_reduction_pct": -8.482758620689657,
+          "wall_median_reduction_pct": -7.963459438591225,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "legacy in-process comparison",
+          "minimum_warmup_seconds": null,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        }
+      ]
+    },
+    {
+      "baseline_sha256": "747d52d526ff017f632ffcd3462fdfb34a163ce957d02a99853cf1a017531eb4",
+      "candidate_sha256": "19713dceaf0b1ffd87ec7be77be0afe631893272da84afd207918ebb3162c2c6",
+      "same_dll_control": false,
+      "historically_deployed": false,
+      "all_saved_pairs": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": -4.3926917138445765,
+          "candidate_wins": 1,
+          "ties": 1,
+          "pairs": 8,
+          "sum_time_reduction_pct": -2.740863787375414
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": -6.704951500222367,
+          "candidate_wins": 1,
+          "ties": 0,
+          "pairs": 8,
+          "sum_time_reduction_pct": -6.275886396097241
+        }
+      },
+      "without_explicitly_contaminated_reports": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": -4.3926917138445765,
+          "candidate_wins": 1,
+          "ties": 1,
+          "pairs": 8,
+          "sum_time_reduction_pct": -2.740863787375414
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": -6.704951500222367,
+          "candidate_wins": 1,
+          "ties": 0,
+          "pairs": 8,
+          "sum_time_reduction_pct": -6.275886396097241
+        }
+      },
+      "reports": [
+        {
+          "path": "cycles/bus_context_ab.json",
+          "sha256": "88f447adfdb3fe8a9004af23654fe409884162eca3deaac53b821d449b9adbe5",
+          "cpu_median_reduction_pct": -4.3926917138445765,
+          "wall_median_reduction_pct": -6.704951500222367,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "legacy in-process comparison",
+          "minimum_warmup_seconds": null,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        }
+      ]
+    },
+    {
+      "baseline_sha256": "747d52d526ff017f632ffcd3462fdfb34a163ce957d02a99853cf1a017531eb4",
+      "candidate_sha256": "ef599b44623242e43c108e7eb05dc012fa6384bebd66aee4dcc03c483553f7cf",
+      "same_dll_control": false,
+      "historically_deployed": true,
+      "all_saved_pairs": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 5.214285714285715,
+          "candidate_wins": 16,
+          "ties": 1,
+          "pairs": 24,
+          "sum_time_reduction_pct": 7.2020951549541685
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 4.4322564083635445,
+          "candidate_wins": 17,
+          "ties": 0,
+          "pairs": 24,
+          "sum_time_reduction_pct": 7.444447566662415
+        }
+      },
+      "without_explicitly_contaminated_reports": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 5.214285714285715,
+          "candidate_wins": 16,
+          "ties": 1,
+          "pairs": 24,
+          "sum_time_reduction_pct": 7.2020951549541685
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 4.4322564083635445,
+          "candidate_wins": 17,
+          "ties": 0,
+          "pairs": 24,
+          "sum_time_reduction_pct": 7.444447566662415
+        }
+      },
+      "reports": [
+        {
+          "path": "cycles/character_ab.json",
+          "sha256": "436fd1d2ab4bdce5f9c461da733efba39bcf346534836b0013d3fd6d10bd9ed0",
+          "cpu_median_reduction_pct": 1.1279069767441863,
+          "wall_median_reduction_pct": 0.0918351886236235,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "legacy in-process comparison",
+          "minimum_warmup_seconds": null,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        },
+        {
+          "path": "cycles/character_ab_confirm.json",
+          "sha256": "5f481a17a486e70a28ded99766bfe93c6391d1cf2ae35b1ab43b81390c0c2b89",
+          "cpu_median_reduction_pct": 3.9389233954451264,
+          "wall_median_reduction_pct": 4.945084071010886,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "legacy in-process comparison",
+          "minimum_warmup_seconds": null,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        },
+        {
+          "path": "cycles/character_ab_repeat.json",
+          "sha256": "c58b0bf859d97bf051b777df4eeb0ef391c61a088bebc40be410e9d983670e16",
+          "cpu_median_reduction_pct": 9.406333951341328,
+          "wall_median_reduction_pct": 9.416391713143968,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "legacy in-process comparison",
+          "minimum_warmup_seconds": null,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        }
+      ]
+    },
+    {
+      "baseline_sha256": "747d52d526ff017f632ffcd3462fdfb34a163ce957d02a99853cf1a017531eb4",
+      "candidate_sha256": "bcd3623b23aa029aa0c7bab59045a5e9e43203a19987081660a9ecc88ab9b722",
+      "same_dll_control": false,
+      "historically_deployed": false,
+      "all_saved_pairs": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": -0.3731343283582045,
+          "candidate_wins": 6,
+          "ties": 2,
+          "pairs": 16,
+          "sum_time_reduction_pct": 0.46816479400748623
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 0.29272768914627156,
+          "candidate_wins": 9,
+          "ties": 0,
+          "pairs": 16,
+          "sum_time_reduction_pct": 1.562572040832777
+        }
+      },
+      "without_explicitly_contaminated_reports": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": -0.3731343283582045,
+          "candidate_wins": 6,
+          "ties": 2,
+          "pairs": 16,
+          "sum_time_reduction_pct": 0.46816479400748623
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 0.29272768914627156,
+          "candidate_wins": 9,
+          "ties": 0,
+          "pairs": 16,
+          "sum_time_reduction_pct": 1.562572040832777
+        }
+      },
+      "reports": [
+        {
+          "path": "cycles/round01_ab.json",
+          "sha256": "22e8bf0b2de5308acbd95f8fdb8d34baedb249b050bad4798c0c1cccaf343b8a",
+          "cpu_median_reduction_pct": -0.7548137176711656,
+          "wall_median_reduction_pct": 0.43556936011779346,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "legacy in-process comparison",
+          "minimum_warmup_seconds": null,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        },
+        {
+          "path": "cycles/round01_ab_repeat.json",
+          "sha256": "ac6ad50bfb99460a7f7a86650121d91f5e9bc6e92865023cd86c3340760ad3bd",
+          "cpu_median_reduction_pct": 0.0,
+          "wall_median_reduction_pct": -0.48370563053405924,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "legacy in-process comparison",
+          "minimum_warmup_seconds": null,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        }
+      ]
+    },
+    {
+      "baseline_sha256": "ef599b44623242e43c108e7eb05dc012fa6384bebd66aee4dcc03c483553f7cf",
+      "candidate_sha256": "8a1048ed6a244da9f2bbc772aab31fcf56b411216dc663eb9ca8a027e61fd17a",
+      "same_dll_control": false,
+      "historically_deployed": false,
+      "all_saved_pairs": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 0.2994011976047928,
+          "candidate_wins": 8,
+          "ties": 1,
+          "pairs": 16,
+          "sum_time_reduction_pct": 2.039930555555558
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 0.8269888455758656,
+          "candidate_wins": 9,
+          "ties": 0,
+          "pairs": 16,
+          "sum_time_reduction_pct": 1.759627505687933
+        }
+      },
+      "without_explicitly_contaminated_reports": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 0.2994011976047928,
+          "candidate_wins": 8,
+          "ties": 1,
+          "pairs": 16,
+          "sum_time_reduction_pct": 2.039930555555558
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 0.8269888455758656,
+          "candidate_wins": 9,
+          "ties": 0,
+          "pairs": 16,
+          "sum_time_reduction_pct": 1.759627505687933
+        }
+      },
+      "reports": [
+        {
+          "path": "cycles02/charge_path_ab.json",
+          "sha256": "a2031d9786ca33583d1fd1163e6cf226e14d97586c228d0e08db4c766630a918",
+          "cpu_median_reduction_pct": -1.1812500000000004,
+          "wall_median_reduction_pct": 0.15470392009049316,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "legacy in-process comparison",
+          "minimum_warmup_seconds": null,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        },
+        {
+          "path": "cycles02/charge_path_ab_repeat.json",
+          "sha256": "6880753bcee102fa8763966209290d557be2ad6c452fde47ca24a1d8fd86ee86",
+          "cpu_median_reduction_pct": 0.8771929824561431,
+          "wall_median_reduction_pct": 1.5162429399658395,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "legacy in-process comparison",
+          "minimum_warmup_seconds": null,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        }
+      ]
+    },
+    {
+      "baseline_sha256": "ef599b44623242e43c108e7eb05dc012fa6384bebd66aee4dcc03c483553f7cf",
+      "candidate_sha256": "3d10dd2e1f71b4a6be346453b097b5ed9c5585b903ed47ef50df3edabce430b8",
+      "same_dll_control": false,
+      "historically_deployed": false,
+      "all_saved_pairs": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 1.6461184121392747,
+          "candidate_wins": 11,
+          "ties": 0,
+          "pairs": 16,
+          "sum_time_reduction_pct": 1.980198019801982
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 1.00197800488378,
+          "candidate_wins": 11,
+          "ties": 0,
+          "pairs": 16,
+          "sum_time_reduction_pct": 1.7288553204677815
+        }
+      },
+      "without_explicitly_contaminated_reports": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 1.6461184121392747,
+          "candidate_wins": 11,
+          "ties": 0,
+          "pairs": 16,
+          "sum_time_reduction_pct": 1.980198019801982
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 1.00197800488378,
+          "candidate_wins": 11,
+          "ties": 0,
+          "pairs": 16,
+          "sum_time_reduction_pct": 1.7288553204677815
+        }
+      },
+      "reports": [
+        {
+          "path": "cycles02/rng_ab.json",
+          "sha256": "7be758de409b0e26fd57b345d91220db18adb2184e4478d2c57ae8acf6493643",
+          "cpu_median_reduction_pct": 2.4793388429751984,
+          "wall_median_reduction_pct": 2.293844166059511,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "legacy in-process comparison",
+          "minimum_warmup_seconds": null,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        },
+        {
+          "path": "cycles02/rng_ab_repeat.json",
+          "sha256": "9002053b0ab50674def84db0bde455163693e427309403971dd47fd74ea7ec9f",
+          "cpu_median_reduction_pct": -0.0036216137911049273,
+          "wall_median_reduction_pct": -0.4794825956808024,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "legacy in-process comparison",
+          "minimum_warmup_seconds": null,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        }
+      ]
+    },
+    {
+      "baseline_sha256": "ef599b44623242e43c108e7eb05dc012fa6384bebd66aee4dcc03c483553f7cf",
+      "candidate_sha256": "201b390883f77eb6883a751503a4e4c049a8192297647a11b6ff73c556230e34",
+      "same_dll_control": false,
+      "historically_deployed": true,
+      "all_saved_pairs": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 2.910530702973052,
+          "candidate_wins": 19,
+          "ties": 2,
+          "pairs": 24,
+          "sum_time_reduction_pct": 3.4179357021996593
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 1.5207242308966418,
+          "candidate_wins": 20,
+          "ties": 0,
+          "pairs": 24,
+          "sum_time_reduction_pct": 2.657272150806289
+        }
+      },
+      "without_explicitly_contaminated_reports": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 2.910530702973052,
+          "candidate_wins": 19,
+          "ties": 2,
+          "pairs": 24,
+          "sum_time_reduction_pct": 3.4179357021996593
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 1.5207242308966418,
+          "candidate_wins": 20,
+          "ties": 0,
+          "pairs": 24,
+          "sum_time_reduction_pct": 2.657272150806289
+        }
+      },
+      "reports": [
+        {
+          "path": "cycles02/rng_native_ab.json",
+          "sha256": "6f7b4dffb87314c20ee2450347c20597bda1f076259b16b049cff0ce41ea5a3b",
+          "cpu_median_reduction_pct": 1.2570621468926513,
+          "wall_median_reduction_pct": 1.268598668830423,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "legacy in-process comparison",
+          "minimum_warmup_seconds": null,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        },
+        {
+          "path": "cycles02/rng_native_ab_confirm.json",
+          "sha256": "9902d227e5fb6bf05caa9cc2c2af8f22cd3205783fbc6579e6d81adb42b69a92",
+          "cpu_median_reduction_pct": 2.951858709585531,
+          "wall_median_reduction_pct": 1.2589434226128793,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "legacy in-process comparison",
+          "minimum_warmup_seconds": null,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        },
+        {
+          "path": "cycles02/rng_native_ab_repeat.json",
+          "sha256": "2653317135019238cda8049a455fe50624276bae0bca5fabcc9a8f0655ffd688",
+          "cpu_median_reduction_pct": 3.5605868960283393,
+          "wall_median_reduction_pct": 2.107174212272289,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "legacy in-process comparison",
+          "minimum_warmup_seconds": null,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        }
+      ]
+    },
+    {
+      "baseline_sha256": "201b390883f77eb6883a751503a4e4c049a8192297647a11b6ff73c556230e34",
+      "candidate_sha256": "89d16953503cc8e9a6a709633b22ce1fb889c0b63a33e7de42ba4209bc2b8740",
+      "same_dll_control": false,
+      "historically_deployed": false,
+      "all_saved_pairs": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 2.5463917525773203,
+          "candidate_wins": 11,
+          "ties": 0,
+          "pairs": 16,
+          "sum_time_reduction_pct": 2.740286298568506
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 1.905374365882856,
+          "candidate_wins": 10,
+          "ties": 0,
+          "pairs": 16,
+          "sum_time_reduction_pct": 2.4517655815502692
+        }
+      },
+      "without_explicitly_contaminated_reports": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": -0.4463592609843192,
+          "candidate_wins": 4,
+          "ties": 0,
+          "pairs": 8,
+          "sum_time_reduction_pct": -2.4625267665952855
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": -1.2194436847133838,
+          "candidate_wins": 3,
+          "ties": 0,
+          "pairs": 8,
+          "sum_time_reduction_pct": -2.701368690307815
+        }
+      },
+      "reports": [
+        {
+          "path": "cycles03/array_queries_ab.json",
+          "sha256": "ab9d93b767ea1fd47cb824265944956b2d59f86fdb0e09906662c82aa1f1bd0c",
+          "cpu_median_reduction_pct": -0.4463592609843303,
+          "wall_median_reduction_pct": -1.2194436847133838,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "legacy in-process comparison",
+          "minimum_warmup_seconds": null,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        },
+        {
+          "path": "cycles03/array_queries_ab_compile_background.json",
+          "sha256": "705b19e48cb98ff2bb176e527570839ec5fa531eec2c23667595440a1c9951ee",
+          "cpu_median_reduction_pct": 4.561748381128583,
+          "wall_median_reduction_pct": 4.367066171224865,
+          "pairs": 8,
+          "concurrent_activity": "Full-shard LTO/PGO candidate build running",
+          "execution_mode": "legacy in-process comparison",
+          "minimum_warmup_seconds": null,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        }
+      ]
+    },
+    {
+      "baseline_sha256": "201b390883f77eb6883a751503a4e4c049a8192297647a11b6ff73c556230e34",
+      "candidate_sha256": "4ccdaf2bef6ad526a5740355bc413e18015d341f5d98182cdc68e7688570e038",
+      "same_dll_control": false,
+      "historically_deployed": true,
+      "all_saved_pairs": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 6.254487435181488,
+          "candidate_wins": 12,
+          "ties": 1,
+          "pairs": 16,
+          "sum_time_reduction_pct": 4.82758620689655
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 5.584007436268284,
+          "candidate_wins": 13,
+          "ties": 0,
+          "pairs": 16,
+          "sum_time_reduction_pct": 4.551761312146063
+        }
+      },
+      "without_explicitly_contaminated_reports": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 6.254487435181488,
+          "candidate_wins": 12,
+          "ties": 1,
+          "pairs": 16,
+          "sum_time_reduction_pct": 4.82758620689655
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 5.584007436268284,
+          "candidate_wins": 13,
+          "ties": 0,
+          "pairs": 16,
+          "sum_time_reduction_pct": 4.551761312146063
+        }
+      },
+      "reports": [
+        {
+          "path": "cycles03/full_pgo_ab.json",
+          "sha256": "e89b0a3909bb7ba16e54b547778eb08e89636732bfa7b9b8589367c77edd94f7",
+          "cpu_median_reduction_pct": 6.600839682786508,
+          "wall_median_reduction_pct": 5.756596862091145,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "legacy in-process comparison",
+          "minimum_warmup_seconds": null,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        },
+        {
+          "path": "cycles03/full_pgo_ab_repeat.json",
+          "sha256": "3c27ab06d5d1c372cba2391a095b49d154a95137b1586968119071f2134da29a",
+          "cpu_median_reduction_pct": 5.821256038647338,
+          "wall_median_reduction_pct": 5.151413071352195,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "legacy in-process comparison",
+          "minimum_warmup_seconds": null,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        }
+      ]
+    },
+    {
+      "baseline_sha256": "4ccdaf2bef6ad526a5740355bc413e18015d341f5d98182cdc68e7688570e038",
+      "candidate_sha256": "28f27b3afb57fb9613db8ab86274e16a0961a931f9a5dff0eb837484bb66a8e7",
+      "same_dll_control": false,
+      "historically_deployed": false,
+      "all_saved_pairs": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": -0.601519628535252,
+          "candidate_wins": 8,
+          "ties": 0,
+          "pairs": 16,
+          "sum_time_reduction_pct": -1.5633142261594513
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": -1.5183376132741677,
+          "candidate_wins": 7,
+          "ties": 0,
+          "pairs": 16,
+          "sum_time_reduction_pct": -1.5792943694294737
+        }
+      },
+      "without_explicitly_contaminated_reports": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": -4.107589658048372,
+          "candidate_wins": 3,
+          "ties": 0,
+          "pairs": 8,
+          "sum_time_reduction_pct": -3.3226152197213255
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": -4.662314492120601,
+          "candidate_wins": 3,
+          "ties": 0,
+          "pairs": 8,
+          "sum_time_reduction_pct": -3.8179427142674083
+        }
+      },
+      "reports": [
+        {
+          "path": "cycles04/cooldown_flags_ab.json",
+          "sha256": "aec3bb797959abd018484e6888dc4f0ee708f903e7b5dfea61102967da17de38",
+          "cpu_median_reduction_pct": 1.8615836821947118,
+          "wall_median_reduction_pct": 0.9739174406393047,
+          "pairs": 8,
+          "concurrent_activity": "A full DLL objdump ran during the tail of this preliminary comparison; repeat without it before acceptance.",
+          "execution_mode": "legacy in-process comparison",
+          "minimum_warmup_seconds": null,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        },
+        {
+          "path": "cycles04/cooldown_flags_ab_repeat.json",
+          "sha256": "d6feeb9e6045c65bf7612eafae34363825e0f28b78a53d09c7ebbb6b3b29749f",
+          "cpu_median_reduction_pct": -4.107589658048383,
+          "wall_median_reduction_pct": -4.662314492120601,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "legacy in-process comparison",
+          "minimum_warmup_seconds": null,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        }
+      ]
+    },
+    {
+      "baseline_sha256": "4ccdaf2bef6ad526a5740355bc413e18015d341f5d98182cdc68e7688570e038",
+      "candidate_sha256": "1291ef1b6ae50856e9e3585d9193734b64a4a1c15cf98ebca1ebedf7333ce940",
+      "same_dll_control": false,
+      "historically_deployed": true,
+      "all_saved_pairs": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 4.522205082406433,
+          "candidate_wins": 15,
+          "ties": 4,
+          "pairs": 24,
+          "sum_time_reduction_pct": 3.277494537509107
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 3.846557797121431,
+          "candidate_wins": 18,
+          "ties": 0,
+          "pairs": 24,
+          "sum_time_reduction_pct": 3.3795112521294524
+        }
+      },
+      "without_explicitly_contaminated_reports": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 4.522205082406433,
+          "candidate_wins": 15,
+          "ties": 4,
+          "pairs": 24,
+          "sum_time_reduction_pct": 3.277494537509107
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 3.846557797121431,
+          "candidate_wins": 18,
+          "ties": 0,
+          "pairs": 24,
+          "sum_time_reduction_pct": 3.3795112521294524
+        }
+      },
+      "reports": [
+        {
+          "path": "cycles04/symbol_atomic_ab.json",
+          "sha256": "d01a370ffcfee90547d48047976ee35e35aa75d517cb0c444c918c6b08a95b08",
+          "cpu_median_reduction_pct": 0.43478260869564966,
+          "wall_median_reduction_pct": 1.378618534189191,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "legacy in-process comparison",
+          "minimum_warmup_seconds": null,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        },
+        {
+          "path": "cycles04/symbol_atomic_ab_confirm.json",
+          "sha256": "c178962ef9d139d6ec841907e37c7e8f82e91bb2a86be5ab7b6c956c6a57b5dd",
+          "cpu_median_reduction_pct": 7.17503217503217,
+          "wall_median_reduction_pct": 6.104800875036176,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "legacy in-process comparison",
+          "minimum_warmup_seconds": null,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        },
+        {
+          "path": "cycles04/symbol_atomic_ab_repeat.json",
+          "sha256": "a8ac48b589b714f254a362be0e19e90ff5c73dda8d377a8e404cf1fcd60765e1",
+          "cpu_median_reduction_pct": 6.355897181585258,
+          "wall_median_reduction_pct": 6.9317360542516475,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "legacy in-process comparison",
+          "minimum_warmup_seconds": null,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        }
+      ]
+    },
+    {
+      "baseline_sha256": "4ccdaf2bef6ad526a5740355bc413e18015d341f5d98182cdc68e7688570e038",
+      "candidate_sha256": "b69c4b28cee75e2cadba4db331c726f655f318fe54b2c03d8813db683f608c1e",
+      "same_dll_control": false,
+      "historically_deployed": false,
+      "all_saved_pairs": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": -0.4716981132075526,
+          "candidate_wins": 11,
+          "ties": 1,
+          "pairs": 24,
+          "sum_time_reduction_pct": -0.6476190476190524
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 0.3687489045494652,
+          "candidate_wins": 14,
+          "ties": 0,
+          "pairs": 24,
+          "sum_time_reduction_pct": -0.6438509232501444
+        }
+      },
+      "without_explicitly_contaminated_reports": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": -0.4716981132075526,
+          "candidate_wins": 11,
+          "ties": 1,
+          "pairs": 24,
+          "sum_time_reduction_pct": -0.6476190476190524
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 0.3687489045494652,
+          "candidate_wins": 14,
+          "ties": 0,
+          "pairs": 24,
+          "sum_time_reduction_pct": -0.6438509232501444
+        }
+      },
+      "reports": [
+        {
+          "path": "cycles04/symbol_cache_ab.json",
+          "sha256": "fea66e9aacda046ad3f777e0f68b3e8a9b40374b556afa26c76f65021e2eb4c9",
+          "cpu_median_reduction_pct": -2.2852376980817324,
+          "wall_median_reduction_pct": -0.3757466690629485,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "legacy in-process comparison",
+          "minimum_warmup_seconds": null,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        },
+        {
+          "path": "cycles04/symbol_cache_ab_confirm.json",
+          "sha256": "0038bef863610405a7312e9bae7a98d5fe50540b30d0431766b532368cef5b05",
+          "cpu_median_reduction_pct": -3.756613756613758,
+          "wall_median_reduction_pct": -3.931200801684831,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "legacy in-process comparison",
+          "minimum_warmup_seconds": null,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        },
+        {
+          "path": "cycles04/symbol_cache_ab_repeat.json",
+          "sha256": "6280836a3520d9a4ae051ecffe9b5d6131404579a436ad6661d0fd7288ef203b",
+          "cpu_median_reduction_pct": 3.351648351648351,
+          "wall_median_reduction_pct": 2.69478762507227,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "legacy in-process comparison",
+          "minimum_warmup_seconds": null,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        }
+      ]
+    },
+    {
+      "baseline_sha256": "1291ef1b6ae50856e9e3585d9193734b64a4a1c15cf98ebca1ebedf7333ce940",
+      "candidate_sha256": "0550164c2c857a83c582a55529f8e5cefda7c69a1501dc6d65156315b8b750fb",
+      "same_dll_control": false,
+      "historically_deployed": false,
+      "all_saved_pairs": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": -1.8869603916332855,
+          "candidate_wins": 5,
+          "ties": 0,
+          "pairs": 16,
+          "sum_time_reduction_pct": -0.8522727272727293
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": -2.9444151067317237,
+          "candidate_wins": 5,
+          "ties": 0,
+          "pairs": 16,
+          "sum_time_reduction_pct": -1.0795949275264505
+        }
+      },
+      "without_explicitly_contaminated_reports": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": -1.8869603916332855,
+          "candidate_wins": 5,
+          "ties": 0,
+          "pairs": 16,
+          "sum_time_reduction_pct": -0.8522727272727293
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": -2.9444151067317237,
+          "candidate_wins": 5,
+          "ties": 0,
+          "pairs": 16,
+          "sum_time_reduction_pct": -1.0795949275264505
+        }
+      },
+      "reports": [
+        {
+          "path": "cycles05/timer_native_ab.json",
+          "sha256": "e158e2604363482061e8a8a57e0b423597d4897720e94247d3f24c383f295347",
+          "cpu_median_reduction_pct": -4.025764895330108,
+          "wall_median_reduction_pct": -4.5677001692673525,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "legacy in-process comparison",
+          "minimum_warmup_seconds": 20.0,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        },
+        {
+          "path": "cycles05/timer_native_ab_repeat.json",
+          "sha256": "cb6cd71a6af89124882272cb132c83376f2318de64f5803b290ed876f5cb652f",
+          "cpu_median_reduction_pct": -0.9758187357197246,
+          "wall_median_reduction_pct": -1.3314207522745924,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "legacy in-process comparison",
+          "minimum_warmup_seconds": 20.0,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        }
+      ]
+    },
+    {
+      "baseline_sha256": "1291ef1b6ae50856e9e3585d9193734b64a4a1c15cf98ebca1ebedf7333ce940",
+      "candidate_sha256": "1291ef1b6ae50856e9e3585d9193734b64a4a1c15cf98ebca1ebedf7333ce940",
+      "same_dll_control": true,
+      "historically_deployed": true,
+      "all_saved_pairs": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 0.0,
+          "candidate_wins": 19,
+          "ties": 2,
+          "pairs": 40,
+          "sum_time_reduction_pct": 0.25565388397247313
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": -0.31666205916311974,
+          "candidate_wins": 19,
+          "ties": 0,
+          "pairs": 40,
+          "sum_time_reduction_pct": -0.07315016769946503
+        }
+      },
+      "without_explicitly_contaminated_reports": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 0.0,
+          "candidate_wins": 19,
+          "ties": 2,
+          "pairs": 40,
+          "sum_time_reduction_pct": 0.25565388397247313
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": -0.31666205916311974,
+          "candidate_wins": 19,
+          "ties": 0,
+          "pairs": 40,
+          "sum_time_reduction_pct": -0.07315016769946503
+        }
+      },
+      "reports": [
+        {
+          "path": "cycles06/control_aa.json",
+          "sha256": "abef9247297a588e79fb4e2f26915a76611a7c1c71f24f98d60caa4138753da7",
+          "cpu_median_reduction_pct": -3.3470695970696074,
+          "wall_median_reduction_pct": -3.5307759883038248,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "legacy in-process comparison",
+          "minimum_warmup_seconds": 20.0,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        },
+        {
+          "path": "cycles06/control_aa_deferred_warm.json",
+          "sha256": "267163755c5b832c7a716b0cb13c835ea6825c09fa3c3b06258918f64053d1a3",
+          "cpu_median_reduction_pct": 0.6410256410256387,
+          "wall_median_reduction_pct": 0.9316066087098562,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 60,
+          "worker_priority_class": {
+            "baseline": 32,
+            "candidate": 32
+          },
+          "worker_cpu_affinity": {
+            "baseline": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "candidate": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        },
+        {
+          "path": "cycles06/control_aa_deferred_warm_repeat.json",
+          "sha256": "c9075e097e8c2534f40a9f1d0624a894064885c678ac990a890c3e98dbf0a4d3",
+          "cpu_median_reduction_pct": -0.7101104135094127,
+          "wall_median_reduction_pct": -0.6746572127439343,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 60,
+          "worker_priority_class": {
+            "candidate": 32,
+            "baseline": 32
+          },
+          "worker_cpu_affinity": {
+            "candidate": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "baseline": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        },
+        {
+          "path": "cycles06/control_aa_isolated.json",
+          "sha256": "d123713bebc2b77c85fe1ce6f61d7ea6c4988a02145abb6cde66b6566d3dc916",
+          "cpu_median_reduction_pct": -1.9607843137254832,
+          "wall_median_reduction_pct": -2.861809246531477,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 20,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        },
+        {
+          "path": "cycles06/control_aa_isolated_repeat.json",
+          "sha256": "17e5dad5d7d6035a0bc628ede312c2b359fcd064f84a397a56895cba6d3cb10b",
+          "cpu_median_reduction_pct": 4.505967362182339,
+          "wall_median_reduction_pct": 4.6340164560977115,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 20,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        }
+      ]
+    },
+    {
+      "baseline_sha256": "1291ef1b6ae50856e9e3585d9193734b64a4a1c15cf98ebca1ebedf7333ce940",
+      "candidate_sha256": "39b8539bf21abfe24040eaee728b4a4236c700b246b40441a9c158323c926a43",
+      "same_dll_control": false,
+      "historically_deployed": false,
+      "all_saved_pairs": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 1.2780853142298931,
+          "candidate_wins": 15,
+          "ties": 3,
+          "pairs": 24,
+          "sum_time_reduction_pct": 0.9761388286334105
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 1.5762364579660793,
+          "candidate_wins": 15,
+          "ties": 0,
+          "pairs": 24,
+          "sum_time_reduction_pct": 0.9456292652883724
+        }
+      },
+      "without_explicitly_contaminated_reports": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 1.2780853142298931,
+          "candidate_wins": 15,
+          "ties": 3,
+          "pairs": 24,
+          "sum_time_reduction_pct": 0.9761388286334105
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 1.5762364579660793,
+          "candidate_wins": 15,
+          "ties": 0,
+          "pairs": 24,
+          "sum_time_reduction_pct": 0.9456292652883724
+        }
+      },
+      "reports": [
+        {
+          "path": "cycles06/item_layout_ab.json",
+          "sha256": "7239aade123bb9f4693cef64090d8c7573ede90abc2cc9247452c0dbceb18dd0",
+          "cpu_median_reduction_pct": 1.953760989905562,
+          "wall_median_reduction_pct": 2.1699439018745936,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 20,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        },
+        {
+          "path": "cycles06/item_layout_ab_steady.json",
+          "sha256": "3c902d6a13d3e5ca04dc4069917acd87d62eb204b81d342985123cc81e8e5ed0",
+          "cpu_median_reduction_pct": -0.314698259903734,
+          "wall_median_reduction_pct": 0.19155227279870068,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 60,
+          "worker_priority_class": {
+            "candidate": 32,
+            "baseline": 32
+          },
+          "worker_cpu_affinity": {
+            "candidate": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "baseline": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        },
+        {
+          "path": "cycles06/item_layout_ab_steady_repeat.json",
+          "sha256": "094b686f6c33eed1fdafe554a175693d15eba0aed9a261f6bf3fdb25c9b30930",
+          "cpu_median_reduction_pct": 1.0228978978978898,
+          "wall_median_reduction_pct": 0.17496702131328812,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 60,
+          "worker_priority_class": {
+            "baseline": 32,
+            "candidate": 32
+          },
+          "worker_cpu_affinity": {
+            "baseline": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "candidate": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "baseline_sha256": "1291ef1b6ae50856e9e3585d9193734b64a4a1c15cf98ebca1ebedf7333ce940",
+      "candidate_sha256": "a6846c206754e42525abfacb0901a4a46fb548f240401f3c00c691d26418fd5c",
+      "same_dll_control": false,
+      "historically_deployed": false,
+      "all_saved_pairs": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": -0.3401360544217691,
+          "candidate_wins": 7,
+          "ties": 1,
+          "pairs": 16,
+          "sum_time_reduction_pct": 0.47505938242280443
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": -0.3059937064529561,
+          "candidate_wins": 8,
+          "ties": 0,
+          "pairs": 16,
+          "sum_time_reduction_pct": 0.5041362219886047
+        }
+      },
+      "without_explicitly_contaminated_reports": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": -0.3401360544217691,
+          "candidate_wins": 7,
+          "ties": 1,
+          "pairs": 16,
+          "sum_time_reduction_pct": 0.47505938242280443
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": -0.3059937064529561,
+          "candidate_wins": 8,
+          "ties": 0,
+          "pairs": 16,
+          "sum_time_reduction_pct": 0.5041362219886047
+        }
+      },
+      "reports": [
+        {
+          "path": "cycles07/behavior_constants_ab.json",
+          "sha256": "67a1bf0f7bbc218e9a4b72f14069ee335c107844d635b7fbff425d5064d1805d",
+          "cpu_median_reduction_pct": -1.0135135135135087,
+          "wall_median_reduction_pct": -1.3001414846699033,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 60,
+          "worker_priority_class": {
+            "baseline": 32,
+            "candidate": 32
+          },
+          "worker_cpu_affinity": {
+            "baseline": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "candidate": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        },
+        {
+          "path": "cycles07/behavior_constants_ab_repeat.json",
+          "sha256": "46db6dbe5304fdc74dfa367c1d8e85216db2cbde7f69c7b28096ceab387c50cb",
+          "cpu_median_reduction_pct": -0.0068027210884391565,
+          "wall_median_reduction_pct": -0.136027466226607,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 60,
+          "worker_priority_class": {
+            "candidate": 32,
+            "baseline": 32
+          },
+          "worker_cpu_affinity": {
+            "candidate": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "baseline": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "baseline_sha256": "1291ef1b6ae50856e9e3585d9193734b64a4a1c15cf98ebca1ebedf7333ce940",
+      "candidate_sha256": "9ffe3242ea2d2996b19ddda6ddc6f269afca4c5439b858059b03e029c03f1899",
+      "same_dll_control": false,
+      "historically_deployed": true,
+      "all_saved_pairs": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 1.8823760818253377,
+          "candidate_wins": 17,
+          "ties": 0,
+          "pairs": 24,
+          "sum_time_reduction_pct": 0.4420176807072296
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 2.6894816297431126,
+          "candidate_wins": 14,
+          "ties": 0,
+          "pairs": 24,
+          "sum_time_reduction_pct": -0.43418214762982466
+        }
+      },
+      "without_explicitly_contaminated_reports": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 1.8823760818253377,
+          "candidate_wins": 17,
+          "ties": 0,
+          "pairs": 24,
+          "sum_time_reduction_pct": 0.4420176807072296
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 2.6894816297431126,
+          "candidate_wins": 14,
+          "ties": 0,
+          "pairs": 24,
+          "sum_time_reduction_pct": -0.43418214762982466
+        }
+      },
+      "reports": [
+        {
+          "path": "cycles07/noop_snapshots_ab.json",
+          "sha256": "e1405b35fe64932702244031ab1a8bd50700da4cc9aa5045b89f20bae54db840",
+          "cpu_median_reduction_pct": 4.614695340501795,
+          "wall_median_reduction_pct": 4.449334270436312,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 60,
+          "worker_priority_class": {
+            "baseline": 32,
+            "candidate": 32
+          },
+          "worker_cpu_affinity": {
+            "baseline": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "candidate": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        },
+        {
+          "path": "cycles07/noop_snapshots_ab_confirm.json",
+          "sha256": "97181cc5925eac77a07f1a38a6260ec083f636501d3ea817512994885a71821c",
+          "cpu_median_reduction_pct": 1.7816861694628594,
+          "wall_median_reduction_pct": 3.8362094244890788,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 60,
+          "worker_priority_class": {
+            "baseline": 32,
+            "candidate": 32
+          },
+          "worker_cpu_affinity": {
+            "baseline": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "candidate": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        },
+        {
+          "path": "cycles07/noop_snapshots_ab_repeat.json",
+          "sha256": "ae28da093d595a1a9d4d4d3ca9897c4517075a62eb531ae08bb9ca46ca8a479f",
+          "cpu_median_reduction_pct": 1.6344086021505388,
+          "wall_median_reduction_pct": 0.9946634707421964,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 60,
+          "worker_priority_class": {
+            "candidate": 32,
+            "baseline": 32
+          },
+          "worker_cpu_affinity": {
+            "candidate": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "baseline": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "baseline_sha256": "9ffe3242ea2d2996b19ddda6ddc6f269afca4c5439b858059b03e029c03f1899",
+      "candidate_sha256": "a074df99baeb3acc1d3463f9bc7d8cf247c22fac6fdd651c59b0654fdd4a0ae7",
+      "same_dll_control": false,
+      "historically_deployed": false,
+      "all_saved_pairs": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 1.4908130707448564,
+          "candidate_wins": 13,
+          "ties": 1,
+          "pairs": 24,
+          "sum_time_reduction_pct": 1.3814274750575617
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 2.4784417693205443,
+          "candidate_wins": 15,
+          "ties": 0,
+          "pairs": 24,
+          "sum_time_reduction_pct": 1.0311659657535
+        }
+      },
+      "without_explicitly_contaminated_reports": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 1.4908130707448564,
+          "candidate_wins": 13,
+          "ties": 1,
+          "pairs": 24,
+          "sum_time_reduction_pct": 1.3814274750575617
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 2.4784417693205443,
+          "candidate_wins": 15,
+          "ties": 0,
+          "pairs": 24,
+          "sum_time_reduction_pct": 1.0311659657535
+        }
+      },
+      "reports": [
+        {
+          "path": "cycles08/dict_indices_ab.json",
+          "sha256": "cb61851a97f9dcde4020f96ddc1db811c606de4a09c9e090abd1de203f1ccfc1",
+          "cpu_median_reduction_pct": 0.6128246753246747,
+          "wall_median_reduction_pct": 1.2637051461604099,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 60,
+          "worker_priority_class": {
+            "baseline": 32,
+            "candidate": 32
+          },
+          "worker_cpu_affinity": {
+            "baseline": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "candidate": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        },
+        {
+          "path": "cycles08/dict_indices_ab_confirm.json",
+          "sha256": "a61e129328ed768704ba6ed0dbe1936f01a7e2b29cca917d87485928faa35011",
+          "cpu_median_reduction_pct": -3.400383141762431,
+          "wall_median_reduction_pct": -3.5582803011003694,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 60,
+          "worker_priority_class": {
+            "baseline": 32,
+            "candidate": 32
+          },
+          "worker_cpu_affinity": {
+            "baseline": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "candidate": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        },
+        {
+          "path": "cycles08/dict_indices_ab_repeat.json",
+          "sha256": "7b0f6ddb3c0e5c4d766255097e72d4de0254798709cd2202c44f71f083fe6e1d",
+          "cpu_median_reduction_pct": 4.826302729528531,
+          "wall_median_reduction_pct": 4.554876355935655,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 60,
+          "worker_priority_class": {
+            "candidate": 32,
+            "baseline": 32
+          },
+          "worker_cpu_affinity": {
+            "candidate": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "baseline": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "baseline_sha256": "9ffe3242ea2d2996b19ddda6ddc6f269afca4c5439b858059b03e029c03f1899",
+      "candidate_sha256": "f7972ffb5137229cc9ef58c8c86bd4ffc5e828e1571895d75284462981b96abd",
+      "same_dll_control": false,
+      "historically_deployed": false,
+      "all_saved_pairs": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 1.2905374464010633,
+          "candidate_wins": 13,
+          "ties": 2,
+          "pairs": 24,
+          "sum_time_reduction_pct": -0.1376651982378796
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 0.190006038335383,
+          "candidate_wins": 13,
+          "ties": 0,
+          "pairs": 24,
+          "sum_time_reduction_pct": 0.18735760100302423
+        }
+      },
+      "without_explicitly_contaminated_reports": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 1.2905374464010633,
+          "candidate_wins": 13,
+          "ties": 2,
+          "pairs": 24,
+          "sum_time_reduction_pct": -0.1376651982378796
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 0.190006038335383,
+          "candidate_wins": 13,
+          "ties": 0,
+          "pairs": 24,
+          "sum_time_reduction_pct": 0.18735760100302423
+        }
+      },
+      "reports": [
+        {
+          "path": "cycles09/label_ranges_ab.json",
+          "sha256": "b400b6e2a009a2c4a0911c02a527ca025180997f68c0387e64ab1fd18b516280",
+          "cpu_median_reduction_pct": 2.5565629339214246,
+          "wall_median_reduction_pct": 0.8659993021543855,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 60,
+          "worker_priority_class": {
+            "baseline": 32,
+            "candidate": 32
+          },
+          "worker_cpu_affinity": {
+            "baseline": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "candidate": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        },
+        {
+          "path": "cycles09/label_ranges_ab_confirm.json",
+          "sha256": "1685452173416f31ca5ef23f7d619e9da2f489928610525fc43ac2ad5d53c7de",
+          "cpu_median_reduction_pct": 0.34961685823754474,
+          "wall_median_reduction_pct": 0.06752884864023034,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 60,
+          "worker_priority_class": {
+            "baseline": 32,
+            "candidate": 32
+          },
+          "worker_cpu_affinity": {
+            "baseline": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "candidate": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        },
+        {
+          "path": "cycles09/label_ranges_ab_repeat.json",
+          "sha256": "0fd11a3818540fb3695034b7a470142ee37587fd4fe846557360cc817b662c17",
+          "cpu_median_reduction_pct": -0.6369426751592355,
+          "wall_median_reduction_pct": 0.3626670729195425,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 60,
+          "worker_priority_class": {
+            "candidate": 32,
+            "baseline": 32
+          },
+          "worker_cpu_affinity": {
+            "candidate": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "baseline": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "baseline_sha256": "9ffe3242ea2d2996b19ddda6ddc6f269afca4c5439b858059b03e029c03f1899",
+      "candidate_sha256": "4cff04ee9d93860434ac9ecd04680915950e3eb84c686e3b38baaad1bee2ce99",
+      "same_dll_control": false,
+      "historically_deployed": false,
+      "all_saved_pairs": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": -4.077288810260948,
+          "candidate_wins": 4,
+          "ties": 1,
+          "pairs": 16,
+          "sum_time_reduction_pct": -4.944029850746268
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": -4.3089428675330606,
+          "candidate_wins": 4,
+          "ties": 0,
+          "pairs": 16,
+          "sum_time_reduction_pct": -6.065681291768832
+        }
+      },
+      "without_explicitly_contaminated_reports": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": -4.077288810260948,
+          "candidate_wins": 4,
+          "ties": 1,
+          "pairs": 16,
+          "sum_time_reduction_pct": -4.944029850746268
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": -4.3089428675330606,
+          "candidate_wins": 4,
+          "ties": 0,
+          "pairs": 16,
+          "sum_time_reduction_pct": -6.065681291768832
+        }
+      },
+      "reports": [
+        {
+          "path": "cycles10/item_prefetch_ab.json",
+          "sha256": "6baa15928d8fc452e93700239b89d7f631190fccc282681da30efb879c67d0a5",
+          "cpu_median_reduction_pct": -5.307904411764719,
+          "wall_median_reduction_pct": -5.087606724591609,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 60,
+          "worker_priority_class": {
+            "baseline": 32,
+            "candidate": 32
+          },
+          "worker_cpu_affinity": {
+            "baseline": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "candidate": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        },
+        {
+          "path": "cycles10/item_prefetch_ab_repeat.json",
+          "sha256": "6978592573f8e1bdebc654315dad269bf75ec609a39c936652c39f7e0de801d9",
+          "cpu_median_reduction_pct": -2.9962967119290695,
+          "wall_median_reduction_pct": -3.170948805611551,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 60,
+          "worker_priority_class": {
+            "candidate": 32,
+            "baseline": 32
+          },
+          "worker_cpu_affinity": {
+            "candidate": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "baseline": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "baseline_sha256": "9ffe3242ea2d2996b19ddda6ddc6f269afca4c5439b858059b03e029c03f1899",
+      "candidate_sha256": "58383a1158e951d7aae8b4d4c34df4d52332446156946d31a488f5dff323ec39",
+      "same_dll_control": false,
+      "historically_deployed": true,
+      "all_saved_pairs": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 1.6290238836967785,
+          "candidate_wins": 16,
+          "ties": 1,
+          "pairs": 24,
+          "sum_time_reduction_pct": 0.47543581616481534
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 2.084900979826293,
+          "candidate_wins": 17,
+          "ties": 0,
+          "pairs": 24,
+          "sum_time_reduction_pct": 0.4599568390148412
+        }
+      },
+      "without_explicitly_contaminated_reports": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 1.6290238836967785,
+          "candidate_wins": 16,
+          "ties": 1,
+          "pairs": 24,
+          "sum_time_reduction_pct": 0.47543581616481534
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 2.084900979826293,
+          "candidate_wins": 17,
+          "ties": 0,
+          "pairs": 24,
+          "sum_time_reduction_pct": 0.4599568390148412
+        }
+      },
+      "reports": [
+        {
+          "path": "cycles11/inline_timers_ab.json",
+          "sha256": "0d26fe9529be4e8f02b70884776868d969342985975d35e6cfa87ced4a19469b",
+          "cpu_median_reduction_pct": 2.6889654041646116,
+          "wall_median_reduction_pct": 2.305697237029891,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 60,
+          "worker_priority_class": {
+            "baseline": 32,
+            "candidate": 32
+          },
+          "worker_cpu_affinity": {
+            "baseline": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "candidate": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        },
+        {
+          "path": "cycles11/inline_timers_ab_confirm.json",
+          "sha256": "3e267958294a2f496cef9d900e53a9ad512e72415a0209395586a3ca025a54b0",
+          "cpu_median_reduction_pct": 1.0136054421768792,
+          "wall_median_reduction_pct": 0.7940840392863246,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 60,
+          "worker_priority_class": {
+            "baseline": 32,
+            "candidate": 32
+          },
+          "worker_cpu_affinity": {
+            "baseline": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "candidate": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        },
+        {
+          "path": "cycles11/inline_timers_ab_repeat.json",
+          "sha256": "002397c7c4ec1b2f71fc0c8b82f0fd5c4c7fd53ab71687411ff5c8898025ebb8",
+          "cpu_median_reduction_pct": 2.592592592592591,
+          "wall_median_reduction_pct": 3.5132901577295317,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 60,
+          "worker_priority_class": {
+            "candidate": 32,
+            "baseline": 32
+          },
+          "worker_cpu_affinity": {
+            "candidate": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "baseline": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "baseline_sha256": "58383a1158e951d7aae8b4d4c34df4d52332446156946d31a488f5dff323ec39",
+      "candidate_sha256": "f8f2201a3ec8565cf761deffde32ff672e1561e25d4754c2b37ca03429fa3b9b",
+      "same_dll_control": false,
+      "historically_deployed": false,
+      "all_saved_pairs": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 0.7299270072992692,
+          "candidate_wins": 13,
+          "ties": 3,
+          "pairs": 24,
+          "sum_time_reduction_pct": -0.1728110599078292
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 0.8935937023319629,
+          "candidate_wins": 13,
+          "ties": 0,
+          "pairs": 24,
+          "sum_time_reduction_pct": -0.5890709549759343
+        }
+      },
+      "without_explicitly_contaminated_reports": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 0.7299270072992692,
+          "candidate_wins": 13,
+          "ties": 3,
+          "pairs": 24,
+          "sum_time_reduction_pct": -0.1728110599078292
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 0.8935937023319629,
+          "candidate_wins": 13,
+          "ties": 0,
+          "pairs": 24,
+          "sum_time_reduction_pct": -0.5890709549759343
+        }
+      },
+      "reports": [
+        {
+          "path": "cycles12/sparse_timers_ab.json",
+          "sha256": "4f0d039314c23bf9da7cf42e36cb41efb5a237639fcf66dec59fd7f79f82ac95",
+          "cpu_median_reduction_pct": -3.214285714285703,
+          "wall_median_reduction_pct": -1.2662157778576821,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 60,
+          "worker_priority_class": {
+            "baseline": 32,
+            "candidate": 32
+          },
+          "worker_cpu_affinity": {
+            "baseline": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "candidate": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        },
+        {
+          "path": "cycles12/sparse_timers_ab_confirm.json",
+          "sha256": "eec6ae3de3806259a46b58aefba96e94775fc9a16f2a791b566952a2cff7a6f0",
+          "cpu_median_reduction_pct": 2.0656437757584856,
+          "wall_median_reduction_pct": 1.1386627901172064,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 60,
+          "worker_priority_class": {
+            "baseline": 32,
+            "candidate": 32
+          },
+          "worker_cpu_affinity": {
+            "baseline": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "candidate": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        },
+        {
+          "path": "cycles12/sparse_timers_ab_repeat.json",
+          "sha256": "021be777a58987d0f286b7e32e2a0b7491a0e96e5b095ac913e1ea0c7de873a7",
+          "cpu_median_reduction_pct": 2.694394213381557,
+          "wall_median_reduction_pct": 0.12277375484673891,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 60,
+          "worker_priority_class": {
+            "candidate": 32,
+            "baseline": 32
+          },
+          "worker_cpu_affinity": {
+            "candidate": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "baseline": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "baseline_sha256": "58383a1158e951d7aae8b4d4c34df4d52332446156946d31a488f5dff323ec39",
+      "candidate_sha256": "58383a1158e951d7aae8b4d4c34df4d52332446156946d31a488f5dff323ec39",
+      "same_dll_control": true,
+      "historically_deployed": true,
+      "all_saved_pairs": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": -4.782060045217939,
+          "candidate_wins": 6,
+          "ties": 0,
+          "pairs": 16,
+          "sum_time_reduction_pct": -3.176436615651168
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": -2.5718327674496777,
+          "candidate_wins": 6,
+          "ties": 0,
+          "pairs": 16,
+          "sum_time_reduction_pct": -3.593855828392112
+        }
+      },
+      "without_explicitly_contaminated_reports": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": -4.782060045217939,
+          "candidate_wins": 6,
+          "ties": 0,
+          "pairs": 16,
+          "sum_time_reduction_pct": -3.176436615651168
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": -2.5718327674496777,
+          "candidate_wins": 6,
+          "ties": 0,
+          "pairs": 16,
+          "sum_time_reduction_pct": -3.593855828392112
+        }
+      },
+      "reports": [
+        {
+          "path": "cycles13/pinned_aa.json",
+          "sha256": "62440a13f2bb304e9b8aea015614cba7a6fa7f2995ea6ac35a11202e1a432d72",
+          "cpu_median_reduction_pct": 5.607966457023061,
+          "wall_median_reduction_pct": 7.720044784347224,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 60,
+          "worker_priority_class": {
+            "baseline": 32,
+            "candidate": 32
+          },
+          "worker_cpu_affinity": {
+            "baseline": [
+              6
+            ],
+            "candidate": [
+              6
+            ]
+          }
+        },
+        {
+          "path": "cycles14/quiet_aa.json",
+          "sha256": "31b41e3abdad41a8e915c25b71b74688e9810034787286d39bfa00e6bb23a3f0",
+          "cpu_median_reduction_pct": -7.43751270067059,
+          "wall_median_reduction_pct": -6.076925599239713,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 120.0,
+          "worker_priority_class": {
+            "baseline": 32,
+            "candidate": 32
+          },
+          "worker_cpu_affinity": {
+            "baseline": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "candidate": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "baseline_sha256": "58383a1158e951d7aae8b4d4c34df4d52332446156946d31a488f5dff323ec39",
+      "candidate_sha256": "a19d2a5f232bcb3c9d05435aced8e40c7971fd36d4254136f78599acccc4afc4",
+      "same_dll_control": false,
+      "historically_deployed": false,
+      "all_saved_pairs": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": -0.005739539688909279,
+          "candidate_wins": 12,
+          "ties": 0,
+          "pairs": 24,
+          "sum_time_reduction_pct": 3.083952027412906
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": -0.031772241818173175,
+          "candidate_wins": 12,
+          "ties": 0,
+          "pairs": 24,
+          "sum_time_reduction_pct": 3.6042629039074403
+        }
+      },
+      "without_explicitly_contaminated_reports": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": -0.005739539688909279,
+          "candidate_wins": 12,
+          "ties": 0,
+          "pairs": 24,
+          "sum_time_reduction_pct": 3.083952027412906
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": -0.031772241818173175,
+          "candidate_wins": 12,
+          "ties": 0,
+          "pairs": 24,
+          "sum_time_reduction_pct": 3.6042629039074403
+        }
+      },
+      "reports": [
+        {
+          "path": "cycles13/sparse_cooldowns_v2_ab.json",
+          "sha256": "e3baee77965344d8959b6c6fe375dd35445bc23825d7190cb31908d2de03502c",
+          "cpu_median_reduction_pct": -3.849798625918033,
+          "wall_median_reduction_pct": -3.0140271463826807,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 60,
+          "worker_priority_class": {
+            "baseline": 32,
+            "candidate": 32
+          },
+          "worker_cpu_affinity": {
+            "baseline": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "candidate": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        },
+        {
+          "path": "cycles13/sparse_cooldowns_v2_ab_confirm.json",
+          "sha256": "5710b650d6a5750921358cd02a161005237b5ea7d1a6382bcb21225bca275f1c",
+          "cpu_median_reduction_pct": 1.2739497497598729,
+          "wall_median_reduction_pct": 1.8530745761332623,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 60,
+          "worker_priority_class": {
+            "baseline": 32,
+            "candidate": 32
+          },
+          "worker_cpu_affinity": {
+            "baseline": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "candidate": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        },
+        {
+          "path": "cycles13/sparse_cooldowns_v2_ab_repeat.json",
+          "sha256": "f6a5cbbc3dc77cc0fa65db944424218dbad4e55104346fce5e004943c784ceb5",
+          "cpu_median_reduction_pct": 7.652709571810112,
+          "wall_median_reduction_pct": 7.757683217766598,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 60,
+          "worker_priority_class": {
+            "candidate": 32,
+            "baseline": 32
+          },
+          "worker_cpu_affinity": {
+            "candidate": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "baseline": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "baseline_sha256": "58383a1158e951d7aae8b4d4c34df4d52332446156946d31a488f5dff323ec39",
+      "candidate_sha256": "50201d2a5fe4ab39927df1637b1abe3425c5d1b0a4b447b75ce6364092b1aed0",
+      "same_dll_control": false,
+      "historically_deployed": false,
+      "all_saved_pairs": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 2.067348678601877,
+          "candidate_wins": 18,
+          "ties": 0,
+          "pairs": 32,
+          "sum_time_reduction_pct": -0.05614823133071045
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 0.7035019207158155,
+          "candidate_wins": 16,
+          "ties": 0,
+          "pairs": 32,
+          "sum_time_reduction_pct": -0.3251334974053055
+        }
+      },
+      "without_explicitly_contaminated_reports": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 2.067348678601877,
+          "candidate_wins": 18,
+          "ties": 0,
+          "pairs": 32,
+          "sum_time_reduction_pct": -0.05614823133071045
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 0.7035019207158155,
+          "candidate_wins": 16,
+          "ties": 0,
+          "pairs": 32,
+          "sum_time_reduction_pct": -0.3251334974053055
+        }
+      },
+      "reports": [
+        {
+          "path": "cycles14/arena_split_ab.json",
+          "sha256": "a61ac4fab07b0c85009ac29f33be0a4c688057263bcf41f665dd01f1560c96e3",
+          "cpu_median_reduction_pct": 2.1980676328502424,
+          "wall_median_reduction_pct": 2.057124652325304,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 120.0,
+          "worker_priority_class": {
+            "baseline": 32,
+            "candidate": 32
+          },
+          "worker_cpu_affinity": {
+            "baseline": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "candidate": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        },
+        {
+          "path": "cycles14/arena_split_ab_confirm.json",
+          "sha256": "145fedaf6cbaed1505184af3c23c4008bafd1c05b616a7f145329a79ed4d9b27",
+          "cpu_median_reduction_pct": 1.4803921568627532,
+          "wall_median_reduction_pct": -1.4239289097753627,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 120.0,
+          "worker_priority_class": {
+            "baseline": 32,
+            "candidate": 32
+          },
+          "worker_cpu_affinity": {
+            "baseline": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "candidate": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        },
+        {
+          "path": "cycles14/arena_split_ab_final.json",
+          "sha256": "b8733fdd11ebfda40a59b7aa16ccc7c7c7bb38eef38ba3153158a8dd762d0967",
+          "cpu_median_reduction_pct": -3.0000000000000027,
+          "wall_median_reduction_pct": -2.725741845895091,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 120.0,
+          "worker_priority_class": {
+            "candidate": 32,
+            "baseline": 32
+          },
+          "worker_cpu_affinity": {
+            "candidate": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "baseline": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        },
+        {
+          "path": "cycles14/arena_split_ab_repeat.json",
+          "sha256": "1f2065b4431b5ca0dd5e80c85cae9c0f9b9bcc4479a57912bd8f07b05bc728e9",
+          "cpu_median_reduction_pct": 3.6700336700336678,
+          "wall_median_reduction_pct": 3.4922702508322967,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 120.0,
+          "worker_priority_class": {
+            "candidate": 32,
+            "baseline": 32
+          },
+          "worker_cpu_affinity": {
+            "candidate": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "baseline": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "baseline_sha256": "58383a1158e951d7aae8b4d4c34df4d52332446156946d31a488f5dff323ec39",
+      "candidate_sha256": "84f98c175b43b3168fff7cfd6c35c14c01d92b85d0a8483fae192549fb388d13",
+      "same_dll_control": false,
+      "historically_deployed": false,
+      "all_saved_pairs": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": -1.0102040816326485,
+          "candidate_wins": 6,
+          "ties": 1,
+          "pairs": 16,
+          "sum_time_reduction_pct": -1.9354838709677358
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 0.17588760719799978,
+          "candidate_wins": 9,
+          "ties": 0,
+          "pairs": 16,
+          "sum_time_reduction_pct": -2.2743289942998457
+        }
+      },
+      "without_explicitly_contaminated_reports": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": -1.0102040816326485,
+          "candidate_wins": 6,
+          "ties": 1,
+          "pairs": 16,
+          "sum_time_reduction_pct": -1.9354838709677358
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 0.17588760719799978,
+          "candidate_wins": 9,
+          "ties": 0,
+          "pairs": 16,
+          "sum_time_reduction_pct": -2.2743289942998457
+        }
+      },
+      "reports": [
+        {
+          "path": "cycles15/buff_scalar_locals_ab.json",
+          "sha256": "c1a386d062490ff13849ab8a3d1bb0067e028ec1dafe622c7c4268a3c8c95ad0",
+          "cpu_median_reduction_pct": -1.0102040816326596,
+          "wall_median_reduction_pct": 0.40548096931498634,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 120.0,
+          "worker_priority_class": {
+            "baseline": 32,
+            "candidate": 32
+          },
+          "worker_cpu_affinity": {
+            "baseline": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "candidate": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        },
+        {
+          "path": "cycles15/buff_scalar_locals_ab_repeat.json",
+          "sha256": "338a788da3f71c3e9d3f92dc873095a25685afee826d216dd11b2a756f88ac49",
+          "cpu_median_reduction_pct": -1.0361842105263142,
+          "wall_median_reduction_pct": -1.8265220236761026,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 120.0,
+          "worker_priority_class": {
+            "candidate": 32,
+            "baseline": 32
+          },
+          "worker_cpu_affinity": {
+            "candidate": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "baseline": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "baseline_sha256": "58383a1158e951d7aae8b4d4c34df4d52332446156946d31a488f5dff323ec39",
+      "candidate_sha256": "781176d0012d0b08c9da8e28874a16ea52546911b734a8b2260c47a8d4a8d8f5",
+      "same_dll_control": false,
+      "historically_deployed": false,
+      "all_saved_pairs": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": -2.0835594139989144,
+          "candidate_wins": 5,
+          "ties": 1,
+          "pairs": 16,
+          "sum_time_reduction_pct": -1.0869565217391353
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": -2.011876698702586,
+          "candidate_wins": 5,
+          "ties": 0,
+          "pairs": 16,
+          "sum_time_reduction_pct": -0.576202946712634
+        }
+      },
+      "without_explicitly_contaminated_reports": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": -2.0835594139989144,
+          "candidate_wins": 5,
+          "ties": 1,
+          "pairs": 16,
+          "sum_time_reduction_pct": -1.0869565217391353
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": -2.011876698702586,
+          "candidate_wins": 5,
+          "ties": 0,
+          "pairs": 16,
+          "sum_time_reduction_pct": -0.576202946712634
+        }
+      },
+      "reports": [
+        {
+          "path": "cycles16/buff_context_ab.json",
+          "sha256": "cdb3ef733fd424b188e7f79b0984912b4e2d04c742a4aa4958dde2515cab4e13",
+          "cpu_median_reduction_pct": -3.072833599149405,
+          "wall_median_reduction_pct": -2.016948114743311,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 120.0,
+          "worker_priority_class": {
+            "baseline": 32,
+            "candidate": 32
+          },
+          "worker_cpu_affinity": {
+            "baseline": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "candidate": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        },
+        {
+          "path": "cycles16/buff_context_ab_repeat.json",
+          "sha256": "9d9491bdf118e19eb5930dec5c8a6c9cdaf85bc1ba55c4a42d04c354db8234ff",
+          "cpu_median_reduction_pct": -0.5309278350515534,
+          "wall_median_reduction_pct": 0.1746947674394761,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 120.0,
+          "worker_priority_class": {
+            "candidate": 32,
+            "baseline": 32
+          },
+          "worker_cpu_affinity": {
+            "candidate": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "baseline": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "baseline_sha256": "58383a1158e951d7aae8b4d4c34df4d52332446156946d31a488f5dff323ec39",
+      "candidate_sha256": "f95e8f9c5bfcab63534ccfff5988b327ddef22edb0f9a274cd3356bc56ad83f1",
+      "same_dll_control": false,
+      "historically_deployed": false,
+      "all_saved_pairs": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 0.8008200397206733,
+          "candidate_wins": 13,
+          "ties": 1,
+          "pairs": 24,
+          "sum_time_reduction_pct": 0.9721322099805585
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": -0.5020589053497004,
+          "candidate_wins": 11,
+          "ties": 0,
+          "pairs": 24,
+          "sum_time_reduction_pct": 0.8307622026738293
+        }
+      },
+      "without_explicitly_contaminated_reports": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 0.8008200397206733,
+          "candidate_wins": 13,
+          "ties": 1,
+          "pairs": 24,
+          "sum_time_reduction_pct": 0.9721322099805585
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": -0.5020589053497004,
+          "candidate_wins": 11,
+          "ties": 0,
+          "pairs": 24,
+          "sum_time_reduction_pct": 0.8307622026738293
+        }
+      },
+      "reports": [
+        {
+          "path": "cycles17/shared_speed_ab.json",
+          "sha256": "9a25aeeec9876da77a85cb3605f676df52caf4dab9ac2c895acbf88c667e9269",
+          "cpu_median_reduction_pct": -3.5035125968992276,
+          "wall_median_reduction_pct": -1.9672570451379379,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 120.0,
+          "worker_priority_class": {
+            "baseline": 32,
+            "candidate": 32
+          },
+          "worker_cpu_affinity": {
+            "baseline": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "candidate": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        },
+        {
+          "path": "cycles17/shared_speed_ab_confirm.json",
+          "sha256": "e61c226841ef18b0133246f46aa5be2a9f64590efe5e1f4606c73e16539fe2b1",
+          "cpu_median_reduction_pct": 5.623306233062331,
+          "wall_median_reduction_pct": 3.4888354156589307,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 120.0,
+          "worker_priority_class": {
+            "baseline": 32,
+            "candidate": 32
+          },
+          "worker_cpu_affinity": {
+            "baseline": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "candidate": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        },
+        {
+          "path": "cycles17/shared_speed_ab_repeat.json",
+          "sha256": "a291c6821d497d336518a4d3efb3ce1e24e1719b2eeb3ebc74b2096595b948cd",
+          "cpu_median_reduction_pct": 2.0392394006584658,
+          "wall_median_reduction_pct": 0.3339975771815329,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 120.0,
+          "worker_priority_class": {
+            "candidate": 32,
+            "baseline": 32
+          },
+          "worker_cpu_affinity": {
+            "candidate": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "baseline": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "baseline_sha256": "58383a1158e951d7aae8b4d4c34df4d52332446156946d31a488f5dff323ec39",
+      "candidate_sha256": "7213d9466543beda9903471cc2ed381fb240d896abe739479e6c9029eb7bd560",
+      "same_dll_control": false,
+      "historically_deployed": false,
+      "all_saved_pairs": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 5.211141060197666,
+          "candidate_wins": 18,
+          "ties": 0,
+          "pairs": 24,
+          "sum_time_reduction_pct": 4.1242362525458205
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 5.820829989438886,
+          "candidate_wins": 18,
+          "ties": 0,
+          "pairs": 24,
+          "sum_time_reduction_pct": 5.634211132469591
+        }
+      },
+      "without_explicitly_contaminated_reports": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 5.211141060197666,
+          "candidate_wins": 18,
+          "ties": 0,
+          "pairs": 24,
+          "sum_time_reduction_pct": 4.1242362525458205
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 5.820829989438886,
+          "candidate_wins": 18,
+          "ties": 0,
+          "pairs": 24,
+          "sum_time_reduction_pct": 5.634211132469591
+        }
+      },
+      "reports": [
+        {
+          "path": "cycles18/reverse_stack_names_ab.json",
+          "sha256": "67a6a89d64b7726ffacd198fb912dfb5f69415d9779c2241cf9344d1818b3fc7",
+          "cpu_median_reduction_pct": 1.9416873449131566,
+          "wall_median_reduction_pct": 0.6566810043483473,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 120.0,
+          "worker_priority_class": {
+            "baseline": 32,
+            "candidate": 32
+          },
+          "worker_cpu_affinity": {
+            "baseline": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "candidate": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        },
+        {
+          "path": "cycles18/reverse_stack_names_ab_confirm.json",
+          "sha256": "5a380d2f15f7724d2c4d0d399929aad833d30e2eeb47a678ecebdf61db46c9de",
+          "cpu_median_reduction_pct": 8.751861378096649,
+          "wall_median_reduction_pct": 11.430985746367671,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 120.0,
+          "worker_priority_class": {
+            "baseline": 32,
+            "candidate": 32
+          },
+          "worker_cpu_affinity": {
+            "baseline": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "candidate": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        },
+        {
+          "path": "cycles18/reverse_stack_names_ab_repeat.json",
+          "sha256": "d19b6b49866f9bdf569dc41f98205323f8d55719ae890d0a4f25e93aabdc561c",
+          "cpu_median_reduction_pct": 4.505559829358696,
+          "wall_median_reduction_pct": 7.07424574710509,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 120.0,
+          "worker_priority_class": {
+            "candidate": 32,
+            "baseline": 32
+          },
+          "worker_cpu_affinity": {
+            "candidate": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "baseline": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "baseline_sha256": "7213d9466543beda9903471cc2ed381fb240d896abe739479e6c9029eb7bd560",
+      "candidate_sha256": "560991e3d06f84f8ae93fb81d5606cdd1ea846c77a8e3e926271d787113943e5",
+      "same_dll_control": false,
+      "historically_deployed": false,
+      "all_saved_pairs": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": -6.842294800409987,
+          "candidate_wins": 4,
+          "ties": 0,
+          "pairs": 16,
+          "sum_time_reduction_pct": -7.548988114359134
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": -10.77293009704887,
+          "candidate_wins": 3,
+          "ties": 0,
+          "pairs": 16,
+          "sum_time_reduction_pct": -9.883281426882707
+        }
+      },
+      "without_explicitly_contaminated_reports": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": -6.842294800409987,
+          "candidate_wins": 4,
+          "ties": 0,
+          "pairs": 16,
+          "sum_time_reduction_pct": -7.548988114359134
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": -10.77293009704887,
+          "candidate_wins": 3,
+          "ties": 0,
+          "pairs": 16,
+          "sum_time_reduction_pct": -9.883281426882707
+        }
+      },
+      "reports": [
+        {
+          "path": "cycles19/ltrans_devirt_ab.json",
+          "sha256": "25d4300cb685841a1378724feee7487c8f8720dd28b8c63b8ec66100dcd32932",
+          "cpu_median_reduction_pct": -0.5419013483529689,
+          "wall_median_reduction_pct": -1.2158680382956089,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 120.0,
+          "worker_priority_class": {
+            "baseline": 32,
+            "candidate": 32
+          },
+          "worker_cpu_affinity": {
+            "baseline": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "candidate": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        },
+        {
+          "path": "cycles19/ltrans_devirt_ab_repeat.json",
+          "sha256": "edf04578917c8d7b30869c081292fa5781a3722276818516a0ef0835455cbca7",
+          "cpu_median_reduction_pct": -12.43781094527363,
+          "wall_median_reduction_pct": -14.176463813960204,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 120.0,
+          "worker_priority_class": {
+            "candidate": 32,
+            "baseline": 32
+          },
+          "worker_cpu_affinity": {
+            "candidate": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "baseline": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "baseline_sha256": "a79611a45c1a664fec0c7d86ead60d97d65816b381d4c7eef5e58524d3ce3838",
+      "candidate_sha256": "9265f9339f4a54fe4620be96191ca820ec98d8d3661776062f7acb0c4b5b0165",
+      "same_dll_control": false,
+      "historically_deployed": false,
+      "all_saved_pairs": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 0.3649635036496346,
+          "candidate_wins": 8,
+          "ties": 1,
+          "pairs": 16,
+          "sum_time_reduction_pct": 0.7782101167315147
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 0.4656564862365986,
+          "candidate_wins": 9,
+          "ties": 0,
+          "pairs": 16,
+          "sum_time_reduction_pct": 0.43587885738631815
+        }
+      },
+      "without_explicitly_contaminated_reports": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 0.3649635036496346,
+          "candidate_wins": 8,
+          "ties": 1,
+          "pairs": 16,
+          "sum_time_reduction_pct": 0.7782101167315147
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 0.4656564862365986,
+          "candidate_wins": 9,
+          "ties": 0,
+          "pairs": 16,
+          "sum_time_reduction_pct": 0.43587885738631815
+        }
+      },
+      "reports": [
+        {
+          "path": "followup/buff_ab.json",
+          "sha256": "31efe0fd876ef1c15b45b9513d61043e4363ee7ee83d492cbf2583da2cdbeae7",
+          "cpu_median_reduction_pct": 3.333926031294454,
+          "wall_median_reduction_pct": 2.699924141489307,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "legacy in-process comparison",
+          "minimum_warmup_seconds": null,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        },
+        {
+          "path": "followup/buff_ab_repeat.json",
+          "sha256": "adbeab61002e0c90e2a08022b67fe33e7de35d8700f6e7bcb1b1ba685642bd06",
+          "cpu_median_reduction_pct": -1.4338575393154418,
+          "wall_median_reduction_pct": -2.203718587127601,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "legacy in-process comparison",
+          "minimum_warmup_seconds": null,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        }
+      ]
+    },
+    {
+      "baseline_sha256": "a79611a45c1a664fec0c7d86ead60d97d65816b381d4c7eef5e58524d3ce3838",
+      "candidate_sha256": "a2556667fb9a461d62a77f3687a01636e362ea220a1f23f75035c828f53fd9b7",
+      "same_dll_control": false,
+      "historically_deployed": true,
+      "all_saved_pairs": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 13.496503496503497,
+          "candidate_wins": 7,
+          "ties": 0,
+          "pairs": 8,
+          "sum_time_reduction_pct": 12.734584450402142
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 12.113069406214105,
+          "candidate_wins": 7,
+          "ties": 0,
+          "pairs": 8,
+          "sum_time_reduction_pct": 12.703905897745148
+        }
+      },
+      "without_explicitly_contaminated_reports": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 13.496503496503497,
+          "candidate_wins": 7,
+          "ties": 0,
+          "pairs": 8,
+          "sum_time_reduction_pct": 12.734584450402142
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 12.113069406214105,
+          "candidate_wins": 7,
+          "ties": 0,
+          "pairs": 8,
+          "sum_time_reduction_pct": 12.703905897745148
+        }
+      },
+      "reports": [
+        {
+          "path": "followup/diagnostics_ab.json",
+          "sha256": "c38f57fbe339ff21a207cf22c2ac57f34523deac3994fe4bc892c599a4d94e73",
+          "cpu_median_reduction_pct": 13.496503496503498,
+          "wall_median_reduction_pct": 12.113069406214105,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "legacy in-process comparison",
+          "minimum_warmup_seconds": null,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        }
+      ]
+    },
+    {
+      "baseline_sha256": "04b332ba2712f6704da2f14c3b7ab959fbbcde66555d662ef90102f2bda1c210",
+      "candidate_sha256": "a79611a45c1a664fec0c7d86ead60d97d65816b381d4c7eef5e58524d3ce3838",
+      "same_dll_control": false,
+      "historically_deployed": false,
+      "all_saved_pairs": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 7.096036585365851,
+          "candidate_wins": 7,
+          "ties": 0,
+          "pairs": 8,
+          "sum_time_reduction_pct": 5.913173652694614
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 7.103264617289479,
+          "candidate_wins": 7,
+          "ties": 0,
+          "pairs": 8,
+          "sum_time_reduction_pct": 5.933468986622358
+        }
+      },
+      "without_explicitly_contaminated_reports": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 7.096036585365851,
+          "candidate_wins": 7,
+          "ties": 0,
+          "pairs": 8,
+          "sum_time_reduction_pct": 5.913173652694614
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 7.103264617289479,
+          "candidate_wins": 7,
+          "ties": 0,
+          "pairs": 8,
+          "sum_time_reduction_pct": 5.933468986622358
+        }
+      },
+      "reports": [
+        {
+          "path": "followup/enums_ab.json",
+          "sha256": "f5b6a3de51ff0afb4273c24255d220ae404834e94918574cd6c4eb7876418998",
+          "cpu_median_reduction_pct": 7.09603658536585,
+          "wall_median_reduction_pct": 7.103264617289473,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "legacy in-process comparison",
+          "minimum_warmup_seconds": null,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        }
+      ]
+    },
+    {
+      "baseline_sha256": "04b332ba2712f6704da2f14c3b7ab959fbbcde66555d662ef90102f2bda1c210",
+      "candidate_sha256": "437f26f5fc98596541b61f106fb7fae5edc0c5046dca13b4eb590a5da4e0b061",
+      "same_dll_control": false,
+      "historically_deployed": false,
+      "all_saved_pairs": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": -0.28901734104046506,
+          "candidate_wins": 7,
+          "ties": 1,
+          "pairs": 16,
+          "sum_time_reduction_pct": 2.877697841726623
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 0.9129203489711857,
+          "candidate_wins": 9,
+          "ties": 0,
+          "pairs": 16,
+          "sum_time_reduction_pct": 3.722590735063913
+        }
+      },
+      "without_explicitly_contaminated_reports": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": -0.28901734104046506,
+          "candidate_wins": 7,
+          "ties": 1,
+          "pairs": 16,
+          "sum_time_reduction_pct": 2.877697841726623
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 0.9129203489711857,
+          "candidate_wins": 9,
+          "ties": 0,
+          "pairs": 16,
+          "sum_time_reduction_pct": 3.722590735063913
+        }
+      },
+      "reports": [
+        {
+          "path": "followup/expanded_ab.json",
+          "sha256": "76604a3925c069f21bc9d8d3853c6d08647c5769071eb30aace1f977367f23dd",
+          "cpu_median_reduction_pct": -0.5814150018591757,
+          "wall_median_reduction_pct": -0.17740955663292368,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "legacy in-process comparison",
+          "minimum_warmup_seconds": null,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        },
+        {
+          "path": "followup/expanded_ab_repeat.json",
+          "sha256": "a40fe1a8f3b1a18a3e6e07dd55aabe63b1e7797f2cca78fb12cca8a8be53f3ff",
+          "cpu_median_reduction_pct": 2.67857142857143,
+          "wall_median_reduction_pct": 2.9443251131758608,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "legacy in-process comparison",
+          "minimum_warmup_seconds": null,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        }
+      ]
+    },
+    {
+      "baseline_sha256": "04b332ba2712f6704da2f14c3b7ab959fbbcde66555d662ef90102f2bda1c210",
+      "candidate_sha256": "a2556667fb9a461d62a77f3687a01636e362ea220a1f23f75035c828f53fd9b7",
+      "same_dll_control": false,
+      "historically_deployed": true,
+      "all_saved_pairs": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 21.46907746044791,
+          "candidate_wins": 8,
+          "ties": 0,
+          "pairs": 8,
+          "sum_time_reduction_pct": 21.922160444797456
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 21.497340793276503,
+          "candidate_wins": 8,
+          "ties": 0,
+          "pairs": 8,
+          "sum_time_reduction_pct": 21.792595422957827
+        }
+      },
+      "without_explicitly_contaminated_reports": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 21.46907746044791,
+          "candidate_wins": 8,
+          "ties": 0,
+          "pairs": 8,
+          "sum_time_reduction_pct": 21.922160444797456
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 21.497340793276503,
+          "candidate_wins": 8,
+          "ties": 0,
+          "pairs": 8,
+          "sum_time_reduction_pct": 21.792595422957827
+        }
+      },
+      "reports": [
+        {
+          "path": "followup/final_ab.json",
+          "sha256": "c5304e8ecc68b8597e4ea84007e5f3da4497902e7a476da34656ed08d2487a13",
+          "cpu_median_reduction_pct": 21.469077460447906,
+          "wall_median_reduction_pct": 21.4973407932765,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "legacy in-process comparison",
+          "minimum_warmup_seconds": null,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        }
+      ]
+    },
+    {
+      "baseline_sha256": "04b332ba2712f6704da2f14c3b7ab959fbbcde66555d662ef90102f2bda1c210",
+      "candidate_sha256": "332352f3ac61f3fdc7d8fcd141bd8556e433ba3a3acac2ea83797404893a7e16",
+      "same_dll_control": false,
+      "historically_deployed": false,
+      "all_saved_pairs": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": -0.30674846625766694,
+          "candidate_wins": 7,
+          "ties": 1,
+          "pairs": 16,
+          "sum_time_reduction_pct": -1.429081814933908
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": -0.01774956569101649,
+          "candidate_wins": 8,
+          "ties": 0,
+          "pairs": 16,
+          "sum_time_reduction_pct": -1.7160036675230694
+        }
+      },
+      "without_explicitly_contaminated_reports": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": -0.30674846625766694,
+          "candidate_wins": 7,
+          "ties": 1,
+          "pairs": 16,
+          "sum_time_reduction_pct": -1.429081814933908
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": -0.01774956569101649,
+          "candidate_wins": 8,
+          "ties": 0,
+          "pairs": 16,
+          "sum_time_reduction_pct": -1.7160036675230694
+        }
+      },
+      "reports": [
+        {
+          "path": "followup/queues_ab.json",
+          "sha256": "d354485334a0c8a53d0dbf22a916c4e85089edb5cbdd5f37fb361522e4253ecc",
+          "cpu_median_reduction_pct": 5.266487730061353,
+          "wall_median_reduction_pct": 4.9175859016549754,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "legacy in-process comparison",
+          "minimum_warmup_seconds": null,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        },
+        {
+          "path": "followup/queues_ab_repeat.json",
+          "sha256": "5d3f228c4eb3a82cbd38a590b4d67b733d5d45910cdf3855dda7625edbfa03bd",
+          "cpu_median_reduction_pct": -5.637141535615164,
+          "wall_median_reduction_pct": -5.219496663357437,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "legacy in-process comparison",
+          "minimum_warmup_seconds": null,
+          "worker_priority_class": null,
+          "worker_cpu_affinity": null
+        }
+      ]
+    },
+    {
+      "baseline_sha256": "7213d9466543beda9903471cc2ed381fb240d896abe739479e6c9029eb7bd560",
+      "candidate_sha256": "2b48ccf3526da880ce905f163b771d84462a90c52cc83f7ada181c7c8e62f521",
+      "same_dll_control": false,
+      "historically_deployed": false,
+      "all_saved_pairs": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 7.759257549173515,
+          "candidate_wins": 18,
+          "ties": 0,
+          "pairs": 24,
+          "sum_time_reduction_pct": 8.145282613367721
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 3.885467032403678,
+          "candidate_wins": 15,
+          "ties": 0,
+          "pairs": 24,
+          "sum_time_reduction_pct": 7.546705720363556
+        }
+      },
+      "without_explicitly_contaminated_reports": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 7.759257549173515,
+          "candidate_wins": 18,
+          "ties": 0,
+          "pairs": 24,
+          "sum_time_reduction_pct": 8.145282613367721
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 3.885467032403678,
+          "candidate_wins": 15,
+          "ties": 0,
+          "pairs": 24,
+          "sum_time_reduction_pct": 7.546705720363556
+        }
+      },
+      "reports": [
+        {
+          "path": "native_event_kernel_a/ab_1.json",
+          "sha256": "4daf4a4ca1230a83bced47049924bd94c0ff89e2e4b7a15665b64d63ec738b4b",
+          "cpu_median_reduction_pct": 7.759257549173515,
+          "wall_median_reduction_pct": 3.8854670324036777,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 120.0,
+          "worker_priority_class": {
+            "baseline": 32,
+            "candidate": 32
+          },
+          "worker_cpu_affinity": {
+            "baseline": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "candidate": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        },
+        {
+          "path": "native_event_kernel_a/ab_2.json",
+          "sha256": "a14ff5ce76cb2b1ea40443932de68d223d1e802374978229bcd52c1b4dca2b8e",
+          "cpu_median_reduction_pct": 7.57420017987922,
+          "wall_median_reduction_pct": 3.8009674113135494,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 120.0,
+          "worker_priority_class": {
+            "candidate": 32,
+            "baseline": 32
+          },
+          "worker_cpu_affinity": {
+            "candidate": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "baseline": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        },
+        {
+          "path": "native_event_kernel_a/ab_3.json",
+          "sha256": "430d2c39624498b245f48b19613e0f4d94a1c58e4118481484a822282b828fbe",
+          "cpu_median_reduction_pct": 4.344262295081958,
+          "wall_median_reduction_pct": 1.5741396674320063,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 120.0,
+          "worker_priority_class": {
+            "baseline": 32,
+            "candidate": 32
+          },
+          "worker_cpu_affinity": {
+            "baseline": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "candidate": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "baseline_sha256": "58383a1158e951d7aae8b4d4c34df4d52332446156946d31a488f5dff323ec39",
+      "candidate_sha256": "2b48ccf3526da880ce905f163b771d84462a90c52cc83f7ada181c7c8e62f521",
+      "same_dll_control": false,
+      "historically_deployed": false,
+      "all_saved_pairs": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 16.326367659807456,
+          "candidate_wins": 6,
+          "ties": 0,
+          "pairs": 8,
+          "sum_time_reduction_pct": 15.69589209074188
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 19.400072242703015,
+          "candidate_wins": 6,
+          "ties": 0,
+          "pairs": 8,
+          "sum_time_reduction_pct": 19.012646686868607
+        }
+      },
+      "without_explicitly_contaminated_reports": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 16.326367659807456,
+          "candidate_wins": 6,
+          "ties": 0,
+          "pairs": 8,
+          "sum_time_reduction_pct": 15.69589209074188
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 19.400072242703015,
+          "candidate_wins": 6,
+          "ties": 0,
+          "pairs": 8,
+          "sum_time_reduction_pct": 19.012646686868607
+        }
+      },
+      "reports": [
+        {
+          "path": "native_event_kernel_a/ab_deployed.json",
+          "sha256": "7c37125101d3a158d87f6948e6f6e99016342072fdbd02abb6054b680379b706",
+          "cpu_median_reduction_pct": 16.32636765980746,
+          "wall_median_reduction_pct": 19.400072242703015,
+          "pairs": 8,
+          "concurrent_activity": null,
+          "execution_mode": "separate_single_dll_processes",
+          "minimum_warmup_seconds": 120.0,
+          "worker_priority_class": {
+            "baseline": 32,
+            "candidate": 32
+          },
+          "worker_cpu_affinity": {
+            "baseline": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "candidate": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

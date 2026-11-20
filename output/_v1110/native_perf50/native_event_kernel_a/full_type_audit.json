@@ -1,0 +1,25 @@
+{
+  "dll_sha256": "2b48ccf3526da880ce905f163b771d84462a90c52cc83f7ada181c7c8e62f521",
+  "fights": 2604,
+  "coverage": {
+    "event_bus": 5598805,
+    "take_damage": 318534,
+    "temporary_buff": 857051,
+    "create_event": 3079126,
+    "type_mismatch": 0
+  },
+  "audit_reports": [
+    "output\\_v1110\\native_event_kernel_a_event_kernel_host_phases_observed_base_last\\native_type_audit.json",
+    "output\\_v1110\\native_event_kernel_a_event_kernel_host_phases_reuse_0\\native_type_audit.json",
+    "output\\_v1110\\native_event_kernel_a_event_kernel_host_phases_reuse_1\\native_type_audit.json",
+    "output\\_v1110\\native_event_kernel_a_event_kernel_host_phases_reuse_2\\native_type_audit.json",
+    "output\\_v1110\\native_event_kernel_a_event_kernel_host_phases_reuse_3\\native_type_audit.json",
+    "output\\_v1110\\native_event_kernel_a_event_kernel_host_phases_reuse_4\\native_type_audit.json",
+    "output\\_v1110\\native_event_kernel_a_event_kernel_host_phases_reuse_5\\native_type_audit.json",
+    "output\\_v1110\\native_event_kernel_a_event_kernel_host_phases_reuse_6\\native_type_audit.json",
+    "output\\_v1110\\native_event_kernel_a_event_kernel_host_rng_phases_new_expand\\native_type_audit.json",
+    "output\\_v1110\\native_event_kernel_a_event_kernel_host_phases_observed_base_current\\cpp\\native_type_audit.json"
+  ],
+  "source_still_matches_verified_hashes": 704,
+  "active_runtime_unchanged_sha256": "58383a1158e951d7aae8b4d4c34df4d52332446156946d31a488f5dff323ec39"
+}

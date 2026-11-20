@@ -1,0 +1,42 @@
+{
+  "primary_ab_gate_passed": true,
+  "architecture_20pct_target_met": false,
+  "comparison": "isolated experimental18 versus native event chain",
+  "candidate_sha256": "2b48ccf3526da880ce905f163b771d84462a90c52cc83f7ada181c7c8e62f521",
+  "summary": {
+    "main_thread_cpu_s": {
+      "group_median_reduction_pct": [
+        7.759257549173515,
+        7.57420017987922,
+        4.344262295081958
+      ],
+      "pooled_pair_median_reduction_pct": 7.759257549173515,
+      "candidate_wins": 18,
+      "pairs": 24,
+      "sum_time_reduction_pct": 8.145282613367721
+    },
+    "wall_s": {
+      "group_median_reduction_pct": [
+        3.8854670324036777,
+        3.8009674113135494,
+        1.5741396674320063
+      ],
+      "pooled_pair_median_reduction_pct": 3.885467032403678,
+      "candidate_wins": 15,
+      "pairs": 24,
+      "sum_time_reduction_pct": 7.546705720363556
+    }
+  },
+  "background_load_range_pct": [
+    15.973708465875621,
+    53.96172638338173
+  ],
+  "on_ac_all": true,
+  "runtime_deployed": false,
+  "remaining": [
+    "cumulative versus deployed",
+    "2604 strict truth and hash",
+    "continuous raw24",
+    "training and SHA-verified deployment"
+  ]
+}
