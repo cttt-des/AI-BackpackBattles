@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "dll_sha256": "f95e8f9c5bfcab63534ccfff5988b327ddef22edb0f9a274cd3356bc56ad83f1",
+  "differential_results": {
+    "baseline": {
+      "cases": 684,
+      "state_and_callback_digest": 5770223473925008811,
+      "all_bitwise_equal": true
+    },
+    "candidate": {
+      "cases": 684,
+      "state_and_callback_digest": 5770223473925008811,
+      "all_bitwise_equal": true
+    }
+  }
+}

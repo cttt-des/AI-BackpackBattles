@@ -1,0 +1,9 @@
+{
+  "diagnostic_only": true,
+  "isolated_profile_output": "C:\\Users\\Windows\\AppData\\Local\\Temp\\native-speed-instrumented-boundary-vikuj90n\\probe_counts",
+  "result": {
+    "cases": 684,
+    "state_and_callback_digest": 5770223473925008811,
+    "all_bitwise_equal": true
+  }
+}

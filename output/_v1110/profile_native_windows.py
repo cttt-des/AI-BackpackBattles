@@ -96,6 +96,7 @@ def main():
     parser.add_argument("--corpus", action="store_true", help="Sample the 200 duration-stratified original replays")
     parser.add_argument("--min-samples", type=int, default=0, help="Repeat the workload until this many native stacks are collected")
     parser.add_argument("--instruction-locations", action="store_true", help="Include sampled leaf instruction offsets for disassembly")
+    parser.add_argument("--full-output", action="store_true", help="Retain all function summaries, direct leaf callers and resolved stacks")
     args = parser.parse_args()
     if args.min_samples < 0:
         parser.error("--min-samples must be nonnegative")
@@ -174,19 +175,26 @@ def main():
         index = bisect_right(offsets, offset) - 1
         return by_offset[offsets[index]] if index >= 0 else "?"
 
-    leaf, inclusive, callers = Counter(), Counter(), Counter()
+    leaf, inclusive, callers, leaf_callers = Counter(), Counter(), Counter(), Counter()
     for stack, count in stacks.items():
         names = tuple(map(resolve, stack))
         leaf[names[0]] += count
+        if len(names)>1:
+            leaf_callers[" -> ".join((names[1],names[0]))] += count
         for name in set(names):
             inclusive[name] += count
         for pair in set(zip(names[1:], names)):
             callers[" -> ".join(pair)] += count
+    limit=None if args.full_output else 45
     report = {"workload": "original_replays" if args.corpus else "training", "samples": stacks.total(),
               "batches": batches, "dll_sha256": hashlib.sha256(dll.read_bytes()).hexdigest(),
               "inputs_sha256": inputs_digest.hexdigest() if inputs_digest else None,
-              "sampled_wall_s": wall, "leaf": leaf.most_common(45),
-              "inclusive": inclusive.most_common(45), "callers": callers.most_common(45)}
+              "sampled_wall_s": wall, "leaf": leaf.most_common(limit),
+              "inclusive": inclusive.most_common(limit), "callers": callers.most_common(limit)}
+    if args.full_output:
+        report["leaf_callers"]=leaf_callers.most_common()
+        report["resolved_stacks"]=[{"functions":list(map(resolve,stack)),"samples":count}
+                                   for stack,count in stacks.most_common()]
     if args.instruction_locations:
         locations = Counter()
         for stack, count in stacks.items():

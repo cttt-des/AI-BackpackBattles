@@ -382,3 +382,16 @@ CoreItem 从 1,696 字节、8 字节对齐改为 1,792 字节、64 字节对齐�
 基线与候选 444 组转换、计时器、状态、RNG 及 getter 顺序对照相同，共 133 次 RNG 调用；覆盖 getter 内替换上下文、无效上下文在零值／上限提前返回路径不应被访问、外部自定义 getter。原有回归、三场严格逐事件检查和 22 个 C ABI 检查通过。[边界测试](../output/_v1110/native_perf50/cycles16/buff_context_boundary_test.json) · [ABI](../output/_v1110/native_perf50/cycles16/buff_context_abi.json)
 
 两轮各八组、120 秒预热、静默隔离 AB／BA，CPU 耗时分别增加 **3.07%、0.53%**，墙钟降幅 **−2.02%、0.17%**，触发预先记录的早停排除条件。保留全部 16 对，不合入，不进入 2,604 场及 24 批发布门槛，也未接入默认生成流程。下一轮先计数冷却阶段中相同角色加速／减速层数的重复计算，核对回调之间的有效复用区间，再决定是否值得缓存。[试验条件](../output/_v1110/native_perf50/cycles16/buff_context_trial_policy.json) · [首测](../output/_v1110/native_perf50/cycles16/buff_context_ab.json) · [反转复测](../output/_v1110/native_perf50/cycles16/buff_context_ab_repeat.json) · [汇总](../output/_v1110/native_perf50/cycles16/buff_context_ab_pooled.json) · [未部署记录](../output/_v1110/native_perf50/cycles16/buff_context_installation.json)
+
+
+### 第十七轮（未替换运行时）
+
+仍以第十一轮 `58383a11…` 为基线，先核对远端 `28b2736b` 的 DLL 原始字节和 699 份源码／构建文件。固定 200 场计数共有 **3,583,917** 次正常速度计算，回调之间可复用同一角色加减速项 **3,080,447** 次，占 **85.95%**；相同倍率下可复用最终速度为 **23.32%**。所有计算仍执行，未观察到标记回调边界之间的层数或同键速度变化。计数 DLL 只用于诊断。[计数](../output/_v1110/native_perf50/cycles17/shared_speed_counts.json) · [备份核对](../output/_v1110/native_perf50/cycles17/verified_baseline.json)
+
+候选只缓存 `double(stacks(107)-stacks(110))*0.02`，缓存放在对手／玩家各自冷却遍历的栈上，按角色身份区分。物品速度倍率、加法、分支和限幅仍逐件计算。宝石 character getter、回退 getSpeed、显示钩子和 trigger 回调前后均清空缓存，嵌套阶段使用独立栈。原生桥接显式启用，外部调用默认走无缓存实现。头文件增加内部标志并在重置时关闭，全部 20 个单元重建、18 个热点单元重新训练 PGO，浮点选项不变。逐一核对全部 674 个生成 meta 方法均仅返回常量。[实现](../output/_v1110/optimize_native_shared_speed.py) · [设计](../output/_v1110/native_perf50/cycles17/shared_speed_design.json)
+
+基线、无缓存候选及缓存候选的 **684** 组位级状态／回调对照一致，覆盖字典顺序、替换 Buff／字典、触发、显示与宝石 getter 的嵌套调用、无角色回退、禁用、阻塞、眩晕、倍率变化、NaN 和负零。旧回归、三场严格逐事件及 22 个 C ABI 检查通过。待接入的生成流程组合已从旧版及当前版输入验证，重复应用字节和修改时间不变；因性能条件未通过，没有接入。[定向测试](../output/_v1110/native_perf50/cycles17/shared_speed_boundary_test.json) · [ABI](../output/_v1110/native_perf50/cycles17/shared_speed_abi.json) · [生成组合](../output/_v1110/native_perf50/cycles17/shared_speed_pipeline_test.json)
+
+三轮各八组、120 秒预热、静默隔离 AB／BA，CPU 降幅 **−3.50%、2.04%、5.62%**，墙钟 **−1.97%、0.33%、3.49%**。首测反向，未满足测速前记录的各独立组方向一致条件；保留全部 24 对，不以合计中位数替代预设条件，不合入，不进入 2,604 场及 24 批发布门槛。[条件](../output/_v1110/native_perf50/cycles17/shared_speed_trial_policy.json) · [首测](../output/_v1110/native_perf50/cycles17/shared_speed_ab.json) · [复测](../output/_v1110/native_perf50/cycles17/shared_speed_ab_repeat.json) · [第三组](../output/_v1110/native_perf50/cycles17/shared_speed_ab_confirm.json) · [汇总](../output/_v1110/native_perf50/cycles17/shared_speed_ab_pooled.json) · [未部署记录](../output/_v1110/native_perf50/cycles17/shared_speed_installation.json)
+
+采样工具新增可选完整输出，保留全部函数、直接叶节点调用者和解析后的栈。补采当前版得到 **6,124** 个有效栈、29 批固定回放；采样与低优先级编译并行，仅用于热点归属，不作吞吐成绩。字符串格式化的来源包括 addSpeed 91 个包含样本、readyInit 38 个；GdEnum::get 的来源包括角色初始化 22 个。源码显示每种 Buff 初始化会分配 EventType 的全部键，再反复按字符串找值以反查名称。下一轮优先验证该静态反向映射，可在保留未知值原路径的条件下跳过数组和重复查找；随后再评估剩余诊断参数。[完整采样](../output/_v1110/native_perf50/cycles17/baseline_profile_full.json) · [采样条件](../output/_v1110/native_perf50/cycles17/baseline_profile_conditions.json)
