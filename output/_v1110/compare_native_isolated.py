@@ -16,7 +16,10 @@ from bench_native_corpus import load_simulator, measure, prepare, select_cases
 from compare_native_serial import summarize
 
 
-def worker(dll, reference_path):
+def worker(dll, reference_path, logical_cpu=None):
+    process = psutil.Process()
+    if logical_cpu is not None:
+        process.cpu_affinity([int(logical_cpu)])
     dll = Path(dll)
     reference = json.loads(Path(reference_path).read_bytes())
     sim = load_simulator(dll)
@@ -24,7 +27,6 @@ def worker(dll, reference_path):
     jobs = list(prepare(sim, select_cases(200), signature))
     if signature.hexdigest() != reference["inputs_sha256"]:
         raise ValueError("Worker inputs differ from the fixed reference")
-    process = psutil.Process()
     print(json.dumps({"ready": True, "pid": os.getpid(), "fights": len(jobs),
                       "priority_class": int(process.nice()), "cpu_affinity": process.cpu_affinity(),
                       "inputs_sha256": signature.hexdigest(), "dll_bytes": dll.stat().st_size,
@@ -43,11 +45,12 @@ def worker(dll, reference_path):
 
 
 class Arm:
-    def __init__(self, dll, reference, log_path):
+    def __init__(self, dll, reference, log_path, logical_cpu=None):
         self.log = log_path.open("w+b")
+        affinity_args = [] if logical_cpu is None else [str(logical_cpu)]
         self.process = subprocess.Popen(
             [sys.executable, "-u", str(Path(__file__).resolve()), "--worker", str(dll.resolve()),
-             str(reference.resolve())], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=self.log,
+             str(reference.resolve()), *affinity_args], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=self.log,
             text=True, encoding="utf8", creationflags=subprocess.CREATE_NO_WINDOW | subprocess.NORMAL_PRIORITY_CLASS)
         try:
             self.ready = self.read()
@@ -96,7 +99,11 @@ def main():
     parser.add_argument("--candidate-first", action="store_true")
     parser.add_argument("--candidate-load-first", action="store_true")
     parser.add_argument("--warmup-seconds", type=float, default=60)
+    parser.add_argument("--logical-cpu", type=int,
+                        help="Pin both arms to the same allowed logical CPU for a controlled comparison")
     args = parser.parse_args()
+    if args.logical_cpu is not None and args.logical_cpu not in psutil.Process().cpu_affinity():
+        parser.error("--logical-cpu must be in the current process's allowed affinity mask")
     if args.pairs < 2 or args.pairs % 2:
         parser.error("--pairs must be a positive even number")
     if not math.isfinite(args.warmup_seconds) or not 0 <= args.warmup_seconds <= 120:
@@ -108,13 +115,13 @@ def main():
     report = {"inputs_sha256": reference["inputs_sha256"], "results_sha256": reference["results_sha256"],
               "fights": 200, "workers": 1, "pairs": [], "execution_mode": "separate_single_dll_processes",
               "worker_pids": {}, "worker_priority_class": {}, "worker_cpu_affinity": {}, "load_order": [],
-              "report_writes_during_measurement": False}
+              "report_writes_during_measurement": False, "requested_logical_cpu": args.logical_cpu}
     paths = {"baseline": args.baseline, "candidate": args.candidate}
     labels = ["candidate", "baseline"] if args.candidate_load_first else ["baseline", "candidate"]
     with ExitStack() as resources:
         arms = {}
         for label in labels:
-            arm = Arm(paths[label], args.reference, args.out.with_name(args.out.stem + f"_{label}_worker.log"))
+            arm = Arm(paths[label], args.reference, args.out.with_name(args.out.stem + f"_{label}_worker.log"), args.logical_cpu)
             resources.callback(arm.close)
             arms[label] = arm
             if arm.ready["inputs_sha256"] != report["inputs_sha256"]:
@@ -125,6 +132,8 @@ def main():
             report["worker_priority_class"][label] = arm.ready["priority_class"]
             report["worker_cpu_affinity"][label] = arm.ready["cpu_affinity"]
             report["load_order"].append(label)
+            if args.logical_cpu is not None and arm.ready["cpu_affinity"] != [args.logical_cpu]:
+                raise ValueError(f"Worker affinity mismatch for {label}")
         if len(set(report["worker_pids"].values())) != 2:
             raise ValueError("Both arms must execute in separate processes")
 

@@ -332,3 +332,18 @@ CoreItem 从 1,696 字节、8 字节对齐改为 1,792 字节、64 字节对齐�
 24 组索引／原顺序扫描对照和 21 组饱和回退用例均通过，覆盖别名、同帧新增／替换、数组重排／缩短、未来占位对象修复、嵌套及排序回调。数组所有修改入口、清空、洗牌 RNG、排序、字段替换测试通过；此前计时器启动／停止／重启、首次生效及数组别名生命周期回归也通过。三场原版严格逐事件检查通过，22 个 C ABI 不变。重复生成保持字节及修改时间。[对照测试源码](../output/_v1110/test_native_sparse_timers.cpp) · [对照结果](../output/_v1110/native_perf50/cycles12/sparse_differential_test.json) · [数组追踪测试](../output/_v1110/native_perf50/cycles12/tracking_test.json) · [ABI](../output/_v1110/native_perf50/cycles12/sparse_timers_abi.json)
 
 三轮各八组隔离 AB／BA，CPU 耗时降幅 **−3.21%、2.69%、2.07%**，墙钟降幅 **−1.27%、0.12%、1.14%**。合计 24 对全部保留，CPU 中位数仅降低 **0.73%**，墙钟 **0.89%**，未取得方向一致的可重复收益，故不合入。没有进入 2,604 场和 24 批发布门槛，运行时保持第十一轮；原型未接入默认重建流程。反汇编确认普通数组 push_back 的追踪判断已内联，未发现每次空追踪都无条件进入 TLS 的额外调用，不能把收益不足直接归因于该猜测。下一轮单独计数更热的冷却物品遍历，核对资格变化与同帧回调后再选择实现。[首测](../output/_v1110/native_perf50/cycles12/sparse_timers_ab.json) · [反转复测](../output/_v1110/native_perf50/cycles12/sparse_timers_ab_repeat.json) · [确认](../output/_v1110/native_perf50/cycles12/sparse_timers_ab_confirm.json) · [汇总](../output/_v1110/native_perf50/cycles12/sparse_timers_ab_pooled.json) · [未部署记录](../output/_v1110/native_perf50/cycles12/sparse_timers_installation.json)
+
+
+### 第十三轮（未替换运行时，修复构建依赖）
+
+基线仍为第十一轮 `58383a11…`，远端备份 `5352d59b`。继续诊断冷却物品遍历：固定 200 场共 386,704 个角色阶段、13,473,218 次物品访问，父物品或宝石活跃的访问为 3,635,044 次，占 **26.98%**；自身活跃 3,633,565 次。相关数组和冷却状态的组合 epoch 可复用 **99.51%**，遍历中途相关修改 **760** 次。冷却字段赋值 35,007 次，其中类型改变或布尔变化 23,435 次，语料未出现非布尔冷却状态。已核对全部四处赋值及两段循环，诊断完整结果哈希相同。[诊断脚本](../output/_v1110/probe_native_cooldown_scan.py) · [计数](../output/_v1110/native_perf50/cycles13/cooldown_counts.json)
+
+独立候选仅对冷却遍历建立父物品下标索引，保留两段原始处理体，缓存追加在 CoreCombat 字段末尾，不改变角色现有字段布局。只跳过布尔 false 且所有非空宝石同样布尔 false 的物品，未知种类或非原生对象保守保留。相关数组别名及四处冷却状态变化均失效索引；同帧变更从当前位置下一项转为原顺序扫描，保留原捕获长度和数组引用。嵌套、排序回调和 epoch 饱和使用原路径。仅原生桥接内部启用，对全部 20 个依赖单元重新构建、18 个热点单元重新采集 PGO，浮点选项不变。[原型脚本](../output/_v1110/optimize_native_sparse_cooldowns.py)
+
+正式候选通过 28 组原顺序／索引对照及 28 组饱和回退用例，覆盖激活、停用及重启后续物品，同帧宝石变化，数组修改／替换／缩短，未来占位修复，嵌套及排序回调，非布尔值，以及回调重置缓存。所有数组修改入口和洗牌 RNG 测试、此前的计时器及别名生命周期回归均通过，三场原版严格逐事件检查通过，22 个 C ABI 不变。[对照源码](../output/_v1110/test_native_sparse_cooldowns.cpp) · [对照结果](../output/_v1110/native_perf50/cycles13/cooldown_differential_test.json) · [数组／字段追踪测试](../output/_v1110/native_perf50/cycles13/cooldown_tracking_test.json) · [ABI](../output/_v1110/native_perf50/cycles13/sparse_cooldowns_v2_abi.json)
+
+三轮各八组隔离 AB／BA，CPU 降幅 **−3.85%、7.65%、1.27%**，墙钟 **−3.01%、7.76%、1.85%**。保留全部 24 对后，CPU **−0.006%**、墙钟 **−0.032%**，没有净收益，故不合入，也未进入 2,604 场及 24 批发布门槛。[首测](../output/_v1110/native_perf50/cycles13/sparse_cooldowns_v2_ab.json) · [反转复测](../output/_v1110/native_perf50/cycles13/sparse_cooldowns_v2_ab_repeat.json) · [确认](../output/_v1110/native_perf50/cycles13/sparse_cooldowns_v2_ab_confirm.json) · [汇总](../output/_v1110/native_perf50/cycles13/sparse_cooldowns_v2_ab_pooled.json)
+
+为检查调度噪声，测速工具增加可选 `--logical-cpu`，默认行为保持原设置。先以相同 DLL 固定到逻辑核 6 做独立 A/A：两臂实测掩码均为 `[6]`，CPU 成对差异范围仍达 **−50.67% 至 26.61%**，未得到稳定控制条件，因此没有据此补做候选收益测试，也未用它修正、替换或筛除原 A/B 结果。硬件为本地读取的 i5-8265U、4 核 8 线程。该实验进一步说明单一后台占用拟合无法消除全部运行条件差异。[同核 A/A](../output/_v1110/native_perf50/cycles13/pinned_aa.json) · [测速工具](../output/_v1110/compare_native_isolated.py)
+
+单独保留构建依赖修复：旧脚本固定追踪两个根目录头文件，新增辅助头文件会漏编；改为追踪根目录全部 `.hpp`，其余编译及链接选项相同。用真实编译器和五个编译单元复现：首次 DLL 字段偏移 4，修改新头文件后旧脚本编译 0/5、仍读到 4；修复后编译 5/5、读到 0，C++ 源码未改。当前 DLL 和运行时没有替换。两个索引原型均未接入默认重建流程；下一轮转向分配器常见路径及慢路径代码体积，继续保持分配次序、对齐、回调、RNG 和浮点运算。[构建修复脚本](../output/_v1110/optimize_native_root_header_dependencies.py) · [真实 DLL 测试](../output/_v1110/native_perf50/cycles13/root_header_dependency_test.json) · [本轮记录](../output/_v1110/native_perf50/cycles13/sparse_cooldowns_v2_installation.json)

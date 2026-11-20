@@ -1,0 +1,20 @@
+{
+  "inputs": {
+    "gd_rt.hpp": "bf6ee43ba5c5a40ced3b217602b01444b5324ecabd4977ba42e13266c52903e0",
+    "gd_rt.cpp": "63dc2c0e53827722349a306430930caef50640d334fc527764ad1ae0dddac8ac",
+    "engine_wrapper.cpp": "1dd69d3aa317890b1be03e1e65acb837322ce8ca0c4cbdcbacf85a8aabd45a88",
+    "gen/hdrs/Gd__gd_core__CoreCombat.hpp": "09ebcad23c2b0917480f8495ecd1ab0ff5b5c0ee08cc7ef4ca04c67d20aca32b",
+    "gen/shards/shard_00.cpp": "e39d297289c832f5237609815630ba3cc4bd435345572c04114bfb42e2d1bced",
+    "gen/shards/shard_03.cpp": "8d7c84ec9a22f4305b9d848e5c80c52e15e7702313349a5592ae379b4b70f3bf"
+  },
+  "outputs": {
+    "gd_rt.hpp": "70e17a6b931705d0fa85baa0772047bc1868cb7219d0dceb935286a0c0ebbc20",
+    "gd_rt.cpp": "cc7bb68ddc528b69de1f014da57d9e0a45950969164311f586257a1ea7f2761d",
+    "engine_wrapper.cpp": "5177ea37dc3f2ce4c88b12afe0f924668be8700756a1909035e338d6de02a1fe",
+    "gen/hdrs/Gd__gd_core__CoreCombat.hpp": "d4c3c179a3d70e1a150c23c5b2d33352f09e19466cc65bef4763d748b42b1350",
+    "gen/shards/shard_00.cpp": "a3434df589b5f3ed3ce6b657566df05db67f61959d87efbe457c407a54ab8be1",
+    "gen/shards/shard_03.cpp": "a6e09816b36079ee10faf53200e2857608fbf5e69432eeca29f84abc675029fa"
+  },
+  "cursor_sha256": "c987b914f23c99bfd671af7472e93231fc3f0bc058a6ec74eb348eebbacd454c",
+  "idempotent_bytes_and_mtime": true
+}

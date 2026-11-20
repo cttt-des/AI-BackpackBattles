@@ -1,0 +1,10 @@
+{
+  "diagnostic_only": true,
+  "base_probe_sha256": "05b9d60d4506e524de498701a4e2289e48a5ac922b877ef42024306837756b91",
+  "all_headers_identical": true,
+  "changed_cpp_units": [
+    "shard_00",
+    "shard_03"
+  ],
+  "dll_sha256": "78ea78cc310a3bc31aa3ab73443b9abb2003dd18adc013dc45c4fa70f6a017e0"
+}
