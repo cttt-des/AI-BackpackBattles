@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "dll_sha256": "f8f2201a3ec8565cf761deffde32ff672e1561e25d4754c2b37ca03429fa3b9b",
+  "output": "24 dense/indexed scenarios and 21 saturated-epoch scenarios passed: aliases, mutation order, same-frame timers/gems, captured length, repaired placeholders, nested phases and sort callbacks\n",
+  "compiled_against_candidate_headers": true
+}

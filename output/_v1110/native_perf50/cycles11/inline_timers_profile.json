@@ -1,0 +1,3556 @@
+{
+  "workload": "original_replays",
+  "samples": 6038,
+  "batches": 43,
+  "dll_sha256": "58383a1158e951d7aae8b4d4c34df4d52332446156946d31a488f5dff323ec39",
+  "inputs_sha256": "d94b16d42cc88e9a3850a77c9360b9c4c4fdd676cb252e463044a903db2a5fef",
+  "sampled_wall_s": 99.93166980000024,
+  "leaf": [
+    [
+      "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      644
+    ],
+    [
+      "Gd__gd_core__CoreItem::fn_physicsTick(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+      344
+    ],
+    [
+      "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.0]",
+      247
+    ],
+    [
+      "Gd__gd_core__CoreItem::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      191
+    ],
+    [
+      "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.1]",
+      191
+    ],
+    [
+      "gd::get_prop(gd::BattleCtx&, gd::GdVal const&, unsigned int)",
+      141
+    ],
+    [
+      "gd::gd_eq(gd::GdVal const&, gd::GdVal const&)",
+      131
+    ],
+    [
+      "Gd__gd_core__CoreContext::get_prop(unsigned int, gd::GdVal&) const",
+      100
+    ],
+    [
+      "Gd__gd_core__CoreEventBus::fn_emitAndLog(gd::GdVal const*, int)",
+      94
+    ],
+    [
+      "Gd__gd_core_items__Item::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      91
+    ],
+    [
+      "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.2]",
+      79
+    ],
+    [
+      "gd::get_index(gd::BattleCtx&, gd::GdVal const&, gd::GdVal const&)",
+      73
+    ],
+    [
+      "gd::get_index(gd::BattleCtx&, gd::GdVal const&, gd::GdVal const&) [clone .constprop.0]",
+      73
+    ],
+    [
+      "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int)",
+      65
+    ],
+    [
+      "gd::gd_truth(gd::GdVal const&)",
+      62
+    ],
+    [
+      "gd::gd_iter_seq(gd::BattleArena&, gd::GdVal const&)",
+      61
+    ],
+    [
+      "gd::GdDict::set(gd::BattleArena&, gd::GdVal const&, gd::GdVal const&)",
+      60
+    ],
+    [
+      "pthread_spin_lock",
+      56
+    ],
+    [
+      "Gd__gd_core__CoreContext::fn_tickMotion(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+      56
+    ],
+    [
+      "Gd__gd_core__CoreGrid::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      52
+    ],
+    [
+      "gd::gd_in(gd::GdVal const&, gd::GdVal const&)",
+      52
+    ],
+    [
+      "gd::GdDict::find_index(gd::GdVal const&, unsigned long long) const",
+      51
+    ],
+    [
+      "gd::make_str(gd::BattleArena&, char const*, unsigned int)",
+      49
+    ],
+    [
+      "Gd__gd_core__CoreItemData::get_prop(unsigned int, gd::GdVal&) const",
+      48
+    ],
+    [
+      "gd::gd_val_hash(gd::GdVal const&)",
+      45
+    ],
+    [
+      "Gd__gd_core__CoreRng::fn_randf_range(gd::GdVal const*, int)",
+      45
+    ],
+    [
+      "Gd__gd_core__CoreCharacter::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      41
+    ],
+    [
+      "gd::intern_sym(std::basic_string_view<char, std::char_traits<char> >)",
+      38
+    ],
+    [
+      "gd::GdEnum::get(std::basic_string_view<char, std::char_traits<char> >, long long&) const",
+      37
+    ],
+    [
+      "gd::GdArr::from_init(gd::BattleArena&, std::initializer_list<gd::GdVal>)",
+      37
+    ],
+    [
+      "gd::gd_str_fn(gd::BattleArena&, gd::GdVal const*, int) [clone .constprop.0]",
+      36
+    ],
+    [
+      "gd::str_concat(gd::BattleArena&, gd::GdStr const*, gd::GdStr const*)",
+      35
+    ],
+    [
+      "gd::GdArr::push_back(gd::BattleArena&, gd::GdVal const&)",
+      35
+    ],
+    [
+      "pthread_getspecific",
+      35
+    ],
+    [
+      "gd::GdArr::from_init(gd::BattleArena&, std::initializer_list<gd::GdVal>) [clone .constprop.0]",
+      34
+    ],
+    [
+      "Gd__gd_core__CoreCharacter::get_prop(unsigned int, gd::GdVal&) const",
+      33
+    ],
+    [
+      "Gd__gd_core__CoreContext::fn__step_native_delays(gd::GdVal const*, int)",
+      33
+    ],
+    [
+      "Gd__gd_core__CoreBuff::fn_gainTemporary(gd::GdVal const*, int)",
+      33
+    ],
+    [
+      "Gd__gd_core__CoreItem::fn_getNextFreeLabelPosition(gd::GdVal const*, int) [clone .constprop.0]",
+      33
+    ],
+    [
+      "(anonymous namespace)::NativeBattleHooks::on_log_event(gd::BattleCtx&, gd::GdObj*) [clone .isra.0]",
+      33
+    ],
+    [
+      "__mingw_pformat",
+      32
+    ],
+    [
+      "Gd__gd_core__CoreCombatLog::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      32
+    ],
+    [
+      "(anonymous namespace)::NativeBattleHooks::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&) [clone .lto_priv.0]",
+      32
+    ],
+    [
+      "gd::GdArr::append_array(gd::BattleArena&, gd::GdArr const*)",
+      32
+    ],
+    [
+      "Gd__gd_core__CoreItem::fn_canAffect_color(gd::GdVal const*, int)",
+      31
+    ]
+  ],
+  "inclusive": [
+    [
+      "(anonymous namespace)::run_one_internal(gd::BattleCtx&, PackedSide const&, PackedSide const&, BattleOptions const&, BattleResult&, ReplayInitial const*, ReplayBuffState const*, ReplayEngineRng const*, bool, double, (anonymous namespace)::ReplayHostRng*, bool) [clone .lto_priv.0]",
+      3038
+    ],
+    [
+      "Gd__gd_core__CoreItem::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      3030
+    ],
+    [
+      "gd_sim_run_one_replay_native_clock",
+      2873
+    ],
+    [
+      "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.1]",
+      2557
+    ],
+    [
+      "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.0]",
+      2157
+    ],
+    [
+      "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      2095
+    ],
+    [
+      "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int)",
+      2003
+    ],
+    [
+      "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.2]",
+      1776
+    ],
+    [
+      "Gd__gd_core__CoreCharacter::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      1426
+    ],
+    [
+      "(anonymous namespace)::build_side_items(gd::BattleCtx&, gd::GdObj*, Gd__gd_core__CoreCharacter*, int, PackedSide const&, std::vector<Gd__gd_core__CoreItemData*, std::allocator<Gd__gd_core__CoreItemData*> >&, gd::GdArr*, std::vector<Gd__gd_core__CoreItem*, std::allocator<Gd__gd_core__CoreItem*> >*) [clone .lto_priv.0]",
+      880
+    ],
+    [
+      "Gd__gd_core__CoreItem::fn_physicsTick(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+      837
+    ],
+    [
+      "Gd__gd_core__CoreBuff::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      788
+    ],
+    [
+      "Gd__gd_core__CoreItem::fn_trigger(gd::GdVal const*, int) [clone .constprop.0]",
+      691
+    ],
+    [
+      "Gd__gd_core__CoreEventBus::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      644
+    ],
+    [
+      "Gd__gd_core__CoreEventBus::fn_emitAndLog(gd::GdVal const*, int)",
+      643
+    ],
+    [
+      "Gd__gd_core__CoreGrid::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      641
+    ],
+    [
+      "Gd__gd_core__CoreBuff::fn_gainTemporary(gd::GdVal const*, int)",
+      616
+    ],
+    [
+      "Gd__gd_core__CoreGrid::fn_addItem(gd::GdVal const*, int)",
+      557
+    ],
+    [
+      "Gd__gd_core__CoreBuff::fn_gainStacks(gd::GdVal const*, int)",
+      547
+    ],
+    [
+      "Gd__gd_core__CoreCharacter::fn_takeDamage(gd::GdVal const*, int)",
+      535
+    ],
+    [
+      "Gd__gd_core__CoreEventBus::fn_emitEvent(gd::GdVal const*, int)",
+      472
+    ],
+    [
+      "Gd__gd_core__CoreCharacter::fn_dealDamage(gd::GdVal const*, int)",
+      461
+    ],
+    [
+      "gd::get_prop(gd::BattleCtx&, gd::GdVal const&, unsigned int)",
+      433
+    ],
+    [
+      "Gd__gd_core__CoreCombatLog::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      410
+    ],
+    [
+      "Gd__gd_core__CoreItem::fn_dealDamage(gd::GdVal const*, int)",
+      389
+    ],
+    [
+      "Gd__gd_core__CoreItem::fn_activate(gd::GdVal const*, int)",
+      389
+    ],
+    [
+      "Gd__gd_core__CoreCharacter::fn_gainStacks(gd::GdVal const*, int)",
+      377
+    ],
+    [
+      "gd::GdFuncRef::call_func(gd::BattleCtx&, gd::GdVal const*, int) const",
+      362
+    ],
+    [
+      "Gd__gd_core_items__Bag::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      353
+    ],
+    [
+      "(anonymous namespace)::build_single_item_obj(gd::BattleCtx&, gd::GdObj*, Gd__gd_core__CoreCharacter*, int, (anonymous namespace)::ItemProto const&, Gd__gd_core__CoreItemData*, int, signed char, short, short, int, gd::GdArr*, gd::GdArr*, gd::GdDict*)",
+      341
+    ],
+    [
+      "Gd__gd_core__CoreItem::fn_onItemAdded(gd::GdVal const*, int)",
+      283
+    ],
+    [
+      "Gd__gd_core_items__Bag::fn_onItemAdded(gd::GdVal const*, int)",
+      275
+    ],
+    [
+      "Gd__gd_core__CoreContext::fn_tickMotion(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+      256
+    ],
+    [
+      "gd::gd_str_fn(gd::BattleArena&, gd::GdVal const*, int) [clone .constprop.0]",
+      243
+    ],
+    [
+      "Gd__gd_core__CoreItem::fn_giveStacks(gd::GdVal const*, int)",
+      192
+    ],
+    [
+      "__mingw_snprintf",
+      187
+    ],
+    [
+      "__mingw_vsnprintf",
+      184
+    ],
+    [
+      "__mingw_pformat",
+      178
+    ],
+    [
+      "Gd__gd_core__CoreCharacter::fn_heal(gd::GdVal const*, int)",
+      174
+    ],
+    [
+      "Gd__gd_core__CoreItem::fn_heal(gd::GdVal const*, int)",
+      161
+    ],
+    [
+      "Gd__gd_core__CoreRng::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      160
+    ],
+    [
+      "__emutls_get_address",
+      156
+    ],
+    [
+      "Gd__gd_core__CoreCombat::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      150
+    ],
+    [
+      "gd::construct_class(gd::BattleCtx&, gd::GdClassMeta const*, gd::GdVal const*, int) [clone .constprop.2]",
+      147
+    ],
+    [
+      "Gd__gd_core__CoreItem::fn_stackChanged(gd::GdVal const*, int)",
+      140
+    ]
+  ],
+  "callers": [
+    [
+      "gd_sim_run_one_replay_native_clock -> (anonymous namespace)::run_one_internal(gd::BattleCtx&, PackedSide const&, PackedSide const&, BattleOptions const&, BattleResult&, ReplayInitial const*, ReplayBuffState const*, ReplayEngineRng const*, bool, double, (anonymous namespace)::ReplayHostRng*, bool) [clone .lto_priv.0]",
+      2871
+    ],
+    [
+      "(anonymous namespace)::run_one_internal(gd::BattleCtx&, PackedSide const&, PackedSide const&, BattleOptions const&, BattleResult&, ReplayInitial const*, ReplayBuffState const*, ReplayEngineRng const*, bool, double, (anonymous namespace)::ReplayHostRng*, bool) [clone .lto_priv.0] -> Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      1983
+    ],
+    [
+      "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.0] -> Gd__gd_core__CoreItem::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      1282
+    ],
+    [
+      "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.1] -> Gd__gd_core__CoreItem::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      1186
+    ],
+    [
+      "(anonymous namespace)::run_one_internal(gd::BattleCtx&, PackedSide const&, PackedSide const&, BattleOptions const&, BattleResult&, ReplayInitial const*, ReplayBuffState const*, ReplayEngineRng const*, bool, double, (anonymous namespace)::ReplayHostRng*, bool) [clone .lto_priv.0] -> (anonymous namespace)::build_side_items(gd::BattleCtx&, gd::GdObj*, Gd__gd_core__CoreCharacter*, int, PackedSide const&, std::vector<Gd__gd_core__CoreItemData*, std::allocator<Gd__gd_core__CoreItemData*> >&, gd::GdArr*, std::vector<Gd__gd_core__CoreItem*, std::allocator<Gd__gd_core__CoreItem*> >*) [clone .lto_priv.0]",
+      792
+    ],
+    [
+      "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int) -> Gd__gd_core__CoreItem::fn_physicsTick(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+      752
+    ],
+    [
+      "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) -> Gd__gd_core__CoreBuff::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      730
+    ],
+    [
+      "Gd__gd_core__CoreBuff::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&) -> Gd__gd_core__CoreBuff::fn_gainTemporary(gd::GdVal const*, int)",
+      612
+    ],
+    [
+      "Gd__gd_core__CoreItem::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&) -> Gd__gd_core__CoreItem::fn_trigger(gd::GdVal const*, int) [clone .constprop.0]",
+      600
+    ],
+    [
+      "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) -> Gd__gd_core__CoreEventBus::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      578
+    ],
+    [
+      "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) -> Gd__gd_core__CoreItem::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      567
+    ],
+    [
+      "Gd__gd_core__CoreBuff::fn_gainStacks(gd::GdVal const*, int) -> gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int)",
+      542
+    ],
+    [
+      "Gd__gd_core__CoreGrid::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&) -> Gd__gd_core__CoreGrid::fn_addItem(gd::GdVal const*, int)",
+      540
+    ],
+    [
+      "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.2] -> Gd__gd_core__CoreGrid::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      528
+    ],
+    [
+      "(anonymous namespace)::build_side_items(gd::BattleCtx&, gd::GdObj*, Gd__gd_core__CoreCharacter*, int, PackedSide const&, std::vector<Gd__gd_core__CoreItemData*, std::allocator<Gd__gd_core__CoreItemData*> >&, gd::GdArr*, std::vector<Gd__gd_core__CoreItem*, std::allocator<Gd__gd_core__CoreItem*> >*) [clone .lto_priv.0] -> gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.2]",
+      525
+    ],
+    [
+      "Gd__gd_core__CoreBuff::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&) -> Gd__gd_core__CoreBuff::fn_gainStacks(gd::GdVal const*, int)",
+      520
+    ],
+    [
+      "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.2] -> Gd__gd_core__CoreCharacter::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      520
+    ],
+    [
+      "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) -> Gd__gd_core__CoreCharacter::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      491
+    ],
+    [
+      "Gd__gd_core__CoreCharacter::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&) -> Gd__gd_core__CoreCharacter::fn_takeDamage(gd::GdVal const*, int)",
+      489
+    ],
+    [
+      "Gd__gd_core__CoreGrid::fn_addItem(gd::GdVal const*, int) -> gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.1]",
+      467
+    ],
+    [
+      "Gd__gd_core__CoreEventBus::fn_emitEvent(gd::GdVal const*, int) -> Gd__gd_core__CoreEventBus::fn_emitAndLog(gd::GdVal const*, int)",
+      453
+    ],
+    [
+      "Gd__gd_core__CoreEventBus::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&) -> Gd__gd_core__CoreEventBus::fn_emitEvent(gd::GdVal const*, int)",
+      445
+    ],
+    [
+      "Gd__gd_core__CoreCharacter::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&) -> Gd__gd_core__CoreCharacter::fn_dealDamage(gd::GdVal const*, int)",
+      440
+    ],
+    [
+      "Gd__gd_core__CoreEventBus::fn_emitAndLog(gd::GdVal const*, int) -> gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.1]",
+      419
+    ],
+    [
+      "Gd__gd_core__CoreItem::fn_physicsTick(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0] -> gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.0]",
+      388
+    ],
+    [
+      "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.2] -> Gd__gd_core__CoreItem::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      387
+    ],
+    [
+      "Gd__gd_core__CoreCharacter::fn_dealDamage(gd::GdVal const*, int) -> gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.2]",
+      381
+    ],
+    [
+      "Gd__gd_core__CoreItem::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&) -> Gd__gd_core__CoreItem::fn_activate(gd::GdVal const*, int)",
+      377
+    ],
+    [
+      "Gd__gd_core__CoreCharacter::fn_gainStacks(gd::GdVal const*, int) -> gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int)",
+      368
+    ],
+    [
+      "Gd__gd_core__CoreItem::fn_dealDamage(gd::GdVal const*, int) -> gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.2]",
+      357
+    ],
+    [
+      "Gd__gd_core__CoreBuff::fn_gainTemporary(gd::GdVal const*, int) -> gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int)",
+      345
+    ],
+    [
+      "(anonymous namespace)::build_side_items(gd::BattleCtx&, gd::GdObj*, Gd__gd_core__CoreCharacter*, int, PackedSide const&, std::vector<Gd__gd_core__CoreItemData*, std::allocator<Gd__gd_core__CoreItemData*> >&, gd::GdArr*, std::vector<Gd__gd_core__CoreItem*, std::allocator<Gd__gd_core__CoreItem*> >*) [clone .lto_priv.0] -> (anonymous namespace)::build_single_item_obj(gd::BattleCtx&, gd::GdObj*, Gd__gd_core__CoreCharacter*, int, (anonymous namespace)::ItemProto const&, Gd__gd_core__CoreItemData*, int, signed char, short, short, int, gd::GdArr*, gd::GdArr*, gd::GdDict*)",
+      333
+    ],
+    [
+      "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.1] -> gd::GdFuncRef::call_func(gd::BattleCtx&, gd::GdVal const*, int) const",
+      331
+    ],
+    [
+      "Gd__gd_core__CoreItem::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&) -> Gd__gd_core__CoreItem::fn_dealDamage(gd::GdVal const*, int)",
+      317
+    ],
+    [
+      "Gd__gd_core__CoreCharacter::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&) -> Gd__gd_core__CoreCharacter::fn_gainStacks(gd::GdVal const*, int)",
+      290
+    ],
+    [
+      "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.1] -> Gd__gd_core_items__Bag::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      288
+    ],
+    [
+      "Gd__gd_core__CoreItem::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&) -> Gd__gd_core__CoreItem::fn_onItemAdded(gd::GdVal const*, int)",
+      282
+    ],
+    [
+      "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) -> Gd__gd_core__CoreCombatLog::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      280
+    ],
+    [
+      "Gd__gd_core_items__Bag::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&) -> Gd__gd_core_items__Bag::fn_onItemAdded(gd::GdVal const*, int)",
+      275
+    ],
+    [
+      "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int) -> Gd__gd_core__CoreContext::fn_tickMotion(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+      255
+    ],
+    [
+      "Gd__gd_core__CoreItem::fn_activate(gd::GdVal const*, int) -> gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int)",
+      207
+    ],
+    [
+      "__mingw_snprintf -> __mingw_vsnprintf",
+      184
+    ],
+    [
+      "gd::gd_str_fn(gd::BattleArena&, gd::GdVal const*, int) [clone .constprop.0] -> __mingw_snprintf",
+      180
+    ],
+    [
+      "__mingw_vsnprintf -> __mingw_pformat",
+      178
+    ],
+    [
+      "Gd__gd_core__CoreItem::fn_giveStacks(gd::GdVal const*, int) -> gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int)",
+      164
+    ]
+  ],
+  "instruction_locations": [
+    {
+      "offset": 4224278,
+      "function": "Gd__gd_core__CoreItem::fn_physicsTick(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+      "offset_in_function": 230,
+      "samples": 60
+    },
+    {
+      "offset": 4069716,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 1044,
+      "samples": 52
+    },
+    {
+      "offset": 4224387,
+      "function": "Gd__gd_core__CoreItem::fn_physicsTick(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+      "offset_in_function": 339,
+      "samples": 52
+    },
+    {
+      "offset": 4072006,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 3334,
+      "samples": 49
+    },
+    {
+      "offset": 4073271,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 4599,
+      "samples": 44
+    },
+    {
+      "offset": 4069884,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 1212,
+      "samples": 41
+    },
+    {
+      "offset": 3517984,
+      "function": "pthread_spin_lock",
+      "offset_in_function": 52,
+      "samples": 40
+    },
+    {
+      "offset": 4073855,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 5183,
+      "samples": 31
+    },
+    {
+      "offset": 4224373,
+      "function": "Gd__gd_core__CoreItem::fn_physicsTick(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+      "offset_in_function": 325,
+      "samples": 25
+    },
+    {
+      "offset": 3815356,
+      "function": "Gd__gd_core_items__Item::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 60,
+      "samples": 25
+    },
+    {
+      "offset": 3655994,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.0]",
+      "offset_in_function": 746,
+      "samples": 25
+    },
+    {
+      "offset": 4069693,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 1021,
+      "samples": 23
+    },
+    {
+      "offset": 4071981,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 3309,
+      "samples": 23
+    },
+    {
+      "offset": 3620290,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.1]",
+      "offset_in_function": 754,
+      "samples": 23
+    },
+    {
+      "offset": 4073340,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 4668,
+      "samples": 23
+    },
+    {
+      "offset": 3662919,
+      "function": "gd::gd_eq(gd::GdVal const&, gd::GdVal const&)",
+      "offset_in_function": 7,
+      "samples": 22
+    },
+    {
+      "offset": 3671256,
+      "function": "gd::get_prop(gd::BattleCtx&, gd::GdVal const&, unsigned int)",
+      "offset_in_function": 104,
+      "samples": 21
+    },
+    {
+      "offset": 3876654,
+      "function": "Gd__gd_core__CoreItem::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 46,
+      "samples": 20
+    },
+    {
+      "offset": 3663619,
+      "function": "gd::gd_truth(gd::GdVal const&)",
+      "offset_in_function": 3,
+      "samples": 19
+    },
+    {
+      "offset": 3727552,
+      "function": "Gd__gd_core__CoreContext::get_prop(unsigned int, gd::GdVal&) const",
+      "offset_in_function": 0,
+      "samples": 19
+    },
+    {
+      "offset": 4073285,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 4613,
+      "samples": 18
+    },
+    {
+      "offset": 3662951,
+      "function": "gd::gd_eq(gd::GdVal const&, gd::GdVal const&)",
+      "offset_in_function": 39,
+      "samples": 18
+    },
+    {
+      "offset": 3697278,
+      "function": "gd::get_index(gd::BattleCtx&, gd::GdVal const&, gd::GdVal const&)",
+      "offset_in_function": 94,
+      "samples": 17
+    },
+    {
+      "offset": 3663639,
+      "function": "gd::gd_truth(gd::GdVal const&)",
+      "offset_in_function": 23,
+      "samples": 16
+    },
+    {
+      "offset": 3770320,
+      "function": "Gd__gd_core__CoreItemData::get_prop(unsigned int, gd::GdVal&) const",
+      "offset_in_function": 0,
+      "samples": 16
+    },
+    {
+      "offset": 4326232,
+      "function": "gd::GdFuncRef::call_func(gd::BattleCtx&, gd::GdVal const*, int) const",
+      "offset_in_function": 88,
+      "samples": 16
+    },
+    {
+      "offset": 4073873,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 5201,
+      "samples": 16
+    },
+    {
+      "offset": 3815298,
+      "function": "Gd__gd_core_items__Item::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 2,
+      "samples": 15
+    },
+    {
+      "offset": 4071859,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 3187,
+      "samples": 15
+    },
+    {
+      "offset": 3696548,
+      "function": "gd::get_index(gd::BattleCtx&, gd::GdVal const&, gd::GdVal const&) [clone .constprop.0]",
+      "offset_in_function": 20,
+      "samples": 14
+    },
+    {
+      "offset": 3655321,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.0]",
+      "offset_in_function": 73,
+      "samples": 14
+    },
+    {
+      "offset": 1309568,
+      "function": "(anonymous namespace)::NativeBattleHooks::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&) [clone .lto_priv.0]",
+      "offset_in_function": 0,
+      "samples": 13
+    },
+    {
+      "offset": 3663011,
+      "function": "gd::gd_eq(gd::GdVal const&, gd::GdVal const&)",
+      "offset_in_function": 99,
+      "samples": 13
+    },
+    {
+      "offset": 3727596,
+      "function": "Gd__gd_core__CoreContext::get_prop(unsigned int, gd::GdVal&) const",
+      "offset_in_function": 44,
+      "samples": 13
+    },
+    {
+      "offset": 3620326,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.1]",
+      "offset_in_function": 790,
+      "samples": 12
+    },
+    {
+      "offset": 3656030,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.0]",
+      "offset_in_function": 782,
+      "samples": 12
+    },
+    {
+      "offset": 4224220,
+      "function": "Gd__gd_core__CoreItem::fn_physicsTick(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+      "offset_in_function": 172,
+      "samples": 12
+    },
+    {
+      "offset": 3630259,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.2]",
+      "offset_in_function": 179,
+      "samples": 12
+    },
+    {
+      "offset": 3702019,
+      "function": "gd::GdDict::find_index(gd::GdVal const&, unsigned long long) const",
+      "offset_in_function": 163,
+      "samples": 12
+    },
+    {
+      "offset": 3750048,
+      "function": "Gd__gd_core__CoreCharacter::get_prop(unsigned int, gd::GdVal&) const",
+      "offset_in_function": 0,
+      "samples": 11
+    },
+    {
+      "offset": 3671196,
+      "function": "gd::get_prop(gd::BattleCtx&, gd::GdVal const&, unsigned int)",
+      "offset_in_function": 44,
+      "samples": 11
+    },
+    {
+      "offset": 3694597,
+      "function": "gd::GdArr::push_back(gd::BattleArena&, gd::GdVal const&)",
+      "offset_in_function": 101,
+      "samples": 11
+    },
+    {
+      "offset": 3747925,
+      "function": "gd::str_concat(gd::BattleArena&, gd::GdStr const*, gd::GdStr const*)",
+      "offset_in_function": 37,
+      "samples": 11
+    },
+    {
+      "offset": 4225431,
+      "function": "Gd__gd_core__CoreItem::fn_physicsTick(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+      "offset_in_function": 1383,
+      "samples": 11
+    },
+    {
+      "offset": 3656795,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.0]",
+      "offset_in_function": 1547,
+      "samples": 11
+    },
+    {
+      "offset": 3481624,
+      "function": "__emutls_get_address",
+      "offset_in_function": 40,
+      "samples": 10
+    },
+    {
+      "offset": 3687006,
+      "function": "gd::gd_iter_seq(gd::BattleArena&, gd::GdVal const&)",
+      "offset_in_function": 30,
+      "samples": 10
+    },
+    {
+      "offset": 3703500,
+      "function": "Gd__gd_core__CoreCharacter::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 44,
+      "samples": 10
+    },
+    {
+      "offset": 4069696,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 1024,
+      "samples": 10
+    },
+    {
+      "offset": 3662916,
+      "function": "gd::gd_eq(gd::GdVal const&, gd::GdVal const&)",
+      "offset_in_function": 4,
+      "samples": 10
+    },
+    {
+      "offset": 3494784,
+      "function": "__quorem_D2A",
+      "offset_in_function": 146,
+      "samples": 10
+    },
+    {
+      "offset": 3620240,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.1]",
+      "offset_in_function": 704,
+      "samples": 10
+    },
+    {
+      "offset": 3745277,
+      "function": "gd::GdArr::append_array(gd::BattleArena&, gd::GdArr const*)",
+      "offset_in_function": 125,
+      "samples": 10
+    },
+    {
+      "offset": 3662960,
+      "function": "gd::gd_eq(gd::GdVal const&, gd::GdVal const&)",
+      "offset_in_function": 48,
+      "samples": 10
+    },
+    {
+      "offset": 3735250,
+      "function": "Gd__gd_core__CoreGrid::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 1170,
+      "samples": 9
+    },
+    {
+      "offset": 3697625,
+      "function": "gd::get_index(gd::BattleCtx&, gd::GdVal const&, gd::GdVal const&)",
+      "offset_in_function": 441,
+      "samples": 9
+    },
+    {
+      "offset": 4224265,
+      "function": "Gd__gd_core__CoreItem::fn_physicsTick(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+      "offset_in_function": 217,
+      "samples": 9
+    },
+    {
+      "offset": 3661360,
+      "function": "Gd__gd_core__CoreRng::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 0,
+      "samples": 9
+    },
+    {
+      "offset": 3960044,
+      "function": "gd::gd_in(gd::GdVal const&, gd::GdVal const&)",
+      "offset_in_function": 156,
+      "samples": 9
+    },
+    {
+      "offset": 3671165,
+      "function": "gd::get_prop(gd::BattleCtx&, gd::GdVal const&, unsigned int)",
+      "offset_in_function": 13,
+      "samples": 9
+    },
+    {
+      "offset": 3686976,
+      "function": "gd::gd_iter_seq(gd::BattleArena&, gd::GdVal const&)",
+      "offset_in_function": 0,
+      "samples": 9
+    },
+    {
+      "offset": 4224382,
+      "function": "Gd__gd_core__CoreItem::fn_physicsTick(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+      "offset_in_function": 334,
+      "samples": 9
+    },
+    {
+      "offset": 3696832,
+      "function": "gd::get_index(gd::BattleCtx&, gd::GdVal const&, gd::GdVal const&) [clone .constprop.0]",
+      "offset_in_function": 304,
+      "samples": 9
+    },
+    {
+      "offset": 3601559,
+      "function": "gd::intern_sym(std::basic_string_view<char, std::char_traits<char> >)",
+      "offset_in_function": 87,
+      "samples": 9
+    },
+    {
+      "offset": 3662912,
+      "function": "gd::gd_eq(gd::GdVal const&, gd::GdVal const&)",
+      "offset_in_function": 0,
+      "samples": 9
+    },
+    {
+      "offset": 3701992,
+      "function": "gd::GdDict::find_index(gd::GdVal const&, unsigned long long) const",
+      "offset_in_function": 136,
+      "samples": 9
+    },
+    {
+      "offset": 3619617,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.1]",
+      "offset_in_function": 81,
+      "samples": 9
+    },
+    {
+      "offset": 3663648,
+      "function": "gd::gd_truth(gd::GdVal const&)",
+      "offset_in_function": 32,
+      "samples": 9
+    },
+    {
+      "offset": 3655473,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.0]",
+      "offset_in_function": 225,
+      "samples": 9
+    },
+    {
+      "offset": 4224391,
+      "function": "Gd__gd_core__CoreItem::fn_physicsTick(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+      "offset_in_function": 343,
+      "samples": 9
+    },
+    {
+      "offset": 3748367,
+      "function": "gd::str_concat(gd::BattleArena&, gd::GdStr const*, gd::GdStr const*)",
+      "offset_in_function": 479,
+      "samples": 8
+    },
+    {
+      "offset": 3666368,
+      "function": "Gd__gd_core__CoreEventBus::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 0,
+      "samples": 8
+    },
+    {
+      "offset": 3662932,
+      "function": "gd::gd_eq(gd::GdVal const&, gd::GdVal const&)",
+      "offset_in_function": 20,
+      "samples": 8
+    },
+    {
+      "offset": 3656830,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.0]",
+      "offset_in_function": 1582,
+      "samples": 8
+    },
+    {
+      "offset": 3481594,
+      "function": "__emutls_get_address",
+      "offset_in_function": 10,
+      "samples": 8
+    },
+    {
+      "offset": 3619538,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.1]",
+      "offset_in_function": 2,
+      "samples": 8
+    },
+    {
+      "offset": 3703456,
+      "function": "Gd__gd_core__CoreCharacter::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 0,
+      "samples": 8
+    },
+    {
+      "offset": 3601549,
+      "function": "gd::intern_sym(std::basic_string_view<char, std::char_traits<char> >)",
+      "offset_in_function": 77,
+      "samples": 8
+    },
+    {
+      "offset": 3611762,
+      "function": "gd::GdArr::from_init(gd::BattleArena&, std::initializer_list<gd::GdVal>) [clone .constprop.0]",
+      "offset_in_function": 130,
+      "samples": 8
+    },
+    {
+      "offset": 4224216,
+      "function": "Gd__gd_core__CoreItem::fn_physicsTick(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+      "offset_in_function": 168,
+      "samples": 8
+    },
+    {
+      "offset": 3673620,
+      "function": "gd::GdEnum::get(std::basic_string_view<char, std::char_traits<char> >, long long&) const",
+      "offset_in_function": 68,
+      "samples": 8
+    },
+    {
+      "offset": 3696704,
+      "function": "gd::get_index(gd::BattleCtx&, gd::GdVal const&, gd::GdVal const&) [clone .constprop.0]",
+      "offset_in_function": 176,
+      "samples": 8
+    },
+    {
+      "offset": 4224247,
+      "function": "Gd__gd_core__CoreItem::fn_physicsTick(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+      "offset_in_function": 199,
+      "samples": 7
+    },
+    {
+      "offset": 3671259,
+      "function": "gd::get_prop(gd::BattleCtx&, gd::GdVal const&, unsigned int)",
+      "offset_in_function": 107,
+      "samples": 7
+    },
+    {
+      "offset": 4202544,
+      "function": "Gd__gd_core__CoreContext::fn_tickMotion(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+      "offset_in_function": 432,
+      "samples": 7
+    },
+    {
+      "offset": 4071973,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 3301,
+      "samples": 7
+    },
+    {
+      "offset": 3643224,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int)",
+      "offset_in_function": 184,
+      "samples": 7
+    },
+    {
+      "offset": 3655248,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.0]",
+      "offset_in_function": 0,
+      "samples": 7
+    },
+    {
+      "offset": 3525470,
+      "function": "pthread_getspecific",
+      "offset_in_function": 77,
+      "samples": 7
+    },
+    {
+      "offset": 3671153,
+      "function": "gd::get_prop(gd::BattleCtx&, gd::GdVal const&, unsigned int)",
+      "offset_in_function": 1,
+      "samples": 7
+    },
+    {
+      "offset": 3668992,
+      "function": "Gd__gd_core__CoreCombatLog::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 0,
+      "samples": 7
+    },
+    {
+      "offset": 3697254,
+      "function": "gd::get_index(gd::BattleCtx&, gd::GdVal const&, gd::GdVal const&)",
+      "offset_in_function": 70,
+      "samples": 7
+    },
+    {
+      "offset": 4339639,
+      "function": "Gd__gd_core__CoreContext::fn__step_native_delays(gd::GdVal const*, int)",
+      "offset_in_function": 423,
+      "samples": 7
+    },
+    {
+      "offset": 3671236,
+      "function": "gd::get_prop(gd::BattleCtx&, gd::GdVal const&, unsigned int)",
+      "offset_in_function": 84,
+      "samples": 7
+    },
+    {
+      "offset": 4072520,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 3848,
+      "samples": 7
+    },
+    {
+      "offset": 3877186,
+      "function": "Gd__gd_core__CoreItem::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 578,
+      "samples": 7
+    },
+    {
+      "offset": 4069685,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 1013,
+      "samples": 7
+    },
+    {
+      "offset": 4472960,
+      "function": "Gd__gd_core__CoreItem__INNER__CoreElectricalCharge::get_prop(unsigned int, gd::GdVal&) const",
+      "offset_in_function": 0,
+      "samples": 7
+    },
+    {
+      "offset": 3750093,
+      "function": "Gd__gd_core__CoreCharacter::get_prop(unsigned int, gd::GdVal&) const",
+      "offset_in_function": 45,
+      "samples": 7
+    },
+    {
+      "offset": 4224153,
+      "function": "Gd__gd_core__CoreItem::fn_physicsTick(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+      "offset_in_function": 105,
+      "samples": 7
+    },
+    {
+      "offset": 3655280,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.0]",
+      "offset_in_function": 32,
+      "samples": 7
+    },
+    {
+      "offset": 3515182,
+      "function": "pthread_mutex_lock_intern",
+      "offset_in_function": 81,
+      "samples": 7
+    },
+    {
+      "offset": 4069867,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 1195,
+      "samples": 7
+    },
+    {
+      "offset": 3671268,
+      "function": "gd::get_prop(gd::BattleCtx&, gd::GdVal const&, unsigned int)",
+      "offset_in_function": 116,
+      "samples": 7
+    },
+    {
+      "offset": 3727615,
+      "function": "Gd__gd_core__CoreContext::get_prop(unsigned int, gd::GdVal&) const",
+      "offset_in_function": 63,
+      "samples": 6
+    },
+    {
+      "offset": 3656060,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.0]",
+      "offset_in_function": 812,
+      "samples": 6
+    },
+    {
+      "offset": 4336655,
+      "function": "Gd__gd_core__CoreContext::fn_stepCriticalShake(gd::GdVal const*, int) [clone .constprop.0]",
+      "offset_in_function": 159,
+      "samples": 6
+    },
+    {
+      "offset": 3616464,
+      "function": "Gd__gd_core__CoreContext::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 0,
+      "samples": 6
+    },
+    {
+      "offset": 3506768,
+      "function": "strlen",
+      "offset_in_function": 0,
+      "samples": 6
+    },
+    {
+      "offset": 3619547,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.1]",
+      "offset_in_function": 11,
+      "samples": 6
+    },
+    {
+      "offset": 3609336,
+      "function": "gd::construct_class(gd::BattleCtx&, gd::GdClassMeta const*, gd::GdVal const*, int)",
+      "offset_in_function": 280,
+      "samples": 6
+    },
+    {
+      "offset": 3626363,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.1]",
+      "offset_in_function": 6827,
+      "samples": 6
+    },
+    {
+      "offset": 3701264,
+      "function": "gd::gd_val_hash(gd::GdVal const&)",
+      "offset_in_function": 128,
+      "samples": 6
+    },
+    {
+      "offset": 4034462,
+      "function": "Gd__gd_core__CoreItem::fn_getGemsNoNull(gd::GdVal const*, int) [clone .constprop.0]",
+      "offset_in_function": 110,
+      "samples": 6
+    },
+    {
+      "offset": 3630215,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.2]",
+      "offset_in_function": 135,
+      "samples": 6
+    },
+    {
+      "offset": 4073868,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 5196,
+      "samples": 6
+    },
+    {
+      "offset": 3609332,
+      "function": "gd::construct_class(gd::BattleCtx&, gd::GdClassMeta const*, gd::GdVal const*, int)",
+      "offset_in_function": 276,
+      "samples": 6
+    },
+    {
+      "offset": 3656092,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.0]",
+      "offset_in_function": 844,
+      "samples": 6
+    },
+    {
+      "offset": 3815297,
+      "function": "Gd__gd_core_items__Item::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 1,
+      "samples": 6
+    },
+    {
+      "offset": 3602640,
+      "function": "gd::make_str(gd::BattleArena&, char const*, unsigned int)",
+      "offset_in_function": 0,
+      "samples": 6
+    },
+    {
+      "offset": 4001696,
+      "function": "Gd__gd_core__CoreTimer::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 0,
+      "samples": 6
+    },
+    {
+      "offset": 4225407,
+      "function": "Gd__gd_core__CoreItem::fn_physicsTick(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+      "offset_in_function": 1359,
+      "samples": 6
+    },
+    {
+      "offset": 3778208,
+      "function": "Gd__gd_core_items__Item::init_fields(gd::BattleCtx&)",
+      "offset_in_function": 2128,
+      "samples": 6
+    },
+    {
+      "offset": 4135679,
+      "function": "Gd__gd_core__CoreEvent::fn__init(gd::GdVal const*, int)",
+      "offset_in_function": 255,
+      "samples": 6
+    },
+    {
+      "offset": 3732747,
+      "function": "Gd__gd_core__CoreRng::fn_randf_range(gd::GdVal const*, int)",
+      "offset_in_function": 619,
+      "samples": 6
+    },
+    {
+      "offset": 3701155,
+      "function": "gd::gd_val_hash(gd::GdVal const&)",
+      "offset_in_function": 19,
+      "samples": 6
+    },
+    {
+      "offset": 3697596,
+      "function": "gd::get_index(gd::BattleCtx&, gd::GdVal const&, gd::GdVal const&)",
+      "offset_in_function": 412,
+      "samples": 6
+    },
+    {
+      "offset": 4225419,
+      "function": "Gd__gd_core__CoreItem::fn_physicsTick(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+      "offset_in_function": 1371,
+      "samples": 6
+    },
+    {
+      "offset": 3671154,
+      "function": "gd::get_prop(gd::BattleCtx&, gd::GdVal const&, unsigned int)",
+      "offset_in_function": 2,
+      "samples": 6
+    },
+    {
+      "offset": 32434,
+      "function": "(anonymous namespace)::run_one_internal(gd::BattleCtx&, PackedSide const&, PackedSide const&, BattleOptions const&, BattleResult&, ReplayInitial const*, ReplayBuffState const*, ReplayEngineRng const*, bool, double, (anonymous namespace)::ReplayHostRng*, bool) [clone .lto_priv.0]",
+      "offset_in_function": 7266,
+      "samples": 6
+    },
+    {
+      "offset": 3655250,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.0]",
+      "offset_in_function": 2,
+      "samples": 6
+    },
+    {
+      "offset": 3671152,
+      "function": "gd::get_prop(gd::BattleCtx&, gd::GdVal const&, unsigned int)",
+      "offset_in_function": 0,
+      "samples": 6
+    },
+    {
+      "offset": 3770328,
+      "function": "Gd__gd_core__CoreItemData::get_prop(unsigned int, gd::GdVal&) const",
+      "offset_in_function": 8,
+      "samples": 6
+    },
+    {
+      "offset": 3620338,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.1]",
+      "offset_in_function": 802,
+      "samples": 6
+    },
+    {
+      "offset": 4225350,
+      "function": "Gd__gd_core__CoreItem::fn_physicsTick(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+      "offset_in_function": 1302,
+      "samples": 6
+    },
+    {
+      "offset": 4071985,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 3313,
+      "samples": 6
+    },
+    {
+      "offset": 4073316,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 4644,
+      "samples": 6
+    },
+    {
+      "offset": 3610368,
+      "function": "gd::construct_class(gd::BattleCtx&, gd::GdClassMeta const*, gd::GdVal const*, int) [clone .constprop.0]",
+      "offset_in_function": 32,
+      "samples": 6
+    },
+    {
+      "offset": 3625839,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.1]",
+      "offset_in_function": 6303,
+      "samples": 6
+    },
+    {
+      "offset": 4069712,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 1040,
+      "samples": 6
+    },
+    {
+      "offset": 3684830,
+      "function": "Gd__gd_core__CoreUtil::sf_invertDictionary(gd::BattleCtx&, gd::GdVal const*, int)",
+      "offset_in_function": 1166,
+      "samples": 5
+    },
+    {
+      "offset": 4073848,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 5176,
+      "samples": 5
+    },
+    {
+      "offset": 3815368,
+      "function": "Gd__gd_core_items__Item::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 72,
+      "samples": 5
+    },
+    {
+      "offset": 4141719,
+      "function": "Gd__gd_core__CoreEventBus::fn_emitAndLog(gd::GdVal const*, int)",
+      "offset_in_function": 2823,
+      "samples": 5
+    },
+    {
+      "offset": 3702128,
+      "function": "gd::GdDict::find_index(gd::GdVal const&, unsigned long long) const",
+      "offset_in_function": 272,
+      "samples": 5
+    },
+    {
+      "offset": 3643197,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int)",
+      "offset_in_function": 157,
+      "samples": 5
+    },
+    {
+      "offset": 3669032,
+      "function": "Gd__gd_core__CoreCombatLog::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 40,
+      "samples": 5
+    },
+    {
+      "offset": 1309599,
+      "function": "(anonymous namespace)::NativeBattleHooks::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&) [clone .lto_priv.0]",
+      "offset_in_function": 31,
+      "samples": 5
+    },
+    {
+      "offset": 3630144,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.2]",
+      "offset_in_function": 64,
+      "samples": 5
+    },
+    {
+      "offset": 3482926,
+      "function": "__fpclassify",
+      "offset_in_function": 46,
+      "samples": 5
+    },
+    {
+      "offset": 4224395,
+      "function": "Gd__gd_core__CoreItem::fn_physicsTick(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+      "offset_in_function": 347,
+      "samples": 5
+    },
+    {
+      "offset": 3694498,
+      "function": "gd::GdArr::push_back(gd::BattleArena&, gd::GdVal const&)",
+      "offset_in_function": 2,
+      "samples": 5
+    },
+    {
+      "offset": 3876628,
+      "function": "Gd__gd_core__CoreItem::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 20,
+      "samples": 5
+    },
+    {
+      "offset": 4072275,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 3603,
+      "samples": 5
+    },
+    {
+      "offset": 4069540,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 868,
+      "samples": 5
+    },
+    {
+      "offset": 3673608,
+      "function": "gd::GdEnum::get(std::basic_string_view<char, std::char_traits<char> >, long long&) const",
+      "offset_in_function": 56,
+      "samples": 5
+    },
+    {
+      "offset": 3663642,
+      "function": "gd::gd_truth(gd::GdVal const&)",
+      "offset_in_function": 26,
+      "samples": 5
+    },
+    {
+      "offset": 4324224,
+      "function": "Gd__gd_core__CoreDamageResult::get_prop(unsigned int, gd::GdVal&) const",
+      "offset_in_function": 0,
+      "samples": 5
+    },
+    {
+      "offset": 4168688,
+      "function": "Gd__gd_core_items__Blueberries::meta() const",
+      "offset_in_function": 0,
+      "samples": 5
+    },
+    {
+      "offset": 3484035,
+      "function": "__pformat_int_bufsiz",
+      "offset_in_function": 40,
+      "samples": 5
+    },
+    {
+      "offset": 4139881,
+      "function": "Gd__gd_core__CoreEventBus::fn_emitAndLog(gd::GdVal const*, int)",
+      "offset_in_function": 985,
+      "samples": 5
+    },
+    {
+      "offset": 3815376,
+      "function": "Gd__gd_core_items__Item::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 80,
+      "samples": 5
+    },
+    {
+      "offset": 3815296,
+      "function": "Gd__gd_core_items__Item::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 0,
+      "samples": 5
+    },
+    {
+      "offset": 3671253,
+      "function": "gd::get_prop(gd::BattleCtx&, gd::GdVal const&, unsigned int)",
+      "offset_in_function": 101,
+      "samples": 5
+    },
+    {
+      "offset": 3745254,
+      "function": "gd::GdArr::append_array(gd::BattleArena&, gd::GdArr const*)",
+      "offset_in_function": 102,
+      "samples": 5
+    },
+    {
+      "offset": 3878816,
+      "function": "Gd__gd_core__CoreItem::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 2208,
+      "samples": 5
+    },
+    {
+      "offset": 3655944,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.0]",
+      "offset_in_function": 696,
+      "samples": 5
+    },
+    {
+      "offset": 3616533,
+      "function": "Gd__gd_core__CoreContext::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 69,
+      "samples": 5
+    },
+    {
+      "offset": 3977725,
+      "function": "Gd__gd_core__CoreItem::get_prop(unsigned int, gd::GdVal&) const",
+      "offset_in_function": 29,
+      "samples": 5
+    },
+    {
+      "offset": 4225484,
+      "function": "Gd__gd_core__CoreItem::fn_physicsTick(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+      "offset_in_function": 1436,
+      "samples": 5
+    },
+    {
+      "offset": 3687032,
+      "function": "gd::gd_iter_seq(gd::BattleArena&, gd::GdVal const&)",
+      "offset_in_function": 56,
+      "samples": 5
+    },
+    {
+      "offset": 3655252,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.0]",
+      "offset_in_function": 4,
+      "samples": 5
+    },
+    {
+      "offset": 3727664,
+      "function": "Gd__gd_core__CoreContext::get_prop(unsigned int, gd::GdVal&) const",
+      "offset_in_function": 112,
+      "samples": 5
+    },
+    {
+      "offset": 56573,
+      "function": "gd::GdDict::set(gd::BattleArena&, gd::GdVal const&, gd::GdVal const&) [clone .constprop.1]",
+      "offset_in_function": 77,
+      "samples": 5
+    },
+    {
+      "offset": 3662976,
+      "function": "gd::gd_eq(gd::GdVal const&, gd::GdVal const&)",
+      "offset_in_function": 64,
+      "samples": 5
+    },
+    {
+      "offset": 3876609,
+      "function": "Gd__gd_core__CoreItem::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 1,
+      "samples": 5
+    },
+    {
+      "offset": 4339653,
+      "function": "Gd__gd_core__CoreContext::fn__step_native_delays(gd::GdVal const*, int)",
+      "offset_in_function": 437,
+      "samples": 5
+    },
+    {
+      "offset": 1309572,
+      "function": "(anonymous namespace)::NativeBattleHooks::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&) [clone .lto_priv.0]",
+      "offset_in_function": 4,
+      "samples": 5
+    },
+    {
+      "offset": 4074139,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 5467,
+      "samples": 5
+    },
+    {
+      "offset": 3673631,
+      "function": "gd::GdEnum::get(std::basic_string_view<char, std::char_traits<char> >, long long&) const",
+      "offset_in_function": 79,
+      "samples": 5
+    },
+    {
+      "offset": 3970098,
+      "function": "Gd__gd_core__CoreItem::fn_canAffect_color(gd::GdVal const*, int)",
+      "offset_in_function": 114,
+      "samples": 5
+    },
+    {
+      "offset": 3655257,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.0]",
+      "offset_in_function": 9,
+      "samples": 5
+    },
+    {
+      "offset": 3876706,
+      "function": "Gd__gd_core__CoreItem::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 98,
+      "samples": 5
+    },
+    {
+      "offset": 4150261,
+      "function": "Gd__gd_core__CoreCombatLog::fn_logEvent(gd::GdVal const*, int)",
+      "offset_in_function": 149,
+      "samples": 5
+    },
+    {
+      "offset": 4069549,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 877,
+      "samples": 5
+    },
+    {
+      "offset": 4224283,
+      "function": "Gd__gd_core__CoreItem::fn_physicsTick(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+      "offset_in_function": 235,
+      "samples": 5
+    },
+    {
+      "offset": 3729648,
+      "function": "Gd__gd_core__CoreRng::get_prop(unsigned int, gd::GdVal&) const",
+      "offset_in_function": 0,
+      "samples": 5
+    },
+    {
+      "offset": 3770411,
+      "function": "Gd__gd_core__CoreItemData::get_prop(unsigned int, gd::GdVal&) const",
+      "offset_in_function": 91,
+      "samples": 5
+    },
+    {
+      "offset": 3671282,
+      "function": "gd::get_prop(gd::BattleCtx&, gd::GdVal const&, unsigned int)",
+      "offset_in_function": 130,
+      "samples": 5
+    },
+    {
+      "offset": 4008601,
+      "function": "gd::gd_lt(gd::GdVal const&, gd::GdVal const&)",
+      "offset_in_function": 105,
+      "samples": 4
+    },
+    {
+      "offset": 3655948,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.0]",
+      "offset_in_function": 700,
+      "samples": 4
+    },
+    {
+      "offset": 4459584,
+      "function": "Gd__gd_core_items__Exclusive__Battery::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 0,
+      "samples": 4
+    },
+    {
+      "offset": 3630084,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.2]",
+      "offset_in_function": 4,
+      "samples": 4
+    },
+    {
+      "offset": 3815393,
+      "function": "Gd__gd_core_items__Item::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 97,
+      "samples": 4
+    },
+    {
+      "offset": 3694531,
+      "function": "gd::GdArr::push_back(gd::BattleArena&, gd::GdVal const&)",
+      "offset_in_function": 35,
+      "samples": 4
+    },
+    {
+      "offset": 4073323,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 4651,
+      "samples": 4
+    },
+    {
+      "offset": 3876768,
+      "function": "Gd__gd_core__CoreItem::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 160,
+      "samples": 4
+    },
+    {
+      "offset": 3671182,
+      "function": "gd::get_prop(gd::BattleCtx&, gd::GdVal const&, unsigned int)",
+      "offset_in_function": 30,
+      "samples": 4
+    },
+    {
+      "offset": 3746284,
+      "function": "Gd__gd_core__CoreBuff::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 76,
+      "samples": 4
+    },
+    {
+      "offset": 4505200,
+      "function": "Gd__gd_core_items__Jynxtorquilla::meta() const",
+      "offset_in_function": 0,
+      "samples": 4
+    },
+    {
+      "offset": 4141132,
+      "function": "Gd__gd_core__CoreEventBus::fn_emitAndLog(gd::GdVal const*, int)",
+      "offset_in_function": 2236,
+      "samples": 4
+    },
+    {
+      "offset": 3730048,
+      "function": "Gd__gd_core__CoreRng__INNER__BalancedRng::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 0,
+      "samples": 4
+    },
+    {
+      "offset": 4073394,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 4722,
+      "samples": 4
+    },
+    {
+      "offset": 3663616,
+      "function": "gd::gd_truth(gd::GdVal const&)",
+      "offset_in_function": 0,
+      "samples": 4
+    },
+    {
+      "offset": 3600083,
+      "function": "gd::BattleArena::alloc_raw(unsigned long long, unsigned long long) [clone .constprop.0]",
+      "offset_in_function": 99,
+      "samples": 4
+    },
+    {
+      "offset": 3727585,
+      "function": "Gd__gd_core__CoreContext::get_prop(unsigned int, gd::GdVal&) const",
+      "offset_in_function": 33,
+      "samples": 4
+    },
+    {
+      "offset": 3481642,
+      "function": "__emutls_get_address",
+      "offset_in_function": 58,
+      "samples": 4
+    },
+    {
+      "offset": 4224360,
+      "function": "Gd__gd_core__CoreItem::fn_physicsTick(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+      "offset_in_function": 312,
+      "samples": 4
+    },
+    {
+      "offset": 3876657,
+      "function": "Gd__gd_core__CoreItem::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 49,
+      "samples": 4
+    },
+    {
+      "offset": 3663108,
+      "function": "gd::gd_eq(gd::GdVal const&, gd::GdVal const&)",
+      "offset_in_function": 196,
+      "samples": 4
+    },
+    {
+      "offset": 3673211,
+      "function": "gd::sym_name(unsigned int)",
+      "offset_in_function": 59,
+      "samples": 4
+    },
+    {
+      "offset": 3732217,
+      "function": "Gd__gd_core__CoreRng::fn_randf_range(gd::GdVal const*, int)",
+      "offset_in_function": 89,
+      "samples": 4
+    },
+    {
+      "offset": 3703457,
+      "function": "Gd__gd_core__CoreCharacter::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 1,
+      "samples": 4
+    },
+    {
+      "offset": 4069892,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 1220,
+      "samples": 4
+    },
+    {
+      "offset": 3675014,
+      "function": "gd::gd_coerce_float(gd::GdVal const&)",
+      "offset_in_function": 6,
+      "samples": 4
+    },
+    {
+      "offset": 3614138,
+      "function": "gd::GdArr::create(gd::BattleArena&, unsigned int)",
+      "offset_in_function": 138,
+      "samples": 4
+    },
+    {
+      "offset": 3673570,
+      "function": "gd::GdEnum::get(std::basic_string_view<char, std::char_traits<char> >, long long&) const",
+      "offset_in_function": 18,
+      "samples": 4
+    },
+    {
+      "offset": 4073971,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 5299,
+      "samples": 4
+    },
+    {
+      "offset": 3696581,
+      "function": "gd::get_index(gd::BattleCtx&, gd::GdVal const&, gd::GdVal const&) [clone .constprop.0]",
+      "offset_in_function": 53,
+      "samples": 4
+    },
+    {
+      "offset": 3877091,
+      "function": "Gd__gd_core__CoreItem::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 483,
+      "samples": 4
+    },
+    {
+      "offset": 3611632,
+      "function": "gd::GdArr::from_init(gd::BattleArena&, std::initializer_list<gd::GdVal>) [clone .constprop.0]",
+      "offset_in_function": 0,
+      "samples": 4
+    },
+    {
+      "offset": 3727697,
+      "function": "Gd__gd_core__CoreContext::get_prop(unsigned int, gd::GdVal&) const",
+      "offset_in_function": 145,
+      "samples": 4
+    },
+    {
+      "offset": 3697399,
+      "function": "gd::get_index(gd::BattleCtx&, gd::GdVal const&, gd::GdVal const&)",
+      "offset_in_function": 215,
+      "samples": 4
+    },
+    {
+      "offset": 3671278,
+      "function": "gd::get_prop(gd::BattleCtx&, gd::GdVal const&, unsigned int)",
+      "offset_in_function": 126,
+      "samples": 4
+    },
+    {
+      "offset": 4213729,
+      "function": "Gd__gd_core__CoreCharacter::fn_tickPhysicsTimers(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+      "offset_in_function": 17,
+      "samples": 4
+    },
+    {
+      "offset": 3619540,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.1]",
+      "offset_in_function": 4,
+      "samples": 4
+    },
+    {
+      "offset": 3671294,
+      "function": "gd::get_prop(gd::BattleCtx&, gd::GdVal const&, unsigned int)",
+      "offset_in_function": 142,
+      "samples": 4
+    },
+    {
+      "offset": 3611643,
+      "function": "gd::GdArr::from_init(gd::BattleArena&, std::initializer_list<gd::GdVal>) [clone .constprop.0]",
+      "offset_in_function": 11,
+      "samples": 4
+    },
+    {
+      "offset": 4135426,
+      "function": "Gd__gd_core__CoreEvent::fn__init(gd::GdVal const*, int)",
+      "offset_in_function": 2,
+      "samples": 4
+    },
+    {
+      "offset": 3517948,
+      "function": "pthread_spin_lock",
+      "offset_in_function": 16,
+      "samples": 4
+    },
+    {
+      "offset": 3727647,
+      "function": "Gd__gd_core__CoreContext::get_prop(unsigned int, gd::GdVal&) const",
+      "offset_in_function": 95,
+      "samples": 4
+    },
+    {
+      "offset": 3662971,
+      "function": "gd::gd_eq(gd::GdVal const&, gd::GdVal const&)",
+      "offset_in_function": 59,
+      "samples": 4
+    },
+    {
+      "offset": 4015856,
+      "function": "Gd__gd_core_items__ManaOrb::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 0,
+      "samples": 4
+    },
+    {
+      "offset": 4240050,
+      "function": "Gd__gd_core__CoreCharacter::fn_getStacks(gd::GdVal const*, int) [clone .constprop.0]",
+      "offset_in_function": 2,
+      "samples": 4
+    },
+    {
+      "offset": 3491124,
+      "function": "__mingw_pformat",
+      "offset_in_function": 33,
+      "samples": 4
+    },
+    {
+      "offset": 4151894,
+      "function": "Gd__gd_core__CoreEvent::get_prop(unsigned int, gd::GdVal&) const",
+      "offset_in_function": 70,
+      "samples": 4
+    },
+    {
+      "offset": 4131385,
+      "function": "Gd__gd_core__CoreCombatLog::fn_createEvent(gd::GdVal const*, int)",
+      "offset_in_function": 217,
+      "samples": 4
+    },
+    {
+      "offset": 3523384,
+      "function": "_pthread_once_raw",
+      "offset_in_function": 23,
+      "samples": 4
+    },
+    {
+      "offset": 3834016,
+      "function": "Gd__gd_core__CoreItem::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&) [clone .constprop.0]",
+      "offset_in_function": 0,
+      "samples": 4
+    },
+    {
+      "offset": 4040728,
+      "function": "Gd__gd_core__CoreItem::fn_cacheAffectedItemsForCombat(gd::GdVal const*, int) [clone .constprop.0]",
+      "offset_in_function": 1368,
+      "samples": 4
+    },
+    {
+      "offset": 3601616,
+      "function": "gd::intern_sym(std::basic_string_view<char, std::char_traits<char> >)",
+      "offset_in_function": 144,
+      "samples": 4
+    },
+    {
+      "offset": 3658847,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.0]",
+      "offset_in_function": 3599,
+      "samples": 4
+    },
+    {
+      "offset": 4224159,
+      "function": "Gd__gd_core__CoreItem::fn_physicsTick(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+      "offset_in_function": 111,
+      "samples": 4
+    },
+    {
+      "offset": 1301984,
+      "function": "(anonymous namespace)::NativeBattleHooks::on_log_event(gd::BattleCtx&, gd::GdObj*) [clone .isra.0]",
+      "offset_in_function": 0,
+      "samples": 4
+    },
+    {
+      "offset": 3619544,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.1]",
+      "offset_in_function": 8,
+      "samples": 4
+    },
+    {
+      "offset": 4073273,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 4601,
+      "samples": 4
+    },
+    {
+      "offset": 3671189,
+      "function": "gd::get_prop(gd::BattleCtx&, gd::GdVal const&, unsigned int)",
+      "offset_in_function": 37,
+      "samples": 4
+    },
+    {
+      "offset": 4339796,
+      "function": "Gd__gd_core__CoreContext::fn__step_native_delays(gd::GdVal const*, int)",
+      "offset_in_function": 580,
+      "samples": 4
+    },
+    {
+      "offset": 4073337,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 4665,
+      "samples": 4
+    },
+    {
+      "offset": 3643175,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int)",
+      "offset_in_function": 135,
+      "samples": 4
+    },
+    {
+      "offset": 4246712,
+      "function": "Gd__gd_core__CoreItem::fn_trigger(gd::GdVal const*, int) [clone .constprop.0]",
+      "offset_in_function": 344,
+      "samples": 4
+    },
+    {
+      "offset": 3770384,
+      "function": "Gd__gd_core__CoreItemData::get_prop(unsigned int, gd::GdVal&) const",
+      "offset_in_function": 64,
+      "samples": 4
+    },
+    {
+      "offset": 4224339,
+      "function": "Gd__gd_core__CoreItem::fn_physicsTick(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+      "offset_in_function": 291,
+      "samples": 4
+    },
+    {
+      "offset": 4072002,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 3330,
+      "samples": 4
+    },
+    {
+      "offset": 4001804,
+      "function": "Gd__gd_core__CoreTimer::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 108,
+      "samples": 4
+    },
+    {
+      "offset": 3815403,
+      "function": "Gd__gd_core_items__Item::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 107,
+      "samples": 4
+    },
+    {
+      "offset": 3619591,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.1]",
+      "offset_in_function": 55,
+      "samples": 4
+    },
+    {
+      "offset": 4069840,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 1168,
+      "samples": 4
+    },
+    {
+      "offset": 4108363,
+      "function": "Gd__gd_core__CoreItem::fn_getNextFreeLabelPosition(gd::GdVal const*, int) [clone .constprop.0]",
+      "offset_in_function": 571,
+      "samples": 4
+    },
+    {
+      "offset": 4142827,
+      "function": "Gd__gd_core__CoreEventBus::fn_emitAndLog(gd::GdVal const*, int)",
+      "offset_in_function": 3931,
+      "samples": 4
+    },
+    {
+      "offset": 3669067,
+      "function": "Gd__gd_core__CoreCombatLog::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 75,
+      "samples": 4
+    },
+    {
+      "offset": 4224067,
+      "function": "Gd__gd_core__CoreItem::fn_physicsTick(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+      "offset_in_function": 19,
+      "samples": 4
+    },
+    {
+      "offset": 3698442,
+      "function": "gd::set_index(gd::BattleCtx&, gd::GdVal&, gd::GdVal const&, gd::GdVal const&)",
+      "offset_in_function": 90,
+      "samples": 4
+    },
+    {
+      "offset": 3656042,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.0]",
+      "offset_in_function": 794,
+      "samples": 4
+    },
+    {
+      "offset": 4002060,
+      "function": "Gd__gd_core__CoreTimer::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 364,
+      "samples": 4
+    },
+    {
+      "offset": 3523386,
+      "function": "_pthread_once_raw",
+      "offset_in_function": 25,
+      "samples": 4
+    },
+    {
+      "offset": 1301986,
+      "function": "(anonymous namespace)::NativeBattleHooks::on_log_event(gd::BattleCtx&, gd::GdObj*) [clone .isra.0]",
+      "offset_in_function": 2,
+      "samples": 4
+    },
+    {
+      "offset": 3727642,
+      "function": "Gd__gd_core__CoreContext::get_prop(unsigned int, gd::GdVal&) const",
+      "offset_in_function": 90,
+      "samples": 4
+    },
+    {
+      "offset": 3656824,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.0]",
+      "offset_in_function": 1576,
+      "samples": 4
+    },
+    {
+      "offset": 3876691,
+      "function": "Gd__gd_core__CoreItem::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 83,
+      "samples": 4
+    },
+    {
+      "offset": 3972516,
+      "function": "Gd__gd_core_items__Item::get_prop(unsigned int, gd::GdVal&) const",
+      "offset_in_function": 4,
+      "samples": 4
+    },
+    {
+      "offset": 3483030,
+      "function": "__pformat_putc",
+      "offset_in_function": 22,
+      "samples": 4
+    },
+    {
+      "offset": 3970231,
+      "function": "Gd__gd_core__CoreItem::fn_canAffect_color(gd::GdVal const*, int)",
+      "offset_in_function": 247,
+      "samples": 3
+    },
+    {
+      "offset": 3770365,
+      "function": "Gd__gd_core__CoreItemData::get_prop(unsigned int, gd::GdVal&) const",
+      "offset_in_function": 45,
+      "samples": 3
+    },
+    {
+      "offset": 3643049,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int)",
+      "offset_in_function": 9,
+      "samples": 3
+    },
+    {
+      "offset": 4073256,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 4584,
+      "samples": 3
+    },
+    {
+      "offset": 3515045,
+      "function": "mutex_impl",
+      "offset_in_function": 16,
+      "samples": 3
+    },
+    {
+      "offset": 3972512,
+      "function": "Gd__gd_core_items__Item::get_prop(unsigned int, gd::GdVal&) const",
+      "offset_in_function": 0,
+      "samples": 3
+    },
+    {
+      "offset": 3812576,
+      "function": "Gd__gd_core_items__Bag::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 160,
+      "samples": 3
+    },
+    {
+      "offset": 3960176,
+      "function": "gd::gd_in(gd::GdVal const&, gd::GdVal const&)",
+      "offset_in_function": 288,
+      "samples": 3
+    },
+    {
+      "offset": 4226800,
+      "function": "Gd__gd_core__CoreItem::fn_physicsTick(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+      "offset_in_function": 2752,
+      "samples": 3
+    },
+    {
+      "offset": 4326880,
+      "function": "Gd__gd_core__CoreItem::fn_rollChance(gd::GdVal const*, int)",
+      "offset_in_function": 0,
+      "samples": 3
+    },
+    {
+      "offset": 4103072,
+      "function": "Gd__gd_core__CoreItem::fn_adjustCooldown(gd::GdVal const*, int) [clone .constprop.0]",
+      "offset_in_function": 0,
+      "samples": 3
+    },
+    {
+      "offset": 4515024,
+      "function": "Gd__gd_core_items__Exclusive__ChiliPepper::get_prop(unsigned int, gd::GdVal&) const",
+      "offset_in_function": 0,
+      "samples": 3
+    },
+    {
+      "offset": 3662968,
+      "function": "gd::gd_eq(gd::GdVal const&, gd::GdVal const&)",
+      "offset_in_function": 56,
+      "samples": 3
+    },
+    {
+      "offset": 3661515,
+      "function": "Gd__gd_core__CoreRng::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 155,
+      "samples": 3
+    },
+    {
+      "offset": 4070208,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 1536,
+      "samples": 3
+    },
+    {
+      "offset": 4045584,
+      "function": "Gd__gd_core__CoreItem::fn_getTopLeftCell(gd::GdVal const*, int) [clone .constprop.0]",
+      "offset_in_function": 0,
+      "samples": 3
+    },
+    {
+      "offset": 3620352,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.1]",
+      "offset_in_function": 816,
+      "samples": 3
+    },
+    {
+      "offset": 3675357,
+      "function": "Gd__gd_core__CoreDamageSource::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 253,
+      "samples": 3
+    },
+    {
+      "offset": 3662256,
+      "function": "Gd__gd_core__CoreRng::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 896,
+      "samples": 3
+    },
+    {
+      "offset": 4074235,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 5563,
+      "samples": 3
+    },
+    {
+      "offset": 2088400,
+      "function": "_alloc_Gd__gd_core__CoreRng__INNER__BalancedRange(gd::BattleCtx&) [clone .lto_priv.0]",
+      "offset_in_function": 0,
+      "samples": 3
+    },
+    {
+      "offset": 3965698,
+      "function": "Gd__gd_core__CoreItem::fn_onItemAdded(gd::GdVal const*, int)",
+      "offset_in_function": 2,
+      "samples": 3
+    },
+    {
+      "offset": 4073861,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 5189,
+      "samples": 3
+    },
+    {
+      "offset": 3876699,
+      "function": "Gd__gd_core__CoreItem::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 91,
+      "samples": 3
+    },
+    {
+      "offset": 3630279,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.2]",
+      "offset_in_function": 199,
+      "samples": 3
+    },
+    {
+      "offset": 3630160,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.2]",
+      "offset_in_function": 80,
+      "samples": 3
+    },
+    {
+      "offset": 3877140,
+      "function": "Gd__gd_core__CoreItem::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 532,
+      "samples": 3
+    },
+    {
+      "offset": 3614114,
+      "function": "gd::GdArr::create(gd::BattleArena&, unsigned int)",
+      "offset_in_function": 114,
+      "samples": 3
+    },
+    {
+      "offset": 3680263,
+      "function": "Gd__gd_core__CoreConst::get_static_prop_fn(unsigned int, gd::GdVal&)",
+      "offset_in_function": 135,
+      "samples": 3
+    },
+    {
+      "offset": 2544000,
+      "function": "_alloc_Gd__gd_core__CoreDamageResult(gd::BattleCtx&) [clone .lto_priv.0]",
+      "offset_in_function": 0,
+      "samples": 3
+    },
+    {
+      "offset": 3666370,
+      "function": "Gd__gd_core__CoreEventBus::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 2,
+      "samples": 3
+    },
+    {
+      "offset": 3701230,
+      "function": "gd::gd_val_hash(gd::GdVal const&)",
+      "offset_in_function": 94,
+      "samples": 3
+    },
+    {
+      "offset": 4317072,
+      "function": "Gd__gd_core__CoreRng::fn_flip(gd::GdVal const*, int)",
+      "offset_in_function": 0,
+      "samples": 3
+    },
+    {
+      "offset": 3732521,
+      "function": "Gd__gd_core__CoreRng::fn_randf_range(gd::GdVal const*, int)",
+      "offset_in_function": 393,
+      "samples": 3
+    },
+    {
+      "offset": 2834656,
+      "function": "_alloc_Gd__gd_core__CoreEvent(gd::BattleCtx&) [clone .lto_priv.0]",
+      "offset_in_function": 0,
+      "samples": 3
+    },
+    {
+      "offset": 3745154,
+      "function": "gd::GdArr::append_array(gd::BattleArena&, gd::GdArr const*)",
+      "offset_in_function": 2,
+      "samples": 3
+    },
+    {
+      "offset": 3925528,
+      "function": "gd::gd_str_fn(gd::BattleArena&, gd::GdVal const*, int) [clone .constprop.0]",
+      "offset_in_function": 344,
+      "samples": 3
+    },
+    {
+      "offset": 4108026,
+      "function": "Gd__gd_core__CoreItem::fn_getNextFreeLabelPosition(gd::GdVal const*, int) [clone .constprop.0]",
+      "offset_in_function": 234,
+      "samples": 3
+    },
+    {
+      "offset": 3878054,
+      "function": "Gd__gd_core__CoreItem::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 1446,
+      "samples": 3
+    },
+    {
+      "offset": 3671192,
+      "function": "gd::get_prop(gd::BattleCtx&, gd::GdVal const&, unsigned int)",
+      "offset_in_function": 40,
+      "samples": 3
+    },
+    {
+      "offset": 4002196,
+      "function": "Gd__gd_core__CoreTimer::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 500,
+      "samples": 3
+    },
+    {
+      "offset": 3696809,
+      "function": "gd::get_index(gd::BattleCtx&, gd::GdVal const&, gd::GdVal const&) [clone .constprop.0]",
+      "offset_in_function": 281,
+      "samples": 3
+    },
+    {
+      "offset": 3673755,
+      "function": "gd::gd_add(gd::BattleCtx&, gd::GdVal const&, gd::GdVal const&)",
+      "offset_in_function": 27,
+      "samples": 3
+    },
+    {
+      "offset": 3696856,
+      "function": "gd::get_index(gd::BattleCtx&, gd::GdVal const&, gd::GdVal const&) [clone .constprop.0]",
+      "offset_in_function": 328,
+      "samples": 3
+    },
+    {
+      "offset": 3697144,
+      "function": "gd::get_index(gd::BattleCtx&, gd::GdVal const&, gd::GdVal const&) [clone .constprop.0]",
+      "offset_in_function": 616,
+      "samples": 3
+    },
+    {
+      "offset": 4180528,
+      "function": "Gd__gd_core__CoreBuff::fn_gainTemporary(gd::GdVal const*, int)",
+      "offset_in_function": 3408,
+      "samples": 3
+    },
+    {
+      "offset": 3655856,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.0]",
+      "offset_in_function": 608,
+      "samples": 3
+    },
+    {
+      "offset": 3602660,
+      "function": "gd::make_str(gd::BattleArena&, char const*, unsigned int)",
+      "offset_in_function": 20,
+      "samples": 3
+    },
+    {
+      "offset": 3697104,
+      "function": "gd::get_index(gd::BattleCtx&, gd::GdVal const&, gd::GdVal const&) [clone .constprop.0]",
+      "offset_in_function": 576,
+      "samples": 3
+    },
+    {
+      "offset": 4203576,
+      "function": "Gd__gd_core__CoreContext::fn_tickMotion(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+      "offset_in_function": 1464,
+      "samples": 3
+    },
+    {
+      "offset": 3671231,
+      "function": "gd::get_prop(gd::BattleCtx&, gd::GdVal const&, unsigned int)",
+      "offset_in_function": 79,
+      "samples": 3
+    },
+    {
+      "offset": 3734424,
+      "function": "Gd__gd_core__CoreGrid::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 344,
+      "samples": 3
+    },
+    {
+      "offset": 3701139,
+      "function": "gd::gd_val_hash(gd::GdVal const&)",
+      "offset_in_function": 3,
+      "samples": 3
+    },
+    {
+      "offset": 3630267,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.2]",
+      "offset_in_function": 187,
+      "samples": 3
+    },
+    {
+      "offset": 3601791,
+      "function": "gd::intern_sym(std::basic_string_view<char, std::char_traits<char> >)",
+      "offset_in_function": 319,
+      "samples": 3
+    },
+    {
+      "offset": 4396688,
+      "function": "Gd__gd_core__CoreEventBus::get_static_prop_fn(unsigned int, gd::GdVal&)",
+      "offset_in_function": 0,
+      "samples": 3
+    },
+    {
+      "offset": 3525495,
+      "function": "pthread_getspecific",
+      "offset_in_function": 102,
+      "samples": 3
+    },
+    {
+      "offset": 1318415,
+      "function": "(anonymous namespace)::build_side_items(gd::BattleCtx&, gd::GdObj*, Gd__gd_core__CoreCharacter*, int, PackedSide const&, std::vector<Gd__gd_core__CoreItemData*, std::allocator<Gd__gd_core__CoreItemData*> >&, gd::GdArr*, std::vector<Gd__gd_core__CoreItem*, std::allocator<Gd__gd_core__CoreItem*> >*) [clone .lto_priv.0]",
+      "offset_in_function": 1167,
+      "samples": 3
+    },
+    {
+      "offset": 3611685,
+      "function": "gd::GdArr::from_init(gd::BattleArena&, std::initializer_list<gd::GdVal>) [clone .constprop.0]",
+      "offset_in_function": 53,
+      "samples": 3
+    },
+    {
+      "offset": 3601814,
+      "function": "gd::intern_sym(std::basic_string_view<char, std::char_traits<char> >)",
+      "offset_in_function": 342,
+      "samples": 3
+    },
+    {
+      "offset": 3732128,
+      "function": "Gd__gd_core__CoreRng::fn_randf_range(gd::GdVal const*, int)",
+      "offset_in_function": 0,
+      "samples": 3
+    },
+    {
+      "offset": 3525429,
+      "function": "pthread_getspecific",
+      "offset_in_function": 36,
+      "samples": 3
+    },
+    {
+      "offset": 3970084,
+      "function": "Gd__gd_core__CoreItem::fn_canAffect_color(gd::GdVal const*, int)",
+      "offset_in_function": 100,
+      "samples": 3
+    },
+    {
+      "offset": 4103265,
+      "function": "Gd__gd_core__CoreItem::fn_adjustCooldown(gd::GdVal const*, int) [clone .constprop.0]",
+      "offset_in_function": 193,
+      "samples": 3
+    },
+    {
+      "offset": 4071851,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 3179,
+      "samples": 3
+    },
+    {
+      "offset": 3925265,
+      "function": "gd::gd_str_fn(gd::BattleArena&, gd::GdVal const*, int) [clone .constprop.0]",
+      "offset_in_function": 81,
+      "samples": 3
+    },
+    {
+      "offset": 3698633,
+      "function": "gd::GdDict::set(gd::BattleArena&, gd::GdVal const&, gd::GdVal const&)",
+      "offset_in_function": 9,
+      "samples": 3
+    },
+    {
+      "offset": 3673741,
+      "function": "gd::gd_add(gd::BattleCtx&, gd::GdVal const&, gd::GdVal const&)",
+      "offset_in_function": 13,
+      "samples": 3
+    },
+    {
+      "offset": 3483116,
+      "function": "__pformat_putc",
+      "offset_in_function": 108,
+      "samples": 3
+    },
+    {
+      "offset": 3697184,
+      "function": "gd::get_index(gd::BattleCtx&, gd::GdVal const&, gd::GdVal const&)",
+      "offset_in_function": 0,
+      "samples": 3
+    },
+    {
+      "offset": 3502712,
+      "function": "__multadd_D2A",
+      "offset_in_function": 63,
+      "samples": 3
+    },
+    {
+      "offset": 4140392,
+      "function": "Gd__gd_core__CoreEventBus::fn_emitAndLog(gd::GdVal const*, int)",
+      "offset_in_function": 1496,
+      "samples": 3
+    },
+    {
+      "offset": 3663088,
+      "function": "gd::gd_eq(gd::GdVal const&, gd::GdVal const&)",
+      "offset_in_function": 176,
+      "samples": 3
+    },
+    {
+      "offset": 4168695,
+      "function": "Gd__gd_core_items__Blueberries::meta() const",
+      "offset_in_function": 7,
+      "samples": 3
+    },
+    {
+      "offset": 4072822,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 4150,
+      "samples": 3
+    },
+    {
+      "offset": 3687018,
+      "function": "gd::gd_iter_seq(gd::BattleArena&, gd::GdVal const&)",
+      "offset_in_function": 42,
+      "samples": 3
+    },
+    {
+      "offset": 3729682,
+      "function": "Gd__gd_core__CoreRng::get_prop(unsigned int, gd::GdVal&) const",
+      "offset_in_function": 34,
+      "samples": 3
+    },
+    {
+      "offset": 3815359,
+      "function": "Gd__gd_core_items__Item::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 63,
+      "samples": 3
+    },
+    {
+      "offset": 3673650,
+      "function": "gd::GdEnum::get(std::basic_string_view<char, std::char_traits<char> >, long long&) const",
+      "offset_in_function": 98,
+      "samples": 3
+    },
+    {
+      "offset": 4339720,
+      "function": "Gd__gd_core__CoreContext::fn__step_native_delays(gd::GdVal const*, int)",
+      "offset_in_function": 504,
+      "samples": 3
+    },
+    {
+      "offset": 4225884,
+      "function": "Gd__gd_core__CoreItem::fn_physicsTick(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+      "offset_in_function": 1836,
+      "samples": 3
+    },
+    {
+      "offset": 3643052,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int)",
+      "offset_in_function": 12,
+      "samples": 3
+    },
+    {
+      "offset": 3619780,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.1]",
+      "offset_in_function": 244,
+      "samples": 3
+    },
+    {
+      "offset": 4191094,
+      "function": "Gd__gd_core__CoreItem::fn_stackChanged(gd::GdVal const*, int)",
+      "offset_in_function": 102,
+      "samples": 3
+    },
+    {
+      "offset": 3701935,
+      "function": "gd::GdDict::find_index(gd::GdVal const&, unsigned long long) const",
+      "offset_in_function": 79,
+      "samples": 3
+    },
+    {
+      "offset": 3643243,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int)",
+      "offset_in_function": 203,
+      "samples": 3
+    },
+    {
+      "offset": 1302028,
+      "function": "(anonymous namespace)::NativeBattleHooks::on_log_event(gd::BattleCtx&, gd::GdObj*) [clone .isra.0]",
+      "offset_in_function": 44,
+      "samples": 3
+    },
+    {
+      "offset": 3998128,
+      "function": "Gd__gd_core_items__Piggybank::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 0,
+      "samples": 3
+    },
+    {
+      "offset": 4069721,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 1049,
+      "samples": 3
+    },
+    {
+      "offset": 3655260,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.0]",
+      "offset_in_function": 12,
+      "samples": 3
+    },
+    {
+      "offset": 3684853,
+      "function": "Gd__gd_core__CoreUtil::sf_invertDictionary(gd::BattleCtx&, gd::GdVal const*, int)",
+      "offset_in_function": 1189,
+      "samples": 3
+    },
+    {
+      "offset": 1309582,
+      "function": "(anonymous namespace)::NativeBattleHooks::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&) [clone .lto_priv.0]",
+      "offset_in_function": 14,
+      "samples": 3
+    },
+    {
+      "offset": 4071952,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 3280,
+      "samples": 3
+    },
+    {
+      "offset": 3876874,
+      "function": "Gd__gd_core__CoreItem::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 266,
+      "samples": 3
+    },
+    {
+      "offset": 3671199,
+      "function": "gd::get_prop(gd::BattleCtx&, gd::GdVal const&, unsigned int)",
+      "offset_in_function": 47,
+      "samples": 3
+    },
+    {
+      "offset": 3696635,
+      "function": "gd::get_index(gd::BattleCtx&, gd::GdVal const&, gd::GdVal const&) [clone .constprop.0]",
+      "offset_in_function": 107,
+      "samples": 3
+    },
+    {
+      "offset": 3745273,
+      "function": "gd::GdArr::append_array(gd::BattleArena&, gd::GdArr const*)",
+      "offset_in_function": 121,
+      "samples": 3
+    },
+    {
+      "offset": 4073280,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 4608,
+      "samples": 3
+    },
+    {
+      "offset": 3673792,
+      "function": "gd::gd_add(gd::BattleCtx&, gd::GdVal const&, gd::GdVal const&)",
+      "offset_in_function": 64,
+      "samples": 3
+    },
+    {
+      "offset": 3812417,
+      "function": "Gd__gd_core_items__Bag::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 1,
+      "samples": 3
+    },
+    {
+      "offset": 3698676,
+      "function": "gd::GdDict::set(gd::BattleArena&, gd::GdVal const&, gd::GdVal const&)",
+      "offset_in_function": 52,
+      "samples": 3
+    },
+    {
+      "offset": 4224924,
+      "function": "Gd__gd_core__CoreItem::fn_physicsTick(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+      "offset_in_function": 876,
+      "samples": 3
+    },
+    {
+      "offset": 4253472,
+      "function": "Gd__gd_core__CoreItem::fn_getStackSpeedMods(gd::GdVal const*, int) [clone .constprop.0]",
+      "offset_in_function": 0,
+      "samples": 3
+    },
+    {
+      "offset": 3658756,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.0]",
+      "offset_in_function": 3508,
+      "samples": 3
+    },
+    {
+      "offset": 4448112,
+      "function": "Gd__gd_core_items__Exclusive__OilLamp::meta() const",
+      "offset_in_function": 0,
+      "samples": 3
+    },
+    {
+      "offset": 3656056,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.0]",
+      "offset_in_function": 808,
+      "samples": 3
+    },
+    {
+      "offset": 4167184,
+      "function": "Gd__gd_core_items__Blueberries::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 0,
+      "samples": 3
+    },
+    {
+      "offset": 3601496,
+      "function": "gd::intern_sym(std::basic_string_view<char, std::char_traits<char> >)",
+      "offset_in_function": 24,
+      "samples": 3
+    },
+    {
+      "offset": 3656021,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.0]",
+      "offset_in_function": 773,
+      "samples": 3
+    },
+    {
+      "offset": 3619564,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.1]",
+      "offset_in_function": 28,
+      "samples": 3
+    },
+    {
+      "offset": 4069881,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 1209,
+      "samples": 3
+    },
+    {
+      "offset": 4224450,
+      "function": "Gd__gd_core__CoreItem::fn_physicsTick(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+      "offset_in_function": 402,
+      "samples": 3
+    },
+    {
+      "offset": 3612275,
+      "function": "gd::GdArr::from_init(gd::BattleArena&, std::initializer_list<gd::GdVal>)",
+      "offset_in_function": 147,
+      "samples": 3
+    },
+    {
+      "offset": 3698626,
+      "function": "gd::GdDict::set(gd::BattleArena&, gd::GdVal const&, gd::GdVal const&)",
+      "offset_in_function": 2,
+      "samples": 3
+    },
+    {
+      "offset": 3701438,
+      "function": "gd::gd_val_hash(gd::GdVal const&)",
+      "offset_in_function": 302,
+      "samples": 3
+    },
+    {
+      "offset": 3643228,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int)",
+      "offset_in_function": 188,
+      "samples": 3
+    },
+    {
+      "offset": 3662975,
+      "function": "gd::gd_eq(gd::GdVal const&, gd::GdVal const&)",
+      "offset_in_function": 63,
+      "samples": 3
+    },
+    {
+      "offset": 4138896,
+      "function": "Gd__gd_core__CoreEventBus::fn_emitAndLog(gd::GdVal const*, int)",
+      "offset_in_function": 0,
+      "samples": 3
+    },
+    {
+      "offset": 3727672,
+      "function": "Gd__gd_core__CoreContext::get_prop(unsigned int, gd::GdVal&) const",
+      "offset_in_function": 120,
+      "samples": 3
+    },
+    {
+      "offset": 4069664,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 992,
+      "samples": 3
+    },
+    {
+      "offset": 3696813,
+      "function": "gd::get_index(gd::BattleCtx&, gd::GdVal const&, gd::GdVal const&) [clone .constprop.0]",
+      "offset_in_function": 285,
+      "samples": 3
+    },
+    {
+      "offset": 3655303,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.0]",
+      "offset_in_function": 55,
+      "samples": 3
+    },
+    {
+      "offset": 3616465,
+      "function": "Gd__gd_core__CoreContext::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 1,
+      "samples": 3
+    },
+    {
+      "offset": 3620317,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.1]",
+      "offset_in_function": 781,
+      "samples": 3
+    },
+    {
+      "offset": 3746208,
+      "function": "Gd__gd_core__CoreBuff::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 0,
+      "samples": 3
+    },
+    {
+      "offset": 4315840,
+      "function": "Gd__gd_core__CoreDamageSource::get_prop(unsigned int, gd::GdVal&) const",
+      "offset_in_function": 0,
+      "samples": 3
+    },
+    {
+      "offset": 3619760,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.1]",
+      "offset_in_function": 224,
+      "samples": 3
+    },
+    {
+      "offset": 3612135,
+      "function": "gd::GdArr::from_init(gd::BattleArena&, std::initializer_list<gd::GdVal>)",
+      "offset_in_function": 7,
+      "samples": 3
+    },
+    {
+      "offset": 4073876,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 5204,
+      "samples": 3
+    },
+    {
+      "offset": 3517944,
+      "function": "pthread_spin_lock",
+      "offset_in_function": 12,
+      "samples": 3
+    },
+    {
+      "offset": 3697200,
+      "function": "gd::get_index(gd::BattleCtx&, gd::GdVal const&, gd::GdVal const&)",
+      "offset_in_function": 16,
+      "samples": 3
+    },
+    {
+      "offset": 4071873,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 3201,
+      "samples": 3
+    },
+    {
+      "offset": 3655991,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.0]",
+      "offset_in_function": 743,
+      "samples": 3
+    },
+    {
+      "offset": 3619776,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.1]",
+      "offset_in_function": 240,
+      "samples": 3
+    },
+    {
+      "offset": 67408,
+      "function": "gd::gd_div(gd::BattleCtx&, gd::GdVal const&, gd::GdVal const&) [clone .constprop.0]",
+      "offset_in_function": 0,
+      "samples": 3
+    },
+    {
+      "offset": 3881448,
+      "function": "Gd__gd_core__CoreItem::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 4840,
+      "samples": 3
+    },
+    {
+      "offset": 3673176,
+      "function": "gd::sym_name(unsigned int)",
+      "offset_in_function": 24,
+      "samples": 3
+    },
+    {
+      "offset": 4240904,
+      "function": "Gd__gd_core__CoreCharacter::fn_getStacks(gd::GdVal const*, int) [clone .constprop.0]",
+      "offset_in_function": 856,
+      "samples": 3
+    },
+    {
+      "offset": 3619771,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.1]",
+      "offset_in_function": 235,
+      "samples": 3
+    },
+    {
+      "offset": 3960006,
+      "function": "gd::gd_in(gd::GdVal const&, gd::GdVal const&)",
+      "offset_in_function": 118,
+      "samples": 3
+    },
+    {
+      "offset": 3482906,
+      "function": "__fpclassify",
+      "offset_in_function": 26,
+      "samples": 3
+    },
+    {
+      "offset": 3662989,
+      "function": "gd::gd_eq(gd::GdVal const&, gd::GdVal const&)",
+      "offset_in_function": 77,
+      "samples": 3
+    },
+    {
+      "offset": 4071181,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 2509,
+      "samples": 3
+    },
+    {
+      "offset": 3748361,
+      "function": "gd::str_concat(gd::BattleArena&, gd::GdStr const*, gd::GdStr const*)",
+      "offset_in_function": 473,
+      "samples": 3
+    },
+    {
+      "offset": 4225387,
+      "function": "Gd__gd_core__CoreItem::fn_physicsTick(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+      "offset_in_function": 1339,
+      "samples": 3
+    },
+    {
+      "offset": 3757296,
+      "function": "Gd__gd_core__CoreItemData::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 0,
+      "samples": 3
+    },
+    {
+      "offset": 3491092,
+      "function": "__mingw_pformat",
+      "offset_in_function": 1,
+      "samples": 3
+    },
+    {
+      "offset": 3603150,
+      "function": "gd::make_str(gd::BattleArena&, char const*, unsigned int)",
+      "offset_in_function": 510,
+      "samples": 3
+    },
+    {
+      "offset": 3612385,
+      "function": "gd::GdArr::from_init(gd::BattleArena&, std::initializer_list<gd::GdVal>)",
+      "offset_in_function": 257,
+      "samples": 3
+    },
+    {
+      "offset": 4133392,
+      "function": "Gd__gd_core__CoreEvent::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 0,
+      "samples": 3
+    },
+    {
+      "offset": 3593923,
+      "function": "std::_Hash_bytes(void const*, unsigned long long, unsigned long long)",
+      "offset_in_function": 67,
+      "samples": 3
+    },
+    {
+      "offset": 3593856,
+      "function": "std::_Hash_bytes(void const*, unsigned long long, unsigned long long)",
+      "offset_in_function": 0,
+      "samples": 3
+    },
+    {
+      "offset": 3656517,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.0]",
+      "offset_in_function": 1269,
+      "samples": 3
+    },
+    {
+      "offset": 3643042,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int)",
+      "offset_in_function": 2,
+      "samples": 3
+    },
+    {
+      "offset": 3619568,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.1]",
+      "offset_in_function": 32,
+      "samples": 3
+    },
+    {
+      "offset": 3686978,
+      "function": "gd::gd_iter_seq(gd::BattleArena&, gd::GdVal const&)",
+      "offset_in_function": 2,
+      "samples": 3
+    },
+    {
+      "offset": 3643051,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int)",
+      "offset_in_function": 11,
+      "samples": 3
+    },
+    {
+      "offset": 3619536,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.1]",
+      "offset_in_function": 0,
+      "samples": 3
+    },
+    {
+      "offset": 3482297,
+      "function": "ldexpf",
+      "offset_in_function": 25,
+      "samples": 3
+    },
+    {
+      "offset": 3876714,
+      "function": "Gd__gd_core__CoreItem::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 106,
+      "samples": 3
+    },
+    {
+      "offset": 4082290,
+      "function": "Gd__gd_core__CoreContext::fn_flushDeferred(gd::GdVal const*, int) [clone .constprop.0]",
+      "offset_in_function": 50,
+      "samples": 3
+    },
+    {
+      "offset": 4181764,
+      "function": "Gd__gd_core__CoreBuff::fn_gainTemporary(gd::GdVal const*, int)",
+      "offset_in_function": 4644,
+      "samples": 3
+    },
+    {
+      "offset": 3701952,
+      "function": "gd::GdDict::find_index(gd::GdVal const&, unsigned long long) const",
+      "offset_in_function": 96,
+      "samples": 3
+    },
+    {
+      "offset": 3687040,
+      "function": "gd::gd_iter_seq(gd::BattleArena&, gd::GdVal const&)",
+      "offset_in_function": 64,
+      "samples": 3
+    },
+    {
+      "offset": 3643250,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int)",
+      "offset_in_function": 210,
+      "samples": 3
+    },
+    {
+      "offset": 3671208,
+      "function": "gd::get_prop(gd::BattleCtx&, gd::GdVal const&, unsigned int)",
+      "offset_in_function": 56,
+      "samples": 3
+    },
+    {
+      "offset": 3876857,
+      "function": "Gd__gd_core__CoreItem::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 249,
+      "samples": 3
+    },
+    {
+      "offset": 3734442,
+      "function": "Gd__gd_core__CoreGrid::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 362,
+      "samples": 3
+    },
+    {
+      "offset": 1312051,
+      "function": "(anonymous namespace)::build_descriptor_in_battle(gd::BattleCtx&, (anonymous namespace)::ItemProto const&)",
+      "offset_in_function": 1395,
+      "samples": 3
+    },
+    {
+      "offset": 3671274,
+      "function": "gd::get_prop(gd::BattleCtx&, gd::GdVal const&, unsigned int)",
+      "offset_in_function": 122,
+      "samples": 3
+    },
+    {
+      "offset": 3727556,
+      "function": "Gd__gd_core__CoreContext::get_prop(unsigned int, gd::GdVal&) const",
+      "offset_in_function": 4,
+      "samples": 3
+    },
+    {
+      "offset": 3506984,
+      "function": "memcmp",
+      "offset_in_function": 0,
+      "samples": 3
+    },
+    {
+      "offset": 3699496,
+      "function": "gd::GdDict::set(gd::BattleArena&, gd::GdVal const&, gd::GdVal const&)",
+      "offset_in_function": 872,
+      "samples": 3
+    },
+    {
+      "offset": 3663625,
+      "function": "gd::gd_truth(gd::GdVal const&)",
+      "offset_in_function": 9,
+      "samples": 3
+    },
+    {
+      "offset": 4071544,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 2872,
+      "samples": 3
+    },
+    {
+      "offset": 3815330,
+      "function": "Gd__gd_core_items__Item::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 34,
+      "samples": 3
+    },
+    {
+      "offset": 3684870,
+      "function": "Gd__gd_core__CoreUtil::sf_invertDictionary(gd::BattleCtx&, gd::GdVal const*, int)",
+      "offset_in_function": 1206,
+      "samples": 3
+    },
+    {
+      "offset": 3672048,
+      "function": "Gd__gd_core__CoreDamageSource::get_static_prop_fn(unsigned int, gd::GdVal&)",
+      "offset_in_function": 128,
+      "samples": 3
+    },
+    {
+      "offset": 3930064,
+      "function": "gd::gd_str_fn(gd::BattleArena&, gd::GdVal const*, int) [clone .constprop.0]",
+      "offset_in_function": 4880,
+      "samples": 3
+    },
+    {
+      "offset": 3701182,
+      "function": "gd::gd_val_hash(gd::GdVal const&)",
+      "offset_in_function": 46,
+      "samples": 3
+    },
+    {
+      "offset": 3630234,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.2]",
+      "offset_in_function": 154,
+      "samples": 3
+    },
+    {
+      "offset": 3740647,
+      "function": "Gd__gd_core__CoreConst::sf_getStacks(gd::BattleCtx&, gd::GdVal const*, int) [clone .constprop.0]",
+      "offset_in_function": 87,
+      "samples": 3
+    },
+    {
+      "offset": 3727714,
+      "function": "Gd__gd_core__CoreContext::get_prop(unsigned int, gd::GdVal&) const",
+      "offset_in_function": 162,
+      "samples": 3
+    },
+    {
+      "offset": 3661408,
+      "function": "Gd__gd_core__CoreRng::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 48,
+      "samples": 3
+    },
+    {
+      "offset": 3669112,
+      "function": "Gd__gd_core__CoreCombatLog::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 120,
+      "samples": 3
+    },
+    {
+      "offset": 3518118,
+      "function": "pthread_spin_unlock",
+      "offset_in_function": 34,
+      "samples": 3
+    },
+    {
+      "offset": 3727620,
+      "function": "Gd__gd_core__CoreContext::get_prop(unsigned int, gd::GdVal&) const",
+      "offset_in_function": 68,
+      "samples": 3
+    },
+    {
+      "offset": 3970464,
+      "function": "Gd__gd_core__CoreItem::fn_canAffect_color(gd::GdVal const*, int)",
+      "offset_in_function": 480,
+      "samples": 3
+    },
+    {
+      "offset": 4224517,
+      "function": "Gd__gd_core__CoreItem::fn_physicsTick(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+      "offset_in_function": 469,
+      "samples": 3
+    },
+    {
+      "offset": 3525474,
+      "function": "pthread_getspecific",
+      "offset_in_function": 81,
+      "samples": 3
+    },
+    {
+      "offset": 3698673,
+      "function": "gd::GdDict::set(gd::BattleArena&, gd::GdVal const&, gd::GdVal const&)",
+      "offset_in_function": 49,
+      "samples": 3
+    },
+    {
+      "offset": 1307836,
+      "function": "(anonymous namespace)::NativeBattleHooks::on_log_event(gd::BattleCtx&, gd::GdObj*) [clone .isra.0]",
+      "offset_in_function": 5852,
+      "samples": 3
+    },
+    {
+      "offset": 3812939,
+      "function": "Gd__gd_core_items__Bag::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 523,
+      "samples": 2
+    },
+    {
+      "offset": 4074115,
+      "function": "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      "offset_in_function": 5443,
+      "samples": 2
+    },
+    {
+      "offset": 4195354,
+      "function": "Gd__gd_core__CoreCombatLog::fn_createEvent_Stack(gd::GdVal const*, int)",
+      "offset_in_function": 1146,
+      "samples": 2
+    },
+    {
+      "offset": 77728,
+      "function": "Gd__gd_core_items__Pan::get_prop(unsigned int, gd::GdVal&) const",
+      "offset_in_function": 0,
+      "samples": 2
+    },
+    {
+      "offset": 3482797,
+      "function": "ldexp",
+      "offset_in_function": 109,
+      "samples": 2
+    },
+    {
+      "offset": 3729927,
+      "function": "Gd__gd_core__CoreRng__INNER__BalancedRng::init_fields(gd::BattleCtx&)",
+      "offset_in_function": 7,
+      "samples": 2
+    },
+    {
+      "offset": 3680170,
+      "function": "Gd__gd_core__CoreConst::get_static_prop_fn(unsigned int, gd::GdVal&)",
+      "offset_in_function": 42,
+      "samples": 2
+    },
+    {
+      "offset": 3702841,
+      "function": "gd::GdDict::rebuild_index(gd::BattleArena&)",
+      "offset_in_function": 489,
+      "samples": 2
+    },
+    {
+      "offset": 3593955,
+      "function": "std::_Hash_bytes(void const*, unsigned long long, unsigned long long)",
+      "offset_in_function": 99,
+      "samples": 2
+    },
+    {
+      "offset": 3482923,
+      "function": "__fpclassify",
+      "offset_in_function": 43,
+      "samples": 2
+    },
+    {
+      "offset": 3977743,
+      "function": "Gd__gd_core__CoreItem::get_prop(unsigned int, gd::GdVal&) const",
+      "offset_in_function": 47,
+      "samples": 2
+    },
+    {
+      "offset": 3673677,
+      "function": "gd::GdEnum::get(std::basic_string_view<char, std::char_traits<char> >, long long&) const",
+      "offset_in_function": 125,
+      "samples": 2
+    },
+    {
+      "offset": 4224118,
+      "function": "Gd__gd_core__CoreItem::fn_physicsTick(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+      "offset_in_function": 70,
+      "samples": 2
+    },
+    {
+      "offset": 4140194,
+      "function": "Gd__gd_core__CoreEventBus::fn_emitAndLog(gd::GdVal const*, int)",
+      "offset_in_function": 1298,
+      "samples": 2
+    },
+    {
+      "offset": 4202140,
+      "function": "Gd__gd_core__CoreContext::fn_tickMotion(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+      "offset_in_function": 28,
+      "samples": 2
+    },
+    {
+      "offset": 4316432,
+      "function": "Gd__gd_core__CoreDamageResult::set_prop(gd::BattleCtx&, unsigned int, gd::GdVal const&)",
+      "offset_in_function": 0,
+      "samples": 2
+    },
+    {
+      "offset": 3684865,
+      "function": "Gd__gd_core__CoreUtil::sf_invertDictionary(gd::BattleCtx&, gd::GdVal const*, int)",
+      "offset_in_function": 1201,
+      "samples": 2
+    },
+    {
+      "offset": 1317850,
+      "function": "(anonymous namespace)::build_side_items(gd::BattleCtx&, gd::GdObj*, Gd__gd_core__CoreCharacter*, int, PackedSide const&, std::vector<Gd__gd_core__CoreItemData*, std::allocator<Gd__gd_core__CoreItemData*> >&, gd::GdArr*, std::vector<Gd__gd_core__CoreItem*, std::allocator<Gd__gd_core__CoreItem*> >*) [clone .lto_priv.0]",
+      "offset_in_function": 602,
+      "samples": 2
+    },
+    {
+      "offset": 3778216,
+      "function": "Gd__gd_core_items__Item::init_fields(gd::BattleCtx&)",
+      "offset_in_function": 2136,
+      "samples": 2
+    },
+    {
+      "offset": 4376324,
+      "function": "Gd__gd_core__CoreCharacter::fn_applyVampirism(gd::GdVal const*, int)",
+      "offset_in_function": 1284,
+      "samples": 2
+    },
+    {
+      "offset": 3877489,
+      "function": "Gd__gd_core__CoreItem::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 881,
+      "samples": 2
+    },
+    {
+      "offset": 3947409,
+      "function": "Gd__gd_core__CoreItem::fn_getP_check(gd::GdVal const*, int)",
+      "offset_in_function": 1,
+      "samples": 2
+    },
+    {
+      "offset": 3600140,
+      "function": "gd::BattleArena::alloc_raw(unsigned long long, unsigned long long) [clone .constprop.0]",
+      "offset_in_function": 156,
+      "samples": 2
+    },
+    {
+      "offset": 32443,
+      "function": "(anonymous namespace)::run_one_internal(gd::BattleCtx&, PackedSide const&, PackedSide const&, BattleOptions const&, BattleResult&, ReplayInitial const*, ReplayBuffState const*, ReplayEngineRng const*, bool, double, (anonymous namespace)::ReplayHostRng*, bool) [clone .lto_priv.0]",
+      "offset_in_function": 7275,
+      "samples": 2
+    },
+    {
+      "offset": 4176576,
+      "function": "Gd__gd_core__CoreBuff::fn_gainStacks(gd::GdVal const*, int)",
+      "offset_in_function": 384,
+      "samples": 2
+    },
+    {
+      "offset": 4202560,
+      "function": "Gd__gd_core__CoreContext::fn_tickMotion(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+      "offset_in_function": 448,
+      "samples": 2
+    },
+    {
+      "offset": 3630118,
+      "function": "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.2]",
+      "offset_in_function": 38,
+      "samples": 2
+    },
+    {
+      "offset": 4202577,
+      "function": "Gd__gd_core__CoreContext::fn_tickMotion(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+      "offset_in_function": 465,
+      "samples": 2
+    },
+    {
+      "offset": 1313107,
+      "function": "(anonymous namespace)::build_descriptor_in_battle(gd::BattleCtx&, (anonymous namespace)::ItemProto const&)",
+      "offset_in_function": 2451,
+      "samples": 2
+    },
+    {
+      "offset": 538464,
+      "function": "Gd__gd_core_items__ManaPotion::fn_onManaChanged(gd::GdVal const*, int)",
+      "offset_in_function": 224,
+      "samples": 2
+    },
+    {
+      "offset": 3494791,
+      "function": "__quorem_D2A",
+      "offset_in_function": 153,
+      "samples": 2
+    },
+    {
+      "offset": 4472975,
+      "function": "Gd__gd_core__CoreItem__INNER__CoreElectricalCharge::get_prop(unsigned int, gd::GdVal&) const",
+      "offset_in_function": 15,
+      "samples": 2
+    },
+    {
+      "offset": 3675392,
+      "function": "Gd__gd_core__CoreDamageSource::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 288,
+      "samples": 2
+    },
+    {
+      "offset": 3815327,
+      "function": "Gd__gd_core_items__Item::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      "offset_in_function": 31,
+      "samples": 2
+    },
+    {
+      "offset": 3913641,
+      "function": "gd::gd_mul(gd::GdVal const&, gd::GdVal const&)",
+      "offset_in_function": 73,
+      "samples": 2
+    },
+    {
+      "offset": 3482903,
+      "function": "__fpclassify",
+      "offset_in_function": 23,
+      "samples": 2
+    }
+  ]
+}

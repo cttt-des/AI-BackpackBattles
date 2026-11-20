@@ -1,0 +1,5 @@
+{
+  "passed": true,
+  "dll_sha256": "05b9d60d4506e524de498701a4e2289e48a5ac922b877ef42024306837756b91",
+  "stdout": "Tracked mutators, aliases, clear, shuffle RNG, sort callback, inline headers and timer/gem field replacement passed\n"
+}
