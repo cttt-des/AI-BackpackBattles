@@ -1,0 +1,42 @@
+{
+  "baseline_dll_sha256": "6e232391806268a9e77dde1ba5d89a96320453fe82bacd9d092e355a56c67a5b",
+  "candidate_dll_sha256": "0904c29d124d7f8e4a97a2ed6a73f7e006d07ee63552fecda3ed064d0427b4f3",
+  "status": "positive_combined_evidence",
+  "individual_components_not_rejected": true,
+  "metrics": {
+    "main_thread_cpu_s": {
+      "paired_median_time_reduction_pct": 4.32445067788686,
+      "sum_time_reduction_pct": 0.7893139040680008,
+      "candidate_wins": 11,
+      "ties": 0,
+      "pairs": 16
+    },
+    "wall_s": {
+      "paired_median_time_reduction_pct": 4.07200076650921,
+      "sum_time_reduction_pct": 0.07574606750032631,
+      "candidate_wins": 10,
+      "ties": 0,
+      "pairs": 16
+    }
+  },
+  "group_medians": [
+    {
+      "main_thread_cpu_s": 4.32445067788686,
+      "wall_s": 4.072000766509209
+    }
+  ],
+  "leave_one_group_out_sensitivity": [],
+  "background_load_range_pct": [
+    7.678731345571583,
+    29.868258267813292
+  ],
+  "on_ac_all": true,
+  "reports": [
+    {
+      "path": "output\\_v1110\\native_perf50\\dispatch_array_bundle\\ab_shared_load.json",
+      "sha256": "293f71cddbe8eed2f243650cfa032e88a7b9ee35adee33e9a4763161c9f57b04"
+    }
+  ],
+  "semantics_and_raw24_required_before_deployment": true,
+  "interpretation": "This measures a bundle. It does not prove each component helps or that old percentage estimates add together."
+}

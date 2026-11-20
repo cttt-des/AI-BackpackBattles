@@ -6,7 +6,7 @@ from pathlib import Path
 
 STAGE=Path(__file__).resolve().parent
 if not (STAGE/'sim_native').is_dir():STAGE=STAGE.parents[1]
-WORK=STAGE/'native_perf50/resolved_dispatch_a'
+WORK=STAGE/'native_perf50/dispatch_array_bundle'
 
 def digest(data):return hashlib.sha256(data).hexdigest()
 def canonical(data):return data.decode('utf8').replace('\r\n','\n').encode('utf8')
@@ -35,7 +35,7 @@ def optimize(native,prepare=False):
             data=(WORK/'before_runtime'/name).read_bytes()
             assert digest(canonical(data))==row['before_canonical_sha256']
         else:
-            data=(WORK/'resolved_src'/name).read_bytes()
+            data=(WORK/'bundle_src'/name).read_bytes()
             assert digest(canonical(data))==row['after_canonical_sha256']
         if current[name]!=data:changes.append((native/name,data))
     for path,data in changes:

@@ -1,0 +1,522 @@
+{
+  "base_dll_sha256": "6e232391806268a9e77dde1ba5d89a96320453fe82bacd9d092e355a56c67a5b",
+  "old_method_slots": 48,
+  "new_method_slots": 112,
+  "total_uncovered_before": 8931122,
+  "added_methods": [
+    {
+      "id": 1617,
+      "name": "tick",
+      "calls": 1022970,
+      "symbol": "SYM_GEN_tick_1516"
+    },
+    {
+      "id": 184,
+      "name": "isBag",
+      "calls": 372673,
+      "symbol": "SYM_GEN_isBag_83"
+    },
+    {
+      "id": 1124,
+      "name": "getStacks",
+      "calls": 368123,
+      "symbol": "SYM_GEN_getStacks_1023"
+    },
+    {
+      "id": 74,
+      "name": "randf_range",
+      "calls": 293376,
+      "symbol": "gd::SYM_randf_range"
+    },
+    {
+      "id": 387,
+      "name": "canAffect",
+      "calls": 270352,
+      "symbol": "SYM_GEN_canAffect_286"
+    },
+    {
+      "id": 1709,
+      "name": "getItemsInCells",
+      "calls": 259983,
+      "symbol": "SYM_GEN_getItemsInCells_1608"
+    },
+    {
+      "id": 390,
+      "name": "canAffect_lightning",
+      "calls": 253458,
+      "symbol": "SYM_GEN_canAffect_lightning_289"
+    },
+    {
+      "id": 388,
+      "name": "canAffect_secondary",
+      "calls": 253199,
+      "symbol": "SYM_GEN_canAffect_secondary_287"
+    },
+    {
+      "id": 389,
+      "name": "canAffect_tertiary",
+      "calls": 252369,
+      "symbol": "SYM_GEN_canAffect_tertiary_288"
+    },
+    {
+      "id": 1073,
+      "name": "getGemMode",
+      "calls": 235524,
+      "symbol": "SYM_GEN_getGemMode_972"
+    },
+    {
+      "id": 598,
+      "name": "getGemsNoNull",
+      "calls": 216134,
+      "symbol": "SYM_GEN_getGemsNoNull_497"
+    },
+    {
+      "id": 1025,
+      "name": "getItemsInside",
+      "calls": 183576,
+      "symbol": "SYM_GEN_getItemsInside_924"
+    },
+    {
+      "id": 331,
+      "name": "addMetric",
+      "calls": 177303,
+      "symbol": "SYM_GEN_addMetric_230"
+    },
+    {
+      "id": 1484,
+      "name": "snapshotItemMetric",
+      "calls": 177303,
+      "symbol": "SYM_GEN_snapshotItemMetric_1383"
+    },
+    {
+      "id": 1842,
+      "name": "trace_diag",
+      "calls": 164358,
+      "symbol": "SYM_GEN_trace_diag_1741"
+    },
+    {
+      "id": 501,
+      "name": "getOwnOrPlayerInventory",
+      "calls": 134962,
+      "symbol": "SYM_GEN_getOwnOrPlayerInventory_400"
+    },
+    {
+      "id": 1485,
+      "name": "snapshotItemTooltipStat",
+      "calls": 113659,
+      "symbol": "SYM_GEN_snapshotItemTooltipStat_1384"
+    },
+    {
+      "id": 249,
+      "name": "playActivationSound",
+      "calls": 111402,
+      "symbol": "SYM_GEN_playActivationSound_148"
+    },
+    {
+      "id": 183,
+      "name": "isWeapon",
+      "calls": 108446,
+      "symbol": "SYM_GEN_isWeapon_82"
+    },
+    {
+      "id": 1238,
+      "name": "tickVisualMotion",
+      "calls": 92629,
+      "symbol": "SYM_GEN_tickVisualMotion_1137"
+    },
+    {
+      "id": 196,
+      "name": "hasCooldown",
+      "calls": 91602,
+      "symbol": "SYM_GEN_hasCooldown_95"
+    },
+    {
+      "id": 516,
+      "name": "getAffectedCellsInInventory_cached",
+      "calls": 77643,
+      "symbol": "SYM_GEN_getAffectedCellsInInventory_cached_415"
+    },
+    {
+      "id": 524,
+      "name": "getItemsInAffectedCells_cached",
+      "calls": 77588,
+      "symbol": "SYM_GEN_getItemsInAffectedCells_cached_423"
+    },
+    {
+      "id": 490,
+      "name": "getItem",
+      "calls": 69735,
+      "symbol": "SYM_GEN_getItem_389"
+    },
+    {
+      "id": 174,
+      "name": "hasCharacter",
+      "calls": 67691,
+      "symbol": "SYM_GEN_hasCharacter_73"
+    },
+    {
+      "id": 502,
+      "name": "getCellsForGlobalPositions",
+      "calls": 61801,
+      "symbol": "SYM_GEN_getCellsForGlobalPositions_401"
+    },
+    {
+      "id": 604,
+      "name": "_hasBehaviorMethod",
+      "calls": 57618,
+      "symbol": "SYM_GEN__hasBehaviorMethod_503"
+    },
+    {
+      "id": 509,
+      "name": "getAffectedCells_tilemap",
+      "calls": 57197,
+      "symbol": "SYM_GEN_getAffectedCells_tilemap_408"
+    },
+    {
+      "id": 510,
+      "name": "getAffectedCellsAfterRotate",
+      "calls": 56966,
+      "symbol": "SYM_GEN_getAffectedCellsAfterRotate_409"
+    },
+    {
+      "id": 513,
+      "name": "getAffectedCells_noRotate",
+      "calls": 56966,
+      "symbol": "SYM_GEN_getAffectedCells_noRotate_412"
+    },
+    {
+      "id": 514,
+      "name": "getAffectedPoints",
+      "calls": 56966,
+      "symbol": "SYM_GEN_getAffectedPoints_413"
+    },
+    {
+      "id": 515,
+      "name": "getAffectedCellsInInventory",
+      "calls": 56966,
+      "symbol": "SYM_GEN_getAffectedCellsInInventory_414"
+    },
+    {
+      "id": 252,
+      "name": "checkActivationLimit",
+      "calls": 55820,
+      "symbol": "SYM_GEN_checkActivationLimit_151"
+    },
+    {
+      "id": 250,
+      "name": "playDropSound",
+      "calls": 55701,
+      "symbol": "SYM_GEN_playDropSound_149"
+    },
+    {
+      "id": 1481,
+      "name": "createEvent_Activation",
+      "calls": 53182,
+      "symbol": "SYM_GEN_createEvent_Activation_1380"
+    },
+    {
+      "id": 1836,
+      "name": "flip",
+      "calls": 50512,
+      "symbol": "SYM_GEN_flip_1735"
+    },
+    {
+      "id": 1352,
+      "name": "getHeat",
+      "calls": 50068,
+      "symbol": "SYM_GEN_getHeat_1251"
+    },
+    {
+      "id": 363,
+      "name": "getP_check",
+      "calls": 50059,
+      "symbol": "SYM_GEN_getP_check_262"
+    },
+    {
+      "id": 296,
+      "name": "getAmplificationChancePercent",
+      "calls": 49496,
+      "symbol": "SYM_GEN_getAmplificationChancePercent_195"
+    },
+    {
+      "id": 271,
+      "name": "applyBonusChance",
+      "calls": 47577,
+      "symbol": "SYM_GEN_applyBonusChance_170"
+    },
+    {
+      "id": 203,
+      "name": "getCooldown",
+      "calls": 42923,
+      "symbol": "SYM_GEN_getCooldown_102"
+    },
+    {
+      "id": 208,
+      "name": "adjustCooldown",
+      "calls": 42863,
+      "symbol": "SYM_GEN_adjustCooldown_107"
+    },
+    {
+      "id": 1844,
+      "name": "bare_randf_range",
+      "calls": 42108,
+      "symbol": "SYM_GEN_bare_randf_range_1743"
+    },
+    {
+      "id": 269,
+      "name": "getBaseChance",
+      "calls": 40730,
+      "symbol": "SYM_GEN_getBaseChance_168"
+    },
+    {
+      "id": 1355,
+      "name": "getCold",
+      "calls": 38436,
+      "symbol": "SYM_GEN_getCold_1254"
+    },
+    {
+      "id": 193,
+      "name": "getSpeed",
+      "calls": 37998,
+      "symbol": "SYM_GEN_getSpeed_92"
+    },
+    {
+      "id": 194,
+      "name": "speed",
+      "calls": 37989,
+      "symbol": "SYM_GEN_speed_93"
+    },
+    {
+      "id": 195,
+      "name": "getStackSpeedMods",
+      "calls": 37989,
+      "symbol": "SYM_GEN_getStackSpeedMods_94"
+    },
+    {
+      "id": 297,
+      "name": "changeAmplificiationChancePercent",
+      "calls": 33424,
+      "symbol": "SYM_GEN_changeAmplificiationChancePercent_196"
+    },
+    {
+      "id": 1861,
+      "name": "rollPercent",
+      "calls": 32399,
+      "symbol": "SYM_GEN_rollPercent_1760"
+    },
+    {
+      "id": 182,
+      "name": "hasTag",
+      "calls": 31152,
+      "symbol": "SYM_GEN_hasTag_81"
+    },
+    {
+      "id": 274,
+      "name": "rollChance",
+      "calls": 30868,
+      "symbol": "SYM_GEN_rollChance_173"
+    },
+    {
+      "id": 1126,
+      "name": "reset",
+      "calls": 30266,
+      "symbol": "SYM_GEN_reset_1025"
+    },
+    {
+      "id": 1345,
+      "name": "getMana",
+      "calls": 29667,
+      "symbol": "SYM_GEN_getMana_1244"
+    },
+    {
+      "id": 1677,
+      "name": "getAmount",
+      "calls": 29026,
+      "symbol": "SYM_GEN_getAmount_1576"
+    },
+    {
+      "id": 2030,
+      "name": "onManaChanged",
+      "calls": 29007,
+      "symbol": "SYM_GEN_onManaChanged_1929"
+    },
+    {
+      "id": 1021,
+      "name": "canApplyEffect",
+      "calls": 28283,
+      "symbol": "SYM_GEN_canApplyEffect_920"
+    },
+    {
+      "id": 2107,
+      "name": "onBuffChanged",
+      "calls": 27649,
+      "symbol": "SYM_GEN_onBuffChanged_2006"
+    },
+    {
+      "id": 291,
+      "name": "getParamModified",
+      "calls": 25971,
+      "symbol": "SYM_GEN_getParamModified_190"
+    },
+    {
+      "id": 191,
+      "name": "canBeEmpowered",
+      "calls": 25959,
+      "symbol": "SYM_GEN_canBeEmpowered_90"
+    },
+    {
+      "id": 227,
+      "name": "hasStartofBattle",
+      "calls": 24131,
+      "symbol": "SYM_GEN_hasStartofBattle_126"
+    },
+    {
+      "id": 2115,
+      "name": "canAffect_global",
+      "calls": 23460,
+      "symbol": "SYM_GEN_canAffect_global_2014"
+    },
+    {
+      "id": 1578,
+      "name": "otherCharacter",
+      "calls": 22261,
+      "symbol": "SYM_GEN_otherCharacter_1477"
+    },
+    {
+      "id": 217,
+      "name": "useStamina",
+      "calls": 21984,
+      "symbol": "SYM_GEN_useStamina_116"
+    }
+  ],
+  "selected_symbols": [
+    "SYM_GEN_trigger_143",
+    "SYM_GEN_doCooldownEffect_144",
+    "SYM_GEN_dealDamage_220",
+    "SYM_GEN_addItem_1618",
+    "SYM_GEN_activate_150",
+    "SYM_GEN_giveStacks_201",
+    "SYM_GEN_gainStacks_1030",
+    "SYM_GEN__behavior_call_504",
+    "SYM_GEN_onItemAdded_437",
+    "SYM_GEN_emitEvent_1593",
+    "SYM_GEN_onDealtDamage_908",
+    "SYM_GEN__tickChargePath_506",
+    "SYM_GEN_combatStart_127",
+    "SYM_GEN_heal_327",
+    "SYM_GEN_onItemActivated_938",
+    "SYM_GEN_addToInventory_120",
+    "SYM_GEN_onCombatStart_934",
+    "SYM_GEN_stackChanged_232",
+    "SYM_GEN_prepareItems_1320",
+    "SYM_GEN__readyInit_140",
+    "SYM_GEN_loseStacks_1032",
+    "SYM_GEN_setup_72",
+    "SYM_GEN_prepare_122",
+    "SYM_GEN_addSpeed_273",
+    "SYM_GEN__chargeEnterCell_323",
+    "SYM_GEN_giveMana_216",
+    "SYM_GEN_getNextFreeLabelPosition_378",
+    "SYM_GEN_giveHeat_218",
+    "SYM_GEN_emitSignal_1592",
+    "SYM_GEN_onTriggerItemActivated_2474",
+    "SYM_GEN_cacheAffectedCells_416",
+    "SYM_GEN_giveBlock_203",
+    "SYM_GEN_getP_188",
+    "SYM_GEN_character_74",
+    "SYM_GEN_connectForCombat_500",
+    "SYM_GEN_getAffectedItems_420",
+    "SYM_GEN_getP1_263",
+    "SYM_GEN_hasType_79",
+    "SYM_GEN_setState_382",
+    "SYM_GEN_opponent_75",
+    "SYM_GEN_getP_m_189",
+    "SYM_GEN_getP2_264",
+    "SYM_GEN_hasHit_1523",
+    "SYM_GEN_getP3_265",
+    "SYM_GEN_getDescriptor_1660",
+    "SYM_GEN_getNumAffectedItems_427",
+    "SYM_GEN_getChance_171",
+    "SYM_GEN_miniActivate_470",
+    "SYM_GEN_tick_1516",
+    "SYM_GEN_isBag_83",
+    "SYM_GEN_getStacks_1023",
+    "gd::SYM_randf_range",
+    "SYM_GEN_canAffect_286",
+    "SYM_GEN_getItemsInCells_1608",
+    "SYM_GEN_canAffect_lightning_289",
+    "SYM_GEN_canAffect_secondary_287",
+    "SYM_GEN_canAffect_tertiary_288",
+    "SYM_GEN_getGemMode_972",
+    "SYM_GEN_getGemsNoNull_497",
+    "SYM_GEN_getItemsInside_924",
+    "SYM_GEN_addMetric_230",
+    "SYM_GEN_snapshotItemMetric_1383",
+    "SYM_GEN_trace_diag_1741",
+    "SYM_GEN_getOwnOrPlayerInventory_400",
+    "SYM_GEN_snapshotItemTooltipStat_1384",
+    "SYM_GEN_playActivationSound_148",
+    "SYM_GEN_isWeapon_82",
+    "SYM_GEN_tickVisualMotion_1137",
+    "SYM_GEN_hasCooldown_95",
+    "SYM_GEN_getAffectedCellsInInventory_cached_415",
+    "SYM_GEN_getItemsInAffectedCells_cached_423",
+    "SYM_GEN_getItem_389",
+    "SYM_GEN_hasCharacter_73",
+    "SYM_GEN_getCellsForGlobalPositions_401",
+    "SYM_GEN__hasBehaviorMethod_503",
+    "SYM_GEN_getAffectedCells_tilemap_408",
+    "SYM_GEN_getAffectedCellsAfterRotate_409",
+    "SYM_GEN_getAffectedCells_noRotate_412",
+    "SYM_GEN_getAffectedPoints_413",
+    "SYM_GEN_getAffectedCellsInInventory_414",
+    "SYM_GEN_checkActivationLimit_151",
+    "SYM_GEN_playDropSound_149",
+    "SYM_GEN_createEvent_Activation_1380",
+    "SYM_GEN_flip_1735",
+    "SYM_GEN_getHeat_1251",
+    "SYM_GEN_getP_check_262",
+    "SYM_GEN_getAmplificationChancePercent_195",
+    "SYM_GEN_applyBonusChance_170",
+    "SYM_GEN_getCooldown_102",
+    "SYM_GEN_adjustCooldown_107",
+    "SYM_GEN_bare_randf_range_1743",
+    "SYM_GEN_getBaseChance_168",
+    "SYM_GEN_getCold_1254",
+    "SYM_GEN_getSpeed_92",
+    "SYM_GEN_speed_93",
+    "SYM_GEN_getStackSpeedMods_94",
+    "SYM_GEN_changeAmplificiationChancePercent_196",
+    "SYM_GEN_rollPercent_1760",
+    "SYM_GEN_hasTag_81",
+    "SYM_GEN_rollChance_173",
+    "SYM_GEN_reset_1025",
+    "SYM_GEN_getMana_1244",
+    "SYM_GEN_getAmount_1576",
+    "SYM_GEN_onManaChanged_1929",
+    "SYM_GEN_canApplyEffect_920",
+    "SYM_GEN_onBuffChanged_2006",
+    "SYM_GEN_getParamModified_190",
+    "SYM_GEN_canBeEmpowered_90",
+    "SYM_GEN_hasStartofBattle_126",
+    "SYM_GEN_canAffect_global_2014",
+    "SYM_GEN_otherCharacter_1477",
+    "SYM_GEN_useStamina_116"
+  ],
+  "resolved_row_count": 665,
+  "row_pointer_bytes": 595840,
+  "next_bundle": [
+    "expand exact-type dispatch using observed invocation frequency rather than inclusive latency",
+    "inline equivalent Array/Int index path, other kinds retain get_index"
+  ],
+  "preserved": [
+    "derived overrides",
+    "static-method shadows",
+    "C++ unknown-type fallback",
+    "RNG and argument/bind evaluation",
+    "array negative indices and mixed-key fallback"
+  ],
+  "runtime_candidate_built": false,
+  "observed_calls_to_added_method_names": 7029496,
+  "coverage_caveat": "Counts are by method name, not exact receiver eligibility. Custom C++ receivers such as NativeBattleHooks must still fall back; actual new fast-path coverage must be measured."
+}

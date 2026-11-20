@@ -1,3 +1,4 @@
+#include "../../native_array_index.hpp"
 #pragma STDC FP_CONTRACT OFF
 
 #include "../hdrs/Gd__gd_core__Goobert.hpp"
@@ -2059,7 +2060,7 @@ gd::GdVal Gd__gd_core_items__Exclusive__ChessBoard::fn_doCooldownEffect(const gd
     }
     if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_ne(lv_capturingPiece, gd::GdVal::null())))) {
         gd::GdVal lv_activateEvent = gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_activate_150, nullptr, 0);
-        (void)([&]() { gd::GdVal _ca[] = {gd::get_index(gd_ctx, lv_capturingPiece, gd::GdVal::from_int(0LL)), gd::get_index(gd_ctx, lv_capturingPiece, gd::GdVal::from_int(1LL)), lv_activateEvent}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_capture_2172, _ca, 3); })();
+        (void)([&]() { gd::GdVal _ca[] = {gd::native_array_index(gd_ctx, lv_capturingPiece, gd::GdVal::from_int(0LL)), gd::native_array_index(gd_ctx, lv_capturingPiece, gd::GdVal::from_int(1LL)), lv_activateEvent}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_capture_2172, _ca, 3); })();
     }
     else {
         (void)([&]() { gd::GdVal _ca[] = {lv_activePieces}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_findSpaceToMove_2173, _ca, 1); })();
@@ -2084,7 +2085,7 @@ gd::GdVal Gd__gd_core_items__Exclusive__ChessBoard::fn_findPieceToCapture(const 
                 uint32_t _len__t1925 = _t1924 ? _t1924->len : 0u;
                 for (uint32_t _t1925 = 0; _t1925 < _len__t1925; ++_t1925) {
                     gd::GdVal lv_cell = _t1924->data[_t1925];
-                    gd::GdVal lv_globalCell = gd::gd_add(gd_ctx, gd::get_index(gd_ctx, gd::get_prop(gd_ctx, lv_piece, SYM_GEN_occupiedCells_52), gd::GdVal::from_int(0LL)), lv_cell);
+                    gd::GdVal lv_globalCell = gd::gd_add(gd_ctx, gd::native_array_index(gd_ctx, gd::get_prop(gd_ctx, lv_piece, SYM_GEN_occupiedCells_52), gd::GdVal::from_int(0LL)), lv_cell);
                     gd::GdVal lv_itemInCell = ([&]() { gd::GdVal _ca[] = {lv_globalCell}; return gd::call_method(gd_ctx, this->f_inventory, SYM_GEN_getItemInCell_1607, _ca, 1); })();
                     if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_ne(lv_itemInCell, gd::GdVal::null())))) {
                         if (gd::gd_truth(([&]() { gd::GdVal _ca[] = {lv_itemInCell}; return gd::call_method(gd_ctx, lv_piece, SYM_GEN_canAffect_286, _ca, 1); })())) {
@@ -2118,7 +2119,7 @@ gd::GdVal Gd__gd_core_items__Exclusive__ChessBoard::fn_findBestPieceToCapture(co
                 uint32_t _len__t1931 = _t1930 ? _t1930->len : 0u;
                 for (uint32_t _t1931 = 0; _t1931 < _len__t1931; ++_t1931) {
                     gd::GdVal lv_cell = _t1930->data[_t1931];
-                    gd::GdVal lv_globalCell = gd::gd_add(gd_ctx, gd::get_index(gd_ctx, gd::get_prop(gd_ctx, lv_piece, SYM_GEN_occupiedCells_52), gd::GdVal::from_int(0LL)), lv_cell);
+                    gd::GdVal lv_globalCell = gd::gd_add(gd_ctx, gd::native_array_index(gd_ctx, gd::get_prop(gd_ctx, lv_piece, SYM_GEN_occupiedCells_52), gd::GdVal::from_int(0LL)), lv_cell);
                     gd::GdVal lv_itemInCell = ([&]() { gd::GdVal _ca[] = {lv_globalCell}; return gd::call_method(gd_ctx, this->f_inventory, SYM_GEN_getItemInCell_1607, _ca, 1); })();
                     if (gd::gd_truth((gd::gd_truth(gd::GdVal::from_bool(gd::gd_ne(lv_itemInCell, gd::GdVal::null()))) ? gd::GdVal::from_bool(gd::gd_truth(([&]() { gd::GdVal _ca[] = {lv_itemInCell}; return gd::call_method(gd_ctx, lv_piece, SYM_GEN_canAffect_286, _ca, 1); })())) : gd::GdVal::from_bool(false)))) {
                         gd::GdVal lv_score = gd::call_method(gd_ctx, lv_itemInCell, SYM_GEN_getPrice_392, nullptr, 0);
@@ -2133,7 +2134,7 @@ gd::GdVal Gd__gd_core_items__Exclusive__ChessBoard::fn_findBestPieceToCapture(co
                                         uint32_t _len__t1934 = _t1933 ? _t1933->len : 0u;
                                         for (uint32_t _t1934 = 0; _t1934 < _len__t1934; ++_t1934) {
                                             gd::GdVal lv_i = _t1933->data[_t1934];
-                                            gd::GdVal lv_cellToCheck = gd::gd_add(gd_ctx, gd::get_index(gd_ctx, gd::get_prop(gd_ctx, lv_piece, SYM_GEN_occupiedCells_52), gd::GdVal::from_int(0LL)), gd::gd_mul(lv_i, lv_dir));
+                                            gd::GdVal lv_cellToCheck = gd::gd_add(gd_ctx, gd::native_array_index(gd_ctx, gd::get_prop(gd_ctx, lv_piece, SYM_GEN_occupiedCells_52), gd::GdVal::from_int(0LL)), gd::gd_mul(lv_i, lv_dir));
                                             gd::GdVal lv_itemThere = ([&]() { gd::GdVal _ca[] = {lv_cellToCheck}; return gd::call_method(gd_ctx, this->f_inventory, SYM_GEN_getItemInCell_1607, _ca, 1); })();
                                             if (gd::gd_truth((gd::gd_truth(gd::GdVal::from_bool(gd::gd_ne(lv_itemThere, gd::GdVal::null()))) ? gd::GdVal::from_bool(gd::gd_truth(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_int(17LL)}; return gd::call_method(gd_ctx, lv_itemThere, SYM_GEN_hasType_79, _ca, 1); })())) : gd::GdVal::from_bool(false)))) {
                                                 lv_score = gd::gd_sub(lv_score, gd::GdVal::from_int(100LL));
@@ -2190,7 +2191,7 @@ gd::GdVal Gd__gd_core_items__Exclusive__ChessBoard::fn_findSpaceToMove(const gd:
                 uint32_t _len__t1940 = _t1939 ? _t1939->len : 0u;
                 for (uint32_t _t1940 = 0; _t1940 < _len__t1940; ++_t1940) {
                     gd::GdVal lv_cell = _t1939->data[_t1940];
-                    gd::GdVal lv_globalCell = gd::gd_add(gd_ctx, gd::get_index(gd_ctx, gd::get_prop(gd_ctx, lv_piece, SYM_GEN_occupiedCells_52), gd::GdVal::from_int(0LL)), lv_cell);
+                    gd::GdVal lv_globalCell = gd::gd_add(gd_ctx, gd::native_array_index(gd_ctx, gd::get_prop(gd_ctx, lv_piece, SYM_GEN_occupiedCells_52), gd::GdVal::from_int(0LL)), lv_cell);
                     if (gd::gd_truth(([&]() { gd::GdVal _ca[] = {lv_globalCell}; return gd::call_method(gd_ctx, this->f_inventory, SYM_GEN_isCellEmpty_1605, _ca, 1); })())) {
                         (void)([&]() { gd::GdVal _ca[] = {lv_piece, lv_globalCell}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_movePiece_2174, _ca, 2); })();
                         return gd::GdVal::null();

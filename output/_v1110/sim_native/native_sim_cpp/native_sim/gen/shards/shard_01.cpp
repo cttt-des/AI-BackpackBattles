@@ -1,3 +1,4 @@
+#include "../../native_array_index.hpp"
 #pragma STDC FP_CONTRACT OFF
 
 #include "../hdrs/Gd__gd_core__Item.hpp"
@@ -1361,17 +1362,17 @@ gd::GdVal Gd__gd_core__Item::fn_insertParameter(const gd::GdVal* _args, int _arg
             gd::GdVal lv_unit = ([&]() { gd::GdVal _ca[] = {gd::gd_add(gd_ctx, lv_startPos, gd::call_method(gd_ctx, lv_replacedString, gd::SYM_length, nullptr, 0)), gd::gd_sub(gd::gd_sub(lv_refEndPos, gd::gd_add(gd_ctx, lv_startPos, gd::GdVal::from_int(1LL))), gd::call_method(gd_ctx, lv_paramName, gd::SYM_length, nullptr, 0))}; return gd::call_method(gd_ctx, lv_descr, gd::SYM_substr, _ca, 2); })();
             gd::GdVal lv_replacement = gd::gd_add(gd_ctx, gd::GdVal::from_str(gd::gd_to_str(gd_ctx.arena, lv_value)), lv_unit);
             if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_gt(lv_startPos, gd::GdVal::from_int(0LL))))) {
-                if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_eq(gd::get_index(gd_ctx, lv_descr, gd::gd_sub(lv_startPos, gd::GdVal::from_int(1LL))), gd::GdVal::from_str(&battle_string_literals[21]))))) {
+                if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_eq(gd::native_array_index(gd_ctx, lv_descr, gd::gd_sub(lv_startPos, gd::GdVal::from_int(1LL))), gd::GdVal::from_str(&battle_string_literals[21]))))) {
                     lv_replacedString = gd::gd_add(gd_ctx, gd::GdVal::from_str(&battle_string_literals[21]), lv_replacedString);
                     lv_replacement = gd::gd_add(gd_ctx, gd::GdVal::from_str(&battle_string_literals[21]), lv_replacement);
                 }
-                else if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_eq(gd::get_index(gd_ctx, lv_descr, gd::gd_sub(lv_startPos, gd::GdVal::from_int(1LL))), gd::GdVal::from_str(&battle_string_literals[22]))))) {
+                else if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_eq(gd::native_array_index(gd_ctx, lv_descr, gd::gd_sub(lv_startPos, gd::GdVal::from_int(1LL))), gd::GdVal::from_str(&battle_string_literals[22]))))) {
                     lv_replacedString = gd::gd_add(gd_ctx, gd::GdVal::from_str(&battle_string_literals[22]), lv_replacedString);
                     lv_replacement = gd::gd_add(gd_ctx, gd::GdVal::from_str(&battle_string_literals[22]), lv_replacement);
                 }
             }
             if (gd::gd_truth(lv_wrapInColor)) {
-                lv_replacement = ([&]() { gd::GdVal _ca[] = {lv_replacement, gd::get_index(gd_ctx, gd::get_prop(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_util_1407), SYM_GEN_statColors_2720), lv_modified)}; return gd::call_method(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_util_1407), SYM_GEN_wrapInColor_fixed_2718, _ca, 2); })();
+                lv_replacement = ([&]() { gd::GdVal _ca[] = {lv_replacement, gd::native_array_index(gd_ctx, gd::get_prop(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_util_1407), SYM_GEN_statColors_2720), lv_modified)}; return gd::call_method(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_util_1407), SYM_GEN_wrapInColor_fixed_2718, _ca, 2); })();
             }
             lv_descr = ([&]() { gd::GdVal _ca[] = {gd::gd_add(gd_ctx, lv_replacedString, lv_unit), lv_replacement}; return gd::call_method(gd_ctx, lv_descr, gd::SYM_replace, _ca, 2); })();
         }
@@ -1487,18 +1488,18 @@ gd::GdVal Gd__gd_core__Item::fn_playAffectedPlacedAnimation(const gd::GdVal* _ar
         uint32_t _len__t426 = _t425 ? _t425->len : 0u;
         for (uint32_t _t426 = 0; _t426 < _len__t426; ++_t426) {
             gd::GdVal lv_color = _t425->data[_t426];
-            lv_sum = gd::gd_add(gd_ctx, lv_sum, gd::gd_coerce_int(gd::get_index(gd_ctx, lv_newItemIsAffected, lv_color)));
+            lv_sum = gd::gd_add(gd_ctx, lv_sum, gd::gd_coerce_int(gd::native_array_index(gd_ctx, lv_newItemIsAffected, lv_color)));
         }
     }
     if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_gt(lv_sum, gd::GdVal::from_int(1LL))))) {
     }
-    else if (gd::gd_truth(gd::get_index(gd_ctx, lv_newItemIsAffected, gd::GdVal::from_int(0LL)))) {
+    else if (gd::gd_truth(gd::native_array_index(gd_ctx, lv_newItemIsAffected, gd::GdVal::from_int(0LL)))) {
     }
-    else if (gd::gd_truth(gd::get_index(gd_ctx, lv_newItemIsAffected, gd::GdVal::from_int(1LL)))) {
+    else if (gd::gd_truth(gd::native_array_index(gd_ctx, lv_newItemIsAffected, gd::GdVal::from_int(1LL)))) {
     }
-    else if (gd::gd_truth(gd::get_index(gd_ctx, lv_newItemIsAffected, gd::GdVal::from_int(2LL)))) {
+    else if (gd::gd_truth(gd::native_array_index(gd_ctx, lv_newItemIsAffected, gd::GdVal::from_int(2LL)))) {
     }
-    else if (gd::gd_truth(gd::get_index(gd_ctx, lv_newItemIsAffected, gd::GdVal::from_int(3LL)))) {
+    else if (gd::gd_truth(gd::native_array_index(gd_ctx, lv_newItemIsAffected, gd::GdVal::from_int(3LL)))) {
     }
     return gd::GdVal::null();
 }
@@ -2137,7 +2138,7 @@ gd::GdVal Gd__gd_core__Item::fn_getTranslatedTypeName(const gd::GdVal* _args, in
 gd::GdVal Gd__gd_core__Item::fn_getTypeDescription(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
     gd::GdVal lv_type = (_argc > 0) ? _args[0] : gd::GdVal::null();
-    return ([&]() { gd::GdVal _ca[] = {gd::gd_add(gd_ctx, gd::gd_add(gd_ctx, gd::GdVal::from_str(&battle_string_literals[29]), gd::get_index(gd_ctx, gd::call_method(gd_ctx, gd::get_prop(gd_ctx, gd::GdVal::from_cls(&META_Gd__gd_core__CoreConst), SYM_GEN_Type_855), gd::SYM_keys, nullptr, 0), lv_type)), gd::GdVal::from_str(&battle_string_literals[30]))}; return gd::call_method(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_util_1407), SYM_GEN_tra_2715, _ca, 1); })();
+    return ([&]() { gd::GdVal _ca[] = {gd::gd_add(gd_ctx, gd::gd_add(gd_ctx, gd::GdVal::from_str(&battle_string_literals[29]), gd::native_array_index(gd_ctx, gd::call_method(gd_ctx, gd::get_prop(gd_ctx, gd::GdVal::from_cls(&META_Gd__gd_core__CoreConst), SYM_GEN_Type_855), gd::SYM_keys, nullptr, 0), lv_type)), gd::GdVal::from_str(&battle_string_literals[30]))}; return gd::call_method(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_util_1407), SYM_GEN_tra_2715, _ca, 1); })();
     return gd::GdVal::null();
 }
 gd::GdVal Gd__gd_core__Item::fn_getTranslatedRarity(const gd::GdVal* _args, int _argc) {
@@ -3097,7 +3098,7 @@ gd::GdVal Gd__gd_core__CoreItemBook::fn_getDescriptor(const gd::GdVal* _args, in
     if (gd::gd_truth(gd::GdVal::from_bool(!gd::gd_truth(([&]() { gd::GdVal _ca[] = {lv_itemName}; return gd::call_method(gd_ctx, this->f_descriptors, gd::SYM_has, _ca, 1); })())))) {
         { gd::GdVal _t467 = this->f_descriptors; gd::GdVal _t468 = lv_itemName; gd::set_index(gd_ctx, _t467, _t468, ([&]() { gd::GdVal _ca[] = {([&]() { auto* d = gd::GdDict::create(gd_ctx.arena, 2); d->set(gd_ctx.arena, gd::GdVal::from_str(&battle_string_literals[132]), lv_itemName); d->set(gd_ctx.arena, gd::GdVal::from_str(&battle_string_literals[133]), lv_itemName); return gd::GdVal::from_dict(d); })()}; return gd::call_method(gd_ctx, gd::call_method(gd_ctx, gd::GdVal::from_cls(&META_Gd__gd_core__CoreItemData), gd::SYM_new, nullptr, 0), SYM_GEN_fromDict_1726, _ca, 1); })()); }
     }
-    return gd::get_index(gd_ctx, this->f_descriptors, lv_itemName);
+    return gd::native_array_index(gd_ctx, this->f_descriptors, lv_itemName);
     return gd::GdVal::null();
 }
 gd::GdVal Gd__gd_core__CoreItemBook::fn_hasDescriptor(const gd::GdVal* _args, int _argc) {
@@ -4393,10 +4394,10 @@ gd::GdVal Gd__gd_core_items__Exclusive__AmuletofAgility::fn_onBuffChanged(const 
     if (gd::gd_truth((gd::gd_truth(gd::GdVal::from_bool(gd::gd_lt(lv_amount, gd::GdVal::from_int(0LL)))) ? gd::GdVal::from_bool(gd::gd_truth(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[150]), gd::GdVal::from_bool(false)}; return gd::call_method(gd_ctx, lv_event, SYM_GEN_getParam_1575, _ca, 2); })())) : gd::GdVal::from_bool(false)))) {
         gd::GdVal lv_used = gd::gd_neg(lv_amount);
         gd::GdVal lv_buffType = gd::call_method(gd_ctx, lv_event, SYM_GEN_getType_1572, nullptr, 0);
-        { gd::GdVal _t493 = this->f_usedStacks; gd::GdVal _t494 = lv_buffType; gd::set_index(gd_ctx, _t493, _t494, gd::gd_add(gd_ctx, gd::get_index(gd_ctx, _t493, _t494), gd::gd_mul(lv_used, this->f_refund))); }
-        gd::GdVal lv_toRefund = gd::gd_coerce_int(gd::gd_round(gd::get_index(gd_ctx, this->f_usedStacks, lv_buffType)));
+        { gd::GdVal _t493 = this->f_usedStacks; gd::GdVal _t494 = lv_buffType; gd::set_index(gd_ctx, _t493, _t494, gd::gd_add(gd_ctx, gd::native_array_index(gd_ctx, _t493, _t494), gd::gd_mul(lv_used, this->f_refund))); }
+        gd::GdVal lv_toRefund = gd::gd_coerce_int(gd::gd_round(gd::native_array_index(gd_ctx, this->f_usedStacks, lv_buffType)));
         if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_gt(lv_toRefund, gd::GdVal::from_int(0LL))))) {
-            { gd::GdVal _t495 = this->f_usedStacks; gd::GdVal _t496 = lv_buffType; gd::set_index(gd_ctx, _t495, _t496, gd::gd_sub(gd::get_index(gd_ctx, _t495, _t496), lv_toRefund)); }
+            { gd::GdVal _t495 = this->f_usedStacks; gd::GdVal _t496 = lv_buffType; gd::set_index(gd_ctx, _t495, _t496, gd::gd_sub(gd::native_array_index(gd_ctx, _t495, _t496), lv_toRefund)); }
             (void)([&]() { gd::GdVal _ca[] = {gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_character_74, nullptr, 0), lv_buffType, lv_toRefund, lv_event}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_giveStacks_201, _ca, 4); })();
             (void)gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_miniActivate_470, nullptr, 0);
         }
@@ -4605,7 +4606,7 @@ gd::GdVal Gd__gd_core_items__Greatsword::fn_isBuffed(const gd::GdVal* _args, int
 }
 gd::GdVal Gd__gd_core_items__Greatsword::fn_getStaminaCost(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
-    gd::GdVal lv_override = gd::get_index(gd_ctx, this->f_statDisplayOverrides, gd::GdVal::from_int(2LL));
+    gd::GdVal lv_override = gd::native_array_index(gd_ctx, this->f_statDisplayOverrides, gd::GdVal::from_int(2LL));
     if (gd::gd_truth(lv_override)) {
         return lv_override;
     }
@@ -7033,7 +7034,7 @@ gd::GdVal Gd__gd_core_items__Exclusive__WandofDissonance::fn_doCooldownEffect(co
         gd::GdVal lv_res = ([&]() { gd::GdVal _ca[] = {lv_dam, lv_event}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_dealEffectDamage_221, _ca, 2); })();
         gd::GdVal lv_maxBuffs = ([&]() { gd::GdVal _ca[] = {gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_character_74, nullptr, 0), gd::call_method(gd_ctx, this->f_availableBuffs, gd::SYM_keys, nullptr, 0)}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getMostStacks_361, _ca, 2); })();
         gd::GdVal lv_buffToGive = ([&]() { gd::GdVal _ca[] = {lv_maxBuffs}; return gd::call_method(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_util_1407), SYM_GEN_pickRandomElement_1746, _ca, 1); })();
-        gd::GdVal lv_amount = gd::get_index(gd_ctx, this->f_availableBuffs, lv_buffToGive);
+        gd::GdVal lv_amount = gd::native_array_index(gd_ctx, this->f_availableBuffs, lv_buffToGive);
         (void)([&]() { gd::GdVal _ca[] = {gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_character_74, nullptr, 0), lv_buffToGive, lv_amount, lv_event}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_giveStacks_201, _ca, 4); })();
     }
     (void)gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_activate_150, nullptr, 0);

@@ -50,6 +50,7 @@ def analyze(native,profile,limit=32,extra_symbols=()):
         for name in seen:weighted[name]+=row['samples']
     selected=[]
     for name,samples in weighted.most_common():
+        if limit<=0:break
         ids=symbols.get(name,set())
         if len(ids)!=1:continue
         symbol=next(iter(ids))

@@ -1,3 +1,4 @@
+#include "../../native_array_index.hpp"
 #include "../../native_event_kernel.hpp"
 #pragma STDC FP_CONTRACT OFF
 
@@ -768,8 +769,8 @@ gd::GdVal Gd__gd_core__CoreContext::fn_lib_fires_tick(const gd::GdVal* _args, in
         uint32_t _len__t1117 = _t1116 ? _t1116->len : 0u;
         for (uint32_t _t1117 = 0; _t1117 < _len__t1117; ++_t1117) {
             gd::GdVal lv_e = _t1116->data[_t1117];
-            { gd::GdVal _t1118 = lv_e; gd::GdVal _t1119 = gd::GdVal::from_int(0LL); gd::set_index(gd_ctx, _t1118, _t1119, gd::gd_sub(gd::get_index(gd_ctx, lv_e, gd::GdVal::from_int(0LL)), lv_delta)); }
-            if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_gt(gd::get_index(gd_ctx, lv_e, gd::GdVal::from_int(0LL)), gd::GdVal::from_float(0.0))))) {
+            { gd::GdVal _t1118 = lv_e; gd::GdVal _t1119 = gd::GdVal::from_int(0LL); gd::set_index(gd_ctx, _t1118, _t1119, gd::gd_sub(gd::native_array_index(gd_ctx, lv_e, gd::GdVal::from_int(0LL)), lv_delta)); }
+            if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_gt(gd::native_array_index(gd_ctx, lv_e, gd::GdVal::from_int(0LL)), gd::GdVal::from_float(0.0))))) {
                 (void)([&]() { gd::GdVal _ca[] = {lv_e}; return gd::call_method(gd_ctx, lv_keep, gd::SYM_push_back, _ca, 1); })();
             }
             else if (gd::gd_truth(gd::GdVal::from_bool(!gd::gd_truth(this->f_fight_ended)))) {
@@ -784,7 +785,7 @@ gd::GdVal Gd__gd_core__CoreContext::fn_lib_fires_tick(const gd::GdVal* _args, in
         uint32_t _len__t1122 = _t1121 ? _t1121->len : 0u;
         for (uint32_t _t1122 = 0; _t1122 < _len__t1122; ++_t1122) {
             gd::GdVal lv_e = _t1121->data[_t1122];
-            (void)([&]() { gd::GdVal _ca[] = {gd::gd_coerce_float(gd::get_index(gd_ctx, lv_e, gd::GdVal::from_int(1LL))), gd::gd_coerce_float(gd::get_index(gd_ctx, lv_e, gd::GdVal::from_int(2LL)))}; return native_event_call<Gd__gd_core__CoreRng, &Gd__gd_core__CoreRng::fn_randf_range>(gd_ctx, this->f_rng, gd::SYM_randf_range, _ca, 2); })();
+            (void)([&]() { gd::GdVal _ca[] = {gd::gd_coerce_float(gd::native_array_index(gd_ctx, lv_e, gd::GdVal::from_int(1LL))), gd::gd_coerce_float(gd::native_array_index(gd_ctx, lv_e, gd::GdVal::from_int(2LL)))}; return native_event_call<Gd__gd_core__CoreRng, &Gd__gd_core__CoreRng::fn_randf_range>(gd_ctx, this->f_rng, gd::SYM_randf_range, _ca, 2); })();
         }
     }
     return gd::GdVal::null();
@@ -802,8 +803,8 @@ gd::GdVal Gd__gd_core__CoreContext::fn_lib_fires_tick(const gd::GdVal* _args, in
         uint32_t _len__t1117 = _t1116 ? _t1116->len : 0u;
         for (uint32_t _t1117 = 0; _t1117 < _len__t1117; ++_t1117) {
             gd::GdVal lv_e = _t1116->data[_t1117];
-            { gd::GdVal _t1118 = lv_e; gd::GdVal _t1119 = gd::GdVal::from_int(0LL); gd::set_index(gd_ctx, _t1118, _t1119, gd::gd_sub(gd::get_index(gd_ctx, lv_e, gd::GdVal::from_int(0LL)), lv_delta)); }
-            if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_gt(gd::get_index(gd_ctx, lv_e, gd::GdVal::from_int(0LL)), gd::GdVal::from_float(0.0))))) {
+            { gd::GdVal _t1118 = lv_e; gd::GdVal _t1119 = gd::GdVal::from_int(0LL); gd::set_index(gd_ctx, _t1118, _t1119, gd::gd_sub(gd::native_array_index(gd_ctx, lv_e, gd::GdVal::from_int(0LL)), lv_delta)); }
+            if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_gt(gd::native_array_index(gd_ctx, lv_e, gd::GdVal::from_int(0LL)), gd::GdVal::from_float(0.0))))) {
                 (void)([&]() { gd::GdVal _ca[] = {lv_e}; return gd::call_method(gd_ctx, lv_keep, gd::SYM_push_back, _ca, 1); })();
             }
             else if (gd::gd_truth(gd::GdVal::from_bool(!gd::gd_truth(this->f_fight_ended)))) {
@@ -818,7 +819,7 @@ gd::GdVal Gd__gd_core__CoreContext::fn_lib_fires_tick(const gd::GdVal* _args, in
         uint32_t _len__t1122 = _t1121 ? _t1121->len : 0u;
         for (uint32_t _t1122 = 0; _t1122 < _len__t1122; ++_t1122) {
             gd::GdVal lv_e = _t1121->data[_t1122];
-            (void)([&]() { gd::GdVal _ca[] = {gd::gd_coerce_float(gd::get_index(gd_ctx, lv_e, gd::GdVal::from_int(1LL))), gd::gd_coerce_float(gd::get_index(gd_ctx, lv_e, gd::GdVal::from_int(2LL)))}; return gd::call_method(gd_ctx, this->f_rng, gd::SYM_randf_range, _ca, 2); })();
+            (void)([&]() { gd::GdVal _ca[] = {gd::gd_coerce_float(gd::native_array_index(gd_ctx, lv_e, gd::GdVal::from_int(1LL))), gd::gd_coerce_float(gd::native_array_index(gd_ctx, lv_e, gd::GdVal::from_int(2LL)))}; return gd::call_method(gd_ctx, this->f_rng, gd::SYM_randf_range, _ca, 2); })();
         }
     }
     return gd::GdVal::null();
@@ -938,11 +939,11 @@ gd::GdVal Gd__gd_core__CoreContext::fn__step_native_delays(const gd::GdVal* _arg
     gd::GdVal lv_read = gd::GdVal::from_int(0LL);
     gd::GdVal lv_write = gd::GdVal::from_int(0LL);
     while (gd::gd_truth(gd::GdVal::from_bool(gd::gd_lt(lv_read, lv_limit)))) {
-        gd::GdVal lv_entry = gd::get_index(gd_ctx, this->f__timed, lv_read);
-        { gd::GdVal _t1123 = lv_entry; gd::GdVal _t1124 = gd::GdVal::from_int(2LL); gd::set_index(gd_ctx, _t1123, _t1124, ([&]() { gd::GdVal _ca[] = {gd::gd_sub(gd::get_index(gd_ctx, lv_entry, gd::GdVal::from_int(2LL)), lv_delta)}; gd::GdVal _out = gd::GdVal::null(); Gd__gd_core__CoreContext::call_static_fn(gd_ctx, SYM_GEN__nativeF32_1502, _ca, 1, _out); return _out; })()); }
-        if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_lt(gd::get_index(gd_ctx, lv_entry, gd::GdVal::from_int(2LL)), gd::GdVal::from_float(0.0))))) {
-            if (gd::gd_truth((gd::gd_truth(gd::GdVal::from_bool(!gd::gd_truth(this->f_fight_ended))) ? gd::GdVal::from_bool(gd::gd_truth(gd::GdVal::from_bool(!(gd::get_index(gd_ctx, lv_entry, gd::GdVal::from_int(0LL))).is_null()))) : gd::GdVal::from_bool(false)))) {
-                (void)([&]() { gd::GdVal _ca[] = {gd::get_index(gd_ctx, lv_entry, gd::GdVal::from_int(1LL)), gd::get_index(gd_ctx, lv_entry, gd::GdVal::from_int(3LL))}; return gd::call_method(gd_ctx, gd::get_index(gd_ctx, lv_entry, gd::GdVal::from_int(0LL)), gd::SYM_callv, _ca, 2); })();
+        gd::GdVal lv_entry = gd::native_array_index(gd_ctx, this->f__timed, lv_read);
+        { gd::GdVal _t1123 = lv_entry; gd::GdVal _t1124 = gd::GdVal::from_int(2LL); gd::set_index(gd_ctx, _t1123, _t1124, ([&]() { gd::GdVal _ca[] = {gd::gd_sub(gd::native_array_index(gd_ctx, lv_entry, gd::GdVal::from_int(2LL)), lv_delta)}; gd::GdVal _out = gd::GdVal::null(); Gd__gd_core__CoreContext::call_static_fn(gd_ctx, SYM_GEN__nativeF32_1502, _ca, 1, _out); return _out; })()); }
+        if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_lt(gd::native_array_index(gd_ctx, lv_entry, gd::GdVal::from_int(2LL)), gd::GdVal::from_float(0.0))))) {
+            if (gd::gd_truth((gd::gd_truth(gd::GdVal::from_bool(!gd::gd_truth(this->f_fight_ended))) ? gd::GdVal::from_bool(gd::gd_truth(gd::GdVal::from_bool(!(gd::native_array_index(gd_ctx, lv_entry, gd::GdVal::from_int(0LL))).is_null()))) : gd::GdVal::from_bool(false)))) {
+                (void)([&]() { gd::GdVal _ca[] = {gd::native_array_index(gd_ctx, lv_entry, gd::GdVal::from_int(1LL)), gd::native_array_index(gd_ctx, lv_entry, gd::GdVal::from_int(3LL))}; return gd::call_method(gd_ctx, gd::native_array_index(gd_ctx, lv_entry, gd::GdVal::from_int(0LL)), gd::SYM_callv, _ca, 2); })();
             }
         }
         else {
@@ -956,7 +957,7 @@ gd::GdVal Gd__gd_core__CoreContext::fn__step_native_delays(const gd::GdVal* _arg
     if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_ne(lv_write, lv_limit)))) {
         gd::GdVal lv_end = gd::call_method(gd_ctx, this->f__timed, gd::SYM_size, nullptr, 0);
         while (gd::gd_truth(gd::GdVal::from_bool(gd::gd_lt(lv_read, lv_end)))) {
-            { gd::GdVal _t1127 = this->f__timed; gd::GdVal _t1128 = lv_write; gd::set_index(gd_ctx, _t1127, _t1128, gd::get_index(gd_ctx, this->f__timed, lv_read)); }
+            { gd::GdVal _t1127 = this->f__timed; gd::GdVal _t1128 = lv_write; gd::set_index(gd_ctx, _t1127, _t1128, gd::native_array_index(gd_ctx, this->f__timed, lv_read)); }
             lv_write = gd::gd_add(gd_ctx, lv_write, gd::GdVal::from_int(1LL));
             lv_read = gd::gd_add(gd_ctx, lv_read, gd::GdVal::from_int(1LL));
         }
@@ -982,8 +983,8 @@ gd::GdVal Gd__gd_core__CoreContext::fn__flushTimed(const gd::GdVal* _args, int _
         uint32_t _len__t1131 = _t1130 ? _t1130->len : 0u;
         for (uint32_t _t1131 = 0; _t1131 < _len__t1131; ++_t1131) {
             gd::GdVal lv_call = _t1130->data[_t1131];
-            { gd::GdVal _t1132 = lv_call; gd::GdVal _t1133 = gd::GdVal::from_int(2LL); gd::set_index(gd_ctx, _t1132, _t1133, gd::gd_sub(gd::get_index(gd_ctx, lv_call, gd::GdVal::from_int(2LL)), Gd__gd_core__CoreContext::get_static_const_or_enum(gd_ctx, SYM_GEN_PHYSICS_DELTA_1404))); }
-            if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_gt(gd::get_index(gd_ctx, lv_call, gd::GdVal::from_int(2LL)), gd::GdVal::from_float(0.0))))) {
+            { gd::GdVal _t1132 = lv_call; gd::GdVal _t1133 = gd::GdVal::from_int(2LL); gd::set_index(gd_ctx, _t1132, _t1133, gd::gd_sub(gd::native_array_index(gd_ctx, lv_call, gd::GdVal::from_int(2LL)), Gd__gd_core__CoreContext::get_static_const_or_enum(gd_ctx, SYM_GEN_PHYSICS_DELTA_1404))); }
+            if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_gt(gd::native_array_index(gd_ctx, lv_call, gd::GdVal::from_int(2LL)), gd::GdVal::from_float(0.0))))) {
                 (void)([&]() { gd::GdVal _ca[] = {lv_call}; return gd::call_method(gd_ctx, lv_keep, gd::SYM_push_back, _ca, 1); })();
             }
             else if (gd::gd_truth(gd::GdVal::from_bool(!gd::gd_truth(this->f_fight_ended)))) {
@@ -1002,7 +1003,7 @@ gd::GdVal Gd__gd_core__CoreContext::fn__flushTimed(const gd::GdVal* _args, int _
         uint32_t _len__t1136 = _t1135 ? _t1135->len : 0u;
         for (uint32_t _t1136 = 0; _t1136 < _len__t1136; ++_t1136) {
             gd::GdVal lv_call = _t1135->data[_t1136];
-            (void)([&]() { gd::GdVal _ca[] = {gd::get_index(gd_ctx, lv_call, gd::GdVal::from_int(1LL)), gd::get_index(gd_ctx, lv_call, gd::GdVal::from_int(3LL))}; return gd::call_method(gd_ctx, gd::get_index(gd_ctx, lv_call, gd::GdVal::from_int(0LL)), gd::SYM_callv, _ca, 2); })();
+            (void)([&]() { gd::GdVal _ca[] = {gd::native_array_index(gd_ctx, lv_call, gd::GdVal::from_int(1LL)), gd::native_array_index(gd_ctx, lv_call, gd::GdVal::from_int(3LL))}; return gd::call_method(gd_ctx, gd::native_array_index(gd_ctx, lv_call, gd::GdVal::from_int(0LL)), gd::SYM_callv, _ca, 2); })();
         }
     }
     return gd::GdVal::null();
@@ -1022,8 +1023,8 @@ gd::GdVal Gd__gd_core__CoreContext::fn__flushTimed(const gd::GdVal* _args, int _
         uint32_t _len__t1131 = _t1130 ? _t1130->len : 0u;
         for (uint32_t _t1131 = 0; _t1131 < _len__t1131; ++_t1131) {
             gd::GdVal lv_call = _t1130->data[_t1131];
-            { gd::GdVal _t1132 = lv_call; gd::GdVal _t1133 = gd::GdVal::from_int(2LL); gd::set_index(gd_ctx, _t1132, _t1133, gd::gd_sub(gd::get_index(gd_ctx, lv_call, gd::GdVal::from_int(2LL)), Gd__gd_core__CoreContext::get_static_const_or_enum(gd_ctx, SYM_GEN_PHYSICS_DELTA_1404))); }
-            if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_gt(gd::get_index(gd_ctx, lv_call, gd::GdVal::from_int(2LL)), gd::GdVal::from_float(0.0))))) {
+            { gd::GdVal _t1132 = lv_call; gd::GdVal _t1133 = gd::GdVal::from_int(2LL); gd::set_index(gd_ctx, _t1132, _t1133, gd::gd_sub(gd::native_array_index(gd_ctx, lv_call, gd::GdVal::from_int(2LL)), Gd__gd_core__CoreContext::get_static_const_or_enum(gd_ctx, SYM_GEN_PHYSICS_DELTA_1404))); }
+            if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_gt(gd::native_array_index(gd_ctx, lv_call, gd::GdVal::from_int(2LL)), gd::GdVal::from_float(0.0))))) {
                 (void)([&]() { gd::GdVal _ca[] = {lv_call}; return gd::call_method(gd_ctx, lv_keep, gd::SYM_push_back, _ca, 1); })();
             }
             else if (gd::gd_truth(gd::GdVal::from_bool(!gd::gd_truth(this->f_fight_ended)))) {
@@ -1042,7 +1043,7 @@ gd::GdVal Gd__gd_core__CoreContext::fn__flushTimed(const gd::GdVal* _args, int _
         uint32_t _len__t1136 = _t1135 ? _t1135->len : 0u;
         for (uint32_t _t1136 = 0; _t1136 < _len__t1136; ++_t1136) {
             gd::GdVal lv_call = _t1135->data[_t1136];
-            (void)([&]() { gd::GdVal _ca[] = {gd::get_index(gd_ctx, lv_call, gd::GdVal::from_int(1LL)), gd::get_index(gd_ctx, lv_call, gd::GdVal::from_int(3LL))}; return gd::call_method(gd_ctx, gd::get_index(gd_ctx, lv_call, gd::GdVal::from_int(0LL)), gd::SYM_callv, _ca, 2); })();
+            (void)([&]() { gd::GdVal _ca[] = {gd::native_array_index(gd_ctx, lv_call, gd::GdVal::from_int(1LL)), gd::native_array_index(gd_ctx, lv_call, gd::GdVal::from_int(3LL))}; return gd::call_method(gd_ctx, gd::native_array_index(gd_ctx, lv_call, gd::GdVal::from_int(0LL)), gd::SYM_callv, _ca, 2); })();
         }
     }
     return gd::GdVal::null();
@@ -1074,9 +1075,9 @@ gd::GdVal Gd__gd_core__CoreContext::fn_flushDeferred(const gd::GdVal* _args, int
             uint32_t _len__t1139 = _t1138 ? _t1138->len : 0u;
             for (uint32_t _t1139 = 0; _t1139 < _len__t1139; ++_t1139) {
                 gd::GdVal lv_call = _t1138->data[_t1139];
-                gd::GdVal lv_obj = gd::get_index(gd_ctx, lv_call, gd::GdVal::from_int(0LL));
+                gd::GdVal lv_obj = gd::native_array_index(gd_ctx, lv_call, gd::GdVal::from_int(0LL));
                 if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_ne(lv_obj, gd::GdVal::null())))) {
-                    (void)([&]() { gd::GdVal _ca[] = {gd::get_index(gd_ctx, lv_call, gd::GdVal::from_int(1LL)), gd::get_index(gd_ctx, lv_call, gd::GdVal::from_int(2LL))}; return gd::call_method(gd_ctx, lv_obj, gd::SYM_callv, _ca, 2); })();
+                    (void)([&]() { gd::GdVal _ca[] = {gd::native_array_index(gd_ctx, lv_call, gd::GdVal::from_int(1LL)), gd::native_array_index(gd_ctx, lv_call, gd::GdVal::from_int(2LL))}; return gd::call_method(gd_ctx, lv_obj, gd::SYM_callv, _ca, 2); })();
                 }
             }
         }
@@ -1095,12 +1096,12 @@ gd::GdVal Gd__gd_core__CoreContext::fn_connectIdleFrameOnce(const gd::GdVal* _ar
         uint32_t _len__t1142 = _t1141 ? _t1141->len : 0u;
         for (uint32_t _t1142 = 0; _t1142 < _len__t1142; ++_t1142) {
             gd::GdVal lv_i = _t1141->data[_t1142];
-            gd::GdVal lv_call = gd::get_index(gd_ctx, this->f__idle_frame_calls, lv_i);
-            if (gd::gd_truth((gd::gd_truth(gd::GdVal::from_bool(gd::gd_eq(gd::get_index(gd_ctx, lv_call, gd::GdVal::from_int(0LL)), lv_obj))) ? gd::GdVal::from_bool(gd::gd_truth(gd::GdVal::from_bool(gd::gd_eq(gd::get_index(gd_ctx, lv_call, gd::GdVal::from_int(1LL)), lv_methodName)))) : gd::GdVal::from_bool(false)))) {
+            gd::GdVal lv_call = gd::native_array_index(gd_ctx, this->f__idle_frame_calls, lv_i);
+            if (gd::gd_truth((gd::gd_truth(gd::GdVal::from_bool(gd::gd_eq(gd::native_array_index(gd_ctx, lv_call, gd::GdVal::from_int(0LL)), lv_obj))) ? gd::GdVal::from_bool(gd::gd_truth(gd::GdVal::from_bool(gd::gd_eq(gd::native_array_index(gd_ctx, lv_call, gd::GdVal::from_int(1LL)), lv_methodName)))) : gd::GdVal::from_bool(false)))) {
                 return gd::GdVal::null();
             }
             if (gd::gd_truth((gd::gd_truth(gd::GdVal::from_bool(gd::gd_eq(lv_position, gd::call_method(gd_ctx, this->f__idle_frame_calls, gd::SYM_size, nullptr, 0)))) ? gd::GdVal::from_bool(gd::gd_truth((gd::gd_truth(gd::GdVal::from_bool(gd::gd_eq(lv_obj, this->f_player))) ? gd::GdVal::from_bool(true) : gd::GdVal::from_bool(gd::gd_truth(gd::GdVal::from_bool(gd::gd_eq(lv_obj, this->f_opponent))))))) : gd::GdVal::from_bool(false)))) {
-                if (gd::gd_truth((gd::gd_truth((gd::gd_truth(gd::GdVal::from_bool(gd::gd_eq(lv_obj, this->f_player))) ? gd::GdVal::from_bool(gd::gd_truth(gd::GdVal::from_bool(gd::gd_eq(gd::get_index(gd_ctx, lv_call, gd::GdVal::from_int(0LL)), this->f_opponent)))) : gd::GdVal::from_bool(false))) ? gd::GdVal::from_bool(true) : gd::GdVal::from_bool(gd::gd_truth((gd::gd_truth(gd::GdVal::from_bool(gd::gd_eq(gd::get_index(gd_ctx, lv_call, gd::GdVal::from_int(0LL)), lv_obj))) ? gd::GdVal::from_bool(gd::gd_truth(gd::GdVal::from_bool(gd::gd_lt(lv_methodName, gd::get_index(gd_ctx, lv_call, gd::GdVal::from_int(1LL)))))) : gd::GdVal::from_bool(false))))))) {
+                if (gd::gd_truth((gd::gd_truth((gd::gd_truth(gd::GdVal::from_bool(gd::gd_eq(lv_obj, this->f_player))) ? gd::GdVal::from_bool(gd::gd_truth(gd::GdVal::from_bool(gd::gd_eq(gd::native_array_index(gd_ctx, lv_call, gd::GdVal::from_int(0LL)), this->f_opponent)))) : gd::GdVal::from_bool(false))) ? gd::GdVal::from_bool(true) : gd::GdVal::from_bool(gd::gd_truth((gd::gd_truth(gd::GdVal::from_bool(gd::gd_eq(gd::native_array_index(gd_ctx, lv_call, gd::GdVal::from_int(0LL)), lv_obj))) ? gd::GdVal::from_bool(gd::gd_truth(gd::GdVal::from_bool(gd::gd_lt(lv_methodName, gd::native_array_index(gd_ctx, lv_call, gd::GdVal::from_int(1LL)))))) : gd::GdVal::from_bool(false))))))) {
                     lv_position = lv_i;
                 }
             }
@@ -1125,9 +1126,9 @@ gd::GdVal Gd__gd_core__CoreContext::fn_flushIdleFrameCalls(const gd::GdVal* _arg
         uint32_t _len__t1145 = _t1144 ? _t1144->len : 0u;
         for (uint32_t _t1145 = 0; _t1145 < _len__t1145; ++_t1145) {
             gd::GdVal lv_call = _t1144->data[_t1145];
-            gd::GdVal lv_obj = gd::get_index(gd_ctx, lv_call, gd::GdVal::from_int(0LL));
+            gd::GdVal lv_obj = gd::native_array_index(gd_ctx, lv_call, gd::GdVal::from_int(0LL));
             if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_ne(lv_obj, gd::GdVal::null())))) {
-                (void)([&]() { gd::GdVal _ca[] = {gd::get_index(gd_ctx, lv_call, gd::GdVal::from_int(1LL)), gd::get_index(gd_ctx, lv_call, gd::GdVal::from_int(2LL))}; return gd::call_method(gd_ctx, lv_obj, gd::SYM_callv, _ca, 2); })();
+                (void)([&]() { gd::GdVal _ca[] = {gd::native_array_index(gd_ctx, lv_call, gd::GdVal::from_int(1LL)), gd::native_array_index(gd_ctx, lv_call, gd::GdVal::from_int(2LL))}; return gd::call_method(gd_ctx, lv_obj, gd::SYM_callv, _ca, 2); })();
             }
         }
     }
@@ -1159,7 +1160,7 @@ gd::GdVal Gd__gd_core__CoreContext::fn_setReplayInitial(const gd::GdVal* _args, 
     this->f_replay_engine_rng = lv_engine_rng;
     this->f_native_frame_rng = gd::GdVal::from_bool(gd::gd_ne(lv_engine_rng, gd::GdVal::null()));
     if (gd::gd_truth(this->f_native_frame_rng)) {
-        this->f_native_label_mode = gd::gd_coerce_int(gd::get_index(gd_ctx, lv_engine_rng, gd::GdVal::from_int(4LL)));
+        this->f_native_label_mode = gd::gd_coerce_int(gd::native_array_index(gd_ctx, lv_engine_rng, gd::GdVal::from_int(4LL)));
     }
     this->f_replay_native_scene_delays = lv_scene_delays;
     this->f_replay_util_time = lv_util_time;
@@ -1173,9 +1174,9 @@ gd::GdVal Gd__gd_core__CoreContext::fn_restoreEngineRng(const gd::GdVal* _args, 
         return gd::GdVal::null();
     }
     gd::GdVal lv_base = (gd::gd_truth(lv_activating) ? (gd::GdVal::from_int(2LL)) : (gd::GdVal::from_int(0LL)));
-    (void)(gd_ctx.math_rng.set_seed(static_cast<uint64_t>(gd::gd_coerce_int(gd::get_index(gd_ctx, this->f_replay_engine_rng, lv_base)).as_int())), gd::GdVal::null());
+    (void)(gd_ctx.math_rng.set_seed(static_cast<uint64_t>(gd::gd_coerce_int(gd::native_array_index(gd_ctx, this->f_replay_engine_rng, lv_base)).as_int())), gd::GdVal::null());
     {
-        gd::GdVal _t1146 = gd::gd_iter_seq(gd_ctx.arena, ([&]() { gd::GdVal _ca[] = {gd::gd_coerce_int(gd::get_index(gd_ctx, this->f_replay_engine_rng, gd::gd_add(gd_ctx, lv_base, gd::GdVal::from_int(1LL))))}; return gd::gd_range(gd_ctx.arena, _ca, 1); })());
+        gd::GdVal _t1146 = gd::gd_iter_seq(gd_ctx.arena, ([&]() { gd::GdVal _ca[] = {gd::gd_coerce_int(gd::native_array_index(gd_ctx, this->f_replay_engine_rng, gd::gd_add(gd_ctx, lv_base, gd::GdVal::from_int(1LL))))}; return gd::gd_range(gd_ctx.arena, _ca, 1); })());
         gd::GdArr* _t1147 = (_t1146.kind == gd::GdVal::Kind::Arr) ? _t1146.arr : nullptr;
         uint32_t _len__t1148 = _t1147 ? _t1147->len : 0u;
         for (uint32_t _t1148 = 0; _t1148 < _len__t1148; ++_t1148) {
@@ -1258,11 +1259,11 @@ gd::GdVal Gd__gd_core__CoreContext::fn_changeParticleDraws(const gd::GdVal* _arg
         for (uint32_t _t1156 = 0; _t1156 < _len__t1156; ++_t1156) {
             gd::GdVal lv_i = _t1155->data[_t1156];
             gd::GdVal lv_index = gd::gd_coerce_int(gd::gd_mod(gd_ctx, gd::gd_add(gd_ctx, lv_start, lv_i), gd::call_method(gd_ctx, this->f__particle_draws, gd::SYM_size, nullptr, 0)));
-            gd::GdVal lv_count = gd::gd_coerce_int(gd::get_index(gd_ctx, lv_schedule, lv_i));
+            gd::GdVal lv_count = gd::gd_coerce_int(gd::native_array_index(gd_ctx, lv_schedule, lv_i));
             if (gd::gd_truth((gd::gd_truth(gd::GdVal::from_bool(gd::gd_eq(lv_i, gd::GdVal::from_int(0LL)))) ? gd::GdVal::from_bool(gd::gd_truth(gd::GdVal::from_bool(gd::gd_eq(lv_phase, gd::GdVal::from_int(2LL))))) : gd::GdVal::from_bool(false)))) {
                 lv_count = gd::gd_coerce_int(gd::gd_sub(lv_count, gd::GdVal::from_int(10LL)));
             }
-            { gd::GdVal _t1157 = this->f__particle_draws; gd::GdVal _t1158 = lv_index; gd::set_index(gd_ctx, _t1157, _t1158, gd::gd_add(gd_ctx, gd::get_index(gd_ctx, _t1157, _t1158), gd::gd_mul(lv_direction, lv_count))); }
+            { gd::GdVal _t1157 = this->f__particle_draws; gd::GdVal _t1158 = lv_index; gd::set_index(gd_ctx, _t1157, _t1158, gd::gd_add(gd_ctx, gd::native_array_index(gd_ctx, _t1157, _t1158), gd::gd_mul(lv_direction, lv_count))); }
             this->f__particle_pending_draws = gd::gd_add(gd_ctx, this->f__particle_pending_draws, gd::gd_mul(lv_direction, lv_count));
         }
     }
@@ -1314,7 +1315,7 @@ gd::GdVal Gd__gd_core__CoreContext::fn_restartLoversParticleDraws(const gd::GdVa
 gd::GdVal Gd__gd_core__CoreContext::fn_stepParticleDraws(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
     gd::GdVal lv_index = gd::gd_coerce_int(gd::gd_mod(gd_ctx, this->f_particle_draw_frame, gd::call_method(gd_ctx, this->f__particle_draws, gd::SYM_size, nullptr, 0)));
-    gd::GdVal lv_count = gd::gd_coerce_int(gd::get_index(gd_ctx, this->f__particle_draws, lv_index));
+    gd::GdVal lv_count = gd::gd_coerce_int(gd::native_array_index(gd_ctx, this->f__particle_draws, lv_index));
     { gd::GdVal _t1159 = this->f__particle_draws; gd::GdVal _t1160 = lv_index; gd::set_index(gd_ctx, _t1159, _t1160, gd::GdVal::from_int(0LL)); }
     this->f_particle_draw_frame = gd::gd_add(gd_ctx, this->f_particle_draw_frame, gd::GdVal::from_int(1LL));
     this->f__particle_pending_draws = gd::gd_sub(this->f__particle_pending_draws, lv_count);
@@ -1379,8 +1380,8 @@ gd::GdVal Gd__gd_core__CoreContext::fn_collectCriticalShake(const gd::GdVal* _ar
     if (gd::gd_truth(lv_on_item)) {
         lv_end_offset = (gd::gd_truth(this->f__critical_shake_after_idle) ? (gd::GdVal::from_int(39LL)) : (gd::GdVal::from_int(42LL)));
     }
-    { gd::GdVal _t1172 = this->f__critical_shake_delta; gd::GdVal _t1173 = gd::gd_mod(gd_ctx, lv_first, Gd__gd_core__CoreContext::get_static_const_or_enum(gd_ctx, SYM_GEN_CRITICAL_SHAKE_WINDOW_1456)); gd::set_index(gd_ctx, _t1172, _t1173, gd::gd_add(gd_ctx, gd::get_index(gd_ctx, _t1172, _t1173), gd::GdVal::from_int(1LL))); }
-    { gd::GdVal _t1174 = this->f__critical_shake_delta; gd::GdVal _t1175 = gd::gd_mod(gd_ctx, gd::gd_add(gd_ctx, lv_first, lv_end_offset), Gd__gd_core__CoreContext::get_static_const_or_enum(gd_ctx, SYM_GEN_CRITICAL_SHAKE_WINDOW_1456)); gd::set_index(gd_ctx, _t1174, _t1175, gd::gd_sub(gd::get_index(gd_ctx, _t1174, _t1175), gd::GdVal::from_int(1LL))); }
+    { gd::GdVal _t1172 = this->f__critical_shake_delta; gd::GdVal _t1173 = gd::gd_mod(gd_ctx, lv_first, Gd__gd_core__CoreContext::get_static_const_or_enum(gd_ctx, SYM_GEN_CRITICAL_SHAKE_WINDOW_1456)); gd::set_index(gd_ctx, _t1172, _t1173, gd::gd_add(gd_ctx, gd::native_array_index(gd_ctx, _t1172, _t1173), gd::GdVal::from_int(1LL))); }
+    { gd::GdVal _t1174 = this->f__critical_shake_delta; gd::GdVal _t1175 = gd::gd_mod(gd_ctx, gd::gd_add(gd_ctx, lv_first, lv_end_offset), Gd__gd_core__CoreContext::get_static_const_or_enum(gd_ctx, SYM_GEN_CRITICAL_SHAKE_WINDOW_1456)); gd::set_index(gd_ctx, _t1174, _t1175, gd::gd_sub(gd::native_array_index(gd_ctx, _t1174, _t1175), gd::GdVal::from_int(1LL))); }
     return gd::GdVal::null();
 }
 gd::GdVal Gd__gd_core__CoreContext::fn_stepCriticalShake(const gd::GdVal* _args, int _argc) {
@@ -1394,9 +1395,9 @@ gd::GdVal Gd__gd_core__CoreContext::fn_stepCriticalShake(const gd::GdVal* _args,
         return gd::GdVal::null();
     }
     gd::GdVal lv_phase = gd::gd_mod(gd_ctx, this->f__critical_shake_frame, gd::GdVal::from_int(3LL));
-    { gd::GdVal _t1176 = this->f__critical_shake_active; gd::GdVal _t1177 = lv_phase; gd::set_index(gd_ctx, _t1176, _t1177, gd::gd_add(gd_ctx, gd::get_index(gd_ctx, _t1176, _t1177), gd::get_index(gd_ctx, this->f__critical_shake_delta, this->f__critical_shake_frame))); }
+    { gd::GdVal _t1176 = this->f__critical_shake_active; gd::GdVal _t1177 = lv_phase; gd::set_index(gd_ctx, _t1176, _t1177, gd::gd_add(gd_ctx, gd::native_array_index(gd_ctx, _t1176, _t1177), gd::native_array_index(gd_ctx, this->f__critical_shake_delta, this->f__critical_shake_frame))); }
     { gd::GdVal _t1178 = this->f__critical_shake_delta; gd::GdVal _t1179 = this->f__critical_shake_frame; gd::set_index(gd_ctx, _t1178, _t1179, gd::GdVal::from_int(0LL)); }
-    gd::GdVal lv_remaining = gd::gd_coerce_int(gd::get_index(gd_ctx, this->f__critical_shake_active, lv_phase));
+    gd::GdVal lv_remaining = gd::gd_coerce_int(gd::native_array_index(gd_ctx, this->f__critical_shake_active, lv_phase));
     while (gd::gd_truth(gd::GdVal::from_bool(gd::gd_gt(lv_remaining, gd::GdVal::from_int(0LL))))) {
         (void)gd::GdVal::from_int(gd_ctx.math_rng.randi());
         lv_remaining = gd::gd_sub(lv_remaining, gd::GdVal::from_int(1LL));
@@ -1412,9 +1413,9 @@ gd::GdVal Gd__gd_core__CoreContext::fn_stepCriticalShake(const gd::GdVal* _args,
         return gd::GdVal::null();
     }
     gd::GdVal lv_phase = gd::gd_mod(gd_ctx, this->f__critical_shake_frame, gd::GdVal::from_int(3LL));
-    { gd::GdVal _t1176 = this->f__critical_shake_active; gd::GdVal _t1177 = lv_phase; gd::set_index(gd_ctx, _t1176, _t1177, gd::gd_add(gd_ctx, gd::get_index(gd_ctx, _t1176, _t1177), gd::get_index(gd_ctx, this->f__critical_shake_delta, this->f__critical_shake_frame))); }
+    { gd::GdVal _t1176 = this->f__critical_shake_active; gd::GdVal _t1177 = lv_phase; gd::set_index(gd_ctx, _t1176, _t1177, gd::gd_add(gd_ctx, gd::native_array_index(gd_ctx, _t1176, _t1177), gd::native_array_index(gd_ctx, this->f__critical_shake_delta, this->f__critical_shake_frame))); }
     { gd::GdVal _t1178 = this->f__critical_shake_delta; gd::GdVal _t1179 = this->f__critical_shake_frame; gd::set_index(gd_ctx, _t1178, _t1179, gd::GdVal::from_int(0LL)); }
-    gd::GdVal lv_remaining = gd::gd_coerce_int(gd::get_index(gd_ctx, this->f__critical_shake_active, lv_phase));
+    gd::GdVal lv_remaining = gd::gd_coerce_int(gd::native_array_index(gd_ctx, this->f__critical_shake_active, lv_phase));
     while (gd::gd_truth(gd::GdVal::from_bool(gd::gd_gt(lv_remaining, gd::GdVal::from_int(0LL))))) {
         (void)gd::GdVal::from_int(gd_ctx.math_rng.randi());
         lv_remaining = gd::gd_sub(lv_remaining, gd::GdVal::from_int(1LL));
@@ -1436,15 +1437,15 @@ gd::GdVal Gd__gd_core__CoreContext::fn_restoreReplayBuffs(const gd::GdVal* _args
         for (uint32_t _t1182 = 0; _t1182 < _len__t1182; ++_t1182) {
             gd::GdVal lv_side = _t1181->data[_t1182];
             {
-                gd::GdVal _t1183 = gd::gd_iter_seq(gd_ctx.arena, gd::get_index(gd_ctx, this->f_replay_buff_state, lv_side));
+                gd::GdVal _t1183 = gd::gd_iter_seq(gd_ctx.arena, gd::native_array_index(gd_ctx, this->f_replay_buff_state, lv_side));
                 gd::GdArr* _t1184 = (_t1183.kind == gd::GdVal::Kind::Arr) ? _t1183.arr : nullptr;
                 uint32_t _len__t1185 = _t1184 ? _t1184->len : 0u;
                 for (uint32_t _t1185 = 0; _t1185 < _len__t1185; ++_t1185) {
                     gd::GdVal lv_row = _t1184->data[_t1185];
-                    gd::GdVal lv_buff = gd::get_index(gd_ctx, gd::get_prop(gd_ctx, gd::get_index(gd_ctx, lv_characters, lv_side), SYM_GEN_buffs_1048), gd::gd_coerce_int(gd::get_index(gd_ctx, lv_row, gd::GdVal::from_int(0LL))));
+                    gd::GdVal lv_buff = gd::native_array_index(gd_ctx, gd::get_prop(gd_ctx, gd::native_array_index(gd_ctx, lv_characters, lv_side), SYM_GEN_buffs_1048), gd::gd_coerce_int(gd::native_array_index(gd_ctx, lv_row, gd::GdVal::from_int(0LL))));
                     (void)gd::GdVal::null();
                     (void)gd::GdVal::null();
-                    gd::set_prop(gd_ctx, lv_buff, SYM_GEN_permanentStacks_1008, gd::gd_coerce_int(gd::get_index(gd_ctx, lv_row, gd::GdVal::from_int(2LL))));
+                    gd::set_prop(gd_ctx, lv_buff, SYM_GEN_permanentStacks_1008, gd::gd_coerce_int(gd::native_array_index(gd_ctx, lv_row, gd::GdVal::from_int(2LL))));
                 }
             }
         }
@@ -1468,18 +1469,18 @@ gd::GdVal Gd__gd_core__CoreContext::fn_tickMotion(const gd::GdVal* _args, int _a
     gd::GdVal lv_read = gd::GdVal::from_int(0LL);
     gd::GdVal lv_write = gd::GdVal::from_int(0LL);
     while (gd::gd_truth(gd::GdVal::from_bool(gd::gd_lt(lv_read, lv_limit)))) {
-        gd::GdVal lv_entry = gd::get_index(gd_ctx, this->f__motion_queue, lv_read);
+        gd::GdVal lv_entry = gd::native_array_index(gd_ctx, this->f__motion_queue, lv_read);
         gd::GdVal lv_keep = gd::GdVal::from_bool(false);
-        if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_eq(gd::get_index(gd_ctx, lv_entry, gd::GdVal::from_int(0LL)), gd::GdVal::from_int(0LL))))) {
-            gd::GdVal lv_character = gd::get_index(gd_ctx, lv_entry, gd::GdVal::from_int(1LL));
-            if (gd::gd_truth((gd::gd_truth(gd::GdVal::from_bool(gd::gd_eq(gd::get_prop(gd_ctx, lv_character, SYM_GEN__visual_generation_1125), gd::get_index(gd_ctx, lv_entry, gd::GdVal::from_int(2LL))))) ? gd::GdVal::from_bool(gd::gd_truth(gd::GdVal::from_bool(gd::gd_ne(gd::get_prop(gd_ctx, lv_character, SYM_GEN__visual_kind_1123), gd::GdVal::from_int(0LL))))) : gd::GdVal::from_bool(false)))) {
+        if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_eq(gd::native_array_index(gd_ctx, lv_entry, gd::GdVal::from_int(0LL)), gd::GdVal::from_int(0LL))))) {
+            gd::GdVal lv_character = gd::native_array_index(gd_ctx, lv_entry, gd::GdVal::from_int(1LL));
+            if (gd::gd_truth((gd::gd_truth(gd::GdVal::from_bool(gd::gd_eq(gd::get_prop(gd_ctx, lv_character, SYM_GEN__visual_generation_1125), gd::native_array_index(gd_ctx, lv_entry, gd::GdVal::from_int(2LL))))) ? gd::GdVal::from_bool(gd::gd_truth(gd::GdVal::from_bool(gd::gd_ne(gd::get_prop(gd_ctx, lv_character, SYM_GEN__visual_kind_1123), gd::GdVal::from_int(0LL))))) : gd::GdVal::from_bool(false)))) {
                 (void)([&]() { gd::GdVal _ca[] = {lv_delta}; return gd::call_method(gd_ctx, lv_character, SYM_GEN_tickVisualMotion_1137, _ca, 1); })();
                 lv_keep = gd::GdVal::from_bool(gd::gd_ne(gd::get_prop(gd_ctx, lv_character, SYM_GEN__visual_kind_1123), gd::GdVal::from_int(0LL)));
             }
         }
         else {
-            gd::GdVal lv_charge = gd::get_index(gd_ctx, lv_entry, gd::GdVal::from_int(2LL));
-            (void)([&]() { gd::GdVal _ca[] = {lv_charge, lv_delta}; return gd::call_method(gd_ctx, gd::get_index(gd_ctx, lv_entry, gd::GdVal::from_int(1LL)), SYM_GEN__tickChargePath_506, _ca, 2); })();
+            gd::GdVal lv_charge = gd::native_array_index(gd_ctx, lv_entry, gd::GdVal::from_int(2LL));
+            (void)([&]() { gd::GdVal _ca[] = {lv_charge, lv_delta}; return gd::call_method(gd_ctx, gd::native_array_index(gd_ctx, lv_entry, gd::GdVal::from_int(1LL)), SYM_GEN__tickChargePath_506, _ca, 2); })();
             lv_keep = gd::get_prop(gd_ctx, lv_charge, SYM_GEN_active_1653);
         }
         if (gd::gd_truth(lv_keep)) {
@@ -1493,7 +1494,7 @@ gd::GdVal Gd__gd_core__CoreContext::fn_tickMotion(const gd::GdVal* _args, int _a
     if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_ne(lv_write, lv_limit)))) {
         gd::GdVal lv_end = gd::call_method(gd_ctx, this->f__motion_queue, gd::SYM_size, nullptr, 0);
         while (gd::gd_truth(gd::GdVal::from_bool(gd::gd_lt(lv_read, lv_end)))) {
-            { gd::GdVal _t1188 = this->f__motion_queue; gd::GdVal _t1189 = lv_write; gd::set_index(gd_ctx, _t1188, _t1189, gd::get_index(gd_ctx, this->f__motion_queue, lv_read)); }
+            { gd::GdVal _t1188 = this->f__motion_queue; gd::GdVal _t1189 = lv_write; gd::set_index(gd_ctx, _t1188, _t1189, gd::native_array_index(gd_ctx, this->f__motion_queue, lv_read)); }
             lv_write = gd::gd_add(gd_ctx, lv_write, gd::GdVal::from_int(1LL));
             lv_read = gd::gd_add(gd_ctx, lv_read, gd::GdVal::from_int(1LL));
         }
@@ -1555,7 +1556,7 @@ gd::GdVal Gd__gd_core__CoreContext::fn_restoreFlickers(const gd::GdVal* _args, i
         uint32_t _len__t1192 = _t1191 ? _t1191->len : 0u;
         for (uint32_t _t1192 = 0; _t1192 < _len__t1192; ++_t1192) {
             gd::GdVal lv_pending = _t1191->data[_t1192];
-            if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_ne(gd::get_index(gd_ctx, lv_pending, gd::GdVal::from_int(1LL)), gd::GdVal::from_str(&battle_string_literals[2]))))) {
+            if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_ne(gd::native_array_index(gd_ctx, lv_pending, gd::GdVal::from_int(1LL)), gd::GdVal::from_str(&battle_string_literals[2]))))) {
                 (void)([&]() { gd::GdVal _ca[] = {lv_pending}; return gd::call_method(gd_ctx, lv_keep, gd::SYM_append, _ca, 1); })();
             }
         }
@@ -1574,13 +1575,13 @@ gd::GdVal Gd__gd_core__CoreContext::fn_restoreFlickers(const gd::GdVal* _args, i
             gd::GdVal lv_snapshot = _t1194->data[_t1195];
             gd::GdVal lv_flicker = gd::call_method(gd_ctx, gd::GdVal::from_cls(&META_Gd__gd_core__CoreContext__INNER__NativeFlicker), gd::SYM_new, nullptr, 0);
             gd::set_prop(gd_ctx, lv_flicker, SYM_GEN_ctx_3, gd::GdVal::from_obj(this));
-            gd::set_prop(gd_ctx, lv_flicker, SYM_GEN_limits_1510, gd::get_index(gd_ctx, lv_snapshot, gd::GdVal::from_str(&battle_string_literals[3])));
-            gd::set_prop(gd_ctx, lv_flicker, SYM_GEN_position_1511, ([&]() { gd::GdVal _ca[] = {gd::gd_coerce_float(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[4]), gd::get_index(gd_ctx, lv_snapshot, gd::GdVal::from_str(&battle_string_literals[5]))}; return gd::call_method(gd_ctx, lv_snapshot, gd::SYM_get, _ca, 2); })())}; gd::GdVal _out = gd::GdVal::null(); Gd__gd_core__CoreContext::call_static_fn(gd_ctx, SYM_GEN__nativeF32_1502, _ca, 1, _out); return _out; })());
-            gd::set_prop(gd_ctx, lv_flicker, SYM_GEN_speed_93, ([&]() { gd::GdVal _ca[] = {gd::gd_coerce_float(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[6]), gd::get_index(gd_ctx, lv_snapshot, gd::GdVal::from_str(&battle_string_literals[7]))}; return gd::call_method(gd_ctx, lv_snapshot, gd::SYM_get, _ca, 2); })())}; gd::GdVal _out = gd::GdVal::null(); Gd__gd_core__CoreContext::call_static_fn(gd_ctx, SYM_GEN__nativeF32_1502, _ca, 1, _out); return _out; })());
-            gd::set_prop(gd_ctx, lv_flicker, gd::SYM_length, ([&]() { gd::GdVal _ca[] = {gd::gd_coerce_float(gd::get_index(gd_ctx, lv_snapshot, gd::GdVal::from_str(&battle_string_literals[8])))}; gd::GdVal _out = gd::GdVal::null(); Gd__gd_core__CoreContext::call_static_fn(gd_ctx, SYM_GEN__nativeF32_1502, _ca, 1, _out); return _out; })());
-            gd::set_prop(gd_ctx, lv_flicker, SYM_GEN_playing_1512, gd::gd_coerce_bool(gd::get_index(gd_ctx, lv_snapshot, gd::GdVal::from_str(&battle_string_literals[9]))));
-            gd::set_prop(gd_ctx, lv_flicker, SYM_GEN_inside_tree_1513, gd::gd_coerce_bool(gd::get_index(gd_ctx, lv_snapshot, gd::GdVal::from_str(&battle_string_literals[10]))));
-            gd::set_prop(gd_ctx, lv_flicker, SYM_GEN_loop_1514, gd::gd_coerce_bool(gd::get_index(gd_ctx, lv_snapshot, gd::GdVal::from_str(&battle_string_literals[11]))));
+            gd::set_prop(gd_ctx, lv_flicker, SYM_GEN_limits_1510, gd::native_array_index(gd_ctx, lv_snapshot, gd::GdVal::from_str(&battle_string_literals[3])));
+            gd::set_prop(gd_ctx, lv_flicker, SYM_GEN_position_1511, ([&]() { gd::GdVal _ca[] = {gd::gd_coerce_float(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[4]), gd::native_array_index(gd_ctx, lv_snapshot, gd::GdVal::from_str(&battle_string_literals[5]))}; return gd::call_method(gd_ctx, lv_snapshot, gd::SYM_get, _ca, 2); })())}; gd::GdVal _out = gd::GdVal::null(); Gd__gd_core__CoreContext::call_static_fn(gd_ctx, SYM_GEN__nativeF32_1502, _ca, 1, _out); return _out; })());
+            gd::set_prop(gd_ctx, lv_flicker, SYM_GEN_speed_93, ([&]() { gd::GdVal _ca[] = {gd::gd_coerce_float(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[6]), gd::native_array_index(gd_ctx, lv_snapshot, gd::GdVal::from_str(&battle_string_literals[7]))}; return gd::call_method(gd_ctx, lv_snapshot, gd::SYM_get, _ca, 2); })())}; gd::GdVal _out = gd::GdVal::null(); Gd__gd_core__CoreContext::call_static_fn(gd_ctx, SYM_GEN__nativeF32_1502, _ca, 1, _out); return _out; })());
+            gd::set_prop(gd_ctx, lv_flicker, gd::SYM_length, ([&]() { gd::GdVal _ca[] = {gd::gd_coerce_float(gd::native_array_index(gd_ctx, lv_snapshot, gd::GdVal::from_str(&battle_string_literals[8])))}; gd::GdVal _out = gd::GdVal::null(); Gd__gd_core__CoreContext::call_static_fn(gd_ctx, SYM_GEN__nativeF32_1502, _ca, 1, _out); return _out; })());
+            gd::set_prop(gd_ctx, lv_flicker, SYM_GEN_playing_1512, gd::gd_coerce_bool(gd::native_array_index(gd_ctx, lv_snapshot, gd::GdVal::from_str(&battle_string_literals[9]))));
+            gd::set_prop(gd_ctx, lv_flicker, SYM_GEN_inside_tree_1513, gd::gd_coerce_bool(gd::native_array_index(gd_ctx, lv_snapshot, gd::GdVal::from_str(&battle_string_literals[10]))));
+            gd::set_prop(gd_ctx, lv_flicker, SYM_GEN_loop_1514, gd::gd_coerce_bool(gd::native_array_index(gd_ctx, lv_snapshot, gd::GdVal::from_str(&battle_string_literals[11]))));
             if (gd::gd_truth(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[12]), gd::GdVal::from_bool(false)}; return gd::call_method(gd_ctx, lv_snapshot, gd::SYM_get, _ca, 2); })())) {
                 (void)([&]() { gd::GdVal _ca[] = {lv_flicker}; return gd::call_method(gd_ctx, this->f__opponent_flickers, gd::SYM_append, _ca, 1); })();
             }
@@ -1588,17 +1589,17 @@ gd::GdVal Gd__gd_core__CoreContext::fn_restoreFlickers(const gd::GdVal* _args, i
                 (void)([&]() { gd::GdVal _ca[] = {lv_flicker}; return gd::call_method(gd_ctx, this->f__flickers, gd::SYM_append, _ca, 1); })();
             }
             {
-                gd::GdVal _t1196 = gd::gd_iter_seq(gd_ctx.arena, gd::get_index(gd_ctx, lv_snapshot, gd::GdVal::from_str(&battle_string_literals[13])));
+                gd::GdVal _t1196 = gd::gd_iter_seq(gd_ctx.arena, gd::native_array_index(gd_ctx, lv_snapshot, gd::GdVal::from_str(&battle_string_literals[13])));
                 gd::GdArr* _t1197 = (_t1196.kind == gd::GdVal::Kind::Arr) ? _t1196.arr : nullptr;
                 uint32_t _len__t1198 = _t1197 ? _t1197->len : 0u;
                 for (uint32_t _t1198 = 0; _t1198 < _len__t1198; ++_t1198) {
                     gd::GdVal lv_pending = _t1197->data[_t1198];
                     (void)gd::GdVal::null();
                     if (gd::gd_truth(this->f_replay_native_scene_delays)) {
-                        (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_arr(gd::GdArr::from_init(gd_ctx.arena, {gd::get_index(gd_ctx, lv_pending, gd::GdVal::from_str(&battle_string_literals[14])), lv_flicker, gd::gd_coerce_float(gd::get_index(gd_ctx, lv_pending, gd::GdVal::from_str(&battle_string_literals[15])))}))}; return gd::call_method(gd_ctx, lv_restored_delays, gd::SYM_append, _ca, 1); })();
+                        (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_arr(gd::GdArr::from_init(gd_ctx.arena, {gd::native_array_index(gd_ctx, lv_pending, gd::GdVal::from_str(&battle_string_literals[14])), lv_flicker, gd::gd_coerce_float(gd::native_array_index(gd_ctx, lv_pending, gd::GdVal::from_str(&battle_string_literals[15])))}))}; return gd::call_method(gd_ctx, lv_restored_delays, gd::SYM_append, _ca, 1); })();
                     }
                     else {
-                        (void)([&]() { gd::GdVal _ca[] = {lv_flicker, gd::GdVal::from_str(&battle_string_literals[1]), gd::gd_coerce_float(gd::get_index(gd_ctx, lv_pending, gd::GdVal::from_str(&battle_string_literals[16])))}; return this->fn_callDelayed(_ca, 3); })();
+                        (void)([&]() { gd::GdVal _ca[] = {lv_flicker, gd::GdVal::from_str(&battle_string_literals[1]), gd::gd_coerce_float(gd::native_array_index(gd_ctx, lv_pending, gd::GdVal::from_str(&battle_string_literals[16])))}; return this->fn_callDelayed(_ca, 3); })();
                     }
                 }
             }
@@ -1611,11 +1612,11 @@ gd::GdVal Gd__gd_core__CoreContext::fn_restoreFlickers(const gd::GdVal* _args, i
         uint32_t _len__t1201 = _t1200 ? _t1200->len : 0u;
         for (uint32_t _t1201 = 0; _t1201 < _len__t1201; ++_t1201) {
             gd::GdVal lv_entry = _t1200->data[_t1201];
-            if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_lt(gd::get_index(gd_ctx, lv_entry, gd::GdVal::from_int(2LL)), gd::GdVal::from_int(0LL))))) {
-                (void)([&]() { gd::GdVal _ca[] = {gd::get_index(gd_ctx, lv_entry, gd::GdVal::from_int(1LL))}; return gd::call_method(gd_ctx, this->f__opening_delay_ready, gd::SYM_append, _ca, 1); })();
+            if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_lt(gd::native_array_index(gd_ctx, lv_entry, gd::GdVal::from_int(2LL)), gd::GdVal::from_int(0LL))))) {
+                (void)([&]() { gd::GdVal _ca[] = {gd::native_array_index(gd_ctx, lv_entry, gd::GdVal::from_int(1LL))}; return gd::call_method(gd_ctx, this->f__opening_delay_ready, gd::SYM_append, _ca, 1); })();
             }
             else {
-                (void)([&]() { gd::GdVal _ca[] = {gd::get_index(gd_ctx, lv_entry, gd::GdVal::from_int(1LL)), gd::GdVal::from_str(&battle_string_literals[1]), gd::get_index(gd_ctx, lv_entry, gd::GdVal::from_int(2LL))}; return this->fn_callDelayed(_ca, 3); })();
+                (void)([&]() { gd::GdVal _ca[] = {gd::native_array_index(gd_ctx, lv_entry, gd::GdVal::from_int(1LL)), gd::GdVal::from_str(&battle_string_literals[1]), gd::native_array_index(gd_ctx, lv_entry, gd::GdVal::from_int(2LL))}; return this->fn_callDelayed(_ca, 3); })();
             }
         }
     }
@@ -1628,7 +1629,7 @@ gd::GdVal Gd__gd_core__CoreContext::fn_restoreFlickers(const gd::GdVal* _args, i
         uint32_t _len__t1192 = _t1191 ? _t1191->len : 0u;
         for (uint32_t _t1192 = 0; _t1192 < _len__t1192; ++_t1192) {
             gd::GdVal lv_pending = _t1191->data[_t1192];
-            if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_ne(gd::get_index(gd_ctx, lv_pending, gd::GdVal::from_int(1LL)), gd::GdVal::from_str(&battle_string_literals[2]))))) {
+            if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_ne(gd::native_array_index(gd_ctx, lv_pending, gd::GdVal::from_int(1LL)), gd::GdVal::from_str(&battle_string_literals[2]))))) {
                 (void)([&]() { gd::GdVal _ca[] = {lv_pending}; return gd::call_method(gd_ctx, lv_keep, gd::SYM_append, _ca, 1); })();
             }
         }
@@ -1647,13 +1648,13 @@ gd::GdVal Gd__gd_core__CoreContext::fn_restoreFlickers(const gd::GdVal* _args, i
             gd::GdVal lv_snapshot = _t1194->data[_t1195];
             gd::GdVal lv_flicker = gd::call_method(gd_ctx, gd::GdVal::from_cls(&META_Gd__gd_core__CoreContext__INNER__NativeFlicker), gd::SYM_new, nullptr, 0);
             gd::set_prop(gd_ctx, lv_flicker, SYM_GEN_ctx_3, gd::GdVal::from_obj(this));
-            gd::set_prop(gd_ctx, lv_flicker, SYM_GEN_limits_1510, gd::get_index(gd_ctx, lv_snapshot, gd::GdVal::from_str(&battle_string_literals[3])));
-            gd::set_prop(gd_ctx, lv_flicker, SYM_GEN_position_1511, ([&]() { gd::GdVal _ca[] = {gd::gd_coerce_float(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[4]), gd::get_index(gd_ctx, lv_snapshot, gd::GdVal::from_str(&battle_string_literals[5]))}; return gd::call_method(gd_ctx, lv_snapshot, gd::SYM_get, _ca, 2); })())}; gd::GdVal _out = gd::GdVal::null(); Gd__gd_core__CoreContext::call_static_fn(gd_ctx, SYM_GEN__nativeF32_1502, _ca, 1, _out); return _out; })());
-            gd::set_prop(gd_ctx, lv_flicker, SYM_GEN_speed_93, ([&]() { gd::GdVal _ca[] = {gd::gd_coerce_float(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[6]), gd::get_index(gd_ctx, lv_snapshot, gd::GdVal::from_str(&battle_string_literals[7]))}; return gd::call_method(gd_ctx, lv_snapshot, gd::SYM_get, _ca, 2); })())}; gd::GdVal _out = gd::GdVal::null(); Gd__gd_core__CoreContext::call_static_fn(gd_ctx, SYM_GEN__nativeF32_1502, _ca, 1, _out); return _out; })());
-            gd::set_prop(gd_ctx, lv_flicker, gd::SYM_length, ([&]() { gd::GdVal _ca[] = {gd::gd_coerce_float(gd::get_index(gd_ctx, lv_snapshot, gd::GdVal::from_str(&battle_string_literals[8])))}; gd::GdVal _out = gd::GdVal::null(); Gd__gd_core__CoreContext::call_static_fn(gd_ctx, SYM_GEN__nativeF32_1502, _ca, 1, _out); return _out; })());
-            gd::set_prop(gd_ctx, lv_flicker, SYM_GEN_playing_1512, gd::gd_coerce_bool(gd::get_index(gd_ctx, lv_snapshot, gd::GdVal::from_str(&battle_string_literals[9]))));
-            gd::set_prop(gd_ctx, lv_flicker, SYM_GEN_inside_tree_1513, gd::gd_coerce_bool(gd::get_index(gd_ctx, lv_snapshot, gd::GdVal::from_str(&battle_string_literals[10]))));
-            gd::set_prop(gd_ctx, lv_flicker, SYM_GEN_loop_1514, gd::gd_coerce_bool(gd::get_index(gd_ctx, lv_snapshot, gd::GdVal::from_str(&battle_string_literals[11]))));
+            gd::set_prop(gd_ctx, lv_flicker, SYM_GEN_limits_1510, gd::native_array_index(gd_ctx, lv_snapshot, gd::GdVal::from_str(&battle_string_literals[3])));
+            gd::set_prop(gd_ctx, lv_flicker, SYM_GEN_position_1511, ([&]() { gd::GdVal _ca[] = {gd::gd_coerce_float(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[4]), gd::native_array_index(gd_ctx, lv_snapshot, gd::GdVal::from_str(&battle_string_literals[5]))}; return gd::call_method(gd_ctx, lv_snapshot, gd::SYM_get, _ca, 2); })())}; gd::GdVal _out = gd::GdVal::null(); Gd__gd_core__CoreContext::call_static_fn(gd_ctx, SYM_GEN__nativeF32_1502, _ca, 1, _out); return _out; })());
+            gd::set_prop(gd_ctx, lv_flicker, SYM_GEN_speed_93, ([&]() { gd::GdVal _ca[] = {gd::gd_coerce_float(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[6]), gd::native_array_index(gd_ctx, lv_snapshot, gd::GdVal::from_str(&battle_string_literals[7]))}; return gd::call_method(gd_ctx, lv_snapshot, gd::SYM_get, _ca, 2); })())}; gd::GdVal _out = gd::GdVal::null(); Gd__gd_core__CoreContext::call_static_fn(gd_ctx, SYM_GEN__nativeF32_1502, _ca, 1, _out); return _out; })());
+            gd::set_prop(gd_ctx, lv_flicker, gd::SYM_length, ([&]() { gd::GdVal _ca[] = {gd::gd_coerce_float(gd::native_array_index(gd_ctx, lv_snapshot, gd::GdVal::from_str(&battle_string_literals[8])))}; gd::GdVal _out = gd::GdVal::null(); Gd__gd_core__CoreContext::call_static_fn(gd_ctx, SYM_GEN__nativeF32_1502, _ca, 1, _out); return _out; })());
+            gd::set_prop(gd_ctx, lv_flicker, SYM_GEN_playing_1512, gd::gd_coerce_bool(gd::native_array_index(gd_ctx, lv_snapshot, gd::GdVal::from_str(&battle_string_literals[9]))));
+            gd::set_prop(gd_ctx, lv_flicker, SYM_GEN_inside_tree_1513, gd::gd_coerce_bool(gd::native_array_index(gd_ctx, lv_snapshot, gd::GdVal::from_str(&battle_string_literals[10]))));
+            gd::set_prop(gd_ctx, lv_flicker, SYM_GEN_loop_1514, gd::gd_coerce_bool(gd::native_array_index(gd_ctx, lv_snapshot, gd::GdVal::from_str(&battle_string_literals[11]))));
             if (gd::gd_truth(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[12]), gd::GdVal::from_bool(false)}; return gd::call_method(gd_ctx, lv_snapshot, gd::SYM_get, _ca, 2); })())) {
                 (void)([&]() { gd::GdVal _ca[] = {lv_flicker}; return gd::call_method(gd_ctx, this->f__opponent_flickers, gd::SYM_append, _ca, 1); })();
             }
@@ -1661,17 +1662,17 @@ gd::GdVal Gd__gd_core__CoreContext::fn_restoreFlickers(const gd::GdVal* _args, i
                 (void)([&]() { gd::GdVal _ca[] = {lv_flicker}; return gd::call_method(gd_ctx, this->f__flickers, gd::SYM_append, _ca, 1); })();
             }
             {
-                gd::GdVal _t1196 = gd::gd_iter_seq(gd_ctx.arena, gd::get_index(gd_ctx, lv_snapshot, gd::GdVal::from_str(&battle_string_literals[13])));
+                gd::GdVal _t1196 = gd::gd_iter_seq(gd_ctx.arena, gd::native_array_index(gd_ctx, lv_snapshot, gd::GdVal::from_str(&battle_string_literals[13])));
                 gd::GdArr* _t1197 = (_t1196.kind == gd::GdVal::Kind::Arr) ? _t1196.arr : nullptr;
                 uint32_t _len__t1198 = _t1197 ? _t1197->len : 0u;
                 for (uint32_t _t1198 = 0; _t1198 < _len__t1198; ++_t1198) {
                     gd::GdVal lv_pending = _t1197->data[_t1198];
                     (void)gd::GdVal::null();
                     if (gd::gd_truth(this->f_replay_native_scene_delays)) {
-                        (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_arr(gd::GdArr::from_init(gd_ctx.arena, {gd::get_index(gd_ctx, lv_pending, gd::GdVal::from_str(&battle_string_literals[14])), lv_flicker, gd::gd_coerce_float(gd::get_index(gd_ctx, lv_pending, gd::GdVal::from_str(&battle_string_literals[15])))}))}; return gd::call_method(gd_ctx, lv_restored_delays, gd::SYM_append, _ca, 1); })();
+                        (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_arr(gd::GdArr::from_init(gd_ctx.arena, {gd::native_array_index(gd_ctx, lv_pending, gd::GdVal::from_str(&battle_string_literals[14])), lv_flicker, gd::gd_coerce_float(gd::native_array_index(gd_ctx, lv_pending, gd::GdVal::from_str(&battle_string_literals[15])))}))}; return gd::call_method(gd_ctx, lv_restored_delays, gd::SYM_append, _ca, 1); })();
                     }
                     else {
-                        (void)([&]() { gd::GdVal _ca[] = {lv_flicker, gd::GdVal::from_str(&battle_string_literals[1]), gd::gd_coerce_float(gd::get_index(gd_ctx, lv_pending, gd::GdVal::from_str(&battle_string_literals[16])))}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_callDelayed_1479, _ca, 3); })();
+                        (void)([&]() { gd::GdVal _ca[] = {lv_flicker, gd::GdVal::from_str(&battle_string_literals[1]), gd::gd_coerce_float(gd::native_array_index(gd_ctx, lv_pending, gd::GdVal::from_str(&battle_string_literals[16])))}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_callDelayed_1479, _ca, 3); })();
                     }
                 }
             }
@@ -1684,11 +1685,11 @@ gd::GdVal Gd__gd_core__CoreContext::fn_restoreFlickers(const gd::GdVal* _args, i
         uint32_t _len__t1201 = _t1200 ? _t1200->len : 0u;
         for (uint32_t _t1201 = 0; _t1201 < _len__t1201; ++_t1201) {
             gd::GdVal lv_entry = _t1200->data[_t1201];
-            if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_lt(gd::get_index(gd_ctx, lv_entry, gd::GdVal::from_int(2LL)), gd::GdVal::from_int(0LL))))) {
-                (void)([&]() { gd::GdVal _ca[] = {gd::get_index(gd_ctx, lv_entry, gd::GdVal::from_int(1LL))}; return gd::call_method(gd_ctx, this->f__opening_delay_ready, gd::SYM_append, _ca, 1); })();
+            if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_lt(gd::native_array_index(gd_ctx, lv_entry, gd::GdVal::from_int(2LL)), gd::GdVal::from_int(0LL))))) {
+                (void)([&]() { gd::GdVal _ca[] = {gd::native_array_index(gd_ctx, lv_entry, gd::GdVal::from_int(1LL))}; return gd::call_method(gd_ctx, this->f__opening_delay_ready, gd::SYM_append, _ca, 1); })();
             }
             else {
-                (void)([&]() { gd::GdVal _ca[] = {gd::get_index(gd_ctx, lv_entry, gd::GdVal::from_int(1LL)), gd::GdVal::from_str(&battle_string_literals[1]), gd::get_index(gd_ctx, lv_entry, gd::GdVal::from_int(2LL))}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_callDelayed_1479, _ca, 3); })();
+                (void)([&]() { gd::GdVal _ca[] = {gd::native_array_index(gd_ctx, lv_entry, gd::GdVal::from_int(1LL)), gd::GdVal::from_str(&battle_string_literals[1]), gd::native_array_index(gd_ctx, lv_entry, gd::GdVal::from_int(2LL))}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_callDelayed_1479, _ca, 3); })();
             }
         }
     }
@@ -1698,7 +1699,7 @@ gd::GdVal Gd__gd_core__CoreContext::fn__scene_delay_created_before(const gd::GdV
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
     gd::GdVal lv_left = (_argc > 0) ? _args[0] : gd::GdVal::null();
     gd::GdVal lv_right = (_argc > 1) ? _args[1] : gd::GdVal::null();
-    return gd::GdVal::from_bool(gd::gd_lt(gd::get_index(gd_ctx, lv_left, gd::GdVal::from_int(0LL)), gd::get_index(gd_ctx, lv_right, gd::GdVal::from_int(0LL))));
+    return gd::GdVal::from_bool(gd::gd_lt(gd::native_array_index(gd_ctx, lv_left, gd::GdVal::from_int(0LL)), gd::native_array_index(gd_ctx, lv_right, gd::GdVal::from_int(0LL))));
     return gd::GdVal::null();
 }
 gd::GdVal Gd__gd_core__CoreContext::fn_runOpeningSceneDelays(const gd::GdVal* _args, int _argc) {
@@ -1927,7 +1928,7 @@ gd::GdVal Gd__gd_core__CoreUtil::sf_dictAddDict(gd::BattleCtx& gd_ctx, const gd:
         uint32_t _len__t1217 = _t1216 ? _t1216->len : 0u;
         for (uint32_t _t1217 = 0; _t1217 < _len__t1217; ++_t1217) {
             gd::GdVal lv_key = _t1216->data[_t1217];
-            (void)([&]() { gd::GdVal _ca[] = {lv_dict1, lv_key, gd::get_index(gd_ctx, lv_dict2, lv_key)}; gd::GdVal _out = gd::GdVal::null(); Gd__gd_core__CoreUtil::call_static_fn(gd_ctx, SYM_GEN_dictAdd_1789, _ca, 3, _out); return _out; })();
+            (void)([&]() { gd::GdVal _ca[] = {lv_dict1, lv_key, gd::native_array_index(gd_ctx, lv_dict2, lv_key)}; gd::GdVal _out = gd::GdVal::null(); Gd__gd_core__CoreUtil::call_static_fn(gd_ctx, SYM_GEN_dictAdd_1789, _ca, 3, _out); return _out; })();
         }
     }
     return gd::GdVal::null();
@@ -1937,7 +1938,7 @@ gd::GdVal Gd__gd_core__CoreUtil::sf_dictAppend(gd::BattleCtx& gd_ctx, const gd::
     gd::GdVal lv_key = (_argc > 1) ? _args[1] : gd::GdVal::null();
     gd::GdVal lv_value = (_argc > 2) ? _args[2] : gd::GdVal::null();
     if (gd::gd_truth(gd::gd_in(lv_key, lv_dict))) {
-        (void)([&]() { gd::GdVal _ca[] = {lv_value}; return gd::call_method(gd_ctx, gd::get_index(gd_ctx, lv_dict, lv_key), gd::SYM_append, _ca, 1); })();
+        (void)([&]() { gd::GdVal _ca[] = {lv_value}; return gd::call_method(gd_ctx, gd::native_array_index(gd_ctx, lv_dict, lv_key), gd::SYM_append, _ca, 1); })();
     }
     else {
         { gd::GdVal _t1218 = lv_dict; gd::GdVal _t1219 = lv_key; gd::set_index(gd_ctx, _t1218, _t1219, gd::GdVal::from_arr(gd::GdArr::from_init(gd_ctx.arena, {lv_value}))); }
@@ -1949,7 +1950,7 @@ gd::GdVal Gd__gd_core__CoreUtil::sf_dictErase(gd::BattleCtx& gd_ctx, const gd::G
     gd::GdVal lv_key = (_argc > 1) ? _args[1] : gd::GdVal::null();
     gd::GdVal lv_valueToErase = (_argc > 2) ? _args[2] : gd::GdVal::null();
     if (gd::gd_truth(gd::gd_in(lv_key, lv_dict))) {
-        gd::GdVal lv_arr = gd::get_index(gd_ctx, lv_dict, lv_key);
+        gd::GdVal lv_arr = gd::native_array_index(gd_ctx, lv_dict, lv_key);
         (void)([&]() { gd::GdVal _ca[] = {lv_valueToErase}; return gd::call_method(gd_ctx, lv_arr, gd::SYM_erase, _ca, 1); })();
         if (gd::gd_truth(gd::call_method(gd_ctx, lv_arr, gd::SYM_empty, nullptr, 0))) {
             (void)([&]() { gd::GdVal _ca[] = {lv_key}; return gd::call_method(gd_ctx, lv_dict, gd::SYM_erase, _ca, 1); })();
@@ -2015,7 +2016,7 @@ gd::GdVal Gd__gd_core__CoreUtil::fn_getArrayElement(const gd::GdVal* _args, int 
         return lv_default;
     }
     else {
-        return gd::get_index(gd_ctx, lv_array, lv_index);
+        return gd::native_array_index(gd_ctx, lv_array, lv_index);
     }
     return gd::GdVal::null();
 }
@@ -2064,7 +2065,7 @@ gd::GdVal Gd__gd_core__CoreUtil::sf_arrayAsIndexDict(gd::BattleCtx& gd_ctx, cons
         uint32_t _len__t1222 = _t1221 ? _t1221->len : 0u;
         for (uint32_t _t1222 = 0; _t1222 < _len__t1222; ++_t1222) {
             gd::GdVal lv_i = _t1221->data[_t1222];
-            { gd::GdVal _t1223 = lv_invertedDict; gd::GdVal _t1224 = gd::get_index(gd_ctx, lv_array, lv_i); gd::set_index(gd_ctx, _t1223, _t1224, lv_i); }
+            { gd::GdVal _t1223 = lv_invertedDict; gd::GdVal _t1224 = gd::native_array_index(gd_ctx, lv_array, lv_i); gd::set_index(gd_ctx, _t1223, _t1224, lv_i); }
         }
     }
     return lv_invertedDict;
@@ -2079,7 +2080,7 @@ gd::GdVal Gd__gd_core__CoreUtil::sf_invertDictionary(gd::BattleCtx& gd_ctx, cons
         uint32_t _len__t1227 = _t1226 ? _t1226->len : 0u;
         for (uint32_t _t1227 = 0; _t1227 < _len__t1227; ++_t1227) {
             gd::GdVal lv_key = _t1226->data[_t1227];
-            { gd::GdVal _t1228 = lv_invertedDict; gd::GdVal _t1229 = gd::get_index(gd_ctx, lv_dict, lv_key); gd::set_index(gd_ctx, _t1228, _t1229, lv_key); }
+            { gd::GdVal _t1228 = lv_invertedDict; gd::GdVal _t1229 = gd::native_array_index(gd_ctx, lv_dict, lv_key); gd::set_index(gd_ctx, _t1228, _t1229, lv_key); }
         }
     }
     return lv_invertedDict;
@@ -2258,7 +2259,7 @@ gd::GdVal Gd__gd_core__DjinnLamp::fn_onPrepare(const gd::GdVal* _args, int _argc
     this->f_affectedWeapon = gd::GdVal::null();
     gd::GdVal lv_affectedItems = gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getAffectedItems_420, nullptr, 0);
     if (gd::gd_truth(gd::GdVal::from_bool(!gd::gd_truth(gd::call_method(gd_ctx, lv_affectedItems, gd::SYM_empty, nullptr, 0))))) {
-        this->f_affectedWeapon = gd::get_index(gd_ctx, lv_affectedItems, gd::GdVal::from_int(0LL));
+        this->f_affectedWeapon = gd::native_array_index(gd_ctx, lv_affectedItems, gd::GdVal::from_int(0LL));
         (void)([&]() { gd::GdVal _ca[] = {gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_character_74, nullptr, 0), gd::GdVal::from_str(&battle_string_literals[20]), gd::GdVal::from_str(&battle_string_literals[21])}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_connectForCombat_500, _ca, 3); })();
         (void)([&]() { gd::GdVal _ca[] = {gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_character_74, nullptr, 0), gd::GdVal::from_str(&battle_string_literals[22]), gd::GdVal::from_str(&battle_string_literals[21])}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_connectForCombat_500, _ca, 3); })();
         (void)([&]() { gd::GdVal _ca[] = {gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_character_74, nullptr, 0), gd::GdVal::from_str(&battle_string_literals[23]), gd::GdVal::from_str(&battle_string_literals[21])}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_connectForCombat_500, _ca, 3); })();

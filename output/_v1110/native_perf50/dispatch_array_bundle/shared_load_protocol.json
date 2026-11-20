@@ -1,0 +1,13 @@
+{
+  "purpose": "Shared-load paired control, separate from the primary24pairs and raw24-batch gate",
+  "workers": 2,
+  "priority": "below_normal",
+  "busy_fractions": [
+    0.2,
+    0.85
+  ],
+  "phase_seconds": 10,
+  "maximum_duration_seconds": 240,
+  "elapsed_seconds": 185.10946449999756,
+  "report": "ab_shared_load.json"
+}

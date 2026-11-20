@@ -1,0 +1,3278 @@
+{
+  "diagnostic_only": true,
+  "deployed_baseline_sha256": "6e232391806268a9e77dde1ba5d89a96320453fe82bacd9d092e355a56c67a5b",
+  "diagnostic_sha256": "c28a77c53667d445b23a2d25b68bb1d625697d987c6cfc6fc9616ed44d39564a",
+  "inputs_sha256": "d94b16d42cc88e9a3850a77c9360b9c4c4fdd676cb252e463044a903db2a5fef",
+  "results_sha256": "2e74b45caa87f7ee6ac72ffc35d98cc8db140b47031614d26542e183cef5d2c9",
+  "cached_objects_reused": 19,
+  "object_layout_unchanged": true,
+  "total_uncovered_calls": 8931122,
+  "method_counts": [
+    {
+      "id": 1617,
+      "name": "tick",
+      "calls": 1022970
+    },
+    {
+      "id": 184,
+      "name": "isBag",
+      "calls": 372673
+    },
+    {
+      "id": 1124,
+      "name": "getStacks",
+      "calls": 368123
+    },
+    {
+      "id": 83,
+      "name": "has_method",
+      "calls": 317834
+    },
+    {
+      "id": 74,
+      "name": "randf_range",
+      "calls": 293376
+    },
+    {
+      "id": 387,
+      "name": "canAffect",
+      "calls": 270352
+    },
+    {
+      "id": 1709,
+      "name": "getItemsInCells",
+      "calls": 259983
+    },
+    {
+      "id": 390,
+      "name": "canAffect_lightning",
+      "calls": 253458
+    },
+    {
+      "id": 388,
+      "name": "canAffect_secondary",
+      "calls": 253199
+    },
+    {
+      "id": 389,
+      "name": "canAffect_tertiary",
+      "calls": 252369
+    },
+    {
+      "id": 1073,
+      "name": "getGemMode",
+      "calls": 235524
+    },
+    {
+      "id": 598,
+      "name": "getGemsNoNull",
+      "calls": 216134
+    },
+    {
+      "id": 1025,
+      "name": "getItemsInside",
+      "calls": 183576
+    },
+    {
+      "id": 331,
+      "name": "addMetric",
+      "calls": 177303
+    },
+    {
+      "id": 1484,
+      "name": "snapshotItemMetric",
+      "calls": 177303
+    },
+    {
+      "id": 1842,
+      "name": "trace_diag",
+      "calls": 164358
+    },
+    {
+      "id": 90,
+      "name": "get_instance_id",
+      "calls": 152071
+    },
+    {
+      "id": 501,
+      "name": "getOwnOrPlayerInventory",
+      "calls": 134962
+    },
+    {
+      "id": 1485,
+      "name": "snapshotItemTooltipStat",
+      "calls": 113659
+    },
+    {
+      "id": 249,
+      "name": "playActivationSound",
+      "calls": 111402
+    },
+    {
+      "id": 183,
+      "name": "isWeapon",
+      "calls": 108446
+    },
+    {
+      "id": 1238,
+      "name": "tickVisualMotion",
+      "calls": 92629
+    },
+    {
+      "id": 196,
+      "name": "hasCooldown",
+      "calls": 91602
+    },
+    {
+      "id": 1603,
+      "name": "_nativeF32",
+      "calls": 88491
+    },
+    {
+      "id": 516,
+      "name": "getAffectedCellsInInventory_cached",
+      "calls": 77643
+    },
+    {
+      "id": 524,
+      "name": "getItemsInAffectedCells_cached",
+      "calls": 77588
+    },
+    {
+      "id": 490,
+      "name": "getItem",
+      "calls": 69735
+    },
+    {
+      "id": 174,
+      "name": "hasCharacter",
+      "calls": 67691
+    },
+    {
+      "id": 502,
+      "name": "getCellsForGlobalPositions",
+      "calls": 61801
+    },
+    {
+      "id": 604,
+      "name": "_hasBehaviorMethod",
+      "calls": 57618
+    },
+    {
+      "id": 509,
+      "name": "getAffectedCells_tilemap",
+      "calls": 57197
+    },
+    {
+      "id": 510,
+      "name": "getAffectedCellsAfterRotate",
+      "calls": 56966
+    },
+    {
+      "id": 513,
+      "name": "getAffectedCells_noRotate",
+      "calls": 56966
+    },
+    {
+      "id": 514,
+      "name": "getAffectedPoints",
+      "calls": 56966
+    },
+    {
+      "id": 515,
+      "name": "getAffectedCellsInInventory",
+      "calls": 56966
+    },
+    {
+      "id": 252,
+      "name": "checkActivationLimit",
+      "calls": 55820
+    },
+    {
+      "id": 250,
+      "name": "playDropSound",
+      "calls": 55701
+    },
+    {
+      "id": 1481,
+      "name": "createEvent_Activation",
+      "calls": 53182
+    },
+    {
+      "id": 1836,
+      "name": "flip",
+      "calls": 50512
+    },
+    {
+      "id": 1352,
+      "name": "getHeat",
+      "calls": 50068
+    },
+    {
+      "id": 363,
+      "name": "getP_check",
+      "calls": 50059
+    },
+    {
+      "id": 296,
+      "name": "getAmplificationChancePercent",
+      "calls": 49496
+    },
+    {
+      "id": 271,
+      "name": "applyBonusChance",
+      "calls": 47577
+    },
+    {
+      "id": 203,
+      "name": "getCooldown",
+      "calls": 42923
+    },
+    {
+      "id": 208,
+      "name": "adjustCooldown",
+      "calls": 42863
+    },
+    {
+      "id": 1844,
+      "name": "bare_randf_range",
+      "calls": 42108
+    },
+    {
+      "id": 269,
+      "name": "getBaseChance",
+      "calls": 40730
+    },
+    {
+      "id": 1355,
+      "name": "getCold",
+      "calls": 38436
+    },
+    {
+      "id": 193,
+      "name": "getSpeed",
+      "calls": 37998
+    },
+    {
+      "id": 194,
+      "name": "speed",
+      "calls": 37989
+    },
+    {
+      "id": 195,
+      "name": "getStackSpeedMods",
+      "calls": 37989
+    },
+    {
+      "id": 297,
+      "name": "changeAmplificiationChancePercent",
+      "calls": 33424
+    },
+    {
+      "id": 1861,
+      "name": "rollPercent",
+      "calls": 32399
+    },
+    {
+      "id": 182,
+      "name": "hasTag",
+      "calls": 31152
+    },
+    {
+      "id": 274,
+      "name": "rollChance",
+      "calls": 30868
+    },
+    {
+      "id": 1126,
+      "name": "reset",
+      "calls": 30266
+    },
+    {
+      "id": 1345,
+      "name": "getMana",
+      "calls": 29667
+    },
+    {
+      "id": 1677,
+      "name": "getAmount",
+      "calls": 29026
+    },
+    {
+      "id": 2030,
+      "name": "onManaChanged",
+      "calls": 29007
+    },
+    {
+      "id": 1021,
+      "name": "canApplyEffect",
+      "calls": 28283
+    },
+    {
+      "id": 2107,
+      "name": "onBuffChanged",
+      "calls": 27649
+    },
+    {
+      "id": 291,
+      "name": "getParamModified",
+      "calls": 25971
+    },
+    {
+      "id": 191,
+      "name": "canBeEmpowered",
+      "calls": 25959
+    },
+    {
+      "id": 227,
+      "name": "hasStartofBattle",
+      "calls": 24131
+    },
+    {
+      "id": 2115,
+      "name": "canAffect_global",
+      "calls": 23460
+    },
+    {
+      "id": 1578,
+      "name": "otherCharacter",
+      "calls": 22261
+    },
+    {
+      "id": 217,
+      "name": "useStamina",
+      "calls": 21984
+    },
+    {
+      "id": 85,
+      "name": "callv",
+      "calls": 20287
+    },
+    {
+      "id": 190,
+      "name": "canDamage",
+      "calls": 20230
+    },
+    {
+      "id": 253,
+      "name": "getBaseMinDamage",
+      "calls": 20230
+    },
+    {
+      "id": 198,
+      "name": "setCooldownActive",
+      "calls": 20074
+    },
+    {
+      "id": 232,
+      "name": "combatEnd",
+      "calls": 19733
+    },
+    {
+      "id": 1847,
+      "name": "pickRandomElement",
+      "calls": 17537
+    },
+    {
+      "id": 391,
+      "name": "canAffect_color",
+      "calls": 17501
+    },
+    {
+      "id": 894,
+      "name": "showCooldownSmooth",
+      "calls": 16565
+    },
+    {
+      "id": 256,
+      "name": "getTypedDamageFactor",
+      "calls": 16270
+    },
+    {
+      "id": 1359,
+      "name": "getBuffDamageMod",
+      "calls": 16256
+    },
+    {
+      "id": 305,
+      "name": "getBlock",
+      "calls": 16115
+    },
+    {
+      "id": 1956,
+      "name": "onDamaged",
+      "calls": 15867
+    },
+    {
+      "id": 544,
+      "name": "getTopLeftCell",
+      "calls": 15507
+    },
+    {
+      "id": 240,
+      "name": "rebuildTimerSeen",
+      "calls": 15333
+    },
+    {
+      "id": 226,
+      "name": "onPreCombatStart",
+      "calls": 14975
+    },
+    {
+      "id": 230,
+      "name": "onPostCombatStart",
+      "calls": 14975
+    },
+    {
+      "id": 879,
+      "name": "playActivationAnimation",
+      "calls": 14942
+    },
+    {
+      "id": 220,
+      "name": "cacheAffectedItemsForCombat",
+      "calls": 14933
+    },
+    {
+      "id": 224,
+      "name": "onPrepare",
+      "calls": 14933
+    },
+    {
+      "id": 225,
+      "name": "preCombatStart",
+      "calls": 14933
+    },
+    {
+      "id": 229,
+      "name": "postCombatStart",
+      "calls": 14933
+    },
+    {
+      "id": 233,
+      "name": "onCombatEnd",
+      "calls": 14933
+    },
+    {
+      "id": 489,
+      "name": "initSockets",
+      "calls": 14933
+    },
+    {
+      "id": 603,
+      "name": "disconnectCombat",
+      "calls": 14933
+    },
+    {
+      "id": 1718,
+      "name": "addItemCells",
+      "calls": 14722
+    },
+    {
+      "id": 511,
+      "name": "getAffectedCellsAfterRotate_primary",
+      "calls": 14590
+    },
+    {
+      "id": 1960,
+      "name": "checkStacks",
+      "calls": 14571
+    },
+    {
+      "id": 512,
+      "name": "getAffectedCellsAfterRotate_secondary",
+      "calls": 14136
+    },
+    {
+      "id": 520,
+      "name": "onAddToInventory",
+      "calls": 14120
+    },
+    {
+      "id": 1338,
+      "name": "getLucky",
+      "calls": 13977
+    },
+    {
+      "id": 334,
+      "name": "staminaChanged",
+      "calls": 13334
+    },
+    {
+      "id": 480,
+      "name": "spawnLabel",
+      "calls": 13231
+    },
+    {
+      "id": 1744,
+      "name": "spawnLabelOnItem",
+      "calls": 13231
+    },
+    {
+      "id": 403,
+      "name": "getRelativeHealth",
+      "calls": 12702
+    },
+    {
+      "id": 186,
+      "name": "isBattleRageItem",
+      "calls": 12680
+    },
+    {
+      "id": 1255,
+      "name": "getCurrentHealth",
+      "calls": 12644
+    },
+    {
+      "id": 536,
+      "name": "onAffectedItemAdded",
+      "calls": 12187
+    },
+    {
+      "id": 1324,
+      "name": "getSpikes",
+      "calls": 11666
+    },
+    {
+      "id": 270,
+      "name": "getBaseChance2",
+      "calls": 11443
+    },
+    {
+      "id": 294,
+      "name": "getBaseAccuracy",
+      "calls": 11333
+    },
+    {
+      "id": 295,
+      "name": "getAccuracy",
+      "calls": 11333
+    },
+    {
+      "id": 212,
+      "name": "getBaseStaminaCost",
+      "calls": 11133
+    },
+    {
+      "id": 1024,
+      "name": "isEmpty",
+      "calls": 11096
+    },
+    {
+      "id": 1633,
+      "name": "canTriggerSpikes",
+      "calls": 11073
+    },
+    {
+      "id": 213,
+      "name": "getStaminaCost",
+      "calls": 10989
+    },
+    {
+      "id": 288,
+      "name": "rollDoubleAttackEffect",
+      "calls": 10865
+    },
+    {
+      "id": 325,
+      "name": "dealtDamage",
+      "calls": 10860
+    },
+    {
+      "id": 2188,
+      "name": "onBuffsChanged",
+      "calls": 10807
+    },
+    {
+      "id": 1681,
+      "name": "getOrigin",
+      "calls": 10800
+    },
+    {
+      "id": 418,
+      "name": "giveMaxHealth",
+      "calls": 10768
+    },
+    {
+      "id": 1262,
+      "name": "applyTemporaryMaxHealthGain",
+      "calls": 10768
+    },
+    {
+      "id": 1708,
+      "name": "getItemInCell",
+      "calls": 10683
+    },
+    {
+      "id": 1263,
+      "name": "changeMaxHealthTemporary",
+      "calls": 10563
+    },
+    {
+      "id": 1689,
+      "name": "setLoggingMode",
+      "calls": 10431
+    },
+    {
+      "id": 1692,
+      "name": "flushLoggingQueue",
+      "calls": 10431
+    },
+    {
+      "id": 1243,
+      "name": "playActivateAnimation",
+      "calls": 10380
+    },
+    {
+      "id": 1360,
+      "name": "getBuffAccuracyMod",
+      "calls": 10288
+    },
+    {
+      "id": 1654,
+      "name": "updateItem",
+      "calls": 10288
+    },
+    {
+      "id": 323,
+      "name": "preDealDamage_early",
+      "calls": 10262
+    },
+    {
+      "id": 192,
+      "name": "canActivate",
+      "calls": 9864
+    },
+    {
+      "id": 279,
+      "name": "getCritChancePercent",
+      "calls": 9327
+    },
+    {
+      "id": 257,
+      "name": "getMinDamage",
+      "calls": 9187
+    },
+    {
+      "id": 258,
+      "name": "getMaxDamage",
+      "calls": 9173
+    },
+    {
+      "id": 1843,
+      "name": "bare_draw_seq",
+      "calls": 8726
+    },
+    {
+      "id": 1865,
+      "name": "randIntRange",
+      "calls": 8726
+    },
+    {
+      "id": 459,
+      "name": "pickRandomStacks",
+      "calls": 8355
+    },
+    {
+      "id": 1042,
+      "name": "attack",
+      "calls": 8264
+    },
+    {
+      "id": 324,
+      "name": "preDealDamage_late",
+      "calls": 8128
+    },
+    {
+      "id": 1696,
+      "name": "connectEvent",
+      "calls": 8107
+    },
+    {
+      "id": 1014,
+      "name": "onHeatChanged",
+      "calls": 7973
+    },
+    {
+      "id": 283,
+      "name": "getCritTokens",
+      "calls": 7935
+    },
+    {
+      "id": 282,
+      "name": "changeCritChancePercent",
+      "calls": 7249
+    },
+    {
+      "id": 433,
+      "name": "useMana",
+      "calls": 6948
+    },
+    {
+      "id": 457,
+      "name": "cleanseRandomDebuffs",
+      "calls": 6844
+    },
+    {
+      "id": 273,
+      "name": "getChance2",
+      "calls": 6574
+    },
+    {
+      "id": 1922,
+      "name": "checkTrigger",
+      "calls": 6565
+    },
+    {
+      "id": 1652,
+      "name": "setDamage",
+      "calls": 6253
+    },
+    {
+      "id": 1123,
+      "name": "init",
+      "calls": 5806
+    },
+    {
+      "id": 2093,
+      "name": "onOpponentDamaged",
+      "calls": 5774
+    },
+    {
+      "id": 2046,
+      "name": "onCharacterAttacked",
+      "calls": 5765
+    },
+    {
+      "id": 262,
+      "name": "addBonusDamage",
+      "calls": 5750
+    },
+    {
+      "id": 559,
+      "name": "onItemTypeChanged",
+      "calls": 5317
+    },
+    {
+      "id": 2045,
+      "name": "preTakeDamage",
+      "calls": 5218
+    },
+    {
+      "id": 558,
+      "name": "reactToItemTypeChange",
+      "calls": 5182
+    },
+    {
+      "id": 346,
+      "name": "isA",
+      "calls": 4986
+    },
+    {
+      "id": 1634,
+      "name": "canTriggerVampirism",
+      "calls": 4810
+    },
+    {
+      "id": 2044,
+      "name": "canBlockDamageRes",
+      "calls": 4789
+    },
+    {
+      "id": 423,
+      "name": "_rotVecQuarterTurns",
+      "calls": 4787
+    },
+    {
+      "id": 292,
+      "name": "modifyParam",
+      "calls": 4592
+    },
+    {
+      "id": 298,
+      "name": "changeAmplificiationChancePercent_allBuffs",
+      "calls": 4533
+    },
+    {
+      "id": 337,
+      "name": "getRarity",
+      "calls": 4526
+    },
+    {
+      "id": 84,
+      "name": "call",
+      "calls": 4311
+    },
+    {
+      "id": 1630,
+      "name": "triggerOnMeleeAttacked",
+      "calls": 4309
+    },
+    {
+      "id": 199,
+      "name": "activateCooldown",
+      "calls": 4251
+    },
+    {
+      "id": 2358,
+      "name": "onOverheal",
+      "calls": 4169
+    },
+    {
+      "id": 397,
+      "name": "gainsBuffs",
+      "calls": 4125
+    },
+    {
+      "id": 484,
+      "name": "onStateChanged",
+      "calls": 4042
+    },
+    {
+      "id": 1371,
+      "name": "giveStaminaRegeneration",
+      "calls": 4011
+    },
+    {
+      "id": 1486,
+      "name": "snapshotItemState",
+      "calls": 4007
+    },
+    {
+      "id": 2161,
+      "name": "chargedItemStatChange",
+      "calls": 3883
+    },
+    {
+      "id": 316,
+      "name": "giveLucky",
+      "calls": 3840
+    },
+    {
+      "id": 400,
+      "name": "reactsToCharges",
+      "calls": 3711
+    },
+    {
+      "id": 1676,
+      "name": "getParam",
+      "calls": 3686
+    },
+    {
+      "id": 347,
+      "name": "isNeutral",
+      "calls": 3672
+    },
+    {
+      "id": 2160,
+      "name": "onChargeEnteredCell",
+      "calls": 3553
+    },
+    {
+      "id": 436,
+      "name": "giveMana_capped",
+      "calls": 3483
+    },
+    {
+      "id": 197,
+      "name": "isCooldownActive",
+      "calls": 3434
+    },
+    {
+      "id": 493,
+      "name": "getPrice",
+      "calls": 3418
+    },
+    {
+      "id": 427,
+      "name": "changeChargedItemStat",
+      "calls": 3295
+    },
+    {
+      "id": 462,
+      "name": "getMostStacks",
+      "calls": 3284
+    },
+    {
+      "id": 1392,
+      "name": "isVulnerable",
+      "calls": 3282
+    },
+    {
+      "id": 1029,
+      "name": "onAffectedItemInsideAdded",
+      "calls": 3271
+    },
+    {
+      "id": 1705,
+      "name": "getItemsAndGems",
+      "calls": 3256
+    },
+    {
+      "id": 468,
+      "name": "giveMostBuffs",
+      "calls": 3138
+    },
+    {
+      "id": 1046,
+      "name": "onPreDealDamage_early",
+      "calls": 3014
+    },
+    {
+      "id": 352,
+      "name": "isOwnedByOpponent",
+      "calls": 2880
+    },
+    {
+      "id": 1764,
+      "name": "_sideItems",
+      "calls": 2843
+    },
+    {
+      "id": 1766,
+      "name": "_filter",
+      "calls": 2843
+    },
+    {
+      "id": 906,
+      "name": "isTypeInInventory",
+      "calls": 2772
+    },
+    {
+      "id": 901,
+      "name": "isCrafted",
+      "calls": 2768
+    },
+    {
+      "id": 247,
+      "name": "advanceCooldownPercent",
+      "calls": 2758
+    },
+    {
+      "id": 2153,
+      "name": "onAttack",
+      "calls": 2692
+    },
+    {
+      "id": 419,
+      "name": "giveStamina",
+      "calls": 2440
+    },
+    {
+      "id": 1265,
+      "name": "gainStamina",
+      "calls": 2440
+    },
+    {
+      "id": 1924,
+      "name": "onOpponentDebuffsChanged",
+      "calls": 2436
+    },
+    {
+      "id": 263,
+      "name": "changeVaryingDamage",
+      "calls": 2433
+    },
+    {
+      "id": 219,
+      "name": "playOutOfStaminaAnimation",
+      "calls": 2370
+    },
+    {
+      "id": 1848,
+      "name": "shuffleEngine",
+      "calls": 2288
+    },
+    {
+      "id": 1706,
+      "name": "isCellEmpty",
+      "calls": 2250
+    },
+    {
+      "id": 425,
+      "name": "chargeReceived",
+      "calls": 2240
+    },
+    {
+      "id": 405,
+      "name": "changeHealAmp",
+      "calls": 2218
+    },
+    {
+      "id": 460,
+      "name": "pickRandomStacksToGive",
+      "calls": 2121
+    },
+    {
+      "id": 1320,
+      "name": "useStacks",
+      "calls": 2057
+    },
+    {
+      "id": 432,
+      "name": "checkMana",
+      "calls": 2026
+    },
+    {
+      "id": 1673,
+      "name": "getType",
+      "calls": 2020
+    },
+    {
+      "id": 1297,
+      "name": "takeFatigueDamage",
+      "calls": 1998
+    },
+    {
+      "id": 392,
+      "name": "canBlock",
+      "calls": 1988
+    },
+    {
+      "id": 482,
+      "name": "consume",
+      "calls": 1978
+    },
+    {
+      "id": 1882,
+      "name": "stopCountdownForTimeout",
+      "calls": 1919
+    },
+    {
+      "id": 426,
+      "name": "chargeLeft",
+      "calls": 1911
+    },
+    {
+      "id": 876,
+      "name": "playActivationAnimation_Scale",
+      "calls": 1878
+    },
+    {
+      "id": 218,
+      "name": "drainStamina",
+      "calls": 1854
+    },
+    {
+      "id": 312,
+      "name": "inflictPoison",
+      "calls": 1799
+    },
+    {
+      "id": 1662,
+      "name": "isEffectDamage",
+      "calls": 1780
+    },
+    {
+      "id": 1827,
+      "name": "fromDict",
+      "calls": 1780
+    },
+    {
+      "id": 1580,
+      "name": "callDelayed",
+      "calls": 1715
+    },
+    {
+      "id": 310,
+      "name": "giveSpikes",
+      "calls": 1693
+    },
+    {
+      "id": 1992,
+      "name": "onRegenChanged",
+      "calls": 1685
+    },
+    {
+      "id": 434,
+      "name": "tryUseMana",
+      "calls": 1673
+    },
+    {
+      "id": 278,
+      "name": "addAccuracy",
+      "calls": 1662
+    },
+    {
+      "id": 1679,
+      "name": "hasParam",
+      "calls": 1643
+    },
+    {
+      "id": 367,
+      "name": "getP4",
+      "calls": 1641
+    },
+    {
+      "id": 315,
+      "name": "giveRegeneration",
+      "calls": 1619
+    },
+    {
+      "id": 1880,
+      "name": "start",
+      "calls": 1567
+    },
+    {
+      "id": 421,
+      "name": "sendCharge",
+      "calls": 1542
+    },
+    {
+      "id": 1002,
+      "name": "onLuckyChanged",
+      "calls": 1539
+    },
+    {
+      "id": 2218,
+      "name": "isLamp",
+      "calls": 1528
+    },
+    {
+      "id": 280,
+      "name": "addCritChancePercent",
+      "calls": 1517
+    },
+    {
+      "id": 1347,
+      "name": "gainMana",
+      "calls": 1507
+    },
+    {
+      "id": 318,
+      "name": "giveEmpower",
+      "calls": 1506
+    },
+    {
+      "id": 394,
+      "name": "canModifyChance",
+      "calls": 1499
+    },
+    {
+      "id": 470,
+      "name": "giveRandomBuffs",
+      "calls": 1468
+    },
+    {
+      "id": 1772,
+      "name": "isItemInInventory",
+      "calls": 1454
+    },
+    {
+      "id": 1704,
+      "name": "getItems",
+      "calls": 1385
+    },
+    {
+      "id": 1616,
+      "name": "playAni",
+      "calls": 1359
+    },
+    {
+      "id": 275,
+      "name": "rollChance2",
+      "calls": 1343
+    },
+    {
+      "id": 1007,
+      "name": "onPreDealDamage_late",
+      "calls": 1333
+    },
+    {
+      "id": 1132,
+      "name": "gainTemporary",
+      "calls": 1327
+    },
+    {
+      "id": 1773,
+      "name": "isItemInInventory_opponent",
+      "calls": 1318
+    },
+    {
+      "id": 314,
+      "name": "inflictBlind",
+      "calls": 1315
+    },
+    {
+      "id": 1258,
+      "name": "loseHealth",
+      "calls": 1313
+    },
+    {
+      "id": 1877,
+      "name": "set_wait_time",
+      "calls": 1295
+    },
+    {
+      "id": 306,
+      "name": "removeBlock",
+      "calls": 1270
+    },
+    {
+      "id": 307,
+      "name": "loseBlock",
+      "calls": 1270
+    },
+    {
+      "id": 1881,
+      "name": "stop",
+      "calls": 1252
+    },
+    {
+      "id": 1458,
+      "name": "logEvent",
+      "calls": 1245
+    },
+    {
+      "id": 179,
+      "name": "isPlayer",
+      "calls": 1185
+    },
+    {
+      "id": 1474,
+      "name": "createEvent_OutOfStamina",
+      "calls": 1185
+    },
+    {
+      "id": 1127,
+      "name": "changeResistChance",
+      "calls": 1167
+    },
+    {
+      "id": 2230,
+      "name": "onChargeReceived",
+      "calls": 1158
+    },
+    {
+      "id": 452,
+      "name": "inflictCold",
+      "calls": 1127
+    },
+    {
+      "id": 1994,
+      "name": "checkStamina",
+      "calls": 1123
+    },
+    {
+      "id": 1726,
+      "name": "playFatigueAnimation",
+      "calls": 1110
+    },
+    {
+      "id": 2219,
+      "name": "_tagLamp",
+      "calls": 1083
+    },
+    {
+      "id": 1334,
+      "name": "getRegeneration",
+      "calls": 1072
+    },
+    {
+      "id": 2412,
+      "name": "onLuckyOrRegenChanged",
+      "calls": 1059
+    },
+    {
+      "id": 1651,
+      "name": "setItem",
+      "calls": 1045
+    },
+    {
+      "id": 2270,
+      "name": "getPiecesForColor",
+      "calls": 1042
+    },
+    {
+      "id": 1074,
+      "name": "getGemPower",
+      "calls": 1026
+    },
+    {
+      "id": 1308,
+      "name": "isBattleRaging",
+      "calls": 1017
+    },
+    {
+      "id": 303,
+      "name": "giveStacksTemporary",
+      "calls": 993
+    },
+    {
+      "id": 2637,
+      "name": "onBananaActivated",
+      "calls": 984
+    },
+    {
+      "id": 1457,
+      "name": "replayHiddenLogEvent",
+      "calls": 970
+    },
+    {
+      "id": 1097,
+      "name": "preAttack",
+      "calls": 965
+    },
+    {
+      "id": 1319,
+      "name": "gainStacksTemporary",
+      "calls": 965
+    },
+    {
+      "id": 1631,
+      "name": "triggerOnAttacked",
+      "calls": 955
+    },
+    {
+      "id": 2092,
+      "name": "onPlayerDamaged",
+      "calls": 920
+    },
+    {
+      "id": 1721,
+      "name": "clearItemCells",
+      "calls": 912
+    },
+    {
+      "id": 1028,
+      "name": "getAffectedItemsInside",
+      "calls": 903
+    },
+    {
+      "id": 2049,
+      "name": "onItemGaveBlock",
+      "calls": 898
+    },
+    {
+      "id": 451,
+      "name": "useLucky",
+      "calls": 896
+    },
+    {
+      "id": 200,
+      "name": "deactivateCooldown",
+      "calls": 890
+    },
+    {
+      "id": 398,
+      "name": "usesBuffs",
+      "calls": 883
+    },
+    {
+      "id": 1826,
+      "name": "isReleased",
+      "calls": 882
+    },
+    {
+      "id": 898,
+      "name": "hasInventoryDuration",
+      "calls": 875
+    },
+    {
+      "id": 474,
+      "name": "stealRandomBuff",
+      "calls": 859
+    },
+    {
+      "id": 1051,
+      "name": "onWeaponAttacked",
+      "calls": 852
+    },
+    {
+      "id": 2660,
+      "name": "checkBlock",
+      "calls": 844
+    },
+    {
+      "id": 1363,
+      "name": "getCurrentStamina",
+      "calls": 834
+    },
+    {
+      "id": 445,
+      "name": "cleanseBlind",
+      "calls": 831
+    },
+    {
+      "id": 1341,
+      "name": "getBlind",
+      "calls": 831
+    },
+    {
+      "id": 1429,
+      "name": "dealFatigueDamage",
+      "calls": 818
+    },
+    {
+      "id": 497,
+      "name": "setGem",
+      "calls": 813
+    },
+    {
+      "id": 2506,
+      "name": "onStaminaUsed",
+      "calls": 812
+    },
+    {
+      "id": 349,
+      "name": "isClassItem",
+      "calls": 802
+    },
+    {
+      "id": 375,
+      "name": "reduceSpeed",
+      "calls": 792
+    },
+    {
+      "id": 422,
+      "name": "_chargeInventoryCells",
+      "calls": 771
+    },
+    {
+      "id": 1601,
+      "name": "registerMotion",
+      "calls": 771
+    },
+    {
+      "id": 1061,
+      "name": "onAttacked",
+      "calls": 764
+    },
+    {
+      "id": 1885,
+      "name": "_emitTimeout",
+      "calls": 758
+    },
+    {
+      "id": 1380,
+      "name": "changeDamageResistance",
+      "calls": 757
+    },
+    {
+      "id": 406,
+      "name": "changeStaminaFactor",
+      "calls": 743
+    },
+    {
+      "id": 236,
+      "name": "newItemTimer",
+      "calls": 736
+    },
+    {
+      "id": 2087,
+      "name": "onBlockChanged",
+      "calls": 736
+    },
+    {
+      "id": 1878,
+      "name": "get_time_left",
+      "calls": 733
+    },
+    {
+      "id": 246,
+      "name": "onAfterEffectFinished",
+      "calls": 713
+    },
+    {
+      "id": 1879,
+      "name": "is_stopped",
+      "calls": 710
+    },
+    {
+      "id": 311,
+      "name": "giveVampirism",
+      "calls": 707
+    },
+    {
+      "id": 1887,
+      "name": "rebuildSeen",
+      "calls": 701
+    },
+    {
+      "id": 1627,
+      "name": "applyDamageReduction",
+      "calls": 698
+    },
+    {
+      "id": 287,
+      "name": "getCritSeverity",
+      "calls": 696
+    },
+    {
+      "id": 1129,
+      "name": "changeCleanseProtectionChance",
+      "calls": 674
+    },
+    {
+      "id": 187,
+      "name": "gainsStack",
+      "calls": 668
+    },
+    {
+      "id": 1884,
+      "name": "_onTimeout",
+      "calls": 667
+    },
+    {
+      "id": 2244,
+      "name": "getCaptureCells",
+      "calls": 664
+    },
+    {
+      "id": 1317,
+      "name": "getDebuffStacks",
+      "calls": 657
+    },
+    {
+      "id": 458,
+      "name": "inflictRandomDebuffs",
+      "calls": 653
+    },
+    {
+      "id": 461,
+      "name": "getLeastStacks",
+      "calls": 650
+    },
+    {
+      "id": 2233,
+      "name": "onOpponentBuffsChanged",
+      "calls": 621
+    },
+    {
+      "id": 1722,
+      "name": "moveItem",
+      "calls": 602
+    },
+    {
+      "id": 2250,
+      "name": "repositionPiece",
+      "calls": 602
+    },
+    {
+      "id": 261,
+      "name": "getModifiedEffectDamage",
+      "calls": 601
+    },
+    {
+      "id": 1249,
+      "name": "takeDamage",
+      "calls": 601
+    },
+    {
+      "id": 1655,
+      "name": "updateEffect",
+      "calls": 601
+    },
+    {
+      "id": 86,
+      "name": "emit_signal",
+      "calls": 600
+    },
+    {
+      "id": 185,
+      "name": "isGem",
+      "calls": 600
+    },
+    {
+      "id": 1576,
+      "name": "_newDamageSource",
+      "calls": 600
+    },
+    {
+      "id": 1330,
+      "name": "getPoison",
+      "calls": 589
+    },
+    {
+      "id": 2271,
+      "name": "findPieceToCapture",
+      "calls": 582
+    },
+    {
+      "id": 467,
+      "name": "giveLeastBuffs",
+      "calls": 581
+    },
+    {
+      "id": 2159,
+      "name": "emitCharge",
+      "calls": 577
+    },
+    {
+      "id": 1664,
+      "name": "canApplyLifesteal",
+      "calls": 570
+    },
+    {
+      "id": 2041,
+      "name": "getDamageBlock",
+      "calls": 565
+    },
+    {
+      "id": 2042,
+      "name": "beforeBlock",
+      "calls": 565
+    },
+    {
+      "id": 2043,
+      "name": "afterBlock",
+      "calls": 565
+    },
+    {
+      "id": 1045,
+      "name": "onSpikesChanged",
+      "calls": 563
+    },
+    {
+      "id": 407,
+      "name": "addBonusDamageFactor",
+      "calls": 551
+    },
+    {
+      "id": 1008,
+      "name": "preHit",
+      "calls": 549
+    },
+    {
+      "id": 1010,
+      "name": "onHit",
+      "calls": 549
+    },
+    {
+      "id": 368,
+      "name": "getP5",
+      "calls": 539
+    },
+    {
+      "id": 359,
+      "name": "isBaseItem",
+      "calls": 537
+    },
+    {
+      "id": 594,
+      "name": "isAvailableForCrafting",
+      "calls": 537
+    },
+    {
+      "id": 908,
+      "name": "canStartNewRecipe",
+      "calls": 537
+    },
+    {
+      "id": 2274,
+      "name": "findSpaceToMove",
+      "calls": 511
+    },
+    {
+      "id": 299,
+      "name": "changeAmplificiationChancePercent_allDebuffs",
+      "calls": 502
+    },
+    {
+      "id": 429,
+      "name": "healthToBlock",
+      "calls": 491
+    },
+    {
+      "id": 473,
+      "name": "removeRandomBuffs",
+      "calls": 487
+    },
+    {
+      "id": 348,
+      "name": "isTreasure",
+      "calls": 477
+    },
+    {
+      "id": 2452,
+      "name": "getCounterValue",
+      "calls": 471
+    },
+    {
+      "id": 1430,
+      "name": "hasFatigueStarted",
+      "calls": 468
+    },
+    {
+      "id": 2214,
+      "name": "onEmpowerChanged",
+      "calls": 467
+    },
+    {
+      "id": 1284,
+      "name": "reduceHealingEfficiency",
+      "calls": 466
+    },
+    {
+      "id": 393,
+      "name": "canHealOrLifesteal",
+      "calls": 457
+    },
+    {
+      "id": 322,
+      "name": "dealEffectDamage",
+      "calls": 453
+    },
+    {
+      "id": 1918,
+      "name": "buffEnded",
+      "calls": 449
+    },
+    {
+      "id": 2057,
+      "name": "onFoodActivated",
+      "calls": 446
+    },
+    {
+      "id": 1083,
+      "name": "prepareWeapon",
+      "calls": 445
+    },
+    {
+      "id": 1086,
+      "name": "combatStartWeapon",
+      "calls": 445
+    },
+    {
+      "id": 1089,
+      "name": "combatEndWeapon",
+      "calls": 445
+    },
+    {
+      "id": 1886,
+      "name": "_utilTime",
+      "calls": 440
+    },
+    {
+      "id": 1288,
+      "name": "changeBuffProtectStacks",
+      "calls": 434
+    },
+    {
+      "id": 1635,
+      "name": "willBeLethal",
+      "calls": 432
+    },
+    {
+      "id": 1044,
+      "name": "onVampirismChanged",
+      "calls": 429
+    },
+    {
+      "id": 248,
+      "name": "advanceCooldownSeconds",
+      "calls": 420
+    },
+    {
+      "id": 326,
+      "name": "countDamage",
+      "calls": 410
+    },
+    {
+      "id": 522,
+      "name": "getAffectedItems_nocache",
+      "calls": 401
+    },
+    {
+      "id": 523,
+      "name": "getItemsInAffectedCells",
+      "calls": 401
+    },
+    {
+      "id": 595,
+      "name": "getAffectedGoldValue",
+      "calls": 401
+    },
+    {
+      "id": 2058,
+      "name": "onOpponentHeal",
+      "calls": 401
+    },
+    {
+      "id": 2460,
+      "name": "condition1Fulfilled",
+      "calls": 401
+    },
+    {
+      "id": 1230,
+      "name": "setOpponent",
+      "calls": 400
+    },
+    {
+      "id": 1231,
+      "name": "registerCharacterDied",
+      "calls": 400
+    },
+    {
+      "id": 1232,
+      "name": "clearCharacterDiedHandlers",
+      "calls": 400
+    },
+    {
+      "id": 1257,
+      "name": "setCurrentHealth",
+      "calls": 400
+    },
+    {
+      "id": 1590,
+      "name": "restoreEngineRng",
+      "calls": 400
+    },
+    {
+      "id": 413,
+      "name": "giveDoubleActivationChance",
+      "calls": 388
+    },
+    {
+      "id": 1932,
+      "name": "onOpponentPoisonChanged",
+      "calls": 379
+    },
+    {
+      "id": 1665,
+      "name": "makeSpectral",
+      "calls": 377
+    },
+    {
+      "id": 438,
+      "name": "useSpikes",
+      "calls": 374
+    },
+    {
+      "id": 431,
+      "name": "stun",
+      "calls": 373
+    },
+    {
+      "id": 1084,
+      "name": "prepareArmor",
+      "calls": 368
+    },
+    {
+      "id": 1087,
+      "name": "combatStartArmor",
+      "calls": 368
+    },
+    {
+      "id": 1090,
+      "name": "combatEndArmor",
+      "calls": 368
+    },
+    {
+      "id": 1244,
+      "name": "randBuffLabelPos",
+      "calls": 362
+    },
+    {
+      "id": 1245,
+      "name": "randBuffLabelDir",
+      "calls": 362
+    },
+    {
+      "id": 1296,
+      "name": "addFatigueDamage",
+      "calls": 362
+    },
+    {
+      "id": 447,
+      "name": "useRegeneration",
+      "calls": 361
+    },
+    {
+      "id": 890,
+      "name": "updateShadowTexture",
+      "calls": 360
+    },
+    {
+      "id": 1952,
+      "name": "updateConnector",
+      "calls": 356
+    },
+    {
+      "id": 844,
+      "name": "resetSprite",
+      "calls": 347
+    },
+    {
+      "id": 1950,
+      "name": "onTriggerPotion",
+      "calls": 347
+    },
+    {
+      "id": 1951,
+      "name": "triggerPotion",
+      "calls": 347
+    },
+    {
+      "id": 2462,
+      "name": "updatePaws",
+      "calls": 342
+    },
+    {
+      "id": 435,
+      "name": "removeMana",
+      "calls": 339
+    },
+    {
+      "id": 1348,
+      "name": "loseMana",
+      "calls": 339
+    },
+    {
+      "id": 2243,
+      "name": "getMoveCells",
+      "calls": 325
+    },
+    {
+      "id": 2309,
+      "name": "debuffsChanged",
+      "calls": 324
+    },
+    {
+      "id": 243,
+      "name": "checkTriggerCount",
+      "calls": 314
+    },
+    {
+      "id": 2056,
+      "name": "onDebuffed",
+      "calls": 314
+    },
+    {
+      "id": 2461,
+      "name": "condition2Fulfilled",
+      "calls": 307
+    },
+    {
+      "id": 1386,
+      "name": "changeProtectionChance",
+      "calls": 275
+    },
+    {
+      "id": 71,
+      "name": "randi_range",
+      "calls": 272
+    },
+    {
+      "id": 1378,
+      "name": "changeMaxHealthGain",
+      "calls": 267
+    },
+    {
+      "id": 1921,
+      "name": "onInvuEnded",
+      "calls": 265
+    },
+    {
+      "id": 471,
+      "name": "giveAllBuffs",
+      "calls": 262
+    },
+    {
+      "id": 2256,
+      "name": "onAnyPieceCaptured",
+      "calls": 262
+    },
+    {
+      "id": 404,
+      "name": "giveBuffPower",
+      "calls": 254
+    },
+    {
+      "id": 2505,
+      "name": "onOpponentAttacked",
+      "calls": 251
+    },
+    {
+      "id": 49,
+      "name": "fill",
+      "calls": 247
+    },
+    {
+      "id": 1344,
+      "name": "loseBlind",
+      "calls": 247
+    },
+    {
+      "id": 399,
+      "name": "inflictsDebuffs",
+      "calls": 244
+    },
+    {
+      "id": 420,
+      "name": "inflictFatigueDamage",
+      "calls": 234
+    },
+    {
+      "id": 396,
+      "name": "hasAttackEffect",
+      "calls": 232
+    },
+    {
+      "id": 1373,
+      "name": "changeBaseMaxStamina",
+      "calls": 231
+    },
+    {
+      "id": 181,
+      "name": "getTypeMultiplicity",
+      "calls": 222
+    },
+    {
+      "id": 2242,
+      "name": "setBoard",
+      "calls": 221
+    },
+    {
+      "id": 265,
+      "name": "addMaxDamage",
+      "calls": 220
+    },
+    {
+      "id": 1274,
+      "name": "changeCritResistance",
+      "calls": 219
+    },
+    {
+      "id": 1433,
+      "name": "endCombat",
+      "calls": 219
+    },
+    {
+      "id": 475,
+      "name": "connectToCharacterBuffs",
+      "calls": 218
+    },
+    {
+      "id": 276,
+      "name": "addBonusChance",
+      "calls": 217
+    },
+    {
+      "id": 529,
+      "name": "getFirstAffectedItem",
+      "calls": 217
+    },
+    {
+      "id": 2245,
+      "name": "onPieceMoved",
+      "calls": 216
+    },
+    {
+      "id": 2275,
+      "name": "movePiece",
+      "calls": 216
+    },
+    {
+      "id": 1890,
+      "name": "dictAdd",
+      "calls": 215
+    },
+    {
+      "id": 455,
+      "name": "useHeat",
+      "calls": 214
+    },
+    {
+      "id": 1312,
+      "name": "makeInvulnerable",
+      "calls": 206
+    },
+    {
+      "id": 1623,
+      "name": "getDamage",
+      "calls": 205
+    },
+    {
+      "id": 16,
+      "name": "empty",
+      "calls": 203
+    },
+    {
+      "id": 341,
+      "name": "getTypes",
+      "calls": 203
+    },
+    {
+      "id": 448,
+      "name": "tryUseLucky",
+      "calls": 203
+    },
+    {
+      "id": 1948,
+      "name": "drink",
+      "calls": 203
+    },
+    {
+      "id": 68,
+      "name": "set_state",
+      "calls": 200
+    },
+    {
+      "id": 1242,
+      "name": "classRoundSoundCount",
+      "calls": 200
+    },
+    {
+      "id": 1436,
+      "name": "combatEndDeferred",
+      "calls": 200
+    },
+    {
+      "id": 1456,
+      "name": "prepareHiddenLog",
+      "calls": 200
+    },
+    {
+      "id": 1596,
+      "name": "resetCriticalShake",
+      "calls": 200
+    },
+    {
+      "id": 1600,
+      "name": "restoreReplayBuffs",
+      "calls": 200
+    },
+    {
+      "id": 1605,
+      "name": "restoreFlickers",
+      "calls": 200
+    },
+    {
+      "id": 1698,
+      "name": "disconnectAll",
+      "calls": 200
+    },
+    {
+      "id": 1283,
+      "name": "addHealingEfficiency",
+      "calls": 197
+    },
+    {
+      "id": 1082,
+      "name": "prepareInventory",
+      "calls": 196
+    },
+    {
+      "id": 1085,
+      "name": "combatStartInventory",
+      "calls": 196
+    },
+    {
+      "id": 1088,
+      "name": "combatEndInventory",
+      "calls": 196
+    },
+    {
+      "id": 2015,
+      "name": "onOpponentBlindChanged",
+      "calls": 190
+    },
+    {
+      "id": 2375,
+      "name": "onGainThresholdReached",
+      "calls": 190
+    },
+    {
+      "id": 1949,
+      "name": "consumePotion",
+      "calls": 180
+    },
+    {
+      "id": 1031,
+      "name": "getNumAffectedInside",
+      "calls": 176
+    },
+    {
+      "id": 2305,
+      "name": "onOpponentColdChanged",
+      "calls": 175
+    },
+    {
+      "id": 286,
+      "name": "addCritSeverity",
+      "calls": 172
+    },
+    {
+      "id": 449,
+      "name": "loseLucky",
+      "calls": 168
+    },
+    {
+      "id": 450,
+      "name": "removeLucky",
+      "calls": 168
+    },
+    {
+      "id": 417,
+      "name": "giveMaxStaminaTemporary",
+      "calls": 166
+    },
+    {
+      "id": 1277,
+      "name": "changeStunResistance",
+      "calls": 166
+    },
+    {
+      "id": 1369,
+      "name": "gainMaxStaminaTemporary",
+      "calls": 166
+    },
+    {
+      "id": 2009,
+      "name": "getBuffDur",
+      "calls": 161
+    },
+    {
+      "id": 2476,
+      "name": "onOppoDamaged",
+      "calls": 159
+    },
+    {
+      "id": 281,
+      "name": "reduceCritChancePercent",
+      "calls": 156
+    },
+    {
+      "id": 992,
+      "name": "getNextCard",
+      "calls": 155
+    },
+    {
+      "id": 1849,
+      "name": "pickRandomEngine",
+      "calls": 155
+    },
+    {
+      "id": 2246,
+      "name": "onPieceCaptured",
+      "calls": 155
+    },
+    {
+      "id": 2247,
+      "name": "doCapturingEffect",
+      "calls": 155
+    },
+    {
+      "id": 2248,
+      "name": "onEliminatedBy",
+      "calls": 155
+    },
+    {
+      "id": 2249,
+      "name": "doEliminatedEffect",
+      "calls": 155
+    },
+    {
+      "id": 2273,
+      "name": "capture",
+      "calls": 155
+    },
+    {
+      "id": 440,
+      "name": "removeVampirism",
+      "calls": 152
+    },
+    {
+      "id": 442,
+      "name": "loseVampirism",
+      "calls": 152
+    },
+    {
+      "id": 2287,
+      "name": "onItemActivated2",
+      "calls": 151
+    },
+    {
+      "id": 430,
+      "name": "stealLife",
+      "calls": 148
+    },
+    {
+      "id": 2418,
+      "name": "onShieldOrArmorActivated",
+      "calls": 141
+    },
+    {
+      "id": 1349,
+      "name": "getEmpower",
+      "calls": 140
+    },
+    {
+      "id": 412,
+      "name": "purgeDamage",
+      "calls": 136
+    },
+    {
+      "id": 2325,
+      "name": "checkItems",
+      "calls": 135
+    },
+    {
+      "id": 2659,
+      "name": "onStoneAttacked",
+      "calls": 134
+    },
+    {
+      "id": 1047,
+      "name": "onStun",
+      "calls": 133
+    },
+    {
+      "id": 990,
+      "name": "updateTexture",
+      "calls": 130
+    },
+    {
+      "id": 995,
+      "name": "notifyChainPosition",
+      "calls": 130
+    },
+    {
+      "id": 1295,
+      "name": "getBonusFatigueDamage",
+      "calls": 127
+    },
+    {
+      "id": 2148,
+      "name": "onFatigueDamageChanged",
+      "calls": 127
+    },
+    {
+      "id": 2154,
+      "name": "onItemInsideActivated",
+      "calls": 127
+    },
+    {
+      "id": 469,
+      "name": "removeMostBuffs",
+      "calls": 125
+    },
+    {
+      "id": 2286,
+      "name": "onItemActivated1",
+      "calls": 124
+    },
+    {
+      "id": 1374,
+      "name": "recalculateMaxStamina",
+      "calls": 122
+    },
+    {
+      "id": 343,
+      "name": "addDynamicType",
+      "calls": 121
+    },
+    {
+      "id": 1333,
+      "name": "losePoison",
+      "calls": 121
+    },
+    {
+      "id": 443,
+      "name": "cleansePoison",
+      "calls": 118
+    },
+    {
+      "id": 2008,
+      "name": "getStunProtectChance",
+      "calls": 115
+    },
+    {
+      "id": 2347,
+      "name": "onItemInsideEmittedCharge",
+      "calls": 115
+    },
+    {
+      "id": 1628,
+      "name": "triggerOnHit",
+      "calls": 113
+    },
+    {
+      "id": 1990,
+      "name": "empowerChanged",
+      "calls": 113
+    },
+    {
+      "id": 301,
+      "name": "giveReflectStacks",
+      "calls": 112
+    },
+    {
+      "id": 1287,
+      "name": "changeDebuffReflectStacks",
+      "calls": 112
+    },
+    {
+      "id": 1389,
+      "name": "changeBuffNullifyChances",
+      "calls": 112
+    },
+    {
+      "id": 1765,
+      "name": "_inventorySide",
+      "calls": 112
+    },
+    {
+      "id": 2690,
+      "name": "zapItem",
+      "calls": 109
+    },
+    {
+      "id": 1820,
+      "name": "isAvailableFor",
+      "calls": 107
+    },
+    {
+      "id": 2631,
+      "name": "onItemUsedStamina",
+      "calls": 105
+    },
+    {
+      "id": 2165,
+      "name": "onLuckChanged",
+      "calls": 101
+    },
+    {
+      "id": 313,
+      "name": "selfInflictPoison",
+      "calls": 99
+    },
+    {
+      "id": 2376,
+      "name": "onUseThresholdReached",
+      "calls": 96
+    },
+    {
+      "id": 2348,
+      "name": "onChargeTimerTimeout",
+      "calls": 94
+    },
+    {
+      "id": 1011,
+      "name": "onAffectedWeaponAttacked",
+      "calls": 92
+    },
+    {
+      "id": 1428,
+      "name": "startFatigue",
+      "calls": 92
+    },
+    {
+      "id": 1006,
+      "name": "setBagOfStones",
+      "calls": 91
+    },
+    {
+      "id": 2167,
+      "name": "onBattleRageStarted",
+      "calls": 91
+    },
+    {
+      "id": 369,
+      "name": "getP6",
+      "calls": 90
+    },
+    {
+      "id": 453,
+      "name": "cleanseCold",
+      "calls": 89
+    },
+    {
+      "id": 527,
+      "name": "getNumEmptyAffectedCells",
+      "calls": 85
+    },
+    {
+      "id": 1707,
+      "name": "getEmptyCellsInCells",
+      "calls": 85
+    },
+    {
+      "id": 1388,
+      "name": "changeDebuffProtectionChance",
+      "calls": 84
+    },
+    {
+      "id": 2272,
+      "name": "findBestPieceToCapture",
+      "calls": 84
+    },
+    {
+      "id": 1891,
+      "name": "dictSub",
+      "calls": 82
+    },
+    {
+      "id": 2576,
+      "name": "onSpeedTimeout",
+      "calls": 82
+    },
+    {
+      "id": 1929,
+      "name": "onDebuffsChanged",
+      "calls": 79
+    },
+    {
+      "id": 2039,
+      "name": "tweenFilling",
+      "calls": 79
+    },
+    {
+      "id": 1823,
+      "name": "isMeleeWeapon",
+      "calls": 78
+    },
+    {
+      "id": 1925,
+      "name": "onAffectedAttacked",
+      "calls": 78
+    },
+    {
+      "id": 2068,
+      "name": "onPotionEmptied",
+      "calls": 78
+    },
+    {
+      "id": 1936,
+      "name": "resetChain",
+      "calls": 77
+    },
+    {
+      "id": 1937,
+      "name": "updateCards",
+      "calls": 77
+    },
+    {
+      "id": 395,
+      "name": "canUseStamina",
+      "calls": 73
+    },
+    {
+      "id": 411,
+      "name": "reduceBonusDamage",
+      "calls": 73
+    },
+    {
+      "id": 1893,
+      "name": "dictAppend",
+      "calls": 72
+    },
+    {
+      "id": 1261,
+      "name": "getMaxHealth",
+      "calls": 71
+    },
+    {
+      "id": 1727,
+      "name": "playFatigueSound",
+      "calls": 70
+    },
+    {
+      "id": 1316,
+      "name": "getBuffStacks",
+      "calls": 67
+    },
+    {
+      "id": 309,
+      "name": "stealStack",
+      "calls": 64
+    },
+    {
+      "id": 1712,
+      "name": "getCellsInLine",
+      "calls": 64
+    },
+    {
+      "id": 1900,
+      "name": "arrayAsIndexDict",
+      "calls": 64
+    },
+    {
+      "id": 1824,
+      "name": "isRangedWeapon",
+      "calls": 63
+    },
+    {
+      "id": 1321,
+      "name": "changeDebuffResistChances",
+      "calls": 61
+    },
+    {
+      "id": 742,
+      "name": "getTranslatedName",
+      "calls": 60
+    },
+    {
+      "id": 993,
+      "name": "startActivation",
+      "calls": 60
+    },
+    {
+      "id": 1475,
+      "name": "createEvent_DamageBuff",
+      "calls": 60
+    },
+    {
+      "id": 2477,
+      "name": "giveStacksFromEffect",
+      "calls": 60
+    },
+    {
+      "id": 2481,
+      "name": "getScaledParam",
+      "calls": 60
+    },
+    {
+      "id": 895,
+      "name": "showCooldown",
+      "calls": 59
+    },
+    {
+      "id": 994,
+      "name": "doRevealEffect",
+      "calls": 59
+    },
+    {
+      "id": 1989,
+      "name": "isBuffed",
+      "calls": 59
+    },
+    {
+      "id": 308,
+      "name": "useBlock",
+      "calls": 56
+    },
+    {
+      "id": 1300,
+      "name": "startBattleRage",
+      "calls": 56
+    },
+    {
+      "id": 905,
+      "name": "countAllInInventoryOfType",
+      "calls": 53
+    },
+    {
+      "id": 507,
+      "name": "getCollisionPoints",
+      "calls": 48
+    },
+    {
+      "id": 2183,
+      "name": "advanceAffectedItem",
+      "calls": 48
+    },
+    {
+      "id": 596,
+      "name": "countTypes",
+      "calls": 47
+    },
+    {
+      "id": 1291,
+      "name": "changeRangedSpikesLimit",
+      "calls": 46
+    },
+    {
+      "id": 444,
+      "name": "selfInflictBlind",
+      "calls": 45
+    },
+    {
+      "id": 991,
+      "name": "cardSecondaryEffectActive",
+      "calls": 45
+    },
+    {
+      "id": 1290,
+      "name": "changeMeleeSpikesLimit",
+      "calls": 45
+    },
+    {
+      "id": 2482,
+      "name": "isOnlyForDisplay",
+      "calls": 45
+    },
+    {
+      "id": 211,
+      "name": "updateBaseCooldown",
+      "calls": 44
+    },
+    {
+      "id": 284,
+      "name": "addCritTokens",
+      "calls": 44
+    },
+    {
+      "id": 885,
+      "name": "getGlobalCenter",
+      "calls": 44
+    },
+    {
+      "id": 2123,
+      "name": "onBuffTimeout",
+      "calls": 43
+    },
+    {
+      "id": 202,
+      "name": "getBaseCooldownIndex",
+      "calls": 42
+    },
+    {
+      "id": 231,
+      "name": "repeatCombatStart",
+      "calls": 42
+    },
+    {
+      "id": 285,
+      "name": "useCritToken",
+      "calls": 42
+    },
+    {
+      "id": 2201,
+      "name": "conditionFulfilled",
+      "calls": 42
+    },
+    {
+      "id": 2315,
+      "name": "onDragonAttacked",
+      "calls": 40
+    },
+    {
+      "id": 209,
+      "name": "setBaseCooldown",
+      "calls": 39
+    },
+    {
+      "id": 561,
+      "name": "countAllPlacedOfType",
+      "calls": 37
+    },
+    {
+      "id": 338,
+      "name": "getShopChance",
+      "calls": 36
+    },
+    {
+      "id": 530,
+      "name": "getNumAffected_type",
+      "calls": 35
+    },
+    {
+      "id": 2179,
+      "name": "onHealOrBlockChanged",
+      "calls": 35
+    },
+    {
+      "id": 1715,
+      "name": "countSocketedGems",
+      "calls": 34
+    },
+    {
+      "id": 1128,
+      "name": "changeResistStacks",
+      "calls": 32
+    },
+    {
+      "id": 1327,
+      "name": "getVampirism",
+      "calls": 32
+    },
+    {
+      "id": 1769,
+      "name": "countItemsInInventoryOfType",
+      "calls": 32
+    },
+    {
+      "id": 2598,
+      "name": "onInvuStarted",
+      "calls": 32
+    },
+    {
+      "id": 472,
+      "name": "useRandomBuffs",
+      "calls": 31
+    },
+    {
+      "id": 1075,
+      "name": "changeGemPower",
+      "calls": 31
+    },
+    {
+      "id": 1101,
+      "name": "onParticleTimeout",
+      "calls": 31
+    },
+    {
+      "id": 1130,
+      "name": "changeReflectChance",
+      "calls": 30
+    },
+    {
+      "id": 2478,
+      "name": "sortEffects",
+      "calls": 30
+    },
+    {
+      "id": 342,
+      "name": "hasDynamicType",
+      "calls": 29
+    },
+    {
+      "id": 477,
+      "name": "connectToOpponentDebuffs",
+      "calls": 29
+    },
+    {
+      "id": 531,
+      "name": "getNumDistinctAffectedItems",
+      "calls": 29
+    },
+    {
+      "id": 1032,
+      "name": "getNumAffectedInside_type",
+      "calls": 29
+    },
+    {
+      "id": 1382,
+      "name": "changeEffectDamageFactor",
+      "calls": 29
+    },
+    {
+      "id": 1279,
+      "name": "giveUnhealing",
+      "calls": 28
+    },
+    {
+      "id": 1583,
+      "name": "defer",
+      "calls": 28
+    },
+    {
+      "id": 2168,
+      "name": "onBattleRageEnded",
+      "calls": 28
+    },
+    {
+      "id": 1391,
+      "name": "addBattleRageDuration",
+      "calls": 27
+    },
+    {
+      "id": 2231,
+      "name": "onChargeLeft",
+      "calls": 27
+    },
+    {
+      "id": 1384,
+      "name": "changePoisonCritChancePercent",
+      "calls": 25
+    },
+    {
+      "id": 2583,
+      "name": "getCounterValue2",
+      "calls": 25
+    },
+    {
+      "id": 1659,
+      "name": "canBeBlocked",
+      "calls": 24
+    },
+    {
+      "id": 476,
+      "name": "connectToCharacterDebuffs",
+      "calls": 23
+    },
+    {
+      "id": 1897,
+      "name": "changeTimer",
+      "calls": 23
+    },
+    {
+      "id": 463,
+      "name": "getStackFraction",
+      "calls": 21
+    },
+    {
+      "id": 1387,
+      "name": "changeBuffProtectionChance",
+      "calls": 21
+    },
+    {
+      "id": 1770,
+      "name": "countItemsInInventoryOfType_opponent",
+      "calls": 21
+    },
+    {
+      "id": 2584,
+      "name": "updateScale",
+      "calls": 21
+    },
+    {
+      "id": 1966,
+      "name": "updateEgg",
+      "calls": 20
+    },
+    {
+      "id": 1968,
+      "name": "canHatch",
+      "calls": 20
+    },
+    {
+      "id": 904,
+      "name": "getAllInInventoryOfType",
+      "calls": 18
+    },
+    {
+      "id": 201,
+      "name": "getBaseCooldown",
+      "calls": 16
+    },
+    {
+      "id": 415,
+      "name": "giveCritTokens",
+      "calls": 16
+    },
+    {
+      "id": 1285,
+      "name": "gainCritTokens",
+      "calls": 16
+    },
+    {
+      "id": 1903,
+      "name": "countDuplicates",
+      "calls": 16
+    },
+    {
+      "id": 2567,
+      "name": "initRat",
+      "calls": 16
+    },
+    {
+      "id": 210,
+      "name": "resetBaseCooldown",
+      "calls": 15
+    },
+    {
+      "id": 1286,
+      "name": "changeDebuffResistStacks",
+      "calls": 15
+    },
+    {
+      "id": 2479,
+      "name": "randEffects",
+      "calls": 15
+    },
+    {
+      "id": 2480,
+      "name": "setCraftedEffects",
+      "calls": 15
+    },
+    {
+      "id": 1254,
+      "name": "reincarnate",
+      "calls": 14
+    },
+    {
+      "id": 2127,
+      "name": "triggerNextPotion",
+      "calls": 14
+    },
+    {
+      "id": 2296,
+      "name": "onReincarnate",
+      "calls": 14
+    },
+    {
+      "id": 414,
+      "name": "giveDoubleAttackEffectChance",
+      "calls": 13
+    },
+    {
+      "id": 2097,
+      "name": "poisonTimerTimeout",
+      "calls": 13
+    },
+    {
+      "id": 464,
+      "name": "multiplyBuffsLimit",
+      "calls": 12
+    },
+    {
+      "id": 2539,
+      "name": "onPotionTriggered",
+      "calls": 12
+    },
+    {
+      "id": 371,
+      "name": "getP8",
+      "calls": 11
+    },
+    {
+      "id": 2691,
+      "name": "onBuffEnded",
+      "calls": 11
+    },
+    {
+      "id": 408,
+      "name": "reduceBonusDamageFactor",
+      "calls": 10
+    },
+    {
+      "id": 1289,
+      "name": "changeAllDebuffsReflectChance",
+      "calls": 10
+    },
+    {
+      "id": 1431,
+      "name": "advanceTime",
+      "calls": 10
+    },
+    {
+      "id": 2682,
+      "name": "advanceItem",
+      "calls": 10
+    },
+    {
+      "id": 465,
+      "name": "removeBuffsFraction",
+      "calls": 9
+    },
+    {
+      "id": 1767,
+      "name": "getItemsInInventoryOfType",
+      "calls": 9
+    },
+    {
+      "id": 1768,
+      "name": "getItemsInInventoryOfType_opponent",
+      "calls": 9
+    },
+    {
+      "id": 1980,
+      "name": "addBonusBlock",
+      "calls": 9
+    },
+    {
+      "id": 2031,
+      "name": "addBonusRandomBuffs",
+      "calls": 9
+    },
+    {
+      "id": 277,
+      "name": "addBonusChance_additive",
+      "calls": 8
+    },
+    {
+      "id": 370,
+      "name": "getP7",
+      "calls": 8
+    },
+    {
+      "id": 1358,
+      "name": "loseCold",
+      "calls": 8
+    },
+    {
+      "id": 2070,
+      "name": "onFatigueStarted",
+      "calls": 8
+    },
+    {
+      "id": 2297,
+      "name": "invuEnded",
+      "calls": 8
+    },
+    {
+      "id": 525,
+      "name": "countItemsInAffectedCells_cached",
+      "calls": 7
+    },
+    {
+      "id": 1280,
+      "name": "reduceUnhealing",
+      "calls": 7
+    },
+    {
+      "id": 1298,
+      "name": "startBlindingLight",
+      "calls": 7
+    },
+    {
+      "id": 1381,
+      "name": "changeTypedDamageFactor",
+      "calls": 7
+    },
+    {
+      "id": 1710,
+      "name": "countItemsInCells",
+      "calls": 7
+    },
+    {
+      "id": 2014,
+      "name": "inflict",
+      "calls": 7
+    },
+    {
+      "id": 439,
+      "name": "loseSpikes",
+      "calls": 6
+    },
+    {
+      "id": 478,
+      "name": "connectToOpponentBuffs",
+      "calls": 6
+    },
+    {
+      "id": 1273,
+      "name": "changeDodgeStacks",
+      "calls": 6
+    },
+    {
+      "id": 1594,
+      "name": "restartLoversParticleDraws",
+      "calls": 5
+    },
+    {
+      "id": 1657,
+      "name": "unsetFlag",
+      "calls": 5
+    },
+    {
+      "id": 2670,
+      "name": "onLifestealTimeout",
+      "calls": 5
+    },
+    {
+      "id": 2544,
+      "name": "onMoonShiedActivated",
+      "calls": 4
+    },
+    {
+      "id": 2623,
+      "name": "onArmorUsedHeat",
+      "calls": 4
+    },
+    {
+      "id": 1299,
+      "name": "endBlindingLight",
+      "calls": 3
+    },
+    {
+      "id": 1586,
+      "name": "connectIdleFrameOnce",
+      "calls": 3
+    },
+    {
+      "id": 1592,
+      "name": "scheduleParticleDraws",
+      "calls": 3
+    },
+    {
+      "id": 1625,
+      "name": "wasCriticalHit",
+      "calls": 3
+    },
+    {
+      "id": 1898,
+      "name": "callNextFrame",
+      "calls": 3
+    },
+    {
+      "id": 2016,
+      "name": "onBlindingLightTimeout",
+      "calls": 3
+    },
+    {
+      "id": 2017,
+      "name": "onBlindingLightEnded",
+      "calls": 3
+    },
+    {
+      "id": 2117,
+      "name": "onAddToInventory_deferred",
+      "calls": 3
+    },
+    {
+      "id": 2430,
+      "name": "countChain",
+      "calls": 3
+    },
+    {
+      "id": 441,
+      "name": "useVampirism",
+      "calls": 2
+    },
+    {
+      "id": 570,
+      "name": "changeAllItemsCritRate",
+      "calls": 2
+    },
+    {
+      "id": 892,
+      "name": "updateShaderRotation",
+      "calls": 2
+    },
+    {
+      "id": 1276,
+      "name": "gainCritResistStacks",
+      "calls": 2
+    },
+    {
+      "id": 1717,
+      "name": "changeBuffAmplification_allItems",
+      "calls": 2
+    },
+    {
+      "id": 2141,
+      "name": "onSpeedTimerTimeout",
+      "calls": 2
+    },
+    {
+      "id": 2444,
+      "name": "switchGradient",
+      "calls": 2
+    },
+    {
+      "id": 1292,
+      "name": "changeEffectSpikesLimit",
+      "calls": 1
+    },
+    {
+      "id": 1385,
+      "name": "changeSpikesCritChancePercent",
+      "calls": 1
+    },
+    {
+      "id": 2055,
+      "name": "onSpeedbuffTimeout",
+      "calls": 1
+    },
+    {
+      "id": 2094,
+      "name": "drinkStrongDemonicFlask",
+      "calls": 1
+    },
+    {
+      "id": 2095,
+      "name": "healingReductionTimeout",
+      "calls": 1
+    },
+    {
+      "id": 2343,
+      "name": "removeDebuffResistance",
+      "calls": 1
+    },
+    {
+      "id": 2406,
+      "name": "onHPLow",
+      "calls": 1
+    },
+    {
+      "id": 2407,
+      "name": "spawnSpikeParticles",
+      "calls": 1
+    }
+  ],
+  "directory": "C:\\Users\\Windows\\AppData\\Local\\Temp\\native-method-miss-probe-jq58t3u6"
+}
