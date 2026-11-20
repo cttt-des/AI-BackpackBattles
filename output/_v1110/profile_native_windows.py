@@ -27,7 +27,7 @@ def func(dll, name, result, *args):
     return api
 
 
-def sample_native(handle, module, size, done, stacks):
+def sample_native(handle, module, size, done, stacks, max_depth=12):
     # Keep the GIL during suspension, including when the target returns to Python.
     kernel = ct.PyDLL("kernel32", use_last_error=True)
     native = ct.PyDLL("ntdll")
@@ -52,7 +52,7 @@ def sample_native(handle, module, size, done, stacks):
             flags.value = 0x00100003  # CONTEXT_AMD64 | CONTROL | INTEGER
             if not context(handle, address):
                 raise ct.WinError(ct.get_last_error())
-            for _ in range(12):
+            for _ in range(max_depth):
                 pc, sp = rip.value, rsp.value
                 if not module <= pc < module + size:
                     break
@@ -97,9 +97,12 @@ def main():
     parser.add_argument("--min-samples", type=int, default=0, help="Repeat the workload until this many native stacks are collected")
     parser.add_argument("--instruction-locations", action="store_true", help="Include sampled leaf instruction offsets for disassembly")
     parser.add_argument("--full-output", action="store_true", help="Retain all function summaries, direct leaf callers and resolved stacks")
+    parser.add_argument("--max-depth", type=int, default=12, help="Maximum native unwind depth (default 12; use 64 for parent attribution)")
     args = parser.parse_args()
     if args.min_samples < 0:
         parser.error("--min-samples must be nonnegative")
+    if not 1 <= args.max_depth <= 256:
+        parser.error("--max-depth must be between one and 256")
     if args.dll:
         from bench_native_corpus import load_simulator
 
@@ -146,7 +149,7 @@ def main():
 
     def sample():
         try:
-            sample_native(handle, sim.lib._handle, size, done, stacks)
+            sample_native(handle, sim.lib._handle, size, done, stacks, args.max_depth)
         except Exception as error:
             errors.append(error)
 
@@ -191,6 +194,8 @@ def main():
               "inputs_sha256": inputs_digest.hexdigest() if inputs_digest else None,
               "sampled_wall_s": wall, "leaf": leaf.most_common(limit),
               "inclusive": inclusive.most_common(limit), "callers": callers.most_common(limit)}
+    report["native_stack_depth_limit"]=args.max_depth
+    report["samples_at_depth_limit"]=sum(count for stack,count in stacks.items() if len(stack)==args.max_depth)
     if args.full_output:
         report["leaf_callers"]=leaf_callers.most_common()
         report["resolved_stacks"]=[{"functions":list(map(resolve,stack)),"samples":count}
