@@ -319,3 +319,16 @@ CoreItem 从 1,696 字节、8 字节对齐改为 1,792 字节、64 字节对齐�
 补充校准采用 30 秒预热、两个低优先级负载进程，整个采样在 120 秒进程上限内完成。接电、估算负载 **16.0%–41.7%**，24 批原始吞吐中位数 **77.49**、最慢 **61.56 场/秒**，全部高于门槛。20% 换算 **79.71 场/秒**，分组留出误差中位数 **1.83%**、第 90 百分位 **4.83%**。换算只解释这组条件下的负载波动，100／125 目标继续推进。[受控采样](../output/_v1110/native_perf50/cycles11/inline_timers_load_calibration_warm.json) · [20% 换算](../output/_v1110/native_perf50/cycles11/inline_timers_load20_warm.json)
 
 已部署 DLL `58383a1158e951d7aae8b4d4c34df4d52332446156946d31a488f5dff323ec39`。正常训练 12 场无错误，另 12 场固定种子结果与基线一致，部署清单、验收报告及 DLL SHA-256 相同，源码与受测副本一致。旧版保留于 `dist/native_1_1_10_before_cycle11`。下一轮从该版重新采样，先计数仅针对物品／宝石／计时器相关数组的变更与可跳过条目，再评估保持原顺序、同帧变更后回退原遍历的稀疏计时器路径。[部署记录](../output/_v1110/native_perf50/cycles11/inline_timers_installation.json)
+
+
+### 第十二轮（未替换运行时）
+
+起点为第十一轮 `58383a11…`，远端备份 `8ada702c` 的原始 DLL 与本地逐字节相同。新采样取得 **6,038** 个有效栈样本、43 批固定回放；CoreCombat.physicsTick 仍有 644 个叶节点样本，CoreItem.physicsTick 为 344。先诊断相关数组，正式候选采用独立副本，未改变正在运行的 DLL。[备份核对](../output/_v1110/native_perf50/cycles12/verified_baseline.json) · [新采样](../output/_v1110/native_perf50/cycles11/inline_timers_profile.json)
+
+固定 200 场记录 **386,704** 次角色计时器阶段、**13,473,218** 次物品访问，其中自身或宝石带非空计时器数组的物品访问 **682,897** 次，占 **5.07%**。仅追踪物品、宝石、计时器相关数组后，前后阶段 epoch 可复用 **386,104** 次，占 **99.84%**；这批语料中未观察到遍历中途相关数组变更。记录 1,619 次相关数组修改入口和 45,199 次相关字段赋值，修改入口包含空操作及嵌套调用，不等于独立语义修改次数。诊断完整结果哈希相同，不用其吞吐作收益结论。[诊断脚本](../output/_v1110/probe_native_selective_timer_scan.py) · [计数](../output/_v1110/native_perf50/cycles12/selective_timer_counts.json)
+
+原型为每个角色缓存升序物理下标，仅跳过自身和所有宝石计时器数组均为空的物品。停止状态的计时器仍保留；数组别名修改及字段替换均使索引失效。中途变更后，从已访问位置的下一项恢复原顺序扫描，保留最初捕获长度。嵌套阶段或排序回调期间直接使用原路径，epoch 饱和后永久回退。仅桥接内部启用，外部上下文保留原行为。GdArr 使用既有填充区标记，sizeof 仍为 24；由于构造语义及角色缓存布局变化，对全部 20 个依赖单元全量重建并重新训练 18 个热点单元，浮点选项不变。[原型生成脚本](../output/_v1110/optimize_native_sparse_timers.py) · [设计与不变量](../output/_v1110/native_perf50/cycles12/sparse_timer_design.json)
+
+24 组索引／原顺序扫描对照和 21 组饱和回退用例均通过，覆盖别名、同帧新增／替换、数组重排／缩短、未来占位对象修复、嵌套及排序回调。数组所有修改入口、清空、洗牌 RNG、排序、字段替换测试通过；此前计时器启动／停止／重启、首次生效及数组别名生命周期回归也通过。三场原版严格逐事件检查通过，22 个 C ABI 不变。重复生成保持字节及修改时间。[对照测试源码](../output/_v1110/test_native_sparse_timers.cpp) · [对照结果](../output/_v1110/native_perf50/cycles12/sparse_differential_test.json) · [数组追踪测试](../output/_v1110/native_perf50/cycles12/tracking_test.json) · [ABI](../output/_v1110/native_perf50/cycles12/sparse_timers_abi.json)
+
+三轮各八组隔离 AB／BA，CPU 耗时降幅 **−3.21%、2.69%、2.07%**，墙钟降幅 **−1.27%、0.12%、1.14%**。合计 24 对全部保留，CPU 中位数仅降低 **0.73%**，墙钟 **0.89%**，未取得方向一致的可重复收益，故不合入。没有进入 2,604 场和 24 批发布门槛，运行时保持第十一轮；原型未接入默认重建流程。反汇编确认普通数组 push_back 的追踪判断已内联，未发现每次空追踪都无条件进入 TLS 的额外调用，不能把收益不足直接归因于该猜测。下一轮单独计数更热的冷却物品遍历，核对资格变化与同帧回调后再选择实现。[首测](../output/_v1110/native_perf50/cycles12/sparse_timers_ab.json) · [反转复测](../output/_v1110/native_perf50/cycles12/sparse_timers_ab_repeat.json) · [确认](../output/_v1110/native_perf50/cycles12/sparse_timers_ab_confirm.json) · [汇总](../output/_v1110/native_perf50/cycles12/sparse_timers_ab_pooled.json) · [未部署记录](../output/_v1110/native_perf50/cycles12/sparse_timers_installation.json)

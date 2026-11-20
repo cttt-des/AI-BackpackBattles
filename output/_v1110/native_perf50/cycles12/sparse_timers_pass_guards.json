@@ -1,0 +1,21 @@
+{
+  "inputs": {
+    "gd_rt.hpp": "bf6ee43ba5c5a40ced3b217602b01444b5324ecabd4977ba42e13266c52903e0",
+    "gd_rt.cpp": "63dc2c0e53827722349a306430930caef50640d334fc527764ad1ae0dddac8ac",
+    "engine_wrapper.cpp": "1dd69d3aa317890b1be03e1e65acb837322ce8ca0c4cbdcbacf85a8aabd45a88",
+    "gen/hdrs/Gd__gd_core__CoreCharacter.hpp": "0f68f644e9cbe6523d8bf87fcfc917f956fe0e5351a2ff6893ea74fdc01f1b14",
+    "gen/shards/shard_00.cpp": "e39d297289c832f5237609815630ba3cc4bd435345572c04114bfb42e2d1bced",
+    "gen/shards/shard_02.cpp": "f8696da573e296e8cfaee470d29d36e309f3d84ce77d4cfd0c5942fd611bee8f",
+    "gen/shards/shard_03.cpp": "8d7c84ec9a22f4305b9d848e5c80c52e15e7702313349a5592ae379b4b70f3bf"
+  },
+  "outputs": {
+    "gd_rt.hpp": "ac3fbd1ae7cefdd697072747b62abc7c8ea6b5cd097c9a6906646bf95e0e7357",
+    "gd_rt.cpp": "3c1bb948ca67552b86e1a88c296592c6b1ba945e6d418a00a919bf6cf0be6343",
+    "engine_wrapper.cpp": "31f83ad838d323aebc98c908635539de8963629f98084d4aab2c4cb7ee5b0685",
+    "gen/hdrs/Gd__gd_core__CoreCharacter.hpp": "9c1f8b60858a607eb6b433b5140d290f9e656edc0b5f9d7c1a90ed89b5141222",
+    "gen/shards/shard_00.cpp": "6c2d889b27391e5e1f27ce1888bac80cc0088dc64db4f4065efd2243380b5b1f",
+    "gen/shards/shard_02.cpp": "83b32e97e1bde7cc311a6f763e5373890727a712400ca62332b836bcfedc287a",
+    "gen/shards/shard_03.cpp": "067f8b6a822caeb1d93b042681d3ab72c70caf196591ad150f3baf39dee83bd8"
+  },
+  "idempotent_bytes_and_mtime": true
+}

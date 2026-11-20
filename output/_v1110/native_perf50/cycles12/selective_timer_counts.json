@@ -1,0 +1,22 @@
+{
+  "diagnostic_only": true,
+  "dll_sha256": "05b9d60d4506e524de498701a4e2289e48a5ac922b877ef42024306837756b91",
+  "inputs_sha256": "d94b16d42cc88e9a3850a77c9360b9c4c4fdd676cb252e463044a903db2a5fef",
+  "results_sha256": "2e74b45caa87f7ee6ac72ffc35d98cc8db140b47031614d26542e183cef5d2c9",
+  "counts": {
+    "character_passes": 386704,
+    "reusable_epoch_passes": 386104,
+    "parent_visits": 13473218,
+    "parents_with_own_timers": 668131,
+    "parents_with_any_timers": 682897,
+    "socket_visits": 1905499,
+    "nonnull_gems": 708238,
+    "gems_with_timers": 15401,
+    "passes_with_midpass_mutation": 0,
+    "watched_mutator_entries": 1619,
+    "watched_field_assignments": 45199
+  },
+  "epoch_reuse_fraction": 0.9984484256692457,
+  "parent_eligible_fraction": 0.050685515516783,
+  "scope": "12 array mutator entries, clear/shuffle/sort_custom, timer/gem init and setters, final gem assembly; captured inventory arrays are marked at phase entry"
+}
