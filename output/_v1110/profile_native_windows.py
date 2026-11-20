@@ -4,6 +4,7 @@ from bisect import bisect_right
 from collections import Counter
 import ctypes as ct
 from ctypes import wintypes as wt
+import hashlib
 import json
 from pathlib import Path
 import struct
@@ -87,20 +88,33 @@ def symbols(path, nm):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--runtime", type=Path, required=True)
+    source = parser.add_mutually_exclusive_group(required=True)
+    source.add_argument("--runtime", type=Path)
+    source.add_argument("--dll", type=Path, help="Sample an unpackaged candidate with the local runtime table")
     parser.add_argument("--nm", default="D:/mingw64/bin/nm.exe")
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--corpus", action="store_true", help="Sample the 200 duration-stratified original replays")
+    parser.add_argument("--min-samples", type=int, default=0, help="Repeat the workload until this many native stacks are collected")
     args = parser.parse_args()
-    runtime = args.runtime.resolve()
-    sim = load_native(runtime)
-    size, by_offset = symbols(runtime / "libgdcore.dll", args.nm)
+    if args.min_samples < 0:
+        parser.error("--min-samples must be nonnegative")
+    if args.dll:
+        from bench_native_corpus import load_simulator
+
+        dll = args.dll.resolve()
+        sim = load_simulator(dll)
+    else:
+        runtime = args.runtime.resolve()
+        dll = runtime / "libgdcore.dll"
+        sim = load_native(runtime)
+    size, by_offset = symbols(dll, args.nm)
     offsets = sorted(by_offset)
+    inputs_digest = None
     if args.corpus:
-        import hashlib
         from bench_native_corpus import prepare, select_cases
 
-        jobs = list(prepare(sim, select_cases(200), hashlib.sha256()))
+        inputs_digest = hashlib.sha256()
+        jobs = list(prepare(sim, select_cases(200), inputs_digest))
 
         def run(selected):
             return [sim.run_one(*sides, **options) for _, sides, options, _, _ in selected]
@@ -126,11 +140,28 @@ def main():
         raise ct.WinError(ct.get_last_error())
     done = threading.Event()
     stacks = Counter()
-    thread = threading.Thread(target=sample_native, args=(handle, sim.lib._handle, size, done, stacks))
+    errors = []
+
+    def sample():
+        try:
+            sample_native(handle, sim.lib._handle, size, done, stacks)
+        except Exception as error:
+            errors.append(error)
+
+    thread = threading.Thread(target=sample)
     thread.start()
     try:
         start = time.perf_counter()
-        results = run(jobs)
+        batches = 0
+        while True:
+            results = run(jobs)
+            batches += 1
+            if errors:
+                raise errors[0]
+            if stacks.total() >= args.min_samples:
+                break
+            if not stacks:
+                raise RuntimeError("The sampler collected no native stacks")
         wall = time.perf_counter() - start
     finally:
         done.set()
@@ -151,6 +182,8 @@ def main():
         for pair in set(zip(names[1:], names)):
             callers[" -> ".join(pair)] += count
     report = {"workload": "original_replays" if args.corpus else "training", "samples": stacks.total(),
+              "batches": batches, "dll_sha256": hashlib.sha256(dll.read_bytes()).hexdigest(),
+              "inputs_sha256": inputs_digest.hexdigest() if inputs_digest else None,
               "sampled_wall_s": wall, "leaf": leaf.most_common(45),
               "inclusive": inclusive.most_common(45), "callers": callers.most_common(45)}
     args.out.write_text(json.dumps(report, indent=2) + "\n", encoding="utf8")

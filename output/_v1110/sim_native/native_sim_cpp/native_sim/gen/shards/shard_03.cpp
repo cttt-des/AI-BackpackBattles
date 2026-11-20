@@ -942,11 +942,11 @@ gd::GdVal Gd__gd_core__CoreCombat::fn_endCombat(const gd::GdVal* _args, int _arg
     this->f_fight_ended = gd::GdVal::from_bool(true);
     gd::set_prop(gd_ctx, this->f_ctx, SYM_GEN_fight_ended_1305, gd::GdVal::from_bool(true));
     if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_le(gd::get_prop(gd_ctx, this->f_opponent, SYM_GEN_curHealth_1050), gd::GdVal::from_int(0LL))))) {
-        this->f_result = gd::gd_coerce_int(gd::get_prop(gd_ctx, Gd__gd_core__CoreCombat::get_static_const_or_enum(gd_ctx, SYM_GEN_RoundResult_1340), SYM_GEN_Win_2822));
+        this->f_result = gd::gd_coerce_int(gd::GdVal::from_int(0LL));
         (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_int(0LL), gd::gd_sub(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_bool(true)}; return gd::call_method(gd_ctx, this->f_player, SYM_GEN_classRoundSoundCount_1141, _ca, 1); })(), gd::GdVal::from_int(1LL))}; return gd::call_method(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_rng_1406), gd::SYM_randi_range, _ca, 2); })();
     }
     else {
-        this->f_result = gd::gd_coerce_int(gd::get_prop(gd_ctx, Gd__gd_core__CoreCombat::get_static_const_or_enum(gd_ctx, SYM_GEN_RoundResult_1340), SYM_GEN_Loss_2823));
+        this->f_result = gd::gd_coerce_int(gd::GdVal::from_int(1LL));
         (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_int(0LL), gd::gd_sub(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_bool(false)}; return gd::call_method(gd_ctx, this->f_player, SYM_GEN_classRoundSoundCount_1141, _ca, 1); })(), gd::GdVal::from_int(1LL))}; return gd::call_method(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_rng_1406), gd::SYM_randi_range, _ca, 2); })();
     }
     this->f__pending_deferred = gd::GdVal::from_bool(true);
@@ -959,7 +959,7 @@ gd::GdVal Gd__gd_core__CoreCombat::fn_forceLoseCombat(const gd::GdVal* _args, in
     }
     this->f_fight_ended = gd::GdVal::from_bool(true);
     gd::set_prop(gd_ctx, this->f_ctx, SYM_GEN_fight_ended_1305, gd::GdVal::from_bool(true));
-    this->f_result = gd::gd_coerce_int(gd::get_prop(gd_ctx, Gd__gd_core__CoreCombat::get_static_const_or_enum(gd_ctx, SYM_GEN_RoundResult_1340), SYM_GEN_Loss_2823));
+    this->f_result = gd::gd_coerce_int(gd::GdVal::from_int(1LL));
     this->f__pending_deferred = gd::GdVal::from_bool(true);
     return gd::GdVal::null();
 }
@@ -982,7 +982,7 @@ gd::GdVal Gd__gd_core__CoreCombat::fn_combatEndDeferred(const gd::GdVal* _args, 
     this->f__tick_timer_left = gd::GdVal::from_float(0.0);
     (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[16])}; return gd::call_method(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_hooks_1409), SYM_GEN_playFatigueAnimation_1625, _ca, 1); })();
     (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_int(0LL)}; return gd::call_method(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_fatigueDamageSource_1430), SYM_GEN_setDamage_1551, _ca, 1); })();
-    if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_eq(this->f_result, gd::get_prop(gd_ctx, Gd__gd_core__CoreCombat::get_static_const_or_enum(gd_ctx, SYM_GEN_RoundResult_1340), SYM_GEN_Win_2822))))) {
+    if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_eq(this->f_result, gd::GdVal::from_int(0LL))))) {
         (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_int(0LL)}; return gd::call_method(gd_ctx, this->f_opponent, SYM_GEN_setCurrentHealth_1156, _ca, 1); })();
         (void)([&]() { gd::GdVal _ca[] = {gd::gd_max(gd::GdVal::from_int(1LL), gd::call_method(gd_ctx, this->f_player, SYM_GEN_getCurrentHealth_1154, nullptr, 0))}; return gd::call_method(gd_ctx, this->f_player, SYM_GEN_setCurrentHealth_1156, _ca, 1); })();
     }
@@ -1006,15 +1006,15 @@ gd::GdVal Gd__gd_core__CoreCombat::fn_combatEndDeferred(const gd::GdVal* _args, 
 }
 gd::GdVal Gd__gd_core__CoreCombat::fn_playerWins(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
-    return gd::GdVal::from_bool(gd::gd_eq(this->f_result, gd::get_prop(gd_ctx, Gd__gd_core__CoreCombat::get_static_const_or_enum(gd_ctx, SYM_GEN_RoundResult_1340), SYM_GEN_Win_2822)));
+    return gd::GdVal::from_bool(gd::gd_eq(this->f_result, gd::GdVal::from_int(0LL)));
     return gd::GdVal::null();
 }
 gd::GdVal Gd__gd_core__CoreCombat::fn_winner(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
-    if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_eq(this->f_result, gd::get_prop(gd_ctx, Gd__gd_core__CoreCombat::get_static_const_or_enum(gd_ctx, SYM_GEN_RoundResult_1340), SYM_GEN_Win_2822))))) {
+    if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_eq(this->f_result, gd::GdVal::from_int(0LL))))) {
         return this->f_player;
     }
-    else if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_eq(this->f_result, gd::get_prop(gd_ctx, Gd__gd_core__CoreCombat::get_static_const_or_enum(gd_ctx, SYM_GEN_RoundResult_1340), SYM_GEN_Loss_2823))))) {
+    else if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_eq(this->f_result, gd::GdVal::from_int(1LL))))) {
         return this->f_opponent;
     }
     return gd::GdVal::null();

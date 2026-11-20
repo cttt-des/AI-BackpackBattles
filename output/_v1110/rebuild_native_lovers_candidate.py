@@ -19,7 +19,7 @@ parser.add_argument("--out", type=Path, required=True)
 parser.add_argument("--jobs", type=int, default=1)
 parser.add_argument("--native-hot-path", action="store_true")
 parser.add_argument("--native-perf50", action="store_true",
-                    help="Apply the placement, frame and event-bus optimizations after the native hot-path pass")
+                    help="Apply the verified serial performance passes after the native hot-path pass")
 args = parser.parse_args()
 if args.jobs < 1:
     parser.error("--jobs must be positive")
@@ -47,6 +47,8 @@ if args.native_perf50:
     generate(stage / "optimize_native_placement.py", stage, str(native), "--fast-predicates")
     generate(stage / "optimize_native_frames.py", stage, str(native), "--part", "all")
     generate(stage / "optimize_native_event_bus.py", stage, str(native))
+    for part in ("enums", "diagnostics"):
+        generate(stage / "optimize_native_serial_paths.py", stage, str(native), "--part", part)
 for path, (body, atime, mtime) in previous.items():
     if path.exists() and path.read_bytes() == body:
         os.utime(path, ns=(atime, mtime))

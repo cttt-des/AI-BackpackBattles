@@ -14,14 +14,14 @@ HOT_UNITS = {"gd_rt", "engine_wrapper", "shard_00", "shard_02", "shard_03", "sha
 LTO = "-flto=2"
 
 
-def build_dll(native, out, jobs, profile_flags=()):
+def build_dll(native, out, jobs, profile_flags=(), *, hot_units=HOT_UNITS):
     module = runpy.run_path(str(native / "build_windows.py"))
     standard_flags = tuple(module["COMMON"])
     hot_flags = (*standard_flags, LTO, *profile_flags)
     using_profiles = any(flag.startswith("-fprofile-use=") for flag in profile_flags)
 
     def compile_unit(source, obj):
-        hot = source.stem in HOT_UNITS
+        hot = source.stem in hot_units
         flags = hot_flags if hot else standard_flags
         # Relative -o gives MinGW the normalized drive component for profile lookup.
         output = obj.name if hot and using_profiles else str(obj)
@@ -42,7 +42,7 @@ def build_dll(native, out, jobs, profile_flags=()):
     return build()
 
 
-def collect_profiles(instrumented, objects, profile):
+def collect_profiles(instrumented, objects, profile, hot_units=HOT_UNITS):
     stage = Path(__file__).resolve().parent
     env = dict(os.environ, GCOV_PREFIX=str(profile), GCOV_PREFIX_STRIP="99")
     workloads = (
@@ -58,14 +58,14 @@ def collect_profiles(instrumented, objects, profile):
     # Collect into a flat directory, then mirror the lookup path used by g++.
     lookup = profile / objects.drive.replace(":", "~") / objects.relative_to(objects.anchor)
     lookup.mkdir(parents=True, exist_ok=True)
-    for name in sorted(HOT_UNITS):
+    for name in sorted(hot_units):
         counts = profile / f"{name}.gcda"
         if not counts.is_file() or not counts.stat().st_size:
             raise ValueError(f"Missing profile counts for {name}")
         shutil.copy2(counts, lookup / counts.name)
 
 
-def build_candidate(native, out, jobs, pgo=False):
+def build_candidate(native, out, jobs, pgo=False, *, hot_units=HOT_UNITS):
     with tempfile.TemporaryDirectory(prefix="native-hot-lto-") as objects:
         previous = {name: os.environ.get(name) for name in ("NATIVE_SIM_OBJ", "MAKE")}
         os.environ["NATIVE_SIM_OBJ"] = objects
@@ -74,17 +74,18 @@ def build_candidate(native, out, jobs, pgo=False):
             os.environ.setdefault("MAKE", make)
         try:
             if not pgo:
-                return build_dll(native, out, jobs)
+                return build_dll(native, out, jobs, hot_units=hot_units)
             objects = Path(objects)
             profile = objects / "pgo"
             profile.mkdir()
             path = profile.as_posix()
-            instrumented = build_dll(native, objects / "instrumented.dll", jobs, (f"-fprofile-generate={path}",))
-            collect_profiles(instrumented, objects, profile)
-            for name in HOT_UNITS:
+            instrumented = build_dll(native, objects / "instrumented.dll", jobs, (f"-fprofile-generate={path}",),
+                                     hot_units=hot_units)
+            collect_profiles(instrumented, objects, profile, hot_units)
+            for name in hot_units:
                 (objects / f"{name}.o").unlink()
             flags = (f"-fprofile-use={path}", "-fprofile-partial-training", "-fprofile-correction")
-            return build_dll(native, out, jobs, flags)
+            return build_dll(native, out, jobs, flags, hot_units=hot_units)
         finally:
             for name, value in previous.items():
                 if value is None:
@@ -99,12 +100,16 @@ if __name__ == "__main__":
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--jobs", type=int, default=2)
     parser.add_argument("--pgo", action="store_true", help="Train the hot units on the local replay and batch benchmarks")
+    parser.add_argument("--extra-hot-unit", action="append", default=[], metavar="SOURCE_STEM")
     args = parser.parse_args()
     if args.jobs < 1:
         parser.error("--jobs must be positive")
     native = args.native.resolve()
+    source_stems = {path.stem for path in (native / "gen/shards").glob("*.cpp")}
+    if unsupported := set(args.extra_hot_unit) - source_stems:
+        parser.error(f"Unknown shard source stems: {', '.join(sorted(unsupported))}")
     out = args.out.resolve()
     if out.exists():
         parser.error("Use a new output path for the candidate DLL")
     out.parent.mkdir(parents=True, exist_ok=True)
-    build_candidate(native, out, args.jobs, args.pgo)
+    build_candidate(native, out, args.jobs, args.pgo, hot_units=HOT_UNITS | set(args.extra_hot_unit))

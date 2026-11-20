@@ -2569,7 +2569,7 @@ gd::GdVal Gd__gd_core_items__Exclusive__Eat_o_matic::fn_canAffect_global(const g
 }
 gd::GdVal Gd__gd_core_items__Exclusive__Eat_o_matic::fn_onPrepare(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
-    (void)([&]() { gd::GdVal _ca[] = {gd::get_prop(gd_ctx, Gd__gd_core_items__Exclusive__Eat_o_matic::get_static_const_or_enum(gd_ctx, SYM_GEN_ArmState_2236), SYM_GEN_Off_2831)}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_setState_382, _ca, 1); })();
+    (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_int(0LL)}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_setState_382, _ca, 1); })();
     this->f_affectedFood = gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getFirstAffectedItem_428, nullptr, 0);
     if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_ne(this->f_affectedFood, gd::GdVal::null())))) {
         (void)([&]() { gd::GdVal _ca[] = {this->f_foodSpeed}; return gd::call_method(gd_ctx, this->f_affectedFood, SYM_GEN_addSpeed_273, _ca, 1); })();
@@ -2591,8 +2591,8 @@ gd::GdVal Gd__gd_core_items__Exclusive__Eat_o_matic::fn_onPrepare(const gd::GdVa
 gd::GdVal Gd__gd_core_items__Exclusive__Eat_o_matic::fn_combatStart(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
     (void)([&]() {  gd::GdVal _out = gd::GdVal::null(); this->Gd__gd_core_items__Item::call_method(gd_ctx, SYM_GEN_combatStart_127, nullptr, 0, _out); return _out; })();
-    if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_ne(this->f_armState, gd::get_prop(gd_ctx, Gd__gd_core_items__Exclusive__Eat_o_matic::get_static_const_or_enum(gd_ctx, SYM_GEN_ArmState_2236), SYM_GEN_Fast_2832))))) {
-        (void)([&]() { gd::GdVal _ca[] = {gd::get_prop(gd_ctx, Gd__gd_core_items__Exclusive__Eat_o_matic::get_static_const_or_enum(gd_ctx, SYM_GEN_ArmState_2236), SYM_GEN_Slow_2833)}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_setState_382, _ca, 1); })();
+    if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_ne(this->f_armState, gd::GdVal::from_int(2LL))))) {
+        (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_int(1LL)}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_setState_382, _ca, 1); })();
     }
     return gd::GdVal::null();
 }
@@ -2600,7 +2600,7 @@ gd::GdVal Gd__gd_core_items__Exclusive__Eat_o_matic::fn_onChargeReceived(const g
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
     gd::GdVal lv__charge = (_argc > 0) ? _args[0] : gd::GdVal::null();
     if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_eq(this->f_numCharges, gd::GdVal::from_int(1LL))))) {
-        (void)([&]() { gd::GdVal _ca[] = {gd::get_prop(gd_ctx, Gd__gd_core_items__Exclusive__Eat_o_matic::get_static_const_or_enum(gd_ctx, SYM_GEN_ArmState_2236), SYM_GEN_Fast_2832)}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_setState_382, _ca, 1); })();
+        (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_int(2LL)}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_setState_382, _ca, 1); })();
         if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_ne(this->f_affectedFood, gd::GdVal::null())))) {
             (void)([&]() { gd::GdVal _ca[] = {gd::gd_sub(this->f_chargedSpeed, this->f_foodSpeed)}; return gd::call_method(gd_ctx, this->f_affectedFood, SYM_GEN_addSpeed_273, _ca, 1); })();
         }
@@ -2620,7 +2620,7 @@ gd::GdVal Gd__gd_core_items__Exclusive__Eat_o_matic::fn_onChargeLeft(const gd::G
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
     gd::GdVal lv__charge = (_argc > 0) ? _args[0] : gd::GdVal::null();
     if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_eq(this->f_numCharges, gd::GdVal::from_int(0LL))))) {
-        (void)([&]() { gd::GdVal _ca[] = {gd::get_prop(gd_ctx, Gd__gd_core_items__Exclusive__Eat_o_matic::get_static_const_or_enum(gd_ctx, SYM_GEN_ArmState_2236), SYM_GEN_Slow_2833)}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_setState_382, _ca, 1); })();
+        (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_int(1LL)}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_setState_382, _ca, 1); })();
         if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_ne(this->f_affectedFood, gd::GdVal::null())))) {
             (void)([&]() { gd::GdVal _ca[] = {gd::gd_sub(this->f_chargedSpeed, this->f_foodSpeed)}; return gd::call_method(gd_ctx, this->f_affectedFood, SYM_GEN_reduceSpeed_274, _ca, 1); })();
         }
@@ -2638,12 +2638,12 @@ gd::GdVal Gd__gd_core_items__Exclusive__Eat_o_matic::fn_onChargeLeft(const gd::G
 }
 gd::GdVal Gd__gd_core_items__Exclusive__Eat_o_matic::fn_onCombatEnd(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
-    (void)([&]() { gd::GdVal _ca[] = {gd::get_prop(gd_ctx, Gd__gd_core_items__Exclusive__Eat_o_matic::get_static_const_or_enum(gd_ctx, SYM_GEN_ArmState_2236), SYM_GEN_Off_2831)}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_setState_382, _ca, 1); })();
+    (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_int(0LL)}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_setState_382, _ca, 1); })();
     return gd::GdVal::null();
 }
 gd::GdVal Gd__gd_core_items__Exclusive__Eat_o_matic::fn_onShopEntered(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
-    (void)([&]() { gd::GdVal _ca[] = {gd::get_prop(gd_ctx, Gd__gd_core_items__Exclusive__Eat_o_matic::get_static_const_or_enum(gd_ctx, SYM_GEN_ArmState_2236), SYM_GEN_Off_2831)}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_onStateChanged_383, _ca, 1); })();
+    (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_int(0LL)}; return gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_onStateChanged_383, _ca, 1); })();
     return gd::GdVal::null();
 }
 gd::GdVal Gd__gd_core_items__Exclusive__Eat_o_matic::fn_stopArmAni(const gd::GdVal* _args, int _argc) {
@@ -2655,10 +2655,10 @@ gd::GdVal Gd__gd_core_items__Exclusive__Eat_o_matic::fn_onStateChanged(const gd:
     gd::GdVal lv__armState = (_argc > 0) ? _args[0] : gd::GdVal::null();
     lv__armState = gd::gd_coerce_int(lv__armState);
     this->f_armState = gd::gd_coerce_int(lv__armState);
-    if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_eq(this->f_armState, gd::get_prop(gd_ctx, Gd__gd_core_items__Exclusive__Eat_o_matic::get_static_const_or_enum(gd_ctx, SYM_GEN_ArmState_2236), SYM_GEN_Off_2831))))) {
+    if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_eq(this->f_armState, gd::GdVal::from_int(0LL))))) {
     }
     else {
-        if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_eq(this->f_armState, gd::get_prop(gd_ctx, Gd__gd_core_items__Exclusive__Eat_o_matic::get_static_const_or_enum(gd_ctx, SYM_GEN_ArmState_2236), SYM_GEN_Slow_2833))))) {
+        if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_eq(this->f_armState, gd::GdVal::from_int(1LL))))) {
         }
         else {
         }
