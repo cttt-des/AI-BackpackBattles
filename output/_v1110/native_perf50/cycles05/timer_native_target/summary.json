@@ -1,0 +1,21 @@
+{
+ "total": 3,
+ "passed": 3,
+ "reference_mode": "native-only",
+ "category": {
+  "pass": 3
+ },
+ "winner_mismatch": 0,
+ "winner_unavailable": 0,
+ "cases_with_coarse_gem_origin": 0,
+ "strict_gem_origins": true,
+ "original_dir": "output\\_v1110\\native_host_observed_base\\base",
+ "first_divergences": [],
+ "below_master_override": null,
+ "dll": "output/_v1110/native_perf50/cycles05/timer_native.dll",
+ "wall_total_s": 0.2,
+ "strict_item_origins": true,
+ "dll_sha256": "0550164c2c857a83c582a55529f8e5cefda7c69a1501dc6d65156315b8b750fb",
+ "fixtures_sha256": "0f054f415ab19d29bc91718428ddb2f9af0ca53c1aacd329721f4259936b2b99",
+ "runtime_data_sha256": "55bdd068cf3308547de78b45abbed4bf4f57e8253fbec82313a99578defa00ae"
+}
