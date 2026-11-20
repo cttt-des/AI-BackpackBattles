@@ -1,0 +1,192 @@
+{
+  "diagnostic_only": true,
+  "samples": 6020,
+  "dll_sha256": "7213d9466543beda9903471cc2ed381fb240d896abe739479e6c9029eb7bd560",
+  "max_depth_limit": 64,
+  "maximum_observed_depth": 64,
+  "samples_at_depth_limit": 56,
+  "disjoint_sample_counts": {
+    "physics_outside_trigger_chain": 2049,
+    "item_and_gem_assembly": 1066,
+    "physics_inside_trigger_chain": 2603,
+    "other_setup_and_export": 258,
+    "unattributed_root_not_reached": 44
+  },
+  "disjoint_sample_pct": {
+    "physics_outside_trigger_chain": 34.03654485049834,
+    "item_and_gem_assembly": 17.707641196013288,
+    "physics_inside_trigger_chain": 43.23920265780731,
+    "other_setup_and_export": 4.285714285714286,
+    "unattributed_root_not_reached": 0.7308970099667774
+  },
+  "trigger_chain_leaf": [
+    [
+      "Gd__gd_core__CoreItem::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      125
+    ],
+    [
+      "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.0]",
+      123
+    ],
+    [
+      "Gd__gd_core__CoreEventBus::fn_emitAndLog(gd::GdVal const*, int)",
+      109
+    ],
+    [
+      "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.1]",
+      88
+    ],
+    [
+      "Gd__gd_core__CoreContext::get_prop(unsigned int, gd::GdVal&) const",
+      84
+    ],
+    [
+      "gd::get_prop(gd::BattleCtx&, gd::GdVal const&, unsigned int)",
+      81
+    ],
+    [
+      "gd::get_index(gd::BattleCtx&, gd::GdVal const&, gd::GdVal const&)",
+      61
+    ],
+    [
+      "gd::gd_eq(gd::GdVal const&, gd::GdVal const&)",
+      56
+    ],
+    [
+      "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.2]",
+      56
+    ],
+    [
+      "Gd__gd_core__CoreCharacter::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      53
+    ],
+    [
+      "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int)",
+      52
+    ],
+    [
+      "Gd__gd_core_items__Item::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      48
+    ],
+    [
+      "(anonymous namespace)::NativeBattleHooks::on_log_event(gd::BattleCtx&, gd::GdObj*) [clone .isra.0]",
+      40
+    ],
+    [
+      "Gd__gd_core__CoreItemData::get_prop(unsigned int, gd::GdVal&) const",
+      34
+    ],
+    [
+      "Gd__gd_core__CoreEventBus::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      33
+    ],
+    [
+      "Gd__gd_core__CoreItem::fn_getNextFreeLabelPosition(gd::GdVal const*, int) [clone .constprop.0]",
+      33
+    ],
+    [
+      "Gd__gd_core__CoreBuff::fn_gainTemporary(gd::GdVal const*, int)",
+      32
+    ],
+    [
+      "Gd__gd_core__CoreCombatLog::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      31
+    ],
+    [
+      "gd::GdDict::find_index(gd::GdVal const&, unsigned long long) const",
+      28
+    ],
+    [
+      "gd::construct_class(gd::BattleCtx&, gd::GdClassMeta const*, gd::GdVal const*, int)",
+      28
+    ]
+  ],
+  "physics_outside_trigger_leaf": [
+    [
+      "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      638
+    ],
+    [
+      "Gd__gd_core__CoreItem::fn_physicsTick(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+      315
+    ],
+    [
+      "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.0]",
+      67
+    ],
+    [
+      "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.1]",
+      52
+    ],
+    [
+      "Gd__gd_core__CoreContext::fn_tickMotion(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+      46
+    ],
+    [
+      "Gd__gd_core__CoreTimer::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      36
+    ],
+    [
+      "gd::get_prop(gd::BattleCtx&, gd::GdVal const&, unsigned int)",
+      36
+    ],
+    [
+      "Gd__gd_core__CoreItem::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      33
+    ],
+    [
+      "gd::gd_eq(gd::GdVal const&, gd::GdVal const&)",
+      30
+    ],
+    [
+      "gd::gd_truth(gd::GdVal const&)",
+      29
+    ],
+    [
+      "gd::gd_iter_seq(gd::BattleArena&, gd::GdVal const&)",
+      24
+    ],
+    [
+      "Gd__gd_core__CoreCharacter::fn_tickPhysicsTimers(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+      22
+    ],
+    [
+      "Gd__gd_core__CoreContext::fn__step_native_delays(gd::GdVal const*, int)",
+      21
+    ],
+    [
+      "gd::get_index(gd::BattleCtx&, gd::GdVal const&, gd::GdVal const&)",
+      21
+    ],
+    [
+      "Gd__gd_core__CoreCharacter::fn_tickVisualMotion(gd::GdVal const*, int)",
+      20
+    ],
+    [
+      "Gd__gd_core__CoreItem__INNER__CoreElectricalCharge::get_prop(unsigned int, gd::GdVal&) const",
+      19
+    ],
+    [
+      "Gd__gd_core_items__Item::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      19
+    ],
+    [
+      "Gd__gd_core__CoreContext::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      16
+    ],
+    [
+      "Gd__gd_core__CoreItem::fn__tickChargePath(gd::GdVal const*, int)",
+      14
+    ],
+    [
+      "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.2]",
+      14
+    ]
+  ],
+  "notes": [
+    "Outside-trigger samples also include fatigue, timers, Buff callbacks and visual work; they are not all skippable frames.",
+    "These sampled percentages estimate CPU attribution, not formal throughput.",
+    "Do not add nested inclusive counts.",
+    "51 samples did not reach the run root; seven still identify a phase, and the remaining 44 are explicitly unattributed. Reaching the depth limit alone does not prove truncation."
+  ]
+}

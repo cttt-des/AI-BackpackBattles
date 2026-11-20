@@ -1,0 +1,55 @@
+{
+  "date": "2026-11-21",
+  "decision": "stop micro-optimization trials and re-evaluate architecture",
+  "deployed_dll_sha256": "58383a1158e951d7aae8b4d4c34df4d52332446156946d31a488f5dff323ec39",
+  "experimental_semantic_baseline_dll_sha256": "7213d9466543beda9903471cc2ed381fb240d896abe739479e6c9029eb7bd560",
+  "runtime_progress_recent_cycles": "No runtime replacement since cycle11. Build dependency fixes do not count as simulator throughput improvement.",
+  "cycle18_status": "A/B and all2604 truth/hash passed; raw24 min43.40 failed, not deployed",
+  "cycle20_status": "61-site constant-folding generator prepared but neither compiled nor benchmarked; deferred",
+  "evidence": "experimental18_profile_depth64.json and architecture_sample_breakdown.json",
+  "next_paths": [
+    {
+      "path": "native event execution kernel",
+      "priority": 1,
+      "goal": "remove generic GdVal/container/method-dispatch overhead across a complete trigger/damage/buff event chain",
+      "semantics": "keep fixed frame loop, callback order, original FP operation order, RNG and origins",
+      "scope": "one complete high-cost chain with actual fast-path coverage counters, not isolated local substitutions",
+      "continuation_target": "prototype aims at >=20% total main-thread CPU reduction; no automatic merge or deployment",
+      "fallback": "generic engine remains reference and fallback for unsupported cases; report fast-path coverage so full truth tests cannot pass solely through fallback"
+    },
+    {
+      "path": "deterministic hybrid event scheduler",
+      "priority": 2,
+      "goal": "avoid polling and eventually advance only between observable frame/phase boundaries",
+      "constraints": [
+        "frame+phase+physical-item/gem order, not time alone",
+        "same-frame activation/stop/restart/insert visibility",
+        "exact repeated FP subtraction/addition; n*delta is insufficient",
+        "host RNG draw order/count and visual-state dependencies",
+        "strict timer <0 versus cooldown <=0"
+      ],
+      "first_proof": "standalone exact advancement and scheduler/original per-frame state comparison before full-engine prototype",
+      "stop_condition": "if exactness cannot be established for a segment, retain original frame stepping; do not relax determinism"
+    },
+    {
+      "path": "immutable lineup assembly templates",
+      "priority": 3,
+      "goal": "reduce current assembly floor, needed for any credible end-to-end sub-millisecond ambition",
+      "constraints": [
+        "ItemProto is already cached; generic constructor caching is not a new optimization",
+        "no sharing mutable item/buff/RNG state",
+        "preserve construction IDs and initialization callbacks",
+        "report cold and warm costs/hit rate; exclude battle-outcome or seed-specific result caching"
+      ]
+    }
+  ],
+  "acceptance": [
+    "same fixed200 single-thread controlled AB/BA with raw CPU/wall/load/power",
+    "2604 strict original per-event checks and unchanged per-case C++ hashes",
+    "continuous24 all >=50 before deployment",
+    "deployed SHA/gate/manifest check and normal training"
+  ],
+  "measurement_change": "optional max-depth now available; old12-depth leaf counts remain useful, inclusive attribution is incomplete",
+  "language_decision": "Keep C++; changing to Rust alone does not remove these data/dispatch/scheduling costs",
+  "other_simulator_reference": "User has no name/link; do not assume comparable end-to-end work or correctness contract"
+}
