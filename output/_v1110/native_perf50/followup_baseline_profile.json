@@ -1,0 +1,554 @@
+{
+  "workload": "original_replays",
+  "samples": 1062,
+  "batches": 8,
+  "dll_sha256": "04b332ba2712f6704da2f14c3b7ab959fbbcde66555d662ef90102f2bda1c210",
+  "inputs_sha256": "d94b16d42cc88e9a3850a77c9360b9c4c4fdd676cb252e463044a903db2a5fef",
+  "sampled_wall_s": 18.593460400000367,
+  "leaf": [
+    [
+      "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      90
+    ],
+    [
+      "Gd__gd_core__CoreItem::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      51
+    ],
+    [
+      "Gd__gd_core__CoreItem::fn_physicsTick(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+      41
+    ],
+    [
+      "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int)",
+      41
+    ],
+    [
+      "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.0]",
+      40
+    ],
+    [
+      "gd::get_prop(gd::BattleCtx&, gd::GdVal const&, unsigned int)",
+      35
+    ],
+    [
+      "__quorem_D2A",
+      25
+    ],
+    [
+      "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.1]",
+      20
+    ],
+    [
+      "Gd__gd_core_items__Item::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      17
+    ],
+    [
+      "gd::gd_eq(gd::GdVal const&, gd::GdVal const&)",
+      16
+    ],
+    [
+      "gd::GdEnum::get(std::basic_string_view<char, std::char_traits<char> >, long long&) const",
+      14
+    ],
+    [
+      "Gd__gd_core__CoreCharacter::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      14
+    ],
+    [
+      "gd::gd_truth(gd::GdVal const&)",
+      13
+    ],
+    [
+      "Gd__gd_core__CoreContext::get_prop(unsigned int, gd::GdVal&) const",
+      12
+    ],
+    [
+      "Gd__gd_core__CoreItem::fn_onItemAdded(gd::GdVal const*, int)",
+      12
+    ],
+    [
+      "Gd__gd_core__CoreEventBus::fn_emitAndLog(gd::GdVal const*, int)",
+      12
+    ],
+    [
+      "gd::gd_val_hash(gd::GdVal const&)",
+      11
+    ],
+    [
+      "gd::intern_sym(std::basic_string_view<char, std::char_traits<char> >)",
+      11
+    ],
+    [
+      "pthread_mutex_lock_intern",
+      11
+    ],
+    [
+      "gd::GdDict::set(gd::BattleArena&, gd::GdVal const&, gd::GdVal const&)",
+      10
+    ],
+    [
+      "__pformat_putc",
+      10
+    ],
+    [
+      "gd::make_str(gd::BattleArena&, char const*, unsigned int)",
+      10
+    ],
+    [
+      "pthread_mutex_unlock",
+      9
+    ],
+    [
+      "gd::GdArr::from_init(gd::BattleArena&, std::initializer_list<gd::GdVal>)",
+      8
+    ],
+    [
+      "gd::get_index(gd::BattleCtx&, gd::GdVal const&, gd::GdVal const&)",
+      8
+    ],
+    [
+      "gd::gd_in(gd::GdVal const&, gd::GdVal const&)",
+      8
+    ],
+    [
+      "Gd__gd_core__CoreHooks::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      8
+    ],
+    [
+      "pthread_getspecific",
+      8
+    ],
+    [
+      "gd::str_concat(gd::BattleArena&, gd::GdStr const*, gd::GdStr const*)",
+      8
+    ],
+    [
+      "Gd__gd_core__CoreItem::fn__tickChargePath(gd::GdVal const*, int)",
+      7
+    ],
+    [
+      "Gd__gd_core__CoreContext::fn_tickMotion(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+      7
+    ],
+    [
+      "__emutls_get_address",
+      7
+    ],
+    [
+      "Gd__gd_core__CoreCharacter::fn_takeDamage(gd::GdVal const*, int)",
+      7
+    ],
+    [
+      "__multadd_D2A",
+      7
+    ],
+    [
+      "__cmp_D2A",
+      7
+    ],
+    [
+      "gd::GdDict::find_index(gd::GdVal const&, unsigned long long) const",
+      7
+    ],
+    [
+      "Gd__gd_core__CoreEvent::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      7
+    ],
+    [
+      "gd::GdDict::set(gd::BattleArena&, gd::GdVal const&, gd::GdVal const&) [clone .constprop.0]",
+      6
+    ],
+    [
+      "__lshift_D2A",
+      6
+    ],
+    [
+      "Gd__gd_core__CoreContext::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      6
+    ],
+    [
+      "Gd__gd_core__CoreBuff::fn_gainTemporary(gd::GdVal const*, int)",
+      5
+    ],
+    [
+      "gd::GdArr::from_init(gd::BattleArena&, std::initializer_list<gd::GdVal>) [clone .constprop.0]",
+      5
+    ],
+    [
+      "gd::gd_iter_seq(gd::BattleArena&, gd::GdVal const&)",
+      5
+    ],
+    [
+      "gd::GdArr::push_back(gd::BattleArena&, gd::GdVal const&)",
+      5
+    ],
+    [
+      "pthread_spin_lock",
+      5
+    ]
+  ],
+  "inclusive": [
+    [
+      "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int)",
+      654
+    ],
+    [
+      "Gd__gd_core__CoreItem::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      589
+    ],
+    [
+      "(anonymous namespace)::run_one_internal(gd::BattleCtx&, PackedSide const&, PackedSide const&, BattleOptions const&, BattleResult&, ReplayInitial const*, ReplayBuffState const*, ReplayEngineRng const*, bool, double, (anonymous namespace)::ReplayHostRng*, bool) [clone .lto_priv.0]",
+      481
+    ],
+    [
+      "gd_sim_run_one_replay_native_clock",
+      430
+    ],
+    [
+      "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.0]",
+      364
+    ],
+    [
+      "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      344
+    ],
+    [
+      "Gd__gd_core__CoreCharacter::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      262
+    ],
+    [
+      "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.1]",
+      212
+    ],
+    [
+      "Gd__gd_core__CoreItem::fn_physicsTick(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+      209
+    ],
+    [
+      "Gd__gd_core__CoreBuff::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      141
+    ],
+    [
+      "(anonymous namespace)::build_side_items(gd::BattleCtx&, gd::GdObj*, Gd__gd_core__CoreCharacter*, int, PackedSide const&, std::vector<Gd__gd_core__CoreItemData*, std::allocator<Gd__gd_core__CoreItemData*> >&, gd::GdArr*, std::vector<Gd__gd_core__CoreItem*, std::allocator<Gd__gd_core__CoreItem*> >*) [clone .lto_priv.0]",
+      126
+    ],
+    [
+      "gd::get_prop(gd::BattleCtx&, gd::GdVal const&, unsigned int)",
+      122
+    ],
+    [
+      "Gd__gd_core__CoreBuff::fn_gainTemporary(gd::GdVal const*, int)",
+      110
+    ],
+    [
+      "Gd__gd_core__CoreGrid::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      108
+    ],
+    [
+      "Gd__gd_core__CoreEventBus::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      106
+    ],
+    [
+      "Gd__gd_core__CoreEventBus::fn_emitAndLog(gd::GdVal const*, int)",
+      104
+    ],
+    [
+      "gd::gd_str_fn(gd::BattleArena&, gd::GdVal const*, int) [clone .constprop.0]",
+      103
+    ],
+    [
+      "Gd__gd_core__CoreBuff::fn_gainStacks(gd::GdVal const*, int)",
+      98
+    ],
+    [
+      "Gd__gd_core__CoreCharacter::fn_takeDamage(gd::GdVal const*, int)",
+      97
+    ],
+    [
+      "Gd__gd_core__CoreCombatLog::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      96
+    ],
+    [
+      "Gd__gd_core__CoreGrid::fn_addItem(gd::GdVal const*, int)",
+      96
+    ],
+    [
+      "__mingw_snprintf",
+      93
+    ],
+    [
+      "__mingw_vsnprintf",
+      91
+    ],
+    [
+      "__mingw_pformat",
+      90
+    ],
+    [
+      "Gd__gd_core__CoreCharacter::fn_dealDamage(gd::GdVal const*, int)",
+      86
+    ],
+    [
+      "Gd__gd_core__CoreEventBus::fn_emitEvent(gd::GdVal const*, int)",
+      83
+    ],
+    [
+      "__pformat_gfloat",
+      81
+    ],
+    [
+      "Gd__gd_core__CoreItem::fn_activate(gd::GdVal const*, int)",
+      72
+    ],
+    [
+      "Gd__gd_core__CoreItem::fn_dealDamage(gd::GdVal const*, int)",
+      72
+    ],
+    [
+      "Gd__gd_core_items__Bag::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      71
+    ],
+    [
+      "__gdtoa",
+      64
+    ],
+    [
+      "__pformat_cvt",
+      64
+    ],
+    [
+      "__pformat_ecvt",
+      64
+    ],
+    [
+      "(anonymous namespace)::build_single_item_obj(gd::BattleCtx&, gd::GdObj*, Gd__gd_core__CoreCharacter*, int, (anonymous namespace)::ItemProto const&, Gd__gd_core__CoreItemData*, int, signed char, short, short, int, gd::GdArr*, gd::GdArr*, gd::GdDict*)",
+      62
+    ],
+    [
+      "Gd__gd_core__CoreCharacter::fn_gainStacks(gd::GdVal const*, int)",
+      60
+    ],
+    [
+      "Gd__gd_core_items__Bag::fn_onItemAdded(gd::GdVal const*, int)",
+      60
+    ],
+    [
+      "gd::GdFuncRef::call_func(gd::BattleCtx&, gd::GdVal const*, int) const",
+      59
+    ],
+    [
+      "Gd__gd_core__CoreItem::fn_onItemAdded(gd::GdVal const*, int)",
+      45
+    ],
+    [
+      "Gd__gd_core__CoreItem::fn_stackChanged(gd::GdVal const*, int)",
+      41
+    ],
+    [
+      "Gd__gd_core__CoreCombatLog::fn_createEvent(gd::GdVal const*, int)",
+      37
+    ],
+    [
+      "Gd__gd_core__CoreConst::call_static_fn(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      37
+    ],
+    [
+      "gd::construct_class(gd::BattleCtx&, gd::GdClassMeta const*, gd::GdVal const*, int)",
+      33
+    ],
+    [
+      "Gd__gd_core__CoreContext::fn_tickMotion(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+      33
+    ],
+    [
+      "Gd__gd_core__CoreCharacter::fn_heal(gd::GdVal const*, int)",
+      32
+    ],
+    [
+      "Gd__gd_core_items__Weapon::fn_attack(gd::GdVal const*, int)",
+      32
+    ]
+  ],
+  "callers": [
+    [
+      "gd_sim_run_one_replay_native_clock -> (anonymous namespace)::run_one_internal(gd::BattleCtx&, PackedSide const&, PackedSide const&, BattleOptions const&, BattleResult&, ReplayInitial const*, ReplayBuffState const*, ReplayEngineRng const*, bool, double, (anonymous namespace)::ReplayHostRng*, bool) [clone .lto_priv.0]",
+      430
+    ],
+    [
+      "(anonymous namespace)::run_one_internal(gd::BattleCtx&, PackedSide const&, PackedSide const&, BattleOptions const&, BattleResult&, ReplayInitial const*, ReplayBuffState const*, ReplayEngineRng const*, bool, double, (anonymous namespace)::ReplayHostRng*, bool) [clone .lto_priv.0] -> Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)",
+      329
+    ],
+    [
+      "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) -> Gd__gd_core__CoreItem::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      314
+    ],
+    [
+      "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.0] -> Gd__gd_core__CoreItem::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      247
+    ],
+    [
+      "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) -> Gd__gd_core__CoreCharacter::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      196
+    ],
+    [
+      "Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int) -> Gd__gd_core__CoreItem::fn_physicsTick(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0]",
+      163
+    ],
+    [
+      "Gd__gd_core__CoreItem::fn_physicsTick(gd::GdVal const*, int) [clone .constprop.0] [clone .isra.0] -> gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.0]",
+      147
+    ],
+    [
+      "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) -> Gd__gd_core__CoreBuff::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      135
+    ],
+    [
+      "Gd__gd_core__CoreItem::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&) -> gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.0]",
+      124
+    ],
+    [
+      "(anonymous namespace)::run_one_internal(gd::BattleCtx&, PackedSide const&, PackedSide const&, BattleOptions const&, BattleResult&, ReplayInitial const*, ReplayBuffState const*, ReplayEngineRng const*, bool, double, (anonymous namespace)::ReplayHostRng*, bool) [clone .lto_priv.0] -> (anonymous namespace)::build_side_items(gd::BattleCtx&, gd::GdObj*, Gd__gd_core__CoreCharacter*, int, PackedSide const&, std::vector<Gd__gd_core__CoreItemData*, std::allocator<Gd__gd_core__CoreItemData*> >&, gd::GdArr*, std::vector<Gd__gd_core__CoreItem*, std::allocator<Gd__gd_core__CoreItem*> >*) [clone .lto_priv.0]",
+      117
+    ],
+    [
+      "Gd__gd_core__CoreBuff::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&) -> Gd__gd_core__CoreBuff::fn_gainTemporary(gd::GdVal const*, int)",
+      107
+    ],
+    [
+      "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) -> Gd__gd_core__CoreGrid::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      100
+    ],
+    [
+      "Gd__gd_core__CoreBuff::fn_gainStacks(gd::GdVal const*, int) -> gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int)",
+      98
+    ],
+    [
+      "Gd__gd_core__CoreGrid::fn_addItem(gd::GdVal const*, int) -> gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int)",
+      96
+    ],
+    [
+      "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) -> Gd__gd_core__CoreEventBus::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      95
+    ],
+    [
+      "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) -> Gd__gd_core__CoreCombatLog::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      95
+    ],
+    [
+      "Gd__gd_core__CoreCharacter::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&) -> Gd__gd_core__CoreCharacter::fn_takeDamage(gd::GdVal const*, int)",
+      93
+    ],
+    [
+      "gd::gd_str_fn(gd::BattleArena&, gd::GdVal const*, int) [clone .constprop.0] -> __mingw_snprintf",
+      92
+    ],
+    [
+      "__mingw_snprintf -> __mingw_vsnprintf",
+      91
+    ],
+    [
+      "__mingw_vsnprintf -> __mingw_pformat",
+      90
+    ],
+    [
+      "Gd__gd_core__CoreBuff::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&) -> Gd__gd_core__CoreBuff::fn_gainStacks(gd::GdVal const*, int)",
+      89
+    ],
+    [
+      "Gd__gd_core__CoreCharacter::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&) -> Gd__gd_core__CoreCharacter::fn_dealDamage(gd::GdVal const*, int)",
+      83
+    ],
+    [
+      "Gd__gd_core__CoreItem::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&) -> gd::gd_str_fn(gd::BattleArena&, gd::GdVal const*, int) [clone .constprop.0]",
+      83
+    ],
+    [
+      "Gd__gd_core__CoreGrid::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&) -> Gd__gd_core__CoreGrid::fn_addItem(gd::GdVal const*, int)",
+      82
+    ],
+    [
+      "__mingw_pformat -> __pformat_gfloat",
+      81
+    ],
+    [
+      "Gd__gd_core__CoreEventBus::fn_emitEvent(gd::GdVal const*, int) -> Gd__gd_core__CoreEventBus::fn_emitAndLog(gd::GdVal const*, int)",
+      80
+    ],
+    [
+      "Gd__gd_core__CoreBuff::fn_gainTemporary(gd::GdVal const*, int) -> gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int)",
+      80
+    ],
+    [
+      "Gd__gd_core__CoreEventBus::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&) -> Gd__gd_core__CoreEventBus::fn_emitEvent(gd::GdVal const*, int)",
+      78
+    ],
+    [
+      "Gd__gd_core__CoreItem::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&) -> Gd__gd_core__CoreItem::fn_activate(gd::GdVal const*, int)",
+      69
+    ],
+    [
+      "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) [clone .constprop.1] -> Gd__gd_core__CoreItem::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      69
+    ],
+    [
+      "Gd__gd_core__CoreItem::fn_dealDamage(gd::GdVal const*, int) -> gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int)",
+      69
+    ],
+    [
+      "Gd__gd_core__CoreEventBus::fn_emitAndLog(gd::GdVal const*, int) -> gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int)",
+      68
+    ],
+    [
+      "Gd__gd_core__CoreCharacter::fn_dealDamage(gd::GdVal const*, int) -> gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int)",
+      67
+    ],
+    [
+      "(anonymous namespace)::build_side_items(gd::BattleCtx&, gd::GdObj*, Gd__gd_core__CoreCharacter*, int, PackedSide const&, std::vector<Gd__gd_core__CoreItemData*, std::allocator<Gd__gd_core__CoreItemData*> >&, gd::GdArr*, std::vector<Gd__gd_core__CoreItem*, std::allocator<Gd__gd_core__CoreItem*> >*) [clone .lto_priv.0] -> gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int)",
+      65
+    ],
+    [
+      "__pformat_cvt -> __gdtoa",
+      64
+    ],
+    [
+      "__pformat_ecvt -> __pformat_cvt",
+      64
+    ],
+    [
+      "__pformat_gfloat -> __pformat_ecvt",
+      64
+    ],
+    [
+      "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) -> Gd__gd_core_items__Bag::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&)",
+      64
+    ],
+    [
+      "Gd__gd_core_items__Bag::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&) -> Gd__gd_core_items__Bag::fn_onItemAdded(gd::GdVal const*, int)",
+      60
+    ],
+    [
+      "Gd__gd_core__CoreCharacter::fn_gainStacks(gd::GdVal const*, int) -> gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int)",
+      59
+    ],
+    [
+      "(anonymous namespace)::build_side_items(gd::BattleCtx&, gd::GdObj*, Gd__gd_core__CoreCharacter*, int, PackedSide const&, std::vector<Gd__gd_core__CoreItemData*, std::allocator<Gd__gd_core__CoreItemData*> >&, gd::GdArr*, std::vector<Gd__gd_core__CoreItem*, std::allocator<Gd__gd_core__CoreItem*> >*) [clone .lto_priv.0] -> (anonymous namespace)::build_single_item_obj(gd::BattleCtx&, gd::GdObj*, Gd__gd_core__CoreCharacter*, int, (anonymous namespace)::ItemProto const&, Gd__gd_core__CoreItemData*, int, signed char, short, short, int, gd::GdArr*, gd::GdArr*, gd::GdDict*)",
+      59
+    ],
+    [
+      "Gd__gd_core__CoreItem::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&) -> Gd__gd_core__CoreItem::fn_dealDamage(gd::GdVal const*, int)",
+      58
+    ],
+    [
+      "gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int) -> gd::GdFuncRef::call_func(gd::BattleCtx&, gd::GdVal const*, int) const",
+      55
+    ],
+    [
+      "Gd__gd_core__CoreCharacter::call_method(gd::BattleCtx&, unsigned int, gd::GdVal const*, int, gd::GdVal&) -> Gd__gd_core__CoreCharacter::fn_gainStacks(gd::GdVal const*, int)",
+      48
+    ],
+    [
+      "Gd__gd_core__CoreCharacter::fn_takeDamage(gd::GdVal const*, int) -> gd::call_method(gd::BattleCtx&, gd::GdVal const&, unsigned int, gd::GdVal const*, int)",
+      47
+    ]
+  ]
+}
