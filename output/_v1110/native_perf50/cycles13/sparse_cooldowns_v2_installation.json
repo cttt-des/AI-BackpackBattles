@@ -1,0 +1,14 @@
+{
+  "kind": "rejected_candidate_runtime_unchanged_with_build_dependency_fix",
+  "dll_sha256": "58383a1158e951d7aae8b4d4c34df4d52332446156946d31a488f5dff323ec39",
+  "candidate_dll_sha256": "a19d2a5f232bcb3c9d05435aced8e40c7971fd36d4254136f78599acccc4afc4",
+  "changed_native_files": [
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/build_windows.py"
+  ],
+  "reason": "24-pair pooled CPU and wall change were essentially zero; pinned same-DLL AA was noisy and not used to claim candidate benefit",
+  "full_2604_gate_run": false,
+  "raw_24_gate_run": false,
+  "deployed": false,
+  "compile_and_link_flags_unchanged": true,
+  "source_build_script_sha256": "8d8177098d009a429c41b78278497d8c645dab0e939b58fa1fd4e3ff97bcee80"
+}

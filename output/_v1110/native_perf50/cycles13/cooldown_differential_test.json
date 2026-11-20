@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "dll_sha256": "a19d2a5f232bcb3c9d05435aced8e40c7971fd36d4254136f78599acccc4afc4",
+  "output": "28 cooldown selector/dense and 28 saturated scenarios passed: active changes, stop/restart, aliases, gem insertion, captured lengths, repaired placeholders, nested phases, sort callbacks, nonbool values and cache reset\n",
+  "compiled_against_candidate_headers": true
+}

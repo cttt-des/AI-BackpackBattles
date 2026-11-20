@@ -1,0 +1,29 @@
+{
+  "baseline_dll_sha256": "58383a1158e951d7aae8b4d4c34df4d52332446156946d31a488f5dff323ec39",
+  "candidate_dll_sha256": "a19d2a5f232bcb3c9d05435aced8e40c7971fd36d4254136f78599acccc4afc4",
+  "pairs": 24,
+  "source_reports": [
+    "sparse_cooldowns_v2_ab.json",
+    "sparse_cooldowns_v2_ab_repeat.json",
+    "sparse_cooldowns_v2_ab_confirm.json"
+  ],
+  "main_thread_cpu_s": {
+    "median_reduction_pct": -0.0057395396888981765,
+    "candidate_wins": 12,
+    "baseline_wins": 12,
+    "range_reduction_pct": [
+      -14.685314685314687,
+      30.76923076923077
+    ]
+  },
+  "wall_s": {
+    "median_reduction_pct": -0.03177224181816207,
+    "candidate_wins": 12,
+    "baseline_wins": 12,
+    "range_reduction_pct": [
+      -17.5886250603722,
+      34.390447147425796
+    ]
+  },
+  "all_samples_retained": true
+}
