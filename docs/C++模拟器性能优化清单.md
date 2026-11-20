@@ -347,3 +347,18 @@ CoreItem 从 1,696 字节、8 字节对齐改为 1,792 字节、64 字节对齐�
 为检查调度噪声，测速工具增加可选 `--logical-cpu`，默认行为保持原设置。先以相同 DLL 固定到逻辑核 6 做独立 A/A：两臂实测掩码均为 `[6]`，CPU 成对差异范围仍达 **−50.67% 至 26.61%**，未得到稳定控制条件，因此没有据此补做候选收益测试，也未用它修正、替换或筛除原 A/B 结果。硬件为本地读取的 i5-8265U、4 核 8 线程。该实验进一步说明单一后台占用拟合无法消除全部运行条件差异。[同核 A/A](../output/_v1110/native_perf50/cycles13/pinned_aa.json) · [测速工具](../output/_v1110/compare_native_isolated.py)
 
 单独保留构建依赖修复：旧脚本固定追踪两个根目录头文件，新增辅助头文件会漏编；改为追踪根目录全部 `.hpp`，其余编译及链接选项相同。用真实编译器和五个编译单元复现：首次 DLL 字段偏移 4，修改新头文件后旧脚本编译 0/5、仍读到 4；修复后编译 5/5、读到 0，C++ 源码未改。当前 DLL 和运行时没有替换。两个索引原型均未接入默认重建流程；下一轮转向分配器常见路径及慢路径代码体积，继续保持分配次序、对齐、回调、RNG 和浮点运算。[构建修复脚本](../output/_v1110/optimize_native_root_header_dependencies.py) · [真实 DLL 测试](../output/_v1110/native_perf50/cycles13/root_header_dependency_test.json) · [本轮记录](../output/_v1110/native_perf50/cycles13/sparse_cooldowns_v2_installation.json)
+
+
+### 第十四轮（正确性通过，性能复测反向，未替换运行时）
+
+起点仍为第十一轮 `58383a11…`，远端备份 `0f34bed6`。已逐字节核对远端 DLL 与本地运行时，并以 Git 原始对象核对 698 份 C++／头文件及构建脚本共 699 份源码文件。当前采样中 GdArr.from_init 有 71 个叶节点样本，build_side_items 有 880 个包含样本；本轮检验内联分配代码体积的假设，未把包含样本当作纯分配成本。[备份核对](../output/_v1110/native_perf50/cycles14/verified_baseline.json) · [起点采样](../output/_v1110/native_perf50/cycles11/inline_timers_profile.json)
+
+候选只修改 gd_rt.hpp 中 BattleArena 的分配实现：常见无锁分配在当前块有空间时直接返回；扩块、遍历后续块和加锁路径放到不可内联的辅助函数。保留块大小、分配次序、对齐公式、零字节规则、重置复用以及异常时的锁释放；未改战斗步骤、回调、RNG 或浮点表达式。全部 20 个依赖单元重新构建，18 个热点单元重新采集 PGO。独立生成脚本有整头文件及区域散列保护，重复应用不改字节或修改时间。另准备并验证了与现有内联计时器生成步骤的组合，但因性能未通过，未接入默认重建入口。[候选脚本](../output/_v1110/optimize_native_arena_split.py) · [生成组合测试](../output/_v1110/native_perf50/cycles14/arena_split_pipeline_test.json)
+
+基线及候选的内存区对象均为 48 字节，两者通过 12,001 次分配、同序列重置后地址逐项复用、最高 4,096 字节对齐、零字节与超块分配、内容及归属检查、8,000 次多线程分配不重叠，以及持锁分配结束后的递归构造分配测试。物品布局、计时器和别名生命周期回归、三场原版严格回放及 22 个 C ABI 检查通过。[压力测试源码](../output/_v1110/test_native_arena_split.cpp) · [基线](../output/_v1110/native_perf50/cycles14/arena_baseline_stress.json) · [候选](../output/_v1110/native_perf50/cycles14/arena_allocation_test.json) · [ABI](../output/_v1110/native_perf50/cycles14/arena_split_abi.json)
+
+继续检查测速条件：工具增加可选静默计时，预热延长至 120 秒，保留默认调度。相同 DLL 的 A/A 仍出现 CPU 中位差异 −7.44%、成对差异绝对值中位数 12.60%，说明这些措施没有消除当前环境波动。计时边界已核对：预打包、终局检查和结果哈希在窗口外；窗口内为完整回放调用。没有用 A/A、负载拟合或样本筛除去修正候选结果。[静默 A/A](../output/_v1110/native_perf50/cycles14/quiet_aa.json)
+
+前三轮各八组隔离 AB／BA，CPU 降幅 **2.20%、3.67%、1.48%**，墙钟 **2.06%、3.49%、−1.42%**。前三轮 24 对合计 CPU **2.20%**、墙钟 **1.69%**；第三组墙钟反向，因此在最终独立试验前记录接受条件：四组 CPU 中位数均降低，至少三组墙钟降低，合计均降低，随后仍须完整发布门槛。[前三轮汇总](../output/_v1110/native_perf50/cycles14/arena_split_ab_pooled_24.json) · [预先记录的最终判定](../output/_v1110/native_perf50/cycles14/arena_split_final_trial_policy.json)
+
+914 + 1,690 场严格逐事件验收全部通过，逐场 C++ 事件哈希 2,604 场全部与基线一致，汇总根仍为 `b8066c92…`。随后最终独立八组反转加载顺序，CPU **增加 3.00%**、墙钟 **增加 2.73%**，未通过预先记录的条件。四轮共 32 对全部保留，不以合计中位数掩盖复测反向，故不合入；未运行发布用 24 批，不部署，默认重建及运行 DLL 保持第十一轮。下一轮检查 CoreBuff.gainTemporary 中已被强制转换为整数／布尔的局部值，减少通用值封装，继续保留所有运算、RNG 次数及回调次序。[全量验收](../output/_v1110/native_perf50/cycles14/arena_split_full_gate.json) · [事件哈希](../output/_v1110/native_perf50/cycles14/arena_split_event_hashes.json) · [最终复测](../output/_v1110/native_perf50/cycles14/arena_split_ab_final.json) · [32 对汇总](../output/_v1110/native_perf50/cycles14/arena_split_ab_pooled.json) · [未部署记录](../output/_v1110/native_perf50/cycles14/arena_split_installation.json)

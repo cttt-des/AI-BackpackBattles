@@ -1,0 +1,12 @@
+{
+  "final_independent_report": "arena_split_ab_final.json",
+  "before_final_trial": true,
+  "pairs": 8,
+  "warmup_seconds": 120,
+  "all_samples_retained": true,
+  "cpu_median_must_decrease_in_each_of_four_groups": true,
+  "wall_median_must_decrease_in_at_least_three_of_four_groups": true,
+  "pooled_cpu_and_wall_must_decrease": true,
+  "additional_release_gates": "2604 strict original events, unchanged per-case C++ hashes, 24 raw batches all >=50, manifest/DLL SHA and normal training",
+  "no_fit_adjustment_for_release": true
+}

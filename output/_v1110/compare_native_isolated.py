@@ -101,6 +101,7 @@ def main():
     parser.add_argument("--warmup-seconds", type=float, default=60)
     parser.add_argument("--logical-cpu", type=int,
                         help="Pin both arms to the same allowed logical CPU for a controlled comparison")
+    parser.add_argument("--quiet", action="store_true", help="Defer benchmark console output until timing is complete")
     args = parser.parse_args()
     if args.logical_cpu is not None and args.logical_cpu not in psutil.Process().cpu_affinity():
         parser.error("--logical-cpu must be in the current process's allowed affinity mask")
@@ -115,7 +116,8 @@ def main():
     report = {"inputs_sha256": reference["inputs_sha256"], "results_sha256": reference["results_sha256"],
               "fights": 200, "workers": 1, "pairs": [], "execution_mode": "separate_single_dll_processes",
               "worker_pids": {}, "worker_priority_class": {}, "worker_cpu_affinity": {}, "load_order": [],
-              "report_writes_during_measurement": False, "requested_logical_cpu": args.logical_cpu}
+              "report_writes_during_measurement": False, "requested_logical_cpu": args.logical_cpu,
+              "console_writes_during_measurement": not args.quiet}
     paths = {"baseline": args.baseline, "candidate": args.candidate}
     labels = ["candidate", "baseline"] if args.candidate_load_first else ["baseline", "candidate"]
     with ExitStack() as resources:
@@ -163,11 +165,15 @@ def main():
                 report["pairs"].append(pair)
                 for key in ("main_thread_cpu_s", "wall_s"):
                     report[key] = summarize(report["pairs"], key)
-                print(f"{args.candidate.name} {index + 1}/{args.pairs}: "
-                      f"CPU {pair['baseline']['main_thread_cpu_s']:.3f} / {pair['candidate']['main_thread_cpu_s']:.3f}s, "
-                      f"wall {pair['baseline']['wall_s']:.3f} / {pair['candidate']['wall_s']:.3f}s", flush=True)
+                if not args.quiet:
+                    print(f"{args.candidate.name} {index + 1}/{args.pairs}: "
+                          f"CPU {pair['baseline']['main_thread_cpu_s']:.3f} / {pair['candidate']['main_thread_cpu_s']:.3f}s, "
+                          f"wall {pair['baseline']['wall_s']:.3f} / {pair['candidate']['wall_s']:.3f}s", flush=True)
         finally:
             args.out.write_text(json.dumps(report, indent=2) + "\n", encoding="utf8")
+        if args.quiet:
+            print(json.dumps({"report": str(args.out), "pairs": len(report["pairs"]),
+                              "main_thread_cpu_s": report["main_thread_cpu_s"], "wall_s": report["wall_s"]}), flush=True)
 
 
 if __name__ == "__main__":
