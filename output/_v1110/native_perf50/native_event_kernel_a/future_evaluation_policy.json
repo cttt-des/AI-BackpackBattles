@@ -1,0 +1,15 @@
+{
+  "applies_to": "future candidate evaluation; existing raw results and decisions retained",
+  "source": "user: 不要太保守估计，可能会把实际有收益的改动给排除掉。",
+  "performance": "Use all paired timings and effect size, group and background-load variation; do not require every group positive or treat an interval crossing zero as evidence of no benefit.",
+  "uncertain_candidates": "Retain separately as inconclusive; use a bounded independent follow-up or test in composition rather than automatically discarding. Do not repeat unchanged throughput until it passes.",
+  "accepted_research_baseline": "event_kernel.dll",
+  "accepted_research_baseline_sha256": "2b48ccf3526da880ce905f163b771d84462a90c52cc83f7ada181c7c8e62f521",
+  "architecture_target_20pct": "directional, not a rejection threshold",
+  "hard_gates": [
+    "2604 strict original events and unchanged per-case hashes",
+    "24 consecutive raw batches all >=50 before deployment",
+    "deployed DLL/report hashes and normal training"
+  ],
+  "next": "Back up verified candidate and reprofile; choose the next measured bottleneck, preserving positive changes."
+}

@@ -1,0 +1,1445 @@
+{
+  "methods": {
+    "CoreBuff": 12,
+    "CoreCharacter": 67,
+    "CoreRng__INNER__BalancedRng": 1,
+    "CoreCombatLog": 35,
+    "CoreContext": 11,
+    "CoreDamageResult": 9,
+    "CoreDamageSource": 9,
+    "CoreEvent": 1,
+    "CoreEventBus": 3
+  },
+  "sites": {
+    "get_prop": 314,
+    "call_method": 398,
+    "set_prop": 18
+  },
+  "audit": [
+    {
+      "class": "CoreBuff",
+      "method": "_tick",
+      "sites": {
+        "get_prop": 1,
+        "call_method": 1
+      },
+      "original_sha256": "1bfcdbf53a9e939a54b7c5bcd3f42f31f958831bedb5d1b8585e59739416fb80",
+      "native_sha256": "4f4be3dc8b065ba4d457e6667e3ec78830c56f9ddd5a9eecc8552dff2cb3fe12"
+    },
+    {
+      "class": "CoreBuff",
+      "method": "_stopTimer",
+      "sites": {
+        "get_prop": 3
+      },
+      "original_sha256": "02ef89189f1d8475cbaf5f0a09d77735282d7ca2b75427c6d4d06c7a58e06838",
+      "native_sha256": "a3f2c104eff3e4bbe2fd9fd86aa21698d9ba12e52e3d5f667bf36f9f9013b96f"
+    },
+    {
+      "class": "CoreBuff",
+      "method": "_startTimer",
+      "sites": {
+        "get_prop": 4
+      },
+      "original_sha256": "811c68fdb35a8867f0e687693e799ff17c6df0897b39f6a9cd99b2ab225e9831",
+      "native_sha256": "5363419e1d0763663d9cc774e7e15c6a0d4d17842ae5386a0ae538a39804c3a5"
+    },
+    {
+      "class": "CoreBuff",
+      "method": "combatEnd",
+      "sites": {
+        "call_method": 1
+      },
+      "original_sha256": "ddd0000758c70216c7e52b623c278b973f56ca40316967f3c05a12733a17beb8",
+      "native_sha256": "a8710c66079e316d5bbb70edd4e8484e48a9b707e1d8fd76ca74cdb2264d369a"
+    },
+    {
+      "class": "CoreBuff",
+      "method": "onTimeout",
+      "sites": {
+        "call_method": 6,
+        "get_prop": 3
+      },
+      "original_sha256": "e113c737374c9d71bfb91ebc3b4c19b3b67b3626c9a6e7b2ff15ca9e297af0d9",
+      "native_sha256": "22a67f643e924d77d055bef837a679c2996cbfd2a6dd76a0244a91adb0e3da1e"
+    },
+    {
+      "class": "CoreBuff",
+      "method": "_blnd_snap",
+      "sites": {
+        "get_prop": 7,
+        "call_method": 1
+      },
+      "original_sha256": "0925477da5c5c7abba65f8ee82e4dc1d3478ad46295d3870b157693d65521aaf",
+      "native_sha256": "be8904f12a16aa14835be0e08a4c8c560511d535d366c2fa6d8190f670ac4672"
+    },
+    {
+      "class": "CoreBuff",
+      "method": "changeCurrentLogShowLabel",
+      "sites": {
+        "get_prop": 8,
+        "call_method": 6
+      },
+      "original_sha256": "892b6d0ff93135e60c81ae452ecbdbb327c19730d6aaaa9c210ef4a6535c69e5",
+      "native_sha256": "5045735a4036b761aefae39a994be9147433e2ad92fb99773ebd8afc94f78562"
+    },
+    {
+      "class": "CoreBuff",
+      "method": "loseStacks",
+      "sites": {
+        "get_prop": 9,
+        "call_method": 11,
+        "set_prop": 1
+      },
+      "original_sha256": "7610bd7d521a1c85f13771c227bacb95054e25168b3323b3380353ccb8c1732b",
+      "native_sha256": "22047bb83b8607db98070442f06c0c47769ce6dd97119c840e56fb8f5c12a567"
+    },
+    {
+      "class": "CoreBuff",
+      "method": "gainTemporary",
+      "sites": {
+        "get_prop": 22,
+        "call_method": 23
+      },
+      "original_sha256": "b0fceb3e2d3ccc1cda60044304035c8cfac11f475b5471933b42f6db25afcf2a",
+      "native_sha256": "5316c1e6248ba73437e7d2323bb003850d00b4f686cf0759a1ef3fda0bcc90ed"
+    },
+    {
+      "class": "CoreBuff",
+      "method": "gainStacks",
+      "sites": {
+        "call_method": 1
+      },
+      "original_sha256": "f652353deb66e94b2d778d189e1420b0d2aaf6ff89a5a5cb8ab91dde9ea476db",
+      "native_sha256": "ac298a11f02ad350ba045f3fa3448784611d37ae6450356d2e50dc6a7d597b2c"
+    },
+    {
+      "class": "CoreBuff",
+      "method": "reset",
+      "sites": {
+        "call_method": 1
+      },
+      "original_sha256": "4618856c2db516856fef745cf5ca5a5df0be1302a53368ce14c67324ed087042",
+      "native_sha256": "caae521638a77e156a9666a6a18773c0f455c652c64de8493aecd6ba851dedec"
+    },
+    {
+      "class": "CoreBuff",
+      "method": "setStacks",
+      "sites": {
+        "get_prop": 1,
+        "call_method": 1
+      },
+      "original_sha256": "26ac1c3d9907a4e0e39880af5a55c2421e861a2ce7f996109214b5ec48c5d411",
+      "native_sha256": "77d66091d1be8055efb37f0810f5288d2bdc74eb0672cdf9fdf7bfda31e72745"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "useCritToken",
+      "sites": {
+        "get_prop": 1,
+        "call_method": 1
+      },
+      "original_sha256": "79333b910418280f6fc34dc3f500609dbcb12a383624d853a70dd79fb008fa84",
+      "native_sha256": "d84dfdeda8b3cc31da6083eb7f27ad3fb0261f5994c586ef27375029a266d9b1"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "changeEffectDamageFactor",
+      "sites": {
+        "get_prop": 3,
+        "call_method": 3
+      },
+      "original_sha256": "b236687d299c9cd1e41349538b2026e030e8afab509a6e07cb08e63f696adcdd",
+      "native_sha256": "9f4d01db188fad6f09143dfa6a4296522a3f624d08693eff9d4bb84be88e9d68"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "changeTypedDamageFactor",
+      "sites": {
+        "get_prop": 5,
+        "call_method": 5
+      },
+      "original_sha256": "bffc4bc5b412aaa1ff6ade3f09629e09bef3f90523e492d4336fe978865dc367",
+      "native_sha256": "c9d2d0310a0f35233aa0c89904709acdb18a55f43f5558c80981a50be6d0cc6b"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "changeDamageResistance",
+      "sites": {
+        "get_prop": 3,
+        "call_method": 3
+      },
+      "original_sha256": "dec52ddd1526787ee37c2734d1ad5e306863df2dff3e39ac060afe08236e4160",
+      "native_sha256": "3b01a2fdbfa10da0cdb0c2d45d989db131a0db6072b6beacc8a140db0538ba10"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "changeMaxHealthGain",
+      "sites": {
+        "get_prop": 1,
+        "call_method": 1
+      },
+      "original_sha256": "6a946bb58d4b75dc8f8a9117487a4cba38216c09170c9c927397750aa7f73180",
+      "native_sha256": "455880a58b234b0e7868531c3333d67f61260d0bfc93eccf6cc882df6e99d573"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "reduceMaxHealth",
+      "sites": {
+        "get_prop": 1,
+        "call_method": 1
+      },
+      "original_sha256": "07a47e1371711d444a6642883b4432441ff796993e0695f3a2fe18fdf9c7a8bd",
+      "native_sha256": "4a126c79ec4b9a9a47e728690375e97fc9e3df07807cf17230f827f9689c0a9c"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "setTemporaryMaxHealth",
+      "sites": {
+        "get_prop": 1,
+        "call_method": 1
+      },
+      "original_sha256": "dde879e212092c5f4ef75628dd69c90dd6822582175a57966d4e5ba090fd4e9a",
+      "native_sha256": "8e81b41ac3a4637656d2ca6e5fa8a87ba65441eb66d2abe5425eabc1ee267f3e"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "recalculateMaxStamina",
+      "sites": {
+        "get_prop": 2,
+        "call_method": 1
+      },
+      "original_sha256": "57747621325155fd02bcc964e74315f52c90207463a5550652e5ef38e9032fad",
+      "native_sha256": "b0d0d2d9ce619f9494b93e5097007dcc8d169c2872d1dc84cecb34a8f3fb8d7c"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "changeBaseMaxStamina",
+      "sites": {
+        "call_method": 1
+      },
+      "original_sha256": "6d082a4ef123851da5fcaab8efcf56eece270132ecee55de230d6967a9cbe23c",
+      "native_sha256": "6ee6cdca0d8549d446e08ce50ddb8761630c06df79df4501570adcd04aff91b9"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "giveStaminaRegeneration",
+      "sites": {
+        "get_prop": 1,
+        "call_method": 1
+      },
+      "original_sha256": "1b67f03e77d213bb5c1a189adc52397f416bb91118dc92bae6ba1badbf6a6686",
+      "native_sha256": "325194e6cb058c4d1cf4e97a7a809aa3ae15eea06f92f55f8ddb86b79aef2de9"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "gainMaxStaminaTemporary",
+      "sites": {
+        "get_prop": 4,
+        "call_method": 4
+      },
+      "original_sha256": "cd75b39752e0cfa3be53263a8eac3398eedf36440e8572d5809bd89145165dbe",
+      "native_sha256": "6d8b89a47646dcbfac124a7cc75d89c9f57bd64f9c949b51f438fdc97614f0f0"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "reduceMaxStamina",
+      "sites": {
+        "get_prop": 1,
+        "call_method": 1
+      },
+      "original_sha256": "1fe77e1335d237baf18f3dca3babd9170bd86370122482ea7cf5b651842074a6",
+      "native_sha256": "baae0458f1cf8c82707cfccc1519410f14bd8647cde2c8cd846b261bcd518a09"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "giveMaxStamina",
+      "sites": {
+        "get_prop": 1,
+        "call_method": 1
+      },
+      "original_sha256": "ac40684b1c8307962e8b87805265ebeb9ae163d391257a9db7d637acb574f1c5",
+      "native_sha256": "f9b21eb1d9bdfe9e2c7a89928284aa7c1404d758ec381c0f5a351270c9e14f73"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "setMaxStamina",
+      "sites": {
+        "get_prop": 2,
+        "call_method": 1
+      },
+      "original_sha256": "c95d9c8a32ef9bb30fafa6a3f2a47f2e8a0a55bc038f2a394bbf3640525a8877",
+      "native_sha256": "4d2f83f430ac29843ac1ea23edb55ea314b91283d17e283b807c0741d877398a"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "invulnerabilityEnded",
+      "sites": {
+        "get_prop": 4,
+        "call_method": 4
+      },
+      "original_sha256": "243aae10d48b5fca34214bd704957bbc4b1b079c9b54e1759d5ad93f863ce7b0",
+      "native_sha256": "62f5a65caefe442b5d91513eed26fd35ebbaae1589bad9fb79b664d07f2fced4"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "makeInvulnerable",
+      "sites": {
+        "get_prop": 5,
+        "call_method": 5
+      },
+      "original_sha256": "ddec2738caf0a7b30cbf286855d7c27a97060f4d8324737d6ff68bd2d3a814b9",
+      "native_sha256": "3dc1f3048ffdfe9f2edbf7e38d1bf210724c7402a5834a572bd59833eb96c09e"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "playBattleRageAnimation",
+      "sites": {
+        "get_prop": 1,
+        "call_method": 1
+      },
+      "original_sha256": "5b0d421a8d9bd2fe36ffd8f98332d0a0333fe6f6750fa021d892decc7473c9e5",
+      "native_sha256": "ddcfca765661249baffee6e090c93f6cf997270a077a33aca439b457442545ec"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "setStat",
+      "sites": {
+        "get_prop": 3,
+        "call_method": 3
+      },
+      "original_sha256": "a852e7924de0d789be6b31ebcc8beb5186814ddecac29c15ed22fc0a7f91234f",
+      "native_sha256": "9297445c76f30023757d2ecf0d1773188e9162bf559824fe87c3ecc757ac9da7"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "win",
+      "sites": {
+        "get_prop": 1,
+        "call_method": 1
+      },
+      "original_sha256": "80a48b691767c4f1ecd312430eff05e5abbc7138d7c3040ced29d33d93c555ce",
+      "native_sha256": "696417c9a7f43e92ddee57f5e28e0cdfd5060b9feb0c52745a821558a0926924"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "lose",
+      "sites": {
+        "get_prop": 1,
+        "call_method": 1
+      },
+      "original_sha256": "e6a0f16f13c69bde2d359a16f91d8806c8409869c747868c2b936448dcf1cbcc",
+      "native_sha256": "07f795878c2527b3516d66364135a063e9d31a534ec9854ce8ab8712018f2b2e"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "setClassResource",
+      "sites": {
+        "get_prop": 1,
+        "call_method": 1
+      },
+      "original_sha256": "daa9475d303a107b34b5078fa5d53713b0a60f962a6352e6a63c9d2891f80e27",
+      "native_sha256": "8a3df8ea57ba71d23cf6e59dab9c511e09e3435b22049f19c74ee5b462a95a27"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "setClass",
+      "sites": {
+        "get_prop": 4,
+        "call_method": 2
+      },
+      "original_sha256": "a06d4bab232ba72485fa36354db03d99775bf5af469536e8c6df5f6e47ac9e3a",
+      "native_sha256": "ec422bab13b12188677c1f91e48f9d9e84a66ef9c475224af3208c98d52e5175"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "endBattleRage",
+      "sites": {
+        "get_prop": 4,
+        "call_method": 4
+      },
+      "original_sha256": "98f3ca2b1e2a4c4c310caf89e5f5bd52fa4d30733e16322af32da659647e6b91",
+      "native_sha256": "e46694a25cf1ef1305f137c1049618011a4bd481b1e1af49c9baab76d9d54fd8"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "startBattleRage",
+      "sites": {
+        "get_prop": 4,
+        "call_method": 4
+      },
+      "original_sha256": "b31d3ee1ac94c010bfaa558870d620d2cd13b1ac4f20cfe9a051a830700f14ef",
+      "native_sha256": "bb46e70ad7e96e566ad2f4c038886098836f95b2603717c01d916f006e923f40"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "endBlindingLight",
+      "sites": {
+        "get_prop": 1,
+        "call_method": 1
+      },
+      "original_sha256": "731d51597e261711ef478f097ceca0e883c379c8a5520b0469969fb5095beabc",
+      "native_sha256": "9261e12f878b275a5f1f758d75d2afed0e3e3c358f565b9df639d56a34e26bfc"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "takeFatigueDamage",
+      "sites": {
+        "get_prop": 1
+      },
+      "original_sha256": "56e270bacf34b46a8413bfca7c64c27062ba62121987d7e1228be1dc304c3ac6",
+      "native_sha256": "da08438434bee09ef1ad86d7c164867ca1c8d77f967dc608b19674a3531e93ec"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "addFatigueDamage",
+      "sites": {
+        "get_prop": 1,
+        "call_method": 1
+      },
+      "original_sha256": "d9dc294606e966c5e9c87cec04c8df0761f9c56984e452186333ae2c5177a5e4",
+      "native_sha256": "966e85cdbd863a726ccc3bb32ed6104757a4cc30d49b8c2a3c38fea990c2ccc8"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "changeDebuffReflectStacks",
+      "sites": {
+        "get_prop": 1,
+        "call_method": 1
+      },
+      "original_sha256": "54359aed7b1d93411eae41633aac31c499bfe1c07b2af182fe14d06eef8e9419",
+      "native_sha256": "0e9312673f7d2120e792d1b03164a9a626ec9a7e8e7606981684f4f59f528564"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "changeDebuffResistStacks",
+      "sites": {
+        "get_prop": 1,
+        "call_method": 1
+      },
+      "original_sha256": "7b91d8b3408e99df650bccb72b3f7a4b843872ba59f6e432c5da2abd01a8b5c3",
+      "native_sha256": "4a42b861758e5fe78aea5e14c8df86dcbe3afa148c0cb823b55c2358d1868954"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "reduceHealingEfficiency",
+      "sites": {
+        "get_prop": 1,
+        "call_method": 1
+      },
+      "original_sha256": "b60964f106824b1698e895897ab8e8be9d5025e947a334765cfd4bbea55f2191",
+      "native_sha256": "f4a4e4d86650da549214c5b91bd4f0b22d82fd951d21810cbffa47d283f6bcd0"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "addHealingEfficiency",
+      "sites": {
+        "get_prop": 1,
+        "call_method": 1
+      },
+      "original_sha256": "ea0c5d821ce5ccef98879955a6dedf620eaf679207d33a0763282cf84bd99744",
+      "native_sha256": "63b849c883d1250653d035af25d5cf94b727fadc1a3e0c68eded5228ff6c26ca"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "reduceUnhealing",
+      "sites": {
+        "get_prop": 1,
+        "call_method": 1
+      },
+      "original_sha256": "87c843976aed009bdff43306844a1e4e14559eadc6c249417d928d62c1749c8f",
+      "native_sha256": "d0d17140c9c8ffe599ee0b2c1721fde271fab812baac475da1fe5bd2ff1b3aec"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "giveUnhealing",
+      "sites": {
+        "get_prop": 1,
+        "call_method": 1
+      },
+      "original_sha256": "d7b5f8de90b92ccc6581611ea999740d790305ee56c589926873b8fd2956cd17",
+      "native_sha256": "75c4a54224daf8b012bf067d80add11d796831265327ea55bd24960aafa78718"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "gainCritResistStacks",
+      "sites": {
+        "get_prop": 1,
+        "call_method": 1
+      },
+      "original_sha256": "d536bc4c096d24224f508a51c63984f0cca9b8ddbd183e444e1c924e1d3f6285",
+      "native_sha256": "d1b56d5c9ae822a569918779891e6885bc283f3f78fbb00d3763cc0ad9df2a16"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "critResisted",
+      "sites": {
+        "call_method": 2,
+        "get_prop": 1
+      },
+      "original_sha256": "6c7e83c542dbe286db1754bc6fa91257225fbae068ea4958e59a538434036ff6",
+      "native_sha256": "be2cdc90caac96cbcf3f08e19874c78413f41143d815a3d15132502a23a56d46"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "changeCritResistance",
+      "sites": {
+        "get_prop": 1,
+        "call_method": 1
+      },
+      "original_sha256": "d46147f4e0f6775675d144baa5707901da2a071354b6a0560dd3503da929ab3c",
+      "native_sha256": "e26b0f29ba22e5427a768564f044875363d4c3f87424599fedd5e492ae266b6a"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "changeDodgeStacks",
+      "sites": {
+        "get_prop": 1,
+        "call_method": 1
+      },
+      "original_sha256": "37545d929acc48d786808ea9182926775257aeb415e2c3923d877a4dfd0f5ce7",
+      "native_sha256": "01edd96dec56efc25ee47169f2db16c06b2a45f5186384dfe3509ed9a2ff2d94"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "endStun",
+      "sites": {
+        "get_prop": 1,
+        "call_method": 1
+      },
+      "original_sha256": "36d4201b34e6afb9a4a9244a2e644a552a8ec3276df1fb24a009d3b5d174d06f",
+      "native_sha256": "3abe16f6e769b9f51c22b1241ce5356722adbb6ddd400044c425cf87da86a144"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "stun",
+      "sites": {
+        "get_prop": 6,
+        "call_method": 6
+      },
+      "original_sha256": "de7c04df81fa93759619f97543d4583e46f04d7fd4b2ee5337dcc108502bc7f8",
+      "native_sha256": "2ea36f4697ded9fa3ad76c21291c9c0fbb38edfd656cb1946d2031624ca4d936"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "setTemporaryMaxStamina",
+      "sites": {
+        "get_prop": 1
+      },
+      "original_sha256": "ace1a2d755373ed8be5f9c2929759850d718b62c5c530dbd2676dd999877bbf2",
+      "native_sha256": "23e147615c62837b149dd467f1b95a8c108e4872ba086b6fe7586243227c4fa7"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "drainStamina",
+      "sites": {
+        "get_prop": 2,
+        "call_method": 2
+      },
+      "original_sha256": "e0930c4aa369a309ff380bf0002adf642967f0bae6fdb0bfd8c38e691e7a436e",
+      "native_sha256": "6e10b28a7be5170f8cb154324cdd54c4d19965dcf9d186eada3c052876737697"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "useStamina",
+      "sites": {
+        "get_prop": 3,
+        "call_method": 2
+      },
+      "original_sha256": "9fc2b1e88e1363c0020a60b34f84da80ed1fb0ba61b44a57ae3dd05e02498b62",
+      "native_sha256": "95f3f304e01e1817f08a6cf8f0bb4e8ac6b5cda7efb66f76bbc6dac6263dc738"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "gainStamina",
+      "sites": {
+        "get_prop": 2,
+        "call_method": 2
+      },
+      "original_sha256": "7399d3e53da7fac5aca973547588a1a8531f34fd0f8fecfbc453cb73d9ba6523",
+      "native_sha256": "10e410786a02da8cb6676ad93bcec835654d044ad4f3bec464a57a50801579a1"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "changeMaxHealthTemporary",
+      "sites": {
+        "get_prop": 2,
+        "call_method": 2
+      },
+      "original_sha256": "fa362e918fba66c353bea80b88307ab3a9ada68217df9600406d0cdde0f99546",
+      "native_sha256": "72fe6a49a9b705abb31a43fa8b2d734935967db29ed6263f2d1ebc8861f312db"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "giveMaxHealth",
+      "sites": {
+        "get_prop": 1,
+        "call_method": 1
+      },
+      "original_sha256": "59847cead9f59c886a8ae165d43137ede63eb455493eeedc7a10f65892175540",
+      "native_sha256": "242a068c3c91ad335655da4987b81b4a4f969df058e24d15b1ea92b7253afbb3"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "setMaxHealth",
+      "sites": {
+        "get_prop": 1,
+        "call_method": 1
+      },
+      "original_sha256": "2bcd4c7acb934fde60de792fca55655695d6d805b20393922322a0989dcfb63e",
+      "native_sha256": "cc96ccb27d22691240c1e0567039bef3ecebbcd8e3b221ca6a6154d3e23ed5ad"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "loseHealth",
+      "sites": {
+        "get_prop": 4,
+        "call_method": 4
+      },
+      "original_sha256": "ec1dda9fa4e07949ec21e613b05ed212de44c6514b2e994e737fdccd58ef67ff",
+      "native_sha256": "b9309e79b209915dc987ac55e8952009728983e7cdf066386c1d1960b259d1ce"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "setCurrentHealth",
+      "sites": {
+        "get_prop": 1,
+        "call_method": 1
+      },
+      "original_sha256": "f005f7db78f143beaeeccb96bf874e27754fcac0f574e125917c0dd183b43b7a",
+      "native_sha256": "a100e892cb3a55127dd5fcaf5bb15096edcd42e48aede067306815bc6bd30016"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "reincarnate",
+      "sites": {
+        "get_prop": 2,
+        "call_method": 2
+      },
+      "original_sha256": "ca1f5bf4c259fcc8116f9bcf99626ea961a2f9a48b584a5c6c4e2071b350a546",
+      "native_sha256": "8e4166a91c7abe71ea8372be24a91308a4398e96702d2eaee8588a5ec93be94c"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "healToFull",
+      "sites": {
+        "get_prop": 1,
+        "call_method": 1
+      },
+      "original_sha256": "ea74e9c31916515f8b7d2ad933113825cfe05acbb1b0455175595e6e9d0bcaf3",
+      "native_sha256": "0c144379def3cfa8fc3afd801b7d1914660efd870a26b8febeaa6c6241cf6123"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "heal",
+      "sites": {
+        "get_prop": 11,
+        "call_method": 10
+      },
+      "original_sha256": "76e3a1b858b823d4747fa6a74c52c999c16b00db6e6486176c92ad30f9714d70",
+      "native_sha256": "a3e86a690a831dcaafdbdff3482f4139c7b881de0e3926835863a8770ebeada9"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "applyVampirism",
+      "sites": {
+        "get_prop": 1,
+        "call_method": 1
+      },
+      "original_sha256": "8e040a490901f013a88df7f4e07974939df9222ead3fac9b817df15f862a118e",
+      "native_sha256": "8c7306805ff194970fdb61d43e0241c2fc95777b099ae3df5ab0910429be8aa0"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "applySpikes",
+      "sites": {
+        "call_method": 2,
+        "get_prop": 1
+      },
+      "original_sha256": "4959c2dadb5684903167848afed5df7956759bc48219f47f6cd2c9be72d51089",
+      "native_sha256": "787e7f34913f74b8db0b37bb9711bbf298c061fb8cf0a9e580d6262e9bc45c3e"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "spawnLabel_native",
+      "sites": {
+        "get_prop": 4,
+        "call_method": 4
+      },
+      "original_sha256": "35eeb42aa8de58aec33653c7ee085edb0e60cf96f607dd826e062cdba7ba505b",
+      "native_sha256": "7e544f501cc2037a63ecc277c47d67ed7613147bf96afc5ae5ae14d59a418273"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "takeDamage",
+      "sites": {
+        "call_method": 40,
+        "get_prop": 42,
+        "set_prop": 16
+      },
+      "original_sha256": "c52fc709ef673baa8f0374c126b45a3676df0f31a2d3a5d38c881b9c49056fd5",
+      "native_sha256": "17d0cd22aee5ae8f6e3c313b8b657b554bea7177c26559d8dbd825926f15576d"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "dealDamage",
+      "sites": {
+        "call_method": 1
+      },
+      "original_sha256": "a310b407240606011fad4e68f0559ec4a88fa7944605f837e5fcee438cdba9b8",
+      "native_sha256": "16bce9e06e658bf2169a9030b5118684116219fde0dbd510c5500277048b12e8"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "randHealNumberPos",
+      "sites": {
+        "get_prop": 2,
+        "call_method": 2
+      },
+      "original_sha256": "8f2e91ac17318285574d0bac6d2c198f56ab3c20b7f81a98825ce5ea972a3de9",
+      "native_sha256": "0cf028a6f809688fe36757592e416aafb1939785170f80b55bccd8b396e5196a"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "randDmgNumberDir",
+      "sites": {
+        "get_prop": 1,
+        "call_method": 1
+      },
+      "original_sha256": "842c9d498c4cad6d9241e337271d90512e841d9e4cdc8346953c9f0f341bfd61",
+      "native_sha256": "d898641159fa22bff81977ea840f8f26fbabb19fe7a84d103668d975fb1d2f15"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "randDmgNumberPos",
+      "sites": {
+        "get_prop": 2,
+        "call_method": 2
+      },
+      "original_sha256": "d0e07f87e8a5b646f35c8e4afdd888907ef157894338a870080930bc02bd6885",
+      "native_sha256": "cee3c55c3ccd060de86a6fb44437851ad198ce01a6f8909468571118cc6aec92"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "randBuffLabelDir",
+      "sites": {
+        "get_prop": 1,
+        "call_method": 1
+      },
+      "original_sha256": "33166f507756039d9ed82ad90f3551a0b04b691c09f790c5dbd01e453f3ffadc",
+      "native_sha256": "6bd230e9f6299b42211908320eacc131daf9bbafccdffe70a3f605bad6af66f7"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "randBuffLabelPos",
+      "sites": {
+        "get_prop": 2,
+        "call_method": 2
+      },
+      "original_sha256": "290a5ddb3d640ac3298a592546b1b2c8c0d02dffe944ca993ef5896aaba8e04a",
+      "native_sha256": "49fc85215a0ff6c5c29650aadc189aac7f4da56c391d3d6be9217dd7517743a3"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "playActivateAnimation",
+      "sites": {
+        "get_prop": 2,
+        "call_method": 2
+      },
+      "original_sha256": "3fbc282e012814cb4335e1aaf85c278fcac3ac01035bf79b43bf545ee8f37e90",
+      "native_sha256": "7b31aa4c2e5c000138f3963a722a218540570b6d29bb46c033b949aed6ccc4fc"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "playAttackAnimation",
+      "sites": {
+        "get_prop": 8,
+        "call_method": 6
+      },
+      "original_sha256": "d13ebce488d14b12e88d89645478c57bbf0788b44ecceb9a528c0753e9105a0b",
+      "native_sha256": "d838431bda3e3c68910a4194f0e5c121df3e9c4c558352013ade4467a6e4e909"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "tickIdleAnimation",
+      "sites": {
+        "get_prop": 2,
+        "call_method": 2
+      },
+      "original_sha256": "287a61d20d6310c08349cb36d703d256d67006b44d7ac18d1c321dd6d060200e",
+      "native_sha256": "fc3093dd7ab2559029330de272dbb1bdac4925cb501985f7d2e3c98e0bd04230"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "_beginVisualMotion",
+      "sites": {
+        "call_method": 1
+      },
+      "original_sha256": "37f6d01581b0e59608282e90fd22f86201218e1f45d6195c165c0e4f39b61c8f",
+      "native_sha256": "0308e5e4efa06a6ca957fe6b08bd6988bf51e35292b74da454d2ea4470de5bab"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "onTick",
+      "sites": {
+        "get_prop": 2,
+        "call_method": 2
+      },
+      "original_sha256": "33a720d9591380d1a747b88ff491761bcd1dbf8d18af61dd70aa4cdfe6c505d6",
+      "native_sha256": "f10c4c50c52734ae93abe2b2020cbfa4c233664e5f42990aea8887d8df419b66"
+    },
+    {
+      "class": "CoreCharacter",
+      "method": "prepare",
+      "sites": {
+        "get_prop": 4,
+        "call_method": 8
+      },
+      "original_sha256": "8e938e0af1547ad8b2b2699c4df13fa11573fe7270a811236c3cfad6b41c0a4c",
+      "native_sha256": "3516e3ee1d91dff6d214707924e2987ec346b36e2d994602652d6f1dc2a1c8bd"
+    },
+    {
+      "class": "CoreRng__INNER__BalancedRng",
+      "method": "rollPercent",
+      "sites": {
+        "call_method": 1
+      },
+      "original_sha256": "64a406608c3aa9af0c73c9fdae74b9ab444fc67871c9cf2578e93b80d30dd33a",
+      "native_sha256": "0ce189d260dde744be7b55466a73776676aaba4c98b75c6251bc3e0ddbf3c03c"
+    },
+    {
+      "class": "CoreCombatLog",
+      "method": "snapshotStack",
+      "sites": {
+        "get_prop": 1,
+        "call_method": 1
+      },
+      "original_sha256": "a6f442438dd5886da1f7cf24f2a3b7bfed0371e70d669e4acd448a1652ce8779",
+      "native_sha256": "c4a5fd9ec07f8a7e95a006ca4dc8a1a082a05a99d6f906ffc23d608ba7737b32"
+    },
+    {
+      "class": "CoreCombatLog",
+      "method": "snapshotCharacterStat",
+      "sites": {
+        "get_prop": 1,
+        "call_method": 1
+      },
+      "original_sha256": "2024adf87bdbae5b0d4e86b9d5f6bb521f8c4afa850eae108d2249f5aae91db4",
+      "native_sha256": "d65261a070c8a70b531151993847c486ce1584bea82c036965c5124cfd35bd0c"
+    },
+    {
+      "class": "CoreCombatLog",
+      "method": "snapshotGlobalStat",
+      "sites": {
+        "get_prop": 1,
+        "call_method": 1
+      },
+      "original_sha256": "b325c15f261c7920251ed57b6180db779c612baf542c6e4c8b5913a66c4e4c6f",
+      "native_sha256": "cb497cdc757469f0efc95c9a097fd36fe48d8b254a7dcdc1517114068f5f456d"
+    },
+    {
+      "class": "CoreCombatLog",
+      "method": "snapshotItemState",
+      "sites": {
+        "get_prop": 1,
+        "call_method": 1
+      },
+      "original_sha256": "851d676dc02bd8d506dc1e00946d6fd40d5afee7c0b473d916163ee21ca91905",
+      "native_sha256": "878e15e3ba50dd3f8d21ef6fca69997ab676dd730605aece86cfea61f594a062"
+    },
+    {
+      "class": "CoreCombatLog",
+      "method": "snapshotItemTooltipStat",
+      "sites": {
+        "get_prop": 1,
+        "call_method": 1
+      },
+      "original_sha256": "fcc2c9efe22124a29d3e490a94506ff70d34338b41dbf14fee0629b3dba207c7",
+      "native_sha256": "524fe673e34d6ff3e16e614bc10d73b2c2173e3005c006ab2bd96c5af922f300"
+    },
+    {
+      "class": "CoreCombatLog",
+      "method": "snapshotItemMetric",
+      "sites": {
+        "get_prop": 1,
+        "call_method": 1
+      },
+      "original_sha256": "508329c5a9a6dff8173f659a4e9b2a0c833e7aa180110293f385f21766250595",
+      "native_sha256": "1e60f6cca1891a163a42e9c7ebd3d82928523cb2b7265086f21a688faaee5c5e"
+    },
+    {
+      "class": "CoreCombatLog",
+      "method": "snapshotMetric",
+      "sites": {
+        "get_prop": 1,
+        "call_method": 1
+      },
+      "original_sha256": "8d25b40da67fa94d316924efd59d6781e4aa25e2bab1c1420efc87c60473af5a",
+      "native_sha256": "6799e6d8aea3c5485d0f3bf5c7359fdf25a1555cfbb042cca9607b5ae820a41b"
+    },
+    {
+      "class": "CoreCombatLog",
+      "method": "createEvent_DamChange",
+      "sites": {
+        "call_method": 6
+      },
+      "original_sha256": "4c8cbacdef1d83a00dba5d8233130b1d2cde715a75c8097a612108880f6cd025",
+      "native_sha256": "719e257bd94d68179bc1ea8104148a190d21b267f4be929adfc7e1530a543952"
+    },
+    {
+      "class": "CoreCombatLog",
+      "method": "createEvent_Activation",
+      "sites": {
+        "call_method": 1
+      },
+      "original_sha256": "9eed54c3436e353c1aad9412e52f6e7dfb1c04440778ccb845e8f89d6d48d9c0",
+      "native_sha256": "35b392abb2b324e301abf758ab61cb06ede664a9b0ab88f6141ad6df259a82bd"
+    },
+    {
+      "class": "CoreCombatLog",
+      "method": "createEvent_Reincarnate",
+      "sites": {
+        "call_method": 3,
+        "get_prop": 1
+      },
+      "original_sha256": "3d094616157b15ed170cfc8908f6d8ed2e3becdcf0495f0c7611f1443889f5ce",
+      "native_sha256": "0e58f1da067f5969a02f2be995a0f530293e624648271e3f8d7bc430516c42ed"
+    },
+    {
+      "class": "CoreCombatLog",
+      "method": "createEvent_BattleRageEnd",
+      "sites": {
+        "call_method": 2
+      },
+      "original_sha256": "42282e57d2560814e0dea8fb46b4525c22858c58dfeea5c921cbe52c43f44a04",
+      "native_sha256": "704c8b8e562cb3f5e811a731a7ec43d776351a650b2f9720930e3384bacabc6a"
+    },
+    {
+      "class": "CoreCombatLog",
+      "method": "createEvent_BattleRageStart",
+      "sites": {
+        "call_method": 2
+      },
+      "original_sha256": "9dcedb184c6a7a35f77a81452267a0e78c01e2a5efb54806d4930f67a0fe17bd",
+      "native_sha256": "078162f616a7bff8b803abcfe0664d33011905facf010ee43c21b41e47b7f04a"
+    },
+    {
+      "class": "CoreCombatLog",
+      "method": "createEvent_TemporaryMaxStamina",
+      "sites": {
+        "call_method": 4,
+        "get_prop": 2
+      },
+      "original_sha256": "2fde52f6d701ae028313d3ac6fb97faea7c46517e7161399460e329a29b249da",
+      "native_sha256": "fc479cdef1639e57095a6ceaa2d044474b335856783e032bfcfcb7045d87047d"
+    },
+    {
+      "class": "CoreCombatLog",
+      "method": "createEvent_TemporaryMaxHealth",
+      "sites": {
+        "call_method": 4,
+        "get_prop": 2
+      },
+      "original_sha256": "b7aef4361a28d0c0ed33eb287a6a17451fc0ec8be6bbb6cf4c3ef4de065593d3",
+      "native_sha256": "5909fda6cbe9fd0ab1df26667bad26d9190a4dd70c07e51e1990af242d9d6cc8"
+    },
+    {
+      "class": "CoreCombatLog",
+      "method": "createEvent_DamageBuff",
+      "sites": {
+        "call_method": 4
+      },
+      "original_sha256": "f8d4fb71d2bd89ae4399f7d1b3edee50657408c8d6870186475df554d54df98c",
+      "native_sha256": "e6c492461177c41bacc5e494020cdd982799cbe18f9dccf83e90ea09e3c71b86"
+    },
+    {
+      "class": "CoreCombatLog",
+      "method": "createEvent_OutOfStamina",
+      "sites": {
+        "call_method": 2
+      },
+      "original_sha256": "a069d295de5c709acccb388424985b94476c4310dd09dde435baba55bb843b48",
+      "native_sha256": "0a6b2a269638076465af237d1976f52b91efa61fa966b714833bffeb6758ed56"
+    },
+    {
+      "class": "CoreCombatLog",
+      "method": "createEvent_DrainStamina",
+      "sites": {
+        "call_method": 3
+      },
+      "original_sha256": "4caa1880e25c3669e3e33a13d3aab5ca4d07deaa356c69765e8d71d42ea80f58",
+      "native_sha256": "482013f0f8ec12f09b2c4e0cf5f9610c2fd2362cc5971483315756598414039c"
+    },
+    {
+      "class": "CoreCombatLog",
+      "method": "createEvent_Stamina",
+      "sites": {
+        "call_method": 3
+      },
+      "original_sha256": "522aac4ee21393c6e096a55690b657c410ea035951d2afe8eb70c9cf944bd5e2",
+      "native_sha256": "f48ac1c8e5d9f1b1adc6214ee7c9e6a7d1dbd3fa2cd45d77ce1986b3bf210a68"
+    },
+    {
+      "class": "CoreCombatLog",
+      "method": "createEvent_InvulnerableEnd",
+      "sites": {
+        "call_method": 2
+      },
+      "original_sha256": "0e066bc6a1c15ab7e3558f7fe5660129c16fceb521d7872666a77c202c4eb584",
+      "native_sha256": "af9fd1c54aacf91915440af9246c4a20266e73d45dcde543886ea7bbe7088454"
+    },
+    {
+      "class": "CoreCombatLog",
+      "method": "createEvent_InvulnerableStart",
+      "sites": {
+        "call_method": 3
+      },
+      "original_sha256": "2fdd19cf6944df9f4b2c37b0100ac2a9629c3f9c6255fc726aaf6b0e45b28eed",
+      "native_sha256": "7ad1a9ac30de94409259152d0ecb9eecaf2219fb25ee605fd52ddba4f402d953"
+    },
+    {
+      "class": "CoreCombatLog",
+      "method": "createEvent_StunResist",
+      "sites": {
+        "call_method": 2
+      },
+      "original_sha256": "796afeef38f97bac4aa483efaa24bbbf67c17646f7c82ff1120f78dd8efa7464",
+      "native_sha256": "2df930e642c59c9294512ad17701634b9db249ee19ff7695f61a5696bb524b67"
+    },
+    {
+      "class": "CoreCombatLog",
+      "method": "createEvent_Stun",
+      "sites": {
+        "call_method": 3
+      },
+      "original_sha256": "0971b6097ecdbe58310670e611d9a177561a8e47e1bd0573f061a5e7daec79a9",
+      "native_sha256": "e2e542e8ae23939a16513cf42ae35d747dc80c943f20de963147dbb8a3eaf7e7"
+    },
+    {
+      "class": "CoreCombatLog",
+      "method": "createEvent_StackProtect",
+      "sites": {
+        "call_method": 2
+      },
+      "original_sha256": "6162c419a1bf46592d19361ba6ccaa2a4d6200bd29c106079c47b1888321c913",
+      "native_sha256": "399774b68dea99f348f01cf27d20673cc6a5ce6ec420c60a359797b425d4998c"
+    },
+    {
+      "class": "CoreCombatLog",
+      "method": "createEvent_StackResistOrNullify",
+      "sites": {
+        "call_method": 3
+      },
+      "original_sha256": "c73e8689149c218391bc208d8f007f72f551ebc66c8bb5c616c298ffea4166ed",
+      "native_sha256": "396147e1313f65665543577240aa3f0cb759b5ebaad5b77bbf1435b612fc5485"
+    },
+    {
+      "class": "CoreCombatLog",
+      "method": "createEvent_StackTimeout",
+      "sites": {
+        "call_method": 2
+      },
+      "original_sha256": "a2bba63dd4b94bf44bc7e03d8a8c5ec5120ad066a62f7bbb3c4fc300c534e3ca",
+      "native_sha256": "8ad8653a4974958e6aeecfa47f61c4297dea12b6a1b2f43e3a7ff9438fb341cd"
+    },
+    {
+      "class": "CoreCombatLog",
+      "method": "createEvent_StackTemporary",
+      "sites": {
+        "call_method": 3
+      },
+      "original_sha256": "73eea0d77831ed709601a34e11a6c92f36606f4a528674805651d36d588378cb",
+      "native_sha256": "1903ecfb5c503478b7d0c64fbc2b6e81eac9973954aa76c69e8b9d3e186bd722"
+    },
+    {
+      "class": "CoreCombatLog",
+      "method": "createEvent_Stack",
+      "sites": {
+        "call_method": 12,
+        "get_prop": 4
+      },
+      "original_sha256": "b2849c65f8553f682644a89d39599615f95287b3f688c307fe5aca66d68d065a",
+      "native_sha256": "d4c1b2e903df3d4af80a19e7a53077e07eebd474342af72aaa0600860357e305"
+    },
+    {
+      "class": "CoreCombatLog",
+      "method": "createEvent_LoseHealth",
+      "sites": {
+        "call_method": 5,
+        "get_prop": 1
+      },
+      "original_sha256": "798b225b6a29017fe895b33e15a9fab77742e9bcccbaa7362cd989fe72c9ba9d",
+      "native_sha256": "c7d1a6ef88f819cb7bfa9fc6d035163758a5e1256d2e4e59309f9eae11e14a67"
+    },
+    {
+      "class": "CoreCombatLog",
+      "method": "createEvent_Heal",
+      "sites": {
+        "call_method": 5,
+        "get_prop": 1
+      },
+      "original_sha256": "c620bb9ab88e7727b75f8db0f7e1b4533edd5fc1d8c0c98c3571cbfd5fd296e2",
+      "native_sha256": "e72f3899c72bd4a67bcf63e44c6f2364e7ef5416b65fe05eefddd2c0ceb6c512"
+    },
+    {
+      "class": "CoreCombatLog",
+      "method": "createEvent_Damage",
+      "sites": {
+        "call_method": 10,
+        "get_prop": 13
+      },
+      "original_sha256": "ad4d1fce33d2d5780eb6f56e3dd608de6321e87f994e3fe455e3b39e89852417",
+      "native_sha256": "4fbf846c497feec74e0a2b0538c4fca3c6e1f1cc23b32d29f3c33889a9c23a2d"
+    },
+    {
+      "class": "CoreCombatLog",
+      "method": "createEvent_Attack",
+      "sites": {
+        "get_prop": 14,
+        "call_method": 11
+      },
+      "original_sha256": "f92abf0f78ae5a5126c269619cf5f9d5e767b00899c4e5384bb6c37fef810786",
+      "native_sha256": "28c65d86a8189eb79263bc9c32fd4b47e22fcecdf52784697690cc95c6956c75"
+    },
+    {
+      "class": "CoreCombatLog",
+      "method": "logEvent",
+      "sites": {
+        "get_prop": 1,
+        "call_method": 1
+      },
+      "original_sha256": "7aaee5c91752cd1becea80d2246c34d1fe2ba9e7393600b1da70b1f5b8bc4e68",
+      "native_sha256": "d0b0027431cbb7ce4b2357da4cd211fa0193e886b5ac3450815908b9867a6fd2"
+    },
+    {
+      "class": "CoreCombatLog",
+      "method": "replayHiddenLogEvent",
+      "sites": {
+        "get_prop": 2,
+        "call_method": 2
+      },
+      "original_sha256": "4a48d801b4ac1b9b5c3de4483dbcf93055848b4acb711b2319a38dc50b98e73d",
+      "native_sha256": "1eed38d4985ee994d1bbb14ce3b2dc0893b71e9a2fa416d4d3d578d9c92593fe"
+    },
+    {
+      "class": "CoreCombatLog",
+      "method": "createEvent",
+      "sites": {
+        "call_method": 3,
+        "get_prop": 3
+      },
+      "original_sha256": "7edc844bd5fb3d889cb028ba23b7b3f2ce768ba345dd0d9285660dba777d32a0",
+      "native_sha256": "89a643c3affb8ee0d8ca3063c28dc15358313acd234152bb0d73e7b62ade1f9c"
+    },
+    {
+      "class": "CoreCombatLog",
+      "method": "getTimeStamp",
+      "sites": {
+        "get_prop": 1
+      },
+      "original_sha256": "e22454e6502386bac078305c5c489723546d546f5003d04e9b1c335c9eee3865",
+      "native_sha256": "6c9a1fd09898f763d9f9a8d777637199d0dbef3f6bc9f7adc4dbc708a837b3b0"
+    },
+    {
+      "class": "CoreContext",
+      "method": "restoreFlickers",
+      "sites": {
+        "call_method": 2
+      },
+      "original_sha256": "22faa03f139e3d39300dcd683b1c216824178a23ed3666f16415fca86c48145c",
+      "native_sha256": "dd067add2f747ce9bc0006eb6d43fe05616075550063b1a31ad60823a41b5515"
+    },
+    {
+      "class": "CoreContext",
+      "method": "addTrainingFlicker",
+      "sites": {
+        "call_method": 1
+      },
+      "original_sha256": "9a9a2a84683c1cf38562a4b0c926191847bb3f9b1fa3ce9a815aaf9da7273aec",
+      "native_sha256": "27bd7f36fe03b38d8d1a68284e486bafe988d2168fca37642cdc3ad3e0fadbe6"
+    },
+    {
+      "class": "CoreContext",
+      "method": "stepCriticalShake",
+      "sites": {
+        "call_method": 1
+      },
+      "original_sha256": "24c0cd5e1e6fe8de64a62e4b15e77f6a7157c57ff2d27e4a0f29d3dba172f72c",
+      "native_sha256": "d9dd76f02f2d94732bd0c7e6358a7dfe131cc5137110e4b2b521b558d56aec64"
+    },
+    {
+      "class": "CoreContext",
+      "method": "restartLoversParticleDraws",
+      "sites": {
+        "call_method": 3
+      },
+      "original_sha256": "88dd9d35d7b422731665853969ac0a0006a5d515c8fb1e1cfdfdbd8db7892474",
+      "native_sha256": "c876fffda3c50c2016d4d5a74e472cfffee7194d264f88ead91e6b861b83f428"
+    },
+    {
+      "class": "CoreContext",
+      "method": "scheduleParticleDraws",
+      "sites": {
+        "call_method": 1
+      },
+      "original_sha256": "87c6e96f0c4d983c4f5d5a31eda7edab73a5353f653c107b0f310da645845c96",
+      "native_sha256": "3e2be75debc4628209c58ca8b786152b473e9ad1cd5fd96fa280d3dca72f3e0d"
+    },
+    {
+      "class": "CoreContext",
+      "method": "collectCriticalLabels",
+      "sites": {
+        "call_method": 2
+      },
+      "original_sha256": "0d27d9ccc05ebdb23a0081ba6d16748b23bd56c39f9d59be528d8d2784ed353d",
+      "native_sha256": "28b1b0e1e74e1d8fca1d254b9f6b7ee10afd8f071caa930a334a5eaa10ddc945"
+    },
+    {
+      "class": "CoreContext",
+      "method": "_flushTimed",
+      "sites": {
+        "call_method": 1
+      },
+      "original_sha256": "b792b19fec325360d096862c1b87ed41ad826a21e3feb02edc4f1bd0af622f57",
+      "native_sha256": "c6b866010ef4eaa963f7d12283f82283b99adacb3234e9823ce646c993f6ad0f"
+    },
+    {
+      "class": "CoreContext",
+      "method": "_newDamageSource",
+      "sites": {
+        "call_method": 1
+      },
+      "original_sha256": "617a521800bbec8c6306409214c28db393fc3f526cf9616c0ff87b355a90f6dc",
+      "native_sha256": "13d5fe5d2df9c05351b253eaaf24429aa327b274ac4576da6923a7fee2d05706"
+    },
+    {
+      "class": "CoreContext",
+      "method": "set_state",
+      "sites": {
+        "call_method": 1
+      },
+      "original_sha256": "45b00fa96491d5ca4966954b8a6157b787bed6a43742008de7017abc15310447",
+      "native_sha256": "3cc141682a9150605e144e28688264f07fda8893864eb5e91f5ee002e5dae460"
+    },
+    {
+      "class": "CoreContext",
+      "method": "lib_fires_tick",
+      "sites": {
+        "call_method": 1
+      },
+      "original_sha256": "b36895d02179452ff17bf5d518db5c8448891db480f15453c6ae20de72acc29f",
+      "native_sha256": "38559d5d18d2dc63205c264e756389d80bdbeecb481d8d62cddfcd5c15b5644e"
+    },
+    {
+      "class": "CoreContext",
+      "method": "set_drawseq_enabled",
+      "sites": {
+        "set_prop": 1
+      },
+      "original_sha256": "f9b0421bea5856347b592b38d5de0033f2e0a669d550dabf6d106115fded59b1",
+      "native_sha256": "d290fced492e2061cd2d9b2984d0ff2f34b16fed4285d1e842390ac308350680"
+    },
+    {
+      "class": "CoreDamageResult",
+      "method": "canTriggerVampirism",
+      "sites": {
+        "call_method": 3
+      },
+      "original_sha256": "807b4e39c3e185842b8169ef81c840144a56433a9c9727aa1e33559555d1d60f",
+      "native_sha256": "14fa87369e6d8269b3cb96a0e4c7aa64d65fe689fb7316ffbe39db737f74f96a"
+    },
+    {
+      "class": "CoreDamageResult",
+      "method": "canTriggerSpikes",
+      "sites": {
+        "call_method": 3
+      },
+      "original_sha256": "4089cbdba8dd0f336eb5a2a5e5a3e406c1c5fa8ca7bbd738a25336fb76fcb70c",
+      "native_sha256": "346d1524a37557b40eaba7c6d493b54a0c02911dbfd77d261f3fee79bc1afdb3"
+    },
+    {
+      "class": "CoreDamageResult",
+      "method": "canTriggerItems",
+      "sites": {
+        "get_prop": 1
+      },
+      "original_sha256": "9dba005509fc1cfcff4b0061df3aa40cefb52f65dc722640584ae0d182a4a236",
+      "native_sha256": "8a86ce4bf7acf152c12647f92463eac05460af37b27224ca40c057eae63ceba5"
+    },
+    {
+      "class": "CoreDamageResult",
+      "method": "triggerOnAttacked",
+      "sites": {
+        "call_method": 3
+      },
+      "original_sha256": "6996c17442b0c5304be0d3756cd4ae386b77bb38c85a8cded615d78260638e2c",
+      "native_sha256": "a1e2ea9c4f1c4d7492b1a7b99c9cb6234d399b27a399509b76ed838fdd0e752a"
+    },
+    {
+      "class": "CoreDamageResult",
+      "method": "triggerOnMeleeAttacked",
+      "sites": {
+        "call_method": 3
+      },
+      "original_sha256": "61650781c26d49d8c9ea01ab2a3f6a7a6a892acb358085bcc17f61c1d096f727",
+      "native_sha256": "8ea9d29cca47c85e5ec6a387354cee6e7425d9f94bba4d6ae2ca39c6e29848c6"
+    },
+    {
+      "class": "CoreDamageResult",
+      "method": "triggerOnDamaged",
+      "sites": {
+        "call_method": 2
+      },
+      "original_sha256": "20226d039d95f5739fceca5f8281dd8987a0dbb5a9749b6b1f84c7ea13cbecb3",
+      "native_sha256": "de852d7a174f25a457f3a3488b6676843d75fae4bedddd18cc5f98b8b6e0110c"
+    },
+    {
+      "class": "CoreDamageResult",
+      "method": "triggerOnHit",
+      "sites": {
+        "call_method": 2
+      },
+      "original_sha256": "a40a387e430b36046457700a212c81525649369998d096242feee270e59e12fe",
+      "native_sha256": "a53f020305df6da139f9837010a87c616402e2034800fada4708544a6e44e161"
+    },
+    {
+      "class": "CoreDamageResult",
+      "method": "makeCritical",
+      "sites": {
+        "get_prop": 2
+      },
+      "original_sha256": "232fe150c84e0d0f9cd8697937b1da81c854222d62048eefaa647b20cc992e41",
+      "native_sha256": "ae7136f219d889915c86d164d96a65d03a2948d4c0e33c904e5177ff470900a4"
+    },
+    {
+      "class": "CoreDamageResult",
+      "method": "wasCriticalHit",
+      "sites": {
+        "call_method": 1
+      },
+      "original_sha256": "d96da0631d7841de09087064ae76aefd088d7349d9d51883fafae40325ead4a5",
+      "native_sha256": "275466f41b507bac64c3cfdff38ba5b2bed5d936fb14ce811e7dc5371b39db74"
+    },
+    {
+      "class": "CoreDamageSource",
+      "method": "randDamage",
+      "sites": {
+        "call_method": 3
+      },
+      "original_sha256": "79e82c0514bbfa53912628f68c775deae05f00447df935b294bdb7a2c89543a3",
+      "native_sha256": "1a8f3b2655d7e6aac20861d2d317c78e9add617ec700e22ba617629815c4503a"
+    },
+    {
+      "class": "CoreDamageSource",
+      "method": "makeSpectral",
+      "sites": {
+        "call_method": 1
+      },
+      "original_sha256": "2ff0bd5ee450c521f8529ea33f77c33a3b08f33631c4de6d3ac9001e5b3fa3a3",
+      "native_sha256": "836548ea777cec8e03c9b4cf2c5076a9c7e57698f272411a8d8917b02a5ac684"
+    },
+    {
+      "class": "CoreDamageSource",
+      "method": "canApplyLifesteal",
+      "sites": {
+        "call_method": 2
+      },
+      "original_sha256": "0aebf2ba1bd5ee0a97a4df4bd2b40c36a5f84933168f42607d3e5d8bf290631a",
+      "native_sha256": "2920ebb6ee0ee49aa2a1237d5678f407d826d7c0d295c42bb186bd3f03fad798"
+    },
+    {
+      "class": "CoreDamageSource",
+      "method": "isAttackOrEffect",
+      "sites": {
+        "call_method": 2
+      },
+      "original_sha256": "55e027d2d2e743f8c908172d029e664f22fe2c9bbc212e8380398948ff87da04",
+      "native_sha256": "7a42ceae931918bfc49110d4200770be1cabfccac692852f7f413d721d5aa63a"
+    },
+    {
+      "class": "CoreDamageSource",
+      "method": "isEffectDamage",
+      "sites": {
+        "call_method": 2
+      },
+      "original_sha256": "8efe2147fd2e4b3288ab5b6e5b043c28cc03bd05687e883aa194dea0891e90a2",
+      "native_sha256": "a115d75c0c021c2f990467c1917f39488b94260e4d307b67e389fd4859b786f4"
+    },
+    {
+      "class": "CoreDamageSource",
+      "method": "isAttack",
+      "sites": {
+        "call_method": 2
+      },
+      "original_sha256": "3ed48bf726786354ce2d2cd7c702730de6fc20ff5a40df4ae152df146f51dede",
+      "native_sha256": "a3cc4b7fb26234e596d6a09d3d5420d5464b0a0b7067b974951cc9ee9bec9e51"
+    },
+    {
+      "class": "CoreDamageSource",
+      "method": "updateEffect",
+      "sites": {
+        "call_method": 1
+      },
+      "original_sha256": "7a523994574f60688fd9a823cd58a53189ed6e6dcc60599a3ea9d91749725a54",
+      "native_sha256": "bea7313a6e88138e427b15a0f3f964350bebbe3aa6cf99fcf4cba5edb7cc49a4"
+    },
+    {
+      "class": "CoreDamageSource",
+      "method": "init",
+      "sites": {
+        "call_method": 1
+      },
+      "original_sha256": "aa7b653df326bc686250963609d87bc8780c1c13643fdba41436833a9a4ad5d0",
+      "native_sha256": "e9b06074ce7319c1635e25dd5643ea3b96e0e7dc4fe3da588a3bd901a9e59146"
+    },
+    {
+      "class": "CoreDamageSource",
+      "method": "setItem",
+      "sites": {
+        "call_method": 4
+      },
+      "original_sha256": "6ed32be0e4dde99ae63fdb803fe18405bcd3ea9b8cf4779c05d1d6cd17553b53",
+      "native_sha256": "d46e613b0f71c52a9d05166093102b68953a83facdf7988584425a8b64d1547e"
+    },
+    {
+      "class": "CoreEvent",
+      "method": "getDepth",
+      "sites": {
+        "call_method": 1
+      },
+      "original_sha256": "c91985b303824bc44ae570ec4d9602d2fb6f05fa451b01810b4e4f36c93347bf",
+      "native_sha256": "df1015e6669a6bdd8ff626e5ec9ff2d872860d5a1d3b892e8b4ba65c0f88b171"
+    },
+    {
+      "class": "CoreEventBus",
+      "method": "connectEvent",
+      "sites": {
+        "call_method": 1
+      },
+      "original_sha256": "5035267e7ef5a4bb7a8dd747be167d9fc7eddd3db767133823c16c6f4f134b63",
+      "native_sha256": "493d4a41806ed5449cf0e1fb591b425bfba4ffeb3f1f3dc05eb642e195f0f16a"
+    },
+    {
+      "class": "CoreEventBus",
+      "method": "emitAndLog",
+      "sites": {
+        "get_prop": 22,
+        "call_method": 6
+      },
+      "original_sha256": "e0519d0461019a83a7557ee552eeee0bcf7fb5fa9085f6021b8e9efe42e59b8d",
+      "native_sha256": "1e7ee109b163c381c164ea4d8a7b8f82bf41ccb063d349ce3a017b0360283aeb"
+    },
+    {
+      "class": "CoreEventBus",
+      "method": "flushLoggingQueue",
+      "sites": {
+        "call_method": 2
+      },
+      "original_sha256": "cbd9665cc588d8197074f64f083fb32298d96719c4863d5ae79803fc23ae1b3a",
+      "native_sha256": "8753ebcc2c17b802183c441f305faf6f8c53827ac4b6fec65d57ece495cc8dc4"
+    }
+  ],
+  "native_scope": "closed native bridge only; generic paths retained",
+  "arithmetic_and_rng_calls": "original helpers and source order retained",
+  "copying_or_caching_mutable_values": false
+}
