@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "dll_sha256": "1be75dced83e9e90fdbe61dd86f91bc27e19bb44acf9449d295849e928d9cec5",
+  "output": "280 index differential cases; boundary, null, mixed key, object getter count and reference alias checks passed\n",
+  "compiled_against_candidate_headers": true
+}

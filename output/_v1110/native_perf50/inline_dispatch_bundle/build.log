@@ -1,0 +1,25 @@
+Scalar equality and array write sites: {'gd::gd_eq': 668, 'gd::gd_ne': 290, 'gd::set_index': 110}
+Composed Null mismatch and two builtins;674 pure nonmatching dispatchers proved
+Inlined dispatch wrappers at 10325 generated call sites; row layout unchanged
+Backed-up deployment and702 sources verified; full20/PGO18, max2 jobs
+Built C:\Users\Windows\AppData\Local\Temp\native-inline-dispatch-ojz7iac7\instrumented.dll (compiled 20/20, linked 20 objs) in 390.94s
+{
+  "diagnostic_only": true,
+  "dll_sha256": "477a46f1e76f100f96376a03eb0967b75f3f3aeaa81e1ddf942d4ad641c69441",
+  "inputs_sha256": "d94b16d42cc88e9a3850a77c9360b9c4c4fdd676cb252e463044a903db2a5fef",
+  "results_sha256": "2e74b45caa87f7ee6ac72ffc35d98cc8db140b47031614d26542e183cef5d2c9",
+  "coverage": {
+    "generic_hits": 9770346,
+    "funcref_hits": 100900,
+    "lazy_resolutions": 104863,
+    "unsupported_types": 200,
+    "audit_mismatch": 0,
+    "selected_fallback": 233004
+  }
+}
+instrumented.dll: 89.88 replays/s; 14.64 s of combat on average; 1f00611ee50c
+instrumented.dll: 69.51 replays/s; 16.11 s of combat on average; 2e74b45caa87
+instrumented.dll: 57.81 fights/s; 3.41 CPU s; 80.5 MiB peak; 88dda4dce54d
+Compiling profile-guided release
+Built C:\Users\Windows\AppData\Local\Temp\native-inline-dispatch-ojz7iac7\release.dll (compiled 18/20, linked 20 objs) in 167.59s
+resolved 1be75dced83e9e90fdbe61dd86f91bc27e19bb44acf9449d295849e928d9cec5
