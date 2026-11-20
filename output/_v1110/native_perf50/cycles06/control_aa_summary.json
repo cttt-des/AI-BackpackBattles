@@ -1,0 +1,9 @@
+{
+  "identical_dll_sha256": "1291ef1b6ae50856e9e3585d9193734b64a4a1c15cf98ebca1ebedf7333ce940",
+  "isolated_paired_samples": 16,
+  "median_reduction_pct": {
+    "main_thread_cpu_s": 1.393621668851025,
+    "wall_s": 0.508522168539649
+  },
+  "note": "Natural-load A/A variation remains; no speedup is attributed to byte-identical copies."
+}

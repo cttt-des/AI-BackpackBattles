@@ -61,6 +61,7 @@ def build(force: bool = False) -> Path:
         ROOT / "builtin_syms.hpp",
         ROOT / "gen" / "sym_ids.hpp",
         ROOT / "gen" / "class_metas.hpp",
+        *sorted((ROOT / "gen" / "hdrs").glob("*.hpp")),
     ]
     max_hdr_mtime = max(p.stat().st_mtime for p in hdr_deps if p.exists())
 

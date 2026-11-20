@@ -1,0 +1,42 @@
+{
+  "baseline": {
+    "GdVal_size": 24,
+    "CoreItem_size": 1696,
+    "CoreItem_alignment": 8,
+    "Item_size": 3856,
+    "fields": {
+      "_cooldown_active": 1048,
+      "gems": 976,
+      "timers": 1576,
+      "ctx": 64,
+      "character_": 88,
+      "_cooldown_blocked_epoch": 1096,
+      "triggerTime": 904,
+      "speedScale": 208,
+      "statDisplayOverrides": 784,
+      "placed": 136,
+      "iterationCooldown": 928
+    },
+    "hot_field_span_bytes": 1536
+  },
+  "candidate": {
+    "GdVal_size": 24,
+    "CoreItem_size": 1696,
+    "CoreItem_alignment": 8,
+    "Item_size": 3856,
+    "fields": {
+      "_cooldown_active": 40,
+      "gems": 64,
+      "timers": 88,
+      "ctx": 112,
+      "character_": 136,
+      "_cooldown_blocked_epoch": 160,
+      "triggerTime": 184,
+      "speedScale": 208,
+      "statDisplayOverrides": 232,
+      "placed": 256,
+      "iterationCooldown": 280
+    },
+    "hot_field_span_bytes": 264
+  }
+}

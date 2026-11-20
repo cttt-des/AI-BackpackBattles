@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "initial_offset": 4,
+  "stale_offset_after_header_edit": 4,
+  "fixed_offset_after_header_edit": 0,
+  "cpp_source_unchanged": true,
+  "real_compiler_and_dll_loads": true
+}

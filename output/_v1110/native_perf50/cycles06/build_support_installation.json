@@ -1,0 +1,13 @@
+{
+  "kind": "build_support_only",
+  "dll_sha256": "1291ef1b6ae50856e9e3585d9193734b64a4a1c15cf98ebca1ebedf7333ce940",
+  "runtime_unchanged": true,
+  "verified_unchanged_cpp_and_headers": 698,
+  "previous_archive_commit": "f5763a7d64d2796749da6c4f94c813d29915b16c",
+  "build_script_before_sha256": "c307cf3053c5908518623c2678a1c58a1b9157f1b67e8c152d5caff1a929978a",
+  "build_script_after_sha256": "41a742193cdb357c83316a3e534c68c5d173646b42f853fe1c66b5d13df37e1a",
+  "build_cache_test_sha256": "e814d90112cfdf2fc9d5bf873684322b3e76ef5a84c38700cfc53b03b5fee6b6",
+  "changed_native_files": [
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/build_windows.py"
+  ]
+}
