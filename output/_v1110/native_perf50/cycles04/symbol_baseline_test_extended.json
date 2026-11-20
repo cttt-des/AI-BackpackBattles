@@ -1,0 +1,5 @@
+{
+  "passed": true,
+  "output": "Builtin initialization, replacements, aliases, temporary strings, collisions, binary names, fallback IDs and eight-thread live writes passed\n",
+  "dll_sha256": "4ccdaf2bef6ad526a5740355bc413e18015d341f5d98182cdc68e7688570e038"
+}

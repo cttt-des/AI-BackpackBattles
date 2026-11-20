@@ -197,3 +197,24 @@ Buff 自调用首轮 CPU 耗时增加 8.48%，事件总线上下文读取增加 
 914 + 1,690 场原版严格逐事件核验全部通过，逐场 C++ 事件哈希全部一致。接电、自然后台负载 3.6%–27.8% 下连续 24 批，中位数 **115.58 场/秒**，最慢 **82.52 场/秒**，全部达到部署门槛。同一 DLL 的自然负载样本拟合至 20% 为 **94.03 场/秒**，连续四批分组留出的耗时相对误差中位数为 1.28%，第 90 百分位为 4.88%。[全量验收](../output/_v1110/native_perf50/cycles03/full_pgo_full_gate.json) · [事件哈希](../output/_v1110/native_perf50/cycles03/full_pgo_event_hashes.json) · [持续吞吐](../output/_v1110/native_perf50/cycles03/full_pgo_serial.json) · [20% 换算](../output/_v1110/native_perf50/cycles03/full_pgo_load20.json)
 
 已部署 DLL `4ccdaf2bef6ad526a5740355bc413e18015d341f5d98182cdc68e7688570e038`。正常训练评估 12 场无错误，另 12 场固定种子胜负与基线一致，运行时清单与验收 DLL 哈希相同。旧版保留于 `dist/native_1_1_10_before_cycle03`。继续从该已部署版本采样下一轮。[部署记录](../output/_v1110/native_perf50/cycles03/full_pgo_installation.json)
+
+
+### 第四轮
+
+起点 DLL 为 `4ccdaf2b…`，远端备份为 `6f26c12a`。已部署版本新采样取得 6,052 个栈样本、56 批固定回放。热点继续包括计时器数组读取、冷却标志通用判断、物品派发及符号查询互斥锁。[已部署版本采样](../output/_v1110/native_perf50/cycles03/full_pgo_profile.json)
+
+五处冷却标志的布尔快速路径保留其他类型回退。三场定向回放通过。首测末段与一次反汇编重叠，CPU 耗时下降 1.86%，已在报告中标记；独立反转复测 CPU 耗时增加 4.11%，本轮排除。首次定向命令漏带 `run948` 摆放观测参数，补齐后的三场严格核验通过。[有反汇编重叠的初测](../output/_v1110/native_perf50/cycles04/cooldown_flags_ab.json) · [独立复测](../output/_v1110/native_perf50/cycles04/cooldown_flags_ab_repeat.json)
+
+线程局部符号缓存的三轮 CPU 耗时降幅分别为 −2.29%、3.35%、−3.76%，本轮排除。[首测](../output/_v1110/native_perf50/cycles04/symbol_cache_ab.json) · [复测](../output/_v1110/native_perf50/cycles04/symbol_cache_ab_repeat.json) · [确认](../output/_v1110/native_perf50/cycles04/symbol_cache_ab_confirm.json)
+
+最终采用进程级原子符号读取表。已注册名称和不可变查询项保留在进程静态内存中，注册写入继续加锁。读表前后验证写入版本号，写入重叠、未命中、槽冲突或超出名称表范围均使用原加锁路径。保留内建符号初始化、旧名称别名及动态重注册语义。生成脚本校验原注册实现及重复应用的内容哈希。[源码生成](../output/_v1110/optimize_native_atomic_symbols.py)
+
+定向测试覆盖内建初始化、改名、同名重注册、临时字符串、槽冲突、内嵌空字符、大 ID 回退，以及八线程读取和同时注册。三场定向逐事件回放通过，22 个 C ABI 符号保持一致。重新生成的 C++ 与受测副本逐字节相同，重复执行生成脚本保持字节不变。[并发测试源码](../output/_v1110/test_native_symbol_cache.cpp) · [测试结果](../output/_v1110/native_perf50/cycles04/symbol_atomic_test.json) · [ABI](../output/_v1110/native_perf50/cycles04/symbol_atomic_abi.json)
+
+三轮各 8 组 AB／BA，CPU 耗时降幅分别为 0.43%、6.36%、7.18%，墙钟降幅分别为 1.38%、6.93%、6.10%。合计 24 组成对中位数 CPU 下降 **4.52%**，墙钟下降 **3.85%**。[首测](../output/_v1110/native_perf50/cycles04/symbol_atomic_ab.json) · [反转复测](../output/_v1110/native_perf50/cycles04/symbol_atomic_ab_repeat.json) · [确认](../output/_v1110/native_perf50/cycles04/symbol_atomic_ab_confirm.json)
+
+914 + 1,690 场原版严格逐事件核验全部通过，逐场 C++ 事件哈希完全一致。接电、自然负载连续 24 批，中位数 **112.59 场/秒**，最慢 **100.35 场/秒**，全部达到部署门槛。自然样本未覆盖 20%，保留拟合拒绝结果，补充与第二轮同设置的 30 秒预热受控负载校准。[全量验收](../output/_v1110/native_perf50/cycles04/symbol_atomic_full_gate.json) · [事件哈希](../output/_v1110/native_perf50/cycles04/symbol_atomic_event_hashes.json) · [自然负载测速](../output/_v1110/native_perf50/cycles04/symbol_atomic_serial.json)
+
+补充校准的估算后台负载为 9.5%–36.0%，24 批原始吞吐中位数 **102.99**、最慢 **70.43 场/秒**。20% 换算值为 **92.70 场/秒**，连续四批分组留出预测误差中位数为 2.66%，第 90 百分位为 4.86%。该换算对应受控负载采样条件，与第三轮自然负载模型分别记录。100／125 换算目标继续推进。[受控校准](../output/_v1110/native_perf50/cycles04/symbol_atomic_load_calibration_warm.json) · [20% 换算](../output/_v1110/native_perf50/cycles04/symbol_atomic_load20_warm.json)
+
+已部署 DLL `1291ef1b6ae50856e9e3585d9193734b64a4a1c15cf98ebca1ebedf7333ce940`，正常训练评估 12 场无错误，另 12 场固定种子胜负与基线一致，部署、验收与运行时清单的 DLL 哈希相同。旧版保留于 `dist/native_1_1_10_before_cycle04`。下一轮从该版重采样，并用独立诊断构建量化计时器索引可复用的机会。[部署记录](../output/_v1110/native_perf50/cycles04/symbol_atomic_installation.json)

@@ -1,0 +1,5 @@
+{
+  "passed": true,
+  "dll_sha256": "b69c4b28cee75e2cadba4db331c726f655f318fe54b2c03d8813db683f608c1e",
+  "output": "Symbol replacement, aliases, temporary strings, collisions, binary names and eight-thread invalidation passed\n"
+}

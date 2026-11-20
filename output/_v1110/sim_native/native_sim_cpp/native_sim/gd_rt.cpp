@@ -3,6 +3,7 @@
 #include "gd_rt.hpp"
 
 #include <algorithm>
+#include <atomic>
 #include <cctype>
 #include <cstdio>
 #include <cstdlib>
@@ -10,6 +11,19 @@
 #include <unordered_map>
 
 namespace gd {
+
+struct FastInternedSymbol {
+    std::string_view text;
+    SymId id;
+};
+static std::atomic<const char*> fast_sym_names[8192]{};
+static std::atomic<const FastInternedSymbol*> fast_interned_syms[16384]{};
+static std::atomic<uint64_t> sym_revision{0};
+static std::atomic<bool> sym_reads_ready{false};
+struct SymWriteGuard {
+    SymWriteGuard() { sym_revision.fetch_add(1, std::memory_order_acq_rel); }
+    ~SymWriteGuard() { sym_revision.fetch_add(1, std::memory_order_release); }
+};
 
 // ─────────────────────────── Static Arena & Symbols ───────────────────────────
 BattleArena& static_arena() {
@@ -33,6 +47,7 @@ static std::vector<const char*>& sym_names_vec() {
 }
 
 static void register_sym_unlocked(SymId id, std::string_view sv) {
+    const SymWriteGuard writing;
     auto& v = sym_names_vec();
     if (id >= v.size()) v.resize(id + 1, "");
     char* copy = static_arena().alloc_array<char>(sv.size() + 1);
@@ -40,6 +55,14 @@ static void register_sym_unlocked(SymId id, std::string_view sv) {
     copy[sv.size()] = '\0';
     v[id] = copy;
     sym_map()[std::string_view(copy, sv.size())] = id;
+
+    // Both the copied text and immutable cache entries live in the static arena.
+    // Readers fall back to the mutex if a write overlaps either table read.
+    auto* entry = static_arena().make<FastInternedSymbol>();
+    entry->text = std::string_view(copy, sv.size());
+    entry->id = id;
+    fast_interned_syms[std::hash<std::string_view>{}(sv) & 16383u].store(entry, std::memory_order_release);
+    if (id < 8192) fast_sym_names[id].store(copy, std::memory_order_release);
 }
 
 static void ensure_builtin_syms_unlocked() {
@@ -49,6 +72,7 @@ static void ensure_builtin_syms_unlocked() {
 #define GD_X_REG(name, str) register_sym_unlocked(name, str);
     GD_BUILTIN_SYMS(GD_X_REG)
 #undef GD_X_REG
+    sym_reads_ready.store(true, std::memory_order_release);
 }
 
 void register_sym(SymId id, std::string_view sv) {
@@ -57,6 +81,16 @@ void register_sym(SymId id, std::string_view sv) {
 }
 
 SymId intern_sym(std::string_view sv) {
+
+    if (sym_reads_ready.load(std::memory_order_acquire)) {
+        const auto before = sym_revision.load(std::memory_order_acquire);
+        if (!(before & 1u)) {
+            const auto slot = std::hash<std::string_view>{}(sv) & 16383u;
+            const auto* entry = fast_interned_syms[slot].load(std::memory_order_acquire);
+            if (entry && entry->text == sv &&
+                    sym_revision.load(std::memory_order_acquire) == before) return entry->id;
+        }
+    }
     std::lock_guard<std::mutex> lk(sym_mtx());
     ensure_builtin_syms_unlocked();
     auto& m = sym_map();
@@ -70,6 +104,13 @@ SymId intern_sym(std::string_view sv) {
 }
 
 const char* sym_name(SymId id) {
+    if (id < 8192 && sym_reads_ready.load(std::memory_order_acquire)) {
+        const auto before = sym_revision.load(std::memory_order_acquire);
+        if (!(before & 1u)) {
+            const char* name = fast_sym_names[id].load(std::memory_order_acquire);
+            if (name && sym_revision.load(std::memory_order_acquire) == before) return name;
+        }
+    }
     std::lock_guard<std::mutex> lk(sym_mtx());
     ensure_builtin_syms_unlocked();
     const auto& v = sym_names_vec();
