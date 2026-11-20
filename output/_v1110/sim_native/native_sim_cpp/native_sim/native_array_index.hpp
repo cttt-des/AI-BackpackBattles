@@ -10,4 +10,13 @@ inline GdVal native_array_index(BattleCtx& ctx,const GdVal& recv,const GdVal& ke
     }
     return gd::get_index(ctx,recv,key);
 }
+inline void native_array_set_index(BattleCtx& ctx,GdVal& recv,const GdVal& key,const GdVal& value) {
+    if(recv.kind==GdVal::Kind::Arr && recv.arr && key.kind==GdVal::Kind::Int) {
+        int64_t index=key.i;
+        if(index<0)index+=static_cast<int64_t>(recv.arr->len);
+        if(index<0 || static_cast<uint64_t>(index)>=recv.arr->len)return;
+        recv.arr->data[index]=value;return;
+    }
+    gd::set_index(ctx,recv,key,value);
+}
 } // namespace gd
