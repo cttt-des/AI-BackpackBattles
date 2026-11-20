@@ -17,6 +17,7 @@
 
 - 旧基准固定一套玩家阵容、25 套对手、每套 8 个种子。使用单线程训练批量入口，包含 DLL 加载和阵容打包。战斗时长均值 8.40 秒、中位数 9.96 秒。
 - 平均时长基准从 2,604 场冻结原版录制中按战斗时长分位点固定抽取 200 场。使用单线程原版回放入口，输入预先打包，计时区间包括 Python 绑定和 C++ 模拟。逐场核对原版胜负和自然终局，并比对优化前后的完整结果结构哈希。全语料时长均值 16.12 秒、中位数 12.81 秒。
+- 30、40、50 场/秒三档均按同一批回放的单线程实测验收。以整轮吞吐计量，稳定达标以重复测量中最慢一轮为准。
 - 全量原版一致性核验覆盖基准 914 场和扩展 1,690 场，包括事件顺序、帧、数值、父事件、普通物品与宝石来源、胜负和自然终局。二进制以 SHA-256 关联到验收报告。
 
 ## 实测记录
@@ -44,7 +45,7 @@
 | 局部 LTO + PGO | 1 | **31.76** | 29.11–32.65 |
 | 局部 LTO + PGO | 4 | **88.29** | 85.05–89.54 |
 
-最终 PGO DLL 已装入本地默认训练运行时 `dist/native_1_1_10`。基准 914 场和扩展 1,690 场全部通过严格逐事件核验，原版胜负无差异，2,604 份 C++ 事件流水哈希与本轮优化前的 DLL 完全相同。按四线程总吞吐，三轮均超过 30、40 和 50 场/秒。单线程中位数超过 30 场/秒，最慢一轮为 29.11 场/秒。
+PGO DLL 已装入本地默认训练运行时 `dist/native_1_1_10`。基准 914 场和扩展 1,690 场全部通过严格逐事件核验，原版胜负无差异，2,604 份 C++ 事件流水哈希与优化前的 DLL 完全相同。上表保留四线程数据供参考。电池供电下，PGO 的单线程中位数超过 30 场/秒，最慢一轮为 29.11 场/秒。
 
 ## 本机构建与复测
 
@@ -54,8 +55,16 @@
 $stage = 'output/_v1110'
 $native = "$stage/sim_native/native_sim_cpp/native_sim"
 python "$stage/build_native_hot_lto.py" $native --pgo --out "$stage/native_perf50/rebuilt-pgo.dll"
-python "$stage/bench_native_corpus.py" --dll "$stage/native_perf50/rebuilt-pgo.dll" --workers 4 --out "$stage/native_perf50/rebuilt-perf.json"
+python "$stage/bench_native_corpus.py" --dll "$stage/native_perf50/rebuilt-pgo.dll" --workers 1 --out "$stage/native_perf50/rebuilt-perf.json"
 ```
+
+## 单线程稳定性与 CPU 负载
+
+接电后，对 PGO 版运行了 5 批初测、6 批独立进程复测和 24 批连续回放。三组最慢一轮分别是 16.34、40.64 和 31.74 场/秒。初测最慢两轮附近的系统负载接近 100%。连续 24 批的中位数为 59.32 场/秒，降到 31.74 场/秒的一轮整机负载为 68.8%。各轮使用相同的 200 场、输入哈希和完整结果哈希。[单线程原始记录](../output/_v1110/native_perf50_serial_ac_baseline.json)
+
+以连续 24 批拟合整机 CPU 负载与耗时的关系。在本机接电、负载 28.8%–68.8% 的观测范围内，负载每增加 10 个百分点，模型估计耗时增加约 18.5%。按连续四批分组留出验证，耗时预测的绝对相对误差中位数为 5.7%，第 90 百分位为 18.7%。34.75% 参考负载下估计为 60.58 场/秒。校正值用于比较，三档阈值以未校正的单线程实测值验收。[拟合脚本](../output/_v1110/fit_native_serial_load.py) · [拟合结果](../output/_v1110/native_perf50_serial_load_fit.json)
+
+新版基准的 `--repeat` 会复用已打包的 200 场，记录每批的墙钟时间、主线程 CPU 时间、整机负载与估算后台负载。比较新旧版本时短间隔交替执行，检查成对耗时差和负载差。降频和同核竞争都会影响同一负载下能完成的工作量。[微软对 CPU 时间与实际处理能力的说明](https://learn.microsoft.com/en-us/troubleshoot/windows-client/performance/cpu-usage-exceeds-100)
 
 [首轮 A/B](../output/_v1110/native_perf50_battery_ab.json) · [LTO 对照](../output/_v1110/native_perf50_lto_ab.json) · [最终性能记录](../output/_v1110/native_perf50_final_benchmark.json) · [全量验收](../output/_v1110/native_perf50_pgo_full_gate.json) · [事件哈希比对](../output/_v1110/native_perf50_pgo_event_hashes.json)
 
