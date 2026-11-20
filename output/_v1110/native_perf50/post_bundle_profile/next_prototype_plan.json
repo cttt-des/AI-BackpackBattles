@@ -1,0 +1,84 @@
+{
+  "base_sha256": "486dfce912d83a24cb4b4943b3b7a4aba5df68879caca2d71943eb98c4f73508",
+  "samples": 6033,
+  "max_depth": 64,
+  "samples_at_limit": 12,
+  "decision": "prototype exact-type cached resolved generated-method rows, preserving most-derived overrides and generic fallbacks",
+  "direct_fast_method_additions": [
+    {
+      "symbol": "SYM_GEN_getP_188",
+      "static_call_sites": 778
+    },
+    {
+      "symbol": "SYM_GEN_character_74",
+      "static_call_sites": 669
+    },
+    {
+      "symbol": "SYM_GEN_connectForCombat_500",
+      "static_call_sites": 280
+    },
+    {
+      "symbol": "SYM_GEN_getAffectedItems_420",
+      "static_call_sites": 229
+    },
+    {
+      "symbol": "SYM_GEN_getP1_263",
+      "static_call_sites": 222
+    },
+    {
+      "symbol": "SYM_GEN_hasType_79",
+      "static_call_sites": 219
+    },
+    {
+      "symbol": "SYM_GEN_setState_382",
+      "static_call_sites": 184
+    },
+    {
+      "symbol": "SYM_GEN_opponent_75",
+      "static_call_sites": 176
+    },
+    {
+      "symbol": "SYM_GEN_getP_m_189",
+      "static_call_sites": 167
+    },
+    {
+      "symbol": "SYM_GEN_getP2_264",
+      "static_call_sites": 159
+    },
+    {
+      "symbol": "SYM_GEN_hasHit_1523",
+      "static_call_sites": 135
+    },
+    {
+      "symbol": "SYM_GEN_getP3_265",
+      "static_call_sites": 108
+    },
+    {
+      "symbol": "SYM_GEN_getDescriptor_1660",
+      "static_call_sites": 107
+    },
+    {
+      "symbol": "SYM_GEN_getNumAffectedItems_427",
+      "static_call_sites": 91
+    },
+    {
+      "symbol": "SYM_GEN_getChance_171",
+      "static_call_sites": 79
+    },
+    {
+      "symbol": "SYM_GEN_miniActivate_470",
+      "static_call_sites": 78
+    }
+  ],
+  "important_design_change": "Lazy exact-RTTI lookup on first selected call, avoiding allocator hooks and covering ItemProto memcpy clones. Unsupported C++ types get a cached empty row, preserving custom overrides without invoking metadata getters.",
+  "object_copy_policy": "Reset only internal row cache in GdObj copy/assignment; keep original context, IDs and connection fields. Same-type raw prototype clones retain valid immutable rows.",
+  "hard_constraints": [
+    "keep callback binds/order and all arithmetic/RNG calls",
+    "all674 generated dispatcher switches/parents audited before resolution",
+    "full20 rebuild for GdObj layout change",
+    "actual coverage and overrides/custom-hook targeted tests before2604 strict truth/hash",
+    "fixed200 combined AB/BA, raw24>=50, verified runtime/training before deployment"
+  ],
+  "backup_before_logic_changes": "36c1f5977fda14c6e2a013940165a0e1cc6c384a",
+  "no_candidate_built_yet": true
+}
