@@ -248,3 +248,20 @@ Buff 自调用首轮 CPU 耗时增加 8.48%，事件总线上下文读取增加 
 字段布局在原 20 秒预热流程下首测 CPU 下降 1.95%、墙钟下降 2.17%。改进测量流程后的两组 CPU 降幅为 **−0.31%、1.02%**，墙钟为 **0.19%、0.17%**，没有显示可重复收益。本轮排除字段布局，未进入全量发布门槛，DLL 维持第四轮版本。[初测](../output/_v1110/native_perf50/cycles06/item_layout_ab.json) · [稳态对照](../output/_v1110/native_perf50/cycles06/item_layout_ab_steady.json) · [反转复测](../output/_v1110/native_perf50/cycles06/item_layout_ab_steady_repeat.json)
 
 同时复现并修复真实构建缺陷。旧 Windows 构建只跟踪四个公共头文件，生成类头改动后仍复用对象文件。真实小型 DLL 实验在头文件调整字段顺序后仍返回旧偏移 4；补齐生成类头依赖后会重新编译，返回正确偏移 0，C++ 源文件未变。该构建脚本修复已应用，698 份 C++／头文件与已验收版逐字节一致，运行时 DLL 哈希保持不变。[修复脚本](../output/_v1110/optimize_native_header_dependencies.py) · [真实编译测试](../output/_v1110/test_native_header_dependencies.py) · [测试结果](../output/_v1110/native_perf50/cycles06/header_dependency_test.json) · [构建支持更新](../output/_v1110/native_perf50/cycles06/build_support_installation.json)
+
+
+### 第七轮
+
+基线仍为第四轮 `1291ef1b…`，源码及 DLL 已备份至远端 `c5101b34`。沿用该版本 6,035 个有效栈样本；第五、六轮未替换 DLL，因此采样仍对应当前运行版本。
+
+独立重试物品行为白名单常量比较。两处九元素临时数组成员查询改为同顺序的固定字符串比较，保留其他派发；22 个 C ABI 符号相同，三场原版严格逐事件回放通过。两轮各八组进程隔离 AB／BA，均先交替预热至少 60 秒。CPU 耗时分别增加 **1.01%、0.01%**，墙钟增加 **1.30%、0.14%**，不部署该候选。[首测](../output/_v1110/native_perf50/cycles07/behavior_constants_ab.json) · [反转复测](../output/_v1110/native_perf50/cycles07/behavior_constants_ab_repeat.json) · [ABI](../output/_v1110/native_perf50/cycles07/behavior_constants_abi.json) · [三场回放](../output/_v1110/native_perf50/cycles07/behavior_constants_target/summary.json)
+
+最终采用原生空快照的参数准备省略。CoreCombatLog 每次创建事件时原本还会创建双角色临时数组、读取角色及 Stamina 类型，再调用两次角色快照。NativeBattleHooks 为 final，除 logEvent 外均调用 CoreHooks；角色快照方法仅复制参数并返回空值，在普通和调试模式均无效果。仅确切 CoreContext 加确切 NativeBattleHooks 命中快速路径，使用 RTTI 地址比较，保留事件创建、编号、参数、来源、时间、日志和 RNG。其他类型继续执行原路径；特意保留动态 logEvent 与角色快照 ID 冲突时的回退。生成脚本校验相关方法及属性读取实现，重复应用字节不变，并已接入重建入口。[生成脚本](../output/_v1110/optimize_native_noop_snapshots.py)
+
+原版与候选均通过定向 C++ 测试，覆盖继承相同元数据但重写回调的自定义钩子、第一次快照回调中替换钩子，以及上下文属性读取次数与顺序。22 个 C ABI 不变，三场原版严格逐事件回放通过。[测试源码](../output/_v1110/test_native_noop_snapshots.cpp) · [基线测试](../output/_v1110/native_perf50/cycles07/snapshot_baseline_test.json) · [候选测试](../output/_v1110/native_perf50/cycles07/snapshot_candidate_test.json) · [ABI 与幂等性](../output/_v1110/native_perf50/cycles07/noop_snapshots_abi.json)
+
+三轮各八组隔离 AB／BA，CPU 耗时降幅分别为 **4.61%、1.63%、1.78%**，墙钟为 **4.45%、0.99%、3.84%**。合计 24 对中位数 CPU 下降 **1.88%**、墙钟下降 **2.69%**，CPU 胜出 17 对。第三组存在较大背景波动，所有样本均保留，未按速度筛选。[首测](../output/_v1110/native_perf50/cycles07/noop_snapshots_ab.json) · [反转复测](../output/_v1110/native_perf50/cycles07/noop_snapshots_ab_repeat.json) · [确认](../output/_v1110/native_perf50/cycles07/noop_snapshots_ab_confirm.json) · [汇总](../output/_v1110/native_perf50/cycles07/noop_snapshots_ab_pooled.json)
+
+914 + 1,690 场原版严格逐事件验收全部通过，逐场 C++ 事件哈希全部一致。接电、自然后台负载 **10.0%–23.0%** 下连续 24 批，原始吞吐中位数 **81.42 场/秒**、最慢 **75.45 场/秒**，全部达到 50 场/秒门槛。本组负载覆盖 20%，拟合值为 **80.73 场/秒**；分组留出误差中位数 1.79%，第 90 百分位 4.11%。绝对吞吐低于历史不同时间的采样，现有负载拟合无法消除频率、温度及其他未测条件的影响，本轮代码收益以同轮配对对照为依据。100／125 换算目标尚未达到。[全量验收](../output/_v1110/native_perf50/cycles07/noop_snapshots_full_gate.json) · [事件哈希](../output/_v1110/native_perf50/cycles07/noop_snapshots_event_hashes.json) · [24 批吞吐](../output/_v1110/native_perf50/cycles07/noop_snapshots_serial.json) · [20% 换算](../output/_v1110/native_perf50/cycles07/noop_snapshots_load20.json)
+
+已部署 DLL `9ffe3242ea2d2996b19ddda6ddc6f269afca4c5439b858059b03e029c03f1899`。正常训练评估 12 场无错误，另 12 场固定种子结果与基线一致；部署 DLL、验收报告和运行时清单的 SHA-256 匹配，源码与受测副本相同。旧版保留于 `dist/native_1_1_10_before_cycle07`。继续从新部署版重采样，下一轮优先量化整数键字典的直接定位机会。[部署记录](../output/_v1110/native_perf50/cycles07/noop_snapshots_installation.json)

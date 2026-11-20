@@ -1,3 +1,5 @@
+#include "../../gd_rt.hpp"
+extern bool gd_native_character_snapshots_are_noop(const gd::GdVal& context);
 #pragma STDC FP_CONTRACT OFF
 
 #include "../hdrs/Gd__gd_core__AcornCollar.hpp"
@@ -449,7 +451,7 @@ gd::GdVal Gd__gd_core__CoreCombatLog::fn_createEvent(const gd::GdVal* _args, int
     gd::GdVal lv_type = (_argc > 2) ? _args[2] : gd::GdVal::null();
     this->f_eventNum = gd::gd_add(gd_ctx, this->f_eventNum, gd::GdVal::from_int(1LL));
     gd::GdVal lv_event = ([&]() { gd::GdVal _ca[] = {this->f_eventNum, gd::call_method(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getTimeStamp_1353, nullptr, 0), lv_triggerEvent, lv_origin, lv_type}; return gd::call_method(gd_ctx, gd::GdVal::from_cls(&META_Gd__gd_core__CoreEvent), gd::SYM_new, _ca, 5); })();
-    {
+    if (!gd_native_character_snapshots_are_noop(this->f__ctx)) {
         gd::GdVal _t957 = gd::gd_iter_seq(gd_ctx.arena, gd::GdVal::from_arr(gd::GdArr::from_init(gd_ctx.arena, {gd::get_prop(gd_ctx, this->f__ctx, SYM_GEN_player_1302), gd::get_prop(gd_ctx, this->f__ctx, SYM_GEN_opponent_75)})));
         gd::GdArr* _t958 = (_t957.kind == gd::GdVal::Kind::Arr) ? _t957.arr : nullptr;
         uint32_t _len__t959 = _t958 ? _t958->len : 0u;

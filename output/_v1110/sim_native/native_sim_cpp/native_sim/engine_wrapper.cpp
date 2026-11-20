@@ -1,3 +1,4 @@
+#include <typeinfo>
 #pragma STDC FP_CONTRACT OFF
 
 #include <algorithm>
@@ -1698,3 +1699,12 @@ void gd_sim_run_batch_training(
 }
 
 }  // extern "C"
+
+bool gd_native_character_snapshots_are_noop(const gd::GdVal& context) {
+    if (g_syms.logEvent == SYM_GEN_snapshotCharacterStat_1387) return false;
+    if (context.kind != gd::GdVal::Kind::Obj || !context.obj ||
+            &typeid(*context.obj) != &typeid(Gd__gd_core__CoreContext)) return false;
+    const auto& hooks = static_cast<Gd__gd_core__CoreContext*>(context.obj)->f_hooks;
+    return hooks.kind == gd::GdVal::Kind::Obj && hooks.obj &&
+        &typeid(*hooks.obj) == &typeid(NativeBattleHooks);
+}
