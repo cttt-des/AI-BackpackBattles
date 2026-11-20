@@ -1,0 +1,13 @@
+{
+  "dll_sha256": "054dc1c3356edcf3f87bd9be3be0c9494d457ec9ca9ace5105a569f6d147ce78",
+  "inputs_sha256": "d94b16d42cc88e9a3850a77c9360b9c4c4fdd676cb252e463044a903db2a5fef",
+  "results_sha256": "2e74b45caa87f7ee6ac72ffc35d98cc8db140b47031614d26542e183cef5d2c9",
+  "counts": {
+    "character_timer_passes": 386704,
+    "unchanged_epoch_passes": 143948,
+    "array_mutations": 3811229
+  },
+  "unchanged_epoch_fraction": 0.37224336960569326,
+  "diagnostic_only": true,
+  "mutation_scope": "Array mutators, clear/shuffle/sort_custom and generic inventory/items/timers/gems setters; direct generated field assignments are not covered"
+}

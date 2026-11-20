@@ -2,8 +2,10 @@
 import argparse
 import hashlib
 import json
+import math
 from pathlib import Path
 import statistics
+import time
 
 import psutil
 
@@ -28,9 +30,13 @@ def main():
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--pairs", type=int, default=8)
     parser.add_argument("--candidate-first", action="store_true")
+    parser.add_argument("--warmup-seconds", type=float, default=0,
+                        help="Continue alternating complete warmup batches for at least this long")
     args = parser.parse_args()
     if args.pairs < 2 or args.pairs % 2:
         parser.error("--pairs must be a positive even number")
+    if not math.isfinite(args.warmup_seconds) or not 0 <= args.warmup_seconds <= 120:
+        parser.error("--warmup-seconds must be between zero and 120")
 
     reference = json.loads(args.reference.read_bytes())
     cases = select_cases(200)
@@ -63,8 +69,18 @@ def main():
             raise ValueError(f"Replay result differs from the reference for {label}")
         return result
 
-    for label in arms:
-        run(label)
+    warmup_start = time.perf_counter()
+    warmup_rounds = 0
+    warmup_batches = []
+    while not warmup_rounds or time.perf_counter() - warmup_start < args.warmup_seconds:
+        order = list(arms) if warmup_rounds % 2 == 0 else list(reversed(arms))
+        for label in order:
+            sample = run(label)
+            warmup_batches.append({"arm": label, **{key: sample[key] for key in
+                                   ("wall_s", "main_thread_cpu_s", "background_load_pct")}})
+        warmup_rounds += 1
+    report["warmup"] = {"minimum_seconds": args.warmup_seconds, "rounds": warmup_rounds,
+                        "elapsed_seconds": time.perf_counter() - warmup_start, "batches": warmup_batches}
     for index in range(args.pairs):
         candidate_first = bool(index % 2) != args.candidate_first
         order = ("candidate", "baseline") if candidate_first else ("baseline", "candidate")

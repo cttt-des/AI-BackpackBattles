@@ -218,3 +218,18 @@ Buff 自调用首轮 CPU 耗时增加 8.48%，事件总线上下文读取增加 
 补充校准的估算后台负载为 9.5%–36.0%，24 批原始吞吐中位数 **102.99**、最慢 **70.43 场/秒**。20% 换算值为 **92.70 场/秒**，连续四批分组留出预测误差中位数为 2.66%，第 90 百分位为 4.86%。该换算对应受控负载采样条件，与第三轮自然负载模型分别记录。100／125 换算目标继续推进。[受控校准](../output/_v1110/native_perf50/cycles04/symbol_atomic_load_calibration_warm.json) · [20% 换算](../output/_v1110/native_perf50/cycles04/symbol_atomic_load20_warm.json)
 
 已部署 DLL `1291ef1b6ae50856e9e3585d9193734b64a4a1c15cf98ebca1ebedf7333ce940`，正常训练评估 12 场无错误，另 12 场固定种子胜负与基线一致，部署、验收与运行时清单的 DLL 哈希相同。旧版保留于 `dist/native_1_1_10_before_cycle04`。下一轮从该版重采样，并用独立诊断构建量化计时器索引可复用的机会。[部署记录](../output/_v1110/native_perf50/cycles04/symbol_atomic_installation.json)
+
+
+### 第五轮（未替换运行时）
+
+基线仍为第四轮 `1291ef1b…`，远端备份为 `5e2ab6b3`。新采样取得 6,035 个栈样本、58 批固定回放。战斗逐帧叶节点为 665，物品逐帧为 325，仍优先检查遍历成本。[当前版采样](../output/_v1110/native_perf50/cycles04/symbol_atomic_profile.json)
+
+数组变更计数构建记录到 386,704 次角色计时器阶段和 3,811,229 次受监测变更。只有 143,948 次阶段与同角色上次阶段的数组版本相同，占 37.2%。探针覆盖数组成员修改、清空、洗牌、排序回调及四类通用属性写入；直接生成字段赋值未计入。计数构建逐场终局和完整结果哈希与固定 200 场相同。以全局数组版本维持索引需要频繁重建，本轮未实施。[计数](../output/_v1110/native_perf50/cycles05/timer_index_counts.json) · [计数脚本](../output/_v1110/probe_native_timer_index.py)
+
+另一独立计数构建记录真实 `CoreTimer::tick` 683,532 次，其中 493,011 次处于停止状态，占 72.1%；全部停止标志为布尔值。190,521 次活动调用的上下文均为确切 `CoreContext`，仅 43 次等待首次生效帧。计数构建仍保持固定输入和完整结果哈希。[计时器分支计数](../output/_v1110/native_perf50/cycles05/timer_tick_counts.json)
+
+候选保留数组遍历、长度快照及原位置的状态读取，对确切 CoreTimer 的停止分支提前返回，活动分支直接调用相同方法。计时器方法对确切 CoreContext 直接读取同一 epoch 字段，其余接收器及上下文保留原通用派发。减法、首次生效判断、超时调用和浮点选项保持原实现。[候选生成](../output/_v1110/optimize_native_timer_dispatch.py)
+
+原版及候选均通过 C++ 定向测试，覆盖同帧启动、停用、重启、首次生效、追加、替换后续条目、超时回调、非布尔真值及其他上下文的可观察属性读取。候选另通过三场原版严格逐事件回放。[测试源码](../output/_v1110/test_native_timer_dispatch.cpp) · [基线测试](../output/_v1110/native_perf50/cycles05/timer_baseline_test.json) · [候选测试](../output/_v1110/native_perf50/cycles05/timer_native_test.json) · [三场回放](../output/_v1110/native_perf50/cycles05/timer_native_target/summary.json)
+
+两轮各 8 组 AB／BA，均先对两版交替预热至少 20 秒，每次预热和测速仍使用固定 200 场并验证完整结果哈希。CPU 耗时分别增加 **4.03%**、**0.98%**，墙钟分别增加 **4.57%**、**1.33%**，本轮排除。没有进入全量发布门槛，运行时保持第四轮版本。下一轮独立检验物品热字段布局。[首测](../output/_v1110/native_perf50/cycles05/timer_native_ab.json) · [反转复测](../output/_v1110/native_perf50/cycles05/timer_native_ab_repeat.json)
