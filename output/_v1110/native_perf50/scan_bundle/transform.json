@@ -1,0 +1,19 @@
+{
+  "baseline_dll_sha256": "1be75dced83e9e90fdbe61dd86f91bc27e19bb44acf9449d295849e928d9cec5",
+  "retained_candidate_dll_sha256": "8bdcd96dcdf1d35819db619d635c726b72166dcee706558cca91e1ba1b3709af",
+  "components": [
+    "retained pure container and static ClassRef lanes",
+    "eight-entry inactive Buff short-circuit chunks",
+    "five Bool cooldown checks with original non-Bool fallback"
+  ],
+  "preserved": [
+    "original entries pointer and count capture",
+    "ordered live checks after first active/unknown flag",
+    "same-frame callback changes to future entries",
+    "original timer bodies and RNG",
+    "object/context layouts and floating options"
+  ],
+  "scan_counts_source": "native_perf50/scan_activity_probe/scan_counts.json",
+  "no_persistent_eligibility_cache": true,
+  "full_rebuild_required": true
+}

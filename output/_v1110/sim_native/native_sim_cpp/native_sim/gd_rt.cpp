@@ -1888,3 +1888,13 @@ GdVal call_method(BattleCtx& ctx, const GdVal& recv, SymId m, const GdVal* args,
 }  // namespace gd
 
 #include "native_resolved_dispatch.hpp"
+
+namespace gd {
+static thread_local uint64_t native_inline_variant_counts[10]{};
+void native_inline_variant_hit(unsigned field) {
+    if(field<10)++native_inline_variant_counts[field];
+}
+}
+extern "C" uint64_t gd_diag_native_variant_stat(unsigned field) {
+    return field<10?gd::native_inline_variant_counts[field]:0;
+}

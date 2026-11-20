@@ -4747,7 +4747,34 @@ gd::GdVal Gd__gd_core__CoreCharacter::fn_tickBuffs(const gd::GdVal* args, int ar
     const auto delta = gd::gd_coerce_float(argc > 0 ? args[0] : gd::GdVal::null());
     const auto* buffs = this->f_buffs.dict;
     const auto* entries = buffs->entries;
-    for (uint32_t i = 0, count = buffs->len; i < count; ++i) {
+    uint32_t i=0;
+    const uint32_t count=buffs->len;
+    const auto inactive=[entries](uint32_t index) {
+        const auto* buff=static_cast<Gd__gd_core__CoreBuff*>(entries[index].val.obj);
+        const auto& active=buff->f__timer_active;
+        return active.kind==gd::GdVal::Kind::Bool && !active.b;
+    };
+    while(count-i>=8) {
+        // Short circuit before any callback: never pre-read past an active/unknown flag.
+        if (inactive(i+0)
+            && inactive(i+1)
+            && inactive(i+2)
+            && inactive(i+3)
+            && inactive(i+4)
+            && inactive(i+5)
+            && inactive(i+6)
+            && inactive(i+7)) {
+            i+=8;
+            continue;
+        }
+        const uint32_t end=i+8;
+        for(;i<end;++i) {
+        auto* buff = static_cast<Gd__gd_core__CoreBuff*>(entries[i].val.obj);
+        const auto& active = buff->f__timer_active;
+        if (active.kind == gd::GdVal::Kind::Bool ? active.b : gd::gd_truth(active)) buff->fn__tick(&delta, 1);
+        }
+    }
+    for(;i<count;++i) {
         auto* buff = static_cast<Gd__gd_core__CoreBuff*>(entries[i].val.obj);
         const auto& active = buff->f__timer_active;
         if (active.kind == gd::GdVal::Kind::Bool ? active.b : gd::gd_truth(active)) buff->fn__tick(&delta, 1);

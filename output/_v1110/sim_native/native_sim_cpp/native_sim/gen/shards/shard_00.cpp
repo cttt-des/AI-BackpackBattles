@@ -2011,7 +2011,7 @@ gd::GdVal Gd__gd_core__CoreItem::fn_resetCombatState(const gd::GdVal* _args, int
     return gd::GdVal::null();
 }
 gd::GdVal Gd__gd_core__CoreItem::fn_physicsTick(const gd::GdVal* args, int argc) {
-    if (!gd::gd_truth(this->f__cooldown_active)) return gd::GdVal::null();
+    if (!([&] { const auto& active = this->f__cooldown_active; if (active.kind == gd::GdVal::Kind::Bool) [[likely]] return active.b; return gd::gd_truth(active); }())) return gd::GdVal::null();
     auto& context = *static_cast<Gd__gd_core__CoreContext*>(this->f_ctx.obj);
     const auto blocked = this->f__cooldown_blocked_epoch.as_int();
     if (blocked >= 0 && blocked == context.f_timer_pass_epoch.as_int()) return gd::GdVal::null();
