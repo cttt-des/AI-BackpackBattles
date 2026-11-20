@@ -1,0 +1,102 @@
+{
+  "baseline_dll_sha256": "0904c29d124d7f8e4a97a2ed6a73f7e006d07ee63552fecda3ed064d0427b4f3",
+  "comparison_fast_cases": [
+    "Null/Null",
+    "Bool/Bool",
+    "Int/Int (exact int64 equality)",
+    "Float/Float (original native double equality)"
+  ],
+  "mixed_and_container_comparisons": "unchanged gd_eq fallback, including mixed numeric coercion, strings, arrays and object identity",
+  "write_fast_case": "nonnull Array receiver and Int key; exact original bounds/negative-index/data assignment",
+  "write_fallback": "unchanged set_index, including dictionary and custom object property writes",
+  "arithmetic_rng_ordering": "No gd_lt/le/gt/ge, arithmetic, RNG or frame changes; same argument expressions and call shape",
+  "sites": {
+    "gen/shards/shard_00.cpp": {
+      "gd::gd_eq": 105,
+      "gd::gd_ne": 53,
+      "gd::set_index": 35
+    },
+    "gen/shards/shard_01.cpp": {
+      "gd::gd_eq": 82,
+      "gd::gd_ne": 16,
+      "gd::set_index": 9
+    },
+    "gen/shards/shard_02.cpp": {
+      "gd::gd_eq": 89,
+      "gd::gd_ne": 74,
+      "gd::set_index": 12
+    },
+    "gen/shards/shard_03.cpp": {
+      "gd::gd_eq": 32,
+      "gd::gd_ne": 18,
+      "gd::set_index": 3
+    },
+    "gen/shards/shard_04.cpp": {
+      "gd::gd_eq": 15,
+      "gd::gd_ne": 13,
+      "gd::set_index": 7
+    },
+    "gen/shards/shard_05.cpp": {
+      "gd::gd_eq": 41,
+      "gd::gd_ne": 12,
+      "gd::set_index": 1
+    },
+    "gen/shards/shard_06.cpp": {
+      "gd::gd_eq": 62,
+      "gd::gd_ne": 21,
+      "gd::set_index": 2
+    },
+    "gen/shards/shard_07.cpp": {
+      "gd::gd_eq": 75,
+      "gd::gd_ne": 19,
+      "gd::set_index": 26
+    },
+    "gen/shards/shard_08.cpp": {
+      "gd::gd_eq": 16,
+      "gd::gd_ne": 2,
+      "gd::set_index": 1
+    },
+    "gen/shards/shard_09.cpp": {
+      "gd::gd_eq": 4,
+      "gd::gd_ne": 3,
+      "gd::set_index": 0
+    },
+    "gen/shards/shard_10.cpp": {
+      "gd::gd_eq": 42,
+      "gd::gd_ne": 24,
+      "gd::set_index": 4
+    },
+    "gen/shards/shard_11.cpp": {
+      "gd::gd_eq": 28,
+      "gd::gd_ne": 1,
+      "gd::set_index": 2
+    },
+    "gen/shards/shard_12.cpp": {
+      "gd::gd_eq": 19,
+      "gd::gd_ne": 13,
+      "gd::set_index": 4
+    },
+    "gen/shards/shard_13.cpp": {
+      "gd::gd_eq": 26,
+      "gd::gd_ne": 3,
+      "gd::set_index": 2
+    },
+    "gen/shards/shard_14.cpp": {
+      "gd::gd_eq": 14,
+      "gd::gd_ne": 6,
+      "gd::set_index": 1
+    },
+    "gen/shards/shard_15.cpp": {
+      "gd::gd_eq": 18,
+      "gd::gd_ne": 12,
+      "gd::set_index": 1
+    }
+  },
+  "totals": {
+    "gd::gd_eq": 668,
+    "gd::gd_ne": 290,
+    "gd::set_index": 110
+  },
+  "object_layout_changed": false,
+  "full_rebuild_required": true
+}
