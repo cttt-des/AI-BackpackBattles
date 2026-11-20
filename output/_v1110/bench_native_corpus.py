@@ -80,34 +80,26 @@ def prepare(sim, cases, inputs_digest):
         yield case_id, sides, options, round(duration * 60), winner
 
 
-def main():
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--dll", type=Path, required=True)
-    parser.add_argument("--out", type=Path, required=True)
-    parser.add_argument("--size", type=int, default=200)
-    parser.add_argument("--workers", type=int, default=1)
-    args = parser.parse_args()
-    if args.workers < 1:
-        parser.error("--workers must be positive")
-    cases = select_cases(args.size)
-    sim = load_simulator(args.dll)
-    inputs_digest = hashlib.sha256()
-    jobs = list(prepare(sim, cases, inputs_digest))
-    load_before = psutil.cpu_percent(interval=0.3)
+def measure(sim, jobs, workers, load_before, *, continuous):
     before = psutil.sensors_battery()
 
     def replay(job):
         _, sides, options, _, _ = job
         return sim.run_one(*sides, **options)
 
-    wall_start, cpu_start = time.perf_counter(), time.process_time()
-    if args.workers == 1:
+    psutil.cpu_percent(interval=None)
+    wall_start, cpu_start, thread_start = time.perf_counter(), time.process_time(), time.thread_time()
+    if workers == 1:
         results = list(map(replay, jobs))
     else:
-        with ThreadPoolExecutor(max_workers=args.workers) as executor:
+        with ThreadPoolExecutor(max_workers=workers) as executor:
             results = list(executor.map(replay, jobs))
+    thread_cpu = time.thread_time() - thread_start
     cpu, wall = time.process_time() - cpu_start, time.perf_counter() - wall_start
-    load_after = psutil.cpu_percent(interval=0.3)
+    system_load = psutil.cpu_percent(interval=None)
+    logical_cpus = psutil.cpu_count()
+    background_load = max(0.0, system_load - 100 * cpu / (wall * logical_cpus)) if logical_cpus else None
+    load_after = system_load if continuous else psutil.cpu_percent(interval=0.3)
     after = psutil.sensors_battery()
     signature, durations = hashlib.sha256(), []
     for (case_id, _, _, terminal_tick, winner), result in zip(jobs, results, strict=True):
@@ -117,22 +109,63 @@ def main():
             raise ValueError(f"Replay terminal differs from the original in {case_id}")
         durations.append(result.combat_time)
         signature.update(ctypes.string_at(ctypes.addressof(result), ctypes.sizeof(result)))
-    report = {
-        "workload": "duration-stratified original replays with packed inputs and logging disabled",
-        "dll_sha256": hashlib.sha256(args.dll.read_bytes()).hexdigest(),
-        "inputs_sha256": inputs_digest.hexdigest(), "results_sha256": signature.hexdigest(),
-        "fights": len(results), "workers": args.workers, "matched_original_terminal": len(results),
+    return {
+        "results_sha256": signature.hexdigest(), "matched_original_terminal": len(results),
         "wall_s": wall, "cpu_s": cpu, "fights_per_second": len(results) / wall,
         "combat_seconds": {"minimum": min(durations), "median": statistics.median(durations),
                            "mean": statistics.mean(durations), "maximum": max(durations)},
         "on_ac_before": before.power_plugged if before else None,
         "on_ac_after": after.power_plugged if after else None,
         "load_pct_before": load_before, "load_pct_after": load_after,
+        "system_load_pct": system_load, "background_load_pct": background_load,
+        "main_thread_cpu_s": thread_cpu,
+    }
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--dll", type=Path, required=True)
+    parser.add_argument("--out", type=Path, required=True)
+    parser.add_argument("--size", type=int, default=200)
+    parser.add_argument("--workers", type=int, default=1)
+    parser.add_argument("--repeat", type=int, default=1, help="Run consecutive batches with the same packed inputs")
+    args = parser.parse_args()
+    if min(args.workers, args.repeat) < 1:
+        parser.error("--workers and --repeat must be positive")
+    cases = select_cases(args.size)
+    sim = load_simulator(args.dll)
+    inputs_digest = hashlib.sha256()
+    jobs = list(prepare(sim, cases, inputs_digest))
+    report = {
+        "workload": "duration-stratified original replays with packed inputs and logging disabled",
+        "dll_sha256": hashlib.sha256(args.dll.read_bytes()).hexdigest(),
+        "inputs_sha256": inputs_digest.hexdigest(),
+        "fights": len(jobs), "workers": args.workers,
         "case_ids": [job[0] for job in jobs],
     }
+    load = psutil.cpu_percent(interval=0.3)
+    samples = []
+    for _ in range(args.repeat):
+        sample = measure(sim, jobs, args.workers, load, continuous=args.repeat > 1)
+        samples.append(sample)
+        load = sample["load_pct_after"]
+    if args.repeat == 1:
+        report.update(samples[0])
+    else:
+        identity = {key: samples[0][key] for key in ("results_sha256", "combat_seconds")}
+        for sample in samples:
+            if any(sample.pop(key) != value for key, value in identity.items()):
+                raise ValueError("Replay results changed across repeated batches")
+        rates = [sample["fights_per_second"] for sample in samples]
+        report.update(identity, repeat=len(samples), median_fights_per_second=statistics.median(rates),
+                      minimum_fights_per_second=min(rates), samples=samples)
     args.out.write_text(json.dumps(report, indent=2) + "\n", encoding="utf8")
-    print(f"{args.dll.name}: {report['fights_per_second']:.2f} replays/s; "
-          f"{report['combat_seconds']['mean']:.2f} s of combat on average; {signature.hexdigest()[:12]}")
+    if args.repeat == 1:
+        print(f"{args.dll.name}: {report['fights_per_second']:.2f} replays/s; "
+              f"{report['combat_seconds']['mean']:.2f} s of combat on average; {report['results_sha256'][:12]}")
+    else:
+        print(f"{args.dll.name}: {args.repeat} batches, median {report['median_fights_per_second']:.2f} replays/s, "
+              f"minimum {report['minimum_fights_per_second']:.2f}; {report['results_sha256'][:12]}")
 
 
 if __name__ == "__main__":
