@@ -1,0 +1,12 @@
+{
+  "kind": "rejected_candidate_runtime_unchanged",
+  "dll_sha256": "58383a1158e951d7aae8b4d4c34df4d52332446156946d31a488f5dff323ec39",
+  "candidate_dll_sha256": "f95e8f9c5bfcab63534ccfff5988b327ddef22edb0f9a274cd3356bc56ad83f1",
+  "changed_native_files": [],
+  "reason": "First CPU and wall medians increased; the predeclared all-three-directions criterion was not met",
+  "boundary_cases_matched": 684,
+  "full_2604_gate_run": false,
+  "raw_24_gate_run": false,
+  "deployed": false,
+  "default_generator_wired": false
+}

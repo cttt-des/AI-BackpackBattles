@@ -1,0 +1,35 @@
+{
+  "baseline_sha256": "58383a1158e951d7aae8b4d4c34df4d52332446156946d31a488f5dff323ec39",
+  "native_only_flag_default_false_and_reset_false": true,
+  "scope": "stack local, separately for opponent/player after physicsTickCharacter",
+  "cache_keys": [
+    "character identity"
+  ],
+  "invalidation_before_and_after": [
+    "gem character getter",
+    "fallback getSpeed",
+    "showCooldown hook",
+    "trigger callback"
+  ],
+  "nested_phases": "independent stack caches; outer invalidated before/after callback",
+  "preserves": [
+    "original loop order and captured lengths",
+    "same-frame mutations",
+    "original FP operation order, no contraction",
+    "delta and override conversions",
+    "blocked epoch and stun reads",
+    "RNG and event parameters"
+  ],
+  "all_generated_meta_methods_pure_constant": 674,
+  "changed_sources": {
+    "gd_rt.hpp": "bf6ee43ba5c5a40ced3b217602b01444b5324ecabd4977ba42e13266c52903e0",
+    "engine_wrapper.cpp": "1dd69d3aa317890b1be03e1e65acb837322ce8ca0c4cbdcbacf85a8aabd45a88",
+    "gen/shards/shard_00.cpp": "e39d297289c832f5237609815630ba3cc4bd435345572c04114bfb42e2d1bced",
+    "gen/shards/shard_03.cpp": "8d7c84ec9a22f4305b9d848e5c80c52e15e7702313349a5592ae379b4b70f3bf"
+  },
+  "full20_rebuild_required": true,
+  "not_wired_to_default_generator": true,
+  "final_speed_cache_rejected_before_trial": "Only 23.32% consecutive same-scale reuse; extra lookup cost unjustified",
+  "cached_expression": "static_cast<double>(stacks(107)-stacks(110))*0.02",
+  "item_scale_and_speed_clamp": "recomputed for every original eligible item"
+}

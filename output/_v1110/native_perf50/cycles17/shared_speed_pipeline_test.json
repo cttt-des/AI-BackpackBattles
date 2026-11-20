@@ -1,0 +1,6 @@
+{
+  "idempotent_bytes_and_mtime": true,
+  "from_pre_inline_timer_input": true,
+  "output_matches_candidate_guards": true,
+  "pending_not_installed": true
+}
