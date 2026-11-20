@@ -1103,6 +1103,7 @@ static void run_one_internal(
     battle.reset_for_battle(opts.seed);
     battle.native_inline_timer_headers = true;
     battle.native_event_kernel = true;
+    battle.native_resolved_dispatch = true;
     if (g_dbg_enabled.load(std::memory_order_relaxed)) g_dbg_events.clear();  // 逐场清空（仅单线程语义）
 
     auto* hooks = battle.arena.make<NativeBattleHooks>(&battle);
@@ -1722,3 +1723,9 @@ gd::GdVal gd_native_event_hooks_call(gd::BattleCtx& ctx,const gd::GdVal& hooks,g
 }
 extern "C" uint64_t gd_diag_native_event_stat(unsigned field) {return field<5?tl_battle_ctx.native_event_counts[field]:0;}
 extern "C" void gd_diag_native_event_audit(int enabled) {tl_battle_ctx.native_event_audit=enabled!=0;}
+
+extern "C" uint64_t gd_diag_native_resolved_stat(unsigned field) {return field<6?tl_battle_ctx.native_resolved_counts[field]:0;}
+extern "C" void gd_diag_native_resolved_audit(int enabled) {
+    tl_battle_ctx.native_resolved_audit=enabled!=0;
+    tl_battle_ctx.native_resolved_collect=enabled!=0;
+}

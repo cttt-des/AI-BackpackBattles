@@ -1207,9 +1207,11 @@ GdVal GdFuncRef::call_func(BattleCtx& ctx, const GdVal* args, int argc) const {
     if (binds && binds->len > 0) {
         std::vector<GdVal> all(args, args + argc);
         for (uint32_t i = 0; i < binds->len; ++i) all.push_back(binds->data[i]);
-        instance->call_method(ctx, method, all.data(), static_cast<int>(all.size()), out);
+        if (!try_native_resolved_dispatch(ctx,instance,method,all.data(),static_cast<int>(all.size()),out,1))
+            instance->call_method(ctx, method, all.data(), static_cast<int>(all.size()), out);
     } else {
-        instance->call_method(ctx, method, args, argc, out);
+        if (!try_native_resolved_dispatch(ctx,instance,method,args,argc,out,1))
+            instance->call_method(ctx, method, args, argc, out);
     }
     return out;
 }
@@ -1538,6 +1540,7 @@ GdVal call_method(BattleCtx& ctx, const GdVal& recv, SymId m, const GdVal* args,
             if (!recv.obj) return GdVal::null();
             // Dispatch user/generated methods first so subclass overrides win if any
             GdVal out = GdVal::null();
+            if (try_native_resolved_dispatch(ctx,recv.obj,m,args,argc,out,0)) return out;
             if (recv.obj->call_method(ctx, m, args, argc, out)) return out;
             // Godot Object builtins
             switch (m) {
@@ -1883,3 +1886,5 @@ GdVal call_method(BattleCtx& ctx, const GdVal& recv, SymId m, const GdVal* args,
 }
 
 }  // namespace gd
+
+#include "native_resolved_dispatch.hpp"

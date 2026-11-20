@@ -1,0 +1,33 @@
+{
+  "baseline_dll_sha256": "486dfce912d83a24cb4b4943b3b7a4aba5df68879caca2d71943eb98c4f73508",
+  "bundle": [
+    "exact-type cached resolved rows for48 methods",
+    "generic and FuncRef routes; preserved derived overrides and binds",
+    "copy/slicing cache invalidation and unknown-type empty-row fallback"
+  ],
+  "scope": "Evaluate combined benefit; no independent-performance gate for each edit.",
+  "initial_groups": 3,
+  "pairs_per_group": 8,
+  "warmup_seconds": 120,
+  "workers": 1,
+  "worker_priority": "NORMAL",
+  "affinity": "all logical CPUs",
+  "orders": [
+    "candidate-first",
+    "candidate-load-first",
+    "candidate-first"
+  ],
+  "analysis": "All pairs pooled by identical DLL hashes; report median paired CPU/wall reductions, summed-time differences, group variation, win/tie counts. No group unanimity or positive CI lower bound requirement.",
+  "positive_evidence": "Pooled CPU and wall reductions positive: advance the bundle to full semantic and deployment checks even if some independent groups reverse. Report uncertainty, not a precise guaranteed gain.",
+  "unclear_evidence": "Retain mixed or small effects. A bounded fourth independent group may clarify; median CPU ties do not by themselves reject repeatable wall-time improvement, and source components are not individually rejected.",
+  "clear_regression": "Consistent CPU and wall slowdown across complete groups and pooled evidence: keep source and data as lower-priority, without treating this as proof each component is ineffective.",
+  "no_concurrent_work_during_throughput": true,
+  "hard_gates": [
+    "2604 strict original per-event and unchanged C++ event hashes",
+    "continuous24 each>=50 raw fights/s before deployment",
+    "same DLL SHA, training entry and runtime manifest"
+  ],
+  "target": "100/125/140 fights per second at observed-range 20% background load; fitted value cannot replace raw gates",
+  "object_layout_changed": true,
+  "source_build": "full20/PGO18, -ffp-contract=off, max2 low-priority compiler jobs"
+}

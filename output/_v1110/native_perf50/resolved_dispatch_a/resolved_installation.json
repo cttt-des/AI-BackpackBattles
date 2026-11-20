@@ -1,0 +1,67 @@
+{
+  "dll_sha256": "6e232391806268a9e77dde1ba5d89a96320453fe82bacd9d092e355a56c67a5b",
+  "gate_sha256": "ef1e9c2fb94c3d54a511133895168510fb026457d42a1edd82a96f540d53b75d",
+  "speed_report_sha256": "d30357e3eb213afffa521856993e0ee5a0138913b78efdecb8ec4b7af3797d9e",
+  "training_outcomes": [
+    1,
+    1,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "regeneration_test_sha256": "09da0cc85b5276cc247f58e0896527ddb147f25f328adf00cd5d338d40d9c4f1",
+  "full_regeneration_test_sha256": "25f0a6bb9a199d715088078cf4c88a973e0c23f7593eb5446cc244a6c8f3862c",
+  "training_matched_baseline": 12,
+  "training_evaluation": {
+    "mean_wr": 0.16666666666666666,
+    "std_opp": 0.28867513459481287,
+    "worst_wr": 0.0,
+    "per_opp": [
+      {
+        "rating": 450.385037,
+        "n_items": 57,
+        "wr": 0.6666666666666666,
+        "errs": 0
+      },
+      {
+        "rating": 527.013755,
+        "n_items": 47,
+        "wr": 0.0,
+        "errs": 0
+      },
+      {
+        "rating": 464.089676,
+        "n_items": 47,
+        "wr": 0.0,
+        "errs": 0
+      },
+      {
+        "rating": 457.699621,
+        "n_items": 61,
+        "wr": 0.0,
+        "errs": 0
+      }
+    ],
+    "n_opp": 4,
+    "seeds": 3,
+    "total_sims": 12,
+    "sim_errors": 0
+  },
+  "runtime": "dist/native_1_1_10",
+  "backup_runtime": "dist/native_1_1_10_before_resolved_20261121",
+  "changed_native_files": [
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/engine_wrapper.cpp",
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/gd_rt.cpp",
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/gd_rt.hpp",
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/native_resolved_dispatch.hpp",
+    "output/_v1110/optimize_native_verified_bundle.py",
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/libgdcore.dll"
+  ]
+}

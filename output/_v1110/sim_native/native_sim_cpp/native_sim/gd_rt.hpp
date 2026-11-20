@@ -40,6 +40,7 @@ struct GdStr;
 struct GdArr;
 struct GdDict;
 struct GdObj;
+struct NativeMethodRow;
 struct GdFuncRef;
 struct GdRng;
 struct GdEnum;
@@ -567,12 +568,18 @@ struct GdClassMeta {
 class GdObj {
 public:
     explicit GdObj(BattleCtx* ctx) : rt_ctx_(ctx) {}
+    GdObj(const GdObj& other) : rt_ctx_(other.rt_ctx_), gid_(other.gid_), gid_epoch_(other.gid_epoch_), conns_head_(other.conns_head_) {}
+    GdObj& operator=(const GdObj& other) {
+        rt_ctx_=other.rt_ctx_;gid_=other.gid_;gid_epoch_=other.gid_epoch_;conns_head_=other.conns_head_;
+        native_call_row_=nullptr;return *this;
+    }
     virtual ~GdObj() = default;
 
     BattleCtx* rt_ctx_ = nullptr;
     uint64_t gid_ = 0;
     uint64_t gid_epoch_ = 0;
     GdConn* conns_head_ = nullptr;
+    const NativeMethodRow* native_call_row_ = nullptr;
 
     virtual const GdClassMeta* meta() const = 0;
     virtual void init_fields(BattleCtx& ctx) {}
@@ -614,12 +621,17 @@ struct BattleCtx {
     bool native_event_kernel = false;
     bool native_event_audit = false;
     uint64_t native_event_counts[5]{};
+    bool native_resolved_dispatch = false;
+    bool native_resolved_audit = false;
+    bool native_resolved_collect = false;
+    uint64_t native_resolved_counts[6]{};
 
     explicit BattleCtx(size_t arena_bytes = (1u << 20)) : arena(arena_bytes) {}
 
     void reset_for_battle(uint64_t seed) {
         native_inline_timer_headers = false;
         native_event_kernel = false;
+        native_resolved_dispatch = false;
         arena.reset();
         bind_battle(seed);
         event_count = 0;
@@ -654,6 +666,7 @@ GdVal get_prop(BattleCtx& ctx, const GdVal& recv, SymId prop);
 void set_prop(BattleCtx& ctx, GdVal& recv, SymId prop, const GdVal& val);
 GdVal get_index(BattleCtx& ctx, const GdVal& recv, const GdVal& key);
 void set_index(BattleCtx& ctx, GdVal& recv, const GdVal& key, const GdVal& val);
+bool try_native_resolved_dispatch(BattleCtx&,GdObj*,SymId,const GdVal*,int,GdVal&,unsigned);
 GdVal call_method(BattleCtx& ctx, const GdVal& recv, SymId method, const GdVal* args, int argc);
 GdVal call_method_dyn(BattleCtx& ctx, const GdVal& recv, const GdVal& method_name, const GdVal* args, int argc);
 bool gd_is_type(const GdVal& v, const GdClassMeta* cls);
