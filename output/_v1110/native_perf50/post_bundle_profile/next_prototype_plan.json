@@ -70,7 +70,7 @@
       "static_call_sites": 78
     }
   ],
-  "important_design_change": "Lazy exact-RTTI lookup on first selected call, avoiding allocator hooks and covering ItemProto memcpy clones. Unsupported C++ types get a cached empty row, preserving custom overrides without invoking metadata getters.",
+  "important_design_change": "Lazy exact-RTTI lookup on first selected call, avoiding allocator hooks. Source audit confirms ItemProto caches immutable descriptor/geometry inputs and constructs a fresh object then fills fields; it does not memcpy whole item objects. Unsupported C++ types get a cached empty row without metadata getter calls.",
   "object_copy_policy": "Reset only internal row cache in GdObj copy/assignment; keep original context, IDs and connection fields. Same-type raw prototype clones retain valid immutable rows.",
   "hard_constraints": [
     "keep callback binds/order and all arithmetic/RNG calls",
@@ -80,5 +80,6 @@
     "fixed200 combined AB/BA, raw24>=50, verified runtime/training before deployment"
   ],
   "backup_before_logic_changes": "36c1f5977fda14c6e2a013940165a0e1cc6c384a",
-  "no_candidate_built_yet": true
+  "no_candidate_built_yet": true,
+  "source_audit_correction": "Removed the earlier unverified ItemProto whole-object memcpy assumption; copy/slicing safeguards remain independently necessary."
 }

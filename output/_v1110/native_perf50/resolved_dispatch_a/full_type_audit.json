@@ -1,0 +1,13 @@
+{
+  "candidate_dll_sha256": "6e232391806268a9e77dde1ba5d89a96320453fe82bacd9d092e355a56c67a5b",
+  "fights": 2604,
+  "coverage": {
+    "generic_hits": 41433728,
+    "funcref_hits": 976034,
+    "lazy_resolutions": 597330,
+    "unsupported_types": 0,
+    "audit_mismatch": 0,
+    "selected_fallback": 0
+  },
+  "old_event_kernel_type_mismatches": 0
+}

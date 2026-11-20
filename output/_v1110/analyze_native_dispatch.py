@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 import re
 
-def analyze(native,profile,limit=32):
+def analyze(native,profile,limit=32,extra_symbols=()):
     headers={}
     for path in sorted((native/'gen/hdrs').glob('*.hpp')):
         match=re.search(r'^struct (Gd__\w+) : public ([\w:]+) \{',path.read_text('utf8'),re.M)
@@ -23,7 +23,10 @@ def analyze(native,profile,limit=32):
         leftovers=cases.sub('',body)
         leftovers=re.sub(r'return [\w:]+::call_method\(gd_ctx, m, args, argc, out\);','',leftovers)
         leftovers=leftovers.replace('switch (m) {','').replace('default: break;','').replace('return false;','').replace('}','')
-        own[cls]=entries;pure[cls]=not leftovers.strip()
+        fallbacks=re.findall(r'return ([\w:]+)::call_method\(gd_ctx, m, args, argc, out\);',body)
+        base=headers[cls]
+        edge_ok=(fallbacks==[base]) if base in headers else (base=='gd::GdObj' and fallbacks in ([],['gd::GdObj']))
+        own[cls]=entries;pure[cls]=not leftovers.strip() and edge_ok
     assert set(headers)==set(own),(set(headers)-set(own),set(own)-set(headers))
     eligible={};resolved={}
     def resolve(cls):
@@ -53,6 +56,11 @@ def analyze(native,profile,limit=32):
         if symbol.startswith('SYM_GEN_'):
             selected.append({'method':name,'symbol':symbol,'inclusive_dispatch_samples':samples})
         if len(selected)==limit:break
+    for symbol in extra_symbols:
+        if any(item['symbol']==symbol for item in selected):continue
+        names=[name for name,ids in symbols.items() if symbol in ids]
+        assert len(names)==1,(symbol,names)
+        selected.append({'method':names[0],'symbol':symbol,'selection_origin':'static_call_sites'})
     rows={};classes={}
     for cls in headers:
         if not eligible[cls]:continue
