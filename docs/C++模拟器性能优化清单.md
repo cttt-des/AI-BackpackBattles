@@ -289,3 +289,14 @@ Buff 自调用首轮 CPU 耗时增加 8.48%，事件总线上下文读取增加 
 原版及候选均通过定向测试：首个／后续空位、全占用、空数组、回调追加元素不扩大遍历、修改后续值立即可见、替换数组、字典及空值输入，并核对属性读取次数、character 回调、诊断调用及两次随机调用的范围与顺序。三场原版严格回放通过，22 个 C ABI 保持一致。[测试源码](../output/_v1110/test_native_label_ranges.cpp) · [基线测试](../output/_v1110/native_perf50/cycles09/label_baseline_test.json) · [候选测试](../output/_v1110/native_perf50/cycles09/label_candidate_test.json) · [ABI](../output/_v1110/native_perf50/cycles09/label_ranges_abi.json)
 
 三轮各八组隔离 AB／BA，CPU 耗时降幅为 **2.56%、−0.64%、0.35%**，墙钟为 **0.87%、0.36%、0.07%**。后两轮没有重复首轮收益，因此排除，不进入全量发布门槛，运行时仍为第七轮。下一轮依据现有指令采样检查逐帧遍历的内存读取路径；当前 CoreItem 冷却推进本身已经使用原生数值计算，避免重复改写已优化逻辑。[首测](../output/_v1110/native_perf50/cycles09/label_ranges_ab.json) · [反转复测](../output/_v1110/native_perf50/cycles09/label_ranges_ab_repeat.json) · [确认](../output/_v1110/native_perf50/cycles09/label_ranges_ab_confirm.json)
+
+
+### 第十轮（未替换运行时）
+
+基线仍为第七轮 `9ffe3242…`，远端备份 `bd73c3a5`。对现有指令采样逐条核对反汇编，命中计时器数组指针与长度、宝石数组长度，以及冷却状态的类型分派。采样位置只能支持访存假设，不能代替缓存未命中计数。[反汇编核对](../output/_v1110/native_perf50/cycles10/combat_hot_disassembly.txt)
+
+候选仅在角色计时器遍历中预取后方两个物品的计时器与宝石字段地址，不提前解引用后续对象，不复用预取时的值。由有效当前物品计算字段偏移，未来位置同时受捕获长度和实时长度约束；实际遍历仍重新读取数组条目和字段。GCC 对预取目标的无故障保证不免除地址表达式本身合法的要求。[GCC 说明](https://gcc.gnu.org/onlinedocs/gcc/Other-Builtins.html) · [候选脚本](../output/_v1110/optimize_native_item_prefetch.py)
+
+基线及候选均通过回调定向测试，覆盖先放无效占位地址、由前序回调修复后才真正访问，替换后续条目，追加，停用后续计时器，整体替换数组，同帧加入宝石，以及缩短数组后仍遵循捕获长度。三场原版严格回放通过，22 个 C ABI 不变，重复生成字节不变。[测试源码](../output/_v1110/test_native_item_prefetch.cpp) · [基线测试](../output/_v1110/native_perf50/cycles10/prefetch_baseline_test.json) · [候选测试](../output/_v1110/native_perf50/cycles10/prefetch_candidate_test.json) · [ABI](../output/_v1110/native_perf50/cycles10/item_prefetch_abi.json)
+
+两轮各八组隔离 AB／BA，CPU 耗时分别增加 **5.31%、3.00%**，墙钟增加 **5.09%、3.17%**。本轮排除，不进入全量发布门槛，运行时保持第七轮。下一轮先备份已验收源码与 DLL，再检验原生物品计时器数组头与物品存储相邻的局部方案；不改战斗步骤、回调、RNG 或浮点计算，需专门验证数组别名、重复初始化及生命周期。[首测](../output/_v1110/native_perf50/cycles10/item_prefetch_ab.json) · [反转复测](../output/_v1110/native_perf50/cycles10/item_prefetch_ab_repeat.json)
