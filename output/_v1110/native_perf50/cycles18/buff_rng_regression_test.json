@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "dll_sha256": "7213d9466543beda9903471cc2ed381fb240d896abe739479e6c9029eb7bd560",
+  "output": "Resistance RNG replacement, amplification snapshot count, reflection changes and nonpositive amounts passed\n",
+  "compiled_against_candidate_headers": true
+}

@@ -1,0 +1,16 @@
+{
+  "fixed_fights": 200,
+  "workers": 1,
+  "pairs_per_group": 8,
+  "warmup_seconds": 120,
+  "quiet_measurement": true,
+  "all_samples_retained": true,
+  "initial_groups": 2,
+  "reject_early_if_both_groups_increase_cpu_or_wall": true,
+  "otherwise_independent_third_group": true,
+  "three_groups_acceptance": "All three CPU and wall medians decrease, and pooled CPU/wall decrease",
+  "one_final_confirmation_only_if": "All three CPU medians decrease but exactly two wall medians decrease",
+  "final_confirmation_acceptance": "All four CPU medians decrease, >=3 wall medians decrease, pooled CPU/wall decrease",
+  "release_gates": "2604 strict event truth and unchanged per-case C++ hashes, 24 raw batches all >=50, DLL/gate SHA, normal training",
+  "no_fit_adjustment": true
+}
