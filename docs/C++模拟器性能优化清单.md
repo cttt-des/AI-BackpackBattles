@@ -233,3 +233,18 @@ Buff 自调用首轮 CPU 耗时增加 8.48%，事件总线上下文读取增加 
 原版及候选均通过 C++ 定向测试，覆盖同帧启动、停用、重启、首次生效、追加、替换后续条目、超时回调、非布尔真值及其他上下文的可观察属性读取。候选另通过三场原版严格逐事件回放。[测试源码](../output/_v1110/test_native_timer_dispatch.cpp) · [基线测试](../output/_v1110/native_perf50/cycles05/timer_baseline_test.json) · [候选测试](../output/_v1110/native_perf50/cycles05/timer_native_test.json) · [三场回放](../output/_v1110/native_perf50/cycles05/timer_native_target/summary.json)
 
 两轮各 8 组 AB／BA，均先对两版交替预热至少 20 秒，每次预热和测速仍使用固定 200 场并验证完整结果哈希。CPU 耗时分别增加 **4.03%**、**0.98%**，墙钟分别增加 **4.57%**、**1.33%**，本轮排除。没有进入全量发布门槛，运行时保持第四轮版本。下一轮独立检验物品热字段布局。[首测](../output/_v1110/native_perf50/cycles05/timer_native_ab.json) · [反转复测](../output/_v1110/native_perf50/cycles05/timer_native_ab_repeat.json)
+
+
+### 第六轮（保持第四轮 DLL，修复构建依赖）
+
+基线仍为 `1291ef1b…`，远端备份为 `f5763a7d`。字段布局候选只改 CoreItem 头文件，保留全部函数体和浮点选项，对 20 个依赖编译单元全量重建并重采样 PGO。11 个热字段的地址跨度由 1,536 字节缩至 264 字节，CoreItem 大小保持 1,696 字节、派生 Item 保持 3,856 字节。生成脚本校验 69 个字段集合和 GdVal 纯默认初始化。[布局脚本](../output/_v1110/optimize_native_item_layout.py) · [布局实测](../output/_v1110/native_perf50/cycles06/item_layout_offsets.json)
+
+用 Git 原始对象逐字节核对了 699 份基线源码及构建文件。初次 `git archive` 导出触发换行转换，后改用 `git cat-file --batch` 校验原始对象。候选已用新头文件重新编译并通过计时器同帧行为测试，另通过三场严格原版回放，22 个 C ABI 符号保持一致。[基线源码哈希](../output/_v1110/native_perf50/cycles06/item_layout_baseline_archive.json) · [同帧测试](../output/_v1110/native_perf50/cycles06/item_layout_timer_test.json) · [三场回放](../output/_v1110/native_perf50/cycles06/item_layout_target/summary.json) · [C ABI](../output/_v1110/native_perf50/cycles06/item_layout_abi.json)
+
+同一 DLL 的复制件在同进程 A/A 中，CPU／墙钟成对中位差分别为 −3.35%／−3.53%。新增进程隔离比较，每个进程仅载入一个 DLL，每次只测一个工作进程，固定输入和完整结果哈希不变。首两组隔离 A/A 的 CPU 差值为 −1.96%、4.51%，仍有后台波动。[同进程控制](../output/_v1110/native_perf50/cycles06/control_aa.json) · [隔离控制](../output/_v1110/native_perf50/cycles06/control_aa_isolated.json) · [反转控制](../output/_v1110/native_perf50/cycles06/control_aa_isolated_repeat.json)
+
+为减少启动瞬态及计时中的报告写盘，隔离工具改为默认交替预热 60 秒，整组结束后才写 JSON，仍保持八组 AB／BA。记录正常优先级、进程启动顺序、CPU 亲和性和两个独立 PID。两组相同 DLL 的控制 CPU 差值为 0.64%、−0.71%，墙钟为 0.93%、−0.67%。这些是控制波动，不表示相同代码存在提速。[比较工具](../output/_v1110/compare_native_isolated.py) · [控制一](../output/_v1110/native_perf50/cycles06/control_aa_deferred_warm.json) · [控制二](../output/_v1110/native_perf50/cycles06/control_aa_deferred_warm_repeat.json)
+
+字段布局在原 20 秒预热流程下首测 CPU 下降 1.95%、墙钟下降 2.17%。改进测量流程后的两组 CPU 降幅为 **−0.31%、1.02%**，墙钟为 **0.19%、0.17%**，没有显示可重复收益。本轮排除字段布局，未进入全量发布门槛，DLL 维持第四轮版本。[初测](../output/_v1110/native_perf50/cycles06/item_layout_ab.json) · [稳态对照](../output/_v1110/native_perf50/cycles06/item_layout_ab_steady.json) · [反转复测](../output/_v1110/native_perf50/cycles06/item_layout_ab_steady_repeat.json)
+
+同时复现并修复真实构建缺陷。旧 Windows 构建只跟踪四个公共头文件，生成类头改动后仍复用对象文件。真实小型 DLL 实验在头文件调整字段顺序后仍返回旧偏移 4；补齐生成类头依赖后会重新编译，返回正确偏移 0，C++ 源文件未变。该构建脚本修复已应用，698 份 C++／头文件与已验收版逐字节一致，运行时 DLL 哈希保持不变。[修复脚本](../output/_v1110/optimize_native_header_dependencies.py) · [真实编译测试](../output/_v1110/test_native_header_dependencies.py) · [测试结果](../output/_v1110/native_perf50/cycles06/header_dependency_test.json) · [构建支持更新](../output/_v1110/native_perf50/cycles06/build_support_installation.json)
