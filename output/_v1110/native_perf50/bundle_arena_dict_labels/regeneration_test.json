@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "files_verified": 700,
+  "fresh_and_regenerated_inputs_match_accepted_source": true,
+  "idempotent_bytes_and_mtime": true,
+  "unknown_edit_rejected_before_writes": true,
+  "before_archive": "a5b108d2b60860d27aff564ac78013707e5600c6"
+}

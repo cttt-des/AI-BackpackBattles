@@ -467,3 +467,17 @@ CoreItem 从 1,696 字节、8 字节对齐改为 1,792 字节、64 字节对齐�
 小收益可以叠加，后续以当前已验收候选为固定研究基线，每批选 2–3 项兼容修改形成组合；共享热点、代码布局、PGO 和缓存交互会使实际收益放大、抵消或重叠。先测组合，再在需要时拆分定位；不再要求每笔小改动都独立达到严格的组间全正条件。组合必须重新完成逐事件与事件哈希验收，不能直接相加旧百分比，也不能混用改变头文件前后的对象缓存。
 
 用户要求暂停以更新客户端。当前运行 DLL 仍为 `58383a11…`，隔离研究候选为 `2b48ccf3…`；所有编译、测速和验收任务已结束。恢复时先核对检查点与哈希，再按上述优先级选择组合或结构原型；本次收尾不继续运行新任务。[恢复检查点](../output/_v1110/native_perf50/reassessment_20261121/resume_after_client_update.json)
+
+### 恢复后的组合优化（已部署）
+
+从已验收研究候选 `2b48ccf3…` 继续，把 arena 增长／加锁路径外提、字典存储整数索引、标签整数迭代三项合成一份候选。只改 `gd_rt.hpp`、`gd_rt.cpp`、`shard_00.cpp`，不要求各组件先独立测出收益。核对远端备份 `a5b108d2` 与 700 份源码／构建文件，全部 20 个单元重建、18 个热点单元训练 PGO，浮点设置不变。组合 DLL 为 `486dfce9…`。[构建与备份核对](../output/_v1110/native_perf50/bundle_arena_dict_labels/baseline_verified.json) · [组合变换](../output/_v1110/native_perf50/bundle_arena_dict_labels/transform.json)
+
+分配对齐／重置／多线程、字典扩容与数值别名、标签容器回调修改及 RNG 顺序、旧生命周期与计时器、事件嵌套等回归通过。914 + 1,690 场原版严格逐事件通过，2,604 场 C++ 事件哈希保持不变，根仍为 `b8066c92…`；全语料类型不匹配为零。[全量验收](../output/_v1110/native_perf50/bundle_arena_dict_labels/bundle_full_gate.json) · [事件哈希](../output/_v1110/native_perf50/bundle_arena_dict_labels/bundle_event_hashes.json) · [类型审计](../output/_v1110/native_perf50/bundle_arena_dict_labels/full_type_audit.json)
+
+相对研究基线，四组共 32 对固定 200 场、单线程、120 秒预热的隔离 AB／BA，墙钟成对中位降幅 **1.31%**，24 对更快，四组墙钟中位数均为正。CPU 成对中位降幅为 **0%**，15 对更快、9 对持平、8 对更慢；累计 CPU 时间减少 **0.43%**，累计墙钟减少 **0.64%**。因此保留“小幅墙钟改善、CPU 幅度未定”的判断，没有因 CPU 中位数为零或其中一组反向而丢弃组合，也不声称三项各自都有效。相对实际部署旧版 `58383a11…` 的独立八对，CPU 中位降幅 **11.63%**、墙钟 **11.55%**，两项均 8/8 对更快；它包含此前尚未部署的反向枚举与原生事件链收益，不归因给本轮三项小改动。[32 对完整汇总](../output/_v1110/native_perf50/bundle_arena_dict_labels/ab_assessment_4groups.json) · [推进验收的判断](../output/_v1110/native_perf50/bundle_arena_dict_labels/validation_decision.json) · [相对部署版](../output/_v1110/native_perf50/bundle_arena_dict_labels/ab_deployed.json)
+
+正式连续 24 批全部通过原始吞吐门槛：中位数 **152.57 场/秒**、最慢 **147.27 场/秒**，全程接电，估算后台负载 **1.8%–15.4%**。此范围未覆盖 20%，故另做受控后台负载校准，保留原始发布报告。校准覆盖 **5.8%–25.4%**，24 批最慢 **111.59 场/秒**；20% 拟合值 **124.88 场/秒**，R² 为 0.59，留出相对耗时误差中位数 3.44%、P90 为 16.96%。可报告约 125 的水平，不能据此宣称最终 140 已完成；也不能把低负载下的 152.57 当成 20% 负载成绩。[发布 24 批](../output/_v1110/native_perf50/bundle_arena_dict_labels/bundle_serial.json) · [受控校准](../output/_v1110/native_perf50/bundle_arena_dict_labels/bundle_load_calibration.json) · [20% 拟合](../output/_v1110/native_perf50/bundle_arena_dict_labels/bundle_load20.json)
+
+已将候选原子替换到源码目录和 `dist/native_1_1_10`，旧运行时留在 `dist/native_1_1_10_before_bundle_20261121`。DLL 与门槛报告、清单 SHA 均一致。正常训练入口 12 场评估零错误，另 12 场固定种子胜负与旧版一致。默认性能再生成流程接入版本受限的已审阅源码变换：准备阶段仅恢复三份运行时输入，既有生成步骤后应用已验收变换；未知源码编辑在写入前拒绝，防止覆盖新修改。700 份源码匹配已验收候选，字节与时间幂等、旧／新输入及末尾性能步骤衔接检查通过；本轮没有重新执行整条 GDScript 转译链，不将此局部检查称为全链路重建验收。[部署与训练](../output/_v1110/native_perf50/bundle_arena_dict_labels/bundle_installation.json) · [再生成约束](../output/_v1110/optimize_native_verified_bundle.py) · [再生成验证](../output/_v1110/native_perf50/bundle_arena_dict_labels/regeneration_test.json) · [末尾步骤衔接](../output/_v1110/native_perf50/bundle_arena_dict_labels/pipeline_composition_test.json)
+
+下一轮以 `486dfce9…` 为实际运行基线，先重新采样，继续保留可组合的小收益，优先攻克足以推动 20% 负载下约 125 向 140 的热点。目标保持进行中。

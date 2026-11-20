@@ -1,0 +1,75 @@
+{
+  "dll_sha256": "486dfce912d83a24cb4b4943b3b7a4aba5df68879caca2d71943eb98c4f73508",
+  "gate_sha256": "90885eafb06066de7a78ee43e7040669f1db5cc60b40f1185322b17e4ebfccdc",
+  "speed_report_sha256": "f5c0a845b961376a968af702b15e4e0f3a6e026900ca4b1b6d419fce05978b0e",
+  "training_outcomes": [
+    1,
+    1,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "regeneration_test_sha256": "197a2b72d778033da104dd302e819aa4751b2c3c4c6758b4dc611026abc4e0d6",
+  "pipeline_composition_test_sha256": "58825fb31a4fdeb78c04e9c3778b5e7e4613d8152739218bdcd5f72283ef9b35",
+  "training_matched_baseline": 12,
+  "training_evaluation": {
+    "mean_wr": 0.16666666666666666,
+    "std_opp": 0.28867513459481287,
+    "worst_wr": 0.0,
+    "per_opp": [
+      {
+        "rating": 450.385037,
+        "n_items": 57,
+        "wr": 0.6666666666666666,
+        "errs": 0
+      },
+      {
+        "rating": 527.013755,
+        "n_items": 47,
+        "wr": 0.0,
+        "errs": 0
+      },
+      {
+        "rating": 464.089676,
+        "n_items": 47,
+        "wr": 0.0,
+        "errs": 0
+      },
+      {
+        "rating": 457.699621,
+        "n_items": 61,
+        "wr": 0.0,
+        "errs": 0
+      }
+    ],
+    "n_opp": 4,
+    "seeds": 3,
+    "total_sims": 12,
+    "sim_errors": 0
+  },
+  "runtime": "dist/native_1_1_10",
+  "backup_runtime": "dist/native_1_1_10_before_bundle_20261121",
+  "changed_native_files": [
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/engine_wrapper.cpp",
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/gd_rt.cpp",
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/gd_rt.hpp",
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/gen/shards/shard_00.cpp",
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/gen/shards/shard_02.cpp",
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/gen/shards/shard_04.cpp",
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/gen/shards/shard_05.cpp",
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/gen/shards/shard_07.cpp",
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/gen/shards/shard_09.cpp",
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/gen/shards/shard_10.cpp",
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/gen/shards/shard_11.cpp",
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/gen/shards/shard_12.cpp",
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/native_event_kernel.hpp",
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/libgdcore.dll"
+  ]
+}
