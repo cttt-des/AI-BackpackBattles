@@ -265,3 +265,14 @@ Buff 自调用首轮 CPU 耗时增加 8.48%，事件总线上下文读取增加 
 914 + 1,690 场原版严格逐事件验收全部通过，逐场 C++ 事件哈希全部一致。接电、自然后台负载 **10.0%–23.0%** 下连续 24 批，原始吞吐中位数 **81.42 场/秒**、最慢 **75.45 场/秒**，全部达到 50 场/秒门槛。本组负载覆盖 20%，拟合值为 **80.73 场/秒**；分组留出误差中位数 1.79%，第 90 百分位 4.11%。绝对吞吐低于历史不同时间的采样，现有负载拟合无法消除频率、温度及其他未测条件的影响，本轮代码收益以同轮配对对照为依据。100／125 换算目标尚未达到。[全量验收](../output/_v1110/native_perf50/cycles07/noop_snapshots_full_gate.json) · [事件哈希](../output/_v1110/native_perf50/cycles07/noop_snapshots_event_hashes.json) · [24 批吞吐](../output/_v1110/native_perf50/cycles07/noop_snapshots_serial.json) · [20% 换算](../output/_v1110/native_perf50/cycles07/noop_snapshots_load20.json)
 
 已部署 DLL `9ffe3242ea2d2996b19ddda6ddc6f269afca4c5439b858059b03e029c03f1899`。正常训练评估 12 场无错误，另 12 场固定种子结果与基线一致；部署 DLL、验收报告和运行时清单的 SHA-256 匹配，源码与受测副本相同。旧版保留于 `dist/native_1_1_10_before_cycle07`。继续从新部署版重采样，下一轮优先量化整数键字典的直接定位机会。[部署记录](../output/_v1110/native_perf50/cycles07/noop_snapshots_installation.json)
+
+
+### 第八轮（未替换运行时）
+
+起点为第七轮 `9ffe3242…`，远端备份 `d9ff738b`。新采样取得 6,064 个有效栈样本、38 批固定回放。字典写入、查找、哈希分别有 83、60、28 个叶节点样本，索引读取也仍频繁出现。[新版本采样](../output/_v1110/native_perf50/cycles07/noop_snapshots_profile.json)
+
+在固定输入打包后重置计数，200 场 C++ 装配、推进和导出共记录 2,490,270 次字典读取，其中 1,846,017 次整数键、1,151,574 次整数键恰好等于对应下标保存的整数键，占全部读取 46.2%。所有查找含写入共 6,424,063 次，满足相同下标与哈希条件为 1,267,823 次，故候选仅优化读取。诊断构建终局和完整结果哈希相同。[计数](../output/_v1110/native_perf50/cycles08/dict_indices_counts.json) · [计数脚本](../output/_v1110/probe_native_dict_indices.py)
+
+候选仅修改 GdDict::get：整数键转无符号后在 len 内，且该位置存储的键为相同整数时直接返回值，其余执行原查找。没有新增状态或修改布局。原版和候选均通过扩容、删除重插入及顺序、默认值、复制、清空、混合键、布尔／浮点等价键、超大整数、NaN 和显式错误哈希的测试；候选三场原版严格回放通过，22 个 C ABI 保持一致，生成脚本幂等。[候选脚本](../output/_v1110/optimize_native_dict_indices.py) · [测试源码](../output/_v1110/test_native_dict_indices.cpp) · [基线测试](../output/_v1110/native_perf50/cycles08/dict_baseline_test.json) · [候选测试](../output/_v1110/native_perf50/cycles08/dict_candidate_test.json) · [ABI](../output/_v1110/native_perf50/cycles08/dict_indices_abi.json)
+
+三轮各八组隔离 AB／BA，CPU 耗时降幅为 **0.61%、4.83%、−3.40%**，墙钟为 **1.26%、4.55%、−3.56%**。未取得方向一致的可重复收益，本轮排除；不进入全量发布门槛，运行时保持第七轮。下一轮检查 Buff 按层数循环为整数迭代分配临时数组的成本，必须保留进入循环时的次数快照及每次回调／RNG 顺序。[首测](../output/_v1110/native_perf50/cycles08/dict_indices_ab.json) · [反转复测](../output/_v1110/native_perf50/cycles08/dict_indices_ab_repeat.json) · [确认](../output/_v1110/native_perf50/cycles08/dict_indices_ab_confirm.json)
