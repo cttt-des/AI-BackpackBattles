@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "dll_sha256": "560991e3d06f84f8ae93fb81d5606cdd1ea846c77a8e3e926271d787113943e5",
+  "differential_results": {
+    "baseline": {
+      "lookup_cases": 401,
+      "constructors": 9,
+      "names_object_ids_and_rng_digest": 11896855085836230872
+    },
+    "candidate": {
+      "lookup_cases": 401,
+      "constructors": 9,
+      "names_object_ids_and_rng_digest": 11896855085836230872
+    }
+  }
+}

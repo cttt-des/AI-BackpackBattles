@@ -1,0 +1,29 @@
+{
+  "experimental_baseline_dll_sha256": "7213d9466543beda9903471cc2ed381fb240d896abe739479e6c9029eb7bd560",
+  "candidate_dll_sha256": "560991e3d06f84f8ae93fb81d5606cdd1ea846c77a8e3e926271d787113943e5",
+  "pairs": 16,
+  "source_reports": [
+    "ltrans_devirt_ab.json",
+    "ltrans_devirt_ab_repeat.json"
+  ],
+  "all_samples_retained": true,
+  "main_thread_cpu_s": {
+    "median_reduction_pct": -6.842294800409987,
+    "candidate_wins": 4,
+    "baseline_wins": 12,
+    "range_reduction_pct": [
+      -35.67251461988303,
+      11.594202898550721
+    ]
+  },
+  "wall_s": {
+    "median_reduction_pct": -10.77293009704887,
+    "candidate_wins": 3,
+    "baseline_wins": 13,
+    "range_reduction_pct": [
+      -34.79548493614093,
+      11.202258302817803
+    ]
+  },
+  "early_reject_reason": "Both initial groups increased main-thread CPU and wall time; second group lost all 8 pairs"
+}

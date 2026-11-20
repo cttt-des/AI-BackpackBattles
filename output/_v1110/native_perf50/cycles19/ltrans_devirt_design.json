@@ -1,0 +1,32 @@
+{
+  "only_runtime_compiler_option_added": "-fdevirtualize-at-ltrans",
+  "base_flags": [
+    "-O3",
+    "-std=c++20",
+    "-march=native",
+    "-ffp-contract=off",
+    "-Wall",
+    "-Wno-unused-variable",
+    "-Wno-unused-but-set-variable",
+    "-I"
+  ],
+  "candidate_flags": [
+    "-O3",
+    "-fdevirtualize-at-ltrans",
+    "-std=c++20",
+    "-march=native",
+    "-ffp-contract=off",
+    "-Wall",
+    "-Wno-unused-variable",
+    "-Wno-unused-but-set-variable",
+    "-I"
+  ],
+  "cpp_and_hpp_bytes_identical_to_experimental_baseline": true,
+  "self_dependency_fix": "build script edits invalidate object cache",
+  "generator_idempotent_bytes_and_mtime": true,
+  "fresh_compile_units": 20,
+  "fresh_pgo_units": 18,
+  "source": "https://gcc.gnu.org/onlinedocs/gcc-16.1.0/gcc/Optimize-Options.html#index-fdevirtualize-at-ltrans",
+  "local_gcc_default": "disabled, queried with -O3 -flto=2 -Q --help=common",
+  "default_runtime_and_generator_unchanged": true
+}
