@@ -1,0 +1,14 @@
+Waiting on live build PID 13284
+Starting prepare_regeneration.py
+Passed prepare_regeneration.py
+Starting verify_resolved.py
+Passed verify_resolved.py
+Starting inspect_variant.py
+Passed inspect_variant.py
+Starting test_regeneration_guards.py
+Passed test_regeneration_guards.py
+Starting test_full_regeneration.py
+Passed test_full_regeneration.py
+Starting run_comparison.py
+Passed run_comparison.py
+All preflight checks and three comparison groups completed; deployment still gated

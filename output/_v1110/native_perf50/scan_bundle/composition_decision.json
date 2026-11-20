@@ -1,0 +1,43 @@
+{
+  "decision": "deployed_after_full_truth_raw24_and_shared_load_comparison",
+  "candidate_dll_sha256": "7af5ff948b949859339f0897a6d857953ae8e3b30ec451cee030672ba9c5129b",
+  "baseline_dll_sha256": "1be75dced83e9e90fdbe61dd86f91bc27e19bb44acf9449d295849e928d9cec5",
+  "metrics": {
+    "main_thread_cpu_s": {
+      "paired_median_time_reduction_pct": 1.3611111111111074,
+      "sum_time_reduction_pct": 1.7035775127768327,
+      "candidate_wins": 14,
+      "ties": 6,
+      "pairs": 24
+    },
+    "wall_s": {
+      "paired_median_time_reduction_pct": 1.3641729237259426,
+      "sum_time_reduction_pct": 1.6549061224924944,
+      "candidate_wins": 23,
+      "ties": 0,
+      "pairs": 24
+    }
+  },
+  "all_three_leave_one_group_out_sums_positive": true,
+  "attribution": "Package gain only; no claim each component helps. Earlier inconclusive container/static lanes and previously rejected Bool flags were retained and re-evaluated with the scan change.",
+  "completed": [
+    "all24 paired comparisons, including ties and slower observations",
+    "1624 Buff and40 cooldown-flag differential checks",
+    "three original strict replay checks",
+    "704 source regeneration twice"
+  ],
+  "required_before_deployment": [],
+  "runtime_unchanged": false,
+  "validation_completed": [
+    "2604 strict original per-event checks,914+1690",
+    "2604 C++ hashes unchanged against deployment and legacy",
+    "24 consecutive raw200 batches, minimum135.7754/s",
+    "one24-batch controlled calibration, normalized20 estimate127.32799/s kept",
+    "one16-pair shared-load comparison, all observations retained",
+    "normal training12 evaluations error0 and12 outcomes matched",
+    "source/report/DLL/manifest hashes verified by installer"
+  ],
+  "goal140_at20_complete": false,
+  "target_load_assessment_sha256": "78f6ac7d85e377738d5c0777d3ee5c0779f3f3a84cf2aeff4099e32ef215dbd7",
+  "measurements_summary_sha256": "9a1fb585d8541e83346fee4bd2e137bc8fe9ae864dc8494eda13eb549e63211e"
+}

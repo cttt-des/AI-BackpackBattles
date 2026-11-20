@@ -1,0 +1,35 @@
+Specialized five cooldown flag checks with the original non-boolean fallback
+Backed-up deployment and704 sources verified; full20/PGO18, max2 jobs
+Built C:\Users\Windows\AppData\Local\Temp\native-scan-bundle-23j15ost\instrumented.dll (compiled 20/20, linked 20 objs) in 506.84s
+{
+  "diagnostic_only": true,
+  "dll_sha256": "5a3074cfdf67e32c21d5d20fb6307e40a2a2fc440109304a4fca9dab00ded6dc",
+  "inputs_sha256": "d94b16d42cc88e9a3850a77c9360b9c4c4fdd676cb252e463044a903db2a5fef",
+  "results_sha256": "2e74b45caa87f7ee6ac72ffc35d98cc8db140b47031614d26542e183cef5d2c9",
+  "coverage": {
+    "generic_hits": 9770346,
+    "funcref_hits": 100900,
+    "lazy_resolutions": 104863,
+    "unsupported_types": 200,
+    "audit_mismatch": 0,
+    "selected_fallback": 233004
+  },
+  "variant_coverage": {
+    "array_size": 845523,
+    "array_empty": 1272973,
+    "array_has": 0,
+    "array_front": 0,
+    "array_back": 0,
+    "dict_size": 2211,
+    "dict_empty": 106519,
+    "dict_has": 668070,
+    "dict_get": 283318,
+    "class_lane": 132769
+  }
+}
+instrumented.dll: 126.52 replays/s; 14.64 s of combat on average; 1f00611ee50c
+instrumented.dll: 68.74 replays/s; 16.11 s of combat on average; 2e74b45caa87
+instrumented.dll: 65.53 fights/s; 3.02 CPU s; 83.4 MiB peak; 88dda4dce54d
+Compiling profile-guided release
+Built C:\Users\Windows\AppData\Local\Temp\native-scan-bundle-23j15ost\release.dll (compiled 18/20, linked 20 objs) in 301.42s
+resolved 7af5ff948b949859339f0897a6d857953ae8e3b30ec451cee030672ba9c5129b

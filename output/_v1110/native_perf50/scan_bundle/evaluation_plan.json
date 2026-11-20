@@ -1,0 +1,18 @@
+{
+  "baseline_dll_sha256": "1be75dced83e9e90fdbe61dd86f91bc27e19bb44acf9449d295849e928d9cec5",
+  "baseline_backup_commit": "33b49c8ccb3cae3be44325bf4582cb5949e163ae",
+  "components": [
+    "retained container and static dispatch",
+    "inactive Buff chunk8",
+    "five Bool cooldown checks previously excluded independently"
+  ],
+  "comparison": "3 groups x8 pairs fixed200 isolated AB/BA,120s warmup, normal priority,all8 CPUs,quiet; all results retained",
+  "decision": "Evaluate package benefit, without requiring each component or group to be positive. CPU and wall medians, cumulative time and sensitivity reported. If inconclusive retain components, no deployment.",
+  "deployment_gates": [
+    "targeted callback differential tests",
+    "2604 original strict per-event checks and per-case C++ hashes",
+    "24 consecutive200-fight batches all >=50/s",
+    "20% load calibration",
+    "source regeneration and runtime SHA/training smoke"
+  ]
+}

@@ -796,7 +796,7 @@ gd::GdVal Gd__gd_core__CoreCombat::fn_physicsTick(const gd::GdVal* _args, int _a
         for (uint32_t _t758 = 0; _t758 < _len__t758; ++_t758) {
             gd::GdVal lv_item = _t757->data[_t758];
             auto* cooldown_item = static_cast<Gd__gd_core__CoreItem*>(lv_item.obj);
-            if (gd::gd_truth(cooldown_item->f__cooldown_active)) cooldown_item->fn_physicsTick(&lv_delta, 1);
+            if (([&] { const auto& active = cooldown_item->f__cooldown_active; if (active.kind == gd::GdVal::Kind::Bool) [[likely]] return active.b; return gd::gd_truth(active); }())) cooldown_item->fn_physicsTick(&lv_delta, 1);
             {
                 gd::GdVal _t759 = cooldown_item->f_gems;
                 gd::GdArr* _t760 = (_t759.kind == gd::GdVal::Kind::Arr) ? _t759.arr : nullptr;
@@ -805,7 +805,7 @@ gd::GdVal Gd__gd_core__CoreCombat::fn_physicsTick(const gd::GdVal* _args, int _a
                     gd::GdVal lv_gem = _t760->data[_t761];
                     if (!lv_gem.is_null()) {
                         auto* cooldown_gem = static_cast<Gd__gd_core__CoreItem*>(lv_gem.obj);
-                        if (gd::gd_truth(cooldown_gem->f__cooldown_active)) cooldown_gem->fn_physicsTick(&lv_delta, 1);
+                        if (([&] { const auto& active = cooldown_gem->f__cooldown_active; if (active.kind == gd::GdVal::Kind::Bool) [[likely]] return active.b; return gd::gd_truth(active); }())) cooldown_gem->fn_physicsTick(&lv_delta, 1);
                     }
                 }
             }
@@ -821,7 +821,7 @@ gd::GdVal Gd__gd_core__CoreCombat::fn_physicsTick(const gd::GdVal* _args, int _a
         for (uint32_t _t764 = 0; _t764 < _len__t764; ++_t764) {
             gd::GdVal lv_item = _t763->data[_t764];
             auto* cooldown_item = static_cast<Gd__gd_core__CoreItem*>(lv_item.obj);
-            if (gd::gd_truth(cooldown_item->f__cooldown_active)) cooldown_item->fn_physicsTick(&lv_delta, 1);
+            if (([&] { const auto& active = cooldown_item->f__cooldown_active; if (active.kind == gd::GdVal::Kind::Bool) [[likely]] return active.b; return gd::gd_truth(active); }())) cooldown_item->fn_physicsTick(&lv_delta, 1);
             {
                 gd::GdVal _t765 = cooldown_item->f_gems;
                 gd::GdArr* _t766 = (_t765.kind == gd::GdVal::Kind::Arr) ? _t765.arr : nullptr;
@@ -830,7 +830,7 @@ gd::GdVal Gd__gd_core__CoreCombat::fn_physicsTick(const gd::GdVal* _args, int _a
                     gd::GdVal lv_gem = _t766->data[_t767];
                     if (!lv_gem.is_null()) {
                         auto* cooldown_gem = static_cast<Gd__gd_core__CoreItem*>(lv_gem.obj);
-                        if (gd::gd_truth(cooldown_gem->f__cooldown_active)) cooldown_gem->fn_physicsTick(&lv_delta, 1);
+                        if (([&] { const auto& active = cooldown_gem->f__cooldown_active; if (active.kind == gd::GdVal::Kind::Bool) [[likely]] return active.b; return gd::gd_truth(active); }())) cooldown_gem->fn_physicsTick(&lv_delta, 1);
                     }
                 }
             }

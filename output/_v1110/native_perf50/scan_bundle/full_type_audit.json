@@ -1,0 +1,25 @@
+{
+  "candidate_dll_sha256": "7af5ff948b949859339f0897a6d857953ae8e3b30ec451cee030672ba9c5129b",
+  "fights": 2604,
+  "coverage": {
+    "generic_hits": 149634797,
+    "funcref_hits": 2143020,
+    "lazy_resolutions": 1554666,
+    "unsupported_types": 2601,
+    "audit_mismatch": 0,
+    "selected_fallback": 4123200
+  },
+  "old_event_kernel_type_mismatches": 0,
+  "receipts": [
+    "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_scan_bundle_bundle_host_phases_observed_base_current\\cpp",
+    "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_scan_bundle_bundle_host_phases_observed_base_last",
+    "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_scan_bundle_bundle_host_phases_reuse_0",
+    "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_scan_bundle_bundle_host_phases_reuse_1",
+    "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_scan_bundle_bundle_host_phases_reuse_2",
+    "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_scan_bundle_bundle_host_phases_reuse_3",
+    "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_scan_bundle_bundle_host_phases_reuse_4",
+    "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_scan_bundle_bundle_host_phases_reuse_5",
+    "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_scan_bundle_bundle_host_phases_reuse_6",
+    "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_scan_bundle_bundle_host_rng_phases_new_expand"
+  ]
+}

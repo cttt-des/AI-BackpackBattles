@@ -1,0 +1,37 @@
+{"report": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_perf50\\scan_bundle\\ab_target_load.json", "pairs": 16, "main_thread_cpu_s": {"median_reduction_pct": 0.5319148936170137, "candidate_wins": 8, "baseline_wins": 5, "range_reduction_pct": [-8.51063829787233, 17.391304347826086]}, "wall_s": {"median_reduction_pct": 0.7331721148160941, "candidate_wins": 10, "baseline_wins": 6, "range_reduction_pct": [-11.130931070408167, 17.630874480255276]}}
+{
+  "baseline_dll_sha256": "1be75dced83e9e90fdbe61dd86f91bc27e19bb44acf9449d295849e928d9cec5",
+  "candidate_dll_sha256": "7af5ff948b949859339f0897a6d857953ae8e3b30ec451cee030672ba9c5129b",
+  "status": "positive_combined_evidence",
+  "individual_components_not_rejected": true,
+  "metrics": {
+    "main_thread_cpu_s": {
+      "paired_median_time_reduction_pct": 0.5319148936170193,
+      "sum_time_reduction_pct": 1.0568031704095149,
+      "candidate_wins": 8,
+      "ties": 3,
+      "pairs": 16
+    },
+    "wall_s": {
+      "paired_median_time_reduction_pct": 0.7331721148160941,
+      "sum_time_reduction_pct": 0.5372773962039834,
+      "candidate_wins": 10,
+      "ties": 0,
+      "pairs": 16
+    }
+  },
+  "group_medians": [
+    {
+      "main_thread_cpu_s": 0.5319148936170137,
+      "wall_s": 0.7331721148160941
+    }
+  ],
+  "background_load_range_pct": [
+    17.094327749808954,
+    38.78160908646801
+  ],
+  "on_ac_all": true,
+  "semantics_and_raw24_required_before_deployment": true,
+  "interpretation": "This measures a bundle. It does not prove each component helps or that old percentage estimates add together."
+}
+Completed single near20 paired run; original fitted127.33 estimate remains recorded

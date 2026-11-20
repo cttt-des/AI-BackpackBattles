@@ -120,6 +120,7 @@ inline constexpr auto native_resolved_slots=[] { std::array<int8_t,static_cast<s
     value[SYM_GEN_useStamina_116]=111;
     return value; }();
 bool native_resolved_row_matches(const GdObj*,const NativeMethodRow*);
+void native_inline_variant_hit(unsigned);
 #if defined(_MSC_VER)
 __forceinline
 #elif defined(__GNUC__)
@@ -138,6 +139,56 @@ GdVal native_inline_call(BattleCtx& ctx,const GdVal& recv,SymId method,const GdV
                 if(ctx.native_resolved_collect)++ctx.native_resolved_counts[0];
                 return function(recv.obj,args,argc);
             }
+        }
+    }
+    if(ctx.native_resolved_dispatch) {
+        if(recv.kind==GdVal::Kind::Arr) {
+            GdArr* a=recv.arr;
+            if(!a)return GdVal::null();
+            switch(method) {
+                case SYM_size:
+                    if(ctx.native_resolved_collect)native_inline_variant_hit(0);
+                    return GdVal::from_int(a->len);
+                case SYM_empty:
+                    if(ctx.native_resolved_collect)native_inline_variant_hit(1);
+                    return GdVal::from_bool(a->len == 0);
+                case SYM_has:
+                    if(ctx.native_resolved_collect)native_inline_variant_hit(2);
+                    return GdVal::from_bool(argc >= 1 && a->has_val(args[0]));
+                case SYM_front:
+                    if(ctx.native_resolved_collect)native_inline_variant_hit(3);
+                    return a->len > 0 ? a->data[0] : GdVal::null();
+                case SYM_back:
+                    if(ctx.native_resolved_collect)native_inline_variant_hit(4);
+                    return a->len > 0 ? a->data[a->len - 1] : GdVal::null();
+                default:break;
+            }
+        } else if(recv.kind==GdVal::Kind::Dict) {
+            GdDict* d=recv.dict;
+            if(!d)return GdVal::null();
+            switch(method) {
+                case SYM_size:
+                    if(ctx.native_resolved_collect)native_inline_variant_hit(5);
+                    return GdVal::from_int(d->len);
+                case SYM_empty:
+                    if(ctx.native_resolved_collect)native_inline_variant_hit(6);
+                    return GdVal::from_bool(d->len == 0);
+                case SYM_has:
+                    if(ctx.native_resolved_collect)native_inline_variant_hit(7);
+                    return GdVal::from_bool(argc >= 1 && d->has(args[0]));
+                case SYM_get:
+                    if(ctx.native_resolved_collect)native_inline_variant_hit(8);
+                    return argc >= 1 ? d->get(args[0], argc >= 2 ? args[1] : GdVal::null()) : GdVal::null();
+                default:break;
+            }
+        } else if(recv.kind==GdVal::Kind::ClassRef && method!=SYM_new) {
+            if(ctx.native_resolved_collect)native_inline_variant_hit(9);
+            if(recv.cls && recv.cls->call_static_fn) {
+                GdVal out=GdVal::null();
+                if(recv.cls->call_static_fn(ctx,method,args,argc,out))return out;
+            }
+            // A false callback is already executed; the original returns Null.
+            return GdVal::null();
         }
     }
     // No virtual/user call has happened yet; fallback performs it exactly once.

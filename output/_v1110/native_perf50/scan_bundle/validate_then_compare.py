@@ -1,0 +1,48 @@
+"""Await the identified live build, then validate before any formal timing."""
+import argparse
+import hashlib
+import json
+from pathlib import Path
+import subprocess
+import sys
+import psutil
+
+WORK=Path(__file__).resolve().parent
+STAGE=WORK.parents[1]
+
+def run(script,log,*args):
+    print('Starting '+script,flush=True)
+    with (WORK/log).open('w',encoding='utf8') as output:
+        subprocess.run([sys.executable,'-u','-X','utf8',str(WORK/script),*map(str,args)],stdout=output,stderr=subprocess.STDOUT,check=True)
+    print('Passed '+script,flush=True)
+
+def main():
+    parser=argparse.ArgumentParser();parser.add_argument('--build-pid',type=int,required=True)
+    parser.add_argument('--created',type=float,required=True);args=parser.parse_args()
+    try:
+        process=psutil.Process(args.build_pid)
+    except psutil.NoSuchProcess:
+        process=None
+    if process is not None:
+        # Native shell argument formatting may round the sub-millisecond fraction.
+        assert abs(process.create_time()-args.created)<0.001,(process.create_time(),args.created)
+        assert any('scan_bundle/build_bundle.py' in part.replace('\\','/') for part in process.cmdline())
+        print('Waiting on live build PID '+str(process.pid),flush=True)
+        while process.is_running():
+            try:process.wait(timeout=30)
+            except psutil.TimeoutExpired:continue
+            break
+    dll=WORK/'bundle.dll'
+    assert dll.is_file(),'Build ended without a release DLL; inspect original build log, do not restart automatically'
+    assert hashlib.sha256((STAGE/'sim_native/native_sim_cpp/native_sim/libgdcore.dll').read_bytes()).hexdigest()=='1be75dced83e9e90fdbe61dd86f91bc27e19bb44acf9449d295849e928d9cec5'
+    run('prepare_regeneration.py','regeneration_pipeline.log')
+    run('verify_resolved.py','verify.log')
+    run('inspect_variant.py','release_audit.log','--dll',dll,'--out',WORK/'release_audit.json')
+    run('test_regeneration_guards.py','regeneration_guards.log')
+    run('test_full_regeneration.py','full_regeneration.log')
+    # Only this process and the two serial A/B workers remain; no more preparation.
+    assert json.loads((WORK/'buff_chunk_differential.json').read_bytes())['passed']
+    run('run_comparison.py','comparison.log')
+    print('All preflight checks and three comparison groups completed; deployment still gated',flush=True)
+
+if __name__=='__main__':main()
