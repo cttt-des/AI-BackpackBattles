@@ -1,0 +1,10 @@
+{
+  "dll_sha256": "58383a1158e951d7aae8b4d4c34df4d52332446156946d31a488f5dff323ec39",
+  "reference_load_pct": 20,
+  "observed_load_range": [
+    9.687907686293075,
+    19.524803851374756
+  ],
+  "rejected": true,
+  "reason": "Reference load is outside the observed range; no extrapolation"
+}

@@ -300,3 +300,22 @@ Buff 自调用首轮 CPU 耗时增加 8.48%，事件总线上下文读取增加 
 基线及候选均通过回调定向测试，覆盖先放无效占位地址、由前序回调修复后才真正访问，替换后续条目，追加，停用后续计时器，整体替换数组，同帧加入宝石，以及缩短数组后仍遵循捕获长度。三场原版严格回放通过，22 个 C ABI 不变，重复生成字节不变。[测试源码](../output/_v1110/test_native_item_prefetch.cpp) · [基线测试](../output/_v1110/native_perf50/cycles10/prefetch_baseline_test.json) · [候选测试](../output/_v1110/native_perf50/cycles10/prefetch_candidate_test.json) · [ABI](../output/_v1110/native_perf50/cycles10/item_prefetch_abi.json)
 
 两轮各八组隔离 AB／BA，CPU 耗时分别增加 **5.31%、3.00%**，墙钟增加 **5.09%、3.17%**。本轮排除，不进入全量发布门槛，运行时保持第七轮。下一轮先备份已验收源码与 DLL，再检验原生物品计时器数组头与物品存储相邻的局部方案；不改战斗步骤、回调、RNG 或浮点计算，需专门验证数组别名、重复初始化及生命周期。[首测](../output/_v1110/native_perf50/cycles10/item_prefetch_ab.json) · [反转复测](../output/_v1110/native_perf50/cycles10/item_prefetch_ab_repeat.json)
+
+
+### 第十一轮
+
+开始结构改动前，已提交并推送当前已验收版至 `bc5082fd`，用 Git 原始对象逐字节核对 698 份 C++／头文件、构建脚本及 DLL 共 700 份文件，DLL 为第七轮 `9ffe3242…`。[备份核对](../output/_v1110/native_perf50/cycles11/verified_baseline.json)
+
+采用原生物品首个计时器数组头与物品相邻的布局。仅桥接内部启用的战斗上下文、且物品存储属于该战斗 arena 时使用对象内的首个空数组头；其他上下文及栈对象保持独立 arena 数组头。桥接内部物品随整个战斗内存区存活，未改战斗推进、回调、RNG 和浮点表达式。对象内数组头一旦用过便不再复用，重复初始化继续分配新头，保留旧别名。重建入口已接入该生成步骤，重复应用保持源码字节及修改时间不变。[生成脚本](../output/_v1110/optimize_native_inline_timers.py)
+
+CoreItem 从 1,696 字节、8 字节对齐改为 1,792 字节、64 字节对齐；`Gd__gd_core__Item` 从 3,832 改为 3,904 字节。计时器 GdVal 位于偏移 1,600，内置头位于 1,624，长度字段位于 1,632，处于同一 64 字节行。新布局要求更高分配对齐，候选据实际块基址计算高对齐偏移，普通对齐继续使用原快速路径。8–256 字节对齐、跨块、重置复用和存储归属专测通过：旧分配器对新对齐请求出现 73 处错位，候选为 0。[基线布局／分配探针](../output/_v1110/native_perf50/cycles11/arena_baseline_test.json) · [候选布局／分配测试](../output/_v1110/native_perf50/cycles11/arena_candidate_test.json)
+
+已对 20 个依赖单元全量重建，并重新收集全部 18 个热点单元的 PGO 数据，保持浮点选项。所有 C++ 定向测试均以候选头文件重新编译，覆盖外部对象析构后的数组引用、原生数组身份与缓存行、重复初始化、复制／移动、跨 arena 初始化、同帧新增后续计时器，以及此前的计时器首次生效、启动／停用／重启、追加／替换、自定义上下文和钩子回退。三场原版严格回放通过，22 个 C ABI 相同。[别名测试源码](../output/_v1110/test_native_inline_timers.cpp) · [候选测试](../output/_v1110/native_perf50/cycles11/inline_candidate_test.json) · [计时器回归](../output/_v1110/native_perf50/cycles11/timer_regression_test.json) · [遍历回归](../output/_v1110/native_perf50/cycles11/traversal_regression_test.json) · [快照回归](../output/_v1110/native_perf50/cycles11/snapshot_regression_test.json) · [ABI](../output/_v1110/native_perf50/cycles11/inline_timers_abi.json)
+
+三轮各八组隔离 AB／BA，CPU 耗时降幅为 **2.69%、2.59%、1.01%**，墙钟为 **2.31%、3.51%、0.79%**。合计 24 对中位数 CPU 下降 **1.63%**、墙钟下降 **2.08%**，所有波动样本保留。[首测](../output/_v1110/native_perf50/cycles11/inline_timers_ab.json) · [反转复测](../output/_v1110/native_perf50/cycles11/inline_timers_ab_repeat.json) · [确认](../output/_v1110/native_perf50/cycles11/inline_timers_ab_confirm.json) · [汇总](../output/_v1110/native_perf50/cycles11/inline_timers_ab_pooled.json)
+
+914 + 1,690 场严格逐事件验收全部通过，逐场 C++ 事件哈希全部一致。接电、自然后台负载 **9.7%–19.5%** 下连续 24 批，吞吐中位数 **87.86 场/秒**、最慢 **79.35 场/秒**。自然范围不含 20%，拒绝外推并补充相同设置的受控负载校准。[全量验收](../output/_v1110/native_perf50/cycles11/inline_timers_full_gate.json) · [事件哈希](../output/_v1110/native_perf50/cycles11/inline_timers_event_hashes.json) · [正式吞吐](../output/_v1110/native_perf50/cycles11/inline_timers_serial.json) · [自然样本拒绝外推](../output/_v1110/native_perf50/cycles11/inline_timers_natural_load20_rejected.json)
+
+补充校准采用 30 秒预热、两个低优先级负载进程，整个采样在 120 秒进程上限内完成。接电、估算负载 **16.0%–41.7%**，24 批原始吞吐中位数 **77.49**、最慢 **61.56 场/秒**，全部高于门槛。20% 换算 **79.71 场/秒**，分组留出误差中位数 **1.83%**、第 90 百分位 **4.83%**。换算只解释这组条件下的负载波动，100／125 目标继续推进。[受控采样](../output/_v1110/native_perf50/cycles11/inline_timers_load_calibration_warm.json) · [20% 换算](../output/_v1110/native_perf50/cycles11/inline_timers_load20_warm.json)
+
+已部署 DLL `58383a1158e951d7aae8b4d4c34df4d52332446156946d31a488f5dff323ec39`。正常训练 12 场无错误，另 12 场固定种子结果与基线一致，部署清单、验收报告及 DLL SHA-256 相同，源码与受测副本一致。旧版保留于 `dist/native_1_1_10_before_cycle11`。下一轮从该版重新采样，先计数仅针对物品／宝石／计时器相关数组的变更与可跳过条目，再评估保持原顺序、同帧变更后回退原遍历的稀疏计时器路径。[部署记录](../output/_v1110/native_perf50/cycles11/inline_timers_installation.json)
