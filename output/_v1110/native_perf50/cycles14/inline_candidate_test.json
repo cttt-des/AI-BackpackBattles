@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "dll_sha256": "50201d2a5fe4ab39927df1637b1abe3425c5d1b0a4b447b75ce6364092b1aed0",
+  "output": "External lifetime, escaped aliases and reinit passed; native inline identity, cache line, repeated reinit, copy/move, foreign arena and same-frame timer insertion passed\n",
+  "compiled_against_candidate_headers": true
+}

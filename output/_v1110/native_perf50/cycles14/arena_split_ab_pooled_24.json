@@ -1,0 +1,29 @@
+{
+  "baseline_dll_sha256": "58383a1158e951d7aae8b4d4c34df4d52332446156946d31a488f5dff323ec39",
+  "candidate_dll_sha256": "50201d2a5fe4ab39927df1637b1abe3425c5d1b0a4b447b75ce6364092b1aed0",
+  "pairs": 24,
+  "source_reports": [
+    "arena_split_ab.json",
+    "arena_split_ab_repeat.json",
+    "arena_split_ab_confirm.json"
+  ],
+  "main_thread_cpu_s": {
+    "median_reduction_pct": 2.1980676328502424,
+    "candidate_wins": 15,
+    "baseline_wins": 9,
+    "range_reduction_pct": [
+      -13.888888888888884,
+      9.433962264150942
+    ]
+  },
+  "wall_s": {
+    "median_reduction_pct": 1.6872891664794554,
+    "candidate_wins": 13,
+    "baseline_wins": 11,
+    "range_reduction_pct": [
+      -12.7967433420072,
+      6.965484372369046
+    ]
+  },
+  "all_samples_retained": true
+}

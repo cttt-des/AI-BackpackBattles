@@ -1,0 +1,9 @@
+{
+  "remote_commit": "0f34bed654147ccf4b67af1b4c6ddd21f3fc3f29",
+  "remote_branch": "refs/heads/codex/native-perf50-verified",
+  "dll_sha256": "58383a1158e951d7aae8b4d4c34df4d52332446156946d31a488f5dff323ec39",
+  "raw_dll_matches_active": true,
+  "source_archive_receipt": "arena_split_baseline_archive.json",
+  "source_files_verified": 699,
+  "before_allocator_candidate": true
+}

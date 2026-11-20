@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "accepted_source_upgrade_matches_tested_candidate": true,
+  "repeated_apply_preserves_bytes_and_mtime": true,
+  "guarded_source_files": [
+    "gd_rt.hpp",
+    "gen/hdrs/Gd__gd_core__CoreItem.hpp",
+    "gen/shards/shard_00.cpp",
+    "engine_wrapper.cpp"
+  ]
+}
