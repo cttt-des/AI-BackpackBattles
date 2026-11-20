@@ -10,7 +10,8 @@ import sys
 import tempfile
 
 
-HOT_UNITS = {"gd_rt", "engine_wrapper", "shard_00", "shard_02", "shard_03", "shard_07"}
+LEGACY_HOT_UNITS = {"gd_rt", "engine_wrapper", "shard_00", "shard_02", "shard_03", "shard_07"}
+HOT_UNITS = {"gd_rt", "engine_wrapper", *(f"shard_{index:02d}" for index in range(16))}
 LTO = "-flto=2"
 
 
@@ -100,6 +101,8 @@ if __name__ == "__main__":
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--jobs", type=int, default=2)
     parser.add_argument("--pgo", action="store_true", help="Train the hot units on the local replay and batch benchmarks")
+    parser.add_argument("--hot-preset", choices=("full", "legacy"), default="full",
+                        help="Use all generated shards, or reproduce the earlier six-unit configuration")
     parser.add_argument("--extra-hot-unit", action="append", default=[], metavar="SOURCE_STEM")
     args = parser.parse_args()
     if args.jobs < 1:
@@ -112,4 +115,5 @@ if __name__ == "__main__":
     if out.exists():
         parser.error("Use a new output path for the candidate DLL")
     out.parent.mkdir(parents=True, exist_ok=True)
-    build_candidate(native, out, args.jobs, args.pgo, hot_units=HOT_UNITS | set(args.extra_hot_unit))
+    units = HOT_UNITS if args.hot_preset == "full" else LEGACY_HOT_UNITS
+    build_candidate(native, out, args.jobs, args.pgo, hot_units=units | set(args.extra_hot_unit))

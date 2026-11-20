@@ -151,7 +151,7 @@ python "$stage/bench_native_corpus.py" --dll "$stage/native_perf50/rebuilt-pgo.d
 
 已更新默认训练运行时，部署与验收 DLL 的 SHA-256 均为 `747d52d526ff017f632ffcd3462fdfb34a163ce957d02a99853cf1a017531eb4`。正常训练评估 12 场无错误，另有 12 场固定种子逐场胜负与基线一致。旧运行时保留于 `dist/native_1_1_10_before_assembly`。`--native-perf50` 再生成入口已接入该优化。[部署记录](../output/_v1110/native_perf50/assembly/fused_installation.json)
 
-## 150／180 场每秒的循环优化
+## 100／125 场每秒的循环优化
 
 目标采用估算后台 CPU 负载 20% 的换算吞吐。每个正式候选仍需完成固定 200 场单线程交替对照、2,604 场严格逐事件验收、逐场 C++ 事件哈希比对，以及连续 24 批原始吞吐均达到 50 场/秒的部署检查。20% 换算使用同一 DLL 的实际负载范围和分组留出误差，记录实际供电条件。
 
@@ -165,7 +165,7 @@ Buff 自调用首轮 CPU 耗时增加 8.48%，事件总线上下文读取增加 
 
 两项合并后的整版首测 CPU 耗时增加 0.75%，墙钟下降 0.44%，反转顺序复测也未显示稳定收益。因此仅角色自调用进入全量验收，合并版和白名单改动本轮排除。[合并版首测](../output/_v1110/native_perf50/cycles/round01_ab.json) · [合并版复测](../output/_v1110/native_perf50/cycles/round01_ab_repeat.json)
 
-角色候选通过 914 + 1,690 场原版严格逐事件验收，2,604 场 C++ 事件哈希逐场一致。接电连续 24 批中位数 97.34 场/秒，最慢 72.05 场/秒，均超过 50 场/秒。估算后台负载覆盖 5.3%–27.2%，同版样本拟合到 20% 后为 **82.69 场/秒**，分组留出预测误差中位数 1.87%，第 90 百分位 3.63%。150 和 180 的目标继续推进。[验收](../output/_v1110/native_perf50/cycles/character_full_gate.json) · [事件哈希](../output/_v1110/native_perf50/cycles/character_event_hashes.json) · [连续吞吐](../output/_v1110/native_perf50/cycles/character_serial.json) · [20% 换算](../output/_v1110/native_perf50/cycles/character_load20.json)
+角色候选通过 914 + 1,690 场原版严格逐事件验收，2,604 场 C++ 事件哈希逐场一致。接电连续 24 批中位数 97.34 场/秒，最慢 72.05 场/秒，均超过 50 场/秒。估算后台负载覆盖 5.3%–27.2%，同版样本拟合到 20% 后为 **82.69 场/秒**，分组留出预测误差中位数 1.87%，第 90 百分位 3.63%。100 和 125 的目标继续推进。[验收](../output/_v1110/native_perf50/cycles/character_full_gate.json) · [事件哈希](../output/_v1110/native_perf50/cycles/character_event_hashes.json) · [连续吞吐](../output/_v1110/native_perf50/cycles/character_serial.json) · [20% 换算](../output/_v1110/native_perf50/cycles/character_load20.json)
 
 已部署 DLL `ef599b44623242e43c108e7eb05dc012fa6384bebd66aee4dcc03c483553f7cf`，正常训练评估和固定种子检查通过，旧运行时保留在 `dist/native_1_1_10_before_cycle01`。[部署记录](../output/_v1110/native_perf50/cycles/character_installation.json)
 
@@ -182,3 +182,18 @@ Buff 自调用首轮 CPU 耗时增加 8.48%，事件总线上下文读取增加 
 补充负载校准使用两个低优先级进程，以 20 毫秒周期、20%／85% 工作占比交替运行，单次最多 120 秒，结束后退出。首次校准的留出误差中位数为 5.54%，第 90 百分位为 22.25%。增加 30 秒预热后的完整 24 批，估算后台负载为 9.0%–37.3%，实测中位数 96.86、最慢 72.73 场/秒。20% 换算值为 **90.11 场/秒**，留出误差中位数 2.67%，第 90 百分位 6.27%。该值对应本机此受控负载采样条件。[首次校准](../output/_v1110/native_perf50/cycles02/rng_native_load_calibration.json) · [预热校准](../output/_v1110/native_perf50/cycles02/rng_native_load_calibration_warm.json) · [20% 换算](../output/_v1110/native_perf50/cycles02/rng_native_load20_warm.json) · [校准脚本](../output/_v1110/bench_native_load_calibration.py)
 
 已部署 DLL `201b390883f77eb6883a751503a4e4c049a8192297647a11b6ff73c556230e34`，正常训练评估及固定种子检查通过。旧运行时保留在 `dist/native_1_1_10_before_cycle02`。下一轮对已部署版本采集至少 6,000 个栈样本，并保留叶节点指令偏移。[部署记录](../output/_v1110/native_perf50/cycles02/rng_native_installation.json)
+
+
+### 第三轮
+
+起点 DLL 为 `201b3908…`，远端备份为 `81144856`。该版取得 6,013 个带叶节点指令偏移的栈样本，固定 200 场共运行 54 批。热点仍包括战斗逐帧、物品逐帧及通用派发。指令位置命中计时器数组长度读取、冷却活跃状态判断和宝石类型查询。[细粒度采样](../output/_v1110/native_perf50/cycles02/rng_native_profile_instructions.json)
+
+数组 `size`／`empty` 的 80 处内联查询保留其他类型的原通用回退。编译进程同时运行时的初测 CPU 耗时下降 4.56%，编译结束后的独立复测 CPU 耗时增加 0.45%、墙钟增加 1.22%，本轮排除。[有编译后台的初测](../output/_v1110/native_perf50/cycles03/array_queries_ab_compile_background.json) · [独立复测](../output/_v1110/native_perf50/cycles03/array_queries_ab.json)
+
+最终采用全生成分片 LTO／PGO。热点编译单元由 6 个扩大至 `gd_rt`、`engine_wrapper` 和全部 16 个生成分片，共 18 个，`sym_ids` 和 `register_all` 沿用普通编译。源码及浮点选项不变。采样工作负载仍为三场定向回放、固定 200 场和 200 场训练。22 个 C ABI 符号与基线相同，DLL 从 10,413,483 字节减至 9,419,176 字节。构建脚本默认采用此配置，`--hot-preset legacy` 可复现此前的六单元配置。[ABI 比较](../output/_v1110/native_perf50/cycles03/full_pgo_abi.json) · [构建脚本](../output/_v1110/build_native_hot_lto.py)
+
+两轮各 8 组 AB／BA，主线程 CPU 耗时降幅分别为 6.60%、5.82%，墙钟降幅分别为 5.76%、5.15%。合计 16 组成对中位数 CPU 下降 **6.25%**，墙钟下降 **5.58%**。[首测](../output/_v1110/native_perf50/cycles03/full_pgo_ab.json) · [反转复测](../output/_v1110/native_perf50/cycles03/full_pgo_ab_repeat.json)
+
+914 + 1,690 场原版严格逐事件核验全部通过，逐场 C++ 事件哈希全部一致。接电、自然后台负载 3.6%–27.8% 下连续 24 批，中位数 **115.58 场/秒**，最慢 **82.52 场/秒**，全部达到部署门槛。同一 DLL 的自然负载样本拟合至 20% 为 **94.03 场/秒**，连续四批分组留出的耗时相对误差中位数为 1.28%，第 90 百分位为 4.88%。[全量验收](../output/_v1110/native_perf50/cycles03/full_pgo_full_gate.json) · [事件哈希](../output/_v1110/native_perf50/cycles03/full_pgo_event_hashes.json) · [持续吞吐](../output/_v1110/native_perf50/cycles03/full_pgo_serial.json) · [20% 换算](../output/_v1110/native_perf50/cycles03/full_pgo_load20.json)
+
+已部署 DLL `4ccdaf2bef6ad526a5740355bc413e18015d341f5d98182cdc68e7688570e038`。正常训练评估 12 场无错误，另 12 场固定种子胜负与基线一致，运行时清单与验收 DLL 哈希相同。旧版保留于 `dist/native_1_1_10_before_cycle03`。继续从该已部署版本采样下一轮。[部署记录](../output/_v1110/native_perf50/cycles03/full_pgo_installation.json)
