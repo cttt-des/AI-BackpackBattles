@@ -276,3 +276,16 @@ Buff 自调用首轮 CPU 耗时增加 8.48%，事件总线上下文读取增加 
 候选仅修改 GdDict::get：整数键转无符号后在 len 内，且该位置存储的键为相同整数时直接返回值，其余执行原查找。没有新增状态或修改布局。原版和候选均通过扩容、删除重插入及顺序、默认值、复制、清空、混合键、布尔／浮点等价键、超大整数、NaN 和显式错误哈希的测试；候选三场原版严格回放通过，22 个 C ABI 保持一致，生成脚本幂等。[候选脚本](../output/_v1110/optimize_native_dict_indices.py) · [测试源码](../output/_v1110/test_native_dict_indices.cpp) · [基线测试](../output/_v1110/native_perf50/cycles08/dict_baseline_test.json) · [候选测试](../output/_v1110/native_perf50/cycles08/dict_candidate_test.json) · [ABI](../output/_v1110/native_perf50/cycles08/dict_indices_abi.json)
 
 三轮各八组隔离 AB／BA，CPU 耗时降幅为 **0.61%、4.83%、−3.40%**，墙钟为 **1.26%、4.55%、−3.56%**。未取得方向一致的可重复收益，本轮排除；不进入全量发布门槛，运行时保持第七轮。下一轮检查 Buff 按层数循环为整数迭代分配临时数组的成本，必须保留进入循环时的次数快照及每次回调／RNG 顺序。[首测](../output/_v1110/native_perf50/cycles08/dict_indices_ab.json) · [反转复测](../output/_v1110/native_perf50/cycles08/dict_indices_ab_repeat.json) · [确认](../output/_v1110/native_perf50/cycles08/dict_indices_ab_confirm.json)
+
+
+### 第九轮（未替换运行时）
+
+基线仍为第七轮 `9ffe3242…`，远端备份 `45ecf1a4`。先对 Buff 抵抗、放大、反射的三个整数循环计数，分别调用 8,351／13,295／6,659 次，共构造 51,411 个整数元素，仅约 1.18 MiB 数据。未直接采用该局部候选。[Buff 计数](../output/_v1110/native_perf50/cycles09/buff_ranges_counts.json) · [基线快照／RNG 测试](../output/_v1110/native_perf50/cycles09/range_baseline_test.json)
+
+补充全局整数迭代调用点计数，共 131,502 次、481,464 个整数元素。最高为 CoreItem::getNextFreeLabelPosition：78,937 次，占调用 60.0%，394,685 个元素占 82.0%。诊断 DLL 的固定输入、终局及完整结果哈希不变。符号解析初次读取了 Windows 已重定位的内存 PE 基址，后改为读取磁盘 PE 头的首选基址，重新运行验证计数和调用 RVA 相同，仅修正函数名映射。[全局计数](../output/_v1110/native_perf50/cycles09/range_sites_counts_resolved.json) · [计数器](../output/_v1110/probe_native_range_sites.py)
+
+正式候选只优化浮字位置循环，仍先调用原 size() 一次，再对不超过 UINT32_MAX 的整数返回值直接产生索引，长度保持进入循环时的快照；非整数及超大整数仍调用原 gd_iter_seq。时间读取、时间戳更新、提前返回、随机调用和浮点表达式保持原代码。生成脚本校验完整方法及整数迭代实现，重复应用字节不变。[候选生成](../output/_v1110/optimize_native_label_ranges.py) · [范围转换工具](../output/_v1110/optimize_native_integer_ranges.py)
+
+原版及候选均通过定向测试：首个／后续空位、全占用、空数组、回调追加元素不扩大遍历、修改后续值立即可见、替换数组、字典及空值输入，并核对属性读取次数、character 回调、诊断调用及两次随机调用的范围与顺序。三场原版严格回放通过，22 个 C ABI 保持一致。[测试源码](../output/_v1110/test_native_label_ranges.cpp) · [基线测试](../output/_v1110/native_perf50/cycles09/label_baseline_test.json) · [候选测试](../output/_v1110/native_perf50/cycles09/label_candidate_test.json) · [ABI](../output/_v1110/native_perf50/cycles09/label_ranges_abi.json)
+
+三轮各八组隔离 AB／BA，CPU 耗时降幅为 **2.56%、−0.64%、0.35%**，墙钟为 **0.87%、0.36%、0.07%**。后两轮没有重复首轮收益，因此排除，不进入全量发布门槛，运行时仍为第七轮。下一轮依据现有指令采样检查逐帧遍历的内存读取路径；当前 CoreItem 冷却推进本身已经使用原生数值计算，避免重复改写已优化逻辑。[首测](../output/_v1110/native_perf50/cycles09/label_ranges_ab.json) · [反转复测](../output/_v1110/native_perf50/cycles09/label_ranges_ab_repeat.json) · [确认](../output/_v1110/native_perf50/cycles09/label_ranges_ab_confirm.json)

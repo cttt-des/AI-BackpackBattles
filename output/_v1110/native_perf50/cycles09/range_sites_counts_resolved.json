@@ -1,0 +1,203 @@
+{
+  "diagnostic_only": true,
+  "symbol_resolution": "preferred PE image base from file",
+  "dll_sha256": "b5d295ca1952b5d6d6349c76e9a305af0b5b1324a9c3253c811e3b4704b3e088",
+  "inputs_sha256": "d94b16d42cc88e9a3850a77c9360b9c4c4fdd676cb252e463044a903db2a5fef",
+  "results_sha256": "2e74b45caa87f7ee6ac72ffc35d98cc8db140b47031614d26542e183cef5d2c9",
+  "calls": 131502,
+  "elements": 481464,
+  "sites": [
+    {
+      "caller_rva": "0x4c36f1",
+      "caller": "Gd__gd_core__CoreItem::fn_getNextFreeLabelPosition(gd::GdVal const*, int) [clone .constprop.0]",
+      "calls": 78937,
+      "elements": 394685,
+      "nonpositive": 0,
+      "maximum": 5
+    },
+    {
+      "caller_rva": "0x4cc120",
+      "caller": "Gd__gd_core__CoreBuff::fn_gainTemporary(gd::GdVal const*, int)",
+      "calls": 13295,
+      "elements": 23982,
+      "nonpositive": 0,
+      "maximum": 21
+    },
+    {
+      "caller_rva": "0x47e69b",
+      "caller": "Gd__gd_core__CoreItemData::fn_addNamedParam(gd::GdVal const*, int)",
+      "calls": 12626,
+      "elements": 16321,
+      "nonpositive": 4892,
+      "maximum": 16
+    },
+    {
+      "caller_rva": "0x4cc3fa",
+      "caller": "Gd__gd_core__CoreBuff::fn_gainTemporary(gd::GdVal const*, int)",
+      "calls": 6659,
+      "elements": 14995,
+      "nonpositive": 0,
+      "maximum": 14
+    },
+    {
+      "caller_rva": "0x4cbf40",
+      "caller": "Gd__gd_core__CoreBuff::fn_gainTemporary(gd::GdVal const*, int)",
+      "calls": 8351,
+      "elements": 12434,
+      "nonpositive": 0,
+      "maximum": 20
+    },
+    {
+      "caller_rva": "0x8f209",
+      "caller": "Gd__gd_core__CoreItem::fn_sendCharge(gd::GdVal const*, int)",
+      "calls": 771,
+      "elements": 4016,
+      "nonpositive": 0,
+      "maximum": 13
+    },
+    {
+      "caller_rva": "0x4df66a",
+      "caller": "Gd__gd_core__CoreCharacter::fn_takeDamage(gd::GdVal const*, int)",
+      "calls": 3761,
+      "elements": 3772,
+      "nonpositive": 0,
+      "maximum": 2
+    },
+    {
+      "caller_rva": "0x4dec1b",
+      "caller": "Gd__gd_core__CoreCharacter::fn_takeDamage(gd::GdVal const*, int)",
+      "calls": 2958,
+      "elements": 3014,
+      "nonpositive": 0,
+      "maximum": 2
+    },
+    {
+      "caller_rva": "0x7cb00",
+      "caller": "Gd__gd_core__CoreBuff::fn_onTimeout(gd::GdVal const*, int)",
+      "calls": 451,
+      "elements": 2778,
+      "nonpositive": 0,
+      "maximum": 20
+    },
+    {
+      "caller_rva": "0x4e664f",
+      "caller": "Gd__gd_core__CoreBuff::fn_loseStacks(gd::GdVal const*, int)",
+      "calls": 834,
+      "elements": 1412,
+      "nonpositive": 13,
+      "maximum": 38
+    },
+    {
+      "caller_rva": "0x4dfee3",
+      "caller": "Gd__gd_core__CoreCharacter::fn_takeDamage(gd::GdVal const*, int)",
+      "calls": 1322,
+      "elements": 1333,
+      "nonpositive": 0,
+      "maximum": 2
+    },
+    {
+      "caller_rva": "0x4e6dfb",
+      "caller": "Gd__gd_core__CoreBuff::fn_loseStacks(gd::GdVal const*, int)",
+      "calls": 856,
+      "elements": 1255,
+      "nonpositive": 0,
+      "maximum": 85
+    },
+    {
+      "caller_rva": "0x4e701d",
+      "caller": "Gd__gd_core__CoreBuff::fn_loseStacks(gd::GdVal const*, int)",
+      "calls": 455,
+      "elements": 995,
+      "nonpositive": 0,
+      "maximum": 22
+    },
+    {
+      "caller_rva": "0x58c5c",
+      "caller": "Gd__gd_core__CoreUtil::sf_arrayAsIndexDict(gd::BattleCtx&, gd::GdVal const*, int)",
+      "calls": 64,
+      "elements": 158,
+      "nonpositive": 3,
+      "maximum": 6
+    },
+    {
+      "caller_rva": "0xb1f02",
+      "caller": "Gd__gd_core_items__Exclusive__ManaCrystal::fn_emitCharge(gd::GdVal const*, int)",
+      "calls": 25,
+      "elements": 100,
+      "nonpositive": 0,
+      "maximum": 4
+    },
+    {
+      "caller_rva": "0x45508",
+      "caller": "Gd__gd_core_items__DeckofCards::fn_updateCards(gd::GdVal const*, int)",
+      "calls": 77,
+      "elements": 96,
+      "nonpositive": 34,
+      "maximum": 5
+    },
+    {
+      "caller_rva": "0x70e9c",
+      "caller": "Gd__gd_core_items__Exclusive__MagicRing::fn__readyInit(gd::GdVal const*, int)",
+      "calls": 15,
+      "elements": 36,
+      "nonpositive": 0,
+      "maximum": 3
+    },
+    {
+      "caller_rva": "0x7176a",
+      "caller": "Gd__gd_core_items__Exclusive__MagicRing::fn_randEffects(gd::GdVal const*, int)",
+      "calls": 15,
+      "elements": 36,
+      "nonpositive": 0,
+      "maximum": 3
+    },
+    {
+      "caller_rva": "0xf7ef0",
+      "caller": "Gd__gd_core_items__Exclusive__EvilHat::fn_onDebuffsChanged(gd::GdVal const*, int)",
+      "calls": 13,
+      "elements": 24,
+      "nonpositive": 0,
+      "maximum": 3
+    },
+    {
+      "caller_rva": "0x4a226",
+      "caller": "Gd__gd_core_items__Exclusive__Joker::fn_countChain(gd::GdVal const*, int)",
+      "calls": 3,
+      "elements": 10,
+      "nonpositive": 0,
+      "maximum": 4
+    },
+    {
+      "caller_rva": "0x9478b",
+      "caller": "Gd__gd_core_items__DeckofCards::fn_countDuplicates(gd::GdVal const*, int)",
+      "calls": 8,
+      "elements": 4,
+      "nonpositive": 5,
+      "maximum": 2
+    },
+    {
+      "caller_rva": "0x142b85",
+      "caller": "Gd__gd_core_items__PoisonBow::fn_onWeaponAttacked(gd::GdVal const*, int)",
+      "calls": 4,
+      "elements": 4,
+      "nonpositive": 0,
+      "maximum": 1
+    },
+    {
+      "caller_rva": "0x124027",
+      "caller": "Gd__gd_core_items__Exclusive__TeslaCoil::fn_doCooldownEffect(gd::GdVal const*, int)",
+      "calls": 1,
+      "elements": 3,
+      "nonpositive": 0,
+      "maximum": 3
+    },
+    {
+      "caller_rva": "0x1350dc",
+      "caller": "Gd__gd_core_items__BowandArrow::fn_onWeaponAttacked(gd::GdVal const*, int)",
+      "calls": 1,
+      "elements": 1,
+      "nonpositive": 0,
+      "maximum": 1
+    }
+  ]
+}
