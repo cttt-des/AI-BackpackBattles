@@ -47,8 +47,14 @@ def optimize(native, selected):
         print(f'bus_context: lowered {count} guarded property reads', flush=True)
         return
     owners = {'buff': 'Gd__gd_core__CoreBuff', 'character': 'Gd__gd_core__CoreCharacter',
-              'rng': 'Gd__gd_core__CoreRng'}
+              'rng': 'Gd__gd_core__CoreRng', 'rng_native': 'Gd__gd_core__CoreRng'}
     owner = owners[selected]
+    if selected == 'rng_native':
+        runtime = (native/'gd_rt.cpp').read_text('utf8')
+        implementation = ('return GdVal::from_float(argc >= 2 ? recv.rng->randf_range('
+                          'args[0].as_float(), args[1].as_float()) : 0.0);')
+        if implementation not in runtime:
+            raise ValueError('The underlying random-range implementation changed')
     headers = list((generated / 'hdrs').glob('*.hpp'))
     for path in headers:
         if re.search(rf'\bpublic\s+{owner}\b', path.read_text('utf8')):
@@ -61,6 +67,7 @@ def optimize(native, selected):
     pattern = re.compile(r'gd::call_method\(gd_ctx, gd::GdVal::from_obj\(this\), '
                          r'((?:SYM_GEN_|gd::SYM_)\w+), ((?:_ca|nullptr), \d+)\)')
     count = 0
+    range_calls = 0
 
     def direct(match):
         nonlocal count
@@ -70,19 +77,31 @@ def optimize(native, selected):
         count += 1
         return f'this->fn_{name}({match[2]})'
 
+    updated_sources = {}
     for path, source in sources.items():
         methods = re.compile(rf'^gd::GdVal {owner}::fn_\w+\([^\n]*\n.*?^\}}', re.M | re.S)
         updated = methods.sub(lambda m: pattern.sub(direct, m[0]), source)
+        if selected == 'rng_native':
+            old = 'gd::call_method(gd_ctx, this->f_rng, gd::SYM_randf_range, _ca, 2)'
+            new = ('(this->f_rng.kind == gd::GdVal::Kind::Rng && this->f_rng.rng '
+                   '? gd::GdVal::from_float(this->f_rng.rng->randf_range(_ca[0].as_float(), _ca[1].as_float())) '
+                   f': {old})')
+            range_calls += sum(m[0].count(old) for m in methods.finditer(updated))
+            updated = methods.sub(lambda m: m[0].replace(old, new), updated)
         if updated != source:
-            path.write_text(updated, encoding='utf8', newline='\n')
+            updated_sources[path] = updated
     if not count:
         raise ValueError('No self calls were found')
+    if selected == 'rng_native' and range_calls != 2:
+        raise ValueError('Unexpected native random-range entry points')
+    for path, updated in updated_sources.items():
+        path.write_text(updated, encoding='utf8', newline='\n')
     print(f'{selected}: lowered {count} verified self calls', flush=True)
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('native', type=Path)
-    parser.add_argument('--part', choices=('buff', 'character', 'rng', 'bus_context', 'behavior_constants'), required=True)
+    parser.add_argument('--part', choices=('buff', 'character', 'rng', 'rng_native', 'bus_context', 'behavior_constants'), required=True)
     args = parser.parse_args()
     optimize(args.native, args.part)
