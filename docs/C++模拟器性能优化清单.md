@@ -667,3 +667,17 @@ CoreItem 从 1,696 字节、8 字节对齐改为 1,792 字节、64 字节对齐�
 为分辨独立拟合与代码效应，另一次固定 16 对受控负载对照使用旧 `444e75c6…` 与新 `8e7d5740…`。CPU 中位／累计耗时下降 **1.6247%／2.0027%**，13 对更快、2 对持平、1 对更慢；墙钟下降 **1.9446%／2.2979%**，15/16 对更快。全程接电，实际后台负载 **17.4352%–36.8010%**；这是区间内的配对证据，不宣称精确 20%，也不替代原 133.9979 拟合。保留本组合，在更高负载下也未观察到整体退化。[受控配对](../output/_v1110/native_perf50/item_locality_bundle/target_load_assessment.json)
 
 运行时已部署，正常训练评估 12 场无错误，12 项结果与原版基线相同；部署／源码 DLL、清单、验收与测速 SHA 已复核。旧版保留于 `dist/native_1_1_10_before_item_locality_bundle_20261121`。下一组合优先将冷却标志也移入紧凑控制块以回收空间，再扩展已知类型的纯字段读取入口；分配＋初始化融合保留为后续候选。未知 getter、字段遮蔽和原属性入口的优先规则都必须先证明并定向验证，之后以整个组合重测。[部署](../output/_v1110/native_perf50/item_locality_bundle/bundle_installation.json) · [复核](../output/_v1110/native_perf50/item_locality_bundle/post_install_verification.json)
+
+### 纯字段读取与紧凑控制块组合（已部署）
+
+基线 `8e7d5740…` 已在远端 `ccecb628` 核对源码／DLL 后，完成本组合。32 个按生成代码调用频次选择的属性，按全部 674 类的实际字段与继承解析，得到 14 份共享字段表；112 个方法槽保持原解析，方法行从 665 调整为 667，674 个生成分配器的行号同步重算。非字段 own case 仍遮蔽父字段；Obj 的 resource_path 继续在原入口优先处理。未知 C++ getter 执行原虚回调一次，原先为空的内部缓存不会在回调前被填入未知标记。未缓存的已知类型只在实际属性读取入口用精确 RTTI 识别，不提前读取未来对象。[组合生成器](../output/_v1110/prototype_native_property_control_bundle.py)
+
+冷却标志移入已有计时器／宝石控制块，仅改纯默认成员顺序，init_fields 语句及算式不变。CoreItem 回到 1,792 字节；计时器、宝石、计时器长度偏移为 1,536／1,560／1,592，冷却标志偏移 1,632，与桥接宝石长度同缓存行。全部 674 类实测，371 类各减 64 字节，其余不变；所有类型各一个的非加权总量 2,641,976 → 2,618,232 字节，不代表语料峰值内存。[布局与全部类型](../output/_v1110/native_perf50/property_control_bundle/all_layouts.json)
+
+全量 20 单元计数构建及新 18 单元 PGO 的源码一致。674 个原虚 getter 函数体字节均未改变，作为独立测试真值；172,172 项字段值检查覆盖 22 组代表值、浮点位模式、指针与类型，7,826 项别名检查及 24 项边界检查通过，覆盖共享 metadata 的 C++ 覆写、空缓存、resource_path 优先、静态回调 false、禁用、复制／切片和错误缓存的审计先行。旧日志、RNG、计时器、容器及分配回归通过；704 份源码完整生成两遍通过。固定 200 场真实命中字段快路径 3,217,772 次，旧方法／FuncRef 命中计数与基线相同，类型不匹配零。[字段检查](../output/_v1110/native_perf50/property_control_bundle/property_test.json) · [原 getter 源码证明](../output/_v1110/native_perf50/property_control_bundle/getter_oracle_source_proof.json) · [覆盖](../output/_v1110/native_perf50/property_control_bundle/release_audit.json)
+
+24 对合计 CPU 中位／累计耗时下降 **2.0686%／3.6228%**，17 对更快、4 对持平、3 对更慢；墙钟中位／累计下降 **2.4513%／3.1706%**，19 对更快。三组 CPU 中位为 2.7799%、5.8291%、0%，墙钟为 3.2595%、2.7282%、1.2499%；没有因第三组 CPU 持平而排除组合，去掉任一组后累计仍正向。所有波动保留，全程接电，后台负载 **0.8750%–14.0031%**。这是组合收益，不逐笔归因。[完整 A/B](../output/_v1110/native_perf50/property_control_bundle/ab_assessment.json)
+
+914 + 1,690 场原版逐事件全部通过，全部 C++ 逐场事件哈希与部署基线及早期真值一致，根仍 `b8066c92…`；原事件内核及新行缓存类型不匹配均零。全量字段快路径实际命中 56,271,418 次。一次连续 24 批吞吐中位 **185.1269**、最慢 **139.3168 场/秒**，全部 ≥50，全程接电，后台负载 **2.2037%–19.3833%**。一次 24 批校准覆盖 **6.8268%–40.2692%**，20% 拟合 **139.7169 场/秒**，R² 0.96052，交叉验证中位／P90 耗时误差 1.755%／4.172%；保留首个结果，不将 139.72 四舍五入为目标已完成。[验收](../output/_v1110/native_perf50/property_control_bundle/bundle_full_gate.json) · [全量覆盖](../output/_v1110/native_perf50/property_control_bundle/full_type_audit.json) · [吞吐／拟合](../output/_v1110/native_perf50/property_control_bundle/measurements_summary.json)
+
+已部署 DLL `14263d42…`，训练入口 12 场无错误、12 项结果匹配基线；源码／部署 DLL、清单和报告 SHA 全部复核。旧运行时保留于 `dist/native_1_1_10_before_property_control_bundle_20261121`。140 目标仍进行，下一组合选纯类型判定缓存与已知类型分配／初始化融合，继续保留默认初始化与 _init 的原顺序，不改数值算法。[部署](../output/_v1110/native_perf50/property_control_bundle/bundle_installation.json) · [复核](../output/_v1110/native_perf50/property_control_bundle/post_install_verification.json)

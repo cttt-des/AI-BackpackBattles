@@ -4,7 +4,9 @@
 #include <array>
 namespace gd {
 using NativeResolvedFn = GdVal (*)(GdObj*, const GdVal*, int);
-struct NativeMethodRow { std::array<NativeResolvedFn,112> methods; };
+using NativePropertyFn = GdVal (*)(const GdObj*);
+struct NativePropertyRow { std::array<NativePropertyFn,32> getters; };
+struct NativeMethodRow { const NativePropertyRow* properties; std::array<NativeResolvedFn,112> methods; };
 inline constexpr auto native_resolved_slots=[] { std::array<int8_t,static_cast<size_t>(SYM_GEN_Dragon_2878)+1> value{}; value.fill(-1);
     value[SYM_GEN_trigger_143]=0;
     value[SYM_GEN_doCooldownEffect_144]=1;
@@ -120,6 +122,69 @@ inline constexpr auto native_resolved_slots=[] { std::array<int8_t,static_cast<s
     value[SYM_GEN_useStamina_116]=111;
     return value; }();
 bool native_resolved_row_matches(const GdObj*,const NativeMethodRow*);
+inline constexpr auto native_property_slots=[] { std::array<int8_t,static_cast<size_t>(SYM_GEN_Dragon_2878)+1> value{}; value.fill(-1);
+    value[SYM_GEN_rng_1406]=0;
+    value[SYM_GEN_item_book_1421]=1;
+    value[SYM_GEN_util_1407]=2;
+    value[SYM_GEN_combat_log_1410]=3;
+    value[SYM_GEN_bus_1408]=4;
+    value[SYM_GEN_event_1517]=5;
+    value[SYM_GEN_hooks_1409]=6;
+    value[SYM_GEN_damage_1518]=7;
+    value[SYM_GEN_descriptor_2]=8;
+    value[SYM_GEN_identifier_1673]=9;
+    value[SYM_GEN_damageSource_24]=10;
+    value[SYM_GEN_playerId_1046]=11;
+    value[SYM_GEN_time_1411]=12;
+    value[SYM_GEN_origin_1546]=13;
+    value[SYM_GEN_player_1302]=14;
+    value[SYM_GEN_minDam_1675]=15;
+    value[SYM_GEN_curChargedItem_1648]=16;
+    value[SYM_GEN_occupiedCells_52]=17;
+    value[SYM_GEN_ownerType_49]=18;
+    value[SYM_GEN_oracle_trace_1729]=19;
+    value[SYM_GEN_timer_pass_epoch_1445]=20;
+    value[SYM_GEN_inventory_5]=21;
+    value[SYM_GEN__stacktrace_1731]=22;
+    value[SYM_GEN_opponent_75]=23;
+    value[SYM_GEN_amount_1041]=24;
+    value[SYM_GEN_types_1544]=25;
+    value[SYM_GEN_lastChargedItem_1647]=26;
+    value[SYM_GEN_timeout_1042]=27;
+    value[SYM_GEN_combat_1420]=28;
+    value[SYM_GEN_INVENTORY_1093]=29;
+    value[SYM_GEN_name_7]=30;
+    value[SYM_GEN_cd_1679]=31;
+    return value; }();
+bool try_native_resolved_property(BattleCtx&,GdObj*,SymId,GdVal&);
+void native_inline_property_hit(unsigned);
+#if defined(_MSC_VER)
+__forceinline
+#elif defined(__GNUC__)
+__attribute__((always_inline)) inline
+#else
+inline
+#endif
+GdVal native_inline_get_prop(BattleCtx& ctx,const GdVal& recv,SymId prop) {
+    const int slot=prop<native_property_slots.size()?native_property_slots[prop]:-1;
+    if(slot>=0 && prop!=SYM_resource_path && ctx.native_resolved_dispatch &&
+       recv.kind==GdVal::Kind::Obj && recv.obj) {
+        const NativeMethodRow* row=recv.obj->native_call_row_;
+        if(row && (!ctx.native_resolved_audit || native_resolved_row_matches(recv.obj,row))) {
+            const auto function=row->properties ? row->properties->getters[slot] : nullptr;
+            if(function) {
+                if(ctx.native_resolved_collect)native_inline_property_hit(0);
+                return function(recv.obj);
+            }
+            if(ctx.native_resolved_collect)native_inline_property_hit(1);
+            return gd::get_prop(ctx,recv,prop);
+        }
+        GdVal out;
+        if(try_native_resolved_property(ctx,recv.obj,prop,out))return out;
+    }
+    return gd::get_prop(ctx,recv,prop);
+}
+
 void native_inline_variant_hit(unsigned);
 #if defined(_MSC_VER)
 __forceinline

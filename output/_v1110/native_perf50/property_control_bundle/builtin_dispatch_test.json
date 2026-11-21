@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "dll_sha256": "14263d42d22021a83849baffddf2f6288694886f2733a66c0473850b37407548",
+  "output": "34 builtin differential checks; missing/nonstring argument, C++ override/shared metadata, FuncRef original Null, rebound custom FuncRef, ID order/epoch/wrap and disabled path passed\n",
+  "compiled_against_candidate_headers": true
+}

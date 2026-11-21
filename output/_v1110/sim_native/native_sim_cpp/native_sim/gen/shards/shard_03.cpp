@@ -347,7 +347,7 @@ gd::GdVal Gd__gd_core__Dagger::fn__readyInit(const gd::GdVal* _args, int _argc) 
     (void)([&]() {  gd::GdVal _out = gd::GdVal::null(); this->Gd__gd_core__Weapon::call_method(gd_ctx, SYM_GEN__readyInit_140, nullptr, 0, _out); return _out; })();
     return gd::GdVal::null();
 }
-static gd::GdObj* _alloc_Gd__gd_core__Dagger(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core__Dagger>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,50u); return object; }
+static gd::GdObj* _alloc_Gd__gd_core__Dagger(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core__Dagger>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,52u); return object; }
 const gd::GdClassMeta META_Gd__gd_core__Dagger = {CLS_Gd__gd_core__Dagger, "Dagger", "res://gd_core/Dagger.gd", &META_Gd__gd_core__Weapon, false, _alloc_Gd__gd_core__Dagger, &Gd__gd_core__Dagger::get_static_prop_fn, &Gd__gd_core__Dagger::call_static_fn};
 
 static const gd::GdEnum::KV _ekv_Gd__gd_core__CoreCombat_RoundResult[] = {{"Win", 0LL}, {"Loss", 1LL}, {"Draw", 2LL}, {"RunOver", 3LL}};
@@ -564,26 +564,26 @@ gd::GdVal Gd__gd_core__CoreCombat::fn_startBattle(const gd::GdVal* _args, int _a
     this->f_speed_scale = gd::GdVal::from_float(1.0);
     if (gd::gd_truth(lv_preordered)) {
         this->f_ordered_items = gd::gd_add(gd_ctx, lv_player_items, lv_opponent_items);
-        { gd::GdVal _t728 = gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_rng_1406); gd::set_prop(gd_ctx, _t728, SYM_GEN_globalChainOpen_1733, gd::GdVal::from_bool(true)); }
+        { gd::GdVal _t728 = gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_rng_1406); gd::set_prop(gd_ctx, _t728, SYM_GEN_globalChainOpen_1733, gd::GdVal::from_bool(true)); }
     }
     else {
         gd::GdVal lv_p_items = gd::native_inline_call(gd_ctx, lv_player_items, gd::SYM_duplicate, nullptr, 0);
-        (void)([&]() { gd::GdVal _ca[] = {lv_p_items}; return gd::native_inline_call(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_rng_1406), gd::SYM_shuffle, _ca, 1); })();
+        (void)([&]() { gd::GdVal _ca[] = {lv_p_items}; return gd::native_inline_call(gd_ctx, gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_rng_1406), gd::SYM_shuffle, _ca, 1); })();
         (void)([&]() { gd::GdVal _ca[] = {gd::native_inline_call(gd_ctx, gd::GdVal::from_cls(&META_Gd__gd_core__CoreCombat__INNER__CoreItemSort), gd::SYM_new, nullptr, 0), gd::GdVal::from_str(&battle_string_literals[5])}; return gd::native_inline_call(gd_ctx, lv_p_items, gd::SYM_sort_custom, _ca, 2); })();
         gd::GdVal lv_o_items = gd::native_inline_call(gd_ctx, lv_opponent_items, gd::SYM_duplicate, nullptr, 0);
-        (void)([&]() { gd::GdVal _ca[] = {lv_o_items}; return gd::native_inline_call(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_rng_1406), gd::SYM_shuffle, _ca, 1); })();
+        (void)([&]() { gd::GdVal _ca[] = {lv_o_items}; return gd::native_inline_call(gd_ctx, gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_rng_1406), gd::SYM_shuffle, _ca, 1); })();
         (void)([&]() { gd::GdVal _ca[] = {gd::native_inline_call(gd_ctx, gd::GdVal::from_cls(&META_Gd__gd_core__CoreCombat__INNER__CoreItemSort), gd::SYM_new, nullptr, 0), gd::GdVal::from_str(&battle_string_literals[5])}; return gd::native_inline_call(gd_ctx, lv_o_items, gd::SYM_sort_custom, _ca, 2); })();
         this->f_ordered_items = gd::gd_add(gd_ctx, lv_p_items, lv_o_items);
     }
     (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_bool(false)}; return gd::native_inline_call(gd_ctx, this->f_ctx, SYM_GEN_restoreEngineRng_1489, _ca, 1); })();
     (void)gd::native_inline_call(gd_ctx, this->f_ctx, SYM_GEN_resetCriticalShake_1495, nullptr, 0);
-    this->f__track_hidden_log = ([&]() { gd::GdVal _ca[] = {this->f_ordered_items}; return gd::native_inline_call(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_combat_log_1410), SYM_GEN_prepareHiddenLog_1355, _ca, 1); })();
-    if (gd::gd_truth(gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_training_start_1452))) {
+    this->f__track_hidden_log = ([&]() { gd::GdVal _ca[] = {this->f_ordered_items}; return gd::native_inline_call(gd_ctx, gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_combat_log_1410), SYM_GEN_prepareHiddenLog_1355, _ca, 1); })();
+    if (gd::gd_truth(gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_training_start_1452))) {
         (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_obj(this), gd::GdVal::from_str(&battle_string_literals[6]), gd::GdVal::from_float(1.0)}; return gd::native_inline_call(gd_ctx, this->f_ctx, SYM_GEN_callDelayed_1479, _ca, 3); })();
-        (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_obj(this), gd::GdVal::from_str(&battle_string_literals[7]), gd::get_prop(gd_ctx, gd::GdVal::from_cls(&META_Gd__gd_core__CoreContext), SYM_GEN_COMBAT_DELAY_1405)}; return gd::native_inline_call(gd_ctx, this->f_ctx, SYM_GEN_callDelayed_1479, _ca, 3); })();
+        (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_obj(this), gd::GdVal::from_str(&battle_string_literals[7]), gd::native_inline_get_prop(gd_ctx, gd::GdVal::from_cls(&META_Gd__gd_core__CoreContext), SYM_GEN_COMBAT_DELAY_1405)}; return gd::native_inline_call(gd_ctx, this->f_ctx, SYM_GEN_callDelayed_1479, _ca, 3); })();
     }
     (void)([&]() { gd::GdVal _ca[] = {this->f_ordered_items}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_prepareItems_1320, _ca, 1); })();
-    this->f__activate_countdown = gd::get_prop(gd_ctx, gd::GdVal::from_cls(&META_Gd__gd_core__CoreContext), SYM_GEN_COMBAT_DELAY_1405);
+    this->f__activate_countdown = gd::native_inline_get_prop(gd_ctx, gd::GdVal::from_cls(&META_Gd__gd_core__CoreContext), SYM_GEN_COMBAT_DELAY_1405);
     return gd::GdVal::null();
 }
 gd::GdVal Gd__gd_core__CoreCombat::fn_prepareItems(const gd::GdVal* _args, int _argc) {
@@ -595,7 +595,7 @@ gd::GdVal Gd__gd_core__CoreCombat::fn_prepareItems(const gd::GdVal* _args, int _
         uint32_t _len__t731 = _t730 ? _t730->len : 0u;
         for (uint32_t _t731 = 0; _t731 < _len__t731; ++_t731) {
             gd::GdVal lv_character = _t730->data[_t731];
-            if (gd::gd_truth(gd::GdVal::from_bool(gd::native_scalar_eq(gd::get_prop(gd_ctx, lv_character, SYM_GEN_inventory_5), gd::GdVal::null())))) {
+            if (gd::gd_truth(gd::GdVal::from_bool(gd::native_scalar_eq(gd::native_inline_get_prop(gd_ctx, lv_character, SYM_GEN_inventory_5), gd::GdVal::null())))) {
                 gd::set_prop(gd_ctx, lv_character, SYM_GEN_inventory_5, ([&]() { gd::GdVal _ca[] = {lv_character}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_cls(&META_Gd__gd_core__CoreGrid), gd::SYM_new, _ca, 1); })());
             }
         }
@@ -606,18 +606,18 @@ gd::GdVal Gd__gd_core__CoreCombat::fn_prepareItems(const gd::GdVal* _args, int _
         uint32_t _len__t734 = _t733 ? _t733->len : 0u;
         for (uint32_t _t734 = 0; _t734 < _len__t734; ++_t734) {
             gd::GdVal lv_item = _t733->data[_t734];
-            if (gd::gd_truth(gd::GdVal::from_bool(gd::native_scalar_eq(gd::get_prop(gd_ctx, lv_item, SYM_GEN_ctx_3), gd::GdVal::null())))) {
+            if (gd::gd_truth(gd::GdVal::from_bool(gd::native_scalar_eq(gd::native_inline_get_prop(gd_ctx, lv_item, SYM_GEN_ctx_3), gd::GdVal::null())))) {
                 gd::set_prop(gd_ctx, lv_item, SYM_GEN_ctx_3, this->f_ctx);
             }
-            if (gd::gd_truth(gd::get_prop(gd_ctx, lv_item, SYM_GEN_placed_6))) {
+            if (gd::gd_truth(gd::native_inline_get_prop(gd_ctx, lv_item, SYM_GEN_placed_6))) {
                 continue;
             }
             gd::GdVal lv_ch = gd::native_inline_call(gd_ctx, lv_item, SYM_GEN_character_74, nullptr, 0);
-            if (gd::gd_truth((gd::gd_truth(gd::GdVal::from_bool(gd::native_scalar_ne(lv_ch, gd::GdVal::null()))) ? gd::GdVal::from_bool(gd::gd_truth(gd::GdVal::from_bool(gd::native_scalar_eq(gd::get_prop(gd_ctx, lv_ch, SYM_GEN_inventory_5), gd::GdVal::null())))) : gd::GdVal::from_bool(false)))) {
+            if (gd::gd_truth((gd::gd_truth(gd::GdVal::from_bool(gd::native_scalar_ne(lv_ch, gd::GdVal::null()))) ? gd::GdVal::from_bool(gd::gd_truth(gd::GdVal::from_bool(gd::native_scalar_eq(gd::native_inline_get_prop(gd_ctx, lv_ch, SYM_GEN_inventory_5), gd::GdVal::null())))) : gd::GdVal::from_bool(false)))) {
                 gd::set_prop(gd_ctx, lv_ch, SYM_GEN_inventory_5, ([&]() { gd::GdVal _ca[] = {lv_ch}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_cls(&META_Gd__gd_core__CoreGrid), gd::SYM_new, _ca, 1); })());
             }
-            gd::GdVal lv_grid = (gd::gd_truth(gd::GdVal::from_bool(gd::native_scalar_ne(lv_ch, gd::GdVal::null()))) ? (gd::get_prop(gd_ctx, lv_ch, SYM_GEN_inventory_5)) : (gd::get_prop(gd_ctx, this->f_player, SYM_GEN_inventory_5)));
-            (void)([&]() { gd::GdVal _ca[] = {lv_item, gd::get_prop(gd_ctx, lv_item, SYM_GEN_occupiedCells_52)}; return gd::native_inline_call(gd_ctx, lv_grid, SYM_GEN_addItem_1618, _ca, 2); })();
+            gd::GdVal lv_grid = (gd::gd_truth(gd::GdVal::from_bool(gd::native_scalar_ne(lv_ch, gd::GdVal::null()))) ? (gd::native_inline_get_prop(gd_ctx, lv_ch, SYM_GEN_inventory_5)) : (gd::native_inline_get_prop(gd_ctx, this->f_player, SYM_GEN_inventory_5)));
+            (void)([&]() { gd::GdVal _ca[] = {lv_item, gd::native_inline_get_prop(gd_ctx, lv_item, SYM_GEN_occupiedCells_52)}; return gd::native_inline_call(gd_ctx, lv_grid, SYM_GEN_addItem_1618, _ca, 2); })();
         }
     }
     (void)gd::native_inline_call(gd_ctx, this->f_player, SYM_GEN_prepare_122, nullptr, 0);
@@ -641,11 +641,11 @@ gd::GdVal Gd__gd_core__CoreCombat::fn_resetInventories(const gd::GdVal* _args, i
         uint32_t _len__t740 = _t739 ? _t739->len : 0u;
         for (uint32_t _t740 = 0; _t740 < _len__t740; ++_t740) {
             gd::GdVal lv_character = _t739->data[_t740];
-            if (gd::gd_truth(gd::GdVal::from_bool(gd::native_scalar_ne(gd::get_prop(gd_ctx, lv_character, SYM_GEN_inventory_5), gd::GdVal::null())))) {
-                (void)gd::native_inline_call(gd_ctx, gd::get_prop(gd_ctx, lv_character, SYM_GEN_inventory_5), SYM_GEN_cleanUp_1622, nullptr, 0);
+            if (gd::gd_truth(gd::GdVal::from_bool(gd::native_scalar_ne(gd::native_inline_get_prop(gd_ctx, lv_character, SYM_GEN_inventory_5), gd::GdVal::null())))) {
+                (void)gd::native_inline_call(gd_ctx, gd::native_inline_get_prop(gd_ctx, lv_character, SYM_GEN_inventory_5), SYM_GEN_cleanUp_1622, nullptr, 0);
             }
             {
-                gd::GdVal _t741 = gd::gd_iter_seq(gd_ctx.arena, gd::get_prop(gd_ctx, lv_character, SYM_GEN_items_1092));
+                gd::GdVal _t741 = gd::gd_iter_seq(gd_ctx.arena, gd::native_inline_get_prop(gd_ctx, lv_character, SYM_GEN_items_1092));
                 gd::GdArr* _t742 = (_t741.kind == gd::GdVal::Kind::Arr) ? _t741.arr : nullptr;
                 uint32_t _len__t743 = _t742 ? _t742->len : 0u;
                 for (uint32_t _t743 = 0; _t743 < _len__t743; ++_t743) {
@@ -663,14 +663,14 @@ gd::GdVal Gd__gd_core__CoreCombat::fn_activateItems(const gd::GdVal* _args, int 
     gd::GdVal lv_items = (_argc > 0) ? _args[0] : gd::GdVal::null();
     (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_bool(true)}; return gd::native_inline_call(gd_ctx, this->f_ctx, SYM_GEN_restoreEngineRng_1489, _ca, 1); })();
     (void)gd::native_inline_call(gd_ctx, this->f_ctx, SYM_GEN_restoreReplayBuffs_1499, nullptr, 0);
-    if (gd::gd_truth(gd::GdVal::from_bool(gd::native_scalar_ne(gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_activation_rng_state_1443), gd::GdVal::null())))) {
-        (void)([&]() { gd::GdVal _ca[] = {gd::gd_coerce_int(gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_activation_rng_state_1443))}; return gd::native_inline_call(gd_ctx, this->f_ctx, gd::SYM_set_state, _ca, 1); })();
+    if (gd::gd_truth(gd::GdVal::from_bool(gd::native_scalar_ne(gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_activation_rng_state_1443), gd::GdVal::null())))) {
+        (void)([&]() { gd::GdVal _ca[] = {gd::gd_coerce_int(gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_activation_rng_state_1443))}; return gd::native_inline_call(gd_ctx, this->f_ctx, gd::SYM_set_state, _ca, 1); })();
     }
-    if (gd::gd_truth(gd::GdVal::from_bool(gd::native_scalar_eq(gd::native_inline_call(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_idle_timer_initial_1444), gd::SYM_size, nullptr, 0), gd::GdVal::from_int(2LL))))) {
-        gd::set_prop(gd_ctx, this->f_player, SYM_GEN__idle_animation_left_1126, gd::gd_coerce_float(gd::native_array_index(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_idle_timer_initial_1444), gd::GdVal::from_int(0LL))));
-        gd::set_prop(gd_ctx, this->f_opponent, SYM_GEN__idle_animation_left_1126, gd::gd_coerce_float(gd::native_array_index(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_idle_timer_initial_1444), gd::GdVal::from_int(1LL))));
+    if (gd::gd_truth(gd::GdVal::from_bool(gd::native_scalar_eq(gd::native_inline_call(gd_ctx, gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_idle_timer_initial_1444), gd::SYM_size, nullptr, 0), gd::GdVal::from_int(2LL))))) {
+        gd::set_prop(gd_ctx, this->f_player, SYM_GEN__idle_animation_left_1126, gd::gd_coerce_float(gd::native_array_index(gd_ctx, gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_idle_timer_initial_1444), gd::GdVal::from_int(0LL))));
+        gd::set_prop(gd_ctx, this->f_opponent, SYM_GEN__idle_animation_left_1126, gd::gd_coerce_float(gd::native_array_index(gd_ctx, gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_idle_timer_initial_1444), gd::GdVal::from_int(1LL))));
     }
-    if (gd::gd_truth(gd::GdVal::from_bool(gd::native_scalar_ne(gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_flicker_initial_1469), gd::GdVal::null())))) {
+    if (gd::gd_truth(gd::GdVal::from_bool(gd::native_scalar_ne(gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_flicker_initial_1469), gd::GdVal::null())))) {
         (void)gd::native_inline_call(gd_ctx, this->f_ctx, SYM_GEN_restoreFlickers_1504, nullptr, 0);
     }
     (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[8])}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), gd::SYM_emit_signal, _ca, 1); })();
@@ -724,7 +724,7 @@ gd::GdVal Gd__gd_core__CoreCombat::fn_activateItems(const gd::GdVal* _args, int 
 }
 gd::GdVal Gd__gd_core__CoreCombat::fn_clashTrainingSwords(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
-    (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_float(0.9), gd::GdVal::from_float(1.0)}; return gd::native_inline_call(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_rng_1406), gd::SYM_randf_range, _ca, 2); })();
+    (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_float(0.9), gd::GdVal::from_float(1.0)}; return gd::native_inline_call(gd_ctx, gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_rng_1406), gd::SYM_randf_range, _ca, 2); })();
     return gd::GdVal::null();
 }
 gd::GdVal Gd__gd_core__CoreCombat::fn_activateTraining(const gd::GdVal* _args, int _argc) {
@@ -885,7 +885,7 @@ gd::GdVal Gd__gd_core__CoreCombat::fn__fatigueTick(const gd::GdVal* _args, int _
 }
 gd::GdVal Gd__gd_core__CoreCombat::fn_startFatigue(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
-    (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[10])}; return gd::native_inline_call(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_hooks_1409), SYM_GEN_playFatigueAnimation_1625, _ca, 1); })();
+    (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[10])}; return gd::native_inline_call(gd_ctx, gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_hooks_1409), SYM_GEN_playFatigueAnimation_1625, _ca, 1); })();
     this->f_fatigue_started = gd::GdVal::from_bool(true);
     this->f_fatigue_counter = gd::GdVal::from_int(0LL);
     this->f_fatigue_interval = Gd__gd_core__CoreCombat::get_static_const_or_enum(gd_ctx, SYM_GEN_FATIGUE_START_DELAY_1300);
@@ -894,8 +894,8 @@ gd::GdVal Gd__gd_core__CoreCombat::fn_startFatigue(const gd::GdVal* _args, int _
 gd::GdVal Gd__gd_core__CoreCombat::fn_dealFatigueDamage(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
     if (gd::gd_truth(gd::GdVal::from_bool(gd::native_scalar_eq(this->f_fatigue_counter, gd::GdVal::from_int(0LL))))) {
-        (void)gd::native_inline_call(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_hooks_1409), SYM_GEN_playFatigueSound_1626, nullptr, 0);
-        (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_obj(this), gd::GdVal::from_str(&battle_string_literals[11])}; return gd::native_inline_call(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_bus_1408), SYM_GEN_emitSignal_1592, _ca, 2); })();
+        (void)gd::native_inline_call(gd_ctx, gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_hooks_1409), SYM_GEN_playFatigueSound_1626, nullptr, 0);
+        (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_obj(this), gd::GdVal::from_str(&battle_string_literals[11])}; return gd::native_inline_call(gd_ctx, gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_bus_1408), SYM_GEN_emitSignal_1592, _ca, 2); })();
     }
     if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_lt(this->f_combat_time, Gd__gd_core__CoreCombat::get_static_const_or_enum(gd_ctx, SYM_GEN_FATIGUE_SLOW_TIME_1301))))) {
         this->f_fatigue_counter = gd::gd_add(gd_ctx, this->f_fatigue_counter, gd::gd_add(gd_ctx, gd::GdVal::from_int(1LL), gd::gd_coerce_int(gd::gd_floor(gd::gd_mul(gd::GdVal::from_float(0.1), this->f_fatigue_counter)))));
@@ -903,11 +903,11 @@ gd::GdVal Gd__gd_core__CoreCombat::fn_dealFatigueDamage(const gd::GdVal* _args, 
     else {
         this->f_fatigue_counter = gd::gd_add(gd_ctx, this->f_fatigue_counter, gd::gd_add(gd_ctx, gd::GdVal::from_int(1LL), gd::gd_coerce_int(gd::gd_floor(gd::gd_mul(gd::GdVal::from_float(0.2), this->f_fatigue_counter)))));
     }
-    (void)([&]() { gd::GdVal _ca[] = {this->f_fatigue_counter}; return gd::native_inline_call(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_fatigueDamageSource_1430), SYM_GEN_setDamage_1551, _ca, 1); })();
-    (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_obj(this), gd::GdVal::from_str(&battle_string_literals[12])}; return gd::native_inline_call(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_bus_1408), SYM_GEN_emitSignal_1592, _ca, 2); })();
+    (void)([&]() { gd::GdVal _ca[] = {this->f_fatigue_counter}; return gd::native_inline_call(gd_ctx, gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_fatigueDamageSource_1430), SYM_GEN_setDamage_1551, _ca, 1); })();
+    (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_obj(this), gd::GdVal::from_str(&battle_string_literals[12])}; return gd::native_inline_call(gd_ctx, gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_bus_1408), SYM_GEN_emitSignal_1592, _ca, 2); })();
     (void)gd::native_inline_call(gd_ctx, this->f_opponent, SYM_GEN_takeFatigueDamage_1196, nullptr, 0);
     (void)gd::native_inline_call(gd_ctx, this->f_player, SYM_GEN_takeFatigueDamage_1196, nullptr, 0);
-    (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[13])}; return gd::native_inline_call(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_hooks_1409), SYM_GEN_playFatigueAnimation_1625, _ca, 1); })();
+    (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[13])}; return gd::native_inline_call(gd_ctx, gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_hooks_1409), SYM_GEN_playFatigueAnimation_1625, _ca, 1); })();
     this->f_fatigue_interval = gd::GdVal::from_float(1.0);
     return gd::GdVal::null();
 }
@@ -934,7 +934,7 @@ gd::GdVal Gd__gd_core__CoreCombat::fn_advanceTime(const gd::GdVal* _args, int _a
 }
 gd::GdVal Gd__gd_core__CoreCombat::fn_getEffectiveTime(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
-    return gd::gd_add(gd_ctx, gd::gd_add(gd_ctx, gd::get_prop(gd_ctx, gd::GdVal::from_cls(&META_Gd__gd_core__CoreContext), SYM_GEN_COMBAT_DELAY_1405), this->f_combat_time), this->f_time_advance);
+    return gd::gd_add(gd_ctx, gd::gd_add(gd_ctx, gd::native_inline_get_prop(gd_ctx, gd::GdVal::from_cls(&META_Gd__gd_core__CoreContext), SYM_GEN_COMBAT_DELAY_1405), this->f_combat_time), this->f_time_advance);
     return gd::GdVal::null();
 }
 gd::GdVal Gd__gd_core__CoreCombat::fn_endCombat(const gd::GdVal* _args, int _argc) {
@@ -944,13 +944,13 @@ gd::GdVal Gd__gd_core__CoreCombat::fn_endCombat(const gd::GdVal* _args, int _arg
     }
     this->f_fight_ended = gd::GdVal::from_bool(true);
     gd::set_prop(gd_ctx, this->f_ctx, SYM_GEN_fight_ended_1305, gd::GdVal::from_bool(true));
-    if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_le(gd::get_prop(gd_ctx, this->f_opponent, SYM_GEN_curHealth_1050), gd::GdVal::from_int(0LL))))) {
+    if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_le(gd::native_inline_get_prop(gd_ctx, this->f_opponent, SYM_GEN_curHealth_1050), gd::GdVal::from_int(0LL))))) {
         this->f_result = gd::gd_coerce_int(gd::GdVal::from_int(0LL));
-        (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_int(0LL), gd::gd_sub(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_bool(true)}; return gd::native_inline_call(gd_ctx, this->f_player, SYM_GEN_classRoundSoundCount_1141, _ca, 1); })(), gd::GdVal::from_int(1LL))}; return gd::native_inline_call(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_rng_1406), gd::SYM_randi_range, _ca, 2); })();
+        (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_int(0LL), gd::gd_sub(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_bool(true)}; return gd::native_inline_call(gd_ctx, this->f_player, SYM_GEN_classRoundSoundCount_1141, _ca, 1); })(), gd::GdVal::from_int(1LL))}; return gd::native_inline_call(gd_ctx, gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_rng_1406), gd::SYM_randi_range, _ca, 2); })();
     }
     else {
         this->f_result = gd::gd_coerce_int(gd::GdVal::from_int(1LL));
-        (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_int(0LL), gd::gd_sub(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_bool(false)}; return gd::native_inline_call(gd_ctx, this->f_player, SYM_GEN_classRoundSoundCount_1141, _ca, 1); })(), gd::GdVal::from_int(1LL))}; return gd::native_inline_call(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_rng_1406), gd::SYM_randi_range, _ca, 2); })();
+        (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_int(0LL), gd::gd_sub(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_bool(false)}; return gd::native_inline_call(gd_ctx, this->f_player, SYM_GEN_classRoundSoundCount_1141, _ca, 1); })(), gd::GdVal::from_int(1LL))}; return gd::native_inline_call(gd_ctx, gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_rng_1406), gd::SYM_randi_range, _ca, 2); })();
     }
     this->f__pending_deferred = gd::GdVal::from_bool(true);
     return gd::GdVal::null();
@@ -976,15 +976,15 @@ gd::GdVal Gd__gd_core__CoreCombat::fn_combatEndDeferred(const gd::GdVal* _args, 
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
     (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[14]), this->f_result}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), gd::SYM_emit_signal, _ca, 2); })();
     (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[15])}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), gd::SYM_emit_signal, _ca, 1); })();
-    (void)gd::native_inline_call(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_bus_1408), SYM_GEN_disconnectAll_1597, nullptr, 0);
+    (void)gd::native_inline_call(gd_ctx, gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_bus_1408), SYM_GEN_disconnectAll_1597, nullptr, 0);
     (void)gd::native_inline_call(gd_ctx, this->f_player, SYM_GEN_combatEnd_131, nullptr, 0);
     (void)gd::native_inline_call(gd_ctx, this->f_opponent, SYM_GEN_combatEnd_131, nullptr, 0);
     this->f__tick_timer_active = gd::GdVal::from_bool(false);
     this->f__tick_timer_left = gd::GdVal::from_float(0.0);
     this->f__tick_timer_active = gd::GdVal::from_bool(false);
     this->f__tick_timer_left = gd::GdVal::from_float(0.0);
-    (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[16])}; return gd::native_inline_call(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_hooks_1409), SYM_GEN_playFatigueAnimation_1625, _ca, 1); })();
-    (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_int(0LL)}; return gd::native_inline_call(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_fatigueDamageSource_1430), SYM_GEN_setDamage_1551, _ca, 1); })();
+    (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[16])}; return gd::native_inline_call(gd_ctx, gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_hooks_1409), SYM_GEN_playFatigueAnimation_1625, _ca, 1); })();
+    (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_int(0LL)}; return gd::native_inline_call(gd_ctx, gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_fatigueDamageSource_1430), SYM_GEN_setDamage_1551, _ca, 1); })();
     if (gd::gd_truth(gd::GdVal::from_bool(gd::native_scalar_eq(this->f_result, gd::GdVal::from_int(0LL))))) {
         (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_int(0LL)}; return gd::native_inline_call(gd_ctx, this->f_opponent, SYM_GEN_setCurrentHealth_1156, _ca, 1); })();
         (void)([&]() { gd::GdVal _ca[] = {gd::gd_max(gd::GdVal::from_int(1LL), gd::native_inline_call(gd_ctx, this->f_player, SYM_GEN_getCurrentHealth_1154, nullptr, 0))}; return gd::native_inline_call(gd_ctx, this->f_player, SYM_GEN_setCurrentHealth_1156, _ca, 1); })();
@@ -1002,8 +1002,8 @@ gd::GdVal Gd__gd_core__CoreCombat::fn_combatEndDeferred(const gd::GdVal* _args, 
             (void)gd::native_inline_call(gd_ctx, lv_item, SYM_GEN_combatEnd_131, nullptr, 0);
         }
     }
-    (void)gd::native_inline_call(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_rope_speedups_1425), gd::SYM_clear, nullptr, 0);
-    (void)gd::native_inline_call(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_cube_advanced_1426), gd::SYM_clear, nullptr, 0);
+    (void)gd::native_inline_call(gd_ctx, gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_rope_speedups_1425), gd::SYM_clear, nullptr, 0);
+    (void)gd::native_inline_call(gd_ctx, gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_cube_advanced_1426), gd::SYM_clear, nullptr, 0);
     gd::set_prop(gd_ctx, this->f_ctx, SYM_GEN_sandbag_active_1422, gd::GdVal::from_bool(false));
     return gd::GdVal::null();
 }
@@ -1431,7 +1431,7 @@ gd::GdVal Gd__gd_core__CoreRng::fn_pickRandomEngine(const gd::GdVal* _args, int 
     return lv_v;
     return gd::GdVal::null();
 }
-static gd::GdObj* _alloc_Gd__gd_core__CoreRng(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core__CoreRng>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,38u); return object; }
+static gd::GdObj* _alloc_Gd__gd_core__CoreRng(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core__CoreRng>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,40u); return object; }
 const gd::GdClassMeta META_Gd__gd_core__CoreRng = {CLS_Gd__gd_core__CoreRng, "CoreRng", "res://gd_core/CoreRng.gd", nullptr, false, _alloc_Gd__gd_core__CoreRng, &Gd__gd_core__CoreRng::get_static_prop_fn, &Gd__gd_core__CoreRng::call_static_fn};
 
 void Gd__gd_core__DeathScythe::init_fields(gd::BattleCtx& gd_ctx) {
@@ -1552,7 +1552,7 @@ gd::GdVal Gd__gd_core__DeathScythe::fn__readyInit(const gd::GdVal* _args, int _a
     this->f_poisonThreshold = gd::gd_coerce_int(gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getP1_263, nullptr, 0));
     return gd::GdVal::null();
 }
-static gd::GdObj* _alloc_Gd__gd_core__DeathScythe(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core__DeathScythe>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,54u); return object; }
+static gd::GdObj* _alloc_Gd__gd_core__DeathScythe(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core__DeathScythe>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,56u); return object; }
 const gd::GdClassMeta META_Gd__gd_core__DeathScythe = {CLS_Gd__gd_core__DeathScythe, "DeathScythe", "res://gd_core/DeathScythe.gd", &META_Gd__gd_core__Weapon, false, _alloc_Gd__gd_core__DeathScythe, &Gd__gd_core__DeathScythe::get_static_prop_fn, &Gd__gd_core__DeathScythe::call_static_fn};
 
 void Gd__gd_core__Garlic::init_fields(gd::BattleCtx& gd_ctx) {
@@ -1635,7 +1635,7 @@ gd::GdVal Gd__gd_core__Garlic::fn__readyInit(const gd::GdVal* _args, int _argc) 
     (void)([&]() {  gd::GdVal _out = gd::GdVal::null(); this->Gd__gd_core__Food::call_method(gd_ctx, SYM_GEN__readyInit_140, nullptr, 0, _out); return _out; })();
     return gd::GdVal::null();
 }
-static gd::GdObj* _alloc_Gd__gd_core__Garlic(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core__Garlic>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,68u); return object; }
+static gd::GdObj* _alloc_Gd__gd_core__Garlic(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core__Garlic>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,70u); return object; }
 const gd::GdClassMeta META_Gd__gd_core__Garlic = {CLS_Gd__gd_core__Garlic, "Garlic", "res://gd_core/Garlic.gd", &META_Gd__gd_core__Food, false, _alloc_Gd__gd_core__Garlic, &Gd__gd_core__Garlic::get_static_prop_fn, &Gd__gd_core__Garlic::call_static_fn};
 
 void Gd__gd_core__Item__INNER__SignalConnection::init_fields(gd::BattleCtx& gd_ctx) {
@@ -1715,7 +1715,7 @@ gd::GdVal Gd__gd_core__Item__INNER__SignalConnection::fn_destroy(const gd::GdVal
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
     return gd::GdVal::null();
 }
-static gd::GdObj* _alloc_Gd__gd_core__Item__INNER__SignalConnection(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core__Item__INNER__SignalConnection>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,23u); return object; }
+static gd::GdObj* _alloc_Gd__gd_core__Item__INNER__SignalConnection(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core__Item__INNER__SignalConnection>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,27u); return object; }
 const gd::GdClassMeta META_Gd__gd_core__Item__INNER__SignalConnection = {CLS_Gd__gd_core__Item__INNER__SignalConnection, "SignalConnection", "", nullptr, false, _alloc_Gd__gd_core__Item__INNER__SignalConnection, &Gd__gd_core__Item__INNER__SignalConnection::get_static_prop_fn, &Gd__gd_core__Item__INNER__SignalConnection::call_static_fn};
 
 void Gd__gd_core__Shield::init_fields(gd::BattleCtx& gd_ctx) {
@@ -1823,7 +1823,7 @@ gd::GdVal Gd__gd_core__Shield::fn_onCharacterAttacked(const gd::GdVal* _args, in
     gd::GdVal lv_damageRes = (_argc > 0) ? _args[0] : gd::GdVal::null();
     if (gd::gd_truth(gd::GdVal::from_bool(gd::native_scalar_eq(this->f_blockedDamageRes, lv_damageRes)))) {
         (void)gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_afterBlock_1942, nullptr, 0);
-        (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_obj(this), gd::GdVal::from_str(&battle_string_literals[39]), gd::GdVal::from_arr(gd::GdArr::from_init(gd_ctx.arena, {this->f_blockedDamageRes}))}; return gd::native_inline_call(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_bus_1408), SYM_GEN_emitSignal_1592, _ca, 3); })();
+        (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_obj(this), gd::GdVal::from_str(&battle_string_literals[39]), gd::GdVal::from_arr(gd::GdArr::from_init(gd_ctx.arena, {this->f_blockedDamageRes}))}; return gd::native_inline_call(gd_ctx, gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_bus_1408), SYM_GEN_emitSignal_1592, _ca, 3); })();
         this->f_blockedDamageRes = gd::GdVal::null();
     }
     return gd::GdVal::null();
@@ -1833,7 +1833,7 @@ gd::GdVal Gd__gd_core__Shield::fn__readyInit(const gd::GdVal* _args, int _argc) 
     (void)([&]() {  gd::GdVal _out = gd::GdVal::null(); this->Gd__gd_core__Item::call_method(gd_ctx, SYM_GEN__readyInit_140, nullptr, 0, _out); return _out; })();
     return gd::GdVal::null();
 }
-static gd::GdObj* _alloc_Gd__gd_core__Shield(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core__Shield>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,127u); return object; }
+static gd::GdObj* _alloc_Gd__gd_core__Shield(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core__Shield>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,129u); return object; }
 const gd::GdClassMeta META_Gd__gd_core__Shield = {CLS_Gd__gd_core__Shield, "Shield", "res://gd_core/Shield.gd", &META_Gd__gd_core__Item, false, _alloc_Gd__gd_core__Shield, &Gd__gd_core__Shield::get_static_prop_fn, &Gd__gd_core__Shield::call_static_fn};
 
 void Gd__gd_core__Present::init_fields(gd::BattleCtx& gd_ctx) {
@@ -1911,7 +1911,7 @@ gd::GdVal Gd__gd_core__Present::fn__readyInit(const gd::GdVal* _args, int _argc)
     (void)([&]() {  gd::GdVal _out = gd::GdVal::null(); this->Gd__gd_core__Item::call_method(gd_ctx, SYM_GEN__readyInit_140, nullptr, 0, _out); return _out; })();
     return gd::GdVal::null();
 }
-static gd::GdObj* _alloc_Gd__gd_core__Present(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core__Present>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,116u); return object; }
+static gd::GdObj* _alloc_Gd__gd_core__Present(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core__Present>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,118u); return object; }
 const gd::GdClassMeta META_Gd__gd_core__Present = {CLS_Gd__gd_core__Present, "Present", "res://gd_core/Present.gd", &META_Gd__gd_core__Item, false, _alloc_Gd__gd_core__Present, &Gd__gd_core__Present::get_static_prop_fn, &Gd__gd_core__Present::call_static_fn};
 
 void Gd__gd_core__StaminaSack::init_fields(gd::BattleCtx& gd_ctx) {
@@ -1982,8 +1982,8 @@ gd::GdVal Gd__gd_core__StaminaSack::fn_onRemoveFromInventory(const gd::GdVal* _a
 }
 gd::GdVal Gd__gd_core__StaminaSack::fn_onPrepare(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
-    if (gd::gd_truth(([&]() { gd::GdVal _ca[] = {([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[40])}; return gd::native_inline_call(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_item_book_1421), SYM_GEN_getDescriptor_1660, _ca, 1); })()}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_isTypeInInventory_805, _ca, 1); })())) {
-        gd::GdVal lv_stamina = gd::gd_div(gd_ctx, ([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[41])}; return gd::native_inline_call(gd_ctx, ([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[40])}; return gd::native_inline_call(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_item_book_1421), SYM_GEN_getDescriptor_1660, _ca, 1); })(), SYM_GEN_getP_188, _ca, 1); })(), gd::GdVal::from_float(100.0));
+    if (gd::gd_truth(([&]() { gd::GdVal _ca[] = {([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[40])}; return gd::native_inline_call(gd_ctx, gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_item_book_1421), SYM_GEN_getDescriptor_1660, _ca, 1); })()}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_isTypeInInventory_805, _ca, 1); })())) {
+        gd::GdVal lv_stamina = gd::gd_div(gd_ctx, ([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[41])}; return gd::native_inline_call(gd_ctx, ([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[40])}; return gd::native_inline_call(gd_ctx, gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_item_book_1421), SYM_GEN_getDescriptor_1660, _ca, 1); })(), SYM_GEN_getP_188, _ca, 1); })(), gd::GdVal::from_float(100.0));
         (void)([&]() { gd::GdVal _ca[] = {lv_stamina}; return gd::native_inline_call(gd_ctx, gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_character_74, nullptr, 0), SYM_GEN_giveStaminaRegeneration_1270, _ca, 1); })();
     }
     return gd::GdVal::null();
@@ -1993,7 +1993,7 @@ gd::GdVal Gd__gd_core__StaminaSack::fn__readyInit(const gd::GdVal* _args, int _a
     (void)([&]() {  gd::GdVal _out = gd::GdVal::null(); this->Gd__gd_core__Bag::call_method(gd_ctx, SYM_GEN__readyInit_140, nullptr, 0, _out); return _out; })();
     return gd::GdVal::null();
 }
-static gd::GdObj* _alloc_Gd__gd_core__StaminaSack(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core__StaminaSack>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,134u); return object; }
+static gd::GdObj* _alloc_Gd__gd_core__StaminaSack(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core__StaminaSack>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,136u); return object; }
 const gd::GdClassMeta META_Gd__gd_core__StaminaSack = {CLS_Gd__gd_core__StaminaSack, "StaminaSack", "res://gd_core/StaminaSack.gd", &META_Gd__gd_core__Bag, false, _alloc_Gd__gd_core__StaminaSack, &Gd__gd_core__StaminaSack::get_static_prop_fn, &Gd__gd_core__StaminaSack::call_static_fn};
 
 void Gd__gd_core__TheLovers::init_fields(gd::BattleCtx& gd_ctx) {
@@ -2083,7 +2083,7 @@ gd::GdVal Gd__gd_core__TheLovers::fn__readyInit(const gd::GdVal* _args, int _arg
     this->f_regen = gd::gd_coerce_int(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[45])}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getP_188, _ca, 1); })());
     return gd::GdVal::null();
 }
-static gd::GdObj* _alloc_Gd__gd_core__TheLovers(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core__TheLovers>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,145u); return object; }
+static gd::GdObj* _alloc_Gd__gd_core__TheLovers(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core__TheLovers>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,147u); return object; }
 const gd::GdClassMeta META_Gd__gd_core__TheLovers = {CLS_Gd__gd_core__TheLovers, "TheLovers", "res://gd_core/TheLovers.gd", &META_Gd__gd_core__Card, false, _alloc_Gd__gd_core__TheLovers, &Gd__gd_core__TheLovers::get_static_prop_fn, &Gd__gd_core__TheLovers::call_static_fn};
 
 void Gd__gd_core_items__AceofSpades::init_fields(gd::BattleCtx& gd_ctx) {
@@ -2167,7 +2167,7 @@ gd::GdVal Gd__gd_core_items__AceofSpades::fn__readyInit(const gd::GdVal* _args, 
     this->f_spikes = gd::gd_coerce_int(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[1])}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getP_188, _ca, 1); })());
     return gd::GdVal::null();
 }
-static gd::GdObj* _alloc_Gd__gd_core_items__AceofSpades(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__AceofSpades>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,161u); return object; }
+static gd::GdObj* _alloc_Gd__gd_core_items__AceofSpades(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__AceofSpades>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,163u); return object; }
 const gd::GdClassMeta META_Gd__gd_core_items__AceofSpades = {CLS_Gd__gd_core_items__AceofSpades, "AceofSpades", "res://gd_core_items/AceofSpades.gd", &META_Gd__gd_core_items__Card, true, _alloc_Gd__gd_core_items__AceofSpades, &Gd__gd_core_items__AceofSpades::get_static_prop_fn, &Gd__gd_core_items__AceofSpades::call_static_fn};
 
 void Gd__gd_core_items__Bow::init_fields(gd::BattleCtx& gd_ctx) {
@@ -2264,7 +2264,7 @@ gd::GdVal Gd__gd_core_items__Bow::fn__readyInit(const gd::GdVal* _args, int _arg
     (void)([&]() {  gd::GdVal _out = gd::GdVal::null(); this->Gd__gd_core_items__Weapon::call_method(gd_ctx, SYM_GEN__readyInit_140, nullptr, 0, _out); return _out; })();
     return gd::GdVal::null();
 }
-static gd::GdObj* _alloc_Gd__gd_core_items__Bow(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Bow>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,173u); return object; }
+static gd::GdObj* _alloc_Gd__gd_core_items__Bow(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Bow>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,175u); return object; }
 const gd::GdClassMeta META_Gd__gd_core_items__Bow = {CLS_Gd__gd_core_items__Bow, "Bow", "res://gd_core_items/Bow.gd", &META_Gd__gd_core_items__Weapon, true, _alloc_Gd__gd_core_items__Bow, &Gd__gd_core_items__Bow::get_static_prop_fn, &Gd__gd_core_items__Bow::call_static_fn};
 
 void Gd__gd_core_items__CustomerCard::init_fields(gd::BattleCtx& gd_ctx) {
@@ -2318,7 +2318,7 @@ gd::GdVal Gd__gd_core_items__CustomerCard::fn__readyInit(const gd::GdVal* _args,
     (void)([&]() {  gd::GdVal _out = gd::GdVal::null(); this->Gd__gd_core_items__Item::call_method(gd_ctx, SYM_GEN__readyInit_140, nullptr, 0, _out); return _out; })();
     return gd::GdVal::null();
 }
-static gd::GdObj* _alloc_Gd__gd_core_items__CustomerCard(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__CustomerCard>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,190u); return object; }
+static gd::GdObj* _alloc_Gd__gd_core_items__CustomerCard(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__CustomerCard>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,192u); return object; }
 const gd::GdClassMeta META_Gd__gd_core_items__CustomerCard = {CLS_Gd__gd_core_items__CustomerCard, "CustomerCard", "res://gd_core_items/CustomerCard.gd", &META_Gd__gd_core_items__Item, true, _alloc_Gd__gd_core_items__CustomerCard, &Gd__gd_core_items__CustomerCard::get_static_prop_fn, &Gd__gd_core_items__CustomerCard::call_static_fn};
 
 void Gd__gd_core_items__Exclusive__AmuletofDarkness::init_fields(gd::BattleCtx& gd_ctx) {
@@ -2417,10 +2417,10 @@ gd::GdVal Gd__gd_core_items__Exclusive__AmuletofDarkness::fn_onItemActivated(con
         (void)gd::GdVal::null();
     }
     if (gd::gd_truth(gd::GdVal::from_bool(gd::native_scalar_ne(gd::GdVal::from_cstr(gd_ctx.arena, ""), gd::GdVal::from_str(&battle_string_literals[17]))))) {
-        { gd::GdVal _t796 = gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_rng_1406); gd::set_prop(gd_ctx, _t796, SYM_GEN_debug_flip_tag_1728, gd::gd_add(gd_ctx, gd::GdVal::from_str(&battle_string_literals[51]), ([&]() { gd::GdVal _ca[] = {gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_time_1411)}; return gd::gd_str_fn(gd_ctx.arena, _ca, 1); })())); }
+        { gd::GdVal _t796 = gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_rng_1406); gd::set_prop(gd_ctx, _t796, SYM_GEN_debug_flip_tag_1728, gd::gd_add(gd_ctx, gd::GdVal::from_str(&battle_string_literals[51]), ([&]() { gd::GdVal _ca[] = {gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_time_1411)}; return gd::gd_str_fn(gd_ctx.arena, _ca, 1); })())); }
     }
     if (gd::gd_truth(gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_rollChance_173, nullptr, 0))) {
-        gd::GdVal lv_dam = gd::get_prop(gd_ctx, this->f_descriptor, SYM_GEN_minDam_1675);
+        gd::GdVal lv_dam = gd::native_inline_get_prop(gd_ctx, this->f_descriptor, SYM_GEN_minDam_1675);
         gd::GdVal lv_res = ([&]() { gd::GdVal _ca[] = {lv_dam}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_dealEffectDamage_221, _ca, 1); })();
         (void)gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_activate_150, nullptr, 0);
     }
@@ -2429,8 +2429,8 @@ gd::GdVal Gd__gd_core_items__Exclusive__AmuletofDarkness::fn_onItemActivated(con
 gd::GdVal Gd__gd_core_items__Exclusive__AmuletofDarkness::fn_onOpponentDamaged(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
     gd::GdVal lv_damageRes = (_argc > 0) ? _args[0] : gd::GdVal::null();
-    if (gd::gd_truth((gd::gd_truth(gd::native_inline_call(gd_ctx, lv_damageRes, SYM_GEN_hasHit_1523, nullptr, 0)) ? gd::GdVal::from_bool(gd::gd_truth(gd::native_inline_call(gd_ctx, gd::get_prop(gd_ctx, lv_damageRes, SYM_GEN_damageSource_24), SYM_GEN_isEffectDamage_1561, nullptr, 0))) : gd::GdVal::from_bool(false)))) {
-        this->f_damageAcc = gd::gd_coerce_int(gd::gd_add(gd_ctx, this->f_damageAcc, gd::get_prop(gd_ctx, lv_damageRes, SYM_GEN_damage_1518)));
+    if (gd::gd_truth((gd::gd_truth(gd::native_inline_call(gd_ctx, lv_damageRes, SYM_GEN_hasHit_1523, nullptr, 0)) ? gd::GdVal::from_bool(gd::gd_truth(gd::native_inline_call(gd_ctx, gd::native_inline_get_prop(gd_ctx, lv_damageRes, SYM_GEN_damageSource_24), SYM_GEN_isEffectDamage_1561, nullptr, 0))) : gd::GdVal::from_bool(false)))) {
+        this->f_damageAcc = gd::gd_coerce_int(gd::gd_add(gd_ctx, this->f_damageAcc, gd::native_inline_get_prop(gd_ctx, lv_damageRes, SYM_GEN_damage_1518)));
         gd::GdVal lv_proccs = gd::gd_div(gd_ctx, this->f_damageAcc, this->f_damageThreshold);
         if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_gt(lv_proccs, gd::GdVal::from_int(0LL))))) {
             this->f_damageAcc = gd::gd_coerce_int(gd::gd_mod(gd_ctx, this->f_damageAcc, this->f_damageThreshold));
@@ -2447,7 +2447,7 @@ gd::GdVal Gd__gd_core_items__Exclusive__AmuletofDarkness::fn__readyInit(const gd
     this->f_damageSource = ([&]() { gd::GdVal _ca[] = {gd::GdVal::from_obj(this)}; return gd::native_inline_call(gd_ctx, gd::native_inline_call(gd_ctx, gd::GdVal::from_cls(&META_Gd__gd_core__CoreDamageSource), gd::SYM_new, nullptr, 0), SYM_GEN_setItem_1550, _ca, 1); })();
     return gd::GdVal::null();
 }
-static gd::GdObj* _alloc_Gd__gd_core_items__Exclusive__AmuletofDarkness(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Exclusive__AmuletofDarkness>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,207u); return object; }
+static gd::GdObj* _alloc_Gd__gd_core_items__Exclusive__AmuletofDarkness(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Exclusive__AmuletofDarkness>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,210u); return object; }
 const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__AmuletofDarkness = {CLS_Gd__gd_core_items__Exclusive__AmuletofDarkness, "AmuletofDarkness", "res://gd_core_items/Exclusive/AmuletofDarkness.gd", &META_Gd__gd_core_items__Item, true, _alloc_Gd__gd_core_items__Exclusive__AmuletofDarkness, &Gd__gd_core_items__Exclusive__AmuletofDarkness::get_static_prop_fn, &Gd__gd_core_items__Exclusive__AmuletofDarkness::call_static_fn};
 
 void Gd__gd_core_items__Exclusive__WisdomPuppy::init_fields(gd::BattleCtx& gd_ctx) {
@@ -2533,7 +2533,7 @@ gd::GdVal Gd__gd_core_items__Exclusive__WisdomPuppy::fn__readyInit(const gd::GdV
     (void)([&]() {  gd::GdVal _out = gd::GdVal::null(); this->Gd__gd_core_items__Item::call_method(gd_ctx, SYM_GEN__readyInit_140, nullptr, 0, _out); return _out; })();
     return gd::GdVal::null();
 }
-static gd::GdObj* _alloc_Gd__gd_core_items__Exclusive__WisdomPuppy(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Exclusive__WisdomPuppy>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,552u); return object; }
+static gd::GdObj* _alloc_Gd__gd_core_items__Exclusive__WisdomPuppy(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Exclusive__WisdomPuppy>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,554u); return object; }
 const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__WisdomPuppy = {CLS_Gd__gd_core_items__Exclusive__WisdomPuppy, "WisdomPuppy", "res://gd_core_items/Exclusive/WisdomPuppy.gd", &META_Gd__gd_core_items__Item, true, _alloc_Gd__gd_core_items__Exclusive__WisdomPuppy, &Gd__gd_core_items__Exclusive__WisdomPuppy::get_static_prop_fn, &Gd__gd_core_items__Exclusive__WisdomPuppy::call_static_fn};
 
 void Gd__gd_core_items__Exclusive__BionicArmor::init_fields(gd::BattleCtx& gd_ctx) {
@@ -2617,7 +2617,7 @@ bool Gd__gd_core_items__Exclusive__BionicArmor::call_static_fn(gd::BattleCtx& gd
 gd::GdVal Gd__gd_core_items__Exclusive__BionicArmor::fn_onPrepare(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
     this->f_blockHealthAcc = gd::gd_coerce_int(gd::GdVal::from_int(0LL));
-    gd::GdVal lv_baseStaminaRegen = gd::get_prop(gd_ctx, gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_character_74, nullptr, 0), SYM_GEN_baseStaminaRegen_1057);
+    gd::GdVal lv_baseStaminaRegen = gd::native_inline_get_prop(gd_ctx, gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_character_74, nullptr, 0), SYM_GEN_baseStaminaRegen_1057);
     (void)([&]() { gd::GdVal _ca[] = {gd::gd_mul(this->f_staminaRegenMalus, lv_baseStaminaRegen)}; return gd::native_inline_call(gd_ctx, gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_character_74, nullptr, 0), SYM_GEN_giveStaminaRegeneration_1270, _ca, 1); })();
     (void)([&]() { gd::GdVal _ca[] = {gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_character_74, nullptr, 0), gd::GdVal::from_str(&battle_string_literals[53]), gd::GdVal::from_str(&battle_string_literals[54])}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_connectForCombat_500, _ca, 3); })();
     (void)([&]() { gd::GdVal _ca[] = {gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_character_74, nullptr, 0), gd::GdVal::from_str(&battle_string_literals[55]), gd::GdVal::from_str(&battle_string_literals[54])}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_connectForCombat_500, _ca, 3); })();
@@ -2668,7 +2668,7 @@ gd::GdVal Gd__gd_core_items__Exclusive__BionicArmor::fn__readyInit(const gd::GdV
     this->f_block2 = gd::gd_coerce_int(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[62])}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getP_188, _ca, 1); })());
     return gd::GdVal::null();
 }
-static gd::GdObj* _alloc_Gd__gd_core_items__Exclusive__BionicArmor(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Exclusive__BionicArmor>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,234u); return object; }
+static gd::GdObj* _alloc_Gd__gd_core_items__Exclusive__BionicArmor(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Exclusive__BionicArmor>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,236u); return object; }
 const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__BionicArmor = {CLS_Gd__gd_core_items__Exclusive__BionicArmor, "BionicArmor", "res://gd_core_items/Exclusive/BionicArmor.gd", &META_Gd__gd_core_items__Item, true, _alloc_Gd__gd_core_items__Exclusive__BionicArmor, &Gd__gd_core_items__Exclusive__BionicArmor::get_static_prop_fn, &Gd__gd_core_items__Exclusive__BionicArmor::call_static_fn};
 
 void Gd__gd_core_items__Exclusive__Broccotree::init_fields(gd::BattleCtx& gd_ctx) {
@@ -2746,7 +2746,7 @@ gd::GdVal Gd__gd_core_items__Exclusive__Broccotree::fn_doCooldownEffect(const gd
 }
 gd::GdVal Gd__gd_core_items__Exclusive__Broccotree::fn_onPrepare(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
-    gd::GdVal lv_baseStaminaRegen = gd::get_prop(gd_ctx, gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_character_74, nullptr, 0), SYM_GEN_baseStaminaRegen_1057);
+    gd::GdVal lv_baseStaminaRegen = gd::native_inline_get_prop(gd_ctx, gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_character_74, nullptr, 0), SYM_GEN_baseStaminaRegen_1057);
     this->f_staminaPerRegen = gd::gd_coerce_float(gd::gd_div(gd_ctx, gd::gd_mul(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[41])}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getP_188, _ca, 1); })(), lv_baseStaminaRegen), gd::GdVal::from_float(100.0)));
     (void)([&]() { gd::GdVal _ca[] = {gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_character_74, nullptr, 0), gd::GdVal::from_str(&battle_string_literals[63]), gd::GdVal::from_str(&battle_string_literals[64])}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_connectForCombat_500, _ca, 3); })();
     return gd::GdVal::null();
@@ -2768,7 +2768,7 @@ gd::GdVal Gd__gd_core_items__Exclusive__Broccotree::fn__readyInit(const gd::GdVa
     this->f_regen = gd::gd_coerce_int(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[45])}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getP_188, _ca, 1); })());
     return gd::GdVal::null();
 }
-static gd::GdObj* _alloc_Gd__gd_core_items__Exclusive__Broccotree(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Exclusive__Broccotree>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,249u); return object; }
+static gd::GdObj* _alloc_Gd__gd_core_items__Exclusive__Broccotree(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Exclusive__Broccotree>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,251u); return object; }
 const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__Broccotree = {CLS_Gd__gd_core_items__Exclusive__Broccotree, "Broccotree", "res://gd_core_items/Exclusive/Broccotree.gd", &META_Gd__gd_core_items__Food, true, _alloc_Gd__gd_core_items__Exclusive__Broccotree, &Gd__gd_core_items__Exclusive__Broccotree::get_static_prop_fn, &Gd__gd_core_items__Exclusive__Broccotree::call_static_fn};
 
 void Gd__gd_core_items__Exclusive__Chess__BlackBishop::init_fields(gd::BattleCtx& gd_ctx) {
@@ -2851,7 +2851,7 @@ gd::GdVal Gd__gd_core_items__Exclusive__Chess__BlackBishop::fn__readyInit(const 
     this->f_maxHealthReduction = gd::gd_div(gd_ctx, gd::gd_neg(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[68])}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getP_188, _ca, 1); })()), gd::GdVal::from_float(100.0));
     return gd::GdVal::null();
 }
-static gd::GdObj* _alloc_Gd__gd_core_items__Exclusive__Chess__BlackBishop(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Exclusive__Chess__BlackBishop>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,264u); return object; }
+static gd::GdObj* _alloc_Gd__gd_core_items__Exclusive__Chess__BlackBishop(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Exclusive__Chess__BlackBishop>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,268u); return object; }
 const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__Chess__BlackBishop = {CLS_Gd__gd_core_items__Exclusive__Chess__BlackBishop, "BlackBishop", "res://gd_core_items/Exclusive/Chess/BlackBishop.gd", &META_Gd__gd_core_items__Exclusive__Chess__ChessPiece, true, _alloc_Gd__gd_core_items__Exclusive__Chess__BlackBishop, &Gd__gd_core_items__Exclusive__Chess__BlackBishop::get_static_prop_fn, &Gd__gd_core_items__Exclusive__Chess__BlackBishop::call_static_fn};
 
 void Gd__gd_core_items__Exclusive__ChromeCube::init_fields(gd::BattleCtx& gd_ctx) {
@@ -2953,7 +2953,7 @@ gd::GdVal Gd__gd_core_items__Exclusive__ChromeCube::fn__readyInit(const gd::GdVa
     this->f_healReduction = gd::gd_div(gd_ctx, ([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[67])}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getP_188, _ca, 1); })(), gd::GdVal::from_float(100.0));
     return gd::GdVal::null();
 }
-static gd::GdObj* _alloc_Gd__gd_core_items__Exclusive__ChromeCube(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Exclusive__ChromeCube>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,281u); return object; }
+static gd::GdObj* _alloc_Gd__gd_core_items__Exclusive__ChromeCube(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Exclusive__ChromeCube>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,283u); return object; }
 const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__ChromeCube = {CLS_Gd__gd_core_items__Exclusive__ChromeCube, "ChromeCube", "res://gd_core_items/Exclusive/ChromeCube.gd", &META_Gd__gd_core_items__Exclusive__Cube, true, _alloc_Gd__gd_core_items__Exclusive__ChromeCube, &Gd__gd_core_items__Exclusive__ChromeCube::get_static_prop_fn, &Gd__gd_core_items__Exclusive__ChromeCube::call_static_fn};
 
 void Gd__gd_core_items__Exclusive__DeathLotus::init_fields(gd::BattleCtx& gd_ctx) {
@@ -3055,7 +3055,7 @@ gd::GdVal Gd__gd_core_items__Exclusive__DeathLotus::fn__readyInit(const gd::GdVa
     this->f_stamina = ([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[41])}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getP_188, _ca, 1); })();
     return gd::GdVal::null();
 }
-static gd::GdObj* _alloc_Gd__gd_core_items__Exclusive__DeathLotus(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Exclusive__DeathLotus>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,299u); return object; }
+static gd::GdObj* _alloc_Gd__gd_core_items__Exclusive__DeathLotus(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Exclusive__DeathLotus>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,301u); return object; }
 const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__DeathLotus = {CLS_Gd__gd_core_items__Exclusive__DeathLotus, "DeathLotus", "res://gd_core_items/Exclusive/DeathLotus.gd", &META_Gd__gd_core_items__Item, true, _alloc_Gd__gd_core_items__Exclusive__DeathLotus, &Gd__gd_core_items__Exclusive__DeathLotus::get_static_prop_fn, &Gd__gd_core_items__Exclusive__DeathLotus::call_static_fn};
 
 void Gd__gd_core_items__Exclusive__DualWielding::init_fields(gd::BattleCtx& gd_ctx) {
@@ -3197,7 +3197,7 @@ gd::GdVal Gd__gd_core_items__Exclusive__DualWielding::fn__readyInit(const gd::Gd
     this->f_weaponStamina = ([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[41])}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getP_188, _ca, 1); })();
     return gd::GdVal::null();
 }
-static gd::GdObj* _alloc_Gd__gd_core_items__Exclusive__DualWielding(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Exclusive__DualWielding>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,314u); return object; }
+static gd::GdObj* _alloc_Gd__gd_core_items__Exclusive__DualWielding(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Exclusive__DualWielding>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,316u); return object; }
 const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__DualWielding = {CLS_Gd__gd_core_items__Exclusive__DualWielding, "DualWielding", "res://gd_core_items/Exclusive/DualWielding.gd", &META_Gd__gd_core_items__Item, true, _alloc_Gd__gd_core_items__Exclusive__DualWielding, &Gd__gd_core_items__Exclusive__DualWielding::get_static_prop_fn, &Gd__gd_core_items__Exclusive__DualWielding::call_static_fn};
 
 void Gd__gd_core_items__Exclusive__ExtraBags::init_fields(gd::BattleCtx& gd_ctx) {
@@ -3319,7 +3319,7 @@ gd::GdVal Gd__gd_core_items__Exclusive__ExtraBags::fn__readyInit(const gd::GdVal
     this->f_bagWeight = ([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[75])}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getP_188, _ca, 1); })();
     return gd::GdVal::null();
 }
-static gd::GdObj* _alloc_Gd__gd_core_items__Exclusive__ExtraBags(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Exclusive__ExtraBags>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,329u); return object; }
+static gd::GdObj* _alloc_Gd__gd_core_items__Exclusive__ExtraBags(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Exclusive__ExtraBags>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,331u); return object; }
 const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__ExtraBags = {CLS_Gd__gd_core_items__Exclusive__ExtraBags, "ExtraBags", "res://gd_core_items/Exclusive/ExtraBags.gd", &META_Gd__gd_core_items__Item, true, _alloc_Gd__gd_core_items__Exclusive__ExtraBags, &Gd__gd_core_items__Exclusive__ExtraBags::get_static_prop_fn, &Gd__gd_core_items__Exclusive__ExtraBags::call_static_fn};
 
 void Gd__gd_core_items__Exclusive__Frostbite::init_fields(gd::BattleCtx& gd_ctx) {
@@ -3429,7 +3429,7 @@ gd::GdVal Gd__gd_core_items__Exclusive__Frostbite::fn__readyInit(const gd::GdVal
     this->f_vampirism = gd::gd_coerce_int(gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getP4_266, nullptr, 0));
     return gd::GdVal::null();
 }
-static gd::GdObj* _alloc_Gd__gd_core_items__Exclusive__Frostbite(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Exclusive__Frostbite>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,343u); return object; }
+static gd::GdObj* _alloc_Gd__gd_core_items__Exclusive__Frostbite(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Exclusive__Frostbite>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,345u); return object; }
 const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__Frostbite = {CLS_Gd__gd_core_items__Exclusive__Frostbite, "Frostbite", "res://gd_core_items/Exclusive/Frostbite.gd", &META_Gd__gd_core_items__Weapon, true, _alloc_Gd__gd_core_items__Exclusive__Frostbite, &Gd__gd_core_items__Exclusive__Frostbite::get_static_prop_fn, &Gd__gd_core_items__Exclusive__Frostbite::call_static_fn};
 
 void Gd__gd_core_items__Exclusive__HeartShield::init_fields(gd::BattleCtx& gd_ctx) {
@@ -3542,9 +3542,9 @@ gd::GdVal Gd__gd_core_items__Exclusive__HeartShield::fn_onPrepare(const gd::GdVa
 }
 gd::GdVal Gd__gd_core_items__Exclusive__HeartShield::fn_afterBlock(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
-    (void)([&]() { gd::GdVal _ca[] = {gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getP2_264, nullptr, 0), gd::get_prop(gd_ctx, this->f_blockedDamageRes, SYM_GEN_event_1517)}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_drainStamina_117, _ca, 2); })();
+    (void)([&]() { gd::GdVal _ca[] = {gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getP2_264, nullptr, 0), gd::native_inline_get_prop(gd_ctx, this->f_blockedDamageRes, SYM_GEN_event_1517)}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_drainStamina_117, _ca, 2); })();
     if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_lt(this->f_regenGiven, this->f_regenMax)))) {
-        (void)([&]() { gd::GdVal _ca[] = {this->f_regenOnBlock, gd::get_prop(gd_ctx, this->f_blockedDamageRes, SYM_GEN_event_1517)}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_giveRegeneration_214, _ca, 2); })();
+        (void)([&]() { gd::GdVal _ca[] = {this->f_regenOnBlock, gd::native_inline_get_prop(gd_ctx, this->f_blockedDamageRes, SYM_GEN_event_1517)}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_giveRegeneration_214, _ca, 2); })();
         this->f_regenGiven = gd::gd_coerce_int(gd::gd_add(gd_ctx, this->f_regenGiven, this->f_regenOnBlock));
     }
     (void)gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_activate_150, nullptr, 0);
@@ -3583,7 +3583,7 @@ gd::GdVal Gd__gd_core_items__Exclusive__HeartShield::fn_preTakeDamage(const gd::
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
     gd::GdVal lv_damageRes = (_argc > 0) ? _args[0] : gd::GdVal::null();
     if (gd::gd_truth(this->f_activated)) {
-        if (gd::gd_truth((gd::gd_truth(gd::native_inline_call(gd_ctx, gd::get_prop(gd_ctx, lv_damageRes, SYM_GEN_damageSource_24), SYM_GEN_isAttackOrEffect_1562, nullptr, 0)) ? gd::GdVal::from_bool(gd::gd_truth(gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_rollChance_173, nullptr, 0))) : gd::GdVal::from_bool(false)))) {
+        if (gd::gd_truth((gd::gd_truth(gd::native_inline_call(gd_ctx, gd::native_inline_get_prop(gd_ctx, lv_damageRes, SYM_GEN_damageSource_24), SYM_GEN_isAttackOrEffect_1562, nullptr, 0)) ? gd::GdVal::from_bool(gd::gd_truth(gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_rollChance_173, nullptr, 0))) : gd::GdVal::from_bool(false)))) {
             this->f_blockedDamageRes = lv_damageRes;
             (void)gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_beforeBlock_1941, nullptr, 0);
         }
@@ -3603,7 +3603,7 @@ gd::GdVal Gd__gd_core_items__Exclusive__HeartShield::fn__readyInit(const gd::GdV
     this->f_regenMax = gd::gd_coerce_int(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[82])}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getP_188, _ca, 1); })());
     return gd::GdVal::null();
 }
-static gd::GdObj* _alloc_Gd__gd_core_items__Exclusive__HeartShield(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Exclusive__HeartShield>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,358u); return object; }
+static gd::GdObj* _alloc_Gd__gd_core_items__Exclusive__HeartShield(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Exclusive__HeartShield>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,359u); return object; }
 const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__HeartShield = {CLS_Gd__gd_core_items__Exclusive__HeartShield, "HeartShield", "res://gd_core_items/Exclusive/HeartShield.gd", &META_Gd__gd_core_items__Shield, true, _alloc_Gd__gd_core_items__Exclusive__HeartShield, &Gd__gd_core_items__Exclusive__HeartShield::get_static_prop_fn, &Gd__gd_core_items__Exclusive__HeartShield::call_static_fn};
 
 void Gd__gd_core_items__Exclusive__JustStats::init_fields(gd::BattleCtx& gd_ctx) {
@@ -3681,10 +3681,10 @@ gd::GdVal Gd__gd_core_items__Exclusive__JustStats::fn_getDescription(const gd::G
     gd::GdVal lv_descr = ([&]() { gd::GdVal _ca[] = {lv_wrapInColor}; gd::GdVal _out = gd::GdVal::null(); this->Gd__gd_core_items__Item::call_method(gd_ctx, SYM_GEN_getDescription_642, _ca, 1, _out); return _out; })();
     gd::GdVal lv_string = gd::GdVal::null();
     if (gd::gd_truth(lv_wrapInColor)) {
-        lv_string = ([&]() { gd::GdVal _ca[] = {([&]() { auto* d = gd::GdDict::create(gd_ctx.arena, 1); d->set(gd_ctx.arena, gd::GdVal::from_str(&battle_string_literals[83]), gd::GdVal::null()); return gd::GdVal::from_dict(d); })()}; return gd::native_inline_call(gd_ctx, ([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[84])}; return gd::native_inline_call(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_util_1407), SYM_GEN_tr_2826, _ca, 1); })(), SYM_GEN_format_2716, _ca, 1); })();
+        lv_string = ([&]() { gd::GdVal _ca[] = {([&]() { auto* d = gd::GdDict::create(gd_ctx.arena, 1); d->set(gd_ctx.arena, gd::GdVal::from_str(&battle_string_literals[83]), gd::GdVal::null()); return gd::GdVal::from_dict(d); })()}; return gd::native_inline_call(gd_ctx, ([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[84])}; return gd::native_inline_call(gd_ctx, gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_util_1407), SYM_GEN_tr_2826, _ca, 1); })(), SYM_GEN_format_2716, _ca, 1); })();
     }
     else {
-        lv_string = ([&]() { gd::GdVal _ca[] = {([&]() { auto* d = gd::GdDict::create(gd_ctx.arena, 1); d->set(gd_ctx.arena, gd::GdVal::from_str(&battle_string_literals[83]), gd::native_array_index(gd_ctx, gd::get_prop(gd_ctx, this->f_descriptor, SYM_GEN_appearRounds_2827), gd::GdVal::from_int(0LL))); return gd::GdVal::from_dict(d); })()}; return gd::native_inline_call(gd_ctx, ([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[84])}; return gd::native_inline_call(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_util_1407), SYM_GEN_tr_2826, _ca, 1); })(), SYM_GEN_format_2716, _ca, 1); })();
+        lv_string = ([&]() { gd::GdVal _ca[] = {([&]() { auto* d = gd::GdDict::create(gd_ctx.arena, 1); d->set(gd_ctx.arena, gd::GdVal::from_str(&battle_string_literals[83]), gd::native_array_index(gd_ctx, gd::native_inline_get_prop(gd_ctx, this->f_descriptor, SYM_GEN_appearRounds_2827), gd::GdVal::from_int(0LL))); return gd::GdVal::from_dict(d); })()}; return gd::native_inline_call(gd_ctx, ([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[84])}; return gd::native_inline_call(gd_ctx, gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_util_1407), SYM_GEN_tr_2826, _ca, 1); })(), SYM_GEN_format_2716, _ca, 1); })();
     }
     lv_descr = gd::gd_add(gd_ctx, lv_descr, gd::gd_add(gd_ctx, gd::GdVal::from_str(&battle_string_literals[85]), lv_string));
     return lv_descr;
@@ -3701,7 +3701,7 @@ gd::GdVal Gd__gd_core_items__Exclusive__JustStats::fn__readyInit(const gd::GdVal
     this->f_staminaRegen = gd::gd_div(gd_ctx, ([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[41])}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getP_188, _ca, 1); })(), gd::GdVal::from_float(100.0));
     return gd::GdVal::null();
 }
-static gd::GdObj* _alloc_Gd__gd_core_items__Exclusive__JustStats(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Exclusive__JustStats>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,373u); return object; }
+static gd::GdObj* _alloc_Gd__gd_core_items__Exclusive__JustStats(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Exclusive__JustStats>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,375u); return object; }
 const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__JustStats = {CLS_Gd__gd_core_items__Exclusive__JustStats, "JustStats", "res://gd_core_items/Exclusive/JustStats.gd", &META_Gd__gd_core_items__Item, true, _alloc_Gd__gd_core_items__Exclusive__JustStats, &Gd__gd_core_items__Exclusive__JustStats::get_static_prop_fn, &Gd__gd_core_items__Exclusive__JustStats::call_static_fn};
 
 void Gd__gd_core_items__Exclusive__Lootbox::init_fields(gd::BattleCtx& gd_ctx) {
@@ -3765,7 +3765,7 @@ bool Gd__gd_core_items__Exclusive__Lootbox::call_static_fn(gd::BattleCtx& gd_ctx
 gd::GdVal Gd__gd_core_items__Exclusive__Lootbox::fn_onDropped(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
     gd::GdVal lv_dropRes = (_argc > 0) ? _args[0] : gd::GdVal::null();
-    if (gd::gd_truth((gd::gd_truth(([&]() { gd::GdVal _ca[] = {lv_dropRes}; gd::GdVal _out = gd::GdVal::null(); Gd__gd_core_items__Exclusive__Lootbox::call_static_fn(gd_ctx, SYM_GEN_wasAddedToInventory_659, _ca, 1, _out); return _out; })()) ? gd::GdVal::from_bool(true) : gd::GdVal::from_bool(gd::gd_truth(gd::GdVal::from_bool(gd::native_scalar_eq(lv_dropRes, gd::get_prop(gd_ctx, Gd__gd_core_items__Exclusive__Lootbox::get_static_const_or_enum(gd_ctx, SYM_GEN_DropResult_865), SYM_GEN_AddedToStorageBox_2723)))))))) {
+    if (gd::gd_truth((gd::gd_truth(([&]() { gd::GdVal _ca[] = {lv_dropRes}; gd::GdVal _out = gd::GdVal::null(); Gd__gd_core_items__Exclusive__Lootbox::call_static_fn(gd_ctx, SYM_GEN_wasAddedToInventory_659, _ca, 1, _out); return _out; })()) ? gd::GdVal::from_bool(true) : gd::GdVal::from_bool(gd::gd_truth(gd::GdVal::from_bool(gd::native_scalar_eq(lv_dropRes, gd::native_inline_get_prop(gd_ctx, Gd__gd_core_items__Exclusive__Lootbox::get_static_const_or_enum(gd_ctx, SYM_GEN_DropResult_865), SYM_GEN_AddedToStorageBox_2723)))))))) {
         (void)gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_prepareReplacement_446, nullptr, 0);
         (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_obj(this), gd::GdVal::from_str(&battle_string_literals[86]), gd::GdVal::from_arr(gd::GdArr::from_init(gd_ctx.arena, {lv_dropRes}))}; return gd::native_inline_call(gd_ctx, this->f_ctx, SYM_GEN_defer_1482, _ca, 3); })();
     }
@@ -3783,7 +3783,7 @@ gd::GdVal Gd__gd_core_items__Exclusive__Lootbox::fn__readyInit(const gd::GdVal* 
     (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[88]), gd::GdVal::from_obj(this), gd::GdVal::from_str(&battle_string_literals[89])}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), gd::SYM_connect, _ca, 3); })();
     return gd::GdVal::null();
 }
-static gd::GdObj* _alloc_Gd__gd_core_items__Exclusive__Lootbox(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Exclusive__Lootbox>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,388u); return object; }
+static gd::GdObj* _alloc_Gd__gd_core_items__Exclusive__Lootbox(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Exclusive__Lootbox>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,390u); return object; }
 const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__Lootbox = {CLS_Gd__gd_core_items__Exclusive__Lootbox, "Lootbox", "res://gd_core_items/Exclusive/Lootbox.gd", &META_Gd__gd_core_items__Item, true, _alloc_Gd__gd_core_items__Exclusive__Lootbox, &Gd__gd_core_items__Exclusive__Lootbox::get_static_prop_fn, &Gd__gd_core_items__Exclusive__Lootbox::call_static_fn};
 
 void Gd__gd_core_items__Exclusive__MercuryElemental::init_fields(gd::BattleCtx& gd_ctx) {
@@ -3871,7 +3871,7 @@ gd::GdVal Gd__gd_core_items__Exclusive__MercuryElemental::fn_isAffectingDistinct
 gd::GdVal Gd__gd_core_items__Exclusive__MercuryElemental::fn_canAffect(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
     gd::GdVal lv_item = (_argc > 0) ? _args[0] : gd::GdVal::null();
-    return gd::native_inline_call(gd_ctx, gd::get_prop(gd_ctx, lv_item, SYM_GEN_descriptor_2), SYM_GEN_isMeleeWeapon_1722, nullptr, 0);
+    return gd::native_inline_call(gd_ctx, gd::native_inline_get_prop(gd_ctx, lv_item, SYM_GEN_descriptor_2), SYM_GEN_isMeleeWeapon_1722, nullptr, 0);
     return gd::GdVal::null();
 }
 gd::GdVal Gd__gd_core_items__Exclusive__MercuryElemental::fn_onPrepare(const gd::GdVal* _args, int _argc) {
@@ -3886,7 +3886,7 @@ gd::GdVal Gd__gd_core_items__Exclusive__MercuryElemental::fn_onOpponentAttacked(
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
     gd::GdVal lv_damageRes = (_argc > 0) ? _args[0] : gd::GdVal::null();
     if (gd::gd_truth(gd::native_inline_call(gd_ctx, lv_damageRes, SYM_GEN_triggerOnAttacked_1530, nullptr, 0))) {
-        (void)([&]() { gd::GdVal _ca[] = {gd::gd_mul(gd::gd_div(gd_ctx, gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getBlock_204, nullptr, 0), gd::GdVal::from_float(100.0)), gd::get_prop(gd_ctx, lv_damageRes, SYM_GEN_damage_1518))}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_giveBlock_203, _ca, 1); })();
+        (void)([&]() { gd::GdVal _ca[] = {gd::gd_mul(gd::gd_div(gd_ctx, gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getBlock_204, nullptr, 0), gd::GdVal::from_float(100.0)), gd::native_inline_get_prop(gd_ctx, lv_damageRes, SYM_GEN_damage_1518))}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_giveBlock_203, _ca, 1); })();
     }
     return gd::GdVal::null();
 }
@@ -3921,7 +3921,7 @@ gd::GdVal Gd__gd_core_items__Exclusive__MercuryElemental::fn__readyInit(const gd
     }
     return gd::GdVal::null();
 }
-static gd::GdObj* _alloc_Gd__gd_core_items__Exclusive__MercuryElemental(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Exclusive__MercuryElemental>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,403u); return object; }
+static gd::GdObj* _alloc_Gd__gd_core_items__Exclusive__MercuryElemental(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Exclusive__MercuryElemental>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,405u); return object; }
 const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__MercuryElemental = {CLS_Gd__gd_core_items__Exclusive__MercuryElemental, "MercuryElemental", "res://gd_core_items/Exclusive/MercuryElemental.gd", &META_Gd__gd_core_items__Item, true, _alloc_Gd__gd_core_items__Exclusive__MercuryElemental, &Gd__gd_core_items__Exclusive__MercuryElemental::get_static_prop_fn, &Gd__gd_core_items__Exclusive__MercuryElemental::call_static_fn};
 
 void Gd__gd_core_items__Exclusive__ParadiseBirb::init_fields(gd::BattleCtx& gd_ctx) {
@@ -4029,14 +4029,14 @@ gd::GdVal Gd__gd_core_items__Exclusive__ParadiseBirb::fn_doCooldownEffect(const 
 }
 gd::GdVal Gd__gd_core_items__Exclusive__ParadiseBirb::fn_playPickupSound(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
-    gd::GdVal lv_pitch = ([&]() { gd::GdVal _ca[] = {gd::GdVal::from_float(0.8), gd::GdVal::from_float(1.0)}; return gd::native_inline_call(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_rng_1406), gd::SYM_randf_range, _ca, 2); })();
+    gd::GdVal lv_pitch = ([&]() { gd::GdVal _ca[] = {gd::GdVal::from_float(0.8), gd::GdVal::from_float(1.0)}; return gd::native_inline_call(gd_ctx, gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_rng_1406), gd::SYM_randf_range, _ca, 2); })();
     return gd::GdVal::null();
 }
 gd::GdVal Gd__gd_core_items__Exclusive__ParadiseBirb::fn_playDropSound(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
     gd::GdVal lv_volume = (_argc > 0) ? _args[0] : (gd::GdVal::from_int(0LL));
     lv_volume = gd::gd_add(gd_ctx, lv_volume, this->f_impactSoundVolume);
-    gd::GdVal lv_pitch = ([&]() { gd::GdVal _ca[] = {gd::GdVal::from_float(0.8), gd::GdVal::from_float(1.0)}; return gd::native_inline_call(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_rng_1406), gd::SYM_randf_range, _ca, 2); })();
+    gd::GdVal lv_pitch = ([&]() { gd::GdVal _ca[] = {gd::GdVal::from_float(0.8), gd::GdVal::from_float(1.0)}; return gd::native_inline_call(gd_ctx, gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_rng_1406), gd::SYM_randf_range, _ca, 2); })();
     return gd::GdVal::null();
 }
 gd::GdVal Gd__gd_core_items__Exclusive__ParadiseBirb::fn__readyInit(const gd::GdVal* _args, int _argc) {
@@ -4047,7 +4047,7 @@ gd::GdVal Gd__gd_core_items__Exclusive__ParadiseBirb::fn__readyInit(const gd::Gd
     this->f_bonusHeal = gd::gd_div(gd_ctx, ([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[43])}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getP_188, _ca, 1); })(), gd::GdVal::from_float(100.0));
     return gd::GdVal::null();
 }
-static gd::GdObj* _alloc_Gd__gd_core_items__Exclusive__ParadiseBirb(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Exclusive__ParadiseBirb>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,419u); return object; }
+static gd::GdObj* _alloc_Gd__gd_core_items__Exclusive__ParadiseBirb(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Exclusive__ParadiseBirb>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,421u); return object; }
 const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__ParadiseBirb = {CLS_Gd__gd_core_items__Exclusive__ParadiseBirb, "ParadiseBirb", "res://gd_core_items/Exclusive/ParadiseBirb.gd", &META_Gd__gd_core_items__Item, true, _alloc_Gd__gd_core_items__Exclusive__ParadiseBirb, &Gd__gd_core_items__Exclusive__ParadiseBirb::get_static_prop_fn, &Gd__gd_core_items__Exclusive__ParadiseBirb::call_static_fn};
 
 void Gd__gd_core_items__Exclusive__PoweroftheMoon::init_fields(gd::BattleCtx& gd_ctx) {
@@ -4162,12 +4162,12 @@ gd::GdVal Gd__gd_core_items__Exclusive__PoweroftheMoon::fn_onBought(const gd::Gd
 }
 gd::GdVal Gd__gd_core_items__Exclusive__PoweroftheMoon::fn_onPostCombatStart(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
-    (void)([&]() { gd::GdVal _ca[] = {this->f_timeAdvance}; return gd::native_inline_call(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_combat_1420), SYM_GEN_advanceTime_1330, _ca, 1); })();
+    (void)([&]() { gd::GdVal _ca[] = {this->f_timeAdvance}; return gd::native_inline_call(gd_ctx, gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_combat_1420), SYM_GEN_advanceTime_1330, _ca, 1); })();
     return gd::GdVal::null();
 }
 gd::GdVal Gd__gd_core_items__Exclusive__PoweroftheMoon::fn_onPrepare(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
-    (void)([&]() { gd::GdVal _ca[] = {gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_combat_1420), gd::GdVal::from_str(&battle_string_literals[11]), gd::GdVal::from_str(&battle_string_literals[97])}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_connectForCombat_500, _ca, 3); })();
+    (void)([&]() { gd::GdVal _ca[] = {gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_combat_1420), gd::GdVal::from_str(&battle_string_literals[11]), gd::GdVal::from_str(&battle_string_literals[97])}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_connectForCombat_500, _ca, 3); })();
     {
         gd::GdVal _t812 = gd::gd_iter_seq(gd_ctx.arena, gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getAffectedItems_420, nullptr, 0));
         gd::GdArr* _t813 = (_t812.kind == gd::GdVal::Kind::Arr) ? _t812.arr : nullptr;
@@ -4219,14 +4219,14 @@ gd::GdVal Gd__gd_core_items__Exclusive__PoweroftheMoon::fn_onItemRolled(const gd
 gd::GdVal Gd__gd_core_items__Exclusive__PoweroftheMoon::fn__readyInit(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
     (void)([&]() {  gd::GdVal _out = gd::GdVal::null(); this->Gd__gd_core_items__Item::call_method(gd_ctx, SYM_GEN__readyInit_140, nullptr, 0, _out); return _out; })();
-    this->f_moonArmorDescriptor = ([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[100])}; return gd::native_inline_call(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_item_book_1421), SYM_GEN_getDescriptor_1660, _ca, 1); })();
-    this->f_moonShieldDescriptor = ([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[101])}; return gd::native_inline_call(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_item_book_1421), SYM_GEN_getDescriptor_1660, _ca, 1); })();
-    this->f_manaOrbDescriptor = ([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[102])}; return gd::native_inline_call(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_item_book_1421), SYM_GEN_getDescriptor_1660, _ca, 1); })();
+    this->f_moonArmorDescriptor = ([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[100])}; return gd::native_inline_call(gd_ctx, gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_item_book_1421), SYM_GEN_getDescriptor_1660, _ca, 1); })();
+    this->f_moonShieldDescriptor = ([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[101])}; return gd::native_inline_call(gd_ctx, gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_item_book_1421), SYM_GEN_getDescriptor_1660, _ca, 1); })();
+    this->f_manaOrbDescriptor = ([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[102])}; return gd::native_inline_call(gd_ctx, gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_item_book_1421), SYM_GEN_getDescriptor_1660, _ca, 1); })();
     this->f_timeAdvance = ([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[103])}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getP_188, _ca, 1); })();
     this->f_blind = gd::gd_coerce_int(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[104])}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getP_188, _ca, 1); })());
     return gd::GdVal::null();
 }
-static gd::GdObj* _alloc_Gd__gd_core_items__Exclusive__PoweroftheMoon(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Exclusive__PoweroftheMoon>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,434u); return object; }
+static gd::GdObj* _alloc_Gd__gd_core_items__Exclusive__PoweroftheMoon(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Exclusive__PoweroftheMoon>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,437u); return object; }
 const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__PoweroftheMoon = {CLS_Gd__gd_core_items__Exclusive__PoweroftheMoon, "PoweroftheMoon", "res://gd_core_items/Exclusive/PoweroftheMoon.gd", &META_Gd__gd_core_items__Item, true, _alloc_Gd__gd_core_items__Exclusive__PoweroftheMoon, &Gd__gd_core_items__Exclusive__PoweroftheMoon::get_static_prop_fn, &Gd__gd_core_items__Exclusive__PoweroftheMoon::call_static_fn};
 
 void Gd__gd_core_items__Exclusive__RainbowOrb::init_fields(gd::BattleCtx& gd_ctx) {
@@ -4341,7 +4341,7 @@ gd::GdVal Gd__gd_core_items__Exclusive__RainbowOrb::fn__readyInit(const gd::GdVa
     this->f_buffs = ([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[72])}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getP_188, _ca, 1); })();
     return gd::GdVal::null();
 }
-static gd::GdObj* _alloc_Gd__gd_core_items__Exclusive__RainbowOrb(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Exclusive__RainbowOrb>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,451u); return object; }
+static gd::GdObj* _alloc_Gd__gd_core_items__Exclusive__RainbowOrb(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Exclusive__RainbowOrb>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,453u); return object; }
 const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__RainbowOrb = {CLS_Gd__gd_core_items__Exclusive__RainbowOrb, "RainbowOrb", "res://gd_core_items/Exclusive/RainbowOrb.gd", &META_Gd__gd_core_items__Item, true, _alloc_Gd__gd_core_items__Exclusive__RainbowOrb, &Gd__gd_core_items__Exclusive__RainbowOrb::get_static_prop_fn, &Gd__gd_core_items__Exclusive__RainbowOrb::call_static_fn};
 
 void Gd__gd_core_items__Exclusive__ScholarBag::init_fields(gd::BattleCtx& gd_ctx) {
@@ -4431,7 +4431,7 @@ gd::GdVal Gd__gd_core_items__Exclusive__ScholarBag::fn__readyInit(const gd::GdVa
     this->f_mana = gd::gd_coerce_int(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[71])}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getP_188, _ca, 1); })());
     return gd::GdVal::null();
 }
-static gd::GdObj* _alloc_Gd__gd_core_items__Exclusive__ScholarBag(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Exclusive__ScholarBag>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,467u); return object; }
+static gd::GdObj* _alloc_Gd__gd_core_items__Exclusive__ScholarBag(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Exclusive__ScholarBag>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,469u); return object; }
 const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__ScholarBag = {CLS_Gd__gd_core_items__Exclusive__ScholarBag, "ScholarBag", "res://gd_core_items/Exclusive/ScholarBag.gd", &META_Gd__gd_core_items__Bag, true, _alloc_Gd__gd_core_items__Exclusive__ScholarBag, &Gd__gd_core_items__Exclusive__ScholarBag::get_static_prop_fn, &Gd__gd_core_items__Exclusive__ScholarBag::call_static_fn};
 
 void Gd__gd_core_items__Exclusive__Sloth::init_fields(gd::BattleCtx& gd_ctx) {
@@ -4603,7 +4603,7 @@ gd::GdVal Gd__gd_core_items__Exclusive__Sloth::fn__readyInit(const gd::GdVal* _a
     this->f_buffsAmulet = gd::gd_coerce_int(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[122])}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getP_188, _ca, 1); })());
     return gd::GdVal::null();
 }
-static gd::GdObj* _alloc_Gd__gd_core_items__Exclusive__Sloth(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Exclusive__Sloth>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,483u); return object; }
+static gd::GdObj* _alloc_Gd__gd_core_items__Exclusive__Sloth(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Exclusive__Sloth>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,485u); return object; }
 const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__Sloth = {CLS_Gd__gd_core_items__Exclusive__Sloth, "Sloth", "res://gd_core_items/Exclusive/Sloth.gd", &META_Gd__gd_core_items__Item, true, _alloc_Gd__gd_core_items__Exclusive__Sloth, &Gd__gd_core_items__Exclusive__Sloth::get_static_prop_fn, &Gd__gd_core_items__Exclusive__Sloth::call_static_fn};
 
 void Gd__gd_core_items__Exclusive__SpicyBanana::init_fields(gd::BattleCtx& gd_ctx) {
@@ -4764,13 +4764,13 @@ gd::GdVal Gd__gd_core_items__Exclusive__SpicyBanana::fn_onItemRolled(const gd::G
 gd::GdVal Gd__gd_core_items__Exclusive__SpicyBanana::fn__readyInit(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
     (void)([&]() {  gd::GdVal _out = gd::GdVal::null(); this->Gd__gd_core_items__Item::call_method(gd_ctx, SYM_GEN__readyInit_140, nullptr, 0, _out); return _out; })();
-    this->f_bananaDescriptor = ([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[125])}; return gd::native_inline_call(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_item_book_1421), SYM_GEN_getDescriptor_1660, _ca, 1); })();
-    this->f_manananaDescriptor = ([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[126])}; return gd::native_inline_call(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_item_book_1421), SYM_GEN_getDescriptor_1660, _ca, 1); })();
+    this->f_bananaDescriptor = ([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[125])}; return gd::native_inline_call(gd_ctx, gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_item_book_1421), SYM_GEN_getDescriptor_1660, _ca, 1); })();
+    this->f_manananaDescriptor = ([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[126])}; return gd::native_inline_call(gd_ctx, gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_item_book_1421), SYM_GEN_getDescriptor_1660, _ca, 1); })();
     this->f_heatPerActivation = gd::gd_coerce_int(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[127])}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getP_188, _ca, 1); })());
     this->f_staminaForHeal = ([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[41])}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getP_188, _ca, 1); })();
     return gd::GdVal::null();
 }
-static gd::GdObj* _alloc_Gd__gd_core_items__Exclusive__SpicyBanana(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Exclusive__SpicyBanana>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,499u); return object; }
+static gd::GdObj* _alloc_Gd__gd_core_items__Exclusive__SpicyBanana(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Exclusive__SpicyBanana>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,501u); return object; }
 const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__SpicyBanana = {CLS_Gd__gd_core_items__Exclusive__SpicyBanana, "SpicyBanana", "res://gd_core_items/Exclusive/SpicyBanana.gd", &META_Gd__gd_core_items__Item, true, _alloc_Gd__gd_core_items__Exclusive__SpicyBanana, &Gd__gd_core_items__Exclusive__SpicyBanana::get_static_prop_fn, &Gd__gd_core_items__Exclusive__SpicyBanana::call_static_fn};
 
 void Gd__gd_core_items__Exclusive__StoneGolem::init_fields(gd::BattleCtx& gd_ctx) {
@@ -4898,7 +4898,7 @@ gd::GdVal Gd__gd_core_items__Exclusive__StoneGolem::fn_attack(const gd::GdVal* _
     this->f_hasStunned = gd::gd_coerce_bool(gd::GdVal::from_bool(false));
     gd::GdVal lv_res = ([&]() { gd::GdVal _ca[] = {lv_triggerEvent}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_dealDamage_220, _ca, 1); })();
     if (gd::gd_truth(this->f_hasStunned)) {
-        (void)([&]() { gd::GdVal _ca[] = {lv_res, gd::GdVal::from_bool(true), gd::GdVal::from_bool(false), gd::get_prop(gd_ctx, Gd__gd_core_items__Exclusive__StoneGolem::get_static_const_or_enum(gd_ctx, SYM_GEN_ActivationAni_869), SYM_GEN_Tackle_2753)}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_activate_150, _ca, 4); })();
+        (void)([&]() { gd::GdVal _ca[] = {lv_res, gd::GdVal::from_bool(true), gd::GdVal::from_bool(false), gd::native_inline_get_prop(gd_ctx, Gd__gd_core_items__Exclusive__StoneGolem::get_static_const_or_enum(gd_ctx, SYM_GEN_ActivationAni_869), SYM_GEN_Tackle_2753)}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_activate_150, _ca, 4); })();
     }
     else {
         (void)([&]() { gd::GdVal _ca[] = {lv_res}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_activate_150, _ca, 1); })();
@@ -4919,7 +4919,7 @@ gd::GdVal Gd__gd_core_items__Exclusive__StoneGolem::fn_onDealtDamage(const gd::G
     if (gd::gd_truth(gd::native_inline_call(gd_ctx, lv_damageRes, SYM_GEN_hasHit_1523, nullptr, 0))) {
         if (gd::gd_truth(gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_rollChance_173, nullptr, 0))) {
             this->f_hasStunned = gd::gd_coerce_bool(gd::GdVal::from_bool(true));
-            (void)([&]() { gd::GdVal _ca[] = {([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[116])}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getP_m_189, _ca, 1); })(), gd::get_prop(gd_ctx, lv_damageRes, SYM_GEN_event_1517)}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_stun_330, _ca, 2); })();
+            (void)([&]() { gd::GdVal _ca[] = {([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[116])}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getP_m_189, _ca, 1); })(), gd::native_inline_get_prop(gd_ctx, lv_damageRes, SYM_GEN_event_1517)}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_stun_330, _ca, 2); })();
         }
     }
     return gd::GdVal::null();
@@ -4949,10 +4949,10 @@ gd::GdVal Gd__gd_core_items__Exclusive__StoneGolem::fn__readyInit(const gd::GdVa
     (void)([&]() {  gd::GdVal _out = gd::GdVal::null(); this->Gd__gd_core_items__Weapon::call_method(gd_ctx, SYM_GEN__readyInit_140, nullptr, 0, _out); return _out; })();
     this->f_empower = ([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[61])}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getP_188, _ca, 1); })();
     this->f_regenThreshold = ([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[45])}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getP_188, _ca, 1); })();
-    this->f_bagOfStonesDescriptor = ([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[129])}; return gd::native_inline_call(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_item_book_1421), SYM_GEN_getDescriptor_1660, _ca, 1); })();
+    this->f_bagOfStonesDescriptor = ([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[129])}; return gd::native_inline_call(gd_ctx, gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_item_book_1421), SYM_GEN_getDescriptor_1660, _ca, 1); })();
     return gd::GdVal::null();
 }
-static gd::GdObj* _alloc_Gd__gd_core_items__Exclusive__StoneGolem(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Exclusive__StoneGolem>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,516u); return object; }
+static gd::GdObj* _alloc_Gd__gd_core_items__Exclusive__StoneGolem(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Exclusive__StoneGolem>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,517u); return object; }
 const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__StoneGolem = {CLS_Gd__gd_core_items__Exclusive__StoneGolem, "StoneGolem", "res://gd_core_items/Exclusive/StoneGolem.gd", &META_Gd__gd_core_items__Weapon, true, _alloc_Gd__gd_core_items__Exclusive__StoneGolem, &Gd__gd_core_items__Exclusive__StoneGolem::get_static_prop_fn, &Gd__gd_core_items__Exclusive__StoneGolem::call_static_fn};
 
 void Gd__gd_core_items__Exclusive__TimeMelting::init_fields(gd::BattleCtx& gd_ctx) {
@@ -5052,7 +5052,7 @@ gd::GdVal Gd__gd_core_items__Exclusive__TimeMelting::fn__readyInit(const gd::GdV
     this->f_bonusdur = gd::gd_div(gd_ctx, ([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[131])}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getP_188, _ca, 1); })(), gd::GdVal::from_float(100.0));
     return gd::GdVal::null();
 }
-static gd::GdObj* _alloc_Gd__gd_core_items__Exclusive__TimeMelting(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Exclusive__TimeMelting>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,531u); return object; }
+static gd::GdObj* _alloc_Gd__gd_core_items__Exclusive__TimeMelting(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Exclusive__TimeMelting>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,533u); return object; }
 const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__TimeMelting = {CLS_Gd__gd_core_items__Exclusive__TimeMelting, "TimeMelting", "res://gd_core_items/Exclusive/TimeMelting.gd", &META_Gd__gd_core_items__Item, true, _alloc_Gd__gd_core_items__Exclusive__TimeMelting, &Gd__gd_core_items__Exclusive__TimeMelting::get_static_prop_fn, &Gd__gd_core_items__Exclusive__TimeMelting::call_static_fn};
 
 void Gd__gd_core_items__Exclusive__WaterElemental::init_fields(gd::BattleCtx& gd_ctx) {
@@ -5182,7 +5182,7 @@ gd::GdVal Gd__gd_core_items__Exclusive__WaterElemental::fn_onManaChanged(const g
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
     gd::GdVal lv_amount = (_argc > 0) ? _args[0] : gd::GdVal::null();
     gd::GdVal lv_event = (_argc > 1) ? _args[1] : gd::GdVal::null();
-    if (gd::gd_truth((gd::gd_truth((gd::gd_truth(gd::GdVal::from_bool(gd::gd_lt(lv_amount, gd::GdVal::from_int(0LL)))) ? gd::GdVal::from_bool(gd::gd_truth(gd::GdVal::from_bool(gd::native_scalar_eq(gd::get_prop(gd_ctx, lv_event, SYM_GEN_type_1005), gd::GdVal::from_int(105LL))))) : gd::GdVal::from_bool(false))) ? gd::GdVal::from_bool(gd::gd_truth(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[134]), gd::GdVal::from_bool(false)}; return gd::native_inline_call(gd_ctx, lv_event, SYM_GEN_getParam_1575, _ca, 2); })())) : gd::GdVal::from_bool(false)))) {
+    if (gd::gd_truth((gd::gd_truth((gd::gd_truth(gd::GdVal::from_bool(gd::gd_lt(lv_amount, gd::GdVal::from_int(0LL)))) ? gd::GdVal::from_bool(gd::gd_truth(gd::GdVal::from_bool(gd::native_scalar_eq(gd::native_inline_get_prop(gd_ctx, lv_event, SYM_GEN_type_1005), gd::GdVal::from_int(105LL))))) : gd::GdVal::from_bool(false))) ? gd::GdVal::from_bool(gd::gd_truth(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[134]), gd::GdVal::from_bool(false)}; return gd::native_inline_call(gd_ctx, lv_event, SYM_GEN_getParam_1575, _ca, 2); })())) : gd::GdVal::from_bool(false)))) {
         this->f_manaUsed = gd::gd_coerce_int(gd::gd_add(gd_ctx, this->f_manaUsed, gd::gd_abs(lv_amount)));
         gd::GdVal lv_before = this->f_activeEffects;
         if (gd::gd_truth((gd::gd_truth(gd::GdVal::from_bool(gd::native_scalar_eq(this->f_activeEffects, gd::GdVal::from_int(0LL)))) ? gd::GdVal::from_bool(gd::gd_truth(gd::GdVal::from_bool(gd::gd_ge(this->f_manaUsed, this->f_manaNeeded1)))) : gd::GdVal::from_bool(false)))) {
@@ -5210,12 +5210,12 @@ gd::GdVal Gd__gd_core_items__Exclusive__WaterElemental::fn_onDealtDamage(const g
         if (gd::gd_truth(([&]() { gd::GdVal _ca[] = {lv_chance}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_rollChance_173, _ca, 1); })())) {
             lv_mana = gd::gd_add(gd_ctx, lv_mana, this->f_bonusManaOnHit);
         }
-        (void)([&]() { gd::GdVal _ca[] = {lv_mana, gd::get_prop(gd_ctx, lv_damageRes, SYM_GEN_event_1517)}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_giveMana_216, _ca, 2); })();
+        (void)([&]() { gd::GdVal _ca[] = {lv_mana, gd::native_inline_get_prop(gd_ctx, lv_damageRes, SYM_GEN_event_1517)}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_giveMana_216, _ca, 2); })();
         if (gd::gd_truth(gd::GdVal::from_bool(gd::gd_ge(this->f_activeEffects, gd::GdVal::from_int(1LL))))) {
-            (void)([&]() { gd::GdVal _ca[] = {([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[124])}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getP_m_189, _ca, 1); })(), gd::get_prop(gd_ctx, lv_damageRes, SYM_GEN_event_1517)}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_heal_327, _ca, 2); })();
+            (void)([&]() { gd::GdVal _ca[] = {([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[124])}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getP_m_189, _ca, 1); })(), gd::native_inline_get_prop(gd_ctx, lv_damageRes, SYM_GEN_event_1517)}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_heal_327, _ca, 2); })();
         }
         if (gd::gd_truth(gd::GdVal::from_bool(gd::native_scalar_eq(this->f_activeEffects, gd::GdVal::from_int(3LL))))) {
-            (void)([&]() { gd::GdVal _ca[] = {this->f_coldOnHit, gd::get_prop(gd_ctx, lv_damageRes, SYM_GEN_event_1517)}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_inflictCold_351, _ca, 2); })();
+            (void)([&]() { gd::GdVal _ca[] = {this->f_coldOnHit, gd::native_inline_get_prop(gd_ctx, lv_damageRes, SYM_GEN_event_1517)}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_inflictCold_351, _ca, 2); })();
         }
     }
     return gd::GdVal::null();
@@ -5240,7 +5240,7 @@ gd::GdVal Gd__gd_core_items__Exclusive__WaterElemental::fn_getDescription(const 
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
     gd::GdVal lv_wrapInColor = (_argc > 0) ? _args[0] : (gd::GdVal::from_bool(true));
     gd::GdVal lv_descr = ([&]() { gd::GdVal _ca[] = {lv_wrapInColor}; gd::GdVal _out = gd::GdVal::null(); this->Gd__gd_core_items__Weapon::call_method(gd_ctx, SYM_GEN_getDescription_642, _ca, 1, _out); return _out; })();
-    gd::GdVal lv_colors = gd::GdVal::from_arr(gd::GdArr::from_init(gd_ctx.arena, {gd::get_prop(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_util_1407), SYM_GEN_triggerColor_2828), gd::get_prop(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_util_1407), SYM_GEN_triggerColor_2828), gd::get_prop(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_util_1407), SYM_GEN_triggerColor_2828)}));
+    gd::GdVal lv_colors = gd::GdVal::from_arr(gd::GdArr::from_init(gd_ctx.arena, {gd::native_inline_get_prop(gd_ctx, gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_util_1407), SYM_GEN_triggerColor_2828), gd::native_inline_get_prop(gd_ctx, gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_util_1407), SYM_GEN_triggerColor_2828), gd::native_inline_get_prop(gd_ctx, gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_util_1407), SYM_GEN_triggerColor_2828)}));
     if (gd::gd_truth(this->f_placed)) {
         {
             gd::GdVal _t827 = gd::gd_iter_seq(gd_ctx.arena, this->f_activeEffects);
@@ -5248,7 +5248,7 @@ gd::GdVal Gd__gd_core_items__Exclusive__WaterElemental::fn_getDescription(const 
             uint32_t _len__t829 = _t828 ? _t828->len : 0u;
             for (uint32_t _t829 = 0; _t829 < _len__t829; ++_t829) {
                 gd::GdVal lv_i = _t828->data[_t829];
-                { gd::GdVal _t830 = lv_colors; gd::GdVal _t831 = lv_i; gd::native_array_set_index(gd_ctx, _t830, _t831, gd::get_prop(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_util_1407), SYM_GEN_modifiedColor_2829)); }
+                { gd::GdVal _t830 = lv_colors; gd::GdVal _t831 = lv_i; gd::native_array_set_index(gd_ctx, _t830, _t831, gd::native_inline_get_prop(gd_ctx, gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_util_1407), SYM_GEN_modifiedColor_2829)); }
             }
         }
     }
@@ -5258,14 +5258,14 @@ gd::GdVal Gd__gd_core_items__Exclusive__WaterElemental::fn_getDescription(const 
 }
 gd::GdVal Gd__gd_core_items__Exclusive__WaterElemental::fn_playPickupSound(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
-    (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_float(0.9), gd::GdVal::from_float(1.1)}; return gd::native_inline_call(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_rng_1406), gd::SYM_randf_range, _ca, 2); })();
+    (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_float(0.9), gd::GdVal::from_float(1.1)}; return gd::native_inline_call(gd_ctx, gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_rng_1406), gd::SYM_randf_range, _ca, 2); })();
     return gd::GdVal::null();
 }
 gd::GdVal Gd__gd_core_items__Exclusive__WaterElemental::fn_playDropSound(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
     gd::GdVal lv_volume = (_argc > 0) ? _args[0] : (gd::GdVal::from_int(0LL));
     lv_volume = gd::gd_add(gd_ctx, lv_volume, this->f_impactSoundVolume);
-    (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_float(0.9), gd::GdVal::from_float(1.1)}; return gd::native_inline_call(gd_ctx, gd::get_prop(gd_ctx, this->f_ctx, SYM_GEN_rng_1406), gd::SYM_randf_range, _ca, 2); })();
+    (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_float(0.9), gd::GdVal::from_float(1.1)}; return gd::native_inline_call(gd_ctx, gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_rng_1406), gd::SYM_randf_range, _ca, 2); })();
     return gd::GdVal::null();
 }
 gd::GdVal Gd__gd_core_items__Exclusive__WaterElemental::fn__readyInit(const gd::GdVal* _args, int _argc) {
@@ -5285,7 +5285,7 @@ gd::GdVal Gd__gd_core_items__Exclusive__WaterElemental::fn__readyInit(const gd::
     }
     return gd::GdVal::null();
 }
-static gd::GdObj* _alloc_Gd__gd_core_items__Exclusive__WaterElemental(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Exclusive__WaterElemental>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,549u); return object; }
+static gd::GdObj* _alloc_Gd__gd_core_items__Exclusive__WaterElemental(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Exclusive__WaterElemental>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,551u); return object; }
 const gd::GdClassMeta META_Gd__gd_core_items__Exclusive__WaterElemental = {CLS_Gd__gd_core_items__Exclusive__WaterElemental, "WaterElemental", "res://gd_core_items/Exclusive/WaterElemental.gd", &META_Gd__gd_core_items__Weapon, true, _alloc_Gd__gd_core_items__Exclusive__WaterElemental, &Gd__gd_core_items__Exclusive__WaterElemental::get_static_prop_fn, &Gd__gd_core_items__Exclusive__WaterElemental::call_static_fn};
 
 void Gd__gd_core_items__Gems__CorruptedCrystal::init_fields(gd::BattleCtx& gd_ctx) {
@@ -5443,7 +5443,7 @@ gd::GdVal Gd__gd_core_items__Gems__CorruptedCrystal::fn__readyInit(const gd::GdV
     this->f_blockGain = gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getP4_266, nullptr, 0);
     return gd::GdVal::null();
 }
-static gd::GdObj* _alloc_Gd__gd_core_items__Gems__CorruptedCrystal(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Gems__CorruptedCrystal>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,566u); return object; }
+static gd::GdObj* _alloc_Gd__gd_core_items__Gems__CorruptedCrystal(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__Gems__CorruptedCrystal>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,568u); return object; }
 const gd::GdClassMeta META_Gd__gd_core_items__Gems__CorruptedCrystal = {CLS_Gd__gd_core_items__Gems__CorruptedCrystal, "CorruptedCrystal", "res://gd_core_items/Gems/CorruptedCrystal.gd", &META_Gd__gd_core_items__Gems__Gem, true, _alloc_Gd__gd_core_items__Gems__CorruptedCrystal, &Gd__gd_core_items__Gems__CorruptedCrystal::get_static_prop_fn, &Gd__gd_core_items__Gems__CorruptedCrystal::call_static_fn};
 
 void Gd__gd_core_items__HoloFireLizard::init_fields(gd::BattleCtx& gd_ctx) {
@@ -5506,7 +5506,7 @@ bool Gd__gd_core_items__HoloFireLizard::call_static_fn(gd::BattleCtx& gd_ctx, gd
 gd::GdVal Gd__gd_core_items__HoloFireLizard::fn_doRevealEffect(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
     (void)([&]() { gd::GdVal _ca[] = {this->f_damFactor}; return gd::native_inline_call(gd_ctx, gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_character_74, nullptr, 0), SYM_GEN_changeEffectDamageFactor_1281, _ca, 1); })();
-    gd::GdVal lv_dam = gd::gd_add(gd_ctx, gd::get_prop(gd_ctx, this->f_descriptor, SYM_GEN_minDam_1675), gd::gd_mul(gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getP1_263, nullptr, 0), this->f_chainPosition));
+    gd::GdVal lv_dam = gd::gd_add(gd_ctx, gd::native_inline_get_prop(gd_ctx, this->f_descriptor, SYM_GEN_minDam_1675), gd::gd_mul(gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getP1_263, nullptr, 0), this->f_chainPosition));
     gd::GdVal lv_res = ([&]() { gd::GdVal _ca[] = {lv_dam}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_dealEffectDamage_221, _ca, 1); })();
     (void)([&]() { gd::GdVal _ca[] = {this->f_heat}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_giveHeat_218, _ca, 1); })();
     (void)([&]() { gd::GdVal _ca[] = {lv_res}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_activate_150, _ca, 1); })();
@@ -5520,7 +5520,7 @@ gd::GdVal Gd__gd_core_items__HoloFireLizard::fn__readyInit(const gd::GdVal* _arg
     this->f_damageSource = ([&]() { gd::GdVal _ca[] = {gd::GdVal::from_obj(this)}; return gd::native_inline_call(gd_ctx, gd::native_inline_call(gd_ctx, gd::GdVal::from_cls(&META_Gd__gd_core__CoreDamageSource), gd::SYM_new, nullptr, 0), SYM_GEN_setItem_1550, _ca, 1); })();
     return gd::GdVal::null();
 }
-static gd::GdObj* _alloc_Gd__gd_core_items__HoloFireLizard(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__HoloFireLizard>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,586u); return object; }
+static gd::GdObj* _alloc_Gd__gd_core_items__HoloFireLizard(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__HoloFireLizard>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,588u); return object; }
 const gd::GdClassMeta META_Gd__gd_core_items__HoloFireLizard = {CLS_Gd__gd_core_items__HoloFireLizard, "HoloFireLizard", "res://gd_core_items/HoloFireLizard.gd", &META_Gd__gd_core_items__Card, true, _alloc_Gd__gd_core_items__HoloFireLizard, &Gd__gd_core_items__HoloFireLizard::get_static_prop_fn, &Gd__gd_core_items__HoloFireLizard::call_static_fn};
 
 void Gd__gd_core_items__MoonShield::init_fields(gd::BattleCtx& gd_ctx) {
@@ -5608,7 +5608,7 @@ gd::GdVal Gd__gd_core_items__MoonShield::fn_onPrepare(const gd::GdVal* _args, in
 }
 gd::GdVal Gd__gd_core_items__MoonShield::fn_afterBlock(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
-    (void)([&]() { gd::GdVal _ca[] = {gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getP2_264, nullptr, 0), gd::get_prop(gd_ctx, this->f_blockedDamageRes, SYM_GEN_event_1517)}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_drainStamina_117, _ca, 2); })();
+    (void)([&]() { gd::GdVal _ca[] = {gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getP2_264, nullptr, 0), gd::native_inline_get_prop(gd_ctx, this->f_blockedDamageRes, SYM_GEN_event_1517)}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_drainStamina_117, _ca, 2); })();
     (void)gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_activate_150, nullptr, 0);
     return gd::GdVal::null();
 }
@@ -5637,7 +5637,7 @@ gd::GdVal Gd__gd_core_items__MoonShield::fn__readyInit(const gd::GdVal* _args, i
     this->f_blockForMana = gd::gd_coerce_int(gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getP4_266, nullptr, 0));
     return gd::GdVal::null();
 }
-static gd::GdObj* _alloc_Gd__gd_core_items__MoonShield(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__MoonShield>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,604u); return object; }
+static gd::GdObj* _alloc_Gd__gd_core_items__MoonShield(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__MoonShield>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,606u); return object; }
 const gd::GdClassMeta META_Gd__gd_core_items__MoonShield = {CLS_Gd__gd_core_items__MoonShield, "MoonShield", "res://gd_core_items/MoonShield.gd", &META_Gd__gd_core_items__Shield, true, _alloc_Gd__gd_core_items__MoonShield, &Gd__gd_core_items__MoonShield::get_static_prop_fn, &Gd__gd_core_items__MoonShield::call_static_fn};
 
 void Gd__gd_core_items__RainbowGoobertRanger::init_fields(gd::BattleCtx& gd_ctx) {
@@ -5707,7 +5707,7 @@ gd::GdVal Gd__gd_core_items__RainbowGoobertRanger::fn__readyInit(const gd::GdVal
     (void)([&]() {  gd::GdVal _out = gd::GdVal::null(); this->Gd__gd_core_items__Goobert::call_method(gd_ctx, SYM_GEN__readyInit_140, nullptr, 0, _out); return _out; })();
     return gd::GdVal::null();
 }
-static gd::GdObj* _alloc_Gd__gd_core_items__RainbowGoobertRanger(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__RainbowGoobertRanger>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,624u); return object; }
+static gd::GdObj* _alloc_Gd__gd_core_items__RainbowGoobertRanger(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__RainbowGoobertRanger>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,626u); return object; }
 const gd::GdClassMeta META_Gd__gd_core_items__RainbowGoobertRanger = {CLS_Gd__gd_core_items__RainbowGoobertRanger, "RainbowGoobertRanger", "res://gd_core_items/RainbowGoobertRanger.gd", &META_Gd__gd_core_items__Goobert, true, _alloc_Gd__gd_core_items__RainbowGoobertRanger, &Gd__gd_core_items__RainbowGoobertRanger::get_static_prop_fn, &Gd__gd_core_items__RainbowGoobertRanger::call_static_fn};
 
 void Gd__gd_core_items__StrongStoneSkinPotion::init_fields(gd::BattleCtx& gd_ctx) {
@@ -5774,5 +5774,5 @@ gd::GdVal Gd__gd_core_items__StrongStoneSkinPotion::fn__readyInit(const gd::GdVa
     this->f_spikes = gd::gd_coerce_int(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[1])}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_getP_188, _ca, 1); })());
     return gd::GdVal::null();
 }
-static gd::GdObj* _alloc_Gd__gd_core_items__StrongStoneSkinPotion(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__StrongStoneSkinPotion>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,647u); return object; }
+static gd::GdObj* _alloc_Gd__gd_core_items__StrongStoneSkinPotion(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__StrongStoneSkinPotion>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,649u); return object; }
 const gd::GdClassMeta META_Gd__gd_core_items__StrongStoneSkinPotion = {CLS_Gd__gd_core_items__StrongStoneSkinPotion, "StrongStoneSkinPotion", "res://gd_core_items/StrongStoneSkinPotion.gd", &META_Gd__gd_core_items__StoneSkinPotion, true, _alloc_Gd__gd_core_items__StrongStoneSkinPotion, &Gd__gd_core_items__StrongStoneSkinPotion::get_static_prop_fn, &Gd__gd_core_items__StrongStoneSkinPotion::call_static_fn};

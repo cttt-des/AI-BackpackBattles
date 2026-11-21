@@ -38,6 +38,10 @@ int main(){
         const auto line=reinterpret_cast<uintptr_t>(&item->f_timers)/64;
         assert(line==reinterpret_cast<uintptr_t>(&item->f_gems)/64);
         assert(line==reinterpret_cast<uintptr_t>(&item->native_timer_header_.len)/64);
+#ifdef GD_HOT_CONTROL_CANDIDATE
+        assert(reinterpret_cast<uintptr_t>(&item->f__cooldown_active)/64==
+               reinterpret_cast<uintptr_t>(&item->native_bridge_gems_header_.len)/64);
+#endif
         auto* second=item->native_make_bridge_gems(native,count);
         assert(second!=header && !inside(*item,second) && second->len==0);
         auto* copy=native.arena.make<Item>(*item);

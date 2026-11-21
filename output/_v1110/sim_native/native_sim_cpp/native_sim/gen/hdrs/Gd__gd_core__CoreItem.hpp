@@ -47,7 +47,6 @@ struct Gd__gd_core__CoreItem : public gd::GdObj {
     gd::GdVal f_itemMetrics;
     gd::GdVal f__grid;
     gd::GdVal f__behavior;
-    gd::GdVal f__cooldown_active;
     gd::GdVal f__cooldown_changed_epoch;
     gd::GdVal f__cooldown_blocked_epoch;
     gd::GdVal f_dynamicTypes;
@@ -73,6 +72,7 @@ struct Gd__gd_core__CoreItem : public gd::GdObj {
     gd::GdVal f_gems;
     gd::GdArr native_timer_header_;
     gd::GdArr native_bridge_gems_header_;
+    gd::GdVal f__cooldown_active;
     bool native_timer_header_used_ = false;
     bool native_bridge_gems_header_used_ = false;
     gd::GdArr* native_make_bridge_gems(gd::BattleCtx& battle,uint32_t count) {

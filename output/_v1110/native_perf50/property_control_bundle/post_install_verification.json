@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "dll_sha256": "14263d42d22021a83849baffddf2f6288694886f2733a66c0473850b37407548",
+  "production_source_files": 704,
+  "strict_event_cases": 2604,
+  "raw_batches": 24,
+  "training_cases": 12,
+  "property_coverage": {
+    "field_hits": 56271418,
+    "selected_fallback": 0
+  },
+  "layout_changed_types": 371,
+  "layout_deltas_bytes": [
+    -64
+  ],
+  "target_at20_fps": 139.7169250461472,
+  "goal140_reached": false
+}
