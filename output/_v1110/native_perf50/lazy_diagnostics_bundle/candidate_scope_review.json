@@ -1,0 +1,18 @@
+{
+  "review_stage": "after_declared24_pairs_before_one_optional_clarification_group",
+  "declared_evaluation_plan_retained_unchanged": true,
+  "inherited_annotation_corrections": {
+    "verified_remote_backup": "674fff4fdee8bcf5a408659750e3677a2b6790d6, as checked by build_bundle.py and baseline_verified.json; the older60963 annotation is stale",
+    "recent_baseline_profile": "event_emission_bundle/profile_depth64.json:2080 valid replay roots",
+    "layout_scope": "Only diagnostic guards/counters change; all674 object headers, NativeMethodRow/NativePropertyRow, method/property slots and BattleCtx are unchanged",
+    "retained_previous_candidate_and_evidence": "The actual immediately deployed baseline is b2018eb2; old742e/1426 references are historical annotations, not the comparator inputs",
+    "required_new_tests": "No field tags were introduced. All inherited pure property/type constructor/hot coverage tests remain required and passed; the new coverage is2048 label+20736 Buff expression cases and40036 safe Float formatting flag checks"
+  },
+  "timing_gates_changed": false,
+  "truth_or_deployment_gates_changed": false,
+  "actual_native_changes": ["engine_wrapper.cpp","gen/shards/shard_00.cpp","native_event_kernel.hpp"],
+  "formal_repeated_batches": "200fixed inputs x4, all4 raw signatures validated",
+  "strict_original_events": 2604,
+  "release_measurements_repeated": false,
+  "interpretation": "Calibration149.97 is a point estimate under the observed environment, not a41% code speedup over the previous106.26 independent calibration. Paired CPU/wall comparisons measure this code change."
+}

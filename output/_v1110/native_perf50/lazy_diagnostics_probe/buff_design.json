@@ -1,0 +1,28 @@
+{
+  "sites": [
+    72,
+    75,
+    77,
+    88,
+    89,
+    90
+  ],
+  "baseline_dll_sha256": "b2018eb28b90ae5527d9e0764a8b11e5bf6df0b60df7cb722c67629fcfedb588",
+  "original_expression_sha256": {
+    "72": "6ee6c8d47e70a456cd21cc377ff916fae2c745c6889f63a907f18934cbb252c1",
+    "75": "cde59409689684a5f18c86156c9ae0a38ac3e78947446fa5a3ffd251012bf3bb",
+    "77": "bfd5d591ff5bae6877f3b4d9325a690750356ee1923dd421e3a10a13d62e5e20",
+    "88": "0e952270e7aea7d1cac7a1797dd3c457f377b1dcdc5af1453b7785f55990a1bf",
+    "89": "030908a23cc7964484141a06ba59f32fbfbe58f1bd54905e1aa4c2b9576fe97e",
+    "90": "0b96b51cb8fd254a07a2a89740fe7606944352b9ac8871b189a0c517456c1821"
+  },
+  "fractional_nonfinite_and_large_float_formatting_preserved": true,
+  "integral_float_skip_requires_original_exact_integer_formatter_branch": true,
+  "protocol": {
+    "pairs": 8,
+    "calls_per_arm": 600000,
+    "all_six_sites_alternate_in_fixed_order": true,
+    "local_fixture_only": true,
+    "no_rerun_until_favorable": true
+  }
+}

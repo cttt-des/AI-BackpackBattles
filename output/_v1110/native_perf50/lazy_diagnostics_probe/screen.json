@@ -1,0 +1,147 @@
+{
+  "passed": true,
+  "cases": 2048,
+  "fast_hits": 936,
+  "fallbacks": 5208,
+  "calls_per_arm": 500000,
+  "scope": "label function fixture only; not whole-fight throughput",
+  "pairs": [
+    {
+      "baseline": {
+        "cpu_s": 0.09375,
+        "wall_s": 0.0964075,
+        "cycles": 171992586,
+        "digest": 8223337381480467872
+      },
+      "candidate": {
+        "cpu_s": 0.09375,
+        "wall_s": 0.0862097,
+        "cycles": 154652480,
+        "digest": 8223337381480467872
+      }
+    },
+    {
+      "baseline": {
+        "cpu_s": 0.09375,
+        "wall_s": 0.0925281,
+        "cycles": 165390614,
+        "digest": 8223337381480467872
+      },
+      "candidate": {
+        "cpu_s": 0.078125,
+        "wall_s": 0.0821316,
+        "cycles": 147469063,
+        "digest": 8223337381480467872
+      }
+    },
+    {
+      "baseline": {
+        "cpu_s": 0.09375,
+        "wall_s": 0.0928037,
+        "cycles": 166604641,
+        "digest": 8223337381480467872
+      },
+      "candidate": {
+        "cpu_s": 0.078125,
+        "wall_s": 0.080746,
+        "cycles": 144857181,
+        "digest": 8223337381480467872
+      }
+    },
+    {
+      "baseline": {
+        "cpu_s": 0.09375,
+        "wall_s": 0.09183,
+        "cycles": 164791225,
+        "digest": 8223337381480467872
+      },
+      "candidate": {
+        "cpu_s": 0.078125,
+        "wall_s": 0.081947,
+        "cycles": 147058072,
+        "digest": 8223337381480467872
+      }
+    },
+    {
+      "baseline": {
+        "cpu_s": 0.09375,
+        "wall_s": 0.0910209,
+        "cycles": 161542213,
+        "digest": 8223337381480467872
+      },
+      "candidate": {
+        "cpu_s": 0.078125,
+        "wall_s": 0.0820853,
+        "cycles": 146907712,
+        "digest": 8223337381480467872
+      }
+    },
+    {
+      "baseline": {
+        "cpu_s": 0.09375,
+        "wall_s": 0.0963012,
+        "cycles": 172666326,
+        "digest": 8223337381480467872
+      },
+      "candidate": {
+        "cpu_s": 0.09375,
+        "wall_s": 0.0841048,
+        "cycles": 150956321,
+        "digest": 8223337381480467872
+      }
+    },
+    {
+      "baseline": {
+        "cpu_s": 0.09375,
+        "wall_s": 0.100241,
+        "cycles": 178871185,
+        "digest": 8223337381480467872
+      },
+      "candidate": {
+        "cpu_s": 0.09375,
+        "wall_s": 0.0894452,
+        "cycles": 159263914,
+        "digest": 8223337381480467872
+      }
+    },
+    {
+      "baseline": {
+        "cpu_s": 0.09375,
+        "wall_s": 0.0998625,
+        "cycles": 179280107,
+        "digest": 8223337381480467872
+      },
+      "candidate": {
+        "cpu_s": 0.09375,
+        "wall_s": 0.0923873,
+        "cycles": 165897011,
+        "digest": 8223337381480467872
+      }
+    }
+  ],
+  "metrics": {
+    "cpu_s": {
+      "paired_median_time_reduction_pct": 8.333333333333332,
+      "sum_time_reduction_pct": 8.333333333333337,
+      "candidate_wins": 4
+    },
+    "wall_s": {
+      "paired_median_time_reduction_pct": 10.766061398476364,
+      "sum_time_reduction_pct": 10.76722064760225,
+      "candidate_wins": 8
+    },
+    "cycles": {
+      "paired_median_time_reduction_pct": 10.798437491303194,
+      "sum_time_reduction_pct": 10.585043401342165,
+      "candidate_wins": 8
+    }
+  },
+  "baseline_dll_sha256": "b2018eb28b90ae5527d9e0764a8b11e5bf6df0b60df7cb722c67629fcfedb588",
+  "source_sha256": {
+    "native_lazy_diagnostics.hpp": "6344de8bd683b4920a8665866f54a8daba382fc6ad9060b8620056d9cfd951d9",
+    "test_native_lazy_diagnostics.cpp": "49727f360cdea0e8fcfd84f0d13f15fa434e6433b693ac036c06d2947b4c5635",
+    "prepare_native_lazy_diagnostics.py": "453cd2e09cf8ac765c282cac13cc6352d58bffa8e176fff7888e6b8c1a6947e0"
+  },
+  "fixture_sha256": "a6b72dca1c17ab7f29afdd78b3548ba4b0e70c0c92720d6e363a594d337a4ad8",
+  "no_full_build_or_deployment": true
+}

@@ -831,3 +831,29 @@ CoreItem 从 1,696 字节、8 字节对齐改为 1,792 字节、64 字节对齐�
 已原子部署默认运行时和生产C++源码，DLL SHA-256为 `b2018eb28b90ae5527d9e0764a8b11e5bf6df0b60df7cb722c67629fcfedb588`。旧4013运行时保存在 `dist/native_1_1_10_before_event_emission_bundle_20261121`。正常训练入口12场无错误、结果与旧版一致；部署后重读704份生产源码、674份未改类头、全部逐场事件记录、报告和运行时清单，并复算校准值，通过。[部署后复核](../output/_v1110/native_perf50/event_emission_bundle/post_install_verification.json)
 
 后续执行顺序保持收敛：先备份本次已验收状态，再对新DLL重采样；从触发／伤害链选一条有自身成本证据的路径，先测实际频次和局部成本，确定值得投入后才完整编译。既有失败及不明确结果保留，不继续对同一候选反复测速；小改动可围绕同一热点叠加，由整体A/B确认。负载模型用于解释环境波动，不能消除全部环境影响，也不作为挑选部署版本的替代指标。
+
+本版已提交 `068785f2` 并推送备份 `674fff4f`；704份生产源码、DLL和本轮6,893份自有文件均与备份逐字节核对。用户原有三份已跟踪改动保持原状。新DLL固定200场重采样取得 **2,080个有效回放根栈样本**，标签位置函数包含42个样本，仍只作为候选排序依据。[备份](../output/_v1110/native_perf50/event_emission_bundle/checkpoint.log) · [新采样](../output/_v1110/native_perf50/event_emission_bundle/profile_depth64.json)
+
+### 同一效果链的冗余诊断构造组合（尚待整场测速）
+
+在已部署 `b2018eb2…` 上，仅为 CoreItem.getNextFreeLabelPosition 的一处诊断，以及 CoreBuff 中六处 `_blnd_snap` 参数构造增加纯读取守卫。日志关闭、上下文／RNG为已缓存且审计相符的实际生成类、所有待略过的参数均无副作用时才省略。标签时间戳遍历、更新和原两次RNG调用完整保留；630份非Gem物品方法行逐项证明 character() 只是返回字段，Gem覆写、未知对象／getter、非原始标识／所有者、审计错行和关闭原生派发均走原代码。
+
+Buff参数仅略过 Null、Bool、Int、Str及原格式器会进入整数分支的精确整数Float。使用位检查识别后者；分数、大数、无穷和NaN继续原格式化，以保留浮点异常。对原DLL以四种舍入模式进行 **40,036项**此类Float格式化异常检查，均无异常；40,036是已命中安全输入的检查次数，不是所有Float位模式的穷举。未知TemporaryStacks.amount getter及回调中切换日志的情况保持原表达式。
+
+完整编译前，实际部署DLL作独立真值：标签 **2,048项**状态／RNG／日志／未知getter／覆写／位值／异常差分通过，八对每臂500,000次局部函数CPU中位耗时降低 **8.3333%**、墙钟 **10.7661%**；CPU4对更快、其余受计时粒度影响，墙钟8对更快。Buff六处诊断 **20,736项**差分通过，八对每臂600,000次纯诊断表达式CPU中位耗时降低 **95.4545%**、墙钟 **94.6673%**，均8对更快。后者只测诊断表达式，不能外推成Buff函数或整场提升；保留首份全部结果与首个标签helper源码快照。[标签筛查](../output/_v1110/native_perf50/lazy_diagnostics_probe/screen.json) · [Buff筛查](../output/_v1110/native_perf50/lazy_diagnostics_probe/buff_screen.json)
+
+组合只改三份原生文件，674份类头、上下文布局、其他分片、公开算术和已部署事件标识优化保持。三份变换及生成分片语法预检通过，之后才进入同源20单元计数／新18单元PGO。计数构建将记录七处实际略过与保留次数；正式收益仍由固定200×4、三组各八对AB／BA决定，原2,604场与首份24批发布门槛保持。[变换预检](../output/_v1110/native_perf50/lazy_diagnostics_bundle/transform_preflight.json)
+
+### 诊断组合正式结果与当前目标核验
+
+发布DLL为 `593acaf3d6bf1dfedc7926cc5f3659c074a285dd95a9dcf0db95c1f913077670`，保持同源20单元计数、新18单元PGO及原浮点选项。固定200场实际略过标签诊断77,135次、保留1,802次；Buff六处略过2,130次、保留708次。六处Buff的实际频次较低，不能用局部95%降幅外推到整场；标签路径也只有基线42/2,080的包含样本。保留这份反向成本证据，后续应尽可能在完整编译前取得实际频次。[实际频次](../output/_v1110/native_perf50/lazy_diagnostics_bundle/frequency_interpretation.json)
+
+首份24对CPU中位／累计耗时减少 **0.5190%／0.3024%**，墙钟减少 **0.1432%／0.2004%**。因组间有分歧，按原路线“结果不明确时再做一组独立对照”，在运行前仅声明一次额外8对，既有24对全部保留，不重跑发布24批或负载校准。合计32对CPU中位／累计减少 **0.5190%／0.9467%**（18胜、3平、11负），墙钟减少 **0.1432%／1.2223%**（17胜、15负）。接电，背景负载 **3.8498%–43.3747%**。[追加前方案](../output/_v1110/native_perf50/lazy_diagnostics_bundle/followup_plan.json) · [完整32对](../output/_v1110/native_perf50/lazy_diagnostics_bundle/ab_assessment_32.json)
+
+证据强度需明确：四组CPU中位降幅依次 **−0.5449%、+0.9631%、+0.5190%、−1.6159%**，墙钟 **−0.3892%、+0.2647%、+0.3079%、−2.5948%**，有两组反向。逐一去掉任意一组后，CPU中位及CPU／墙钟累计降幅仍为正，但一项墙钟中位为−0.0540%。按事先声明的整体CPU／墙钟正中位门槛采用这个小组合，不称为大幅或各组稳定一致的收益，也不继续追加测到满意；保留全部反向样本与取舍。[取舍及局限](../output/_v1110/native_perf50/lazy_diagnostics_bundle/composition_decision.json)
+
+当前候选完成 **914+1,690=2,604场**原版逐事件验收，全部逐场C++事件哈希与部署基线一致，事件根 `b8066c92…` 不变，类型不匹配为0。实际发布DLL的标签函数及六处guard表达式另与独立旧DLL的2,048／20,736份原始逐项结果哈希核对；全部旧属性、构造、分派、容器、计时器、RNG及两遍源码再生成检查通过。保留的旧计划文件有历史注释，已另列具体纠正与本轮适用范围，未改原测量或验收门槛。[严格门槛](../output/_v1110/native_perf50/lazy_diagnostics_bundle/bundle_full_gate.json) · [范围复核](../output/_v1110/native_perf50/lazy_diagnostics_bundle/candidate_scope_review.json)
+
+首份连续24批原始吞吐中位 **178.9487**、最慢 **120.1241场/秒**，均高于50；接电，后台负载 **3.0736%–29.5859%**。首份独立24批校准覆盖 **7.2949%–76.5672%**，20%负载拟合 **149.9734场/秒**，R² **0.96472**，交叉验证耗时误差中位／P90 **3.665%／8.594%**。本次校准点估计已超过100／125／140目标；不把前轮106.2633到149.9734的变化算为代码提速，也不保证任意未来后台任务都能达到该值。负载与CPU时间仍无法完全消除频率、温度和负载类型的影响。[首份发布与校准数据](../output/_v1110/native_perf50/lazy_diagnostics_bundle/measurements_summary.json)
+
+已原子部署默认训练运行时及生产源码，旧b201运行时位于 `dist/native_1_1_10_before_lazy_diagnostics_bundle_20261121`。正常训练入口12场无错误、固定结果全部与旧版相同。部署后重读704份生产源码、674份类头、2,604份逐场事件记录、全部4×200原始A/B结果、报告与清单SHA；另通过Windows实际已加载模块路径确认默认训练读取的确为新593a DLL，独立复算32对统计及20%拟合均通过。[部署后复核](../output/_v1110/native_perf50/lazy_diagnostics_bundle/post_install_verification.json) · [目标逐项核验](../output/_v1110/native_perf50/lazy_diagnostics_bundle/goal_completion_audit.json)

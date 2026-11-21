@@ -1,0 +1,45 @@
+{
+  "passed": true,
+  "default_training_loaded_module": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\dist\\native_1_1_10\\libgdcore.dll",
+  "dll_sha256": "593acaf3d6bf1dfedc7926cc5f3659c074a285dd95a9dcf0db95c1f913077670",
+  "paired_observations": 32,
+  "independent_groups": 4,
+  "metrics": {
+    "main_thread_cpu_s": {
+      "median_time_reduction_pct": 0.5190311418685145,
+      "cumulative_time_reduction_pct": 0.9466769706336975
+    },
+    "wall_s": {
+      "median_time_reduction_pct": 0.1432147442381293,
+      "cumulative_time_reduction_pct": 1.2222560385172332
+    }
+  },
+  "strict_original_and_unchanged_cpp_cases": 2604,
+  "production_source_files_rechecked": 704,
+  "unchanged_headers": 674,
+  "first_only_raw_batches": 24,
+  "raw_minimum_fights_per_second": 120.12405210856835,
+  "first_only_calibration_batches": 24,
+  "recomputed_at20_fights_per_second": 149.97340762141195,
+  "targets_100_125_140_met_under_current_calibration": true,
+  "calibration_load_range_pct": [
+    7.29490239188728,
+    76.56717640870905
+  ],
+  "training_cases": 12,
+  "limitations": [
+    "small code effect; group directions mixed",
+    "independent calibration changes do not measure code speedups",
+    "a calibrated point estimate does not guarantee future performance under every workload"
+  ],
+  "evidence_sha256": {
+    "post_install_verification.json": "14af3224db60be9d676fc04f0673392476041b6b34159f78972ed94423b802ce",
+    "ab_assessment_32.json": "506bb7401e775a5025d74dbdafcafad65934b349c407dc73ec299e54af308773",
+    "bundle_full_gate.json": "51fe448ba2cace59d794d19367670ae91d4ccfbbb65cb75340bef91e2e9fdc2d",
+    "bundle_vs_deployed_hashes.json": "a55ab37494166691ed77ce54e7fcad1a2dad243d5fe140546aea357a9e0ed496",
+    "bundle_serial.json": "25556a5602b16dcb01c32f51fbc9c7ef4243b493a1838ff6758e01c4bc9bdbaf",
+    "bundle_load_calibration.json": "55f7d1cb93778097a302c1d8da66c572fef70e954dd1d044f3e2bd8fdb69f8c9",
+    "bundle_load20.json": "c16281398f01e7bc4d050d65b0c445ba3a1334d9730910925283540b0c3c4098",
+    "bundle_installation.json": "1a51e65d049199392c90ef770aeb1a30f3089f9e89181f94d7616d4b09d974f5"
+  }
+}

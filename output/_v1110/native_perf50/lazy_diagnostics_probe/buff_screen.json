@@ -1,0 +1,148 @@
+{
+  "passed": true,
+  "cases": 20736,
+  "pure_float_flags_checks": 40036,
+  "fast_hits": 1512,
+  "fallbacks": 19224,
+  "calls_per_arm": 600000,
+  "scope": "six buff diagnostic fixtures only; not whole-fight throughput",
+  "pairs": [
+    {
+      "baseline": {
+        "cpu_s": 0.15625,
+        "wall_s": 0.157105,
+        "cycles": 274201212,
+        "digest": 2676991571818806736
+      },
+      "candidate": {
+        "cpu_s": 0,
+        "wall_s": 0.0087177,
+        "cycles": 15588030,
+        "digest": 2676991571818806736
+      }
+    },
+    {
+      "baseline": {
+        "cpu_s": 0.171875,
+        "wall_s": 0.177222,
+        "cycles": 316431617,
+        "digest": 2676991571818806736
+      },
+      "candidate": {
+        "cpu_s": 0.015625,
+        "wall_s": 0.0094287,
+        "cycles": 16898423,
+        "digest": 2676991571818806736
+      }
+    },
+    {
+      "baseline": {
+        "cpu_s": 0.140625,
+        "wall_s": 0.141096,
+        "cycles": 253113901,
+        "digest": 2676991571818806736
+      },
+      "candidate": {
+        "cpu_s": 0.015625,
+        "wall_s": 0.0082169,
+        "cycles": 14779215,
+        "digest": 2676991571818806736
+      }
+    },
+    {
+      "baseline": {
+        "cpu_s": 0.15625,
+        "wall_s": 0.179428,
+        "cycles": 271873576,
+        "digest": 2676991571818806736
+      },
+      "candidate": {
+        "cpu_s": 0,
+        "wall_s": 0.0074198,
+        "cycles": 13352150,
+        "digest": 2676991571818806736
+      }
+    },
+    {
+      "baseline": {
+        "cpu_s": 0.15625,
+        "wall_s": 0.158251,
+        "cycles": 282461318,
+        "digest": 2676991571818806736
+      },
+      "candidate": {
+        "cpu_s": 0,
+        "wall_s": 0.0083367,
+        "cycles": 14986142,
+        "digest": 2676991571818806736
+      }
+    },
+    {
+      "baseline": {
+        "cpu_s": 0.140625,
+        "wall_s": 0.147241,
+        "cycles": 263728392,
+        "digest": 2676991571818806736
+      },
+      "candidate": {
+        "cpu_s": 0.015625,
+        "wall_s": 0.0078702,
+        "cycles": 13949900,
+        "digest": 2676991571818806736
+      }
+    },
+    {
+      "baseline": {
+        "cpu_s": 0.171875,
+        "wall_s": 0.161113,
+        "cycles": 285363044,
+        "digest": 2676991571818806736
+      },
+      "candidate": {
+        "cpu_s": 0,
+        "wall_s": 0.0081869,
+        "cycles": 14718922,
+        "digest": 2676991571818806736
+      }
+    },
+    {
+      "baseline": {
+        "cpu_s": 0.140625,
+        "wall_s": 0.15186,
+        "cycles": 271743466,
+        "digest": 2676991571818806736
+      },
+      "candidate": {
+        "cpu_s": 0.015625,
+        "wall_s": 0.0102285,
+        "cycles": 18277156,
+        "digest": 2676991571818806736
+      }
+    }
+  ],
+  "metrics": {
+    "cpu_s": {
+      "paired_median_time_reduction_pct": 95.45454545454545,
+      "sum_time_reduction_pct": 94.9367088607595,
+      "candidate_wins": 8
+    },
+    "wall_s": {
+      "paired_median_time_reduction_pct": 94.66730463206943,
+      "sum_time_reduction_pct": 94.62777503777538,
+      "candidate_wins": 8
+    },
+    "cycles": {
+      "paired_median_time_reduction_pct": 94.67706824191018,
+      "sum_time_reduction_pct": 94.477037032983,
+      "candidate_wins": 8
+    }
+  },
+  "baseline_dll_sha256": "b2018eb28b90ae5527d9e0764a8b11e5bf6df0b60df7cb722c67629fcfedb588",
+  "source_sha256": {
+    "native_lazy_diagnostics.hpp": "3ddec91e1f7dd99523a8f4d5a4ce05aca2886b4ae6758dd1994fcb5b75b79cb5",
+    "test_native_buff_diagnostics.cpp": "596b8b01e9f078abd731d0a16025b02430665c81f04246c3396eefc6433a76f2",
+    "prepare_native_buff_diagnostics.py": "5b984362fa1476a465645144c53a6aa814e144c3359aa31c45af6d6798f905ab"
+  },
+  "fixture_sha256": "13a50acea6f644aad3b7fd9015edeab0089a53e175e1b6c3574939b0923f1b0a",
+  "no_full_build_or_deployment": true
+}

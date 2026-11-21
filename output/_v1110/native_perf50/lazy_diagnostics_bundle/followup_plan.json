@@ -1,0 +1,22 @@
+{
+  "reason": "The first24 pairs show a small positive aggregate but group1 reverses and one leave-group-out wall median is slightly negative. Use the user's original allowance for one independent clarification group.",
+  "baseline_dll_sha256": "b2018eb28b90ae5527d9e0764a8b11e5bf6df0b60df7cb722c67629fcfedb588",
+  "candidate_dll_sha256": "593acaf3d6bf1dfedc7926cc5f3659c074a285dd95a9dcf0db95c1f913077670",
+  "additional_groups": 1,
+  "additional_pairs": 8,
+  "all_original_samples_retained": true,
+  "groups_in_final_decision": 4,
+  "pairs_in_final_decision": 32,
+  "single_thread": true,
+  "fixed_original_fights": 200,
+  "batch_repetitions_per_arm": 4,
+  "warmup_seconds": 120,
+  "worker_priority": "normal",
+  "affinity": "all8 logical CPUs",
+  "quiet_formal_timing": true,
+  "baseline_first_group_start": true,
+  "no_code_or_compile_option_changes": true,
+  "no_release_or_calibration_reruns": true,
+  "no_further_groups_if_inconclusive": true,
+  "decision": "Judge all32 pairs together by the original positive CPU/wall median gates and report group consistency and leave-group-out sensitivity. Retain a small uncertain component rather than remeasuring it repeatedly."
+}

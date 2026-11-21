@@ -1737,3 +1737,9 @@ void native_event_identity_hit(unsigned index) {if(index<4)++native_event_identi
 extern "C" uint64_t gd_diag_native_event_identity_stat(unsigned index) {
     return index<4 ? gd::native_event_identity_counts[index] : 0;
 }
+
+namespace gd {
+static thread_local uint64_t native_lazy_diagnostic_counts[14]{};
+void native_lazy_diagnostic_hit(unsigned site,bool skipped) {if(site<7)++native_lazy_diagnostic_counts[site*2+(skipped?0:1)];}
+}
+extern "C" uint64_t gd_diag_native_lazy_diagnostic_stat(unsigned index) {return index<14?gd::native_lazy_diagnostic_counts[index]:0;}

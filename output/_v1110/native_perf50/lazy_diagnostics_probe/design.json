@@ -1,0 +1,17 @@
+{
+  "baseline_dll_sha256": "b2018eb28b90ae5527d9e0764a8b11e5bf6df0b60df7cb722c67629fcfedb588",
+  "original_sha256": "db4fb140efd76beb898481b3d875932e22ce840deb34ddd55dbd224c099c7cf7",
+  "candidate_sha256": "12c9bdad7e6f8682af023c8808a10e90c46eadd15ea65e171a2b9a14edee3f58",
+  "omitted_call_only_when_all_arguments_proven_pure": true,
+  "float_formatting_not_skipped": true,
+  "pure_character_rows_checked": 630,
+  "label_timestamp_iteration_updates_and_rng_calls_unchanged": true,
+  "no_full_build_or_deployment": true,
+  "screen_protocol": {
+    "pairs": 8,
+    "calls_per_arm": 500000,
+    "same_calls_and_inputs_per_arm": true,
+    "preserve_first_results": true,
+    "whole_fight_performance_not_established": true
+  }
+}
