@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "classes": 674,
+  "field_bindings": 6579,
+  "cases": 125001,
+  "alias_checks": 6579,
+  "member_pointer_bytes": 8,
+  "variant_bytes": 24,
+  "baseline_dll_sha256": "593acaf3d6bf1dfedc7926cc5f3659c074a285dd95a9dcf0db95c1f913077670",
+  "source_sha256": "272075556df6ec5bf99964a480703e447b0653cb88ec7416dda6963bb902782f",
+  "no_full_build_or_deployment": true
+}

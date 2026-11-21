@@ -1,0 +1,14 @@
+{
+  "stage": "source_review_after_combined_AB_before_any_frame_only_rebuild",
+  "baseline": "593acaf3d6bf1dfedc7926cc5f3659c074a285dd95a9dcf0db95c1f913077670",
+  "original_function": "gen/shards/shard_00.cpp:CoreItem::fn_physicsTick",
+  "observations": [
+    "The original shared heat/cold stack reads already try fixed slots type-100 and only fall back to dictionary get when the key/position differs.",
+    "Therefore86%state reuse does not imply eliminating86%general dictionary lookups. The common baseline operation is already a few direct field reads.",
+    "The segment wrapper adds per-item row/dispatch/audit/metadata guards and snapshot pointer tests. Their cost can offset the saved reads.",
+    "The original item tick has only Gem.character, getSpeed fallback, cooldown display hook and trigger as external-call boundaries; the prototype clears at each and before character/gem phases. No charge-path callback is hidden in this function."
+  ],
+  "next_frame_experiment_requirement": "Measure the complete original item tick versus segment helper on a persistent representative fixture before paying for another full frame-only build. If revising, reduce duplicate guards/reads while preserving unknown receivers and every callback barrier.",
+  "no_individual_component_rejected_from_combined_result": true,
+  "no_deployment": true
+}

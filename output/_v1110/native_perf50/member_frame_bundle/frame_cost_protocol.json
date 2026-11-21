@@ -1,0 +1,15 @@
+{
+  "declared_before_compilation_and_measurement": true,
+  "reason": "The combined experiment did not isolate the frame component, and the common baseline stack lookup already uses fixed slots.",
+  "baseline_dll_sha256": "593acaf3d6bf1dfedc7926cc5f3659c074a285dd95a9dcf0db95c1f913077670",
+  "pairs_per_workload": 8,
+  "calls_per_arm": 2000000,
+  "workloads": ["20active items,2characters,10items per character, fixed-slot buffs, no callbacks or triggers", "same fixture with characters stunned every fourth frame"],
+  "changing_heat_each64frames": true,
+  "snapshot_lifetime": "one frame; cleared between characters",
+  "warmup_frames_per_arm": 1000,
+  "single_thread_normal_priority_all8_logical_cpus": true,
+  "no_parallel_compilation_or_formal_whole_fight_timing": true,
+  "all_first_results_retained": true,
+  "limitation": "Local inline helper and original DLL entry differ in callsite visibility. Measure direction and overhead before choosing a frame-only rebuild; this does not prove whole-fight speedup or rule out a revised implementation."
+}

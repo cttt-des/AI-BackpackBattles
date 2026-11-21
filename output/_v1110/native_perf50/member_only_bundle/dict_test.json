@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "dll_sha256": "6cb258ec1baf335d3bc8e9da1538b2edd8aee87669b05249728f4829b1c47785",
+  "output": "Dense lookup, growth, erase/reinsert order, default, duplication, clear, mixed keys, numeric aliases, huge integers and NaN passed\n",
+  "compiled_against_candidate_headers": true
+}

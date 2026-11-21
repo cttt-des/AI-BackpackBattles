@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "cases": 6912,
+  "counts": [
+    127296,
+    22332,
+    103764,
+    20724,
+    92988,
+    43200,
+    1152,
+    288,
+    2736,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "baseline_dll_sha256": "593acaf3d6bf1dfedc7926cc5f3659c074a285dd95a9dcf0db95c1f913077670",
+  "source_sha256": "8376b8d0dbde4230ad2b20fad9af9bafaef779db0cced3e0aee8c8560f82fcbe",
+  "no_full_build_or_deployment": true
+}

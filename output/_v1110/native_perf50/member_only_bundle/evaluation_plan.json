@@ -1,0 +1,38 @@
+{
+  "baseline_dll_sha256": "593acaf3d6bf1dfedc7926cc5f3659c074a285dd95a9dcf0db95c1f913077670",
+  "verified_remote_backup": "c9bebb76a9f8cbbef0be3653b8ce448147ace3a4",
+  "components": [
+    "member pointers for43 pure property rows"
+  ],
+  "excluded": [
+    "empty timer chunks",
+    "typed getter tags",
+    "global NaN guards",
+    "arithmetic inlining",
+    "frame segment reuse"
+  ],
+  "measurement": {
+    "fixed_fights": 200,
+    "single_thread": true,
+    "groups": 3,
+    "pairs_per_group": 8,
+    "batch_repetitions": 4,
+    "warmup_seconds": 120,
+    "quiet": true,
+    "retain_all_results": true
+  },
+  "required": [
+    "component differentials against released593a",
+    "existing full regression",
+    "same-source fresh PGO",
+    "regeneration twice",
+    "2604 strict original event cases",
+    "every old/new CPP event hash equal",
+    "one raw24 all>=50fps",
+    "one calibration24 report",
+    "guarded deployment and normal training smoke"
+  ],
+  "no_auto_deploy": true,
+  "small_components_judged_as_bundle": true,
+  "reason": "Combined24pairs had CPUmedian0.3656%reduction but wallmedian1.6654%increase and mixed groups. Preserve all data; ablate the frame component rather than repeating the same bundle until favorable."
+}
