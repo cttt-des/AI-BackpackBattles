@@ -957,3 +957,25 @@ Buff参数仅略过 Null、Bool、Int、Str及原格式器会进入整数分支�
 全部门槛通过后已部署本地默认训练运行时及生产源码；旧00cb保留于 `dist/native_1_1_10_before_dispatch_chain_bundle_20261122`。正常训练入口12场无错误、固定结果与旧版一致。部署后重读704份源码、674份未改类头、原逐事件／A/B／24批记录及新增四项计数，复算20%模型并核对DLL／清单／报告SHA，通过。GitHub v0.6.1附件仍保持原593a。[部署后复核](../output/_v1110/native_perf50/dispatch_chain_bundle/post_install_verification.json)
 
 新DLL采样2,043栈、2,042个有效回放根；主要叶节点为物理帧250、角色计时器133、事件总线54、运动队列43、通用调用克隆38、相等比较37、入包联动34、格子查询30。下一轮优先审视装配空间查询中的重复查找与稳定去重，兼顾帧内热点；先读现有实现并验证局部成本，不直接恢复旧全局失效索引或旧算术内联方案。[新采样](../output/_v1110/native_perf50/dispatch_chain_bundle/profile_depth64.json) · [互斥汇总](../output/_v1110/native_perf50/dispatch_chain_bundle/brainstorm_profile_summary.json)
+
+### 空间查询合并与稳定去重（正式构建中）
+
+以远端69cab46b已核对的39c5为基线，仅改shard_13中的getItemsInCells、countItemsInCells及getBagsInCells。精确原生Dict将has与紧接的索引合为一次find_index；不命中、空指针、关闭原生路径或其他接收者保留原语义。未知has回调可替换网格字段，回退仍从同一活字段读取后续索引。去重只对Obj采用同种类对象指针比较，其他值继续gd_in；保持首次遇见顺序、输入长度快照、未来元素变化和placed getter的原位置。所有对象／容器布局、算术、RNG、方法路由与帧阶段保持原样；没有引入坐标缓存或全局写监视。
+
+实际旧39c5 DLL独立真值的11,760项局部差分通过，覆盖三方法、原生／通用与计数开关、四种舍入、整数／负零／非整数／NaN坐标、混合值、空与未知接收者，以及placed回调改写／删除／清空网格、替换字段、改写或追加输入、嵌套查询。对照返回值、可变状态、原派发和容器计数、RNG／实例ID状态、浮点异常。首份四场景各八对、每臂100,000次：墙钟配对中位耗时降低37.0951%、22.0518%、52.7338%、54.6387%；周期降低37.1157%、19.4406%、53.2972%、54.6294%。这是局部合成查询结果，不外推为整场收益。[局部原始结果](../output/_v1110/native_perf50/spatial_probe/screen.json) · [原DLL逐项真值](../output/_v1110/native_perf50/spatial_probe/correctness_baseline.json)
+
+单文件变换与完整分片语法检查通过，已核对远端704份源码与部署DLL后开始同源20单元计数／新18单元PGO，最高两项低优先级编译任务。正式候选须先匹配上述11,760份独立结果及全部旧回归，再进入固定200×4、三组八对AB／BA；正向后才做2,604场逐事件、24批和20%负载校准。当前部署仍为39c5、20%换算171.7714场/秒，本候选尚无整场收益或部署结论。[预检](../output/_v1110/native_perf50/spatial_bundle/transform_preflight.json) · [正式方案](../output/_v1110/native_perf50/spatial_bundle/evaluation_plan.json)
+
+### 空间查询正式结果（已部署）
+
+正式DLL为 `3a9269887ace0ad9cd6dafdb9e0ee2a77b857b231f2a0d412888af2516e5b520`。实际三项生产方法的11,760份结果哈希与独立旧39c5 DLL逐项一致；原派发／容器计数、字段与角色状态复用、旧行为路由、容器、RNG等回归和两次704份源码再生成均通过，674份类头未变。固定200场实际执行652,011次合并查询、命中242,572次、对象指针去重242,467次、通用回退0次；不把频次直接当作收益。[生产差分](../output/_v1110/native_perf50/spatial_bundle/spatial_tests.json) · [实际覆盖](../output/_v1110/native_perf50/spatial_bundle/release_audit.json)
+
+首份固定200×4、三组共24对单线程AB／BA：CPU配对中位／累计耗时降低 **1.0685%／0.7783%**，17胜2平5负；墙钟降低 **0.8135%／0.4270%**，18胜6负。三组CPU中位降幅0.8529%、0.4283%、1.7316%，墙钟0.7233%、0.5263%、1.0786%，方向一致。去掉第三组后的墙钟累计降幅为−0.0307%，说明累计证据较弱；该子集的配对中位仍为正。按预先声明的整体配对中位标准采用，不增设事后门槛或选择性重测，不分别归因给两项修改。接电，后台负载3.2929%–11.2207%，全部首份正反结果保留。[24对完整结果及敏感性](../output/_v1110/native_perf50/spatial_bundle/ab_assessment.json)
+
+914+1,690=2,604场原版逐事件全部通过，逐场C++事件哈希与39c5全部相同，根仍b8066c92。全量合并查询9,008,725次、命中3,360,453次、对象去重3,358,915次，原六项派发总计数逐项不变，类型不匹配0。[全量门槛](../output/_v1110/native_perf50/spatial_bundle/bundle_full_gate.json) · [逐场事件](../output/_v1110/native_perf50/spatial_bundle/bundle_vs_deployed_hashes.json) · [原计数核对](../output/_v1110/native_perf50/spatial_bundle/legacy_counter_equivalence.json)
+
+首份连续24批原始吞吐中位 **211.6717**、最低 **142.5113场/秒**，均超过50门槛；接电，后台负载1.2749%–34.1704%。首份独立24批校准覆盖6.5090%–29.1120%，20%负载拟合 **172.5261场/秒**，R²0.93102，交叉验证耗时误差中位／P90为2.222%／4.925%。200目标尚未达到；不把此前171.7714到本次172.5261的独立拟合差额视为代码收益。[发布测量](../output/_v1110/native_perf50/spatial_bundle/measurements_summary.json)
+
+通过后已部署本地默认训练运行时及生产源码，旧39c5保留于 `dist/native_1_1_10_before_spatial_bundle_20261122`。正常训练12场无错误，结果与基线一致；部署后复核704份源码、674份类头、全量逐事件及原始A/B／24批数据、四项新增计数、运行时清单和20%模型重算通过。GitHub v0.6.1附件继续保持原593a。[部署后核验](../output/_v1110/native_perf50/spatial_bundle/post_install_verification.json)
+
+部署后新采样2,028栈、2,027个有效回放根；互斥归属触发链826、其余帧内721、装配370、其余初始化／导出110。字典／哈希叶样本67、通用方法77；物理帧254、角色计时器120、事件总线47、格子查询40、运动队列31。内联及采样波动会搬移叶节点，不把单个函数样本变化当回归或收益。采样包装脚本第一次因缺少模块搜索路径在实际采样前退出，日志保留，补上路径后首份完整采样通过；没有重跑正式测速。下一轮转入14／54的定型武器触发链，空间直接坐标索引与运动队列保留。[新采样](../output/_v1110/native_perf50/spatial_bundle/profile_depth64.json) · [可复算汇总](../output/_v1110/native_perf50/spatial_bundle/brainstorm_profile_summary.json)

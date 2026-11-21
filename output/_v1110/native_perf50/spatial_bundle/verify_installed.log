@@ -1,0 +1,73 @@
+{
+  "passed": true,
+  "dll_sha256": "3a9269887ace0ad9cd6dafdb9e0ee2a77b857b231f2a0d412888af2516e5b520",
+  "production_source_files": 704,
+  "unchanged_object_headers": 674,
+  "strict_event_cases": 2604,
+  "event_hash_root": "b8066c9224bc418923c62f5a3dafb8912100b21bb0026c3b13669872f90e2f54",
+  "raw_batches": 24,
+  "training_cases": 12,
+  "type_constructor_coverage": {
+    "type_hits": 51782642,
+    "type_fallback": 0,
+    "fused_initializations": 1134539,
+    "factory_fallback": 0
+  },
+  "hot_slot_coverage": {
+    "new_method_hits": 1126227,
+    "new_field_hits": 16608087
+  },
+  "event_identity_coverage": {
+    "fast_identities": 663207,
+    "fallbacks": 0,
+    "fast_emissions": 2550578,
+    "emission_fallbacks": 0
+  },
+  "static_setup_coverage": {
+    "bulk_stack_tables": 202616,
+    "ordered_stack_fallback": 0,
+    "metric_counts": 1272643,
+    "affected_loops": 202616
+  },
+  "dispatch_chain_coverage": {
+    "behavior_methods": 275579,
+    "behavior_empty": 0,
+    "behavior_probes": 777809,
+    "flat_callbacks": 2143020
+  },
+  "spatial_coverage": {
+    "lookups": 9008725,
+    "hits": 3360453,
+    "object_dedup": 3358915,
+    "fallbacks": 0
+  },
+  "target_at20_fps": 172.5260538814173,
+  "goal_target_fps": 200,
+  "goal200_reached": false,
+  "load_range_pct": [
+    6.509024447825778,
+    29.111992339031552
+  ],
+  "fit_validation": {
+    "median_absolute_relative_time_error": 0.02222109417908056,
+    "p90_absolute_relative_time_error": 0.04924673804002355,
+    "constant_median_absolute_relative_time_error": 0.12562530776237396
+  },
+  "evidence_sha256": {
+    "source_before_build.json": "5efa392e3f5c0cc3c4819ffb06e4ad275d8a42aaf106cda038ab562b76134bec",
+    "bundle_full_gate.json": "f05d9c924b7c96043c6589826cc89df81860e43fa5fc982d990d68ce5b82bb4f",
+    "bundle_vs_deployed_hashes.json": "4658b5501f820ccdc12c05536dc42ace39984a2b2685fe930bf3e8ac2b141f11",
+    "ab_assessment.json": "521f23301fdc52d40aaa719a062278b9e18e58579c166bd7b9750eeb305bb0c3",
+    "bundle_serial.json": "c8fb1e74f0d46c0f3dc3ed85ce12a2e7869a2c3190592f214713be721451eac1",
+    "bundle_load_calibration.json": "b108171cd21fe04d0071072f28c4ff8ffd4aff6198527bc83419d7f81acd41b7",
+    "bundle_load20.json": "191e2f3a2ec8d6dbdaf304a3e98cad10fea4a6199b76f665f0dfe9f5d544dcdf",
+    "bundle_installation.json": "e214ae1c4073e3b759ed1e60ae9b974a5e5ca56b8a66a6a49903bc0adef8565c",
+    "static_setup_tests.json": "63301253d2ea880faa6a85f6645572778908a56c8e6a2fdb7f6331e14f200b38",
+    "dispatch_chain_tests.json": "e2f6c12e542549e9c61569b0e5b05552590cd8b744d216f04fd4037ff0b12049",
+    "spatial_tests.json": "0f361ed32df2b19feb0b01a7a3294b5fe8b370c2eaa2cd7b37d45d85816cc67c",
+    "dispatch_chain_production_cases.json": "078090376dfb121d5f494868a40efe3bf4d16989d8c43b50b742696a82a06d2f",
+    "spatial_production_cases.json": "d02eb3111abd8c6db22c917f9c809465b1241ab101834464b4607d559a689b2c",
+    "static_setup_production_cases.json": "21ed11beb80da7e8eea183d4ade06fa9433a79d9d904eebd7b31bab45ef4358f",
+    "full_type_audit.json": "a7b499775a9b9dc1190a48707463c5b30d29fe5b3ce660cb7128e504089dbb0f"
+  }
+}

@@ -1,0 +1,68 @@
+D:\�ļ�����\ѧϰ\�Զ�����AI\dist\native_1_1_10_bundle_pending
+{
+  "dll_sha256": "3a9269887ace0ad9cd6dafdb9e0ee2a77b857b231f2a0d412888af2516e5b520",
+  "gate_sha256": "f05d9c924b7c96043c6589826cc89df81860e43fa5fc982d990d68ce5b82bb4f",
+  "ab_assessment_path": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_perf50\\spatial_bundle\\ab_assessment.json",
+  "ab_assessment_sha256": "521f23301fdc52d40aaa719a062278b9e18e58579c166bd7b9750eeb305bb0c3",
+  "ab_pairs": 24,
+  "speed_report_sha256": "c8fb1e74f0d46c0f3dc3ed85ce12a2e7869a2c3190592f214713be721451eac1",
+  "training_outcomes": [
+    1,
+    1,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "regeneration_test_sha256": "5a37c99514cfed5159b68a603257364d6d83c81cd3affc226de6eba63d1d6a39",
+  "full_regeneration_test_sha256": "d50460c50f06b76545c9bdc0cd05e7e4064ad612cbe63b35c26327e841057879",
+  "training_matched_baseline": 12,
+  "training_evaluation": {
+    "mean_wr": 0.16666666666666666,
+    "std_opp": 0.28867513459481287,
+    "worst_wr": 0.0,
+    "per_opp": [
+      {
+        "rating": 450.385037,
+        "n_items": 57,
+        "wr": 0.6666666666666666,
+        "errs": 0
+      },
+      {
+        "rating": 527.013755,
+        "n_items": 47,
+        "wr": 0.0,
+        "errs": 0
+      },
+      {
+        "rating": 464.089676,
+        "n_items": 47,
+        "wr": 0.0,
+        "errs": 0
+      },
+      {
+        "rating": 457.699621,
+        "n_items": 61,
+        "wr": 0.0,
+        "errs": 0
+      }
+    ],
+    "n_opp": 4,
+    "seeds": 3,
+    "total_sims": 12,
+    "sim_errors": 0
+  },
+  "runtime": "dist/native_1_1_10",
+  "backup_runtime": "dist/native_1_1_10_before_spatial_bundle_20261122",
+  "changed_native_files": [
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/gen/shards/shard_13.cpp",
+    "output/_v1110/optimize_native_verified_bundle.py",
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/libgdcore.dll"
+  ]
+}
