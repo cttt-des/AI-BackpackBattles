@@ -1,0 +1,33 @@
+{
+  "baseline_dll_sha256": "541238b57e2e18ce258a0afa9f548115761da28f4a1c119812277b4c0dae2983",
+  "classes": 674,
+  "fast_getter_classes": 34,
+  "pure_getter_cases": 144,
+  "all_own_static_cases": 227,
+  "stack_keys": [
+    100,
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110
+  ],
+  "original_setup_sha256": "373f611265a9f59c8d9c5b10235849a66e9ba69d946eb521e34e4ba309c156c7",
+  "mutable_static_collection_getters_unchanged": true,
+  "original_dictionary_layout_and_order_preserved": true,
+  "existing_nonempty_reserved_aliased_unknown_tables_use_ordered_original_writes": true,
+  "screen_protocol": {
+    "pairs": 8,
+    "calls_per_arm": [
+      1000000,
+      20000
+    ],
+    "retain_first_and_all_results": true,
+    "no_whole_fight_gain_claim": true
+  }
+}

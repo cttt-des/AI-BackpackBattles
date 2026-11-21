@@ -1757,3 +1757,9 @@ static thread_local uint64_t native_static_collection_counts[3]{};
 void native_static_collection_hit(unsigned index){if(index<3)++native_static_collection_counts[index];}
 }
 extern "C" uint64_t gd_diag_native_static_collection_stat(unsigned index){return index<3?gd::native_static_collection_counts[index]:0;}
+
+namespace gd {
+static thread_local uint64_t native_static_setup_counts[4]{};
+void native_static_setup_hit(unsigned index){if(index<4)++native_static_setup_counts[index];}
+}
+extern "C" uint64_t gd_diag_native_static_setup_stat(unsigned index){return index<4?gd::native_static_setup_counts[index]:0;}

@@ -410,6 +410,10 @@ gd::GdVal Gd__gd_core__CoreRng__INNER__BalancedRng::get_static_const_or_enum(gd:
     return gd::GdVal::null();
 }
 bool Gd__gd_core__CoreRng__INNER__BalancedRng::get_static_prop_fn(gd::SymId prop, gd::GdVal& out) {
+    switch (prop) {
+        case SYM_GEN_luckBalance_1758: out = gd::GdVal::from_float(0.2); return true;
+        default: break;
+    }
     static thread_local gd::BattleCtx s_const_ctx(1u << 16);
     s_const_ctx.arena.reset();
     gd::GdVal r = get_static_const_or_enum(s_const_ctx, prop);
@@ -2480,6 +2484,12 @@ gd::GdVal Gd__gd_core_items__Exclusive__Eat_o_matic::get_static_const_or_enum(gd
     return Gd__gd_core_items__Item::get_static_const_or_enum(gd_ctx, prop);
 }
 bool Gd__gd_core_items__Exclusive__Eat_o_matic::get_static_prop_fn(gd::SymId prop, gd::GdVal& out) {
+    switch (prop) {
+        case SYM_GEN_ArmState_2236: out = gd::GdVal::from_enum(&_enum_Gd__gd_core_items__Exclusive__Eat_o_matic_ArmState); return true;
+        case SYM_GEN_SLOW_SPEED_2228: out = gd::GdVal::from_float(0.2); return true;
+        case SYM_GEN_FAST_SPEED_2229: out = gd::GdVal::from_float(1.0); return true;
+        default: break;
+    }
     static thread_local gd::BattleCtx s_const_ctx(1u << 16);
     s_const_ctx.arena.reset();
     gd::GdVal r = get_static_const_or_enum(s_const_ctx, prop);

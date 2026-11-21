@@ -1,0 +1,57 @@
+{
+  "passed": true,
+  "dll_sha256": "00cbcf9d9467feab8d8d99aa437683af507c5f924ee90a9b9f076b661d5c6a60",
+  "production_source_files": 704,
+  "unchanged_object_headers": 674,
+  "strict_event_cases": 2604,
+  "event_hash_root": "b8066c9224bc418923c62f5a3dafb8912100b21bb0026c3b13669872f90e2f54",
+  "raw_batches": 24,
+  "training_cases": 12,
+  "type_constructor_coverage": {
+    "type_hits": 51782642,
+    "type_fallback": 0,
+    "fused_initializations": 1134539,
+    "factory_fallback": 0
+  },
+  "hot_slot_coverage": {
+    "new_method_hits": 1126227,
+    "new_field_hits": 16608087
+  },
+  "event_identity_coverage": {
+    "fast_identities": 663207,
+    "fallbacks": 0,
+    "fast_emissions": 2550578,
+    "emission_fallbacks": 0
+  },
+  "static_setup_coverage": {
+    "bulk_stack_tables": 202616,
+    "ordered_stack_fallback": 0,
+    "metric_counts": 1272643,
+    "affected_loops": 202616
+  },
+  "target_at20_fps": 170.3125367034025,
+  "goal_target_fps": 200,
+  "goal200_reached": false,
+  "load_range_pct": [
+    6.296103656414527,
+    32.95385332893207
+  ],
+  "fit_validation": {
+    "median_absolute_relative_time_error": 0.039709442031851346,
+    "p90_absolute_relative_time_error": 0.057127656460171664,
+    "constant_median_absolute_relative_time_error": 0.133383682282819
+  },
+  "evidence_sha256": {
+    "source_before_build.json": "2dcea69e2c9dcd4261c42b3453eb48d9dce67bc28dfaeea87b9fccd0648f1ce1",
+    "bundle_full_gate.json": "ce8a154819b65495f58db935c975e220f85304bd737405102fb0e2b30cd81c2a",
+    "bundle_vs_deployed_hashes.json": "e18d4e4f629929110a168e1dabc64ad7989cb9e850f01adf142ea67537b14f99",
+    "ab_assessment.json": "017b46ee6368eb4b95e3e7f77feeaec90fda2935bb2794da908e3ffb4631833b",
+    "bundle_serial.json": "3219cec292317294c5c9ffc05ebbbc24167b2629b4d0447d00071a54a782829b",
+    "bundle_load_calibration.json": "06201e53a70fdf72bba20fc6e19d9131c039ad52bf5b4f6c8285f19bf1a721a3",
+    "bundle_load20.json": "e98991196c46aab694f93e8c7f522252da75c1c4b9896770414479c62a20e5b9",
+    "bundle_installation.json": "29b676b21e31b82bd0bec49ce7de6b43a8ef3023faaa44e58d96868031ef811a",
+    "static_setup_tests.json": "4eb4b76f14a1d42cd9ac891b2f94b20bda97c9d9ca994ba92ffb445a039387c4",
+    "static_setup_production_cases.json": "21ed11beb80da7e8eea183d4ade06fa9433a79d9d904eebd7b31bab45ef4358f",
+    "full_type_audit.json": "bf2a98210d6d11c7c3e66ef027f22b5d3f5d194a9b0099442f4f3a0bfa5c20a7"
+  }
+}

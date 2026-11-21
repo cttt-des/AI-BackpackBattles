@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "affected_enum_names_values_order_proved": true,
+  "frozen_build_source_unchanged": true,
+  "scope": "Added source assertion only; no engine, helper or measured code changed"
+}
