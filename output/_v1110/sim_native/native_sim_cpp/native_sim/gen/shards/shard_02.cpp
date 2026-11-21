@@ -1931,8 +1931,29 @@ gd::GdVal Gd__gd_core__CoreCharacter::fn_playAttackAnimation(const gd::GdVal* _a
     }
     return gd::GdVal::null();
 }
+namespace gd {
+inline bool native_static_sound_count(const GdVal& character_class,unsigned column,GdVal& out) {
+    if(character_class.kind!=GdVal::Kind::Int || character_class.i<0 || character_class.i>=7 || column>=3)return false;
+    static constexpr int64_t counts[7][3]={
+        {3,6,6},
+        {3,2,4},
+        {3,4,6},
+        {5,4,4},
+        {3,6,5},
+        {4,7,6},
+        {6,5,8},
+    };
+    out=GdVal::from_int(counts[character_class.i][column]);return true;
+}
+}
+
+namespace gd {void native_static_collection_hit(unsigned);}
 gd::GdVal Gd__gd_core__CoreCharacter::fn_classAttackSoundCount(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
+    if(gd_ctx.native_resolved_dispatch) {
+        gd::GdVal folded;
+        if(gd::native_static_sound_count(this->f_characterClass,0,folded)){if(gd_ctx.native_resolved_collect)gd::native_static_collection_hit(0);return folded;}
+    }
     if (gd::gd_truth(gd::GdVal::from_bool(!gd::gd_truth(([&]() { gd::GdVal _ca[] = {this->f_characterClass}; return gd::native_inline_call(gd_ctx, Gd__gd_core__CoreCharacter::get_static_const_or_enum(gd_ctx, SYM_GEN_CLASS_SOUND_COUNTS_1127), gd::SYM_has, _ca, 1); })())))) {
         (void)gd::GdVal::null();
     }
@@ -1943,6 +1964,10 @@ gd::GdVal Gd__gd_core__CoreCharacter::fn_classRoundSoundCount(const gd::GdVal* _
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
     gd::GdVal lv_win = (_argc > 0) ? _args[0] : gd::GdVal::null();
     lv_win = gd::gd_coerce_bool(lv_win);
+    if(gd_ctx.native_resolved_dispatch) {
+        gd::GdVal folded;
+        if(gd::native_static_sound_count(this->f_characterClass,gd::gd_truth(lv_win)?1:2,folded)){if(gd_ctx.native_resolved_collect)gd::native_static_collection_hit(1);return folded;}
+    }
     if (gd::gd_truth(gd::GdVal::from_bool(!gd::gd_truth(([&]() { gd::GdVal _ca[] = {this->f_characterClass}; return gd::native_inline_call(gd_ctx, Gd__gd_core__CoreCharacter::get_static_const_or_enum(gd_ctx, SYM_GEN_CLASS_SOUND_COUNTS_1127), gd::SYM_has, _ca, 1); })())))) {
         (void)gd::GdVal::null();
     }

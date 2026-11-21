@@ -1751,3 +1751,9 @@ void native_frame_segment_hit(unsigned index) {if(index<17)++native_frame_segmen
 extern "C" uint64_t gd_diag_native_frame_segment_stat(unsigned index) {
     return index<17?gd::native_frame_segment_counts[index]:0;
 }
+
+namespace gd {
+static thread_local uint64_t native_static_collection_counts[3]{};
+void native_static_collection_hit(unsigned index){if(index<3)++native_static_collection_counts[index];}
+}
+extern "C" uint64_t gd_diag_native_static_collection_stat(unsigned index){return index<3?gd::native_static_collection_counts[index]:0;}

@@ -1,0 +1,27 @@
+{
+  "dll_sha256": "541238b57e2e18ce258a0afa9f548115761da28f4a1c119812277b4c0dae2983",
+  "source_manifest_sha256": "b5dc5fafbc984ac278509d30a3a5bdb71c9e2df875d496d50db941ec390ae66c",
+  "profile_training_and_release_source_identical": true,
+  "hot_profiles_sha256": {
+    "engine_wrapper": "e4a684bfbd209ecefeaa6b82b94cbc62a3c4712cf2f1daa89a4d1debdb2925bf",
+    "gd_rt": "ebd074c7c428c048841f4831140bb2b94edf25ac013229a38f1b66d899c5b82a",
+    "shard_00": "53359eb9e37df1a5aba5b8603e932800e2fa1eb81bb55d8ffa834d843988d3da",
+    "shard_01": "94578f63f434a3ca1cfe4d0f3e602750d2e01020eaae96a74de9728d2ce5248c",
+    "shard_02": "c5b252bb985f69b38b4ba712b91b4d641aea7cb51a530ac9fd96232e5e5213f4",
+    "shard_03": "792582a5dbfbe44c8078efe77a33f64aa5f938e02d2ac1ddd2e0ee15cc29f3d5",
+    "shard_04": "ca16a1284551d4238794fd9d2bb832ef0aa30324823a93f5e52564991b7a123e",
+    "shard_05": "51be0719090ded3ac1797220d39cc3b9bc0f885852ae86a78fa8703e534bd9e7",
+    "shard_06": "9f0a844e585480db9268da1ae1d3074363abd0ae096d295d9967c103fae25ec2",
+    "shard_07": "fcb37f085c11820924f67d6f4498d1f8198dfe72fa91033042e5c9cffd69764c",
+    "shard_08": "8327e3b5b30a052072c2166209e89f18f8d1ac498e3d1aa4e3282e6ba9ae1635",
+    "shard_09": "2cb60da24249a96e26771e4d7d5d507781e5d508abe5d14c27e819a914cdf93b",
+    "shard_10": "8f0482b732c7dfa9f314dcd5b23d074fee063b1b01482222f5f0d120deac8081",
+    "shard_11": "08bd791279f101477d2db48b28cb42843eb50b4167cfe9bfbb4af0374e9fef0a",
+    "shard_12": "3f76643c6073ae71f9ec18a1aa14adf8a7d6d62636fc33b5b49a8947047a7acf",
+    "shard_13": "ee0d1ca055207b95be44f5f45dae6c35cbe65d0db3e64d126264ed676e202d92",
+    "shard_14": "c4516340063a319720299b2745be7b973a8a92b0db4c4a119f34370826f6f7e1",
+    "shard_15": "11739b0fb21322d41015f6d870eb98f6d59a7aebf52eae91aec58a6d2d7f955c"
+  },
+  "full20_instrumentation_and18_release_hot_units": true,
+  "floating_options_unchanged": true
+}

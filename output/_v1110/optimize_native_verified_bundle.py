@@ -6,7 +6,7 @@ from pathlib import Path
 
 STAGE=Path(__file__).resolve().parent
 if not (STAGE/'sim_native').is_dir():STAGE=STAGE.parents[1]
-WORK=STAGE/'native_perf50/frame_ablation_bundle'
+WORK=STAGE/'native_perf50/static_collections_bundle'
 
 def digest(data):return hashlib.sha256(data).hexdigest()
 def canonical(data):return data.decode('utf8').replace('\r\n','\n').encode('utf8')

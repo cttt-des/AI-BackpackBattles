@@ -1,0 +1,64 @@
+{
+  "baseline_dll_sha256": "d3c47cdfe1b3218e7936cc02f706e8452464c1420c5e1fe4bf6963f2e3844c14",
+  "sound_count_rows": [
+    [
+      0,
+      3,
+      6,
+      6
+    ],
+    [
+      1,
+      3,
+      2,
+      4
+    ],
+    [
+      2,
+      3,
+      4,
+      6
+    ],
+    [
+      3,
+      5,
+      4,
+      4
+    ],
+    [
+      4,
+      3,
+      6,
+      5
+    ],
+    [
+      5,
+      4,
+      7,
+      6
+    ],
+    [
+      6,
+      6,
+      5,
+      8
+    ]
+  ],
+  "folded_stack_type_count": 11,
+  "original_function_sha256": {
+    "classAttackSoundCount": "caa6d19189c285acbf1532c45fdb6cf93a0d1e392e49392f3a2eead24d1a4194",
+    "classRoundSoundCount": "f0b4e4819d24e65a71f1e9f6bc6937ed10b6d97a442bb930c4887776cf4516b8",
+    "numStackTypes": "ebda55cd52d7f908de7ee9fafb4d65413df936f87d848288d9acd87894035311"
+  },
+  "global_mutable_collection_getters_unchanged": true,
+  "round_win_coercion_before_guard": true,
+  "unknown_class_kinds_and_disabled_optimization_original_fallback": true,
+  "screen_protocol": {
+    "pairs": 8,
+    "sound_calls_per_arm": 100000,
+    "stack_count_calls_per_arm": 1000000,
+    "normal_priority_single_thread_all8_cpus": true,
+    "retain_first_and_all_results": true,
+    "local_functions_only_no_whole_fight_claim": true
+  }
+}
