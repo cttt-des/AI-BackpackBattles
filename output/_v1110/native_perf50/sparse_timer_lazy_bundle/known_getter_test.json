@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "dll_sha256": "9e541820dba081c641f259dc64738346210300ea2dabde908b0d419648dd864f",
+  "output": "{\"known_unseeded_invalidations\":0,\"known_seeded_invalidations\":0,\"unknown_invalidations\":2,\"unknown_getter_calls\":2,\"known_row_cached\":true,\"lazy_resolutions\":2,\"unsupported_types\":1}\n",
+  "compiled_against_candidate_headers": true
+}

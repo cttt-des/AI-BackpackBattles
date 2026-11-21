@@ -1,0 +1,21 @@
+{
+  "baseline_dll_sha256": "7af5ff948b949859339f0897a6d857953ae8e3b30ec451cee030672ba9c5129b",
+  "backup_commit": "8255e52317f8b160e5ba45cffa2b943ba9196c7d",
+  "components": [
+    "corrected sparse index/eager seeds with all previous callback safeguards",
+    "resolve exact types once on actual getter/callback entry"
+  ],
+  "evidence": "new6036-stack profile; timer scan323 leaf samples; fixed20095% empty parents; older sparse trial CPU0.73%/wall0.89% retained for composition",
+  "comparison": "3x8 isolated fixed200 AB/BA,120s alternating warmup,normal priority/all8 logical CPUs,quiet; retain all groups and individual results",
+  "decision": "Measure combined effect without requiring each component or group to pass separately; report medians, sums and leave-one-group-out sensitivity",
+  "deployment_requires": [
+    "targeted alias/callback/generation tests",
+    "2604 original strict per-event and C++ hash checks",
+    "24 consecutive raw200 batches >=50/s",
+    "20% load estimate retained even unfavorable",
+    "verified source/runtime/report hashes and normal training smoke"
+  ],
+  "new_evidence": "known getter negative2invalidations; fixed200462029epoch increments; prior24pairs regressed5.58%wall",
+  "prior_percentage_not_added": true,
+  "fresh_pgo_required": true
+}

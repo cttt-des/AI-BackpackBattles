@@ -1,0 +1,34 @@
+{
+  "status": "implemented_uncompiled_unmeasured",
+  "input_source_manifest_sha256": "5258bff192bf133cbc73c91f0034042a38beca1321a20780516343d171363fa2",
+  "scope": "CoreItem.addSpeed trace argument construction only",
+  "frozen_method_hashes": {
+    "addSpeed": "5dfb34527106bdee3322d9484279d8126759ec2303d08e8161cb36c85df838b9",
+    "getTopLeftCell": "42a46e5b03188f129b66a42c52f79c716312ff63832627cdd30ec13d2d9a5737"
+  },
+  "generated_getTopLeftCell_dispatch_owners": [
+    "Gd__gd_core__CoreItem"
+  ],
+  "fast_subset": [
+    "native kernel enabled and exact generated receiver row",
+    "finite ordinary Vec2 cells",
+    "primitive amount, Int ownerType, Float updated speed",
+    "exact CoreItemData with String identifier",
+    "exact CoreContext and CoreRng",
+    "oracle_trace or stacktrace disabled"
+  ],
+  "preserved": [
+    "original numeric update and two later tooltip snapshots",
+    "original trace statement exactly once for enabled/unknown cases",
+    "custom methods/getters and object-formatting ID/meta side effects via fallback",
+    "math order, RNG and event/source values"
+  ],
+  "required_before_combined_evaluation": [
+    "targeted fallback and diagnostic-output differential tests",
+    "full source-identical PGO",
+    "fixed200 paired comparisons",
+    "2604 strict event and raw24 deployment gates"
+  ],
+  "prototype_sha256": "af62b4ad41336153cad50005c531740e53e8212eecad8260acabe0ba20b497e0",
+  "repairing_getter_order_guarded": true
+}
