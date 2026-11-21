@@ -1,0 +1,11 @@
+{
+  "status": "inconclusive_retained_for_component_ablation",
+  "candidate_dll_sha256": "d3c47cdfe1b3218e7936cc02f706e8452464c1420c5e1fe4bf6963f2e3844c14",
+  "cpu_median_reduction_pct": 0.3656087350079218,
+  "wall_median_reduction_pct": -1.6653617872463888,
+  "pairs": 24,
+  "all_original_samples_retained": true,
+  "deployed": false,
+  "full2604_and_release24_started": false,
+  "next": "Test member pointers alone against the same593a baseline. Do not infer either individual component is ineffective from the aggregate, and do not repeat this bundle until favorable."
+}

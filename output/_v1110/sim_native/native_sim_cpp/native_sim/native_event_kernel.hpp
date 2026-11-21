@@ -105,11 +105,11 @@ inline bool native_try_event_identity(BattleCtx& ctx,const GdVal& emitter,
     const auto descriptor_getter=native_event_identity_getter(ctx,emitter,8);
     const auto owner_getter=native_event_identity_getter(ctx,emitter,18);
     if(!descriptor_getter || !owner_getter)return miss();
-    const auto descriptor=descriptor_getter(emitter.obj);
+    const auto descriptor=(emitter.obj->*descriptor_getter);
     const auto identifier_getter=native_event_identity_getter(ctx,descriptor,9);
     if(!identifier_getter)return miss();
-    const auto owner=owner_getter(emitter.obj);
-    const auto identifier=identifier_getter(descriptor.obj);
+    const auto owner=(emitter.obj->*owner_getter);
+    const auto identifier=(descriptor.obj->*identifier_getter);
     if(!native_event_identity_string(ctx.arena,identifier,delimiter,owner,out))return miss();
     if(ctx.native_resolved_collect) {
         native_event_identity_hit(0);

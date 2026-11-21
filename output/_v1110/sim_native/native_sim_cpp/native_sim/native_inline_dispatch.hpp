@@ -5,7 +5,7 @@
 #include <array>
 namespace gd {
 using NativeResolvedFn = GdVal (*)(GdObj*, const GdVal*, int);
-using NativePropertyFn = GdVal (*)(const GdObj*);
+using NativePropertyFn = GdVal GdObj::*;
 struct NativePropertyRow { std::array<NativePropertyFn,64> getters; };
 struct NativeMethodRow { const GdClassMeta* metadata; const NativePropertyRow* properties; uint64_t type_mask; std::array<NativeResolvedFn,128> methods; };
 inline constexpr auto native_resolved_slots=[] { std::array<int8_t,static_cast<size_t>(SYM_GEN_Dragon_2878)+1> value{}; value.fill(-1);
@@ -257,7 +257,7 @@ GdVal native_inline_get_prop(BattleCtx& ctx,const GdVal& recv,SymId prop) {
             const auto function=row->properties ? row->properties->getters[slot] : nullptr;
             if(function) {
                 if(ctx.native_resolved_collect) {native_inline_property_hit(0);if(slot>=32)native_inline_hot_slot_hit(1);}
-                return function(recv.obj);
+                return recv.obj->*function;
             }
             if(ctx.native_resolved_collect)native_inline_property_hit(1);
             return gd::get_prop(ctx,recv,prop);

@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "dll_sha256": "6cb258ec1baf335d3bc8e9da1538b2edd8aee87669b05249728f4829b1c47785",
+  "components": {
+    "member": {
+      "passed": true,
+      "classes": 674,
+      "field_bindings": 6579,
+      "cases": 125001,
+      "alias_checks": 6579,
+      "member_pointer_bytes": 8,
+      "variant_bytes": 24
+    }
+  }
+}

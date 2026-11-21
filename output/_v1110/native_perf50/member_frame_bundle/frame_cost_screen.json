@@ -1,0 +1,304 @@
+{
+  "scope": "persistent common-path item tick fixture; no whole-fight claim; original DLL call and local inline helper have different cross-module visibility",
+  "calls_per_arm": 2000000,
+  "workloads": [
+    {
+      "mode": 0,
+      "pairs": [
+        {
+          "baseline": {
+            "cpu_s": 0.0625,
+            "wall_s": 0.051992,
+            "cycles": 93129673,
+            "digest": 17622944107426586867,
+            "flags": 1
+          },
+          "candidate": {
+            "cpu_s": 0.046875,
+            "wall_s": 0.0458832,
+            "cycles": 82371574,
+            "digest": 17622944107426586867,
+            "flags": 1
+          }
+        },
+        {
+          "baseline": {
+            "cpu_s": 0.046875,
+            "wall_s": 0.0515158,
+            "cycles": 91917572,
+            "digest": 17622944107426586867,
+            "flags": 1
+          },
+          "candidate": {
+            "cpu_s": 0.046875,
+            "wall_s": 0.0511795,
+            "cycles": 87206226,
+            "digest": 17622944107426586867,
+            "flags": 1
+          }
+        },
+        {
+          "baseline": {
+            "cpu_s": 0.0625,
+            "wall_s": 0.0569822,
+            "cycles": 102141902,
+            "digest": 17622944107426586867,
+            "flags": 1
+          },
+          "candidate": {
+            "cpu_s": 0.046875,
+            "wall_s": 0.0516837,
+            "cycles": 92471193,
+            "digest": 17622944107426586867,
+            "flags": 1
+          }
+        },
+        {
+          "baseline": {
+            "cpu_s": 0.046875,
+            "wall_s": 0.0501744,
+            "cycles": 90206018,
+            "digest": 17622944107426586867,
+            "flags": 1
+          },
+          "candidate": {
+            "cpu_s": 0.0625,
+            "wall_s": 0.0508508,
+            "cycles": 91178235,
+            "digest": 17622944107426586867,
+            "flags": 1
+          }
+        },
+        {
+          "baseline": {
+            "cpu_s": 0.046875,
+            "wall_s": 0.052671,
+            "cycles": 94616476,
+            "digest": 17622944107426586867,
+            "flags": 1
+          },
+          "candidate": {
+            "cpu_s": 0.0625,
+            "wall_s": 0.0509692,
+            "cycles": 91535732,
+            "digest": 17622944107426586867,
+            "flags": 1
+          }
+        },
+        {
+          "baseline": {
+            "cpu_s": 0.046875,
+            "wall_s": 0.0473724,
+            "cycles": 85125670,
+            "digest": 17622944107426586867,
+            "flags": 1
+          },
+          "candidate": {
+            "cpu_s": 0.046875,
+            "wall_s": 0.0429552,
+            "cycles": 77031817,
+            "digest": 17622944107426586867,
+            "flags": 1
+          }
+        },
+        {
+          "baseline": {
+            "cpu_s": 0.046875,
+            "wall_s": 0.0481462,
+            "cycles": 86168649,
+            "digest": 17622944107426586867,
+            "flags": 1
+          },
+          "candidate": {
+            "cpu_s": 0.046875,
+            "wall_s": 0.0483178,
+            "cycles": 86486544,
+            "digest": 17622944107426586867,
+            "flags": 1
+          }
+        },
+        {
+          "baseline": {
+            "cpu_s": 0.046875,
+            "wall_s": 0.0495241,
+            "cycles": 88438545,
+            "digest": 17622944107426586867,
+            "flags": 1
+          },
+          "candidate": {
+            "cpu_s": 0.046875,
+            "wall_s": 0.0448351,
+            "cycles": 80197251,
+            "digest": 17622944107426586867,
+            "flags": 1
+          }
+        }
+      ],
+      "metrics": {
+        "cpu_s": {
+          "paired_median_reduction_pct": 0.0,
+          "cumulative_reduction_pct": 0.0
+        },
+        "wall_s": {
+          "paired_median_reduction_pct": 6.264758881880206,
+          "cumulative_reduction_pct": 5.314584694918745
+        },
+        "cycles": {
+          "paired_median_reduction_pct": 7.222144075083314,
+          "cumulative_reduction_pct": 5.9127103386994335
+        }
+      }
+    },
+    {
+      "mode": 1,
+      "pairs": [
+        {
+          "baseline": {
+            "cpu_s": 0.046875,
+            "wall_s": 0.0492102,
+            "cycles": 88220473,
+            "digest": 11762962305083640175,
+            "flags": 1
+          },
+          "candidate": {
+            "cpu_s": 0.046875,
+            "wall_s": 0.0364427,
+            "cycles": 65338533,
+            "digest": 11762962305083640175,
+            "flags": 1
+          }
+        },
+        {
+          "baseline": {
+            "cpu_s": 0.046875,
+            "wall_s": 0.0417616,
+            "cycles": 74298174,
+            "digest": 11762962305083640175,
+            "flags": 1
+          },
+          "candidate": {
+            "cpu_s": 0.03125,
+            "wall_s": 0.0427968,
+            "cycles": 76434410,
+            "digest": 11762962305083640175,
+            "flags": 1
+          }
+        },
+        {
+          "baseline": {
+            "cpu_s": 0.046875,
+            "wall_s": 0.0412893,
+            "cycles": 73567653,
+            "digest": 11762962305083640175,
+            "flags": 1
+          },
+          "candidate": {
+            "cpu_s": 0.03125,
+            "wall_s": 0.0370979,
+            "cycles": 66335513,
+            "digest": 11762962305083640175,
+            "flags": 1
+          }
+        },
+        {
+          "baseline": {
+            "cpu_s": 0.03125,
+            "wall_s": 0.0390509,
+            "cycles": 70054521,
+            "digest": 11762962305083640175,
+            "flags": 1
+          },
+          "candidate": {
+            "cpu_s": 0.046875,
+            "wall_s": 0.0423699,
+            "cycles": 75599815,
+            "digest": 11762962305083640175,
+            "flags": 1
+          }
+        },
+        {
+          "baseline": {
+            "cpu_s": 0.046875,
+            "wall_s": 0.041852,
+            "cycles": 75195254,
+            "digest": 11762962305083640175,
+            "flags": 1
+          },
+          "candidate": {
+            "cpu_s": 0.03125,
+            "wall_s": 0.0355577,
+            "cycles": 63744528,
+            "digest": 11762962305083640175,
+            "flags": 1
+          }
+        },
+        {
+          "baseline": {
+            "cpu_s": 0.046875,
+            "wall_s": 0.041168,
+            "cycles": 73674256,
+            "digest": 11762962305083640175,
+            "flags": 1
+          },
+          "candidate": {
+            "cpu_s": 0.046875,
+            "wall_s": 0.0424458,
+            "cycles": 74630304,
+            "digest": 11762962305083640175,
+            "flags": 1
+          }
+        },
+        {
+          "baseline": {
+            "cpu_s": 0.046875,
+            "wall_s": 0.0432154,
+            "cycles": 77428496,
+            "digest": 11762962305083640175,
+            "flags": 1
+          },
+          "candidate": {
+            "cpu_s": 0.015625,
+            "wall_s": 0.0421655,
+            "cycles": 75054505,
+            "digest": 11762962305083640175,
+            "flags": 1
+          }
+        },
+        {
+          "baseline": {
+            "cpu_s": 0.0625,
+            "wall_s": 0.052596,
+            "cycles": 93413139,
+            "digest": 11762962305083640175,
+            "flags": 1
+          },
+          "candidate": {
+            "cpu_s": 0.046875,
+            "wall_s": 0.0452631,
+            "cycles": 79900315,
+            "digest": 11762962305083640175,
+            "flags": 1
+          }
+        }
+      ],
+      "metrics": {
+        "cpu_s": {
+          "paired_median_reduction_pct": 29.166666666666668,
+          "cumulative_reduction_pct": 20.833333333333336
+        },
+        "wall_s": {
+          "paired_median_reduction_pct": 6.290378147763642,
+          "cumulative_reduction_pct": 7.426671472316759
+        },
+        "cycles": {
+          "paired_median_reduction_pct": 6.44832035931654,
+          "cumulative_reduction_pct": 7.799614869309202
+        }
+      }
+    }
+  ],
+  "baseline_dll_sha256": "593acaf3d6bf1dfedc7926cc5f3659c074a285dd95a9dcf0db95c1f913077670",
+  "source_sha256": "052644c179ca2205edf79f84974027f7b7f9eaa58736d776ea20966abecc016d",
+  "helper_sha256": "badda84cfecc67aeaa720ec052d6cf7f146445e4b405dd761546e94d235595e8",
+  "whole_fight_performance_not_established": true
+}
