@@ -1,0 +1,11 @@
+{
+  "diagnostic_only": true,
+  "dll_sha256": "8a27cbc2f226bcbe6b9fb90b8b1b7b8e90bc4c8ef8890f86e1058d9eb4b082c3",
+  "inputs_sha256": "d94b16d42cc88e9a3850a77c9360b9c4c4fdd676cb252e463044a903db2a5fef",
+  "results_sha256": "2e74b45caa87f7ee6ac72ffc35d98cc8db140b47031614d26542e183cef5d2c9",
+  "fights": 200,
+  "fast_identities": 34193,
+  "fallbacks": 0,
+  "fast_identities_per_fight": 170.965,
+  "interpretation": "Local fixture gains cannot be extrapolated to the entire trigger chain. This construction occurs34193 times in fixed200; whole-fight A/B is the adoption evidence. No added changes will be made to this frozen candidate."
+}

@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\scalar_math_bundle\verify_numeric_math.py", line 41, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\scalar_math_bundle\verify_numeric_math.py", line 26, in main
+    assert reports['baseline']['case_hashes']==reports['candidate']['case_hashes'],'Inspect saved per-case hashes; do not discard differences'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Inspect saved per-case hashes; do not discard differences

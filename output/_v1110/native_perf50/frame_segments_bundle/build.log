@@ -1,0 +1,92 @@
+Backed-up deployment and704 sources verified; full20/PGO18, max2 jobs
+Built C:\Users\Windows\AppData\Local\Temp\native-frame-segments-63vrki97\instrumented.dll (compiled 20/20, linked 20 objs) in 1152.32s
+{
+  "diagnostic_only": true,
+  "dll_sha256": "de9e3dbd79d6a4bcb88bfd96a658fc31bc8674ffcb598266eec4d1af2bc39948",
+  "inputs_sha256": "d94b16d42cc88e9a3850a77c9360b9c4c4fdd676cb252e463044a903db2a5fef",
+  "results_sha256": "2e74b45caa87f7ee6ac72ffc35d98cc8db140b47031614d26542e183cef5d2c9",
+  "coverage": {
+    "generic_hits": 9830838,
+    "funcref_hits": 100900,
+    "lazy_resolutions": 54635,
+    "unsupported_types": 200,
+    "audit_mismatch": 0,
+    "selected_fallback": 233004
+  },
+  "variant_coverage": {
+    "array_size": 845523,
+    "array_empty": 1272973,
+    "array_has": 0,
+    "array_front": 0,
+    "array_back": 0,
+    "dict_size": 2211,
+    "dict_empty": 106519,
+    "dict_has": 668070,
+    "dict_get": 283318,
+    "class_lane": 132769
+  },
+  "property_coverage": {
+    "field_hits": 4382396,
+    "selected_fallback": 0
+  },
+  "type_constructor_coverage": {
+    "type_hits": 3715324,
+    "type_fallback": 0,
+    "fused_initializations": 82399,
+    "factory_fallback": 0
+  },
+  "hot_slot_coverage": {
+    "new_method_hits": 71933,
+    "new_field_hits": 1164624
+  },
+  "typed_read_coverage": {
+    "property_reads": 4382396,
+    "pure_method_reads": 1109188
+  },
+  "frame_segment_coverage": {
+    "fast_items": 3633579,
+    "stun_misses": 509635,
+    "stun_hits": 3123926,
+    "speed_misses": 503470,
+    "speed_hits": 3080447,
+    "original_fallbacks": 0,
+    "gem_character_barriers": 101234,
+    "cooldown_hook_barriers": 0,
+    "trigger_barriers": 37452,
+    "timer_passes": 386704,
+    "timer_original_parents": 13473218,
+    "timer_chunk_attempts": 1520626,
+    "timer_chunks_skipped": 1111250,
+    "timer_parents_skipped": 8890000,
+    "timer_live_parents": 4583218,
+    "timer_probe_parents": 10650762,
+    "timer_probe_sockets": 711826
+  }
+}
+instrumented.dll: 67.44 replays/s; 14.64 s of combat on average; 1f00611ee50c
+instrumented.dll: 42.83 replays/s; 16.11 s of combat on average; 2e74b45caa87
+instrumented.dll: 17.46 fights/s; 8.48 CPU s; 83.8 MiB peak; 88dda4dce54d
+Compiling profile-guided release
+Built C:\Users\Windows\AppData\Local\Temp\native-frame-segments-63vrki97\release.dll (compiled 18/20, linked 20 objs) in 680.02s
+resolved fd7c6eb2eca1319efbeb068e5554a6b28e91d419c418b0fd1afbc72a18c6cf3b
+Starting prepare_regeneration.py
+Passed prepare_regeneration.py
+Starting generate_property_tests.py
+Passed generate_property_tests.py
+Starting generate_type_constructor_tests.py
+Passed generate_type_constructor_tests.py
+Starting generate_typed_read_tests.py
+Passed generate_typed_read_tests.py
+Starting verify_frame_segments.py
+Passed verify_frame_segments.py
+Starting verify_resolved.py
+Passed verify_resolved.py
+Starting inspect_variant.py
+Passed inspect_variant.py
+Starting test_regeneration_guards.py
+Passed test_regeneration_guards.py
+Starting test_full_regeneration.py
+Passed test_full_regeneration.py
+Starting run_comparison.py
+Passed run_comparison.py
+All preflight checks and three comparison groups completed; deployment still gated

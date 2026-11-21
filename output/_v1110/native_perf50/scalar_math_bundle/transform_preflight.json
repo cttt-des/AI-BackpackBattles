@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "baseline_dll_sha256": "401376afb48e5340be48578aa534eac0b823a69d3447044639e3d3ee5cb7a259",
+  "numeric_call_sites": {
+    "add": 878,
+    "sub": 317,
+    "mul": 447,
+    "div": 430
+  },
+  "unchanged_original_virtual_switches": 1348,
+  "original_arithmetic_evaluators_unchanged": true,
+  "object_and_context_layout_unchanged": true,
+  "argument_signatures_unchanged": true,
+  "non_lto_fallback_unit": "sym_ids",
+  "floating_options_unchanged": true,
+  "retained_typed_reads": true
+}

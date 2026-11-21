@@ -1,0 +1,17 @@
+Awaiting identified live build 19580
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\scalar_math_bundle\qualify_when_ready.py", line 51, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\scalar_math_bundle\qualify_when_ready.py", line 37, in main
+    assert assessment.exists(),'Build/validation/comparison incomplete: inspect original logs; do not restart'
+           ~~~~~~~~~~~~~~~~~^^
+AssertionError: Build/validation/comparison incomplete: inspect original logs; do not restart
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import psutil,subprocess,sys; matches=[p for p in psutil.process_iter(['cmdline']) if p.info['cmdline'] and any('scalar_math_bundle/build_bundle.py' in s.replace(chr(92),'/') for s in p.info['cmdline']) and not any(' -c ' in s for s in p.info['cmdline'])]; leaves=[p for p in matches if not any(c.pid in {q.pid for q in matches} for c in p.children())];assert len(leaves)==1;p=leaves[0];subprocess.run([sys.executable,'-u','-X','utf8','output/_v1110/native_perf50/scalar_math_bundle/qualify_when_ready.py','--pid',str(p.pid),'--created',str(p.create_time())],check=True)
+                                                                                                                                                                                                                                                                                                                                                                                                       ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe', '-u', '-X', 'utf8', 'output/_v1110/native_perf50/scalar_math_bundle/qualify_when_ready.py', '--pid', '19580', '--created', '1795244194.30335']' returned non-zero exit status 1.

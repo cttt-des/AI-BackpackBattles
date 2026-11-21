@@ -1729,3 +1729,11 @@ extern "C" void gd_diag_native_resolved_audit(int enabled) {
     tl_battle_ctx.native_resolved_audit=enabled!=0;
     tl_battle_ctx.native_resolved_collect=enabled!=0;
 }
+
+namespace gd {
+static thread_local uint64_t native_event_identity_counts[4]{};
+void native_event_identity_hit(unsigned index) {if(index<4)++native_event_identity_counts[index];}
+}
+extern "C" uint64_t gd_diag_native_event_identity_stat(unsigned index) {
+    return index<4 ? gd::native_event_identity_counts[index] : 0;
+}

@@ -1,0 +1,150 @@
+{
+  "passed": true,
+  "cases": 256,
+  "fast_hits": 88,
+  "fallbacks": 48,
+  "events_per_arm": 1000000,
+  "scope": "event-bus fixture only; not whole-fight throughput",
+  "pairs": [
+    {
+      "baseline": {
+        "cpu_s": 0.6875,
+        "wall_s": 0.68648,
+        "cycles": 1183091386,
+        "digest": 14070742280129696672
+      },
+      "candidate": {
+        "cpu_s": 0.53125,
+        "wall_s": 0.54106,
+        "cycles": 944024063,
+        "digest": 14070742280129696672
+      }
+    },
+    {
+      "baseline": {
+        "cpu_s": 0.78125,
+        "wall_s": 0.802817,
+        "cycles": 1384914679,
+        "digest": 14070742280129696672
+      },
+      "candidate": {
+        "cpu_s": 0.640625,
+        "wall_s": 0.681688,
+        "cycles": 1172416065,
+        "digest": 14070742280129696672
+      }
+    },
+    {
+      "baseline": {
+        "cpu_s": 0.640625,
+        "wall_s": 0.668839,
+        "cycles": 1179344850,
+        "digest": 14070742280129696672
+      },
+      "candidate": {
+        "cpu_s": 0.59375,
+        "wall_s": 0.669262,
+        "cycles": 1111254128,
+        "digest": 14070742280129696672
+      }
+    },
+    {
+      "baseline": {
+        "cpu_s": 0.625,
+        "wall_s": 0.633672,
+        "cycles": 1134572917,
+        "digest": 14070742280129696672
+      },
+      "candidate": {
+        "cpu_s": 0.53125,
+        "wall_s": 0.540329,
+        "cycles": 967362591,
+        "digest": 14070742280129696672
+      }
+    },
+    {
+      "baseline": {
+        "cpu_s": 0.734375,
+        "wall_s": 0.729268,
+        "cycles": 1305945178,
+        "digest": 14070742280129696672
+      },
+      "candidate": {
+        "cpu_s": 0.640625,
+        "wall_s": 0.636715,
+        "cycles": 1141671699,
+        "digest": 14070742280129696672
+      }
+    },
+    {
+      "baseline": {
+        "cpu_s": 0.59375,
+        "wall_s": 0.590908,
+        "cycles": 1059545275,
+        "digest": 14070742280129696672
+      },
+      "candidate": {
+        "cpu_s": 0.640625,
+        "wall_s": 0.640825,
+        "cycles": 1147613719,
+        "digest": 14070742280129696672
+      }
+    },
+    {
+      "baseline": {
+        "cpu_s": 0.5625,
+        "wall_s": 0.57209,
+        "cycles": 1025444796,
+        "digest": 14070742280129696672
+      },
+      "candidate": {
+        "cpu_s": 0.5,
+        "wall_s": 0.516325,
+        "cycles": 925454738,
+        "digest": 14070742280129696672
+      }
+    },
+    {
+      "baseline": {
+        "cpu_s": 0.546875,
+        "wall_s": 0.581639,
+        "cycles": 1040502797,
+        "digest": 14070742280129696672
+      },
+      "candidate": {
+        "cpu_s": 0.53125,
+        "wall_s": 0.523713,
+        "cycles": 937789960,
+        "digest": 14070742280129696672
+      }
+    }
+  ],
+  "metrics": {
+    "cpu_s": {
+      "paired_median_time_reduction_pct": 11.93853427895981,
+      "sum_time_reduction_pct": 10.876132930513593,
+      "candidate_wins": 7
+    },
+    "wall_s": {
+      "paired_median_time_reduction_pct": 11.32515874067792,
+      "sum_time_reduction_pct": 9.795368642385183,
+      "candidate_wins": 6
+    },
+    "cycles": {
+      "paired_median_time_reduction_pct": 11.225178682898928,
+      "sum_time_reduction_pct": 10.369777612543452,
+      "candidate_wins": 7
+    }
+  },
+  "baseline_dll_sha256": "401376afb48e5340be48578aa534eac0b823a69d3447044639e3d3ee5cb7a259",
+  "source_sha256": {
+    "event_identity_fastpath.hpp": "7ba196a6bde84bddd2b21f9a4669a945bfcbd1738147f573e12374d4cbf3fd4d",
+    "event_identity_receiver_fastpath.hpp": "3350ff206673fb7ecf55466b53380a5494c8c730a6a1cb1baa8f29a4b739d3f0",
+    "test_native_event_identity_bus.cpp": "2e36997e474aae4eafce02e63d8ee29d210744c73ee7396be5980083c6b49eae"
+  },
+  "actual_original_bus_function_is_reference": true,
+  "callbacks_binding_nested_terminal_unknown_getters_trace_toggles_snapshot_rng_ids_flags_checked": true,
+  "no_full_simulator_build": true,
+  "no_deployment": true,
+  "limitation": "This measures a controlled event-bus fixture and establishes no whole-fight speedup. Actual call frequency, production code generation and fixed200 A/B still matter."
+}

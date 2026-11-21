@@ -1,0 +1,17 @@
+Awaiting identified live build 8860
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\scalar_math_ordered_bundle\qualify_when_ready.py", line 51, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\scalar_math_ordered_bundle\qualify_when_ready.py", line 37, in main
+    assert assessment.exists(),'Build/validation/comparison incomplete: inspect original logs; do not restart'
+           ~~~~~~~~~~~~~~~~~^^
+AssertionError: Build/validation/comparison incomplete: inspect original logs; do not restart
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import psutil,subprocess,sys; p=psutil.Process(8860); assert any(s.replace(chr(92),"/").endswith("scalar_math_ordered_bundle/build_bundle.py") for s in p.cmdline()); subprocess.run([sys.executable,"-u","-X","utf8","output/_v1110/native_perf50/scalar_math_ordered_bundle/qualify_when_ready.py","--pid",str(p.pid),"--created",str(p.create_time())],check=True)
+                                                                                                                                                                          ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe', '-u', '-X', 'utf8', 'output/_v1110/native_perf50/scalar_math_ordered_bundle/qualify_when_ready.py', '--pid', '8860', '--created', '1795246371.1887577']' returned non-zero exit status 1.

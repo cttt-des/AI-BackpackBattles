@@ -1,0 +1,23 @@
+{
+  "status": "rejected_before_timing",
+  "dll_sha256": "993cd7ed2a0ac35886a376dbdb4adad8be3a264e9eff9c1a998b31db49cb751a",
+  "numeric_cases": 5903,
+  "mismatch_indices": [
+    781,
+    782,
+    818,
+    820,
+    856,
+    857,
+    3669,
+    3670,
+    3706,
+    3708,
+    3744,
+    3745
+  ],
+  "cause": "Both float operands are different NaNs: unchanged public add/multiply recompiled by LTO selected the opposite NaN payload.",
+  "deployed": false,
+  "formal_comparisons_started": false,
+  "next": "Pin the deployed operand choice only for two-NaN add/multiply and compare result bits plus floating exception flags against the actual baseline DLL."
+}

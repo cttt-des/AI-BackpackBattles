@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import psutil,subprocess,sys; target="scalar_math_ordered_bundle/build_bundle.py"; matches=[p for p in psutil.process_iter(["cmdline"]) if p.info["cmdline"] and "-c" not in p.info["cmdline"] and any(s.replace(chr(92),"/").endswith(target) for s in p.info["cmdline"])]; assert len(matches)==1; p=matches[0]; subprocess.run([sys.executable,"-u","-X","utf8","output/_v1110/native_perf50/scalar_math_ordered_bundle/qualify_when_ready.py","--pid",str(p.pid),"--created",str(p.create_time())],check=True)
+                                                                                                                                                                                                                                                                                        ^^^^^^^^^^^^^^^
+AssertionError

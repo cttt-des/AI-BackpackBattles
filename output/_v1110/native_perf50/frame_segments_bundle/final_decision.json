@@ -1,0 +1,26 @@
+{
+  "status": "no_confirmed_bundle_gain_retained",
+  "candidate_dll_sha256": "fd7c6eb2eca1319efbeb068e5554a6b28e91d419c418b0fd1afbc72a18c6cf3b",
+  "baseline_dll_sha256": "401376afb48e5340be48578aa534eac0b823a69d3447044639e3d3ee5cb7a259",
+  "metrics": {
+    "main_thread_cpu_s": {
+      "paired_median_time_reduction_pct": -0.20920502092049986,
+      "sum_time_reduction_pct": -0.9374999999999911,
+      "candidate_wins": 9,
+      "ties": 3,
+      "pairs": 24
+    },
+    "wall_s": {
+      "paired_median_time_reduction_pct": -0.27490188140213423,
+      "sum_time_reduction_pct": -1.1670446051039507,
+      "candidate_wins": 8,
+      "ties": 0,
+      "pairs": 24
+    }
+  },
+  "deployed": false,
+  "full2604_started": false,
+  "release24_started": false,
+  "same_candidate_more_timing_planned": false,
+  "next": "Screen one concrete cost within trigger/damage/event dispatch against actual baseline DLL before any full build. Do not add member-pointer tables or unrelated components."
+}

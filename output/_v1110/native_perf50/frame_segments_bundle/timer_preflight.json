@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "cases": 9554,
+  "callback_order_rng_live_fields_and_capture_checked": true,
+  "baseline_dll_sha256": "401376afb48e5340be48578aa534eac0b823a69d3447044639e3d3ee5cb7a259",
+  "independent_actual_original_timer_methods": true
+}

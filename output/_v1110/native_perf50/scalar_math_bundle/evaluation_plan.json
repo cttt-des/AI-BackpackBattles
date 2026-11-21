@@ -1,0 +1,62 @@
+{
+  "baseline_dll_sha256": "401376afb48e5340be48578aa534eac0b823a69d3447044639e3d3ee5cb7a259",
+  "verified_remote_backup": "60963d0804db5dc01a5cace6d3fe56c658bfae13",
+  "components": [
+    "typed pure property reads",
+    "typed pure method reads",
+    "compact cache-aligned read tags with shared original getter tables",
+    "inlined safe integer and finite real arithmetic branches",
+    "non-LTO original arithmetic fallback"
+  ],
+  "no_sparse_timer_index_or_callback_tracking": true,
+  "new_object_or_context_layout": true,
+  "measurement": {
+    "fixed_original_fights": 200,
+    "single_thread": true,
+    "groups": 3,
+    "pairs_per_group": 8,
+    "warmup_seconds": 120,
+    "normal_worker_priority_all_8_logical_cpus": true,
+    "alternating_order": true,
+    "compilation_profiling_writes_during_timing": false,
+    "retain_all_negative_and_extreme_pairs": true,
+    "report": [
+      "paired CPU and wall reductions",
+      "cumulative CPU and wall reductions",
+      "group consistency",
+      "leave-one-group-out cumulative results",
+      "power and observed background load"
+    ],
+    "interpretation": "Judge the whole composition. Inconclusive components may remain candidates. Do not add historical percentages or assign aggregate gains to individual components. An optional later ablation must use new direct comparisons."
+  },
+  "required_before_comparison": [
+    "All674 metadata predicates and alloc-plus-init graph comparisons; unknown/copied metadata and _init order/RNG",
+    "All674 classes selected-field oracle checks and unknown/copy/resource_path/fallback callbacks",
+    "43 capacity/alias/lifetime checks, base/derived sizeof/align and exact byte offsets",
+    "targeted baseline/candidate diagnostic and callback differential",
+    "1348 allocator flag checks",
+    "existing dispatch/RNG/array/timer regressions",
+    "source-identical fresh PGO",
+    "704-file generation twice",
+    "fixed200 signatures and zero type audit mismatches"
+  ],
+  "required_before_deployment": [
+    "2604 strict original per-event cases",
+    "unchanged per-case event hashes",
+    "24 consecutive raw batches all at least50 fights/s",
+    "20percent-load calibrated report with power/load range",
+    "DLL and manifest/report SHA verification",
+    "normal training smoke"
+  ],
+  "formal_results": "pending",
+  "layout_scope": "Internal read rows only. GdObj, BattleCtx, ClassMeta and generated class headers unchanged.",
+  "source_note": "Correct preceding frozen guard comment about unspecified nested argument order; original expression and guard behavior unchanged",
+  "recent_baseline_profile": "post_eager_trace_profile/profile_depth64.json;2083 samples/2079 replay roots. No concurrent profiling during timing.",
+  "method_slots": 128,
+  "property_slots": 64,
+  "retained_previous_candidate": "742ef705e583387510341a9f9055ba80bb6160a1f6290f55ef68ac6970fd081a",
+  "retained_previous_evidence": "No stable gain confirmed; not deployed. New package judged as a whole against1426.",
+  "required_new_tests": "Baseline/candidate arithmetic bits, kind and container differential; argument callback order, alias mutation and RNG; object-file proof that fallback wrappers are outside LTO.",
+  "retained_typed_read_candidate": "c0649c77ebaaa9a8d077b01af69cf5ff8fa3ff8aff0b26fda3a794c667117bd7",
+  "numerical_contract": "Same finite numeric operation/conversion; overflow, nonfinite values, zero real divisors and nonnumeric operands use the untouched original evaluator through non-LTO wrappers."
+}

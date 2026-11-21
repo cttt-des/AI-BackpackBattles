@@ -1,0 +1,33 @@
+{
+  "status": "declared_before_screen",
+  "baseline_dll_sha256": "401376afb48e5340be48578aa534eac0b823a69d3447044639e3d3ee5cb7a259",
+  "retained_component_dll_sha256": "af3de9457407a4a391aa7bdfb77dc9769a59938d779635a3dadfd58d3f9e46bc",
+  "retained_component_evidence": {
+    "main_thread_cpu_s": {
+      "paired_median_time_reduction_pct": 0.0,
+      "sum_time_reduction_pct": 0.28901734104046506,
+      "candidate_wins": 11,
+      "ties": 6,
+      "pairs": 24
+    },
+    "wall_s": {
+      "paired_median_time_reduction_pct": 0.27100363753698176,
+      "sum_time_reduction_pct": 0.29543538499732236,
+      "candidate_wins": 14,
+      "ties": 0,
+      "pairs": 24
+    }
+  },
+  "components": [
+    "retained one-allocation event identity",
+    "known generated emitter ID and safe integer composition"
+  ],
+  "no_generated_instance_id_overrides_verified": true,
+  "unknown_cpp_and_arithmetic_limit_fallbacks_unchanged": true,
+  "original_emission_body_sha256": "a4afa8e62a67b29a86d47939d9ef1827b943c9ee82636aa1c8cc951f9b60114d",
+  "candidate_emission_body_sha256": "6d5ba6aa167b1604d9bd023ecc9c18e3901b1d7f31006038938df9c4354d0642",
+  "screen_pairs": 8,
+  "bus_events_per_arm": 1000000,
+  "no_full_simulator_build_before_screen": true,
+  "interpretation": "Judge the same-path composition, without requiring each small component to exceed whole-fight noise independently."
+}

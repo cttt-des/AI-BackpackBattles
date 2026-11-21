@@ -1,0 +1,94 @@
+Backed-up deployment and704 sources verified; full20/PGO18, max2 jobs
+Built C:\Users\Windows\AppData\Local\Temp\native-scalar-math-vhb7l1_g\instrumented.dll (compiled 20/20, linked 20 objs) in 1071.76s
+{
+  "diagnostic_only": true,
+  "dll_sha256": "88ee935d3bd8740d76785830e68c3d157f826f72c10df054ae9a0af629a23598",
+  "inputs_sha256": "d94b16d42cc88e9a3850a77c9360b9c4c4fdd676cb252e463044a903db2a5fef",
+  "results_sha256": "2e74b45caa87f7ee6ac72ffc35d98cc8db140b47031614d26542e183cef5d2c9",
+  "coverage": {
+    "generic_hits": 9830838,
+    "funcref_hits": 100900,
+    "lazy_resolutions": 54635,
+    "unsupported_types": 200,
+    "audit_mismatch": 0,
+    "selected_fallback": 233004
+  },
+  "variant_coverage": {
+    "array_size": 845523,
+    "array_empty": 1272973,
+    "array_has": 0,
+    "array_front": 0,
+    "array_back": 0,
+    "dict_size": 2211,
+    "dict_empty": 106519,
+    "dict_has": 668070,
+    "dict_get": 283318,
+    "class_lane": 132769
+  },
+  "property_coverage": {
+    "field_hits": 4382396,
+    "selected_fallback": 0
+  },
+  "type_constructor_coverage": {
+    "type_hits": 3715324,
+    "type_fallback": 0,
+    "fused_initializations": 82399,
+    "factory_fallback": 0
+  },
+  "hot_slot_coverage": {
+    "new_method_hits": 71933,
+    "new_field_hits": 1164624
+  },
+  "typed_read_coverage": {
+    "property_reads": 4382396,
+    "pure_method_reads": 1109188
+  },
+  "numeric_coverage": {
+    "add_int": 3079325,
+    "add_real": 1852283,
+    "add_fallback": 444883,
+    "div_int": 3471,
+    "div_real": 421168,
+    "div_fallback": 9
+  }
+}
+instrumented.dll: 90.49 replays/s; 14.64 s of combat on average; 1f00611ee50c
+instrumented.dll: 56.22 replays/s; 16.11 s of combat on average; 2e74b45caa87
+instrumented.dll: 48.61 fights/s; 4.03 CPU s; 85.2 MiB peak; 88dda4dce54d
+Compiling profile-guided release
+Built C:\Users\Windows\AppData\Local\Temp\native-scalar-math-vhb7l1_g\release.dll (compiled 18/20, linked 20 objs) in 499.42s
+resolved f3f5d9476c66d9c84356e89bc8124c6f0b18096f0fb925a71b7173d2bdf315c9
+Starting prepare_regeneration.py
+Passed prepare_regeneration.py
+Starting generate_property_tests.py
+Passed generate_property_tests.py
+Starting generate_type_constructor_tests.py
+Passed generate_type_constructor_tests.py
+Starting generate_typed_read_tests.py
+Passed generate_typed_read_tests.py
+Starting verify_numeric_barrier.py
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\scalar_math_ordered_bundle\validate_then_compare.py", line 54, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\scalar_math_ordered_bundle\validate_then_compare.py", line 43, in main
+    run('verify_numeric_barrier.py','numeric_barrier.log')
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\scalar_math_ordered_bundle\validate_then_compare.py", line 16, in run
+    subprocess.run([sys.executable,'-u','-X','utf8',str(WORK/script),*map(str,args)],stdout=output,stderr=subprocess.STDOUT,check=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe', '-u', '-X', 'utf8', 'D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_perf50\\scalar_math_ordered_bundle\\verify_numeric_barrier.py']' returned non-zero exit status 1.
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\scalar_math_ordered_bundle\build_bundle.py", line 69, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\scalar_math_ordered_bundle\build_bundle.py", line 67, in main
+    subprocess.run([sys.executable,'-u','-X','utf8',str(WORK/'validate_then_compare.py'),'--build-pid','0','--created','0'],check=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe', '-u', '-X', 'utf8', 'D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_perf50\\scalar_math_ordered_bundle\\validate_then_compare.py', '--build-pid', '0', '--created', '0']' returned non-zero exit status 1.

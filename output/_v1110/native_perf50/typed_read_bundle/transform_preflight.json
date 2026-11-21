@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "baseline_dll_sha256": "401376afb48e5340be48578aa534eac0b823a69d3447044639e3d3ee5cb7a259",
+  "read_rows": 44,
+  "getter_table_rows_preserved": 43,
+  "method_slots": 128,
+  "property_slots": 64,
+  "pure_method_symbols": [
+    "SYM_GEN_character_74",
+    "SYM_GEN_hasHit_1523",
+    "SYM_GEN_getStacks_1023",
+    "SYM_GEN_speed_93"
+  ],
+  "all16_shards_and674_headers_and_context_layout_unchanged": true,
+  "original_table_bytes": 22016,
+  "new_shared_table_plus_tags_bytes": 27648,
+  "actual_runtime_gain": "Not measured; evaluate the whole package"
+}
