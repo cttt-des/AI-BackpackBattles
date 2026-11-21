@@ -1,0 +1,20 @@
+{
+  "negative_return_code": 1,
+  "negative_result": {
+    "unexpected_meta_calls": 1
+  },
+  "old_dll_sha256": "7c65d70f2bb606d0c556a54b98ec2c43849acade1b1d82f4c552ee815a2171fb",
+  "source_matches_full_transform": true,
+  "changed_units": [
+    "gd_rt",
+    "shard_03"
+  ],
+  "profile_policy": "Reuse compatible prior profiles; renamed cold predicate functions use partial training. A compiler coverage mismatch stops this run for explicit retraining.",
+  "corrections": [
+    "unknown metadata is not called in eligibility pre-read",
+    "unknown FuncRef validity callbacks invalidate before execution",
+    "cold eligibility helpers kept out of hot loop footprint"
+  ],
+  "corrected_dll_sha256": "4c14b0da2cdd92bb7f5563c6c5142978c46b99525c7bce84fa128348e5f311d4",
+  "fresh_profile_source_sha256": "6c699f32a3d7a710f989dfdb72fc20401b84710bcdd3d9ccd87ef104e84b2396"
+}

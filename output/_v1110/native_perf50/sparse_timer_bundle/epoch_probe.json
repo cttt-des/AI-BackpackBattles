@@ -1,0 +1,14 @@
+{
+  "diagnostic_only": true,
+  "dll_sha256": "4c14b0da2cdd92bb7f5563c6c5142978c46b99525c7bce84fa128348e5f311d4",
+  "inputs_sha256": "d94b16d42cc88e9a3850a77c9360b9c4c4fdd676cb252e463044a903db2a5fef",
+  "results_sha256": "2e74b45caa87f7ee6ac72ffc35d98cc8db140b47031614d26542e183cef5d2c9",
+  "epoch_before": 1,
+  "epoch_after": 462030,
+  "invalidations": 462029,
+  "reference_fixed200_character_timer_passes": 386704,
+  "invalidations_per_character_timer_pass": 1.1947872274401092,
+  "scope_depth_after": 0,
+  "sorting_depth_after": 0,
+  "interpretation": "Epoch increments include assembly, tracked mutations and unknown/unresolved callbacks. This count is not an exact rebuild count or a speed measurement."
+}

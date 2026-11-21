@@ -1,0 +1,13 @@
+{
+  "dll_sha256": "4c14b0da2cdd92bb7f5563c6c5142978c46b99525c7bce84fa128348e5f311d4",
+  "return_code": 1,
+  "result": {
+    "known_unseeded_invalidations": 2,
+    "known_seeded_invalidations": 0,
+    "unknown_invalidations": 2,
+    "unknown_getter_calls": 2,
+    "known_row_cached": false,
+    "lazy_resolutions": 0,
+    "unsupported_types": 0
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "status": "regression_retained_for_revised_classification",
+  "runtime_unchanged": true,
+  "baseline_dll_sha256": "7af5ff948b949859339f0897a6d857953ae8e3b30ec451cee030672ba9c5129b",
+  "candidate_dll_sha256": "4c14b0da2cdd92bb7f5563c6c5142978c46b99525c7bce84fa128348e5f311d4",
+  "metrics": {
+    "main_thread_cpu_s": {
+      "paired_median_time_reduction_pct": -5.371304974765678,
+      "sum_time_reduction_pct": -7.717934480843969,
+      "candidate_wins": 1,
+      "ties": 1,
+      "pairs": 24
+    },
+    "wall_s": {
+      "paired_median_time_reduction_pct": -5.5804420122372855,
+      "sum_time_reduction_pct": -8.141571145163539,
+      "candidate_wins": 1,
+      "ties": 0,
+      "pairs": 24
+    }
+  },
+  "reason": "All three group medians regress. Keep all observations and components; do not deploy this package.",
+  "new_evidence": "462029 epoch increments in fixed200; separate negative case proves repeated invalidations on a pure generated getter whose type row was not seeded. Counts alone do not prove the exact time attribution.",
+  "next_component": "Resolve/cache exact generated type on real getter/callback entry, retaining conservative eligibility pre-read and unknown callback invalidation.",
+  "not_run": [
+    "2604 strict original full gate for this rejected package",
+    "release24 raw batches"
+  ],
+  "deployment_still_required_for_future_candidate": true
+}

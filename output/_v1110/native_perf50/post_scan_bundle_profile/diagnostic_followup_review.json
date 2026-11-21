@@ -1,0 +1,40 @@
+{
+  "status": "source_review_only_no_candidate_or_speed_claim",
+  "profile_dll_sha256": "7af5ff948b949859339f0897a6d857953ae8e3b30ec451cee030672ba9c5129b",
+  "profile_samples": 6036,
+  "observations": {
+    "gd_str_fn_leaf_samples": 62,
+    "str_concat_leaf_samples": 46,
+    "addSpeed_direct_str_fn_leaf_samples": 9,
+    "addSpeed_direct_str_concat_leaf_samples": 10,
+    "other_direct_str_fn_parents": {"gainTemporary":12,"activate":11,"emitAndLog":9,"getNextFreeLabelPosition":9,"readyInit":7}
+  },
+  "next_candidate": "AddSpeed known-pure diagnostic argument suppression, then inspect compatible activate/readyInit/Buff paths",
+  "source_facts": [
+    "CoreItem.addSpeed unconditionally formats four arguments before calling CoreRng.trace_diag",
+    "CoreRng.trace_diag does nothing unless oracle_trace and _stacktrace are both truthy",
+    "The argument construction calls getTopLeftCell; this call cannot be blindly removed",
+    "CoreItem.getTopLeftCell scans occupiedCells and reads each cell x/y; unknown objects can override those reads",
+    "Two snapshotItemTooltipStat calls after the trace are separate and must retain their original behavior"
+  ],
+  "reviewed_method_sha256": {
+    "CoreItem.addSpeed":"5dfb34527106bdee3322d9484279d8126759ec2303d08e8161cb36c85df838b9",
+    "CoreItem.getTopLeftCell":"42a46e5b03188f129b66a42c52f79c716312ff63832627cdd30ec13d2d9a5737",
+    "CoreRng.trace_diag":"4ac5c56fdfc125135acebe70fb4a29766585431a2e1eed81eadcd41cb7af3d82"
+  },
+  "proof_needed_before_skipping": [
+    "Exact known receiver/context/RNG/data types, with frozen generated dispatch showing no getTopLeftCell override",
+    "Known-pure argument values; object-to-string can allocate observable instance IDs or invoke virtual metadata",
+    "Occupied cells are ordinary Vec2 values, rather than callback-bearing objects",
+    "No diagnostic output is enabled; enabled/unknown paths execute the original call once",
+    "Preserve earlier getter and method callback order, numeric update, source identifiers, later snapshots and RNG state"
+  ],
+  "targeted_tests_needed": [
+    "Diagnostic enabled/disabled combinations and byte-identical enabled output",
+    "Custom getTopLeftCell, descriptor/context getter and RNG.trace_diag overrides",
+    "Object-valued amounts and identifiers with instance-ID/metadata side effects",
+    "Object-valued occupied cells and nonfinite coordinates",
+    "Existing per-event/source/RNG and normal training gates"
+  ],
+  "measurement_policy": "Combine compatible small changes if useful; measure the entire package against the accepted deployment. Do not infer a gain from sample counts or add prior percentages."
+}

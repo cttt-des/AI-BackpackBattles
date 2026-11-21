@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "dll_sha256": "4c14b0da2cdd92bb7f5563c6c5142978c46b99525c7bce84fa128348e5f311d4",
+  "output": "{\"unexpected_meta_calls\":0}\n",
+  "compiled_against_candidate_headers": true
+}

@@ -1,0 +1,19 @@
+{
+  "baseline_dll_sha256": "7af5ff948b949859339f0897a6d857953ae8e3b30ec451cee030672ba9c5129b",
+  "backup_commit": "53b16a2cbcd198db7201c73a48b34e1b7ad8fcd8",
+  "components": [
+    "ported ordered sparse parent timer index",
+    "674 exact generated allocator seeds /665 deduplicated rows",
+    "unknown callback invalidation and inline array-write tracking"
+  ],
+  "evidence": "new6036-stack profile; timer scan323 leaf samples; fixed20095% empty parents; older sparse trial CPU0.73%/wall0.89% retained for composition",
+  "comparison": "3x8 isolated fixed200 AB/BA,120s alternating warmup,normal priority/all8 logical CPUs,quiet; retain all groups and individual results",
+  "decision": "Measure combined effect without requiring each component or group to pass separately; report medians, sums and leave-one-group-out sensitivity",
+  "deployment_requires": [
+    "targeted alias/callback/generation tests",
+    "2604 original strict per-event and C++ hash checks",
+    "24 consecutive raw200 batches >=50/s",
+    "20% load estimate retained even unfavorable",
+    "verified source/runtime/report hashes and normal training smoke"
+  ]
+}

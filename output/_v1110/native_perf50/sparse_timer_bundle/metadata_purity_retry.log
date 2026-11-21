@@ -1,0 +1,63 @@
+Reproduced extra observable meta() call in old sparse precheck
+COMPILE FAIL D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\sparse_timer_bundle\bundle_src\gd_rt.cpp
+gd::BattleArena&, unsigned int)' have changed, the profile data may be out of date [-Werror=coverage-mismatch]
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\sparse_timer_bundle\bundle_src\gd_rt.cpp: In function 'gd::native_timer_scan_validity_probe(gd::GdObj*)':
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\sparse_timer_bundle\bundle_src\gd_rt.cpp:863:6: warning: profile for function 'gd::native_timer_scan_validity_probe(gd::GdObj*)' not found in profile data [-Wmissing-profile]
+  863 | void native_timer_scan_validity_probe(GdObj* object) {
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\sparse_timer_bundle\bundle_src\gd_rt.cpp: In function 'gd::append_gd_str(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, gd::GdVal const&)':
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\sparse_timer_bundle\bundle_src\gd_rt.cpp:451:13: warning: profile for function 'gd::append_gd_str(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, gd::GdVal const&)' not found in profile data [-Wmissing-profile]
+  451 | static void append_gd_str(std::string& out, const GdVal& v) {
+      |             ^~~~~~~~~~~~~
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\sparse_timer_bundle\bundle_src\gd_rt.cpp: In function 'gd::ensure_builtin_syms_unlocked()':
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\sparse_timer_bundle\bundle_src\gd_rt.cpp:68:13: warning: profile for function 'gd::ensure_builtin_syms_unlocked()' not found in profile data [-Wmissing-profile]
+   68 | static void ensure_builtin_syms_unlocked() {
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\sparse_timer_bundle\bundle_src\gd_rt.cpp: In function 'gd::register_sym_unlocked(unsigned int, std::basic_string_view<char, std::char_traits<char> >)':
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\sparse_timer_bundle\bundle_src\gd_rt.cpp:49:13: warning: profile for function 'gd::register_sym_unlocked(unsigned int, std::basic_string_view<char, std::char_traits<char> >)' not found in profile data [-Wmissing-profile]
+   49 | static void register_sym_unlocked(SymId id, std::string_view sv) {
+      |             ^~~~~~~~~~~~~~~~~~~~~
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\sparse_timer_bundle\bundle_src\gd_rt.cpp: In function 'gd::sym_names_vec()':
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\sparse_timer_bundle\bundle_src\gd_rt.cpp:44:34: warning: profile for function 'gd::sym_names_vec()' not found in profile data [-Wmissing-profile]
+   44 | static std::vector<const char*>& sym_names_vec() {
+      |                                  ^~~~~~~~~~~~~
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\sparse_timer_bundle\bundle_src\gd_rt.cpp: In function 'gd::sym_map()':
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\sparse_timer_bundle\bundle_src\gd_rt.cpp:39:53: warning: profile for function 'gd::sym_map()' not found in profile data [-Wmissing-profile]
+   39 | static std::unordered_map<std::string_view, SymId>& sym_map() {
+      |                                                     ^~~~~~~
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\sparse_timer_bundle\bundle_src\gd_rt.cpp: In function 'gd::sym_mtx()':
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\sparse_timer_bundle\bundle_src\gd_rt.cpp:34:20: warning: profile for function 'gd::sym_mtx()' not found in profile data [-Wmissing-profile]
+   34 | static std::mutex& sym_mtx() {
+      |                    ^~~~~~~
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\sparse_timer_bundle\bundle_src\gd_rt.cpp: In function '__tcf_ZZN2gd12static_arenaEvE7s_arena':
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\sparse_timer_bundle\bundle_src\gd_rt.cpp:30:46: warning: profile for function '__tcf_ZZN2gd12static_arenaEvE7s_arena' not found in profile data [-Wmissing-profile]
+   30 |     static BattleArena s_arena(1u << 20, true);
+      |                                              ^
+cc1plus.exe: some warnings being treated as errors
+
+COMPILE FAIL D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\sparse_timer_bundle\bundle_src\gen\shards\shard_03.cpp
+dle_src\gen\shards\shard_03.cpp: In function 'Gd__gd_core__AceofSpades::get_static_const_or_enum(gd::BattleCtx&, unsigned int)':
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\sparse_timer_bundle\bundle_src\gen\shards\shard_03.cpp:249:11: error: source locations for function 'Gd__gd_core__AceofSpades::get_static_const_or_enum(gd::BattleCtx&, unsigned int)' have changed, the profile data may be out of date [-Werror=coverage-mismatch]
+  249 | gd::GdVal Gd__gd_core__AceofSpades::get_static_const_or_enum(gd::BattleCtx& gd_ctx, gd::SymId prop) {
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\sparse_timer_bundle\bundle_src\gen\shards\shard_03.cpp:249:11: error: source locations for function 'Gd__gd_core__AceofSpades::get_static_const_or_enum(gd::BattleCtx&, unsigned int)' have changed, the profile data may be out of date [-Werror=coverage-mismatch]
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\sparse_timer_bundle\bundle_src\gen\shards\shard_03.cpp: In member function 'Gd__gd_core__AceofSpades::meta() const':
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\sparse_timer_bundle\bundle_src\gen\shards\shard_03.cpp:248:24: error: source locations for function 'Gd__gd_core__AceofSpades::meta() const' have changed, the profile data may be out of date [-Werror=coverage-mismatch]
+  248 | const gd::GdClassMeta* Gd__gd_core__AceofSpades::meta() const { return &META_Gd__gd_core__AceofSpades; }
+      |                        ^~~~~~~~~~~~~~~~~~~~~~~~
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\sparse_timer_bundle\bundle_src\gen\shards\shard_03.cpp:248:24: error: source locations for function 'Gd__gd_core__AceofSpades::meta() const' have changed, the profile data may be out of date [-Werror=coverage-mismatch]
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\sparse_timer_bundle\bundle_src\gen\shards\shard_03.cpp: In member function 'Gd__gd_core__AceofSpades::init_fields(gd::BattleCtx&)':
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\sparse_timer_bundle\bundle_src\gen\shards\shard_03.cpp:242:6: error: source locations for function 'Gd__gd_core__AceofSpades::init_fields(gd::BattleCtx&)' have changed, the profile data may be out of date [-Werror=coverage-mismatch]
+  242 | void Gd__gd_core__AceofSpades::init_fields(gd::BattleCtx& gd_ctx) {
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\sparse_timer_bundle\bundle_src\gen\shards\shard_03.cpp:242:6: error: source locations for function 'Gd__gd_core__AceofSpades::init_fields(gd::BattleCtx&)' have changed, the profile data may be out of date [-Werror=coverage-mismatch]
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\sparse_timer_bundle\bundle_src\gen\shards\shard_03.cpp: In function '(anonymous namespace)::native_scan_has_timers_exact(gd::BattleCtx&, gd::GdVal const&)':
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\sparse_timer_bundle\bundle_src\gen\shards\shard_03.cpp:14:32: warning: profile for function '(anonymous namespace)::native_scan_has_timers_exact(gd::BattleCtx&, gd::GdVal const&)' not found in profile data [-Wmissing-profile]
+   14 | __attribute__((noinline)) bool native_scan_has_timers_exact(gd::BattleCtx& battle, const gd::GdVal& slot) {
+      |                                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\sparse_timer_bundle\bundle_src\gen\shards\shard_03.cpp: In function '(anonymous namespace)::native_scan_item_exact(gd::BattleCtx&, gd::GdVal const&)':
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\sparse_timer_bundle\bundle_src\gen\shards\shard_03.cpp:7:56: warning: profile for function '(anonymous namespace)::native_scan_item_exact(gd::BattleCtx&, gd::GdVal const&)' not found in profile data [-Wmissing-profile]
+    7 | __attribute__((noinline)) const Gd__gd_core__CoreItem* native_scan_item_exact(gd::BattleCtx& battle, const gd::GdVal& slot) {
+      |                                                        ^~~~~~~~~~~~~~~~~~~~~~
+cc1plus.exe: some warnings being treated as errors
+

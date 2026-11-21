@@ -1,0 +1,25 @@
+Awaiting original build PID 24860
+Reproduced cached-buffer sharing on all four copy/move/assignment cases
+Built C:\Users\Windows\AppData\Local\Temp\native-sparse-timer-bundle-88_7ofav\release_copy_fixed.dll (compiled 20/20, linked 20 objs) in 320.03s
+Corrected release 7c65d70f2bb606d0c556a54b98ec2c43849acade1b1d82f4c552ee815a2171fb
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\sparse_timer_bundle\validate_then_compare.py", line 49, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\sparse_timer_bundle\validate_then_compare.py", line 37, in main
+    assert (WORK/'metadata_purity_rebuild.json').is_file(),'Await metadata-purity/FuncRef validity correction before verification and timing'
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+AssertionError: Await metadata-purity/FuncRef validity correction before verification and timing
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\sparse_timer_bundle\fix_copy_and_rebuild.py", line 96, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\sparse_timer_bundle\fix_copy_and_rebuild.py", line 93, in main
+    subprocess.run([sys.executable,'-u','-X','utf8',str(WORK/'validate_then_compare.py'),
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        '--build-pid','0','--created','0'],check=True)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe', '-u', '-X', 'utf8', 'D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_perf50\\sparse_timer_bundle\\validate_then_compare.py', '--build-pid', '0', '--created', '0']' returned non-zero exit status 1.
