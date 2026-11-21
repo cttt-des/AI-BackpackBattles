@@ -1,0 +1,30 @@
+{
+  "status": "regression_retained_not_deployed",
+  "runtime_unchanged": true,
+  "baseline_dll_sha256": "7af5ff948b949859339f0897a6d857953ae8e3b30ec451cee030672ba9c5129b",
+  "candidate_dll_sha256": "9e541820dba081c641f259dc64738346210300ea2dabde908b0d419648dd864f",
+  "metrics": {
+    "main_thread_cpu_s": {
+      "paired_median_time_reduction_pct": -6.111111111111112,
+      "sum_time_reduction_pct": -6.0845070422535175,
+      "candidate_wins": 0,
+      "ties": 1,
+      "pairs": 24
+    },
+    "wall_s": {
+      "paired_median_time_reduction_pct": -6.479986051904952,
+      "sum_time_reduction_pct": -6.416365265773405,
+      "candidate_wins": 0,
+      "ties": 0,
+      "pairs": 24
+    }
+  },
+  "epoch_invalidations": 311497,
+  "prior_invalidations": 462029,
+  "interpretation": "The getter false invalidation was corrected, but the full package regressed. Epoch counts are not speed/rebuild counts. Keep all data and components.",
+  "next_direction": "Compose only eager exact-row allocation and known-pure dead AddSpeed trace construction on accepted7af; do not carry active sparse index maintenance into that comparison.",
+  "not_run": [
+    "2604 strict original full gate for rejected package",
+    "release24 raw batches"
+  ]
+}

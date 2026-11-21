@@ -613,3 +613,17 @@ CoreItem 从 1,696 字节、8 字节对齐改为 1,792 字节、64 字节对齐�
 随后的诊断直接读取同一 DLL 已有的 TLS epoch，没有改变受测二进制：固定 200 场记录到 **462,029 次失效**，约为角色计时器阶段次数的 1.19 倍。计数包含装配、数组变更及回调，不能直接等同于重建次数。另一个小型反例证实，未经过生成分配器的普通 CoreContext，连续两次纯 getter 会造成两次失效，且没有缓存类型；经过预填的同类对象零失效，未知 C++ getter 仍正确执行两次并失效两次。这是维护路径可修正的误判，不是关闭未知回调保护的理由。下一候选在真正进入 getter／回调时只识别一次精确类型；资格预读仍对未识别的未来项保守保留，避免提前解引用占位对象。修正后重新直接测整个组合，当前运行时保持 `7af5ff94…`。[实际失效计数](../output/_v1110/native_perf50/sparse_timer_bundle/epoch_probe.json) · [普通 getter 反例](../output/_v1110/native_perf50/sparse_timer_bundle/known_getter_negative.json)
 
 同时记录下一日志候选：addSpeed 当前无条件构造 trace_diag 参数，其中包含 getTopLeftCell 动态调用，不能简单删除。只有证明类型、参数及位置读取均无副作用且诊断关闭时才可省略；未知覆写、对象转字符串的实例 ID 副作用、位置对象 getter 和诊断开启路径都须保留。此项仅源码审视，未实现、未计入收益。[后续诊断参数审视](../output/_v1110/native_perf50/post_scan_bundle_profile/diagnostic_followup_review.json)
+
+上述试验及反例已提交 `a2eb92d3`，远端备份 `8255e523`；704 份生产源码与已验收 `7af5ff94…` DLL／运行时清单再次核对原始字节一致。
+
+### 稀疏索引失效分类修正（未合入，保留）
+
+已实现前述修正：只在实际 getter／回调入口第一次遇到对象时解析精确 RTTI，缓存生成类型或未知类型结果。已识别的生成对象走原 getter，不再误报失效；真正未知或审计不符的对象每次进入仍先使索引失效。新解析也记录原来的惰性解析和未知类型诊断计数。资格预读保持原来的保守规则，未识别的未来项不会为了索引提前执行 RTTI／虚方法。普通未启用稀疏路径的上下文保持旧规则。
+
+新候选继续包含先前已验证的复制清缓存、未知 meta 无额外调用、数组别名与内联写入追踪、原顺序回退及饱和／嵌套保护。相对上一个试验没有再改对象布局；相对当前部署版仍采用完整 20 单元重建与全新 18 单元 PGO。修改前已核对远端 `8255e523` 的生产源码／DLL。测试新增要求为普通未预填 getter 零误失效且缓存类型、预填 getter 零失效、未知 getter 保持两次调用与两次失效。正在构建，尚无新 A/B 结果，当前运行时仍为 `7af5ff94…`。[修正实现](../output/_v1110/prototype_native_sparse_timer_lazy_bundle.py) · [新组合测量方案](../output/_v1110/native_perf50/sparse_timer_lazy_bundle/evaluation_plan.json)
+
+最终候选 `9e541820…` 完成新 PGO 和全部前置检查。普通 getter 零误失效且缓存类型，未知 getter 保持两次调用／两次失效；既有 1,348 次分配、复制、回调、元数据纯度、索引／原遍历、数组、RNG 及三场严格原版检查均通过。704 份源码再生成两遍一致。固定 200 场结果签名不变，epoch 失效数从 462,029 降至 **311,497**（约 −32.6%）；这不是重建次数或耗时收益。[getter 验证](../output/_v1110/native_perf50/sparse_timer_lazy_bundle/known_getter_test.json) · [实际失效计数](../output/_v1110/native_perf50/sparse_timer_lazy_bundle/epoch_probe.json)
+
+完整三组各八对仍显示退化：CPU 中位／累计耗时 **增加 6.11%／6.08%**，0 对更快、1 对持平；墙钟中位／累计 **增加 6.48%／6.42%**，24 对全部更慢。三组中位均反向，去掉任一组后的累计仍反向；全程接电，后台负载 **1.06%–9.35%**。因此不部署，未跑该候选的 2,604 场发布验收或发布 24 批。保留全部组件与数据，不将计数改善当作实际提速。稀疏路径在当前回调／维护结构下优先级下降；下一轮从已部署版尝试分配时方法表预填与诊断参数省略，避免把它们的价值与这笔索引维护成本混为一谈。[完整对照](../output/_v1110/native_perf50/sparse_timer_lazy_bundle/ab_assessment.json)
+
+已实现独立的 addSpeed 诊断参数原型，尚未编译／测速。它只对已证明无覆写的生成类型、普通有限 Vec2 坐标、纯参数、精确 Context／Rng／ItemData 及关闭的诊断生效；未知或开启路径保留整条原调用。特别保留先前未知 descriptor getter 修复未来坐标／RNG 字段的顺序，检查 descriptor 的纯度在预读位置数组之前。数值更新及两个后续 tooltip 快照均不改动。[原型](../output/_v1110/prototype_native_addspeed_trace.py) · [源码预检](../output/_v1110/native_perf50/post_scan_bundle_profile/addspeed_prototype_preflight.json)
