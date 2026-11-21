@@ -1,0 +1,18 @@
+{
+  "decision": "accept_whole_bundle_after_guarded_installation",
+  "candidate_dll_sha256": "401376afb48e5340be48578aa534eac0b823a69d3447044639e3d3ee5cb7a259",
+  "primary_pairs": 24,
+  "independent_loaded_pairs": 16,
+  "primary_three_group_medians_all_positive": true,
+  "primary_cpu_median_reduction_pct": 1.9327731092437017,
+  "primary_wall_median_reduction_pct": 1.6319400237955195,
+  "primary_sum_cpu_reduction_pct": 0.35559067562228597,
+  "primary_sum_wall_reduction_pct": 0.6081692636697333,
+  "loaded_cpu_median_reduction_pct": 2.89870293546185,
+  "loaded_wall_median_reduction_pct": 2.9133915890426243,
+  "all_outliers_retained": true,
+  "single_calibration_fit20_fps": 114.95502937494335,
+  "goal140_reached": false,
+  "reason": "Repeatable whole-package paired gains across groups and fixed added load; full2604 truth/hash and raw24 passed. Independent fits are contextual, not a causal comparison. Retain the single lower fit and continue the goal.",
+  "each_component_individual_gain_not_proven": true
+}

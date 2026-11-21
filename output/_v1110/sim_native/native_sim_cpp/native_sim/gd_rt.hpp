@@ -656,6 +656,7 @@ struct BattleCtx {
 void register_class(const GdClassMeta* meta);
 const GdClassMeta* find_class(std::string_view name_or_path);
 const GdClassMeta* find_class_by_id(ClsId id);
+GdObj* try_native_allocate_initialized(BattleCtx&,const GdClassMeta*);
 GdVal construct_class(BattleCtx& ctx, const GdClassMeta* cls, const GdVal* args, int argc);
 GdVal load_resource(std::string_view path);
 GdVal get_named_color(std::string_view name);

@@ -1,0 +1,27 @@
+{
+  "reason": "Review found that adding new method slots would populate the unknown-object cache before a previously uncached C++ callback. Stop this identified build, preserve its source, fix the fallback and rebuild from fresh PGO.",
+  "stopped_build_pid": 6120,
+  "owned_children": [
+    {
+      "pid": 18620,
+      "name": "python.exe"
+    },
+    {
+      "pid": 3484,
+      "name": "g++.exe"
+    },
+    {
+      "pid": 19108,
+      "name": "g++.exe"
+    },
+    {
+      "pid": 15520,
+      "name": "cc1plus.exe"
+    },
+    {
+      "pid": 24160,
+      "name": "cc1plus.exe"
+    }
+  ],
+  "no_candidate_dll_deployed": true
+}

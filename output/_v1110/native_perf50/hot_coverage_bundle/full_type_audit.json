@@ -1,0 +1,39 @@
+{
+  "candidate_dll_sha256": "401376afb48e5340be48578aa534eac0b823a69d3447044639e3d3ee5cb7a259",
+  "fights": 2604,
+  "coverage": {
+    "generic_hits": 150559622,
+    "funcref_hits": 2143020,
+    "lazy_resolutions": 952008,
+    "unsupported_types": 2601,
+    "audit_mismatch": 0,
+    "selected_fallback": 4123200
+  },
+  "hot_slot_coverage": {
+    "new_method_hits": 1126227,
+    "new_field_hits": 16608087
+  },
+  "type_constructor_coverage": {
+    "type_hits": 51782642,
+    "type_fallback": 0,
+    "fused_initializations": 1134539,
+    "factory_fallback": 0
+  },
+  "old_event_kernel_type_mismatches": 0,
+  "receipts": [
+    "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_hot_coverage_bundle_bundle_host_phases_observed_base_current\\cpp",
+    "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_hot_coverage_bundle_bundle_host_phases_observed_base_last",
+    "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_hot_coverage_bundle_bundle_host_phases_reuse_0",
+    "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_hot_coverage_bundle_bundle_host_phases_reuse_1",
+    "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_hot_coverage_bundle_bundle_host_phases_reuse_2",
+    "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_hot_coverage_bundle_bundle_host_phases_reuse_3",
+    "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_hot_coverage_bundle_bundle_host_phases_reuse_4",
+    "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_hot_coverage_bundle_bundle_host_phases_reuse_5",
+    "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_hot_coverage_bundle_bundle_host_phases_reuse_6",
+    "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_hot_coverage_bundle_bundle_host_rng_phases_new_expand"
+  ],
+  "property_coverage": {
+    "field_hits": 72879505,
+    "selected_fallback": 0
+  }
+}

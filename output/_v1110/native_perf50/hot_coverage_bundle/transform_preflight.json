@@ -1,0 +1,221 @@
+{
+  "passed": true,
+  "method_slots": 128,
+  "property_slots": 64,
+  "shared_property_rows": 43,
+  "unchanged_original_getter_and_method_switches": 1348,
+  "old112_methods_and32_fields_preserved": true,
+  "new_methods": [
+    {
+      "method": "attack",
+      "symbol": "SYM_GEN_attack_941",
+      "selection_origin": "static_call_sites"
+    },
+    {
+      "method": "useMana",
+      "symbol": "SYM_GEN_useMana_332",
+      "selection_origin": "static_call_sites"
+    },
+    {
+      "method": "cleanseRandomDebuffs",
+      "symbol": "SYM_GEN_cleanseRandomDebuffs_356",
+      "selection_origin": "static_call_sites"
+    },
+    {
+      "method": "giveMaxHealth",
+      "symbol": "SYM_GEN_giveMaxHealth_317",
+      "selection_origin": "static_call_sites"
+    },
+    {
+      "method": "giveLucky",
+      "symbol": "SYM_GEN_giveLucky_215",
+      "selection_origin": "static_call_sites"
+    },
+    {
+      "method": "giveMostBuffs",
+      "symbol": "SYM_GEN_giveMostBuffs_367",
+      "selection_origin": "static_call_sites"
+    },
+    {
+      "method": "onPreDealDamage_early",
+      "symbol": "SYM_GEN_onPreDealDamage_early_945",
+      "selection_origin": "static_call_sites"
+    },
+    {
+      "method": "onPrepare",
+      "symbol": "SYM_GEN_onPrepare_123",
+      "selection_origin": "static_call_sites"
+    },
+    {
+      "method": "changeChargedItemStat",
+      "symbol": "SYM_GEN_changeChargedItemStat_326",
+      "selection_origin": "static_call_sites"
+    },
+    {
+      "method": "onChargeEnteredCell",
+      "symbol": "SYM_GEN_onChargeEnteredCell_2059",
+      "selection_origin": "static_call_sites"
+    },
+    {
+      "method": "emitCharge",
+      "symbol": "SYM_GEN_emitCharge_2058",
+      "selection_origin": "static_call_sites"
+    },
+    {
+      "method": "giveSpikes",
+      "symbol": "SYM_GEN_giveSpikes_209",
+      "selection_origin": "static_call_sites"
+    },
+    {
+      "method": "chargeReceived",
+      "symbol": "SYM_GEN_chargeReceived_324",
+      "selection_origin": "static_call_sites"
+    },
+    {
+      "method": "onChargeReceived",
+      "symbol": "SYM_GEN_onChargeReceived_2129",
+      "selection_origin": "static_call_sites"
+    },
+    {
+      "method": "giveRandomBuffs",
+      "symbol": "SYM_GEN_giveRandomBuffs_369",
+      "selection_origin": "static_call_sites"
+    },
+    {
+      "method": "combatEndDeferred",
+      "symbol": "SYM_GEN_combatEndDeferred_1335",
+      "selection_origin": "static_call_sites"
+    }
+  ],
+  "new_properties": [
+    {
+      "symbol": "SYM_GEN_buffs_1048",
+      "static_property_call_sites": 7
+    },
+    {
+      "symbol": "SYM_GEN_frame_counter_1413",
+      "static_property_call_sites": 7
+    },
+    {
+      "symbol": "SYM_GEN_shopChance_1683",
+      "static_property_call_sites": 7
+    },
+    {
+      "symbol": "SYM_GEN_cube_advanced_1426",
+      "static_property_call_sites": 7
+    },
+    {
+      "symbol": "SYM_GEN_signalName_1013",
+      "static_property_call_sites": 6
+    },
+    {
+      "symbol": "SYM_GEN_type_1005",
+      "static_property_call_sites": 6
+    },
+    {
+      "symbol": "SYM_GEN_placedByPlayer_50",
+      "static_property_call_sites": 5
+    },
+    {
+      "symbol": "SYM_GEN_placed_6",
+      "static_property_call_sites": 5
+    },
+    {
+      "symbol": "SYM_GEN_chainPosition_882",
+      "static_property_call_sites": 5
+    },
+    {
+      "symbol": "SYM_GEN_cards_1832",
+      "static_property_call_sites": 5
+    },
+    {
+      "symbol": "SYM_GEN_pieceColor_2135",
+      "static_property_call_sites": 5
+    },
+    {
+      "symbol": "SYM_GEN_items_1092",
+      "static_property_call_sites": 5
+    },
+    {
+      "symbol": "SYM_GEN_rope_speedups_1425",
+      "static_property_call_sites": 5
+    },
+    {
+      "symbol": "SYM_GEN_baseStaminaRegen_1057",
+      "static_property_call_sites": 5
+    },
+    {
+      "symbol": "SYM_GEN_stackType_2388",
+      "static_property_call_sites": 5
+    },
+    {
+      "symbol": "SYM_GEN_animationScene_1695",
+      "static_property_call_sites": 4
+    },
+    {
+      "symbol": "SYM_GEN_nextCell_1652",
+      "static_property_call_sites": 4
+    },
+    {
+      "symbol": "SYM_GEN_in_physics_timer_pass_1446",
+      "static_property_call_sites": 4
+    },
+    {
+      "symbol": "SYM_GEN_activationAni_1717",
+      "static_property_call_sites": 4
+    },
+    {
+      "symbol": "SYM_GEN_curRecipe_577",
+      "static_property_call_sites": 4
+    },
+    {
+      "symbol": "SYM_GEN_healthDamage_1519",
+      "static_property_call_sites": 4
+    },
+    {
+      "symbol": "SYM_GEN_fatigueDamageSource_1430",
+      "static_property_call_sites": 4
+    },
+    {
+      "symbol": "SYM_GEN_gainedStacks_1714",
+      "static_property_call_sites": 3
+    },
+    {
+      "symbol": "SYM_GEN_extraCds_1680",
+      "static_property_call_sites": 3
+    },
+    {
+      "symbol": "SYM_GEN_flickerMinDist_1697",
+      "static_property_call_sites": 3
+    },
+    {
+      "symbol": "SYM_GEN_flickerMaxDist_1698",
+      "static_property_call_sites": 3
+    },
+    {
+      "symbol": "SYM_GEN_flickerMinSpeed_1699",
+      "static_property_call_sites": 3
+    },
+    {
+      "symbol": "SYM_GEN_flickerMaxSpeed_1700",
+      "static_property_call_sites": 3
+    },
+    {
+      "symbol": "SYM_GEN_fight_ended_1305",
+      "static_property_call_sites": 3
+    },
+    {
+      "symbol": "SYM_GEN_accuracy_1545",
+      "static_property_call_sites": 3
+    },
+    {
+      "symbol": "SYM_GEN_params_1570",
+      "static_property_call_sites": 3
+    },
+    {
+      "symbol": "SYM_GEN_ctx_3",
+      "static_property_call_sites": 3
+    }
+  ],
+  "source_and_dll_not_deployed": true
+}

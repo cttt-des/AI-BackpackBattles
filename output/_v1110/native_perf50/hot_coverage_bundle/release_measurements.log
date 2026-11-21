@@ -1,0 +1,101 @@
+Starting one raw24 run
+bundle.dll: 24 batches, median 119.31 replays/s, minimum 54.55; 2e74b45caa87
+Starting one controlled load-calibration24 run
+Warming controlled load for 30 seconds
+bundle.dll: 24 batches, median 107.69 replays/s, minimum 89.73; 2e74b45caa87
+{
+  "dll_sha256": "401376afb48e5340be48578aa534eac0b823a69d3447044639e3d3ee5cb7a259",
+  "inputs_sha256": "d94b16d42cc88e9a3850a77c9360b9c4c4fdd676cb252e463044a903db2a5fef",
+  "workers": 1,
+  "samples": 24,
+  "fights_per_sample": 200,
+  "load_field": "background_load_pct",
+  "power_source_ac": true,
+  "minimum_load_pct": 14.857432676599373,
+  "maximum_load_pct": 41.32704824580601,
+  "log_wall_seconds_intercept": 0.30508961359545783,
+  "log_wall_seconds_per_load_point": 0.0124343374991215,
+  "r_squared_log_wall_time": 0.9095934456797974,
+  "reference_load_pct": 20.0,
+  "fitted_fights_per_second_at_reference_load": 114.95502937494335,
+  "fitted_wall_time_change_per_ten_load_points": 0.13240464368252322,
+  "validation": {
+    "median_absolute_relative_time_error": 0.02204677675449885,
+    "p90_absolute_relative_time_error": 0.05973691014193159,
+    "constant_median_absolute_relative_time_error": 0.11926080469045564
+  },
+  "estimated_fights_per_second_at_reference_load_by_sample": [
+    116.18378529845107,
+    117.13303430083866,
+    110.75609845300991,
+    106.94840160666826,
+    118.20177968132352,
+    116.74923433632324,
+    115.78075789936416,
+    112.40290049042655,
+    112.82975002699182,
+    119.83202022705554,
+    114.82471439329844,
+    114.24837267089927,
+    118.2727947793198,
+    116.07295062080948,
+    122.00143162567332,
+    112.48582338316119,
+    112.74226021622601,
+    111.50066840349473,
+    118.83053091678599,
+    109.5469010516946,
+    114.3171365443857,
+    114.74305023604725,
+    121.80350554027483,
+    112.11462101105951
+  ],
+  "background_calibration": {
+    "workers": 2,
+    "priority": "below_normal",
+    "period_seconds": 0.02,
+    "busy_fractions": [
+      0.2,
+      0.85
+    ],
+    "phase_seconds": 10,
+    "maximum_duration_seconds": 120,
+    "elapsed_seconds": 86.39043490000768,
+    "warmup_seconds": 30.0
+  }
+}
+{
+  "dll_sha256": "401376afb48e5340be48578aa534eac0b823a69d3447044639e3d3ee5cb7a259",
+  "serial": {
+    "median_fights_per_second": 119.3121583621806,
+    "minimum_fights_per_second": 54.54654745986603,
+    "background_load_range_pct": [
+      10.42317602340433,
+      60.71369632170717
+    ],
+    "on_ac_all": true
+  },
+  "load_calibration": {
+    "median_fights_per_second": 107.68962167085388,
+    "minimum_fights_per_second": 89.73462778544776,
+    "background_load_range_pct": [
+      14.857432676599373,
+      41.32704824580601
+    ],
+    "on_ac_all": true
+  },
+  "fitted_fights_per_second_at20": 114.95502937494335,
+  "r_squared_log_wall_time": 0.9095934456797974,
+  "fit_validation": {
+    "median_absolute_relative_time_error": 0.02204677675449885,
+    "p90_absolute_relative_time_error": 0.05973691014193159,
+    "constant_median_absolute_relative_time_error": 0.11926080469045564
+  },
+  "report_sha256": {
+    "bundle_serial.json": "9c8b244b0c0bd24438ed3c445db92a338752132682ae48cd0f541b4f8b8dd9c3",
+    "bundle_load_calibration.json": "d8a0688999adf369a09e144b4ffb84e6b9c561885bb4701c7e6ddfa3c4cdadc7",
+    "bundle_load20.json": "8e898ed2f6ddced7ee200aca51dd52a0d39131a299763f4b419b876f534e03cd"
+  },
+  "single_run_all_samples_retained": true,
+  "raw24_gate_passed": true
+}

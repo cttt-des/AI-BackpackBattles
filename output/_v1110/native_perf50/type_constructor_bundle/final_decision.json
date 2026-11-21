@@ -1,0 +1,20 @@
+{
+  "decision": "retain_without_deployment",
+  "reason": "32-pair small positive medians with negative sums; independent loaded16 remains inconclusive. No stable repeatable gain confirmed.",
+  "baseline_dll_sha256": "14263d42d22021a83849baffddf2f6288694886f2733a66c0473850b37407548",
+  "candidate_dll_sha256": "742ef705e583387510341a9f9055ba80bb6160a1f6290f55ef68ac6970fd081a",
+  "all2604_strict_and_event_hashes_passed": true,
+  "raw24_passed": true,
+  "fitted20_fps": 128.83614850480603,
+  "additional_same_candidate_runs": 0,
+  "components_retained_for_new_compositions": true,
+  "goal140_reached": false,
+  "evidence_sha256": {
+    "ab_assessment.json": "12f2c99c1694074c0c5a2184c439f6e4fc652fb7fc6ead3298107219b68d2cd4",
+    "ab_assessment_32.json": "a94de3354da053da226d4f08a5e27d0bb6720ba8f03c890ccbd5e4c0b756cdf8",
+    "target_load_assessment.json": "9f58dad2d8ee3d17bedae1bf4945fe0f384591968064a399131738f3e61e0729",
+    "bundle_full_gate.json": "88356fba20dbf9cd4fce05dcdd140826f2de5507693a6a44e84a9ece33aef05e",
+    "bundle_vs_deployed_hashes.json": "efaa1ae87d65369a291bf28c75e301b2b7416fa3ddcc560ed9954da2a0201e09",
+    "measurements_summary.json": "775d93dbf9cb71335738dbf1b6a77debc52c2a3b6708d390f5e74808027c5f1d"
+  }
+}

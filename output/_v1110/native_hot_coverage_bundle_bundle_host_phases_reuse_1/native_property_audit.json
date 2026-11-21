@@ -1,0 +1,8 @@
+{
+  "dll_sha256": "401376afb48e5340be48578aa534eac0b823a69d3447044639e3d3ee5cb7a259",
+  "verifier_exit_code": 0,
+  "coverage": {
+    "field_hits": 11282297,
+    "selected_fallback": 0
+  }
+}
