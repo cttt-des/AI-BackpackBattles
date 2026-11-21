@@ -667,6 +667,8 @@ void set_prop(BattleCtx& ctx, GdVal& recv, SymId prop, const GdVal& val);
 GdVal get_index(BattleCtx& ctx, const GdVal& recv, const GdVal& key);
 void set_index(BattleCtx& ctx, GdVal& recv, const GdVal& key, const GdVal& val);
 bool try_native_resolved_dispatch(BattleCtx&,GdObj*,SymId,const GdVal*,int,GdVal&,unsigned);
+void native_resolved_seed(GdObj*,unsigned);
+bool native_resolved_cached_generated(const BattleCtx&,const GdObj*);
 GdVal call_method(BattleCtx& ctx, const GdVal& recv, SymId method, const GdVal* args, int argc);
 GdVal call_method_dyn(BattleCtx& ctx, const GdVal& recv, const GdVal& method_name, const GdVal* args, int argc);
 bool gd_is_type(const GdVal& v, const GdClassMeta* cls);

@@ -1,0 +1,18 @@
+401 enum lookup and 9 full constructor cases matched baseline
+1624 Buff scan state/callback and40 cooldown-flag cases matched baseline
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\eager_trace_bundle\verify_resolved.py", line 108, in <module>
+    main()
+    ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\eager_trace_bundle\verify_resolved.py", line 61, in main
+    trace_results[label]=json.loads(subprocess.check_output([str(executable)],text=True))
+                                    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 473, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+               **kwargs).stdout
+               ^^^^^^^^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['C:\\Users\\Windows\\AppData\\Local\\Temp\\native-inline-timer-candidate-9ji1e9am\\baseline\\addspeed_trace.exe']' returned non-zero exit status 3221225477.

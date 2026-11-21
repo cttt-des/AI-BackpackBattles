@@ -1,0 +1,23 @@
+{
+  "baseline_dll_sha256": "7af5ff948b949859339f0897a6d857953ae8e3b30ec451cee030672ba9c5129b",
+  "verified_remote_backup": "7da8b44d591caa4f65a7c1a177d1a81b0950dba0",
+  "components": ["674 generated allocator exact method-row seeds", "pure disabled AddSpeed trace argument elision"],
+  "no_sparse_timer_index_or_callback_tracking": true,
+  "new_object_or_context_layout": false,
+  "measurement": {
+    "fixed_original_fights": 200,
+    "single_thread": true,
+    "groups": 3,
+    "pairs_per_group": 8,
+    "warmup_seconds": 120,
+    "normal_worker_priority_all_8_logical_cpus": true,
+    "alternating_order": true,
+    "compilation_profiling_writes_during_timing": false,
+    "retain_all_negative_and_extreme_pairs": true,
+    "report": ["paired CPU and wall reductions", "cumulative CPU and wall reductions", "group consistency", "leave-one-group-out cumulative results", "power and observed background load"],
+    "interpretation": "Judge the whole composition. Inconclusive components may remain candidates. Do not add historical percentages or assign aggregate gains to individual components. An optional later ablation must use new direct comparisons."
+  },
+  "required_before_comparison": ["targeted baseline/candidate diagnostic and callback differential", "1348 allocator flag checks", "existing dispatch/RNG/array/timer regressions", "source-identical fresh PGO", "704-file generation twice", "fixed200 signatures and zero type audit mismatches"],
+  "required_before_deployment": ["2604 strict original per-event cases", "unchanged per-case event hashes", "24 consecutive raw batches all at least50 fights/s", "20percent-load calibrated report with power/load range", "DLL and manifest/report SHA verification", "normal training smoke"],
+  "formal_results": "pending"
+}
