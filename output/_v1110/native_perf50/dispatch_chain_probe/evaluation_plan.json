@@ -1,0 +1,51 @@
+{
+  "baseline_dll_sha256": "00cbcf9d9467feab8d8d99aa437683af507c5f924ee90a9b9f076b661d5c6a60",
+  "generated_classes": 674,
+  "pure_dispatch_and_has_method_classes": 674,
+  "names": [
+    "onCombatStart",
+    "getGatedDescriptor",
+    "getReplaceDescriptor",
+    "onChargeReceived",
+    "onChargeLeft",
+    "chargedItemStatChange",
+    "onPreDealDamage_early",
+    "onPreDealDamage_late",
+    "onDealtDamage"
+  ],
+  "symbols": {
+    "onCombatStart": "SYM_GEN_onCombatStart_934",
+    "getGatedDescriptor": "SYM_GEN_getGatedDescriptor_956",
+    "getReplaceDescriptor": "SYM_GEN_getReplaceDescriptor_2029",
+    "onChargeReceived": "SYM_GEN_onChargeReceived_2129",
+    "onChargeLeft": "SYM_GEN_onChargeLeft_2130",
+    "chargedItemStatChange": "SYM_GEN_chargedItemStatChange_2060",
+    "onPreDealDamage_early": "SYM_GEN_onPreDealDamage_early_945",
+    "onPreDealDamage_late": "SYM_GEN_onPreDealDamage_late_906",
+    "onDealtDamage": "SYM_GEN_onDealtDamage_908"
+  },
+  "safe_noop_cases": 2,
+  "existing_object_context_method_row_and_funcref_layout_unchanged": true,
+  "unsupported_uncached_unknown_audit_mismatch_and_bound_references_fallback": true,
+  "helper_sha256": "1a6bde9b217ca8975cefd120c39567c439014667b654e3e35c2794504413a6da",
+  "callback_sha256": "e10193331e19dbaf3f314f63c1acc13c0066324076616d83c6f2ea068c29309f",
+  "original_functions_sha256": {
+    "_behavior_call": "ffb3c3e689b659690c9d5f544ee628efd6288033136de9420bb877e447254e95",
+    "_hasBehaviorMethod": "8532d58573b2c31eb375d0782940cd34fabb013e561cebaaec34d0d6fe496f3d"
+  },
+  "local_protocol": {
+    "pairs": 8,
+    "behavior_calls_per_arm": 100000,
+    "callback_calls_per_arm": 1000000,
+    "retain_first_and_all_results": true,
+    "no_whole_fight_gain_claim": true
+  },
+  "hash_guard_revision": {
+    "reason": "Original gd_eq uses stored string hashes before comparing bytes; preserve mismatched-hash short circuit including unread data pointers",
+    "old_prototype_screen_retained": "screen.json",
+    "first_corrected_variant_screen": "screen_hash_guard.json",
+    "additional_malformed_cases": 31104,
+    "original310500_case_hashes_must_remain_identical": true,
+    "performance_protocol_unchanged": true
+  }
+}

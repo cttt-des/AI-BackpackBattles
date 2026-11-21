@@ -929,3 +929,31 @@ Buff参数仅略过 Null、Bool、Int、Str及原格式器会进入整数分支�
 下一轮按45项审视的结构主线，优先研究武器触发／伤害链的定型入口与事件／监听器表示；开始前先推送本次已验收源码与DLL并核对远端，再依据新DLL采样选择一条纵向闭环。静态getter与setup这一包已经完成，不继续对同包重复测速。
 
 部署版新采样取得2,037栈、2,033个有效回放根。触发链包含825个样本，武器doCooldownEffect375、事件总线emitAndLog342；主要叶节点为物理帧241、角色计时器122、事件总线51、相等比较41、运动队列36。通用调用到intern_sym有21个叶样本，可作为同一效果链内的候选；包含样本互相重叠，不相加为收益。保存新采样及互斥阶段汇总，供下一轮选择路径。[新采样](../output/_v1110/native_perf50/static_setup_bundle/profile_depth64.json) · [可复算汇总](../output/_v1110/native_perf50/static_setup_bundle/brainstorm_profile_summary.json)
+
+### 行为路由与事件回调链扁平化（构建中）
+
+以远端1bf22370已核对的00cb为基线，沿伤害触发链处理两个具体的间接调用段。第一项为CoreItem的九项SELF_BEHAVIOR_METHODS：对已有精确类型行的生成对象，用单独只读方法表解析最派生实现，省去临时白名单数组及has_method／callv重复解析；仍执行同一个原方法体。674类的call_method和has_own_method父链均证明无副作用，另逐项证明现有缓存行的metadata确实属于对应类，防止把共享代表行用于新方法覆写。静态遮蔽、未知／未缓存对象、关闭路径、审计错行以及符号重登记均保留原回退。行为对象非Null也走完整旧分支。
+
+第二项在事件总线的native_event_funcv处，对无绑定参数、已缓存且命中的FuncRef直接调用原函数指针；参数数组仍以相同data／len传入，保留原FuncRef／非空／argc条件后才读取args[0]。有绑定、未知、未缓存、失效引用及未覆盖方法全部回退原call_funcv，不改变FuncRef对Object builtin的原Null规则。原方法表128槽、对象、上下文、FuncRef布局及全部674份类头不改；原方法体、算术、帧阶段、RNG及回调顺序不改。没有引入新的事件记录表示，也不是重写整条伤害算法。
+
+实际旧DLL的初版310,440项差分通过，覆盖646个物品类、30种参数、冷／热缓存、开关、四种舍入、未知C++／错行、绑定与重绑定、符号重登记、返回位和旧派发计数。随后增加60项调用外壳边界，原310,440份哈希不变。审查发现原gd_eq会先比较String存储哈希，初版只比较长度和字节会对异常哈希给出不同判断；已用独立旧DLL负例复现，保留反例及旧初版源码／测速。修正版保留相同存储哈希判断及短路，新增31,104项不一致哈希、同长度另一白名单哈希、以及因哈希不匹配而不应读取的数据指针用例；最终 **341,604项**通过，原310,500份逐项哈希仍一致。[反例](../output/_v1110/native_perf50/dispatch_chain_probe/hash_negative.json) · [修正版局部检查](../output/_v1110/native_perf50/dispatch_chain_probe/screen_hash_guard.json)
+
+完整构建前声明修正版仅跑一份同样的局部8对，不覆盖旧记录、不反复重测同一源码。修正版行为／回调两个局部场景墙钟中位耗时降低 **65.5116%／8.5814%**，周期 **66.1813%／8.5538%**。两场景分别有4／1对基线CPU时间为零，因此CPU中位不报告；首版55.0081%／17.0981%的局部墙钟结果也完整保留，但不能外推整场或把两次环境差异归因于哈希修正。正式吞吐仍待固定200×4、三组各八对AB／BA。[修正前首份筛查](../output/_v1110/native_perf50/dispatch_chain_probe/screen.json) · [修正版首份筛查](../output/_v1110/native_perf50/dispatch_chain_probe/screen_hash_guard.json)
+
+四文件变换和gd_rt／物品／事件总线三个编译单元的语法预检通过后，启动全20单元计数／新18单元PGO，最高两项低优先级编译任务。正式DLL须与独立旧DLL的全部341,604份结果哈希匹配，再进入原整场门槛。当前部署仍为00cb，20%负载170.3125场/秒，200目标继续；本候选尚无整场收益，未部署。[正式预检](../output/_v1110/native_perf50/dispatch_chain_bundle/transform_preflight.json) · [本轮方案](../output/_v1110/native_perf50/dispatch_chain_bundle/evaluation_plan.json)
+
+### 行为路由与事件回调正式结果（已部署）
+
+正式DLL为 `39c559a0bc4ef04f89444be63b42b842884a7d2fee1d59c4332fcdc7367d8e0b`。实际生产方法和回调头文件的341,604份逐项结果哈希与独立旧00cb DLL一致；原属性、成员读取、角色状态复用、常量／装配、容器、计时器、RNG、ABI和两次完整再生成等检查通过。补充源码核对证明：九种行为中原128槽已覆盖的目标均与新解析的最派生方法完全一致；构建冻结源码没有因补充断言发生变化。[生产差分](../output/_v1110/native_perf50/dispatch_chain_bundle/dispatch_chain_tests.json) · [补充源码证明](../output/_v1110/native_perf50/dispatch_chain_bundle/additional_source_proof.json)
+
+计数构建固定200场：实际直达行为17,807次、行为资格查询57,618次、扁平回调100,900次，空行为短路0次。这里只统计命中，不将局部65%／8%的降幅外推整场，也不按“空行为”假定收益。[频次与边界](../output/_v1110/native_perf50/dispatch_chain_bundle/frequency_interpretation.json)
+
+首份三组共24对固定200×4单线程AB／BA：CPU配对中位／累计耗时减少 **1.6878%／1.4080%**，18胜1平5负；墙钟减少 **2.0715%／1.5056%**，19胜5负。三组CPU中位降幅2.4845%、1.8855%、0.2041%，墙钟2.0207%、2.3184%、1.1141%；逐一去掉任何一组后，中位及累计降幅仍均正向。接电，后台负载3.3960%–10.4063%。全部原始正反数据保留，以组合判断，不分别归因。[全部24对](../output/_v1110/native_perf50/dispatch_chain_bundle/ab_assessment.json)
+
+914+1,690=2,604场原版严格逐事件通过；所有逐场C++事件哈希与00cb相同，根仍b8066c92，类型不匹配0。全量行为直达275,579次、资格查询777,809次、扁平回调2,143,020次。原六项派发总计数也与00cb逐项相同，确认未靠少调用取得收益。[全量门槛](../output/_v1110/native_perf50/dispatch_chain_bundle/bundle_full_gate.json) · [逐场事件](../output/_v1110/native_perf50/dispatch_chain_bundle/bundle_vs_deployed_hashes.json) · [旧计数核对](../output/_v1110/native_perf50/dispatch_chain_bundle/legacy_counter_equivalence.json)
+
+首份连续24批原始中位 **211.9797**、最低 **173.6292场/秒**，全部超过50；接电，后台负载0.5504%–22.9600%。首份独立24批校准覆盖5.1733%–25.0687%，20%负载拟合 **171.7714场/秒**，R²0.87732，交叉验证耗时误差中位／P90为2.163%／6.498%。保留首份拟合，不将原始中位211.98视为达到20%负载200目标，也不把与上轮170.3125的独立拟合差额当作代码收益。[发布测量](../output/_v1110/native_perf50/dispatch_chain_bundle/measurements_summary.json)
+
+全部门槛通过后已部署本地默认训练运行时及生产源码；旧00cb保留于 `dist/native_1_1_10_before_dispatch_chain_bundle_20261122`。正常训练入口12场无错误、固定结果与旧版一致。部署后重读704份源码、674份未改类头、原逐事件／A/B／24批记录及新增四项计数，复算20%模型并核对DLL／清单／报告SHA，通过。GitHub v0.6.1附件仍保持原593a。[部署后复核](../output/_v1110/native_perf50/dispatch_chain_bundle/post_install_verification.json)
+
+新DLL采样2,043栈、2,042个有效回放根；主要叶节点为物理帧250、角色计时器133、事件总线54、运动队列43、通用调用克隆38、相等比较37、入包联动34、格子查询30。下一轮优先审视装配空间查询中的重复查找与稳定去重，兼顾帧内热点；先读现有实现并验证局部成本，不直接恢复旧全局失效索引或旧算术内联方案。[新采样](../output/_v1110/native_perf50/dispatch_chain_bundle/profile_depth64.json) · [互斥汇总](../output/_v1110/native_perf50/dispatch_chain_bundle/brainstorm_profile_summary.json)

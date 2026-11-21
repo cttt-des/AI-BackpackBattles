@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\preflight_native_dispatch_chain_bundle.py", line 22, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\preflight_native_dispatch_chain_bundle.py", line 15, in main
+    report=optimize(source)
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\prototype_native_dispatch_chain_bundle.py", line 49, in optimize
+    assert text.count(old)==1 and text.count('#include "native_inline_dispatch.hpp"')==1
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

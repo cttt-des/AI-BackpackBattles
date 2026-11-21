@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "cases": 310500,
+  "new_surface_cases": 60,
+  "original310440_hashes_unchanged": true,
+  "test_source_sha256": "74ac6ab35294ed444dc8fb98eb5d5c7e0d7d7dfdb69afeb50a695a6ac29b769a",
+  "revision": "Keep original FuncRef/nonnull/argc guard before evaluating args[0]; no remeasurement of original cost screen",
+  "scope": "Preflight adapter and boundary coverage; behavior and callback helper algorithms unchanged"
+}

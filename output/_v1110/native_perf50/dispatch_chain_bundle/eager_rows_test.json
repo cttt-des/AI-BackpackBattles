@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "dll_sha256": "39c559a0bc4ef04f89444be63b42b842884a7d2fee1d59c4332fcdc7367d8e0b",
+  "output": "{\"exact_allocations\":1348,\"rng_unchanged\":true}\n",
+  "compiled_against_candidate_headers": true
+}

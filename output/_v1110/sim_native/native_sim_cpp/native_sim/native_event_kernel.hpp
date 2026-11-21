@@ -1,5 +1,6 @@
 #pragma once
 #include "gd_rt.hpp"
+#include "native_inline_dispatch.hpp"
 #include "gen/hdrs/Gd__gd_core__CoreContext.hpp"
 #include "gen/hdrs/Gd__gd_core__CoreCharacter.hpp"
 #include "gen/hdrs/Gd__gd_core__CoreBuff.hpp"
@@ -48,8 +49,11 @@ gd::GdVal native_event_new(gd::BattleCtx& ctx,const gd::GdVal* args,int argc) {
     return gd::GdVal::from_obj(object);
 }
 inline gd::GdVal native_event_funcv(gd::BattleCtx& ctx,const gd::GdVal& value,const gd::GdVal* args,int argc) {
-    if(value.kind==gd::GdVal::Kind::FuncRef && value.fr && argc>=1)
+    if(value.kind==gd::GdVal::Kind::FuncRef && value.fr && argc>=1) {
+        gd::GdVal result;
+        if(gd::native_try_flat_funcref(ctx,value,args[0],result))return result;
         return value.fr->call_funcv(ctx,args[0]);
+    }
     return gd::call_method(ctx,value,gd::SYM_call_funcv,args,argc);
 }
 
@@ -83,7 +87,6 @@ inline bool native_event_identity_string(BattleArena& arena,const GdVal& identif
 }
 }
 
-#include "native_inline_dispatch.hpp"
 
 namespace gd {
 void native_event_identity_hit(unsigned);
@@ -120,7 +123,6 @@ inline bool native_try_event_identity(BattleCtx& ctx,const GdVal& emitter,
 }
 }
 
-#include "native_inline_dispatch.hpp"
 #include <limits>
 namespace gd {
 void native_event_identity_hit(unsigned);
@@ -149,7 +151,6 @@ inline bool native_try_event_emission_id(BattleCtx& ctx,const GdVal& emitter,
 }
 }
 
-#include "native_inline_dispatch.hpp"
 #include "gen/hdrs/Gd__gd_core__CoreItem.hpp"
 #include "gen/hdrs/Gd__gd_core__CoreItemData.hpp"
 #include "gen/hdrs/Gd__gd_core__CoreContext.hpp"
