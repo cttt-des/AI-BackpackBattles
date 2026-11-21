@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "dll_sha256": "d3c47cdfe1b3218e7936cc02f706e8452464c1420c5e1fe4bf6963f2e3844c14",
+  "source_files": 709,
+  "all_cpp_and_runtime_source_bytes_equal_to_original_compiled_candidate": true,
+  "same_original_source_identical_fresh_PGO_reused": true,
+  "no_new_compilation_or_PGO": true,
+  "incremental_baseline_dll_sha256": "6cb258ec1baf335d3bc8e9da1538b2edd8aee87669b05249728f4829b1c47785",
+  "original_comparison_baseline": "593acaf3",
+  "reason": "Directly isolate frame reuse relative to newly deployed member reads; no whole-DLL recompilation when every source byte is identical."
+}

@@ -1,0 +1,39 @@
+{
+  "baseline_dll_sha256": "6cb258ec1baf335d3bc8e9da1538b2edd8aee87669b05249728f4829b1c47785",
+  "verified_remote_backup": "42be0c4610c7d93fc8eb0f260269e1ab9725613f",
+  "components": [
+    "retained deployed member reads",
+    "independent frame state reuse"
+  ],
+  "excluded": [
+    "empty timer chunks",
+    "field tags",
+    "global NaN guards",
+    "arithmetic inlining"
+  ],
+  "measurement": {
+    "fixed_fights": 200,
+    "single_thread": true,
+    "groups": 3,
+    "pairs_per_group": 8,
+    "batch_repetitions": 4,
+    "warmup_seconds": 120,
+    "quiet": true,
+    "retain_all_results": true
+  },
+  "required": [
+    "component differentials against released593a",
+    "existing full regression",
+    "same-source fresh PGO",
+    "regeneration twice",
+    "2604 strict original event cases",
+    "every old/new CPP event hash equal",
+    "one raw24 all>=50fps",
+    "one calibration24 report",
+    "guarded deployment and normal training smoke"
+  ],
+  "no_auto_deploy": true,
+  "small_components_judged_as_bundle": true,
+  "reason": "Incremental paired ablation against member-only6cb, not a rerun of d3versus593. Reuse the already built candidate only if every source byte and its original fresh PGO receipt matches. Preserve both previous comparisons.",
+  "reused_candidate_dll": "d3c47cdfe1b3218e7936cc02f706e8452464c1420c5e1fe4bf6963f2e3844c14"
+}

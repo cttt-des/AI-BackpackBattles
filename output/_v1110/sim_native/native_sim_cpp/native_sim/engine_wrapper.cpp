@@ -1743,3 +1743,11 @@ static thread_local uint64_t native_lazy_diagnostic_counts[14]{};
 void native_lazy_diagnostic_hit(unsigned site,bool skipped) {if(site<7)++native_lazy_diagnostic_counts[site*2+(skipped?0:1)];}
 }
 extern "C" uint64_t gd_diag_native_lazy_diagnostic_stat(unsigned index) {return index<14?gd::native_lazy_diagnostic_counts[index]:0;}
+
+namespace gd {
+static thread_local uint64_t native_frame_segment_counts[17]{};
+void native_frame_segment_hit(unsigned index) {if(index<17)++native_frame_segment_counts[index];}
+}
+extern "C" uint64_t gd_diag_native_frame_segment_stat(unsigned index) {
+    return index<17?gd::native_frame_segment_counts[index]:0;
+}
