@@ -19,10 +19,10 @@ def digest(data):
 
 def main():
     exe = ROOT / 'dist/BackpackSimulator.exe'
-    wheel = ROOT / 'dist/backpack_battles_sim-0.6.0-cp314-cp314-win_amd64.whl'
+    wheel = ROOT / 'dist/backpack_battles_sim-0.6.1-cp314-cp314-win_amd64.whl'
     manifest = json.loads((ROOT / 'backpack_native/manifest.json').read_bytes())
     expected = json.loads((ROOT / 'backpack_native/selftest_case.json').read_bytes())['expected']
-    gate_bytes = (ROOT / 'output/_v1110/native_hot_path_full_gate.json').read_bytes()
+    gate_bytes = (ROOT / 'output/_v1110/native_perf50/lazy_diagnostics_bundle/bundle_full_gate.json').read_bytes()
     gate = json.loads(gate_bytes)
     assert manifest['gate_sha256'] == digest(gate_bytes)
     runtime = json.loads((ROOT / 'backpack_native/gd_core_runtime.json').read_bytes())
@@ -63,7 +63,7 @@ def main():
         for report in (wheel_report, exe_report):
             assert json.loads(report.read_bytes()) == expected, report
     report = {
-        'version': '0.6.0',
+        'version': '0.6.1',
         'isolated_wheel_selftest': 'passed',
         'frozen_exe_selftest': 'passed',
         'selftest': 'complex lineup, seeds 42/43, repeated for determinism',
@@ -73,7 +73,7 @@ def main():
         'assets': {p.name: {'bytes': p.stat().st_size, 'sha256': digest(p.read_bytes())}
                    for p in (exe, wheel)},
     }
-    destination = ROOT / 'docs/release_v0.6.0_verification.json'
+    destination = ROOT / 'docs/release_v0.6.1_verification.json'
     destination.write_text(json.dumps(report, indent=2) + '\n', encoding='utf8')
     print(json.dumps(report, indent=2))
 

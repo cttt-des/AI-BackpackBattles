@@ -1480,7 +1480,7 @@
     "storage": []
   },
   "expected": {
-    "version": "0.6.0",
+    "version": "0.6.1",
     "game_version": "1.1.10",
     "runs": 2,
     "wins": 1,

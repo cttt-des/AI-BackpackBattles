@@ -12,7 +12,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--exe-only', action='store_true')
     options = parser.parse_args()
-    stage = ROOT / 'output/release_source_v060'
+    stage = ROOT / 'output/release_source_v061'
     stage.mkdir(parents=True, exist_ok=True)
     for name in ('simulator', 'gd_core_py', 'backpack_native', 'assets', 'lineups'):
         shutil.copytree(ROOT / name, stage / name, dirs_exist_ok=True,

@@ -8,7 +8,7 @@
 |---|---|---|
 | 自动游玩与控制面板 | 读取金币、生命、职业、商店及物品位置；执行启发式决策；展示背包；导出阵容和历史回合 | `launcher.py`、`core/`、`gui/`；已有实现，游戏升级后需要复核内存布局 |
 | 战斗日志导出器 | 从游戏进程只读提取真实事件、双方阵容，导出中英文游戏格式战报和 JSON | `combatlog_exporter.py`；独立于模拟器，是实机对照工具 |
-| 战斗模拟器 | 阵容对战、固定种子复现、批量胜率和结果导出 | v0.6.0 的 `backpack_native/` 使用 1.1.10 C++ 内核；旧 Python/GDScript/Cython 路径保留 |
+| 战斗模拟器 | 阵容对战、固定种子复现、批量胜率和结果导出 | v0.6.1 的 `backpack_native/` 使用 1.1.10 C++ 内核；旧 Python/GDScript/Cython 路径保留 |
 | 对局操作记录器 | 记录真人或 AI 的买卖、刷新、锁定、合成与开战状态，折叠为训练样本 | `core/recorder.py`、`core/store.py`、`tools/corpus_*.py` |
 | 历史采集与解码 | 采集排行榜缓存、解析历史数据库、建立对手池和阵容样本 | `gripper/`、`core/build_history.py`；真实存档与数据库留在本地 |
 | 摆盘搜索与训练 | 给定持有物品，联合搜索上场子集、包布局、物品位置与朝向，以模拟胜率评价 | `trainer/`；已有合法性、评估、搜索、学习预筛和分层实验，处于研究阶段 |
@@ -25,9 +25,9 @@
 - 当前优化 DLL 通过基准 **914/914**、扩展 **1690/1690**，共 **2604/2604** 场逐事件核验，覆盖事件顺序、数值、因果链接、普通物品与宝石来源、胜负和自然终局。
 - 验收参照来自恢复的 1.1.10 工程，主要运行于复制的发行版 EXE；扩展保留 785 场通用 Godot 3.6 录制。核验使用冻结阵容、初态和已观测宿主 RNG 边界重放。
 - 无录制输入的批量模拟从固定启动模型按种子运行，已检查单场、单线程和双线程批量确定性。现有语料通过的结论有上述输入范围，新增机制、版本和场景仍需实机对照。
-- v0.6.0 发布基准使用本机 i5-8265U 和固定 200 场，单线程三轮交替对照的中位速度为 **38.31 场/秒**，最慢一轮为 **35.99 场/秒**。同轮优化前中位数为 14.39 场/秒，每批 CPU 时间下降 62.5%，峰值工作集约 80.1 MiB。速度随阵容、硬件和后台负载变化。
+- 最新内核在固定200场、单线程连续24批中位178.95场/秒，最慢120.12场/秒；本次20%后台负载拟合149.97场/秒。最后一轮32对A/B的CPU耗时中位降低0.52%，墙钟降低0.14%，组间有分歧；不同轮拟合值的上涨不能视为代码提速。
 
-[逐事件总账](output/_v1110/native_hot_path_full_gate.json) · [性能记录](output/_v1110/native_hot_path_benchmark.json) · [修复与验收过程](docs/战斗触发与时序四方对齐计划.md) · [C++ 性能优化清单](docs/C++模拟器性能优化清单.md)
+[逐事件总账](output/_v1110/native_perf50/lazy_diagnostics_bundle/bundle_full_gate.json) · [性能记录](output/_v1110/native_perf50/lazy_diagnostics_bundle/measurements_summary.json) · [修复与验收过程](docs/战斗触发与时序四方对齐计划.md) · [C++ 性能优化清单](docs/C++模拟器性能优化清单.md)
 
 历史文档中的“1690 场三方对齐”属于旧版 Oracle/GD/Python 管线，口径为 914 基线加 776 扩样；当前 2604 场为 914 基线加 1690 扩展。旧结论、数据和 API 各有对应版本。
 
@@ -47,21 +47,21 @@
 
 | 组件版本 | 下载 | 用途 |
 |---|---|---|
-| v0.6.0 原生模拟器 | [EXE](https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.6.0/BackpackSimulator.exe) · [wheel](https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.6.0/backpack_battles_sim-0.6.0-cp314-cp314-win_amd64.whl) | 1.1.10 C++ 内核；阵容 JSON、批量胜率与逐场结果 JSON |
+| v0.6.1 原生模拟器 | [EXE](https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.6.1/BackpackSimulator.exe) · [wheel](https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.6.1/backpack_battles_sim-0.6.1-cp314-cp314-win_amd64.whl) | 1.1.10 C++ 内核；阵容 JSON、批量胜率与逐场结果 JSON |
 | v0.5.4 旧模拟器 | [EXE](https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.5.4/BackpackSimulator.exe) · [wheel](https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.5.4/backpack_battles_sim-0.5.4-cp314-cp314-win_amd64.whl) | 旧 Python/Cython 路径；镜像对战、物品联动和游戏格式战报文本 |
 | v0.4.0 自动游玩 | [BackpackAI.exe](https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.4.0/BackpackAI.exe) | 自动游玩 GUI 的历史发布包 |
 | v0.3.1 日志导出器 | [BackpackCombatLog_v0.3.1.exe](https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.3.1/BackpackCombatLog_v0.3.1.exe) | 游戏真实战斗日志与阵容导出 |
 
-v0.6.0 wheel 适用于 **CPython 3.14、Windows x64**。DLL 使用本机 i5-8265U 编译选项，建议具有 AVX2 的处理器。自动游玩与导出器的历史发布版本不代表已经验收新版游戏兼容性。
+v0.6.1 wheel 适用于 **CPython 3.14、Windows x64**。DLL 使用本机 i5-8265U 编译选项，建议具有 AVX2 的处理器。自动游玩与导出器的历史发布版本不代表已经验收新版游戏兼容性。
 
 ## 快速使用
 
 ### 原生模拟器与 Python API
 
-打开 v0.6.0 EXE，选择玩家、对手的 v3/v4 阵容 JSON，设置起始种子和场数，查看胜率并保存逐场结果。界面使用单线程 C++ 批量内核，计算在后台执行。
+打开 v0.6.1 EXE，选择玩家、对手的 v3/v4 阵容 JSON，设置起始种子和场数，查看胜率并保存逐场结果。界面使用单线程 C++ 批量内核，计算在后台执行。
 
 ```powershell
-pip install "https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.6.0/backpack_battles_sim-0.6.0-cp314-cp314-win_amd64.whl"
+pip install "https://github.com/cttt-des/AI-BackpackBattles/releases/download/v0.6.1/backpack_battles_sim-0.6.1-cp314-cp314-win_amd64.whl"
 ```
 
 ```python
@@ -150,7 +150,7 @@ python -X utf8 trainer/p2_search.py --workers 1
 ```text
 core/                       游戏读取、操作、历史解析、记录器与阵容序列化
 gui/                        自动游玩桌面界面
-backpack_native/            v0.6.0 原生绑定、版本化数据、校验清单与 GUI
+backpack_native/            v0.6.1 原生绑定、版本化数据、校验清单与 GUI
 simulator/                  旧模拟器适配层、CLI、数据管线和战报渲染
 gd_core/、gd_core_items/     旧版无头 GDScript 战斗逻辑与物品脚本
 gd_core_py/                 Python 转写与本地 Cython 扩展
@@ -176,7 +176,7 @@ _archive/20261119/          本地历史工程、实验与旧包归档
 
 ## 构建、验证与维护
 
-原生发布包使用匹配的 DLL、绑定源码与运行数据。构建前将已验收 `native_hot_path.dll` 放入 `backpack_native/libgdcore.dll`，确认与 `manifest.json` 的 SHA-256 一致。完整本地构建树中的优化配方为 `output/_v1110/rebuild_native_lovers_candidate.py --native-hot-path`；Git 保留阶段修复脚本与验收报告。
+原生发布包使用匹配的 DLL、绑定源码与运行数据。构建前将已验收 `dist/native_1_1_10` 的DLL、绑定、运行数据和清单同步到 `backpack_native/`，确认与 `manifest.json` 的 SHA-256 一致。完整本地构建树中的优化配方为 `output/_v1110/rebuild_native_lovers_candidate.py --native-perf50`；Git 保留阶段修复脚本与验收报告。
 
 ```powershell
 # 需要 setuptools、wheel、PyInstaller，以及匹配的本地运行时
@@ -190,7 +190,7 @@ python build_combatlog_exporter_exe.py
 python build_simulator_exe.py
 ```
 
-`build_simulator_exe.py` 构建旧版 GUI，也会写入 `dist/BackpackSimulator.exe`；按所需版本选择构建入口。发布验证脚本检查 EXE 与 wheel 的完整性，并在临时目录中运行部署后的自检，结果见 [发布包验收记录](docs/release_v0.6.0_verification.json)。
+`build_simulator_exe.py` 构建旧版 GUI，也会写入 `dist/BackpackSimulator.exe`；按所需版本选择构建入口。发布验证脚本检查 EXE 与 wheel 的完整性，并在临时目录中运行部署后的自检，结果见 [发布包验收记录](docs/release_v0.6.1_verification.json)。
 
 一致性工作以原版行为为参照，修复后先定位用例，再回归全部语料；速度优化需保留逐事件语义，记录固定负载下的墙钟、CPU 时间和内存。历史工具包括 `tools/_cpp_verify_events.py`、`compare_truth.py`、`per_item_diff.py`、`verify_oracle.py`，运行时应核对版本、语料与路径。
 
@@ -207,6 +207,6 @@ python build_simulator_exe.py
 | 原版机制与 RNG | [gd_core 真值](docs/gd_core_truth.md)、[战斗机制真值](docs/engine_truth.md)、[RNG 真值](docs/rng_truth.md) |
 | 历史对齐方法与证据 | [np24 留档](docs/np24_fix.md)、[扩样进度](docs/expand_fix_progress.md)、[版本对齐](docs/version_alignment.md) |
 | 逆向、采集和编译 | [逆向报告](docs/reverse_engineering_2026-09.md)、[采集说明](gripper/README_fixed.md)、[Cython 构建](docs/build_cython_用法.md) |
-| 发布与归档 | [v0.6.0 说明](docs/release_v0.6.0.md)、[发布验收](docs/release_v0.6.0_verification.json)、[归档映射](docs/workspace_archive_20261119.json) |
+| 发布与归档 | [v0.6.1 说明](docs/release_v0.6.1.md)、[发布验收](docs/release_v0.6.1_verification.json)、[归档映射](docs/workspace_archive_20261119.json) |
 
 历史文档保留当时的版本、结论与待办，当前状态以对应版本的最新验收记录为准。本项目用于学习研究。

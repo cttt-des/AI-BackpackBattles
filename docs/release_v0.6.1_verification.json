@@ -1,0 +1,36 @@
+{
+  "version": "0.6.1",
+  "isolated_wheel_selftest": "passed",
+  "frozen_exe_selftest": "passed",
+  "selftest": "complex lineup, seeds 42/43, repeated for determinism",
+  "runtime_manifest_checks": "wheel and EXE match all SHA-256 entries",
+  "native_dll_sha256": "593acaf3d6bf1dfedc7926cc5f3659c074a285dd95a9dcf0db95c1f913077670",
+  "existing_event_gate": {
+    "base": {
+      "expected": 914,
+      "recorded": 914,
+      "verified": 914,
+      "passed": 914,
+      "winner_mismatch": 0,
+      "pending": {}
+    },
+    "expand": {
+      "expected": 1690,
+      "recorded": 1690,
+      "verified": 1690,
+      "passed": 1690,
+      "winner_mismatch": 0,
+      "pending": {}
+    }
+  },
+  "assets": {
+    "BackpackSimulator.exe": {
+      "bytes": 66364069,
+      "sha256": "c1bb33d24bdb408553d6b523498d751160b07fe9c9a6e6c2a665223b43eb4a8a"
+    },
+    "backpack_battles_sim-0.6.1-cp314-cp314-win_amd64.whl": {
+      "bytes": 40215508,
+      "sha256": "d90f2b1b538c335cbf81a72b863a8bdedd45e332ac04d6fdda09d89917279d4d"
+    }
+  }
+}

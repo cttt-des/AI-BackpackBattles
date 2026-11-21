@@ -21,7 +21,7 @@ def main():
         args.selftest.write_text(json.dumps(result, indent=2), encoding='utf8')
         return
     app = tk.Tk()
-    app.title('BackpackSimulator v0.6.0 · C++ · 游戏 1.1.10')
+    app.title('BackpackSimulator v0.6.1 · C++ · 游戏 1.1.10')
     app.geometry('840x610')
     form = ttk.Frame(app, padding=16)
     form.pack(fill='both', expand=True)

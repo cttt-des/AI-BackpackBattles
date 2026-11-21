@@ -134,3 +134,10 @@ assets/_audit/
 # Local historical projects, recordings and old release assets.
 /_archive/
 /backpack_native/*.dll
+
+# Local profiling, packaged runtimes and release staging (verified snapshots remain tracked).
+/output/_v1110/native_perf50/
+/output/release_source_v*/
+/dist/
+*.gcda
+*.gcno

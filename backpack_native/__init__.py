@@ -4,7 +4,7 @@ from functools import lru_cache
 import hashlib
 import json
 
-__version__ = '0.6.0'
+__version__ = '0.6.1'
 
 
 @lru_cache(maxsize=1)
