@@ -311,6 +311,10 @@ gd::GdVal Gd__gd_core__CoreEventBus::get_static_const_or_enum(gd::BattleCtx& gd_
     return gd::GdVal::null();
 }
 bool Gd__gd_core__CoreEventBus::get_static_prop_fn(gd::SymId prop, gd::GdVal& out) {
+    switch (prop) {
+        case SYM_GEN_LoggingMode_1599: out = gd::GdVal::from_enum(&_enum_Gd__gd_core__CoreEventBus_LoggingMode); return true;
+        default: break;
+    }
     static thread_local gd::BattleCtx s_const_ctx(1u << 16);
     s_const_ctx.arena.reset();
     gd::GdVal r = get_static_const_or_enum(s_const_ctx, prop);
@@ -722,6 +726,10 @@ gd::GdVal Gd__gd_core__Crown::get_static_const_or_enum(gd::BattleCtx& gd_ctx, gd
     return Gd__gd_core__Item::get_static_const_or_enum(gd_ctx, prop);
 }
 bool Gd__gd_core__Crown::get_static_prop_fn(gd::SymId prop, gd::GdVal& out) {
+    switch (prop) {
+        case SYM_GEN_CrownState_1822: out = gd::GdVal::from_enum(&_enum_Gd__gd_core__Crown_CrownState); return true;
+        default: break;
+    }
     static thread_local gd::BattleCtx s_const_ctx(1u << 16);
     s_const_ctx.arena.reset();
     gd::GdVal r = get_static_const_or_enum(s_const_ctx, prop);

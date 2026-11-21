@@ -1,0 +1,25 @@
+{
+  "dll_sha256": "00cbcf9d9467feab8d8d99aa437683af507c5f924ee90a9b9f076b661d5c6a60",
+  "results": {
+    "baseline": {
+      "core_item_size": 1792,
+      "derived_item_size": 3968,
+      "weapon_size": 3968,
+      "alignment": 64,
+      "timers_offset": 1536,
+      "gems_offset": 1560,
+      "cooldown_active_offset": 1632,
+      "timer_length_offset": 1592
+    },
+    "candidate": {
+      "core_item_size": 1792,
+      "derived_item_size": 3968,
+      "weapon_size": 3968,
+      "alignment": 64,
+      "timers_offset": 1536,
+      "gems_offset": 1560,
+      "cooldown_active_offset": 1632,
+      "timer_length_offset": 1592
+    }
+  }
+}

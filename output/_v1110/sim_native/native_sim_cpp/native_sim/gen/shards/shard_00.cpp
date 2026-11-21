@@ -333,6 +333,13 @@ gd::GdVal Gd__gd_core__CoreItem::get_static_const_or_enum(gd::BattleCtx& gd_ctx,
     return gd::GdVal::null();
 }
 bool Gd__gd_core__CoreItem::get_static_prop_fn(gd::SymId prop, gd::GdVal& out) {
+    switch (prop) {
+        case SYM_GEN_BASE_CRIT_SEVERITY_0: out = gd::GdVal::from_float(2.0); return true;
+        case SYM_GEN_cdEncodingFactor_1: out = gd::GdVal::from_float(100000.0); return true;
+        case SYM_GEN_CoreElectricalCharge_507: out = gd::GdVal::from_cls(&META_Gd__gd_core__CoreItem__INNER__CoreElectricalCharge); return true;
+        case SYM_GEN_CoreSignalConnection_508: out = gd::GdVal::from_cls(&META_Gd__gd_core__CoreItem__INNER__CoreSignalConnection); return true;
+        default: break;
+    }
     static thread_local gd::BattleCtx s_const_ctx(1u << 16);
     s_const_ctx.arena.reset();
     gd::GdVal r = get_static_const_or_enum(s_const_ctx, prop);
@@ -1400,6 +1407,31 @@ gd::GdVal Gd__gd_core__CoreItem::fn__init(const gd::GdVal* _args, int _argc) {
     (void)([&]() { gd::GdVal _ca[] = {lv__ctx, lv__descriptor, lv__character}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_obj(this), SYM_GEN_setup_72, _ca, 3); })();
     return gd::GdVal::null();
 }
+namespace gd {
+void native_static_setup_hit(unsigned);
+inline bool native_setup_empty_stack_tables(BattleCtx& ctx, const GdVal& powers, const GdVal& chances) {
+    if (powers.kind != GdVal::Kind::Dict || chances.kind != GdVal::Kind::Dict || !powers.dict || !chances.dict || powers.dict == chances.dict) return false;
+    auto* a = powers.dict; auto* b = chances.dict;
+    if (a->len || a->cap || a->entries || a->buckets || a->bucket_cap || b->len || b->cap || b->entries || b->buckets || b->bucket_cap) return false;
+    a->entries = ctx.arena.alloc_array<GdDictEntry>(16); a->cap = 16;
+    b->entries = ctx.arena.alloc_array<GdDictEntry>(16); b->cap = 16;
+    a->buckets = ctx.arena.alloc_array<int32_t>(32); a->bucket_cap = 32;
+    b->buckets = ctx.arena.alloc_array<int32_t>(32); b->bucket_cap = 32;
+    std::memset(a->buckets, -1, 32 * sizeof(int32_t));
+    std::memset(b->buckets, -1, 32 * sizeof(int32_t));
+    for (uint32_t i = 0; i < 11; ++i) {
+        const auto key = GdVal::from_int(100 + i); const auto hash = gd_val_hash(key);
+        a->entries[i] = {key, GdVal::from_float(1.0), hash}; ++a->len;
+        b->entries[i] = {key, GdVal::from_float(0.0), hash}; ++b->len;
+        uint32_t position = uint32_t(hash) & 31;
+        while (a->buckets[position] >= 0) position = (position + 1) & 31;
+        a->buckets[position] = b->buckets[position] = int32_t(i);
+    }
+    if (ctx.native_resolved_collect) native_static_setup_hit(0);
+    return true;
+}
+}
+
 gd::GdVal Gd__gd_core__CoreItem::fn_setup(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
     gd::GdVal lv__ctx = (_argc > 0) ? _args[0] : gd::GdVal::null();
@@ -1421,7 +1453,16 @@ gd::GdVal Gd__gd_core__CoreItem::fn_setup(const gd::GdVal* _args, int _argc) {
         }
     }
     this->f_baseCooldownOverride = gd::gd_coerce_float(gd::native_inline_get_prop(gd_ctx, lv__descriptor, SYM_GEN_cd_1679));
-    {
+    if (gd_ctx.native_resolved_dispatch) {
+        if (!gd::native_setup_empty_stack_tables(gd_ctx, this->f_buffPowers, this->f_buffAmplificationChances)) {
+            if (gd_ctx.native_resolved_collect) gd::native_static_setup_hit(1);
+            for (int64_t stack = 100; stack <= 110; ++stack) {
+                gd::GdVal lv_buff = gd::GdVal::from_int(stack);
+                { gd::GdVal target = this->f_buffPowers; gd::native_array_set_index(gd_ctx, target, lv_buff, gd::GdVal::from_float(1.0)); }
+                { gd::GdVal target = this->f_buffAmplificationChances; gd::native_array_set_index(gd_ctx, target, lv_buff, gd::GdVal::from_float(0.0)); }
+            }
+        }
+    } else {
         gd::GdVal _t4 = gd::gd_iter_seq(gd_ctx.arena, gd::native_inline_call(gd_ctx, gd::GdVal::from_cls(&META_Gd__gd_core__CoreConst), SYM_GEN_getStacks_1023, nullptr, 0));
         gd::GdArr* _t5 = (_t4.kind == gd::GdVal::Kind::Arr) ? _t4.arr : nullptr;
         uint32_t _len__t6 = _t5 ? _t5->len : 0u;
@@ -1435,7 +1476,13 @@ gd::GdVal Gd__gd_core__CoreItem::fn_setup(const gd::GdVal* _args, int _argc) {
     (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_int(0LL)}; return gd::native_inline_call(gd_ctx, this->f_itemMetrics, gd::SYM_fill, _ca, 1); })();
     (void)([&]() { gd::GdVal _ca[] = {gd::native_inline_call(gd_ctx, gd::native_inline_get_prop(gd_ctx, gd::GdVal::from_cls(&META_Gd__gd_core__CoreConst), SYM_GEN_ItemStat_1398), gd::SYM_size, nullptr, 0)}; return gd::native_inline_call(gd_ctx, this->f_statDisplayOverrides, gd::SYM_resize, _ca, 1); })();
     (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::null()}; return gd::native_inline_call(gd_ctx, this->f_statDisplayOverrides, gd::SYM_fill, _ca, 1); })();
-    {
+    if (gd_ctx.native_resolved_dispatch) {
+        if (gd_ctx.native_resolved_collect) gd::native_static_setup_hit(3);
+        for (int64_t color = 0; color < 4; ++color) {
+            gd::GdVal lv_color = gd::GdVal::from_int(color);
+            { gd::GdVal _t14 = this->f_currentAffectedItems; gd::GdVal _t15 = lv_color; gd::native_array_set_index(gd_ctx, _t14, _t15, gd::GdVal::from_dict(gd::GdDict::create(gd_ctx.arena))); }
+        }
+    } else {
         gd::GdVal _t11 = gd::gd_iter_seq(gd_ctx.arena, gd::native_inline_call(gd_ctx, gd::native_inline_get_prop(gd_ctx, gd::GdVal::from_cls(&META_Gd__gd_core__CoreConst), SYM_GEN_Affected_867), gd::SYM_values, nullptr, 0));
         gd::GdArr* _t12 = (_t11.kind == gd::GdVal::Kind::Arr) ? _t11.arr : nullptr;
         uint32_t _len__t13 = _t12 ? _t12->len : 0u;
@@ -2979,10 +3026,12 @@ gd::GdVal Gd__gd_core__CoreItem::fn_countDamage(const gd::GdVal* _args, int _arg
     return gd::GdVal::null();
 }
 gd::GdVal Gd__gd_core__CoreItem::sf_getNumNonStackItemMetrics(gd::BattleCtx& gd_ctx, const gd::GdVal* _args, int _argc) {
+    if (gd_ctx.native_resolved_dispatch) { if (gd_ctx.native_resolved_collect) gd::native_static_setup_hit(2); return gd::GdVal::from_int(14LL); }
     return gd::gd_add(gd_ctx, gd::GdVal::from_int(8LL), gd::gd_mul(gd::gd_sub(gd::GdVal::from_int(9LL), gd::GdVal::from_int(8LL)), gd::native_inline_call(gd_ctx, gd::native_inline_get_prop(gd_ctx, gd::GdVal::from_cls(&META_Gd__gd_core__CoreConst), SYM_GEN_StackChangeType_871), gd::SYM_size, nullptr, 0)));
     return gd::GdVal::null();
 }
 gd::GdVal Gd__gd_core__CoreItem::sf_getNumItemMetrics(gd::BattleCtx& gd_ctx, const gd::GdVal* _args, int _argc) {
+    if (gd_ctx.native_resolved_dispatch) { if (gd_ctx.native_resolved_collect) gd::native_static_setup_hit(2); return gd::GdVal::from_int(80LL); }
     return gd::gd_add(gd_ctx, gd::GdVal::from_int(8LL), gd::gd_mul(gd::gd_sub(gd::native_inline_call(gd_ctx, gd::native_inline_get_prop(gd_ctx, gd::GdVal::from_cls(&META_Gd__gd_core__CoreConst), SYM_GEN_ItemMetrics_1396), gd::SYM_size, nullptr, 0), gd::GdVal::from_int(8LL)), gd::native_inline_call(gd_ctx, gd::native_inline_get_prop(gd_ctx, gd::GdVal::from_cls(&META_Gd__gd_core__CoreConst), SYM_GEN_StackChangeType_871), gd::SYM_size, nullptr, 0)));
     return gd::GdVal::null();
 }
@@ -6153,6 +6202,10 @@ gd::GdVal Gd__gd_core__CoreBuff::get_static_const_or_enum(gd::BattleCtx& gd_ctx,
     return gd::GdVal::null();
 }
 bool Gd__gd_core__CoreBuff::get_static_prop_fn(gd::SymId prop, gd::GdVal& out) {
+    switch (prop) {
+        case SYM_GEN_TemporaryStacks_1040: out = gd::GdVal::from_cls(&META_Gd__gd_core__CoreBuff__INNER__TemporaryStacks); return true;
+        default: break;
+    }
     static thread_local gd::BattleCtx s_const_ctx(1u << 16);
     s_const_ctx.arena.reset();
     gd::GdVal r = get_static_const_or_enum(s_const_ctx, prop);
@@ -8021,6 +8074,10 @@ gd::GdVal Gd__gd_core_items__Crown::get_static_const_or_enum(gd::BattleCtx& gd_c
     return Gd__gd_core_items__Item::get_static_const_or_enum(gd_ctx, prop);
 }
 bool Gd__gd_core_items__Crown::get_static_prop_fn(gd::SymId prop, gd::GdVal& out) {
+    switch (prop) {
+        case SYM_GEN_CrownState_1822: out = gd::GdVal::from_enum(&_enum_Gd__gd_core_items__Crown_CrownState); return true;
+        default: break;
+    }
     static thread_local gd::BattleCtx s_const_ctx(1u << 16);
     s_const_ctx.arena.reset();
     gd::GdVal r = get_static_const_or_enum(s_const_ctx, prop);
@@ -8605,6 +8662,12 @@ gd::GdVal Gd__gd_core_items__Exclusive__ChessMaster::get_static_const_or_enum(gd
     return Gd__gd_core_items__Item::get_static_const_or_enum(gd_ctx, prop);
 }
 bool Gd__gd_core_items__Exclusive__ChessMaster::get_static_prop_fn(gd::SymId prop, gd::GdVal& out) {
+    switch (prop) {
+        case SYM_GEN_firstKnightRound_2176: out = gd::GdVal::from_int(1LL); return true;
+        case SYM_GEN_firstRookRound_2177: out = gd::GdVal::from_int(5LL); return true;
+        case SYM_GEN_firstQueenRound_2178: out = gd::GdVal::from_int(13LL); return true;
+        default: break;
+    }
     static thread_local gd::BattleCtx s_const_ctx(1u << 16);
     s_const_ctx.arena.reset();
     gd::GdVal r = get_static_const_or_enum(s_const_ctx, prop);

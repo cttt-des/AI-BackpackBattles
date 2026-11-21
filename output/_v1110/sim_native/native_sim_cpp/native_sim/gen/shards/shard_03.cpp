@@ -388,6 +388,14 @@ gd::GdVal Gd__gd_core__CoreCombat::get_static_const_or_enum(gd::BattleCtx& gd_ct
     return gd::GdVal::null();
 }
 bool Gd__gd_core__CoreCombat::get_static_prop_fn(gd::SymId prop, gd::GdVal& out) {
+    switch (prop) {
+        case SYM_GEN_RoundResult_1340: out = gd::GdVal::from_enum(&_enum_Gd__gd_core__CoreCombat_RoundResult); return true;
+        case SYM_GEN_FATIGUE_TIME_1299: out = gd::GdVal::from_float(17.0); return true;
+        case SYM_GEN_FATIGUE_START_DELAY_1300: out = gd::GdVal::from_float(3.0); return true;
+        case SYM_GEN_FATIGUE_SLOW_TIME_1301: out = gd::GdVal::from_float(60.0); return true;
+        case SYM_GEN_CoreItemSort_1344: out = gd::GdVal::from_cls(&META_Gd__gd_core__CoreCombat__INNER__CoreItemSort); return true;
+        default: break;
+    }
     static thread_local gd::BattleCtx s_const_ctx(1u << 16);
     s_const_ctx.arena.reset();
     gd::GdVal r = get_static_const_or_enum(s_const_ctx, prop);
@@ -1086,6 +1094,11 @@ gd::GdVal Gd__gd_core__CoreRng::get_static_const_or_enum(gd::BattleCtx& gd_ctx, 
     return gd::GdVal::null();
 }
 bool Gd__gd_core__CoreRng::get_static_prop_fn(gd::SymId prop, gd::GdVal& out) {
+    switch (prop) {
+        case SYM_GEN_BalancedRng_1749: out = gd::GdVal::from_cls(&META_Gd__gd_core__CoreRng__INNER__BalancedRng); return true;
+        case SYM_GEN_BalancedRange_1750: out = gd::GdVal::from_cls(&META_Gd__gd_core__CoreRng__INNER__BalancedRange); return true;
+        default: break;
+    }
     static thread_local gd::BattleCtx s_const_ctx(1u << 16);
     s_const_ctx.arena.reset();
     gd::GdVal r = get_static_const_or_enum(s_const_ctx, prop);
@@ -3720,6 +3733,10 @@ gd::GdVal Gd__gd_core_items__Exclusive__Lootbox::get_static_const_or_enum(gd::Ba
     return Gd__gd_core_items__Item::get_static_const_or_enum(gd_ctx, prop);
 }
 bool Gd__gd_core_items__Exclusive__Lootbox::get_static_prop_fn(gd::SymId prop, gd::GdVal& out) {
+    switch (prop) {
+        case SYM_GEN_OFFSET_2353: out = gd::GdVal::from_float(50.0); return true;
+        default: break;
+    }
     static thread_local gd::BattleCtx s_const_ctx(1u << 16);
     s_const_ctx.arena.reset();
     gd::GdVal r = get_static_const_or_enum(s_const_ctx, prop);

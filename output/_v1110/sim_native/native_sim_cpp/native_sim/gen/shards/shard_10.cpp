@@ -163,6 +163,10 @@ gd::GdVal Gd__gd_core__Bag::get_static_const_or_enum(gd::BattleCtx& gd_ctx, gd::
     return Gd__gd_core__Item::get_static_const_or_enum(gd_ctx, prop);
 }
 bool Gd__gd_core__Bag::get_static_prop_fn(gd::SymId prop, gd::GdVal& out) {
+    switch (prop) {
+        case SYM_GEN_BagTiles_933: out = gd::GdVal::from_enum(&_enum_Gd__gd_core__Bag_BagTiles); return true;
+        default: break;
+    }
     static thread_local gd::BattleCtx s_const_ctx(1u << 16);
     s_const_ctx.arena.reset();
     gd::GdVal r = get_static_const_or_enum(s_const_ctx, prop);
@@ -623,6 +627,10 @@ gd::GdVal Gd__gd_core_items__Gems__Gem::get_static_const_or_enum(gd::BattleCtx& 
     return Gd__gd_core_items__Item::get_static_const_or_enum(gd_ctx, prop);
 }
 bool Gd__gd_core_items__Gems__Gem::get_static_prop_fn(gd::SymId prop, gd::GdVal& out) {
+    switch (prop) {
+        case SYM_GEN_GemMode_994: out = gd::GdVal::from_enum(&_enum_Gd__gd_core_items__Gems__Gem_GemMode); return true;
+        default: break;
+    }
     static thread_local gd::BattleCtx s_const_ctx(1u << 16);
     s_const_ctx.arena.reset();
     gd::GdVal r = get_static_const_or_enum(s_const_ctx, prop);
@@ -1268,6 +1276,14 @@ gd::GdVal Gd__gd_core__CoreDamageSource::get_static_const_or_enum(gd::BattleCtx&
     return gd::GdVal::null();
 }
 bool Gd__gd_core__CoreDamageSource::get_static_prop_fn(gd::SymId prop, gd::GdVal& out) {
+    switch (prop) {
+        case SYM_GEN_Type_855: out = gd::GdVal::from_enum(&_enum_Gd__gd_core__CoreDamageSource_Type); return true;
+        case SYM_GEN_Flags_1565: out = gd::GdVal::from_enum(&_enum_Gd__gd_core__CoreDamageSource_Flags); return true;
+        case SYM_GEN_chipDamageFlags_1536: out = gd::GdVal::from_int(1LL); return true;
+        case SYM_GEN_meleeFlags_1537: out = gd::GdVal::from_int(63LL); return true;
+        case SYM_GEN_rangedFlags_1538: out = gd::GdVal::from_int(63LL); return true;
+        default: break;
+    }
     static thread_local gd::BattleCtx s_const_ctx(1u << 16);
     s_const_ctx.arena.reset();
     gd::GdVal r = get_static_const_or_enum(s_const_ctx, prop);
@@ -2874,6 +2890,10 @@ gd::GdVal Gd__gd_core_items__DjinnLamp::get_static_const_or_enum(gd::BattleCtx& 
     return Gd__gd_core_items__Item::get_static_const_or_enum(gd_ctx, prop);
 }
 bool Gd__gd_core_items__DjinnLamp::get_static_prop_fn(gd::SymId prop, gd::GdVal& out) {
+    switch (prop) {
+        case SYM_GEN_numIngredients_1856: out = gd::GdVal::from_float(5.0); return true;
+        default: break;
+    }
     static thread_local gd::BattleCtx s_const_ctx(1u << 16);
     s_const_ctx.arena.reset();
     gd::GdVal r = get_static_const_or_enum(s_const_ctx, prop);
@@ -4287,6 +4307,11 @@ gd::GdVal Gd__gd_core_items__Exclusive__MagicRing::get_static_const_or_enum(gd::
     return Gd__gd_core_items__Item::get_static_const_or_enum(gd_ctx, prop);
 }
 bool Gd__gd_core_items__Exclusive__MagicRing::get_static_prop_fn(gd::SymId prop, gd::GdVal& out) {
+    switch (prop) {
+        case SYM_GEN_TriggerType_2385: out = gd::GdVal::from_enum(&_enum_Gd__gd_core_items__Exclusive__MagicRing_TriggerType); return true;
+        case SYM_GEN_RingEffect_2386: out = gd::GdVal::from_cls(&META_Gd__gd_core_items__Exclusive__MagicRing__INNER__RingEffect); return true;
+        default: break;
+    }
     static thread_local gd::BattleCtx s_const_ctx(1u << 16);
     s_const_ctx.arena.reset();
     gd::GdVal r = get_static_const_or_enum(s_const_ctx, prop);

@@ -482,6 +482,15 @@ gd::GdVal Gd__gd_core__CoreContext::get_static_const_or_enum(gd::BattleCtx& gd_c
     return gd::GdVal::null();
 }
 bool Gd__gd_core__CoreContext::get_static_prop_fn(gd::SymId prop, gd::GdVal& out) {
+    switch (prop) {
+        case SYM_GEN_PHYSICS_FPS_1403: out = gd::GdVal::from_float(60.0); return true;
+        case SYM_GEN_PHYSICS_DELTA_1404: out = gd::GdVal::from_float(0.01666666753590107); return true;
+        case SYM_GEN_COMBAT_DELAY_1405: out = gd::GdVal::from_float(2.5); return true;
+        case SYM_GEN_FATIGUE_TIME_1299: out = gd::GdVal::from_int(17LL); return true;
+        case SYM_GEN_CRITICAL_SHAKE_WINDOW_1456: out = gd::GdVal::from_int(72LL); return true;
+        case SYM_GEN_NativeFlicker_1509: out = gd::GdVal::from_cls(&META_Gd__gd_core__CoreContext__INNER__NativeFlicker); return true;
+        default: break;
+    }
     static thread_local gd::BattleCtx s_const_ctx(1u << 16);
     s_const_ctx.arena.reset();
     gd::GdVal r = get_static_const_or_enum(s_const_ctx, prop);
@@ -1764,6 +1773,10 @@ gd::GdVal Gd__gd_core__CoreUtil::get_static_const_or_enum(gd::BattleCtx& gd_ctx,
     return gd::GdVal::null();
 }
 bool Gd__gd_core__CoreUtil::get_static_prop_fn(gd::SymId prop, gd::GdVal& out) {
+    switch (prop) {
+        case SYM_GEN_DictSorter_1808: out = gd::GdVal::from_cls(&META_Gd__gd_core__CoreUtil__INNER__DictSorter); return true;
+        default: break;
+    }
     static thread_local gd::BattleCtx s_const_ctx(1u << 16);
     s_const_ctx.arena.reset();
     gd::GdVal r = get_static_const_or_enum(s_const_ctx, prop);
@@ -2192,6 +2205,10 @@ gd::GdVal Gd__gd_core__DjinnLamp::get_static_const_or_enum(gd::BattleCtx& gd_ctx
     return Gd__gd_core__Item::get_static_const_or_enum(gd_ctx, prop);
 }
 bool Gd__gd_core__DjinnLamp::get_static_prop_fn(gd::SymId prop, gd::GdVal& out) {
+    switch (prop) {
+        case SYM_GEN_numIngredients_1856: out = gd::GdVal::from_float(5.0); return true;
+        default: break;
+    }
     static thread_local gd::BattleCtx s_const_ctx(1u << 16);
     s_const_ctx.arena.reset();
     gd::GdVal r = get_static_const_or_enum(s_const_ctx, prop);

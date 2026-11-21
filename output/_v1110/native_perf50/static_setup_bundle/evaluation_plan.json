@@ -1,0 +1,49 @@
+{
+  "baseline_dll_sha256": "541238b57e2e18ce258a0afa9f548115761da28f4a1c119812277b4c0dae2983",
+  "verified_remote_backup": "209b5711b0c405a677d97336343d3e3a3b182e2f",
+  "components": [
+    "144 pure static getter branches in34 classes",
+    "constant metric counts",
+    "fixed setup loops",
+    "empty independent stack-table bulk construction"
+  ],
+  "excluded": [
+    "dense dictionary representation",
+    "changed public arithmetic",
+    "changed object or context layout",
+    "callback or RNG reordering"
+  ],
+  "measurement": {
+    "fixed_fights": 200,
+    "single_thread": true,
+    "groups": 3,
+    "pairs_per_group": 8,
+    "batch_repetitions": 4,
+    "warmup_seconds": 120,
+    "quiet": true,
+    "retain_all_results": true
+  },
+  "required": [
+    "6436 new cases against actual5412 DLL plus retained independent593a component regressions",
+    "existing full regression",
+    "same-source fresh PGO",
+    "regeneration twice",
+    "2604 strict original event cases",
+    "every old/new CPP event hash equal",
+    "one raw24 all>=50fps",
+    "one calibration24 report",
+    "guarded deployment and normal training smoke"
+  ],
+  "no_auto_deploy": true,
+  "small_components_judged_as_bundle": true,
+  "retained_deployed_components": [
+    "member pointers",
+    "callback-bounded frame state reuse",
+    "static numeric collection consumers"
+  ],
+  "local_original_dll_cases": 6436,
+  "no_whole_fight_gain_claim": true,
+  "build": "full20 instrumentation plus new18unit same-source PGO; max2 below-normal jobs",
+  "goal_fps_at20_load": 200,
+  "retain_first_and_all_results": true
+}

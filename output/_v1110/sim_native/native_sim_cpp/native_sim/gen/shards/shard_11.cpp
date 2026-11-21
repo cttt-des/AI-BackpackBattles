@@ -337,6 +337,10 @@ gd::GdVal Gd__gd_core__CoreEvent::get_static_const_or_enum(gd::BattleCtx& gd_ctx
     return gd::GdVal::null();
 }
 bool Gd__gd_core__CoreEvent::get_static_prop_fn(gd::SymId prop, gd::GdVal& out) {
+    switch (prop) {
+        case SYM_GEN_Target_1583: out = gd::GdVal::from_enum(&_enum_Gd__gd_core__CoreEvent_Target); return true;
+        default: break;
+    }
     static thread_local gd::BattleCtx s_const_ctx(1u << 16);
     s_const_ctx.arena.reset();
     gd::GdVal r = get_static_const_or_enum(s_const_ctx, prop);
@@ -2889,6 +2893,10 @@ gd::GdVal Gd__gd_core_items__Exclusive__Laboratory::get_static_const_or_enum(gd:
     return Gd__gd_core_items__Item::get_static_const_or_enum(gd_ctx, prop);
 }
 bool Gd__gd_core_items__Exclusive__Laboratory::get_static_prop_fn(gd::SymId prop, gd::GdVal& out) {
+    switch (prop) {
+        case SYM_GEN_DUR_2341: out = gd::GdVal::from_float(0.2); return true;
+        default: break;
+    }
     static thread_local gd::BattleCtx s_const_ctx(1u << 16);
     s_const_ctx.arena.reset();
     gd::GdVal r = get_static_const_or_enum(s_const_ctx, prop);

@@ -770,6 +770,14 @@ gd::GdVal Gd__gd_core__CoreCharacter::get_static_const_or_enum(gd::BattleCtx& gd
     return gd::GdVal::null();
 }
 bool Gd__gd_core__CoreCharacter::get_static_prop_fn(gd::SymId prop, gd::GdVal& out) {
+    switch (prop) {
+        case SYM_GEN_ID_1297: out = gd::GdVal::from_enum(&_enum_Gd__gd_core__CoreCharacter_ID); return true;
+        case SYM_GEN_Stat_870: out = gd::GdVal::from_enum(&_enum_Gd__gd_core__CoreCharacter_Stat); return true;
+        case SYM_GEN_StaminaResult_1298: out = gd::GdVal::from_enum(&_enum_Gd__gd_core__CoreCharacter_StaminaResult); return true;
+        case SYM_GEN_AUTO_RAGE_DELAY_1044: out = gd::GdVal::from_float(5.0); return true;
+        case SYM_GEN_AUTO_RAGE_DUR_1045: out = gd::GdVal::from_float(4.0); return true;
+        default: break;
+    }
     static thread_local gd::BattleCtx s_const_ctx(1u << 16);
     s_const_ctx.arena.reset();
     gd::GdVal r = get_static_const_or_enum(s_const_ctx, prop);
@@ -4896,6 +4904,10 @@ gd::GdVal Gd__gd_core__CoreItemData::get_static_const_or_enum(gd::BattleCtx& gd_
     return gd::GdVal::null();
 }
 bool Gd__gd_core__CoreItemData::get_static_prop_fn(gd::SymId prop, gd::GdVal& out) {
+    switch (prop) {
+        case SYM_GEN_ReleaseState_1727: out = gd::GdVal::from_enum(&_enum_Gd__gd_core__CoreItemData_ReleaseState); return true;
+        default: break;
+    }
     static thread_local gd::BattleCtx s_const_ctx(1u << 16);
     s_const_ctx.arena.reset();
     gd::GdVal r = get_static_const_or_enum(s_const_ctx, prop);
@@ -6899,6 +6911,10 @@ gd::GdVal Gd__gd_core_items__Exclusive__Chess__ChessPiece::get_static_const_or_e
     return Gd__gd_core_items__Item::get_static_const_or_enum(gd_ctx, prop);
 }
 bool Gd__gd_core_items__Exclusive__Chess__ChessPiece::get_static_prop_fn(gd::SymId prop, gd::GdVal& out) {
+    switch (prop) {
+        case SYM_GEN_PieceColor_2150: out = gd::GdVal::from_enum(&_enum_Gd__gd_core_items__Exclusive__Chess__ChessPiece_PieceColor); return true;
+        default: break;
+    }
     static thread_local gd::BattleCtx s_const_ctx(1u << 16);
     s_const_ctx.arena.reset();
     gd::GdVal r = get_static_const_or_enum(s_const_ctx, prop);
@@ -7549,6 +7565,10 @@ gd::GdVal Gd__gd_core_items__Exclusive__FrogPrince::get_static_const_or_enum(gd:
     return Gd__gd_core_items__Exclusive__Toad::get_static_const_or_enum(gd_ctx, prop);
 }
 bool Gd__gd_core_items__Exclusive__FrogPrince::get_static_prop_fn(gd::SymId prop, gd::GdVal& out) {
+    switch (prop) {
+        case SYM_GEN_FrogState_2277: out = gd::GdVal::from_enum(&_enum_Gd__gd_core_items__Exclusive__FrogPrince_FrogState); return true;
+        default: break;
+    }
     static thread_local gd::BattleCtx s_const_ctx(1u << 16);
     s_const_ctx.arena.reset();
     gd::GdVal r = get_static_const_or_enum(s_const_ctx, prop);

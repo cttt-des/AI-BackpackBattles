@@ -355,6 +355,43 @@ gd::GdVal Gd__gd_core_items__Item::get_static_const_or_enum(gd::BattleCtx& gd_ct
     return Gd__gd_core__CoreItem::get_static_const_or_enum(gd_ctx, prop);
 }
 bool Gd__gd_core_items__Item::get_static_prop_fn(gd::SymId prop, gd::GdVal& out) {
+    switch (prop) {
+        case SYM_GEN_Owner_854: out = gd::GdVal::from_enum(&_enum_Gd__gd_core_items__Item_Owner); return true;
+        case SYM_GEN_Type_855: out = gd::GdVal::from_enum(&_enum_Gd__gd_core_items__Item_Type); return true;
+        case SYM_GEN_Priority_856: out = gd::GdVal::from_enum(&_enum_Gd__gd_core_items__Item_Priority); return true;
+        case SYM_GEN_CraftingPriority_857: out = gd::GdVal::from_enum(&_enum_Gd__gd_core_items__Item_CraftingPriority); return true;
+        case SYM_GEN_Tag_858: out = gd::GdVal::from_enum(&_enum_Gd__gd_core_items__Item_Tag); return true;
+        case SYM_GEN_Stack_859: out = gd::GdVal::from_enum(&_enum_Gd__gd_core_items__Item_Stack); return true;
+        case SYM_GEN_Mat_860: out = gd::GdVal::from_enum(&_enum_Gd__gd_core_items__Item_Mat); return true;
+        case SYM_GEN_Physics_861: out = gd::GdVal::from_enum(&_enum_Gd__gd_core_items__Item_Physics); return true;
+        case SYM_GEN_Rarity_862: out = gd::GdVal::from_enum(&_enum_Gd__gd_core_items__Item_Rarity); return true;
+        case SYM_GEN_FaceDirection_863: out = gd::GdVal::from_enum(&_enum_Gd__gd_core_items__Item_FaceDirection); return true;
+        case SYM_GEN_StatModified_864: out = gd::GdVal::from_enum(&_enum_Gd__gd_core_items__Item_StatModified); return true;
+        case SYM_GEN_DropResult_865: out = gd::GdVal::from_enum(&_enum_Gd__gd_core_items__Item_DropResult); return true;
+        case SYM_GEN_PickupType_866: out = gd::GdVal::from_enum(&_enum_Gd__gd_core_items__Item_PickupType); return true;
+        case SYM_GEN_Affected_867: out = gd::GdVal::from_enum(&_enum_Gd__gd_core_items__Item_Affected); return true;
+        case SYM_GEN_Tiles_868: out = gd::GdVal::from_enum(&_enum_Gd__gd_core_items__Item_Tiles); return true;
+        case SYM_GEN_ActivationAni_869: out = gd::GdVal::from_enum(&_enum_Gd__gd_core_items__Item_ActivationAni); return true;
+        case SYM_GEN_Stat_870: out = gd::GdVal::from_enum(&_enum_Gd__gd_core_items__Item_Stat); return true;
+        case SYM_GEN_StackChangeType_871: out = gd::GdVal::from_enum(&_enum_Gd__gd_core_items__Item_StackChangeType); return true;
+        case SYM_GEN_offset_516: out = gd::GdVal::from_int(40LL); return true;
+        case SYM_GEN_impulse_517: out = gd::GdVal::from_int(50LL); return true;
+        case SYM_GEN_momentumFactor_518: out = gd::GdVal::from_float(20.0); return true;
+        case SYM_GEN_DRAG_PRIORITY_527: out = gd::GdVal::from_int(2LL); return true;
+        case SYM_GEN_angleStep_585: out = gd::GdVal::from_int(45LL); return true;
+        case SYM_GEN_moveRotationMouseFactor_588: out = gd::GdVal::from_float(0.015); return true;
+        case SYM_GEN_backforce_589: out = gd::GdVal::from_float(5.0); return true;
+        case SYM_GEN_fric_590: out = gd::GdVal::from_float(15.0); return true;
+        case SYM_GEN_maxAngle_591: out = gd::GdVal::from_int(10LL); return true;
+        case SYM_GEN_moveRotationSpeed_592: out = gd::GdVal::from_float(60.0); return true;
+        case SYM_GEN_MISS_OFFSET_602: out = gd::GdVal::from_float(100.0); return true;
+        case SYM_GEN_PRE_FUSE_DUR_603: out = gd::GdVal::from_float(1.0); return true;
+        case SYM_GEN_PRE_FUSE_DUR_COG_604: out = gd::GdVal::from_float(0.2); return true;
+        case SYM_GEN_FUSE_DUR_605: out = gd::GdVal::from_float(1.0); return true;
+        case SYM_GEN_TRANSFORMATION_DUR_606: out = gd::GdVal::from_float(1.0); return true;
+        case SYM_GEN_SignalConnection_877: out = gd::GdVal::from_cls(&META_Gd__gd_core_items__Item__INNER__SignalConnection); return true;
+        default: break;
+    }
     static thread_local gd::BattleCtx s_const_ctx(1u << 16);
     s_const_ctx.arena.reset();
     gd::GdVal r = get_static_const_or_enum(s_const_ctx, prop);
@@ -2940,6 +2977,28 @@ gd::GdVal Gd__gd_core__CoreConst::get_static_const_or_enum(gd::BattleCtx& gd_ctx
     return gd::GdVal::null();
 }
 bool Gd__gd_core__CoreConst::get_static_prop_fn(gd::SymId prop, gd::GdVal& out) {
+    switch (prop) {
+        case SYM_GEN_EventType_1395: out = gd::GdVal::from_enum(&_enum_Gd__gd_core__CoreConst_EventType); return true;
+        case SYM_GEN_ItemMetrics_1396: out = gd::GdVal::from_enum(&_enum_Gd__gd_core__CoreConst_ItemMetrics); return true;
+        case SYM_GEN_CharID_1397: out = gd::GdVal::from_enum(&_enum_Gd__gd_core__CoreConst_CharID); return true;
+        case SYM_GEN_StaminaResult_1298: out = gd::GdVal::from_enum(&_enum_Gd__gd_core__CoreConst_StaminaResult); return true;
+        case SYM_GEN_ItemStat_1398: out = gd::GdVal::from_enum(&_enum_Gd__gd_core__CoreConst_ItemStat); return true;
+        case SYM_GEN_Rarity_862: out = gd::GdVal::from_enum(&_enum_Gd__gd_core__CoreConst_Rarity); return true;
+        case SYM_GEN_StuffedClasses_1399: out = gd::GdVal::from_enum(&_enum_Gd__gd_core__CoreConst_StuffedClasses); return true;
+        case SYM_GEN_Owner_854: out = gd::GdVal::from_enum(&_enum_Gd__gd_core__CoreConst_Owner); return true;
+        case SYM_GEN_GameMode_1400: out = gd::GdVal::from_enum(&_enum_Gd__gd_core__CoreConst_GameMode); return true;
+        case SYM_GEN_Affected_867: out = gd::GdVal::from_enum(&_enum_Gd__gd_core__CoreConst_Affected); return true;
+        case SYM_GEN_Stack_859: out = gd::GdVal::from_enum(&_enum_Gd__gd_core__CoreConst_Stack); return true;
+        case SYM_GEN_Tag_858: out = gd::GdVal::from_enum(&_enum_Gd__gd_core__CoreConst_Tag); return true;
+        case SYM_GEN_Priority_856: out = gd::GdVal::from_enum(&_enum_Gd__gd_core__CoreConst_Priority); return true;
+        case SYM_GEN_StackChangeType_871: out = gd::GdVal::from_enum(&_enum_Gd__gd_core__CoreConst_StackChangeType); return true;
+        case SYM_GEN_StatModified_864: out = gd::GdVal::from_enum(&_enum_Gd__gd_core__CoreConst_StatModified); return true;
+        case SYM_GEN_FaceDirection_863: out = gd::GdVal::from_enum(&_enum_Gd__gd_core__CoreConst_FaceDirection); return true;
+        case SYM_GEN_Classes_1401: out = gd::GdVal::from_enum(&_enum_Gd__gd_core__CoreConst_Classes); return true;
+        case SYM_GEN_Classes_Full_1402: out = gd::GdVal::from_enum(&_enum_Gd__gd_core__CoreConst_Classes_Full); return true;
+        case SYM_GEN_Type_855: out = gd::GdVal::from_enum(&_enum_Gd__gd_core__CoreConst_Type); return true;
+        default: break;
+    }
     static thread_local gd::BattleCtx s_const_ctx(1u << 16);
     s_const_ctx.arena.reset();
     gd::GdVal r = get_static_const_or_enum(s_const_ctx, prop);
