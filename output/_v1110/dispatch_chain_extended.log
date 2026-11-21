@@ -1,0 +1,25 @@
+D:\文件资料\学习\自动背包AI\output\_v1110\test_native_dispatch_chain.cpp: In function 'uint64_t surface_case(bool, unsigned int, int, int)':
+D:\文件资料\学习\自动背包AI\output\_v1110\test_native_dispatch_chain.cpp:73:97: error: cannot declare variable 'surface' to be of abstract type 'Surface'
+   73 |     gd::BattleCtx c(65536);c.native_resolved_dispatch=true;c.native_resolved_audit=true;Surface surface(&c);
+      |                                                                                                 ^~~~~~~
+D:\文件资料\学习\自动背包AI\output\_v1110\test_native_dispatch_chain.cpp:65:8: note: because the following virtual functions are pure within 'Surface':
+   65 | struct Surface:gd::GdObj {
+      |        ^~~~~~~
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\sim_native\native_sim_cpp\native_sim/native_event_kernel.hpp:2,
+                 from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\dispatch_chain_probe/preflight_dispatch_chain.hpp:3,
+                 from D:\文件资料\学习\自动背包AI\output\_v1110\test_native_dispatch_chain.cpp:1:
+  • 'virtual const gd::GdClassMeta* gd::GdObj::meta() const'
+    D:\文件资料\学习\自动背包AI\output\_v1110\sim_native\native_sim_cpp\native_sim/gd_rt.hpp:584:32:
+      584 |     virtual const GdClassMeta* meta() const = 0;
+          |                                ^~~~
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\extend_dispatch_chain_cases.py", line 30, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\extend_dispatch_chain_cases.py", line 18, in main
+    subprocess.run(['D:/mingw64/bin/g++.exe','-static','-O3','-march=native','-std=c++20','-ffp-contract=off','-I',str(WORK),'-I',str(BASE),str(STAGE/'test_native_dispatch_chain.cpp'),str(root/'libgdcore.dll'),'-o',str(exe)],check=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['D:/mingw64/bin/g++.exe', '-static', '-O3', '-march=native', '-std=c++20', '-ffp-contract=off', '-I', 'D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_perf50\\dispatch_chain_probe', '-I', 'D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\sim_native\\native_sim_cpp\\native_sim', 'D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\test_native_dispatch_chain.cpp', 'C:\\Users\\Windows\\AppData\\Local\\Temp\\native-dispatch-chain-extended-sdj_0gsm\\libgdcore.dll', '-o', 'C:\\Users\\Windows\\AppData\\Local\\Temp\\native-dispatch-chain-extended-sdj_0gsm\\cases.exe']' returned non-zero exit status 1.

@@ -1,0 +1,53 @@
+{
+  "passed": true,
+  "cases": 310440,
+  "item_classes": 646,
+  "input_cases": 30,
+  "workloads": [
+    {
+      "mode": 0,
+      "metrics": {
+        "cpu_s": {
+          "paired_median_time_reduction_pct": null,
+          "zero_baseline_pairs": 4,
+          "sum_time_reduction_pct": -25.0
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 55.0080681639381,
+          "zero_baseline_pairs": 0,
+          "sum_time_reduction_pct": 9.682615757382118
+        },
+        "cycles": {
+          "paired_median_time_reduction_pct": 57.00664275755699,
+          "zero_baseline_pairs": 0,
+          "sum_time_reduction_pct": 55.694214577971415
+        }
+      }
+    },
+    {
+      "mode": 1,
+      "metrics": {
+        "cpu_s": {
+          "paired_median_time_reduction_pct": null,
+          "zero_baseline_pairs": 3,
+          "sum_time_reduction_pct": 19.999999999999996
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 17.09808651740553,
+          "zero_baseline_pairs": 0,
+          "sum_time_reduction_pct": 22.04779408993489
+        },
+        "cycles": {
+          "paired_median_time_reduction_pct": 20.35810603819802,
+          "zero_baseline_pairs": 0,
+          "sum_time_reduction_pct": 23.03205817030104
+        }
+      }
+    }
+  ],
+  "baseline_dll_sha256": "00cbcf9d9467feab8d8d99aa437683af507c5f924ee90a9b9f076b661d5c6a60",
+  "test_source_sha256": "8496fc60b0bd3525a7c4874cd50b31766c3ec2d46fdf3dddce68d0d139dbb507",
+  "helper_sha256": "ea076fa21196c4e68cbba2f2bb48a6384c41e77812b4e36bc66e837c73a30449",
+  "callback_sha256": "e10193331e19dbaf3f314f63c1acc13c0066324076616d83c6f2ea068c29309f",
+  "no_whole_fight_gain_claim": true
+}

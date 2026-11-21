@@ -1,0 +1,65 @@
+{
+  "passed": true,
+  "dll_sha256": "39c559a0bc4ef04f89444be63b42b842884a7d2fee1d59c4332fcdc7367d8e0b",
+  "production_source_files": 704,
+  "unchanged_object_headers": 674,
+  "strict_event_cases": 2604,
+  "event_hash_root": "b8066c9224bc418923c62f5a3dafb8912100b21bb0026c3b13669872f90e2f54",
+  "raw_batches": 24,
+  "training_cases": 12,
+  "type_constructor_coverage": {
+    "type_hits": 51782642,
+    "type_fallback": 0,
+    "fused_initializations": 1134539,
+    "factory_fallback": 0
+  },
+  "hot_slot_coverage": {
+    "new_method_hits": 1126227,
+    "new_field_hits": 16608087
+  },
+  "event_identity_coverage": {
+    "fast_identities": 663207,
+    "fallbacks": 0,
+    "fast_emissions": 2550578,
+    "emission_fallbacks": 0
+  },
+  "static_setup_coverage": {
+    "bulk_stack_tables": 202616,
+    "ordered_stack_fallback": 0,
+    "metric_counts": 1272643,
+    "affected_loops": 202616
+  },
+  "dispatch_chain_coverage": {
+    "behavior_methods": 275579,
+    "behavior_empty": 0,
+    "behavior_probes": 777809,
+    "flat_callbacks": 2143020
+  },
+  "target_at20_fps": 171.77138373640383,
+  "goal_target_fps": 200,
+  "goal200_reached": false,
+  "load_range_pct": [
+    5.17334197851269,
+    25.068708246933866
+  ],
+  "fit_validation": {
+    "median_absolute_relative_time_error": 0.021629483065864166,
+    "p90_absolute_relative_time_error": 0.06497787284626598,
+    "constant_median_absolute_relative_time_error": 0.11338780507925278
+  },
+  "evidence_sha256": {
+    "source_before_build.json": "615e9483878a8aa4e32b8367d58a4fce842eac5b2f6db18713890340b12da8c4",
+    "bundle_full_gate.json": "303994c9b09d3170ad8fc334be862e06844f9c5bf03702c073fd45b362edb5d0",
+    "bundle_vs_deployed_hashes.json": "725dda504b6713557d2146922aa85e68ba6f8abf3a74cc96919c546844340c53",
+    "ab_assessment.json": "90a2442bd0b54cbe9e592ed297a7bbf1427bf3b7c7c7cb374b3ff32f6d163d8f",
+    "bundle_serial.json": "bcae412f17a617f3a013bbb4d9a8176b2d3143b86e6fcd90bfa59c69c9f335c7",
+    "bundle_load_calibration.json": "968a5fc5b8981cdb0cd62c384392444456dfb2aefb62c2c73d6d5675fdb02ae3",
+    "bundle_load20.json": "abdcdbfe26aa66dff50da6950a863834e899ddd64d3535a84dbfdde693b584f2",
+    "bundle_installation.json": "aa0e71b940d531ab348d7015812718f1fac08f18ce8d9020babdf658c9edfe06",
+    "static_setup_tests.json": "a100f3497e21aed303e5d82b17ddb5e472aabaecdaa24c1333e1904a264f9166",
+    "dispatch_chain_tests.json": "20a643afea0b92ab09a58207627dd5780b8a5ffde86e5d24dec47450e07fce03",
+    "dispatch_chain_production_cases.json": "078090376dfb121d5f494868a40efe3bf4d16989d8c43b50b742696a82a06d2f",
+    "static_setup_production_cases.json": "21ed11beb80da7e8eea183d4ade06fa9433a79d9d904eebd7b31bab45ef4358f",
+    "full_type_audit.json": "b0987ba41a06ba8a432c18e04eb3eb8f3e132334e2bb99c1366c4cf0b7c756c6"
+  }
+}

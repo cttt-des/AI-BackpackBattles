@@ -6050,6 +6050,10 @@ gd::GdVal Gd__gd_core__CoreItem::fn_disconnectCombat(const gd::GdVal* _args, int
 gd::GdVal Gd__gd_core__CoreItem::fn__hasBehaviorMethod(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
     gd::GdVal lv_methodName = (_argc > 0) ? _args[0] : gd::GdVal::null();
+    if(gd_ctx.native_resolved_dispatch && this->f__behavior.kind==gd::GdVal::Kind::Null){
+        gd::GdVal result;
+        if(gd::native_try_behavior_chain(gd_ctx,this,lv_methodName,gd::GdVal::null(),true,result))return result;
+    }
     if (gd::gd_truth(gd::GdVal::from_bool(gd::native_scalar_ne(this->f__behavior, gd::GdVal::null())))) {
         return ([&]() { gd::GdVal _ca[] = {gd::GdVal::from_obj(this), lv_methodName}; return gd::native_inline_call(gd_ctx, this->f__behavior, SYM_GEN_hasBehavior_2688, _ca, 2); })();
     }
@@ -6060,6 +6064,10 @@ gd::GdVal Gd__gd_core__CoreItem::fn__behavior_call(const gd::GdVal* _args, int _
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
     gd::GdVal lv_methodName = (_argc > 0) ? _args[0] : gd::GdVal::null();
     gd::GdVal lv_args = (_argc > 1) ? _args[1] : (gd::GdVal::from_arr(gd::GdArr::from_init(gd_ctx.arena, {})));
+    if(gd_ctx.native_resolved_dispatch && this->f__behavior.kind==gd::GdVal::Kind::Null){
+        gd::GdVal result;
+        if(gd::native_try_behavior_chain(gd_ctx,this,lv_methodName,lv_args,false,result))return result;
+    }
     if (gd::gd_truth(gd::GdVal::from_bool(gd::native_scalar_ne(this->f__behavior, gd::GdVal::null())))) {
         return ([&]() { gd::GdVal _ca[] = {gd::GdVal::from_obj(this), lv_methodName, lv_args}; return gd::native_inline_call(gd_ctx, this->f__behavior, SYM_GEN_callBehavior_2689, _ca, 3); })();
     }

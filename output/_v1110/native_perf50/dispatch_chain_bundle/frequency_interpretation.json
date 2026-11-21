@@ -1,0 +1,15 @@
+{
+  "diagnostic_only": true,
+  "instrumented_dll_sha256": "0f1e6aa2376b0408fabd64209d7291924f36b90022c4fc95bb185a4a26b99f97",
+  "inputs_sha256": "d94b16d42cc88e9a3850a77c9360b9c4c4fdd676cb252e463044a903db2a5fef",
+  "results_sha256": "2e74b45caa87f7ee6ac72ffc35d98cc8db140b47031614d26542e183cef5d2c9",
+  "coverage": {
+    "behavior_methods": 17807,
+    "behavior_empty": 0,
+    "behavior_probes": 57618,
+    "flat_callbacks": 100900
+  },
+  "scope": "Counters show actual fixed200 coverage; not formal PGO whole-fight gain",
+  "original_bind_handling_preserved": true,
+  "legacy_dispatch_counter_semantics_tested": true
+}

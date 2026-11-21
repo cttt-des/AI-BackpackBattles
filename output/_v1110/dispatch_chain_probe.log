@@ -1,0 +1,20 @@
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\test_native_dispatch_chain.cpp:1:
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\dispatch_chain_probe/preflight_dispatch_chain.hpp: In function 'gd::GdVal candidate__behavior_call(Gd__gd_core__CoreItem&, const gd::GdVal*, int)':
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\dispatch_chain_probe/preflight_dispatch_chain.hpp:1004:47: error: 'native_scalar_ne' is not a member of 'gd'
+ 1004 |     if (gd::gd_truth(gd::GdVal::from_bool(gd::native_scalar_ne(item.f__behavior, gd::GdVal::null())))) {
+      |                                               ^~~~~~~~~~~~~~~~
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\dispatch_chain_probe/preflight_dispatch_chain.hpp: In function 'gd::GdVal candidate__hasBehaviorMethod(Gd__gd_core__CoreItem&, const gd::GdVal*, int)':
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\dispatch_chain_probe/preflight_dispatch_chain.hpp:1020:47: error: 'native_scalar_ne' is not a member of 'gd'
+ 1020 |     if (gd::gd_truth(gd::GdVal::from_bool(gd::native_scalar_ne(item.f__behavior, gd::GdVal::null())))) {
+      |                                               ^~~~~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\probe_native_dispatch_chain.py", line 36, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\probe_native_dispatch_chain.py", line 19, in main
+    subprocess.run(['D:/mingw64/bin/g++.exe','-static','-O3','-march=native','-std=c++20','-ffp-contract=off','-I',str(WORK),'-I',str(BASE),str(STAGE/'test_native_dispatch_chain.cpp'),str(root/'libgdcore.dll'),'-o',str(exe)],check=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['D:/mingw64/bin/g++.exe', '-static', '-O3', '-march=native', '-std=c++20', '-ffp-contract=off', '-I', 'D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_perf50\\dispatch_chain_probe', '-I', 'D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\sim_native\\native_sim_cpp\\native_sim', 'D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\test_native_dispatch_chain.cpp', 'C:\\Users\\Windows\\AppData\\Local\\Temp\\native-dispatch-chain-xmi_g300\\libgdcore.dll', '-o', 'C:\\Users\\Windows\\AppData\\Local\\Temp\\native-dispatch-chain-xmi_g300\\screen.exe']' returned non-zero exit status 1.

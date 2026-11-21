@@ -1,0 +1,28 @@
+{
+  "baseline_dll_sha256": "00cbcf9d9467feab8d8d99aa437683af507c5f924ee90a9b9f076b661d5c6a60",
+  "candidate_dll_sha256": "39c559a0bc4ef04f89444be63b42b842884a7d2fee1d59c4332fcdc7367d8e0b",
+  "unchanged_c_abi": [
+    "gd_sim_dbg_event_count",
+    "gd_sim_dbg_event_gem_origin",
+    "gd_sim_dbg_event_item_origin",
+    "gd_sim_dbg_event_line",
+    "gd_sim_dbg_order",
+    "gd_sim_find_item_id",
+    "gd_sim_init",
+    "gd_sim_register_character",
+    "gd_sim_register_item",
+    "gd_sim_reset_registry",
+    "gd_sim_run_batch",
+    "gd_sim_run_batch_training",
+    "gd_sim_run_one",
+    "gd_sim_run_one_replay_buff_state",
+    "gd_sim_run_one_replay_engine_rng",
+    "gd_sim_run_one_replay_host_phases",
+    "gd_sim_run_one_replay_native_clock",
+    "gd_sim_run_one_replay_scene_delays",
+    "gd_sim_run_one_replay_v2",
+    "gd_sim_run_one_training",
+    "gd_sim_set_dbg_events",
+    "gd_sim_set_dbg_item_origins"
+  ]
+}
