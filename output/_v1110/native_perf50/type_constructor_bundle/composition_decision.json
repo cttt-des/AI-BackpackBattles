@@ -1,0 +1,11 @@
+{
+  "assessment": "ab_assessment_32.json",
+  "whole_bundle_retained": true,
+  "median_cpu_time_reduction_pct": 0.4424778761061954,
+  "median_wall_time_reduction_pct": 0.17271312922616522,
+  "sum_cpu_time_reduction_pct": -0.850460666194186,
+  "sum_wall_time_reduction_pct": -1.400712525290282,
+  "interpretation": "Small positive medians, negative cumulative reductions; weak evidence, not proven repeatable gain.",
+  "additional_ab_groups": 0,
+  "next": "Full strict truth and one raw24/calibration24; inspect before any deployment."
+}

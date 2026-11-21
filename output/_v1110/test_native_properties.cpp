@@ -79,7 +79,7 @@ int main(){
                 V::from_arr(array),V::from_dict(dict),V::from_obj(&payload),V::from_cls(type.meta),
                 V::from_enum(&enumeration),V::from_funcref(&reference),V::from_rng(&value_rng),V::from_color(&color)};
             bool any=false;
-            for(unsigned slot=0;slot<32;++slot){
+            for(unsigned slot=0;slot<std::size(property_test_symbols);++slot){
                 const auto ref=type.row->refs[slot];if(!ref)continue;
                 any=true;++fields;auto* field=ref(object);const auto symbol=property_test_symbols[slot];
                 assert(symbol!=gd::SYM_resource_path);

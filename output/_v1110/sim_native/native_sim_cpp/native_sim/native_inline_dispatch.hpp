@@ -1,12 +1,13 @@
 #pragma once
 #include "gd_rt.hpp"
 #include "gen/sym_ids.hpp"
+#include "gen/class_metas.hpp"
 #include <array>
 namespace gd {
 using NativeResolvedFn = GdVal (*)(GdObj*, const GdVal*, int);
 using NativePropertyFn = GdVal (*)(const GdObj*);
-struct NativePropertyRow { std::array<NativePropertyFn,32> getters; };
-struct NativeMethodRow { const NativePropertyRow* properties; std::array<NativeResolvedFn,112> methods; };
+struct NativePropertyRow { std::array<NativePropertyFn,64> getters; };
+struct NativeMethodRow { const GdClassMeta* metadata; const NativePropertyRow* properties; uint64_t type_mask; std::array<NativeResolvedFn,128> methods; };
 inline constexpr auto native_resolved_slots=[] { std::array<int8_t,static_cast<size_t>(SYM_GEN_Dragon_2878)+1> value{}; value.fill(-1);
     value[SYM_GEN_trigger_143]=0;
     value[SYM_GEN_doCooldownEffect_144]=1;
@@ -120,8 +121,57 @@ inline constexpr auto native_resolved_slots=[] { std::array<int8_t,static_cast<s
     value[SYM_GEN_canAffect_global_2014]=109;
     value[SYM_GEN_otherCharacter_1477]=110;
     value[SYM_GEN_useStamina_116]=111;
+    value[SYM_GEN_attack_941]=112;
+    value[SYM_GEN_useMana_332]=113;
+    value[SYM_GEN_cleanseRandomDebuffs_356]=114;
+    value[SYM_GEN_giveMaxHealth_317]=115;
+    value[SYM_GEN_giveLucky_215]=116;
+    value[SYM_GEN_giveMostBuffs_367]=117;
+    value[SYM_GEN_onPreDealDamage_early_945]=118;
+    value[SYM_GEN_onPrepare_123]=119;
+    value[SYM_GEN_changeChargedItemStat_326]=120;
+    value[SYM_GEN_onChargeEnteredCell_2059]=121;
+    value[SYM_GEN_emitCharge_2058]=122;
+    value[SYM_GEN_giveSpikes_209]=123;
+    value[SYM_GEN_chargeReceived_324]=124;
+    value[SYM_GEN_onChargeReceived_2129]=125;
+    value[SYM_GEN_giveRandomBuffs_369]=126;
+    value[SYM_GEN_combatEndDeferred_1335]=127;
     return value; }();
 bool native_resolved_row_matches(const GdObj*,const NativeMethodRow*);
+inline constexpr std::array<const GdClassMeta*,8> native_type_targets={&META_Gd__gd_core_items__Gems__Gem,&META_Gd__gd_core__CoreItem,&META_Gd__gd_core_items__Item,&META_Gd__gd_core_items__Exclusive__Chess__ChessPiece,&META_Gd__gd_core_items__Card,&META_Gd__gd_core_items__Dagger,&META_Gd__gd_core_items__Goobert,&META_Gd__gd_core_items__RangerCollar};
+
+void native_type_constructor_hit(unsigned);
+#if defined(_MSC_VER)
+__forceinline
+#elif defined(__GNUC__)
+__attribute__((always_inline)) inline
+#else
+inline
+#endif
+bool native_inline_is_type(BattleCtx& ctx,const GdVal& value,const GdClassMeta* target) {
+    if(!target || value.kind!=GdVal::Kind::Obj || !value.obj)return false;
+    if(ctx.native_resolved_dispatch) {
+        const NativeMethodRow* row=value.obj->native_call_row_;
+        if(row) {
+            if(ctx.native_resolved_audit && !native_resolved_row_matches(value.obj,row)) {
+                ++ctx.native_resolved_counts[4];
+            } else if(row->metadata) {
+                if(ctx.native_resolved_collect)native_type_constructor_hit(0);
+                for(unsigned i=0;i<native_type_targets.size();++i)
+                    if(target==native_type_targets[i])return (row->type_mask & (uint64_t{1}<<i))!=0;
+                return row->metadata->is_subclass_of(target);
+            }
+        }
+        if(ctx.native_resolved_collect)native_type_constructor_hit(1);
+    }
+    return gd::gd_is_type(value,target);
+}
+inline bool native_inline_self_type(BattleCtx* ctx,GdObj* object,const GdClassMeta* target) {
+    if(ctx)return native_inline_is_type(*ctx,GdVal::from_obj(object),target);
+    return gd::gd_is_type(GdVal::from_obj(object),target);
+}
+
 inline constexpr auto native_property_slots=[] { std::array<int8_t,static_cast<size_t>(SYM_GEN_Dragon_2878)+1> value{}; value.fill(-1);
     value[SYM_GEN_rng_1406]=0;
     value[SYM_GEN_item_book_1421]=1;
@@ -155,9 +205,42 @@ inline constexpr auto native_property_slots=[] { std::array<int8_t,static_cast<s
     value[SYM_GEN_INVENTORY_1093]=29;
     value[SYM_GEN_name_7]=30;
     value[SYM_GEN_cd_1679]=31;
+    value[SYM_GEN_buffs_1048]=32;
+    value[SYM_GEN_frame_counter_1413]=33;
+    value[SYM_GEN_shopChance_1683]=34;
+    value[SYM_GEN_cube_advanced_1426]=35;
+    value[SYM_GEN_signalName_1013]=36;
+    value[SYM_GEN_type_1005]=37;
+    value[SYM_GEN_placedByPlayer_50]=38;
+    value[SYM_GEN_placed_6]=39;
+    value[SYM_GEN_chainPosition_882]=40;
+    value[SYM_GEN_cards_1832]=41;
+    value[SYM_GEN_pieceColor_2135]=42;
+    value[SYM_GEN_items_1092]=43;
+    value[SYM_GEN_rope_speedups_1425]=44;
+    value[SYM_GEN_baseStaminaRegen_1057]=45;
+    value[SYM_GEN_stackType_2388]=46;
+    value[SYM_GEN_animationScene_1695]=47;
+    value[SYM_GEN_nextCell_1652]=48;
+    value[SYM_GEN_in_physics_timer_pass_1446]=49;
+    value[SYM_GEN_activationAni_1717]=50;
+    value[SYM_GEN_curRecipe_577]=51;
+    value[SYM_GEN_healthDamage_1519]=52;
+    value[SYM_GEN_fatigueDamageSource_1430]=53;
+    value[SYM_GEN_gainedStacks_1714]=54;
+    value[SYM_GEN_extraCds_1680]=55;
+    value[SYM_GEN_flickerMinDist_1697]=56;
+    value[SYM_GEN_flickerMaxDist_1698]=57;
+    value[SYM_GEN_flickerMinSpeed_1699]=58;
+    value[SYM_GEN_flickerMaxSpeed_1700]=59;
+    value[SYM_GEN_fight_ended_1305]=60;
+    value[SYM_GEN_accuracy_1545]=61;
+    value[SYM_GEN_params_1570]=62;
+    value[SYM_GEN_ctx_3]=63;
     return value; }();
 bool try_native_resolved_property(BattleCtx&,GdObj*,SymId,GdVal&);
 void native_inline_property_hit(unsigned);
+void native_inline_hot_slot_hit(unsigned);
 #if defined(_MSC_VER)
 __forceinline
 #elif defined(__GNUC__)
@@ -173,7 +256,7 @@ GdVal native_inline_get_prop(BattleCtx& ctx,const GdVal& recv,SymId prop) {
         if(row && (!ctx.native_resolved_audit || native_resolved_row_matches(recv.obj,row))) {
             const auto function=row->properties ? row->properties->getters[slot] : nullptr;
             if(function) {
-                if(ctx.native_resolved_collect)native_inline_property_hit(0);
+                if(ctx.native_resolved_collect) {native_inline_property_hit(0);if(slot>=32)native_inline_hot_slot_hit(1);}
                 return function(recv.obj);
             }
             if(ctx.native_resolved_collect)native_inline_property_hit(1);
@@ -201,7 +284,7 @@ GdVal native_inline_call(BattleCtx& ctx,const GdVal& recv,SymId method,const GdV
         if(row && (!ctx.native_resolved_audit || native_resolved_row_matches(recv.obj,row))) {
             const auto function=row->methods[slot];
             if(function) {
-                if(ctx.native_resolved_collect)++ctx.native_resolved_counts[0];
+                if(ctx.native_resolved_collect) {++ctx.native_resolved_counts[0];if(slot>=112)native_inline_hot_slot_hit(0);}
                 return function(recv.obj,args,argc);
             }
         }

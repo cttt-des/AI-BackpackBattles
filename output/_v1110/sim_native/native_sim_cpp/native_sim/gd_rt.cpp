@@ -1273,8 +1273,11 @@ const GdClassMeta* find_class_by_id(ClsId id) {
 
 GdVal construct_class(BattleCtx& ctx, const GdClassMeta* cls, const GdVal* args, int argc) {
     if (!cls || !cls->alloc_fn) return GdVal::null();
-    GdObj* obj = cls->alloc_fn(ctx);
-    obj->init_fields(ctx);
+    GdObj* obj = try_native_allocate_initialized(ctx,cls);
+    if(!obj) {
+        obj = cls->alloc_fn(ctx);
+        obj->init_fields(ctx);
+    }
     GdVal dummy;
     obj->call_method(ctx, SYM__init, args, argc, dummy);
     return GdVal::from_obj(obj);

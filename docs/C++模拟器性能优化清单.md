@@ -681,3 +681,47 @@ CoreItem 从 1,696 字节、8 字节对齐改为 1,792 字节、64 字节对齐�
 914 + 1,690 场原版逐事件全部通过，全部 C++ 逐场事件哈希与部署基线及早期真值一致，根仍 `b8066c92…`；原事件内核及新行缓存类型不匹配均零。全量字段快路径实际命中 56,271,418 次。一次连续 24 批吞吐中位 **185.1269**、最慢 **139.3168 场/秒**，全部 ≥50，全程接电，后台负载 **2.2037%–19.3833%**。一次 24 批校准覆盖 **6.8268%–40.2692%**，20% 拟合 **139.7169 场/秒**，R² 0.96052，交叉验证中位／P90 耗时误差 1.755%／4.172%；保留首个结果，不将 139.72 四舍五入为目标已完成。[验收](../output/_v1110/native_perf50/property_control_bundle/bundle_full_gate.json) · [全量覆盖](../output/_v1110/native_perf50/property_control_bundle/full_type_audit.json) · [吞吐／拟合](../output/_v1110/native_perf50/property_control_bundle/measurements_summary.json)
 
 已部署 DLL `14263d42…`，训练入口 12 场无错误、12 项结果匹配基线；源码／部署 DLL、清单和报告 SHA 全部复核。旧运行时保留于 `dist/native_1_1_10_before_property_control_bundle_20261121`。140 目标仍进行，下一组合选纯类型判定缓存与已知类型分配／初始化融合，继续保留默认初始化与 _init 的原顺序，不改数值算法。[部署](../output/_v1110/native_perf50/property_control_bundle/bundle_installation.json) · [复核](../output/_v1110/native_perf50/property_control_bundle/post_install_verification.json)
+
+### 纯类型判断与对象初始化组合（构建中）
+
+开始前核对当前远端 `eb898e2b…` 的 DLL `14263d42…` 和 704 份生产源码。674 个生成类的 meta 均为纯常量返回，metadata 父链与 C++ 继承一致；在已有精确类型方法行中附带 metadata 和八类高频祖先标记。实际类型判断处读取已缓存的精确证明；未知 C++ 覆写、未缓存、禁用及复制 metadata 保留原入口，错误缓存先审计再解引用，不增加未知 meta 回调。
+
+已知全局 ClassMeta 的对象分配与 init_fields 合并为具体类型入口，使编译器有机会消除冗余初始化和间接调用。保留全部默认构造、方法行预填、字段初始化及原 _init 参数／调用顺序；复制／自定义 ClassMeta 即使 ID 相同也回退原分配器。只改内部方法行布局，GdObj、BattleCtx、ClassMeta 及物品布局不变。全部 20 单元计数构建和全新 18 单元 PGO 进行中；未得到速度结论，未部署。[实现](../output/_v1110/prototype_native_type_constructor_bundle.py) · [预先方案](../output/_v1110/native_perf50/type_constructor_bundle/evaluation_plan.json)
+
+新增定向检查计划覆盖 674×674 类型判断、674 类在两种计时器头模式下共 1,348 次原／融合初始化的全部继承 GdVal 字段与引用关系、RNG／ID，以及未知 meta 回调和自定义分配／_init 顺序。随后沿用三组各八对单线程 AB／BA、2,604 场严格逐事件验收和单次发布／负载校准。按用户澄清评价整组累计收益，不要求单笔先达到显著性，也不由整组收益宣称各组件均有效。
+
+### 类型判断与初始化组合结果（保留，不部署）
+
+正式候选 `742ef705…` 完成同源 20 单元计数／全新 18 单元 PGO。454,276 项类型判断、1,348 次原／融合初始化、210,938 项递归字段状态和 2,039 项边界检查通过；别名、浮点位模式、RNG、实例 ID 与自定义回调顺序一致。旧字段／日志／容器／计时器回归、三场定向及 704 份源码两遍完整再生成通过。固定 200 场类型快路径 3,715,324 次、融合初始化 82,399 次，结果签名一致。[定向结果](../output/_v1110/native_perf50/type_constructor_bundle/type_constructor_test.json) · [构建来源](../output/_v1110/native_perf50/type_constructor_bundle/fresh_profile_source.json)
+
+原三组 24 对的 CPU 中位耗时减少 0.4425%，墙钟中位增加 0.2699%，结论混合。按原路线允许的不明确结果追加一次独立八对，提前保存方案，保留原 24 对和所有极端样本，不再增加同条件组数。完整 32 对 CPU／墙钟中位减少 **0.4425%／0.1727%**，CPU 16 次更快、4 次持平、12 次更慢；墙钟 18 次更快、14 次更慢。累计耗时分别 **增加 0.8505%／1.4007%**。全程接电，观测后台负载 **5.9446%–46.0632%**。这是弱证据，不能因中位数刚转正就宣称可重复收益，也不能据此否定每个组件。[原 24 对](../output/_v1110/native_perf50/type_constructor_bundle/ab_assessment.json) · [追加方案](../output/_v1110/native_perf50/type_constructor_bundle/followup_plan.json) · [全部 32 对](../output/_v1110/native_perf50/type_constructor_bundle/ab_assessment_32.json)
+
+为避免过早排除小收益，继续完成本组合 914 + 1,690 场原版严格逐事件核验，全部通过；逐场 C++ 事件哈希与当前部署一致，根仍为 `b8066c92…`，新旧类型审计均零不匹配。全量类型快路径 51,782,642 次、融合初始化 1,134,539 次，均零对应回退。[全量核验](../output/_v1110/native_perf50/type_constructor_bundle/bundle_full_gate.json) · [逐场哈希](../output/_v1110/native_perf50/type_constructor_bundle/bundle_vs_deployed_hashes.json) · [覆盖](../output/_v1110/native_perf50/type_constructor_bundle/full_type_audit.json)
+
+单次连续 24 批原始吞吐中位 **132.2582**、最慢 **99.4551 场/秒**，全部超过 50；全程接电，后台负载 **8.9575%–27.7624%**。独立单次 24 批校准覆盖 **10.9375%–42.4127%**，20% 拟合 **128.8361 场/秒**，R² 0.92986，交叉验证耗时误差中位／P90 为 **3.693%／7.953%**。保留首份结果，不重跑至有利值；其与旧版独立拟合的差值不等于代码因果变化。[吞吐／拟合](../output/_v1110/native_perf50/type_constructor_bundle/measurements_summary.json)
+
+随后只运行一次预先记录的固定负载 16 对 AB／BA，两条低优先级后台任务各 72% 占空比、120 秒交替预热。实际负载 **24.1416%–41.5749%**，因此不声称精确 20%。CPU 中位耗时减少 **0.0086%**、墙钟中位增加 **0.0424%**；累计分别增加 **0.5855%／0.6095%**，CPU 胜负 8:8、墙钟 7:9。全部样本保留，未确认有稳定收益。[固定负载方案](../output/_v1110/native_perf50/type_constructor_bundle/target_load_protocol.json) · [完整结果](../output/_v1110/native_perf50/type_constructor_bundle/target_load_assessment.json)
+
+决定保留源码、DLL 和全部数据，暂不部署，也不再给同一候选追加测速组。当前运行时保持已验收的 `14263d42…`，140 目标继续进行。下一步重采样当前部署版，优先寻找能与保留组件组合、并减少实际间接调用或数据访问的改动。部署核对另补充逐场哈希原始文件备份和直接复算拟合，避免仅凭汇总状态判断完成。
+
+当前部署版随后重采样取得 **2,023 栈、2,020 个有效回放根**。主要叶节点仍是物品 physicsTick 123、主 physicsTick 111、角色计时器 95；事件总线 emitAndLog 43、通用调用若干以及 get_prop 26 仍可见。沿调用链检查发现 Weapon.doCooldownEffect 的 attack 调用尚不在 112 个缓存槽中；useStamina 已在槽 111，不能把它误列为缺口。已按完整继承分析生成 16 项新方法候选，计划扩至 128 槽，保持旧 112 槽次序和全部派生覆写，并与纯字段覆盖扩展及保留组件合测。采样是提出假设，未换算成提速承诺。[新采样](../output/_v1110/native_perf50/post_property_control_profile/profile_depth64.json) · [方法缺口与完整新行](../output/_v1110/native_perf50/post_property_control_profile/hot_slot_gaps.json)
+
+### 热点方法／字段覆盖扩展组合（构建中）
+
+保留上一组未明确见效的类型判断与初始化组件，在同一 `14263d42…` 部署基线之上叠加 16 项热点方法和 32 项纯字段。方法槽 112 → 128，旧 112 槽次序与函数保持一致；属性槽 32 → 64，旧 32 槽解析保持一致，新增字段按实际生成读取频次选择。字段共享行 14 → 43，内部表有空间代价，GdObj／BattleCtx／ClassMeta／物品布局不变。全部 1,348 个原 getter／call_method 虚函数分发表保持原文，派生覆写、静态遮蔽及未知类型均保留原回退。128 是本轮增量选择，后续可按证据改用更宽索引增加槽数，不作为架构上限。[组合实现](../output/_v1110/prototype_native_hot_coverage_bundle.py) · [变换预检](../output/_v1110/native_perf50/hot_coverage_bundle/transform_preflight.json)
+
+构建早期源码审查发现，新纳入的方法此前不会预填未知 C++ 接收者缓存，沿用旧统一派发入口则可能在原回调前写入空类型行。已停止明确识别的候选构建，保留其源码与日志；新增方法遇到未知类型时不写缓存、不新增回调，原有 112 个方法的缓存行为不变。修复后重新以最终源码进行完整 20 单元计数构建／新 18 单元 PGO，未复用旧采样。另加 16 个新方法的参数位模式、false 返回、绑定顺序、缓存可见性及 RNG 差分用例；字段检查改为按实际列数遍历，覆盖全部 64 槽。尚无正式测速结论，当前运行时仍为 `14263d42…`。[修复记录](../output/_v1110/native_perf50/hot_coverage_bundle/unknown_cache_guard_incident.json) · [新方法检查](../output/_v1110/test_native_hot_coverage.cpp)
+
+### 热点覆盖扩展组合结果（已部署）
+
+正式候选 `401376af…` 已完成最终一致源码的完整 20 单元计数与全新 18 单元 PGO。新增 1,344 项未知接收者／缓存可见性／参数位模式／false 返回／FuncRef 绑定及 RNG 差分通过；64 个属性槽覆盖 289,476 项字段值、13,158 项绑定／别名及 24 项边界检查，原虚 getter 作为真值。既有 454,276 项类型判断、1,348 次初始化、210,938 项递归字段及全部日志、容器、计时器、生命周期等回归通过。704 份源码完整再生成两遍字节与时间戳一致，全部 674 份对象头与部署基线原文一致，布局不变。固定 200 场实际新增方法命中 71,933 次、新增字段命中 1,164,624 次，原输入／结果签名一致。[新方法检查](../output/_v1110/native_perf50/hot_coverage_bundle/hot_coverage_test.json) · [字段检查](../output/_v1110/native_perf50/hot_coverage_bundle/property_test.json) · [正式覆盖](../output/_v1110/native_perf50/hot_coverage_bundle/release_audit.json)
+
+三组各八对单线程 AB／BA 的 CPU 中位耗时分别减少 **2.8304%、1.4108%、0.9524%**，墙钟分别减少 **1.7955%、1.5007%、0.3874%**。完整 24 对 CPU 中位／累计减少 **1.9328%／0.3556%**，16 对更快、1 对持平、7 对更慢；墙钟中位／累计减少 **1.6319%／0.6082%**，19 对更快。去掉第一组后累计值小幅反向，全部波动保留，不能只展示更高的中位数；各组中位均正向，支持整个组合的小幅收益。全程接电，后台负载 **13.1202%–34.0881%**。这是在保留旧组件后新增覆盖的整体结果，不证明上一组每项均有效。[全部 24 对](../output/_v1110/native_perf50/hot_coverage_bundle/ab_assessment.json)
+
+原版 914 + 1,690 场严格逐事件全部通过，全部 C++ 逐场事件哈希与部署基线一致，根仍为 `b8066c92…`；新旧类型不匹配零。全量新增方法／字段分别实际命中 **1,126,227／16,608,087 次**，类型路径 51,782,642 次、融合初始化 1,134,539 次，相关回退零。[全量核验](../output/_v1110/native_perf50/hot_coverage_bundle/bundle_full_gate.json) · [逐场哈希](../output/_v1110/native_perf50/hot_coverage_bundle/bundle_vs_deployed_hashes.json) · [覆盖审计](../output/_v1110/native_perf50/hot_coverage_bundle/full_type_audit.json)
+
+一次连续 24 批吞吐中位 **119.3122**、最慢 **54.5465 场/秒**，全部超过 50；全程接电，后台负载 **10.4232%–60.7137%**。独立一次 24 批校准覆盖 **14.8574%–41.3270%**，20% 拟合 **114.9550 场/秒**，R² 0.90959，交叉验证耗时误差中位／P90 为 **2.205%／5.974%**。保留这份低值，不重跑至过线；历史 139.7169 与本次 114.9550 属于不同环境的独立拟合，不能直接视为代码退化。负载模型仍不能完全消除频率等未控制因素，140 目标继续进行。[原始 24 批与拟合](../output/_v1110/native_perf50/hot_coverage_bundle/measurements_summary.json)
+
+针对独立拟合与同期 A/B 的差异，部署前只追加一次预先记录的固定负载 16 对。两条低优先级后台任务各 72% 占空比，交替预热 120 秒；实际后台负载 **29.1246%–40.6162%**，全程接电，不称为精确 20%。CPU 中位／累计耗时减少 **2.8987%／2.4091%**，12 对更快、4 对更慢；墙钟减少 **2.9134%／2.6011%**，13 对更快。这支持负载下仍有真实的组合收益，不覆盖原 114.9550 拟合，也不对同一候选继续追加测速组。[预先方案](../output/_v1110/native_perf50/hot_coverage_bundle/target_load_protocol.json) · [完整受控对照](../output/_v1110/native_perf50/hot_coverage_bundle/target_load_assessment.json) · [取舍](../output/_v1110/native_perf50/hot_coverage_bundle/composition_decision.json)
+
+通过后原子部署到默认训练运行时及生产 C++ 目录，DLL 为 `401376af…`，旧运行时保留在 `dist/native_1_1_10_before_hot_coverage_bundle_20261121`。训练入口 12 场无错误、12 项固定结果与旧版匹配。部署后重新读取 2,604 份原始逐场记录、复算事件根与 20% 拟合，核对全部 704 份生产源码、DLL、报告与清单 SHA，均通过；当前目标状态仍为未达到 140。[部署](../output/_v1110/native_perf50/hot_coverage_bundle/bundle_installation.json) · [部署后复核](../output/_v1110/native_perf50/hot_coverage_bundle/post_install_verification.json)

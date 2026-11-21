@@ -1,0 +1,8 @@
+{
+  "dll_sha256": "14263d42d22021a83849baffddf2f6288694886f2733a66c0473850b37407548",
+  "samples": 2023,
+  "valid_replay_roots": 2020,
+  "normal_priority_all8": true,
+  "before_formal_warmup_and_no_compilers": true,
+  "report_sha256": "1369a7b568eb9652b31fb035d600a65988e278ff9c0027a452a1baf5f4352038"
+}

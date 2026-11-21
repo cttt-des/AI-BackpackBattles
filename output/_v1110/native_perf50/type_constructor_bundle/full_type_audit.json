@@ -1,0 +1,35 @@
+{
+  "candidate_dll_sha256": "742ef705e583387510341a9f9055ba80bb6160a1f6290f55ef68ac6970fd081a",
+  "fights": 2604,
+  "coverage": {
+    "generic_hits": 149433395,
+    "funcref_hits": 2143020,
+    "lazy_resolutions": 927513,
+    "unsupported_types": 2601,
+    "audit_mismatch": 0,
+    "selected_fallback": 4123200
+  },
+  "type_constructor_coverage": {
+    "type_hits": 51782642,
+    "type_fallback": 0,
+    "fused_initializations": 1134539,
+    "factory_fallback": 0
+  },
+  "old_event_kernel_type_mismatches": 0,
+  "receipts": [
+    "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_type_constructor_bundle_bundle_host_phases_observed_base_current\\cpp",
+    "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_type_constructor_bundle_bundle_host_phases_observed_base_last",
+    "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_type_constructor_bundle_bundle_host_phases_reuse_0",
+    "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_type_constructor_bundle_bundle_host_phases_reuse_1",
+    "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_type_constructor_bundle_bundle_host_phases_reuse_2",
+    "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_type_constructor_bundle_bundle_host_phases_reuse_3",
+    "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_type_constructor_bundle_bundle_host_phases_reuse_4",
+    "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_type_constructor_bundle_bundle_host_phases_reuse_5",
+    "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_type_constructor_bundle_bundle_host_phases_reuse_6",
+    "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_type_constructor_bundle_bundle_host_rng_phases_new_expand"
+  ],
+  "property_coverage": {
+    "field_hits": 56271418,
+    "selected_fallback": 0
+  }
+}

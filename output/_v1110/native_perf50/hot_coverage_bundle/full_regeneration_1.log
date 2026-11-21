@@ -1,0 +1,14 @@
+Verified full-inventory source prepare: 3 files updated
+Parsed 674 classes cleanly (including inner classes).
+Generated 674 classes (2879 symbols) across 16 shards into C:\Users\Windows\AppData\Local\Temp\native-source-regeneration-fbsmqhwn\output\_v1110\sim_native\native_sim_cpp\native_sim\gen
+Scalar float conversions: ['Gd__gd_core__CoreItem::sf__f32eng', 'Gd__gd_core__CoreBuff::sf__f32eng', 'Gd__gd_core__CoreCharacter::sf__f32eng', 'Gd__gd_core__CoreTimer::sf__f32eng', 'Gd__gd_core__CoreContext::sf__nativeF32']
+Folded 964 CoreConst enum reads and lowered the cooldown loop
+Folded 264 enum reads. Most common: [(('Gd__gd_core__CoreCharacter', 'Stat'), 52), (('Gd__gd_core__Item', 'ActivationAni'), 23), (('Gd__gd_core_items__Item', 'ActivationAni'), 23), (('Gd__gd_core_items__Gems__Gem', 'GemMode'), 18), (('Gd__gd_core__CoreDamageSource', 'Flags'), 17), (('Gd__gd_core__CoreDamageSource', 'Type'), 16), (('Gd__gd_core__CoreConst', 'EventType'), 11), (('Gd__gd_core_items__Exclusive__Eat_o_matic', 'ArmState'), 9)]
+character: lowered 152 verified self calls
+rng_native: lowered 15 verified self calls
+Atomic symbol tables are already applied
+Guarded event snapshot preparation with exact native context and final-hook RTTI
+Placed first native timer headers beside item fields; reinit and external contexts retain independent headers
+Build-script setting edits invalidate cached objects; compiler flags retained
+Verified full-inventory source apply: 22 files updated
+Full source-generation pipeline completed without compiling

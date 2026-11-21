@@ -1,0 +1,13 @@
+{
+  "reason": "Original24 pairs mixed: CPU median +0.4425%, wall -0.2699%; retain all extreme observations.",
+  "baseline_dll_sha256": "14263d42d22021a83849baffddf2f6288694886f2733a66c0473850b37407548",
+  "candidate_dll_sha256": "742ef705e583387510341a9f9055ba80bb6160a1f6290f55ef68ac6970fd081a",
+  "additional_groups": 1,
+  "additional_pairs": 8,
+  "combined_pairs": 32,
+  "warmup_seconds": 120,
+  "order": "Default AB/BA, candidate load first, complement groups1/3 candidate-first",
+  "all_original_samples_retained": true,
+  "no_additional_group_after_this_one": true,
+  "original_assessment_sha256": "12f2c99c1694074c0c5a2184c439f6e4fc652fb7fc6ead3298107219b68d2cd4"
+}

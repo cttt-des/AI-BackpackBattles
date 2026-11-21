@@ -1,0 +1,41 @@
+{
+  "passed": true,
+  "dll_sha256": "401376afb48e5340be48578aa534eac0b823a69d3447044639e3d3ee5cb7a259",
+  "production_source_files": 704,
+  "unchanged_object_headers": 674,
+  "strict_event_cases": 2604,
+  "event_hash_root": "b8066c9224bc418923c62f5a3dafb8912100b21bb0026c3b13669872f90e2f54",
+  "raw_batches": 24,
+  "training_cases": 12,
+  "type_constructor_coverage": {
+    "type_hits": 51782642,
+    "type_fallback": 0,
+    "fused_initializations": 1134539,
+    "factory_fallback": 0
+  },
+  "hot_slot_coverage": {
+    "new_method_hits": 1126227,
+    "new_field_hits": 16608087
+  },
+  "target_at20_fps": 114.95502937494335,
+  "goal140_reached": false,
+  "load_range_pct": [
+    14.857432676599373,
+    41.32704824580601
+  ],
+  "fit_validation": {
+    "median_absolute_relative_time_error": 0.02204677675449885,
+    "p90_absolute_relative_time_error": 0.05973691014193159,
+    "constant_median_absolute_relative_time_error": 0.11926080469045564
+  },
+  "evidence_sha256": {
+    "source_before_build.json": "bd16795884363cbeaf2da34baef5322140e6e2ea0e52691035cb69f3b8a7abf9",
+    "bundle_full_gate.json": "c1584d8e91295fd51c3458fa183b7f3eb5ea88cbfce5eca4db0ff19fb91fc0c3",
+    "bundle_vs_deployed_hashes.json": "9812a6542a5315ffd886765c5db6b30a2a22b9ac317a74a9b00fe07713f17baf",
+    "ab_assessment.json": "7f067858d76fe7cb80ba549fe8005160c57abf9a4c6014ce1da8ebea3b455c2f",
+    "bundle_serial.json": "9c8b244b0c0bd24438ed3c445db92a338752132682ae48cd0f541b4f8b8dd9c3",
+    "bundle_load_calibration.json": "d8a0688999adf369a09e144b4ffb84e6b9c561885bb4701c7e6ddfa3c4cdadc7",
+    "bundle_load20.json": "8e898ed2f6ddced7ee200aca51dd52a0d39131a299763f4b419b876f534e03cd",
+    "bundle_installation.json": "c38aa12b6540ef19a56833f9ffda3629afc070ec0c1ae886dd3d65811b25e90e"
+  }
+}

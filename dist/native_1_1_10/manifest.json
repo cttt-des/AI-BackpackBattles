@@ -2,10 +2,10 @@
   "game_version": "1.1.10",
   "library": "libgdcore.dll",
   "verified_fights": 2604,
-  "gate_sha256": "aff34e3c524b7c3e5a96afb7df434739b64b1c201c6c4e255097daf6cb77a0c4",
+  "gate_sha256": "c1584d8e91295fd51c3458fa183b7f3eb5ea88cbfce5eca4db0ff19fb91fc0c3",
   "sha256": {
     "sim.py": "6fa822d05c75aa04da7269c349e0d257857fb786f7c6f3e82aa9fa58f407e5ca",
     "gd_core_runtime.json": "850d14676efdc5b17f2fc0d8bcac2c1e4a7cf9b40c456ff48c6d9d082adfda4e",
-    "libgdcore.dll": "14263d42d22021a83849baffddf2f6288694886f2733a66c0473850b37407548"
+    "libgdcore.dll": "401376afb48e5340be48578aa534eac0b823a69d3447044639e3d3ee5cb7a259"
   }
 }
