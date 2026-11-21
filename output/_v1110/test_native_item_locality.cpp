@@ -13,6 +13,18 @@ bool inside(const Item& item,const gd::GdArr* array){
 int main(){
     register_gen_syms();unsigned checks=0;
     gd::BattleCtx native(256);native.native_inline_timer_headers=true;
+#if defined(GD_ITEM_LOCALITY_LAYOUT_ONLY)
+    Item layout(&native);const auto base=reinterpret_cast<uintptr_t>(&layout);
+    std::cout<<"{\"core_item_size\":"<<sizeof(Item)
+        <<",\"derived_item_size\":"<<sizeof(Gd__gd_core_items__Item)
+        <<",\"weapon_size\":"<<sizeof(Gd__gd_core_items__Weapon)
+        <<",\"alignment\":"<<alignof(Item)
+        <<",\"timers_offset\":"<<reinterpret_cast<uintptr_t>(&layout.f_timers)-base
+        <<",\"gems_offset\":"<<reinterpret_cast<uintptr_t>(&layout.f_gems)-base
+        <<",\"cooldown_active_offset\":"<<reinterpret_cast<uintptr_t>(&layout.f__cooldown_active)-base
+        <<",\"timer_length_offset\":"<<reinterpret_cast<uintptr_t>(&layout.native_timer_header_.len)-base<<"}\n";
+    return 0;
+#else
     for(uint32_t count:{0u,1u,3u,33u,1024u}){
         auto* item=native.arena.make<Item>(&native);item->init_fields(native);
         auto* original=item->f_gems.arr;
@@ -57,6 +69,8 @@ int main(){
         <<",\"alignment\":"<<alignof(Item)
         <<",\"timers_offset\":"<<reinterpret_cast<uintptr_t>(&layout.f_timers)-origin
         <<",\"gems_offset\":"<<reinterpret_cast<uintptr_t>(&layout.f_gems)-origin
+        <<",\"cooldown_active_offset\":"<<reinterpret_cast<uintptr_t>(&layout.f__cooldown_active)-origin
         <<",\"timer_length_offset\":"<<reinterpret_cast<uintptr_t>(&layout.native_timer_header_.len)-origin
         <<",\"bridge_gems_length_offset\":"<<reinterpret_cast<uintptr_t>(&layout.native_bridge_gems_header_.len)-origin<<"}\n";
+#endif
 }

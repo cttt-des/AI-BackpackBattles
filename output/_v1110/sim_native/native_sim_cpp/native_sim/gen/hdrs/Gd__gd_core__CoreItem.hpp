@@ -45,7 +45,6 @@ struct Gd__gd_core__CoreItem : public gd::GdObj {
     gd::GdVal f_triggerTime;
     gd::GdVal f_iterationCooldown;
     gd::GdVal f_itemMetrics;
-    gd::GdVal f_gems;
     gd::GdVal f__grid;
     gd::GdVal f__behavior;
     gd::GdVal f__cooldown_active;
@@ -71,8 +70,26 @@ struct Gd__gd_core__CoreItem : public gd::GdObj {
     gd::GdVal f_hasOnChargeReceivedEffect;
     gd::GdVal f_hasOnChargeLeftEffect;
     alignas(64) gd::GdVal f_timers;
+    gd::GdVal f_gems;
     gd::GdArr native_timer_header_;
+    gd::GdArr native_bridge_gems_header_;
     bool native_timer_header_used_ = false;
+    bool native_bridge_gems_header_used_ = false;
+    gd::GdArr* native_make_bridge_gems(gd::BattleCtx& battle,uint32_t count) {
+        // Only the bridge's post-setup replacement uses this distinct header.
+        // init_fields keeps its original independent gems array, and no used
+        // header is reset or reused while an alias can still observe it.
+        if(battle.native_inline_timer_headers && !native_bridge_gems_header_used_ &&
+           battle.arena.owns_storage(this,sizeof(*this))) {
+            native_bridge_gems_header_used_=true;
+            if(count>0) {
+                native_bridge_gems_header_.data=battle.arena.alloc_array<gd::GdVal>(count);
+                native_bridge_gems_header_.cap=count;
+            }
+            return &native_bridge_gems_header_;
+        }
+        return gd::GdArr::create(battle.arena,count);
+    }
     gd::GdVal f_buffLabelPositionTimestamps;
     gd::GdVal f_replacementPending;
     gd::GdVal f_faceDirection;

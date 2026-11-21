@@ -1,0 +1,20 @@
+{
+  "status": "source_review_only_not_implemented",
+  "current_deployment": "444e75c6872fa2acec57f42d88eb6687c29f2dc97a82b88ba3e66fdf849312cc",
+  "source_fact": "construct_class currently calls cls->alloc_fn(ctx), virtual init_fields(ctx), then virtual _init with original args. All674 generated allocators know the exact generated C++ type.",
+  "candidate": "An internal exact-metadata factory combines the original default construction, existing conditional method-row seed and the same most-derived init_fields call in one typed function. construct_class then invokes the original _init expression with original arguments.",
+  "potential_value": "Gives the compiler one known typed allocation/initialization body; it may remove redundant default-value stores or virtual setup dispatch while retaining any stores needed by callbacks. Value remains unmeasured; refresh deployed-binary stacks and inspect actual generated stores before selecting it.",
+  "safety_conditions": [
+    "Use exact global generated metadata identity, with unknown or copied/custom metadata retaining original allocation and virtual initialization",
+    "Default GdVal/member initialization, allocation order, all init_fields statements, row seed order, _init arguments, IDs, RNG and callbacks retain their semantics",
+    "Factory does not expose a partially initialized object to a new caller",
+    "No public object/context layout change is required if the factory table is separate from ClassMeta",
+    "Full-source guards preserve generated inheritance and most-derived init_fields resolution"
+  ],
+  "possible_tests": [
+    "All674 generated alloc-plus-init versus factory field snapshots before _init; no constructor arguments required for this comparison",
+    "Normal argument-bearing construction, initializer callback/order/RNG effects and unknown metadata fallback",
+    "Fresh PGO, same fixed200 A/B and all existing release gates"
+  ],
+  "decision": "Reserve for a later combined trial if the locality package and refreshed profile leave work to reach140. Do not reject it solely because an individual timing is small or uncertain."
+}
