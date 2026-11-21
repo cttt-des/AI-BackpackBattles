@@ -1,0 +1,35 @@
+{
+  "status": "implemented_source_preflight_only_uncompiled_unmeasured",
+  "baseline_dll_sha256": "7af5ff948b949859339f0897a6d857953ae8e3b30ec451cee030672ba9c5129b",
+  "profile": "profile_depth64.json",
+  "evidence": {
+    "tick_character_timers_leaf_samples": 323,
+    "hot_location_relative_offset": 9156420,
+    "hot_location_samples": 97,
+    "instruction": "test esi,esi immediately after loading f_gems.arr->len",
+    "surrounding_instructions": [
+      "load item pointer",
+      "load f_timers.arr at object+0x648",
+      "load timer length",
+      "load f_gems.arr at object+0x3e0",
+      "load gems length"
+    ],
+    "current_header": "CoreItem has an aligned f_timers and embedded first timer array header; f_gems remains distant",
+    "historical_layout_trial": "Old 11-hot-field layout had small inconclusive results and predated embedded timer headers; retain it as a candidate, not a proven gain"
+  },
+  "next_composition_candidate": [
+    "Place f_timers, f_gems and the existing native_timer_header_ so both values and inline timer length occupy one cache line",
+    "Use a distinct embedded header for the bridge post-setup assembled gems array; leave the original init_fields gems allocation and aliases unchanged",
+    "Optionally combine a same-order no-trigger cooldown fast path after source proof and targeted callback tests"
+  ],
+  "required_proofs": [
+    "No field removed, added initialization callback or numeric change",
+    "Measure actual sizeof/alignof and byte offsets, including every relevant derived item",
+    "Escaped array aliases survive later field replacement and arena lifecycle exactly as before",
+    "Full dependent rebuild and fresh PGO; no stale layout objects",
+    "Direct fixed200 combined A/B, full deterministic and deployment gates"
+  ],
+  "limits": "A sampled post-load test can reflect memory latency but does not prove cache misses or predict a speedup. No performance gain is assigned yet. No sparse-index invalidation machinery is proposed.",
+  "source_followup": "build_single_item_obj replaces f_gems after setup, for every item; embedding only the initial header would not localize the frame-time array",
+  "prototype": "output/_v1110/prototype_native_item_locality_bundle.py"
+}

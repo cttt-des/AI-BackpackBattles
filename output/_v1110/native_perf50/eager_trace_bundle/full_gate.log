@@ -1,0 +1,33 @@
+Checking native_host_phases_reuse_2 (518 fights)
+Checking native_host_phases_reuse_0 (862 fights)
+native_host_phases_reuse_0: 862/862 strict passes
+Checking native_host_phases_reuse_1 (785 fights)
+native_host_phases_reuse_1: 785/785 strict passes
+Checking native_host_phases_reuse_3 (264 fights)
+native_host_phases_reuse_2: 518/518 strict passes
+Checking native_host_phases_observed_base_current (124 fights)
+native_host_phases_reuse_3: 264/264 strict passes
+Checking native_host_phases_reuse_4 (22 fights)
+native_host_phases_reuse_4: 22/22 strict passes
+Checking native_host_rng_phases_new_expand (19 fights)
+native_host_rng_phases_new_expand: 19/19 strict passes
+Checking native_host_phases_observed_base_last (8 fights)
+native_host_phases_observed_base_last: 8/8 strict passes
+Checking native_host_phases_reuse_5 (1 fights)
+native_host_phases_reuse_5: 1/1 strict passes
+Checking native_host_phases_reuse_6 (1 fights)
+native_host_phases_reuse_6: 1/1 strict passes
+native_host_phases_observed_base_current: 124/124 strict passes
+base {'expected': 914, 'recorded': 914, 'verified': 914, 'passed': 914, 'winner_mismatch': 0}
+expand {'expected': 1690, 'recorded': 1690, 'verified': 1690, 'passed': 1690, 'winner_mismatch': 0}
+{
+  "baseline_dll_sha256": "58383a1158e951d7aae8b4d4c34df4d52332446156946d31a488f5dff323ec39",
+  "candidate_dll_sha256": "444e75c6872fa2acec57f42d88eb6687c29f2dc97a82b88ba3e66fdf849312cc",
+  "runtime_data_sha256": "55bdd068cf3308547de78b45abbed4bf4f57e8253fbec82313a99578defa00ae",
+  "unchanged_cpp_event_streams": 2604,
+  "cohorts": {
+    "base": 914,
+    "expand": 1690
+  },
+  "ordered_case_and_cpp_event_hashes_sha256": "b8066c9224bc418923c62f5a3dafb8912100b21bb0026c3b13669872f90e2f54"
+}

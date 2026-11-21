@@ -1,0 +1,10 @@
+{
+  "baseline_exit_code": 3221225477,
+  "failing_case": "flags0/mode10",
+  "candidate_executed": false,
+  "cause": "Test assumed descriptor getter precedes coordinate evaluation inside nested gd_add arguments; the actual baseline evaluates coordinates first",
+  "fix": "Use a valid empty coordinate array and let descriptor repair later RNG receiver; compare actual original callback/output order rather than assuming one",
+  "candidate_source_bytes_changed": false,
+  "guard_safety": "Any unknown descriptor rejects the fast path; all skipped arguments require pure exact values. Original trace expression remains intact for fallback.",
+  "compiled_comment_erratum": "The frozen guard comment claiming descriptor-before-coordinate is inaccurate; safety does not rely on that order. Do not change frozen compiled source/PGO for a test repair."
+}

@@ -1,0 +1,28 @@
+{
+  "dll_sha256": "444e75c6872fa2acec57f42d88eb6687c29f2dc97a82b88ba3e66fdf849312cc",
+  "source_manifest_sha256": "7139d990cff17904a4c720313293c3520cd320041e071630f059e6d508ecca49",
+  "profile_training_and_release_source_identical": true,
+  "hot_profiles_sha256": {
+    "engine_wrapper": "e11c49a08818648c3265d797704c531864c722d51999bc62ca89deae60af4b92",
+    "gd_rt": "d02b0086f9b38285eb67dee795eaecbe60dd56d07c2e131d28f0df825649be40",
+    "shard_00": "d7f091f6b933b25938ec6b6b001683679d4c3a39842a7ff12b822e729df2a812",
+    "shard_01": "a284c151aea60ac9aa8e63411750349aef1690beac5950be69f350d078b92211",
+    "shard_02": "895ec6284b38d1e1e9a5a1b7feacd5b235e10eebd0800e152363dc3d778696c7",
+    "shard_03": "a341ef9030da60192eb10f3185210e1310e410642e71f26faf3bf4f5564cc2ea",
+    "shard_04": "32d9fb2c547eccce38c72d30b9d3974ababd1087115b3aac95ec48fea2a0c815",
+    "shard_05": "448097932177cc70642f24dc6f97cd0f3f3ffe4837e948211a1969d2c6263dd6",
+    "shard_06": "0274fdf41719eb027334d63ea041f7c5814ee8e3bc8711b4938e6c772304683b",
+    "shard_07": "55b9377250aee0adf89e3ccf3906eba77debdb11852613dcfbee8fbc8058a03a",
+    "shard_08": "a9ff53021b78a5a61a481d49edda5d14683a1914cf650d7fd72bdbc89bb7c2fa",
+    "shard_09": "005d2f131213656ca65f4a46b8543c2106f7411d4a43f25baae8b032cd0408f2",
+    "shard_10": "fb8d14a83495835f49bb80ea8a3729001dcd4deb4dbfdabfc26734135052f70a",
+    "shard_11": "2f4e1dd08e48125ab429bc675fe638e5df6bbcb59df0063abf8a3a8a9fac7888",
+    "shard_12": "3e2eaf2c83c13dcf6535ff34d824d5f6032bab131cc1254af8f891f5187684db",
+    "shard_13": "c3a4ac0a5991760abef21d26a3a9ed7ed4b5b8cff2a9ae7c7eb46e33b1c103de",
+    "shard_14": "aad24d70c7712689e16d25fb6825cf7766c69e6cef1fed9fb1ef6b3b59b20961",
+    "shard_15": "9189db7d2c3f281aaf0dd5f98f265b037b1d2f7c309844b42514f56ea210968d"
+  },
+  "full20_instrumentation_and18_release_hot_units": true,
+  "floating_options_unchanged": true,
+  "python_cache_only_incident": "python_cache_guard_incident.json"
+}

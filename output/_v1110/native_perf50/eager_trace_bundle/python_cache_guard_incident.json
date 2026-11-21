@@ -1,0 +1,14 @@
+{
+  "original_build_exit_code": 1,
+  "cause": "Recursive compileall during preparation generated cache files; completed build rejected extra non-source files",
+  "actual_source_bytes_changed": false,
+  "only_added_files": {
+    "__pycache__/build.cpython-314.pyc": "c73a39aab8359067479b74f092a6914492f8d884a6480034ab5d1d7d91d33f32",
+    "__pycache__/build_windows.cpython-314.pyc": "a1c1eb02a210fadc7901df8fc959d9c5eee8fa87de974d67bd8f6aff0dc9264d",
+    "__pycache__/sim.cpython-314.pyc": "0057d66163017c9b82114954ad35df7be453b8dc1d8c84f516a5172804c5ccdf",
+    "__pycache__/test_parity.cpython-314.pyc": "1f9e3775e3094046d14f7bb3026cbf074755a92b285734c6a5f66f444215987e",
+    "__pycache__/__init__.cpython-314.pyc": "03068e6df6bc06c535c9d5d0d5c04ec3e826351c7b61f3c20865267214c688fb"
+  },
+  "original_failure_log_retained": "build.log",
+  "resolution": "Remove precisely the verified cache additions, recheck every frozen source byte, reuse completed source-identical release"
+}

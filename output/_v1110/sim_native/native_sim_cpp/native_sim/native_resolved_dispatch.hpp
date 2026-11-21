@@ -2034,6 +2034,14 @@ static const NativeMethodRow* native_resolved_exact_row(const GdObj* object) {
     const auto found=registry.find(&typeid(*object));
     return found==registry.end()?&native_resolved_empty:found->second;
 }
+void native_resolved_seed(GdObj* object,unsigned row) {
+    if(object && row<std::size(native_resolved_rows))object->native_call_row_=&native_resolved_rows[row];
+}
+bool native_resolved_cached_generated(const BattleCtx& context,const GdObj* object) {
+    const auto* row=object->native_call_row_;
+    return row && row!=&native_resolved_empty &&
+        (!context.native_resolved_audit || row==native_resolved_exact_row(object));
+}
 bool native_resolved_row_matches(const GdObj* object,const NativeMethodRow* row) {
     return row==native_resolved_exact_row(object);
 }
