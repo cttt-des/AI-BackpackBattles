@@ -1,0 +1,19 @@
+{
+  "stage": "same_source_instrumented_fixed200_before_release_timing",
+  "baseline_dll_sha256": "d3c47cdfe1b3218e7936cc02f706e8452464c1420c5e1fe4bf6963f2e3844c14",
+  "actual_fast_hits": {
+    "attack_lookup": 8587,
+    "round_lookup": 200,
+    "stack_count": 59977
+  },
+  "literal_sound_dictionaries_omitted": 140592,
+  "literal_sound_dictionary_set_calls_omitted": 492072,
+  "stack_count_array_headers_omitted": 299885,
+  "derivation": "Each sound consumer originally requests the7x3 literal twice:2*(1outer+7inner)dictionary headers and2*(7outer+21inner)sets. numStackTypes originally makes the singleton, two range arrays and two concatenation arrays.",
+  "fixed200_result_signature_unchanged": true,
+  "limitations": [
+    "These are eliminated operation counts, not a whole-fight speedup estimate.",
+    "Instrumented throughput is not used for adoption.",
+    "The actual incremental gain still requires the declared24paired whole-fight comparisons."
+  ]
+}

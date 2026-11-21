@@ -1,0 +1,58 @@
+{
+  "dll_sha256": "541238b57e2e18ce258a0afa9f548115761da28f4a1c119812277b4c0dae2983",
+  "inputs_sha256": "d94b16d42cc88e9a3850a77c9360b9c4c4fdd676cb252e463044a903db2a5fef",
+  "profile_sha256": "64cc47e58fe1775dbd5ba9a9b3a2065feb3d9a6aa26b10585b5ef25141728f6a",
+  "samples": 2015,
+  "replay_root_samples": 2014,
+  "exclusive_phase_samples": {
+    "other_frame": 683,
+    "other_setup_export": 110,
+    "assembly": 366,
+    "trigger_chain": 855,
+    "outside_replay": 1
+  },
+  "replay_phase_pct": {
+    "other_frame": 33.91261171797418,
+    "other_setup_export": 5.461767626613704,
+    "assembly": 18.17279046673287,
+    "trigger_chain": 42.45283018867924
+  },
+  "dictionary_and_hash_leaf_samples": 131,
+  "generic_method_leaf_samples": 88,
+  "tls_leaf_callers": [
+    [
+      "Gd__gd_core__CoreConst::get_static_prop_fn(unsigned int, gd::GdVal&)",
+      27
+    ],
+    [
+      "Gd__gd_core__CoreCharacter::get_static_prop_fn(unsigned int, gd::GdVal&)",
+      16
+    ],
+    [
+      "Gd__gd_core__CoreDamageSource::get_static_prop_fn(unsigned int, gd::GdVal&)",
+      11
+    ],
+    [
+      "gd::BattleArena::alloc_raw_locked(unsigned long long, unsigned long long) [clone .constprop.0]",
+      2
+    ],
+    [
+      "gd::intern_sym(std::basic_string_view<char, std::char_traits<char> >)",
+      2
+    ],
+    [
+      "Gd__gd_core__CoreEventBus::get_static_prop_fn(unsigned int, gd::GdVal&)",
+      1
+    ]
+  ],
+  "load20_fitted_fps": 143.14940259608278,
+  "goal_fps": 200,
+  "implied_throughput_increase_pct": 39.71417021161423,
+  "implied_time_reduction_pct": 28.425298701958614,
+  "limits": [
+    "Sample attribution is not measured speedup or an optimization ceiling.",
+    "Phase classification uses stack names; inlined work stays with its emitted parent.",
+    "The load fit does not remove frequency, temperature or workload-type effects.",
+    "Unchanged ordering, RNG, arithmetic and observable aliases remain required."
+  ]
+}

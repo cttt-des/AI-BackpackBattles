@@ -3043,7 +3043,9 @@ gd::GdVal Gd__gd_core__CoreConst::sf_isStack(gd::BattleCtx& gd_ctx, const gd::Gd
     return (gd::gd_truth(gd::GdVal::from_bool(gd::gd_ge(lv__type, gd::GdVal::from_int(100LL)))) ? gd::GdVal::from_bool(gd::gd_truth(gd::GdVal::from_bool(gd::gd_le(lv__type, gd::GdVal::from_int(110LL))))) : gd::GdVal::from_bool(false));
     return gd::GdVal::null();
 }
+namespace gd {void native_static_collection_hit(unsigned);}
 gd::GdVal Gd__gd_core__CoreConst::sf_numStackTypes(gd::BattleCtx& gd_ctx, const gd::GdVal* _args, int _argc) {
+    if(gd_ctx.native_resolved_dispatch){if(gd_ctx.native_resolved_collect)gd::native_static_collection_hit(2);return gd::GdVal::from_int(11LL);}
     return gd::native_inline_call(gd_ctx, ([&]() { gd::GdVal _out = gd::GdVal::null(); Gd__gd_core__CoreConst::call_static_fn(gd_ctx, SYM_GEN_getStacks_1023, nullptr, 0, _out); return _out; })(), gd::SYM_size, nullptr, 0);
     return gd::GdVal::null();
 }
