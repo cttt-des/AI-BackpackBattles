@@ -1,0 +1,25 @@
+{
+  "baseline_dll_sha256": "39c559a0bc4ef04f89444be63b42b842884a7d2fee1d59c4332fcdc7367d8e0b",
+  "helper_sha256": "988781f68c0c1c21bcae7649476d0ffde120449def11ae7b4908fa77608174b5",
+  "methods": [
+    "getItemsInCells",
+    "countItemsInCells",
+    "getBagsInCells"
+  ],
+  "components": [
+    "one native dictionary lookup instead of has then get",
+    "stable object-pointer deduplication"
+  ],
+  "preserve": [
+    "live receiver after custom has",
+    "per-cell map reads",
+    "original input length snapshot",
+    "first occurrence order",
+    "placed getter timing",
+    "original counters",
+    "arithmetic RNG and layouts"
+  ],
+  "local_pairs": 8,
+  "calls_per_arm": 100000,
+  "whole_fight_gain_unproven": true
+}

@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\spatial_bundle\profile_deployed.py", line 29, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\spatial_bundle\profile_deployed.py", line 20, in main
+    runpy.run_path(str(STAGE/'profile_native_windows.py'),run_name='__main__')
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen runpy>", line 294, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\profile_native_windows.py", line 219, in <module>
+    main()
+    ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\profile_native_windows.py", line 108, in main
+    from bench_native_corpus import load_simulator
+ModuleNotFoundError: No module named 'bench_native_corpus'
