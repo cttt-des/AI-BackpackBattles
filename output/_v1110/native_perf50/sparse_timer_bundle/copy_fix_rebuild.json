@@ -1,0 +1,26 @@
+{
+  "reproduced_before_fix": {
+    "return_code": 1,
+    "result": {
+      "copy_cleared": false,
+      "assignment_cleared": false,
+      "move_cleared": false,
+      "self_assignment_cleared": false
+    }
+  },
+  "fixed_after_change": {
+    "return_code": 0,
+    "result": {
+      "copy_cleared": true,
+      "assignment_cleared": true,
+      "move_cleared": true,
+      "self_assignment_cleared": true
+    }
+  },
+  "original_dll_sha256": "7eb50bbc5a83222d63cc8a08aadf830b6ea240bd75ed770907fc380b0b87e85d",
+  "all20_units_forced_stale_by_header": true,
+  "profile_training_source_manifest": "source_before_copy_fix.json",
+  "profile_reuse_reason": "Only cache copy/assignment member functions changed; no layout, timer, math, RNG or host corpus control-flow changes. Recompile all20 with prior18 profiles and partial-training support; reject incompatible profiles.",
+  "source_matches_full_transform": true,
+  "corrected_dll_sha256": "7c65d70f2bb606d0c556a54b98ec2c43849acade1b1d82f4c552ee815a2171fb"
+}

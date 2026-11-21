@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\sparse_timer_bundle\build_bundle.py", line 65, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\sparse_timer_bundle\build_bundle.py", line 45, in main
+    design=optimize(src);save('transform.json',design)
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\prototype_native_sparse_timer_bundle.py", line 22, in optimize
+    text=replace(text,FLAG,'    bool native_sparse_timer_scans = false;\n\n'+FLAG)
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\prototype_native_sparse_timer_bundle.py", line 13, in replace
+    assert text.count(old)==1,old[:100]
+           ^^^^^^^^^^^^^^^^^^
+AssertionError:     // Internal bridge opt-in: item objects and their first timer arrays share arena lifetime.
+    /
