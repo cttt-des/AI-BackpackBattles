@@ -1,0 +1,24 @@
+Reused exactly matched original candidate and PGO; validating before incremental AB/BA
+Starting prepare_regeneration.py
+Passed prepare_regeneration.py
+Starting generate_property_tests.py
+Passed generate_property_tests.py
+Starting generate_type_constructor_tests.py
+Passed generate_type_constructor_tests.py
+Starting verify_event_identity.py
+Passed verify_event_identity.py
+Starting verify_lazy_diagnostics.py
+Passed verify_lazy_diagnostics.py
+Starting verify_components.py
+Passed verify_components.py
+Starting verify_resolved.py
+Passed verify_resolved.py
+Starting inspect_variant.py
+Passed inspect_variant.py
+Starting test_regeneration_guards.py
+Passed test_regeneration_guards.py
+Starting test_full_regeneration.py
+Passed test_full_regeneration.py
+Starting run_comparison.py
+Passed run_comparison.py
+All preflight checks and three comparison groups completed; deployment still gated
