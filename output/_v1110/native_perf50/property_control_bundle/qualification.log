@@ -1,0 +1,11 @@
+Starting measure_all_layouts.py
+Passed measure_all_layouts.py
+Starting run_full_gate.py
+Passed run_full_gate.py
+Starting finish_gate.py
+Passed finish_gate.py
+Starting run_release_measurements.py
+Passed run_release_measurements.py
+Starting install_verified.py
+Passed install_verified.py
+All deployment gates and normal training smoke passed

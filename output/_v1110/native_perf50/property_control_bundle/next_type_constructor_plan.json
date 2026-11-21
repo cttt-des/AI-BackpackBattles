@@ -1,0 +1,27 @@
+{
+  "status": "selected_next_not_implemented",
+  "baseline_dll_sha256": "14263d42d22021a83849baffddf2f6288694886f2733a66c0473850b37407548",
+  "current_fit20_kept": 139.7169250461472,
+  "goal140_not_reached": true,
+  "components": ["Cache exact generated metadata and common subtype predicates", "Fuse exact typed allocation and init_fields for known metadata"],
+  "type_cache": [
+    "Prove all674 generated meta() bodies return their own constant metadata, and validate metadata base edges against the frozen class graph",
+    "Extend internal method rows with exact metadata and selected ancestor flags; preserve112 method cells and14 property rows. Metadata identity may force674 distinct rows; regenerate all674 allocator seeds consistently",
+    "Only known exact generated rows bypass pure virtual metadata reads. Unknown C++ objects, copied/shared metadata, disabled paths, audit mismatches and nulls retain original behavior",
+    "Use explicit valid BattleCtx at generated call sites; keep public contextless gd_is_type unchanged. Preserve pointer-identity semantics for custom target metadata",
+    "Consider the hot CoreItem Gem predicate separately, with null-context fallback and same observable order"
+  ],
+  "typed_factory": [
+    "Use a separate class-ID-indexed table with exact global metadata identity checks; no ClassMeta/GdObj/BattleCtx layout changes required",
+    "Known factory performs the original arena.make<T>, existing conditional row seed and most-derived init_fields in one typed body. Default member initialization remains intact; let the compiler eliminate redundant stores when legal",
+    "construct_class retains original null/allocator checks and the exact one _init call with original args after initialization",
+    "Unknown or copied/custom metadata uses original allocator and virtual initializer once. No raw uninitialized GdVal or state reuse"
+  ],
+  "validation": [
+    "All674 type predicates and custom target metadata compared with original meta()->is_subclass_of",
+    "All674 original alloc-plus-init snapshots versus fused factory, followed by normal argument-bearing constructor and callback/order/RNG tests",
+    "Existing172172 field cases, callback/alias/copy/resource-path/RNG suites and704-file regeneration twice",
+    "Fresh20/fresh18 PGO, direct combined fixed200 A/B,2604 strict events,raw24,one20percent fit and training smoke"
+  ],
+  "not_selected_yet": "No-trigger cooldown batching and local shared speed-mod cache remain possible later; they require separate same-frame callback invalidation proofs."
+}
