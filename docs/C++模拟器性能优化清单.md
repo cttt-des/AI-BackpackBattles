@@ -651,3 +651,19 @@ CoreItem 从 1,696 字节、8 字节对齐改为 1,792 字节、64 字节对齐�
 914 + 1,690 场原版严格逐事件全部通过，2,604 场与当前部署版及早期真值 C++ 事件哈希均一致，根仍为 `b8066c92…`，新旧类型审计不匹配均为零。一次连续 24 批原始吞吐中位 **175.7258**、最慢 **138.0912 场/秒**，全部超过 50；全程接电，后台负载 **1.6766%–19.9585%**。一次 24 批校准覆盖 **5.8223%–33.2496%** 负载，20% 拟合 **137.6948 场/秒**，R² 0.91364，交叉验证中位／P90 相对耗时误差 3.545%／6.784%。该拟合不代替原始吞吐门槛，也不把与旧版独立拟合的差当作代码收益；140 目标仍未达到。[全量验收](../output/_v1110/native_perf50/eager_trace_bundle/bundle_full_gate.json) · [逐场哈希](../output/_v1110/native_perf50/eager_trace_bundle/bundle_vs_deployed_hashes.json) · [吞吐和拟合](../output/_v1110/native_perf50/eager_trace_bundle/measurements_summary.json)
 
 已经更新本地运行时，部署 DLL、源码目录 DLL、清单和验收 SHA 一致；正常训练入口 12 场无错误，另 12 项固定结果与基线一致。旧 `7af5ff94…` 运行时保留于 `dist/native_1_1_10_before_eager_trace_bundle_20261121`。下一轮以此正式版本为基线测局部性组合，先备份后构建。[部署与训练](../output/_v1110/native_perf50/eager_trace_bundle/bundle_installation.json)
+
+本版已提交 `960daceb`，远端 `d4938c4e`，全部 704 份源码、DLL／清单及报告原始字节核对一致。随后从已验收 `444e75c6…` 启动局部性组合的完整 20 单元／全新 18 单元 PGO 构建。宝石头按 GdArr::create 原规则精确分配初始容量，不改为 reserve 的增长规则；桥接之后的 resize 和字段赋值保持原位置。43 项容量、别名、重初始化、复制、栈／其他 arena 与字节偏移检查将在正式比较前执行；新候选尚未完成构建或测速。当前运行时仍为本段已验收版。[下一组合预先方案](../output/_v1110/native_perf50/item_locality_bundle/evaluation_plan.json)
+
+### 计时器／宝石局部性组合结果（已部署）
+
+正式 DLL `8e7d5740…` 完成全量 20 单元计数构建及全新 18 单元 PGO。43 项容量／别名／重新初始化／复制／栈与不同 arena 生命周期检查通过，原有 124 项日志差分、1,348 次生成分配、1,624 项 Buff 和 40 项冷却标志等回归通过；704 份源码两遍完整再生成字节与时间戳一致。当前基线 `444e75c6…` 独立重采样取得 2,083 栈、2,079 个回放根，前三个叶节点仍为物品 physicsTick 160、主 physicsTick 139、角色计时器遍历 130。[新采样](../output/_v1110/native_perf50/post_eager_trace_profile/profile_depth64.json)
+
+布局实测：CoreItem 大小 1,792 → 1,856 字节，C++ Item 与 Weapon 均保持 3,968 字节；f_timers／f_gems／内嵌计时器长度偏移为 1,600／1,624／1,656，共处一个缓存行，桥接宝石长度偏移 1,680。全部 674 种生成类型另以连续同型单对象分配验证实际大小：430 种物品类型各增 64 字节，其余大小不变。所有类型各取一个的非加权总量从 2,614,456 增至 2,641,976 字节，该量不是语料峰值内存。记录这一空间代价，不仅展示父类未增大的例子。[布局](../output/_v1110/native_perf50/item_locality_bundle/item_layout_offsets.json) · [全部类型大小](../output/_v1110/native_perf50/item_locality_bundle/all_layouts.json)
+
+三组各八对 A/B：CPU 中位／累计耗时下降 **1.4389%／3.7077%**，17 对更快、6 对持平、1 对更慢；墙钟中位／累计下降 **1.2568%／3.5123%**，19 对更快。三组中位均正向，去掉任一组后累计仍正向；首组 −10.96% 至 +17.78% 的 CPU 极端波动全部保留，累计值受其影响，收益按约 1% 的中位量级理解。全程接电，后台负载 **1.0455%–23.7146%**，未要求每个组件单独显著。[完整配对](../output/_v1110/native_perf50/item_locality_bundle/ab_assessment.json)
+
+原版 914 + 1,690 场逐事件通过，与当前部署版和早期真值全部 2,604 个 C++ 事件哈希一致，根仍为 `b8066c92…`，类型不匹配零。一次连续 24 批吞吐中位 **179.5952**、最慢 **144.5862 场/秒**，全部高于 50；全程接电，后台负载 **1.9471%–20.3746%**。一次 24 批校准覆盖 **6.2373%–28.6828%**，20% 拟合 **133.9979 场/秒**，R² 0.94382，交叉验证中位／P90 相对耗时误差 1.917%／4.704%。保留这一低于上轮独立拟合的结果，140 目标未达到，不重跑至有利值。[验收](../output/_v1110/native_perf50/item_locality_bundle/bundle_full_gate.json) · [吞吐／拟合](../output/_v1110/native_perf50/item_locality_bundle/measurements_summary.json)
+
+为分辨独立拟合与代码效应，另一次固定 16 对受控负载对照使用旧 `444e75c6…` 与新 `8e7d5740…`。CPU 中位／累计耗时下降 **1.6247%／2.0027%**，13 对更快、2 对持平、1 对更慢；墙钟下降 **1.9446%／2.2979%**，15/16 对更快。全程接电，实际后台负载 **17.4352%–36.8010%**；这是区间内的配对证据，不宣称精确 20%，也不替代原 133.9979 拟合。保留本组合，在更高负载下也未观察到整体退化。[受控配对](../output/_v1110/native_perf50/item_locality_bundle/target_load_assessment.json)
+
+运行时已部署，正常训练评估 12 场无错误，12 项结果与原版基线相同；部署／源码 DLL、清单、验收与测速 SHA 已复核。旧版保留于 `dist/native_1_1_10_before_item_locality_bundle_20261121`。下一组合优先将冷却标志也移入紧凑控制块以回收空间，再扩展已知类型的纯字段读取入口；分配＋初始化融合保留为后续候选。未知 getter、字段遮蔽和原属性入口的优先规则都必须先证明并定向验证，之后以整个组合重测。[部署](../output/_v1110/native_perf50/item_locality_bundle/bundle_installation.json) · [复核](../output/_v1110/native_perf50/item_locality_bundle/post_install_verification.json)

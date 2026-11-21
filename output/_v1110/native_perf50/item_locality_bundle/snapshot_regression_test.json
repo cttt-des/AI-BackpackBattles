@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "dll_sha256": "8e7d574055c36e7535cb54139e11514729e72088c4314ad028c623d42ae32cfa",
+  "output": "Custom hooks with shared base metadata, callback replacement and observable context getter order passed\n",
+  "compiled_against_candidate_headers": true
+}

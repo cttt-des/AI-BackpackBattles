@@ -1,0 +1,17 @@
+{
+  "status": "source_review_only_not_implemented",
+  "candidate": "Extend cached exact generated-type method rows with selected pure field getter slots, and inline the selected literal-property call sites",
+  "existing_mechanism": "674 generated types already resolve to665 method rows; cached rows and audit identity checks exist. Selected field getters can use typed member pointers and preserve the original field value copy.",
+  "prior_profile_only": "7af profile included267 get_prop samples out of6036; this is not an expected speedup. Selection needs the new444e profile.",
+  "requirements": [
+    "Parse actual generated get_prop switches and inheritance; only exact out=this->f_field followed by true is eligible",
+    "Resolve field shadowing and most-derived getters; method-row dedup must include getter resolution so distinct fields cannot accidentally share a row",
+    "If row indices change, regenerate every allocator seed consistently",
+    "Unknown C++ getters, custom/shared metadata, copied/sliced objects, ClassRef, dict and unsupported properties call the original path exactly once",
+    "No speculative access to future objects and no virtual metadata callbacks for classification",
+    "Validate all674 types and selected slots against original virtual get_prop, plus callback, alias, copy and disabled cases",
+    "Measure the whole composition; retain small or inconclusive components for later combinations"
+  ],
+  "scope": "Object/context layouts need not change; NativeMethodRow layout and all dependent compilation would change. No field value, numeric operation, callback order, ID or RNG change is intended.",
+  "decision": "Reserve alongside exact typed allocation/initialization fusion if further progress is needed after the current locality package."
+}

@@ -1,0 +1,42 @@
+{
+  "baseline_dll_sha256": "444e75c6872fa2acec57f42d88eb6687c29f2dc97a82b88ba3e66fdf849312cc",
+  "candidate_dll_sha256": "8e7d574055c36e7535cb54139e11514729e72088c4314ad028c623d42ae32cfa",
+  "status": "positive_combined_evidence",
+  "individual_components_not_rejected": true,
+  "metrics": {
+    "main_thread_cpu_s": {
+      "paired_median_time_reduction_pct": 1.6247193666548476,
+      "sum_time_reduction_pct": 2.002670226969294,
+      "candidate_wins": 13,
+      "ties": 2,
+      "pairs": 16
+    },
+    "wall_s": {
+      "paired_median_time_reduction_pct": 1.9446195360113383,
+      "sum_time_reduction_pct": 2.297865305883995,
+      "candidate_wins": 15,
+      "ties": 0,
+      "pairs": 16
+    }
+  },
+  "group_medians": [
+    {
+      "main_thread_cpu_s": 1.6247193666548476,
+      "wall_s": 1.9446195360113383
+    }
+  ],
+  "leave_one_group_out_sensitivity": [],
+  "background_load_range_pct": [
+    17.435188356030878,
+    36.80104094415829
+  ],
+  "on_ac_all": true,
+  "reports": [
+    {
+      "path": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_perf50\\item_locality_bundle\\ab_target_load.json",
+      "sha256": "f1d91cb46e27a181fbd792b2941aa08ec3aab4b2424e2c78077b447e758d7a16"
+    }
+  ],
+  "semantics_and_raw24_required_before_deployment": true,
+  "interpretation": "This measures a bundle. It does not prove each component helps or that old percentage estimates add together."
+}

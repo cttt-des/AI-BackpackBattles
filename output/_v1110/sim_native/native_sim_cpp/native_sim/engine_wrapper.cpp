@@ -896,7 +896,7 @@ static gd::GdVal build_single_item_obj(
 
     auto* ci = static_cast<Gd__gd_core__CoreItem*>(item);
     int32_t _n_sockets = (proto_index_sockets >= 0) ? proto_index_sockets : proto.sockets;
-    gd::GdArr* gems_arr = gd::GdArr::create(battle.arena, static_cast<uint32_t>(std::max<int32_t>(0, _n_sockets)));
+    gd::GdArr* gems_arr = ci->native_make_bridge_gems(battle, static_cast<uint32_t>(std::max<int32_t>(0, _n_sockets)));
     gems_arr->resize(battle.arena, static_cast<int64_t>(std::max<int32_t>(0, _n_sockets)));
     ci->f_gems = gd::GdVal::from_arr(gems_arr);
 

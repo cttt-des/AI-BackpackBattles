@@ -1,0 +1,18 @@
+{
+  "purpose": "Check package performance near20 background load after independent wide-load fits differed; not a replacement fit or a rerun of release24.",
+  "pairs": 16,
+  "warmup_seconds": 120,
+  "fixed200_single_thread": true,
+  "priority": "normal",
+  "logical_cpus": "all8",
+  "background_workers": 2,
+  "background_priority": "below_normal",
+  "busy_fraction_each": 0.72,
+  "background_period_seconds": 0.02,
+  "maximum_duration_seconds": 300,
+  "nominal_added_load_pct_of8_logical_cpus": 18.0,
+  "actual_load": "Measure and retain each arm; natural load is additional. No filtering or selection based on the observed load or result.",
+  "decision": "Assess CPU and wall medians, sums and all16 pairs; retain unfavorable evidence. Confirm or investigate loaded behavior before choosing the next optimization baseline; this does not replace the recorded independent fit.",
+  "original_wide_fit_at20": 133.9979024452513,
+  "original_wide_fit_kept": true
+}

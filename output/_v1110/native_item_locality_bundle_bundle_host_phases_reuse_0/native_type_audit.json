@@ -1,0 +1,13 @@
+{
+  "diagnostic_only": true,
+  "dll_sha256": "8e7d574055c36e7535cb54139e11514729e72088c4314ad028c623d42ae32cfa",
+  "verifier_unchanged": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\sim_native\\tools\\_cpp_verify_events.py",
+  "verifier_exit_code": 0,
+  "coverage": {
+    "event_bus": 1028147,
+    "take_damage": 64403,
+    "temporary_buff": 139185,
+    "create_event": 487748,
+    "type_mismatch": 0
+  }
+}

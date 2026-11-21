@@ -3350,9 +3350,9 @@ gd::GdVal Gd__gd_core__CoreItem::fn_addSpeed(const gd::GdVal* _args, int _argc) 
     this->f_speedScale = gd::gd_coerce_float(gd::gd_add(gd_ctx, this->f_speedScale, lv_amount));
     const bool native_dead_speed_trace=[&] {
         if(!gd_ctx.native_event_kernel || !gd::native_resolved_cached_generated(gd_ctx,this))return false;
-        // The original descriptor getter precedes the coordinate call. An
-        // unknown getter could repair future fields, so reject it before any
-        // speculative read of the occupied-cells header or its contents.
+        // Nested argument evaluation need not read the descriptor first.
+        // Reject unknown getters before speculative field reads; fallback keeps
+        // the original expression and its actual callback evaluation order.
         const auto& descriptor=this->f_descriptor;
         if(descriptor.kind!=gd::GdVal::Kind::Obj || !descriptor.obj ||
            &typeid(*descriptor.obj)!=&typeid(Gd__gd_core__CoreItemData))return false;
