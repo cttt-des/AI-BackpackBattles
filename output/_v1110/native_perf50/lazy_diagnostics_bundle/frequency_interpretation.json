@@ -1,0 +1,18 @@
+{
+  "stage": "same_source_instrumented_fixed200_before_release_timing",
+  "baseline_dll_sha256": "b2018eb28b90ae5527d9e0764a8b11e5bf6df0b60df7cb722c67629fcfedb588",
+  "label_diagnostic_skipped": 77135,
+  "label_diagnostic_retained": 1802,
+  "buff_diagnostics_skipped": 2130,
+  "buff_diagnostics_retained": 708,
+  "total_skipped": 79265,
+  "total_retained": 2510,
+  "baseline_profile_label_inclusive_samples": 42,
+  "baseline_profile_valid_samples": 2080,
+  "limitations": [
+    "The six Buff sites have low actual frequency; their95%local diagnostic reduction cannot be extrapolated to the Buff function.",
+    "The label path contributes about2.02%of overlapping baseline stack samples. Its10.77%local function reduction suggests a small whole-fight effect, not a hard exclusion threshold.",
+    "Do not cancel or rerun the declared candidate based on this estimate. Complete its one predeclared24-pair comparison and retain every result.",
+    "For later candidates, actual frequency must be established alongside single-call cost before paying for full20/18PGO where possible."
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "decision": "adopt_small_combined_evidence_under_predeclared_positive_aggregate_gates",
+  "candidate_dll_sha256": "593acaf3d6bf1dfedc7926cc5f3659c074a285dd95a9dcf0db95c1f913077670",
+  "baseline_dll_sha256": "b2018eb28b90ae5527d9e0764a8b11e5bf6df0b60df7cb722c67629fcfedb588",
+  "original24_and_optional8_all_retained": true,
+  "final_pairs": 32,
+  "cpu_paired_median_time_reduction_pct": 0.5190311418685145,
+  "cpu_sum_time_reduction_pct": 0.9466769706336975,
+  "wall_paired_median_time_reduction_pct": 0.1432147442381293,
+  "wall_sum_time_reduction_pct": 1.2222560385172332,
+  "group_cpu_median_reduction_pct": [-0.5448717948717929,0.9630843433094283,0.519031141868509,-1.6158741895871076],
+  "group_wall_median_reduction_pct": [-0.38920703691727176,0.2646745786487492,0.3078561156051651,-2.5948223472926912],
+  "confidence_limitations": [
+    "This is weak small whole-fight evidence: two of four group medians reverse. Do not describe it as a large or consistently positive per-group speedup.",
+    "All leave-one-group-out CPU medians and CPU/wall cumulative reductions remain positive. One leave-one-group-out wall median is negative0.05399%.",
+    "The original positive aggregate CPU/wall median gates were not changed. The one clarification group was declared before running and no more groups are added.",
+    "Do not derive the code gain from149.97 versus the preceding106.26 independent load-calibration results."
+  ],
+  "strict_original_event_cases": 2604,
+  "unchanged_individual_cpp_event_hashes": 2604,
+  "raw24_minimum_fights_per_second": 120.12405210856835,
+  "first_and_only_fit_at20": 149.97340762141195,
+  "adoption_requires_guarded_install_training_and_post_install_byte_and_raw_receipt_verification": true
+}
