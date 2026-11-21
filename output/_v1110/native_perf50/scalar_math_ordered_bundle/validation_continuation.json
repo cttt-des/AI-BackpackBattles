@@ -1,0 +1,9 @@
+{
+  "candidate_dll_sha256": "f3f5d9476c66d9c84356e89bc8124c6f0b18096f0fb925a71b7173d2bdf315c9",
+  "compiled_source_unchanged": true,
+  "cause": "Disassembly parser previously matched an address annotation instead of the exact function label. Only the test parser was corrected.",
+  "failed_log_retained": "numeric_barrier_parser_failure.log",
+  "numeric_actual_baseline_cases": 5903,
+  "floating_exception_flags_checked": true,
+  "fresh_pgo_reused_without_engine_edits": true
+}

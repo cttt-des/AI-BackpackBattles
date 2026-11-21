@@ -1,0 +1,72 @@
+{
+  "status": "review_complete",
+  "baseline_deployed_dll_sha256": "401376afb48e5340be48578aa534eac0b823a69d3447044639e3d3ee5cb7a259",
+  "current_candidate_dll_sha256": "fd7c6eb2eca1319efbeb068e5554a6b28e91d419c418b0fd1afbc72a18c6cf3b",
+  "experiments": [
+    {
+      "experiment": "typed_read_bundle",
+      "baseline_dll_sha256": "401376afb48e5340be48578aa534eac0b823a69d3447044639e3d3ee5cb7a259",
+      "candidate_dll_sha256": "c0649c77ebaaa9a8d077b01af69cf5ff8fa3ff8aff0b26fda3a794c667117bd7",
+      "status": "inconclusive_retained",
+      "pairs": 24,
+      "cpu_median_change_pct": 0.5102040816326481,
+      "wall_median_change_pct": 0.5186494598983515,
+      "same_baseline_median_cpu_s": 1.515625,
+      "same_baseline_median_wall_fps": 130.09211432335587,
+      "observed_background_load_pct": [
+        7.621850179607689,
+        32.87878338179222
+      ]
+    },
+    {
+      "experiment": "scalar_math_ordered_bundle",
+      "baseline_dll_sha256": "401376afb48e5340be48578aa534eac0b823a69d3447044639e3d3ee5cb7a259",
+      "candidate_dll_sha256": "f3f5d9476c66d9c84356e89bc8124c6f0b18096f0fb925a71b7173d2bdf315c9",
+      "status": "consistent_regression_bundle_only",
+      "pairs": 24,
+      "cpu_median_change_pct": 6.556503198294239,
+      "wall_median_change_pct": 7.173334796715814,
+      "same_baseline_median_cpu_s": 1.28125,
+      "same_baseline_median_wall_fps": 152.9663034347398,
+      "observed_background_load_pct": [
+        3.0967811130004286,
+        30.249813713308328
+      ]
+    }
+  ],
+  "profile": {
+    "valid_replay_root_samples": 2018,
+    "item_physics_self_leaf": 145,
+    "item_physics_self_pct": 7.185332011892963,
+    "timer_scan_leaf": 100,
+    "timer_scan_leaf_pct": 4.955401387512389,
+    "trigger_chain_inclusive": 896,
+    "trigger_chain_inclusive_pct": 44.400396432111,
+    "weapon_cooldown_effect_inclusive": 429,
+    "weapon_cooldown_effect_inclusive_pct": 21.258671952428145,
+    "assembly_inclusive": 357,
+    "assembly_inclusive_pct": 17.690782953419227,
+    "warning": "Inclusive paths overlap. These are priority signals, not hard speedup limits or grounds to reject small gains."
+  },
+  "diagnosis": [
+    "Full PGO was repeatedly paid before performance screening.",
+    "Unrelated speculative components accumulated and made negative package results hard to attribute.",
+    "Read-hit counts were not performance evidence.",
+    "Background load fitting does not stabilize CPU time/frequency across sessions; identical baseline wall throughput changed substantially.",
+    "Current loop edits address a limited fraction of samples; trigger/effect/damage processing deserves primary attention."
+  ],
+  "decision": [
+    "Finish the already-built candidate using one predeclared24-pair comparison, with no new implementation or additional PGO.",
+    "If positive, run2604+one24 throughput+one24 calibration and review before deployment. If negative, retain/reject this combination without adding unrelated changes or repeating until positive.",
+    "Then prioritize one equivalent weapon-trigger/damage chain. Use actual baseline DLL as the functional oracle and local performance screening before the expensive full build.",
+    "Keep small inconclusive changes in the ledger. Compose them only with a specific shared-hot-path or interaction hypothesis; do not require each edit to be independently significant.",
+    "Keep paired main-thread CPU and wall time as causal evidence. Report contemporaneous baseline conditions separately from20%-load fitted absolute throughput.",
+    "Defer the member-pointer-table and allocator/variant proposals while evaluating the larger trigger/effect chain."
+  ],
+  "current_candidate_release_tests": {
+    "frame_cases": 6912,
+    "timer_cases": 9554,
+    "numeric_original_cross_dll_cases": 5903
+  },
+  "no_deployment_or_engine_source_changes_during_review": true
+}

@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "components": [
+    "one-allocation primitive emitter identity construction at its original point",
+    "known generated emitter ID and proven safe integer signal composition"
+  ],
+  "changed_files": [
+    "engine_wrapper.cpp",
+    "native_event_kernel.hpp",
+    "gen/shards/shard_12.cpp"
+  ],
+  "arithmetic_source_and674_headers_unchanged": true,
+  "known_get_id_override_inventory_checked": true,
+  "measurement": {
+    "fixed_cases": 200,
+    "repetitions_per_arm": 4,
+    "pairs": 24,
+    "normalization": "per200",
+    "raw_batches_retained": true
+  }
+}

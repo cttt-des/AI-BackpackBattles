@@ -528,7 +528,9 @@ gd::GdVal Gd__gd_core__CoreEventBus::fn_emitAndLog(const gd::GdVal* _args, int _
     gd::GdVal lv__bus_i = gd::GdVal::from_int(0LL);
     gd::GdVal lv__eid2 = gd::GdVal::from_str(&battle_string_literals[1]);
     if (gd::gd_truth((gd::gd_truth(gd::GdVal::from_bool(gd::native_scalar_ne(lv_emitter, gd::GdVal::null()))) ? gd::GdVal::from_bool(gd::gd_truth(([&]() { gd::GdVal _ca[] = {gd::GdVal::from_str(&battle_string_literals[2])}; return gd::native_inline_call(gd_ctx, lv_emitter, gd::SYM_has_method, _ca, 1); })())) : gd::GdVal::from_bool(false)))) {
+        if(!gd::native_try_event_identity(gd_ctx,lv_emitter,&battle_string_literals[3],lv__eid2)) {
         lv__eid2 = gd::gd_add(gd_ctx, gd::gd_add(gd_ctx, gd::GdVal::from_str(gd::gd_to_str(gd_ctx.arena, gd::native_inline_get_prop(gd_ctx, gd::native_inline_get_prop(gd_ctx, lv_emitter, SYM_GEN_descriptor_2), SYM_GEN_identifier_1673))), gd::GdVal::from_str(&battle_string_literals[3])), ([&]() { gd::GdVal _ca[] = {gd::gd_coerce_int(gd::native_inline_get_prop(gd_ctx, lv_emitter, SYM_GEN_ownerType_49))}; return gd::gd_str_fn(gd_ctx.arena, _ca, 1); })());
+        }
     }
     {
         gd::GdVal _t1644 = gd::gd_iter_seq(gd_ctx.arena, lv__bus_list);
@@ -676,6 +678,8 @@ gd::GdVal Gd__gd_core__CoreEventBus::fn_getEmissionID(const gd::GdVal* _args, in
     gd::GdVal lv_emitter = (_argc > 0) ? _args[0] : gd::GdVal::null();
     gd::GdVal lv_signalID = (_argc > 1) ? _args[1] : gd::GdVal::null();
     lv_signalID = gd::gd_coerce_int(lv_signalID);
+    gd::GdVal native_emission;
+    if(gd::native_try_event_emission_id(gd_ctx,lv_emitter,lv_signalID,native_emission))return native_emission;
     gd::GdVal lv_ID = gd::native_inline_call(gd_ctx, lv_emitter, gd::SYM_get_instance_id, nullptr, 0);
     lv_ID = gd::gd_add(gd_ctx, lv_ID, gd::gd_shl(lv_signalID, gd::GdVal::from_int(32LL)));
     return lv_ID;

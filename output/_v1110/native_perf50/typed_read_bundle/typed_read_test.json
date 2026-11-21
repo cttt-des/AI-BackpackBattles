@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "dll_sha256": "c0649c77ebaaa9a8d077b01af69cf5ff8fa3ff8aff0b26fda3a794c667117bd7",
+  "output": "{\"classes\":674,\"method_columns\":4,\"pure_method_payload_cases\":61344,\"field_bindings_and_aliases\":2556,\"aligned_read_rows\":674,\"original_virtual_oracle_args_binds_rng_ids_unchanged\":true}\n",
+  "compiled_against_candidate_headers": true
+}

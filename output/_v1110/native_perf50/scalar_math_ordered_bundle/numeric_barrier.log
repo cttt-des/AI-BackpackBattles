@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "dll_sha256": "f3f5d9476c66d9c84356e89bc8124c6f0b18096f0fb925a71b7173d2bdf315c9",
+  "non_lto_unit": "sym_ids",
+  "object_sha256": "8012a4cfbabe3e0d2c3d9b7849fa3ecef47b1d10bfd7395cd37e4cb4b99b812b",
+  "no_lto_sections": true,
+  "four_original_evaluator_relocations": true,
+  "four_wrapper_definitions": true,
+  "same_object_used_for_final_release": true,
+  "two_nan_operation_instructions_pinned": true
+}

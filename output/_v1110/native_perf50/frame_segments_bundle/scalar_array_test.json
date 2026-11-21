@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "dll_sha256": "fd7c6eb2eca1319efbeb068e5554a6b28e91d419c418b0fd1afbc72a18c6cf3b",
+  "output": "841 equality/inequality pairs and 78 write cases; NaN, signed zero, mixed large ints/floats, container equality, custom setter calls and overwritten receiver aliases passed\n",
+  "compiled_against_candidate_headers": true
+}

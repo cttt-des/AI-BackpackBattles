@@ -1,0 +1,8 @@
+{
+  "status": "continue_current_candidate",
+  "reason": "User requested a path reset before further work. Finish running preflight; hold before any formal timing.",
+  "candidate_dll_sha256": "fd7c6eb2eca1319efbeb068e5554a6b28e91d419c418b0fd1afbc72a18c6cf3b",
+  "engine_source_changed": false,
+  "review_result": "path_review_result.json",
+  "decision": "One existing24-pair comparison only; no new changes or PGO. Preserve normal2604/24-batch gates if positive; otherwise retain the negative result and move the main path to trigger/damage."
+}

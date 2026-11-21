@@ -1,0 +1,12 @@
+{
+  "status": "declared_before_long_screen",
+  "pairs": 8,
+  "events_per_arm": 1000000,
+  "scenes_per_arm": 1000,
+  "events_per_scene": 1000,
+  "warmup_events_per_arm": 20000,
+  "retain_initial_short_run": true,
+  "reason": "Amortize15.625ms main-thread CPU accounting granularity; same1000-event scene size and source helpers. Also correct the fixture initial trace flag so trace_mode3 actually tests on-to-off.",
+  "no_same_candidate_extra_screen_after_this": true,
+  "no_full_build_or_deployment": true
+}

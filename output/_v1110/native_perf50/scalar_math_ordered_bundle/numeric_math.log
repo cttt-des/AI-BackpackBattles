@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "dll_sha256": "f3f5d9476c66d9c84356e89bc8124c6f0b18096f0fb925a71b7173d2bdf315c9",
+  "baseline_dll_sha256": "401376afb48e5340be48578aa534eac0b823a69d3447044639e3d3ee5cb7a259",
+  "cases": 5903,
+  "directed_cases": 128,
+  "skipped_undefined_divisions": 1,
+  "original_reference_and_candidate_bits_kinds_containers_unchanged": true,
+  "argument_order_alias_mutation_and_rng_unchanged": true,
+  "floating_exception_flags_equal_to_actual_baseline": true,
+  "numeric_counts": [
+    47,
+    312,
+    1165,
+    56,
+    187,
+    1216
+  ]
+}

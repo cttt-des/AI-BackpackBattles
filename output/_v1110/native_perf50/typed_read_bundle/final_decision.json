@@ -1,0 +1,11 @@
+{
+  "decision": "retain_for_composition_without_deployment",
+  "candidate_dll_sha256": "c0649c77ebaaa9a8d077b01af69cf5ff8fa3ff8aff0b26fda3a794c667117bd7",
+  "baseline_dll_sha256": "401376afb48e5340be48578aa534eac0b823a69d3447044639e3d3ee5cb7a259",
+  "reason": "24-pair medians slightly negative, sums slightly positive; no repeatable gain confirmed. Retain both components and test a new whole package with exact scalar arithmetic branches.",
+  "observed24_pairs_retained": true,
+  "no_more_same_candidate_groups": true,
+  "full2604_and_release24_not_run": true,
+  "ab_assessment_sha256": "0f1408f03d4343aa9a7e9480a80c007636c62d9bab9874d036db731911b3d452",
+  "goal140_reached": false
+}

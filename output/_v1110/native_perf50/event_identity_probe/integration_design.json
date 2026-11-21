@@ -1,0 +1,11 @@
+{
+  "baseline_dll_sha256": "401376afb48e5340be48578aa534eac0b823a69d3447044639e3d3ee5cb7a259",
+  "original_bus_body_sha256": "d9a80bb5b434bfb71b41994cfb1849b0975abdc89a63a76de1213a196c724745",
+  "candidate_bus_body_sha256": "69072da673e24edcc7b93bbfd0bb6534696095247b4fd3ddea86aaed1369937f",
+  "modified_emitter_identity_assignments": 1,
+  "ordinary_event_kernel_disabled_body_unchanged": true,
+  "listener_iteration_callback_and_trace_flag_checks_unchanged": true,
+  "unknown_getter_and_nonprimitive_identity_uses_original_expression": true,
+  "no_delayed_formatting_or_trace_toggle_assumption": true,
+  "no_full_build_or_deployment": true
+}

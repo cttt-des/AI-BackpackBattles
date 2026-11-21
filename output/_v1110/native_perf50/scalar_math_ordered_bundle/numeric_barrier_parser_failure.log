@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\scalar_math_ordered_bundle\verify_numeric_barrier.py", line 40, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\scalar_math_ordered_bundle\verify_numeric_barrier.py", line 30, in main
+    assert instruction in assembly[start:end],op
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: add

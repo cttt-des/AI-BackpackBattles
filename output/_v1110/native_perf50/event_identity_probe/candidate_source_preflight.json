@@ -1,0 +1,26 @@
+{
+  "status": "implemented_uncompiled_unmeasured",
+  "baseline_dll_sha256": "401376afb48e5340be48578aa534eac0b823a69d3447044639e3d3ee5cb7a259",
+  "components": [
+    "one-allocation primitive emitter identity construction at its original point"
+  ],
+  "modified_native_files": [
+    "gen/shards/shard_12.cpp",
+    "native_event_kernel.hpp",
+    "engine_wrapper.cpp"
+  ],
+  "pure_property_getter_rows_verified": 43,
+  "selected_getter_slots": {
+    "descriptor": 8,
+    "identifier": 9,
+    "ownerType": 18
+  },
+  "ordinary_branch_original_code_unchanged": true,
+  "unknown_and_nonprimitive_fallback_expression_unchanged": true,
+  "trace_checks_callback_order_snapshot_point_rng_and_ids_preserved": true,
+  "original_bus_body_sha256": "d9a80bb5b434bfb71b41994cfb1849b0975abdc89a63a76de1213a196c724745",
+  "candidate_bus_body_sha256": "69072da673e24edcc7b93bbfd0bb6534696095247b4fd3ddea86aaed1369937f",
+  "local_screen_scope_only": "8 event-bus fixture pairs showed11.94% medianCPU/11.33% wall reduction; no whole-fight conclusion.",
+  "unrelated_typed_read_arithmetic_timer_cache_changes_included": false,
+  "object_context_layouts_and_original_arithmetic_source_unchanged": true
+}

@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "cases": 6144,
+  "counts": [
+    113472,
+    19728,
+    92616,
+    19128,
+    86448,
+    38592,
+    0,
+    288,
+    2592,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "baseline_dll_sha256": "401376afb48e5340be48578aa534eac0b823a69d3447044639e3d3ee5cb7a259",
+  "original_item_physics_sha256": "b4bce58db92887a70df0287697292d881c4ab2f1be2b5d3f98ee936a16f28d65",
+  "helper_sha256": "73b95b04379b7935938bd80904ed47e3ca3787a2a263ba9d2b2cb29e7a83661b",
+  "independent_actual_original_functions": true,
+  "callback_rng_flags_and_float_bits_checked": true
+}

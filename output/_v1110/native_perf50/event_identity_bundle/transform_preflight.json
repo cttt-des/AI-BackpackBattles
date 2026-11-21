@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "baseline": "401376afb48e5340be48578aa534eac0b823a69d3447044639e3d3ee5cb7a259",
+  "only_changed_native_files": [
+    "gen/shards/shard_12.cpp",
+    "native_event_kernel.hpp",
+    "engine_wrapper.cpp"
+  ],
+  "property_rows": 43,
+  "classes": 674,
+  "ordinary_bus_and_fallback_preserved": true,
+  "unrelated_experiments_not_included": true
+}

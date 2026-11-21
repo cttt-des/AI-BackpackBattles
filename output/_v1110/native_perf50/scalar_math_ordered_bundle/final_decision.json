@@ -1,0 +1,40 @@
+{
+  "status": "rejected_consistent_regression",
+  "candidate_dll_sha256": "f3f5d9476c66d9c84356e89bc8124c6f0b18096f0fb925a71b7173d2bdf315c9",
+  "baseline_dll_sha256": "401376afb48e5340be48578aa534eac0b823a69d3447044639e3d3ee5cb7a259",
+  "metrics": {
+    "main_thread_cpu_s": {
+      "paired_median_time_reduction_pct": -6.556503198294239,
+      "sum_time_reduction_pct": -6.14352090862158,
+      "candidate_wins": 4,
+      "ties": 0,
+      "pairs": 24
+    },
+    "wall_s": {
+      "paired_median_time_reduction_pct": -7.173334796715814,
+      "sum_time_reduction_pct": -6.703615145162267,
+      "candidate_wins": 3,
+      "ties": 0,
+      "pairs": 24
+    }
+  },
+  "group_medians": [
+    {
+      "main_thread_cpu_s": -4.790590935169248,
+      "wall_s": -4.390011955778461
+    },
+    {
+      "main_thread_cpu_s": -6.556503198294239,
+      "wall_s": -7.554488195302378
+    },
+    {
+      "main_thread_cpu_s": -9.449425609414398,
+      "wall_s": -9.59957436772061
+    }
+  ],
+  "deployed": false,
+  "full2604_started": false,
+  "release24_started": false,
+  "repeat_same_candidate_planned": false,
+  "next": "Stateless timer chunks and callback-bounded character snapshot reuse; discard the arithmetic-inlining combination."
+}

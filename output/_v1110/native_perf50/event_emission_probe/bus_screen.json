@@ -1,0 +1,148 @@
+{
+  "passed": true,
+  "cases": 320,
+  "fast_hits": 92,
+  "fallbacks": 76,
+  "events_per_arm": 1000000,
+  "scope": "Combined event-bus fixture only. No whole-fight gain is established.",
+  "pairs": [
+    {
+      "baseline": {
+        "cpu_s": 0.65625,
+        "wall_s": 0.644971,
+        "cycles": 1149001370,
+        "digest": 14070742280129696672
+      },
+      "candidate": {
+        "cpu_s": 0.53125,
+        "wall_s": 0.57595,
+        "cycles": 991661941,
+        "digest": 14070742280129696672
+      }
+    },
+    {
+      "baseline": {
+        "cpu_s": 0.78125,
+        "wall_s": 0.801509,
+        "cycles": 1349906027,
+        "digest": 14070742280129696672
+      },
+      "candidate": {
+        "cpu_s": 0.578125,
+        "wall_s": 0.624277,
+        "cycles": 1075314378,
+        "digest": 14070742280129696672
+      }
+    },
+    {
+      "baseline": {
+        "cpu_s": 0.640625,
+        "wall_s": 0.69111,
+        "cycles": 1230872448,
+        "digest": 14070742280129696672
+      },
+      "candidate": {
+        "cpu_s": 0.578125,
+        "wall_s": 0.581779,
+        "cycles": 1039009529,
+        "digest": 14070742280129696672
+      }
+    },
+    {
+      "baseline": {
+        "cpu_s": 0.59375,
+        "wall_s": 0.593659,
+        "cycles": 1059933246,
+        "digest": 14070742280129696672
+      },
+      "candidate": {
+        "cpu_s": 0.515625,
+        "wall_s": 0.514145,
+        "cycles": 919261706,
+        "digest": 14070742280129696672
+      }
+    },
+    {
+      "baseline": {
+        "cpu_s": 0.59375,
+        "wall_s": 0.613922,
+        "cycles": 1091369604,
+        "digest": 14070742280129696672
+      },
+      "candidate": {
+        "cpu_s": 0.515625,
+        "wall_s": 0.536456,
+        "cycles": 959136582,
+        "digest": 14070742280129696672
+      }
+    },
+    {
+      "baseline": {
+        "cpu_s": 0.578125,
+        "wall_s": 0.585325,
+        "cycles": 1047461856,
+        "digest": 14070742280129696672
+      },
+      "candidate": {
+        "cpu_s": 0.53125,
+        "wall_s": 0.528107,
+        "cycles": 943651453,
+        "digest": 14070742280129696672
+      }
+    },
+    {
+      "baseline": {
+        "cpu_s": 0.578125,
+        "wall_s": 0.575932,
+        "cycles": 1030480880,
+        "digest": 14070742280129696672
+      },
+      "candidate": {
+        "cpu_s": 0.515625,
+        "wall_s": 0.515966,
+        "cycles": 921951839,
+        "digest": 14070742280129696672
+      }
+    },
+    {
+      "baseline": {
+        "cpu_s": 0.546875,
+        "wall_s": 0.560283,
+        "cycles": 1001410596,
+        "digest": 14070742280129696672
+      },
+      "candidate": {
+        "cpu_s": 0.515625,
+        "wall_s": 0.509002,
+        "cycles": 913025054,
+        "digest": 14070742280129696672
+      }
+    }
+  ],
+  "metrics": {
+    "cpu_s": {
+      "paired_median_time_reduction_pct": 11.984352773826457,
+      "sum_time_reduction_pct": 13.83647798742138,
+      "candidate_wins": 8
+    },
+    "wall_s": {
+      "paired_median_time_reduction_pct": 11.659813362302062,
+      "sum_time_reduction_pct": 13.44124423121823,
+      "candidate_wins": 8
+    },
+    "cycles": {
+      "paired_median_time_reduction_pct": 12.693990714119245,
+      "sum_time_reduction_pct": 13.36345174935537,
+      "candidate_wins": 8
+    }
+  },
+  "baseline_dll_sha256": "401376afb48e5340be48578aa534eac0b823a69d3447044639e3d3ee5cb7a259",
+  "helper_sha256": "2e50b204467bccea97188b55ea3e3000416f1ee3f5b39825ed95fc114a8b8aa2",
+  "retained_component_actual_whole_fight_time_reduction_pct": {
+    "cpu_sum": 0.28901734104046506,
+    "cpu_median": 0.0,
+    "wall_median": 0.27100363753698176
+  },
+  "no_full_simulator_build_before_screen": true,
+  "no_deployment": true
+}

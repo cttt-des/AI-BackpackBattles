@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "dll_sha256": "af3de9457407a4a391aa7bdfb77dc9769a59938d779635a3dadfd58d3f9e46bc",
+  "independent_baseline_dll_sha256": "401376afb48e5340be48578aa534eac0b823a69d3447044639e3d3ee5cb7a259",
+  "primitive_cases": 24288,
+  "actual_dll_event_bus_cases": 320,
+  "per_case_result_hashes_equal": true,
+  "trace_toggle_and_snapshot_callback_order_rng_ids_flags_unknown_fallbacks_checked": true,
+  "production_fast_hits": 92,
+  "production_fallbacks": 76
+}
