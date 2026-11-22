@@ -1,0 +1,150 @@
+{
+  "passed": true,
+  "dll_sha256": "e0bedc4960077407e85763cb5e4af70175a0623cca15e923403fa89174390687",
+  "production_source_files": 707,
+  "unchanged_object_headers": 674,
+  "strict_event_cases": 2604,
+  "event_hash_root": "b8066c9224bc418923c62f5a3dafb8912100b21bb0026c3b13669872f90e2f54",
+  "raw_batches": 24,
+  "training_cases": 12,
+  "type_constructor_coverage": {
+    "type_hits": 51782642,
+    "type_fallback": 0,
+    "fused_initializations": 1134539,
+    "factory_fallback": 0
+  },
+  "hot_slot_coverage": {
+    "new_method_hits": 1126227,
+    "new_field_hits": 16608087
+  },
+  "event_identity_coverage": {
+    "fast_identities": 663207,
+    "fallbacks": 0,
+    "fast_emissions": 2550578,
+    "emission_fallbacks": 0
+  },
+  "static_setup_coverage": {
+    "bulk_stack_tables": 202616,
+    "ordered_stack_fallback": 0,
+    "metric_counts": 1272643,
+    "affected_loops": 202616
+  },
+  "dispatch_chain_coverage": {
+    "behavior_methods": 275579,
+    "behavior_empty": 0,
+    "behavior_probes": 777809,
+    "flat_callbacks": 2143020
+  },
+  "spatial_coverage": {
+    "lookups": 9008725,
+    "hits": 3360453,
+    "object_dedup": 3358915,
+    "fallbacks": 0
+  },
+  "motion_index_coverage": {
+    "native_runs": 2517997,
+    "native_entries": 5564319,
+    "kept_entries": 5418491
+  },
+  "targeted_timer_coverage": {
+    "indexed_passes": 5035984,
+    "rebuilds": 5208,
+    "cache_hits": 5030776,
+    "indexed_owners": 9773443,
+    "fallback_passes": 0,
+    "same_pass_resumes": 0,
+    "watched_invalidations": 0,
+    "build_slots": 220201,
+    "build_eligible_owners": 10003,
+    "unknown_boundaries": 0
+  },
+  "internal_layout_evidence": {
+    "historical_oracle": {
+      "GdVal": 24,
+      "GdArr": 24,
+      "CoreItem": 1792,
+      "BattleCtx": 264
+    },
+    "baseline": {
+      "GdVal": 24,
+      "GdArr": 32,
+      "CoreItem": 1792,
+      "BattleCtx": 328
+    },
+    "candidate": {
+      "GdVal": 24,
+      "GdArr": 32,
+      "CoreItem": 1792,
+      "BattleCtx": 328
+    }
+  },
+  "integer_grid_dictionary_cases": 1792,
+  "integer_grid_query_cases": 23520,
+  "integer_grid_coverage": {
+    "fast_queries": 9008725,
+    "ordinary_queries": 0,
+    "enabled_dicts": 5208,
+    "rejected_dicts": 0,
+    "mode_conversions": 0,
+    "reserved": 0
+  },
+  "active_cooldown_cases": 1856,
+  "active_cooldown_coverage": {
+    "indexed_phases": 5035984,
+    "rebuilds": 26874,
+    "cache_hits": 5009110,
+    "indexed_owners": 50404556,
+    "build_fallbacks": 0,
+    "same_pass_resumes": 11003,
+    "eligibility_changes": 322196,
+    "build_slots": 1232926,
+    "build_active_owners": 277689,
+    "reserved": 0
+  },
+  "sealed_known_cases": 1056,
+  "sealed_registry_boundary_checks": 4,
+  "closed_packed_mode_verified": true,
+  "target_at20_fps": 139.8920287978919,
+  "goal_target_fps": 200,
+  "goal200_reached": false,
+  "load_range_pct": [
+    14.361667593704658,
+    38.992277488010316
+  ],
+  "fit_validation": {
+    "median_absolute_relative_time_error": 0.026491858438034525,
+    "p90_absolute_relative_time_error": 0.055425552392449486,
+    "constant_median_absolute_relative_time_error": 0.15048541322127446
+  },
+  "evidence_sha256": {
+    "source_before_build.json": "f543fc956768fce5313c95f2fcf8d47112dfc0018ac3c159ef25924a03472263",
+    "bundle_full_gate.json": "edadf16247f2002a0f05b346f443273bf9597d0c9ac83109492e030c2f82217b",
+    "bundle_vs_deployed_hashes.json": "46d58082ba980d2bc50a70b16282efa356d46c6ae9d77ed3638181e82538a9ff",
+    "ab_assessment.json": "4fad6ecd16404ee335f072a4385bed3f4b5ae76ee94abafba48e808ebe7a87b5",
+    "bundle_serial.json": "fc1237995748d98faa6bcc7f1427183e469af4e75274a406c4a7362db3c19fa5",
+    "bundle_load_calibration.json": "33c0100ba2d9130590ba141b15cadbe69dc0413d9589ea138704052b50efea6c",
+    "bundle_load20.json": "393b1fca90e7be28e428e1e2adda262415407a5ba1a66325aa7a8c486d551d5d",
+    "bundle_installation.json": "11cf04305d43a997ad9069e6ccc5c2976e2d009c972979ab57ee0e673248cfac",
+    "static_setup_tests.json": "9eaf29aad6a3a9bbab5bfae477618f0364723a214946d74e78bcc9f4ac6bd511",
+    "dispatch_chain_tests.json": "43398779a1f8b10c2a8f2416849e52798b828f9d4a08a395b74cb7b6d132dbbe",
+    "spatial_tests.json": "d160b11d1f5b98ed7206c2fb34a2214ab32fe9429f4a64503bf3c1758697598d",
+    "motion_indices_tests.json": "e44ccaf62693334ebb8a5ebb984a4d3cadea02f359c2da88c5234a56330f5d8a",
+    "targeted_timer_tests.json": "80add45300034e8071e3c412408a77d3eaee8beabc6ada651d164b91d58698ee",
+    "dispatch_chain_production_cases.json": "078090376dfb121d5f494868a40efe3bf4d16989d8c43b50b742696a82a06d2f",
+    "spatial_production_cases.json": "d02eb3111abd8c6db22c917f9c809465b1241ab101834464b4607d559a689b2c",
+    "motion_indices_production_cases.json": "8fd6a914a25ad74ecaab72a241083f1ecd0fbf789ba2a817e979c197aef26fe3",
+    "targeted_timer_production_cases.json": "071f32a114ba9fa50fd720b54995d3dc8b57940530b36a778f761fc2f7ef2b19",
+    "targeted_timer_safety_production_cases.json": "3075ae6a62b49117887e78ce26014477d9cdcf9852251f4c0257db8f0a9e88d9",
+    "targeted_timer_ownership_production_cases.json": "6d23361a4597368b3dac4e8c8ec8a9588e4c2f0106d663eb68a7b20e8261dc37",
+    "closed_known_tests.json": "9d9423b1c1d650dae17aa70ed8ebe2dd8e09f32c74fad831a433b7e2a69b775f",
+    "closed_known_tests_cases.json": "db73cd801568ece22e5cc18fe03f405c5d91797cb8dba873277c580097e7ccda",
+    "closed_registry_tests.json": "19f26260fe6058d39973cb0582f0f7543ce524aa33da4e12554cc7c5f455f7cb",
+    "active_cooldown_tests.json": "dc501117116f6fc0508fb756f1efb7a3f7e87cc59a38b987345197d47765109f",
+    "active_cooldown_tests_cases.json": "7d29b45eb1532aaf78e8df19c5326cd81b0b0660feb143f8e049acf52c6cc7bb",
+    "integer_grid_tests.json": "c1cf95154fe810d12367256727d82bbcb9a4ee6c18eca4d9cd317d71f2d9b0a7",
+    "integer_grid_dictionary_tests.json": "3589a33d723e619b30b17304e009e5cae6fd4a5ef48f067c9a271c224d06791a",
+    "integer_grid_query_tests.json": "874f2bcb308ce80fc7f021ebdbfa1d98ad6e618f652657d98af0d4edf360d163",
+    "static_setup_production_cases.json": "21ed11beb80da7e8eea183d4ade06fa9433a79d9d904eebd7b31bab45ef4358f",
+    "full_type_audit.json": "380d188be92ec89606d3d461d14095b4598b58c0c4a30e2f845032ce93c82b1b"
+  }
+}

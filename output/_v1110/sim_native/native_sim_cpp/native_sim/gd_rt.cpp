@@ -1,6 +1,7 @@
 #pragma STDC FP_CONTRACT OFF
 
 #include "gd_rt.hpp"
+#include "native_integer_grid.hpp"
 
 #include <algorithm>
 #include <atomic>
@@ -991,6 +992,41 @@ void GdArr::set_idx(int64_t idx, const GdVal& v) {
 }
 
 // ─────────────────────────── GdDict ───────────────────────────
+
+namespace {
+static thread_local uint64_t native_integer_grid_counts[6]{};
+void rebuild_integer_grid_buckets(GdDict& dict) {
+    std::memset(dict.buckets,-1,sizeof(int32_t)*integer_grid_detail::cells);
+    for(uint32_t i=0;i<dict.len;++i) {
+        uint32_t slot;
+        if(!integer_grid_detail::stored_slot(dict.entries[i].key,slot)) {
+            // A noncanonical external edit retains canonical entries and falls
+            // back to the original linear lookup, without allocating in erase.
+            dict.buckets=nullptr;dict.bucket_cap=0;return;
+        }
+        if(dict.buckets[slot]<0)dict.buckets[slot]=int32_t(i);
+    }
+}
+}
+void native_integer_grid_hit(unsigned field){if(field<6)++native_integer_grid_counts[field];}
+bool GdDict::enable_integer_grid(BattleArena& arena) {
+    if(integer_grid_detail::enabled(*this))return true;
+    for(uint32_t i=0;i<len;++i) {
+        uint32_t slot;
+        if(!integer_grid_detail::stored_slot(entries[i].key,slot) ||
+           entries[i].hash!=gd_val_hash(entries[i].key))return false;
+    }
+    auto* table=arena.alloc_array<int32_t>(integer_grid_detail::cells);
+    buckets=table;bucket_cap=integer_grid_detail::format_flag|integer_grid_detail::cells;
+    rebuild_integer_grid_buckets(*this);return true;
+}
+bool GdDict::try_integer_grid_index(const GdVal& key,int32_t& index)const {
+    if(!integer_grid_detail::enabled(*this) || !buckets)return false;
+    int32_t slot;
+    if(!integer_grid_detail::query_slot(key,slot))return false;
+    index=slot<0?-1:buckets[uint32_t(slot)];return true;
+}
+
 GdDict* GdDict::create(BattleArena& arena, uint32_t reserve_cap) {
     auto* d = arena.make<GdDict>();
     if (reserve_cap > 0) {
@@ -1022,6 +1058,18 @@ int32_t GdDict::find_index(const GdVal& key, uint64_t h) const {
         }
         return -1;
     }
+    if(integer_grid_detail::enabled(*this)) {
+        int32_t slot;
+        if(integer_grid_detail::query_slot(key,slot)) {
+            const int32_t index=slot<0?-1:buckets[uint32_t(slot)];
+            return index>=0 && entries[index].hash==h?index:-1;
+        }
+        // Unknown types, subnormals and nonfinite inputs retain the original
+        // hash and equality operations. The table contains only finite Vec2 keys.
+        for(uint32_t i=0;i<len;++i)
+            if(entries[i].hash==h && gd_eq(entries[i].key,key))return int32_t(i);
+        return -1;
+    }
     uint32_t mask = bucket_cap - 1;
     uint32_t pos = static_cast<uint32_t>(h) & mask;
     while (true) {
@@ -1050,6 +1098,14 @@ void GdDict::set(BattleArena& arena, const GdVal& key, const GdVal& val) {
         entries[idx].val = val;
         return;
     }
+    uint32_t grid_slot=0;
+    bool grid_mode=integer_grid_detail::enabled(*this);
+    if(grid_mode && !integer_grid_detail::stored_slot(key,grid_slot)) {
+        // Existing-key updates above never replace the stored key. Only a new
+        // incompatible key switches back to the ordinary hash representation.
+        buckets=nullptr;bucket_cap=0;rebuild_index(arena);grid_mode=false;
+        ++native_integer_grid_counts[4];
+    }
     if (len == cap) {
         uint32_t ncap = cap == 0 ? 8 : cap * 2;
         auto* ne = arena.alloc_array<GdDictEntry>(ncap);
@@ -1057,11 +1113,12 @@ void GdDict::set(BattleArena& arena, const GdVal& key, const GdVal& val) {
         entries = ne;
         cap = ncap;
         entries[len++] = {key, val, h};
-        rebuild_index(arena);
+        if(grid_mode)buckets[grid_slot]=int32_t(len-1);else rebuild_index(arena);
         return;
     }
     uint32_t ei = len++;
     entries[ei] = {key, val, h};
+    if(grid_mode){buckets[grid_slot]=int32_t(ei);return;}
     if (buckets && bucket_cap > 0) {
         uint32_t mask = bucket_cap - 1;
         uint32_t pos = static_cast<uint32_t>(h) & mask;
@@ -1077,6 +1134,7 @@ void GdDict::erase(const GdVal& key) {
     uint32_t ui = static_cast<uint32_t>(idx);
     if (ui + 1 < len) std::memmove(entries + ui, entries + ui + 1, sizeof(GdDictEntry) * (len - ui - 1));
     --len;
+    if(integer_grid_detail::enabled(*this)){rebuild_integer_grid_buckets(*this);return;}
     if (buckets && bucket_cap > 0) {
         std::memset(buckets, -1, sizeof(int32_t) * bucket_cap);
         uint32_t mask = bucket_cap - 1;
@@ -1090,7 +1148,7 @@ void GdDict::erase(const GdVal& key) {
 
 void GdDict::clear() {
     len = 0;
-    if (buckets && bucket_cap > 0) std::memset(buckets, -1, sizeof(int32_t) * bucket_cap);
+    if (buckets && bucket_cap > 0) std::memset(buckets, -1, sizeof(int32_t) * (integer_grid_detail::enabled(*this)?integer_grid_detail::cells:bucket_cap));
 }
 
 GdArr* GdDict::keys(BattleArena& arena) const {
@@ -1976,3 +2034,5 @@ static thread_local uint64_t native_active_cooldown_counts[10]{};
 void native_active_cooldown_hit(unsigned i,uint64_t amount){if(i<10)native_active_cooldown_counts[i]+=amount;}
 }
 extern "C" uint64_t gd_diag_native_active_cooldown_stat(unsigned i){return i<10?gd::native_active_cooldown_counts[i]:0;}
+
+extern "C" uint64_t gd_diag_native_integer_grid_stat(unsigned i){return i<6?gd::native_integer_grid_counts[i]:0;}

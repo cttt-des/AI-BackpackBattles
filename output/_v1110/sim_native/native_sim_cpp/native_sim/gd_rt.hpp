@@ -444,6 +444,8 @@ struct GdDict {
     uint32_t bucket_cap = 0;
 
     static GdDict* create(BattleArena& arena, uint32_t reserve_cap = 0);
+    bool enable_integer_grid(BattleArena& arena);
+    bool try_integer_grid_index(const GdVal& key,int32_t& index) const;
     int32_t find_index(const GdVal& key, uint64_t h) const;
     int32_t find_index(const GdVal& key) const { return find_index(key, gd_val_hash(key)); }
     bool has(const GdVal& key) const { return find_index(key) >= 0; }

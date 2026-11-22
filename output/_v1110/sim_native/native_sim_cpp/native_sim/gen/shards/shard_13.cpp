@@ -2,6 +2,8 @@
 #include "../../native_scalar_equal.hpp"
 #include "../../native_array_index.hpp"
 #pragma STDC FP_CONTRACT OFF
+#include "../../native_integer_grid.hpp"
+namespace gd {void native_integer_grid_hit(unsigned);}
 
 namespace gd {
 static thread_local uint64_t native_spatial_counts[4]{};
@@ -9,7 +11,13 @@ inline bool native_spatial_lookup(BattleCtx& ctx,const GdVal& receiver,const GdV
     if(ctx.native_resolved_dispatch && receiver.kind==GdVal::Kind::Dict && receiver.dict) {
         if(ctx.native_resolved_collect){native_inline_variant_hit(7);++native_spatial_counts[0];}
         const auto* dict=receiver.dict;
-        const auto index=dict->find_index(key);
+        int32_t index;
+        if(dict->try_integer_grid_index(key,index)) {
+            if(ctx.native_resolved_collect)native_integer_grid_hit(0);
+        }else {
+            index=dict->find_index(key);
+            if(ctx.native_resolved_collect)native_integer_grid_hit(1);
+        }
         if(index<0)return false;
         value=dict->entries[index].val;
         if(ctx.native_resolved_collect)++native_spatial_counts[1];
@@ -448,6 +456,10 @@ gd::GdVal Gd__gd_core__CoreGrid::fn__init(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
     gd::GdVal lv__character = (_argc > 0) ? _args[0] : (gd::GdVal::null());
     this->f_character = lv__character;
+    if(gd_ctx.native_timer_watch.closed_world && this->f_filledCells.kind==gd::GdVal::Kind::Dict && this->f_filledCells.dict) {
+        const bool enabled=this->f_filledCells.dict->enable_integer_grid(gd_ctx.arena);
+        if(gd_ctx.native_resolved_collect)gd::native_integer_grid_hit(enabled?2:3);
+    }
     return gd::GdVal::null();
 }
 gd::GdVal Gd__gd_core__CoreGrid::fn_getCellsForGlobalPositions(const gd::GdVal* _args, int _argc) {
