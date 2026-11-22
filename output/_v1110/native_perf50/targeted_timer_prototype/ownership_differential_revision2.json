@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "cases": 64,
+  "revision": 2,
+  "candidate_dll_sha256": "90dc4101a6f4341dde782a2ef72a525c29038769be547db96c1ef74da56ee5d8",
+  "baseline_dll_sha256": "7a57d09b81ba62fcd985fbb14a5999c72ff550ba328d5cae3add6167e4fbc058",
+  "mismatches": {
+    "state_hashes": [],
+    "legacy_hashes": []
+  },
+  "baseline_receipt_sha256": "1a3f04e02d9cf68f10764cc92dd2b291bb8fa02ac87725ff95e3f7c4c0b4013c",
+  "candidate_receipt_sha256": "ade78deb33bcb1663c69d9ab2e69f038bc16886af4b952fb6fd3dad6adeb27ef"
+}

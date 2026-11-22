@@ -1,0 +1,10 @@
+{
+  "dll_sha256": "546c78566c0c4e3cdf21a8e84b3000eb98b22019a89ddc7037dd664cae0c04a0",
+  "baseline_dll_sha256": "7a57d09b81ba62fcd985fbb14a5999c72ff550ba328d5cae3add6167e4fbc058",
+  "verified_remote_backup": "4a5388b7161d765cafe5515f263ee0f762fe7c88",
+  "full20_units": true,
+  "source_manifest_sha256": "9da19a1b73c7243dd9b69082644fdfea396d778a1856f4c6fbfdde10e3482bf7",
+  "prototype_only": true,
+  "hot_units": [],
+  "no_performance_claim": true
+}

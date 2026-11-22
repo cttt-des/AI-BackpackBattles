@@ -1,0 +1,22 @@
+{
+  "diagnostic_only": true,
+  "dll_sha256": "32f2b91f1fca24fe6be50a025f873e290ae55d2426c5698445ae0258ccf1b882",
+  "baseline_dll_sha256": "7a57d09b81ba62fcd985fbb14a5999c72ff550ba328d5cae3add6167e4fbc058",
+  "inputs_sha256": "d94b16d42cc88e9a3850a77c9360b9c4c4fdd676cb252e463044a903db2a5fef",
+  "results_sha256": "2e74b45caa87f7ee6ac72ffc35d98cc8db140b47031614d26542e183cef5d2c9",
+  "matched_original_terminal": 200,
+  "coverage": {
+    "indexed_passes": 386704,
+    "rebuilds": 400,
+    "cache_hits": 386304,
+    "indexed_owners": 683532,
+    "fallback_passes": 0,
+    "same_pass_resumes": 0,
+    "watched_invalidations": 0,
+    "build_slots": 16170,
+    "build_eligible_owners": 701,
+    "unknown_boundaries": 0
+  },
+  "no_throughput_claim": true,
+  "original_deployed_dll_unchanged": true
+}

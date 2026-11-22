@@ -1,0 +1,33 @@
+{
+  "reason": "Stop own prototype compilation after source review found an observer inserted under an unbraced if, causing duplicate FuncRef calls; no deployment or formal timing",
+  "pid": 29752,
+  "command": [
+    "C:\\Users\\Windows\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe",
+    "-u",
+    "-X",
+    "utf8",
+    "output/_v1110/build_native_targeted_timer_prototype.py"
+  ],
+  "children": [
+    {
+      "pid": 21216,
+      "name": "python.exe"
+    },
+    {
+      "pid": 9484,
+      "name": "g++.exe"
+    },
+    {
+      "pid": 4320,
+      "name": "g++.exe"
+    },
+    {
+      "pid": 21060,
+      "name": "cc1plus.exe"
+    },
+    {
+      "pid": 26304,
+      "name": "cc1plus.exe"
+    }
+  ]
+}

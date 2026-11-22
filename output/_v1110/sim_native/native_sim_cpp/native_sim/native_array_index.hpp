@@ -15,6 +15,7 @@ inline void native_array_set_index(BattleCtx& ctx,GdVal& recv,const GdVal& key,c
         int64_t index=key.i;
         if(index<0)index+=static_cast<int64_t>(recv.arr->len);
         if(index<0 || static_cast<uint64_t>(index)>=recv.arr->len)return;
+        NativeTimerMutation native_mutation(recv.arr->timer_watch);
         recv.arr->data[index]=value;return;
     }
     gd::set_index(ctx,recv,key,value);

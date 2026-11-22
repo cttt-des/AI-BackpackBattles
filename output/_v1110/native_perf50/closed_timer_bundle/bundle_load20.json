@@ -1,0 +1,61 @@
+{
+  "dll_sha256": "686f0d6cdb2fc223d4ed50319b31e786eea14383b4ffb9a8fe8633395ee07b43",
+  "inputs_sha256": "d94b16d42cc88e9a3850a77c9360b9c4c4fdd676cb252e463044a903db2a5fef",
+  "workers": 1,
+  "samples": 24,
+  "fights_per_sample": 200,
+  "load_field": "background_load_pct",
+  "power_source_ac": true,
+  "minimum_load_pct": 9.503364797099795,
+  "maximum_load_pct": 29.82612237403685,
+  "log_wall_seconds_intercept": -0.11839754146839618,
+  "log_wall_seconds_per_load_point": 0.014488897592372117,
+  "r_squared_log_wall_time": 0.9619299351324007,
+  "reference_load_pct": 20.0,
+  "fitted_fights_per_second_at_reference_load": 168.50020327457534,
+  "fitted_wall_time_change_per_ten_load_points": 0.1559112291671988,
+  "validation": {
+    "median_absolute_relative_time_error": 0.01998522279833724,
+    "p90_absolute_relative_time_error": 0.03524668253480345,
+    "constant_median_absolute_relative_time_error": 0.1178460844400186
+  },
+  "estimated_fights_per_second_at_reference_load_by_sample": [
+    174.49207146934103,
+    161.9047671477267,
+    166.7322314234495,
+    165.20010096195915,
+    163.33264894259423,
+    164.65597896588034,
+    173.89229065345202,
+    164.39396837397553,
+    170.03841795806645,
+    173.17581837157007,
+    166.64014411154506,
+    167.70419891264362,
+    168.8873647332002,
+    170.74871390150994,
+    165.47858396209475,
+    166.89154701457076,
+    166.7838886917486,
+    170.06860039575565,
+    168.26646423567502,
+    171.59115160469943,
+    170.91288027272307,
+    167.2280168380899,
+    172.42751473793123,
+    173.41181060250588
+  ],
+  "background_calibration": {
+    "workers": 2,
+    "priority": "below_normal",
+    "period_seconds": 0.02,
+    "busy_fractions": [
+      0.2,
+      0.85
+    ],
+    "phase_seconds": 10,
+    "maximum_duration_seconds": 120,
+    "elapsed_seconds": 64.62969279999379,
+    "warmup_seconds": 30.0
+  }
+}

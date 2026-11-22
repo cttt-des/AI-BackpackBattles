@@ -1026,3 +1026,49 @@ Buff参数仅略过 Null、Bool、Int、Str及原格式器会进入整数分支�
 已更新本地默认运行时及生产源码，部署DLL、报告与manifest SHA核对通过，正常训练入口12场与旧版结果完全一致、无模拟错误，独立部署检查通过。原3a92备份于`dist/native_1_1_10_before_motion_indices_bundle_20261122`。目前目标未完成，下一轮继续结构优化。[部署独立核验](../output/_v1110/native_perf50/motion_indices_bundle/post_install_verification.json)
 
 部署后首份新采样2,038栈、2,036个有效回放根；触发／效果链841、其余帧内694、装配381、其余初始化／导出120，字典／哈希叶66、通用方法85、角色计时器113。保存全部样本，不把叶节点搬移视作单项收益。下一轮优先设计定向计时器索引或回调边界内的定型内核，开始风险改写前先备份已验收源码与DLL。[新采样](../output/_v1110/native_perf50/motion_indices_bundle/profile_depth64.json) · [互斥汇总](../output/_v1110/native_perf50/motion_indices_bundle/brainstorm_profile_summary.json)
+
+已完成备份：本地`4b8857b4715433f757df58f9f34364c19347ab57`，远端`codex/native-perf50-verified`为`4a5388b7161d765cafe5515f263ee0f762fe7c88`，核对704份生产源码、运行DLL及4,046份本轮文件。保留此前伤害链组合的负向／含糊结果，未暂存用户已有修改。
+
+下一轮计时器结构原型先取得实际稀疏度：独立计数副本在固定200场累计386,704个角色阶段，扫描13,473,218个物品和1,905,499个宝石槽，仅668,131／15,401次拥有非空timers，比例 **4.959%／0.808%**。阶段首尾及386,304个可比较的跨阶段边界均无观察到的结构／空非空资格净变化。边界哈希无法排除瞬时变化，后续仍须完整写入口追踪和同帧恢复，不能按这批语料直接做永久静态索引。计数DLL未部署，固定200场结果签名保持一致，不报告其吞吐。[原始证据](../output/_v1110/native_perf50/targeted_timer_probe/sparsity_fixed200.json) · [原型约束](../output/_v1110/native_perf50/targeted_timer_probe/design.md)
+
+## 定向稀疏计时器原型：已实现并进入正式构建
+
+新原型只给inventory.items、item.gems、item.timers挂接watcher，数组API、原生下标写入、sort／shuffle及相关字段替换均失效；变更开始／结束维护版本和嵌套深度。索引按原物品／宝石顺序只保存非空timers拥有者，仍逐次执行原tick；回调失效后保留入口items及长度、当前item局部值和原宝石数组／长度，从精确位置恢复原扫描。未知对象、未知类及外部／跨场存储保留原路径。实际布局测得GdArr24→32、BattleCtx264→304，CoreItem仍1792，因此按完整20单元重编和新18单元PGO验证。
+
+最终原型revision2 DLL为`90dc4101…`，通过 **2,016项**与实际7a57独立DLL的状态、FENV及旧计数差分（1,760＋192＋64）。保留原有1,440项的全部哈希，后续扩展未改变旧真值；同EXE编译的原循环及候选也通过1,760项独立旧DLL哈希复核。新版ABI与旧版分别编译EXE，避免把新结构传给旧DLL造成假通过。[主矩阵](../output/_v1110/native_perf50/targeted_timer_prototype/differential_expanded_revision2.json) · [边界矩阵](../output/_v1110/native_perf50/targeted_timer_prototype/safety_differential_revision2.json) · [归属矩阵](../output/_v1110/native_perf50/targeted_timer_prototype/ownership_differential_revision2.json)
+
+归属矩阵先复现初版跨场计时器／对象使失效发生在错误上下文的反例：64项状态差异、32项旧计数差异。正式测速前停止初版构建并保留全部资料，增加物品／宝石存储、上下文及计时器上下文检查后64项全过。另一次源审查在首次语义构建期间发现FuncRef无花括号if插入观察语句会造成重复调用，已停止该构建并修复，未进入测量；一次EXE加载因手工链接的PE模块名不为libgdcore.dll而在测试前失败，仅用同20个对象重新链接恢复模块名。所有首份日志与旧DLL保留，没有通过更改原真值解决差异。
+
+revision2固定200场结果签名保持`2e74b45c…`：386,704个角色阶段，重建400次、命中386,304次，实际处理683,532个非空拥有者，建表扫描16,170槽；无退化为旧全局epoch的高频失效。[当前计数](../output/_v1110/native_perf50/targeted_timer_prototype/fixed200_coverage_revision2.json)
+
+最初revision1的同编译条件局部八对中，16／48／96物品分别降低37.26%／56.57%／74.55%墙钟耗时；两臂都用新布局，且该采样早于归属检查补充，不能证明revision2整场收益。未对新增检查再择优局部重测，直接进入当前源码的完整新PGO与三组固定200场A/B，后续2,604场和24批门槛不变。部署仍为7a57、20%换算169.4548；当前原型未部署。[保留的初版局部测量](../output/_v1110/native_perf50/targeted_timer_prototype/local_screen.json)
+
+## 定向计时器首份正式结果未确认净收益
+
+正式PGO DLL `99a845bf61cf74816bbf2764a1bb2888a0287145b2629e520e29768468ea71fd`通过最终2,016项、全部保留回归、原六项派发计数及再生成验证。旧arena应力测试把GdArr尺寸写死为24而编译退出，适配副本只将这一行改为本轮声明的32，所有分配、对齐、所有权、多线程及嵌套构造检查原样保留；已有通过项未重跑，同一源码／DLL完成剩余验证。一次续跑脚本的AST解析不识别str(WORK)路径表达式，修复后继续未完成项；没有重编候选或修改原语料。[测试适配记录](../output/_v1110/native_perf50/targeted_timer_bundle/arena_layout_test_adaptation.json) · [保留／续跑记录](../output/_v1110/native_perf50/targeted_timer_bundle/resolved_resume.json)
+
+首次三组各八对、固定200场每臂四次：CPU配对中位耗时 **增加0.9922%**，墙钟 **增加0.4095%**，累计增加0.5002%／0.1963%。CPU8胜16负，墙钟9胜15负；三组CPU中位降幅+0.2008%／−1.8418%／−0.4016%，墙钟−0.3913%／−1.4679%／−0.1264%。接电，负载5.0061%–13.0185%。结果`inconclusive_retained`，未接纳，不追加相同候选测速到有利，不运行其2,604场发布门禁和24批，不部署。当前已验收速度仍为7a57的20%负载换算169.4548。[全部A/B](../output/_v1110/native_perf50/targeted_timer_bundle/ab_assessment.json)
+
+对失败候选另取首份4,025栈、4,019个回放根，新增类观察函数32个叶样本、get_prop96个；采样只支持追踪成本的假设，不精确解释净退化，也不能用父函数归属搬移代替速度测量。下一原型针对C ABI封闭对象图减少重复未知边界检查：仅在类注册表仍为674个已知生成类、标准数据输入且对象均由原生桥接构造时启用；未知元类注册永久取消该资格，直接C++上下文保持全部观察。22入口和Packed声明源码检查已完成，尚在语义构建和边界验收阶段，无新收益或部署。[失败候选采样](../output/_v1110/native_perf50/targeted_timer_bundle/profile_candidate_4000.json) · [封闭入口源码证明](../output/_v1110/native_perf50/closed_timer_prototype/transform.json)
+
+## 封闭入口计时器候选：通过模式与同帧变更差分，进入新PGO
+
+已修复前次缺少gd_diag_native_timer_closed_mode诊断导出的问题；只重编桥接单元并复用19个相同对象，按libgdcore.dll模块名重新链接，算法未变，首份DLL和日志保留。修复后的语义原型SHA为`d4600229ef7fa131f59c7083a50654e5acb571cb0bd54e291b68bddd1bdfe3a0`。原2,016项开放上下文／未知行为／跨场差分全部通过；四类边界检查确认普通C++上下文默认开放、标准Packed战斗启用封闭模式、未知类注册关闭后续封闭模式、reset不重新授予资格，三场实际Packed输出字节与旧DLL相同。[语义及边界](../output/_v1110/native_perf50/closed_timer_prototype/correctness.json)
+
+新增 **1,056项实际封闭模式**测试，从原1,760项独立旧DLL真值中选择不调用未知对象的案例，覆盖四种舍入模式、稀疏／稠密／空数组、数组API及字段替换、归属回退，以及生成类newItemTimer同帧新增。只在测试副本开启closed_world，不修改原测试或原真值。状态、FENV、RNG及旧计数哈希全部一致；实际记录1,504个索引阶段、848次重建、656次命中、584次写入失效、32次同帧精确恢复、88次支持范围回退、未知观察0。说明封闭并未把同帧写入维护一起移除。[新增模式矩阵](../output/_v1110/native_perf50/closed_timer_prototype/known_sealed_tests.json)
+
+同批固定200原结果签名通过，运行后直接查询确认确实启用封闭模式。已冻结完整源及测试依赖，核对新候选转换与该语义原型逐文件相同，并启动独立完整20单元、新18单元PGO。正式固定200×4、三组八对A/B、2,604场原版逐事件、旧新事件哈希和首份24批门槛均保留；原型不作收益证据，运行时仍7a57／20%换算169.4548。[模式检查](../output/_v1110/native_perf50/closed_timer_prototype/closed_mode_fixed200.json) · [候选协议](../output/_v1110/native_perf50/closed_timer_bundle/evaluation_plan.json)
+
+## 封闭入口稀疏计时器已验收部署：小幅整场收益
+
+独立完整20单元instrumentation与新18单元PGO的最终DLL为`686f0d6cdb2fc223d4ed50319b31e786eea14383b4ffb9a8fe8633395ee07b43`。最终DLL再次通过开放模式2,016项、封闭模式1,056项、四类边界及全部保留回归、再生成和22个C ABI检查。实际GdArr32、BattleCtx304、CoreItem1792；本轮确实改变前两种内部布局，不能用674份对象头文本未变代替ABI检查。
+
+首份三组24对固定200场（每臂四次）：CPU／墙钟配对中位耗时降低 **0.8032%／0.5316%**，累计降低0.9514%／1.1267%；CPU14胜3平7负，墙钟13胜11负。三组CPU中位1.0089%／1.9686%／−1.3773%，墙钟0.3624%／1.7483%／0.1363%；去掉任一组配对中位仍正，但去掉第二组累计CPU降幅为0。收益小且部分指标不稳定，按预定组合中位规则接纳，不声称各子项独立有益，不追加选择性重测。接电，A/B负载5.6802%–15.3578%。[全部首次比较](../output/_v1110/native_perf50/closed_timer_bundle/ab_assessment.json)
+
+完整 **914＋1,690＝2,604场**原版逐事件验收通过；旧新逐场事件流哈希全部一致，汇总仍`b8066c92…`，原六项派发计数逐项一致。首份连续24批最低 **106.7750场/秒**、中位201.9357，接电、负载4.2680%–41.7428%，超过每批50门槛。[完整门禁](../output/_v1110/native_perf50/closed_timer_bundle/bundle_full_gate.json) · [旧新事件哈希](../output/_v1110/native_perf50/closed_timer_bundle/bundle_vs_deployed_hashes.json)
+
+独立24批校准20%负载换算 **168.5002场/秒**，覆盖9.5034%–29.8261%，R² 0.9619；交叉验证耗时误差中位1.999%、P90 3.525%。与上一轮169.4548的独立拟合差不归因为代码退化；本轮代码效果以同期A/B为准，200目标仍未完成。[首份吞吐及负载摘要](../output/_v1110/native_perf50/closed_timer_bundle/measurements_summary.json)
+
+已安装本地默认运行时与705份生产源码对应的改动，核对DLL、完整源、再生成及部署manifest。正常训练入口12场与原版结果完全一致、无模拟错误，部署独立核验通过；7a57备份在`dist/native_1_1_10_before_closed_timer_bundle_20261122`。[部署复核](../output/_v1110/native_perf50/closed_timer_bundle/post_install_verification.json)
+
+部署后首份采样2,042栈均有回放根：触发821（40.21%）、其余帧内706（34.57%）、装配388（19.00%）、其余初始化／导出127（6.22%）；字典／哈希叶54、通用方法61。采样节点搬移不作速度证据。下一轮备份后转向预留字典／复制计数与事件Hook组合，保留完整定型热链的较大结构投入。[采样汇总](../output/_v1110/native_perf50/closed_timer_bundle/brainstorm_profile_summary.json)

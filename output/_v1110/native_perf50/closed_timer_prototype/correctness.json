@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "dll_sha256": "d4600229ef7fa131f59c7083a50654e5acb571cb0bd54e291b68bddd1bdfe3a0",
+  "baseline_dll_sha256": "7a57d09b81ba62fcd985fbb14a5999c72ff550ba328d5cae3add6167e4fbc058",
+  "open_runtime_cases": 2016,
+  "sealed_registry_boundary_cases": 4,
+  "three_packed_fights_match_original": true,
+  "foreign_registration_disables_sealed_mode_permanently": true,
+  "original_open_runtime_observer_and_cross_context_cases_retained": true,
+  "receipts": {
+    "owners": {
+      "cases": 1760,
+      "old_receipt_sha256": "2e73d3bc5265634a3295888f96f4664584382beeb2e0fc6c7cc8a6ac17970f7c",
+      "all_original_states_and_legacy_counters_equal": true
+    },
+    "safety": {
+      "cases": 192,
+      "old_receipt_sha256": "787a9cbd8addcb3a5b16b0ecf5be9f20bb62b1b7c8d39b5e74ef561f61a07e41",
+      "all_original_states_and_legacy_counters_equal": true
+    },
+    "ownership": {
+      "cases": 64,
+      "old_receipt_sha256": "1a3f04e02d9cf68f10764cc92dd2b291bb8fa02ac87725ff95e3f7c4c0b4013c",
+      "all_original_states_and_legacy_counters_equal": true
+    }
+  },
+  "no_performance_or_deployment_claim": true
+}

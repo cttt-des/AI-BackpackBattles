@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "dll_sha256": "99a845bf61cf74816bbf2764a1bb2888a0287145b2629e520e29768468ea71fd",
+  "retained_passed_tests": [
+    "hot_coverage_test.json",
+    "type_constructor_test.json",
+    "property_test.json",
+    "item_locality_test.json",
+    "eager_rows_test.json",
+    "variant_inline_test.json",
+    "inline_dispatch_test.json",
+    "builtin_dispatch_test.json",
+    "scalar_array_test.json",
+    "expanded_dispatch_test.json",
+    "array_index_test.json",
+    "resolved_callbacks_test.json"
+  ],
+  "newly_completed_tests": [
+    "arena_stress_test.json",
+    "dict_test.json",
+    "labels_test.json",
+    "native_event_kernel_callbacks.json",
+    "buff_rng_regression_test.json",
+    "inline_candidate_test.json",
+    "timer_regression_test.json",
+    "traversal_regression_test.json",
+    "snapshot_regression_test.json"
+  ],
+  "adaptation_sha256": "158765bb48bc18966c1536af78f9d588b70fb886e8975f1deb159f06efd0403d",
+  "candidate_source_and_dll_unchanged": true
+}

@@ -898,6 +898,7 @@ static gd::GdVal build_single_item_obj(
     int32_t _n_sockets = (proto_index_sockets >= 0) ? proto_index_sockets : proto.sockets;
     gd::GdArr* gems_arr = ci->native_make_bridge_gems(battle, static_cast<uint32_t>(std::max<int32_t>(0, _n_sockets)));
     gems_arr->resize(battle.arena, static_cast<int64_t>(std::max<int32_t>(0, _n_sockets)));
+    gd::native_timer_fields_changed(ci->rt_ctx_);
     ci->f_gems = gd::GdVal::from_arr(gems_arr);
 
     ci->f_collisionCells = gd::GdVal::from_arr(col_arr);
@@ -1101,6 +1102,8 @@ static void run_one_internal(
 ) {
     std::memset(&out, 0, sizeof(BattleResult));
     battle.reset_for_battle(opts.seed);
+    battle.native_timer_watch.enabled=true;
+    battle.native_timer_watch.closed_world=gd::native_timer_registry_closed();
     battle.native_inline_timer_headers = true;
     battle.native_event_kernel = true;
     battle.native_resolved_dispatch = true;
@@ -1108,6 +1111,7 @@ static void run_one_internal(
 
     auto* hooks = battle.arena.make<NativeBattleHooks>(&battle);
     hooks->init_fields(battle);
+    battle.native_timer_watch.trusted_hooks=hooks;
 
     gd::GdVal ctx_args[2] = {gd::GdVal::from_int(static_cast<int64_t>(opts.seed)), gd::GdVal::from_obj(hooks)};
     gd::GdVal ctx_val = gd::construct_class(battle, &META_Gd__gd_core__CoreContext, ctx_args, 2);
@@ -1763,3 +1767,5 @@ static thread_local uint64_t native_static_setup_counts[4]{};
 void native_static_setup_hit(unsigned index){if(index<4)++native_static_setup_counts[index];}
 }
 extern "C" uint64_t gd_diag_native_static_setup_stat(unsigned index){return index<4?gd::native_static_setup_counts[index]:0;}
+
+extern "C" int gd_diag_native_timer_closed_mode(){return tl_battle_ctx.native_timer_watch.closed_world?1:0;}

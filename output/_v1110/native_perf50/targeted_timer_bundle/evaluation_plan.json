@@ -1,0 +1,57 @@
+{
+  "baseline_dll_sha256": "7a57d09b81ba62fcd985fbb14a5999c72ff550ba328d5cae3add6167e4fbc058",
+  "verified_remote_backup": "4a5388b7161d765cafe5515f263ee0f762fe7c88",
+  "components": [
+    "targeted array watcher",
+    "ordered sparse timer owners",
+    "exact same-frame continuation",
+    "unknown boundary fallback"
+  ],
+  "excluded": [
+    "global callback epoch",
+    "reordered callbacks",
+    "skipped timer updates",
+    "changed arithmetic or RNG",
+    "static unguarded eligibility cache"
+  ],
+  "measurement": {
+    "fixed_fights": 200,
+    "single_thread": true,
+    "groups": 3,
+    "pairs_per_group": 8,
+    "batch_repetitions": 4,
+    "warmup_seconds": 120,
+    "quiet": true,
+    "retain_all_results": true
+  },
+  "required": [
+    "1760 owner/mutation cases,192 boundary/lifetime cases and64 cross-context counterexamples against actual7a57 DLL, both distinct ABI executables, and retained regressions",
+    "existing full regression",
+    "same-source fresh PGO",
+    "regeneration twice",
+    "2604 strict original event cases",
+    "every old/new CPP event hash equal",
+    "one raw24 all>=50fps",
+    "one calibration24 report",
+    "guarded deployment and normal training smoke"
+  ],
+  "no_auto_deploy": true,
+  "small_components_judged_as_bundle": true,
+  "retained_deployed_components": [
+    "member pointers",
+    "character state reuse",
+    "static consumers",
+    "fixed setup tables",
+    "behavior and callback chains"
+  ],
+  "local_original_dll_cases": 2016,
+  "no_whole_fight_gain_claim": true,
+  "build": "full20 instrumentation plus new18unit same-source PGO; max2 below-normal jobs",
+  "goal_fps_at20_load": 200,
+  "retain_first_and_all_results": true,
+  "intentional_layout_changes": [
+    "GdArr24->32",
+    "BattleCtx264->304"
+  ],
+  "full20_rebuild_required": true
+}

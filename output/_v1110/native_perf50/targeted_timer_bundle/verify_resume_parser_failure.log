@@ -1,0 +1,27 @@
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\targeted_timer_bundle\resume_resolved_after_layout.py", line 58, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\targeted_timer_bundle\resume_resolved_after_layout.py", line 22, in main
+    tests=next(ast.literal_eval(node.value) for node in ast.walk(tree) if isinstance(node,ast.Assign) and any(isinstance(t,ast.Name) and t.id=='tests' for t in node.targets))
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\targeted_timer_bundle\resume_resolved_after_layout.py", line 22, in <genexpr>
+    tests=next(ast.literal_eval(node.value) for node in ast.walk(tree) if isinstance(node,ast.Assign) and any(isinstance(t,ast.Name) and t.id=='tests' for t in node.targets))
+               ~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\ast.py", line 106, in literal_eval
+    return _convert(node_or_string)
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\ast.py", line 84, in _convert
+    return tuple(map(_convert, node.elts))
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\ast.py", line 84, in _convert
+    return tuple(map(_convert, node.elts))
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\ast.py", line 86, in _convert
+    return list(map(_convert, node.elts))
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\ast.py", line 105, in _convert
+    return _convert_signed_num(node)
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\ast.py", line 79, in _convert_signed_num
+    return _convert_num(node)
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\ast.py", line 70, in _convert_num
+    _raise_malformed_node(node)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\ast.py", line 67, in _raise_malformed_node
+    raise ValueError(msg + f': {node!r}')
+ValueError: malformed node or string on line 75: Call(func=Name(id='str', ctx=Load()), args=[Name(id='WORK', ctx=Load())], keywords=[])

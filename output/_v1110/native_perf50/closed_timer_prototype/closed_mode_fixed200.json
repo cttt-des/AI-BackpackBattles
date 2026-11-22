@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "dll_sha256": "d4600229ef7fa131f59c7083a50654e5acb571cb0bd54e291b68bddd1bdfe3a0",
+  "actual_packed_runtime_mode": true,
+  "known_class_registry_remained_sealed": true
+}

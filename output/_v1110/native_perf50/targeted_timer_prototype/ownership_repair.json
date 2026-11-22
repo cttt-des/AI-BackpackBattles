@@ -1,0 +1,12 @@
+{
+  "revision": 2,
+  "previous_dll_sha256": "546c78566c0c4e3cdf21a8e84b3000eb98b22019a89ddc7037dd664cae0c04a0",
+  "dll_sha256": "6551426d32b561b088b16a321cfa8d8a343029208a07a79db42c94f287d08810",
+  "reused_identical_objects": 19,
+  "recompiled_kernel_units": 1,
+  "changes": [
+    "owned character/grid/item/gem storage and context checks",
+    "timer context checks",
+    "no float conversion for eligibility"
+  ]
+}

@@ -1,0 +1,21 @@
+D:\文件资料\学习\自动背包AI\output\_v1110\test_native_targeted_timers.cpp: In function 'uint64_t hash(const V&)':
+D:\文件资料\学习\自动背包AI\output\_v1110\test_native_targeted_timers.cpp:26:46: error: no matching function for call to 'find(std::vector<const gd::GdObj*>::iterator, std::vector<const gd::GdObj*>::iterator, gd::GdObj* const&)'
+   26 | case V::Kind::Obj:if(v.obj){auto it=std::find(identities.begin(),identities.end(),v.obj);h=mix(h,v.obj->meta()->id);h=mix(h,it==identities.end()?v.obj->gid_:10000+size_t(it-identities.begin()));}return h;
+      |                                     ~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  • there is 1 candidate
+In file included from D:/mingw64/include/c++/16.1.0/bits/locale_facets.h:50,
+                 from D:/mingw64/include/c++/16.1.0/bits/basic_ios.h:40,
+                 from D:/mingw64/include/c++/16.1.0/ios:48,
+                 from D:/mingw64/include/c++/16.1.0/bits/ostream.h:43,
+                 from D:/mingw64/include/c++/16.1.0/ostream:42,
+                 from D:/mingw64/include/c++/16.1.0/iostream:43,
+                 from D:\文件资料\学习\自动背包AI\output\_v1110\test_native_targeted_timers.cpp:16:
+    • candidate 1: 'template<class _CharT2> typename __gnu_cxx::__enable_if<std::__is_char<_CharT>::__value, std::istreambuf_iterator<_CharT, std::char_traits<_CharT> > >::__type std::find(istreambuf_iterator<_CharT, char_traits<_CharT> >, istreambuf_iterator<_CharT, char_traits<_CharT> >, const _CharT2&)'
+      D:/mingw64/include/c++/16.1.0/bits/streambuf_iterator.h:437:5:
+        437 |     find(istreambuf_iterator<_CharT> __first,
+            |     ^~~~
+      • template argument deduction/substitution failed:
+        •   '__gnu_cxx::__normal_iterator<const gd::GdObj**, std::vector<const gd::GdObj*> >' is not derived from 'std::istreambuf_iterator<_CharT, std::char_traits<_CharT> >'
+          D:\文件资料\学习\自动背包AI\output\_v1110\test_native_targeted_timers.cpp:26:46:
+             26 | case V::Kind::Obj:if(v.obj){auto it=std::find(identities.begin(),identities.end(),v.obj);h=mix(h,v.obj->meta()->id);h=mix(h,it==identities.end()?v.obj->gid_:10000+size_t(it-identities.begin()));}return h;
+                |                                     ~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

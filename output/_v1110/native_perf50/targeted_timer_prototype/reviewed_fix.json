@@ -1,0 +1,7 @@
+{
+  "changed_files": [
+    "gd_rt.cpp"
+  ],
+  "reason": "Observe once at FuncRef entry; keep original unbraced conditional call and guard is_valid virtual boundary",
+  "first_attempt_retained": true
+}

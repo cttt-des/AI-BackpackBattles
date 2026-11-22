@@ -1,0 +1,10 @@
+{
+  "original_test_sha256": "9cb593b59e9f9898680b04110bc2d8cfe825aebaee91a4d0ca9372e0175d41b9",
+  "adapted_test_sha256": "9318314f6a639c5ea8b8707220dbc1854c47b6225a6632152f672564c5d7b64e",
+  "reason": "GdArr24->32 is the declared layout change; every allocator, alignment, ownership, multithread and recursive construction check retained verbatim",
+  "only_change": [
+    "static_assert(sizeof(gd::GdArr)==24);",
+    "static_assert(sizeof(gd::GdArr)==32);"
+  ],
+  "semantic_checks_removed": false
+}

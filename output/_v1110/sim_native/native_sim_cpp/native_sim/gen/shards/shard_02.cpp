@@ -718,8 +718,8 @@ void Gd__gd_core__CoreCharacter::init_fields(gd::BattleCtx& gd_ctx) {
     this->f_critRng = gd::GdVal::null();
     this->f_critResistanceRng = gd::GdVal::null();
     this->f_stunResistanceRng = gd::GdVal::null();
-    this->f_items = gd::GdVal::from_arr(gd::GdArr::from_init(gd_ctx.arena, {}));
-    this->f_inventory = gd::GdVal::null();
+    gd::native_timer_fields_changed(this->rt_ctx_); this->f_items = gd::GdVal::from_arr(gd::GdArr::from_init(gd_ctx.arena, {}));
+    gd::native_timer_fields_changed(this->rt_ctx_); this->f_inventory = gd::GdVal::null();
     this->f_INVENTORY = gd::GdVal::null();
     this->f_character_died_handlers = gd::GdVal::from_arr(gd::GdArr::from_init(gd_ctx.arena, {}));
     this->f_poisonDamageSource = gd::GdVal::null();
@@ -936,8 +936,8 @@ bool Gd__gd_core__CoreCharacter::set_prop(gd::BattleCtx& gd_ctx, gd::SymId prop,
         case SYM_GEN_critRng_1089: this->f_critRng = val; return true;
         case SYM_GEN_critResistanceRng_1090: this->f_critResistanceRng = val; return true;
         case SYM_GEN_stunResistanceRng_1091: this->f_stunResistanceRng = val; return true;
-        case SYM_GEN_items_1092: this->f_items = val; return true;
-        case SYM_GEN_inventory_5: this->f_inventory = val; return true;
+        case SYM_GEN_items_1092: gd::native_timer_fields_changed(this->rt_ctx_); this->f_items = val; return true;
+        case SYM_GEN_inventory_5: gd::native_timer_fields_changed(this->rt_ctx_); this->f_inventory = val; return true;
         case SYM_GEN_INVENTORY_1093: this->f_INVENTORY = val; return true;
         case SYM_GEN_character_died_handlers_1094: this->f_character_died_handlers = val; return true;
         case SYM_GEN_poisonDamageSource_1095: this->f_poisonDamageSource = val; return true;
@@ -1463,7 +1463,7 @@ gd::GdVal Gd__gd_core__CoreCharacter::fn__init(const gd::GdVal* _args, int _argc
     this->f_critRng = ([&]() { gd::GdVal _ca[] = {gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_rng_1406)}; return gd::native_inline_call(gd_ctx, gd::native_inline_get_prop(gd_ctx, gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_rng_1406), SYM_GEN_BalancedRng_1749), gd::SYM_new, _ca, 1); })();
     this->f_critResistanceRng = ([&]() { gd::GdVal _ca[] = {gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_rng_1406)}; return gd::native_inline_call(gd_ctx, gd::native_inline_get_prop(gd_ctx, gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_rng_1406), SYM_GEN_BalancedRng_1749), gd::SYM_new, _ca, 1); })();
     this->f_stunResistanceRng = ([&]() { gd::GdVal _ca[] = {gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_rng_1406)}; return gd::native_inline_call(gd_ctx, gd::native_inline_get_prop(gd_ctx, gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_rng_1406), SYM_GEN_BalancedRng_1749), gd::SYM_new, _ca, 1); })();
-    this->f_inventory = ([&]() { gd::GdVal _ca[] = {gd::GdVal::from_obj(this)}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_cls(&META_Gd__gd_core__CoreGrid), gd::SYM_new, _ca, 1); })();
+    gd::native_timer_fields_changed(this->rt_ctx_); this->f_inventory = ([&]() { gd::GdVal _ca[] = {gd::GdVal::from_obj(this)}; return gd::native_inline_call(gd_ctx, gd::GdVal::from_cls(&META_Gd__gd_core__CoreGrid), gd::SYM_new, _ca, 1); })();
     this->f_INVENTORY = this->f_inventory;
     this->f_spikeDamageSource = gd::native_inline_call(gd_ctx, gd::GdVal::from_cls(&META_Gd__gd_core__CoreDamageSource), gd::SYM_new, nullptr, 0);
     gd::set_prop(gd_ctx, this->f_spikeDamageSource, SYM_GEN__rng_1548, gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_rng_1406));

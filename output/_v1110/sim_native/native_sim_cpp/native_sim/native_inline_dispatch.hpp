@@ -337,6 +337,7 @@ GdVal native_inline_call(BattleCtx& ctx,const GdVal& recv,SymId method,const GdV
         } else if(recv.kind==GdVal::Kind::ClassRef && method!=SYM_new) {
             if(ctx.native_resolved_collect)native_inline_variant_hit(9);
             if(recv.cls && recv.cls->call_static_fn) {
+                native_timer_observe_class(ctx,recv.cls);
                 GdVal out=GdVal::null();
                 if(recv.cls->call_static_fn(ctx,method,args,argc,out))return out;
             }

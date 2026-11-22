@@ -1,0 +1,30 @@
+{
+  "passed": true,
+  "cases": 1440,
+  "baseline_dll_sha256": "7a57d09b81ba62fcd985fbb14a5999c72ff550ba328d5cae3add6167e4fbc058",
+  "candidate_dll_sha256": "546c78566c0c4e3cdf21a8e84b3000eb98b22019a89ddc7037dd664cae0c04a0",
+  "baseline_receipt_sha256": "9d187709eb2d0418c4109f2767db54ca3d08ddb86b4a2497fee712e873b963f2",
+  "candidate_receipt_sha256": "dd454bc86fc88a023a13a17ec7973b6b4534778966764471bbabd5d3e25fa7df",
+  "layouts": {
+    "baseline": {
+      "GdVal": 24,
+      "GdArr": 24,
+      "CoreItem": 1792,
+      "BattleCtx": 264
+    },
+    "candidate": {
+      "GdVal": 24,
+      "GdArr": 32,
+      "CoreItem": 1792,
+      "BattleCtx": 304
+    }
+  },
+  "mismatch_counts": {
+    "state_hashes": 0,
+    "legacy_hashes": 0
+  },
+  "first_mismatches": {
+    "state_hashes": [],
+    "legacy_hashes": []
+  }
+}

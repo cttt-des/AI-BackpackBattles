@@ -9,6 +9,7 @@
 #include <cstdlib>
 #include <mutex>
 #include <unordered_map>
+#include <unordered_set>
 
 namespace gd {
 
@@ -504,6 +505,7 @@ static void append_gd_str(std::string& out, const GdVal& v) {
             out += v.en ? v.en->name : "<Enum>";
             break;
         case GdVal::Kind::Obj:
+            if(v.obj && v.obj->rt_ctx_)native_timer_observe_object(*v.obj->rt_ctx_,v.obj);
             out += v.obj ? v.obj->meta()->class_name : "Null";
             break;
         default:
@@ -837,6 +839,7 @@ GdArr* GdArr::from_init(BattleArena& arena, std::initializer_list<GdVal> vals) {
 }
 
 void GdArr::push_back(BattleArena& arena, const GdVal& v) {
+    NativeTimerMutation native_mutation(timer_watch);
     GdVal elem = is_pool_real ? GdVal::from_float(f32_d(v.as_float())) : v;
     if (len == cap) {
         uint32_t ncap = cap == 0 ? 8 : cap * 2;
@@ -849,6 +852,7 @@ void GdArr::push_back(BattleArena& arena, const GdVal& v) {
 }
 
 void GdArr::insert_at(BattleArena& arena, int64_t pos, const GdVal& v) {
+    NativeTimerMutation native_mutation(timer_watch);
     if (pos < 0) pos = static_cast<int64_t>(len) + pos;
     if (pos < 0) pos = 0;
     if (pos > static_cast<int64_t>(len)) pos = static_cast<int64_t>(len);
@@ -867,6 +871,7 @@ void GdArr::insert_at(BattleArena& arena, int64_t pos, const GdVal& v) {
 }
 
 GdVal GdArr::pop_at(int64_t idx) {
+    NativeTimerMutation native_mutation(timer_watch);
     if (idx < 0) idx = static_cast<int64_t>(len) + idx;
     if (idx < 0 || idx >= static_cast<int64_t>(len)) return GdVal::null();
     GdVal out = data[idx];
@@ -878,6 +883,7 @@ GdVal GdArr::pop_at(int64_t idx) {
 }
 
 void GdArr::append_array(BattleArena& arena, const GdArr* o) {
+    NativeTimerMutation native_mutation(timer_watch);
     if (!o || o->len == 0) return;
     if (len + o->len > cap) {
         uint32_t ncap = std::max(cap == 0 ? 8u : cap * 2, len + o->len);
@@ -891,6 +897,7 @@ void GdArr::append_array(BattleArena& arena, const GdArr* o) {
 }
 
 GdVal GdArr::pop_front() {
+    NativeTimerMutation native_mutation(timer_watch);
     if (len == 0) return GdVal::null();
     GdVal out = data[0];
     if (len > 1) std::memmove(data, data + 1, sizeof(GdVal) * (len - 1));
@@ -899,11 +906,13 @@ GdVal GdArr::pop_front() {
 }
 
 GdVal GdArr::pop_back() {
+    NativeTimerMutation native_mutation(timer_watch);
     if (len == 0) return GdVal::null();
     return data[--len];
 }
 
 void GdArr::remove_at(int64_t idx) {
+    NativeTimerMutation native_mutation(timer_watch);
     if (idx < 0 || static_cast<uint64_t>(idx) >= len) return;
     uint32_t i = static_cast<uint32_t>(idx);
     if (i + 1 < len) std::memmove(data + i, data + i + 1, sizeof(GdVal) * (len - i - 1));
@@ -924,6 +933,7 @@ int64_t GdArr::find_val(const GdVal& v, int64_t from) const {
 }
 
 void GdArr::resize(BattleArena& arena, int64_t n) {
+    NativeTimerMutation native_mutation(timer_watch);
     if (n <= 0) { len = 0; return; }
     uint32_t un = static_cast<uint32_t>(n);
     if (un > cap) {
@@ -938,10 +948,12 @@ void GdArr::resize(BattleArena& arena, int64_t n) {
 }
 
 void GdArr::fill(const GdVal& v) {
+    NativeTimerMutation native_mutation(timer_watch);
     for (uint32_t i = 0; i < len; ++i) data[i] = v;
 }
 
 void GdArr::invert() {
+    NativeTimerMutation native_mutation(timer_watch);
     for (uint32_t i = 0; i < len / 2; ++i) std::swap(data[i], data[len - 1 - i]);
 }
 
@@ -972,6 +984,7 @@ GdVal GdArr::get_idx(int64_t idx) const {
 }
 
 void GdArr::set_idx(int64_t idx, const GdVal& v) {
+    NativeTimerMutation native_mutation(timer_watch);
     if (idx < 0) idx += static_cast<int64_t>(len);
     if (idx < 0 || static_cast<uint64_t>(idx) >= len) return;
     data[idx] = v;
@@ -1190,19 +1203,23 @@ void GdObj::emit_signal(BattleCtx& ctx, SymId sig, const GdVal* args, int argc) 
         if (c.binds && c.binds->len > 0) {
             std::vector<GdVal> all(args, args + argc);
             for (uint32_t i = 0; i < c.binds->len; ++i) all.push_back(c.binds->data[i]);
+            native_timer_observe_object(ctx,c.target);
             c.target->call_method(ctx, c.method, all.data(), static_cast<int>(all.size()), dummy);
         } else {
+            native_timer_observe_object(ctx,c.target);
             c.target->call_method(ctx, c.method, args, argc, dummy);
         }
     }
 }
 
 bool GdFuncRef::is_valid() const {
+    if(instance && instance->rt_ctx_)native_timer_observe_object(*instance->rt_ctx_,instance);
     return instance != nullptr && method != SYM_NONE && instance->has_own_method(method);
 }
 
 GdVal GdFuncRef::call_func(BattleCtx& ctx, const GdVal* args, int argc) const {
     if (!instance || method == SYM_NONE) return GdVal::null();
+    native_timer_observe_object(ctx,instance);
     GdVal out = GdVal::null();
     if (binds && binds->len > 0) {
         std::vector<GdVal> all(args, args + argc);
@@ -1243,6 +1260,7 @@ static void reg_one_key(std::string_view key, const GdClassMeta* meta) {
 }
 
 void register_class(const GdClassMeta* meta) {
+    native_timer_registered_class(meta);
     if (!meta) return;
     auto& idv = class_id_reg();
     if (meta->id >= idv.size()) idv.resize(meta->id + 1, nullptr);
@@ -1272,6 +1290,7 @@ const GdClassMeta* find_class_by_id(ClsId id) {
 }
 
 GdVal construct_class(BattleCtx& ctx, const GdClassMeta* cls, const GdVal* args, int argc) {
+    native_timer_observe_class(ctx,cls);
     if (!cls || !cls->alloc_fn) return GdVal::null();
     GdObj* obj = try_native_allocate_initialized(ctx,cls);
     if(!obj) {
@@ -1289,6 +1308,7 @@ GdVal load_resource(std::string_view path) {
 
 bool gd_is_type(const GdVal& v, const GdClassMeta* cls) {
     if (!cls || v.kind != GdVal::Kind::Obj || !v.obj) return false;
+    if(v.obj->rt_ctx_)native_timer_observe_object(*v.obj->rt_ctx_,v.obj);
     return v.obj->meta()->is_subclass_of(cls);
 }
 
@@ -1309,6 +1329,7 @@ bool gd_is_builtin(const GdVal& v, int type_tag) {
 
 // ─────────────────────────── Sort & Shuffle ───────────────────────────
 void shuffle_array(BattleCtx& ctx, GdArr* arr) {
+    NativeTimerMutation native_mutation(arr?arr->timer_watch:nullptr);
     if (!arr || arr->len < 2) return;
     for (int64_t i = static_cast<int64_t>(arr->len) - 1; i > 0; --i) {
         uint32_t j = ctx.math_rng.randi() % static_cast<uint32_t>(i + 1);
@@ -1323,6 +1344,7 @@ GdVal pick_random_array(BattleCtx& ctx, const GdArr* arr) {
 }
 
 void godot_sort_custom_items(BattleCtx& ctx, GdArr* arr) {
+    NativeTimerMutation native_mutation(arr?arr->timer_watch:nullptr);
     if (!arr || arr->len < 2) return;
     const uint32_t n = arr->len;
     struct Pair { int64_t key; GdVal val; };
@@ -1403,10 +1425,12 @@ void godot_sort_custom_items(BattleCtx& ctx, GdArr* arr) {
 }
 
 void sort_custom_stable(BattleCtx& ctx, GdArr* arr, GdObj* obj, SymId method) {
+    NativeTimerMutation native_mutation(arr?arr->timer_watch:nullptr);
     if (!arr || arr->len < 2 || !obj) return;
     std::stable_sort(arr->data, arr->data + arr->len, [&](const GdVal& a, const GdVal& b) {
         GdVal args[2] = {a, b};
         GdVal out = GdVal::null();
+        native_timer_observe_object(ctx,obj);
         obj->call_method(ctx, method, args, 2, out);
         return gd_truth(out);
     });
@@ -1417,6 +1441,7 @@ GdVal get_prop(BattleCtx& ctx, const GdVal& recv, SymId prop) {
     switch (recv.kind) {
         case GdVal::Kind::Obj: {
             if (!recv.obj) return GdVal::null();
+            native_timer_observe_object(ctx,recv.obj);
             if (prop == SYM_resource_path) return GdVal::from_cstr(ctx.arena, recv.obj->meta()->res_path);
             GdVal out;
             if (recv.obj->get_prop(prop, out)) return out;
@@ -1443,6 +1468,7 @@ GdVal get_prop(BattleCtx& ctx, const GdVal& recv, SymId prop) {
             if (recv.cls) {
                 if (prop == SYM_resource_path) return GdVal::from_cstr(ctx.arena, recv.cls->res_path);
                 if (recv.cls->get_static_prop) {
+                    native_timer_observe_class(ctx,recv.cls);
                     GdVal out;
                     if (recv.cls->get_static_prop(prop, out)) return out;
                 }
@@ -1465,7 +1491,7 @@ GdVal get_prop(BattleCtx& ctx, const GdVal& recv, SymId prop) {
 void set_prop(BattleCtx& ctx, GdVal& recv, SymId prop, const GdVal& val) {
     switch (recv.kind) {
         case GdVal::Kind::Obj:
-            if (recv.obj) recv.obj->set_prop(ctx, prop, val);
+            if (recv.obj) {native_timer_observe_object(ctx,recv.obj);recv.obj->set_prop(ctx, prop, val);}
             break;
         case GdVal::Kind::Vec2:
             if (prop == SYM_x) recv.v2.x = val.as_float();
@@ -1522,7 +1548,7 @@ void set_index(BattleCtx& ctx, GdVal& recv, const GdVal& key, const GdVal& val) 
         recv.dict->set(ctx.arena, key, val);
     } else if (recv.kind == GdVal::Kind::Obj && recv.obj && key.kind == GdVal::Kind::Str && key.str) {
         SymId s = intern_sym(std::string_view(key.str->data, key.str->len));
-        recv.obj->set_prop(ctx, s, val);
+        native_timer_observe_object(ctx,recv.obj);recv.obj->set_prop(ctx, s, val);
     }
 }
 
@@ -1541,6 +1567,7 @@ GdVal call_method(BattleCtx& ctx, const GdVal& recv, SymId m, const GdVal* args,
     switch (recv.kind) {
         case GdVal::Kind::Obj: {
             if (!recv.obj) return GdVal::null();
+            native_timer_observe_object(ctx,recv.obj);
             // Dispatch user/generated methods first so subclass overrides win if any
             GdVal out = GdVal::null();
             if (try_native_resolved_dispatch(ctx,recv.obj,m,args,argc,out,0)) return out;
@@ -1589,6 +1616,7 @@ GdVal call_method(BattleCtx& ctx, const GdVal& recv, SymId m, const GdVal* args,
             if (recv.cls) {
                 if (m == SYM_new) return construct_class(ctx, recv.cls, args, argc);
                 if (recv.cls->call_static_fn) {
+                    native_timer_observe_class(ctx,recv.cls);
                     GdVal out = GdVal::null();
                     if (recv.cls->call_static_fn(ctx, m, args, argc, out)) return out;
                 }
@@ -1615,7 +1643,7 @@ GdVal call_method(BattleCtx& ctx, const GdVal& recv, SymId m, const GdVal* args,
                     return GdVal::null();
                 case SYM_pop_front: return a->pop_front();
                 case SYM_pop_back: return a->pop_back();
-                case SYM_clear: a->len = 0; return GdVal::null();
+                case SYM_clear: {NativeTimerMutation native_mutation(a->timer_watch);a->len = 0;return GdVal::null();}
                 case SYM_duplicate: {
                     bool deep = argc >= 1 && gd_truth(args[0]);
                     return GdVal::from_arr(a->duplicate(ctx.arena, deep));
@@ -1901,3 +1929,44 @@ void native_inline_variant_hit(unsigned field) {
 extern "C" uint64_t gd_diag_native_variant_stat(unsigned field) {
     return field<10?gd::native_inline_variant_counts[field]:0;
 }
+
+namespace gd {
+static thread_local uint64_t native_timer_index_counts[10]{};
+void native_timer_index_hit(unsigned i,uint64_t amount){if(i<10)native_timer_index_counts[i]+=amount;}
+bool native_timer_known_object(const GdObj* object) {
+    if(!object)return true;
+    const auto* row=object->native_call_row_;
+    return (row && row->metadata) || native_resolved_exact_row(object)!=&native_resolved_empty;
+}
+bool native_timer_known_class(const GdClassMeta* cls) {
+    if(!cls)return true;
+    static const auto known=[] {std::unordered_set<const GdClassMeta*> result;
+        for(const auto& row:native_resolved_rows)result.insert(row.metadata);
+        return result;}();
+    return known.contains(cls);
+}
+void native_timer_observe_object(BattleCtx& ctx,const GdObj* object) {
+    auto& w=ctx.native_timer_watch;
+    if(w.closed_world)return;
+    if(w.enabled && w.usable && object && object!=w.trusted_hooks && !native_timer_known_object(object)) {
+        w.change();w.usable=false;if(w.collect)native_timer_index_hit(9);
+    }
+}
+void native_timer_observe_class(BattleCtx& ctx,const GdClassMeta* cls) {
+    auto& w=ctx.native_timer_watch;
+    if(w.closed_world)return;
+    if(w.enabled && w.usable && !native_timer_known_class(cls)) {
+        w.change();w.usable=false;if(w.collect)native_timer_index_hit(9);
+    }
+}
+}
+extern "C" uint64_t gd_diag_native_targeted_timer_stat(unsigned i){return i<10?gd::native_timer_index_counts[i]:0;}
+
+namespace gd {
+static std::atomic<bool> native_timer_registry_sealed{true};
+void native_timer_registered_class(const GdClassMeta* metadata) {
+    if(metadata && !native_timer_known_class(metadata))native_timer_registry_sealed.store(false,std::memory_order_release);
+}
+bool native_timer_registry_closed(){return native_timer_registry_sealed.load(std::memory_order_acquire);}
+}
+extern "C" int gd_diag_native_timer_registry_closed(){return gd::native_timer_registry_closed()?1:0;}

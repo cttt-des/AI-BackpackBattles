@@ -1,0 +1,21 @@
+{
+  "pairs_per_workload": 8,
+  "calls_per_arm": 30000,
+  "owners": [
+    16,
+    48,
+    96
+  ],
+  "gem_slots_per_item": 2,
+  "matching_local_compilation": true,
+  "both_original_and_candidate_local_bodies_match_actual7a57": true,
+  "independent_cases": 1760,
+  "excluded_costs": "No whole-fight claim: both local arms use the enlarged new ABI/runtime. All-array write guards, layout growth and full PGO interactions require formal whole-DLL A/B.",
+  "dependency_sha256": {
+    "test_targeted_timer_local_cost.cpp": "96e65b6e253e5c5b224e1eed4473a630fa352a6f6e660524d87f4684793dbf7f",
+    "matched_timer_fixture.hpp": "fb15bf4f2872926b40f4fa5fad4fc2bd89c3d71f8ac7ccd490b01143e98db352",
+    "reference_targeted_timers.hpp": "5eaea668439fa4c33f3808c65a69153ff2642ee0ea03eefe003529c9c71c55d0",
+    "targeted_timer_fields.hpp": "5b40ae7cee977c989fbbf8543b0b7f7c25888ac31a4c4770efb71cdea3696de7",
+    "native_targeted_timers.hpp": "0669f02058944d5e903080007e048d94677440dd826f4290a5a873c5db9cef67"
+  }
+}

@@ -1,0 +1,12 @@
+Verified full-inventory source apply: 0 files updated
+Verified full-inventory source prepare: 3 files updated
+Verified full-inventory source apply: 3 files updated
+Verified full-inventory source apply: 0 files updated
+{
+  "passed": true,
+  "source_inventory_verified": 705,
+  "transform_files": 26,
+  "matches_compiled_candidate": true,
+  "idempotent_bytes_and_mtime": true,
+  "untouched_header_changes_rejected_before_writes": true
+}

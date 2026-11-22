@@ -1,0 +1,29 @@
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\closed_timer_prototype\prototype_src\engine_wrapper.cpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\closed_timer_prototype\prototype_src\engine_wrapper.cpp:16:
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\closed_timer_prototype\prototype_src\gd_rt.hpp:6: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    6 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\closed_timer_prototype\prototype_src\engine_wrapper.cpp:19:
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\closed_timer_prototype\prototype_src\gen/hdrs/Gd__gd_core__CoreCharacter.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\closed_timer_prototype\prototype_src\engine_wrapper.cpp:20:
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\closed_timer_prototype\prototype_src\gen/hdrs/Gd__gd_core__CoreCombat.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\closed_timer_prototype\prototype_src\engine_wrapper.cpp:21:
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\closed_timer_prototype\prototype_src\gen/hdrs/Gd__gd_core__CoreContext.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\closed_timer_prototype\prototype_src\engine_wrapper.cpp:22:
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\closed_timer_prototype\prototype_src\gen/hdrs/Gd__gd_core__CoreHooks.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\closed_timer_prototype\prototype_src\engine_wrapper.cpp:23:
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\closed_timer_prototype\prototype_src\gen/hdrs/Gd__gd_core__CoreItem.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\closed_timer_prototype\prototype_src\engine_wrapper.cpp:24:
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\closed_timer_prototype\prototype_src\gen/hdrs/Gd__gd_core__CoreItemBook.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\closed_timer_prototype\prototype_src\engine_wrapper.cpp:25:
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\closed_timer_prototype\prototype_src\gen/hdrs/Gd__gd_core__CoreItemData.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\closed_timer_prototype\prototype_src\engine_wrapper.cpp:26:
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\closed_timer_prototype\prototype_src\gen/hdrs/Gd__gd_core__CoreRng.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
