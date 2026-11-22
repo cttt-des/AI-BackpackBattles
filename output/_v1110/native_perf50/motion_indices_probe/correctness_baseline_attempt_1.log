@@ -1,0 +1,23 @@
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\test_native_motion_indices.cpp:1:
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\motion_indices_probe/preflight_motion_indices.hpp:56:49: error: 'gd_ctx' was not declared in this scope
+   56 |     gd::GdVal lv_limit = gd::native_inline_call(gd_ctx, context.f__motion_queue, gd::SYM_size, nullptr, 0);
+      |                                                 ^~~~~~
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\motion_indices_probe/preflight_motion_indices.hpp:56:57: error: 'context' was not declared in this scope
+   56 |     gd::GdVal lv_limit = gd::native_inline_call(gd_ctx, context.f__motion_queue, gd::SYM_size, nullptr, 0);
+      |                                                         ^~~~~~~
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\motion_indices_probe/preflight_motion_indices.hpp:59:5: error: expected unqualified-id before 'while'
+   59 |     while (gd::gd_truth(gd::GdVal::from_bool(gd::gd_lt(lv_read, lv_limit)))) {
+      |     ^~~~~
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\motion_indices_probe/preflight_motion_indices.hpp:82:5: error: expected unqualified-id before 'if'
+   82 |     if (gd::gd_truth(gd::GdVal::from_bool(gd::native_scalar_ne(lv_write, lv_limit)))) {
+      |     ^~
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\motion_indices_probe/preflight_motion_indices.hpp:91:5: error: expected unqualified-id before 'return'
+   91 |     return gd::GdVal::null();
+      |     ^~~~~~
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\motion_indices_probe/preflight_motion_indices.hpp:92:1: error: expected declaration before '}' token
+   92 | }
+      | ^
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\motion_indices_probe/preflight_motion_indices.hpp: In function 'gd::GdVal candidate_tickMotion(Gd__gd_core__CoreContext&, const gd::GdVal*, int)':
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\motion_indices_probe/preflight_motion_indices.hpp:55:5: warning: control reaches end of non-void function [-Wreturn-type]
+   55 |     }
+      |     ^

@@ -1,0 +1,23 @@
+{
+  "baseline_dll_sha256": "3a9269887ace0ad9cd6dafdb9e0ee2a77b857b231f2a0d412888af2516e5b520",
+  "verified_remote_backup": "fcfe317116882ad80e2dd59611c38c01690ba004",
+  "record_sites": {
+    "gets": 26,
+    "sets": 16,
+    "calls": 18
+  },
+  "typed_source_sites": {
+    "canMiss": 1,
+    "canCrit": 1,
+    "canBeBlocked": 1,
+    "isAttack": 3,
+    "isAttackOrEffect": 1,
+    "hasType": 6
+  },
+  "candidate_sha256": "533888f9088abd8aeb65401e68796b90e4785391a04d6408af0d1034902f8e44",
+  "helper_sha256": "8fa4a88163e59dbdf78ab9a41ebbfefe309c9754c9525a98de5d908ae3af9562",
+  "original_arithmetic_rng_callback_order_and_layouts_retained": true,
+  "no_cross_callback_field_snapshot": true,
+  "no_whole_fight_gain_claim": true,
+  "previous_record_only_screen_retained": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_perf50\\damage_records_probe\\screen_matched.json"
+}

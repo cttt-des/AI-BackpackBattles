@@ -1,0 +1,29 @@
+{
+  "baseline_dll_sha256": "3a9269887ace0ad9cd6dafdb9e0ee2a77b857b231f2a0d412888af2516e5b520",
+  "verified_remote_backup": "fcfe317116882ad80e2dd59611c38c01690ba004",
+  "static_sites": {
+    "gets": 26,
+    "sets": 16,
+    "calls": 18
+  },
+  "exact_record_constructors": {
+    "Gd__gd_core__CoreDamageResult": {
+      "init_fields_sha256": "89728998d5e12189d7b57e1f5ed8bb01e552db142a5c8bbc446ef2feff4c1e40",
+      "get_prop_sha256": "cf3c5579a5185dace297733b3009be94e0e41b878a963f58c2f30712f422f501",
+      "set_prop_sha256": "47a99be2f562b2053b4a689611aed061688235a0ea6210f54b7a7a288c3033d5"
+    },
+    "Gd__gd_core__CoreDamageSource": {
+      "init_fields_sha256": "a0a9733bd47ae78656a0fd43b91ddce88efc179dc3d82b708146c49660cf6609",
+      "get_prop_sha256": "ac2183ffd17c1e2a5f51d8ff3d361b6d767b42fa3ead71454e4bf4805bb11a10",
+      "set_prop_sha256": "e8a881efbcf120ddce46123f193116e7ca87584f931a1801c174690bd636e039"
+    }
+  },
+  "from_source_sha256": "7e8db4e97230df7041fdff9dcf76e73102400255f6b0822bc4dd5125a4186a30",
+  "original_sha256": "693b40e3c75a547a45ac01a7044b15c162d42af8b30472557b4cb641a8b734b1",
+  "candidate_sha256": "730f773644399718474f254b1b86ca685f16a24f4cced3062b43c61fefe2e015",
+  "original_method_implementations_arithmetic_and_callback_order_retained": true,
+  "all_record_fields_read_live_after_callbacks": true,
+  "layouts_unchanged": true,
+  "no_performance_or_equivalence_claim_before_differentials": true,
+  "test_only_rtti_boundary": "Header-local audit compares against actual independent DLL exported type_info; production kernel unchanged"
+}

@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "cases": 12920,
+  "baseline_dll_sha256": "3a9269887ace0ad9cd6dafdb9e0ee2a77b857b231f2a0d412888af2516e5b520",
+  "record_only_independent_oracle_sha256": "580bfbd052c054ce3dbaceffbc2481f0a7aa4d733b6851cb9bec43a34d7803d6",
+  "combined_case_receipt_sha256": "a6d797abf36b70a86f6b4c69efe096de7df74e81ba4bf6a7bad80d7db33d8113",
+  "all_original_hashes_and_legacy_counters_equal": true
+}

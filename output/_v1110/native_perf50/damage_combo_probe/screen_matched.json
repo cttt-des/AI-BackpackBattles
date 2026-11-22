@@ -1,0 +1,288 @@
+{
+  "workloads": [
+    {
+      "item": 0,
+      "calls_per_arm": 10000,
+      "pairs": [
+        {
+          "baseline": {
+            "cpu_s": 0.03125,
+            "wall_s": 0.0261178,
+            "cycles": 46945469,
+            "digest": 8829472089472565856
+          },
+          "candidate": {
+            "cpu_s": 0.03125,
+            "wall_s": 0.0264107,
+            "cycles": 47399134,
+            "digest": 8829472089472565856
+          }
+        },
+        {
+          "baseline": {
+            "cpu_s": 0.03125,
+            "wall_s": 0.026442,
+            "cycles": 47473511,
+            "digest": 8829472089472565856
+          },
+          "candidate": {
+            "cpu_s": 0.03125,
+            "wall_s": 0.0282274,
+            "cycles": 50328056,
+            "digest": 8829472089472565856
+          }
+        },
+        {
+          "baseline": {
+            "cpu_s": 0.015625,
+            "wall_s": 0.0268677,
+            "cycles": 48128883,
+            "digest": 8829472089472565856
+          },
+          "candidate": {
+            "cpu_s": 0.015625,
+            "wall_s": 0.0260696,
+            "cycles": 46771630,
+            "digest": 8829472089472565856
+          }
+        },
+        {
+          "baseline": {
+            "cpu_s": 0.03125,
+            "wall_s": 0.0275003,
+            "cycles": 49329890,
+            "digest": 8829472089472565856
+          },
+          "candidate": {
+            "cpu_s": 0.03125,
+            "wall_s": 0.026309,
+            "cycles": 46791641,
+            "digest": 8829472089472565856
+          }
+        },
+        {
+          "baseline": {
+            "cpu_s": 0.03125,
+            "wall_s": 0.0262756,
+            "cycles": 47032003,
+            "digest": 8829472089472565856
+          },
+          "candidate": {
+            "cpu_s": 0.03125,
+            "wall_s": 0.0278461,
+            "cycles": 48883675,
+            "digest": 8829472089472565856
+          }
+        },
+        {
+          "baseline": {
+            "cpu_s": 0.03125,
+            "wall_s": 0.0279804,
+            "cycles": 50060917,
+            "digest": 8829472089472565856
+          },
+          "candidate": {
+            "cpu_s": 0.03125,
+            "wall_s": 0.0272383,
+            "cycles": 48794555,
+            "digest": 8829472089472565856
+          }
+        },
+        {
+          "baseline": {
+            "cpu_s": 0.03125,
+            "wall_s": 0.0284873,
+            "cycles": 51127709,
+            "digest": 8829472089472565856
+          },
+          "candidate": {
+            "cpu_s": 0.015625,
+            "wall_s": 0.0269229,
+            "cycles": 47845579,
+            "digest": 8829472089472565856
+          }
+        },
+        {
+          "baseline": {
+            "cpu_s": 0.03125,
+            "wall_s": 0.0278347,
+            "cycles": 49710881,
+            "digest": 8829472089472565856
+          },
+          "candidate": {
+            "cpu_s": 0.015625,
+            "wall_s": 0.0277435,
+            "cycles": 49670335,
+            "digest": 8829472089472565856
+          }
+        }
+      ],
+      "metrics": {
+        "cpu_s": {
+          "paired_median_time_reduction_pct": 0.0,
+          "zero_baseline_pairs": 0,
+          "sum_time_reduction_pct": 13.33333333333333
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 1.489931137483269,
+          "zero_baseline_pairs": 0,
+          "sum_time_reduction_pct": 0.3394392241494293
+        },
+        "cycles": {
+          "paired_median_time_reduction_pct": 1.3056028339179293,
+          "zero_baseline_pairs": 0,
+          "sum_time_reduction_pct": 0.8528935342411281
+        }
+      }
+    },
+    {
+      "item": 1,
+      "calls_per_arm": 10000,
+      "pairs": [
+        {
+          "baseline": {
+            "cpu_s": 0.03125,
+            "wall_s": 0.0313153,
+            "cycles": 56279496,
+            "digest": 5543901460736761815
+          },
+          "candidate": {
+            "cpu_s": 0.03125,
+            "wall_s": 0.0311073,
+            "cycles": 55463076,
+            "digest": 5543901460736761815
+          }
+        },
+        {
+          "baseline": {
+            "cpu_s": 0.03125,
+            "wall_s": 0.0349712,
+            "cycles": 62606793,
+            "digest": 5543901460736761815
+          },
+          "candidate": {
+            "cpu_s": 0.015625,
+            "wall_s": 0.0288244,
+            "cycles": 51816206,
+            "digest": 5543901460736761815
+          }
+        },
+        {
+          "baseline": {
+            "cpu_s": 0.03125,
+            "wall_s": 0.0289242,
+            "cycles": 51713508,
+            "digest": 5543901460736761815
+          },
+          "candidate": {
+            "cpu_s": 0.03125,
+            "wall_s": 0.0284222,
+            "cycles": 50665709,
+            "digest": 5543901460736761815
+          }
+        },
+        {
+          "baseline": {
+            "cpu_s": 0.03125,
+            "wall_s": 0.0292465,
+            "cycles": 52441173,
+            "digest": 5543901460736761815
+          },
+          "candidate": {
+            "cpu_s": 0.03125,
+            "wall_s": 0.0280157,
+            "cycles": 50195161,
+            "digest": 5543901460736761815
+          }
+        },
+        {
+          "baseline": {
+            "cpu_s": 0.03125,
+            "wall_s": 0.0284254,
+            "cycles": 51054638,
+            "digest": 5543901460736761815
+          },
+          "candidate": {
+            "cpu_s": 0.015625,
+            "wall_s": 0.0272082,
+            "cycles": 48808015,
+            "digest": 5543901460736761815
+          }
+        },
+        {
+          "baseline": {
+            "cpu_s": 0.03125,
+            "wall_s": 0.0279664,
+            "cycles": 50248918,
+            "digest": 5543901460736761815
+          },
+          "candidate": {
+            "cpu_s": 0.015625,
+            "wall_s": 0.0268619,
+            "cycles": 48024162,
+            "digest": 5543901460736761815
+          }
+        },
+        {
+          "baseline": {
+            "cpu_s": 0.03125,
+            "wall_s": 0.0282503,
+            "cycles": 50742815,
+            "digest": 5543901460736761815
+          },
+          "candidate": {
+            "cpu_s": 0.03125,
+            "wall_s": 0.0296366,
+            "cycles": 53163256,
+            "digest": 5543901460736761815
+          }
+        },
+        {
+          "baseline": {
+            "cpu_s": 0.03125,
+            "wall_s": 0.0274104,
+            "cycles": 48810067,
+            "digest": 5543901460736761815
+          },
+          "candidate": {
+            "cpu_s": 0.03125,
+            "wall_s": 0.0279265,
+            "cycles": 50208069,
+            "digest": 5543901460736761815
+          }
+        }
+      ],
+      "metrics": {
+        "cpu_s": {
+          "paired_median_time_reduction_pct": 0.0,
+          "zero_baseline_pairs": 0,
+          "sum_time_reduction_pct": 18.75
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 2.8424765108524985,
+          "zero_baseline_pairs": 0,
+          "sum_time_reduction_pct": 3.5968503617399117
+        },
+        "cycles": {
+          "paired_median_time_reduction_pct": 3.1545391494331882,
+          "zero_baseline_pairs": 0,
+          "sum_time_reduction_pct": 3.6692260217830786
+        }
+      }
+    }
+  ],
+  "passed": true,
+  "independent_oracle_sha256": "a6d797abf36b70a86f6b4c69efe096de7df74e81ba4bf6a7bad80d7db33d8113",
+  "no_whole_fight_gain_claim": true,
+  "matching_local_compilation": true,
+  "baseline_dll_sha256": "3a9269887ace0ad9cd6dafdb9e0ee2a77b857b231f2a0d412888af2516e5b520",
+  "dependency_sha256": {
+    "test_native_damage_records_extended.cpp": "aa28f2148ba63020f30025500484fb63f89631d8bc068e93f530990000973e2d",
+    "test_native_damage_records.cpp": "b9b2e502d2fd83895e5d4f656b60c5d44639c69a3b7ef88af539f01242985675",
+    "preflight_damage_records.hpp": "e080408e672426fc5ff95b1a496fdcd8eff9e2c7e06c2c2d6a4eae6645cbeabe",
+    "native_event_kernel.hpp": "5aab534db5674cc24c2041ded2023cf1513d6a6d265b2d3867e0622ae6342860",
+    "damage_state_fields.hpp": "39818cb90661ad792bab9b094ff45662991e801904025d395b94c2cb295064fc",
+    "damage_fixture.hpp": "3152ce68f475b23006703c1ff4162942606b99450417eb73089ec7bc48e8ea08",
+    "reference_damage_records.hpp": "7b636dfd2702c8068df1adfb81e226883ef05d7ff16a67e3532a4c30b3e18f85"
+  }
+}

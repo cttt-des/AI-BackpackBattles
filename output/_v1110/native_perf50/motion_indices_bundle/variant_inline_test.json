@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "dll_sha256": "7a57d09b81ba62fcd985fbb14a5999c72ff550ba328d5cae3add6167e4fbc058",
+  "output": "1034 variant differential cases; null/empty/default/mixed-key/numeric-alias/NaN, container mutation visibility, one static callback/false Null, forwarded static dispatch, new constructor, object override and disabled path passed\n",
+  "compiled_against_candidate_headers": true
+}
