@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "dll_sha256": "8034effcb1016c278b35718d39d15c89e2130dd12fba79969da2ed0911459a55",
+  "cases": 11760,
+  "all_original_case_hashes_equal": true,
+  "actual_production_methods_checked": true,
+  "legacy_dispatch_and_variant_counters_compared": true,
+  "original_reference_sha256": "d02eb3111abd8c6db22c917f9c809465b1241ab101834464b4607d559a689b2c",
+  "test_adaptation": "Only three candidate/original ternaries replaced by production DLL calls; all cases and hashes unchanged"
+}

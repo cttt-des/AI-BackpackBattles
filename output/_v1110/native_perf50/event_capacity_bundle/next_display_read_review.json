@@ -1,0 +1,120 @@
+{
+  "baseline_dll_sha256": "e0bedc4960077407e85763cb5e4af70175a0623cca15e923403fa89174390687",
+  "profile_sha256": "c899ea120308c18dfb8e9d7610530c56a2afc9c67ed1e38cece8e49b2aa16965",
+  "leaf_samples": 2059,
+  "frame_leaf_samples": 205,
+  "top_frame_instruction_locations": [
+    {
+      "offset": 13497209,
+      "function": "gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)",
+      "offset_in_function": 361,
+      "samples": 41
+    },
+    {
+      "offset": 13496875,
+      "function": "gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)",
+      "offset_in_function": 27,
+      "samples": 26
+    },
+    {
+      "offset": 13497195,
+      "function": "gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)",
+      "offset_in_function": 347,
+      "samples": 22
+    },
+    {
+      "offset": 13496948,
+      "function": "gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)",
+      "offset_in_function": 100,
+      "samples": 17
+    },
+    {
+      "offset": 13496999,
+      "function": "gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)",
+      "offset_in_function": 151,
+      "samples": 5
+    },
+    {
+      "offset": 13497214,
+      "function": "gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)",
+      "offset_in_function": 366,
+      "samples": 5
+    },
+    {
+      "offset": 13496879,
+      "function": "gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)",
+      "offset_in_function": 31,
+      "samples": 5
+    },
+    {
+      "offset": 13496971,
+      "function": "gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)",
+      "offset_in_function": 123,
+      "samples": 4
+    },
+    {
+      "offset": 13497127,
+      "function": "gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)",
+      "offset_in_function": 279,
+      "samples": 3
+    },
+    {
+      "offset": 13497204,
+      "function": "gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)",
+      "offset_in_function": 356,
+      "samples": 3
+    },
+    {
+      "offset": 13497227,
+      "function": "gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)",
+      "offset_in_function": 379,
+      "samples": 3
+    },
+    {
+      "offset": 13496848,
+      "function": "gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)",
+      "offset_in_function": 0,
+      "samples": 3
+    },
+    {
+      "offset": 13496922,
+      "function": "gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)",
+      "offset_in_function": 74,
+      "samples": 3
+    },
+    {
+      "offset": 13496857,
+      "function": "gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)",
+      "offset_in_function": 9,
+      "samples": 2
+    }
+  ],
+  "observed_code": "Top locations include statDisplayOverrides array data[3] kind/value loads; samples can skid and are not a speedup estimate.",
+  "writes_audited": [
+    "CoreItem.init_fields assigns an empty array; setup resizes and fills Null",
+    "CoreItem.setStat writes through native_array_set_index",
+    "CoreItem.set_prop(statDisplayOverrides) replaces the array",
+    "reset paths in shards00,01,06 fill Null; no direct compiled setStat call sites were found beyond routing/definitions"
+  ],
+  "candidate": "Scope a Null-display shortcut to owned packed battles; validate and watch actual default arrays, then skip the repeated speed-override lookup while the watched version is unchanged.",
+  "must_preserve": [
+    "Never assume all C++ contexts or all arrays are default; ordinary/direct C++ and noncanonical input retain old reads.",
+    "Keep canonical array identities and values. Reuse the existing array watcher for aliases and all array mutations.",
+    "Register only after startBattle, covering inventory owners and gems; validate the complete graph before attaching any watcher.",
+    "Invalidate on CoreItem.set_prop replacement as well as watched array mutations. New inventory items and foreign/unknown boundaries also disable the shortcut.",
+    "The active-cooldown recovery suffix uses the same item_tick lambda, so a phase-constant true flag is UNSAFE. Recheck the captured version and watch validity at every item, including recovery.",
+    "Avoid global GdArr/GdDict header growth; use private engine scope or explicitly declared per-battle state.",
+    "New actual-DLL tests must exercise the packed scope, mutation before a later item, nested callbacks, setter replacement, and recovery; old ordinary fixtures alone do not exercise the optimization."
+  ],
+  "not_implemented": true,
+  "no_throughput_claim": true,
+  "refined_design": {
+    "private_scope": "Create only inside run_one_internal after startBattle, before the physical loop; restore previous scope on exit for nesting/thread isolation.",
+    "registration": "Validate the live character inventory items, their gems, owned stat arrays (all Null), and all watch compatibility before attaching any watch. Watch inventory/gems too, so newly inserted owners cannot evade invalidation.",
+    "reuse": "Attach the existing NativeTimerWatch to the owned stat arrays; array aliases and every existing mutation API then change the same structural version. The CoreItem statDisplayOverrides setter must invalidate before replacing a registered field.",
+    "hot_loop": "Capture a nonzero valid scope version once per active-cooldown phase. The item_tick lambda must compare current version AND watch validity at each item, including the recovery suffix, before passing a fourth assume-default argument to native_frame_segment_tick.",
+    "layout": "Keep GdArr/GdDict/BattleCtx and generated object layouts unchanged. The scope is private engine state; no global container-head growth and no snapshot cache required.",
+    "tests": "Use actual final-DLL functions plus a scope test interface to force fast hits, then mutate future owners through alias/setStat/field setter, array APIs, nested phases and recovery. Verify ordinary C++ contexts do not enter the private scope.",
+    "remaining_risk": "Raw C++ writes bypassing mutation APIs are outside the private packed entry; prove no such write or externally exposed object pointer exists in that entry. Retain the entire old path elsewhere."
+  }
+}

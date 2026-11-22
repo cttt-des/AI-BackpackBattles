@@ -1,0 +1,21 @@
+{
+  "candidate_dll_sha256": "8034effcb1016c278b35718d39d15c89e2130dd12fba79969da2ed0911459a55",
+  "status": "not_adopted_no_confirmed_cpu_gain",
+  "selected_pairs": 32,
+  "main_thread_cpu_time_reduction_pct": -0.3676470588235281,
+  "wall_time_reduction_pct": 0.06886724813478518,
+  "candidate_fitted_at20_fps": 154.90533695659173,
+  "current_runtime_dll_sha256": "e0bedc4960077407e85763cb5e4af70175a0623cca15e923403fa89174390687",
+  "current_runtime_last_independent_fitted_at20_fps": 139.8920287978919,
+  "strict2604_not_started": true,
+  "release_raw24_not_started": true,
+  "rejected_calibration_is_not_release_gate": true,
+  "no_more_same_source_comparisons": true,
+  "reports_sha256": {
+    "candidate_decision.json": "256ddcb4fd1afbf45638df8e28a8af229cb719a5815c459e747d38c5e06c9dba",
+    "ab_assessment_32.json": "c529c9b6c38b71f6f7694f4da3453b54aacea47ff54f271d639b25cf69e00afe",
+    "rejected_load_calibration.json": "a18d4362fcfaf96f7e7fd8dc9adfa689eac1977cafbd0eae7d052d72ad8a7f74",
+    "rejected_load20.json": "5598aa10d443ad704e00ece2cdeb8a7d315a0a12804831498265158f8675b92f",
+    "event_capacity_tests.json": "ab131b832f2b2adf14489277ae97e94751d1214b0a6db9d817b76259a41329cb"
+  }
+}
