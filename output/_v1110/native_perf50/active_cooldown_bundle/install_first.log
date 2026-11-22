@@ -1,0 +1,72 @@
+D:\�ļ�����\ѧϰ\�Զ�����AI\dist\native_1_1_10_bundle_pending
+{
+  "dll_sha256": "55b62a2044b87311a967878a91d88ef4702641d240594989a09c396f67172ece",
+  "gate_sha256": "ac06a3d17f943a3368e90cfa29cd9a82d96faa63fee0707eaf11c5ab01d2310f",
+  "ab_assessment_path": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_perf50\\active_cooldown_bundle\\ab_assessment_32.json",
+  "ab_assessment_sha256": "976269a5f6cd986cc8515346d9af6f9be6f5d7371912ae87bcfc8983723f018b",
+  "ab_pairs": 32,
+  "speed_report_sha256": "23e0ee61584a756aef7509de383f3d1821a024ce1318dc3a50c7219f59b6631e",
+  "training_outcomes": [
+    1,
+    1,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "regeneration_test_sha256": "e812be886be53c22fc9faa41c96b75b699179c6a4ce8bffc434c2eba72360af3",
+  "full_regeneration_test_sha256": "a1246e0b01884759c15978bb8ab7d82adb70a0ba063b8cb9ad05bf65c708d31d",
+  "training_matched_baseline": 12,
+  "training_evaluation": {
+    "mean_wr": 0.16666666666666666,
+    "std_opp": 0.28867513459481287,
+    "worst_wr": 0.0,
+    "per_opp": [
+      {
+        "rating": 450.385037,
+        "n_items": 57,
+        "wr": 0.6666666666666666,
+        "errs": 0
+      },
+      {
+        "rating": 527.013755,
+        "n_items": 47,
+        "wr": 0.0,
+        "errs": 0
+      },
+      {
+        "rating": 464.089676,
+        "n_items": 47,
+        "wr": 0.0,
+        "errs": 0
+      },
+      {
+        "rating": 457.699621,
+        "n_items": 61,
+        "wr": 0.0,
+        "errs": 0
+      }
+    ],
+    "n_opp": 4,
+    "seeds": 3,
+    "total_sims": 12,
+    "sim_errors": 0
+  },
+  "runtime": "dist/native_1_1_10",
+  "backup_runtime": "dist/native_1_1_10_before_active_cooldown_bundle_20261122",
+  "changed_native_files": [
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/gd_rt.cpp",
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/gd_rt.hpp",
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/gen/shards/shard_00.cpp",
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/gen/shards/shard_03.cpp",
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/native_active_cooldowns.hpp",
+    "output/_v1110/optimize_native_verified_bundle.py",
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/libgdcore.dll"
+  ]
+}

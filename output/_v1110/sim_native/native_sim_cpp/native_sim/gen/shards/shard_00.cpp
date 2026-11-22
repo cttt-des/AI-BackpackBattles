@@ -285,7 +285,7 @@ void Gd__gd_core__CoreItem::init_fields(gd::BattleCtx& gd_ctx) {
     gd::native_timer_fields_changed(this->rt_ctx_); this->f_gems = gd::GdVal::from_arr(gd::GdArr::from_init(gd_ctx.arena, {}));
     this->f__grid = gd::GdVal::null();
     this->f__behavior = gd::GdVal::null();
-    this->f__cooldown_active = gd::GdVal::from_bool(false);
+    gd::native_active_cooldown_store(this->rt_ctx_,this->f__cooldown_active,gd::GdVal::from_bool(false));
     this->f__cooldown_changed_epoch = gd::gd_neg(gd::GdVal::from_int(1LL));
     this->f__cooldown_blocked_epoch = gd::gd_neg(gd::GdVal::from_int(1LL));
     this->f_dynamicTypes = gd::GdVal::from_dict(gd::GdDict::create(gd_ctx.arena));
@@ -473,7 +473,7 @@ bool Gd__gd_core__CoreItem::set_prop(gd::BattleCtx& gd_ctx, gd::SymId prop, cons
         case SYM_GEN_gems_41: gd::native_timer_fields_changed(this->rt_ctx_); this->f_gems = val; return true;
         case SYM_GEN__grid_42: this->f__grid = val; return true;
         case SYM_GEN__behavior_43: this->f__behavior = val; return true;
-        case SYM_GEN__cooldown_active_44: this->f__cooldown_active = val; return true;
+        case SYM_GEN__cooldown_active_44: gd::native_active_cooldown_store(this->rt_ctx_,this->f__cooldown_active,val); return true;
         case SYM_GEN__cooldown_changed_epoch_45: this->f__cooldown_changed_epoch = val; return true;
         case SYM_GEN__cooldown_blocked_epoch_46: this->f__cooldown_blocked_epoch = val; return true;
         case SYM_GEN_dynamicTypes_47: this->f_dynamicTypes = val; return true;
@@ -1662,7 +1662,7 @@ gd::GdVal Gd__gd_core__CoreItem::fn_setCooldownActive(const gd::GdVal* _args, in
             }
         }
     }
-    this->f__cooldown_active = lv_active;
+    gd::native_active_cooldown_store(this->rt_ctx_,this->f__cooldown_active,lv_active);
     return gd::GdVal::null();
 }
 gd::GdVal Gd__gd_core__CoreItem::fn_activateCooldown(const gd::GdVal* _args, int _argc) {
@@ -2057,7 +2057,7 @@ gd::GdVal Gd__gd_core__CoreItem::fn_resetCombatState(const gd::GdVal* _args, int
     this->f_lastTriggerTime = gd::gd_coerce_float(gd::GdVal::from_float(0.0));
     this->f_triggerTime = gd::gd_coerce_float(gd::GdVal::from_float(0.0));
     this->f_iterationCooldown = gd::gd_coerce_float(gd::GdVal::from_float(0.0));
-    this->f__cooldown_active = gd::GdVal::from_bool(false);
+    gd::native_active_cooldown_store(this->rt_ctx_,this->f__cooldown_active,gd::GdVal::from_bool(false));
     return gd::GdVal::null();
 }
 gd::GdVal Gd__gd_core__CoreItem::fn_physicsTick(const gd::GdVal* args, int argc) {

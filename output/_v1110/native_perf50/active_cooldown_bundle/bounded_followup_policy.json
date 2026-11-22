@@ -1,0 +1,12 @@
+{
+  "frozen_before_first_measurement": true,
+  "initial_groups": 3,
+  "pairs_per_group": 8,
+  "clean_positive": "Both aggregate medians positive and every leave-one-group-out median and sum positive",
+  "extra_group_condition": "Not clean positive and not consistent_regression_bundle_only",
+  "maximum_extra_groups": 1,
+  "extra_order": "Baseline-first, candidate-load-first to balance original groups",
+  "decision": "Both full selected CPU and wall paired medians must be positive; retain all original pairs",
+  "qualify_only_after_final_comparison_decision": true,
+  "no_per_component_significance_required": true
+}

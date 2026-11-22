@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "dll_sha256": "16174b15e922e0de9cddc95a7142413e63ec1505ca85390691db4b9b5eb5d078",
+  "cases": 5840,
+  "actual_production_method_checked": true,
+  "independent_baseline_sha256": "9b05c6b71f3c1ee9591b121d79ea6f49a28fbbc982236a8f0d44838cb076822f",
+  "all_original_state_and_legacy_counter_hashes_equal": true,
+  "source_method_sha256": "f4ec9ec21e07f1634175dceeb9323cee1e53633ae755ae1e3e0c008df0e8edbe"
+}

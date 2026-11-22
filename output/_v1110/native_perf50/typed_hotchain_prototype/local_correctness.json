@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "cases": 13112,
+  "original_prefix_cases": 12920,
+  "added_integer_behavior_loop_cases": 192,
+  "baseline_dll_sha256": "686f0d6cdb2fc223d4ed50319b31e786eea14383b4ffb9a8fe8633395ee07b43",
+  "actual_current_dll_independent_oracle": true,
+  "old_case_hash_prefix_retained": true,
+  "four_rounding_modes": true,
+  "unknown_source_getters_callbacks_and_reentrancy_retained": true,
+  "complete_native_kernel_source_checked": true,
+  "no_throughput_claim": true,
+  "case_hashes_sha256": "8a7e84e1bb2ca7c336ccaa808d41e4473a1934999ba5a773bb4bd30f28208238",
+  "test_only_canonical_dll_rtti": true,
+  "fixture_closed_mode_forces_kernel_exercise": true,
+  "dependency_sha256": {
+    "local_test/damage_fixture.hpp": "b6f8d6cc0a59abfb068b5cd1aac19c383e7e8ebd52790c706b4a36ffd57ff342",
+    "local_test/damage_state_fields.hpp": "39818cb90661ad792bab9b094ff45662991e801904025d395b94c2cb295064fc",
+    "local_test/extended.cpp": "7698960ec1610c6f25bad8d81c1a4b170b7bcf0a82a8d36d4e89becc0d6065b1",
+    "local_test/native_event_kernel.hpp": "5aab534db5674cc24c2041ded2023cf1513d6a6d265b2d3867e0622ae6342860",
+    "local_test/native_typed_damage_math.hpp": "479ffcfffcbef54f94c0be7425aedee2a423c3b164a33d9edce3b7477e2d5f72",
+    "local_test/preflight_damage_records.hpp": "1086f5b2875ea412a8d75f9cb10c5737bbe1a7c0966ffc9148bdf23ce4d5cf8c"
+  }
+}

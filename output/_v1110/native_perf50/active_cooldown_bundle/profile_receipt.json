@@ -1,0 +1,8 @@
+{
+  "dll_sha256": "55b62a2044b87311a967878a91d88ef4702641d240594989a09c396f67172ece",
+  "samples": 2034,
+  "valid_replay_roots": 2031,
+  "normal_priority_all8": true,
+  "after_deployment_and_all_formal_timing": true,
+  "report_sha256": "1f1ee37f900cd2f500743756093dd5058027c13bb76c9c7b8bc48002930c9714"
+}

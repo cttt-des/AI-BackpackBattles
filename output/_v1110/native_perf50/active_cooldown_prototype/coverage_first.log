@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "cases": 1856,
+  "dll_sha256": "ee39b6e1748a374772c6d9fe5fcd26edda37a1b6954c5dac573f9700bd2f8a93",
+  "counts": [
+    2448,
+    1568,
+    880,
+    40020,
+    224,
+    544,
+    720,
+    47944,
+    30912,
+    0
+  ],
+  "actual_index_build_hit_and_same_pass_recovery_observed": true,
+  "all_independent_old_states_and_legacy_hashes_retained": true,
+  "original_fixture_body_sha256": "305fb9bf9dd2271981d3e9e89413dc21f5a5c9363fed8bb11f67f86e5dbdce56",
+  "no_performance_claim": true
+}

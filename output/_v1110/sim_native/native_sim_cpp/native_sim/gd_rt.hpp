@@ -369,6 +369,8 @@ struct NativeTimerWatch {
     bool enabled=false,usable=true,collect=false,closed_world=false;
     const GdObj* trusted_hooks=nullptr;
     void* cache[2]{};
+    uint64_t cooldown_version=1;
+    void* cooldown_cache[2]{};
     void change() {
         if(version==UINT64_MAX){usable=false;return;}
         ++version;if(collect)native_timer_index_hit(6);
@@ -720,3 +722,18 @@ void shuffle_array(BattleCtx& ctx, GdArr* arr);
 GdVal pick_random_array(BattleCtx& ctx, const GdArr* arr);
 
 }  // namespace gd
+
+namespace gd {
+void native_active_cooldown_hit(unsigned,uint64_t amount=1);
+inline void native_active_cooldown_store(BattleCtx* ctx,GdVal& destination,const GdVal& value) {
+    if(ctx) {
+        auto& watch=ctx->native_timer_watch;
+        if(watch.enabled && watch.closed_world &&
+           !(destination.kind==GdVal::Kind::Bool && value.kind==GdVal::Kind::Bool && destination.b==value.b)) {
+            if(watch.cooldown_version<UINT64_MAX)++watch.cooldown_version;
+            if(ctx->native_resolved_collect)native_active_cooldown_hit(6);
+        }
+    }
+    destination=value;
+}
+}

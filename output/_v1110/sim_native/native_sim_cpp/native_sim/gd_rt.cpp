@@ -1970,3 +1970,9 @@ void native_timer_registered_class(const GdClassMeta* metadata) {
 bool native_timer_registry_closed(){return native_timer_registry_sealed.load(std::memory_order_acquire);}
 }
 extern "C" int gd_diag_native_timer_registry_closed(){return gd::native_timer_registry_closed()?1:0;}
+
+namespace gd {
+static thread_local uint64_t native_active_cooldown_counts[10]{};
+void native_active_cooldown_hit(unsigned i,uint64_t amount){if(i<10)native_active_cooldown_counts[i]+=amount;}
+}
+extern "C" uint64_t gd_diag_native_active_cooldown_stat(unsigned i){return i<10?gd::native_active_cooldown_counts[i]:0;}

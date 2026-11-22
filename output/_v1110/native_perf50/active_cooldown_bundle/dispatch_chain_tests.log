@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "dll_sha256": "55b62a2044b87311a967878a91d88ef4702641d240594989a09c396f67172ece",
+  "cases": 341604,
+  "all_original_case_hashes_equal": true,
+  "item_classes": 646,
+  "actual_production_methods_and_inline_callback_header_checked": true,
+  "original_reference_sha256": "078090376dfb121d5f494868a40efe3bf4d16989d8c43b50b742696a82a06d2f",
+  "legacy_dispatch_counters_also_compared": true
+}

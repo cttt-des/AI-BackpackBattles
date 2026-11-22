@@ -3,6 +3,7 @@
 #include "../../native_array_index.hpp"
 #pragma STDC FP_CONTRACT OFF
 #include "../../native_targeted_timers.hpp"
+#include "../../native_active_cooldowns.hpp"
 
 #include "../hdrs/Gd__gd_core__CoreContext.hpp"
 #include "../hdrs/Gd__gd_core__CoreGrid.hpp"
@@ -800,6 +801,7 @@ gd::GdVal Gd__gd_core__CoreCombat::fn_physicsTick(const gd::GdVal* _args, int _a
     context()->f_in_item_physics_pass = gd::GdVal::from_bool(true);
     native_segment_snapshot.clear();
     (void)([&]() { gd::GdVal _ca[] = {lv_delta}; return opponent()->fn_physicsTickCharacter(_ca, 1); })();
+    if(!gd::active_cooldown_phase(gd_ctx,opponent(),native_segment_snapshot,lv_delta))
     {
         gd::GdVal _t756 = gd::gd_iter_seq(gd_ctx.arena, static_cast<Gd__gd_core__CoreGrid*>(opponent()->f_inventory.obj)->f_items);
         gd::GdArr* _t757 = (_t756.kind == gd::GdVal::Kind::Arr) ? _t756.arr : nullptr;
@@ -826,6 +828,7 @@ gd::GdVal Gd__gd_core__CoreCombat::fn_physicsTick(const gd::GdVal* _args, int _a
     context()->f_combat_time = this->f_combat_time;
     native_segment_snapshot.clear();
     (void)([&]() { gd::GdVal _ca[] = {lv_delta}; return player()->fn_physicsTickCharacter(_ca, 1); })();
+    if(!gd::active_cooldown_phase(gd_ctx,player(),native_segment_snapshot,lv_delta))
     {
         gd::GdVal _t762 = gd::gd_iter_seq(gd_ctx.arena, static_cast<Gd__gd_core__CoreGrid*>(player()->f_inventory.obj)->f_items);
         gd::GdArr* _t763 = (_t762.kind == gd::GdVal::Kind::Arr) ? _t762.arr : nullptr;

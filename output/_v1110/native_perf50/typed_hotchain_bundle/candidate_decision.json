@@ -1,0 +1,16 @@
+{
+  "status": "not_adopted_after_single_bounded_followup",
+  "candidate_dll_sha256": "16174b15e922e0de9cddc95a7142413e63ec1505ca85390691db4b9b5eb5d078",
+  "baseline_dll_sha256": "686f0d6cdb2fc223d4ed50319b31e786eea14383b4ffb9a8fe8633395ee07b43",
+  "total_pairs": 32,
+  "cpu_median_time_reduction_pct": 0.0,
+  "wall_median_time_reduction_pct": -0.30238726326156096,
+  "original24_retained": true,
+  "no_more_same_source_groups": true,
+  "all2604_event_hashes_match": true,
+  "raw24_gate_passed": true,
+  "not_deployed": true,
+  "selected_assessment_sha256": "27c96f3f6606b9840d76edbe0702dab0bf009a7aebe5eb60bd55fbd3ba167cca",
+  "first_assessment_sha256": "a94d93fe924b23a9eb6e66fb9ad4ed6abb57c51dc8e8869ad35a9291771c84c2",
+  "followup_plan_sha256": "529bf25e17b8ae75e54df0646add836a64db76ed6bc22dd521afd6781efa064d"
+}
