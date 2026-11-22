@@ -338,7 +338,7 @@ const gd::GdClassMeta META_Gd__gd_core__Carrot = {CLS_Gd__gd_core__Carrot, "Carr
 void Gd__gd_core__CoreGrid::init_fields(gd::BattleCtx& gd_ctx) {
     this->f_filledCells = gd::GdVal::from_dict(gd::GdDict::create(gd_ctx.arena));
     this->f_bagCells = gd::GdVal::from_dict(gd::GdDict::create(gd_ctx.arena));
-    this->f_items = gd::GdVal::from_arr(gd::GdArr::from_init(gd_ctx.arena, {}));
+    gd::native_timer_fields_changed(this->rt_ctx_); this->f_items = gd::GdVal::from_arr(gd::GdArr::from_init(gd_ctx.arena, {}));
     this->f_character = gd::GdVal::null();
     this->f_curHovered = gd::GdVal::from_dict(gd::GdDict::create(gd_ctx.arena));
 }
@@ -371,7 +371,7 @@ bool Gd__gd_core__CoreGrid::set_prop(gd::BattleCtx& gd_ctx, gd::SymId prop, cons
     switch (prop) {
         case SYM_GEN_filledCells_1600: this->f_filledCells = val; return true;
         case SYM_GEN_bagCells_1601: this->f_bagCells = val; return true;
-        case SYM_GEN_items_1092: this->f_items = val; return true;
+        case SYM_GEN_items_1092: gd::native_timer_fields_changed(this->rt_ctx_); this->f_items = val; return true;
         case SYM_GEN_character_74: this->f_character = val; return true;
         case SYM_GEN_curHovered_1602: this->f_curHovered = val; return true;
         default: break;

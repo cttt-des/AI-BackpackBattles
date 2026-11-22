@@ -2,6 +2,7 @@
 #include "../../native_scalar_equal.hpp"
 #include "../../native_array_index.hpp"
 #pragma STDC FP_CONTRACT OFF
+#include "../../native_targeted_timers.hpp"
 
 #include "../hdrs/Gd__gd_core__CoreContext.hpp"
 #include "../hdrs/Gd__gd_core__CoreGrid.hpp"
@@ -1039,20 +1040,7 @@ gd::GdVal Gd__gd_core__CoreCombat::fn__tickCharacterTimers(const gd::GdVal* args
     const auto delta = gd::gd_coerce_float(argc > 1 ? args[1] : gd::GdVal::null());
     character->fn_tickPhysicsTimers(&delta, 1);
     character->fn_tickBuffs(&delta, 1);
-    const auto* inventory = static_cast<Gd__gd_core__CoreGrid*>(character->f_inventory.obj);
-    const auto* items = inventory->f_items.arr;
-    for (uint32_t i = 0, count = items->len; i < count; ++i) {
-        auto* item = static_cast<Gd__gd_core__CoreItem*>(items->data[i].obj);
-        if (item->f_timers.arr->len) item->fn__tickTimers(&delta, 1);
-        const auto* gems = item->f_gems.arr;
-        for (uint32_t j = 0, sockets = gems->len; j < sockets; ++j) {
-            const auto& slot = gems->data[j];
-            if (slot.kind == gd::GdVal::Kind::Obj && slot.obj) {
-                auto* gem = static_cast<Gd__gd_core__CoreItem*>(slot.obj);
-                if (gem->f_timers.arr->len) gem->fn__tickTimers(&delta, 1);
-            }
-        }
-    }
+    gd::targeted_timer_tick(*this->rt_ctx_,character,delta);
     return gd::GdVal::null();
 }
 gd::GdVal Gd__gd_core__CoreCombat::fn_stepCharacterIdle(const gd::GdVal* _args, int _argc) {

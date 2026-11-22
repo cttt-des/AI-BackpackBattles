@@ -1,0 +1,46 @@
+Measured actual baseline/candidate base and derived layout sizes and offsets
+401 enum lookup and 9 full constructor cases matched baseline
+1624 Buff scan state/callback and40 cooldown-flag cases matched baseline
+AddSpeed diagnostic and fallback differential cases matched baseline
+{"new_method_symbols":16,"unknown_receiver_payload_rng_bind_cases":1344,"null_and_existing_cache_preserved":true,"generated_fast_path_and_bad_row_audit":true}
+
+{"type_predicates":454276,"original_fused_initializations":1348,"graph_fields":210938,"boundaries":2039,"aliases_payloads_rng_ids_order_checked":true}
+
+{"classes":674,"field_cases":289476,"field_bindings":13158,"aliases":13158,"boundary_cases":24,"rng_ids_payload_metadata_unchanged":true,"explicit_bad_row_audit_caught":true}
+
+{"checks":43,"core_item_size":1792,"derived_item_size":3968,"weapon_size":3968,"alignment":64,"timers_offset":1536,"gems_offset":1560,"cooldown_active_offset":1648,"timer_length_offset":1592,"bridge_gems_length_offset":1624}
+
+{"exact_allocations":1348,"rng_unchanged":true}
+
+1034 variant differential cases; null/empty/default/mixed-key/numeric-alias/NaN, container mutation visibility, one static callback/false Null, forwarded static dispatch, new constructor, object override and disabled path passed
+
+Cached/uncached exact dispatch, generated/C++ overrides, single fallback, copy/slicing, audit-before-row-read, null/array/dictionary/disabled paths, return payload bits and512 RNG comparisons passed
+
+34 builtin differential checks; missing/nonstring argument, C++ override/shared metadata, FuncRef original Null, rebound custom FuncRef, ID order/epoch/wrap and disabled path passed
+
+841 equality/inequality pairs and 78 write cases; NaN, signed zero, mixed large ints/floats, container equality, custom setter calls and overwritten receiver aliases passed
+
+512 RNG bitwise/state comparisons, 32 timer ticks, new-slot C++ override fallback and exact-type audit passed
+
+280 index differential cases; boundary, null, mixed key, object getter count and reference alias checks passed
+
+Resolved generated overrides, shared-metadata C++ overrides, copy/slicing/assignment, rebound FuncRef binds, unknown method and disabled fallback passed
+
+D:\文件资料\学习\自动背包AI\output\_v1110\test_native_arena_split.cpp: In function 'int main()':
+D:\文件资料\学习\自动背包AI\output\_v1110\test_native_arena_split.cpp:24:36: error: static assertion failed
+   24 |     static_assert(sizeof(gd::GdArr)==24);
+      |                   ~~~~~~~~~~~~~~~~~^~~~
+  • the comparison reduces to '(32 == 24)'
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\targeted_timer_bundle\verify_resolved.py", line 121, in <module>
+    main()
+    ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\targeted_timer_bundle\verify_resolved.py", line 97, in main
+    subprocess.run(["D:/mingw64/bin/g++.exe","-static","-O2","-std=c++20","-ffp-contract=off",
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                    *extra,"-I",str(src),str(STAGE/file),str(directory/"libgdcore.dll"),"-o",str(executable)],check=True)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['D:/mingw64/bin/g++.exe', '-static', '-O2', '-std=c++20', '-ffp-contract=off', '-I', 'D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_perf50\\targeted_timer_bundle\\bundle_src', 'D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\test_native_arena_split.cpp', 'C:\\Users\\Windows\\AppData\\Local\\Temp\\native-inline-timer-candidate-9e7vmoyu\\libgdcore.dll', '-o', 'C:\\Users\\Windows\\AppData\\Local\\Temp\\native-inline-timer-candidate-9e7vmoyu\\test_12.exe']' returned non-zero exit status 1.

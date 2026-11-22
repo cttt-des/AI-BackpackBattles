@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "dll_sha256": "686f0d6cdb2fc223d4ed50319b31e786eea14383b4ffb9a8fe8633395ee07b43",
+  "output": "Resolved generated overrides, shared-metadata C++ overrides, copy/slicing/assignment, rebound FuncRef binds, unknown method and disabled fallback passed\n",
+  "compiled_against_candidate_headers": true
+}

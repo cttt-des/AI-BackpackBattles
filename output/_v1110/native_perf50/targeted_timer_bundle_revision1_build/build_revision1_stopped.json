@@ -1,0 +1,43 @@
+{
+  "reason": "Before formal timing, strengthen cross-context object ownership guards in sparse cache build; this changes the candidate source, so stop the old source build and its qualifier",
+  "roots": [
+    {
+      "pid": 8592,
+      "command": [
+        "C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "-u",
+        "-X",
+        "utf8",
+        "output/_v1110/native_perf50/targeted_timer_bundle/build_bundle.py"
+      ]
+    },
+    {
+      "pid": 14616,
+      "command": [
+        "C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "-u",
+        "-X",
+        "utf8",
+        "output/_v1110/native_perf50/targeted_timer_bundle/qualify_when_ready.py",
+        "--pid",
+        "8592",
+        "--created",
+        "1795314476.69178"
+      ]
+    },
+    {
+      "pid": 29756,
+      "command": [
+        "C:\\Users\\Windows\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe",
+        "-u",
+        "-X",
+        "utf8",
+        "output/_v1110/native_perf50/targeted_timer_bundle/qualify_when_ready.py",
+        "--pid",
+        "8592",
+        "--created",
+        "1795314476.69178"
+      ]
+    }
+  ]
+}

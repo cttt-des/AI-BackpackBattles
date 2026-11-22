@@ -1,0 +1,46 @@
+Verified704 remote source blobs; rebuilding all20 units with new layout, max2 below-normal jobs
+Built D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\closed_timer_prototype\prototype.dll (compiled 20/20, linked 20 objs) in 257.13s
+{
+  "diagnostic_only": true,
+  "dll_sha256": "32f2b91f1fca24fe6be50a025f873e290ae55d2426c5698445ae0258ccf1b882",
+  "baseline_dll_sha256": "7a57d09b81ba62fcd985fbb14a5999c72ff550ba328d5cae3add6167e4fbc058",
+  "inputs_sha256": "d94b16d42cc88e9a3850a77c9360b9c4c4fdd676cb252e463044a903db2a5fef",
+  "results_sha256": "2e74b45caa87f7ee6ac72ffc35d98cc8db140b47031614d26542e183cef5d2c9",
+  "matched_original_terminal": 200,
+  "coverage": {
+    "indexed_passes": 386704,
+    "rebuilds": 400,
+    "cache_hits": 386304,
+    "indexed_owners": 683532,
+    "fallback_passes": 0,
+    "same_pass_resumes": 0,
+    "watched_invalidations": 0,
+    "build_slots": 16170,
+    "build_eligible_owners": 701,
+    "unknown_boundaries": 0
+  },
+  "no_throughput_claim": true,
+  "original_deployed_dll_unchanged": true
+}
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\inspect_closed_timer_fixed200.py", line 18, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\inspect_closed_timer_fixed200.py", line 12, in main
+    fn=getattr(lib,name);fn.argtypes=[];fn.restype=ctypes.c_int
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 486, in __getattr__
+    func = self.__getitem__(name)
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 491, in __getitem__
+    func = self._FuncPtr((name_or_ordinal, self))
+AttributeError: function 'gd_diag_native_timer_closed_mode' not found. Did you mean: 'gd_diag_native_timer_registry_closed'?
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\build_native_targeted_timer_prototype.py", line 57, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\build_native_targeted_timer_prototype.py", line 54, in main
+    subprocess.run([sys.executable,'-u','-X','utf8',str(STAGE/inspect)],check=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe', '-u', '-X', 'utf8', 'D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\inspect_closed_timer_fixed200.py']' returned non-zero exit status 1.

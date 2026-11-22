@@ -246,7 +246,7 @@ void Gd__gd_core__CoreItem::init_fields(gd::BattleCtx& gd_ctx) {
     this->f_descriptor = gd::GdVal::null();
     this->f_ctx = gd::GdVal::null();
     this->f_character_ = gd::GdVal::null();
-    this->f_inventory = gd::GdVal::null();
+    gd::native_timer_fields_changed(this->rt_ctx_); this->f_inventory = gd::GdVal::null();
     this->f_placed = gd::GdVal::from_bool(false);
     this->f_name = gd::GdVal::from_str(&battle_string_literals[0]);
     this->f_chargeFrame = gd::GdVal::from_arr(gd::GdArr::from_init(gd_ctx.arena, {gd::GdVal::from_vec2(0.0, 0.0), gd::GdVal::from_vec2(0.0, 0.0), gd::GdVal::from_vec2(0.0, 0.0), gd::GdVal::from_vec2(0.0, 0.0)}));
@@ -282,7 +282,7 @@ void Gd__gd_core__CoreItem::init_fields(gd::BattleCtx& gd_ctx) {
     this->f_triggerTime = gd::gd_coerce_float(gd::GdVal::from_float(0.0));
     this->f_iterationCooldown = gd::gd_coerce_float(gd::GdVal::from_float(0.0));
     this->f_itemMetrics = gd::GdVal::from_arr(gd::GdArr::from_init(gd_ctx.arena, {}));
-    this->f_gems = gd::GdVal::from_arr(gd::GdArr::from_init(gd_ctx.arena, {}));
+    gd::native_timer_fields_changed(this->rt_ctx_); this->f_gems = gd::GdVal::from_arr(gd::GdArr::from_init(gd_ctx.arena, {}));
     this->f__grid = gd::GdVal::null();
     this->f__behavior = gd::GdVal::null();
     this->f__cooldown_active = gd::GdVal::from_bool(false);
@@ -311,9 +311,9 @@ void Gd__gd_core__CoreItem::init_fields(gd::BattleCtx& gd_ctx) {
     if (gd_ctx.native_inline_timer_headers && !this->native_timer_header_used_ &&
             gd_ctx.arena.owns_storage(this, sizeof(*this))) {
         this->native_timer_header_used_ = true;
-        this->f_timers = gd::GdVal::from_arr(&this->native_timer_header_);
+        gd::native_timer_fields_changed(this->rt_ctx_); this->f_timers = gd::GdVal::from_arr(&this->native_timer_header_);
     } else {
-        this->f_timers = gd::GdVal::from_arr(gd::GdArr::from_init(gd_ctx.arena, {}));
+        gd::native_timer_fields_changed(this->rt_ctx_); this->f_timers = gd::GdVal::from_arr(gd::GdArr::from_init(gd_ctx.arena, {}));
     }
     this->f_buffLabelPositionTimestamps = gd::GdVal::from_arr(gd::GdArr::from_init(gd_ctx.arena, {gd::GdVal::from_float(0.0), gd::GdVal::from_float(0.0), gd::GdVal::from_float(0.0), gd::GdVal::from_float(0.0), gd::GdVal::from_float(0.0)}));
     this->f_replacementPending = gd::GdVal::from_bool(false);
@@ -434,7 +434,7 @@ bool Gd__gd_core__CoreItem::set_prop(gd::BattleCtx& gd_ctx, gd::SymId prop, cons
         case SYM_GEN_descriptor_2: this->f_descriptor = val; return true;
         case SYM_GEN_ctx_3: this->f_ctx = val; return true;
         case SYM_GEN_character__4: this->f_character_ = val; return true;
-        case SYM_GEN_inventory_5: this->f_inventory = val; return true;
+        case SYM_GEN_inventory_5: gd::native_timer_fields_changed(this->rt_ctx_); this->f_inventory = val; return true;
         case SYM_GEN_placed_6: this->f_placed = val; return true;
         case SYM_GEN_name_7: this->f_name = val; return true;
         case SYM_GEN_chargeFrame_8: this->f_chargeFrame = val; return true;
@@ -470,7 +470,7 @@ bool Gd__gd_core__CoreItem::set_prop(gd::BattleCtx& gd_ctx, gd::SymId prop, cons
         case SYM_GEN_triggerTime_38: this->f_triggerTime = gd::gd_coerce_float(val); return true;
         case SYM_GEN_iterationCooldown_39: this->f_iterationCooldown = gd::gd_coerce_float(val); return true;
         case SYM_GEN_itemMetrics_40: this->f_itemMetrics = val; return true;
-        case SYM_GEN_gems_41: this->f_gems = val; return true;
+        case SYM_GEN_gems_41: gd::native_timer_fields_changed(this->rt_ctx_); this->f_gems = val; return true;
         case SYM_GEN__grid_42: this->f__grid = val; return true;
         case SYM_GEN__behavior_43: this->f__behavior = val; return true;
         case SYM_GEN__cooldown_active_44: this->f__cooldown_active = val; return true;
@@ -495,7 +495,7 @@ bool Gd__gd_core__CoreItem::set_prop(gd::BattleCtx& gd_ctx, gd::SymId prop, cons
         case SYM_GEN_hasDealtDamageEffect_64: this->f_hasDealtDamageEffect = val; return true;
         case SYM_GEN_hasOnChargeReceivedEffect_65: this->f_hasOnChargeReceivedEffect = val; return true;
         case SYM_GEN_hasOnChargeLeftEffect_66: this->f_hasOnChargeLeftEffect = val; return true;
-        case SYM_GEN_timers_67: this->f_timers = val; return true;
+        case SYM_GEN_timers_67: gd::native_timer_fields_changed(this->rt_ctx_); this->f_timers = val; return true;
         case SYM_GEN_buffLabelPositionTimestamps_68: this->f_buffLabelPositionTimestamps = val; return true;
         case SYM_GEN_replacementPending_69: this->f_replacementPending = val; return true;
         case SYM_GEN_faceDirection_70: this->f_faceDirection = gd::gd_coerce_int(val); return true;
@@ -1869,7 +1869,7 @@ gd::GdVal Gd__gd_core__CoreItem::fn_addToInventory(const gd::GdVal* _args, int _
     lv__placedByPlayer = gd::gd_coerce_bool(lv__placedByPlayer);
     this->f_placedByPlayer = lv__placedByPlayer;
     this->f_placed = gd::GdVal::from_bool(true);
-    this->f_inventory = lv__inventory;
+    gd::native_timer_fields_changed(this->rt_ctx_); this->f_inventory = lv__inventory;
     this->f_occupiedCells = lv__occupiedCells;
     if (gd::gd_truth(gd::GdVal::from_bool(gd::native_scalar_ne(this->f_ownerType, gd::GdVal::from_int(10LL))))) {
         if (gd::gd_truth((gd::gd_truth(gd::GdVal::from_bool(gd::native_scalar_ne(gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_player_1302), gd::GdVal::null()))) ? gd::GdVal::from_bool(gd::gd_truth(gd::GdVal::from_bool(gd::native_scalar_eq(this->f_inventory, gd::native_inline_get_prop(gd_ctx, gd::native_inline_get_prop(gd_ctx, this->f_ctx, SYM_GEN_player_1302), SYM_GEN_inventory_5))))) : gd::GdVal::from_bool(false)))) {

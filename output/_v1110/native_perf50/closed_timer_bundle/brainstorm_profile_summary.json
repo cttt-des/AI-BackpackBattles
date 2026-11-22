@@ -1,0 +1,41 @@
+{
+  "dll_sha256": "686f0d6cdb2fc223d4ed50319b31e786eea14383b4ffb9a8fe8633395ee07b43",
+  "inputs_sha256": "d94b16d42cc88e9a3850a77c9360b9c4c4fdd676cb252e463044a903db2a5fef",
+  "profile_sha256": "df879095e40eb9dca666e0e1cb07f5085da8f5ee2db1647b75a76fec176f321f",
+  "samples": 2042,
+  "replay_root_samples": 2042,
+  "exclusive_phase_samples": {
+    "other_frame": 706,
+    "assembly": 388,
+    "trigger_chain": 821,
+    "other_setup_export": 127
+  },
+  "replay_phase_pct": {
+    "other_frame": 34.5739471106758,
+    "assembly": 19.000979431929483,
+    "trigger_chain": 40.205680705190986,
+    "other_setup_export": 6.219392752203722
+  },
+  "dictionary_and_hash_leaf_samples": 54,
+  "generic_method_leaf_samples": 61,
+  "tls_leaf_callers": [
+    [
+      "gd::BattleArena::alloc_raw_locked(unsigned long long, unsigned long long) [clone .constprop.0]",
+      1
+    ],
+    [
+      "gd::BattleArena::alloc_raw_locked(unsigned long long, unsigned long long)",
+      1
+    ]
+  ],
+  "load20_fitted_fps": 168.50020327457534,
+  "goal_fps": 200,
+  "implied_throughput_increase_pct": 18.694218827792717,
+  "implied_time_reduction_pct": 15.749898362712333,
+  "limits": [
+    "Sample attribution is not measured speedup or an optimization ceiling.",
+    "Phase classification uses stack names; inlined work stays with its emitted parent.",
+    "The load fit does not remove frequency, temperature or workload-type effects.",
+    "Unchanged ordering, RNG, arithmetic and observable aliases remain required."
+  ]
+}

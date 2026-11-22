@@ -1,0 +1,77 @@
+D:\文件资料\学习\自动背包AI\dist\native_1_1_10_bundle_pending
+{
+  "dll_sha256": "686f0d6cdb2fc223d4ed50319b31e786eea14383b4ffb9a8fe8633395ee07b43",
+  "gate_sha256": "a98c9a6b464898fc98ce204f83d90df640e8ef64ce427cf56dc31375da8ac836",
+  "ab_assessment_path": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_perf50\\closed_timer_bundle\\ab_assessment.json",
+  "ab_assessment_sha256": "4a071b3438a71c2a549df3fce0b68b821d833be9cf378ae121c35f71b82a9e88",
+  "ab_pairs": 24,
+  "speed_report_sha256": "03e1936ed6f5c015cbdbac518fd6e55b02b4e37e2d78c17672fbcdbd3959050f",
+  "training_outcomes": [
+    1,
+    1,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "regeneration_test_sha256": "25e3c7166c2e0502a6f84e4d600c32ef3cf4a9be1d8a8c8531032ddff4dfac68",
+  "full_regeneration_test_sha256": "517a53e464d46fb55df3d768662d4042706e36e8997e3f3eedc5f5a1d511d556",
+  "training_matched_baseline": 12,
+  "training_evaluation": {
+    "mean_wr": 0.16666666666666666,
+    "std_opp": 0.28867513459481287,
+    "worst_wr": 0.0,
+    "per_opp": [
+      {
+        "rating": 450.385037,
+        "n_items": 57,
+        "wr": 0.6666666666666666,
+        "errs": 0
+      },
+      {
+        "rating": 527.013755,
+        "n_items": 47,
+        "wr": 0.0,
+        "errs": 0
+      },
+      {
+        "rating": 464.089676,
+        "n_items": 47,
+        "wr": 0.0,
+        "errs": 0
+      },
+      {
+        "rating": 457.699621,
+        "n_items": 61,
+        "wr": 0.0,
+        "errs": 0
+      }
+    ],
+    "n_opp": 4,
+    "seeds": 3,
+    "total_sims": 12,
+    "sim_errors": 0
+  },
+  "runtime": "dist/native_1_1_10",
+  "backup_runtime": "dist/native_1_1_10_before_closed_timer_bundle_20261122",
+  "changed_native_files": [
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/engine_wrapper.cpp",
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/gd_rt.cpp",
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/gd_rt.hpp",
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/gen/shards/shard_00.cpp",
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/gen/shards/shard_02.cpp",
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/gen/shards/shard_03.cpp",
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/gen/shards/shard_13.cpp",
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/native_array_index.hpp",
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/native_inline_dispatch.hpp",
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/native_targeted_timers.hpp",
+    "output/_v1110/optimize_native_verified_bundle.py",
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/libgdcore.dll"
+  ]
+}

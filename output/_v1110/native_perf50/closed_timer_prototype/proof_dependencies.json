@@ -1,0 +1,11 @@
+{
+  "prepare_native_closed_timer.py": "6c211ab34e09c901bfe470d601a8c3bf8a4794e2366f73a8ef68047f4809d846",
+  "prepare_native_targeted_timers.py": "f30507c3683afc9c0f000a8e1d0a430d112c2eeecb6e768dc3c9e5113017e4b9",
+  "native_targeted_timers.hpp": "902ad4f0dc98fc80cd5ea89d6f43f57ce60f23ccaed67f2eec0230690d3683df",
+  "test_native_targeted_timers.cpp": "230f60cc81d36495dc20d27b9e7b7ec16c8d9c4d6ed3075c42a55e3ff061d23a",
+  "test_targeted_timer_safety.cpp": "b36fabcdffad7d2d5d7c3b3047406b20e8f1a6409c6e06efc80ff062b38bf9bc",
+  "test_targeted_timer_ownership.cpp": "51edbc6dbffad4bf7cd9dcbd8f79ca0642b88f1bb0a5afb218ac069c9bf388ca",
+  "test_closed_timer_registry.cpp": "86056c5a657ca2f4a24db17b064ed7377c60c64685b7eb3f6ea2dec52e9fe628",
+  "verify_closed_timer_known_cases.py": "1899ab469038d040e494601165d55a901584aff58d4f1676693410a268c99e2a",
+  "verify_closed_timer_registry.py": "a648ba012f67b751367089a1ab239e775002cdead1fe12bafca488f1ac2301ef"
+}

@@ -1,0 +1,6 @@
+{
+  "reason": "Direct DLL linker uses embedded PE module name; restore canonical libgdcore.dll name. Prior EXE failed to load with0xC0000135 before any test ran.",
+  "dll_sha256": "90dc4101a6f4341dde782a2ef72a525c29038769be547db96c1ef74da56ee5d8",
+  "objects_reused": 20,
+  "source_unchanged": true
+}

@@ -1,0 +1,193 @@
+Backed-up deployment and704 sources verified; full20/PGO18, max2 jobs
+Built C:\Users\Windows\AppData\Local\Temp\native-targeted-timer-rz6rtye8\instrumented.dll (compiled 20/20, linked 20 objs) in 703.60s
+{
+  "diagnostic_only": true,
+  "dll_sha256": "3274d358d8654412dfd1f82c5279076d84d7d75171ba1356f518dcb26e438a58",
+  "inputs_sha256": "d94b16d42cc88e9a3850a77c9360b9c4c4fdd676cb252e463044a903db2a5fef",
+  "results_sha256": "2e74b45caa87f7ee6ac72ffc35d98cc8db140b47031614d26542e183cef5d2c9",
+  "coverage": {
+    "generic_hits": 9599433,
+    "funcref_hits": 100900,
+    "lazy_resolutions": 54635,
+    "unsupported_types": 200,
+    "audit_mismatch": 0,
+    "selected_fallback": 233004
+  },
+  "variant_coverage": {
+    "array_size": 785546,
+    "array_empty": 1272973,
+    "array_has": 0,
+    "array_front": 0,
+    "array_back": 0,
+    "dict_size": 2211,
+    "dict_empty": 106519,
+    "dict_has": 659283,
+    "dict_get": 283318,
+    "class_lane": 117836
+  },
+  "property_coverage": {
+    "field_hits": 4150789,
+    "selected_fallback": 0
+  },
+  "type_constructor_coverage": {
+    "type_hits": 3715324,
+    "type_fallback": 0,
+    "fused_initializations": 82399,
+    "factory_fallback": 0
+  },
+  "hot_slot_coverage": {
+    "new_method_hits": 71933,
+    "new_field_hits": 1164624
+  },
+  "event_identity_coverage": {
+    "fast_identities": 34193,
+    "fallbacks": 0,
+    "fast_emissions": 151951,
+    "emission_fallbacks": 0
+  },
+  "lazy_diagnostic_coverage": {
+    "0": {
+      "skipped": 77135,
+      "retained": 1802
+    },
+    "1": {
+      "skipped": 693,
+      "retained": 257
+    },
+    "2": {
+      "skipped": 202,
+      "retained": 0
+    },
+    "3": {
+      "skipped": 253,
+      "retained": 0
+    },
+    "4": {
+      "skipped": 491,
+      "retained": 0
+    },
+    "5": {
+      "skipped": 491,
+      "retained": 0
+    },
+    "6": {
+      "skipped": 0,
+      "retained": 451
+    }
+  },
+  "frame_segment_coverage": [
+    3633579,
+    509635,
+    3123926,
+    503470,
+    3080447,
+    0,
+    101234,
+    0,
+    37452,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "static_collection_coverage": {
+    "attack_lookup": 8587,
+    "round_lookup": 200,
+    "stack_count": 59977
+  },
+  "static_setup_coverage": {
+    "bulk_stack_tables": 14933,
+    "ordered_stack_fallback": 0,
+    "metric_counts": 74910,
+    "affected_loops": 14933
+  },
+  "dispatch_chain_coverage": {
+    "behavior_methods": 17807,
+    "behavior_empty": 0,
+    "behavior_probes": 57618,
+    "flat_callbacks": 100900
+  },
+  "spatial_coverage": {
+    "lookups": 652011,
+    "hits": 242572,
+    "object_dedup": 242467,
+    "fallbacks": 0
+  },
+  "motion_index_coverage": {
+    "native_runs": 193353,
+    "native_entries": 414435,
+    "kept_entries": 405194
+  },
+  "targeted_timer_coverage": {
+    "indexed_passes": 386704,
+    "rebuilds": 400,
+    "cache_hits": 386304,
+    "indexed_owners": 683532,
+    "fallback_passes": 0,
+    "same_pass_resumes": 0,
+    "watched_invalidations": 0,
+    "build_slots": 16170,
+    "build_eligible_owners": 701,
+    "unknown_boundaries": 0
+  }
+}
+instrumented.dll: 69.51 replays/s; 14.64 s of combat on average; 1f00611ee50c
+instrumented.dll: 77.17 replays/s; 16.11 s of combat on average; 2e74b45caa87
+instrumented.dll: 40.64 fights/s; 4.55 CPU s; 81.9 MiB peak; 88dda4dce54d
+Compiling profile-guided release
+Built C:\Users\Windows\AppData\Local\Temp\native-targeted-timer-rz6rtye8\release.dll (compiled 18/20, linked 20 objs) in 428.01s
+resolved 99a845bf61cf74816bbf2764a1bb2888a0287145b2629e520e29768468ea71fd
+Starting prepare_regeneration.py
+Passed prepare_regeneration.py
+Starting generate_property_tests.py
+Passed generate_property_tests.py
+Starting generate_type_constructor_tests.py
+Passed generate_type_constructor_tests.py
+Starting verify_event_identity.py
+Passed verify_event_identity.py
+Starting verify_lazy_diagnostics.py
+Passed verify_lazy_diagnostics.py
+Starting verify_components.py
+Passed verify_components.py
+Starting verify_static_collections.py
+Passed verify_static_collections.py
+Starting verify_static_setup.py
+Passed verify_static_setup.py
+Starting verify_dispatch_chain.py
+Passed verify_dispatch_chain.py
+Starting verify_spatial.py
+Passed verify_spatial.py
+Starting verify_motion_indices.py
+Passed verify_motion_indices.py
+Starting verify_targeted_timers.py
+Passed verify_targeted_timers.py
+Starting verify_resolved.py
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\targeted_timer_bundle\validate_then_compare.py", line 60, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\targeted_timer_bundle\validate_then_compare.py", line 51, in main
+    run('verify_resolved.py','verify.log')
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\targeted_timer_bundle\validate_then_compare.py", line 16, in run
+    subprocess.run([sys.executable,'-u','-X','utf8',str(WORK/script),*map(str,args)],stdout=output,stderr=subprocess.STDOUT,check=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe', '-u', '-X', 'utf8', 'D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_perf50\\targeted_timer_bundle\\verify_resolved.py']' returned non-zero exit status 1.
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\targeted_timer_bundle\build_bundle.py", line 71, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\targeted_timer_bundle\build_bundle.py", line 69, in main
+    subprocess.run([sys.executable,'-u','-X','utf8',str(WORK/'validate_then_compare.py'),'--build-pid','0','--created','0'],check=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe', '-u', '-X', 'utf8', 'D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_perf50\\targeted_timer_bundle\\validate_then_compare.py', '--build-pid', '0', '--created', '0']' returned non-zero exit status 1.

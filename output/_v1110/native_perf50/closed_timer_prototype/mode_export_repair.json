@@ -1,0 +1,6 @@
+{
+  "reason": "Only add mode diagnostic query omitted by a failed shell quoting command before first build; no runtime algorithm changes",
+  "reused_objects": 19,
+  "recompiled_units": 1,
+  "dll_sha256": "d4600229ef7fa131f59c7083a50654e5acb571cb0bd54e291b68bddd1bdfe3a0"
+}

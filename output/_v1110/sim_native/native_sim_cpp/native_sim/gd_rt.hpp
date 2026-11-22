@@ -361,11 +361,43 @@ GdVal gd_in(const GdVal& needle, const GdVal& haystack);
 GdVal gd_iter_seq(BattleArena& arena, const GdVal& x);
 
 // ─────────────────────────── Containers ───────────────────────────
+
+void native_timer_index_hit(unsigned,uint64_t amount=1);
+struct NativeTimerWatch {
+    uint64_t version=1;
+    uint32_t depth=0;
+    bool enabled=false,usable=true,collect=false,closed_world=false;
+    const GdObj* trusted_hooks=nullptr;
+    void* cache[2]{};
+    void change() {
+        if(version==UINT64_MAX){usable=false;return;}
+        ++version;if(collect)native_timer_index_hit(6);
+    }
+};
+struct NativeTimerMutation {
+    NativeTimerWatch* watch;
+    bool entered=false;
+    explicit NativeTimerMutation(NativeTimerWatch* w):watch(w) {
+        if(watch){watch->change();if(watch->depth==UINT32_MAX)watch->usable=false;else {++watch->depth;entered=true;}}
+    }
+    ~NativeTimerMutation(){if(watch){if(entered)--watch->depth;watch->change();}}
+    NativeTimerMutation(const NativeTimerMutation&)=delete;
+    NativeTimerMutation& operator=(const NativeTimerMutation&)=delete;
+};
+bool native_timer_known_object(const GdObj*);
+bool native_timer_known_class(const GdClassMeta*);
+void native_timer_observe_object(BattleCtx&,const GdObj*);
+void native_timer_observe_class(BattleCtx&,const GdClassMeta*);
+
+void native_timer_registered_class(const GdClassMeta*);
+bool native_timer_registry_closed();
+
 struct GdArr {
     GdVal* data = nullptr;
     uint32_t len = 0;
     uint32_t cap = 0;
     bool is_pool_real = false;
+    NativeTimerWatch* timer_watch = nullptr;
 
     static GdArr* create(BattleArena& arena, uint32_t reserve_cap = 0);
     static GdArr* create_pool_real(BattleArena& arena, const GdVal* src = nullptr) {
@@ -626,12 +658,15 @@ struct BattleCtx {
     bool native_resolved_collect = false;
     uint64_t native_resolved_counts[6]{};
 
+    NativeTimerWatch native_timer_watch;
+
     explicit BattleCtx(size_t arena_bytes = (1u << 20)) : arena(arena_bytes) {}
 
     void reset_for_battle(uint64_t seed) {
         native_inline_timer_headers = false;
         native_event_kernel = false;
         native_resolved_dispatch = false;
+        native_timer_watch=NativeTimerWatch{};
         arena.reset();
         bind_battle(seed);
         event_count = 0;
@@ -651,6 +686,11 @@ struct BattleCtx {
         gid_epoch += 1;
     }
 };
+
+
+inline void native_timer_fields_changed(BattleCtx* context) {
+    if(context && context->native_timer_watch.enabled)context->native_timer_watch.change();
+}
 
 // ─────────────────────────── Class Registry & Dispatch Helpers ───────────────────────────
 void register_class(const GdClassMeta* meta);

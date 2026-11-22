@@ -1,0 +1,9 @@
+Awaiting identified live build 28712
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\targeted_timer_bundle\qualify_when_ready.py", line 51, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\targeted_timer_bundle\qualify_when_ready.py", line 37, in main
+    assert assessment.exists(),'Build/validation/comparison incomplete: inspect original logs; do not restart'
+           ~~~~~~~~~~~~~~~~~^^
+AssertionError: Build/validation/comparison incomplete: inspect original logs; do not restart
