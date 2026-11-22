@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "preliminary_effect_damage_cases": 1792,
+  "complete_local_acceptance": false,
+  "baseline_dll_sha256": "3a9269887ace0ad9cd6dafdb9e0ee2a77b857b231f2a0d412888af2516e5b520",
+  "test_source_sha256": "b9b2e502d2fd83895e5d4f656b60c5d44639c69a3b7ef88af539f01242985675",
+  "header_sha256": "826ee2af12e6d79a6d9c37f3a4519c8d0a8776248dd6363caf4c3d563ed02520",
+  "no_performance_claim": true
+}

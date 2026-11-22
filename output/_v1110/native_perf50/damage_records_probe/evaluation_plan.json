@@ -1,0 +1,22 @@
+{
+  "baseline_dll_sha256": "3a9269887ace0ad9cd6dafdb9e0ee2a77b857b231f2a0d412888af2516e5b520",
+  "workloads": [
+    "effect damage",
+    "weapon-source damage"
+  ],
+  "calls_per_arm": 10000,
+  "pairs_per_workload": 8,
+  "alternating_order": true,
+  "normal_priority_all8": true,
+  "all_original_case_hashes_required": true,
+  "complete_local_matrix_cases": 12920,
+  "no_whole_fight_gain_claim": true,
+  "dependency_sha256": {
+    "test_native_damage_records_extended.cpp": "14dcd577000550fa1ad733f6942447e140fc330a22a40b60aabd80eaa2a47a25",
+    "test_native_damage_records.cpp": "b9b2e502d2fd83895e5d4f656b60c5d44639c69a3b7ef88af539f01242985675",
+    "preflight_damage_records.hpp": "826ee2af12e6d79a6d9c37f3a4519c8d0a8776248dd6363caf4c3d563ed02520",
+    "native_event_kernel.hpp": "5aab534db5674cc24c2041ded2023cf1513d6a6d265b2d3867e0622ae6342860",
+    "damage_state_fields.hpp": "39818cb90661ad792bab9b094ff45662991e801904025d395b94c2cb295064fc",
+    "damage_fixture.hpp": "3152ce68f475b23006703c1ff4162942606b99450417eb73089ec7bc48e8ea08"
+  }
+}

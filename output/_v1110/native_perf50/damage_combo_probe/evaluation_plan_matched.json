@@ -1,0 +1,25 @@
+{
+  "baseline_dll_sha256": "3a9269887ace0ad9cd6dafdb9e0ee2a77b857b231f2a0d412888af2516e5b520",
+  "workloads": [
+    "effect damage",
+    "weapon-source damage"
+  ],
+  "calls_per_arm": 10000,
+  "pairs_per_workload": 8,
+  "alternating_order": true,
+  "normal_priority_all8": true,
+  "all_original_case_hashes_required": true,
+  "complete_local_matrix_cases": 12920,
+  "no_whole_fight_gain_claim": true,
+  "dependency_sha256": {
+    "test_native_damage_records_extended.cpp": "aa28f2148ba63020f30025500484fb63f89631d8bc068e93f530990000973e2d",
+    "test_native_damage_records.cpp": "b9b2e502d2fd83895e5d4f656b60c5d44639c69a3b7ef88af539f01242985675",
+    "preflight_damage_records.hpp": "e080408e672426fc5ff95b1a496fdcd8eff9e2c7e06c2c2d6a4eae6645cbeabe",
+    "native_event_kernel.hpp": "5aab534db5674cc24c2041ded2023cf1513d6a6d265b2d3867e0622ae6342860",
+    "damage_state_fields.hpp": "39818cb90661ad792bab9b094ff45662991e801904025d395b94c2cb295064fc",
+    "damage_fixture.hpp": "3152ce68f475b23006703c1ff4162942606b99450417eb73089ec7bc48e8ea08",
+    "reference_damage_records.hpp": "7b636dfd2702c8068df1adfb81e226883ef05d7ff16a67e3532a4c30b3e18f85"
+  },
+  "baseline_kind": "exact old method body compiled in the same EXE with the candidate; both O3, neither PGO",
+  "reason": "Matching local compilation isolates the source transformation from the deployed DLL PGO/LTO coverage; fresh whole-DLL PGO and fixed200 A/B still required"
+}

@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "dll_sha256": "a2c8260c4cd172425b4896636cd1ea341f5ae025a29da3024081d5bbe447706a",
+  "output": "{\"classes\":674,\"field_cases\":289476,\"field_bindings\":13158,\"aliases\":13158,\"boundary_cases\":24,\"rng_ids_payload_metadata_unchanged\":true,\"explicit_bad_row_audit_caught\":true}\n",
+  "compiled_against_candidate_headers": true
+}

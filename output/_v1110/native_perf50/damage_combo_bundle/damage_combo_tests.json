@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "dll_sha256": "a2c8260c4cd172425b4896636cd1ea341f5ae025a29da3024081d5bbe447706a",
+  "actual_production_parent_damage_cases": 19400,
+  "frozen_helper_boundary_cases": 10464,
+  "helper_scope": "Source probes use the same frozen helper body in the test EXE plus final DLL original class methods; parent and active cases call actual production takeDamage",
+  "independent_receipts": {
+    "parent": {
+      "cases": 12920,
+      "reference_sha256": "a6d797abf36b70a86f6b4c69efe096de7df74e81ba4bf6a7bad80d7db33d8113",
+      "all_case_hashes_equal": true
+    },
+    "active": {
+      "cases": 6480,
+      "reference_sha256": "a6e06d88f9eff2bd566d82df3060ed8492d731a238ea74d8a2f251a15ce3c137",
+      "all_case_hashes_equal": true
+    },
+    "source": {
+      "cases": 10464,
+      "reference_sha256": "f5e60d8c7e3a0e82c707bbec1c05d8ea6d084726be018352ce59b390f30cee1e",
+      "all_case_hashes_equal": true
+    }
+  },
+  "original_legacy_counters_equal": true,
+  "probe_only_rtti_adaptation_not_in_production": true
+}

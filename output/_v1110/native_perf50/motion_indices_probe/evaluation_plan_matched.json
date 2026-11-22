@@ -1,0 +1,24 @@
+{
+  "baseline_dll_sha256": "3a9269887ace0ad9cd6dafdb9e0ee2a77b857b231f2a0d412888af2516e5b520",
+  "pairs_per_workload": 8,
+  "calls_per_arm": 30000,
+  "workloads": [
+    "empty",
+    "mixed kept",
+    "visual dropped",
+    "charge kept"
+  ],
+  "normal_priority_all8": true,
+  "matching_local_compilation": true,
+  "source_hashes": {
+    "test_native_motion_indices.cpp": "fddddb5a535440ba92b00d945740741a858e88675b4b75b8955c7d1df8cbc82c",
+    "preflight_motion_indices.hpp": "49650e6a2bb08ac5d95ed3d04e65e907e24d7ad10b2d0b96a7582b2a29476ab0",
+    "native_inline_dispatch.hpp": "2e797ff9a0342b5b4fead164146405b966f824f5cbf5f3c5a347fa5c065c3679",
+    "native_scalar_equal.hpp": "34f5e48c247013243786e8027c4f6cd0f6e4b1c787a7c2abcfc4d896338dd4c0",
+    "native_array_index.hpp": "026dab035fdb2a2b5bb18f2933912d841cf7522d39b311d17b9150752b77bce8",
+    "gd_rt.hpp": "a44e7123652a5c188163ecdb11a0b6663f02a74d106f76ea8b60654dd2c02a44"
+  },
+  "independent_original_dll_cases": 5840,
+  "reset_cost": "Both arms include queue length and slot restoration between calls; allocation only before the repeated calls",
+  "no_whole_fight_gain_claim": true
+}

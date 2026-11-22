@@ -1,0 +1,17 @@
+{
+  "counts": {
+    "bounded_controls": 3,
+    "bool_control": 1,
+    "unchanged_live_entry_and_property_operations": true,
+    "unchanged_original_tail": true,
+    "unchanged_generic_fallback": true
+  },
+  "original_sha256": "03b873787b606e0d2ed0284a070e901ff75f708bf71276a3719a7042c1b700f3",
+  "candidate_sha256": "f4ec9ec21e07f1634175dceeb9323cee1e53633ae755ae1e3e0c008df0e8edbe",
+  "baseline_dll_sha256": "3a9269887ace0ad9cd6dafdb9e0ee2a77b857b231f2a0d412888af2516e5b520",
+  "verified_remote_backup": "fcfe317116882ad80e2dd59611c38c01690ba004",
+  "native_bound_proof": "Initial exact array size is uint32; read/write remain <=that captured size, all exactly representable as double in old comparisons; no integer overflow or removed inexact conversion",
+  "native_records_not_cached_across_callbacks": true,
+  "layouts_arithmetic_rng_and_callback_order_unchanged": true,
+  "no_performance_claim": true
+}
