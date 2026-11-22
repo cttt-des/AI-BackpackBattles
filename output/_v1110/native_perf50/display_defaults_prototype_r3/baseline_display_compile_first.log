@@ -1,0 +1,4 @@
+D:\文件资料\学习\自动背包AI\output\_v1110\test_native_display_defaults.cpp: In member function 'void Fixture::mutate()':
+D:\文件资料\学习\自动背包AI\output\_v1110\test_native_display_defaults.cpp:143:73: error: 'SYM_reverse' is not a member of 'gd'
+  143 |         case 8:a->set_idx(0,value);gd::call_method(c,V::from_arr(a),gd::SYM_reverse,nullptr,0);break;
+      |                                                                         ^~~~~~~~~~~

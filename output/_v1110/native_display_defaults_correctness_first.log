@@ -1,0 +1,16 @@
+D:/mingw64/bin/nm.exe: Warning: could not locate 'D:\�ļ�����\ѧϰ\�Զ�����AI\output\_v1110\native_perf50\grid_cooldown_bundle\bundle.dll'.  reason: Illegal byte sequence
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\verify_native_display_defaults.py", line 68, in <module>
+    if __name__=='__main__':verify(WORK/'prototype_src',WORK/'prototype.dll',WORK/'correctness.json')
+                            ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\verify_native_display_defaults.py", line 26, in verify
+    listing=subprocess.check_output(['D:/mingw64/bin/nm.exe','-g','-C','--defined-only',str(old_dll)],text=True)
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 473, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+               **kwargs).stdout
+               ^^^^^^^^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['D:/mingw64/bin/nm.exe', '-g', '-C', '--defined-only', 'D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_perf50\\grid_cooldown_bundle\\bundle.dll']' returned non-zero exit status 1.

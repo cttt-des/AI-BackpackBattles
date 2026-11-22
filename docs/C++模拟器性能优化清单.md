@@ -1184,3 +1184,23 @@ revision2固定200场结果签名保持`2e74b45c…`：386,704个角色阶段，
 依照每轮报告20%负载口径，另做一次未采纳候选的独立24批校准，换算**154.9053场/秒**，覆盖13.2239%–37.3058%，R²0.9178，留出耗时误差中位2.752%／P90 6.059%。它不是发布用raw24门禁，也不能拿与旧时段139.8920的差额宣称代码收益。因为A/B未过，未进入2,604及发布raw24、未安装；默认生产仍e0bedc／其最近独立换算139.8920。已核对运行和源码目录DLL哈希。[拒绝候选记录](../output/_v1110/native_perf50/event_capacity_bundle/rejection_receipt.json)
 
 下一轮转向实际热点：已验收e0bedc中frame_segment叶205／2,059，最高若干指令位置在statDisplayOverrides第3槽的读取；不能据采样直接承诺比例收益。已记录私有Packed作用域＋现有数组watcher的默认值快路设计：注册实时库存／宝石和真实默认数组，任何别名写入／字段替换／新增拥有者／未知边界失效，且恢复后缀必须逐物品重验版本，不能捕获一个永远true的阶段标志。当前只完成证据和设计审查，尚未实现，不改变物理帧、回调顺序或浮点运算。[详细边界](../output/_v1110/native_perf50/event_capacity_bundle/next_display_read_review.json)
+
+## 冷却帧默认显示覆盖值视图：2,305项独立差分通过，正式构建开始
+
+已在私有Packed入口startBattle之后验证实时双方库存、宝石及全Null覆盖数组，再统一挂上已有NativeTimerWatch；没有共享可变数组，也没有扩大GdArr／GdDict／BattleCtx或生成类布局。省略的只有Null默认值的读取，全部浮点运算、帧推进、RNG和回调保留。字段替换在目标对象rt_ctx上失效；数组别名写入、新增拥有者、版本／epoch变化、未知注册边界均回原读取。
+
+最初Bool快照原型的200场通过，但审查发现Gem.character()可能在实际读取前调用getter；第二版改为传版本token，在真正读取位置重新检查，恢复后缀同样检查。首版和第二版均保留且未测速／部署。最终含实际DLL测试入口的语义版`ce1140de0e22562eab69ac3e5dac3be4d81c2784d5c59fa1873459697ae5f195`固定200输入／结果、自然终局及原六项计数一致，作用域200／200建立，实际省去3,583,917次覆盖值读取；计时器与冷却索引计数保持。这里只是次数，不是提速比例。[实际200场覆盖](../output/_v1110/native_perf50/display_defaults_prototype_r3/build.json)
+
+最终2,305项差分全部通过：48场景×3模式×4舍入×4DAZ/FTZ共2,304，另有独立进程中的注册表变更项。基线调用SHA固定e0bedc DLL内的实际frame_segment函数（RVA与符号双重核对），候选调用实际DLL作用域、帧函数和索引阶段，非仅测试复制代码。核对规范字段／数组别名、回调顺序、RNG、ID、旧计数、FENV和MXCSR；强制检查预期Scope确实激活、失败注册未改任何watch、Gem getter确实执行了同帧变更。覆盖setStat、别名set/resize/fill/invert、字段替换及错误setter上下文、数组删插／捕获长度、嵌套阶段／作用域、Gem getter内修改当前物品、epoch／溢出和注册表关闭。布局GdVal24／GdArr32／CoreItem1792／BattleCtx328／snapshot32不变。[独立差分](../output/_v1110/native_perf50/display_defaults_prototype_r3/correctness.json)
+
+708份正式源逐字节复现已检查原型，已启动完整20单元instrumentation／新18热点PGO。沿用固定200单线程24／预定最多32对A/B，正收益后才进入2,604逐事件、逐场事件hash、首份24批每批≥50、20%换算、部署SHA和正常训练入口。不叠加未确认CPU收益的事件容量改动；运行版仍e0bedc／最近独立20%换算139.8920，没有本轮吞吐结论。[本轮协议](../output/_v1110/native_perf50/display_defaults_bundle/evaluation_plan.json)
+
+## 默认覆盖值视图正式收尾：三组均退化，未部署
+
+正式新PGO DLL`5c6b04cadb8ef0aa90e286b1d3fee6b71acb2395ee3275d56e2778dbba8ed617`通过最终2,305项实际DLL差分和全部保留回归、固定200原结果／旧计数、两次完整再生成及22个C ABI。首份24对CPU／墙钟配对中位耗时**增加0.8511%／1.5453%**，累计增加2.3632%／2.3177%；CPU7胜1平16负、墙钟7胜17负。三组CPU中位降耗−0.6356%／−0.8566%／−1.6967%，墙钟−2.0611%／−1.4553%／−2.1067%，去掉任一组仍退化。按事先规则认定一致退化，未追加八对，不重复同源测速。接电，A/B负载5.9113%–17.3587%。[完整24对](../output/_v1110/native_perf50/display_defaults_bundle/ab_assessment.json)
+
+候选另一次独立24批校准20%换算**168.9764场/秒**，覆盖9.4935%–42.9804%，R²0.9300，耗时误差中位2.540%／P90 6.161%；它不是发布raw24，也不能与旧139.8920之差当作代码收益。因为A/B未过，未进入2,604／发布raw24，未部署。[候选换算](../output/_v1110/native_perf50/display_defaults_bundle/rejected_load20.json)
+
+为避免继续用旧时段标定描述当前机器状态，同一已部署e0bedc另做一份首次24批校准，20%换算**174.4918场/秒**，覆盖9.6344%–60.2369%，R²0.9587，留出耗时误差中位3.157%／P90 7.104%。DLL完全未变，这不是新增代码提速；也不将两份独立拟合的比值替代同期A/B。原部署报告139.8920原样保留，200目标仍未达到。[当前基线新标定](../output/_v1110/native_perf50/display_defaults_bundle/current_baseline_load20.json)
+
+结论限于该实现组合：整场收益未能抵消新增开销；注册、逐次守卫和代码布局各占多少尚未拆分，不将Null快路思想永久排除。下一步将同一资格校验用于省掉更多重复行表／类型检查，并共用无回调区间的证明；活跃Bool、blocked epoch、浮点和原恢复后缀保持。已静态核对674类、646个物品类的上下文写入集中在CoreItem初始化、setter、setup三处；仍需验证实例赋值清行表、上下文字段变化及Gem getter边界，文本检索不是完整等效证明。[写入清单](../output/_v1110/native_perf50/display_defaults_bundle/next_owned_tick_write_inventory.json) · [下一步具体设计](../output/_v1110/native_perf50/display_defaults_bundle/next_owned_tick_review.json)

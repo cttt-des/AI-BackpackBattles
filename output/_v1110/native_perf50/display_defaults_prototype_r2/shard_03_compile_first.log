@@ -1,0 +1,199 @@
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/native_inline_dispatch.hpp:2,
+                 from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r2\prototype_src\gen\shards\shard_03.cpp:1:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gd_rt.hpp:6: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    6 | #pragma STDC FP_CONTRACT OFF
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/native_inline_dispatch.hpp:7:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core__CoreItem.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/native_inline_dispatch.hpp:8:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core__CoreContext.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/native_inline_dispatch.hpp:9:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core__CoreCharacter.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/native_inline_dispatch.hpp:10:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core__CoreBuff.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/native_inline_dispatch.hpp:11:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__Gems__Gem.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__Gems__Gem.hpp:3:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__Item.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r2\prototype_src\gen\shards\shard_03.cpp:4: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    4 | #pragma STDC FP_CONTRACT OFF
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/native_targeted_timers.hpp:3,
+                 from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r2\prototype_src\gen\shards\shard_03.cpp:5:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core__CoreGrid.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r2\prototype_src\gen\shards\shard_03.cpp:12:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core__AceofSpades.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core__AceofSpades.hpp:3:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core__Card.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core__Card.hpp:3:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core__Item.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r2\prototype_src\gen\shards\shard_03.cpp:13:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core__Dagger.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core__Dagger.hpp:3:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core__Weapon.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r2\prototype_src\gen\shards\shard_03.cpp:14:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core__CoreCombat.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r2\prototype_src\gen\shards\shard_03.cpp:15:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core__CoreRng.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r2\prototype_src\gen\shards\shard_03.cpp:16:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core__DeathScythe.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r2\prototype_src\gen\shards\shard_03.cpp:17:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core__Garlic.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core__Garlic.hpp:3:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core__Food.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r2\prototype_src\gen\shards\shard_03.cpp:18:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core__Item__INNER__SignalConnection.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r2\prototype_src\gen\shards\shard_03.cpp:20:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core__Shield.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r2\prototype_src\gen\shards\shard_03.cpp:21:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core__Present.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r2\prototype_src\gen\shards\shard_03.cpp:22:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core__StaminaSack.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core__StaminaSack.hpp:3:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core__Bag.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r2\prototype_src\gen\shards\shard_03.cpp:23:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core__TheLovers.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r2\prototype_src\gen\shards\shard_03.cpp:24:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__AceofSpades.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__AceofSpades.hpp:3:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__Card.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r2\prototype_src\gen\shards\shard_03.cpp:25:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__Bow.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__Bow.hpp:3:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__Weapon.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r2\prototype_src\gen\shards\shard_03.cpp:26:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__CustomerCard.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r2\prototype_src\gen\shards\shard_03.cpp:27:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__AmuletofDarkness.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r2\prototype_src\gen\shards\shard_03.cpp:28:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__WisdomPuppy.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r2\prototype_src\gen\shards\shard_03.cpp:29:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__BionicArmor.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r2\prototype_src\gen\shards\shard_03.cpp:30:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__Broccotree.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__Broccotree.hpp:3:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__Food.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r2\prototype_src\gen\shards\shard_03.cpp:31:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__Chess__BlackBishop.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__Chess__BlackBishop.hpp:3:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__Chess__ChessPiece.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r2\prototype_src\gen\shards\shard_03.cpp:32:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__ChromeCube.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__ChromeCube.hpp:3:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__Cube.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r2\prototype_src\gen\shards\shard_03.cpp:33:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__DeathLotus.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r2\prototype_src\gen\shards\shard_03.cpp:34:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__DualWielding.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r2\prototype_src\gen\shards\shard_03.cpp:35:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__ExtraBags.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r2\prototype_src\gen\shards\shard_03.cpp:36:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__Frostbite.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r2\prototype_src\gen\shards\shard_03.cpp:37:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__HeartShield.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__HeartShield.hpp:3:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__Shield.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r2\prototype_src\gen\shards\shard_03.cpp:38:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__JustStats.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r2\prototype_src\gen\shards\shard_03.cpp:39:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__Lootbox.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r2\prototype_src\gen\shards\shard_03.cpp:40:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__MercuryElemental.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r2\prototype_src\gen\shards\shard_03.cpp:41:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__ParadiseBirb.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r2\prototype_src\gen\shards\shard_03.cpp:42:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__PoweroftheMoon.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r2\prototype_src\gen\shards\shard_03.cpp:43:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__RainbowOrb.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r2\prototype_src\gen\shards\shard_03.cpp:44:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__ScholarBag.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__ScholarBag.hpp:3:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__Bag.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r2\prototype_src\gen\shards\shard_03.cpp:45:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__Sloth.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r2\prototype_src\gen\shards\shard_03.cpp:46:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__SpicyBanana.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r2\prototype_src\gen\shards\shard_03.cpp:47:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__StoneGolem.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r2\prototype_src\gen\shards\shard_03.cpp:48:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__TimeMelting.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r2\prototype_src\gen\shards\shard_03.cpp:49:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__WaterElemental.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r2\prototype_src\gen\shards\shard_03.cpp:50:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__Gems__CorruptedCrystal.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r2\prototype_src\gen\shards\shard_03.cpp:51:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__HoloFireLizard.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r2\prototype_src\gen\shards\shard_03.cpp:52:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__MoonShield.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r2\prototype_src\gen\shards\shard_03.cpp:53:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__RainbowGoobertRanger.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__RainbowGoobertRanger.hpp:3:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__Goobert.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r2\prototype_src\gen\shards\shard_03.cpp:54:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__StrongStoneSkinPotion.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__StrongStoneSkinPotion.hpp:3:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__StoneSkinPotion.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__StoneSkinPotion.hpp:3:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/display_defaults_prototype_r2/prototype_src/gen/hdrs/Gd__gd_core_items__Potion.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF

@@ -1,0 +1,37 @@
+{
+  "status": "hypothesis_only_not_in_frozen_candidate",
+  "baseline_dll_sha256": "e0bedc4960077407e85763cb5e4af70175a0623cca15e923403fa89174390687",
+  "evidence": "The accepted native_frame_segment_tick still reloads rt_ctx, native_call_row, dispatcher/audit flags and row metadata before its active/blocked/type checks. The packed scope already validates owned known rows; the active index already proves current Bool-true eligibility.",
+  "candidate": "Extend the private owned-frame capability to bypass repeated row/context/type and active checks, rather than relying only on skipping the display-array read.",
+  "required_proof": [
+    "Audit every rt_ctx/native_call_row/f_ctx write; invalidate field replacement and any dynamic boundary. Do not assume ordinary C++ fields are immutable.",
+    "Separate metadata/eligibility capability from default-display capability; preserve nondefault and foreign fallbacks.",
+    "Keep captured array order/length, current data, metadata diagnostics and all numeric operations unchanged.",
+    "The active-index recovery lambda must recheck eligibility/structure/epoch and pass no trusted capability after mutations.",
+    "Gem.character getter calls remain a callback boundary; recheck any capability whose proof can be invalidated there.",
+    "Actual-DLL directed counterexamples plus all formal fixed200/2604/raw24 gates remain mandatory."
+  ],
+  "no_code_or_speed_claim": true,
+  "concrete_design": {
+    "scope_owner_rows": "Record a private per-character array of {owner, exact initial NativeMethodRow, owned CoreContext, Gem type bit}, without enlarging GdObj/GdArr/BattleCtx or the active-index entry.",
+    "callback_interface": "Use an optional item_index argument in active_cooldown_visit via is_invocable; existing one-argument callbacks remain unchanged. Indexed calls pass the captured original index. Recovery calls omit it and receive no metadata capability.",
+    "per_phase": "Prepare one token bound to an enrolled character, structural version and epoch, plus its owner-row view. An unenrolled character must receive no default-display or metadata capability.",
+    "per_owner": "Before the tick, select a row only when the original index and current owner pointer match. At tick entry recheck structure/epoch/watch/registry, current rt_ctx, current row pointer and current f_ctx pointer. A mismatch executes the complete existing header.",
+    "fast_body": "Bypass only repeated row/context/audit/type-table checks; keep the physical active Bool and blocked-epoch checks. Cache the Gem type result, compensating the original diagnostic hit at its original position.",
+    "getter_boundary": "Capture the context reference at the original point before Gem.character. Keep the default-display version recheck at the actual read after the getter; do not abort a tick merely because eligibility changed after its original entry check.",
+    "cpp_copy": "GdObj assignment clears the current row, which the live pointer comparison catches. No unsupported const-row rewrites or placement-new assumptions should be introduced.",
+    "not_implemented": true,
+    "shared_proof_amortization": "Reuse the validated metadata capability for the Null read on non-Gem items, because no user callback occurs before that read. Gems still recheck the version at the actual read after character(). This is a new source variant, not a rerun of the rejected view."
+  },
+  "validation_additions": [
+    "Unenrolled same-context third character with a nondefault override must use the old read path.",
+    "Clear/replace the cached row, change the current rt_ctx or f_ctx, toggle dispatcher/audit flags, and verify the full fallback.",
+    "Mutations in a Gem getter must observe the original pre-getter context and post-getter override read.",
+    "Preserve all old counters, not merely the new fast-path counter."
+  ],
+  "current_baseline_planning": {
+    "current_fitted_at20_fps": 174.4917848992152,
+    "implied_time_reduction_to200_pct": 12.754107550392401,
+    "not_a_speedup_forecast": true
+  }
+}

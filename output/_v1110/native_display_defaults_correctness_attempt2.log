@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\verify_native_display_defaults.py", line 70, in <module>
+    if __name__=='__main__':verify(WORK/'prototype_src',WORK/'prototype.dll',WORK/'correctness.json')
+                            ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\verify_native_display_defaults.py", line 40, in verify
+    subprocess.run([*flags,str(fixture),str(root/'libgdcore.dll'),'-o',str(exe)],check=True,stdout=log,stderr=subprocess.STDOUT)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['D:/mingw64/bin/g++.exe', '-static', '-O3', '-march=native', '-std=c++20', '-ffp-contract=off', '-I', 'D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_perf50\\grid_cooldown_bundle\\bundle_src', '-I', 'D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_perf50\\active_cooldown_prototype\\test_src', '-DGD_OLD_FRAME_RVA=13496848', 'D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\test_native_display_defaults.cpp', 'C:\\Users\\Windows\\AppData\\Local\\Temp\\native-default-display-tests-fh02fva1\\libgdcore.dll', '-o', 'C:\\Users\\Windows\\AppData\\Local\\Temp\\native-default-display-tests-fh02fva1\\display.exe']' returned non-zero exit status 1.

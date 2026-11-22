@@ -1,0 +1,6 @@
+{
+  "status": "superseded_before_formal_timing",
+  "reason": "Move the version recheck to the exact override-read point, after any Gem.character getter calls, rather than passing a precomputed Bool.",
+  "fixed200_passed": true,
+  "no_throughput_claim": true
+}

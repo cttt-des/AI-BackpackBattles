@@ -1,0 +1,54 @@
+{
+  "passed": true,
+  "cases": 2305,
+  "matrix_cases": 2304,
+  "registry_cases": 1,
+  "difference_count": 0,
+  "first_differences": [],
+  "baseline_dll_sha256": "e0bedc4960077407e85763cb5e4af70175a0623cca15e923403fa89174390687",
+  "dll_sha256": "5c6b04cadb8ef0aa90e286b1d3fee6b71acb2395ee3275d56e2778dbba8ed617",
+  "actual_independent_dll_ticks_and_candidate_phase": true,
+  "baseline_tick_rva": 13496848,
+  "baseline_tick_symbol_checked_against_sha_pinned_profile_and_nm": true,
+  "original_traversal_fixture_sha256": "8cf67ec266a496cf24710d90e6e8f968a7536a97c1741af76b9047f4521fea77",
+  "fixture_sha256": "75b79cdd03e1101ab270e78a0e4ee504cdfb533a60744acc39c9b954efed4e1e",
+  "rounding_modes": 4,
+  "daz_ftz_modes": 4,
+  "display_counts": [
+    1632,
+    688,
+    13760,
+    1552,
+    1376,
+    6240,
+    6080,
+    112
+  ],
+  "registry_counts": [
+    1,
+    1,
+    20,
+    2,
+    1,
+    3,
+    1,
+    0
+  ],
+  "canonical_fields_arrays_aliases_callback_order_rng_ids_original_counters_fenv_mxcsr_checked": true,
+  "gem_getter_mutation_checked_before_actual_override_read": true,
+  "raw_cases_directory": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_perf50\\display_defaults_bundle",
+  "raw_cases_sha256": {
+    "baseline_display_matrix_cases.json": "2d74f0a1a5cce76234b4bf7024876cc2cdfa07bc9b72710e06b7af00aaad3389",
+    "baseline_display_registry_cases.json": "c10b6cfa1d78c642eab768efd7f955b6687226058a40c6a21239091bbbdc8f01",
+    "candidate_display_matrix_cases.json": "75e50de739070194cec104d11328ac6c9069d5b5dd3913088f6f3c3e7ac5bd4f",
+    "candidate_display_registry_cases.json": "3ebcd8e5e5fc1e0d3057366430b13a35c059e5044ba082dbba4f794e81fa3629"
+  },
+  "layouts": {
+    "GdVal": 24,
+    "GdArr": 32,
+    "CoreItem": 1792,
+    "BattleCtx": 328,
+    "snapshot": 32
+  },
+  "no_throughput_claim": true
+}
