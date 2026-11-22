@@ -1,0 +1,108 @@
+{
+  "passed": true,
+  "dll_sha256": "e0bedc4960077407e85763cb5e4af70175a0623cca15e923403fa89174390687",
+  "baseline_dll_sha256": "55b62a2044b87311a967878a91d88ef4702641d240594989a09c396f67172ece",
+  "source_sha256": "86056c5a657ca2f4a24db17b064ed7377c60c64685b7eb3f6ea2dec52e9fe628",
+  "ordinary_context_open": true,
+  "packed_context_closed": true,
+  "unknown_registration_opens_future_contexts": true,
+  "reset_does_not_reseal": true,
+  "four_boundary_checks": true,
+  "three_packed_fights_match_original": true,
+  "results": {
+    "baseline": {
+      "passed": true,
+      "result_hashes": [
+        "d500ba854340d322",
+        "d500ba854340d322",
+        "d500ba854340d322"
+      ],
+      "result_bytes": 400
+    },
+    "candidate": {
+      "passed": true,
+      "result_hashes": [
+        "d500ba854340d322",
+        "d500ba854340d322",
+        "d500ba854340d322"
+      ],
+      "result_bytes": 400
+    }
+  }
+}
+In file included from C:\Users\Windows\AppData\Local\Temp\native-closed-known-vvbriq1c\known.cpp:3:
+C:\Users\Windows\AppData\Local\Temp\native-closed-known-vvbriq1c\sealed_fixture.cpp: In function 'int retained_targeted_timer_main()':
+C:\Users\Windows\AppData\Local\Temp\native-closed-known-vvbriq1c\sealed_fixture.cpp:173:1: warning: no return statement in function returning non-void [-Wreturn-type]
+  173 | }
+      | ^
+{
+  "passed": true,
+  "dll_sha256": "e0bedc4960077407e85763cb5e4af70175a0623cca15e923403fa89174390687",
+  "cases": 1056,
+  "baseline_receipt_sha256": "2e73d3bc5265634a3295888f96f4664584382beeb2e0fc6c7cc8a6ac17970f7c",
+  "original_fixture_sha256": "230f60cc81d36495dc20d27b9e7b7ec16c8d9c4d6ed3075c42a55e3ff061d23a",
+  "only_fixture_change": "Enable closed_world alongside enabled; run only known-object cases",
+  "known_generated_same_pass_newItemTimer_callback_retained": true,
+  "unknown_callback_cases_excluded_from_sealed_mode": true,
+  "all_original_state_fenv_rng_and_legacy_hashes_equal": true,
+  "timer_counts": [
+    1504,
+    848,
+    656,
+    8360,
+    88,
+    32,
+    584,
+    22664,
+    3736,
+    0
+  ],
+  "raw_sha256": "db73cd801568ece22e5cc18fe03f405c5d91797cb8dba873277c580097e7ccda"
+}
+{
+  "passed": true,
+  "dll_sha256": "e0bedc4960077407e85763cb5e4af70175a0623cca15e923403fa89174390687",
+  "cases": 2016,
+  "sealed_known_cases": 1056,
+  "registry_boundary_checks": 4,
+  "actual_production_method_checked": true,
+  "separate_old_new_abi_executables": true,
+  "layouts": {
+    "historical_oracle": {
+      "GdVal": 24,
+      "GdArr": 24,
+      "CoreItem": 1792,
+      "BattleCtx": 264
+    },
+    "baseline": {
+      "GdVal": 24,
+      "GdArr": 32,
+      "CoreItem": 1792,
+      "BattleCtx": 328
+    },
+    "candidate": {
+      "GdVal": 24,
+      "GdArr": 32,
+      "CoreItem": 1792,
+      "BattleCtx": 328
+    }
+  },
+  "independent_receipts": {
+    "owner": {
+      "cases": 1760,
+      "all_original_states_and_legacy_counters_equal": true,
+      "reference_sha256": "2e73d3bc5265634a3295888f96f4664584382beeb2e0fc6c7cc8a6ac17970f7c"
+    },
+    "safety": {
+      "cases": 192,
+      "all_original_states_and_legacy_counters_equal": true,
+      "reference_sha256": "787a9cbd8addcb3a5b16b0ecf5be9f20bb62b1b7c8d39b5e74ef561f61a07e41"
+    },
+    "ownership": {
+      "cases": 64,
+      "all_original_states_and_legacy_counters_equal": true,
+      "reference_sha256": "1a3f04e02d9cf68f10764cc92dd2b291bb8fa02ac87725ff95e3f7c4c0b4013c"
+    }
+  },
+  "all_original_arithmetic_rng_and_observable_callback_order_retained": true
+}

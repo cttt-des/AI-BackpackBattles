@@ -1,0 +1,12 @@
+{
+  "registration_counts_are_per_gid_epoch": true,
+  "bind_battle_changes_gid_epoch_without_reallocating_graph": true,
+  "snapshot_write_scope": "First spatial query to next observed epoch; earlier writes excluded",
+  "candidate_mode_bound_proved_by_fixed200": {
+    "fast_queries": 652011,
+    "ordinary_queries": 0,
+    "enabled_filled_dicts": 400,
+    "mode_conversions": 0
+  },
+  "no_time_or_speed_inference": true
+}

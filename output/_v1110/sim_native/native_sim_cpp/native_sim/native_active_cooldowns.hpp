@@ -13,6 +13,7 @@ struct ActiveCooldownCache {
     uint64_t structure=0,eligibility=0;
     const ActiveCooldownEntry* entries=nullptr;
     uint32_t count=0,items_count=0;
+    const Gd__gd_core__CoreGrid* grid=nullptr;
 };
 inline void active_cooldown_count(BattleCtx& ctx,unsigned field,uint64_t amount=1) {
     if(ctx.native_resolved_collect)native_active_cooldown_hit(field,amount);
@@ -89,7 +90,7 @@ __attribute__((noinline)) inline bool active_cooldown_build(BattleCtx& ctx,
         }
     }
     auto& watch=ctx.native_timer_watch;
-    cache={character,items,watch.version,watch.cooldown_version,entries,n,items->len};
+    cache={character,items,watch.version,watch.cooldown_version,entries,n,items->len,static_cast<const Gd__gd_core__CoreGrid*>(character->f_inventory.obj)};
     active_cooldown_count(ctx,1);active_cooldown_count(ctx,7,slots);active_cooldown_count(ctx,8,n);
     return true;
 }
@@ -100,35 +101,47 @@ inline bool active_cooldown_visit(BattleCtx& ctx,Gd__gd_core__CoreCharacter* cha
                                   ItemTick&& item_tick,GemTick&& gem_tick) {
     auto& watch=ctx.native_timer_watch;
     if(!watch.enabled || !watch.closed_world || !watch.usable || watch.depth ||
-       watch.cooldown_version==UINT64_MAX || !character || character->rt_ctx_!=&ctx ||
-       !ctx.arena.owns_storage(character,sizeof(*character)))return false;
+       watch.cooldown_version==UINT64_MAX || !character || character->rt_ctx_!=&ctx)return false;
     const auto& pid=character->f_playerId;
+    if(pid.kind!=GdVal::Kind::Int || pid.i<0 || pid.i>1)return false;
     const auto& inventory=character->f_inventory;
-    if(pid.kind!=GdVal::Kind::Int || pid.i<0 || pid.i>1 ||
-       inventory.kind!=GdVal::Kind::Obj || !inventory.obj || inventory.obj->rt_ctx_!=&ctx ||
-       !ctx.arena.owns_storage(inventory.obj,sizeof(Gd__gd_core__CoreGrid)) ||
-       !native_timer_known_object(inventory.obj))return false;
-    auto* grid=dynamic_cast<Gd__gd_core__CoreGrid*>(inventory.obj);
-    if(!grid || grid->f_items.kind!=GdVal::Kind::Arr || !grid->f_items.arr)return false;
-    const auto* items=grid->f_items.arr;const uint32_t count=items->len;
     auto*& pointer=watch.cooldown_cache[unsigned(pid.i)];
     auto* cache=static_cast<ActiveCooldownCache*>(pointer);
-    if(!cache){cache=ctx.arena.make<ActiveCooldownCache>();pointer=cache;}
-    if(cache->character!=character || cache->items!=items || cache->items_count!=count ||
-       cache->structure!=watch.version || cache->eligibility!=watch.cooldown_version) {
+    // A cache hit has already proved the complete owned object/array graph.
+    // Tracked structure writes and every eligibility store invalidate it;
+    // live inventory/items identity and length checks also retain raw-field
+    // replacements used by direct C++ callers. Reset clears all cache pointers.
+    const bool hit=cache && cache->character==character && cache->grid &&
+        cache->structure==watch.version && cache->eligibility==watch.cooldown_version &&
+        inventory.kind==GdVal::Kind::Obj && inventory.obj==cache->grid &&
+        cache->grid->f_items.kind==GdVal::Kind::Arr && cache->grid->f_items.arr==cache->items &&
+        cache->items && cache->items->len==cache->items_count;
+    const GdArr* items=nullptr;uint32_t count=0;
+    if(hit) {
+        items=cache->items;count=cache->items_count;active_cooldown_count(ctx,2);
+    }else {
+        if(!ctx.arena.owns_storage(character,sizeof(*character)) ||
+           inventory.kind!=GdVal::Kind::Obj || !inventory.obj || inventory.obj->rt_ctx_!=&ctx ||
+           !ctx.arena.owns_storage(inventory.obj,sizeof(Gd__gd_core__CoreGrid)) ||
+           !native_timer_known_object(inventory.obj))return false;
+        auto* grid=dynamic_cast<Gd__gd_core__CoreGrid*>(inventory.obj);
+        if(!grid || grid->f_items.kind!=GdVal::Kind::Arr || !grid->f_items.arr)return false;
+        items=grid->f_items.arr;count=items->len;
+        if(!cache){cache=ctx.arena.make<ActiveCooldownCache>();pointer=cache;}
         if(!active_cooldown_build(ctx,character,items,*cache)) {
             active_cooldown_count(ctx,4);return false;
         }
-    }else active_cooldown_count(ctx,2);
+    }
     active_cooldown_count(ctx,0);
     const auto structure=watch.version,eligibility=watch.cooldown_version;
     const auto* entries=cache->entries;const uint32_t length=cache->count;
     for(uint32_t k=0;k<length;++k) {
         const auto entry=entries[k];
         active_cooldown_count(ctx,3);
-        if(active_cooldown_truth(entry.owner->f__cooldown_active)) {
-            if(entry.gem_index==UINT32_MAX)item_tick(entry.owner);else gem_tick(entry.owner);
-        }
+        // Entry eligibility is Bool true; any intervening tracked store is
+        // detected immediately after the preceding callback and resumes the
+        // original suffix. The physical tick still retains its own checks.
+        if(entry.gem_index==UINT32_MAX)item_tick(entry.owner);else gem_tick(entry.owner);
         if(watch.version!=structure || watch.cooldown_version!=eligibility ||
            !watch.usable || watch.depth || !watch.enabled || !watch.closed_world) {
             active_cooldown_count(ctx,5);

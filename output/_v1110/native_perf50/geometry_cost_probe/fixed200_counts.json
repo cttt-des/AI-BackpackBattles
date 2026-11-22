@@ -1,0 +1,101 @@
+{
+  "diagnostic_only": true,
+  "baseline_dll_sha256": "55b62a2044b87311a967878a91d88ef4702641d240594989a09c396f67172ece",
+  "diagnostic_dll_sha256": "41371b5adb0e368595eac3d4bbd1d0a60bc75406fdd5636d7bf1c6e3d690a732",
+  "verified_remote_backup": "f67e7c55fd5d4c161b6ab3c81d925d2ba7ea5ffd",
+  "inputs_sha256": "d94b16d42cc88e9a3850a77c9360b9c4c4fdd676cb252e463044a903db2a5fef",
+  "results_sha256": "2e74b45caa87f7ee6ac72ffc35d98cc8db140b47031614d26542e183cef5d2c9",
+  "matched_original_terminal": 200,
+  "counts": {
+    "filled": {
+      "queries": 652011,
+      "vec2_queries": 652011,
+      "integer_queries": 652011,
+      "window16_queries": 648047,
+      "window32_queries": 652011,
+      "window64_queries": 652011,
+      "linear_queries": 230943,
+      "hashed_queries": 421068,
+      "slot_probes": 1014647,
+      "hits": 242572,
+      "registered_dicts": 800,
+      "snapshot_entries": 16387,
+      "snapshot_integer_keys": 16387,
+      "snapshot_all_integer_dicts": 800,
+      "set_existing_after_query": 0,
+      "set_new_after_query": 16980,
+      "erase_hit_after_query": 748,
+      "erase_miss_after_query": 0,
+      "clear_after_query": 0,
+      "max_query_length": 63,
+      "max_snapshot_length": 63,
+      "query_length_sum": 13200033,
+      "snapshot_window32_keys": 16387,
+      "snapshot_window64_keys": 16387
+    },
+    "bags": {
+      "queries": 0,
+      "vec2_queries": 0,
+      "integer_queries": 0,
+      "window16_queries": 0,
+      "window32_queries": 0,
+      "window64_queries": 0,
+      "linear_queries": 0,
+      "hashed_queries": 0,
+      "slot_probes": 0,
+      "hits": 0,
+      "registered_dicts": 0,
+      "snapshot_entries": 0,
+      "snapshot_integer_keys": 0,
+      "snapshot_all_integer_dicts": 0,
+      "set_existing_after_query": 0,
+      "set_new_after_query": 0,
+      "erase_hit_after_query": 0,
+      "erase_miss_after_query": 0,
+      "clear_after_query": 0,
+      "max_query_length": 0,
+      "max_snapshot_length": 0,
+      "query_length_sum": 0,
+      "snapshot_window32_keys": 0,
+      "snapshot_window64_keys": 0
+    }
+  },
+  "extra": {
+    "dedup_calls": 242467,
+    "dedup_length_sum": 243684,
+    "dedup_slot_tests": 232583,
+    "dedup_max_length": 14,
+    "context_epochs": 400
+  },
+  "query_ranges": {
+    "filled": {
+      "min_x": -5,
+      "max_x": 13,
+      "min_y": -5,
+      "max_y": 11
+    },
+    "bags": {
+      "min_x": 9223372036854775807,
+      "max_x": -9223372036854775808,
+      "min_y": 9223372036854775807,
+      "max_y": -9223372036854775808
+    }
+  },
+  "old_six_counters": {
+    "generic_hits": 9599433,
+    "funcref_hits": 100900,
+    "lazy_resolutions": 54635,
+    "unsupported_types": 200,
+    "audit_mismatch": 0,
+    "selected_fallback": 233004
+  },
+  "reused_objects": 18,
+  "recompiled_units": 2,
+  "original_objects_unchanged": true,
+  "no_object_or_container_layout_change": true,
+  "header_only_adds_free_function_declarations": true,
+  "mutation_scope": "Only set/erase/clear after the first observed spatial query in each live packed battle; writes before registration are excluded",
+  "slot_probe_counts_not_cpu_time": true,
+  "no_throughput_claim": true,
+  "production_unchanged": true
+}

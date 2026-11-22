@@ -1,0 +1,33 @@
+{
+  "passed": true,
+  "semantic_only": true,
+  "dll_sha256": "46ac8b7525341e94c077a72b0eb7569ab02ba1a5ecb95d7bad0e1bc455c6e248",
+  "baseline_dll_sha256": "55b62a2044b87311a967878a91d88ef4702641d240594989a09c396f67172ece",
+  "verified_remote_backup": "f67e7c55fd5d4c161b6ab3c81d925d2ba7ea5ffd",
+  "reused_native_objects": 18,
+  "recompiled_native_units": 2,
+  "unchanged_existing_header_definitions": true,
+  "source_manifest_sha256": "17e02e073a8781074ab4c30f75f804a192fd2e88cd8632da07e4fa1426d2fc48",
+  "semantic_base_receipt_sha256": "397f9aab991792396c5f29dd452a50edd97d8d013b0ee7c4b55172c087506ef2",
+  "counts": {
+    "fast_queries": 652011,
+    "ordinary_queries": 0,
+    "enabled_dicts": 400,
+    "rejected_dicts": 0,
+    "mode_conversions": 0,
+    "reserved": 0
+  },
+  "inputs_sha256": "d94b16d42cc88e9a3850a77c9360b9c4c4fdd676cb252e463044a903db2a5fef",
+  "results_sha256": "2e74b45caa87f7ee6ac72ffc35d98cc8db140b47031614d26542e183cef5d2c9",
+  "matched_original_terminal": 200,
+  "original_six_counters": {
+    "generic_hits": 9599433,
+    "funcref_hits": 100900,
+    "lazy_resolutions": 54635,
+    "unsupported_types": 200,
+    "audit_mismatch": 0,
+    "selected_fallback": 233004
+  },
+  "no_throughput_claim": true,
+  "not_for_deployment": true
+}
