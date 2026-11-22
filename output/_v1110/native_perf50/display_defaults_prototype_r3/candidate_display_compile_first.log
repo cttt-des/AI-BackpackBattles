@@ -1,0 +1,33 @@
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\test_native_display_defaults.cpp:6:
+D:\文件资料\学习\自动背包AI\output\_v1110\native_packed_display.hpp:8:7: error: redefinition of 'class gd::NativePackedDisplayScope'
+    8 | class NativePackedDisplayScope {
+      |       ^~~~~~~~~~~~~~~~~~~~~~~~
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r3\prototype_src/native_inline_dispatch.hpp:3,
+                 from D:\文件资料\学习\自动背包AI\output\_v1110\test_native_display_defaults.cpp:1:
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r3\prototype_src/native_packed_display.hpp:8:7: note: previous definition of 'class gd::NativePackedDisplayScope'
+    8 | class NativePackedDisplayScope {
+      |       ^~~~~~~~~~~~~~~~~~~~~~~~
+D:\文件资料\学习\自动背包AI\output\_v1110\native_packed_display.hpp:24:6: error: default argument given for parameter 2 of 'void gd::native_default_display_hit(unsigned int, uint64_t)' [-fpermissive]
+   24 | void native_default_display_hit(unsigned,uint64_t amount=1);
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r3\prototype_src/native_packed_display.hpp:24:6: note: previous specification in 'void gd::native_default_display_hit(unsigned int, uint64_t)' here
+   24 | void native_default_display_hit(unsigned,uint64_t amount=1);
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~
+D:\文件资料\学习\自动背包AI\output\_v1110\native_packed_display.hpp:25:8: error: redefinition of 'struct gd::NativeDefaultDisplayToken'
+   25 | struct NativeDefaultDisplayToken {
+      |        ^~~~~~~~~~~~~~~~~~~~~~~~~
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r3\prototype_src/native_packed_display.hpp:25:8: note: previous definition of 'struct gd::NativeDefaultDisplayToken'
+   25 | struct NativeDefaultDisplayToken {
+      |        ^~~~~~~~~~~~~~~~~~~~~~~~~
+D:\文件资料\学习\自动背包AI\output\_v1110\native_packed_display.hpp:32:13: error: redefinition of 'bool gd::native_default_display_valid(const BattleCtx&, uint64_t, uint64_t)'
+   32 | inline bool native_default_display_valid(const BattleCtx& ctx,uint64_t version,uint64_t epoch) {
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r3\prototype_src/native_packed_display.hpp:32:13: note: 'bool gd::native_default_display_valid(const BattleCtx&, uint64_t, uint64_t)' previously defined here
+   32 | inline bool native_default_display_valid(const BattleCtx& ctx,uint64_t version,uint64_t epoch) {
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+D:\文件资料\学习\自动背包AI\output\_v1110\native_packed_display.hpp:37:13: error: redefinition of 'bool gd::native_default_display_valid(const BattleCtx&, const NativeDefaultDisplayToken*)'
+   37 | inline bool native_default_display_valid(const BattleCtx& ctx,const NativeDefaultDisplayToken* token) {
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_defaults_prototype_r3\prototype_src/native_packed_display.hpp:37:13: note: 'bool gd::native_default_display_valid(const BattleCtx&, const NativeDefaultDisplayToken*)' previously defined here
+   37 | inline bool native_default_display_valid(const BattleCtx& ctx,const NativeDefaultDisplayToken* token) {
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~

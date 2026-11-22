@@ -1,0 +1,61 @@
+{
+  "passed": true,
+  "semantic_only": true,
+  "dll_sha256": "0f243a89c82aa307d19babe2d340d304135a8593aac332ce8c06a318d29a4fdb",
+  "baseline_dll_sha256": "e0bedc4960077407e85763cb5e4af70175a0623cca15e923403fa89174390687",
+  "verified_remote_backup": "e53ca96c4e96c9bc7dabd8aee4122f76fe572f1e",
+  "source_manifest_sha256": "05a3a8147d7fc63e4c763aff3c77bc0355b50c37452206bf56859c23e12f5806",
+  "reused_objects": 17,
+  "recompiled_units": 3,
+  "original_objects_unchanged": true,
+  "frame_symbol_consumers": [
+    "shard_03"
+  ],
+  "original_six_counters": {
+    "generic_hits": 9599433,
+    "funcref_hits": 100900,
+    "lazy_resolutions": 54635,
+    "unsupported_types": 200,
+    "audit_mismatch": 0,
+    "selected_fallback": 233004
+  },
+  "display_counts": [
+    200,
+    200,
+    29453,
+    386704,
+    3583917,
+    0,
+    0,
+    0
+  ],
+  "active_cooldown_counts": [
+    386704,
+    1904,
+    384800,
+    3632134,
+    0,
+    760,
+    23435,
+    83822,
+    19040,
+    0
+  ],
+  "targeted_timer_counts": [
+    386704,
+    400,
+    386304,
+    683532,
+    0,
+    0,
+    0,
+    16170,
+    701,
+    0
+  ],
+  "inputs_sha256": "d94b16d42cc88e9a3850a77c9360b9c4c4fdd676cb252e463044a903db2a5fef",
+  "results_sha256": "2e74b45caa87f7ee6ac72ffc35d98cc8db140b47031614d26542e183cef5d2c9",
+  "matched_original_terminal": 200,
+  "no_throughput_claim": true,
+  "not_for_deployment": true
+}

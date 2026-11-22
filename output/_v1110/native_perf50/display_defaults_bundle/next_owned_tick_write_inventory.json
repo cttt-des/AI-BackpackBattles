@@ -1,0 +1,136 @@
+{
+  "baseline_dll_sha256": "e0bedc4960077407e85763cb5e4af70175a0623cca15e923403fa89174390687",
+  "status": "static_write_inventory_not_a_complete_equivalence_proof",
+  "files": {
+    "gd_rt.hpp": "dfe06e8a53a3ac69b9b58ab5046aad7860c5a27b07944ece4f8f95375e4ee905",
+    "native_resolved_dispatch.hpp": "e2a7e14a097ecb38087a4b7ffd2249d52e127d4c0e38265bc4c8d4a06c1305e3",
+    "gen/shards/shard_00.cpp": "1773686719c68fe5274c4a705cc2ac972706e4e632cf1e4a9573d8464e3bb6b3"
+  },
+  "row_and_context_assignments": [
+    {
+      "file": "gd_rt.hpp",
+      "line": 609,
+      "text": "rt_ctx_=other.rt_ctx_;gid_=other.gid_;gid_epoch_=other.gid_epoch_;conns_head_=other.conns_head_;"
+    },
+    {
+      "file": "gd_rt.hpp",
+      "line": 610,
+      "text": "native_call_row_=nullptr;return *this;"
+    },
+    {
+      "file": "gd_rt.hpp",
+      "line": 614,
+      "text": "BattleCtx* rt_ctx_ = nullptr;"
+    },
+    {
+      "file": "gd_rt.hpp",
+      "line": 618,
+      "text": "const NativeMethodRow* native_call_row_ = nullptr;"
+    },
+    {
+      "file": "native_resolved_dispatch.hpp",
+      "line": 2094,
+      "text": "if(object && row<std::size(native_resolved_rows))object->native_call_row_=&native_resolved_rows[row];"
+    },
+    {
+      "file": "native_resolved_dispatch.hpp",
+      "line": 2114,
+      "text": "object->native_call_row_=row;"
+    },
+    {
+      "file": "native_resolved_dispatch.hpp",
+      "line": 2151,
+      "text": "object->native_call_row_=row;"
+    }
+  ],
+  "core_item_context_assignments": [
+    {
+      "file": "gen/shards/shard_00.cpp",
+      "line": 247,
+      "enclosing_method": "Gd__gd_core__CoreItem::init_fields",
+      "text": "this->f_ctx = gd::GdVal::null();"
+    },
+    {
+      "file": "gen/shards/shard_00.cpp",
+      "line": 435,
+      "enclosing_method": "Gd__gd_core__CoreItem::set_prop",
+      "text": "case SYM_GEN_ctx_3: this->f_ctx = val; return true;"
+    },
+    {
+      "file": "gen/shards/shard_00.cpp",
+      "line": 1440,
+      "enclosing_method": "Gd__gd_core__CoreItem::fn_setup",
+      "text": "this->f_ctx = lv__ctx;"
+    }
+  ],
+  "next_requirements": [
+    "GdObj copy assignment can change rt_ctx and clear its row; prove no such copy of a live owned item occurs inside the packed loop.",
+    "Audit native_resolved seed/cache writes for exact immutable type and audit-mode behavior.",
+    "Invalidate every CoreItem f_ctx assignment before bypassing any context read, including lifecycle/setup stores.",
+    "Keep active eligibility proof at tick entry; a Gem getter can change eligibility afterwards, when the original tick has already passed that check.",
+    "Keep the context reference captured at the original pre-getter point even if a getter changes the live field later.",
+    "Use the private packed scope and retain the complete ordinary C++ path."
+  ],
+  "other_context_assignments_in_same_shard": [
+    {
+      "file": "gen/shards/shard_00.cpp",
+      "line": 6202,
+      "enclosing_method": "Gd__gd_core__CoreBuff::init_fields",
+      "text": "this->f_ctx = gd::GdVal::null();"
+    },
+    {
+      "file": "gen/shards/shard_00.cpp",
+      "line": 6272,
+      "enclosing_method": "Gd__gd_core__CoreBuff::set_prop",
+      "text": "case SYM_GEN_ctx_3: this->f_ctx = val; return true;"
+    },
+    {
+      "file": "gen/shards/shard_00.cpp",
+      "line": 6346,
+      "enclosing_method": "Gd__gd_core__CoreBuff::fn_init",
+      "text": "this->f_ctx = gd::native_inline_get_prop(gd_ctx, lv__character, SYM_GEN_ctx_3);"
+    }
+  ],
+  "parser_limit": "Text inventory of assignments and generated top-level method names; not a whole-program alias/call-graph proof.",
+  "generated_meta_count": 674,
+  "core_item_subclass_count": 646,
+  "all_generated_item_context_assignments": [
+    {
+      "file": "gen/shards/shard_00.cpp",
+      "line": 247,
+      "method": "Gd__gd_core__CoreItem::init_fields",
+      "text": "this->f_ctx = gd::GdVal::null();"
+    },
+    {
+      "file": "gen/shards/shard_00.cpp",
+      "line": 435,
+      "method": "Gd__gd_core__CoreItem::set_prop",
+      "text": "case SYM_GEN_ctx_3: this->f_ctx = val; return true;"
+    },
+    {
+      "file": "gen/shards/shard_00.cpp",
+      "line": 1440,
+      "method": "Gd__gd_core__CoreItem::fn_setup",
+      "text": "this->f_ctx = lv__ctx;"
+    }
+  ],
+  "other_direct_context_assignments_in_shards": [],
+  "all_shard_sha256": {
+    "gen/shards/shard_00.cpp": "1773686719c68fe5274c4a705cc2ac972706e4e632cf1e4a9573d8464e3bb6b3",
+    "gen/shards/shard_01.cpp": "60c573cce25cb3a34218afc8f930fc80cbe0b2ed44442a8a0fb402ac255093d8",
+    "gen/shards/shard_02.cpp": "1561d9e2ed2e314abdcb49f16cc15586ccd3f903c322af14e5d6d5de8d9fbf0b",
+    "gen/shards/shard_03.cpp": "920b578b641ca621bb357a30abd36823083388c5abc102c5a610a491cad8db50",
+    "gen/shards/shard_04.cpp": "0e99149868752d572e0e2bdd376543f3e97487f0e20560431257aa642c2b6eb6",
+    "gen/shards/shard_05.cpp": "6bf9a0c77bc6a1bc4ab2aa9cc36412597855f99885b52670afc0d744d14c88bb",
+    "gen/shards/shard_06.cpp": "2f8c7958ddb99ebafb03d4d9b105bcb7b18abeea8dc49a798663dc5f0357741c",
+    "gen/shards/shard_07.cpp": "2f69d1ab4cf9c0ea62fc8d61e5d56d0b088daeb4833194a2d3b25039c1043efc",
+    "gen/shards/shard_08.cpp": "854222ae43c23ba010542065d12e86e4617fe2f00a8d6db92810486253462426",
+    "gen/shards/shard_09.cpp": "f6d137e5a73a04cdc6a8f9f98d1f58287ef77e50443ee47168f86293b0e2c1b6",
+    "gen/shards/shard_10.cpp": "8258355aa5f2ae361ce4f2d8887fd16d5b6e3bb2a4ec016ce4e7d6ddd6136716",
+    "gen/shards/shard_11.cpp": "fdff69d5bbf412e40481d555707162dcd9e3611acec08cd2b5679c0fd68576d9",
+    "gen/shards/shard_12.cpp": "98c2f15cd694eff10faacc3ef64b9ba767bd94f703144f3c49f72970eb593ec7",
+    "gen/shards/shard_13.cpp": "32d724b02fd2db167776d1fd80addbacfb0541a86a65522ed4fe4afdcdd81c0e",
+    "gen/shards/shard_14.cpp": "7fc29be256755a9b08759058d6a0638a8504ae204e479e1c329fa8c626a9f97c",
+    "gen/shards/shard_15.cpp": "aea9ee9eaa5c6b239f9ab257abb00e6de47e6e6349a79f995f4704a149243584"
+  }
+}
