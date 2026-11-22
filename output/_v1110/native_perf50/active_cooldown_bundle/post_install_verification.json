@@ -1,0 +1,137 @@
+{
+  "passed": true,
+  "dll_sha256": "55b62a2044b87311a967878a91d88ef4702641d240594989a09c396f67172ece",
+  "production_source_files": 706,
+  "unchanged_object_headers": 674,
+  "strict_event_cases": 2604,
+  "event_hash_root": "b8066c9224bc418923c62f5a3dafb8912100b21bb0026c3b13669872f90e2f54",
+  "raw_batches": 24,
+  "training_cases": 12,
+  "type_constructor_coverage": {
+    "type_hits": 51782642,
+    "type_fallback": 0,
+    "fused_initializations": 1134539,
+    "factory_fallback": 0
+  },
+  "hot_slot_coverage": {
+    "new_method_hits": 1126227,
+    "new_field_hits": 16608087
+  },
+  "event_identity_coverage": {
+    "fast_identities": 663207,
+    "fallbacks": 0,
+    "fast_emissions": 2550578,
+    "emission_fallbacks": 0
+  },
+  "static_setup_coverage": {
+    "bulk_stack_tables": 202616,
+    "ordered_stack_fallback": 0,
+    "metric_counts": 1272643,
+    "affected_loops": 202616
+  },
+  "dispatch_chain_coverage": {
+    "behavior_methods": 275579,
+    "behavior_empty": 0,
+    "behavior_probes": 777809,
+    "flat_callbacks": 2143020
+  },
+  "spatial_coverage": {
+    "lookups": 9008725,
+    "hits": 3360453,
+    "object_dedup": 3358915,
+    "fallbacks": 0
+  },
+  "motion_index_coverage": {
+    "native_runs": 2517997,
+    "native_entries": 5564319,
+    "kept_entries": 5418491
+  },
+  "targeted_timer_coverage": {
+    "indexed_passes": 5035984,
+    "rebuilds": 5208,
+    "cache_hits": 5030776,
+    "indexed_owners": 9773443,
+    "fallback_passes": 0,
+    "same_pass_resumes": 0,
+    "watched_invalidations": 0,
+    "build_slots": 220201,
+    "build_eligible_owners": 10003,
+    "unknown_boundaries": 0
+  },
+  "internal_layout_evidence": {
+    "historical_oracle": {
+      "GdVal": 24,
+      "GdArr": 24,
+      "CoreItem": 1792,
+      "BattleCtx": 264
+    },
+    "baseline": {
+      "GdVal": 24,
+      "GdArr": 32,
+      "CoreItem": 1792,
+      "BattleCtx": 304
+    },
+    "candidate": {
+      "GdVal": 24,
+      "GdArr": 32,
+      "CoreItem": 1792,
+      "BattleCtx": 328
+    }
+  },
+  "active_cooldown_cases": 1856,
+  "active_cooldown_coverage": {
+    "indexed_phases": 5035984,
+    "rebuilds": 26874,
+    "cache_hits": 5009110,
+    "indexed_owners": 50404556,
+    "build_fallbacks": 0,
+    "same_pass_resumes": 11003,
+    "eligibility_changes": 322196,
+    "build_slots": 1232926,
+    "build_active_owners": 277689,
+    "reserved": 0
+  },
+  "sealed_known_cases": 1056,
+  "sealed_registry_boundary_checks": 4,
+  "closed_packed_mode_verified": true,
+  "target_at20_fps": 173.00865451067557,
+  "goal_target_fps": 200,
+  "goal200_reached": false,
+  "load_range_pct": [
+    8.253596471757985,
+    51.57244669966978
+  ],
+  "fit_validation": {
+    "median_absolute_relative_time_error": 0.017706586745810035,
+    "p90_absolute_relative_time_error": 0.049822929934315204,
+    "constant_median_absolute_relative_time_error": 0.11065187437440435
+  },
+  "evidence_sha256": {
+    "source_before_build.json": "99270997a3cd39f0cb6fef5967e7fab2be46dadadb8122cc9e01f9d81afa0dc3",
+    "bundle_full_gate.json": "ac06a3d17f943a3368e90cfa29cd9a82d96faa63fee0707eaf11c5ab01d2310f",
+    "bundle_vs_deployed_hashes.json": "28b9b465f26f172f309cf88f1cc00fdfbb79d98296645addde2f83d82c10cb57",
+    "ab_assessment.json": "529806ebc7f93d1b6572774d1a1446f95060b8288ce0056c3e4ca6f667edd03c",
+    "bundle_serial.json": "23e0ee61584a756aef7509de383f3d1821a024ce1318dc3a50c7219f59b6631e",
+    "bundle_load_calibration.json": "9f912a0e138d1db388a89e0285b073c866a3ffdf7dd1aaf702be0766e4fc113e",
+    "bundle_load20.json": "b2d673e5f612ee3e5305723b18559d3d6b101129e1509c09a703f7ef391960b7",
+    "bundle_installation.json": "d777bc8213e9f42e448b878cf8db4c75af77abbfb532c20a5d19052d9e5ad3e1",
+    "static_setup_tests.json": "c65c79ea9219bbf4b1c08fb59633eb1281fcbdbabd245ece58623cc1546b5202",
+    "dispatch_chain_tests.json": "edfe61a52773f5b5337a114709bf0596e1cd01a777cbdaf51c6ccccbdceab91a",
+    "spatial_tests.json": "7bfc05d8f588b639d64111205f9f79cc154febbd215962f3ed305ac669e6eeaa",
+    "motion_indices_tests.json": "4ea9e8f58ab14c65586a0427e6c460a31c5112e5316e17383bbad9ddb9032bbf",
+    "targeted_timer_tests.json": "faee8aa2596f08fcbfc46f13fd165a11c442465c53440e0a8fcd3246902c40e4",
+    "dispatch_chain_production_cases.json": "078090376dfb121d5f494868a40efe3bf4d16989d8c43b50b742696a82a06d2f",
+    "spatial_production_cases.json": "d02eb3111abd8c6db22c917f9c809465b1241ab101834464b4607d559a689b2c",
+    "motion_indices_production_cases.json": "8fd6a914a25ad74ecaab72a241083f1ecd0fbf789ba2a817e979c197aef26fe3",
+    "targeted_timer_production_cases.json": "071f32a114ba9fa50fd720b54995d3dc8b57940530b36a778f761fc2f7ef2b19",
+    "targeted_timer_safety_production_cases.json": "3075ae6a62b49117887e78ce26014477d9cdcf9852251f4c0257db8f0a9e88d9",
+    "targeted_timer_ownership_production_cases.json": "6d23361a4597368b3dac4e8c8ec8a9588e4c2f0106d663eb68a7b20e8261dc37",
+    "closed_known_tests.json": "acb9e85f1832d24fe5cf9c15339a2120f0c36dd5f7b5d878047e6d3df2992fed",
+    "closed_known_tests_cases.json": "db73cd801568ece22e5cc18fe03f405c5d91797cb8dba873277c580097e7ccda",
+    "closed_registry_tests.json": "e634b53c330f7dd7f1774f312307d3444c3e2a588835e7bc70fc50979a29acb5",
+    "active_cooldown_tests.json": "e3b0963e098427656bc0acf4f8877342361664fc55d079b981f1cff0b7666b00",
+    "active_cooldown_tests_cases.json": "7d29b45eb1532aaf78e8df19c5326cd81b0b0660feb143f8e049acf52c6cc7bb",
+    "static_setup_production_cases.json": "21ed11beb80da7e8eea183d4ade06fa9433a79d9d904eebd7b31bab45ef4358f",
+    "full_type_audit.json": "5e3d0c5140f91847ae22708549ca498f99d86561a69fc219547654e61d3082e9"
+  }
+}

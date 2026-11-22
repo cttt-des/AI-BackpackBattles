@@ -1,0 +1,9 @@
+{
+  "selected_assessment": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_perf50\\active_cooldown_bundle\\ab_assessment_32.json",
+  "assessment_sha256": "976269a5f6cd986cc8515346d9af6f9be6f5d7371912ae87bcfc8983723f018b",
+  "candidate_dll_sha256": "55b62a2044b87311a967878a91d88ef4702641d240594989a09c396f67172ece",
+  "status": "positive_combined_evidence",
+  "original24_retained": true,
+  "no_more_same_source_groups": true,
+  "not_deployed": true
+}

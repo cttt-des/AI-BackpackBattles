@@ -1,0 +1,49 @@
+Starting independent group 1/3
+{"report": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_perf50\\active_cooldown_bundle\\ab_1.json", "pairs": 8, "main_thread_cpu_s": {"median_reduction_pct": 5.682060126043265, "candidate_wins": 5, "baseline_wins": 3, "range_reduction_pct": [-21.484375, 26.699029126213592]}, "wall_s": {"median_reduction_pct": 5.049654923493296, "candidate_wins": 4, "baseline_wins": 4, "range_reduction_pct": [-24.604305745388455, 31.20846536694509]}}
+Starting independent group 2/3
+{"report": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_perf50\\active_cooldown_bundle\\ab_2.json", "pairs": 8, "main_thread_cpu_s": {"median_reduction_pct": -2.2934097803259945, "candidate_wins": 4, "baseline_wins": 4, "range_reduction_pct": [-22.794117647058833, 8.679245283018865]}, "wall_s": {"median_reduction_pct": -2.6806552283755725, "candidate_wins": 3, "baseline_wins": 5, "range_reduction_pct": [-25.922586025214155, 8.160892831439426]}}
+Starting independent group 3/3
+{"report": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_perf50\\active_cooldown_bundle\\ab_3.json", "pairs": 8, "main_thread_cpu_s": {"median_reduction_pct": 1.3215859030836996, "candidate_wins": 6, "baseline_wins": 2, "range_reduction_pct": [-2.298850574712641, 17.63224181360201]}, "wall_s": {"median_reduction_pct": 1.4086871326370765, "candidate_wins": 8, "baseline_wins": 0, "range_reduction_pct": [0.3435995710413642, 12.244086630274486]}}
+{
+  "baseline_dll_sha256": "686f0d6cdb2fc223d4ed50319b31e786eea14383b4ffb9a8fe8633395ee07b43",
+  "candidate_dll_sha256": "55b62a2044b87311a967878a91d88ef4702641d240594989a09c396f67172ece",
+  "status": "positive_combined_evidence",
+  "individual_components_not_rejected": true,
+  "metrics": {
+    "main_thread_cpu_s": {
+      "paired_median_time_reduction_pct": 1.526717557251911,
+      "sum_time_reduction_pct": 2.3355506282335514,
+      "candidate_wins": 15,
+      "ties": 0,
+      "pairs": 24
+    },
+    "wall_s": {
+      "paired_median_time_reduction_pct": 1.1554981822110844,
+      "sum_time_reduction_pct": 2.4600545965346887,
+      "candidate_wins": 15,
+      "ties": 0,
+      "pairs": 24
+    }
+  },
+  "group_medians": [
+    {
+      "main_thread_cpu_s": 5.682060126043265,
+      "wall_s": 5.049654923493296
+    },
+    {
+      "main_thread_cpu_s": -2.2934097803259945,
+      "wall_s": -2.6806552283755725
+    },
+    {
+      "main_thread_cpu_s": 1.3215859030836996,
+      "wall_s": 1.4086871326370765
+    }
+  ],
+  "background_load_range_pct": [
+    2.588655413677433,
+    48.25141453856578
+  ],
+  "on_ac_all": true,
+  "semantics_and_raw24_required_before_deployment": true,
+  "interpretation": "This measures a bundle. It does not prove each component helps or that old percentage estimates add together."
+}

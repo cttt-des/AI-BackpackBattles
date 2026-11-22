@@ -1,0 +1,11 @@
+{
+  "baseline_dll_sha256": "686f0d6cdb2fc223d4ed50319b31e786eea14383b4ffb9a8fe8633395ee07b43",
+  "candidate_dll_sha256": "55b62a2044b87311a967878a91d88ef4702641d240594989a09c396f67172ece",
+  "runtime_data_sha256": "55bdd068cf3308547de78b45abbed4bf4f57e8253fbec82313a99578defa00ae",
+  "unchanged_cpp_event_streams": 2604,
+  "cohorts": {
+    "base": 914,
+    "expand": 1690
+  },
+  "ordered_case_and_cpp_event_hashes_sha256": "b8066c9224bc418923c62f5a3dafb8912100b21bb0026c3b13669872f90e2f54"
+}

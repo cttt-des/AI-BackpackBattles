@@ -1,0 +1,16 @@
+{
+  "reason": "First24 positive by declared median rule,but removal of group3 gives CPU0 and wall negative;use the original one-followup allowance before deployment",
+  "first_assessment_sha256": "a94d93fe924b23a9eb6e66fb9ad4ed6abb57c51dc8e8869ad35a9291771c84c2",
+  "baseline_dll_sha256": "686f0d6cdb2fc223d4ed50319b31e786eea14383b4ffb9a8fe8633395ee07b43",
+  "candidate_dll_sha256": "16174b15e922e0de9cddc95a7142413e63ec1505ca85390691db4b9b5eb5d078",
+  "additional_groups": 1,
+  "additional_pairs": 8,
+  "all_original_samples_retained": true,
+  "total_pairs": 32,
+  "same_fixed200_repetitions": 4,
+  "same_single_dll_workers": true,
+  "warmup_seconds": 120,
+  "decision": "Deploy only if CPU and wall medians over all32 pairs remain positive and all prior semantic/raw24 gates pass;no further groups for this source",
+  "no_primary_report_overwrite": true,
+  "no_semantic_or_raw24_rerun_for_unchanged_dll": true
+}

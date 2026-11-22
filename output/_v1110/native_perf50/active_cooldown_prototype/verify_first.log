@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "cases": 1856,
+  "differences": {
+    "state_hashes": [],
+    "legacy_hashes": []
+  },
+  "baseline_dll_sha256": "686f0d6cdb2fc223d4ed50319b31e786eea14383b4ffb9a8fe8633395ee07b43",
+  "candidate_dll_sha256": "ee39b6e1748a374772c6d9fe5fcd26edda37a1b6954c5dac573f9700bd2f8a93",
+  "actual_independent_baseline_dll": true,
+  "original_phase_extracted_from_baseline": true,
+  "only_tick_handlers_substituted": true,
+  "closed_mode_explicitly_exercised": true,
+  "four_rounding_modes": true,
+  "mutable_suffixes_and_nested_phases": true,
+  "old_layout": {
+    "GdVal": 24,
+    "GdArr": 32,
+    "CoreItem": 1792,
+    "BattleCtx": 304
+  },
+  "new_layout": {
+    "GdVal": 24,
+    "GdArr": 32,
+    "CoreItem": 1792,
+    "BattleCtx": 328
+  },
+  "source_manifest_sha256": "f8876009105dd101ba66d8a87aa0522e9ace3a4d70a201186e5f61fc4bb33f29",
+  "dependencies": {
+    "cooldown_original_phase.hpp": "8cf67ec266a496cf24710d90e6e8f968a7536a97c1741af76b9047f4521fea77",
+    "test.cpp": "305fb9bf9dd2271981d3e9e89413dc21f5a5c9363fed8bb11f67f86e5dbdce56"
+  },
+  "no_performance_claim": true
+}

@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "math_cases": 33856,
+  "value_variants": 46,
+  "rounding_modes": 4,
+  "all_value_bits_and_fenv_equal": true,
+  "baseline_dll_sha256": "686f0d6cdb2fc223d4ed50319b31e786eea14383b4ffb9a8fe8633395ee07b43",
+  "independent_dll_math": true,
+  "helper_sha256": "479ffcfffcbef54f94c0be7425aedee2a423c3b164a33d9edce3b7477e2d5f72",
+  "fixture_sha256": "e3013d71d1f1e2c99700305f54324c83922e2b20647e25d6c1fe0a8b36c4cbda"
+}

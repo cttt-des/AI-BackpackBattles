@@ -1,0 +1,38 @@
+{
+  "dll_sha256": "55b62a2044b87311a967878a91d88ef4702641d240594989a09c396f67172ece",
+  "inputs_sha256": "d94b16d42cc88e9a3850a77c9360b9c4c4fdd676cb252e463044a903db2a5fef",
+  "profile_sha256": "1f1ee37f900cd2f500743756093dd5058027c13bb76c9c7b8bc48002930c9714",
+  "samples": 2034,
+  "replay_root_samples": 2031,
+  "exclusive_phase_samples": {
+    "other_frame": 722,
+    "assembly": 359,
+    "trigger_chain": 844,
+    "other_setup_export": 106,
+    "outside_replay": 3
+  },
+  "replay_phase_pct": {
+    "other_frame": 35.54899064500246,
+    "assembly": 17.676021664204825,
+    "trigger_chain": 41.55588380108321,
+    "other_setup_export": 5.219103889709502
+  },
+  "dictionary_and_hash_leaf_samples": 65,
+  "generic_method_leaf_samples": 86,
+  "tls_leaf_callers": [
+    [
+      "gd::BattleArena::alloc_raw_locked(unsigned long long, unsigned long long) [clone .constprop.0]",
+      5
+    ]
+  ],
+  "load20_fitted_fps": 173.00865451067557,
+  "goal_fps": 200,
+  "implied_throughput_increase_pct": 15.601153344417762,
+  "implied_time_reduction_pct": 13.495672744662212,
+  "limits": [
+    "Sample attribution is not measured speedup or an optimization ceiling.",
+    "Phase classification uses stack names; inlined work stays with its emitted parent.",
+    "The load fit does not remove frequency, temperature or workload-type effects.",
+    "Unchanged ordering, RNG, arithmetic and observable aliases remain required."
+  ]
+}

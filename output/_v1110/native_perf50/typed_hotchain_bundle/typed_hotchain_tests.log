@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "dll_sha256": "16174b15e922e0de9cddc95a7142413e63ec1505ca85390691db4b9b5eb5d078",
+  "cases": 13112,
+  "actual_final_native_method_checked": true,
+  "actual_final_native_entry_exercised": true,
+  "production_counts": [
+    29376,
+    0,
+    24672,
+    0,
+    8784,
+    6384,
+    0,
+    24600,
+    24672,
+    0,
+    1104,
+    0
+  ],
+  "all_actual_old_dll_case_and_legacy_hashes_equal": true,
+  "independent_scalar_helper_math_cases": 33856,
+  "independent_iterator_cases": 240,
+  "helper_sha256": "479ffcfffcbef54f94c0be7425aedee2a423c3b164a33d9edce3b7477e2d5f72",
+  "layouts_unchanged": true,
+  "nonvirtual_declaration_projection_exact": true,
+  "original_context_fallback_retained": true,
+  "oracle_sha256": "8a7e84e1bb2ca7c336ccaa808d41e4473a1934999ba5a773bb4bd30f28208238"
+}

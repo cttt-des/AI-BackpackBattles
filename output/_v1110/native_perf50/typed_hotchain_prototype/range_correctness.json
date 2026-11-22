@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "cases": 240,
+  "fast_and_fallback_exercised": true,
+  "helper_sha256": "479ffcfffcbef54f94c0be7425aedee2a423c3b164a33d9edce3b7477e2d5f72",
+  "fixture_sha256": "15f85aee7e82b6a26eef34986a8e02c05619adf97cc522960d60c32dbde701dc",
+  "baseline_dll_sha256": "686f0d6cdb2fc223d4ed50319b31e786eea14383b4ffb9a8fe8633395ee07b43"
+}

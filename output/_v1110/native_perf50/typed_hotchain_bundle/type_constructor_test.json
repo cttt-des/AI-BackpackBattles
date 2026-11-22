@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "dll_sha256": "16174b15e922e0de9cddc95a7142413e63ec1505ca85390691db4b9b5eb5d078",
+  "output": "{\"type_predicates\":454276,\"original_fused_initializations\":1348,\"graph_fields\":210938,\"boundaries\":2039,\"aliases_payloads_rng_ids_order_checked\":true}\n",
+  "compiled_against_candidate_headers": true
+}

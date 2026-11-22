@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "dll_sha256": "16174b15e922e0de9cddc95a7142413e63ec1505ca85390691db4b9b5eb5d078",
+  "output": "Label slot selection, callback order, RNG bounds, captured size, future writes, replacement and dynamic fallback passed\n",
+  "compiled_against_candidate_headers": true
+}
