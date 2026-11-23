@@ -1,0 +1,155 @@
+{
+  "passed": true,
+  "dll_sha256": "c46cc19c06fb3c424a470f04bb7a0ef5acf8b7ff01caaccd5f41a5c44d955ee1",
+  "production_source_files": 707,
+  "unchanged_object_headers": 674,
+  "strict_event_cases": 2604,
+  "event_hash_root": "b8066c9224bc418923c62f5a3dafb8912100b21bb0026c3b13669872f90e2f54",
+  "raw_batches": 24,
+  "training_cases": 12,
+  "type_constructor_coverage": {
+    "type_hits": 51782642,
+    "type_fallback": 0,
+    "fused_initializations": 1134539,
+    "factory_fallback": 0
+  },
+  "hot_slot_coverage": {
+    "new_method_hits": 1126227,
+    "new_field_hits": 16608087
+  },
+  "event_identity_coverage": {
+    "fast_identities": 663207,
+    "fallbacks": 0,
+    "fast_emissions": 2550578,
+    "emission_fallbacks": 0
+  },
+  "static_setup_coverage": {
+    "bulk_stack_tables": 202616,
+    "ordered_stack_fallback": 0,
+    "metric_counts": 1272643,
+    "affected_loops": 202616
+  },
+  "dispatch_chain_coverage": {
+    "behavior_methods": 275579,
+    "behavior_empty": 0,
+    "behavior_probes": 777809,
+    "flat_callbacks": 2143020
+  },
+  "spatial_coverage": {
+    "lookups": 9008725,
+    "hits": 3360453,
+    "object_dedup": 3358915,
+    "fallbacks": 0
+  },
+  "motion_index_coverage": {
+    "native_runs": 2517997,
+    "native_entries": 5564319,
+    "kept_entries": 5418491
+  },
+  "targeted_timer_coverage": {
+    "indexed_passes": 5035984,
+    "rebuilds": 5208,
+    "cache_hits": 5030776,
+    "indexed_owners": 9773443,
+    "fallback_passes": 0,
+    "same_pass_resumes": 0,
+    "watched_invalidations": 0,
+    "build_slots": 220201,
+    "build_eligible_owners": 10003,
+    "unknown_boundaries": 0
+  },
+  "internal_layout_evidence": {
+    "historical_oracle": {
+      "GdVal": 24,
+      "GdArr": 24,
+      "CoreItem": 1792,
+      "BattleCtx": 264
+    },
+    "baseline": {
+      "GdVal": 24,
+      "GdArr": 32,
+      "CoreItem": 1792,
+      "BattleCtx": 328
+    },
+    "candidate": {
+      "GdVal": 24,
+      "GdArr": 32,
+      "CoreItem": 1792,
+      "BattleCtx": 328
+    }
+  },
+  "literal_span_cases": 5184,
+  "event_factory_cases": 5120,
+  "integer_grid_dictionary_cases": 1792,
+  "integer_grid_query_cases": 23520,
+  "integer_grid_coverage": {
+    "fast_queries": 9008725,
+    "ordinary_queries": 0,
+    "enabled_dicts": 5208,
+    "rejected_dicts": 0,
+    "mode_conversions": 0,
+    "reserved": 0
+  },
+  "active_cooldown_cases": 1856,
+  "active_cooldown_coverage": {
+    "indexed_phases": 5035984,
+    "rebuilds": 26874,
+    "cache_hits": 5009110,
+    "indexed_owners": 50404556,
+    "build_fallbacks": 0,
+    "same_pass_resumes": 11003,
+    "eligibility_changes": 322196,
+    "build_slots": 1232926,
+    "build_active_owners": 277689,
+    "reserved": 0
+  },
+  "sealed_known_cases": 1056,
+  "sealed_registry_boundary_checks": 4,
+  "closed_packed_mode_verified": true,
+  "target_at20_fps": 120.67214346780106,
+  "goal_target_fps": 200,
+  "goal200_reached": false,
+  "load_range_pct": [
+    18.817264604074467,
+    65.00422848663183
+  ],
+  "fit_validation": {
+    "median_absolute_relative_time_error": 0.023471052642327038,
+    "p90_absolute_relative_time_error": 0.059486049861762716,
+    "constant_median_absolute_relative_time_error": 0.1219169247910123
+  },
+  "evidence_sha256": {
+    "literal_span_tests.json": "48af142955f82c4f383f7ac36fbcbfce7b5fe0f3afa41fbf67800eeea8439706",
+    "post_ab_directed_regressions.json": "c32ac12e916b9d3f7d23dbed97bb5aab37bafd979999a3f68e0e37ad938c4090",
+    "event_factory_tests.json": "db4edc687828086bd575a5c114b599fdaa35081fd373a6ab30b291b3aab8e967",
+    "source_before_build.json": "5b5061cd89977824cefe2c5e521ab6855ed1e96664146224009eac77368fe970",
+    "bundle_full_gate.json": "32d7a9170509bff703af9d4bac541877a8d57e21278da8c2d0c4323ee43b6c50",
+    "bundle_vs_deployed_hashes.json": "1727b807178e99906764ec118d10c28caa438d07aba820a45cc4b610cc3943dd",
+    "ab_assessment.json": "61891c7577b4c675fe3ff49c4811eb9d23f1d03ee0661648a4cc4d45bb0d8557",
+    "bundle_serial.json": "825d0d3224493c0fc2e04d9e6c6ac60a8d3e2713fe9c64aec8f05f4e38661731",
+    "bundle_load_calibration.json": "619df6e8ad84a752e9d56c8ac3ee44cdc6ece9167c4221abc1b91c6f6bb67f38",
+    "bundle_load20.json": "333bbdc4455e292eb2b9656205e4928a909c9e6841f0c9440ac74ed2a6026352",
+    "bundle_installation.json": "7eac27a0118facb3b0a927b39e77deee36aa73aa88443dae8fdaea904392b7de",
+    "static_setup_tests.json": "7dcb80d86ab6f4c72bf8880480e4bcf6e881b5a458480636faa6d0ba6ef51298",
+    "dispatch_chain_tests.json": "d217628a448a021487c082ee107f5b12bd366d93669c5154428027e518301c60",
+    "spatial_tests.json": "c97f5006bfa62b29dffb7f9bf76242eb6e2d11748a015720b89e767cb3ea7b76",
+    "motion_indices_tests.json": "4c97e829e728106ac088b266b89b104c284ea4bd8fcaa629b557abebf8821b7d",
+    "targeted_timer_tests.json": "ac9c209f8508515604e16b00c4761c2e7f01d1ee1934b73e36b36f2a1065bfbc",
+    "dispatch_chain_production_cases.json": "078090376dfb121d5f494868a40efe3bf4d16989d8c43b50b742696a82a06d2f",
+    "spatial_production_cases.json": "d02eb3111abd8c6db22c917f9c809465b1241ab101834464b4607d559a689b2c",
+    "motion_indices_production_cases.json": "8fd6a914a25ad74ecaab72a241083f1ecd0fbf789ba2a817e979c197aef26fe3",
+    "targeted_timer_production_cases.json": "071f32a114ba9fa50fd720b54995d3dc8b57940530b36a778f761fc2f7ef2b19",
+    "targeted_timer_safety_production_cases.json": "3075ae6a62b49117887e78ce26014477d9cdcf9852251f4c0257db8f0a9e88d9",
+    "targeted_timer_ownership_production_cases.json": "6d23361a4597368b3dac4e8c8ec8a9588e4c2f0106d663eb68a7b20e8261dc37",
+    "closed_known_tests.json": "746bd591091e7ad7605b354e61ebe2ea4e0c124642934fe52dfb8acaf9aee4f2",
+    "closed_known_tests_cases.json": "db73cd801568ece22e5cc18fe03f405c5d91797cb8dba873277c580097e7ccda",
+    "closed_registry_tests.json": "0e4e5aa4a326ad9f783ec9b820cc28e33c0770655f813dc0622b75769acb993f",
+    "active_cooldown_tests.json": "0c6982cdc4c2f52d1d073b318130053f6a6c6b139458a80217169a2d4d5ae856",
+    "active_cooldown_tests_cases.json": "7d29b45eb1532aaf78e8df19c5326cd81b0b0660feb143f8e049acf52c6cc7bb",
+    "integer_grid_tests.json": "069b97661fcd3e8d97fb6e4ec1f9a08ee67a56f0fde107b59eff3347e6941450",
+    "integer_grid_dictionary_tests.json": "c3f0bff41f37f71e00394ea9886212ce39fcda9d4c0d318c958970e5768d1d94",
+    "integer_grid_query_tests.json": "bb3ff15c0ae7687c97a2be60e976038cde02f2ecb9749ad347163015bdc32f3a",
+    "static_setup_production_cases.json": "21ed11beb80da7e8eea183d4ade06fa9433a79d9d904eebd7b31bab45ef4358f",
+    "full_type_audit.json": "c68a27ff1ce07a2ec718ae8724d495ed6c60de137eb06567c642b06f0c866408"
+  }
+}

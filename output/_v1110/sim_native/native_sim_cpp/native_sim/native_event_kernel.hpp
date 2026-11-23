@@ -243,3 +243,58 @@ inline bool native_lazy_diagnostic_required(BattleCtx& ctx,unsigned site,bool sk
     return !skipped;
 }
 }
+
+
+namespace gd { bool native_literal_canonical_row(const NativeMethodRow*); }
+
+// This view is used only for fresh, unaliased literals at frozen call sites.
+// A callback that may retain or mutate the array receives a real arena array.
+struct NativeLiteralEventArguments {
+    gd::BattleArena& arena;
+    const gd::GdVal* data;
+    int count;
+    gd::GdVal array;
+    gd::GdVal materialize() {
+        if(array.is_null()) {
+            auto* a=gd::GdArr::create(arena,static_cast<uint32_t>(count));
+            for(int i=0;i<count;++i)a->data[a->len++]=data[i];
+            array=gd::GdVal::from_arr(a);
+        }
+        return array;
+    }
+    gd::GdVal invoke(gd::BattleCtx& ctx,const gd::GdVal& receiver) {
+        if(array.is_null() && ctx.native_resolved_dispatch &&
+           receiver.kind==gd::GdVal::Kind::FuncRef && receiver.fr &&
+           receiver.fr->instance && receiver.fr->method!=gd::SYM_NONE &&
+           (!receiver.fr->binds || !receiver.fr->binds->len) &&
+           gd::native_literal_canonical_row(receiver.fr->instance->native_call_row_)) {
+            // The canonical method wrappers copy every argument cell before any
+            // callback. The header is never passed to a method or opaque code.
+            gd::GdArr borrowed;
+            borrowed.data=const_cast<gd::GdVal*>(data);
+            borrowed.len=borrowed.cap=static_cast<uint32_t>(count);
+            gd::GdVal out;
+            if(gd::native_try_flat_funcref(ctx,receiver,gd::GdVal::from_arr(&borrowed),out))return out;
+            // A failed audit may have observable effects. Do not audit twice.
+            return receiver.fr->call_funcv(ctx,materialize());
+        }
+        const gd::GdVal args[]={materialize()};
+        return native_event_funcv(ctx,receiver,args,1);
+    }
+};
+
+gd::GdVal gd_native_emit_literal_body(Gd__gd_core__CoreEventBus*,const gd::GdVal*,NativeLiteralEventArguments&);
+
+inline gd::GdVal gd_native_emit_literal_event(gd::BattleCtx& caller,const gd::GdVal& receiver,
+        const gd::GdVal* prefix,const gd::GdVal* payload,int count) {
+    NativeLiteralEventArguments arguments{caller.arena,payload,count,gd::GdVal::null()};
+    if(receiver.kind==gd::GdVal::Kind::Obj && receiver.obj &&
+       native_event_type_ok<Gd__gd_core__CoreEventBus>(caller,receiver)) {
+        auto* bus=static_cast<Gd__gd_core__CoreEventBus*>(receiver.obj);
+        if(bus->rt_ctx_->native_event_kernel)return gd_native_emit_literal_body(bus,prefix,arguments);
+        const gd::GdVal args[]={prefix[0],prefix[1],prefix[2],arguments.materialize()};
+        return bus->fn_emitEvent(args,4);
+    }
+    const gd::GdVal args[]={prefix[0],prefix[1],prefix[2],arguments.materialize()};
+    return gd::call_method(caller,receiver,SYM_GEN_emitEvent_1593,args,4);
+}

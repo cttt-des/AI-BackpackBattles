@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "dll_sha256": "c46cc19c06fb3c424a470f04bb7a0ef5acf8b7ff01caaccd5f41a5c44d955ee1",
+  "affected_literal_span_cases": 5184,
+  "retained_type_constructor_test_passed": true,
+  "reports_sha256": {
+    "baseline_literal_cases.json": "34f4635d7f1dd03f8662f5e37e27a8e34fa835e1fa61acf6a0de005c89981f4b",
+    "baseline_literal_first.log": "34f4635d7f1dd03f8662f5e37e27a8e34fa835e1fa61acf6a0de005c89981f4b",
+    "candidate_literal_cases.json": "4a9f56b8143f0a7ca4a084e30af6c8cacb3acbb7958a1e58d44efba4851075b1",
+    "candidate_literal_first.log": "4a9f56b8143f0a7ca4a084e30af6c8cacb3acbb7958a1e58d44efba4851075b1",
+    "constructors_cases.log": "650bb3ee9ffd12c10c03180a22b1aab7a456f8bd9a9738df35a1a973d8fc4ab5",
+    "constructors_compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "literal_spans.json": "48af142955f82c4f383f7ac36fbcbfce7b5fe0f3afa41fbf67800eeea8439706"
+  }
+}

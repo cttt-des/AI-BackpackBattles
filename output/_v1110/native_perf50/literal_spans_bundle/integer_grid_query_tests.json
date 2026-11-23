@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "cases": 23520,
+  "dll_sha256": "c46cc19c06fb3c424a470f04bb7a0ef5acf8b7ff01caaccd5f41a5c44d955ee1",
+  "variants": {
+    "ordinary": {
+      "passed": true,
+      "cases": 11760,
+      "first_differences": [],
+      "count": 0,
+      "fast_queries": 0,
+      "raw_sha256": "d02eb3111abd8c6db22c917f9c809465b1241ab101834464b4607d559a689b2c"
+    },
+    "forced_grid": {
+      "passed": true,
+      "cases": 11760,
+      "first_differences": [],
+      "count": 0,
+      "fast_queries": 3248,
+      "raw_sha256": "d02eb3111abd8c6db22c917f9c809465b1241ab101834464b4607d559a689b2c"
+    }
+  },
+  "original_fixture_sha256": "d3e7eeb0e74aa95fd69152a02f0435530732d1dfb57cf3ad829bd885955bd56c",
+  "independent_baseline_receipt_sha256": "d02eb3111abd8c6db22c917f9c809465b1241ab101834464b4607d559a689b2c",
+  "ordinary_cases_untouched": true,
+  "forced_variant_only_enables_compatible_current_field_before_invoke": true,
+  "compares_original_return_alias_mutation_callbacks_rng_fenv_and_old_counters": true,
+  "no_performance_claim": true
+}
