@@ -1,0 +1,89 @@
+{
+  "passed": true,
+  "cases": 1792,
+  "first_differences": [],
+  "difference_count": 0,
+  "baseline_dll_sha256": "d8a7365191ad57a48ac378a7db77e8587169814f6f74298734f7d0b4786e3a76",
+  "candidate_dll_sha256": "0b321ec95f2d4a15d667c8b7b1c4d84c7bbf5a7e445f71543f67a0bff5d7e68c",
+  "actual_independent_deployed_dll_oracle": true,
+  "compares_canonical_entries_order_hashes_values_results_fenv_and_mxcsr": true,
+  "all_original_rounding_and_daz_ftz_modes": true,
+  "fast_queries": 652320,
+  "old_layout": {
+    "GdDict": 32,
+    "GdVal": 24,
+    "GdArr": 32,
+    "BattleCtx": 328
+  },
+  "new_layout": {
+    "GdDict": 32,
+    "GdVal": 24,
+    "GdArr": 32,
+    "BattleCtx": 328
+  },
+  "dependencies": {
+    "native_integer_grid.hpp": "9f95bf43c33196bf1de72a6dfa5ded4a9021d8fc570d525558078a96e0568cfd",
+    "test.cpp": "c0e2f9566447e3547daac41abf584e514fee79d71708c0dee710df8ccb3e7cb9"
+  },
+  "no_performance_claim": true
+}
+In file included from C:\Users\Windows\AppData\Local\Temp\native-integer-grid-queries-4ocr8pgk\main.cpp:2:
+C:\Users\Windows\AppData\Local\Temp\native-integer-grid-queries-4ocr8pgk\fixture.cpp: In function 'int retained_spatial_main(int, char**)':
+C:\Users\Windows\AppData\Local\Temp\native-integer-grid-queries-4ocr8pgk\fixture.cpp:107:1: warning: control reaches end of non-void function [-Wreturn-type]
+  107 | }
+      | ^
+In file included from C:\Users\Windows\AppData\Local\Temp\native-integer-grid-queries-8fb15v73\main.cpp:2:
+C:\Users\Windows\AppData\Local\Temp\native-integer-grid-queries-8fb15v73\fixture.cpp: In function 'int retained_spatial_main(int, char**)':
+C:\Users\Windows\AppData\Local\Temp\native-integer-grid-queries-8fb15v73\fixture.cpp:109:1: warning: control reaches end of non-void function [-Wreturn-type]
+  109 | }
+      | ^
+{
+  "passed": true,
+  "cases": 23520,
+  "dll_sha256": "0b321ec95f2d4a15d667c8b7b1c4d84c7bbf5a7e445f71543f67a0bff5d7e68c",
+  "variants": {
+    "ordinary": {
+      "passed": true,
+      "cases": 11760,
+      "first_differences": [],
+      "count": 0,
+      "fast_queries": 0,
+      "raw_sha256": "d02eb3111abd8c6db22c917f9c809465b1241ab101834464b4607d559a689b2c"
+    },
+    "forced_grid": {
+      "passed": true,
+      "cases": 11760,
+      "first_differences": [],
+      "count": 0,
+      "fast_queries": 3248,
+      "raw_sha256": "d02eb3111abd8c6db22c917f9c809465b1241ab101834464b4607d559a689b2c"
+    }
+  },
+  "original_fixture_sha256": "d3e7eeb0e74aa95fd69152a02f0435530732d1dfb57cf3ad829bd885955bd56c",
+  "independent_baseline_receipt_sha256": "d02eb3111abd8c6db22c917f9c809465b1241ab101834464b4607d559a689b2c",
+  "ordinary_cases_untouched": true,
+  "forced_variant_only_enables_compatible_current_field_before_invoke": true,
+  "compares_original_return_alias_mutation_callbacks_rng_fenv_and_old_counters": true,
+  "no_performance_claim": true
+}
+{
+  "passed": true,
+  "dll_sha256": "0b321ec95f2d4a15d667c8b7b1c4d84c7bbf5a7e445f71543f67a0bff5d7e68c",
+  "dictionary_cases": 1792,
+  "query_cases": 23520,
+  "scalar_cases": 132576,
+  "actual_optimized_dll_independent_oracles": true,
+  "fast_dictionary_queries": 652320,
+  "forced_spatial_fast_queries": 3248,
+  "layouts": {
+    "GdDict": 32,
+    "GdVal": 24,
+    "GdArr": 32,
+    "BattleCtx": 328
+  },
+  "receipt_sha256": {
+    "integer_grid_dictionary_tests.json": "867ac23dcd984aa8504a0263a12b00aa5a86c51b24c3fecfd336864e34d99528",
+    "integer_grid_query_tests.json": "90791ac48dc35740c686eeb5cb8ec6e52a2c6696a5ca61954c3e1d0ff5e66429"
+  },
+  "scalar_receipt_sha256": "6fdacc523243d7475f7bd3e71df91552a08bc8b0e79051953897e062439ae5b9"
+}

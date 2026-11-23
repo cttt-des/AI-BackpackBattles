@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "cases": 1025,
+  "difference_count": 0,
+  "first_differences": [],
+  "fixture_sha256": "a696e3262dcd2740176d77151f4c44f309373fd056d9a270e7de3690b7a2a07f",
+  "baseline_dll_sha256": "d8a7365191ad57a48ac378a7db77e8587169814f6f74298734f7d0b4786e3a76",
+  "dll_sha256": "0b321ec95f2d4a15d667c8b7b1c4d84c7bbf5a7e445f71543f67a0bff5d7e68c",
+  "original_metadata": {
+    "cases": 1025,
+    "parallel_strings": 800,
+    "GdArr": 32,
+    "GdDict": 32,
+    "GdVal": 24
+  },
+  "actual_independent_baseline_dll": true
+}

@@ -1,0 +1,7 @@
+D:\文件资料\学习\自动背包AI\output\_v1110\test_native_storage_constructors.cpp: In member function 'void Graph::value(const V&)':
+D:\文件资料\学习\自动背包AI\output\_v1110\test_native_storage_constructors.cpp:62:117: error: 'const struct gd::GdEnum::KV' has no member named 'name'
+   62 |         case V::Kind::Enum:if(v.en){add(v.en->len);for(unsigned i=0;i<v.en->len;++i){auto& e=v.en->items[i];bytes(e.name,unsigned(std::strlen(e.name)));add(uint64_t(e.val));}}else add(0);break;
+      |                                                                                                                     ^~~~
+D:\文件资料\学习\自动背包AI\output\_v1110\test_native_storage_constructors.cpp:62:145: error: 'const struct gd::GdEnum::KV' has no member named 'name'
+   62 |         case V::Kind::Enum:if(v.en){add(v.en->len);for(unsigned i=0;i<v.en->len;++i){auto& e=v.en->items[i];bytes(e.name,unsigned(std::strlen(e.name)));add(uint64_t(e.val));}}else add(0);break;
+      |                                                                                                                                                 ^~~~

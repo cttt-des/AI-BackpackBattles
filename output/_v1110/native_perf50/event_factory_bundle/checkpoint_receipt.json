@@ -1,0 +1,13 @@
+{
+  "local_commit": "cb59e3fc361ce862d325f61b845b61fdcedc1c3b",
+  "prepared_backup_commit": "8e6ef3449e7a5a26d9d3fc7f268e380fbc7694fe",
+  "local_preservation_ref": "refs/heads/codex/event-factory-backup-20261123",
+  "parent_remote_verified_commit": "a3e6658fea86d306fbfb3e84dcc7d65918853b24",
+  "own_files_saved": 6860,
+  "production_source_files_verified": 707,
+  "candidate_installed": true,
+  "production_dll_sha256": "d8a7365191ad57a48ac378a7db77e8587169814f6f74298734f7d0b4786e3a76",
+  "user_existing_changes_not_staged": true,
+  "remote_upload_verified": true,
+  "remote_verified_commit": "8e6ef3449e7a5a26d9d3fc7f268e380fbc7694fe"
+}
