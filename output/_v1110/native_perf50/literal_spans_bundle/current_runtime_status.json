@@ -1,0 +1,38 @@
+{
+  "production_dll_sha256": "c46cc19c06fb3c424a470f04bb7a0ef5acf8b7ff01caaccd5f41a5c44d955ee1",
+  "current_optimization": "literal event argument spans",
+  "deployed": true,
+  "post_install_verified": true,
+  "goal200_reached": false,
+  "goal_still_active": true,
+  "fitted_fights_per_second_at20": 120.67214346780106,
+  "raw24": {
+    "median_fights_per_second": 117.11915480261459,
+    "minimum_fights_per_second": 65.4303621544008,
+    "maximum_fights_per_second": 137.07034615056838,
+    "background_load_range_pct": [
+      13.963974797522074,
+      63.270775476463925
+    ],
+    "on_ac_all": true
+  },
+  "calibration24": {
+    "median_fights_per_second": 104.44470582436541,
+    "minimum_fights_per_second": 59.34718100898408,
+    "maximum_fights_per_second": 123.72721045427745,
+    "background_load_range_pct": [
+      18.817264604074467,
+      65.00422848663183
+    ],
+    "on_ac_all": true
+  },
+  "all_formal_protocol_processes_finished": true,
+  "source_files": 707,
+  "object_headers_unchanged": 674,
+  "verified_training_cases": 12,
+  "backup_receipt": "checkpoint_receipt.json",
+  "backup_status_recorded_separately": true,
+  "next_candidate_implemented": false,
+  "next_work": "Count real bound-argument lengths; evaluate local temporary concatenation and lazy bound spans",
+  "profile_receipt_sha256": "2a81cf8a330507833d71809e7f1f35494d5ad58f297bf302c1377d21ad335d4b"
+}

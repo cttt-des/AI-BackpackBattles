@@ -1,0 +1,13 @@
+{
+  "local_commit": "fce63f83c03f6cba90b90c61cb778a48e6c531a1",
+  "prepared_backup_commit": "8c40f0b1b2cbb1ce5227f69757f89eca3bbc644a",
+  "local_preservation_ref": "refs/heads/codex/storage-backup-20261123",
+  "parent_remote_verified_commit": "8e6ef3449e7a5a26d9d3fc7f268e380fbc7694fe",
+  "own_files_saved": 2413,
+  "production_source_files_verified": 707,
+  "candidate_installed": false,
+  "production_dll_sha256": "d8a7365191ad57a48ac378a7db77e8587169814f6f74298734f7d0b4786e3a76",
+  "user_existing_changes_not_staged": true,
+  "remote_upload_verified": true,
+  "remote_verified_commit": "8c40f0b1b2cbb1ce5227f69757f89eca3bbc644a"
+}

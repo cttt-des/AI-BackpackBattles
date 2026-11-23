@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "dll_sha256": "c46cc19c06fb3c424a470f04bb7a0ef5acf8b7ff01caaccd5f41a5c44d955ee1",
+  "independent_actual_baseline_dll_sha256": "b2018eb28b90ae5527d9e0764a8b11e5bf6df0b60df7cb722c67629fcfedb588",
+  "actual_production_label_function_checked": true,
+  "six_exact_production_guarded_expressions_checked": true,
+  "results": {
+    "label": {
+      "cases": 2048,
+      "raw_sha256": "d7fff4086450c704067d764d8b3d5986a3185d6399aa65ad601a2e2cb69fc184",
+      "original_reference_sha256": "d7fff4086450c704067d764d8b3d5986a3185d6399aa65ad601a2e2cb69fc184"
+    },
+    "buff": {
+      "cases": 20736,
+      "raw_sha256": "405254833c7e9df6b31c8a47ca596afb1dbb888f00fcf738ee583e74c2a7d54a",
+      "original_reference_sha256": "405254833c7e9df6b31c8a47ca596afb1dbb888f00fcf738ee583e74c2a7d54a"
+    }
+  },
+  "primitive_integral_float_flags_checks": 40036,
+  "no_timing_repeated": true
+}

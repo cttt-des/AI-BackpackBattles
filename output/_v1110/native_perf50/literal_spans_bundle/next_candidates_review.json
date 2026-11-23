@@ -1,0 +1,70 @@
+{
+  "baseline_dll_sha256": "d8a7365191ad57a48ac378a7db77e8587169814f6f74298734f7d0b4786e3a76",
+  "current_candidate": "literal spans",
+  "current_candidate_frozen": true,
+  "subsequent_candidates_not_implemented": true,
+  "compiler_query": [
+    "g++ -Q -O3 -ffp-contract=off --help=optimizers",
+    "fipa-pta disabled",
+    "fipa-cp-clone enabled",
+    "fsemantic-interposition enabled",
+    "ffp-contract off",
+    "ftrapping-math enabled"
+  ],
+  "primary_source": "https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html#index-fipa-pta",
+  "compiler_candidate": {
+    "flag": "-fipa-pta",
+    "hypothesis": "Interprocedural alias and modification/reference analysis may reduce conservative reloads around variant and event operations; benefit unknown",
+    "manual_caveat": "May use excessive memory and compile time on large units",
+    "selection_requires": "Review current final timing, avoid inherited rejected source, preserve all floating flags, fresh profiles and complete original gate",
+    "not_currently_enabled": true,
+    "not_a_claim_of_speedup": true
+  },
+  "source_candidates": [
+    {
+      "name": "private integer range iteration view",
+      "scope": "CoreBuff private gd_iter_seq(Int) loops",
+      "unproven_requirements": [
+        "Snapshot original length; reproduce uint32 overflow fallback",
+        "Retain original real-array future-slot reads and mutation behavior",
+        "Preserve FENV/RNG/counters and loop variable types"
+      ],
+      "implemented": false
+    },
+    {
+      "name": "deferred bounded identity bytes",
+      "scope": "Existing emitAndLog eager eid2 string",
+      "unproven_requirements": [
+        "Read getters at original point and retain all diagnostics counters",
+        "Snapshot bytes before callbacks because unknown callbacks can mutate identifier contents",
+        "Materialize original captured text if tracing turns on later",
+        "Keep original fallback for oversized, unknown or non-scalar fields"
+      ],
+      "implemented": false
+    }
+  ],
+  "no_local_work_during_ab_raw24_or_calibration": true,
+  "bound_callback_candidate": {
+    "implemented": false,
+    "validated": false,
+    "formal_timing_done": false,
+    "source": "output/_v1110/sim_native/native_sim_cpp/native_sim/gd_rt.cpp:GdFuncRef::call_func",
+    "source_sha256": "f2a983aa50e81735a6def250f08b4b47f91970027dca4e7181ac877e6790b1e1",
+    "observation": "Bound calls currently concatenate into a temporary std::vector<GdVal>, whose cells are independent of the argument array. Current literal span candidate deliberately still materializes bound calls.",
+    "first_step": "Count real incoming/bound argument length distribution and heap concatenations. No speed forecast from allocation count.",
+    "larger_change": "Use a small local temporary for short bound concatenations; retain the original vector branch for larger arity. Optionally extend literal spans through bound calls after preserving the full observe/dispatch ordering.",
+    "proof_requirements": [
+      "Preserve initial invalid-reference guard, then native_timer_observe_object exactly once before reading current binds",
+      "Preserve copying incoming cells before each live binding-cell read, method and instance reload points, old dispatch counters and return value",
+      "The combined temporary stays independent; callbacks can mutate it during nested calls without modifying caller cells or binding cells",
+      "Unknown unbound callbacks still receive the persistent original-shape materialized array",
+      "If observation changes binds, follow the post-observation original branch; never repeat observation or an audit",
+      "Compare actual independent baseline/candidate DLLs across aliases, nested calls, raw-cell mutation, all rounding modes, watch boundaries and counters"
+    ],
+    "must_not_inherit_rejected_bundle_without_new_source_reason": true
+  },
+  "current_production_dll_sha256": "c46cc19c06fb3c424a470f04bb7a0ef5acf8b7ff01caaccd5f41a5c44d955ee1",
+  "current_candidate_deployed": true,
+  "profile_receipt_sha256": "2a81cf8a330507833d71809e7f1f35494d5ad58f297bf302c1377d21ad335d4b",
+  "next_candidate_still_unimplemented": true
+}

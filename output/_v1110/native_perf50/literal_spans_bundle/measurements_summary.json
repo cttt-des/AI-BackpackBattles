@@ -1,0 +1,37 @@
+{
+  "dll_sha256": "c46cc19c06fb3c424a470f04bb7a0ef5acf8b7ff01caaccd5f41a5c44d955ee1",
+  "serial": {
+    "median_fights_per_second": 117.11915480261459,
+    "minimum_fights_per_second": 65.4303621544008,
+    "maximum_fights_per_second": 137.07034615056838,
+    "background_load_range_pct": [
+      13.963974797522074,
+      63.270775476463925
+    ],
+    "on_ac_all": true
+  },
+  "load_calibration": {
+    "median_fights_per_second": 104.44470582436541,
+    "minimum_fights_per_second": 59.34718100898408,
+    "maximum_fights_per_second": 123.72721045427745,
+    "background_load_range_pct": [
+      18.817264604074467,
+      65.00422848663183
+    ],
+    "on_ac_all": true
+  },
+  "fitted_fights_per_second_at20": 120.67214346780106,
+  "r_squared_log_wall_time": 0.9539592764223637,
+  "fit_validation": {
+    "median_absolute_relative_time_error": 0.023471052642327038,
+    "p90_absolute_relative_time_error": 0.059486049861762716,
+    "constant_median_absolute_relative_time_error": 0.1219169247910123
+  },
+  "report_sha256": {
+    "bundle_serial.json": "825d0d3224493c0fc2e04d9e6c6ac60a8d3e2713fe9c64aec8f05f4e38661731",
+    "bundle_load_calibration.json": "619df6e8ad84a752e9d56c8ac3ee44cdc6ece9167c4221abc1b91c6f6bb67f38",
+    "bundle_load20.json": "333bbdc4455e292eb2b9656205e4928a909c9e6841f0c9440ac74ed2a6026352"
+  },
+  "single_run_all_samples_retained": true,
+  "raw24_gate_passed": true
+}
