@@ -1,0 +1,46 @@
+{
+  "dll_sha256": "d8a7365191ad57a48ac378a7db77e8587169814f6f74298734f7d0b4786e3a76",
+  "inputs_sha256": "d94b16d42cc88e9a3850a77c9360b9c4c4fdd676cb252e463044a903db2a5fef",
+  "profile_sha256": "e741b7717814a6fabbbce5c2c8a9a46dfcd2c9a0ff47f31c16c25cdcc61f9ae1",
+  "samples": 2025,
+  "replay_root_samples": 2022,
+  "exclusive_phase_samples": {
+    "other_frame": 629,
+    "assembly": 385,
+    "other_setup_export": 119,
+    "trigger_chain": 889,
+    "outside_replay": 3
+  },
+  "replay_phase_pct": {
+    "other_frame": 31.107814045499506,
+    "assembly": 19.04055390702275,
+    "other_setup_export": 5.885262116716122,
+    "trigger_chain": 43.96636993076162
+  },
+  "dictionary_and_hash_leaf_samples": 77,
+  "generic_method_leaf_samples": 82,
+  "tls_leaf_callers": [
+    [
+      "gd::intern_sym(std::basic_string_view<char, std::char_traits<char> >)",
+      5
+    ],
+    [
+      "gd::BattleArena::alloc_raw_locked(unsigned long long, unsigned long long) [clone .constprop.0]",
+      3
+    ],
+    [
+      "void std::call_once<gd_sim_init::{lambda()#1}>(std::once_flag&, gd_sim_init::{lambda()#1}&&) [clone .constprop.0]",
+      1
+    ]
+  ],
+  "load20_fitted_fps": 157.87889832949037,
+  "goal_fps": 200,
+  "implied_throughput_increase_pct": 26.67937394812805,
+  "implied_time_reduction_pct": 21.060550835254823,
+  "limits": [
+    "Sample attribution is not measured speedup or an optimization ceiling.",
+    "Phase classification uses stack names; inlined work stays with its emitted parent.",
+    "The load fit does not remove frequency, temperature or workload-type effects.",
+    "Unchanged ordering, RNG, arithmetic and observable aliases remain required."
+  ]
+}

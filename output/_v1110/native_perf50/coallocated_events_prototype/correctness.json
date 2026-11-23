@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "cases": 4161,
+  "dll_sha256": "a41c23b0e1d43f09bb3b10ba560c5492e644b9b9d23702ac36a30d68fa78d3cd",
+  "components": {
+    "frame": {
+      "cases": 3073,
+      "report_sha256": "a18c82297951ce1d6e4985a7123e82ddad7f1eb8fa3ca5bce92b99cfe44b0ece"
+    },
+    "params": {
+      "cases": 1024,
+      "report_sha256": "99ccc0a48c467b4cb79d4b1821ec0c8881fd2bc9580ebdf1f9eb3f1c3dcf3cd0"
+    },
+    "storage": {
+      "cases": 64,
+      "report_sha256": "b175f74501b96562cea90f68f19442282bc57ccf18f55325f69007a9588160a9"
+    }
+  },
+  "raw_cases_sha256": {
+    "baseline_display_matrix_cases.json": "58f52cc7b3c3b3cc728cc18ad403c9f1562f9b0fd150e64ab76358dc54af6cc5",
+    "baseline_display_registry_cases.json": "ae1f994b35471aaf9da3ac0afd96e1297918135d5e85be381822acbcca9a4af9",
+    "baseline_event_param_cases.json": "88b52f488760a3438165c2f6175569debbb5ff0d4aa800dc532b35d7a779bef2",
+    "candidate_display_matrix_cases.json": "58f52cc7b3c3b3cc728cc18ad403c9f1562f9b0fd150e64ab76358dc54af6cc5",
+    "candidate_display_registry_cases.json": "ae1f994b35471aaf9da3ac0afd96e1297918135d5e85be381822acbcca9a4af9",
+    "candidate_event_param_cases.json": "0249e44cda947a161fcb18d1db5dce0b369bf928198af13ff2eec15140a314c7"
+  },
+  "fixtures_sha256": {
+    "test_native_frame_proof.cpp": "8879f7f93499a771f5e1f73c03881c9550181acdbebc8af4d220ee2d0a3163fd",
+    "test_native_event_capacity.cpp": "6113e75a57b957ef8b7774b401b5b8f64a0f731ae10c4fe8b74c80e9c284612d",
+    "test_coallocated_event_storage.cpp": "432ae3515c114688526559adc9833bd0f130f27abb89f2fba900c6c66e307c7b"
+  },
+  "actual_dll_independent_baseline_oracles": true,
+  "no_throughput_claim": true
+}

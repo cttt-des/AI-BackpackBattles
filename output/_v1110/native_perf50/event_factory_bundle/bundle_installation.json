@@ -1,0 +1,67 @@
+{
+  "dll_sha256": "d8a7365191ad57a48ac378a7db77e8587169814f6f74298734f7d0b4786e3a76",
+  "gate_sha256": "4891faca4444707c838c533c5cf780b0817c9ff4788c25adb5c950fcac832278",
+  "ab_assessment_path": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_perf50\\event_factory_bundle\\ab_assessment_32.json",
+  "ab_assessment_sha256": "415630931ab928e1e4ae36beab3951f14f7d6e98d851b3d2d10b4dc27e18c6a4",
+  "ab_pairs": 32,
+  "speed_report_sha256": "81e3121727118279dc182c381f7965cb0057ced5ff7620cb17bb64cd39583c89",
+  "training_outcomes": [
+    1,
+    1,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "regeneration_test_sha256": "c3768976f0f2617d6952c859ab18bd0c1830955ddd8b0283af51eeab3e567c7a",
+  "full_regeneration_test_sha256": "6e0ef7f3931efde65c7be000ea1bfe61e379beadc4e057671b4f962c8bfc37bb",
+  "training_matched_baseline": 12,
+  "training_evaluation": {
+    "mean_wr": 0.16666666666666666,
+    "std_opp": 0.28867513459481287,
+    "worst_wr": 0.0,
+    "per_opp": [
+      {
+        "rating": 450.385037,
+        "n_items": 57,
+        "wr": 0.6666666666666666,
+        "errs": 0
+      },
+      {
+        "rating": 527.013755,
+        "n_items": 47,
+        "wr": 0.0,
+        "errs": 0
+      },
+      {
+        "rating": 464.089676,
+        "n_items": 47,
+        "wr": 0.0,
+        "errs": 0
+      },
+      {
+        "rating": 457.699621,
+        "n_items": 61,
+        "wr": 0.0,
+        "errs": 0
+      }
+    ],
+    "n_opp": 4,
+    "seeds": 3,
+    "total_sims": 12,
+    "sim_errors": 0
+  },
+  "runtime": "dist/native_1_1_10",
+  "backup_runtime": "dist/native_1_1_10_before_event_factory_bundle_20261123",
+  "changed_native_files": [
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/gen/shards/shard_05.cpp",
+    "output/_v1110/optimize_native_verified_bundle.py",
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/libgdcore.dll"
+  ]
+}

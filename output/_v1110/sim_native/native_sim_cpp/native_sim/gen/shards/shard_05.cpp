@@ -452,6 +452,46 @@ gd::GdVal Gd__gd_core__CoreCombatLog::fn_getTimeStamp(const gd::GdVal* _args, in
     return gd::native_inline_get_prop(gd_ctx, this->f__ctx, SYM_GEN_combat_time_1306);
     return gd::GdVal::null();
 }
+
+// Closed-world construction has no callback/escape before _init completes.
+// Each event and each dictionary still has its own stable object identity.
+gd::GdVal gd_native_create_event(gd::BattleCtx& ctx,const gd::GdVal* args,int argc) {
+    if(!ctx.native_timer_watch.closed_world)
+        return native_event_new<Gd__gd_core__CoreEvent>(ctx,args,argc);
+    using Event=Gd__gd_core__CoreEvent;
+    using Dict=gd::GdDict;
+    using Entry=gd::GdDictEntry;
+    constexpr auto aligned=[](size_t n,size_t a){return (n+a-1)/a*a;};
+    constexpr size_t params_offset=aligned(sizeof(Event),alignof(Dict));
+    constexpr size_t format_offset=aligned(params_offset+sizeof(Dict),alignof(Dict));
+    constexpr size_t entries_offset=aligned(format_offset+sizeof(Dict),alignof(Entry));
+    constexpr size_t alignment=std::max(alignof(Event),std::max(alignof(Dict),alignof(Entry)));
+    auto* raw=static_cast<unsigned char*>(ctx.arena.alloc_raw(
+        entries_offset+4*sizeof(Entry),alignment));
+    auto* event=new(raw) Event(&ctx);
+    auto* params=new(raw+params_offset) Dict();
+    auto* format=new(raw+format_offset) Dict();
+    // Slots have raw storage only. Normal setters construct used entries.
+    params->entries=reinterpret_cast<Entry*>(raw+entries_offset);
+    params->cap=4;
+    event->f_params=gd::GdVal::from_dict(params);
+    event->f_formatParams=gd::GdVal::from_dict(format);
+    // These are the original _init defaults, coercion and assignment order.
+    // The constructor already set target to Null. The other default stores
+    // in init_fields are unobservable before these unconditional assignments.
+    gd::GdVal id=argc>0?args[0]:gd::GdVal::null();
+    gd::GdVal timestamp=argc>1?args[1]:gd::GdVal::from_float(0.0);
+    gd::GdVal parent=argc>2?args[2]:gd::GdVal::null();
+    gd::GdVal origin=argc>3?args[3]:gd::GdVal::null();
+    gd::GdVal type=argc>4?args[4]:gd::GdVal::null();
+    event->f_id=gd::gd_coerce_int(id);
+    event->f_timestamp=timestamp;
+    event->f_parentEvent=parent;
+    event->f_origin=origin;
+    event->f_type=type;
+    return gd::GdVal::from_obj(event);
+}
+
 gd::GdVal Gd__gd_core__CoreCombatLog::fn_createEvent(const gd::GdVal* _args, int _argc) {
     gd::BattleCtx& gd_ctx = *this->rt_ctx_;
     if (gd_ctx.native_event_kernel) {
@@ -460,7 +500,7 @@ gd::GdVal Gd__gd_core__CoreCombatLog::fn_createEvent(const gd::GdVal* _args, int
     gd::GdVal lv_origin = (_argc > 1) ? _args[1] : gd::GdVal::null();
     gd::GdVal lv_type = (_argc > 2) ? _args[2] : gd::GdVal::null();
     this->f_eventNum = gd::gd_add(gd_ctx, this->f_eventNum, gd::GdVal::from_int(1LL));
-    gd::GdVal lv_event = ([&]() { gd::GdVal _ca[] = {this->f_eventNum, this->fn_getTimeStamp(nullptr, 0), lv_triggerEvent, lv_origin, lv_type}; return native_event_new<Gd__gd_core__CoreEvent>(gd_ctx, _ca, 5); })();
+    gd::GdVal lv_event = ([&]() { gd::GdVal _ca[] = {this->f_eventNum, this->fn_getTimeStamp(nullptr, 0), lv_triggerEvent, lv_origin, lv_type}; return gd_native_create_event(gd_ctx, _ca, 5); })();
     if (!gd_native_character_snapshots_are_noop(this->f__ctx)) {
         gd::GdVal _t957 = gd::gd_iter_seq(gd_ctx.arena, gd::GdVal::from_arr(gd::GdArr::from_init(gd_ctx.arena, {native_event_get<Gd__gd_core__CoreContext, &Gd__gd_core__CoreContext::f_player>(gd_ctx, this->f__ctx, SYM_GEN_player_1302), native_event_get<Gd__gd_core__CoreContext, &Gd__gd_core__CoreContext::f_opponent>(gd_ctx, this->f__ctx, SYM_GEN_opponent_75)})));
         gd::GdArr* _t958 = (_t957.kind == gd::GdVal::Kind::Arr) ? _t957.arr : nullptr;

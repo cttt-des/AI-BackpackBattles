@@ -1,0 +1,9 @@
+{
+  "selected_assessment": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_perf50\\coallocated_events_bundle\\ab_assessment_32.json",
+  "assessment_sha256": "e2a8e0c28867a7fc417ac6be7593855846fa69698e81d19a0707f3a41224b0ed",
+  "candidate_dll_sha256": "7446284523c0350ac8d209b378024542c3032c7ca24bb174d35537c7734920f2",
+  "status": "inconclusive_retained",
+  "original24_retained": true,
+  "no_more_same_source_groups": true,
+  "not_deployed": true
+}

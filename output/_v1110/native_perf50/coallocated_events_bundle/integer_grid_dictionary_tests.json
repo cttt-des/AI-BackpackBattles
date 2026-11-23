@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "cases": 1792,
+  "first_differences": [],
+  "difference_count": 0,
+  "baseline_dll_sha256": "e0bedc4960077407e85763cb5e4af70175a0623cca15e923403fa89174390687",
+  "candidate_dll_sha256": "7446284523c0350ac8d209b378024542c3032c7ca24bb174d35537c7734920f2",
+  "actual_independent_deployed_dll_oracle": true,
+  "compares_canonical_entries_order_hashes_values_results_fenv_and_mxcsr": true,
+  "all_original_rounding_and_daz_ftz_modes": true,
+  "fast_queries": 652320,
+  "old_layout": {
+    "GdDict": 32,
+    "GdVal": 24,
+    "GdArr": 32,
+    "BattleCtx": 328
+  },
+  "new_layout": {
+    "GdDict": 32,
+    "GdVal": 24,
+    "GdArr": 32,
+    "BattleCtx": 328
+  },
+  "dependencies": {
+    "native_integer_grid.hpp": "9f95bf43c33196bf1de72a6dfa5ded4a9021d8fc570d525558078a96e0568cfd",
+    "test.cpp": "c0e2f9566447e3547daac41abf584e514fee79d71708c0dee710df8ccb3e7cb9"
+  },
+  "no_performance_claim": true
+}

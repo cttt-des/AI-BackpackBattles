@@ -1,0 +1,23 @@
+{
+  "status": "inconclusive_retained",
+  "candidate_dll_sha256": "7446284523c0350ac8d209b378024542c3032c7ca24bb174d35537c7734920f2",
+  "not_deployed": true,
+  "no_more_same_source_groups": true,
+  "non_release_calibration": true,
+  "not_release_raw24": true,
+  "single_run_all_samples_retained": true,
+  "background_load_range_pct": [
+    15.914942116889108,
+    66.84568370747597
+  ],
+  "on_ac_all": true,
+  "fitted_fights_per_second_at20": 171.8379466972094,
+  "fit_validation": {
+    "median_absolute_relative_time_error": 0.03835061078721078,
+    "p90_absolute_relative_time_error": 0.07973873819476925,
+    "constant_median_absolute_relative_time_error": 0.17197754841088228
+  },
+  "missing_reason": null,
+  "raw_sha256": "8afde683e1379a4237656f9ff0335512eb58851e0d11c75362d6d9f6d9951732",
+  "fit_exit_code": 0
+}

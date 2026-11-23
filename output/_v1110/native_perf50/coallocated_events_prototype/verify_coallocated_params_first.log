@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "cases": 1024,
+  "difference_count": 0,
+  "first_differences": [],
+  "baseline_dll_sha256": "e0bedc4960077407e85763cb5e4af70175a0623cca15e923403fa89174390687",
+  "dll_sha256": "a41c23b0e1d43f09bb3b10ba560c5492e644b9b9d23702ac36a30d68fa78d3cd",
+  "actual_independent_baseline_dll_oracle": true,
+  "canonical_entries_order_values_aliases_rng_ids_fenv_mxcsr": true,
+  "rounding_modes": 4,
+  "daz_ftz_modes": 4,
+  "baseline_small_capacity_observations": 32,
+  "candidate_small_capacity_observations": 368,
+  "layouts": {
+    "GdDict": 32,
+    "GdVal": 24,
+    "CoreEvent": 240,
+    "BattleCtx": 328
+  },
+  "fixture_sha256": "6113e75a57b957ef8b7774b401b5b8f64a0f731ae10c4fe8b74c80e9c284612d",
+  "no_throughput_claim": true
+}

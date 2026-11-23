@@ -1,0 +1,156 @@
+{
+  "diagnostic_only": true,
+  "dll_sha256": "c01274d1ddaaef2e61d77d3412cc14fb5668a0bdce0c4791f489d6001c3d4eff",
+  "inputs_sha256": "d94b16d42cc88e9a3850a77c9360b9c4c4fdd676cb252e463044a903db2a5fef",
+  "results_sha256": "2e74b45caa87f7ee6ac72ffc35d98cc8db140b47031614d26542e183cef5d2c9",
+  "coverage": {
+    "generic_hits": 9599433,
+    "funcref_hits": 100900,
+    "lazy_resolutions": 54635,
+    "unsupported_types": 200,
+    "audit_mismatch": 0,
+    "selected_fallback": 233004
+  },
+  "variant_coverage": {
+    "array_size": 785546,
+    "array_empty": 1272973,
+    "array_has": 0,
+    "array_front": 0,
+    "array_back": 0,
+    "dict_size": 2211,
+    "dict_empty": 106519,
+    "dict_has": 659283,
+    "dict_get": 283318,
+    "class_lane": 117836
+  },
+  "property_coverage": {
+    "field_hits": 4150789,
+    "selected_fallback": 0
+  },
+  "type_constructor_coverage": {
+    "type_hits": 3715324,
+    "type_fallback": 0,
+    "fused_initializations": 82399,
+    "factory_fallback": 0
+  },
+  "hot_slot_coverage": {
+    "new_method_hits": 71933,
+    "new_field_hits": 1164624
+  },
+  "event_identity_coverage": {
+    "fast_identities": 34193,
+    "fallbacks": 0,
+    "fast_emissions": 151951,
+    "emission_fallbacks": 0
+  },
+  "lazy_diagnostic_coverage": {
+    "0": {
+      "skipped": 77135,
+      "retained": 1802
+    },
+    "1": {
+      "skipped": 693,
+      "retained": 257
+    },
+    "2": {
+      "skipped": 202,
+      "retained": 0
+    },
+    "3": {
+      "skipped": 253,
+      "retained": 0
+    },
+    "4": {
+      "skipped": 491,
+      "retained": 0
+    },
+    "5": {
+      "skipped": 491,
+      "retained": 0
+    },
+    "6": {
+      "skipped": 0,
+      "retained": 451
+    }
+  },
+  "frame_segment_coverage": [
+    3633579,
+    509635,
+    3123926,
+    503470,
+    3080447,
+    0,
+    101234,
+    0,
+    37452,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "static_collection_coverage": {
+    "attack_lookup": 8587,
+    "round_lookup": 200,
+    "stack_count": 59977
+  },
+  "static_setup_coverage": {
+    "bulk_stack_tables": 14933,
+    "ordered_stack_fallback": 0,
+    "metric_counts": 74910,
+    "affected_loops": 14933
+  },
+  "dispatch_chain_coverage": {
+    "behavior_methods": 17807,
+    "behavior_empty": 0,
+    "behavior_probes": 57618,
+    "flat_callbacks": 100900
+  },
+  "spatial_coverage": {
+    "lookups": 652011,
+    "hits": 242572,
+    "object_dedup": 242467,
+    "fallbacks": 0
+  },
+  "motion_index_coverage": {
+    "native_runs": 193353,
+    "native_entries": 414435,
+    "kept_entries": 405194
+  },
+  "closed_packed_mode_verified": true,
+  "integer_grid_coverage": {
+    "fast_queries": 652011,
+    "ordinary_queries": 0,
+    "enabled_dicts": 400,
+    "rejected_dicts": 0,
+    "mode_conversions": 0,
+    "reserved": 0
+  },
+  "active_cooldown_coverage": {
+    "indexed_phases": 386704,
+    "rebuilds": 1904,
+    "cache_hits": 384800,
+    "indexed_owners": 3632134,
+    "build_fallbacks": 0,
+    "same_pass_resumes": 760,
+    "eligibility_changes": 23435,
+    "build_slots": 83822,
+    "build_active_owners": 19040,
+    "reserved": 0
+  },
+  "targeted_timer_coverage": {
+    "indexed_passes": 386704,
+    "rebuilds": 400,
+    "cache_hits": 386304,
+    "indexed_owners": 683532,
+    "fallback_passes": 0,
+    "same_pass_resumes": 0,
+    "watched_invalidations": 0,
+    "build_slots": 16170,
+    "build_eligible_owners": 701,
+    "unknown_boundaries": 0
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "baseline_dll_sha256": "d8a7365191ad57a48ac378a7db77e8587169814f6f74298734f7d0b4786e3a76",
+  "profile_sha256": "e741b7717814a6fabbbce5c2c8a9a46dfcd2c9a0ff47f31c16c25cdcc61f9ae1",
+  "current_event_factory_status": "deployed; all predeclared gates passed; weak positive paired median with adverse cumulative times",
+  "no_new_sampling_or_timing": false,
+  "no_implementation_of_followups_yet": true,
+  "candidates": [
+    {
+      "priority": 1,
+      "name": "CoreItem independent container allocation batch",
+      "original_container_factory_expressions": 20,
+      "original_expressions": [
+        "this->f_chargeFrame = gd::GdVal::from_arr(gd::GdArr::from_init(gd_ctx.arena, {gd::GdVal::from_vec2(0.0, 0.0), gd::GdVal::from_vec2(0.0, 0.0), gd::GdVal::from_vec2(0.0, 0.0), gd::GdVal::from_vec2(0.0, 0.0)}));",
+        "this->f_buffPowers = gd::GdVal::from_dict(gd::GdDict::create(gd_ctx.arena));",
+        "this->f_buffAmplificationChances = gd::GdVal::from_dict(gd::GdDict::create(gd_ctx.arena));",
+        "this->f_paramMult = gd::GdVal::from_dict(gd::GdDict::create(gd_ctx.arena));",
+        "this->f_paramAdd = gd::GdVal::from_dict(gd::GdDict::create(gd_ctx.arena));",
+        "this->f_statDisplayOverrides = gd::GdVal::from_arr(gd::GdArr::from_init(gd_ctx.arena, {}));",
+        "this->f_itemMetrics = gd::GdVal::from_arr(gd::GdArr::from_init(gd_ctx.arena, {}));",
+        "gd::native_timer_fields_changed(this->rt_ctx_); this->f_gems = gd::GdVal::from_arr(gd::GdArr::from_init(gd_ctx.arena, {}));",
+        "this->f_dynamicTypes = gd::GdVal::from_dict(gd::GdDict::create(gd_ctx.arena));",
+        "this->f_combatConnections = gd::GdVal::from_arr(gd::GdArr::from_init(gd_ctx.arena, {}));",
+        "this->f_occupiedCells = gd::GdVal::from_arr(gd::GdArr::from_init(gd_ctx.arena, {}));",
+        "this->f_collisionCells = gd::GdVal::from_arr(gd::GdArr::from_init(gd_ctx.arena, {}));",
+        "this->f_extensionCells = gd::GdVal::from_arr(gd::GdArr::from_init(gd_ctx.arena, {}));",
+        "this->f_affectedExtensionCells = gd::GdVal::from_arr(gd::GdArr::from_init(gd_ctx.arena, {}));",
+        "this->f_affectedCellsCache = gd::GdVal::from_dict(gd::GdDict::create(gd_ctx.arena));",
+        "this->f_currentAffectedItems = gd::GdVal::from_dict(gd::GdDict::create(gd_ctx.arena));",
+        "this->f_cachedAffectedItems = gd::GdVal::from_dict(gd::GdDict::create(gd_ctx.arena));",
+        "this->f_affectedTileCells = gd::GdVal::from_dict(gd::GdDict::create(gd_ctx.arena));",
+        "gd::native_timer_fields_changed(this->rt_ctx_); this->f_timers = gd::GdVal::from_arr(gd::GdArr::from_init(gd_ctx.arena, {}));",
+        "this->f_buffLabelPositionTimestamps = gd::GdVal::from_arr(gd::GdArr::from_init(gd_ctx.arena, {gd::GdVal::from_float(0.0), gd::GdVal::from_float(0.0), gd::GdVal::from_float(0.0), gd::GdVal::from_float(0.0), gd::GdVal::from_float(0.0)}));"
+      ],
+      "source": "gen/shards/shard_00.cpp:245",
+      "rationale": "Multiple independent empty headers plus 4- and5-element arrays; one reserved block may remove real arena calls across item construction",
+      "required_proof": [
+        "same distinct container identities and default contents",
+        "original field-store and watcher-invalidations order",
+        "open contexts and explicit repeated init_fields keep old aliases alive",
+        "inline timer-header ownership and all derived constructors",
+        "RNG, ID, FP state and original counters"
+      ],
+      "measurements_needed": "actual allocation/coverage count, actual DLL constructor differential, then fixed formal protocol; no percentage forecast"
+    },
+    {
+      "priority": 2,
+      "name": "String header and character storage coallocation",
+      "source": "gd_rt.cpp:124 / gd_rt.cpp:143",
+      "rationale": "make_str and str_concat still allocate GdStr header and character bytes separately; each result is immutable after creation and independently owned",
+      "already_done": "Keep existing static literals, existing to_chars identity formatting, and existing lazy diagnostics; this only changes physical allocation count",
+      "required_proof": [
+        "same bytes, length, NUL termination and hash for embedded-NUL and empty strings",
+        "source aliases remain valid across arena growth and reset",
+        "static shared arena synchronization and alignment",
+        "no new conversions or FP operations"
+      ],
+      "measurements_needed": "count remaining dynamic string allocation calls and test actual runtime functions against production DLL before any formal build"
+    },
+    {
+      "priority": 3,
+      "name": "Listener FuncRef and pair-array representation",
+      "source": "gen/shards/shard_12.cpp:647",
+      "rationale": "connectEvent separately allocates FuncRef, array header and two-value storage; representation also causes pointer chasing in emitAndLog",
+      "required_proof": [
+        "future-slot mutation and captured length",
+        "nested emission, disconnect and binds",
+        "same function identities and side effects",
+        "termination at original callback boundary"
+      ],
+      "measurements_needed": "first distinguish allocation-only batch from a compact-listener change; do not count already-deployed flat FuncRef dispatch again"
+    },
+    {
+      "priority": 4,
+      "name": "Remaining formatting in gainTemporary / readyInit / charge diagnostics",
+      "source": "gen/shards/shard_00.cpp:6438",
+      "rationale": "Existing profile has pformat leaf samples in these callers; current pure-format guard already handles integral Float",
+      "already_done": "Do not reimplement integral-Float/Int/Bool/Str pure-format skipping",
+      "required_proof": [
+        "fractional/nonfinite formatting FP flags preserved",
+        "all getters and overridable methods still called in original order",
+        "trace flag changes visible at original point"
+      ],
+      "measurements_needed": "audit exact retained callsites; reject if eliminating formatting cannot preserve observable behavior"
+    }
+  ],
+  "rejected_directions": [
+    "same-source coallocated/frame retiming",
+    "resurrecting rejected row/Bool bundle unchanged",
+    "using profile leaf percentages as promised speedup",
+    "counting a new environment fit as code gain"
+  ],
+  "prior_baseline_dll_sha256": "e0bedc4960077407e85763cb5e4af70175a0623cca15e923403fa89174390687",
+  "deployed_profile_refreshed_after_all_formal_timing": true,
+  "current_exclusive_phase_samples": {
+    "other_frame": 629,
+    "assembly": 385,
+    "other_setup_export": 119,
+    "trigger_chain": 889,
+    "outside_replay": 3
+  },
+  "current_replay_phase_pct": {
+    "other_frame": 31.107814045499506,
+    "assembly": 19.04055390702275,
+    "other_setup_export": 5.885262116716122,
+    "trigger_chain": 43.96636993076162
+  },
+  "current_load20_fitted_fps": 157.87889832949037,
+  "goal200_reached": false
+}
