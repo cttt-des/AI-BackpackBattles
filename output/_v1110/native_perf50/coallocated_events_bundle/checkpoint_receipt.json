@@ -1,0 +1,11 @@
+{
+  "local_commit": "d0f4c2e3e5281dfc7375db924a0326db102ff200",
+  "local_preservation_ref": "refs/heads/codex/coallocated-events-inconclusive-20261123",
+  "own_files_saved": 1689,
+  "unchanged_production_dll_sha256": "e0bedc4960077407e85763cb5e4af70175a0623cca15e923403fa89174390687",
+  "candidate_not_deployed": true,
+  "remote_upload_verified": true,
+  "remote_verified_commit": "d0f4c2e3e5281dfc7375db924a0326db102ff200",
+  "remote_ref": "refs/heads/codex/coallocated-events-inconclusive-20261123",
+  "remote_verified_production_backup": "a3e6658fea86d306fbfb3e84dcc7d65918853b24"
+}

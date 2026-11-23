@@ -1,0 +1,17 @@
+{
+  "local_commit": "79bf235e0de7d3ccd1975fffc341283738d1b829",
+  "prepared_backup_commit": "a3e6658fea86d306fbfb3e84dcc7d65918853b24",
+  "local_preservation_ref": "refs/heads/codex/frame-proof-rejected-20261123",
+  "last_observed_remote_commit": "1b18298e39ed36f0fd0dbe5d0e00699d9407c643",
+  "unchanged_production_dll_sha256": "e0bedc4960077407e85763cb5e4af70175a0623cca15e923403fa89174390687",
+  "production_already_backed_up_and_unchanged": true,
+  "ssh22_error": "Connection timed out",
+  "ssh443_error": "Connection timed out",
+  "https_push_error": "Empty reply from server",
+  "remote_push_success_unproven_recheck_before_retry": true,
+  "user_existing_changes_not_staged": true,
+  "upload_resolved_20261123": true,
+  "remote_verified_commit": "a3e6658fea86d306fbfb3e84dcc7d65918853b24",
+  "remote_ref": "refs/heads/codex/native-perf50-verified",
+  "original_failures_retained": true
+}

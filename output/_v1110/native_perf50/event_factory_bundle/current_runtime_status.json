@@ -1,0 +1,21 @@
+{
+  "current_production_dll_sha256": "d8a7365191ad57a48ac378a7db77e8587169814f6f74298734f7d0b4786e3a76",
+  "deployment_verified": true,
+  "verification_sha256": "f84a3c9a91036e6bdc50f3abc147ba941853fc2c4ed4c868c6b37ed15711b47d",
+  "original_ab_decision_sha256": "bae37e3eec0ee7ee116f75279f50f766cc9f296cddb5acf061d31d8d0874c527",
+  "original_ab_decision_not_deployed_field_is_decision_time_only": true,
+  "all32_pairs_used": true,
+  "no_more_same_source_ab_groups": true,
+  "paired_median_cpu_time_reduction_pct": 0.3992159112641058,
+  "paired_median_wall_time_reduction_pct": 0.37885483629008787,
+  "cumulative_cpu_time_increase_pct": 1.8311934329614754,
+  "cumulative_wall_time_increase_pct": 2.2044966177779957,
+  "small_and_weak_performance_evidence": true,
+  "strict_event_cases": 2604,
+  "normal_training_cases": 12,
+  "raw24_minimum_fps": 85.64704177476445,
+  "fitted_fps_at20": 157.87889832949037,
+  "goal200_reached": false,
+  "previous_runtime": "dist/native_1_1_10_before_event_factory_bundle_20261123",
+  "remote_backup_pending": true
+}

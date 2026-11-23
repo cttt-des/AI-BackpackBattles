@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "dll_sha256": "d8a7365191ad57a48ac378a7db77e8587169814f6f74298734f7d0b4786e3a76",
+  "affected_factory_cases": 5120,
+  "retained_type_constructor_test_passed": true,
+  "reports_sha256": {
+    "baseline_factory_cases.json": "2025002b67a523b187bbb39eb604d84755f6809e2b9fceeb3c657a428a3ff9d0",
+    "baseline_factory_first.log": "776bbfe306d12114fb0dd3e2a11cb204777537d135dff0ef7516cb4ad0c79793",
+    "candidate_factory_cases.json": "2025002b67a523b187bbb39eb604d84755f6809e2b9fceeb3c657a428a3ff9d0",
+    "candidate_factory_first.log": "776bbfe306d12114fb0dd3e2a11cb204777537d135dff0ef7516cb4ad0c79793",
+    "constructors_cases.log": "650bb3ee9ffd12c10c03180a22b1aab7a456f8bd9a9738df35a1a973d8fc4ab5",
+    "constructors_compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "event_factory.json": "7b076bfcd13a2a1b68cc8aed2a0f5b719b5f62ce8906216dc3b94790bb27e69f"
+  }
+}

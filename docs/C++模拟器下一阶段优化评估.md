@@ -1,6 +1,6 @@
 # C++ 模拟器下一阶段优化评估
 
-日期：2026-11-22。当前已验收部署仍为e0bedc，同一DLL最新重标定20%负载换算174.4918场/秒；这是环境重标定，不是新增代码收益。最近的事件容量4和默认覆盖值视图两轮均未被采纳，运行版不变；最后一笔已验收代码收益仍是整数格子＋冷却守卫组合的同期CPU／墙钟降耗1.8605%／1.9387%。每轮拟合只描述当轮环境，目标200尚未达到。原始候选与各阶段记录保留，父子方案和已兑现子项不能相加。
+日期：2026-11-23。当前已验收部署为d8a736，最新独立20%负载换算157.8789场/秒，200目标未达到。事件构造融合按冻结的完整32对规则采纳：CPU／墙钟配对中位耗时下降0.3992%／0.3789%，但累计耗时增加1.8312%／2.2045%，证据较弱；全部语义、吞吐和部署门槛已通过。详情及当前采样见文末，历史标定之间的差不代表代码收益。
 
 ## 候选评估时的基线和目标
 
@@ -654,3 +654,25 @@ revision2固定200场仍匹配原结果签名：386,704个角色阶段只重建4
 正式DLL `7446284523c0350ac8d209b378024542c3032c7ca24bb174d35537c7734920f2` 已完成完整20单元instrumentation／同源新18热点PGO、全部保留回归、4,161项实际DLL差分、固定200原结果及旧frame／type计数一致、完整再生成。首24对不明确，按预定规则仅追加8对；最终全部32对CPU配对中位耗时增加0.1420%，墙钟减少0.3754%，累计分别减少0.5487%／0.0653%；CPU15胜1平16负，墙钟17胜15负。分组与去组敏感性不支持稳定正收益，结论 `inconclusive_retained`。保留原24对和完整32对，不追加同源测速；未进入2,604逐事件、发布raw24或安装，生产仍e0bedc。[最终32对](../output/_v1110/native_perf50/coallocated_events_bundle/ab_assessment_32.json) · [明确决策](../output/_v1110/native_perf50/coallocated_events_bundle/candidate_decision.json)
 
 2026-11-23接手后仅补做一次独立、非发布门槛的24批候选校准，全程接电，负载15.9149%–66.8457%，覆盖20%。20%换算 **171.8379场/秒**，R²0.9557，留出耗时误差中位3.8351%／P90 7.9739%。这不是发布raw24，不能替代未过的同期A/B，也不能与历史标定之差当作代码收益；200目标尚未达到。[本次候选校准](../output/_v1110/native_perf50/coallocated_events_bundle/rejected_load20.json) · [收尾记录](../output/_v1110/native_perf50/coallocated_events_bundle/rejection_receipt.json)
+
+## 接手更新：完整事件构造融合原型通过，进入新PGO
+
+2026-11-23从e0bedc独立派生新候选，仅修改shard_05.cpp。closed_world下将240字节CoreEvent、两个独立GdDict头和四个原始params槽合并为一次分配，并消除init_fields后紧接_init覆盖的默认写入；保留普通构造函数、target默认Null、id转换及原赋值顺序。开放上下文仍走原factory。本轮未带入上一轮帧强制内联，所有对象布局不变。语义DLL `fde2f9c36b34529bb004c62a15fd9b210ab10a2e85b5281eebc08afb6618516b` 通过固定200原结果／自然终局及旧六计数，另有5,120项实际DLL独立差分：默认值、参数个数与异常类型、字段和字典别名、扩容、重新初始化、RNG／ID、四种舍入及四种DAZ／FTZ均一致。707份正式源完整复现，现进入完整20单元instrumentation／同源新18热点PGO及保留回归。尚无本轮正式A/B或20%速度结论。[实际差分](../output/_v1110/native_perf50/event_factory_prototype/correctness.json) · [冻结协议](../output/_v1110/native_perf50/event_factory_bundle/evaluation_plan.json)
+
+上一coallocated轮已按专属清单归档1,689份文件，本地提交及远端专用分支 `codex/coallocated-events-inconclusive-20261123` 均确认指向d0f4c2e3；此前待上传的a3e6658f亦已补传并重新读取远端verified分支确认。网络问题已解决，失败轮记录不代表候选获部署，生产仍e0bedc。新优化在本地分支 `codex/event-factory-20261123` 进行，不覆盖用户已有修改。
+
+## 本轮之后的候选再评估（尚未实现）
+
+当前生产采样仍归属于e0bedc；没有把构建等待或跨轮标定变化计作收益。本轮正式结果结束后，优先评估CoreItem独立容器的批量分配：init_fields中有20处容器构造表达式，计时器头已有条件内嵌优化，其余仍有多次独立arena调用。可与make_str／str_concat的字符串头和字符区合并分配叠加；两函数目前均分别分配头与字符区，必须保持文本、hash、别名、寿命与静态arena同步，不改数值格式化。下一优先级是connectEvent的FuncRef／pair数组记录，需区分仅合并分配和真正减少帧内指针追逐的表示改动。已有无绑定FuncRef直达不再重复计入候选收益。
+
+临时Buff、readyInit和charge诊断仍有格式化采样，但整数值Float的纯格式化跳过已存在；剩余小数／非有限值要保留FP异常标志和getter副作用，不能直接当可删除工作。上述均是待验证假设，尚无新实现或百分比预测。[带源码依据的后续评估](../output/_v1110/native_perf50/event_factory_bundle/next_candidates_review.json)
+
+## 完整事件构造融合正式收尾：按32对规则采纳，验收部署完成
+
+正式DLL `d8a7365191ad57a48ac378a7db77e8587169814f6f74298734f7d0b4786e3a76` 完成完整20单元instrumentation／同源新18热点PGO、保留回归、正式5,120项实际DLL差分、固定200及旧六项／frame／type计数、两次完整再生成。首24对未满足直接采纳条件，仅按事先规则追加8对。最终全部32对CPU／墙钟配对中位耗时下降 **0.3992%／0.3789%**，各18胜14负；累计耗时反而增加 **1.8312%／2.2045%**，首组退化，其余三组中位正向。按冻结的最终双中位规则判为positive_combined_evidence；证据较弱，不能写成稳定大幅收益，不再追加同源A/B。[完整32对](../output/_v1110/native_perf50/event_factory_bundle/ab_assessment_32.json)
+
+正向判定后重新通过受影响的5,120项构造差分及保留构造器测试，再通过914＋1,690共 **2,604场严格逐事件**，所有新旧C++逐场事件hash和原六计数一致，事件根仍b8066c…；首份连续raw24中位152.0576、最低 **85.6470场/秒**，全部≥50。独立24批校准全程接电，实测负载 **8.8249%–30.9465%**，20%换算 **157.8789场/秒**，R²0.9325，留出耗时误差中位2.2726%／P90 5.2277%。当前200目标未达到；不可将与历史174.4918或171.8379的拟合差当作代码增减速。[全量门槛](../output/_v1110/native_perf50/event_factory_bundle/bundle_full_gate.json) · [性能与标定](../output/_v1110/native_perf50/event_factory_bundle/measurements_summary.json)
+
+已安装至生产源码目录及dist/native_1_1_10，两份DLL SHA均为d8a736…，正常训练入口12场与基线一致，部署后的独立核验只运行一次且通过；707份生产源码和674个未变类头已核对。旧e0bedc完整运行时保存在dist/native_1_1_10_before_event_factory_bundle_20261123。candidate_decision.json中的not_deployed字段是A/B决策时点记录，当前部署状态以post_install_verification.json及current_runtime_status.json为准。[部署核验](../output/_v1110/native_perf50/event_factory_bundle/post_install_verification.json)
+
+已在全部正式测速结束后刷新当前DLL热点：2,025栈，2,022个有效回放根；互斥归属触发链43.9664%、其余帧内31.1078%、装配19.0406%、其他5.8853%。它们含内联归属，不能作为跨版提速或收益上限。后续优先验证物品独立容器的批量分配与字符串头／字符区合并分配，随后评估紧凑监听器表示；尚未实现下一轮，不重复测本轮。18份原始PGO计数已按构建记录哈希另存。[新采样及评估](../output/_v1110/native_perf50/event_factory_bundle/next_candidates_review.json)
