@@ -1,0 +1,87 @@
+{
+  "baseline_dll_sha256": "d8a7365191ad57a48ac378a7db77e8587169814f6f74298734f7d0b4786e3a76",
+  "verified_remote_backup": "8e6ef3449e7a5a26d9d3fc7f268e380fbc7694fe",
+  "components": [
+    "CoreItem independent container batch",
+    "strings and reserved containers coallocation"
+  ],
+  "excluded": [
+    "global callback epoch",
+    "reordered callbacks",
+    "skipped timer updates",
+    "changed arithmetic or RNG",
+    "static unguarded eligibility cache"
+  ],
+  "measurement": {
+    "fixed_fights": 200,
+    "single_thread": true,
+    "groups": 3,
+    "pairs_per_group": 8,
+    "batch_repetitions": 4,
+    "warmup_seconds": 120,
+    "quiet": true,
+    "retain_all_results": true
+  },
+  "required": [
+    "Retained regressions plus87425 actual-DLL storage/constructor cases; all707 sources reproduced before freshPGO",
+    "existing full regression",
+    "same-source fresh PGO",
+    "regeneration twice",
+    "2604 strict original event cases",
+    "every old/new CPP event hash equal",
+    "one raw24 all>=50fps",
+    "one calibration24 report",
+    "guarded deployment and normal training smoke"
+  ],
+  "no_auto_deploy": true,
+  "small_components_judged_as_bundle": true,
+  "retained_deployed_components": [
+    "member pointers",
+    "character state reuse",
+    "static consumers",
+    "fixed setup tables",
+    "behavior and callback chains"
+  ],
+  "local_original_dll_cases": 87425,
+  "no_whole_fight_gain_claim": true,
+  "build": "full20 instrumentation plus new18unit same-source PGO; max2 below-normal jobs",
+  "goal_fps_at20_load": 200,
+  "retain_first_and_all_results": true,
+  "intentional_layout_changes": [],
+  "full20_rebuild_required": true,
+  "sealed_known_cases": 1056,
+  "sealed_registry_boundary_checks": 4,
+  "prior_candidate_negative_ab_preserved": true,
+  "current_candidate_always_fresh20_instrumentation_and18_pgo": true,
+  "local_independent_cases": {
+    "runtime": 1025,
+    "constructors": 86400
+  },
+  "baseline_source_files": 707,
+  "candidate_source_files": 707,
+  "GdArr_size_remains": 32,
+  "previous_cooldown_index_flat_ab_preserved": true,
+  "typed_damage_candidate_not_included": true,
+  "private_cooldown_cache_adds_grid_pointer": false,
+  "semantic_native_cache_not_used_for_formal_timing": true,
+  "full20_fresh18_pgo_required": true,
+  "no_standalone_grid_or_guard_speed_claim": true,
+  "prior_declared_bounded_followup_rule_retained": true,
+  "rejected_display_and_event_capacity_included": false,
+  "all_object_container_context_layouts_unchanged": true,
+  "rejected_frame_proof_combination_included": false,
+  "production_unchanged_since_last_verified_remote_backup": true,
+  "rejected_trial_archive_upload_pending": false,
+  "no_extrapolated_load20_if_outside_observations": true,
+  "rejected_frame_inline_included": false,
+  "full_source_changes": [
+    "gd_rt.cpp",
+    "gen/shards/shard_00.cpp"
+  ],
+  "prior_coallocated_source_not_retested": true,
+  "latest_remote_verified_production_backup": "8e6ef3449e7a5a26d9d3fc7f268e380fbc7694fe",
+  "prior_trial_remote_archive": "8e6ef3449e7a5a26d9d3fc7f268e380fbc7694fe",
+  "previous_deployed_event_factory_retained": true,
+  "old_source_not_retimed": true,
+  "include_median_minimum_maximum_and_load20_every_round": true
+}

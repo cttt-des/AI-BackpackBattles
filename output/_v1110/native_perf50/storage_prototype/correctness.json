@@ -1,0 +1,55 @@
+{
+  "passed": true,
+  "cases": 87425,
+  "dll_sha256": "568c29e7ee3a78dbfddd024e4ed7cc40ad8cd9674d8d26fc1d671de33bda06a9",
+  "baseline_dll_sha256": "d8a7365191ad57a48ac378a7db77e8587169814f6f74298734f7d0b4786e3a76",
+  "components": {
+    "runtime": {
+      "passed": true,
+      "cases": 1025,
+      "difference_count": 0,
+      "first_differences": [],
+      "fixture_sha256": "a696e3262dcd2740176d77151f4c44f309373fd056d9a270e7de3690b7a2a07f",
+      "baseline_dll_sha256": "d8a7365191ad57a48ac378a7db77e8587169814f6f74298734f7d0b4786e3a76",
+      "dll_sha256": "568c29e7ee3a78dbfddd024e4ed7cc40ad8cd9674d8d26fc1d671de33bda06a9",
+      "original_metadata": {
+        "cases": 1025,
+        "parallel_strings": 800,
+        "GdArr": 32,
+        "GdDict": 32,
+        "GdVal": 24
+      },
+      "actual_independent_baseline_dll": true
+    },
+    "constructors": {
+      "passed": true,
+      "cases": 86400,
+      "difference_count": 0,
+      "first_differences": [],
+      "fixture_sha256": "0ecbaae9e73fa6d3cdd56ff2ad8cfdf28439925e3469b8f0132c86285ab88e80",
+      "baseline_dll_sha256": "d8a7365191ad57a48ac378a7db77e8587169814f6f74298734f7d0b4786e3a76",
+      "dll_sha256": "568c29e7ee3a78dbfddd024e4ed7cc40ad8cd9674d8d26fc1d671de33bda06a9",
+      "original_metadata": {
+        "cases": 86400,
+        "classes": 674,
+        "GdVal": 24,
+        "GdArr": 32,
+        "GdDict": 32,
+        "CoreItem": 1792,
+        "BattleCtx": 328
+      },
+      "actual_independent_baseline_dll": true
+    }
+  },
+  "shared_fixture_sha256": "6113e75a57b957ef8b7774b401b5b8f64a0f731ae10c4fe8b74c80e9c284612d",
+  "constructor_inventory_sha256": "a01042551cd5b45c828ec68a73e61d0c28d589fba03bb436b233fe53e0ee07e1",
+  "raw_cases_sha256": {
+    "constructors_baseline_cases.json": "ba51b1c6eb922560cdb2ddddd682cf72cb1ae68f6615aced4d712110518cf67e",
+    "constructors_candidate_cases.json": "ba51b1c6eb922560cdb2ddddd682cf72cb1ae68f6615aced4d712110518cf67e",
+    "runtime_baseline_cases.json": "21c5372eb5ec7247b8f298a397a2c3886e0fd7faab522b86ec123c5f19b24ae6",
+    "runtime_candidate_cases.json": "21c5372eb5ec7247b8f298a397a2c3886e0fd7faab522b86ec123c5f19b24ae6"
+  },
+  "canonical_values_alias_graphs_caps_watcher_epochs_rng_ids_fenv_mxcsr": true,
+  "independent_actual_baseline_dll": true,
+  "no_throughput_claim": true
+}

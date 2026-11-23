@@ -1,0 +1,73 @@
+{
+  "passed": true,
+  "cases": 87425,
+  "dll_sha256": "0b321ec95f2d4a15d667c8b7b1c4d84c7bbf5a7e445f71543f67a0bff5d7e68c",
+  "baseline_dll_sha256": "d8a7365191ad57a48ac378a7db77e8587169814f6f74298734f7d0b4786e3a76",
+  "components": {
+    "runtime": {
+      "passed": true,
+      "cases": 1025,
+      "difference_count": 0,
+      "first_differences": [],
+      "fixture_sha256": "a696e3262dcd2740176d77151f4c44f309373fd056d9a270e7de3690b7a2a07f",
+      "baseline_dll_sha256": "d8a7365191ad57a48ac378a7db77e8587169814f6f74298734f7d0b4786e3a76",
+      "dll_sha256": "0b321ec95f2d4a15d667c8b7b1c4d84c7bbf5a7e445f71543f67a0bff5d7e68c",
+      "original_metadata": {
+        "cases": 1025,
+        "parallel_strings": 800,
+        "GdArr": 32,
+        "GdDict": 32,
+        "GdVal": 24
+      },
+      "actual_independent_baseline_dll": true
+    },
+    "constructors": {
+      "passed": true,
+      "cases": 86400,
+      "difference_count": 0,
+      "first_differences": [],
+      "fixture_sha256": "0ecbaae9e73fa6d3cdd56ff2ad8cfdf28439925e3469b8f0132c86285ab88e80",
+      "baseline_dll_sha256": "d8a7365191ad57a48ac378a7db77e8587169814f6f74298734f7d0b4786e3a76",
+      "dll_sha256": "0b321ec95f2d4a15d667c8b7b1c4d84c7bbf5a7e445f71543f67a0bff5d7e68c",
+      "original_metadata": {
+        "cases": 86400,
+        "classes": 674,
+        "GdVal": 24,
+        "GdArr": 32,
+        "GdDict": 32,
+        "CoreItem": 1792,
+        "BattleCtx": 328
+      },
+      "actual_independent_baseline_dll": true
+    }
+  },
+  "shared_fixture_sha256": "6113e75a57b957ef8b7774b401b5b8f64a0f731ae10c4fe8b74c80e9c284612d",
+  "constructor_inventory_sha256": "a01042551cd5b45c828ec68a73e61d0c28d589fba03bb436b233fe53e0ee07e1",
+  "raw_cases_sha256": {
+    "active_cooldown_tests_cases.json": "7d29b45eb1532aaf78e8df19c5326cd81b0b0660feb143f8e049acf52c6cc7bb",
+    "baseline_factory_cases.json": "2025002b67a523b187bbb39eb604d84755f6809e2b9fceeb3c657a428a3ff9d0",
+    "candidate_factory_cases.json": "2025002b67a523b187bbb39eb604d84755f6809e2b9fceeb3c657a428a3ff9d0",
+    "closed_known_tests_cases.json": "db73cd801568ece22e5cc18fe03f405c5d91797cb8dba873277c580097e7ccda",
+    "constructors_baseline_cases.json": "ba51b1c6eb922560cdb2ddddd682cf72cb1ae68f6615aced4d712110518cf67e",
+    "constructors_candidate_cases.json": "ba51b1c6eb922560cdb2ddddd682cf72cb1ae68f6615aced4d712110518cf67e",
+    "diagnostic_buff_production_cases.json": "405254833c7e9df6b31c8a47ca596afb1dbb888f00fcf738ee583e74c2a7d54a",
+    "diagnostic_label_production_cases.json": "d7fff4086450c704067d764d8b3d5986a3185d6399aa65ad601a2e2cb69fc184",
+    "dispatch_chain_production_cases.json": "078090376dfb121d5f494868a40efe3bf4d16989d8c43b50b742696a82a06d2f",
+    "frame_production_cases.json": "0244c46ecd84779063bd5755f0870fd3fe27558e4bafbdc51f87e8cc73126fc1",
+    "integer_grid_query_tests_forced_grid_cases.json": "d02eb3111abd8c6db22c917f9c809465b1241ab101834464b4607d559a689b2c",
+    "integer_grid_query_tests_ordinary_cases.json": "d02eb3111abd8c6db22c917f9c809465b1241ab101834464b4607d559a689b2c",
+    "member_production_cases.json": "6eb221d9c4b68ea25e60566c272ea35ac8ae8eafc62875fc3a5b59a9caa070e4",
+    "motion_indices_production_cases.json": "8fd6a914a25ad74ecaab72a241083f1ecd0fbf789ba2a817e979c197aef26fe3",
+    "runtime_baseline_cases.json": "21c5372eb5ec7247b8f298a397a2c3886e0fd7faab522b86ec123c5f19b24ae6",
+    "runtime_candidate_cases.json": "21c5372eb5ec7247b8f298a397a2c3886e0fd7faab522b86ec123c5f19b24ae6",
+    "spatial_production_cases.json": "d02eb3111abd8c6db22c917f9c809465b1241ab101834464b4607d559a689b2c",
+    "static_collection_production_cases.json": "b03be7a8cdbdc31e5d5f23bbda098cb140048f26c6633cb917f8213002ab2da9",
+    "static_setup_production_cases.json": "21ed11beb80da7e8eea183d4ade06fa9433a79d9d904eebd7b31bab45ef4358f",
+    "targeted_timer_ownership_production_cases.json": "6d23361a4597368b3dac4e8c8ec8a9588e4c2f0106d663eb68a7b20e8261dc37",
+    "targeted_timer_production_cases.json": "071f32a114ba9fa50fd720b54995d3dc8b57940530b36a778f761fc2f7ef2b19",
+    "targeted_timer_safety_production_cases.json": "3075ae6a62b49117887e78ce26014477d9cdcf9852251f4c0257db8f0a9e88d9"
+  },
+  "canonical_values_alias_graphs_caps_watcher_epochs_rng_ids_fenv_mxcsr": true,
+  "independent_actual_baseline_dll": true,
+  "no_throughput_claim": true
+}
