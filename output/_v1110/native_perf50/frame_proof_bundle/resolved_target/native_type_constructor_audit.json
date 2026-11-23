@@ -1,0 +1,10 @@
+{
+  "dll_sha256": "785834d760f4eeb71b8bfec40c07da9f128f21a314bc6a7246ead592216d91af",
+  "verifier_exit_code": 0,
+  "coverage": {
+    "type_hits": 89133,
+    "type_fallback": 0,
+    "fused_initializations": 1502,
+    "factory_fallback": 0
+  }
+}

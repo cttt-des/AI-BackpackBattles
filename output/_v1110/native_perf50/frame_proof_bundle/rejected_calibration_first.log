@@ -1,0 +1,19 @@
+Warming controlled load for 30 seconds
+bundle.dll: 24 batches, median 23.88 replays/s, minimum 13.01; 2e74b45caa87
+usage: fit_native_serial_load.py [-h] --out OUT
+                                 [--reference-load REFERENCE_LOAD]
+                                 report
+fit_native_serial_load.py: error: The reference load must fall within the observed range
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\close_frame_proof_round.py", line 32, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\close_frame_proof_round.py", line 19, in main
+    subprocess.run([sys.executable,'-X','utf8',str(STAGE/'fit_native_serial_load.py'),str(calibration),
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        '--reference-load','20','--out',str(fit)],check=True)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe', '-X', 'utf8', 'D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\fit_native_serial_load.py', 'D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_perf50\\frame_proof_bundle\\rejected_load_calibration.json', '--reference-load', '20', '--out', 'D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_perf50\\frame_proof_bundle\\rejected_load20.json']' returned non-zero exit status 2.
