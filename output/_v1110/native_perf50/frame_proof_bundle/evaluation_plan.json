@@ -1,0 +1,71 @@
+{
+  "baseline_dll_sha256": "e0bedc4960077407e85763cb5e4af70175a0623cca15e923403fa89174390687",
+  "verified_remote_backup": "1b18298e39ed36f0fd0dbe5d0e00699d9407c643",
+  "components": [
+    "reuse checked tick row before callback",
+    "two Bool flag specializations"
+  ],
+  "excluded": [
+    "global callback epoch",
+    "reordered callbacks",
+    "skipped timer updates",
+    "changed arithmetic or RNG",
+    "static unguarded eligibility cache"
+  ],
+  "measurement": {
+    "fixed_fights": 200,
+    "single_thread": true,
+    "groups": 3,
+    "pairs_per_group": 8,
+    "batch_repetitions": 4,
+    "warmup_seconds": 120,
+    "quiet": true,
+    "retain_all_results": true
+  },
+  "required": [
+    "All retained regressions plus3073 actual-DLL header/flags/row/context/getter/registry/FP/counter differential cases",
+    "existing full regression",
+    "same-source fresh PGO",
+    "regeneration twice",
+    "2604 strict original event cases",
+    "every old/new CPP event hash equal",
+    "one raw24 all>=50fps",
+    "one calibration24 report",
+    "guarded deployment and normal training smoke"
+  ],
+  "no_auto_deploy": true,
+  "small_components_judged_as_bundle": true,
+  "retained_deployed_components": [
+    "member pointers",
+    "character state reuse",
+    "static consumers",
+    "fixed setup tables",
+    "behavior and callback chains"
+  ],
+  "local_original_dll_cases": 2016,
+  "no_whole_fight_gain_claim": true,
+  "build": "full20 instrumentation plus new18unit same-source PGO; max2 below-normal jobs",
+  "goal_fps_at20_load": 200,
+  "retain_first_and_all_results": true,
+  "intentional_layout_changes": [],
+  "full20_rebuild_required": true,
+  "sealed_known_cases": 1056,
+  "sealed_registry_boundary_checks": 4,
+  "prior_candidate_negative_ab_preserved": true,
+  "current_candidate_always_fresh20_instrumentation_and18_pgo": true,
+  "local_independent_cases": {
+    "frame_header_proof": 3073
+  },
+  "baseline_source_files": 707,
+  "candidate_source_files": 707,
+  "GdArr_size_remains": 32,
+  "previous_cooldown_index_flat_ab_preserved": true,
+  "typed_damage_candidate_not_included": true,
+  "private_cooldown_cache_adds_grid_pointer": false,
+  "semantic_native_cache_not_used_for_formal_timing": true,
+  "full20_fresh18_pgo_required": true,
+  "no_standalone_grid_or_guard_speed_claim": true,
+  "prior_declared_bounded_followup_rule_retained": true,
+  "rejected_display_and_event_capacity_included": false,
+  "all_object_container_context_layouts_unchanged": true
+}

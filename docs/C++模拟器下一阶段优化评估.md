@@ -630,3 +630,15 @@ revision2固定200场仍匹配原结果签名：386,704个角色阶段只重建4
 为避免继续用旧时段标定描述当前机器状态，同一已部署e0bedc另做一份首次24批校准，20%换算**174.4918场/秒**，覆盖9.6344%–60.2369%，R²0.9587，留出耗时误差中位3.157%／P90 7.104%。DLL完全未变，这不是新增代码提速；也不将两份独立拟合的比值替代同期A/B。原部署报告139.8920原样保留，200目标仍未达到。[当前基线新标定](../output/_v1110/native_perf50/display_defaults_bundle/current_baseline_load20.json)
 
 结论限于该实现组合：整场收益未能抵消新增开销；注册、逐次守卫和代码布局各占多少尚未拆分，不将Null快路思想永久排除。下一步将同一资格校验用于省掉更多重复行表／类型检查，并共用无回调区间的证明；活跃Bool、blocked epoch、浮点和原恢复后缀保持。已静态核对674类、646个物品类的上下文写入集中在CoreItem初始化、setter、setup三处；仍需验证实例赋值清行表、上下文字段变化及Gem getter边界，文本检索不是完整等效证明。[写入清单](../output/_v1110/native_perf50/display_defaults_bundle/next_owned_tick_write_inventory.json) · [下一步具体设计](../output/_v1110/native_perf50/display_defaults_bundle/next_owned_tick_review.json)
+
+## 本轮选择：直接复用无回调区间内的检查结果
+
+已将上述较大Scope方案中的一段证明缩短到单次物理tick：入口已验证行表，随后的gd_truth、as_int及诊断计数无应用回调，可直接使用同一行表的Gem类型位，保留原计数时点；这无需额外拥有者表或版本校验。另叠加placed及show_cooldown_progress的Bool特化，其他类型完整回原转换，不改变浮点。之前提出的Scope拥有者信息方案尚未实现，未被包装成本轮代码。
+
+已实现原型并通过3,073项实际DLL差分、固定200及原计数，707份正式源复现一致。现进入完整20单元／新18热点PGO及保留回归，之后按24／最多32对固定A/B判定；有正收益再跑2,604、逐场hash、首份raw24、独立20%标定及部署训练检查。无本轮吞吐结论，当前运行版仍e0bedc，上一轮独立环境换算174.4918不是本轮收益。[实际差分](../output/_v1110/native_perf50/frame_proof_prototype/correctness.json) · [固定验收规则](../output/_v1110/native_perf50/frame_proof_bundle/evaluation_plan.json)
+
+## 帧入口证明／Bool组合正式结论：32对未证实提速，未部署
+
+正式DLL`785834d760f4eeb71b8bfec40c07da9f128f21a314bc6a7246ead592216d91af`通过保留回归、最终3,073项实际DLL差分、固定200和原frame／type计数、完整再生成。首24对不明确，按预定规则仅追加8对，全部32对CPU／墙钟配对中位耗时增加1.3238%／2.3654%，累计增加0.6940%／0.7468%，各14胜18负。分组方向不一致，结论为未证实有效；没有挑选有利子集，不再追加同源测速，未启动2,604或发布raw24，生产仍e0bedc。
+
+恢复工作后首次24批独立校准全程接电，后台负载91.8054%–95.8831%，20%不在实测区间，拟合工具已拒绝外推；本轮20%速度记为缺测，保留全部原始数据和失败日志，不用上一轮174.4918替代本轮。下一候选改为实际减少事件小字典分配次数，并评估帧kernel内联；容量从8变4与本轮检查组合均不直接合入。[完整32对](../output/_v1110/native_perf50/frame_proof_bundle/ab_assessment_32.json) · [校准原始数据](../output/_v1110/native_perf50/frame_proof_bundle/rejected_load_calibration.json)

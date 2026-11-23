@@ -1204,3 +1204,15 @@ revision2固定200场结果签名保持`2e74b45c…`：386,704个角色阶段，
 为避免继续用旧时段标定描述当前机器状态，同一已部署e0bedc另做一份首次24批校准，20%换算**174.4918场/秒**，覆盖9.6344%–60.2369%，R²0.9587，留出耗时误差中位3.157%／P90 7.104%。DLL完全未变，这不是新增代码提速；也不将两份独立拟合的比值替代同期A/B。原部署报告139.8920原样保留，200目标仍未达到。[当前基线新标定](../output/_v1110/native_perf50/display_defaults_bundle/current_baseline_load20.json)
 
 结论限于该实现组合：整场收益未能抵消新增开销；注册、逐次守卫和代码布局各占多少尚未拆分，不将Null快路思想永久排除。下一步将同一资格校验用于省掉更多重复行表／类型检查，并共用无回调区间的证明；活跃Bool、blocked epoch、浮点和原恢复后缀保持。已静态核对674类、646个物品类的上下文写入集中在CoreItem初始化、setter、setup三处；仍需验证实例赋值清行表、上下文字段变化及Gem getter边界，文本检索不是完整等效证明。[写入清单](../output/_v1110/native_perf50/display_defaults_bundle/next_owned_tick_write_inventory.json) · [下一步具体设计](../output/_v1110/native_perf50/display_defaults_bundle/next_owned_tick_review.json)
+
+## 帧入口证明复用与布尔读取叠加：已实现并进入正式构建
+
+进一步核查发现，入口行表校验至Gem类型判断之间只有诊断计数、gd_truth及as_int，均不调用应用方法。因此本轮直接复用刚验证过的同一行表及Gem类型位，不新增Packed作用域、拥有者表或逐物品版本守卫。原类型诊断仍在原执行点计数，活跃／blocked检查、Gem.character调用、显示覆盖读取、浮点和恢复遍历均保留。叠加placed和show_cooldown_progress的Bool读取；所有其他类型仍调用原gd_truth，包括NaN的异常标志。
+
+原型DLL`0af4464f31a66e7fc2c00403c45ac511acd096332695fc6c1b41a1b4f02c7ec3`与实际e0bedc DLL逐项比较3,073项全部一致：64场景×3模式×4舍入×4DAZ/FTZ及独立注册项，包含空／错误行、运行上下文／f_ctx变化、dispatch／audit开关、非Bool／NaN标志、Gem getter内改写上下文与覆盖值。每项同时核对原17个frame计数和4个type计数差值；固定200结果与旧六计数亦一致。707份正式源逐字节复现原型，已开始完整20单元instrumentation／同源新18单元PGO；尚无正式A/B或本轮20%换算结论，生产版仍e0bedc。[实际DLL差分](../output/_v1110/native_perf50/frame_proof_prototype/correctness.json) · [本轮验收协议](../output/_v1110/native_perf50/frame_proof_bundle/evaluation_plan.json)
+
+## 帧入口证明／Bool组合正式结论：32对未证实提速，未部署
+
+正式DLL`785834d760f4eeb71b8bfec40c07da9f128f21a314bc6a7246ead592216d91af`通过保留回归、最终3,073项实际DLL差分、固定200和原frame／type计数、完整再生成。首24对不明确，按预定规则仅追加8对，全部32对CPU／墙钟配对中位耗时增加1.3238%／2.3654%，累计增加0.6940%／0.7468%，各14胜18负。分组方向不一致，结论为未证实有效；没有挑选有利子集，不再追加同源测速，未启动2,604或发布raw24，生产仍e0bedc。
+
+恢复工作后首次24批独立校准全程接电，后台负载91.8054%–95.8831%，20%不在实测区间，拟合工具已拒绝外推；本轮20%速度记为缺测，保留全部原始数据和失败日志，不用上一轮174.4918替代本轮。下一候选改为实际减少事件小字典分配次数，并评估帧kernel内联；容量从8变4与本轮检查组合均不直接合入。[完整32对](../output/_v1110/native_perf50/frame_proof_bundle/ab_assessment_32.json) · [校准原始数据](../output/_v1110/native_perf50/frame_proof_bundle/rejected_load_calibration.json)
