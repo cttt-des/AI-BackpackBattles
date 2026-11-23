@@ -1,0 +1,50 @@
+{
+  "passed": true,
+  "cases": 4161,
+  "dll_sha256": "7446284523c0350ac8d209b378024542c3032c7ca24bb174d35537c7734920f2",
+  "components": {
+    "frame": {
+      "cases": 3073,
+      "report_sha256": "202160386070a7a4b3c55783774713b59ad4e8a0ee095d1b7dd1d4ec495ebd7f"
+    },
+    "params": {
+      "cases": 1024,
+      "report_sha256": "6dd400c1f16b89965e3d5314abeb9c445300ff6d72858958d3db87c85e27e320"
+    },
+    "storage": {
+      "cases": 64,
+      "report_sha256": "bcaccd0ae23c7fd112101437f2031ce9bdb1314f89b5420aae4c8026610ee820"
+    }
+  },
+  "raw_cases_sha256": {
+    "active_cooldown_tests_cases.json": "7d29b45eb1532aaf78e8df19c5326cd81b0b0660feb143f8e049acf52c6cc7bb",
+    "baseline_display_matrix_cases.json": "58f52cc7b3c3b3cc728cc18ad403c9f1562f9b0fd150e64ab76358dc54af6cc5",
+    "baseline_display_registry_cases.json": "ae1f994b35471aaf9da3ac0afd96e1297918135d5e85be381822acbcca9a4af9",
+    "baseline_event_param_cases.json": "88b52f488760a3438165c2f6175569debbb5ff0d4aa800dc532b35d7a779bef2",
+    "candidate_display_matrix_cases.json": "58f52cc7b3c3b3cc728cc18ad403c9f1562f9b0fd150e64ab76358dc54af6cc5",
+    "candidate_display_registry_cases.json": "ae1f994b35471aaf9da3ac0afd96e1297918135d5e85be381822acbcca9a4af9",
+    "candidate_event_param_cases.json": "0249e44cda947a161fcb18d1db5dce0b369bf928198af13ff2eec15140a314c7",
+    "closed_known_tests_cases.json": "db73cd801568ece22e5cc18fe03f405c5d91797cb8dba873277c580097e7ccda",
+    "diagnostic_buff_production_cases.json": "405254833c7e9df6b31c8a47ca596afb1dbb888f00fcf738ee583e74c2a7d54a",
+    "diagnostic_label_production_cases.json": "d7fff4086450c704067d764d8b3d5986a3185d6399aa65ad601a2e2cb69fc184",
+    "dispatch_chain_production_cases.json": "078090376dfb121d5f494868a40efe3bf4d16989d8c43b50b742696a82a06d2f",
+    "frame_production_cases.json": "0244c46ecd84779063bd5755f0870fd3fe27558e4bafbdc51f87e8cc73126fc1",
+    "integer_grid_query_tests_forced_grid_cases.json": "d02eb3111abd8c6db22c917f9c809465b1241ab101834464b4607d559a689b2c",
+    "integer_grid_query_tests_ordinary_cases.json": "d02eb3111abd8c6db22c917f9c809465b1241ab101834464b4607d559a689b2c",
+    "member_production_cases.json": "6eb221d9c4b68ea25e60566c272ea35ac8ae8eafc62875fc3a5b59a9caa070e4",
+    "motion_indices_production_cases.json": "8fd6a914a25ad74ecaab72a241083f1ecd0fbf789ba2a817e979c197aef26fe3",
+    "spatial_production_cases.json": "d02eb3111abd8c6db22c917f9c809465b1241ab101834464b4607d559a689b2c",
+    "static_collection_production_cases.json": "b03be7a8cdbdc31e5d5f23bbda098cb140048f26c6633cb917f8213002ab2da9",
+    "static_setup_production_cases.json": "21ed11beb80da7e8eea183d4ade06fa9433a79d9d904eebd7b31bab45ef4358f",
+    "targeted_timer_ownership_production_cases.json": "6d23361a4597368b3dac4e8c8ec8a9588e4c2f0106d663eb68a7b20e8261dc37",
+    "targeted_timer_production_cases.json": "071f32a114ba9fa50fd720b54995d3dc8b57940530b36a778f761fc2f7ef2b19",
+    "targeted_timer_safety_production_cases.json": "3075ae6a62b49117887e78ce26014477d9cdcf9852251f4c0257db8f0a9e88d9"
+  },
+  "fixtures_sha256": {
+    "test_native_frame_proof.cpp": "8879f7f93499a771f5e1f73c03881c9550181acdbebc8af4d220ee2d0a3163fd",
+    "test_native_event_capacity.cpp": "6113e75a57b957ef8b7774b401b5b8f64a0f731ae10c4fe8b74c80e9c284612d",
+    "test_coallocated_event_storage.cpp": "432ae3515c114688526559adc9833bd0f130f27abb89f2fba900c6c66e307c7b"
+  },
+  "actual_dll_independent_baseline_oracles": true,
+  "no_throughput_claim": true
+}

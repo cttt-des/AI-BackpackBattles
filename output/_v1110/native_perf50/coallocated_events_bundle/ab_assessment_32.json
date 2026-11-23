@@ -1,0 +1,131 @@
+{
+  "baseline_dll_sha256": "e0bedc4960077407e85763cb5e4af70175a0623cca15e923403fa89174390687",
+  "candidate_dll_sha256": "7446284523c0350ac8d209b378024542c3032c7ca24bb174d35537c7734920f2",
+  "status": "inconclusive_retained",
+  "individual_components_not_rejected": true,
+  "metrics": {
+    "main_thread_cpu_s": {
+      "paired_median_time_reduction_pct": -0.14204545454545858,
+      "sum_time_reduction_pct": 0.5486840881614441,
+      "candidate_wins": 15,
+      "ties": 1,
+      "pairs": 32
+    },
+    "wall_s": {
+      "paired_median_time_reduction_pct": 0.375440966632834,
+      "sum_time_reduction_pct": 0.0652725300535617,
+      "candidate_wins": 17,
+      "ties": 0,
+      "pairs": 32
+    }
+  },
+  "group_medians": [
+    {
+      "main_thread_cpu_s": -1.2944983818770073,
+      "wall_s": -1.0770633539319618
+    },
+    {
+      "main_thread_cpu_s": -0.3150551718663186,
+      "wall_s": 0.03996186774835042
+    },
+    {
+      "main_thread_cpu_s": 1.696642914300961,
+      "wall_s": 2.206718049295342
+    },
+    {
+      "main_thread_cpu_s": 0.5954176722982041,
+      "wall_s": -0.17953300282078644
+    }
+  ],
+  "leave_one_group_out_sensitivity": [
+    {
+      "main_thread_cpu_s": {
+        "paired_median_time_reduction_pct": 0.9668109668109659,
+        "sum_time_reduction_pct": 0.7822048398924419,
+        "candidate_wins": 13,
+        "ties": 0,
+        "pairs": 24
+      },
+      "wall_s": {
+        "paired_median_time_reduction_pct": 0.46375616896668914,
+        "sum_time_reduction_pct": 0.049945939933471184,
+        "candidate_wins": 14,
+        "ties": 0,
+        "pairs": 24
+      }
+    },
+    {
+      "main_thread_cpu_s": {
+        "paired_median_time_reduction_pct": 0.6514657980456029,
+        "sum_time_reduction_pct": 0.49799587027814507,
+        "candidate_wins": 12,
+        "ties": 1,
+        "pairs": 24
+      },
+      "wall_s": {
+        "paired_median_time_reduction_pct": 1.1283406377476157,
+        "sum_time_reduction_pct": -0.12072839302563754,
+        "candidate_wins": 13,
+        "ties": 0,
+        "pairs": 24
+      }
+    },
+    {
+      "main_thread_cpu_s": {
+        "paired_median_time_reduction_pct": -0.3150551718663186,
+        "sum_time_reduction_pct": -3.1963470319634757,
+        "candidate_wins": 9,
+        "ties": 1,
+        "pairs": 24
+      },
+      "wall_s": {
+        "paired_median_time_reduction_pct": -0.2590858548548347,
+        "sum_time_reduction_pct": -5.296325616078712,
+        "candidate_wins": 11,
+        "ties": 0,
+        "pairs": 24
+      }
+    },
+    {
+      "main_thread_cpu_s": {
+        "paired_median_time_reduction_pct": -0.1547987616099089,
+        "sum_time_reduction_pct": 4.070351758793967,
+        "candidate_wins": 11,
+        "ties": 1,
+        "pairs": 24
+      },
+      "wall_s": {
+        "paired_median_time_reduction_pct": 0.375440966632834,
+        "sum_time_reduction_pct": 5.508498753097246,
+        "candidate_wins": 13,
+        "ties": 0,
+        "pairs": 24
+      }
+    }
+  ],
+  "background_load_range_pct": [
+    7.736200505208787,
+    62.704935301468076
+  ],
+  "on_ac_all": true,
+  "reports": [
+    {
+      "path": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_perf50\\coallocated_events_bundle\\ab_1.json",
+      "sha256": "5b7750aea4931c68b62e407733a3244387ef6c1b16db542106570691c44848e8"
+    },
+    {
+      "path": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_perf50\\coallocated_events_bundle\\ab_2.json",
+      "sha256": "6f3900d6054065ff43eea6a121778f40033345b7b54aadadb0c27bb0de9b94d0"
+    },
+    {
+      "path": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_perf50\\coallocated_events_bundle\\ab_3.json",
+      "sha256": "fd6e516d13d2c8f03280808ee1063618fc2526878e280580c62a1add2aef2de2"
+    },
+    {
+      "path": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_perf50\\coallocated_events_bundle\\ab_4.json",
+      "sha256": "4c49f499d2c05b0aa4dea894d2434814d866f0e0ac5c055535f9a5db2b112f71"
+    }
+  ],
+  "semantics_and_raw24_required_before_deployment": true,
+  "interpretation": "This measures a bundle. It does not prove each component helps or that old percentage estimates add together."
+}

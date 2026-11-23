@@ -1216,3 +1216,17 @@ revision2固定200场结果签名保持`2e74b45c…`：386,704个角色阶段，
 正式DLL`785834d760f4eeb71b8bfec40c07da9f128f21a314bc6a7246ead592216d91af`通过保留回归、最终3,073项实际DLL差分、固定200和原frame／type计数、完整再生成。首24对不明确，按预定规则仅追加8对，全部32对CPU／墙钟配对中位耗时增加1.3238%／2.3654%，累计增加0.6940%／0.7468%，各14胜18负。分组方向不一致，结论为未证实有效；没有挑选有利子集，不再追加同源测速，未启动2,604或发布raw24，生产仍e0bedc。
 
 恢复工作后首次24批独立校准全程接电，后台负载91.8054%–95.8831%，20%不在实测区间，拟合工具已拒绝外推；本轮20%速度记为缺测，保留全部原始数据和失败日志，不用上一轮174.4918替代本轮。下一候选改为实际减少事件小字典分配次数，并评估帧kernel内联；容量从8变4与本轮检查组合均不直接合入。[完整32对](../output/_v1110/native_perf50/frame_proof_bundle/ab_assessment_32.json) · [校准原始数据](../output/_v1110/native_perf50/frame_proof_bundle/rejected_load_calibration.json)
+
+## 事件字典合并分配＋帧kernel内联：4,161项实际DLL检查通过
+
+本轮从未变的e0bedc重新派生，未带入未证实有效的行表／Bool组合。私有closed_world下，CoreEvent初始化时将独立GdDict头与四个原始条目槽合并为一次arena分配；空槽不构造、不清零，之后插入、覆盖、扩容仍走原setter。开放上下文保留原factory。另仅要求编译器内联原frame_segment函数，不改其条件、浮点、读取时点、回调或恢复顺序。对象及容器布局均不变；这是减少一次后续条目分配的实现，不能直接沿用此前“首次写预留4”的测速结论。
+
+语义原型`a41c23b0e1d43f09bb3b10ba560c5492e644b9b9d23702ac36a30d68fa78d3cd`固定200原结果／自然终局及旧六项计数相同。实际DLL检查通过3,073项帧差分、1,024项事件字典差分及64项连续存储／扩容／复制别名／重新初始化寿命检查，共4,161项。707份正式源逐字节复现，完整20单元instrumentation／新18热点PGO已经启动，尚无整场提速结论。[实际检查汇总](../output/_v1110/native_perf50/coallocated_events_prototype/correctness.json) · [固定验收协议](../output/_v1110/native_perf50/coallocated_events_bundle/evaluation_plan.json)
+
+上一失败轮本地提交79bf235e、完整备份提交a3e6658f已保留专用本地引用；SSH22／443及HTTPS推送因网络错误未能确认成功。当前生产707份源码和e0bedc仍与此前已核对远端1b18298e相同，本轮记录不声称完成新推送。[待上传记录](../output/_v1110/native_perf50/frame_proof_bundle/checkpoint_upload_pending.json)
+
+## 事件字典合并分配＋帧内联正式收尾：32对未明确，未部署
+
+正式DLL `7446284523c0350ac8d209b378024542c3032c7ca24bb174d35537c7734920f2` 已完成完整20单元instrumentation／同源新18热点PGO、全部保留回归、4,161项实际DLL差分、固定200原结果及旧frame／type计数一致、完整再生成。首24对不明确，按预定规则仅追加8对；最终全部32对CPU配对中位耗时增加0.1420%，墙钟减少0.3754%，累计分别减少0.5487%／0.0653%；CPU15胜1平16负，墙钟17胜15负。分组与去组敏感性不支持稳定正收益，结论 `inconclusive_retained`。保留原24对和完整32对，不追加同源测速；未进入2,604逐事件、发布raw24或安装，生产仍e0bedc。[最终32对](../output/_v1110/native_perf50/coallocated_events_bundle/ab_assessment_32.json) · [明确决策](../output/_v1110/native_perf50/coallocated_events_bundle/candidate_decision.json)
+
+2026-11-23接手后仅补做一次独立、非发布门槛的24批候选校准，全程接电，负载15.9149%–66.8457%，覆盖20%。20%换算 **171.8379场/秒**，R²0.9557，留出耗时误差中位3.8351%／P90 7.9739%。这不是发布raw24，不能替代未过的同期A/B，也不能与历史标定之差当作代码收益；200目标尚未达到。[本次候选校准](../output/_v1110/native_perf50/coallocated_events_bundle/rejected_load20.json) · [收尾记录](../output/_v1110/native_perf50/coallocated_events_bundle/rejection_receipt.json)
