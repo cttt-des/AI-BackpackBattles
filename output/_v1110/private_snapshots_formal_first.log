@@ -1,0 +1,11 @@
+Passed234880 affected-path cases and708-source reproduction; all retained checks required before AB; full20/new18PGO
+Protocol process 19152 exit 1
+Protocol process 2128 exit 1
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\run_private_snapshots_formal.py", line 39, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\run_private_snapshots_formal.py", line 37, in main
+    assert build.returncode==qualifier.returncode==0,'Inspect original logs; never restart observed timings'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Inspect original logs; never restart observed timings

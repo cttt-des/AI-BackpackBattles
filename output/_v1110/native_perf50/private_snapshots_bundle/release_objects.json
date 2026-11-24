@@ -1,0 +1,27 @@
+{
+  "object_directory": "C:\\Users\\Windows\\AppData\\Local\\CodexNativeBuilds\\private-snapshots-formal-9_tljy18\\objects",
+  "dll_sha256": "cd4ee7464fd4158cc0fc00bcd6dda49023bfb9614cdccad71a014e2bdbcb13ce",
+  "source_manifest_sha256": "b5e1ea8f4075369ca529bb18e3d85fcaf08afb76f355d086d1c3a32fbbe4cb79",
+  "objects_sha256": {
+    "gd_rt": "985f60dd4c2559689d68b271bd35c7de2202a1d8d450317df45f1a454ccbde0c",
+    "engine_wrapper": "8e27c4b86a27741231bd06501721b47a06cd75d46667d57e6aad814b53c96a4b",
+    "sym_ids": "35b0d562d93f7e48a8863ad0cea81c5e1ea58ef709ae0b47ffd4e0f423652678",
+    "register_all": "87aa32f2f9350de3823d2587f56c1a10c2b7f77e125e1ba01206854af046d6f8",
+    "shard_00": "d90e8d6b691b0ec027e10b8c968cde0fa5bd94b23e56bb205b87c8422883a2bc",
+    "shard_01": "15808723fdecc0f6847be505f9bcbbe7c6c26d8cc5e3c78e261768907f88bccd",
+    "shard_02": "45d35b58149603f385f61d2a466419c5e0688b454279ab9b001e8583878a39fe",
+    "shard_03": "5352bb3d71fbeadf4c796508a5ed2e496664c1bdf3ac7f05bc2c2212dd0d7f8d",
+    "shard_04": "c549f619481b04b97c1be8d59d5eb0d9140ed4755c4924a8adf9d66862296a85",
+    "shard_05": "3edc7b89507cdcc4ced95290353eee4a56d0b9891b0ec180cd0313b13a0255b6",
+    "shard_06": "6e2a08ad708ec973cc9ac717f35e5b94556ae10f9ddb714f6dcc47ae1e1c8ac6",
+    "shard_07": "dcc2e3991a2e861cd6cb7976fe14afc351fe9a974d2e444127cec49a7590ea3a",
+    "shard_08": "802929b69ae63c1363b9a7e4411bf894b82fd9c0edc400b98a14dfca5797e9d1",
+    "shard_09": "97fdbc97822524925decf27e22f93b29121684bf5925e7a7a492c5c3a27cf1ec",
+    "shard_10": "dff5b959f5c336e2a7b7967309d6fdc4d206c5f896cdddc0e900043ce256954a",
+    "shard_11": "7c443306a6641a25d1ac4656c0b168110f2c5c88d12e9ae355dc06e2e02dc3a2",
+    "shard_12": "c37b538ef763bd1e5a8bf684964e59bb5dcaf6501e4d971a0662ef364f500ae0",
+    "shard_13": "b44c684887e2f33959c220618fa62ea19a0b7f2e20944a38318b0090777de0f3",
+    "shard_14": "2324e53461da2ea736bf7bb314e3080af74cf1b6456ae3aaf19526f73d5a126c",
+    "shard_15": "6511243bcde46bc00335cc5a7a70d3be7e0c7643d16b1a0110bf96696cbad9a0"
+  }
+}

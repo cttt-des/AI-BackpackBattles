@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "D:\�ļ�����\ѧϰ\�Զ�����AI\output\_v1110\probe_event_identity_snapshot.py", line 108, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\�ļ�����\ѧϰ\�Զ�����AI\output\_v1110\probe_event_identity_snapshot.py", line 51, in main
+    assert text.count(needle)==1;text=text.replace(needle,'identity_snapshot_probe_try(gd_ctx,lv_emitter,&battle_string_literals[3],lv__eid2)')
+           ^^^^^^^^^^^^^^^^^^^^^
+AssertionError

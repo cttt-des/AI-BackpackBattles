@@ -1,0 +1,127 @@
+{
+  "passed": true,
+  "cases": 234880,
+  "actual_dll_cases": {
+    "identity_snapshots": 143360,
+    "private_buff_loops": 18432
+  },
+  "helper_cases": 73088,
+  "difference_counts": {
+    "identity_snapshots": 0,
+    "private_buff_loops": 0
+  },
+  "first_differences": {
+    "identity_snapshots": [],
+    "private_buff_loops": []
+  },
+  "baseline_dll_sha256": "f950b64c74684ae70ce4e41b9622541c849da0121e1235ab88b7aaface22a6d7",
+  "dll_sha256": "cd4ee7464fd4158cc0fc00bcd6dda49023bfb9614cdccad71a014e2bdbcb13ce",
+  "raw_cases_sha256": {
+    "fixture_loader_failure_1/baseline_identity_snapshots_cases.json": "6fb9d782a0049b8eccc824876a4d104a20a11d757fd6e82ac207c272f0e861fb",
+    "fixture_loader_failure_1/baseline_private_buff_loops_cases.json": "13f9e0d16019a6d9348edb957438e5239256c5940c0b007ccb49a3bb633846a2",
+    "candidate_identity_snapshots_cases.json": "6fb9d782a0049b8eccc824876a4d104a20a11d757fd6e82ac207c272f0e861fb",
+    "candidate_private_buff_loops_cases.json": "13f9e0d16019a6d9348edb957438e5239256c5940c0b007ccb49a3bb633846a2"
+  },
+  "fixture_sha256": {
+    "test_native_identity_snapshots.cpp": "6c04e82cfc09b034c0e507ad469e10e0a105f7862e15af8227b95e6bb2e3381a",
+    "test_native_private_buff_loops.cpp": "159e0134b73d984c3c4b1ca2cb03d5ecdbb4fb1b13b53a6a12efd1bc2352cad2",
+    "test_native_private_integer_view.cpp": "cef12fa1c66760c965b674139e0b6aca743c19a7e4bab921dc64fc007825c566"
+  },
+  "text_boundaries_mutation_trace_toggle_literal_nested_and_unknown_receivers": true,
+  "four_rounding_and_four_daz_ftz_modes": true,
+  "old_six_counts_per_case_checked": true,
+  "no_throughput_claim": true
+}
+{
+  "passed": true,
+  "fixture_revision": 2,
+  "cases": 320256,
+  "unknown_cpp_override_cases": 74496,
+  "real_handler_cases": 245760,
+  "active_route_assertions": 10240,
+  "difference_count": 0,
+  "first_differences": [],
+  "fixture_sha256": "23cfefb0a79a91dbb8749316a8ca3dd6d147c3e07beeae6af41c941d71f36f7b",
+  "symbols_header_sha256": "6a3327e730445da6501b12ea119276e0ab5022595569e7cbed63a588743ebe6c",
+  "baseline_dll_sha256": "80a0681c1c93268af2b29c21e5439b6444de36a29ad39486b3f4afadf548a44a",
+  "dll_sha256": "cd4ee7464fd4158cc0fc00bcd6dda49023bfb9614cdccad71a014e2bdbcb13ce",
+  "cross_contexts_original_argument_pointer_and_nested_calls": true,
+  "all_four_rounding_modes_and_daz_ftz": true,
+  "raw_cases_sha256": {
+    "baseline_object_routes_cases.json": "bf4599485d8447211338d210fb678ddc4beda484c0a80535a3336b842e9c8be5",
+    "candidate_object_routes_cases.json": "ede1608ebe81ea781e1280af53ba4d73c183c2f788152a35f7b700635545749a"
+  },
+  "independent_actual_baseline_dll": true,
+  "no_throughput_claim": true
+}
+{
+  "passed": true,
+  "cases": 126192,
+  "unknown_override_cases": 15600,
+  "real_generated_handler_cases": 110592,
+  "difference_count": 0,
+  "first_differences": [],
+  "fast_no_materialization_assertions": 3072,
+  "fixture_sha256": "a5d1235ab177278621003a9b77d95e5c8a631528211726717442bd157aa666f8",
+  "symbols_header_sha256": "cc2469e18aeeddc8956fb2b105aae22af811c505211fba658ed5b739bcfceba4",
+  "baseline_dll_sha256": "c46cc19c06fb3c424a470f04bb7a0ef5acf8b7ff01caaccd5f41a5c44d955ee1",
+  "dll_sha256": "cd4ee7464fd4158cc0fc00bcd6dda49023bfb9614cdccad71a014e2bdbcb13ce",
+  "raw_cases_sha256": {
+    "baseline_callbacks_cases.json": "ad36af2d67882ef2872a211cb04d912a5969c0d49670b12bed059520667bd242",
+    "candidate_callbacks_cases.json": "7eedbc33f0c77db52aaf8482ec2b0e3158bcdc5152b51542f418280c0252bcb9"
+  },
+  "independent_actual_baseline_dll": true,
+  "no_throughput_claim": true
+}
+{
+  "passed": true,
+  "cases": 5184,
+  "difference_count": 0,
+  "first_differences": [],
+  "canonical_no_materialization_checks": 48,
+  "fixture_sha256": "af0402cc124986ec6882cc2a8ddccc622e4c28d858348493433c98420a9ba3a2",
+  "baseline_dll_sha256": "d8a7365191ad57a48ac378a7db77e8587169814f6f74298734f7d0b4786e3a76",
+  "dll_sha256": "cd4ee7464fd4158cc0fc00bcd6dda49023bfb9614cdccad71a014e2bdbcb13ce",
+  "raw_cases_sha256": {
+    "baseline_literal_cases.json": "34f4635d7f1dd03f8662f5e37e27a8e34fa835e1fa61acf6a0de005c89981f4b",
+    "candidate_literal_cases.json": "4a9f56b8143f0a7ca4a084e30af6c8cacb3acbb7958a1e58d44efba4851075b1"
+  },
+  "independent_actual_baseline_dll": true,
+  "no_throughput_claim": true
+}
+{
+  "passed": true,
+  "dll_sha256": "cd4ee7464fd4158cc0fc00bcd6dda49023bfb9614cdccad71a014e2bdbcb13ce",
+  "affected_private_snapshot_cases": 234880,
+  "affected_object_route_cases": 320256,
+  "affected_callback_cases": 126192,
+  "retained_literal_span_cases": 5184,
+  "retained_type_constructor_test_passed": true,
+  "reports_sha256": {
+    "baseline_callbacks_cases.json": "ad36af2d67882ef2872a211cb04d912a5969c0d49670b12bed059520667bd242",
+    "baseline_callbacks_first.log": "ad36af2d67882ef2872a211cb04d912a5969c0d49670b12bed059520667bd242",
+    "callback_dispatch.json": "5a237e0bd5bff3fb4637876c043a097a2146648fbcc46ebdd7e49e745796d225",
+    "callback_test_symbols.hpp": "cc2469e18aeeddc8956fb2b105aae22af811c505211fba658ed5b739bcfceba4",
+    "candidate_callbacks_cases.json": "7eedbc33f0c77db52aaf8482ec2b0e3158bcdc5152b51542f418280c0252bcb9",
+    "candidate_callbacks_first.log": "7eedbc33f0c77db52aaf8482ec2b0e3158bcdc5152b51542f418280c0252bcb9",
+    "constructors_cases.log": "650bb3ee9ffd12c10c03180a22b1aab7a456f8bd9a9738df35a1a973d8fc4ab5",
+    "constructors_compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "object_routes/baseline_object_routes_cases.json": "bf4599485d8447211338d210fb678ddc4beda484c0a80535a3336b842e9c8be5",
+    "object_routes/baseline_object_routes_revision2.log": "bf4599485d8447211338d210fb678ddc4beda484c0a80535a3336b842e9c8be5",
+    "object_routes/candidate_object_routes_cases.json": "ede1608ebe81ea781e1280af53ba4d73c183c2f788152a35f7b700635545749a",
+    "object_routes/candidate_object_routes_revision2.log": "ede1608ebe81ea781e1280af53ba4d73c183c2f788152a35f7b700635545749a",
+    "object_routes/object_routes.json": "7c7ca77df66bb303457485f50b8341fbaf5ea271a64c4d6573c4d65b7792a965",
+    "object_routes/object_route_test_symbols.hpp": "6a3327e730445da6501b12ea119276e0ab5022595569e7cbed63a588743ebe6c",
+    "private_snapshots/candidate_identity_snapshots.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "private_snapshots/candidate_identity_snapshots_cases.json": "6fb9d782a0049b8eccc824876a4d104a20a11d757fd6e82ac207c272f0e861fb",
+    "private_snapshots/candidate_private_buff_loops.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "private_snapshots/candidate_private_buff_loops_cases.json": "13f9e0d16019a6d9348edb957438e5239256c5940c0b007ccb49a3bb633846a2",
+    "private_snapshots/correctness.json": "815454662fbdbd961a839fe58085c73b5fed0e03a5012cbb8940bf58221e2a07",
+    "private_snapshots/private_integer_view.log": "f02afe376b45569f39a9fe08684b7a24ad18708fa5d5bba997ea5d04daff3b5d",
+    "retained_literal/baseline_literal_cases.json": "34f4635d7f1dd03f8662f5e37e27a8e34fa835e1fa61acf6a0de005c89981f4b",
+    "retained_literal/baseline_literal_first.log": "34f4635d7f1dd03f8662f5e37e27a8e34fa835e1fa61acf6a0de005c89981f4b",
+    "retained_literal/candidate_literal_cases.json": "4a9f56b8143f0a7ca4a084e30af6c8cacb3acbb7958a1e58d44efba4851075b1",
+    "retained_literal/candidate_literal_first.log": "4a9f56b8143f0a7ca4a084e30af6c8cacb3acbb7958a1e58d44efba4851075b1",
+    "retained_literal/literal_spans.json": "d51804186c8823c754626d2af8664d1f3c88708e42e99dbf5348943051a3f516"
+  }
+}

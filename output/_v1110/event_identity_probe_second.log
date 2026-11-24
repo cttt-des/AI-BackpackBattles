@@ -1,0 +1,38 @@
+{
+  "passed": true,
+  "probe_only": true,
+  "no_throughput_claim": true,
+  "not_for_deployment": true,
+  "baseline_dll_sha256": "f950b64c74684ae70ce4e41b9622541c849da0121e1235ab88b7aaface22a6d7",
+  "verified_backup_commit": "b8c939d55dd51d31b7a2f11d98b5a0ebc2a6e94d",
+  "probe_dll_sha256": "c1012738b2e4c81fce77ab950a643c302dcf43f70cc307fd8ee2f22877948a4f",
+  "source_proof_sha256": "78a9dd6ca2818de658638a8427b6b2061a9f2563308ba85d40ac859c8cf1724a",
+  "baseline_source_manifest_sha256": "232f4ebb6b0ba7785970d35d85750fe7fdc7f5a830a1ae7622101e06799afb38",
+  "recompiled_units": 1,
+  "unchanged_baseline_objects": 19,
+  "old_six_counters": [
+    9599433,
+    100900,
+    54635,
+    200,
+    0,
+    233004
+  ],
+  "matched_original_terminal": 200,
+  "inputs_sha256": "d94b16d42cc88e9a3850a77c9360b9c4c4fdd676cb252e463044a903db2a5fef",
+  "results_sha256": "2e74b45caa87f7ee6ac72ffc35d98cc8db140b47031614d26542e183cef5d2c9",
+  "totals": {
+    "attempts": 34193,
+    "successes": 34193,
+    "fallbacks": 0,
+    "bytes": 488981,
+    "max_length": 30,
+    "bounded64": 34193,
+    "bounded128": 34193,
+    "bounded256": 34193,
+    "bounded512": 34193,
+    "end_trace_uses": 0,
+    "early_returns": 174
+  },
+  "measurements_are_identity_counts_not_speed": true
+}

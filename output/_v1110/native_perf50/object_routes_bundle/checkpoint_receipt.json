@@ -1,0 +1,13 @@
+{
+  "local_commit": "2df725c38d8eb0a7515d687d63bfd0494f493526",
+  "prepared_backup_commit": "b8c939d55dd51d31b7a2f11d98b5a0ebc2a6e94d",
+  "local_preservation_ref": "refs/heads/codex/object-routes-backup-20261124",
+  "parent_remote_verified_commit": "72dd9c1575087596ad0409b939104a0113033e40",
+  "own_files_saved": 6002,
+  "production_source_files_verified": 707,
+  "candidate_installed": true,
+  "production_dll_sha256": "f950b64c74684ae70ce4e41b9622541c849da0121e1235ab88b7aaface22a6d7",
+  "user_existing_changes_not_staged": true,
+  "remote_upload_verified": true,
+  "remote_verified_commit": "b8c939d55dd51d31b7a2f11d98b5a0ebc2a6e94d"
+}

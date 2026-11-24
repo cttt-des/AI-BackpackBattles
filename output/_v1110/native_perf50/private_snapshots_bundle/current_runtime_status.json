@@ -1,0 +1,12 @@
+{
+  "production_dll_sha256": "f950b64c74684ae70ce4e41b9622541c849da0121e1235ab88b7aaface22a6d7",
+  "candidate_dll_sha256": "cd4ee7464fd4158cc0fc00bcd6dda49023bfb9614cdccad71a014e2bdbcb13ce",
+  "candidate_installed": false,
+  "reason": "Independent calibration does not cover20%; deployment gate failed",
+  "goal200_reached": false,
+  "goal_still_active": true,
+  "latest_production_load20_fps": 186.34032339352876,
+  "candidate_load20_fps": null,
+  "no_more_same_source_AB_or_calibration": true,
+  "all_formal_protocol_processes_finished": true
+}

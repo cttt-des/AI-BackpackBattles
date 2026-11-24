@@ -1,0 +1,41 @@
+Starting verify_targeted_timers.py
+Passed verify_targeted_timers.py
+Starting verify_active_cooldowns.py
+Passed verify_active_cooldowns.py
+Starting verify_integer_grid.py
+Passed verify_integer_grid.py
+Starting verify_event_factory.py
+Passed verify_event_factory.py
+Starting verify_literal_spans.py
+Passed verify_literal_spans.py
+Starting verify_callback_dispatch.py
+Passed verify_callback_dispatch.py
+Starting verify_object_routes.py
+Passed verify_object_routes.py
+Starting verify_private_snapshots.py
+Passed verify_private_snapshots.py
+Starting verify_resolved.py
+Passed verify_resolved.py
+Starting inspect_variant.py
+Passed inspect_variant.py
+Starting test_regeneration_guards.py
+Passed test_regeneration_guards.py
+Starting test_full_regeneration.py
+Passed test_full_regeneration.py
+Starting run_comparison.py
+Passed run_comparison.py
+Starting qualify_when_ready.py
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\resume_private_snapshots_validation.py", line 59, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\resume_private_snapshots_validation.py", line 56, in main
+    run('qualify_when_ready.py','qualification_resumed_first.log','--pid','0','--created','0','--ready-receipt',ready)
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\resume_private_snapshots_validation.py", line 19, in run
+    subprocess.run([sys.executable,'-u','-X','utf8',str(WORK/script),*map(str,args)],stdout=output,stderr=subprocess.STDOUT,check=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe', '-u', '-X', 'utf8', 'D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_perf50\\private_snapshots_bundle\\qualify_when_ready.py', '--pid', '0', '--created', '0', '--ready-receipt', 'D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_perf50\\private_snapshots_bundle\\validation_resumed_ready.json']' returned non-zero exit status 1.

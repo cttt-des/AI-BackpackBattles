@@ -1,0 +1,18 @@
+{
+  "status": "not_deployed_load20_uncovered",
+  "candidate_dll_sha256": "cd4ee7464fd4158cc0fc00bcd6dda49023bfb9614cdccad71a014e2bdbcb13ce",
+  "production_dll_sha256": "f950b64c74684ae70ce4e41b9622541c849da0121e1235ab88b7aaface22a6d7",
+  "strict_event_cases": 2604,
+  "original_ab_decision_retained": true,
+  "all32_pairs_retained": true,
+  "raw24_gate_passed": true,
+  "independent_calibration24_retained": true,
+  "no_extrapolation": true,
+  "no_repeat_calibration": true,
+  "no_more_same_source_groups": true,
+  "load20_covered": false,
+  "goal200_reached": false,
+  "goal_still_active": true,
+  "all_formal_protocol_processes_terminal": true,
+  "measurements_summary_sha256": "77075efc1ebf8bda7bfcbf7186002e1fe7d2f5194733faf8ef212b8207f4c54e"
+}
