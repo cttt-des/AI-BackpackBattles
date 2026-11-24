@@ -1,0 +1,21 @@
+{
+  "pid": 11684,
+  "created": 1795489925.291772,
+  "script": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\resume_callback_dispatch_validation.py",
+  "original_build": {
+    "pid": 11752,
+    "created": 1795437789.6271453,
+    "script": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_perf50\\callback_dispatch_bundle\\build_bundle.py"
+  },
+  "formal_dll_sha256": "80a0681c1c93268af2b29c21e5439b6444de36a29ad39486b3f4afadf548a44a",
+  "retained_passed_receipts": {
+    "event_identity_tests.json": "935b88ad652437502617722b8f1b6c8afb32fa940bb10ca7d41149dc86b3dad9",
+    "lazy_diagnostics_tests.json": "95a0930ec0bbbc197606e9ea2e1ce4a18d6db8e2af0c8610428e4a503b8593ba",
+    "member_frame_tests.json": "b743dc555f60e1478c41f82c68c0461256e97bb572a2e279ef291e21c269859d",
+    "static_collections_tests.json": "06c58aea282175b9635020acd5ea121d95141dee0856df0f255f402ef41ccefb",
+    "static_setup_tests.json": "79fed32f46bd778ce07a300118b72f11cf9348c68776ebafaa69c676b4fccae4",
+    "dispatch_chain_tests.json": "0ae86aaf8b71a462a493a28d2fd44536badc65c0508c4d96b46964c7b841c0f0",
+    "spatial_tests.json": "1de26425675996e5d913668d11fd9c33b0ebd8424321761ca791477e985a0872",
+    "motion_indices_tests.json": "820f80fc6ee98d70fc65c7417ed9aad82d60e92dd3077eeea46dd6dffe19b77f"
+  }
+}

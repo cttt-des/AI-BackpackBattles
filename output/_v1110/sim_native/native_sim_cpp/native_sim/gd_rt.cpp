@@ -13,6 +13,7 @@
 #include <unordered_set>
 
 namespace gd {
+bool native_try_extra_callback(BattleCtx&,GdObj*,SymId,const GdVal*,int,GdVal&);
 
 struct FastInternedSymbol {
     std::string_view text;
@@ -1285,7 +1286,8 @@ GdVal GdFuncRef::call_func(BattleCtx& ctx, const GdVal* args, int argc) const {
         if (!try_native_resolved_dispatch(ctx,instance,method,all.data(),static_cast<int>(all.size()),out,1))
             instance->call_method(ctx, method, all.data(), static_cast<int>(all.size()), out);
     } else {
-        if (!try_native_resolved_dispatch(ctx,instance,method,args,argc,out,1))
+        if (!try_native_resolved_dispatch(ctx,instance,method,args,argc,out,1) &&
+            !native_try_extra_callback(ctx,instance,method,args,argc,out))
             instance->call_method(ctx, method, args, argc, out);
     }
     return out;

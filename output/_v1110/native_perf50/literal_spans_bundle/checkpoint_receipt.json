@@ -1,0 +1,13 @@
+{
+  "local_commit": "5bab88da33e520ce5d2fcc1226dca09044b31b7b",
+  "prepared_backup_commit": "a27d289f2009c3ad42145d61334d50647b2c060f",
+  "local_preservation_ref": "refs/heads/codex/literal-spans-backup-20261123",
+  "parent_remote_verified_commit": "8c40f0b1b2cbb1ce5227f69757f89eca3bbc644a",
+  "own_files_saved": 5914,
+  "production_source_files_verified": 707,
+  "candidate_installed": true,
+  "production_dll_sha256": "c46cc19c06fb3c424a470f04bb7a0ef5acf8b7ff01caaccd5f41a5c44d955ee1",
+  "user_existing_changes_not_staged": true,
+  "remote_upload_verified": true,
+  "remote_verified_commit": "a27d289f2009c3ad42145d61334d50647b2c060f"
+}
