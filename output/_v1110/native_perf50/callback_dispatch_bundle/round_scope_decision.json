@@ -1,0 +1,30 @@
+{
+  "production_dll_sha256": "c46cc19c06fb3c424a470f04bb7a0ef5acf8b7ff01caaccd5f41a5c44d955ee1",
+  "verified_remote_backup": "a27d289f2009c3ad42145d61334d50647b2c060f",
+  "candidate_semantic_dll_sha256": "0eab6516388063c279b2221f8c521bb046bf05c61811b42999ba0a4811beb064",
+  "selected_scope": "65 uncached callbacks via exact-type side table; general FuncRef plus private literal paths",
+  "bound_concatenation_calls": 0,
+  "bound_stack_optimization_not_implemented": true,
+  "old_unbound_slow_calls": 101340,
+  "prototype_callback_counts": {
+    "generic_funcref": 50121,
+    "private_literal": 51219
+  },
+  "prototype_literal_arrays_avoided": 105257,
+  "prototype_literal_arrays_materialized": 8720,
+  "additional_arrays_avoided_over_production": 31904,
+  "ordinary_object_fallback_calls": 1456961,
+  "selected_callback_calls_in_ordinary_object_path": 268,
+  "ordinary_object_path_not_expanded": true,
+  "independent_actual_dll_cases": 126192,
+  "full707_source_reproduction": true,
+  "fresh_formal_build_and_timing_still_required": true,
+  "no_speedup_claim_from_counts": true,
+  "evidence_sha256": {
+    "output\\_v1110\\native_perf50\\callback_dispatch_prototype\\correctness.json": "60e9d603467f1c4da88156afea9a1ba1515764266d98303bc8a8c6bc7c71c0ec",
+    "output\\_v1110\\native_perf50\\callback_dispatch_prototype\\build.json": "b560e32e42941a691ca2cf84f0ac0ed7555a6bf4c0e7c00ba14160713172a83a",
+    "output\\_v1110\\native_perf50\\callback_dispatch_prototype\\allocation_probe.json": "9b1b2d9c5bf78340c12ba391e27350cc8bdce20ef30c436ba27930a84dc894da",
+    "output\\_v1110\\native_perf50\\callback_dispatch_prototype\\object_callback_probe.json": "fbc0ca013add2fc640fd871d1ada7c6af88311893dc541facc4533060fb2f127",
+    "output\\_v1110\\native_perf50\\bound_callbacks_prototype\\bound_argument_probe.json": "745f911cdac00bb9b9eeeb8029e9b3849f93a6e24a25ee2ef81ff81c02339f5e"
+  }
+}

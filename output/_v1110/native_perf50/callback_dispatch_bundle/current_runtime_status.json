@@ -1,0 +1,39 @@
+{
+  "production_dll_sha256": "80a0681c1c93268af2b29c21e5439b6444de36a29ad39486b3f4afadf548a44a",
+  "current_optimization": "65 exact-type extra callback routes and literal spans",
+  "deployed": true,
+  "post_install_verified": true,
+  "goal200_reached": false,
+  "goal_still_active": true,
+  "fitted_fights_per_second_at20": 180.99311800042898,
+  "raw24": {
+    "median_fights_per_second": 164.9267152345879,
+    "minimum_fights_per_second": 80.844704275732,
+    "maximum_fights_per_second": 224.82754883908459,
+    "background_load_range_pct": [
+      2.4439146843097586,
+      66.5785641155903
+    ],
+    "on_ac_all": true
+  },
+  "calibration24": {
+    "median_fights_per_second": 181.91665863980813,
+    "minimum_fights_per_second": 165.45835189914573,
+    "maximum_fights_per_second": 220.37358170323742,
+    "background_load_range_pct": [
+      5.166884932942372,
+      29.422444820708776
+    ],
+    "on_ac_all": true
+  },
+  "all_formal_protocol_processes_finished": true,
+  "source_files": 707,
+  "object_headers_unchanged": 674,
+  "verified_training_cases": 12,
+  "backup_receipt": "checkpoint_receipt.json",
+  "backup_status_recorded_separately": true,
+  "next_candidate_implemented": false,
+  "next_work": "Measure real receiver types for residual generic object method calls; prioritize an actually hot closed route",
+  "profile_receipt_sha256": "910ec2056ed80359ff3848df5bc28607da4cac98114f98373ac6dda7ce1f4da1",
+  "protected_user_files_unchanged": true
+}

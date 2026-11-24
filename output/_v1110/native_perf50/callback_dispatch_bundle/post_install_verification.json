@@ -1,0 +1,157 @@
+{
+  "passed": true,
+  "dll_sha256": "80a0681c1c93268af2b29c21e5439b6444de36a29ad39486b3f4afadf548a44a",
+  "production_source_files": 707,
+  "unchanged_object_headers": 674,
+  "strict_event_cases": 2604,
+  "event_hash_root": "b8066c9224bc418923c62f5a3dafb8912100b21bb0026c3b13669872f90e2f54",
+  "raw_batches": 24,
+  "training_cases": 12,
+  "type_constructor_coverage": {
+    "type_hits": 51782642,
+    "type_fallback": 0,
+    "fused_initializations": 1134539,
+    "factory_fallback": 0
+  },
+  "hot_slot_coverage": {
+    "new_method_hits": 1126227,
+    "new_field_hits": 16608087
+  },
+  "event_identity_coverage": {
+    "fast_identities": 663207,
+    "fallbacks": 0,
+    "fast_emissions": 2550578,
+    "emission_fallbacks": 0
+  },
+  "static_setup_coverage": {
+    "bulk_stack_tables": 202616,
+    "ordered_stack_fallback": 0,
+    "metric_counts": 1272643,
+    "affected_loops": 202616
+  },
+  "dispatch_chain_coverage": {
+    "behavior_methods": 275579,
+    "behavior_empty": 0,
+    "behavior_probes": 777809,
+    "flat_callbacks": 2143020
+  },
+  "spatial_coverage": {
+    "lookups": 9008725,
+    "hits": 3360453,
+    "object_dedup": 3358915,
+    "fallbacks": 0
+  },
+  "motion_index_coverage": {
+    "native_runs": 2517997,
+    "native_entries": 5564319,
+    "kept_entries": 5418491
+  },
+  "targeted_timer_coverage": {
+    "indexed_passes": 5035984,
+    "rebuilds": 5208,
+    "cache_hits": 5030776,
+    "indexed_owners": 9773443,
+    "fallback_passes": 0,
+    "same_pass_resumes": 0,
+    "watched_invalidations": 0,
+    "build_slots": 220201,
+    "build_eligible_owners": 10003,
+    "unknown_boundaries": 0
+  },
+  "internal_layout_evidence": {
+    "historical_oracle": {
+      "GdVal": 24,
+      "GdArr": 24,
+      "CoreItem": 1792,
+      "BattleCtx": 264
+    },
+    "baseline": {
+      "GdVal": 24,
+      "GdArr": 32,
+      "CoreItem": 1792,
+      "BattleCtx": 328
+    },
+    "candidate": {
+      "GdVal": 24,
+      "GdArr": 32,
+      "CoreItem": 1792,
+      "BattleCtx": 328
+    }
+  },
+  "callback_dispatch_cases": 126192,
+  "literal_span_cases": 5184,
+  "event_factory_cases": 5120,
+  "integer_grid_dictionary_cases": 1792,
+  "integer_grid_query_cases": 23520,
+  "integer_grid_coverage": {
+    "fast_queries": 9008725,
+    "ordinary_queries": 0,
+    "enabled_dicts": 5208,
+    "rejected_dicts": 0,
+    "mode_conversions": 0,
+    "reserved": 0
+  },
+  "active_cooldown_cases": 1856,
+  "active_cooldown_coverage": {
+    "indexed_phases": 5035984,
+    "rebuilds": 26874,
+    "cache_hits": 5009110,
+    "indexed_owners": 50404556,
+    "build_fallbacks": 0,
+    "same_pass_resumes": 11003,
+    "eligibility_changes": 322196,
+    "build_slots": 1232926,
+    "build_active_owners": 277689,
+    "reserved": 0
+  },
+  "sealed_known_cases": 1056,
+  "sealed_registry_boundary_checks": 4,
+  "closed_packed_mode_verified": true,
+  "target_at20_fps": 180.99311800042898,
+  "goal_target_fps": 200,
+  "goal200_reached": false,
+  "load_range_pct": [
+    5.166884932942372,
+    29.422444820708776
+  ],
+  "fit_validation": {
+    "median_absolute_relative_time_error": 0.014944169929331372,
+    "p90_absolute_relative_time_error": 0.042509364351269605,
+    "constant_median_absolute_relative_time_error": 0.11486931353060444
+  },
+  "evidence_sha256": {
+    "callback_dispatch_tests.json": "9f081ceaa41da5a2fe5a98753d99267fdec26ebc4f271e8e7db2fa15366a6063",
+    "literal_span_tests.json": "980cc939c6fdd9d8e8d5b6497990b65b3d19ffc7ead1c8533a916daf2e060394",
+    "post_ab_directed_regressions.json": "a29b94882822faceeeaf0c45a2bdfdc4a1a62ea71832dd210fa803f32fe5675b",
+    "event_factory_tests.json": "bcc7f98ed53c0a7674b4ac3105c3a3a42537ffbdd8c95c8d91ab1ac6eb99ac3e",
+    "source_before_build.json": "178c57d290c33ab916e8f2312b8f929160d2c41be9f9f692bc55939c5c4eeeef",
+    "bundle_full_gate.json": "53491e7727e7206d042835366a2620bb92987a34683f27eec225e15035a7d407",
+    "bundle_vs_deployed_hashes.json": "0860c99f545d3b31dfad600ff17cd0c82d2555a2799fe0e6db24295c359aa93e",
+    "ab_assessment.json": "3e72d6729dbaafffd8fad5e71a60cd2b81bb6b13516598e380deee3ba8d07a3c",
+    "bundle_serial.json": "958d7b31b8306fab10a3415c1eb889d1ea9c88b6e6efc43564dfba10458652f8",
+    "bundle_load_calibration.json": "1b8059918ce3f14bd0605acc10206f2e19eb54deee8c22465f2cfd542e7e994a",
+    "bundle_load20.json": "c7e3bd43288c19b22be9cf8c9031070b5a6c606e69496348c3e88dbcd68aa74c",
+    "bundle_installation.json": "969015cfa761595799168ce07e0b72cbecd19f2cfe1a8073eae9e3832c67d22b",
+    "static_setup_tests.json": "79fed32f46bd778ce07a300118b72f11cf9348c68776ebafaa69c676b4fccae4",
+    "dispatch_chain_tests.json": "0ae86aaf8b71a462a493a28d2fd44536badc65c0508c4d96b46964c7b841c0f0",
+    "spatial_tests.json": "1de26425675996e5d913668d11fd9c33b0ebd8424321761ca791477e985a0872",
+    "motion_indices_tests.json": "820f80fc6ee98d70fc65c7417ed9aad82d60e92dd3077eeea46dd6dffe19b77f",
+    "targeted_timer_tests.json": "4477ec5f568c9ca47c739f553d1a895dc27e0a49d69a541ac2dc62f927906f4d",
+    "dispatch_chain_production_cases.json": "078090376dfb121d5f494868a40efe3bf4d16989d8c43b50b742696a82a06d2f",
+    "spatial_production_cases.json": "d02eb3111abd8c6db22c917f9c809465b1241ab101834464b4607d559a689b2c",
+    "motion_indices_production_cases.json": "8fd6a914a25ad74ecaab72a241083f1ecd0fbf789ba2a817e979c197aef26fe3",
+    "targeted_timer_production_cases.json": "071f32a114ba9fa50fd720b54995d3dc8b57940530b36a778f761fc2f7ef2b19",
+    "targeted_timer_safety_production_cases.json": "3075ae6a62b49117887e78ce26014477d9cdcf9852251f4c0257db8f0a9e88d9",
+    "targeted_timer_ownership_production_cases.json": "6d23361a4597368b3dac4e8c8ec8a9588e4c2f0106d663eb68a7b20e8261dc37",
+    "closed_known_tests.json": "14ce0d6783520de44c0511d0b8ec9b8df7c6058fba4cccc2417a129508c75aaf",
+    "closed_known_tests_cases.json": "db73cd801568ece22e5cc18fe03f405c5d91797cb8dba873277c580097e7ccda",
+    "closed_registry_tests.json": "928e7e6f61ed23afbcbec5aa8e677fc7f2d1be828f58792fdec7aefdd9fb5c07",
+    "active_cooldown_tests.json": "cd3b1ce0f74446d983484ad8c09ef3ba6ccfbb3e9e58f098fc845808456b8ddb",
+    "active_cooldown_tests_cases.json": "7d29b45eb1532aaf78e8df19c5326cd81b0b0660feb143f8e049acf52c6cc7bb",
+    "integer_grid_tests.json": "09b88069970906f51188954a567f3e1f2452c2e6edde4bbc50aa0364fadb18cc",
+    "integer_grid_dictionary_tests.json": "b846474e9f4b28ffc5323d423ddcb6dbebde6e8f2d939ca568779006169b516c",
+    "integer_grid_query_tests.json": "ea809541236520d978396a1e6fd27b0979618ce409e914e9f0bac0f278861535",
+    "static_setup_production_cases.json": "21ed11beb80da7e8eea183d4ade06fa9433a79d9d904eebd7b31bab45ef4358f",
+    "full_type_audit.json": "611ea0846a6742ef4576456c090bbc129c81b3f3c63a9ee26ec5bb8e25066e6a"
+  }
+}

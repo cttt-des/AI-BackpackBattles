@@ -245,7 +245,8 @@ inline bool native_lazy_diagnostic_required(BattleCtx& ctx,unsigned site,bool sk
 }
 
 
-namespace gd { bool native_literal_canonical_row(const NativeMethodRow*); }
+namespace gd { bool native_literal_canonical_row(const NativeMethodRow*);
+bool native_try_literal_extra_callback(BattleCtx&,const GdVal&,const GdVal*,int,GdVal&); }
 
 // This view is used only for fresh, unaliased literals at frozen call sites.
 // A callback that may retain or mutate the array receives a real arena array.
@@ -275,6 +276,7 @@ struct NativeLiteralEventArguments {
             borrowed.len=borrowed.cap=static_cast<uint32_t>(count);
             gd::GdVal out;
             if(gd::native_try_flat_funcref(ctx,receiver,gd::GdVal::from_arr(&borrowed),out))return out;
+            if(gd::native_try_literal_extra_callback(ctx,receiver,data,count,out))return out;
             // A failed audit may have observable effects. Do not audit twice.
             return receiver.fr->call_funcv(ctx,materialize());
         }

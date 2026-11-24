@@ -1,0 +1,49 @@
+{
+  "current_production_dll_sha256": "80a0681c1c93268af2b29c21e5439b6444de36a29ad39486b3f4afadf548a44a",
+  "current_candidate_deployed": true,
+  "current_round_final32_cpu_median_reduction_pct": 0.46511627906976605,
+  "current_round_final32_wall_median_reduction_pct": 0.8974676785460323,
+  "no_local_work_during_formal_timing": true,
+  "next_candidate_implemented": false,
+  "highest_priority": {
+    "name": "Residual generic object calls: receiver type and method census",
+    "prior_count": 1456961,
+    "prior_dll_sha256": "c46cc19c06fb3c424a470f04bb7a0ef5acf8b7ff01caaccd5f41a5c44d955ee1",
+    "existing65_callback_methods_only268_hits": true,
+    "require_new_production_probe": true,
+    "no_speed_forecast_from_count": true,
+    "preservation": [
+      "actual C++ overrides and copied/invalid rows",
+      "read/observe/callback order",
+      "RNG and IEEE arithmetic order",
+      "old six counters and mutable argument aliases"
+    ]
+  },
+  "rejected_hypothesis": {
+    "name": "Bound argument concatenation",
+    "observed_bound_concatenations": 0,
+    "no_implementation_planned": true
+  },
+  "alternatives": [
+    {
+      "name": "Private integer range iteration view",
+      "implemented": false
+    },
+    {
+      "name": "Snapshot bounded event identity bytes before callbacks",
+      "implemented": false
+    },
+    {
+      "name": "Separate -fipa-pta compiler trial preserving floating flags",
+      "implemented": false
+    }
+  ],
+  "profile_receipt_sha256": "910ec2056ed80359ff3848df5bc28607da4cac98114f98373ac6dda7ce1f4da1",
+  "profile_phase_pct": {
+    "other_frame": 32.608695652173914,
+    "assembly": 18.626482213438734,
+    "other_setup_export": 5.484189723320158,
+    "trigger_chain": 43.280632411067195
+  },
+  "attribution_not_speedup_or_ceiling": true
+}

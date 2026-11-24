@@ -1,0 +1,92 @@
+#pragma once
+#pragma STDC FP_CONTRACT OFF
+#include "../../gd_rt.hpp"
+#include "../class_metas.hpp"
+#include "../sym_ids.hpp"
+
+struct Gd__gd_core__CoreItemData : public gd::GdObj {
+    explicit Gd__gd_core__CoreItemData(gd::BattleCtx* ctx) : gd::GdObj(ctx) {}
+    gd::GdVal f_name;
+    gd::GdVal f_identifier;
+    gd::GdVal f_itemIndex;
+    gd::GdVal f_minDam;
+    gd::GdVal f_maxDam;
+    gd::GdVal f_staminaCost;
+    gd::GdVal f_block;
+    gd::GdVal f_cd;
+    gd::GdVal f_extraCds;
+    gd::GdVal f_accuracy;
+    gd::GdVal f_canActivate;
+    gd::GdVal f_chance;
+    gd::GdVal f_chance2;
+    gd::GdVal f_shopChance;
+    gd::GdVal f_types;
+    gd::GdVal f_tags;
+    gd::GdVal f_physics;
+    gd::GdVal f_rarity;
+    gd::GdVal f_price;
+    gd::GdVal f_classes;
+    gd::GdVal f_randomUniquePool;
+    gd::GdVal f_hasBattleRageEffect;
+    gd::GdVal f_gatedItems;
+    gd::GdVal f_startsSubclass;
+    gd::GdVal f_gateItem;
+    gd::GdVal f_originatingRecipes;
+    gd::GdVal f_animationScene;
+    gd::GdVal f_flickerAni;
+    gd::GdVal f_flickerMinDist;
+    gd::GdVal f_flickerMaxDist;
+    gd::GdVal f_flickerMinSpeed;
+    gd::GdVal f_flickerMaxSpeed;
+    gd::GdVal f_connectorReadyRoll;
+    gd::GdVal f_gemRoll;
+    gd::GdVal f_sceneDepth;
+    gd::GdVal f_releaseState;
+    gd::GdVal f__editor;
+    gd::GdVal f__playtest;
+    gd::GdVal f__full_version;
+    gd::GdVal f__engineer_test;
+    gd::GdVal f_params;
+    gd::GdVal f_namedParams;
+    gd::GdVal f_sortedParamNames;
+    gd::GdVal f_paramBases;
+    gd::GdVal f_paramBases_inverted;
+    gd::GdVal f_gainedStacks;
+    gd::GdVal f_removedStacks;
+    gd::GdVal f_usedStacks;
+    gd::GdVal f_activationAni;
+    gd::GdVal fn_getP(const gd::GdVal* _args, int _argc);
+    gd::GdVal fn_hasParam(const gd::GdVal* _args, int _argc);
+    gd::GdVal fn_addNamedParam(const gd::GdVal* _args, int _argc);
+    gd::GdVal fn_hasTag(const gd::GdVal* _args, int _argc);
+    gd::GdVal fn_isWeapon(const gd::GdVal* _args, int _argc);
+    gd::GdVal fn_getIndex(const gd::GdVal* _args, int _argc);
+    gd::GdVal fn_getName(const gd::GdVal* _args, int _argc);
+    gd::GdVal fn_getRarity(const gd::GdVal* _args, int _argc);
+    gd::GdVal fn_getShopChance(const gd::GdVal* _args, int _argc);
+    gd::GdVal fn_getTypes(const gd::GdVal* _args, int _argc);
+    gd::GdVal fn_isAvailableFor(const gd::GdVal* _args, int _argc);
+    gd::GdVal fn_isNeutral(const gd::GdVal* _args, int _argc);
+    gd::GdVal fn_isClassItem(const gd::GdVal* _args, int _argc);
+    gd::GdVal fn_isSubclassItem(const gd::GdVal* _args, int _argc);
+    gd::GdVal fn_isCraftedItem(const gd::GdVal* _args, int _argc);
+    gd::GdVal fn_isGatedItem(const gd::GdVal* _args, int _argc);
+    gd::GdVal fn_isMeleeWeapon(const gd::GdVal* _args, int _argc);
+    gd::GdVal fn_isRangedWeapon(const gd::GdVal* _args, int _argc);
+    gd::GdVal fn_isStartingWeapon(const gd::GdVal* _args, int _argc);
+    gd::GdVal fn_isReleased(const gd::GdVal* _args, int _argc);
+    gd::GdVal fn_getPrice(const gd::GdVal* _args, int _argc);
+    gd::GdVal fn_getSellPrice(const gd::GdVal* _args, int _argc);
+    gd::GdVal fn_getSalePrice(const gd::GdVal* _args, int _argc);
+    gd::GdVal fn_getTranslatedName(const gd::GdVal* _args, int _argc);
+    gd::GdVal fn_fromDict(const gd::GdVal* _args, int _argc);
+    const gd::GdClassMeta* meta() const override;
+    void init_fields(gd::BattleCtx& gd_ctx) override;
+    bool get_prop(gd::SymId prop, gd::GdVal& out) const override;
+    bool set_prop(gd::BattleCtx& gd_ctx, gd::SymId prop, const gd::GdVal& val) override;
+    bool has_own_method(gd::SymId m) const override;
+    bool call_method(gd::BattleCtx& gd_ctx, gd::SymId m, const gd::GdVal* args, int argc, gd::GdVal& out) override;
+    static gd::GdVal get_static_const_or_enum(gd::BattleCtx& gd_ctx, gd::SymId prop);
+    static bool get_static_prop_fn(gd::SymId prop, gd::GdVal& out);
+    static bool call_static_fn(gd::BattleCtx& gd_ctx, gd::SymId m, const gd::GdVal* args, int argc, gd::GdVal& out);
+};

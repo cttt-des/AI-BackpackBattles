@@ -1,0 +1,21 @@
+{
+  "reason": "Copied timer verifier referenced the previous prototype fingerprint; assertion ran before any timer test",
+  "formal_dll_sha256": "80a0681c1c93268af2b29c21e5439b6444de36a29ad39486b3f4afadf548a44a",
+  "formal_dll_and707_source_bytes_unchanged": true,
+  "source_manifest_sha256": "178c57d290c33ab916e8f2312b8f929160d2c41be9f9f692bc55939c5c4eeeef",
+  "fresh18_profiles_retained": true,
+  "no_ab_or_release_measurement_had_started": true,
+  "do_not_rebuild_or_repeat_passed_checks": true,
+  "repaired_files": {
+    "native_perf50\\callback_dispatch_bundle\\verify_targeted_timers.py": "7ccf3b8ba4cce265fbd6ad0d651323fddec1635fe9e27d81bd86c745125d36d0",
+    "setup_callback_dispatch_bundle.py": "56a2c3795df6899e81361215ecb82d5c36eeffd018df151296de2aaccfdb1922"
+  },
+  "original_failure_files_sha256": {
+    "build_first.log": "78ed92814131c081b2aebb40422ccf014054aec74115ce16dd308b08d20c3b26",
+    "qualification_first.log": "d467e2148b3fcc37bdfe324ff450d47b75b05cf7d511a69b871c57b43281b158",
+    "qualify_when_ready.py": "6789321051eee6c4a327fcd76e9daef9a962f835b1885211ba79e8f41fe236c9",
+    "setup_callback_dispatch_bundle.py": "2df78f897c26fdad445b21bb9fbf28d7bf262286c4d4151c6420a91cd9659036",
+    "targeted_timer_tests.log": "344d9669570c6f03c456cd09efb54cd1f79182c654709865d1f1d4ad13f68d26",
+    "verify_targeted_timers.py": "26028c53ba4a1a4afa89ebae645bf451860941012d3ea9a257e229e13c2e7041"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "dll_sha256": "80a0681c1c93268af2b29c21e5439b6444de36a29ad39486b3f4afadf548a44a",
+  "cases_sha256": {
+    "targeted_timer_production_cases.json": "071f32a114ba9fa50fd720b54995d3dc8b57940530b36a778f761fc2f7ef2b19",
+    "targeted_timer_safety_production_cases.json": "3075ae6a62b49117887e78ce26014477d9cdcf9852251f4c0257db8f0a9e88d9",
+    "targeted_timer_ownership_production_cases.json": "6d23361a4597368b3dac4e8c8ec8a9588e4c2f0106d663eb68a7b20e8261dc37"
+  },
+  "original_failure_files_sha256": {
+    "live_resumed_validation.json": "4eecd2feafc5cb09222e02d770a55081b4a34de05d0c41bca721da801ec74d16",
+    "resume_callback_dispatch_validation.py": "181257bf9683cf13e9128571b100f3b6256dd6f0b4d7a627037733f15e105aac",
+    "setup_callback_dispatch_bundle.py": "56a2c3795df6899e81361215ecb82d5c36eeffd018df151296de2aaccfdb1922",
+    "targeted_timer_tests_resumed_first.log": "47d1b5e46a5da50a121f3cbb3965d317c4eb1ad6b73fea61b89bd14c45700828",
+    "verify_closed_registry_current.py": "d4aff13e49fb40e6684b3b97b909f029c7b574a63b64223ac0a620e46078ee1d",
+    "verify_integer_grid.py": "d2a2d6ed766878c16dfef38dea3a23f04d98306490b4ac9ab69c68be4c861fce",
+    "verify_targeted_timers.py": "7ccf3b8ba4cce265fbd6ad0d651323fddec1635fe9e27d81bd86c745125d36d0"
+  },
+  "no_formal_timing_started": true,
+  "source707_and_dll_unchanged": true,
+  "reason": "Current-production registry/grid checks imported the previous baseline; retained timer hashes had already matched"
+}

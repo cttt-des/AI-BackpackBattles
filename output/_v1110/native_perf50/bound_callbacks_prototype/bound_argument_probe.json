@@ -1,0 +1,734 @@
+{
+  "passed": true,
+  "probe_only": true,
+  "not_for_deployment": true,
+  "no_throughput_claim": true,
+  "baseline_dll_sha256": "c46cc19c06fb3c424a470f04bb7a0ef5acf8b7ff01caaccd5f41a5c44d955ee1",
+  "probe_dll_sha256": "d18ecb1286417f1b9da2fad11a01a406b04dd52fe68778508663be91cf436589",
+  "recompiled_units": 1,
+  "reused_objects": 19,
+  "original_observe_before_binding_read_preserved": true,
+  "no_extra_virtual_metadata_calls": true,
+  "calls": 101340,
+  "heap_bound_concatenations": 0,
+  "unbound_slow_calls": 101340,
+  "bound_total_arity_at_most8": 0,
+  "bound_total_arity_at_most16": 0,
+  "negative_argc": 0,
+  "incoming_arity": {
+    "0": 354,
+    "1": 24676,
+    "2": 76310
+  },
+  "binding_arity": {
+    "0": 101340
+  },
+  "bound_combined_arity": {},
+  "slow_method_symbols": {
+    "1002": 1539,
+    "1011": 92,
+    "1014": 7973,
+    "1044": 429,
+    "1045": 563,
+    "1047": 133,
+    "1051": 852,
+    "1061": 764,
+    "1097": 965,
+    "1433": 219,
+    "1921": 265,
+    "1922": 6300,
+    "1924": 2436,
+    "1925": 78,
+    "1929": 79,
+    "1932": 379,
+    "1956": 15867,
+    "1960": 14571,
+    "1990": 113,
+    "1992": 1682,
+    "1994": 1123,
+    "2015": 190,
+    "2017": 3,
+    "2045": 5218,
+    "2046": 5765,
+    "2049": 898,
+    "2056": 314,
+    "2057": 446,
+    "2058": 401,
+    "2068": 78,
+    "2070": 8,
+    "2087": 736,
+    "2092": 920,
+    "2093": 5774,
+    "2148": 127,
+    "2153": 2692,
+    "2154": 127,
+    "2165": 101,
+    "2167": 91,
+    "2168": 28,
+    "2179": 35,
+    "2188": 10807,
+    "2214": 467,
+    "2233": 621,
+    "2256": 262,
+    "2286": 124,
+    "2287": 151,
+    "2296": 14,
+    "2305": 175,
+    "2309": 324,
+    "2315": 40,
+    "2347": 115,
+    "2358": 4169,
+    "2412": 1059,
+    "2418": 141,
+    "2476": 159,
+    "2505": 251,
+    "2506": 812,
+    "2539": 12,
+    "2544": 4,
+    "2598": 32,
+    "2623": 4,
+    "2631": 105,
+    "2637": 984,
+    "2659": 134
+  },
+  "receiver_types": {
+    "40Gd__gd_core_items__Exclusive__StoneShoes": {
+      "unbound": 211,
+      "bound": 0
+    },
+    "46Gd__gd_core_items__Exclusive__MoltenGreatsword": {
+      "unbound": 75,
+      "bound": 0
+    },
+    "34Gd__gd_core_items__StoneSkinPotion": {
+      "unbound": 279,
+      "bound": 0
+    },
+    "31Gd__gd_core_items__LeatherBoots": {
+      "unbound": 640,
+      "bound": 0
+    },
+    "43Gd__gd_core_items__Exclusive__AmuletofSteel": {
+      "unbound": 486,
+      "bound": 0
+    },
+    "41Gd__gd_core_items__Exclusive__DarkLantern": {
+      "unbound": 407,
+      "bound": 0
+    },
+    "29Gd__gd_core_items__PotionBelt": {
+      "unbound": 58,
+      "bound": 0
+    },
+    "44Gd__gd_core_items__Exclusive__ObsidianDragon": {
+      "unbound": 191,
+      "bound": 0
+    },
+    "41Gd__gd_core_items__Exclusive__DraconicOrb": {
+      "unbound": 108,
+      "bound": 0
+    },
+    "34Gd__gd_core_items__Exclusive__Toad": {
+      "unbound": 4994,
+      "bound": 0
+    },
+    "31Gd__gd_core_items__HeroicPotion": {
+      "unbound": 1123,
+      "bound": 0
+    },
+    "33Gd__gd_core_items__Gems__Sapphire": {
+      "unbound": 1554,
+      "bound": 0
+    },
+    "41Gd__gd_core_items__Gems__CorruptedCrystal": {
+      "unbound": 4830,
+      "bound": 0
+    },
+    "33Gd__gd_core_items__CursedHairComb": {
+      "unbound": 78,
+      "bound": 0
+    },
+    "23Gd__gd_core__CoreCombat": {
+      "unbound": 219,
+      "bound": 0
+    },
+    "41Gd__gd_core_items__Exclusive__FrozenFlame": {
+      "unbound": 168,
+      "bound": 0
+    },
+    "28Gd__gd_core_items__DjinnLamp": {
+      "unbound": 14571,
+      "bound": 0
+    },
+    "39Gd__gd_core_items__Exclusive__LeafBadge": {
+      "unbound": 395,
+      "bound": 0
+    },
+    "43Gd__gd_core_items__Exclusive__SmellyBarrier": {
+      "unbound": 281,
+      "bound": 0
+    },
+    "46Gd__gd_core_items__Exclusive__AmuletofDarkness": {
+      "unbound": 1937,
+      "bound": 0
+    },
+    "29Gd__gd_core_items__ManaPotion": {
+      "unbound": 3096,
+      "bound": 0
+    },
+    "33Gd__gd_core_items__Gems__Amethyst": {
+      "unbound": 401,
+      "bound": 0
+    },
+    "41Gd__gd_core_items__Exclusive__StoneGloves": {
+      "unbound": 623,
+      "bound": 0
+    },
+    "24Gd__gd_core_items__Crown": {
+      "unbound": 4733,
+      "bound": 0
+    },
+    "32Gd__gd_core_items__ShieldofValor": {
+      "unbound": 823,
+      "bound": 0
+    },
+    "48Gd__gd_core_items__Exclusive__StrongDivinePotion": {
+      "unbound": 31,
+      "bound": 0
+    },
+    "42Gd__gd_core_items__Exclusive__BurningBlade": {
+      "unbound": 20,
+      "bound": 0
+    },
+    "42Gd__gd_core_items__Exclusive__FriendlyFire": {
+      "unbound": 7304,
+      "bound": 0
+    },
+    "33Gd__gd_core_items__HeartContainer": {
+      "unbound": 255,
+      "bound": 0
+    },
+    "43Gd__gd_core_items__Exclusive__AmuletofLight": {
+      "unbound": 969,
+      "bound": 0
+    },
+    "43Gd__gd_core_items__Exclusive__BurningSpikes": {
+      "unbound": 91,
+      "bound": 0
+    },
+    "42Gd__gd_core_items__Exclusive__BerserkerBag": {
+      "unbound": 1334,
+      "bound": 0
+    },
+    "31Gd__gd_core_items__HealthPotion": {
+      "unbound": 968,
+      "bound": 0
+    },
+    "37Gd__gd_core_items__Exclusive__Phoenix": {
+      "unbound": 121,
+      "bound": 0
+    },
+    "42Gd__gd_core_items__Exclusive__SpikedCollar": {
+      "unbound": 15,
+      "bound": 0
+    },
+    "41Gd__gd_core_items__Exclusive__DragonClaws": {
+      "unbound": 18,
+      "bound": 0
+    },
+    "39Gd__gd_core_items__Exclusive__DoubleAxe": {
+      "unbound": 3,
+      "bound": 0
+    },
+    "43Gd__gd_core_items__Exclusive__ForgingHammer": {
+      "unbound": 304,
+      "bound": 0
+    },
+    "39Gd__gd_core_items__Exclusive__KingCrown": {
+      "unbound": 432,
+      "bound": 0
+    },
+    "30Gd__gd_core_items__BurningCoal": {
+      "unbound": 83,
+      "bound": 0
+    },
+    "40Gd__gd_core_items__Exclusive__ChromeCube": {
+      "unbound": 1117,
+      "bound": 0
+    },
+    "45Gd__gd_core_items__Exclusive__AmuletofAlchemy": {
+      "unbound": 20,
+      "bound": 0
+    },
+    "41Gd__gd_core_items__Exclusive__BismuthCube": {
+      "unbound": 3482,
+      "bound": 0
+    },
+    "37Gd__gd_core_items__StrongHealthPotion": {
+      "unbound": 241,
+      "bound": 0
+    },
+    "38Gd__gd_core_items__Exclusive__GoldCube": {
+      "unbound": 1278,
+      "bound": 0
+    },
+    "39Gd__gd_core_items__Exclusive__FalseLife": {
+      "unbound": 4169,
+      "bound": 0
+    },
+    "29Gd__gd_core_items__Gems__Ruby": {
+      "unbound": 422,
+      "bound": 0
+    },
+    "28Gd__gd_core_items__HolySpear": {
+      "unbound": 1400,
+      "bound": 0
+    },
+    "28Gd__gd_core_items__RangerBag": {
+      "unbound": 188,
+      "bound": 0
+    },
+    "36Gd__gd_core_items__Exclusive__Stoned": {
+      "unbound": 978,
+      "bound": 0
+    },
+    "29Gd__gd_core_items__MoonShield": {
+      "unbound": 448,
+      "bound": 0
+    },
+    "40Gd__gd_core_items__Exclusive__StoneGolem": {
+      "unbound": 22,
+      "bound": 0
+    },
+    "29Gd__gd_core_items__Lightsaber": {
+      "unbound": 187,
+      "bound": 0
+    },
+    "39Gd__gd_core_items__Exclusive__WolfBadge": {
+      "unbound": 611,
+      "bound": 0
+    },
+    "32Gd__gd_core_items__Gems__Emerald": {
+      "unbound": 205,
+      "bound": 0
+    },
+    "33Gd__gd_core_items__SpectralDagger": {
+      "unbound": 63,
+      "bound": 0
+    },
+    "35Gd__gd_core_items__Gems__LumpofCoal": {
+      "unbound": 165,
+      "bound": 0
+    },
+    "24Gd__gd_core_items__Broom": {
+      "unbound": 764,
+      "bound": 0
+    },
+    "30Gd__gd_core_items__AcornCollar": {
+      "unbound": 490,
+      "bound": 0
+    },
+    "39Gd__gd_core_items__Exclusive__Daggerang": {
+      "unbound": 6,
+      "bound": 0
+    },
+    "31Gd__gd_core_items__SpikedShield": {
+      "unbound": 2689,
+      "bound": 0
+    },
+    "42Gd__gd_core_items__Exclusive__BadgerSpirit": {
+      "unbound": 2768,
+      "bound": 0
+    },
+    "40Gd__gd_core_items__Exclusive__DragonNest": {
+      "unbound": 40,
+      "bound": 0
+    },
+    "30Gd__gd_core_items__Bloodthorne": {
+      "unbound": 272,
+      "bound": 0
+    },
+    "44Gd__gd_core_items__Exclusive__VampiricCollar": {
+      "unbound": 252,
+      "bound": 0
+    },
+    "32Gd__gd_core_items__DancingDragon": {
+      "unbound": 108,
+      "bound": 0
+    },
+    "41Gd__gd_core_items__Exclusive__EngineerBox": {
+      "unbound": 115,
+      "bound": 0
+    },
+    "41Gd__gd_core_items__Exclusive__MagicCollar": {
+      "unbound": 113,
+      "bound": 0
+    },
+    "39Gd__gd_core_items__Exclusive__MagicRing": {
+      "unbound": 485,
+      "bound": 0
+    },
+    "29Gd__gd_core_items__Greatsword": {
+      "unbound": 15,
+      "bound": 0
+    },
+    "40Gd__gd_core_items__Exclusive__Thornbloom": {
+      "unbound": 258,
+      "bound": 0
+    },
+    "40Gd__gd_core_items__Exclusive__Thornburst": {
+      "unbound": 123,
+      "bound": 0
+    },
+    "40Gd__gd_core_items__StrongStoneSkinPotion": {
+      "unbound": 28,
+      "bound": 0
+    },
+    "31Gd__gd_core_items__PoisonDagger": {
+      "unbound": 21,
+      "bound": 0
+    },
+    "42Gd__gd_core_items__Exclusive__MoltenDagger": {
+      "unbound": 2,
+      "bound": 0
+    },
+    "37Gd__gd_core_items__Exclusive__EvilHat": {
+      "unbound": 700,
+      "bound": 0
+    },
+    "42Gd__gd_core_items__Exclusive__DivinePotion": {
+      "unbound": 293,
+      "bound": 0
+    },
+    "46Gd__gd_core_items__Exclusive__Chess__WhiteKing": {
+      "unbound": 108,
+      "bound": 0
+    },
+    "46Gd__gd_core_items__Exclusive__Chess__BlackKing": {
+      "unbound": 154,
+      "bound": 0
+    },
+    "40Gd__gd_core_items__Exclusive__BadgerRune": {
+      "unbound": 517,
+      "bound": 0
+    },
+    "40Gd__gd_core_items__StrongPestilenceFlask": {
+      "unbound": 279,
+      "bound": 0
+    },
+    "34Gd__gd_core_items__PestilenceFlask": {
+      "unbound": 122,
+      "bound": 0
+    },
+    "42Gd__gd_core_items__Exclusive__ElephantRune": {
+      "unbound": 150,
+      "bound": 0
+    },
+    "45Gd__gd_core_items__Exclusive__DragonskinBoots": {
+      "unbound": 10,
+      "bound": 0
+    },
+    "37Gd__gd_core_items__Exclusive__Bazooka": {
+      "unbound": 47,
+      "bound": 0
+    },
+    "45Gd__gd_core_items__Exclusive__PerpetuumMobile": {
+      "unbound": 143,
+      "bound": 0
+    },
+    "48Gd__gd_core_items__Exclusive__ArtifactStoneDeath": {
+      "unbound": 127,
+      "bound": 0
+    },
+    "30Gd__gd_core_items__Pandamonium": {
+      "unbound": 446,
+      "bound": 0
+    },
+    "40Gd__gd_core_items__Exclusive__MegaClover": {
+      "unbound": 154,
+      "bound": 0
+    },
+    "42Gd__gd_core_items__Exclusive__AngelCrystal": {
+      "unbound": 72,
+      "bound": 0
+    },
+    "40Gd__gd_core_items__Exclusive__HolyCollar": {
+      "unbound": 1059,
+      "bound": 0
+    },
+    "42Gd__gd_core_items__Exclusive__ForestDragon": {
+      "unbound": 256,
+      "bound": 0
+    },
+    "41Gd__gd_core_items__Exclusive__SpicyBanana": {
+      "unbound": 1629,
+      "bound": 0
+    },
+    "38Gd__gd_core_items__Exclusive__MechaBat": {
+      "unbound": 153,
+      "bound": 0
+    },
+    "33Gd__gd_core_items__Exclusive__Pot": {
+      "unbound": 12,
+      "bound": 0
+    },
+    "35Gd__gd_core_items__Exclusive__Snake": {
+      "unbound": 256,
+      "bound": 0
+    },
+    "44Gd__gd_core_items__Exclusive__CriticalPoison": {
+      "unbound": 60,
+      "bound": 0
+    },
+    "43Gd__gd_core_items__Exclusive__PineProtector": {
+      "unbound": 4015,
+      "bound": 0
+    },
+    "31Gd__gd_core_items__BloodyDagger": {
+      "unbound": 2,
+      "bound": 0
+    },
+    "41Gd__gd_core_items__Exclusive__WingedBoots": {
+      "unbound": 328,
+      "bound": 0
+    },
+    "30Gd__gd_core_items__HungryBlade": {
+      "unbound": 220,
+      "bound": 0
+    },
+    "37Gd__gd_core_items__Exclusive__Toolbox": {
+      "unbound": 744,
+      "bound": 0
+    },
+    "38Gd__gd_core_items__Exclusive__Phoenix2": {
+      "unbound": 171,
+      "bound": 0
+    },
+    "32Gd__gd_core_items__WoodenBuckler": {
+      "unbound": 552,
+      "bound": 0
+    },
+    "44Gd__gd_core_items__Exclusive__BigBloodthorne": {
+      "unbound": 60,
+      "bound": 0
+    },
+    "41Gd__gd_core_items__Exclusive__ConTrapTron": {
+      "unbound": 109,
+      "bound": 0
+    },
+    "30Gd__gd_core_items__Gems__Skull": {
+      "unbound": 541,
+      "bound": 0
+    },
+    "32Gd__gd_core_items__ClawsofAttack": {
+      "unbound": 21,
+      "bound": 0
+    },
+    "28Gd__gd_core_items__ThornWhip": {
+      "unbound": 53,
+      "bound": 0
+    },
+    "25Gd__gd_core_items__Dagger": {
+      "unbound": 39,
+      "bound": 0
+    },
+    "40Gd__gd_core_items__Exclusive__PoisonFrog": {
+      "unbound": 562,
+      "bound": 0
+    },
+    "30Gd__gd_core_items__DeathScythe": {
+      "unbound": 358,
+      "bound": 0
+    },
+    "41Gd__gd_core_items__Exclusive__BagofGiving": {
+      "unbound": 127,
+      "bound": 0
+    },
+    "42Gd__gd_core_items__Exclusive__BurningSword": {
+      "unbound": 14,
+      "bound": 0
+    },
+    "40Gd__gd_core_items__Exclusive__HeroShield": {
+      "unbound": 203,
+      "bound": 0
+    },
+    "34Gd__gd_core_items__Exclusive__Wisp": {
+      "unbound": 82,
+      "bound": 0
+    },
+    "34Gd__gd_core_items__HeartofDarkness": {
+      "unbound": 52,
+      "bound": 0
+    },
+    "36Gd__gd_core_items__ArtifactStoneCold": {
+      "unbound": 92,
+      "bound": 0
+    },
+    "37Gd__gd_core_items__Exclusive__Solaris": {
+      "unbound": 4,
+      "bound": 0
+    },
+    "41Gd__gd_core_items__Exclusive__ShinyMantle": {
+      "unbound": 32,
+      "bound": 0
+    },
+    "40Gd__gd_core_items__Exclusive__SpikedWall": {
+      "unbound": 451,
+      "bound": 0
+    },
+    "40Gd__gd_core_items__Exclusive__InnerPower": {
+      "unbound": 64,
+      "bound": 0
+    },
+    "38Gd__gd_core_items__Exclusive__Hedgehog": {
+      "unbound": 41,
+      "bound": 0
+    },
+    "41Gd__gd_core_items__Exclusive__ArcaneBoots": {
+      "unbound": 197,
+      "bound": 0
+    },
+    "47Gd__gd_core_items__Exclusive__SpellScrollNature": {
+      "unbound": 105,
+      "bound": 0
+    },
+    "36Gd__gd_core_items__Exclusive__Cubert": {
+      "unbound": 275,
+      "bound": 0
+    },
+    "30Gd__gd_core_items__MrStruggles": {
+      "unbound": 1195,
+      "bound": 0
+    },
+    "43Gd__gd_core_items__Exclusive__RainbowPotion": {
+      "unbound": 385,
+      "bound": 0
+    },
+    "31Gd__gd_core_items__DemonicFlask": {
+      "unbound": 431,
+      "bound": 0
+    },
+    "31Gd__gd_core_items__CursedDagger": {
+      "unbound": 267,
+      "bound": 0
+    },
+    "41Gd__gd_core_items__Exclusive__BionicArmor": {
+      "unbound": 35,
+      "bound": 0
+    },
+    "40Gd__gd_core_items__Exclusive__FrogPrince": {
+      "unbound": 186,
+      "bound": 0
+    },
+    "36Gd__gd_core_items__ArtifactStoneHeat": {
+      "unbound": 103,
+      "bound": 0
+    },
+    "43Gd__gd_core_items__Exclusive__HyperHedgehog": {
+      "unbound": 148,
+      "bound": 0
+    },
+    "39Gd__gd_core_items__Exclusive__SunShield": {
+      "unbound": 224,
+      "bound": 0
+    },
+    "41Gd__gd_core_items__Exclusive__Automanaton": {
+      "unbound": 89,
+      "bound": 0
+    },
+    "30Gd__gd_core_items__BowandArrow": {
+      "unbound": 3,
+      "bound": 0
+    },
+    "27Gd__gd_core_items__LuckyBow": {
+      "unbound": 3,
+      "bound": 0
+    },
+    "39Gd__gd_core_items__Exclusive__DeerTotem": {
+      "unbound": 6,
+      "bound": 0
+    },
+    "39Gd__gd_core_items__Exclusive__IceDragon": {
+      "unbound": 66,
+      "bound": 0
+    },
+    "44Gd__gd_core_items__Exclusive__PoweroftheMoon": {
+      "unbound": 11,
+      "bound": 0
+    },
+    "39Gd__gd_core_items__Exclusive__IceFlower": {
+      "unbound": 72,
+      "bound": 0
+    },
+    "37Gd__gd_core_items__StrongDemonicFlask": {
+      "unbound": 77,
+      "bound": 0
+    },
+    "46Gd__gd_core_items__Exclusive__MercuryElemental": {
+      "unbound": 70,
+      "bound": 0
+    },
+    "46Gd__gd_core_items__Exclusive__DragonscaleArmor": {
+      "unbound": 6,
+      "bound": 0
+    },
+    "28Gd__gd_core_items__RubyChonk": {
+      "unbound": 97,
+      "bound": 0
+    },
+    "43Gd__gd_core_items__Exclusive__BrassKnuckles": {
+      "unbound": 7,
+      "bound": 0
+    },
+    "50Gd__gd_core_items__Exclusive__StrongVampiricPotion": {
+      "unbound": 612,
+      "bound": 0
+    },
+    "26Gd__gd_core_items__Pumpkin": {
+      "unbound": 1,
+      "bound": 0
+    },
+    "40Gd__gd_core_items__Exclusive__Broccotree": {
+      "unbound": 10,
+      "bound": 0
+    },
+    "28Gd__gd_core_items__PoisonBow": {
+      "unbound": 7,
+      "bound": 0
+    },
+    "28Gd__gd_core_items__PoisonIvy": {
+      "unbound": 26,
+      "bound": 0
+    },
+    "44Gd__gd_core_items__Exclusive__VampiricPotion": {
+      "unbound": 476,
+      "bound": 0
+    },
+    "42Gd__gd_core_items__Exclusive__CupcakeStaff": {
+      "unbound": 1198,
+      "bound": 0
+    },
+    "43Gd__gd_core_items__Exclusive__FrozenBuckler": {
+      "unbound": 835,
+      "bound": 0
+    },
+    "39Gd__gd_core_items__Exclusive__DragonSet": {
+      "unbound": 6,
+      "bound": 0
+    },
+    "45Gd__gd_core_items__Exclusive__DevouringSphere": {
+      "unbound": 77,
+      "bound": 0
+    },
+    "44Gd__gd_core_items__Exclusive__SpellScrollIce": {
+      "unbound": 575,
+      "bound": 0
+    },
+    "41Gd__gd_core_items__Exclusive__BustedBlade": {
+      "unbound": 1,
+      "bound": 0
+    }
+  },
+  "inputs_sha256": "d94b16d42cc88e9a3850a77c9360b9c4c4fdd676cb252e463044a903db2a5fef",
+  "results_sha256": "2e74b45caa87f7ee6ac72ffc35d98cc8db140b47031614d26542e183cef5d2c9"
+}
