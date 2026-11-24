@@ -1,0 +1,26 @@
+{
+  "status": "consistent_regression_bundle_only",
+  "candidate_dll_sha256": "485b12183148f8a2584d060b6f55a2ec1be4396cba5dc6026e907b0cd438a7b5",
+  "not_deployed": true,
+  "no_more_same_source_groups": true,
+  "non_release_calibration": true,
+  "not_release_raw24": true,
+  "single_run_all_samples_retained": true,
+  "background_load_range_pct": [
+    15.508856240858973,
+    45.76500408904421
+  ],
+  "median_fights_per_second": 141.479071834386,
+  "minimum_fights_per_second": 105.25863177348943,
+  "maximum_fights_per_second": 156.7257115108913,
+  "on_ac_all": true,
+  "fitted_fights_per_second_at20": 145.13460087186394,
+  "fit_validation": {
+    "median_absolute_relative_time_error": 0.023728120922670307,
+    "p90_absolute_relative_time_error": 0.06136339589016828,
+    "constant_median_absolute_relative_time_error": 0.1271380912390561
+  },
+  "missing_reason": null,
+  "raw_sha256": "f347eaa3c44c48650e45ef0cc4cdf1a7b67850d256cb9ec5fd6f6056cbc25c7c",
+  "fit_exit_code": 0
+}

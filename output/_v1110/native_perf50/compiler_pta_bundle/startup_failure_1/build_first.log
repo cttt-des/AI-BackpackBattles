@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\compiler_pta_bundle\build_bundle.py", line 22, in <module>
+    from prototype_native_compiler_pta_bundle import optimize
+ModuleNotFoundError: No module named 'prototype_native_compiler_pta_bundle'

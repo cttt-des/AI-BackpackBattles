@@ -1,0 +1,13 @@
+{
+  "peak_compiler_rss_bytes": 888635392,
+  "memory_limit_bytes": 3464269619,
+  "available_before_bytes": 5329645568,
+  "compiler_flags": [
+    "-fipa-pta"
+  ],
+  "scope": "18 hot compilation units and both links; other2 units unchanged",
+  "resource_guard_triggered": false,
+  "owner_pid": 6728,
+  "owner_created": 1795506745.4209187,
+  "passed": true
+}

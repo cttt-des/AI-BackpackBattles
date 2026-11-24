@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "maximum_idle_cpu_pct": 12,
+  "qualifying_observations": [
+    8.7,
+    11.7,
+    5.0
+  ],
+  "observations": 40,
+  "elapsed_seconds": 40.02747409999938,
+  "no_candidate_benchmarks_used": true,
+  "calibration_not_yet_started": true
+}

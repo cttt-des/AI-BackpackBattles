@@ -1,0 +1,10 @@
+{
+  "baseline_dll_sha256": "f950b64c74684ae70ce4e41b9622541c849da0121e1235ab88b7aaface22a6d7",
+  "candidate_dll_sha256": "485b12183148f8a2584d060b6f55a2ec1be4396cba5dc6026e907b0cd438a7b5",
+  "code_section_identical": false,
+  "baseline_text_bytes": 14181376,
+  "candidate_text_bytes": 14170112,
+  "baseline_text_sha256": "c98108c8acd0c183b137bfbbbb550ed02791e3b173ccac6265f10949505c5509",
+  "candidate_text_sha256": "03b5821ca689b22c892b3b81539382dc8c7cd761c4af3af4b03e76d1204a6995",
+  "interpretation": "Code-section difference is eligibility evidence, not a throughput improvement"
+}
