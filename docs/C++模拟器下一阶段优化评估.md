@@ -1,6 +1,6 @@
 # C++ 模拟器下一阶段优化评估
 
-日期：2026-11-24。当前已验收部署为f950b64c，最新独立20%负载换算186.3403场/秒，200目标仍active、未达到。对象路由完整32对CPU／墙钟配对中位降耗0.4339%／0.6507%，但累计耗时增加0.3173%／0.3357%，按冻结双中位规则采纳，证据偏弱；全部语义、吞吐及一次安装核验通过。下一轮先量化私有整数循环，见文末。
+日期：2026-11-24。当前已验收部署680f3e37，最新20%换算181.2395，200点达到=False；见文末。
 
 ## 候选评估时的基线和目标
 
@@ -800,3 +800,45 @@ revision2固定200场仍匹配原结果签名：386,704个角色阶段只重建4
 完整32对CPU／墙钟配对中位耗时降低-1.3383%／-1.2803%，累计耗时降低-1.4444%／-1.2978%。全部原始组／极端值保留，按原冻结24(+唯一8)规则判定，不拿历史20%标定点差值当代码收益。首raw24=null。独立cal24={"median_fights_per_second": 165.747176601075, "minimum_fights_per_second": 134.1559597911521, "maximum_fights_per_second": 179.1622480781748, "background_load_range_pct": [8.311268633173793, 28.160670052806076], "on_ac_all": true}。候选20%换算=152.02318831253663，若为null即未覆盖20，不能外推、替代或重跑；非发布校准也明确不当作发布raw24。
 
 状态以current_runtime_status.json和原candidate_decision.json／post_install_verification.json为准。首次cal前OS观测资格记录在calibration_eligibility.json，未运行战斗样本；正式计时仍仅一次24批全部保留。目标200点及部署验收达到=False；远端备份必须另读checkpoint_receipt.json再决定目标完成。所有本轮driver已结束，不重启旧入口。生产DLL为f950b64c74684ae70ce4e41b9622541c849da0121e1235ab88b7aaface22a6d7。
+
+
+## control word原型已制作，独立语义链接中（2026-11-24）
+
+上一轮预取候选0fdfc665已终态：完整32对CPU／墙钟配对中位耗时增加1.3383%／1.2803%，累计增加1.4444%／1.2978%，不部署。唯一非发布cal24覆盖8.3113%–28.1607%负载，全AC，20%换算152.0232，中位165.7472，最低134.1560，最高179.1622场/秒；没有后置2604或发布raw24。全部2456项自有文件／18原PGO及原始32对已归档，本地e164da28，远端已读回核对584aef472686dc09bb5abda831c358a2026a2fe3。用户原有六份文件hash保持。生产仍F950，已验收20%点186.3403，200目标active；不得将不同时段校准点的差当作代码收益。
+
+当前分支codex/control-word-20261124，从F950独立派生，不继承失败预取／PTA／private snapshots。只改native_targeted_timers.hpp、native_active_cooldowns.hpp及shard03新增C测试入口。把原四个检查位置对watch.depth和相邻控制Bool的读取合为实时8字节读取及掩码比较，绝不缓存状态或添加写失效；两版本检查及所有后缀仍在原处。三个谓词保持各自范围：active要求enabled／usable／depth0／closed_world；timer入口只要求enabled／usable／depth0；timer回调后只要求usable／depth0，不能额外加入enabled或closed_world。collect诊断位一律忽略。
+
+仅MinGW64且标准布局／Bool表示／小端／字段邻接条件均符合时启用字读取，其他情况走原Bool表达式；没有浮点操作、RNG、用户方法、观察或新分配，全部674对象头、gd_rt.hpp、Watch／GdVal／GdArr／BattleCtx及私有cache布局不变。source_projection.json已用精确逆变换恢复三份原F950文件，证明改动范围；707源码与include闭包证明唯一消费者shard03。语义原型仅重编03、复用核对过的原19对象，不用于正式计时；正式候选仍需完整20／新18PGO。
+
+工具21700、build PID13468（创建1795514905.5016627）仍在链接；工具6579、verifier PID22664（创建1795515164.0618372）等待同一真实构建结束。持久根目录C:\Users\Windows\AppData\Local\CodexNativeBuilds\control-word-semantic-11c0ntmf，私有scratch、-save-temps=obj、max2 BelowNormal。后续独立夹具将验证实际DLL16384控制状态／fenv组合和强制原Bool后备16384项，并保留active1856、timer2016、closed-known1056、frame6912及4个registry边界；尚未通过，不能提前称有速度收益。原始入口与日志见native_perf50/control_word_prototype/live_semantic_*.json、control_word_semantic_first.log及control_word_verification_first.log。新构建若观察超时，只核对原PID／创建时间及工具状态，不重启。
+
+
+### control word：44,608项检查通过，已启动完整构建（2026-11-24）
+
+语义DLL为f04be42c1e0e6bc997912daf1a84d5169f939eb6d8ec6240533cb38f5a644604，固定200原输入／结果／自然终局、旧六计数、active十项和targeted十项全部相同。已通过44,608项：实际DLL控制状态16,384、逐字相同且命名空间隔离／不加载DLL的原Bool后备16,384、当前active内联夹具1,856、实际timer2,016、closed-known1,056、frame6,912；另有4项registry边界。实际DLL字路径已确认启用，watch内容／fenv／MXCSR保持。语义fixture的inline index与生产DLL集成范围分开记录，后者另有固定200及完整候选后续2604。
+
+首版portable验证从STAGE误拾取旧native_targeted_timers.hpp，实际16,384已通过而portable编译失败；失败日志和该批已通过记录保留于control_word_verification_first.log及verification_fixture_revision1。第二版使用ASCII本地夹具、明确候选include路径，并把完全相同的助手放入隔离命名空间，portable进程不加载DLL，避免测试实现跨模块混用；候选CPP源码和DLL未修改／重建，也没有重训或正式计时重跑。第二版全部通过，见control_word_verification_second.log、correctness.json、source_projection.json及verification_artifacts.json；实际通过的portable头／夹具也已复制冻结。
+
+完整20单元插桩／新18热点PGO已启动，工具51104。driver18920创建1795515905.2768044；build22896创建1795515905.681083；qualifier19440创建1795515905.6907215（仅PID可能重用，必须核对创建时间，不能误认历史PTA的同号进程）。持久目录C:/Users/Windows/AppData/Local/CodexNativeBuilds/control-word-formal-3pq4tccm，私有scratch并保留LTO临时文件，max2 BelowNormal。正式707源码必须重现语义版本，20对象／18真实编译选项在测速前再冻结核对；原前置回归、所有320256／126192／5184场景、原24(+唯一8)比较规则、后置44,608检查、2604逐事件及逐场hash、首raw24门槛和唯一cal24覆盖20仍保持。未观测本轮正式速度，未部署，200目标active。闭环入口、状态、原日志位于native_perf50/control_word_bundle；当正式AB／raw／cal正在执行时只轮询，不做其他负载或改动。
+
+
+control word的完整20插桩版、固定200审计和原3种训练负载已完成，18份全新PGO计数逐份哈希保存于instrumented_and_profile_stage.json。旧六计数、active／targeted十项、输入及结果hash均保持。原build22896（创建1795515905.681083）正在构建PGO发布版，工具51104仍活跃；current_runtime_status.json已更新为profile_guided_release_build_running。训练日志中的速度属于插桩数据，不是正式A/B或本轮20%点。语义原型机器码的active_cooldown_visit入口与逐回调位置各有一次64位掩码检查，反汇编保留在原型的prototype_active_word_disassembly.txt；同原型CoreCombat中的直接frame调用块是原fallback扫描，不能当作packed loop证明。该机器码核对不当作速度收益，正式全PGO版本仍须完整比较／验收。生产仍F950／已验收20%点186.3403，200目标active。
+
+
+control word正式DLL已生成：680f3e37ed7485daac1d6b023bc8530706efb22370a479a02b2e212609c39775。完整20插桩／新18PGO完成，release20对象和18份实际LTO选项已冻结；除PGO目录外与F950完全相同，-ffp-contract=off保持且无PTA。当前原driver18920、build22896、qualifier19440（创建时间均按live_formal_driver.json）正在完整前置回归；工具51104仍有效，没有正式FPS或收益。source_before_build.json、fresh_profile_source.json、release_objects.json与compiled_option_receipt.json保留证据，current_runtime_status.json已更新。目标200仍active；生产F950／已验收20%点186.3403保持。
+
+
+## control word轮终态（2026-11-24）
+
+候选`680f3e37ed7485daac1d6b023bc8530706efb22370a479a02b2e212609c39775`，部署=True，原因=deployed_after_all_original_gates。从F950的707源码开始，不叠加失败预取、PTA或private snapshots。只改两份timer辅助头与shard03新增C测试入口，将原四处状态检查改为实时掩码读取。active、timer入口、timer回调后三个谓词各保留原条件范围；collect位忽略，双版本、回调和后缀位置不变，无浮点／RNG／观察／额外写入。全部布局及674对象头保持，完整20插桩与新18PGO。语义原型和正式DLL各完成44608项状态、原Bool后备及旧active／targeted／frame检查，另有4个registry边界；固定200原hash、自然终局、旧六和两组十项计数一致。第一版后备夹具拾取STAGE旧辅助头，失败和已通过actual16k保留；第二版将逐字相同的后备助手隔离命名空间、使用ASCII本地夹具源并不加载DLL，候选源码／DLL未改动。没有重做任何正式计时。
+
+完整32对CPU／墙钟配对中位耗时降低1.2746%／0.6937%，累计耗时降低0.8787%／0.0247%。全部原始组／极端值保留，按原冻结24(+唯一8)规则判定，不拿历史20%标定点差值当代码收益。首raw24={"median_fights_per_second": 105.08852999683646, "minimum_fights_per_second": 68.0366041012203, "maximum_fights_per_second": 147.99569066171318, "background_load_range_pct": [15.770674417082681, 79.27130264345095], "on_ac_all": true}。独立cal24={"median_fights_per_second": 192.39573499241055, "minimum_fights_per_second": 118.02535786632832, "maximum_fights_per_second": 212.5943892518645, "background_load_range_pct": [7.773059480916077, 46.59615925419707], "on_ac_all": true}。候选20%换算=181.23947394271036，若为null即未覆盖20，不能外推、替代或重跑；非发布校准也明确不当作发布raw24。
+
+状态以current_runtime_status.json和原candidate_decision.json／post_install_verification.json为准。首次cal前OS观测资格记录在calibration_eligibility.json，未运行战斗样本；正式计时仍仅一次24批全部保留。目标200点及部署验收达到=False；远端备份必须另读checkpoint_receipt.json再决定目标完成。所有本轮driver已结束，不重启旧入口。生产DLL为680f3e37ed7485daac1d6b023bc8530706efb22370a479a02b2e212609c39775。
+
+
+control word已验收部署680f3e37，正常训练12个任务与F950一致，安装后独立核验只执行一次且通过。源707文件、674对象头布局、旧22个sim C入口及全部计数保持；运行时两处DLL均680f3e37，旧F950完整运行时保存在dist/native_1_1_10_before_control_word_bundle_20261124。完整32对CPU／墙钟配对中位降耗1.2746%／0.6937%，累计降耗0.8787%／0.0247%，胜18／17对；第二组退化且有大幅波动，收益偏弱，不称稳定大幅提升。2604逐事件、与当前F950逐场事件流哈希均一致，根b8066c9224bc418923c62f5a3dafb8912100b21bb0026c3b13669872f90e2f54。原run_full_gate日志中另有早期cycles11基线的额外比较，真正与F950的最终比较是finish_gate生成的bundle_vs_deployed_hashes.json，不应混淆。
+
+首raw24中位105.0885、最低68.0366、最高147.9957，均>=50；独立cal24中位192.3957、最低118.0254、最高212.5944，负载7.7731%–46.5962%，全AC、全200自然终局。20%换算181.2395，R²0.893321，耗时相对误差中位2.4439%、P90 8.4822%；不同轮次环境不同，不拿181.2395与历史F950点186.3403比较来推算代码收益。归一化各样本中位181.0086、最低165.5763、最高205.6972仅是原模型派生估计，不是直接20%批次。实际状态读post_install_verification.json和current_runtime_status.json；200目标仍active，未完成。
+
+部署后针对实际680f3e37、固定200输入做一次64深度采样，2003栈／31批，有4栈触达深度上限；profile_receipt.json冻结原文件sha，profile_depth64.json保存全部叶／父链／位置数据，采样比例不当作收益或上限。主要叶为native_frame_segment_tick197、CoreCombat.physicsTick109、通用call_method三个变体共119；其后为事件发射、空间查询、等值与包含检查等。下一轮先据该新样本和旧失败记录重评估实际类型／调用分布及可组合的私有快路，尚未选定或实现新候选，不盲目重跑旧字段排列、预取或PTA。本轮所有driver、安装及采样工具已结束；远端备份仍需以本目录checkpoint_receipt.json核对完成。

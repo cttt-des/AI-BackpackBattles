@@ -1,0 +1,9 @@
+{
+  "correctness_receipt_sha256": "326031d90474f9ac1f691aeb6a5e4b322c049cb3c801f7aa642654b15e407260",
+  "dll_sha256": "f04be42c1e0e6bc997912daf1a84d5169f939eb6d8ec6240533cb38f5a644604",
+  "actual_passing_executable_directory": "C:\\Users\\Windows\\AppData\\Local\\CodexNativeBuilds\\control-word-check-l713pmus",
+  "fixture_sha256": "4679f381d98924a991503a0c34fa402aff8bac9379972dd4db8541e7dd373ef8",
+  "portable_header_sha256": "840dde5cdb4169bb6486c603fdbd130268ba99f9772b8355dd18038cfca3063f",
+  "copied_existing_passed_artifacts_only": true,
+  "no_additional_execution": true
+}

@@ -1,0 +1,13 @@
+{
+  "local_commit": "e164da28b31aec70ece12b3805249bb284b33d51",
+  "prepared_backup_commit": "584aef472686dc09bb5abda831c358a2026a2fe3",
+  "local_preservation_ref": "refs/heads/codex/active-prefetch-backup-20261124",
+  "parent_remote_verified_commit": "bcad9e17d0af08821582759a44e0e4e8fe068be3",
+  "own_files_saved": 2456,
+  "production_source_files_verified": 707,
+  "candidate_installed": false,
+  "production_dll_sha256": "f950b64c74684ae70ce4e41b9622541c849da0121e1235ab88b7aaface22a6d7",
+  "user_existing_changes_not_staged": true,
+  "remote_upload_verified": true,
+  "remote_verified_commit": "584aef472686dc09bb5abda831c358a2026a2fe3"
+}

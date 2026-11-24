@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "cases": 44608,
+  "actual_dll_control_cases": 16384,
+  "portable_header_control_cases": 16384,
+  "retained_active_header_cases": 1856,
+  "retained_actual_targeted_cases": 2016,
+  "retained_closed_known_cases": 1056,
+  "retained_frame_cases": 6912,
+  "registry_boundary_checks": 4,
+  "dll_sha256": "f04be42c1e0e6bc997912daf1a84d5169f939eb6d8ec6240533cb38f5a644604",
+  "baseline_dll_sha256": "f950b64c74684ae70ce4e41b9622541c849da0121e1235ab88b7aaface22a6d7",
+  "fixture_sha256": "4679f381d98924a991503a0c34fa402aff8bac9379972dd4db8541e7dd373ef8",
+  "projection": {
+    "passed": true,
+    "original_three_files_recovered_by_exact_inverse": true,
+    "original_all_versions_callbacks_suffixes_and_floating_operations_unchanged": true,
+    "original_watch_and674_object_header_bytes_unchanged": true,
+    "baseline_targeted_header_sha256": "902ad4f0dc98fc80cd5ea89d6f43f57ce60f23ccaed67f2eec0230690d3683df",
+    "candidate_targeted_header_sha256": "a2305bab3cda69e38c7f843d3b8e5bda5be94a2f35359c157f88178159738f4f"
+  },
+  "actual_word_path_enabled": true,
+  "portable_namespace_isolated_and_no_dll_loaded": true,
+  "portable_helper_bytes_identical": true,
+  "independent_original_boolean_oracle": true,
+  "all_original_case_hashes_and_legacy_counters_retained": true,
+  "active_fixture_scope": "current inline index header linked against candidate; actual production integration fixed200/full2604",
+  "no_speed_claim": true
+}

@@ -100,7 +100,7 @@ template<class ItemTick,class GemTick>
 inline bool active_cooldown_visit(BattleCtx& ctx,Gd__gd_core__CoreCharacter* character,
                                   ItemTick&& item_tick,GemTick&& gem_tick) {
     auto& watch=ctx.native_timer_watch;
-    if(!watch.enabled || !watch.closed_world || !watch.usable || watch.depth ||
+    if(!native_timer_active_ready(watch) ||
        watch.cooldown_version==UINT64_MAX || !character || character->rt_ctx_!=&ctx)return false;
     const auto& pid=character->f_playerId;
     if(pid.kind!=GdVal::Kind::Int || pid.i<0 || pid.i>1)return false;
@@ -143,7 +143,7 @@ inline bool active_cooldown_visit(BattleCtx& ctx,Gd__gd_core__CoreCharacter* cha
         // original suffix. The physical tick still retains its own checks.
         if(entry.gem_index==UINT32_MAX)item_tick(entry.owner);else gem_tick(entry.owner);
         if(watch.version!=structure || watch.cooldown_version!=eligibility ||
-           !watch.usable || watch.depth || !watch.enabled || !watch.closed_world) {
+           !native_timer_active_ready(watch)) {
             active_cooldown_count(ctx,5);
             if(entry.gem_index==UINT32_MAX) {
                 const GdVal value=entry.owner->f_gems;

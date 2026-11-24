@@ -1,0 +1,492 @@
+
+prototype.dll:     file format pei-x86-64
+
+
+Disassembly of section .text:
+
+000000025ba55b40 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)>:
+   25ba55b40:	push   %r15
+   25ba55b42:	push   %r14
+   25ba55b44:	push   %r13
+   25ba55b46:	push   %r12
+   25ba55b48:	push   %rbp
+   25ba55b49:	push   %rdi
+   25ba55b4a:	push   %rsi
+   25ba55b4b:	push   %rbx
+   25ba55b4c:	sub    $0x88,%rsp
+   25ba55b53:	vmovaps %xmm6,0x70(%rsp)
+   25ba55b59:	movabs $0xff00ffffffffffff,%rax
+   25ba55b63:	mov    %rdx,%rsi
+   25ba55b66:	and    0x110(%rcx),%rax
+   25ba55b6d:	movabs $0x100010100000000,%rdx
+   25ba55b77:	mov    %rcx,%r10
+   25ba55b7a:	mov    %r8,%rbx
+   25ba55b7d:	mov    %r9,%r11
+   25ba55b80:	cmp    %rdx,%rax
+   25ba55b83:	jne    25ba55ca0 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x160>
+   25ba55b89:	mov    0x130(%rcx),%rdx
+   25ba55b90:	cmp    $0xffffffffffffffff,%rdx
+   25ba55b94:	sete   %dil
+   25ba55b98:	test   %rsi,%rsi
+   25ba55b9b:	sete   %al
+   25ba55b9e:	or     %al,%dil
+   25ba55ba1:	jne    25ba55ca0 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x160>
+   25ba55ba7:	cmp    %rcx,0x8(%rsi)
+   25ba55bab:	jne    25ba55ca2 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x162>
+   25ba55bb1:	cmpb   $0x2,0x48(%rsi)
+   25ba55bb5:	jne    25ba55ca2 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x162>
+   25ba55bbb:	mov    0x50(%rsi),%rax
+   25ba55bbf:	cmp    $0x1,%rax
+   25ba55bc3:	ja     25ba55ca2 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x162>
+   25ba55bc9:	mov    %eax,%eax
+   25ba55bcb:	mov    %rax,%r15
+   25ba55bce:	mov    0x138(%rcx,%rax,8),%rax
+   25ba55bd6:	mov    %rax,%r14
+   25ba55bd9:	test   %rax,%rax
+   25ba55bdc:	je     25ba55be7 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0xa7>
+   25ba55bde:	cmp    %rsi,(%rax)
+   25ba55be1:	je     25ba55cd5 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x195>
+   25ba55be7:	mov    0x28(%r10),%rcx
+   25ba55beb:	test   %rcx,%rcx
+   25ba55bee:	je     25ba55cc0 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x180>
+   25ba55bf4:	mov    %r11,0xe8(%rsp)
+   25ba55bfc:	mov    %r10,0xd0(%rsp)
+   25ba55c04:	mov    %rcx,0x30(%rsp)
+   25ba55c09:	call   25ba4d354 <pthread_mutex_lock>
+   25ba55c0e:	mov    0x30(%rsp),%rcx
+   25ba55c13:	mov    0xd0(%rsp),%r10
+   25ba55c1b:	test   %eax,%eax
+   25ba55c1d:	mov    0xe8(%rsp),%r11
+   25ba55c25:	jne    25ba563a2 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x862>
+   25ba55c2b:	mov    0x8(%r10),%rax
+   25ba55c2f:	mov    0x10(%r10),%r8
+   25ba55c33:	cmp    %r8,%rax
+   25ba55c36:	je     25ba55c95 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x155>
+   25ba55c38:	mov    $0x1,%r9d
+   25ba55c3e:	mov    %rbx,0xe0(%rsp)
+   25ba55c46:	mov    %r10,%rbx
+   25ba55c49:	mov    %r11,0xe8(%rsp)
+   25ba55c51:	mov    %r8,%r11
+   25ba55c54:	nopl   0x0(%rax)
+   25ba55c58:	mov    (%rax),%rdx
+   25ba55c5b:	cmp    %rdx,%rsi
+   25ba55c5e:	jb     25ba55c82 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x142>
+   25ba55c60:	mov    %rsi,%r10
+   25ba55c63:	mov    0x10(%rax),%r8
+   25ba55c67:	sub    %rdx,%r10
+   25ba55c6a:	cmp    %r10,%r8
+   25ba55c6d:	jb     25ba55c82 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x142>
+   25ba55c6f:	sub    %rsi,%r8
+   25ba55c72:	add    %r8,%rdx
+   25ba55c75:	cmp    $0x83f,%rdx
+   25ba55c7c:	ja     25ba55e60 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x320>
+   25ba55c82:	add    $0x18,%rax
+   25ba55c86:	cmp    %rax,%r11
+   25ba55c89:	jne    25ba55c58 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x118>
+   25ba55c8b:	test   %r9b,%r9b
+   25ba55c8e:	je     25ba55ca2 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x162>
+   25ba55c90:	test   %rcx,%rcx
+   25ba55c93:	je     25ba55ca2 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x162>
+   25ba55c95:	call   25ba4d460 <pthread_mutex_unlock>
+   25ba55c9a:	jmp    25ba55ca2 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x162>
+   25ba55c9c:	nopl   0x0(%rax)
+   25ba55ca0:	xor    %edi,%edi
+   25ba55ca2:	vmovaps 0x70(%rsp),%xmm6
+   25ba55ca8:	mov    %edi,%eax
+   25ba55caa:	add    $0x88,%rsp
+   25ba55cb1:	pop    %rbx
+   25ba55cb2:	pop    %rsi
+   25ba55cb3:	pop    %rdi
+   25ba55cb4:	pop    %rbp
+   25ba55cb5:	pop    %r12
+   25ba55cb7:	pop    %r13
+   25ba55cb9:	pop    %r14
+   25ba55cbb:	pop    %r15
+   25ba55cbd:	ret
+   25ba55cbe:	xchg   %ax,%ax
+   25ba55cc0:	mov    0x8(%r10),%rax
+   25ba55cc4:	mov    0x10(%r10),%r8
+   25ba55cc8:	cmp    %rax,%r8
+   25ba55ccb:	je     25ba55ca2 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x162>
+   25ba55ccd:	xor    %r9d,%r9d
+   25ba55cd0:	jmp    25ba55c3e <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0xfe>
+   25ba55cd5:	mov    0x30(%rax),%rax
+   25ba55cd9:	test   %rax,%rax
+   25ba55cdc:	je     25ba55be7 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0xa7>
+   25ba55ce2:	mov    0x108(%r10),%r9
+   25ba55ce9:	cmp    %r9,0x10(%r14)
+   25ba55ced:	jne    25ba55be7 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0xa7>
+   25ba55cf3:	cmp    0x18(%r14),%rdx
+   25ba55cf7:	jne    25ba55be7 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0xa7>
+   25ba55cfd:	cmpb   $0x9,0x4e0(%rsi)
+   25ba55d04:	jne    25ba55be7 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0xa7>
+   25ba55d0a:	cmp    0x4e8(%rsi),%rax
+   25ba55d11:	jne    25ba55be7 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0xa7>
+   25ba55d17:	cmpb   $0x7,0x60(%rax)
+   25ba55d1b:	jne    25ba55be7 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0xa7>
+   25ba55d21:	mov    0x8(%r14),%rcx
+   25ba55d25:	mov    %rcx,%rbp
+   25ba55d28:	cmp    %rcx,0x68(%rax)
+   25ba55d2c:	jne    25ba55be7 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0xa7>
+   25ba55d32:	test   %rcx,%rcx
+   25ba55d35:	je     25ba55be7 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0xa7>
+   25ba55d3b:	mov    0x2c(%r14),%eax
+   25ba55d3f:	mov    %eax,%r12d
+   25ba55d42:	cmp    %eax,0x8(%rcx)
+   25ba55d45:	jne    25ba55be7 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0xa7>
+   25ba55d4b:	cmpb   $0x0,0xd2(%r10)
+   25ba55d53:	jne    25ba5636e <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x82e>
+   25ba55d59:	mov    0x28(%r14),%eax
+   25ba55d5d:	test   %eax,%eax
+   25ba55d5f:	je     25ba56183 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x643>
+   25ba55d65:	mov    0x20(%r14),%rsi
+   25ba55d69:	mov    0x130(%r10),%rdi
+   25ba55d70:	shl    $0x5,%rax
+   25ba55d74:	mov    %rbx,0xe0(%rsp)
+   25ba55d7c:	mov    0x108(%r10),%r13
+   25ba55d83:	mov    %r10,%rbx
+   25ba55d86:	add    %rsi,%rax
+   25ba55d89:	mov    %rdi,0x30(%rsp)
+   25ba55d8e:	mov    %r11,%rdi
+   25ba55d91:	mov    %rax,0x48(%rsp)
+   25ba55d96:	jmp    25ba55e0c <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x2cc>
+   25ba55d98:	mov    (%rdi),%rax
+   25ba55d9b:	vpxor  %xmm1,%xmm1,%xmm1
+   25ba55d9f:	mov    0x8(%rdi),%r8
+   25ba55da3:	lea    0x50(%rsp),%rcx
+   25ba55da8:	mov    $0x1,%r9d
+   25ba55dae:	mov    %r14,%rdx
+   25ba55db1:	vmovdqu %xmm1,(%rax)
+   25ba55db5:	call   25bba5a30 <Gd__gd_core__CoreItem::fn_physicsTick(gd::GdVal const*, int)>
+   25ba55dba:	cmp    %r13,0x108(%rbx)
+   25ba55dc1:	jne    25ba5612c <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x5ec>
+   25ba55dc7:	mov    0x30(%rsp),%rax
+   25ba55dcc:	cmp    %rax,0x130(%rbx)
+   25ba55dd3:	jne    25ba5612c <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x5ec>
+   25ba55dd9:	movabs $0xff00ffffffffffff,%rax
+   25ba55de3:	movabs $0x100010100000000,%rcx
+   25ba55ded:	and    0x110(%rbx),%rax
+   25ba55df4:	cmp    %rcx,%rax
+   25ba55df7:	jne    25ba5612c <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x5ec>
+   25ba55dfd:	add    $0x20,%rsi
+   25ba55e01:	cmp    0x48(%rsp),%rsi
+   25ba55e06:	je     25ba56183 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x643>
+   25ba55e0c:	mov    0x8(%rsi),%rax
+   25ba55e10:	cmpb   $0x0,0xd2(%rbx)
+   25ba55e17:	mov    (%rsi),%r14
+   25ba55e1a:	mov    0x14(%rsi),%r15d
+   25ba55e1e:	mov    %rax,0x38(%rsp)
+   25ba55e23:	mov    0x10(%rsi),%eax
+   25ba55e26:	mov    %eax,0x40(%rsp)
+   25ba55e2a:	mov    0x18(%rsi),%eax
+   25ba55e2d:	mov    %eax,0x44(%rsp)
+   25ba55e31:	jne    25ba56118 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x5d8>
+   25ba55e37:	cmp    $0xffffffff,%r15d
+   25ba55e3b:	jne    25ba55d98 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x258>
+   25ba55e41:	mov    0xe0(%rsp),%rax
+   25ba55e49:	mov    %r14,%rcx
+   25ba55e4c:	mov    0x8(%rax),%r8
+   25ba55e50:	mov    (%rax),%rdx
+   25ba55e53:	call   25ba563c0 <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)>
+   25ba55e58:	jmp    25ba55dba <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x27a>
+   25ba55e5d:	nopl   (%rax)
+   25ba55e60:	mov    %rbx,%r10
+   25ba55e63:	mov    0xe8(%rsp),%r11
+   25ba55e6b:	mov    0xe0(%rsp),%rbx
+   25ba55e73:	test   %r9b,%r9b
+   25ba55e76:	jne    25ba56291 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x751>
+   25ba55e7c:	cmpb   $0x9,0x4e0(%rsi)
+   25ba55e83:	jne    25ba55ca2 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x162>
+   25ba55e89:	mov    0x4e8(%rsi),%r8
+   25ba55e90:	test   %r8,%r8
+   25ba55e93:	je     25ba55ca2 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x162>
+   25ba55e99:	cmp    %r10,0x8(%r8)
+   25ba55e9d:	jne    25ba55ca2 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x162>
+   25ba55ea3:	mov    0x28(%r10),%rcx
+   25ba55ea7:	test   %rcx,%rcx
+   25ba55eaa:	je     25ba560d0 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x590>
+   25ba55eb0:	mov    %r11,0xe8(%rsp)
+   25ba55eb8:	mov    %r10,0xd0(%rsp)
+   25ba55ec0:	mov    %r8,0x38(%rsp)
+   25ba55ec5:	mov    %rcx,0x30(%rsp)
+   25ba55eca:	call   25ba4d354 <pthread_mutex_lock>
+   25ba55ecf:	mov    0x30(%rsp),%rcx
+   25ba55ed4:	mov    0x38(%rsp),%r8
+   25ba55ed9:	test   %eax,%eax
+   25ba55edb:	mov    0xd0(%rsp),%r10
+   25ba55ee3:	mov    0xe8(%rsp),%r11
+   25ba55eeb:	jne    25ba563a2 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x862>
+   25ba55ef1:	mov    0x8(%r10),%rax
+   25ba55ef5:	mov    0x10(%r10),%r9
+   25ba55ef9:	cmp    %r9,%rax
+   25ba55efc:	je     25ba56287 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x747>
+   25ba55f02:	mov    $0x1,%edx
+   25ba55f07:	mov    %rsi,0xd8(%rsp)
+   25ba55f0f:	mov    %r10,%rsi
+   25ba55f12:	mov    %r9,%r10
+   25ba55f15:	mov    %rbx,0xe0(%rsp)
+   25ba55f1d:	mov    %edx,%ebx
+   25ba55f1f:	mov    %r8,%rdx
+   25ba55f22:	mov    %r11,0xe8(%rsp)
+   25ba55f2a:	mov    %rcx,%r11
+   25ba55f2d:	nopl   (%rax)
+   25ba55f30:	mov    (%rax),%r8
+   25ba55f33:	cmp    %r8,%rdx
+   25ba55f36:	jb     25ba55f5a <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x41a>
+   25ba55f38:	mov    %rdx,%rcx
+   25ba55f3b:	mov    0x10(%rax),%r9
+   25ba55f3f:	sub    %r8,%rcx
+   25ba55f42:	cmp    %rcx,%r9
+   25ba55f45:	jb     25ba55f5a <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x41a>
+   25ba55f47:	sub    %rdx,%r9
+   25ba55f4a:	add    %r9,%r8
+   25ba55f4d:	cmp    $0xa7,%r8
+   25ba55f54:	ja     25ba560e8 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x5a8>
+   25ba55f5a:	add    $0x18,%rax
+   25ba55f5e:	cmp    %rax,%r10
+   25ba55f61:	jne    25ba55f30 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x3f0>
+   25ba55f63:	test   %bl,%bl
+   25ba55f65:	mov    %r11,%rcx
+   25ba55f68:	mov    %rsi,%r10
+   25ba55f6b:	mov    0xe0(%rsp),%rbx
+   25ba55f73:	mov    0xd8(%rsp),%rsi
+   25ba55f7b:	mov    0xe8(%rsp),%r11
+   25ba55f83:	je     25ba55ca2 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x162>
+   25ba55f89:	xor    %edx,%edx
+   25ba55f8b:	test   %rcx,%rcx
+   25ba55f8e:	je     25ba55fbe <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x47e>
+   25ba55f90:	mov    %r11,0xe8(%rsp)
+   25ba55f98:	mov    %r10,0xd0(%rsp)
+   25ba55fa0:	mov    %dl,0x30(%rsp)
+   25ba55fa4:	call   25ba4d460 <pthread_mutex_unlock>
+   25ba55fa9:	mov    0xe8(%rsp),%r11
+   25ba55fb1:	mov    0xd0(%rsp),%r10
+   25ba55fb9:	movzbl 0x30(%rsp),%edx
+   25ba55fbe:	test   %dl,%dl
+   25ba55fc0:	je     25ba55ca0 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x160>
+   25ba55fc6:	mov    0x4e8(%rsi),%rcx
+   25ba55fcd:	mov    %r11,0xe8(%rsp)
+   25ba55fd5:	mov    %r10,0xd0(%rsp)
+   25ba55fdd:	call   25bb3a8a0 <gd::native_timer_known_object(gd::GdObj const*)>
+   25ba55fe2:	test   %al,%al
+   25ba55fe4:	je     25ba55ca0 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x160>
+   25ba55fea:	mov    0x4e8(%rsi),%rcx
+   25ba55ff1:	test   %rcx,%rcx
+   25ba55ff4:	je     25ba55ca2 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x162>
+   25ba55ffa:	xor    %r9d,%r9d
+   25ba55ffd:	lea    0x1a8494(%rip),%r8        # 25bbfe498 <typeinfo for Gd__gd_core__CoreGrid>
+   25ba56004:	lea    0x1a8895(%rip),%rdx        # 25bbfe8a0 <typeinfo for gd::GdObj>
+   25ba5600b:	call   25ba64970 <__dynamic_cast>
+   25ba56010:	test   %rax,%rax
+   25ba56013:	je     25ba55ca2 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x162>
+   25ba56019:	cmpb   $0x7,0x60(%rax)
+   25ba5601d:	jne    25ba55ca2 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x162>
+   25ba56023:	mov    0x68(%rax),%rax
+   25ba56027:	mov    %rax,%rbp
+   25ba5602a:	test   %rax,%rax
+   25ba5602d:	je     25ba55ca2 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x162>
+   25ba56033:	test   %r14,%r14
+   25ba56036:	mov    0x8(%rax),%r12d
+   25ba5603a:	mov    0xd0(%rsp),%r10
+   25ba56042:	mov    0xe8(%rsp),%r11
+   25ba5604a:	je     25ba5625f <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x71f>
+   25ba56050:	mov    %r10,%rcx
+   25ba56053:	mov    %r14,%r9
+   25ba56056:	mov    %rbp,%r8
+   25ba56059:	mov    %rsi,%rdx
+   25ba5605c:	mov    %r11,0xe8(%rsp)
+   25ba56064:	mov    %r10,0xd0(%rsp)
+   25ba5606c:	call   25ba55240 <gd::active_cooldown_build(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::GdArr const*, gd::ActiveCooldownCache&)>
+   25ba56071:	mov    0xd0(%rsp),%r10
+   25ba56079:	mov    0xe8(%rsp),%r11
+   25ba56081:	test   %al,%al
+   25ba56083:	je     25ba56217 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x6d7>
+   25ba56089:	cmpb   $0x0,0xd2(%r10)
+   25ba56091:	je     25ba55d59 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x219>
+   25ba56097:	mov    $0x1,%edx
+   25ba5609c:	xor    %ecx,%ecx
+   25ba5609e:	mov    %r11,0xe8(%rsp)
+   25ba560a6:	mov    %r10,0xd0(%rsp)
+   25ba560ae:	call   25b207890 <gd::native_active_cooldown_hit(unsigned int, unsigned long long)>
+   25ba560b3:	mov    0xe8(%rsp),%r11
+   25ba560bb:	mov    0xd0(%rsp),%r10
+   25ba560c3:	jmp    25ba55d59 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x219>
+   25ba560c8:	nopl   0x0(%rax,%rax,1)
+   25ba560d0:	mov    0x8(%r10),%rax
+   25ba560d4:	mov    0x10(%r10),%r9
+   25ba560d8:	cmp    %r9,%rax
+   25ba560db:	je     25ba55ca2 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x162>
+   25ba560e1:	xor    %edx,%edx
+   25ba560e3:	jmp    25ba55f07 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x3c7>
+   25ba560e8:	test   %bl,%bl
+   25ba560ea:	mov    %r11,%rcx
+   25ba560ed:	mov    %rsi,%r10
+   25ba560f0:	mov    0xe0(%rsp),%rbx
+   25ba560f8:	mov    0xd8(%rsp),%rsi
+   25ba56100:	mov    0xe8(%rsp),%r11
+   25ba56108:	je     25ba55fc6 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x486>
+   25ba5610e:	mov    $0x1,%edx
+   25ba56113:	jmp    25ba55f8b <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x44b>
+   25ba56118:	mov    $0x1,%edx
+   25ba5611d:	mov    $0x3,%ecx
+   25ba56122:	call   25b207890 <gd::native_active_cooldown_hit(unsigned int, unsigned long long)>
+   25ba56127:	jmp    25ba55e37 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x2f7>
+   25ba5612c:	mov    %rbx,%r10
+   25ba5612f:	mov    %rdi,%r11
+   25ba56132:	mov    0xe0(%rsp),%rbx
+   25ba5613a:	mov    %r14,%rdi
+   25ba5613d:	cmpb   $0x0,0xd2(%r10)
+   25ba56145:	jne    25ba562c4 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x784>
+   25ba5614b:	cmp    $0xffffffff,%r15d
+   25ba5614f:	jne    25ba5618d <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x64d>
+   25ba56151:	cmpb   $0x7,0x618(%rdi)
+   25ba56158:	mov    0x620(%rdi),%rdx
+   25ba5615f:	jne    25ba5616a <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x62a>
+   25ba56161:	test   %rdx,%rdx
+   25ba56164:	jne    25ba562e8 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x7a8>
+   25ba5616a:	mov    0x40(%rsp),%edx
+   25ba5616e:	mov    %r11,0x20(%rsp)
+   25ba56173:	mov    %rbx,%r9
+   25ba56176:	mov    %r12d,%r8d
+   25ba56179:	mov    %rbp,%rcx
+   25ba5617c:	inc    %edx
+   25ba5617e:	call   25ba57320 <void gd::active_cooldown_scan_items<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::GdArr const*, unsigned int, unsigned int, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&)>
+   25ba56183:	mov    $0x1,%edi
+   25ba56188:	jmp    25ba55ca2 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x162>
+   25ba5618d:	lea    0x1(%r15),%edi
+   25ba56191:	mov    %rbx,0xe0(%rsp)
+   25ba56199:	mov    %rdi,%rsi
+   25ba5619c:	imul   $0x18,%rdi,%rdi
+   25ba561a0:	jmp    25ba561a8 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x668>
+   25ba561a2:	inc    %esi
+   25ba561a4:	add    $0x18,%rdi
+   25ba561a8:	cmp    0x44(%rsp),%esi
+   25ba561ac:	jae    25ba5620a <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x6ca>
+   25ba561ae:	mov    0x38(%rsp),%rbx
+   25ba561b3:	mov    (%rbx),%rax
+   25ba561b6:	add    %rdi,%rax
+   25ba561b9:	cmpb   $0x0,(%rax)
+   25ba561bc:	je     25ba561a2 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x662>
+   25ba561be:	mov    0x8(%rax),%rbx
+   25ba561c2:	cmpb   $0x1,0x670(%rbx)
+   25ba561c9:	jne    25ba5623e <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x6fe>
+   25ba561cb:	movzbl 0x678(%rbx),%eax
+   25ba561d2:	test   %al,%al
+   25ba561d4:	je     25ba561a2 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x662>
+   25ba561d6:	mov    (%r11),%rax
+   25ba561d9:	mov    0x8(%r11),%r8
+   25ba561dd:	vpxor  %xmm5,%xmm5,%xmm5
+   25ba561e1:	mov    $0x1,%r9d
+   25ba561e7:	mov    %rbx,%rdx
+   25ba561ea:	lea    0x50(%rsp),%rcx
+   25ba561ef:	mov    %r11,0xe8(%rsp)
+   25ba561f7:	vmovdqu %xmm5,(%rax)
+   25ba561fb:	call   25bba5a30 <Gd__gd_core__CoreItem::fn_physicsTick(gd::GdVal const*, int)>
+   25ba56200:	mov    0xe8(%rsp),%r11
+   25ba56208:	jmp    25ba561a2 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x662>
+   25ba5620a:	mov    0xe0(%rsp),%rbx
+   25ba56212:	jmp    25ba5616a <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x62a>
+   25ba56217:	movzbl 0xd2(%r10),%edi
+   25ba5621f:	test   %dil,%dil
+   25ba56222:	je     25ba55ca2 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x162>
+   25ba56228:	mov    $0x1,%edx
+   25ba5622d:	mov    $0x4,%ecx
+   25ba56232:	xor    %edi,%edi
+   25ba56234:	call   25b207890 <gd::native_active_cooldown_hit(unsigned int, unsigned long long)>
+   25ba56239:	jmp    25ba55ca2 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x162>
+   25ba5623e:	lea    0x670(%rbx),%rcx
+   25ba56245:	mov    %r11,0xe8(%rsp)
+   25ba5624d:	call   25ba743c0 <gd::gd_truth(gd::GdVal const&)>
+   25ba56252:	mov    0xe8(%rsp),%r11
+   25ba5625a:	jmp    25ba561d2 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x692>
+   25ba5625f:	mov    %r10,%rcx
+   25ba56262:	call   25ba54280 <gd::ActiveCooldownCache* gd::BattleArena::make<gd::ActiveCooldownCache>()>
+   25ba56267:	mov    0xd0(%rsp),%r10
+   25ba5626f:	mov    0xe8(%rsp),%r11
+   25ba56277:	mov    %rax,%r14
+   25ba5627a:	mov    %rax,0x138(%r10,%r15,8)
+   25ba56282:	jmp    25ba56050 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x510>
+   25ba56287:	call   25ba4d460 <pthread_mutex_unlock>
+   25ba5628c:	jmp    25ba55ca2 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x162>
+   25ba56291:	test   %rcx,%rcx
+   25ba56294:	je     25ba55e7c <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x33c>
+   25ba5629a:	mov    %r11,0xe8(%rsp)
+   25ba562a2:	mov    %r10,0xd0(%rsp)
+   25ba562aa:	call   25ba4d460 <pthread_mutex_unlock>
+   25ba562af:	mov    0xd0(%rsp),%r10
+   25ba562b7:	mov    0xe8(%rsp),%r11
+   25ba562bf:	jmp    25ba55e7c <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x33c>
+   25ba562c4:	mov    $0x1,%edx
+   25ba562c9:	mov    $0x5,%ecx
+   25ba562ce:	mov    %r11,0xe8(%rsp)
+   25ba562d6:	call   25b207890 <gd::native_active_cooldown_hit(unsigned int, unsigned long long)>
+   25ba562db:	mov    0xe8(%rsp),%r11
+   25ba562e3:	jmp    25ba5614b <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x60b>
+   25ba562e8:	mov    %rbx,0xe0(%rsp)
+   25ba562f0:	mov    0x8(%rdx),%r15d
+   25ba562f4:	xor    %esi,%esi
+   25ba562f6:	mov    %rdx,%r14
+   25ba562f9:	mov    %r11,%rbx
+   25ba562fc:	jmp    25ba56303 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x7c3>
+   25ba562fe:	xchg   %ax,%ax
+   25ba56300:	inc    %rsi
+   25ba56303:	cmp    %r15d,%esi
+   25ba56306:	jae    25ba56350 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x810>
+   25ba56308:	imul   $0x18,%rsi,%rax
+   25ba5630c:	add    (%r14),%rax
+   25ba5630f:	cmpb   $0x0,(%rax)
+   25ba56312:	je     25ba56300 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x7c0>
+   25ba56314:	mov    0x8(%rax),%rdi
+   25ba56318:	cmpb   $0x1,0x670(%rdi)
+   25ba5631f:	jne    25ba56360 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x820>
+   25ba56321:	movzbl 0x678(%rdi),%eax
+   25ba56328:	test   %al,%al
+   25ba5632a:	je     25ba56300 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x7c0>
+   25ba5632c:	mov    (%rbx),%rax
+   25ba5632f:	vpxor  %xmm3,%xmm3,%xmm3
+   25ba56333:	mov    0x8(%rbx),%r8
+   25ba56337:	mov    $0x1,%r9d
+   25ba5633d:	mov    %rdi,%rdx
+   25ba56340:	lea    0x50(%rsp),%rcx
+   25ba56345:	vmovdqu %xmm3,(%rax)
+   25ba56349:	call   25bba5a30 <Gd__gd_core__CoreItem::fn_physicsTick(gd::GdVal const*, int)>
+   25ba5634e:	jmp    25ba56300 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x7c0>
+   25ba56350:	mov    %rbx,%r11
+   25ba56353:	mov    0xe0(%rsp),%rbx
+   25ba5635b:	jmp    25ba5616a <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x62a>
+   25ba56360:	lea    0x670(%rdi),%rcx
+   25ba56367:	call   25ba743c0 <gd::gd_truth(gd::GdVal const&)>
+   25ba5636c:	jmp    25ba56328 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x7e8>
+   25ba5636e:	mov    $0x1,%edx
+   25ba56373:	mov    $0x2,%ecx
+   25ba56378:	mov    %r11,0xe8(%rsp)
+   25ba56380:	mov    %r10,0xd0(%rsp)
+   25ba56388:	call   25b207890 <gd::native_active_cooldown_hit(unsigned int, unsigned long long)>
+   25ba5638d:	mov    0xd0(%rsp),%r10
+   25ba56395:	mov    0xe8(%rsp),%r11
+   25ba5639d:	jmp    25ba56089 <bool gd::active_cooldown_visit<gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}>(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#1}&&, gd::active_cooldown_phase(gd::BattleCtx&, Gd__gd_core__CoreCharacter*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)::{lambda(Gd__gd_core__CoreItem*)#2}&&)+0x549>
+   25ba563a2:	mov    %eax,%ecx
+   25ba563a4:	call   25bbd89a0 <std::__throw_system_error(int)>
+   25ba563a9:	nop
+   25ba563aa:	nop
+   25ba563ab:	nop
+   25ba563ac:	nop
+   25ba563ad:	nop
+   25ba563ae:	nop
+   25ba563af:	nop
+   25ba563b0:	nop
+   25ba563b1:	nop
+   25ba563b2:	nop
+   25ba563b3:	nop
+   25ba563b4:	nop
+   25ba563b5:	nop
+   25ba563b6:	nop
+   25ba563b7:	nop
+   25ba563b8:	nop
+   25ba563b9:	nop
+   25ba563ba:	nop
+   25ba563bb:	nop
+   25ba563bc:	nop
+   25ba563bd:	nop
+   25ba563be:	nop
+   25ba563bf:	nop

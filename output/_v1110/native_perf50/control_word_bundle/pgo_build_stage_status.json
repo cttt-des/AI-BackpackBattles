@@ -1,0 +1,33 @@
+{
+  "stage": "profile_guided_release_build_running",
+  "candidate_deployed": false,
+  "goal_200_reached": false,
+  "goal_status": "active",
+  "production_dll_sha256": "f950b64c74684ae70ce4e41b9622541c849da0121e1235ab88b7aaface22a6d7",
+  "latest_accepted_production_fitted20": 186.34032339352876,
+  "semantic_dll_sha256": "f04be42c1e0e6bc997912daf1a84d5169f939eb6d8ec6240533cb38f5a644604",
+  "semantic_cases": 44608,
+  "formal_speed_not_yet_observed": true,
+  "prior_remote_archive": "584aef472686dc09bb5abda831c358a2026a2fe3",
+  "live": {
+    "driver": {
+      "pid": 18920,
+      "created": 1795515905.2768044
+    },
+    "build": {
+      "pid": 22896,
+      "created": 1795515905.681083
+    },
+    "qualifier": {
+      "pid": 19440,
+      "created": 1795515905.6907215
+    }
+  },
+  "persistent_build_directory": {
+    "root": "C:\\Users\\Windows\\AppData\\Local\\CodexNativeBuilds\\control-word-formal-3pq4tccm",
+    "objects": "C:\\Users\\Windows\\AppData\\Local\\CodexNativeBuilds\\control-word-formal-3pq4tccm\\objects",
+    "scratch": "C:\\Users\\Windows\\AppData\\Local\\CodexNativeBuilds\\control-word-formal-3pq4tccm\\scratch"
+  },
+  "instrumented_audit_passed": true,
+  "profile_count": 18
+}
