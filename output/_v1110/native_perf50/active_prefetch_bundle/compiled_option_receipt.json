@@ -1,0 +1,85 @@
+{
+  "passed": true,
+  "dll_sha256": "0fdfc66519a1dcd1d823deea2585d31ddd2c8df9f5e05b2bd81344bcd99a7600",
+  "baseline_dll_sha256": "f950b64c74684ae70ce4e41b9622541c849da0121e1235ab88b7aaface22a6d7",
+  "checked_hot_objects": 18,
+  "actual_object_option_sections": true,
+  "fp_contract_off_all": true,
+  "compiler_options_identical_except_profile_directory": true,
+  "compared_with_verified_F950_objects": true,
+  "no_compiler_pta": true,
+  "objects": {
+    "engine_wrapper.o": {
+      "object_sha256": "e6e491204493843ea706e5541d5e6dddf5041d35aae0112456e6783ec4a6423a",
+      "options_sha256": "28061cdb44b06b7087514ecc10e7ea5c24274e4d080d2a5183aefb76e4f735bd"
+    },
+    "gd_rt.o": {
+      "object_sha256": "b9262b28eeeb60de32c93ef24c07c590a4e059841e32aa4b9da695261d44ea98",
+      "options_sha256": "28061cdb44b06b7087514ecc10e7ea5c24274e4d080d2a5183aefb76e4f735bd"
+    },
+    "shard_00.o": {
+      "object_sha256": "5be32bffe341051deb5565644b9320f2834898851d088c4e26a94ba9d8ed9016",
+      "options_sha256": "28061cdb44b06b7087514ecc10e7ea5c24274e4d080d2a5183aefb76e4f735bd"
+    },
+    "shard_01.o": {
+      "object_sha256": "9841a99355fec59fbf02e7ab42ae8693c81518c230ddd472c2f7b7630bd06571",
+      "options_sha256": "28061cdb44b06b7087514ecc10e7ea5c24274e4d080d2a5183aefb76e4f735bd"
+    },
+    "shard_02.o": {
+      "object_sha256": "e9aaf09ea9e58056e9b2aad0ccd8a259456938ae13f5a3be483ace018a85c710",
+      "options_sha256": "28061cdb44b06b7087514ecc10e7ea5c24274e4d080d2a5183aefb76e4f735bd"
+    },
+    "shard_03.o": {
+      "object_sha256": "8d280094f58da0481d7cc55eb81976a886c0ae81a52ec18b9b11a22052d759e5",
+      "options_sha256": "28061cdb44b06b7087514ecc10e7ea5c24274e4d080d2a5183aefb76e4f735bd"
+    },
+    "shard_04.o": {
+      "object_sha256": "4ecad1fe9924a83c4f6803ec7fcf8e8b5b1320f2c68cb958d18d2b6f64afbbdb",
+      "options_sha256": "28061cdb44b06b7087514ecc10e7ea5c24274e4d080d2a5183aefb76e4f735bd"
+    },
+    "shard_05.o": {
+      "object_sha256": "55a1d63c1af746f0bd4ff2481939ab58d013559fbafc56d824015b5f16196c93",
+      "options_sha256": "28061cdb44b06b7087514ecc10e7ea5c24274e4d080d2a5183aefb76e4f735bd"
+    },
+    "shard_06.o": {
+      "object_sha256": "3a256b5c4095accf91fff56cd772ec1b87aeab3b45368b344977cf1a864adba0",
+      "options_sha256": "28061cdb44b06b7087514ecc10e7ea5c24274e4d080d2a5183aefb76e4f735bd"
+    },
+    "shard_07.o": {
+      "object_sha256": "3cce5e96c52697eaae80a7f4a758bf36a7370564073e2fe111fe354ca078ec92",
+      "options_sha256": "28061cdb44b06b7087514ecc10e7ea5c24274e4d080d2a5183aefb76e4f735bd"
+    },
+    "shard_08.o": {
+      "object_sha256": "e18eb4708bacb500de3e5b0d88779ef546c51b2a6e54c34f2de3df48653b7c32",
+      "options_sha256": "28061cdb44b06b7087514ecc10e7ea5c24274e4d080d2a5183aefb76e4f735bd"
+    },
+    "shard_09.o": {
+      "object_sha256": "412287c89e4ad0b64f0fdcd23b700720e92f7a8b92869906d9da0541a3c3c65c",
+      "options_sha256": "28061cdb44b06b7087514ecc10e7ea5c24274e4d080d2a5183aefb76e4f735bd"
+    },
+    "shard_10.o": {
+      "object_sha256": "567723c9b4971bcc83520d52eb9db90b45edd195dca4e11bde6a42cce69069fc",
+      "options_sha256": "28061cdb44b06b7087514ecc10e7ea5c24274e4d080d2a5183aefb76e4f735bd"
+    },
+    "shard_11.o": {
+      "object_sha256": "35a2db1ea6bda54fed47c92ed3f90fb09a0b471ce795a10081fb03bc318aee93",
+      "options_sha256": "28061cdb44b06b7087514ecc10e7ea5c24274e4d080d2a5183aefb76e4f735bd"
+    },
+    "shard_12.o": {
+      "object_sha256": "eaee60da7146017d01f83c533966c61a44165ee092a35814c281f742eddae317",
+      "options_sha256": "28061cdb44b06b7087514ecc10e7ea5c24274e4d080d2a5183aefb76e4f735bd"
+    },
+    "shard_13.o": {
+      "object_sha256": "463af1e0f7375fc183d6e80f4cfe9a88bd3f9a6c3696853fa936e80836d49feb",
+      "options_sha256": "28061cdb44b06b7087514ecc10e7ea5c24274e4d080d2a5183aefb76e4f735bd"
+    },
+    "shard_14.o": {
+      "object_sha256": "c493ef88e52634e345bc4d969bdd8044961ecb6b2541df6091f3b6e3be2ef917",
+      "options_sha256": "28061cdb44b06b7087514ecc10e7ea5c24274e4d080d2a5183aefb76e4f735bd"
+    },
+    "shard_15.o": {
+      "object_sha256": "fbe07dc017e2c1c9f9c1818d149991f576be3c7901eb7f3fd4ad5e2071040acf",
+      "options_sha256": "28061cdb44b06b7087514ecc10e7ea5c24274e4d080d2a5183aefb76e4f735bd"
+    }
+  }
+}

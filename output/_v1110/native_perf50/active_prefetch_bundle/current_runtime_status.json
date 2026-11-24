@@ -1,0 +1,29 @@
+{
+  "candidate_dll_sha256": "0fdfc66519a1dcd1d823deea2585d31ddd2c8df9f5e05b2bd81344bcd99a7600",
+  "production_dll_sha256": "f950b64c74684ae70ce4e41b9622541c849da0121e1235ab88b7aaface22a6d7",
+  "deployed": false,
+  "reason": "AB_not_accepted_nonrelease_calibration_only",
+  "goal200_reached": false,
+  "goal_still_active": true,
+  "candidate_load20_fps": 152.02318831253663,
+  "raw24": null,
+  "calibration24": {
+    "median_fights_per_second": 165.747176601075,
+    "minimum_fights_per_second": 134.1559597911521,
+    "maximum_fights_per_second": 179.1622480781748,
+    "background_load_range_pct": [
+      8.311268633173793,
+      28.160670052806076
+    ],
+    "on_ac_all": true
+  },
+  "compiler_flags": [],
+  "source_changes": [
+    "gen/shards/shard_03.cpp",
+    "native_active_cooldowns.hpp"
+  ],
+  "all_protocol_processes_finished": true,
+  "no_more_same_configuration_measurements": true,
+  "backup_status_recorded_separately": true,
+  "backup_receipt": "checkpoint_receipt.json"
+}

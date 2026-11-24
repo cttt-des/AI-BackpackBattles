@@ -1,0 +1,13 @@
+{
+  "local_commit": "64390dd9a18007338360d946fd73432b2d3af138",
+  "prepared_backup_commit": "bcad9e17d0af08821582759a44e0e4e8fe068be3",
+  "local_preservation_ref": "refs/heads/codex/compiler-pta-backup-20261124",
+  "parent_remote_verified_commit": "80c06b2db6f525ae5b0b4acd2f2130f1bd418310",
+  "own_files_saved": 1716,
+  "production_source_files_verified": 707,
+  "candidate_installed": false,
+  "production_dll_sha256": "f950b64c74684ae70ce4e41b9622541c849da0121e1235ab88b7aaface22a6d7",
+  "user_existing_changes_not_staged": true,
+  "remote_upload_verified": true,
+  "remote_verified_commit": "bcad9e17d0af08821582759a44e0e4e8fe068be3"
+}

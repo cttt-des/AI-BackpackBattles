@@ -1,0 +1,8 @@
+{
+  "status": "waiting_before_first_calibration",
+  "latest_idle_cpu_pct": 6.5,
+  "consecutive": 1,
+  "elapsed_seconds": 1.0004582000001392,
+  "observations": 1,
+  "no_candidate_benchmarks_used": true
+}

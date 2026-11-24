@@ -1,0 +1,31 @@
+Waiting for3 consecutive idle CPU observations<=12%, before the sole calibration
+Idle CPU=6.5%; eligible observations=1/3
+Eligible; start the original warm30/calibration24 once
+Warming controlled load for 30 seconds
+bundle.dll: 24 batches, median 165.75 replays/s, minimum 134.16; 2e74b45caa87
+{
+  "status": "inconclusive_retained",
+  "candidate_dll_sha256": "0fdfc66519a1dcd1d823deea2585d31ddd2c8df9f5e05b2bd81344bcd99a7600",
+  "not_deployed": true,
+  "no_more_same_source_groups": true,
+  "non_release_calibration": true,
+  "not_release_raw24": true,
+  "single_run_all_samples_retained": true,
+  "background_load_range_pct": [
+    8.311268633173793,
+    28.160670052806076
+  ],
+  "median_fights_per_second": 165.747176601075,
+  "minimum_fights_per_second": 134.1559597911521,
+  "maximum_fights_per_second": 179.1622480781748,
+  "on_ac_all": true,
+  "fitted_fights_per_second_at20": 152.02318831253663,
+  "fit_validation": {
+    "median_absolute_relative_time_error": 0.022194969531260107,
+    "p90_absolute_relative_time_error": 0.05653911671622214,
+    "constant_median_absolute_relative_time_error": 0.11922916301716877
+  },
+  "missing_reason": null,
+  "raw_sha256": "bfe8ff81cc989611237a8d06266f8a0255a49708f22323d0038da4a57f7baff9",
+  "fit_exit_code": 0
+}

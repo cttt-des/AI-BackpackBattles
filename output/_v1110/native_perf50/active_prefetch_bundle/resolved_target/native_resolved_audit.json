@@ -1,0 +1,13 @@
+{
+  "diagnostic_only": true,
+  "dll_sha256": "0fdfc66519a1dcd1d823deea2585d31ddd2c8df9f5e05b2bd81344bcd99a7600",
+  "verifier_exit_code": 0,
+  "coverage": {
+    "generic_hits": 189000,
+    "funcref_hits": 1757,
+    "lazy_resolutions": 954,
+    "unsupported_types": 3,
+    "audit_mismatch": 0,
+    "selected_fallback": 3905
+  }
+}

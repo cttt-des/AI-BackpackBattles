@@ -1,0 +1,23 @@
+
+C:\Users\Windows\AppData\Local\CodexNativeBuilds\active-prefetch-check-k56bxejf\libgdcore.dll:     file format pei-x86-64
+
+
+Disassembly of section .text:
+
+00000002e31b4b10 <gd_test_native_active_prefetch>:
+   2e31b4b10:	48 85 c9             	test   %rcx,%rcx
+   2e31b4b13:	74 1f                	je     2e31b4b34 <gd_test_native_active_prefetch+0x24>
+   2e31b4b15:	0f 18 09             	prefetcht0 (%rcx)
+   2e31b4b18:	0f 18 89 18 03 00 00 	prefetcht0 0x318(%rcx)
+   2e31b4b1f:	0f 18 89 70 06 00 00 	prefetcht0 0x670(%rcx)
+   2e31b4b26:	0f 18 89 d8 00 00 00 	prefetcht0 0xd8(%rcx)
+   2e31b4b2d:	0f 18 89 90 03 00 00 	prefetcht0 0x390(%rcx)
+   2e31b4b34:	48 85 d2             	test   %rdx,%rdx
+   2e31b4b37:	74 0b                	je     2e31b4b44 <gd_test_native_active_prefetch+0x34>
+   2e31b4b39:	0f 18 0a             	prefetcht0 (%rdx)
+   2e31b4b3c:	0f 18 4a 60          	prefetcht0 0x60(%rdx)
+   2e31b4b40:	0f 18 4a 78          	prefetcht0 0x78(%rdx)
+   2e31b4b44:	c3                   	ret
+   2e31b4b45:	90                   	nop
+   2e31b4b46:	66 2e 0f 1f 84 00 00 	cs nopw 0x0(%rax,%rax,1)
+   2e31b4b4d:	00 00 00 

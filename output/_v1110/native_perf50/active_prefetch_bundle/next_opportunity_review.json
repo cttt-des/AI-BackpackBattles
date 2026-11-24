@@ -1,0 +1,26 @@
+{
+  "production_dll_sha256": "f950b64c74684ae70ce4e41b9622541c849da0121e1235ab88b7aaface22a6d7",
+  "profile_sha256": "0732861e969ec9b61b4c2e7726d375402b7b5d68067e9495260b48a3f0f95651",
+  "profile_samples": 2047,
+  "current_candidate_frozen_and_unchanged": true,
+  "not_implemented": true,
+  "no_speed_claim": true,
+  "finding": "Both actual CoreCombat active loops check version,cooldown_version,usable,depth,enabled,closed_world separately after the frame callback",
+  "evidence_sha256": "b967926a4cf835588379fde5313b7d3de65c75d65a3ec745cf2e5dad630ada75",
+  "native_timer_watch_layout": "version0,depth8,enabled12,usable13,collect14,closed_world15",
+  "proposal": "Fresh masked packed load of control bytes/depth at every original check; no cached flags and no extra invalidation writes",
+  "two_options": [
+    "one uint64 load covering depth+4bool,mask collect only",
+    "one uint32 load of4bool,mask collect;retain separate depth check"
+  ],
+  "required": [
+    "ABI/endianness/sizeofbool/offset checks and original fallback",
+    "all16 flag combinations incl independent collect,depth0/1/MAX and reset/overflow",
+    "all original per-callback checks,versions,suffix and counters retained",
+    "retained2016 targeted timer plus1856 active index independent semantic cases and actual DLL production integration",
+    "full20 fresh18 PGO and original24/atmost32 A/B,strict2604 and raw/cal24 gates"
+  ],
+  "distinction": "Does not hoist or omit earlier rejected eligibility/row guards; reads every current control value at each original position",
+  "no_sample_fraction_as_speedup_or_ceiling": true,
+  "selection_after_current_candidate_terminal_only": true
+}
