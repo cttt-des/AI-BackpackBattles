@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """update_zh_names.py — 用游戏内置中文翻译（新解包 CSV）更新 battle_items.json 的 zh
 
-真值源：decompiled_full/.assets/Sheets/CSV/{Items,Full,ExclusiveItems}.csv
+真值源：decompiled_legacy/1.1.7/.assets/Sheets/CSV/{Items,Full,ExclusiveItems}.csv
 的 zh_Hans_CN 列（游戏 1.0 内置简体中文）。名字行 = en 列无 $ 且长度 < 40。
 
 匹配策略：
@@ -25,7 +25,7 @@ import sys
 from datetime import datetime
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CSV_DIR = os.path.join(ROOT, "decompiled_full", ".assets", "Sheets", "CSV")
+CSV_DIR = os.path.join(ROOT, "decompiled_legacy/1.1.7", ".assets", "Sheets", "CSV")
 DB_PATH = os.path.join(ROOT, "assets", "battle_items.json")
 
 # 旧数据键名 → 新版官方名（逐一人工核实）

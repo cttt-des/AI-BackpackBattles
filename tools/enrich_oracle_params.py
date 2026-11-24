@@ -3,7 +3,7 @@
 
 背景（np23 data_r1）
 ====================
-battle_items.json 的参数生产链源自 decompiled_full/Sheets/CSV/ItemData_e.csv
+battle_items.json 的参数生产链源自 decompiled_legacy/1.1.7/Sheets/CSV/ItemData_e.csv
 （反编译版本），而新语料由 oracle 1.1.9 工程录制，其物品表为
 oracle/Sheets/CSV/ItemData.csv。两份 CSV 列结构全等、行集仅差 oracle 多
 "Time Pendant"（语料 lineups 零引用），但有 53 行的战斗参数列存在版本差
@@ -49,7 +49,7 @@ import sys
 from datetime import datetime
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-E_CSV = os.path.join(ROOT, "decompiled_full", "Sheets", "CSV", "ItemData_e.csv")
+E_CSV = os.path.join(ROOT, "decompiled_legacy/1.1.7", "Sheets", "CSV", "ItemData_e.csv")
 O_CSV = os.path.join(ROOT, "oracle", "Sheets", "CSV", "ItemData.csv")
 DB_PATH = os.path.join(ROOT, "assets", "battle_items.json")
 

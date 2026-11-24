@@ -2697,6 +2697,7 @@ func drop() -> int:
 
 
 		finishInsideItemsRotation()
+		insideRotationNode.rotation_degrees = 0
 
 		result = Game.PLAYER.INVENTORY.tryAddItem(self)
 		if wasAddedToInventory(result):
@@ -4493,7 +4494,7 @@ func advanceCooldownPercent(amount):
 		trigger()
 		if not isCooldownActive(): return
 
-	Util.spawnLabelOnItem(Game.EventType.CooldownAdvance, self, reduction)
+	Util.spawnLabelOnItem(Game.EventType.CooldownAdvance, self, reduction / getSpeed())
 	Game.combatLog.snapshotItemTooltipStat(self, Stat.Cooldown)
 
 func advanceCooldownSeconds(amount):
@@ -5744,6 +5745,7 @@ func shift(direction: Vector2):
 		if Game.inventoryEditMode != Game.InventoryEditMode.Default:
 			CraftingManager.itemShifted(self)
 
+
 		if Game.inventoryEditMode == Game.InventoryEditMode.ItemLayer:
 			return
 	else:
@@ -6570,4 +6572,3 @@ class SignalConnection:
 
 	func destroy():
 		Util.tryDisconnect(emitter, signalName, receiver, methodName)
-

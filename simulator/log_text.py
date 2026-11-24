@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """log_text.py — 战斗日志文本渲染（复刻游戏 CombatLog 格式）
 
-真值源：decompiled_full/Core/CombatLog.gd + CombatEvent.gd asText()
+真值源：decompiled_legacy/1.1.7/Core/CombatLog.gd + CombatEvent.gd asText()
   * 深度 0 行：``x.xx:  ``（时间戳 %2.2f + ":  "）
   * 子事件行：``  ``×depth + ``> ``
   * 文本 = LOG 模板.format({origin/damage/amount/buff/debuff/duration/stamina/...})

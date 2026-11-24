@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Utility/PooledScene.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Particles/Dust1.png" type="Texture" id=2]
+
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0, 0.0512821, 0.625641, 0.830769, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0.271795, 1, 1, 1, 0.0968037, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
+width = 50
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 0.326136 ), 0.0, 1.6007, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=2]
+width = 50
+curve = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+lifetime_randomness = 0.16
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 180.0
+gravity = Vector3( 0, 159, 0 )
+initial_velocity = 421.49
+initial_velocity_random = 0.24
+angular_velocity = 73.94
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+damping = 1000.0
+angle = 720.0
+angle_random = 1.0
+scale = 0.12
+scale_random = 0.33
+scale_curve = SubResource( 2 )
+color_ramp = SubResource( 5 )
+
+[node name="Particles2D" type="Particles2D"]
+modulate = Color( 1, 0.890196, 0.819608, 0.658824 )
+scale = Vector2( 0.6, 0.6 )
+emitting = false
+amount = 12
+lifetime = 0.57
+one_shot = true
+speed_scale = 1.25
+explosiveness = 0.79
+process_material = SubResource( 3 )
+texture = ExtResource( 2 )
+script = ExtResource( 1 )

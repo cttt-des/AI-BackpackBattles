@@ -22,6 +22,24 @@ Backpack Battles/
 *.pck
 
 # ============ 提取/解密/反编译的游戏内容（本地保留，不入库）============
+# Source snapshots: track readable source only; full game assets stay local.
+/decompiled_full/**
+!/decompiled_full/**/
+!/decompiled_full/**/*.gd
+!/decompiled_full/**/*.tscn
+!/decompiled_full/**/*.material
+!/decompiled_full/**/*.tres
+!/decompiled_full/**/*.gdshader
+!/decompiled_full/**/*.csv
+!/decompiled_full/**/*.shader
+!/decompiled_full/**/*.cfg
+!/decompiled_full/**/*.txt
+!/decompiled_full/**/*.godot
+!/decompiled_full/**/*.gdnlib
+!/decompiled_full/**/*.gdns
+/decompiled_full/.import/
+/decompiled_full/.autoconverted/
+
 decompiled_full/.autoconverted/
 decompiled_full/gdre_export.log
 decompiled_full/.godot/

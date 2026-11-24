@@ -546,11 +546,13 @@ func takeDamage(damageSource: DamageSource, triggerEvent = null) -> DamageResult
 			if critChancePercent > 0 and critRng.rollPercent(critChancePercent):
 				critical = true
 			
-			if not damageRes.critical and item != null and item.getCritTokens() > 0:
+			elif item != null and item.getCritTokens() > 0:
 				item.useCritToken()
 				critical = true
 			
-			if not damageRes.critical and opponent.getCritTokens() > 0:
+			elif (opponent.getCritTokens() > 0 and 
+						damageSource.isAttackOrEffect()):
+				
 				opponent.useCritToken()
 				critical = true
 			

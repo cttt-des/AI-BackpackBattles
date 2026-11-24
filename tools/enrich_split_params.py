@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """enrich_split_params.py — 修复 battle_items.json 具名参数的 CSV 逗号格合并缺失
 
-引擎真值（decompiled_full/Sheets/ItemBook.gd:858-868）：ItemBook 逐 p1..p10 列
+引擎真值（decompiled_legacy/1.1.7/Sheets/ItemBook.gd:858-868）：ItemBook 逐 p1..p10 列
 解析物品参数，**含逗号的单元格按 "," 拆分为多个具名参数**，每段 "值:名"：
 
     if "," in colStr:
@@ -31,7 +31,7 @@ spikesLeft=0 恒 gate → Pine Protector 全场 0 次 giveSpikes（oracle 9/18/2
 gd=Lucky+Mana）。
 
 修复方式：把合并键逆向还原成 CSV 单元格（值 + ":" + 键，恰为生产链的逆）、按
-ItemBook.gd:858-868 语义拆成独立具名参数写回，**并与 decompiled_full/Sheets/
+ItemBook.gd:858-868 语义拆成独立具名参数写回，**并与 decompiled_legacy/1.1.7/Sheets/
 CSV/ItemData_e.csv（csv 模块完整解析，含引号格）逐格对账**——对不上即中止不
 写库。params 位置数组本就正确（首段值在位），不动。
 

@@ -86,7 +86,7 @@ def is_bag_data(item_data: Optional[Dict[str, Any]]) -> bool:
     """物品数据是否为背包/袋子类（占 bags 底层，物品可叠其上）。
 
     判定 = category=='bag'（与 types 含 'bag' 等价，已核验两集合相同）。
-    依据反编译源码：decompiled_full/Items 下 extends Bag 的 24 个物品脚本
+    依据反编译源码：decompiled_legacy/1.1.7/Items 下 extends Bag 的 24 个物品脚本
     + 直接用 Bag.gd 基类的 Leather Bag + FannyPack/PotionBelt（字符串路径
     继承，grep 'extends Bag' 搜不到）= 27 个，与 category=='bag' 名单完全一致。
     """

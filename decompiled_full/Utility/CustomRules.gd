@@ -91,7 +91,7 @@ var values: Dictionary
 
 func _init():
 	reset()
-	
+
 
 func areCustomRulesActive() -> bool:
 	return customRulesActive
@@ -99,11 +99,11 @@ func areCustomRulesActive() -> bool:
 func areCustomRulesChanged() -> bool:
 	if not customRulesActive:
 		return false
-	
+
 	for rule in Rules:
 		if not isRuleDefault(Rules[rule]):
 			return true
-	
+
 	return false
 
 func isRuleDefault(rule: int) -> bool:
@@ -133,15 +133,15 @@ func serialize() -> String:
 		return ""
 	Util.eprint("Serialize custom rules")
 	var bitStream = BitStream.new()
-	
+
 	bitStream.push(getLeagueToMatch() + 1, Game.Leagues.size())
 	for rule in range(Rules.BonusGold, Rules.TradeChance + 1):
 		pushRule(rule, bitStream)
 	bitStream.push(getCannotPickBags(), 2)
-	
+
 	pushRule(Rules.SwitchMode, bitStream)
 	pushRule(Rules.TeamSwitchMode, bitStream)
-	
+
 	return bitStream.toGodotString()
 
 
@@ -149,24 +149,24 @@ func fromString(serialized: String):
 	if serialized == "":
 		Util.eprint("no custom rules")
 		return
-	
+
 	var bitStream = BitStream.new()
 	bitStream.fromGodotString(serialized)
-	
+
 	setLeagueToMatch(bitStream.pull(Game.Leagues.size()) - 1)
 	for rule in range(Rules.BonusGold, Rules.TradeChance + 1):
 		pullRule(rule, bitStream)
 	setCannotPickBags(bitStream.pull(2))
-	
+
 	pullRule(Rules.SwitchMode, bitStream)
-	
+
 	
 	var teamSwitchVal = pullRule_noSet(Rules.TeamSwitchMode, bitStream)
 	if teamSwitchVal >= 0:
 		values[Rules.TeamSwitchMode] = teamSwitchVal
 	else:
 		values[Rules.TeamSwitchMode] = DEFAULTS[Rules.TeamSwitchMode]
-	
+
 	customRulesActive = true
 
 
@@ -176,12 +176,12 @@ func isSwitchModeNoLoad(serialized: String) -> int:
 
 	var bitStream = BitStream.new()
 	bitStream.fromGodotString(serialized)
-	
+
 	bitStream.pull(Game.Leagues.size())
 	for rule in range(Rules.BonusGold, Rules.TradeChance + 1):
 		pullRule_noSet(rule, bitStream)
 	bitStream.pull(2)
-	
+
 	return pullRule_noSet(Rules.SwitchMode, bitStream)
 
 
@@ -191,12 +191,12 @@ func isTeamSwitchModeNoLoad(serialized: String) -> int:
 
 	var bitStream = BitStream.new()
 	bitStream.fromGodotString(serialized)
-	
+
 	bitStream.pull(Game.Leagues.size())
 	for rule in range(Rules.BonusGold, Rules.TradeChance + 1):
 		pullRule_noSet(rule, bitStream)
 	bitStream.pull(2)
-	
+
 	pullRule_noSet(Rules.SwitchMode, bitStream)
 	var val = pullRule_noSet(Rules.TeamSwitchMode, bitStream)
 	if val < 0:
@@ -216,7 +216,7 @@ func reset():
 func setLeagueToMatch(league):
 	values[Rules.LeagueToMatch] = league
 	customRulesActive = true
-	
+
 
 func getLeagueToMatch():
 	return values[Rules.LeagueToMatch]

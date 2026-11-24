@@ -1,0 +1,216 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Items/Animations/ItemAnimation.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Items/Exclusive/Sprites/PrismaticSword_outline.png" type="Texture" id=2]
+[ext_resource path="res://Items/Exclusive/Sprites/PrismaticSword_glass.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Particles/GlowingDot.png" type="Texture" id=4]
+[ext_resource path="res://Utility/AutoHideParticles.gd" type="Script" id=5]
+[ext_resource path="res://Items/Exclusive/Particles/PrismaticSwordDragParticles.material" type="Material" id=6]
+
+[sub_resource type="Animation" id=2]
+resource_name = "AttackPrismaticSword"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0986604, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 3.605, 3.73213, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 4, 2, 2, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1.27456, 1 ),
+"update": 0,
+"values": [ Vector2( -114, -258 ), Vector2( 151, 267 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1.27456, 1 ),
+"update": 0,
+"values": [ -25.0, 130.3 ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 1.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "returnToObjectPool"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprite/SpecificDragParticles:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "AttackPrismaticSwordMiss"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0986604, 0.2, 0.294201 ),
+"transitions": PoolRealArray( 1, 3.605, 3.73213, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 0.780392, 0.780392, 0.780392, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1.27456, 1 ),
+"update": 0,
+"values": [ Vector2( -264, -258 ), Vector2( -50, 267 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1.27456, 1 ),
+"update": 0,
+"values": [ -25.0, 290.3 ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "returnToObjectPool"
+} ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "AttackSwordMiss"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0986604, 0.2, 0.294201 ),
+"transitions": PoolRealArray( 1, 3.605, 3.73213, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 0.780392, 0.780392, 0.780392, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1.27456, 1 ),
+"update": 0,
+"values": [ Vector2( -264, -258 ), Vector2( -50, 267 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1.27456, 1 ),
+"update": 0,
+"values": [ -25.0, 290.3 ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "returnToObjectPool"
+} ]
+}
+
+[node name="Node2D" instance=ExtResource( 1 )]
+aniName = "AttackPrismaticSword"
+
+[node name="AnimationPlayer" parent="." index="0"]
+anims/AttackPrismaticSword = SubResource( 2 )
+anims/AttackPrismaticSwordMiss = SubResource( 3 )
+anims/AttackSwordMiss = SubResource( 1 )
+
+[node name="Sprite" parent="." index="1"]
+modulate = Color( 1, 1, 1, 1 )
+texture = ExtResource( 2 )
+
+[node name="FairybladeGlass" type="Sprite" parent="Sprite" index="0"]
+modulate = Color( 4, 4, 4, 0.26 )
+show_behind_parent = true
+use_parent_material = true
+position = Vector2( -2.70334, -114.248 )
+texture = ExtResource( 3 )
+
+[node name="SpecificDragParticles" type="Particles2D" parent="Sprite" index="1"]
+modulate = Color( 2, 2, 2, 1 )
+position = Vector2( -13.2278, -138.438 )
+scale = Vector2( 2.22222, 2.22222 )
+emitting = false
+amount = 22
+explosiveness = 0.5
+local_coords = false
+process_material = ExtResource( 6 )
+texture = ExtResource( 4 )
+script = ExtResource( 5 )
+
+[node name="FoxArcher" parent="." index="2"]
+visible = true

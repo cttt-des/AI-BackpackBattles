@@ -1,0 +1,214 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Shader/SmoothFadeGradient.tres" type="Texture" id=1]
+[ext_resource path="res://Items/Animations/ItemAnimation.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Particles/ScrapParticles.png" type="Texture" id=3]
+[ext_resource path="res://Items/Exclusive/Sprites/Bazooka.png" type="Texture" id=4]
+
+
+[sub_resource type="Animation" id=17]
+resource_name = "Bazooka"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0986604, 0.3, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 3.605, 3.605, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1.5, 1.5, 1.5, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1.27456 ),
+"update": 0,
+"values": [ Vector2( -200, -300 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.135979 ),
+"transitions": PoolRealArray( 1.27456, 1 ),
+"update": 0,
+"values": [ 0.0, 30.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.137421, 0.238419, 0.382268, 0.53343 ),
+"transitions": PoolRealArray( -2, -2, -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 0.5, 0.5 ), Vector2( 0.4, 0.5 ), Vector2( 0.55, 0.5 ), Vector2( 0.5, 0.5 ) ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "returnToObjectPool"
+} ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath("Particles2D")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.289654 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "restart"
+} ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Particles2D:emitting")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.289654 ),
+"transitions": PoolRealArray( 1.31951 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=18]
+resource_name = "BazookaMiss"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.226935, 0.3, 0.386532, 0.5 ),
+"transitions": PoolRealArray( 1, 3.605, 3.73213, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 0.780392, 0.780392, 0.780392, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1.27456, 1.27456, 1 ),
+"update": 0,
+"values": [ Vector2( -200, -258 ), Vector2( -200, -258 ), Vector2( -318, -327 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.497076 ),
+"transitions": PoolRealArray( 0.5, 0.5, 1 ),
+"update": 0,
+"values": [ 15.3, 15.3, -26.3 ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "returnToObjectPool"
+} ]
+}
+
+[sub_resource type="CanvasItemMaterial" id=1]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 4
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id=19]
+colors = PoolColorArray( 1, 0.663116, 0.351562, 1, 1, 0.920395, 0.449219, 1 )
+
+[sub_resource type="GradientTexture" id=20]
+gradient = SubResource( 19 )
+width = 50
+
+[sub_resource type="ParticlesMaterial" id=21]
+lifetime_randomness = 0.45
+flag_disable_z = true
+spread = 23.58
+gravity = Vector3( 0, 300, 0 )
+initial_velocity = 442.46
+initial_velocity_random = 0.64
+angular_velocity = 296.07
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 720.0
+angle_random = 1.0
+scale = 0.67
+scale_random = 1.0
+color_ramp = ExtResource( 1 )
+color_initial_ramp = SubResource( 20 )
+anim_offset = 1.0
+anim_offset_random = 1.0
+
+[node name="Node2D" instance=ExtResource( 2 )]
+aniName = "Bazooka"
+
+[node name="AnimationPlayer" parent="." index="0"]
+anims/Bazooka = SubResource( 17 )
+anims/BazookaMiss = SubResource( 18 )
+
+[node name="Sprite" parent="." index="1"]
+modulate = Color( 1, 1, 1, 0 )
+texture = ExtResource( 4 )
+offset = Vector2( 167.615, 21.0685 )
+
+[node name="FoxArcher" parent="." index="2"]
+visible = true
+
+[node name="Particles2D" type="Particles2D" parent="." index="3"]
+modulate = Color( 2, 2, 2, 1 )
+material = SubResource( 1 )
+position = Vector2( -43, -199 )
+rotation = 0.532325
+emitting = false
+amount = 13
+lifetime = 0.94
+one_shot = true
+speed_scale = 1.5
+explosiveness = 1.0
+process_material = SubResource( 21 )
+texture = ExtResource( 3 )

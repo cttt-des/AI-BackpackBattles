@@ -1,0 +1,9 @@
+[gd_resource type="NoiseTexture" load_steps=2 format=2]
+
+[sub_resource type="OpenSimplexNoise" id=6]
+
+[resource]
+width = 200
+height = 200
+seamless = true
+noise = SubResource( 6 )

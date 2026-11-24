@@ -141,7 +141,6 @@ func enteringShop():
 		rerollsThisRound = 0
 	
 	ItemBook.countItems()
-	ItemBook.updateClass()
 	
 
 
@@ -321,6 +320,29 @@ func showNormalShop():
 	unstashItems()
 	rollItems(getHighRollBuckets(), getUniqueSlots())
 
+# MOD: S5 - 大厅/派对模式第 3 回合的固定技能：
+# 存钱罐皮纳塔 / 珠宝之王 / 万里挑一 / 兽语大师。
+# 不满足条件或任一技能数据缺失时返回空数组，回退到原版随机技能。
+func getFixedSkills() -> Array:
+	if Game.curMode != Game.Mode.Lobbies or Game.curRound != Game.SKILL_ROUND1:
+		return []
+	
+	var skillNames = [
+		"Piggy Pinata", 
+		"King of the Bling", 
+		"Uniquely Unique", 
+		"Speak with Animals", 
+	]
+	var result = []
+	for skillName in skillNames:
+		var descriptor = ItemBook.getDescriptor(skillName)
+		if descriptor == null:
+			print("[S5] 未找到固定技能：", skillName)
+			return []
+		result.push_back(descriptor)
+	
+	return result
+
 func showSkillShop():
 	if not chooseOneShop:
 		chooseOneShop = true
@@ -329,18 +351,27 @@ func showSkillShop():
 		stashItems()
 		
 		
-		var skills = ItemBook.getRandomSkills()
+		# MOD: S5 - 大厅/派对模式第 3 回合固定四个技能，其余情况保持原版随机。
+		var fixedSkills = getFixedSkills()
+		if not fixedSkills.empty():
+			slots[0].setItem(ItemBook.instantiateItem(fixedSkills[0]), Game.SaleMode.Roll)
+			slots[4].setItem(ItemBook.instantiateItem(fixedSkills[1]), Game.SaleMode.Roll)
+			slots[2].setItem(ItemBook.instantiateItem(fixedSkills[2]), Game.SaleMode.Roll)
+			slots[3].setItem(ItemBook.instantiateItem(fixedSkills[3]), Game.SaleMode.Roll)
+		else:
+			var skills = ItemBook.getRandomSkills()
+			
+			slots[0].setItem(ItemBook.instantiateItem(skills[0]), Game.SaleMode.Roll)
+			slots[4].setItem(ItemBook.instantiateItem(skills[1]), Game.SaleMode.Roll)
+			slots[2].setItem(ItemBook.instantiateItem(skills[2]), Game.SaleMode.Roll)
+			
+			var unidentifiedSkill = ItemBook.instantiateItem(ItemBook.unidentifiedSkillDescriptor)
+			slots[3].setItem(unidentifiedSkill, Game.SaleMode.Roll)
 		
-		slots[0].setItem(ItemBook.instantiateItem(skills[0]), Game.SaleMode.Roll)
-		slots[4].setItem(ItemBook.instantiateItem(skills[1]), Game.SaleMode.Roll)
-		slots[2].setItem(ItemBook.instantiateItem(skills[2]), Game.SaleMode.Roll)
 		if Game.curRound == Game.SKILL_ROUND1:
 			slots[1].setItem(ItemBook.instantiateItem(ItemBook.justStatsDescriptor), Game.SaleMode.Roll)
 		else:
 			slots[1].setItem(ItemBook.instantiateItem(ItemBook.moreStatsDescriptor), Game.SaleMode.Roll)
-		
-		var unidentifiedSkill = ItemBook.instantiateItem(ItemBook.unidentifiedSkillDescriptor)
-		slots[3].setItem(unidentifiedSkill, Game.SaleMode.Roll)
 		
 		for slot in slots:
 			if slot.item != null:
@@ -430,73 +461,6 @@ func getNonReservedSlotIndices():
 			nonReservedSlots.push_back(i)
 	
 	return nonReservedSlots
-
-func getDisplayRarityOdds() -> Array:
-	var baseOdds = getRarityOddsForCurRound()
-	var cards = ItemBook.countItemsInInventoryOfType(ItemBook.customerCardDescriptor)
-	var nonReservedSlots = getNonReservedSlotIndices().size()
-	if cards <= 0 or nonReservedSlots <= 0:
-		return baseOdds
-
-	var expectedOdds = []
-	expectedOdds.resize(baseOdds.size())
-	for i in expectedOdds.size():
-		expectedOdds[i] = 0.0
-
-	var pmf = getBinomialPmf(cards, 1.0 / nonReservedSlots)
-	for k in pmf.size():
-		var shifted = shiftRarityOdds(baseOdds, k)
-		for i in shifted.size():
-			expectedOdds[i] += pmf[k] * shifted[i]
-
-	var sumOdds = 0.0
-	for val in expectedOdds:
-		sumOdds += val
-	if sumOdds > 0.0:
-		for i in expectedOdds.size():
-			expectedOdds[i] /= sumOdds
-
-	return expectedOdds
-
-func shiftRarityOdds(baseOdds: Array, shift: int) -> Array:
-	var shifted = []
-	shifted.resize(baseOdds.size())
-	for i in shifted.size():
-		shifted[i] = 0.0
-
-	for rarity in baseOdds.size():
-		var toIndex = min(baseOdds.size() - 1, rarity + shift)
-		shifted[toIndex] += baseOdds[rarity]
-	return shifted
-
-func getBinomialPmf(numTrials: int, successProb: float) -> Array:
-	var pmf = []
-	pmf.resize(numTrials + 1)
-	if successProb <= 0.0:
-		pmf[0] = 1.0
-		return pmf
-
-	if successProb >= 1.0:
-		for k in pmf.size():
-			pmf[k] = 0.0
-		pmf[numTrials] = 1.0
-		return pmf
-
-	var failProb = 1.0 - successProb
-	var prob = pow(failProb, numTrials)
-	pmf[0] = prob
-	for k in range(1, numTrials + 1):
-		prob *= (numTrials - k + 1) / float(k)
-		prob *= successProb / failProb
-		pmf[k] = prob
-
-	var sumProb = 0.0
-	for val in pmf:
-		sumProb += val
-	if sumProb > 0.0:
-		for i in pmf.size():
-			pmf[i] /= sumProb
-	return pmf
 	
 func getHighRollBuckets():
 	var highRollBuckets = [0, 0, 0, 0, 0]

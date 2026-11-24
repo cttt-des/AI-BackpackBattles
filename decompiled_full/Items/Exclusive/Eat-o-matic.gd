@@ -104,3 +104,9 @@ func onStateChanged(_armState: int):
 		
 
 
+
+func getTextureSize() -> Vector2:
+	return sprite.texture.get_size() * Vector2(1.2, 1.2) * sprite.global_scale
+
+func getSpriteOffset() -> Vector2:
+	return Vector2( - 65, 50) * sprite.global_scale * 0.5

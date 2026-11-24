@@ -1,0 +1,232 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Assets/Fonts/LibreBaskerville-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Assets/Fonts/Milonga-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Interface/Tooltips/TooltipDivider.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Interface/Tooltips/TooltipBase2.png" type="Texture" id=4]
+[ext_resource path="res://Interface/Tooltips/ItemNameEffect.tres" type="RichTextEffect" id=5]
+[ext_resource path="res://Interface/Tooltips/ItemTooltip.gd" type="Script" id=6]
+[ext_resource path="res://Interface/SColorTextEffect.tres" type="RichTextEffect" id=7]
+[ext_resource path="res://Interface/Tooltips/ImageFont.tres" type="BitmapFont" id=10]
+
+[sub_resource type="DynamicFont" id=2]
+size = 40
+outline_size = 2
+outline_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+use_filter = true
+extra_spacing_top = -1
+extra_spacing_bottom = -7
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 25
+outline_size = 3
+outline_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 25
+outline_size = 3
+outline_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=1]
+size = 22
+outline_size = 3
+outline_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=5]
+resource_name = "Appear"
+length = 0.166667
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15, 0.166667 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[node name="Tooltip" type="NinePatchRect" groups=["Tooltip"]]
+pause_mode = 2
+margin_right = 584.0
+margin_bottom = 278.0
+texture = ExtResource( 4 )
+patch_margin_left = 60
+patch_margin_top = 61
+patch_margin_right = 80
+patch_margin_bottom = 76
+axis_stretch_vertical = 1
+script = ExtResource( 6 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 64.0
+margin_top = 49.0
+margin_right = 534.0
+margin_bottom = 215.0
+mouse_filter = 2
+custom_constants/separation = 2
+
+[node name="Name" type="RichTextLabel" parent="VBoxContainer"]
+margin_right = 470.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 0, 55 )
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 3
+custom_colors/default_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_colors/font_color_shadow = Color( 0.235294, 0.14902, 0.113725, 1 )
+custom_constants/shadow_offset_x = 4
+custom_constants/shadow_offset_y = 3
+custom_fonts/normal_font = SubResource( 2 )
+bbcode_enabled = true
+bbcode_text = "[item s=21] Wooden Buckler"
+text = " Wooden Buckler"
+fit_content_height = true
+scroll_active = false
+custom_effects = [ ExtResource( 5 ) ]
+
+[node name="PropertyContainer" type="VBoxContainer" parent="VBoxContainer"]
+margin_top = 57.0
+margin_right = 470.0
+margin_bottom = 57.0
+mouse_filter = 2
+size_flags_horizontal = 3
+custom_constants/separation = 6
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 59.0
+margin_right = 470.0
+margin_bottom = 121.0
+mouse_filter = 2
+size_flags_horizontal = 3
+custom_constants/margin_top = 13
+custom_constants/margin_bottom = 13
+
+[node name="Description" type="RichTextLabel" parent="VBoxContainer/MarginContainer"]
+modulate = Color( 1.1, 1.1, 1.1, 1 )
+margin_top = 13.0
+margin_right = 470.0
+margin_bottom = 49.0
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 3
+custom_colors/default_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_fonts/italics_font = ExtResource( 10 )
+custom_fonts/normal_font = SubResource( 3 )
+bbcode_enabled = true
+bbcode_text = "A wooden Buckler. [b][img=0x28]res://Interface/Tooltips/Icon_Melee.png[/img][img=0x28]res://Interface/Tooltips/Icon_Ranged.png[/img][/b]"
+text = "A wooden Buckler. "
+fit_content_height = true
+scroll_active = false
+custom_effects = [ ExtResource( 7 ) ]
+
+[node name="Divider1" parent="VBoxContainer" instance=ExtResource( 3 )]
+visible = false
+margin_top = 118.0
+margin_right = 470.0
+margin_bottom = 126.0
+
+[node name="Divider2" parent="VBoxContainer" instance=ExtResource( 3 )]
+margin_top = 123.0
+margin_right = 470.0
+margin_bottom = 131.0
+
+[node name="Control" type="Control" parent="VBoxContainer"]
+margin_top = 133.0
+margin_right = 470.0
+margin_bottom = 136.0
+rect_min_size = Vector2( 0, 3 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 138.0
+margin_right = 470.0
+margin_bottom = 170.0
+mouse_filter = 2
+custom_constants/separation = -5
+
+[node name="Spacer" type="Control" parent="VBoxContainer/HBoxContainer"]
+margin_right = 107.0
+margin_bottom = 32.0
+mouse_filter = 2
+size_flags_horizontal = 3
+
+[node name="Rarity" type="Label" parent="VBoxContainer/HBoxContainer"]
+margin_left = 102.0
+margin_right = 162.0
+margin_bottom = 32.0
+size_flags_stretch_ratio = 5.0
+custom_colors/font_color = Color( 0.356863, 0.803922, 1, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "Rare"
+align = 1
+
+[node name="Spacer2" type="Control" parent="VBoxContainer/HBoxContainer"]
+margin_left = 157.0
+margin_right = 265.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 20, 0 )
+mouse_filter = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer"]
+margin_left = 260.0
+margin_right = 367.0
+margin_bottom = 32.0
+size_flags_stretch_ratio = 5.0
+alignment = 1
+
+[node name="Type" type="Label" parent="VBoxContainer/HBoxContainer/HBoxContainer"]
+margin_right = 107.0
+margin_bottom = 32.0
+size_flags_stretch_ratio = 5.0
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 4 )
+text = "Weapon"
+align = 1
+
+[node name="Spacer3" type="Control" parent="VBoxContainer/HBoxContainer"]
+margin_left = 362.0
+margin_right = 470.0
+margin_bottom = 32.0
+mouse_filter = 2
+size_flags_horizontal = 3
+
+[node name="ExtraTypes" type="Label" parent="VBoxContainer"]
+visible = false
+margin_top = 176.0
+margin_right = 470.0
+margin_bottom = 204.0
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Feral, Holy"
+align = 1
+autowrap = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Appear = SubResource( 5 )

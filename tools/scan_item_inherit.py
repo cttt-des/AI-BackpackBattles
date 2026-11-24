@@ -12,7 +12,7 @@ import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SRC = os.path.join(ROOT, "decompiled_full", "Items")
+SRC = os.path.join(ROOT, "decompiled_legacy/1.1.7", "Items")
 
 EXT_RE = re.compile(r"^\s*extends\s+([^\n#]+)", re.M)
 FUNC_RE = re.compile(r"^func\s+([A-Za-z_]\w*)", re.M)

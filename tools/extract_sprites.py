@@ -2,7 +2,7 @@
 """从全量反编译树提取物品贴图与元数据（多层合成，保留原画布几何）。
 
 数据源：output/_recovery/decomp_cur（GDRE 全量反编译，含 png 与 tscn），
-兜底 decompiled_full（仓库文本树，无 png）。
+兜底 decompiled_legacy/1.1.7（仓库文本树，无 png）。
 
 关键点
 ------
@@ -35,7 +35,7 @@ SPRITE_DIR = OUT_DIR / "sprites"
 # 历史上还有一份 output/_recovery/decomp_cur，经全量哈希校验与 oracle 一致
 # （15389 文件里 15373 相同，16 处差异全是 oracle 的战斗插桩），已删除以免重复。
 SRC_ROOT = BASE / "oracle"
-FALLBACK_ROOT = BASE / "decompiled_full"
+FALLBACK_ROOT = BASE / "decompiled_legacy/1.1.7"
 
 # 只认「物品」根场景：实例化 Item.tscn / Gem.tscn
 _ITEM_SCENES = ("res://Items/Item.tscn", "res://Items/Gems/Gem.tscn")

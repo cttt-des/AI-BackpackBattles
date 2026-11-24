@@ -1163,6 +1163,8 @@ func _ready() -> void :
 	Recipe.new().init(vampiricCollar, [holyArmor], [true], holyCollar)
 	
 	for descriptor in descriptorList:
+		if descriptor.scene == null: continue
+
 		if descriptor.rarity == Item.Rarity.Common:
 			prepareInstance(descriptor, 3)
 		elif descriptor.rarity < Item.Rarity.Unique:
@@ -1251,7 +1253,9 @@ var itemPoolingIndex: = 0
 
 func _process(delta):
 	if itemPoolingIndex < descriptorList.size() - 1:
-		ObjectPool.prepare(descriptorList[itemPoolingIndex].scene, 2)
+		var scene = descriptorList[itemPoolingIndex].scene
+		if scene != null:
+			ObjectPool.prepare(scene, 2)
 		itemPoolingIndex += 1
 	
 	if (Game.state == Game.State.Shop or 

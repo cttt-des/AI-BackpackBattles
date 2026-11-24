@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """events.py — 战斗事件日志（严格复刻 Core/CombatEvent.gd + Core/CombatLog.gd）
 
-复刻要点（来自 decompiled_full）：
+复刻要点（来自 decompiled_legacy/1.1.7）：
   * 时间戳格式：深度 0 行 = ``"%2.2f" % t + ":  "``（如 ``12.34:  ``）；
     深度 > 0 的子事件行 = ``"  " * depth + "> "``（如 ``   > ``），**无时间戳**。
   * 文本模板全部取自原版 Interface.csv 的 LOG_* 翻译串（此处 GDRE 把 key 丢了，

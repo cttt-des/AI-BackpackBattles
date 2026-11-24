@@ -1,9 +1,9 @@
 # simulator - Backpack Battles 战斗模拟器
 """
-基于解密的原版源码（decompiled_full/）100% 还原战斗逻辑。
+基于解密的原版源码（decompiled_legacy/1.1.7/）100% 还原战斗逻辑。
 
 数据源:
-- 战斗机制: decompiled_full/Core/Character.gd, Items/Item.gd, Core/Buff.gd,
+- 战斗机制: decompiled_legacy/1.1.7/Core/Character.gd, Items/Item.gd, Core/Buff.gd,
             Interface/CombatTimer/CombatTimer.gd, Utility/DamageSource.gd,
             Utility/DamageResult.gd, Sheets/ItemBook.gd
 - 物品数值: assets/battle_items.json（来源 items_db_sim.json + 物品脚本，权威版待 ItemData_e.csv）

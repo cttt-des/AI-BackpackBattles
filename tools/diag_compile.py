@@ -6,7 +6,7 @@ import os, sys, json
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 import simulator.extract_items as E
 
-DECOMP = os.path.join(os.path.dirname(__file__), "..", "decompiled_full", "Items")
+DECOMP = os.path.join(os.path.dirname(__file__), "..", "decompiled_legacy/1.1.7", "Items")
 
 def diagnose(relpath):
     p = os.path.join(DECOMP, relpath)

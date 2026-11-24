@@ -409,7 +409,7 @@ def main():
 
     # ★ 16 是里程碑 ⑥ 的收尾闸门：`verify_cooldowns` 等价校验。
     #   它与其他闸门都不同 —— **两半都在同一个工具里**：
-    #     A 静态半边：把 gd_core/CoreItem.gd 与 decompiled_full/Items/Item.gd 的
+    #     A 静态半边：把 gd_core/CoreItem.gd 与 decompiled_legacy/1.1.7/Items/Item.gd 的
     #       冷却路径逐函数规范化后逐行对照（27 对函数 / 99 行相等 / 0 行未归因）。
     #       差异必须落进「已声明映射」「已声明剥离」「内核新增」三类台账，
     #       落不进去即 FAIL；台账项 0 命中同样 FAIL（表笔没接上）。

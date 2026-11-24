@@ -1,0 +1,428 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://Assets/Fonts/GlassAntiqua-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Assets/Trophy_Slot.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Fonts/LibreBaskerville-Bold.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Assets/Trophy.png" type="Texture" id=4]
+[ext_resource path="res://Utility/LocalizedControl.gd" type="Script" id=5]
+[ext_resource path="res://Interface/Tooltips/TooltipBase2.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Light/ShopLight.png" type="Texture" id=7]
+[ext_resource path="res://Interface/Wardrobe/Wardrobe.gd" type="Script" id=8]
+[ext_resource path="res://Interface/Wardrobe/ChibiButton.gd" type="Script" id=9]
+[ext_resource path="res://Interface/TrophyCounter.gd" type="Script" id=10]
+[ext_resource path="res://Interface/RadioButton_off_hovered.png" type="Texture" id=11]
+[ext_resource path="res://Interface/Wardrobe/Wardrobe.png" type="Texture" id=12]
+[ext_resource path="res://Interface/RadioButton_off.png" type="Texture" id=13]
+
+[sub_resource type="Animation" id=274]
+resource_name = "Close"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1.93187, 0.450625 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 1005 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../../TitleScreen/TitleNode/BlackLayer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../../TitleScreen/TitleNode/BlackLayer:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "finishedClosing"
+} ]
+}
+
+[sub_resource type="Animation" id=275]
+resource_name = "Open"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 0.450625, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 1000 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../../TitleScreen/TitleNode/BlackLayer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../../TitleScreen/TitleNode/BlackLayer:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=276]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../../TitleScreen/TitleNode/BlackLayer:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="DynamicFont" id=273]
+size = 20
+outline_size = 3
+outline_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+use_filter = true
+extra_spacing_top = -3
+extra_spacing_bottom = -3
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=269]
+size = 42
+outline_size = 3
+outline_color = Color( 0.27451, 0.211765, 0.14902, 1 )
+use_filter = true
+extra_spacing_top = -10
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=270]
+size = 24
+outline_size = 2
+outline_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+use_filter = true
+extra_spacing_bottom = -8
+font_data = ExtResource( 3 )
+
+[sub_resource type="StyleBoxFlat" id=268]
+content_margin_left = 20.0
+content_margin_top = 20.0
+draw_center = false
+
+[sub_resource type="DynamicFont" id=277]
+size = 35
+outline_size = 3
+outline_color = Color( 0.24, 0.15, 0.11, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=272]
+size = 22
+outline_size = 3
+outline_color = Color( 0.24, 0.15, 0.11, 1 )
+use_mipmaps = true
+use_filter = true
+extra_spacing_bottom = -5
+font_data = ExtResource( 3 )
+
+[sub_resource type="CanvasItemMaterial" id=278]
+
+[sub_resource type="DynamicFont" id=279]
+size = 26
+outline_size = 3
+outline_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+use_filter = true
+font_data = ExtResource( 3 )
+
+[node name="Wardrobe" type="Node2D"]
+visible = false
+script = ExtResource( 8 )
+
+[node name="Light" type="Sprite" parent="."]
+modulate = Color( 1, 0.937255, 0.843137, 1 )
+self_modulate = Color( 3, 3, 3, 0.180392 )
+position = Vector2( 564.511, 777.84 )
+scale = Vector2( 1.75399, 3.1596 )
+z_index = -48
+texture = ExtResource( 7 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Close = SubResource( 274 )
+anims/Open = SubResource( 275 )
+anims/RESET = SubResource( 276 )
+
+[node name="Wardrobe" type="Sprite" parent="."]
+position = Vector2( 1480, 691.211 )
+scale = Vector2( 0.866197, 0.840845 )
+texture = ExtResource( 12 )
+
+[node name="ChibiButton" type="TextureButton" parent="."]
+margin_left = 1529.0
+margin_top = 322.0
+margin_right = 1662.0
+margin_bottom = 369.0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+texture_normal = ExtResource( 13 )
+texture_hover = ExtResource( 11 )
+script = ExtResource( 9 )
+
+[node name="Chibi" type="Label" parent="ChibiButton"]
+margin_left = 66.0
+margin_top = 14.0
+margin_right = 181.0
+margin_bottom = 39.0
+mouse_default_cursor_shape = 2
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_fonts/font = SubResource( 273 )
+text = "Chibi"
+valign = 1
+script = ExtResource( 5 )
+translationKey = "BUTTON_Chibi"
+
+[node name="Label2" type="Label" parent="."]
+margin_left = 1299.0
+margin_top = 330.0
+margin_right = 1511.0
+margin_bottom = 369.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_colors/font_color_shadow = Color( 0.235294, 0.14902, 0.113725, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 0
+custom_fonts/font = SubResource( 269 )
+text = "Wardrobe"
+align = 1
+valign = 1
+script = ExtResource( 5 )
+translationKey = "UI_Wardrobe"
+
+[node name="WardrobeHint" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 1390.0
+margin_top = 182.0
+margin_right = 1638.0
+margin_bottom = 277.0
+grow_vertical = 0
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_colors/font_color_shadow = Color( 0.235294, 0.14902, 0.113725, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 1
+custom_fonts/font = SubResource( 270 )
+text = "Hover to preview. Click to select or unlock."
+align = 1
+valign = 1
+autowrap = true
+script = ExtResource( 5 )
+translationKey = "HINT_Wardrobe"
+
+[node name="NinePatchRect" type="NinePatchRect" parent="WardrobeHint"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -49.0
+margin_top = -42.0
+margin_right = 61.0
+margin_bottom = 65.0
+texture = ExtResource( 6 )
+patch_margin_left = 81
+patch_margin_top = 75
+patch_margin_right = 93
+patch_margin_bottom = 98
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+margin_left = 1200.0
+margin_top = 391.0
+margin_right = 1825.0
+margin_bottom = 1044.0
+mouse_filter = 1
+custom_styles/bg = SubResource( 268 )
+scroll_vertical_enabled = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 625.0
+margin_bottom = 653.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 30
+
+[node name="UnlockHint" type="Node2D" parent="."]
+visible = false
+position = Vector2( 1101, 563 )
+
+[node name="Background" type="Sprite" parent="UnlockHint"]
+position = Vector2( -21.0484, 64.8526 )
+rotation = 1.5708
+scale = Vector2( 0.488236, 0.325009 )
+texture = ExtResource( 6 )
+
+[node name="Trophy" type="Sprite" parent="UnlockHint"]
+modulate = Color( 1.2, 1.2, 1.2, 1 )
+position = Vector2( 48, 27 )
+rotation = 0.0523599
+scale = Vector2( 0.450414, 0.450414 )
+texture = ExtResource( 4 )
+
+[node name="Price" type="RichTextLabel" parent="UnlockHint"]
+margin_left = -92.0
+margin_top = 15.0
+margin_right = 46.0
+margin_bottom = 61.0
+rect_clip_content = false
+mouse_filter = 2
+custom_colors/default_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_fonts/normal_font = SubResource( 277 )
+bbcode_enabled = true
+bbcode_text = "[center]1000"
+text = "1000"
+fit_content_height = true
+
+[node name="Hint" type="Label" parent="UnlockHint"]
+margin_left = -103.0
+margin_top = 61.0
+margin_right = 66.0
+margin_bottom = 151.0
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_fonts/font = SubResource( 272 )
+text = " Click slot to unlock"
+align = 1
+valign = 1
+autowrap = true
+script = ExtResource( 5 )
+translationKey = "HINT_UnlockSkin"
+
+[node name="Label" type="Label" parent="UnlockHint"]
+margin_left = -103.0
+margin_top = -21.0
+margin_right = 64.0
+margin_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_fonts/font = SubResource( 272 )
+text = "Price"
+align = 1
+valign = 1
+script = ExtResource( 5 )
+translationKey = "UI_Price"
+
+[node name="Trophy" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.6 )
+material = SubResource( 278 )
+position = Vector2( 1157, 441 )
+scale = Vector2( 0.411347, 0.364458 )
+texture = ExtResource( 2 )
+
+[node name="TrophyCounter" type="Label" parent="." groups=["NotLocalized"]]
+margin_left = 1090.0
+margin_top = 371.0
+margin_right = 1226.0
+margin_bottom = 421.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_colors/font_color_shadow = Color( 0.235294, 0.14902, 0.113725, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 279 )
+text = "1000"
+align = 1
+valign = 1
+script = ExtResource( 10 )

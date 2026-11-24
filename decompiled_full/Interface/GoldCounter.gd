@@ -11,29 +11,8 @@ var lastChange = 0
 
 func _ready() -> void :
 	Game.PLAYER.connect("class_changed", self, "updateInstant")
-	Game.connect("run_started", self, "updateTooltip", [2])
 	Game.connect("gold_changed", self, "updateCounting")
-	Game.connect("round_start_gold_gained", self, "showBonus")
-	Game.connect("run_over", self, "updateTooltip", [2])
 	updateInstant()
-	Game.connect("continue_loaded", self, "updateFromRunstate")
-	
-func updateFromRunstate():
-	if Game.hasArenaRunState():
-		updateTooltip(Game.arenaRunState["round"] + 1)
-	else:
-		updateTooltip(2)
-
-func showBonus(_bonus):
-	updateTooltip(Game.curRound + 1)
-
-func updateTooltip(forRound):
-	if CustomRules.isSwitchMode():
-		tooltipArea.keyword = "Gold_SwitchMode"
-	else:
-		tooltipArea.keyword = "Gold"
-	tooltipArea.params = {"bonusGold": Util.wrapInColor(
-		"+" + String(Game.getGoldGain(forRound)), Util.paramColor)}
 
 func updateInstant():
 	setCurrent(Game.getGold())
@@ -65,3 +44,14 @@ func updateCounting(change):
 
 func bonusFinishedCounting():
 	bonusCounter.hide()
+
+
+func showTooltip():
+	var forRound = Game.curRound + 1
+
+	if CustomRules.isSwitchMode():
+		tooltipArea.keyword = "Gold_SwitchMode"
+	else:
+		tooltipArea.keyword = "Gold"
+	tooltipArea.params = {"bonusGold": Util.wrapInColor(
+		"+" + String(Game.getGoldGain(forRound)), Util.paramColor)}

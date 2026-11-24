@@ -10,7 +10,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 import simulator.extract_items as E
 
 DB = os.path.join(os.path.dirname(__file__), "..", "assets", "battle_items.json")
-DECOMP = os.path.join(os.path.dirname(__file__), "..", "decompiled_full", "Items")
+DECOMP = os.path.join(os.path.dirname(__file__), "..", "decompiled_legacy/1.1.7", "Items")
 
 # 战斗相关方法（引擎在战斗中会调用）
 COMBAT_METHODS = {

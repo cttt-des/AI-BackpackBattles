@@ -1,0 +1,137 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Assets/Fonts/LibreBaskerville-Bold.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Assets/Fonts/GlassAntiqua-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Assets/Noise/FireNoise_rotated.png" type="Texture" id=3]
+[ext_resource path="res://Utility/LocalizedControl.gd" type="Script" id=4]
+[ext_resource path="res://Assets/GoldCoin2.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Shop/RerollRopeLabel1.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Shop/RerollRopeLabel2.png" type="Texture" id=7]
+[ext_resource path="res://Interface/RerollRopeTag.gd" type="Script" id=8]
+
+[sub_resource type="Shader" id=299]
+code = "shader_type canvas_item;
+
+uniform float progress : hint_range(0.0, 1.0) = 0.5;
+uniform sampler2D overlayTexture;
+uniform sampler2D noise;
+
+void fragment() {
+	vec4 tex = texture(TEXTURE, UV);
+	vec4 overlay = texture(overlayTexture, UV);
+	float noiseVal = texture(noise, UV).r * 0.1;
+	if (progress + noiseVal >= UV.x)
+		COLOR = overlay;
+	else
+		COLOR = tex;
+	
+}"
+
+[sub_resource type="ShaderMaterial" id=300]
+shader = SubResource( 299 )
+shader_param/progress = 1.0
+shader_param/overlayTexture = ExtResource( 7 )
+shader_param/noise = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=150]
+size = 26
+outline_size = 2
+outline_color = Color( 1, 0.92549, 0.831373, 1 )
+use_filter = true
+extra_spacing_top = -10
+extra_spacing_bottom = -5
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=301]
+size = 26
+outline_size = 3
+outline_color = Color( 0.24, 0.15, 0.11, 1 )
+use_filter = true
+extra_spacing_top = -10
+extra_spacing_bottom = -5
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=302]
+resource_name = "PriceChanged"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.5, 1.5 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=303]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[node name="Tag" type="Node2D"]
+script = ExtResource( 8 )
+
+[node name="Tag" type="Sprite" parent="."]
+material = SubResource( 300 )
+position = Vector2( 94.5, 744.5 )
+texture = ExtResource( 6 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 41.5
+margin_top = 709.5
+margin_right = 150.5
+margin_bottom = 752.5
+grow_horizontal = 2
+grow_vertical = 0
+rect_min_size = Vector2( 109, 43 )
+rect_pivot_offset = Vector2( 55, 10 )
+custom_colors/font_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+custom_colors/font_color_shadow = Color( 0.235294, 0.14902, 0.113725, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 0
+custom_fonts/font = SubResource( 150 )
+text = "Reroll"
+align = 1
+valign = 1
+script = ExtResource( 4 )
+translationKey = "UI_Reroll"
+
+[node name="Cost" type="Label" parent="."]
+margin_left = 53.5
+margin_top = 742.5
+margin_right = 105.5
+margin_bottom = 779.5
+grow_horizontal = 2
+grow_vertical = 0
+rect_pivot_offset = Vector2( 25, 15 )
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_colors/font_color_shadow = Color( 0.235294, 0.14902, 0.113725, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 0
+custom_fonts/font = SubResource( 301 )
+text = "1"
+align = 1
+valign = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Cost"]
+anims/PriceChanged = SubResource( 302 )
+anims/RESET = SubResource( 303 )
+
+[node name="GoldCoin2" type="Sprite" parent="."]
+position = Vector2( 108.5, 757.5 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 5 )

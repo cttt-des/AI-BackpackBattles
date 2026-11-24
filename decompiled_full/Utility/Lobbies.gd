@@ -62,7 +62,7 @@ enum MessageType{
 	Host_Time = 6, 
 	Host_CombatStart = 7, 
 	Host_Kicked_Member = 8
-	
+
 }
 
 
@@ -203,38 +203,38 @@ enum SpeedLevel{
 var speedFactors = {
 	SpeedLevel.Slowest: 4.0, 
 	SpeedLevel.Slower: 2.5, 
-	
+
 	SpeedLevel.Slow: 1.5, 
 	SpeedLevel.Normal: 1.0, 
 	SpeedLevel.Fast: 0.75, 
 	SpeedLevel.Faster: 0.5, 
 	SpeedLevel.Fastest: 0.3
-	
+
 }
 
 
 func _ready():
 	pause_mode = Node.PAUSE_MODE_PROCESS
-	
+
 	Steam.connect("ugc_query_completed", self, "onOpponentQueryCompleted")
 	Steam.connect("ugc_query_completed", self, "onHostUgcQueryCompleted")
-	
+
 	Steam.connect("lobby_created", self, "onLobbyCreated")
 	Steam.connect("lobby_joined", self, "onLobbyJoined")
 	Steam.connect("lobby_chat_update", self, "onLobbyChatUpdate")
 	Steam.connect("lobby_message", self, "chatMessageReceived")
 	Steam.connect("lobby_data_update", self, "onLobbyDataUpdate")
-	
+
 	Game.connect("character_changed", self, "onOwnClassChanged")
 	Game.connect("random_character_changed", self, "onOwnClassChanged")
 	Game.connect("fresh_run_started", self, "onGameStart")
 	Game.connect("combat_end", self, "onFightFinished")
-	
+
 	for i in symbols.size():
 		symbolToNumber[symbols[i]] = i
-	
+
 	resetState()
-	
+
 
 
 
@@ -248,7 +248,7 @@ const baseValue = 3550000000
 
 
 func idToString(id: int) -> String:
-	
+
 	var string = ""
 	id -= baseValue
 	if id < 0:
@@ -258,34 +258,34 @@ func idToString(id: int) -> String:
 		var symbolIndex = id % mod
 		string = symbols[symbolIndex] + string
 		id = id >> symbolSize
-	
-	
+
+
 	for i in numSymbols:
 		string = string.trim_prefix(symbols[0])
-	
+
 	return string
 
 func idFromString(idAsString: String):
 	var id = 0
 	var isNegative = false
-	
+
 	if idAsString.ends_with("-"):
 		idAsString = idAsString.trim_suffix("-")
 		isNegative = true
-	
+
 	var missing = numSymbols - idAsString.length()
 	idAsString = symbols[0].repeat(missing) + idAsString
-	
+
 	for i in numSymbols:
 		var symbolIndex = symbolToNumber[idAsString[i]]
 		var add = symbolIndex << ((numSymbols - i - 1) * symbolSize)
 		id += add
-	
+
 	if isNegative:
 		id = baseValue - id
 	else:
 		id += baseValue
-	
+
 	return id
 
 func isInLobby() -> bool:
@@ -323,16 +323,16 @@ func prepareCombat():
 	if isActiveMember():
 		getOwnMemberData().setReady(false)
 		getOwnMemberData().addRoundData(Game.curRound, curRoundMetadata)
-		
-		
+
+
 		setLobbyMemberData(str(Game.curRound), curRoundMetadata)
-		
+
 		pushRoundToUgc()
 		checkEnterCombat()
 
 
 func startCombat():
-	
+
 	reconnecting = false
 	if isHost():
 		setRoundAndTimeMetadata(Game.curRound)
@@ -345,8 +345,8 @@ func setRoundAndTimeMetadata(roundI):
 	var nextFightTime = lobbyTimer.getCurTime() + roundDur
 	var timeString = String(lobbyTimer.getCurTime()) + MSG_DELIMITER + String(roundDur)
 	setLobbyData_sqn(nextFightTimeKey, timeString)
-	
-	
+
+
 	lobbyTimer.updateTimer(nextFightTime)
 
 func setMemberListMetadata():
@@ -355,7 +355,7 @@ func setMemberListMetadata():
 		string += str(memberList[i])
 		if i != memberList.size() - 1:
 			string += MSG_DELIMITER
-	
+
 	setLobbyData_sqn(membersKey, string, membersSqnKey)
 
 func getPlayerMetadata() -> String:
@@ -366,7 +366,7 @@ func getPlayerMetadata() -> String:
 
 func pushRoundToUgc():
 	if not USE_MEMBER_UGC: return
-	
+
 	print("updating ugc with round data")
 	var metaDataString = getPlayerMetadata()
 	memberUgcItem = UGCItem.new(metaDataString, memberUgcId)
@@ -377,10 +377,10 @@ func pushRoundToUgc():
 
 func onUgcUpdated():
 	if not READ_MEMBER_UGC: return
-	
+
 	print("Round pushed!")
-	
-	
+
+
 	if isHost():
 		findOpponents()
 	else:
@@ -398,30 +398,30 @@ func findOpponents():
 
 func onOpponentQueryCompleted(handle, result, results_returned, 
 	total_matching, cached: bool):
-	
+
 	if handle != opponentQueryHandle: return
-	
+
 	opponentRuns.clear()
-	
+
 	print(Util.time, " opponent query result: ", result, ", num results: ", results_returned, " total_matching: ", total_matching)
-	
+
 	if results_returned > 0:
 		RunDatabase.steamLeaderboard.parseMetadata(handle, results_returned, 
 			opponentRuns, true)
-	
+
 	print("#parsed opponents: ", opponentRuns.size())
-	
+
 	Steam.releaseQueryUGCRequest(handle)
 	opponentQueryHandle = 0
-	
-	
+
+
 	feasibleRuns.clear()
 	for run in opponentRuns:
 		if run.getNumRounds() >= Game.curRound:
 			feasibleRuns.push_back(run)
-	
+
 	print("opponents with enough rounds: ", feasibleRuns.size())
-	
+
 	if opponentRuns.size() > 0 and feasibleRuns.size() > 0:
 		emit_signal("found_opponent")
 	else:
@@ -436,7 +436,7 @@ func getNextOpponentData() -> Dictionary:
 			return RunDatabase.getDarkReflectionData()
 		else:
 			opponentHistory.push_back(data.steamId)
-			
+
 			return RunData.createRoundDict(data.getRoundData(Game.curRound), 
 				data.characterClass, data.loadout, data.playerName, data.chibi, 
 				data.skins, Game.VERSION, false)
@@ -450,9 +450,9 @@ func createLobby():
 	ignoreLobbyUpdates = false
 	hostSteamId = SteamHelper.STEAM_ID
 	print("Trying to create lobby.")
-	
+
 	Steam.createLobby(3, MAX_MEMBERS + 20)
-	
+
 
 
 
@@ -473,7 +473,7 @@ func onLobbyCreated(result, lobbyId):
 			createMemberUgc()
 		else:
 			finishJoining()
-		
+
 		setConfigDefault_Host()
 	else:
 		print("could not create lobby")
@@ -491,7 +491,7 @@ func onMemberUgcCreated():
 	if isHost():
 		members.push_back(memberUgcId)
 		H_hostUgcMetadata["members"] = members
-		
+
 	finishJoining()
 
 func finishJoining():
@@ -501,15 +501,15 @@ func finishJoining():
 	else:
 		joinLobby(partyUgcMetadata["lobbyId"])
 		hostSteamId = int(partyUgcMetadata["id"])
-	
+
 func createHostUgc():
 	var metadataStr = to_json(H_hostUgcMetadata)
-	
+
 	ugcItem = UGCItem.new(metadataStr)
 	ugcItem.connect("item_updated", self, "onHostUgcCreated")
 	ugcItem.connect("item_creation_failed", self, "onHostUgcCreationFailed")
 	add_child(ugcItem)
-	
+
 
 func onHostUgcCreated():
 	H_hostUgcId = ugcItem.get_id()
@@ -520,8 +520,8 @@ func onHostUgcCreated():
 
 func onHostUgcCreationFailed():
 	print("Lobby creation failed")
-	
-	
+
+
 
 
 
@@ -554,73 +554,73 @@ func onInvalidCode():
 
 func onHostUgcQueryCompleted(handle, result, results_returned, 
 	total_matching, cached: bool):
-	
+
 	if handle != hostUgcQueryHandle: return
-	
+
 	print("Lobby query finished ", result)
-	
+
 	if result == 1 and results_returned > 0:
 		var metadata = Steam.getQueryUGCMetadata(handle, 0)
-		
+
 		if metadata.length() < 20:
 			onInvalidCode()
 			return
-		
+
 		var jsonResult = JSON.parse(metadata)
 		if jsonResult.error != OK or typeof(jsonResult.result) != TYPE_DICTIONARY:
 			onInvalidCode()
 			return
-		
+
 		for field in hostUgcFields:
 			if not jsonResult.result.has(field):
 				onInvalidCode()
 				return
-		
+
 		var hostVersion = jsonResult.result["v"]
 		if getVersionString() != hostVersion:
 			Util.showPopupMessage("ERROR_VersionMismatch", {"version": hostVersion})
 			emit_signal("join_result", JoinResult.Error_VersionMismatch)
 			releaseQuery()
 			return
-		
+
 		partyUgcMetadata = jsonResult.result
-		
-		
-		
-		
-		
+
+
+
+
+
 		if partyUgcMetadata.get("started", false):
-			
+
 			Util.showPopupMessage("ERROR_JoinPhaseOver")
 			emit_signal("join_result", JoinResult.Restricted_AlreadyStarted)
 			releaseQuery()
 			return
-		
+
 		if USE_MEMBER_UGC:
 			members = partyUgcMetadata["members"].duplicate()
-		
+
 		if partyState == PartyState.Connecting:
 			print("Lobby found!")
 			if USE_MEMBER_UGC:
 				createMemberUgc()
 			else:
 				finishJoining()
-		
+
 		elif partyState == PartyState.Connected:
 			if USE_MEMBER_UGC:
 				if memberUgcId in members:
-					
+
 					members.erase(memberUgcId)
-					
-			
+
+
 			if READ_MEMBER_UGC:
 				findOpponents()
-		
-		
+
+
 	else:
 		print("error when fetching party")
-		
-	
+
+
 	releaseQuery()
 
 func releaseQuery():
@@ -634,7 +634,7 @@ func joinLobby(lobbyId):
 
 func onLobbyJoined(lobbyId, _permissions, locked, response):
 	print("Lobby joined ", response)
-	
+
 	var result
 	if response == LobbyJoinedResult.SUCCESS:
 		result = JoinResult.Unconfirmed
@@ -643,64 +643,64 @@ func onLobbyJoined(lobbyId, _permissions, locked, response):
 	elif (response == LobbyJoinedResult.BANNED or 
 		response == LobbyJoinedResult.COMMUNITY_BAN):
 		result = JoinResult.Restricted_Banned
-	
+
 	emit_signal("join_result", result)
-	
-	
+
+
 	if response != LobbyJoinedResult.SUCCESS:
 		onJoinFailed()
 		emit_signal("lobby_join_failed")
 		return
-	
+
 	curLobbyId = lobbyId
-	
-	
-	
+
+
+
 	if reconnecting:
 		updateOwnMetadata()
 		onMemberListChanged()
 		if not SteamHelper.STEAM_ID in memberData:
-			
+
 			onJoinFailed()
 			emit_signal("lobby_join_failed")
 			return
-	
+
 	liveReconnecting = false
-	
+
 	emit_signal("lobby_joined")
-	
-	
-	
+
+
+
 	if reconnecting:
 		ensureTimer()
 		ensureScoreboard()
 		gameHasStarted = true
 		collectRoundData()
-		
-		
-		
+
+
+
 		if isHost():
 			partyState = PartyState.Hosting
 			metadataSqn = int(getLobbyData(sqnKey, false))
 			memberMetadataSqn = int(getLobbyData(membersSqnKey, false))
-			
+
 			onConfigUpdated()
 			onGameDataUpdated()
 		else:
 			partyState = PartyState.Connected
-			
-		
+
+
 	else:
-		
+
 		updateOwnMetadata()
-		
+
 		if isHost():
 			print("Lobby creation 1/2")
 			addMember_Host(SteamHelper.STEAM_ID)
 		else:
 			partyState = PartyState.Connected
-			
-			
+
+
 
 func onJoinFailed():
 	if liveReconnecting:
@@ -717,13 +717,13 @@ func resetState():
 	gameHasStarted = false
 	onResultsScreen = false
 	partyState = PartyState.NoParty
-	
+
 	curLobbyId = 0
 	hostSteamId = 0
 	hostUgcQueryHandle = 0
 	curPartyUgcId = 0
 	H_hostUgcId = 0
-	
+
 	members.clear()
 	memberData.clear()
 	partyUgcMetadata.clear()
@@ -742,52 +742,52 @@ func resetState():
 
 func leaveLobby():
 	if not isInLobby(): return
-	
+
 	print("Leaving Lobby.")
-	
+
 	if not onResultsScreen:
 		sendLeaveMessage()
-	
+
 	Steam.leaveLobby(curLobbyId)
-	
+
 	ignoreLobbyUpdates = true
 	resetState()
-	
+
 	if lobbyTimer != null:
 		lobbyTimer.disable()
 		lobbyTimer = null
 	if scoreboard != null:
 		deleteScoreboard()
-	
+
 	emit_signal("lobby_left")
 
 
 func onLobbyChatUpdate(lobbyId, changedId, makingChangeId, chatState):
-	
+
 	if Game.EDITOR:
 		print("Lobby change - changedId: ", changedId, " makingChange: ", makingChangeId, 
 		" chatState: ", Util.enumToString(ChatMemberChange, chatState))
-	
+
 	if isMe(changedId):
 		if chatState == ChatMemberChange.Disconnected:
-			
-			
+
+
 			print("trying to reconnect after disconnect")
 			reconnecting = true
 			liveReconnecting = true
 			partyState = PartyState.Reconnecting
 			joinLobby(curLobbyId)
-			
-			
-	
-	
-	
+
+
+
+
+
 	elif isMemberHost(changedId):
 		if chatState == ChatMemberChange.Joined:
-			
+
 			makeHostOwner()
 		else:
-			
+
 			if not gameHasStarted:
 				onLobbyClosed()
 
@@ -796,20 +796,20 @@ func sendChatMessage(message: String):
 	Steam.sendLobbyChatMsg(curLobbyId, message)
 
 func chatMessageReceived(lobbyId: int, memberId: int, buffer: String, chatType: int):
-	
+
 	if ignoreLobbyUpdates: return
 	if memberId == SteamHelper.STEAM_ID:
-		
+
 		return
-	
-	
-	
+
+
+
 	if chatType == ChatEntryType.ChatMsg:
 		var split = buffer.split(MSG_DELIMITER)
-		
+
 		var type = int(split[0])
 		print("Message type: ", Util.enumToString(MessageType, type))
-		
+
 		match type:
 
 
@@ -820,36 +820,25 @@ func chatMessageReceived(lobbyId: int, memberId: int, buffer: String, chatType: 
 
 
 
-					
+
 			MessageType.Member_Left:
 				if memberId == hostSteamId:
 					onLobbyClosed()
 				elif isHost():
 					removeMember_Host(memberId)
-			
+
 			MessageType.Member_Reconnected:
 				print(memberData[memberId].playerName, " has reconnected")
-			
+
 			MessageType.Host_GameStart:
 				if partyState == PartyState.Connected and memberId == hostSteamId:
 					onStartCountdown()
-			
+
 			MessageType.Host_Kicked_Member:
 				if memberId == hostSteamId:
 					var kickedMemberId = int(split[1])
 					if isMe(kickedMemberId):
 						onSelfKicked(int(split[2]))
-			
-
-
-
-
-
-
-
-
-
-			
 
 
 
@@ -862,7 +851,18 @@ func chatMessageReceived(lobbyId: int, memberId: int, buffer: String, chatType: 
 
 
 
-			
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -881,38 +881,38 @@ func chatMessageReceived(lobbyId: int, memberId: int, buffer: String, chatType: 
 
 func onLobbyDataUpdate(success: int, lobbyId, memberId):
 	if ignoreLobbyUpdates: return
-	
+
 	if memberId == lobbyId:
-		
-		
-		
-		
+
+
+
+
 		if isClient():
-			
+
 			var sqn = int(getLobbyData(sqnKey, false))
-			
+
 			if sqn > metadataSqn:
 				metadataSqn = sqn
-				
-			
-				
+
+
+
 				onConfigUpdated()
 				onGameDataUpdated()
-			
+
 			var memberSqn = int(getLobbyData(membersSqnKey, false))
 			if memberSqn > memberMetadataSqn:
 				memberMetadataSqn = memberSqn
 				onMemberListChanged()
-	
+
 	else:
-		
-		
-		
+
+
+
 		if memberId != SteamHelper.STEAM_ID and memberId in memberData:
-			
+
 			var data = memberData.get(memberId, null)
 			assert (data != null)
-			
+
 			var roundNum = getCurRound()
 			if data.getRoundData(roundNum) == null:
 				var roundData: String = getLobbyMemberData(memberId, str(roundNum))
@@ -922,41 +922,41 @@ func onLobbyDataUpdate(success: int, lobbyId, memberId):
 					checkAllReady()
 				elif roundData == "":
 					pass
-					
+
 				else:
 					data.setReady(false)
 					data.addRoundData(roundNum, roundData)
 					checkEnterCombat()
-			
+
 			var roundResults: String = getLobbyMemberData(memberId, resultsKey)
 			if roundResults != "":
 				data.setResultsFromString(roundResults)
 				recalculateRanking()
 				emit_signal("score_changed", memberId)
-				
+
 				if Game.curRound >= Game.MAX_ROUNDS_LOBBIES:
 					if allOpponentsResultsReceived():
 						onOpponentResultsReceived()
-		
+
 		if memberId == SteamHelper.STEAM_ID:
-			
+
 			makeHostOwner()
-			
-		
-			
+
+
+
 		var info = getLobbyMemberData(memberId, memberInfoKey, false)
 		if info != "":
 			if memberId in memberData:
 				updateMemberData(memberId, info)
-			
+
 			elif isHost():
 				var responseCode = canAddMember(memberId)
-				
+
 				if responseCode == ResponseCode.Ok:
 					addMember_Host(memberId)
 				else:
 					print("Cannot add member (", Util.enumToString(ResponseCode, responseCode), ")")
-					
+
 					sendKickMessage(memberId, responseCode)
 		else:
 			Util.eprint("empty info - automatic join/leave/owner change update?")
@@ -997,13 +997,13 @@ func ensureScoreboard():
 	if scoreboardNode == null:
 		scoreboardNode = scoreboardScene.instance()
 		get_tree().get_root().add_child(scoreboardNode)
-		
+
 		scoreboard = scoreboardNode.get_node("Scoreboard")
-		
-		
+
+
 		scoreboardButton = scoreboardNode.get_node("LobbyButton")
 		scoreboard.connect("ob_entry_pressed", self, "openObBuildViewer")
-	
+
 
 func deleteScoreboard():
 	closeObBuildViewer()
@@ -1077,22 +1077,22 @@ func getCurRound() -> int:
 
 
 func canAddMember(_memberId) -> int:
-	
-	
-	
-	
+
+
+
+
 	if gameHasStarted:
 		return ResponseCode.AlreadyStarted
-	
+
 	if getNumMembers() >= getLobbySize():
 		return ResponseCode.MemberLimitReached
-	
+
 	return ResponseCode.Ok
 
 
 func addMember_Host(steamId: int, memberUgcIdAsString: String = ""):
 	var ugcId = 0
-	
+
 	if USE_MEMBER_UGC:
 		if memberUgcIdAsString != "":
 			ugcId = int(memberUgcIdAsString)
@@ -1101,7 +1101,7 @@ func addMember_Host(steamId: int, memberUgcIdAsString: String = ""):
 				if isHost():
 					print("host - adding member with id ", memberUgcIdAsString)
 					updateHostUgc()
-	
+
 	prepareMemberData(steamId, ugcId)
 	setMemberListMetadata()
 
@@ -1111,37 +1111,37 @@ func onMemberListChanged():
 	var newMemberList = []
 	for string in newMemberList_String:
 		newMemberList.push_back(int(string))
-	
+
 	var newMembers = Util.subtractArr(newMemberList, memberList)
 	var removedMembers = Util.subtractArr(memberList, newMemberList)
-		
+
 	for memberId in newMembers:
 		prepareMemberData(memberId)
-	
+
 	for memberId in removedMembers:
 		removeMember(memberId)
 
 func prepareMemberData(steamId: int, ugcId = 0):
-	
+
 	assert ( not steamId in memberList)
-	
+
 	print("adding ", steamId, " to member list")
-	
+
 	memberList.push_back(steamId)
 	var info: String = getLobbyMemberData(steamId, memberInfoKey)
-	
 
 
 
 
 
 
-	
+
+
 	updateMemberData(steamId, info, ugcId)
-	
+
 	print("member added successfully")
 	emit_signal("member_added", steamId)
-	
+
 	if not joinConfirmed and isMe(steamId):
 		joinConfirmed = true
 		emit_signal("lobby_join_confirmed")
@@ -1151,7 +1151,7 @@ func updateMemberData(steamId, metadata: String, ugcId = 0):
 	if data == null:
 		data = LobbyMemberData.new(steamId, ugcId)
 		memberData[steamId] = data
-	
+
 	if data.lastMetadata != metadata:
 		data.lastMetadata = metadata
 		var split = metadata.split(MSG_DELIMITER)
@@ -1163,18 +1163,18 @@ func updateMemberData(steamId, metadata: String, ugcId = 0):
 		var loadout = parsedInfo[1]
 		var chibi = parsedInfo[2]
 		var skins = parsedInfo[3]
-		
+
 		data.setData(playerName, characterClass, loadout, chibi, skins)
 
 func removeMember_Host(steamId: int):
 	removeMember(steamId)
-	
-	
+
+
 	setMemberListMetadata()
-	
+
 func removeMember(steamId: int):
 	if not steamId in memberData:
-		
+
 		return
 	memberData.erase(steamId)
 	memberList.erase(steamId)
@@ -1210,7 +1210,7 @@ func onLobbyClosed():
 		emit_signal("lobby_closed")
 		Util.showPopupMessage("ERROR_LobbyClosed")
 		Game.forceLeaveLobby()
-		
+
 
 
 func setLobbyData_sqn(key: String, value: String, _sqnKey: String = sqnKey) -> bool:
@@ -1234,40 +1234,40 @@ func getLobbyData(key: String, _print: bool = true) -> String:
 func setLobbyMemberData(key: String, value: String, _print: bool = true):
 	if _print:
 		print("set: ", SteamHelper.STEAM_ID, " key: ", key, " -> ", value)
-		
-		
-		
+
+
+
 	Steam.setLobbyMemberData(curLobbyId, key, value)
-	
+
 func getLobbyMemberData(playerId: int, key: String, _print: bool = true) -> String:
 	var value = Steam.getLobbyMemberData(curLobbyId, playerId, key)
 	if _print:
 		print("get: ", playerId, " key: ", key, " -> ", value)
-		
-		
+
+
 	return value
 
 func onGameDataUpdated():
 	var fightTime: String = getLobbyData(nextFightTimeKey)
 	if fightTime != "" and lastFightTimestamp != fightTime:
 		lastFightTimestamp = fightTime
-		
+
 		lobbyTimer.initTimer()
 		var split = fightTime.split(MSG_DELIMITER)
 		var baseTimestamp = float(split[0])
 		var roundDur = float(split[1])
-		
+
 		var diff = lobbyTimer.getCurTime() - baseTimestamp
 		print("T diff: ", diff)
-		
+
 		var fightTimestamp: float
 		if reconnecting:
-			
+
 			fightTimestamp = baseTimestamp + roundDur
 		else:
 			fightTimestamp = lobbyTimer.getCurTime() + roundDur - DELAY_COMPENSATION
-		
-		
+
+
 		lobbyTimer.updateTimer(fightTimestamp)
 
 func getMemberData(steamId):
@@ -1286,7 +1286,7 @@ func updateOwnMetadata():
 func updateHostUgc():
 	print("updating")
 	H_hostUgcMetadata.clear()
-	
+
 	H_hostUgcMetadata["id"] = str(SteamHelper.STEAM_ID)
 	H_hostUgcMetadata["v"] = getVersionString()
 	H_hostUgcMetadata["lobbyId"] = str(curLobbyId)
@@ -1306,13 +1306,13 @@ func onHostUgcUpdated():
 func createMessage(type: int, arguments = null):
 	if arguments == null:
 		return str(type)
-	
+
 	if typeof(arguments) == TYPE_ARRAY:
 		var stringArgs = PoolStringArray(arguments)
 		return str(type) + MSG_DELIMITER + MSG_DELIMITER.join(stringArgs)
 	else:
 		return str(type) + MSG_DELIMITER + str(arguments)
-	
+
 
 
 
@@ -1361,16 +1361,16 @@ func collectRoundData():
 	for memberId in memberList:
 		var data = memberData.get(memberId, null)
 		assert (data != null)
-		
+
 		var roundNum = Game.curRound
-		
+
 		if memberId == SteamHelper.STEAM_ID:
-			
+
 			var resultsAsString: = resultsToString()
 			setLobbyMemberData(resultsKey, resultsAsString, false)
 			data.setResultsFromString(resultsAsString)
-			
-			
+
+
 			for roundI in range(1, min(RunDatabase.rounds.size() + 1, roundNum + 1)):
 				setLobbyMemberData(str(roundI), RunDatabase.rounds[roundI - 1], false)
 				data.addRoundData(roundI, RunDatabase.rounds[roundI - 1])
@@ -1378,26 +1378,26 @@ func collectRoundData():
 			var roundResults: String = getLobbyMemberData(memberId, resultsKey, false)
 			if roundResults != "":
 				data.setResultsFromString(roundResults)
-		
+
 			for roundI in range(1, roundNum + 1):
 				var roundData: String = getLobbyMemberData(memberId, str(roundI), false)
-				
+
 				if roundData != "":
 					if roundI == roundNum and roundData == READY:
 						data.setReady(true)
 					else:
-						
+
 						data.addRoundData(roundI, roundData)
-				
-				
-		
+
+
+
 	print("Finished reconnect")
-	
+
 	recalculateRanking()
 	emit_signal("score_changed")
-	
+
 	checkEnterCombat()
-	
+
 
 func countReceivedRounds(forRound):
 	var num = 0
@@ -1409,7 +1409,7 @@ func countReceivedRounds(forRound):
 
 
 func onOpponentRoundsReceived():
-	
+
 	emit_signal("found_opponent")
 
 func checkAllReady():
@@ -1417,7 +1417,7 @@ func checkAllReady():
 		lobbyTimer.forwardTo(2)
 
 func checkEnterCombat():
-	
+
 	if allOpponentsSubmitted():
 		onOpponentRoundsReceived()
 
@@ -1444,7 +1444,7 @@ func calculateTeams() -> Dictionary:
 	
 	var teams = {}
 	var unassigned = []
-	
+
 	
 	for steamId in memberList:
 		if not steamId in memberData:
@@ -1458,7 +1458,7 @@ func calculateTeams() -> Dictionary:
 			teams[teamName].push_back(steamId)
 		else:
 			unassigned.push_back(steamId)
-	
+
 	
 	for teamName in teams:
 		var members = teams[teamName]
@@ -1469,12 +1469,12 @@ func calculateTeams() -> Dictionary:
 			var prevIndex = (i - 1 + teamSize) % teamSize
 			var prevSteamId = members[prevIndex]
 			memberData[steamId].setTeam(teamName, prevSteamId, members.duplicate(), i)
-	
+
 	
 	for steamId in unassigned:
 		if steamId in memberData:
 			memberData[steamId].setTeam("", 0, [], - 1)
-	
+
 	return {"teams": teams, "unassigned": unassigned}
 
 func isSingleTeamMatchPoolResult(teamResult: Dictionary) -> bool:
@@ -1497,103 +1497,103 @@ func isSingleTeamMatchPoolMode() -> bool:
 func pickOpponent() -> LobbyMemberData:
 	if getNumMembers() == 1:
 		return null
-	
+
 	var possibleOpponents = []
-	
+
 	
 	var ownTeamName = ""
 	if CustomRules.isTeamSwitchMode():
 		var ownData = getOwnMemberData()
 		ownTeamName = ownData.getTeamName()
 		print("[TeamSwitch] pickOpponent: ownTeamName=", ownTeamName)
-	
+
 	for steamId in memberData:
 		if steamId != SteamHelper.STEAM_ID:
 			var member = memberData[steamId]
-			
+
 			
 			if CustomRules.isTeamSwitchMode():
 				var memberTeam = member.getTeamName()
 				if memberTeam == "" or memberTeam == ownTeamName:
 					print("[TeamSwitch] pickOpponent: skip ", member.playerName, " team=", memberTeam)
 					continue
-			
+
 			var roundData = member.getRoundData(Game.curRound)
 			if roundData != null:
 				possibleOpponents.push_back(member)
-	
+
 	if possibleOpponents.empty():
 		Util.eprint("ERR: No opponents")
 		return null
-	
+
 	if CustomRules.isTeamSwitchMode() and matchMaking == MatchMaking.Random:
 		return Util.pickRandomElement(possibleOpponents)
-	
+
 	if getNumMembers() == 2:
 		return possibleOpponents[0]
-	
+
 	if prioritizeHost and not isHost():
-		
-		
+
+
 		var ago
 		var lastMetHost = opponentHistory.find_last(hostSteamId)
 		if lastMetHost == - 1:
 			ago = opponentHistory.size()
 		else:
 			ago = Game.curRound - (lastMetHost + 1) - 1
-		
+
 		if Util.flip(hostRematch[ago]):
 			return getMemberData(hostSteamId)
-	
+
 	var minScore: float = 1000000
 	var minScoreOpponent = null
-	
+
 	for _oppo in possibleOpponents:
 		var oppo: LobbyMemberData = _oppo
 		var score = 0.0
-		
+
 		if opponentHistory.size() >= 2:
 			if (oppo.steamId == opponentHistory[ - 1] and 
 				oppo.steamId == opponentHistory[ - 2]):
 				score += 100
-		
+
 		if matchMaking == MatchMaking.Random:
 			var noise = [0.5]
-			
+
 			score += Util.rng.randf_range(0, Util.getArrayElement(noise, 
 				getNumMembers() - 3, noise[ - 1]))
 			score += getRematchPenalty(oppo, rematchPenalty)
-		
+
 		elif matchMaking == MatchMaking.RoundRobin:
 			score += Util.rng.randf_range(0, 0.1)
 			score += getRematchPenalty(oppo, rematchPenalty_RoundRobin)
-		
+
 		elif matchMaking == MatchMaking.EvenStats:
 			score += Util.rng.randf_range(0, 0.1)
 			var winDif = oppo.getWinsAtRound(Game.curRound) - Game.getNumWins()
 			score += abs(winDif)
 			score += getRematchPenalty(oppo, rematchPenalty_EvenStats)
-		
+
 		elif matchMaking == MatchMaking.Elimination:
 			score += Util.rng.randf_range(0, 0.5)
 			score += getRematchPenalty(oppo, rematchPenalty)
 			if oppo.getLossesAtRound(Game.curRound) > 5:
 				score += 0.5
-		
+
 		elif matchMaking == MatchMaking.Strongest:
 			score += Util.rng.randf_range(0, 0.1)
 			var winRate = oppo.getWinsAtRound(Game.curRound) / float(Game.curRound)
 			score += winRate
 			score += getRematchPenalty(oppo, rematchPenalty)
-		
+
 		if score < minScore:
 			minScore = score
 			minScoreOpponent = oppo
-	
+
 	return minScoreOpponent
 
 func getRematchPenalty(opponentData, penalties: Array) -> float:
-	
+
 	var default = Util.getArrayElement(penalties, opponentHistory.size(), penalties[ - 1])
 	var lastMatchRound = opponentHistory.find_last(opponentData.steamId)
 	if lastMatchRound == - 1:
@@ -1610,29 +1610,29 @@ func setConfigDefault_Host():
 
 func onConfigUpdated():
 	var changed = false
-	
+
 	var speed = int(getLobbyData(speedConfigKey))
 	if speed != lobbySpeed:
 		changed = true
 		setSpeed(speed)
-	
+
 	var size = int(getLobbyData(sizeConfigKey))
 	if size != lobbySize:
 		changed = true
 		setLobbySize(size)
-	
+
 	var rules = getLobbyData(customRulesConfigKey)
 	if rules != customRules:
 		changed = true
 		setCustomRules(rules)
-	
+
 	var matching_encoded = int(getLobbyData(matchingConfigKey))
 	var prioritizeH = bool(matching_encoded & MatchMaking.PrioritizeHost)
 	var matching = matching_encoded & ( ~ MatchMaking.PrioritizeHost)
 	if matching != matchMaking or prioritizeH != prioritizeHost:
 		changed = true
 		setMatchMaking(matching, prioritizeH)
-	
+
 	if changed:
 		emit_signal("config_changed")
 
@@ -1701,24 +1701,24 @@ func setMatchMaking(_matchMaking: int, _prioritizeHost: bool):
 
 func getRoundDuration(roundNum) -> float:
 	var shopDur = roundDurationCurve.interpolate((roundNum - 1) / 18.0)
-	
+
 	if roundNum == Game.SKILL_ROUND1 or roundNum == Game.SKILL_ROUND2:
 		shopDur += 10
 	elif roundNum == Game.SUBCLASS_ROUND:
 		shopDur += 10
-	
+
 	var speedFactor = speedFactors[lobbySpeed]
 	shopDur = stepify(shopDur * speedFactor, 1.0)
-	
-	
+
+
 	if roundNum == 0:
-		
+
 		return shopDur
 	if roundNum == Game.MAX_ROUNDS_LOBBIES:
-		
+
 		return COMBAT_TIME + 20
-	
-	
+
+
 	return shopDur + COMBAT_TIME
 
 
@@ -1744,20 +1744,20 @@ func onFightFinished(roundResult: int):
 	if isInLobby():
 		var resultsAsString: = resultsToString()
 		getOwnMemberData().setResultsFromString(resultsAsString)
-		
+
 		recalculateRanking()
 		emit_signal("score_changed", SteamHelper.STEAM_ID)
-		
-		
+
+
 		setLobbyMemberData(resultsKey, resultsAsString)
-		
-		
-		
+
+
+
 		if Game.curRound == Game.MAX_ROUNDS_LOBBIES:
 			onResultsScreen = true
 			deleteScoreboard()
-			
-			
+
+
 			if allOpponentsResultsReceived():
 				onOpponentResultsReceived()
 
@@ -1773,11 +1773,11 @@ func getMemberRanking(steamId):
 func recalculateRanking():
 	var rankedMembers = memberData.values()
 	rankedMembers.sort_custom(MemberSorter, "sort")
-	
+
 	var lastRank: = 1
 	var iterator: = 1
 	var lastScore = - 1
-	
+
 	for member in rankedMembers:
 		var score = member.getCurrentScore()
 		if score == lastScore:
@@ -1786,7 +1786,7 @@ func recalculateRanking():
 			member.curRanking = iterator
 			lastRank = iterator
 			lastScore = score
-			
+
 		iterator += 1
 
 

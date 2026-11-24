@@ -1,7 +1,7 @@
 # =============================================================================
 # CoreRng.gd — 无头战斗内核：随机数层
 # =============================================================================
-# 对齐源码（decompiled_full/，v1.1.7）：
+# 对齐源码（decompiled_legacy/1.1.7/，v1.1.7）：
 #   Utility/Util.gd:1007-1033      roll / flip / flipPercent / flipRound / flipWeighted
 #   Utility/BalancedRandom.gd      BalancedRng（防连击/防连败/期望胜率平衡）
 #   Utility/BalancedRange.gd       BalancedRange（伤害区间累积修正）

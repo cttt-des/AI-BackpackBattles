@@ -9,7 +9,7 @@ dump_methods.py — 从原版脚本中抽出指定方法的完整源码体（含
 用法：
     python tools/dump_methods.py <源文件> <方法名文件> [--out 输出文件]
 
-    源文件      相对项目根的路径，如 decompiled_full/Items/Item.gd
+    源文件      相对项目根的路径，如 decompiled_legacy/1.1.7/Items/Item.gd
     方法名文件  每行一个方法名（# 开头为注释）
 """
 import io

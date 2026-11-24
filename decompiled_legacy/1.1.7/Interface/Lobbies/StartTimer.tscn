@@ -1,0 +1,92 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/Fonts/LibreBaskerville-Bold.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Interface/Lobbies/StartTimer.gd" type="Script" id=2]
+[ext_resource path="res://Interface/SidePanel.png" type="Texture" id=3]
+[ext_resource path="res://Utility/LocalizedControl.gd" type="Script" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 24
+outline_size = 3
+outline_color = Color( 0.24, 0.15, 0.11, 1 )
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 120
+outline_size = 11
+outline_color = Color( 0.24, 0.15, 0.11, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "Count"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("TimerLabel:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 0.574349, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.3, 0.3 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("TimerLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.068674 ),
+"transitions": PoolRealArray( 0.68302, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="StartTimer" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="SidePanel" type="Sprite" parent="."]
+position = Vector2( 1, 45 )
+texture = ExtResource( 3 )
+
+[node name="TimerLabel2" type="Label" parent="."]
+margin_left = -129.0
+margin_top = 12.0
+margin_right = 55.0
+margin_bottom = 53.0
+grow_horizontal = 0
+rect_min_size = Vector2( 184, 0 )
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Starting in "
+align = 2
+script = ExtResource( 4 )
+translationKey = "UI_Countdown"
+maxSize = 184.0
+
+[node name="TimerLabel" type="Label" parent="."]
+margin_left = 44.0
+margin_top = -35.0
+margin_right = 115.0
+margin_bottom = 115.0
+rect_scale = Vector2( 0.3, 0.3 )
+rect_pivot_offset = Vector2( 27, 59 )
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "5"
+align = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Count = SubResource( 3 )
+
+[node name="Timer" type="Timer" parent="."]
+process_mode = 0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="onTimeout"]

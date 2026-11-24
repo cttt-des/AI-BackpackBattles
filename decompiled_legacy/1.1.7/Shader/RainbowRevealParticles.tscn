@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Shader/RainbowRevealParticlesMat.material" type="Material" id=1]
+[ext_resource path="res://Assets/Particles/Spot1.png" type="Texture" id=2]
+[ext_resource path="res://Utility/PooledScene.gd" type="Script" id=3]
+[ext_resource path="res://Shader/RainbowRevealParticles.material" type="Material" id=4]
+
+[node name="Particles2D" type="Particles2D"]
+pause_mode = 2
+self_modulate = Color( 3, 3, 3, 0.403922 )
+material = ExtResource( 1 )
+z_index = 10
+emitting = false
+amount = 24
+lifetime = 1.78
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource( 4 )
+texture = ExtResource( 2 )
+script = ExtResource( 3 )

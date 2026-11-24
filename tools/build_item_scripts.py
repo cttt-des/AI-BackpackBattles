@@ -44,7 +44,7 @@ import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SRC = os.path.join(ROOT, "decompiled_full", "Items")
+SRC = os.path.join(ROOT, "decompiled_legacy/1.1.7", "Items")
 OUT = os.path.join(ROOT, "gd_core_items")
 # 基类在 Items/ 内的相对名。★ 模块级常量：`shim_header()` 等模块级函数也要用，
 # 早先只在 main() 里当局部变量，导致生成文件头时 NameError。
@@ -2138,7 +2138,7 @@ def restore_randpitch_draws(rel, text):
 
 # ── r2_1 pass：FalconBlade doCooldownEffect 尾部 randomizePosition 3 抽还原 ──
 # 根因（run631_r9/701_r11/722_r7 神谕 rng_log 逐抽对位 + 台账 2026-10-10 第 24 轮
-# run634 同根实证）：decompiled_full/Items/FalconBlade.gd:24-25 doCooldownEffect
+# run634 同根实证）：decompiled_legacy/1.1.7/Items/FalconBlade.gd:24-25 doCooldownEffect
 # 尾部 `var ani = createAnimation()` + `ani.randomizePosition()` 被当纯视觉剥掉，
 # 但 Items/Animations/ItemAnimation.gd:26-28 randomizePosition 恒消耗全局链
 # 3 抽（export 默认 positionRandom=(30,100)、angleRandom=5.0 →
@@ -2190,7 +2190,7 @@ def restore_falconblade_randomize_draws(rel, text):
 
 # ── fam_r1 棋族面 pass：ChessPiece.moveCells 的绝对格→局部格换算 ──
 # 根因（run645_r11 逐层实证，output/oracle/probe/fam_r1/）：
-#   原版 decompiled_full/Items/Exclusive/Chess/ChessPiece.gd:46-51 prepare() 把
+#   原版 decompiled_legacy/1.1.7/Items/Exclusive/Chess/ChessPiece.gd:46-51 prepare() 把
 #   affectedTileCells 当**局部格**（cell.rotated(rotation) 后由
 #   ChessBoard.findPieceToCapture:103-104 用 occupiedCells[0]+cell 还原全局）；
 #   内核装配口径 affectedTileCells = **绝对格**（placement_of 已烘焙锚点平移+
@@ -2227,7 +2227,7 @@ def adapt_chess_movecells(rel, text):
 
 # ── r4_2 棋族面 pass：ChessPiece.repositionPiece / onStateChanged 判定支还原 ──
 # 根因（run645_r11 idx15 逐层实证，output/_round_patches/r4_2/）：
-#   原版 decompiled_full/Items/Exclusive/Chess/ChessPiece.gd:93-97
+#   原版 decompiled_legacy/1.1.7/Items/Exclusive/Chess/ChessPiece.gd:93-97
 #   repositionPiece 第三行是**判定面** inventory.moveItem(self,[toCell])
 #   （Inventory.gd:640-647 = clearItemCells+addItemCells+occupiedCells 赋值，
 #   零信号零 rng；:94 moveTo / :97 movebackTween 与 z_index 为表现面）

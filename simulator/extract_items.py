@@ -19,7 +19,7 @@ import sys
 from typing import Optional, Dict, Set
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-ITEMS_SRC = os.path.join(ROOT, "decompiled_full", "Items")
+ITEMS_SRC = os.path.join(ROOT, "decompiled_legacy/1.1.7", "Items")
 DB_PATH = os.path.join(ROOT, "assets", "battle_items.json")
 
 # ---------- 方法重命名 (GDScript -> 引擎 API) ----------

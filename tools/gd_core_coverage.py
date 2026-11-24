@@ -6,7 +6,7 @@
 战斗判定路径？
 
 做法：把 gd_core/CoreXxx.gd 的 `func` 名集合，与对应解包源码
-decompiled_full/.../Xxx.gd 的 `func` 名集合做差集，再按**名字启发式**给缺失项
+decompiled_legacy/1.1.7/.../Xxx.gd 的 `func` 名集合做差集，再按**名字启发式**给缺失项
 分类。分类只用于人眼筛查，不作为「无影响」的证明 —— 证明仍靠源码逐行核对。
 
 用法：
@@ -142,7 +142,7 @@ def main():
     grand = [0, 0]
     for core, src in MAP.items():
         cp = os.path.join(ROOT, "gd_core", core)
-        sp = os.path.join(ROOT, "decompiled_full", *src.split("/"))
+        sp = os.path.join(ROOT, "decompiled_legacy/1.1.7", *src.split("/"))
         if not os.path.exists(cp) or not os.path.exists(sp):
             continue
         cf, sf = funcs_of(cp), funcs_of(sp)

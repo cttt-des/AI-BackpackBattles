@@ -12,7 +12,7 @@ enrich_unique_pool.py — 把 CSV shop 列=="unique" 的物品标记为 random_u
     内核 randomUniquePool 恒缺 → treasure 计 0 → 幸运 1）。
   * CoreItemData.gd:316 已读 descr.randomUniquePool（truth()），此前数据从未携带。
 
-数据源：decompiled_full/Sheets/CSV/ItemData_e.csv（已解密明文 CSV，
+数据源：decompiled_legacy/1.1.7/Sheets/CSV/ItemData_e.csv（已解密明文 CSV，
 列头 `shop`；encrypted 原件为 extracted_running/decomp/Sheets/CSV/ 的 GDEC 容器）。
 
 用法：python -X utf8 tools/enrich_unique_pool.py [--csv PATH] [--dry-run]

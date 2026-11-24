@@ -1,0 +1,149 @@
+[gd_scene load_steps=26 format=2]
+
+[ext_resource path="res://CharacterClasses/Engineer/EngineerSprite.tscn" type="PackedScene" id=1]
+[ext_resource path="res://CharacterClasses/Engineer/Skins/Normal/Lab/RightLowerLeg.png" type="Texture" id=2]
+[ext_resource path="res://CharacterClasses/Engineer/Skins/Normal/Lab/LeftUpperLeg.png" type="Texture" id=3]
+[ext_resource path="res://CharacterClasses/Engineer/Skins/Normal/Lab/Strap.png" type="Texture" id=4]
+[ext_resource path="res://CharacterClasses/Engineer/Skins/Normal/Lab/Bag.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Light/CircleLight.png" type="Texture" id=6]
+[ext_resource path="res://CharacterClasses/Engineer/Skins/Normal/Lab/RightUpperArm.png" type="Texture" id=7]
+[ext_resource path="res://CharacterClasses/Engineer/Skins/Normal/Lab/Head.png" type="Texture" id=8]
+[ext_resource path="res://CharacterClasses/Engineer/Skins/Normal/Lab/RightLowerArm.png" type="Texture" id=9]
+[ext_resource path="res://CharacterClasses/Engineer/Skins/Normal/Lab/Body.png" type="Texture" id=10]
+[ext_resource path="res://CharacterClasses/Engineer/Skins/Normal/Lab/RightShoe.png" type="Texture" id=11]
+[ext_resource path="res://CharacterClasses/Engineer/Skins/Normal/Lab/RightUpperLeg.png" type="Texture" id=12]
+[ext_resource path="res://CharacterClasses/Engineer/Skins/Normal/Lab/LeftLowerLeg.png" type="Texture" id=13]
+[ext_resource path="res://Assets/BottleOfBooze.tscn" type="PackedScene" id=14]
+[ext_resource path="res://CharacterClasses/Engineer/Skins/Normal/Lab/Collar.png" type="Texture" id=15]
+[ext_resource path="res://CharacterClasses/Engineer/Skins/Normal/Lab/TestTubeMask.png" type="Texture" id=16]
+[ext_resource path="res://CharacterClasses/Engineer/Skins/Normal/Lab/LeftUpperArm.png" type="Texture" id=17]
+[ext_resource path="res://CharacterClasses/Engineer/Skins/Normal/Lab/LeftHandFront.png" type="Texture" id=18]
+[ext_resource path="res://CharacterClasses/Engineer/Skins/Normal/Lab/HairBack.png" type="Texture" id=19]
+[ext_resource path="res://CharacterClasses/Engineer/Skins/Normal/Lab/TestTube.png" type="Texture" id=20]
+[ext_resource path="res://CharacterClasses/Engineer/Skins/Normal/Lab/LeftLowerArm.png" type="Texture" id=21]
+[ext_resource path="res://CharacterClasses/Engineer/Skins/Normal/Lab/CoatBack.png" type="Texture" id=22]
+[ext_resource path="res://CharacterClasses/Engineer/Skins/Normal/Lab/LeftShoe.png" type="Texture" id=23]
+[ext_resource path="res://Items/Materials/ManaPotion.material" type="Material" id=24]
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 0.144172 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.156442 ), 0.0, 0.0, 0, 0 ]
+
+[node name="Sprite" instance=ExtResource( 1 )]
+script = null
+
+[node name="Bag" parent="Body/Bag" index="0"]
+visible = false
+position = Vector2( -124, 209 )
+z_index = 2
+texture = null
+
+[node name="LeftUpperArm" parent="Body/LeftArm" index="0"]
+position = Vector2( 26, 66 )
+texture = ExtResource( 17 )
+
+[node name="LeftArmStrap" parent="Body/LeftArm" index="1"]
+visible = false
+
+[node name="LeftLowerArm" parent="Body/LeftArm/LeftLowerArm" index="0"]
+position = Vector2( 34.8756, -86.783 )
+texture = ExtResource( 21 )
+
+[node name="Weapon" parent="Body/LeftArm/LeftLowerArm/Weapon" index="0"]
+position = Vector2( 2.15531, 5.68454 )
+rotation = -0.18326
+texture = ExtResource( 20 )
+
+[node name="Fluid" parent="Body/LeftArm/LeftLowerArm/Weapon" index="1" groups=["Weapon"] instance=ExtResource( 14 )]
+modulate = Color( 1.4, 1.4, 1.4, 1 )
+show_behind_parent = true
+material = ExtResource( 24 )
+position = Vector2( 0.989245, 1.84134 )
+rotation = -0.18326
+scale = Vector2( 0.97216, 1 )
+texture = ExtResource( 16 )
+friction = 0.966
+backForce = 3.4
+baseFoaminess = 0.0624
+maxFoaminess = 1.1
+rotationFoam = 0.04
+baseScroll = 0.017
+levelModification = -0.083
+levelCurve = SubResource( 1 )
+
+[node name="LeftHandFront" parent="Body/LeftArm/LeftLowerArm" index="2"]
+position = Vector2( 66.1334, -156.921 )
+texture = ExtResource( 18 )
+
+[node name="LeftUpperLeg" parent="Body/LeftLeg" index="0"]
+position = Vector2( 52, 78 )
+texture = ExtResource( 3 )
+
+[node name="LeftLowerLeg" parent="Body/LeftLeg/LeftLowerLeg" index="0"]
+position = Vector2( -29.5, 148.5 )
+texture = ExtResource( 13 )
+
+[node name="LeftShoe" parent="Body/LeftLeg/LeftLowerLeg" index="1"]
+position = Vector2( -26.5, 254 )
+texture = ExtResource( 23 )
+
+[node name="Hairback2" parent="Body/Head" index="1"]
+visible = true
+position = Vector2( -6, 6 )
+texture = ExtResource( 19 )
+
+[node name="Head" parent="Body/Head" index="2"]
+position = Vector2( -8, -66 )
+z_index = 2
+texture = ExtResource( 8 )
+
+[node name="BodySprite" parent="Body" index="4"]
+position = Vector2( 0, 14 )
+texture = ExtResource( 10 )
+
+[node name="CircleLight" type="Sprite" parent="Body/BodySprite" index="0" groups=["Body"]]
+modulate = Color( 0.26, 1.39102, 1.5, 1 )
+self_modulate = Color( 2, 2, 2, 0.121569 )
+position = Vector2( 0, -154 )
+rotation = 0.226247
+scale = Vector2( 0.156649, 0.148612 )
+texture = ExtResource( 6 )
+
+[node name="Collar" type="Sprite" parent="Body/BodySprite" index="1" groups=["Body"]]
+position = Vector2( -32, -158 )
+z_index = 2
+texture = ExtResource( 15 )
+
+[node name="CoatBack" type="Sprite" parent="Body/BodySprite" index="2" groups=["Body"]]
+position = Vector2( -8, 156 )
+z_index = -1
+texture = ExtResource( 22 )
+
+[node name="RightUpperLeg" parent="Body/RightLeg" index="0"]
+position = Vector2( -4.24261, 109.724 )
+z_index = -1
+texture = ExtResource( 12 )
+
+[node name="RightLowerLeg" parent="Body/RightLeg/RightLowerLeg" index="0"]
+position = Vector2( -12, 146 )
+z_index = -1
+texture = ExtResource( 2 )
+
+[node name="RightShoe" parent="Body/RightLeg/RightLowerLeg" index="1"]
+position = Vector2( -12, 256 )
+texture = ExtResource( 11 )
+
+[node name="RightUpperArm" parent="Body/RightArm" index="0"]
+texture = ExtResource( 7 )
+
+[node name="RightLowerArmSprite" parent="Body/RightArm/RightLowerArm" index="0"]
+texture = ExtResource( 9 )
+
+[node name="RightArmStrap" parent="Body/RightArm" index="2"]
+position = Vector2( -34, 120 )
+z_index = -1
+texture = ExtResource( 4 )
+
+[node name="Bag" type="Sprite" parent="Body/RightArm" index="3" groups=["Special"]]
+position = Vector2( -60, 60 )
+texture = ExtResource( 5 )
+offset = Vector2( 10, 142 )

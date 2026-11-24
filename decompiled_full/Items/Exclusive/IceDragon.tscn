@@ -58,13 +58,11 @@ position = Vector2( 49, 35 )
 position = Vector2( -46, 8 )
 
 [node name="SpecificDragParticles" type="Particles2D" parent="Icon" index="1"]
-visible = false
 modulate = Color( 1.2, 1.2, 1.2, 1 )
 show_behind_parent = true
 material = ExtResource( 6 )
 position = Vector2( -2.5, -22.5 )
 scale = Vector2( 2.5, 2.5 )
-emitting = false
 amount = 20
 lifetime = 0.81
 speed_scale = 0.78

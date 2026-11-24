@@ -1670,6 +1670,7 @@ anims/StartOnTitle = ExtResource( 12 )
 anims/LevelUp = SubResource( 369 )
 
 [connection signal="text_changed" from="ShopUI/NameLineEdit" to="." method="_onNameChanged"]
+[connection signal="mouse_entered" from="ShopUI/Gold/TooltipArea" to="ShopUI/Gold" method="showTooltip"]
 [connection signal="counting_finished" from="ShopUI/GoldBonus" to="ShopUI/Gold" method="bonusFinishedCounting"]
 [connection signal="counting_finished" from="ShopUI/HealthBonus" to="ShopUI/Health" method="bonusFinishedCounting"]
 

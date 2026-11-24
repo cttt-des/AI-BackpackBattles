@@ -7,7 +7,7 @@ Items/Item.gd 里的拖拽/预览代码也算成判定路径（因为文件名�
 既不精确也无法回答「到底谁在调它」。
 
 本脚本改做**调用闭包**：
-  1. 解析 decompiled_full/**/*.gd，按顶层 func 归属建立调用图
+  1. 解析 decompiled_legacy/1.1.7/**/*.gd，按顶层 func 归属建立调用图
      (文件, 函数) → {被调函数名}
   2. 种子 = gd_core 已收录的方法在对应源文件里的同名函数（MAP 见 coverage 工具）
   3. 从种子做闭包（函数名级，跨文件同名取并集 = 保守上界）
@@ -26,7 +26,7 @@ import sys
 from collections import deque
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SRC = os.path.join(ROOT, "decompiled_full")
+SRC = os.path.join(ROOT, "decompiled_legacy/1.1.7")
 CORE = os.path.join(ROOT, "gd_core")
 
 # gd_core 文件 → 解包源码文件（与 tools/gd_core_coverage.py 的 MAP 保持一致）

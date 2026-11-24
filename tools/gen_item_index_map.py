@@ -2,7 +2,7 @@
 """gen_item_index_map.py — 生成历史记录解码所需的物品索引映射表
 
 真值源：
-  * decompiled_full/Sheets/CSV/ItemData_e.csv 的 `id` 列 = ItemBook.itemIndex
+  * decompiled_legacy/1.1.7/Sheets/CSV/ItemData_e.csv 的 `id` 列 = ItemBook.itemIndex
     （ItemBook.gd:949 `item.itemIndex = table.getInt("id", line)`）
   * numSockets：tscn 场景 GemSocket 节点计数（ItemBook.gd:968-976 同源逻辑）
   * gemList：CSV 行序中 types[0]==Gem 的物品（ItemBook.gd:962-965 同源逻辑）
@@ -17,8 +17,8 @@ import os
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CSV_PATH = os.path.join(ROOT, "decompiled_full", "Sheets", "CSV", "ItemData_e.csv")
-TSCN_DIR = os.path.join(ROOT, "decompiled_full", "Items")
+CSV_PATH = os.path.join(ROOT, "decompiled_legacy/1.1.7", "Sheets", "CSV", "ItemData_e.csv")
+TSCN_DIR = os.path.join(ROOT, "decompiled_legacy/1.1.7", "Items")
 OUT_PATH = os.path.join(ROOT, "assets", "item_index_map.json")
 
 

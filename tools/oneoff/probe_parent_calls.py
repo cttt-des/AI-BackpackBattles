@@ -2,7 +2,7 @@
 import re, os, io, sys, collections
 sys.stdout.reconfigure(encoding="utf-8")
 ROOT = r"D:/文件资料/学习/自动背包AI"
-SRC = os.path.join(ROOT, "decompiled_full", "Items")
+SRC = os.path.join(ROOT, "decompiled_legacy/1.1.7", "Items")
 GEN = os.path.join(ROOT, "gd_core_items")
 FUNC_RE = re.compile(r"^\s*func ")
 NAME_RE = re.compile(r"^\s*func ([A-Za-z_]\w*)")

@@ -1,0 +1,18 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Particles/FireParticle2.png" type="Texture" id=1]
+[ext_resource path="res://Shader/DissolveParticle.gdshader" type="Shader" id=2]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0.00683371, 0.0375854, 0.0808656, 0.118182, 0.129091, 0.171982, 0.248292, 0.533113 )
+colors = PoolColorArray( 0.0253906, 0.0252668, 0.0252575, 0, 0.235294, 0.14902, 0.113725, 1, 0.235294, 0.14902, 0.113725, 1, 0.830078, 0.220187, 0.0794411, 1, 0.90625, 0.404007, 0.102661, 1, 0.964844, 0.823575, 0.0607244, 1, 1, 0.998451, 0.603516, 1, 1, 0.999403, 0.847071, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+width = 100
+
+[resource]
+shader = ExtResource( 2 )
+shader_param/numFrames = 1.0
+shader_param/spriteSheet = ExtResource( 1 )
+shader_param/tonemapping = SubResource( 2 )

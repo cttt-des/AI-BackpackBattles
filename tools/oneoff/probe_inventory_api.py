@@ -12,14 +12,14 @@ def funcs(path):
     with open(path, encoding="utf-8", errors="replace") as fh:
         return set(FUNC_RE.findall(fh.read()))
 
-inv = funcs(os.path.join(ROOT, "decompiled_full", "Core", "Inventory.gd"))
+inv = funcs(os.path.join(ROOT, "decompiled_legacy/1.1.7", "Core", "Inventory.gd"))
 grid = funcs(os.path.join(ROOT, "gd_core", "CoreGrid.gd"))
 missing = sorted(inv - grid)
 print(f"Inventory 方法 {len(inv)}，CoreGrid {len(grid)}，缺失 {len(missing)}")
 
 # 物品脚本 / 内核里对 inventory 的调用点
 calls = set()
-for base in ("decompiled_full/Items", "gd_core_items"):
+for base in ("decompiled_legacy/1.1.7/Items", "gd_core_items"):
     for dirpath, _, names in os.walk(os.path.join(ROOT, base)):
         for n in names:
             if not n.endswith(".gd"):

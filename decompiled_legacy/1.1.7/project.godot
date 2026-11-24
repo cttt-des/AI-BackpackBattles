@@ -1,0 +1,959 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_custom_features="full_version"
+_global_script_classes=[ {
+"base": "Item",
+"class": "Bag",
+"language": "GDScript",
+"path": "res://Items/Bag.gd"
+}, {
+"base": "Reference",
+"class": "BalancedRange",
+"language": "GDScript",
+"path": "res://Utility/BalancedRange.gd"
+}, {
+"base": "Reference",
+"class": "BalancedRng",
+"language": "GDScript",
+"path": "res://Utility/BalancedRandom.gd"
+}, {
+"base": "HSlider",
+"class": "BaseSlider",
+"language": "GDScript",
+"path": "res://Interface/BaseSlider.gd"
+}, {
+"base": "Reference",
+"class": "BitStream",
+"language": "GDScript",
+"path": "res://Utility/BitStream.gd"
+}, {
+"base": "Weapon",
+"class": "Bow",
+"language": "GDScript",
+"path": "res://Items/Bow.gd"
+}, {
+"base": "Reference",
+"class": "Buff",
+"language": "GDScript",
+"path": "res://Core/Buff.gd"
+}, {
+"base": "Reference",
+"class": "BuildHistoryData",
+"language": "GDScript",
+"path": "res://Interface/BuildHistory/BuildHistoryData.gd"
+}, {
+"base": "Item",
+"class": "Card",
+"language": "GDScript",
+"path": "res://Items/Card.gd"
+}, {
+"base": "Node2D",
+"class": "Character",
+"language": "GDScript",
+"path": "res://Core/Character.gd"
+}, {
+"base": "Resource",
+"class": "CharacterClass",
+"language": "GDScript",
+"path": "res://CharacterClasses/CharacterClass.gd"
+}, {
+"base": "Reference",
+"class": "CharacterSkin",
+"language": "GDScript",
+"path": "res://Utility/CharacterSkin.gd"
+}, {
+"base": "Node2D",
+"class": "CharacterStatIcon",
+"language": "GDScript",
+"path": "res://Interface/Combat/CharacterStatIcon.gd"
+}, {
+"base": "Item",
+"class": "ChessPiece",
+"language": "GDScript",
+"path": "res://Items/Exclusive/Chess/ChessPiece.gd"
+}, {
+"base": "Reference",
+"class": "CombatEvent",
+"language": "GDScript",
+"path": "res://Core/CombatEvent.gd"
+}, {
+"base": "RichTextLabel",
+"class": "CombatLogLine",
+"language": "GDScript",
+"path": "res://Interface/CombatLog/CombatLogLine.gd"
+}, {
+"base": "Reference",
+"class": "CombatSnapshot",
+"language": "GDScript",
+"path": "res://Core/CombatSnapshot.gd"
+}, {
+"base": "Reference",
+"class": "CombatStatLogger",
+"language": "GDScript",
+"path": "res://Core/CombatStatLogger.gd"
+}, {
+"base": "Control",
+"class": "ControllerBindButton",
+"language": "GDScript",
+"path": "res://Interface/Options/ControllerKeyBind.gd"
+}, {
+"base": "Button",
+"class": "ControllerButton",
+"language": "GDScript",
+"path": "res://addons/controller_icons/objects/Button.gd"
+}, {
+"base": "Node",
+"class": "ControllerMapper",
+"language": "GDScript",
+"path": "res://addons/controller_icons/Mapper.gd"
+}, {
+"base": "Resource",
+"class": "ControllerSettings",
+"language": "GDScript",
+"path": "res://addons/controller_icons/Settings.gd"
+}, {
+"base": "Sprite",
+"class": "ControllerSprite",
+"language": "GDScript",
+"path": "res://addons/controller_icons/objects/Sprite.gd"
+}, {
+"base": "Sprite3D",
+"class": "ControllerSprite3D",
+"language": "GDScript",
+"path": "res://addons/controller_icons/objects/Sprite3D.gd"
+}, {
+"base": "TextureRect",
+"class": "ControllerTextureRect",
+"language": "GDScript",
+"path": "res://addons/controller_icons/objects/TextureRect.gd"
+}, {
+"base": "Reference",
+"class": "Counter",
+"language": "GDScript",
+"path": "res://Utility/Counter.gd"
+}, {
+"base": "Item",
+"class": "Cube",
+"language": "GDScript",
+"path": "res://Items/Exclusive/Cube.gd"
+}, {
+"base": "Weapon",
+"class": "Dagger",
+"language": "GDScript",
+"path": "res://Items/Dagger.gd"
+}, {
+"base": "Control",
+"class": "DamageMeterPlot",
+"language": "GDScript",
+"path": "res://Interface/DamageMeter/DamageMeterPlot.gd"
+}, {
+"base": "Reference",
+"class": "DamageResult",
+"language": "GDScript",
+"path": "res://Utility/DamageResult.gd"
+}, {
+"base": "Reference",
+"class": "DamageSource",
+"language": "GDScript",
+"path": "res://Utility/DamageSource.gd"
+}, {
+"base": "Item",
+"class": "DragonEgg",
+"language": "GDScript",
+"path": "res://Items/DragonEgg.gd"
+}, {
+"base": "Node2D",
+"class": "Eye",
+"language": "GDScript",
+"path": "res://Items/Exclusive/Animations/GooglyEye.gd"
+}, {
+"base": "Button",
+"class": "FocusGrabbingButton",
+"language": "GDScript",
+"path": "res://Interface/FocusGrabbingButton.gd"
+}, {
+"base": "LocalizedControl",
+"class": "FocusGrabbingControl",
+"language": "GDScript",
+"path": "res://Interface/FocusGrabbingControl.gd"
+}, {
+"base": "TextureButton",
+"class": "FocusGrabbingTextureButton",
+"language": "GDScript",
+"path": "res://Interface/FocusGrabbingTextureButton.gd"
+}, {
+"base": "Reference",
+"class": "FontData",
+"language": "GDScript",
+"path": "res://Utility/FontData.gd"
+}, {
+"base": "Item",
+"class": "Food",
+"language": "GDScript",
+"path": "res://Items/Food.gd"
+}, {
+"base": "Item",
+"class": "Gem",
+"language": "GDScript",
+"path": "res://Items/Gems/Gem.gd"
+}, {
+"base": "Item",
+"class": "Goobert",
+"language": "GDScript",
+"path": "res://Items/Goobert.gd"
+}, {
+"base": "FocusGrabbingTextureButton",
+"class": "HistoryRoundButton",
+"language": "GDScript",
+"path": "res://Interface/BuildHistory/RoundResultButton.gd"
+}, {
+"base": "RigidBody2D",
+"class": "Item",
+"language": "GDScript",
+"path": "res://Items/Item.gd"
+}, {
+"base": "Reference",
+"class": "ItemDescriptor",
+"language": "GDScript",
+"path": "res://Items/ItemDescriptor.gd"
+}, {
+"base": "Button",
+"class": "ItemListButton",
+"language": "GDScript",
+"path": "res://Interface/Options/ItemListButton.gd"
+}, {
+"base": "Reference",
+"class": "ItemPool",
+"language": "GDScript",
+"path": "res://Utility/ItemPool.gd"
+}, {
+"base": "ToolTip",
+"class": "ItemToolTip",
+"language": "GDScript",
+"path": "res://Interface/Tooltips/ItemTooltip.gd"
+}, {
+"base": "Control",
+"class": "KeyBindButton",
+"language": "GDScript",
+"path": "res://Interface/Options/KeyBind.gd"
+}, {
+"base": "AudioStreamPlayer",
+"class": "LoanAudioStreamPlayer",
+"language": "GDScript",
+"path": "res://Utility/LoanAudioStreamPlayer.gd"
+}, {
+"base": "Reference",
+"class": "LobbyMemberData",
+"language": "GDScript",
+"path": "res://Interface/Lobbies/LobbyMemberData.gd"
+}, {
+"base": "Control",
+"class": "LocalizedControl",
+"language": "GDScript",
+"path": "res://Utility/LocalizedControl.gd"
+}, {
+"base": "Node2D",
+"class": "NumberLabel",
+"language": "GDScript",
+"path": "res://Interface/DamageNumbers/DamageNumber.gd"
+}, {
+"base": "BaseSlider",
+"class": "OptionsSlider",
+"language": "GDScript",
+"path": "res://Interface/Options/OptionsSlider.gd"
+}, {
+"base": "Line2D",
+"class": "PlotLine",
+"language": "GDScript",
+"path": "res://Interface/DamageMeter/PlotLine.gd"
+}, {
+"base": "Item",
+"class": "Potion",
+"language": "GDScript",
+"path": "res://Items/Potion.gd"
+}, {
+"base": "Node",
+"class": "Profanity",
+"language": "GDScript",
+"path": "res://Utility/Profanity.gd"
+}, {
+"base": "Button",
+"class": "PullButton",
+"language": "GDScript",
+"path": "res://Interface/PullButton.gd"
+}, {
+"base": "Item",
+"class": "RangerCollar",
+"language": "GDScript",
+"path": "res://Items/RangerCollar.gd"
+}, {
+"base": "Reference",
+"class": "Recipe",
+"language": "GDScript",
+"path": "res://Utility/Recipe.gd"
+}, {
+"base": "Control",
+"class": "ResizableControl",
+"language": "GDScript",
+"path": "res://Interface/ResizableControl.gd"
+}, {
+"base": "Reference",
+"class": "RunData",
+"language": "GDScript",
+"path": "res://Utility/RunData.gd"
+}, {
+"base": "Reference",
+"class": "SQLiteWrapper",
+"language": "GDScript",
+"path": "res://addons/godot-sqlite/godot-sqlite-wrapper.gd"
+}, {
+"base": "Item",
+"class": "Shield",
+"language": "GDScript",
+"path": "res://Items/Shield.gd"
+}, {
+"base": "Node2D",
+"class": "Socket",
+"language": "GDScript",
+"path": "res://Items/GemSocket.gd"
+}, {
+"base": "Item",
+"class": "SpiritCompanion",
+"language": "GDScript",
+"path": "res://Items/Exclusive/SpiritCompanion.gd"
+}, {
+"base": "Sprite",
+"class": "SquishySprite",
+"language": "GDScript",
+"path": "res://Items/Animations/SquishySprite.gd"
+}, {
+"base": "Resource",
+"class": "StartingItem",
+"language": "GDScript",
+"path": "res://CharacterClasses/StartingItem.gd"
+}, {
+"base": "Reference",
+"class": "StatHistory",
+"language": "GDScript",
+"path": "res://Core/StatHistory.gd"
+}, {
+"base": "Node",
+"class": "SteamLeaderboard",
+"language": "GDScript",
+"path": "res://Core/SteamWorkshop.gd"
+}, {
+"base": "Reference",
+"class": "Table",
+"language": "GDScript",
+"path": "res://Sheets/Table.gd"
+}, {
+"base": "Control",
+"class": "ToolTip",
+"language": "GDScript",
+"path": "res://Interface/Tooltips/Tooltip.gd"
+}, {
+"base": "Node",
+"class": "UGCItem",
+"language": "GDScript",
+"path": "res://Utility/UGCItem.gd"
+}, {
+"base": "Item",
+"class": "Weapon",
+"language": "GDScript",
+"path": "res://Items/Weapon.gd"
+}, {
+"base": "Reference",
+"class": "WeightedBag",
+"language": "GDScript",
+"path": "res://Utility/WeightedBag.gd"
+} ]
+_global_script_class_icons={
+"Bag": "",
+"BalancedRange": "",
+"BalancedRng": "",
+"BaseSlider": "",
+"BitStream": "",
+"Bow": "",
+"Buff": "",
+"BuildHistoryData": "",
+"Card": "",
+"Character": "",
+"CharacterClass": "",
+"CharacterSkin": "",
+"CharacterStatIcon": "",
+"ChessPiece": "",
+"CombatEvent": "",
+"CombatLogLine": "",
+"CombatSnapshot": "",
+"CombatStatLogger": "",
+"ControllerBindButton": "",
+"ControllerButton": "",
+"ControllerMapper": "",
+"ControllerSettings": "",
+"ControllerSprite": "",
+"ControllerSprite3D": "",
+"ControllerTextureRect": "",
+"Counter": "",
+"Cube": "",
+"Dagger": "",
+"DamageMeterPlot": "",
+"DamageResult": "",
+"DamageSource": "",
+"DragonEgg": "",
+"Eye": "",
+"FocusGrabbingButton": "",
+"FocusGrabbingControl": "",
+"FocusGrabbingTextureButton": "",
+"FontData": "",
+"Food": "",
+"Gem": "",
+"Goobert": "",
+"HistoryRoundButton": "",
+"Item": "",
+"ItemDescriptor": "",
+"ItemListButton": "",
+"ItemPool": "",
+"ItemToolTip": "",
+"KeyBindButton": "",
+"LoanAudioStreamPlayer": "",
+"LobbyMemberData": "",
+"LocalizedControl": "",
+"NumberLabel": "",
+"OptionsSlider": "",
+"PlotLine": "",
+"Potion": "",
+"Profanity": "",
+"PullButton": "",
+"RangerCollar": "",
+"Recipe": "",
+"ResizableControl": "",
+"RunData": "",
+"SQLiteWrapper": "",
+"Shield": "",
+"Socket": "",
+"SpiritCompanion": "",
+"SquishySprite": "",
+"StartingItem": "",
+"StatHistory": "",
+"SteamLeaderboard": "",
+"Table": "",
+"ToolTip": "",
+"UGCItem": "",
+"Weapon": "",
+"WeightedBag": ""
+}
+
+[application]
+
+config/name="Backpack Battles"
+run/main_scene="res://Core/Main.tscn"
+run/flush_stdout_on_print=true
+run/low_processor_mode_sleep_usec=33000
+boot_splash/image="res://Assets/Splashscreen.png"
+config/icon="res://ClientIcon_256.png"
+
+[audio]
+
+default_bus_layout="res://Utility/default_bus_layout.tres"
+
+[autoload]
+
+ControllerIcons="*res://addons/controller_icons/ControllerIcons.gd"
+Util="*res://Utility/Util.gd"
+SteamHelper="*res://Utility/SteamHelper.gd"
+Settings="*res://Utility/Settings.gd"
+InputMapping="*res://Interface/Options/InputMapping.gd"
+SilentWolf="*res://addons/silent_wolf/SilentWolf.gd"
+ItemBook="*res://Sheets/ItemBook.gd"
+SkinBook="*res://Utility/SkinBook.gd"
+Game="*res://Core/Game.gd"
+ObjectPool="*res://Utility/ObjectPool.gd"
+RunDatabase="*res://Core/RunDatabase.gd"
+Sound="*res://Utility/Sound.tscn"
+CrazySDK="*res://Utility/CrazySDK.gd"
+CraftingManager="*res://Core/CraftingManager.gd"
+MaterialCompiler="*res://Utility/MaterialCompiler.gd"
+EventBus="*res://Utility/EventBus.gd"
+CustomRules="*res://Utility/CustomRules.gd"
+InputBlocker="*res://Interface/InputBlocker.tscn"
+
+[debug]
+
+gdscript/warnings/unused_variable=false
+gdscript/warnings/unused_argument=false
+gdscript/warnings/narrowing_conversion=false
+gdscript/warnings/unused_signal=false
+gdscript/warnings/integer_division=false
+gdscript/warnings/deprecated_keyword=false
+shapes/collision/shape_color=Color( 0.701961, 0.541176, 0, 0.419608 )
+
+[display]
+
+window/size/width=1920
+window/size/height=1080
+window/dpi/allow_hidpi=true
+mouse_cursor/custom_image="res://Assets/Cursor/Cursor_default_small.png"
+mouse_cursor/custom_image_hotspot=Vector2( 20, 25 )
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/controller_icons/plugin.cfg", "res://addons/godot-sqlite/plugin.cfg", "res://addons/silent_wolf/plugin.cfg" )
+
+[gui]
+
+common/drop_mouse_on_gui_input_disabled=true
+theme/use_hidpi=true
+
+[importer_defaults]
+
+texture={
+"compress/bptc_ldr": 0,
+"compress/hdr_mode": 0,
+"compress/lossy_quality": 0.7,
+"compress/mode": 0,
+"compress/normal_map": 0,
+"detect_3d": true,
+"flags/anisotropic": false,
+"flags/filter": true,
+"flags/mipmaps": true,
+"flags/repeat": 0,
+"flags/srgb": 2,
+"process/HDR_as_SRGB": false,
+"process/fix_alpha_border": true,
+"process/invert_color": false,
+"process/normal_map_invert_y": false,
+"process/premult_alpha": false,
+"size_limit": 0,
+"stream": false,
+"svg/scale": 1.0
+}
+mp3={
+"loop": false,
+"loop_offset": 0
+}
+ogg_vorbis={
+"loop": false,
+"loop_offset": 0
+}
+
+[input]
+
+ui_accept={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":0,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+ui_select={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":0,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+ui_cancel={
+"deadzone": 0.5,
+"events": [  ]
+}
+ui_focus_next={
+"deadzone": 0.5,
+"events": [  ]
+}
+ui_focus_prev={
+"deadzone": 0.5,
+"events": [  ]
+}
+ui_left={
+"deadzone": 0.5,
+"events": [  ]
+}
+ui_right={
+"deadzone": 0.5,
+"events": [  ]
+}
+ui_up={
+"deadzone": 0.5,
+"events": [  ]
+}
+ui_down={
+"deadzone": 0.5,
+"events": [  ]
+}
+ui_page_up={
+"deadzone": 0.5,
+"events": [  ]
+}
+ui_page_down={
+"deadzone": 0.5,
+"events": [  ]
+}
+ui_home={
+"deadzone": 0.5,
+"events": [  ]
+}
+ui_end={
+"deadzone": 0.5,
+"events": [  ]
+}
+rotate_right={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":4,"canceled":false,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+rotate_left={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":5,"canceled":false,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+rotate_right_button={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":2,"canceled":false,"pressed":false,"doubleclick":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":82,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+reserve={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":2,"canceled":false,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+options={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777217,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+rotate_left_button={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":69,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+lock_combining={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":2,"canceled":false,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+shift_up={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777232,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+shift_left={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777231,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+shift_right={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777233,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+shift_down={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777234,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+push_to_storage={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777238,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+toggle_fullscreen={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":true,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777221,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+reroll={
+"deadzone": 0.5,
+"events": [  ]
+}
+start_battle={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777221,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+push_all_to_storage={
+"deadzone": 0.5,
+"events": [  ]
+}
+rotate_right_button_controller={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":5,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+rotate_left_button_controller={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":4,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+reserve_controller={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":6,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+options_controller={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":11,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+lock_combining_controller={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":6,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+shift_up_controller={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":12,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+shift_left_controller={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":14,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+shift_right_controller={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":15,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+shift_down_controller={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":13,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+push_to_storage_controller={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":3,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+reroll_controller={
+"deadzone": 0.5,
+"events": [  ]
+}
+start_battle_controller={
+"deadzone": 0.5,
+"events": [  ]
+}
+push_all_to_storage_controller={
+"deadzone": 0.5,
+"events": [  ]
+}
+move_cursor_left={
+"deadzone": 0.1,
+"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":0,"axis_value":-1.0,"script":null)
+ ]
+}
+move_cursor_right={
+"deadzone": 0.1,
+"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":0,"axis_value":1.0,"script":null)
+ ]
+}
+move_cursor_down={
+"deadzone": 0.1,
+"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":1,"axis_value":1.0,"script":null)
+ ]
+}
+move_cursor_up={
+"deadzone": 0.1,
+"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":1,"axis_value":-1.0,"script":null)
+ ]
+}
+grab_item={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"canceled":false,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+scroll_left={
+"deadzone": 0.2,
+"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":2,"axis_value":-1.0,"script":null)
+ ]
+}
+scroll_right={
+"deadzone": 0.2,
+"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":2,"axis_value":1.0,"script":null)
+ ]
+}
+scroll_down={
+"deadzone": 0.2,
+"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":3,"axis_value":1.0,"script":null)
+ ]
+}
+scroll_up={
+"deadzone": 0.2,
+"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":3,"axis_value":-1.0,"script":null)
+ ]
+}
+grab_item_controller={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":0,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+show_hints={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777240,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+combat_speed_up={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777233,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":15,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":5,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+combat_speed_down={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777231,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":14,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":4,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+combat_pause={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777234,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":13,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+combat_play={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777232,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":12,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+undo={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":true,"meta":false,"command":true,"pressed":false,"scancode":90,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+redo={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":true,"meta":false,"command":true,"pressed":false,"scancode":89,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+next_tab={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777233,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":5,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":15,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+previous_tab={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777231,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":4,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":14,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+tab_above={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777232,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":12,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+tab_below={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777234,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":13,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+show_hints_controller={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":7,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+open_library={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777218,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":10,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+open_library_controller={
+"deadzone": 0.5,
+"events": [  ]
+}
+undo_controller={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":4,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+redo_controller={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":5,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+edit_all={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":90,"unicode":0,"echo":false,"script":null)
+ ]
+}
+edit_bags={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":88,"unicode":0,"echo":false,"script":null)
+ ]
+}
+edit_items={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":67,"unicode":0,"echo":false,"script":null)
+ ]
+}
+edit_all_controller={
+"deadzone": 0.5,
+"events": [  ]
+}
+edit_bags_controller={
+"deadzone": 0.5,
+"events": [  ]
+}
+edit_items_controller={
+"deadzone": 0.5,
+"events": [  ]
+}
+toggle_grid_storage={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":71,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+toggle_grid_storage_controller={
+"deadzone": 0.5,
+"events": [  ]
+}
+right_click={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":2,"canceled":false,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+
+[layer_names]
+
+2d_physics/layer_1="Item"
+2d_physics/layer_2="Socket"
+2d_physics/layer_3="ItemTitle"
+2d_physics/layer_4="GrabbableItem"
+
+[locale]
+
+translations=PoolStringArray( "res://Sheets/CSV/Keywords.en.translation", "res://Sheets/CSV/Dialog.en.translation", "res://Sheets/CSV/Items.en.translation", "res://Sheets/CSV/Interface.en.translation", "res://Sheets/CSV/Interface.ja.translation", "res://Sheets/CSV/Keywords.ja.translation", "res://Sheets/CSV/Dialog.ja.translation", "res://Sheets/CSV/Items.ja.translation", "res://Sheets/CSV/Dialog.ko.translation", "res://Sheets/CSV/Interface.ko.translation", "res://Sheets/CSV/Items.ko.translation", "res://Sheets/CSV/Keywords.ko.translation", "res://Sheets/CSV/Dialog.de.translation", "res://Sheets/CSV/Interface.de.translation", "res://Sheets/CSV/Items.de.translation", "res://Sheets/CSV/Keywords.de.translation", "res://Sheets/CSV/Flavor.de.translation", "res://Sheets/CSV/Flavor.en.translation", "res://Sheets/CSV/Flavor.ja.translation", "res://Sheets/CSV/Flavor.ko.translation", "res://Sheets/CSV/Dialog.es.translation", "res://Sheets/CSV/Dialog.fr.translation", "res://Sheets/CSV/Dialog.pt_BR.translation", "res://Sheets/CSV/Dialog.ru.translation", "res://Sheets/CSV/ExclusiveItems.es.translation", "res://Sheets/CSV/ExclusiveItems.fr.translation", "res://Sheets/CSV/ExclusiveItems.pt_BR.translation", "res://Sheets/CSV/ExclusiveItems.ru.translation", "res://Sheets/CSV/Flavor.es.translation", "res://Sheets/CSV/Flavor.fr.translation", "res://Sheets/CSV/Flavor.pt_BR.translation", "res://Sheets/CSV/Flavor.ru.translation", "res://Sheets/CSV/Interface.es.translation", "res://Sheets/CSV/Interface.fr.translation", "res://Sheets/CSV/Interface.pt_BR.translation", "res://Sheets/CSV/Interface.ru.translation", "res://Sheets/CSV/Items.es.translation", "res://Sheets/CSV/Items.fr.translation", "res://Sheets/CSV/Items.pt_BR.translation", "res://Sheets/CSV/Items.ru.translation", "res://Sheets/CSV/Keywords.es.translation", "res://Sheets/CSV/Keywords.fr.translation", "res://Sheets/CSV/Keywords.pt_BR.translation", "res://Sheets/CSV/Keywords.ru.translation", "res://Sheets/CSV/Dialog.zh_Hans_CN.translation", "res://Sheets/CSV/Dialog.zh_Hant_TW.translation", "res://Sheets/CSV/ExclusiveItems.zh_Hans_CN.translation", "res://Sheets/CSV/ExclusiveItems.zh_Hant_TW.translation", "res://Sheets/CSV/Flavor.zh_Hans_CN.translation", "res://Sheets/CSV/Flavor.zh_Hant_TW.translation", "res://Sheets/CSV/Interface.zh_Hans_CN.translation", "res://Sheets/CSV/Interface.zh_Hant_TW.translation", "res://Sheets/CSV/Items.zh_Hans_CN.translation", "res://Sheets/CSV/Items.zh_Hant_TW.translation", "res://Sheets/CSV/Keywords.zh_Hans_CN.translation", "res://Sheets/CSV/Keywords.zh_Hant_TW.translation", "res://Sheets/CSV/Full.de.translation", "res://Sheets/CSV/Full.en.translation", "res://Sheets/CSV/Full.es.translation", "res://Sheets/CSV/Full.fr.translation", "res://Sheets/CSV/Full.ja.translation", "res://Sheets/CSV/Full.ko.translation", "res://Sheets/CSV/Full.pt_BR.translation", "res://Sheets/CSV/Full.ru.translation", "res://Sheets/CSV/Full.zh_Hans_CN.translation", "res://Sheets/CSV/Full.zh_Hant_TW.translation" )
+locale_filter=[ 1, [ "de", "en", "ja", "ko", "zh" ] ]
+
+[logging]
+
+file_logging/max_log_files=20
+
+[network]
+
+limits/debugger_stdout/max_chars_per_second=304800
+limits/debugger_stdout/max_warnings_per_second=300
+
+[physics]
+
+common/enable_pause_aware_picking=true
+2d/thread_model=0
+
+[rendering]
+
+2d/options/ninepatch_mode=0
+environment/default_environment="res://default_env.tres"

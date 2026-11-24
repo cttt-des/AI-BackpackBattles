@@ -8,8 +8,8 @@ func onPrepare():
 		chessboards[0].addSpeed(speed)
 
 const firstKnightRound = 1
-const firstRookRound = 6
-const firstQueenRound = 14
+const firstRookRound = 5
+const firstQueenRound = 13
 
 
 func onShopEntered():
@@ -17,7 +17,7 @@ func onShopEntered():
 	if not chessboards.empty():
 		var weights = [0, 0, 0, 0, 0, 0]
 		var roundsPassed = Game.curRound - Game.SKILL_ROUND1
-		weights[0] = 3
+		weights[0] = 1
 		weights[1] = (roundsPassed - firstKnightRound) * 2 if roundsPassed > firstKnightRound else 0
 		weights[2] = weights[1]
 		weights[3] = (roundsPassed - firstRookRound) * 2 if roundsPassed > firstRookRound else 0

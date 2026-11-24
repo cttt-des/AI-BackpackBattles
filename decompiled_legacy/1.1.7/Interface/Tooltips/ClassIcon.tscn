@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/TitleScreen/NeutralIcon.png" type="Texture" id=1]
+[ext_resource path="res://Interface/Tooltips/TooltipClassIcon.gd" type="Script" id=2]
+
+[node name="ClassIcon" type="Control"]
+margin_right = 32.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 42, 32 )
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -5, -9 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 1 )
+centered = false

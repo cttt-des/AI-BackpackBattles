@@ -2,7 +2,7 @@
 """临时探针：量化解包 GDScript 战斗路径与 UI/物理/音频/日志的耦合度。"""
 import re, os, collections
 
-BASE = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "decompiled_full")
+BASE = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "decompiled_legacy/1.1.7")
 
 COMBAT_FUNCS_ITEM = {
  "_physics_process","prepare","onPrepare","preCombatStart","onPreCombatStart",

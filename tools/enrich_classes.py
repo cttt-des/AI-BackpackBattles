@@ -23,7 +23,7 @@ import sys
 from datetime import datetime
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CSV_PATH = os.path.join(ROOT, "decompiled_full", "Sheets", "CSV", "ItemData_e.csv")
+CSV_PATH = os.path.join(ROOT, "decompiled_legacy/1.1.7", "Sheets", "CSV", "ItemData_e.csv")
 DB_PATH = os.path.join(ROOT, "assets", "battle_items.json")
 
 # ItemDescriptor.gd StuffedClasses 枚举

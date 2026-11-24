@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""audit_item_transcript.py — gd_core_items 移植层 vs decompiled_full 原版 逐函数语义对账
+"""audit_item_transcript.py — gd_core_items 移植层 vs decompiled_legacy/1.1.7 原版 逐函数语义对账
 
 用法: python tools/audit_item_transcript.py
 输出: 每个物品中，函数体 token 序列不一致的函数列表。
@@ -11,7 +11,7 @@ import re
 import sys
 
 _BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SRC_ORIG = os.path.join(_BASE, "decompiled_full", "Items")
+SRC_ORIG = os.path.join(_BASE, "decompiled_legacy/1.1.7", "Items")
 SRC_PORT = os.path.join(_BASE, "gd_core_items")
 
 FUNC_RE = re.compile(r"^func\s+([A-Za-z_][A-Za-z0-9_]*)\s*\(", re.M)

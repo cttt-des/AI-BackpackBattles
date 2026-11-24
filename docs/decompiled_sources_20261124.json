@@ -1,0 +1,38 @@
+{
+  "date": "2026-11-24",
+  "policy": "Current installed source at decompiled_full; legacy generators pinned to 1.1.7; binary assets remain local.",
+  "compatibility_alias": "output/_v1110/decompiled",
+  "provenance_manifest": "docs/decompiled_source_manifest_1.1.10.json",
+  "snapshots": [
+    {
+      "version": "1.1.10",
+      "original_path": "output/_v1110/decompiled",
+      "path": "decompiled_full",
+      "text": {
+        "files": 2490,
+        "bytes": 9514991,
+        "sha256": "05520bd29e885226d7d52f76830be7f07d4fb1e8bc0a047bf80c2ef2acd3d35e"
+      },
+      "full": {
+        "files": 15388,
+        "bytes": 566384082,
+        "sha256": "9bc6619b6f4f74e3e2eabfffcbd9ab8f93d2b92235e93c322e0eda6291f21ef1"
+      }
+    },
+    {
+      "version": "1.1.7",
+      "original_path": "decompiled_full",
+      "path": "decompiled_legacy/1.1.7",
+      "text": {
+        "files": 2486,
+        "bytes": 9495240,
+        "sha256": "c40d5fa83916574ac7d09941461a8dfe5f46fdcda3cb6936bf279fe9ffc3d772"
+      },
+      "full": {
+        "files": 2486,
+        "bytes": 9495240,
+        "sha256": "c40d5fa83916574ac7d09941461a8dfe5f46fdcda3cb6936bf279fe9ffc3d772"
+      }
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """build_history.py — 从游戏历史记录数据库导出阵容
 
-真值源（decompiled_full/）：
+真值源（decompiled_legacy/1.1.7/）：
   * history.db（SQLite）：Utility/BuildHistoryDB.gd
     - runData (runID, class, loadout, rank, version, time, subclass, skill1, skill2, custom)
     - roundData (runID, roundID, result, tries, health, stamina, buildInfo)

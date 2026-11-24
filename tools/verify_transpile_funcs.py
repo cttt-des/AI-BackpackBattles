@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """verify_transpile_funcs.py — 转写函数完整性对账（2026-09-28 定型）。
 
-两段对账：decompiled_full(原版) → gd_core_items(直挂 gd) → gd_core_py(Python)：
+两段对账：decompiled_legacy/1.1.7(原版) → gd_core_items(直挂 gd) → gd_core_py(Python)：
   每个脚本列出「原版有、转写缺」的函数 → 静默剥离实锤。
 """
 import os
@@ -41,10 +41,10 @@ def map_orig_to_kern():
         if not m:
             continue
         kern = os.path.join(ROOT, m.group(1).replace("/", os.sep))
-        # 找原版脚本：同名 .gd 于 decompiled_full
+        # 找原版脚本：同名 .gd 于 decompiled_legacy/1.1.7
         base = os.path.splitext(os.path.basename(kern))[0]
         cands = []
-        for dp, dns, fns in os.walk(os.path.join(ROOT, "decompiled_full")):
+        for dp, dns, fns in os.walk(os.path.join(ROOT, "decompiled_legacy/1.1.7")):
             if ".import" in dp or "Sprites" in dp or ".autoconverted" in dp:
                 continue
             if base + ".gd" in fns:

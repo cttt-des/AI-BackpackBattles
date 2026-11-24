@@ -1,0 +1,80 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Items/Item.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Items/Particles/FlameBadgeParticles.material" type="Material" id=2]
+[ext_resource path="res://Items/Exclusive/Sprites/FlameBadge.png" type="Texture" id=3]
+[ext_resource path="res://Shader/AdditiveCanvasItemMaterial.tres" type="Material" id=4]
+[ext_resource path="res://Assets/Light/CircleLight.png" type="Texture" id=5]
+[ext_resource path="res://Items/Exclusive/FlameBadge.gd" type="Script" id=6]
+[ext_resource path="res://Utility/AutoHideParticles.gd" type="Script" id=7]
+[ext_resource path="res://Assets/Particles/GlowingDot_small.png" type="Texture" id=8]
+
+[sub_resource type="PhysicsMaterial" id=1]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="Animation" id=5]
+resource_name = "Pulse"
+length = 5.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Glow:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.8 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.317647 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="Flame Badge" instance=ExtResource( 1 )]
+physics_material_override = SubResource( 1 )
+script = ExtResource( 6 )
+
+[node name="CollisionMap" parent="." index="0"]
+position = Vector2( 40, 40 )
+tile_data = PoolIntArray( -1, 3, 0 )
+
+[node name="Icon" parent="." index="1"]
+position = Vector2( -1, 0 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+
+[node name="SpecificDragParticles" type="Particles2D" parent="Icon" index="0"]
+modulate = Color( 2, 2, 2, 1 )
+position = Vector2( 0, 14 )
+emitting = false
+amount = 7
+lifetime = 0.56
+local_coords = false
+process_material = ExtResource( 2 )
+texture = ExtResource( 8 )
+script = ExtResource( 7 )
+
+[node name="Glow" type="Sprite" parent="Icon" index="1"]
+modulate = Color( 1, 1, 1, 0.568602 )
+self_modulate = Color( 0.901961, 0.419608, 0.215686, 0.835294 )
+material = ExtResource( 4 )
+scale = Vector2( 0.585, 0.65 )
+texture = ExtResource( 5 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Icon" index="2"]
+autoplay = "Pulse"
+anims/Pulse = SubResource( 5 )
+
+[node name="Sockets" parent="Icon" index="3"]
+scale = Vector2( 2, 2 )
+
+[node name="CollisionPolygon2D" parent="ClickArea" index="0"]
+polygon = PoolVector2Array( -40, -40, 40, -40, 40, 40, -40, 40 )
+
+[node name="BottomCenter" parent="." index="3"]
+position = Vector2( 0, 37 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="7"]
+visible = false
+polygon = PoolVector2Array( -20, -13, -15, -35, 2, -36, 14, -28, 28, 7, 24, 25, 8, 36, -11, 36, -28, 23, -29, 5 )

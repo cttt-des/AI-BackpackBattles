@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """extract_linkage.py — 物品联动（Affected）专项提取器
 
-真值源：decompiled_full/Items/**.gd（GDEC 解密后的 GDScript）。
+真值源：decompiled_legacy/1.1.7/Items/**.gd（GDEC 解密后的 GDScript）。
 
 原版联动机制（对齐 Items/Item.gd）：
   * 影响格分四色：Affected.Primary=0 / Secondary=2 / Tertiary=4 / Lightning=7
@@ -206,7 +206,7 @@ def scan(idx: Dict[str, str], items: Dict[str, dict], verbose: bool = False):
 
 def report(stats, own_stats, per_item, items):
     print("=" * 70)
-    print("联动方法统计（真值源 decompiled_full/Items/**.gd，含 extends 继承）")
+    print("联动方法统计（真值源 decompiled_legacy/1.1.7/Items/**.gd，含 extends 继承）")
     print("=" * 70)
     print(f"  {'方法':<40}{'自身':>6}{'可用':>6}   示例")
     for m in LINKAGE_METHODS:

@@ -9,7 +9,7 @@
   gain     -> 被动授予（仅用于“无脚本”的物品，避免与脚本 onCombatStart 重复）
   textEffect -> 展示用
 
-效果 DSL 仍从 decompiled_full/Items/*.gd 解析:
+效果 DSL 仍从 decompiled_legacy/1.1.7/Items/*.gd 解析:
   doCooldownEffect / onTriggerPotion / onCombatStart（新增）
 """
 import csv
@@ -19,7 +19,7 @@ import re
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ASSETS = os.path.join(BASE, 'assets')
-DECOMP = os.path.join(BASE, 'decompiled_full', 'Items')
+DECOMP = os.path.join(BASE, 'decompiled_legacy/1.1.7', 'Items')
 CSV_PATH = os.path.join(BASE, 'oracle', 'Sheets', 'CSV', 'ItemData.csv')
 
 # ---------------- 脚本效果解析 ----------------
@@ -277,7 +277,7 @@ def _types(cat: str, dmg_type: str, r: dict) -> list:
 
 
 def _find_script(name: str) -> str:
-    """在 decompiled_full/Items 及其子目录中按文件名匹配 .gd（兼容大小写/空格/连字符/品质前缀/New后缀）。"""
+    """在 decompiled_legacy/1.1.7/Items 及其子目录中按文件名匹配 .gd（兼容大小写/空格/连字符/品质前缀/New后缀）。"""
     norm0 = name.lower().replace(' ', '').replace('-', '')
     candidates = [name, name.replace(' ', ''), name.replace(' ', '').lower(),
                   name.lower(), name.replace('-', ''), name.replace('-', '').lower(),

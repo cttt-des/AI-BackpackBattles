@@ -1,0 +1,1684 @@
+[gd_scene load_steps=96 format=2]
+
+[ext_resource path="res://Assets/Buffs/Poison.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Buffs/Vampirism.png" type="Texture" id=2]
+[ext_resource path="res://Interface/Combat/CharacterStatsDisplay.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Buffs/Spikes.png" type="Texture" id=4]
+[ext_resource path="res://Interface/NonLocalized_KeepFont.gd" type="Script" id=5]
+[ext_resource path="res://Assets/Buffs/Lucky.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Buffs/Blind.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Light/RingLight.png" type="Texture" id=8]
+[ext_resource path="res://Assets/StaminabarNoise.tres" type="Texture" id=9]
+[ext_resource path="res://Interface/Staminabar.gd" type="Script" id=10]
+[ext_resource path="res://Shader/Heathbar.gdshader" type="Shader" id=11]
+[ext_resource path="res://Core/Character.gd" type="Script" id=12]
+[ext_resource path="res://Interface/Healthbar.gd" type="Script" id=13]
+[ext_resource path="res://Shader/BattleRageSecondaryParticles.material" type="Material" id=14]
+[ext_resource path="res://Shader/Item.material" type="Material" id=15]
+[ext_resource path="res://Assets/Banner1.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Fonts/LibreBaskerville-Bold.ttf" type="DynamicFontData" id=17]
+[ext_resource path="res://Assets/Fonts/LibreBaskerville-Regular.ttf" type="DynamicFontData" id=18]
+[ext_resource path="res://Assets/StunBird.png" type="Texture" id=19]
+[ext_resource path="res://Interface/EmptyStylebox.tres" type="StyleBox" id=20]
+[ext_resource path="res://Interface/CooldownStack.gd" type="Script" id=21]
+[ext_resource path="res://Items/Tiles/CanAdd.png" type="Texture" id=22]
+[ext_resource path="res://Items/Tiles/CantAdd.png" type="Texture" id=23]
+[ext_resource path="res://Utility/LocalizedControl.gd" type="Script" id=24]
+[ext_resource path="res://Interface/StackCounter.tscn" type="PackedScene" id=25]
+[ext_resource path="res://Interface/Combat/PoisonCounterAnimation.tscn" type="PackedScene" id=26]
+[ext_resource path="res://CharacterClasses/Ranger/RangerChibiSprite.tscn" type="PackedScene" id=27]
+[ext_resource path="res://Interface/Combat/RegenerationCounterAnimation.tscn" type="PackedScene" id=28]
+[ext_resource path="res://Interface/Combat/CharacterLoseParticles.material" type="Material" id=29]
+[ext_resource path="res://Assets/Particles/SlashParticle2.png" type="Texture" id=30]
+[ext_resource path="res://Assets/Particles/GlowingDot.png" type="Texture" id=31]
+[ext_resource path="res://Interface/NonLocalizedControl.gd" type="Script" id=32]
+[ext_resource path="res://Utility/AutoHideParticles.gd" type="Script" id=33]
+[ext_resource path="res://Interface/Combat/CharacterStunParticles.material" type="Material" id=34]
+[ext_resource path="res://Interface/Combat/CharacterWinParticles.material" type="Material" id=35]
+[ext_resource path="res://Interface/Combat/NameBanner_Pyromancer.png" type="Texture" id=36]
+[ext_resource path="res://Interface/Combat/StackHudWithAnimation.gd" type="Script" id=37]
+[ext_resource path="res://Interface/Combat/VampirismCounterAnimation.tscn" type="PackedScene" id=38]
+[ext_resource path="res://Interface/Combat/SpikesCounterAnimation.tscn" type="PackedScene" id=39]
+[ext_resource path="res://Assets/Character/BarBorder1.png" type="Texture" id=45]
+[ext_resource path="res://Assets/Noise/FireNoise.png" type="Texture" id=47]
+[ext_resource path="res://Assets/Buffs/Regeneration.png" type="Texture" id=48]
+[ext_resource path="res://Assets/Buffs/Mana.png" type="Texture" id=50]
+[ext_resource path="res://Assets/Buffs/Heat.png" type="Texture" id=51]
+[ext_resource path="res://Assets/Buffs/Weak.png" type="Texture" id=52]
+[ext_resource path="res://Assets/Character/Sword.png" type="Texture" id=53]
+[ext_resource path="res://Assets/Character/CombatSheet.png" type="Texture" id=55]
+[ext_resource path="res://Assets/Buffs/Cold.png" type="Texture" id=56]
+[ext_resource path="res://Assets/Buffs/Empower.png" type="Texture" id=60]
+[ext_resource path="res://Items/Materials/InvulnerabilityBubbleMaterial.tres" type="Material" id=66]
+[ext_resource path="res://Assets/Buffs/Protection.png" type="Texture" id=67]
+[ext_resource path="res://Assets/Particles/LineParticle.png" type="Texture" id=69]
+[ext_resource path="res://Shader/BattleRageParticles.material" type="Material" id=70]
+[ext_resource path="res://Shader/BattleRageAura.material" type="Material" id=71]
+[ext_resource path="res://Shader/BattleRagePulse.material" type="Material" id=72]
+[ext_resource path="res://Interface/FocusGrabbingButton.gd" type="Script" id=74]
+
+[sub_resource type="Animation" id=62]
+resource_name = "Invulnerable"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/staticFactor")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 0.574349, 0.554785, 1 ),
+"update": 0,
+"values": [ -1.0, 0.015, -0.086 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=66]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=67]
+resource_name = "Vulnerable"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/staticFactor")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1.86607, 1 ),
+"update": 0,
+"values": [ -0.086, -1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=77]
+resource_name = "BattleRage"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/staticFactor")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.92 ),
+"transitions": PoolRealArray( 0.5, 0.5, 1 ),
+"update": 0,
+"values": [ -0.3, -0.3, -0.1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../BattleRagePulse:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.44 ),
+"transitions": PoolRealArray( 1, 2 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 6, 7 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../BattleRagePulse:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.98 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("../BattleRagePulse:material:shader_param/staticFactor")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.2, 0.6 ),
+"transitions": PoolRealArray( 1, 1.6245, 1 ),
+"update": 0,
+"values": [ -0.3, 0.1, -0.48 ]
+}
+
+[sub_resource type="Animation" id=78]
+resource_name = "BattleRageEnded"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/staticFactor")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1.86607, 1 ),
+"update": 0,
+"values": [ -0.086, -1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../BattleRagePulse:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=79]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=80]
+resource_name = "Vulnerable"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/staticFactor")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1.86607, 1 ),
+"update": 0,
+"values": [ -0.086, -1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="DynamicFont" id=46]
+size = 40
+outline_size = 3
+outline_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+use_filter = true
+font_data = ExtResource( 18 )
+
+[sub_resource type="DynamicFont" id=24]
+size = 25
+outline_size = 3
+outline_color = Color( 0.235294, 0.14902, 0.113725, 1 )
+use_filter = true
+font_data = ExtResource( 17 )
+
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0, 0.00997506, 0.148387, 0.316129, 1 )
+colors = PoolColorArray( 0.0823529, 0.054902, 0.0431373, 1, 0.6875, 0.102075, 0.029541, 1, 0.837891, 0.182151, 0.132557, 1, 1, 0.293762, 0.220703, 1, 1, 0.679688, 0.679688, 1 )
+
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
+width = 200
+
+[sub_resource type="ShaderMaterial" id=3]
+resource_local_to_scene = true
+shader = ExtResource( 11 )
+shader_param/healthPercentage = 0.444
+shader_param/lastDamagePercentage = 0.229
+shader_param/scroll1 = Vector2( -0.0184, 0.0041 )
+shader_param/scroll2 = Vector2( -0.014, -0.0193 )
+shader_param/scale1 = Vector2( 1.8855, 0.344 )
+shader_param/scale2 = Vector2( 2.0093, 0.2629 )
+shader_param/damageDiffColor = Color( 1, 0.815686, 0.815686, 1 )
+shader_param/bonusDiffColor = Color( 0.564706, 1, 0.447059, 1 )
+shader_param/noise = ExtResource( 47 )
+shader_param/noise2 = ExtResource( 47 )
+shader_param/gradientMapping = SubResource( 5 )
+
+[sub_resource type="Gradient" id=17]
+offsets = PoolRealArray( 0, 0.0483193, 0.322581, 1 )
+colors = PoolColorArray( 0.0823529, 0.054902, 0.0431373, 1, 0.296875, 0.232842, 0.0133362, 1, 1, 0.900879, 0.09375, 1, 1, 0.985981, 0.425781, 1 )
+
+[sub_resource type="GradientTexture" id=63]
+gradient = SubResource( 17 )
+width = 200
+
+[sub_resource type="ShaderMaterial" id=64]
+resource_local_to_scene = true
+shader = ExtResource( 11 )
+shader_param/healthPercentage = 0.52
+shader_param/lastDamagePercentage = 0.456
+shader_param/scroll1 = Vector2( 0.05, 0.05 )
+shader_param/scroll2 = Vector2( -0.05, -0.05 )
+shader_param/scale1 = Vector2( 3.372, 0.343 )
+shader_param/scale2 = Vector2( 2.92, 0.583 )
+shader_param/damageDiffColor = Color( 1, 0.984314, 0.729412, 1 )
+shader_param/bonusDiffColor = Color( 0.623529, 1, 0.470588, 1 )
+shader_param/noise = ExtResource( 9 )
+shader_param/noise2 = ExtResource( 9 )
+shader_param/gradientMapping = SubResource( 63 )
+
+[sub_resource type="Animation" id=49]
+resource_name = "Decrease"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Color( 0.682353, 0.682353, 0.682353, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.123632, 0.3 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.8, 0.8 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=50]
+resource_name = "Increase"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Color( 2, 2, 2, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.123632, 0.3 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.3, 1.3 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=51]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=52]
+resource_name = "Decrease"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Color( 0.682353, 0.682353, 0.682353, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.123632, 0.3 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.8, 0.8 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=53]
+resource_name = "Increase"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Color( 2, 2, 2, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.123632, 0.3 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.3, 1.3 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=54]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=71]
+resource_name = "Decrease"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Color( 0.682353, 0.682353, 0.682353, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.123632, 0.3 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.8, 0.8 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=72]
+resource_name = "Increase"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Color( 2, 2, 2, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.123632, 0.3 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.3, 1.3 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=73]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=55]
+resource_name = "Decrease"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Color( 0.682353, 0.682353, 0.682353, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.123632, 0.3 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.8, 0.8 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=56]
+resource_name = "Increase"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Color( 2, 2, 2, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.123632, 0.3 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.3, 1.3 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=57]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=58]
+resource_name = "Decrease"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Color( 0.682353, 0.682353, 0.682353, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.123632, 0.3 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.8, 0.8 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=59]
+resource_name = "Increase"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Color( 2, 2, 2, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.123632, 0.3 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.3, 1.3 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=60]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "StunEnd"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Mirroring/StunParticles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Mirroring/StunParticles:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0, 0 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("Mirroring/StunParticles")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "deactivate"
+} ]
+}
+
+[sub_resource type="Animation" id=65]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Mirroring/StunParticles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Mirroring/StunParticles:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( -2, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("Mirroring/StunParticles")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "activate"
+} ]
+}
+
+[sub_resource type="Animation" id=41]
+resource_name = "Block"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Mirroring/Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0610814, 0.2 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.784314, 0.784314, 0.784314, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Mirroring/Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0290093, 0.2 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.03, 0.97 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=42]
+resource_name = "Fatigue"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Mirroring/Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0610814, 0.2 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.729412, 0.658824, 0.827451, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Mirroring/Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0290093, 0.2 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.03, 0.97 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=43]
+resource_name = "Hit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Mirroring/Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0610814, 0.2 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0.654902, 0.654902, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Mirroring/Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0290093, 0.2 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.03, 0.97 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=81]
+resource_name = "Lose"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Mirroring/Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0610814, 1 ),
+"transitions": PoolRealArray( -2, 2, -2 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.988235, 0.439216, 0.439216, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Mirroring/Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0290093, 1 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.03, 0.955 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=44]
+resource_name = "Poison"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Mirroring/Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0610814, 0.2 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.494118, 1, 0.466667, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Mirroring/Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0290093, 0.2 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.03, 0.97 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=45]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Mirroring/Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Mirroring/Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=82]
+resource_name = "Win"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Mirroring/Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0646595, 1 ),
+"transitions": PoolRealArray( -2, 2, -2 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1.3, 1.3, 1.2, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Mirroring/Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 1 ) ]
+}
+
+[node name="Character" type="Node2D"]
+z_index = 2
+script = ExtResource( 12 )
+
+[node name="Mirroring" type="Node2D" parent="."]
+
+[node name="Sprite" type="Node2D" parent="Mirroring"]
+position = Vector2( 224, -56 )
+z_index = 2
+
+[node name="Sprite" parent="Mirroring/Sprite" instance=ExtResource( 27 )]
+
+[node name="Button" type="Button" parent="Mirroring/Sprite" groups=["NotLocalized"]]
+margin_left = -128.0
+margin_top = -160.0
+margin_right = 112.0
+margin_bottom = 176.0
+custom_styles/focus = ExtResource( 20 )
+flat = true
+script = ExtResource( 74 )
+
+[node name="DamageNumberPosition" type="Position2D" parent="Mirroring/Sprite"]
+position = Vector2( 32, 16 )
+
+[node name="AnimationSpeedTimer" type="Timer" parent="Mirroring/Sprite"]
+one_shot = true
+autostart = true
+
+[node name="InvulnerabilityBubble" type="Sprite" parent="Mirroring/Sprite"]
+visible = false
+self_modulate = Color( 2, 2, 2, 0.82 )
+material = ExtResource( 66 )
+position = Vector2( -12.5, 0.318802 )
+scale = Vector2( 4.97, 5.26638 )
+z_index = -2
+texture = ExtResource( 8 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Mirroring/Sprite/InvulnerabilityBubble"]
+anims/Invulnerable = SubResource( 62 )
+anims/RESET = SubResource( 66 )
+anims/Vulnerable = SubResource( 67 )
+
+[node name="BattleRagePulse" type="Sprite" parent="Mirroring/Sprite"]
+visible = false
+self_modulate = Color( 2, 2, 2, 1 )
+material = ExtResource( 72 )
+position = Vector2( -12.5, -11.1811 )
+scale = Vector2( 6, 7 )
+z_index = -3
+texture = ExtResource( 8 )
+
+[node name="BattleRageAura" type="Sprite" parent="Mirroring/Sprite"]
+visible = false
+self_modulate = Color( 2, 2, 2, 1 )
+material = ExtResource( 71 )
+position = Vector2( -12.5, -11.1811 )
+scale = Vector2( 5, 5.5 )
+z_index = -3
+texture = ExtResource( 8 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Mirroring/Sprite/BattleRageAura"]
+anims/BattleRage = SubResource( 77 )
+anims/BattleRageEnded = SubResource( 78 )
+anims/RESET = SubResource( 79 )
+anims/Vulnerable = SubResource( 80 )
+
+[node name="BattleRageParticles" type="Particles2D" parent="Mirroring/Sprite"]
+modulate = Color( 4, 4, 4, 1 )
+position = Vector2( 5, -13 )
+z_index = -3
+emitting = false
+amount = 24
+lifetime = 0.5
+process_material = ExtResource( 70 )
+texture = ExtResource( 69 )
+script = ExtResource( 33 )
+
+[node name="BattleRageParticles2" type="Particles2D" parent="Mirroring/Sprite"]
+visible = false
+modulate = Color( 4, 4, 4, 0.7 )
+position = Vector2( 4, 161 )
+z_index = 1
+emitting = false
+amount = 14
+lifetime = 0.5
+process_material = ExtResource( 14 )
+texture = ExtResource( 69 )
+script = ExtResource( 33 )
+
+[node name="StunParticles" type="Particles2D" parent="Mirroring"]
+position = Vector2( -128, -216 )
+z_index = 3
+emitting = false
+amount = 5
+preprocess = 1.0
+process_material = ExtResource( 34 )
+texture = ExtResource( 19 )
+script = ExtResource( 33 )
+
+[node name="LoseParticles" type="Particles2D" parent="Mirroring"]
+visible = false
+modulate = Color( 4, 4, 4, 1 )
+self_modulate = Color( 1, 0.262745, 0.262745, 1 )
+position = Vector2( -130, -40 )
+z_index = 4
+emitting = false
+amount = 6
+one_shot = true
+explosiveness = 0.72
+process_material = ExtResource( 29 )
+texture = ExtResource( 30 )
+script = ExtResource( 33 )
+
+[node name="WinParticles" type="Particles2D" parent="Mirroring"]
+visible = false
+modulate = Color( 4, 4, 4, 0.42 )
+position = Vector2( -131, 210 )
+z_index = 4
+emitting = false
+amount = 20
+lifetime = 1.3
+one_shot = true
+speed_scale = 1.1
+explosiveness = 1.0
+process_material = ExtResource( 35 )
+texture = ExtResource( 31 )
+script = ExtResource( 33 )
+
+[node name="CombatUI" type="Node2D" parent="."]
+position = Vector2( 232, 520 )
+
+[node name="Sheet" type="Sprite" parent="CombatUI"]
+position = Vector2( 384, -40 )
+scale = Vector2( 0.987085, 1 )
+texture = ExtResource( 55 )
+
+[node name="NameBanner" type="Sprite" parent="CombatUI/Sheet"]
+position = Vector2( -7.09155, -185 )
+texture = ExtResource( 36 )
+
+[node name="Sword" type="Sprite" parent="CombatUI/Sheet"]
+position = Vector2( 226.931, -200 )
+z_index = 3
+texture = ExtResource( 53 )
+
+[node name="Name" type="Label" parent="CombatUI"]
+margin_left = 184.0
+margin_top = -240.0
+margin_right = 587.0
+margin_bottom = -189.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_colors/font_color_shadow = Color( 0.235294, 0.14902, 0.113725, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 46 )
+text = "ChickenChaser69"
+align = 1
+autowrap = true
+clip_text = true
+script = ExtResource( 32 )
+
+[node name="Healthbar" type="Node2D" parent="CombatUI"]
+position = Vector2( 325, -160 )
+script = ExtResource( 13 )
+
+[node name="Label2" type="Label" parent="CombatUI/Healthbar"]
+margin_left = -118.0
+margin_top = -1.0
+margin_right = 11.0
+margin_bottom = 31.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_colors/font_color_shadow = Color( 0.235294, 0.14902, 0.113725, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 24 )
+text = "Health"
+script = ExtResource( 24 )
+translationKey = "Health_NAME"
+
+[node name="Bar" type="ColorRect" parent="CombatUI/Healthbar"]
+material = SubResource( 3 )
+margin_left = 14.0
+margin_top = -4.0
+margin_right = 230.0
+margin_bottom = 29.0
+
+[node name="BarBorder1" type="Sprite" parent="CombatUI/Healthbar"]
+position = Vector2( 122.481, 12.133 )
+scale = Vector2( 0.707816, 0.759259 )
+texture = ExtResource( 45 )
+
+[node name="Label" type="Label" parent="CombatUI/Healthbar"]
+margin_left = 117.0
+margin_top = -3.0
+margin_right = 214.0
+margin_bottom = 29.0
+custom_fonts/font = SubResource( 24 )
+text = "40/100"
+align = 2
+script = ExtResource( 5 )
+
+[node name="Tween" type="Tween" parent="CombatUI/Healthbar"]
+
+[node name="Staminarbar" type="Node2D" parent="CombatUI"]
+position = Vector2( 326, -114 )
+script = ExtResource( 10 )
+
+[node name="Label2" type="Label" parent="CombatUI/Staminarbar"]
+margin_left = -120.0
+margin_top = 2.0
+margin_right = 11.0
+margin_bottom = 34.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_colors/font_color_shadow = Color( 0.235294, 0.14902, 0.113725, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 24 )
+text = "Stamina"
+script = ExtResource( 24 )
+translationKey = "Stamina_NAME"
+
+[node name="Bar" type="ColorRect" parent="CombatUI/Staminarbar"]
+material = SubResource( 64 )
+margin_left = 16.0
+margin_top = -2.0
+margin_right = 230.0
+margin_bottom = 33.0
+
+[node name="BarBorder2" type="Sprite" parent="CombatUI/Staminarbar"]
+position = Vector2( 122.875, 15 )
+scale = Vector2( 0.703968, 0.759259 )
+texture = ExtResource( 45 )
+flip_h = true
+flip_v = true
+
+[node name="Label" type="Label" parent="CombatUI/Staminarbar"]
+margin_left = 100.0
+margin_top = -1.0
+margin_right = 212.0
+margin_bottom = 31.0
+custom_fonts/font = SubResource( 24 )
+text = "1.4/6"
+align = 2
+script = ExtResource( 5 )
+
+[node name="Block" parent="CombatUI" instance=ExtResource( 25 )]
+position = Vector2( 576, -155 )
+z_index = 3
+keyword = "bl"
+scaleThreshold = 250
+
+[node name="Sprite" parent="CombatUI/Block" index="0"]
+position = Vector2( 1, 7 )
+scale = Vector2( 0.603511, 0.493827 )
+
+[node name="Label" parent="CombatUI/Block" index="1"]
+margin_left = -31.0
+margin_top = -12.0
+margin_right = 31.0
+margin_bottom = 29.0
+
+[node name="CanAdd" type="Sprite" parent="CombatUI"]
+visible = false
+modulate = Color( 1, 1, 1, 0.560784 )
+position = Vector2( 400, 1 )
+scale = Vector2( 5.1, 1.0375 )
+texture = ExtResource( 22 )
+
+[node name="Buffs" type="Label" parent="CombatUI"]
+margin_left = 205.0
+margin_top = -58.0
+margin_right = 310.0
+margin_bottom = -26.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_colors/font_color_shadow = Color( 0.235294, 0.14902, 0.113725, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 24 )
+text = "Buffs"
+script = ExtResource( 24 )
+translationKey = "UI_Buffs"
+
+[node name="Regeneration" parent="CombatUI" instance=ExtResource( 25 )]
+position = Vector2( 328, -42 )
+script = ExtResource( 21 )
+keyword = "regen"
+cooldown = 2.0
+offset = 1.0
+activationAnimation = ExtResource( 28 )
+
+[node name="Sprite" parent="CombatUI/Regeneration" index="0"]
+material = ExtResource( 15 )
+position = Vector2( 8, 8 )
+texture = ExtResource( 48 )
+
+[node name="Label" parent="CombatUI/Regeneration" index="1"]
+margin_left = -32.0
+margin_top = 0.0
+margin_right = 37.0
+margin_bottom = 41.0
+
+[node name="TooltipArea" parent="CombatUI/Regeneration" index="3"]
+margin_left = -34.0
+margin_top = -29.0
+margin_right = 45.0
+margin_bottom = 36.0
+
+[node name="Lucky" parent="CombatUI" instance=ExtResource( 25 )]
+position = Vector2( 418, -63 )
+keyword = "lucky"
+
+[node name="Sprite" parent="CombatUI/Lucky" index="0"]
+position = Vector2( -1.92978, 25.9298 )
+scale = Vector2( 0.475878, 0.475878 )
+texture = ExtResource( 6 )
+
+[node name="Label" parent="CombatUI/Lucky" index="1"]
+margin_left = -32.0
+margin_top = 20.0
+margin_right = 37.0
+margin_bottom = 61.0
+
+[node name="TooltipArea" parent="CombatUI/Lucky" index="3"]
+margin_left = -37.0
+margin_top = -3.0
+margin_right = 31.0
+margin_bottom = 55.0
+
+[node name="Spikes" parent="CombatUI" instance=ExtResource( 25 )]
+position = Vector2( 506, -34 )
+script = ExtResource( 37 )
+keyword = "spikes"
+activationParticles = ExtResource( 39 )
+
+[node name="Sprite" parent="CombatUI/Spikes" index="0"]
+position = Vector2( 3, -1 )
+scale = Vector2( 0.599796, 0.599796 )
+texture = ExtResource( 4 )
+
+[node name="Label" parent="CombatUI/Spikes" index="1"]
+margin_left = -40.0
+margin_top = -9.0
+margin_right = 45.0
+margin_bottom = 25.0
+
+[node name="TooltipArea" parent="CombatUI/Spikes" index="3"]
+margin_left = -37.0
+margin_top = -34.0
+margin_right = 45.0
+margin_bottom = 32.0
+
+[node name="Vampirism" parent="CombatUI" instance=ExtResource( 25 )]
+position = Vector2( 283, 14 )
+script = ExtResource( 37 )
+keyword = "vampirism"
+activationParticles = ExtResource( 38 )
+
+[node name="Sprite" parent="CombatUI/Vampirism" index="0"]
+position = Vector2( 0, 2 )
+scale = Vector2( 0.555428, 0.555428 )
+texture = ExtResource( 2 )
+
+[node name="Label" parent="CombatUI/Vampirism" index="1"]
+margin_left = -37.0
+margin_top = -8.0
+margin_right = 35.0
+margin_bottom = 32.0
+
+[node name="TooltipArea" parent="CombatUI/Vampirism" index="3"]
+margin_left = -44.0
+margin_top = -27.0
+margin_right = 41.0
+margin_bottom = 29.0
+
+[node name="Mana" parent="CombatUI" instance=ExtResource( 25 )]
+position = Vector2( 377, 13 )
+keyword = "mana"
+
+[node name="Sprite" parent="CombatUI/Mana" index="0"]
+position = Vector2( -1.6059, 1.58765 )
+scale = Vector2( 0.501925, 0.501925 )
+texture = ExtResource( 50 )
+
+[node name="Label" parent="CombatUI/Mana" index="1"]
+margin_left = -37.0
+margin_top = -8.0
+margin_right = 35.0
+margin_bottom = 32.0
+
+[node name="TooltipArea" parent="CombatUI/Mana" index="3"]
+margin_left = -34.0
+margin_top = -32.0
+margin_right = 35.0
+margin_bottom = 39.0
+
+[node name="Empower" parent="CombatUI" instance=ExtResource( 25 )]
+position = Vector2( 568, 13 )
+keyword = "empower"
+
+[node name="Sprite" parent="CombatUI/Empower" index="0"]
+position = Vector2( -6, 3 )
+scale = Vector2( 0.571066, 0.571066 )
+texture = ExtResource( 60 )
+
+[node name="Label" parent="CombatUI/Empower" index="1"]
+margin_left = -37.0
+margin_top = -8.0
+margin_right = 35.0
+margin_bottom = 32.0
+
+[node name="TooltipArea" parent="CombatUI/Empower" index="3"]
+margin_left = -41.0
+margin_top = -25.0
+margin_right = 42.0
+margin_bottom = 37.0
+
+[node name="AnimationPlayer" parent="CombatUI/Empower" index="4"]
+anims/Decrease = SubResource( 49 )
+anims/Increase = SubResource( 50 )
+anims/RESET = SubResource( 51 )
+
+[node name="Heat" parent="CombatUI" instance=ExtResource( 25 )]
+position = Vector2( 474, 12 )
+keyword = "heat"
+
+[node name="Sprite" parent="CombatUI/Heat" index="0"]
+position = Vector2( -1, -1 )
+scale = Vector2( 0.519404, 0.519404 )
+texture = ExtResource( 51 )
+
+[node name="Label" parent="CombatUI/Heat" index="1"]
+margin_left = -37.0
+margin_top = -8.0
+margin_right = 35.0
+margin_bottom = 32.0
+
+[node name="TooltipArea" parent="CombatUI/Heat" index="3"]
+margin_left = -44.0
+margin_top = -29.0
+margin_right = 27.0
+margin_bottom = 34.0
+
+[node name="AnimationPlayer" parent="CombatUI/Heat" index="4"]
+anims/Decrease = SubResource( 52 )
+anims/Increase = SubResource( 53 )
+anims/RESET = SubResource( 54 )
+
+[node name="Protection" parent="CombatUI" instance=ExtResource( 25 )]
+position = Vector2( 598, -36 )
+keyword = "protection"
+
+[node name="Sprite" parent="CombatUI/Protection" index="0"]
+position = Vector2( -3, 12 )
+scale = Vector2( 0.519404, 0.519404 )
+texture = ExtResource( 67 )
+
+[node name="Label" parent="CombatUI/Protection" index="1"]
+margin_left = -37.0
+margin_top = -8.0
+margin_right = 35.0
+margin_bottom = 32.0
+
+[node name="TooltipArea" parent="CombatUI/Protection" index="3"]
+margin_left = -44.0
+margin_top = -29.0
+margin_right = 27.0
+margin_bottom = 34.0
+
+[node name="AnimationPlayer" parent="CombatUI/Protection" index="4"]
+anims/Decrease = SubResource( 71 )
+anims/Increase = SubResource( 72 )
+anims/RESET = SubResource( 73 )
+
+[node name="CantAdd" type="Sprite" parent="CombatUI"]
+visible = false
+modulate = Color( 0.686275, 0.384314, 0.384314, 0.576471 )
+position = Vector2( 314.5, 96 )
+scale = Vector2( 2.5375, 1 )
+texture = ExtResource( 23 )
+
+[node name="Debuffs" type="Label" parent="CombatUI"]
+margin_left = 204.0
+margin_top = 44.0
+margin_right = 401.0
+margin_bottom = 76.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_colors/font_color_shadow = Color( 0.235294, 0.14902, 0.113725, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 2
+custom_fonts/font = SubResource( 24 )
+text = "Debuffs"
+script = ExtResource( 24 )
+translationKey = "UI_Debuffs"
+
+[node name="Poison" parent="CombatUI" instance=ExtResource( 25 )]
+position = Vector2( 255, 105 )
+script = ExtResource( 21 )
+keyword = "poison"
+cooldown = 2.0
+offset = 0.0
+activationAnimation = ExtResource( 26 )
+
+[node name="Sprite" parent="CombatUI/Poison" index="0"]
+material = ExtResource( 15 )
+position = Vector2( 1.45474, 6.48063 )
+scale = Vector2( 0.551755, 0.551755 )
+texture = ExtResource( 1 )
+
+[node name="Label" parent="CombatUI/Poison" index="1"]
+margin_left = -28.0
+margin_top = 12.0
+margin_right = 33.0
+margin_bottom = 53.0
+
+[node name="TooltipArea" parent="CombatUI/Poison" index="3"]
+margin_left = -39.0
+margin_top = -30.0
+margin_right = 40.0
+margin_bottom = 45.0
+
+[node name="Blind" parent="CombatUI" instance=ExtResource( 25 )]
+position = Vector2( 336, 92 )
+keyword = "blind"
+
+[node name="Sprite" parent="CombatUI/Blind" index="0"]
+position = Vector2( 2.66669, 14 )
+scale = Vector2( 0.475878, 0.475878 )
+texture = ExtResource( 7 )
+
+[node name="Label" parent="CombatUI/Blind" index="1"]
+margin_left = -32.0
+margin_top = 24.0
+margin_right = 37.0
+margin_bottom = 65.0
+
+[node name="TooltipArea" parent="CombatUI/Blind" index="3"]
+margin_left = -40.0
+margin_top = -21.0
+margin_right = 41.0
+
+[node name="Weak" parent="CombatUI" instance=ExtResource( 25 )]
+position = Vector2( 503, 88 )
+keyword = "weak"
+
+[node name="Sprite" parent="CombatUI/Weak" index="0"]
+position = Vector2( 2.66669, 14 )
+scale = Vector2( 0.475878, 0.475878 )
+texture = ExtResource( 52 )
+
+[node name="Label" parent="CombatUI/Weak" index="1"]
+margin_left = -32.0
+margin_top = 24.0
+margin_right = 37.0
+margin_bottom = 65.0
+
+[node name="TooltipArea" parent="CombatUI/Weak" index="3"]
+margin_left = -37.0
+margin_top = -18.0
+margin_right = 41.0
+
+[node name="AnimationPlayer" parent="CombatUI/Weak" index="4"]
+anims/Decrease = SubResource( 55 )
+anims/Increase = SubResource( 56 )
+anims/RESET = SubResource( 57 )
+
+[node name="Cold" parent="CombatUI" instance=ExtResource( 25 )]
+position = Vector2( 425, 90 )
+keyword = "cold"
+
+[node name="Sprite" parent="CombatUI/Cold" index="0"]
+position = Vector2( 0.441345, 18.3809 )
+scale = Vector2( 0.424033, 0.424033 )
+texture = ExtResource( 56 )
+
+[node name="Label" parent="CombatUI/Cold" index="1"]
+margin_left = -32.0
+margin_top = 24.0
+margin_right = 37.0
+margin_bottom = 65.0
+
+[node name="TooltipArea" parent="CombatUI/Cold" index="3"]
+margin_left = -46.0
+margin_top = -19.0
+margin_right = 41.0
+
+[node name="AnimationPlayer" parent="CombatUI/Cold" index="4"]
+anims/Decrease = SubResource( 58 )
+anims/Increase = SubResource( 59 )
+anims/RESET = SubResource( 60 )
+
+[node name="StatsDisplay" type="Node2D" parent="CombatUI"]
+position = Vector2( 135, -215 )
+z_index = 7
+script = ExtResource( 3 )
+
+[node name="NamePanel" type="Sprite" parent="."]
+visible = false
+position = Vector2( 272, 96 )
+scale = Vector2( 0.599099, 0.599099 )
+texture = ExtResource( 16 )
+
+[node name="TickTimer" type="Timer" parent="."]
+process_mode = 0
+
+[node name="BattleRageTimer" type="Timer" parent="."]
+process_mode = 0
+one_shot = true
+
+[node name="InvulnerabilityTimer" type="Timer" parent="."]
+process_mode = 0
+one_shot = true
+
+[node name="AutoRageTimer" type="Timer" parent="."]
+process_mode = 0
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="CombatAnimation" type="AnimationPlayer" parent="."]
+anims/StunEnd = SubResource( 15 )
+anims/StunStart = SubResource( 65 )
+
+[node name="HitAnimation" type="AnimationPlayer" parent="."]
+anims/Block = SubResource( 41 )
+anims/Fatigue = SubResource( 42 )
+anims/Hit = SubResource( 43 )
+anims/Lose = SubResource( 81 )
+anims/Poison = SubResource( 44 )
+anims/RESET = SubResource( 45 )
+anims/Win = SubResource( 82 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = "Voice"
+
+[connection signal="pressed" from="Mirroring/Sprite/Button" to="." method="onSpriteClicked"]
+[connection signal="timeout" from="Mirroring/Sprite/AnimationSpeedTimer" to="." method="randAnimationSpeed"]
+[connection signal="timeout" from="TickTimer" to="." method="onTick"]
+[connection signal="timeout" from="BattleRageTimer" to="." method="endBattleRage"]
+[connection signal="timeout" from="InvulnerabilityTimer" to="." method="invulnerabilityEnded"]
+[connection signal="timeout" from="AutoRageTimer" to="." method="startAutoRage"]
+
+[editable path="CombatUI/Block"]
+[editable path="CombatUI/Regeneration"]
+[editable path="CombatUI/Lucky"]
+[editable path="CombatUI/Spikes"]
+[editable path="CombatUI/Vampirism"]
+[editable path="CombatUI/Mana"]
+[editable path="CombatUI/Empower"]
+[editable path="CombatUI/Heat"]
+[editable path="CombatUI/Protection"]
+[editable path="CombatUI/Poison"]
+[editable path="CombatUI/Blind"]
+[editable path="CombatUI/Weak"]
+[editable path="CombatUI/Cold"]

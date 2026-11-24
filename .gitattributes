@@ -1,3 +1,7 @@
 # Preserve the exact bytes used by the native runtime SHA-256 manifest.
 backpack_native/sim.py -text
 backpack_native/gd_core_runtime.json -text
+
+# Preserve source snapshot bytes and migration inventory hashes on every checkout.
+/decompiled_full/** -text
+/decompiled_legacy/1.1.7/** -text

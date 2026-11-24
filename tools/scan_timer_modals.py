@@ -14,7 +14,7 @@ import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SRC = os.path.join(ROOT, "decompiled_full", "Items")
+SRC = os.path.join(ROOT, "decompiled_legacy/1.1.7", "Items")
 
 TIMER_DECL_RE = re.compile(r"^\s*onready\s+var\s+([A-Za-z_]\w*)\s*:?=\s*\$(.+)$", re.M)
 TIMER_USE_RE = re.compile(r"(?<![\w.])([A-Za-z_]\w*)\s*\.\s*(start|stop|get_time_left|time_left|one_shot|wait_time)\b")

@@ -110,7 +110,7 @@ func init():
 	
 	itemsNode = $Items
 	for descriptor in ItemBook.items.values():
-		if descriptor.scene:
+		if descriptor.scene != null:
 		
 			var item = descriptor.instantiate_pooled()
 			items[descriptor] = item

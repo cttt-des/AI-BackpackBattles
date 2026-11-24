@@ -251,7 +251,7 @@ func test_socket_fold() -> void:
 	# Gem.gd:72-76 覆写了一个 `Item` 上并不存在的方法：socket != null 分支调
 	# `socket.getItem().isInInventory()`、else 分支调 `.isInInventory()`，而
 	# `Item.isInInventory` 在原版全仓库都不存在（`grep -rn "func isInInventory"
-	# decompiled_full/` 只命中 Gem.gd 自身），且该方法无任何调用点。
+	# decompiled_legacy/1.1.7/` 只命中 Gem.gd 自身），且该方法无任何调用点。
 	# 内核逐字保留其形状（转译产物同样如此），因无人调用而无从触发 ——
 	# 属「原版自带的死代码」，与漏实现无关，故不做断言。
 	say("    socket == host ✓ / getItem 一族 5 条与宿主一致 ✓ / 计数族 ✓")

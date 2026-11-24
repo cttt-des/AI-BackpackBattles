@@ -188,7 +188,7 @@ PCG_MULT = 6364136223846793005
 PCG_INC = 2885390081777926815
 PCG_MOD = 1 << 64
 
-# 价格编码（decompiled_full/Core/Game.gd:4784-4806，1:1 复刻）：
+# 价格编码（decompiled_legacy/1.1.7/Core/Game.gd:4784-4806，1:1 复刻）：
 #   encode(g) = (g + (g<<32)) ^ randnum   （GDScript int64 语义）
 #   decode(e)：a = e ^ randnum；low32(a) 必须等于 high32(a)（游戏自身的
 #   b==c 校验），其公共值即 g。g < 2^31 时 a = g×(2^32+1) 无半字进位。

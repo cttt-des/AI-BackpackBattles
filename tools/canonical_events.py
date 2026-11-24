@@ -16,8 +16,8 @@
          actor 名 'player'/'opponent' 在此归一为 'P'/'O'。
 
 事件语义真值（HP 账本归一决策的依据）：
-  · Game.EventType 枚举：decompiled_full/Core/Game.gd:441-478。
-  · HP 只在四处变动（decompiled_full/Core/Character.gd）：
+  · Game.EventType 枚举：decompiled_legacy/1.1.7/Core/Game.gd:441-478。
+  · HP 只在四处变动（decompiled_legacy/1.1.7/Core/Character.gd）：
       takeDamage（:587-599，curHealth -= healthDamage）、heal（:578-585）、
       loseHealth（:644-648）、changeMaxHealthTemporary（:892-896，curHealth += amount）。
   · DealDamage/CriticalDamage 的 params.damage 是**格挡前**口径：实扣 healthDamage
@@ -53,7 +53,7 @@
              unhealing：target=受害方（simulator/events.py:285-287）。
   · TemporaryMaxHealth 记贷（Character.gd:894-895 curHealth += amount），
     方 = origin 物品所属方（ownerType：PlayerInventory=1→P、Opponent=3→O，
-    decompiled_full/Items/Item.gd:17-31）。
+    decompiled_legacy/1.1.7/Items/Item.gd:17-31）。
     ★ 已知缺口（仅纯 Python simulator 路径）：simulator/character.py:1167-1172
       的 change_max_health_temporary **不发事件** → 纯 Python 流重建的 HP 会
       漏掉临时上限加血。gd_core 引擎产出的模拟日志**含** temporary_max_health
@@ -91,7 +91,7 @@ from typing import Any, Dict, List, Optional
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
-# ── Game.EventType（decompiled_full/Core/Game.gd:441-478；与
+# ── Game.EventType（decompiled_legacy/1.1.7/Core/Game.gd:441-478；与
 #    core/combatlog_reader.py EVENT_TYPES 同表） ─────────────────────────────
 EVENT_TYPES: Dict[int, str] = {
     0: "Activation", 1: "DealDamage", 2: "CriticalDamage", 3: "MissedAttack",
@@ -110,7 +110,7 @@ EVENT_TYPES: Dict[int, str] = {
 # 伤害源 origin（DamageSource.Type 整数）在轨迹里记作 i<N>；这些 N 即判定
 # 「物品 origin（受害方=target）vs 伤害源 origin（受害方=1-target）」的依据。
 _ITEM_ORIGIN_PREFIXES = ("it:", "gem(")
-_OWNER_TYPE_TO_SIDE = {1: "P", 3: "O"}  # decompiled_full/Items/Item.gd:17-31
+_OWNER_TYPE_TO_SIDE = {1: "P", 3: "O"}  # decompiled_legacy/1.1.7/Items/Item.gd:17-31
 
 SIM_ACTOR_TO_SIDE = {"player": "P", "opponent": "O"}
 

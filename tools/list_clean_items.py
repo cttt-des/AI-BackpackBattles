@@ -7,7 +7,7 @@ import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SRC = os.path.join(ROOT, "decompiled_full", "Items")
+SRC = os.path.join(ROOT, "decompiled_legacy/1.1.7", "Items")
 
 sys.path.insert(0, os.path.join(ROOT, "tools"))
 from scan_item_deps import CALL_RE, ENGINE, IDENT_RE, IGNORE, collect, strip_comments_and_strings

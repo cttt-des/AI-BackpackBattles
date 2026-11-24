@@ -1211,8 +1211,8 @@ margin_top = -4.0
 margin_right = 230.0
 margin_bottom = 29.0
 
-[node name="BarBorder1" type="Sprite" parent="CombatUI/Healthbar"]
-position = Vector2( 122.481, 12.133 )
+[node name="BarBorder" type="Sprite" parent="CombatUI/Healthbar/Bar"]
+position = Vector2( 108.481, 16.133 )
 scale = Vector2( 0.707816, 0.759259 )
 texture = ExtResource( 45 )
 

@@ -44,7 +44,7 @@ func _ready():
 		Util.localizeFonts(button)
 		var mode = LOBBIES.MatchMaking[button.name]
 		button.connect("pressed", self, "onMatchmakingSelected", [mode])
-	
+
 	speedSlider.connect("value_changed", self, "onSpeedChanged")
 
 func setConnected(connected: bool):
@@ -60,7 +60,7 @@ func open():
 	isOpen = true
 	lobbyCodeNode.hide()
 	startGameButton.hide()
-	
+
 	cancelButton.enable()
 	cancelButtonLabel.setTranslationKey("BUTTON_Cancel")
 	createLobbyButton.disabled = false
@@ -70,29 +70,29 @@ func open():
 	speedSlider.max_value = LOBBIES.SpeedLevel.size()
 	speedSlider.tick_count = LOBBIES.SpeedLevel.size()
 	speedSlider.set_value_no_signal(LOBBIES.getSpeed())
-	
+
 	memberLimitSpinbox.editable = true
 	memberLimitSpinbox.max_value = LOBBIES.MAX_MEMBERS
 	memberLimitSpinbox.min_value = LOBBIES.MIN_MEMBERS
 	memberLimitSpinbox.set_value_no_signal(LOBBIES.getLobbySize())
 	memberLimitSpinbox.apply()
-	
+
 	customRulesIcon.texture = CustomRules.defaultIcon
 	customRulesTooltip.hide()
-	
+
 	for button in matchmakingButtons:
 		button.set_pressed_no_signal(false)
 	matchmakingButtons[LOBBIES.matchMaking].set_pressed_no_signal(true)
 	matchmakingTooltip.hide()
-	
+
 	prioritizeHostButton.set_pressed_no_signal(LOBBIES.prioritizeHost)
-	
+
 	startTimer.hide()
 	setConnected(true)
 	Game.suspendRunState()
 
 func onCreateLobbyPressed():
-	
+
 	createLobbyButton.hide()
 	statusLabel.show()
 	setStatus("STATUS_CreatingLobby")
@@ -104,7 +104,7 @@ func onLobbyCreated(lobbyId: String):
 	lobbyCodeNode.show()
 	lobbyCodeLabel.bbcode_text = "[center]" + lobbyId.to_upper()
 	cancelButtonLabel.setTranslationKey("BUTTON_CloseLobby")
-	
+
 	startGameButton.show()
 	Sound.playSound(successSound)
 
@@ -124,30 +124,30 @@ func onCopyButtonPressed():
 
 func onStartGamePressed():
 	Game.onClickButton()
-	
+
 	if CustomRules.isTeamSwitchMode():
 		var result = LOBBIES.calculateTeams()
 		var lines = []
-		
+
 		
 		for teamName in result.teams:
 			var members = result.teams[teamName]
 			lines.append(teamName + " 队队员：")
 			for steamId in members:
 				lines.append("  - " + LOBBIES.memberData[steamId].playerName)
-		
+
 		
 		if result.unassigned.size() > 0:
 			lines.append("无组队：")
 			for steamId in result.unassigned:
 				lines.append("  - " + LOBBIES.memberData[steamId].playerName)
-		
+
 		if LOBBIES.isSingleTeamMatchPoolResult(result):
 			lines.append("将使用个人职业段位匹配池，对内继续交换背包")
 
 		showTeamSwitchValidationPopup(lines)
 		return
-	
+
 	actuallyStartGame()
 
 func actuallyStartGame():
@@ -157,9 +157,9 @@ func actuallyStartGame():
 	memberLimitSpinbox.editable = false
 	LOBBIES.startCountdown()
 	startTimer.startCountdown(LOBBIES.STARTGAME_COUNTDOWN)
-	
+
 	Util.finishTimer(customRulesTimer)
-	
+
 	InputBlocker.disableAllControls(InputBlocker.Source.Lobby, self)
 	InputBlocker.disableAllControls(InputBlocker.Source.Lobby, Game.titleScreen)
 	InputBlocker.enableControls(InputBlocker.Source.Lobby, Game.titleScreen.classAndLoadoutNode)
@@ -167,7 +167,7 @@ func actuallyStartGame():
 func showTeamSwitchValidationPopup(issues: Array):
 	if teamSwitchValidationPopup != null:
 		teamSwitchValidationPopup.queue_free()
-	
+
 	teamSwitchValidationPopup = teamSwitchValidationPopupScene.instance()
 	add_child(teamSwitchValidationPopup)
 	teamSwitchValidationPopup.preset()
@@ -191,7 +191,7 @@ func onCountdownEnded():
 	InputBlocker.restoreAllControls(InputBlocker.Source.Lobby)
 	Game.startLobbyRun()
 	Game.titleScreen.clearItems()
-	
+
 	close()
 	emit_signal("close")
 
@@ -201,10 +201,10 @@ func close():
 
 func onCancelPressed():
 	close()
-	
+
 	LOBBIES.leaveLobby()
 	Game.initPlayerFromRunstate()
-	
+
 	emit_signal("close", true)
 
 func onCustomRulesPressed():

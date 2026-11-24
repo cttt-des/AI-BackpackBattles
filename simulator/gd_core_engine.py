@@ -356,7 +356,7 @@ class _LogMixin:
         # `origin is Item` 为假时走 Game.typeToKeyword(origin)）。
         # typeToKeyword 1:1：特例 Block→"bl"、Regeneration→"regen"，
         # 其余 eventTypeKeys[_type].to_lower()（此处经 ET_NAME 反查现算，
-        # 不写死数字——见 decompiled_full/Core/Game.gd:5663）。
+        # 不写死数字——见 decompiled_legacy/1.1.7/Core/Game.gd:5663）。
         # 实际出现的值：Fatigue=99（takeFatigueDamage → fatigueDamageSource）。
         try:
             num = int(origin)
@@ -527,7 +527,7 @@ class _LogMixin:
             # `origin is Item` 为假时走 Game.typeToKeyword(origin)）。
             # typeToKeyword 1:1：特例 Block→"bl"、Regeneration→"regen"，
             # 其余 eventTypeKeys[_type].to_lower()（经 ET_NAME 反查现算，
-            # 不写死数字——见 decompiled_full/Core/Game.gd:5663）。
+            # 不写死数字——见 decompiled_legacy/1.1.7/Core/Game.gd:5663）。
             # 实际出现的值：Fatigue=99（takeFatigueDamage → fatigueDamageSource）。
             try:
                 num = int(origin)

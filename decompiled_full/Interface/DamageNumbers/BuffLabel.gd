@@ -215,7 +215,7 @@ func spawnLabelOnItem(type: int, amount):
 	elif type == Game.EventType.CooldownAdvance:
 		var imgBb = Util.imageToBbcode(Util.weaponIcons[Item.Stat.Cooldown].get_path(), 40)
 		
-		amount = stepify(amount, 0.1)
+		amount = stepify(amount, 0.01)
 		
 		label.bbcode_text = buffFormat.format({
 			"color": positiveColor_html, 

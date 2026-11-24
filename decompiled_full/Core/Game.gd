@@ -7,12 +7,12 @@ var FULLVERSION = OS.has_feature("full_version") or Util.debugOnly(true)
 var DEMO = not FULLVERSION and not PLAYTEST
 var EXPO = OS.has_feature("expo")
 var ENGINEER_TEST = OS.has_feature("engineertest")
-var VERSION = "1.1.7"
+var VERSION = "1.1.10"
 
 const SUBVERSION = ""
 const BETA = false
 const PREVIEW = false
-const leaderboardBreakingVersion = "1.1.4"
+const leaderboardBreakingVersion = "1.1.7"
 const runStateBreakingVersion = "1.1.0"
 
 const ITEM_STATISTICS_ENABLED = true
@@ -474,10 +474,10 @@ enum EventType{
 	Mana = 105, 
 	Empower = 106, 
 	Heat = 107, 
-	
+
 	Poison = 108, 
 	Blind = 109, 
-	
+
 	Cold = 110, 
 	Win = 111, 
 	Loss
@@ -494,9 +494,9 @@ enum ItemMetrics{
 	DamageBlocked, 
 	MaxHealth, 
 	OutOfStamina, 
-	
+
 	Stamina, 
-	
+
 	Block, 
 	Lucky, 
 	Regeneration, 
@@ -563,7 +563,7 @@ enum Cursor{
 }
 
 enum CursorTypes{
-	
+
 	DEFAULT = 0, 
 	CLICKED = 1, 
 	GRABBABLE = 2, 
@@ -719,8 +719,8 @@ func versionToString(ver: int) -> String:
 	var minor = (ver % 1000000) / 1000
 	var mini = (ver % 1000)
 	return str(major) + "." + str(minor) + "." + str(mini)
-	
-	
+
+
 func loadExclusiveContent() -> bool:
 	return PLAYTEST or FULLVERSION or EDITOR
 
@@ -759,37 +759,37 @@ func isRankedSwitchMode() -> bool:
 
 func pause(pauseSource: int):
 	if isInLobby(): return
-	
+
 	if activePauseSources == PauseSource.Unpaused:
 		get_tree().paused = true
 		gameSpeedBeforePause = Engine.time_scale
 		Engine.time_scale = 1.0
-		
-		
+
+
 		Sound.setMuffledSound(true)
 		if pauseSource != PauseSource.RecipeBook:
 			VisualServer.set_shader_time_scale(0)
 		emit_signal("game_paused")
-		
+
 	if pauseSource == PauseSource.Ad:
 		AudioServer.set_bus_mute(Sound.MASTER_BUS, true)
-	
+
 	activePauseSources |= pauseSource
 
 func unpause(pauseSource: int):
-	
+
 	if activePauseSources == PauseSource.Unpaused: return
-	
+
 	activePauseSources &= ~ pauseSource
-	
+
 	if activePauseSources == PauseSource.Unpaused:
 		get_tree().paused = false
 		VisualServer.set_shader_time_scale(1)
 		Engine.time_scale = gameSpeedBeforePause
-		
+
 		AudioServer.set_bus_mute(Sound.MASTER_BUS, false)
-		
-		
+
+
 		Sound.setMuffledSound(false)
 		emit_signal("game_unpaused")
 
@@ -803,17 +803,17 @@ func openedMenu():
 	emit_signal("menu_opened")
 	for node in [shopSceneNode, titleScreen, combatSceneNode, playerNode]:
 		sceneVisibility[node] = node.visible
-		
+
 		node.visible = false
 		node.connect("visibility_changed", self, "onSceneVisibilityChanged", [node])
 
 func closeMenu(restoreVisibility = true):
 	emit_signal("menu_close")
-	
+
 	if restoreVisibility:
 		for node in sceneVisibility:
 			node.visible = sceneVisibility[node]
-			
+
 			node.disconnect("visibility_changed", self, "onSceneVisibilityChanged")
 
 func onSceneVisibilityChanged(node):
@@ -835,21 +835,21 @@ func isTouchScreenActive() -> bool:
 
 
 
-	
+
 
 func globalPosToScreenPos(pos) -> Vector2:
 	var translation: Vector2
 	var scaling: Vector2
 	var windowAspect = OS.window_size.x / float(OS.window_size.y)
 	if windowAspect <= 16 / 9.0:
-		
-		
+
+
 		var gameHeight = OS.window_size.x / (16 / 9.0)
 		var borderTop = (OS.window_size.y - gameHeight) / 2.0
 		translation = Vector2(0, borderTop)
 		scaling = Vector2(OS.window_size.x, gameHeight) / Vector2(1920, 1080)
 	else:
-		
+
 		var gameWidth = OS.window_size.y * (16 / 9.0)
 		var borderLeft = (OS.window_size.x - gameWidth) / 2.0
 		translation = Vector2(borderLeft, 0)
@@ -863,13 +863,13 @@ func globalPosToScreenPos(pos) -> Vector2:
 func moveMouse(by: Vector2):
 	var curMousePos = globalPosToScreenPos(get_global_mouse_position())
 	Input.warp_mouse_position(curMousePos + by)
-	
+
 
 func moveMouseTo(pos: Vector2):
 	Input.warp_mouse_position(globalPosToScreenPos(pos))
 
 func unhoverAndHideTooltips():
-	
+
 	unlockTooltip()
 	unhoverAllItems()
 	hideTooltips()
@@ -925,7 +925,7 @@ func giveTrophies(amount):
 	if amount > 0:
 		persistent["trophies"] += amount
 		emit_signal("trophies_changed")
-		
+
 		var trophiesWon = SteamHelper.changeStat("TrophiesWon", amount)
 		if trophiesWon > 10000:
 			SteamHelper.unlockAchievement("Trophies")
@@ -942,27 +942,27 @@ func getGainedGold(forClass, untilRound):
 	for i in range(1, untilRound + 1):
 		_gold += getGoldGain(i)
 	return _gold
-	
+
 
 func getGoldGain(inRound):
 	var g = goldGain[inRound - 1]
-	
+
 	if inRound == SUBCLASS_ROUND:
 		g += 10
-	
+
 	if SKILLS_ENABLED:
 		if inRound == SKILL_ROUND1 or inRound == SKILL_ROUND2:
 			g += 5
-	
+
 	return g
 
 func getMaxHealthInRound(forClass, untilRound):
 	var health = classResources[forClass].health
 	for i in range(2, untilRound + 1):
 		health += getHealthGain(i)
-	
+
 	return health
-	
+
 func getHealthGain(inRound):
 	var curHealthGain: int
 	if inRound >= 15:
@@ -991,10 +991,10 @@ func getRoundResults():
 	var results = []
 	for i in range(RoundResult.size()):
 		results.append(0)
-	
+
 	for result in roundResults:
 		results[result] += 1
-		
+
 	return results
 
 func getTotalRerolls():
@@ -1012,33 +1012,33 @@ func expandPath(format: String, steamID = null, full = false) -> String:
 	}
 	if steamID != null:
 		params["ID"] = str(steamID) + "/"
-	
+
 	if PLAYTEST:
 		params["build"] = "playtest/"
 	elif full:
 		params["build"] = "full/"
-	
+
 	if BETA:
 		params["build"] += "beta/"
-		
-	
+
+
 	var path = format.format(params)
 	return path
 
 func makeBaseDir():
 	var dir: Directory = Directory.new()
 	var err = dir.make_dir_recursive(getSavePath(baseDir_format))
-	
+
 	err = dir.make_dir(getSavePath(backup_format))
-	
-	
+
+
 	var sharedDirPath = expandPath(baseDir_format)
 	dir.make_dir(sharedDirPath)
-	
+
 	if SteamHelper.is_init() and SteamHelper.isIDValid():
 		var oldConfigPath = expandPath(config_format)
 		var newConfigPath = expandPath(config_format, SteamHelper.STEAM_ID)
-		
+
 		if FULLVERSION:
 			var fullConfigPath = expandPath(config_format, SteamHelper.STEAM_ID, true)
 			if not dir.file_exists(fullConfigPath):
@@ -1047,7 +1047,7 @@ func makeBaseDir():
 				elif dir.file_exists(oldConfigPath):
 					dir.copy(oldConfigPath, fullConfigPath)
 		else:
-		
+
 			if not dir.file_exists(newConfigPath) and dir.file_exists(oldConfigPath):
 				dir.copy(oldConfigPath, newConfigPath)
 
@@ -1056,7 +1056,7 @@ func makeBaseDir():
 func getLoadPath(format: String, isFile: bool = true) -> String:
 	if SteamHelper.is_init() and SteamHelper.isIDValid():
 		var dir: Directory = Directory.new()
-		
+
 		if FULLVERSION:
 			var fullPath = expandPath(format, SteamHelper.STEAM_ID, true)
 			if isFile:
@@ -1065,7 +1065,7 @@ func getLoadPath(format: String, isFile: bool = true) -> String:
 			else:
 				if dir.dir_exists(fullPath):
 					return fullPath
-		
+
 		var newPath = expandPath(format, SteamHelper.STEAM_ID)
 		if isFile:
 			if dir.file_exists(newPath):
@@ -1073,7 +1073,7 @@ func getLoadPath(format: String, isFile: bool = true) -> String:
 		else:
 			if dir.dir_exists(newPath):
 				return newPath
-	
+
 	var oldPath = expandPath(format, null)
 	return oldPath
 
@@ -1086,50 +1086,50 @@ func getSavePath(format: String) -> String:
 		return oldPath
 
 func actuallySaveGame():
-	
+
 	gameSaveQueued = false
 	persistent["version"] = VERSION
-	
+
 	var savePath = getSavePath(savefile_format)
-	
+
 	var dir: Directory = Directory.new()
 	if dir.file_exists(savePath):
 		var backupNumbers = findBackups(false)
 		var index = 1
 		if not backupNumbers.empty():
 			index = backupNumbers[0] + 1
-		
+
 		var backupFilePath = createBackupFilePath(index)
 		dir.rename(savePath, backupFilePath)
-	
-		
+
+
 		var numExisting = backupNumbers.size()
 		var filesToDelete = numExisting - 5
 		for i in filesToDelete:
 			dir.remove(createBackupFilePath(backupNumbers[numExisting - 1 - i]))
-			
-	
+
+
 	persistent.erase("cs")
 	var dictHash = Util.hashDictionary(persistent)
-	
+
 	persistent["cs"] = dictHash
-	
+
 	Util.writeVarToFile(savePath, persistent)
-	
+
 	if SteamHelper.is_init():
 		var offlinePath = getSavePath(offlinesave_format)
 		dir.copy(savePath, offlinePath)
 
 func findBackups(isLoad: bool):
 	var numbers = []
-	
+
 	var dir: Directory = Directory.new()
 	var backupDir: String
 	if isLoad:
 		backupDir = getLoadPath(backup_format, false)
 	else:
 		backupDir = getSavePath(backup_format)
-		
+
 	if dir.open(backupDir) == OK:
 		var files = []
 		var directories = []
@@ -1138,12 +1138,12 @@ func findBackups(isLoad: bool):
 		for file in files:
 			var fileName = file.get_file()
 			var number = int(fileName)
-			
+
 			numbers.push_back(number)
-		
+
 		numbers.sort()
 		numbers.invert()
-		
+
 	return numbers
 
 func createBackupFilePath(number):
@@ -1152,15 +1152,15 @@ func createBackupFilePath(number):
 
 func createBackupFilePaths(backupNumbers):
 	var backupFileNames = []
-	
+
 	for number in backupNumbers:
-		
+
 		var fileName = createBackupFilePath(number)
 		backupFileNames.push_back(fileName)
 	return backupFileNames
 
 func loadGame():
-	
+
 	var defaultFileData = getFileContent(getLoadPath(savefile_format))
 	if typeof(defaultFileData) == TYPE_DICTIONARY:
 		persistent = defaultFileData
@@ -1172,13 +1172,13 @@ func loadGame():
 				print("Successfully loaded from backup: ", backupFileName.get_file())
 				persistent = fileData
 				break
-	
+
 	if SteamHelper.is_init() and persistent.empty():
 		var offlineFileData = getFileContent(getLoadPath(offlinesave_format))
 		if typeof(offlineFileData) == TYPE_DICTIONARY:
 			persistent = offlineFileData
 			print("load from offline")
-	
+
 	if not persistent.empty() and persistent["version"] == VERSION:
 		var cs = persistent["cs"]
 		persistent.erase("cs")
@@ -1186,21 +1186,21 @@ func loadGame():
 		if cs != new_cs:
 			persistent.clear()
 			initPlayer()
-	
+
 	initPlayer()
-	
+
 	if steamAvailable:
 		if persistent["id"] == 0:
 			persistent["id"] = SteamHelper.STEAM_ID
 		elif persistent["id"] != SteamHelper.STEAM_ID:
 			persistent.clear()
 			initPlayer()
-			
-	
+
+
 	if not isWeb:
 		calcTempPath()
-	
-	
+
+
 	if ("version" in persistent and 
 		versionToInt(persistent["version"]) < versionToInt("1.1.0") and 
 		hasPlayedInSeason("2")):
@@ -1224,7 +1224,7 @@ func getFileContent(path):
 			file.close()
 		else:
 			print("Failed loading file from ", path.get_file(), " with error ", err)
-	
+
 	return - 1
 
 func setPatchNoteVersion(version):
@@ -1245,25 +1245,25 @@ var canCommitRun = true
 func calcTempPath():
 	if OS.has_feature("Windows"):
 		tempPath = OS.get_environment("temp")
-		
+
 		if OS.get_environment("STEAM_COMPAT_DATA_PATH") != "":
 			canCommitRun = false
 			print("(1) Proton ", OS.get_environment("STEAM_COMPAT_DATA_PATH"))
 		elif OS.get_environment("TMPDIR") != "":
 			canCommitRun = false
 			print("(2) Proton ", OS.get_environment("TMPDIR"))
-		
+
 		if EXPO: canCommitRun = false
 
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
 	if tempPath != "":
 		loadTemp = true
-		
+
 		tempName = persistent["identifier"]
 		if FULLVERSION:
 			tempName += "full"
@@ -1278,7 +1278,7 @@ func calcTempPath():
 			tempName = tempName.insert(i + j, "-")
 			tempName_lobbies = tempName_lobbies.insert(i + j, "-")
 			j += 1
-		
+
 		tempPath_lobbies = tempPath + "\\" + tempName_lobbies + ".tmp"
 		tempPath += "\\" + tempName + ".tmp"
 
@@ -1315,20 +1315,20 @@ func saveRunState():
 func actuallySaveRunState():
 	runSaveQueued = false
 	runWasJustContinued = false
-	
+
 	var runState = getRunState()
 	if not "version" in runState:
-		
+
 		runState["version"] = VERSION
 		runState["class"] = curClass
 		runState["loadout"] = curLoadout
 		runState["randomClass"] = randomCharacter
 		runState["mode"] = curMode
 		runState["id"] = getNumStartedRuns()
-		
+
 		if CustomRules.areCustomRulesActive() and curMode != Mode.Lobbies:
 			runState["custom"] = CustomRules.serialize()
-	
+
 	runState["results"] = roundResults.duplicate()
 	runState["round"] = curRound
 	runState["wins"] = wins
@@ -1354,7 +1354,7 @@ func actuallySaveRunState():
 
 	var inventoryState = []
 	var inventory
-	
+
 	if CustomRules.isSwitchMode() and not curOpponentData.empty():
 		inventory = OPPONENT.INVENTORY
 	elif CustomRules.isTeamSwitchMode() and curMode == Mode.Lobbies:
@@ -1362,16 +1362,16 @@ func actuallySaveRunState():
 		inventory = PLAYER.INVENTORY
 	else:
 		inventory = PLAYER.INVENTORY
-	
+
 	var itemArr: Array = inventory.getItems()
-	
+
 	var floatingItems: = []
-	
+
 	for item in itemArr:
 		if inventory.isItemFloating(item):
 			floatingItems.push_back(item)
 			continue
-		
+
 		var itemData = []
 		itemData.push_back(ItemBook.getItemIndex(item))
 		itemData.push_back(item.getTopLeftCell())
@@ -1380,23 +1380,23 @@ func actuallySaveRunState():
 		itemData.push_back(item.isLocked())
 		if item.hasGems():
 			itemData.push_back(item.getGemData())
-		
+
 		inventoryState.push_back(itemData)
-		
+
 	runState["inventory"] = inventoryState
-	
-	
+
+
 	var storageState = []
-	
+
 	if CustomRules.isSwitchMode() and not curOpponentData.empty():
 		pass
 	elif CustomRules.isTeamSwitchMode() and curMode == Mode.Lobbies:
 		
 		var storageItems = STORAGEBOX.getItems().duplicate()
-		
+
 		if draggedItem != null:
 			storageItems.push_back(draggedItem)
-		
+
 		for item in storageItems + floatingItems:
 			var itemData = []
 			itemData.push_back(ItemBook.getItemIndex(item))
@@ -1405,14 +1405,14 @@ func actuallySaveRunState():
 			itemData.push_back(item.isLocked())
 			if item.hasGems():
 				itemData.push_back(item.getGemData())
-			
+
 			storageState.push_back(itemData)
 	else:
 		var storageItems = STORAGEBOX.getItems().duplicate()
-		
+
 		if draggedItem != null:
 			storageItems.push_back(draggedItem)
-		
+
 		for item in storageItems + floatingItems:
 			var itemData = []
 			itemData.push_back(ItemBook.getItemIndex(item))
@@ -1421,11 +1421,11 @@ func actuallySaveRunState():
 			itemData.push_back(item.isLocked())
 			if item.hasGems():
 				itemData.push_back(item.getGemData())
-			
+
 			storageState.push_back(itemData)
-	
+
 	runState["storage"] = storageState
-	
+
 	var shopItems = []
 	var shopItemData = {}
 	var slotI = 0
@@ -1436,52 +1436,52 @@ func actuallySaveRunState():
 				var persistentData = item.getData()
 				if persistentData != null:
 					shopItemData[slotI] = persistentData
-			
+
 		else:
-			
+
 			shopItems.push_back(null)
 		slotI += 1
-	
+
 	runState["shop"] = shopItems
-	
+
 	if not shopItemData.empty():
 		runState["shopdata"] = shopItemData
 	else:
 		runState.erase("shopdata")
-	
+
 	runState["reserved"] = shopSceneNode.getReservedSlots()
 	runState["sales"] = shopSceneNode.getSaleSlots()
-	
+
 	runState["stashedReserved"] = shopSceneNode.getStashedReservedItems()
 	runState["stashedSales"] = shopSceneNode.getStashedSales()
 	runState["stashedData"] = shopSceneNode.getStashedItemData()
-	
+
 	if SELLBOX.tradeNode.isTradeActive():
 		runState["tradeWant"] = SELLBOX.tradeNode.wantItem.descriptor.itemIndex
 		runState["tradeGive"] = SELLBOX.tradeNode.giveItem.descriptor.itemIndex
 	else:
 		runState.erase("tradeWant")
 		runState.erase("tradeGive")
-	
-	
+
+
 	if curMode == Mode.Lobbies:
-		
+
 		runState["hostId"] = RunDatabase.lobbies.getHostId()
-		
-		
+
+
 		runState["ugcId"] = RunDatabase.lobbies.getHostUgcId()
 		runState["lobbyId"] = RunDatabase.lobbies.getLobbyId()
-	
+
 	runState.erase("cs")
 	runState["cs"] = Util.hashDictionary(runState)
-	
+
 	Util.writeVarToFile(getSavePath(getRunStateFormat()), runState)
-	
+
 	if loadTemp:
 		Util.writeVarToFile(getRunStateTmpPath(curMode), runState)
-	
+
 	runState.erase("cs")
-	
+
 	Util.eprint("runstate saved")
 
 
@@ -1521,7 +1521,7 @@ enum RunStateLoadResult{
 func loadRunStateFromPath(path, mode) -> bool:
 	var res = RunStateLoadResult.FileCorrupt
 	var save_game = File.new()
-	
+
 	if mode == Mode.Lobbies:
 		var time = save_game.get_modified_time(path)
 		var dif = OS.get_unix_time() - time
@@ -1529,10 +1529,10 @@ func loadRunStateFromPath(path, mode) -> bool:
 		if dif > 60 * LOBBY_TIMEOUT_MINUTES or dif < 0:
 			print("Lobby state timeout ", dif)
 			return RunStateLoadResult.NoRun
-	
+
 	var err = save_game.open(path, File.READ)
 	if err == OK:
-		
+
 		if save_game.get_len() > 3:
 			var saveData = save_game.get_var()
 			if typeof(saveData) == TYPE_DICTIONARY:
@@ -1549,22 +1549,22 @@ func loadRunStateFromPath(path, mode) -> bool:
 
 func validateRun(mode: int) -> bool:
 	var runState = getRunState(mode)
-	
-	
+
+
 	var version = runState["version"]
 	if not Util.laterOrEqual(version, runStateBreakingVersion):
 		deleteRunState(mode)
 		return false
-	
-	
+
+
 	var cs = runState["cs"]
 	runState.erase("cs")
 	if cs != Util.hashDictionary(runState):
 		print("Could not load run. 1")
 		deleteRunState(mode)
 		return false
-	
-	
+
+
 	if not BETA:
 		var sqn = runState["sqn"]
 		if typeof(sqn) != TYPE_INT or sqn != SteamHelper.getSequenceNum(mode):
@@ -1575,7 +1575,7 @@ func validateRun(mode: int) -> bool:
 				print("Could not load run. 2")
 				runState.clear()
 				return false
-	
+
 	return true
 
 var runStateFields = [
@@ -1586,41 +1586,41 @@ var runStateFields = [
 
 func loadRunState(mode: int, instanceRunState: bool = true) -> bool:
 	var loadedRun = false
-	
+
 	var save_game = File.new()
 	var path = getRunStateTmpPath(mode)
-	
-	
-	
+
+
+
 	if loadTemp and save_game.file_exists(path):
 		var res = loadRunStateFromPath(path, mode)
 		if res == RunStateLoadResult.LoadedRun:
-			
+
 			loadedRun = validateRun(mode)
-			
-		
+
+
 	if not loadedRun:
 		path = getLoadPath(getRunStateFormat(mode))
-		
+
 		if save_game.file_exists(path):
 			var res = loadRunStateFromPath(path, mode)
 			if res == RunStateLoadResult.LoadedRun:
 				loadedRun = validateRun(mode)
-				
-	
-	
+
+
+
 	if loadedRun:
 		var runState = getRunState(mode)
-		
+
 		for key in runStateFields:
 			if not key in runState:
 				runState.clear()
 				return false
-		
+
 		if runState["gold"] < 0:
 			runState.clear()
 			return false
-			
+
 		var selectedClass = runState["class"]
 		if not isClassUnlocked(selectedClass):
 			runState.clear()
@@ -1632,25 +1632,25 @@ func loadRunState(mode: int, instanceRunState: bool = true) -> bool:
 
 		if instanceRunState:
 			initPlayerFromRunstate(mode)
-		
-			
+
+
 			if runState["incombat"]:
 				print("incombat runstate")
 				runState["results"][runState["round"] - 1] = RoundResult.Loss
 				runState["round"] += 1
 				runState["tries"] -= 1
 				runState["losses"] += 1
-			
+
 			readRoundResultsFromRunState(mode)
-			
-			
+
+
 			if runOver():
 				if mode == Mode.Lobbies:
 					endRun_lobby()
 				else:
 					endRun(false, false)
 				return false
-	
+
 	return loadedRun
 
 func checkItemsValid(items: Array) -> bool:
@@ -1688,8 +1688,8 @@ func deleteDraggedItem():
 		hoveredItems.erase(draggedItem)
 		draggedItem.discard()
 		itemDropped(draggedItem, Item.DropResult.Failed)
-		
-		
+
+
 		InputBlocker.restoreAllControls(InputBlocker.Source.ItemDragging)
 
 func initPlayerFromRunstate(mode: int = curMode):
@@ -1697,7 +1697,7 @@ func initPlayerFromRunstate(mode: int = curMode):
 	if runState.empty():
 		CustomRules.reset()
 		return
-	
+
 	deleteDraggedItem()
 	instanceCharacter(runState["class"])
 	curLoadout = runState["loadout"]
@@ -1706,7 +1706,7 @@ func initPlayerFromRunstate(mode: int = curMode):
 	setGold(runState["gold"])
 	PLAYER.setMaxHealth(runState["maxHealth"])
 	PLAYER.setMaxStamina(runState["maxStamina"])
-	
+
 	PLAYER.INVENTORY.reset()
 	var inventoryState = runState["inventory"]
 	for itemData in inventoryState:
@@ -1725,7 +1725,7 @@ func initPlayerFromRunstate(mode: int = curMode):
 		item.setLocked(locked, false)
 		if itemData.size() >= 6:
 			item.setGemData(itemData[5])
-	
+
 	emit_signal("runstate_loaded")
 
 func readRoundResultsFromRunState(mode: int):
@@ -1742,24 +1742,24 @@ func readRoundResultsFromRunState(mode: int):
 func continueLastRun(mode):
 	setMode(mode)
 	var runState = getRunState(curMode)
-	
+
 	if curClass != runState["class"]:
 		print("Class mismatch ", curClass, " ", runState["class"])
 		get_tree().quit()
-	
+
 	startRun()
-	
-	
+
+
 	if runState["incombat"]:
 		continueState = ContinueState.FromCombat
 	else:
 		continueState = ContinueState.FromShop
 	runWasJustContinued = true
-	
+
 	readRoundResultsFromRunState(curMode)
-	
+
 	bagPityCounter = runState["bagcounter"]
-	
+
 	STORAGEBOX.deleteItems()
 	var storageState = runState["storage"]
 	for itemData in storageState:
@@ -1774,16 +1774,16 @@ func continueLastRun(mode):
 		item.setLocked(itemData[3], false)
 		if itemData.size() >= 5:
 			item.setGemData(itemData[4])
-	
+
 	RunDatabase.rounds = runState["priorRounds"].duplicate()
-	
+
 	if runState["incombat"]:
 		emit_signal("round_result")
 	else:
 		shopSceneNode.setStashedReservedItems(runState["stashedReserved"])
 		shopSceneNode.setStashedSales(runState["stashedSales"])
 		shopSceneNode.setStashedItemData(runState.get("stashedData", null))
-		
+
 		var shopItems = runState["shop"]
 		for i in shopItems.size():
 			if shopItems[i] != null:
@@ -1791,19 +1791,19 @@ func continueLastRun(mode):
 				shopSceneNode.setItem(i, item)
 			else:
 				shopSceneNode.setBought(i)
-		
+
 		var reservedSlots = runState["reserved"]
 		for i in reservedSlots.size():
 			shopSceneNode.setReserved(i, reservedSlots[i])
-		
+
 		var onSaleSlots = runState["sales"]
 		for i in onSaleSlots.size():
 			shopSceneNode.setOnSale(i, onSaleSlots[i])
-		
+
 		var shopItemData = runState.get("shopdata", {})
 		for slotI in shopItemData:
 			shopSceneNode.slots[slotI].item.setData(shopItemData[slotI])
-		
+
 		if runState.has("tradeWant"):
 			SELLBOX.tradeNode.setTrade(runState["tradeWant"], runState["tradeGive"])
 
@@ -1821,15 +1821,15 @@ func concedeLastRun():
 		setLoadout(getConfiguredLoadout())
 	else:
 		setLoadout(0)
-		
+
 func setMode(newMode):
 	curMode = newMode
 
 func initPlayer():
-	
+
 	defaultPersistentVar("name", "")
 	defaultPersistentVar("identifier", Util.generateRandomString(16))
-	
+
 	if FULLVERSION:
 		var varName = "rating" + getSeason()
 		defaultPersistentVar(varName, {})
@@ -1841,15 +1841,15 @@ func initPlayer():
 		for classI in getNumClasses():
 			ratings.push_back(0.0)
 		defaultPersistentVar("rating", ratings)
-	
+
 	if ITEM_STATISTICS_ENABLED:
 		for statistic in ItemStatistic.values():
 			var key = getStatisticsKey(statistic)
 			var arr = []
 			arr.resize(ItemBook.getNumItems())
 			defaultPersistentVar(key, arr)
-			
-	
+
+
 	defaultPersistentVar("totalWins", 0)
 	defaultPersistentVar("trophies", 0)
 	defaultPersistentVar("runWins", 0)
@@ -1862,24 +1862,24 @@ func initPlayer():
 	defaultPersistentVar("selectedClass", Classes.Ranger)
 	defaultPersistentVar("unlockedSkins", {})
 	defaultPersistentVar("rotations", 0)
-	
-	
-	
-	
+
+
+
+
 	defaultPersistentVar("tutorial", 0)
 	defaultPersistentVar("smr", 0.0)
-	
+
 	defaultPersistentVar("id", 0)
 	defaultPersistentVar("patchNotesVersion", "0.1.0")
 
 func defaultPersistentVar(varName, defaultVal):
-	
-	
+
+
 	if defaultVal is Array and varName in persistent:
 		var existingArray = persistent[varName]
 		for index in existingArray.size():
 			defaultVal[index] = existingArray[index]
-		
+
 		persistent[varName] = defaultVal
 	else:
 		persistent[varName] = persistent.get(varName, defaultVal)
@@ -2153,14 +2153,14 @@ func getClassInternalName(charClass = curClass) -> String:
 
 func getSubclass():
 	var runState = getRunState(curMode)
-	
+
 	if "inventory" in runState:
 		var indices = []
 		for item in runState["inventory"]:
 			indices.push_back(item[0])
 		for item in runState["storage"]:
 			indices.push_back(item[0])
-		
+
 		return ItemBook.getSubclassFromIndices(indices)
 	else:
 		return ItemBook.getPlayerSubclass()
@@ -2195,7 +2195,7 @@ func getTranslatedSubclassName(subclassName) -> String:
 
 func isClassUnlocked(charClass = curClass) -> bool:
 	if showExclusiveContent(): return true
-	
+
 	return (charClass == Classes.Ranger or 
 		charClass == Classes.Reaper)
 
@@ -2267,13 +2267,13 @@ func getLeague_exact(rating) -> float:
 			league += 1
 		else:
 			break
-	
+
 	var leftBorder = leagueThresholds[league]
 	var rightBorder = leagueThresholds[league + 1]
 	var bracketSize: float = rightBorder - leftBorder
 	var interpolationPoint = (rating - leftBorder) / bracketSize
-	
-	
+
+
 	return league + interpolationPoint
 
 func getRatingFromLeague(leagueExact: float) -> float:
@@ -2295,7 +2295,7 @@ func getRanking(charClass) -> int:
 
 func getLeague(charClass) -> int:
 	return int(getLeague_exact(getPlayerRating(charClass)))
-	
+
 func getLeagueProgress(charClass) -> float:
 	return fmod(getLeague_exact(getPlayerRating(charClass)), 1.0)
 
@@ -2321,7 +2321,7 @@ func getRankingDifIfConceded():
 	if "custom" in arenaRunState:
 		if CustomRules.isSwitchModeNoLoad(arenaRunState["custom"]) == CustomRules.SwitchModeState.Ranked:
 			classI = null
-	
+
 	return getRankingDifForStats(classI, arenaRunState["wins"], MAX_TRIES, 0, 
 		arenaRunState["survival"])
 
@@ -2357,20 +2357,21 @@ func _enter_tree():
 		locales["Français"] = "fr"
 		locales["Русский"] = "ru"
 		locales["Português Brasileiro"] = "pt_BR"
+		locales["Dansk"] = "da"
 
 func _ready() -> void :
 	pause_mode = Node.PAUSE_MODE_PROCESS
-	
+
 	print("VERSION ", VERSION, SUBVERSION)
-	
-	
-	
-	
+
+
+
+
 	steamAvailable = ( not OS.has_feature("disable_steam_integration")
 		and SteamHelper.is_init())
-	
-	
-		
+
+
+
 	localeToLanguage = Util.invertDictionary(locales)
 
 	_initOpponentRankDisplay()
@@ -2381,7 +2382,7 @@ func _ready() -> void :
 		add_child(processTimer)
 		processTimer.one_shot = true
 		processTimer.connect("timeout", self, "checkProcesses_cyclic")
-	
+
 	makeBaseDir()
 
 	opponentRankDisplayEnabled = getConfigValue("Options", "OpponentRankDisplayEnabled", false)
@@ -2393,89 +2394,89 @@ func _ready() -> void :
 		print("PLAYTEST")
 	elif BETA:
 		print("BETA")
-	
+
 	randnum = (Util.rng.randi() << 32) + Util.rng.randi()
 	gold_internal = encode(0)
-	
+
 	loadGame()
 	requestOpponentPoolAccessCheck()
 
 	call_deferred("ready_deferred")
-	
+
 	for league in Leagues:
 		var i = Leagues[league]
 		if i != - 1:
 			leagueIcons.push_back(load("res://Assets/Leagues/League_" + league + ".png"))
-	
+
 	var basePath = "res://CharacterClasses/"
 	for className in Classes_Full:
 		if isClassUnlocked(Classes_Full[className]):
 			classResources.push_back(load(str(basePath, className, "/", className, ".tres")))
 		else:
 			classResources.push_back(null)
-	
+
 	for classIndex in getNumClasses():
 		if isClassUnlocked(classIndex):
 			classResources[classIndex].loadFiles(getClassKeys()[classIndex])
 		chibiMode.push_back(getConfigValue("Options", "Chibi_" + getClassKeys()[classIndex], false))
-	
+
 	if BUILD_HISTORY_ENABLED and Util.hasDLL("libgdsqlite"):
-		
+
 		buildHistoryDB = load("res://Utility/BuildHistoryDB.gd").new()
-	
+
 	stealLifeDamageSource = DamageSource.new().init(null, DamageSource.Type.Effect)
 	stealLifeDamageSource.flags = DamageSource.effectFlags
-	
+
 	unhealingDamageSource = DamageSource.new().init(null, DamageSource.Type.Unhealing)
 	unhealingDamageSource.flags = DamageSource.unhealingFlags
-	
+
 	fatigueDamageSource = DamageSource.new().init(self, DamageSource.Type.Fatigue)
 	fatigueDamageSource.flags = DamageSource.Flags.CanBeBlocked
-	
+
 	for argument in OS.get_cmdline_args():
 		if argument == "-write_state":
 			print("Writing out state.")
 			WRITE_OUT_STATE = true
-	
+
 	for c in cursors:
 		var c2 = ImageTexture.new()
 		var img = Image.new()
 		img.copy_from(c)
 		c2.create_from_image(img)
 		scaledCursors.push_back(c2)
-	
+
 	if EDITOR or OS.has_feature("debugging"):
 		shopSceneNode.add_child(load("res://Utility/Debug/ShopDebug.tscn").instance())
 	if EDITOR:
 		titleScreen.add_child(load("res://Utility/Debug/DebugViewer.tscn").instance())
-	
 
-	
+
+
 
 func ready_deferred():
 	print("OS: ", OS.get_name())
 	print("vsync on: ", Settings.getVal(Settings.Setting.vsync))
-	
+
 	var selectedClass = getSelectedClass()
 	instanceCharacter(selectedClass)
-	
+
 	if is_instance_valid(MaterialCompiler):
 		yield(MaterialCompiler, "finished_loading_materials")
-	
+
 	sceneAnimation.connect("animation_finished", self, "onSceneAnimationFinished")
-	
-	
-	
+
+
+
 	loadRunState(Mode.Unranked, false)
-	
-	
+
+
 	if LOBBIES_ENABLED and loadRunState(Mode.Lobbies):
-		
-		
+
+
 		RunDatabase.lobbies.connect("lobby_joined", self, "onReconnectedToLobby")
 		RunDatabase.lobbies.connect("lobby_join_failed", self, "onReconnectTimeout")
 		RunDatabase.lobbies.tryReconnect()
-		
+
 	else:
 		deleteRunStateAndRules(Mode.Lobbies)
 		loadArenaRunAndStartOnTitle()
@@ -2494,7 +2495,7 @@ func onReconnectedToLobby_deferred():
 	playerNodeAnimation.advance(100)
 
 func onReconnectTimeout():
-	
+
 	print("Reconnect failed")
 	deleteRunStateAndRules(Mode.Lobbies)
 	RunDatabase.lobbies.disconnect("lobby_joined", self, "onReconnectedToLobby")
@@ -2505,15 +2506,15 @@ var leavingLobby = false
 
 func leaveLobbyFromShop():
 	leavingLobby = true
-	
+
 	returnToTitle_midRun()
 	playerNodeAnimation.play("ReturnToTitle")
 	RunDatabase.lobbies.leaveLobby()
 
 func loadArenaRunAndStartOnTitle():
 	var selectedClass = getSelectedClass()
-	
-	
+
+
 	if not loadRunState(Mode.Unranked):
 		instanceCharacter(selectedClass)
 		if LOADOUTS_ENABLED:
@@ -2522,17 +2523,17 @@ func loadArenaRunAndStartOnTitle():
 				randomCharacter = true
 		else:
 			setLoadout(0)
-	
+
 	applySetSkins()
-	
+
 	emit_signal("continue_loaded")
-	
+
 	splashScreenAnimation.play("FadeOut")
 	sceneAnimation.play("StartOnTitle")
 	playerNodeAnimation.play("Start")
 	Util.callDelayed(Sound, "playSound", 1.5, [playerMoveInSound])
 	Sound.playBGM(Sound.titleBGM, 0, 0)
-	
+
 	SteamHelper.updateRichPresence()
 	Util.callDelayed(self, "_startModUpdateChecks", 0.5)
 
@@ -2541,7 +2542,7 @@ func instanceCharacter(characterClass: int):
 	curClass = characterClass
 	if isClassUnlocked() and curMode != Mode.History:
 		persistent["selectedClass"] = curClass
-	
+
 	if not PLAYER:
 		PLAYER = playerScene.instance()
 		PLAYER.playerId = PLAYER.ID.PLAYER
@@ -2551,11 +2552,11 @@ func instanceCharacter(characterClass: int):
 		PLAYER.connect("character_died", self, "endCombat")
 	else:
 		PLAYER.INVENTORY.reset()
-	
+
 	PLAYER.setClass(curClass, getEffectiveChibiMode())
 	for slot in SkinSlot.values():
 		Game.PLAYER.sprite.setSkin(slot, getSelectedSkin(slot))
-	
+
 	if before != curClass:
 		Util.finishTween(characterTween)
 		characterTween = Util.refreshTween(characterTween)
@@ -2571,7 +2572,7 @@ func instanceCharacter(characterClass: int):
 			upDur).from(sprite.position.y).set_ease(Tween.EASE_OUT)
 		characterTween.tween_property(sprite, "position:y", sprite.position.y, 
 			downDur2).from(offsetPos2).set_ease(Tween.EASE_IN)
-	
+
 	emit_signal("character_changed")
 
 func setRandomCharacter(_randomCharacter: bool):
@@ -2582,11 +2583,11 @@ func initStartInventory(loadout = 0):
 	Util.finishTween(loadoutTween)
 	loadoutTween = Util.refreshTween(loadoutTween)
 	loadoutTween.set_parallel()
-	
+
 	deleteDraggedItem()
-	
+
 	if isClassUnlocked():
-		
+
 		var resource: CharacterClass = classResources[curClass]
 		setGold(resource.gold)
 		PLAYER.INVENTORY.reset()
@@ -2600,7 +2601,7 @@ func initStartInventory(loadout = 0):
 				addLoadoutAni_jump(item)
 			else:
 				addLoadoutAni(item, item.isBag())
-		
+
 		if loadout != 2:
 			addLoadoutAni(PLAYER.INVENTORY, true)
 
@@ -2608,7 +2609,7 @@ func addLoadoutAni_jump(bag):
 	var upDur = 0.05
 	var downDur = 0.15
 	var offset = Util.rng.randf_range(20, 50)
-	
+
 	for node in [bag, PLAYER.INVENTORY]:
 		var offsetPos = node.position.y - offset
 		loadoutTween.tween_property(node, "position:y", offsetPos, 
@@ -2618,7 +2619,7 @@ func addLoadoutAni_jump(bag):
 
 func addLoadoutAni(node, isBag):
 	var delay = 0.1
-	
+
 	if isBag:
 		delay *= Util.rng.randf_range(0.8, 1.2)
 		var downDur = 0.05
@@ -2637,7 +2638,7 @@ func addLoadoutAni(node, isBag):
 		var bouncePos: Vector2 = node.position - Vector2(0, 10 * jumpFactor)
 		loadoutTween.tween_property(node, "position", node.position, 
 			delay).from(startPos).set_ease(Tween.EASE_OUT)
-		
+
 		loadoutTween.tween_property(node, "position", bouncePos, 
 			upDur).set_delay(upDur + delay)
 		loadoutTween.tween_property(node, "position", node.position, 
@@ -2655,7 +2656,7 @@ func startFreshRun(mode):
 	DEVCHEATS = false
 	bagPityCounter = 0
 	persistent["runsStarted"] += 1
-	
+
 	if winNextRun:
 		if mode == Mode.Lobbies:
 			wins = 17
@@ -2666,7 +2667,7 @@ func startFreshRun(mode):
 	elif loseNextRun:
 		tries = 1
 		curRound = 5
-	
+
 	if randomCharacter:
 		var possibleClasses = getClassesForRandom()
 		var classI = Util.pickRandomElement(possibleClasses)
@@ -2678,12 +2679,12 @@ func startFreshRun(mode):
 		var numTimesRandomed = SteamHelper.changeStat("Random", 1)
 		if numTimesRandomed >= 50:
 			SteamHelper.unlockAchievement("Dice")
-		
+
 	startRun()
 	saveGame()
-	
+
 	emit_signal("fresh_run_started")
-	
+
 	print("New Game (", Util.enumToString(Mode, curMode), ") as ", Util.enumToString(Classes_Full, curClass))
 
 
@@ -2701,9 +2702,9 @@ func startHistoryRun(runData, roundNum: int, opponentData = null, opponentRoundN
 		tries = MAX_TRIES
 	else:
 		tries = curHistoryData.getTries(roundNum - 1)
-		
-	
-	
+
+
+
 	instanceCharacter(curHistoryData.classI)
 	CustomRules.fromString(curHistoryData.customRules)
 	var roundData = curHistoryData.getRoundData(roundNum)
@@ -2712,13 +2713,13 @@ func startHistoryRun(runData, roundNum: int, opponentData = null, opponentRoundN
 	PLAYER.setMaxHealth(roundData.health)
 	PLAYER.setMaxStamina(roundData.stamina)
 	initRoundResults()
-	
-	
+
+
 	sceneAnimation.play("TitleToShop")
 	sceneAnimation.advance(1000)
 	sceneAnimation.play("ShopToCombat")
 	sceneAnimation.advance(3.5)
-	
+
 	emit_signal("switching_to_combat")
 	print("Refighting from history.")
 
@@ -2830,27 +2831,27 @@ func startRun():
 	if LOBBIES_ENABLED and curMode != Mode.Lobbies and RunDatabase.lobbies.isInLobby():
 		print("ERR: Mode mismatch")
 		get_tree().quit()
-	
+
 	runStarted = true
 	initRoundResults()
-	
+
 	STORAGEBOX.deleteItems()
-	
+
 	if curMode == Mode.Ranked:
 		CustomRules.reset()
-	
+
 	RunDatabase.startRun()
 	RunDatabase.sendRunRequest()
-	
+
 	call_deferred("titleToShop")
 	call_deferred("emit_signal", "run_started")
-	
+
 	SteamHelper.call_deferred("updateRichPresence")
 
 func titleToShop():
 	sceneAnimation.playback_speed = 1
 	sceneAnimation.play("TitleToShop")
-	
+
 	InputBlocker.activate(InputBlocker.Source.SceneSwitch)
 	PLAYER.titleToShop()
 	Sound.playSound(transitionSounds[0])
@@ -2860,10 +2861,10 @@ func titleToShop():
 
 
 func isSoftballRound():
-	
+
 	if getRunRating(curClass) > 80:
 		return false
-	
+
 	if getNumStartedRuns() == 1:
 		return true
 	elif getNumStartedRuns() == 2:
@@ -2897,7 +2898,7 @@ func isSwitchToCombatPossible() -> bool:
 
 func cancelSwitch():
 	if canCancelSwitch:
-		
+
 		var pos = sceneAnimation.current_animation_position
 		sceneAnimation.stop()
 		startCombatButtonAni.play_backwards("TurnAround")
@@ -2906,129 +2907,129 @@ func cancelSwitch():
 		canCancelSwitch = false
 
 func switchToCombat():
-	
+
 	canCancelSwitch = true
-	
+
 	var pos = 0
 	if startCombatButtonAni.current_animation == "TurnAround":
 		pos = startCombatButtonAni.current_animation_position
-	
+
 	sceneAnimation.playback_speed = 1
 	sceneAnimation.play("ShopToCombat")
-	
+
 	if pos == 0:
 		sceneAnimation.advance(0.017)
 	else:
 		sceneAnimation.seek(pos)
-	
+
 	setInventoryEditMode(InventoryEditMode.Default)
-	
+
 	emit_signal("combat_start_pressed")
 
 func finishSwitchingToCombat():
 	closeAllMenus()
 	setInventoryEditMode(InventoryEditMode.Default)
-	
+
 	canCancelSwitch = false
 	canSwitchToCombat = false
 	justStartedSurvivalMode = false
 	InputBlocker.activate(InputBlocker.Source.SceneSwitch)
-	
+
 	call_deferred("unhoverAndHideTooltips")
-	
+
 	if not isTutorialDone(TutorialSteps.GoldCarryOver):
 		if gold == 0:
 			startedCombatWithoutGold += 1
 		else:
 			startedCombatWithoutGold = 0
 			setTutorialDone(TutorialSteps.GoldCarryOver)
-			
-	
+
+
 	if curMode != Mode.History:
 		var runState = getRunState(curMode)
 		runState["incombat"] = true
 		if isArenaMode():
 			RunDatabase.serializeCurrentRound()
-		
+
 		saveRunState()
 		saveGame()
-	
+
 	Sound.playSound(transitionSounds[1])
 	if survivalMode:
 		Sound.playBGM(Sound.battleBGM_survival, 2)
 	else:
 		Sound.playBGM(Sound.battleBGM, 4)
-	
+
 	var roundReduction = 0
 	var droppedItems = 0
-	
+
 	if not BETA and curMode != Mode.Lobbies and not CustomRules.isSwitchMode():
 		if isBelowLeague(Leagues.Diamond) and isItemHandicapStats():
 			droppedItems += 1
 		if isSoftballRound():
 			roundReduction += 1
-			
+
 		if isBelowLeague(Leagues.Diamond) and isSoftballStats():
 			roundReduction += 1
-		
+
 		if roundReduction >= curRound:
 			roundReduction = curRound - 1
 			droppedItems += 1
-	
-	
-	
-	
+
+
+
+
 	OPPONENT = opponentScene.instance()
 	OPPONENT.playerId = OPPONENT.ID.OPPONENT
-	
+
 	PLAYER.setOpponent(OPPONENT)
 	OPPONENT.setOpponent(PLAYER)
 	OPPONENT.connect("character_died", self, "endCombat")
-	
+
 	OPPONENT.position = Vector2(1920 - playerCombatPos, 880)
 	opponentNode.add_child(OPPONENT)
-	
+
 	if curMode == Mode.History and buildHistory.markedOpponentData != null:
 		initHistoryOpponent()
 	else:
 		RunDatabase.sortOpponents()
-		
+
 		while true:
 			var res = initOpponent(roundReduction, droppedItems)
 			if res == 0:
-				
+
 				break
-	
+
 	fightEnded = false
 	numTimesOutOfStamina = 0
-	
+
 	emit_signal("shop_closed")
 	emit_signal("switching_to_combat")
-	
+
 	combatTimer.initialize()
 	PLAYER.shopToCombat()
-	
+
 	var playerItems = PLAYER.INVENTORY.getItems().duplicate()
 	playerItems.shuffle()
 	playerItems.sort_custom(ItemSort, "sort_TriggerPriority")
-	
 
 
-	
+
+
 	var opponentItems = OPPONENT.INVENTORY.getItems().duplicate()
 	opponentItems.shuffle()
 	opponentItems.sort_custom(ItemSort, "sort_TriggerPriority")
-	
-	
+
+
 	call_deferred("prepareItems", playerItems + opponentItems)
 	Util.callDelayed(self, "activateItems", COMBAT_DELAY, [playerItems + opponentItems])
-	
+
 	PLAYER.playSound(classResources[curClass].getRoundStartSound(), 4)
-	
+
 	Util.callDelayed(Sound, "playSound", 0.3, [combatSceneNode.combatStartSound])
-	
+
 	ItemBook.pausePrepare()
-	
+
 	print("Round ", curRound, " Battle start")
 
 func closeAllMenus():
@@ -3051,14 +3052,14 @@ func forceSwitchToCombat():
 	unhoverAndHideTooltips()
 	switchToCombat()
 	canSwitchToCombat = false
-	
+
 	InputBlocker.activate(InputBlocker.Source.Lobby)
 	for control in get_tree().get_nodes_in_group("PinnedControl"):
 		InputBlocker.restoreControl(InputBlocker.Source.Lobby, control)
-	
+
 	RunDatabase.lobbies.prepareCombat()
-	
-	
+
+
 	if not RunDatabase.lobbies.allOpponentsSubmitted():
 		sceneAnimation.stop(false)
 		RunDatabase.lobbies.connect("found_opponent", self, "finishForceSwitchToCombat", [], CONNECT_ONESHOT)
@@ -3069,23 +3070,23 @@ func forceSwitchToCombat():
 func finishForceSwitchToCombat():
 	sceneAnimation.advance(COMBAT_DELAY)
 	sceneAnimation.play()
-	
+
 	RunDatabase.lobbies.startCombat()
 
 func onWaitingForMembersTimeout():
 	if not RunDatabase.lobbies.isInLobby(): return
-	
+
 	var membersList = ""
 	var missing = RunDatabase.lobbies.getMissingOpponentNames()
 	if missing.empty():
-		
+
 		return
-	
+
 	for i in missing.size():
 		membersList += missing[i]
 		if i != missing.size() - 1:
 			membersList += "\n"
-	
+
 	if RunDatabase.lobbies.isHost():
 		Util.showPopupMessage("HINT_WaitingForMembers", {"members": membersList}, 5)
 	else:
@@ -3094,34 +3095,34 @@ func onWaitingForMembersTimeout():
 func forceLeaveLobby():
 	Util.tryDisconnect(RunDatabase.lobbies, "found_opponent", self, "finishForceSwitchToCombat")
 	InputBlocker.deactivate(InputBlocker.Source.Lobby)
-	
+
 	if not RunDatabase.lobbies.isInLobby():
 		print("not in lobby")
 		return
-	
+
 	if sceneAnimation.current_animation != "":
 		leaveLobbyPending = true
 		print("forceLeaveLobby 1")
 		return
-	
+
 	if state == State.Title:
 		leaveLobbyPending = false
 		RunDatabase.lobbies.leaveLobby()
 		print("forceLeaveLobby 2")
 		return
-	
+
 	closeAllMenus()
-	
+
 	if state == State.Shop:
 		leaveLobbyFromShop()
 		print("forceLeaveLobby 3")
-	
+
 	elif state == State.Combat:
 		RunDatabase.lobbies.leaveLobby()
 		if fightEnded:
 			combatSceneNode.forceSwitchToTitle()
 			print("forceLeaveLobby 4")
-			
+
 		else:
 			leaveLobbyPending = true
 			print("forceLeaveLobby 5")
@@ -3133,31 +3134,31 @@ func initOpponent(roundReduction, droppedItems):
 	OPPONENT.setMaxHealth(roundData["health"])
 	OPPONENT.setMaxStamina(roundData["stamina"])
 	OPPONENT.setClass(roundData["class"], getShowChibis() and roundData["chibi"])
-	
+
 	var dropIndex = - 1
-	
+
 	if not "reflection" in roundData:
 		if droppedItems >= 1:
 			dropIndex = Util.rng.randi_range(0, roundData["items"].size() - 1)
 	else:
 		pass
-	
+
 	roundData["items"].sort_custom(ItemSort, "sort_BagOrder")
-	
+
 	var itemIndex = 0
 	var checkValidity = not "reflection" in roundData
-	
+
 	for tuple in roundData["items"]:
 		var descriptor = tuple["d"]
 		itemIndex += 1
-		
+
 		if itemIndex == dropIndex + 1:
 			if descriptor.isBag() or descriptor.isWeapon():
 				dropIndex += 1
 			else:
-				
+
 				continue
-		
+
 		var item = ItemBook.instantiateItem(descriptor)
 		var result = addOpponentItem(tuple, item, checkValidity)
 		if result == - 1:
@@ -3167,40 +3168,40 @@ func initOpponent(roundReduction, droppedItems):
 		OPPONENT.baseMaxStamina = Game.classResources[roundData["class"]].stamina
 		OPPONENT.recalculateMaxStamina()
 		roundData["stamina"] = OPPONENT.getMaxStamina()
-	
+
 	for slot in roundData["skins"].size():
 		var skinId = roundData["skins"][slot]
-		
+
 		if roundData["chibi"] and not getShowChibis():
 			skinId = SkinBook.getRandomSkinFor(roundData["class"], 1, slot).id
-		
+
 		OPPONENT.sprite.setSkin(slot, skinId)
-	
+
 	OPPONENT.setCharacterName(roundData["name"])
 	if Settings.getVal(Settings.Setting.hide_names):
 		OPPONENT.hideCharacterName()
-	
+
 	curOpponentData = roundData
 	return 0
 
 
 func initHistoryOpponent():
-	
+
 	var data = buildHistory.markedOpponentData
 	var roundI = buildHistory.markedOpponentRound
-	
+
 	var roundData: BuildHistoryData.RoundData = data.getRoundData(roundI)
 	OPPONENT.INVENTORY.reset()
 	OPPONENT.setMaxHealth(roundData.health)
 	OPPONENT.setMaxStamina(roundData.stamina)
 	OPPONENT.setClass(data.classI, false)
-	
+
 	var deserialized = RunData.deserializeItems(roundData.items, 
 		data.getVersionString())
-	
+
 	var items = deserialized["items"]
 	items.sort_custom(ItemSort, "sort_BagOrder")
-	
+
 	var itemIndex = 0
 	for tuple in items:
 		var descriptor = tuple["d"]
@@ -3208,7 +3209,7 @@ func initHistoryOpponent():
 		var result = addOpponentItem(tuple, item, true)
 		if result == - 1:
 			return - 1
-	
+
 	OPPONENT.baseMaxStamina = Game.classResources[data.classI].stamina
 	OPPONENT.recalculateMaxStamina()
 
@@ -3224,7 +3225,7 @@ func addOpponentItem(tuple, item, checkValidity: bool):
 	var topLeftCellPos = tuple["c"]
 	var faceDirection = tuple["f"]
 	OPPONENT.INVENTORY.orientItem(item, topLeftCellPos, faceDirection)
-	
+
 	if checkValidity:
 		if not OPPONENT.INVENTORY.canAddItemOrBag(item):
 			if curMode == Mode.History and buildHistory.markedOpponentData != null:
@@ -3234,13 +3235,13 @@ func addOpponentItem(tuple, item, checkValidity: bool):
 				item.discard()
 				Util.eprint("Encountered sus run. 8")
 				RunDatabase.notifyOpponentCorrupt()
-				
+
 				return - 1
-	
+
 	OPPONENT.INVENTORY.addItemByTopLeft(item, topLeftCellPos)
 	item.disablePicking()
-	
-	
+
+
 	if "g" in tuple:
 		var gems = tuple["g"]
 		for i in gems.size():
@@ -3248,45 +3249,45 @@ func addOpponentItem(tuple, item, checkValidity: bool):
 			if gemIndex != RunDatabase.emptySocketId:
 				var gem = ItemBook.instanciateGemFromIndex(gemIndex)
 				item.setGem(i, gem)
-	
+
 	if "pd" in tuple:
 		item.setData(tuple["pd"])
-		
+
 	return 0
 
 func prepareItems(items):
 	PLAYER.prepare()
 	OPPONENT.prepare()
-	
+
 	for item in items:
 		item.prepare()
 
 func activateItems(items):
-	
-	
+
+
 	emit_signal("combat_start")
 	combatTimer.start()
-	
+
 	PLAYER.combatStart()
 	OPPONENT.combatStart()
-	
+
 	for item in items:
 		item.preCombatStart()
-	
+
 	for item in items:
 		item.combatStart()
-	
+
 	for item in items:
 		item.postCombatStart()
 
 func endCombat():
 	if fightEnded:
 		return
-	
+
 	Engine.time_scale = 1
 	fightEnded = true
 	triesBeforeFight = tries
-	
+
 	if ( not loseNextRound and not loseNextRun and 
 		(OPPONENT.curHealth <= 0 or winNextRun or winNextRound)):
 		roundResults[curRound - 1] = RoundResult.Win
@@ -3295,7 +3296,7 @@ func endCombat():
 		PLAYER.win()
 		Sound.playSound(winSound)
 		OPPONENT.lose()
-	
+
 	else:
 		roundResults[curRound - 1] = RoundResult.Loss
 		losses += 1
@@ -3304,45 +3305,45 @@ func endCombat():
 		OPPONENT.win()
 		PLAYER.lose()
 		Sound.playSound(loseSound, 3)
-	
+
 	print("Round ", curRound, " Battle ended with ", Util.enumToString(RoundResult, roundResults[curRound - 1]))
-	
+
 	call_deferred("combatEndDeferred")
 
 func combatEndDeferred():
 	emit_signal("combat_end", roundResults[curRound - 1])
-	
+
 	EventBus.disconnectAll()
 	PLAYER.combatEnd()
 	OPPONENT.combatEnd()
 	combatTimer.combatEnd()
-	
+
 	if roundResults[curRound - 1] == RoundResult.Win:
 		OPPONENT.setCurrentHealth(0)
 		PLAYER.setCurrentHealth(max(1, PLAYER.getCurrentHealth()))
 	else:
 		PLAYER.setCurrentHealth(0)
 		OPPONENT.setCurrentHealth(max(1, OPPONENT.getCurrentHealth()))
-	
+
 	for item in PLAYER.INVENTORY.getItems() + OPPONENT.INVENTORY.getItems():
 		item.combatEnd()
-	
+
 	ropeSpeedups.clear()
 	cubeAdvanced.clear()
 	sandbagActive = false
-	
+
 	curRound += 1
 	if curMode != Mode.History:
 		emit_signal("round_result")
-	
-	
+
+
 	if SteamHelper.canUnlock():
 		if getLastRoundResult() == RoundResult.Win:
 			if combatTimer.combatTime < 3:
 				SteamHelper.unlockAchievement("FastBattle")
 			elif combatTimer.combatTime >= 45:
 				SteamHelper.unlockAchievement("SlowBattle")
-			
+
 			var noWeapon = true
 			for item in PLAYER.INVENTORY.getItems():
 				if item.hasType(Item.Type.Weapon):
@@ -3350,26 +3351,26 @@ func combatEndDeferred():
 					break
 			if noWeapon:
 				SteamHelper.unlockAchievement("NoWeapon")
-			
+
 			if PLAYER.getRelativeHealth() == 1:
 				SteamHelper.unlockAchievement("FullHealth")
 			elif PLAYER.getCurrentHealth() == 1:
 				SteamHelper.unlockAchievement("1Health")
-			
+
 			checkForInventoryAchievements()
-			
+
 		if PLAYER.getBuffStacks() >= 100:
 			SteamHelper.unlockAchievement("ManyBuffs")
 		elif OPPONENT.getDebuffStacks() >= 100:
 			SteamHelper.unlockAchievement("ManyDebuffs")
-		
+
 		if numTimesOutOfStamina >= 10:
 			SteamHelper.unlockAchievement("OutOfStamina")
-	
-	
-	
+
+
+
 	Sound.fadeOutBGM(1)
-	
+
 	if runOver():
 		if curMode == Mode.Lobbies:
 			endRun_lobby()
@@ -3388,18 +3389,18 @@ func forceLoseCombat():
 func runOver():
 	if curMode == Mode.History:
 		return false
-	
+
 	if curMode == Mode.Lobbies:
 		return curRound == MAX_ROUNDS_LOBBIES + 1
-	
+
 	if tries == 0:
 		return true
-		
+
 	if isSurvivalMode():
 		if curRound == MAX_ROUNDS + 1:
 			return true
-	
-	
+
+
 	return false
 
 func _input(event: InputEvent) -> void :
@@ -3409,23 +3410,23 @@ func _input(event: InputEvent) -> void :
 
 
 
-	
+
 	if not isWeb:
 		if Util.isAction_event(event, "grab_item"):
-	
+
 			left_click = event.pressed
-		
-	
-	
+
+
+
 	if event is InputEventScreenTouch:
 		usingTouchscreen = true
-		
+
 		if not event.pressed and event.index == draggingFinger:
 			draggingFinger = - 1
-		
+
 		if event.pressed and draggingFinger == - 1 and draggedItem:
 			draggingFinger = event.index
-	
+
 	if usingController:
 		if (event is InputEventKey or event is InputEventMouseButton):
 			usingController = false
@@ -3441,13 +3442,13 @@ func _input(event: InputEvent) -> void :
 		elif activeControllerDevice != event.device:
 			activeControllerDevice = event.device
 			emit_signal("device_changed")
-	
 
 
 
 
 
-		
+
+
 	if event.is_action_pressed("toggle_fullscreen"):
 		if OS.is_window_fullscreen():
 			Settings.setVal(Settings.Setting.window_mode, "windowed")
@@ -3463,37 +3464,37 @@ func _input(event: InputEvent) -> void :
 	if RECIPE_TOOLTIPS_ENABLED:
 		if (lockedTooltipItem != null and event.is_pressed() and 
 			(event is InputEventKey or event is InputEventMouseButton or event is InputEventJoypadButton)):
-				
+
 				if itemLibrary.isOpen:
 					var focusItem = getFocusItem()
 					if (focusItem != null and 
 						focusItem.ownerType == Item.Owner.Tooltip and 
 						focusItem.owningBuildIntoRecipesTooltip != null):
 						itemLibrary.call_deferred("setSpotlightDescriptor", focusItem.descriptor)
-						
+
 				showHintsIsPressed = false
 				unlockTooltip()
 				get_tree().set_input_as_handled()
-		
+
 		if Util.isActionPressed_event(event, "show_hints") and tooltipsEnabled():
 			showHintsIsPressed = true
 			var focusItem = getFocusItem()
 			if focusItem != null:
 				focusItem.previewCanAffect()
-				
+
 				if focusItem.canShowBuildIntoRecipesTooltip():
 					focusItem.showBuildIntoRecipesTooltip()
-				
+
 					if Util.getFrameCounter_process() - showHintsTimeStamp < 20:
 						lockTooltip(focusItem)
-					
+
 					showHintsTimeStamp = Util.getFrameCounter_process()
 			else:
 				showAffectedLines()
-		
+
 		elif Util.isActionReleased_event(event, "show_hints"):
 			clearAffectedLines()
-			
+
 			if lockedTooltipItem == null:
 				showHintsIsPressed = false
 				var focusItem = getFocusItem()
@@ -3503,18 +3504,6 @@ func _input(event: InputEvent) -> void :
 					focusItem.clearCanAffectVisuals()
 					if focusItem.canShowBuildIntoRecipesTooltip():
 						focusItem.hideBuildIntoRecipesTooltip()
-		
-	
-
-
-
-
-
-
-
-
-
-		
 
 
 
@@ -3560,7 +3549,19 @@ func _input(event: InputEvent) -> void :
 
 
 
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -3595,11 +3596,11 @@ func _input(event: InputEvent) -> void :
 
 
 func showAffectedLines():
-	
+
 	if not affectedLines.empty(): return
 	if lockedTooltipItem != null: return
 	if combatSceneNode.isPostCombatScreenVisible() or isMenuOpen(): return
-	
+
 	var inventories = [PLAYER.INVENTORY]
 	if OPPONENT != null:
 		inventories.push_back(OPPONENT.INVENTORY)
@@ -3609,13 +3610,13 @@ func showAffectedLines():
 				for color in Item.Affected.values():
 					var affectedPoints = inv.getAffectedPoints(item, color)
 					for point in affectedPoints:
-						
+
 						var line = ObjectPool.instance(affectsLineScene)
-						
+
 						line.setPositions(item, point)
 						line.setColor(color)
 						affectedLines.push_back(line)
-	
+
 	affectedLines.sort_custom(LineSort, "sort")
 	for line in affectedLines:
 		UINode.add_child(line)
@@ -3627,10 +3628,10 @@ func clearAffectedLines():
 
 func onInventoryShifted(shift: Vector2):
 	cancelSwitch()
-	
+
 	for line in affectedLines:
 		line.moveBy(shift)
-	
+
 	setTutorialDone(TutorialSteps.Shift)
 
 func setInventoryEditMode(editMode):
@@ -3653,7 +3654,7 @@ func setItemEditMode(item, isInGridStorage = null):
 	if isInGridStorage == null:
 		isInGridStorage = item.isInGridStorage()
 	if isInGridStorage: return
-	
+
 	if inventoryEditMode == InventoryEditMode.BagLayer:
 		item.setEditMode(item.isBag())
 	elif inventoryEditMode == InventoryEditMode.ItemLayer:
@@ -3666,9 +3667,9 @@ func lockTooltip(item):
 	cancelSwitch()
 	if lockedTooltipItem.buildIntoRecipesTooltip != null:
 		lockedTooltipItem.buildIntoRecipesTooltip.onTooltipLocked()
-	
+
 	unhoverAllItems(false)
-	
+
 	InputBlocker.disableAllControls(InputBlocker.Source.LockedTooltip, shopSceneNode)
 	InputBlocker.disableAllControls(InputBlocker.Source.LockedTooltip, playerNode)
 	InputBlocker.disableAllControls(InputBlocker.Source.LockedTooltip, buildHistory)
@@ -3678,25 +3679,25 @@ func lockTooltip(item):
 
 func unlockTooltip():
 	if lockedTooltipItem == null: return
-	
+
 	var lockedTooltipItem_ = lockedTooltipItem
 	lockedTooltipItem = null
 	lockedTooltipItem_.hoverEnd()
-	
+
 	cancelSwitch()
 	InputBlocker.restoreAllControls(InputBlocker.Source.LockedTooltip)
-	
+
 	for item in itemsUnderMouse:
 		item.hover()
 
 func onItemUnderMouse(item):
 	itemsUnderMouse.push_back(item)
-	
+
 
 func onItemUnderMouseExited(item):
 	if item in itemsUnderMouse:
 		itemsUnderMouse.erase(item)
-		
+
 
 func addTranslation():
 	for sheet in ["Keywords", "Items", "ExclusiveItems", "Unreleased", "Interface", "Full"]:
@@ -3715,17 +3716,17 @@ func printNewNodes(node):
 	for child in node.get_children():
 		if child.has_meta("tag"):
 			pass
-			
-			
+
+
 		else:
-			
+
 			child.set_meta("tag", checkI)
-			
+
 			print(child.get_path())
 		printNewNodes(child)
-	
-	
-	
+
+
+
 const clickParticles = preload("res://Interface/ClickParticles.tscn")
 const opponentRankDisplayScene = preload("res://Interface/OpponentRankDisplay.tscn")
 
@@ -3778,24 +3779,24 @@ func _unhandled_input(event: InputEvent) -> void :
 		Util.isActionPressed_event(event, "grab_item") and 
 		not isMenuOpen() and 
 		Engine.time_scale > 0):
-		
+
 		var particles = ObjectPool.particleOneShot(clickParticles, UINode)
 		var pos = Util.getMousePosInWindow() - Vector2(10, 10)
 		particles.global_position = pos
 		Sound.playSound(clickSound, - 4, Util.rng.randf_range(0.8, 1.0))
 		particles.self_modulate = Color.white
-	
+
 	if (event.is_action_pressed("open_library") and 
 		not isMenuOpen() and state != State.Combat):
 			itemLibrary.open()
 
 func switchToShop():
-	
+
 	canSwitchToCombat = false
 	InputBlocker.activate(InputBlocker.Source.SceneSwitch)
 	PLAYER.combatToShop()
 	OPPONENT.combatToShop()
-	
+
 	print("[switchToShop] isSwitchMode=", CustomRules.isSwitchMode(), " isTeamSwitchMode=", CustomRules.isTeamSwitchMode(), " curMode=", curMode, " Mode.Lobbies=", Mode.Lobbies)
 	if CustomRules.isSwitchMode():
 		becomeOpponent()
@@ -3803,25 +3804,25 @@ func switchToShop():
 	elif CustomRules.isTeamSwitchMode() and curMode == Mode.Lobbies:
 		becomeTeammate()
 		
-	
+
 	for item in PLAYER.INVENTORY.getItems():
 		item.combatToShop()
 	for item in OPPONENT.INVENTORY.getItems():
 		item.combatToShop()
 	call_deferred("unhoverAndHideTooltips")
-	
+
 	shopSceneNode.z_index = - 51
 	sceneAnimation.playback_speed = 1
 	sceneAnimation.play("CombatToShop")
-	
+
 	Util.setDelayed(self, "canSwitchToCombat", true, 2)
 	Sound.playSound(transitionSounds[0])
-	
+
 	emit_signal("combat_scene_left")
 	emit_signal("switch_to_shop")
-	
+
 	playShopBGM()
-	
+
 	roundsStartedThisSession += 1
 	var runState = getRunState(curMode)
 	runState["incombat"] = false
@@ -3834,13 +3835,13 @@ const switchAni = preload("res://Interface/SwitchAnimation.tscn")
 func becomeOpponent():
 	var dur = 0.5
 	var offset = OPPONENT.INVENTORY.global_position.x - PLAYER.INVENTORY.global_position.x
-	
+
 	var inventoryTween = create_tween().set_parallel()
 	addSwitchAniTween(inventoryTween, PLAYER, offset + oppoBonusOffset, switchAniParableOffset, dur)
 	addSwitchAniTween(inventoryTween, OPPONENT, - offset, - switchAniParableOffset, dur)
-	
+
 	inventoryTween.tween_callback(self, "finishBecomeOpponent", [offset]).set_delay(dur)
-	
+
 	var ani = ObjectPool.instance(switchAni)
 	UINode.add_child(ani)
 	ani.get_node("AnimationPlayer").play("Switch")
@@ -3849,27 +3850,27 @@ func addSwitchAniTween(tween, character, xMovement: float, yOffset: float, dur):
 
 
 	Util.moveParable(tween, character.INVENTORY, xMovement, yOffset, dur)
-	
+
 	for item in character.INVENTORY.getItems():
 
 
 		Util.moveParable(tween, item, xMovement, yOffset, dur)
-	
+
 
 func finishBecomeOpponent(offset):
-	
+
 	PLAYER.INVENTORY.global_position.x -= offset + oppoBonusOffset
 	OPPONENT.INVENTORY.global_position.x = 100000
-	
+
 	for item in OPPONENT.INVENTORY.getItems():
 		item.global_position.x = 100000
-	
+
 	var oldItems = PLAYER.INVENTORY.getItems().duplicate()
-	
+
 	var itemTuples = curOpponentData["items"]
 	PLAYER.INVENTORY.createFromItemTuples(itemTuples, Item.Owner.PlayerInventory)
-	
-	
+
+
 	for item in oldItems:
 		item.onRemoveFromInventory()
 
@@ -3878,13 +3879,13 @@ func becomeTeammate():
 	print("[TeamSwitch] becomeTeammate() called, curRound=", curRound)
 	var dur = 0.5
 	var offset = OPPONENT.INVENTORY.global_position.x - PLAYER.INVENTORY.global_position.x
-	
+
 	var inventoryTween = create_tween().set_parallel()
 	addSwitchAniTween(inventoryTween, PLAYER, offset + oppoBonusOffset, switchAniParableOffset, dur)
 	addSwitchAniTween(inventoryTween, OPPONENT, - offset, - switchAniParableOffset, dur)
-	
+
 	inventoryTween.tween_callback(self, "finishBecomeTeammate", [offset]).set_delay(dur)
-	
+
 	var ani = ObjectPool.instance(switchAni)
 	UINode.add_child(ani)
 	ani.get_node("AnimationPlayer").play("Switch")
@@ -3893,18 +3894,18 @@ func finishBecomeTeammate(offset):
 	
 	PLAYER.INVENTORY.global_position.x -= offset + oppoBonusOffset
 	OPPONENT.INVENTORY.global_position.x = 100000
-	
+
 	for item in OPPONENT.INVENTORY.getItems():
 		item.global_position.x = 100000
-	
+
 	var oldItems = PLAYER.INVENTORY.getItems().duplicate()
-	
+
 	
 	var itemTuples
 	var ownMemberData = RunDatabase.lobbies.getOwnMemberData()
 	var sourceRound = curRound - 1
 	var roundDict = null
-	
+
 	if ownMemberData.teamName != "" and ownMemberData.teamMemberSteamIds.size() > 0:
 		
 		var activeMembers = []
@@ -3935,7 +3936,7 @@ func finishBecomeTeammate(offset):
 				if roundDict != null and "items" in roundDict:
 					itemTuples = roundDict["items"]
 					print("[TeamSwitch] loaded items from teammate, count=", itemTuples.size())
-	
+
 	if itemTuples == null:
 		
 		var myRoundData = ownMemberData.getRoundData(sourceRound)
@@ -3944,41 +3945,41 @@ func finishBecomeTeammate(offset):
 			if roundDict != null and "items" in roundDict:
 				itemTuples = roundDict["items"]
 				print("[TeamSwitch] fallback to own round data, count=", itemTuples.size())
-	
+
 	if itemTuples == null:
 		
 		itemTuples = curOpponentData["items"]
 		print("[TeamSwitch] fallback to curOpponentData, count=", itemTuples.size())
-	
+
 	PLAYER.INVENTORY.createFromItemTuples(itemTuples, Item.Owner.PlayerInventory)
-	
+
 	for item in oldItems:
 		item.onRemoveFromInventory()
 
 func becomeOpponent_old():
-	
+
 	var newInv = OPPONENT.INVENTORY
 	var oldInv = PLAYER.INVENTORY
-	
+
 	var dif = oldInv.global_position - newInv.global_position
-	
+
 	OPPONENT.INVENTORY = oldInv
 	PLAYER.INVENTORY = newInv
 	opponentNode.remove_child(newInv)
 	playerNode.add_child(newInv)
 	newInv.position = Vector2(PLAYER.position.x - 300, 60)
 	newInv.character = PLAYER
-	
+
 	for item in newInv.getItems():
 		item.ownerType = Item.Owner.PlayerInventory
 		opponentNode.remove_child(item)
 		playerNode.add_child(item)
 		item.position += dif
 		item.resetZ()
-	
+
 	for item in oldInv.getItems():
 		item.ownerType = Item.Owner.Opponent
-		
+
 enum ShopBGM{
 	Default, 
 	Lobby, 
@@ -4007,9 +4008,9 @@ func playShopBGM():
 			bgm = Util.rng.randi_range(ShopBGM.Lobby, ShopBGM.SwitchMode)
 		else:
 			bgm = ShopBGM.Default
-	
+
 	lastShopBGM = bgm
-	
+
 	if bgm == ShopBGM.Subclass:
 		Sound.playSubclassBGM( - 3)
 	elif bgm == ShopBGM.Lobby:
@@ -4033,7 +4034,7 @@ func freeOpponent():
 		curOpponentData.clear()
 
 func onSceneAnimationFinished(aniName):
-	
+
 	if aniName == "TitleToShop" and curMode != Mode.History:
 		state = State.Shop
 		canSwitchToCombat = true
@@ -4047,17 +4048,17 @@ func onSceneAnimationFinished(aniName):
 		runState["incombat"] = false
 		SteamHelper.updateRichPresence()
 		emit_signal("shop_opened")
-	
+
 	elif aniName == "ShopToCombat":
 		state = State.Combat
 		if curMode == Mode.Lobbies:
 			InputBlocker.deactivate(InputBlocker.Source.Lobby)
 			closeAllMenus()
-		
+
 		InputBlocker.deactivate(InputBlocker.Source.SceneSwitch)
 		writeoutState()
 		emit_signal("combat_scene_entered")
-	
+
 	elif aniName == "CombatToShop":
 		if leaveLobbyPending:
 			leaveLobbyFromShop()
@@ -4066,31 +4067,31 @@ func onSceneAnimationFinished(aniName):
 			state = State.Shop
 			InputBlocker.deactivate(InputBlocker.Source.SceneSwitch)
 			emit_signal("pre_shop_opened_from_combat")
-			
+
 			freeOpponent()
 			startRound()
 			var runState = getRunState(curMode)
 			runState["incombat"] = false
-			
+
 			call_deferred("emit_signal", "shop_opened")
 			shopSceneNode.z_index = 10
 
 func startRound():
 	PLAYER.shopEntered()
-	
+
 	var curHealthGain = getHealthGain(curRound)
 	var curGoldGain = getGoldGain(curRound)
 	curGoldGain += CustomRules.getBonusGold()
 	curGoldGain = max(0, curGoldGain)
 	gainRoundGold(curGoldGain, curHealthGain)
-	
+
 	if curGoldGain > 0:
 		var coinParticles_ = shootGold(goldPos.global_position, Game.PLAYER.getGoldPos(), curGoldGain)
 		coinParticles_.z_index = Util.getGlobalZ(UINode)
-	
-	
+
+
 	var itemsAndGems = PLAYER.INVENTORY.getItemsAndGems()
-	
+
 	itemsAreFusing = false
 	craftingPriorities.clear()
 
@@ -4098,7 +4099,7 @@ func startRound():
 							ItemBook.isItemInInventory(ItemBook.classBadges[Classes_Full.Engineer]))
 	var craftOnShopEntered = not hasCogBoxOrBadge and not CustomRules.isSwitchMode() and not CustomRules.isTeamSwitchMode()
 	
-	
+
 	if craftOnShopEntered:
 		for item in itemsAndGems:
 			if item.readyToFuse():
@@ -4106,25 +4107,25 @@ func startRound():
 				InputBlocker.activate(InputBlocker.Source.Fusing)
 				Util.callDelayed(self, "onCraftingTimeout", Item.PRE_FUSE_DUR + Item.FUSE_DUR)
 				break
-		
+
 		itemsBeingCrafted.clear()
 		if itemsAreFusing:
 			for item in itemsAndGems:
 				if item.readyToFuse():
 					if item.curRecipe != null:
 						itemsBeingCrafted.push_back(item.curRecipe.fusedItem)
-	
+
 	var playerItems = PLAYER.INVENTORY.getItems().duplicate()
 	playerItems.sort_custom(ItemSort, "sort_ShopPriority")
 	for item in playerItems:
 		item.shopEntered(craftOnShopEntered)
-	
+
 	sortedCraftingPriorities = Util.sortDict(craftingPriorities)
-	
+
 	for item in sortedCraftingPriorities:
 		item.startFusing()
-	
-	
+
+
 	if not itemsAreFusing:
 		for item in itemsAndGems:
 			if item.readyToTransform():
@@ -4132,7 +4133,7 @@ func startRound():
 				InputBlocker.activate(InputBlocker.Source.Fusing)
 				Util.callDelayed(self, "onCraftingTimeout", Item.TRANSFORMATION_DUR)
 				break
-	
+
 	if CustomRules.isSwitchMode() or CustomRules.isTeamSwitchMode():
 		
 		var cogPos = Vector2(975, - 50)
@@ -4142,20 +4143,20 @@ func startRound():
 		var impulse = Vector2(0, 1500 * Util.rng.randf_range(0.8, 1.2)).rotated(
 				Util.rng.randf_range( - angle, angle))
 		cog.apply_impulse(Util.randInBox(10, 10), impulse)
-	
+
 	SteamHelper.updateRichPresence()
-	
-	
+
+
 	if (getNumStartedRuns() > 4 and 
 		getNumStartedRuns() < 10 and 
 		not isTutorialDone(TutorialSteps.ItemLibrary)):
-		
+
 		itemLibraryTutorialAni.play("Tutorial")
 
 func gainRoundGold(curGoldGain, curHealthGain):
 	PLAYER.giveMaxHealth(curHealthGain)
 	emit_signal("round_start_health_gained", curHealthGain)
-	
+
 	if CustomRules.isSwitchMode():
 		setGold(curGoldGain)
 	elif CustomRules.isTeamSwitchMode() and curMode == Mode.Lobbies:
@@ -4439,9 +4440,9 @@ const ratingVelo = 0.63
 func calcRunRatingForClass(classI = curClass, numWins = wins, numLosses = losses, 
 	triesLeft = tries, survival = survivalMode, 
 	perfectRunBeforeSurvival = wasPerfectRunBeforeSurvival()):
-	
+
 	var curRating = getPlayerRating(classI)
-	
+
 	return calcRunRating(curRating, numWins, numLosses, triesLeft, survival, 
 		perfectRunBeforeSurvival)
 
@@ -4449,36 +4450,36 @@ func calcRunRatingForClass(classI = curClass, numWins = wins, numLosses = losses
 func calcRunRating(curRating, numWins = wins, numLosses = losses, 
 	triesLeft = tries, survival = survivalMode, 
 	perfectRunBeforeSurvival = wasPerfectRunBeforeSurvival()):
-	
+
 	var oldLeagueExact = getLeague_exact(curRating)
-	
+
 	var rating = 2 * numWins
-	
+
 	if triesLeft > 0:
 		rating -= 0.5 * numLosses
 	else:
 		rating -= 1.0 * numLosses
-	
+
 	if survival:
 		var survivalBonus = 0
 		if perfectRunBeforeSurvival:
 			survivalBonus += PERFECT_RUN_RATING * 0.5
-		
+
 		if numLosses == 0:
 			survivalBonus += PERFECT_SURVIVAL_RATING
 		elif triesLeft > 0:
 			survivalBonus += SURVIVED_RATING
-		
+
 		if int(oldLeagueExact) >= Leagues.Master:
 			survivalBonus *= 0.6
-		
+
 		rating += survivalBonus
 	else:
 		if numLosses == 0:
 			rating += PERFECT_RUN_RATING
 		elif triesLeft > 0:
 			rating += MAX_WINS_RATING
-	
+
 	var oldRating = curRating
 	curRating += rating
 	curRating *= ratingDecay
@@ -4486,18 +4487,18 @@ func calcRunRating(curRating, numWins = wins, numLosses = losses,
 	if change < 0:
 		change *= 0.6
 	curRating = oldRating + change * ratingVelo
-	
+
 	var newLeagueExact = getLeague_exact(curRating)
 	if int(newLeagueExact) > int(oldLeagueExact):
 
 
 		var bonusRating = getRatingDifference_forBonus(curRating, newLeagueExact + RANK_UP_BONUS_RANKING / 100.0)
-		
+
 		curRating += bonusRating
-	
+
 	var clampVal = leagueThresholds[Leagues.Grandma + 1] - 0.5
 	curRating = clamp(curRating, 0.0, clampVal)
-	
+
 	return curRating
 
 func hasPlayedInSeason(season = getSeason()):
@@ -4536,37 +4537,37 @@ func wasPerfectSurvival():
 func getBonusTrophies() -> int:
 	if survivalMode:
 		if wasPerfectSurvival():
-			
+
 			return PERFECT_SURVIVAL_TROPHIES
 		elif hasSurvived():
-			
+
 			return SURVIVED_TROPHIES
 	else:
 		if wasPerfectRun():
 			return PERFECT_RUN_TROPHIES
 		elif wasMaxWins():
 			return MAX_WINS_TROPHIES
-	
+
 	return 0
 
 func endRun(commit = true, showAchievements = true):
 	print("Game over")
-	
+
 	if survivalMode and hasSurvived():
 		SteamHelper.unlockAchievement("Survived" + getClassInternalName(curClass))
 		if getTries() == MAX_TRIES:
 			SteamHelper.unlockAchievement("FullLifeSurvival")
-		
+
 	leagueExactPreRun = getLeague_exact(getPlayerRating(curClass))
 	leaguePreRun = int(leagueExactPreRun)
 	rankingPreRun = getRanking(curClass)
 	leagueProgressPreRun = fmod(leagueExactPreRun, 1.0)
 	trophiesPreRun = getTrophies()
 	wasRankedSwitchMode = isRankedSwitchMode()
-	
-	
-	
-	
+
+
+
+
 	if curMode == Mode.Ranked:
 		setRating(calcRunRatingForClass())
 	elif curMode == Mode.Unranked:
@@ -4576,10 +4577,10 @@ func endRun(commit = true, showAchievements = true):
 			setSwitchModeRating(calcRunRating(getSwitchModeRating()))
 	elif curMode == Mode.Lobbies:
 		commit = false
-	
-	
-	
-	
+
+
+
+
 	if ITEM_STATISTICS_ENABLED:
 		for item in PLAYER.INVENTORY.getItemsAndGems():
 			if hasSurvived():
@@ -4587,50 +4588,50 @@ func endRun(commit = true, showAchievements = true):
 					item.descriptor)
 				if newVal == 1:
 					addRecord(ItemStatistic.Survivals, item.descriptor, 1)
-				
+
 				if curMode == Mode.Ranked:
 					var highestRank = getItemStatistics(ItemStatistic.BestRankSurvival, item.descriptor, 0.0)
 					var curRank = getLeague_exact(getRunRating(curClass))
 					if stepify(curRank, 0.01) > stepify(highestRank, 0.01):
 						setItemStatistic(ItemStatistic.BestRankSurvival, item.descriptor, curRank)
 						addRecord(ItemStatistic.BestRankSurvival, item.descriptor, curRank)
-						
-			
+
+
 			var mostWins = getItemStatistics(ItemStatistic.MostWins, item.descriptor, 0)
 			if wins > mostWins:
 				setItemStatistic(ItemStatistic.MostWins, item.descriptor, wins)
 				addRecord(ItemStatistic.MostWins, item.descriptor, wins)
-		
+
 		if showAchievements:
 			emit_signal("records_updated")
-	
+
 	persistent["totalWins"] += wins
-	
+
 	giveTrophies(wins + getBonusTrophies())
-	
+
 	if wasMaxWins():
 		persistent["runWins"] += 1
-	
+
 	persistent["runsFinished"] += 1
-	
+
 	if (commit and 
 		not runWasConceded and 
 		not (lastRunConcedeRound == 1 and lastRunMode == Mode.Unranked) and 
 		not wasRunContinued() and 
 		not winNextRun and 
 		not loseNextRun and 
-		
+
 		not PREVIEW and 
 		not ENGINEER_TEST and 
 		( not DEVCHEATS or EDITOR)):
 		RunDatabase.pushRun()
-	
+
 	lastRunMode = curMode
 	if runWasConceded:
 		lastRunConcedeRound = curRound
 	else:
 		lastRunConcedeRound = - 1
-	
+
 	onRunEnded()
 
 func endRun_lobby():
@@ -4653,115 +4654,115 @@ func onRunEnded():
 
 func returnToTitle_afterRun():
 	call_deferred("unhoverAndHideTooltips")
-	
+
 	if not showExclusiveContent() and persistent["runsFinished"] == 1:
 		var wishlistPopup = load("res://Interface/WishlistPopup.tscn").instance()
 		wishlistPopup.open()
 		yield(wishlistPopup, "closed")
-	
+
 	InputBlocker.activate(InputBlocker.Source.SceneSwitch)
-	
+
 	emit_signal("combat_scene_left")
 	emit_signal("return_to_title")
-	
-	
+
+
 	sceneAnimation.playback_speed = 1
 	sceneAnimation.play("StartOnTitle")
 	sceneAnimation.seek(0, true)
 	sceneAnimation.play("CombatToTitle")
 	sceneAnimation.advance(0.01)
 	sceneAnimation.queue("StartOnTitle")
-	
+
 	playerNodeAnimation.play("ReturnToTitle")
 	Sound.playSound(playerMoveInSound, - 3, 0.7)
 	Util.callDelayed(Sound, "playSound", 2, [playerMoveInSound])
-	
+
 	PLAYER.combatToTitle()
-	
+
 	for item in OPPONENT.INVENTORY.getItems():
 		item.combatToTitle()
-	
+
 	Sound.playSound(transitionSounds[2])
 	Sound.playBGM(Sound.titleBGM)
-	
+
 	Util.callDelayed(self, "returnedToTitle_afterRun", 1)
 
 func returnedToTitle_afterRun():
 	state = State.Title
 	setMode(Mode.Unselected)
 	curRound = 1
-	
-	
+
+
 	if leavingLobby:
 		deleteRunStateAndRules()
 		numTimesOutOfStamina = 0
 		continueState = ContinueState.NotContinued
 		runStarted = false
-	
 
 
 
 
-	
+
+
 	InputBlocker.deactivate(InputBlocker.Source.SceneSwitch)
 	emit_signal("returned_to_title")
 	freeOpponent()
-	
+
 	if hasArenaRunState():
 		readRoundResultsFromRunState(Mode.Unranked)
 		initPlayerFromRunstate()
 	else:
 		instanceCharacter(getSelectedClass())
 		setLoadout(getConfiguredLoadout())
-	
+
 	SteamHelper.updateRichPresence()
-	
+
 
 
 func returnToTitle_midRun():
 	saveRunState()
-	
+
 	hideTooltips()
 	unhoverAllItems()
 	setInventoryEditMode(InventoryEditMode.Default)
-	
+
 	InputBlocker.activate(InputBlocker.Source.SceneSwitch)
-	
-	
+
+
 	for item in STORAGEBOX.getItems():
 		Util.killTween(item.movebackTween)
 		item.z_as_relative = false
 		item.z_index = 20
-	
+
 	emit_signal("return_to_title")
-	
+
 	sceneAnimation.playback_speed = 1
 	sceneAnimation.play("StartOnTitle")
 	sceneAnimation.seek(0, true)
 	sceneAnimation.play("ShopToTitle")
 	sceneAnimation.advance(0.01)
 	sceneAnimation.queue("StartOnTitle")
-	
+
 	PLAYER.shopToTitle()
-	
+
 	Sound.playSound(transitionSounds[2])
 	Sound.playBGM(Sound.titleBGM)
-	
+
 	Util.callDelayed(self, "returnedToTitle_midRun", 1)
-	
+
 	runStarted = false
 	justStartedSurvivalMode = false
 
 func returnedToTitle_midRun():
 	state = State.Title
 	InputBlocker.deactivate(InputBlocker.Source.SceneSwitch)
-	
+
 	if leavingLobby:
 		Util.eassert(curMode == Mode.Lobbies)
 		onRunEnded()
 		setMode(Mode.Unselected)
 		curRound = 1
-		
+
 		if hasArenaRunState():
 			readRoundResultsFromRunState(Mode.Unranked)
 			initPlayerFromRunstate()
@@ -4770,7 +4771,7 @@ func returnedToTitle_midRun():
 			setLoadout(getConfiguredLoadout())
 		playerNodeAnimation.play("Start")
 		leavingLobby = false
-	
+
 	emit_signal("returned_to_title")
 	SteamHelper.updateRichPresence()
 
@@ -4830,14 +4831,14 @@ func gainGold(amount):
 const coinParticles = preload("res://Interface/CoinParticles.tscn")
 
 func shootGold(fromPos, toPos, amount):
-	
+
 	var particles = coinParticles.instance()
 	UINode.add_child(particles)
 	particles.global_position = fromPos
 	particles.activate(amount, fromPos, toPos)
 	Util.callDelayed(particles, "queue_free", 10)
 
-	
+
 	return particles
 
 func getCoinPlayerLayer() -> int:
@@ -4861,7 +4862,7 @@ func itemDropped(item, dropResult):
 	if draggedItem == item:
 		draggedItem = null
 	PLAYER.INVENTORY.cleanUp()
-	
+
 func onInventoryChanged():
 	emit_signal("inventory_changed")
 
@@ -4891,7 +4892,7 @@ func unhoverAllItems(clearItemsUnderMouse = true):
 	reactToHoverEnd = true
 	if clearItemsUnderMouse:
 		itemsUnderMouse.clear()
-	
+
 
 func refocusHoveredItem():
 	if hoveredItems.empty(): return
@@ -4899,41 +4900,41 @@ func refocusHoveredItem():
 	emit_signal("item_gained_focus", hoveredItems[0])
 
 func hasHoverFocus(item):
-	
+
 	if draggedItem != null:
 		return draggedItem == item
-	
+
 	if hoveredItems.empty(): return false
-	
+
 	return hoveredItems[0] == item
 
 func getFocusItem():
 	if draggedItem != null:
 		return draggedItem
-	
+
 	if not hoveredItems.empty():
 		return hoveredItems[0]
-	
+
 	return null
 
 func itemHovered(item):
 	if Util.getFrameCounter_process() < focusDisableFrameCounter:
 		return
-	
+
 	var focusItem = null
 	if not hoveredItems.empty():
 		focusItem = hoveredItems[0]
-	
+
 	hoveredItems.push_back(item)
-	
+
 	hoveredItems.sort_custom(ItemSort, "sort_HoverPriority")
-	
-	
+
+
 	if hoveredItems[0] != focusItem:
-		
+
 		if focusItem != null:
 			focusItem.loseFocus()
-		
+
 		emit_signal("item_gained_focus", hoveredItems[0])
 
 
@@ -4941,22 +4942,22 @@ func recalcHoverPriority():
 	var focusItem = null
 	if not hoveredItems.empty():
 		focusItem = hoveredItems[0]
-	
+
 	hoveredItems.sort_custom(ItemSort, "sort_HoverPriority")
-	
+
 	if focusItem and hoveredItems[0] != focusItem:
 		focusItem.loseFocus()
-	
+
 	refocusHoveredItem()
 
 func itemHoverEnd(item):
 	if reactToHoverEnd:
 		if hasHoverFocus(item):
 			if hoveredItems.size() >= 2:
-				
+
 				hoveredItems[1].gainFocus()
 				emit_signal("item_gained_focus", hoveredItems[1])
-		
+
 		hoveredItems.erase(item)
 
 
@@ -4967,7 +4968,7 @@ func onItemBought(item, onSale):
 	emit_signal("item_bought", item, onSale)
 	if Util.rng.randf() < 0.1:
 		PLAYER.playSound(classResources[curClass].getBuySound(), 4)
-	
+
 	incrementItemStatistic(Game.ItemStatistic.Acquired, item.descriptor)
 	if onSale:
 		incrementItemStatistic(Game.ItemStatistic.BoughtOnSale, item.descriptor)
@@ -4975,10 +4976,10 @@ func onItemBought(item, onSale):
 const specialItemBoughtSound = preload("res://Assets/Sound/LevelUp2.ogg")
 
 func onSpecialItemBought(item):
-	
+
 	SteamHelper.updateRichPresence()
 	emit_signal("special_item_bought", item)
-	
+
 	PLAYER.levelUp()
 	Sound.playSound(specialItemBoughtSound)
 
@@ -4996,21 +4997,21 @@ func getTotalRotations():
 
 func onItemLocked():
 	setTutorialDone(TutorialSteps.Lock)
-	
+
 
 
 
 
 func onItemReserved():
 	setTutorialDone(TutorialSteps.Reserve)
-	
+
 
 
 
 
 func onBagMoved():
 	setTutorialDone(TutorialSteps.BagMove)
-	
+
 
 
 
@@ -5027,27 +5028,27 @@ func onCraftingTimeout():
 	sortedCraftingPriorities.clear()
 	itemsAreFusing = false
 	emit_signal("crafting_finished")
-	
+
 	InputBlocker.deactivate(InputBlocker.Source.Fusing)
-	
+
 
 func onItemCrafted(itemDescriptor: ItemDescriptor):
 	var index = itemDescriptor.getIndex()
 	var prevAmount = persistent["craftedRecipes"].get(index, 0)
 	if prevAmount == RECIPE_REVEALED:
-		
+
 		prevAmount = 0
 	persistent["craftedRecipes"][index] = prevAmount + 1
 	persistent["crafted"] += 1
 	incrementItemStatistic(Game.ItemStatistic.Acquired, itemDescriptor)
-	
+
 	saveRunState()
 	saveGame()
 	emit_signal("item_crafted", itemDescriptor)
-	
+
 	if ( not itemDescriptor.getName() == "Goobert" and 
 		not (itemDescriptor.gateItem == ItemBook.boxOfRichesDescriptor)):
-		
+
 		SteamHelper.unlockAchievement("Crafted" + str(itemDescriptor.itemIndex))
 
 func onCraftingFinished():
@@ -5079,7 +5080,7 @@ func setTutorialDone(step: int):
 
 func getNextTutorialText():
 	if getNumStartedRuns() > 10: return null
-	
+
 	for i in tutorialPriorities.size():
 		currentTutorialStep += 1
 		currentTutorialStep %= tutorialPriorities.size()
@@ -5090,9 +5091,9 @@ func getNextTutorialText():
 			var formatParams = null
 			var addController: = usingController
 			var skip: = false
-			
+
 			if usingController:
-				
+
 				match stepI:
 					TutorialSteps.Lock:
 						formatParams = {"button": Util.getControllerIconBbcode("lock_combining_controller", 40)}
@@ -5109,17 +5110,17 @@ func getNextTutorialText():
 						skip = true
 					_:
 						addController = false
-			
+
 			if skip: continue
-			
+
 			if addController:
 				traKey += "_CONTROLLER"
-			
+
 			var translation: String = Util.tra(traKey)
 			if translation != "":
 				if formatParams != null:
 					translation = translation.format(formatParams)
-				
+
 				return [translation, stepI]
 	return null
 
@@ -5140,7 +5141,7 @@ func changeHandCursor(cursorTypeHand):
 func changeVSizeCursor(cursorTypeVSize):
 	Input.set_custom_mouse_cursor(scaledCursors[cursorTypeVSize], 
 	Input.CURSOR_VSIZE, getCursorOffset(cursorTypeVSize))
-	
+
 func changeHSizeCursor(cursorTypeHSize):
 	Input.set_custom_mouse_cursor(scaledCursors[cursorTypeHSize], 
 	Input.CURSOR_HSIZE, getCursorOffset(cursorTypeHSize))
@@ -5150,14 +5151,14 @@ func getCursorOffset(cursorType) -> Vector2:
 
 
 func changeCursorSize(newSize: float):
-	
+
 	for i in cursors.size():
 
 		var unscaledImg: Image = cursors[i]
 		var scaledImgTex: ImageTexture = scaledCursors[i]
 		var scaledImg: Image = scaledImgTex.get_data()
 		scaledImg.copy_from(unscaledImg)
-		
+
 		scaledImg.resize(newSize * unscaledImg.get_width(), newSize * unscaledImg.get_height(), Image.INTERPOLATE_TRILINEAR)
 		scaledCursors[i].create_from_image(scaledImg)
 	recalculateCursor()
@@ -5170,30 +5171,30 @@ const clickButtonSound = preload("res://Assets/Sound/Click3.wav")
 var hoveredInteractable = null
 
 func onHoverInteractable(control: Node):
-	
-	
+
+
 	hoveredInteractable = control
-	
-	
+
+
 	emit_signal("interactable_hovered")
-	
+
 	if Util.clockTime > hoverSoundReadyTime:
-		
+
 		Sound.playRising(hoverSound, - 6, 1, true)
 		hoverSoundReadyTime = Util.clockTime + 0.1
-	
-	
+
+
 
 func onHoverInteractableEnd(control):
 	if hoveredInteractable == control:
-		
+
 		hoveredInteractable = null
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
 
 func onClickButton():
 	if Util.clockTime > 3.0:
@@ -5201,35 +5202,35 @@ func onClickButton():
 
 func recalculateCursor():
 	if isWeb: return
-	
-	
+
+
 	var cursorType = getCursorType()
-	
+
 	if lastCursorType == cursorType:
 		return
-	
+
 	lastCursorType = cursorType
-	
+
 	if getSoftwareCursor():
 		if softwareCursor == null:
 			softwareCursor = softwareCursorScene.instance()
 			add_child(softwareCursor)
 			if not isWeb:
 				Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-			
+
 	else:
 		if softwareCursor != null:
 			softwareCursor.queue_free()
 			softwareCursor = null
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		
+
 		if cursor == Cursor.HARDWARE_LARGE or cursor == Cursor.HARDWARE_SMALL:
-			
-				
+
+
 			if Input.get_current_cursor_shape() == Input.CURSOR_ARROW:
-				
-				
-				
+
+
+
 				changeHandCursor(cursorType)
 				changeArrowCursor(cursorType)
 			elif Input.get_current_cursor_shape() == Input.CURSOR_VSIZE:
@@ -5241,14 +5242,14 @@ func recalculateCursor():
 			else:
 				changeArrowCursor(cursorType)
 				changeHandCursor(cursorType)
-			
+
 		elif cursor == Cursor.DEFAULT:
 			Input.set_custom_mouse_cursor(null, Input.CURSOR_ARROW)
 			Input.set_custom_mouse_cursor(null, Input.CURSOR_POINTING_HAND)
 
 func getCursorType():
 	var cursorIndex = CursorTypes.DEFAULT
-	
+
 	if hoveredItems.empty() and not draggedItem:
 		if Input.get_current_cursor_shape() == Input.CURSOR_VSIZE:
 			if left_click:
@@ -5270,15 +5271,15 @@ func getCursorType():
 				cursorIndex = CursorTypes.CLICKED
 			else:
 				cursorIndex = CursorTypes.DEFAULT
-			
+
 	else:
 		if left_click:
 			cursorIndex = CursorTypes.GRABBED
 		else:
 			cursorIndex = CursorTypes.GRABBABLE
-		
+
 	return cursorIndex
-	
+
 func _process(delta: float) -> void :
 	recalculateCursor()
 
@@ -5295,21 +5296,21 @@ const warpCDFrames_rapid = 10
 
 func _physics_process(delta):
 	if usingController:
-	
+
 		var rightStickInput = Input.get_vector(
 			"scroll_left", "scroll_right", 
 			"scroll_up", "scroll_down")
-		
+
 		var rightStickInputLength = rightStickInput.length()
-		
+
 		if rightStickInputLength < 0.3:
 			cursorIsWarping = false
 			rightStickWarps = 0
 			warpTimestamp_rightStick = 0
-		
+
 		elif rightStickInputLength > 0.5:
 			cursorIsWarping = true
-		
+
 		if cursorIsWarping:
 			if Engine.get_physics_frames() > warpTimestamp_rightStick:
 				var hasWarped = warp(rightStickInput)
@@ -5317,7 +5318,7 @@ func _physics_process(delta):
 					var cd = warpCDFrames_initial if rightStickWarps == 0 else warpCDFrames_rapid
 					warpTimestamp_rightStick = Engine.get_physics_frames() + cd
 					rightStickWarps += 1
-			
+
 
 
 
@@ -5337,12 +5338,12 @@ func _physics_process(delta):
 
 
 
-		
+
 		if leftStickInput != Vector2.ZERO:
 			if leftStickInput.length() > 0.99:
 				leftStickInput *= 1.5
 			moveMouse(1 / 60.0 * CURSOR_SPEED * leftStickInput * Settings.getVal(Settings.Setting.cursor_speed))
-	
+
 func getSoftwareCursor():
 	return (cursor == Cursor.SOFTWARE_SMALL or 
 			cursor == Cursor.SOFTWARE_LARGE or 
@@ -5359,9 +5360,9 @@ const maxSliderSteps = 10
 
 func addControlOfInterest(control: Control, offset: Vector2 = Vector2.ZERO, 
 	scrollContainer = null, childToScrollTo = null, layer = 0):
-	
+
 	if control is Slider:
-		
+
 		var basePos = control.rect_global_position
 		basePos.x += control.margin
 		basePos.y += control.rect_size.y * control.rect_scale.y * 0.5
@@ -5377,11 +5378,11 @@ func addControlOfInterest(control: Control, offset: Vector2 = Vector2.ZERO,
 
 func addPointOfInterest(pos: Vector2, scrollContainer = null, 
 	childToScrollTo = null, layer = 0):
-	
+
 	for rect in warpPointOcclusionRects:
 		if rect.layer >= layer and rect.rect.has_point(pos):
 			return
-	
+
 	pointsOfInterest.push_back(pos)
 	if scrollContainer != null:
 		pointsOfInterestInfo[pointsOfInterest.size() - 1] = [scrollContainer, childToScrollTo]
@@ -5414,7 +5415,7 @@ func connectToWarpCursorSignals(receiver: Node, method: String):
 
 func warp(input):
 	warpPointOcclusionRects.clear()
-	
+
 	if isMenuOpen():
 		emit_signal("get_rects_menu")
 	elif state == State.Shop:
@@ -5423,28 +5424,28 @@ func warp(input):
 		emit_signal("get_rects_title")
 	elif state == State.Combat:
 		emit_signal("get_rects_combat")
-	
+
 	pointsOfInterest.clear()
 	pointsOfInterestInfo.clear()
-	
+
 	if isMenuOpen():
 		emit_signal("warp_cursor_menu")
-	
+
 	elif state == State.Shop:
 		var inv = PLAYER.INVENTORY
 		if draggedItem != null:
 			addPointOfInterest(STORAGEBOX.center + Vector2(0, 50))
 			addPointOfInterest(STORAGEBOX.center - Vector2(0, 150))
-			
+
 			if draggedItem.canBeSold():
 				addPointOfInterest(SELLBOX.global_position - Vector2(80, 120))
-			
+
 			if draggedItem.ownerType == Item.Owner.Shop:
 				addPointOfInterest(draggedItem.pickupPosition)
-			
+
 			var oldPos = draggedItem.global_position
 			var offset = oldPos - draggedItem.getTopLeftGlobal() - draggedItem.halfCellSize
-			
+
 			if draggedItem.isBag():
 				for cell in inv.inventoryCells:
 					inv.orientItem(draggedItem, cell, draggedItem.faceDirection)
@@ -5453,14 +5454,14 @@ func warp(input):
 						addPointOfInterest(cellPos + offset)
 			else:
 				var checkBags = (inventoryEditMode != InventoryEditMode.ItemLayer)
-				
-				
+
+
 				for cell in inv.inventoryCells:
 					inv.orientItem(draggedItem, cell, draggedItem.faceDirection)
 					if inv.canAddItem(draggedItem, false, checkBags):
 						var cellPos = inv.cellToGlobalPos(cell, true)
 						addPointOfInterest(cellPos + offset)
-				
+
 				if draggedItem.isGem():
 					for item in inv.getItems():
 						for socket in item.sockets:
@@ -5469,7 +5470,7 @@ func warp(input):
 						for item in STORAGEBOX.getItems():
 							for socket in item.sockets:
 								addPointOfInterest(socket.global_position)
-			
+
 			draggedItem.global_position = oldPos
 		else:
 			for item in ItemBook.getInventoryStorageShopItems():
@@ -5477,58 +5478,58 @@ func warp(input):
 					if item.isBag(): continue
 				elif inventoryEditMode == InventoryEditMode.BagLayer:
 					if not item.isBag(): continue
-				
+
 				addItemOfInterest(item)
-			
+
 			addControlOfInterest(versionButton, Vector2(50, 0))
-			
+
 			emit_signal("warp_cursor_shop")
-	
+
 	elif state == State.Title:
 		for item in PLAYER.INVENTORY.getItemsAndGems():
 			addItemOfInterest(item)
-		
+
 		emit_signal("warp_cursor_title")
-	
+
 	elif state == State.Combat:
 		emit_signal("warp_cursor_combat")
-	
+
 	var curMousePos = get_global_mouse_position()
 	var target: Vector2 = Vector2(960, 540)
 	var bestScore: float = - INF
 	var anglePunishmentFactor: = 2.0
 	var targetIndex: = - 1
 	var inputDir = input.normalized()
-	
+
 	for i in pointsOfInterest.size():
 		var point = pointsOfInterest[i]
 		var dif = point - curMousePos
 		var dist = dif.length()
 		if dist < 15:
 			continue
-		
+
 		var angle = abs(dif.normalized().angle_to(inputDir))
 		if angle > maxWarpAngle:
 			continue
-		
-		
+
+
 		var score = - (1 + (angle * anglePunishmentFactor) / maxWarpAngle)
 		score *= dist
-		
+
 		if score > bestScore:
 			target = point
 			targetIndex = i
 			bestScore = score
-	
+
 	if bestScore > - INF:
 		if targetIndex in pointsOfInterestInfo:
 			var info = pointsOfInterestInfo[targetIndex]
 			var compensation = ensureScrollVisibility(
 					info[0], info[1])
 			target.y += compensation
-		
+
 		moveMouseTo(target)
-		
+
 		var trail = ObjectPool.instance(cursorWarpTrail)
 		UINode.add_child(trail)
 		trail.setPoints(curMousePos, target)
@@ -5537,10 +5538,10 @@ func warp(input):
 
 func ensureScrollVisibility(scrollContainer: ScrollContainer, child):
 	var scrollBefore = scrollContainer.scroll_vertical
-	
+
 	if child is Control:
 		scrollContainer.ensure_control_visible(child)
-	
+
 	elif child is Item:
 		var rect = scrollContainer.get_global_rect()
 		var containerTop = rect.position.y
@@ -5552,14 +5553,14 @@ func ensureScrollVisibility(scrollContainer: ScrollContainer, child):
 		elif itemHeightRange.y > containerBottom:
 			scroll = itemHeightRange.y - containerBottom
 		scrollContainer.scroll_vertical += scroll
-	
+
 	var scrollAfter = scrollContainer.scroll_vertical
 	return scrollBefore - scrollAfter
 
 func setLocale(locale):
 	print("SETTING LOCALE TO ", locale)
 	TranslationServer.set_locale(locale)
-	
+
 	Util.updateLocale()
 	updateLocale()
 
@@ -5567,20 +5568,20 @@ func updateLocale():
 	var localizedNodes = get_tree().get_nodes_in_group("Localized")
 	for node in localizedNodes:
 		node.updateLocale()
-	
+
 	itemLibrary.updateSearchDescriptions()
-	
-	
+
+
 
 func initLocale():
 	setLocale(getConfigValue("Options", "language", getDefaultLocale()))
 
-	
+
 func setConfigValue(groupName, propertyName, propertyValue):
 	var config = ConfigFile.new()
 	var configPath = getSavePath(config_format)
 	var err = config.load(configPath)
-	
+
 	config.set_value(groupName, propertyName, propertyValue)
 	config.save(configPath)
 
@@ -5588,7 +5589,7 @@ func eraseConfigValue(groupName, propertyName):
 	var config = ConfigFile.new()
 	var configPath = getSavePath(config_format)
 	var err = config.load(configPath)
-	
+
 	if config.has_section_key(groupName, propertyName):
 		config.erase_section_key(groupName, propertyName)
 		config.save(configPath)
@@ -5600,12 +5601,12 @@ func getConfigValue(groupName, propertyName, defaultValue):
 	var err = config.load(configPath)
 	if err != OK:
 		return defaultValue
-	
+
 	if config.has_section_key(groupName, propertyName):
 		return config.get_value(groupName, propertyName, defaultValue)
 	else:
 		return defaultValue
-	
+
 func applySetSkins():
 	for slot in SkinSlot.size():
 		PLAYER.sprite.setSkin(slot, getSelectedSkin(slot))
@@ -5619,7 +5620,7 @@ func setShowChibis(showChibis):
 		if getChibiMode():
 			PLAYER.setSprite(classResources[curClass], true)
 			emit_signal("style_changed")
-	
+
 	applySetSkins()
 	emit_signal("chibi_setting_changed")
 
@@ -5631,7 +5632,7 @@ func getShowChibis():
 
 func setChibiMode(_chibiMode):
 	if chibiMode[curClass] == _chibiMode: return
-	
+
 	setConfigValue("Options", "Chibi_" + getClassInternalName(), _chibiMode)
 	chibiMode[curClass] = _chibiMode
 	PLAYER.setSprite(classResources[curClass], chibiMode[curClass])
@@ -5649,7 +5650,7 @@ func getBuffs() -> Array:
 
 func getDebuffs() -> Array:
 	return range(EventType.Poison, EventType.Cold + 1)
-	
+
 
 func isBuff(_type):
 	return _type >= EventType.Block and _type <= EventType.Heat
@@ -5676,7 +5677,7 @@ func getDefaultLocale():
 		var osLocale = OS.get_locale_language()
 		if osLocale in localeToLanguage:
 			return osLocale
-	
+
 	return "en"
 
 func showSockets():
@@ -5685,7 +5686,7 @@ func showSockets():
 		s.showSocket()
 
 func hideSockets():
-	
+
 	var sockets = get_tree().get_nodes_in_group("Socket")
 	for s in sockets:
 		s.hideSocket()
@@ -5705,7 +5706,7 @@ func getSelectedSkin(slot):
 	if isSkinAvailable(configuredSkin):
 		if isSkinUnlocked(slot, configuredSkin):
 			return configuredSkin
-	
+
 	return 0
 
 func selectSkin(slot, skinId):
@@ -5726,8 +5727,8 @@ func isSkinUnlocked(slot: int, skinId: int):
 	var skin = SkinBook.getSkinFromId(curClass, int(getEffectiveChibiMode()), skinId)
 	if skin.prices[slot] == 0:
 		return true
-	
-	
+
+
 	var key = getSkinUnlockKey(slot)
 	var unlocked = persistent["unlockedSkins"].get(key, [])
 	return skinId in unlocked
@@ -5758,26 +5759,26 @@ func setItemStatistic(statistic: int, descriptor: ItemDescriptor, newValue):
 
 func incrementItemStatistic(statistic: int, descriptor: ItemDescriptor, increment = 1):
 	if not ITEM_STATISTICS_ENABLED: return
-	
-	
+
+
 	var key = getStatisticsKey(statistic)
 	var value = persistent[key][descriptor.getIndex()]
 	var newValue = increment if value == null else value + increment
 	persistent[key][descriptor.getIndex()] = newValue
-	
+
 	if statistic in statisticIncrements and value != null:
 		var sIncrement = statisticIncrements[statistic]
 		var before: int = value / sIncrement
 		var after: int = newValue / sIncrement
 		if after > before:
 			addRecord(statistic, descriptor, after * sIncrement)
-	
+
 	return newValue
 
 func addRecord(statistic: int, descriptor: ItemDescriptor, amount: int = 0):
 	if not ITEM_STATISTICS_ENABLED: return
-	
-	
+
+
 	var runState = getRunState()
 	var recordQueue = runState.get("rq", [])
 	recordQueue.push_back([descriptor.itemIndex, statistic, amount])
@@ -5794,14 +5795,14 @@ func clearRecordQueue():
 func showWarning(textKey, confirmKey, cancelKey):
 	if warning == null:
 		warning = load("res://Interface/BoughtNothingWarning.tscn").instance()
-	
+
 	if not warning.is_inside_tree():
 		warning.open(textKey, confirmKey, cancelKey)
 
 func onPatchNotesClosed():
 	if PLAYTEST: return
 	if not "version" in persistent: return
-	
+
 	if versionToInt(persistent["version"]) < versionToInt("1.0.0"):
 		if hasPlayedInSeason("1"):
 			var popup = rankSeason2Popup.instance()
@@ -5814,17 +5815,17 @@ func onPatchNotesClosed():
 func fuseAll():
 	InputBlocker.activate(InputBlocker.Source.Fusing)
 	Util.callDelayed(self, "onCraftingTimeout", Item.PRE_FUSE_DUR_COG + Item.FUSE_DUR)
-	
+
 	var playerItems = PLAYER.INVENTORY.getItemsAndGems()
 	for item in playerItems:
 		item.addToCraftingQueue()
-	
-	
+
+
 	sortedCraftingPriorities = Util.sortDict(craftingPriorities)
-	
+
 	for item in sortedCraftingPriorities:
 		item.startFusing_inShop()
-	
+
 	craftingPriorities.clear()
 
 
@@ -5842,92 +5843,92 @@ func checkForInventoryAchievements():
 	var numGemstones: = 0
 	var numPiggies: = 0
 	var numAmulets: = 0
-	
+
 	for item in PLAYER.INVENTORY.getItems():
 		if item.hasTag(Item.Tag.Dragon):
 			Util.dictAdd(dragons, item.descriptor)
-		
+
 		if item.hasTag(Item.Tag.Bow):
 			Util.dictAdd(bows, item.descriptor)
-		
+
 		if item.hasType(Item.Type.Book):
 			Util.dictAdd(books, item.descriptor)
-		
+
 		if item.isBattleRageItem():
 			numBattleRage += 1
-		
+
 		if item.hasType(Item.Type.Potion):
 			numPotions += 1
-		
+
 		if item.hasType(Item.Type.Vampiric):
 			numVampiric += 1
-		
+
 		if item.hasType(Item.Type.Food):
 			numFood += 1
-		
+
 		if item.hasType(Item.Type.Magic):
 			numMagic += 1
-		
+
 		if item.isWeapon() and item.canUseStamina():
 			numStaminaWeapons += 1
-		
+
 		if item.descriptor.gateItem == ItemBook.amuletDescriptor:
 			numAmulets += 1
-		
+
 		if item.descriptor in ItemBook.piggies:
 			numPiggies += 1
 
 		if item.descriptor.isClassItem():
 			classes |= item.descriptor.classes
-	
+
 	for item in PLAYER.INVENTORY.getItemsAndGems():
 		if item.isGem():
 			numGemstones += 1
-	
+
 	if dragons.size() >= 4:
 		SteamHelper.unlockAchievement("Dragons")
-	
+
 	if bows.size() >= 3:
 		SteamHelper.unlockAchievement("Bows")
-	
+
 	if numBattleRage >= 8:
 		SteamHelper.unlockAchievement("BattleRage")
-	
+
 	if books.size() >= 4:
 		SteamHelper.unlockAchievement("Books")
-	
+
 	if Util.countOnes(classes, Classes_Full.size()) >= 4:
 		SteamHelper.unlockAchievement("MixedClasses")
-	
+
 	if numPotions >= 6:
 		SteamHelper.unlockAchievement("Potions")
-	
+
 	if numVampiric >= 8:
 		SteamHelper.unlockAchievement("Vampire")
-	
+
 	if numFood >= 8:
 		SteamHelper.unlockAchievement("Food")
-	
+
 	if numMagic >= 8:
 		SteamHelper.unlockAchievement("Magic")
-	
+
 	if numStaminaWeapons >= 4:
 		SteamHelper.unlockAchievement("ManyWeapons")
-	
+
 	if numAmulets >= 5:
 		SteamHelper.unlockAchievement("Amulets")
-	
+
 	if numPiggies >= 5:
 		SteamHelper.unlockAchievement("Piggies")
-	
+
 	if numGemstones >= 10:
 		SteamHelper.unlockAchievement("Gems")
-	
+
 	var deckArr = ItemBook.getItemsInInventoryOfType(ItemBook.deckOfCardsDescriptor)
 	if deckArr.size() == 1:
 		if deckArr[0].cards.size() >= 8:
 			SteamHelper.unlockAchievement("Cards")
-	
+
 	if ItemBook.getNumInventoryUniques() >= 3:
 		SteamHelper.unlockAchievement("Treasure")
 
@@ -5935,17 +5936,17 @@ func checkForInventoryAchievements():
 func writeoutState():
 	if not WRITE_OUT_STATE:
 		return
-	
+
 	var locale = TranslationServer.get_locale()
 	if locale != "en":
 		TranslationServer.set_locale("en")
-	
+
 	var json = {}
 	json["inventory"] = []
 	for item in PLAYER.INVENTORY.getItems():
 		var entry = [item.getTranslatedName(), item.occupiedCells]
 		json["inventory"].push_back(entry)
-	
+
 	if state == State.Shop:
 		json["shop"] = []
 		for item in shopSceneNode.getItems():
@@ -5959,7 +5960,7 @@ func writeoutState():
 			var entry = [item.getTranslatedName(), item.occupiedCells]
 			json["opponent"].push_back(entry)
 	json["timestamp"] = Util.getFrameCounter_process()
-	
+
 	var file = File.new()
 	var err = file.open("user://state.json", File.WRITE)
 	if err == OK:
@@ -5967,7 +5968,7 @@ func writeoutState():
 		file.close()
 	else:
 		print(err)
-	
+
 	if locale != "en":
 		TranslationServer.set_locale(locale)
 
@@ -5992,45 +5993,45 @@ func writeoutState():
 var audioMutedBeforeFocusLost = false
 
 func _notification(what: int) -> void :
-	
+
 	if what == MainLoop.NOTIFICATION_WM_FOCUS_OUT:
 		clearAffectedLines()
 		itemLibrary.hideRecordIcons()
-		
+
 		if lockedTooltipItem == null:
 			showHintsIsPressed = false
-			
+
 			var focusItem = getFocusItem()
 			if focusItem != null:
 				focusItem.hideBuildIntoRecipesTooltip()
 				focusItem.clearCanAffectVisuals()
-		
+
 		if Settings.getVal(Settings.Setting.reduce_fps_unfocused):
 			OS.low_processor_usage_mode = true
 			Engine.set_target_fps(20)
-		
+
 		if Settings.getVal(Settings.Setting.mute_unfocused):
 			audioMutedBeforeFocusLost = AudioServer.is_bus_mute(Sound.MASTER_BUS)
 			AudioServer.set_bus_mute(Sound.MASTER_BUS, true)
-		
+
 		if useShell():
 			processTimer.start(Util.rng.randf_range(10, 30))
 
 	elif what == MainLoop.NOTIFICATION_WM_FOCUS_IN:
 		set_deferred("showHintsIsPressed", false)
-		
+
 		if Settings.getVal(Settings.Setting.reduce_fps_unfocused):
 			OS.low_processor_usage_mode = false
 			Engine.set_target_fps(Settings.getVal(Settings.Setting.fps_limit))
-		
+
 		if Settings.getVal(Settings.Setting.mute_unfocused):
 			AudioServer.set_bus_mute(Sound.MASTER_BUS, audioMutedBeforeFocusLost)
-		
+
 		if useShell():
 			processTimer.stop()
 			checkProcesses_threaded()
-			
-	
+
+
 	elif what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
 		saveWindowSettings()
 
@@ -6067,32 +6068,32 @@ func checkProcesses_threaded():
 
 func checkProcesses() -> bool:
 	var output = []
-	
-	
+
+
 	OS.execute("powershell.exe", ["/C", "get-process | Select-Object ProcessName, mainwindowtitle"], true, output)
 	if output.empty() or output[0] == "":
-		
+
 		return false
-	
+
 	var foundProcess = false
 	foundProcess = output[0].findn("cheatengine") != - 1
 	if not foundProcess:
 		foundProcess = output[0].findn("cheat engine") != - 1
-	
+
 	if foundProcess:
 		print("ERROR_16")
 		get_tree().quit()
-	
+
 	call_deferred("joinProcessThread")
 	return foundProcess
 
 class ItemSort:
 	static func sort_HoverPriority(item1: Item, item2: Item):
 		return item1.getHoverPriority() > item2.getHoverPriority()
-	
+
 	static func sort_ShopPriority(item1: Item, item2: Item):
 		return item1.getShopPriority() > item2.getShopPriority()
-	
+
 
 	static func sort_TriggerPriority(item1: Item, item2: Item):
 		return item1.getTriggerPriority() > item2.getTriggerPriority()
@@ -6107,7 +6108,7 @@ class LineSort:
 class OcclusionRect:
 	var rect: Rect2
 	var layer: int
-	
+
 	func _init(_topLeft: Vector2, _size: Vector2, _layer: int):
 		rect = Rect2(_topLeft, _size)
 		layer = _layer

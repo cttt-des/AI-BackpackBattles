@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Utility/PooledScene.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Particles/ScrapParticles.png" type="Texture" id=2]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 4
+particles_anim_loop = false
+
+[sub_resource type="ParticlesMaterial" id=2]
+emission_shape = 1
+emission_sphere_radius = 28.51
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 51.25
+gravity = Vector3( 0, 300, 0 )
+initial_velocity = 411.21
+initial_velocity_random = 0.51
+angular_velocity = 296.07
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 720.0
+angle_random = 1.0
+scale = 0.75
+scale_random = 1.0
+anim_offset = 1.0
+anim_offset_random = 1.0
+
+[node name="VaseBreakParticles" type="Particles2D"]
+modulate = Color( 1, 0.752941, 0.556863, 1 )
+self_modulate = Color( 1.2, 1.2, 1.2, 1 )
+material = SubResource( 1 )
+position = Vector2( 46, 106 )
+z_index = 5
+emitting = false
+amount = 35
+lifetime = 3.5
+one_shot = true
+speed_scale = 1.3
+explosiveness = 1.0
+process_material = SubResource( 2 )
+texture = ExtResource( 2 )
+script = ExtResource( 1 )

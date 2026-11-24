@@ -36,7 +36,8 @@ const langCodes = {
 	"french": "fr", 
 	"brazilian": "pt", 
 	"russian": "ru", 
-	"latam": "es"
+	"latam": "es", 
+	"danish": "da"
 }
 
 func is_init():

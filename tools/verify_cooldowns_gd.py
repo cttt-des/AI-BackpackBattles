@@ -4,7 +4,7 @@
 分两半，两个半边都必须过：
 
   ── A. 静态半边：冷却路径逐函数对照（纯 Python，秒级） ──
-     把 `gd_core/CoreItem.gd` 与 `decompiled_full/Items/Item.gd` 里**冷却路径**的
+     把 `gd_core/CoreItem.gd` 与 `decompiled_legacy/1.1.7/Items/Item.gd` 里**冷却路径**的
      每一个函数体抽出来，各自规范化后逐行比对。差异分四级：
 
        SAME      两边逐行相等
@@ -62,7 +62,7 @@ CORE_PATH = os.path.join(ROOT, "gd_core", "CoreItem.gd")
 # ★ 不把它当第二权威 —— 它是 build_item_scripts.py 从原版机械转译的产物，
 #   故 A 段同样逐行对照，只是把来源标出来。
 ADAPTER_PATH = os.path.join(ROOT, "gd_core_items", "Item.gd")
-ORIG_PATH = os.path.join(ROOT, "decompiled_full", "Items", "Item.gd")
+ORIG_PATH = os.path.join(ROOT, "decompiled_legacy/1.1.7", "Items", "Item.gd")
 DYNAMIC_PATH = os.path.join(ROOT, "gd_core_test", "cooldown_battle_result.txt")
 
 VERBOSE = "-v" in sys.argv or "--verbose" in sys.argv

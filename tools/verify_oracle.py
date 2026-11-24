@@ -192,7 +192,7 @@ ETYPE_TO_NUM = {
     "unhealing": 98, "fatigue_damage": 99,
 }
 # 数字 origin（DamageSource.Type）→ keyword：原版 Game.typeToKeyword 1:1
-# （decompiled_full/Core/Game.gd:5663：Block→"bl"、Regeneration→"regen" 特例，
+# （decompiled_legacy/1.1.7/Core/Game.gd:5663：Block→"bl"、Regeneration→"regen" 特例，
 #   其余 eventTypeKeys[type].to_lower()）
 _NUM_ORIGIN_SPECIAL = {100: "bl", 102: "regen"}
 
@@ -1550,7 +1550,7 @@ def build_fixplan(localization: Dict[str, List[Dict[str, Any]]]) -> List[Dict[st
             ],
         },
         "gd_core-kernel": {
-            "goal": "修 gd_core 内核与 decompiled_full/extracted_running 源码的行为分歧",
+            "goal": "修 gd_core 内核与 decompiled_legacy/1.1.7/extracted_running 源码的行为分歧",
             "steps": [
                 "对首分歧事件回溯内核调用点：gd_core/Core*.gd 对照 extracted_running/decomp 同名文件逐行 diff",
                 "确认无源码依据后修 gd_core，并同步 gd_core_py 转写孪生（tools/gd_to_py.py 口径）",

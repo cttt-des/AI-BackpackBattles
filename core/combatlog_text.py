@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """combatlog_text.py — 把内存读出的战斗事件渲染成游戏同格式日志文本
 
-真值源：decompiled_full/Core/CombatEvent.gd 的 asText()（LOG 键推导逻辑
+真值源：decompiled_legacy/1.1.7/Core/CombatEvent.gd 的 asText()（LOG 键推导逻辑
 逐分支复刻），模板文本取自官方翻译表 Interface.csv（en/zh 列）。
   * 深度 0 行：``x.xx:  ``（时间戳 %2.2f + ":  "）
   * 子事件行：``  ``×depth + `` > ``

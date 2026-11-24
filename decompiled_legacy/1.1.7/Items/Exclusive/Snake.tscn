@@ -1,0 +1,123 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Items/Item.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Items/Exclusive/Sprites/Snake.png" type="Texture" id=2]
+[ext_resource path="res://Items/Exclusive/Snake.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Particles/GlowingDot.png" type="Texture" id=4]
+[ext_resource path="res://Items/Exclusive/Particles/SnakeDragParticles.material" type="Material" id=5]
+[ext_resource path="res://Utility/AutoHideParticles.gd" type="Script" id=6]
+
+[sub_resource type="PhysicsMaterial" id=1]
+resource_local_to_scene = true
+friction = 0.73
+bounce = 0.7
+
+[sub_resource type="Animation" id=2]
+resource_name = "Activate_Snake"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Icon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.118972, 0.178063, 0.369302, 0.5 ),
+"transitions": PoolRealArray( -2, -2, 2, -2, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 20 ), Vector2( 0, 20 ), Vector2( 10, -10 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Icon:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.116263, 0.175354, 0.370593, 0.5 ),
+"transitions": PoolRealArray( -2, 3.4822, 1.86607, -2, 1 ),
+"update": 0,
+"values": [ 0.0, -3.0, -3.0, 10.9, 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Icon:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( -2, -2, -2 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 2, 2, 2, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Icon:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Icon:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = false
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.116144, 0.175235, 0.364732, 0.493102 ),
+"transitions": PoolRealArray( 0.615572, 3.86374, 1.86607, -2, 1 ),
+"update": 0,
+"values": [ Vector2( 0.45, 0.45 ), Vector2( 0.45, 0.35 ), Vector2( 0.45, 0.35 ), Vector2( 0.45, 0.5 ), Vector2( 0.45, 0.45 ) ]
+}
+
+[node name="Snake" instance=ExtResource( 1 )]
+physics_material_override = SubResource( 1 )
+script = ExtResource( 3 )
+
+[node name="CollisionMap" parent="." index="0"]
+position = Vector2( 0, -40 )
+tile_data = PoolIntArray( -131072, 4, 0, -131071, 4, 0, -65536, 3, 0, -65535, 4, 0, -65534, 4, 0, 65535, 3, 0, 0, 3, 0, 1, 4, 0, 131071, 3, 0 )
+
+[node name="Icon" parent="." index="1"]
+scale = Vector2( 0.45, 0.45 )
+texture = ExtResource( 2 )
+
+[node name="Sockets" parent="Icon" index="0"]
+scale = Vector2( 2.22222, 2.22222 )
+
+[node name="SpecificDragParticles" type="Particles2D" parent="Icon" index="1"]
+modulate = Color( 2, 2, 2, 0.796078 )
+show_behind_parent = true
+position = Vector2( -153.333, -240 )
+scale = Vector2( 3, 3 )
+emitting = false
+amount = 13
+lifetime = 0.44
+speed_scale = 0.6
+local_coords = false
+process_material = ExtResource( 5 )
+texture = ExtResource( 4 )
+script = ExtResource( 6 )
+
+[node name="ClickArea" parent="." index="2"]
+visible = true
+
+[node name="CollisionPolygon2D" parent="ClickArea" index="0"]
+visible = false
+polygon = PoolVector2Array( 0, -120, 80, -120, 80, 40, 0, 40, 0, 120, -80, 120, -80, -40, 0, -40 )
+
+[node name="BottomCenter" parent="." index="3"]
+position = Vector2( 9, 28 )
+
+[node name="AnimationPlayer" parent="." index="4"]
+anims/Activate_Snake = SubResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="5"]
+visible = false
+position = Vector2( 16, -19 )
+polygon = PoolVector2Array( 9, -82, 51, -58, 40, -17, 51, 20, 32, 47, -11, 59, -26, 110, -61, 123, -84, 99, -72, 44, -79, 3, -52, -15, -4, 0, -12, -68 )

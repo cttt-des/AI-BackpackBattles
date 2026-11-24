@@ -55,7 +55,7 @@ func chargedItemStatChange(item, value):
 	item.changeAmplificiationChancePercent_allBuffs(value)
 		
 func getTextureSize() -> Vector2:
-	return sprite.texture.get_size() * Vector2(2.1, 1.3) * sprite.global_scale
+	return sprite.texture.get_size() * Vector2(2.5, 1.5) * sprite.global_scale
 
 func getSpriteOffset() -> Vector2:
-	return Vector2( - 100, 80) * sprite.global_scale * 0.5
+	return Vector2( - 100, 60) * sprite.global_scale * 0.5

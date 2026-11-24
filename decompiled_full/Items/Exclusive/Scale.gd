@@ -17,6 +17,7 @@ onready var rightCounterDefaultPos = rightCounter.position
 func ready_deferred():
 	.ready_deferred()
 	updateCounterPositions()
+	Game.undoStack.connect("state_changed", self, "updateCounterPositions")
 
 func canAffect(item):
 	return true

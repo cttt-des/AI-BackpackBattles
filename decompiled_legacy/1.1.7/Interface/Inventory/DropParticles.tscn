@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Utility/PooledScene.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Particles/Dust1.png" type="Texture" id=2]
+[ext_resource path="res://Interface/Inventory/DropParticles.tres" type="Material" id=3]
+
+[node name="Particles2D" type="Particles2D"]
+modulate = Color( 1, 0.890196, 0.819608, 0.658824 )
+scale = Vector2( 0.6, 0.6 )
+emitting = false
+amount = 18
+lifetime = 0.57
+one_shot = true
+speed_scale = 1.25
+explosiveness = 0.79
+process_material = ExtResource( 3 )
+texture = ExtResource( 2 )
+script = ExtResource( 1 )

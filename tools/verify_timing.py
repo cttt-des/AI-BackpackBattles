@@ -5,7 +5,7 @@
 __setattr__ 重定向清零引擎冷却状态，导致所有物品每物理帧触发（"冷却0.01s"）。
 本文件固化时序不变量，防止回归。
 
-源码真值（decompiled_full/Items/Item.gd）：
+源码真值（decompiled_legacy/1.1.7/Items/Item.gd）：
   _physics_process: triggerTime -= delta * getSpeed(); <=0 时 trigger()
   trigger():        iterationCooldown = adjustCooldown(); triggerTime += iterationCooldown
   preCombatStart:   iterationCooldown = adjustCooldown(); triggerTime = iterationCooldown

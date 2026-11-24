@@ -29,14 +29,14 @@ func _ready():
 				slider.max_value = CustomRules.MAX[rule]
 				slider.step = CustomRules.STEP[rule]
 				slider.connect("value_changed", self, "onValueChanged", [rule])
+
 	
 	
 	
-	
-	
+
 	teamSwitchModeCheckbox.connect("toggled", self, "onTeamSwitchModeToggled")
 	teamSwitchModeCheckbox.set_pressed_no_signal(CustomRules.isTeamSwitchMode())
-	
+
 	
 	
 
@@ -54,7 +54,7 @@ func onOpen():
 		sliders[rule].set_value_no_signal(CustomRules.getRuleValue(rule))
 	for rule in labels:
 		updateLabel(rule)
-	
+
 	
 	teamSwitchModeCheckbox.set_pressed_no_signal(CustomRules.isTeamSwitchMode())
 

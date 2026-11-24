@@ -27,7 +27,7 @@ func onVisible():
 
 func onInvisible():
 	if entry != null and not entry.selected:
-		entry.returnToObjectPool()
+		entry.call_deferred("returnToObjectPool")
 		entry = null
 
 
@@ -35,6 +35,6 @@ func returnToObjectPool():
 	if entry != null:
 		entry.returnToObjectPool()
 		entry = null
-	
+
 	ObjectPool.returnInstance(self)
 

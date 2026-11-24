@@ -38,7 +38,7 @@ import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SRC = os.path.join(ROOT, "decompiled_full", "Sheets", "ItemBook.gd")
+SRC = os.path.join(ROOT, "decompiled_legacy/1.1.7", "Sheets", "ItemBook.gd")
 OUT = os.path.join(ROOT, "gd_core", "CoreItemBook.gd")
 
 DECL_RE = re.compile(r"^\s*(?:var\s+)?([A-Za-z_]\w*)\s*(?::[^=\n]+?)?\s*=\s*"
@@ -47,7 +47,7 @@ DECL_RE = re.compile(r"^\s*(?:var\s+)?([A-Za-z_]\w*)\s*(?::[^=\n]+?)?\s*=\s*"
 HEADER = '''# =============================================================================
 # CoreItemBook.gd — 无头战斗内核：物品描述符注册表（ItemBook 的无头子集）
 # =============================================================================
-# ★ 本文件由 tools/gen_core_item_book.py 从 decompiled_full/Sheets/ItemBook.gd
+# ★ 本文件由 tools/gen_core_item_book.py 从 decompiled_legacy/1.1.7/Sheets/ItemBook.gd
 #   自动生成 —— **请勿手工维护**，重新生成即可。
 #
 # 原版 ItemBook 是 autoload 单例，getDescriptor(itemName) 从 items 字典取

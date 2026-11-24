@@ -1,6 +1,6 @@
 """BitStream 解码器（Godot 3.x 背包乱斗 run/摆盘格式）。
 
-对应 decompiled_full/Utility/BitStream.gd 与 Utility/RunData.gd 的 deserializeStream。
+对应 decompiled_legacy/1.1.7/Utility/BitStream.gd 与 Utility/RunData.gd 的 deserializeStream。
 """
 import json, math, os
 from pathlib import Path

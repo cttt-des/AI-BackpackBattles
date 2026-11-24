@@ -2,7 +2,7 @@
 """enrich_stack_flags.py — 从 ItemData_e.csv 的 gain/remove/use 列提取
 gained/removed/usedStacks 位标志写入 battle_items.json。
 
-引擎真值（decompiled_full/Sheets/ItemBook.gd:877-879）：
+引擎真值（decompiled_legacy/1.1.7/Sheets/ItemBook.gd:877-879）：
     item.gainedStacks = table.getFlags("gain", Item.Stack, line)
     item.removedStacks = table.getFlags("remove", Item.Stack, line)
     item.usedStacks = table.getFlags("use", Item.Stack, line)

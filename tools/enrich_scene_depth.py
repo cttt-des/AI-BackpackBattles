@@ -15,7 +15,7 @@ enrich_scene_depth.py — 场景绑定深度（chanceRng 构造调用次数）�
     Lump of Coal/Burning Coal/Corrupted Crystal/Skull、四符文（Badger/Elephant/
     Hawk/Tiger）、Wisp（均为 Gem.tscn→Item.tscn 之上的第三层覆盖）。
 
-用法：python -X utf8 tools/enrich_scene_depth.py [--root decompiled_full] [--dry-run]
+用法：python -X utf8 tools/enrich_scene_depth.py [--root decompiled_legacy/1.1.7] [--dry-run]
 写入：assets/battle_items.json 各物品条目 "scene_depth"（缺省 2，不写默认值）。
 """
 from __future__ import annotations
@@ -44,7 +44,7 @@ def build_name_map(src_root):
 
 def main() -> int:
     ap = argparse.ArgumentParser(description="场景绑定深度提取")
-    ap.add_argument("--root", default=os.path.join(ROOT, "decompiled_full"))
+    ap.add_argument("--root", default=os.path.join(ROOT, "decompiled_legacy/1.1.7"))
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
 

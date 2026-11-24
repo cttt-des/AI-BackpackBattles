@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Interface/Options/OptionsFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Interface/Options/Checked2.png" type="Texture" id=2]
+[ext_resource path="res://Interface/Options/Unchecked.png" type="Texture" id=3]
+[ext_resource path="res://Interface/ItemLibrary/ItemFilterButton.gd" type="Script" id=4]
+[ext_resource path="res://Interface/EmptyStylebox.tres" type="StyleBox" id=5]
+
+[node name="CraftedItems" type="CheckBox"]
+margin_left = 1601.0
+margin_top = 584.0
+margin_right = 1855.0
+margin_bottom = 646.0
+mouse_default_cursor_shape = 2
+custom_colors/font_color_disabled = Color( 0.501953, 0.364891, 0.308819, 1 )
+custom_colors/font_color_focus = Color( 1, 0.890196, 0.215686, 1 )
+custom_colors/font_color_hover_pressed = Color( 1, 0.890196, 0.215686, 1 )
+custom_colors/font_color = Color( 1, 0.92549, 0.831373, 1 )
+custom_colors/font_color_hover = Color( 1, 0.890196, 0.215686, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.92549, 0.831373, 1 )
+custom_fonts/font = ExtResource( 1 )
+custom_icons/checked = ExtResource( 2 )
+custom_icons/unchecked = ExtResource( 3 )
+custom_styles/focus = ExtResource( 5 )
+text = "Crafted Items"
+script = ExtResource( 4 )
