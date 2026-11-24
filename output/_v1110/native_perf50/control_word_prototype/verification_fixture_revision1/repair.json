@@ -1,0 +1,8 @@
+{
+  "reason": "Portable fixture quoted include resolved old STAGE header; use byte-identical isolated helper namespace and ASCII-local test source",
+  "candidate_dll_unchanged": true,
+  "no_candidate_rebuild_or_training": true,
+  "no_performance_observations": true,
+  "passed_actual_dll_cases": 16384,
+  "old_failure_log": "output\\_v1110\\control_word_verification_first.log"
+}

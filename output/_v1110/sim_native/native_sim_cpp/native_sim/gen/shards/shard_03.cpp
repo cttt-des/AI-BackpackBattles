@@ -5787,3 +5787,11 @@ gd::GdVal Gd__gd_core_items__StrongStoneSkinPotion::fn__readyInit(const gd::GdVa
 }
 static gd::GdObj* _alloc_Gd__gd_core_items__StrongStoneSkinPotion(gd::BattleCtx& ctx) { auto* object=ctx.arena.make<Gd__gd_core_items__StrongStoneSkinPotion>(&ctx); if(ctx.native_resolved_dispatch)gd::native_resolved_seed(object,656u); return object; }
 const gd::GdClassMeta META_Gd__gd_core_items__StrongStoneSkinPotion = {CLS_Gd__gd_core_items__StrongStoneSkinPotion, "StrongStoneSkinPotion", "res://gd_core_items/StrongStoneSkinPotion.gd", &META_Gd__gd_core_items__StoneSkinPotion, true, _alloc_Gd__gd_core_items__StrongStoneSkinPotion, &Gd__gd_core_items__StrongStoneSkinPotion::get_static_prop_fn, &Gd__gd_core_items__StrongStoneSkinPotion::call_static_fn};
+
+
+extern "C" uint32_t gd_test_native_timer_control(const gd::NativeTimerWatch* watch) {
+    return (gd::native_timer_active_ready(*watch)?1u:0u) |
+        (gd::native_timer_index_ready(*watch)?2u:0u) |
+        (gd::native_timer_suffix_ready(*watch)?4u:0u) |
+        (gd::native_timer_control_word_compatible?8u:0u);
+}

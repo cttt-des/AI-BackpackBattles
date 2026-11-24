@@ -1,0 +1,38 @@
+{
+  "stage": "semantic_passed_formal_started",
+  "goal_status": "active",
+  "goal200_reached": false,
+  "not_deployed": true,
+  "production_dll_sha256": "f950b64c74684ae70ce4e41b9622541c849da0121e1235ab88b7aaface22a6d7",
+  "latest_accepted_production_fitted20": 186.34032339352876,
+  "prior_trial": "active_prefetch rejected after full32",
+  "prior_remote_archive": "584aef472686dc09bb5abda831c358a2026a2fe3",
+  "source_file_count": 707,
+  "changed_files": [
+    "gen/shards/shard_03.cpp",
+    "native_active_cooldowns.hpp",
+    "native_targeted_timers.hpp"
+  ],
+  "all674_object_headers_and_watch_layout_unchanged": true,
+  "exact_inverse_source_projection_passed": true,
+  "build": {
+    "pid": 13468,
+    "created": 1795514905.5016627,
+    "script": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\build_native_control_word.py",
+    "root": "C:\\Users\\Windows\\AppData\\Local\\CodexNativeBuilds\\control-word-semantic-11c0ntmf"
+  },
+  "verifier": {
+    "pid": 22640,
+    "created": 1795515661.6257265,
+    "script": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\verify_native_control_word.py"
+  },
+  "semantic_build_tool": 21700,
+  "semantic_verification_tool": 6579,
+  "no_speed_measurement": true,
+  "semantic_dll_sha256": "f04be42c1e0e6bc997912daf1a84d5169f939eb6d8ec6240533cb38f5a644604",
+  "semantic_build_finished": true,
+  "fixture_first_compile_failure_retained": true,
+  "semantic_cases": 44608,
+  "semantic_verification_finished": true,
+  "formal_driver_tool": 51104
+}

@@ -1,0 +1,55 @@
+   25ba358c1:	lea    0x60(%rsp),%r8
+   25ba358c6:	lea    0x120(%rsp),%rdx
+   25ba358ce:	mov    %r12,%rcx
+   25ba358d1:	call   25ba563c0 <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)>
+   25ba358d6:	jmp    25ba35878 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0xd28>
+   25ba358d8:	nopl   0x0(%rax,%rax,1)
+   25ba358e0:	mov    0x8(%r13),%eax
+   25ba358e4:	test   %eax,%eax
+   25ba358e6:	je     25ba35890 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0xd40>
+   25ba358e8:	lea    (%rax,%rax,2),%r11
+   25ba358ec:	xor    %r12d,%r12d
+   25ba358ef:	lea    0x0(,%r11,8),%rbp
+   25ba358f7:	jmp    25ba3590d <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0xdbd>
+   25ba358f9:	nopl   0x0(%rax)
+   25ba35900:	add    $0x18,%r12
+   25ba35904:	cmp    %rbp,%r12
+   25ba35907:	je     25ba35890 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0xd40>
+   25ba3590d:	mov    0x0(%r13),%rax
+   25ba35911:	add    %r12,%rax
+   25ba35914:	cmpb   $0x0,(%rax)
+   25ba35917:	je     25ba35900 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0xdb0>
+   25ba35919:	mov    0x8(%rax),%rdx
+   25ba3591d:	cmpb   $0x1,0x670(%rdx)
+   25ba35924:	jne    25ba35958 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0xe08>
+   25ba35926:	movzbl 0x678(%rdx),%eax
+   25ba3592d:	test   %al,%al
+   25ba3592f:	je     25ba35900 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0xdb0>
+
+   25ba35a49:	lea    0x60(%rsp),%r8
+   25ba35a4e:	lea    0x120(%rsp),%rdx
+   25ba35a56:	mov    %r12,%rcx
+   25ba35a59:	call   25ba563c0 <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)>
+   25ba35a5e:	jmp    25ba35a00 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0xeb0>
+   25ba35a60:	mov    0x8(%r13),%eax
+   25ba35a64:	test   %eax,%eax
+   25ba35a66:	je     25ba35a18 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0xec8>
+   25ba35a68:	lea    (%rax,%rax,2),%r11
+   25ba35a6c:	xor    %r12d,%r12d
+   25ba35a6f:	lea    0x0(,%r11,8),%rbp
+   25ba35a77:	jmp    25ba35a89 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0xf39>
+   25ba35a79:	nopl   0x0(%rax)
+   25ba35a80:	add    $0x18,%r12
+   25ba35a84:	cmp    %r12,%rbp
+   25ba35a87:	je     25ba35a18 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0xec8>
+   25ba35a89:	mov    0x0(%r13),%rax
+   25ba35a8d:	add    %r12,%rax
+   25ba35a90:	cmpb   $0x0,(%rax)
+   25ba35a93:	je     25ba35a80 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0xf30>
+   25ba35a95:	mov    0x8(%rax),%rdx
+   25ba35a99:	cmpb   $0x1,0x670(%rdx)
+   25ba35aa0:	jne    25ba35ad0 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0xf80>
+   25ba35aa2:	movzbl 0x678(%rdx),%eax
+   25ba35aa9:	test   %al,%al
+   25ba35aab:	je     25ba35a80 <Gd__gd_core__CoreCombat::fn_physicsTick(gd::GdVal const*, int)+0xf30>
+   25ba35aad:	mov    $0x1,%r9d

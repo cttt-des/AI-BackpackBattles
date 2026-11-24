@@ -1,0 +1,14 @@
+D:\文件资料\学习\自动背包AI\output\_v1110\test_native_control_word.cpp: In function 'uint32_t read_control(const gd::NativeTimerWatch*)':
+D:\文件资料\学习\自动背包AI\output\_v1110\test_native_control_word.cpp:12:17: error: 'native_timer_active_ready' is not a member of 'gd'
+   12 |     return (gd::native_timer_active_ready(*w)?1u:0u) |
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~
+D:\文件资料\学习\自动背包AI\output\_v1110\test_native_control_word.cpp:13:14: error: 'native_timer_index_ready' is not a member of 'gd'; did you mean 'native_timer_index_hit'?
+   13 |         (gd::native_timer_index_ready(*w)?2u:0u) |
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~
+      |              native_timer_index_hit
+D:\文件资料\学习\自动背包AI\output\_v1110\test_native_control_word.cpp:14:14: error: 'native_timer_suffix_ready' is not a member of 'gd'
+   14 |         (gd::native_timer_suffix_ready(*w)?4u:0u) |
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~~
+D:\文件资料\学习\自动背包AI\output\_v1110\test_native_control_word.cpp:15:14: error: 'native_timer_control_word_compatible' is not a member of 'gd'
+   15 |         (gd::native_timer_control_word_compatible?8u:0u);
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

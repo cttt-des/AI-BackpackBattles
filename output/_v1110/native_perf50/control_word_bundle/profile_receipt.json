@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "profile_sha256": "e11f2d04eba8df35a1cf51a518fc56c12e765f561bb39df8812470b565f21bc0",
+  "dll_sha256": "680f3e37ed7485daac1d6b023bc8530706efb22370a479a02b2e212609c39775",
+  "samples": 2003,
+  "batches": 31,
+  "depth_limit": 64,
+  "samples_at_depth_limit": 4,
+  "same_fixed200_corpus": true,
+  "no_speed_claim": true,
+  "no_sample_fraction_as_gain_or_ceiling": true
+}

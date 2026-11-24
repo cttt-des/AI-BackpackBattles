@@ -1,0 +1,8 @@
+{
+  "dll_sha256": "f04be42c1e0e6bc997912daf1a84d5169f939eb6d8ec6240533cb38f5a644604",
+  "scope": "Semantic prototype active_cooldown_visit, not full-PGO release",
+  "disassembly_sha256": "8adad5af4387388cf73600d09862eeb767fcde59f1ccc53492d44663c26c46e4",
+  "full_original_corecombat_frame_blocks_are_legacy_fallbacks": true,
+  "packed_mask_instruction_present": true,
+  "no_speed_claim": true
+}

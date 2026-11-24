@@ -1,0 +1,69 @@
+{
+  "dll_sha256": "680f3e37ed7485daac1d6b023bc8530706efb22370a479a02b2e212609c39775",
+  "gate_sha256": "6241dbb5645d4241158d978f3bfa5549ea0a7fc09cc19cf76203bd1aca41ece7",
+  "ab_assessment_path": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_perf50\\control_word_bundle\\ab_assessment_32.json",
+  "ab_assessment_sha256": "bb59715bc68fd449954523f3ee2e7c9d2351daa228c6af1ad15b99ed5dd98c88",
+  "ab_pairs": 32,
+  "speed_report_sha256": "b2aa0e40ee7626d2d3c1bf6a7e1316abd071a91857cc735b0006e97add0857b2",
+  "training_outcomes": [
+    1,
+    1,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "regeneration_test_sha256": "c3768976f0f2617d6952c859ab18bd0c1830955ddd8b0283af51eeab3e567c7a",
+  "full_regeneration_test_sha256": "0fd37e7db41477f87d20d7d678a0ba35ac1fd446c807872b9cba941dec0b5575",
+  "training_matched_baseline": 12,
+  "training_evaluation": {
+    "mean_wr": 0.16666666666666666,
+    "std_opp": 0.28867513459481287,
+    "worst_wr": 0.0,
+    "per_opp": [
+      {
+        "rating": 450.385037,
+        "n_items": 57,
+        "wr": 0.6666666666666666,
+        "errs": 0
+      },
+      {
+        "rating": 527.013755,
+        "n_items": 47,
+        "wr": 0.0,
+        "errs": 0
+      },
+      {
+        "rating": 464.089676,
+        "n_items": 47,
+        "wr": 0.0,
+        "errs": 0
+      },
+      {
+        "rating": 457.699621,
+        "n_items": 61,
+        "wr": 0.0,
+        "errs": 0
+      }
+    ],
+    "n_opp": 4,
+    "seeds": 3,
+    "total_sims": 12,
+    "sim_errors": 0
+  },
+  "runtime": "dist/native_1_1_10",
+  "backup_runtime": "dist/native_1_1_10_before_control_word_bundle_20261124",
+  "changed_native_files": [
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/gen/shards/shard_03.cpp",
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/native_active_cooldowns.hpp",
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/native_targeted_timers.hpp",
+    "output/_v1110/optimize_native_verified_bundle.py",
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/libgdcore.dll"
+  ]
+}

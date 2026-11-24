@@ -1,0 +1,39 @@
+{
+  "candidate_dll_sha256": "680f3e37ed7485daac1d6b023bc8530706efb22370a479a02b2e212609c39775",
+  "production_dll_sha256": "680f3e37ed7485daac1d6b023bc8530706efb22370a479a02b2e212609c39775",
+  "deployed": true,
+  "reason": "deployed_after_all_original_gates",
+  "goal200_reached": false,
+  "goal_still_active": true,
+  "candidate_load20_fps": 181.23947394271036,
+  "raw24": {
+    "median_fights_per_second": 105.08852999683646,
+    "minimum_fights_per_second": 68.0366041012203,
+    "maximum_fights_per_second": 147.99569066171318,
+    "background_load_range_pct": [
+      15.770674417082681,
+      79.27130264345095
+    ],
+    "on_ac_all": true
+  },
+  "calibration24": {
+    "median_fights_per_second": 192.39573499241055,
+    "minimum_fights_per_second": 118.02535786632832,
+    "maximum_fights_per_second": 212.5943892518645,
+    "background_load_range_pct": [
+      7.773059480916077,
+      46.59615925419707
+    ],
+    "on_ac_all": true
+  },
+  "compiler_flags": [],
+  "source_changes": [
+    "gen/shards/shard_03.cpp",
+    "native_active_cooldowns.hpp",
+    "native_targeted_timers.hpp"
+  ],
+  "all_protocol_processes_finished": true,
+  "no_more_same_configuration_measurements": true,
+  "backup_status_recorded_separately": true,
+  "backup_receipt": "checkpoint_receipt.json"
+}
