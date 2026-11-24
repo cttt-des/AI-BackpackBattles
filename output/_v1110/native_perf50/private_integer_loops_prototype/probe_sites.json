@@ -1,0 +1,90 @@
+{
+  "sites": [
+    {
+      "index": 0,
+      "method": "gainTemporary",
+      "original_sequence_variable": "_t330",
+      "input_expression": "lv_amount"
+    },
+    {
+      "index": 1,
+      "method": "gainTemporary",
+      "original_sequence_variable": "_t333",
+      "input_expression": "lv_amount"
+    },
+    {
+      "index": 2,
+      "method": "gainTemporary",
+      "original_sequence_variable": "_t336",
+      "input_expression": "lv_amount"
+    },
+    {
+      "index": 3,
+      "method": "gainTemporary",
+      "original_sequence_variable": "_t330",
+      "input_expression": "lv_amount"
+    },
+    {
+      "index": 4,
+      "method": "gainTemporary",
+      "original_sequence_variable": "_t333",
+      "input_expression": "lv_amount"
+    },
+    {
+      "index": 5,
+      "method": "gainTemporary",
+      "original_sequence_variable": "_t336",
+      "input_expression": "lv_amount"
+    },
+    {
+      "index": 6,
+      "method": "loseStacks",
+      "original_sequence_variable": "_t339",
+      "input_expression": "lv_amount"
+    },
+    {
+      "index": 7,
+      "method": "loseStacks",
+      "original_sequence_variable": "_t342",
+      "input_expression": "lv_amount"
+    },
+    {
+      "index": 8,
+      "method": "loseStacks",
+      "original_sequence_variable": "_t345",
+      "input_expression": "gd::native_inline_call(gd_ctx, this->f_temporaryStacks, gd::SYM_size, nullptr, 0)"
+    },
+    {
+      "index": 9,
+      "method": "loseStacks",
+      "original_sequence_variable": "_t339",
+      "input_expression": "lv_amount"
+    },
+    {
+      "index": 10,
+      "method": "loseStacks",
+      "original_sequence_variable": "_t342",
+      "input_expression": "lv_amount"
+    },
+    {
+      "index": 11,
+      "method": "loseStacks",
+      "original_sequence_variable": "_t345",
+      "input_expression": "gd::native_inline_call(gd_ctx, this->f_temporaryStacks, gd::SYM_size, nullptr, 0)"
+    },
+    {
+      "index": 12,
+      "method": "onTimeout",
+      "original_sequence_variable": "_t351",
+      "input_expression": "gd::native_inline_call(gd_ctx, this->f_temporaryStacks, gd::SYM_size, nullptr, 0)"
+    },
+    {
+      "index": 13,
+      "method": "onTimeout",
+      "original_sequence_variable": "_t351",
+      "input_expression": "gd::native_inline_call(gd_ctx, this->f_temporaryStacks, gd::SYM_size, nullptr, 0)"
+    }
+  ],
+  "probe_source_sha256": "39c4b26d37627aa58ddda6babbd2fb5e57c8d22eaf17e5971f9633f0648b4d59",
+  "original_source_sha256": "409c282cd73c91fdd78bef42a3fb98f4998c7411df15cb02cb8f3553f32f760a"
+}

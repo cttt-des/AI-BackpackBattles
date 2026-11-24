@@ -1,0 +1,35 @@
+{
+  "dll_sha256": "cd4ee7464fd4158cc0fc00bcd6dda49023bfb9614cdccad71a014e2bdbcb13ce",
+  "serial": {
+    "median_fights_per_second": 133.00496637845188,
+    "minimum_fights_per_second": 74.68030946476667,
+    "maximum_fights_per_second": 190.3696016298429,
+    "background_load_range_pct": [
+      5.344176455859889,
+      71.66655169757178
+    ],
+    "on_ac_all": true
+  },
+  "load_calibration": {
+    "median_fights_per_second": 102.77053733830277,
+    "minimum_fights_per_second": 38.87423934774598,
+    "maximum_fights_per_second": 126.94720348321967,
+    "background_load_range_pct": [
+      27.350755916644992,
+      90.7513146593502
+    ],
+    "on_ac_all": true
+  },
+  "raw24_gate_passed": true,
+  "load20_covered": false,
+  "fitted_fights_per_second_at20": null,
+  "fit_validation": null,
+  "r_squared_log_wall_time": null,
+  "missing_reason": "20% lies outside the original independent calibration range; extrapolation and rerun rejected",
+  "report_sha256": {
+    "bundle_serial.json": "eddc3b3dacaa51c5c0b9d797e5357d3ce7e44d8731e0c7b578a517b56b0e89c6",
+    "bundle_load_calibration.json": "5fff48e36c2fbfa7dfe36033df40d9675f933925022d9192028ad4bc896baf41"
+  },
+  "single_run_all_samples_retained": true,
+  "posthoc_summary_only_no_additional_measurement": true
+}

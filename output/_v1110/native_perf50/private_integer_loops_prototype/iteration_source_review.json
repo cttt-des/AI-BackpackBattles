@@ -1,0 +1,130 @@
+{
+  "review_only": true,
+  "implementation_started": false,
+  "baseline_dll_sha256": "f950b64c74684ae70ce4e41b9622541c849da0121e1235ab88b7aaface22a6d7",
+  "source_sha256": "409c282cd73c91fdd78bef42a3fb98f4998c7411df15cb02cb8f3553f32f760a",
+  "private_iteration_sites": [
+    {
+      "method": "gainTemporary",
+      "sequence_variable": "_t330",
+      "array_pointer": "_t331",
+      "input_expression": "lv_amount",
+      "all_container_mentions_confined_to_original_loop_plumbing": true,
+      "integer_amount_coerced_before_loop": true
+    },
+    {
+      "method": "gainTemporary",
+      "sequence_variable": "_t333",
+      "array_pointer": "_t334",
+      "input_expression": "lv_amount",
+      "all_container_mentions_confined_to_original_loop_plumbing": true,
+      "integer_amount_coerced_before_loop": true
+    },
+    {
+      "method": "gainTemporary",
+      "sequence_variable": "_t336",
+      "array_pointer": "_t337",
+      "input_expression": "lv_amount",
+      "all_container_mentions_confined_to_original_loop_plumbing": true,
+      "integer_amount_coerced_before_loop": true
+    },
+    {
+      "method": "gainTemporary",
+      "sequence_variable": "_t330",
+      "array_pointer": "_t331",
+      "input_expression": "lv_amount",
+      "all_container_mentions_confined_to_original_loop_plumbing": true,
+      "integer_amount_coerced_before_loop": true
+    },
+    {
+      "method": "gainTemporary",
+      "sequence_variable": "_t333",
+      "array_pointer": "_t334",
+      "input_expression": "lv_amount",
+      "all_container_mentions_confined_to_original_loop_plumbing": true,
+      "integer_amount_coerced_before_loop": true
+    },
+    {
+      "method": "gainTemporary",
+      "sequence_variable": "_t336",
+      "array_pointer": "_t337",
+      "input_expression": "lv_amount",
+      "all_container_mentions_confined_to_original_loop_plumbing": true,
+      "integer_amount_coerced_before_loop": true
+    },
+    {
+      "method": "loseStacks",
+      "sequence_variable": "_t339",
+      "array_pointer": "_t340",
+      "input_expression": "lv_amount",
+      "all_container_mentions_confined_to_original_loop_plumbing": true,
+      "integer_amount_coerced_before_loop": true
+    },
+    {
+      "method": "loseStacks",
+      "sequence_variable": "_t342",
+      "array_pointer": "_t343",
+      "input_expression": "lv_amount",
+      "all_container_mentions_confined_to_original_loop_plumbing": true,
+      "integer_amount_coerced_before_loop": true
+    },
+    {
+      "method": "loseStacks",
+      "sequence_variable": "_t345",
+      "array_pointer": "_t346",
+      "input_expression": "gd::native_inline_call(gd_ctx, this->f_temporaryStacks, gd::SYM_size, nullptr, 0)",
+      "all_container_mentions_confined_to_original_loop_plumbing": true,
+      "integer_amount_coerced_before_loop": true
+    },
+    {
+      "method": "loseStacks",
+      "sequence_variable": "_t339",
+      "array_pointer": "_t340",
+      "input_expression": "lv_amount",
+      "all_container_mentions_confined_to_original_loop_plumbing": true,
+      "integer_amount_coerced_before_loop": true
+    },
+    {
+      "method": "loseStacks",
+      "sequence_variable": "_t342",
+      "array_pointer": "_t343",
+      "input_expression": "lv_amount",
+      "all_container_mentions_confined_to_original_loop_plumbing": true,
+      "integer_amount_coerced_before_loop": true
+    },
+    {
+      "method": "loseStacks",
+      "sequence_variable": "_t345",
+      "array_pointer": "_t346",
+      "input_expression": "gd::native_inline_call(gd_ctx, this->f_temporaryStacks, gd::SYM_size, nullptr, 0)",
+      "all_container_mentions_confined_to_original_loop_plumbing": true,
+      "integer_amount_coerced_before_loop": true
+    },
+    {
+      "method": "onTimeout",
+      "sequence_variable": "_t351",
+      "array_pointer": "_t352",
+      "input_expression": "gd::native_inline_call(gd_ctx, this->f_temporaryStacks, gd::SYM_size, nullptr, 0)",
+      "all_container_mentions_confined_to_original_loop_plumbing": true,
+      "integer_amount_coerced_before_loop": false
+    },
+    {
+      "method": "onTimeout",
+      "sequence_variable": "_t351",
+      "array_pointer": "_t352",
+      "input_expression": "gd::native_inline_call(gd_ctx, this->f_temporaryStacks, gd::SYM_size, nullptr, 0)",
+      "all_container_mentions_confined_to_original_loop_plumbing": true,
+      "integer_amount_coerced_before_loop": false
+    }
+  ],
+  "containers_do_not_escape_through_generated_local_references": true,
+  "source_analysis_not_independent_DLL_equivalence": true,
+  "preserve": [
+    "Original coercion and input expression evaluated once",
+    "Captureduint32 length before loop",
+    "Original body text,loop-valuekind,RNG and fenv",
+    "Fallback to originalgd_iter_seq for non-integers and large/overflow cases",
+    "Original livearraydata access on each fallback iteration",
+    "Original old six counters and callbacks"
+  ]
+}

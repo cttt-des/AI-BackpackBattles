@@ -1,0 +1,20 @@
+{
+  "reason": "Copied targeted-timer wrapper used prior object_routes prototype manifest; assertion failed before executing its tests. Only wrapper path corrected to current private_snapshots prototype.",
+  "dll_sha256": "cd4ee7464fd4158cc0fc00bcd6dda49023bfb9614cdccad71a014e2bdbcb13ce",
+  "source_manifest_sha256": "b5e1ea8f4075369ca529bb18e3d85fcaf08afb76f355d086d1c3a32fbbe4cb79",
+  "fresh_profile_receipt_sha256": "d5c96318b99a87c3ed7e5cc12fe873274c5feabc32e287bc7c0d701d2d8f8620",
+  "retained_passed_reports": {
+    "event_identity_tests.json": "19cfab226d71ef2494b3334ab6522532abe59ba9ebdb161c6957f4e64d57cefa",
+    "lazy_diagnostics_tests.json": "a38f0e923be50ee7b0798bba67770c502dca6a19f8f38a6f0da78a35341be14c",
+    "member_frame_tests.json": "b16e72437472ac4dd3c2e63949c490957117ed49bb6b90286fe6add4c5f97f69",
+    "static_collections_tests.json": "779a5ad530bbca2b4a2bfd3d27263726d95d1d78bd4f278c49c0e4a77027b80a",
+    "static_setup_tests.json": "4d0c53943a96163cf6546341cf759dda7c09f47268de734d24c93ff0f286a4b9",
+    "dispatch_chain_tests.json": "00d85c818f413d22e89bb31dbb846126043f9c257ad5b0e58fe586faadd7a586",
+    "spatial_tests.json": "a34367c7c9b691dd2322fd6cb6fbdd08a3f204d75852f979455d7e0a1af884f2",
+    "motion_indices_tests.json": "bf82293a7ef975ae964f806a70f7488b849378004e548e7c7c346d18d6abc4d2"
+  },
+  "original_failed_script_sha256": "8e43bd29a21c27e1920e29feb25b0aeaf6d5911a92fdfe2ed17b5aa4610eff03",
+  "corrected_script_sha256": "85db98cc73f8e0ceb6c0059daff9b6b186c16d63789ff1cd491a0e02654df0d4",
+  "no_formal_timing_started": true,
+  "original_processes_terminal": true
+}

@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "D:\�ļ�����\ѧϰ\�Զ�����AI\output\_v1110\verify_native_private_snapshots.py", line 66, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\�ļ�����\ѧϰ\�Զ�����AI\output\_v1110\verify_native_private_snapshots.py", line 64, in main
+    verify(WORK/'prototype_src',WORK/'prototype.dll',WORK/'correctness.json')
+    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\�ļ�����\ѧϰ\�Զ�����AI\output\_v1110\verify_native_private_snapshots.py", line 28, in verify
+    stream.write(run.stderr);stream.flush();run.check_returncode()
+                                            ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 509, in check_returncode
+    raise CalledProcessError(self.returncode, self.args, self.stdout,
+                             self.stderr)
+subprocess.CalledProcessError: Command '['C:\\Users\\Windows\\AppData\\Local\\CodexNativeBuilds\\private-snapshots-differential-x9pbrcxu\\candidate\\identity_snapshots.exe']' returned non-zero exit status 3221225781.

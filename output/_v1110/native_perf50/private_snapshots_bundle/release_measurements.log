@@ -1,0 +1,22 @@
+Starting one raw24 run
+bundle.dll: 24 batches, median 133.00 replays/s, minimum 74.68; 2e74b45caa87
+Starting one controlled load-calibration24 run
+Warming controlled load for 30 seconds
+bundle.dll: 24 batches, median 102.77 replays/s, minimum 38.87; 2e74b45caa87
+usage: fit_native_serial_load.py [-h] --out OUT
+                                 [--reference-load REFERENCE_LOAD]
+                                 report
+fit_native_serial_load.py: error: The reference load must fall within the observed range
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\private_snapshots_bundle\run_release_measurements.py", line 54, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\private_snapshots_bundle\run_release_measurements.py", line 33, in main
+    subprocess.run([*python,str(STAGE/'fit_native_serial_load.py'),str(outputs[1]),
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        '--reference-load','20','--out',str(outputs[2])],check=True)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe', '-u', '-X', 'utf8', 'D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\fit_native_serial_load.py', 'D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_perf50\\private_snapshots_bundle\\bundle_load_calibration.json', '--reference-load', '20', '--out', 'D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_perf50\\private_snapshots_bundle\\bundle_load20.json']' returned non-zero exit status 2.

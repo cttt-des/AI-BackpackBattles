@@ -1,0 +1,20 @@
+{
+  "baseline_dll_sha256": "f950b64c74684ae70ce4e41b9622541c849da0121e1235ab88b7aaface22a6d7",
+  "reason": "Windows 0xc0000135: DLL export table names prototype.dll; fixture copied only libgdcore.dll",
+  "fixture_sha256": {
+    "identity_snapshots": "6c04e82cfc09b034c0e507ad469e10e0a105f7862e15af8227b95e6bb2e3381a",
+    "private_buff_loops": "159e0134b73d984c3c4b1ca2cb03d5ecdbb4fb1b13b53a6a12efd1bc2352cad2"
+  },
+  "receipts": {
+    "identity_snapshots": {
+      "path": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_perf50\\private_snapshots_prototype\\fixture_loader_failure_1\\baseline_identity_snapshots_cases.json",
+      "sha256": "6fb9d782a0049b8eccc824876a4d104a20a11d757fd6e82ac207c272f0e861fb",
+      "cases": 143360
+    },
+    "private_buff_loops": {
+      "path": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_perf50\\private_snapshots_prototype\\fixture_loader_failure_1\\baseline_private_buff_loops_cases.json",
+      "sha256": "13f9e0d16019a6d9348edb957438e5239256c5940c0b007ccb49a3bb633846a2",
+      "cases": 18432
+    }
+  }
+}
