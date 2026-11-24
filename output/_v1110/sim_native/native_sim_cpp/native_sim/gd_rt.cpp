@@ -14,6 +14,7 @@
 
 namespace gd {
 bool native_try_extra_callback(BattleCtx&,GdObj*,SymId,const GdVal*,int,GdVal&);
+bool native_try_object_route(BattleCtx&,GdObj*,SymId,const GdVal*,int,GdVal&);
 
 struct FastInternedSymbol {
     std::string_view text;
@@ -1631,6 +1632,7 @@ GdVal call_method(BattleCtx& ctx, const GdVal& recv, SymId m, const GdVal* args,
             // Dispatch user/generated methods first so subclass overrides win if any
             GdVal out = GdVal::null();
             if (try_native_resolved_dispatch(ctx,recv.obj,m,args,argc,out,0)) return out;
+            if (native_try_object_route(ctx,recv.obj,m,args,argc,out)) return out;
             if (recv.obj->call_method(ctx, m, args, argc, out)) return out;
             // Godot Object builtins
             switch (m) {

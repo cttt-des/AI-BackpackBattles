@@ -1,0 +1,9 @@
+Awaiting identified live build 17468
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\object_routes_bundle\qualify_when_ready.py", line 53, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\object_routes_bundle\qualify_when_ready.py", line 39, in main
+    path=WORK/'ab_assessment.json';assert path.exists(),'Original runner incomplete; inspect its original log, do not restart'
+                                          ~~~~~~~~~~~^^
+AssertionError: Original runner incomplete; inspect its original log, do not restart

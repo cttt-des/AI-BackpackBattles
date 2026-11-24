@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "dll_sha256": "f950b64c74684ae70ce4e41b9622541c849da0121e1235ab88b7aaface22a6d7",
+  "affected_object_route_cases": 320256,
+  "affected_callback_cases": 126192,
+  "retained_literal_span_cases": 5184,
+  "retained_type_constructor_test_passed": true,
+  "reports_sha256": {
+    "baseline_callbacks_cases.json": "ad36af2d67882ef2872a211cb04d912a5969c0d49670b12bed059520667bd242",
+    "baseline_callbacks_first.log": "ad36af2d67882ef2872a211cb04d912a5969c0d49670b12bed059520667bd242",
+    "callback_dispatch.json": "3c25647881ea038a5a45a5a85905393ade261d3054f3c87a8e882ae51f2fab58",
+    "callback_test_symbols.hpp": "cc2469e18aeeddc8956fb2b105aae22af811c505211fba658ed5b739bcfceba4",
+    "candidate_callbacks_cases.json": "7eedbc33f0c77db52aaf8482ec2b0e3158bcdc5152b51542f418280c0252bcb9",
+    "candidate_callbacks_first.log": "7eedbc33f0c77db52aaf8482ec2b0e3158bcdc5152b51542f418280c0252bcb9",
+    "constructors_cases.log": "650bb3ee9ffd12c10c03180a22b1aab7a456f8bd9a9738df35a1a973d8fc4ab5",
+    "constructors_compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "object_routes/baseline_object_routes_cases.json": "bf4599485d8447211338d210fb678ddc4beda484c0a80535a3336b842e9c8be5",
+    "object_routes/baseline_object_routes_revision2.log": "bf4599485d8447211338d210fb678ddc4beda484c0a80535a3336b842e9c8be5",
+    "object_routes/candidate_object_routes_cases.json": "ede1608ebe81ea781e1280af53ba4d73c183c2f788152a35f7b700635545749a",
+    "object_routes/candidate_object_routes_revision2.log": "ede1608ebe81ea781e1280af53ba4d73c183c2f788152a35f7b700635545749a",
+    "object_routes/object_routes.json": "5e1a05e715c1847b51779eedbf0c38f98d6870ae668ce45e8857ebbbb1248228",
+    "object_routes/object_route_test_symbols.hpp": "6a3327e730445da6501b12ea119276e0ab5022595569e7cbed63a588743ebe6c",
+    "retained_literal/baseline_literal_cases.json": "34f4635d7f1dd03f8662f5e37e27a8e34fa835e1fa61acf6a0de005c89981f4b",
+    "retained_literal/baseline_literal_first.log": "34f4635d7f1dd03f8662f5e37e27a8e34fa835e1fa61acf6a0de005c89981f4b",
+    "retained_literal/candidate_literal_cases.json": "4a9f56b8143f0a7ca4a084e30af6c8cacb3acbb7958a1e58d44efba4851075b1",
+    "retained_literal/candidate_literal_first.log": "4a9f56b8143f0a7ca4a084e30af6c8cacb3acbb7958a1e58d44efba4851075b1",
+    "retained_literal/literal_spans.json": "41285a126299b9941fe18ab11e3f31634a84ad0c93906c2d74440612835e91da"
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "review_only": true,
+  "implementation_started": false,
+  "runtime_counts_available": false,
+  "not_in_frozen_object_routes_candidate": true,
+  "baseline_dll_sha256": "80a0681c1c93268af2b29c21e5439b6444de36a29ad39486b3f4afadf548a44a",
+  "source_sha256": "409c282cd73c91fdd78bef42a3fb98f4998c7411df15cb02cb8f3553f32f760a",
+  "methods": [
+    {
+      "method": "gainTemporary",
+      "integer_amount_coercion": true,
+      "iteration_sites": [
+        {
+          "line": 21,
+          "expression": "gd::GdVal _t330 = gd::gd_iter_seq(gd_ctx.arena, lv_amount);"
+        },
+        {
+          "line": 34,
+          "expression": "gd::GdVal _t333 = gd::gd_iter_seq(gd_ctx.arena, lv_amount);"
+        },
+        {
+          "line": 50,
+          "expression": "gd::GdVal _t336 = gd::gd_iter_seq(gd_ctx.arena, lv_amount);"
+        },
+        {
+          "line": 169,
+          "expression": "gd::GdVal _t330 = gd::gd_iter_seq(gd_ctx.arena, lv_amount);"
+        },
+        {
+          "line": 182,
+          "expression": "gd::GdVal _t333 = gd::gd_iter_seq(gd_ctx.arena, lv_amount);"
+        },
+        {
+          "line": 198,
+          "expression": "gd::GdVal _t336 = gd::gd_iter_seq(gd_ctx.arena, lv_amount);"
+        }
+      ],
+      "body_sha256": "e94086b612264c62c1228a2f7960da2a97fdb5ceb9a155a35f1cd97201e2b1c8"
+    },
+    {
+      "method": "loseStacks",
+      "integer_amount_coercion": true,
+      "iteration_sites": [
+        {
+          "line": 13,
+          "expression": "gd::GdVal _t339 = gd::gd_iter_seq(gd_ctx.arena, lv_amount);"
+        },
+        {
+          "line": 26,
+          "expression": "gd::GdVal _t342 = gd::gd_iter_seq(gd_ctx.arena, lv_amount);"
+        },
+        {
+          "line": 72,
+          "expression": "gd::GdVal _t345 = gd::gd_iter_seq(gd_ctx.arena, gd::native_inline_call(gd_ctx, this->f_temporaryStacks, gd::SYM_size, nullptr, 0));"
+        },
+        {
+          "line": 117,
+          "expression": "gd::GdVal _t339 = gd::gd_iter_seq(gd_ctx.arena, lv_amount);"
+        },
+        {
+          "line": 130,
+          "expression": "gd::GdVal _t342 = gd::gd_iter_seq(gd_ctx.arena, lv_amount);"
+        },
+        {
+          "line": 176,
+          "expression": "gd::GdVal _t345 = gd::gd_iter_seq(gd_ctx.arena, gd::native_inline_call(gd_ctx, this->f_temporaryStacks, gd::SYM_size, nullptr, 0));"
+        }
+      ],
+      "body_sha256": "50ee214633a6513e63e36a134140216cbdd8c8396e7d99e9db8014fc0f25ab3a"
+    },
+    {
+      "method": "onTimeout",
+      "integer_amount_coercion": false,
+      "iteration_sites": [
+        {
+          "line": 21,
+          "expression": "gd::GdVal _t351 = gd::gd_iter_seq(gd_ctx.arena, gd::native_inline_call(gd_ctx, this->f_temporaryStacks, gd::SYM_size, nullptr, 0));"
+        },
+        {
+          "line": 61,
+          "expression": "gd::GdVal _t351 = gd::gd_iter_seq(gd_ctx.arena, gd::native_inline_call(gd_ctx, this->f_temporaryStacks, gd::SYM_size, nullptr, 0));"
+        }
+      ],
+      "body_sha256": "c9f0f56087a6cf18cb072e04bf54fdc9d93cd30d430b648da5f8f52f5ba47905"
+    }
+  ],
+  "necessary_proof": [
+    "Measure actual calls and integer lengths before implementing",
+    "Keep ordinary arrays materialized with captured length and live future data slots",
+    "Keep non-integer, huge and uint32 overflow cases on original path",
+    "Retain original loop-variable kind, RNG, fenv, callback ordering and old counters"
+  ]
+}

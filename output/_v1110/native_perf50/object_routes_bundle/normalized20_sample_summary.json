@@ -1,0 +1,11 @@
+{
+  "dll_sha256": "f950b64c74684ae70ce4e41b9622541c849da0121e1235ab88b7aaface22a6d7",
+  "derived_from_first_calibration_only": true,
+  "no_additional_timing": true,
+  "interpretation": "Individual samples normalized with the same log-time fit; estimates, not direct24 observations at exactly20%",
+  "median": 186.7860318102157,
+  "minimum": 172.14487613312684,
+  "maximum": 200.64260993193477,
+  "global_fitted_point": 186.34032339352876,
+  "source_fit_sha256": "d691671e1f944a519da6f2603aff2ae54d38b43b17f142c05f80f706084b2890"
+}

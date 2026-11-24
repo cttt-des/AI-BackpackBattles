@@ -1,0 +1,18 @@
+{
+  "pid": 488,
+  "created": 1795497117.5852726,
+  "script": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\recover_object_routes_build.py",
+  "build_root": "C:\\Users\\Windows\\AppData\\Local\\CodexNativeBuilds\\object-routes-recovery-f5pilx5j",
+  "object_directory": "C:\\Users\\Windows\\AppData\\Local\\CodexNativeBuilds\\object-routes-recovery-f5pilx5j\\objects",
+  "previous_resume": {
+    "pid": 344,
+    "created": 1795496019.6751244,
+    "script": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\resume_object_routes_link.py",
+    "original_build": {
+      "pid": 17468,
+      "created": 1795493589.2045984,
+      "script": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_perf50\\object_routes_bundle\\build_bundle.py"
+    },
+    "input_receipt_sha256": "b722f8c4b27f3617ace19ee8ab83fff0f77cf982e1cf47f1d4eaa6dfca9d0b37"
+  }
+}

@@ -1,0 +1,8 @@
+lto1.exe: fatal error: open C:\Users\Windows\AppData\Local\Temp\cceasOMM.ltrans3.o failed: No such file or directory
+compilation terminated.
+mingw32-make: *** [C:\Users\Windows\AppData\Local\Temp\cc5IZtZW.mk:8: C:\Users\Windows\AppData\Local\Temp\cceasOMM.ltrans3.ltrans.o] Error 1
+mingw32-make: *** Waiting for unfinished jobs....
+lto-wrapper.exe: fatal error: D:/mingw64/bin/mingw32-make.exe returned 2 exit status
+compilation terminated.
+D:/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/16.1.0/../../../../x86_64-w64-mingw32/bin/ld.exe: error: lto-wrapper failed
+collect2.exe: error: ld returned 1 exit status

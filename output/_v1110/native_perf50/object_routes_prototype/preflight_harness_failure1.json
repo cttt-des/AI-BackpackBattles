@@ -1,0 +1,10 @@
+{
+  "reason": "Preflight expected a literal WORK assignment, while existing build runner correctly derives WORK from its file location; check corrected to actual runner form.",
+  "original_log_sha256": "a3d2074e35e944b606b10d93ef138e2cacfd185cce0285e8bb1ebe361a3ff8db",
+  "retained_cases": {
+    "retained_callbacks": "b70d5e4407bc017375d3cbd93fbd3e79e1bed37df1d5d7346a0ca3adc1ada50a",
+    "retained_literals": "64645454e46e3398f6d03258173465ca8e3f482bd545e647bc7bdc9fee113fcd"
+  },
+  "candidate_source_and_dll_unchanged": true,
+  "no_formal_build_or_timing_started": true
+}

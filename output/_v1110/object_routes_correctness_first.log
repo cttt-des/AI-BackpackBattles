@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\verify_native_object_routes.py", line 55, in <module>
+    if __name__=='__main__':verify(WORK/'prototype_src',WORK/'prototype.dll',WORK/'correctness.json')
+                            ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\verify_native_object_routes.py", line 37, in verify
+    stream.write(run.stdout+run.stderr);stream.flush();run.check_returncode()
+                                                       ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 509, in check_returncode
+    raise CalledProcessError(self.returncode, self.args, self.stdout,
+                             self.stderr)
+subprocess.CalledProcessError: Command '['C:\\Users\\Windows\\AppData\\Local\\Temp\\native-object-route-check-lxxqruja\\check.exe']' returned non-zero exit status 3221225477.

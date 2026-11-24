@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "dll_sha256": "f950b64c74684ae70ce4e41b9622541c849da0121e1235ab88b7aaface22a6d7",
+  "original_first24_and_at_most_one_extra8": true,
+  "candidate_status": "positive_combined_evidence",
+  "installation_still_requires_evidence_review": true
+}

@@ -1,0 +1,45 @@
+{
+  "production_dll_sha256": "f950b64c74684ae70ce4e41b9622541c849da0121e1235ab88b7aaface22a6d7",
+  "current_optimization": "96 object instance routes plus original static context conversion",
+  "deployed": true,
+  "post_install_verified": true,
+  "goal200_reached": false,
+  "goal_still_active": true,
+  "fitted_fights_per_second_at20": 186.34032339352876,
+  "raw24": {
+    "median_fights_per_second": 142.4873448507858,
+    "minimum_fights_per_second": 66.13056382058694,
+    "maximum_fights_per_second": 214.8000222532728,
+    "background_load_range_pct": [
+      3.2140611960972976,
+      83.64419625937808
+    ],
+    "on_ac_all": true
+  },
+  "calibration24": {
+    "median_fights_per_second": 189.32130729293795,
+    "minimum_fights_per_second": 165.0001241625109,
+    "maximum_fights_per_second": 225.97223140228644,
+    "background_load_range_pct": [
+      5.121467587958664,
+      26.041625248310126
+    ],
+    "on_ac_all": true
+  },
+  "full32_cpu_median_reduction_pct": 0.4338578527330217,
+  "full32_wall_median_reduction_pct": 0.6507023901704045,
+  "cumulative_cpu_time_change_pct": 0.3172851427783119,
+  "cumulative_wall_time_change_pct": 0.3356685613277399,
+  "weak_evidence_note": "Both paired medians improve under frozen final32 rule; cumulative times increase, not a robust large gain",
+  "all_formal_protocol_processes_finished": true,
+  "source_files": 707,
+  "object_headers_unchanged": 674,
+  "verified_training_cases": 12,
+  "backup_receipt": "checkpoint_receipt.json",
+  "backup_status_recorded_separately": true,
+  "next_candidate_implemented": false,
+  "next_work": "Count actual CoreBuff integer iteration calls and lengths before implementing a bounded private iteration view",
+  "profile_receipt_sha256": "12f1935543b33570049a2044d21038601f2d8a7d2895bbb3726720aa2b87ed78",
+  "protected_user_files_unchanged": true,
+  "preserved_original18_profiles_and_rebuilt20_release_after_temp_file_loss": true
+}
