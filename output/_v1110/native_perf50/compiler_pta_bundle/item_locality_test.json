@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "dll_sha256": "485b12183148f8a2584d060b6f55a2ec1be4396cba5dc6026e907b0cd438a7b5",
+  "output": "{\"checks\":43,\"core_item_size\":1792,\"derived_item_size\":3968,\"weapon_size\":3968,\"alignment\":64,\"timers_offset\":1536,\"gems_offset\":1560,\"cooldown_active_offset\":1648,\"timer_length_offset\":1592,\"bridge_gems_length_offset\":1624}\n",
+  "compiled_against_candidate_headers": true
+}

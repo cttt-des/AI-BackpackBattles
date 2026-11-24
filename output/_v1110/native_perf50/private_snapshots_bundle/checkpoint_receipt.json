@@ -1,0 +1,13 @@
+{
+  "local_commit": "54dd771f295bcaa43317b5ebe4a84fc0b6a9a6b1",
+  "prepared_backup_commit": "80c06b2db6f525ae5b0b4acd2f2130f1bd418310",
+  "local_preservation_ref": "refs/heads/codex/private-snapshots-backup-20261124",
+  "parent_remote_verified_commit": "b8c939d55dd51d31b7a2f11d98b5a0ebc2a6e94d",
+  "own_files_saved": 8129,
+  "production_source_files_verified": 707,
+  "candidate_installed": false,
+  "production_dll_sha256": "f950b64c74684ae70ce4e41b9622541c849da0121e1235ab88b7aaface22a6d7",
+  "user_existing_changes_not_staged": true,
+  "remote_upload_verified": true,
+  "remote_verified_commit": "80c06b2db6f525ae5b0b4acd2f2130f1bd418310"
+}

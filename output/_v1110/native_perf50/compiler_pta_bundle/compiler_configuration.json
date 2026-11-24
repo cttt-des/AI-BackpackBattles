@@ -1,0 +1,24 @@
+{
+  "compiler": "D:/mingw64/bin/g++.exe",
+  "compiler_sha256": "e0fe91a127f5c7b8c161bf66109818a40a9ca93be94d744a3c1686946a8f63d0",
+  "version": "g++.exe (MinGW-W64 x86_64-ucrt-posix-seh, built by Brecht Sanders, r3) 16.1.0",
+  "default_optimization_query": [
+    "D:/mingw64/bin/g++.exe",
+    "-Q",
+    "-O3",
+    "--help=optimizers"
+  ],
+  "observed_default": "-fipa-pta                   \t\t[disabled]",
+  "candidate_flags": [
+    "-fipa-pta"
+  ],
+  "source_changes": [],
+  "source_file_count": 707,
+  "private_snapshots_not_included": true,
+  "documentation": "https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html#index-fipa-pta",
+  "documented_purpose": "interprocedural pointer and modification/reference analysis",
+  "documented_cost": "can cause excessive memory and compile time; not enabled by default",
+  "compiler_memory_guard": "min45% physical RAM,65% available RAM at each build phase; only owned compiler descendants",
+  "no_floating_option_change": true,
+  "no_speed_claim": true
+}

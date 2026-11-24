@@ -761,3 +761,12 @@ revision2固定200场仍匹配原结果签名：386,704个角色阶段只重建4
 由于独立校准最小负载已超过20%，fit原程序按原规则拒绝，退出2，没有bundle_load20.json。20%换算为缺失（N/A），不外推、不拿raw24代替独立校准、不重复任何同源校准。原qualification和release_measurements日志原样保留；measurements_summary.json仅总结原两份24样本，不是新的测速，release_gate_failure.json记录未部署原因。原candidate_decision.json为A/B时点阳性而not_deployed=true，按原样保留。没有安装、正常训练替换或部署后采样；生产及生成配方保持F950。
 
 归档本轮全部源码／用例／32对／2604逐场收据／原始24+24及失败日志，再评估真正不同的下一候选。小规模分配组合的收益偏弱；下一轮优先评估原规划的编译器跨过程别名分析，先核对工具链默认项／官方语义与资源成本，不自动叠加本轮未部署改动。目标继续active。
+
+
+## compiler PTA轮终态（2026-11-24）
+
+候选`485b12183148f8a2584d060b6f55a2ec1be4396cba5dc6026e907b0cd438a7b5`，部署=False，原因=AB_not_accepted_nonrelease_calibration_only。从F950的707源码开始，C++／对象布局／浮点／导出策略均未改变，不叠加未部署private snapshots。仅18热单元及链接增加-fipa-pta，完整20插桩、新18PGO，两阶段资源预算未触发；配置及GCC16.1.0默认disabled查询在compiler_configuration.json。首次启动导入名前缀错误在任何编译前退出，修复与旧日志在startup_failure_1，不涉及重训或重复测速。
+
+完整24对CPU／墙钟配对中位耗时降低-1.5899%／-1.2637%，累计耗时降低-2.8377%／-2.8565%。全部原始组／极端值保留，按原冻结24(+唯一8)规则判定，不拿历史20%标定点差值当代码收益。首raw24=null。独立cal24={"median_fights_per_second": 141.479071834386, "minimum_fights_per_second": 105.25863177348943, "maximum_fights_per_second": 156.7257115108913, "background_load_range_pct": [15.508856240858973, 45.76500408904421], "on_ac_all": true}。候选20%换算=145.13460087186394，若为null即未覆盖20，不能外推、替代或重跑；非发布校准也明确不当作发布raw24。
+
+状态以current_runtime_status.json和原candidate_decision.json／post_install_verification.json为准。首次cal前OS观测资格记录在calibration_eligibility.json，未运行战斗样本；正式计时仍仅一次24批全部保留。目标200点及部署验收达到=False；远端备份必须另读checkpoint_receipt.json再决定目标完成。所有本轮driver已结束，不重启旧入口。生产DLL为f950b64c74684ae70ce4e41b9622541c849da0121e1235ab88b7aaface22a6d7。

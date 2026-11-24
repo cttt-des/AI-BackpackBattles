@@ -1,0 +1,7 @@
+{
+  "reason": "Generated import retained prototype prefix; corrected to actual identity transform module",
+  "no_compiler_invoked": true,
+  "no_training_or_measurement": true,
+  "original_processes_terminal": true,
+  "source_or_flags_not_changed": true
+}
