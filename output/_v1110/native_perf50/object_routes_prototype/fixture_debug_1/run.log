@@ -1,0 +1,12 @@
+[New Thread 8952.0xde0]
+[New Thread 8952.0x2cc4]
+[New Thread 8952.0x4c48]
+unknown 0
+unknown 0
+
+Thread 1 received signal SIGSEGV, Segmentation fault.
+0x00007ffb42218b5e in ucrtbase!memcmp () from C:\Windows\System32\ucrtbase.dll
+#0  0x00007ffb42218b5e in ucrtbase!memcmp () from C:\Windows\System32\ucrtbase.dll
+#1  0x00007ff679be1fcc in choose_row (mode=2, good=0x0, wrong=0x0, empty=0x0, copy=...) at D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\object_routes_prototype\fixture_debug_1\debug.cpp:81
+#2  0x00007ff679be37ef in unknown_case<Gd__gd_core__CoreItem> (method=0, flags=0, row=2, mode=0, shared=0) at D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\object_routes_prototype\fixture_debug_1\debug.cpp:98
+#3  0x00007ff679be3223 in main () at D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\object_routes_prototype\fixture_debug_1\debug.cpp:176

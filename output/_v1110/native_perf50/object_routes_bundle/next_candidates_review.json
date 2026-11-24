@@ -1,0 +1,32 @@
+{
+  "current_production_dll_sha256": "f950b64c74684ae70ce4e41b9622541c849da0121e1235ab88b7aaface22a6d7",
+  "current_candidate_deployed": true,
+  "current_round_weak_dual_median_evidence": true,
+  "cumulative_both_improved": false,
+  "do_not_expand_method_routes_mechanically": true,
+  "no_same_source_AB_extension": true,
+  "next_candidate_implemented": false,
+  "next_step": "Count only the14 private integer-loop sites in CoreBuff gainTemporary,loseStacks,onTimeout",
+  "static_review_sha256": "5d5892978498e78c84939f93b95cc83dc18820138a4fdebd22d056b41ff77c19",
+  "runtime_counts_not_yet_available": true,
+  "requirements": [
+    "Copy input once and retain original coercion/callback order",
+    "Prove private iteration containers do not escape",
+    "Bound fast integer lengths and keep original huge/overflow fallback",
+    "Real arrays retain captured length and live future data reads",
+    "Keep loop-value kinds,RNG,fenv,old six counters and all event ordering"
+  ],
+  "alternative_compiler_candidate": {
+    "flag": "-fipa-pta",
+    "implemented": false,
+    "no_speed_claim": true
+  },
+  "profile_receipt_sha256": "12f1935543b33570049a2044d21038601f2d8a7d2895bbb3726720aa2b87ed78",
+  "profile_phase_pct": {
+    "other_frame": 34.034229828850854,
+    "other_setup_export": 6.552567237163815,
+    "assembly": 18.87530562347188,
+    "trigger_chain": 40.53789731051345
+  },
+  "attribution_not_speedup_or_ceiling": true
+}

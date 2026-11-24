@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "all_remaining_prechecks_passed": true,
+  "first24_completed_once": true,
+  "dll_sha256": "f950b64c74684ae70ce4e41b9622541c849da0121e1235ab88b7aaface22a6d7",
+  "source_manifest_sha256": "232f4ebb6b0ba7785970d35d85750fe7fdc7f5a830a1ae7622101e06799afb38",
+  "ab_assessment_sha256": "d54c289a35b7ee8bfe03e47c324c9bd10e0f84f0b805235c460cbe6c55f4bf2d",
+  "original_profile_training_retained": true,
+  "temporary_file_loss_recovered": true
+}

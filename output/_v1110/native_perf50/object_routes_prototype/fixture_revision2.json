@@ -1,0 +1,9 @@
+{
+  "reason": "Fixture copied null cache rows because dispatch was disabled while creating donors; debugger found choose_row memcpy of null good row. Enable dispatch during donor construction, before testing disabled flags.",
+  "original_fixture_sha256": "0437c1546692e23fd279331b6a50b7e028073915e32d419c71a7ff16cc4f2cfc",
+  "new_fixture_sha256": "23cfefb0a79a91dbb8749316a8ca3dd6d147c3e07beeae6af41c941d71f36f7b",
+  "debug_log_sha256": "d532ce2be170a2785553164c358b717f2675a1e019bc913df954a7025e053882",
+  "candidate_dll_sha256": "8d1307ece54d853f3acc3f7c73cdf38e9a37f046eeba0b7e8c9c36a4a4eecb79",
+  "simulator_source_and_dll_unchanged": true,
+  "original_failure_logs_retained": true
+}

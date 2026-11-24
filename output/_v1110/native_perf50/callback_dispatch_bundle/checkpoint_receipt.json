@@ -1,0 +1,13 @@
+{
+  "local_commit": "b996071909a0d318aab279a6c663e084b3235560",
+  "prepared_backup_commit": "72dd9c1575087596ad0409b939104a0113033e40",
+  "local_preservation_ref": "refs/heads/codex/callback-dispatch-backup-20261123",
+  "parent_remote_verified_commit": "a27d289f2009c3ad42145d61334d50647b2c060f",
+  "own_files_saved": 7383,
+  "production_source_files_verified": 707,
+  "candidate_installed": true,
+  "production_dll_sha256": "80a0681c1c93268af2b29c21e5439b6444de36a29ad39486b3f4afadf548a44a",
+  "user_existing_changes_not_staged": true,
+  "remote_upload_verified": true,
+  "remote_verified_commit": "72dd9c1575087596ad0409b939104a0113033e40"
+}

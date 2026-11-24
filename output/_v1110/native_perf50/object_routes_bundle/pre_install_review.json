@@ -1,0 +1,40 @@
+{
+  "passed": true,
+  "dll_sha256": "f950b64c74684ae70ce4e41b9622541c849da0121e1235ab88b7aaface22a6d7",
+  "baseline_dll_sha256": "80a0681c1c93268af2b29c21e5439b6444de36a29ad39486b3f4afadf548a44a",
+  "changed_source_files": [
+    "gd_rt.cpp",
+    "native_resolved_dispatch.hpp"
+  ],
+  "complete_predeclared_pair_count": 32,
+  "all_original_reports_retained": true,
+  "strict_event_cases": 2604,
+  "independent_calibration20_covered": true,
+  "protected_user_files_sha256": {
+    "native_sim_cpp/native_sim/libgdcore.dll": "a09e700e3ad331653b33b67621fb1d144760f5c7ae834d869dca0ba697b8ba7d",
+    "oracle/Items/Item.gd": "062241e6d51f0f6f68ddbf6c65ecc938793b2e444bd735e51c5e2b2fe604ab7f",
+    "output/perf/_cpp1690_final.json": "47c360fef4eea3ef5ccfad8d5622b7750f85603c474d836fddfc1447f52d8c99",
+    "output/perf/_cpp1690_chain.json": "47c360fef4eea3ef5ccfad8d5622b7750f85603c474d836fddfc1447f52d8c99",
+    "output/perf/alignment_1690_chain.json": "f3156a0b1573ba0061b8e52fa9f66840de4200e684b51d8ea3dec1f522a4d7a8",
+    "output/perf/alignment_1690_final.json": "f3156a0b1573ba0061b8e52fa9f66840de4200e684b51d8ea3dec1f522a4d7a8"
+  },
+  "evidence_sha256": {
+    "regeneration_test.json": "c3768976f0f2617d6952c859ab18bd0c1830955ddd8b0283af51eeab3e567c7a",
+    "full_regeneration_test.json": "f2a60f020c9583793eaa22e8cb95200df4773967adb50efb1530782cae824daa",
+    "targeted_timer_tests.json": "7f0f2f02146cb53ac7cb920559956c20f6a6e14fe9a186e7faa76aab1e3fbd8f",
+    "active_cooldown_tests.json": "76515476f28ce41b0387b2aebc3dc4a350a4728c587e305738b8c47d12be9bdc",
+    "event_factory_tests.json": "00ed5e57b17a8c113a98f5b4ff1abcbaddfeeea4eec9a9cafd0cf5b76130114e",
+    "integer_grid_tests.json": "74ddb2861b7859f1177dabbfa3caa91695db48207cee52b76f99d8692a526255",
+    "literal_span_tests.json": "41285a126299b9941fe18ab11e3f31634a84ad0c93906c2d74440612835e91da",
+    "callback_dispatch_tests.json": "3c25647881ea038a5a45a5a85905393ade261d3054f3c87a8e882ae51f2fab58",
+    "post_ab_directed_regressions.json": "c68862594adab8a0f6a92a3d9af6ccfc058f80e7d2ce4a38f102849143721451",
+    "closed_registry_tests.json": "dc26ccb133cfe26aaae3aed28ac2cede2dd790ff0e29c5cf7b2ffbc777c75b7c",
+    "closed_known_tests.json": "e0c9a1ef8151be302dd81551e1f7a0ce3d252bb2c3ca385b25ece55f6ebef971",
+    "object_routes_tests.json": "5e1a05e715c1847b51779eedbf0c38f98d6870ae668ce45e8857ebbbb1248228",
+    "ab_assessment_32.json": "9f3950dbf18043840ed26d609c9c700b210cee200f074ea041f3553197aea36c",
+    "bundle_full_gate.json": "90d92031c62c625535c359991329a6e536756ae8c24acc90529675568dd5410a",
+    "bundle_vs_deployed_hashes.json": "62e1b40ebd502034583903736b5aff4781be7c961af2456d5185ffe0787ba5a6",
+    "full_type_audit.json": "603572b8386e6f6363c362e1447627301a0cbba1c78d10467bd46c2c77ecb62a",
+    "measurements_summary.json": "5b2aa28fbd1d28cdb485107b5bfb3e34f08933bb29006bb80862881a1ceec395"
+  }
+}

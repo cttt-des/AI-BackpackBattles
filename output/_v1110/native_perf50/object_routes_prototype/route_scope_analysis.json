@@ -1,0 +1,1978 @@
+{
+  "baseline_dll_sha256": "80a0681c1c93268af2b29c21e5439b6444de36a29ad39486b3f4afadf548a44a",
+  "probe_receipt_sha256": "dcfc35db072df8ae44d06ad4922e2d9c3a3898bce9c3072fbc31bc3207576f70",
+  "total_object_virtual_calls": 1456961,
+  "actual_eligible_instance_calls": 1065240,
+  "distinct_eligible_instance_methods": 488,
+  "excluded_call_counts": {
+    "not_canonical_exact_generated_row": 294389,
+    "no_generated_instance_method": 97324,
+    "missing_method_or_static_shadow": 8
+  },
+  "top_methods": [
+    {
+      "symbol": "SYM_GEN_canDamage_89",
+      "calls": 20230
+    },
+    {
+      "symbol": "SYM_GEN_getBaseMinDamage_152",
+      "calls": 20230
+    },
+    {
+      "symbol": "SYM_GEN_setCooldownActive_97",
+      "calls": 20074
+    },
+    {
+      "symbol": "SYM_GEN_combatEnd_131",
+      "calls": 19733
+    },
+    {
+      "symbol": "SYM_GEN_pickRandomElement_1746",
+      "calls": 17537
+    },
+    {
+      "symbol": "SYM_GEN_canAffect_color_290",
+      "calls": 17501
+    },
+    {
+      "symbol": "SYM_GEN_getTypedDamageFactor_155",
+      "calls": 16270
+    },
+    {
+      "symbol": "SYM_GEN_getBuffDamageMod_1258",
+      "calls": 16256
+    },
+    {
+      "symbol": "SYM_GEN_getBlock_204",
+      "calls": 16115
+    },
+    {
+      "symbol": "SYM_GEN_showCooldownSmooth_793",
+      "calls": 15852
+    },
+    {
+      "symbol": "SYM_GEN_rebuildTimerSeen_139",
+      "calls": 15333
+    },
+    {
+      "symbol": "SYM_GEN_onPostCombatStart_129",
+      "calls": 14975
+    },
+    {
+      "symbol": "SYM_GEN_onPreCombatStart_125",
+      "calls": 14975
+    },
+    {
+      "symbol": "SYM_GEN_cacheAffectedItemsForCombat_119",
+      "calls": 14933
+    },
+    {
+      "symbol": "SYM_GEN_disconnectCombat_502",
+      "calls": 14933
+    },
+    {
+      "symbol": "SYM_GEN_initSockets_388",
+      "calls": 14933
+    },
+    {
+      "symbol": "SYM_GEN_onCombatEnd_132",
+      "calls": 14933
+    },
+    {
+      "symbol": "SYM_GEN_postCombatStart_128",
+      "calls": 14933
+    },
+    {
+      "symbol": "SYM_GEN_preCombatStart_124",
+      "calls": 14933
+    },
+    {
+      "symbol": "SYM_GEN_addItemCells_1617",
+      "calls": 14722
+    },
+    {
+      "symbol": "SYM_GEN_getAffectedCellsAfterRotate_primary_410",
+      "calls": 14590
+    },
+    {
+      "symbol": "SYM_GEN_getAffectedCellsAfterRotate_secondary_411",
+      "calls": 14136
+    },
+    {
+      "symbol": "SYM_GEN_onAddToInventory_419",
+      "calls": 14120
+    },
+    {
+      "symbol": "SYM_GEN_getLucky_1237",
+      "calls": 13977
+    },
+    {
+      "symbol": "SYM_GEN_staminaChanged_233",
+      "calls": 13334
+    },
+    {
+      "symbol": "SYM_GEN_spawnLabel_379",
+      "calls": 13231
+    },
+    {
+      "symbol": "SYM_GEN_getRelativeHealth_302",
+      "calls": 12702
+    },
+    {
+      "symbol": "SYM_GEN_isBattleRageItem_85",
+      "calls": 12680
+    },
+    {
+      "symbol": "SYM_GEN_getCurrentHealth_1154",
+      "calls": 12644
+    },
+    {
+      "symbol": "SYM_GEN_onAffectedItemAdded_435",
+      "calls": 12187
+    },
+    {
+      "symbol": "SYM_GEN_getSpikes_1223",
+      "calls": 11666
+    },
+    {
+      "symbol": "SYM_GEN_getBaseChance2_169",
+      "calls": 11443
+    },
+    {
+      "symbol": "SYM_GEN_getAccuracy_194",
+      "calls": 11333
+    },
+    {
+      "symbol": "SYM_GEN_getBaseAccuracy_193",
+      "calls": 11333
+    },
+    {
+      "symbol": "SYM_GEN_getBaseStaminaCost_111",
+      "calls": 11133
+    },
+    {
+      "symbol": "SYM_GEN_isEmpty_923",
+      "calls": 11096
+    },
+    {
+      "symbol": "SYM_GEN_getStaminaCost_112",
+      "calls": 10989
+    },
+    {
+      "symbol": "SYM_GEN_rollDoubleAttackEffect_187",
+      "calls": 10865
+    },
+    {
+      "symbol": "SYM_GEN_dealtDamage_224",
+      "calls": 10860
+    },
+    {
+      "symbol": "SYM_GEN_applyTemporaryMaxHealthGain_1161",
+      "calls": 10768
+    },
+    {
+      "symbol": "SYM_GEN_getItemInCell_1607",
+      "calls": 10683
+    },
+    {
+      "symbol": "SYM_GEN_changeMaxHealthTemporary_1162",
+      "calls": 10563
+    },
+    {
+      "symbol": "SYM_GEN_flushLoggingQueue_1591",
+      "calls": 10431
+    },
+    {
+      "symbol": "SYM_GEN_setLoggingMode_1588",
+      "calls": 10431
+    },
+    {
+      "symbol": "SYM_GEN_playActivateAnimation_1142",
+      "calls": 10380
+    },
+    {
+      "symbol": "SYM_GEN_getBuffAccuracyMod_1259",
+      "calls": 10288
+    },
+    {
+      "symbol": "SYM_GEN_updateItem_1553",
+      "calls": 10288
+    },
+    {
+      "symbol": "SYM_GEN_preDealDamage_early_222",
+      "calls": 10262
+    },
+    {
+      "symbol": "SYM_GEN_canActivate_91",
+      "calls": 9864
+    },
+    {
+      "symbol": "SYM_GEN_getCritChancePercent_178",
+      "calls": 9327
+    },
+    {
+      "symbol": "SYM_GEN_getMinDamage_156",
+      "calls": 9187
+    },
+    {
+      "symbol": "SYM_GEN_getMaxDamage_157",
+      "calls": 9173
+    },
+    {
+      "symbol": "SYM_GEN_bare_draw_seq_1742",
+      "calls": 8726
+    },
+    {
+      "symbol": "SYM_GEN_randIntRange_1764",
+      "calls": 8726
+    },
+    {
+      "symbol": "SYM_GEN_pickRandomStacks_358",
+      "calls": 8355
+    },
+    {
+      "symbol": "SYM_GEN_preDealDamage_late_223",
+      "calls": 8128
+    },
+    {
+      "symbol": "SYM_GEN_connectEvent_1595",
+      "calls": 8107
+    },
+    {
+      "symbol": "SYM_GEN_getCritTokens_182",
+      "calls": 7935
+    },
+    {
+      "symbol": "SYM_GEN_changeCritChancePercent_181",
+      "calls": 7249
+    },
+    {
+      "symbol": "SYM_GEN_getChance2_172",
+      "calls": 6574
+    },
+    {
+      "symbol": "SYM_GEN_setDamage_1551",
+      "calls": 6071
+    },
+    {
+      "symbol": "SYM_GEN_addBonusDamage_161",
+      "calls": 5750
+    },
+    {
+      "symbol": "SYM_GEN_onItemTypeChanged_458",
+      "calls": 5317
+    },
+    {
+      "symbol": "SYM_GEN_canTriggerSpikes_1532",
+      "calls": 5264
+    },
+    {
+      "symbol": "SYM_GEN_init_1022",
+      "calls": 5206
+    },
+    {
+      "symbol": "SYM_GEN_reactToItemTypeChange_457",
+      "calls": 5182
+    },
+    {
+      "symbol": "SYM_GEN_isA_245",
+      "calls": 4986
+    },
+    {
+      "symbol": "SYM_GEN_canBlockDamageRes_1943",
+      "calls": 4789
+    },
+    {
+      "symbol": "SYM_GEN__rotVecQuarterTurns_322",
+      "calls": 4787
+    },
+    {
+      "symbol": "SYM_GEN_modifyParam_191",
+      "calls": 4592
+    },
+    {
+      "symbol": "SYM_GEN_changeAmplificiationChancePercent_allBuffs_197",
+      "calls": 4533
+    },
+    {
+      "symbol": "SYM_GEN_getRarity_236",
+      "calls": 4526
+    },
+    {
+      "symbol": "SYM_GEN_activateCooldown_98",
+      "calls": 4251
+    },
+    {
+      "symbol": "SYM_GEN_canTriggerVampirism_1533",
+      "calls": 4167
+    },
+    {
+      "symbol": "SYM_GEN_gainsBuffs_296",
+      "calls": 4125
+    },
+    {
+      "symbol": "SYM_GEN_getTopLeftCell_443",
+      "calls": 4066
+    },
+    {
+      "symbol": "SYM_GEN_onStateChanged_383",
+      "calls": 4042
+    },
+    {
+      "symbol": "SYM_GEN_giveStaminaRegeneration_1270",
+      "calls": 4011
+    },
+    {
+      "symbol": "SYM_GEN_snapshotItemState_1385",
+      "calls": 4007
+    },
+    {
+      "symbol": "SYM_GEN_reactsToCharges_299",
+      "calls": 3711
+    },
+    {
+      "symbol": "SYM_GEN_isNeutral_246",
+      "calls": 3672
+    },
+    {
+      "symbol": "SYM_GEN_giveMana_capped_335",
+      "calls": 3483
+    },
+    {
+      "symbol": "SYM_GEN_isCooldownActive_96",
+      "calls": 3434
+    },
+    {
+      "symbol": "SYM_GEN_getPrice_392",
+      "calls": 3418
+    },
+    {
+      "symbol": "SYM_GEN_getMostStacks_361",
+      "calls": 3284
+    },
+    {
+      "symbol": "SYM_GEN_isVulnerable_1291",
+      "calls": 3282
+    },
+    {
+      "symbol": "SYM_GEN_onAffectedItemInsideAdded_928",
+      "calls": 3271
+    },
+    {
+      "symbol": "SYM_GEN_getItemsAndGems_1604",
+      "calls": 3256
+    },
+    {
+      "symbol": "SYM_GEN_isOwnedByOpponent_251",
+      "calls": 2880
+    },
+    {
+      "symbol": "SYM_GEN__filter_1665",
+      "calls": 2843
+    },
+    {
+      "symbol": "SYM_GEN__sideItems_1663",
+      "calls": 2843
+    },
+    {
+      "symbol": "SYM_GEN_isTypeInInventory_805",
+      "calls": 2772
+    },
+    {
+      "symbol": "SYM_GEN_isCrafted_800",
+      "calls": 2768
+    },
+    {
+      "symbol": "SYM_GEN_advanceCooldownPercent_146",
+      "calls": 2758
+    },
+    {
+      "symbol": "SYM_GEN_gainStamina_1164",
+      "calls": 2440
+    },
+    {
+      "symbol": "SYM_GEN_giveStamina_318",
+      "calls": 2440
+    },
+    {
+      "symbol": "SYM_GEN_changeVaryingDamage_162",
+      "calls": 2433
+    },
+    {
+      "symbol": "SYM_GEN_shuffleEngine_1747",
+      "calls": 2288
+    },
+    {
+      "symbol": "SYM_GEN_isCellEmpty_1605",
+      "calls": 2250
+    },
+    {
+      "symbol": "SYM_GEN_changeHealAmp_304",
+      "calls": 2218
+    },
+    {
+      "symbol": "SYM_GEN_pickRandomStacksToGive_359",
+      "calls": 2121
+    },
+    {
+      "symbol": "SYM_GEN_useStacks_1219",
+      "calls": 2057
+    },
+    {
+      "symbol": "SYM_GEN_checkMana_331",
+      "calls": 2026
+    },
+    {
+      "symbol": "SYM_GEN_takeFatigueDamage_1196",
+      "calls": 1998
+    },
+    {
+      "symbol": "SYM_GEN_canBlock_291",
+      "calls": 1988
+    },
+    {
+      "symbol": "SYM_GEN_consume_381",
+      "calls": 1978
+    },
+    {
+      "symbol": "SYM_GEN_stopCountdownForTimeout_1781",
+      "calls": 1919
+    },
+    {
+      "symbol": "SYM_GEN_chargeLeft_325",
+      "calls": 1911
+    },
+    {
+      "symbol": "SYM_GEN_playActivationAnimation_Scale_775",
+      "calls": 1878
+    },
+    {
+      "symbol": "SYM_GEN_drainStamina_117",
+      "calls": 1854
+    },
+    {
+      "symbol": "SYM_GEN_inflictPoison_211",
+      "calls": 1799
+    },
+    {
+      "symbol": "SYM_GEN_fromDict_1726",
+      "calls": 1780
+    },
+    {
+      "symbol": "SYM_GEN_callDelayed_1479",
+      "calls": 1715
+    },
+    {
+      "symbol": "SYM_GEN_tryUseMana_333",
+      "calls": 1673
+    },
+    {
+      "symbol": "SYM_GEN_addAccuracy_177",
+      "calls": 1662
+    },
+    {
+      "symbol": "SYM_GEN_hasParam_1578",
+      "calls": 1643
+    },
+    {
+      "symbol": "SYM_GEN_getP4_266",
+      "calls": 1641
+    },
+    {
+      "symbol": "SYM_GEN_giveRegeneration_214",
+      "calls": 1619
+    },
+    {
+      "symbol": "SYM_GEN_start_1779",
+      "calls": 1567
+    },
+    {
+      "symbol": "SYM_GEN_isLamp_2117",
+      "calls": 1528
+    },
+    {
+      "symbol": "SYM_GEN_addCritChancePercent_179",
+      "calls": 1517
+    },
+    {
+      "symbol": "SYM_GEN_gainMana_1246",
+      "calls": 1507
+    },
+    {
+      "symbol": "SYM_GEN_giveEmpower_217",
+      "calls": 1506
+    },
+    {
+      "symbol": "SYM_GEN_canModifyChance_293",
+      "calls": 1499
+    },
+    {
+      "symbol": "SYM_GEN_isItemInInventory_1671",
+      "calls": 1454
+    },
+    {
+      "symbol": "SYM_GEN_getItems_1603",
+      "calls": 1385
+    },
+    {
+      "symbol": "SYM_GEN_playAni_1515",
+      "calls": 1359
+    },
+    {
+      "symbol": "SYM_GEN_rollChance2_174",
+      "calls": 1343
+    },
+    {
+      "symbol": "SYM_GEN_gainTemporary_1031",
+      "calls": 1327
+    },
+    {
+      "symbol": "SYM_GEN_isItemInInventory_opponent_1672",
+      "calls": 1318
+    },
+    {
+      "symbol": "SYM_GEN_inflictBlind_213",
+      "calls": 1315
+    },
+    {
+      "symbol": "SYM_GEN_loseHealth_1157",
+      "calls": 1313
+    },
+    {
+      "symbol": "SYM_GEN_set_wait_time_1776",
+      "calls": 1295
+    },
+    {
+      "symbol": "SYM_GEN_loseBlock_206",
+      "calls": 1270
+    },
+    {
+      "symbol": "SYM_GEN_removeBlock_205",
+      "calls": 1270
+    },
+    {
+      "symbol": "SYM_GEN_stop_1780",
+      "calls": 1252
+    },
+    {
+      "symbol": "SYM_GEN_logEvent_1357",
+      "calls": 1245
+    },
+    {
+      "symbol": "SYM_GEN_createEvent_OutOfStamina_1373",
+      "calls": 1185
+    },
+    {
+      "symbol": "SYM_GEN_isPlayer_78",
+      "calls": 1185
+    },
+    {
+      "symbol": "SYM_GEN_playOutOfStaminaAnimation_118",
+      "calls": 1185
+    },
+    {
+      "symbol": "SYM_GEN_changeResistChance_1026",
+      "calls": 1167
+    },
+    {
+      "symbol": "SYM_GEN_inflictCold_351",
+      "calls": 1127
+    },
+    {
+      "symbol": "SYM_GEN__tagLamp_2118",
+      "calls": 1083
+    },
+    {
+      "symbol": "SYM_GEN_getRegeneration_1233",
+      "calls": 1072
+    },
+    {
+      "symbol": "SYM_GEN_setItem_1550",
+      "calls": 1045
+    },
+    {
+      "symbol": "SYM_GEN_getPiecesForColor_2169",
+      "calls": 1042
+    },
+    {
+      "symbol": "SYM_GEN_getGemPower_973",
+      "calls": 1026
+    },
+    {
+      "symbol": "SYM_GEN_isBattleRaging_1207",
+      "calls": 1017
+    },
+    {
+      "symbol": "SYM_GEN_giveStacksTemporary_202",
+      "calls": 993
+    },
+    {
+      "symbol": "SYM_GEN_replayHiddenLogEvent_1356",
+      "calls": 970
+    },
+    {
+      "symbol": "SYM_GEN_gainStacksTemporary_1218",
+      "calls": 965
+    },
+    {
+      "symbol": "SYM_GEN_isEffectDamage_1561",
+      "calls": 944
+    },
+    {
+      "symbol": "SYM_GEN_clearItemCells_1620",
+      "calls": 912
+    },
+    {
+      "symbol": "SYM_GEN_getAffectedItemsInside_927",
+      "calls": 903
+    },
+    {
+      "symbol": "SYM_GEN_useLucky_350",
+      "calls": 896
+    },
+    {
+      "symbol": "SYM_GEN_deactivateCooldown_99",
+      "calls": 890
+    },
+    {
+      "symbol": "SYM_GEN_usesBuffs_297",
+      "calls": 883
+    },
+    {
+      "symbol": "SYM_GEN_isReleased_1725",
+      "calls": 882
+    },
+    {
+      "symbol": "SYM_GEN_hasInventoryDuration_797",
+      "calls": 875
+    },
+    {
+      "symbol": "SYM_GEN_stealRandomBuff_373",
+      "calls": 859
+    },
+    {
+      "symbol": "SYM_GEN_checkBlock_2559",
+      "calls": 844
+    },
+    {
+      "symbol": "SYM_GEN_getCurrentStamina_1262",
+      "calls": 834
+    },
+    {
+      "symbol": "SYM_GEN_getBlind_1240",
+      "calls": 831
+    },
+    {
+      "symbol": "SYM_GEN_cleanseBlind_344",
+      "calls": 831
+    },
+    {
+      "symbol": "SYM_GEN_dealFatigueDamage_1328",
+      "calls": 818
+    },
+    {
+      "symbol": "SYM_GEN_setGem_396",
+      "calls": 813
+    },
+    {
+      "symbol": "SYM_GEN_isClassItem_248",
+      "calls": 802
+    },
+    {
+      "symbol": "SYM_GEN_reduceSpeed_274",
+      "calls": 792
+    },
+    {
+      "symbol": "SYM_GEN_registerMotion_1500",
+      "calls": 771
+    },
+    {
+      "symbol": "SYM_GEN__chargeInventoryCells_321",
+      "calls": 771
+    },
+    {
+      "symbol": "SYM_GEN_sendCharge_320",
+      "calls": 771
+    },
+    {
+      "symbol": "SYM_GEN__emitTimeout_1784",
+      "calls": 758
+    },
+    {
+      "symbol": "SYM_GEN_changeDamageResistance_1279",
+      "calls": 757
+    },
+    {
+      "symbol": "SYM_GEN_changeStaminaFactor_305",
+      "calls": 743
+    },
+    {
+      "symbol": "SYM_GEN_newItemTimer_135",
+      "calls": 736
+    },
+    {
+      "symbol": "SYM_GEN_get_time_left_1777",
+      "calls": 733
+    },
+    {
+      "symbol": "SYM_GEN_onAfterEffectFinished_145",
+      "calls": 713
+    },
+    {
+      "symbol": "SYM_GEN_is_stopped_1778",
+      "calls": 710
+    },
+    {
+      "symbol": "SYM_GEN_giveVampirism_210",
+      "calls": 707
+    },
+    {
+      "symbol": "SYM_GEN_rebuildSeen_1786",
+      "calls": 701
+    },
+    {
+      "symbol": "SYM_GEN_getCritSeverity_186",
+      "calls": 696
+    },
+    {
+      "symbol": "SYM_GEN_changeCleanseProtectionChance_1028",
+      "calls": 674
+    },
+    {
+      "symbol": "SYM_GEN_gainsStack_86",
+      "calls": 668
+    },
+    {
+      "symbol": "SYM_GEN__onTimeout_1783",
+      "calls": 667
+    },
+    {
+      "symbol": "SYM_GEN_getCaptureCells_2143",
+      "calls": 664
+    },
+    {
+      "symbol": "SYM_GEN_getDebuffStacks_1216",
+      "calls": 657
+    },
+    {
+      "symbol": "SYM_GEN_inflictRandomDebuffs_357",
+      "calls": 653
+    },
+    {
+      "symbol": "SYM_GEN_getLeastStacks_360",
+      "calls": 650
+    },
+    {
+      "symbol": "SYM_GEN_triggerOnMeleeAttacked_1529",
+      "calls": 640
+    },
+    {
+      "symbol": "SYM_GEN_moveItem_1621",
+      "calls": 602
+    },
+    {
+      "symbol": "SYM_GEN_repositionPiece_2149",
+      "calls": 602
+    },
+    {
+      "symbol": "SYM_GEN_takeDamage_1148",
+      "calls": 601
+    },
+    {
+      "symbol": "SYM_GEN_getModifiedEffectDamage_160",
+      "calls": 601
+    },
+    {
+      "symbol": "SYM_GEN__newDamageSource_1475",
+      "calls": 600
+    },
+    {
+      "symbol": "SYM_GEN_isGem_84",
+      "calls": 600
+    },
+    {
+      "symbol": "SYM_GEN_getPoison_1229",
+      "calls": 589
+    },
+    {
+      "symbol": "SYM_GEN_findPieceToCapture_2170",
+      "calls": 582
+    },
+    {
+      "symbol": "SYM_GEN_giveLeastBuffs_366",
+      "calls": 581
+    },
+    {
+      "symbol": "SYM_GEN_updateEffect_1554",
+      "calls": 577
+    },
+    {
+      "symbol": "SYM_GEN_afterBlock_1942",
+      "calls": 565
+    },
+    {
+      "symbol": "SYM_GEN_beforeBlock_1941",
+      "calls": 565
+    },
+    {
+      "symbol": "SYM_GEN_getDamageBlock_1940",
+      "calls": 565
+    },
+    {
+      "symbol": "SYM_GEN_addBonusDamageFactor_306",
+      "calls": 551
+    },
+    {
+      "symbol": "SYM_GEN_onHit_909",
+      "calls": 549
+    },
+    {
+      "symbol": "SYM_GEN_preHit_907",
+      "calls": 549
+    },
+    {
+      "symbol": "SYM_GEN_getP5_267",
+      "calls": 539
+    },
+    {
+      "symbol": "SYM_GEN_canStartNewRecipe_807",
+      "calls": 537
+    },
+    {
+      "symbol": "SYM_GEN_isAvailableForCrafting_493",
+      "calls": 537
+    },
+    {
+      "symbol": "SYM_GEN_isBaseItem_258",
+      "calls": 537
+    },
+    {
+      "symbol": "SYM_GEN_getParam_1575",
+      "calls": 522
+    },
+    {
+      "symbol": "SYM_GEN_findSpaceToMove_2173",
+      "calls": 511
+    },
+    {
+      "symbol": "SYM_GEN_changeAmplificiationChancePercent_allDebuffs_198",
+      "calls": 502
+    },
+    {
+      "symbol": "SYM_GEN_healthToBlock_328",
+      "calls": 491
+    },
+    {
+      "symbol": "SYM_GEN_removeRandomBuffs_372",
+      "calls": 487
+    },
+    {
+      "symbol": "SYM_GEN_isTreasure_247",
+      "calls": 477
+    },
+    {
+      "symbol": "SYM_GEN_getCounterValue_2351",
+      "calls": 471
+    },
+    {
+      "symbol": "SYM_GEN_hasFatigueStarted_1329",
+      "calls": 468
+    },
+    {
+      "symbol": "SYM_GEN_reduceHealingEfficiency_1183",
+      "calls": 466
+    },
+    {
+      "symbol": "SYM_GEN_canHealOrLifesteal_292",
+      "calls": 457
+    },
+    {
+      "symbol": "SYM_GEN_dealEffectDamage_221",
+      "calls": 453
+    },
+    {
+      "symbol": "SYM_GEN_buffEnded_1817",
+      "calls": 449
+    },
+    {
+      "symbol": "SYM_GEN_combatEndWeapon_988",
+      "calls": 445
+    },
+    {
+      "symbol": "SYM_GEN_combatStartWeapon_985",
+      "calls": 445
+    },
+    {
+      "symbol": "SYM_GEN_prepareWeapon_982",
+      "calls": 445
+    },
+    {
+      "symbol": "SYM_GEN__utilTime_1785",
+      "calls": 440
+    },
+    {
+      "symbol": "SYM_GEN_changeBuffProtectStacks_1187",
+      "calls": 434
+    },
+    {
+      "symbol": "SYM_GEN_advanceCooldownSeconds_147",
+      "calls": 420
+    },
+    {
+      "symbol": "SYM_GEN_countDamage_225",
+      "calls": 410
+    },
+    {
+      "symbol": "SYM_GEN_condition1Fulfilled_2359",
+      "calls": 401
+    },
+    {
+      "symbol": "SYM_GEN_getAffectedGoldValue_494",
+      "calls": 401
+    },
+    {
+      "symbol": "SYM_GEN_getAffectedItems_nocache_421",
+      "calls": 401
+    },
+    {
+      "symbol": "SYM_GEN_getItemsInAffectedCells_422",
+      "calls": 401
+    },
+    {
+      "symbol": "SYM_GEN_clearCharacterDiedHandlers_1131",
+      "calls": 400
+    },
+    {
+      "symbol": "SYM_GEN_registerCharacterDied_1130",
+      "calls": 400
+    },
+    {
+      "symbol": "SYM_GEN_restoreEngineRng_1489",
+      "calls": 400
+    },
+    {
+      "symbol": "SYM_GEN_setCurrentHealth_1156",
+      "calls": 400
+    },
+    {
+      "symbol": "SYM_GEN_setOpponent_1129",
+      "calls": 400
+    },
+    {
+      "symbol": "SYM_GEN_giveDoubleActivationChance_312",
+      "calls": 388
+    },
+    {
+      "symbol": "SYM_GEN_useSpikes_337",
+      "calls": 374
+    },
+    {
+      "symbol": "SYM_GEN_stun_330",
+      "calls": 373
+    },
+    {
+      "symbol": "SYM_GEN_combatEndArmor_989",
+      "calls": 368
+    },
+    {
+      "symbol": "SYM_GEN_combatStartArmor_986",
+      "calls": 368
+    },
+    {
+      "symbol": "SYM_GEN_prepareArmor_983",
+      "calls": 368
+    },
+    {
+      "symbol": "SYM_GEN_addFatigueDamage_1195",
+      "calls": 362
+    },
+    {
+      "symbol": "SYM_GEN_randBuffLabelDir_1144",
+      "calls": 362
+    },
+    {
+      "symbol": "SYM_GEN_randBuffLabelPos_1143",
+      "calls": 362
+    },
+    {
+      "symbol": "SYM_GEN_useRegeneration_346",
+      "calls": 361
+    },
+    {
+      "symbol": "SYM_GEN_updateShadowTexture_789",
+      "calls": 360
+    },
+    {
+      "symbol": "SYM_GEN_updateConnector_1851",
+      "calls": 356
+    },
+    {
+      "symbol": "SYM_GEN_onTriggerPotion_1849",
+      "calls": 347
+    },
+    {
+      "symbol": "SYM_GEN_playActivationAnimation_778",
+      "calls": 347
+    },
+    {
+      "symbol": "SYM_GEN_resetSprite_743",
+      "calls": 347
+    },
+    {
+      "symbol": "SYM_GEN_triggerPotion_1850",
+      "calls": 347
+    },
+    {
+      "symbol": "SYM_GEN_updatePaws_2361",
+      "calls": 342
+    },
+    {
+      "symbol": "SYM_GEN_loseMana_1247",
+      "calls": 339
+    },
+    {
+      "symbol": "SYM_GEN_removeMana_334",
+      "calls": 339
+    },
+    {
+      "symbol": "SYM_GEN_getMoveCells_2142",
+      "calls": 325
+    },
+    {
+      "symbol": "SYM_GEN_checkTriggerCount_142",
+      "calls": 314
+    },
+    {
+      "symbol": "SYM_GEN_condition2Fulfilled_2360",
+      "calls": 307
+    },
+    {
+      "symbol": "SYM_GEN_changeProtectionChance_1285",
+      "calls": 275
+    },
+    {
+      "symbol": "SYM_GEN_changeMaxHealthGain_1277",
+      "calls": 267
+    },
+    {
+      "symbol": "SYM_GEN_checkTrigger_1821",
+      "calls": 265
+    },
+    {
+      "symbol": "SYM_GEN_giveAllBuffs_370",
+      "calls": 262
+    },
+    {
+      "symbol": "SYM_GEN_giveBuffPower_303",
+      "calls": 254
+    },
+    {
+      "symbol": "SYM_GEN_canApplyLifesteal_1563",
+      "calls": 253
+    },
+    {
+      "symbol": "SYM_GEN_loseBlind_1243",
+      "calls": 247
+    },
+    {
+      "symbol": "SYM_GEN_inflictsDebuffs_298",
+      "calls": 244
+    },
+    {
+      "symbol": "SYM_GEN_inflictFatigueDamage_319",
+      "calls": 234
+    },
+    {
+      "symbol": "SYM_GEN_hasAttackEffect_295",
+      "calls": 232
+    },
+    {
+      "symbol": "SYM_GEN_changeBaseMaxStamina_1272",
+      "calls": 231
+    },
+    {
+      "symbol": "SYM_GEN_getTypeMultiplicity_80",
+      "calls": 222
+    },
+    {
+      "symbol": "SYM_GEN_setBoard_2141",
+      "calls": 221
+    },
+    {
+      "symbol": "SYM_GEN_addMaxDamage_164",
+      "calls": 220
+    },
+    {
+      "symbol": "SYM_GEN_makeSpectral_1564",
+      "calls": 220
+    },
+    {
+      "symbol": "SYM_GEN_changeCritResistance_1173",
+      "calls": 219
+    },
+    {
+      "symbol": "SYM_GEN_connectToCharacterBuffs_374",
+      "calls": 218
+    },
+    {
+      "symbol": "SYM_GEN_addBonusChance_175",
+      "calls": 217
+    },
+    {
+      "symbol": "SYM_GEN_getFirstAffectedItem_428",
+      "calls": 217
+    },
+    {
+      "symbol": "SYM_GEN_movePiece_2174",
+      "calls": 216
+    },
+    {
+      "symbol": "SYM_GEN_onPieceMoved_2144",
+      "calls": 216
+    },
+    {
+      "symbol": "SYM_GEN_useHeat_354",
+      "calls": 214
+    },
+    {
+      "symbol": "SYM_GEN_applyDamageReduction_1526",
+      "calls": 212
+    },
+    {
+      "symbol": "SYM_GEN_getType_1572",
+      "calls": 206
+    },
+    {
+      "symbol": "SYM_GEN_makeInvulnerable_1211",
+      "calls": 206
+    },
+    {
+      "symbol": "SYM_GEN_tryUseLucky_347",
+      "calls": 203
+    },
+    {
+      "symbol": "SYM_GEN_drink_1847",
+      "calls": 203
+    },
+    {
+      "symbol": "SYM_GEN_getTypes_240",
+      "calls": 203
+    },
+    {
+      "symbol": "SYM_GEN_classRoundSoundCount_1141",
+      "calls": 200
+    },
+    {
+      "symbol": "SYM_GEN_disconnectAll_1597",
+      "calls": 200
+    },
+    {
+      "symbol": "SYM_GEN_prepareHiddenLog_1355",
+      "calls": 200
+    },
+    {
+      "symbol": "SYM_GEN_resetCriticalShake_1495",
+      "calls": 200
+    },
+    {
+      "symbol": "SYM_GEN_restoreFlickers_1504",
+      "calls": 200
+    },
+    {
+      "symbol": "SYM_GEN_restoreReplayBuffs_1499",
+      "calls": 200
+    },
+    {
+      "symbol": "SYM_GEN_addHealingEfficiency_1182",
+      "calls": 197
+    },
+    {
+      "symbol": "SYM_GEN_combatEndInventory_987",
+      "calls": 196
+    },
+    {
+      "symbol": "SYM_GEN_combatStartInventory_984",
+      "calls": 196
+    },
+    {
+      "symbol": "SYM_GEN_prepareInventory_981",
+      "calls": 196
+    },
+    {
+      "symbol": "SYM_GEN_onGainThresholdReached_2274",
+      "calls": 190
+    },
+    {
+      "symbol": "SYM_GEN_consumePotion_1848",
+      "calls": 180
+    },
+    {
+      "symbol": "SYM_GEN_getNumAffectedInside_930",
+      "calls": 176
+    },
+    {
+      "symbol": "SYM_GEN_addCritSeverity_185",
+      "calls": 172
+    },
+    {
+      "symbol": "SYM_GEN_loseLucky_348",
+      "calls": 168
+    },
+    {
+      "symbol": "SYM_GEN_removeLucky_349",
+      "calls": 168
+    },
+    {
+      "symbol": "SYM_GEN_changeStunResistance_1176",
+      "calls": 166
+    },
+    {
+      "symbol": "SYM_GEN_gainMaxStaminaTemporary_1268",
+      "calls": 166
+    },
+    {
+      "symbol": "SYM_GEN_giveMaxStaminaTemporary_316",
+      "calls": 166
+    },
+    {
+      "symbol": "SYM_GEN_getBuffDur_1908",
+      "calls": 161
+    },
+    {
+      "symbol": "SYM_GEN_reduceCritChancePercent_180",
+      "calls": 156
+    },
+    {
+      "symbol": "SYM_GEN_capture_2172",
+      "calls": 155
+    },
+    {
+      "symbol": "SYM_GEN_pickRandomEngine_1748",
+      "calls": 155
+    },
+    {
+      "symbol": "SYM_GEN_getNextCard_891",
+      "calls": 155
+    },
+    {
+      "symbol": "SYM_GEN_doEliminatedEffect_2148",
+      "calls": 155
+    },
+    {
+      "symbol": "SYM_GEN_onEliminatedBy_2147",
+      "calls": 155
+    },
+    {
+      "symbol": "SYM_GEN_doCapturingEffect_2146",
+      "calls": 155
+    },
+    {
+      "symbol": "SYM_GEN_onPieceCaptured_2145",
+      "calls": 155
+    },
+    {
+      "symbol": "SYM_GEN_loseVampirism_341",
+      "calls": 152
+    },
+    {
+      "symbol": "SYM_GEN_removeVampirism_339",
+      "calls": 152
+    },
+    {
+      "symbol": "SYM_GEN_stealLife_329",
+      "calls": 148
+    },
+    {
+      "symbol": "SYM_GEN_getEmpower_1248",
+      "calls": 140
+    },
+    {
+      "symbol": "SYM_GEN_purgeDamage_311",
+      "calls": 136
+    },
+    {
+      "symbol": "SYM_GEN_checkItems_2224",
+      "calls": 135
+    },
+    {
+      "symbol": "SYM_GEN_notifyChainPosition_894",
+      "calls": 130
+    },
+    {
+      "symbol": "SYM_GEN_updateTexture_889",
+      "calls": 130
+    },
+    {
+      "symbol": "SYM_GEN_getBonusFatigueDamage_1194",
+      "calls": 127
+    },
+    {
+      "symbol": "SYM_GEN_removeMostBuffs_368",
+      "calls": 125
+    },
+    {
+      "symbol": "SYM_GEN_recalculateMaxStamina_1273",
+      "calls": 122
+    },
+    {
+      "symbol": "SYM_GEN_losePoison_1232",
+      "calls": 121
+    },
+    {
+      "symbol": "SYM_GEN_addDynamicType_242",
+      "calls": 121
+    },
+    {
+      "symbol": "SYM_GEN_cleansePoison_342",
+      "calls": 118
+    },
+    {
+      "symbol": "SYM_GEN_triggerOnAttacked_1530",
+      "calls": 117
+    },
+    {
+      "symbol": "SYM_GEN_getStunProtectChance_1907",
+      "calls": 115
+    },
+    {
+      "symbol": "SYM_GEN__inventorySide_1664",
+      "calls": 112
+    },
+    {
+      "symbol": "SYM_GEN_changeBuffNullifyChances_1288",
+      "calls": 112
+    },
+    {
+      "symbol": "SYM_GEN_changeDebuffReflectStacks_1186",
+      "calls": 112
+    },
+    {
+      "symbol": "SYM_GEN_giveReflectStacks_200",
+      "calls": 112
+    },
+    {
+      "symbol": "SYM_GEN_getOrigin_1580",
+      "calls": 110
+    },
+    {
+      "symbol": "SYM_GEN_zapItem_2589",
+      "calls": 109
+    },
+    {
+      "symbol": "SYM_GEN_willBeLethal_1534",
+      "calls": 108
+    },
+    {
+      "symbol": "SYM_GEN_isAvailableFor_1719",
+      "calls": 107
+    },
+    {
+      "symbol": "SYM_GEN_triggerOnHit_1527",
+      "calls": 105
+    },
+    {
+      "symbol": "SYM_GEN_selfInflictPoison_212",
+      "calls": 99
+    },
+    {
+      "symbol": "SYM_GEN_onUseThresholdReached_2275",
+      "calls": 96
+    },
+    {
+      "symbol": "SYM_GEN_onChargeTimerTimeout_2247",
+      "calls": 94
+    },
+    {
+      "symbol": "SYM_GEN_startFatigue_1327",
+      "calls": 92
+    },
+    {
+      "symbol": "SYM_GEN_setBagOfStones_905",
+      "calls": 91
+    },
+    {
+      "symbol": "SYM_GEN_getP6_268",
+      "calls": 90
+    },
+    {
+      "symbol": "SYM_GEN_cleanseCold_352",
+      "calls": 89
+    },
+    {
+      "symbol": "SYM_GEN_getEmptyCellsInCells_1606",
+      "calls": 85
+    },
+    {
+      "symbol": "SYM_GEN_getNumEmptyAffectedCells_426",
+      "calls": 85
+    },
+    {
+      "symbol": "SYM_GEN_changeDebuffProtectionChance_1287",
+      "calls": 84
+    },
+    {
+      "symbol": "SYM_GEN_findBestPieceToCapture_2171",
+      "calls": 84
+    },
+    {
+      "symbol": "SYM_GEN_onSpeedTimeout_2475",
+      "calls": 82
+    },
+    {
+      "symbol": "SYM_GEN_tweenFilling_1938",
+      "calls": 79
+    },
+    {
+      "symbol": "SYM_GEN_isMeleeWeapon_1722",
+      "calls": 78
+    },
+    {
+      "symbol": "SYM_GEN_resetChain_1835",
+      "calls": 77
+    },
+    {
+      "symbol": "SYM_GEN_updateCards_1836",
+      "calls": 77
+    },
+    {
+      "symbol": "SYM_GEN_reduceBonusDamage_310",
+      "calls": 73
+    },
+    {
+      "symbol": "SYM_GEN_canUseStamina_294",
+      "calls": 73
+    },
+    {
+      "symbol": "SYM_GEN_getMaxHealth_1160",
+      "calls": 71
+    },
+    {
+      "symbol": "SYM_GEN_getBuffStacks_1215",
+      "calls": 67
+    },
+    {
+      "symbol": "SYM_GEN_stealStack_208",
+      "calls": 64
+    },
+    {
+      "symbol": "SYM_GEN_isRangedWeapon_1723",
+      "calls": 63
+    },
+    {
+      "symbol": "SYM_GEN_changeDebuffResistChances_1220",
+      "calls": 61
+    },
+    {
+      "symbol": "SYM_GEN_createEvent_DamageBuff_1374",
+      "calls": 60
+    },
+    {
+      "symbol": "SYM_GEN_getScaledParam_2380",
+      "calls": 60
+    },
+    {
+      "symbol": "SYM_GEN_getTranslatedName_641",
+      "calls": 60
+    },
+    {
+      "symbol": "SYM_GEN_giveStacksFromEffect_2376",
+      "calls": 60
+    },
+    {
+      "symbol": "SYM_GEN_startActivation_892",
+      "calls": 60
+    },
+    {
+      "symbol": "SYM_GEN_isBuffed_1888",
+      "calls": 59
+    },
+    {
+      "symbol": "SYM_GEN_doRevealEffect_893",
+      "calls": 59
+    },
+    {
+      "symbol": "SYM_GEN_showCooldown_794",
+      "calls": 59
+    },
+    {
+      "symbol": "SYM_GEN_getDamage_1522",
+      "calls": 56
+    },
+    {
+      "symbol": "SYM_GEN_startBattleRage_1199",
+      "calls": 56
+    },
+    {
+      "symbol": "SYM_GEN_useBlock_207",
+      "calls": 56
+    },
+    {
+      "symbol": "SYM_GEN_countAllInInventoryOfType_804",
+      "calls": 53
+    },
+    {
+      "symbol": "SYM_GEN_getCollisionPoints_406",
+      "calls": 48
+    },
+    {
+      "symbol": "SYM_GEN_advanceAffectedItem_2082",
+      "calls": 48
+    },
+    {
+      "symbol": "SYM_GEN_countTypes_495",
+      "calls": 47
+    },
+    {
+      "symbol": "SYM_GEN_changeRangedSpikesLimit_1190",
+      "calls": 46
+    },
+    {
+      "symbol": "SYM_GEN_changeMeleeSpikesLimit_1189",
+      "calls": 45
+    },
+    {
+      "symbol": "SYM_GEN_isOnlyForDisplay_2381",
+      "calls": 45
+    },
+    {
+      "symbol": "SYM_GEN_selfInflictBlind_343",
+      "calls": 45
+    },
+    {
+      "symbol": "SYM_GEN_cardSecondaryEffectActive_890",
+      "calls": 45
+    },
+    {
+      "symbol": "SYM_GEN_updateBaseCooldown_110",
+      "calls": 44
+    },
+    {
+      "symbol": "SYM_GEN_getGlobalCenter_784",
+      "calls": 44
+    },
+    {
+      "symbol": "SYM_GEN_addCritTokens_183",
+      "calls": 44
+    },
+    {
+      "symbol": "SYM_GEN_onBuffTimeout_2022",
+      "calls": 43
+    },
+    {
+      "symbol": "SYM_GEN_conditionFulfilled_2100",
+      "calls": 42
+    },
+    {
+      "symbol": "SYM_GEN_getBaseCooldownIndex_101",
+      "calls": 42
+    },
+    {
+      "symbol": "SYM_GEN_useCritToken_184",
+      "calls": 42
+    },
+    {
+      "symbol": "SYM_GEN_repeatCombatStart_130",
+      "calls": 42
+    },
+    {
+      "symbol": "SYM_GEN_setBaseCooldown_108",
+      "calls": 39
+    },
+    {
+      "symbol": "SYM_GEN_countAllPlacedOfType_460",
+      "calls": 37
+    },
+    {
+      "symbol": "SYM_GEN_getShopChance_237",
+      "calls": 36
+    },
+    {
+      "symbol": "SYM_GEN_getNumAffected_type_429",
+      "calls": 35
+    },
+    {
+      "symbol": "SYM_GEN_countSocketedGems_1614",
+      "calls": 34
+    },
+    {
+      "symbol": "SYM_GEN_countItemsInInventoryOfType_1668",
+      "calls": 32
+    },
+    {
+      "symbol": "SYM_GEN_getVampirism_1226",
+      "calls": 32
+    },
+    {
+      "symbol": "SYM_GEN_changeResistStacks_1027",
+      "calls": 32
+    },
+    {
+      "symbol": "SYM_GEN_onParticleTimeout_1000",
+      "calls": 31
+    },
+    {
+      "symbol": "SYM_GEN_useRandomBuffs_371",
+      "calls": 31
+    },
+    {
+      "symbol": "SYM_GEN_changeGemPower_974",
+      "calls": 31
+    },
+    {
+      "symbol": "SYM_GEN_changeReflectChance_1029",
+      "calls": 30
+    },
+    {
+      "symbol": "SYM_GEN_sortEffects_2377",
+      "calls": 30
+    },
+    {
+      "symbol": "SYM_GEN_changeEffectDamageFactor_1281",
+      "calls": 29
+    },
+    {
+      "symbol": "SYM_GEN_getNumAffectedInside_type_931",
+      "calls": 29
+    },
+    {
+      "symbol": "SYM_GEN_connectToOpponentDebuffs_376",
+      "calls": 29
+    },
+    {
+      "symbol": "SYM_GEN_hasDynamicType_241",
+      "calls": 29
+    },
+    {
+      "symbol": "SYM_GEN_getNumDistinctAffectedItems_430",
+      "calls": 29
+    },
+    {
+      "symbol": "SYM_GEN_defer_1482",
+      "calls": 28
+    },
+    {
+      "symbol": "SYM_GEN_giveUnhealing_1178",
+      "calls": 28
+    },
+    {
+      "symbol": "SYM_GEN_addBattleRageDuration_1290",
+      "calls": 27
+    },
+    {
+      "symbol": "SYM_GEN_changePoisonCritChancePercent_1283",
+      "calls": 25
+    },
+    {
+      "symbol": "SYM_GEN_getCounterValue2_2482",
+      "calls": 25
+    },
+    {
+      "symbol": "SYM_GEN_canBeBlocked_1558",
+      "calls": 24
+    },
+    {
+      "symbol": "SYM_GEN_connectToCharacterDebuffs_375",
+      "calls": 23
+    },
+    {
+      "symbol": "SYM_GEN_changeBuffProtectionChance_1286",
+      "calls": 21
+    },
+    {
+      "symbol": "SYM_GEN_countItemsInInventoryOfType_opponent_1669",
+      "calls": 21
+    },
+    {
+      "symbol": "SYM_GEN_updateScale_2483",
+      "calls": 21
+    },
+    {
+      "symbol": "SYM_GEN_getStackFraction_362",
+      "calls": 21
+    },
+    {
+      "symbol": "SYM_GEN_canHatch_1867",
+      "calls": 20
+    },
+    {
+      "symbol": "SYM_GEN_updateEgg_1865",
+      "calls": 20
+    },
+    {
+      "symbol": "SYM_GEN_getAllInInventoryOfType_803",
+      "calls": 18
+    },
+    {
+      "symbol": "SYM_GEN_gainCritTokens_1184",
+      "calls": 16
+    },
+    {
+      "symbol": "SYM_GEN_getBaseCooldown_100",
+      "calls": 16
+    },
+    {
+      "symbol": "SYM_GEN_initRat_2466",
+      "calls": 16
+    },
+    {
+      "symbol": "SYM_GEN_giveCritTokens_314",
+      "calls": 16
+    },
+    {
+      "symbol": "SYM_GEN_changeDebuffResistStacks_1185",
+      "calls": 15
+    },
+    {
+      "symbol": "SYM_GEN_randEffects_2378",
+      "calls": 15
+    },
+    {
+      "symbol": "SYM_GEN_setCraftedEffects_2379",
+      "calls": 15
+    },
+    {
+      "symbol": "SYM_GEN_resetBaseCooldown_109",
+      "calls": 15
+    },
+    {
+      "symbol": "SYM_GEN_reincarnate_1153",
+      "calls": 14
+    },
+    {
+      "symbol": "SYM_GEN_triggerNextPotion_2026",
+      "calls": 14
+    },
+    {
+      "symbol": "SYM_GEN_poisonTimerTimeout_1996",
+      "calls": 13
+    },
+    {
+      "symbol": "SYM_GEN_giveDoubleAttackEffectChance_313",
+      "calls": 13
+    },
+    {
+      "symbol": "SYM_GEN_multiplyBuffsLimit_363",
+      "calls": 12
+    },
+    {
+      "symbol": "SYM_GEN_getP8_270",
+      "calls": 11
+    },
+    {
+      "symbol": "SYM_GEN_onBuffEnded_2590",
+      "calls": 11
+    },
+    {
+      "symbol": "SYM_GEN_advanceItem_2581",
+      "calls": 10
+    },
+    {
+      "symbol": "SYM_GEN_advanceTime_1330",
+      "calls": 10
+    },
+    {
+      "symbol": "SYM_GEN_changeAllDebuffsReflectChance_1188",
+      "calls": 10
+    },
+    {
+      "symbol": "SYM_GEN_reduceBonusDamageFactor_307",
+      "calls": 10
+    },
+    {
+      "symbol": "SYM_GEN_addBonusBlock_1879",
+      "calls": 9
+    },
+    {
+      "symbol": "SYM_GEN_addBonusRandomBuffs_1930",
+      "calls": 9
+    },
+    {
+      "symbol": "SYM_GEN_getItemsInInventoryOfType_1666",
+      "calls": 9
+    },
+    {
+      "symbol": "SYM_GEN_getItemsInInventoryOfType_opponent_1667",
+      "calls": 9
+    },
+    {
+      "symbol": "SYM_GEN_removeBuffsFraction_364",
+      "calls": 9
+    },
+    {
+      "symbol": "SYM_GEN_countDuplicates_1802",
+      "calls": 8
+    },
+    {
+      "symbol": "SYM_GEN_getP7_269",
+      "calls": 8
+    },
+    {
+      "symbol": "SYM_GEN_invuEnded_2196",
+      "calls": 8
+    },
+    {
+      "symbol": "SYM_GEN_loseCold_1257",
+      "calls": 8
+    },
+    {
+      "symbol": "SYM_GEN_addBonusChance_additive_176",
+      "calls": 8
+    },
+    {
+      "symbol": "SYM_GEN_changeTypedDamageFactor_1280",
+      "calls": 7
+    },
+    {
+      "symbol": "SYM_GEN_countItemsInAffectedCells_cached_424",
+      "calls": 7
+    },
+    {
+      "symbol": "SYM_GEN_countItemsInCells_1609",
+      "calls": 7
+    },
+    {
+      "symbol": "SYM_GEN_inflict_1913",
+      "calls": 7
+    },
+    {
+      "symbol": "SYM_GEN_reduceUnhealing_1179",
+      "calls": 7
+    },
+    {
+      "symbol": "SYM_GEN_startBlindingLight_1197",
+      "calls": 7
+    },
+    {
+      "symbol": "SYM_GEN_changeDodgeStacks_1172",
+      "calls": 6
+    },
+    {
+      "symbol": "SYM_GEN_connectToOpponentBuffs_377",
+      "calls": 6
+    },
+    {
+      "symbol": "SYM_GEN_loseSpikes_338",
+      "calls": 6
+    },
+    {
+      "symbol": "SYM_GEN_onLifestealTimeout_2569",
+      "calls": 5
+    },
+    {
+      "symbol": "SYM_GEN_restartLoversParticleDraws_1493",
+      "calls": 5
+    },
+    {
+      "symbol": "SYM_GEN_unsetFlag_1556",
+      "calls": 5
+    },
+    {
+      "symbol": "SYM_GEN_callNextFrame_1797",
+      "calls": 3
+    },
+    {
+      "symbol": "SYM_GEN_connectIdleFrameOnce_1485",
+      "calls": 3
+    },
+    {
+      "symbol": "SYM_GEN_countChain_2329",
+      "calls": 3
+    },
+    {
+      "symbol": "SYM_GEN_endBlindingLight_1198",
+      "calls": 3
+    },
+    {
+      "symbol": "SYM_GEN_onAddToInventory_deferred_2016",
+      "calls": 3
+    },
+    {
+      "symbol": "SYM_GEN_onBlindingLightTimeout_1915",
+      "calls": 3
+    },
+    {
+      "symbol": "SYM_GEN_onRegenChanged_1891",
+      "calls": 3
+    },
+    {
+      "symbol": "SYM_GEN_scheduleParticleDraws_1491",
+      "calls": 3
+    },
+    {
+      "symbol": "SYM_GEN_wasCriticalHit_1524",
+      "calls": 3
+    },
+    {
+      "symbol": "SYM_GEN_changeAllItemsCritRate_469",
+      "calls": 2
+    },
+    {
+      "symbol": "SYM_GEN_changeBuffAmplification_allItems_1616",
+      "calls": 2
+    },
+    {
+      "symbol": "SYM_GEN_gainCritResistStacks_1175",
+      "calls": 2
+    },
+    {
+      "symbol": "SYM_GEN_onSpeedTimerTimeout_2040",
+      "calls": 2
+    },
+    {
+      "symbol": "SYM_GEN_switchGradient_2343",
+      "calls": 2
+    },
+    {
+      "symbol": "SYM_GEN_updateShaderRotation_791",
+      "calls": 2
+    },
+    {
+      "symbol": "SYM_GEN_useVampirism_340",
+      "calls": 2
+    },
+    {
+      "symbol": "SYM_GEN_changeEffectSpikesLimit_1191",
+      "calls": 1
+    },
+    {
+      "symbol": "SYM_GEN_changeSpikesCritChancePercent_1284",
+      "calls": 1
+    },
+    {
+      "symbol": "SYM_GEN_drinkStrongDemonicFlask_1993",
+      "calls": 1
+    },
+    {
+      "symbol": "SYM_GEN_healingReductionTimeout_1994",
+      "calls": 1
+    },
+    {
+      "symbol": "SYM_GEN_onHPLow_2305",
+      "calls": 1
+    },
+    {
+      "symbol": "SYM_GEN_onSpeedbuffTimeout_1954",
+      "calls": 1
+    },
+    {
+      "symbol": "SYM_GEN_removeDebuffResistance_2242",
+      "calls": 1
+    },
+    {
+      "symbol": "SYM_GEN_spawnSpikeParticles_2306",
+      "calls": 1
+    }
+  ],
+  "coverage_by_method_budget": {
+    "16": 269880,
+    "32": 486111,
+    "48": 657814,
+    "64": 781567,
+    "96": 901392,
+    "128": 958508
+  },
+  "exact_type_row_and_pure_inheritance_required": true,
+  "not_a_throughput_forecast": true,
+  "implementation_not_started": true,
+  "next_step": "Choose hot instance-method budget plus separately prove the88,491 static _nativeF32 calls before bundling"
+}

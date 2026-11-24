@@ -1,0 +1,10 @@
+Rebuilding20 release objects with18 identical saved profiles; isolated persistent ASCII build directory; max2 BelowNormal jobs
+Built C:\Users\Windows\AppData\Local\CodexNativeBuilds\object-routes-recovery-f5pilx5j\objects\release.dll (compiled 20/20, linked 20 objs) in 499.55s
+Recovered release completed: f950b64c74684ae70ce4e41b9622541c849da0121e1235ab88b7aaface22a6d7
+Starting freeze_pgo.py
+Passed freeze_pgo.py
+Starting validate_then_compare.py
+Passed validate_then_compare.py
+Starting qualify_when_ready.py
+Passed qualify_when_ready.py
+Original predeclared protocol completed; original failed build records retained; installation remains gated

@@ -1,0 +1,9 @@
+{
+  "selected_assessment": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_perf50\\object_routes_bundle\\ab_assessment_32.json",
+  "assessment_sha256": "9f3950dbf18043840ed26d609c9c700b210cee200f074ea041f3553197aea36c",
+  "candidate_dll_sha256": "f950b64c74684ae70ce4e41b9622541c849da0121e1235ab88b7aaface22a6d7",
+  "status": "positive_combined_evidence",
+  "original24_retained": true,
+  "no_more_same_source_groups": true,
+  "not_deployed": true
+}

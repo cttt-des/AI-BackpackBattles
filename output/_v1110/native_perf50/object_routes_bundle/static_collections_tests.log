@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "dll_sha256": "f950b64c74684ae70ce4e41b9622541c849da0121e1235ab88b7aaface22a6d7",
+  "cases": 13440,
+  "all_original_case_hashes_equal": true,
+  "actual_production_methods_checked": true,
+  "rounding_modes": 4,
+  "input_kind_and_boundary_cases": 40,
+  "original_reference_sha256": "b03be7a8cdbdc31e5d5f23bbda098cb140048f26c6633cb917f8213002ab2da9"
+}
