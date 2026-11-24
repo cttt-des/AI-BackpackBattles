@@ -1,0 +1,36 @@
+{
+  "stage": "profile_guided_release_build_running",
+  "candidate_deployed": false,
+  "goal_200_reached": false,
+  "goal_status": "active",
+  "production_dll_sha256": "f950b64c74684ae70ce4e41b9622541c849da0121e1235ab88b7aaface22a6d7",
+  "latest_accepted_production_fitted20": 186.34032339352876,
+  "prior_trial": "compiler PTA rejected",
+  "prior_remote_archive": "bcad9e17d0af08821582759a44e0e4e8fe068be3",
+  "semantic_dll_sha256": "58c3f42087fabd907fd6f12f7ced190f00b3cc86fe002378834e586c7442d2cc",
+  "semantic_cases": 12864,
+  "semantic_fixed200_passed": true,
+  "formal_speed_not_yet_observed": true,
+  "live": {
+    "driver": {
+      "pid": 20384,
+      "created": 1795511585.1237233
+    },
+    "build": {
+      "pid": 16668,
+      "created": 1795511585.5261598
+    },
+    "qualifier": {
+      "pid": 13788,
+      "created": 1795511585.5346253
+    }
+  },
+  "persistent_build_directory": {
+    "root": "C:\\Users\\Windows\\AppData\\Local\\CodexNativeBuilds\\active-prefetch-formal-tr4dvjgm",
+    "objects": "C:\\Users\\Windows\\AppData\\Local\\CodexNativeBuilds\\active-prefetch-formal-tr4dvjgm\\objects",
+    "scratch": "C:\\Users\\Windows\\AppData\\Local\\CodexNativeBuilds\\active-prefetch-formal-tr4dvjgm\\scratch"
+  },
+  "protocol": "original fixed200 single-worker24/atmost32 AB,strict2604,firstraw24>=50,independentcal24 covering20 andAC; no reruns",
+  "profile_count": 18,
+  "instrumented_audit_passed": true
+}

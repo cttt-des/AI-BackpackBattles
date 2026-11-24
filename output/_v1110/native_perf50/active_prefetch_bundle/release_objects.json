@@ -1,0 +1,26 @@
+{
+  "object_directory": "C:\\Users\\Windows\\AppData\\Local\\CodexNativeBuilds\\active-prefetch-formal-tr4dvjgm\\objects",
+  "dll_sha256": "0fdfc66519a1dcd1d823deea2585d31ddd2c8df9f5e05b2bd81344bcd99a7600",
+  "objects_sha256": {
+    "engine_wrapper.o": "e6e491204493843ea706e5541d5e6dddf5041d35aae0112456e6783ec4a6423a",
+    "gd_rt.o": "b9262b28eeeb60de32c93ef24c07c590a4e059841e32aa4b9da695261d44ea98",
+    "register_all.o": "87aa32f2f9350de3823d2587f56c1a10c2b7f77e125e1ba01206854af046d6f8",
+    "shard_00.o": "5be32bffe341051deb5565644b9320f2834898851d088c4e26a94ba9d8ed9016",
+    "shard_01.o": "9841a99355fec59fbf02e7ab42ae8693c81518c230ddd472c2f7b7630bd06571",
+    "shard_02.o": "e9aaf09ea9e58056e9b2aad0ccd8a259456938ae13f5a3be483ace018a85c710",
+    "shard_03.o": "8d280094f58da0481d7cc55eb81976a886c0ae81a52ec18b9b11a22052d759e5",
+    "shard_04.o": "4ecad1fe9924a83c4f6803ec7fcf8e8b5b1320f2c68cb958d18d2b6f64afbbdb",
+    "shard_05.o": "55a1d63c1af746f0bd4ff2481939ab58d013559fbafc56d824015b5f16196c93",
+    "shard_06.o": "3a256b5c4095accf91fff56cd772ec1b87aeab3b45368b344977cf1a864adba0",
+    "shard_07.o": "3cce5e96c52697eaae80a7f4a758bf36a7370564073e2fe111fe354ca078ec92",
+    "shard_08.o": "e18eb4708bacb500de3e5b0d88779ef546c51b2a6e54c34f2de3df48653b7c32",
+    "shard_09.o": "412287c89e4ad0b64f0fdcd23b700720e92f7a8b92869906d9da0541a3c3c65c",
+    "shard_10.o": "567723c9b4971bcc83520d52eb9db90b45edd195dca4e11bde6a42cce69069fc",
+    "shard_11.o": "35a2db1ea6bda54fed47c92ed3f90fb09a0b471ce795a10081fb03bc318aee93",
+    "shard_12.o": "eaee60da7146017d01f83c533966c61a44165ee092a35814c281f742eddae317",
+    "shard_13.o": "463af1e0f7375fc183d6e80f4cfe9a88bd3f9a6c3696853fa936e80836d49feb",
+    "shard_14.o": "c493ef88e52634e345bc4d969bdd8044961ecb6b2541df6091f3b6e3be2ef917",
+    "shard_15.o": "fbe07dc017e2c1c9f9c1818d149991f576be3c7901eb7f3fd4ad5e2071040acf",
+    "sym_ids.o": "35b0d562d93f7e48a8863ad0cea81c5e1ea58ef709ae0b47ffd4e0f423652678"
+  }
+}

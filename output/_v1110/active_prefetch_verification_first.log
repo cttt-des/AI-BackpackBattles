@@ -1,0 +1,77 @@
+In file included from C:\Users\Windows\AppData\Local\Temp\native-active-cooldown-final-8l7d061o\test.cpp:7:
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\active_prefetch_prototype\prototype_src/native_active_cooldowns.hpp:11:32: warning: unknown option after '#pragma GCC diagnostic' kind [-Wpragmas]
+   11 | #pragma GCC diagnostic ignored "-Winvalidoffsetof"
+      |                                ^~~~~~~~~~~~~~~~~~~
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\active_prefetch_prototype\prototype_src/native_active_cooldowns.hpp:11:32: note: did you mean '-Winvalid-offsetof'?
+In file included from D:/mingw64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/stddef.h:1,
+                 from D:/mingw64/x86_64-w64-mingw32/include/stdint.h:32,
+                 from D:/mingw64/lib/gcc/x86_64-w64-mingw32/16.1.0/include/stdint.h:11,
+                 from D:/mingw64/include/c++/16.1.0/cstdint:47,
+                 from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\active_prefetch_prototype\prototype_src/gd_rt.hpp:9,
+                 from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\active_prefetch_prototype\prototype_src/native_inline_dispatch.hpp:2,
+                 from C:\Users\Windows\AppData\Local\Temp\native-active-cooldown-final-8l7d061o\test.cpp:1:
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\active_prefetch_prototype\prototype_src/native_active_cooldowns.hpp: In function 'void gd::active_prefetch_addresses(uintptr_t, uintptr_t, bool)':
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\active_prefetch_prototype\prototype_src/native_active_cooldowns.hpp:15:73: warning: 'offsetof' within non-standard-layout type 'Gd__gd_core__CoreItem' is conditionally-supported [-Winvalid-offsetof]
+   15 |         __builtin_prefetch(reinterpret_cast<const void*>(owner+offsetof(Gd__gd_core__CoreItem,f_statDisplayOverrides)),0,3);
+      |                                                                         ^
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\active_prefetch_prototype\prototype_src/native_active_cooldowns.hpp:16:73: warning: 'offsetof' within non-standard-layout type 'Gd__gd_core__CoreItem' is conditionally-supported [-Winvalid-offsetof]
+   16 |         __builtin_prefetch(reinterpret_cast<const void*>(owner+offsetof(Gd__gd_core__CoreItem,f__cooldown_active)),0,3);
+      |                                                                         ^
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\active_prefetch_prototype\prototype_src/native_active_cooldowns.hpp:17:73: warning: 'offsetof' within non-standard-layout type 'Gd__gd_core__CoreItem' is conditionally-supported [-Winvalid-offsetof]
+   17 |         __builtin_prefetch(reinterpret_cast<const void*>(owner+offsetof(Gd__gd_core__CoreItem,f_speedScale)),0,3);
+      |                                                                         ^
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\active_prefetch_prototype\prototype_src/native_active_cooldowns.hpp:18:73: warning: 'offsetof' within non-standard-layout type 'Gd__gd_core__CoreItem' is conditionally-supported [-Winvalid-offsetof]
+   18 |         __builtin_prefetch(reinterpret_cast<const void*>(owner+offsetof(Gd__gd_core__CoreItem,f_triggerTime)),0,3);
+      |                                                                         ^
+{
+  "passed": true,
+  "cases": 1856,
+  "dll_sha256": "58c3f42087fabd907fd6f12f7ced190f00b3cc86fe002378834e586c7442d2cc",
+  "counts": [
+    2448,
+    1568,
+    880,
+    40020,
+    224,
+    544,
+    720,
+    47944,
+    30912,
+    0
+  ],
+  "actual_index_and_suffix_recovery_exercised": true,
+  "all_independent_states_fenv_rng_and_old_counters_equal": true,
+  "layouts": {
+    "baseline": {
+      "GdVal": 24,
+      "GdArr": 32,
+      "CoreItem": 1792,
+      "BattleCtx": 304
+    },
+    "candidate": {
+      "GdVal": 24,
+      "GdArr": 32,
+      "CoreItem": 1792,
+      "BattleCtx": 328
+    }
+  },
+  "original_fixture_sha256": "305fb9bf9dd2271981d3e9e89413dc21f5a5c9363fed8bb11f67f86e5dbdce56",
+  "raw_sha256": "7d29b45eb1532aaf78e8df19c5326cd81b0b0660feb143f8e049acf52c6cc7bb",
+  "baseline_oracle_sha256": "a52197f2ab7bc26c400e5cf6914eb166bbe3beee636b3647ef0318d3557a5bcd"
+}
+{
+  "passed": true,
+  "cases": 12864,
+  "retained_header_and_linked_dll_index_cases": 1856,
+  "actual_dll_address_cases": 4096,
+  "retained_frame_cases": 6912,
+  "baseline_dll_sha256": "f950b64c74684ae70ce4e41b9622541c849da0121e1235ab88b7aaface22a6d7",
+  "dll_sha256": "58c3f42087fabd907fd6f12f7ced190f00b3cc86fe002378834e586c7442d2cc",
+  "fixture_sha256": "877cc631b40507835dcc648ab944287b3046cb22101850c20ee0a9d7e9ef11c7",
+  "retained_index_receipt_sha256": "c30610e3f70468c5bea704785aabf454e768162fcc9c1206d732d67ac378c6bd",
+  "prefetch_instructions_present_in_actual_dll": true,
+  "address_entry_disassembly_sha256": "e997955779674b1e2ec60398c6953780316489a640a7183f9f8605d3e0393a93",
+  "index_fixture_scope_explicit": true,
+  "actual_production_integration_requires_fixed200_and2604": true,
+  "no_throughput_claim": true
+}

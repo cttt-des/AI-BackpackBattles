@@ -1,0 +1,72 @@
+Measured actual baseline/candidate base and derived layout sizes and offsets
+401 enum lookup and 9 full constructor cases matched baseline
+1624 Buff scan state/callback and40 cooldown-flag cases matched baseline
+AddSpeed diagnostic and fallback differential cases matched baseline
+{"new_method_symbols":16,"unknown_receiver_payload_rng_bind_cases":1344,"null_and_existing_cache_preserved":true,"generated_fast_path_and_bad_row_audit":true}
+
+{"type_predicates":454276,"original_fused_initializations":1348,"graph_fields":210938,"boundaries":2039,"aliases_payloads_rng_ids_order_checked":true}
+
+{"classes":674,"field_cases":289476,"field_bindings":13158,"aliases":13158,"boundary_cases":24,"rng_ids_payload_metadata_unchanged":true,"explicit_bad_row_audit_caught":true}
+
+{"checks":43,"core_item_size":1792,"derived_item_size":3968,"weapon_size":3968,"alignment":64,"timers_offset":1536,"gems_offset":1560,"cooldown_active_offset":1648,"timer_length_offset":1592,"bridge_gems_length_offset":1624}
+
+{"exact_allocations":1348,"rng_unchanged":true}
+
+1034 variant differential cases; null/empty/default/mixed-key/numeric-alias/NaN, container mutation visibility, one static callback/false Null, forwarded static dispatch, new constructor, object override and disabled path passed
+
+Cached/uncached exact dispatch, generated/C++ overrides, single fallback, copy/slicing, audit-before-row-read, null/array/dictionary/disabled paths, return payload bits and512 RNG comparisons passed
+
+34 builtin differential checks; missing/nonstring argument, C++ override/shared metadata, FuncRef original Null, rebound custom FuncRef, ID order/epoch/wrap and disabled path passed
+
+841 equality/inequality pairs and 78 write cases; NaN, signed zero, mixed large ints/floats, container equality, custom setter calls and overwritten receiver aliases passed
+
+512 RNG bitwise/state comparisons, 32 timer ticks, new-slot C++ override fallback and exact-type audit passed
+
+280 index differential cases; boundary, null, mixed key, object getter count and reference alias checks passed
+
+Resolved generated overrides, shared-metadata C++ overrides, copy/slicing/assignment, rebound FuncRef binds, unknown method and disabled fallback passed
+
+{"passed":true,"arena_bytes":48,"serial_requests":12001,"identical_reset_addresses":12001,"max_alignment":4096,"threaded_nonoverlapping_allocations":8000,"zero_bytes_large_blocks_content_ownership_and_nested_constructor":true}
+
+Dense lookup, growth, erase/reinsert order, default, duplication, clear, mixed keys, numeric aliases, huge integers and NaN passed
+
+Label slot selection, callback order, RNG bounds, captured size, future writes, replacement and dynamic fallback passed
+
+Native/generic event chains matched: appended and replaced listeners, bound arguments, nested emissions, and same-frame terminal interruption
+
+Resistance RNG replacement, amplification snapshot count, reflection changes and nonpositive amounts passed
+
+External lifetime, escaped aliases and reinit passed; native inline identity, cache line, repeated reinit, copy/move, foreign arena and same-frame timer insertion passed
+
+Timer start, stop, restart, first epoch, append, replacement, timeout, truth and generic context cases passed
+
+Timer traversal, repaired future placeholder, replacement, append, disable, array swap, gem insertion and captured-length shrink passed
+
+Custom hooks with shared base metadata, callback replacement and observable context getter order passed
+
+场次 3：夹具=D:\文件资料\学习\自动背包AI\output\_v1110\native_hot_path_target3\fixtures.json below_master=None
+[1/3] run1143_r13 pass | first=None
+[2/3] run1492_r18 pass | first=None
+[3/3] run948_r18 pass | first=None
+== 汇总 ==
+{
+ "total": 3,
+ "passed": 3,
+ "reference_mode": "native-only",
+ "category": {
+  "pass": 3
+ },
+ "winner_mismatch": 0,
+ "winner_unavailable": 0,
+ "cases_with_coarse_gem_origin": 0,
+ "strict_gem_origins": true,
+ "original_dir": "D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_host_observed_base\\base",
+ "first_divergences": [],
+ "below_master_override": null,
+ "dll": "D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_perf50\\active_prefetch_bundle\\bundle.dll",
+ "wall_total_s": 0.4,
+ "strict_item_origins": true,
+ "dll_sha256": "0fdfc66519a1dcd1d823deea2585d31ddd2c8df9f5e05b2bd81344bcd99a7600",
+ "fixtures_sha256": "0f054f415ab19d29bc91718428ddb2f9af0ca53c1aacd329721f4259936b2b99",
+ "runtime_data_sha256": "55bdd068cf3308547de78b45abbed4bf4f57e8253fbec82313a99578defa00ae"
+}

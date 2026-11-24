@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "cases": 12864,
+  "retained_header_and_linked_dll_index_cases": 1856,
+  "actual_dll_address_cases": 4096,
+  "retained_frame_cases": 6912,
+  "baseline_dll_sha256": "f950b64c74684ae70ce4e41b9622541c849da0121e1235ab88b7aaface22a6d7",
+  "dll_sha256": "0fdfc66519a1dcd1d823deea2585d31ddd2c8df9f5e05b2bd81344bcd99a7600",
+  "fixture_sha256": "877cc631b40507835dcc648ab944287b3046cb22101850c20ee0a9d7e9ef11c7",
+  "retained_index_receipt_sha256": "badce1c8966cd8b7a3c5c68ba0c40fa96923511129ef7d218cc97e9ffd4447dd",
+  "prefetch_instructions_present_in_actual_dll": true,
+  "address_entry_disassembly_sha256": "055a92cd102870a58b0d7110304ac2f0694b81818aed34f6defdbd8508d7d6d3",
+  "index_fixture_scope_explicit": true,
+  "actual_production_integration_requires_fixed200_and2604": true,
+  "no_throughput_claim": true
+}

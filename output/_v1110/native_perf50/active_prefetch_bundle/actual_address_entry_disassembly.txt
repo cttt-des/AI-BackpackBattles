@@ -1,0 +1,28 @@
+
+C:\Users\Windows\AppData\Local\CodexNativeBuilds\active-prefetch-check-vb2ak0u7\libgdcore.dll:     file format pei-x86-64
+
+
+Disassembly of section .text:
+
+00000001ef994d60 <gd_test_native_active_prefetch>:
+   1ef994d60:	48 85 c9             	test   %rcx,%rcx
+   1ef994d63:	74 33                	je     1ef994d98 <gd_test_native_active_prefetch+0x38>
+   1ef994d65:	0f 18 09             	prefetcht0 (%rcx)
+   1ef994d68:	0f 18 89 18 03 00 00 	prefetcht0 0x318(%rcx)
+   1ef994d6f:	0f 18 89 70 06 00 00 	prefetcht0 0x670(%rcx)
+   1ef994d76:	0f 18 89 d8 00 00 00 	prefetcht0 0xd8(%rcx)
+   1ef994d7d:	0f 18 89 90 03 00 00 	prefetcht0 0x390(%rcx)
+   1ef994d84:	48 85 d2             	test   %rdx,%rdx
+   1ef994d87:	74 0b                	je     1ef994d94 <gd_test_native_active_prefetch+0x34>
+   1ef994d89:	0f 18 0a             	prefetcht0 (%rdx)
+   1ef994d8c:	0f 18 4a 60          	prefetcht0 0x60(%rdx)
+   1ef994d90:	0f 18 4a 78          	prefetcht0 0x78(%rdx)
+   1ef994d94:	c3                   	ret
+   1ef994d95:	0f 1f 00             	nopl   (%rax)
+   1ef994d98:	48 85 d2             	test   %rdx,%rdx
+   1ef994d9b:	74 f7                	je     1ef994d94 <gd_test_native_active_prefetch+0x34>
+   1ef994d9d:	0f 18 0a             	prefetcht0 (%rdx)
+   1ef994da0:	0f 18 4a 60          	prefetcht0 0x60(%rdx)
+   1ef994da4:	0f 18 4a 78          	prefetcht0 0x78(%rdx)
+   1ef994da8:	eb ea                	jmp    1ef994d94 <gd_test_native_active_prefetch+0x34>
+   1ef994daa:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
