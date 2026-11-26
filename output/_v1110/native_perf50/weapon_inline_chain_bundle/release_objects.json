@@ -1,0 +1,26 @@
+{
+  "object_directory": "C:\\Users\\Windows\\AppData\\Local\\CodexNativeBuilds\\weapon-chain-formal-dm0fb4pp\\objects",
+  "dll_sha256": "b862fc4b122ff7983a66f86680f18a9e4599be0c1269dc9cee5c2f4e397c78ea",
+  "objects_sha256": {
+    "engine_wrapper.o": "5aa72d5874a67b9432e3a2a2ffd6efd51cb17461a714aed886e06c5a38a131ce",
+    "gd_rt.o": "63878a1f372bbd3f60abc718d830116920ac869df12ea8b24465ffff5be4c4d6",
+    "register_all.o": "87aa32f2f9350de3823d2587f56c1a10c2b7f77e125e1ba01206854af046d6f8",
+    "shard_00.o": "b0f57b3c68cf0406c88a073d5082ae9bce5639cd337e02aafde8a06b89cbe559",
+    "shard_01.o": "adf8a7ed0f853330446daf0d89d542f87baec1654c7f34d53916695e285d7cd1",
+    "shard_02.o": "8e841f1365ea7144a4102731267b0034280e1f58f95d19eb0564b92cc77d80a7",
+    "shard_03.o": "b8394634d2c57a0c62f278c6dc9bd08fee3de85c74ccceb8194cfc5e062ea354",
+    "shard_04.o": "6c0720c072740a3d810526eef2ecc2dc1c2da2501e391b5628d0c46b026f8ba6",
+    "shard_05.o": "909c0649d44df9559546b178e9b0f3e2a207afd7617ea70a534579036c01bbf1",
+    "shard_06.o": "87cf6b32aa19758af8d5dbaa54cee8ce962aa83d389d6a577bf38bbe0475800e",
+    "shard_07.o": "f58d792aebe18067c114366003ec13940765ae4c8b47d95bb8adb48a2b67d843",
+    "shard_08.o": "8ec815d065c06db4813985841a663a4795aebdb6a81e835d4d8618917f8fe988",
+    "shard_09.o": "0434c43094b656a526668969e69632823ccdf244bef2eda260cebab77b3c9de1",
+    "shard_10.o": "cc52114cca05bf639ad136856b9e78a10e06c369eb3db5c3a1a6147daff0b7f8",
+    "shard_11.o": "f947cc5b3c5aa0787f0cb8757a95899b065b84276e6ccb9855adbf3c7cd70b10",
+    "shard_12.o": "010b18abad29d0cbecadbe03eed76902374b10caa667fc8d1c18a29e4383c1e5",
+    "shard_13.o": "bbb05b0fcdf04252e49e164f8599b60942bfd47a9c23793c1d7469199ca442da",
+    "shard_14.o": "bcab700e0237d4bc05711822ca88ec86ca5d859cd0568698d6592b66c4cbdbb2",
+    "shard_15.o": "d3b60055ed6ea78a6d962e2f9bbc7e97dfc52fa13da979c284d6508279c9b8a4",
+    "sym_ids.o": "35b0d562d93f7e48a8863ad0cea81c5e1ea58ef709ae0b47ffd4e0f423652678"
+  }
+}

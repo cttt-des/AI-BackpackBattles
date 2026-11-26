@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "cases": 34400,
+  "value_shapes": 2149,
+  "dll_sha256": "b3b9f411a3fe2d850c289a307791848cb0d18682b088c7e9f05954d4eea85d56",
+  "baseline_dll_sha256": "d2064b3f17d8168cf87a2e9f46e9fb336ffe4aaf6581c27d93350b2c41477a57",
+  "independent_original_gd_truth_actual_dll_reference": true,
+  "baseline_and_candidate_case_hashes_equal": true,
+  "null_bool_full_int64_float_bit_patterns_vec2_color_string_arrays_dicts_pointer_and_unknown_kinds": true,
+  "signaling_nan_subnormals_signed_zero_fenv_mxcsr_and_single_evaluation_checked": true,
+  "all16_rounding_daz_ftz_modes": true,
+  "fixture_sha256": "a08e1349dd3cae1f0a8698508eee25debc9d78f61745c8fb076631058fcde6db",
+  "raw_sha256": {
+    "scalar_truth_baseline_cases.json": "8b04ee906f0880a69f366e22ae0205a39b5e5a7b308380c51dd10c21c210e4d7",
+    "scalar_truth_candidate_cases.json": "8b04ee906f0880a69f366e22ae0205a39b5e5a7b308380c51dd10c21c210e4d7"
+  },
+  "no_speed_claim": true
+}

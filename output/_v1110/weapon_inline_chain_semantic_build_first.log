@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\build_native_weapon_inline_chain.py", line 60, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\build_native_weapon_inline_chain.py", line 18, in main
+    source=WORK/'prototype_src';verify_projection(source)
+                                ~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\prepare_native_weapon_inline_chain.py", line 53, in verify_projection
+    t=(native/name).read_text('utf8')
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\pathlib\__init__.py", line 788, in read_text
+    return f.read()
+           ~~~~~~^^
+  File "<frozen codecs>", line 325, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xcf in position 0: invalid continuation byte

@@ -1,0 +1,29 @@
+
+bundle.dll:     file format pei-x86-64
+
+
+Disassembly of section .text:
+
+00000001df7d8037 <_ZN2gd12weapon_chain16character_damageER26Gd__gd_core__CoreCharacterP29Gd__gd_core__CoreDamageSourceRKNS_5GdValE.cold>:
+   1df7d8037:	lea    0x60(%rbx),%r8
+   1df7d803b:	test   %rbp,%rbp
+   1df7d803e:	je     1df7d8099 <_ZN2gd12weapon_chain16character_damageER26Gd__gd_core__CoreCharacterP29Gd__gd_core__CoreDamageSourceRKNS_5GdValE.cold+0x62>
+   1df7d8040:	movb   $0x9,0xa0(%rsp)
+   1df7d8048:	mov    %rbp,0xa8(%rsp)
+   1df7d8050:	mov    0x90(%rsp),%rax
+   1df7d8058:	vmovdqa 0x80(%rsp),%xmm0
+   1df7d8061:	lea    0xa0(%rsp),%rbp
+   1df7d8069:	mov    %rdi,%rdx
+   1df7d806c:	lea    0x40(%rsp),%rcx
+   1df7d8071:	mov    %rbp,%r9
+   1df7d8074:	mov    %rax,0xc8(%rsp)
+   1df7d807c:	vmovdqu %xmm0,0xb8(%rsp)
+   1df7d8085:	call   1df82f020 <_Z17native_event_callI26Gd__gd_core__CoreCharacterXadL_ZNS0_13fn_takeDamageEPKN2gd5GdValEiEEES2_RNS1_9BattleCtxERS3_jS4_i.constprop.0>
+   1df7d808a:	movzbl 0x40(%rsp),%edx
+   1df7d808f:	mov    0x48(%rsp),%rax
+   1df7d8094:	jmp    1df7d9bb6 <_ZN2gd12weapon_chain16character_damageER26Gd__gd_core__CoreCharacterP29Gd__gd_core__CoreDamageSourceRKNS_5GdValE+0x146>
+   1df7d8099:	xor    %eax,%eax
+   1df7d809b:	movb   $0x0,0xa0(%rsp)
+   1df7d80a3:	mov    %rax,0xa8(%rsp)
+   1df7d80ab:	jmp    1df7d8050 <_ZN2gd12weapon_chain16character_damageER26Gd__gd_core__CoreCharacterP29Gd__gd_core__CoreDamageSourceRKNS_5GdValE.cold+0x19>
+   1df7d80ad:	nop

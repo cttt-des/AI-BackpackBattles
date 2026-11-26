@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "dll_sha256": "b3b9f411a3fe2d850c289a307791848cb0d18682b088c7e9f05954d4eea85d56",
+  "two_tiny_weapon_producers_not_emitted_out_of_line": true,
+  "private_functions": 5,
+  "not_a_speed_claim": true
+}

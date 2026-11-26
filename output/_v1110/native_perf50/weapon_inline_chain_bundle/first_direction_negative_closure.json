@@ -1,0 +1,123 @@
+{
+  "passed": true,
+  "phase": "direction_1_closed_with_no_deployable_gain",
+  "new_trials": 2,
+  "matched_current_production_baseline": true,
+  "historical_mechanism_trials": 2,
+  "historical_baselines_differ_and_are_not_cross_compared_for_gain": true,
+  "trials": [
+    {
+      "kind": "historical_full_typed_math",
+      "path": "output/_v1110/native_perf50/typed_hotchain_bundle/ab_assessment_32.json",
+      "sha256": "27c96f3f6606b9840d76edbe0702dab0bf009a7aebe5eb60bd55fbd3ba167cca",
+      "baseline_dll_sha256": "686f0d6cdb2fc223d4ed50319b31e786eea14383b4ffb9a8fe8633395ee07b43",
+      "candidate_dll_sha256": "16174b15e922e0de9cddc95a7142413e63ec1505ca85390691db4b9b5eb5d078",
+      "metrics": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 0.0,
+          "sum_time_reduction_pct": 0.2443195699975531,
+          "candidate_wins": 14,
+          "ties": 5,
+          "pairs": 32
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": -0.30238726326156096,
+          "sum_time_reduction_pct": 0.24999157946742345,
+          "candidate_wins": 15,
+          "ties": 0,
+          "pairs": 32
+        }
+      }
+    },
+    {
+      "kind": "historical_pointer_and_flags",
+      "path": "output/_v1110/native_perf50/damage_combo_bundle/ab_assessment.json",
+      "sha256": "1b1815063315e246a3e9f72790c1a764453f63fb6fdc8413a813441f7770f254",
+      "baseline_dll_sha256": "3a9269887ace0ad9cd6dafdb9e0ee2a77b857b231f2a0d412888af2516e5b520",
+      "candidate_dll_sha256": "a2c8260c4cd172425b4896636cd1ea341f5ae025a29da3024081d5bbe447706a",
+      "metrics": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": -0.9088036328737559,
+          "sum_time_reduction_pct": -0.09794319294809117,
+          "candidate_wins": 9,
+          "ties": 0,
+          "pairs": 24
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": -0.7017655416598378,
+          "sum_time_reduction_pct": 0.06646401916227118,
+          "candidate_wins": 9,
+          "ties": 0,
+          "pairs": 24
+        }
+      }
+    },
+    {
+      "kind": "current_full_producer_consumer_abi",
+      "path": "output/_v1110/native_perf50/weapon_chain_bundle/ab_assessment_32.json",
+      "sha256": "a1798482403c7376c962876b5cf36080879d5086e70236345e6dbbe51e715159",
+      "baseline_dll_sha256": "d2064b3f17d8168cf87a2e9f46e9fb336ffe4aaf6581c27d93350b2c41477a57",
+      "candidate_dll_sha256": "535d44263df070cd90a203d58fc95daf1956ae5c05ce3a6b5b28ed1b83ae8a14",
+      "metrics": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": -2.0578866316477873,
+          "sum_time_reduction_pct": -1.2804259634888515,
+          "candidate_wins": 12,
+          "ties": 1,
+          "pairs": 32
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": -2.086333544736918,
+          "sum_time_reduction_pct": -1.394689840549379,
+          "candidate_wins": 12,
+          "ties": 0,
+          "pairs": 32
+        }
+      }
+    },
+    {
+      "kind": "current_concrete_weapon_producers_inline",
+      "path": "output/_v1110/native_perf50/weapon_inline_chain_bundle/ab_assessment_32.json",
+      "sha256": "de81a95fff4e3052b12699c0f769ef4147b3b32c41952df4c70624c1bbcf6ffc",
+      "baseline_dll_sha256": "d2064b3f17d8168cf87a2e9f46e9fb336ffe4aaf6581c27d93350b2c41477a57",
+      "candidate_dll_sha256": "b862fc4b122ff7983a66f86680f18a9e4599be0c1269dc9cee5c2f4e397c78ea",
+      "metrics": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": -0.17667844522968323,
+          "sum_time_reduction_pct": 0.10346124905944443,
+          "candidate_wins": 15,
+          "ties": 1,
+          "pairs": 32
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 0.06925850966976177,
+          "sum_time_reduction_pct": -1.0046485824187767,
+          "candidate_wins": 16,
+          "ties": 0,
+          "pairs": 32
+        }
+      }
+    }
+  ],
+  "mechanism": "Real typed producer/consumer path reached; second trial preserves concrete Weapon types and removes both independent tiny producer functions; Character damage already inlined into Item damage",
+  "rejected_because": "Neither new trial meets predeclared final32 CPU and wall paired median criteria; no samples or extrema removed",
+  "no_more_same_source_measurements": true,
+  "all818432_retained_and_new_formal_semantic_cases_passed_in_both_new_trials": true,
+  "no_claim_of_candidate2604_release_acceptance": true,
+  "neither_candidate_deployed": true,
+  "production_dll_sha256": "d2064b3f17d8168cf87a2e9f46e9fb336ffe4aaf6581c27d93350b2c41477a57",
+  "normalized20_second_trial": {
+    "no_additional_timing": true,
+    "dll_sha256": "b862fc4b122ff7983a66f86680f18a9e4599be0c1269dc9cee5c2f4e397c78ea",
+    "median": 169.22526880981496,
+    "minimum": 158.77518639821133,
+    "maximum": 182.49498161720618,
+    "global_fitted_point": 170.75216621437954,
+    "extrapolation": true,
+    "interpretation": "Fit-derived estimates, not direct20% observations"
+  },
+  "next_direction": "assembly_geometry_and_membership",
+  "third_direction": "event_payload_and_listener_records",
+  "three_direction_goal_still_active": true,
+  "bound": "Does not establish that every future typed-arithmetic design is unprofitable; closes these independently evaluated ABI and tiny-producer slices and avoids repeating prior rejected math/flags packages"
+}

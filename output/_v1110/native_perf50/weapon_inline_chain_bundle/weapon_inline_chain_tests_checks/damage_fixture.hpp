@@ -1,0 +1,236 @@
+#include "native_event_kernel.hpp"
+constexpr gd::GdStr battle_string_literals[] = {
+    {"\n\n", 2u, 2274317941u},
+    {"CARD_COUNT", 10u, 1490789295u},
+    {"num", 3u, 242376115u},
+    {"CARD_HINT", 9u, 4169059801u},
+    {"character_vampirism_changed", 27u, 75150398u},
+    {"onVampirismChanged", 18u, 3624660862u},
+    {"character_spikes_changed", 24u, 3463900413u},
+    {"onSpikesChanged", 15u, 3715123341u},
+    {"", 0u, 2166136261u},
+    {"attack", 6u, 1167440125u},
+    {"win", 3u, 200788825u},
+    {"lose", 4u, 3509868664u},
+    {"unknown", 7u, 2608177081u},
+    {"character_", 10u, 2085970269u},
+    {"_changed", 8u, 3417166458u},
+    {"Player", 6u, 477166624u},
+    {"Opponent", 8u, 1032749700u},
+    {"Character.gd:327", 16u, 3219899945u},
+    {"onPreDealDamage_early", 21u, 1141032398u},
+    {"pre_take_damage", 15u, 2330033632u},
+    {"onPreDealDamage_late", 20u, 4290954099u},
+    {"pre_take_damage_late", 20u, 571519801u},
+    {"Poison", 6u, 3158204625u},
+    {"Block", 5u, 3171368962u},
+    {"Fatigue", 7u, 1556357630u},
+    {"Hit", 3u, 1700614218u},
+    {"dealt_damage_signal_placeholder", 31u, 1864214166u},
+    {"character_attacked", 18u, 2439462988u},
+    {"character_damaged", 17u, 745527748u},
+    {"onDealtDamage", 13u, 1467360435u},
+    {"character_healed", 16u, 2989261042u},
+    {"character_overhealed", 20u, 177632284u},
+    {"reincarnated", 12u, 2408540175u},
+    {"temporary_max_health_changed", 28u, 310654751u},
+    {"character_pre_use_stamina", 25u, 4061960724u},
+    {"character_used_stamina", 22u, 4094391974u},
+    {"character_stunned", 17u, 4164697708u},
+    {"fatigue_damage_changed", 22u, 2103754981u},
+    {"blinding_light_ended", 20u, 2616732264u},
+    {"battle_rage_started", 19u, 3997014835u},
+    {"battle_rage_ended", 17u, 4230921894u},
+    {"class_changed", 13u, 1615855124u},
+    {"health", 6u, 1805184399u},
+    {"stamina", 7u, 3875003702u},
+    {"randPitch", 9u, 1151803428u},
+    {"character_invulnerable_start", 28u, 2327172069u},
+    {"character_invulnerable_end", 26u, 3350240732u},
+    {"recalculateMaxStamina", 21u, 508469027u},
+    {"Stamina Sack", 12u, 3135812348u},
+    {"_", 1u, 3658226030u},
+    {"Stone", 5u, 1842662042u},
+    {"name", 4u, 2369371622u},
+    {"identifier", 10u, 681945150u},
+    {"index", 5u, 151693739u},
+    {"minDam", 6u, 3647452719u},
+    {"maxDam", 6u, 592428749u},
+    {"staminaCost", 11u, 692264327u},
+    {"block", 5u, 3943480674u},
+    {"cd", 2u, 1529452802u},
+    {"extraCds", 8u, 295123783u},
+    {"accuracy", 8u, 1889185700u},
+    {"canActivate", 11u, 2277690352u},
+    {"chance", 6u, 2459084481u},
+    {"chance2", 7u, 2950484105u},
+    {"shopChance", 10u, 1435148261u},
+    {"types", 5u, 4292920474u},
+    {"tags", 4u, 4095142816u},
+    {"physics", 7u, 2267225250u},
+    {"rarity", 6u, 1266615690u},
+    {"price", 5u, 189023530u},
+    {"classes", 7u, 1882039975u},
+    {"randomUniquePool", 16u, 3614658971u},
+    {"hasBattleRageEffect", 19u, 3074838841u},
+    {"gatedItems", 10u, 4187939518u},
+    {"startsSubclass", 14u, 2130492966u},
+    {"gateItem", 8u, 1563718697u},
+    {"gate_item", 9u, 968161264u},
+    {"originatingRecipes", 18u, 3632248325u},
+    {"originating_recipes", 19u, 1356245250u},
+    {"animationScene", 14u, 1958236555u},
+    {"flickerAni", 10u, 869505055u},
+    {"flicker_animation", 17u, 599064606u},
+    {"flickerMinDist", 14u, 3154533517u},
+    {"flicker_min_dist", 16u, 1027794029u},
+    {"flickerMaxDist", 14u, 766191159u},
+    {"flicker_max_dist", 16u, 1768726851u},
+    {"flickerMinSpeed", 15u, 3355891604u},
+    {"flicker_min_speed", 17u, 1515266548u},
+    {"flickerMaxSpeed", 15u, 2566538706u},
+    {"flicker_max_speed", 17u, 3198618670u},
+    {"connectorReadyRoll", 18u, 3610243000u},
+    {"connector_ready_roll", 20u, 516633754u},
+    {"gemRoll", 7u, 352763615u},
+    {"gem_roll", 8u, 1358800554u},
+    {"sceneDepth", 10u, 637688668u},
+    {"scene_depth", 11u, 3992921433u},
+    {"releaseState", 12u, 2486442979u},
+    {"release_state", 13u, 725990852u},
+    {"params", 6u, 559900755u},
+    {"namedParams", 11u, 212769148u},
+    {"named_params", 12u, 3034422257u},
+    {"gainedStacks", 12u, 1306778278u},
+    {"removedStacks", 13u, 140807226u},
+    {"usedStacks", 10u, 3590608929u},
+    {"onDebuffsChanged", 16u, 4096794781u},
+    {"character_mana_changed", 22u, 798563205u},
+    {"onManaChanged", 13u, 3105672029u},
+    {"lifesteal", 9u, 1515578962u},
+    {"dam", 3u, 4031722721u},
+    {"mana", 4u, 3650585354u},
+    {"potion_emptied", 14u, 70999789u},
+    {"onPotionEmptied", 15u, 4255313949u},
+    {"Bagtacular", 10u, 2131747329u},
+    {"buffs", 5u, 2149256365u},
+    {"heal", 4u, 979982427u},
+    {"dur_unhealing", 13u, 3047247524u},
+    {"UnhealingTimer", 14u, 2986033917u},
+    {"buffEnded", 9u, 3457903416u},
+    {"revealspeed", 11u, 3267256187u},
+    {"empower", 7u, 2037162760u},
+    {"attacked", 8u, 3381721668u},
+    {"onAffectedAttacked", 18u, 2827661201u},
+    {"lifesteal_scaling", 17u, 610492256u},
+    {"PotionTriggerTimer", 18u, 999831227u},
+    {"triggerNextPotion", 17u, 745728413u},
+    {"delay", 5u, 1322381784u},
+    {"regent", 6u, 4290639402u},
+    {"vampirism", 9u, 773404377u},
+    {"spikes", 6u, 439106706u},
+    {"luck", 4u, 4145017712u},
+    {"luckt", 5u, 4061892428u},
+    {"regen", 5u, 16724762u},
+    {"Exclusive/Chess/ChessPiece.gd:74", 32u, 2209030417u},
+    {"HINT_Chess", 10u, 68829135u},
+    {"White", 5u, 1827351814u},
+    {"Corrupted Crystal", 17u, 1233848549u},
+    {"debuffs", 7u, 504032524u},
+    {"speed", 5u, 2072037248u},
+    {"onBattleRageStarted", 19u, 3330696088u},
+    {"onBattleRageEnded", 17u, 1252110145u},
+    {"duration", 8u, 799079693u},
+    {"dur", 3u, 3509645056u},
+    {"dur_1", 5u, 1189330420u},
+    {"BuffTimer", 9u, 194754125u},
+    {"blind", 5u, 274826164u},
+    {"activated", 9u, 2866667388u},
+    {"onCardRevealed", 14u, 755762322u},
+    {"pos", 3u, 1412654217u},
+    {"Joker_COUNTER", 13u, 333425847u},
+    {"pairs", 5u, 1637539686u},
+    {"triplets", 8u, 3869841120u},
+    {"quadruples", 10u, 3542246839u},
+    {"\n", 1u, 252472541u},
+    {"cards", 5u, 2180079684u},
+    {"character_lucky_changed", 23u, 2259242176u},
+    {"onLuckyChanged", 14u, 1760969932u},
+    {"sales", 5u, 2258376375u},
+    {"luckneeded", 10u, 1930291013u},
+    {"manat", 5u, 126091098u},
+    {"fatiguemana", 11u, 2121368953u},
+    {"potion_triggered", 16u, 729283976u},
+    {"onPotionTriggered", 17u, 2537318808u},
+    {"heal_food", 9u, 2824253696u},
+    {"heat", 4u, 577319571u},
+    {"gold", 4u, 3966162835u},
+    {"speed2", 6u, 498752822u},
+    {"Goobling", 8u, 1161906606u},
+    {"used_stamina", 12u, 2801525262u},
+    {"onItemUsedStamina", 17u, 2944104951u},
+    {"staminat", 8u, 3660664550u},
+    {"onWeaponAttacked", 16u, 3445043441u},
+    {"speedreduction", 14u, 1031897425u},
+    {"dambonus", 8u, 2769252496u},
+    {"slow", 4u, 1838498488u},
+    {"poisont", 7u, 1955680031u},
+    {"critdam", 7u, 4140065929u},
+    {"onAttack", 8u, 3086142220u},
+    {"Perfect Amethyst_DESCR", 22u, 2265897535u},
+    {"@", 1u, 3305896031u},
+    {",", 1u, 688690635u},
+    {"GRD", 3u, 2769401224u},
+    {"fd=", 3u, 4228204814u},
+    {" cp=", 4u, 3282868099u},
+    {" aff=", 5u, 2844077393u},
+    {"n=", 2u, 271970020u},
+    {"PoisonTimer", 11u, 1785938446u},
+    {"poisonTimerTimeout", 18u, 792798457u},
+};
+#include <xmmintrin.h>
+static bool chain_closed=false;
+static unsigned chain_daz=0;
+#include <bit>
+#include <cassert>
+#include <cfenv>
+#include <iostream>
+using V=gd::GdVal;
+using Character=Gd__gd_core__CoreCharacter;
+using Context=Gd__gd_core__CoreContext;
+using Source=Gd__gd_core__CoreDamageSource;
+using Result=Gd__gd_core__CoreDamageResult;
+static uint64_t mix(uint64_t h,uint64_t x){return(h^x)*1099511628211ULL;}
+static uint64_t hash(const V& v){uint64_t h=mix(1469598103934665603ULL,unsigned(v.kind));switch(v.kind){
+case V::Kind::Null:return h;case V::Kind::Bool:return mix(h,v.b);case V::Kind::Int:return mix(h,uint64_t(v.i));case V::Kind::Float:return mix(h,std::bit_cast<uint64_t>(v.f));
+case V::Kind::Vec2:return mix(mix(h,std::bit_cast<uint64_t>(v.v2.x)),std::bit_cast<uint64_t>(v.v2.y));
+case V::Kind::Obj:return mix(mix(h,v.obj?v.obj->meta()->id:0),v.obj?v.obj->gid_:0);
+case V::Kind::Arr:if(v.arr){h=mix(h,v.arr->len);for(unsigned i=0;i<v.arr->len;++i)h=mix(h,hash(v.arr->data[i]));}return h;
+case V::Kind::Dict:if(v.dict){h=mix(h,v.dict->len);for(unsigned i=0;i<v.dict->len;++i){h=mix(h,hash(v.dict->entries[i].key));h=mix(h,hash(v.dict->entries[i].val));}}return h;
+case V::Kind::Str:if(v.str){h=mix(h,v.str->len);for(unsigned i=0;i<v.str->len;++i)h=mix(h,(unsigned char)v.str->data[i]);}return h;default:return h;}}
+struct Fixture {
+    gd::BattleCtx c{65536};Context* ctx;Character* attacker;Character* defender;Source* source;
+    explicit Fixture(unsigned scenario){
+        c.native_event_kernel=true;c.native_event_audit=true;c.native_resolved_dispatch=true;c.native_resolved_audit=true;
+        V seed[]={V::from_int(42)};ctx=static_cast<Context*>(gd::construct_class(c,&META_Gd__gd_core__CoreContext,seed,1).obj);
+        V a[]={V::from_obj(ctx),V::from_int(0)},b[]={V::from_obj(ctx),V::from_int(1)};
+        attacker=static_cast<Character*>(gd::construct_class(c,&META_Gd__gd_core__CoreCharacter,a,2).obj);
+        defender=static_cast<Character*>(gd::construct_class(c,&META_Gd__gd_core__CoreCharacter,b,2).obj);
+        ctx->f_player=V::from_obj(attacker);ctx->f_opponent=V::from_obj(defender);
+        attacker->f_opponent=V::from_obj(defender);defender->f_opponent=V::from_obj(attacker);
+        attacker->f_curHealth=defender->f_curHealth=V::from_float(1000.0);
+        ctx->f_native_label_mode=V::from_int(3);ctx->f_label_rng_enabled=V::from_bool(false);
+        source=static_cast<Source*>(gd::construct_class(c,&META_Gd__gd_core__CoreDamageSource,nullptr,0).obj);
+
+        source->f_minDamage=V::from_int(5);source->f_maxDamage=V::from_int(10);
+        source->f_types=V::from_arr(gd::GdArr::from_init(c.arena,{V::from_int((scenario/64)%7)}));
+        source->f_accuracy=V::from_float(73.25);source->f_critChancePercent=V::from_float(38.5);
+        source->f_flags=V::from_int(scenario%64);source->f_origin=V::null();
+        const V block=V::from_int((scenario%4)*3);defender->fn_setBlock(&block,1);
+        defender->f_damageReduction=V::from_float((scenario%3)*2.0);
+        defender->f_damageResistance=V::from_float((scenario%5)*.1);
+        defender->f_isDead=V::from_bool(scenario%31==0);
+        defender->f_invulnerable=V::from_bool(scenario%17==0);
+        defender->f_dodgeStacks=V::from_int(scenario%11==0?1:0);
+    }
+};

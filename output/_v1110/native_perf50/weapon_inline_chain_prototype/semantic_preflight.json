@@ -1,0 +1,62 @@
+{
+  "passed": true,
+  "cases": 818432,
+  "dll_sha256": "b3b9f411a3fe2d850c289a307791848cb0d18682b088c7e9f05954d4eea85d56",
+  "retained_cases": 682304,
+  "retained_reports": {
+    "helpers": {
+      "cases": 204288,
+      "report": "typed_helper_tests.json",
+      "sha256": "7c1708f92018554570975c78efb1df6a2631215065bf2f435a1dba6578c754fc"
+    },
+    "methods": {
+      "cases": 14112,
+      "report": "buff_integer_methods_tests.json",
+      "sha256": "6a184ddd2e60eb2ef3502ad99aaa3d6f05e807b0c085482deb9343d973cc6ae8"
+    },
+    "builtins": {
+      "cases": 128128,
+      "report": "container_builtins_tests.json",
+      "sha256": "0ad0de39cd0ea560ccbee48265c2302392e5ee9d7f767966e67a4eb7173bde3e"
+    },
+    "truth": {
+      "cases": 34400,
+      "report": "scalar_truth_tests.json",
+      "sha256": "eddfdebbfde454e291ce3f63a64d80fa392b710df006317562a414cd53e65353"
+    },
+    "private": {
+      "cases": 234880,
+      "report": "private_tests.json",
+      "sha256": "2b6b55b6212437ed98b12d886d6d98b1b5a528809b9233bd47c4107dcf1ccd11"
+    },
+    "display": {
+      "cases": 21888,
+      "report": "retained_display.json",
+      "sha256": "9e6c023a03671b3c4e82d9fadadeafc75975ba09d0ffbe4dd7fc3bcb9d1958a0"
+    },
+    "control": {
+      "cases": 44608,
+      "report": "retained_control.json",
+      "sha256": "451e43fbc38b13004da891998f4615b0d0728cac48f8ebac377a689e492fb70b"
+    }
+  },
+  "production_comparison_report_sha256": "dbdf747108964fae8cfe1a9757b95da2f31f36fcec06909bd1397788cab8817f",
+  "production_comparison_passed": false,
+  "normal_vs_production_difference_cases": {
+    "case_hashes": 56,
+    "legacy_counter_hashes": 0
+  },
+  "matched_normal_baseline_dll_sha256": "293b87e24986dd9dcf2dbecff5510fb7a0b0e993324478bd09ba22bb88aadfba",
+  "matched_normal_chain_cases": 136128,
+  "matched_normal_diagnostic_sha256": "473ce254ea4d43da6c71d5cd6bcb3328ca76cdd9825b8e1ac4251f055a2d6322",
+  "requires_actual_production_pgo_comparison_before_timing": true,
+  "source_projection": {
+    "passed": true,
+    "exact_two_layer_inverse_matches_retained_source": true,
+    "all674_object_headers_and_all_layouts_unchanged": true,
+    "full_original_bodies_retained": true,
+    "all_prior_optimizations_retained": true,
+    "formal_full20_fresh18_pgo_required": true
+  },
+  "no_speed_claim": true
+}

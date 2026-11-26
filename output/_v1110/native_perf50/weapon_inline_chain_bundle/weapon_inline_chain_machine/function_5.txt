@@ -1,0 +1,164 @@
+
+bundle.dll:     file format pei-x86-64
+
+
+Disassembly of section .text:
+
+00000001df8198c0 <_ZN2gd12weapon_chain16call_item_damageERNS_9BattleCtxERKNS_5GdValES5_>:
+   1df8198c0:	push   %rbx
+   1df8198c1:	add    $0xffffffffffffff80,%rsp
+   1df8198c5:	cmpb   $0x0,0xa1(%rdx)
+   1df8198cc:	mov    %r8,%r11
+   1df8198cf:	movzbl 0xd0(%rdx),%eax
+   1df8198d6:	mov    %rcx,%rbx
+   1df8198d9:	mov    %rdx,%r10
+   1df8198dc:	mov    %r9,%r8
+   1df8198df:	je     1df8199ab <_ZN2gd12weapon_chain16call_item_damageERNS_9BattleCtxERKNS_5GdValES5_+0xeb>
+   1df8198e5:	test   %al,%al
+   1df8198e7:	je     1df8199ab <_ZN2gd12weapon_chain16call_item_damageERNS_9BattleCtxERKNS_5GdValES5_+0xeb>
+   1df8198ed:	cmpb   $0x0,0x117(%rdx)
+   1df8198f4:	je     1df8199ab <_ZN2gd12weapon_chain16call_item_damageERNS_9BattleCtxERKNS_5GdValES5_+0xeb>
+   1df8198fa:	cmpb   $0x9,(%r11)
+   1df8198fe:	jne    1df8199ab <_ZN2gd12weapon_chain16call_item_damageERNS_9BattleCtxERKNS_5GdValES5_+0xeb>
+   1df819904:	mov    0x8(%r11),%rcx
+   1df819908:	test   %rcx,%rcx
+   1df81990b:	je     1df8199ab <_ZN2gd12weapon_chain16call_item_damageERNS_9BattleCtxERKNS_5GdValES5_+0xeb>
+   1df819911:	cmp    0x8(%rcx),%rdx
+   1df819915:	jne    1df8199ab <_ZN2gd12weapon_chain16call_item_damageERNS_9BattleCtxERKNS_5GdValES5_+0xeb>
+   1df81991b:	mov    0x28(%rcx),%rdx
+   1df81991f:	test   %rdx,%rdx
+   1df819922:	je     1df8199ab <_ZN2gd12weapon_chain16call_item_damageERNS_9BattleCtxERKNS_5GdValES5_+0xeb>
+   1df819928:	cmpb   $0x0,0xd1(%r10)
+   1df819930:	jne    1df819967 <_ZN2gd12weapon_chain16call_item_damageERNS_9BattleCtxERKNS_5GdValES5_+0xa7>
+   1df819932:	lea    -0xa8d329(%rip),%rax        # 1ded8c610 <_ZN2gd22native_resolved_invokeI21Gd__gd_core__CoreItemXadL_ZNS1_13fn_dealDamageEPKNS_5GdValEiEEEES2_PNS_5GdObjES4_i>
+   1df819939:	cmp    %rax,0x28(%rdx)
+   1df81993d:	jne    1df8199ab <_ZN2gd12weapon_chain16call_item_damageERNS_9BattleCtxERKNS_5GdValES5_+0xeb>
+   1df81993f:	cmpb   $0x0,0xd2(%r10)
+   1df819947:	jne    1df819ad3 <_ZN2gd12weapon_chain16call_item_damageERNS_9BattleCtxERKNS_5GdValES5_+0x213>
+   1df81994d:	mov    0x8(%r11),%rdx
+   1df819951:	test   %rdx,%rdx
+   1df819954:	je     1df8199ab <_ZN2gd12weapon_chain16call_item_damageERNS_9BattleCtxERKNS_5GdValES5_+0xeb>
+   1df819956:	mov    %rbx,%rcx
+   1df819959:	call   1df7d8180 <_ZN2gd12weapon_chain11item_damageER21Gd__gd_core__CoreItemRKNS_5GdValE>
+   1df81995e:	mov    %rbx,%rax
+   1df819961:	sub    $0xffffffffffffff80,%rsp
+   1df819965:	pop    %rbx
+   1df819966:	ret
+   1df819967:	mov    %r11,0xa0(%rsp)
+   1df81996f:	mov    %r10,0x98(%rsp)
+   1df819977:	mov    %rdx,0x38(%rsp)
+   1df81997c:	mov    %r9,0xa8(%rsp)
+   1df819984:	call   1df7fa0a0 <_ZN2gdL25native_resolved_exact_rowEPKNS_5GdObjE.lto_priv.0>
+   1df819989:	mov    0x38(%rsp),%rdx
+   1df81998e:	mov    0x98(%rsp),%r10
+   1df819996:	mov    0xa0(%rsp),%r11
+   1df81999e:	mov    0xa8(%rsp),%r8
+   1df8199a6:	cmp    %rax,%rdx
+   1df8199a9:	je     1df819932 <_ZN2gd12weapon_chain16call_item_damageERNS_9BattleCtxERKNS_5GdValES5_+0x72>
+   1df8199ab:	vmovdqu (%r8),%xmm0
+   1df8199b0:	mov    0x10(%r8),%rax
+   1df8199b4:	cmpb   $0x0,0xd0(%r10)
+   1df8199bc:	mov    %rax,0x50(%rsp)
+   1df8199c1:	vmovdqa %xmm0,0x40(%rsp)
+   1df8199c7:	je     1df8199f3 <_ZN2gd12weapon_chain16call_item_damageERNS_9BattleCtxERKNS_5GdValES5_+0x133>
+   1df8199c9:	cmpb   $0x9,(%r11)
+   1df8199cd:	je     1df819af8 <_ZN2gd12weapon_chain16call_item_damageERNS_9BattleCtxERKNS_5GdValES5_+0x238>
+   1df8199d3:	movzbl (%r11),%eax
+   1df8199d7:	cmp    $0x7,%al
+   1df8199d9:	je     1df819adf <_ZN2gd12weapon_chain16call_item_damageERNS_9BattleCtxERKNS_5GdValES5_+0x21f>
+   1df8199df:	cmp    $0x8,%al
+   1df8199e1:	je     1df819adf <_ZN2gd12weapon_chain16call_item_damageERNS_9BattleCtxERKNS_5GdValES5_+0x21f>
+   1df8199e7:	cmp    $0xb,%al
+   1df8199e9:	je     1df819adf <_ZN2gd12weapon_chain16call_item_damageERNS_9BattleCtxERKNS_5GdValES5_+0x21f>
+   1df8199ef:	cmp    $0xa,%al
+   1df8199f1:	je     1df819a16 <_ZN2gd12weapon_chain16call_item_damageERNS_9BattleCtxERKNS_5GdValES5_+0x156>
+   1df8199f3:	lea    0x40(%rsp),%rax
+   1df8199f8:	mov    $0x141,%r9d
+   1df8199fe:	mov    %r11,%r8
+   1df819a01:	mov    %r10,%rdx
+   1df819a04:	mov    %rax,0x20(%rsp)
+   1df819a09:	mov    %rbx,%rcx
+   1df819a0c:	call   1df6e12e0 <_ZN2gd11call_methodERNS_9BattleCtxERKNS_5GdValEjPS3_i.constprop.1>
+   1df819a11:	jmp    1df81995e <_ZN2gd12weapon_chain16call_item_damageERNS_9BattleCtxERKNS_5GdValES5_+0x9e>
+   1df819a16:	cmpb   $0x0,0xd2(%r10)
+   1df819a1e:	je     1df819a4a <_ZN2gd12weapon_chain16call_item_damageERNS_9BattleCtxERKNS_5GdValES5_+0x18a>
+   1df819a20:	mov    $0x9,%ecx
+   1df819a25:	mov    %r11,0xa0(%rsp)
+   1df819a2d:	mov    %r10,0x98(%rsp)
+   1df819a35:	call   1df1812f0 <_ZN2gd25native_inline_variant_hitEj.part.0>
+   1df819a3a:	mov    0xa0(%rsp),%r11
+   1df819a42:	mov    0x98(%rsp),%r10
+   1df819a4a:	mov    0x8(%r11),%rdx
+   1df819a4e:	test   %rdx,%rdx
+   1df819a51:	je     1df819aea <_ZN2gd12weapon_chain16call_item_damageERNS_9BattleCtxERKNS_5GdValES5_+0x22a>
+   1df819a57:	cmpq   $0x0,0x38(%rdx)
+   1df819a5c:	je     1df819aea <_ZN2gd12weapon_chain16call_item_damageERNS_9BattleCtxERKNS_5GdValES5_+0x22a>
+   1df819a62:	mov    %r10,%rcx
+   1df819a65:	mov    %r11,0xa0(%rsp)
+   1df819a6d:	mov    %r10,0x98(%rsp)
+   1df819a75:	call   1df6e0d80 <_ZN2gd26native_timer_observe_classERNS_9BattleCtxEPKNS_11GdClassMetaE>
+   1df819a7a:	mov    0xa0(%rsp),%r11
+   1df819a82:	xor    %eax,%eax
+   1df819a84:	lea    0x60(%rsp),%rdx
+   1df819a89:	mov    %rax,0x68(%rsp)
+   1df819a8e:	mov    0x98(%rsp),%rcx
+   1df819a96:	mov    $0x1,%r9d
+   1df819a9c:	lea    0x40(%rsp),%r8
+   1df819aa1:	mov    0x8(%r11),%rax
+   1df819aa5:	movb   $0x0,0x60(%rsp)
+   1df819aaa:	mov    %rdx,0x20(%rsp)
+   1df819aaf:	mov    $0x141,%edx
+   1df819ab4:	call   *0x38(%rax)
+   1df819ab7:	test   %al,%al
+   1df819ab9:	je     1df819aea <_ZN2gd12weapon_chain16call_item_damageERNS_9BattleCtxERKNS_5GdValES5_+0x22a>
+   1df819abb:	vmovdqa 0x60(%rsp),%xmm0
+   1df819ac1:	mov    0x70(%rsp),%rax
+   1df819ac6:	vmovdqu %xmm0,(%rbx)
+   1df819aca:	mov    %rax,0x10(%rbx)
+   1df819ace:	jmp    1df81995e <_ZN2gd12weapon_chain16call_item_damageERNS_9BattleCtxERKNS_5GdValES5_+0x9e>
+   1df819ad3:	incq   0xd8(%r10)
+   1df819ada:	jmp    1df81994d <_ZN2gd12weapon_chain16call_item_damageERNS_9BattleCtxERKNS_5GdValES5_+0x8d>
+   1df819adf:	cmpq   $0x0,0x8(%r11)
+   1df819ae4:	jne    1df8199f3 <_ZN2gd12weapon_chain16call_item_damageERNS_9BattleCtxERKNS_5GdValES5_+0x133>
+   1df819aea:	xor    %edx,%edx
+   1df819aec:	movb   $0x0,(%rbx)
+   1df819aef:	mov    %rdx,0x8(%rbx)
+   1df819af3:	jmp    1df81995e <_ZN2gd12weapon_chain16call_item_damageERNS_9BattleCtxERKNS_5GdValES5_+0x9e>
+   1df819af8:	mov    0x8(%r11),%rdx
+   1df819afc:	test   %rdx,%rdx
+   1df819aff:	je     1df8199f3 <_ZN2gd12weapon_chain16call_item_damageERNS_9BattleCtxERKNS_5GdValES5_+0x133>
+   1df819b05:	mov    0x28(%rdx),%r8
+   1df819b09:	test   %r8,%r8
+   1df819b0c:	je     1df8199f3 <_ZN2gd12weapon_chain16call_item_damageERNS_9BattleCtxERKNS_5GdValES5_+0x133>
+   1df819b12:	cmpb   $0x0,0xd1(%r10)
+   1df819b1a:	jne    1df819b4f <_ZN2gd12weapon_chain16call_item_damageERNS_9BattleCtxERKNS_5GdValES5_+0x28f>
+   1df819b1c:	mov    0x28(%r8),%rax
+   1df819b20:	test   %rax,%rax
+   1df819b23:	je     1df8199f3 <_ZN2gd12weapon_chain16call_item_damageERNS_9BattleCtxERKNS_5GdValES5_+0x133>
+   1df819b29:	cmpb   $0x0,0xd2(%r10)
+   1df819b31:	je     1df819b3a <_ZN2gd12weapon_chain16call_item_damageERNS_9BattleCtxERKNS_5GdValES5_+0x27a>
+   1df819b33:	incq   0xd8(%r10)
+   1df819b3a:	mov    $0x1,%r9d
+   1df819b40:	lea    0x40(%rsp),%r8
+   1df819b45:	mov    %rbx,%rcx
+   1df819b48:	call   *%rax
+   1df819b4a:	jmp    1df81995e <_ZN2gd12weapon_chain16call_item_damageERNS_9BattleCtxERKNS_5GdValES5_+0x9e>
+   1df819b4f:	mov    %rdx,%rcx
+   1df819b52:	mov    %r11,0xa0(%rsp)
+   1df819b5a:	mov    %r10,0x98(%rsp)
+   1df819b62:	mov    %r8,0x38(%rsp)
+   1df819b67:	call   1df7fa0a0 <_ZN2gdL25native_resolved_exact_rowEPKNS_5GdObjE.lto_priv.0>
+   1df819b6c:	mov    0x38(%rsp),%r8
+   1df819b71:	mov    0x98(%rsp),%r10
+   1df819b79:	mov    0xa0(%rsp),%r11
+   1df819b81:	cmp    %rax,%r8
+   1df819b84:	jne    1df819b95 <_ZN2gd12weapon_chain16call_item_damageERNS_9BattleCtxERKNS_5GdValES5_+0x2d5>
+   1df819b86:	mov    0x28(%r8),%rax
+   1df819b8a:	test   %rax,%rax
+   1df819b8d:	je     1df819b95 <_ZN2gd12weapon_chain16call_item_damageERNS_9BattleCtxERKNS_5GdValES5_+0x2d5>
+   1df819b8f:	mov    0x8(%r11),%rdx
+   1df819b93:	jmp    1df819b29 <_ZN2gd12weapon_chain16call_item_damageERNS_9BattleCtxERKNS_5GdValES5_+0x269>
+   1df819b95:	cmpb   $0x0,0xd0(%r10)
+   1df819b9d:	jne    1df8199d3 <_ZN2gd12weapon_chain16call_item_damageERNS_9BattleCtxERKNS_5GdValES5_+0x113>
+   1df819ba3:	jmp    1df8199f3 <_ZN2gd12weapon_chain16call_item_damageERNS_9BattleCtxERKNS_5GdValES5_+0x133>
+   1df819ba8:	nopl   0x0(%rax,%rax,1)

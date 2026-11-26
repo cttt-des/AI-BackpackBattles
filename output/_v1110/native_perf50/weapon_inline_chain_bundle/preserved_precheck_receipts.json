@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "dll_sha256": "b862fc4b122ff7983a66f86680f18a9e4599be0c1269dc9cee5c2f4e397c78ea",
+  "completed_without_repetition": [
+    "prepare_regeneration.py",
+    "generate_property_tests.py",
+    "generate_type_constructor_tests.py",
+    "verify_event_identity.py",
+    "verify_lazy_diagnostics.py",
+    "verify_components.py",
+    "verify_static_collections.py",
+    "verify_static_setup.py",
+    "verify_dispatch_chain.py",
+    "verify_spatial.py"
+  ],
+  "original_build_log_sha256": "614898868fb3fd61fb7a2b1bbc4365e6bd230a97810db12a82f80957c7b17922",
+  "original_identity_sha256": "90bb51a5ce94b883cbc787cd4266744089e80de67ee9fe4dc574009da1cb4407",
+  "source_manifest_sha256": "c2aa76e70d09b69aaae16421f6612d4795f07619505bf1aa5bdfcaa2d051d51b"
+}

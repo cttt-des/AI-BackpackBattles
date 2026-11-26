@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "repair": "Add compatible exact_inverse_matches_retained_source result key; two-layer byte inverse unchanged",
+  "original_script_sha256": "01f41e462b89cab7f37dc11be900b167cbf021b679d5e72e65130b0576ecf980",
+  "repaired_script_sha256": "f0f40a1c7ef1839d220812bc971fd886f81bdf3d537f1b06befd6bee661bf3c2",
+  "dll_sha256": "b862fc4b122ff7983a66f86680f18a9e4599be0c1269dc9cee5c2f4e397c78ea",
+  "source_manifest_sha256": "c2aa76e70d09b69aaae16421f6612d4795f07619505bf1aa5bdfcaa2d051d51b",
+  "all714_source_and_package_files_unchanged": true,
+  "all20_release_objects_unchanged": true,
+  "no_benchmark_has_started": true,
+  "first_failed_check": "verify_motion_indices.py",
+  "first_failure_log_sha256": "666431d488b6423262b0232d980e772c33fb213c54f4dda65b816204f5c36bff"
+}

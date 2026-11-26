@@ -1,0 +1,206 @@
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/native_event_kernel.hpp:2,
+                 from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/native_weapon_damage_chain.hpp:2,
+                 from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\weapon_inline_chain_prototype\prototype_src\gen\shards\shard_09.cpp:1:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gd_rt.hpp:6: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    6 | #pragma STDC FP_CONTRACT OFF
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/native_inline_dispatch.hpp:6,
+                 from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/native_event_kernel.hpp:3:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core__CoreItem.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/native_inline_dispatch.hpp:7:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core__CoreContext.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/native_inline_dispatch.hpp:8:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core__CoreCharacter.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/native_inline_dispatch.hpp:9:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core__CoreBuff.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/native_inline_dispatch.hpp:10:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core_items__Gems__Gem.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core_items__Gems__Gem.hpp:3:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core_items__Item.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/native_event_kernel.hpp:7:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core__CoreCombatLog.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/native_event_kernel.hpp:8:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core__CoreEventBus.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/native_event_kernel.hpp:9:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core__CoreRng.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/native_event_kernel.hpp:10:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core__CoreDamageSource.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/native_event_kernel.hpp:11:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core__CoreDamageResult.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/native_event_kernel.hpp:12:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core__CoreEvent.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/native_event_kernel.hpp:13:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core__CoreRng__INNER__BalancedRng.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/native_event_kernel.hpp:155:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core__CoreItemData.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/native_event_kernel.hpp:160:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core__CoreBuff__INNER__TemporaryStacks.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/native_weapon_damage_chain.hpp:4:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core__Weapon.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core__Weapon.hpp:3:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core__Item.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/native_weapon_damage_chain.hpp:5:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core_items__Weapon.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\weapon_inline_chain_prototype\prototype_src\gen\shards\shard_09.cpp:6: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    6 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\weapon_inline_chain_prototype\prototype_src\gen\shards\shard_09.cpp:8:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core__ArtifactStoneHeat.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core__ArtifactStoneHeat.hpp:3:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core_items__Stone.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\weapon_inline_chain_prototype\prototype_src\gen\shards\shard_09.cpp:9:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core__Broom.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\weapon_inline_chain_prototype\prototype_src\gen\shards\shard_09.cpp:11:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core__CorruptedArmor.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\weapon_inline_chain_prototype\prototype_src\gen\shards\shard_09.cpp:13:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core__HealthPotion.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core__HealthPotion.hpp:3:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core__Potion.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\weapon_inline_chain_prototype\prototype_src\gen\shards\shard_09.cpp:14:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core__Lightsaber.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\weapon_inline_chain_prototype\prototype_src\gen\shards\shard_09.cpp:15:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core__PiercingArrow.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\weapon_inline_chain_prototype\prototype_src\gen\shards\shard_09.cpp:16:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core__RibSawBlade.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\weapon_inline_chain_prototype\prototype_src\gen\shards\shard_09.cpp:17:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core__StorageCoffin.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core__StorageCoffin.hpp:3:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core__Bag.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\weapon_inline_chain_prototype\prototype_src\gen\shards\shard_09.cpp:18:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core__VampiricScythe.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\weapon_inline_chain_prototype\prototype_src\gen\shards\shard_09.cpp:19:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core_items__BagofStones.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\weapon_inline_chain_prototype\prototype_src\gen\shards\shard_09.cpp:20:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core_items__Carrot.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core_items__Carrot.hpp:3:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core_items__Food.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\weapon_inline_chain_prototype\prototype_src\gen\shards\shard_09.cpp:21:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core_items__DemonicFlask.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core_items__DemonicFlask.hpp:3:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core_items__Potion.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\weapon_inline_chain_prototype\prototype_src\gen\shards\shard_09.cpp:22:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__AmuletoftheWild.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\weapon_inline_chain_prototype\prototype_src\gen\shards\shard_09.cpp:23:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__SpiritCompanion.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\weapon_inline_chain_prototype\prototype_src\gen\shards\shard_09.cpp:24:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__BookofDarkness.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\weapon_inline_chain_prototype\prototype_src\gen\shards\shard_09.cpp:25:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__BuytheHolyLight.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\weapon_inline_chain_prototype\prototype_src\gen\shards\shard_09.cpp:26:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__Chess__WhiteBishop.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__Chess__WhiteBishop.hpp:3:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__Chess__ChessPiece.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\weapon_inline_chain_prototype\prototype_src\gen\shards\shard_09.cpp:27:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__Crow.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\weapon_inline_chain_prototype\prototype_src\gen\shards\shard_09.cpp:28:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__DoubleAxe.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\weapon_inline_chain_prototype\prototype_src\gen\shards\shard_09.cpp:29:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__EmeraldWhelp.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\weapon_inline_chain_prototype\prototype_src\gen\shards\shard_09.cpp:30:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__Flame.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\weapon_inline_chain_prototype\prototype_src\gen\shards\shard_09.cpp:31:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__Generator.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\weapon_inline_chain_prototype\prototype_src\gen\shards\shard_09.cpp:32:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__Holdall.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__Holdall.hpp:3:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core_items__Bag.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\weapon_inline_chain_prototype\prototype_src\gen\shards\shard_09.cpp:33:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__KingoftheBling.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\weapon_inline_chain_prototype\prototype_src\gen\shards\shard_09.cpp:34:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__MagicMirror.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\weapon_inline_chain_prototype\prototype_src\gen\shards\shard_09.cpp:35:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__MoonArmor.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\weapon_inline_chain_prototype\prototype_src\gen\shards\shard_09.cpp:36:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core_items__SpikedShield.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core_items__SpikedShield.hpp:3:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core_items__Shield.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\weapon_inline_chain_prototype\prototype_src\gen\shards\shard_09.cpp:37:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__PuzzlebagS.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\weapon_inline_chain_prototype\prototype_src\gen\shards\shard_09.cpp:38:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__RelicCase.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\weapon_inline_chain_prototype\prototype_src\gen\shards\shard_09.cpp:39:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__ShamanMask.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\weapon_inline_chain_prototype\prototype_src\gen\shards\shard_09.cpp:40:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__Snowman.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\weapon_inline_chain_prototype\prototype_src\gen\shards\shard_09.cpp:41:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__SpringLoader.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\weapon_inline_chain_prototype\prototype_src\gen\shards\shard_09.cpp:42:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__SunShield.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\weapon_inline_chain_prototype\prototype_src\gen\shards\shard_09.cpp:43:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__TwineBadge.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\weapon_inline_chain_prototype\prototype_src\gen\shards\shard_09.cpp:44:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core_items__Exclusive__WolfEmblem.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\weapon_inline_chain_prototype\prototype_src\gen\shards\shard_09.cpp:45:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core_items__Gems__Topaz.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\weapon_inline_chain_prototype\prototype_src\gen\shards\shard_09.cpp:46:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core_items__LeatherBoots.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\weapon_inline_chain_prototype\prototype_src\gen\shards\shard_09.cpp:47:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core_items__PocketSand.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\weapon_inline_chain_prototype\prototype_src\gen\shards\shard_09.cpp:48:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core_items__Spear.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF
+In file included from D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\weapon_inline_chain_prototype\prototype_src\gen\shards\shard_09.cpp:49:
+D:/文件资料/学习/自动背包AI/output/_v1110/native_perf50/weapon_inline_chain_prototype/prototype_src/gen/hdrs/Gd__gd_core_items__VampiricArmor.hpp:2: warning: ignoring '#pragma STDC FP_CONTRACT' [-Wunknown-pragmas]
+    2 | #pragma STDC FP_CONTRACT OFF

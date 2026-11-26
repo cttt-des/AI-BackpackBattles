@@ -1,0 +1,9 @@
+{
+  "selected_assessment": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_perf50\\weapon_inline_chain_bundle\\ab_assessment_32.json",
+  "assessment_sha256": "de81a95fff4e3052b12699c0f769ef4147b3b32c41952df4c70624c1bbcf6ffc",
+  "candidate_dll_sha256": "b862fc4b122ff7983a66f86680f18a9e4599be0c1269dc9cee5c2f4e397c78ea",
+  "status": "inconclusive_retained",
+  "original24_retained": true,
+  "no_more_same_source_groups": true,
+  "not_deployed": true
+}

@@ -1,0 +1,22 @@
+
+bundle.dll:     file format pei-x86-64
+
+
+Disassembly of section .text:
+
+00000001df7d7fd0 <_ZN2gd12weapon_chain11item_damageER21Gd__gd_core__CoreItemRKNS_5GdValE.cold>:
+   1df7d7fd0:	mov    %r14,0x198(%rsp)
+   1df7d7fd8:	vmovdqa 0x170(%rsp),%xmm0
+   1df7d7fe1:	lea    0x190(%rsp),%r14
+   1df7d7fe9:	mov    %r12,%rdx
+   1df7d7fec:	mov    0x180(%rsp),%rax
+   1df7d7ff4:	lea    0x150(%rsp),%rcx
+   1df7d7ffc:	mov    %r14,%r9
+   1df7d7fff:	lea    0x60(%rdi),%r8
+   1df7d8003:	movb   $0x9,0x190(%rsp)
+   1df7d800b:	mov    %rax,0x1b8(%rsp)
+   1df7d8013:	vmovdqu %xmm0,0x1a8(%rsp)
+   1df7d801c:	call   1df82f020 <_Z17native_event_callI26Gd__gd_core__CoreCharacterXadL_ZNS0_13fn_takeDamageEPKN2gd5GdValEiEEES2_RNS1_9BattleCtxERS3_jS4_i.constprop.0>
+   1df7d8021:	movzbl 0x150(%rsp),%r13d
+   1df7d802a:	mov    0x158(%rsp),%r12
+   1df7d8032:	jmp    1df7d9055 <_ZN2gd12weapon_chain11item_damageER21Gd__gd_core__CoreItemRKNS_5GdValE+0xed5>

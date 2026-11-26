@@ -1,0 +1,20 @@
+{
+  "docs/C++模拟器优化交接_2026-11-23.md": {
+    "snapshot": "output/_v1110/native_perf50/weapon_inline_chain_bundle/docs_snapshot/C++模拟器优化交接_2026-11-23.md",
+    "sha256": "bfd824e933daf0eea0a75e6744146229f09948811baf89ff49108309fcc78c1f",
+    "base_commit": "379afbdd73ed438ada5b4a008c179ad9bf363e9a",
+    "only_this_round_note_and_current_status_added": true
+  },
+  "docs/C++模拟器下一阶段优化评估.md": {
+    "snapshot": "output/_v1110/native_perf50/weapon_inline_chain_bundle/docs_snapshot/C++模拟器下一阶段优化评估.md",
+    "sha256": "fed06296f8fc55cbdf95e0506b61a15702158ca3e68ea0eadf7bfc3e0e18aca8",
+    "base_commit": "379afbdd73ed438ada5b4a008c179ad9bf363e9a",
+    "only_this_round_note_and_current_status_added": true
+  },
+  "docs/C++模拟器性能优化清单.md": {
+    "snapshot": "output/_v1110/native_perf50/weapon_inline_chain_bundle/docs_snapshot/C++模拟器性能优化清单.md",
+    "sha256": "cf781e1ca4055216e470c48c1879745f2a340013883a64e0fe70554acc36b5d0",
+    "base_commit": "379afbdd73ed438ada5b4a008c179ad9bf363e9a",
+    "only_this_round_note_and_current_status_added": true
+  }
+}

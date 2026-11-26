@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "dll_sha256": "b3b9f411a3fe2d850c289a307791848cb0d18682b088c7e9f05954d4eea85d56",
+  "baseline_dll_sha256": "d2064b3f17d8168cf87a2e9f46e9fb336ffe4aaf6581c27d93350b2c41477a57",
+  "source_sha256": "86056c5a657ca2f4a24db17b064ed7377c60c64685b7eb3f6ea2dec52e9fe628",
+  "ordinary_context_open": true,
+  "packed_context_closed": true,
+  "unknown_registration_opens_future_contexts": true,
+  "reset_does_not_reseal": true,
+  "four_boundary_checks": true,
+  "three_packed_fights_match_original": true,
+  "results": {
+    "baseline": {
+      "passed": true,
+      "result_hashes": [
+        "d500ba854340d322",
+        "d500ba854340d322",
+        "d500ba854340d322"
+      ],
+      "result_bytes": 400
+    },
+    "candidate": {
+      "passed": true,
+      "result_hashes": [
+        "d500ba854340d322",
+        "d500ba854340d322",
+        "d500ba854340d322"
+      ],
+      "result_bytes": 400
+    }
+  }
+}

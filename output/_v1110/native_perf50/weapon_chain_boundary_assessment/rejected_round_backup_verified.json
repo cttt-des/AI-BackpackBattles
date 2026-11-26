@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "remote_verified_commit": "379afbdd73ed438ada5b4a008c179ad9bf363e9a",
+  "candidate_not_deployed": true,
+  "first_direction_remains_active": true,
+  "production_dll_sha256": "d2064b3f17d8168cf87a2e9f46e9fb336ffe4aaf6581c27d93350b2c41477a57",
+  "full_production_manifest_files": 713,
+  "archive_files_verified": 3429,
+  "all_protected_hashes_unchanged": true,
+  "head_unchanged": true,
+  "no_staged_changes": true,
+  "archive_operation_preserved_index_bytes": true,
+  "earlier_raw_index_hash": "a7c2dafec612a9f44571044bbf1911c94034a211146a68bbf77570c6aa0c1374",
+  "archive_raw_index_hash": "5c45db4c29f62a64ba93b478543683e9e9e6311e3f36317463f71a511134adbf",
+  "raw_index_hash_changed_before_archive_without_any_current_staged_entries": true
+}
