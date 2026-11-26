@@ -1,0 +1,62 @@
+{
+  "passed": true,
+  "cases": 21888,
+  "actual_separate_baseline_candidate_dlls": true,
+  "per_case_hashes_equal": true,
+  "case_hashes_sha256": "8f28590f39f101dd619c835ba85e5f5698378c1d57aefe90bb7faca896acf3cc",
+  "storage_cases": 21504,
+  "actual_setup_cases": 384,
+  "fp_rounding_daz_ftz_sticky_states": 64,
+  "baseline_core_item_bytes": 2112,
+  "candidate_core_item_bytes": 2112,
+  "baseline_dll_sha256": "5bd31fdc2ab2e4a556c63987de62b9541d5793752d67662cc4034a36bdd69ecc",
+  "dll_sha256": "063bd7914644e04b1286c5de2a973abd3406b3407efbc49c3ac2e4d11dc99e38",
+  "fixture_sha256": "87336fbaa4e41a545aa6304c4ff3f880667d19347fbb4f6063c0baf84bd624ab",
+  "projection": {
+    "passed": true,
+    "exact_inverse_matches_retained_source": true,
+    "one_shard_only": true,
+    "all674_object_headers_and_all_layouts_unchanged": true,
+    "full_generic_branch_unchanged": true,
+    "original_runtime_arithmetic_bodies_unchanged": true,
+    "all_prior_optimizations_retained": true,
+    "not_the_old_storage_wrapper_or_context_cache_trial": true,
+    "formal_full20_fresh18_pgo_required": true
+  },
+  "old_six_counters": [
+    9599433,
+    100900,
+    54635,
+    200,
+    0,
+    233004
+  ],
+  "targeted_timer_counters": [
+    386704,
+    400,
+    386304,
+    683532,
+    0,
+    0,
+    0,
+    16170,
+    701,
+    0
+  ],
+  "active_cooldown_counters": [
+    386704,
+    1904,
+    384800,
+    3632134,
+    0,
+    760,
+    23435,
+    83822,
+    19040,
+    0
+  ],
+  "fixed200_results_sha256": "2e74b45caa87f7ee6ac72ffc35d98cc8db140b47031614d26542e183cef5d2c9",
+  "fixed200_inputs_sha256": "d94b16d42cc88e9a3850a77c9360b9c4c4fdd676cb252e463044a903db2a5fef",
+  "no_throughput_claim": true,
+  "not_for_deployment": true
+}

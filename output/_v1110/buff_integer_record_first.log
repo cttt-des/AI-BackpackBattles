@@ -1,0 +1,33 @@
+{
+  "candidate_dll_sha256": "e743c3305a6551630822003813bfaa9f253e1d0455dd530d1abdf51c1050a43b",
+  "production_dll_sha256": "5bd31fdc2ab2e4a556c63987de62b9541d5793752d67662cc4034a36bdd69ecc",
+  "deployed": false,
+  "reason": "distinct_combination_AB_not_accepted",
+  "candidate_load20_fps": 209.9577887365033,
+  "empirical20_is_extrapolation": false,
+  "raw24": null,
+  "calibration24": {
+    "median": 224.33391111147876,
+    "minimum": 162.68120754706013,
+    "maximum": 237.08399020186286,
+    "observed_load_range": [
+      9.078362610368714,
+      39.084872494111806
+    ],
+    "on_ac_all": true
+  },
+  "typed_buff_goal_deployment_complete": false,
+  "goal_requires_verified_remote_backup": true,
+  "current_display_and_control_components_retained": true,
+  "restored_private_snapshot_cases": 234880,
+  "scalar_truth_cases": 34400,
+  "container_builtin_cases": 128128,
+  "buff_integer_helper_cases": 204288,
+  "buff_integer_method_cases": 14112,
+  "total_semantic_cases": 682304,
+  "all_protocol_processes_finished": true,
+  "no_more_same_configuration_measurements": true,
+  "no_new_branches": true,
+  "backup_status_recorded_separately": true,
+  "backup_receipt": "checkpoint_receipt.json"
+}

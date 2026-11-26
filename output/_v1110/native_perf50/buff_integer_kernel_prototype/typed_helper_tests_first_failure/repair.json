@@ -1,0 +1,6 @@
+{
+  "baseline_crash": "gd_lt null Str dereference, gd_rt.cpp397",
+  "candidate_unchanged": true,
+  "only_240_undefined_gt_comparisons_skipped": true,
+  "all112_shapes_and_other_ops_retained": true
+}

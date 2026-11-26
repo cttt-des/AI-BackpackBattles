@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\verify_native_buff_integer_helpers.py", line 48, in <module>
+    if __name__=='__main__':verify(WORK/'prototype_src',WORK/'prototype.dll',WORK/'typed_helper_tests.json')
+                            ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\verify_native_buff_integer_helpers.py", line 36, in verify
+    raw=checks/(label+'_cases.json');raw.write_bytes(run.stdout);(checks/(label+'_execution.log')).write_bytes(run.stderr);run.check_returncode()
+                                                                                                                           ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 509, in check_returncode
+    raise CalledProcessError(self.returncode, self.args, self.stdout,
+                             self.stderr)
+subprocess.CalledProcessError: Command '['C:\\Users\\Windows\\AppData\\Local\\CodexNativeBuilds\\buff-integer-helpers-hxyjeek1\\baseline\\check.exe']' returned non-zero exit status 3221225477.

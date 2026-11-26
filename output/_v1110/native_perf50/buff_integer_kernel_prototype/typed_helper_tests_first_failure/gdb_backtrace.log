@@ -1,0 +1,9 @@
+[New Thread 16840.0x3f58]
+[New Thread 16840.0x6590]
+[New Thread 16840.0x38dc]
+
+Thread 1 received signal SIGSEGV, Segmentation fault.
+0x00007ff9f8b6d932 in gd::gd_lt(gd::GdVal const&, gd::GdVal const&) () from C:\Users\Windows\AppData\Local\CodexNativeBuilds\buff-integer-helpers-hxyjeek1\baseline\libgdcore.dll
+#0  0x00007ff9f8b6d932 in gd::gd_lt(gd::GdVal const&, gd::GdVal const&) () from C:\Users\Windows\AppData\Local\CodexNativeBuilds\buff-integer-helpers-hxyjeek1\baseline\libgdcore.dll
+#1  0x00007ff6b69b1a25 in operation(gd::BattleCtx&, bool, unsigned int, gd::GdVal const&, gd::GdVal const&, unsigned int) ()
+#2  0x00007ff6b6a7bffe in main ()

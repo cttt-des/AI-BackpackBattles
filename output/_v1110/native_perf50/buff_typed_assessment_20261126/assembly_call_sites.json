@@ -1,0 +1,41 @@
+{
+  "scope": "Static call sites, includes both kernel and generic branches; not invocation frequency or gain",
+  "sites": [
+    [
+      "_ZN2gd13gd_coerce_intERKNS_5GdValE",
+      28
+    ],
+    [
+      "_ZN2gd6gd_addERNS_9BattleCtxERKNS_5GdValES4_",
+      27
+    ],
+    [
+      "_ZN2gd5gd_ltERKNS_5GdValES2_",
+      26
+    ],
+    [
+      "_ZN2gd6gd_subERKNS_5GdValES2_",
+      20
+    ],
+    [
+      "_Z17native_event_callI20Gd__gd_core__CoreRngXadL_ZNS0_14fn_flipPercentEPKN2gd5GdValEiEEES2_RNS1_9BattleCtxERS3_jS4_i.constprop.0",
+      10
+    ],
+    [
+      "_ZN2gd6gd_minERKNS_5GdValES2_",
+      8
+    ],
+    [
+      "_ZN2gd15gd_coerce_floatERKNS_5GdValE",
+      4
+    ],
+    [
+      "_ZN2gd14gd_coerce_boolERKNS_5GdValE",
+      4
+    ],
+    [
+      "_ZN21Gd__gd_core__CoreItem10sf__f32engERN2gd9BattleCtxEPKNS0_5GdValEi.constprop.0",
+      2
+    ]
+  ]
+}

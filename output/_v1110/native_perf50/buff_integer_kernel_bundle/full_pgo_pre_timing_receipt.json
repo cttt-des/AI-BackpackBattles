@@ -1,0 +1,6 @@
+{
+  "full_gate_passed_before_first_AB": true,
+  "verification": "Added raw-record equality cross-check while original validator was running; no tests, source, PGO or measurements repeated",
+  "time_unix": 1795684451.1323857,
+  "full_pgo_receipt_sha256": "e09edcd349d192e76ec0cea5f8d81c21387765ae5eb4edcc2cb0cb38eec04466"
+}

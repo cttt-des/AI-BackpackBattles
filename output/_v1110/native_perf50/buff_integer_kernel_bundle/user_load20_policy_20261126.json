@@ -1,0 +1,7 @@
+{
+  "empirical_estimate_allowed_outside_observed_range": true,
+  "candidate_dll_sha256": "e743c3305a6551630822003813bfaa9f253e1d0455dd530d1abdf51c1050a43b",
+  "authorization": "Explicit user clarification2026-11-26",
+  "low_idle_window_required": false,
+  "all_original_AB_correctness_and_raw24_gates_retained": true
+}

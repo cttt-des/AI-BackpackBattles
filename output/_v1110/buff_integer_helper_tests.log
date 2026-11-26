@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\verify_native_buff_integer_helpers.py", line 50, in <module>
+    if __name__=='__main__':verify(WORK/'prototype_src',WORK/'prototype.dll',WORK/'typed_helper_tests.json')
+                            ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\verify_native_buff_integer_helpers.py", line 39, in verify
+    assert a==b and a['passed'] and a['cases']==204288 and a['value_shapes']==112
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

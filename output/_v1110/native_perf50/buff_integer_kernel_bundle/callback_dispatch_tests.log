@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "cases": 126192,
+  "unknown_override_cases": 15600,
+  "real_generated_handler_cases": 110592,
+  "difference_count": 0,
+  "first_differences": [],
+  "fast_no_materialization_assertions": 3072,
+  "fixture_sha256": "a5d1235ab177278621003a9b77d95e5c8a631528211726717442bd157aa666f8",
+  "symbols_header_sha256": "cc2469e18aeeddc8956fb2b105aae22af811c505211fba658ed5b739bcfceba4",
+  "baseline_dll_sha256": "c46cc19c06fb3c424a470f04bb7a0ef5acf8b7ff01caaccd5f41a5c44d955ee1",
+  "dll_sha256": "e743c3305a6551630822003813bfaa9f253e1d0455dd530d1abdf51c1050a43b",
+  "raw_cases_sha256": {
+    "baseline_callbacks_cases.json": "ad36af2d67882ef2872a211cb04d912a5969c0d49670b12bed059520667bd242",
+    "candidate_callbacks_cases.json": "7eedbc33f0c77db52aaf8482ec2b0e3158bcdc5152b51542f418280c0252bcb9"
+  },
+  "independent_actual_baseline_dll": true,
+  "no_throughput_claim": true
+}

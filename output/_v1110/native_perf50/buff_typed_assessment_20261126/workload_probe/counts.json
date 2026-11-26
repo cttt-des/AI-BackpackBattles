@@ -1,0 +1,36 @@
+{
+  "passed": true,
+  "baseline_dll_sha256": "5bd31fdc2ab2e4a556c63987de62b9541d5793752d67662cc4034a36bdd69ecc",
+  "diagnostic_dll_sha256": "72ddc634a515dc4a40ea6ea8d0f030bc3e16cd4d7700923b0bfbee6e8fa42cc1",
+  "counts": {
+    "calls": 49858,
+    "amount_input_int": 49858,
+    "duration_input_float": 1304,
+    "reflect_input_bool": 49858,
+    "resist_iterations": 12434,
+    "amplify_iterations": 23982,
+    "reflect_iterations": 14995,
+    "add_calls": 127920,
+    "add_both_int": 126970,
+    "sub_calls": 171099,
+    "sub_both_int": 121603,
+    "min_calls": 68189,
+    "min_both_int_small53": 68189,
+    "coerce_int_calls": 265959,
+    "coerce_input_int": 265959
+  },
+  "fixed200_inputs_sha256": "d94b16d42cc88e9a3850a77c9360b9c4c4fdd676cb252e463044a903db2a5fef",
+  "fixed200_results_sha256": "2e74b45caa87f7ee6ac72ffc35d98cc8db140b47031614d26542e183cef5d2c9",
+  "old_six_counts": [
+    9599433,
+    100900,
+    54635,
+    200,
+    0,
+    233004
+  ],
+  "one_changed_normal_unit_19_verified_objects_reused": true,
+  "no_layout_changes": true,
+  "no_speed_claim": true,
+  "not_for_deployment": true
+}

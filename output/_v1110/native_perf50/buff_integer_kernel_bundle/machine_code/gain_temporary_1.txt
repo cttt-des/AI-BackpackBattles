@@ -1,0 +1,28 @@
+
+bundle.dll:     file format pei-x86-64
+
+
+Disassembly of section .text:
+
+00000001d1f41ee2 <_ZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEi.cold>:
+   1d1f41ee2:	mov    0x6d0(%rsp),%rax
+   1d1f41eea:	vmovdqa 0xe0(%rsp),%xmm0
+   1d1f41ef3:	mov    0x6d0(%rsp),%rdi
+   1d1f41efb:	vmovdqu %xmm0,(%rax)
+   1d1f41eff:	mov    0xf0(%rsp),%rax
+   1d1f41f07:	mov    %rax,0x10(%rdi)
+   1d1f41f0b:	mov    %rdi,%rax
+   1d1f41f0e:	jmp    1d1f3a5e9 <_ZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEi+0x1a49>
+   1d1f41f13:	nop
+   1d1f41f14:	nop
+   1d1f41f15:	nop
+   1d1f41f16:	nop
+   1d1f41f17:	nop
+   1d1f41f18:	nop
+   1d1f41f19:	nop
+   1d1f41f1a:	nop
+   1d1f41f1b:	nop
+   1d1f41f1c:	nop
+   1d1f41f1d:	nop
+   1d1f41f1e:	nop
+   1d1f41f1f:	nop
