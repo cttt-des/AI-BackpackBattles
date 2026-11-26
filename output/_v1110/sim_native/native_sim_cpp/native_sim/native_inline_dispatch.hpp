@@ -314,6 +314,33 @@ GdVal native_inline_call(BattleCtx& ctx,const GdVal& recv,SymId method,const GdV
                 case SYM_back:
                     if(ctx.native_resolved_collect)native_inline_variant_hit(4);
                     return a->len > 0 ? a->data[a->len - 1] : GdVal::null();
+                // 仍调用原成员函数，保留数组别名、扩容及watch变更时点。
+                case SYM_push_back:
+                case SYM_append:
+                    if(argc>=1)a->push_back(ctx.arena,args[0]);
+                    return GdVal::null();
+                case SYM_append_array:
+                    if(argc>=1 && args[0].kind==GdVal::Kind::Arr)a->append_array(ctx.arena,args[0].arr);
+                    return GdVal::null();
+                case SYM_clear: {
+                    NativeTimerMutation mutation(a->timer_watch);
+                    a->len=0;return GdVal::null();
+                }
+                case SYM_resize:
+                    // Float转Int的异常标志继续由原通用体处理。
+                    if(argc>=1) {
+                        if(args[0].kind==GdVal::Kind::Float)break;
+                        a->resize(ctx.arena,args[0].as_int());
+                    }
+                    return GdVal::null();
+                case SYM_fill:
+                    if(argc>=1)a->fill(args[0]);
+                    return GdVal::null();
+                case SYM_duplicate: {
+                    if(argc>=1 && (args[0].kind==GdVal::Kind::Float || args[0].kind==GdVal::Kind::Vec2 || args[0].kind==GdVal::Kind::Color))break;
+                    const bool deep=argc>=1 && gd_truth(args[0]);
+                    return GdVal::from_arr(a->duplicate(ctx.arena,deep));
+                }
                 default:break;
             }
         } else if(recv.kind==GdVal::Kind::Dict) {
@@ -332,6 +359,20 @@ GdVal native_inline_call(BattleCtx& ctx,const GdVal& recv,SymId method,const GdV
                 case SYM_get:
                     if(ctx.native_resolved_collect)native_inline_variant_hit(8);
                     return argc >= 1 ? d->get(args[0], argc >= 2 ? args[1] : GdVal::null()) : GdVal::null();
+                case SYM_keys:return GdVal::from_arr(d->keys(ctx.arena));
+                case SYM_values:return GdVal::from_arr(d->values(ctx.arena));
+                default:break;
+            }
+        } else if(recv.kind==GdVal::Kind::Enum) {
+            const GdEnum* e=recv.en;
+            if(!e)return GdVal::null();
+            switch(method) {
+                case SYM_size:return GdVal::from_int(e->len);
+                case SYM_empty:return GdVal::from_bool(e->len==0);
+                case SYM_has:
+                    return GdVal::from_bool(argc>=1 && args[0].kind==GdVal::Kind::Str && args[0].str && e->has(std::string_view(args[0].str->data,args[0].str->len)));
+                case SYM_keys:return GdVal::from_arr(e->keys_arr(ctx.arena));
+                case SYM_values:return GdVal::from_arr(e->values_arr(ctx.arena));
                 default:break;
             }
         } else if(recv.kind==GdVal::Kind::ClassRef && method!=SYM_new) {

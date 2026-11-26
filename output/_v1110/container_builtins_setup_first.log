@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "D:\�ļ�����\ѧϰ\�Զ�����AI\output\_v1110\setup_native_container_builtins_bundle.py", line 77, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\�ļ�����\ѧϰ\�Զ�����AI\output\_v1110\setup_native_container_builtins_bundle.py", line 71, in main
+    review=once(review,"'scalar_truth_tests.json')","'scalar_truth_tests.json','container_builtins_tests.json')")
+  File "D:\�ļ�����\ѧϰ\�Զ�����AI\output\_v1110\setup_native_container_builtins_bundle.py", line 9, in once
+    assert t.count(a)==1,(a[:140],t.count(a));return t.replace(a,b,1)
+           ^^^^^^^^^^^^^
+AssertionError: ("'scalar_truth_tests.json')", 2)

@@ -1,0 +1,3330 @@
+{
+  "passed": true,
+  "baseline_dll_sha256": "0a6d24f459eb1011a0bfcc1bc5c4188c1ca67add410b9caf0e04c8f5d30d44d4",
+  "diagnostic_dll_sha256": "45daeb44900cd92769f81f96bde33369453a050eae7d06a038c66e7c6603407e",
+  "semantic_only_not_for_timing_or_deployment": true,
+  "no_speed_claim": true,
+  "one_recompiled_normal_unit": 1,
+  "identical_current_source_19_normal_objects_reused": true,
+  "all_layouts_unchanged": true,
+  "workers": 1,
+  "fights": 200,
+  "old_six_counts": [
+    9599433,
+    100900,
+    54635,
+    200,
+    0,
+    233004
+  ],
+  "inputs_sha256": "d94b16d42cc88e9a3850a77c9360b9c4c4fdd676cb252e463044a903db2a5fef",
+  "results_sha256": "2e74b45caa87f7ee6ac72ffc35d98cc8db140b47031614d26542e183cef5d2c9",
+  "method_counts": [
+    {
+      "receiver_kind": "Arr",
+      "symbol": 19,
+      "name": "push_back",
+      "calls": 344779
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 83,
+      "name": "has_method",
+      "calls": 275919
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1484,
+      "name": "snapshotItemMetric",
+      "calls": 177303
+    },
+    {
+      "receiver_kind": "Arr",
+      "symbol": 22,
+      "name": "append_array",
+      "calls": 140019
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1603,
+      "name": "_nativeF32",
+      "calls": 88491
+    },
+    {
+      "receiver_kind": "Dict",
+      "symbol": 32,
+      "name": "keys",
+      "calls": 66369
+    },
+    {
+      "receiver_kind": "ClassRef",
+      "symbol": 95,
+      "name": "new",
+      "calls": 59763
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 249,
+      "name": "playActivationSound",
+      "calls": 55701
+    },
+    {
+      "receiver_kind": "Rng",
+      "symbol": 72,
+      "name": "randf",
+      "calls": 50206
+    },
+    {
+      "receiver_kind": "Rng",
+      "symbol": 71,
+      "name": "randi_range",
+      "calls": 50058
+    },
+    {
+      "receiver_kind": "Enum",
+      "symbol": 33,
+      "name": "values",
+      "calls": 48755
+    },
+    {
+      "receiver_kind": "Arr",
+      "symbol": 39,
+      "name": "clear",
+      "calls": 44885
+    },
+    {
+      "receiver_kind": "Enum",
+      "symbol": 15,
+      "name": "size",
+      "calls": 43200
+    },
+    {
+      "receiver_kind": "Arr",
+      "symbol": 38,
+      "name": "resize",
+      "calls": 39956
+    },
+    {
+      "receiver_kind": "Arr",
+      "symbol": 26,
+      "name": "duplicate",
+      "calls": 31810
+    },
+    {
+      "receiver_kind": "Arr",
+      "symbol": 49,
+      "name": "fill",
+      "calls": 29866
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1677,
+      "name": "getAmount",
+      "calls": 29026
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 190,
+      "name": "canDamage",
+      "calls": 20230
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 253,
+      "name": "getBaseMinDamage",
+      "calls": 20230
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 198,
+      "name": "setCooldownActive",
+      "calls": 20074
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 232,
+      "name": "combatEnd",
+      "calls": 19733
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1847,
+      "name": "pickRandomElement",
+      "calls": 17537
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 391,
+      "name": "canAffect_color",
+      "calls": 17501
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 894,
+      "name": "showCooldownSmooth",
+      "calls": 16565
+    },
+    {
+      "receiver_kind": "Str",
+      "symbol": 41,
+      "name": "begins_with",
+      "calls": 16321
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 256,
+      "name": "getTypedDamageFactor",
+      "calls": 16270
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1359,
+      "name": "getBuffDamageMod",
+      "calls": 16256
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 305,
+      "name": "getBlock",
+      "calls": 16115
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 240,
+      "name": "rebuildTimerSeen",
+      "calls": 15333
+    },
+    {
+      "receiver_kind": "Rng",
+      "symbol": 69,
+      "name": "get_state",
+      "calls": 15306
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 226,
+      "name": "onPreCombatStart",
+      "calls": 14975
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 230,
+      "name": "onPostCombatStart",
+      "calls": 14975
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 879,
+      "name": "playActivationAnimation",
+      "calls": 14942
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 173,
+      "name": "setup",
+      "calls": 14933
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 220,
+      "name": "cacheAffectedItemsForCombat",
+      "calls": 14933
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 225,
+      "name": "preCombatStart",
+      "calls": 14933
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 229,
+      "name": "postCombatStart",
+      "calls": 14933
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 233,
+      "name": "onCombatEnd",
+      "calls": 14933
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 241,
+      "name": "_readyInit",
+      "calls": 14933
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 489,
+      "name": "initSockets",
+      "calls": 14933
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 603,
+      "name": "disconnectCombat",
+      "calls": 14933
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1718,
+      "name": "addItemCells",
+      "calls": 14722
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 511,
+      "name": "getAffectedCellsAfterRotate_primary",
+      "calls": 14590
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 512,
+      "name": "getAffectedCellsAfterRotate_secondary",
+      "calls": 14136
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 520,
+      "name": "onAddToInventory",
+      "calls": 14120
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1719,
+      "name": "addItem",
+      "calls": 14120
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1338,
+      "name": "getLucky",
+      "calls": 13977
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 334,
+      "name": "staminaChanged",
+      "calls": 13334
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 480,
+      "name": "spawnLabel",
+      "calls": 13231
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1744,
+      "name": "spawnLabelOnItem",
+      "calls": 13231
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 403,
+      "name": "getRelativeHealth",
+      "calls": 12702
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 186,
+      "name": "isBattleRageItem",
+      "calls": 12680
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1255,
+      "name": "getCurrentHealth",
+      "calls": 12644
+    },
+    {
+      "receiver_kind": "Arr",
+      "symbol": 20,
+      "name": "insert",
+      "calls": 12629
+    },
+    {
+      "receiver_kind": "Str",
+      "symbol": 44,
+      "name": "get_slice",
+      "calls": 12626
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 536,
+      "name": "onAffectedItemAdded",
+      "calls": 12187
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1324,
+      "name": "getSpikes",
+      "calls": 11666
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 270,
+      "name": "getBaseChance2",
+      "calls": 11443
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 294,
+      "name": "getBaseAccuracy",
+      "calls": 11333
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 295,
+      "name": "getAccuracy",
+      "calls": 11333
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 212,
+      "name": "getBaseStaminaCost",
+      "calls": 11133
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1024,
+      "name": "isEmpty",
+      "calls": 11096
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1633,
+      "name": "canTriggerSpikes",
+      "calls": 11073
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 213,
+      "name": "getStaminaCost",
+      "calls": 10989
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 288,
+      "name": "rollDoubleAttackEffect",
+      "calls": 10865
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 325,
+      "name": "dealtDamage",
+      "calls": 10860
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 175,
+      "name": "character",
+      "calls": 10859
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1681,
+      "name": "getOrigin",
+      "calls": 10800
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1262,
+      "name": "applyTemporaryMaxHealthGain",
+      "calls": 10768
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1708,
+      "name": "getItemInCell",
+      "calls": 10683
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1263,
+      "name": "changeMaxHealthTemporary",
+      "calls": 10563
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1689,
+      "name": "setLoggingMode",
+      "calls": 10431
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1692,
+      "name": "flushLoggingQueue",
+      "calls": 10431
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1243,
+      "name": "playActivateAnimation",
+      "calls": 10380
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1360,
+      "name": "getBuffAccuracyMod",
+      "calls": 10288
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1654,
+      "name": "updateItem",
+      "calls": 10288
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 323,
+      "name": "preDealDamage_early",
+      "calls": 10262
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 192,
+      "name": "canActivate",
+      "calls": 9864
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 279,
+      "name": "getCritChancePercent",
+      "calls": 9327
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 257,
+      "name": "getMinDamage",
+      "calls": 9187
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 258,
+      "name": "getMaxDamage",
+      "calls": 9173
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1843,
+      "name": "bare_draw_seq",
+      "calls": 8726
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1865,
+      "name": "randIntRange",
+      "calls": 8726
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1624,
+      "name": "hasHit",
+      "calls": 8671
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 459,
+      "name": "pickRandomStacks",
+      "calls": 8355
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 324,
+      "name": "preDealDamage_late",
+      "calls": 8128
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1696,
+      "name": "connectEvent",
+      "calls": 8107
+    },
+    {
+      "receiver_kind": "FuncRef",
+      "symbol": 77,
+      "name": "set_function",
+      "calls": 8107
+    },
+    {
+      "receiver_kind": "FuncRef",
+      "symbol": 78,
+      "name": "set_instance",
+      "calls": 8107
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 283,
+      "name": "getCritTokens",
+      "calls": 7935
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 282,
+      "name": "changeCritChancePercent",
+      "calls": 7249
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 273,
+      "name": "getChance2",
+      "calls": 6574
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1652,
+      "name": "setDamage",
+      "calls": 6253
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1123,
+      "name": "init",
+      "calls": 5806
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 262,
+      "name": "addBonusDamage",
+      "calls": 5750
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 559,
+      "name": "onItemTypeChanged",
+      "calls": 5317
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 558,
+      "name": "reactToItemTypeChange",
+      "calls": 5182
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 346,
+      "name": "isA",
+      "calls": 4986
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1634,
+      "name": "canTriggerVampirism",
+      "calls": 4810
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2044,
+      "name": "canBlockDamageRes",
+      "calls": 4789
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 423,
+      "name": "_rotVecQuarterTurns",
+      "calls": 4787
+    },
+    {
+      "receiver_kind": "Arr",
+      "symbol": 21,
+      "name": "append",
+      "calls": 4661
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 292,
+      "name": "modifyParam",
+      "calls": 4592
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 298,
+      "name": "changeAmplificiationChancePercent_allBuffs",
+      "calls": 4533
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 337,
+      "name": "getRarity",
+      "calls": 4526
+    },
+    {
+      "receiver_kind": "Str",
+      "symbol": 53,
+      "name": "to_lower",
+      "calls": 4460
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 84,
+      "name": "call",
+      "calls": 4311
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1630,
+      "name": "triggerOnMeleeAttacked",
+      "calls": 4309
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 199,
+      "name": "activateCooldown",
+      "calls": 4251
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 397,
+      "name": "gainsBuffs",
+      "calls": 4125
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 544,
+      "name": "getTopLeftCell",
+      "calls": 4066
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 484,
+      "name": "onStateChanged",
+      "calls": 4042
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1371,
+      "name": "giveStaminaRegeneration",
+      "calls": 4011
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1486,
+      "name": "snapshotItemState",
+      "calls": 4007
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 400,
+      "name": "reactsToCharges",
+      "calls": 3711
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1676,
+      "name": "getParam",
+      "calls": 3686
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 347,
+      "name": "isNeutral",
+      "calls": 3672
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2160,
+      "name": "onChargeEnteredCell",
+      "calls": 3553
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 436,
+      "name": "giveMana_capped",
+      "calls": 3483
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 197,
+      "name": "isCooldownActive",
+      "calls": 3434
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 493,
+      "name": "getPrice",
+      "calls": 3418
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 462,
+      "name": "getMostStacks",
+      "calls": 3284
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1392,
+      "name": "isVulnerable",
+      "calls": 3282
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1029,
+      "name": "onAffectedItemInsideAdded",
+      "calls": 3271
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1705,
+      "name": "getItemsAndGems",
+      "calls": 3256
+    },
+    {
+      "receiver_kind": "Vec2",
+      "symbol": 59,
+      "name": "round",
+      "calls": 2932
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 352,
+      "name": "isOwnedByOpponent",
+      "calls": 2880
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1764,
+      "name": "_sideItems",
+      "calls": 2843
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1766,
+      "name": "_filter",
+      "calls": 2843
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 906,
+      "name": "isTypeInInventory",
+      "calls": 2772
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 901,
+      "name": "isCrafted",
+      "calls": 2768
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 247,
+      "name": "advanceCooldownPercent",
+      "calls": 2758
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 85,
+      "name": "callv",
+      "calls": 2480
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 419,
+      "name": "giveStamina",
+      "calls": 2440
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1265,
+      "name": "gainStamina",
+      "calls": 2440
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 263,
+      "name": "changeVaryingDamage",
+      "calls": 2433
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 219,
+      "name": "playOutOfStaminaAnimation",
+      "calls": 2370
+    },
+    {
+      "receiver_kind": "Arr",
+      "symbol": 37,
+      "name": "shuffle",
+      "calls": 2288
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1848,
+      "name": "shuffleEngine",
+      "calls": 2288
+    },
+    {
+      "receiver_kind": "Dict",
+      "symbol": 27,
+      "name": "erase",
+      "calls": 2286
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1706,
+      "name": "isCellEmpty",
+      "calls": 2250
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 405,
+      "name": "changeHealAmp",
+      "calls": 2218
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 460,
+      "name": "pickRandomStacksToGive",
+      "calls": 2121
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1320,
+      "name": "useStacks",
+      "calls": 2057
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 432,
+      "name": "checkMana",
+      "calls": 2026
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1673,
+      "name": "getType",
+      "calls": 2020
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1297,
+      "name": "takeFatigueDamage",
+      "calls": 1998
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 392,
+      "name": "canBlock",
+      "calls": 1988
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 482,
+      "name": "consume",
+      "calls": 1978
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1882,
+      "name": "stopCountdownForTimeout",
+      "calls": 1919
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 426,
+      "name": "chargeLeft",
+      "calls": 1911
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 876,
+      "name": "playActivationAnimation_Scale",
+      "calls": 1878
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 218,
+      "name": "drainStamina",
+      "calls": 1854
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 312,
+      "name": "inflictPoison",
+      "calls": 1799
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1662,
+      "name": "isEffectDamage",
+      "calls": 1780
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1827,
+      "name": "fromDict",
+      "calls": 1780
+    },
+    {
+      "receiver_kind": "Arr",
+      "symbol": 27,
+      "name": "erase",
+      "calls": 1732
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1580,
+      "name": "callDelayed",
+      "calls": 1715
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 434,
+      "name": "tryUseMana",
+      "calls": 1673
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 278,
+      "name": "addAccuracy",
+      "calls": 1662
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1679,
+      "name": "hasParam",
+      "calls": 1643
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 367,
+      "name": "getP4",
+      "calls": 1641
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 315,
+      "name": "giveRegeneration",
+      "calls": 1619
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1880,
+      "name": "start",
+      "calls": 1567
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 421,
+      "name": "sendCharge",
+      "calls": 1542
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2218,
+      "name": "isLamp",
+      "calls": 1528
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 280,
+      "name": "addCritChancePercent",
+      "calls": 1517
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1347,
+      "name": "gainMana",
+      "calls": 1507
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 318,
+      "name": "giveEmpower",
+      "calls": 1506
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 394,
+      "name": "canModifyChance",
+      "calls": 1499
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1772,
+      "name": "isItemInInventory",
+      "calls": 1454
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1704,
+      "name": "getItems",
+      "calls": 1385
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1616,
+      "name": "playAni",
+      "calls": 1359
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 275,
+      "name": "rollChance2",
+      "calls": 1343
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1132,
+      "name": "gainTemporary",
+      "calls": 1327
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1773,
+      "name": "isItemInInventory_opponent",
+      "calls": 1318
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 314,
+      "name": "inflictBlind",
+      "calls": 1315
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1258,
+      "name": "loseHealth",
+      "calls": 1313
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1877,
+      "name": "set_wait_time",
+      "calls": 1295
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 306,
+      "name": "removeBlock",
+      "calls": 1270
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 307,
+      "name": "loseBlock",
+      "calls": 1270
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1881,
+      "name": "stop",
+      "calls": 1252
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1458,
+      "name": "logEvent",
+      "calls": 1245
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 179,
+      "name": "isPlayer",
+      "calls": 1185
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1474,
+      "name": "createEvent_OutOfStamina",
+      "calls": 1185
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1127,
+      "name": "changeResistChance",
+      "calls": 1167
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 452,
+      "name": "inflictCold",
+      "calls": 1127
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1726,
+      "name": "playFatigueAnimation",
+      "calls": 1110
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2219,
+      "name": "_tagLamp",
+      "calls": 1083
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1334,
+      "name": "getRegeneration",
+      "calls": 1072
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1651,
+      "name": "setItem",
+      "calls": 1045
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2270,
+      "name": "getPiecesForColor",
+      "calls": 1042
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1074,
+      "name": "getGemPower",
+      "calls": 1026
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1308,
+      "name": "isBattleRaging",
+      "calls": 1017
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 303,
+      "name": "giveStacksTemporary",
+      "calls": 993
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1457,
+      "name": "replayHiddenLogEvent",
+      "calls": 970
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1319,
+      "name": "gainStacksTemporary",
+      "calls": 965
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1631,
+      "name": "triggerOnAttacked",
+      "calls": 955
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1721,
+      "name": "clearItemCells",
+      "calls": 912
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1028,
+      "name": "getAffectedItemsInside",
+      "calls": 903
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 451,
+      "name": "useLucky",
+      "calls": 896
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 200,
+      "name": "deactivateCooldown",
+      "calls": 890
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 398,
+      "name": "usesBuffs",
+      "calls": 883
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1826,
+      "name": "isReleased",
+      "calls": 882
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 898,
+      "name": "hasInventoryDuration",
+      "calls": 875
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 474,
+      "name": "stealRandomBuff",
+      "calls": 859
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2660,
+      "name": "checkBlock",
+      "calls": 844
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1363,
+      "name": "getCurrentStamina",
+      "calls": 834
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 445,
+      "name": "cleanseBlind",
+      "calls": 831
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1341,
+      "name": "getBlind",
+      "calls": 831
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1429,
+      "name": "dealFatigueDamage",
+      "calls": 818
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 497,
+      "name": "setGem",
+      "calls": 813
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 349,
+      "name": "isClassItem",
+      "calls": 802
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 375,
+      "name": "reduceSpeed",
+      "calls": 792
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 422,
+      "name": "_chargeInventoryCells",
+      "calls": 771
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1601,
+      "name": "registerMotion",
+      "calls": 771
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1885,
+      "name": "_emitTimeout",
+      "calls": 758
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1380,
+      "name": "changeDamageResistance",
+      "calls": 757
+    },
+    {
+      "receiver_kind": "Arr",
+      "symbol": 28,
+      "name": "remove",
+      "calls": 744
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 406,
+      "name": "changeStaminaFactor",
+      "calls": 743
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 236,
+      "name": "newItemTimer",
+      "calls": 736
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1878,
+      "name": "get_time_left",
+      "calls": 733
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 246,
+      "name": "onAfterEffectFinished",
+      "calls": 713
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1879,
+      "name": "is_stopped",
+      "calls": 710
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 311,
+      "name": "giveVampirism",
+      "calls": 707
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1887,
+      "name": "rebuildSeen",
+      "calls": 701
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1627,
+      "name": "applyDamageReduction",
+      "calls": 698
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 287,
+      "name": "getCritSeverity",
+      "calls": 696
+    },
+    {
+      "receiver_kind": "Dict",
+      "symbol": 39,
+      "name": "clear",
+      "calls": 684
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1129,
+      "name": "changeCleanseProtectionChance",
+      "calls": 674
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 187,
+      "name": "gainsStack",
+      "calls": 668
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1884,
+      "name": "_onTimeout",
+      "calls": 667
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2244,
+      "name": "getCaptureCells",
+      "calls": 664
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1317,
+      "name": "getDebuffStacks",
+      "calls": 657
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 458,
+      "name": "inflictRandomDebuffs",
+      "calls": 653
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 461,
+      "name": "getLeastStacks",
+      "calls": 650
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1722,
+      "name": "moveItem",
+      "calls": 602
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2250,
+      "name": "repositionPiece",
+      "calls": 602
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 261,
+      "name": "getModifiedEffectDamage",
+      "calls": 601
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1249,
+      "name": "takeDamage",
+      "calls": 601
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1655,
+      "name": "updateEffect",
+      "calls": 601
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 86,
+      "name": "emit_signal",
+      "calls": 600
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 185,
+      "name": "isGem",
+      "calls": 600
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1576,
+      "name": "_newDamageSource",
+      "calls": 600
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1330,
+      "name": "getPoison",
+      "calls": 589
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2271,
+      "name": "findPieceToCapture",
+      "calls": 582
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 467,
+      "name": "giveLeastBuffs",
+      "calls": 581
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1664,
+      "name": "canApplyLifesteal",
+      "calls": 570
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2041,
+      "name": "getDamageBlock",
+      "calls": 565
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2042,
+      "name": "beforeBlock",
+      "calls": 565
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2043,
+      "name": "afterBlock",
+      "calls": 565
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 407,
+      "name": "addBonusDamageFactor",
+      "calls": 551
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1008,
+      "name": "preHit",
+      "calls": 549
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1010,
+      "name": "onHit",
+      "calls": 549
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 368,
+      "name": "getP5",
+      "calls": 539
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 359,
+      "name": "isBaseItem",
+      "calls": 537
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 594,
+      "name": "isAvailableForCrafting",
+      "calls": 537
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 908,
+      "name": "canStartNewRecipe",
+      "calls": 537
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2274,
+      "name": "findSpaceToMove",
+      "calls": 511
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 299,
+      "name": "changeAmplificiationChancePercent_allDebuffs",
+      "calls": 502
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 429,
+      "name": "healthToBlock",
+      "calls": 491
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 473,
+      "name": "removeRandomBuffs",
+      "calls": 487
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 348,
+      "name": "isTreasure",
+      "calls": 477
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2452,
+      "name": "getCounterValue",
+      "calls": 471
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1430,
+      "name": "hasFatigueStarted",
+      "calls": 468
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1284,
+      "name": "reduceHealingEfficiency",
+      "calls": 466
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 393,
+      "name": "canHealOrLifesteal",
+      "calls": 457
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 322,
+      "name": "dealEffectDamage",
+      "calls": 453
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1918,
+      "name": "buffEnded",
+      "calls": 449
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1083,
+      "name": "prepareWeapon",
+      "calls": 445
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1086,
+      "name": "combatStartWeapon",
+      "calls": 445
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1089,
+      "name": "combatEndWeapon",
+      "calls": 445
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1886,
+      "name": "_utilTime",
+      "calls": 440
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1288,
+      "name": "changeBuffProtectStacks",
+      "calls": 434
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1635,
+      "name": "willBeLethal",
+      "calls": 432
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 248,
+      "name": "advanceCooldownSeconds",
+      "calls": 420
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 326,
+      "name": "countDamage",
+      "calls": 410
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 522,
+      "name": "getAffectedItems_nocache",
+      "calls": 401
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 523,
+      "name": "getItemsInAffectedCells",
+      "calls": 401
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 595,
+      "name": "getAffectedGoldValue",
+      "calls": 401
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2460,
+      "name": "condition1Fulfilled",
+      "calls": 401
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1230,
+      "name": "setOpponent",
+      "calls": 400
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1231,
+      "name": "registerCharacterDied",
+      "calls": 400
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1232,
+      "name": "clearCharacterDiedHandlers",
+      "calls": 400
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1257,
+      "name": "setCurrentHealth",
+      "calls": 400
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1590,
+      "name": "restoreEngineRng",
+      "calls": 400
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 413,
+      "name": "giveDoubleActivationChance",
+      "calls": 388
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1665,
+      "name": "makeSpectral",
+      "calls": 377
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 438,
+      "name": "useSpikes",
+      "calls": 374
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 431,
+      "name": "stun",
+      "calls": 373
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1084,
+      "name": "prepareArmor",
+      "calls": 368
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1087,
+      "name": "combatStartArmor",
+      "calls": 368
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1090,
+      "name": "combatEndArmor",
+      "calls": 368
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1244,
+      "name": "randBuffLabelPos",
+      "calls": 362
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1245,
+      "name": "randBuffLabelDir",
+      "calls": 362
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1296,
+      "name": "addFatigueDamage",
+      "calls": 362
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 447,
+      "name": "useRegeneration",
+      "calls": 361
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 890,
+      "name": "updateShadowTexture",
+      "calls": 360
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1952,
+      "name": "updateConnector",
+      "calls": 356
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 844,
+      "name": "resetSprite",
+      "calls": 347
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1950,
+      "name": "onTriggerPotion",
+      "calls": 347
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1951,
+      "name": "triggerPotion",
+      "calls": 347
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2462,
+      "name": "updatePaws",
+      "calls": 342
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 435,
+      "name": "removeMana",
+      "calls": 339
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1348,
+      "name": "loseMana",
+      "calls": 339
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2243,
+      "name": "getMoveCells",
+      "calls": 325
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 243,
+      "name": "checkTriggerCount",
+      "calls": 314
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2461,
+      "name": "condition2Fulfilled",
+      "calls": 307
+    },
+    {
+      "receiver_kind": "Arr",
+      "symbol": 23,
+      "name": "pop_front",
+      "calls": 281
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1386,
+      "name": "changeProtectionChance",
+      "calls": 275
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 71,
+      "name": "randi_range",
+      "calls": 272
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1378,
+      "name": "changeMaxHealthGain",
+      "calls": 267
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1922,
+      "name": "checkTrigger",
+      "calls": 265
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 471,
+      "name": "giveAllBuffs",
+      "calls": 262
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 404,
+      "name": "giveBuffPower",
+      "calls": 254
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 49,
+      "name": "fill",
+      "calls": 247
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1344,
+      "name": "loseBlind",
+      "calls": 247
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 399,
+      "name": "inflictsDebuffs",
+      "calls": 244
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 420,
+      "name": "inflictFatigueDamage",
+      "calls": 234
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 396,
+      "name": "hasAttackEffect",
+      "calls": 232
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1373,
+      "name": "changeBaseMaxStamina",
+      "calls": 231
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 181,
+      "name": "getTypeMultiplicity",
+      "calls": 222
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2242,
+      "name": "setBoard",
+      "calls": 221
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 265,
+      "name": "addMaxDamage",
+      "calls": 220
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1274,
+      "name": "changeCritResistance",
+      "calls": 219
+    },
+    {
+      "receiver_kind": "FuncRef",
+      "symbol": 81,
+      "name": "call_func",
+      "calls": 219
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 475,
+      "name": "connectToCharacterBuffs",
+      "calls": 218
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 276,
+      "name": "addBonusChance",
+      "calls": 217
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 529,
+      "name": "getFirstAffectedItem",
+      "calls": 217
+    },
+    {
+      "receiver_kind": "Arr",
+      "symbol": 36,
+      "name": "sort_custom",
+      "calls": 216
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2245,
+      "name": "onPieceMoved",
+      "calls": 216
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2275,
+      "name": "movePiece",
+      "calls": 216
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1890,
+      "name": "dictAdd",
+      "calls": 215
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 455,
+      "name": "useHeat",
+      "calls": 214
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1312,
+      "name": "makeInvulnerable",
+      "calls": 206
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1623,
+      "name": "getDamage",
+      "calls": 205
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 16,
+      "name": "empty",
+      "calls": 203
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 341,
+      "name": "getTypes",
+      "calls": 203
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 448,
+      "name": "tryUseLucky",
+      "calls": 203
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1948,
+      "name": "drink",
+      "calls": 203
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 68,
+      "name": "set_state",
+      "calls": 200
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1242,
+      "name": "classRoundSoundCount",
+      "calls": 200
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1456,
+      "name": "prepareHiddenLog",
+      "calls": 200
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1596,
+      "name": "resetCriticalShake",
+      "calls": 200
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1600,
+      "name": "restoreReplayBuffs",
+      "calls": 200
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1605,
+      "name": "restoreFlickers",
+      "calls": 200
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1698,
+      "name": "disconnectAll",
+      "calls": 200
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1283,
+      "name": "addHealingEfficiency",
+      "calls": 197
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1082,
+      "name": "prepareInventory",
+      "calls": 196
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1085,
+      "name": "combatStartInventory",
+      "calls": 196
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1088,
+      "name": "combatEndInventory",
+      "calls": 196
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2375,
+      "name": "onGainThresholdReached",
+      "calls": 190
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1949,
+      "name": "consumePotion",
+      "calls": 180
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1031,
+      "name": "getNumAffectedInside",
+      "calls": 176
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 286,
+      "name": "addCritSeverity",
+      "calls": 172
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 449,
+      "name": "loseLucky",
+      "calls": 168
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 450,
+      "name": "removeLucky",
+      "calls": 168
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 417,
+      "name": "giveMaxStaminaTemporary",
+      "calls": 166
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1277,
+      "name": "changeStunResistance",
+      "calls": 166
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1369,
+      "name": "gainMaxStaminaTemporary",
+      "calls": 166
+    },
+    {
+      "receiver_kind": "Arr",
+      "symbol": 50,
+      "name": "pick_random",
+      "calls": 164
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2009,
+      "name": "getBuffDur",
+      "calls": 161
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 281,
+      "name": "reduceCritChancePercent",
+      "calls": 156
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 992,
+      "name": "getNextCard",
+      "calls": 155
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1849,
+      "name": "pickRandomEngine",
+      "calls": 155
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2246,
+      "name": "onPieceCaptured",
+      "calls": 155
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2247,
+      "name": "doCapturingEffect",
+      "calls": 155
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2248,
+      "name": "onEliminatedBy",
+      "calls": 155
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2249,
+      "name": "doEliminatedEffect",
+      "calls": 155
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2273,
+      "name": "capture",
+      "calls": 155
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 440,
+      "name": "removeVampirism",
+      "calls": 152
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 442,
+      "name": "loseVampirism",
+      "calls": 152
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 430,
+      "name": "stealLife",
+      "calls": 148
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1349,
+      "name": "getEmpower",
+      "calls": 140
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 412,
+      "name": "purgeDamage",
+      "calls": 136
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2325,
+      "name": "checkItems",
+      "calls": 135
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 990,
+      "name": "updateTexture",
+      "calls": 130
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 995,
+      "name": "notifyChainPosition",
+      "calls": 130
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1295,
+      "name": "getBonusFatigueDamage",
+      "calls": 127
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 469,
+      "name": "removeMostBuffs",
+      "calls": 125
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1374,
+      "name": "recalculateMaxStamina",
+      "calls": 122
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 343,
+      "name": "addDynamicType",
+      "calls": 121
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1333,
+      "name": "losePoison",
+      "calls": 121
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 90,
+      "name": "get_instance_id",
+      "calls": 120
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 443,
+      "name": "cleansePoison",
+      "calls": 118
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2008,
+      "name": "getStunProtectChance",
+      "calls": 115
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1628,
+      "name": "triggerOnHit",
+      "calls": 113
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 301,
+      "name": "giveReflectStacks",
+      "calls": 112
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1287,
+      "name": "changeDebuffReflectStacks",
+      "calls": 112
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1389,
+      "name": "changeBuffNullifyChances",
+      "calls": 112
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1765,
+      "name": "_inventorySide",
+      "calls": 112
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2690,
+      "name": "zapItem",
+      "calls": 109
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1820,
+      "name": "isAvailableFor",
+      "calls": 107
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 313,
+      "name": "selfInflictPoison",
+      "calls": 99
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2376,
+      "name": "onUseThresholdReached",
+      "calls": 96
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2348,
+      "name": "onChargeTimerTimeout",
+      "calls": 94
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1428,
+      "name": "startFatigue",
+      "calls": 92
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1006,
+      "name": "setBagOfStones",
+      "calls": 91
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 369,
+      "name": "getP6",
+      "calls": 90
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 453,
+      "name": "cleanseCold",
+      "calls": 89
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 527,
+      "name": "getNumEmptyAffectedCells",
+      "calls": 85
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1707,
+      "name": "getEmptyCellsInCells",
+      "calls": 85
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1388,
+      "name": "changeDebuffProtectionChance",
+      "calls": 84
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2272,
+      "name": "findBestPieceToCapture",
+      "calls": 84
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1891,
+      "name": "dictSub",
+      "calls": 82
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2576,
+      "name": "onSpeedTimeout",
+      "calls": 82
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2039,
+      "name": "tweenFilling",
+      "calls": 79
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1823,
+      "name": "isMeleeWeapon",
+      "calls": 78
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1936,
+      "name": "resetChain",
+      "calls": 77
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1937,
+      "name": "updateCards",
+      "calls": 77
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 395,
+      "name": "canUseStamina",
+      "calls": 73
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 411,
+      "name": "reduceBonusDamage",
+      "calls": 73
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1893,
+      "name": "dictAppend",
+      "calls": 72
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1261,
+      "name": "getMaxHealth",
+      "calls": 71
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1727,
+      "name": "playFatigueSound",
+      "calls": 70
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1316,
+      "name": "getBuffStacks",
+      "calls": 67
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 309,
+      "name": "stealStack",
+      "calls": 64
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1712,
+      "name": "getCellsInLine",
+      "calls": 64
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1900,
+      "name": "arrayAsIndexDict",
+      "calls": 64
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1824,
+      "name": "isRangedWeapon",
+      "calls": 63
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1321,
+      "name": "changeDebuffResistChances",
+      "calls": 61
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 742,
+      "name": "getTranslatedName",
+      "calls": 60
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 993,
+      "name": "startActivation",
+      "calls": 60
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1475,
+      "name": "createEvent_DamageBuff",
+      "calls": 60
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2477,
+      "name": "giveStacksFromEffect",
+      "calls": 60
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2481,
+      "name": "getScaledParam",
+      "calls": 60
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 895,
+      "name": "showCooldown",
+      "calls": 59
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 994,
+      "name": "doRevealEffect",
+      "calls": 59
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1989,
+      "name": "isBuffed",
+      "calls": 59
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 308,
+      "name": "useBlock",
+      "calls": 56
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1300,
+      "name": "startBattleRage",
+      "calls": 56
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 905,
+      "name": "countAllInInventoryOfType",
+      "calls": 53
+    },
+    {
+      "receiver_kind": "Arr",
+      "symbol": 24,
+      "name": "pop_back",
+      "calls": 51
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 507,
+      "name": "getCollisionPoints",
+      "calls": 48
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2183,
+      "name": "advanceAffectedItem",
+      "calls": 48
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 596,
+      "name": "countTypes",
+      "calls": 47
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1291,
+      "name": "changeRangedSpikesLimit",
+      "calls": 46
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 444,
+      "name": "selfInflictBlind",
+      "calls": 45
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 991,
+      "name": "cardSecondaryEffectActive",
+      "calls": 45
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1290,
+      "name": "changeMeleeSpikesLimit",
+      "calls": 45
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2482,
+      "name": "isOnlyForDisplay",
+      "calls": 45
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 211,
+      "name": "updateBaseCooldown",
+      "calls": 44
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 284,
+      "name": "addCritTokens",
+      "calls": 44
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 885,
+      "name": "getGlobalCenter",
+      "calls": 44
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2123,
+      "name": "onBuffTimeout",
+      "calls": 43
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 202,
+      "name": "getBaseCooldownIndex",
+      "calls": 42
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 231,
+      "name": "repeatCombatStart",
+      "calls": 42
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 285,
+      "name": "useCritToken",
+      "calls": 42
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2201,
+      "name": "conditionFulfilled",
+      "calls": 42
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 209,
+      "name": "setBaseCooldown",
+      "calls": 39
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 561,
+      "name": "countAllPlacedOfType",
+      "calls": 37
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 338,
+      "name": "getShopChance",
+      "calls": 36
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 530,
+      "name": "getNumAffected_type",
+      "calls": 35
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1715,
+      "name": "countSocketedGems",
+      "calls": 34
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1128,
+      "name": "changeResistStacks",
+      "calls": 32
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1327,
+      "name": "getVampirism",
+      "calls": 32
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1769,
+      "name": "countItemsInInventoryOfType",
+      "calls": 32
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 472,
+      "name": "useRandomBuffs",
+      "calls": 31
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1075,
+      "name": "changeGemPower",
+      "calls": 31
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1101,
+      "name": "onParticleTimeout",
+      "calls": 31
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1130,
+      "name": "changeReflectChance",
+      "calls": 30
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2478,
+      "name": "sortEffects",
+      "calls": 30
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 342,
+      "name": "hasDynamicType",
+      "calls": 29
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 477,
+      "name": "connectToOpponentDebuffs",
+      "calls": 29
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 531,
+      "name": "getNumDistinctAffectedItems",
+      "calls": 29
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1032,
+      "name": "getNumAffectedInside_type",
+      "calls": 29
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1382,
+      "name": "changeEffectDamageFactor",
+      "calls": 29
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1279,
+      "name": "giveUnhealing",
+      "calls": 28
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1583,
+      "name": "defer",
+      "calls": 28
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1391,
+      "name": "addBattleRageDuration",
+      "calls": 27
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1384,
+      "name": "changePoisonCritChancePercent",
+      "calls": 25
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2583,
+      "name": "getCounterValue2",
+      "calls": 25
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1659,
+      "name": "canBeBlocked",
+      "calls": 24
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 476,
+      "name": "connectToCharacterDebuffs",
+      "calls": 23
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1897,
+      "name": "changeTimer",
+      "calls": 23
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 463,
+      "name": "getStackFraction",
+      "calls": 21
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1387,
+      "name": "changeBuffProtectionChance",
+      "calls": 21
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1770,
+      "name": "countItemsInInventoryOfType_opponent",
+      "calls": 21
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2584,
+      "name": "updateScale",
+      "calls": 21
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1966,
+      "name": "updateEgg",
+      "calls": 20
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1968,
+      "name": "canHatch",
+      "calls": 20
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 904,
+      "name": "getAllInInventoryOfType",
+      "calls": 18
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 201,
+      "name": "getBaseCooldown",
+      "calls": 16
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 415,
+      "name": "giveCritTokens",
+      "calls": 16
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1285,
+      "name": "gainCritTokens",
+      "calls": 16
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1903,
+      "name": "countDuplicates",
+      "calls": 16
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2567,
+      "name": "initRat",
+      "calls": 16
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 210,
+      "name": "resetBaseCooldown",
+      "calls": 15
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1286,
+      "name": "changeDebuffResistStacks",
+      "calls": 15
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2479,
+      "name": "randEffects",
+      "calls": 15
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2480,
+      "name": "setCraftedEffects",
+      "calls": 15
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1254,
+      "name": "reincarnate",
+      "calls": 14
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2127,
+      "name": "triggerNextPotion",
+      "calls": 14
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 414,
+      "name": "giveDoubleAttackEffectChance",
+      "calls": 13
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2097,
+      "name": "poisonTimerTimeout",
+      "calls": 13
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 464,
+      "name": "multiplyBuffsLimit",
+      "calls": 12
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 371,
+      "name": "getP8",
+      "calls": 11
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2691,
+      "name": "onBuffEnded",
+      "calls": 11
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 408,
+      "name": "reduceBonusDamageFactor",
+      "calls": 10
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1289,
+      "name": "changeAllDebuffsReflectChance",
+      "calls": 10
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1431,
+      "name": "advanceTime",
+      "calls": 10
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2682,
+      "name": "advanceItem",
+      "calls": 10
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 465,
+      "name": "removeBuffsFraction",
+      "calls": 9
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1767,
+      "name": "getItemsInInventoryOfType",
+      "calls": 9
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1768,
+      "name": "getItemsInInventoryOfType_opponent",
+      "calls": 9
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1980,
+      "name": "addBonusBlock",
+      "calls": 9
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2031,
+      "name": "addBonusRandomBuffs",
+      "calls": 9
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 277,
+      "name": "addBonusChance_additive",
+      "calls": 8
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 370,
+      "name": "getP7",
+      "calls": 8
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1358,
+      "name": "loseCold",
+      "calls": 8
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2297,
+      "name": "invuEnded",
+      "calls": 8
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 525,
+      "name": "countItemsInAffectedCells_cached",
+      "calls": 7
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1280,
+      "name": "reduceUnhealing",
+      "calls": 7
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1298,
+      "name": "startBlindingLight",
+      "calls": 7
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1381,
+      "name": "changeTypedDamageFactor",
+      "calls": 7
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1710,
+      "name": "countItemsInCells",
+      "calls": 7
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2014,
+      "name": "inflict",
+      "calls": 7
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 180,
+      "name": "hasType",
+      "calls": 6
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 439,
+      "name": "loseSpikes",
+      "calls": 6
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 478,
+      "name": "connectToOpponentBuffs",
+      "calls": 6
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1273,
+      "name": "changeDodgeStacks",
+      "calls": 6
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1594,
+      "name": "restartLoversParticleDraws",
+      "calls": 5
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1657,
+      "name": "unsetFlag",
+      "calls": 5
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2670,
+      "name": "onLifestealTimeout",
+      "calls": 5
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1299,
+      "name": "endBlindingLight",
+      "calls": 3
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1586,
+      "name": "connectIdleFrameOnce",
+      "calls": 3
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1592,
+      "name": "scheduleParticleDraws",
+      "calls": 3
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1625,
+      "name": "wasCriticalHit",
+      "calls": 3
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1898,
+      "name": "callNextFrame",
+      "calls": 3
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1992,
+      "name": "onRegenChanged",
+      "calls": 3
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2016,
+      "name": "onBlindingLightTimeout",
+      "calls": 3
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2117,
+      "name": "onAddToInventory_deferred",
+      "calls": 3
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2430,
+      "name": "countChain",
+      "calls": 3
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 441,
+      "name": "useVampirism",
+      "calls": 2
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 570,
+      "name": "changeAllItemsCritRate",
+      "calls": 2
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 892,
+      "name": "updateShaderRotation",
+      "calls": 2
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1276,
+      "name": "gainCritResistStacks",
+      "calls": 2
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1717,
+      "name": "changeBuffAmplification_allItems",
+      "calls": 2
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2141,
+      "name": "onSpeedTimerTimeout",
+      "calls": 2
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2444,
+      "name": "switchGradient",
+      "calls": 2
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1292,
+      "name": "changeEffectSpikesLimit",
+      "calls": 1
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 1385,
+      "name": "changeSpikesCritChancePercent",
+      "calls": 1
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2055,
+      "name": "onSpeedbuffTimeout",
+      "calls": 1
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2094,
+      "name": "drinkStrongDemonicFlask",
+      "calls": 1
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2095,
+      "name": "healingReductionTimeout",
+      "calls": 1
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2343,
+      "name": "removeDebuffResistance",
+      "calls": 1
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2406,
+      "name": "onHPLow",
+      "calls": 1
+    },
+    {
+      "receiver_kind": "Obj",
+      "symbol": 2407,
+      "name": "spawnSpikeParticles",
+      "calls": 1
+    }
+  ],
+  "overflow": {
+    "Null": 0,
+    "Bool": 0,
+    "Int": 0,
+    "Float": 0,
+    "Vec2": 0,
+    "Color": 0,
+    "Str": 0,
+    "Arr": 0,
+    "Dict": 0,
+    "Obj": 0,
+    "ClassRef": 0,
+    "Enum": 0,
+    "FuncRef": 0,
+    "Rng": 0,
+    "Unknown": 0
+  },
+  "scope": "Logical fallback invocations in a normal-object diagnostic DLL; release costs still require actual profiling and A/B"
+}
