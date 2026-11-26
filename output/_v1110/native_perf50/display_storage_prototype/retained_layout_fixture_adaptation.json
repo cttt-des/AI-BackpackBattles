@@ -1,0 +1,10 @@
+{
+  "reason": "Declared CoreItem layout change: original active suite completed state/legacy hash equality then failed only obsolete1792-byte assertion",
+  "original_helper_sha256": "8d237c43c2ce878bada48a8ff88868c658e2bab3525be780d32b22c20d23064d",
+  "adapted_helper_sha256": "6398b4b337437b4f8edb248327c42e4d62c8d057ab776767b01da1458468cf2a",
+  "original_assertion": "        assert actual['layout']==dict(GdVal=24,GdArr=32,CoreItem=1792,BattleCtx=328)",
+  "adapted_assertion": "        assert actual['layout']==dict(GdVal=24,GdArr=32,CoreItem=2112,BattleCtx=328)",
+  "no_case_hash_or_legacy_assertions_removed": true,
+  "candidate_source_and_dll_unchanged": true,
+  "first_logs_preserved": true
+}

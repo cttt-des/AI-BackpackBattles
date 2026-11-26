@@ -31,7 +31,13 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("report", type=Path, help="One continuous benchmark report from --workers 1 --repeat")
     parser.add_argument("--out", type=Path, required=True)
-    parser.add_argument("--reference-load", type=float, help="Normalize within the observed load range")
+    parser.add_argument("--reference-load", type=float, help="Target background CPU load for the empirical estimate")
+    policy = parser.add_mutually_exclusive_group()
+    policy.add_argument("--require-observed-range", action="store_true", dest="require_observed_range",
+                        help="Reproduce the historical interpolation-only restriction")
+    policy.add_argument("--allow-extrapolation", action="store_false", dest="require_observed_range",
+                        help="Allow empirical normalization outside the observed range (default)")
+    parser.set_defaults(require_observed_range=False)
     args = parser.parse_args()
     report = json.loads(args.report.read_bytes())
     samples = report.get("samples", ())
@@ -49,7 +55,8 @@ def main():
     slope, intercept = fit(rows)
     residuals = [elapsed - (slope * load + intercept) for load, elapsed in rows]
     reference = statistics.median(loads) if args.reference_load is None else args.reference_load
-    if not min(loads) <= reference <= max(loads):
+    outside = not min(loads) <= reference <= max(loads)
+    if outside and args.require_observed_range:
         parser.error("The reference load must fall within the observed range")
     mean_log_time = statistics.mean(log_times)
     variance = sum((elapsed - mean_log_time) ** 2 for elapsed in log_times)
@@ -61,6 +68,11 @@ def main():
         "log_wall_seconds_intercept": intercept, "log_wall_seconds_per_load_point": slope,
         "r_squared_log_wall_time": 1 - sum(residual ** 2 for residual in residuals) / variance if variance else None,
         "reference_load_pct": reference,
+        "reference_is_extrapolation": outside,
+        "reference_distance_outside_observed_range_pct_points": max(min(loads) - reference, reference - max(loads), 0),
+        "estimate_method": "log(wall_seconds) = intercept + slope * background_load_pct",
+        "sample_normalization_formula": "fps_at_reference = observed_fps * exp(slope * (observed_load - reference_load))",
+        "interpretation": "Empirical load-normalized estimate; coverage is reported, not a deployment gate. Code gains require paired A/B evidence.",
         "fitted_fights_per_second_at_reference_load": report["fights"] / math.exp(intercept + slope * reference),
         "fitted_wall_time_change_per_ten_load_points": math.expm1(slope * 10),
         "validation": cross_validate(rows),

@@ -1,0 +1,24 @@
+Awaiting identified live build 14460
+Starting run_bounded_followup.py
+Passed run_bounded_followup.py
+Starting verify_object_routes_after_ab.py
+Passed verify_object_routes_after_ab.py
+Starting run_full_gate.py
+Passed run_full_gate.py
+Starting finish_gate.py
+Passed finish_gate.py
+Starting run_release_measurements.py
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_storage_bundle\qualify_when_ready.py", line 53, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_storage_bundle\qualify_when_ready.py", line 51, in main
+    run('run_full_gate.py','full_gate.log','bundle');run('finish_gate.py','finish_gate.log');run('run_release_measurements.py','release_measurements.log')
+                                                                                             ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_storage_bundle\qualify_when_ready.py", line 13, in run
+    with path.open('w',encoding='utf8') as output:subprocess.run([sys.executable,'-u','-X','utf8',str(WORK/script),*map(str,args)],stdout=output,stderr=subprocess.STDOUT,check=True)
+                                                  ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe', '-u', '-X', 'utf8', 'D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_perf50\\display_storage_bundle\\run_release_measurements.py']' returned non-zero exit status 1.

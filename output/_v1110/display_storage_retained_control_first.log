@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "<stdin>", line 5, in <module>
+  File "D:\文件资料\学习\自动背包AI\output/_v1110\verify_native_display_control.py", line 42, in verify
+    active=active_verify(source,dll,checks/'retained_active_index.json')
+  File "D:\文件资料\学习\自动背包AI\output/_v1110\verify_native_active_cooldown_final.py", line 28, in verify
+    assert actual['layout']==dict(GdVal=24,GdArr=32,CoreItem=1792,BattleCtx=328)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

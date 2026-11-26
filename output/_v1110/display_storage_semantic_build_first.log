@@ -1,0 +1,7 @@
+Built D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_storage_prototype\prototype.dll (compiled 20/20, linked 20 objs) in 573.56s
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\build_native_display_storage.py", line 34, in <module>
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\build_native_display_storage.py", line 25, in main
+    names=['gd_rt','engine_wrapper','sym_ids','register_all',*[f'shard_{i:02d}' for i in range(16)]]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

@@ -1,0 +1,202 @@
+Starting one raw24 run
+bundle.dll: 24 batches, median 91.92 replays/s, minimum 54.17; 2e74b45caa87
+Waiting for3 consecutive idle CPU observations<=12%, before the sole calibration
+Idle CPU=35.6%; eligible observations=0/3
+Idle CPU=34.0%; eligible observations=0/3
+Idle CPU=55.4%; eligible observations=0/3
+Idle CPU=52.4%; eligible observations=0/3
+Idle CPU=43.1%; eligible observations=0/3
+Idle CPU=34.8%; eligible observations=0/3
+Idle CPU=25.5%; eligible observations=0/3
+Idle CPU=37.9%; eligible observations=0/3
+Idle CPU=28.4%; eligible observations=0/3
+Idle CPU=45.7%; eligible observations=0/3
+Idle CPU=31.2%; eligible observations=0/3
+Idle CPU=32.1%; eligible observations=0/3
+Idle CPU=31.5%; eligible observations=0/3
+Idle CPU=31.3%; eligible observations=0/3
+Idle CPU=34.4%; eligible observations=0/3
+Idle CPU=77.8%; eligible observations=0/3
+Idle CPU=36.5%; eligible observations=0/3
+Idle CPU=19.6%; eligible observations=0/3
+Idle CPU=14.5%; eligible observations=0/3
+Idle CPU=28.8%; eligible observations=0/3
+Idle CPU=36.7%; eligible observations=0/3
+Idle CPU=32.0%; eligible observations=0/3
+Idle CPU=26.2%; eligible observations=0/3
+Idle CPU=55.7%; eligible observations=0/3
+Idle CPU=31.5%; eligible observations=0/3
+Idle CPU=35.2%; eligible observations=0/3
+Idle CPU=27.4%; eligible observations=0/3
+Idle CPU=18.3%; eligible observations=0/3
+Idle CPU=15.1%; eligible observations=0/3
+Idle CPU=19.0%; eligible observations=0/3
+Idle CPU=31.2%; eligible observations=0/3
+Idle CPU=30.9%; eligible observations=0/3
+Idle CPU=23.3%; eligible observations=0/3
+Idle CPU=19.3%; eligible observations=0/3
+Idle CPU=15.5%; eligible observations=0/3
+Idle CPU=64.8%; eligible observations=0/3
+Idle CPU=27.0%; eligible observations=0/3
+Idle CPU=39.1%; eligible observations=0/3
+Idle CPU=31.3%; eligible observations=0/3
+Idle CPU=27.8%; eligible observations=0/3
+Idle CPU=38.1%; eligible observations=0/3
+Idle CPU=25.0%; eligible observations=0/3
+Idle CPU=29.8%; eligible observations=0/3
+Idle CPU=34.1%; eligible observations=0/3
+Idle CPU=13.7%; eligible observations=0/3
+Idle CPU=100.0%; eligible observations=0/3
+Idle CPU=98.3%; eligible observations=0/3
+Idle CPU=74.0%; eligible observations=0/3
+Idle CPU=74.1%; eligible observations=0/3
+Idle CPU=67.4%; eligible observations=0/3
+Idle CPU=50.0%; eligible observations=0/3
+Idle CPU=42.5%; eligible observations=0/3
+Idle CPU=47.7%; eligible observations=0/3
+Idle CPU=43.2%; eligible observations=0/3
+Idle CPU=51.3%; eligible observations=0/3
+Idle CPU=45.4%; eligible observations=0/3
+Idle CPU=40.5%; eligible observations=0/3
+Idle CPU=47.4%; eligible observations=0/3
+Idle CPU=48.8%; eligible observations=0/3
+Idle CPU=46.5%; eligible observations=0/3
+Idle CPU=47.3%; eligible observations=0/3
+Idle CPU=63.4%; eligible observations=0/3
+Idle CPU=45.0%; eligible observations=0/3
+Idle CPU=58.4%; eligible observations=0/3
+Idle CPU=47.3%; eligible observations=0/3
+Idle CPU=45.6%; eligible observations=0/3
+Idle CPU=50.8%; eligible observations=0/3
+Idle CPU=40.9%; eligible observations=0/3
+Idle CPU=50.9%; eligible observations=0/3
+Idle CPU=100.0%; eligible observations=0/3
+Idle CPU=72.3%; eligible observations=0/3
+Idle CPU=44.6%; eligible observations=0/3
+Idle CPU=42.9%; eligible observations=0/3
+Idle CPU=99.8%; eligible observations=0/3
+Idle CPU=52.2%; eligible observations=0/3
+Idle CPU=48.2%; eligible observations=0/3
+Idle CPU=47.1%; eligible observations=0/3
+Idle CPU=47.3%; eligible observations=0/3
+Idle CPU=94.2%; eligible observations=0/3
+Idle CPU=74.7%; eligible observations=0/3
+Idle CPU=74.7%; eligible observations=0/3
+Idle CPU=17.7%; eligible observations=0/3
+Idle CPU=36.8%; eligible observations=0/3
+Idle CPU=39.9%; eligible observations=0/3
+Idle CPU=19.2%; eligible observations=0/3
+Idle CPU=37.1%; eligible observations=0/3
+Idle CPU=38.6%; eligible observations=0/3
+Idle CPU=25.3%; eligible observations=0/3
+Idle CPU=21.5%; eligible observations=0/3
+Idle CPU=37.2%; eligible observations=0/3
+Idle CPU=35.0%; eligible observations=0/3
+Idle CPU=24.9%; eligible observations=0/3
+Idle CPU=15.0%; eligible observations=0/3
+Idle CPU=34.5%; eligible observations=0/3
+Idle CPU=13.4%; eligible observations=0/3
+Idle CPU=19.4%; eligible observations=0/3
+Idle CPU=33.3%; eligible observations=0/3
+Idle CPU=49.4%; eligible observations=0/3
+Idle CPU=18.2%; eligible observations=0/3
+Idle CPU=22.1%; eligible observations=0/3
+Idle CPU=30.8%; eligible observations=0/3
+Idle CPU=25.5%; eligible observations=0/3
+Idle CPU=9.5%; eligible observations=1/3
+Idle CPU=20.5%; eligible observations=0/3
+Idle CPU=34.2%; eligible observations=0/3
+Idle CPU=21.7%; eligible observations=0/3
+Idle CPU=13.7%; eligible observations=0/3
+Idle CPU=24.2%; eligible observations=0/3
+Idle CPU=26.7%; eligible observations=0/3
+Idle CPU=37.0%; eligible observations=0/3
+Idle CPU=27.9%; eligible observations=0/3
+Idle CPU=32.6%; eligible observations=0/3
+Idle CPU=34.5%; eligible observations=0/3
+Idle CPU=31.9%; eligible observations=0/3
+Idle CPU=40.2%; eligible observations=0/3
+Idle CPU=22.8%; eligible observations=0/3
+Idle CPU=33.6%; eligible observations=0/3
+Idle CPU=34.1%; eligible observations=0/3
+Idle CPU=28.2%; eligible observations=0/3
+Idle CPU=27.4%; eligible observations=0/3
+Idle CPU=36.7%; eligible observations=0/3
+Idle CPU=30.8%; eligible observations=0/3
+Idle CPU=31.0%; eligible observations=0/3
+Idle CPU=24.8%; eligible observations=0/3
+Idle CPU=32.6%; eligible observations=0/3
+Idle CPU=27.4%; eligible observations=0/3
+Idle CPU=34.0%; eligible observations=0/3
+Idle CPU=26.8%; eligible observations=0/3
+Idle CPU=31.3%; eligible observations=0/3
+Idle CPU=24.5%; eligible observations=0/3
+Idle CPU=53.1%; eligible observations=0/3
+Idle CPU=19.6%; eligible observations=0/3
+Idle CPU=30.8%; eligible observations=0/3
+Idle CPU=28.5%; eligible observations=0/3
+Idle CPU=34.2%; eligible observations=0/3
+Idle CPU=33.1%; eligible observations=0/3
+Idle CPU=37.1%; eligible observations=0/3
+Idle CPU=23.9%; eligible observations=0/3
+Idle CPU=31.3%; eligible observations=0/3
+Idle CPU=42.5%; eligible observations=0/3
+Idle CPU=23.8%; eligible observations=0/3
+Idle CPU=13.7%; eligible observations=0/3
+Idle CPU=21.6%; eligible observations=0/3
+Idle CPU=35.9%; eligible observations=0/3
+Idle CPU=30.5%; eligible observations=0/3
+Idle CPU=40.9%; eligible observations=0/3
+Idle CPU=29.2%; eligible observations=0/3
+Idle CPU=33.3%; eligible observations=0/3
+Idle CPU=42.3%; eligible observations=0/3
+Idle CPU=25.2%; eligible observations=0/3
+Idle CPU=35.0%; eligible observations=0/3
+Idle CPU=28.7%; eligible observations=0/3
+Idle CPU=32.3%; eligible observations=0/3
+Idle CPU=32.9%; eligible observations=0/3
+Idle CPU=35.1%; eligible observations=0/3
+Idle CPU=14.8%; eligible observations=0/3
+Idle CPU=16.3%; eligible observations=0/3
+Idle CPU=22.6%; eligible observations=0/3
+Idle CPU=31.7%; eligible observations=0/3
+Idle CPU=23.7%; eligible observations=0/3
+Idle CPU=26.6%; eligible observations=0/3
+Idle CPU=40.5%; eligible observations=0/3
+Idle CPU=35.0%; eligible observations=0/3
+Idle CPU=44.0%; eligible observations=0/3
+Idle CPU=23.4%; eligible observations=0/3
+Idle CPU=30.5%; eligible observations=0/3
+Idle CPU=46.9%; eligible observations=0/3
+Idle CPU=89.8%; eligible observations=0/3
+Idle CPU=58.6%; eligible observations=0/3
+Idle CPU=55.2%; eligible observations=0/3
+Idle CPU=77.4%; eligible observations=0/3
+Idle CPU=49.2%; eligible observations=0/3
+Idle CPU=50.3%; eligible observations=0/3
+Idle CPU=95.0%; eligible observations=0/3
+Idle CPU=84.1%; eligible observations=0/3
+Idle CPU=86.6%; eligible observations=0/3
+Idle CPU=58.3%; eligible observations=0/3
+Idle CPU=47.6%; eligible observations=0/3
+Eligible; start the original warm30/calibration24 once
+Starting one controlled load-calibration24 run
+Warming controlled load for 30 seconds
+bundle.dll: 24 batches, median 77.77 replays/s, minimum 42.19; 2e74b45caa87
+usage: fit_native_serial_load.py [-h] --out OUT
+                                 [--reference-load REFERENCE_LOAD]
+                                 report
+fit_native_serial_load.py: error: The reference load must fall within the observed range
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_storage_bundle\run_release_measurements.py", line 55, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_storage_bundle\run_release_measurements.py", line 34, in main
+    subprocess.run([*python,str(STAGE/'fit_native_serial_load.py'),str(outputs[1]),
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        '--reference-load','20','--out',str(outputs[2])],check=True)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['C:\\Users\\Windows\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe', '-u', '-X', 'utf8', 'D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\fit_native_serial_load.py', 'D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_perf50\\display_storage_bundle\\bundle_load_calibration.json', '--reference-load', '20', '--out', 'D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_perf50\\display_storage_bundle\\bundle_load20.json']' returned non-zero exit status 2.

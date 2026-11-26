@@ -1,0 +1,27 @@
+{
+  "authorization": "Explicit user clarification2026-11-26: estimate at20% with the empirical formula; coverage is not a deployment gate",
+  "adaptations": [
+    {
+      "path": "output/_v1110/native_perf50/display_storage_bundle/install_verified.py",
+      "original_sha256": "03e32a6d94114fb1cc35f7252efb91bfb984d39e8eb46b7da68bb43af63146e5",
+      "updated_sha256": "bb17c3eaf87e44bfc68207307295db7ddfb84158694c74df1c1d18a7990436a8",
+      "original_snapshot": "output/_v1110/native_perf50/display_storage_bundle/policy_original_verifiers_20261126/install_verified.py",
+      "only_coverage_assertion_replaced": true
+    },
+    {
+      "path": "output/_v1110/native_perf50/display_storage_bundle/verify_installed.py",
+      "original_sha256": "77f250f73f19f5f3317fe6db67f26dc3993d78abd0e9af91fc29c35037fc33ab",
+      "updated_sha256": "f20f20055ed0f66d1a4a8a260a3c1ab7e57fba4ac1570eb39ab9638224bfb1b7",
+      "original_snapshot": "output/_v1110/native_perf50/display_storage_bundle/policy_original_verifiers_20261126/verify_installed.py",
+      "only_coverage_assertion_replaced": true
+    },
+    {
+      "path": "output/_v1110/review_display_storage_release.py",
+      "original_sha256": "94bff0ec956a1b766c01cfffb5de4a9aa060819f00ee3c0417b30e9918e60b91",
+      "updated_sha256": "a68230c892b4f03dcab8f02690730d33aafed581062bcdf7d7377d90213aa15f",
+      "original_snapshot": "output/_v1110/native_perf50/display_storage_bundle/policy_original_verifiers_20261126/review_display_storage_release.py",
+      "only_coverage_assertion_replaced": true
+    }
+  ],
+  "all_other_acceptance_assertions_retained": true
+}

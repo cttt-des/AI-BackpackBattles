@@ -1,0 +1,16 @@
+{
+  "deployed": true,
+  "dll_sha256": "5ddb2c1b15ad7ab7dfe1a8f2640701abddf6da88600b2930e55fc85165b59209",
+  "empirical20_fps": 108.03454402543613,
+  "normalized_samples": {
+    "dll_sha256": "5ddb2c1b15ad7ab7dfe1a8f2640701abddf6da88600b2930e55fc85165b59209",
+    "no_additional_timing": true,
+    "interpretation": "Empirically normalized estimates from original24 samples; not direct20% observations",
+    "median": 108.20773209490804,
+    "minimum": 92.27499253863303,
+    "maximum": 126.63670248458263,
+    "global_fitted_point": 108.03454402543613,
+    "extrapolation": true
+  },
+  "goal_still_active": true
+}

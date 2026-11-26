@@ -1,0 +1,6 @@
+usage: fit_native_serial_load.py [-h] --out OUT
+                                 [--reference-load REFERENCE_LOAD]
+                                 [--require-observed-range |
+                                 --allow-extrapolation]
+                                 report
+fit_native_serial_load.py: error: The reference load must fall within the observed range

@@ -1,0 +1,42 @@
+{
+  "dll_sha256": "5ddb2c1b15ad7ab7dfe1a8f2640701abddf6da88600b2930e55fc85165b59209",
+  "serial": {
+    "median_fights_per_second": 91.92038231240556,
+    "minimum_fights_per_second": 54.17395419217416,
+    "maximum_fights_per_second": 117.16551544733737,
+    "background_load_range_pct": [
+      22.813860645305553,
+      68.64301130257383
+    ],
+    "on_ac_all": true
+  },
+  "load_calibration": {
+    "median_fights_per_second": 77.76696466944989,
+    "minimum_fights_per_second": 42.188517534354865,
+    "maximum_fights_per_second": 98.44277799412134,
+    "background_load_range_pct": [
+      26.898517225349945,
+      78.37086647873093
+    ],
+    "on_ac_all": true
+  },
+  "raw24_gate_passed": true,
+  "fitted_fights_per_second_at20": 108.03454402543613,
+  "load20_covered": false,
+  "posthoc_summary_only_no_additional_measurement": true,
+  "single_run_all_samples_retained": true,
+  "r_squared_log_wall_time": 0.9189450284543179,
+  "fit_validation": {
+    "median_absolute_relative_time_error": 0.021189098234454758,
+    "p90_absolute_relative_time_error": 0.08971005689359587,
+    "constant_median_absolute_relative_time_error": 0.16754123811623223
+  },
+  "report_sha256": {
+    "bundle_serial.json": "c9c171e52c6a60ad4d5bbad48322da988569c2d8272fd064a11b674e31c889d3",
+    "bundle_load_calibration.json": "2730e7b95d62bb0173f5ab9587835cf327ccb899e2345792ab70b64b0aadc03f",
+    "bundle_load20.json": "b38fff2543aabd6884aa19ee9afa11ba315a10a669e2d24329082fad8d893431"
+  },
+  "empirical20_is_extrapolation": true,
+  "user_policy_authorization": "Explicit user clarification2026-11-26: estimate at20% with the empirical formula; coverage is not a deployment gate",
+  "coverage_is_not_a_deployment_gate": true
+}

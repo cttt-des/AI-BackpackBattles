@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_storage_bundle\verify_installed.py", line 211, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\display_storage_bundle\verify_installed.py", line 40, in main
+    from prepare_native_display_storage import verify_projection
+ModuleNotFoundError: No module named 'prepare_native_display_storage'

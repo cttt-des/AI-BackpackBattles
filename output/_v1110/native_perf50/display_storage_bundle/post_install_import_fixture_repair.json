@@ -1,0 +1,10 @@
+{
+  "reason": "Deployment verifier needs STAGE to import the existing source projection checker",
+  "only_added_module_search_path": true,
+  "original_sha256": "f20f20055ed0f66d1a4a8a260a3c1ab7e57fba4ac1570eb39ab9638224bfb1b7",
+  "updated_sha256": "6a148061a82d2a211051a4c5989d738045934bfd51ac1495da0d9e975641c924",
+  "original_script_snapshot": "output/_v1110/native_perf50/display_storage_bundle/policy_original_verifiers_20261126/verify_installed_after_policy_before_import_fix.py",
+  "failed_first_log_sha256": "76230eb994aed048bc091e9572669299f105a3cc792de5c3c9adbbda9725876d",
+  "dll_and_measured_data_unchanged": true,
+  "no_assertion_removed": true
+}

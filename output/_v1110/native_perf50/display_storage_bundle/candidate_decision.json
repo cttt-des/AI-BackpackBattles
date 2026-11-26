@@ -1,0 +1,9 @@
+{
+  "selected_assessment": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_perf50\\display_storage_bundle\\ab_assessment_32.json",
+  "assessment_sha256": "391bd2b791e8d035101a2a8d52539099837c83a539c9c2246e0ed2056cde8541",
+  "candidate_dll_sha256": "5ddb2c1b15ad7ab7dfe1a8f2640701abddf6da88600b2930e55fc85165b59209",
+  "status": "positive_combined_evidence",
+  "original24_retained": true,
+  "no_more_same_source_groups": true,
+  "not_deployed": true
+}

@@ -274,7 +274,7 @@ void Gd__gd_core__CoreItem::init_fields(gd::BattleCtx& gd_ctx) {
     this->f_baseCooldownOverride = gd::gd_coerce_float(gd::GdVal::from_float(0.0));
     this->f_chanceRng = gd::GdVal::null();
     this->f_damageRangeRng = gd::GdVal::null();
-    this->f_statDisplayOverrides = gd::GdVal::from_arr(gd::GdArr::from_init(gd_ctx.arena, {}));
+    this->f_statDisplayOverrides = gd::GdVal::from_arr(this->native_make_display_array(gd_ctx));
     this->f_lastActivationTime = gd::gd_coerce_float(gd::GdVal::from_float(0.0));
     this->f_activationsThisFrame = gd::gd_coerce_int(gd::GdVal::from_int(0LL));
     this->f_lastTriggerTime = gd::gd_coerce_float(gd::GdVal::from_float(0.0));
@@ -1474,7 +1474,7 @@ gd::GdVal Gd__gd_core__CoreItem::fn_setup(const gd::GdVal* _args, int _argc) {
     }
     (void)([&]() { gd::GdVal _ca[] = {([&]() { gd::GdVal _out = gd::GdVal::null(); Gd__gd_core__CoreItem::call_static_fn(gd_ctx, SYM_GEN_getNumItemMetrics_227, nullptr, 0, _out); return _out; })()}; return gd::native_inline_call(gd_ctx, this->f_itemMetrics, gd::SYM_resize, _ca, 1); })();
     (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::from_int(0LL)}; return gd::native_inline_call(gd_ctx, this->f_itemMetrics, gd::SYM_fill, _ca, 1); })();
-    (void)([&]() { gd::GdVal _ca[] = {gd::native_inline_call(gd_ctx, gd::native_inline_get_prop(gd_ctx, gd::GdVal::from_cls(&META_Gd__gd_core__CoreConst), SYM_GEN_ItemStat_1398), gd::SYM_size, nullptr, 0)}; return gd::native_inline_call(gd_ctx, this->f_statDisplayOverrides, gd::SYM_resize, _ca, 1); })();
+    (void)([&]() { gd::GdVal _ca[] = {gd::native_inline_call(gd_ctx, gd::native_inline_get_prop(gd_ctx, gd::GdVal::from_cls(&META_Gd__gd_core__CoreConst), SYM_GEN_ItemStat_1398), gd::SYM_size, nullptr, 0)}; this->native_prepare_display_resize(gd_ctx,_ca[0]); return gd::native_inline_call(gd_ctx, this->f_statDisplayOverrides, gd::SYM_resize, _ca, 1); })();
     (void)([&]() { gd::GdVal _ca[] = {gd::GdVal::null()}; return gd::native_inline_call(gd_ctx, this->f_statDisplayOverrides, gd::SYM_fill, _ca, 1); })();
     if (gd_ctx.native_resolved_dispatch) {
         if (gd_ctx.native_resolved_collect) gd::native_static_setup_hit(3);

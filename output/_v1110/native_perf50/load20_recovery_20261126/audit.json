@@ -1,0 +1,1181 @@
+{
+  "passed": true,
+  "policy_source": "User clarification2026-11-26: empirical load normalization, coverage is not a deployment gate",
+  "reviewed_decision_directories": 70,
+  "historical_decisions": [
+    {
+      "directory": "active_cooldown_bundle",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/active_cooldown_bundle/bundle_installation.json",
+          "sha256": "d777bc8213e9f42e448b878cf8db4c75af77abbfb532c20a5d19052d9e5ad3e1",
+          "data": {
+            "dll_sha256": "55b62a2044b87311a967878a91d88ef4702641d240594989a09c396f67172ece"
+          }
+        },
+        {
+          "file": "output/_v1110/native_perf50/active_cooldown_bundle/candidate_decision.json",
+          "sha256": "afca6a3a96d039a2724cbc7b6b66e3f787d4cdc61fc365e272c7ba7f3d8c899b",
+          "data": {
+            "status": "positive_combined_evidence",
+            "candidate_dll_sha256": "55b62a2044b87311a967878a91d88ef4702641d240594989a09c396f67172ece"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "active_prefetch_bundle",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/active_prefetch_bundle/candidate_decision.json",
+          "sha256": "cf3b7e86cc56f6d4319f3e7568f73cfc01ebdac8ced65fe8475173f3ac5c42ab",
+          "data": {
+            "status": "inconclusive_retained",
+            "candidate_dll_sha256": "0fdfc66519a1dcd1d823deea2585d31ddd2c8df9f5e05b2bd81344bcd99a7600"
+          }
+        },
+        {
+          "file": "output/_v1110/native_perf50/active_prefetch_bundle/rejection_receipt.json",
+          "sha256": "6487cc4619a497dd6ece0120d5d7f4c1cdf9d647516064e1254841e2cd2c91f6",
+          "data": {
+            "status": "inconclusive_retained",
+            "candidate_dll_sha256": "0fdfc66519a1dcd1d823deea2585d31ddd2c8df9f5e05b2bd81344bcd99a7600"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "architecture_review",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/architecture_review/architecture_review_installation.json",
+          "sha256": "ebac6abf2610ff7ca5f9d07fe4748f1f7cb361de495b12b6bcfe175f2aa112d0",
+          "data": {
+            "dll_sha256": "58383a1158e951d7aae8b4d4c34df4d52332446156946d31a488f5dff323ec39"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "assembly",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/assembly/fused_installation.json",
+          "sha256": "0ddbcbd619724bc4c5df612d76c6e308e224b090d6ad4af7f20f07721c55734f",
+          "data": {
+            "dll_sha256": "747d52d526ff017f632ffcd3462fdfb34a163ce957d02a99853cf1a017531eb4"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "bundle_arena_dict_labels",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/bundle_arena_dict_labels/bundle_installation.json",
+          "sha256": "8fefea7a0bbdbaa5abb147240c158097e745c0d87d70d968df9da991aeb51068",
+          "data": {
+            "dll_sha256": "486dfce912d83a24cb4b4943b3b7a4aba5df68879caca2d71943eb98c4f73508"
+          }
+        },
+        {
+          "file": "output/_v1110/native_perf50/bundle_arena_dict_labels/validation_decision.json",
+          "sha256": "d87a1a2c06d8e1310eca771a2e7e39291c3c1c2656cc53936d6b8e2c14c56fa9",
+          "data": {
+            "reason": "Four wall-time group medians positive; 24/32 paired wall wins; pooled wall median +1.31%, summed wall +0.64%, summed CPU +0.43%. CPU paired median zero and quantized/tied values mean CPU gain remains uncertain. Do not reject individual components or demand group unanimity."
+          }
+        }
+      ]
+    },
+    {
+      "directory": "callback_dispatch_bundle",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/callback_dispatch_bundle/bundle_installation.json",
+          "sha256": "969015cfa761595799168ce07e0b72cbecd19f2cfe1a8073eae9e3832c67d22b",
+          "data": {
+            "dll_sha256": "80a0681c1c93268af2b29c21e5439b6444de36a29ad39486b3f4afadf548a44a"
+          }
+        },
+        {
+          "file": "output/_v1110/native_perf50/callback_dispatch_bundle/candidate_decision.json",
+          "sha256": "df670057ea08136011918c375daad85beb557e48b24f03805c8d5176c24d11fb",
+          "data": {
+            "status": "positive_combined_evidence",
+            "candidate_dll_sha256": "80a0681c1c93268af2b29c21e5439b6444de36a29ad39486b3f4afadf548a44a"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "closed_timer_bundle",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/closed_timer_bundle/bundle_installation.json",
+          "sha256": "8d0af9c6590301b7808d87b4e90949a9f74225794d9eecad14bee89a60b35929",
+          "data": {
+            "dll_sha256": "686f0d6cdb2fc223d4ed50319b31e786eea14383b4ffb9a8fe8633395ee07b43"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "coallocated_events_bundle",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/coallocated_events_bundle/candidate_decision.json",
+          "sha256": "96ced730b58b0aed52aee38a61949d87f67d3bd6628db55087122b2adf83ffbb",
+          "data": {
+            "status": "inconclusive_retained",
+            "candidate_dll_sha256": "7446284523c0350ac8d209b378024542c3032c7ca24bb174d35537c7734920f2"
+          }
+        },
+        {
+          "file": "output/_v1110/native_perf50/coallocated_events_bundle/rejection_receipt.json",
+          "sha256": "1e55d60d639a21a17c14734084d20cd5ec829e40f76ab3b0323dd2022c75a633",
+          "data": {
+            "status": "inconclusive_retained",
+            "candidate_dll_sha256": "7446284523c0350ac8d209b378024542c3032c7ca24bb174d35537c7734920f2"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "compiler_pta_bundle",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/compiler_pta_bundle/candidate_decision.json",
+          "sha256": "8b258df07429119c6e2c9d9912e0cfc697cde610e17d65b0fe1e1bcb57fe7e64",
+          "data": {
+            "status": "consistent_regression_bundle_only",
+            "candidate_dll_sha256": "485b12183148f8a2584d060b6f55a2ec1be4396cba5dc6026e907b0cd438a7b5"
+          }
+        },
+        {
+          "file": "output/_v1110/native_perf50/compiler_pta_bundle/rejection_receipt.json",
+          "sha256": "0148aedb11942c2076a7274604eacaeeb536eb1f55c1ba682f64b1ba4a885ab9",
+          "data": {
+            "status": "consistent_regression_bundle_only",
+            "candidate_dll_sha256": "485b12183148f8a2584d060b6f55a2ec1be4396cba5dc6026e907b0cd438a7b5"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "control_word_bundle",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/control_word_bundle/bundle_installation.json",
+          "sha256": "ac1b6e64a5f3ef76c8c5cee0dfc80a69397e002ec40e471672035b1904d14ff8",
+          "data": {
+            "dll_sha256": "680f3e37ed7485daac1d6b023bc8530706efb22370a479a02b2e212609c39775"
+          }
+        },
+        {
+          "file": "output/_v1110/native_perf50/control_word_bundle/candidate_decision.json",
+          "sha256": "4d7042735ba70c2712980034cffd7630046a68e896e5e37e4b38249116b2f3eb",
+          "data": {
+            "status": "positive_combined_evidence",
+            "candidate_dll_sha256": "680f3e37ed7485daac1d6b023bc8530706efb22370a479a02b2e212609c39775"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "cycles",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/cycles/character_installation.json",
+          "sha256": "b48d578b6c97845fc4ec19997d8224b2d68a17ca6ed438fa27592b59c073e44b",
+          "data": {
+            "dll_sha256": "ef599b44623242e43c108e7eb05dc012fa6384bebd66aee4dcc03c483553f7cf"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "cycles02",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/cycles02/rng_native_installation.json",
+          "sha256": "24cd0ddb0584bc8383b96b9e2593790356c0dedc5d76e3dfe1599ca9005d0ff3",
+          "data": {
+            "dll_sha256": "201b390883f77eb6883a751503a4e4c049a8192297647a11b6ff73c556230e34"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "cycles03",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/cycles03/full_pgo_installation.json",
+          "sha256": "93bb088655f7fd21dd18cb7b99f901ee1e7e4d4d074438befaba1061703e69ff",
+          "data": {
+            "dll_sha256": "4ccdaf2bef6ad526a5740355bc413e18015d341f5d98182cdc68e7688570e038"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "cycles04",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/cycles04/symbol_atomic_installation.json",
+          "sha256": "11f9f3a16a340bf76c0ea0412dde4acd344fc682fa9a732356a45c44ebf972ca",
+          "data": {
+            "dll_sha256": "1291ef1b6ae50856e9e3585d9193734b64a4a1c15cf98ebca1ebedf7333ce940"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "cycles06",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/cycles06/build_support_installation.json",
+          "sha256": "e16f0a61cf02145e773b90955eaa31d3316e1cb2aa629f5c148c1fe8611177d2",
+          "data": {
+            "dll_sha256": "1291ef1b6ae50856e9e3585d9193734b64a4a1c15cf98ebca1ebedf7333ce940"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "cycles07",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/cycles07/noop_snapshots_installation.json",
+          "sha256": "3849afb92506ab37ae5094752a7179a25c4f589bc37de49e4c7faf74d9e74fb5",
+          "data": {
+            "dll_sha256": "9ffe3242ea2d2996b19ddda6ddc6f269afca4c5439b858059b03e029c03f1899"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "cycles08",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/cycles08/dict_indices_rejected_installation.json",
+          "sha256": "3d2048c7e9168970e47ff4ddcda6b225bee15d079a5b71282bcba09039093490",
+          "data": {
+            "dll_sha256": "9ffe3242ea2d2996b19ddda6ddc6f269afca4c5439b858059b03e029c03f1899"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "cycles09",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/cycles09/label_ranges_rejected_installation.json",
+          "sha256": "df0b2550650e44d37ca0b924d34656680d70ec5f588925a92cc55243f234a953",
+          "data": {
+            "dll_sha256": "9ffe3242ea2d2996b19ddda6ddc6f269afca4c5439b858059b03e029c03f1899"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "cycles10",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/cycles10/item_prefetch_rejected_installation.json",
+          "sha256": "4c3cc709502f35430ec5ac3bb1f0cea239bba42d77eded885a8ca7d8d993e715",
+          "data": {
+            "dll_sha256": "9ffe3242ea2d2996b19ddda6ddc6f269afca4c5439b858059b03e029c03f1899"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "cycles11",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/cycles11/inline_timers_installation.json",
+          "sha256": "253fb9f0989448e00ebef00c1fa817c51bb4a8c3ae556ad8ef404f6276ff6c96",
+          "data": {
+            "dll_sha256": "58383a1158e951d7aae8b4d4c34df4d52332446156946d31a488f5dff323ec39"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "cycles12",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/cycles12/sparse_timers_installation.json",
+          "sha256": "0dfab864dc88317abd2981065dab3037838c1eff3b60cd43859ba22fad4b9f92",
+          "data": {
+            "reason": "Three 8-pair groups were directionally inconsistent; pooled CPU reduction 0.729927% and wall reduction 0.893594% do not establish repeatable benefit",
+            "deployed": false,
+            "dll_sha256": "58383a1158e951d7aae8b4d4c34df4d52332446156946d31a488f5dff323ec39",
+            "candidate_dll_sha256": "f8f2201a3ec8565cf761deffde32ff672e1561e25d4754c2b37ca03429fa3b9b"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "cycles13",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/cycles13/sparse_cooldowns_v2_installation.json",
+          "sha256": "59dc257b79a9898593cedcc8c1b5c3a6f8409aa514d08f561f7638edf199d536",
+          "data": {
+            "reason": "24-pair pooled CPU and wall change were essentially zero; pinned same-DLL AA was noisy and not used to claim candidate benefit",
+            "deployed": false,
+            "dll_sha256": "58383a1158e951d7aae8b4d4c34df4d52332446156946d31a488f5dff323ec39",
+            "candidate_dll_sha256": "a19d2a5f232bcb3c9d05435aced8e40c7971fd36d4254136f78599acccc4afc4"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "cycles14",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/cycles14/arena_split_installation.json",
+          "sha256": "d8f07a63b777b77ad03226222a7d4a5de65676d0372f0936070d4efdf25d9fd4",
+          "data": {
+            "reason": "Final independent group reversed CPU and wall results; predeclared all-four-positive CPU and >=3-positive wall conditions failed",
+            "deployed": false,
+            "dll_sha256": "58383a1158e951d7aae8b4d4c34df4d52332446156946d31a488f5dff323ec39",
+            "candidate_dll_sha256": "50201d2a5fe4ab39927df1637b1abe3425c5d1b0a4b447b75ce6364092b1aed0"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "cycles15",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/cycles15/buff_scalar_locals_installation.json",
+          "sha256": "e64ffc97b280251379ac5914760e983da23be0a18ea1c0872912dfaa2b3c9ad2",
+          "data": {
+            "reason": "Both initial groups increased main-thread CPU time, satisfying the predeclared futility condition",
+            "deployed": false,
+            "dll_sha256": "58383a1158e951d7aae8b4d4c34df4d52332446156946d31a488f5dff323ec39",
+            "candidate_dll_sha256": "84f98c175b43b3168fff7cfd6c35c14c01d92b85d0a8483fae192549fb388d13"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "cycles16",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/cycles16/buff_context_installation.json",
+          "sha256": "2f9f1b2f242e4c3bf6e6a395d5fe45b2241bf9b6ff16635e33175229587f3fe4",
+          "data": {
+            "reason": "Both initial groups increased main-thread CPU time, satisfying the predeclared futility condition",
+            "deployed": false,
+            "dll_sha256": "58383a1158e951d7aae8b4d4c34df4d52332446156946d31a488f5dff323ec39",
+            "candidate_dll_sha256": "781176d0012d0b08c9da8e28874a16ea52546911b734a8b2260c47a8d4a8d8f5"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "cycles17",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/cycles17/shared_speed_installation.json",
+          "sha256": "087f1be37c1bf4e55b1b1ea9e2000e29e5758f74dd98dc66fd33d8afb35e21ab",
+          "data": {
+            "reason": "First CPU and wall medians increased; the predeclared all-three-directions criterion was not met",
+            "deployed": false,
+            "dll_sha256": "58383a1158e951d7aae8b4d4c34df4d52332446156946d31a488f5dff323ec39",
+            "candidate_dll_sha256": "f95e8f9c5bfcab63534ccfff5988b327ddef22edb0f9a274cd3356bc56ad83f1"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "cycles18",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/cycles18/reverse_stack_names_installation.json",
+          "sha256": "72dda7e9d5a3e855918b5ab30cde30eeeb37ae141a934f37713455a792dae23b",
+          "data": {
+            "reason": "24-batch minimum 43.40 < 50 fights/s; all 24 raw samples retained",
+            "deployed": false,
+            "dll_sha256": "58383a1158e951d7aae8b4d4c34df4d52332446156946d31a488f5dff323ec39",
+            "candidate_dll_sha256": "7213d9466543beda9903471cc2ed381fb240d896abe739479e6c9029eb7bd560"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "cycles19",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/cycles19/ltrans_devirt_installation.json",
+          "sha256": "e371a18bacd0bc5dfd0080849c93683d760146d2ac161670150051fdf7d4cdf4",
+          "data": {
+            "reason": "Both initial groups increased main-thread CPU and wall time; second group lost all 8 pairs",
+            "deployed": false,
+            "dll_sha256": "58383a1158e951d7aae8b4d4c34df4d52332446156946d31a488f5dff323ec39",
+            "candidate_dll_sha256": "560991e3d06f84f8ae93fb81d5606cdd1ea846c77a8e3e926271d787113943e5"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "dispatch_array_bundle",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/dispatch_array_bundle/bundle_installation.json",
+          "sha256": "a9e4436186050fda735134aa974a0c9e5749f77a948f8ffe0f666340dfd4b25a",
+          "data": {
+            "dll_sha256": "0904c29d124d7f8e4a97a2ed6a73f7e006d07ee63552fecda3ed064d0427b4f3"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "dispatch_chain_bundle",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/dispatch_chain_bundle/bundle_installation.json",
+          "sha256": "aa0e71b940d531ab348d7015812718f1fac08f18ce8d9020babdf658c9edfe06",
+          "data": {
+            "dll_sha256": "39c559a0bc4ef04f89444be63b42b842884a7d2fee1d59c4332fcdc7367d8e0b"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "display_defaults_bundle",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/display_defaults_bundle/candidate_decision.json",
+          "sha256": "1ffc58e163edfa4549d64afadc069fb28c7fdd2f02becd7e4b017091efb87067",
+          "data": {
+            "status": "consistent_regression_bundle_only",
+            "candidate_dll_sha256": "5c6b04cadb8ef0aa90e286b1d3fee6b71acb2395ee3275d56e2778dbba8ed617"
+          }
+        },
+        {
+          "file": "output/_v1110/native_perf50/display_defaults_bundle/rejection_receipt.json",
+          "sha256": "31f0cef8b443c8572d3a3add2530e24c417d391956b82f1003c015cf737af468",
+          "data": {
+            "status": "not_adopted_consistent_regression",
+            "candidate_dll_sha256": "5c6b04cadb8ef0aa90e286b1d3fee6b71acb2395ee3275d56e2778dbba8ed617"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "display_storage_bundle",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/display_storage_bundle/candidate_decision.json",
+          "sha256": "9b63867ab5f8a22b2301f462d7c4a981f5595beb29e29b8ddd1ce177c1f29eb0",
+          "data": {
+            "status": "positive_combined_evidence",
+            "candidate_dll_sha256": "5ddb2c1b15ad7ab7dfe1a8f2640701abddf6da88600b2930e55fc85165b59209"
+          }
+        },
+        {
+          "file": "output/_v1110/native_perf50/display_storage_bundle/release_gate_failure.json",
+          "sha256": "08f6f960662b816c81c21c5feb720895f4b15cc170426149ea8a9054ed0ee870",
+          "data": {
+            "status": "release_measurement_gate_failed",
+            "candidate_dll_sha256": "5ddb2c1b15ad7ab7dfe1a8f2640701abddf6da88600b2930e55fc85165b59209",
+            "raw24_gate_passed": true,
+            "load20_covered": false
+          }
+        }
+      ]
+    },
+    {
+      "directory": "eager_trace_bundle",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/eager_trace_bundle/bundle_installation.json",
+          "sha256": "86a3b057ae919cb16d66be1046b17ab756246ee72f962782bd007629602576a1",
+          "data": {
+            "dll_sha256": "444e75c6872fa2acec57f42d88eb6687c29f2dc97a82b88ba3e66fdf849312cc"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "event_capacity_bundle",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/event_capacity_bundle/candidate_decision.json",
+          "sha256": "256ddcb4fd1afbf45638df8e28a8af229cb719a5815c459e747d38c5e06c9dba",
+          "data": {
+            "status": "inconclusive_retained",
+            "candidate_dll_sha256": "8034effcb1016c278b35718d39d15c89e2130dd12fba79969da2ed0911459a55"
+          }
+        },
+        {
+          "file": "output/_v1110/native_perf50/event_capacity_bundle/rejection_receipt.json",
+          "sha256": "2f69181756b317c859efc285a90c9e4ddc392990b53a5808f493f4cd18650f47",
+          "data": {
+            "status": "not_adopted_no_confirmed_cpu_gain",
+            "candidate_dll_sha256": "8034effcb1016c278b35718d39d15c89e2130dd12fba79969da2ed0911459a55"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "event_emission_bundle",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/event_emission_bundle/bundle_installation.json",
+          "sha256": "6858333f5398a23f2c0b4a8a0357c84229f30fde5023735f562d64cee89f0b67",
+          "data": {
+            "dll_sha256": "b2018eb28b90ae5527d9e0764a8b11e5bf6df0b60df7cb722c67629fcfedb588"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "event_factory_bundle",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/event_factory_bundle/bundle_installation.json",
+          "sha256": "7faef50932ad1a41854f0d8d8c602332c1c8ab58be1ecd000967b6674cf83c9a",
+          "data": {
+            "dll_sha256": "d8a7365191ad57a48ac378a7db77e8587169814f6f74298734f7d0b4786e3a76"
+          }
+        },
+        {
+          "file": "output/_v1110/native_perf50/event_factory_bundle/candidate_decision.json",
+          "sha256": "bae37e3eec0ee7ee116f75279f50f766cc9f296cddb5acf061d31d8d0874c527",
+          "data": {
+            "status": "positive_combined_evidence",
+            "candidate_dll_sha256": "d8a7365191ad57a48ac378a7db77e8587169814f6f74298734f7d0b4786e3a76"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "event_identity_bundle",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/event_identity_bundle/final_decision.json",
+          "sha256": "04376c9a49d078227153d287a4bedb0a74f61e72cf779e9e0e578d7655c398af",
+          "data": {
+            "status": "small_whole_fight_gain_unconfirmed_retained_for_same_path_composition",
+            "deployed": false,
+            "candidate_dll_sha256": "af3de9457407a4a391aa7bdfb77dc9769a59938d779635a3dadfd58d3f9e46bc"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "followup",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/followup/diagnostics_installation.json",
+          "sha256": "972fbe92bfb9acb54dd6a873cf5938cf115fdf977a9737564d29df8c34eaaa2a",
+          "data": {
+            "dll_sha256": "a2556667fb9a461d62a77f3687a01636e362ea220a1f23f75035c828f53fd9b7"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "frame_ablation_bundle",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/frame_ablation_bundle/bundle_installation.json",
+          "sha256": "35a835c2c67d37fbb7f6b72f06e6153da6cbe21930cac3445707391c7a775525",
+          "data": {
+            "dll_sha256": "d3c47cdfe1b3218e7936cc02f706e8452464c1420c5e1fe4bf6963f2e3844c14"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "frame_proof_bundle",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/frame_proof_bundle/candidate_decision.json",
+          "sha256": "7490d0f787ba7c76cae363945fc7d2b2e24fadd902e9edfd0252dee1094dafb1",
+          "data": {
+            "status": "inconclusive_retained",
+            "candidate_dll_sha256": "785834d760f4eeb71b8bfec40c07da9f128f21a314bc6a7246ead592216d91af"
+          }
+        },
+        {
+          "file": "output/_v1110/native_perf50/frame_proof_bundle/rejection_receipt.json",
+          "sha256": "b57a844a0ef0806837fed61b53eaf5bd232cf40f079396502f47b45320754f5e",
+          "data": {
+            "status": "not_adopted_inconclusive",
+            "candidate_dll_sha256": "785834d760f4eeb71b8bfec40c07da9f128f21a314bc6a7246ead592216d91af"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "frame_segments_bundle",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/frame_segments_bundle/final_decision.json",
+          "sha256": "76f8246bf73fd106d44fa414e4a0dca3418641728484300e16ba5fe9fa24bfdf",
+          "data": {
+            "status": "no_confirmed_bundle_gain_retained",
+            "deployed": false,
+            "candidate_dll_sha256": "fd7c6eb2eca1319efbeb068e5554a6b28e91d419c418b0fd1afbc72a18c6cf3b"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "grid_cooldown_bundle",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/grid_cooldown_bundle/bundle_installation.json",
+          "sha256": "11cf04305d43a997ad9069e6ccc5c2976e2d009c972979ab57ee0e673248cfac",
+          "data": {
+            "dll_sha256": "e0bedc4960077407e85763cb5e4af70175a0623cca15e923403fa89174390687"
+          }
+        },
+        {
+          "file": "output/_v1110/native_perf50/grid_cooldown_bundle/candidate_decision.json",
+          "sha256": "09f3ea36be30eb1bcbb8e3fec393ec415d54ce016eb2fae4d7e2c7762408445a",
+          "data": {
+            "status": "positive_combined_evidence",
+            "candidate_dll_sha256": "e0bedc4960077407e85763cb5e4af70175a0623cca15e923403fa89174390687"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "hot_coverage_bundle",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/hot_coverage_bundle/bundle_installation.json",
+          "sha256": "c38aa12b6540ef19a56833f9ffda3629afc070ec0c1ae886dd3d65811b25e90e",
+          "data": {
+            "dll_sha256": "401376afb48e5340be48578aa534eac0b823a69d3447044639e3d3ee5cb7a259"
+          }
+        },
+        {
+          "file": "output/_v1110/native_perf50/hot_coverage_bundle/composition_decision.json",
+          "sha256": "9bb9e251b93834805d3385bfcb158905e35258f6e3db8dd0aaac3e4727df6d29",
+          "data": {
+            "reason": "Repeatable whole-package paired gains across groups and fixed added load; full2604 truth/hash and raw24 passed. Independent fits are contextual, not a causal comparison. Retain the single lower fit and continue the goal.",
+            "candidate_dll_sha256": "401376afb48e5340be48578aa534eac0b823a69d3447044639e3d3ee5cb7a259"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "inline_dispatch_bundle",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/inline_dispatch_bundle/bundle_installation.json",
+          "sha256": "9348d91351a241cf87ce98a97de53070d03f04f91f5ec2d53321d8e7ab78a62c",
+          "data": {
+            "dll_sha256": "1be75dced83e9e90fdbe61dd86f91bc27e19bb44acf9449d295849e928d9cec5"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "item_locality_bundle",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/item_locality_bundle/bundle_installation.json",
+          "sha256": "227a6846d01a796952744b4a94764c7dc0a4b2548e0f217a9e08577931aa86ce",
+          "data": {
+            "dll_sha256": "8e7d574055c36e7535cb54139e11514729e72088c4314ad028c623d42ae32cfa"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "lazy_diagnostics_bundle",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/lazy_diagnostics_bundle/bundle_installation.json",
+          "sha256": "1a51e65d049199392c90ef770aeb1a30f3089f9e89181f94d7616d4b09d974f5",
+          "data": {
+            "dll_sha256": "593acaf3d6bf1dfedc7926cc5f3659c074a285dd95a9dcf0db95c1f913077670"
+          }
+        },
+        {
+          "file": "output/_v1110/native_perf50/lazy_diagnostics_bundle/composition_decision.json",
+          "sha256": "60603d41298d4bd78ec3576af7c12dadfbc29fd7ac3bf09bd40a27e46bf13b40",
+          "data": {
+            "candidate_dll_sha256": "593acaf3d6bf1dfedc7926cc5f3659c074a285dd95a9dcf0db95c1f913077670"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "literal_spans_bundle",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/literal_spans_bundle/bundle_installation.json",
+          "sha256": "7eac27a0118facb3b0a927b39e77deee36aa73aa88443dae8fdaea904392b7de",
+          "data": {
+            "dll_sha256": "c46cc19c06fb3c424a470f04bb7a0ef5acf8b7ff01caaccd5f41a5c44d955ee1"
+          }
+        },
+        {
+          "file": "output/_v1110/native_perf50/literal_spans_bundle/candidate_decision.json",
+          "sha256": "40484db9dda38eee7cb4a01150dcb4d5195b7981300fdad996a5e9b42487b384",
+          "data": {
+            "status": "positive_combined_evidence",
+            "candidate_dll_sha256": "c46cc19c06fb3c424a470f04bb7a0ef5acf8b7ff01caaccd5f41a5c44d955ee1"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "member_frame_bundle",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/member_frame_bundle/final_decision.json",
+          "sha256": "b71b8f87f57a5f85844a9e82aef3a56987f35ac871808b2bc6a9092f3dce535c",
+          "data": {
+            "status": "inconclusive_retained_for_component_ablation",
+            "deployed": false,
+            "candidate_dll_sha256": "d3c47cdfe1b3218e7936cc02f706e8452464c1420c5e1fe4bf6963f2e3844c14"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "member_only_bundle",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/member_only_bundle/bundle_installation.json",
+          "sha256": "3d764c9762360566fd22a5ff576bb6098f0a170f6b103f8c608c9073fe9f4096",
+          "data": {
+            "dll_sha256": "6cb258ec1baf335d3bc8e9da1538b2edd8aee87669b05249728f4829b1c47785"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "motion_indices_bundle",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/motion_indices_bundle/bundle_installation.json",
+          "sha256": "316f411b6668975c6c145b9a76280b0b445f74b94e9785cc73288468d7cf34ef",
+          "data": {
+            "dll_sha256": "7a57d09b81ba62fcd985fbb14a5999c72ff550ba328d5cae3add6167e4fbc058"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "native_event_kernel_a",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/native_event_kernel_a/event_kernel_installation.json",
+          "sha256": "767b97c901319362f81efaa36f1bfbc3b7921d82c48e7e4170a1e6af11201dd2",
+          "data": {
+            "reason": "continuous raw24 minimum below 50; keep all batches; no repeat-until-pass",
+            "deployed": false,
+            "candidate_dll_sha256": "2b48ccf3526da880ce905f163b771d84462a90c52cc83f7ada181c7c8e62f521"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "object_routes_bundle",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/object_routes_bundle/bundle_installation.json",
+          "sha256": "9d15cf6a774ccdfaa8379e4dbd21caba7f1bd308d9c75bfb8ad9645d9be62ee9",
+          "data": {
+            "dll_sha256": "f950b64c74684ae70ce4e41b9622541c849da0121e1235ab88b7aaface22a6d7"
+          }
+        },
+        {
+          "file": "output/_v1110/native_perf50/object_routes_bundle/candidate_decision.json",
+          "sha256": "44d6268b2bb48f0b53b7ad917246ad05b226b949acf9282a2eea8db53c8c7a22",
+          "data": {
+            "status": "positive_combined_evidence",
+            "candidate_dll_sha256": "f950b64c74684ae70ce4e41b9622541c849da0121e1235ab88b7aaface22a6d7"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "private_snapshots_bundle",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/private_snapshots_bundle/candidate_decision.json",
+          "sha256": "b2a835385bbc1ed01d978510e832b8d7ca70cf387d99e48fc7a3365bb04e4157",
+          "data": {
+            "status": "positive_combined_evidence",
+            "candidate_dll_sha256": "cd4ee7464fd4158cc0fc00bcd6dda49023bfb9614cdccad71a014e2bdbcb13ce"
+          }
+        },
+        {
+          "file": "output/_v1110/native_perf50/private_snapshots_bundle/release_gate_failure.json",
+          "sha256": "a5c6582ffaacd92f169769ac83d847205ae6b26ef989d5bbaed9e159cfd64ab1",
+          "data": {
+            "status": "not_deployed_load20_uncovered",
+            "candidate_dll_sha256": "cd4ee7464fd4158cc0fc00bcd6dda49023bfb9614cdccad71a014e2bdbcb13ce",
+            "raw24_gate_passed": true,
+            "load20_covered": false
+          }
+        }
+      ]
+    },
+    {
+      "directory": "property_control_bundle",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/property_control_bundle/bundle_installation.json",
+          "sha256": "381f15aa9f8aa68ccce9726eac27e6902e5309a949ef1b76f6f59e1b25b04398",
+          "data": {
+            "dll_sha256": "14263d42d22021a83849baffddf2f6288694886f2733a66c0473850b37407548"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "resolved_dispatch_a",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/resolved_dispatch_a/resolved_installation.json",
+          "sha256": "4442f9c642439d566a74ff980047e18427ece01da07bead47c80178c0a96f79a",
+          "data": {
+            "dll_sha256": "6e232391806268a9e77dde1ba5d89a96320453fe82bacd9d092e355a56c67a5b"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "scalar_array_bundle",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/scalar_array_bundle/composition_decision.json",
+          "sha256": "adda959fb33c17eaa1ff351a9838ec2e2b5890610423a34a196a304e59e487c5",
+          "data": {
+            "status": "retained_for_composition_not_deployed",
+            "reason": "Small repeated wall improvement, CPU median quantized to zero with9ties/24; summed CPU and wall positive but sensitivity small. Keep the components, compose further before another deployment.",
+            "candidate_dll_sha256": "464add2eef3eba164c16c8db741d8d335e83b99c67b661d9e6a52203d715ae88"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "scalar_builtin_bundle",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/scalar_builtin_bundle/composition_decision.json",
+          "sha256": "a7dac3b07db07d250de89ef9e90497e239cda39f2a455538c40e532a17609895",
+          "data": {
+            "status": "inconclusive_retained_not_deployed",
+            "reason": "No net CPU reduction and near-zero wall reduction in all24paired observations. Keep optional components; move to inline cached dispatch rather than repeating small isolated changes.",
+            "candidate_dll_sha256": "99ef4afd6ece9e988bb9aa2615f990154dced00a72757b9ceb360fd6d532dad3"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "scalar_math_bundle",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/scalar_math_bundle/final_decision.json",
+          "sha256": "04439ec583ed206db05213d884c4abf497acbdabbb6fb530a8959bbc5ebf2e1c",
+          "data": {
+            "status": "rejected_before_timing",
+            "deployed": false,
+            "dll_sha256": "993cd7ed2a0ac35886a376dbdb4adad8be3a264e9eff9c1a998b31db49cb751a"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "scalar_math_ordered_bundle",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/scalar_math_ordered_bundle/final_decision.json",
+          "sha256": "f66d6d4777ebdc08c76e855ec1dd7305b5b8b76f1183b030a28a0e411896c3c9",
+          "data": {
+            "status": "rejected_consistent_regression",
+            "deployed": false,
+            "candidate_dll_sha256": "f3f5d9476c66d9c84356e89bc8124c6f0b18096f0fb925a71b7173d2bdf315c9"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "scan_bundle",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/scan_bundle/bundle_installation.json",
+          "sha256": "3e7ef66e30b0a3bf491f7b6e8504b168286d0577636b2b583abaf12680239003",
+          "data": {
+            "dll_sha256": "7af5ff948b949859339f0897a6d857953ae8e3b30ec451cee030672ba9c5129b"
+          }
+        },
+        {
+          "file": "output/_v1110/native_perf50/scan_bundle/composition_decision.json",
+          "sha256": "5e1f6a2224eb4cfa0611b0cd90a4a9e95671fafc7a0db2e07bb4992c058e827d",
+          "data": {
+            "candidate_dll_sha256": "7af5ff948b949859339f0897a6d857953ae8e3b30ec451cee030672ba9c5129b"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "sparse_timer_bundle",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/sparse_timer_bundle/composition_decision.json",
+          "sha256": "b6def3bad517a0d7b511c455ee75ed1ac53086c93d7502590e74b27838a41844",
+          "data": {
+            "status": "regression_retained_for_revised_classification",
+            "reason": "All three group medians regress. Keep all observations and components; do not deploy this package.",
+            "candidate_dll_sha256": "4c14b0da2cdd92bb7f5563c6c5142978c46b99525c7bce84fa128348e5f311d4"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "sparse_timer_lazy_bundle",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/sparse_timer_lazy_bundle/composition_decision.json",
+          "sha256": "e558b1818bea9e329943a0a8a65aabb9269557e4dfcaab8fd6610fafd1bbd1f6",
+          "data": {
+            "status": "regression_retained_not_deployed",
+            "candidate_dll_sha256": "9e541820dba081c641f259dc64738346210300ea2dabde908b0d419648dd864f"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "spatial_bundle",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/spatial_bundle/bundle_installation.json",
+          "sha256": "e214ae1c4073e3b759ed1e60ae9b974a5e5ca56b8a66a6a49903bc0adef8565c",
+          "data": {
+            "dll_sha256": "3a9269887ace0ad9cd6dafdb9e0ee2a77b857b231f2a0d412888af2516e5b520"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "static_collections_bundle",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/static_collections_bundle/bundle_installation.json",
+          "sha256": "09debd0847332a26b1a023d54d9343a7224dc5438ae418858217638386b4061c",
+          "data": {
+            "dll_sha256": "541238b57e2e18ce258a0afa9f548115761da28f4a1c119812277b4c0dae2983"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "static_setup_bundle",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/static_setup_bundle/bundle_installation.json",
+          "sha256": "29b676b21e31b82bd0bec49ce7de6b43a8ef3023faaa44e58d96868031ef811a",
+          "data": {
+            "dll_sha256": "00cbcf9d9467feab8d8d99aa437683af507c5f924ee90a9b9f076b661d5c6a60"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "storage_bundle",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/storage_bundle/candidate_decision.json",
+          "sha256": "8e2b55835bdae1b32058d94d5fe22b37010b70fd2979a5e0d2ff18fcd111e51a",
+          "data": {
+            "status": "inconclusive_retained",
+            "candidate_dll_sha256": "0b321ec95f2d4a15d667c8b7b1c4d84c7bbf5a7e445f71543f67a0bff5d7e68c"
+          }
+        },
+        {
+          "file": "output/_v1110/native_perf50/storage_bundle/rejection_receipt.json",
+          "sha256": "7b0cdf0f6d0ebd156db59f27070836036eb63b72c61e044a94bba2af980dec05",
+          "data": {
+            "status": "inconclusive_retained",
+            "candidate_dll_sha256": "0b321ec95f2d4a15d667c8b7b1c4d84c7bbf5a7e445f71543f67a0bff5d7e68c"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "type_constructor_bundle",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/type_constructor_bundle/final_decision.json",
+          "sha256": "6b5505d6468cd8c43765af4f1017f088575c192df1551c8d8b3b79cbd7ad9314",
+          "data": {
+            "reason": "32-pair small positive medians with negative sums; independent loaded16 remains inconclusive. No stable repeatable gain confirmed.",
+            "candidate_dll_sha256": "742ef705e583387510341a9f9055ba80bb6160a1f6290f55ef68ac6970fd081a"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "typed_hotchain_bundle",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/typed_hotchain_bundle/candidate_decision.json",
+          "sha256": "65279a4cba1256b8130a1d86b2b4c2609d86eafd45e96eeedeba08c4960ae514",
+          "data": {
+            "status": "not_adopted_after_single_bounded_followup",
+            "candidate_dll_sha256": "16174b15e922e0de9cddc95a7142413e63ec1505ca85390691db4b9b5eb5d078",
+            "raw24_gate_passed": true
+          }
+        }
+      ]
+    },
+    {
+      "directory": "typed_read_bundle",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/typed_read_bundle/final_decision.json",
+          "sha256": "a8749d4e22798256be4ca4c76dbf0396413bce115c7c6ec2a052d300308d92fe",
+          "data": {
+            "reason": "24-pair medians slightly negative, sums slightly positive; no repeatable gain confirmed. Retain both components and test a new whole package with exact scalar arithmetic branches.",
+            "candidate_dll_sha256": "c0649c77ebaaa9a8d077b01af69cf5ff8fa3ff8aff0b26fda3a794c667117bd7"
+          }
+        }
+      ]
+    },
+    {
+      "directory": "variant_inline_bundle",
+      "decisions": [
+        {
+          "file": "output/_v1110/native_perf50/variant_inline_bundle/composition_decision.json",
+          "sha256": "60f34b404ca79b7c28dc943f3d3f872ffc6c55dd118cb28b1f351ac13b19c5d0",
+          "data": {
+            "status": "inconclusive_retained_not_deployed",
+            "candidate_dll_sha256": "8bdcd96dcdf1d35819db619d635c726b72166dcee706558cca91e1ba1b3709af"
+          }
+        }
+      ]
+    }
+  ],
+  "omitted_valid_candidates": [
+    {
+      "candidate": "display_storage_bundle",
+      "dll_sha256": "5ddb2c1b15ad7ab7dfe1a8f2640701abddf6da88600b2930e55fc85165b59209",
+      "omission_reason": "Only observed-load coverage blocked deployment",
+      "original_decision_sha256": "9b63867ab5f8a22b2301f462d7c4a981f5595beb29e29b8ddd1ce177c1f29eb0",
+      "original_failure_sha256": "08f6f960662b816c81c21c5feb720895f4b15cc170426149ea8a9054ed0ee870",
+      "original32_pair_metrics": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 2.521409022689153,
+          "sum_time_reduction_pct": 2.1191626409017728,
+          "candidate_wins": 21,
+          "ties": 1,
+          "pairs": 32
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 2.6596987039553377,
+          "sum_time_reduction_pct": 0.7412538581000105,
+          "candidate_wins": 22,
+          "ties": 0,
+          "pairs": 32
+        }
+      },
+      "strict_event_cases": 2604,
+      "raw24": {
+        "median": 91.92038231240556,
+        "minimum": 54.17395419217416,
+        "maximum": 117.16551544733737,
+        "observed_load_range": [
+          22.813860645305553,
+          68.64301130257383
+        ]
+      },
+      "calibration24": {
+        "median": 77.76696466944989,
+        "minimum": 42.188517534354865,
+        "maximum": 98.44277799412134,
+        "observed_load_range": [
+          26.898517225349945,
+          78.37086647873093
+        ]
+      },
+      "empirical20_fps": 108.03454402543613,
+      "reference_is_extrapolation": true,
+      "fit_validation": {
+        "median_absolute_relative_time_error": 0.021189098234454758,
+        "p90_absolute_relative_time_error": 0.08971005689359587,
+        "constant_median_absolute_relative_time_error": 0.16754123811623223
+      },
+      "r_squared": 0.9189450284543179,
+      "fit_path": "output/_v1110/native_perf50/load20_recovery_20261126/display_storage_bundle_empirical20.json",
+      "fit_sha256": "b38fff2543aabd6884aa19ee9afa11ba315a10a669e2d24329082fad8d893431",
+      "original_measurements_unchanged": true,
+      "no_new_battles": true,
+      "recovery": "Deploy exact qualified display candidate; merge private snapshots into latest source and qualify the combination"
+    },
+    {
+      "candidate": "private_snapshots_bundle",
+      "dll_sha256": "cd4ee7464fd4158cc0fc00bcd6dda49023bfb9614cdccad71a014e2bdbcb13ce",
+      "omission_reason": "Only observed-load coverage blocked deployment",
+      "original_decision_sha256": "b2a835385bbc1ed01d978510e832b8d7ca70cf387d99e48fc7a3365bb04e4157",
+      "original_failure_sha256": "a5c6582ffaacd92f169769ac83d847205ae6b26ef989d5bbaed9e159cfd64ab1",
+      "original32_pair_metrics": {
+        "main_thread_cpu_s": {
+          "paired_median_time_reduction_pct": 0.1872659176029967,
+          "sum_time_reduction_pct": -2.842428444092304,
+          "candidate_wins": 16,
+          "ties": 1,
+          "pairs": 32
+        },
+        "wall_s": {
+          "paired_median_time_reduction_pct": 0.5011810128310756,
+          "sum_time_reduction_pct": -5.887145710547914,
+          "candidate_wins": 18,
+          "ties": 0,
+          "pairs": 32
+        }
+      },
+      "strict_event_cases": 2604,
+      "raw24": {
+        "median": 133.00496637845188,
+        "minimum": 74.68030946476667,
+        "maximum": 190.3696016298429,
+        "observed_load_range": [
+          5.344176455859889,
+          71.66655169757178
+        ]
+      },
+      "calibration24": {
+        "median": 102.77053733830277,
+        "minimum": 38.87423934774598,
+        "maximum": 126.94720348321967,
+        "observed_load_range": [
+          27.350755916644992,
+          90.7513146593502
+        ]
+      },
+      "empirical20_fps": 148.82068933289713,
+      "reference_is_extrapolation": true,
+      "fit_validation": {
+        "median_absolute_relative_time_error": 0.041697049638615535,
+        "p90_absolute_relative_time_error": 0.15694387179274322,
+        "constant_median_absolute_relative_time_error": 0.33508370297031664
+      },
+      "r_squared": 0.9401592531956032,
+      "fit_path": "output/_v1110/native_perf50/load20_recovery_20261126/private_snapshots_bundle_empirical20.json",
+      "fit_sha256": "055dcd15cf62d13a915559ffdc0ce7a9b72aeb91acb97d0e696d10d3fcb5bfe3",
+      "original_measurements_unchanged": true,
+      "no_new_battles": true,
+      "recovery": "Deploy exact qualified display candidate; merge private snapshots into latest source and qualify the combination"
+    }
+  ],
+  "existing_interpolation_numerically_unchanged": true,
+  "historical_strict_mode_reproducible": true,
+  "original_measured_files_not_changed": true,
+  "code_gain_uses_paired_AB_not_historical_rate_differences": true
+}

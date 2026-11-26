@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\record_display_load20_recovery.py", line 53, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\record_display_load20_recovery.py", line 24, in main
+    assert check['strict_event_cases']==2604 and check['training_matched_baseline']==12
+                                                 ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'training_matched_baseline'

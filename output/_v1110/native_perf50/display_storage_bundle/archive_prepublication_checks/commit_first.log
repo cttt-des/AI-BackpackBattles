@@ -1,0 +1,12 @@
+{"files": 5375, "production_source_files": 707, "candidate_installed": true, "production_dll_sha256": "5ddb2c1b15ad7ab7dfe1a8f2640701abddf6da88600b2930e55fc85165b59209", "no_new_branches": true, "isolated_index_only": true}
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\archive_display_storage_round.py", line 159, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\archive_display_storage_round.py", line 148, in main
+    verify_tree(commit,paths,virtual)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\archive_display_storage_round.py", line 114, in verify_tree
+    assert stream.read(int(header[2]))==expected,name
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: output/_v1110/display_load20_archive_commit_first.log

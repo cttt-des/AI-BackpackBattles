@@ -1,0 +1,28 @@
+{
+  "dll_sha256": "5ddb2c1b15ad7ab7dfe1a8f2640701abddf6da88600b2930e55fc85165b59209",
+  "serial": {
+    "median_fights_per_second": 91.92038231240556,
+    "minimum_fights_per_second": 54.17395419217416,
+    "maximum_fights_per_second": 117.16551544733737,
+    "background_load_range_pct": [
+      22.813860645305553,
+      68.64301130257383
+    ],
+    "on_ac_all": true
+  },
+  "load_calibration": {
+    "median_fights_per_second": 77.76696466944989,
+    "minimum_fights_per_second": 42.188517534354865,
+    "maximum_fights_per_second": 98.44277799412134,
+    "background_load_range_pct": [
+      26.898517225349945,
+      78.37086647873093
+    ],
+    "on_ac_all": true
+  },
+  "raw24_gate_passed": true,
+  "fitted_fights_per_second_at20": null,
+  "load20_covered": false,
+  "posthoc_summary_only_no_additional_measurement": true,
+  "single_run_all_samples_retained": true
+}

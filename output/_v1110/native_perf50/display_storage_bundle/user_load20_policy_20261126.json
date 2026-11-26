@@ -1,0 +1,18 @@
+{
+  "authorization": "Explicit user clarification2026-11-26: estimate at20% with the empirical formula; coverage is not a deployment gate",
+  "empirical_estimate_allowed_outside_observed_range": true,
+  "candidate_dll_sha256": "5ddb2c1b15ad7ab7dfe1a8f2640701abddf6da88600b2930e55fc85165b59209",
+  "original_measurement_files_sha256": {
+    "bundle_serial.json": "c9c171e52c6a60ad4d5bbad48322da988569c2d8272fd064a11b674e31c889d3",
+    "bundle_load_calibration.json": "2730e7b95d62bb0173f5ab9587835cf327ccb899e2345792ab70b64b0aadc03f",
+    "ab_assessment_32.json": "391bd2b791e8d035101a2a8d52539099837c83a539c9c2246e0ed2056cde8541",
+    "bundle_full_gate.json": "f0255951b6635dea74f5b6018987f22e8d1d602d1d32ae36fffc1c92b38938ea",
+    "bundle_vs_deployed_hashes.json": "866085bb96cfc260905dea5bc4fbb7c6103605ee1b13c7d164cd9c507c08b4e5"
+  },
+  "audit_sha256": "d83167ba479748ce001ed7f1d45158ab1391ac1826d8afec47548c4475b040c4",
+  "fit_sha256": "b38fff2543aabd6884aa19ee9afa11ba315a10a669e2d24329082fad8d893431",
+  "no_new_battles": true,
+  "no_samples_dropped_or_retimed": true,
+  "retain_original_AB_correctness_power_and_raw24_thresholds": true,
+  "remove_idle_window_used_only_to_seek20pct_coverage": true
+}

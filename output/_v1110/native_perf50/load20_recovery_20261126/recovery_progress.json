@@ -1,0 +1,12 @@
+{
+  "display_storage": {
+    "deployed": true,
+    "dll_sha256": "5ddb2c1b15ad7ab7dfe1a8f2640701abddf6da88600b2930e55fc85165b59209",
+    "empirical20_fps": 108.03454402543613,
+    "verification_sha256": "a8c4ab64f31efc5b4a7bf84bfcee4b808ee8930cbe4d230fd45ad58d0e441004"
+  },
+  "private_snapshots": {
+    "status": "pending_merge_into_current_deployed_baseline"
+  },
+  "goal200_reached": false
+}

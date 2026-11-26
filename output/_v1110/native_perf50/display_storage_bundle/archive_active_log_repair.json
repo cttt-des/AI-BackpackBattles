@@ -1,0 +1,6 @@
+{
+  "first_snapshot_rejected_before_publication": true,
+  "reason": "An active archive stdout log changed while its tree was being verified; exclude active archive logs and preserve the finished failure snapshot",
+  "no_branch_or_index_mutations_used": true,
+  "no_measurements_or_runtime_changed": true
+}

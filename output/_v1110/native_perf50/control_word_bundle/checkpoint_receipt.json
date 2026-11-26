@@ -1,0 +1,13 @@
+{
+  "local_commit": "0dcd3e5c8bc4beccc98b3dfded633b852f5d725d",
+  "prepared_backup_commit": "6f14e73f2b7a6fd3a055dd8a858115cf339d3352",
+  "local_preservation_ref": "refs/heads/codex/control-word-backup-20261124",
+  "parent_remote_verified_commit": "584aef472686dc09bb5abda831c358a2026a2fe3",
+  "own_files_saved": 5325,
+  "production_source_files_verified": 707,
+  "candidate_installed": true,
+  "production_dll_sha256": "680f3e37ed7485daac1d6b023bc8530706efb22370a479a02b2e212609c39775",
+  "user_existing_changes_not_staged": true,
+  "remote_upload_verified": true,
+  "remote_verified_commit": "6f14e73f2b7a6fd3a055dd8a858115cf339d3352"
+}

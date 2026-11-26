@@ -1,0 +1,46 @@
+{
+  "candidate_dll_sha256": "5ddb2c1b15ad7ab7dfe1a8f2640701abddf6da88600b2930e55fc85165b59209",
+  "production_dll_sha256": "5ddb2c1b15ad7ab7dfe1a8f2640701abddf6da88600b2930e55fc85165b59209",
+  "deployed": true,
+  "reason": "deployed_after_explicit_user_empirical_load_policy_correction",
+  "candidate_load20_fps": 108.03454402543613,
+  "raw24": {
+    "median_fights_per_second": 91.92038231240556,
+    "minimum_fights_per_second": 54.17395419217416,
+    "maximum_fights_per_second": 117.16551544733737,
+    "background_load_range_pct": [
+      22.813860645305553,
+      68.64301130257383
+    ],
+    "on_ac_all": true
+  },
+  "calibration24": {
+    "median_fights_per_second": 77.76696466944989,
+    "minimum_fights_per_second": 42.188517534354865,
+    "maximum_fights_per_second": 98.44277799412134,
+    "background_load_range_pct": [
+      26.898517225349945,
+      78.37086647873093
+    ],
+    "on_ac_all": true
+  },
+  "goal200_reached": false,
+  "goal_still_active": true,
+  "source_changes": [
+    "gen/hdrs/Gd__gd_core__CoreItem.hpp",
+    "gen/shards/shard_00.cpp"
+  ],
+  "intentional_core_item_layout": [
+    1792,
+    2112
+  ],
+  "all_protocol_processes_finished": true,
+  "no_more_same_configuration_measurements": true,
+  "no_new_branches": true,
+  "backup_status_recorded_separately": true,
+  "backup_receipt": "checkpoint_receipt.json",
+  "empirical20_is_extrapolation": true,
+  "policy_receipt": "user_load20_policy_20261126.json",
+  "post_install_verification_sha256": "a8c4ab64f31efc5b4a7bf84bfcee4b808ee8930cbe4d230fd45ad58d0e441004",
+  "original_gate_failure_preserved": true
+}

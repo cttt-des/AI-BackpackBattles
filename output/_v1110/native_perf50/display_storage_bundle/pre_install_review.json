@@ -1,0 +1,43 @@
+{
+  "passed": true,
+  "dll_sha256": "5ddb2c1b15ad7ab7dfe1a8f2640701abddf6da88600b2930e55fc85165b59209",
+  "baseline_dll_sha256": "680f3e37ed7485daac1d6b023bc8530706efb22370a479a02b2e212609c39775",
+  "changed_source_files": [
+    "gen/hdrs/Gd__gd_core__CoreItem.hpp",
+    "gen/shards/shard_00.cpp"
+  ],
+  "complete_predeclared_pair_count": 32,
+  "all_original_reports_retained": true,
+  "strict_event_cases": 2604,
+  "independent_calibration20_covered": true,
+  "protected_user_files_sha256": {
+    "native_sim_cpp/native_sim/libgdcore.dll": "a09e700e3ad331653b33b67621fb1d144760f5c7ae834d869dca0ba697b8ba7d",
+    "oracle/Items/Item.gd": "062241e6d51f0f6f68ddbf6c65ecc938793b2e444bd735e51c5e2b2fe604ab7f",
+    "output/perf/_cpp1690_final.json": "47c360fef4eea3ef5ccfad8d5622b7750f85603c474d836fddfc1447f52d8c99",
+    "output/perf/_cpp1690_chain.json": "47c360fef4eea3ef5ccfad8d5622b7750f85603c474d836fddfc1447f52d8c99",
+    "output/perf/alignment_1690_chain.json": "f3156a0b1573ba0061b8e52fa9f66840de4200e684b51d8ea3dec1f522a4d7a8",
+    "output/perf/alignment_1690_final.json": "f3156a0b1573ba0061b8e52fa9f66840de4200e684b51d8ea3dec1f522a4d7a8"
+  },
+  "evidence_sha256": {
+    "regeneration_test.json": "c3768976f0f2617d6952c859ab18bd0c1830955ddd8b0283af51eeab3e567c7a",
+    "full_regeneration_test.json": "2b123ff1f679601c0e6b06193c9fb8a4808498ca23344af33dc141cfab8c913e",
+    "targeted_timer_tests.json": "0957faa5bd310c2879469eefb0d5afa70b731355f0a5276fac381f5bf3ae1429",
+    "active_cooldown_tests.json": "3d4bedac37ce99638f032d1b444f4948421b5435dd8aedf2a0007b48d3a7924e",
+    "event_factory_tests.json": "ad607b49d9a9be6f1249351ad238712ccd0916130437ae780f33c202139bff8f",
+    "integer_grid_tests.json": "0aae1ac48aea89b7072852e702985dc35d58fddf02b6c02e6e52b09225930c55",
+    "literal_span_tests.json": "6c5a4bec00eabaaeb9a2110f95ce426a337551f529a746fed3b02c2f67a6bde1",
+    "callback_dispatch_tests.json": "d207523a7440e3448f27bb78f850be452a6d87272b5e1c24c7982f7da9c4a602",
+    "post_ab_directed_regressions.json": "0e28bdf941a2bf03200d473aca1ee54984aff1807a4c50beb0dcf30b1aea87a1",
+    "closed_registry_tests.json": "d816d158f02bc86de0b3086ed1a87a7078c1776f3e9ee50fa531d7b812ec81b2",
+    "closed_known_tests.json": "425464d10f65533f4b08b0ddf9a05eaaa7e14b575cf6086bb0d5ca4eeaa668a8",
+    "object_routes_tests.json": "56ddb95c0ed701aa741aa7ee095bf88e20d58810d73f671ad317d8ae62a8509a",
+    "control_word_tests.json": "74926c918c8c6590f246d9d30d4ee0bbfba7847c6c745c4a65b887790c062846",
+    "display_storage_tests.json": "c74a3c689ba5c8cf53f0763b53d78226425e7727aa95a87f07431654cc626cff",
+    "ab_assessment_32.json": "391bd2b791e8d035101a2a8d52539099837c83a539c9c2246e0ed2056cde8541",
+    "bundle_full_gate.json": "f0255951b6635dea74f5b6018987f22e8d1d602d1d32ae36fffc1c92b38938ea",
+    "bundle_vs_deployed_hashes.json": "866085bb96cfc260905dea5bc4fbb7c6103605ee1b13c7d164cd9c507c08b4e5",
+    "full_type_audit.json": "6a0a31bbb275414c40ec32fee0b247a5f4477c11e786732e100431b479d50df2",
+    "measurements_summary.json": "c088bf123b62d4ea49862cfb10edea66b367aed860acea60ba9eff8cbf165e79",
+    "calibration_eligibility.json": "87546fc5b134c0b145e97d2763ef123ff7beec29757c9c0018d2a186c4e21ee4"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "cases": 5184,
+  "difference_count": 0,
+  "first_differences": [],
+  "canonical_no_materialization_checks": 48,
+  "fixture_sha256": "af0402cc124986ec6882cc2a8ddccc622e4c28d858348493433c98420a9ba3a2",
+  "baseline_dll_sha256": "d8a7365191ad57a48ac378a7db77e8587169814f6f74298734f7d0b4786e3a76",
+  "dll_sha256": "5ddb2c1b15ad7ab7dfe1a8f2640701abddf6da88600b2930e55fc85165b59209",
+  "raw_cases_sha256": {
+    "baseline_literal_cases.json": "34f4635d7f1dd03f8662f5e37e27a8e34fa835e1fa61acf6a0de005c89981f4b",
+    "candidate_literal_cases.json": "4a9f56b8143f0a7ca4a084e30af6c8cacb3acbb7958a1e58d44efba4851075b1"
+  },
+  "independent_actual_baseline_dll": true,
+  "no_throughput_claim": true
+}

@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "dll_sha256": "5ddb2c1b15ad7ab7dfe1a8f2640701abddf6da88600b2930e55fc85165b59209",
+  "cases": 6436,
+  "all_original_case_hashes_equal": true,
+  "actual_production_getters_setup_and_metrics_checked": true,
+  "original_reference_sha256": "21ed11beb80da7e8eea183d4ade06fa9433a79d9d904eebd7b31bab45ef4358f",
+  "test_fixture_revision": "Guard dictionary-alias comparison by both Kind tags; original screen source preserved; per-case oracle unchanged"
+}

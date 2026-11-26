@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "reviewed_decision_directories": 70,
+  "omissions": [
+    {
+      "candidate": "display_storage_bundle",
+      "empirical20_fps": 108.03454402543613,
+      "strict_event_cases": 2604
+    },
+    {
+      "candidate": "private_snapshots_bundle",
+      "empirical20_fps": 148.82068933289713,
+      "strict_event_cases": 2604
+    }
+  ]
+}

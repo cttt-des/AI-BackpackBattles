@@ -38,6 +38,10 @@ struct Gd__gd_core__CoreItem : public gd::GdObj {
     gd::GdVal f_chanceRng;
     gd::GdVal f_damageRangeRng;
     gd::GdVal f_statDisplayOverrides;
+    // This first array shares its arena-owned object's lifetime. The original
+    // GdArr remains mutable and every read still follows f_statDisplayOverrides.
+    gd::GdArr native_display_header_;
+    gd::GdVal native_display_values_[10];
     gd::GdVal f_lastActivationTime;
     gd::GdVal f_activationsThisFrame;
     gd::GdVal f_lastTriggerTime;
@@ -75,6 +79,34 @@ struct Gd__gd_core__CoreItem : public gd::GdObj {
     gd::GdVal f__cooldown_active;
     bool native_timer_header_used_ = false;
     bool native_bridge_gems_header_used_ = false;
+    bool native_display_header_used_ = false;
+    bool native_display_values_used_ = false;
+    gd::GdArr* native_make_display_array(gd::BattleCtx& battle) {
+        if(battle.native_inline_timer_headers && !native_display_header_used_ &&
+           battle.arena.owns_storage(this,sizeof(*this))) {
+            native_display_header_used_=true;
+            return &native_display_header_;
+        }
+        return gd::GdArr::from_init(battle.arena,{});
+    }
+    void native_prepare_display_resize(gd::BattleCtx& battle,const gd::GdVal& size) {
+        // Run only after the original size expression, immediately before the
+        // original resize. No user code runs between installing storage and
+        // resize/fill. Escaped old headers/buffers are never recycled.
+        if(!battle.native_inline_timer_headers || native_display_values_used_ ||
+           !native_display_header_used_ || size.kind!=gd::GdVal::Kind::Int ||
+           size.i<=0 || size.i>10 ||
+           f_statDisplayOverrides.kind!=gd::GdVal::Kind::Arr ||
+           f_statDisplayOverrides.arr!=&native_display_header_ ||
+           native_display_header_.data || native_display_header_.len ||
+           native_display_header_.cap || native_display_header_.is_pool_real ||
+           native_display_header_.timer_watch ||
+           !battle.arena.owns_storage(this,sizeof(*this)))return;
+        native_display_values_used_=true;
+        native_display_header_.data=native_display_values_;
+        // Empty-array resize allocates max(n,0*2), exactly n, not ten.
+        native_display_header_.cap=static_cast<uint32_t>(size.i);
+    }
     gd::GdArr* native_make_bridge_gems(gd::BattleCtx& battle,uint32_t count) {
         // Only the bridge's post-setup replacement uses this distinct header.
         // init_fields keeps its original independent gems array, and no used

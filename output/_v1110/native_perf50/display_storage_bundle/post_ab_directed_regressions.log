@@ -1,0 +1,242 @@
+{
+  "passed": true,
+  "fixture_revision": 2,
+  "cases": 320256,
+  "unknown_cpp_override_cases": 74496,
+  "real_handler_cases": 245760,
+  "active_route_assertions": 10240,
+  "difference_count": 0,
+  "first_differences": [],
+  "fixture_sha256": "23cfefb0a79a91dbb8749316a8ca3dd6d147c3e07beeae6af41c941d71f36f7b",
+  "symbols_header_sha256": "6a3327e730445da6501b12ea119276e0ab5022595569e7cbed63a588743ebe6c",
+  "baseline_dll_sha256": "80a0681c1c93268af2b29c21e5439b6444de36a29ad39486b3f4afadf548a44a",
+  "dll_sha256": "5ddb2c1b15ad7ab7dfe1a8f2640701abddf6da88600b2930e55fc85165b59209",
+  "cross_contexts_original_argument_pointer_and_nested_calls": true,
+  "all_four_rounding_modes_and_daz_ftz": true,
+  "raw_cases_sha256": {
+    "baseline_object_routes_cases.json": "bf4599485d8447211338d210fb678ddc4beda484c0a80535a3336b842e9c8be5",
+    "candidate_object_routes_cases.json": "ede1608ebe81ea781e1280af53ba4d73c183c2f788152a35f7b700635545749a"
+  },
+  "independent_actual_baseline_dll": true,
+  "no_throughput_claim": true
+}
+{
+  "passed": true,
+  "cases": 126192,
+  "unknown_override_cases": 15600,
+  "real_generated_handler_cases": 110592,
+  "difference_count": 0,
+  "first_differences": [],
+  "fast_no_materialization_assertions": 3072,
+  "fixture_sha256": "a5d1235ab177278621003a9b77d95e5c8a631528211726717442bd157aa666f8",
+  "symbols_header_sha256": "cc2469e18aeeddc8956fb2b105aae22af811c505211fba658ed5b739bcfceba4",
+  "baseline_dll_sha256": "c46cc19c06fb3c424a470f04bb7a0ef5acf8b7ff01caaccd5f41a5c44d955ee1",
+  "dll_sha256": "5ddb2c1b15ad7ab7dfe1a8f2640701abddf6da88600b2930e55fc85165b59209",
+  "raw_cases_sha256": {
+    "baseline_callbacks_cases.json": "ad36af2d67882ef2872a211cb04d912a5969c0d49670b12bed059520667bd242",
+    "candidate_callbacks_cases.json": "7eedbc33f0c77db52aaf8482ec2b0e3158bcdc5152b51542f418280c0252bcb9"
+  },
+  "independent_actual_baseline_dll": true,
+  "no_throughput_claim": true
+}
+{
+  "passed": true,
+  "cases": 5184,
+  "difference_count": 0,
+  "first_differences": [],
+  "canonical_no_materialization_checks": 48,
+  "fixture_sha256": "af0402cc124986ec6882cc2a8ddccc622e4c28d858348493433c98420a9ba3a2",
+  "baseline_dll_sha256": "d8a7365191ad57a48ac378a7db77e8587169814f6f74298734f7d0b4786e3a76",
+  "dll_sha256": "5ddb2c1b15ad7ab7dfe1a8f2640701abddf6da88600b2930e55fc85165b59209",
+  "raw_cases_sha256": {
+    "baseline_literal_cases.json": "34f4635d7f1dd03f8662f5e37e27a8e34fa835e1fa61acf6a0de005c89981f4b",
+    "candidate_literal_cases.json": "4a9f56b8143f0a7ca4a084e30af6c8cacb3acbb7958a1e58d44efba4851075b1"
+  },
+  "independent_actual_baseline_dll": true,
+  "no_throughput_claim": true
+}
+{
+  "passed": true,
+  "cases": 1856,
+  "dll_sha256": "5ddb2c1b15ad7ab7dfe1a8f2640701abddf6da88600b2930e55fc85165b59209",
+  "counts": [
+    2448,
+    1568,
+    880,
+    40020,
+    224,
+    544,
+    720,
+    47944,
+    30912,
+    0
+  ],
+  "actual_index_and_suffix_recovery_exercised": true,
+  "all_independent_states_fenv_rng_and_old_counters_equal": true,
+  "layouts": {
+    "baseline": {
+      "GdVal": 24,
+      "GdArr": 32,
+      "CoreItem": 1792,
+      "BattleCtx": 304
+    },
+    "candidate": {
+      "GdVal": 24,
+      "GdArr": 32,
+      "CoreItem": 2112,
+      "BattleCtx": 328
+    }
+  },
+  "original_fixture_sha256": "305fb9bf9dd2271981d3e9e89413dc21f5a5c9363fed8bb11f67f86e5dbdce56",
+  "raw_sha256": "51ad16415d834d1c345ea9ca201c1f4a533a8d4c8be404ee430397dfb44ada5e",
+  "baseline_oracle_sha256": "a52197f2ab7bc26c400e5cf6914eb166bbe3beee636b3647ef0318d3557a5bcd"
+}
+{
+  "passed": true,
+  "cases": 44608,
+  "actual_dll_control_cases": 16384,
+  "portable_header_control_cases": 16384,
+  "retained_active_header_cases": 1856,
+  "retained_actual_targeted_cases": 2016,
+  "retained_closed_known_cases": 1056,
+  "retained_frame_cases": 6912,
+  "registry_boundary_checks": 4,
+  "dll_sha256": "5ddb2c1b15ad7ab7dfe1a8f2640701abddf6da88600b2930e55fc85165b59209",
+  "baseline_dll_sha256": "680f3e37ed7485daac1d6b023bc8530706efb22370a479a02b2e212609c39775",
+  "fixture_sha256": "4679f381d98924a991503a0c34fa402aff8bac9379972dd4db8541e7dd373ef8",
+  "projection": {
+    "passed": true,
+    "exact_inverse_recovers_all_baseline707_sources": true,
+    "old_init_order_size_expression_resize_fill_reads_callbacks_and_mutations_preserved": true,
+    "intentional_core_item_layout_change": true,
+    "full20_rebuild_required": true,
+    "gdval_gdarr_context_watch_and_c_api_layouts_unchanged": true
+  },
+  "actual_word_path_enabled": true,
+  "portable_namespace_isolated_and_no_dll_loaded": true,
+  "portable_helper_bytes_identical": true,
+  "independent_original_boolean_oracle": true,
+  "all_original_case_hashes_and_legacy_counters_retained": true,
+  "active_fixture_scope": "current inline index header linked against candidate; actual production integration fixed200/full2604",
+  "no_speed_claim": true
+}
+baseline cases 21888 CoreItem 1792
+candidate cases 21888 CoreItem 2112
+{
+  "passed": true,
+  "cases": 21888,
+  "actual_separate_baseline_candidate_dlls": true,
+  "per_case_hashes_equal": true,
+  "case_hashes_sha256": "8f28590f39f101dd619c835ba85e5f5698378c1d57aefe90bb7faca896acf3cc",
+  "storage_cases": 21504,
+  "actual_setup_cases": 384,
+  "fp_rounding_daz_ftz_sticky_states": 64,
+  "baseline_core_item_bytes": 1792,
+  "candidate_core_item_bytes": 2112,
+  "baseline_dll_sha256": "680f3e37ed7485daac1d6b023bc8530706efb22370a479a02b2e212609c39775",
+  "dll_sha256": "5ddb2c1b15ad7ab7dfe1a8f2640701abddf6da88600b2930e55fc85165b59209",
+  "fixture_sha256": "87336fbaa4e41a545aa6304c4ff3f880667d19347fbb4f6063c0baf84bd624ab",
+  "projection": {
+    "passed": true,
+    "exact_inverse_recovers_all_baseline707_sources": true,
+    "old_init_order_size_expression_resize_fill_reads_callbacks_and_mutations_preserved": true,
+    "intentional_core_item_layout_change": true,
+    "full20_rebuild_required": true,
+    "gdval_gdarr_context_watch_and_c_api_layouts_unchanged": true
+  },
+  "old_six_counters": [
+    9599433,
+    100900,
+    54635,
+    200,
+    0,
+    233004
+  ],
+  "targeted_timer_counters": [
+    386704,
+    400,
+    386304,
+    683532,
+    0,
+    0,
+    0,
+    16170,
+    701,
+    0
+  ],
+  "active_cooldown_counters": [
+    386704,
+    1904,
+    384800,
+    3632134,
+    0,
+    760,
+    23435,
+    83822,
+    19040,
+    0
+  ],
+  "fixed200_results_sha256": "2e74b45caa87f7ee6ac72ffc35d98cc8db140b47031614d26542e183cef5d2c9",
+  "fixed200_inputs_sha256": "d94b16d42cc88e9a3850a77c9360b9c4c4fdd676cb252e463044a903db2a5fef",
+  "no_throughput_claim": true,
+  "not_for_deployment": true
+}
+{
+  "display_storage_cases": 21888,
+  "control_word_cases": 44608,
+  "passed": true,
+  "dll_sha256": "5ddb2c1b15ad7ab7dfe1a8f2640701abddf6da88600b2930e55fc85165b59209",
+  "affected_object_route_cases": 320256,
+  "affected_callback_cases": 126192,
+  "retained_literal_span_cases": 5184,
+  "retained_type_constructor_test_passed": true,
+  "reports_sha256": {
+    "baseline_callbacks_cases.json": "ad36af2d67882ef2872a211cb04d912a5969c0d49670b12bed059520667bd242",
+    "baseline_callbacks_first.log": "ad36af2d67882ef2872a211cb04d912a5969c0d49670b12bed059520667bd242",
+    "callback_dispatch.json": "d207523a7440e3448f27bb78f850be452a6d87272b5e1c24c7982f7da9c4a602",
+    "callback_test_symbols.hpp": "cc2469e18aeeddc8956fb2b105aae22af811c505211fba658ed5b739bcfceba4",
+    "candidate_callbacks_cases.json": "7eedbc33f0c77db52aaf8482ec2b0e3158bcdc5152b51542f418280c0252bcb9",
+    "candidate_callbacks_first.log": "7eedbc33f0c77db52aaf8482ec2b0e3158bcdc5152b51542f418280c0252bcb9",
+    "constructors_cases.log": "650bb3ee9ffd12c10c03180a22b1aab7a456f8bd9a9738df35a1a973d8fc4ab5",
+    "constructors_compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "display_storage.json": "c74a3c689ba5c8cf53f0763b53d78226425e7727aa95a87f07431654cc626cff",
+    "control_word/correctness.json": "74926c918c8c6590f246d9d30d4ee0bbfba7847c6c745c4a65b887790c062846",
+    "display_storage_checks/baseline_cases.json": "86e5135f8b8f5d43cb7d9a85d4db11c26257abdee20514248a6b16f7c082df75",
+    "display_storage_checks/baseline_compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "display_storage_checks/baseline_execution.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "display_storage_checks/candidate_cases.json": "a8f86d814cf293a6a2f5b8eac0f3938b6afd3d6088c276f2bb32f2a66a174126",
+    "display_storage_checks/candidate_compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "display_storage_checks/candidate_execution.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "object_routes/baseline_object_routes_cases.json": "bf4599485d8447211338d210fb678ddc4beda484c0a80535a3336b842e9c8be5",
+    "object_routes/baseline_object_routes_revision2.log": "bf4599485d8447211338d210fb678ddc4beda484c0a80535a3336b842e9c8be5",
+    "object_routes/candidate_object_routes_cases.json": "ede1608ebe81ea781e1280af53ba4d73c183c2f788152a35f7b700635545749a",
+    "object_routes/candidate_object_routes_revision2.log": "ede1608ebe81ea781e1280af53ba4d73c183c2f788152a35f7b700635545749a",
+    "object_routes/object_routes.json": "56ddb95c0ed701aa741aa7ee095bf88e20d58810d73f671ad317d8ae62a8509a",
+    "object_routes/object_route_test_symbols.hpp": "6a3327e730445da6501b12ea119276e0ab5022595569e7cbed63a588743ebe6c",
+    "retained_literal/baseline_literal_cases.json": "34f4635d7f1dd03f8662f5e37e27a8e34fa835e1fa61acf6a0de005c89981f4b",
+    "retained_literal/baseline_literal_first.log": "34f4635d7f1dd03f8662f5e37e27a8e34fa835e1fa61acf6a0de005c89981f4b",
+    "retained_literal/candidate_literal_cases.json": "4a9f56b8143f0a7ca4a084e30af6c8cacb3acbb7958a1e58d44efba4851075b1",
+    "retained_literal/candidate_literal_first.log": "4a9f56b8143f0a7ca4a084e30af6c8cacb3acbb7958a1e58d44efba4851075b1",
+    "retained_literal/literal_spans.json": "6c5a4bec00eabaaeb9a2110f95ce426a337551f529a746fed3b02c2f67a6bde1",
+    "control_word/control_word_checks/actual_dll.log": "694a1afed763c9bf7a6fa888e7fa40c3d4e2838cac8da99a8403139e005754f4",
+    "control_word/control_word_checks/closed_known_tests.json": "425464d10f65533f4b08b0ddf9a05eaaa7e14b575cf6086bb0d5ca4eeaa668a8",
+    "control_word/control_word_checks/closed_known_tests_cases.json": "db73cd801568ece22e5cc18fe03f405c5d91797cb8dba873277c580097e7ccda",
+    "control_word/control_word_checks/closed_registry_tests.json": "d816d158f02bc86de0b3086ed1a87a7078c1776f3e9ee50fa531d7b812ec81b2",
+    "control_word/control_word_checks/portable_header.log": "82841b2bf576b8bf9291993564fa366c89a4d4a8547a65a3f2c4e9686f424225",
+    "control_word/control_word_checks/portable_helper_fixture.hpp": "840dde5cdb4169bb6486c603fdbd130268ba99f9772b8355dd18038cfca3063f",
+    "control_word/control_word_checks/retained_active_index.json": "3d4bedac37ce99638f032d1b444f4948421b5435dd8aedf2a0007b48d3a7924e",
+    "control_word/control_word_checks/retained_active_index_cases.json": "51ad16415d834d1c345ea9ca201c1f4a533a8d4c8be404ee430397dfb44ada5e",
+    "control_word/control_word_checks/retained_frame.log": "0244c46ecd84779063bd5755f0870fd3fe27558e4bafbdc51f87e8cc73126fc1",
+    "control_word/control_word_checks/source_manifest.json": "7b069454f9c457895f77d700d54378bebc830f22e3f3df6b147b5d7c69c268d2",
+    "control_word/control_word_checks/targeted_retained.log": "fb7e7b10a491192ad1d192553b49fe21ae8d4267cfff736641723627a746c54e",
+    "control_word/control_word_checks/targeted_timer_ownership_production_cases.json": "6d23361a4597368b3dac4e8c8ec8a9588e4c2f0106d663eb68a7b20e8261dc37",
+    "control_word/control_word_checks/targeted_timer_production_cases.json": "d8bd032e6250d183f3b1f1f0fce83c18a249373437318e87f01678761c812584",
+    "control_word/control_word_checks/targeted_timer_safety_production_cases.json": "3075ae6a62b49117887e78ce26014477d9cdcf9852251f4c0257db8f0a9e88d9",
+    "control_word/control_word_checks/targeted_timer_tests.json": "0957faa5bd310c2879469eefb0d5afa70b731355f0a5276fac381f5bf3ae1429",
+    "control_word/control_word_checks/test_control.cpp": "4679f381d98924a991503a0c34fa402aff8bac9379972dd4db8541e7dd373ef8",
+    "control_word/control_word_checks/transform.json": "b04258bb7528bf4e41a7fceb548792971e84a8ab8280305b996ea07d312b4a9d",
+    "control_word/control_word_checks/verify_closed_registry_current.py": "81a0aeb08a605be94d7ff9ca4e4af44f7ff54af7813818662c4b46083db77357",
+    "control_word/control_word_checks/verify_targeted_retained.py": "13f2840c4a79af795a68cd602a0fe7c5ca788f4a6ad8317e14209f6aa0038cf2",
+    "control_word/control_word_checks/__pycache__/verify_closed_registry_current.cpython-314.pyc": "0a5ab8e41c579475bf3ebcf15753e0b4e6c1319567bfc1b11afa456cbd6064b2"
+  }
+}
