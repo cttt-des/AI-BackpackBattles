@@ -6,10 +6,10 @@
     "verification_sha256": "a8c4ab64f31efc5b4a7bf84bfcee4b808ee8930cbe4d230fd45ad58d0e441004"
   },
   "private_snapshots": {
-    "status": "new_combination_AB_not_accepted",
-    "deployed": false,
-    "candidate_dll_sha256": "9e3678c809d6b8cbc5217ad3ef1379765e44e4fd0b92d8087f75a71ed68d2fab",
-    "empirical20_fps": 184.56752670070352
+    "status": "private_snapshots_and_scalar_truth_deployed",
+    "deployed": true,
+    "candidate_dll_sha256": "63d8966c95c629855fc336a748cbfcc20860d5e75d7c1700506022f347ac10c5",
+    "empirical20_fps": 195.33038282594362
   },
   "goal200_reached": false
 }

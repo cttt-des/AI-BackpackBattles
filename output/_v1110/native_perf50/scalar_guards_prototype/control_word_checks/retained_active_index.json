@@ -1,0 +1,36 @@
+{
+  "passed": true,
+  "cases": 1856,
+  "dll_sha256": "5500bd0bf4df2cd473484a72b159182eaaf029b687390efb56853a3cd93f04c1",
+  "counts": [
+    2448,
+    1568,
+    880,
+    40020,
+    224,
+    544,
+    720,
+    47944,
+    30912,
+    0
+  ],
+  "actual_index_and_suffix_recovery_exercised": true,
+  "all_independent_states_fenv_rng_and_old_counters_equal": true,
+  "layouts": {
+    "baseline": {
+      "GdVal": 24,
+      "GdArr": 32,
+      "CoreItem": 1792,
+      "BattleCtx": 304
+    },
+    "candidate": {
+      "GdVal": 24,
+      "GdArr": 32,
+      "CoreItem": 2112,
+      "BattleCtx": 328
+    }
+  },
+  "original_fixture_sha256": "305fb9bf9dd2271981d3e9e89413dc21f5a5c9363fed8bb11f67f86e5dbdce56",
+  "raw_sha256": "51ad16415d834d1c345ea9ca201c1f4a533a8d4c8be404ee430397dfb44ada5e",
+  "baseline_oracle_sha256": "a52197f2ab7bc26c400e5cf6914eb166bbe3beee636b3647ef0318d3557a5bcd"
+}

@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "dll_sha256": "5500bd0bf4df2cd473484a72b159182eaaf029b687390efb56853a3cd93f04c1",
+  "cases": {
+    "scalar_truth": 34400,
+    "private": 234880,
+    "display": 21888,
+    "control": 44608
+  },
+  "total_cases": 335776,
+  "fixed200_and_original_counters_verified": true,
+  "scalar_equality_already_deployed_and_not_reimplemented": true,
+  "retained_private_display_control_components": true,
+  "no_speed_claim": true
+}

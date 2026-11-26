@@ -1,0 +1,5 @@
+{
+  "no_compile_or_timing_started": true,
+  "issue": "Existing native_scalar_equal.hpp already implements scalar equality; avoid a duplicate definition",
+  "revision": "New increment is scalar truth only; equality unchanged; original preparation preserved"
+}

@@ -300,6 +300,18 @@ struct alignas(8) GdVal {
 
 // ─────────────────────────── Equality, Hash, Truth, String ───────────────────────────
 bool gd_truth(const GdVal& v);
+
+// 常见标量在调用点保留原真假判断；其他种类完整交回原实现。
+inline bool native_scalar_truth(const GdVal& v) {
+    switch (v.kind) {
+        case GdVal::Kind::Null: return false;
+        case GdVal::Kind::Bool: return v.b;
+        case GdVal::Kind::Int: return v.i != 0;
+        case GdVal::Kind::Float: return v.f != 0.0;
+        default: return gd_truth(v);
+    }
+}
+
 bool gd_eq(const GdVal& a, const GdVal& b);
 inline bool gd_ne(const GdVal& a, const GdVal& b) { return !gd_eq(a, b); }
 bool gd_lt(const GdVal& a, const GdVal& b);

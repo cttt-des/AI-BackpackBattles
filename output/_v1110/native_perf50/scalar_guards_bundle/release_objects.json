@@ -1,0 +1,26 @@
+{
+  "object_directory": "C:\\Users\\Windows\\AppData\\Local\\CodexNativeBuilds\\scalar-guards-formal-bkp0npvc\\objects",
+  "dll_sha256": "63d8966c95c629855fc336a748cbfcc20860d5e75d7c1700506022f347ac10c5",
+  "objects_sha256": {
+    "engine_wrapper.o": "d5eb0f44bd2d551b11f36b9eb6b446e704b9f634e2f6d49e8253e1681a593583",
+    "gd_rt.o": "5a73bf3aca2fa48b7c8b91058c5cae295288a5e922206be7f2120671790b9900",
+    "register_all.o": "87aa32f2f9350de3823d2587f56c1a10c2b7f77e125e1ba01206854af046d6f8",
+    "shard_00.o": "3d12610e5c44a136510be4fe13f8b17454a1622bba5b2a0ad419426ed3cdb4d5",
+    "shard_01.o": "398680502c06ce86433f932f6bbef1b023272edad5bfca8333bd18aed2b70f80",
+    "shard_02.o": "5b9b433904ddaedc5e56b0677e8538dc7ffebdc6956461fd857bdd9645ac8a9a",
+    "shard_03.o": "217947b64f99af27c33586cab12569df151723543617cf77768cbab8e526e3c9",
+    "shard_04.o": "851d191cf57ee5d73c1787f5ae17f9011d4e57d8bdfd9b515ff55adfe3c59a31",
+    "shard_05.o": "4e2d17a0b1c8b3588a44f0b29492e210ac6693a85acabd4d64eab4de287ed686",
+    "shard_06.o": "c7793b1ddf151a512c1431c855dd7a2263c6be14787be58864eb03cffd5a39b3",
+    "shard_07.o": "df820e23f32032bfc4a39e85cc52366cdd2014e131f284d2462b0174a1aa38e0",
+    "shard_08.o": "8914b3ce0fbd0e54003422a545302f3faec625f851e91c0ad8974c501e86cba9",
+    "shard_09.o": "4f0ab1f4e65d484d2e83573bce1bca80f9bb93e134dc9c8ad2e7f097ee2970f9",
+    "shard_10.o": "5e487150ab2979cfb679bf363f7c2033487fe2d95939db6a046741df51bfe2dc",
+    "shard_11.o": "c670b13b54488cb41d97ed036a2351d4f5cda131b6cb1ecdb513a77507f6774d",
+    "shard_12.o": "724efb09985cedd6055bb5e977dc83195d859207951aaaeaa21ec14f5f917d7b",
+    "shard_13.o": "c1dbafdcf8c1e8701397d214395b6281e7ca8865fee6d287d8ca878507acf67d",
+    "shard_14.o": "3713abcc85e52210931c19ce0b81e76bbb97642a9f9bf649e2a2d6806f6716fc",
+    "shard_15.o": "ad6748f33c499320cf1db88dfafe870e3dc77aadf7b577f3d38bcd74cf28fc75",
+    "sym_ids.o": "35b0d562d93f7e48a8863ad0cea81c5e1ea58ef709ae0b47ffd4e0f423652678"
+  }
+}
