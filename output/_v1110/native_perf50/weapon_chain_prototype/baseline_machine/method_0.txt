@@ -1,0 +1,207 @@
+
+bundle.dll:     file format pei-x86-64
+
+
+Disassembly of section .text:
+
+0000000307f5da70 <_ZN19Gd__gd_core__Weapon19fn_doCooldownEffectEPKN2gd5GdValEi>:
+   307f5da70:	push   %rdi
+   307f5da71:	push   %rsi
+   307f5da72:	push   %rbx
+   307f5da73:	sub    $0xe0,%rsp
+   307f5da7a:	mov    0x8(%rdx),%rdi
+   307f5da7e:	movb   $0x2,0x80(%rsp)
+   307f5da86:	mov    %rcx,%rbx
+   307f5da89:	mov    %rdx,%rsi
+   307f5da8c:	movq   $0x0,0x88(%rsp)
+   307f5da98:	cmpb   $0x0,0xd0(%rdi)
+   307f5da9f:	movb   $0x9,0xc0(%rsp)
+   307f5daa7:	mov    %rdx,0xc8(%rsp)
+   307f5daaf:	je     307f5db73 <_ZN19Gd__gd_core__Weapon19fn_doCooldownEffectEPKN2gd5GdValEi+0x103>
+   307f5dab5:	mov    0x28(%rdx),%rdx
+   307f5dab9:	test   %rdx,%rdx
+   307f5dabc:	je     307f5db73 <_ZN19Gd__gd_core__Weapon19fn_doCooldownEffectEPKN2gd5GdValEi+0x103>
+   307f5dac2:	cmpb   $0x0,0xd1(%rdi)
+   307f5dac9:	jne    307f5dcb8 <_ZN19Gd__gd_core__Weapon19fn_doCooldownEffectEPKN2gd5GdValEi+0x248>
+   307f5dacf:	mov    0x390(%rdx),%rax
+   307f5dad6:	test   %rax,%rax
+   307f5dad9:	je     307f5db73 <_ZN19Gd__gd_core__Weapon19fn_doCooldownEffectEPKN2gd5GdValEi+0x103>
+   307f5dadf:	cmpb   $0x0,0xd2(%rdi)
+   307f5dae6:	je     307f5daef <_ZN19Gd__gd_core__Weapon19fn_doCooldownEffectEPKN2gd5GdValEi+0x7f>
+   307f5dae8:	incq   0xd8(%rdi)
+   307f5daef:	mov    0xc8(%rsp),%rdx
+   307f5daf7:	lea    0xa0(%rsp),%rcx
+   307f5daff:	xor    %r9d,%r9d
+   307f5db02:	xor    %r8d,%r8d
+   307f5db05:	call   *%rax
+   307f5db07:	movzbl 0xa0(%rsp),%eax
+   307f5db0f:	mov    0xa8(%rsp),%rdx
+   307f5db17:	cmp    $0x2,%al
+   307f5db19:	je     307f5dba9 <_ZN19Gd__gd_core__Weapon19fn_doCooldownEffectEPKN2gd5GdValEi+0x139>
+   307f5db1f:	nop
+   307f5db20:	test   %al,%al
+   307f5db22:	je     307f5db4c <_ZN19Gd__gd_core__Weapon19fn_doCooldownEffectEPKN2gd5GdValEi+0xdc>
+   307f5db24:	mov    %rdx,0xa8(%rsp)
+   307f5db2c:	lea    0xa0(%rsp),%rcx
+   307f5db34:	lea    0x80(%rsp),%rdx
+   307f5db3c:	mov    %al,0xa0(%rsp)
+   307f5db43:	call   308421930 <_ZN2gd5gd_eqERKNS_5GdValES2_>
+   307f5db48:	test   %al,%al
+   307f5db4a:	jne    307f5dbae <_ZN19Gd__gd_core__Weapon19fn_doCooldownEffectEPKN2gd5GdValEi+0x13e>
+   307f5db4c:	mov    %rbx,%rax
+   307f5db4f:	movb   $0x0,(%rbx)
+   307f5db52:	movq   $0x0,0x8(%rbx)
+   307f5db5a:	add    $0xe0,%rsp
+   307f5db61:	pop    %rbx
+   307f5db62:	pop    %rsi
+   307f5db63:	pop    %rdi
+   307f5db64:	ret
+   307f5db65:	nopl   (%rax)
+   307f5db68:	cmpq   $0x0,0xc8(%rsp)
+   307f5db71:	je     307f5db4c <_ZN19Gd__gd_core__Weapon19fn_doCooldownEffectEPKN2gd5GdValEi+0xdc>
+   307f5db73:	mov    %rdi,%rdx
+   307f5db76:	lea    0xa0(%rsp),%rcx
+   307f5db7e:	lea    0xc0(%rsp),%r8
+   307f5db86:	mov    $0xd9,%r9d
+   307f5db8c:	call   30841b0a0 <_ZN2gd11call_methodERNS_9BattleCtxERKNS_5GdValEjPS3_i.constprop.0>
+   307f5db91:	movzbl 0xa0(%rsp),%eax
+   307f5db99:	mov    0xa8(%rsp),%rdx
+   307f5dba1:	cmp    $0x2,%al
+   307f5dba3:	jne    307f5db20 <_ZN19Gd__gd_core__Weapon19fn_doCooldownEffectEPKN2gd5GdValEi+0xb0>
+   307f5dba9:	test   %rdx,%rdx
+   307f5dbac:	jne    307f5db4c <_ZN19Gd__gd_core__Weapon19fn_doCooldownEffectEPKN2gd5GdValEi+0xdc>
+   307f5dbae:	cmpb   $0x0,0xd0(%rdi)
+   307f5dbb5:	movb   $0x9,0xc0(%rsp)
+   307f5dbbd:	mov    %rsi,0xc8(%rsp)
+   307f5dbc5:	je     307f5dc77 <_ZN19Gd__gd_core__Weapon19fn_doCooldownEffectEPKN2gd5GdValEi+0x207>
+   307f5dbcb:	mov    0x28(%rsi),%rdx
+   307f5dbcf:	test   %rdx,%rdx
+   307f5dbd2:	je     307f5dc77 <_ZN19Gd__gd_core__Weapon19fn_doCooldownEffectEPKN2gd5GdValEi+0x207>
+   307f5dbd8:	cmpb   $0x0,0xd1(%rdi)
+   307f5dbdf:	jne    307f5dc30 <_ZN19Gd__gd_core__Weapon19fn_doCooldownEffectEPKN2gd5GdValEi+0x1c0>
+   307f5dbe1:	mov    0x398(%rdx),%rsi
+   307f5dbe8:	test   %rsi,%rsi
+   307f5dbeb:	je     307f5dc77 <_ZN19Gd__gd_core__Weapon19fn_doCooldownEffectEPKN2gd5GdValEi+0x207>
+   307f5dbf1:	cmpb   $0x0,0xd2(%rdi)
+   307f5dbf8:	je     307f5dc10 <_ZN19Gd__gd_core__Weapon19fn_doCooldownEffectEPKN2gd5GdValEi+0x1a0>
+   307f5dbfa:	incq   0xd8(%rdi)
+   307f5dc01:	mov    0x86c218(%rip),%rcx        # 3087c9e20 <.refptr.__emutls_v._ZN2gdL22native_hot_slot_countsE.lto_priv.0>
+   307f5dc08:	call   3083f8db0 <__emutls_get_address>
+   307f5dc0d:	incq   (%rax)
+   307f5dc10:	mov    0xc8(%rsp),%rdx
+   307f5dc18:	lea    0x40(%rsp),%rcx
+   307f5dc1d:	xor    %r9d,%r9d
+   307f5dc20:	xor    %r8d,%r8d
+   307f5dc23:	call   *%rsi
+   307f5dc25:	jmp    307f5db4c <_ZN19Gd__gd_core__Weapon19fn_doCooldownEffectEPKN2gd5GdValEi+0xdc>
+   307f5dc2a:	nopw   0x0(%rax,%rax,1)
+   307f5dc30:	mov    %rsi,%rcx
+   307f5dc33:	mov    %rdx,0x38(%rsp)
+   307f5dc38:	call   30853b840 <_ZN2gdL25native_resolved_exact_rowEPKNS_5GdObjE.lto_priv.0>
+   307f5dc3d:	mov    0x38(%rsp),%rdx
+   307f5dc42:	cmp    %rax,%rdx
+   307f5dc45:	je     307f5dca0 <_ZN19Gd__gd_core__Weapon19fn_doCooldownEffectEPKN2gd5GdValEi+0x230>
+   307f5dc47:	cmpb   $0x0,0xd0(%rdi)
+   307f5dc4e:	je     307f5dc77 <_ZN19Gd__gd_core__Weapon19fn_doCooldownEffectEPKN2gd5GdValEi+0x207>
+   307f5dc50:	movzbl 0xc0(%rsp),%eax
+   307f5dc58:	cmp    $0x7,%al
+   307f5dc5a:	je     307f5dc68 <_ZN19Gd__gd_core__Weapon19fn_doCooldownEffectEPKN2gd5GdValEi+0x1f8>
+   307f5dc5c:	cmp    $0x8,%al
+   307f5dc5e:	je     307f5dc68 <_ZN19Gd__gd_core__Weapon19fn_doCooldownEffectEPKN2gd5GdValEi+0x1f8>
+   307f5dc60:	cmp    $0xb,%al
+   307f5dc62:	jne    307f5ddc5 <_ZN19Gd__gd_core__Weapon19fn_doCooldownEffectEPKN2gd5GdValEi+0x355>
+   307f5dc68:	cmpq   $0x0,0xc8(%rsp)
+   307f5dc71:	je     307f5db4c <_ZN19Gd__gd_core__Weapon19fn_doCooldownEffectEPKN2gd5GdValEi+0xdc>
+   307f5dc77:	lea    0x40(%rsp),%rcx
+   307f5dc7c:	mov    $0x412,%r9d
+   307f5dc82:	lea    0xc0(%rsp),%r8
+   307f5dc8a:	mov    %rdi,%rdx
+   307f5dc8d:	call   30841b0a0 <_ZN2gd11call_methodERNS_9BattleCtxERKNS_5GdValEjPS3_i.constprop.0>
+   307f5dc92:	jmp    307f5db4c <_ZN19Gd__gd_core__Weapon19fn_doCooldownEffectEPKN2gd5GdValEi+0xdc>
+   307f5dc97:	nopw   0x0(%rax,%rax,1)
+   307f5dca0:	mov    0x398(%rdx),%rsi
+   307f5dca7:	test   %rsi,%rsi
+   307f5dcaa:	jne    307f5dbf1 <_ZN19Gd__gd_core__Weapon19fn_doCooldownEffectEPKN2gd5GdValEi+0x181>
+   307f5dcb0:	jmp    307f5dc47 <_ZN19Gd__gd_core__Weapon19fn_doCooldownEffectEPKN2gd5GdValEi+0x1d7>
+   307f5dcb2:	nopw   0x0(%rax,%rax,1)
+   307f5dcb8:	mov    %rsi,%rcx
+   307f5dcbb:	mov    %rdx,0x38(%rsp)
+   307f5dcc0:	call   30853b840 <_ZN2gdL25native_resolved_exact_rowEPKNS_5GdObjE.lto_priv.0>
+   307f5dcc5:	mov    0x38(%rsp),%rdx
+   307f5dcca:	cmp    %rax,%rdx
+   307f5dccd:	jne    307f5dcdf <_ZN19Gd__gd_core__Weapon19fn_doCooldownEffectEPKN2gd5GdValEi+0x26f>
+   307f5dccf:	mov    0x390(%rdx),%rax
+   307f5dcd6:	test   %rax,%rax
+   307f5dcd9:	jne    307f5dadf <_ZN19Gd__gd_core__Weapon19fn_doCooldownEffectEPKN2gd5GdValEi+0x6f>
+   307f5dcdf:	cmpb   $0x0,0xd0(%rdi)
+   307f5dce6:	je     307f5db73 <_ZN19Gd__gd_core__Weapon19fn_doCooldownEffectEPKN2gd5GdValEi+0x103>
+   307f5dcec:	movzbl 0xc0(%rsp),%eax
+   307f5dcf4:	cmp    $0x7,%al
+   307f5dcf6:	je     307f5db68 <_ZN19Gd__gd_core__Weapon19fn_doCooldownEffectEPKN2gd5GdValEi+0xf8>
+   307f5dcfc:	cmp    $0x8,%al
+   307f5dcfe:	je     307f5db68 <_ZN19Gd__gd_core__Weapon19fn_doCooldownEffectEPKN2gd5GdValEi+0xf8>
+   307f5dd04:	cmp    $0xb,%al
+   307f5dd06:	je     307f5db68 <_ZN19Gd__gd_core__Weapon19fn_doCooldownEffectEPKN2gd5GdValEi+0xf8>
+   307f5dd0c:	cmp    $0xa,%al
+   307f5dd0e:	jne    307f5db73 <_ZN19Gd__gd_core__Weapon19fn_doCooldownEffectEPKN2gd5GdValEi+0x103>
+   307f5dd14:	cmpb   $0x0,0xd2(%rdi)
+   307f5dd1b:	jne    307f5ddb0 <_ZN19Gd__gd_core__Weapon19fn_doCooldownEffectEPKN2gd5GdValEi+0x340>
+   307f5dd21:	mov    0xc8(%rsp),%rdx
+   307f5dd29:	test   %rdx,%rdx
+   307f5dd2c:	je     307f5db4c <_ZN19Gd__gd_core__Weapon19fn_doCooldownEffectEPKN2gd5GdValEi+0xdc>
+   307f5dd32:	cmpq   $0x0,0x38(%rdx)
+   307f5dd37:	je     307f5db4c <_ZN19Gd__gd_core__Weapon19fn_doCooldownEffectEPKN2gd5GdValEi+0xdc>
+   307f5dd3d:	mov    %rdi,%rcx
+   307f5dd40:	call   3084180c0 <_ZN2gd26native_timer_observe_classERNS_9BattleCtxEPKNS_11GdClassMetaE>
+   307f5dd45:	lea    0x60(%rsp),%rax
+   307f5dd4a:	movb   $0x0,0x60(%rsp)
+   307f5dd4f:	xor    %r9d,%r9d
+   307f5dd52:	mov    %rax,0x20(%rsp)
+   307f5dd57:	mov    0xc8(%rsp),%rax
+   307f5dd5f:	xor    %r8d,%r8d
+   307f5dd62:	mov    $0xd9,%edx
+   307f5dd67:	movq   $0x0,0x68(%rsp)
+   307f5dd70:	mov    %rdi,%rcx
+   307f5dd73:	call   *0x38(%rax)
+   307f5dd76:	test   %al,%al
+   307f5dd78:	je     307f5db4c <_ZN19Gd__gd_core__Weapon19fn_doCooldownEffectEPKN2gd5GdValEi+0xdc>
+   307f5dd7e:	mov    0x70(%rsp),%rax
+   307f5dd83:	vmovdqa 0x60(%rsp),%xmm0
+   307f5dd89:	mov    0x68(%rsp),%rdx
+   307f5dd8e:	mov    %rax,0xb0(%rsp)
+   307f5dd96:	movzbl 0x60(%rsp),%eax
+   307f5dd9b:	vmovdqa %xmm0,0xa0(%rsp)
+   307f5dda4:	jmp    307f5db17 <_ZN19Gd__gd_core__Weapon19fn_doCooldownEffectEPKN2gd5GdValEi+0xa7>
+   307f5dda9:	nopl   0x0(%rax)
+   307f5ddb0:	mov    0x86c0e9(%rip),%rcx        # 3087c9ea0 <.refptr.__emutls_v._ZN2gdL28native_inline_variant_countsE.lto_priv.0>
+   307f5ddb7:	call   3083f8db0 <__emutls_get_address>
+   307f5ddbc:	incq   0x48(%rax)
+   307f5ddc0:	jmp    307f5dd21 <_ZN19Gd__gd_core__Weapon19fn_doCooldownEffectEPKN2gd5GdValEi+0x2b1>
+   307f5ddc5:	cmp    $0xa,%al
+   307f5ddc7:	jne    307f5dc77 <_ZN19Gd__gd_core__Weapon19fn_doCooldownEffectEPKN2gd5GdValEi+0x207>
+   307f5ddcd:	cmpb   $0x0,0xd2(%rdi)
+   307f5ddd4:	jne    307f5de39 <_ZN19Gd__gd_core__Weapon19fn_doCooldownEffectEPKN2gd5GdValEi+0x3c9>
+   307f5ddd6:	mov    0xc8(%rsp),%rdx
+   307f5ddde:	test   %rdx,%rdx
+   307f5dde1:	je     307f5db4c <_ZN19Gd__gd_core__Weapon19fn_doCooldownEffectEPKN2gd5GdValEi+0xdc>
+   307f5dde7:	cmpq   $0x0,0x38(%rdx)
+   307f5ddec:	je     307f5db4c <_ZN19Gd__gd_core__Weapon19fn_doCooldownEffectEPKN2gd5GdValEi+0xdc>
+   307f5ddf2:	mov    %rdi,%rcx
+   307f5ddf5:	call   3084180c0 <_ZN2gd26native_timer_observe_classERNS_9BattleCtxEPKNS_11GdClassMetaE>
+   307f5ddfa:	lea    0xa0(%rsp),%rax
+   307f5de02:	movb   $0x0,0xa0(%rsp)
+   307f5de0a:	xor    %r9d,%r9d
+   307f5de0d:	mov    %rax,0x20(%rsp)
+   307f5de12:	mov    0xc8(%rsp),%rax
+   307f5de1a:	xor    %r8d,%r8d
+   307f5de1d:	mov    $0x412,%edx
+   307f5de22:	movq   $0x0,0xa8(%rsp)
+   307f5de2e:	mov    %rdi,%rcx
+   307f5de31:	call   *0x38(%rax)
+   307f5de34:	jmp    307f5db4c <_ZN19Gd__gd_core__Weapon19fn_doCooldownEffectEPKN2gd5GdValEi+0xdc>
+   307f5de39:	mov    0x86c060(%rip),%rcx        # 3087c9ea0 <.refptr.__emutls_v._ZN2gdL28native_inline_variant_countsE.lto_priv.0>
+   307f5de40:	call   3083f8db0 <__emutls_get_address>
+   307f5de45:	incq   0x48(%rax)
+   307f5de49:	jmp    307f5ddd6 <_ZN19Gd__gd_core__Weapon19fn_doCooldownEffectEPKN2gd5GdValEi+0x366>
+   307f5de4b:	nop
+   307f5de4c:	nopl   0x0(%rax)

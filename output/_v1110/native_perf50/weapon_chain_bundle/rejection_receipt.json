@@ -1,0 +1,27 @@
+{
+  "status": "inconclusive_retained",
+  "candidate_dll_sha256": "535d44263df070cd90a203d58fc95daf1956ae5c05ce3a6b5b28ed1b83ae8a14",
+  "not_deployed": true,
+  "no_more_same_source_groups": true,
+  "non_release_calibration": true,
+  "not_release_raw24": true,
+  "single_run_all_samples_retained": true,
+  "background_load_range_pct": [
+    2.0883523134522104,
+    33.06107758694709
+  ],
+  "median_fights_per_second": 195.36133081906087,
+  "minimum_fights_per_second": 175.23644434142992,
+  "maximum_fights_per_second": 247.05495057394037,
+  "on_ac_all": true,
+  "fitted_fights_per_second_at20": 200.94182193950746,
+  "fit_validation": {
+    "median_absolute_relative_time_error": 0.021894389623134922,
+    "p90_absolute_relative_time_error": 0.06580787203753066,
+    "constant_median_absolute_relative_time_error": 0.10785658023119496
+  },
+  "empirical20_is_extrapolation": false,
+  "missing_reason": null,
+  "raw_sha256": "4be7a6842fd929e7c91e0a66c659819da871bf8e47c081bca1ff80b395b73873",
+  "fit_exit_code": 0
+}

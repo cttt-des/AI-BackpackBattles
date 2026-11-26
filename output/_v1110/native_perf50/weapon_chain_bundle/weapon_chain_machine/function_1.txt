@@ -1,0 +1,22 @@
+
+bundle.dll:     file format pei-x86-64
+
+
+Disassembly of section .text:
+
+0000000244677410 <_ZN2gd12weapon_chain11item_damageER21Gd__gd_core__CoreItemRKNS_5GdValE.cold>:
+   244677410:	mov    %r14,0x198(%rsp)
+   244677418:	vmovdqa 0x170(%rsp),%xmm0
+   244677421:	lea    0x190(%rsp),%r14
+   244677429:	mov    %r12,%rdx
+   24467742c:	mov    0x180(%rsp),%rax
+   244677434:	lea    0x150(%rsp),%rcx
+   24467743c:	mov    %r14,%r9
+   24467743f:	lea    0x60(%rdi),%r8
+   244677443:	movb   $0x9,0x190(%rsp)
+   24467744b:	mov    %rax,0x1b8(%rsp)
+   244677453:	vmovdqu %xmm0,0x1a8(%rsp)
+   24467745c:	call   2446ce1e0 <_Z17native_event_callI26Gd__gd_core__CoreCharacterXadL_ZNS0_13fn_takeDamageEPKN2gd5GdValEiEEES2_RNS1_9BattleCtxERS3_jS4_i.constprop.0>
+   244677461:	movzbl 0x150(%rsp),%r13d
+   24467746a:	mov    0x158(%rsp),%r12
+   244677472:	jmp    244678495 <_ZN2gd12weapon_chain11item_damageER21Gd__gd_core__CoreItemRKNS_5GdValE+0xed5>

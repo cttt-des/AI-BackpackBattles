@@ -1,0 +1,58 @@
+
+bundle.dll:     file format pei-x86-64
+
+
+Disassembly of section .text:
+
+0000000244686800 <_ZN2gd12weapon_chain11take_damageER26Gd__gd_core__CoreCharacterP29Gd__gd_core__CoreDamageSourceRKNS_5GdValE.cold>:
+   244686800:	vmovdqu (%r8),%xmm0
+   244686805:	mov    0x10(%r8),%rax
+   244686809:	xor    %esi,%esi
+   24468680b:	mov    $0xf0,%edx
+   244686810:	mov    %rbx,%rcx
+   244686813:	mov    %rsi,0x188(%rsp)
+   24468681b:	xor    %ebp,%ebp
+   24468681d:	xor    %r13d,%r13d
+   244686820:	vmovdqa %xmm0,0x160(%rsp)
+   244686829:	xor    %r14d,%r14d
+   24468682c:	xor    %r15d,%r15d
+   24468682f:	lea    0x4f0(%rsp),%rsi
+   244686837:	movb   $0x0,0x180(%rsp)
+   24468683f:	mov    %rax,0x170(%rsp)
+   244686847:	call   24457e230 <_ZN2gd11BattleArena9alloc_rawEyy.constprop.0>
+   24468684c:	mov    0x2aa7dd(%rip),%rdi        # 244931030 <.refptr._ZTV29Gd__gd_core__CoreDamageResult>
+   244686853:	mov    %rsi,%rcx
+   244686856:	mov    %rbx,0x8(%rax)
+   24468685a:	lea    0x10(%rdi),%rdx
+   24468685e:	xor    %edi,%edi
+   244686860:	vmovdqu %xmm6,0x10(%rax)
+   244686865:	mov    %rdx,(%rax)
+   244686868:	xor    %edx,%edx
+   24468686a:	vmovdqa 0x180(%rsp),%xmm0
+   244686873:	mov    %rdx,0xc8(%rax)
+   24468687a:	mov    %rbx,%rdx
+   24468687d:	movb   $0x0,0x30(%rax)
+   244686881:	mov    %rdi,0x38(%rax)
+   244686885:	movb   $0x0,0x48(%rax)
+   244686889:	mov    %rbp,0x50(%rax)
+   24468688d:	mov    %rbp,0x68(%rax)
+   244686891:	mov    %rbp,0x80(%rax)
+   244686898:	movb   $0x0,0xd8(%rax)
+   24468689f:	mov    %r13,0xe0(%rax)
+   2446868a6:	movb   $0x2,0x60(%rax)
+   2446868aa:	movb   $0x2,0x78(%rax)
+   2446868ae:	movb   $0x1,0x90(%rax)
+   2446868b5:	mov    %r14,0x98(%rax)
+   2446868bc:	movb   $0x1,0xa8(%rax)
+   2446868c3:	mov    %r15,0xb0(%rax)
+   2446868ca:	movb   $0x2,0xc0(%rax)
+   2446868d1:	vmovdqu %xmm6,0x20(%rax)
+   2446868d6:	mov    %rax,0x148(%rsp)
+   2446868de:	mov    0x190(%rsp),%rax
+   2446868e6:	movb   $0x9,0x140(%rsp)
+   2446868ee:	mov    %rax,0x4b0(%rsp)
+   2446868f6:	vmovdqa %xmm0,0x4a0(%rsp)
+   2446868ff:	call   24458b120 <_Z16native_event_newI29Gd__gd_core__CoreDamageSourceEN2gd5GdValERNS1_9BattleCtxEPKS2_i.constprop.0>
+   244686904:	cmpb   $0x9,0x4f0(%rsp)
+   24468690c:	je     244686b18 <_ZN2gd12weapon_chain11take_damageER26Gd__gd_core__CoreCharacterP29Gd__gd_core__CoreDamageSourceRKNS_5GdValE+0x158>
+   244686912:	jmp    244689db1 <_ZN2gd12weapon_chain11take_damageER26Gd__gd_core__CoreCharacterP29Gd__gd_core__CoreDamageSourceRKNS_5GdValE+0x33f1>

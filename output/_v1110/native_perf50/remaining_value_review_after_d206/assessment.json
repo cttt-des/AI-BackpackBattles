@@ -1,0 +1,128 @@
+{
+  "baseline_dll_sha256": "d2064b3f17d8168cf87a2e9f46e9fb336ffe4aaf6581c27d93350b2c41477a57",
+  "source_files_verified_before_and_after": 713,
+  "profile_sha256": "58e4cc0eae0b63be06b0966ba9e4707a4ae5721b2cce53b29e1d4d093e167899",
+  "samples": 2014,
+  "batches": 24,
+  "depth_limit": 64,
+  "samples_at_depth_limit": 2,
+  "fixed200_all_batch_results_and_terminals_verified": true,
+  "profile_is_diagnostic_not_AB_or_gain_measurement": true,
+  "inclusive_shares_overlap_and_are_not_savings": {
+    "weapon": {
+      "samples": 403,
+      "percentage": 20.00993048659384,
+      "inclusive": true
+    },
+    "take_damage": {
+      "samples": 310,
+      "percentage": 15.392254220456802,
+      "inclusive": true
+    },
+    "event_bus": {
+      "samples": 260,
+      "percentage": 12.909632571996028,
+      "inclusive": true
+    },
+    "assembly": {
+      "samples": 422,
+      "percentage": 20.953326713008938,
+      "inclusive": true
+    },
+    "item_added": {
+      "samples": 124,
+      "percentage": 6.156901688182721,
+      "inclusive": true
+    },
+    "buff_gain": {
+      "samples": 200,
+      "percentage": 9.930486593843098,
+      "inclusive": true
+    },
+    "frame_leaf": {
+      "samples": 167,
+      "percentage": 8.291956305858987,
+      "inclusive": false
+    }
+  },
+  "priorities": [
+    {
+      "priority": 1,
+      "title": "武器触发到伤害消费者的参数与类型传播",
+      "increment": "优先检查Weapon.doCooldownEffect、CoreItem.dealDamage和Character.dealDamage之间的GdVal参数数组、返回值中转与重复守卫；类型事实贯穿调用边界，未知形态仍走旧入口",
+      "limits": "旧takeDamage完整定型包及指针/flags组合均已测过，不能原样重跑；先证明当前机器码有可消除工作",
+      "evidence": [
+        "weapon",
+        "take_damage"
+      ],
+      "cost": "高",
+      "risk": "中高"
+    },
+    {
+      "priority": 2,
+      "title": "装配几何候选与成员关系计算",
+      "increment": "在onItemAdded等实际消费者中减少重复成员查询与几何交集计算；可研究只读几何候选，按原顺序执行颜色资格与回调",
+      "limits": "getItemsInCells合并has/get、对象去重和整数格索引已经有实现；不得重新计收益，也不复用活物品或跳过ready/setup",
+      "evidence": [
+        "assembly",
+        "item_added"
+      ],
+      "cost": "中到高",
+      "risk": "中"
+    },
+    {
+      "priority": 3,
+      "title": "事件载荷固定键读取与监听记录表示",
+      "increment": "先从params.damage/amount的已验证槽位、精确事件字段读取，以及连接记录/绑定参数的中间容器入手，再评估更紧凑的监听器记录",
+      "limits": "CoreEvent对象化、空监听早退、无绑定FuncRef直达和字面参数路径已存在；旧Hook+伤害组合未通过，需新成本证据",
+      "evidence": [
+        "event_bus"
+      ],
+      "cost": "中到高",
+      "risk": "中高"
+    },
+    {
+      "priority": 4,
+      "title": "逐物品物理帧内的数据访问与守卫",
+      "increment": "检查实际热点缓存行、元数据/类型守卫和回调之前的只读访问；保留每一帧的原浮点递推",
+      "limits": "活跃冷却索引、定向timer索引、控制字和帧内快照均已实现；禁止无效重复建表或跨回调缓存可变状态",
+      "evidence": [
+        "frame_leaf"
+      ],
+      "cost": "中到高",
+      "risk": "中高"
+    },
+    {
+      "priority": 5,
+      "title": "已知小字典和动态方法名的局部专用入口",
+      "increment": "Buff键100..110的消费者槽位提示、预留大容量却无buckets的字典频次统计、已知方法名减少重复intern；按实际热度选择",
+      "limits": "不能恢复失败的全局identity/lookup优化；保持插入顺序、浮点键行为、符号重注册与未知接收者回退",
+      "evidence": [],
+      "cost": "小到中",
+      "risk": "中"
+    }
+  ],
+  "strategic": {
+    "partial_event_scheduling": "仅选等待期间无逐帧副作用的离散子系统，先做影子队列逐帧对照；当前不是优先发布项",
+    "gdval16": "保留战略表示原型，先核算Vec2、别名及布局成本",
+    "multicore": "用于训练总吞吐，不能充当单线程提升"
+  },
+  "already_done": [
+    "Buff.gainTemporary内联和返回种类传播",
+    "运动队列主循环原生下标",
+    "定向timer与活跃cooldown索引",
+    "整数Vec2格子字典",
+    "常用容器builtins与标量truth",
+    "事件工厂与部分字面参数/回调直达"
+  ],
+  "do_not_repeat_unchanged": [
+    "typed_hotchain_bundle完整takeDamage+数学块+Hook:32对CPU中位0.0%、墙钟耗时增加0.3024%",
+    "damage_combo_bundle指针/flags组合:24对CPU耗时增加0.9088%、墙钟增加0.7018%",
+    "identity_lookup_bundle全局查找组合",
+    "全局epoch稀疏timer",
+    "无证据的字段重排、预取、全局强制内联或浮点放宽"
+  ],
+  "production_source_and_runtime_unchanged": true,
+  "no_new_branch": true,
+  "no_new_optimization_implemented": true
+}

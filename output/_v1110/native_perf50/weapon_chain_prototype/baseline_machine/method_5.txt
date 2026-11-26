@@ -1,0 +1,243 @@
+
+bundle.dll:     file format pei-x86-64
+
+
+Disassembly of section .text:
+
+0000000308559720 <_ZN25Gd__gd_core_items__Weapon9fn_attackEPKN2gd5GdValEi>:
+   308559720:	push   %rbp
+   308559721:	push   %rdi
+   308559722:	push   %rsi
+   308559723:	push   %rbx
+   308559724:	sub    $0x108,%rsp
+   30855972b:	mov    0x8(%rdx),%rsi
+   30855972f:	mov    %rcx,%rdi
+   308559732:	mov    %rdx,%rbx
+   308559735:	test   %r9d,%r9d
+   308559738:	jg     308559958 <_ZN25Gd__gd_core_items__Weapon9fn_attackEPKN2gd5GdValEi+0x238>
+   30855973e:	movb   $0x0,0x80(%rsp)
+   308559746:	mov    0x90(%rsp),%rax
+   30855974e:	movq   $0x0,0x88(%rsp)
+   30855975a:	vmovdqa 0x80(%rsp),%xmm0
+   308559763:	vmovdqa %xmm0,0xa0(%rsp)
+   30855976c:	cmpb   $0x0,0xd0(%rsi)
+   308559773:	mov    %rax,0xb0(%rsp)
+   30855977b:	movb   $0x9,0xe0(%rsp)
+   308559783:	mov    %rbx,0xe8(%rsp)
+   30855978b:	je     308559878 <_ZN25Gd__gd_core_items__Weapon9fn_attackEPKN2gd5GdValEi+0x158>
+   308559791:	mov    0x28(%rbx),%rbp
+   308559795:	test   %rbp,%rbp
+   308559798:	je     308559878 <_ZN25Gd__gd_core_items__Weapon9fn_attackEPKN2gd5GdValEi+0x158>
+   30855979e:	cmpb   $0x0,0xd1(%rsi)
+   3085597a5:	jne    308559980 <_ZN25Gd__gd_core_items__Weapon9fn_attackEPKN2gd5GdValEi+0x260>
+   3085597ab:	mov    0x28(%rbp),%rax
+   3085597af:	test   %rax,%rax
+   3085597b2:	je     308559878 <_ZN25Gd__gd_core_items__Weapon9fn_attackEPKN2gd5GdValEi+0x158>
+   3085597b8:	cmpb   $0x0,0xd2(%rsi)
+   3085597bf:	je     3085597c8 <_ZN25Gd__gd_core_items__Weapon9fn_attackEPKN2gd5GdValEi+0xa8>
+   3085597c1:	incq   0xd8(%rsi)
+   3085597c8:	mov    0xe8(%rsp),%rdx
+   3085597d0:	lea    0x60(%rsp),%rcx
+   3085597d5:	mov    $0x1,%r9d
+   3085597db:	lea    0xa0(%rsp),%r8
+   3085597e3:	call   *%rax
+   3085597e5:	movzbl 0x60(%rsp),%ecx
+   3085597ea:	mov    0x68(%rsp),%rax
+   3085597ef:	movzbl 0xd0(%rsi),%edx
+   3085597f6:	mov    %rax,0x68(%rsp)
+   3085597fb:	mov    0x70(%rsp),%rax
+   308559800:	mov    %cl,0x60(%rsp)
+   308559804:	mov    %rax,0xb0(%rsp)
+   30855980c:	movb   $0x9,0xe0(%rsp)
+   308559814:	vmovdqa 0x60(%rsp),%xmm0
+   30855981a:	mov    %rbx,0xe8(%rsp)
+   308559822:	vmovdqa %xmm0,0xa0(%rsp)
+   30855982b:	test   %dl,%dl
+   30855982d:	jne    3085598e5 <_ZN25Gd__gd_core_items__Weapon9fn_attackEPKN2gd5GdValEi+0x1c5>
+   308559833:	lea    0xa0(%rsp),%rbp
+   30855983b:	lea    0xe0(%rsp),%r8
+   308559843:	mov    %rbp,0x20(%rsp)
+   308559848:	lea    0x40(%rsp),%rcx
+   30855984d:	mov    $0xfb,%r9d
+   308559853:	mov    %rsi,%rdx
+   308559856:	call   308418630 <_ZN2gd11call_methodERNS_9BattleCtxERKNS_5GdValEjPS3_i.constprop.1>
+   30855985b:	mov    %rdi,%rax
+   30855985e:	movb   $0x0,(%rdi)
+   308559861:	movq   $0x0,0x8(%rdi)
+   308559869:	add    $0x108,%rsp
+   308559870:	pop    %rbx
+   308559871:	pop    %rsi
+   308559872:	pop    %rdi
+   308559873:	pop    %rbp
+   308559874:	ret
+   308559875:	nopl   (%rax)
+   308559878:	lea    0xa0(%rsp),%rbp
+   308559880:	lea    0xe0(%rsp),%r8
+   308559888:	mov    %rsi,%rdx
+   30855988b:	mov    $0x141,%r9d
+   308559891:	mov    %rbp,0x20(%rsp)
+   308559896:	lea    0x60(%rsp),%rcx
+   30855989b:	mov    %r8,0x38(%rsp)
+   3085598a0:	call   308418630 <_ZN2gd11call_methodERNS_9BattleCtxERKNS_5GdValEjPS3_i.constprop.1>
+   3085598a5:	movzbl 0xd0(%rsi),%eax
+   3085598ac:	vmovdqa 0x60(%rsp),%xmm0
+   3085598b2:	movb   $0x9,0xe0(%rsp)
+   3085598ba:	mov    0x70(%rsp),%rdx
+   3085598bf:	mov    0x38(%rsp),%r8
+   3085598c4:	mov    %rbx,0xe8(%rsp)
+   3085598cc:	vmovdqa %xmm0,0xa0(%rsp)
+   3085598d5:	mov    %rdx,0xb0(%rsp)
+   3085598dd:	test   %al,%al
+   3085598df:	je     308559843 <_ZN25Gd__gd_core_items__Weapon9fn_attackEPKN2gd5GdValEi+0x123>
+   3085598e5:	mov    0x28(%rbx),%rbp
+   3085598e9:	test   %rbp,%rbp
+   3085598ec:	je     308559833 <_ZN25Gd__gd_core_items__Weapon9fn_attackEPKN2gd5GdValEi+0x113>
+   3085598f2:	cmpb   $0x0,0xd1(%rsi)
+   3085598f9:	jne    308559af0 <_ZN25Gd__gd_core_items__Weapon9fn_attackEPKN2gd5GdValEi+0x3d0>
+   3085598ff:	mov    0x38(%rbp),%rax
+   308559903:	test   %rax,%rax
+   308559906:	je     308559833 <_ZN25Gd__gd_core_items__Weapon9fn_attackEPKN2gd5GdValEi+0x113>
+   30855990c:	cmpb   $0x0,0xd2(%rsi)
+   308559913:	je     30855991c <_ZN25Gd__gd_core_items__Weapon9fn_attackEPKN2gd5GdValEi+0x1fc>
+   308559915:	incq   0xd8(%rsi)
+   30855991c:	mov    0xe8(%rsp),%rdx
+   308559924:	lea    0x40(%rsp),%rcx
+   308559929:	mov    $0x1,%r9d
+   30855992f:	lea    0xa0(%rsp),%r8
+   308559937:	call   *%rax
+   308559939:	mov    %rdi,%rax
+   30855993c:	movb   $0x0,(%rdi)
+   30855993f:	movq   $0x0,0x8(%rdi)
+   308559947:	add    $0x108,%rsp
+   30855994e:	pop    %rbx
+   30855994f:	pop    %rsi
+   308559950:	pop    %rdi
+   308559951:	pop    %rbp
+   308559952:	ret
+   308559953:	nopl   0x0(%rax,%rax,1)
+   308559958:	vmovdqu (%r8),%xmm0
+   30855995d:	mov    0x10(%r8),%rax
+   308559961:	vmovdqa %xmm0,0x80(%rsp)
+   30855996a:	mov    %rax,0x90(%rsp)
+   308559972:	vmovdqa %xmm0,0xa0(%rsp)
+   30855997b:	jmp    30855976c <_ZN25Gd__gd_core_items__Weapon9fn_attackEPKN2gd5GdValEi+0x4c>
+   308559980:	mov    %rbx,%rcx
+   308559983:	call   30853b840 <_ZN2gdL25native_resolved_exact_rowEPKNS_5GdObjE.lto_priv.0>
+   308559988:	cmp    %rax,%rbp
+   30855998b:	jne    30855999a <_ZN25Gd__gd_core_items__Weapon9fn_attackEPKN2gd5GdValEi+0x27a>
+   30855998d:	mov    0x28(%rbp),%rax
+   308559991:	test   %rax,%rax
+   308559994:	jne    3085597b8 <_ZN25Gd__gd_core_items__Weapon9fn_attackEPKN2gd5GdValEi+0x98>
+   30855999a:	cmpb   $0x0,0xd0(%rsi)
+   3085599a1:	je     308559878 <_ZN25Gd__gd_core_items__Weapon9fn_attackEPKN2gd5GdValEi+0x158>
+   3085599a7:	movzbl 0xe0(%rsp),%eax
+   3085599af:	cmp    $0x7,%al
+   3085599b1:	je     308559a88 <_ZN25Gd__gd_core_items__Weapon9fn_attackEPKN2gd5GdValEi+0x368>
+   3085599b7:	cmp    $0x8,%al
+   3085599b9:	je     308559a88 <_ZN25Gd__gd_core_items__Weapon9fn_attackEPKN2gd5GdValEi+0x368>
+   3085599bf:	cmp    $0xb,%al
+   3085599c1:	je     308559a88 <_ZN25Gd__gd_core_items__Weapon9fn_attackEPKN2gd5GdValEi+0x368>
+   3085599c7:	cmp    $0xa,%al
+   3085599c9:	jne    308559878 <_ZN25Gd__gd_core_items__Weapon9fn_attackEPKN2gd5GdValEi+0x158>
+   3085599cf:	cmpb   $0x0,0xd2(%rsi)
+   3085599d6:	jne    308559be8 <_ZN25Gd__gd_core_items__Weapon9fn_attackEPKN2gd5GdValEi+0x4c8>
+   3085599dc:	mov    0xe8(%rsp),%rdx
+   3085599e4:	test   %rdx,%rdx
+   3085599e7:	je     308559ae0 <_ZN25Gd__gd_core_items__Weapon9fn_attackEPKN2gd5GdValEi+0x3c0>
+   3085599ed:	cmpq   $0x0,0x38(%rdx)
+   3085599f2:	je     308559ae0 <_ZN25Gd__gd_core_items__Weapon9fn_attackEPKN2gd5GdValEi+0x3c0>
+   3085599f8:	mov    %rsi,%rcx
+   3085599fb:	call   3084180c0 <_ZN2gd26native_timer_observe_classERNS_9BattleCtxEPKNS_11GdClassMetaE>
+   308559a00:	lea    0xc0(%rsp),%rax
+   308559a08:	movb   $0x0,0xc0(%rsp)
+   308559a10:	mov    $0x1,%r9d
+   308559a16:	mov    %rax,0x20(%rsp)
+   308559a1b:	mov    0xe8(%rsp),%rax
+   308559a23:	lea    0xa0(%rsp),%r8
+   308559a2b:	mov    $0x141,%edx
+   308559a30:	movq   $0x0,0xc8(%rsp)
+   308559a3c:	mov    %rsi,%rcx
+   308559a3f:	call   *0x38(%rax)
+   308559a42:	test   %al,%al
+   308559a44:	je     308559ae0 <_ZN25Gd__gd_core_items__Weapon9fn_attackEPKN2gd5GdValEi+0x3c0>
+   308559a4a:	mov    0xd0(%rsp),%rax
+   308559a52:	vmovdqa 0xc0(%rsp),%xmm0
+   308559a5b:	movzbl 0xc0(%rsp),%ecx
+   308559a63:	movzbl 0xd0(%rsi),%edx
+   308559a6a:	mov    %rax,0x70(%rsp)
+   308559a6f:	mov    0xc8(%rsp),%rax
+   308559a77:	vmovdqa %xmm0,0x60(%rsp)
+   308559a7d:	jmp    3085597f6 <_ZN25Gd__gd_core_items__Weapon9fn_attackEPKN2gd5GdValEi+0xd6>
+   308559a82:	nopw   0x0(%rax,%rax,1)
+   308559a88:	cmpq   $0x0,0xe8(%rsp)
+   308559a91:	jne    308559878 <_ZN25Gd__gd_core_items__Weapon9fn_attackEPKN2gd5GdValEi+0x158>
+   308559a97:	movb   $0x0,0x60(%rsp)
+   308559a9c:	mov    0x70(%rsp),%rax
+   308559aa1:	movq   $0x0,0x68(%rsp)
+   308559aaa:	mov    %rax,0xb0(%rsp)
+   308559ab2:	movb   $0x9,0xe0(%rsp)
+   308559aba:	vmovdqa 0x60(%rsp),%xmm0
+   308559ac0:	mov    %rbx,0xe8(%rsp)
+   308559ac8:	vmovdqa %xmm0,0xa0(%rsp)
+   308559ad1:	jmp    3085598e5 <_ZN25Gd__gd_core_items__Weapon9fn_attackEPKN2gd5GdValEi+0x1c5>
+   308559ad6:	cs nopw 0x0(%rax,%rax,1)
+   308559ae0:	movzbl 0xd0(%rsi),%edx
+   308559ae7:	xor    %eax,%eax
+   308559ae9:	xor    %ecx,%ecx
+   308559aeb:	jmp    3085597f6 <_ZN25Gd__gd_core_items__Weapon9fn_attackEPKN2gd5GdValEi+0xd6>
+   308559af0:	mov    %rbx,%rcx
+   308559af3:	call   30853b840 <_ZN2gdL25native_resolved_exact_rowEPKNS_5GdObjE.lto_priv.0>
+   308559af8:	cmp    %rax,%rbp
+   308559afb:	jne    308559b0a <_ZN25Gd__gd_core_items__Weapon9fn_attackEPKN2gd5GdValEi+0x3ea>
+   308559afd:	mov    0x38(%rbp),%rax
+   308559b01:	test   %rax,%rax
+   308559b04:	jne    30855990c <_ZN25Gd__gd_core_items__Weapon9fn_attackEPKN2gd5GdValEi+0x1ec>
+   308559b0a:	cmpb   $0x0,0xd0(%rsi)
+   308559b11:	je     308559833 <_ZN25Gd__gd_core_items__Weapon9fn_attackEPKN2gd5GdValEi+0x113>
+   308559b17:	movzbl 0xe0(%rsp),%eax
+   308559b1f:	cmp    $0x7,%al
+   308559b21:	je     308559bc0 <_ZN25Gd__gd_core_items__Weapon9fn_attackEPKN2gd5GdValEi+0x4a0>
+   308559b27:	cmp    $0x8,%al
+   308559b29:	je     308559bc0 <_ZN25Gd__gd_core_items__Weapon9fn_attackEPKN2gd5GdValEi+0x4a0>
+   308559b2f:	cmp    $0xb,%al
+   308559b31:	je     308559bc0 <_ZN25Gd__gd_core_items__Weapon9fn_attackEPKN2gd5GdValEi+0x4a0>
+   308559b37:	cmp    $0xa,%al
+   308559b39:	jne    308559833 <_ZN25Gd__gd_core_items__Weapon9fn_attackEPKN2gd5GdValEi+0x113>
+   308559b3f:	cmpb   $0x0,0xd2(%rsi)
+   308559b46:	jne    308559c00 <_ZN25Gd__gd_core_items__Weapon9fn_attackEPKN2gd5GdValEi+0x4e0>
+   308559b4c:	mov    0xe8(%rsp),%rdx
+   308559b54:	test   %rdx,%rdx
+   308559b57:	je     308559939 <_ZN25Gd__gd_core_items__Weapon9fn_attackEPKN2gd5GdValEi+0x219>
+   308559b5d:	cmpq   $0x0,0x38(%rdx)
+   308559b62:	je     308559939 <_ZN25Gd__gd_core_items__Weapon9fn_attackEPKN2gd5GdValEi+0x219>
+   308559b68:	mov    %rsi,%rcx
+   308559b6b:	call   3084180c0 <_ZN2gd26native_timer_observe_classERNS_9BattleCtxEPKNS_11GdClassMetaE>
+   308559b70:	lea    0xc0(%rsp),%rax
+   308559b78:	movb   $0x0,0xc0(%rsp)
+   308559b80:	mov    $0x1,%r9d
+   308559b86:	mov    %rax,0x20(%rsp)
+   308559b8b:	mov    0xe8(%rsp),%rax
+   308559b93:	lea    0xa0(%rsp),%r8
+   308559b9b:	mov    $0xfb,%edx
+   308559ba0:	movq   $0x0,0xc8(%rsp)
+   308559bac:	mov    %rsi,%rcx
+   308559baf:	call   *0x38(%rax)
+   308559bb2:	jmp    308559939 <_ZN25Gd__gd_core_items__Weapon9fn_attackEPKN2gd5GdValEi+0x219>
+   308559bb7:	nopw   0x0(%rax,%rax,1)
+   308559bc0:	cmpq   $0x0,0xe8(%rsp)
+   308559bc9:	je     308559939 <_ZN25Gd__gd_core_items__Weapon9fn_attackEPKN2gd5GdValEi+0x219>
+   308559bcf:	lea    0xa0(%rsp),%rbp
+   308559bd7:	lea    0xe0(%rsp),%r8
+   308559bdf:	jmp    308559843 <_ZN25Gd__gd_core_items__Weapon9fn_attackEPKN2gd5GdValEi+0x123>
+   308559be4:	nopl   0x0(%rax)
+   308559be8:	mov    0x2702b1(%rip),%rcx        # 3087c9ea0 <.refptr.__emutls_v._ZN2gdL28native_inline_variant_countsE.lto_priv.0>
+   308559bef:	call   3083f8db0 <__emutls_get_address>
+   308559bf4:	incq   0x48(%rax)
+   308559bf8:	jmp    3085599dc <_ZN25Gd__gd_core_items__Weapon9fn_attackEPKN2gd5GdValEi+0x2bc>
+   308559bfd:	nopl   (%rax)
+   308559c00:	mov    0x270299(%rip),%rcx        # 3087c9ea0 <.refptr.__emutls_v._ZN2gdL28native_inline_variant_countsE.lto_priv.0>
+   308559c07:	call   3083f8db0 <__emutls_get_address>
+   308559c0c:	incq   0x48(%rax)
+   308559c10:	jmp    308559b4c <_ZN25Gd__gd_core_items__Weapon9fn_attackEPKN2gd5GdValEi+0x42c>
+   308559c15:	nop
+   308559c16:	cs nopw 0x0(%rax,%rax,1)

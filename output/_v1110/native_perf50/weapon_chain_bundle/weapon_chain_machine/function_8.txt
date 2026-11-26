@@ -1,0 +1,29 @@
+
+bundle.dll:     file format pei-x86-64
+
+
+Disassembly of section .text:
+
+0000000244677477 <_ZN2gd12weapon_chain16character_damageER26Gd__gd_core__CoreCharacterP29Gd__gd_core__CoreDamageSourceRKNS_5GdValE.cold>:
+   244677477:	lea    0x60(%rbx),%r8
+   24467747b:	test   %rbp,%rbp
+   24467747e:	je     2446774d9 <_ZN2gd12weapon_chain16character_damageER26Gd__gd_core__CoreCharacterP29Gd__gd_core__CoreDamageSourceRKNS_5GdValE.cold+0x62>
+   244677480:	movb   $0x9,0xa0(%rsp)
+   244677488:	mov    %rbp,0xa8(%rsp)
+   244677490:	mov    0x90(%rsp),%rax
+   244677498:	vmovdqa 0x80(%rsp),%xmm0
+   2446774a1:	lea    0xa0(%rsp),%rbp
+   2446774a9:	mov    %rdi,%rdx
+   2446774ac:	lea    0x40(%rsp),%rcx
+   2446774b1:	mov    %rbp,%r9
+   2446774b4:	mov    %rax,0xc8(%rsp)
+   2446774bc:	vmovdqu %xmm0,0xb8(%rsp)
+   2446774c5:	call   2446ce1e0 <_Z17native_event_callI26Gd__gd_core__CoreCharacterXadL_ZNS0_13fn_takeDamageEPKN2gd5GdValEiEEES2_RNS1_9BattleCtxERS3_jS4_i.constprop.0>
+   2446774ca:	movzbl 0x40(%rsp),%edx
+   2446774cf:	mov    0x48(%rsp),%rax
+   2446774d4:	jmp    244678ff6 <_ZN2gd12weapon_chain16character_damageER26Gd__gd_core__CoreCharacterP29Gd__gd_core__CoreDamageSourceRKNS_5GdValE+0x146>
+   2446774d9:	xor    %eax,%eax
+   2446774db:	movb   $0x0,0xa0(%rsp)
+   2446774e3:	mov    %rax,0xa8(%rsp)
+   2446774eb:	jmp    244677490 <_ZN2gd12weapon_chain16character_damageER26Gd__gd_core__CoreCharacterP29Gd__gd_core__CoreDamageSourceRKNS_5GdValE.cold+0x19>
+   2446774ed:	nop

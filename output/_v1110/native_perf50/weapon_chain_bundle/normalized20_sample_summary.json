@@ -1,0 +1,10 @@
+{
+  "no_additional_timing": true,
+  "dll_sha256": "535d44263df070cd90a203d58fc95daf1956ae5c05ce3a6b5b28ed1b83ae8a14",
+  "median": 201.50736979319203,
+  "minimum": 185.25880648711743,
+  "maximum": 218.01665113201855,
+  "global_fitted_point": 200.94182193950746,
+  "extrapolation": false,
+  "interpretation": "Fit-derived estimates, not direct20% observations"
+}

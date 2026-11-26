@@ -1,0 +1,131 @@
+{
+  "baseline_dll_sha256": "d2064b3f17d8168cf87a2e9f46e9fb336ffe4aaf6581c27d93350b2c41477a57",
+  "candidate_dll_sha256": "535d44263df070cd90a203d58fc95daf1956ae5c05ce3a6b5b28ed1b83ae8a14",
+  "status": "inconclusive_retained",
+  "individual_components_not_rejected": true,
+  "metrics": {
+    "main_thread_cpu_s": {
+      "paired_median_time_reduction_pct": -2.0578866316477873,
+      "sum_time_reduction_pct": -1.2804259634888515,
+      "candidate_wins": 12,
+      "ties": 1,
+      "pairs": 32
+    },
+    "wall_s": {
+      "paired_median_time_reduction_pct": -2.086333544736918,
+      "sum_time_reduction_pct": -1.394689840549379,
+      "candidate_wins": 12,
+      "ties": 0,
+      "pairs": 32
+    }
+  },
+  "group_medians": [
+    {
+      "main_thread_cpu_s": -7.834482758620687,
+      "wall_s": -8.02372228803212
+    },
+    {
+      "main_thread_cpu_s": 3.797814207650274,
+      "wall_s": 1.744745089478772
+    },
+    {
+      "main_thread_cpu_s": -2.3746342791045816,
+      "wall_s": -2.2392013819907186
+    },
+    {
+      "main_thread_cpu_s": -0.5050505050505194,
+      "wall_s": -0.8993000708199528
+    }
+  ],
+  "leave_one_group_out_sensitivity": [
+    {
+      "main_thread_cpu_s": {
+        "paired_median_time_reduction_pct": -0.5050505050505083,
+        "sum_time_reduction_pct": 0.9690893901420194,
+        "candidate_wins": 11,
+        "ties": 1,
+        "pairs": 24
+      },
+      "wall_s": {
+        "paired_median_time_reduction_pct": -0.8984476474826031,
+        "sum_time_reduction_pct": 1.0095568936068666,
+        "candidate_wins": 11,
+        "ties": 0,
+        "pairs": 24
+      }
+    },
+    {
+      "main_thread_cpu_s": {
+        "paired_median_time_reduction_pct": -2.500153760993906,
+        "sum_time_reduction_pct": -3.981132075471705,
+        "candidate_wins": 7,
+        "ties": 1,
+        "pairs": 24
+      },
+      "wall_s": {
+        "paired_median_time_reduction_pct": -2.5817891294758977,
+        "sum_time_reduction_pct": -4.323614146720178,
+        "candidate_wins": 7,
+        "ties": 0,
+        "pairs": 24
+      }
+    },
+    {
+      "main_thread_cpu_s": {
+        "paired_median_time_reduction_pct": -1.5967535618190642,
+        "sum_time_reduction_pct": -0.8753444642567665,
+        "candidate_wins": 9,
+        "ties": 1,
+        "pairs": 24
+      },
+      "wall_s": {
+        "paired_median_time_reduction_pct": -2.086333544736918,
+        "sum_time_reduction_pct": -1.0194502221283264,
+        "candidate_wins": 9,
+        "ties": 0,
+        "pairs": 24
+      }
+    },
+    {
+      "main_thread_cpu_s": {
+        "paired_median_time_reduction_pct": -2.500153760993906,
+        "sum_time_reduction_pct": -1.5458937198067568,
+        "candidate_wins": 9,
+        "ties": 0,
+        "pairs": 24
+      },
+      "wall_s": {
+        "paired_median_time_reduction_pct": -2.5817891294758977,
+        "sum_time_reduction_pct": -1.5931763994299741,
+        "candidate_wins": 9,
+        "ties": 0,
+        "pairs": 24
+      }
+    }
+  ],
+  "background_load_range_pct": [
+    1.501310714628378,
+    29.55946875158537
+  ],
+  "on_ac_all": true,
+  "reports": [
+    {
+      "path": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_perf50\\weapon_chain_bundle\\ab_1.json",
+      "sha256": "00189745e10ba4c160299a839b9b68c1aa550a1f02b6b179ae2dd2d0f5843db6"
+    },
+    {
+      "path": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_perf50\\weapon_chain_bundle\\ab_2.json",
+      "sha256": "2a136806e478a42cf10fec086333d875816bf51a8a80de5a033b56cfa368eddc"
+    },
+    {
+      "path": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_perf50\\weapon_chain_bundle\\ab_3.json",
+      "sha256": "76d3b4baa6401ddee1c1ca9f8d92b0d54a2a0e549d4e6b5f27616b988ea9fbb2"
+    },
+    {
+      "path": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_perf50\\weapon_chain_bundle\\ab_4.json",
+      "sha256": "044475c413835db7c93538af639d84690d550894a7d1ba257804785d32c96220"
+    }
+  ],
+  "semantics_and_raw24_required_before_deployment": true,
+  "interpretation": "This measures a bundle. It does not prove each component helps or that old percentage estimates add together."
+}

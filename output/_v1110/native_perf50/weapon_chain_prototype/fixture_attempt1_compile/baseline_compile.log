@@ -1,0 +1,9 @@
+In file included from C:\Users\Windows\AppData\Local\CodexNativeBuilds\weapon-chain-diff-zhuo5d8z\baseline\test_native_weapon_chain.cpp:1:
+C:\Users\Windows\AppData\Local\CodexNativeBuilds\weapon-chain-diff-zhuo5d8z\baseline\weapon_fixture_base.cpp: In member function 'void ExtendedFixture::connect(Callback&, unsigned int)':
+C:\Users\Windows\AppData\Local\CodexNativeBuilds\weapon-chain-diff-zhuo5d8z\baseline\weapon_fixture_base.cpp:52:54: error: 'battle_string_literals' was not declared in this scope
+   52 |         V args[]={V::from_obj(defender),V::from_str(&battle_string_literals[signal_index]),V::from_obj(&callback),V::from_cstr(c.arena,"damage_record_callback")};
+      |                                                      ^~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Windows\AppData\Local\CodexNativeBuilds\weapon-chain-diff-zhuo5d8z\baseline\weapon_fixture_base.cpp: In lambda function:
+C:\Users\Windows\AppData\Local\CodexNativeBuilds\weapon-chain-diff-zhuo5d8z\baseline\weapon_fixture_base.cpp:69:137: error: 'battle_string_literals' was not declared in this scope
+   69 |             if(action==8){V idargs[]={V::from_obj(defender),gd::get_index(c,static_cast<Bus*>(ctx->f_bus.obj)->f_signalIDs,V::from_str(&battle_string_literals[19]))};auto id=static_cast<Bus*>(ctx->f_bus.obj)->fn_getEmissionID(idargs,2);auto list=gd::get_index(c,static_cast<Bus*>(ctx->f_bus.obj)->f_connections,id);auto pair=list.arr->data[1];pair.arr->data[0].fr->binds=gd::GdArr::from_init(c.arena,{V::from_int(991)});}
+      |                                                                                                                                         ^~~~~~~~~~~~~~~~~~~~~~

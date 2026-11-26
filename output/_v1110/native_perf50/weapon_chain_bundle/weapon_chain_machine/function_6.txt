@@ -1,0 +1,364 @@
+
+bundle.dll:     file format pei-x86-64
+
+
+Disassembly of section .text:
+
+00000002446b6b20 <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem>:
+   2446b6b20:	push   %rdi
+   2446b6b21:	push   %rsi
+   2446b6b22:	push   %rbx
+   2446b6b23:	sub    $0xe0,%rsp
+   2446b6b2a:	mov    0x8(%rdx),%rdi
+   2446b6b2e:	movb   $0x2,0x60(%rsp)
+   2446b6b33:	mov    %rcx,%rsi
+   2446b6b36:	mov    %rdx,%rbx
+   2446b6b39:	movq   $0x0,0x68(%rsp)
+   2446b6b42:	cmpb   $0x0,0xa1(%rdi)
+   2446b6b49:	movzbl 0xd0(%rdi),%eax
+   2446b6b50:	movb   $0x9,0xa0(%rsp)
+   2446b6b58:	mov    %rdx,0xa8(%rsp)
+   2446b6b60:	je     2446b7123 <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x603>
+   2446b6b66:	test   %al,%al
+   2446b6b68:	je     2446b6d5c <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x23c>
+   2446b6b6e:	cmpb   $0x0,0x117(%rdi)
+   2446b6b75:	je     2446b712b <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x60b>
+   2446b6b7b:	mov    0x28(%rdx),%rdx
+   2446b6b7f:	test   %rdx,%rdx
+   2446b6b82:	je     2446b712b <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x60b>
+   2446b6b88:	cmpb   $0x0,0xd1(%rdi)
+   2446b6b8f:	jne    2446b6cd5 <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x1b5>
+   2446b6b95:	lea    -0xa8d75c(%rip),%rax        # 243c29440 <_ZN2gd22native_resolved_invokeI21Gd__gd_core__CoreItemXadL_ZNS1_13fn_useStaminaEPKNS_5GdValEiEEEES2_PNS_5GdObjES4_i>
+   2446b6b9c:	cmp    %rax,0x390(%rdx)
+   2446b6ba3:	jne    2446b712b <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x60b>
+   2446b6ba9:	cmpb   $0x0,0xd2(%rdi)
+   2446b6bb0:	jne    2446b6d05 <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x1e5>
+   2446b6bb6:	mov    %rbx,%rdx
+   2446b6bb9:	test   %rbx,%rbx
+   2446b6bbc:	je     2446b6d26 <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x206>
+   2446b6bc2:	lea    0x80(%rsp),%rcx
+   2446b6bca:	lea    0xc0(%rsp),%r8
+   2446b6bd2:	movb   $0x0,0xc0(%rsp)
+   2446b6bda:	movq   $0x0,0xc8(%rsp)
+   2446b6be6:	call   244671450 <_ZN2gd12weapon_chain12item_staminaER21Gd__gd_core__CoreItemRKNS_5GdValE>
+   2446b6beb:	movzbl 0x80(%rsp),%eax
+   2446b6bf3:	mov    0x88(%rsp),%rdx
+   2446b6bfb:	cmp    $0x2,%al
+   2446b6bfd:	jne    2446b6d92 <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x272>
+   2446b6c03:	test   %rdx,%rdx
+   2446b6c06:	jne    2446b6cbc <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x19c>
+   2446b6c0c:	cmpb   $0x0,0xa1(%rdi)
+   2446b6c13:	movzbl 0xd0(%rdi),%eax
+   2446b6c1a:	movb   $0x9,0xa0(%rsp)
+   2446b6c22:	mov    %rbx,0xa8(%rsp)
+   2446b6c2a:	je     2446b722f <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x70f>
+   2446b6c30:	test   %al,%al
+   2446b6c32:	je     2446b6f4d <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x42d>
+   2446b6c38:	cmpb   $0x0,0x117(%rdi)
+   2446b6c3f:	je     2446b6e31 <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x311>
+   2446b6c45:	cmp    0x8(%rbx),%rdi
+   2446b6c49:	jne    2446b6e31 <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x311>
+   2446b6c4f:	mov    0x28(%rbx),%rdx
+   2446b6c53:	test   %rdx,%rdx
+   2446b6c56:	je     2446b6e31 <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x311>
+   2446b6c5c:	cmpb   $0x0,0xd1(%rdi)
+   2446b6c63:	jne    2446b6dc8 <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x2a8>
+   2446b6c69:	lea    -0x903aa0(%rip),%rax        # 243db31d0 <_ZN2gd22native_resolved_invokeI25Gd__gd_core_items__WeaponXadL_ZNS1_9fn_attackEPKNS_5GdValEiEEEES2_PNS_5GdObjES4_i>
+   2446b6c70:	cmp    %rax,0x398(%rdx)
+   2446b6c77:	jne    2446b6e31 <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x311>
+   2446b6c7d:	cmpb   $0x0,0xd2(%rdi)
+   2446b6c84:	jne    2446b6df8 <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x2d8>
+   2446b6c8a:	mov    %rbx,%rdx
+   2446b6c8d:	test   %rbx,%rbx
+   2446b6c90:	je     2446b6e24 <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x304>
+   2446b6c96:	lea    0x40(%rsp),%rcx
+   2446b6c9b:	lea    0xc0(%rsp),%r8
+   2446b6ca3:	movb   $0x0,0xc0(%rsp)
+   2446b6cab:	movq   $0x0,0xc8(%rsp)
+   2446b6cb7:	call   2446b88b0 <_ZN2gd12weapon_chain13weapon_attackER21Gd__gd_core__CoreItemRKNS_5GdValE>
+   2446b6cbc:	mov    %rsi,%rax
+   2446b6cbf:	movb   $0x0,(%rsi)
+   2446b6cc2:	movq   $0x0,0x8(%rsi)
+   2446b6cca:	add    $0xe0,%rsp
+   2446b6cd1:	pop    %rbx
+   2446b6cd2:	pop    %rsi
+   2446b6cd3:	pop    %rdi
+   2446b6cd4:	ret
+   2446b6cd5:	mov    %rbx,%rcx
+   2446b6cd8:	mov    %rdx,0x38(%rsp)
+   2446b6cdd:	call   2446994e0 <_ZN2gdL25native_resolved_exact_rowEPKNS_5GdObjE.lto_priv.0>
+   2446b6ce2:	mov    0x38(%rsp),%rdx
+   2446b6ce7:	cmp    %rax,%rdx
+   2446b6cea:	jne    2446b6d1d <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x1fd>
+   2446b6cec:	lea    -0xa8d8b3(%rip),%rax        # 243c29440 <_ZN2gd22native_resolved_invokeI21Gd__gd_core__CoreItemXadL_ZNS1_13fn_useStaminaEPKNS_5GdValEiEEEES2_PNS_5GdObjES4_i>
+   2446b6cf3:	cmp    %rax,0x390(%rdx)
+   2446b6cfa:	jne    2446b6d1d <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x1fd>
+   2446b6cfc:	cmpb   $0x0,0xd2(%rdi)
+   2446b6d03:	je     2446b6d0c <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x1ec>
+   2446b6d05:	incq   0xd8(%rdi)
+   2446b6d0c:	mov    0xa8(%rsp),%rdx
+   2446b6d14:	test   %rdx,%rdx
+   2446b6d17:	jne    2446b6bc2 <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0xa2>
+   2446b6d1d:	cmpb   $0x0,0xd0(%rdi)
+   2446b6d24:	je     2446b6d5c <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x23c>
+   2446b6d26:	cmpb   $0x9,0xa0(%rsp)
+   2446b6d2e:	je     2446b712b <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x60b>
+   2446b6d34:	movzbl 0xa0(%rsp),%eax
+   2446b6d3c:	cmp    $0x7,%al
+   2446b6d3e:	je     2446b710f <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x5ef>
+   2446b6d44:	cmp    $0x8,%al
+   2446b6d46:	je     2446b710f <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x5ef>
+   2446b6d4c:	cmp    $0xb,%al
+   2446b6d4e:	je     2446b710f <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x5ef>
+   2446b6d54:	cmp    $0xa,%al
+   2446b6d56:	je     2446b7055 <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x535>
+   2446b6d5c:	mov    %rdi,%rdx
+   2446b6d5f:	lea    0x80(%rsp),%rcx
+   2446b6d67:	lea    0xa0(%rsp),%r8
+   2446b6d6f:	mov    $0xd9,%r9d
+   2446b6d75:	call   244583210 <_ZN2gd11call_methodERNS_9BattleCtxERKNS_5GdValEjPS3_i.constprop.0>
+   2446b6d7a:	movzbl 0x80(%rsp),%eax
+   2446b6d82:	mov    0x88(%rsp),%rdx
+   2446b6d8a:	cmp    $0x2,%al
+   2446b6d8c:	je     2446b6c03 <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0xe3>
+   2446b6d92:	test   %al,%al
+   2446b6d94:	je     2446b6cbc <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x19c>
+   2446b6d9a:	mov    %rdx,0x88(%rsp)
+   2446b6da2:	lea    0x80(%rsp),%rcx
+   2446b6daa:	lea    0x60(%rsp),%rdx
+   2446b6daf:	mov    %al,0x80(%rsp)
+   2446b6db6:	call   244589aa0 <_ZN2gd5gd_eqERKNS_5GdValES2_>
+   2446b6dbb:	test   %al,%al
+   2446b6dbd:	jne    2446b6c0c <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0xec>
+   2446b6dc3:	jmp    2446b6cbc <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x19c>
+   2446b6dc8:	mov    %rbx,%rcx
+   2446b6dcb:	mov    %rdx,0x38(%rsp)
+   2446b6dd0:	call   2446994e0 <_ZN2gdL25native_resolved_exact_rowEPKNS_5GdObjE.lto_priv.0>
+   2446b6dd5:	mov    0x38(%rsp),%rdx
+   2446b6dda:	cmp    %rax,%rdx
+   2446b6ddd:	jne    2446b6e17 <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x2f7>
+   2446b6ddf:	lea    -0x903c16(%rip),%rax        # 243db31d0 <_ZN2gd22native_resolved_invokeI25Gd__gd_core_items__WeaponXadL_ZNS1_9fn_attackEPKNS_5GdValEiEEEES2_PNS_5GdObjES4_i>
+   2446b6de6:	cmp    %rax,0x398(%rdx)
+   2446b6ded:	jne    2446b6e17 <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x2f7>
+   2446b6def:	cmpb   $0x0,0xd2(%rdi)
+   2446b6df6:	je     2446b6e06 <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x2e6>
+   2446b6df8:	incq   0xd8(%rdi)
+   2446b6dff:	xor    %ecx,%ecx
+   2446b6e01:	call   244026d30 <_ZN2gd26native_inline_hot_slot_hitEj.part.0>
+   2446b6e06:	mov    0xa8(%rsp),%rdx
+   2446b6e0e:	test   %rdx,%rdx
+   2446b6e11:	jne    2446b6c96 <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x176>
+   2446b6e17:	cmpb   $0x0,0xa1(%rdi)
+   2446b6e1e:	je     2446b702d <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x50d>
+   2446b6e24:	cmpb   $0x0,0xd0(%rdi)
+   2446b6e2b:	je     2446b6f4d <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x42d>
+   2446b6e31:	cmpb   $0x0,0x117(%rdi)
+   2446b6e38:	movzbl 0xa0(%rsp),%eax
+   2446b6e40:	je     2446b703a <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x51a>
+   2446b6e46:	cmp    $0x9,%al
+   2446b6e48:	jne    2446b6f31 <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x411>
+   2446b6e4e:	mov    0xa8(%rsp),%rdx
+   2446b6e56:	test   %rdx,%rdx
+   2446b6e59:	je     2446b6f4d <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x42d>
+   2446b6e5f:	cmp    0x8(%rdx),%rdi
+   2446b6e63:	jne    2446b6e8f <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x36f>
+   2446b6e65:	mov    0x28(%rdx),%rbx
+   2446b6e69:	test   %rbx,%rbx
+   2446b6e6c:	je     2446b6e8f <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x36f>
+   2446b6e6e:	cmpb   $0x0,0xd1(%rdi)
+   2446b6e75:	jne    2446b71f8 <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x6d8>
+   2446b6e7b:	lea    -0x763f82(%rip),%rax        # 243f52f00 <_ZN2gd22native_resolved_invokeI19Gd__gd_core__WeaponXadL_ZNS1_9fn_attackEPKNS_5GdValEiEEEES2_PNS_5GdObjES4_i>
+   2446b6e82:	cmp    %rax,0x398(%rbx)
+   2446b6e89:	je     2446b7001 <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x4e1>
+   2446b6e8f:	test   %rdx,%rdx
+   2446b6e92:	je     2446b6f4d <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x42d>
+   2446b6e98:	mov    0x28(%rdx),%rbx
+   2446b6e9c:	test   %rbx,%rbx
+   2446b6e9f:	je     2446b6f4d <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x42d>
+   2446b6ea5:	cmpb   $0x0,0xd1(%rdi)
+   2446b6eac:	jne    2446b6f07 <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x3e7>
+   2446b6eae:	mov    0x398(%rbx),%rbx
+   2446b6eb5:	test   %rbx,%rbx
+   2446b6eb8:	je     2446b6f4d <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x42d>
+   2446b6ebe:	cmpb   $0x0,0xd2(%rdi)
+   2446b6ec5:	jne    2446b6ef7 <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x3d7>
+   2446b6ec7:	lea    -0xa76a1e(%rip),%rax        # 243c404b0 <_ZN2gd22native_resolved_invokeI24Gd__gd_core_items__BroomXadL_ZNS1_9fn_attackEPKNS_5GdValEiEEEES2_PNS_5GdObjES4_i>
+   2446b6ece:	mov    0xa8(%rsp),%rdx
+   2446b6ed6:	lea    0x40(%rsp),%rcx
+   2446b6edb:	xor    %r9d,%r9d
+   2446b6ede:	xor    %r8d,%r8d
+   2446b6ee1:	cmp    %rax,%rbx
+   2446b6ee4:	jne    2446b6ef0 <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x3d0>
+   2446b6ee6:	call   243c40610 <_ZN24Gd__gd_core_items__Broom9fn_attackEPKN2gd5GdValEi>
+   2446b6eeb:	jmp    2446b6cbc <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x19c>
+   2446b6ef0:	call   *%rbx
+   2446b6ef2:	jmp    2446b6cbc <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x19c>
+   2446b6ef7:	incq   0xd8(%rdi)
+   2446b6efe:	xor    %ecx,%ecx
+   2446b6f00:	call   244026d30 <_ZN2gd26native_inline_hot_slot_hitEj.part.0>
+   2446b6f05:	jmp    2446b6ec7 <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x3a7>
+   2446b6f07:	mov    %rdx,%rcx
+   2446b6f0a:	call   2446994e0 <_ZN2gdL25native_resolved_exact_rowEPKNS_5GdObjE.lto_priv.0>
+   2446b6f0f:	cmp    %rax,%rbx
+   2446b6f12:	jne    2446b6f20 <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x400>
+   2446b6f14:	mov    0x398(%rbx),%rbx
+   2446b6f1b:	test   %rbx,%rbx
+   2446b6f1e:	jne    2446b6ebe <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x39e>
+   2446b6f20:	cmpb   $0x0,0xd0(%rdi)
+   2446b6f27:	je     2446b6f4d <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x42d>
+   2446b6f29:	movzbl 0xa0(%rsp),%eax
+   2446b6f31:	cmp    $0x7,%al
+   2446b6f33:	je     2446b6fed <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x4cd>
+   2446b6f39:	cmp    $0x8,%al
+   2446b6f3b:	je     2446b6fed <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x4cd>
+   2446b6f41:	cmp    $0xb,%al
+   2446b6f43:	je     2446b6fed <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x4cd>
+   2446b6f49:	cmp    $0xa,%al
+   2446b6f4b:	je     2446b6f6d <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x44d>
+   2446b6f4d:	lea    0x40(%rsp),%rcx
+   2446b6f52:	mov    $0x412,%r9d
+   2446b6f58:	lea    0xa0(%rsp),%r8
+   2446b6f60:	mov    %rdi,%rdx
+   2446b6f63:	call   244583210 <_ZN2gd11call_methodERNS_9BattleCtxERKNS_5GdValEjPS3_i.constprop.0>
+   2446b6f68:	jmp    2446b6cbc <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x19c>
+   2446b6f6d:	cmpb   $0x0,0xd2(%rdi)
+   2446b6f74:	je     2446b6f80 <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x460>
+   2446b6f76:	mov    $0x9,%ecx
+   2446b6f7b:	call   2440212f0 <_ZN2gd25native_inline_variant_hitEj.part.0>
+   2446b6f80:	mov    0xa8(%rsp),%rax
+   2446b6f88:	test   %rax,%rax
+   2446b6f8b:	je     2446b6cbc <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x19c>
+   2446b6f91:	cmpq   $0x0,0x38(%rax)
+   2446b6f96:	je     2446b6cbc <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x19c>
+   2446b6f9c:	cmpb   $0x0,0x117(%rdi)
+   2446b6fa3:	jne    2446b6fb8 <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x498>
+   2446b6fa5:	mov    %rax,%rdx
+   2446b6fa8:	mov    %rdi,%rcx
+   2446b6fab:	call   243b8ede0 <_ZN2gd26native_timer_observe_classERNS_9BattleCtxEPKNS_11GdClassMetaE.part.0>
+   2446b6fb0:	mov    0xa8(%rsp),%rax
+   2446b6fb8:	xor    %edx,%edx
+   2446b6fba:	movb   $0x0,0xc0(%rsp)
+   2446b6fc2:	xor    %r9d,%r9d
+   2446b6fc5:	xor    %r8d,%r8d
+   2446b6fc8:	mov    %rdx,0xc8(%rsp)
+   2446b6fd0:	lea    0xc0(%rsp),%rdx
+   2446b6fd8:	mov    %rdi,%rcx
+   2446b6fdb:	mov    %rdx,0x20(%rsp)
+   2446b6fe0:	mov    $0x412,%edx
+   2446b6fe5:	call   *0x38(%rax)
+   2446b6fe8:	jmp    2446b6cbc <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x19c>
+   2446b6fed:	cmpq   $0x0,0xa8(%rsp)
+   2446b6ff6:	jne    2446b6f4d <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x42d>
+   2446b6ffc:	jmp    2446b6cbc <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x19c>
+   2446b7001:	cmpb   $0x0,0xd2(%rdi)
+   2446b7008:	je     2446b6c96 <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x176>
+   2446b700e:	incq   0xd8(%rdi)
+   2446b7015:	xor    %ecx,%ecx
+   2446b7017:	call   244026d30 <_ZN2gd26native_inline_hot_slot_hitEj.part.0>
+   2446b701c:	mov    0xa8(%rsp),%rdx
+   2446b7024:	test   %rdx,%rdx
+   2446b7027:	jne    2446b6c96 <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x176>
+   2446b702d:	cmpb   $0x0,0xd0(%rdi)
+   2446b7034:	je     2446b6f4d <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x42d>
+   2446b703a:	cmpb   $0x9,0xa0(%rsp)
+   2446b7042:	mov    0xa8(%rsp),%rdx
+   2446b704a:	je     2446b6e8f <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x36f>
+   2446b7050:	jmp    2446b6f29 <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x409>
+   2446b7055:	cmpb   $0x0,0xd2(%rdi)
+   2446b705c:	je     2446b7068 <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x548>
+   2446b705e:	mov    $0x9,%ecx
+   2446b7063:	call   2440212f0 <_ZN2gd25native_inline_variant_hitEj.part.0>
+   2446b7068:	mov    0xa8(%rsp),%rax
+   2446b7070:	test   %rax,%rax
+   2446b7073:	je     2446b6cbc <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x19c>
+   2446b7079:	cmpq   $0x0,0x38(%rax)
+   2446b707e:	je     2446b6cbc <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x19c>
+   2446b7084:	cmpb   $0x0,0x117(%rdi)
+   2446b708b:	jne    2446b70a0 <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x580>
+   2446b708d:	mov    %rax,%rdx
+   2446b7090:	mov    %rdi,%rcx
+   2446b7093:	call   243b8ede0 <_ZN2gd26native_timer_observe_classERNS_9BattleCtxEPKNS_11GdClassMetaE.part.0>
+   2446b7098:	mov    0xa8(%rsp),%rax
+   2446b70a0:	xor    %ecx,%ecx
+   2446b70a2:	lea    0xc0(%rsp),%rdx
+   2446b70aa:	movb   $0x0,0xc0(%rsp)
+   2446b70b2:	xor    %r9d,%r9d
+   2446b70b5:	mov    %rcx,0xc8(%rsp)
+   2446b70bd:	xor    %r8d,%r8d
+   2446b70c0:	mov    %rdi,%rcx
+   2446b70c3:	mov    %rdx,0x20(%rsp)
+   2446b70c8:	mov    $0xd9,%edx
+   2446b70cd:	call   *0x38(%rax)
+   2446b70d0:	test   %al,%al
+   2446b70d2:	je     2446b6cbc <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x19c>
+   2446b70d8:	mov    0xd0(%rsp),%rax
+   2446b70e0:	vmovdqa 0xc0(%rsp),%xmm0
+   2446b70e9:	mov    0xc8(%rsp),%rdx
+   2446b70f1:	mov    %rax,0x90(%rsp)
+   2446b70f9:	movzbl 0xc0(%rsp),%eax
+   2446b7101:	vmovdqa %xmm0,0x80(%rsp)
+   2446b710a:	jmp    2446b6d8a <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x26a>
+   2446b710f:	cmpq   $0x0,0xa8(%rsp)
+   2446b7118:	jne    2446b6d5c <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x23c>
+   2446b711e:	jmp    2446b6cbc <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x19c>
+   2446b7123:	test   %al,%al
+   2446b7125:	je     2446b6d5c <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x23c>
+   2446b712b:	mov    0xa8(%rsp),%rdx
+   2446b7133:	test   %rdx,%rdx
+   2446b7136:	je     2446b71d1 <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x6b1>
+   2446b713c:	mov    0x28(%rdx),%r8
+   2446b7140:	test   %r8,%r8
+   2446b7143:	je     2446b71bc <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x69c>
+   2446b7145:	cmpb   $0x0,0xd1(%rdi)
+   2446b714c:	jne    2446b718f <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x66f>
+   2446b714e:	mov    0x390(%r8),%rax
+   2446b7155:	test   %rax,%rax
+   2446b7158:	je     2446b71bc <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x69c>
+   2446b715a:	cmpb   $0x0,0xd2(%rdi)
+   2446b7161:	je     2446b716a <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x64a>
+   2446b7163:	incq   0xd8(%rdi)
+   2446b716a:	lea    0x80(%rsp),%rcx
+   2446b7172:	xor    %r9d,%r9d
+   2446b7175:	xor    %r8d,%r8d
+   2446b7178:	call   *%rax
+   2446b717a:	movzbl 0x80(%rsp),%eax
+   2446b7182:	mov    0x88(%rsp),%rdx
+   2446b718a:	jmp    2446b6d8a <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x26a>
+   2446b718f:	mov    %rdx,%rcx
+   2446b7192:	mov    %r8,0x38(%rsp)
+   2446b7197:	call   2446994e0 <_ZN2gdL25native_resolved_exact_rowEPKNS_5GdObjE.lto_priv.0>
+   2446b719c:	mov    0x38(%rsp),%r8
+   2446b71a1:	cmp    %rax,%r8
+   2446b71a4:	jne    2446b71e6 <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x6c6>
+   2446b71a6:	mov    0x390(%r8),%rax
+   2446b71ad:	test   %rax,%rax
+   2446b71b0:	je     2446b71e6 <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x6c6>
+   2446b71b2:	mov    0xa8(%rsp),%rdx
+   2446b71ba:	jmp    2446b715a <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x63a>
+   2446b71bc:	movzbl 0xa0(%rsp),%eax
+   2446b71c4:	cmp    $0x7,%al
+   2446b71c6:	jne    2446b6d44 <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x224>
+   2446b71cc:	jmp    2446b6d5c <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x23c>
+   2446b71d1:	movzbl 0xa0(%rsp),%eax
+   2446b71d9:	cmp    $0x7,%al
+   2446b71db:	jne    2446b6d44 <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x224>
+   2446b71e1:	jmp    2446b6cbc <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x19c>
+   2446b71e6:	cmpb   $0x0,0xd0(%rdi)
+   2446b71ed:	jne    2446b6d34 <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x214>
+   2446b71f3:	jmp    2446b6d5c <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x23c>
+   2446b71f8:	mov    %rdx,%rcx
+   2446b71fb:	call   2446994e0 <_ZN2gdL25native_resolved_exact_rowEPKNS_5GdObjE.lto_priv.0>
+   2446b7200:	cmp    %rax,%rbx
+   2446b7203:	jne    2446b702d <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x50d>
+   2446b7209:	lea    -0x764310(%rip),%rax        # 243f52f00 <_ZN2gd22native_resolved_invokeI19Gd__gd_core__WeaponXadL_ZNS1_9fn_attackEPKNS_5GdValEiEEEES2_PNS_5GdObjES4_i>
+   2446b7210:	cmp    %rax,0x398(%rbx)
+   2446b7217:	jne    2446b702d <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x50d>
+   2446b721d:	cmpb   $0x0,0xd2(%rdi)
+   2446b7224:	je     2446b701c <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x4fc>
+   2446b722a:	jmp    2446b700e <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x4ee>
+   2446b722f:	cmpb   $0x0,0xd0(%rdi)
+   2446b7236:	mov    %rbx,%rdx
+   2446b7239:	jne    2446b6e8f <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x36f>
+   2446b723f:	jmp    2446b6f4d <_ZN2gd12weapon_chain15weapon_cooldownER21Gd__gd_core__CoreItem+0x42d>
+   2446b7244:	nop
+   2446b7245:	data16 cs nopw 0x0(%rax,%rax,1)

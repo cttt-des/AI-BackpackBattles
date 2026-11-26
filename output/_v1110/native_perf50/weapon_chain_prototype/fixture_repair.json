@@ -1,0 +1,8 @@
+{
+  "reason": "Retained callback fixture references its original string table, which was removed together with the old candidate implementation",
+  "repair": "Copied original unchanged constexpr string table only",
+  "baseline_fixture_compile_failed_before_any_cases": true,
+  "candidate_source_and_dll_unchanged": true,
+  "no_measurements_started": true,
+  "all_old_fixture_sources_and_compile_logs_preserved": true
+}

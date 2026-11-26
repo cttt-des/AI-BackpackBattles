@@ -1,0 +1,184 @@
+{"passed": true, "cases": 204288, "operation_checks": 806160, "dll_sha256": "bd993d4fe71ae162e980b0709f6fc79017788eba7b5997cf69e4c013fe0c9a32", "baseline_dll_sha256": "d2064b3f17d8168cf87a2e9f46e9fb336ffe4aaf6581c27d93350b2c41477a57", "exact_private_helper_bytes_compared": true, "actual_original_runtime_operation_reference": true, "full_value_vectors_flags_mxcsr_and_input_bytes_compared": true, "full_int64_overflow_small53_boundary_nan_and_complex_fallbacks": true, "four_rounding_and_four_daz_ftz_modes": true, "no_object_callbacks": true, "fixture_sha256": "243f03fb917c95917eb9589403d204cfa50e9ee73f515c43532d4cd6c848ff82", "within_each_actual_dll_all_operations_exact": true, "cross_dll_new_fast_operations_exact": true, "cross_dll_fast_operation_checks": 9904, "unchanged_fallback_runtime_cross_compiler_hash_equal": false, "helper_sha256": "42edfd56118da9e871b1e30a4f4b27c7eb0fe234da3ea10e1b6075de48c65f2b", "value_matrix_sha256": "c42bb8269dd44259df7c2c7970d2d051484ca8f36c8b88357d65e5c684ce78da", "raw_sha256": {"baseline_cases.json": "0b8b04bf1ce8a5f4327a7f787a6c16d19ac1799dd492d6e6e0bb14514d891d9e", "candidate_cases.json": "20ecb8b4773fa1d16a3854b279781f6bfd5a7b33aecb7a9579dfeafc2d39fbcf"}, "original_undefined_null_string_comparisons_skipped": 240, "scope": "Exact private helper bytes instantiated in fixture; actual Buff integration additionally verified through DLL methods and full corpus", "no_speed_claim": true}
+Starting methods
+{"passed": true, "cases": 14112, "dll_sha256": "bd993d4fe71ae162e980b0709f6fc79017788eba7b5997cf69e4c013fe0c9a32", "baseline_dll_sha256": "d2064b3f17d8168cf87a2e9f46e9fb336ffe4aaf6581c27d93350b2c41477a57", "actual_separate_dll_methods_native_and_generic": true, "all16_fp_modes": true, "selected_buff_character_timer_full_temporary_stacks_rng_trace_fenv_and_mxcsr_case_hashes_equal": true, "fixture_sha256": "1430f88f79fc5fdf27d109701a00eec1d0bb7de987e59486030e5a18fcad3825", "raw_sha256": {"buff_integer_methods_baseline_cases.json": "615b663a1684f183ebb005ae35c1e1b657b9a9a261338db43d5dd1b25c477a46", "buff_integer_methods_candidate_cases.json": "615b663a1684f183ebb005ae35c1e1b657b9a9a261338db43d5dd1b25c477a46"}, "no_speed_claim": true}
+Passed methods
+Starting builtins
+{"passed": true, "cases": 128128, "dll_sha256": "bd993d4fe71ae162e980b0709f6fc79017788eba7b5997cf69e4c013fe0c9a32", "baseline_dll_sha256": "d2064b3f17d8168cf87a2e9f46e9fb336ffe4aaf6581c27d93350b2c41477a57", "original_generic_call_method_actual_binary_reference": true, "full_state_vectors_compared_not_just_hashes": true, "alias_growth_self_append_pool_flags_missing_and_negative_argc": true, "null_and_empty_array_dictionary_enum_and_foreign_receivers": true, "watch_version_overflow_depth_overflow_and_disabled_dispatch": true, "old_six_counters_user_static_callback_counts_and_all16_fenv_mxcsr_modes": true, "float_resize_and_fp_deep_truth_use_original_fallback": true, "per_case_hashes_equal_between_actual_dlls": true, "raw_sha256": {"container_builtins_baseline_cases.json": "4c38dd5bee737e31ad015affd0ac8a61289c5caff151fe68f5bdaed173d9197f", "container_builtins_candidate_cases.json": "4c38dd5bee737e31ad015affd0ac8a61289c5caff151fe68f5bdaed173d9197f"}, "fixture_sha256": "3eb2bd0416d905f7239036a43deb2cc64a5dac5f8e83e7a048a7671bd2044b16", "no_speed_claim": true}
+Passed builtins
+Starting scalar_truth
+{"passed": true, "cases": 34400, "value_shapes": 2149, "dll_sha256": "bd993d4fe71ae162e980b0709f6fc79017788eba7b5997cf69e4c013fe0c9a32", "baseline_dll_sha256": "d2064b3f17d8168cf87a2e9f46e9fb336ffe4aaf6581c27d93350b2c41477a57", "independent_original_gd_truth_actual_dll_reference": true, "baseline_and_candidate_case_hashes_equal": true, "null_bool_full_int64_float_bit_patterns_vec2_color_string_arrays_dicts_pointer_and_unknown_kinds": true, "signaling_nan_subnormals_signed_zero_fenv_mxcsr_and_single_evaluation_checked": true, "all16_rounding_daz_ftz_modes": true, "fixture_sha256": "a08e1349dd3cae1f0a8698508eee25debc9d78f61745c8fb076631058fcde6db", "raw_sha256": {"scalar_truth_baseline_cases.json": "8b04ee906f0880a69f366e22ae0205a39b5e5a7b308380c51dd10c21c210e4d7", "scalar_truth_candidate_cases.json": "8b04ee906f0880a69f366e22ae0205a39b5e5a7b308380c51dd10c21c210e4d7"}, "no_speed_claim": true}
+Passed scalar_truth
+Starting private
+{
+  "passed": true,
+  "cases": 234880,
+  "actual_dll_cases": {
+    "identity_snapshots": 143360,
+    "private_buff_loops": 18432
+  },
+  "helper_cases": 73088,
+  "difference_counts": {
+    "identity_snapshots": 0,
+    "private_buff_loops": 0
+  },
+  "first_differences": {
+    "identity_snapshots": [],
+    "private_buff_loops": []
+  },
+  "baseline_dll_sha256": "d2064b3f17d8168cf87a2e9f46e9fb336ffe4aaf6581c27d93350b2c41477a57",
+  "dll_sha256": "bd993d4fe71ae162e980b0709f6fc79017788eba7b5997cf69e4c013fe0c9a32",
+  "raw_cases_sha256": {
+    "baseline_identity_snapshots_cases.json": "6fb9d782a0049b8eccc824876a4d104a20a11d757fd6e82ac207c272f0e861fb",
+    "baseline_private_buff_loops_cases.json": "13f9e0d16019a6d9348edb957438e5239256c5940c0b007ccb49a3bb633846a2",
+    "candidate_identity_snapshots_cases.json": "6fb9d782a0049b8eccc824876a4d104a20a11d757fd6e82ac207c272f0e861fb",
+    "candidate_private_buff_loops_cases.json": "13f9e0d16019a6d9348edb957438e5239256c5940c0b007ccb49a3bb633846a2"
+  },
+  "fixture_sha256": {
+    "test_native_identity_snapshots.cpp": "6c04e82cfc09b034c0e507ad469e10e0a105f7862e15af8227b95e6bb2e3381a",
+    "test_native_private_buff_loops.cpp": "159e0134b73d984c3c4b1ca2cb03d5ecdbb4fb1b13b53a6a12efd1bc2352cad2",
+    "test_native_private_integer_view.cpp": "cef12fa1c66760c965b674139e0b6aca743c19a7e4bab921dc64fc007825c566"
+  },
+  "text_boundaries_mutation_trace_toggle_literal_nested_and_unknown_receivers": true,
+  "four_rounding_and_four_daz_ftz_modes": true,
+  "old_six_counts_per_case_checked": true,
+  "no_throughput_claim": true
+}
+Passed private
+Starting display
+baseline cases 21888 CoreItem 2112
+candidate cases 21888 CoreItem 2112
+{
+  "passed": true,
+  "cases": 21888,
+  "actual_separate_baseline_candidate_dlls": true,
+  "per_case_hashes_equal": true,
+  "case_hashes_sha256": "8f28590f39f101dd619c835ba85e5f5698378c1d57aefe90bb7faca896acf3cc",
+  "storage_cases": 21504,
+  "actual_setup_cases": 384,
+  "fp_rounding_daz_ftz_sticky_states": 64,
+  "baseline_core_item_bytes": 2112,
+  "candidate_core_item_bytes": 2112,
+  "baseline_dll_sha256": "d2064b3f17d8168cf87a2e9f46e9fb336ffe4aaf6581c27d93350b2c41477a57",
+  "dll_sha256": "bd993d4fe71ae162e980b0709f6fc79017788eba7b5997cf69e4c013fe0c9a32",
+  "fixture_sha256": "87336fbaa4e41a545aa6304c4ff3f880667d19347fbb4f6063c0baf84bd624ab",
+  "projection": {
+    "passed": true,
+    "exact_inverse_matches_retained_source": true,
+    "all674_object_headers_and_all_layouts_unchanged": true,
+    "full_original_bodies_retained": true,
+    "all_prior_optimizations_retained": true,
+    "formal_full20_fresh18_pgo_required": true
+  },
+  "old_six_counters": [
+    9599433,
+    100900,
+    54635,
+    200,
+    0,
+    233004
+  ],
+  "targeted_timer_counters": [
+    386704,
+    400,
+    386304,
+    683532,
+    0,
+    0,
+    0,
+    16170,
+    701,
+    0
+  ],
+  "active_cooldown_counters": [
+    386704,
+    1904,
+    384800,
+    3632134,
+    0,
+    760,
+    23435,
+    83822,
+    19040,
+    0
+  ],
+  "fixed200_results_sha256": "2e74b45caa87f7ee6ac72ffc35d98cc8db140b47031614d26542e183cef5d2c9",
+  "fixed200_inputs_sha256": "d94b16d42cc88e9a3850a77c9360b9c4c4fdd676cb252e463044a903db2a5fef",
+  "no_throughput_claim": true,
+  "not_for_deployment": true
+}
+Passed display
+Starting control
+{
+  "passed": true,
+  "cases": 1856,
+  "dll_sha256": "bd993d4fe71ae162e980b0709f6fc79017788eba7b5997cf69e4c013fe0c9a32",
+  "counts": [
+    2448,
+    1568,
+    880,
+    40020,
+    224,
+    544,
+    720,
+    47944,
+    30912,
+    0
+  ],
+  "actual_index_and_suffix_recovery_exercised": true,
+  "all_independent_states_fenv_rng_and_old_counters_equal": true,
+  "layouts": {
+    "baseline": {
+      "GdVal": 24,
+      "GdArr": 32,
+      "CoreItem": 1792,
+      "BattleCtx": 304
+    },
+    "candidate": {
+      "GdVal": 24,
+      "GdArr": 32,
+      "CoreItem": 2112,
+      "BattleCtx": 328
+    }
+  },
+  "original_fixture_sha256": "305fb9bf9dd2271981d3e9e89413dc21f5a5c9363fed8bb11f67f86e5dbdce56",
+  "raw_sha256": "51ad16415d834d1c345ea9ca201c1f4a533a8d4c8be404ee430397dfb44ada5e",
+  "baseline_oracle_sha256": "a52197f2ab7bc26c400e5cf6914eb166bbe3beee636b3647ef0318d3557a5bcd"
+}
+{
+  "passed": true,
+  "cases": 44608,
+  "actual_dll_control_cases": 16384,
+  "portable_header_control_cases": 16384,
+  "retained_active_header_cases": 1856,
+  "retained_actual_targeted_cases": 2016,
+  "retained_closed_known_cases": 1056,
+  "retained_frame_cases": 6912,
+  "registry_boundary_checks": 4,
+  "dll_sha256": "bd993d4fe71ae162e980b0709f6fc79017788eba7b5997cf69e4c013fe0c9a32",
+  "baseline_dll_sha256": "d2064b3f17d8168cf87a2e9f46e9fb336ffe4aaf6581c27d93350b2c41477a57",
+  "fixture_sha256": "4679f381d98924a991503a0c34fa402aff8bac9379972dd4db8541e7dd373ef8",
+  "projection": {
+    "passed": true,
+    "exact_inverse_matches_retained_source": true,
+    "all674_object_headers_and_all_layouts_unchanged": true,
+    "full_original_bodies_retained": true,
+    "all_prior_optimizations_retained": true,
+    "formal_full20_fresh18_pgo_required": true
+  },
+  "actual_word_path_enabled": true,
+  "portable_namespace_isolated_and_no_dll_loaded": true,
+  "portable_helper_bytes_identical": true,
+  "independent_original_boolean_oracle": true,
+  "all_original_case_hashes_and_legacy_counters_retained": true,
+  "active_fixture_scope": "current inline index header linked against candidate; actual production integration fixed200/full2604",
+  "no_speed_claim": true
+}
+Passed control
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\run_native_weapon_chain_semantics.py", line 42, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\run_native_weapon_chain_semantics.py", line 37, in main
+    chain=json.loads((WORK/'weapon_chain_tests.json').read_bytes());assert chain['passed'] and chain['dll_sha256']==sha(dll)
+                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

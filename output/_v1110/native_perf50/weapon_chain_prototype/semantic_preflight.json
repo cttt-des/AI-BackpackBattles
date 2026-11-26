@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "cases": 818432,
+  "dll_sha256": "bd993d4fe71ae162e980b0709f6fc79017788eba7b5997cf69e4c013fe0c9a32",
+  "retained_production_comparison_cases": 682304,
+  "matched_normal_chain_cases": 136128,
+  "matched_normal_baseline_dll_sha256": "293b87e24986dd9dcf2dbecff5510fb7a0b0e993324478bd09ba22bb88aadfba",
+  "matched_normal_baseline_source_equals_production": true,
+  "requires_actual_production_pgo_comparison_before_timing": true,
+  "normal_vs_production_difference_cases": 56,
+  "original_failure_retained_sha256": "ffc18e50bc7d2d021fe64b8ba02845b95492171e04d1b3ecc1b9c84af5678ed3",
+  "diagnostic_report_sha256": "a3dced59c37d02263469661eedecd9fde06fc6000445008838e975d0c71385ba",
+  "diagnostic_baseline_label_correction": "Diagnostic verifier inherited production label; actual baseline was source-identical normal build identified by matched_normal_baseline_dll_sha256",
+  "retained_reports_sha256": {
+    "typed_helper_tests.json": "dde938a8a8926fc2938ae593305bf3cde03f6bc039de32eb74c412b3d9a165cd",
+    "buff_integer_methods_tests.json": "3f364f65b22a441fd3501c3b1aaab276b76c677e3b9d3f0a11f8411787c77660",
+    "container_builtins_tests.json": "444ebce90ab8592c909203ccf673f119301afd6315e5fb38048872a1fdd8cef0",
+    "scalar_truth_tests.json": "67d0ac91e44a182a61975983067cd9bb758de35cd75e2d70b4a5ac9e2b036380",
+    "private_tests.json": "786b62fbc712c567f86a4c569c63743f27d56c714f4f5d68fc2378f398224c14",
+    "retained_display.json": "93d9662b5298800a7ede15a63649c69fa71e639cfdeaf577a4e2426baf71655b",
+    "retained_control.json": "a5d2ff5942673521f6b3757a2cb71c10f9bea00bee8b2aa20d3f99b0132e4171"
+  },
+  "projection": {
+    "passed": true,
+    "exact_inverse_matches_retained_source": true,
+    "all674_object_headers_and_all_layouts_unchanged": true,
+    "full_original_bodies_retained": true,
+    "all_prior_optimizations_retained": true,
+    "formal_full20_fresh18_pgo_required": true
+  },
+  "no_speed_claim": true
+}

@@ -1,0 +1,275 @@
+
+bundle.dll:     file format pei-x86-64
+
+
+Disassembly of section .text:
+
+000000024405b220 <_ZZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEiENKUlvE42_clEv.lto_priv.0>:
+   24405b220:	push   %rdi
+   24405b221:	push   %rsi
+   24405b222:	push   %rbx
+   24405b223:	sub    $0x140,%rsp
+   24405b22a:	mov    %rdx,%rbx
+   24405b22d:	mov    (%rdx),%rdx
+   24405b230:	mov    %rcx,%rsi
+   24405b233:	mov    0x20(%rbx),%rdi
+   24405b237:	mov    0x40(%rdx),%rax
+   24405b23b:	vmovdqu 0x30(%rdx),%xmm0
+   24405b240:	lea    0x60(%rdx),%r10
+   24405b244:	cmpb   $0x0,0xd0(%rdi)
+   24405b24b:	mov    %rax,0xa0(%rsp)
+   24405b253:	mov    0x8(%rbx),%rax
+   24405b257:	vmovdqa %xmm0,0x90(%rsp)
+   24405b260:	vmovdqu (%rax),%xmm0
+   24405b264:	vmovdqu %xmm0,0xa8(%rsp)
+   24405b26d:	mov    0x10(%rax),%rax
+   24405b271:	mov    %rax,0xb8(%rsp)
+   24405b279:	mov    0x10(%rbx),%rax
+   24405b27d:	vmovdqu (%rax),%xmm0
+   24405b281:	vmovdqa %xmm0,0xc0(%rsp)
+   24405b28a:	mov    0x10(%rax),%rax
+   24405b28e:	mov    %rax,0xd0(%rsp)
+   24405b296:	mov    0x18(%rbx),%rax
+   24405b29a:	vmovdqu (%rax),%xmm0
+   24405b29e:	vmovdqu %xmm0,0xd8(%rsp)
+   24405b2a7:	mov    0x10(%rax),%rax
+   24405b2ab:	mov    %rax,0xe8(%rsp)
+   24405b2b3:	je     24405b2bf <_ZZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEiENKUlvE42_clEv.lto_priv.0+0x9f>
+   24405b2b5:	cmpb   $0x9,0x60(%rdx)
+   24405b2b9:	je     24405b462 <_ZZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEiENKUlvE42_clEv.lto_priv.0+0x242>
+   24405b2bf:	lea    0xf0(%rsp),%rcx
+   24405b2c7:	mov    $0x47b,%r9d
+   24405b2cd:	mov    %r10,%r8
+   24405b2d0:	mov    %rdi,%rdx
+   24405b2d3:	call   244589d70 <_ZN2gd8get_propERNS_9BattleCtxERKNS_5GdValEj>
+   24405b2d8:	mov    0x28(%rbx),%rax
+   24405b2dc:	mov    0x20(%rbx),%r10
+   24405b2e0:	mov    (%rbx),%rdi
+   24405b2e3:	vmovdqu (%rax),%xmm0
+   24405b2e7:	lea    0x1e0(%rdi),%r11
+   24405b2ee:	vmovdqu %xmm0,0x108(%rsp)
+   24405b2f7:	mov    0x10(%rax),%rax
+   24405b2fb:	mov    %rax,0x118(%rsp)
+   24405b303:	mov    0x30(%rbx),%rax
+   24405b307:	vmovdqu (%rax),%xmm0
+   24405b30b:	vmovdqa %xmm0,0x120(%rsp)
+   24405b314:	mov    0x10(%rax),%rax
+   24405b318:	mov    %rax,0x130(%rsp)
+   24405b320:	cmpb   $0x0,0xd0(%r10)
+   24405b328:	je     24405b337 <_ZZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEiENKUlvE42_clEv.lto_priv.0+0x117>
+   24405b32a:	cmpb   $0x9,0x1e0(%rdi)
+   24405b331:	je     24405b4d7 <_ZZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEiENKUlvE42_clEv.lto_priv.0+0x2b7>
+   24405b337:	lea    0x70(%rsp),%rdi
+   24405b33c:	mov    $0x5e7,%r9d
+   24405b342:	mov    %r11,%r8
+   24405b345:	mov    %r10,%rdx
+   24405b348:	mov    %rdi,%rcx
+   24405b34b:	call   244589d70 <_ZN2gd8get_propERNS_9BattleCtxERKNS_5GdValEj>
+   24405b350:	mov    0x20(%rbx),%rbx
+   24405b354:	cmpb   $0x0,0xd0(%rbx)
+   24405b35b:	je     24405b413 <_ZZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEiENKUlvE42_clEv.lto_priv.0+0x1f3>
+   24405b361:	movzbl 0x70(%rsp),%eax
+   24405b366:	cmp    $0x7,%al
+   24405b368:	je     24405b44a <_ZZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEiENKUlvE42_clEv.lto_priv.0+0x22a>
+   24405b36e:	cmp    $0x8,%al
+   24405b370:	je     24405b406 <_ZZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEiENKUlvE42_clEv.lto_priv.0+0x1e6>
+   24405b376:	cmp    $0xb,%al
+   24405b378:	je     24405b406 <_ZZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEiENKUlvE42_clEv.lto_priv.0+0x1e6>
+   24405b37e:	lea    0x70(%rsp),%rdi
+   24405b383:	cmp    $0xa,%al
+   24405b385:	jne    24405b413 <_ZZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEiENKUlvE42_clEv.lto_priv.0+0x1f3>
+   24405b38b:	cmpb   $0x0,0xd2(%rbx)
+   24405b392:	jne    24405b55e <_ZZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEiENKUlvE42_clEv.lto_priv.0+0x33e>
+   24405b398:	mov    0x78(%rsp),%rdx
+   24405b39d:	test   %rdx,%rdx
+   24405b3a0:	je     24405b457 <_ZZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEiENKUlvE42_clEv.lto_priv.0+0x237>
+   24405b3a6:	cmpq   $0x0,0x38(%rdx)
+   24405b3ab:	je     24405b457 <_ZZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEiENKUlvE42_clEv.lto_priv.0+0x237>
+   24405b3b1:	mov    %rbx,%rcx
+   24405b3b4:	call   244580240 <_ZN2gd26native_timer_observe_classERNS_9BattleCtxEPKNS_11GdClassMetaE>
+   24405b3b9:	xor    %eax,%eax
+   24405b3bb:	movb   $0x0,0x50(%rsp)
+   24405b3c0:	mov    $0x7,%r9d
+   24405b3c6:	mov    %rax,0x58(%rsp)
+   24405b3cb:	lea    0x50(%rsp),%rax
+   24405b3d0:	lea    0x90(%rsp),%r8
+   24405b3d8:	mov    $0x5b8,%edx
+   24405b3dd:	mov    %rax,0x20(%rsp)
+   24405b3e2:	mov    0x78(%rsp),%rax
+   24405b3e7:	mov    %rbx,%rcx
+   24405b3ea:	call   *0x38(%rax)
+   24405b3ed:	test   %al,%al
+   24405b3ef:	je     24405b457 <_ZZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEiENKUlvE42_clEv.lto_priv.0+0x237>
+   24405b3f1:	vmovdqa 0x50(%rsp),%xmm0
+   24405b3f7:	mov    0x60(%rsp),%rax
+   24405b3fc:	vmovdqu %xmm0,(%rsi)
+   24405b400:	mov    %rax,0x10(%rsi)
+   24405b404:	jmp    24405b43c <_ZZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEiENKUlvE42_clEv.lto_priv.0+0x21c>
+   24405b406:	cmpq   $0x0,0x78(%rsp)
+   24405b40c:	je     24405b457 <_ZZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEiENKUlvE42_clEv.lto_priv.0+0x237>
+   24405b40e:	lea    0x70(%rsp),%rdi
+   24405b413:	lea    0x90(%rsp),%rax
+   24405b41b:	movl   $0x7,0x28(%rsp)
+   24405b423:	mov    $0x5b8,%r9d
+   24405b429:	mov    %rdi,%r8
+   24405b42c:	mov    %rax,0x20(%rsp)
+   24405b431:	mov    %rbx,%rdx
+   24405b434:	mov    %rsi,%rcx
+   24405b437:	call   244584e60 <_ZN2gd11call_methodERNS_9BattleCtxERKNS_5GdValEjPS3_i>
+   24405b43c:	mov    %rsi,%rax
+   24405b43f:	add    $0x140,%rsp
+   24405b446:	pop    %rbx
+   24405b447:	pop    %rsi
+   24405b448:	pop    %rdi
+   24405b449:	ret
+   24405b44a:	cmpq   $0x0,0x78(%rsp)
+   24405b450:	lea    0x70(%rsp),%rdi
+   24405b455:	jne    24405b413 <_ZZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEiENKUlvE42_clEv.lto_priv.0+0x1f3>
+   24405b457:	xor    %edx,%edx
+   24405b459:	movb   $0x0,(%rsi)
+   24405b45c:	mov    %rdx,0x8(%rsi)
+   24405b460:	jmp    24405b43c <_ZZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEiENKUlvE42_clEv.lto_priv.0+0x21c>
+   24405b462:	mov    0x68(%rdx),%rcx
+   24405b466:	test   %rcx,%rcx
+   24405b469:	je     24405b2bf <_ZZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEiENKUlvE42_clEv.lto_priv.0+0x9f>
+   24405b46f:	mov    0x28(%rcx),%r8
+   24405b473:	test   %r8,%r8
+   24405b476:	je     24405b5d0 <_ZZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEiENKUlvE42_clEv.lto_priv.0+0x3b0>
+   24405b47c:	cmpb   $0x0,0xd1(%rdi)
+   24405b483:	jne    24405b5a0 <_ZZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEiENKUlvE42_clEv.lto_priv.0+0x380>
+   24405b489:	mov    0x8(%r8),%rax
+   24405b48d:	movzbl 0xd2(%rdi),%ecx
+   24405b494:	test   %rax,%rax
+   24405b497:	je     24405b6b5 <_ZZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEiENKUlvE42_clEv.lto_priv.0+0x495>
+   24405b49d:	mov    0x58(%rax),%rax
+   24405b4a1:	cmp    $0xffffffffffffffff,%rax
+   24405b4a5:	je     24405b6b5 <_ZZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEiENKUlvE42_clEv.lto_priv.0+0x495>
+   24405b4ab:	test   %cl,%cl
+   24405b4ad:	jne    24405b580 <_ZZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEiENKUlvE42_clEv.lto_priv.0+0x360>
+   24405b4b3:	mov    0x68(%rdx),%rdx
+   24405b4b7:	vmovdqu (%rdx,%rax,1),%xmm0
+   24405b4bc:	vmovdqa %xmm0,0xf0(%rsp)
+   24405b4c5:	mov    0x10(%rdx,%rax,1),%rax
+   24405b4ca:	mov    %rax,0x100(%rsp)
+   24405b4d2:	jmp    24405b2d8 <_ZZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEiENKUlvE42_clEv.lto_priv.0+0xb8>
+   24405b4d7:	mov    0x1e8(%rdi),%rdx
+   24405b4de:	test   %rdx,%rdx
+   24405b4e1:	je     24405b337 <_ZZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEiENKUlvE42_clEv.lto_priv.0+0x117>
+   24405b4e7:	mov    0x28(%rdx),%r8
+   24405b4eb:	test   %r8,%r8
+   24405b4ee:	je     24405b65a <_ZZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEiENKUlvE42_clEv.lto_priv.0+0x43a>
+   24405b4f4:	cmpb   $0x0,0xd1(%r10)
+   24405b4fc:	jne    24405b624 <_ZZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEiENKUlvE42_clEv.lto_priv.0+0x404>
+   24405b502:	mov    0x8(%r8),%rax
+   24405b506:	movzbl 0xd2(%r10),%edx
+   24405b50e:	test   %rax,%rax
+   24405b511:	je     24405b696 <_ZZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEiENKUlvE42_clEv.lto_priv.0+0x476>
+   24405b517:	mov    0x18(%rax),%rax
+   24405b51b:	cmp    $0xffffffffffffffff,%rax
+   24405b51f:	je     24405b696 <_ZZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEiENKUlvE42_clEv.lto_priv.0+0x476>
+   24405b525:	test   %dl,%dl
+   24405b527:	jne    24405b56d <_ZZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEiENKUlvE42_clEv.lto_priv.0+0x34d>
+   24405b529:	mov    0x1e8(%rdi),%rdx
+   24405b530:	vmovdqu (%rdx,%rax,1),%xmm0
+   24405b535:	vmovdqa %xmm0,0x70(%rsp)
+   24405b53b:	mov    0x10(%rdx,%rax,1),%rax
+   24405b540:	mov    %rax,0x80(%rsp)
+   24405b548:	mov    0x20(%rbx),%rbx
+   24405b54c:	cmpb   $0x0,0xd0(%rbx)
+   24405b553:	jne    24405b361 <_ZZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEiENKUlvE42_clEv.lto_priv.0+0x141>
+   24405b559:	jmp    24405b40e <_ZZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEiENKUlvE42_clEv.lto_priv.0+0x1ee>
+   24405b55e:	mov    $0x9,%ecx
+   24405b563:	call   2440212f0 <_ZN2gd25native_inline_variant_hitEj.part.0>
+   24405b568:	jmp    24405b398 <_ZZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEiENKUlvE42_clEv.lto_priv.0+0x178>
+   24405b56d:	xor    %ecx,%ecx
+   24405b56f:	mov    %rax,0x38(%rsp)
+   24405b574:	call   244026cd0 <_ZN2gd26native_inline_property_hitEj.part.0>
+   24405b579:	mov    0x38(%rsp),%rax
+   24405b57e:	jmp    24405b529 <_ZZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEiENKUlvE42_clEv.lto_priv.0+0x309>
+   24405b580:	xor    %ecx,%ecx
+   24405b582:	mov    %rax,0x40(%rsp)
+   24405b587:	mov    %rdx,0x38(%rsp)
+   24405b58c:	call   244026cd0 <_ZN2gd26native_inline_property_hitEj.part.0>
+   24405b591:	mov    0x40(%rsp),%rax
+   24405b596:	mov    0x38(%rsp),%rdx
+   24405b59b:	jmp    24405b4b3 <_ZZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEiENKUlvE42_clEv.lto_priv.0+0x293>
+   24405b5a0:	mov    %r8,0x48(%rsp)
+   24405b5a5:	mov    %r10,0x40(%rsp)
+   24405b5aa:	mov    %rdx,0x38(%rsp)
+   24405b5af:	call   2446994e0 <_ZN2gdL25native_resolved_exact_rowEPKNS_5GdObjE.lto_priv.0>
+   24405b5b4:	mov    0x48(%rsp),%r8
+   24405b5b9:	mov    0x38(%rsp),%rdx
+   24405b5be:	mov    0x40(%rsp),%r10
+   24405b5c3:	cmp    %rax,%r8
+   24405b5c6:	je     24405b489 <_ZZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEiENKUlvE42_clEv.lto_priv.0+0x269>
+   24405b5cc:	mov    0x68(%rdx),%rcx
+   24405b5d0:	xor    %r8d,%r8d
+   24405b5d3:	mov    %rcx,%rdx
+   24405b5d6:	lea    0x70(%rsp),%r9
+   24405b5db:	mov    %rdi,%rcx
+   24405b5de:	mov    %r8,0x78(%rsp)
+   24405b5e3:	mov    $0x47b,%r8d
+   24405b5e9:	mov    %r10,0x38(%rsp)
+   24405b5ee:	movb   $0x0,0x70(%rsp)
+   24405b5f3:	call   244699190 <_ZN2gd28try_native_resolved_propertyERNS_9BattleCtxEPNS_5GdObjEjRNS_5GdValE>
+   24405b5f8:	test   %al,%al
+   24405b5fa:	je     24405b6cc <_ZZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEiENKUlvE42_clEv.lto_priv.0+0x4ac>
+   24405b600:	vmovdqa 0x70(%rsp),%xmm0
+   24405b606:	mov    0x80(%rsp),%rax
+   24405b60e:	vmovdqa %xmm0,0xf0(%rsp)
+   24405b617:	mov    %rax,0x100(%rsp)
+   24405b61f:	jmp    24405b2d8 <_ZZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEiENKUlvE42_clEv.lto_priv.0+0xb8>
+   24405b624:	mov    %rdx,%rcx
+   24405b627:	mov    %r8,0x48(%rsp)
+   24405b62c:	mov    %r10,0x40(%rsp)
+   24405b631:	mov    %r11,0x38(%rsp)
+   24405b636:	call   2446994e0 <_ZN2gdL25native_resolved_exact_rowEPKNS_5GdObjE.lto_priv.0>
+   24405b63b:	mov    0x48(%rsp),%r8
+   24405b640:	mov    0x38(%rsp),%r11
+   24405b645:	mov    0x40(%rsp),%r10
+   24405b64a:	cmp    %rax,%r8
+   24405b64d:	je     24405b502 <_ZZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEiENKUlvE42_clEv.lto_priv.0+0x2e2>
+   24405b653:	mov    0x1e8(%rdi),%rdx
+   24405b65a:	xor    %ecx,%ecx
+   24405b65c:	lea    0x50(%rsp),%r9
+   24405b661:	mov    $0x5e7,%r8d
+   24405b667:	mov    %r11,0x40(%rsp)
+   24405b66c:	mov    %rcx,0x58(%rsp)
+   24405b671:	mov    %r10,%rcx
+   24405b674:	movb   $0x0,0x50(%rsp)
+   24405b679:	mov    %r10,0x38(%rsp)
+   24405b67e:	call   244699190 <_ZN2gd28try_native_resolved_propertyERNS_9BattleCtxEPNS_5GdObjEjRNS_5GdValE>
+   24405b683:	test   %al,%al
+   24405b685:	jne    24405b6d6 <_ZZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEiENKUlvE42_clEv.lto_priv.0+0x4b6>
+   24405b687:	mov    0x38(%rsp),%r10
+   24405b68c:	mov    0x40(%rsp),%r11
+   24405b691:	jmp    24405b337 <_ZZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEiENKUlvE42_clEv.lto_priv.0+0x117>
+   24405b696:	test   %dl,%dl
+   24405b698:	jne    24405b6f4 <_ZZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEiENKUlvE42_clEv.lto_priv.0+0x4d4>
+   24405b69a:	mov    $0x5e7,%r9d
+   24405b6a0:	mov    %r11,%r8
+   24405b6a3:	lea    0x70(%rsp),%rcx
+   24405b6a8:	mov    %r10,%rdx
+   24405b6ab:	call   244589d70 <_ZN2gd8get_propERNS_9BattleCtxERKNS_5GdValEj>
+   24405b6b0:	jmp    24405b548 <_ZZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEiENKUlvE42_clEv.lto_priv.0+0x328>
+   24405b6b5:	test   %cl,%cl
+   24405b6b7:	je     24405b2bf <_ZZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEiENKUlvE42_clEv.lto_priv.0+0x9f>
+   24405b6bd:	mov    $0x1,%ecx
+   24405b6c2:	mov    %r10,0x38(%rsp)
+   24405b6c7:	call   244026cd0 <_ZN2gd26native_inline_property_hitEj.part.0>
+   24405b6cc:	mov    0x38(%rsp),%r10
+   24405b6d1:	jmp    24405b2bf <_ZZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEiENKUlvE42_clEv.lto_priv.0+0x9f>
+   24405b6d6:	vmovdqa 0x50(%rsp),%xmm0
+   24405b6dc:	mov    0x60(%rsp),%rax
+   24405b6e1:	vmovdqa %xmm0,0x70(%rsp)
+   24405b6e7:	mov    %rax,0x80(%rsp)
+   24405b6ef:	jmp    24405b548 <_ZZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEiENKUlvE42_clEv.lto_priv.0+0x328>
+   24405b6f4:	mov    $0x1,%ecx
+   24405b6f9:	mov    %r10,0x40(%rsp)
+   24405b6fe:	mov    %r11,0x38(%rsp)
+   24405b703:	call   244026cd0 <_ZN2gd26native_inline_property_hitEj.part.0>
+   24405b708:	mov    0x40(%rsp),%r10
+   24405b70d:	mov    0x38(%rsp),%r11
+   24405b712:	jmp    24405b69a <_ZZN21Gd__gd_core__CoreBuff16fn_gainTemporaryEPKN2gd5GdValEiENKUlvE42_clEv.lto_priv.0+0x47a>
+   24405b714:	nop
+   24405b715:	data16 cs nopw 0x0(%rax,%rax,1)

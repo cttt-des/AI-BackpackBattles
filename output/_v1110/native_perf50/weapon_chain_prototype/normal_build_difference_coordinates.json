@@ -1,0 +1,509 @@
+{
+  "cases": [
+    {
+      "index": 16077,
+      "closed": false,
+      "denorm": 0,
+      "phase": 6,
+      "scenario": 5,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 16205,
+      "closed": false,
+      "denorm": 0,
+      "phase": 6,
+      "scenario": 13,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 16333,
+      "closed": false,
+      "denorm": 0,
+      "phase": 6,
+      "scenario": 21,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 16461,
+      "closed": false,
+      "denorm": 0,
+      "phase": 6,
+      "scenario": 29,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 16589,
+      "closed": false,
+      "denorm": 0,
+      "phase": 7,
+      "scenario": 5,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 16717,
+      "closed": false,
+      "denorm": 0,
+      "phase": 7,
+      "scenario": 13,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 16973,
+      "closed": false,
+      "denorm": 0,
+      "phase": 7,
+      "scenario": 29,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 33093,
+      "closed": false,
+      "denorm": 64,
+      "phase": 6,
+      "scenario": 5,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 33221,
+      "closed": false,
+      "denorm": 64,
+      "phase": 6,
+      "scenario": 13,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 33349,
+      "closed": false,
+      "denorm": 64,
+      "phase": 6,
+      "scenario": 21,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 33477,
+      "closed": false,
+      "denorm": 64,
+      "phase": 6,
+      "scenario": 29,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 33605,
+      "closed": false,
+      "denorm": 64,
+      "phase": 7,
+      "scenario": 5,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 33733,
+      "closed": false,
+      "denorm": 64,
+      "phase": 7,
+      "scenario": 13,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 33989,
+      "closed": false,
+      "denorm": 64,
+      "phase": 7,
+      "scenario": 29,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 50109,
+      "closed": false,
+      "denorm": 32768,
+      "phase": 6,
+      "scenario": 5,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 50237,
+      "closed": false,
+      "denorm": 32768,
+      "phase": 6,
+      "scenario": 13,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 50365,
+      "closed": false,
+      "denorm": 32768,
+      "phase": 6,
+      "scenario": 21,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 50493,
+      "closed": false,
+      "denorm": 32768,
+      "phase": 6,
+      "scenario": 29,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 50621,
+      "closed": false,
+      "denorm": 32768,
+      "phase": 7,
+      "scenario": 5,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 50749,
+      "closed": false,
+      "denorm": 32768,
+      "phase": 7,
+      "scenario": 13,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 51005,
+      "closed": false,
+      "denorm": 32768,
+      "phase": 7,
+      "scenario": 29,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 67125,
+      "closed": false,
+      "denorm": 32832,
+      "phase": 6,
+      "scenario": 5,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 67253,
+      "closed": false,
+      "denorm": 32832,
+      "phase": 6,
+      "scenario": 13,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 67381,
+      "closed": false,
+      "denorm": 32832,
+      "phase": 6,
+      "scenario": 21,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 67509,
+      "closed": false,
+      "denorm": 32832,
+      "phase": 6,
+      "scenario": 29,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 67637,
+      "closed": false,
+      "denorm": 32832,
+      "phase": 7,
+      "scenario": 5,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 67765,
+      "closed": false,
+      "denorm": 32832,
+      "phase": 7,
+      "scenario": 13,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 68021,
+      "closed": false,
+      "denorm": 32832,
+      "phase": 7,
+      "scenario": 29,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 84141,
+      "closed": true,
+      "denorm": 0,
+      "phase": 6,
+      "scenario": 5,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 84269,
+      "closed": true,
+      "denorm": 0,
+      "phase": 6,
+      "scenario": 13,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 84397,
+      "closed": true,
+      "denorm": 0,
+      "phase": 6,
+      "scenario": 21,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 84525,
+      "closed": true,
+      "denorm": 0,
+      "phase": 6,
+      "scenario": 29,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 84653,
+      "closed": true,
+      "denorm": 0,
+      "phase": 7,
+      "scenario": 5,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 84781,
+      "closed": true,
+      "denorm": 0,
+      "phase": 7,
+      "scenario": 13,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 85037,
+      "closed": true,
+      "denorm": 0,
+      "phase": 7,
+      "scenario": 29,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 101157,
+      "closed": true,
+      "denorm": 64,
+      "phase": 6,
+      "scenario": 5,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 101285,
+      "closed": true,
+      "denorm": 64,
+      "phase": 6,
+      "scenario": 13,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 101413,
+      "closed": true,
+      "denorm": 64,
+      "phase": 6,
+      "scenario": 21,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 101541,
+      "closed": true,
+      "denorm": 64,
+      "phase": 6,
+      "scenario": 29,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 101669,
+      "closed": true,
+      "denorm": 64,
+      "phase": 7,
+      "scenario": 5,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 101797,
+      "closed": true,
+      "denorm": 64,
+      "phase": 7,
+      "scenario": 13,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 102053,
+      "closed": true,
+      "denorm": 64,
+      "phase": 7,
+      "scenario": 29,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 118173,
+      "closed": true,
+      "denorm": 32768,
+      "phase": 6,
+      "scenario": 5,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 118301,
+      "closed": true,
+      "denorm": 32768,
+      "phase": 6,
+      "scenario": 13,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 118429,
+      "closed": true,
+      "denorm": 32768,
+      "phase": 6,
+      "scenario": 21,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 118557,
+      "closed": true,
+      "denorm": 32768,
+      "phase": 6,
+      "scenario": 29,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 118685,
+      "closed": true,
+      "denorm": 32768,
+      "phase": 7,
+      "scenario": 5,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 118813,
+      "closed": true,
+      "denorm": 32768,
+      "phase": 7,
+      "scenario": 13,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 119069,
+      "closed": true,
+      "denorm": 32768,
+      "phase": 7,
+      "scenario": 29,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 135189,
+      "closed": true,
+      "denorm": 32832,
+      "phase": 6,
+      "scenario": 5,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 135317,
+      "closed": true,
+      "denorm": 32832,
+      "phase": 6,
+      "scenario": 13,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 135445,
+      "closed": true,
+      "denorm": 32832,
+      "phase": 6,
+      "scenario": 21,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 135573,
+      "closed": true,
+      "denorm": 32832,
+      "phase": 6,
+      "scenario": 29,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 135701,
+      "closed": true,
+      "denorm": 32832,
+      "phase": 7,
+      "scenario": 5,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 135829,
+      "closed": true,
+      "denorm": 32832,
+      "phase": 7,
+      "scenario": 13,
+      "config": 1,
+      "rounding": "upward"
+    },
+    {
+      "index": 136085,
+      "closed": true,
+      "denorm": 32832,
+      "phase": 7,
+      "scenario": 29,
+      "config": 1,
+      "rounding": "upward"
+    }
+  ],
+  "not_a_candidate_semantic_acceptance": true
+}

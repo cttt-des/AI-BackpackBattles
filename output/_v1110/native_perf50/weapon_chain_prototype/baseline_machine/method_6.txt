@@ -1,0 +1,240 @@
+
+bundle.dll:     file format pei-x86-64
+
+
+Disassembly of section .text:
+
+0000000308511f10 <_ZN26Gd__gd_core__CoreCharacter13fn_dealDamageEPKN2gd5GdValEi>:
+   308511f10:	push   %r12
+   308511f12:	push   %rbp
+   308511f13:	push   %rdi
+   308511f14:	push   %rsi
+   308511f15:	push   %rbx
+   308511f16:	sub    $0x110,%rsp
+   308511f1d:	mov    0x8(%rdx),%rbp
+   308511f21:	mov    %rcx,%rsi
+   308511f24:	mov    %rdx,%rbx
+   308511f27:	cmpb   $0x0,0xa1(%rbp)
+   308511f2e:	je     30851207d <_ZN26Gd__gd_core__CoreCharacter13fn_dealDamageEPKN2gd5GdValEi+0x16d>
+   308511f34:	test   %r9d,%r9d
+   308511f37:	jle    308512358 <_ZN26Gd__gd_core__CoreCharacter13fn_dealDamageEPKN2gd5GdValEi+0x448>
+   308511f3d:	mov    0x10(%r8),%rax
+   308511f41:	vmovdqu (%r8),%xmm0
+   308511f46:	mov    0x8(%r8),%rdi
+   308511f4a:	mov    %rax,0xd0(%rsp)
+   308511f52:	movzbl (%r8),%eax
+   308511f56:	vmovdqa %xmm0,0xc0(%rsp)
+   308511f5f:	cmp    $0x1,%r9d
+   308511f63:	je     30851235c <_ZN26Gd__gd_core__CoreCharacter13fn_dealDamageEPKN2gd5GdValEi+0x44c>
+   308511f69:	vmovdqu 0x18(%r8),%xmm0
+   308511f6f:	mov    0x28(%r8),%rax
+   308511f73:	lea    0x40(%rsp),%r12
+   308511f78:	xor    %r9d,%r9d
+   308511f7b:	xor    %r8d,%r8d
+   308511f7e:	mov    %r12,%rcx
+   308511f81:	mov    %rax,0xb0(%rsp)
+   308511f89:	vmovdqa %xmm0,0xa0(%rsp)
+   308511f92:	call   3085123d0 <_ZN26Gd__gd_core__CoreCharacter22fn_playAttackAnimationEPKN2gd5GdValEi>
+   308511f97:	mov    0xd0(%rsp),%rax
+   308511f9f:	vmovdqa 0xc0(%rsp),%xmm0
+   308511fa8:	mov    %rax,0xf0(%rsp)
+   308511fb0:	vmovdqa %xmm0,0xe0(%rsp)
+   308511fb9:	vmovdqa 0xa0(%rsp),%xmm0
+   308511fc2:	mov    0xb0(%rsp),%rax
+   308511fca:	cmpb   $0x9,0x60(%rbx)
+   308511fce:	mov    %rax,0x108(%rsp)
+   308511fd6:	vmovdqu %xmm0,0xf8(%rsp)
+   308511fdf:	jne    308512324 <_ZN26Gd__gd_core__CoreCharacter13fn_dealDamageEPKN2gd5GdValEi+0x414>
+   308511fe5:	mov    0x68(%rbx),%rdx
+   308511fe9:	test   %rdx,%rdx
+   308511fec:	je     308512324 <_ZN26Gd__gd_core__CoreCharacter13fn_dealDamageEPKN2gd5GdValEi+0x414>
+   308511ff2:	cmpb   $0x0,0xa2(%rbp)
+   308511ff9:	jne    3085122f1 <_ZN26Gd__gd_core__CoreCharacter13fn_dealDamageEPKN2gd5GdValEi+0x3e1>
+   308511fff:	lea    0xe0(%rsp),%rdi
+   308512007:	lea    0x80(%rsp),%rcx
+   30851200f:	mov    $0x2,%r9d
+   308512015:	mov    %rdi,%r8
+   308512018:	call   30851d2c0 <_ZN26Gd__gd_core__CoreCharacter13fn_takeDamageEPKN2gd5GdValEi>
+   30851201d:	vmovdqa 0x80(%rsp),%xmm0
+   308512026:	mov    0x90(%rsp),%rax
+   30851202e:	mov    $0x1,%r9d
+   308512034:	mov    %rdi,%r8
+   308512037:	mov    %rbx,%rdx
+   30851203a:	mov    %r12,%rcx
+   30851203d:	mov    %rax,0xf0(%rsp)
+   308512045:	vmovdqa %xmm0,0xe0(%rsp)
+   30851204e:	call   308553e70 <_ZN26Gd__gd_core__CoreCharacter17fn_applyVampirismEPKN2gd5GdValEi>
+   308512053:	mov    0x90(%rsp),%rax
+   30851205b:	vmovdqa 0x80(%rsp),%xmm0
+   308512064:	mov    %rax,0x10(%rsi)
+   308512068:	vmovdqu %xmm0,(%rsi)
+   30851206c:	mov    %rsi,%rax
+   30851206f:	add    $0x110,%rsp
+   308512076:	pop    %rbx
+   308512077:	pop    %rsi
+   308512078:	pop    %rdi
+   308512079:	pop    %rbp
+   30851207a:	pop    %r12
+   30851207c:	ret
+   30851207d:	test   %r9d,%r9d
+   308512080:	jle    30851221f <_ZN26Gd__gd_core__CoreCharacter13fn_dealDamageEPKN2gd5GdValEi+0x30f>
+   308512086:	vmovdqu (%r8),%xmm0
+   30851208b:	mov    0x10(%r8),%rax
+   30851208f:	dec    %r9d
+   308512092:	movzbl (%r8),%r11d
+   308512096:	mov    0x8(%r8),%r10
+   30851209a:	mov    %rax,0xb0(%rsp)
+   3085120a2:	vmovdqa %xmm0,0xa0(%rsp)
+   3085120ab:	je     308512225 <_ZN26Gd__gd_core__CoreCharacter13fn_dealDamageEPKN2gd5GdValEi+0x315>
+   3085120b1:	mov    0x28(%r8),%rax
+   3085120b5:	vmovdqu 0x18(%r8),%xmm0
+   3085120bb:	mov    0x20(%r8),%rdi
+   3085120bf:	mov    %rax,0x90(%rsp)
+   3085120c7:	movzbl 0x18(%r8),%eax
+   3085120cc:	vmovdqa %xmm0,0x80(%rsp)
+   3085120d5:	xor    %r9d,%r9d
+   3085120d8:	xor    %r8d,%r8d
+   3085120db:	mov    %rbx,%rdx
+   3085120de:	mov    %r11b,0x3f(%rsp)
+   3085120e3:	lea    0x40(%rsp),%rcx
+   3085120e8:	mov    %al,0x3e(%rsp)
+   3085120ec:	mov    %r10,0x30(%rsp)
+   3085120f1:	call   3085123d0 <_ZN26Gd__gd_core__CoreCharacter22fn_playAttackAnimationEPKN2gd5GdValEi>
+   3085120f6:	movzbl 0x3f(%rsp),%r11d
+   3085120fc:	mov    0x30(%rsp),%r10
+   308512101:	mov    %rdi,0x88(%rsp)
+   308512109:	movzbl 0x3e(%rsp),%eax
+   30851210e:	mov    0xb0(%rsp),%rdx
+   308512116:	mov    %r11b,0xa0(%rsp)
+   30851211e:	cmpb   $0x0,0xd0(%rbp)
+   308512125:	mov    %r10,0xa8(%rsp)
+   30851212d:	mov    %al,0x80(%rsp)
+   308512134:	mov    0x90(%rsp),%rax
+   30851213c:	mov    %rdx,0xf0(%rsp)
+   308512144:	vmovdqa 0xa0(%rsp),%xmm0
+   30851214d:	mov    %rax,0x108(%rsp)
+   308512155:	vmovdqa %xmm0,0xe0(%rsp)
+   30851215e:	vmovdqa 0x80(%rsp),%xmm0
+   308512167:	vmovdqu %xmm0,0xf8(%rsp)
+   308512170:	je     308512196 <_ZN26Gd__gd_core__CoreCharacter13fn_dealDamageEPKN2gd5GdValEi+0x286>
+   308512172:	movzbl 0x60(%rbx),%eax
+   308512176:	cmp    $0x7,%al
+   308512178:	je     3085122d5 <_ZN26Gd__gd_core__CoreCharacter13fn_dealDamageEPKN2gd5GdValEi+0x3c5>
+   30851217e:	cmp    $0x8,%al
+   308512180:	je     3085122d5 <_ZN26Gd__gd_core__CoreCharacter13fn_dealDamageEPKN2gd5GdValEi+0x3c5>
+   308512186:	cmp    $0xb,%al
+   308512188:	je     3085122d5 <_ZN26Gd__gd_core__CoreCharacter13fn_dealDamageEPKN2gd5GdValEi+0x3c5>
+   30851218e:	cmp    $0xa,%al
+   308512190:	je     30851222e <_ZN26Gd__gd_core__CoreCharacter13fn_dealDamageEPKN2gd5GdValEi+0x31e>
+   308512196:	lea    0xe0(%rsp),%rdi
+   30851219e:	movl   $0x2,0x28(%rsp)
+   3085121a6:	mov    %rbp,%rdx
+   3085121a9:	lea    0x60(%rsp),%rcx
+   3085121ae:	mov    %rdi,0x20(%rsp)
+   3085121b3:	mov    $0x4e1,%r9d
+   3085121b9:	lea    0x60(%rbx),%r8
+   3085121bd:	call   30841ccf0 <_ZN2gd11call_methodERNS_9BattleCtxERKNS_5GdValEjPS3_i>
+   3085121c2:	movzbl 0x60(%rsp),%edx
+   3085121c7:	mov    0x68(%rsp),%rax
+   3085121cc:	mov    %dl,0x60(%rsp)
+   3085121d0:	mov    $0x1,%r9d
+   3085121d6:	mov    %rdi,%r8
+   3085121d9:	mov    %rbx,%rdx
+   3085121dc:	mov    %rax,0x68(%rsp)
+   3085121e1:	mov    0x70(%rsp),%rax
+   3085121e6:	lea    0x40(%rsp),%rcx
+   3085121eb:	mov    %rax,0xf0(%rsp)
+   3085121f3:	vmovdqa 0x60(%rsp),%xmm0
+   3085121f9:	vmovdqa %xmm0,0xe0(%rsp)
+   308512202:	call   308553e70 <_ZN26Gd__gd_core__CoreCharacter17fn_applyVampirismEPKN2gd5GdValEi>
+   308512207:	vmovdqa 0x60(%rsp),%xmm0
+   30851220d:	mov    0x70(%rsp),%rax
+   308512212:	vmovdqu %xmm0,(%rsi)
+   308512216:	mov    %rax,0x10(%rsi)
+   30851221a:	jmp    30851206c <_ZN26Gd__gd_core__CoreCharacter13fn_dealDamageEPKN2gd5GdValEi+0x15c>
+   30851221f:	xor    %r10d,%r10d
+   308512222:	xor    %r11d,%r11d
+   308512225:	xor    %edi,%edi
+   308512227:	xor    %eax,%eax
+   308512229:	jmp    3085120d5 <_ZN26Gd__gd_core__CoreCharacter13fn_dealDamageEPKN2gd5GdValEi+0x1c5>
+   30851222e:	cmpb   $0x0,0xd2(%rbp)
+   308512235:	je     308512241 <_ZN26Gd__gd_core__CoreCharacter13fn_dealDamageEPKN2gd5GdValEi+0x331>
+   308512237:	mov    $0x9,%ecx
+   30851223c:	call   307ebb970 <_ZN2gd25native_inline_variant_hitEj.part.0>
+   308512241:	mov    0x68(%rbx),%rdx
+   308512245:	test   %rdx,%rdx
+   308512248:	je     3085122e0 <_ZN26Gd__gd_core__CoreCharacter13fn_dealDamageEPKN2gd5GdValEi+0x3d0>
+   30851224e:	cmpq   $0x0,0x38(%rdx)
+   308512253:	je     3085122e0 <_ZN26Gd__gd_core__CoreCharacter13fn_dealDamageEPKN2gd5GdValEi+0x3d0>
+   308512259:	mov    %rbp,%rcx
+   30851225c:	lea    0xe0(%rsp),%rdi
+   308512264:	call   3084180c0 <_ZN2gd26native_timer_observe_classERNS_9BattleCtxEPKNS_11GdClassMetaE>
+   308512269:	xor    %eax,%eax
+   30851226b:	lea    0xc0(%rsp),%rdx
+   308512273:	movb   $0x0,0xc0(%rsp)
+   30851227b:	mov    %rax,0xc8(%rsp)
+   308512283:	mov    0x68(%rbx),%rax
+   308512287:	mov    $0x2,%r9d
+   30851228d:	mov    %rdi,%r8
+   308512290:	mov    %rdx,0x20(%rsp)
+   308512295:	mov    %rbp,%rcx
+   308512298:	mov    $0x4e1,%edx
+   30851229d:	call   *0x38(%rax)
+   3085122a0:	test   %al,%al
+   3085122a2:	je     3085122e8 <_ZN26Gd__gd_core__CoreCharacter13fn_dealDamageEPKN2gd5GdValEi+0x3d8>
+   3085122a4:	mov    0xd0(%rsp),%rax
+   3085122ac:	vmovdqa 0xc0(%rsp),%xmm0
+   3085122b5:	movzbl 0xc0(%rsp),%edx
+   3085122bd:	mov    %rax,0x70(%rsp)
+   3085122c2:	mov    0xc8(%rsp),%rax
+   3085122ca:	vmovdqa %xmm0,0x60(%rsp)
+   3085122d0:	jmp    3085121cc <_ZN26Gd__gd_core__CoreCharacter13fn_dealDamageEPKN2gd5GdValEi+0x2bc>
+   3085122d5:	cmpq   $0x0,0x68(%rbx)
+   3085122da:	jne    308512196 <_ZN26Gd__gd_core__CoreCharacter13fn_dealDamageEPKN2gd5GdValEi+0x286>
+   3085122e0:	lea    0xe0(%rsp),%rdi
+   3085122e8:	xor    %eax,%eax
+   3085122ea:	xor    %edx,%edx
+   3085122ec:	jmp    3085121cc <_ZN26Gd__gd_core__CoreCharacter13fn_dealDamageEPKN2gd5GdValEi+0x2bc>
+   3085122f1:	mov    %rbp,%rcx
+   3085122f4:	call   307ab4250 <_Z20native_event_type_okI26Gd__gd_core__CoreCharacterEbRN2gd9BattleCtxERKNS1_5GdValE.part.0.isra.0>
+   3085122f9:	test   %al,%al
+   3085122fb:	je     308512324 <_ZN26Gd__gd_core__CoreCharacter13fn_dealDamageEPKN2gd5GdValEi+0x414>
+   3085122fd:	lea    0xe0(%rsp),%rdi
+   308512305:	mov    0x68(%rbx),%rdx
+   308512309:	lea    0x80(%rsp),%rcx
+   308512311:	mov    $0x2,%r9d
+   308512317:	mov    %rdi,%r8
+   30851231a:	call   30851d2c0 <_ZN26Gd__gd_core__CoreCharacter13fn_takeDamageEPKN2gd5GdValEi>
+   30851231f:	jmp    30851201d <_ZN26Gd__gd_core__CoreCharacter13fn_dealDamageEPKN2gd5GdValEi+0x10d>
+   308512324:	lea    0xe0(%rsp),%rdi
+   30851232c:	movl   $0x2,0x28(%rsp)
+   308512334:	lea    0x80(%rsp),%rcx
+   30851233c:	mov    $0x4e1,%r9d
+   308512342:	mov    %rdi,0x20(%rsp)
+   308512347:	lea    0x60(%rbx),%r8
+   30851234b:	mov    %rbp,%rdx
+   30851234e:	call   30841ccf0 <_ZN2gd11call_methodERNS_9BattleCtxERKNS_5GdValEjPS3_i>
+   308512353:	jmp    30851201d <_ZN26Gd__gd_core__CoreCharacter13fn_dealDamageEPKN2gd5GdValEi+0x10d>
+   308512358:	xor    %edi,%edi
+   30851235a:	xor    %eax,%eax
+   30851235c:	lea    0x40(%rsp),%r12
+   308512361:	mov    %rbx,%rdx
+   308512364:	xor    %r9d,%r9d
+   308512367:	xor    %r8d,%r8d
+   30851236a:	mov    %r12,%rcx
+   30851236d:	mov    %al,0x30(%rsp)
+   308512371:	call   3085123d0 <_ZN26Gd__gd_core__CoreCharacter22fn_playAttackAnimationEPKN2gd5GdValEi>
+   308512376:	movzbl 0x30(%rsp),%eax
+   30851237b:	mov    %rdi,0xc8(%rsp)
+   308512383:	xor    %edx,%edx
+   308512385:	movb   $0x0,0xa0(%rsp)
+   30851238d:	mov    %al,0xc0(%rsp)
+   308512394:	mov    0xd0(%rsp),%rax
+   30851239c:	mov    %rdx,0xa8(%rsp)
+   3085123a4:	mov    %rax,0xf0(%rsp)
+   3085123ac:	vmovdqa 0xc0(%rsp),%xmm0
+   3085123b5:	vmovdqa %xmm0,0xe0(%rsp)
+   3085123be:	jmp    308511fb9 <_ZN26Gd__gd_core__CoreCharacter13fn_dealDamageEPKN2gd5GdValEi+0xa9>
+   3085123c3:	nop
+   3085123c4:	nop
+   3085123c5:	data16 cs nopw 0x0(%rax,%rax,1)

@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\prepare_native_weapon_chain.py", line 225, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\prepare_native_weapon_chain.py", line 215, in main
+    shutil.copytree(ACCEPTED/'bundle_src',WORK/'prototype_src');component=transform(WORK/'prototype_src')
+                                                                          ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\prepare_native_weapon_chain.py", line 134, in transform
+    assert body.count('return lv_damageRes;')==2
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
