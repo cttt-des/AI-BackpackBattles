@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "private_cases": 234880,
+  "retained_display_cases": 21888,
+  "retained_control_cases": 44608,
+  "total_cases": 301376,
+  "dll_sha256": "40baefb6f2c851fd0f028e5bd0a5932611bd7e084e9de9062c24d7487453bd3b",
+  "no_speed_claim": true,
+  "exact_combination_verified_without_dropping_deployed_components": true
+}

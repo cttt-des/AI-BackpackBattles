@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "dll_sha256": "9e3678c809d6b8cbc5217ad3ef1379765e44e4fd0b92d8087f75a71ed68d2fab",
+  "output": "{\"new_method_symbols\":16,\"unknown_receiver_payload_rng_bind_cases\":1344,\"null_and_existing_cache_preserved\":true,\"generated_fast_path_and_bad_row_audit\":true}\n",
+  "compiled_against_candidate_headers": true
+}

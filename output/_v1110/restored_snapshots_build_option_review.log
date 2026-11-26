@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\verify_restored_snapshots_build_options.py", line 56, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\verify_restored_snapshots_build_options.py", line 27, in main
+    out=WORK/'compiled_option_receipt.json';assert not out.exists()
+                                                   ^^^^^^^^^^^^^^^^
+AssertionError

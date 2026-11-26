@@ -1,0 +1,28 @@
+{
+  "candidate_dll_sha256": "9e3678c809d6b8cbc5217ad3ef1379765e44e4fd0b92d8087f75a71ed68d2fab",
+  "production_dll_sha256": "5ddb2c1b15ad7ab7dfe1a8f2640701abddf6da88600b2930e55fc85165b59209",
+  "deployed": false,
+  "reason": "new_combination_AB_not_accepted",
+  "candidate_load20_fps": 184.56752670070352,
+  "empirical20_is_extrapolation": false,
+  "raw24": null,
+  "calibration24": {
+    "median": 200.8570630168357,
+    "minimum": 167.07471882319047,
+    "maximum": 219.41170456127372,
+    "observed_load_range": [
+      7.600540200629059,
+      28.562258880699943
+    ],
+    "on_ac_all": true
+  },
+  "goal200_reached": false,
+  "goal_still_active": true,
+  "current_display_and_control_components_retained": true,
+  "restored_private_snapshot_cases": 234880,
+  "all_protocol_processes_finished": true,
+  "no_more_same_configuration_measurements": true,
+  "no_new_branches": true,
+  "backup_status_recorded_separately": true,
+  "backup_receipt": "checkpoint_receipt.json"
+}

@@ -1,0 +1,230 @@
+Backed-up deployment and707 sources verified; full20/PGO18, max2 jobs
+Built C:\Users\Windows\AppData\Local\CodexNativeBuilds\restored-snapshots-formal-yjjtmjni\objects\instrumented.dll (compiled 20/20, linked 20 objs) in 704.19s
+{
+  "diagnostic_only": true,
+  "dll_sha256": "b1b7bc2be6b12da738a003d2cdd21e415db9bcfbf9be4684f3cb579a91951672",
+  "inputs_sha256": "d94b16d42cc88e9a3850a77c9360b9c4c4fdd676cb252e463044a903db2a5fef",
+  "results_sha256": "2e74b45caa87f7ee6ac72ffc35d98cc8db140b47031614d26542e183cef5d2c9",
+  "coverage": {
+    "generic_hits": 9599433,
+    "funcref_hits": 100900,
+    "lazy_resolutions": 54635,
+    "unsupported_types": 200,
+    "audit_mismatch": 0,
+    "selected_fallback": 233004
+  },
+  "object_route_coverage": {
+    "instance_methods": 901392,
+    "static_context_f32": 88491
+  },
+  "variant_coverage": {
+    "array_size": 785546,
+    "array_empty": 1272973,
+    "array_has": 0,
+    "array_front": 0,
+    "array_back": 0,
+    "dict_size": 2211,
+    "dict_empty": 106519,
+    "dict_has": 659283,
+    "dict_get": 283318,
+    "class_lane": 117836
+  },
+  "property_coverage": {
+    "field_hits": 4150789,
+    "selected_fallback": 0
+  },
+  "type_constructor_coverage": {
+    "type_hits": 3715324,
+    "type_fallback": 0,
+    "fused_initializations": 82399,
+    "factory_fallback": 0
+  },
+  "hot_slot_coverage": {
+    "new_method_hits": 71933,
+    "new_field_hits": 1164624
+  },
+  "event_identity_coverage": {
+    "fast_identities": 34193,
+    "fallbacks": 0,
+    "fast_emissions": 151951,
+    "emission_fallbacks": 0
+  },
+  "lazy_diagnostic_coverage": {
+    "0": {
+      "skipped": 77135,
+      "retained": 1802
+    },
+    "1": {
+      "skipped": 693,
+      "retained": 257
+    },
+    "2": {
+      "skipped": 202,
+      "retained": 0
+    },
+    "3": {
+      "skipped": 253,
+      "retained": 0
+    },
+    "4": {
+      "skipped": 491,
+      "retained": 0
+    },
+    "5": {
+      "skipped": 491,
+      "retained": 0
+    },
+    "6": {
+      "skipped": 0,
+      "retained": 451
+    }
+  },
+  "frame_segment_coverage": [
+    3633579,
+    509635,
+    3123926,
+    503470,
+    3080447,
+    0,
+    101234,
+    0,
+    37452,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "static_collection_coverage": {
+    "attack_lookup": 8587,
+    "round_lookup": 200,
+    "stack_count": 59977
+  },
+  "static_setup_coverage": {
+    "bulk_stack_tables": 14933,
+    "ordered_stack_fallback": 0,
+    "metric_counts": 74910,
+    "affected_loops": 14933
+  },
+  "dispatch_chain_coverage": {
+    "behavior_methods": 17807,
+    "behavior_empty": 0,
+    "behavior_probes": 57618,
+    "flat_callbacks": 100900
+  },
+  "spatial_coverage": {
+    "lookups": 652011,
+    "hits": 242572,
+    "object_dedup": 242467,
+    "fallbacks": 0
+  },
+  "motion_index_coverage": {
+    "native_runs": 193353,
+    "native_entries": 414435,
+    "kept_entries": 405194
+  },
+  "closed_packed_mode_verified": true,
+  "integer_grid_coverage": {
+    "fast_queries": 652011,
+    "ordinary_queries": 0,
+    "enabled_dicts": 400,
+    "rejected_dicts": 0,
+    "mode_conversions": 0,
+    "reserved": 0
+  },
+  "active_cooldown_coverage": {
+    "indexed_phases": 386704,
+    "rebuilds": 1904,
+    "cache_hits": 384800,
+    "indexed_owners": 3632134,
+    "build_fallbacks": 0,
+    "same_pass_resumes": 760,
+    "eligibility_changes": 23435,
+    "build_slots": 83822,
+    "build_active_owners": 19040,
+    "reserved": 0
+  },
+  "targeted_timer_coverage": {
+    "indexed_passes": 386704,
+    "rebuilds": 400,
+    "cache_hits": 386304,
+    "indexed_owners": 683532,
+    "fallback_passes": 0,
+    "same_pass_resumes": 0,
+    "watched_invalidations": 0,
+    "build_slots": 16170,
+    "build_eligible_owners": 701,
+    "unknown_boundaries": 0
+  },
+  "private_snapshot_coverage": {
+    "integer_view_fast": 30901,
+    "private_array_fallback": 0,
+    "identity_captured": 34193,
+    "identity_eager": 0
+  }
+}
+instrumented.dll: 140.18 replays/s; 14.64 s of combat on average; 1f00611ee50c
+instrumented.dll: 88.59 replays/s; 16.11 s of combat on average; 2e74b45caa87
+instrumented.dll: 60.62 fights/s; 3.20 CPU s; 83.0 MiB peak; 88dda4dce54d
+Compiling profile-guided release
+Built C:\Users\Windows\AppData\Local\CodexNativeBuilds\restored-snapshots-formal-yjjtmjni\objects\release.dll (compiled 18/20, linked 20 objs) in 431.03s
+resolved 9e3678c809d6b8cbc5217ad3ef1379765e44e4fd0b92d8087f75a71ed68d2fab
+Preserved all18 original PGO profiles; all hashes match the formal build receipt
+Freezing release object/compiler evidence before any timing
+{"passed": true, "checked_hot_objects": 18, "release_objects": 20, "dll_sha256": "9e3678c809d6b8cbc5217ad3ef1379765e44e4fd0b92d8087f75a71ed68d2fab"}
+Starting prepare_regeneration.py
+Passed prepare_regeneration.py
+Starting generate_property_tests.py
+Passed generate_property_tests.py
+Starting generate_type_constructor_tests.py
+Passed generate_type_constructor_tests.py
+Starting verify_event_identity.py
+Passed verify_event_identity.py
+Starting verify_lazy_diagnostics.py
+Passed verify_lazy_diagnostics.py
+Starting verify_components.py
+Passed verify_components.py
+Starting verify_static_collections.py
+Passed verify_static_collections.py
+Starting verify_static_setup.py
+Passed verify_static_setup.py
+Starting verify_dispatch_chain.py
+Passed verify_dispatch_chain.py
+Starting verify_spatial.py
+Passed verify_spatial.py
+Starting verify_motion_indices.py
+Passed verify_motion_indices.py
+Starting verify_targeted_timers.py
+Passed verify_targeted_timers.py
+Starting verify_active_cooldowns.py
+Passed verify_active_cooldowns.py
+Starting verify_private_snapshots.py
+Passed verify_private_snapshots.py
+Starting verify_control_word.py
+Passed verify_control_word.py
+Starting verify_display_storage.py
+Passed verify_display_storage.py
+Starting verify_integer_grid.py
+Passed verify_integer_grid.py
+Starting verify_event_factory.py
+Passed verify_event_factory.py
+Starting verify_literal_spans.py
+Passed verify_literal_spans.py
+Starting verify_callback_dispatch.py
+Passed verify_callback_dispatch.py
+Starting verify_object_routes.py
+Passed verify_object_routes.py
+Starting verify_resolved.py
+Passed verify_resolved.py
+Starting inspect_variant.py
+Passed inspect_variant.py
+Starting test_regeneration_guards.py
+Passed test_regeneration_guards.py
+Starting test_full_regeneration.py
+Passed test_full_regeneration.py
+Starting run_comparison.py
+Passed run_comparison.py
+All preflight checks and three comparison groups completed; deployment still gated

@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "full_gdscript_transpiler_and_performance_pipeline": true,
+  "source_files_matching_compiled_candidate": 708,
+  "repeat_bytes_and_mtime_idempotent": true,
+  "compiler_invoked": false,
+  "isolated_directory": "C:\\Users\\Windows\\AppData\\Local\\CodexNativeBuilds\\restored-snapshots-formal-yjjtmjni\\scratch\\native-source-regeneration-idtvimrj"
+}

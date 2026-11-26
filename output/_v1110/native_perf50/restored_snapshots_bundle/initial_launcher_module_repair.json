@@ -1,0 +1,21 @@
+{
+  "reason": "Generated import name had an unwanted native_ prefix",
+  "failure_before_compilation_and_all_timing": true,
+  "original_logs_preserved": true,
+  "cpp_candidate_unchanged": true,
+  "old_identities": {
+    "driver": {
+      "pid": 20120,
+      "created": 1795657241.8673456
+    },
+    "build": {
+      "pid": 5128,
+      "created": 1795657242.2315383
+    },
+    "qualifier": {
+      "pid": 15812,
+      "created": 1795657242.2430425
+    }
+  },
+  "corrected_builder_sha256": "f8b33036c57d7b169ecdde9f7bd61d98ab5f2acdea5193558265a51e1cf2aac1"
+}

@@ -6,7 +6,10 @@
     "verification_sha256": "a8c4ab64f31efc5b4a7bf84bfcee4b808ee8930cbe4d230fd45ad58d0e441004"
   },
   "private_snapshots": {
-    "status": "pending_merge_into_current_deployed_baseline"
+    "status": "new_combination_AB_not_accepted",
+    "deployed": false,
+    "candidate_dll_sha256": "9e3678c809d6b8cbc5217ad3ef1379765e44e4fd0b92d8087f75a71ed68d2fab",
+    "empirical20_fps": 184.56752670070352
   },
   "goal200_reached": false
 }
