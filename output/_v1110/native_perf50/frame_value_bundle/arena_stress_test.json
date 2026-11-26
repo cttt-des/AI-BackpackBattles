@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "dll_sha256": "0a6d24f459eb1011a0bfcc1bc5c4188c1ca67add410b9caf0e04c8f5d30d44d4",
+  "output": "{\"passed\":true,\"arena_bytes\":48,\"serial_requests\":12001,\"identical_reset_addresses\":12001,\"max_alignment\":4096,\"threaded_nonoverlapping_allocations\":8000,\"zero_bytes_large_blocks_content_ownership_and_nested_constructor\":true}\n",
+  "compiled_against_candidate_headers": true
+}

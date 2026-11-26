@@ -1,0 +1,6 @@
+{
+  "candidate_dll_sha256": "92519aa4278f46a5c105f3021e4913f20d0e267aa761aff548a665aa98443160",
+  "unchanged_candidate_source": true,
+  "no_timing_observed": true,
+  "repair": "Bind retained registry check to actual current63D baseline; keep all original state/counter and registry assertions"
+}

@@ -1,0 +1,33 @@
+{
+  "read_only_remote_heads_and_commit_messages_verified": true,
+  "non_master_branches": 4,
+  "new_branches_created_this_session": 0,
+  "no_branch_deleted_or_switched": true,
+  "rows": [
+    {
+      "branch": "master",
+      "observed_commit": "0dcd3e5c8bc4beccc98b3dfded633b852f5d725d",
+      "usage": "Current shared working branch; no checkout or local-ref change"
+    },
+    {
+      "branch": "codex/native-perf50-baseline",
+      "observed_commit": "cd9dfad440077a62e88bd95b7fa99ee203ec52b7",
+      "usage": "2026-11-19 verified1.1.10 kernel baseline backup"
+    },
+    {
+      "branch": "codex/native-perf50-frames",
+      "observed_commit": "811813ec3bd8334bfb35075f855656822d9d1560",
+      "usage": "2026-11-20 placement/frame candidate checkpoint before arithmetic work"
+    },
+    {
+      "branch": "codex/coallocated-events-inconclusive-20261123",
+      "observed_commit": "d0f4c2e3e5281dfc7375db924a0326db102ff200",
+      "usage": "2026-11-23 inconclusive32 event coallocation trial archive"
+    },
+    {
+      "branch": "codex/native-perf50-verified",
+      "observed_commit": "8f7022b1e28093d6f48d1c1250a92cab8789bad3",
+      "usage": "Existing rolling branch for verified runtime/source and all original evidence"
+    }
+  ]
+}

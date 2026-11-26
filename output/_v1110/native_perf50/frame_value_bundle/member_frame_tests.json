@@ -1,0 +1,38 @@
+{
+  "passed": true,
+  "dll_sha256": "0a6d24f459eb1011a0bfcc1bc5c4188c1ca67add410b9caf0e04c8f5d30d44d4",
+  "components": {
+    "member": {
+      "passed": true,
+      "classes": 674,
+      "field_bindings": 6579,
+      "cases": 125001,
+      "alias_checks": 6579,
+      "member_pointer_bytes": 8,
+      "variant_bytes": 24
+    },
+    "frame": {
+      "passed": true,
+      "cases": 6912,
+      "counts": [
+        127296,
+        22332,
+        103764,
+        20724,
+        92988,
+        43200,
+        1152,
+        288,
+        2736,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "dll_sha256": "92519aa4278f46a5c105f3021e4913f20d0e267aa761aff548a665aa98443160",
+  "cases": {
+    "scalar_truth": 34400,
+    "private": 234880,
+    "display": 21888,
+    "control": 44608
+  },
+  "total_cases": 335776,
+  "fixed200_and_original_counters_verified": true,
+  "global_scalar_truth_and_equality_unchanged": true,
+  "retained_private_display_control_components": true,
+  "initial_retained_registry_baseline_pin_repaired_before_timing": true,
+  "candidate_source_and_dll_unchanged": true,
+  "no_speed_claim": true
+}

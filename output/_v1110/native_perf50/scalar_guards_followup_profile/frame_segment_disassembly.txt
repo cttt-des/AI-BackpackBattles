@@ -1,0 +1,259 @@
+
+libgdcore.dll:     file format pei-x86-64
+
+
+Disassembly of section .text:
+
+00000003371c1c60 <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)>:
+   3371c1c60:	41 57                	push   %r15
+   3371c1c62:	41 56                	push   %r14
+   3371c1c64:	41 55                	push   %r13
+   3371c1c66:	41 54                	push   %r12
+   3371c1c68:	55                   	push   %rbp
+   3371c1c69:	57                   	push   %rdi
+   3371c1c6a:	56                   	push   %rsi
+   3371c1c6b:	53                   	push   %rbx
+   3371c1c6c:	48 81 ec 68 01 00 00 	sub    $0x168,%rsp
+   3371c1c73:	c5 e9 ef d2          	vpxor  %xmm2,%xmm2,%xmm2
+   3371c1c77:	48 8b 41 08          	mov    0x8(%rcx),%rax
+   3371c1c7b:	48 8b 59 28          	mov    0x28(%rcx),%rbx
+   3371c1c7f:	49 89 ca             	mov    %rcx,%r10
+   3371c1c82:	49 89 d3             	mov    %rdx,%r11
+   3371c1c85:	4c 89 c6             	mov    %r8,%rsi
+   3371c1c88:	48 85 c0             	test   %rax,%rax
+   3371c1c8b:	0f 84 26 13 00 00    	je     3371c2fb7 <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0x1357>
+   3371c1c91:	0f b6 90 d0 00 00 00 	movzbl 0xd0(%rax),%edx
+   3371c1c98:	0f b6 b8 d2 00 00 00 	movzbl 0xd2(%rax),%edi
+   3371c1c9f:	83 f2 01             	xor    $0x1,%edx
+   3371c1ca2:	48 85 db             	test   %rbx,%rbx
+   3371c1ca5:	0f 94 c1             	sete   %cl
+   3371c1ca8:	08 ca                	or     %cl,%dl
+   3371c1caa:	41 89 d6             	mov    %edx,%r14d
+   3371c1cad:	0f 85 c2 12 00 00    	jne    3371c2f75 <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0x1315>
+   3371c1cb3:	80 b8 d1 00 00 00 00 	cmpb   $0x0,0xd1(%rax)
+   3371c1cba:	0f 85 80 12 00 00    	jne    3371c2f40 <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0x12e0>
+   3371c1cc0:	48 83 3b 00          	cmpq   $0x0,(%rbx)
+   3371c1cc4:	0f 84 ab 12 00 00    	je     3371c2f75 <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0x1315>
+   3371c1cca:	40 84 ff             	test   %dil,%dil
+   3371c1ccd:	0f 85 ef 12 00 00    	jne    3371c2fc2 <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0x1362>
+   3371c1cd3:	41 80 ba b0 07 00 00 	cmpb   $0x1,0x7b0(%r10)
+   3371c1cda:	01 
+   3371c1cdb:	0f 85 dc 12 00 00    	jne    3371c2fbd <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0x135d>
+   3371c1ce1:	41 80 ba b8 07 00 00 	cmpb   $0x0,0x7b8(%r10)
+   3371c1ce8:	00 
+   3371c1ce9:	0f 84 24 02 00 00    	je     3371c1f13 <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0x2b3>
+   3371c1cef:	41 0f b6 82 30 05 00 	movzbl 0x530(%r10),%eax
+   3371c1cf6:	00 
+   3371c1cf7:	49 8b 6a 50          	mov    0x50(%r10),%rbp
+   3371c1cfb:	3c 02                	cmp    $0x2,%al
+   3371c1cfd:	0f 85 bc 07 00 00    	jne    3371c24bf <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0x85f>
+   3371c1d03:	49 8b 82 38 05 00 00 	mov    0x538(%r10),%rax
+   3371c1d0a:	48 85 c0             	test   %rax,%rax
+   3371c1d0d:	0f 89 c4 07 00 00    	jns    3371c24d7 <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0x877>
+   3371c1d13:	49 8b 5a 08          	mov    0x8(%r10),%rbx
+   3371c1d17:	c5 f8 28 da          	vmovaps %xmm2,%xmm3
+   3371c1d1b:	48 85 db             	test   %rbx,%rbx
+   3371c1d1e:	0f 84 4c d3 ff ff    	je     3371bf070 <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&) [clone .cold]+0x54>
+   3371c1d24:	80 bb d0 00 00 00 00 	cmpb   $0x0,0xd0(%rbx)
+   3371c1d2b:	0f 84 cf 12 00 00    	je     3371c3000 <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0x13a0>
+   3371c1d31:	4d 8b 62 28          	mov    0x28(%r10),%r12
+   3371c1d35:	4d 85 e4             	test   %r12,%r12
+   3371c1d38:	0f 84 bb 07 00 00    	je     3371c24f9 <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0x899>
+   3371c1d3e:	80 bb d1 00 00 00 00 	cmpb   $0x0,0xd1(%rbx)
+   3371c1d45:	0f 85 68 08 00 00    	jne    3371c25b3 <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0x953>
+   3371c1d4b:	49 83 3c 24 00       	cmpq   $0x0,(%r12)
+   3371c1d50:	0f b6 83 d2 00 00 00 	movzbl 0xd2(%rbx),%eax
+   3371c1d57:	0f 84 9c 07 00 00    	je     3371c24f9 <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0x899>
+   3371c1d5d:	84 c0                	test   %al,%al
+   3371c1d5f:	0f 85 87 0f 00 00    	jne    3371c2cec <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0x108c>
+   3371c1d65:	49 8b 44 24 10       	mov    0x10(%r12),%rax
+   3371c1d6a:	a8 01                	test   $0x1,%al
+   3371c1d6c:	0f 85 2e 06 00 00    	jne    3371c23a0 <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0x740>
+   3371c1d72:	41 80 7a 60 09       	cmpb   $0x9,0x60(%r10)
+   3371c1d77:	49 8b 5a 68          	mov    0x68(%r10),%rbx
+   3371c1d7b:	0f 85 8a 06 00 00    	jne    3371c240b <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0x7ab>
+   3371c1d81:	48 85 db             	test   %rbx,%rbx
+   3371c1d84:	0f 84 81 06 00 00    	je     3371c240b <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0x7ab>
+   3371c1d8a:	49 39 1b             	cmp    %rbx,(%r11)
+   3371c1d8d:	0f 85 bd 02 00 00    	jne    3371c2050 <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0x3f0>
+   3371c1d93:	40 84 ff             	test   %dil,%dil
+   3371c1d96:	0f 85 80 0d 00 00    	jne    3371c2b1c <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0xebc>
+   3371c1d9c:	41 80 7b 10 00       	cmpb   $0x0,0x10(%r11)
+   3371c1da1:	0f 85 6c 01 00 00    	jne    3371c1f13 <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0x2b3>
+   3371c1da7:	49 8b 82 20 03 00 00 	mov    0x320(%r10),%rax
+   3371c1dae:	48 85 c0             	test   %rax,%rax
+   3371c1db1:	0f 84 37 10 00 00    	je     3371c2dee <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0x118e>
+   3371c1db7:	83 78 08 03          	cmpl   $0x3,0x8(%rax)
+   3371c1dbb:	0f 86 2d 10 00 00    	jbe    3371c2dee <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0x118e>
+   3371c1dc1:	48 8b 00             	mov    (%rax),%rax
+   3371c1dc4:	c5 fa 6f 68 48       	vmovdqu 0x48(%rax),%xmm5
+   3371c1dc9:	44 0f b6 60 48       	movzbl 0x48(%rax),%r12d
+   3371c1dce:	48 8b 40 58          	mov    0x58(%rax),%rax
+   3371c1dd2:	c5 f9 7f ac 24 b0 00 	vmovdqa %xmm5,0xb0(%rsp)
+   3371c1dd9:	00 00 
+   3371c1ddb:	48 89 84 24 c0 00 00 	mov    %rax,0xc0(%rsp)
+   3371c1de2:	00 
+   3371c1de3:	45 84 e4             	test   %r12b,%r12b
+   3371c1de6:	0f 85 99 0f 00 00    	jne    3371c2d85 <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0x1125>
+   3371c1dec:	41 0f b6 92 90 00 00 	movzbl 0x90(%r10),%edx
+   3371c1df3:	00 
+   3371c1df4:	80 fa 08             	cmp    $0x8,%dl
+   3371c1df7:	77 25                	ja     3371c1e1e <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0x1be>
+   3371c1df9:	48 8d 0d 28 e0 29 00 	lea    0x29e028(%rip),%rcx        # 33745fe28 <.rdata+0x28>
+   3371c1e00:	0f b6 c2             	movzbl %dl,%eax
+   3371c1e03:	48 63 04 81          	movslq (%rcx,%rax,4),%rax
+   3371c1e07:	48 01 c8             	add    %rcx,%rax
+   3371c1e0a:	ff e0                	jmp    *%rax
+   3371c1e0c:	0f 1f 40 00          	nopl   0x0(%rax)
+   3371c1e10:	41 80 ba 98 00 00 00 	cmpb   $0x0,0x98(%r10)
+   3371c1e17:	00 
+   3371c1e18:	0f 84 b0 04 00 00    	je     3371c22ce <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0x66e>
+   3371c1e1e:	41 80 7a 60 00       	cmpb   $0x0,0x60(%r10)
+   3371c1e23:	0f 84 db 03 00 00    	je     3371c2204 <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0x5a4>
+   3371c1e29:	48 85 db             	test   %rbx,%rbx
+   3371c1e2c:	0f 84 0b 10 00 00    	je     3371c2e3d <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0x11dd>
+   3371c1e32:	41 0f b6 82 d8 00 00 	movzbl 0xd8(%r10),%eax
+   3371c1e39:	00 
+   3371c1e3a:	3c 03                	cmp    $0x3,%al
+   3371c1e3c:	0f 85 0b 01 00 00    	jne    3371c1f4d <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0x2ed>
+   3371c1e42:	c4 c1 7b 10 8a e0 00 	vmovsd 0xe0(%r10),%xmm1
+   3371c1e49:	00 00 
+   3371c1e4b:	c5 fb 10 05 cd e0 29 	vmovsd 0x29e0cd(%rip),%xmm0        # 33745ff20 <.rdata+0x120>
+   3371c1e52:	00 
+   3371c1e53:	49 3b 5b 08          	cmp    0x8(%r11),%rbx
+   3371c1e57:	0f 85 13 01 00 00    	jne    3371c1f70 <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0x310>
+   3371c1e5d:	40 84 ff             	test   %dil,%dil
+   3371c1e60:	0f 85 fa 0c 00 00    	jne    3371c2b60 <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0xf00>
+   3371c1e66:	c4 c1 73 58 4b 18    	vaddsd 0x18(%r11),%xmm1,%xmm1
+   3371c1e6c:	c5 d9 57 e4          	vxorpd %xmm4,%xmm4,%xmm4
+   3371c1e70:	c5 f9 2f cc          	vcomisd %xmm4,%xmm1
+   3371c1e74:	0f 82 a6 01 00 00    	jb     3371c2020 <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0x3c0>
+   3371c1e7a:	c5 f3 58 c8          	vaddsd %xmm0,%xmm1,%xmm1
+   3371c1e7e:	0f b6 06             	movzbl (%rsi),%eax
+   3371c1e81:	c5 fb 10 05 c7 e0 29 	vmovsd 0x29e0c7(%rip),%xmm0        # 33745ff50 <.rdata+0x150>
+   3371c1e88:	00 
+   3371c1e89:	c5 fb 5d c1          	vminsd %xmm1,%xmm0,%xmm0
+   3371c1e8d:	3c 03                	cmp    $0x3,%al
+   3371c1e8f:	0f 85 0e 0c 00 00    	jne    3371c2aa3 <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0xe43>
+   3371c1e95:	c5 fb 10 66 08       	vmovsd 0x8(%rsi),%xmm4
+   3371c1e9a:	41 0f b6 82 a0 04 00 	movzbl 0x4a0(%r10),%eax
+   3371c1ea1:	00 
+   3371c1ea2:	3c 03                	cmp    $0x3,%al
+   3371c1ea4:	0f 85 06 0e 00 00    	jne    3371c2cb0 <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0x1050>
+   3371c1eaa:	c5 fb 59 c4          	vmulsd %xmm4,%xmm0,%xmm0
+   3371c1eae:	c4 c1 7b 10 8a a8 04 	vmovsd 0x4a8(%r10),%xmm1
+   3371c1eb5:	00 00 
+   3371c1eb7:	c5 f3 5c c8          	vsubsd %xmm0,%xmm1,%xmm1
+   3371c1ebb:	41 c6 82 a0 04 00 00 	movb   $0x3,0x4a0(%r10)
+   3371c1ec2:	03 
+   3371c1ec3:	49 8b 5a 08          	mov    0x8(%r10),%rbx
+   3371c1ec7:	c4 c1 7b 11 8a a8 04 	vmovsd %xmm1,0x4a8(%r10)
+   3371c1ece:	00 00 
+   3371c1ed0:	80 bd 30 03 00 00 08 	cmpb   $0x8,0x330(%rbp)
+   3371c1ed7:	0f 87 ce 01 00 00    	ja     3371c20ab <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0x44b>
+   3371c1edd:	0f b6 85 30 03 00 00 	movzbl 0x330(%rbp),%eax
+   3371c1ee4:	48 8d 15 61 df 29 00 	lea    0x29df61(%rip),%rdx        # 33745fe4c <.rdata+0x4c>
+   3371c1eeb:	48 63 04 82          	movslq (%rdx,%rax,4),%rax
+   3371c1eef:	48 01 d0             	add    %rdx,%rax
+   3371c1ef2:	ff e0                	jmp    *%rax
+   3371c1ef4:	0f 1f 40 00          	nopl   0x0(%rax)
+   3371c1ef8:	80 bd 38 03 00 00 00 	cmpb   $0x0,0x338(%rbp)
+   3371c1eff:	0f 85 a6 01 00 00    	jne    3371c20ab <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0x44b>
+   3371c1f05:	c5 f9 57 c0          	vxorpd %xmm0,%xmm0,%xmm0
+   3371c1f09:	c5 f9 2f c1          	vcomisd %xmm1,%xmm0
+   3371c1f0d:	0f 83 17 05 00 00    	jae    3371c242a <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0x7ca>
+   3371c1f13:	48 81 c4 68 01 00 00 	add    $0x168,%rsp
+   3371c1f1a:	5b                   	pop    %rbx
+   3371c1f1b:	5e                   	pop    %rsi
+   3371c1f1c:	5f                   	pop    %rdi
+   3371c1f1d:	5d                   	pop    %rbp
+   3371c1f1e:	41 5c                	pop    %r12
+   3371c1f20:	41 5d                	pop    %r13
+   3371c1f22:	41 5e                	pop    %r14
+   3371c1f24:	41 5f                	pop    %r15
+   3371c1f26:	c3                   	ret
+   3371c1f27:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
+   3371c1f2e:	00 00 
+   3371c1f30:	0f b6 06             	movzbl (%rsi),%eax
+   3371c1f33:	3c 03                	cmp    $0x3,%al
+   3371c1f35:	0f 85 5d 0b 00 00    	jne    3371c2a98 <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0xe38>
+   3371c1f3b:	c5 fb 10 66 08       	vmovsd 0x8(%rsi),%xmm4
+   3371c1f40:	c5 fb 10 05 d8 df 29 	vmovsd 0x29dfd8(%rip),%xmm0        # 33745ff20 <.rdata+0x120>
+   3371c1f47:	00 
+   3371c1f48:	e9 4d ff ff ff       	jmp    3371c1e9a <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0x23a>
+   3371c1f4d:	0f 86 da 0d 00 00    	jbe    3371c2d2d <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0x10cd>
+   3371c1f53:	c5 fb 10 05 c5 df 29 	vmovsd 0x29dfc5(%rip),%xmm0        # 33745ff20 <.rdata+0x120>
+   3371c1f5a:	00 
+   3371c1f5b:	c5 f1 57 c9          	vxorpd %xmm1,%xmm1,%xmm1
+   3371c1f5f:	49 3b 5b 08          	cmp    0x8(%r11),%rbx
+   3371c1f63:	0f 84 f4 fe ff ff    	je     3371c1e5d <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0x1fd>
+   3371c1f69:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
+   3371c1f70:	48 8b 93 98 00 00 00 	mov    0x98(%rbx),%rdx
+   3371c1f77:	48 8b 02             	mov    (%rdx),%rax
+   3371c1f7a:	8b 4a 08             	mov    0x8(%rdx),%ecx
+   3371c1f7d:	49 89 c7             	mov    %rax,%r15
+   3371c1f80:	41 89 cd             	mov    %ecx,%r13d
+   3371c1f83:	83 f9 07             	cmp    $0x7,%ecx
+   3371c1f86:	0f 86 41 09 00 00    	jbe    3371c28cd <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0xc6d>
+   3371c1f8c:	48 83 b8 90 01 00 00 	cmpq   $0x6b,0x190(%rax)
+   3371c1f93:	6b 
+   3371c1f94:	0f 85 d5 07 00 00    	jne    3371c276f <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0xb0f>
+   3371c1f9a:	48 8b 80 a8 01 00 00 	mov    0x1a8(%rax),%rax
+   3371c1fa1:	0f b6 48 78          	movzbl 0x78(%rax),%ecx
+   3371c1fa5:	80 f9 02             	cmp    $0x2,%cl
+   3371c1fa8:	0f 85 07 0a 00 00    	jne    3371c29b5 <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0xd55>
+   3371c1fae:	48 8b 80 80 00 00 00 	mov    0x80(%rax),%rax
+   3371c1fb5:	41 83 fd 0a          	cmp    $0xa,%r13d
+   3371c1fb9:	0f 86 60 08 00 00    	jbe    3371c281f <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0xbbf>
+   3371c1fbf:	49 83 bf 38 02 00 00 	cmpq   $0x6e,0x238(%r15)
+   3371c1fc6:	6e 
+   3371c1fc7:	0f 85 52 08 00 00    	jne    3371c281f <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0xbbf>
+   3371c1fcd:	49 8b 97 50 02 00 00 	mov    0x250(%r15),%rdx
+   3371c1fd4:	0f b6 4a 78          	movzbl 0x78(%rdx),%ecx
+   3371c1fd8:	80 f9 02             	cmp    $0x2,%cl
+   3371c1fdb:	0f 85 6a 0a 00 00    	jne    3371c2a4b <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0xdeb>
+   3371c1fe1:	48 2b 82 80 00 00 00 	sub    0x80(%rdx),%rax
+   3371c1fe8:	c4 e1 e3 2a e0       	vcvtsi2sd %rax,%xmm3,%xmm4
+   3371c1fed:	c5 db 59 25 53 df 29 	vmulsd 0x29df53(%rip),%xmm4,%xmm4        # 33745ff48 <.rdata+0x148>
+   3371c1ff4:	00 
+   3371c1ff5:	49 89 5b 08          	mov    %rbx,0x8(%r11)
+   3371c1ff9:	c4 c1 7b 11 63 18    	vmovsd %xmm4,0x18(%r11)
+   3371c1fff:	40 84 ff             	test   %dil,%dil
+   3371c2002:	0f 85 e0 09 00 00    	jne    3371c29e8 <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0xd88>
+   3371c2008:	c5 f3 58 cc          	vaddsd %xmm4,%xmm1,%xmm1
+   3371c200c:	c5 d9 57 e4          	vxorpd %xmm4,%xmm4,%xmm4
+   3371c2010:	c5 f9 2f cc          	vcomisd %xmm4,%xmm1
+   3371c2014:	0f 83 60 fe ff ff    	jae    3371c1e7a <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0x21a>
+   3371c201a:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+   3371c2020:	c5 fb 5c c9          	vsubsd %xmm1,%xmm0,%xmm1
+   3371c2024:	0f b6 06             	movzbl (%rsi),%eax
+   3371c2027:	c5 fb 5e c1          	vdivsd %xmm1,%xmm0,%xmm0
+   3371c202b:	c5 fb 10 0d 0d df 29 	vmovsd 0x29df0d(%rip),%xmm1        # 33745ff40 <.rdata+0x140>
+   3371c2032:	00 
+   3371c2033:	c5 f9 2f c8          	vcomisd %xmm0,%xmm1
+   3371c2037:	0f 87 bb 0a 00 00    	ja     3371c2af8 <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0xe98>
+   3371c203d:	3c 03                	cmp    $0x3,%al
+   3371c203f:	0f 84 50 fe ff ff    	je     3371c1e95 <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0x235>
+   3371c2045:	e9 59 0a 00 00       	jmp    3371c2aa3 <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0xe43>
+   3371c204a:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+   3371c2050:	0f b6 83 78 03 00 00 	movzbl 0x378(%rbx),%eax
+   3371c2057:	3c 03                	cmp    $0x3,%al
+   3371c2059:	0f 85 b3 0b 00 00    	jne    3371c2c12 <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0xfb2>
+   3371c205f:	c5 fb 10 8b 80 03 00 	vmovsd 0x380(%rbx),%xmm1
+   3371c2066:	00 
+   3371c2067:	c5 f9 57 c0          	vxorpd %xmm0,%xmm0,%xmm0
+   3371c206b:	49 89 1b             	mov    %rbx,(%r11)
+   3371c206e:	c5 f9 2f c8          	vcomisd %xmm0,%xmm1
+   3371c2072:	41 0f 97 c4          	seta   %r12b
+   3371c2076:	45 88 63 10          	mov    %r12b,0x10(%r11)
+   3371c207a:	40 84 ff             	test   %dil,%dil
+   3371c207d:	0f 85 50 0b 00 00    	jne    3371c2bd3 <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0xf73>
+   3371c2083:	45 84 e4             	test   %r12b,%r12b
+   3371c2086:	0f 84 1b fd ff ff    	je     3371c1da7 <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0x147>
+   3371c208c:	e9 82 fe ff ff       	jmp    3371c1f13 <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0x2b3>
+   3371c2091:	48 8b 85 38 03 00 00 	mov    0x338(%rbp),%rax
+   3371c2098:	48 85 c0             	test   %rax,%rax
+   3371c209b:	0f 84 64 fe ff ff    	je     3371c1f05 <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0x2a5>
+   3371c20a1:	83 78 08 00          	cmpl   $0x0,0x8(%rax)
+   3371c20a5:	0f 84 5a fe ff ff    	je     3371c1f05 <gd::native_frame_segment_tick(Gd__gd_core__CoreItem*, gd::NativeFrameSegmentSnapshot&, gd::GdVal const&)+0x2a5>
+   3371c20ab:	41                   	rex.B

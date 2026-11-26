@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\frame_value_prototype\control_word_checks\verify_targeted_retained.py", line 67, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\frame_value_prototype\control_word_checks\verify_targeted_retained.py", line 59, in main
+    registry_verify(SOURCE,DLL,WORK/'closed_registry_tests.json')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\frame_value_prototype\control_word_checks\verify_closed_registry_current.py", line 10, in verify
+    assert not out.exists() and sha(BASE/'libgdcore.dll')==EXPECTED
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

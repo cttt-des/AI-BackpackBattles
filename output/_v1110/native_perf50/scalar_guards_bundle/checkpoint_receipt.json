@@ -1,0 +1,22 @@
+{
+  "local_commit": "8f7022b1e28093d6f48d1c1250a92cab8789bad3",
+  "prepared_backup_commit": "8f7022b1e28093d6f48d1c1250a92cab8789bad3",
+  "parent_remote_verified_commit": "4bc0f346988f01e046b6ac81ec1630223d0683b5",
+  "remote_existing_ref": "refs/heads/codex/native-perf50-verified",
+  "no_new_branches": true,
+  "no_local_refs_updated": true,
+  "own_files_saved": 6137,
+  "production_source_files_verified": 708,
+  "candidate_installed": true,
+  "production_dll_sha256": "63d8966c95c629855fc336a748cbfcc20860d5e75d7c1700506022f347ac10c5",
+  "user_existing_changes_not_staged": true,
+  "workspace_head_and_index_unchanged": true,
+  "workspace_state": {
+    "head": "0dcd3e5c8bc4beccc98b3dfded633b852f5d725d",
+    "branch": "refs/heads/master",
+    "index_sha256": "a7c2dafec612a9f44571044bbf1911c94034a211146a68bbf77570c6aa0c1374"
+  },
+  "overlapping_documents_from_previous_backup_plus_own_note": true,
+  "remote_upload_verified": true,
+  "remote_verified_commit": "8f7022b1e28093d6f48d1c1250a92cab8789bad3"
+}

@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "dll_sha256": "0a6d24f459eb1011a0bfcc1bc5c4188c1ca67add410b9caf0e04c8f5d30d44d4",
+  "dictionary_cases": 1792,
+  "query_cases": 23520,
+  "scalar_cases": 132576,
+  "actual_optimized_dll_independent_oracles": true,
+  "fast_dictionary_queries": 652320,
+  "forced_spatial_fast_queries": 3248,
+  "layouts": {
+    "GdDict": 32,
+    "GdVal": 24,
+    "GdArr": 32,
+    "BattleCtx": 328
+  },
+  "receipt_sha256": {
+    "integer_grid_dictionary_tests.json": "63b121414fcaf18c645ca94d34af22287dfbde8407dfaeb3d2511f63aa68bf39",
+    "integer_grid_query_tests.json": "6a9e88563b47de571ab53421cf698bfc31c3b751246379e0360ca5e7f2170eec"
+  },
+  "scalar_receipt_sha256": "6fdacc523243d7475f7bd3e71df91552a08bc8b0e79051953897e062439ae5b9"
+}

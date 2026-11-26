@@ -389,7 +389,7 @@ inline void native_frame_segment_tick(Gd__gd_core__CoreItem* item,
     }
     native_frame_segment_hit_if(collect,0);
 
-    if (!([&] { const auto& active = item->f__cooldown_active; if (active.kind == gd::GdVal::Kind::Bool) [[likely]] return active.b; return gd::gd_truth(active); }())) return;
+    if (!([&] { const auto& active = item->f__cooldown_active; if (active.kind == gd::GdVal::Kind::Bool) [[likely]] return active.b; return gd::native_scalar_truth(active); }())) return;
     auto& context = *static_cast<Gd__gd_core__CoreContext*>(item->f_ctx.obj);
     const auto blocked = item->f__cooldown_blocked_epoch.as_int();
     if (blocked >= 0 && blocked == context.f_timer_pass_epoch.as_int()) return;
@@ -402,12 +402,14 @@ inline void native_frame_segment_tick(Gd__gd_core__CoreItem* item,
     if (character && snapshot.stunned(character,collect)) return;
 
     const auto* display = item->f_statDisplayOverrides.arr;
-    const auto override = display && display->len > 3 ? display->data[3] : gd::GdVal::null();
+    // Null覆盖不读取其无用载荷；非Null仍按原时点复制，保留回调前快照。
+    const auto override = display && display->len > 3 && !display->data[3].is_null()
+        ? display->data[3] : gd::GdVal::null();
     double speed = 1.0;
-    const bool uses_override = !override.is_null() && gd::gd_truth(override);
+    const bool uses_override = !override.is_null() && gd::native_scalar_truth(override);
     if (uses_override) {
         speed = override.as_float();
-    } else if (gd::gd_truth(item->f_placed) && !item->f_character_.is_null()) {
+    } else if (gd::native_scalar_truth(item->f_placed) && !item->f_character_.is_null()) {
         if (character) {
             const auto* buffs = character->f_buffs.dict;
             const auto stacks = [&](int64_t type) {
@@ -431,7 +433,7 @@ inline void native_frame_segment_tick(Gd__gd_core__CoreItem* item,
     const auto left = uses_override && !override.is_num() ? 0.0 : item->f_triggerTime.as_float() - delta * speed;
     item->f_triggerTime = gd::GdVal::from_float(left);
     auto& gd_ctx = *item->rt_ctx_;
-    if (gd::gd_truth(context.f_show_cooldown_progress)) {
+    if (gd::native_scalar_truth(context.f_show_cooldown_progress)) {
         const gd::GdVal progress[] = {gd::GdVal::from_obj(item), gd::GdVal::from_float(1.0 - left / item->f_iterationCooldown.as_float())};
         snapshot.clear(); native_frame_segment_hit_if(collect,7);
         gd::native_inline_call(gd_ctx, context.f_hooks, SYM_GEN_showCooldown_794, progress, 2);

@@ -1,0 +1,5 @@
+{
+  "metadata_only": true,
+  "no_candidate_source_dll_profile_or_measurement_changes": true,
+  "reason": "Remove inherited earlier-display layout-change label; all674 headers and layout values match current63D"
+}
