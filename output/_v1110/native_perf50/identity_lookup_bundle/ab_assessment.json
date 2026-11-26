@@ -1,0 +1,107 @@
+{
+  "baseline_dll_sha256": "5bd31fdc2ab2e4a556c63987de62b9541d5793752d67662cc4034a36bdd69ecc",
+  "candidate_dll_sha256": "1bd912cb27246bb0158a6c248cbe85c1cca3e8fb16342de1710b28dde8318d92",
+  "status": "inconclusive_retained",
+  "individual_components_not_rejected": true,
+  "metrics": {
+    "main_thread_cpu_s": {
+      "paired_median_time_reduction_pct": -2.8636152416356864,
+      "sum_time_reduction_pct": -6.984520123839011,
+      "candidate_wins": 10,
+      "ties": 0,
+      "pairs": 24
+    },
+    "wall_s": {
+      "paired_median_time_reduction_pct": -2.8196321890297527,
+      "sum_time_reduction_pct": -7.780592496433303,
+      "candidate_wins": 10,
+      "ties": 0,
+      "pairs": 24
+    }
+  },
+  "group_medians": [
+    {
+      "main_thread_cpu_s": -11.04032384285938,
+      "wall_s": -11.630820810189046
+    },
+    {
+      "main_thread_cpu_s": 1.5355477855477861,
+      "wall_s": 1.8835026612522343
+    },
+    {
+      "main_thread_cpu_s": -2.7040525114155223,
+      "wall_s": -2.7272914179696794
+    }
+  ],
+  "leave_one_group_out_sensitivity": [
+    {
+      "main_thread_cpu_s": {
+        "paired_median_time_reduction_pct": -0.952158572021583,
+        "sum_time_reduction_pct": -0.1485332343111878,
+        "candidate_wins": 8,
+        "ties": 0,
+        "pairs": 16
+      },
+      "wall_s": {
+        "paired_median_time_reduction_pct": -0.9882333499120266,
+        "sum_time_reduction_pct": -0.04439065313457391,
+        "candidate_wins": 8,
+        "ties": 0,
+        "pairs": 16
+      }
+    },
+    {
+      "main_thread_cpu_s": {
+        "paired_median_time_reduction_pct": -5.607520649181286,
+        "sum_time_reduction_pct": -9.108126721763089,
+        "candidate_wins": 5,
+        "ties": 0,
+        "pairs": 16
+      },
+      "wall_s": {
+        "paired_median_time_reduction_pct": -5.6608577395046655,
+        "sum_time_reduction_pct": -10.897014827016772,
+        "candidate_wins": 5,
+        "ties": 0,
+        "pairs": 16
+      }
+    },
+    {
+      "main_thread_cpu_s": {
+        "paired_median_time_reduction_pct": -2.8787851445483126,
+        "sum_time_reduction_pct": -11.924939467312345,
+        "candidate_wins": 7,
+        "ties": 0,
+        "pairs": 16
+      },
+      "wall_s": {
+        "paired_median_time_reduction_pct": -2.8196321890297527,
+        "sum_time_reduction_pct": -12.522217472515628,
+        "candidate_wins": 7,
+        "ties": 0,
+        "pairs": 16
+      }
+    }
+  ],
+  "background_load_range_pct": [
+    7.889958937576839,
+    66.03116844513225
+  ],
+  "on_ac_all": true,
+  "reports": [
+    {
+      "path": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_perf50\\identity_lookup_bundle\\ab_1.json",
+      "sha256": "7aa49ff0d683875c73e9d87220817a0e2c023cd33ddf3d21bcead37f0722f36e"
+    },
+    {
+      "path": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_perf50\\identity_lookup_bundle\\ab_2.json",
+      "sha256": "4f55cc0541e459367dd895c1a527931341e7bb4f4ec6442cbf0494789f3b60e4"
+    },
+    {
+      "path": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_perf50\\identity_lookup_bundle\\ab_3.json",
+      "sha256": "5d0b4847232f1805cad87388a9775179ee3a5e68f323a38ae2c0d6b062e42983"
+    }
+  ],
+  "semantics_and_raw24_required_before_deployment": true,
+  "interpretation": "This measures a bundle. It does not prove each component helps or that old percentage estimates add together."
+}

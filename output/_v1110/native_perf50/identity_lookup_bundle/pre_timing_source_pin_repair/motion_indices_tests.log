@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\identity_lookup_bundle\verify_motion_indices.py", line 52, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\native_perf50\identity_lookup_bundle\verify_motion_indices.py", line 23, in main
+    else:assert sha(path)==digest,name
+                ^^^^^^^^^^^^^^^^^
+AssertionError: native_scalar_equal.hpp

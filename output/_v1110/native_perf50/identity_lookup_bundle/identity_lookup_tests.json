@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "cases": 396400,
+  "value_shapes": 112,
+  "dll_sha256": "1bd912cb27246bb0158a6c248cbe85c1cca3e8fb16342de1710b28dde8318d92",
+  "baseline_dll_sha256": "5bd31fdc2ab2e4a556c63987de62b9541d5793752d67662cc4034a36bdd69ecc",
+  "pair_cases": 200704,
+  "array_cases": 145152,
+  "alias_cases": 2144,
+  "dictionary_cases": 48384,
+  "actual_original_binary_gd_eq_reference": true,
+  "exact_value_flags_and_mxcsr_observations_compared": true,
+  "integer_grid_full_observations_equal_between_independent_dlls": true,
+  "readonly_input_bytes_and_container_layout_preserved": true,
+  "unknown_kinds_all_pointer_kinds_null_nan_denormal_large_int_mixed_numeric_and_nested_arrays": true,
+  "original_hash_gates_collision_buckets_grid_fallback_and_integer_wrap_boundaries": true,
+  "all16_fp_modes_and_no_callbacks": true,
+  "raw_sha256": {
+    "identity_lookup_baseline_cases.json": "982b732e125bbf8a194248e148c1c6235f5a1bc786588f6ab4ece3e1ce254567",
+    "identity_lookup_candidate_cases.json": "982b732e125bbf8a194248e148c1c6235f5a1bc786588f6ab4ece3e1ce254567"
+  },
+  "fixture_sha256": "b103525f5ed99868fa8b3b5bd95f9020ef8b57768fbfe4f850ac205127eef063",
+  "no_speed_claim": true
+}

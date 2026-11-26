@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "release_objects": 20,
+  "all_original_object_hashes_unchanged": true,
+  "dll_sha256": "1bd912cb27246bb0158a6c248cbe85c1cca3e8fb16342de1710b28dde8318d92",
+  "release_objects_manifest_sha256": "10bff93fe6836dedc62b830ffb3062d133d813395b36370c488a5430576e97e1",
+  "compiled_option_receipt_sha256": "69e06ae3aa94ec8b3cd8e875c6bb2183369d749c46a6bd5555ed506433802ea1"
+}

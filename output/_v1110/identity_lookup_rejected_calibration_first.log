@@ -1,0 +1,29 @@
+Warming controlled load for 30 seconds
+bundle.dll: 24 batches, median 182.89 replays/s, minimum 127.94; 2e74b45caa87
+{
+  "status": "inconclusive_retained",
+  "candidate_dll_sha256": "1bd912cb27246bb0158a6c248cbe85c1cca3e8fb16342de1710b28dde8318d92",
+  "not_deployed": true,
+  "no_more_same_source_groups": true,
+  "non_release_calibration": true,
+  "not_release_raw24": true,
+  "single_run_all_samples_retained": true,
+  "background_load_range_pct": [
+    9.476166849588955,
+    43.55552760648725
+  ],
+  "median_fights_per_second": 182.88620713184218,
+  "minimum_fights_per_second": 127.93978437188349,
+  "maximum_fights_per_second": 205.24809106324346,
+  "on_ac_all": true,
+  "fitted_fights_per_second_at20": 187.5741384288215,
+  "fit_validation": {
+    "median_absolute_relative_time_error": 0.023762831177827203,
+    "p90_absolute_relative_time_error": 0.05850896307944432,
+    "constant_median_absolute_relative_time_error": 0.13433471242591757
+  },
+  "empirical20_is_extrapolation": false,
+  "missing_reason": null,
+  "raw_sha256": "68122cb393eb57cba2a091a74923740491ac7f54270b50f6f3534a6b07117c1b",
+  "fit_exit_code": 0
+}

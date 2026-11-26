@@ -1,0 +1,10 @@
+Protocol process 12632 exit 1
+Protocol process 13724 exit 1
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\run_identity_lookup_formal.py", line 32, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\run_identity_lookup_formal.py", line 30, in main
+    assert build.returncode==qualify.returncode==0,'Inspect original logs; do not restart an observed timing run'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Inspect original logs; do not restart an observed timing run

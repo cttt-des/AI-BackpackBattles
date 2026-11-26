@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "all_remaining_prechecks_passed": true,
+  "first24_completed_once": true,
+  "dll_sha256": "1bd912cb27246bb0158a6c248cbe85c1cca3e8fb16342de1710b28dde8318d92",
+  "source_manifest_sha256": "146f2d0748b6b4f7ed402b3af1c371a3771a75b2e3eb2b29fdeca15449e9ae75",
+  "ab_assessment_sha256": "21c39ca6d104d02357f52bf45ab166db7de9ee85377a300fc0a6687721391ba5",
+  "repair_review_sha256": "46eb982df338f917b80a99d011d168771f85b1dfd905a3ad2a9c1cf35cf8ff89"
+}

@@ -1,0 +1,9 @@
+{
+  "dll_sha256": "1bd912cb27246bb0158a6c248cbe85c1cca3e8fb16342de1710b28dde8318d92",
+  "source_manifest_sha256": "146f2d0748b6b4f7ed402b3af1c371a3771a75b2e3eb2b29fdeca15449e9ae75",
+  "fresh_profile_source_sha256": "3d62ddde7e06b851b59271560bbadf3cede8f91853946f94fb297259e3f7ab37",
+  "frozen_pgo_manifest_sha256": "16a6d35a95b0ac737103fbadbb36bd4d6bc8142957258fc8b43382720817c1bc",
+  "original_processes_terminal": true,
+  "no_formal_AB_samples": true,
+  "source_or_dll_or_profiles_changed": false
+}

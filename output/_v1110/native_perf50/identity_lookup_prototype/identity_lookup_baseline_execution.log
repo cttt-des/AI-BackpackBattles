@@ -1,0 +1,1 @@
+Assertion failed: d->enable_integer_grid(ctx.arena), file C:\Users\Windows\AppData\Local\CodexNativeBuilds\identity-lookup-check-g1o7z_oy\baseline\test_native_identity_lookup.cpp, line 89

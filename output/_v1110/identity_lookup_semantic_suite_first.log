@@ -1,0 +1,16 @@
+Awaiting exact semantic build 12888
+Starting identity_lookup
+Traceback (most recent call last):
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\run_native_identity_lookup_semantics.py", line 36, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\run_native_identity_lookup_semantics.py", line 27, in main
+    print('Starting '+name,flush=True);rows[name]=func(source,dll,WORK/filename)
+                                                  ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\文件资料\学习\自动背包AI\output\_v1110\verify_native_identity_lookup.py", line 30, in verify
+    (out.parent/('identity_lookup_'+label+'_execution.log')).write_bytes(run.stderr);run.check_returncode()
+                                                                                     ~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Windows\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 509, in check_returncode
+    raise CalledProcessError(self.returncode, self.args, self.stdout,
+                             self.stderr)
+subprocess.CalledProcessError: Command '['C:\\Users\\Windows\\AppData\\Local\\CodexNativeBuilds\\identity-lookup-check-g1o7z_oy\\baseline\\check.exe']' returned non-zero exit status 3221226505.

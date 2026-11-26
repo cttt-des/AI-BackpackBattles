@@ -1,0 +1,6 @@
+{
+  "stage": "baseline fixture initialization",
+  "failure": "enable_integer_grid rejected negative stored coordinates outside original0..15 domain",
+  "candidate_dll_unchanged": "a80049ac694353cfd5b948d5a1da70960743cb9b670e6ea670561f09facfd0b9",
+  "formal_timing_started": false
+}

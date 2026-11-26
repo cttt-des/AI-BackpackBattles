@@ -1,0 +1,33 @@
+{
+  "baseline_dll_sha256": "5bd31fdc2ab2e4a556c63987de62b9541d5793752d67662cc4034a36bdd69ecc",
+  "verified_remote_backup": "49128c4b04ca42003211f81fff5c3d6b616376b2",
+  "implemented": false,
+  "new_branch_required": false,
+  "profile_sha256": "57466d6a4d189d353a24368f6ad1fe2dbbf9c519c50ae7636fa5313ba77abe35",
+  "proposed_combination": [
+    "Extend existing scalar equality helper with original same-kind identity cases",
+    "Use a conservative equality helper in original array search/count and dictionary find_index"
+  ],
+  "existing_scalar_equality_already_deployed": true,
+  "existing_container_read_and_mutator_paths_already_deployed": true,
+  "incremental_scope": [
+    "Obj/Dict/ClassRef/Enum/FuncRef/Rng pointer equality",
+    "Str/Arr identical pointers only; different pointers retain original comparison",
+    "Container Int/Bool/Null and identity comparisons; preserve hash gating and loop order"
+  ],
+  "floating_constraints": [
+    "Float lookup parameters retain original gd_eq path",
+    "Vec2/Color, mixed numeric and nested arrays retain original comparison semantics",
+    "Never shortcut Color equality using pointer identity; same pointer still compares floating components"
+  ],
+  "required_before_formal_build": [
+    "Exact inverse reproduces baseline sources",
+    "Actual baseline/candidate DLL differential checks including all rounding/DAZ/FTZ, flags, aliases and dictionary modes",
+    "Retain all463904 earlier semantic cases and all established regressions",
+    "Full20 instrumentation and fresh18PGO; original floating options"
+  ],
+  "unresolved_value_must_be_measured": true,
+  "no_individual_speed_claim": true,
+  "method_name_hint_alternative": "Deferred: symbol re-registration/concurrency and object observation require independent proof",
+  "user_load20_policy": "Estimate20 from measured load with existing empirical model; coverage/idle are not release gates"
+}

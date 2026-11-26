@@ -1,0 +1,33 @@
+{
+  "passed": true,
+  "cases": 44608,
+  "actual_dll_control_cases": 16384,
+  "portable_header_control_cases": 16384,
+  "retained_active_header_cases": 1856,
+  "retained_actual_targeted_cases": 2016,
+  "retained_closed_known_cases": 1056,
+  "retained_frame_cases": 6912,
+  "registry_boundary_checks": 4,
+  "dll_sha256": "a80049ac694353cfd5b948d5a1da70960743cb9b670e6ea670561f09facfd0b9",
+  "baseline_dll_sha256": "5bd31fdc2ab2e4a556c63987de62b9541d5793752d67662cc4034a36bdd69ecc",
+  "fixture_sha256": "4679f381d98924a991503a0c34fa402aff8bac9379972dd4db8541e7dd373ef8",
+  "projection": {
+    "passed": true,
+    "exact_inverse_matches_retained_source": true,
+    "changed_source_files": [
+      "native_scalar_equal.hpp",
+      "gd_rt.cpp"
+    ],
+    "all674_object_headers_and_all_layouts_unchanged": true,
+    "all_existing_scalar_frame_and_container_optimizations_retained": true,
+    "original_gd_eq_and_generic_call_method_bodies_unchanged": true,
+    "full20_formal_build_required": true
+  },
+  "actual_word_path_enabled": true,
+  "portable_namespace_isolated_and_no_dll_loaded": true,
+  "portable_helper_bytes_identical": true,
+  "independent_original_boolean_oracle": true,
+  "all_original_case_hashes_and_legacy_counters_retained": true,
+  "active_fixture_scope": "current inline index header linked against candidate; actual production integration fixed200/full2604",
+  "no_speed_claim": true
+}

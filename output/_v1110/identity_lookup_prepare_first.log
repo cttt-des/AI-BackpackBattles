@@ -1,0 +1,1 @@
+{"passed": true, "exact_inverse_matches_retained_source": true, "changed_source_files": ["native_scalar_equal.hpp", "gd_rt.cpp"], "all674_object_headers_and_all_layouts_unchanged": true, "all_existing_scalar_frame_and_container_optimizations_retained": true, "original_gd_eq_and_generic_call_method_bodies_unchanged": true, "full20_formal_build_required": true}

@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "strict_inverse_reproduces_original_dependency": true,
+  "original_motion5840_state_and_counter_hash_assertions_retained": true,
+  "all_remaining_checks_retained": true,
+  "dll_sha256": "1bd912cb27246bb0158a6c248cbe85c1cca3e8fb16342de1710b28dde8318d92",
+  "source_manifest_sha256": "146f2d0748b6b4f7ed402b3af1c371a3771a75b2e3eb2b29fdeca15449e9ae75",
+  "source_dll_objects_and_profiles_unchanged": true,
+  "no_formal_samples_observed_before_repair": true,
+  "repaired_verifier_sha256": "c90f933e9cf37e6bb83d3ff17d8c5ac3808692c948f8c8a5cd5a8e3d7b7d1053"
+}

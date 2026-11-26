@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "dll_sha256": "5bd31fdc2ab2e4a556c63987de62b9541d5793752d67662cc4034a36bdd69ecc",
+  "profile_sha256": "57466d6a4d189d353a24368f6ad1fe2dbbf9c519c50ae7636fa5313ba77abe35",
+  "samples": 2042,
+  "batches": 20,
+  "depth_limit": 64,
+  "samples_at_depth_limit": 1,
+  "same_fixed200_corpus": true,
+  "source_files_verified": 713,
+  "verified_remote_backup": "49128c4b04ca42003211f81fff5c3d6b616376b2",
+  "no_speed_claim": true,
+  "no_sample_fraction_as_gain_or_ceiling": true
+}

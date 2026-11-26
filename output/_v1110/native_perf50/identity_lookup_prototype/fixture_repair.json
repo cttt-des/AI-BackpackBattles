@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "only_fixture_coordinate_setup_repaired": true,
+  "original_grid_domain0_through15_retained": true,
+  "all_case_counts_and_negative_queries_retained": true,
+  "dll_sha256": "a80049ac694353cfd5b948d5a1da70960743cb9b670e6ea670561f09facfd0b9",
+  "fixture_sha256": "b103525f5ed99868fa8b3b5bd95f9020ef8b57768fbfe4f850ac205127eef063",
+  "no_source_or_dll_or_pgo_change": true,
+  "no_formal_timing_samples": true
+}
