@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "cases": 204288,
+  "operation_checks": 806160,
+  "dll_sha256": "d2064b3f17d8168cf87a2e9f46e9fb336ffe4aaf6581c27d93350b2c41477a57",
+  "baseline_dll_sha256": "5bd31fdc2ab2e4a556c63987de62b9541d5793752d67662cc4034a36bdd69ecc",
+  "all_original_and_candidate_pgo_observations_equal_including_float_nan_complex_and_overflow_fallbacks": true,
+  "four_rounding_and_four_daz_ftz_modes": true,
+  "no_additional_execution_or_timing": true,
+  "helper_receipt_sha256": "461b50ecb4f16cb3dae8f4eee2fcd65cfa1e10f7453002ec0448e3290412400e"
+}

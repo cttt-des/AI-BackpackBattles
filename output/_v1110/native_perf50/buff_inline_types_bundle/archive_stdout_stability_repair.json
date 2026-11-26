@@ -1,0 +1,11 @@
+{
+  "reason": "The parent finish driver appended its two terminal lines after the first backup tree was frozen",
+  "only_changed_owned_file": "output/_v1110/buff_inline_finish_first.log",
+  "old_prepared_commit": "137ca0cd2efdf4cf7b2e4c9f315bb6b35f5d7484",
+  "old_finish_sha256": "17b355050fd5ddb5f664ce82b59a8a797e8512228c051ab4c6a8aae5e2e3d35b",
+  "final_finish_sha256": "1bf4ce371b31f193bec1b68ba3a4e9b0c35cfa37c41ffe7bd5a49219750ca59f",
+  "native_dll_source_pgo_tests_and_measurements_unchanged": true,
+  "all_old_receipts_and_stdout_preserved": true,
+  "new_prepare_after_finish_driver_exit": true,
+  "no_extra_timing": true
+}

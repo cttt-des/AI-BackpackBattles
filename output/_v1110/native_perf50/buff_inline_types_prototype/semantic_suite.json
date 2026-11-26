@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "dll_sha256": "293b87e24986dd9dcf2dbecff5510fb7a0b0e993324478bd09ba22bb88aadfba",
+  "cases": {
+    "methods": 14112,
+    "builtins": 128128,
+    "scalar_truth": 34400,
+    "private": 234880,
+    "display": 21888,
+    "control": 44608,
+    "typed_helpers": 204288
+  },
+  "total_cases": 682304,
+  "fixed200_and_original_counters_verified": true,
+  "all_prior_optimizations_retained": true,
+  "no_layout_changes": true,
+  "no_speed_claim": true
+}

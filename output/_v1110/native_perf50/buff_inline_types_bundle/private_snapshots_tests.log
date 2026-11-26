@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "cases": 234880,
+  "actual_dll_cases": {
+    "identity_snapshots": 143360,
+    "private_buff_loops": 18432
+  },
+  "helper_cases": 73088,
+  "difference_counts": {
+    "identity_snapshots": 0,
+    "private_buff_loops": 0
+  },
+  "first_differences": {
+    "identity_snapshots": [],
+    "private_buff_loops": []
+  },
+  "baseline_dll_sha256": "5bd31fdc2ab2e4a556c63987de62b9541d5793752d67662cc4034a36bdd69ecc",
+  "dll_sha256": "d2064b3f17d8168cf87a2e9f46e9fb336ffe4aaf6581c27d93350b2c41477a57",
+  "raw_cases_sha256": {
+    "baseline_identity_snapshots_cases.json": "6fb9d782a0049b8eccc824876a4d104a20a11d757fd6e82ac207c272f0e861fb",
+    "baseline_private_buff_loops_cases.json": "13f9e0d16019a6d9348edb957438e5239256c5940c0b007ccb49a3bb633846a2",
+    "candidate_identity_snapshots_cases.json": "6fb9d782a0049b8eccc824876a4d104a20a11d757fd6e82ac207c272f0e861fb",
+    "candidate_private_buff_loops_cases.json": "13f9e0d16019a6d9348edb957438e5239256c5940c0b007ccb49a3bb633846a2"
+  },
+  "fixture_sha256": {
+    "test_native_identity_snapshots.cpp": "6c04e82cfc09b034c0e507ad469e10e0a105f7862e15af8227b95e6bb2e3381a",
+    "test_native_private_buff_loops.cpp": "159e0134b73d984c3c4b1ca2cb03d5ecdbb4fb1b13b53a6a12efd1bc2352cad2",
+    "test_native_private_integer_view.cpp": "cef12fa1c66760c965b674139e0b6aca743c19a7e4bab921dc64fc007825c566"
+  },
+  "text_boundaries_mutation_trace_toggle_literal_nested_and_unknown_receivers": true,
+  "four_rounding_and_four_daz_ftz_modes": true,
+  "old_six_counts_per_case_checked": true,
+  "no_throughput_claim": true
+}

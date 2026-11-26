@@ -1,0 +1,68 @@
+D:\文件资料\学习\自动背包AI\dist\native_1_1_10_bundle_pending
+{
+  "dll_sha256": "d2064b3f17d8168cf87a2e9f46e9fb336ffe4aaf6581c27d93350b2c41477a57",
+  "gate_sha256": "2fbddebd23364b0ef66909ea8e1fdb0df5bebdb8b2d67d4ebb3417e7966d7ec8",
+  "ab_assessment_path": "D:\\\u6587\u4ef6\u8d44\u6599\\\u5b66\u4e60\\\u81ea\u52a8\u80cc\u5305AI\\output\\_v1110\\native_perf50\\buff_inline_types_bundle\\ab_assessment.json",
+  "ab_assessment_sha256": "a63399efabfb7fd49fba6aa77066044794578c19bfb03b7442456a536cc03697",
+  "ab_pairs": 24,
+  "speed_report_sha256": "e14e7186f62d501843382f8ac8e42f1047a17418bd11e3e8957a08bbf2109540",
+  "training_outcomes": [
+    1,
+    1,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "regeneration_test_sha256": "b4519d1cedd0e61dd18800f652d7cb28cf95d39f6616d8897d31ebd72eba4c24",
+  "full_regeneration_test_sha256": "86b8767a625d160db94ecee3e634f0837d57047197d30e08c9516d759baa1124",
+  "training_matched_baseline": 12,
+  "training_evaluation": {
+    "mean_wr": 0.16666666666666666,
+    "std_opp": 0.28867513459481287,
+    "worst_wr": 0.0,
+    "per_opp": [
+      {
+        "rating": 450.385037,
+        "n_items": 57,
+        "wr": 0.6666666666666666,
+        "errs": 0
+      },
+      {
+        "rating": 527.013755,
+        "n_items": 47,
+        "wr": 0.0,
+        "errs": 0
+      },
+      {
+        "rating": 464.089676,
+        "n_items": 47,
+        "wr": 0.0,
+        "errs": 0
+      },
+      {
+        "rating": 457.699621,
+        "n_items": 61,
+        "wr": 0.0,
+        "errs": 0
+      }
+    ],
+    "n_opp": 4,
+    "seeds": 3,
+    "total_sims": 12,
+    "sim_errors": 0
+  },
+  "runtime": "dist/native_1_1_10",
+  "backup_runtime": "dist/native_1_1_10_before_buff_inline_types_bundle_20261126",
+  "changed_native_files": [
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/gen/shards/shard_00.cpp",
+    "output/_v1110/optimize_native_verified_bundle.py",
+    "output/_v1110/sim_native/native_sim_cpp/native_sim/libgdcore.dll"
+  ]
+}

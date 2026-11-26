@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "dll_sha256": "d2064b3f17d8168cf87a2e9f46e9fb336ffe4aaf6581c27d93350b2c41477a57",
+  "cases": 1056,
+  "baseline_receipt_sha256": "2e73d3bc5265634a3295888f96f4664584382beeb2e0fc6c7cc8a6ac17970f7c",
+  "original_fixture_sha256": "230f60cc81d36495dc20d27b9e7b7ec16c8d9c4d6ed3075c42a55e3ff061d23a",
+  "only_fixture_change": "Enable closed_world alongside enabled; run only known-object cases",
+  "known_generated_same_pass_newItemTimer_callback_retained": true,
+  "unknown_callback_cases_excluded_from_sealed_mode": true,
+  "all_original_state_fenv_rng_and_legacy_hashes_equal": true,
+  "timer_counts": [
+    1504,
+    848,
+    656,
+    8360,
+    88,
+    32,
+    584,
+    22664,
+    3736,
+    0
+  ],
+  "raw_sha256": "db73cd801568ece22e5cc18fe03f405c5d91797cb8dba873277c580097e7ccda"
+}
