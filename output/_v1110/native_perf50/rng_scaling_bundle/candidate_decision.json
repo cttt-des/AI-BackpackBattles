@@ -1,0 +1,12 @@
+{
+  "status": "inconclusive_retained",
+  "accepted": false,
+  "selected_assessment": "ab_assessment_32.json",
+  "assessment_sha256": "a32f078a41bffab4bba419034f7fb44961ec174e9b1c6b3cbc5c5e7d59a76920",
+  "candidate_dll_sha256": "e369fe21b33376a28c1338b5eac2a9ccfa367fdd94b980f2a7bdca33277c83f9",
+  "baseline_dll_sha256": "cea3c1c81a9294e05f0aac3b609ee4e474aa7019a1bf766ad12c22d876fe4b52",
+  "pairs": 32,
+  "all_original_pairs_and_extremes_retained": true,
+  "no_same_source_retiming": true,
+  "not_deployed_yet": true
+}

@@ -1,0 +1,37 @@
+{
+  "actual_final_PGO_DLLs": true,
+  "target": "CoreRng::fn_randf",
+  "records": {
+    "baseline": {
+      "dll_sha256": "cea3c1c81a9294e05f0aac3b609ee4e474aa7019a1bf766ad12c22d876fe4b52",
+      "symbols": [
+        "_Z17native_event_callI20Gd__gd_core__CoreRngXadL_ZNS0_14fn_randf_rangeEPKN2gd5GdValEiEEES2_RNS1_9BattleCtxERS3_jS4_i.constprop.0",
+        "_ZN20Gd__gd_core__CoreRng14fn_randf_rangeEPKN2gd5GdValEi",
+        "_ZN20Gd__gd_core__CoreRng14fn_randf_rangeEPKN2gd5GdValEi.constprop.0",
+        "_ZN20Gd__gd_core__CoreRng14fn_randf_rangeEPKN2gd5GdValEi.constprop.1",
+        "_ZN2gd22native_resolved_invokeI20Gd__gd_core__CoreRngXadL_ZNS1_14fn_randf_rangeEPKNS_5GdValEiEEEES2_PNS_5GdObjES4_i",
+        "_ZZN20Gd__gd_core__CoreRng14fn_randf_rangeEPKN2gd5GdValEiENKUlvE0_clEv.isra.0"
+      ],
+      "disassembly_sha256": "c773e20ea9e7deefa1bfa55be403bc083e26b633450ea96503eec203e751d1cf",
+      "static_gd_eq_call_sites": 0,
+      "static_ldexp_call_sites": 3,
+      "ldexpf_symbol_present": true
+    },
+    "candidate": {
+      "dll_sha256": "e369fe21b33376a28c1338b5eac2a9ccfa367fdd94b980f2a7bdca33277c83f9",
+      "symbols": [
+        "_Z17native_event_callI20Gd__gd_core__CoreRngXadL_ZNS0_14fn_randf_rangeEPKN2gd5GdValEiEEES2_RNS1_9BattleCtxERS3_jS4_i.constprop.0",
+        "_ZN20Gd__gd_core__CoreRng14fn_randf_rangeEPKN2gd5GdValEi",
+        "_ZN20Gd__gd_core__CoreRng14fn_randf_rangeEPKN2gd5GdValEi.constprop.0",
+        "_ZN20Gd__gd_core__CoreRng14fn_randf_rangeEPKN2gd5GdValEi.constprop.1",
+        "_ZN2gd22native_resolved_invokeI20Gd__gd_core__CoreRngXadL_ZNS1_14fn_randf_rangeEPKNS_5GdValEiEEEES2_PNS_5GdObjES4_i",
+        "_ZZN20Gd__gd_core__CoreRng14fn_randf_rangeEPKN2gd5GdValEiENKUlvE0_clEv.isra.0"
+      ],
+      "disassembly_sha256": "c8f0e3f2e38637f14c2dce8f826a01687a54321537cc56f7f8b5a68e4e0eedec",
+      "static_gd_eq_call_sites": 0,
+      "static_ldexp_call_sites": 0,
+      "ldexpf_symbol_present": false
+    }
+  },
+  "no_speed_claim": true
+}

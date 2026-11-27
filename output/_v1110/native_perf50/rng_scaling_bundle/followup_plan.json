@@ -1,0 +1,7 @@
+{
+  "maximum_extra_groups": 1,
+  "all_original24_retained": true,
+  "all32_must_be_used": true,
+  "no_more_same_source_groups": true,
+  "trigger": "First24 inconclusive or leave-one-group sensitivity not positive"
+}

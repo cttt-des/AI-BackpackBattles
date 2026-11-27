@@ -50,8 +50,8 @@ def rng_baseline_review(work):
     root=Path(tempfile.mkdtemp(prefix='rng-baseline-review-'));dll=root/'baseline.dll';shutil.copyfile(BASE/'libgdcore.dll',dll)
     names=subprocess.check_output(['D:/mingw64/bin/nm.exe','-g','--defined-only',str(dll)],text=True)
     demangled=subprocess.check_output(['D:/mingw64/bin/nm.exe','-g','-C','--defined-only',str(dll)],text=True)
-    addresses={r.split()[0] for r in demangled.splitlines() if 'CoreRng::fn_randf' in r}
-    symbols=[r.split()[-1] for r in names.splitlines() if r.split() and r.split()[0] in addresses];assert symbols
+    addresses={r.split()[0] for r in demangled.splitlines() if 'CoreRng::fn_randf' in r and len(r.split())>=3 and r.split()[1] in ('T','t') and int(r.split()[0],16)!=0}
+    symbols=[r.split()[-1] for r in names.splitlines() if len(r.split())>=3 and r.split()[1] in ('T','t') and r.split()[0] in addresses];assert symbols
     text=''.join(subprocess.check_output(['D:/mingw64/bin/objdump.exe','-d','--no-show-raw-insn','--disassemble='+s,str(dll)],text=True) for s in symbols)
     path=work/'baseline_rng_preflight_machine.txt';path.write_text(text,encoding='utf8')
     calls=[line.strip() for line in text.splitlines() if 'call' in line and 'ldexp' in line]
@@ -294,8 +294,8 @@ def machine_review():
         local=root/(label+'.dll');shutil.copyfile(dll,local)
         names=subprocess.check_output(['D:/mingw64/bin/nm.exe','-g','--defined-only',str(local)],text=True)
         demangled=subprocess.check_output(['D:/mingw64/bin/nm.exe','-g','-C','--defined-only',str(local)],text=True)
-        addresses={row.split()[0] for row in demangled.splitlines() if target in row and len(row.split())>=3}
-        symbols=[row.split()[-1] for row in names.splitlines() if row.split() and row.split()[0] in addresses];assert symbols
+        addresses={row.split()[0] for row in demangled.splitlines() if target in row and len(row.split())>=3 and row.split()[1] in ('T','t') and int(row.split()[0],16)!=0}
+        symbols=[row.split()[-1] for row in names.splitlines() if len(row.split())>=3 and row.split()[1] in ('T','t') and row.split()[0] in addresses];assert symbols
         output=''
         for symbol in symbols:output+=subprocess.check_output(['D:/mingw64/bin/objdump.exe','-d','--no-show-raw-insn','--disassemble='+symbol,str(local)],text=True)
         destination=p.WORK/(label+'_machine.txt');destination.write_text(output,encoding='utf8')

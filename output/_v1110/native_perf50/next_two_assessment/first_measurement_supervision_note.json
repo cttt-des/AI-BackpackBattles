@@ -1,0 +1,8 @@
+{
+  "first_comparison_log_created_local": "2026-11-27T16:21:20+08:00",
+  "configured_warmup_seconds": 120,
+  "symbol_inspection_finished_before_monitor_time": "2026-11-27T16:22:09.2519624+08:00",
+  "symbol_inspection_during_startup_only_before_any_paired_arm_could_begin": true,
+  "all_actual_pairs_and_extremes_retained_no_retiming": true,
+  "machine_review_zero_address_absolute_aliases_filtered_for_future_rounds": true
+}

@@ -1,0 +1,21 @@
+{
+ "total": 19,
+ "passed": 19,
+ "reference_mode": "native-only",
+ "category": {
+  "pass": 19
+ },
+ "winner_mismatch": 0,
+ "winner_unavailable": 0,
+ "cases_with_coarse_gem_origin": 0,
+ "strict_gem_origins": true,
+ "original_dir": "D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_host_observed_expand\\expand",
+ "first_divergences": [],
+ "below_master_override": null,
+ "dll": "D:\\文件资料\\学习\\自动背包AI\\output\\_v1110\\native_perf50\\rng_scaling_bundle\\bundle.dll",
+ "wall_total_s": 1.5,
+ "strict_item_origins": true,
+ "dll_sha256": "e369fe21b33376a28c1338b5eac2a9ccfa367fdd94b980f2a7bdca33277c83f9",
+ "fixtures_sha256": "60807ee2a7fd768dd4696f33cfbebb0ba84fb6a6be21566a906f1f2e4bb96a52",
+ "runtime_data_sha256": "55bdd068cf3308547de78b45abbed4bf4f57e8253fbec82313a99578defa00ae"
+}

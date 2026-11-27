@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "dll_sha256": "7effa0c931ec7d93b91d05a0464ce36b245edf57ddef189678dbe46dea687d14",
+  "baseline_dll_sha256": "146263d86e7e0e1c0bb530b49a313b04c9fd63575fe831137ec84c97d114b334",
+  "cases": 354304,
+  "all16_FP_modes": true,
+  "actual_separate_DLL_functions": true,
+  "observed_function": "gd::call_method Rng randf/randf_range builtin branch",
+  "no_fixture_inline_substitution": true,
+  "all_original_bits_flags_MXCSR_and_state_equal": true,
+  "preexisting_FP_flags_and_errno_preserved": true,
+  "fixture_sha256": "a6ce2dffc8d7432bdaf965ebf9b78cef322325f87c060dff219a0f16bda07f45",
+  "raw_sha256": {
+    "baseline_cases.json": "e0e6f6790cc32b94be02a33dd9ef20645df89496561e802459bf68f337f97dc7",
+    "candidate_cases.json": "e0e6f6790cc32b94be02a33dd9ef20645df89496561e802459bf68f337f97dc7"
+  }
+}

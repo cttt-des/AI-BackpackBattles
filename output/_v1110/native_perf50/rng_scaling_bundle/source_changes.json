@@ -1,0 +1,8 @@
+{
+  "gd_rt.hpp": [
+    [
+      "        return static_cast<double>(std::ldexp(mantissa, -32 - clz));",
+      "        // The original unsigned-to-float conversion above is retained,\n        // including its rounding and exception flags. Its result is in\n        // [2^31,2^32], and clz is in [0,31]: scaling is exact and normal.\n        // Adjust only the exponent field; never change draws or mantissa bits.\n        if constexpr (sizeof(float)==sizeof(uint32_t) &&\n                std::numeric_limits<float>::is_iec559 &&\n                std::numeric_limits<float>::digits==24 &&\n                std::numeric_limits<float>::max_exponent==128) {\n            uint32_t bits;\n            std::memcpy(&bits,&mantissa,sizeof(bits));\n            bits-=static_cast<uint32_t>(32+clz)<<23;\n            float scaled;\n            std::memcpy(&scaled,&bits,sizeof(scaled));\n            return static_cast<double>(scaled);\n        } else {\n            return static_cast<double>(std::ldexp(mantissa, -32 - clz));\n        }"
+    ]
+  ]
+}
